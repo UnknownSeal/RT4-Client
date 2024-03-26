@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static146 {
 
@@ -22,7 +23,7 @@ public final class Static146 {
 	public static int anInt3508 = 99;
 
 	@OriginalMember(owner = "runetek4.client!lg", name = "a", descriptor = "(ZLclient!wa;Lclient!na;)I")
-	public static int method2748(@OriginalArg(1) Buffer arg0, @OriginalArg(2) JagString arg1) {
+	public static int method2748(@OriginalArg(1) Packet arg0, @OriginalArg(2) JagString arg1) {
 		@Pc(6) int local6 = arg0.offset;
 		@Pc(14) byte[] local14 = arg1.method3148();
 		arg0.pSmart1or2(local14.length);

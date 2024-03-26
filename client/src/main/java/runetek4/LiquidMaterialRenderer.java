@@ -8,6 +8,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!rd")
 public final class LiquidMaterialRenderer implements MaterialRenderer {
@@ -33,7 +34,7 @@ public final class LiquidMaterialRenderer implements MaterialRenderer {
 			this.anInt4830 = local19[0];
 			@Pc(42) int[][] local42 = Static33.method874(0.4F);
 			@Pc(53) int[][] local53 = Static33.method874(0.4F);
-			@Pc(58) Buffer local58 = new Buffer(262144);
+			@Pc(58) Packet local58 = new Packet(262144);
 			for (@Pc(60) int local60 = 0; local60 < 256; local60++) {
 				@Pc(67) int[] local67 = local42[local60];
 				@Pc(71) int[] local71 = local53[local60];

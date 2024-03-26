@@ -1,9 +1,11 @@
-package runetek4;
+package runetek4.game.config.loctype;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.*;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!pb")
 public final class LocType {
@@ -385,7 +387,7 @@ public final class LocType {
 	}
 
 	@OriginalMember(owner = "runetek4.client!pb", name = "a", descriptor = "(ILclient!wa;)V")
-	public final void method3424(@OriginalArg(1) Buffer arg0) {
+	public final void method3424(@OriginalArg(1) Packet arg0) {
 		while (true) {
 			@Pc(9) int local9 = arg0.g1();
 			if (local9 == 0) {
@@ -396,7 +398,7 @@ public final class LocType {
 	}
 
 	@OriginalMember(owner = "runetek4.client!pb", name = "a", descriptor = "(Lclient!wa;II)V")
-	private void method3425(@OriginalArg(0) Buffer arg0, @OriginalArg(1) int arg1) {
+	private void method3425(@OriginalArg(0) Packet arg0, @OriginalArg(1) int arg1) {
 		@Pc(18) int local18;
 		@Pc(38) int local38;
 		if (arg1 == 1) {

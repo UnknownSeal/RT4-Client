@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!jm")
 public final class AnimBase extends Node {
@@ -29,7 +30,7 @@ public final class AnimBase extends Node {
 	@OriginalMember(owner = "runetek4.client!jm", name = "<init>", descriptor = "(I[B)V")
 	public AnimBase(@OriginalArg(0) int arg0, @OriginalArg(1) byte[] arg1) {
 		this.anInt3113 = arg0;
-		@Pc(9) Buffer local9 = new Buffer(arg1);
+		@Pc(9) Packet local9 = new Packet(arg1);
 		this.anInt3116 = local9.g1();
 		this.anIntArrayArray23 = new int[this.anInt3116][];
 		this.anIntArray291 = new int[this.anInt3116];

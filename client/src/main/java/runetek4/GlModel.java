@@ -6,6 +6,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!td")
 public final class GlModel extends Model {
@@ -1675,7 +1676,7 @@ public final class GlModel extends Model {
 	@OriginalMember(owner = "runetek4.client!td", name = "q", descriptor = "()V")
 	private void method4103() {
 		if (Static237.aClass3_Sub15_8.data.length < this.anInt5296 * 12) {
-			Static237.aClass3_Sub15_8 = new Buffer((this.anInt5296 + 100) * 12);
+			Static237.aClass3_Sub15_8 = new Packet((this.anInt5296 + 100) * 12);
 		} else {
 			Static237.aClass3_Sub15_8.offset = 0;
 		}
@@ -2024,7 +2025,7 @@ public final class GlModel extends Model {
 			return;
 		}
 		if (Static237.aClass3_Sub15_8.data.length < this.anInt5296 * local1) {
-			Static237.aClass3_Sub15_8 = new Buffer((this.anInt5296 + 100) * local1);
+			Static237.aClass3_Sub15_8 = new Packet((this.anInt5296 + 100) * local1);
 		} else {
 			Static237.aClass3_Sub15_8.offset = 0;
 		}

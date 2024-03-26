@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static65 {
 
@@ -13,7 +14,7 @@ public final class Static65 {
 	public static final JagString aClass100_435 = Static28.parse("<img=0>");
 
 	@OriginalMember(owner = "runetek4.client!fc", name = "a", descriptor = "(Lclient!wa;I)Lclient!na;")
-	public static JagString method1497(@OriginalArg(0) Buffer arg0) {
+	public static JagString method1497(@OriginalArg(0) Packet arg0) {
 		return Static254.method4350(arg0);
 	}
 

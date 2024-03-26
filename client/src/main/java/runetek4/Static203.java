@@ -5,6 +5,7 @@ import java.awt.Insets;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static203 {
 
@@ -81,7 +82,7 @@ public final class Static203 {
 			}
 			if (local16.status == 1) {
 				local11 = (FileOnDisk) local16.result;
-				@Pc(39) Buffer local39 = Static48.method1196();
+				@Pc(39) Packet local39 = Static48.method1196();
 				local11.method5134(local39.data, local39.offset, 0);
 			}
 		} catch (@Pc(49) Exception local49) {

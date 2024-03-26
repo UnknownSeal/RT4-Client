@@ -1,12 +1,14 @@
-package runetek4;
+package runetek4.core.io;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.IsaacRandom;
+import runetek4.Static18;
 
 @OriginalClass("runetek4.client!i")
-public final class Packet extends Buffer {
+public final class PacketBit extends Packet {
 
 	@OriginalMember(owner = "runetek4.client!i", name = "Xb", descriptor = "Lclient!ij;")
 	private IsaacRandom aClass71_1;
@@ -15,7 +17,7 @@ public final class Packet extends Buffer {
 	private int anInt2846;
 
 	@OriginalMember(owner = "runetek4.client!i", name = "<init>", descriptor = "(I)V")
-	public Packet(@OriginalArg(0) int arg0) {
+	public PacketBit(@OriginalArg(0) int arg0) {
 		super(arg0);
 	}
 

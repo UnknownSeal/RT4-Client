@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!ia")
 public final class Class63 {
@@ -31,7 +32,7 @@ public final class Class63 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ia", name = "a", descriptor = "(Lclient!wa;IB)V")
-	public final void method2249(@OriginalArg(0) Buffer arg0, @OriginalArg(1) int arg1) {
+	public final void method2249(@OriginalArg(0) Packet arg0, @OriginalArg(1) int arg1) {
 		while (true) {
 			@Pc(18) int local18 = arg0.g1();
 			if (local18 == 0) {
@@ -42,7 +43,7 @@ public final class Class63 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ia", name = "a", descriptor = "(IIILclient!wa;)V")
-	private void method2250(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Buffer arg2) {
+	private void method2250(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Packet arg2) {
 		if (arg1 == 1) {
 			this.anInt2857 = arg2.g2();
 		} else if (arg1 == 2) {

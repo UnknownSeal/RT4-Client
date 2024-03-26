@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static225 {
 
@@ -91,7 +92,7 @@ public final class Static225 {
 			Static196.anInt4587 = 0;
 			Static266.anInt5336 = -3;
 			Static219.anInt4937 = 1;
-			@Pc(43) Buffer local43 = new Buffer(128);
+			@Pc(43) Packet local43 = new Packet(128);
 			local43.p1(10);
 			local43.p2((int) (Math.random() * 99999.0D));
 			local43.p2(530);

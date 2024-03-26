@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static124 {
 
@@ -47,7 +48,7 @@ public final class Static124 {
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "a", descriptor = "(IZ[BII[Lclient!mj;)V")
 	public static void method2437(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) byte[] arg2, @OriginalArg(3) int arg3, @OriginalArg(5) CollisionMap[] arg4) {
-		@Pc(10) Buffer local10 = new Buffer(arg2);
+		@Pc(10) Packet local10 = new Packet(arg2);
 		@Pc(12) int local12 = -1;
 		while (true) {
 			@Pc(16) int local16 = local10.gVarSmart();

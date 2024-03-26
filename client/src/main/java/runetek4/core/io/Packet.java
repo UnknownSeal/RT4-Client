@@ -1,10 +1,11 @@
-package runetek4;
+package runetek4.core.io;
 
 import java.math.BigInteger;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.*;
 
 // runetek4.Buffer access nomenclature:
 // Operation
@@ -41,7 +42,7 @@ import org.openrs2.deob.annotation.Pc;
 //  Crc32 - checksum
 
 @OriginalClass("runetek4.client!wa")
-public class Buffer extends Node {
+public class Packet extends Node {
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "y", descriptor = "[B")
 	public byte[] data;
@@ -50,13 +51,13 @@ public class Buffer extends Node {
 	public int offset;
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "<init>", descriptor = "(I)V")
-	public Buffer(@OriginalArg(0) int size) {
+	public Packet(@OriginalArg(0) int size) {
 		this.data = Static228.allocate(size);
 		this.offset = 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "<init>", descriptor = "([B)V")
-	public Buffer(@OriginalArg(0) byte[] src) {
+	public Packet(@OriginalArg(0) byte[] src) {
 		this.offset = 0;
 		this.data = src;
 	}

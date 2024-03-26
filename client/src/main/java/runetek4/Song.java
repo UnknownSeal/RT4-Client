@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!rf")
 public final class Song extends Node {
@@ -15,7 +16,7 @@ public final class Song extends Node {
 	public final byte[] aByteArray65;
 
 	@OriginalMember(owner = "runetek4.client!rf", name = "<init>", descriptor = "(Lclient!wa;)V")
-	public Song(@OriginalArg(0) Buffer arg0) {
+	public Song(@OriginalArg(0) Packet arg0) {
 		arg0.offset = arg0.data.length - 3;
 		@Pc(12) int local12 = arg0.g1();
 		@Pc(16) int local16 = arg0.g2();
@@ -162,7 +163,7 @@ public final class Song extends Node {
 		@Pc(482) int local482 = arg0.offset;
 		arg0.offset += local27 * 3;
 		this.aByteArray65 = new byte[local22];
-		@Pc(500) Buffer local500 = new Buffer(this.aByteArray65);
+		@Pc(500) Packet local500 = new Packet(this.aByteArray65);
 		local500.p4(1297377380);
 		local500.p4(6);
 		local500.p2(local12 > 1 ? 1 : 0);

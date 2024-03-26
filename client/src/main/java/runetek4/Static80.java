@@ -4,6 +4,7 @@ import java.io.IOException;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static80 {
 
@@ -87,7 +88,7 @@ public final class Static80 {
 						throw new IOException("EOF");
 					}
 				}
-				Static136.method2654(new Buffer(local106));
+				Static136.method2654(new Packet(local106));
 			}
 		} catch (@Pc(151) Exception local151) {
 		}

@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!sl")
 public final class SynthSound {
@@ -18,7 +19,7 @@ public final class SynthSound {
 	private int anInt5206;
 
 	@OriginalMember(owner = "runetek4.client!sl", name = "<init>", descriptor = "(Lclient!wa;)V")
-	public SynthSound(@OriginalArg(0) Buffer arg0) {
+	public SynthSound(@OriginalArg(0) Packet arg0) {
 		for (@Pc(7) int local7 = 0; local7 < 10; local7++) {
 			@Pc(14) int local14 = arg0.g1();
 			if (local14 != 0) {

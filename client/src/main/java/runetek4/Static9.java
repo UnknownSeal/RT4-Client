@@ -3,6 +3,8 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
+import runetek4.game.config.loctype.LocType;
 
 public final class Static9 {
 
@@ -90,7 +92,7 @@ public final class Static9 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!al", name = "a", descriptor = "(ILclient!wa;)Lclient!ci;")
-	public static TextureOp29SubOp1 method184(@OriginalArg(1) Buffer arg0) {
+	public static TextureOp29SubOp1 method184(@OriginalArg(1) Packet arg0) {
 		return new TextureOp29SubOp1(arg0.g2s(), arg0.g2s(), arg0.g2s(), arg0.g2s(), arg0.g3(), arg0.g1());
 	}
 

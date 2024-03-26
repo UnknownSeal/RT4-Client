@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static47 {
 
@@ -29,7 +30,7 @@ public final class Static47 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!dk", name = "a", descriptor = "(Lclient!wa;Z)V")
-	public static void method3998(@OriginalArg(0) Buffer arg0) {
+	public static void method3998(@OriginalArg(0) Packet arg0) {
 		label87: while (true) {
 			if (arg0.offset < arg0.data.length) {
 				@Pc(22) int local22 = 0;

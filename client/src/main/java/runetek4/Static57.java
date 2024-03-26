@@ -2,6 +2,7 @@ package runetek4;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
+import runetek4.core.io.PacketBit;
 
 public final class Static57 {
 
@@ -15,7 +16,7 @@ public final class Static57 {
 	public static int anInt1747 = 0;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "e", descriptor = "Lclient!i;")
-	public static final Packet aClass3_Sub15_Sub1_3 = new Packet(65536);
+	public static final PacketBit aClass3_Sub15_Sub1_3 = new PacketBit(65536);
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "v", descriptor = "I")
 	public static int anInt1758 = 0;

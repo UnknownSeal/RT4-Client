@@ -5,6 +5,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!pj")
 public final class SynthInstrument {
@@ -263,7 +264,7 @@ public final class SynthInstrument {
 	}
 
 	@OriginalMember(owner = "runetek4.client!pj", name = "a", descriptor = "(Lclient!wa;)V")
-	public final void method3506(@OriginalArg(0) Buffer arg0) {
+	public final void method3506(@OriginalArg(0) Packet arg0) {
 		this.aClass42_5 = new SynthEnvelope();
 		this.aClass42_5.method1515(arg0);
 		this.aClass42_3 = new SynthEnvelope();

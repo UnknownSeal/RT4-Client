@@ -6,6 +6,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!fj")
 public final class Class45 {
@@ -114,8 +115,8 @@ public final class Class45 {
 
 	@OriginalMember(owner = "runetek4.client!fj", name = "a", descriptor = "()V")
 	public final void method1554() {
-		@Pc(7) Buffer local7 = new Buffer(this.anInt2018 * 4);
-		@Pc(15) Buffer local15 = new Buffer(this.anInt2017 * 16);
+		@Pc(7) Packet local7 = new Packet(this.anInt2018 * 4);
+		@Pc(15) Packet local15 = new Packet(this.anInt2017 * 16);
 		@Pc(19) int local19;
 		if (GlRenderer.bigEndian) {
 			for (local19 = 0; local19 < this.anInt2017; local19++) {

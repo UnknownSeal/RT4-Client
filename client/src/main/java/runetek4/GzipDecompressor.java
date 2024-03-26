@@ -5,6 +5,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!ha")
 public final class GzipDecompressor {
@@ -22,7 +23,7 @@ public final class GzipDecompressor {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "([BLclient!wa;Z)V")
-	public final void method1842(@OriginalArg(0) byte[] arg0, @OriginalArg(1) Buffer arg1) {
+	public final void method1842(@OriginalArg(0) byte[] arg0, @OriginalArg(1) Packet arg1) {
 		if (arg1.data[arg1.offset] != 31 || arg1.data[arg1.offset + 1] != -117) {
 			throw new RuntimeException("Invalid GZIP header!");
 		}

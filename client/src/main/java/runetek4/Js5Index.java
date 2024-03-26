@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!ii")
 public final class Js5Index {
@@ -61,7 +62,7 @@ public final class Js5Index {
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "a", descriptor = "(I[B)V")
 	private void method2293(@OriginalArg(1) byte[] arg0) {
-		@Pc(12) Buffer local12 = new Buffer(Static162.method3092(arg0));
+		@Pc(12) Packet local12 = new Packet(Static162.method3092(arg0));
 		@Pc(16) int local16 = local12.g1();
 		if (local16 != 5 && local16 != 6) {
 			throw new RuntimeException();

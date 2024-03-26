@@ -4,12 +4,13 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!al")
 public final class Js5MasterIndex {
 
 	@OriginalMember(owner = "runetek4.client!al", name = "a", descriptor = "Lclient!wa;")
-	private Buffer aClass3_Sub15_1;
+	private Packet aClass3_Sub15_1;
 
 	@OriginalMember(owner = "runetek4.client!al", name = "s", descriptor = "[Lclient!bg;")
 	private Js5CachedResourceProvider[] aClass14_Sub1Array1;
@@ -46,7 +47,7 @@ public final class Js5MasterIndex {
 		if (this.aClass3_Sub2_Sub5_Sub2_1.aBoolean226) {
 			return false;
 		} else {
-			this.aClass3_Sub15_1 = new Buffer(this.aClass3_Sub2_Sub5_Sub2_1.method3554());
+			this.aClass3_Sub15_1 = new Packet(this.aClass3_Sub2_Sub5_Sub2_1.method3554());
 			this.aClass14_Sub1Array1 = new Js5CachedResourceProvider[(this.aClass3_Sub15_1.data.length - 5) / 8];
 			return true;
 		}

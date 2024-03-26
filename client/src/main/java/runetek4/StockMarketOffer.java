@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!sg")
 public final class StockMarketOffer {
@@ -30,7 +31,7 @@ public final class StockMarketOffer {
 	}
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "<init>", descriptor = "(Lclient!wa;)V")
-	public StockMarketOffer(@OriginalArg(0) Buffer arg0) {
+	public StockMarketOffer(@OriginalArg(0) Packet arg0) {
 		this.aByte17 = arg0.g1s();
 		this.anInt5094 = arg0.g2();
 		this.anInt5099 = arg0.g4();

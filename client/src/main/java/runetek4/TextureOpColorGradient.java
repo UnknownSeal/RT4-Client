@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!um")
 public final class TextureOpColorGradient extends TextureOp {
@@ -224,7 +225,7 @@ public final class TextureOpColorGradient extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!um", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Buffer arg1) {
+	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
 		if (arg0 != 0) {
 			return;
 		}

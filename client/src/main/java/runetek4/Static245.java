@@ -3,6 +3,8 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
+import runetek4.game.config.lighttype.LightType;
 
 public final class Static245 {
 
@@ -44,9 +46,9 @@ public final class Static245 {
 						@Pc(74) Component local74 = Static241.components[arg0][local46] = new Component();
 						local74.anInt507 = local46 + (arg0 << 16);
 						if (local62[0] == -1) {
-							local74.method490(new Buffer(local62));
+							local74.method490(new Packet(local62));
 						} else {
-							local74.method481(new Buffer(local62));
+							local74.method481(new Packet(local62));
 						}
 					}
 				}
@@ -89,7 +91,7 @@ public final class Static245 {
 		} else {
 			local87 = 4;
 		}
-		@Pc(96) Buffer local96 = new Buffer(arg5);
+		@Pc(96) Packet local96 = new Packet(arg5);
 		@Pc(103) int local103;
 		@Pc(108) int local108;
 		for (local17 = 0; local17 < local87; local17++) {

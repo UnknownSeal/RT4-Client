@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!eg")
 public final class SpotAnimType {
@@ -48,7 +49,7 @@ public final class SpotAnimType {
 	private int anInt1755 = 0;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "a", descriptor = "(Lclient!wa;B)V")
-	public final void method1316(@OriginalArg(0) Buffer arg0) {
+	public final void method1316(@OriginalArg(0) Packet arg0) {
 		while (true) {
 			@Pc(17) int local17 = arg0.g1();
 			if (local17 == 0) {
@@ -59,7 +60,7 @@ public final class SpotAnimType {
 	}
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "a", descriptor = "(Lclient!wa;II)V")
-	private void method1318(@OriginalArg(0) Buffer arg0, @OriginalArg(1) int arg1) {
+	private void method1318(@OriginalArg(0) Packet arg0, @OriginalArg(1) int arg1) {
 		if (arg1 == 1) {
 			this.anInt1753 = arg0.g2();
 		} else if (arg1 == 2) {

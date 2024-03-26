@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!li")
 public final class Environment {
@@ -49,7 +50,7 @@ public final class Environment {
 	}
 
 	@OriginalMember(owner = "runetek4.client!li", name = "<init>", descriptor = "(Lclient!wa;)V")
-	public Environment(@OriginalArg(0) Buffer arg0) {
+	public Environment(@OriginalArg(0) Packet arg0) {
 		@Pc(7) int local7 = arg0.g1();
 		if ((local7 & 0x1) == 0) {
 			this.anInt3526 = Static161.anInt3923;

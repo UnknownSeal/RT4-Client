@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!wl")
 public final class FloType {
@@ -39,7 +40,7 @@ public final class FloType {
 	public int anInt5889 = 1190717;
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(ILclient!wa;I)V")
-	public final void method4669(@OriginalArg(1) Buffer arg0, @OriginalArg(2) int arg1) {
+	public final void method4669(@OriginalArg(1) Packet arg0, @OriginalArg(2) int arg1) {
 		while (true) {
 			@Pc(5) int local5 = arg0.g1();
 			if (local5 == 0) {
@@ -50,7 +51,7 @@ public final class FloType {
 	}
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(IILclient!wa;I)V")
-	private void method4674(@OriginalArg(1) int arg0, @OriginalArg(2) Buffer arg1, @OriginalArg(3) int arg2) {
+	private void method4674(@OriginalArg(1) int arg0, @OriginalArg(2) Packet arg1, @OriginalArg(3) int arg2) {
 		if (arg0 == 1) {
 			this.anInt5899 = Static15.method492(arg1.g3());
 		} else if (arg0 == 2) {

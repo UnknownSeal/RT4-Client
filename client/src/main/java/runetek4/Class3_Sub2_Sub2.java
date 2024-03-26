@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!bc")
 public final class Class3_Sub2_Sub2 extends SecondaryNode {
@@ -52,7 +53,7 @@ public final class Class3_Sub2_Sub2 extends SecondaryNode {
 	}
 
 	@OriginalMember(owner = "runetek4.client!bc", name = "a", descriptor = "(Lclient!wa;II)V")
-	private void method467(@OriginalArg(0) Buffer arg0, @OriginalArg(2) int arg1) {
+	private void method467(@OriginalArg(0) Packet arg0, @OriginalArg(2) int arg1) {
 		if (arg1 == 1) {
 			this.aClass100_79 = arg0.gjstr();
 			return;
@@ -93,7 +94,7 @@ public final class Class3_Sub2_Sub2 extends SecondaryNode {
 	}
 
 	@OriginalMember(owner = "runetek4.client!bc", name = "a", descriptor = "(Lclient!wa;B)V")
-	public final void method470(@OriginalArg(0) Buffer arg0) {
+	public final void method470(@OriginalArg(0) Packet arg0) {
 		while (true) {
 			@Pc(12) int local12 = arg0.g1();
 			if (local12 == 0) {

@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static264 {
 
@@ -25,7 +26,7 @@ public final class Static264 {
 	public static final int[] anIntArray413 = new int[128];
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(ILclient!wa;)Lclient!bd;")
-	public static Class12 method3568(@OriginalArg(1) Buffer arg0) {
+	public static Class12 method3568(@OriginalArg(1) Packet arg0) {
 		@Pc(3) Class12 local3 = new Class12();
 		local3.anInt439 = arg0.g2();
 		local3.aClass3_Sub2_Sub6_1 = Static230.method3953(local3.anInt439);

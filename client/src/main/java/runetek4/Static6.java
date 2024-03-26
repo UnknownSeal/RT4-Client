@@ -3,11 +3,12 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.PacketBit;
 
 public final class Static6 {
 
 	@OriginalMember(owner = "runetek4.client!ag", name = "P", descriptor = "Lclient!i;")
-	public static final Packet outboundBuffer = new Packet(5000);
+	public static final PacketBit outboundBuffer = new PacketBit(5000);
 
 	@OriginalMember(owner = "runetek4.client!ag", name = "ab", descriptor = "Lclient!na;")
 	public static final JagString aClass100_17 = Static28.parse("0");

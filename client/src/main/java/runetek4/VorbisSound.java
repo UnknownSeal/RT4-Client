@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!jc")
 public final class VorbisSound extends Node {
@@ -97,7 +98,7 @@ public final class VorbisSound extends Node {
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "a", descriptor = "([B)V")
 	private void method2342(@OriginalArg(0) byte[] arg0) {
-		@Pc(4) Buffer local4 = new Buffer(arg0);
+		@Pc(4) Packet local4 = new Packet(arg0);
 		this.anInt2980 = local4.g4();
 		this.anInt2974 = local4.g4();
 		this.anInt2976 = local4.g4();

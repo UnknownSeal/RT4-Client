@@ -2,6 +2,7 @@ package runetek4;
 
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!pm")
 public final class Js5NetRequest extends Js5Request {
@@ -13,7 +14,7 @@ public final class Js5NetRequest extends Js5Request {
 	public int anInt4617;
 
 	@OriginalMember(owner = "runetek4.client!pm", name = "bb", descriptor = "Lclient!wa;")
-	public Buffer aClass3_Sub15_7;
+	public Packet aClass3_Sub15_7;
 
 	@OriginalMember(owner = "runetek4.client!pm", name = "a", descriptor = "(Z)I")
 	@Override

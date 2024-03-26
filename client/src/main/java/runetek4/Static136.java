@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static136 {
 
@@ -40,7 +41,7 @@ public final class Static136 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "b", descriptor = "(Lclient!wa;I)V")
-	public static void method2654(@OriginalArg(0) Buffer arg0) {
+	public static void method2654(@OriginalArg(0) Packet arg0) {
 		if (arg0.data.length - arg0.offset < 1) {
 			return;
 		}

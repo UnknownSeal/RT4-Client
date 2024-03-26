@@ -2,6 +2,7 @@ package runetek4;
 
 import java.nio.ByteBuffer;
 import org.openrs2.deob.annotation.OriginalMember;
+import runetek4.core.io.Packet;
 
 public final class Static95 {
 
@@ -9,13 +10,13 @@ public final class Static95 {
 	public static ByteBuffer aByteBuffer4;
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "K", descriptor = "Lclient!wa;")
-	public static Buffer aClass3_Sub15_2;
+	public static Packet aClass3_Sub15_2;
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "Q", descriptor = "Ljava/nio/ByteBuffer;")
 	public static ByteBuffer aByteBuffer5;
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "U", descriptor = "Lclient!wa;")
-	public static Buffer aClass3_Sub15_3;
+	public static Packet aClass3_Sub15_3;
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "a", descriptor = "()V")
 	public static void method1939() {

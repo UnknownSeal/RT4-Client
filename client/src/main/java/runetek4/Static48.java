@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static48 {
 
@@ -28,8 +29,8 @@ public final class Static48 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!dl", name = "a", descriptor = "(B)Lclient!wa;")
-	public static Buffer method1196() {
-		@Pc(4) Buffer local4 = new Buffer(34);
+	public static Packet method1196() {
+		@Pc(4) Packet local4 = new Packet(34);
 		local4.p1(11);
 		local4.p1(Static113.anInt4609);
 		local4.p1(Static162.aBoolean190 ? 1 : 0);

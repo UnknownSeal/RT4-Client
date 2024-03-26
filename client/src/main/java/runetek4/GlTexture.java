@@ -7,6 +7,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!uh")
 public final class GlTexture extends SecondaryNode {
@@ -57,7 +58,7 @@ public final class GlTexture extends SecondaryNode {
 	private final int anInt5489;
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "<init>", descriptor = "(Lclient!wa;)V")
-	public GlTexture(@OriginalArg(0) Buffer arg0) {
+	public GlTexture(@OriginalArg(0) Packet arg0) {
 		this.aClass88_1 = new Texture(arg0);
 		this.aBoolean286 = arg0.g1() == 1;
 		this.aBoolean288 = arg0.g1() == 1;

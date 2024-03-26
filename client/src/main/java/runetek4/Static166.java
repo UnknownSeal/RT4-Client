@@ -3,6 +3,8 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
+import runetek4.game.config.loctype.LocType;
 
 public final class Static166 {
 
@@ -25,7 +27,7 @@ public final class Static166 {
 	public static int anInt4055 = 0;
 
 	@OriginalMember(owner = "runetek4.client!nc", name = "a", descriptor = "(BLclient!wa;)V")
-	public static void method3166(@OriginalArg(1) Buffer arg0) {
+	public static void method3166(@OriginalArg(1) Packet arg0) {
 		label123: while (true) {
 			if (arg0.data.length > arg0.offset) {
 				@Pc(17) boolean local17 = false;

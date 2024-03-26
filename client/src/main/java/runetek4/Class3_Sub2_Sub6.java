@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!cb")
 public final class Class3_Sub2_Sub6 extends SecondaryNode {
@@ -24,7 +25,7 @@ public final class Class3_Sub2_Sub6 extends SecondaryNode {
 	public boolean aBoolean60 = true;
 
 	@OriginalMember(owner = "runetek4.client!cb", name = "a", descriptor = "(Lclient!wa;[IZ)V")
-	public final void method760(@OriginalArg(0) Buffer arg0, @OriginalArg(1) int[] arg1) {
+	public final void method760(@OriginalArg(0) Packet arg0, @OriginalArg(1) int[] arg1) {
 		if (this.anIntArray71 == null) {
 			return;
 		}
@@ -37,7 +38,7 @@ public final class Class3_Sub2_Sub6 extends SecondaryNode {
 	}
 
 	@OriginalMember(owner = "runetek4.client!cb", name = "a", descriptor = "(Lclient!wa;I)V")
-	public final void method761(@OriginalArg(0) Buffer arg0) {
+	public final void method761(@OriginalArg(0) Packet arg0) {
 		while (true) {
 			@Pc(9) int local9 = arg0.g1();
 			if (local9 == 0) {
@@ -78,7 +79,7 @@ public final class Class3_Sub2_Sub6 extends SecondaryNode {
 	}
 
 	@OriginalMember(owner = "runetek4.client!cb", name = "a", descriptor = "(Lclient!wa;II)V")
-	private void method768(@OriginalArg(0) Buffer arg0, @OriginalArg(1) int arg1) {
+	private void method768(@OriginalArg(0) Packet arg0, @OriginalArg(1) int arg1) {
 		if (arg1 == 1) {
 			this.aClass100Array35 = arg0.gjstr().method3147(60);
 			return;
@@ -123,7 +124,7 @@ public final class Class3_Sub2_Sub6 extends SecondaryNode {
 	}
 
 	@OriginalMember(owner = "runetek4.client!cb", name = "a", descriptor = "(ILclient!wa;)Lclient!na;")
-	public final JagString method770(@OriginalArg(1) Buffer arg0) {
+	public final JagString method770(@OriginalArg(1) Packet arg0) {
 		@Pc(17) JagString local17 = Static87.method1804(80);
 		if (this.anIntArray71 != null) {
 			for (@Pc(22) int local22 = 0; local22 < this.anIntArray71.length; local22++) {

@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static34 {
 
@@ -97,7 +98,7 @@ public final class Static34 {
 		local10 = new SpotAnimType();
 		local10.anInt1751 = arg0;
 		if (local26 != null) {
-			local10.method1316(new Buffer(local26));
+			local10.method1316(new Packet(local26));
 		}
 		Static279.aClass99_38.method3095(local10, (long) arg0);
 		return local10;

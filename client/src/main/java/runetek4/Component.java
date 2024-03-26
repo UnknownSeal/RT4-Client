@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!be")
 public final class Component {
@@ -546,7 +547,7 @@ public final class Component {
 	}
 
 	@OriginalMember(owner = "runetek4.client!be", name = "a", descriptor = "(ILclient!wa;)V")
-	public final void method481(@OriginalArg(1) Buffer arg0) {
+	public final void method481(@OriginalArg(1) Packet arg0) {
 		this.aBoolean32 = false;
 		this.anInt452 = arg0.g1();
 		this.anInt530 = arg0.g1();
@@ -790,7 +791,7 @@ public final class Component {
 	}
 
 	@OriginalMember(owner = "runetek4.client!be", name = "b", descriptor = "(ILclient!wa;)[Ljava/lang/Object;")
-	private Object[] method485(@OriginalArg(1) Buffer arg0) {
+	private Object[] method485(@OriginalArg(1) Packet arg0) {
 		@Pc(11) int local11 = arg0.g1();
 		if (local11 == 0) {
 			return null;
@@ -809,7 +810,7 @@ public final class Component {
 	}
 
 	@OriginalMember(owner = "runetek4.client!be", name = "a", descriptor = "(Lclient!wa;Z)[I")
-	private int[] method486(@OriginalArg(0) Buffer arg0) {
+	private int[] method486(@OriginalArg(0) Packet arg0) {
 		@Pc(9) int local9 = arg0.g1();
 		if (local9 == 0) {
 			return null;
@@ -976,7 +977,7 @@ public final class Component {
 	}
 
 	@OriginalMember(owner = "runetek4.client!be", name = "c", descriptor = "(ILclient!wa;)V")
-	public final void method490(@OriginalArg(1) Buffer arg0) {
+	public final void method490(@OriginalArg(1) Packet arg0) {
 		this.aBoolean32 = true;
 		arg0.offset++;
 		this.anInt452 = arg0.g1();

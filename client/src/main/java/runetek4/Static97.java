@@ -8,6 +8,7 @@ import java.io.StringWriter;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static97 {
 
@@ -99,7 +100,7 @@ public final class Static97 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(Lclient!wa;I)V")
-	public static void method1962(@OriginalArg(0) Buffer arg0) {
+	public static void method1962(@OriginalArg(0) Packet arg0) {
 		@Pc(9) int local9 = arg0.gSmart1or2();
 		Static203.aClass32Array1 = new Class32[local9];
 		@Pc(14) int local14;

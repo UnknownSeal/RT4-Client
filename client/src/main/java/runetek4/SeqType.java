@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!tk")
 public final class SeqType {
@@ -63,7 +64,7 @@ public final class SeqType {
 	public boolean aBoolean280 = false;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "a", descriptor = "(Lclient!wa;B)V")
-	public final void method4213(@OriginalArg(0) Buffer arg0) {
+	public final void method4213(@OriginalArg(0) Packet arg0) {
 		while (true) {
 			@Pc(19) int local19 = arg0.g1();
 			if (local19 == 0) {
@@ -287,7 +288,7 @@ public final class SeqType {
 	}
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "a", descriptor = "(IBLclient!wa;)V")
-	private void method4220(@OriginalArg(0) int arg0, @OriginalArg(2) Buffer arg1) {
+	private void method4220(@OriginalArg(0) int arg0, @OriginalArg(2) Packet arg1) {
 		@Pc(8) int local8;
 		@Pc(14) int local14;
 		if (arg0 == 1) {

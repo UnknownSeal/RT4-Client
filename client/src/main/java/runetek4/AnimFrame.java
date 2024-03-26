@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!ne")
 public final class AnimFrame {
@@ -41,8 +42,8 @@ public final class AnimFrame {
 	@OriginalMember(owner = "runetek4.client!ne", name = "<init>", descriptor = "([BLclient!jm;)V")
 	public AnimFrame(@OriginalArg(0) byte[] arg0, @OriginalArg(1) AnimBase arg1) {
 		this.aClass3_Sub20_1 = arg1;
-		@Pc(21) Buffer local21 = new Buffer(arg0);
-		@Pc(26) Buffer local26 = new Buffer(arg0);
+		@Pc(21) Packet local21 = new Packet(arg0);
+		@Pc(26) Packet local26 = new Packet(arg0);
 		local21.offset = 2;
 		@Pc(33) int local33 = local21.g1();
 		@Pc(35) int local35 = 0;

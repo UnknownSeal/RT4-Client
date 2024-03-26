@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!ml")
 public final class EnumType extends SecondaryNode {
@@ -27,7 +28,7 @@ public final class EnumType extends SecondaryNode {
 	private JagString aClass100_766 = Static87.aClass100_494;
 
 	@OriginalMember(owner = "runetek4.client!ml", name = "a", descriptor = "(ILclient!wa;B)V")
-	private void method3084(@OriginalArg(0) int arg0, @OriginalArg(1) Buffer arg1) {
+	private void method3084(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
 		if (arg0 == 1) {
 			this.anInt3957 = arg1.g1();
 		} else if (arg0 == 2) {
@@ -119,7 +120,7 @@ public final class EnumType extends SecondaryNode {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ml", name = "a", descriptor = "(Lclient!wa;I)V")
-	public final void method3094(@OriginalArg(0) Buffer arg0) {
+	public final void method3094(@OriginalArg(0) Packet arg0) {
 		while (true) {
 			@Pc(9) int local9 = arg0.g1();
 			if (local9 == 0) {

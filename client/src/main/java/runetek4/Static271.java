@@ -3,6 +3,8 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
+import runetek4.game.config.loctype.LocType;
 
 public final class Static271 {
 
@@ -32,7 +34,7 @@ public final class Static271 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(Lclient!wa;I)V")
-	public static void method4598(@OriginalArg(0) Buffer arg0) {
+	public static void method4598(@OriginalArg(0) Packet arg0) {
 		if (Static121.uid != null) {
 			try {
 				Static121.uid.method1459(0L);
@@ -59,7 +61,7 @@ public final class Static271 {
 		local15 = new LocType();
 		local15.anInt4426 = arg0;
 		if (local30 != null) {
-			local15.method3424(new Buffer(local30));
+			local15.method3424(new Packet(local30));
 		}
 		local15.method3421();
 		if (!Static30.aBoolean61 && local15.aBoolean208) {

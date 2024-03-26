@@ -4,6 +4,7 @@ import java.awt.Frame;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static69 {
 
@@ -169,7 +170,7 @@ public final class Static69 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!fh", name = "a", descriptor = "(Lclient!wa;I)V")
-	public static void method1546(@OriginalArg(0) Buffer arg0) {
+	public static void method1546(@OriginalArg(0) Packet arg0) {
 		for (@Pc(7) int local7 = 0; local7 < Static106.anInt2871; local7++) {
 			@Pc(18) int local18 = arg0.gSmart1or2();
 			@Pc(22) int local22 = arg0.g2();

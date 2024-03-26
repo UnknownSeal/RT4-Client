@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!j")
 public abstract class TextureOp extends Node {
@@ -45,7 +46,7 @@ public abstract class TextureOp extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!j", name = "a", descriptor = "(ILclient!wa;Z)V")
-	public void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Buffer arg1) {
+	public void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
 	}
 
 	@OriginalMember(owner = "runetek4.client!j", name = "e", descriptor = "(I)V")

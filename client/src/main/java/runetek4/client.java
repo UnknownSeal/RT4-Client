@@ -11,6 +11,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!runetek4.client")
 public final class client extends GameShell {
@@ -598,10 +599,10 @@ public final class client extends GameShell {
 			}
 			if (Static4.js5ConnectState == 2) {
 				Static206.js5Socket = new BufferedSocket((Socket) Static37.js5SocketRequest.result, Static71.signLink);
-				@Pc(194) Buffer buffer = new Buffer(5);
-				buffer.p1(15);
-				buffer.p4(530);
-				Static206.js5Socket.write(buffer.data, 5);
+				@Pc(194) Packet packet = new Packet(5);
+				packet.p1(15);
+				packet.p4(530);
+				Static206.js5Socket.write(packet.data, 5);
 				Static4.js5ConnectState++;
 				Static217.js5ConnectTime = MonotonicClock.currentTimeMillis();
 			}

@@ -5,6 +5,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!jb")
 public final class Js5NetQueue {
@@ -34,7 +35,7 @@ public final class Js5NetQueue {
 	private final SecondaryLinkedList aClass16_5 = new SecondaryLinkedList();
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "E", descriptor = "Lclient!wa;")
-	private final Buffer aClass3_Sub15_4 = new Buffer(4);
+	private final Packet aClass3_Sub15_4 = new Packet(4);
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "G", descriptor = "B")
 	private byte aByte8 = 0;
@@ -46,7 +47,7 @@ public final class Js5NetQueue {
 	public volatile int response = 0;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "F", descriptor = "Lclient!wa;")
-	private final Buffer aClass3_Sub15_5 = new Buffer(8);
+	private final Packet aClass3_Sub15_5 = new Packet(8);
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "(I)Z")
 	public final boolean method2316() {
@@ -169,7 +170,7 @@ public final class Js5NetQueue {
 							}
 							@Pc(568) int local568 = local480 == 0 ? 5 : 9;
 							this.aClass3_Sub2_Sub5_Sub2_2 = local509;
-							this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7 = new Buffer(local476 + local568 + this.aClass3_Sub2_Sub5_Sub2_2.aByte16);
+							this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7 = new Packet(local476 + local568 + this.aClass3_Sub2_Sub5_Sub2_2.aByte16);
 							this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.p1(local480);
 							this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.p4(local476);
 							this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 = 8;

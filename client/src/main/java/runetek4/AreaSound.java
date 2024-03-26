@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.config.loctype.LocType;
 
 @OriginalClass("runetek4.client!fl")
 public final class AreaSound extends Node {

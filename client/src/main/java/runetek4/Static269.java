@@ -3,6 +3,8 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
+import runetek4.game.config.lighttype.LightType;
 
 public final class Static269 {
 
@@ -46,7 +48,7 @@ public final class Static269 {
 				}
 			}
 		}
-		@Pc(95) Buffer local95 = new Buffer(arg6);
+		@Pc(95) Packet local95 = new Packet(arg6);
 		@Pc(99) byte local99;
 		if (arg1) {
 			local99 = 1;

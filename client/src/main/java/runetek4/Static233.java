@@ -12,6 +12,8 @@ import java.lang.reflect.Method;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.PacketBit;
+import runetek4.game.config.loctype.LocType;
 
 public final class Static233 {
 
@@ -153,7 +155,7 @@ public final class Static233 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(Lclient!i;II)V")
-	public static void loop(@OriginalArg(0) Packet arg0) {
+	public static void loop(@OriginalArg(0) PacketBit arg0) {
 		while (true) {
 			@Pc(18) ReflectionCheck local18 = (ReflectionCheck) Static204.aClass69_113.method2289();
 			if (local18 == null) {

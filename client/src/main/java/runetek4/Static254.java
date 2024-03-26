@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static254 {
 
@@ -218,7 +219,7 @@ public final class Static254 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "a", descriptor = "(Lclient!wa;II)Lclient!na;")
-	public static JagString method4350(@OriginalArg(0) Buffer arg0) {
+	public static JagString method4350(@OriginalArg(0) Packet arg0) {
 		try {
 			@Pc(7) int local7 = arg0.gSmart1or2();
 			if (local7 > 32767) {

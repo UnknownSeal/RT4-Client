@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!e")
 public final class Player extends PathingEntity {
@@ -69,7 +70,7 @@ public final class Player extends PathingEntity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!e", name = "a", descriptor = "(ILclient!wa;)V")
-	public final void method1262(@OriginalArg(1) Buffer arg0) {
+	public final void method1262(@OriginalArg(1) Packet arg0) {
 		arg0.offset = 0;
 		@Pc(20) int local20 = arg0.g1();
 		@Pc(22) int local22 = -1;

@@ -1,9 +1,10 @@
-package runetek4;
+package runetek4.game.config.lighttype;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!ic")
 public final class LightType {
@@ -21,26 +22,26 @@ public final class LightType {
 	public int anInt2873 = 2048;
 
 	@OriginalMember(owner = "runetek4.client!ic", name = "a", descriptor = "(ILclient!wa;I)V")
-	public final void method2257(@OriginalArg(1) Buffer arg0, @OriginalArg(2) int arg1) {
+	public void decode(@OriginalArg(1) Packet packet) {
 		while (true) {
-			@Pc(5) int local5 = arg0.g1();
-			if (local5 == 0) {
+			@Pc(5) int code = packet.g1();
+			if (code == 0) {
 				return;
 			}
-			this.method2258(local5, arg0, arg1);
+			this.decode(code, packet);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ic", name = "a", descriptor = "(ILclient!wa;IZ)V")
-	private void method2258(@OriginalArg(0) int arg0, @OriginalArg(1) Buffer arg1, @OriginalArg(2) int arg2) {
-		if (arg0 == 1) {
-			this.anInt2865 = arg1.g1();
-		} else if (arg0 == 2) {
-			this.anInt2873 = arg1.g2();
-		} else if (arg0 == 3) {
-			this.anInt2867 = arg1.g2();
-		} else if (arg0 == 4) {
-			this.anInt2872 = arg1.g2s();
+	private void decode(@OriginalArg(0) int code, @OriginalArg(1) Packet packet) {
+		if (code == 1) {
+			this.anInt2865 = packet.g1();
+		} else if (code == 2) {
+			this.anInt2873 = packet.g2();
+		} else if (code == 3) {
+			this.anInt2867 = packet.g2();
+		} else if (code == 4) {
+			this.anInt2872 = packet.g2s();
 		}
 	}
 }

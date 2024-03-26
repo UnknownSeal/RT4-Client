@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!gb")
 public final class RawModel extends Entity {
@@ -829,13 +830,13 @@ public final class RawModel extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "([B)V")
 	private void method1674(@OriginalArg(0) byte[] arg0) {
-		@Pc(4) Buffer local4 = new Buffer(arg0);
-		@Pc(9) Buffer local9 = new Buffer(arg0);
-		@Pc(14) Buffer local14 = new Buffer(arg0);
-		@Pc(19) Buffer local19 = new Buffer(arg0);
-		@Pc(24) Buffer local24 = new Buffer(arg0);
-		@Pc(29) Buffer local29 = new Buffer(arg0);
-		@Pc(34) Buffer local34 = new Buffer(arg0);
+		@Pc(4) Packet local4 = new Packet(arg0);
+		@Pc(9) Packet local9 = new Packet(arg0);
+		@Pc(14) Packet local14 = new Packet(arg0);
+		@Pc(19) Packet local19 = new Packet(arg0);
+		@Pc(24) Packet local24 = new Packet(arg0);
+		@Pc(29) Packet local29 = new Packet(arg0);
+		@Pc(34) Packet local34 = new Packet(arg0);
 		local4.offset = arg0.length - 23;
 		@Pc(44) int local44 = local4.g2();
 		@Pc(48) int local48 = local4.g2();
@@ -1463,11 +1464,11 @@ public final class RawModel extends Entity {
 	private void method1688(@OriginalArg(0) byte[] arg0) {
 		@Pc(1) boolean local1 = false;
 		@Pc(3) boolean local3 = false;
-		@Pc(8) Buffer local8 = new Buffer(arg0);
-		@Pc(13) Buffer local13 = new Buffer(arg0);
-		@Pc(18) Buffer local18 = new Buffer(arg0);
-		@Pc(23) Buffer local23 = new Buffer(arg0);
-		@Pc(28) Buffer local28 = new Buffer(arg0);
+		@Pc(8) Packet local8 = new Packet(arg0);
+		@Pc(13) Packet local13 = new Packet(arg0);
+		@Pc(18) Packet local18 = new Packet(arg0);
+		@Pc(23) Packet local23 = new Packet(arg0);
+		@Pc(28) Packet local28 = new Packet(arg0);
 		local8.offset = arg0.length - 18;
 		@Pc(38) int local38 = local8.g2();
 		@Pc(42) int local42 = local8.g2();

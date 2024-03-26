@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!si")
 public final class TextureOp29 extends TextureOp {
@@ -53,7 +54,7 @@ public final class TextureOp29 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Buffer arg1) {
+	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
 		if (arg0 == 0) {
 			this.aClass18Array1 = new TextureOp29SubOp[arg1.g1()];
 			for (@Pc(11) int local11 = 0; local11 < this.aClass18Array1.length; local11++) {

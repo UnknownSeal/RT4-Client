@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!gi")
 public final class Light {
@@ -69,7 +70,7 @@ public final class Light {
 	public final float[] aFloatArray3 = new float[4];
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "<init>", descriptor = "(Lclient!wa;)V")
-	public Light(@OriginalArg(0) Buffer arg0) {
+	public Light(@OriginalArg(0) Packet arg0) {
 		if (Static62.anIntArray150 == null) {
 			Static84.method1771();
 		}

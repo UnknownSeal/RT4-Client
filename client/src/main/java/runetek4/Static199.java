@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static199 {
 
@@ -33,7 +34,7 @@ public final class Static199 {
 		@Pc(27) byte[] local27 = Static182.aClass153_77.method4495(1, arg0);
 		local10 = new FluType();
 		if (local27 != null) {
-			local10.method3217(arg0, new Buffer(local27));
+			local10.method3217(arg0, new Packet(local27));
 		}
 		Static83.aClass99_3.method3095(local10, (long) arg0);
 		return local10;

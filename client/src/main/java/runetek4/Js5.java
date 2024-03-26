@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!ve")
 public final class Js5 {
@@ -283,7 +284,7 @@ public final class Js5 {
 				local114 = Static138.method2696(this.anObjectArray32[arg0], false);
 			} else {
 				local114 = Static138.method2696(this.anObjectArray32[arg0], true);
-				@Pc(128) Buffer local128 = new Buffer(local114);
+				@Pc(128) Packet local128 = new Packet(local114);
 				local128.decryptXtea(arg1, local128.data.length);
 			}
 			@Pc(140) byte[] local140;
@@ -302,7 +303,7 @@ public final class Js5 {
 				@Pc(216) int local216 = local213 - 1;
 				@Pc(220) int local220 = local140[local216] & 0xFF;
 				@Pc(228) int local228 = local216 - local31 * local220 * 4;
-				@Pc(233) Buffer local233 = new Buffer(local140);
+				@Pc(233) Packet local233 = new Packet(local140);
 				local233.offset = local228;
 				@Pc(239) int[] local239 = new int[local31];
 				@Pc(250) int local250;

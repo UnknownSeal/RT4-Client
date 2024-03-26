@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static202 {
 
@@ -31,7 +32,7 @@ public final class Static202 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(Lsignlink!ll;Lclient!wa;IB)V")
-	public static void method3654(@OriginalArg(0) SignLink arg0, @OriginalArg(1) Buffer arg1, @OriginalArg(2) int arg2) {
+	public static void method3654(@OriginalArg(0) SignLink arg0, @OriginalArg(1) Packet arg1, @OriginalArg(2) int arg2) {
 		@Pc(17) ReflectionCheck local17 = new ReflectionCheck();
 		local17.anInt1725 = arg1.g1();
 		local17.anInt1732 = arg1.g4();
@@ -139,7 +140,7 @@ public final class Static202 {
 		@Pc(20) byte[] local20 = Static153.aClass153_57.method4495(33, arg0);
 		local10 = new Class63();
 		if (local20 != null) {
-			local10.method2249(new Buffer(local20), arg0);
+			local10.method2249(new Packet(local20), arg0);
 		}
 		Static79.aClass99_11.method3095(local10, (long) arg0);
 		return local10;

@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static40 {
 
@@ -93,7 +94,7 @@ public final class Static40 {
 		@Pc(20) byte[] local20 = Static98.aClass153_42.method4495(34, arg0);
 		local10 = new Class2();
 		if (local20 != null) {
-			local10.method6(new Buffer(local20), arg0);
+			local10.method6(new Packet(local20), arg0);
 		}
 		Static231.aClass99_29.method3095(local10, (long) arg0);
 		return local10;
@@ -122,7 +123,7 @@ public final class Static40 {
 
 	@OriginalMember(owner = "runetek4.client!da", name = "a", descriptor = "(IIIILclient!na;JI)V")
 	public static void method1016(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) JagString password, @OriginalArg(5) long name, @OriginalArg(6) int arg5) {
-		@Pc(8) Buffer local8 = new Buffer(128);
+		@Pc(8) Packet local8 = new Packet(128);
 		local8.p1(10);
 		local8.p2((int) (Math.random() * 99999.0D));
 		local8.p2(530);

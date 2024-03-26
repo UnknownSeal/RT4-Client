@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!jk")
 public final class MidiInstrument extends Node {
@@ -36,7 +37,7 @@ public final class MidiInstrument extends Node {
 	public MidiInstrument(@OriginalArg(0) byte[] arg0) {
 		@Pc(29) int local29 = 0;
 		this.aByteArray44 = new byte[128];
-		@Pc(38) Buffer local38 = new Buffer(arg0);
+		@Pc(38) Packet local38 = new Packet(arg0);
 		while (local38.data[local29 + local38.offset] != 0) {
 			local29++;
 		}

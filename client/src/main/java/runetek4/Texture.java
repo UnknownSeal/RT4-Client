@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!lc")
 public final class Texture {
@@ -24,7 +25,7 @@ public final class Texture {
 	private final TextureOp[] aClass3_Sub1Array22;
 
 	@OriginalMember(owner = "runetek4.client!lc", name = "<init>", descriptor = "(Lclient!wa;)V")
-	public Texture(@OriginalArg(0) Buffer arg0) {
+	public Texture(@OriginalArg(0) Packet arg0) {
 		@Pc(7) int local7 = arg0.g1();
 		this.aClass3_Sub1Array22 = new TextureOp[local7];
 		@Pc(14) int[][] local14 = new int[local7][];

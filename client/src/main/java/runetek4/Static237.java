@@ -4,6 +4,7 @@ import java.nio.ByteBuffer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 public final class Static237 {
 
@@ -41,7 +42,7 @@ public final class Static237 {
 	public static float aFloat29;
 
 	@OriginalMember(owner = "runetek4.client!td", name = "D", descriptor = "Lclient!wa;")
-	public static Buffer aClass3_Sub15_8 = new Buffer(10000);
+	public static Packet aClass3_Sub15_8 = new Packet(10000);
 
 	@OriginalMember(owner = "runetek4.client!td", name = "bb", descriptor = "Lclient!td;")
 	public static GlModel aClass8_Sub1_Sub1_1 = new GlModel();

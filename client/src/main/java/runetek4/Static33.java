@@ -4,6 +4,8 @@ import java.util.Date;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
+import runetek4.game.config.loctype.LocType;
 
 public final class Static33 {
 
@@ -56,7 +58,7 @@ public final class Static33 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(BLclient!wa;)V")
-	public static void method868(@OriginalArg(1) Buffer arg0) {
+	public static void method868(@OriginalArg(1) Packet arg0) {
 		@Pc(13) int local13 = Static266.anInt5338 >> 1;
 		@Pc(19) int local19 = Static131.anInt3254 >> 2 << 10;
 		@Pc(23) byte[][] local23 = new byte[Static48.anInt1449][Static181.anInt4296];

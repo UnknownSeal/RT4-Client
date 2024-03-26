@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!ki")
 public final class MidiDecoder {
@@ -30,7 +31,7 @@ public final class MidiDecoder {
 	private int anInt3304;
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "a", descriptor = "Lclient!wa;")
-	private final Buffer aClass3_Sub15_6 = new Buffer(null);
+	private final Packet aClass3_Sub15_6 = new Packet(null);
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "<init>", descriptor = "()V")
 	public MidiDecoder() {
