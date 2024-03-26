@@ -56,7 +56,7 @@ public final class Static216 {
 				Static124.socket = new BufferedSocket((Socket) Static72.aClass212_3.result, Static71.signLink);
 				Static72.aClass212_3 = null;
 				@Pc(106) long local106 = Static101.aLong98 = Static186.username.encode37();
-				Static6.outboundBuffer.offset = 0;
+				Static6.outboundBuffer.pos = 0;
 				Static6.outboundBuffer.p1(14);
 				@Pc(120) int local120 = (int) (local106 >> 16 & 0x1FL);
 				Static6.outboundBuffer.p1(local120);
@@ -88,10 +88,10 @@ public final class Static216 {
 					return;
 				}
 				Static124.socket.method2827(0, 8, Static57.aClass3_Sub15_Sub1_3.data);
-				Static57.aClass3_Sub15_Sub1_3.offset = 0;
+				Static57.aClass3_Sub15_Sub1_3.pos = 0;
 				Static193.aLong147 = Static57.aClass3_Sub15_Sub1_3.g8();
 				@Pc(210) int[] local210 = new int[4];
-				Static6.outboundBuffer.offset = 0;
+				Static6.outboundBuffer.pos = 0;
 				local210[2] = (int) (Static193.aLong147 >> 32);
 				local210[3] = (int) Static193.aLong147;
 				local210[1] = (int) (Math.random() * 9.9999999E7D);
@@ -104,14 +104,14 @@ public final class Static216 {
 				Static6.outboundBuffer.p8(Static186.username.encode37());
 				Static6.outboundBuffer.pjstr(Static186.password);
 				Static6.outboundBuffer.encryptRsa(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
-				Static17.aClass3_Sub15_Sub1_2.offset = 0;
+				Static17.aClass3_Sub15_Sub1_2.pos = 0;
 				if (Static244.anInt5370 == 40) {
 					Static17.aClass3_Sub15_Sub1_2.p1(18);
 				} else {
 					Static17.aClass3_Sub15_Sub1_2.p1(16);
 				}
 
-				Static17.aClass3_Sub15_Sub1_2.p2(Static6.outboundBuffer.offset + Static229.method3937(Static47.aClass100_991) + 159);
+				Static17.aClass3_Sub15_Sub1_2.p2(Static6.outboundBuffer.pos + Static229.method3937(Static47.aClass100_991) + 159);
 				Static17.aClass3_Sub15_Sub1_2.p4(530);
 				Static17.aClass3_Sub15_Sub1_2.p1(Static5.anInt39);
 				Static17.aClass3_Sub15_Sub1_2.p1(Static249.aBoolean282 ? 1 : 0);
@@ -154,8 +154,8 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.p4(Static28.aClass153_18.method4480());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static167.aClass153_63.method4480());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static226.aClass153_93.method4480());
-				Static17.aClass3_Sub15_Sub1_2.pBytes(Static6.outboundBuffer.data, Static6.outboundBuffer.offset);
-				Static124.socket.write(Static17.aClass3_Sub15_Sub1_2.data, Static17.aClass3_Sub15_Sub1_2.offset);
+				Static17.aClass3_Sub15_Sub1_2.pBytes(Static6.outboundBuffer.data, Static6.outboundBuffer.pos);
+				Static124.socket.write(Static17.aClass3_Sub15_Sub1_2.data, Static17.aClass3_Sub15_Sub1_2.pos);
 				Static6.outboundBuffer.method2240(local210);
 				for (@Pc(583) int local583 = 0; local583 < 4; local583++) {
 					local210[local583] += 50;
@@ -198,9 +198,9 @@ public final class Static216 {
 				}
 			}
 			if (Static184.anInt4348 == 6) {
-				Static6.outboundBuffer.offset = 0;
-				Static6.outboundBuffer.p1isaac(17);
-				Static124.socket.write(Static6.outboundBuffer.data, Static6.outboundBuffer.offset);
+				Static6.outboundBuffer.pos = 0;
+				Static6.outboundBuffer.pIsaac1(17);
+				Static124.socket.write(Static6.outboundBuffer.data, Static6.outboundBuffer.pos);
 				Static184.anInt4348 = 4;
 				return;
 			}
@@ -231,7 +231,7 @@ public final class Static216 {
 					return;
 				}
 				Static124.socket.method2827(0, 14, Static57.aClass3_Sub15_Sub1_3.data);
-				Static57.aClass3_Sub15_Sub1_3.offset = 0;
+				Static57.aClass3_Sub15_Sub1_3.pos = 0;
 				Static191.staffModLevel = Static57.aClass3_Sub15_Sub1_3.g1();
 				Static249.anInt5431 = Static57.aClass3_Sub15_Sub1_3.g1();
 				Static124.aBoolean157 = Static57.aClass3_Sub15_Sub1_3.g1() == 1;
@@ -257,7 +257,7 @@ public final class Static216 {
 						}
 					}
 				}
-				Static164.anInt3985 = Static57.aClass3_Sub15_Sub1_3.method2243();
+				Static164.anInt3985 = Static57.aClass3_Sub15_Sub1_3.gIssac1();
 				Static223.anInt5028 = Static57.aClass3_Sub15_Sub1_3.g2();
 				Static184.anInt4348 = 9;
 			}
@@ -265,7 +265,7 @@ public final class Static216 {
 				if (Static124.socket.available() < Static223.anInt5028) {
 					return;
 				}
-				Static57.aClass3_Sub15_Sub1_3.offset = 0;
+				Static57.aClass3_Sub15_Sub1_3.pos = 0;
 				Static124.socket.method2827(0, Static223.anInt5028, Static57.aClass3_Sub15_Sub1_3.data);
 				Static266.anInt5336 = 2;
 				Static184.anInt4348 = 0;

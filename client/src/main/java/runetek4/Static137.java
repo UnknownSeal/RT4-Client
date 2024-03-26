@@ -56,13 +56,13 @@ public final class Static137 {
 				for (local76 = 0; local76 < 104; local76++) {
 					@Pc(169) long local169 = Static20.method602(Static55.level, local37 + 0, local76);
 					if (local169 != 0L) {
-						@Pc(184) LocType local184 = Static271.method4601((int) (local169 >>> 32) & Integer.MAX_VALUE);
+						@Pc(184) LocType local184 = Static271.get((int) (local169 >>> 32) & Integer.MAX_VALUE);
 						@Pc(187) int local187 = local184.anInt4400;
 						@Pc(194) int local194;
 						if (local184.multiloc != null) {
 							for (local194 = 0; local194 < local184.multiloc.length; local194++) {
 								if (local184.multiloc[local194] != -1) {
-									@Pc(216) LocType local216 = Static271.method4601(local184.multiloc[local194]);
+									@Pc(216) LocType local216 = Static271.get(local184.multiloc[local194]);
 									if (local216.anInt4400 >= 0) {
 										local187 = local216.anInt4400;
 										break;

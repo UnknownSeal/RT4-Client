@@ -11,6 +11,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.datastruct.IterableMap;
+import runetek4.core.datastruct.JagStringWrapper;
 
 @OriginalClass("runetek4.client!na")
 public final class JagString implements StringInterface {
@@ -700,18 +701,18 @@ public final class JagString implements StringInterface {
 		@Pc(9) long local9 = this.method3118();
 		@Pc(19) Class local19 = JagString.class;
 		synchronized (local19) {
-			@Pc(30) StringNode local30;
+			@Pc(30) JagStringWrapper local30;
 			if (Static148.aClass133_13 == null) {
 				Static148.aClass133_13 = new IterableMap(4096);
 			} else {
-				for (local30 = (StringNode) Static148.aClass133_13.getNode(local9); local30 != null; local30 = (StringNode) Static148.aClass133_13.next()) {
-					if (this.method3108(local30.aClass100_980)) {
-						return local30.aClass100_980;
+				for (local30 = (JagStringWrapper) Static148.aClass133_13.getNode(local9); local30 != null; local30 = (JagStringWrapper) Static148.aClass133_13.next()) {
+					if (this.method3108(local30.value)) {
+						return local30.value;
 					}
 				}
 			}
-			local30 = new StringNode();
-			local30.aClass100_980 = this;
+			local30 = new JagStringWrapper();
+			local30.value = this;
 			this.aBoolean193 = false;
 			Static148.aClass133_13.pushNode(local30, local9);
 			return this;

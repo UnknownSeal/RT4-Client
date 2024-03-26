@@ -40,7 +40,7 @@ public final class Static84 {
 			local13 = Static57.aClass3_Sub15_Sub1_3.g2le();
 			local17 = Static57.aClass3_Sub15_Sub1_3.g1();
 			@Pc(21) int local21 = Static57.aClass3_Sub15_Sub1_3.g1();
-			local24 = Static57.aClass3_Sub15_Sub1_3.offset;
+			local24 = Static57.aClass3_Sub15_Sub1_3.pos;
 			@Pc(35) boolean local35 = (local13 & 0x8000) != 0;
 			if (arg2.aClass100_364 != null && arg2.aClass59_1 != null) {
 				@Pc(48) long local48 = arg2.aClass100_364.encode37();
@@ -58,9 +58,9 @@ public final class Static84 {
 					}
 				}
 				if (!local50 && Static11.anInt384 == 0) {
-					Static270.aClass3_Sub15_9.offset = 0;
+					Static270.aClass3_Sub15_9.pos = 0;
 					Static57.aClass3_Sub15_Sub1_3.gBytesRev(local21, Static270.aClass3_Sub15_9.data);
-					Static270.aClass3_Sub15_9.offset = 0;
+					Static270.aClass3_Sub15_9.pos = 0;
 					@Pc(106) int local106 = -1;
 					@Pc(127) JagString local127;
 					if (local35) {
@@ -84,7 +84,7 @@ public final class Static84 {
 					}
 				}
 			}
-			Static57.aClass3_Sub15_Sub1_3.offset = local24 + local21;
+			Static57.aClass3_Sub15_Sub1_3.pos = local24 + local21;
 		}
 		if ((arg0 & 0x1) != 0) {
 			local13 = Static57.aClass3_Sub15_Sub1_3.gSmart1or2();
@@ -199,7 +199,7 @@ public final class Static84 {
 	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "([BI)V")
 	public static void method1770(@OriginalArg(0) byte[] arg0) {
 		@Pc(4) Packet local4 = new Packet(arg0);
-		local4.offset = arg0.length - 2;
+		local4.pos = arg0.length - 2;
 		Static165.anInt4038 = local4.g2();
 		Static26.anIntArray66 = new int[Static165.anInt4038];
 		Static254.anIntArray488 = new int[Static165.anInt4038];
@@ -208,7 +208,7 @@ public final class Static84 {
 		Static64.aByteArrayArray9 = new byte[Static165.anInt4038][];
 		Static269.anIntArray252 = new int[Static165.anInt4038];
 		Static7.aByteArrayArray5 = new byte[Static165.anInt4038][];
-		local4.offset = arg0.length - Static165.anInt4038 * 8 - 7;
+		local4.pos = arg0.length - Static165.anInt4038 * 8 - 7;
 		Static124.anInt3080 = local4.g2();
 		Static227.anInt5091 = local4.g2();
 		@Pc(66) int local66 = (local4.g1() & 0xFF) + 1;
@@ -225,7 +225,7 @@ public final class Static84 {
 		for (local68 = 0; local68 < Static165.anInt4038; local68++) {
 			Static26.anIntArray66[local68] = local4.g2();
 		}
-		local4.offset = arg0.length + 3 - Static165.anInt4038 * 8 - local66 * 3 - 7;
+		local4.pos = arg0.length + 3 - Static165.anInt4038 * 8 - local66 * 3 - 7;
 		Static259.anIntArray513 = new int[local66];
 		for (local68 = 1; local68 < local66; local68++) {
 			Static259.anIntArray513[local68] = local4.g3();
@@ -233,7 +233,7 @@ public final class Static84 {
 				Static259.anIntArray513[local68] = 1;
 			}
 		}
-		local4.offset = 0;
+		local4.pos = 0;
 		for (local68 = 0; local68 < Static165.anInt4038; local68++) {
 			@Pc(195) int local195 = Static254.anIntArray488[local68];
 			@Pc(199) int local199 = Static26.anIntArray66[local68];

@@ -34,7 +34,7 @@ public final class Static125 {
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "a", descriptor = "(IIIII)V")
 	public static void method2448(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		Static6.outboundBuffer.offset = 0;
+		Static6.outboundBuffer.pos = 0;
 		Static6.outboundBuffer.p1(147);
 		Static6.outboundBuffer.p1(arg2);
 		Static6.outboundBuffer.p1(arg3);

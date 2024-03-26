@@ -7,6 +7,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IntWrapper;
 import runetek4.core.datastruct.IterableMap;
 import runetek4.core.datastruct.Node;
 import runetek4.core.io.Packet;
@@ -123,7 +124,7 @@ public final class Class3_Sub14 extends Node {
 		this.anIntArray227 = new int[this.anInt2484];
 		this.anIntArray231 = new int[this.anInt2484];
 		this.anIntArrayArray17 = new int[this.anInt2484][];
-		this.aClass133_8 = new IterableMap(Static165.method3164(this.anInt2482));
+		this.aClass133_8 = new IterableMap(Static165.bitceil(this.anInt2482));
 		if (this.aBoolean140) {
 			this.anIntArrayArray18 = new int[this.anInt2484][];
 			this.aBooleanArray54 = new boolean[this.anInt2484];
@@ -135,12 +136,12 @@ public final class Class3_Sub14 extends Node {
 		@Pc(1) long local1 = 0L;
 		if ((arg0 & 0x7F) == 0 || (arg2 & 0x7F) == 0) {
 			local1 = (long) (arg0 + (arg2 << 16)) + ((long) arg6 << 32);
-			@Pc(28) IntNode local28 = (IntNode) this.aClass133_8.getNode(local1);
+			@Pc(28) IntWrapper local28 = (IntWrapper) this.aClass133_8.getNode(local1);
 			if (local28 != null) {
-				if (arg1 < this.anIntArray230[local28.anInt3141]) {
-					this.anIntArray230[local28.anInt3141] = arg1;
+				if (arg1 < this.anIntArray230[local28.value]) {
+					this.anIntArray230[local28.value] = arg1;
 				}
-				return local28.anInt3141;
+				return local28.value;
 			}
 		}
 		this.anIntArray232[this.anInt2483] = arg0;
@@ -154,7 +155,7 @@ public final class Class3_Sub14 extends Node {
 		this.aFloatArray5[this.anInt2483] = arg5;
 		this.anIntArray226[this.anInt2483] = arg6;
 		if (local1 != 0L) {
-			this.aClass133_8.pushNode(new IntNode(this.anInt2483), local1);
+			this.aClass133_8.pushNode(new IntWrapper(this.anInt2483), local1);
 		}
 		return this.anInt2483++;
 	}
@@ -192,12 +193,12 @@ public final class Class3_Sub14 extends Node {
 			}
 		}
 		if (GlRenderer.arbVboSupported) {
-			@Pc(200) ByteBuffer local200 = ByteBuffer.wrap(local12.data, 0, local12.offset);
+			@Pc(200) ByteBuffer local200 = ByteBuffer.wrap(local12.data, 0, local12.pos);
 			this.aClass155_3 = new GlVertexBufferObject();
 			this.aClass155_3.method4519(local200);
 		} else {
-			this.aByteBuffer3 = ByteBuffer.allocateDirect(local12.offset).order(ByteOrder.nativeOrder());
-			this.aByteBuffer3.put(local12.data, 0, local12.offset);
+			this.aByteBuffer3 = ByteBuffer.allocateDirect(local12.pos).order(ByteOrder.nativeOrder());
+			this.aByteBuffer3.put(local12.data, 0, local12.pos);
 			this.aByteBuffer3.flip();
 		}
 		this.anIntArray232 = null;
@@ -216,12 +217,12 @@ public final class Class3_Sub14 extends Node {
 		if (Static95.aClass3_Sub15_3 == null || Static95.aClass3_Sub15_3.data.length < this.anInt2488 * 4) {
 			Static95.aClass3_Sub15_3 = new Packet(this.anInt2488 * 4);
 		} else {
-			Static95.aClass3_Sub15_3.offset = 0;
+			Static95.aClass3_Sub15_3.pos = 0;
 		}
 		if (Static95.aClass3_Sub15_2 == null || Static95.aClass3_Sub15_2.data.length < this.anInt2487 * 4) {
 			Static95.aClass3_Sub15_2 = new Packet(this.anInt2487 * 4);
 		} else {
-			Static95.aClass3_Sub15_2.offset = 0;
+			Static95.aClass3_Sub15_2.pos = 0;
 		}
 		@Pc(47) int local47;
 		@Pc(68) Tile local68;
@@ -277,7 +278,7 @@ public final class Class3_Sub14 extends Node {
 				}
 			}
 		}
-		if (Static95.aClass3_Sub15_3.offset == 0 && Static95.aClass3_Sub15_2.offset == 0) {
+		if (Static95.aClass3_Sub15_3.pos == 0 && Static95.aClass3_Sub15_2.pos == 0) {
 			return;
 		}
 		@Pc(257) GL2 local257 = GlRenderer.gl;
@@ -325,30 +326,30 @@ public final class Class3_Sub14 extends Node {
 		if (GlRenderer.arbVboSupported) {
 			local257.glBindBuffer(GL2.GL_ELEMENT_ARRAY_BUFFER, 0);
 		}
-		if (Static95.aClass3_Sub15_3.offset != 0) {
-			if (Static95.aByteBuffer5 == null || Static95.aByteBuffer5.capacity() < Static95.aClass3_Sub15_3.offset) {
-				Static95.aByteBuffer5 = ByteBuffer.allocateDirect(Static95.aClass3_Sub15_3.offset).order(ByteOrder.nativeOrder());
+		if (Static95.aClass3_Sub15_3.pos != 0) {
+			if (Static95.aByteBuffer5 == null || Static95.aByteBuffer5.capacity() < Static95.aClass3_Sub15_3.pos) {
+				Static95.aByteBuffer5 = ByteBuffer.allocateDirect(Static95.aClass3_Sub15_3.pos).order(ByteOrder.nativeOrder());
 			} else {
 				Static95.aByteBuffer5.clear();
 			}
-			Static95.aByteBuffer5.put(Static95.aClass3_Sub15_3.data, 0, Static95.aClass3_Sub15_3.offset);
+			Static95.aByteBuffer5.put(Static95.aClass3_Sub15_3.data, 0, Static95.aClass3_Sub15_3.pos);
 			Static95.aByteBuffer5.flip();
 			GlRenderer.method4159(arg1);
-			local257.glDrawElements(GL2.GL_TRIANGLES, Static95.aClass3_Sub15_3.offset / 4, GL2.GL_UNSIGNED_INT, Static95.aByteBuffer5);
+			local257.glDrawElements(GL2.GL_TRIANGLES, Static95.aClass3_Sub15_3.pos / 4, GL2.GL_UNSIGNED_INT, Static95.aByteBuffer5);
 		}
-		if (Static95.aClass3_Sub15_2.offset == 0) {
+		if (Static95.aClass3_Sub15_2.pos == 0) {
 			return;
 		}
-		if (Static95.aByteBuffer4 == null || Static95.aByteBuffer4.capacity() < Static95.aClass3_Sub15_2.offset) {
-			Static95.aByteBuffer4 = ByteBuffer.allocateDirect(Static95.aClass3_Sub15_2.offset).order(ByteOrder.nativeOrder());
+		if (Static95.aByteBuffer4 == null || Static95.aByteBuffer4.capacity() < Static95.aClass3_Sub15_2.pos) {
+			Static95.aByteBuffer4 = ByteBuffer.allocateDirect(Static95.aClass3_Sub15_2.pos).order(ByteOrder.nativeOrder());
 		} else {
 			Static95.aByteBuffer4.clear();
 		}
-		Static95.aByteBuffer4.put(Static95.aClass3_Sub15_2.data, 0, Static95.aClass3_Sub15_2.offset);
+		Static95.aByteBuffer4.put(Static95.aClass3_Sub15_2.data, 0, Static95.aClass3_Sub15_2.pos);
 		Static95.aByteBuffer4.flip();
 		GlRenderer.method4159(arg1 - 100.0F);
 		GlRenderer.disableDepthMask();
-		local257.glDrawElements(GL2.GL_TRIANGLES, Static95.aClass3_Sub15_2.offset / 4, GL2.GL_UNSIGNED_INT, Static95.aByteBuffer4);
+		local257.glDrawElements(GL2.GL_TRIANGLES, Static95.aClass3_Sub15_2.pos / 4, GL2.GL_UNSIGNED_INT, Static95.aByteBuffer4);
 		GlRenderer.enableDepthMask();
 	}
 

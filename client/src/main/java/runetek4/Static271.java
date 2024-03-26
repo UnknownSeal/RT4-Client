@@ -38,11 +38,11 @@ public final class Static271 {
 		if (Static121.uid != null) {
 			try {
 				Static121.uid.method1459(0L);
-				Static121.uid.method1458(arg0.data, arg0.offset, 24);
+				Static121.uid.method1458(arg0.data, arg0.pos, 24);
 			} catch (@Pc(16) Exception local16) {
 			}
 		}
-		arg0.offset += 24;
+		arg0.pos += 24;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(ZI)V")
@@ -52,26 +52,26 @@ public final class Static271 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(II)Lclient!pb;")
-	public static LocType method4601(@OriginalArg(1) int arg0) {
-		@Pc(15) LocType local15 = (LocType) Static179.aClass99_25.method3106((long) arg0);
-		if (local15 != null) {
-			return local15;
+	public static LocType get(@OriginalArg(1) int id) {
+		@Pc(15) LocType locType = (LocType) Static179.aClass99_25.method3106((long) id);
+		if (locType != null) {
+			return locType;
 		}
-		@Pc(30) byte[] local30 = Static146.aClass153_54.method4495(Static253.method4328(arg0), Static33.method872(arg0));
-		local15 = new LocType();
-		local15.anInt4426 = arg0;
-		if (local30 != null) {
-			local15.decode(new Packet(local30));
+		@Pc(30) byte[] bytes = Static146.aClass153_54.method4495(Static253.method4328(id), Static33.method872(id));
+		locType = new LocType();
+		locType.anInt4426 = id;
+		if (bytes != null) {
+			locType.decode(new Packet(bytes));
 		}
-		local15.method3421();
-		if (!Static30.aBoolean61 && local15.members) {
-			local15.aClass100Array130 = null;
+		locType.postDecode();
+		if (!Static30.aBoolean61 && locType.members) {
+			locType.op = null;
 		}
-		if (local15.breakroutefinding) {
-			local15.anInt4435 = 0;
-			local15.aBoolean207 = false;
+		if (locType.breakroutefinding) {
+			locType.blockwalk = 0;
+			locType.aBoolean207 = false;
 		}
-		Static179.aClass99_25.method3095(local15, (long) arg0);
-		return local15;
+		Static179.aClass99_25.method3095(locType, (long) id);
+		return locType;
 	}
 }

@@ -60,52 +60,52 @@ public final class Static263 {
 			return;
 		}
 		if (arg2 == 1) {
-			Static6.outboundBuffer.p1isaac(155);
+			Static6.outboundBuffer.pIsaac1(155);
 			Static6.outboundBuffer.p4(arg3);
 			Static6.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 2) {
-			Static6.outboundBuffer.p1isaac(196);
+			Static6.outboundBuffer.pIsaac1(196);
 			Static6.outboundBuffer.p4(arg3);
 			Static6.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 3) {
-			Static6.outboundBuffer.p1isaac(124);
+			Static6.outboundBuffer.pIsaac1(124);
 			Static6.outboundBuffer.p4(arg3);
 			Static6.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 4) {
-			Static6.outboundBuffer.p1isaac(199);
+			Static6.outboundBuffer.pIsaac1(199);
 			Static6.outboundBuffer.p4(arg3);
 			Static6.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 5) {
-			Static6.outboundBuffer.p1isaac(234);
+			Static6.outboundBuffer.pIsaac1(234);
 			Static6.outboundBuffer.p4(arg3);
 			Static6.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 6) {
-			Static6.outboundBuffer.p1isaac(168);
+			Static6.outboundBuffer.pIsaac1(168);
 			Static6.outboundBuffer.p4(arg3);
 			Static6.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 7) {
-			Static6.outboundBuffer.p1isaac(166);
+			Static6.outboundBuffer.pIsaac1(166);
 			Static6.outboundBuffer.p4(arg3);
 			Static6.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 8) {
-			Static6.outboundBuffer.p1isaac(64);
+			Static6.outboundBuffer.pIsaac1(64);
 			Static6.outboundBuffer.p4(arg3);
 			Static6.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 9) {
-			Static6.outboundBuffer.p1isaac(53);
+			Static6.outboundBuffer.pIsaac1(53);
 			Static6.outboundBuffer.p4(arg3);
 			Static6.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 10) {
-			Static6.outboundBuffer.p1isaac(9);
+			Static6.outboundBuffer.pIsaac1(9);
 			Static6.outboundBuffer.p4(arg3);
 			Static6.outboundBuffer.p2(arg1);
 		}

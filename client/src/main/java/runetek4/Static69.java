@@ -48,7 +48,7 @@ public final class Static69 {
 					Static193.aClass100Array134[local36] = Static193.aClass100Array134[local36 + 1];
 				}
 				Static185.anInt4369 = Static119.transmitTimer;
-				Static6.outboundBuffer.p1isaac(213);
+				Static6.outboundBuffer.pIsaac1(213);
 				Static6.outboundBuffer.p8(arg0);
 				break;
 			}

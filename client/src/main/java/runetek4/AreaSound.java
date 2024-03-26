@@ -76,7 +76,7 @@ public final class AreaSound extends Node {
 				this.anInt2032 = 0;
 			} else {
 				this.anInt2040 = local17.bgsound_maxdelay;
-				this.anInt2044 = local17.anInt4412;
+				this.anInt2044 = local17.bgsound_sound;
 				this.anInt2032 = local17.bgsound_mindelay;
 				this.anInt2042 = local17.bgsound_range * 128;
 				this.anIntArray181 = local17.bgsound_random;

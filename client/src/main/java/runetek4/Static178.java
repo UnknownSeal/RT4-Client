@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IntWrapper;
 import runetek4.game.client.ClientInvCache;
 
 public final class Static178 {
@@ -39,14 +40,14 @@ public final class Static178 {
 			local24++;
 		}
 		if (local24 < Static199.aClass3_Sub22Array1.length && Static199.aClass3_Sub22Array1[local24] != null) {
-			Static6.outboundBuffer.p1isaac(162);
+			Static6.outboundBuffer.pIsaac1(162);
 			Static6.outboundBuffer.p8(Static199.aClass3_Sub22Array1[local24].nodeId);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!od", name = "a", descriptor = "(IZII)I")
 	public static int method3319(@OriginalArg(1) boolean arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		@Pc(19) ClientInvCache local19 = (ClientInvCache) Static20.aClass133_2.getNode((long) arg1);
+		@Pc(19) ClientInvCache local19 = (ClientInvCache) ClientInvCache.recentUse.getNode((long) arg1);
 		if (local19 == null) {
 			return 0;
 		}
@@ -55,12 +56,12 @@ public final class Static178 {
 			if (local19.invSlotObjId[local29] >= 0 && Static170.anInt3245 > local19.invSlotObjId[local29]) {
 				@Pc(56) ObjType local56 = Static71.method1439(local19.invSlotObjId[local29]);
 				if (local56.aClass133_6 != null) {
-					@Pc(68) IntNode local68 = (IntNode) local56.aClass133_6.getNode((long) arg2);
+					@Pc(68) IntWrapper local68 = (IntWrapper) local56.aClass133_6.getNode((long) arg2);
 					if (local68 != null) {
 						if (arg0) {
-							local27 += local19.invSlotObjCount[local29] * local68.anInt3141;
+							local27 += local19.invSlotObjCount[local29] * local68.value;
 						} else {
-							local27 += local68.anInt3141;
+							local27 += local68.value;
 						}
 					}
 				}

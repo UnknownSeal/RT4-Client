@@ -5,28 +5,28 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!sc")
+@OriginalClass("client!sc")
 public final class IterableMap {
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "q", descriptor = "Lclient!ab;")
+	@OriginalMember(owner = "client!sc", name = "q", descriptor = "Lclient!ab;")
 	private Node next;
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "u", descriptor = "J")
+	@OriginalMember(owner = "client!sc", name = "u", descriptor = "J")
 	private long currentNodeId;
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "C", descriptor = "Lclient!ab;")
+	@OriginalMember(owner = "client!sc", name = "C", descriptor = "Lclient!ab;")
 	private Node prev;
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "F", descriptor = "I")
+	@OriginalMember(owner = "client!sc", name = "F", descriptor = "I")
 	private int currentNodeIndex = 0;
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "c", descriptor = "[Lclient!ab;")
+	@OriginalMember(owner = "client!sc", name = "c", descriptor = "[Lclient!ab;")
 	public final Node[] nodes;
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "h", descriptor = "I")
+	@OriginalMember(owner = "client!sc", name = "h", descriptor = "I")
 	public final int size;
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "<init>", descriptor = "(I)V")
+	@OriginalMember(owner = "client!sc", name = "<init>", descriptor = "(I)V")
 	public IterableMap(@OriginalArg(0) int size) {
 		this.size = size;
 		this.nodes = new Node[size];
@@ -37,7 +37,7 @@ public final class IterableMap {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(I)V")
+	@OriginalMember(owner = "client!sc", name = "a", descriptor = "(I)V")
 	public void removeAll() {
 		for (@Pc(5) int index = 0; index < this.size; index++) {
 			@Pc(14) Node node = this.nodes[index];
@@ -53,13 +53,13 @@ public final class IterableMap {
 		this.prev = null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "c", descriptor = "(I)Lclient!ab;")
+	@OriginalMember(owner = "client!sc", name = "c", descriptor = "(I)Lclient!ab;")
 	public Node peekFront() {
 		this.currentNodeIndex = 0;
 		return this.prev();
 	}
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "d", descriptor = "(I)Lclient!ab;")
+	@OriginalMember(owner = "client!sc", name = "d", descriptor = "(I)Lclient!ab;")
 	public Node prev() {
 		if (this.currentNodeIndex > 0 && this.prev != this.nodes[this.currentNodeIndex - 1]) {
 			Node local24 = this.prev;
@@ -77,7 +77,7 @@ public final class IterableMap {
 		return local24;
 	}
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(ILclient!ab;J)V")
+	@OriginalMember(owner = "client!sc", name = "a", descriptor = "(ILclient!ab;J)V")
 	public void pushNode(@OriginalArg(1) Node node, @OriginalArg(2) long id) {
 		if (node.next != null) {
 			node.remove();
@@ -90,7 +90,7 @@ public final class IterableMap {
 		node.prev.next = node;
 	}
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(JI)Lclient!ab;")
+	@OriginalMember(owner = "client!sc", name = "a", descriptor = "(JI)Lclient!ab;")
 	public Node getNode(@OriginalArg(0) long id) {
 		this.currentNodeId = id;
 		@Pc(24) Node node = this.nodes[(int) (id & (long) (this.size - 1))];
@@ -105,7 +105,7 @@ public final class IterableMap {
 		return null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "e", descriptor = "(I)I")
+	@OriginalMember(owner = "client!sc", name = "e", descriptor = "(I)I")
 	public int length() {
 		@Pc(15) int count = 0;
 		for (@Pc(17) int index = 0; index < this.size; index++) {
@@ -119,7 +119,7 @@ public final class IterableMap {
 		return count;
 	}
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "([Lclient!ab;I)I")
+	@OriginalMember(owner = "client!sc", name = "a", descriptor = "([Lclient!ab;I)I")
 	public int addNodes(@OriginalArg(0) Node[] nodes) {
 		@Pc(13) int count = 0;
 		for (@Pc(15) int index = 0; index < this.size; index++) {
@@ -131,7 +131,7 @@ public final class IterableMap {
 		return count;
 	}
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "f", descriptor = "(I)Lclient!ab;")
+	@OriginalMember(owner = "client!sc", name = "f", descriptor = "(I)Lclient!ab;")
 	public Node next() {
 		if (this.next == null) {
 			return null;
@@ -149,7 +149,7 @@ public final class IterableMap {
 		return null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "g", descriptor = "(I)I")
+	@OriginalMember(owner = "client!sc", name = "g", descriptor = "(I)I")
 	public int getSize() {
 		return this.size;
 	}

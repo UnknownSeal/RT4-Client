@@ -4,7 +4,9 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IntWrapper;
 import runetek4.core.datastruct.IterableMap;
+import runetek4.core.datastruct.JagStringWrapper;
 import runetek4.core.datastruct.Node;
 import runetek4.core.io.Packet;
 
@@ -41,14 +43,14 @@ public final class EnumType extends SecondaryNode {
 			this.anInt3960 = arg1.g4();
 		} else if (arg0 == 5 || arg0 == 6) {
 			@Pc(41) int local41 = arg1.g2();
-			this.aClass133_16 = new IterableMap(Static165.method3164(local41));
+			this.aClass133_16 = new IterableMap(Static165.bitceil(local41));
 			for (@Pc(51) int local51 = 0; local51 < local41; local51++) {
 				@Pc(58) int local58 = arg1.g4();
 				@Pc(70) Node local70;
 				if (arg0 == 5) {
-					local70 = new StringNode(arg1.gjstr());
+					local70 = new JagStringWrapper(arg1.gjstr());
 				} else {
-					local70 = new IntNode(arg1.g4());
+					local70 = new IntWrapper(arg1.g4());
 				}
 				this.aClass133_16.pushNode(local70, (long) local58);
 			}
@@ -60,8 +62,8 @@ public final class EnumType extends SecondaryNode {
 		if (this.aClass133_16 == null) {
 			return this.aClass100_766;
 		} else {
-			@Pc(26) StringNode local26 = (StringNode) this.aClass133_16.getNode((long) arg0);
-			return local26 == null ? this.aClass100_766 : local26.aClass100_980;
+			@Pc(26) JagStringWrapper local26 = (JagStringWrapper) this.aClass133_16.getNode((long) arg0);
+			return local26 == null ? this.aClass100_766 : local26.value;
 		}
 	}
 
@@ -84,9 +86,9 @@ public final class EnumType extends SecondaryNode {
 	@OriginalMember(owner = "runetek4.client!ml", name = "d", descriptor = "(I)V")
 	private void method3087() {
 		this.aClass133_17 = new IterableMap(this.aClass133_16.getSize());
-		for (@Pc(22) StringNode local22 = (StringNode) this.aClass133_16.peekFront(); local22 != null; local22 = (StringNode) this.aClass133_16.prev()) {
-			@Pc(36) Class3_Sub13 local36 = new Class3_Sub13(local22.aClass100_980, (int) local22.nodeId);
-			this.aClass133_17.pushNode(local36, local22.aClass100_980.method3118());
+		for (@Pc(22) JagStringWrapper local22 = (JagStringWrapper) this.aClass133_16.peekFront(); local22 != null; local22 = (JagStringWrapper) this.aClass133_16.prev()) {
+			@Pc(36) Class3_Sub13 local36 = new Class3_Sub13(local22.value, (int) local22.nodeId);
+			this.aClass133_17.pushNode(local36, local22.value.method3118());
 		}
 	}
 
@@ -95,8 +97,8 @@ public final class EnumType extends SecondaryNode {
 		if (this.aClass133_16 == null) {
 			return this.anInt3960;
 		} else {
-			@Pc(18) IntNode local18 = (IntNode) this.aClass133_16.getNode((long) arg0);
-			return local18 == null ? this.anInt3960 : local18.anInt3141;
+			@Pc(18) IntWrapper local18 = (IntWrapper) this.aClass133_16.getNode((long) arg0);
+			return local18 == null ? this.anInt3960 : local18.value;
 		}
 	}
 
@@ -108,16 +110,16 @@ public final class EnumType extends SecondaryNode {
 		if (this.aClass133_17 == null) {
 			this.method3091();
 		}
-		@Pc(34) IntNode local34 = (IntNode) this.aClass133_17.getNode((long) arg0);
+		@Pc(34) IntWrapper local34 = (IntWrapper) this.aClass133_17.getNode((long) arg0);
 		return local34 != null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ml", name = "e", descriptor = "(I)V")
 	private void method3091() {
 		this.aClass133_17 = new IterableMap(this.aClass133_16.getSize());
-		for (@Pc(24) IntNode local24 = (IntNode) this.aClass133_16.peekFront(); local24 != null; local24 = (IntNode) this.aClass133_16.prev()) {
-			@Pc(34) IntNode local34 = new IntNode((int) local24.nodeId);
-			this.aClass133_17.pushNode(local34, (long) local24.anInt3141);
+		for (@Pc(24) IntWrapper local24 = (IntWrapper) this.aClass133_16.peekFront(); local24 != null; local24 = (IntWrapper) this.aClass133_16.prev()) {
+			@Pc(34) IntWrapper local34 = new IntWrapper((int) local24.nodeId);
+			this.aClass133_17.pushNode(local34, (long) local24.value);
 		}
 	}
 

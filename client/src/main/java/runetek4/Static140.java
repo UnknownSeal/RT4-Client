@@ -82,7 +82,7 @@ public final class Static140 {
 		Static190.aLongArray6[Static35.anInt1093] = arg0;
 		Static193.aClass100Array134[Static35.anInt1093++] = Static79.decode37(arg0);
 		Static185.anInt4369 = Static119.transmitTimer;
-		Static6.outboundBuffer.p1isaac(34);
+		Static6.outboundBuffer.pIsaac1(34);
 		Static6.outboundBuffer.p8(arg0);
 	}
 

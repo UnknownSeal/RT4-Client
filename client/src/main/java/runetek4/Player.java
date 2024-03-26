@@ -71,7 +71,7 @@ public final class Player extends PathingEntity {
 
 	@OriginalMember(owner = "runetek4.client!e", name = "a", descriptor = "(ILclient!wa;)V")
 	public final void method1262(@OriginalArg(1) Packet arg0) {
-		arg0.offset = 0;
+		arg0.pos = 0;
 		@Pc(20) int local20 = arg0.g1();
 		@Pc(22) int local22 = -1;
 		@Pc(26) int local26 = local20 & 0x1;

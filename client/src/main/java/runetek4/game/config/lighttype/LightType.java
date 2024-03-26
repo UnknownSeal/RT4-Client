@@ -6,22 +6,22 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.io.Packet;
 
-@OriginalClass("runetek4.client!ic")
+@OriginalClass("client!ic")
 public final class LightType {
 
-	@OriginalMember(owner = "runetek4.client!ic", name = "g", descriptor = "I")
+	@OriginalMember(owner = "client!ic", name = "g", descriptor = "I")
 	public int anInt2867 = 2048;
 
-	@OriginalMember(owner = "runetek4.client!ic", name = "c", descriptor = "I")
+	@OriginalMember(owner = "client!ic", name = "c", descriptor = "I")
 	public int anInt2865 = 0;
 
-	@OriginalMember(owner = "runetek4.client!ic", name = "o", descriptor = "I")
+	@OriginalMember(owner = "client!ic", name = "o", descriptor = "I")
 	public int anInt2872 = 0;
 
-	@OriginalMember(owner = "runetek4.client!ic", name = "p", descriptor = "I")
+	@OriginalMember(owner = "client!ic", name = "p", descriptor = "I")
 	public int anInt2873 = 2048;
 
-	@OriginalMember(owner = "runetek4.client!ic", name = "a", descriptor = "(ILclient!wa;I)V")
+	@OriginalMember(owner = "client!ic", name = "a", descriptor = "(ILclient!wa;I)V")
 	public void decode(@OriginalArg(1) Packet packet) {
 		while (true) {
 			@Pc(5) int code = packet.g1();
@@ -32,7 +32,7 @@ public final class LightType {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ic", name = "a", descriptor = "(ILclient!wa;IZ)V")
+	@OriginalMember(owner = "client!ic", name = "a", descriptor = "(ILclient!wa;IZ)V")
 	private void decode(@OriginalArg(0) int code, @OriginalArg(1) Packet packet) {
 		if (code == 1) {
 			this.anInt2865 = packet.g1();

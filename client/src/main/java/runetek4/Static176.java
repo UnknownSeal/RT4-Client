@@ -99,7 +99,7 @@ public final class Static176 {
 				local112 = local121;
 				@Pc(240) int local240;
 				if (local133 == 2 && Static257.method523(Static55.level, local47, local147, local121)) {
-					@Pc(172) LocType local172 = Static271.method4601(local140);
+					@Pc(172) LocType local172 = Static271.get(local140);
 					if (local172.multiloc != null) {
 						local172 = local172.method3417();
 					}
@@ -107,14 +107,14 @@ public final class Static176 {
 						continue;
 					}
 					if (Static260.anInt5014 == 1) {
-						Static98.method1966(Static169.anInt4075, local121, Static34.method882(new JagString[] { Static34.aClass100_203, Static27.aClass100_164, local172.aClass100_830 }), local47, (short) 14, LocalizedText.USE, local147);
+						Static98.method1966(Static169.anInt4075, local121, Static34.method882(new JagString[] { Static34.aClass100_203, Static27.aClass100_164, local172.name}), local47, (short) 14, LocalizedText.USE, local147);
 					} else if (Static241.aBoolean302) {
 						@Pc(363) Class3_Sub2_Sub12 local363 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
-						if ((Static274.anInt4999 & 0x4) != 0 && (local363 == null || local172.method3423(local363.anInt2667, Static121.anInt3039) != local363.anInt2667)) {
-							Static98.method1966(Static246.anInt5393, local121, Static34.method882(new JagString[] { Static78.aClass100_466, Static27.aClass100_164, local172.aClass100_830 }), local47, (short) 38, Static102.aClass100_545, local147);
+						if ((Static274.anInt4999 & 0x4) != 0 && (local363 == null || local172.getParam(local363.anInt2667, Static121.anInt3039) != local363.anInt2667)) {
+							Static98.method1966(Static246.anInt5393, local121, Static34.method882(new JagString[] { Static78.aClass100_466, Static27.aClass100_164, local172.name}), local47, (short) 38, Static102.aClass100_545, local147);
 						}
 					} else {
-						@Pc(228) JagString[] local228 = local172.aClass100Array130;
+						@Pc(228) JagString[] local228 = local172.op;
 						if (Static208.aBoolean237) {
 							local228 = Static279.method4664(local228);
 						}
@@ -144,11 +144,11 @@ public final class Static176 {
 									if (local240 == 4) {
 										local254 = 1001;
 									}
-									Static98.method1966(local268, local121, Static34.method882(new JagString[] { Static240.aClass100_1008, local172.aClass100_830 }), local47, local254, local228[local240], local147);
+									Static98.method1966(local268, local121, Static34.method882(new JagString[] { Static240.aClass100_1008, local172.name}), local47, local254, local228[local240], local147);
 								}
 							}
 						}
-						Static98.method1966(Static225.anInt5073, (long) local172.anInt4426, Static34.method882(new JagString[] { Static240.aClass100_1008, local172.aClass100_830 }), local47, (short) 1004, LocalizedText.EXAMINE, local147);
+						Static98.method1966(Static225.anInt5073, (long) local172.anInt4426, Static34.method882(new JagString[] { Static240.aClass100_1008, local172.name}), local47, (short) 1004, LocalizedText.EXAMINE, local147);
 					}
 				}
 				@Pc(514) int local514;

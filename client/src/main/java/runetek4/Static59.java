@@ -45,7 +45,7 @@ public final class Static59 {
 
 	@OriginalMember(owner = "runetek4.client!ej", name = "i", descriptor = "(I)V")
 	public static void method1373() {
-		Static6.outboundBuffer.p1isaac(243);
+		Static6.outboundBuffer.pIsaac1(243);
 		Static6.outboundBuffer.p1(Static144.method2736());
 		Static6.outboundBuffer.p2(Static48.anInt1448);
 		Static6.outboundBuffer.p2(Static254.anInt5554);

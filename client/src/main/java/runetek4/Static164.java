@@ -42,7 +42,7 @@ public final class Static164 {
 			local28 = (int) local14 >> 20 & 0x3;
 			local35 = (int) local14 >> 14 & 0x1F;
 			local42 = Integer.MAX_VALUE & (int) (local14 >>> 32);
-			local46 = Static271.method4601(local42);
+			local46 = Static271.get(local42);
 			if (local46.mapsceneicon == -1) {
 				local65 = arg1;
 				if (local14 > 0L) {
@@ -116,7 +116,7 @@ public final class Static164 {
 			local28 = (int) local14 >> 20 & 0x3;
 			local35 = (int) local14 >> 14 & 0x1F;
 			local42 = (int) (local14 >>> 32) & Integer.MAX_VALUE;
-			local46 = Static271.method4601(local42);
+			local46 = Static271.get(local42);
 			if (local46.mapsceneicon == -1) {
 				if (local35 == 9) {
 					local65 = 15658734;
@@ -145,7 +145,7 @@ public final class Static164 {
 		if (local14 != 0L) {
 			local28 = (int) local14 >> 20 & 0x3;
 			local35 = (int) (local14 >>> 32) & Integer.MAX_VALUE;
-			@Pc(586) LocType local586 = Static271.method4601(local35);
+			@Pc(586) LocType local586 = Static271.get(local35);
 			if (local586.mapsceneicon != -1 && !Static33.method867(arg0, local586, arg2, local28)) {
 				return false;
 			}

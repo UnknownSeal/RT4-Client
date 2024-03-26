@@ -4,7 +4,9 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IntWrapper;
 import runetek4.core.datastruct.IterableMap;
+import runetek4.core.datastruct.JagStringWrapper;
 import runetek4.core.datastruct.Node;
 import runetek4.core.io.Packet;
 
@@ -19,8 +21,8 @@ public final class StructType extends SecondaryNode {
 		if (this.aClass133_14 == null) {
 			return arg1;
 		} else {
-			@Pc(29) IntNode local29 = (IntNode) this.aClass133_14.getNode((long) arg0);
-			return local29 == null ? arg1 : local29.anInt3141;
+			@Pc(29) IntWrapper local29 = (IntWrapper) this.aClass133_14.getNode((long) arg0);
+			return local29 == null ? arg1 : local29.value;
 		}
 	}
 
@@ -32,7 +34,7 @@ public final class StructType extends SecondaryNode {
 		@Pc(17) int local17 = arg0.g1();
 		@Pc(25) int local25;
 		if (this.aClass133_14 == null) {
-			local25 = Static165.method3164(local17);
+			local25 = Static165.bitceil(local17);
 			this.aClass133_14 = new IterableMap(local25);
 		}
 		for (local25 = 0; local25 < local17; local25++) {
@@ -40,9 +42,9 @@ public final class StructType extends SecondaryNode {
 			@Pc(49) int local49 = arg0.g3();
 			@Pc(58) Node local58;
 			if (local45) {
-				local58 = new StringNode(arg0.gjstr());
+				local58 = new JagStringWrapper(arg0.gjstr());
 			} else {
-				local58 = new IntNode(arg0.g4());
+				local58 = new IntWrapper(arg0.g4());
 			}
 			this.aClass133_14.pushNode(local58, (long) local49);
 		}
@@ -53,8 +55,8 @@ public final class StructType extends SecondaryNode {
 		if (this.aClass133_14 == null) {
 			return arg0;
 		} else {
-			@Pc(16) StringNode local16 = (StringNode) this.aClass133_14.getNode((long) arg1);
-			return local16 == null ? arg0 : local16.aClass100_980;
+			@Pc(16) JagStringWrapper local16 = (JagStringWrapper) this.aClass133_14.getNode((long) arg1);
+			return local16 == null ? arg0 : local16.value;
 		}
 	}
 

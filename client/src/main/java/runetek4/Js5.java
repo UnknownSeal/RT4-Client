@@ -304,7 +304,7 @@ public final class Js5 {
 				@Pc(220) int local220 = local140[local216] & 0xFF;
 				@Pc(228) int local228 = local216 - local31 * local220 * 4;
 				@Pc(233) Packet local233 = new Packet(local140);
-				local233.offset = local228;
+				local233.pos = local228;
 				@Pc(239) int[] local239 = new int[local31];
 				@Pc(250) int local250;
 				@Pc(252) int local252;
@@ -322,7 +322,7 @@ public final class Js5 {
 					local282[local250] = new byte[local239[local250]];
 					local239[local250] = 0;
 				}
-				local233.offset = local228;
+				local233.pos = local228;
 				local250 = 0;
 				@Pc(320) int local320;
 				for (local252 = 0; local252 < local220; local252++) {

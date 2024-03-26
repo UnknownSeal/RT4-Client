@@ -52,8 +52,8 @@ public final class LiquidMaterialRenderer implements MaterialRenderer {
 					}
 				}
 			}
-			@Pc(141) ByteBuffer local141 = ByteBuffer.allocateDirect(local58.offset).order(ByteOrder.nativeOrder());
-			local141.put(local58.data, 0, local58.offset);
+			@Pc(141) ByteBuffer local141 = ByteBuffer.allocateDirect(local58.pos).order(ByteOrder.nativeOrder());
+			local141.put(local58.data, 0, local58.pos);
 			local141.flip();
 			this.aFloatBuffer1 = local141.asFloatBuffer().asReadOnlyBuffer();
 			this.method3719();

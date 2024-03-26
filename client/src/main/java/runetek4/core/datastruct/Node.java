@@ -3,24 +3,19 @@ package runetek4.core.datastruct;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
-@OriginalClass("runetek4.client!ab")
+@OriginalClass("client!ab")
 public class Node {
 
-	@OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "J")
+	@OriginalMember(owner = "client!ab", name = "a", descriptor = "J")
 	public long nodeId;
 
-	@OriginalMember(owner = "runetek4.client!ab", name = "d", descriptor = "Lclient!ab;")
+	@OriginalMember(owner = "client!ab", name = "d", descriptor = "Lclient!ab;")
 	public Node prev;
 
-	@OriginalMember(owner = "runetek4.client!ab", name = "l", descriptor = "Lclient!ab;")
+	@OriginalMember(owner = "client!ab", name = "l", descriptor = "Lclient!ab;")
 	public Node next;
 
-	@OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "(I)Z")
-	public final boolean hasNext() {
-		return this.next != null;
-	}
-
-	@OriginalMember(owner = "runetek4.client!ab", name = "b", descriptor = "(I)V")
+	@OriginalMember(owner = "client!ab", name = "b", descriptor = "(I)V")
 	public final void remove() {
 		if (this.next != null) {
 			this.next.prev = this.prev;
@@ -28,5 +23,10 @@ public class Node {
 			this.next = null;
 			this.prev = null;
 		}
+	}
+
+	@OriginalMember(owner = "client!ab", name = "a", descriptor = "(I)Z")
+	public final boolean hasNext() {
+		return this.next != null;
 	}
 }

@@ -85,7 +85,7 @@ public final class Loc extends Entity {
 			if (arg8 instanceof Loc) {
 				((Loc) arg8).method1046();
 			} else {
-				local67 = Static271.method4601(this.anInt1299);
+				local67 = Static271.get(this.anInt1299);
 				if (local67.multiloc != null) {
 					local67 = local67.method3417();
 				}
@@ -131,7 +131,7 @@ public final class Loc extends Entity {
 			this.method1048(true);
 		}
 		if (arg8 == null) {
-			local67 = Static271.method4601(this.anInt1299);
+			local67 = Static271.get(this.anInt1299);
 			if (local67.multiloc != null) {
 				this.aBoolean80 = true;
 			}
@@ -225,7 +225,7 @@ public final class Loc extends Entity {
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(ZI)Lclient!th;")
 	private Entity method1048(@OriginalArg(0) boolean arg0) {
 		@Pc(12) boolean local12 = Static107.anIntArrayArrayArray10 != Static83.anIntArrayArrayArray4;
-		@Pc(19) LocType local19 = Static271.method4601(this.anInt1299);
+		@Pc(19) LocType local19 = Static271.get(this.anInt1299);
 		@Pc(22) int local22 = local19.anInt4430;
 		if (local19.multiloc != null) {
 			local19 = local19.method3417();
@@ -261,11 +261,11 @@ public final class Loc extends Entity {
 		@Pc(160) int local160;
 		@Pc(157) int local157;
 		if (local69 == 1 || local69 == 3) {
-			local157 = local19.anInt4397;
-			local160 = local19.anInt4403;
+			local157 = local19.width;
+			local160 = local19.height;
 		} else {
-			local160 = local19.anInt4397;
-			local157 = local19.anInt4403;
+			local160 = local19.width;
+			local157 = local19.height;
 		}
 		@Pc(178) int local178 = this.anInt1308 + (local160 + 1 >> 1);
 		@Pc(185) int local185 = (local160 >> 1) + this.anInt1308;

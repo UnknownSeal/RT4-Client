@@ -23,8 +23,8 @@ public final class GlAlphaSprite extends GlSprite {
 	@OriginalMember(owner = "runetek4.client!el", name = "a", descriptor = "([I)V")
 	@Override
 	protected final void method1430(@OriginalArg(0) int[] arg0) {
-		this.anInt1870 = Static165.method3164(this.anInt1867);
-		this.anInt1874 = Static165.method3164(this.anInt1859);
+		this.anInt1870 = Static165.bitceil(this.anInt1867);
+		this.anInt1874 = Static165.bitceil(this.anInt1859);
 		@Pc(20) byte[] local20 = new byte[this.anInt1870 * this.anInt1874 * 4];
 		@Pc(22) int local22 = 0;
 		@Pc(24) int local24 = 0;

@@ -439,8 +439,8 @@ public class GlSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!cf", name = "a", descriptor = "([I)V")
 	protected void method1430(@OriginalArg(0) int[] arg0) {
-		this.anInt1870 = Static165.method3164(this.anInt1867);
-		this.anInt1874 = Static165.method3164(this.anInt1859);
+		this.anInt1870 = Static165.bitceil(this.anInt1867);
+		this.anInt1874 = Static165.bitceil(this.anInt1859);
 		@Pc(20) byte[] local20 = new byte[this.anInt1870 * this.anInt1874 * 4];
 		@Pc(22) int local22 = 0;
 		@Pc(24) int local24 = 0;

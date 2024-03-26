@@ -4,7 +4,6 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.io.Packet;
-import runetek4.game.client.ClientInvCache;
 
 public final class Static278 {
 
@@ -23,8 +22,8 @@ public final class Static278 {
 	@OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(I)V")
 	public static void method4645() {
 		while (true) {
-			if (Static57.aClass3_Sub15_Sub1_3.method2241(Static223.anInt5028) >= 27) {
-				@Pc(14) int local14 = Static57.aClass3_Sub15_Sub1_3.method2238(15);
+			if (Static57.aClass3_Sub15_Sub1_3.bitsAvailable(Static223.anInt5028) >= 27) {
+				@Pc(14) int local14 = Static57.aClass3_Sub15_Sub1_3.gBit(15);
 				if (local14 != 32767) {
 					@Pc(19) boolean local19 = false;
 					if (Static175.aClass8_Sub4_Sub2Array1[local14] == null) {
@@ -37,21 +36,21 @@ public final class Static278 {
 					if (local37.aClass96_1 != null && local37.aClass96_1.method2935()) {
 						Static91.method1877(local37);
 					}
-					@Pc(66) int local66 = Static57.aClass3_Sub15_Sub1_3.method2238(1);
-					@Pc(73) int local73 = Static56.anIntArray141[Static57.aClass3_Sub15_Sub1_3.method2238(3)];
+					@Pc(66) int local66 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
+					@Pc(73) int local73 = Static56.anIntArray141[Static57.aClass3_Sub15_Sub1_3.gBit(3)];
 					if (local19) {
 						local37.anInt3400 = local37.anInt3381 = local73;
 					}
-					@Pc(86) int local86 = Static57.aClass3_Sub15_Sub1_3.method2238(1);
+					@Pc(86) int local86 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
 					if (local86 == 1) {
 						Static44.anIntArray106[Static116.anInt2951++] = local14;
 					}
-					@Pc(105) int local105 = Static57.aClass3_Sub15_Sub1_3.method2238(5);
-					local37.method2698(Static214.method4363(Static57.aClass3_Sub15_Sub1_3.method2238(14)));
+					@Pc(105) int local105 = Static57.aClass3_Sub15_Sub1_3.gBit(5);
+					local37.method2698(Static214.method4363(Static57.aClass3_Sub15_Sub1_3.gBit(14)));
 					if (local105 > 15) {
 						local105 -= 32;
 					}
-					@Pc(124) int local124 = Static57.aClass3_Sub15_Sub1_3.method2238(5);
+					@Pc(124) int local124 = Static57.aClass3_Sub15_Sub1_3.gBit(5);
 					if (local124 > 15) {
 						local124 -= 32;
 					}
@@ -68,7 +67,7 @@ public final class Static278 {
 					continue;
 				}
 			}
-			Static57.aClass3_Sub15_Sub1_3.method2244();
+			Static57.aClass3_Sub15_Sub1_3.accessBytes();
 			return;
 		}
 	}
@@ -176,24 +175,6 @@ public final class Static278 {
 			} else if (!arg2) {
 				Static12.aByteArrayArrayArray2[arg7][arg5][arg4] = (byte) (local32 - 49);
 			}
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(BII)I")
-	public static int method4652(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(8) ClientInvCache local8 = (ClientInvCache) Static20.aClass133_2.getNode((long) arg0);
-		if (local8 == null) {
-			return 0;
-		} else if (arg1 == -1) {
-			return 0;
-		} else {
-			@Pc(25) int local25 = 0;
-			for (@Pc(27) int local27 = 0; local27 < local8.invSlotObjCount.length; local27++) {
-				if (arg1 == local8.invSlotObjId[local27]) {
-					local25 += local8.invSlotObjCount[local27];
-				}
-			}
-			return local25;
 		}
 	}
 

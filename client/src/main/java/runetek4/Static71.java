@@ -89,7 +89,7 @@ public final class Static71 {
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "c", descriptor = "(I)V")
 	public static void transmitVerifyId() {
-		Static6.outboundBuffer.p1isaac(177);
+		Static6.outboundBuffer.pIsaac1(177);
 		Static6.outboundBuffer.p2(Static189.anInt4443);
 	}
 }

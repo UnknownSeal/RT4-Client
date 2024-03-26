@@ -37,11 +37,11 @@ public final class Static33 {
 		if (local42 == null) {
 			return false;
 		}
-		@Pc(49) int local49 = arg1.anInt4397;
-		@Pc(52) int local52 = arg1.anInt4403;
+		@Pc(49) int local49 = arg1.width;
+		@Pc(52) int local52 = arg1.height;
 		if ((arg3 & 0x1) == 1) {
-			local49 = arg1.anInt4403;
-			local52 = arg1.anInt4397;
+			local49 = arg1.height;
+			local52 = arg1.width;
 		}
 		@Pc(66) int local66 = local42.anInt4279;
 		@Pc(69) int local69 = local42.anInt4276;
@@ -65,7 +65,7 @@ public final class Static33 {
 		@Pc(33) int local33;
 		@Pc(102) int local102;
 		@Pc(114) int local114;
-		while (arg0.offset < arg0.data.length) {
+		while (arg0.pos < arg0.data.length) {
 			@Pc(31) int local31 = 0;
 			local33 = 0;
 			@Pc(35) boolean local35 = false;
@@ -88,9 +88,9 @@ public final class Static33 {
 					}
 				}
 			} else if (local35) {
-				arg0.offset += 64;
+				arg0.pos += 64;
 			} else {
-				arg0.offset += 4096;
+				arg0.pos += 4096;
 			}
 		}
 		@Pc(175) int local175 = Static48.anInt1449;

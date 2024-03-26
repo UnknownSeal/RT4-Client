@@ -46,7 +46,7 @@ public final class Static13 {
 
 	@OriginalMember(owner = "runetek4.client!bc", name = "d", descriptor = "(II)V")
 	public static void method472(@OriginalArg(0) int arg0) {
-		@Pc(14) ClientInvCache local14 = (ClientInvCache) Static20.aClass133_2.getNode((long) arg0);
+		@Pc(14) ClientInvCache local14 = (ClientInvCache) ClientInvCache.recentUse.getNode((long) arg0);
 		if (local14 != null) {
 			local14.remove();
 		}

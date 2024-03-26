@@ -5,6 +5,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.datastruct.IterableMap;
+import runetek4.game.client.ClientInvCache;
 
 public final class Static102 {
 
@@ -51,7 +52,7 @@ public final class Static102 {
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "f", descriptor = "(B)V")
 	public static void method2073() {
-		Static20.aClass133_2 = new IterableMap(32);
+		ClientInvCache.recentUse = new IterableMap(32);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "a", descriptor = "(Lclient!ve;ILclient!ve;)V")

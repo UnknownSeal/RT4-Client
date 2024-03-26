@@ -50,13 +50,13 @@ public final class Static122 {
 			local13.anInt2042 = arg1.bgsound_range * 128;
 			local13.anInt2040 = arg1.bgsound_maxdelay;
 			local13.aClass118_1 = arg1;
-			local13.anInt2044 = arg1.anInt4412;
+			local13.anInt2044 = arg1.bgsound_sound;
 			local13.anInt2032 = arg1.bgsound_mindelay;
-			@Pc(57) int local57 = arg1.anInt4397;
-			@Pc(60) int local60 = arg1.anInt4403;
+			@Pc(57) int local57 = arg1.width;
+			@Pc(60) int local60 = arg1.height;
 			if (arg2 == 1 || arg2 == 3) {
-				local57 = arg1.anInt4403;
-				local60 = arg1.anInt4397;
+				local57 = arg1.height;
+				local60 = arg1.width;
 			}
 			local13.anInt2028 = (local60 + arg0) * 128;
 			local13.anInt2037 = (arg4 + local57) * 128;

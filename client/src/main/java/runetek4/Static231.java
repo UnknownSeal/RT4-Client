@@ -35,7 +35,7 @@ public final class Static231 {
 	@OriginalMember(owner = "runetek4.client!sk", name = "a", descriptor = "(ILclient!wa;)V")
 	public static void method3980(@OriginalArg(1) Packet arg0) {
 		label83: while (true) {
-			if (arg0.offset < arg0.data.length) {
+			if (arg0.pos < arg0.data.length) {
 				@Pc(23) int local23 = 0;
 				@Pc(25) boolean local25 = false;
 				@Pc(27) int local27 = 0;
@@ -84,7 +84,7 @@ public final class Static231 {
 					}
 					local146 = arg0.g1s();
 					if (local146 != 0) {
-						arg0.offset++;
+						arg0.pos++;
 					}
 					local96++;
 				}

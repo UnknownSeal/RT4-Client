@@ -837,7 +837,7 @@ public final class RawModel extends Entity {
 		@Pc(24) Packet local24 = new Packet(arg0);
 		@Pc(29) Packet local29 = new Packet(arg0);
 		@Pc(34) Packet local34 = new Packet(arg0);
-		local4.offset = arg0.length - 23;
+		local4.pos = arg0.length - 23;
 		@Pc(44) int local44 = local4.g2();
 		@Pc(48) int local48 = local4.g2();
 		@Pc(52) int local52 = local4.g1();
@@ -860,7 +860,7 @@ public final class RawModel extends Entity {
 		@Pc(131) int local131;
 		if (local52 > 0) {
 			this.aByteArray29 = new byte[local52];
-			local4.offset = 0;
+			local4.pos = 0;
 			for (local131 = 0; local131 < local52; local131++) {
 				@Pc(143) byte local143 = this.aByteArray29[local131] = local4.g1s();
 				if (local143 == 0) {
@@ -975,11 +975,11 @@ public final class RawModel extends Entity {
 				this.aByteArray33 = new byte[local120];
 			}
 		}
-		local4.offset = local52;
-		local9.offset = local250;
-		local14.offset = local256;
-		local19.offset = local262;
-		local24.offset = local201;
+		local4.pos = local52;
+		local9.pos = local250;
+		local14.pos = local256;
+		local19.pos = local262;
+		local24.pos = local201;
 		@Pc(473) int local473 = 0;
 		@Pc(475) int local475 = 0;
 		@Pc(477) int local477 = 0;
@@ -1012,13 +1012,13 @@ public final class RawModel extends Entity {
 				this.anIntArray193[local479] = local24.g1();
 			}
 		}
-		local4.offset = local242;
-		local9.offset = local169;
-		local14.offset = local183;
-		local19.offset = local210;
-		local24.offset = local192;
-		local29.offset = local225;
-		local34.offset = local236;
+		local4.pos = local242;
+		local9.pos = local169;
+		local14.pos = local183;
+		local19.pos = local210;
+		local24.pos = local192;
+		local29.pos = local225;
+		local34.pos = local236;
 		for (local479 = 0; local479 < local48; local479++) {
 			this.aShortArray24[local479] = (short) local4.g2();
 			if (local65) {
@@ -1044,8 +1044,8 @@ public final class RawModel extends Entity {
 				}
 			}
 		}
-		local4.offset = local219;
-		local9.offset = local177;
+		local4.pos = local219;
+		local9.pos = local177;
 		local479 = 0;
 		local486 = 0;
 		local488 = 0;
@@ -1089,12 +1089,12 @@ public final class RawModel extends Entity {
 				this.anIntArray196[local508] = local488;
 			}
 		}
-		local4.offset = local268;
-		local9.offset = local276;
-		local14.offset = local284;
-		local19.offset = local292;
-		local24.offset = local298;
-		local29.offset = local304;
+		local4.pos = local268;
+		local9.pos = local276;
+		local14.pos = local284;
+		local19.pos = local292;
+		local24.pos = local298;
+		local29.pos = local304;
 		for (local508 = 0; local508 < local52; local508++) {
 			local700 = this.aByteArray29[local508] & 0xFF;
 			if (local700 == 0) {
@@ -1141,14 +1141,14 @@ public final class RawModel extends Entity {
 		if (!local74) {
 			return;
 		}
-		local4.offset = local131;
+		local4.pos = local131;
 		local508 = local4.g1();
 		if (local508 > 0) {
-			local4.offset += local508 * 4;
+			local4.pos += local508 * 4;
 		}
 		local700 = local4.g1();
 		if (local700 > 0) {
-			local4.offset += local700 * 4;
+			local4.pos += local700 * 4;
 		}
 	}
 
@@ -1469,7 +1469,7 @@ public final class RawModel extends Entity {
 		@Pc(18) Packet local18 = new Packet(arg0);
 		@Pc(23) Packet local23 = new Packet(arg0);
 		@Pc(28) Packet local28 = new Packet(arg0);
-		local8.offset = arg0.length - 18;
+		local8.pos = arg0.length - 18;
 		@Pc(38) int local38 = local8.g2();
 		@Pc(42) int local42 = local8.g2();
 		@Pc(46) int local46 = local8.g1();
@@ -1550,11 +1550,11 @@ public final class RawModel extends Entity {
 			this.anIntArray192 = new int[local42];
 		}
 		this.aShortArray24 = new short[local42];
-		local8.offset = 0;
-		local13.offset = local165;
-		local18.offset = local171;
-		local23.offset = local90;
-		local28.offset = local125;
+		local8.pos = 0;
+		local13.pos = local165;
+		local18.pos = local171;
+		local23.pos = local90;
+		local28.pos = local125;
 		@Pc(301) int local301 = 0;
 		@Pc(303) int local303 = 0;
 		@Pc(305) int local305 = 0;
@@ -1587,11 +1587,11 @@ public final class RawModel extends Entity {
 				this.anIntArray193[local307] = local28.g1();
 			}
 		}
-		local8.offset = local149;
-		local13.offset = local116;
-		local18.offset = local98;
-		local23.offset = local134;
-		local28.offset = local107;
+		local8.pos = local149;
+		local13.pos = local116;
+		local18.pos = local98;
+		local23.pos = local134;
+		local28.pos = local107;
 		for (local307 = 0; local307 < local42; local307++) {
 			this.aShortArray24[local307] = (short) local8.g2();
 			if (local50 == 1) {
@@ -1624,8 +1624,8 @@ public final class RawModel extends Entity {
 				this.anIntArray192[local307] = local28.g1();
 			}
 		}
-		local8.offset = local143;
-		local13.offset = local92;
+		local8.pos = local143;
+		local13.pos = local92;
 		local307 = 0;
 		local314 = 0;
 		local316 = 0;
@@ -1670,7 +1670,7 @@ public final class RawModel extends Entity {
 				this.anIntArray196[local336] = local316;
 			}
 		}
-		local8.offset = local157;
+		local8.pos = local157;
 		for (local336 = 0; local336 < local46; local336++) {
 			this.aByteArray29[local336] = 0;
 			this.aShortArray26[local336] = (short) local8.g2();

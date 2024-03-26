@@ -129,15 +129,15 @@ public final class Static233 {
 		@Pc(24) int local24 = (int) arg0 >> 20 & 0x3;
 		@Pc(31) int local31 = (int) (arg0 >>> 32) & Integer.MAX_VALUE;
 		if (local12 == 10 || local12 == 11 || local12 == 22) {
-			@Pc(46) LocType local46 = Static271.method4601(local31);
+			@Pc(46) LocType local46 = Static271.get(local31);
 			@Pc(62) int local62;
 			@Pc(59) int local59;
 			if (local24 == 0 || local24 == 2) {
-				local59 = local46.anInt4403;
-				local62 = local46.anInt4397;
+				local59 = local46.height;
+				local62 = local46.width;
 			} else {
-				local59 = local46.anInt4397;
-				local62 = local46.anInt4403;
+				local59 = local46.width;
+				local62 = local46.height;
 			}
 			@Pc(73) int local73 = local46.anInt4433;
 			if (local24 != 0) {
@@ -184,9 +184,9 @@ public final class Static233 {
 			if (local23) {
 				return;
 			}
-			arg0.p1isaac(163);
+			arg0.pIsaac1(163);
 			arg0.p1(0);
-			local25 = arg0.offset;
+			local25 = arg0.pos;
 			arg0.p4(local18.anInt1732);
 			for (@Pc(121) int local121 = 0; local121 < local18.anInt1725; local121++) {
 				if (local18.anIntArray138[local121] == 0) {
@@ -266,7 +266,7 @@ public final class Static233 {
 				}
 			}
 			arg0.pCrc32(local25);
-			arg0.p1len(arg0.offset - local25);
+			arg0.p1len(arg0.pos - local25);
 			local18.remove();
 		}
 	}

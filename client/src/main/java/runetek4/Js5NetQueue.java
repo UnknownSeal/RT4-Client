@@ -80,14 +80,14 @@ public final class Js5NetQueue {
 			this.aClass95_1.method2832();
 			@Pc(75) Js5NetRequest local75;
 			for (local75 = (Js5NetRequest) this.aClass16_2.method795(); local75 != null; local75 = (Js5NetRequest) this.aClass16_2.method797()) {
-				this.aClass3_Sub15_4.offset = 0;
+				this.aClass3_Sub15_4.pos = 0;
 				this.aClass3_Sub15_4.p1(1);
 				this.aClass3_Sub15_4.p3((int) local75.aLong185);
 				this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
 				this.aClass16_3.method798(local75);
 			}
 			for (local75 = (Js5NetRequest) this.aClass16_4.method795(); local75 != null; local75 = (Js5NetRequest) this.aClass16_4.method797()) {
-				this.aClass3_Sub15_4.offset = 0;
+				this.aClass3_Sub15_4.pos = 0;
 				this.aClass3_Sub15_4.p1(0);
 				this.aClass3_Sub15_4.p3((int) local75.aLong185);
 				this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
@@ -114,21 +114,21 @@ public final class Js5NetQueue {
 				if (local196 <= 0) {
 					local228 = this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.data.length - this.aClass3_Sub2_Sub5_Sub2_2.aByte16;
 					local235 = 512 - this.aClass3_Sub2_Sub5_Sub2_2.anInt4617;
-					if (local235 > local228 - this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.offset) {
-						local235 = local228 - this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.offset;
+					if (local235 > local228 - this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos) {
+						local235 = local228 - this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos;
 					}
 					if (local235 > local19) {
 						local235 = local19;
 					}
-					this.aClass95_1.method2827(this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.offset, local235, this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.data);
+					this.aClass95_1.method2827(this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos, local235, this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.data);
 					if (this.aByte8 != 0) {
 						for (local283 = 0; local283 < local235; local283++) {
-							this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.data[this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.offset + local283] = (byte) (this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.data[this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.offset + local283] ^ this.aByte8);
+							this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.data[this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos + local283] = (byte) (this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.data[this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos + local283] ^ this.aByte8);
 						}
 					}
 					this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 += local235;
-					this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.offset += local235;
-					if (this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.offset == local228) {
+					this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos += local235;
+					if (this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos == local228) {
 						this.aClass3_Sub2_Sub5_Sub2_2.method4365();
 						this.aClass3_Sub2_Sub5_Sub2_2.aBoolean226 = false;
 						this.aClass3_Sub2_Sub5_Sub2_2 = null;
@@ -136,20 +136,20 @@ public final class Js5NetQueue {
 						this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 = 0;
 					}
 				} else {
-					local228 = local196 - this.aClass3_Sub15_5.offset;
+					local228 = local196 - this.aClass3_Sub15_5.pos;
 					if (local19 < local228) {
 						local228 = local19;
 					}
-					this.aClass95_1.method2827(this.aClass3_Sub15_5.offset, local228, this.aClass3_Sub15_5.data);
+					this.aClass95_1.method2827(this.aClass3_Sub15_5.pos, local228, this.aClass3_Sub15_5.data);
 					if (this.aByte8 != 0) {
 						for (local235 = 0; local235 < local228; local235++) {
-							this.aClass3_Sub15_5.data[local235 + this.aClass3_Sub15_5.offset] ^= this.aByte8;
+							this.aClass3_Sub15_5.data[local235 + this.aClass3_Sub15_5.pos] ^= this.aByte8;
 						}
 					}
-					this.aClass3_Sub15_5.offset += local228;
-					if (this.aClass3_Sub15_5.offset >= local196) {
+					this.aClass3_Sub15_5.pos += local228;
+					if (this.aClass3_Sub15_5.pos >= local196) {
 						if (this.aClass3_Sub2_Sub5_Sub2_2 == null) {
-							this.aClass3_Sub15_5.offset = 0;
+							this.aClass3_Sub15_5.pos = 0;
 							local235 = this.aClass3_Sub15_5.g1();
 							local283 = this.aClass3_Sub15_5.g2();
 							@Pc(471) int local471 = this.aClass3_Sub15_5.g1();
@@ -174,12 +174,12 @@ public final class Js5NetQueue {
 							this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.p1(local480);
 							this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.p4(local476);
 							this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 = 8;
-							this.aClass3_Sub15_5.offset = 0;
+							this.aClass3_Sub15_5.pos = 0;
 						} else if (this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 != 0) {
 							throw new IOException();
 						} else if (this.aClass3_Sub15_5.data[0] == -1) {
 							this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 = 1;
-							this.aClass3_Sub15_5.offset = 0;
+							this.aClass3_Sub15_5.pos = 0;
 						} else {
 							this.aClass3_Sub2_Sub5_Sub2_2 = null;
 						}
@@ -205,7 +205,7 @@ public final class Js5NetQueue {
 			return;
 		}
 		try {
-			this.aClass3_Sub15_4.offset = 0;
+			this.aClass3_Sub15_4.pos = 0;
 			this.aClass3_Sub15_4.p1(7);
 			this.aClass3_Sub15_4.p3(0);
 			this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
@@ -231,7 +231,7 @@ public final class Js5NetQueue {
 			return;
 		}
 		try {
-			this.aClass3_Sub15_4.offset = 0;
+			this.aClass3_Sub15_4.pos = 0;
 			this.aClass3_Sub15_4.p1(arg0 ? 2 : 3);
 			this.aClass3_Sub15_4.p3(0);
 			this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
@@ -265,7 +265,7 @@ public final class Js5NetQueue {
 		this.aClass95_1 = arg1;
 		this.method2331();
 		this.method2322(arg0);
-		this.aClass3_Sub15_5.offset = 0;
+		this.aClass3_Sub15_5.pos = 0;
 		this.aClass3_Sub2_Sub5_Sub2_2 = null;
 		while (true) {
 			@Pc(44) Js5NetRequest local44 = (Js5NetRequest) this.aClass16_3.method796();
@@ -275,7 +275,7 @@ public final class Js5NetQueue {
 					if (local44 == null) {
 						if (this.aByte8 != 0) {
 							try {
-								this.aClass3_Sub15_4.offset = 0;
+								this.aClass3_Sub15_4.pos = 0;
 								this.aClass3_Sub15_4.p1(4);
 								this.aClass3_Sub15_4.p1(this.aByte8);
 								this.aClass3_Sub15_4.p2(0);
@@ -356,7 +356,7 @@ public final class Js5NetQueue {
 			return;
 		}
 		try {
-			this.aClass3_Sub15_4.offset = 0;
+			this.aClass3_Sub15_4.pos = 0;
 			this.aClass3_Sub15_4.p1(6);
 			this.aClass3_Sub15_4.p3(3);
 			this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);

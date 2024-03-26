@@ -34,7 +34,7 @@ public final class Static14 {
 
 	@OriginalMember(owner = "runetek4.client!bd", name = "a", descriptor = "(BI)V")
 	public static void method475(@OriginalArg(1) int arg0) {
-		@Pc(8) ClientInvCache local8 = (ClientInvCache) Static20.aClass133_2.getNode((long) arg0);
+		@Pc(8) ClientInvCache local8 = (ClientInvCache) ClientInvCache.recentUse.getNode((long) arg0);
 		if (local8 != null) {
 			for (@Pc(24) int local24 = 0; local24 < local8.invSlotObjId.length; local24++) {
 				local8.invSlotObjId[local24] = -1;

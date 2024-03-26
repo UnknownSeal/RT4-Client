@@ -4,7 +4,9 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IntWrapper;
 import runetek4.core.datastruct.IterableMap;
+import runetek4.core.datastruct.JagStringWrapper;
 import runetek4.core.datastruct.Node;
 import runetek4.core.io.Packet;
 
@@ -214,8 +216,8 @@ public final class NpcType {
 		if (this.aClass133_15 == null) {
 			return arg1;
 		} else {
-			@Pc(18) IntNode local18 = (IntNode) this.aClass133_15.getNode((long) arg0);
-			return local18 == null ? arg1 : local18.anInt3141;
+			@Pc(18) IntWrapper local18 = (IntWrapper) this.aClass133_15.getNode((long) arg0);
+			return local18 == null ? arg1 : local18.value;
 		}
 	}
 
@@ -484,8 +486,8 @@ public final class NpcType {
 		if (this.aClass133_15 == null) {
 			return arg1;
 		} else {
-			@Pc(18) StringNode local18 = (StringNode) this.aClass133_15.getNode((long) arg0);
-			return local18 == null ? arg1 : local18.aClass100_980;
+			@Pc(18) JagStringWrapper local18 = (JagStringWrapper) this.aClass133_15.getNode((long) arg0);
+			return local18 == null ? arg1 : local18.value;
 		}
 	}
 
@@ -721,7 +723,7 @@ public final class NpcType {
 			} else if (arg0 == 249) {
 				local12 = arg1.g1();
 				if (this.aClass133_15 == null) {
-					local18 = Static165.method3164(local12);
+					local18 = Static165.bitceil(local12);
 					this.aClass133_15 = new IterableMap(local18);
 				}
 				for (local18 = 0; local18 < local12; local18++) {
@@ -729,9 +731,9 @@ public final class NpcType {
 					@Pc(596) int local596 = arg1.g3();
 					@Pc(605) Node local605;
 					if (local592) {
-						local605 = new StringNode(arg1.gjstr());
+						local605 = new JagStringWrapper(arg1.gjstr());
 					} else {
-						local605 = new IntNode(arg1.g4());
+						local605 = new IntWrapper(arg1.g4());
 					}
 					this.aClass133_15.pushNode(local605, (long) local596);
 				}

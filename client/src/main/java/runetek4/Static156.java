@@ -113,7 +113,7 @@ public final class Static156 {
 	@OriginalMember(owner = "runetek4.client!mf", name = "a", descriptor = "(JI)V")
 	public static void method2956(@OriginalArg(0) long arg0) {
 		if ((long) 0 != arg0) {
-			Static6.outboundBuffer.p1isaac(104);
+			Static6.outboundBuffer.pIsaac1(104);
 			Static6.outboundBuffer.p8(arg0);
 		}
 	}

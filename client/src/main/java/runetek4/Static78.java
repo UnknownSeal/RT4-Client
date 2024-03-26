@@ -37,7 +37,7 @@ public final class Static78 {
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(JI)V")
 	public static void method1691(@OriginalArg(0) long name) {
-		Static6.outboundBuffer.offset = 0;
+		Static6.outboundBuffer.pos = 0;
 		Static6.outboundBuffer.p1(186);
 		Static6.outboundBuffer.p8(name);
 		Static179.anInt4261 = 1;
@@ -277,7 +277,7 @@ public final class Static78 {
 		Static217.method3768();
 		Static231.aBoolean252 = false;
 		if (Static39.aFrame1 != null && Static124.socket != null && Static244.anInt5370 == 25) {
-			Static6.outboundBuffer.p1isaac(20);
+			Static6.outboundBuffer.pIsaac1(20);
 			Static6.outboundBuffer.p4(1057001181);
 		}
 		if (!Static230.aBoolean250) {
@@ -299,7 +299,7 @@ public final class Static78 {
 		} else {
 			Static196.method3534(30);
 			if (Static124.socket != null) {
-				Static6.outboundBuffer.p1isaac(110);
+				Static6.outboundBuffer.pIsaac1(110);
 			}
 		}
 		Static141.method2720();

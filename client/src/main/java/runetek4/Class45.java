@@ -6,6 +6,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IntWrapper;
 import runetek4.core.datastruct.IterableMap;
 import runetek4.core.io.Packet;
 
@@ -65,9 +66,9 @@ public final class Class45 {
 		@Pc(1) long local1 = 0L;
 		if ((arg1 & 0x7F) == 0 || (arg3 & 0x7F) == 0) {
 			local1 = arg1 + (arg3 << 16);
-			@Pc(23) IntNode local23 = (IntNode) this.aClass133_4.getNode(local1);
+			@Pc(23) IntWrapper local23 = (IntWrapper) this.aClass133_4.getNode(local1);
 			if (local23 != null) {
-				return local23.anInt3141;
+				return local23.value;
 			}
 		}
 		@Pc(31) int local31 = arg0.anInt2247;
@@ -110,7 +111,7 @@ public final class Class45 {
 		this.anIntArray178[this.anInt2017] = arg1;
 		this.anIntArray180[this.anInt2017] = arg2;
 		this.anIntArray179[this.anInt2017] = arg3;
-		this.aClass133_4.pushNode(new IntNode(this.anInt2017), local1);
+		this.aClass133_4.pushNode(new IntWrapper(this.anInt2017), local1);
 		return this.anInt2017++;
 	}
 
@@ -154,10 +155,10 @@ public final class Class45 {
 			@Pc(186) ByteBuffer local186 = ByteBuffer.wrap(local7.data);
 			this.aClass155_2.method4517(local186);
 		} else {
-			this.aByteBuffer1 = ByteBuffer.allocateDirect(local15.offset);
+			this.aByteBuffer1 = ByteBuffer.allocateDirect(local15.pos);
 			this.aByteBuffer1.put(local15.data);
 			this.aByteBuffer1.flip();
-			this.aByteBuffer2 = ByteBuffer.allocateDirect(local7.offset);
+			this.aByteBuffer2 = ByteBuffer.allocateDirect(local7.pos);
 			this.aByteBuffer2.put(local7.data);
 			this.aByteBuffer2.flip();
 		}
@@ -180,7 +181,7 @@ public final class Class45 {
 		this.aByteArray25 = new byte[this.anInt2019];
 		this.aByteArray23 = new byte[this.anInt2019];
 		this.aByteArray24 = new byte[this.anInt2019];
-		this.aClass133_4 = new IterableMap(Static165.method3164(this.anInt2019));
+		this.aClass133_4 = new IterableMap(Static165.bitceil(this.anInt2019));
 	}
 
 	@OriginalMember(owner = "runetek4.client!fj", name = "c", descriptor = "()V")

@@ -45,8 +45,8 @@ public final class Static64 {
 				Static159.aClass8_Sub4_Sub1Array1[local30] = null;
 			}
 		}
-		if (Static223.anInt5028 != Static57.aClass3_Sub15_Sub1_3.offset) {
-			throw new RuntimeException("gpp1 pos:" + Static57.aClass3_Sub15_Sub1_3.offset + " psize:" + Static223.anInt5028);
+		if (Static223.anInt5028 != Static57.aClass3_Sub15_Sub1_3.pos) {
+			throw new RuntimeException("gpp1 pos:" + Static57.aClass3_Sub15_Sub1_3.pos + " psize:" + Static223.anInt5028);
 		}
 		for (local23 = 0; local23 < Static267.anInt5774; local23++) {
 			if (Static159.aClass8_Sub4_Sub1Array1[Static105.anIntArray256[local23]] == null) {
@@ -90,7 +90,7 @@ public final class Static64 {
 		Static3.aBooleanArray135[Static9.anInt178] = false;
 		Static9.anInt178++;
 		Static185.anInt4369 = Static119.transmitTimer;
-		Static6.outboundBuffer.p1isaac(120);
+		Static6.outboundBuffer.pIsaac1(120);
 		Static6.outboundBuffer.p8(arg0);
 	}
 }

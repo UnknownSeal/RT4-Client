@@ -128,11 +128,11 @@ public final class Static81 {
 			if (!Static245.enabled) {
 				Static178.instance.samples = 0;
 			} else if (Static150.clickButton != 0 || Static178.instance.samples >= 40) {
-				Static6.outboundBuffer.p1isaac(123);
+				Static6.outboundBuffer.pIsaac1(123);
 				samples = 0;
 				Static6.outboundBuffer.p1(0);
-				offset = Static6.outboundBuffer.offset;
-				for (i = 0; Static178.instance.samples > i && Static6.outboundBuffer.offset - offset < 240; i++) {
+				offset = Static6.outboundBuffer.pos;
+				for (i = 0; Static178.instance.samples > i && Static6.outboundBuffer.pos - offset < 240; i++) {
 					samples++;
 					y = Static178.instance.y[i];
 					x = Static178.instance.x[i];
@@ -189,7 +189,7 @@ public final class Static81 {
 						Static204.anInt4762++;
 					}
 				}
-				Static6.outboundBuffer.p1len(Static6.outboundBuffer.offset - offset);
+				Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - offset);
 				if (Static178.instance.samples > samples) {
 					Static178.instance.samples -= samples;
 					for (i = 0; i < Static178.instance.samples; i++) {
@@ -224,7 +224,7 @@ public final class Static81 {
 			if (Static150.clickButton == 2) {
 				button = 1;
 			}
-			Static6.outboundBuffer.p1isaac(75);
+			Static6.outboundBuffer.pIsaac1(75);
 			Static6.outboundBuffer.p2leadd(button << 15 | x);
 			Static6.outboundBuffer.p4me(i | samples << 16);
 		}
@@ -245,22 +245,22 @@ public final class Static81 {
 		if (Static197.aBoolean228 && Static16.anInt551 <= 0) {
 			Static16.anInt551 = 20;
 			Static197.aBoolean228 = false;
-			Static6.outboundBuffer.p1isaac(21);
+			Static6.outboundBuffer.pIsaac1(21);
 			Static6.outboundBuffer.p2add(Static72.anInt2031);
 			Static6.outboundBuffer.p2le(Static57.anInt1747);
 		}
 		if (Static26.focus && !Static67.prevFocus) {
 			Static67.prevFocus = true;
-			Static6.outboundBuffer.p1isaac(22);
+			Static6.outboundBuffer.pIsaac1(22);
 			Static6.outboundBuffer.p1(1);
 		}
 		if (!Static26.focus && Static67.prevFocus) {
 			Static67.prevFocus = false;
-			Static6.outboundBuffer.p1isaac(22);
+			Static6.outboundBuffer.pIsaac1(22);
 			Static6.outboundBuffer.p1(0);
 		}
 		if (!Static18.sentToServer) {
-			Static6.outboundBuffer.p1isaac(98);
+			Static6.outboundBuffer.pIsaac1(98);
 			Static6.outboundBuffer.p4(Static145.method2746());
 			Static18.sentToServer = true;
 		}
@@ -460,7 +460,7 @@ public final class Static81 {
 						} else {
 							local1361.swapObjs(Static18.anInt588, Static4.anInt36);
 						}
-						Static6.outboundBuffer.p1isaac(231);
+						Static6.outboundBuffer.pIsaac1(231);
 						Static6.outboundBuffer.p2(Static4.anInt36);
 						Static6.outboundBuffer.p4le2(Static118.aClass13_15.anInt507);
 						Static6.outboundBuffer.p2add(Static18.anInt588);
@@ -535,7 +535,7 @@ public final class Static81 {
 												Static125.anInt3096 = 0;
 											} else if (Static125.anInt3096 == 2) {
 												if (Static56.anInt1742 != -1) {
-													Static6.outboundBuffer.p1isaac(131);
+													Static6.outboundBuffer.pIsaac1(131);
 													Static6.outboundBuffer.p4me(Static98.anInt2512);
 													Static6.outboundBuffer.p2add(Static225.originX + Static56.anInt1742);
 													Static6.outboundBuffer.p2leadd(Static15.anInt506);
@@ -548,7 +548,7 @@ public final class Static81 {
 												Static125.anInt3096 = 0;
 											} else if (Static187.anInt4422 == 2) {
 												if (Static56.anInt1742 != -1) {
-													Static6.outboundBuffer.p1isaac(179);
+													Static6.outboundBuffer.pIsaac1(179);
 													Static6.outboundBuffer.p2(Static142.originZ + Static116.anInt2954);
 													Static6.outboundBuffer.p2(Static56.anInt1742 + Static225.originX);
 													Static17.milliseconds = 0;
@@ -609,7 +609,7 @@ public final class Static81 {
 											if (y > 15000 && x > 15000) {
 												Static267.anInt5775 = 250;
 												Static48.setIdleLoops(14500);
-												Static6.outboundBuffer.p1isaac(245);
+												Static6.outboundBuffer.pIsaac1(245);
 											}
 											if (Static33.openUrlRequest != null && Static33.openUrlRequest.status == 1) {
 												if (Static33.openUrlRequest.result != null) {
@@ -676,17 +676,17 @@ public final class Static81 {
 												Static263.anInt5755 = -2;
 											}
 											if (Static131.anInt3251 > 50) {
-												Static6.outboundBuffer.p1isaac(93);
+												Static6.outboundBuffer.pIsaac1(93);
 											}
 											if (Static34.verifyIdChanged) {
 												Static71.transmitVerifyId();
 												Static34.verifyIdChanged = false;
 											}
 											try {
-												if (Static124.socket != null && Static6.outboundBuffer.offset > 0) {
-													Static124.socket.write(Static6.outboundBuffer.data, Static6.outboundBuffer.offset);
+												if (Static124.socket != null && Static6.outboundBuffer.pos > 0) {
+													Static124.socket.write(Static6.outboundBuffer.data, Static6.outboundBuffer.pos);
 													Static131.anInt3251 = 0;
-													Static6.outboundBuffer.offset = 0;
+													Static6.outboundBuffer.pos = 0;
 												}
 											} catch (@Pc(2266) IOException local2266) {
 												Static175.method3279();

@@ -69,7 +69,7 @@ public final class Static153 {
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "f", descriptor = "(B)V")
 	public static void method2909() {
-		Static6.outboundBuffer.p1isaac(184);
+		Static6.outboundBuffer.pIsaac1(184);
 		for (@Pc(18) Class3_Sub31 local18 = (Class3_Sub31) Static119.aClass133_9.peekFront(); local18 != null; local18 = (Class3_Sub31) Static119.aClass133_9.prev()) {
 			if (local18.anInt5879 == 0) {
 				Static132.method2605(true, local18);

@@ -271,7 +271,7 @@ public final class SynthInstrument {
 		this.aClass42_3.method1515(arg0);
 		@Pc(21) int local21 = arg0.g1();
 		if (local21 != 0) {
-			arg0.offset--;
+			arg0.pos--;
 			this.aClass42_9 = new SynthEnvelope();
 			this.aClass42_9.method1515(arg0);
 			this.aClass42_8 = new SynthEnvelope();
@@ -279,7 +279,7 @@ public final class SynthInstrument {
 		}
 		local21 = arg0.g1();
 		if (local21 != 0) {
-			arg0.offset--;
+			arg0.pos--;
 			this.aClass42_7 = new SynthEnvelope();
 			this.aClass42_7.method1515(arg0);
 			this.aClass42_1 = new SynthEnvelope();
@@ -287,7 +287,7 @@ public final class SynthInstrument {
 		}
 		local21 = arg0.g1();
 		if (local21 != 0) {
-			arg0.offset--;
+			arg0.pos--;
 			this.aClass42_2 = new SynthEnvelope();
 			this.aClass42_2.method1515(arg0);
 			this.aClass42_4 = new SynthEnvelope();

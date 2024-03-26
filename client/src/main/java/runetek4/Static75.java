@@ -23,7 +23,7 @@ public final class Static75 {
 		@Pc(169) int local169;
 		if (!Static230.aBoolean250) {
 			local13 = Static57.aClass3_Sub15_Sub1_3.g2sub();
-			local20 = (Static223.anInt5028 - Static57.aClass3_Sub15_Sub1_3.offset) / 16;
+			local20 = (Static223.anInt5028 - Static57.aClass3_Sub15_Sub1_3.pos) / 16;
 			Static72.anIntArrayArray14 = new int[local20][4];
 			for (local26 = 0; local26 < local20; local26++) {
 				for (local31 = 0; local31 < 4; local31++) {
@@ -79,22 +79,22 @@ public final class Static75 {
 		local20 = Static57.aClass3_Sub15_Sub1_3.g2leadd();
 		local26 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
 		local31 = Static57.aClass3_Sub15_Sub1_3.g2leadd();
-		Static57.aClass3_Sub15_Sub1_3.method2233();
+		Static57.aClass3_Sub15_Sub1_3.accessBits();
 		@Pc(391) int local391;
 		for (local60 = 0; local60 < 4; local60++) {
 			for (local64 = 0; local64 < 13; local64++) {
 				for (local391 = 0; local391 < 13; local391++) {
-					local138 = Static57.aClass3_Sub15_Sub1_3.method2238(1);
+					local138 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
 					if (local138 == 1) {
-						Static187.anIntArrayArrayArray18[local60][local64][local391] = Static57.aClass3_Sub15_Sub1_3.method2238(26);
+						Static187.anIntArrayArrayArray18[local60][local64][local391] = Static57.aClass3_Sub15_Sub1_3.gBit(26);
 					} else {
 						Static187.anIntArrayArrayArray18[local60][local64][local391] = -1;
 					}
 				}
 			}
 		}
-		Static57.aClass3_Sub15_Sub1_3.method2244();
-		local60 = (Static223.anInt5028 - Static57.aClass3_Sub15_Sub1_3.offset) / 16;
+		Static57.aClass3_Sub15_Sub1_3.accessBytes();
+		local60 = (Static223.anInt5028 - Static57.aClass3_Sub15_Sub1_3.pos) / 16;
 		Static72.anIntArrayArray14 = new int[local60][4];
 		for (local64 = 0; local64 < local60; local64++) {
 			for (local391 = 0; local391 < 4; local391++) {

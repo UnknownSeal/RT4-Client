@@ -226,7 +226,7 @@ public final class Static254 {
 				local7 = 32767;
 			}
 			@Pc(15) byte[] local15 = new byte[local7];
-			arg0.offset += Static62.aClass44_1.method1552(0, local7, local15, arg0.data, arg0.offset);
+			arg0.pos += Static62.aClass44_1.method1552(0, local7, local15, arg0.data, arg0.pos);
 			return Static10.decodeString(local15, local7, 0);
 		} catch (@Pc(47) Exception local47) {
 			return Static267.aClass100_1087;

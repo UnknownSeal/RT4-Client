@@ -160,7 +160,7 @@ public final class GlFont extends Font {
 			}
 		}
 		this.anInt3640 *= 16;
-		this.anInt3640 = Static165.method3164(this.anInt3640);
+		this.anInt3640 = Static165.bitceil(this.anInt3640);
 		local9 = this.anInt3640 / 16;
 		@Pc(66) byte[] local66 = new byte[this.anInt3640 * this.anInt3640 * 2];
 		for (@Pc(68) int local68 = 0; local68 < 256; local68++) {

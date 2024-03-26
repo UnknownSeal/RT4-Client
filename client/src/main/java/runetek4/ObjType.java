@@ -4,7 +4,9 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IntWrapper;
 import runetek4.core.datastruct.IterableMap;
+import runetek4.core.datastruct.JagStringWrapper;
 import runetek4.core.datastruct.Node;
 import runetek4.core.io.Packet;
 
@@ -212,8 +214,8 @@ public final class ObjType {
 		if (this.aClass133_6 == null) {
 			return arg0;
 		} else {
-			@Pc(21) StringNode local21 = (StringNode) this.aClass133_6.getNode((long) arg1);
-			return local21 == null ? arg0 : local21.aClass100_980;
+			@Pc(21) JagStringWrapper local21 = (JagStringWrapper) this.aClass133_6.getNode((long) arg1);
+			return local21 == null ? arg0 : local21.value;
 		}
 	}
 
@@ -505,7 +507,7 @@ public final class ObjType {
 			} else if (arg1 == 249) {
 				local169 = arg0.g1();
 				if (this.aClass133_6 == null) {
-					local179 = Static165.method3164(local169);
+					local179 = Static165.bitceil(local169);
 					this.aClass133_6 = new IterableMap(local179);
 				}
 				for (local179 = 0; local179 < local169; local179++) {
@@ -513,9 +515,9 @@ public final class ObjType {
 					@Pc(514) int local514 = arg0.g3();
 					@Pc(523) Node local523;
 					if (local510) {
-						local523 = new StringNode(arg0.gjstr());
+						local523 = new JagStringWrapper(arg0.gjstr());
 					} else {
-						local523 = new IntNode(arg0.g4());
+						local523 = new IntWrapper(arg0.g4());
 					}
 					this.aClass133_6.pushNode(local523, (long) local514);
 				}
@@ -528,8 +530,8 @@ public final class ObjType {
 		if (this.aClass133_6 == null) {
 			return arg0;
 		} else {
-			@Pc(25) IntNode local25 = (IntNode) this.aClass133_6.getNode((long) arg1);
-			return local25 == null ? arg0 : local25.anInt3141;
+			@Pc(25) IntWrapper local25 = (IntWrapper) this.aClass133_6.getNode((long) arg1);
+			return local25 == null ? arg0 : local25.value;
 		}
 	}
 

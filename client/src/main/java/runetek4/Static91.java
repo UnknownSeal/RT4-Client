@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IntWrapper;
 import runetek4.core.datastruct.IterableMap;
 import runetek4.core.io.Packet;
 
@@ -41,10 +42,10 @@ public final class Static91 {
 		}
 		local12 = new ClientScript();
 		@Pc(42) Packet local42 = new Packet(local22);
-		local42.offset = local42.data.length - 2;
+		local42.pos = local42.data.length - 2;
 		@Pc(53) int local53 = local42.g2();
 		@Pc(63) int local63 = local42.data.length - local53 - 12 - 2;
-		local42.offset = local63;
+		local42.pos = local63;
 		@Pc(70) int local70 = local42.g4();
 		local12.anInt4667 = local42.g2();
 		local12.anInt4671 = local42.g2();
@@ -57,22 +58,22 @@ public final class Static91 {
 			local12.aClass133Array1 = new IterableMap[local98];
 			for (local107 = 0; local107 < local98; local107++) {
 				local114 = local42.g2();
-				@Pc(121) IterableMap local121 = new IterableMap(Static165.method3164(local114));
+				@Pc(121) IterableMap local121 = new IterableMap(Static165.bitceil(local114));
 				local12.aClass133Array1[local107] = local121;
 				while (local114-- > 0) {
 					@Pc(136) int local136 = local42.g4();
 					@Pc(140) int local140 = local42.g4();
-					local121.pushNode(new IntNode(local140), (long) local136);
+					local121.pushNode(new IntWrapper(local140), (long) local136);
 				}
 			}
 		}
-		local42.offset = 0;
+		local42.pos = 0;
 		local12.aClass100_880 = local42.gjstrFast();
 		local12.anIntArray415 = new int[local70];
 		local12.aClass100Array140 = new JagString[local70];
 		local107 = 0;
 		local12.anIntArray416 = new int[local70];
-		while (local63 > local42.offset) {
+		while (local63 > local42.pos) {
 			local114 = local42.g2();
 			if (local114 == 3) {
 				local12.aClass100Array140[local107] = local42.gjstr();

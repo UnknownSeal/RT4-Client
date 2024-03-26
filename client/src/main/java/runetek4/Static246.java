@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.io.Packet;
+import runetek4.game.config.invtype.InvType;
 
 public final class Static246 {
 
@@ -133,17 +134,17 @@ public final class Static246 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(II)Lclient!md;")
-	public static Class3_Sub2_Sub14 method4241(@OriginalArg(0) int arg0) {
-		@Pc(16) Class3_Sub2_Sub14 local16 = (Class3_Sub2_Sub14) Static89.aClass54_8.method1806((long) arg0);
-		if (local16 != null) {
-			return local16;
+	public static InvType get(@OriginalArg(0) int arg0) {
+		@Pc(16) InvType invType = (InvType) Static89.aClass54_8.method1806((long) arg0);
+		if (invType != null) {
+			return invType;
 		}
-		@Pc(27) byte[] local27 = Static9.aClass153_2.method4495(5, arg0);
-		local16 = new Class3_Sub2_Sub14();
-		if (local27 != null) {
-			local16.method2927(new Packet(local27));
+		@Pc(27) byte[] bytes = Static9.aClass153_2.method4495(5, arg0);
+		invType = new InvType();
+		if (bytes != null) {
+			invType.decode(new Packet(bytes));
 		}
-		Static89.aClass54_8.method1811(local16, (long) arg0);
-		return local16;
+		Static89.aClass54_8.method1811(invType, (long) arg0);
+		return invType;
 	}
 }

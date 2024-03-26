@@ -979,7 +979,7 @@ public final class Component {
 	@OriginalMember(owner = "runetek4.client!be", name = "c", descriptor = "(ILclient!wa;)V")
 	public final void method490(@OriginalArg(1) Packet arg0) {
 		this.aBoolean32 = true;
-		arg0.offset++;
+		arg0.pos++;
 		this.anInt452 = arg0.g1();
 		if ((this.anInt452 & 0x80) != 0) {
 			this.anInt452 &= 0x7F;
