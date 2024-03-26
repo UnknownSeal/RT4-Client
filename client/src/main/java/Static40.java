@@ -120,15 +120,11 @@ public final class Static40 {
 
 	@OriginalMember(owner = "client!da", name = "a", descriptor = "(IIIILclient!na;JI)V")
 	public static void method1016(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) JagString password, @OriginalArg(5) long name, @OriginalArg(6) int arg5) {
-		@Pc(8) Buffer local8 = new Buffer(GlobalConfig.LOGIN_USE_STRINGS ? 129 : 128);
+		@Pc(8) Buffer local8 = new Buffer(128);
 		local8.p1(10);
 		local8.p2((int) (Math.random() * 99999.0D));
 		local8.p2(530);
-		if (GlobalConfig.LOGIN_USE_STRINGS) {
-			local8.pjstr(Static79.decode37(name));
-		} else {
-			local8.p8(name);
-		}
+		local8.p8(name);
 		local8.p4((int) (Math.random() * 9.9999999E7D));
 		local8.pjstr(password);
 		local8.p4((int) (Math.random() * 9.9999999E7D));
@@ -139,7 +135,7 @@ public final class Static40 {
 		local8.p2(arg5);
 		local8.p2(arg1);
 		local8.p4((int) (Math.random() * 9.9999999E7D));
-		local8.encryptRsa(GlobalConfig.RSA_EXPONENT, GlobalConfig.RSA_MODULUS);
+		local8.encryptRsa(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
 		Static6.outboundBuffer.offset = 0;
 		Static6.outboundBuffer.p1(36);
 		Static6.outboundBuffer.p1(local8.offset);

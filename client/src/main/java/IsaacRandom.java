@@ -159,7 +159,10 @@ public final class IsaacRandom {
 
 	@OriginalMember(owner = "client!ij", name = "a", descriptor = "(I)I")
 	public final int method2295() {
-		if (GlobalConfig.USE_ISAAC) {
+		// TODO - Add proper support server side.
+		boolean useIsaac = false;
+
+		if (useIsaac) {
 			if (this.anInt2916-- == 0) {
 				this.method2296();
 				this.anInt2916 = 255;

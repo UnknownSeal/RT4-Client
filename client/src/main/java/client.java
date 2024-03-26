@@ -18,7 +18,7 @@ public final class client extends GameShell {
 		try {
 			if (arg0.length != 4) {
 				arg0 = new String[4];
-				arg0[0] = "1";
+				arg0[0] = "0";
 				arg0[1] = "live";
 				arg0[2] = "english";
 				arg0[3] = "game0";
@@ -334,17 +334,17 @@ public final class client extends GameShell {
 		}
 		Static80.read(Static71.signLink); // preferences
 		if (Static83.modeWhere == 0) {
-			Static143.worldListHostname = GlobalConfig.DEFAULT_HOSTNAME; // this.getCodeBase().getHost();
-			Static97.worldListAlternatePort = GlobalConfig.ALTERNATE_PORT + 1;
-			Static249.worldListDefaultPort = GlobalConfig.DEFAULT_PORT + 1;
+			Static143.worldListHostname = this.getCodeBase().getHost();
+			Static97.worldListAlternatePort = 443;
+			Static249.worldListDefaultPort = 43594;
 		} else if (Static83.modeWhere == 1) {
-			Static143.worldListHostname = GlobalConfig.DEFAULT_HOSTNAME; // this.getCodeBase().getHost();
-			Static97.worldListAlternatePort = GlobalConfig.ALTERNATE_PORT + Static187.worldListId;
-			Static249.worldListDefaultPort = GlobalConfig.DEFAULT_PORT + Static187.worldListId;
+			Static143.worldListHostname = this.getCodeBase().getHost();
+			Static97.worldListAlternatePort = Static187.worldListId + 50000;
+			Static249.worldListDefaultPort = Static187.worldListId + 40000;
 		} else if (Static83.modeWhere == 2) {
-			Static143.worldListHostname = GlobalConfig.DEFAULT_HOSTNAME; // "127.0.0.1";
-			Static97.worldListAlternatePort = GlobalConfig.ALTERNATE_PORT + Static187.worldListId;
-			Static249.worldListDefaultPort = GlobalConfig.DEFAULT_PORT + Static187.worldListId;
+			Static143.worldListHostname = "127.0.0.1";
+			Static97.worldListAlternatePort = Static187.worldListId + 50000;
+			Static249.worldListDefaultPort = Static187.worldListId + 40000;
 		}
 		if (Static266.game == 1) {
 			Static172.shiftClick = true;
@@ -366,7 +366,7 @@ public final class client extends GameShell {
 		Static208.worldListPort = Static249.worldListDefaultPort;
 		Static259.aShortArray88 = Static62.aShortArray19 = Static232.aShortArray74 = Static259.aShortArray87 = new short[256];
 		Static209.port = Static208.worldListPort;
-		if ((SignLink.anInt5928 == 3 && Static83.modeWhere != 2) || GlobalConfig.SELECT_DEFAULT_WORLD) {
+		if ((SignLink.anInt5928 == 3 && Static83.modeWhere != 2)) {
 			Static125.worldId = Static187.worldListId;
 		}
 		Static156.init(); // keyboard

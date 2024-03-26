@@ -101,24 +101,15 @@ public final class Static216 {
 				Static6.outboundBuffer.p4(local210[3]);
 				Static6.outboundBuffer.p8(Static186.username.encode37());
 				Static6.outboundBuffer.pjstr(Static186.password);
-				if (GlobalConfig.LOGIN_EXTRA_INFO) {
-					Static6.outboundBuffer.pjstr(Static28.parse(""));
-					Static6.outboundBuffer.pjstr(Static28.parse(""));
-					Static6.outboundBuffer.pjstr(Static28.parse(""));
-				}
-				Static6.outboundBuffer.encryptRsa(GlobalConfig.RSA_EXPONENT, GlobalConfig.RSA_MODULUS);
+				Static6.outboundBuffer.encryptRsa(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
 				Static17.aClass3_Sub15_Sub1_2.offset = 0;
 				if (Static244.anInt5370 == 40) {
 					Static17.aClass3_Sub15_Sub1_2.p1(18);
 				} else {
 					Static17.aClass3_Sub15_Sub1_2.p1(16);
 				}
-				int offset = 0;
-				if (GlobalConfig.LOGIN_FAKE_IDX28) {
-					// pretend that we're loading the archive so we don't throw the packet size off
-					offset = 4;
-				}
-				Static17.aClass3_Sub15_Sub1_2.p2(Static6.outboundBuffer.offset + Static229.method3937(Static47.aClass100_991) + (159 + offset));
+
+				Static17.aClass3_Sub15_Sub1_2.p2(Static6.outboundBuffer.offset + Static229.method3937(Static47.aClass100_991) + 159);
 				Static17.aClass3_Sub15_Sub1_2.p4(530);
 				Static17.aClass3_Sub15_Sub1_2.p1(Static5.anInt39);
 				Static17.aClass3_Sub15_Sub1_2.p1(Static249.aBoolean282 ? 1 : 0);
@@ -161,9 +152,6 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.p4(Static28.aClass153_18.method4480());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static167.aClass153_63.method4480());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static226.aClass153_93.method4480());
-				if (GlobalConfig.LOGIN_FAKE_IDX28) {
-					Static17.aClass3_Sub15_Sub1_2.p4(0);
-				}
 				Static17.aClass3_Sub15_Sub1_2.pBytes(Static6.outboundBuffer.data, Static6.outboundBuffer.offset);
 				Static124.socket.write(Static17.aClass3_Sub15_Sub1_2.data, Static17.aClass3_Sub15_Sub1_2.offset);
 				Static6.outboundBuffer.method2240(local210);

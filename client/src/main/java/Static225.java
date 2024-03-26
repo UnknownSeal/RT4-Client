@@ -97,7 +97,7 @@ public final class Static225 {
 			local43.p4((int) (Math.random() * 9.9999999E7D));
 			local43.pjstr(Static186.password);
 			local43.p4((int) (Math.random() * 9.9999999E7D));
-			local43.encryptRsa(GlobalConfig.RSA_EXPONENT, GlobalConfig.RSA_MODULUS);
+			local43.encryptRsa(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
 			Static6.outboundBuffer.offset = 0;
 			Static6.outboundBuffer.p1(210);
 			Static6.outboundBuffer.p1(local43.offset);
