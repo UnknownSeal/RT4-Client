@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
 
 @OriginalClass("runetek4.client!n")
 public final class SoftLruHashTable {
@@ -18,7 +19,7 @@ public final class SoftLruHashTable {
 	private int anInt3966;
 
 	@OriginalMember(owner = "runetek4.client!n", name = "n", descriptor = "Lclient!sc;")
-	private final HashTable aClass133_18;
+	private final IterableMap aClass133_18;
 
 	@OriginalMember(owner = "runetek4.client!n", name = "<init>", descriptor = "(I)V")
 	public SoftLruHashTable(@OriginalArg(0) int arg0) {
@@ -27,7 +28,7 @@ public final class SoftLruHashTable {
 		for (local11 = 1; local11 + local11 < arg0; local11 += local11) {
 		}
 		this.anInt3966 = arg0;
-		this.aClass133_18 = new HashTable(local11);
+		this.aClass133_18 = new IterableMap(local11);
 	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(BLjava/lang/Object;J)V")
@@ -35,22 +36,22 @@ public final class SoftLruHashTable {
 		this.method3098(arg1);
 		if (this.anInt3966 == 0) {
 			@Pc(26) ReferenceNode local26 = (ReferenceNode) this.aClass16_8.method796();
-			local26.method4658();
+			local26.remove();
 			local26.method4365();
 		} else {
 			this.anInt3966--;
 		}
 		@Pc(44) HardReferenceNode local44 = new HardReferenceNode(arg0);
-		this.aClass133_18.method3862(local44, arg1);
+		this.aClass133_18.pushNode(local44, arg1);
 		this.aClass16_8.method798(local44);
 		local44.aLong185 = 0L;
 	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(JB)V")
 	public final void method3098(@OriginalArg(0) long arg0) {
-		@Pc(6) ReferenceNode local6 = (ReferenceNode) this.aClass133_18.method3863(arg0);
+		@Pc(6) ReferenceNode local6 = (ReferenceNode) this.aClass133_18.getNode(arg0);
 		if (local6 != null) {
-			local6.method4658();
+			local6.remove();
 			local6.method4365();
 			this.anInt3966++;
 		}
@@ -75,15 +76,15 @@ public final class SoftLruHashTable {
 		for (@Pc(9) ReferenceNode local9 = (ReferenceNode) this.aClass16_8.method795(); local9 != null; local9 = (ReferenceNode) this.aClass16_8.method797()) {
 			if (local9.method3619()) {
 				if (local9.method3618() == null) {
-					local9.method4658();
+					local9.remove();
 					local9.method4365();
 					this.anInt3966++;
 				}
 			} else if (++local9.aLong185 > (long) arg0) {
 				@Pc(33) ReferenceNode local33 = Static252.aClass22_1.method1027(local9);
-				this.aClass133_18.method3862(local33, local9.aLong192);
+				this.aClass133_18.pushNode(local33, local9.nodeId);
 				Static84.method1772(local9, local33);
-				local9.method4658();
+				local9.remove();
 				local9.method4365();
 			}
 		}
@@ -93,7 +94,7 @@ public final class SoftLruHashTable {
 	public final void method3103() {
 		for (@Pc(7) ReferenceNode local7 = (ReferenceNode) this.aClass16_8.method795(); local7 != null; local7 = (ReferenceNode) this.aClass16_8.method797()) {
 			if (local7.method3619()) {
-				local7.method4658();
+				local7.remove();
 				local7.method4365();
 				this.anInt3966++;
 			}
@@ -103,29 +104,29 @@ public final class SoftLruHashTable {
 	@OriginalMember(owner = "runetek4.client!n", name = "c", descriptor = "(I)V")
 	public final void method3104() {
 		this.aClass16_8.method802();
-		this.aClass133_18.method3856();
+		this.aClass133_18.removeAll();
 		this.anInt3966 = this.anInt3970;
 	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "b", descriptor = "(JB)Ljava/lang/Object;")
 	public final Object method3106(@OriginalArg(0) long arg0) {
-		@Pc(12) ReferenceNode local12 = (ReferenceNode) this.aClass133_18.method3863(arg0);
+		@Pc(12) ReferenceNode local12 = (ReferenceNode) this.aClass133_18.getNode(arg0);
 		if (local12 == null) {
 			return null;
 		}
 		@Pc(27) Object local27 = local12.method3618();
 		if (local27 == null) {
-			local12.method4658();
+			local12.remove();
 			local12.method4365();
 			this.anInt3966++;
 			return null;
 		}
 		if (local12.method3619()) {
 			@Pc(53) HardReferenceNode local53 = new HardReferenceNode(local27);
-			this.aClass133_18.method3862(local53, local12.aLong192);
+			this.aClass133_18.pushNode(local53, local12.nodeId);
 			this.aClass16_8.method798(local53);
 			local53.aLong185 = 0L;
-			local12.method4658();
+			local12.remove();
 			local12.method4365();
 		} else {
 			this.aClass16_8.method798(local12);

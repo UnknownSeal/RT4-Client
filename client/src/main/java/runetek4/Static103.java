@@ -797,7 +797,7 @@ public final class Static103 {
 
 	@OriginalMember(owner = "runetek4.client!i", name = "i", descriptor = "(Z)V")
 	public static void method2245() {
-		for (@Pc(6) Class3_Sub31 local6 = (Class3_Sub31) Static119.aClass133_9.method3859(); local6 != null; local6 = (Class3_Sub31) Static119.aClass133_9.method3861()) {
+		for (@Pc(6) Class3_Sub31 local6 = (Class3_Sub31) Static119.aClass133_9.peekFront(); local6 != null; local6 = (Class3_Sub31) Static119.aClass133_9.prev()) {
 			@Pc(14) int local14 = local6.anInt5878;
 			if (Static245.load(local14)) {
 				@Pc(21) boolean local21 = true;
@@ -810,7 +810,7 @@ public final class Static103 {
 					}
 				}
 				if (!local21) {
-					local27 = (int) local6.aLong192;
+					local27 = (int) local6.nodeId;
 					@Pc(60) Component local60 = Static5.getComponent(local27);
 					if (local60 != null) {
 						Static43.method1143(local60);

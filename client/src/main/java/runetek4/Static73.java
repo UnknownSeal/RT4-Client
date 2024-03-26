@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
 
 public final class Static73 {
 
@@ -33,11 +34,11 @@ public final class Static73 {
 			if (Static154.topLevelInterace != -1) {
 				Static109.method2275(Static154.topLevelInterace);
 			}
-			for (@Pc(18) Class3_Sub31 local18 = (Class3_Sub31) Static119.aClass133_9.method3859(); local18 != null; local18 = (Class3_Sub31) Static119.aClass133_9.method3861()) {
+			for (@Pc(18) Class3_Sub31 local18 = (Class3_Sub31) Static119.aClass133_9.peekFront(); local18 != null; local18 = (Class3_Sub31) Static119.aClass133_9.prev()) {
 				Static132.method2605(true, local18);
 			}
 			Static154.topLevelInterace = -1;
-			Static119.aClass133_9 = new HashTable(8);
+			Static119.aClass133_9 = new IterableMap(8);
 			Static52.method1287();
 			Static154.topLevelInterace = Static156.anInt3783;
 			Static210.method3712(false);

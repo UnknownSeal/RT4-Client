@@ -22,7 +22,7 @@ public final class Static271 {
 
 	@OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(Lclient!e;I)V")
 	public static void method4597(@OriginalArg(0) Player arg0) {
-		@Pc(10) AreaSound local10 = (AreaSound) Static93.aClass133_7.method3863(arg0.aClass100_364.encode37());
+		@Pc(10) AreaSound local10 = (AreaSound) Static93.aClass133_7.getNode(arg0.aClass100_364.encode37());
 		if (local10 == null) {
 			return;
 		}
@@ -30,7 +30,7 @@ public final class Static271 {
 			Static204.aClass3_Sub3_Sub2_1.method1347(local10.aClass3_Sub3_Sub1_1);
 			local10.aClass3_Sub3_Sub1_1 = null;
 		}
-		local10.method4658();
+		local10.remove();
 	}
 
 	@OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(Lclient!wa;I)V")
@@ -61,13 +61,13 @@ public final class Static271 {
 		local15 = new LocType();
 		local15.anInt4426 = arg0;
 		if (local30 != null) {
-			local15.method3424(new Packet(local30));
+			local15.decode(new Packet(local30));
 		}
 		local15.method3421();
-		if (!Static30.aBoolean61 && local15.aBoolean208) {
+		if (!Static30.aBoolean61 && local15.members) {
 			local15.aClass100Array130 = null;
 		}
-		if (local15.aBoolean210) {
+		if (local15.breakroutefinding) {
 			local15.anInt4435 = 0;
 			local15.aBoolean207 = false;
 		}

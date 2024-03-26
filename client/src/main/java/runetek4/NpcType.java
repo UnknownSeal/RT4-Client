@@ -4,6 +4,8 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
+import runetek4.core.datastruct.Node;
 import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!me")
@@ -34,7 +36,7 @@ public final class NpcType {
 	private short[] aShortArray40;
 
 	@OriginalMember(owner = "runetek4.client!me", name = "K", descriptor = "Lclient!sc;")
-	private HashTable aClass133_15;
+	private IterableMap aClass133_15;
 
 	@OriginalMember(owner = "runetek4.client!me", name = "X", descriptor = "I")
 	public int anInt3741;
@@ -212,7 +214,7 @@ public final class NpcType {
 		if (this.aClass133_15 == null) {
 			return arg1;
 		} else {
-			@Pc(18) IntNode local18 = (IntNode) this.aClass133_15.method3863((long) arg0);
+			@Pc(18) IntNode local18 = (IntNode) this.aClass133_15.getNode((long) arg0);
 			return local18 == null ? arg1 : local18.anInt3141;
 		}
 	}
@@ -482,7 +484,7 @@ public final class NpcType {
 		if (this.aClass133_15 == null) {
 			return arg1;
 		} else {
-			@Pc(18) StringNode local18 = (StringNode) this.aClass133_15.method3863((long) arg0);
+			@Pc(18) StringNode local18 = (StringNode) this.aClass133_15.getNode((long) arg0);
 			return local18 == null ? arg1 : local18.aClass100_980;
 		}
 	}
@@ -720,7 +722,7 @@ public final class NpcType {
 				local12 = arg1.g1();
 				if (this.aClass133_15 == null) {
 					local18 = Static165.method3164(local12);
-					this.aClass133_15 = new HashTable(local18);
+					this.aClass133_15 = new IterableMap(local18);
 				}
 				for (local18 = 0; local18 < local12; local18++) {
 					@Pc(592) boolean local592 = arg1.g1() == 1;
@@ -731,7 +733,7 @@ public final class NpcType {
 					} else {
 						local605 = new IntNode(arg1.g4());
 					}
-					this.aClass133_15.method3862(local605, (long) local596);
+					this.aClass133_15.pushNode(local605, (long) local596);
 				}
 			}
 		}

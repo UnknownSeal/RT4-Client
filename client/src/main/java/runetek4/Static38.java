@@ -140,15 +140,15 @@ public final class Static38 {
 	@OriginalMember(owner = "runetek4.client!cn", name = "a", descriptor = "(ZI)I")
 	public static int poll(@OriginalArg(0) boolean arg0) {
 		@Pc(4) long local4 = MonotonicClock.currentTimeMillis();
-		for (@Pc(28) LongNode local28 = arg0 ? (LongNode) Static199.aClass133_20.method3859() : (LongNode) Static199.aClass133_20.method3861(); local28 != null; local28 = (LongNode) Static199.aClass133_20.method3861()) {
+		for (@Pc(28) LongNode local28 = arg0 ? (LongNode) Static199.aClass133_20.peekFront() : (LongNode) Static199.aClass133_20.prev(); local28 != null; local28 = (LongNode) Static199.aClass133_20.prev()) {
 			if ((local28.aLong55 & 0x3FFFFFFFFFFFFFFFL) < local4) {
 				if ((local28.aLong55 & 0x4000000000000000L) != 0L) {
-					@Pc(58) int local58 = (int) local28.aLong192;
+					@Pc(58) int local58 = (int) local28.nodeId;
 					Static7.anIntArray75[local58] = Static106.anIntArray257[local58];
-					local28.method4658();
+					local28.remove();
 					return local58;
 				}
-				local28.method4658();
+				local28.remove();
 			}
 		}
 		return -1;

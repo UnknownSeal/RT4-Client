@@ -40,7 +40,7 @@ public final class Static118 {
 					if (local15.createdComponents != null) {
 						method2354(local15.anInt507, local15.createdComponents);
 					}
-					@Pc(73) Class3_Sub31 local73 = (Class3_Sub31) Static119.aClass133_9.method3863((long) local15.anInt507);
+					@Pc(73) Class3_Sub31 local73 = (Class3_Sub31) Static119.aClass133_9.getNode((long) local15.anInt507);
 					if (local73 != null) {
 						Static96.method1949(local73.anInt5878);
 					}

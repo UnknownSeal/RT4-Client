@@ -100,7 +100,7 @@ public final class Static176 {
 				@Pc(240) int local240;
 				if (local133 == 2 && Static257.method523(Static55.level, local47, local147, local121)) {
 					@Pc(172) LocType local172 = Static271.method4601(local140);
-					if (local172.anIntArray380 != null) {
+					if (local172.multiloc != null) {
 						local172 = local172.method3417();
 					}
 					if (local172 == null) {

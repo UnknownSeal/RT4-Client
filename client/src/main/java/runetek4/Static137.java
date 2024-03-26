@@ -59,10 +59,10 @@ public final class Static137 {
 						@Pc(184) LocType local184 = Static271.method4601((int) (local169 >>> 32) & Integer.MAX_VALUE);
 						@Pc(187) int local187 = local184.anInt4400;
 						@Pc(194) int local194;
-						if (local184.anIntArray380 != null) {
-							for (local194 = 0; local194 < local184.anIntArray380.length; local194++) {
-								if (local184.anIntArray380[local194] != -1) {
-									@Pc(216) LocType local216 = Static271.method4601(local184.anIntArray380[local194]);
+						if (local184.multiloc != null) {
+							for (local194 = 0; local194 < local184.multiloc.length; local194++) {
+								if (local184.multiloc[local194] != -1) {
+									@Pc(216) LocType local216 = Static271.method4601(local184.multiloc[local194]);
 									if (local216.anInt4400 >= 0) {
 										local187 = local216.anInt4400;
 										break;

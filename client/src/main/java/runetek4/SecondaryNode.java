@@ -2,6 +2,7 @@ package runetek4;
 
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
+import runetek4.core.datastruct.Node;
 
 @OriginalClass("runetek4.client!rg")
 public class SecondaryNode extends Node {

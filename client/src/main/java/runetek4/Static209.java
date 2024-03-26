@@ -34,7 +34,7 @@ public final class Static209 {
 					Static204.aClass3_Sub3_Sub2_1.method1347(local10.aClass3_Sub3_Sub1_2);
 					local10.aClass3_Sub3_Sub1_2 = null;
 				}
-				local10.method4658();
+				local10.remove();
 				return;
 			}
 		}

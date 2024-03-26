@@ -141,7 +141,7 @@ public final class Static150 {
 		}
 		if (arg1.aClass3_Sub3_Sub1_2 != null) {
 			arg1.aClass3_Sub3_Sub1_2.method386(local134);
-			if (!arg1.aClass3_Sub3_Sub1_2.method4654()) {
+			if (!arg1.aClass3_Sub3_Sub1_2.hasNext()) {
 				arg1.aClass3_Sub3_Sub1_2 = null;
 			}
 		} else if (arg1.anIntArray181 != null && (arg1.anInt2034 -= arg3) <= 0) {

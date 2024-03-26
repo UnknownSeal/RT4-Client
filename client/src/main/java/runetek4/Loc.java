@@ -86,7 +86,7 @@ public final class Loc extends Entity {
 				((Loc) arg8).method1046();
 			} else {
 				local67 = Static271.method4601(this.anInt1299);
-				if (local67.anIntArray380 != null) {
+				if (local67.multiloc != null) {
 					local67 = local67.method3417();
 				}
 				if (local67 != null) {
@@ -132,7 +132,7 @@ public final class Loc extends Entity {
 		}
 		if (arg8 == null) {
 			local67 = Static271.method4601(this.anInt1299);
-			if (local67.anIntArray380 != null) {
+			if (local67.multiloc != null) {
 				this.aBoolean80 = true;
 			}
 		}
@@ -227,7 +227,7 @@ public final class Loc extends Entity {
 		@Pc(12) boolean local12 = Static107.anIntArrayArrayArray10 != Static83.anIntArrayArrayArray4;
 		@Pc(19) LocType local19 = Static271.method4601(this.anInt1299);
 		@Pc(22) int local22 = local19.anInt4430;
-		if (local19.anIntArray380 != null) {
+		if (local19.multiloc != null) {
 			local19 = local19.method3417();
 		}
 		if (local19 == null) {
@@ -248,7 +248,7 @@ public final class Loc extends Entity {
 				this.aClass144_2 = Static36.method941(local69);
 			}
 			if (this.aClass144_2 != null) {
-				if (local19.aBoolean209 && this.aClass144_2.anInt5362 != -1) {
+				if (local19.randseq && this.aClass144_2.anInt5362 != -1) {
 					this.anInt1297 = (int) (Math.random() * (double) this.aClass144_2.anIntArray473.length);
 					this.anInt1320 -= (int) (Math.random() * (double) this.aClass144_2.anIntArray474[this.anInt1297]);
 				} else {
@@ -272,7 +272,7 @@ public final class Loc extends Entity {
 		@Pc(192) int local192 = (local157 >> 1) + this.anInt1300;
 		@Pc(201) int local201 = (local157 + 1 >> 1) + this.anInt1300;
 		this.method1047(local192 * 128, local185 * 128);
-		@Pc(256) boolean local256 = !local12 && local19.aBoolean212 && (local19.anInt4426 != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || Static204.aBoolean234) && this.anInt1297 != this.anInt1304) && Static139.anInt3451 >= 2);
+		@Pc(256) boolean local256 = !local12 && local19.hardshadow && (local19.anInt4426 != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || Static204.aBoolean234) && this.anInt1297 != this.anInt1304) && Static139.anInt3451 >= 2);
 		if (arg0 && !local256) {
 			return null;
 		}

@@ -20,9 +20,9 @@ public final class Static132 {
 
 	@OriginalMember(owner = "runetek4.client!ke", name = "a", descriptor = "(ZLclient!wk;Z)V")
 	public static void method2605(@OriginalArg(0) boolean arg0, @OriginalArg(1) Class3_Sub31 arg1) {
-		@Pc(9) int local9 = (int) arg1.aLong192;
+		@Pc(9) int local9 = (int) arg1.nodeId;
 		@Pc(16) int local16 = arg1.anInt5878;
-		arg1.method4658();
+		arg1.remove();
 		if (arg0) {
 			Static109.method2275(local16);
 		}

@@ -4,6 +4,8 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
+import runetek4.core.datastruct.Node;
 import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!ml")
@@ -16,10 +18,10 @@ public final class EnumType extends SecondaryNode {
 	public int anInt3957;
 
 	@OriginalMember(owner = "runetek4.client!ml", name = "X", descriptor = "Lclient!sc;")
-	public HashTable aClass133_16;
+	public IterableMap aClass133_16;
 
 	@OriginalMember(owner = "runetek4.client!ml", name = "bb", descriptor = "Lclient!sc;")
-	private HashTable aClass133_17;
+	private IterableMap aClass133_17;
 
 	@OriginalMember(owner = "runetek4.client!ml", name = "cb", descriptor = "I")
 	private int anInt3960;
@@ -39,7 +41,7 @@ public final class EnumType extends SecondaryNode {
 			this.anInt3960 = arg1.g4();
 		} else if (arg0 == 5 || arg0 == 6) {
 			@Pc(41) int local41 = arg1.g2();
-			this.aClass133_16 = new HashTable(Static165.method3164(local41));
+			this.aClass133_16 = new IterableMap(Static165.method3164(local41));
 			for (@Pc(51) int local51 = 0; local51 < local41; local51++) {
 				@Pc(58) int local58 = arg1.g4();
 				@Pc(70) Node local70;
@@ -48,7 +50,7 @@ public final class EnumType extends SecondaryNode {
 				} else {
 					local70 = new IntNode(arg1.g4());
 				}
-				this.aClass133_16.method3862(local70, (long) local58);
+				this.aClass133_16.pushNode(local70, (long) local58);
 			}
 		}
 	}
@@ -58,7 +60,7 @@ public final class EnumType extends SecondaryNode {
 		if (this.aClass133_16 == null) {
 			return this.aClass100_766;
 		} else {
-			@Pc(26) StringNode local26 = (StringNode) this.aClass133_16.method3863((long) arg0);
+			@Pc(26) StringNode local26 = (StringNode) this.aClass133_16.getNode((long) arg0);
 			return local26 == null ? this.aClass100_766 : local26.aClass100_980;
 		}
 	}
@@ -71,7 +73,7 @@ public final class EnumType extends SecondaryNode {
 		if (this.aClass133_17 == null) {
 			this.method3087();
 		}
-		for (@Pc(38) Class3_Sub13 local38 = (Class3_Sub13) this.aClass133_17.method3863(arg0.method3118()); local38 != null; local38 = (Class3_Sub13) this.aClass133_17.method3867()) {
+		for (@Pc(38) Class3_Sub13 local38 = (Class3_Sub13) this.aClass133_17.getNode(arg0.method3118()); local38 != null; local38 = (Class3_Sub13) this.aClass133_17.next()) {
 			if (local38.aClass100_503.method3108(arg0)) {
 				return true;
 			}
@@ -81,10 +83,10 @@ public final class EnumType extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!ml", name = "d", descriptor = "(I)V")
 	private void method3087() {
-		this.aClass133_17 = new HashTable(this.aClass133_16.method3868());
-		for (@Pc(22) StringNode local22 = (StringNode) this.aClass133_16.method3859(); local22 != null; local22 = (StringNode) this.aClass133_16.method3861()) {
-			@Pc(36) Class3_Sub13 local36 = new Class3_Sub13(local22.aClass100_980, (int) local22.aLong192);
-			this.aClass133_17.method3862(local36, local22.aClass100_980.method3118());
+		this.aClass133_17 = new IterableMap(this.aClass133_16.getSize());
+		for (@Pc(22) StringNode local22 = (StringNode) this.aClass133_16.peekFront(); local22 != null; local22 = (StringNode) this.aClass133_16.prev()) {
+			@Pc(36) Class3_Sub13 local36 = new Class3_Sub13(local22.aClass100_980, (int) local22.nodeId);
+			this.aClass133_17.pushNode(local36, local22.aClass100_980.method3118());
 		}
 	}
 
@@ -93,7 +95,7 @@ public final class EnumType extends SecondaryNode {
 		if (this.aClass133_16 == null) {
 			return this.anInt3960;
 		} else {
-			@Pc(18) IntNode local18 = (IntNode) this.aClass133_16.method3863((long) arg0);
+			@Pc(18) IntNode local18 = (IntNode) this.aClass133_16.getNode((long) arg0);
 			return local18 == null ? this.anInt3960 : local18.anInt3141;
 		}
 	}
@@ -106,16 +108,16 @@ public final class EnumType extends SecondaryNode {
 		if (this.aClass133_17 == null) {
 			this.method3091();
 		}
-		@Pc(34) IntNode local34 = (IntNode) this.aClass133_17.method3863((long) arg0);
+		@Pc(34) IntNode local34 = (IntNode) this.aClass133_17.getNode((long) arg0);
 		return local34 != null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ml", name = "e", descriptor = "(I)V")
 	private void method3091() {
-		this.aClass133_17 = new HashTable(this.aClass133_16.method3868());
-		for (@Pc(24) IntNode local24 = (IntNode) this.aClass133_16.method3859(); local24 != null; local24 = (IntNode) this.aClass133_16.method3861()) {
-			@Pc(34) IntNode local34 = new IntNode((int) local24.aLong192);
-			this.aClass133_17.method3862(local34, (long) local24.anInt3141);
+		this.aClass133_17 = new IterableMap(this.aClass133_16.getSize());
+		for (@Pc(24) IntNode local24 = (IntNode) this.aClass133_16.peekFront(); local24 != null; local24 = (IntNode) this.aClass133_16.prev()) {
+			@Pc(34) IntNode local34 = new IntNode((int) local24.nodeId);
+			this.aClass133_17.pushNode(local34, (long) local24.anInt3141);
 		}
 	}
 

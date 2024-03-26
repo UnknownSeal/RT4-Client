@@ -30,7 +30,7 @@ public final class Static195 {
 		for (@Pc(16) ProjAnimNode local16 = (ProjAnimNode) Static217.aClass69_116.method2289(); local16 != null; local16 = (ProjAnimNode) Static217.aClass69_116.method2288()) {
 			@Pc(21) ProjAnim local21 = local16.aClass8_Sub6_1;
 			if (Static55.level != local21.anInt4810 || local21.anInt4800 < Static83.anInt372) {
-				local16.method4658();
+				local16.remove();
 			} else if (Static83.anInt372 >= local21.anInt4822) {
 				if (local21.anInt4819 > 0) {
 					@Pc(54) Npc local54 = Static175.aClass8_Sub4_Sub2Array1[local21.anInt4819 - 1];

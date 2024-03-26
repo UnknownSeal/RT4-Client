@@ -70,7 +70,7 @@ public final class Static44 {
 		@Pc(9) Class3_Sub31 local9 = new Class3_Sub31();
 		local9.anInt5879 = arg2;
 		local9.anInt5878 = arg0;
-		Static119.aClass133_9.method3862(local9, (long) arg1);
+		Static119.aClass133_9.pushNode(local9, (long) arg1);
 		Static81.method1753(arg0);
 		@Pc(28) Component local28 = Static5.getComponent(arg1);
 		if (local28 != null) {

@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.client.ClientInvCache;
 
 public final class Static13 {
 
@@ -45,9 +46,9 @@ public final class Static13 {
 
 	@OriginalMember(owner = "runetek4.client!bc", name = "d", descriptor = "(II)V")
 	public static void method472(@OriginalArg(0) int arg0) {
-		@Pc(14) Inv local14 = (Inv) Static20.aClass133_2.method3863((long) arg0);
+		@Pc(14) ClientInvCache local14 = (ClientInvCache) Static20.aClass133_2.getNode((long) arg0);
 		if (local14 != null) {
-			local14.method4658();
+			local14.remove();
 		}
 	}
 

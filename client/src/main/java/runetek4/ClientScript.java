@@ -2,6 +2,7 @@ package runetek4;
 
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
+import runetek4.core.datastruct.IterableMap;
 
 @OriginalClass("runetek4.client!qc")
 public final class ClientScript extends SecondaryNode {
@@ -19,7 +20,7 @@ public final class ClientScript extends SecondaryNode {
 	public int[] anIntArray415;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "Q", descriptor = "[Lclient!sc;")
-	public HashTable[] aClass133Array1;
+	public IterableMap[] aClass133Array1;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "R", descriptor = "Lclient!na;")
 	public JagString aClass100_880;

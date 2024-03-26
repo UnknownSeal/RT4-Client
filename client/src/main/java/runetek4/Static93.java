@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
 
 public final class Static93 {
 
@@ -16,7 +17,7 @@ public final class Static93 {
 	public static volatile int anInt2467 = 0;
 
 	@OriginalMember(owner = "runetek4.client!he", name = "ab", descriptor = "Lclient!sc;")
-	public static final HashTable aClass133_7 = new HashTable(16);
+	public static final IterableMap aClass133_7 = new IterableMap(16);
 
 	@OriginalMember(owner = "runetek4.client!he", name = "bb", descriptor = "Lclient!ug;")
 	public static Mouse aClass150_1 = new Mouse();

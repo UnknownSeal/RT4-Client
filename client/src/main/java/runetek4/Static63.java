@@ -41,7 +41,7 @@ public final class Static63 {
 	public static synchronized void method1485(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		if (arg2 == anInt1943) {
 			@Pc(8) IntNode local8 = new IntNode(arg1);
-			local8.aLong192 = arg0;
+			local8.nodeId = arg0;
 			aClass69_50.method2282(local8);
 		}
 	}
@@ -50,7 +50,7 @@ public final class Static63 {
 	public static synchronized void method1486(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		if (arg1 == anInt1943) {
 			@Pc(7) IntNode local7 = new IntNode();
-			local7.aLong192 = arg0;
+			local7.nodeId = arg0;
 			aClass69_51.method2282(local7);
 		}
 	}
@@ -71,7 +71,7 @@ public final class Static63 {
 	public static synchronized void method1489(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		if (arg2 == anInt1943) {
 			@Pc(8) IntNode local8 = new IntNode(arg1);
-			local8.aLong192 = arg0;
+			local8.nodeId = arg0;
 			aClass69_48.method2282(local8);
 		}
 	}
@@ -105,11 +105,11 @@ public final class Static63 {
 										}
 										return;
 									}
-									@Pc(126) int local126 = (int) local8.aLong192;
+									@Pc(126) int local126 = (int) local8.nodeId;
 									local1.glDeleteLists(local126, 1);
 								}
 							}
-							anIntArray151[local3++] = (int) local8.aLong192;
+							anIntArray151[local3++] = (int) local8.nodeId;
 							anInt1942 -= local8.anInt3141;
 							if (local3 == 1000) {
 								local1.glDeleteTextures(local3, anIntArray151, 0);
@@ -117,7 +117,7 @@ public final class Static63 {
 							}
 						}
 					}
-					anIntArray151[local3++] = (int) local8.aLong192;
+					anIntArray151[local3++] = (int) local8.nodeId;
 					anInt1944 -= local8.anInt3141;
 					if (local3 == 1000) {
 						local1.glDeleteTextures(local3, anIntArray151, 0);
@@ -125,7 +125,7 @@ public final class Static63 {
 					}
 				}
 			}
-			anIntArray151[local3++] = (int) local8.aLong192;
+			anIntArray151[local3++] = (int) local8.nodeId;
 			anInt1945 -= local8.anInt3141;
 			if (local3 == 1000) {
 				local1.glDeleteBuffers(local3, anIntArray151, 0);
@@ -138,7 +138,7 @@ public final class Static63 {
 	public static synchronized void method1491(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		if (arg2 == anInt1943) {
 			@Pc(8) IntNode local8 = new IntNode(arg1);
-			local8.aLong192 = arg0;
+			local8.nodeId = arg0;
 			aClass69_49.method2282(local8);
 		}
 	}

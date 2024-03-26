@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
 
 public final class Static148 {
 
@@ -16,7 +17,7 @@ public final class Static148 {
 	public static MidiPcmStream aClass3_Sub3_Sub4_1;
 
 	@OriginalMember(owner = "runetek4.client!li", name = "w", descriptor = "Lclient!sc;")
-	public static HashTable aClass133_13;
+	public static IterableMap aClass133_13;
 
 	@OriginalMember(owner = "runetek4.client!li", name = "x", descriptor = "I")
 	public static int anInt3535;
@@ -40,10 +41,10 @@ public final class Static148 {
 	@OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(III)V")
 	public static void method2766(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
 		Static7.anIntArray75[arg0] = arg1;
-		@Pc(21) LongNode local21 = (LongNode) Static199.aClass133_20.method3863((long) arg0);
+		@Pc(21) LongNode local21 = (LongNode) Static199.aClass133_20.getNode((long) arg0);
 		if (local21 == null) {
 			local21 = new LongNode(MonotonicClock.currentTimeMillis() + 500L);
-			Static199.aClass133_20.method3862(local21, (long) arg0);
+			Static199.aClass133_20.pushNode(local21, (long) arg0);
 		} else {
 			local21.aLong55 = MonotonicClock.currentTimeMillis() + 500L;
 		}

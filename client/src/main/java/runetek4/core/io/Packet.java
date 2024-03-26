@@ -6,6 +6,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.*;
+import runetek4.core.datastruct.Node;
 
 // runetek4.Buffer access nomenclature:
 // Operation

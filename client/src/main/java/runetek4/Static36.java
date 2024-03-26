@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
 import runetek4.core.io.Packet;
 
 public final class Static36 {
@@ -17,7 +18,7 @@ public final class Static36 {
 	public static int[] anIntArray84;
 
 	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "U", descriptor = "Lclient!sc;")
-	public static final HashTable aClass133_3 = new HashTable(16);
+	public static final IterableMap aClass133_3 = new IterableMap(16);
 
 	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "a", descriptor = "(Lclient!be;)Lclient!be;")
 	public static Component method938(@OriginalArg(0) Component arg0) {
@@ -36,7 +37,7 @@ public final class Static36 {
 
 	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "b", descriptor = "(Lclient!be;)Lclient!bf;")
 	public static ServerActiveProperties method940(@OriginalArg(0) Component arg0) {
-		@Pc(13) ServerActiveProperties local13 = (ServerActiveProperties) Static210.aClass133_21.method3863(((long) arg0.anInt507 << 32) + (long) arg0.componentId);
+		@Pc(13) ServerActiveProperties local13 = (ServerActiveProperties) Static210.aClass133_21.getNode(((long) arg0.anInt507 << 32) + (long) arg0.componentId);
 		return local13 == null ? arg0.aClass3_Sub4_1 : local13;
 	}
 
@@ -98,7 +99,7 @@ public final class Static36 {
 						if (local9.aBoolean29 && Static215.anInt4873 >= local61 && Static223.anInt5032 >= local63 && Static215.anInt4873 < local65 && Static223.anInt5032 < local67) {
 							for (@Pc(164) HookRequest local164 = (HookRequest) Static185.aClass69_101.method2289(); local164 != null; local164 = (HookRequest) Static185.aClass69_101.method2288()) {
 								if (local164.aBoolean158) {
-									local164.method4658();
+									local164.remove();
 									local164.source.aBoolean19 = false;
 								}
 							}
@@ -497,7 +498,7 @@ public final class Static36 {
 						if (local9.createdComponents != null) {
 							method946(local9.createdComponents, local9.anInt507, local61, local63, local65, local67, local50 - local9.anInt489, local55 - local9.scrollY);
 						}
-						@Pc(1595) Class3_Sub31 local1595 = (Class3_Sub31) Static119.aClass133_9.method3863((long) local9.anInt507);
+						@Pc(1595) Class3_Sub31 local1595 = (Class3_Sub31) Static119.aClass133_9.getNode((long) local9.anInt507);
 						if (local1595 != null) {
 							Static57.method1320(local50, local63, local55, local65, local1595.anInt5878, local61, local67);
 						}

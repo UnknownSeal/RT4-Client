@@ -136,7 +136,7 @@ public final class Static127 {
 			local451.anInt916 -= local81;
 			local451.anInt928 -= local86;
 			if (local451.anInt928 < 0 || local451.anInt916 < 0 || local451.anInt928 >= 104 || local451.anInt916 >= 104) {
-				local451.method4658();
+				local451.remove();
 			}
 		}
 		if (arg4) {
@@ -166,7 +166,7 @@ public final class Static127 {
 	public static DelayedStateChange poll() {
 		@Pc(10) DelayedStateChange local10 = (DelayedStateChange) Static215.aClass16_9.method795();
 		if (local10 != null) {
-			local10.method4658();
+			local10.remove();
 			local10.method4365();
 			return local10;
 		}
@@ -178,7 +178,7 @@ public final class Static127 {
 			if (local10.method1009() > MonotonicClock.currentTimeMillis()) {
 				return null;
 			}
-			local10.method4658();
+			local10.remove();
 			local10.method4365();
 		} while ((Long.MIN_VALUE & local10.aLong185) == 0L);
 		return local10;

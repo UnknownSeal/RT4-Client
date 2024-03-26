@@ -6,6 +6,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
 import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!fj")
@@ -54,7 +55,7 @@ public final class Class45 {
 	public int anInt2018;
 
 	@OriginalMember(owner = "runetek4.client!fj", name = "o", descriptor = "Lclient!sc;")
-	private HashTable aClass133_4;
+	private IterableMap aClass133_4;
 
 	@OriginalMember(owner = "runetek4.client!fj", name = "p", descriptor = "I")
 	public int anInt2019;
@@ -64,7 +65,7 @@ public final class Class45 {
 		@Pc(1) long local1 = 0L;
 		if ((arg1 & 0x7F) == 0 || (arg3 & 0x7F) == 0) {
 			local1 = arg1 + (arg3 << 16);
-			@Pc(23) IntNode local23 = (IntNode) this.aClass133_4.method3863(local1);
+			@Pc(23) IntNode local23 = (IntNode) this.aClass133_4.getNode(local1);
 			if (local23 != null) {
 				return local23.anInt3141;
 			}
@@ -109,7 +110,7 @@ public final class Class45 {
 		this.anIntArray178[this.anInt2017] = arg1;
 		this.anIntArray180[this.anInt2017] = arg2;
 		this.anIntArray179[this.anInt2017] = arg3;
-		this.aClass133_4.method3862(new IntNode(this.anInt2017), local1);
+		this.aClass133_4.pushNode(new IntNode(this.anInt2017), local1);
 		return this.anInt2017++;
 	}
 
@@ -179,7 +180,7 @@ public final class Class45 {
 		this.aByteArray25 = new byte[this.anInt2019];
 		this.aByteArray23 = new byte[this.anInt2019];
 		this.aByteArray24 = new byte[this.anInt2019];
-		this.aClass133_4 = new HashTable(Static165.method3164(this.anInt2019));
+		this.aClass133_4 = new IterableMap(Static165.method3164(this.anInt2019));
 	}
 
 	@OriginalMember(owner = "runetek4.client!fj", name = "c", descriptor = "()V")

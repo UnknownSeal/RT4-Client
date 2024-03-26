@@ -89,7 +89,7 @@ public final class Static54 {
 				local181 = Static145.anIntArray331[local146] * 4 + 2 - Static173.self.anInt3412 / 32;
 				local150 = Static93.anIntArray219[local146] * 4 + 2 - Static173.self.anInt3421 / 32;
 				@Pc(382) LocType local382 = Static271.method4601(Static199.anIntArray417[local146]);
-				if (local382.anIntArray380 != null) {
+				if (local382.multiloc != null) {
 					local382 = local382.method3417();
 					if (local382 == null || local382.anInt4400 == -1) {
 						continue;
@@ -140,7 +140,7 @@ public final class Static54 {
 					}
 					@Pc(660) boolean local660 = false;
 					for (local271 = 0; local271 < Static214.anInt5577; local271++) {
-						if (local624 == Static199.aClass3_Sub22Array1[local271].aLong192) {
+						if (local624 == Static199.aClass3_Sub22Array1[local271].nodeId) {
 							local660 = true;
 							break;
 						}

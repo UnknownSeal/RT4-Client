@@ -5,6 +5,7 @@ import java.util.Date;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
 
 public final class Static88 {
 
@@ -313,9 +314,9 @@ public final class Static88 {
 						continue;
 					}
 					if (local226 == 51) {
-						@Pc(992) HashTable local992 = local14.aClass133Array1[local33[local30]];
+						@Pc(992) IterableMap local992 = local14.aClass133Array1[local33[local30]];
 						local28--;
-						@Pc(1002) IntNode local1002 = (IntNode) local992.method3863((long) Static254.anIntArray487[local28]);
+						@Pc(1002) IntNode local1002 = (IntNode) local992.getNode((long) Static254.anIntArray487[local28]);
 						if (local1002 != null) {
 							local30 += local1002.anInt3141;
 						}
@@ -1161,7 +1162,7 @@ public final class Static88 {
 									if (local226 == 2702) {
 										local28--;
 										local809 = Static254.anIntArray487[local28];
-										@Pc(12566) Class3_Sub31 local12566 = (Class3_Sub31) Static119.aClass133_9.method3863((long) local809);
+										@Pc(12566) Class3_Sub31 local12566 = (Class3_Sub31) Static119.aClass133_9.getNode((long) local809);
 										if (local12566 == null) {
 											Static254.anIntArray487[local28++] = 0;
 										} else {
@@ -1190,7 +1191,7 @@ public final class Static88 {
 										local28 -= 2;
 										local809 = Static254.anIntArray487[local28];
 										local803 = Static254.anIntArray487[local28 + 1];
-										@Pc(12663) Class3_Sub31 local12663 = (Class3_Sub31) Static119.aClass133_9.method3863((long) local809);
+										@Pc(12663) Class3_Sub31 local12663 = (Class3_Sub31) Static119.aClass133_9.getNode((long) local809);
 										if (local12663 != null && local12663.anInt5878 == local803) {
 											Static254.anIntArray487[local28++] = 1;
 											continue;
@@ -1581,7 +1582,7 @@ public final class Static88 {
 										local28--;
 										local809 = Static254.anIntArray487[local28];
 										@Pc(3645) EnumType local3645 = Static253.method4330(local809);
-										Static254.anIntArray487[local28++] = local3645.aClass133_16.method3864();
+										Static254.anIntArray487[local28++] = local3645.aClass133_16.length();
 										continue;
 									}
 								} else if (local226 < 3700) {
@@ -4123,7 +4124,7 @@ public final class Static88 {
 				if (Static83.modeWhere != 0) {
 					Static103.method2231(Static72.aClass100_447, 0, Static136.aClass100_633);
 				}
-				Static89.method1839("CS2 - scr:" + local14.aLong192 + " op:" + local44, local14378);
+				Static89.method1839("CS2 - scr:" + local14.nodeId + " op:" + local44, local14378);
 			} else {
 				@Pc(14385) JagString local14385 = Static87.method1804(30);
 				local14385.method3113(Static219.aClass100_928).method3113(local14.aClass100_880);
@@ -4137,7 +4138,7 @@ public final class Static88 {
 				if (Static83.modeWhere != 0) {
 					Static103.method2231(Static72.aClass100_447, 0, Static34.method882(new JagString[] { Static167.aClass100_780, local14.aClass100_880 }));
 				}
-				Static89.method1839("CS2 - scr:" + local14.aLong192 + " op:" + local44 + new String(local14385.method3148()), local14378);
+				Static89.method1839("CS2 - scr:" + local14.nodeId + " op:" + local44 + new String(local14385.method3148()), local14378);
 			}
 		}
 	}

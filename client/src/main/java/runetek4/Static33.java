@@ -23,11 +23,11 @@ public final class Static33 {
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(ILclient!pb;ZIIII)Z")
 	public static boolean method867(@OriginalArg(0) int arg0, @OriginalArg(1) LocType arg1, @OriginalArg(5) int arg2, @OriginalArg(6) int arg3) {
-		@Pc(10) Class2 local10 = Static40.method1013(arg1.anInt4415);
+		@Pc(10) Class2 local10 = Static40.method1013(arg1.mapsceneicon);
 		if (local10.anInt12 == -1) {
 			return true;
 		}
-		if (arg1.aBoolean218) {
+		if (arg1.mapsceneiconrotate) {
 			@Pc(24) int local24 = arg3 + arg1.anInt4395;
 			arg3 = local24 & 0x3;
 		} else {

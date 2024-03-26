@@ -46,12 +46,12 @@ public final class Static122 {
 		local13.anInt2041 = arg4 * 128;
 		local13.anInt2033 = arg5;
 		if (arg1 != null) {
-			local13.anIntArray181 = arg1.anIntArray381;
-			local13.anInt2042 = arg1.anInt4402 * 128;
-			local13.anInt2040 = arg1.anInt4414;
+			local13.anIntArray181 = arg1.bgsound_random;
+			local13.anInt2042 = arg1.bgsound_range * 128;
+			local13.anInt2040 = arg1.bgsound_maxdelay;
 			local13.aClass118_1 = arg1;
 			local13.anInt2044 = arg1.anInt4412;
-			local13.anInt2032 = arg1.anInt4419;
+			local13.anInt2032 = arg1.bgsound_mindelay;
 			@Pc(57) int local57 = arg1.anInt4397;
 			@Pc(60) int local60 = arg1.anInt4403;
 			if (arg2 == 1 || arg2 == 3) {
@@ -60,7 +60,7 @@ public final class Static122 {
 			}
 			local13.anInt2028 = (local60 + arg0) * 128;
 			local13.anInt2037 = (arg4 + local57) * 128;
-			if (arg1.anIntArray380 != null) {
+			if (arg1.multiloc != null) {
 				local13.aBoolean117 = true;
 				local13.method1567();
 			}
@@ -88,7 +88,7 @@ public final class Static122 {
 			local13.anInt2028 = (arg6.method2693() + arg0) * 128;
 			local13.anInt2044 = Static140.method2706(arg6);
 			local13.anInt2042 = arg6.anInt1664 * 128;
-			Static93.aClass133_7.method3862(local13, arg6.aClass100_364.encode37());
+			Static93.aClass133_7.pushNode(local13, arg6.aClass100_364.encode37());
 		}
 	}
 

@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.Node;
 import runetek4.game.config.loctype.LocType;
 
 @OriginalClass("runetek4.client!fl")
@@ -74,11 +75,11 @@ public final class AreaSound extends Node {
 				this.anInt2042 = 0;
 				this.anInt2032 = 0;
 			} else {
-				this.anInt2040 = local17.anInt4414;
+				this.anInt2040 = local17.bgsound_maxdelay;
 				this.anInt2044 = local17.anInt4412;
-				this.anInt2032 = local17.anInt4419;
-				this.anInt2042 = local17.anInt4402 * 128;
-				this.anIntArray181 = local17.anIntArray381;
+				this.anInt2032 = local17.bgsound_mindelay;
+				this.anInt2042 = local17.bgsound_range * 128;
+				this.anIntArray181 = local17.bgsound_random;
 			}
 		} else if (this.aClass8_Sub4_Sub2_1 != null) {
 			@Pc(92) int local92 = Static112.method2299(this.aClass8_Sub4_Sub2_1);

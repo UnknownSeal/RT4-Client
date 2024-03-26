@@ -267,7 +267,7 @@ public final class Static233 {
 			}
 			arg0.pCrc32(local25);
 			arg0.p1len(arg0.offset - local25);
-			local18.method4658();
+			local18.remove();
 		}
 	}
 }

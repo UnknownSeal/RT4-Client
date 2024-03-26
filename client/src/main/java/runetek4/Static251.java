@@ -44,14 +44,14 @@ public final class Static251 {
 					Static79.method1698(local10.anInt929, local10.anInt928, local10.anInt918, local10.anInt922, local10.anInt916, local10.anInt926, local10.anInt927);
 					local10.anInt925 = -1;
 					if (local10.anInt921 == local10.anInt929 && local10.anInt921 == -1) {
-						local10.method4658();
+						local10.remove();
 					} else if (local10.anInt929 == local10.anInt921 && local10.anInt922 == local10.anInt923 && local10.anInt920 == local10.anInt926) {
-						local10.method4658();
+						local10.remove();
 					}
 				}
 			} else if (local10.anInt921 < 0 || Static113.method3557(local10.anInt921, local10.anInt920)) {
 				Static79.method1698(local10.anInt921, local10.anInt928, local10.anInt918, local10.anInt923, local10.anInt916, local10.anInt920, local10.anInt927);
-				local10.method4658();
+				local10.remove();
 			}
 		}
 	}

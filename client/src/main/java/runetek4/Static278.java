@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.io.Packet;
+import runetek4.game.client.ClientInvCache;
 
 public final class Static278 {
 
@@ -180,16 +181,16 @@ public final class Static278 {
 
 	@OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(BII)I")
 	public static int method4652(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(8) Inv local8 = (Inv) Static20.aClass133_2.method3863((long) arg0);
+		@Pc(8) ClientInvCache local8 = (ClientInvCache) Static20.aClass133_2.getNode((long) arg0);
 		if (local8 == null) {
 			return 0;
 		} else if (arg1 == -1) {
 			return 0;
 		} else {
 			@Pc(25) int local25 = 0;
-			for (@Pc(27) int local27 = 0; local27 < local8.anIntArray422.length; local27++) {
-				if (arg1 == local8.anIntArray420[local27]) {
-					local25 += local8.anIntArray422[local27];
+			for (@Pc(27) int local27 = 0; local27 < local8.invSlotObjCount.length; local27++) {
+				if (arg1 == local8.invSlotObjId[local27]) {
+					local25 += local8.invSlotObjCount[local27];
 				}
 			}
 			return local25;

@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
 
 public final class Static8 {
 
@@ -125,6 +126,6 @@ public final class Static8 {
 				Static7.anIntArray75[local3] = 0;
 			}
 		}
-		Static199.aClass133_20 = new HashTable(16);
+		Static199.aClass133_20 = new IterableMap(16);
 	}
 }

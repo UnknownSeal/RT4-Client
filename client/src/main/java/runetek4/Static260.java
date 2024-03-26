@@ -188,7 +188,7 @@ public final class Static260 {
 				Static204.aClass3_Sub3_Sub2_1.method1347(local14.aClass3_Sub3_Sub1_2);
 				local14.aClass3_Sub3_Sub1_2 = null;
 			}
-			local14.method4658();
+			local14.remove();
 		}
 		if (!arg0) {
 			return;
@@ -198,14 +198,14 @@ public final class Static260 {
 				Static204.aClass3_Sub3_Sub2_1.method1347(local14.aClass3_Sub3_Sub1_1);
 				local14.aClass3_Sub3_Sub1_1 = null;
 			}
-			local14.method4658();
+			local14.remove();
 		}
-		for (local14 = (AreaSound) Static93.aClass133_7.method3859(); local14 != null; local14 = (AreaSound) Static93.aClass133_7.method3861()) {
+		for (local14 = (AreaSound) Static93.aClass133_7.peekFront(); local14 != null; local14 = (AreaSound) Static93.aClass133_7.prev()) {
 			if (local14.aClass3_Sub3_Sub1_1 != null) {
 				Static204.aClass3_Sub3_Sub2_1.method1347(local14.aClass3_Sub3_Sub1_1);
 				local14.aClass3_Sub3_Sub1_1 = null;
 			}
-			local14.method4658();
+			local14.remove();
 		}
 	}
 }

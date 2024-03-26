@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.Node;
 
 @OriginalClass("runetek4.client!ih")
 public final class LinkedList {
@@ -16,54 +17,54 @@ public final class LinkedList {
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "<init>", descriptor = "()V")
 	public LinkedList() {
-		this.aClass3_109.aClass3_223 = this.aClass3_109;
-		this.aClass3_109.aClass3_222 = this.aClass3_109;
+		this.aClass3_109.next = this.aClass3_109;
+		this.aClass3_109.prev = this.aClass3_109;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "a", descriptor = "(I)V")
 	public final void method2278() {
 		while (true) {
-			@Pc(5) Node local5 = this.aClass3_109.aClass3_222;
+			@Pc(5) Node local5 = this.aClass3_109.prev;
 			if (local5 == this.aClass3_109) {
 				this.aClass3_110 = null;
 				return;
 			}
-			local5.method4658();
+			local5.remove();
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "b", descriptor = "(I)Lclient!ab;")
 	public final Node method2279() {
-		@Pc(7) Node local7 = this.aClass3_109.aClass3_223;
+		@Pc(7) Node local7 = this.aClass3_109.next;
 		if (this.aClass3_109 == local7) {
 			this.aClass3_110 = null;
 			return null;
 		} else {
-			this.aClass3_110 = local7.aClass3_223;
+			this.aClass3_110 = local7.next;
 			return local7;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "a", descriptor = "(ZLclient!ab;)V")
 	public final void method2282(@OriginalArg(1) Node arg0) {
-		if (arg0.aClass3_223 != null) {
-			arg0.method4658();
+		if (arg0.next != null) {
+			arg0.remove();
 		}
-		arg0.aClass3_222 = this.aClass3_109;
-		arg0.aClass3_223 = this.aClass3_109.aClass3_223;
-		arg0.aClass3_223.aClass3_222 = arg0;
-		arg0.aClass3_222.aClass3_223 = arg0;
+		arg0.prev = this.aClass3_109;
+		arg0.next = this.aClass3_109.next;
+		arg0.next.prev = arg0;
+		arg0.prev.next = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "a", descriptor = "(ILclient!ab;)V")
 	public final void method2283(@OriginalArg(1) Node arg0) {
-		if (arg0.aClass3_223 != null) {
-			arg0.method4658();
+		if (arg0.next != null) {
+			arg0.remove();
 		}
-		arg0.aClass3_222 = this.aClass3_109.aClass3_222;
-		arg0.aClass3_223 = this.aClass3_109;
-		arg0.aClass3_223.aClass3_222 = arg0;
-		arg0.aClass3_222.aClass3_223 = arg0;
+		arg0.prev = this.aClass3_109.prev;
+		arg0.next = this.aClass3_109;
+		arg0.next.prev = arg0;
+		arg0.prev.next = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "d", descriptor = "(I)Lclient!ab;")
@@ -73,18 +74,18 @@ public final class LinkedList {
 			this.aClass3_110 = null;
 			return null;
 		} else {
-			this.aClass3_110 = local13.aClass3_223;
+			this.aClass3_110 = local13.next;
 			return local13;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "a", descriptor = "(B)Lclient!ab;")
 	public final Node method2287() {
-		@Pc(3) Node local3 = this.aClass3_109.aClass3_222;
+		@Pc(3) Node local3 = this.aClass3_109.prev;
 		if (this.aClass3_109 == local3) {
 			return null;
 		} else {
-			local3.method4658();
+			local3.remove();
 			return local3;
 		}
 	}
@@ -96,19 +97,19 @@ public final class LinkedList {
 			this.aClass3_110 = null;
 			return null;
 		} else {
-			this.aClass3_110 = local12.aClass3_222;
+			this.aClass3_110 = local12.prev;
 			return local12;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "f", descriptor = "(I)Lclient!ab;")
 	public final Node method2289() {
-		@Pc(3) Node local3 = this.aClass3_109.aClass3_222;
+		@Pc(3) Node local3 = this.aClass3_109.prev;
 		if (this.aClass3_109 == local3) {
 			this.aClass3_110 = null;
 			return null;
 		} else {
-			this.aClass3_110 = local3.aClass3_222;
+			this.aClass3_110 = local3.prev;
 			return local3;
 		}
 	}

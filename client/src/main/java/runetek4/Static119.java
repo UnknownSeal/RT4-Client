@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
 
 public final class Static119 {
 
@@ -16,7 +17,7 @@ public final class Static119 {
 	public static boolean aBoolean153 = false;
 
 	@OriginalMember(owner = "runetek4.client!je", name = "T", descriptor = "Lclient!sc;")
-	public static HashTable aClass133_9 = new HashTable(8);
+	public static IterableMap aClass133_9 = new IterableMap(8);
 
 	@OriginalMember(owner = "runetek4.client!je", name = "U", descriptor = "Lclient!na;")
 	public static final JagString aClass100_588 = Static28.parse("showingVideoAd");

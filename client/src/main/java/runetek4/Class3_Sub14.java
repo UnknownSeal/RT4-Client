@@ -7,6 +7,8 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
+import runetek4.core.datastruct.Node;
 import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!hg")
@@ -31,7 +33,7 @@ public final class Class3_Sub14 extends Node {
 	private int[] anIntArray229;
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "A", descriptor = "Lclient!sc;")
-	private HashTable aClass133_8;
+	private IterableMap aClass133_8;
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "B", descriptor = "[F")
 	private float[] aFloatArray5;
@@ -121,7 +123,7 @@ public final class Class3_Sub14 extends Node {
 		this.anIntArray227 = new int[this.anInt2484];
 		this.anIntArray231 = new int[this.anInt2484];
 		this.anIntArrayArray17 = new int[this.anInt2484][];
-		this.aClass133_8 = new HashTable(Static165.method3164(this.anInt2482));
+		this.aClass133_8 = new IterableMap(Static165.method3164(this.anInt2482));
 		if (this.aBoolean140) {
 			this.anIntArrayArray18 = new int[this.anInt2484][];
 			this.aBooleanArray54 = new boolean[this.anInt2484];
@@ -133,7 +135,7 @@ public final class Class3_Sub14 extends Node {
 		@Pc(1) long local1 = 0L;
 		if ((arg0 & 0x7F) == 0 || (arg2 & 0x7F) == 0) {
 			local1 = (long) (arg0 + (arg2 << 16)) + ((long) arg6 << 32);
-			@Pc(28) IntNode local28 = (IntNode) this.aClass133_8.method3863(local1);
+			@Pc(28) IntNode local28 = (IntNode) this.aClass133_8.getNode(local1);
 			if (local28 != null) {
 				if (arg1 < this.anIntArray230[local28.anInt3141]) {
 					this.anIntArray230[local28.anInt3141] = arg1;
@@ -152,7 +154,7 @@ public final class Class3_Sub14 extends Node {
 		this.aFloatArray5[this.anInt2483] = arg5;
 		this.anIntArray226[this.anInt2483] = arg6;
 		if (local1 != 0L) {
-			this.aClass133_8.method3862(new IntNode(this.anInt2483), local1);
+			this.aClass133_8.pushNode(new IntNode(this.anInt2483), local1);
 		}
 		return this.anInt2483++;
 	}

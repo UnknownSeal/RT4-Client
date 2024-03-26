@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
 import runetek4.core.io.Packet;
 
 public final class Static91 {
@@ -53,15 +54,15 @@ public final class Static91 {
 		@Pc(107) int local107;
 		@Pc(114) int local114;
 		if (local98 > 0) {
-			local12.aClass133Array1 = new HashTable[local98];
+			local12.aClass133Array1 = new IterableMap[local98];
 			for (local107 = 0; local107 < local98; local107++) {
 				local114 = local42.g2();
-				@Pc(121) HashTable local121 = new HashTable(Static165.method3164(local114));
+				@Pc(121) IterableMap local121 = new IterableMap(Static165.method3164(local114));
 				local12.aClass133Array1[local107] = local121;
 				while (local114-- > 0) {
 					@Pc(136) int local136 = local42.g4();
 					@Pc(140) int local140 = local42.g4();
-					local121.method3862(new IntNode(local140), (long) local136);
+					local121.pushNode(new IntNode(local140), (long) local136);
 				}
 			}
 		}
@@ -94,7 +95,7 @@ public final class Static91 {
 					Static204.aClass3_Sub3_Sub2_1.method1347(local13.aClass3_Sub3_Sub1_1);
 					local13.aClass3_Sub3_Sub1_1 = null;
 				}
-				local13.method4658();
+				local13.remove();
 				return;
 			}
 		}

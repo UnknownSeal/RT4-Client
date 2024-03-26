@@ -10,6 +10,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
 
 @OriginalClass("runetek4.client!na")
 public final class JagString implements StringInterface {
@@ -701,9 +702,9 @@ public final class JagString implements StringInterface {
 		synchronized (local19) {
 			@Pc(30) StringNode local30;
 			if (Static148.aClass133_13 == null) {
-				Static148.aClass133_13 = new HashTable(4096);
+				Static148.aClass133_13 = new IterableMap(4096);
 			} else {
-				for (local30 = (StringNode) Static148.aClass133_13.method3863(local9); local30 != null; local30 = (StringNode) Static148.aClass133_13.method3867()) {
+				for (local30 = (StringNode) Static148.aClass133_13.getNode(local9); local30 != null; local30 = (StringNode) Static148.aClass133_13.next()) {
 					if (this.method3108(local30.aClass100_980)) {
 						return local30.aClass100_980;
 					}
@@ -712,7 +713,7 @@ public final class JagString implements StringInterface {
 			local30 = new StringNode();
 			local30.aClass100_980 = this;
 			this.aBoolean193 = false;
-			Static148.aClass133_13.method3862(local30, local9);
+			Static148.aClass133_13.pushNode(local30, local9);
 			return this;
 		}
 	}

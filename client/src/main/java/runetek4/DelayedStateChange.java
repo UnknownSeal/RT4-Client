@@ -21,7 +21,7 @@ public final class DelayedStateChange extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!da", name = "<init>", descriptor = "(II)V")
 	public DelayedStateChange(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		this.aLong192 = (long) arg0 << 32 | (long) arg1;
+		this.nodeId = (long) arg0 << 32 | (long) arg1;
 	}
 
 	@OriginalMember(owner = "runetek4.client!da", name = "a", descriptor = "(Z)V")
@@ -37,12 +37,12 @@ public final class DelayedStateChange extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!da", name = "e", descriptor = "(I)I")
 	public final int method1011() {
-		return (int) (this.aLong192 >>> 32 & 0xFFL);
+		return (int) (this.nodeId >>> 32 & 0xFFL);
 	}
 
 	@OriginalMember(owner = "runetek4.client!da", name = "f", descriptor = "(B)I")
 	public final int method1012() {
-		return (int) this.aLong192;
+		return (int) this.nodeId;
 	}
 
 	@OriginalMember(owner = "runetek4.client!da", name = "g", descriptor = "(B)V")

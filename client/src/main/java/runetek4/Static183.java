@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.Node;
 
 public final class Static183 {
 
@@ -17,13 +18,13 @@ public final class Static183 {
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "a", descriptor = "(Lclient!ab;Lclient!ab;I)V")
 	public static void method3331(@OriginalArg(0) Node arg0, @OriginalArg(1) Node arg1) {
-		if (arg0.aClass3_223 != null) {
-			arg0.method4658();
+		if (arg0.next != null) {
+			arg0.remove();
 		}
-		arg0.aClass3_222 = arg1;
-		arg0.aClass3_223 = arg1.aClass3_223;
-		arg0.aClass3_223.aClass3_222 = arg0;
-		arg0.aClass3_222.aClass3_223 = arg0;
+		arg0.prev = arg1;
+		arg0.next = arg1.next;
+		arg0.next.prev = arg0;
+		arg0.prev.next = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "a", descriptor = "(IIB)Lclient!ce;")

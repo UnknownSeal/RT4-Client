@@ -465,7 +465,7 @@ public final class Static75 {
 						if (local1565 != null) {
 							for (@Pc(1572) ObjStackNode local1572 = (ObjStackNode) local1565.method2289(); local1572 != null; local1572 = (ObjStackNode) local1565.method2288()) {
 								if (local1572.aClass8_Sub7_1.anInt5555 == (local27 & 0x7FFF)) {
-									local1572.method4658();
+									local1572.remove();
 									break;
 								}
 							}

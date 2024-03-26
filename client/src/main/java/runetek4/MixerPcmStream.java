@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.Node;
 
 @OriginalClass("runetek4.client!ei")
 public final class MixerPcmStream extends PcmStream {
@@ -22,9 +23,9 @@ public final class MixerPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "a", descriptor = "(Lclient!cc;)V")
 	private void method1342(@OriginalArg(0) MixerListener arg0) {
-		arg0.method4658();
+		arg0.remove();
 		arg0.method780();
-		@Pc(9) Node local9 = this.aClass69_44.aClass3_109.aClass3_222;
+		@Pc(9) Node local9 = this.aClass69_44.aClass3_109.prev;
 		if (local9 == this.aClass69_44.aClass3_109) {
 			this.anInt1781 = -1;
 		} else {
@@ -64,7 +65,7 @@ public final class MixerPcmStream extends PcmStream {
 					this.method1342(local60);
 				} else {
 					local60.anInt905 = local68;
-					this.method1348(local60.aClass3_222, local60);
+					this.method1348(local60.prev, local60);
 				}
 			}
 		} while (arg2 != 0);
@@ -104,7 +105,7 @@ public final class MixerPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "b", descriptor = "(Lclient!qb;)V")
 	public final synchronized void method1347(@OriginalArg(0) PcmStream arg0) {
-		arg0.method4658();
+		arg0.remove();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "a", descriptor = "()I")
@@ -139,7 +140,7 @@ public final class MixerPcmStream extends PcmStream {
 					this.method1342(local50);
 				} else {
 					local50.anInt905 = local58;
-					this.method1348(local50.aClass3_222, local50);
+					this.method1348(local50.prev, local50);
 				}
 			}
 		} while (arg0 != 0);
@@ -154,9 +155,9 @@ public final class MixerPcmStream extends PcmStream {
 	@OriginalMember(owner = "runetek4.client!ei", name = "a", descriptor = "(Lclient!ab;Lclient!cc;)V")
 	private void method1348(@OriginalArg(0) Node arg0, @OriginalArg(1) MixerListener arg1) {
 		while (arg0 != this.aClass69_44.aClass3_109 && ((MixerListener) arg0).anInt905 <= arg1.anInt905) {
-			arg0 = arg0.aClass3_222;
+			arg0 = arg0.prev;
 		}
 		Static183.method3331(arg1, arg0);
-		this.anInt1781 = ((MixerListener) this.aClass69_44.aClass3_109.aClass3_222).anInt905;
+		this.anInt1781 = ((MixerListener) this.aClass69_44.aClass3_109.prev).anInt905;
 	}
 }

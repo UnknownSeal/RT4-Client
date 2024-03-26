@@ -4,13 +4,15 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
+import runetek4.core.datastruct.Node;
 import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!rf")
 public final class Song extends Node {
 
 	@OriginalMember(owner = "runetek4.client!rf", name = "p", descriptor = "Lclient!sc;")
-	public HashTable aClass133_22;
+	public IterableMap aClass133_22;
 
 	@OriginalMember(owner = "runetek4.client!rf", name = "q", descriptor = "[B")
 	public final byte[] aByteArray65;
@@ -310,7 +312,7 @@ public final class Song extends Node {
 		if (this.aClass133_22 != null) {
 			return;
 		}
-		this.aClass133_22 = new HashTable(16);
+		this.aClass133_22 = new IterableMap(16);
 		@Pc(12) int[] local12 = new int[16];
 		@Pc(15) int[] local15 = new int[16];
 		local12[9] = local15[9] = 128;
@@ -360,10 +362,10 @@ public final class Song extends Node {
 						local104 = local69 >> 16 & 0x7F;
 						if (local104 > 0) {
 							@Pc(179) int local179 = local15[local92];
-							@Pc(187) Class3_Sub9 local187 = (Class3_Sub9) this.aClass133_22.method3863((long) local179);
+							@Pc(187) Class3_Sub9 local187 = (Class3_Sub9) this.aClass133_22.getNode((long) local179);
 							if (local187 == null) {
 								local187 = new Class3_Sub9(new byte[128]);
-								this.aClass133_22.method3862(local187, (long) local179);
+								this.aClass133_22.pushNode(local187, (long) local179);
 							}
 							local187.aByteArray17[local98] = 1;
 						}

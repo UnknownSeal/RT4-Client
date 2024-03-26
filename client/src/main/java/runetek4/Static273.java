@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.Node;
 
 public final class Static273 {
 
@@ -168,9 +169,9 @@ public final class Static273 {
 
 	@OriginalMember(owner = "runetek4.client!we", name = "b", descriptor = "(BI)V")
 	public static void method3214(@OriginalArg(1) int arg0) {
-		for (@Pc(11) Node local11 = Static210.aClass133_21.method3859(); local11 != null; local11 = Static210.aClass133_21.method3861()) {
-			if ((local11.aLong192 >> 48 & 0xFFFFL) == (long) arg0) {
-				local11.method4658();
+		for (@Pc(11) Node local11 = Static210.aClass133_21.peekFront(); local11 != null; local11 = Static210.aClass133_21.prev()) {
+			if ((local11.nodeId >> 48 & 0xFFFFL) == (long) arg0) {
+				local11.remove();
 			}
 		}
 	}

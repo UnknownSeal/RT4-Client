@@ -78,7 +78,7 @@ public final class Static166 {
 										}
 										local214--;
 										@Pc(312) LocType local312 = Static271.method4601(local214);
-										if (local312.anIntArray380 != null) {
+										if (local312.multiloc != null) {
 											local312 = local312.method3417();
 											if (local312 == null || local312.anInt4400 == -1) {
 												continue;

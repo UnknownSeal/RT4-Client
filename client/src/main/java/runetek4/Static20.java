@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
 
 public final class Static20 {
 
@@ -16,7 +17,7 @@ public final class Static20 {
 	public static final short[] aShortArray5 = new short[] { -4160, -4163, -8256, -8259, 22461 };
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "v", descriptor = "Lclient!sc;")
-	public static HashTable aClass133_2 = new HashTable(32);
+	public static IterableMap aClass133_2 = new IterableMap(32);
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "V", descriptor = "I")
 	public static final int anInt671 = 3353893;
@@ -26,7 +27,7 @@ public final class Static20 {
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "d", descriptor = "(B)V")
 	public static void method601() {
-		Static36.aClass133_3.method3856();
+		Static36.aClass133_3.removeAll();
 		Static140.aClass16_7.method802();
 		Static215.aClass16_9.method802();
 	}

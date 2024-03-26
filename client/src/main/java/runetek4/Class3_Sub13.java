@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
+import runetek4.core.datastruct.Node;
 
 @OriginalClass("runetek4.client!hb")
 public final class Class3_Sub13 extends Node {

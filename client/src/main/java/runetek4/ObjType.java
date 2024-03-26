@@ -4,6 +4,8 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.core.datastruct.IterableMap;
+import runetek4.core.datastruct.Node;
 import runetek4.core.io.Packet;
 
 @OriginalClass("runetek4.client!h")
@@ -37,7 +39,7 @@ public final class ObjType {
 	public int anInt2354;
 
 	@OriginalMember(owner = "runetek4.client!h", name = "nb", descriptor = "Lclient!sc;")
-	public HashTable aClass133_6;
+	public IterableMap aClass133_6;
 
 	@OriginalMember(owner = "runetek4.client!h", name = "tb", descriptor = "[I")
 	public int[] anIntArray214;
@@ -210,7 +212,7 @@ public final class ObjType {
 		if (this.aClass133_6 == null) {
 			return arg0;
 		} else {
-			@Pc(21) StringNode local21 = (StringNode) this.aClass133_6.method3863((long) arg1);
+			@Pc(21) StringNode local21 = (StringNode) this.aClass133_6.getNode((long) arg1);
 			return local21 == null ? arg0 : local21.aClass100_980;
 		}
 	}
@@ -504,7 +506,7 @@ public final class ObjType {
 				local169 = arg0.g1();
 				if (this.aClass133_6 == null) {
 					local179 = Static165.method3164(local169);
-					this.aClass133_6 = new HashTable(local179);
+					this.aClass133_6 = new IterableMap(local179);
 				}
 				for (local179 = 0; local179 < local169; local179++) {
 					@Pc(510) boolean local510 = arg0.g1() == 1;
@@ -515,7 +517,7 @@ public final class ObjType {
 					} else {
 						local523 = new IntNode(arg0.g4());
 					}
-					this.aClass133_6.method3862(local523, (long) local514);
+					this.aClass133_6.pushNode(local523, (long) local514);
 				}
 			}
 		}
@@ -526,7 +528,7 @@ public final class ObjType {
 		if (this.aClass133_6 == null) {
 			return arg0;
 		} else {
-			@Pc(25) IntNode local25 = (IntNode) this.aClass133_6.method3863((long) arg1);
+			@Pc(25) IntNode local25 = (IntNode) this.aClass133_6.getNode((long) arg1);
 			return local25 == null ? arg0 : local25.anInt3141;
 		}
 	}
