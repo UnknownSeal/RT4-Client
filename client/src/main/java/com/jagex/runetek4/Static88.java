@@ -2961,7 +2961,7 @@ public final class Static88 {
 													if (local226 == 5419) {
 														local609 = Static72.aClass100_447;
 														if (Static232.aClass212_5 != null) {
-															local609 = Static181.method3341(Static232.aClass212_5.anInt5926);
+															local609 = Static181.method3341(Static232.aClass212_5.intArg2);
 															try {
 																if (Static232.aClass212_5.result != null) {
 																	@Pc(8281) byte[] local8281 = ((String) Static232.aClass212_5.result).getBytes("ISO-8859-1");
@@ -4129,7 +4129,7 @@ public final class Static88 {
 				if (Static83.modeWhere != 0) {
 					Static103.method2231(Static72.aClass100_447, 0, Static136.aClass100_633);
 				}
-				Static89.method1839("CS2 - scr:" + local14.nodeId + " op:" + local44, local14378);
+				Static89.report("CS2 - scr:" + local14.nodeId + " op:" + local44, local14378);
 			} else {
 				@Pc(14385) JagString local14385 = Static87.method1804(30);
 				local14385.method3113(Static219.aClass100_928).method3113(local14.aClass100_880);
@@ -4143,7 +4143,7 @@ public final class Static88 {
 				if (Static83.modeWhere != 0) {
 					Static103.method2231(Static72.aClass100_447, 0, Static34.method882(new JagString[] { Static167.aClass100_780, local14.aClass100_880 }));
 				}
-				Static89.method1839("CS2 - scr:" + local14.nodeId + " op:" + local44 + new String(local14385.method3148()), local14378);
+				Static89.report("CS2 - scr:" + local14.nodeId + " op:" + local44 + new String(local14385.method3148()), local14378);
 			}
 		}
 	}

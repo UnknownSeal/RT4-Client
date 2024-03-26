@@ -73,7 +73,7 @@ public final class client extends GameShell {
 			local146.method936(Static81.modeWhat + 32, "runescape");
 			Static39.aFrame1.setLocation(40, 40);
 		} catch (@Pc(167) Exception local167) {
-			Static89.method1839(null, local167);
+			Static89.report(null, local167);
 		}
 	}
 

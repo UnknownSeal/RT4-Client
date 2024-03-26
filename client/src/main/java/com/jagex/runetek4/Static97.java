@@ -61,8 +61,8 @@ public final class Static97 {
 		@Pc(24) String local24;
 		if (arg0 instanceof TracingException) {
 			@Pc(11) TracingException local11 = (TracingException) arg0;
-			arg0 = local11.aThrowable1;
 			local24 = local11.aString3 + " | ";
+			arg0 = local11.aThrowable1;
 		} else {
 			local24 = "";
 		}
@@ -101,29 +101,28 @@ public final class Static97 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(Lclient!wa;I)V")
-	public static void method1962(@OriginalArg(0) Packet arg0) {
-		@Pc(9) int local9 = arg0.gSmart1or2();
+	public static void method1962(@OriginalArg(0) Packet packet) {
+		@Pc(9) int local9 = packet.gSmart1or2();
 		Static203.aClass32Array1 = new Class32[local9];
-		@Pc(14) int local14;
-		for (local14 = 0; local14 < local9; local14++) {
-			Static203.aClass32Array1[local14] = new Class32();
-			Static203.aClass32Array1[local14].anInt1739 = arg0.gSmart1or2();
-			Static203.aClass32Array1[local14].aClass100_378 = arg0.gjstr2();
+		for (int index = 0; index < local9; index++) {
+			Static203.aClass32Array1[index] = new Class32();
+			Static203.aClass32Array1[index].anInt1739 = packet.gSmart1or2();
+			Static203.aClass32Array1[index].aClass100_378 = packet.gjstr2();
 		}
-		Static19.anInt636 = arg0.gSmart1or2();
-		Static171.anInt4157 = arg0.gSmart1or2();
-		Static106.anInt2871 = arg0.gSmart1or2();
+		Static19.anInt636 = packet.gSmart1or2();
+		Static171.anInt4157 = packet.gSmart1or2();
+		Static106.anInt2871 = packet.gSmart1or2();
 		Static196.aClass10_Sub1Array2 = new World[Static171.anInt4157 + 1 - Static19.anInt636];
-		for (local14 = 0; local14 < Static106.anInt2871; local14++) {
-			@Pc(77) int local77 = arg0.gSmart1or2();
+		for (int index = 0; index < Static106.anInt2871; index++) {
+			@Pc(77) int local77 = packet.gSmart1or2();
 			@Pc(85) World local85 = Static196.aClass10_Sub1Array2[local77] = new World();
-			local85.anInt377 = arg0.g1();
-			local85.anInt381 = arg0.g4();
+			local85.anInt377 = packet.g1();
+			local85.anInt381 = packet.g4();
 			local85.anInt382 = local77 + Static19.anInt636;
-			local85.aClass100_69 = arg0.gjstr2();
-			local85.aClass100_71 = arg0.gjstr2();
+			local85.aClass100_69 = packet.gjstr2();
+			local85.aClass100_71 = packet.gjstr2();
 		}
-		Static80.anInt4702 = arg0.g4();
+		Static80.anInt4702 = packet.g4();
 		Static61.aBoolean109 = true;
 	}
 

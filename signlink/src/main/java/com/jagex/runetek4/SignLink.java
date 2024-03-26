@@ -281,15 +281,15 @@ public final class SignLink implements Runnable {
 	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "(IILjava/lang/Object;II)Lsignlink!im;")
 	private PrivilegedRequest method5114(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) Object arg2, @OriginalArg(3) int arg3) {
 		@Pc(3) PrivilegedRequest local3 = new PrivilegedRequest();
-		local3.anInt5927 = arg1;
-		local3.anInt5926 = arg3;
-		local3.anInt5924 = arg0;
-		local3.anObject7 = arg2;
+		local3.intArg1 = arg1;
+		local3.intArg2 = arg3;
+		local3.type = arg0;
+		local3.objectArg = arg2;
 		synchronized (this) {
 			if (this.aClass212_7 == null) {
 				this.aClass212_7 = this.aClass212_8 = local3;
 			} else {
-				this.aClass212_7.aClass212_6 = local3;
+				this.aClass212_7.next = local3;
 				this.aClass212_7 = local3;
 			}
 			this.notify();
@@ -334,7 +334,7 @@ public final class SignLink implements Runnable {
 					}
 					if (this.aClass212_8 != null) {
 						local16 = this.aClass212_8;
-						this.aClass212_8 = this.aClass212_8.aClass212_6;
+						this.aClass212_8 = this.aClass212_8.next;
 						if (this.aClass212_8 == null) {
 							this.aClass212_7 = null;
 						}
@@ -347,33 +347,33 @@ public final class SignLink implements Runnable {
 				}
 			}
 			try {
-				@Pc(45) int local45 = local16.anInt5924;
+				@Pc(45) int local45 = local16.type;
 				if (local45 == 1) {
 					if (aLong1314 > MonotonicClock.currentTimeMillis()) {
 						throw new IOException();
 					}
-					local16.result = new Socket(InetAddress.getByName((String) local16.anObject7), local16.anInt5926);
+					local16.result = new Socket(InetAddress.getByName((String) local16.objectArg), local16.intArg2);
 				} else if (local45 == 2) {
-					@Pc(813) Thread local813 = new Thread((Runnable) local16.anObject7);
+					@Pc(813) Thread local813 = new Thread((Runnable) local16.objectArg);
 					local813.setDaemon(true);
 					local813.start();
-					local813.setPriority(local16.anInt5926);
+					local813.setPriority(local16.intArg2);
 					local16.result = local813;
 				} else if (local45 == 4) {
 					if (aLong1314 > MonotonicClock.currentTimeMillis()) {
 						throw new IOException();
 					}
-					local16.result = new DataInputStream(((URL) local16.anObject7).openStream());
+					local16.result = new DataInputStream(((URL) local16.objectArg).openStream());
 				} else {
 					@Pc(687) Object[] local687;
 					if (local45 == 8) {
-						local687 = (Object[]) local16.anObject7;
+						local687 = (Object[]) local16.objectArg;
 						if (((Class) local687[0]).getClassLoader() == null) {
 							throw new SecurityException();
 						}
 						local16.result = ((Class) local687[0]).getDeclaredMethod((String) local687[1], (Class[]) local687[2]);
 					} else if (local45 == 9) {
-						local687 = (Object[]) local16.anObject7;
+						local687 = (Object[]) local16.objectArg;
 						if (((Class) local687[0]).getClassLoader() == null) {
 							throw new SecurityException();
 						}
@@ -384,7 +384,7 @@ public final class SignLink implements Runnable {
 							if (MonotonicClock.currentTimeMillis() < aLong1314) {
 								throw new IOException();
 							}
-							local147 = (local16.anInt5926 >> 24 & 0xFF) + "." + (local16.anInt5926 >> 16 & 0xFF) + "." + (local16.anInt5926 >> 8 & 0xFF) + "." + (local16.anInt5926 & 0xFF);
+							local147 = (local16.intArg2 >> 24 & 0xFF) + "." + (local16.intArg2 >> 16 & 0xFF) + "." + (local16.intArg2 >> 8 & 0xFF) + "." + (local16.intArg2 & 0xFF);
 							local16.result = InetAddress.getByName(local147).getHostName();
 						} else if (local45 == 5) {
 							local16.result = this.aClass210_1.method5105();
@@ -392,7 +392,7 @@ public final class SignLink implements Runnable {
 							@Pc(168) Frame local168 = new Frame("Jagex Full Screen");
 							local16.result = local168;
 							local168.setResizable(false);
-							this.aClass210_1.method5104(local16.anInt5927 & 0xFFFF, local16.anInt5927 >> 16, local16.anInt5926 & 0xFFFF, local168, local16.anInt5926 >>> 16);
+							this.aClass210_1.method5104(local16.intArg1 & 0xFFFF, local16.intArg1 >> 16, local16.intArg2 & 0xFFFF, local168, local16.intArg2 >>> 16);
 						} else if (local45 == 7) {
 							this.aClass210_1.method5106();
 						} else if (local45 == 10) {
@@ -402,26 +402,26 @@ public final class SignLink implements Runnable {
 							if (local45 == 11) {
 								GLProfile.shutdown();
 							} else if (local45 == 12) {
-								local147 = (String) local16.anObject7;
+								local147 = (String) local16.objectArg;
 								@Pc(558) FileOnDisk local558 = method5117(local147);
 								local16.result = local558;
 							} else if (local45 == 14) {
-								@Pc(570) int local570 = local16.anInt5927;
-								@Pc(573) int local573 = local16.anInt5926;
+								@Pc(570) int local570 = local16.intArg1;
+								@Pc(573) int local573 = local16.intArg2;
 								this.aClass211_1.method5108(local573, local570);
 							} else if (local45 == 15) {
-								@Pc(591) boolean local591 = local16.anInt5926 != 0;
-								@Pc(595) Component local595 = (Component) local16.anObject7;
+								@Pc(591) boolean local591 = local16.intArg2 != 0;
+								@Pc(595) Component local595 = (Component) local16.objectArg;
 								this.aClass211_1.method5109(local595, local591);
 							} else if (local45 == 17) {
-								local687 = (Object[]) local16.anObject7;
-								this.aClass211_1.method5107((Point) local687[2], local16.anInt5926, (Component) local687[0], local16.anInt5927, (int[]) local687[1]);
+								local687 = (Object[]) local16.objectArg;
+								this.aClass211_1.method5107((Point) local687[2], local16.intArg2, (Component) local687[0], local16.intArg1, (int[]) local687[1]);
 							} else if (local45 == 16) {
 								try {
 									if (!aString15.startsWith("win")) {
 										throw new Exception();
 									}
-									local147 = (String) local16.anObject7;
+									local147 = (String) local16.objectArg;
 									if (!local147.startsWith("http://") && !local147.startsWith("https://")) {
 										throw new Exception();
 									}

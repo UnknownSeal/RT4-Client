@@ -213,7 +213,7 @@ public final class Static127 {
 													}
 													@Pc(246) JagString local246 = Static186.aClass100_827;
 													if (Static232.aClass212_5 != null) {
-														local246 = Static181.method3341(Static232.aClass212_5.anInt5926);
+														local246 = Static181.method3341(Static232.aClass212_5.intArg2);
 														try {
 															if (Static232.aClass212_5.result != null) {
 																@Pc(265) byte[] local265 = ((String) Static232.aClass212_5.result).getBytes("ISO-8859-1");

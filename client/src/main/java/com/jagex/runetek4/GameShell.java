@@ -334,7 +334,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 				Static140.method2708(Static71.signLink, Static154.canvas);
 			}
 		} catch (@Pc(198) Exception local198) {
-			Static89.method1839(null, local198);
+			Static89.report(null, local198);
 			this.method927("crash");
 		}
 		this.method931(true);
@@ -390,7 +390,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			}
 			Static37.aThread1 = (Thread) local76.result;
 		} catch (@Pc(91) Exception local91) {
-			Static89.method1839(null, local91);
+			Static89.report(null, local91);
 		}
 	}
 
@@ -442,7 +442,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			}
 			Static37.aThread1 = (Thread) local86.result;
 		} catch (@Pc(103) Exception local103) {
-			Static89.method1839(null, local103);
+			Static89.report(null, local103);
 			this.method927("crash");
 		}
 	}

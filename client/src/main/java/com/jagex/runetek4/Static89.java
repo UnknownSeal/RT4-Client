@@ -68,7 +68,7 @@ public final class Static89 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(ILclient!be;)Lclient!be;")
+	@OriginalMember(owner = "client!ha", name = "a", descriptor = "(ILclient!be;)Lclient!be;")
 	public static Component method1836(@OriginalArg(1) Component arg0) {
 		@Pc(12) Component local12 = Static36.method938(arg0);
 		if (local12 == null) {
@@ -77,7 +77,7 @@ public final class Static89 {
 		return local12;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(II)[B")
+	@OriginalMember(owner = "client!ha", name = "a", descriptor = "(II)[B")
 	public static byte[] method1837(@OriginalArg(1) int arg0) {
 		@Pc(10) ByteArrayNode local10 = (ByteArrayNode) Static53.aClass54_5.method1806((long) arg0);
 		if (local10 == null) {
@@ -100,7 +100,7 @@ public final class Static89 {
 		return local10.aByteArray37;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "([IJIZ)Lclient!na;")
+	@OriginalMember(owner = "client!ha", name = "a", descriptor = "([IJIZ)Lclient!na;")
 	public static JagString method1838(@OriginalArg(0) int[] arg0, @OriginalArg(1) long arg1, @OriginalArg(2) int arg2) {
 		if (Static107.anInterface3_1 != null) {
 			@Pc(17) JagString local17 = Static107.anInterface3_1.method30(arg2, arg0, arg1);
@@ -111,8 +111,8 @@ public final class Static89 {
 		return Static154.method2929(arg1);
 	}
 
-	@OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(Ljava/lang/String;Ljava/lang/Throwable;B)V")
-	public static void method1839(@OriginalArg(0) String arg0, @OriginalArg(1) Throwable arg1) {
+	@OriginalMember(owner = "client!ha", name = "a", descriptor = "(Ljava/lang/String;Ljava/lang/Throwable;B)V")
+	public static void report(@OriginalArg(0) String arg0, @OriginalArg(1) Throwable arg1) {
 		try {
 			@Pc(13) String local13 = "";
 			if (arg1 != null) {

@@ -128,7 +128,7 @@ public final class Js5CacheQueue implements Runnable {
 					local19.aByteArray11 = local19.aClass49_3.method1701((int) local19.aLong185);
 				}
 			} catch (@Pc(83) Exception local83) {
-				Static89.method1839(null, local83);
+				Static89.report(null, local83);
 			}
 			local19.aBoolean226 = false;
 		}
