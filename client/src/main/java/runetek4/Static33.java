@@ -5,6 +5,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.io.Packet;
+import runetek4.game.config.flutype.FloorUnderlayType;
 import runetek4.game.config.loctype.LocType;
 
 public final class Static33 {
@@ -109,11 +110,11 @@ public final class Static33 {
 				if (local175 > local114) {
 					local225 = local23[local114][local203] & 0xFF;
 					if (local225 > 0) {
-						@Pc(236) FluType local236 = Static199.method3593(local225 - 1);
+						@Pc(236) FloorUnderlayType local236 = Static199.method3593(local225 - 1);
 						local183[local203] += local236.anInt4154;
 						local180[local203] += local236.anInt4149;
 						local186[local203] += local236.anInt4158;
-						local189[local203] += local236.anInt4161;
+						local189[local203] += local236.chroma;
 						local272 = local192[local203]++;
 					}
 				}
@@ -121,11 +122,11 @@ public final class Static33 {
 				if (local225 >= 0) {
 					local293 = local23[local225][local203] & 0xFF;
 					if (local293 > 0) {
-						@Pc(302) FluType local302 = Static199.method3593(local293 - 1);
+						@Pc(302) FloorUnderlayType local302 = Static199.method3593(local293 - 1);
 						local183[local203] -= local302.anInt4154;
 						local180[local203] -= local302.anInt4149;
 						local186[local203] -= local302.anInt4158;
-						local189[local203] -= local302.anInt4161;
+						local189[local203] -= local302.chroma;
 						local272 = local192[local203]--;
 					}
 				}

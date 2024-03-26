@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.world.entity.Player;
 
 public final class Static37 {
 
@@ -27,7 +28,7 @@ public final class Static37 {
 		@Pc(43) int local43;
 		@Pc(36) int local36;
 		if (arg0.anInt3370 != -1 && arg0.anInt3370 < 32768) {
-			@Pc(26) Npc local26 = Static175.aClass8_Sub4_Sub2Array1[arg0.anInt3370];
+			@Pc(26) NPCEntity local26 = Static175.aClass8_Sub4_Sub2Array1[arg0.anInt3370];
 			if (local26 != null) {
 				local36 = arg0.anInt3421 - local26.anInt3421;
 				local43 = arg0.anInt3412 - local26.anInt3412;
@@ -52,7 +53,7 @@ public final class Static37 {
 				}
 			}
 		}
-		if ((arg0.anInt3382 != 0 || arg0.anInt3363 != 0) && (arg0.anInt3409 == 0 || arg0.anInt3417 > 0)) {
+		if ((arg0.anInt3382 != 0 || arg0.anInt3363 != 0) && (arg0.routeLength == 0 || arg0.anInt3417 > 0)) {
 			local70 = arg0.anInt3412 - (arg0.anInt3382 - Static225.originX - Static225.originX) * 64;
 			local43 = arg0.anInt3421 - (arg0.anInt3363 - Static142.originZ - Static142.originZ) * 64;
 			if (local70 != 0 || local43 != 0) {

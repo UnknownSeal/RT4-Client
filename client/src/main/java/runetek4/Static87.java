@@ -3,6 +3,8 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.config.objtype.ObjType;
+import runetek4.game.world.entity.Player;
 
 public final class Static87 {
 
@@ -552,12 +554,12 @@ public final class Static87 {
 												}
 											}
 											if (local30.aBoolean32 && local30.objId != -1) {
-												@Pc(1989) ObjType local1989 = Static71.method1439(local30.objId);
-												local1934 = local1989.aClass100_495;
+												@Pc(1989) ObjType local1989 = Static71.get(local30.objId);
+												local1934 = local1989.name;
 												if (local1934 == null) {
 													local1934 = Static92.aClass100_510;
 												}
-												if ((local1989.anInt2336 == 1 || local30.objCount != 1) && local30.objCount != -1) {
+												if ((local1989.stackable == 1 || local30.objCount != 1) && local30.objCount != -1) {
 													local1934 = Static34.method882(new JagString[] { Static8.aClass100_32, local1934, Static54.aClass100_375, Static70.method1548(local30.objCount) });
 												}
 											}
@@ -675,9 +677,9 @@ public final class Static87 {
 											}
 											local503 = 0;
 											if (local30.objId != -1) {
-												local2611 = Static71.method1439(local30.objId);
+												local2611 = Static71.get(local30.objId);
 												if (local2611 != null) {
-													local2611 = local2611.method1820(local30.objCount);
+													local2611 = local2611.getMeshAddress(local30.objCount);
 													@Pc(2630) SeqType local2630 = local276 == -1 ? null : Static36.method941(local276);
 													local2589 = local2611.method1824(local30.anInt496, local30.anInt500, local2630, 1, local30.anInt510);
 													if (local2589 == null) {
@@ -697,17 +699,17 @@ public final class Static87 {
 													@Pc(2751) Player local2751 = Static159.aClass8_Sub4_Sub1Array1[local514];
 													@Pc(2760) SeqType local2760 = local276 == -1 ? null : Static36.method941(local276);
 													if (local2751 != null && (int) local2751.aClass100_364.encode37() << 11 == (local30.modelId & 0xFFFFF800)) {
-														local2589 = local2751.aClass59_1.method1954(null, -1, null, local2760, 0, -1, 0, local30.anInt510, 0);
+														local2589 = local2751.model.method1954(null, -1, null, local2760, 0, -1, 0, local30.anInt510, 0);
 													}
 												}
 											} else if (local276 == -1) {
-												local2589 = local30.method488(-1, null, -1, 0, local2587, Static173.self.aClass59_1);
+												local2589 = local30.method488(-1, null, -1, 0, local2587, Static173.self.model);
 												if (local2589 == null && Static211.aBoolean72) {
 													Static43.method1143(local30);
 												}
 											} else {
 												@Pc(2689) SeqType local2689 = Static36.method941(local276);
-												local2589 = local30.method488(local30.anInt496, local2689, local30.anInt510, local30.anInt500, local2587, Static173.self.aClass59_1);
+												local2589 = local30.method488(local30.anInt496, local2689, local30.anInt510, local30.anInt500, local2587, Static173.self.model);
 												if (local2589 == null && Static211.aBoolean72) {
 													Static43.method1143(local30);
 												}
@@ -782,12 +784,12 @@ public final class Static87 {
 												for (local468 = 0; local468 < local30.anInt488; local468++) {
 													for (local503 = 0; local503 < local30.baseWidth; local503++) {
 														if (local30.objTypes[local276] > 0) {
-															local2611 = Static71.method1439(local30.objTypes[local276] - 1);
+															local2611 = Static71.get(local30.objTypes[local276] - 1);
 															@Pc(3159) JagString local3159;
-															if (local2611.anInt2336 != 1 && local30.objCounts[local276] == 1) {
-																local3159 = Static34.method882(new JagString[] { Static8.aClass100_32, local2611.aClass100_495, Static230.aClass100_978 });
+															if (local2611.stackable != 1 && local30.objCounts[local276] == 1) {
+																local3159 = Static34.method882(new JagString[] { Static8.aClass100_32, local2611.name, Static230.aClass100_978 });
 															} else {
-																local3159 = Static34.method882(new JagString[] { Static8.aClass100_32, local2611.aClass100_495, Static54.aClass100_375, Static70.method1548(local30.objCounts[local276]) });
+																local3159 = Static34.method882(new JagString[] { Static8.aClass100_32, local2611.name, Static54.aClass100_375, Static70.method1548(local30.objCounts[local276]) });
 															}
 															local556 = local123 + local503 * (local30.anInt512 + 115);
 															local545 = (local30.anInt516 + 12) * local468 + local114;

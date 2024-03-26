@@ -13,7 +13,7 @@ public final class Static104 {
 	public static void method2247(@OriginalArg(1) PathingEntity arg0) {
 		@Pc(9) BasType local9 = arg0.method2681();
 		arg0.anInt3366 = local9.anInt1037;
-		if (arg0.anInt3409 == 0) {
+		if (arg0.routeLength == 0) {
 			arg0.anInt3417 = 0;
 			return;
 		}
@@ -30,8 +30,8 @@ public final class Static104 {
 		}
 		@Pc(79) int local79 = arg0.anInt3412;
 		@Pc(82) int local82 = arg0.anInt3421;
-		@Pc(99) int local99 = arg0.movementQueueX[arg0.anInt3409 - 1] * 128 + arg0.method2693() * 64;
-		@Pc(116) int local116 = arg0.movementQueueZ[arg0.anInt3409 - 1] * 128 + arg0.method2693() * 64;
+		@Pc(99) int local99 = arg0.movementQueueX[arg0.routeLength - 1] * 128 + arg0.size() * 64;
+		@Pc(116) int local116 = arg0.movementQueueZ[arg0.routeLength - 1] * 128 + arg0.size() * 64;
 		if (local99 - local79 > 256 || local99 - local79 < -256 || local116 - local82 > 256 || local116 - local82 < -256) {
 			arg0.anInt3412 = local99;
 			arg0.anInt3421 = local116;
@@ -77,39 +77,39 @@ public final class Static104 {
 			local227 = local9.anInt1051;
 		}
 		arg0.anInt3366 = local227;
-		if (arg0 instanceof Npc) {
-			local233 = ((Npc) arg0).aClass96_1.aBoolean181;
+		if (arg0 instanceof NPCEntity) {
+			local233 = ((NPCEntity) arg0).npcType.walksmoothing;
 		}
 		if (local233) {
 			if (arg0.anInt3381 != arg0.anInt3400 && arg0.anInt3370 == -1 && arg0.anInt3376 != 0) {
 				local273 = 2;
 			}
-			if (arg0.anInt3409 > 2) {
+			if (arg0.routeLength > 2) {
 				local273 = 6;
 			}
-			if (arg0.anInt3409 > 3) {
+			if (arg0.routeLength > 3) {
 				local273 = 8;
 			}
-			if (arg0.anInt3417 > 0 && arg0.anInt3409 > 1) {
+			if (arg0.anInt3417 > 0 && arg0.routeLength > 1) {
 				local273 = 8;
 				arg0.anInt3417--;
 			}
 		} else {
-			if (arg0.anInt3409 > 1) {
+			if (arg0.routeLength > 1) {
 				local273 = 6;
 			}
-			if (arg0.anInt3409 > 2) {
+			if (arg0.routeLength > 2) {
 				local273 = 8;
 			}
-			if (arg0.anInt3417 > 0 && arg0.anInt3409 > 1) {
+			if (arg0.anInt3417 > 0 && arg0.routeLength > 1) {
 				arg0.anInt3417--;
 				local273 = 8;
 			}
 		}
-		if (arg0.aByteArray48[arg0.anInt3409 - 1] == 2) {
+		if (arg0.aByteArray48[arg0.routeLength - 1] == 2) {
 			local273 <<= 0x1;
 			local235 = 2;
-		} else if (arg0.aByteArray48[arg0.anInt3409 - 1] == 0) {
+		} else if (arg0.aByteArray48[arg0.routeLength - 1] == 0) {
 			local235 = 0;
 			local273 >>= 0x1;
 		}
@@ -136,7 +136,7 @@ public final class Static104 {
 		}
 		if (local9.anInt1032 != -1) {
 			local273 <<= 0x7;
-			if (arg0.anInt3409 == 1) {
+			if (arg0.routeLength == 1) {
 				@Pc(594) int local594 = (local99 >= arg0.anInt3412 ? local99 - arg0.anInt3412 : -local99 + arg0.anInt3412) << 7;
 				@Pc(600) int local600 = arg0.anInt3358 * arg0.anInt3358;
 				@Pc(622) int local622 = (local116 < arg0.anInt3421 ? arg0.anInt3421 - local116 : -arg0.anInt3421 + local116) << 7;
@@ -194,7 +194,7 @@ public final class Static104 {
 			}
 		}
 		if (arg0.anInt3412 == local99 && local116 == arg0.anInt3421) {
-			arg0.anInt3409--;
+			arg0.routeLength--;
 			if (arg0.anInt3405 > 0) {
 				arg0.anInt3405--;
 			}

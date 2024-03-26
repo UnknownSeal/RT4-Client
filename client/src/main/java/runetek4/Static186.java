@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.io.Packet;
+import runetek4.game.world.entity.Player;
 
 public final class Static186 {
 
@@ -185,7 +186,7 @@ public final class Static186 {
 			arg2.anInt3373 = 1;
 			arg2.anInt3425 = 0;
 			arg2.anInt3420 = arg0;
-			arg2.anInt3405 = arg2.anInt3409;
+			arg2.anInt3405 = arg2.routeLength;
 			arg2.anInt3371 = 0;
 			arg2.anInt3360 = 0;
 			arg2.anInt3369 = arg1;

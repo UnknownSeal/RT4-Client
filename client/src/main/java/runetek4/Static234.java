@@ -23,7 +23,7 @@ public final class Static234 {
 	public static void method4014() {
 		for (@Pc(3) int local3 = 0; local3 < Static116.anInt2951; local3++) {
 			@Pc(10) int local10 = Static44.anIntArray106[local3];
-			@Pc(14) Npc local14 = Static175.aClass8_Sub4_Sub2Array1[local10];
+			@Pc(14) NPCEntity local14 = Static175.aClass8_Sub4_Sub2Array1[local10];
 			@Pc(18) int local18 = Static57.aClass3_Sub15_Sub1_3.g1();
 			if ((local18 & 0x8) != 0) {
 				local18 += Static57.aClass3_Sub15_Sub1_3.g1() << 8;
@@ -88,13 +88,13 @@ public final class Static234 {
 				}
 			}
 			if ((local18 & 0x1) != 0) {
-				if (local14.aClass96_1.method2935()) {
+				if (local14.npcType.method2935()) {
 					Static91.method1877(local14);
 				}
 				local14.method2698(Static214.method4363(Static57.aClass3_Sub15_Sub1_3.g2le()));
-				local14.method2692(local14.aClass96_1.anInt3713);
-				local14.anInt3365 = local14.aClass96_1.anInt3737;
-				if (local14.aClass96_1.method2935()) {
+				local14.setSize(local14.npcType.size);
+				local14.anInt3365 = local14.npcType.bas;
+				if (local14.npcType.method2935()) {
 					Static122.method2411(local14.movementQueueZ[0], null, 0, local14, local14.movementQueueX[0], Static55.level, null);
 				}
 			}

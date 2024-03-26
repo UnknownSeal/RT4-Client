@@ -1,87 +1,88 @@
-package runetek4;
+package runetek4.game.world.entity;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.*;
 import runetek4.core.io.Packet;
 
-@OriginalClass("runetek4.client!e")
+@OriginalClass("client!e")
 public final class Player extends PathingEntity {
 
-	@OriginalMember(owner = "runetek4.client!e", name = "Bc", descriptor = "Lclient!hh;")
-	public Class59 aClass59_1;
+	@OriginalMember(owner = "client!e", name = "Bc", descriptor = "Lclient!hh;")
+	public Class59 model;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "Mc", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!e", name = "Mc", descriptor = "Lclient!na;")
 	public JagString aClass100_364;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "tc", descriptor = "I")
+	@OriginalMember(owner = "client!e", name = "tc", descriptor = "I")
 	public int anInt1649 = -1;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "wc", descriptor = "I")
+	@OriginalMember(owner = "client!e", name = "wc", descriptor = "I")
 	private int anInt1651 = 0;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "uc", descriptor = "I")
+	@OriginalMember(owner = "client!e", name = "uc", descriptor = "I")
 	public int anInt1650 = 0;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "yc", descriptor = "I")
+	@OriginalMember(owner = "client!e", name = "yc", descriptor = "I")
 	public int anInt1652 = 0;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "Fc", descriptor = "I")
+	@OriginalMember(owner = "client!e", name = "Fc", descriptor = "I")
 	public int anInt1656 = 0;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "Cc", descriptor = "I")
+	@OriginalMember(owner = "client!e", name = "Cc", descriptor = "I")
 	public int anInt1654 = -1;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "qc", descriptor = "I")
+	@OriginalMember(owner = "client!e", name = "qc", descriptor = "I")
 	public int anInt1648 = -1;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "Pc", descriptor = "I")
+	@OriginalMember(owner = "client!e", name = "Pc", descriptor = "I")
 	public int anInt1664 = 0;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "Hc", descriptor = "I")
+	@OriginalMember(owner = "client!e", name = "Hc", descriptor = "I")
 	public int anInt1658 = -1;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "Sc", descriptor = "I")
+	@OriginalMember(owner = "client!e", name = "Sc", descriptor = "I")
 	public int anInt1667 = -1;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "Oc", descriptor = "Z")
+	@OriginalMember(owner = "client!e", name = "Oc", descriptor = "Z")
 	public boolean aBoolean98 = false;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "Xc", descriptor = "I")
+	@OriginalMember(owner = "client!e", name = "Xc", descriptor = "I")
 	public int anInt1671 = 0;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "Vc", descriptor = "I")
+	@OriginalMember(owner = "client!e", name = "Vc", descriptor = "I")
 	public int anInt1669 = -1;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "Wc", descriptor = "I")
+	@OriginalMember(owner = "client!e", name = "Wc", descriptor = "I")
 	public int anInt1670 = -1;
 
-	@OriginalMember(owner = "runetek4.client!e", name = "c", descriptor = "(B)I")
+	@OriginalMember(owner = "client!e", name = "c", descriptor = "(B)I")
 	@Override
-	public final int method2693() {
-		return this.aClass59_1 == null || this.aClass59_1.anInt2492 == -1 ? super.method2693() : Static214.method4363(this.aClass59_1.anInt2492).anInt3713;
+	public int size() {
+		return this.model == null || this.model.anInt2492 == -1 ? super.size() : Static214.method4363(this.model.anInt2492).size;
 	}
 
-	@OriginalMember(owner = "runetek4.client!e", name = "b", descriptor = "(I)I")
+	@OriginalMember(owner = "client!e", name = "b", descriptor = "(I)I")
 	@Override
 	protected final int method2688() {
 		return this.anInt3365;
 	}
 
-	@OriginalMember(owner = "runetek4.client!e", name = "a", descriptor = "(ILclient!wa;)V")
+	@OriginalMember(owner = "client!e", name = "a", descriptor = "(ILclient!wa;)V")
 	public final void method1262(@OriginalArg(1) Packet arg0) {
 		arg0.pos = 0;
 		@Pc(20) int local20 = arg0.g1();
 		@Pc(22) int local22 = -1;
 		@Pc(26) int local26 = local20 & 0x1;
 		@Pc(37) boolean local37 = (local20 & 0x4) != 0;
-		@Pc(41) int local41 = super.method2693();
+		@Pc(41) int local41 = super.size();
 		@Pc(44) int[] local44 = new int[12];
-		this.method2692((local20 >> 3 & 0x7) + 1);
+		this.setSize((local20 >> 3 & 0x7) + 1);
 		this.anInt1651 = local20 >> 6 & 0x3;
-		this.anInt3412 += (this.method2693() - local41) * 64;
-		this.anInt3421 += (this.method2693() - local41) * 64;
+		this.anInt3412 += (this.size() - local41) * 64;
+		this.anInt3421 += (this.size() - local41) * 64;
 		this.anInt1669 = arg0.g1s();
 		this.anInt1649 = arg0.g1s();
 		this.anInt1650 = 0;
@@ -104,7 +105,7 @@ public final class Player extends PathingEntity {
 				if (local134 >= 32768) {
 					local134 = Static234.anIntArray455[local134 - 32768];
 					local44[local102] = local134 | 0x40000000;
-					local175 = Static71.method1439(local134).anInt2351;
+					local175 = Static71.get(local134).team;
 					if (local175 != 0) {
 						this.anInt1650 = local175;
 					}
@@ -154,14 +155,14 @@ public final class Player extends PathingEntity {
 				Static214.method4359(this);
 			}
 		}
-		if (this.aClass59_1 == null) {
-			this.aClass59_1 = new Class59();
+		if (this.model == null) {
+			this.model = new Class59();
 		}
-		local175 = this.aClass59_1.anInt2492;
-		this.aClass59_1.method1950(local197, local22, local26 == 1, local44, this.anInt3365);
+		local175 = this.model.anInt2492;
+		this.model.method1950(local197, local22, local26 == 1, local44, this.anInt3365);
 		if (local175 != local22) {
-			this.anInt3412 = this.movementQueueX[0] * 128 + this.method2693() * 64;
-			this.anInt3421 = this.movementQueueZ[0] * 128 + this.method2693() * 64;
+			this.anInt3412 = this.movementQueueX[0] * 128 + this.size() * 64;
+			this.anInt3421 = this.movementQueueZ[0] * 128 + this.size() * 64;
 		}
 		if (this.aClass47_Sub1_5 != null) {
 			this.aClass47_Sub1_5.method1646();
@@ -171,12 +172,12 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "runetek4.client!e", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
 	public final void method4546(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
-		if (this.aClass59_1 == null) {
+		if (this.model == null) {
 			return;
 		}
 		@Pc(25) SeqType local25 = this.anInt3369 != -1 && this.anInt3420 == 0 ? Static36.method941(this.anInt3369) : null;
 		@Pc(54) SeqType local54 = this.anInt3366 == -1 || this.aBoolean98 || this.anInt3366 == this.method2681().anInt1037 && local25 != null ? null : Static36.method941(this.anInt3366);
-		@Pc(76) Model local76 = this.aClass59_1.method1954(this.aClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
+		@Pc(76) Model local76 = this.model.method1954(this.aClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
 		@Pc(79) int local79 = Static198.method1029();
 		if (GlRenderer.enabled && Static238.anInt5316 < 96 && local79 > 50) {
 			Static16.method501();
@@ -198,7 +199,7 @@ public final class Player extends PathingEntity {
 		}
 		this.anInt3413 = local76.method4549();
 		@Pc(184) Model local184;
-		if (Static209.aBoolean240 && (this.aClass59_1.anInt2492 == -1 || Static214.method4363(this.aClass59_1.anInt2492).aBoolean180)) {
+		if (Static209.aBoolean240 && (this.model.anInt2492 == -1 || Static214.method4363(this.model.anInt2492).spotshadow)) {
 			local184 = Static41.method1043(160, this.aBoolean171, local54 == null ? local25 : local54, this.anInt3412, 0, this.anInt3421, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, 240);
 			if (GlRenderer.enabled) {
 				@Pc(188) float local188 = GlRenderer.method4179();
@@ -219,7 +220,7 @@ public final class Player extends PathingEntity {
 					@Pc(291) int local291;
 					@Pc(302) int local302;
 					if (local245.anInt4058 == 1 && local245.anInt4057 >= 0 && Static175.aClass8_Sub4_Sub2Array1.length > local245.anInt4057) {
-						@Pc(278) Npc local278 = Static175.aClass8_Sub4_Sub2Array1[local245.anInt4057];
+						@Pc(278) NPCEntity local278 = Static175.aClass8_Sub4_Sub2Array1[local245.anInt4057];
 						if (local278 != null) {
 							local291 = local278.anInt3412 / 32 - Static173.self.anInt3412 / 32;
 							local302 = local278.anInt3421 / 32 - Static173.self.anInt3421 / 32;
@@ -341,7 +342,7 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "runetek4.client!e", name = "a", descriptor = "(B)Z")
 	@Override
 	public final boolean method2682() {
-		return this.aClass59_1 != null;
+		return this.model != null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!e", name = "e", descriptor = "(I)Lclient!na;")
@@ -363,7 +364,7 @@ public final class Player extends PathingEntity {
 
 	@OriginalMember(owner = "runetek4.client!e", name = "a", descriptor = "(BIZI)V")
 	public final void method1265(@OriginalArg(1) int arg0, @OriginalArg(2) boolean arg1, @OriginalArg(3) int arg2) {
-		super.method2683(this.method2693(), arg0, arg2, arg1);
+		super.method2683(this.size(), arg0, arg2, arg1);
 	}
 
 	@OriginalMember(owner = "runetek4.client!e", name = "finalize", descriptor = "()V")

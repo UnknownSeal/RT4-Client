@@ -4,6 +4,8 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.io.Packet;
+import runetek4.game.config.npctype.NPCType;
+import runetek4.game.world.entity.Player;
 
 public final class Static214 {
 
@@ -58,16 +60,16 @@ public final class Static214 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "b", descriptor = "(II)Lclient!me;")
-	public static NpcType method4363(@OriginalArg(0) int arg0) {
-		@Pc(10) NpcType local10 = (NpcType) Static93.aClass99_13.method3106((long) arg0);
+	public static NPCType method4363(@OriginalArg(0) int arg0) {
+		@Pc(10) NPCType local10 = (NPCType) Static93.aClass99_13.method3106((long) arg0);
 		if (local10 != null) {
 			return local10;
 		}
 		@Pc(26) byte[] local26 = Static58.aClass153_28.method4495(Static60.method1447(arg0), Static179.method3322(arg0));
-		local10 = new NpcType();
+		local10 = new NPCType();
 		local10.anInt3741 = arg0;
 		if (local26 != null) {
-			local10.method2939(new Packet(local26));
+			local10.decode(new Packet(local26));
 		}
 		local10.method2942();
 		Static93.aClass99_13.method3095(local10, (long) arg0);

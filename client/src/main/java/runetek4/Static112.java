@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.config.npctype.NPCType;
 
 public final class Static112 {
 
@@ -115,22 +116,22 @@ public final class Static112 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ij", name = "a", descriptor = "(Lclient!km;I)I")
-	public static int method2299(@OriginalArg(0) Npc arg0) {
-		@Pc(13) NpcType local13 = arg0.aClass96_1;
-		if (local13.anIntArray357 != null) {
+	public static int method2299(@OriginalArg(0) NPCEntity arg0) {
+		@Pc(13) NPCType local13 = arg0.npcType;
+		if (local13.multinpc != null) {
 			local13 = local13.method2932();
 			if (local13 == null) {
 				return -1;
 			}
 		}
-		@Pc(29) int local29 = local13.anInt3747;
+		@Pc(29) int local29 = local13.bgsound_walk;
 		@Pc(33) BasType local33 = arg0.method2681();
 		if (local33.anInt1037 == arg0.anInt3366) {
-			local29 = local13.anInt3728;
+			local29 = local13.bgsound;
 		} else if (arg0.anInt3366 == local33.anInt1058 || local33.anInt1054 == arg0.anInt3366 || arg0.anInt3366 == local33.anInt1045 || arg0.anInt3366 == local33.anInt1043) {
-			local29 = local13.anInt3734;
+			local29 = local13.bgsound_run;
 		} else if (local33.anInt1062 == arg0.anInt3366 || arg0.anInt3366 == local33.anInt1042 || arg0.anInt3366 == local33.anInt1048 || arg0.anInt3366 == local33.anInt1066) {
-			local29 = local13.anInt3745;
+			local29 = local13.bgsound_crawl;
 		}
 		return local29;
 	}

@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.world.entity.Player;
 
 public final class Static127 {
 
@@ -56,7 +57,7 @@ public final class Static127 {
 		@Pc(86) int local86 = Static225.originX - local55;
 		Static235.aClass134_2 = null;
 		@Pc(96) int local96;
-		@Pc(103) Npc local103;
+		@Pc(103) NPCEntity local103;
 		@Pc(109) int local109;
 		if (arg4) {
 			Static272.anInt5214 = 0;

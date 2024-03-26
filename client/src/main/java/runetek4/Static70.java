@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.config.flotype.FloorOverlayType;
 
 public final class Static70 {
 
@@ -48,9 +49,9 @@ public final class Static70 {
 	@OriginalMember(owner = "runetek4.client!fi", name = "a", descriptor = "(III)V")
 	public static void method1549(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
 		for (@Pc(11) int local11 = 0; local11 < Static98.anInt2510; local11++) {
-			@Pc(18) FloType local18 = Static256.method4395(local11);
+			@Pc(18) FloorOverlayType local18 = Static256.method4395(local11);
 			if (local18 != null) {
-				@Pc(24) int local24 = local18.anInt5892;
+				@Pc(24) int local24 = local18.material;
 				if (local24 >= 0 && !Rasteriser.anInterface1_2.method3236(local24)) {
 					local24 = -1;
 				}
@@ -58,8 +59,8 @@ public final class Static70 {
 				@Pc(66) int local66;
 				@Pc(72) int local72;
 				@Pc(95) int local95;
-				if (local18.anInt5894 >= 0) {
-					local66 = local18.anInt5894;
+				if (local18.averagecolour >= 0) {
+					local66 = local18.averagecolour;
 					local72 = (local66 & 0x7F) + arg0;
 					if (local72 < 0) {
 						local72 = 0;
@@ -70,10 +71,10 @@ public final class Static70 {
 					local53 = Rasteriser.anIntArray220[Static230.method3949(local95, 96)];
 				} else if (local24 >= 0) {
 					local53 = Rasteriser.anIntArray220[Static230.method3949(Rasteriser.anInterface1_2.method3234(local24), 96)];
-				} else if (local18.anInt5899 == -1) {
+				} else if (local18.rgb == -1) {
 					local53 = -1;
 				} else {
-					local66 = local18.anInt5899;
+					local66 = local18.rgb;
 					local72 = arg0 + (local66 & 0x7F);
 					if (local72 < 0) {
 						local72 = 0;

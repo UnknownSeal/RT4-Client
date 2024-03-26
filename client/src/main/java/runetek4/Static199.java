@@ -5,6 +5,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.datastruct.IterableMap;
 import runetek4.core.io.Packet;
+import runetek4.game.config.flutype.FloorUnderlayType;
 
 public final class Static199 {
 
@@ -27,15 +28,15 @@ public final class Static199 {
 	public static final int[] anIntArray417 = new int[1000];
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "a", descriptor = "(ZI)Lclient!ni;")
-	public static FluType method3593(@OriginalArg(1) int arg0) {
-		@Pc(10) FluType local10 = (FluType) Static83.aClass99_3.method3106((long) arg0);
+	public static FloorUnderlayType method3593(@OriginalArg(1) int arg0) {
+		@Pc(10) FloorUnderlayType local10 = (FloorUnderlayType) Static83.aClass99_3.method3106((long) arg0);
 		if (local10 != null) {
 			return local10;
 		}
 		@Pc(27) byte[] local27 = Static182.aClass153_77.method4495(1, arg0);
-		local10 = new FluType();
+		local10 = new FloorUnderlayType();
 		if (local27 != null) {
-			local10.method3217(arg0, new Packet(local27));
+			local10.decode(new Packet(local27));
 		}
 		Static83.aClass99_3.method3095(local10, (long) arg0);
 		return local10;

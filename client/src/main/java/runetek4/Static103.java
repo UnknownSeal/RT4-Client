@@ -3,6 +3,8 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.config.npctype.NPCType;
+import runetek4.game.world.entity.Player;
 
 public final class Static103 {
 
@@ -68,7 +70,7 @@ public final class Static103 {
 			Static257.aClass13_7 = Static5.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
-		@Pc(192) Npc local192;
+		@Pc(192) NPCEntity local192;
 		if (local23 == 19) {
 			local192 = Static175.aClass8_Sub4_Sub2Array1[local36];
 			if (local192 != null) {
@@ -179,7 +181,7 @@ public final class Static103 {
 				Static6.outboundBuffer.pIsaac1(92);
 				Static6.outboundBuffer.p2leadd(local36);
 			} else {
-				method2231(Static186.aClass100_827, 0, Static34.method882(new JagString[] { Static123.method2423(local693.objCounts[local15]), Static249.aClass100_1039, Static71.method1439(local36).aClass100_495 }));
+				method2231(Static186.aClass100_827, 0, Static34.method882(new JagString[] { Static123.method2423(local693.objCounts[local15]), Static249.aClass100_1039, Static71.get(local36).name}));
 			}
 			Static72.anInt2043 = 0;
 			Static257.aClass13_7 = Static5.getComponent(local19);
@@ -213,8 +215,8 @@ public final class Static103 {
 			Static122.x = Static7.clickX;
 			local192 = Static175.aClass8_Sub4_Sub2Array1[local36];
 			if (local192 != null) {
-				@Pc(884) NpcType local884 = local192.aClass96_1;
-				if (local884.anIntArray357 != null) {
+				@Pc(884) NPCType local884 = local192.npcType;
+				if (local884.multinpc != null) {
 					local884 = local884.method2932();
 				}
 				if (local884 != null) {
@@ -597,7 +599,7 @@ public final class Static103 {
 			Static260.anInt5014 = 1;
 			Static274.anInt4997 = local36;
 			Static43.method1143(local693);
-			Static34.aClass100_203 = Static34.method882(new JagString[] { Static8.aClass100_32, Static71.method1439(local36).aClass100_495, Static204.aClass100_896 });
+			Static34.aClass100_203 = Static34.method882(new JagString[] { Static8.aClass100_32, Static71.get(local36).name, Static204.aClass100_896 });
 			if (Static34.aClass100_203 == null) {
 				Static34.aClass100_203 = Static92.aClass100_510;
 			}

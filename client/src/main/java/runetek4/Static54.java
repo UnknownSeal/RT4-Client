@@ -4,6 +4,8 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.game.config.loctype.LocType;
+import runetek4.game.config.npctype.NPCType;
+import runetek4.game.world.entity.Player;
 
 public final class Static54 {
 
@@ -108,13 +110,13 @@ public final class Static54 {
 				}
 			}
 			for (local146 = 0; local146 < Static272.anInt5214; local146++) {
-				@Pc(498) Npc local498 = Static175.aClass8_Sub4_Sub2Array1[Static33.anIntArray79[local146]];
+				@Pc(498) NPCEntity local498 = Static175.aClass8_Sub4_Sub2Array1[Static33.anIntArray79[local146]];
 				if (local498 != null && local498.method2682()) {
-					@Pc(507) NpcType local507 = local498.aClass96_1;
-					if (local507 != null && local507.anIntArray357 != null) {
+					@Pc(507) NPCType local507 = local498.npcType;
+					if (local507 != null && local507.multinpc != null) {
 						local507 = local507.method2932();
 					}
-					if (local507 != null && local507.aBoolean184 && local507.aBoolean183) {
+					if (local507 != null && local507.minimap && local507.active) {
 						local154 = local498.anInt3412 / 32 - Static173.self.anInt3412 / 32;
 						local231 = local498.anInt3421 / 32 - Static173.self.anInt3421 / 32;
 						if (local507.anInt3739 == -1) {
@@ -165,7 +167,7 @@ public final class Static54 {
 				@Pc(770) Class102 local770 = local756[local181];
 				if (local770 != null && local770.anInt4058 != 0 && Static83.anInt372 % 20 < 10) {
 					if (local770.anInt4058 == 1 && local770.anInt4057 >= 0 && local770.anInt4057 < Static175.aClass8_Sub4_Sub2Array1.length) {
-						@Pc(804) Npc local804 = Static175.aClass8_Sub4_Sub2Array1[local770.anInt4057];
+						@Pc(804) NPCEntity local804 = Static175.aClass8_Sub4_Sub2Array1[local770.anInt4057];
 						if (local804 != null) {
 							local231 = local804.anInt3412 / 32 - Static173.self.anInt3412 / 32;
 							local200 = local804.anInt3421 / 32 - Static173.self.anInt3421 / 32;

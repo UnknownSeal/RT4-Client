@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.io.Packet;
+import runetek4.game.config.enumtype.EnumType;
 
 public final class Static253 {
 
@@ -179,18 +180,18 @@ public final class Static253 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "a", descriptor = "(IZ)Lclient!ml;")
-	public static EnumType method4330(@OriginalArg(0) int arg0) {
-		@Pc(10) EnumType local10 = (EnumType) Static149.aClass54_10.method1806((long) arg0);
-		if (local10 != null) {
-			return local10;
+	public static EnumType get(@OriginalArg(0) int id) {
+		@Pc(10) EnumType enumType = (EnumType) Static149.aClass54_10.method1806((long) id);
+		if (enumType != null) {
+			return enumType;
 		}
-		@Pc(24) byte[] local24 = Static84.aClass153_35.method4495(Static97.method1959(arg0), Static103.method2236(arg0));
-		local10 = new EnumType();
-		if (local24 != null) {
-			local10.method3094(new Packet(local24));
+		@Pc(24) byte[] bytes = Static84.aClass153_35.method4495(Static97.method1959(id), Static103.method2236(id));
+		enumType = new EnumType();
+		if (bytes != null) {
+			enumType.decode(new Packet(bytes));
 		}
-		Static149.aClass54_10.method1811(local10, (long) arg0);
-		return local10;
+		Static149.aClass54_10.method1811(enumType, (long) id);
+		return enumType;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "h", descriptor = "(I)[Lclient!ok;")

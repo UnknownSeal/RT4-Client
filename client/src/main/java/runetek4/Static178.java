@@ -5,6 +5,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.datastruct.IntWrapper;
 import runetek4.game.client.ClientInvCache;
+import runetek4.game.config.objtype.ObjType;
 
 public final class Static178 {
 
@@ -54,9 +55,9 @@ public final class Static178 {
 		@Pc(27) int local27 = 0;
 		for (@Pc(29) int local29 = 0; local29 < local19.invSlotObjId.length; local29++) {
 			if (local19.invSlotObjId[local29] >= 0 && Static170.anInt3245 > local19.invSlotObjId[local29]) {
-				@Pc(56) ObjType local56 = Static71.method1439(local19.invSlotObjId[local29]);
-				if (local56.aClass133_6 != null) {
-					@Pc(68) IntWrapper local68 = (IntWrapper) local56.aClass133_6.getNode((long) arg2);
+				@Pc(56) ObjType local56 = Static71.get(local19.invSlotObjId[local29]);
+				if (local56.params != null) {
+					@Pc(68) IntWrapper local68 = (IntWrapper) local56.params.getNode((long) arg2);
 					if (local68 != null) {
 						if (arg0) {
 							local27 += local19.invSlotObjCount[local29] * local68.value;

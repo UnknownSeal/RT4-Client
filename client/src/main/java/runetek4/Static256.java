@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.io.Packet;
+import runetek4.game.config.flotype.FloorOverlayType;
 
 public final class Static256 {
 
@@ -96,15 +97,15 @@ public final class Static256 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!um", name = "a", descriptor = "(BI)Lclient!wl;")
-	public static FloType method4395(@OriginalArg(1) int arg0) {
-		@Pc(6) FloType local6 = (FloType) Static233.aClass99_31.method3106((long) arg0);
+	public static FloorOverlayType method4395(@OriginalArg(1) int arg0) {
+		@Pc(6) FloorOverlayType local6 = (FloorOverlayType) Static233.aClass99_31.method3106((long) arg0);
 		if (local6 != null) {
 			return local6;
 		}
 		@Pc(30) byte[] local30 = Static35.aClass153_22.method4495(4, arg0);
-		local6 = new FloType();
+		local6 = new FloorOverlayType();
 		if (local30 != null) {
-			local6.method4669(new Packet(local30), arg0);
+			local6.decode(new Packet(local30), arg0);
 		}
 		Static233.aClass99_31.method3095(local6, (long) arg0);
 		return local6;

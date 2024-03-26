@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.world.entity.Player;
 
 public final class Static19 {
 
@@ -66,7 +67,7 @@ public final class Static19 {
 		}
 		for (local11 = 0; local11 < Static272.anInt5214; local11++) {
 			@Pc(68) int local68 = Static33.anIntArray79[local11];
-			@Pc(72) Npc local72 = Static175.aClass8_Sub4_Sub2Array1[local68];
+			@Pc(72) NPCEntity local72 = Static175.aClass8_Sub4_Sub2Array1[local68];
 			if (local72 != null && local72.anInt3408 > 0) {
 				local72.anInt3408--;
 				if (local72.anInt3408 == 0) {

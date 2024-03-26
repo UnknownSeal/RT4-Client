@@ -28,12 +28,12 @@ public final class Static278 {
 					@Pc(19) boolean local19 = false;
 					if (Static175.aClass8_Sub4_Sub2Array1[local14] == null) {
 						local19 = true;
-						Static175.aClass8_Sub4_Sub2Array1[local14] = new Npc();
+						Static175.aClass8_Sub4_Sub2Array1[local14] = new NPCEntity();
 					}
-					@Pc(37) Npc local37 = Static175.aClass8_Sub4_Sub2Array1[local14];
+					@Pc(37) NPCEntity local37 = Static175.aClass8_Sub4_Sub2Array1[local14];
 					Static33.anIntArray79[Static272.anInt5214++] = local14;
 					local37.anInt3430 = Static83.anInt372;
-					if (local37.aClass96_1 != null && local37.aClass96_1.method2935()) {
+					if (local37.npcType != null && local37.npcType.method2935()) {
 						Static91.method1877(local37);
 					}
 					@Pc(66) int local66 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
@@ -54,14 +54,14 @@ public final class Static278 {
 					if (local124 > 15) {
 						local124 -= 32;
 					}
-					local37.method2692(local37.aClass96_1.anInt3713);
-					local37.anInt3365 = local37.aClass96_1.anInt3737;
-					local37.anInt3376 = local37.aClass96_1.anInt3733;
+					local37.setSize(local37.npcType.size);
+					local37.anInt3365 = local37.npcType.bas;
+					local37.anInt3376 = local37.npcType.turnspeed;
 					if (local37.anInt3376 == 0) {
 						local37.anInt3381 = 0;
 					}
-					local37.method2683(local37.method2693(), Static173.self.movementQueueX[0] + local124, local105 + Static173.self.movementQueueZ[0], local66 == 1);
-					if (local37.aClass96_1.method2935()) {
+					local37.method2683(local37.size(), Static173.self.movementQueueX[0] + local124, local105 + Static173.self.movementQueueZ[0], local66 == 1);
+					if (local37.npcType.method2935()) {
 						Static122.method2411(local37.movementQueueZ[0], null, 0, local37, local37.movementQueueX[0], Static55.level, null);
 					}
 					continue;

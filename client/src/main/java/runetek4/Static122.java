@@ -4,6 +4,8 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.game.config.loctype.LocType;
+import runetek4.game.config.npctype.NPCType;
+import runetek4.game.world.entity.Player;
 
 public final class Static122 {
 
@@ -40,7 +42,7 @@ public final class Static122 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "a", descriptor = "(IZLclient!pb;ILclient!km;IILclient!e;)V")
-	public static void method2411(@OriginalArg(0) int arg0, @OriginalArg(2) LocType arg1, @OriginalArg(3) int arg2, @OriginalArg(4) Npc arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) Player arg6) {
+	public static void method2411(@OriginalArg(0) int arg0, @OriginalArg(2) LocType arg1, @OriginalArg(3) int arg2, @OriginalArg(4) NPCEntity arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) Player arg6) {
 		@Pc(13) AreaSound local13 = new AreaSound();
 		local13.anInt2029 = arg0 * 128;
 		local13.anInt2041 = arg4 * 128;
@@ -70,22 +72,22 @@ public final class Static122 {
 			Static3.aClass69_135.method2282(local13);
 		} else if (arg3 != null) {
 			local13.aClass8_Sub4_Sub2_1 = arg3;
-			@Pc(138) NpcType local138 = arg3.aClass96_1;
-			if (local138.anIntArray357 != null) {
+			@Pc(138) NPCType local138 = arg3.npcType;
+			if (local138.multinpc != null) {
 				local13.aBoolean117 = true;
 				local138 = local138.method2932();
 			}
 			if (local138 != null) {
-				local13.anInt2028 = (local138.anInt3713 + arg0) * 128;
-				local13.anInt2037 = (arg4 + local138.anInt3713) * 128;
+				local13.anInt2028 = (local138.size + arg0) * 128;
+				local13.anInt2037 = (arg4 + local138.size) * 128;
 				local13.anInt2044 = Static112.method2299(arg3);
-				local13.anInt2042 = local138.anInt3746 * 128;
+				local13.anInt2042 = local138.bgsound_range * 128;
 			}
 			Static152.aClass69_87.method2282(local13);
 		} else if (arg6 != null) {
 			local13.aClass8_Sub4_Sub1_1 = arg6;
-			local13.anInt2037 = (arg6.method2693() + arg4) * 128;
-			local13.anInt2028 = (arg6.method2693() + arg0) * 128;
+			local13.anInt2037 = (arg6.size() + arg4) * 128;
+			local13.anInt2028 = (arg6.size() + arg0) * 128;
 			local13.anInt2044 = Static140.method2706(arg6);
 			local13.anInt2042 = arg6.anInt1664 * 128;
 			Static93.aClass133_7.pushNode(local13, arg6.aClass100_364.encode37());

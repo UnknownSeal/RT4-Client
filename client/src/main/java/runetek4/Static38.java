@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.world.entity.Player;
 
 public final class Static38 {
 
@@ -178,7 +179,7 @@ public final class Static38 {
 				local39 = Static159.aClass8_Sub4_Sub1Array1[Static105.anIntArray256[local28]];
 			}
 			if (local39 != null && local39.method2682()) {
-				@Pc(55) int local55 = local39.method2693();
+				@Pc(55) int local55 = local39.size();
 				@Pc(77) int local77;
 				if (local55 == 1) {
 					if ((local39.anInt3412 & 0x7F) == 64 && (local39.anInt3421 & 0x7F) == 64) {
@@ -191,14 +192,14 @@ public final class Static38 {
 				} else if (((local55 & 0x1) != 0 || (local39.anInt3412 & 0x7F) == 0 && (local39.anInt3421 & 0x7F) == 0) && ((local55 & 0x1) != 1 || (local39.anInt3412 & 0x7F) == 64 && (local39.anInt3421 & 0x7F) == 64)) {
 					local77 = local39.anInt3412 - local55 * 64 >> 7;
 					local82 = local39.anInt3421 - local55 * 64 >> 7;
-					local182 = local39.method2693() + local77;
+					local182 = local39.size() + local77;
 					if (local182 > 104) {
 						local182 = 104;
 					}
 					if (local77 < 0) {
 						local77 = 0;
 					}
-					local200 = local82 + local39.method2693();
+					local200 = local82 + local39.size();
 					if (local82 < 0) {
 						local82 = 0;
 					}
@@ -227,7 +228,7 @@ public final class Static38 {
 				if ((Static15.aBoolean33 && Static267.anInt5774 > 200 || Static267.anInt5774 > 50) && !arg0 && local39.anInt3366 == local39.method2681().anInt1037) {
 					local39.aBoolean98 = true;
 				}
-				local82 = local39.method2693();
+				local82 = local39.size();
 				if (local82 == 1) {
 					if ((local39.anInt3412 & 0x7F) == 64 && (local39.anInt3421 & 0x7F) == 64) {
 						local182 = local39.anInt3412 >> 7;

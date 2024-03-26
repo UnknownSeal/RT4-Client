@@ -3,6 +3,8 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.config.npctype.NPCType;
+import runetek4.game.world.entity.Player;
 
 public final class Static142 {
 
@@ -38,10 +40,10 @@ public final class Static142 {
 				local17 = Static175.aClass8_Sub4_Sub2Array1[Static33.anIntArray79[local5 - Static267.anInt5774]];
 			}
 			if (local17 != null && local17.method2682()) {
-				@Pc(58) NpcType local58;
-				if (local17 instanceof Npc) {
-					local58 = ((Npc) local17).aClass96_1;
-					if (local58.anIntArray357 != null) {
+				@Pc(58) NPCType local58;
+				if (local17 instanceof NPCEntity) {
+					local58 = ((NPCEntity) local17).npcType;
+					if (local58.multinpc != null) {
 						local58 = local58.method2932();
 					}
 					if (local58 == null) {
@@ -50,15 +52,15 @@ public final class Static142 {
 				}
 				@Pc(161) int local161;
 				if (local5 >= Static267.anInt5774) {
-					local58 = ((Npc) local17).aClass96_1;
-					if (local58.anIntArray357 != null) {
+					local58 = ((NPCEntity) local17).npcType;
+					if (local58.multinpc != null) {
 						local58 = local58.method2932();
 					}
 					if (local58.anInt3732 >= 0 && Static138.aClass3_Sub2_Sub1Array5.length > local58.anInt3732) {
-						if (local58.anInt3730 == -1) {
+						if (local58.overlayheight == -1) {
 							local265 = local17.method2691() + 15;
 						} else {
-							local265 = local58.anInt3730 + 15;
+							local265 = local58.overlayheight + 15;
 						}
 						Static180.method3326(arg4 >> 1, arg3, local17, arg5, local265, arg1 >> 1);
 						if (Static65.anInt1951 > -1) {
@@ -69,10 +71,10 @@ public final class Static142 {
 					for (local310 = 0; local310 < local308.length; local310++) {
 						@Pc(322) Class102 local322 = local308[local310];
 						if (local322 != null && local322.anInt4058 == 1 && local322.anInt4057 == Static33.anIntArray79[local5 - Static267.anInt5774] && Static83.anInt372 % 20 < 10) {
-							if (local58.anInt3730 == -1) {
+							if (local58.overlayheight == -1) {
 								local359 = local17.method2691() + 15;
 							} else {
-								local359 = local58.anInt3730 + 15;
+								local359 = local58.overlayheight + 15;
 							}
 							Static180.method3326(arg4 >> 1, arg3, local17, arg5, local359, arg1 >> 1);
 							if (Static65.anInt1951 > -1) {
@@ -126,24 +128,24 @@ public final class Static142 {
 				if (local17.anInt3378 > Static83.anInt372) {
 					@Pc(508) Sprite local508 = Static116.aClass3_Sub2_Sub1Array3[0];
 					@Pc(512) Sprite local512 = Static116.aClass3_Sub2_Sub1Array3[1];
-					if (local17 instanceof Npc) {
-						@Pc(518) Npc local518 = (Npc) local17;
-						@Pc(528) Sprite[] local528 = (Sprite[]) Static73.aClass99_10.method3106((long) local518.aClass96_1.anInt3736);
+					if (local17 instanceof NPCEntity) {
+						@Pc(518) NPCEntity local518 = (NPCEntity) local17;
+						@Pc(528) Sprite[] local528 = (Sprite[]) Static73.aClass99_10.method3106((long) local518.npcType.anInt3736);
 						if (local528 == null) {
-							local528 = Static209.method3708(local518.aClass96_1.anInt3736, Static209.aClass153_86);
+							local528 = Static209.method3708(local518.npcType.anInt3736, Static209.aClass153_86);
 							if (local528 != null) {
-								Static73.aClass99_10.method3095(local528, (long) local518.aClass96_1.anInt3736);
+								Static73.aClass99_10.method3095(local528, (long) local518.npcType.anInt3736);
 							}
 						}
 						if (local528 != null && local528.length == 2) {
 							local512 = local528[1];
 							local508 = local528[0];
 						}
-						@Pc(571) NpcType local571 = local518.aClass96_1;
-						if (local571.anInt3730 == -1) {
+						@Pc(571) NPCType local571 = local518.npcType;
+						if (local571.overlayheight == -1) {
 							local310 = local17.method2691();
 						} else {
-							local310 = local571.anInt3730;
+							local310 = local571.overlayheight;
 						}
 					} else {
 						local310 = local17.method2691();
@@ -170,13 +172,13 @@ public final class Static142 {
 				}
 				for (local74 = 0; local74 < 4; local74++) {
 					if (local17.anIntArray319[local74] > Static83.anInt372) {
-						if (local17 instanceof Npc) {
-							@Pc(725) Npc local725 = (Npc) local17;
-							@Pc(728) NpcType local728 = local725.aClass96_1;
-							if (local728.anInt3730 == -1) {
+						if (local17 instanceof NPCEntity) {
+							@Pc(725) NPCEntity local725 = (NPCEntity) local17;
+							@Pc(728) NPCType local728 = local725.npcType;
+							if (local728.overlayheight == -1) {
 								local265 = local17.method2691() / 2;
 							} else {
-								local265 = local728.anInt3730 / 2;
+								local265 = local728.overlayheight / 2;
 							}
 						} else {
 							local265 = local17.method2691() / 2;

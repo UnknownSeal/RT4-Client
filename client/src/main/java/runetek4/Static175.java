@@ -11,7 +11,7 @@ public final class Static175 {
 	public static JagString url;
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "S", descriptor = "[Lclient!km;")
-	public static final Npc[] aClass8_Sub4_Sub2Array1 = new Npc[32768];
+	public static final NPCEntity[] aClass8_Sub4_Sub2Array1 = new NPCEntity[32768];
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "U", descriptor = "I")
 	public static int anInt4220 = 0;

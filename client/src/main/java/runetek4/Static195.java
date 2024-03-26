@@ -2,6 +2,7 @@ package runetek4;
 
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.world.entity.Player;
 
 public final class Static195 {
 
@@ -33,7 +34,7 @@ public final class Static195 {
 				local16.remove();
 			} else if (Static83.anInt372 >= local21.anInt4822) {
 				if (local21.anInt4819 > 0) {
-					@Pc(54) Npc local54 = Static175.aClass8_Sub4_Sub2Array1[local21.anInt4819 - 1];
+					@Pc(54) NPCEntity local54 = Static175.aClass8_Sub4_Sub2Array1[local21.anInt4819 - 1];
 					if (local54 != null && local54.anInt3412 >= 0 && local54.anInt3412 < 13312 && local54.anInt3421 >= 0 && local54.anInt3421 < 13312) {
 						local21.method3705(local54.anInt3421, Static83.anInt372, Static207.method3685(local21.anInt4810, local54.anInt3412, local54.anInt3421) - local21.anInt4805, local54.anInt3412);
 					}

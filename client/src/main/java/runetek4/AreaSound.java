@@ -5,6 +5,8 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.datastruct.Node;
 import runetek4.game.config.loctype.LocType;
+import runetek4.game.config.npctype.NPCType;
+import runetek4.game.world.entity.Player;
 
 @OriginalClass("runetek4.client!fl")
 public final class AreaSound extends Node {
@@ -37,7 +39,7 @@ public final class AreaSound extends Node {
 	public int anInt2037;
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "I", descriptor = "Lclient!km;")
-	public Npc aClass8_Sub4_Sub2_1;
+	public NPCEntity aClass8_Sub4_Sub2_1;
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "K", descriptor = "I")
 	public int anInt2040;
@@ -84,15 +86,15 @@ public final class AreaSound extends Node {
 		} else if (this.aClass8_Sub4_Sub2_1 != null) {
 			@Pc(92) int local92 = Static112.method2299(this.aClass8_Sub4_Sub2_1);
 			if (local8 != local92) {
-				@Pc(100) NpcType local100 = this.aClass8_Sub4_Sub2_1.aClass96_1;
+				@Pc(100) NPCType local100 = this.aClass8_Sub4_Sub2_1.npcType;
 				this.anInt2044 = local92;
-				if (local100.anIntArray357 != null) {
+				if (local100.multinpc != null) {
 					local100 = local100.method2932();
 				}
 				if (local100 == null) {
 					this.anInt2042 = 0;
 				} else {
-					this.anInt2042 = local100.anInt3746 * 128;
+					this.anInt2042 = local100.bgsound_range * 128;
 				}
 			}
 		} else if (this.aClass8_Sub4_Sub1_1 != null) {

@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.world.entity.Player;
 
 public final class Static159 {
 
@@ -31,7 +32,7 @@ public final class Static159 {
 	public static boolean aBoolean189 = true;
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "a", descriptor = "([IBLclient!km;[I[I)V")
-	public static void method3037(@OriginalArg(0) int[] arg0, @OriginalArg(2) Npc arg1, @OriginalArg(3) int[] arg2, @OriginalArg(4) int[] arg3) {
+	public static void method3037(@OriginalArg(0) int[] arg0, @OriginalArg(2) NPCEntity arg1, @OriginalArg(3) int[] arg2, @OriginalArg(4) int[] arg3) {
 		for (@Pc(3) int local3 = 0; local3 < arg3.length; local3++) {
 			@Pc(15) int local15 = arg3[local3];
 			@Pc(19) int local19 = arg0[local3];

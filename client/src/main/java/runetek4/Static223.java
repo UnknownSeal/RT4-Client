@@ -35,7 +35,7 @@ public final class Static223 {
 	public static final JagString aClass100_951 = Static28.parse("<col=ff7000>");
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(IIILclient!km;)V")
-	public static void method3855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) Npc arg2) {
+	public static void method3855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) NPCEntity arg2) {
 		if (arg2.anInt3369 == arg1 && arg1 != -1) {
 			@Pc(10) SeqType local10 = Static36.method941(arg1);
 			@Pc(13) int local13 = local10.anInt5347;
@@ -56,7 +56,7 @@ public final class Static223 {
 			arg2.anInt3373 = 1;
 			arg2.anInt3371 = 0;
 			arg2.anInt3420 = arg0;
-			arg2.anInt3405 = arg2.anInt3409;
+			arg2.anInt3405 = arg2.routeLength;
 			arg2.anInt3425 = 0;
 			if (arg2.anInt3369 != -1) {
 				Static152.method2836(arg2.anInt3421, Static36.method941(arg2.anInt3369), arg2.anInt3412, false, arg2.anInt3425);

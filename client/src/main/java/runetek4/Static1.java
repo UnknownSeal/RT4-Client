@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.datastruct.IterableMap;
+import runetek4.game.config.flotype.FloorOverlayType;
 
 public final class Static1 {
 
@@ -62,8 +63,8 @@ public final class Static1 {
 				local30 = arg8[local12][local17] & 0xFF;
 				local38 = arg9[local12][local17] & 0xFF;
 				if (local38 != 0) {
-					@Pc(50) FloType local50 = Static256.method4395(local38 - 1);
-					if (local50.anInt5899 == -1) {
+					@Pc(50) FloorOverlayType local50 = Static256.method4395(local38 - 1);
+					if (local50.rgb == -1) {
 						continue;
 					}
 					@Pc(61) Class3_Sub14 local61 = Static243.method4212(local10, local50);
@@ -71,7 +72,7 @@ public final class Static1 {
 					@Pc(71) int[] local71 = Static228.anIntArrayArray35[local67];
 					local61.anInt2482 += local71.length / 2;
 					local61.anInt2484++;
-					if (local50.aBoolean310 && local30 != 0) {
+					if (local50.blend && local30 != 0) {
 						local61.anInt2482 += Static80.anIntArray419[local67];
 					}
 				}
@@ -90,12 +91,12 @@ public final class Static1 {
 					local202 = arg9[local12 + 1][local17 - 1] & 0xFF;
 					local214 = arg9[local12 - 1][local17 - 1] & 0xFF;
 					local226 = arg9[local12 + 1][local17 + 1] & 0xFF;
-					@Pc(242) FloType local242;
+					@Pc(242) FloorOverlayType local242;
 					@Pc(264) byte local264;
 					@Pc(287) int local287;
 					if (local180 != 0 && local38 != local180) {
 						local242 = Static256.method4395(local180 - 1);
-						if (local242.aBoolean310 && local242.anInt5899 != -1) {
+						if (local242.blend && local242.rgb != -1) {
 							local264 = arg5[local12 - 1][local17 + 1];
 							local274 = arg7[local12 - 1][local17 + 1];
 							local287 = Static130.anIntArray300[local274 * 4 + (local264 + 2 & 0x3)];
@@ -116,7 +117,7 @@ public final class Static1 {
 					}
 					if (local214 != 0 && local214 != local38) {
 						local242 = Static256.method4395(local214 - 1);
-						if (local242.aBoolean310 && local242.anInt5899 != -1) {
+						if (local242.blend && local242.rgb != -1) {
 							local264 = arg5[local12 - 1][local17 - 1];
 							local274 = arg7[local12 - 1][local17 - 1];
 							local287 = Static130.anIntArray300[local274 * 4 + (local264 & 0x3)];
@@ -136,7 +137,7 @@ public final class Static1 {
 					}
 					if (local202 != 0 && local38 != local202) {
 						local242 = Static256.method4395(local202 - 1);
-						if (local242.aBoolean310 && local242.anInt5899 != -1) {
+						if (local242.blend && local242.rgb != -1) {
 							local264 = arg5[local12 + 1][local17 - 1];
 							local274 = arg7[local12 + 1][local17 - 1];
 							local299 = Static130.anIntArray300[local274 * 4 + (local264 + 1 & 0x3)];
@@ -156,7 +157,7 @@ public final class Static1 {
 					}
 					if (local226 != 0 && local226 != local38) {
 						local242 = Static256.method4395(local226 - 1);
-						if (local242.aBoolean310 && local242.anInt5899 != -1) {
+						if (local242.blend && local242.rgb != -1) {
 							local264 = arg5[local12 + 1][local17 + 1];
 							local274 = arg7[local12 + 1][local17 + 1];
 							local299 = Static130.anIntArray300[local274 * 4 + (local264 + 1 & 0x3)];
@@ -176,7 +177,7 @@ public final class Static1 {
 					}
 					if (local143 != 0 && local38 != local143) {
 						local242 = Static256.method4395(local143 - 1);
-						if (local242.aBoolean310 && local242.anInt5899 != -1) {
+						if (local242.blend && local242.rgb != -1) {
 							local129 = Static130.anIntArray300[arg7[local12][local17 + 1] * 4 + (arg5[local12][local17 + 1] + 2 & 0x3)];
 							for (local777 = 0; local777 < 8; local777++) {
 								if (local127 == local777) {
@@ -191,7 +192,7 @@ public final class Static1 {
 					}
 					if (local163 != 0 && local38 != local163) {
 						local242 = Static256.method4395(local163 - 1);
-						if (local242.aBoolean310 && local242.anInt5899 != -1) {
+						if (local242.blend && local242.rgb != -1) {
 							local133 = Static130.anIntArray300[(arg5[local12 - 1][local17] + 3 & 0x3) + arg7[local12 - 1][local17] * 4];
 							for (local777 = 0; local777 < 8; local777++) {
 								if (local127 == local777) {
@@ -206,7 +207,7 @@ public final class Static1 {
 					}
 					if (local153 != 0 && local38 != local153) {
 						local242 = Static256.method4395(local153 - 1);
-						if (local242.aBoolean310 && local242.anInt5899 != -1) {
+						if (local242.blend && local242.rgb != -1) {
 							local131 = Static130.anIntArray300[(arg5[local12][local17 - 1] & 0x3) + arg7[local12][local17 - 1] * 4];
 							for (local777 = 0; local777 < 8; local777++) {
 								if (local777 == local127) {
@@ -221,7 +222,7 @@ public final class Static1 {
 					}
 					if (local190 != 0 && local38 != local190) {
 						local242 = Static256.method4395(local190 - 1);
-						if (local242.aBoolean310 && local242.anInt5899 != -1) {
+						if (local242.blend && local242.rgb != -1) {
 							local168 = Static130.anIntArray300[(arg5[local12 + 1][local17] + 1 & 0x3) + arg7[local12 + 1][local17] * 4];
 							for (local777 = 0; local777 < 8; local777++) {
 								if (local127 == local777) {
@@ -240,7 +241,7 @@ public final class Static1 {
 						local1068 = Static277.aBooleanArrayArray4[local777 == local153 ? local131 : 0];
 						@Pc(1077) boolean[] local1077 = Static277.aBooleanArrayArray4[local143 == local777 ? local129 : 0];
 						local1086 = Static277.aBooleanArrayArray4[local190 == local777 ? local168 : 0];
-						@Pc(1092) FloType local1092 = Static256.method4395(local777 - 1);
+						@Pc(1092) FloorOverlayType local1092 = Static256.method4395(local777 - 1);
 						@Pc(1097) Class3_Sub14 local1097 = Static243.method4212(local10, local1092);
 						local1097.anInt2482 += 5;
 						local1097.anInt2482 += local1077.length - 2;
@@ -268,18 +269,18 @@ public final class Static1 {
 					local30 = arg3;
 				}
 				if (local127 != 0) {
-					@Pc(1250) FloType local1250 = Static256.method4395(local127 - 1);
-					if (local1250.anInt5899 == -1) {
+					@Pc(1250) FloorOverlayType local1250 = Static256.method4395(local127 - 1);
+					if (local1250.rgb == -1) {
 						continue;
 					}
 					@Pc(1261) Class3_Sub14 local1261 = Static243.method4212(local10, local1250);
 					@Pc(1267) byte local1267 = arg7[local12][local17];
 					@Pc(1273) byte local1273 = arg5[local12][local17];
-					local168 = Static19.method588(local1250.anInt5892, local1250.anInt5899, arg6[local12][local17]);
-					local143 = Static19.method588(local1250.anInt5892, local1250.anInt5899, arg6[local12 + 1][local17]);
-					local163 = Static19.method588(local1250.anInt5892, local1250.anInt5899, arg6[local12 + 1][local17 + 1]);
-					local153 = Static19.method588(local1250.anInt5892, local1250.anInt5899, arg6[local12][local17 + 1]);
-					Static58.method1324(local168, arg2, arg1, local12, arg0, local143, local1273, local30, local163, local38 != 0 && local1250.aBoolean310, local1267, local17, arg4, local153, local1261);
+					local168 = Static19.method588(local1250.material, local1250.rgb, arg6[local12][local17]);
+					local143 = Static19.method588(local1250.material, local1250.rgb, arg6[local12 + 1][local17]);
+					local163 = Static19.method588(local1250.material, local1250.rgb, arg6[local12 + 1][local17 + 1]);
+					local153 = Static19.method588(local1250.material, local1250.rgb, arg6[local12][local17 + 1]);
+					Static58.method1324(local168, arg2, arg1, local12, arg0, local143, local1273, local30, local163, local38 != 0 && local1250.blend, local1267, local17, arg4, local153, local1261);
 				}
 				if ((arg8[local12][local17] & 0xFF) != 0 || local127 != 0 && arg7[local12][local17] == 0) {
 					@Pc(1382) int[] local1382 = new int[8];
@@ -297,13 +298,13 @@ public final class Static1 {
 					local226 = arg9[local12 + 1][local17 - 1] & 0xFF;
 					local1035 = arg9[local12 + 1][local17 + 1] & 0xFF;
 					@Pc(1527) byte local1527;
-					@Pc(1496) FloType local1496;
+					@Pc(1496) FloorOverlayType local1496;
 					@Pc(1571) int local1571;
 					if (local214 == 0 || local214 == local127) {
 						local214 = 0;
 					} else {
 						local1496 = Static256.method4395(local214 - 1);
-						if (local1496.aBoolean310 && local1496.anInt5899 != -1) {
+						if (local1496.blend && local1496.rgb != -1) {
 							local274 = arg5[local12 - 1][local17 + 1];
 							local1527 = arg7[local12 - 1][local17 + 1];
 							local299 = Static130.anIntArray300[local1527 * 4 + (local274 + 2 & 0x3)];
@@ -330,7 +331,7 @@ public final class Static1 {
 						local202 = 0;
 					} else {
 						local1496 = Static256.method4395(local202 - 1);
-						if (local1496.aBoolean310 && local1496.anInt5899 != -1) {
+						if (local1496.blend && local1496.rgb != -1) {
 							local274 = arg5[local12 - 1][local17 - 1];
 							local1527 = arg7[local12 - 1][local17 - 1];
 							local299 = Static130.anIntArray300[(local274 & 0x3) + local1527 * 4];
@@ -356,7 +357,7 @@ public final class Static1 {
 						local226 = 0;
 					} else {
 						local1496 = Static256.method4395(local226 - 1);
-						if (local1496.aBoolean310 && local1496.anInt5899 != -1) {
+						if (local1496.blend && local1496.rgb != -1) {
 							local274 = arg5[local12 + 1][local17 - 1];
 							local1527 = arg7[local12 + 1][local17 - 1];
 							local317 = Static130.anIntArray300[(local274 + 1 & 0x3) + local1527 * 4];
@@ -382,7 +383,7 @@ public final class Static1 {
 						local1035 = 0;
 					} else {
 						local1496 = Static256.method4395(local1035 - 1);
-						if (local1496.aBoolean310 && local1496.anInt5899 != -1) {
+						if (local1496.blend && local1496.rgb != -1) {
 							local1527 = arg7[local12 + 1][local17 + 1];
 							local274 = arg5[local12 + 1][local17 + 1];
 							local299 = Static130.anIntArray300[(local274 + 2 & 0x3) + local1527 * 4];
@@ -407,7 +408,7 @@ public final class Static1 {
 					@Pc(2003) int local2003;
 					if (local163 != 0 && local163 != local127) {
 						local1496 = Static256.method4395(local163 - 1);
-						if (local1496.aBoolean310 && local1496.anInt5899 != -1) {
+						if (local1496.blend && local1496.rgb != -1) {
 							local133 = Static130.anIntArray300[arg7[local12][local17 + 1] * 4 + (arg5[local12][local17 + 1] + 2 & 0x3)];
 							for (local2003 = 0; local2003 < 8; local2003++) {
 								if (local2003 == local1386) {
@@ -422,7 +423,7 @@ public final class Static1 {
 					}
 					if (local153 != 0 && local127 != local153) {
 						local1496 = Static256.method4395(local153 - 1);
-						if (local1496.aBoolean310 && local1496.anInt5899 != -1) {
+						if (local1496.blend && local1496.rgb != -1) {
 							local131 = Static130.anIntArray300[(arg5[local12 - 1][local17] + 3 & 0x3) + arg7[local12 - 1][local17] * 4];
 							for (local2003 = 0; local2003 < 8; local2003++) {
 								if (local1386 == local2003) {
@@ -437,7 +438,7 @@ public final class Static1 {
 					}
 					if (local190 != 0 && local190 != local127) {
 						local1496 = Static256.method4395(local190 - 1);
-						if (local1496.aBoolean310 && local1496.anInt5899 != -1) {
+						if (local1496.blend && local1496.rgb != -1) {
 							local168 = Static130.anIntArray300[(arg5[local12][local17 - 1] & 0x3) + arg7[local12][local17 - 1] * 4];
 							for (local2003 = 0; local2003 < 8; local2003++) {
 								if (local1386 == local2003) {
@@ -452,7 +453,7 @@ public final class Static1 {
 					}
 					if (local180 != 0 && local180 != local127) {
 						local1496 = Static256.method4395(local180 - 1);
-						if (local1496.aBoolean310 && local1496.anInt5899 != -1) {
+						if (local1496.blend && local1496.rgb != -1) {
 							local143 = Static130.anIntArray300[arg7[local12 + 1][local17] * 4 + (arg5[local12 + 1][local17] + 1 & 0x3)];
 							for (local2003 = 0; local2003 < 8; local2003++) {
 								if (local2003 == local1386) {
@@ -471,12 +472,12 @@ public final class Static1 {
 						local1068 = Static277.aBooleanArrayArray4[local153 == local2003 ? local131 : 0];
 						local1086 = Static277.aBooleanArrayArray4[local2003 == local190 ? local168 : 0];
 						@Pc(2318) boolean[] local2318 = Static277.aBooleanArrayArray4[local2003 == local180 ? local143 : 0];
-						@Pc(2324) FloType local2324 = Static256.method4395(local2003 - 1);
+						@Pc(2324) FloorOverlayType local2324 = Static256.method4395(local2003 - 1);
 						@Pc(2329) Class3_Sub14 local2329 = Static243.method4212(local10, local2324);
-						@Pc(2345) int local2345 = Static19.method588(local2324.anInt5892, local2324.anInt5899, arg6[local12][local17]) << 8 | 0xFF;
-						@Pc(2365) int local2365 = Static19.method588(local2324.anInt5892, local2324.anInt5899, arg6[local12 + 1][local17]) << 8 | 0xFF;
-						@Pc(2385) int local2385 = Static19.method588(local2324.anInt5892, local2324.anInt5899, arg6[local12 + 1][local17 + 1]) << 8 | 0xFF;
-						@Pc(2403) int local2403 = Static19.method588(local2324.anInt5892, local2324.anInt5899, arg6[local12][local17 + 1]) << 8 | 0xFF;
+						@Pc(2345) int local2345 = Static19.method588(local2324.material, local2324.rgb, arg6[local12][local17]) << 8 | 0xFF;
+						@Pc(2365) int local2365 = Static19.method588(local2324.material, local2324.rgb, arg6[local12 + 1][local17]) << 8 | 0xFF;
+						@Pc(2385) int local2385 = Static19.method588(local2324.material, local2324.rgb, arg6[local12 + 1][local17 + 1]) << 8 | 0xFF;
+						@Pc(2403) int local2403 = Static19.method588(local2324.material, local2324.rgb, arg6[local12][local17 + 1]) << 8 | 0xFF;
 						@Pc(2422) boolean local2422 = local2003 != local202 && local1086[0] && local1068[1];
 						@Pc(2441) boolean local2441 = local2003 != local1035 && local1055[0] && local2318[1];
 						@Pc(2456) boolean local2456 = local214 != local2003 && local1068[0] && local1055[1];

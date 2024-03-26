@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.config.objtype.ObjType;
 
 public final class Static155 {
 
@@ -38,8 +39,8 @@ public final class Static155 {
 		@Pc(12) JagString local12 = arg1.toLowerCase();
 		@Pc(14) int local14 = 0;
 		for (@Pc(16) int local16 = 0; local16 < Static170.anInt3245; local16++) {
-			@Pc(27) ObjType local27 = Static71.method1439(local16);
-			if ((!arg0 || local27.aBoolean132) && local27.anInt2358 == -1 && local27.anInt2334 == -1 && local27.anInt2370 == 0 && local27.aClass100_495.toLowerCase().indexOf(local12) != -1) {
+			@Pc(27) ObjType local27 = Static71.get(local16);
+			if ((!arg0 || local27.stockmarket) && local27.certtemplate == -1 && local27.lenttemplate == -1 && local27.dummyitem == 0 && local27.name.toLowerCase().indexOf(local12) != -1) {
 				if (local14 >= 250) {
 					Static169.aShortArray52 = null;
 					Static111.anInt2905 = -1;
@@ -60,7 +61,7 @@ public final class Static155 {
 		Static111.anInt2905 = local14;
 		@Pc(117) JagString[] local117 = new JagString[Static111.anInt2905];
 		for (@Pc(119) int local119 = 0; local119 < Static111.anInt2905; local119++) {
-			local117[local119] = Static71.method1439(local8[local119]).aClass100_495;
+			local117[local119] = Static71.get(local8[local119]).name;
 		}
 		Static202.method3656(local117, Static169.aShortArray52);
 	}

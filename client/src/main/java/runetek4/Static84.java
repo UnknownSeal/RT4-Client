@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.io.Packet;
+import runetek4.game.world.entity.Player;
 
 public final class Static84 {
 
@@ -42,7 +43,7 @@ public final class Static84 {
 			@Pc(21) int local21 = Static57.aClass3_Sub15_Sub1_3.g1();
 			local24 = Static57.aClass3_Sub15_Sub1_3.pos;
 			@Pc(35) boolean local35 = (local13 & 0x8000) != 0;
-			if (arg2.aClass100_364 != null && arg2.aClass59_1 != null) {
+			if (arg2.aClass100_364 != null && arg2.model != null) {
 				@Pc(48) long local48 = arg2.aClass100_364.encode37();
 				@Pc(50) boolean local50 = false;
 				if (local17 <= 1) {
@@ -123,7 +124,7 @@ public final class Static84 {
 			arg2.anInt3395 = Static57.aClass3_Sub15_Sub1_3.g2le() + Static83.anInt372;
 			arg2.anInt3386 = Static57.aClass3_Sub15_Sub1_3.g2le() + Static83.anInt372;
 			arg2.anInt3431 = Static57.aClass3_Sub15_Sub1_3.p1neg();
-			arg2.anInt3409 = 1;
+			arg2.routeLength = 1;
 			arg2.anInt3405 = 0;
 		}
 		if ((arg0 & 0x20) != 0) {

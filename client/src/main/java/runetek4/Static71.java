@@ -4,6 +4,8 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.io.Packet;
+import runetek4.game.config.objtype.ObjType;
+import runetek4.game.world.entity.Player;
 
 public final class Static71 {
 
@@ -25,34 +27,35 @@ public final class Static71 {
 	@OriginalMember(owner = "runetek4.client!fk", name = "k", descriptor = "[I")
 	public static final int[] anIntArray147 = new int[14];
 
-	@OriginalMember(owner = "runetek4.client!fk", name = "a", descriptor = "(IB)Lclient!h;")
-	public static ObjType method1439(@OriginalArg(0) int arg0) {
-		@Pc(6) ObjType local6 = (ObjType) Static27.aClass99_4.method3106((long) arg0);
-		if (local6 != null) {
-			return local6;
+	@OriginalMember(owner = "client!fk", name = "a", descriptor = "(IB)Lclient!h;")
+	public static ObjType get(@OriginalArg(0) int id) {
+		@Pc(6) ObjType objType = (ObjType) Static27.aClass99_4.method3106((long) id);
+		if (objType != null) {
+			return objType;
 		}
-		@Pc(25) byte[] local25 = Static167.aClass153_61.method4495(Static18.method554(arg0), Static247.method4247(arg0));
-		local6 = new ObjType();
-		local6.anInt2354 = arg0;
-		if (local25 != null) {
-			local6.method1827(new Packet(local25));
+		@Pc(25) byte[] bytes = Static167.aClass153_61.method4495(Static18.method554(id), Static247.method4247(id));
+		objType = new ObjType();
+		objType.anInt2354 = id;
+		if (bytes != null) {
+			objType.decode(new Packet(bytes));
 		}
-		local6.method1826();
-		if (local6.anInt2358 != -1) {
-			local6.method1832(method1439(local6.anInt2356), method1439(local6.anInt2358));
+		objType.postDecode();
+
+		if (objType.certtemplate != -1) {
+			objType.genCert(get(objType.certtemplate), get(objType.certlink));
 		}
-		if (local6.anInt2334 != -1) {
-			local6.method1823(method1439(local6.anInt2363), method1439(local6.anInt2334));
+		if (objType.lenttemplate != -1) {
+			objType.genLent(get(objType.lenttemplate), get(objType.lentlink));
 		}
-		if (!Static240.aBoolean276 && local6.aBoolean131) {
-			local6.aClass100_495 = LocalizedText.MEMBERS_OBJECT;
-			local6.anInt2351 = 0;
-			local6.aClass100Array71 = Static143.aClass100Array104;
-			local6.aBoolean132 = false;
-			local6.aClass100Array72 = Static269.aClass100Array87;
+		if (!Static240.aBoolean276 && objType.members) {
+			objType.name = LocalizedText.MEMBERS_OBJECT;
+			objType.team = 0;
+			objType.iops = Static143.aClass100Array104;
+			objType.stockmarket = false;
+			objType.ops = Static269.aClass100Array87;
 		}
-		Static27.aClass99_4.method3095(local6, (long) arg0);
-		return local6;
+		Static27.aClass99_4.method3095(objType, (long) id);
+		return objType;
 	}
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "a", descriptor = "(B)V")
@@ -82,7 +85,7 @@ public final class Static71 {
 			}
 			@Pc(31) Player local31 = Static159.aClass8_Sub4_Sub1Array1[local21];
 			if (local31 != null) {
-				Static263.method4514(local31.method2693(), local31);
+				Static263.method4514(local31.size(), local31);
 			}
 		}
 	}

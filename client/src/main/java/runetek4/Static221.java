@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.config.flotype.FloorOverlayType;
 
 public final class Static221 {
 
@@ -114,7 +115,7 @@ public final class Static221 {
 						@Pc(125) int local125 = arg1[local114][local72] & 0xFF;
 						local133 = arg8[local114][local72] & 0xFF;
 						@Pc(135) boolean local135 = false;
-						@Pc(151) FloType local151;
+						@Pc(151) FloorOverlayType local151;
 						@Pc(176) int[] local176;
 						@Pc(234) int[] local234;
 						if (local125 == 0) {
@@ -122,7 +123,7 @@ public final class Static221 {
 								continue;
 							}
 							local151 = Static256.method4395(local133 - 1);
-							if (local151.anInt5899 == -1) {
+							if (local151.rgb == -1) {
 								continue;
 							}
 							if (arg7[local114][local72] != 0) {
@@ -134,7 +135,7 @@ public final class Static221 {
 						} else if (local133 != 0) {
 							local151 = Static256.method4395(local133 - 1);
 							@Pc(224) byte local224;
-							if (local151.anInt5899 == -1) {
+							if (local151.rgb == -1) {
 								local224 = arg7[local114][local72];
 								if (local224 != 0) {
 									local234 = Static53.anIntArrayArray8[local224];
@@ -244,13 +245,13 @@ public final class Static221 {
 						local133 = arg1[local114][local72] & 0xFF;
 						@Pc(789) byte local789 = arg2[local114][local72];
 						@Pc(791) boolean local791 = false;
-						@Pc(805) FloType local805;
+						@Pc(805) FloorOverlayType local805;
 						if (local133 == 0) {
 							if (local775 == 0) {
 								continue;
 							}
 							local805 = Static256.method4395(local775 - 1);
-							if (local805.anInt5899 == -1) {
+							if (local805.rgb == -1) {
 								continue;
 							}
 							if (arg7[local114][local72] != 0) {
@@ -259,7 +260,7 @@ public final class Static221 {
 							}
 						} else if (local775 != 0) {
 							local805 = Static256.method4395(local775 - 1);
-							if (local805.anInt5899 == -1) {
+							if (local805.rgb == -1) {
 								Static131.method2578(arg0, arg9, local114, arg6, local72, Static53.anIntArrayArray8[arg7[local114][local72]], local28, local18, arg10, arg2[local114][local72]);
 								continue;
 							}

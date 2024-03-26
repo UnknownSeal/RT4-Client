@@ -61,7 +61,7 @@ public final class Static125 {
 		return local10;
 	}
 
-	@OriginalMember(owner = "runetek4.client!jl", name = "c", descriptor = "(I)V")
+	@OriginalMember(owner = "client!jl", name = "c", descriptor = "(I)V")
 	public static void method2450() {
 		@Pc(9) int local9 = Static248.anInt4232 * 128 + 64;
 		@Pc(15) int local15 = Static245.anInt5375 * 128 + 64;

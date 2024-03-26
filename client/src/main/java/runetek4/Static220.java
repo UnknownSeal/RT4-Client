@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.config.objtype.ObjType;
 
 public final class Static220 {
 
@@ -29,9 +30,9 @@ public final class Static220 {
 		@Pc(30) ObjStackNode local30 = null;
 		@Pc(35) ObjStackNode local35;
 		for (local35 = (ObjStackNode) local9.method2289(); local35 != null; local35 = (ObjStackNode) local9.method2288()) {
-			@Pc(44) ObjType local44 = Static71.method1439(local35.aClass8_Sub7_1.anInt5555);
-			@Pc(47) int local47 = local44.anInt2325;
-			if (local44.anInt2336 == 1) {
+			@Pc(44) ObjType local44 = Static71.get(local35.aClass8_Sub7_1.anInt5555);
+			@Pc(47) int local47 = local44.cost;
+			if (local44.stackable == 1) {
 				local47 *= local35.aClass8_Sub7_1.anInt5550 + 1;
 			}
 			if (local28 < local47) {

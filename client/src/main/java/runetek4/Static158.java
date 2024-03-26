@@ -5,6 +5,7 @@ import java.net.Socket;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.io.Packet;
+import runetek4.game.config.npctype.NPCType;
 
 public final class Static158 {
 
@@ -159,21 +160,21 @@ public final class Static158 {
 					@Pc(125) int local125 = local113 + (Static238.anIntArray470[local16] >> 8) * 64 - Static225.originX;
 					@Pc(129) int local129 = local103 & 0x3F;
 					@Pc(142) int local142 = local129 + (Static238.anIntArray470[local16] & 0xFF) * 64 - Static142.originZ;
-					@Pc(148) NpcType local148 = Static214.method4363(local74.g2());
-					if (Static175.aClass8_Sub4_Sub2Array1[local97] == null && (local148.aByte10 & 0x1) > 0 && local107 == Static41.anInt1316 && local125 >= 0 && local148.anInt3713 + local125 < 104 && local142 >= 0 && local142 + local148.anInt3713 < 104) {
-						Static175.aClass8_Sub4_Sub2Array1[local97] = new Npc();
-						@Pc(198) Npc local198 = Static175.aClass8_Sub4_Sub2Array1[local97];
+					@Pc(148) NPCType local148 = Static214.method4363(local74.g2());
+					if (Static175.aClass8_Sub4_Sub2Array1[local97] == null && (local148.walkflags & 0x1) > 0 && local107 == Static41.anInt1316 && local125 >= 0 && local148.size + local125 < 104 && local142 >= 0 && local142 + local148.size < 104) {
+						Static175.aClass8_Sub4_Sub2Array1[local97] = new NPCEntity();
+						@Pc(198) NPCEntity local198 = Static175.aClass8_Sub4_Sub2Array1[local97];
 						Static33.anIntArray79[Static272.anInt5214++] = local97;
 						local198.anInt3430 = Static83.anInt372;
 						local198.method2698(local148);
-						local198.method2692(local198.aClass96_1.anInt3713);
-						local198.anInt3400 = local198.anInt3381 = Static56.anIntArray141[local198.aClass96_1.aByte11];
-						local198.anInt3376 = local198.aClass96_1.anInt3733;
+						local198.setSize(local198.npcType.size);
+						local198.anInt3400 = local198.anInt3381 = Static56.anIntArray141[local198.npcType.respawndir];
+						local198.anInt3376 = local198.npcType.turnspeed;
 						if (local198.anInt3376 == 0) {
 							local198.anInt3381 = 0;
 						}
-						local198.anInt3365 = local198.aClass96_1.anInt3737;
-						local198.method2683(local198.method2693(), local125, local142, true);
+						local198.anInt3365 = local198.npcType.bas;
+						local198.method2683(local198.size(), local125, local142, true);
 					}
 				}
 			}

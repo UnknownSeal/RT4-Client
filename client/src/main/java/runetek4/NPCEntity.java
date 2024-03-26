@@ -4,12 +4,13 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.config.npctype.NPCType;
 
 @OriginalClass("runetek4.client!km")
-public final class Npc extends PathingEntity {
+public final class NPCEntity extends PathingEntity {
 
 	@OriginalMember(owner = "runetek4.client!km", name = "rc", descriptor = "Lclient!me;")
-	public NpcType aClass96_1;
+	public NPCType npcType;
 
 	@OriginalMember(owner = "runetek4.client!km", name = "finalize", descriptor = "()V")
 	@Override
@@ -25,23 +26,23 @@ public final class Npc extends PathingEntity {
 	@OriginalMember(owner = "runetek4.client!km", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
 	public final void method4546(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
-		if (this.aClass96_1 == null) {
+		if (this.npcType == null) {
 			return;
 		}
 		@Pc(29) SeqType local29 = this.anInt3369 != -1 && this.anInt3420 == 0 ? Static36.method941(this.anInt3369) : null;
 		@Pc(53) SeqType local53 = this.anInt3366 == -1 || this.anInt3366 == this.method2681().anInt1037 && local29 != null ? null : Static36.method941(this.anInt3366);
-		@Pc(74) Model local74 = this.aClass96_1.method2937(this.aClass147Array3, this.anInt3388, this.anInt3407, this.anInt3373, this.anInt3360, this.anInt3425, local53, this.anInt3396, local29);
+		@Pc(74) Model local74 = this.npcType.method2937(this.aClass147Array3, this.anInt3388, this.anInt3407, this.anInt3373, this.anInt3360, this.anInt3425, local53, this.anInt3396, local29);
 		if (local74 == null) {
 			return;
 		}
 		this.anInt3413 = local74.method4549();
-		@Pc(84) NpcType local84 = this.aClass96_1;
-		if (local84.anIntArray357 != null) {
+		@Pc(84) NPCType local84 = this.npcType;
+		if (local84.multinpc != null) {
 			local84 = local84.method2932();
 		}
 		@Pc(140) Model local140;
-		if (Static209.aBoolean240 && local84.aBoolean180) {
-			local140 = Static41.method1043(this.aClass96_1.aByte13, this.aBoolean171, local53 == null ? local29 : local53, this.anInt3412, this.aClass96_1.aShort23, this.anInt3421, this.aClass96_1.aShort24, this.aClass96_1.anInt3713, local74, arg0, local53 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, this.aClass96_1.aByte12);
+		if (Static209.aBoolean240 && local84.spotshadow) {
+			local140 = Static41.method1043(this.npcType.spotshadowtrans_1, this.aBoolean171, local53 == null ? local29 : local53, this.anInt3412, this.npcType.spotshadowcolour_2, this.anInt3421, this.npcType.spotshadowcolour_1, this.npcType.size, local74, arg0, local53 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, this.npcType.spotshadowtrans_2);
 			if (GlRenderer.enabled) {
 				@Pc(144) float local144 = GlRenderer.method4179();
 				@Pc(146) float local146 = GlRenderer.method4166();
@@ -79,18 +80,18 @@ public final class Npc extends PathingEntity {
 			if (local140 != null) {
 				local74 = ((SoftwareModel) local74).method4588(local140);
 			}
-			if (this.aClass96_1.anInt3713 == 1) {
+			if (this.npcType.size == 1) {
 				local74.aBoolean303 = true;
 			}
 			local74.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 			return;
 		}
-		if (this.aClass96_1.anInt3713 == 1) {
+		if (this.npcType.size == 1) {
 			local74.aBoolean303 = true;
 		}
 		local74.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 		if (local140 != null) {
-			if (this.aClass96_1.anInt3713 == 1) {
+			if (this.npcType.size == 1) {
 				local140.aBoolean303 = true;
 			}
 			local140.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
@@ -100,10 +101,10 @@ public final class Npc extends PathingEntity {
 	@OriginalMember(owner = "runetek4.client!km", name = "b", descriptor = "(I)I")
 	@Override
 	protected final int method2688() {
-		if (Static266.game != 0 && this.aClass96_1.anIntArray357 != null) {
-			@Pc(17) NpcType local17 = this.aClass96_1.method2932();
-			if (local17 != null && local17.anInt3737 != -1) {
-				return local17.anInt3737;
+		if (Static266.game != 0 && this.npcType.multinpc != null) {
+			@Pc(17) NPCType local17 = this.npcType.method2932();
+			if (local17 != null && local17.bas != -1) {
+				return local17.bas;
 			}
 		}
 		return this.anInt3365;
@@ -112,7 +113,7 @@ public final class Npc extends PathingEntity {
 	@OriginalMember(owner = "runetek4.client!km", name = "a", descriptor = "(IIIII)V")
 	@Override
 	public final void method4545(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
-		if (this.aClass96_1 == null) {
+		if (this.npcType == null) {
 			;
 		}
 	}
@@ -120,12 +121,12 @@ public final class Npc extends PathingEntity {
 	@OriginalMember(owner = "runetek4.client!km", name = "a", descriptor = "(B)Z")
 	@Override
 	public final boolean method2682() {
-		return this.aClass96_1 != null;
+		return this.npcType != null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!km", name = "a", descriptor = "(ILclient!me;)V")
-	public final void method2698(@OriginalArg(1) NpcType arg0) {
-		this.aClass96_1 = arg0;
+	public final void method2698(@OriginalArg(1) NPCType arg0) {
+		this.npcType = arg0;
 		if (this.aClass47_Sub1_5 != null) {
 			this.aClass47_Sub1_5.method1646();
 		}

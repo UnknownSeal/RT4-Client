@@ -73,9 +73,9 @@ public final class Static110 {
 				local6.anInt2038 = local37;
 			}
 			local6.anInt2041 = local6.aClass8_Sub4_Sub2_1.anInt3412;
-			local6.anInt2037 = local6.aClass8_Sub4_Sub2_1.anInt3412 + local6.aClass8_Sub4_Sub2_1.method2693() * 64;
+			local6.anInt2037 = local6.aClass8_Sub4_Sub2_1.anInt3412 + local6.aClass8_Sub4_Sub2_1.size() * 64;
 			local6.anInt2029 = local6.aClass8_Sub4_Sub2_1.anInt3421;
-			local6.anInt2028 = local6.aClass8_Sub4_Sub2_1.anInt3421 + local6.aClass8_Sub4_Sub2_1.method2693() * 64;
+			local6.anInt2028 = local6.aClass8_Sub4_Sub2_1.anInt3421 + local6.aClass8_Sub4_Sub2_1.size() * 64;
 			Static150.method2804(arg1, local6, arg3, arg0, arg2);
 		}
 		for (local6 = (AreaSound) Static93.aClass133_7.peekFront(); local6 != null; local6 = (AreaSound) Static93.aClass133_7.prev()) {
@@ -100,9 +100,9 @@ public final class Static110 {
 				local6.anInt2038 = local37;
 			}
 			local6.anInt2041 = local6.aClass8_Sub4_Sub1_1.anInt3412;
-			local6.anInt2037 = local6.aClass8_Sub4_Sub1_1.anInt3412 + local6.aClass8_Sub4_Sub1_1.method2693() * 64;
+			local6.anInt2037 = local6.aClass8_Sub4_Sub1_1.anInt3412 + local6.aClass8_Sub4_Sub1_1.size() * 64;
 			local6.anInt2029 = local6.aClass8_Sub4_Sub1_1.anInt3421;
-			local6.anInt2028 = local6.aClass8_Sub4_Sub1_1.anInt3421 + local6.aClass8_Sub4_Sub1_1.method2693() * 64;
+			local6.anInt2028 = local6.aClass8_Sub4_Sub1_1.anInt3421 + local6.aClass8_Sub4_Sub1_1.size() * 64;
 			Static150.method2804(arg1, local6, arg3, arg0, arg2);
 		}
 	}

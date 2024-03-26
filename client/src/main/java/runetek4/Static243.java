@@ -4,6 +4,8 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.datastruct.IterableMap;
+import runetek4.game.config.flotype.FloorOverlayType;
+import runetek4.game.world.entity.Player;
 
 public final class Static243 {
 
@@ -29,11 +31,11 @@ public final class Static243 {
 	public static int[] anIntArray476 = new int[2];
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "a", descriptor = "(Lclient!sc;ZLclient!wl;)Lclient!hg;")
-	public static Class3_Sub14 method4212(@OriginalArg(0) IterableMap arg0, @OriginalArg(2) FloType arg1) {
-		@Pc(23) long local23 = (long) ((arg1.anInt5892 + 1 << 16) + arg1.anInt5885) + ((long) arg1.anInt5897 << 56) + ((long) arg1.anInt5889 << 32);
+	public static Class3_Sub14 method4212(@OriginalArg(0) IterableMap arg0, @OriginalArg(2) FloorOverlayType arg1) {
+		@Pc(23) long local23 = (long) ((arg1.material + 1 << 16) + arg1.materialscale) + ((long) arg1.priority << 56) + ((long) arg1.waterfogcolour << 32);
 		@Pc(38) Class3_Sub14 local38 = (Class3_Sub14) arg0.getNode(local23);
 		if (local38 == null) {
-			local38 = new Class3_Sub14(arg1.anInt5892, (float) arg1.anInt5885, true, false, arg1.anInt5889);
+			local38 = new Class3_Sub14(arg1.material, (float) arg1.materialscale, true, false, arg1.waterfogcolour);
 			arg0.pushNode(local38, local23);
 		}
 		return local38;

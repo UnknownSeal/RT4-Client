@@ -5,6 +5,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.io.Packet;
 import runetek4.game.config.invtype.InvType;
+import runetek4.game.config.npctype.NPCType;
 
 public final class Static246 {
 
@@ -41,30 +42,30 @@ public final class Static246 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(Lclient!me;IIII)V")
-	public static void method4240(@OriginalArg(0) NpcType arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+	public static void method4240(@OriginalArg(0) NPCType npcType, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		if (Static231.anInt5204 >= 400) {
 			return;
 		}
-		if (arg0.anIntArray357 != null) {
-			arg0 = arg0.method2932();
+		if (npcType.multinpc != null) {
+			npcType = npcType.method2932();
 		}
-		if (arg0 == null || !arg0.aBoolean183) {
+		if (npcType == null || !npcType.active) {
 			return;
 		}
-		@Pc(35) JagString local35 = arg0.aClass100_738;
-		if (arg0.anInt3726 != 0) {
+		@Pc(35) JagString local35 = npcType.name;
+		if (npcType.vislevel != 0) {
 			@Pc(47) JagString local47 = Static266.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
-			local35 = Static34.method882(new JagString[] { local35, Static123.method2420(arg0.anInt3726, Static173.self.anInt1652), Static123.aClass100_593, local47, Static123.method2423(arg0.anInt3726), Static72.aClass100_448 });
+			local35 = Static34.method882(new JagString[] { local35, Static123.method2420(npcType.vislevel, Static173.self.anInt1652), Static123.aClass100_593, local47, Static123.method2423(npcType.vislevel), Static72.aClass100_448 });
 		}
 		if (Static260.anInt5014 == 1) {
 			Static98.method1966(Static169.anInt4075, (long) arg2, Static34.method882(new JagString[] { Static34.aClass100_203, Static201.aClass100_407, local35 }), arg1, (short) 26, LocalizedText.USE, arg3);
 		} else if (Static241.aBoolean302) {
 			@Pc(378) Class3_Sub2_Sub12 local378 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
-			if ((Static274.anInt4999 & 0x2) != 0 && (local378 == null || arg0.method2936(Static121.anInt3039, local378.anInt2667) != local378.anInt2667)) {
+			if ((Static274.anInt4999 & 0x2) != 0 && (local378 == null || npcType.method2936(Static121.anInt3039, local378.anInt2667) != local378.anInt2667)) {
 				Static98.method1966(anInt5393, (long) arg2, Static34.method882(new JagString[] { Static78.aClass100_466, Static201.aClass100_407, local35 }), arg1, (short) 45, Static102.aClass100_545, arg3);
 			}
 		} else {
-			@Pc(129) JagString[] local129 = arg0.aClass100Array116;
+			@Pc(129) JagString[] local129 = npcType.ops;
 			if (Static208.aBoolean237) {
 				local129 = Static279.method4664(local129);
 			}
@@ -86,11 +87,11 @@ public final class Static246 {
 						if (local140 == 3) {
 							local161 = 19;
 						}
-						if (arg0.anInt3750 == local140) {
-							local176 = arg0.anInt3719;
+						if (npcType.anInt3750 == local140) {
+							local176 = npcType.anInt3719;
 						}
-						if (local140 == arg0.anInt3743) {
-							local176 = arg0.anInt3735;
+						if (local140 == npcType.anInt3743) {
+							local176 = npcType.anInt3735;
 						}
 						if (local140 == 4) {
 							local161 = 2;
@@ -103,7 +104,7 @@ public final class Static246 {
 				for (local140 = 4; local140 >= 0; local140--) {
 					if (local129[local140] != null && local129[local140].method3111(LocalizedText.ATTACK)) {
 						@Pc(271) short local271 = 0;
-						if (arg0.anInt3726 > Static173.self.anInt1652) {
+						if (npcType.vislevel > Static173.self.anInt1652) {
 							local271 = 2000;
 						}
 						@Pc(281) short local281 = 0;
@@ -125,7 +126,7 @@ public final class Static246 {
 						if (local281 != 0) {
 							local281 += local271;
 						}
-						Static98.method1966(arg0.anInt3752, (long) arg2, Static34.method882(new JagString[] { Static226.aClass100_965, local35 }), arg1, local281, local129[local140], arg3);
+						Static98.method1966(npcType.cursorattack, (long) arg2, Static34.method882(new JagString[] { Static226.aClass100_965, local35 }), arg1, local281, local129[local140], arg3);
 					}
 				}
 			}

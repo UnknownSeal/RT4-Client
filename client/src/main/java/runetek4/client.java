@@ -433,35 +433,35 @@ public final class client extends GameShell {
 		Static119.transmitTimer++;
 		if (GlRenderer.enabled) {
 			label191: for (@Pc(57) int local57 = 0; local57 < 32768; local57++) {
-				@Pc(66) Npc local66 = Static175.aClass8_Sub4_Sub2Array1[local57];
-				if (local66 != null) {
-					@Pc(73) byte local73 = local66.aClass96_1.aByte10;
-					if ((local73 & 0x2) > 0 && local66.anInt3409 == 0 && Math.random() * 1000.0D < 10.0D) {
+				@Pc(66) NPCEntity npcEntity = Static175.aClass8_Sub4_Sub2Array1[local57];
+				if (npcEntity != null) {
+					@Pc(73) byte walkflags = npcEntity.npcType.walkflags;
+					if ((walkflags & 0x2) > 0 && npcEntity.routeLength == 0 && Math.random() * 1000.0D < 10.0D) {
 						@Pc(98) int local98 = (int) Math.round(Math.random() * 2.0D - 1.0D);
 						@Pc(106) int local106 = (int) Math.round(Math.random() * 2.0D - 1.0D);
 						if (local98 != 0 || local106 != 0) {
-							local66.aByteArray48[0] = 1;
-							local66.movementQueueX[0] = local98 + (local66.anInt3412 >> 7);
-							local66.movementQueueZ[0] = local106 + (local66.anInt3421 >> 7);
-							Static148.aClass97Array1[Static55.level].method3056(local66.anInt3412 >> 7, local66.method2693(), false, 0, local66.method2693(), local66.anInt3421 >> 7);
-							if (local66.movementQueueX[0] >= 0 && local66.movementQueueX[0] <= 104 - local66.method2693() && local66.movementQueueZ[0] >= 0 && local66.movementQueueZ[0] <= 104 - local66.method2693() && Static148.aClass97Array1[Static55.level].method3054(local66.anInt3421 >> 7, local66.movementQueueZ[0], local66.movementQueueX[0], local66.anInt3412 >> 7)) {
-								if (local66.method2693() > 1) {
-									for (@Pc(226) int local226 = local66.movementQueueX[0]; local66.movementQueueX[0] + local66.method2693() > local226; local226++) {
-										for (@Pc(246) int local246 = local66.movementQueueZ[0]; local66.movementQueueZ[0] + local66.method2693() > local246; local246++) {
+							npcEntity.aByteArray48[0] = 1;
+							npcEntity.movementQueueX[0] = local98 + (npcEntity.anInt3412 >> 7);
+							npcEntity.movementQueueZ[0] = local106 + (npcEntity.anInt3421 >> 7);
+							Static148.aClass97Array1[Static55.level].method3056(npcEntity.anInt3412 >> 7, npcEntity.size(), false, 0, npcEntity.size(), npcEntity.anInt3421 >> 7);
+							if (npcEntity.movementQueueX[0] >= 0 && npcEntity.movementQueueX[0] <= 104 - npcEntity.size() && npcEntity.movementQueueZ[0] >= 0 && npcEntity.movementQueueZ[0] <= 104 - npcEntity.size() && Static148.aClass97Array1[Static55.level].method3054(npcEntity.anInt3421 >> 7, npcEntity.movementQueueZ[0], npcEntity.movementQueueX[0], npcEntity.anInt3412 >> 7)) {
+								if (npcEntity.size() > 1) {
+									for (@Pc(226) int local226 = npcEntity.movementQueueX[0]; npcEntity.movementQueueX[0] + npcEntity.size() > local226; local226++) {
+										for (@Pc(246) int local246 = npcEntity.movementQueueZ[0]; npcEntity.movementQueueZ[0] + npcEntity.size() > local246; local246++) {
 											if ((Static148.aClass97Array1[Static55.level].anIntArrayArray30[local226][local246] & 0x12401FF) != 0) {
 												continue label191;
 											}
 										}
 									}
 								}
-								local66.anInt3409 = 1;
+								npcEntity.routeLength = 1;
 							}
 						}
 					}
-					Static104.method2247(local66);
-					Static37.method949(local66);
-					Static34.method879(local66);
-					Static148.aClass97Array1[Static55.level].method3043(local66.anInt3412 >> 7, false, local66.anInt3421 >> 7, local66.method2693(), local66.method2693());
+					Static104.method2247(npcEntity);
+					Static37.method949(npcEntity);
+					Static34.method879(npcEntity);
+					Static148.aClass97Array1[Static55.level].method3043(npcEntity.anInt3412 >> 7, false, npcEntity.anInt3421 >> 7, npcEntity.size(), npcEntity.size());
 				}
 			}
 		}

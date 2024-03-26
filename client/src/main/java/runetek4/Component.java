@@ -5,6 +5,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.core.io.Packet;
+import runetek4.game.config.objtype.ObjType;
 
 @OriginalClass("runetek4.client!be")
 public final class Component {
@@ -885,7 +886,7 @@ public final class Component {
 					return local61;
 				}
 			} else if (local10 == 4) {
-				@Pc(164) ObjType local164 = Static71.method1439(local13);
+				@Pc(164) ObjType local164 = Static71.get(local13);
 				@Pc(173) Model local173 = local164.method1824(arg0, arg3, arg1, 10, arg2);
 				if (local173 == null) {
 					Static211.aBoolean72 = true;

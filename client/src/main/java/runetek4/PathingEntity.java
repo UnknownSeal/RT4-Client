@@ -165,7 +165,7 @@ public abstract class PathingEntity extends Entity {
 	protected int anInt3413 = -32768;
 
 	@OriginalMember(owner = "runetek4.client!fe", name = "Nb", descriptor = "I")
-	public int anInt3409 = 0;
+	public int routeLength = 0;
 
 	@OriginalMember(owner = "runetek4.client!fe", name = "Zb", descriptor = "I")
 	public int anInt3420 = 0;
@@ -219,7 +219,7 @@ public abstract class PathingEntity extends Entity {
 	private int anInt3427 = 0;
 
 	@OriginalMember(owner = "runetek4.client!fe", name = "Tb", descriptor = "I")
-	private int anInt3415 = 1;
+	private int size = 1;
 
 	@OriginalMember(owner = "runetek4.client!fe", name = "Kb", descriptor = "I")
 	public int anInt3407 = 0;
@@ -274,10 +274,10 @@ public abstract class PathingEntity extends Entity {
 			@Pc(32) int local32 = arg1 - this.movementQueueX[0];
 			@Pc(40) int local40 = arg2 - this.movementQueueZ[0];
 			if (local32 >= -8 && local32 <= 8 && local40 >= -8 && local40 <= 8) {
-				if (this.anInt3409 < 9) {
-					this.anInt3409++;
+				if (this.routeLength < 9) {
+					this.routeLength++;
 				}
-				for (@Pc(72) int local72 = this.anInt3409; local72 > 0; local72--) {
+				for (@Pc(72) int local72 = this.routeLength; local72 > 0; local72--) {
 					this.movementQueueX[local72] = this.movementQueueX[local72 - 1];
 					this.movementQueueZ[local72] = this.movementQueueZ[local72 - 1];
 					this.aByteArray48[local72] = this.aByteArray48[local72 - 1];
@@ -291,7 +291,7 @@ public abstract class PathingEntity extends Entity {
 		this.anInt3417 = 0;
 		this.movementQueueX[0] = arg1;
 		this.movementQueueZ[0] = arg2;
-		this.anInt3409 = 0;
+		this.routeLength = 0;
 		this.anInt3405 = 0;
 		this.anInt3421 = arg0 * 64 + this.movementQueueZ[0] * 128;
 		this.anInt3412 = arg0 * 64 + this.movementQueueX[0] * 128;
@@ -311,10 +311,10 @@ public abstract class PathingEntity extends Entity {
 		if (this.anInt3369 != -1 && Static36.method941(this.anInt3369).anInt5349 == 1) {
 			this.anInt3369 = -1;
 		}
-		if (this.anInt3409 < 9) {
-			this.anInt3409++;
+		if (this.routeLength < 9) {
+			this.routeLength++;
 		}
-		for (@Pc(50) int local50 = this.anInt3409; local50 > 0; local50--) {
+		for (@Pc(50) int local50 = this.routeLength; local50 > 0; local50--) {
 			this.movementQueueX[local50] = this.movementQueueX[local50 - 1];
 			this.movementQueueZ[local50] = this.movementQueueZ[local50 - 1];
 			this.aByteArray48[local50] = this.aByteArray48[local50 - 1];
@@ -621,7 +621,7 @@ public abstract class PathingEntity extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!fe", name = "c", descriptor = "(I)V")
 	public final void method2689() {
-		this.anInt3409 = 0;
+		this.routeLength = 0;
 		this.anInt3405 = 0;
 	}
 
@@ -631,12 +631,12 @@ public abstract class PathingEntity extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!fe", name = "a", descriptor = "(II)V")
-	public final void method2692(@OriginalArg(0) int arg0) {
-		this.anInt3415 = arg0;
+	public final void setSize(@OriginalArg(0) int size) {
+		this.size = size;
 	}
 
 	@OriginalMember(owner = "runetek4.client!fe", name = "c", descriptor = "(B)I")
-	public int method2693() {
-		return this.anInt3415;
+	public int size() {
+		return this.size;
 	}
 }

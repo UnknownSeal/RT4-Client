@@ -200,7 +200,7 @@ public final class Class59 {
 					if ((local169 & Integer.MIN_VALUE) != 0 && !Static81.method1752(local169 & 0x3FFFFFFF).method1199()) {
 						local158 = true;
 					}
-				} else if (!Static71.method1439(local169 & 0x3FFFFFFF).method1822(this.aBoolean141)) {
+				} else if (!Static71.get(local169 & 0x3FFFFFFF).method1822(this.aBoolean141)) {
 					local158 = true;
 				}
 			}
@@ -219,7 +219,7 @@ public final class Class59 {
 					local250 = local38[local169];
 					@Pc(272) RawModel local272;
 					if ((local250 & 0x40000000) != 0) {
-						local272 = Static71.method1439(local250 & 0x3FFFFFFF).method1831(this.aBoolean141);
+						local272 = Static71.get(local250 & 0x3FFFFFFF).method1831(this.aBoolean141);
 						if (local272 != null) {
 							local239[local169] = local272;
 						}
@@ -453,7 +453,7 @@ public final class Class59 {
 					if ((local52 & Integer.MIN_VALUE) != 0 && !Static81.method1752(local52 & 0x3FFFFFFF).method1205()) {
 						local42 = true;
 					}
-				} else if (!Static71.method1439(local52 & 0x3FFFFFFF).method1816(this.aBoolean141)) {
+				} else if (!Static71.get(local52 & 0x3FFFFFFF).method1816(this.aBoolean141)) {
 					local42 = true;
 				}
 			}
@@ -467,7 +467,7 @@ public final class Class59 {
 				local114 = this.anIntArray233[local104];
 				@Pc(134) RawModel local134;
 				if ((local114 & 0x40000000) != 0) {
-					local134 = Static71.method1439(local114 & 0x3FFFFFFF).method1830(this.aBoolean141);
+					local134 = Static71.get(local114 & 0x3FFFFFFF).method1830(this.aBoolean141);
 					if (local134 != null) {
 						local100[local52++] = local134;
 					}

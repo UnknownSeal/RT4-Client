@@ -125,8 +125,8 @@ public final class Static263 {
 			arg1.anInt3432 = -1;
 			arg1.anInt3395 = 0;
 			arg1.anInt3386 = 0;
-			arg1.anInt3412 = arg1.movementQueueX[0] * 128 + arg1.method2693() * 64;
-			arg1.anInt3421 = arg1.movementQueueZ[0] * 128 + arg1.method2693() * 64;
+			arg1.anInt3412 = arg1.movementQueueX[0] * 128 + arg1.size() * 64;
+			arg1.anInt3421 = arg1.movementQueueZ[0] * 128 + arg1.size() * 64;
 			arg1.method2689();
 		}
 		if (arg1 == Static173.self && (arg1.anInt3412 < 1536 || arg1.anInt3421 < 1536 || arg1.anInt3412 >= 11776 || arg1.anInt3421 >= 11776)) {
@@ -134,8 +134,8 @@ public final class Static263 {
 			arg1.anInt3395 = 0;
 			arg1.anInt3386 = 0;
 			arg1.anInt3369 = -1;
-			arg1.anInt3412 = arg1.movementQueueX[0] * 128 + arg1.method2693() * 64;
-			arg1.anInt3421 = arg1.movementQueueZ[0] * 128 + arg1.method2693() * 64;
+			arg1.anInt3412 = arg1.movementQueueX[0] * 128 + arg1.size() * 64;
+			arg1.anInt3421 = arg1.movementQueueZ[0] * 128 + arg1.size() * 64;
 			arg1.method2689();
 		}
 		Static37.method949(arg1);

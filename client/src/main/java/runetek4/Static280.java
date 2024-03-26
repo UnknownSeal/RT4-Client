@@ -29,10 +29,10 @@ public final class Static280 {
 		if (Static83.anInt372 == arg0.anInt3386 || arg0.anInt3369 == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > Static36.method941(arg0.anInt3369).anIntArray474[arg0.anInt3425]) {
 			@Pc(35) int local35 = arg0.anInt3386 - arg0.anInt3395;
 			@Pc(41) int local41 = Static83.anInt372 - arg0.anInt3395;
-			@Pc(52) int local52 = arg0.anInt3380 * 128 + arg0.method2693() * 64;
-			@Pc(64) int local64 = arg0.anInt3428 * 128 + arg0.method2693() * 64;
-			@Pc(75) int local75 = arg0.anInt3416 * 128 + arg0.method2693() * 64;
-			@Pc(86) int local86 = arg0.anInt3392 * 128 + arg0.method2693() * 64;
+			@Pc(52) int local52 = arg0.anInt3380 * 128 + arg0.size() * 64;
+			@Pc(64) int local64 = arg0.anInt3428 * 128 + arg0.size() * 64;
+			@Pc(75) int local75 = arg0.anInt3416 * 128 + arg0.size() * 64;
+			@Pc(86) int local86 = arg0.anInt3392 * 128 + arg0.size() * 64;
 			arg0.anInt3412 = (local41 * local75 + local52 * (local35 - local41)) / local35;
 			arg0.anInt3421 = (local86 * local41 + local64 * (local35 - local41)) / local35;
 		}

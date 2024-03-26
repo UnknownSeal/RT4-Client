@@ -4,6 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.game.config.loctype.LocType;
+import runetek4.game.config.objtype.ObjType;
 
 public final class Static164 {
 
@@ -178,16 +179,16 @@ public final class Static164 {
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IBZIZIIZ)Lclient!qf;")
 	public static Sprite method3150(@OriginalArg(0) int arg0, @OriginalArg(2) boolean arg1, @OriginalArg(3) int arg2, @OriginalArg(4) boolean arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) boolean arg6) {
-		@Pc(5) ObjType local5 = Static71.method1439(arg2);
-		if (arg5 > 1 && local5.anIntArray214 != null) {
+		@Pc(5) ObjType local5 = Static71.get(arg2);
+		if (arg5 > 1 && local5.countobj != null) {
 			@Pc(15) int local15 = -1;
 			for (@Pc(17) int local17 = 0; local17 < 10; local17++) {
-				if (arg5 >= local5.anIntArray212[local17] && local5.anIntArray212[local17] != 0) {
-					local15 = local5.anIntArray214[local17];
+				if (arg5 >= local5.countco[local17] && local5.countco[local17] != 0) {
+					local15 = local5.countobj[local17];
 				}
 			}
 			if (local15 != -1) {
-				local5 = Static71.method1439(local15);
+				local5 = Static71.get(local15);
 			}
 		}
 		@Pc(60) SoftwareModel local60 = local5.method1834();
@@ -195,13 +196,13 @@ public final class Static164 {
 			return null;
 		}
 		@Pc(71) SoftwareSprite local71 = null;
-		if (local5.anInt2358 != -1) {
-			local71 = (SoftwareSprite) method3150(0, true, local5.anInt2356, false, 1, 10, true);
+		if (local5.certtemplate != -1) {
+			local71 = (SoftwareSprite) method3150(0, true, local5.certlink, false, 1, 10, true);
 			if (local71 == null) {
 				return null;
 			}
-		} else if (local5.anInt2334 != -1) {
-			local71 = (SoftwareSprite) method3150(arg0, true, local5.anInt2363, false, arg4, arg5, false);
+		} else if (local5.lenttemplate != -1) {
+			local71 = (SoftwareSprite) method3150(arg0, true, local5.lentlink, false, arg4, arg5, false);
 			if (local71 == null) {
 				return null;
 			}
@@ -215,16 +216,16 @@ public final class Static164 {
 		Static129.method2491(local133.anIntArray20, 36, 32);
 		Rasteriser.method1908();
 		Rasteriser.method1919(16, 16);
-		@Pc(145) int local145 = local5.anInt2375;
+		@Pc(145) int local145 = local5.zoom2d;
 		Rasteriser.aBoolean136 = false;
 		if (arg6) {
 			local145 = (int) ((double) local145 * 1.5D);
 		} else if (arg4 == 2) {
 			local145 = (int) ((double) local145 * 1.04D);
 		}
-		@Pc(176) int local176 = MathUtils.anIntArray225[local5.anInt2353] * local145 >> 16;
-		@Pc(185) int local185 = MathUtils.anIntArray223[local5.anInt2353] * local145 >> 16;
-		local60.method4571(local5.anInt2369, local5.anInt2339, local5.anInt2353, local5.anInt2359, local185 + local5.anInt2319 - local60.method4549() / 2, local5.anInt2319 + local176, -1L);
+		@Pc(176) int local176 = MathUtils.anIntArray225[local5.xan2d] * local145 >> 16;
+		@Pc(185) int local185 = MathUtils.anIntArray223[local5.xan2d] * local145 >> 16;
+		local60.method4571(local5.yan2d, local5.zan2d, local5.xan2d, local5.xof2d, local185 + local5.yof2d - local60.method4549() / 2, local5.yof2d + local176, -1L);
 		if (arg4 >= 1) {
 			local133.method303(1);
 			if (arg4 >= 2) {
@@ -235,14 +236,14 @@ public final class Static164 {
 		if (arg0 != 0) {
 			local133.method314(arg0);
 		}
-		if (local5.anInt2358 != -1) {
+		if (local5.certtemplate != -1) {
 			local71.method1423(0, 0);
-		} else if (local5.anInt2334 != -1) {
+		} else if (local5.lenttemplate != -1) {
 			Static129.method2491(local71.anIntArray20, 36, 32);
 			local133.method1423(0, 0);
 			local133 = local71;
 		}
-		if (arg3 && (local5.anInt2336 == 1 || arg5 != 1) && arg5 != -1) {
+		if (arg3 && (local5.stackable == 1 || arg5 != 1) && arg5 != -1) {
 			Static256.aClass3_Sub2_Sub9_Sub1_1.method2857(Static52.method1288(arg5), 0, 9, 16776960, 1);
 		}
 		Static129.method2491(local118, local120, local122);

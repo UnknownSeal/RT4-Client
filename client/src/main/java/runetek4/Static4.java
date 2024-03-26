@@ -5,6 +5,8 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import runetek4.game.client.ClientInvCache;
+import runetek4.game.config.objtype.ObjType;
+import runetek4.game.world.entity.Player;
 
 public final class Static4 {
 
@@ -566,7 +568,7 @@ public final class Static4 {
 							@Pc(1994) SeqType local1994;
 							if (local864 >> 29 != 0) {
 								local1146 = local864 & 0xFFFF;
-								@Pc(1894) Npc local1894 = Static175.aClass8_Sub4_Sub2Array1[local1146];
+								@Pc(1894) NPCEntity local1894 = Static175.aClass8_Sub4_Sub2Array1[local1146];
 								if (local1894 != null) {
 									if (local171 == 65535) {
 										local171 = -1;
@@ -1020,7 +1022,7 @@ public final class Static4 {
 								local133 = Static57.aClass3_Sub15_Sub1_3.g2le();
 								local786 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
 								local864 = Static57.aClass3_Sub15_Sub1_3.g2();
-								@Pc(3766) Npc local3766 = Static175.aClass8_Sub4_Sub2Array1[local133];
+								@Pc(3766) NPCEntity local3766 = Static175.aClass8_Sub4_Sub2Array1[local133];
 								if (local3766 != null) {
 									Static223.method3855(local786, local864, local3766);
 								}
@@ -1292,8 +1294,8 @@ public final class Static4 {
 								local786 = Static57.aClass3_Sub15_Sub1_3.g4rme();
 								if (Static248.method3288(local133)) {
 									local864 = 0;
-									if (Static173.self.aClass59_1 != null) {
-										local864 = Static173.self.aClass59_1.method1952();
+									if (Static173.self.model != null) {
+										local864 = Static173.self.model.method1952();
 									}
 									Static132.method2607(-1, 3, local786, local864);
 								}
@@ -1503,20 +1505,20 @@ public final class Static4 {
 										@Pc(5615) ObjType local5615;
 										if (local5603.aBoolean32) {
 											Static209.method3707(local786, local133, local864);
-											local5615 = Static71.method1439(local864);
-											Static261.method4505(local5615.anInt2375, local786, local5615.anInt2369, local5615.anInt2353);
-											Static145.method2745(local786, local5615.anInt2339, local5615.anInt2319, local5615.anInt2359);
+											local5615 = Static71.get(local864);
+											Static261.method4505(local5615.zoom2d, local786, local5615.yan2d, local5615.xan2d);
+											Static145.method2745(local786, local5615.zan2d, local5615.yof2d, local5615.xof2d);
 										} else if (local864 == -1) {
 											local5603.modelType = 0;
 											Static164.anInt3985 = -1;
 											return true;
 										} else {
-											local5615 = Static71.method1439(local864);
-											local5603.modelXAngle = local5615.anInt2353;
-											local5603.modelZoom = local5615.anInt2375 * 100 / local133;
+											local5615 = Static71.get(local864);
+											local5603.modelXAngle = local5615.xan2d;
+											local5603.modelZoom = local5615.zoom2d * 100 / local133;
 											local5603.modelType = 4;
 											local5603.modelId = local864;
-											local5603.modelYAngle = local5615.anInt2369;
+											local5603.modelYAngle = local5615.yan2d;
 											Static43.method1143(local5603);
 										}
 									}

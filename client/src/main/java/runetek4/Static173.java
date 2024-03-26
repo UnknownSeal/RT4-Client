@@ -3,6 +3,7 @@ package runetek4;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import runetek4.game.world.entity.Player;
 
 public final class Static173 {
 
@@ -24,7 +25,7 @@ public final class Static173 {
 	@OriginalMember(owner = "runetek4.client!nk", name = "c", descriptor = "(IZ)V")
 	public static void method3240(@OriginalArg(1) boolean arg0) {
 		@Pc(7) int local7;
-		@Pc(16) Npc local16;
+		@Pc(16) NPCEntity local16;
 		@Pc(107) int local107;
 		@Pc(113) int local113;
 		@Pc(133) int local133;
@@ -33,8 +34,8 @@ public final class Static173 {
 		@Pc(171) int local171;
 		for (local7 = 0; local7 < Static272.anInt5214; local7++) {
 			local16 = Static175.aClass8_Sub4_Sub2Array1[Static33.anIntArray79[local7]];
-			if (local16 != null && local16.method2682() && local16.aClass96_1.aBoolean182 == arg0 && local16.aClass96_1.method2933()) {
-				@Pc(42) int local42 = local16.method2693();
+			if (local16 != null && local16.method2682() && local16.npcType.drawabove == arg0 && local16.npcType.method2933()) {
+				@Pc(42) int local42 = local16.size();
 				@Pc(97) int local97;
 				if (local42 == 1) {
 					if ((local16.anInt3412 & 0x7F) == 64 && (local16.anInt3421 & 0x7F) == 64) {
@@ -47,14 +48,14 @@ public final class Static173 {
 				} else if (((local42 & 0x1) != 0 || (local16.anInt3412 & 0x7F) == 0 && (local16.anInt3421 & 0x7F) == 0) && ((local42 & 0x1) != 1 || (local16.anInt3412 & 0x7F) == 64 && (local16.anInt3421 & 0x7F) == 64)) {
 					local97 = local16.anInt3412 - local42 * 64 >> 7;
 					local107 = local16.anInt3421 - local42 * 64 >> 7;
-					local113 = local16.method2693() + local97;
+					local113 = local16.size() + local97;
 					if (local97 < 0) {
 						local97 = 0;
 					}
 					if (local113 > 104) {
 						local113 = 104;
 					}
-					local133 = local107 + local16.method2693();
+					local133 = local107 + local16.size();
 					if (local107 < 0) {
 						local107 = 0;
 					}
@@ -72,8 +73,8 @@ public final class Static173 {
 		label200: for (local7 = 0; local7 < Static272.anInt5214; local7++) {
 			local16 = Static175.aClass8_Sub4_Sub2Array1[Static33.anIntArray79[local7]];
 			@Pc(262) long local262 = (long) Static33.anIntArray79[local7] << 32 | 0x20000000L;
-			if (local16 != null && local16.method2682() && local16.aClass96_1.aBoolean182 == arg0 && local16.aClass96_1.method2933()) {
-				local107 = local16.method2693();
+			if (local16 != null && local16.method2682() && local16.npcType.drawabove == arg0 && local16.npcType.method2933()) {
+				local107 = local16.size();
 				if (local107 == 1) {
 					if ((local16.anInt3412 & 0x7F) == 64 && (local16.anInt3421 & 0x7F) == 64) {
 						local113 = local16.anInt3412 >> 7;
@@ -127,7 +128,7 @@ public final class Static173 {
 						}
 					}
 				}
-				if (!local16.aClass96_1.aBoolean183) {
+				if (!local16.npcType.active) {
 					local262 |= Long.MIN_VALUE;
 				}
 				local16.anInt3424 = Static207.method3685(Static55.level, local16.anInt3412, local16.anInt3421);
