@@ -112,10 +112,10 @@ public final class Static97 {
 		Static19.anInt636 = packet.gSmart1or2();
 		Static171.anInt4157 = packet.gSmart1or2();
 		Static106.anInt2871 = packet.gSmart1or2();
-		Static196.aClass10_Sub1Array2 = new World[Static171.anInt4157 + 1 - Static19.anInt636];
+		Static196.aClass10_Sub1Array2 = new GWCWorld[Static171.anInt4157 + 1 - Static19.anInt636];
 		for (int index = 0; index < Static106.anInt2871; index++) {
 			@Pc(77) int local77 = packet.gSmart1or2();
-			@Pc(85) World local85 = Static196.aClass10_Sub1Array2[local77] = new World();
+			@Pc(85) GWCWorld local85 = Static196.aClass10_Sub1Array2[local77] = new GWCWorld();
 			local85.anInt377 = packet.g1();
 			local85.anInt381 = packet.g4();
 			local85.anInt382 = local77 + Static19.anInt636;

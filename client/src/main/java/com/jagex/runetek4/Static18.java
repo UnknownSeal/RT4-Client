@@ -92,7 +92,7 @@ public final class Static18 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "a", descriptor = "(B)Lclient!ba;")
-	public static World method556() {
+	public static GWCWorld method556() {
 		Static51.anInt1682 = 0;
 		return Static88.method1821();
 	}
