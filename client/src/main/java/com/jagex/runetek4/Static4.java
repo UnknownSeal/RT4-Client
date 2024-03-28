@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.io.IOException;
 
 import com.jagex.runetek4.game.client.ClientInvCache;
+import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.objtype.ObjType;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
