@@ -53,7 +53,7 @@ public final class Js5Index {
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "<init>", descriptor = "([BI)V")
 	public Js5Index(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int arg1) {
-		this.anInt2911 = Static71.method1442(arg0, arg0.length);
+		this.anInt2911 = Packet.getcrc(arg0, arg0.length);
 		if (arg1 != this.anInt2911) {
 			throw new RuntimeException();
 		}
