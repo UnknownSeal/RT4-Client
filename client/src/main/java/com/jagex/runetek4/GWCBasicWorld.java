@@ -4,7 +4,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!gj")
-public abstract class AbstractWorld {
+public abstract class GWCBasicWorld {
 
 	@OriginalMember(owner = "runetek4.client!gj", name = "j", descriptor = "I")
 	public int anInt377;
