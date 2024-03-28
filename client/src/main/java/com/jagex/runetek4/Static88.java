@@ -2909,7 +2909,7 @@ public final class Static88 {
 													}
 													if (local226 == 5401) {
 														local28 -= 2;
-														Static259.aShortArray88[Static254.anIntArray487[local28]] = (short) Static105.method2253(Static254.anIntArray487[local28 + 1]);
+														Static259.aShortArray88[Static254.anIntArray487[local28]] = (short) Static105.hslToRgb(Static254.anIntArray487[local28 + 1]);
 														Static211.method924();
 														Static269.method2172();
 														Static278.method4649();

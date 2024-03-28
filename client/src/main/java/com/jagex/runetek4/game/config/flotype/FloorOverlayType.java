@@ -1,10 +1,10 @@
 package com.jagex.runetek4.game.config.flotype;
 
+import com.jagex.runetek4.Static105;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
-import com.jagex.runetek4.Static15;
 import com.jagex.runetek4.Static26;
 import com.jagex.runetek4.core.io.Packet;
 
@@ -55,7 +55,7 @@ public final class FloorOverlayType {
 	@OriginalMember(owner = "client!wl", name = "a", descriptor = "(IILclient!wa;I)V")
 	private void decode(@OriginalArg(1) int code, @OriginalArg(2) Packet packet, @OriginalArg(3) int arg2) {
 		if (code == 1) {
-			this.rgb = Static15.method492(packet.g3());
+			this.rgb = convertColour(packet.g3());
 		} else if (code == 2) {
 			this.material = packet.g1();
 		} else if (code == 3) {
@@ -66,7 +66,7 @@ public final class FloorOverlayType {
 		} else if (code == 5) {
 			this.occlude = false;
 		} else if (code == 7) {
-			this.averagecolour = Static15.method492(packet.g3());
+			this.averagecolour = convertColour(packet.g3());
 		} else if (code == 8) {
 			Static26.anInt865 = arg2;
 		} else if (code == 9) {
@@ -82,5 +82,10 @@ public final class FloorOverlayType {
 		} else if (code == 14) {
 			this.waterfogscale = packet.g1();
 		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!be", name = "a", descriptor = "(II)I")
+	public static int convertColour(@OriginalArg(1) int colour) {
+		return colour == 16711935 ? -1 : Static105.hslToRgb(colour);
 	}
 }
