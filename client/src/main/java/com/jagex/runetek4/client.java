@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.util.GregorianCalendar;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.core.utils.MonotonicTime;
 import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.game.config.npctype.NPCType;
 import org.openrs2.deob.annotation.OriginalArg;
