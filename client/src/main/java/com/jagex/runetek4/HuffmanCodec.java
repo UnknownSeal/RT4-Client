@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -7,9 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!fi")
 public final class HuffmanCodec {
-
-	@OriginalMember(owner = "runetek4.client!fi", name = "c", descriptor = "[I")
-	public static final int[] anIntArray175 = new int[256];
 
 	@OriginalMember(owner = "runetek4.client!fi", name = "b", descriptor = "[I")
 	private int[] anIntArray174;
@@ -19,20 +17,6 @@ public final class HuffmanCodec {
 
 	@OriginalMember(owner = "runetek4.client!fi", name = "e", descriptor = "[B")
 	private final byte[] aByteArray22;
-
-	static {
-		for (@Pc(4) int local4 = 0; local4 < 256; local4++) {
-			@Pc(9) int local9 = local4;
-			for (@Pc(11) int local11 = 0; local11 < 8; local11++) {
-				if ((local9 & 0x1) == 1) {
-					local9 = local9 >>> 1 ^ 0xEDB88320;
-				} else {
-					local9 >>>= 0x1;
-				}
-			}
-			anIntArray175[local4] = local9;
-		}
-	}
 
 	@OriginalMember(owner = "runetek4.client!fi", name = "<init>", descriptor = "([B)V")
 	public HuffmanCodec(@OriginalArg(0) byte[] arg0) {

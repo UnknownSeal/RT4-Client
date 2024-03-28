@@ -66,7 +66,7 @@ public final class Static71 {
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "a", descriptor = "([BIZ)I")
 	public static int method1442(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int arg1) {
-		return Static169.crc32(0, arg1, arg0);
+		return Packet.getcrc(0, arg1, arg0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "b", descriptor = "(IB)V")
