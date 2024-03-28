@@ -201,10 +201,10 @@ public final class ObjType {
 			return true;
 		}
 		@Pc(33) boolean local33 = true;
-		if (!Static230.aClass153_95.method4491(0, local6)) {
+		if (!Static230.aClass153_95.requestDownload(local6, 0)) {
 			local33 = false;
 		}
-		if (local9 != -1 && !Static230.aClass153_95.method4491(0, local9)) {
+		if (local9 != -1 && !Static230.aClass153_95.requestDownload(local9, 0)) {
 			local33 = false;
 		}
 		return local33;
@@ -250,13 +250,13 @@ public final class ObjType {
 			return true;
 		}
 		@Pc(41) boolean local41 = true;
-		if (!Static230.aClass153_95.method4491(0, local9)) {
+		if (!Static230.aClass153_95.requestDownload(local9, 0)) {
 			local41 = false;
 		}
-		if (local6 != -1 && !Static230.aClass153_95.method4491(0, local6)) {
+		if (local6 != -1 && !Static230.aClass153_95.requestDownload(local6, 0)) {
 			local41 = false;
 		}
-		if (local20 != -1 && !Static230.aClass153_95.method4491(0, local20)) {
+		if (local20 != -1 && !Static230.aClass153_95.requestDownload(local20, 0)) {
 			local41 = false;
 		}
 		return local41;

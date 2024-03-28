@@ -113,8 +113,8 @@ public final class Class59 {
 			arg3 = new int[12];
 			for (@Pc(24) int local24 = 0; local24 < 8; local24++) {
 				for (@Pc(31) int local31 = 0; local31 < Static53.anInt1716; local31++) {
-					@Pc(38) IdkType local38 = Static81.method1752(local31);
-					if (local38 != null && !local38.aBoolean85 && local38.anInt1457 == (arg2 ? Static153.anIntArray351[local24] : Static204.anIntArray425[local24])) {
+					@Pc(38) IDKType local38 = Static81.method1752(local31);
+					if (local38 != null && !local38.disable && local38.type == (arg2 ? Static153.anIntArray351[local24] : Static204.anIntArray425[local24])) {
 						arg3[Static272.anIntArray451[local24]] = Integer.MIN_VALUE | local31;
 						break;
 					}
@@ -198,7 +198,7 @@ public final class Class59 {
 			for (@Pc(160) int local160 = 0; local160 < 12; local160++) {
 				local169 = local38[local160];
 				if ((local169 & 0x40000000) == 0) {
-					if ((local169 & Integer.MIN_VALUE) != 0 && !Static81.method1752(local169 & 0x3FFFFFFF).method1199()) {
+					if ((local169 & Integer.MIN_VALUE) != 0 && !Static81.method1752(local169 & 0x3FFFFFFF).hasReadyModels()) {
 						local158 = true;
 					}
 				} else if (!Static71.get(local169 & 0x3FFFFFFF).method1822(this.aBoolean141)) {

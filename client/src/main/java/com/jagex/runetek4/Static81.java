@@ -62,15 +62,15 @@ public final class Static81 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "d", descriptor = "(II)Lclient!dm;")
-	public static IdkType method1752(@OriginalArg(0) int arg0) {
-		@Pc(10) IdkType local10 = (IdkType) Static67.aClass99_20.method3106((long) arg0);
+	public static IDKType method1752(@OriginalArg(0) int arg0) {
+		@Pc(10) IDKType local10 = (IDKType) Static67.aClass99_20.method3106((long) arg0);
 		if (local10 != null) {
 			return local10;
 		}
 		@Pc(21) byte[] local21 = Static216.aClass153_31.method4495(3, arg0);
-		local10 = new IdkType();
+		local10 = new IDKType();
 		if (local21 != null) {
-			local10.method1209(new Packet(local21));
+			local10.decode(new Packet(local21));
 		}
 		Static67.aClass99_20.method3095(local10, (long) arg0);
 		return local10;
