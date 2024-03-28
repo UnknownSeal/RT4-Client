@@ -1,53 +1,54 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.game.client.NoiseGenerator3D;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!we")
-public class Class106_Sub1 extends Class106 {
+public class NoiseGenerator3D_Sub1 extends NoiseGenerator3D {
 
-	@OriginalMember(owner = "runetek4.client!we", name = "B", descriptor = "I")
+	@OriginalMember(owner = "client!we", name = "B", descriptor = "I")
 	private int anInt4135;
 
-	@OriginalMember(owner = "runetek4.client!we", name = "D", descriptor = "I")
+	@OriginalMember(owner = "client!we", name = "D", descriptor = "I")
 	private int anInt4137;
 
-	@OriginalMember(owner = "runetek4.client!we", name = "F", descriptor = "[B")
+	@OriginalMember(owner = "client!we", name = "F", descriptor = "[B")
 	private byte[] aByteArray57;
 
-	@OriginalMember(owner = "runetek4.client!we", name = "J", descriptor = "I")
+	@OriginalMember(owner = "client!we", name = "J", descriptor = "I")
 	private int anInt4141;
 
-	@OriginalMember(owner = "runetek4.client!we", name = "L", descriptor = "I")
+	@OriginalMember(owner = "client!we", name = "L", descriptor = "I")
 	private int anInt4143;
 
-	@OriginalMember(owner = "runetek4.client!we", name = "A", descriptor = "I")
+	@OriginalMember(owner = "client!we", name = "A", descriptor = "I")
 	private final int anInt4134;
 
-	@OriginalMember(owner = "runetek4.client!we", name = "G", descriptor = "I")
+	@OriginalMember(owner = "client!we", name = "G", descriptor = "I")
 	private final int anInt4139;
 
-	@OriginalMember(owner = "runetek4.client!we", name = "z", descriptor = "I")
+	@OriginalMember(owner = "client!we", name = "z", descriptor = "I")
 	private final int anInt4133;
 
-	@OriginalMember(owner = "runetek4.client!we", name = "u", descriptor = "I")
+	@OriginalMember(owner = "client!we", name = "u", descriptor = "I")
 	private int anInt4129;
 
-	@OriginalMember(owner = "runetek4.client!we", name = "<init>", descriptor = "(IIIIIFFF)V")
-	protected Class106_Sub1(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) float arg5, @OriginalArg(6) float arg6, @OriginalArg(7) float arg7) {
+	@OriginalMember(owner = "client!we", name = "<init>", descriptor = "(IIIIIFFF)V")
+	protected NoiseGenerator3D_Sub1(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) float arg5, @OriginalArg(6) float arg6, @OriginalArg(7) float arg7) {
 		super(arg0, arg1, arg2, arg3, arg4);
 		this.anInt4134 = (int) (arg7 * 4096.0F);
 		this.anInt4139 = (int) (arg6 * 4096.0F);
 		this.anInt4129 = this.anInt4133 = (int) (Math.pow(0.5D, (double) -arg5) * 4096.0D);
 	}
 
-	@OriginalMember(owner = "runetek4.client!we", name = "a", descriptor = "(IB)V")
+	@OriginalMember(owner = "client!we", name = "a", descriptor = "(IB)V")
 	protected void method3209(@OriginalArg(0) int arg0, @OriginalArg(1) byte arg1) {
 		this.aByteArray57[arg0] = arg1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!we", name = "a", descriptor = "(B)V")
+	@OriginalMember(owner = "client!we", name = "a", descriptor = "(B)V")
 	@Override
 	protected final void method3842() {
 		this.anInt4129 = this.anInt4133;
@@ -61,7 +62,7 @@ public class Class106_Sub1 extends Class106 {
 		this.anInt4143 = 0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!we", name = "a", descriptor = "(III)V")
+	@OriginalMember(owner = "client!we", name = "a", descriptor = "(III)V")
 	@Override
 	protected final void method3848(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		if (arg1 == 0) {
@@ -84,7 +85,7 @@ public class Class106_Sub1 extends Class106 {
 		this.anInt4129 = this.anInt4133 * this.anInt4129 >> 12;
 	}
 
-	@OriginalMember(owner = "runetek4.client!we", name = "a", descriptor = "(I)V")
+	@OriginalMember(owner = "client!we", name = "a", descriptor = "(I)V")
 	@Override
 	protected final void method3844() {
 		this.anInt4141 = 0;

@@ -33,7 +33,7 @@ public final class Static278 {
 					@Pc(37) NPCEntity local37 = Static175.aClass8_Sub4_Sub2Array1[local14];
 					Static33.anIntArray79[Static272.anInt5214++] = local14;
 					local37.anInt3430 = Static83.anInt372;
-					if (local37.npcType != null && local37.npcType.method2935()) {
+					if (local37.npcType != null && local37.npcType.hasBackgroundSound()) {
 						Static91.method1877(local37);
 					}
 					@Pc(66) int local66 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
@@ -61,7 +61,7 @@ public final class Static278 {
 						local37.anInt3381 = 0;
 					}
 					local37.method2683(local37.size(), Static173.self.movementQueueX[0] + local124, local105 + Static173.self.movementQueueZ[0], local66 == 1);
-					if (local37.npcType.method2935()) {
+					if (local37.npcType.hasBackgroundSound()) {
 						Static122.method2411(local37.movementQueueZ[0], null, 0, local37, local37.movementQueueX[0], Static55.level, null);
 					}
 					continue;

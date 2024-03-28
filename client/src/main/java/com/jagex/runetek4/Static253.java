@@ -185,7 +185,7 @@ public final class Static253 {
 		if (enumType != null) {
 			return enumType;
 		}
-		@Pc(24) byte[] bytes = Static84.aClass153_35.method4495(Static97.method1959(id), Static103.method2236(id));
+		@Pc(24) byte[] bytes = Static84.aClass153_35.getfile(Static97.method1959(id), Static103.method2236(id));
 		enumType = new EnumType();
 		if (bytes != null) {
 			enumType.decode(new Packet(bytes));

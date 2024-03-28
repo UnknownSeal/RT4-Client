@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.nio.ByteBuffer;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -137,11 +138,11 @@ public final class GlModel extends Model {
 	}
 
 	@OriginalMember(owner = "runetek4.client!td", name = "<init>", descriptor = "(Lclient!gb;IIZ)V")
-	public GlModel(@OriginalArg(0) RawModel arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) boolean arg3) {
-		@Pc(23) int[] local23 = new int[arg0.anInt2136];
-		this.anIntArray462 = new int[arg0.anInt2139 + 1];
-		for (@Pc(32) int local32 = 0; local32 < arg0.anInt2136; local32++) {
-			if ((arg0.aByteArray30 == null || arg0.aByteArray30[local32] != 2) && (arg0.aShortArray23 == null || arg0.aShortArray23[local32] == -1 || !Rasteriser.anInterface1_2.method3231(arg0.aShortArray23[local32] & 0xFFFF))) {
+	public GlModel(@OriginalArg(0) ModelUnlit arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) boolean arg3) {
+		@Pc(23) int[] local23 = new int[arg0.faceCount];
+		this.anIntArray462 = new int[arg0.vertexCount + 1];
+		for (@Pc(32) int local32 = 0; local32 < arg0.faceCount; local32++) {
+			if ((arg0.aByteArray30 == null || arg0.aByteArray30[local32] != 2) && (arg0.unmodifiedTriangleTexture == null || arg0.unmodifiedTriangleTexture[local32] == -1 || !Rasteriser.anInterface1_2.method3231(arg0.unmodifiedTriangleTexture[local32] & 0xFFFF))) {
 				local23[this.anInt5297++] = local32;
 				this.anIntArray462[arg0.anIntArray197[local32]]++;
 				this.anIntArray462[arg0.anIntArray200[local32]]++;
@@ -160,16 +161,16 @@ public final class GlModel extends Model {
 			@Pc(131) int local131 = 0;
 			@Pc(133) int local133 = 0;
 			@Pc(135) short local135 = -1;
-			if (arg0.aShortArray23 != null) {
-				local135 = arg0.aShortArray23[local125];
+			if (arg0.unmodifiedTriangleTexture != null) {
+				local135 = arg0.unmodifiedTriangleTexture[local125];
 				if (local135 != -1) {
 					local131 = Rasteriser.anInterface1_2.method3237(local135 & 0xFFFF);
 					local133 = Rasteriser.anInterface1_2.method3228(local135 & 0xFFFF);
 				}
 			}
 			@Pc(182) boolean local182 = arg0.aByteArray26 != null && arg0.aByteArray26[local125] != 0 || local135 != -1 && !Rasteriser.anInterface1_2.method3226(local135 & 0xFFFF);
-			if ((arg3 || local182) && arg0.aByteArray35 != null) {
-				local127 += arg0.aByteArray35[local125] << 17;
+			if ((arg3 || local182) && arg0.facePriority != null) {
+				local127 += arg0.facePriority[local125] << 17;
 			}
 			if (local182) {
 				local127 += 65536;
@@ -181,12 +182,12 @@ public final class GlModel extends Model {
 			local115[local117] = ((long) local127 << 32) + (long) local232;
 		}
 		Static173.method3243(local115, local23);
-		this.anInt5295 = arg0.anInt2139;
+		this.anInt5295 = arg0.vertexCount;
 		this.anIntArray461 = arg0.anIntArray202;
 		this.anIntArray465 = arg0.anIntArray201;
 		this.anIntArray466 = arg0.anIntArray203;
 		this.anIntArray464 = arg0.anIntArray193;
-		this.aShortArray84 = arg0.aShortArray29;
+		this.aShortArray84 = arg0.vertexSourceModels;
 		local117 = this.anInt5297 * 3;
 		this.aShortArray76 = new short[local117];
 		this.aShortArray79 = new short[local117];
@@ -219,12 +220,12 @@ public final class GlModel extends Model {
 		this.aShortArray81 = new short[local117];
 		Static237.aLongArray10 = new long[local117];
 		local125 = 0;
-		for (local127 = 0; local127 < arg0.anInt2139; local127++) {
+		for (local127 = 0; local127 < arg0.vertexCount; local127++) {
 			local226 = this.anIntArray462[local127];
 			this.anIntArray462[local127] = local125;
 			local125 += local226;
 		}
-		this.anIntArray462[arg0.anInt2139] = local125;
+		this.anIntArray462[arg0.vertexCount] = local125;
 		@Pc(426) int[] local426 = null;
 		@Pc(428) int[] local428 = null;
 		@Pc(430) int[] local430 = null;
@@ -320,7 +321,7 @@ public final class GlModel extends Model {
 						local714 = (float) arg0.aShortArray25[local459] / 1024.0F;
 						local685 = (float) arg0.aShortArray21[local459] / 1024.0F;
 					}
-					local433[local459] = Static237.method4097(arg0.aShortArray26[local459], arg0.aShortArray20[local459], arg0.aShortArray28[local459], arg0.aByteArray27[local459] & 0xFF, local683, local714, local685);
+					local433[local459] = Static237.method4097(arg0.textureTriangleVertex1[local459], arg0.textureTriangleVertex2[local459], arg0.textureTriangleVertex3[local459], arg0.aByteArray27[local459] & 0xFF, local683, local714, local685);
 				}
 			}
 		}
@@ -328,11 +329,11 @@ public final class GlModel extends Model {
 		@Pc(822) short local822;
 		for (local439 = 0; local439 < this.anInt5297; local439++) {
 			@Pc(810) int local810 = local23[local439];
-			local817 = arg0.aShortArray24[local810] & 0xFFFF;
-			if (arg0.aShortArray23 == null) {
+			local817 = arg0.unmodifiedTriangleColor[local810] & 0xFFFF;
+			if (arg0.unmodifiedTriangleTexture == null) {
 				local822 = -1;
 			} else {
-				local822 = arg0.aShortArray23[local810];
+				local822 = arg0.unmodifiedTriangleTexture[local810];
 			}
 			@Pc(833) int local833;
 			if (arg0.aByteArray31 == null) {
@@ -386,9 +387,9 @@ public final class GlModel extends Model {
 						local909 = arg0.anIntArray197[local810];
 						local914 = arg0.anIntArray200[local810];
 						local919 = arg0.anIntArray196[local810];
-						@Pc(924) short local924 = arg0.aShortArray26[local833];
-						@Pc(929) short local929 = arg0.aShortArray20[local833];
-						@Pc(934) short local934 = arg0.aShortArray28[local833];
+						@Pc(924) short local924 = arg0.textureTriangleVertex1[local833];
+						@Pc(929) short local929 = arg0.textureTriangleVertex2[local833];
+						@Pc(934) short local934 = arg0.textureTriangleVertex3[local833];
 						@Pc(940) float local940 = (float) arg0.anIntArray202[local924];
 						@Pc(946) float local946 = (float) arg0.anIntArray201[local924];
 						local952 = arg0.anIntArray203[local924];
@@ -478,8 +479,8 @@ public final class GlModel extends Model {
 								}
 							}
 						} else if (local902 == 2) {
-							local960 = (float) arg0.aByteArray28[local833] / 256.0F;
-							local968 = (float) arg0.aByteArray33[local833] / 256.0F;
+							local960 = (float) arg0.textureTriangleTranslationU[local833] / 256.0F;
+							local968 = (float) arg0.textureTriangleTranslationV[local833] / 256.0F;
 							@Pc(1525) int local1525 = arg0.anIntArray202[local914] - arg0.anIntArray202[local909];
 							@Pc(1535) int local1535 = arg0.anIntArray201[local914] - arg0.anIntArray201[local909];
 							@Pc(1545) int local1545 = arg0.anIntArray203[local914] - arg0.anIntArray203[local909];
@@ -574,15 +575,15 @@ public final class GlModel extends Model {
 				this.aShortArray82[local439] = this.method4098(arg0, arg0.anIntArray200[local810], local2137 + (long) local866, local2096.anInt4769, local2096.anInt4770, local2096.anInt4767, 0, local858, local683);
 				this.aShortArray83[local439] = this.method4098(arg0, arg0.anIntArray196[local810], local2137 + (long) local868, local2096.anInt4769, local2096.anInt4770, local2096.anInt4767, 0, local714, local685);
 			}
-			if (arg0.aShortArray23 == null) {
+			if (arg0.unmodifiedTriangleTexture == null) {
 				this.aShortArray80[local439] = -1;
 			} else {
-				this.aShortArray80[local439] = arg0.aShortArray23[local810];
+				this.aShortArray80[local439] = arg0.unmodifiedTriangleTexture[local810];
 			}
 			if (this.aByteArray72 != null) {
 				this.aByteArray72[local439] = (byte) arg0.anIntArray192[local810];
 			}
-			this.aShortArray75[local439] = arg0.aShortArray24[local810];
+			this.aShortArray75[local439] = arg0.unmodifiedTriangleColor[local810];
 			if (arg0.aByteArray26 != null) {
 				this.aByteArray71[local439] = arg0.aByteArray26[local810];
 			}
@@ -1081,7 +1082,7 @@ public final class GlModel extends Model {
 	}
 
 	@OriginalMember(owner = "runetek4.client!td", name = "a", descriptor = "(Lclient!gb;IJIIIIFF)S")
-	private short method4098(@OriginalArg(0) RawModel arg0, @OriginalArg(1) int arg1, @OriginalArg(2) long arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) float arg7, @OriginalArg(8) float arg8) {
+	private short method4098(@OriginalArg(0) ModelUnlit arg0, @OriginalArg(1) int arg1, @OriginalArg(2) long arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) float arg7, @OriginalArg(8) float arg8) {
 		@Pc(4) int local4 = this.anIntArray462[arg1];
 		@Pc(11) int local11 = this.anIntArray462[arg1 + 1];
 		@Pc(13) int local13 = 0;

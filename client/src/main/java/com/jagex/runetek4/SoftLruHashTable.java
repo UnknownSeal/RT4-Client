@@ -37,14 +37,14 @@ public final class SoftLruHashTable {
 		if (this.anInt3966 == 0) {
 			@Pc(26) ReferenceNode local26 = (ReferenceNode) this.aClass16_8.method796();
 			local26.remove();
-			local26.method4365();
+			local26.secondaryRemove();
 		} else {
 			this.anInt3966--;
 		}
 		@Pc(44) HardReferenceNode local44 = new HardReferenceNode(arg0);
 		this.aClass133_18.pushNode(local44, arg1);
 		this.aClass16_8.method798(local44);
-		local44.aLong185 = 0L;
+		local44.secondaryNodeId = 0L;
 	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(JB)V")
@@ -52,7 +52,7 @@ public final class SoftLruHashTable {
 		@Pc(6) ReferenceNode local6 = (ReferenceNode) this.aClass133_18.getNode(arg0);
 		if (local6 != null) {
 			local6.remove();
-			local6.method4365();
+			local6.secondaryRemove();
 			this.anInt3966++;
 		}
 	}
@@ -60,7 +60,7 @@ public final class SoftLruHashTable {
 	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(I)I")
 	public final int method3100() {
 		@Pc(10) int local10 = 0;
-		for (@Pc(16) ReferenceNode local16 = (ReferenceNode) this.aClass16_8.method795(); local16 != null; local16 = (ReferenceNode) this.aClass16_8.method797()) {
+		for (@Pc(16) ReferenceNode local16 = (ReferenceNode) this.aClass16_8.peekFront(); local16 != null; local16 = (ReferenceNode) this.aClass16_8.method797()) {
 			if (!local16.method3619()) {
 				local10++;
 			}
@@ -73,29 +73,29 @@ public final class SoftLruHashTable {
 		if (Static252.aClass22_1 == null) {
 			return;
 		}
-		for (@Pc(9) ReferenceNode local9 = (ReferenceNode) this.aClass16_8.method795(); local9 != null; local9 = (ReferenceNode) this.aClass16_8.method797()) {
+		for (@Pc(9) ReferenceNode local9 = (ReferenceNode) this.aClass16_8.peekFront(); local9 != null; local9 = (ReferenceNode) this.aClass16_8.method797()) {
 			if (local9.method3619()) {
 				if (local9.method3618() == null) {
 					local9.remove();
-					local9.method4365();
+					local9.secondaryRemove();
 					this.anInt3966++;
 				}
-			} else if (++local9.aLong185 > (long) arg0) {
+			} else if (++local9.secondaryNodeId > (long) arg0) {
 				@Pc(33) ReferenceNode local33 = Static252.aClass22_1.method1027(local9);
 				this.aClass133_18.pushNode(local33, local9.nodeId);
 				Static84.method1772(local9, local33);
 				local9.remove();
-				local9.method4365();
+				local9.secondaryRemove();
 			}
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "b", descriptor = "(B)V")
 	public final void method3103() {
-		for (@Pc(7) ReferenceNode local7 = (ReferenceNode) this.aClass16_8.method795(); local7 != null; local7 = (ReferenceNode) this.aClass16_8.method797()) {
+		for (@Pc(7) ReferenceNode local7 = (ReferenceNode) this.aClass16_8.peekFront(); local7 != null; local7 = (ReferenceNode) this.aClass16_8.method797()) {
 			if (local7.method3619()) {
 				local7.remove();
-				local7.method4365();
+				local7.secondaryRemove();
 				this.anInt3966++;
 			}
 		}
@@ -117,7 +117,7 @@ public final class SoftLruHashTable {
 		@Pc(27) Object local27 = local12.method3618();
 		if (local27 == null) {
 			local12.remove();
-			local12.method4365();
+			local12.secondaryRemove();
 			this.anInt3966++;
 			return null;
 		}
@@ -125,12 +125,12 @@ public final class SoftLruHashTable {
 			@Pc(53) HardReferenceNode local53 = new HardReferenceNode(local27);
 			this.aClass133_18.pushNode(local53, local12.nodeId);
 			this.aClass16_8.method798(local53);
-			local53.aLong185 = 0L;
+			local53.secondaryNodeId = 0L;
 			local12.remove();
-			local12.method4365();
+			local12.secondaryRemove();
 		} else {
 			this.aClass16_8.method798(local12);
-			local12.aLong185 = 0L;
+			local12.secondaryNodeId = 0L;
 		}
 		return local27;
 	}

@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.game.config.iftype.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -91,7 +92,7 @@ public final class Static40 {
 		if (local10 != null) {
 			return local10;
 		}
-		@Pc(20) byte[] local20 = Static98.aClass153_42.method4495(34, arg0);
+		@Pc(20) byte[] local20 = Static98.aClass153_42.getfile(34, arg0);
 		local10 = new Class2();
 		if (local20 != null) {
 			local10.method6(new Packet(local20), arg0);

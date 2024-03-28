@@ -44,7 +44,7 @@ public final class Static142 {
 				if (local17 instanceof NPCEntity) {
 					local58 = ((NPCEntity) local17).npcType;
 					if (local58.multinpc != null) {
-						local58 = local58.method2932();
+						local58 = local58.getVisible();
 					}
 					if (local58 == null) {
 						continue;
@@ -54,7 +54,7 @@ public final class Static142 {
 				if (local5 >= Static267.anInt5774) {
 					local58 = ((NPCEntity) local17).npcType;
 					if (local58.multinpc != null) {
-						local58 = local58.method2932();
+						local58 = local58.getVisible();
 					}
 					if (local58.anInt3732 >= 0 && Static138.aClass3_Sub2_Sub1Array5.length > local58.anInt3732) {
 						if (local58.overlayheight == -1) {

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.lighttype.LightType;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -43,7 +44,7 @@ public final class Static140 {
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(ILclient!e;)I")
 	public static int method2706(@OriginalArg(1) Player arg0) {
 		@Pc(14) int local14 = arg0.anInt1654;
-		@Pc(18) BasType local18 = arg0.method2681();
+		@Pc(18) BASType local18 = arg0.method2681();
 		if (local18.anInt1037 == arg0.anInt3366) {
 			local14 = arg0.anInt1648;
 		} else if (local18.anInt1058 == arg0.anInt3366 || arg0.anInt3366 == local18.anInt1054 || arg0.anInt3366 == local18.anInt1045 || local18.anInt1043 == arg0.anInt3366) {
@@ -107,7 +108,7 @@ public final class Static140 {
 		if (local10 != null) {
 			return local10;
 		}
-		@Pc(26) byte[] local26 = Static85.aClass153_36.method4495(31, arg0);
+		@Pc(26) byte[] local26 = Static85.aClass153_36.getfile(31, arg0);
 		local10 = new LightType();
 		if (local26 != null) {
 			local10.decode(new Packet(local26));
@@ -125,7 +126,7 @@ public final class Static140 {
 		@Pc(29) int[] local29 = arg1.method4503(local10);
 		@Pc(35) Class134 local35 = new Class134(local29.length);
 		for (@Pc(37) int local37 = 0; local37 < local35.anInt5074; local37++) {
-			@Pc(56) Packet local56 = new Packet(arg1.method4495(local10, local29[local37]));
+			@Pc(56) Packet local56 = new Packet(arg1.getfile(local10, local29[local37]));
 			local35.aClass100Array153[local37] = local56.gjstr();
 			local35.aByteArray69[local37] = local56.g1s();
 			local35.aShortArray73[local37] = (short) local56.g2();

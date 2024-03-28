@@ -83,7 +83,7 @@ public final class Static117 {
 	@OriginalMember(owner = "runetek4.client!jc", name = "a", descriptor = "(Lclient!ve;)Z")
 	private static boolean method2344(@OriginalArg(0) Js5 arg0) {
 		if (!aBoolean149) {
-			@Pc(7) byte[] local7 = arg0.method4495(0, 0);
+			@Pc(7) byte[] local7 = arg0.getfile(0, 0);
 			if (local7 == null) {
 				return false;
 			}
@@ -96,10 +96,10 @@ public final class Static117 {
 	@OriginalMember(owner = "runetek4.client!jc", name = "a", descriptor = "(Lclient!ve;II)Lclient!jc;")
 	public static VorbisSound method2345(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		if (method2344(arg0)) {
-			@Pc(16) byte[] local16 = arg0.method4495(arg1, arg2);
+			@Pc(16) byte[] local16 = arg0.getfile(arg1, arg2);
 			return local16 == null ? null : new VorbisSound(local16);
 		} else {
-			arg0.method4491(arg2, arg1);
+			arg0.requestDownload(arg1, arg2);
 			return null;
 		}
 	}

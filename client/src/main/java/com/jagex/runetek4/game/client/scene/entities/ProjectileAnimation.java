@@ -1,66 +1,68 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.game.client.scene.entities;
 
+import com.jagex.runetek4.*;
+import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!ra")
-public final class ProjAnim extends Entity {
+public final class ProjectileAnimation extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "u", descriptor = "D")
-	private double aDouble2;
+	private double velocityX;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "A", descriptor = "D")
-	public double aDouble3;
+	public double y;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "N", descriptor = "D")
-	private double aDouble4;
+	private double accelerationZ;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "Q", descriptor = "Lclient!ga;")
 	private ParticleSystem aClass47_Sub1_6;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "U", descriptor = "D")
-	private double aDouble5;
+	private double velocityZ;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "X", descriptor = "D")
-	public double aDouble6;
+	public double z;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "ab", descriptor = "I")
-	private int anInt4818;
+	private int pitch;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "bb", descriptor = "D")
-	private double aDouble7;
+	private double velocityY;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "db", descriptor = "D")
-	public double aDouble8;
+	public double x;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "eb", descriptor = "D")
-	private double aDouble9;
+	private double velocity;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "hb", descriptor = "I")
-	public int anInt4821;
+	public int yaw;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "v", descriptor = "I")
-	private int anInt4796 = 0;
+	private int frameCycle = 0;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "I", descriptor = "Z")
-	private boolean aBoolean239 = false;
+	private boolean isMobile = false;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "x", descriptor = "I")
 	private int anInt4798 = -1;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "fb", descriptor = "I")
-	private int anInt4820 = 0;
+	private int seqFrame = 0;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "T", descriptor = "I")
 	private int anInt4814 = -32768;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "z", descriptor = "I")
-	public final int anInt4800;
+	public final int lastCycle;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "E", descriptor = "I")
-	private final int anInt4804;
+	private final int sourceX;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "cb", descriptor = "I")
 	public final int anInt4819;
@@ -72,45 +74,45 @@ public final class ProjAnim extends Entity {
 	public final int anInt4810;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "mb", descriptor = "I")
-	private final int anInt4825;
+	private final int elevationPitch;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "Z", descriptor = "I")
-	private final int anInt4817;
+	private final int sourceY;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "F", descriptor = "I")
 	public final int anInt4805;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "w", descriptor = "I")
-	private final int anInt4797;
+	private final int arcScale;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "ib", descriptor = "I")
 	public final int anInt4822;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "S", descriptor = "I")
-	private final int anInt4813;
+	private final int sourceZ;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "gb", descriptor = "Lclient!tk;")
-	private final SeqType aClass144_3;
+	private final SeqType seqType;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "<init>", descriptor = "(IIIIIIIIIII)V")
-	public ProjAnim(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10) {
-		this.anInt4800 = arg6;
-		this.anInt4804 = arg2;
+	public ProjectileAnimation(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10) {
+		this.lastCycle = arg6;
+		this.sourceX = arg2;
 		this.anInt4819 = arg9;
 		this.anInt4816 = arg0;
 		this.anInt4810 = arg1;
-		this.anInt4825 = arg7;
-		this.anInt4817 = arg3;
-		this.aBoolean239 = false;
+		this.elevationPitch = arg7;
+		this.sourceY = arg3;
+		this.isMobile = false;
 		this.anInt4805 = arg10;
-		this.anInt4797 = arg8;
+		this.arcScale = arg8;
 		this.anInt4822 = arg5;
-		this.anInt4813 = arg4;
+		this.sourceZ = arg4;
 		@Pc(58) int local58 = Static34.method877(this.anInt4816).anInt1754;
 		if (local58 == -1) {
-			this.aClass144_3 = null;
+			this.seqType = null;
 		} else {
-			this.aClass144_3 = Static36.method941(local58);
+			this.seqType = Static36.method941(local58);
 		}
 	}
 
@@ -122,76 +124,77 @@ public final class ProjAnim extends Entity {
 	@OriginalMember(owner = "runetek4.client!ra", name = "b", descriptor = "(I)Lclient!ak;")
 	private Model method3703() {
 		@Pc(14) SpotAnimType local14 = Static34.method877(this.anInt4816);
-		@Pc(24) Model local24 = local14.method1319(this.anInt4798, this.anInt4820, this.anInt4796);
+		@Pc(24) Model local24 = local14.method1319(this.anInt4798, this.seqFrame, this.frameCycle);
 		if (local24 == null) {
 			return null;
 		} else {
-			local24.method4574(this.anInt4818);
+			local24.method4574(this.pitch);
 			return local24;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "b", descriptor = "(BI)V")
 	public final void method3704(@OriginalArg(1) int arg0) {
-		this.aDouble8 += this.aDouble2 * (double) arg0;
-		this.aDouble3 += this.aDouble7 * (double) arg0;
-		this.aBoolean239 = true;
-		if (this.anInt4825 == -1) {
-			this.aDouble6 += this.aDouble5 * (double) arg0;
+		this.isMobile = true;
+		this.x += this.velocityX * (double) arg0;
+		this.y += this.velocityY * (double) arg0;
+		if (this.elevationPitch == -1) {
+			this.z += this.velocityZ * (double) arg0;
 		} else {
-			this.aDouble6 += (double) arg0 * this.aDouble4 * 0.5D * (double) arg0 + (double) arg0 * this.aDouble5;
-			this.aDouble5 += this.aDouble4 * (double) arg0;
+			this.z += (double) arg0 * this.accelerationZ * 0.5D * (double) arg0 + (double) arg0 * this.velocityZ;
+			this.velocityZ += this.accelerationZ * (double) arg0;
 		}
-		this.anInt4821 = (int) (Math.atan2(this.aDouble2, this.aDouble7) * 325.949D) + 1024 & 0x7FF;
-		this.anInt4818 = (int) (Math.atan2(this.aDouble5, this.aDouble9) * 325.949D) & 0x7FF;
-		if (this.aClass144_3 == null) {
+		this.yaw = (int) (Math.atan2(this.velocityX, this.velocityY) * 325.949D) + 1024 & 0x7FF;
+		this.pitch = (int) (Math.atan2(this.velocityZ, this.velocity) * 325.949D) & 0x7FF;
+		if (this.seqType == null) {
 			return;
 		}
-		this.anInt4796 += arg0;
+		this.frameCycle += arg0;
 		while (true) {
 			do {
 				do {
-					if (this.anInt4796 <= this.aClass144_3.anIntArray474[this.anInt4820]) {
+					if (this.frameCycle <= this.seqType.frames[this.seqFrame]) {
 						return;
 					}
-					this.anInt4796 -= this.aClass144_3.anIntArray474[this.anInt4820];
-					this.anInt4820++;
-					if (this.anInt4820 >= this.aClass144_3.anIntArray473.length) {
-						this.anInt4820 -= this.aClass144_3.anInt5362;
-						if (this.anInt4820 < 0 || this.aClass144_3.anIntArray473.length <= this.anInt4820) {
-							this.anInt4820 = 0;
+					this.frameCycle -= this.seqType.frames[this.seqFrame];
+					this.seqFrame++;
+					if (this.seqFrame >= this.seqType.anIntArray473.length) {
+						this.seqFrame -= this.seqType.replayoff;
+						if (this.seqFrame < 0 || this.seqType.anIntArray473.length <= this.seqFrame) {
+							this.seqFrame = 0;
 						}
 					}
-					this.anInt4798 = this.anInt4820 + 1;
-				} while (this.aClass144_3.anIntArray473.length > this.anInt4798);
-				this.anInt4798 -= this.aClass144_3.anInt5362;
-			} while (this.anInt4798 >= 0 && this.anInt4798 < this.aClass144_3.anIntArray473.length);
+					this.anInt4798 = this.seqFrame + 1;
+				} while (this.seqType.anIntArray473.length > this.anInt4798);
+				this.anInt4798 -= this.seqType.replayoff;
+			} while (this.anInt4798 >= 0 && this.anInt4798 < this.seqType.anIntArray473.length);
 			this.anInt4798 = -1;
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ra", name = "b", descriptor = "(IIIII)V")
-	public final void method3705(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+	@OriginalMember(owner = "client!ra", name = "b", descriptor = "(IIIII)V")
+	public void setTarget(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		@Pc(17) double local17;
-		if (!this.aBoolean239) {
-			@Pc(10) double local10 = (double) (arg0 - this.anInt4817);
-			local17 = arg3 - this.anInt4804;
+		if (!this.isMobile) {
+			@Pc(10) double local10 = (double) (arg0 - this.sourceY);
+			local17 = arg3 - this.sourceX;
 			@Pc(26) double local26 = Math.sqrt(local17 * local17 + local10 * local10);
-			this.aDouble6 = this.anInt4813;
-			this.aDouble3 = local10 * (double) this.anInt4797 / local26 + (double) this.anInt4817;
-			this.aDouble8 = (double) this.anInt4797 * local17 / local26 + (double) this.anInt4804;
+			this.x = (double) this.arcScale * local17 / local26 + (double) this.sourceX;
+			this.y = (double) this.arcScale * local10 / local26 + (double) this.sourceY;
+			this.z = this.sourceZ;
 		}
-		local17 = this.anInt4800 + 1 - arg1;
-		this.aDouble7 = ((double) arg0 - this.aDouble3) / local17;
-		this.aDouble2 = ((double) arg3 - this.aDouble8) / local17;
-		this.aDouble9 = Math.sqrt(this.aDouble7 * this.aDouble7 + this.aDouble2 * this.aDouble2);
-		if (this.anInt4825 == -1) {
-			this.aDouble5 = ((double) arg2 - this.aDouble6) / local17;
+		local17 = this.lastCycle + 1 - arg1;
+		this.velocityX = ((double) arg3 - this.x) / local17;
+		this.velocityY = ((double) arg0 - this.y) / local17;
+		this.velocity = Math.sqrt(this.velocityY * this.velocityY + this.velocityX * this.velocityX);
+
+		if (this.elevationPitch == -1) {
+			this.velocityZ = ((double) arg2 - this.z) / local17;
 		} else {
-			if (!this.aBoolean239) {
-				this.aDouble5 = -this.aDouble9 * Math.tan((double) this.anInt4825 * 0.02454369D);
+			if (!this.isMobile) {
+				this.velocityZ = -this.velocity * Math.tan((double) this.elevationPitch * 0.02454369D);
 			}
-			this.aDouble4 = ((double) arg2 - this.aDouble6 - this.aDouble5 * local17) * 2.0D / (local17 * local17);
+			this.accelerationZ = ((double) arg2 - this.z - this.velocityZ * local17) * 2.0D / (local17 * local17);
 		}
 	}
 

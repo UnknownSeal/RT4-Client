@@ -1,82 +1,153 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.game.config.seqtype;
 
+import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!tk")
+@OriginalClass("client!tk")
 public final class SeqType {
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "g", descriptor = "[I")
 	public int[] anIntArray473;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "n", descriptor = "[Z")
+	@OriginalMember(owner = "client!tk", name = "n", descriptor = "[Z")
 	public boolean[] aBooleanArray123;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "y", descriptor = "I")
+	@OriginalMember(owner = "client!tk", name = "y", descriptor = "I")
 	public int anInt5361;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "C", descriptor = "[[I")
-	public int[][] anIntArrayArray38;
+	@OriginalMember(owner = "client!tk", name = "C", descriptor = "[[I")
+	public int[][] sound;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "G", descriptor = "[I")
-	public int[] anIntArray474;
+	@OriginalMember(owner = "client!tk", name = "G", descriptor = "[I")
+	public int[] frames;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "I", descriptor = "[I")
+	@OriginalMember(owner = "client!tk", name = "I", descriptor = "[I")
 	private int[] anIntArray475;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "a", descriptor = "I")
+	@OriginalMember(owner = "client!tk", name = "a", descriptor = "I")
 	public int anInt5347 = 2;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "b", descriptor = "Z")
+	@OriginalMember(owner = "client!tk", name = "b", descriptor = "Z")
 	public boolean aBoolean277 = false;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "f", descriptor = "I")
+	@OriginalMember(owner = "client!tk", name = "f", descriptor = "I")
 	public int anInt5349 = -1;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "e", descriptor = "I")
-	public int anInt5348 = -1;
+	@OriginalMember(owner = "client!tk", name = "e", descriptor = "I")
+	public int offhand = -1;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "d", descriptor = "Z")
+	@OriginalMember(owner = "client!tk", name = "d", descriptor = "Z")
 	public boolean aBoolean278 = false;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "t", descriptor = "I")
-	public int anInt5357 = 99;
+	@OriginalMember(owner = "client!tk", name = "t", descriptor = "I")
+	public int replaycount = 99;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "z", descriptor = "I")
-	public int anInt5362 = -1;
+	@OriginalMember(owner = "client!tk", name = "z", descriptor = "I")
+	public int replayoff = -1;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "B", descriptor = "I")
+	@OriginalMember(owner = "client!tk", name = "B", descriptor = "I")
 	public int anInt5363 = -1;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "p", descriptor = "I")
-	public int anInt5355 = 5;
+	@OriginalMember(owner = "client!tk", name = "p", descriptor = "I")
+	public int priority = 5;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "r", descriptor = "Z")
-	public boolean aBoolean279 = false;
+	@OriginalMember(owner = "client!tk", name = "r", descriptor = "Z")
+	public boolean stretches = false;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "l", descriptor = "I")
-	public int anInt5353 = -1;
+	@OriginalMember(owner = "client!tk", name = "l", descriptor = "I")
+	public int mainhand = -1;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "L", descriptor = "Z")
+	@OriginalMember(owner = "client!tk", name = "L", descriptor = "Z")
 	public boolean aBoolean280 = false;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "a", descriptor = "(Lclient!wa;B)V")
-	public final void method4213(@OriginalArg(0) Packet arg0) {
+	@OriginalMember(owner = "client!tk", name = "a", descriptor = "(Lclient!wa;B)V")
+	public void decode(@OriginalArg(0) Packet packet) {
 		while (true) {
-			@Pc(19) int local19 = arg0.g1();
-			if (local19 == 0) {
+			@Pc(19) int code = packet.g1();
+			if (code == 0) {
 				return;
 			}
-			this.method4220(local19, arg0);
+			this.decode(code, packet);
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "a", descriptor = "(IIILclient!ak;II)Lclient!ak;")
-	public final Model method4214(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Model arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		@Pc(10) int local10 = this.anIntArray474[arg0];
+	@OriginalMember(owner = "client!tk", name = "a", descriptor = "(IBLclient!wa;)V")
+	private void decode(@OriginalArg(0) int code, @OriginalArg(2) Packet packet) {
+		if (code == 1) {
+			int length = packet.g2();
+			this.frames = new int[length];
+			for (int index = 0; index < length; index++) {
+				this.frames[index] = packet.g2();
+			}
+			this.anIntArray473 = new int[length];
+			for (int index = 0; index < length; index++) {
+				this.anIntArray473[index] = packet.g2();
+			}
+			for (int index = 0; index < length; index++) {
+				this.anIntArray473[index] += packet.g2() << 16;
+			}
+		} else if (code == 2) {
+			this.replayoff = packet.g2();
+		} else if (code == 3) {
+			this.aBooleanArray123 = new boolean[256];
+			int length = packet.g1();
+			for (int index = 0; index < length; index++) {
+				this.aBooleanArray123[packet.g1()] = true;
+			}
+		} else if (code == 4) {
+			this.stretches = true;
+		} else if (code == 5) {
+			this.priority = packet.g1();
+		} else if (code == 6) {
+			this.mainhand = packet.g2();
+		} else if (code == 7) {
+			this.offhand = packet.g2();
+		} else if (code == 8) {
+			this.replaycount = packet.g1();
+		} else if (code == 9) {
+			this.anInt5363 = packet.g1();
+		} else if (code == 10) {
+			this.anInt5349 = packet.g1();
+		} else if (code == 11) {
+			this.anInt5347 = packet.g1();
+		} else if (code == 12) {
+			int length = packet.g1();
+			this.anIntArray475 = new int[length];
+			for (int index = 0; index < length; index++) {
+				this.anIntArray475[index] = packet.g2();
+			}
+			for (int index = 0; index < length; index++) {
+				this.anIntArray475[index] += packet.g2() << 16;
+			}
+		} else if (code == 13) {
+			int length = packet.g2();
+			this.sound = new int[length][];
+			for (int index = 0; index < length; index++) {
+				@Pc(163) int local163 = packet.g1();
+				if (local163 > 0) {
+					this.sound[index] = new int[local163];
+					this.sound[index][0] = packet.g3();
+					for (@Pc(182) int local182 = 1; local182 < local163; local182++) {
+						this.sound[index][local182] = packet.g2();
+					}
+				}
+			}
+		} else if (code == 14) {
+			this.aBoolean278 = true;
+		} else if (code == 15) {
+			this.aBoolean277 = true;
+		} else if (code == 16) {
+			this.aBoolean280 = true;
+		}
+	}
+
+	@OriginalMember(owner = "client!tk", name = "a", descriptor = "(IIILclient!ak;II)Lclient!ak;")
+	public Model method4214(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Model arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
+		@Pc(10) int local10 = this.frames[arg0];
 		@Pc(15) int local15 = this.anIntArray473[arg0];
 		@Pc(23) AnimFrameset local23 = Static72.method1566(local15 >> 16);
 		@Pc(27) int local27 = local15 & 0xFFFF;
@@ -130,10 +201,10 @@ public final class SeqType {
 		return local124;
 	}
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "a", descriptor = "(Lclient!ak;BIII)Lclient!ak;")
-	public final Model method4215(@OriginalArg(0) Model arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+	@OriginalMember(owner = "client!tk", name = "a", descriptor = "(Lclient!ak;BIII)Lclient!ak;")
+	public Model method4215(@OriginalArg(0) Model arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		@Pc(8) int local8 = this.anIntArray473[arg3];
-		@Pc(13) int local13 = this.anIntArray474[arg3];
+		@Pc(13) int local13 = this.frames[arg3];
 		@Pc(19) AnimFrameset local19 = Static72.method1566(local8 >> 16);
 		@Pc(23) int local23 = local8 & 0xFFFF;
 		if (local19 == null) {
@@ -187,9 +258,9 @@ public final class SeqType {
 		return local258;
 	}
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "a", descriptor = "(IIIILclient!ak;I)Lclient!ak;")
-	public final Model method4216(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Model arg4) {
-		@Pc(6) int local6 = this.anIntArray474[arg1];
+	@OriginalMember(owner = "client!tk", name = "a", descriptor = "(IIIILclient!ak;I)Lclient!ak;")
+	public Model method4216(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Model arg4) {
+		@Pc(6) int local6 = this.frames[arg1];
 		@Pc(11) int local11 = this.anIntArray473[arg1];
 		@Pc(19) AnimFrameset local19 = Static72.method1566(local11 >> 16);
 		@Pc(27) int local27 = local11 & 0xFFFF;
@@ -243,8 +314,8 @@ public final class SeqType {
 		return local106;
 	}
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "b", descriptor = "(B)V")
-	public final void method4218() {
+	@OriginalMember(owner = "client!tk", name = "b", descriptor = "(B)V")
+	public void postDecode() {
 		if (this.anInt5363 == -1) {
 			if (this.aBooleanArray123 == null) {
 				this.anInt5363 = 0;
@@ -262,9 +333,9 @@ public final class SeqType {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "a", descriptor = "(IIIBLclient!ak;)Lclient!ak;")
-	public final Model method4219(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) Model arg3) {
-		@Pc(16) int local16 = this.anIntArray474[arg2];
+	@OriginalMember(owner = "client!tk", name = "a", descriptor = "(IIIBLclient!ak;)Lclient!ak;")
+	public Model method4219(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) Model arg3) {
+		@Pc(16) int local16 = this.frames[arg2];
 		@Pc(21) int local21 = this.anIntArray473[arg2];
 		@Pc(27) AnimFrameset local27 = Static72.method1566(local21 >> 16);
 		@Pc(31) int local31 = local21 & 0xFFFF;
@@ -285,77 +356,5 @@ public final class SeqType {
 		}
 		local103.method4558(local27, local31, local42, arg0, arg1 - 1, local16, this.aBoolean278);
 		return local103;
-	}
-
-	@OriginalMember(owner = "runetek4.client!tk", name = "a", descriptor = "(IBLclient!wa;)V")
-	private void method4220(@OriginalArg(0) int arg0, @OriginalArg(2) Packet arg1) {
-		@Pc(8) int local8;
-		@Pc(14) int local14;
-		if (arg0 == 1) {
-			local8 = arg1.g2();
-			this.anIntArray474 = new int[local8];
-			for (local14 = 0; local14 < local8; local14++) {
-				this.anIntArray474[local14] = arg1.g2();
-			}
-			this.anIntArray473 = new int[local8];
-			for (local14 = 0; local14 < local8; local14++) {
-				this.anIntArray473[local14] = arg1.g2();
-			}
-			for (local14 = 0; local14 < local8; local14++) {
-				this.anIntArray473[local14] += arg1.g2() << 16;
-			}
-		} else if (arg0 == 2) {
-			this.anInt5362 = arg1.g2();
-		} else if (arg0 == 3) {
-			this.aBooleanArray123 = new boolean[256];
-			local8 = arg1.g1();
-			for (local14 = 0; local14 < local8; local14++) {
-				this.aBooleanArray123[arg1.g1()] = true;
-			}
-		} else if (arg0 == 4) {
-			this.aBoolean279 = true;
-		} else if (arg0 == 5) {
-			this.anInt5355 = arg1.g1();
-		} else if (arg0 == 6) {
-			this.anInt5353 = arg1.g2();
-		} else if (arg0 == 7) {
-			this.anInt5348 = arg1.g2();
-		} else if (arg0 == 8) {
-			this.anInt5357 = arg1.g1();
-		} else if (arg0 == 9) {
-			this.anInt5363 = arg1.g1();
-		} else if (arg0 == 10) {
-			this.anInt5349 = arg1.g1();
-		} else if (arg0 == 11) {
-			this.anInt5347 = arg1.g1();
-		} else if (arg0 == 12) {
-			local8 = arg1.g1();
-			this.anIntArray475 = new int[local8];
-			for (local14 = 0; local14 < local8; local14++) {
-				this.anIntArray475[local14] = arg1.g2();
-			}
-			for (local14 = 0; local14 < local8; local14++) {
-				this.anIntArray475[local14] += arg1.g2() << 16;
-			}
-		} else if (arg0 == 13) {
-			local8 = arg1.g2();
-			this.anIntArrayArray38 = new int[local8][];
-			for (local14 = 0; local14 < local8; local14++) {
-				@Pc(163) int local163 = arg1.g1();
-				if (local163 > 0) {
-					this.anIntArrayArray38[local14] = new int[local163];
-					this.anIntArrayArray38[local14][0] = arg1.g3();
-					for (@Pc(182) int local182 = 1; local182 < local163; local182++) {
-						this.anIntArrayArray38[local14][local182] = arg1.g2();
-					}
-				}
-			}
-		} else if (arg0 == 14) {
-			this.aBoolean278 = true;
-		} else if (arg0 == 15) {
-			this.aBoolean277 = true;
-		} else if (arg0 == 16) {
-			this.aBoolean280 = true;
-		}
 	}
 }

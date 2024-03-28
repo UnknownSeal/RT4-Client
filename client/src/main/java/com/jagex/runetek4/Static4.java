@@ -3,7 +3,11 @@ package com.jagex.runetek4;
 import java.io.IOException;
 
 import com.jagex.runetek4.game.client.ClientInvCache;
+import com.jagex.runetek4.game.client.logic.DelayedStateChange;
+import com.jagex.runetek4.game.config.bastype.BASType;
+import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.game.config.objtype.ObjType;
+import com.jagex.runetek4.game.config.seqtype.SeqType;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -24,7 +28,7 @@ public final class Static4 {
 	public static short aShort1 = 32767;
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "l", descriptor = "Lclient!ck;")
-	public static final BasType aClass20_1 = new BasType();
+	public static final BASType aClass20_1 = new BASType();
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "m", descriptor = "Lclient!na;")
 	public static final JagString aClass100_7 = Static28.parse("overlay");
@@ -54,7 +58,7 @@ public final class Static4 {
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "a", descriptor = "(BI)V")
 	public static void method24(@OriginalArg(1) int arg0) {
-		@Pc(16) DelayedStateChange local16 = Static238.method4143(1, arg0);
+		@Pc(16) DelayedStateChange local16 = DelayedStateChange.method4143(1, arg0);
 		local16.method1007();
 	}
 
@@ -575,7 +579,7 @@ public final class Static4 {
 										local171 = -1;
 									}
 									local1245 = true;
-									if (local171 != -1 && local1894.anInt3432 != -1 && Static36.method941(Static34.method877(local171).anInt1754).anInt5355 < Static36.method941(Static34.method877(local1894.anInt3432).anInt1754).anInt5355) {
+									if (local171 != -1 && local1894.anInt3432 != -1 && Static36.method941(Static34.method877(local171).anInt1754).priority < Static36.method941(Static34.method877(local1894.anInt3432).anInt1754).priority) {
 										local1245 = false;
 									}
 									if (local1245) {
@@ -612,7 +616,7 @@ public final class Static4 {
 										local171 = -1;
 									}
 									local1245 = true;
-									if (local171 != -1 && local2033.anInt3432 != -1 && Static36.method941(Static34.method877(local171).anInt1754).anInt5355 < Static36.method941(Static34.method877(local2033.anInt3432).anInt1754).anInt5355) {
+									if (local171 != -1 && local2033.anInt3432 != -1 && Static36.method941(Static34.method877(local171).anInt1754).priority < Static36.method941(Static34.method877(local2033.anInt3432).anInt1754).priority) {
 										local1245 = false;
 									}
 									if (local1245) {
@@ -672,7 +676,7 @@ public final class Static4 {
 						Static99.anIntArray240[local864] = local133;
 						Static141.anIntArray326[local864] = 1;
 						for (local171 = 0; local171 < 98; local171++) {
-							if (ObjType.anIntArray213[local171] <= local786) {
+							if (ObjType.table[local171] <= local786) {
 								Static141.anIntArray326[local864] = local171 + 2;
 							}
 						}

@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.npctype.NPCType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -119,13 +120,13 @@ public final class Static112 {
 	public static int method2299(@OriginalArg(0) NPCEntity arg0) {
 		@Pc(13) NPCType local13 = arg0.npcType;
 		if (local13.multinpc != null) {
-			local13 = local13.method2932();
+			local13 = local13.getVisible();
 			if (local13 == null) {
 				return -1;
 			}
 		}
 		@Pc(29) int local29 = local13.bgsound_walk;
-		@Pc(33) BasType local33 = arg0.method2681();
+		@Pc(33) BASType local33 = arg0.method2681();
 		if (local33.anInt1037 == arg0.anInt3366) {
 			local29 = local13.bgsound;
 		} else if (arg0.anInt3366 == local33.anInt1058 || local33.anInt1054 == arg0.anInt3366 || arg0.anInt3366 == local33.anInt1045 || arg0.anInt3366 == local33.anInt1043) {

@@ -3,6 +3,9 @@ package com.jagex.runetek4;
 import java.io.DataInputStream;
 import java.net.URL;
 import java.util.Random;
+
+import com.jagex.runetek4.game.client.logic.DelayedStateChange;
+import com.jagex.runetek4.game.config.iftype.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -147,7 +150,7 @@ public final class Static89 {
 
 	@OriginalMember(owner = "runetek4.client!ha", name = "b", descriptor = "(II)V")
 	public static void method1840(@OriginalArg(1) int arg0) {
-		@Pc(8) DelayedStateChange local8 = Static238.method4143(2, arg0);
+		@Pc(8) DelayedStateChange local8 = DelayedStateChange.method4143(2, arg0);
 		local8.method1007();
 	}
 

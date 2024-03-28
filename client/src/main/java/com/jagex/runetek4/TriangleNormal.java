@@ -1,14 +1,12 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!qj")
 public final class TriangleNormal {
-
-	@OriginalMember(owner = "runetek4.client!qj", name = "a", descriptor = "[J")
-	public static final long[] aLongArray7 = new long[256];
 
 	@OriginalMember(owner = "runetek4.client!qj", name = "c", descriptor = "I")
 	public int anInt4767;
@@ -29,7 +27,7 @@ public final class TriangleNormal {
 					local10 >>>= 0x1;
 				}
 			}
-			aLongArray7[local4] = local10;
+			Packet.crc64table[local4] = local10;
 		}
 	}
 }

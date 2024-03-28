@@ -1,6 +1,9 @@
 package com.jagex.runetek4.game.config.npctype;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.game.config.bastype.BASType;
+import com.jagex.runetek4.game.config.seqtype.SeqType;
+import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -14,6 +17,8 @@ import com.jagex.runetek4.core.io.Packet;
 @OriginalClass("client!me")
 public final class NPCType {
 
+	@OriginalMember(owner = "runetek4.client!sm", name = "l", descriptor = "[S")
+	public static short[] clientpalette = new short[256];
 	@OriginalMember(owner = "client!me", name = "b", descriptor = "[S")
 	private short[] retex_d;
 
@@ -162,7 +167,7 @@ public final class NPCType {
 	public int cursorattack = -1;
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(B)Lclient!me;")
-	public final NPCType method2932() {
+	public final NPCType getVisible() {
 		@Pc(5) int local5 = -1;
 		if (this.multivarbit != -1) {
 			local5 = Static155.method2945(this.multivarbit);
@@ -178,7 +183,7 @@ public final class NPCType {
 	}
 
 	@OriginalMember(owner = "client!me", name = "b", descriptor = "(B)Z")
-	public final boolean method2933() {
+	public boolean isVisible() {
 		if (this.multinpc == null) {
 			return true;
 		}
@@ -197,14 +202,14 @@ public final class NPCType {
 	}
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(I)Z")
-	public final boolean method2935() {
+	public boolean hasBackgroundSound() {
 		if (this.multinpc == null) {
 			return this.bgsound != -1 || this.bgsound_walk != -1 || this.bgsound_run != -1;
 		}
-		for (@Pc(35) int local35 = 0; local35 < this.multinpc.length; local35++) {
-			if (this.multinpc[local35] != -1) {
-				@Pc(60) NPCType local60 = Static214.method4363(this.multinpc[local35]);
-				if (local60.bgsound != -1 || local60.bgsound_walk != -1 || local60.bgsound_run != -1) {
+		for (@Pc(35) int index = 0; index < this.multinpc.length; index++) {
+			if (this.multinpc[index] != -1) {
+				@Pc(60) NPCType npcType = Static214.method4363(this.multinpc[index]);
+				if (npcType.bgsound != -1 || npcType.bgsound_walk != -1 || npcType.bgsound_run != -1) {
 					return true;
 				}
 			}
@@ -213,7 +218,7 @@ public final class NPCType {
 	}
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(III)I")
-	public final int method2936(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
+	public int getParam(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
 		if (this.params == null) {
 			return arg1;
 		} else {
@@ -225,7 +230,7 @@ public final class NPCType {
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "([Lclient!ub;IBIIIILclient!tk;ILclient!tk;)Lclient!ak;")
 	public final Model method2937(@OriginalArg(0) Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) SeqType arg6, @OriginalArg(8) int arg7, @OriginalArg(9) SeqType arg8) {
 		if (this.multinpc != null) {
-			@Pc(13) NPCType local13 = this.method2932();
+			@Pc(13) NPCType local13 = this.getVisible();
 			return local13 == null ? null : local13.method2937(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
 		}
 		@Pc(40) Model local40 = (Model) Static125.aClass99_18.method3106((long) this.anInt3741);
@@ -244,23 +249,23 @@ public final class NPCType {
 		if (local40 == null) {
 			local46 = false;
 			for (@Pc(48) int local48 = 0; local48 < this.models.length; local48++) {
-				if (this.models[local48] != -1 && !Static86.aClass153_37.method4491(0, this.models[local48])) {
+				if (this.models[local48] != -1 && !Static86.aClass153_37.requestDownload(this.models[local48], 0)) {
 					local46 = true;
 				}
 			}
 			if (local46) {
 				return null;
 			}
-			@Pc(84) RawModel[] local84 = new RawModel[this.models.length];
+			@Pc(84) ModelUnlit[] local84 = new ModelUnlit[this.models.length];
 			for (@Pc(86) int local86 = 0; local86 < this.models.length; local86++) {
 				if (this.models[local86] != -1) {
-					local84[local86] = Static77.method1686(Static86.aClass153_37, this.models[local86]);
+					local84[local86] = ModelUnlit.get(Static86.aClass153_37, this.models[local86]);
 					if (this.modeloffset != null && this.modeloffset[local86] != null && local84[local86] != null) {
 						local84[local86].method1672(this.modeloffset[local86][0], this.modeloffset[local86][1], this.modeloffset[local86][2]);
 					}
 				}
 			}
-			@Pc(156) BasType local156 = null;
+			@Pc(156) BASType local156 = null;
 			if (this.bas != -1) {
 				local156 = Static90.method1856(this.bas);
 			}
@@ -318,24 +323,24 @@ public final class NPCType {
 					}
 				}
 			}
-			@Pc(593) RawModel local593;
+			@Pc(593) ModelUnlit local593;
 			if (local84.length == 1) {
 				local593 = local84[0];
 			} else {
-				local593 = new RawModel(local84, local84.length);
+				local593 = new ModelUnlit(local84, local84.length);
 			}
 			if (this.recol_s != null) {
 				for (local173 = 0; local173 < this.recol_s.length; local173++) {
 					if (this.recol_d_palette == null || this.recol_d_palette.length <= local173) {
-						local593.method1687(this.recol_s[local173], this.recol_d[local173]);
+						local593.recolor(this.recol_s[local173], this.recol_d[local173]);
 					} else {
-						local593.method1687(this.recol_s[local173], Static232.aShortArray74[this.recol_d_palette[local173] & 0xFF]);
+						local593.recolor(this.recol_s[local173], clientpalette[this.recol_d_palette[local173] & 0xFF]);
 					}
 				}
 			}
 			if (this.retex_s != null) {
 				for (local173 = 0; local173 < this.retex_s.length; local173++) {
-					local593.method1669(this.retex_s[local173], this.retex_d[local173]);
+					local593.retexture(this.retex_s[local173], this.retex_d[local173]);
 				}
 			}
 			local40 = local593.method1679(this.ambient + 64, this.contrast + 850, -30, -50, -30);
@@ -367,7 +372,7 @@ public final class NPCType {
 						local725 |= local753.aBoolean278;
 					}
 					if ((local753.aBoolean277 || Static204.aBoolean234) && local207 != -1 && local753.anIntArray473.length > local207) {
-						Static71.anIntArray147[local235] = local753.anIntArray474[local200];
+						Static71.anIntArray147[local235] = local753.frames[local200];
 						Static214.anIntArray492[local235] = arg0[local235].anInt5404;
 						local228 = local753.anIntArray473[local207];
 						Static131.aClass3_Sub2_Sub7Array5[local235] = Static72.method1566(local228 >>> 16);
@@ -410,7 +415,7 @@ public final class NPCType {
 				local725 |= arg8.aBoolean278;
 			}
 			if ((arg8.aBoolean277 || Static204.aBoolean234) && arg3 != -1 && arg8.anIntArray473.length > arg3) {
-				local200 = arg8.anIntArray474[arg5];
+				local200 = arg8.frames[arg5];
 				local221 = arg8.anIntArray473[arg3];
 				local1040 = local221 >>> 16;
 				local221 &= 0xFFFF;
@@ -441,7 +446,7 @@ public final class NPCType {
 				local725 |= arg6.aBoolean278;
 			}
 			if ((arg6.aBoolean277 || Static204.aBoolean234) && arg1 != -1 && arg1 < arg6.anIntArray473.length) {
-				local300 = arg6.anIntArray474[arg2];
+				local300 = arg6.frames[arg2];
 				local1040 = arg6.anIntArray473[arg1];
 				local318 = local1040 >>> 16;
 				local1040 &= 0xFFFF;
@@ -508,10 +513,10 @@ public final class NPCType {
 	}
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(Lclient!tk;IIII)Lclient!ak;")
-	public final Model method2943(@OriginalArg(0) SeqType arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
+	public Model getHeadModel(@OriginalArg(0) SeqType arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
 		if (this.multinpc != null) {
-			@Pc(13) NPCType local13 = this.method2932();
-			return local13 == null ? null : local13.method2943(arg0, arg1, arg2, arg3);
+			@Pc(13) NPCType npcType = this.getVisible();
+			return npcType == null ? null : npcType.getHeadModel(arg0, arg1, arg2, arg3);
 		} else if (this.heads == null) {
 			return null;
 		} else {
@@ -519,36 +524,36 @@ public final class NPCType {
 			if (local41 == null) {
 				@Pc(46) boolean local46 = false;
 				for (@Pc(48) int local48 = 0; local48 < this.heads.length; local48++) {
-					if (!Static86.aClass153_37.method4491(0, this.heads[local48])) {
+					if (!Static86.aClass153_37.requestDownload(this.heads[local48], 0)) {
 						local46 = true;
 					}
 				}
 				if (local46) {
 					return null;
 				}
-				@Pc(82) RawModel[] local82 = new RawModel[this.heads.length];
+				@Pc(82) ModelUnlit[] local82 = new ModelUnlit[this.heads.length];
 				for (@Pc(84) int local84 = 0; local84 < this.heads.length; local84++) {
-					local82[local84] = Static77.method1686(Static86.aClass153_37, this.heads[local84]);
+					local82[local84] = ModelUnlit.get(Static86.aClass153_37, this.heads[local84]);
 				}
-				@Pc(119) RawModel local119;
+				@Pc(119) ModelUnlit local119;
 				if (local82.length == 1) {
 					local119 = local82[0];
 				} else {
-					local119 = new RawModel(local82, local82.length);
+					local119 = new ModelUnlit(local82, local82.length);
 				}
-				@Pc(130) int local130;
+
 				if (this.recol_s != null) {
-					for (local130 = 0; local130 < this.recol_s.length; local130++) {
-						if (this.recol_d_palette == null || local130 >= this.recol_d_palette.length) {
-							local119.method1687(this.recol_s[local130], this.recol_d[local130]);
+					for (int index = 0; index < this.recol_s.length; index++) {
+						if (this.recol_d_palette == null || index >= this.recol_d_palette.length) {
+							local119.recolor(this.recol_s[index], this.recol_d[index]);
 						} else {
-							local119.method1687(this.recol_s[local130], Static232.aShortArray74[this.recol_d_palette[local130] & 0xFF]);
+							local119.recolor(this.recol_s[index], clientpalette[this.recol_d_palette[index] & 0xFF]);
 						}
 					}
 				}
 				if (this.retex_s != null) {
-					for (local130 = 0; local130 < this.retex_s.length; local130++) {
-						local119.method1669(this.retex_s[local130], this.retex_d[local130]);
+					for (int index = 0; index < this.retex_s.length; index++) {
+						local119.retexture(this.retex_s[index], this.retex_d[index]);
 					}
 				}
 				local41 = local119.method1679(64, 768, -50, -10, -50);

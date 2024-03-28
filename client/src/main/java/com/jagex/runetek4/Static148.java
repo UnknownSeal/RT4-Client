@@ -43,10 +43,10 @@ public final class Static148 {
 		Static7.anIntArray75[arg0] = arg1;
 		@Pc(21) LongNode local21 = (LongNode) Static199.aClass133_20.getNode((long) arg0);
 		if (local21 == null) {
-			local21 = new LongNode(MonotonicClock.currentTimeMillis() + 500L);
+			local21 = new LongNode(MonotonicTime.get() + 500L);
 			Static199.aClass133_20.pushNode(local21, (long) arg0);
 		} else {
-			local21.aLong55 = MonotonicClock.currentTimeMillis() + 500L;
+			local21.aLong55 = MonotonicTime.get() + 500L;
 		}
 	}
 
@@ -56,7 +56,7 @@ public final class Static148 {
 		if (local16 != null) {
 			return local16;
 		}
-		@Pc(26) byte[] local26 = Static261.aClass153_107.method4495(arg0, 0);
+		@Pc(26) byte[] local26 = Static261.aClass153_107.getfile(arg0, 0);
 		local16 = new SoftwareFont(local26);
 		local16.method2873(Static159.aClass36Array12, null);
 		Static139.aClass99_22.method3095(local16, (long) arg0);

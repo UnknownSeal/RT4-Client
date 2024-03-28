@@ -1,37 +1,41 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.game.client;
 
 import java.util.Random;
+
+import com.jagex.runetek4.MonochromeImageCacheBack;
+import com.jagex.runetek4.Static171;
+import com.jagex.runetek4.Static225;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!wf")
-public abstract class Class106 {
+@OriginalClass("client!wf")
+public abstract class NoiseGenerator3D {
 
-	@OriginalMember(owner = "runetek4.client!wf", name = "c", descriptor = "[S")
+	@OriginalMember(owner = "client!wf", name = "c", descriptor = "[S")
 	private short[] aShortArray70;
 
-	@OriginalMember(owner = "runetek4.client!wf", name = "a", descriptor = "[S")
+	@OriginalMember(owner = "client!wf", name = "a", descriptor = "[S")
 	private final short[] aShortArray69 = new short[512];
 
-	@OriginalMember(owner = "runetek4.client!wf", name = "i", descriptor = "I")
+	@OriginalMember(owner = "client!wf", name = "i", descriptor = "I")
 	private int anInt5000 = 0;
 
-	@OriginalMember(owner = "runetek4.client!wf", name = "m", descriptor = "I")
+	@OriginalMember(owner = "client!wf", name = "m", descriptor = "I")
 	private int anInt5003 = 4;
 
-	@OriginalMember(owner = "runetek4.client!wf", name = "l", descriptor = "I")
+	@OriginalMember(owner = "client!wf", name = "l", descriptor = "I")
 	private int anInt5002 = 4;
 
-	@OriginalMember(owner = "runetek4.client!wf", name = "r", descriptor = "I")
+	@OriginalMember(owner = "client!wf", name = "r", descriptor = "I")
 	private int anInt5007 = 4;
 
-	@OriginalMember(owner = "runetek4.client!wf", name = "t", descriptor = "I")
+	@OriginalMember(owner = "client!wf", name = "t", descriptor = "I")
 	protected int anInt5008 = 4;
 
-	@OriginalMember(owner = "runetek4.client!wf", name = "<init>", descriptor = "(IIIII)V")
-	protected Class106(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	@OriginalMember(owner = "client!wf", name = "<init>", descriptor = "(IIIII)V")
+	protected NoiseGenerator3D(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		this.anInt5002 = arg3;
 		this.anInt5008 = arg1;
 		this.anInt5000 = arg0;
@@ -41,7 +45,7 @@ public abstract class Class106 {
 		this.method3847();
 	}
 
-	@OriginalMember(owner = "runetek4.client!wf", name = "a", descriptor = "(IIII)V")
+	@OriginalMember(owner = "client!wf", name = "a", descriptor = "(IIII)V")
 	protected final void method3841() {
 		@Pc(8) int[] local8 = new int[64];
 		@Pc(11) int[] local11 = new int[64];
@@ -132,10 +136,10 @@ public abstract class Class106 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!wf", name = "a", descriptor = "(B)V")
+	@OriginalMember(owner = "client!wf", name = "a", descriptor = "(B)V")
 	protected abstract void method3842();
 
-	@OriginalMember(owner = "runetek4.client!wf", name = "b", descriptor = "(B)V")
+	@OriginalMember(owner = "client!wf", name = "b", descriptor = "(B)V")
 	private void method3843() {
 		this.aShortArray70 = new short[this.anInt5008];
 		for (@Pc(12) int local12 = 0; local12 < this.anInt5008; local12++) {
@@ -143,10 +147,10 @@ public abstract class Class106 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!wf", name = "a", descriptor = "(I)V")
+	@OriginalMember(owner = "client!wf", name = "a", descriptor = "(I)V")
 	protected abstract void method3844();
 
-	@OriginalMember(owner = "runetek4.client!wf", name = "c", descriptor = "(I)V")
+	@OriginalMember(owner = "client!wf", name = "c", descriptor = "(I)V")
 	private void method3847() {
 		@Pc(12) Random local12 = new Random((long) this.anInt5000);
 		@Pc(14) int local14;
@@ -162,6 +166,6 @@ public abstract class Class106 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!wf", name = "a", descriptor = "(III)V")
+	@OriginalMember(owner = "client!wf", name = "a", descriptor = "(III)V")
 	protected abstract void method3848(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1);
 }

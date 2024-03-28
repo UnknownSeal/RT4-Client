@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.flutype.FloorUnderlayType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -25,7 +26,7 @@ public final class Static193 {
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "a", descriptor = "(Lclient!na;BI)V")
 	public static void method3498(@OriginalArg(0) JagString arg0, @OriginalArg(2) int arg1) {
-		@Pc(10) DelayedStateChange local10 = Static238.method4143(2, arg1);
+		@Pc(10) DelayedStateChange local10 = DelayedStateChange.method4143(2, arg1);
 		local10.method1017();
 		local10.stringArg = arg0;
 	}

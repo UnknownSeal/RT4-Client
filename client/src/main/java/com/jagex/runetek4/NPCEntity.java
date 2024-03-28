@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.npctype.NPCType;
+import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -38,7 +39,7 @@ public final class NPCEntity extends PathingEntity {
 		this.anInt3413 = local74.method4549();
 		@Pc(84) NPCType local84 = this.npcType;
 		if (local84.multinpc != null) {
-			local84 = local84.method2932();
+			local84 = local84.getVisible();
 		}
 		@Pc(140) Model local140;
 		if (Static209.aBoolean240 && local84.spotshadow) {
@@ -102,7 +103,7 @@ public final class NPCEntity extends PathingEntity {
 	@Override
 	protected final int method2688() {
 		if (Static266.game != 0 && this.npcType.multinpc != null) {
-			@Pc(17) NPCType local17 = this.npcType.method2932();
+			@Pc(17) NPCType local17 = this.npcType.getVisible();
 			if (local17 != null && local17.bas != -1) {
 				return local17.bas;
 			}

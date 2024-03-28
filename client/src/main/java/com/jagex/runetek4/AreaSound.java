@@ -69,7 +69,7 @@ public final class AreaSound extends Node {
 	public final void method1567() {
 		@Pc(8) int local8 = this.anInt2044;
 		if (this.aClass118_1 != null) {
-			@Pc(17) LocType local17 = this.aClass118_1.method3417();
+			@Pc(17) LocType local17 = this.aClass118_1.getVisible();
 			if (local17 == null) {
 				this.anInt2044 = -1;
 				this.anIntArray181 = null;
@@ -89,7 +89,7 @@ public final class AreaSound extends Node {
 				@Pc(100) NPCType local100 = this.aClass8_Sub4_Sub2_1.npcType;
 				this.anInt2044 = local92;
 				if (local100.multinpc != null) {
-					local100 = local100.method2932();
+					local100 = local100.getVisible();
 				}
 				if (local100 == null) {
 					this.anInt2042 = 0;

@@ -1,5 +1,7 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
@@ -21,7 +23,7 @@ public final class Static274 {
 	public static Component aClass13_24;
 
 	@OriginalMember(owner = "runetek4.client!wf", name = "o", descriptor = "[Lclient!gb;")
-	public static final RawModel[] aClass8_Sub5Array5 = new RawModel[4];
+	public static final ModelUnlit[] aClass8_Sub5Array5 = new ModelUnlit[4];
 
 	@OriginalMember(owner = "runetek4.client!wf", name = "s", descriptor = "Lclient!na;")
 	public static final JagString aClass100_943 = Static28.parse("Forced tweening disabled)3");

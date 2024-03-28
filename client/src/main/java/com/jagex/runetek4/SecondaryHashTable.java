@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.core.datastruct.SecondaryNode;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -16,8 +17,8 @@ public final class SecondaryHashTable {
 		this.aClass3_Sub2Array1 = new SecondaryNode[arg0];
 		for (@Pc(7) int local7 = 0; local7 < arg0; local7++) {
 			@Pc(23) SecondaryNode local23 = this.aClass3_Sub2Array1[local7] = new SecondaryNode();
-			local23.aClass3_Sub2_66 = local23;
-			local23.aClass3_Sub2_67 = local23;
+			local23.secondaryNext = local23;
+			local23.secondaryPrev = local23;
 		}
 	}
 }

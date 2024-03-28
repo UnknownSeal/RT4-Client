@@ -22,9 +22,6 @@ public final class Static232 {
 	@OriginalMember(owner = "runetek4.client!sm", name = "c", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable aClass99_30 = new SoftLruHashTable(64);
 
-	@OriginalMember(owner = "runetek4.client!sm", name = "l", descriptor = "[S")
-	public static short[] aShortArray74 = new short[256];
-
 	@OriginalMember(owner = "runetek4.client!sm", name = "a", descriptor = "(IIIIIIIIIII)V")
 	public static void method3991(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(8) int arg5, @OriginalArg(9) int arg6, @OriginalArg(10) int arg7) {
 		@Pc(9) int local9 = arg2 - arg4;
@@ -60,15 +57,15 @@ public final class Static232 {
 								@Pc(209) int local209 = local116[local163][local203];
 								if (local209 != 0) {
 									@Pc(222) LocType local222 = Static271.get(local209 - 1);
-									if (!Static258.aBooleanArray130[local222.anInt4400]) {
-										if (local11 != -1 && local222.anInt4400 == Static9.anInt172) {
+									if (!Static258.aBooleanArray130[local222.mapelement]) {
+										if (local11 != -1 && local222.mapelement == Static9.anInt172) {
 											@Pc(243) Class3_Sub26 local243 = new Class3_Sub26();
 											local243.anInt4307 = local65;
 											local243.anInt4314 = local144;
-											local243.anInt4308 = local222.anInt4400;
+											local243.anInt4308 = local222.mapelement;
 											Static172.aClass69_97.method2282(local243);
 										} else {
-											Static241.aClass3_Sub2_Sub1_Sub1Array13[local222.anInt4400].method1423(local65 - 7, local144 + -7);
+											Static241.aClass3_Sub2_Sub1_Sub1Array13[local222.mapelement].method1423(local65 - 7, local144 + -7);
 										}
 									}
 								}

@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
+import com.jagex.runetek4.game.config.npctype.NPCType;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -133,7 +134,7 @@ public final class Static243 {
 		Static39.aClass13_10 = null;
 		Static60.aBoolean108 = false;
 		Static231.anInt5204 = 0;
-		Static134.aClass59_2.method1950(new int[] { 0, 0, 0, 0, 0 }, -1, false, null, -1);
+		Static134.A_PLAYER_MODEL___2.method1950(new int[] { 0, 0, 0, 0, 0 }, -1, false, null, -1);
 		for (local3506 = 0; local3506 < 8; local3506++) {
 			Static160.aClass100Array121[local3506] = null;
 			Static1.aBooleanArray1[local3506] = false;
@@ -162,7 +163,7 @@ public final class Static243 {
 		Static189.anInt4443 = 0;
 		Static195.aClass100_859 = LocalizedText.WALKHERE;
 		Static127.aBoolean160 = false;
-		Static259.aShortArray88 = Static62.aShortArray19 = Static232.aShortArray74 = Static259.aShortArray87 = new short[256];
+		Static259.aShortArray88 = Static62.aShortArray19 = NPCType.clientpalette = Static259.aShortArray87 = new short[256];
 		Static114.method4637();
 		Static261.aBoolean298 = false;
 		Static59.method1373();

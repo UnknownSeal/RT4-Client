@@ -47,7 +47,7 @@ public final class Static246 {
 			return;
 		}
 		if (npcType.multinpc != null) {
-			npcType = npcType.method2932();
+			npcType = npcType.getVisible();
 		}
 		if (npcType == null || !npcType.active) {
 			return;
@@ -61,7 +61,7 @@ public final class Static246 {
 			Static98.method1966(Static169.anInt4075, (long) arg2, Static34.method882(new JagString[] { Static34.aClass100_203, Static201.aClass100_407, local35 }), arg1, (short) 26, LocalizedText.USE, arg3);
 		} else if (Static241.aBoolean302) {
 			@Pc(378) Class3_Sub2_Sub12 local378 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
-			if ((Static274.anInt4999 & 0x2) != 0 && (local378 == null || npcType.method2936(Static121.anInt3039, local378.anInt2667) != local378.anInt2667)) {
+			if ((Static274.anInt4999 & 0x2) != 0 && (local378 == null || npcType.getParam(Static121.anInt3039, local378.anInt2667) != local378.anInt2667)) {
 				Static98.method1966(anInt5393, (long) arg2, Static34.method882(new JagString[] { Static78.aClass100_466, Static201.aClass100_407, local35 }), arg1, (short) 45, Static102.aClass100_545, arg3);
 			}
 		} else {
@@ -140,7 +140,7 @@ public final class Static246 {
 		if (invType != null) {
 			return invType;
 		}
-		@Pc(27) byte[] bytes = Static9.aClass153_2.method4495(5, arg0);
+		@Pc(27) byte[] bytes = Static9.aClass153_2.getfile(5, arg0);
 		invType = new InvType();
 		if (bytes != null) {
 			invType.decode(new Packet(bytes));

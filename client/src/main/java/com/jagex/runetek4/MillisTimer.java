@@ -24,7 +24,7 @@ public final class MillisTimer extends Timer {
 	private int anInt3553 = 0;
 
 	@OriginalMember(owner = "runetek4.client!lj", name = "k", descriptor = "J")
-	private long aLong122 = MonotonicClock.currentTimeMillis();
+	private long aLong122 = MonotonicTime.get();
 
 	@OriginalMember(owner = "runetek4.client!lj", name = "<init>", descriptor = "()V")
 	public MillisTimer() {
@@ -48,7 +48,7 @@ public final class MillisTimer extends Timer {
 		@Pc(20) int local20 = this.anInt3550;
 		this.anInt3550 = 300;
 		this.anInt3552 = 1;
-		this.aLong122 = MonotonicClock.currentTimeMillis();
+		this.aLong122 = MonotonicTime.get();
 		if (this.aLongArray4[this.anInt3549] == 0L) {
 			this.anInt3550 = local20;
 			this.anInt3552 = local17;

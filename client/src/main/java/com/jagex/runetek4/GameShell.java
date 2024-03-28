@@ -113,14 +113,14 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		Static69.aBoolean115 = true;
 		Static26.focus = true;
 		Static35.aBoolean66 = false;
-		Static243.aLong178 = MonotonicClock.currentTimeMillis();
+		Static243.aLong178 = MonotonicTime.get();
 	}
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "destroy", descriptor = "()V")
 	@Override
 	public final void destroy() {
 		if (Static230.anApplet_Sub1_1 == this && !Static58.aBoolean101) {
-			Static72.aLong74 = MonotonicClock.currentTimeMillis();
+			Static72.aLong74 = MonotonicTime.get();
 			Static231.sleep(5000L);
 			Static69.aClass213_4 = null;
 			this.method931(false);
@@ -169,7 +169,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			return;
 		}
 		Static69.aBoolean115 = true;
-		if (Static236.aBoolean256 && !GlRenderer.enabled && MonotonicClock.currentTimeMillis() - Static243.aLong178 > 1000L) {
+		if (Static236.aBoolean256 && !GlRenderer.enabled && MonotonicTime.get() - Static243.aLong178 > 1000L) {
 			@Pc(29) Rectangle local29 = arg0.getClipBounds();
 			if (local29 == null || local29.width >= Static72.anInt2046 && Static122.anInt3045 <= local29.height) {
 				Static35.aBoolean66 = true;
@@ -227,7 +227,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "b", descriptor = "(Z)V")
 	private void method932() {
-		@Pc(6) long local6 = MonotonicClock.currentTimeMillis();
+		@Pc(6) long local6 = MonotonicTime.get();
 		@Pc(10) long local10 = Static228.aLongArray8[Static261.anInt5741];
 		Static228.aLongArray8[Static261.anInt5741] = local6;
 		Static261.anInt5741 = Static261.anInt5741 + 1 & 0x1F;
@@ -241,7 +241,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "e", descriptor = "(I)V")
 	private void method933() {
-		@Pc(2) long local2 = MonotonicClock.currentTimeMillis();
+		@Pc(2) long local2 = MonotonicTime.get();
 		@Pc(6) long local6 = Static7.aLongArray2[Static111.anInt2903];
 		Static7.aLongArray2[Static111.anInt2903] = local2;
 		Static111.anInt2903 = Static111.anInt2903 + 1 & 0x1F;
@@ -325,7 +325,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			Static260.aClass27_2 = Static131.method2579(Static254.anInt5554, Static48.anInt1448, Static154.canvas);
 			this.method935();
 			Static200.aClass93_1 = Static70.method1547();
-			while (Static72.aLong74 == 0L || Static72.aLong74 > MonotonicClock.currentTimeMillis()) {
+			while (Static72.aLong74 == 0L || Static72.aLong74 > MonotonicTime.get()) {
 				Static227.anInt5097 = Static200.aClass93_1.method3391(Static226.anInt5081, Static11.anInt386);
 				for (local76 = 0; local76 < Static227.anInt5097; local76++) {
 					this.method932();
@@ -357,7 +357,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@Override
 	public final void stop() {
 		if (Static230.anApplet_Sub1_1 == this && !Static58.aBoolean101) {
-			Static72.aLong74 = MonotonicClock.currentTimeMillis() + 4000L;
+			Static72.aLong74 = MonotonicTime.get() + 4000L;
 		}
 	}
 

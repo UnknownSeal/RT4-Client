@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -130,37 +131,37 @@ public final class SoftwareModel extends Model {
 	}
 
 	@OriginalMember(owner = "runetek4.client!w", name = "<init>", descriptor = "(Lclient!gb;IIIII)V")
-	public SoftwareModel(@OriginalArg(0) RawModel arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
+	public SoftwareModel(@OriginalArg(0) ModelUnlit arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
 		arg0.method1668();
 		arg0.method1683();
-		this.anInt5788 = arg0.anInt2139;
+		this.anInt5788 = arg0.vertexCount;
 		this.anIntArray528 = arg0.anIntArray202;
 		this.anIntArray527 = arg0.anIntArray201;
 		this.anIntArray531 = arg0.anIntArray203;
-		this.anInt5787 = arg0.anInt2136;
+		this.anInt5787 = arg0.faceCount;
 		this.anIntArray534 = arg0.anIntArray197;
 		this.anIntArray524 = arg0.anIntArray200;
 		this.anIntArray529 = arg0.anIntArray196;
-		this.aByteArray73 = arg0.aByteArray35;
+		this.aByteArray73 = arg0.facePriority;
 		this.aByteArray75 = arg0.aByteArray26;
 		this.aByte20 = arg0.aByte7;
-		this.aShortArray89 = arg0.aShortArray24;
+		this.aShortArray89 = arg0.unmodifiedTriangleColor;
 		this.anIntArrayArray41 = arg0.anIntArrayArray16;
 		this.anIntArrayArray42 = arg0.anIntArrayArray15;
 		this.aShortArray90 = arg0.aShortArray22;
-		this.aShortArray91 = arg0.aShortArray29;
+		this.aShortArray91 = arg0.vertexSourceModels;
 		@Pc(102) int local102 = (int) Math.sqrt((double) (arg3 * arg3 + arg4 * arg4 + arg5 * arg5));
 		@Pc(108) int local108 = arg2 * local102 >> 8;
 		this.anIntArray533 = new int[this.anInt5787];
 		this.anIntArray523 = new int[this.anInt5787];
 		this.anIntArray532 = new int[this.anInt5787];
 		@Pc(133) int local133;
-		if (arg0.aShortArray23 == null) {
+		if (arg0.unmodifiedTriangleTexture == null) {
 			this.aShortArray92 = null;
 		} else {
 			this.aShortArray92 = new short[this.anInt5787];
 			for (local133 = 0; local133 < this.anInt5787; local133++) {
-				@Pc(142) short local142 = arg0.aShortArray23[local133];
+				@Pc(142) short local142 = arg0.unmodifiedTriangleTexture[local133];
 				if (local142 != -1 && Rasteriser.anInterface1_2.method3236(local142)) {
 					this.aShortArray92[local133] = local142;
 				} else {
@@ -189,9 +190,9 @@ public final class SoftwareModel extends Model {
 			@Pc(248) int local248;
 			for (local248 = 0; local248 < arg0.anInt2137; local248++) {
 				if (local177[local248] > 0 && arg0.aByteArray29[local248] == 0) {
-					this.anIntArray526[local179] = arg0.aShortArray26[local248] & 0xFFFF;
-					this.anIntArray530[local179] = arg0.aShortArray20[local248] & 0xFFFF;
-					this.anIntArray525[local179] = arg0.aShortArray28[local248] & 0xFFFF;
+					this.anIntArray526[local179] = arg0.textureTriangleVertex1[local248] & 0xFFFF;
+					this.anIntArray530[local179] = arg0.textureTriangleVertex2[local248] & 0xFFFF;
+					this.anIntArray525[local179] = arg0.textureTriangleVertex3[local248] & 0xFFFF;
 					local177[local248] = local179++;
 				} else {
 					local177[local248] = -1;
@@ -239,7 +240,7 @@ public final class SoftwareModel extends Model {
 			@Pc(614) TriangleNormal local614;
 			if (local388 == -1) {
 				if (local366 == 0) {
-					@Pc(416) int local416 = arg0.aShortArray24[local133] & 0xFFFF;
+					@Pc(416) int local416 = arg0.unmodifiedTriangleColor[local133] & 0xFFFF;
 					if (arg0.aClass57Array2 == null || arg0.aClass57Array2[this.anIntArray534[local133]] == null) {
 						local435 = arg0.aClass57Array1[this.anIntArray534[local133]];
 					} else {
@@ -264,7 +265,7 @@ public final class SoftwareModel extends Model {
 				} else if (local366 == 1) {
 					local614 = arg0.aClass126Array1[local133];
 					local468 = arg1 + (arg3 * local614.anInt4769 + arg4 * local614.anInt4770 + arg5 * local614.anInt4767) / (local108 + local108 / 2) << 17;
-					this.anIntArray533[local133] = local468 | Static268.method4585(arg0.aShortArray24[local133] & 0xFFFF, local468 >> 17);
+					this.anIntArray533[local133] = local468 | Static268.method4585(arg0.unmodifiedTriangleColor[local133] & 0xFFFF, local468 >> 17);
 					this.anIntArray532[local133] = -1;
 				} else if (local366 == 3) {
 					this.anIntArray533[local133] = 128;

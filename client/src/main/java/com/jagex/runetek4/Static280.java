@@ -1,5 +1,7 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.game.client.logic.DelayedStateChange;
+import com.jagex.runetek4.game.config.iftype.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -26,7 +28,7 @@ public final class Static280 {
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!fe;B)V")
 	public static void method4665(@OriginalArg(0) PathingEntity arg0) {
-		if (Static83.anInt372 == arg0.anInt3386 || arg0.anInt3369 == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > Static36.method941(arg0.anInt3369).anIntArray474[arg0.anInt3425]) {
+		if (Static83.anInt372 == arg0.anInt3386 || arg0.anInt3369 == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > Static36.method941(arg0.anInt3369).frames[arg0.anInt3425]) {
 			@Pc(35) int local35 = arg0.anInt3386 - arg0.anInt3395;
 			@Pc(41) int local41 = Static83.anInt372 - arg0.anInt3395;
 			@Pc(52) int local52 = arg0.anInt3380 * 128 + arg0.size() * 64;
@@ -54,7 +56,7 @@ public final class Static280 {
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(IIII)V")
 	public static void method4666(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) {
-		@Pc(18) DelayedStateChange local18 = Static238.method4143(11, arg1);
+		@Pc(18) DelayedStateChange local18 = DelayedStateChange.method4143(11, arg1);
 		local18.method1017();
 		local18.intArg3 = arg2;
 		local18.intArg1 = arg0;
@@ -711,7 +713,7 @@ public final class Static280 {
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(II)V")
 	public static void method4675(@OriginalArg(1) int arg0) {
-		@Pc(17) DelayedStateChange local17 = Static238.method4143(11, arg0);
+		@Pc(17) DelayedStateChange local17 = DelayedStateChange.method4143(11, arg0);
 		local17.method1007();
 	}
 }
