@@ -114,7 +114,7 @@ public final class LocType {
 	private int resizex = 128;
 
 	@OriginalMember(owner = "client!pb", name = "s", descriptor = "Z")
-	public boolean randseq = true;
+	public boolean randomanimframe = true;
 
 	@OriginalMember(owner = "client!pb", name = "o", descriptor = "I")
 	private int resizey = 128;
@@ -565,7 +565,7 @@ public final class LocType {
 		} else if (code == 88) {
 			this.hardshadow = false;
 		} else if (code == 89) {
-			this.randseq = false;
+			this.randomanimframe = false;
 		} else if (code == 90) {
 			this.aBoolean211 = true;
 		} else if (code == 91) {

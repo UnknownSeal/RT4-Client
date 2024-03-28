@@ -248,7 +248,7 @@ public final class Loc extends Entity {
 				this.aClass144_2 = Static36.method941(local69);
 			}
 			if (this.aClass144_2 != null) {
-				if (local19.randseq && this.aClass144_2.anInt5362 != -1) {
+				if (local19.randomanimframe && this.aClass144_2.anInt5362 != -1) {
 					this.anInt1297 = (int) (Math.random() * (double) this.aClass144_2.anIntArray473.length);
 					this.anInt1320 -= (int) (Math.random() * (double) this.aClass144_2.anIntArray474[this.anInt1297]);
 				} else {
