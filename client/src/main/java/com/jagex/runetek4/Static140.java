@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.lighttype.LightType;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -43,7 +44,7 @@ public final class Static140 {
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(ILclient!e;)I")
 	public static int method2706(@OriginalArg(1) Player arg0) {
 		@Pc(14) int local14 = arg0.anInt1654;
-		@Pc(18) BasType local18 = arg0.method2681();
+		@Pc(18) BASType local18 = arg0.method2681();
 		if (local18.anInt1037 == arg0.anInt3366) {
 			local14 = arg0.anInt1648;
 		} else if (local18.anInt1058 == arg0.anInt3366 || arg0.anInt3366 == local18.anInt1054 || arg0.anInt3366 == local18.anInt1045 || local18.anInt1043 == arg0.anInt3366) {

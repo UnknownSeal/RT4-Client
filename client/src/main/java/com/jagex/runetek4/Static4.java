@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.jagex.runetek4.game.client.ClientInvCache;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
+import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.objtype.ObjType;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -25,7 +26,7 @@ public final class Static4 {
 	public static short aShort1 = 32767;
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "l", descriptor = "Lclient!ck;")
-	public static final BasType aClass20_1 = new BasType();
+	public static final BASType aClass20_1 = new BASType();
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "m", descriptor = "Lclient!na;")
 	public static final JagString aClass100_7 = Static28.parse("overlay");

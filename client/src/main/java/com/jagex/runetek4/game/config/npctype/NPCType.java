@@ -1,6 +1,7 @@
 package com.jagex.runetek4.game.config.npctype;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.game.config.bastype.BASType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -260,7 +261,7 @@ public final class NPCType {
 					}
 				}
 			}
-			@Pc(156) BasType local156 = null;
+			@Pc(156) BASType local156 = null;
 			if (this.bas != -1) {
 				local156 = Static90.method1856(this.bas);
 			}
