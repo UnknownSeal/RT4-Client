@@ -2,8 +2,6 @@ package com.jagex.runetek4;
 
 import java.io.IOException;
 import java.net.Socket;
-
-import com.jagex.runetek4.core.utils.MonotonicTime;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

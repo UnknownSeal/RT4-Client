@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.core.datastruct.Node;
-import com.jagex.runetek4.core.utils.MonotonicTime;
 import com.jagex.runetek4.js5.Js5Request;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

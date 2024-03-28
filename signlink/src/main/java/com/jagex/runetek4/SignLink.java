@@ -16,7 +16,6 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.Hashtable;
 
-import com.jagex.runetek4.core.utils.MonotonicTime;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
