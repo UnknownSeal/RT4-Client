@@ -2,7 +2,10 @@ package com.jagex.runetek4.core.io;
 
 import java.math.BigInteger;
 
-import com.jagex.runetek4.*;
+import com.jagex.runetek4.JagString;
+import com.jagex.runetek4.Static10;
+import com.jagex.runetek4.Static169;
+import com.jagex.runetek4.Static228;
 import com.jagex.runetek4.core.datastruct.Node;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -46,8 +49,6 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("client!wa")
 public class Packet extends Node {
 
-	@OriginalMember(owner = "runetek4.client!fi", name = "c", descriptor = "[I")
-	public static final int[] crctable = new int[256];
 	@OriginalMember(owner = "client!wa", name = "y", descriptor = "[B")
 	public byte[] data;
 
@@ -56,7 +57,7 @@ public class Packet extends Node {
 
 	@OriginalMember(owner = "client!wa", name = "<init>", descriptor = "(I)V")
 	public Packet(@OriginalArg(0) int size) {
-		this.data = Static228.alloc(size);
+		this.data = Static228.allocate(size);
 		this.pos = 0;
 	}
 
@@ -64,20 +65,6 @@ public class Packet extends Node {
 	public Packet(@OriginalArg(0) byte[] src) {
 		this.pos = 0;
 		this.data = src;
-	}
-
-	@OriginalMember(owner = "runetek4.client!nf", name = "a", descriptor = "(II[BB)I")
-	public static int getcrc(@OriginalArg(2) byte[] src, @OriginalArg(0) int off, @OriginalArg(1) int len) {
-		@Pc(5) int crc = -1;
-		for (@Pc(15) int index = off; index < len; index++) {
-			crc = crc >>> 8 ^ crctable[(crc ^ src[index]) & 0xFF];
-		}
-		return ~crc;
-	}
-
-	@OriginalMember(owner = "runetek4.client!fk", name = "a", descriptor = "([BIZ)I")
-	public static int getcrc(@OriginalArg(0) byte[] src, @OriginalArg(1) int len) {
-		return getcrc(src, 0, len);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "c", descriptor = "(I)I")
@@ -479,7 +466,7 @@ public class Packet extends Node {
 
 	@OriginalMember(owner = "client!wa", name = "c", descriptor = "(BI)I")
 	public final int pCrc32(@OriginalArg(1) int off) {
-		@Pc(16) int checksum = getcrc(this.data, off, this.pos);
+		@Pc(16) int checksum = Static169.crc32(off, this.pos, this.data);
 		this.p4(checksum);
 		return checksum;
 	}

@@ -291,7 +291,7 @@ public final class Js5 {
 			try {
 				local140 = Static162.method3092(local114);
 			} catch (@Pc(142) RuntimeException local142) {
-				System.out.println("T3 - " + (arg1 != null) + "," + arg0 + "," + local114.length + "," + Packet.getcrc(local114, local114.length) + "," + Packet.getcrc(local114, local114.length - 2) + "," + this.aClass70_2.anIntArray268[arg0] + "," + this.aClass70_2.anInt2911);
+				System.out.println("T3 - " + (arg1 != null) + "," + arg0 + "," + local114.length + "," + Static71.method1442(local114, local114.length) + "," + Static71.method1442(local114, local114.length - 2) + "," + this.aClass70_2.anIntArray268[arg0] + "," + this.aClass70_2.anInt2911);
 				local140 = new byte[] { 0 };
 			}
 			if (this.aBoolean296) {
