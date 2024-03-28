@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.core.datastruct.SecondaryNode;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -26,13 +27,13 @@ public final class DelayedStateChange extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!da", name = "a", descriptor = "(Z)V")
 	public final void method1007() {
-		this.aLong185 = MonotonicClock.currentTimeMillis() + 500L | Long.MIN_VALUE & this.aLong185;
+		this.secondaryNodeId = MonotonicClock.currentTimeMillis() + 500L | Long.MIN_VALUE & this.secondaryNodeId;
 		Static140.aClass16_7.method798(this);
 	}
 
 	@OriginalMember(owner = "runetek4.client!da", name = "b", descriptor = "(Z)J")
 	public final long method1009() {
-		return this.aLong185 & Long.MAX_VALUE;
+		return this.secondaryNodeId & Long.MAX_VALUE;
 	}
 
 	@OriginalMember(owner = "runetek4.client!da", name = "e", descriptor = "(I)I")
@@ -47,7 +48,7 @@ public final class DelayedStateChange extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!da", name = "g", descriptor = "(B)V")
 	public final void method1017() {
-		this.aLong185 |= Long.MIN_VALUE;
+		this.secondaryNodeId |= Long.MIN_VALUE;
 		if (this.method1009() == 0L) {
 			Static215.aClass16_9.method798(this);
 		}

@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.core.datastruct.SecondaryNode;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -55,11 +56,11 @@ public final class LruHashTable {
 		if (this.anInt2314 == 0) {
 			@Pc(14) SecondaryNode local14 = this.aClass16_1.method796();
 			local14.remove();
-			local14.method4365();
+			local14.secondaryRemove();
 			if (this.aClass3_Sub2_37 == local14) {
 				local14 = this.aClass16_1.method796();
 				local14.remove();
-				local14.method4365();
+				local14.secondaryRemove();
 			}
 		} else {
 			this.anInt2314--;

@@ -169,7 +169,7 @@ public final class Static127 {
 		@Pc(10) DelayedStateChange local10 = (DelayedStateChange) Static215.aClass16_9.method795();
 		if (local10 != null) {
 			local10.remove();
-			local10.method4365();
+			local10.secondaryRemove();
 			return local10;
 		}
 		do {
@@ -181,8 +181,8 @@ public final class Static127 {
 				return null;
 			}
 			local10.remove();
-			local10.method4365();
-		} while ((Long.MIN_VALUE & local10.aLong185) == 0L);
+			local10.secondaryRemove();
+		} while ((Long.MIN_VALUE & local10.secondaryNodeId) == 0L);
 		return local10;
 	}
 
