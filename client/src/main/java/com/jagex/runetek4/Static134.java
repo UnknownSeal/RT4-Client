@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.world.entity.PlayerModel;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,7 +10,7 @@ public final class Static134 {
 	public static int anInt3302;
 
 	@OriginalMember(owner = "runetek4.client!kh", name = "g", descriptor = "Lclient!hh;")
-	public static final PlayerModel A_PLAYER_MODEL___2 = new PlayerModel();
+	public static final Class59 aClass59_2 = new Class59();
 
 	@OriginalMember(owner = "runetek4.client!kh", name = "a", descriptor = "(B)Lclient!ek;")
 	public static SoftwareIndexedSprite method2619() {

@@ -1,8 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.game.config.lighttype.LightType;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -25,7 +23,7 @@ public final class Static245 {
 
 	@OriginalMember(owner = "runetek4.client!tm", name = "a", descriptor = "(II)V")
 	public static void method4224(@OriginalArg(0) int arg0) {
-		@Pc(16) DelayedStateChange local16 = DelayedStateChange.method4143(6, arg0);
+		@Pc(16) DelayedStateChange local16 = Static238.method4143(6, arg0);
 		local16.method1007();
 	}
 
@@ -44,7 +42,7 @@ public final class Static245 {
 			}
 			for (@Pc(46) int local46 = 0; local46 < local25; local46++) {
 				if (Static241.components[arg0][local46] == null) {
-					@Pc(62) byte[] local62 = Static202.aClass153_84.getfile(arg0, local46);
+					@Pc(62) byte[] local62 = Static202.aClass153_84.method4495(arg0, local46);
 					if (local62 != null) {
 						@Pc(74) Component local74 = Static241.components[arg0][local46] = new Component();
 						local74.anInt507 = local46 + (arg0 << 16);

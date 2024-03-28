@@ -1,18 +1,12 @@
-package com.jagex.runetek4.game.world.entity;
+package com.jagex.runetek4;
 
-import com.jagex.runetek4.*;
-import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.bastype.BASType;
-import com.jagex.runetek4.game.config.idktype.IDKType;
-import com.jagex.runetek4.game.config.seqtype.SeqType;
-import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!hh")
-public final class PlayerModel {
+public final class Class59 {
 
 	@OriginalMember(owner = "runetek4.client!hh", name = "e", descriptor = "I")
 	public int anInt2492;
@@ -43,31 +37,31 @@ public final class PlayerModel {
 		@Pc(24) long local24 = (long) arg2 | (long) (arg6 << 16) | (long) arg1 << 32;
 		@Pc(30) Model local30 = (Model) Static139.aClass99_21.method3106(local24);
 		if (local30 == null) {
-			@Pc(36) ModelUnlit[] local36 = new ModelUnlit[3];
+			@Pc(36) RawModel[] local36 = new RawModel[3];
 			@Pc(38) int local38 = 0;
-			if (!Static81.get(arg2).hasReadyHeads() || !Static81.get(arg6).hasReadyHeads() || !Static81.get(arg1).hasReadyHeads()) {
+			if (!Static81.method1752(arg2).method1205() || !Static81.method1752(arg6).method1205() || !Static81.method1752(arg1).method1205()) {
 				return null;
 			}
-			@Pc(66) ModelUnlit local66 = Static81.get(arg2).getHeadModel();
+			@Pc(66) RawModel local66 = Static81.method1752(arg2).method1198();
 			if (local66 != null) {
 				local38++;
 				local36[0] = local66;
 			}
-			local66 = Static81.get(arg6).getHeadModel();
+			local66 = Static81.method1752(arg6).method1198();
 			if (local66 != null) {
 				local36[local38++] = local66;
 			}
-			local66 = Static81.get(arg1).getHeadModel();
+			local66 = Static81.method1752(arg1).method1198();
 			if (local66 != null) {
 				local36[local38++] = local66;
 			}
-			local66 = new ModelUnlit(local36, local38);
+			local66 = new RawModel(local36, local38);
 			for (@Pc(110) int local110 = 0; local110 < 5; local110++) {
 				if (this.anIntArray236[local110] < Static33.aShortArrayArray2[local110].length) {
-					local66.recolor(Static200.aShortArray65[local110], Static33.aShortArrayArray2[local110][this.anIntArray236[local110]]);
+					local66.method1687(Static200.aShortArray65[local110], Static33.aShortArrayArray2[local110][this.anIntArray236[local110]]);
 				}
 				if (Static172.aShortArrayArray7[local110].length > this.anIntArray236[local110]) {
-					local66.recolor(Static160.aShortArray41[local110], Static172.aShortArrayArray7[local110][this.anIntArray236[local110]]);
+					local66.method1687(Static160.aShortArray41[local110], Static172.aShortArrayArray7[local110][this.anIntArray236[local110]]);
 				}
 			}
 			local30 = local66.method1679(64, 768, -50, -10, -50);
@@ -83,7 +77,7 @@ public final class PlayerModel {
 	private void method1947() {
 		@Pc(8) long local8 = this.aLong88;
 		this.aLong88 = -1L;
-		@Pc(13) long[] local13 = Packet.crc64table;
+		@Pc(13) long[] local13 = TriangleNormal.aLongArray7;
 		this.aLong88 = local13[(int) (((long) (this.anInt2497 >> 8) ^ this.aLong88) & 0xFFL)] ^ this.aLong88 >>> 8;
 		this.aLong88 = local13[(int) ((this.aLong88 ^ (long) this.anInt2497) & 0xFFL)] ^ this.aLong88 >>> 8;
 		@Pc(53) int local53;
@@ -118,8 +112,8 @@ public final class PlayerModel {
 			arg3 = new int[12];
 			for (@Pc(24) int local24 = 0; local24 < 8; local24++) {
 				for (@Pc(31) int local31 = 0; local31 < Static53.anInt1716; local31++) {
-					@Pc(38) IDKType local38 = Static81.get(local31);
-					if (local38 != null && !local38.disable && local38.type == (arg2 ? Static153.anIntArray351[local24] : Static204.anIntArray425[local24])) {
+					@Pc(38) IdkType local38 = Static81.method1752(local31);
+					if (local38 != null && !local38.aBoolean85 && local38.anInt1457 == (arg2 ? Static153.anIntArray351[local24] : Static204.anIntArray425[local24])) {
 						arg3[Static272.anIntArray451[local24]] = Integer.MIN_VALUE | local31;
 						break;
 					}
@@ -147,7 +141,7 @@ public final class PlayerModel {
 	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(III)V")
 	public final void method1953(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		@Pc(7) int local7 = Static272.anIntArray451[arg0];
-		if (0 != this.anIntArray233[local7] && Static81.get(arg1) != null) {
+		if (0 != this.anIntArray233[local7] && Static81.method1752(arg1) != null) {
 			this.anIntArray233[local7] = arg1 | Integer.MIN_VALUE;
 			this.method1947();
 		}
@@ -160,26 +154,26 @@ public final class PlayerModel {
 		}
 		@Pc(38) int[] local38 = this.anIntArray233;
 		@Pc(41) long local41 = this.aLong88;
-		if (arg3 != null && (arg3.mainhand >= 0 || arg3.offhand >= 0)) {
+		if (arg3 != null && (arg3.anInt5353 >= 0 || arg3.anInt5348 >= 0)) {
 			local38 = new int[12];
 			for (@Pc(61) int local61 = 0; local61 < 12; local61++) {
 				local38[local61] = this.anIntArray233[local61];
 			}
-			if (arg3.mainhand >= 0) {
-				if (arg3.mainhand == 65535) {
+			if (arg3.anInt5353 >= 0) {
+				if (arg3.anInt5353 == 65535) {
 					local41 ^= 0xFFFFFFFF00000000L;
 					local38[5] = 0;
 				} else {
-					local38[5] = arg3.mainhand | 0x40000000;
+					local38[5] = arg3.anInt5353 | 0x40000000;
 					local41 ^= (long) local38[5] << 32;
 				}
 			}
-			if (arg3.offhand >= 0) {
-				if (arg3.offhand == 65535) {
+			if (arg3.anInt5348 >= 0) {
+				if (arg3.anInt5348 == 65535) {
 					local38[3] = 0;
 					local41 ^= 0xFFFFFFFFL;
 				} else {
-					local38[3] = arg3.offhand | 0x40000000;
+					local38[3] = arg3.anInt5348 | 0x40000000;
 					local41 ^= local38[3];
 				}
 			}
@@ -203,7 +197,7 @@ public final class PlayerModel {
 			for (@Pc(160) int local160 = 0; local160 < 12; local160++) {
 				local169 = local38[local160];
 				if ((local169 & 0x40000000) == 0) {
-					if ((local169 & Integer.MIN_VALUE) != 0 && !Static81.get(local169 & 0x3FFFFFFF).hasReadyModels()) {
+					if ((local169 & Integer.MIN_VALUE) != 0 && !Static81.method1752(local169 & 0x3FFFFFFF).method1199()) {
 						local158 = true;
 					}
 				} else if (!Static71.get(local169 & 0x3FFFFFFF).method1822(this.aBoolean141)) {
@@ -219,24 +213,24 @@ public final class PlayerModel {
 				}
 			}
 			if (local154 == null) {
-				@Pc(239) ModelUnlit[] local239 = new ModelUnlit[12];
+				@Pc(239) RawModel[] local239 = new RawModel[12];
 				@Pc(250) int local250;
 				for (local169 = 0; local169 < 12; local169++) {
 					local250 = local38[local169];
-					@Pc(272) ModelUnlit local272;
+					@Pc(272) RawModel local272;
 					if ((local250 & 0x40000000) != 0) {
 						local272 = Static71.get(local250 & 0x3FFFFFFF).method1831(this.aBoolean141);
 						if (local272 != null) {
 							local239[local169] = local272;
 						}
 					} else if ((Integer.MIN_VALUE & local250) != 0) {
-						local272 = Static81.get(local250 & 0x3FFFFFFF).getModel();
+						local272 = Static81.method1752(local250 & 0x3FFFFFFF).method1204();
 						if (local272 != null) {
 							local239[local169] = local272;
 						}
 					}
 				}
-				@Pc(303) BASType local303 = null;
+				@Pc(303) BasType local303 = null;
 				if (this.anInt2497 != -1) {
 					local303 = Static90.method1856(this.anInt2497);
 				}
@@ -294,13 +288,13 @@ public final class PlayerModel {
 						}
 					}
 				}
-				@Pc(740) ModelUnlit local740 = new ModelUnlit(local239, local239.length);
+				@Pc(740) RawModel local740 = new RawModel(local239, local239.length);
 				for (local346 = 0; local346 < 5; local346++) {
 					if (Static33.aShortArrayArray2[local346].length > this.anIntArray236[local346]) {
-						local740.recolor(Static200.aShortArray65[local346], Static33.aShortArrayArray2[local346][this.anIntArray236[local346]]);
+						local740.method1687(Static200.aShortArray65[local346], Static33.aShortArrayArray2[local346][this.anIntArray236[local346]]);
 					}
 					if (Static172.aShortArrayArray7[local346].length > this.anIntArray236[local346]) {
-						local740.recolor(Static160.aShortArray41[local346], Static172.aShortArrayArray7[local346][this.anIntArray236[local346]]);
+						local740.method1687(Static160.aShortArray41[local346], Static172.aShortArrayArray7[local346][this.anIntArray236[local346]]);
 					}
 				}
 				local154 = local740.method1679(64, 850, -30, -50, -30);
@@ -335,7 +329,7 @@ public final class PlayerModel {
 						local838 |= local858.aBoolean278;
 					}
 					if ((local858.aBoolean277 || Static204.aBoolean234) && local367 != -1 && local367 < local858.anIntArray473.length) {
-						Static262.anIntArray515[local353] = local858.frames[local374];
+						Static262.anIntArray515[local353] = local858.anIntArray474[local374];
 						Static73.anIntArray183[local353] = arg0[local353].anInt5404;
 						local979 = local858.anIntArray473[local367];
 						Static133.aClass3_Sub2_Sub7Array7[local353] = Static72.method1566(local979 >>> 16);
@@ -376,7 +370,7 @@ public final class PlayerModel {
 				local360 = arg3.anIntArray473[arg1];
 				local451 = local360 >>> 16;
 				local360 &= 0xFFFF;
-				local374 = arg3.frames[arg7];
+				local374 = arg3.anIntArray474[arg7];
 				if (local979 == local451) {
 					local1040 = local1042;
 				} else {
@@ -404,7 +398,7 @@ public final class PlayerModel {
 				local838 |= arg2.aBoolean278;
 			}
 			if ((arg2.aBoolean277 || Static204.aBoolean234) && arg5 != -1 && arg2.anIntArray473.length > arg5) {
-				local457 = arg2.frames[arg8];
+				local457 = arg2.anIntArray474[arg8];
 				local451 = arg2.anIntArray473[arg5];
 				local481 = local451 >>> 16;
 				local451 &= 0xFFFF;
@@ -447,7 +441,7 @@ public final class PlayerModel {
 	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(IBLclient!tk;II)Lclient!ak;")
 	public final Model method1956(@OriginalArg(0) int arg0, @OriginalArg(2) SeqType arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		if (this.anInt2492 != -1) {
-			return Static214.method4363(this.anInt2492).getHeadModel(arg1, arg0, arg3, arg2);
+			return Static214.method4363(this.anInt2492).method2943(arg1, arg0, arg3, arg2);
 		}
 		@Pc(30) Model local30 = (Model) Static139.aClass99_21.method3106(this.aLong88);
 		if (local30 == null) {
@@ -456,7 +450,7 @@ public final class PlayerModel {
 			for (@Pc(44) int local44 = 0; local44 < 12; local44++) {
 				local52 = this.anIntArray233[local44];
 				if ((local52 & 0x40000000) == 0) {
-					if ((local52 & Integer.MIN_VALUE) != 0 && !Static81.get(local52 & 0x3FFFFFFF).hasReadyHeads()) {
+					if ((local52 & Integer.MIN_VALUE) != 0 && !Static81.method1752(local52 & 0x3FFFFFFF).method1205()) {
 						local42 = true;
 					}
 				} else if (!Static71.get(local52 & 0x3FFFFFFF).method1816(this.aBoolean141)) {
@@ -466,31 +460,31 @@ public final class PlayerModel {
 			if (local42) {
 				return null;
 			}
-			@Pc(100) ModelUnlit[] local100 = new ModelUnlit[12];
+			@Pc(100) RawModel[] local100 = new RawModel[12];
 			local52 = 0;
 			@Pc(114) int local114;
 			for (@Pc(104) int local104 = 0; local104 < 12; local104++) {
 				local114 = this.anIntArray233[local104];
-				@Pc(134) ModelUnlit local134;
+				@Pc(134) RawModel local134;
 				if ((local114 & 0x40000000) != 0) {
 					local134 = Static71.get(local114 & 0x3FFFFFFF).method1830(this.aBoolean141);
 					if (local134 != null) {
 						local100[local52++] = local134;
 					}
 				} else if ((Integer.MIN_VALUE & local114) != 0) {
-					local134 = Static81.get(local114 & 0x3FFFFFFF).getHeadModel();
+					local134 = Static81.method1752(local114 & 0x3FFFFFFF).method1198();
 					if (local134 != null) {
 						local100[local52++] = local134;
 					}
 				}
 			}
-			@Pc(171) ModelUnlit local171 = new ModelUnlit(local100, local52);
+			@Pc(171) RawModel local171 = new RawModel(local100, local52);
 			for (local114 = 0; local114 < 5; local114++) {
 				if (Static33.aShortArrayArray2[local114].length > this.anIntArray236[local114]) {
-					local171.recolor(Static200.aShortArray65[local114], Static33.aShortArrayArray2[local114][this.anIntArray236[local114]]);
+					local171.method1687(Static200.aShortArray65[local114], Static33.aShortArrayArray2[local114][this.anIntArray236[local114]]);
 				}
 				if (Static172.aShortArrayArray7[local114].length > this.anIntArray236[local114]) {
-					local171.recolor(Static160.aShortArray41[local114], Static172.aShortArrayArray7[local114][this.anIntArray236[local114]]);
+					local171.method1687(Static160.aShortArray41[local114], Static172.aShortArrayArray7[local114][this.anIntArray236[local114]]);
 				}
 			}
 			local30 = local171.method1679(64, 768, -50, -10, -50);

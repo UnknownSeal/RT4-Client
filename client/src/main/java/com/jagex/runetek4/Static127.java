@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import java.io.UnsupportedEncodingException;
 
-import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -30,7 +29,7 @@ public final class Static127 {
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(IIBLclient!ve;Lclient!ve;)Lclient!rk;")
 	public static Font method2462(@OriginalArg(1) int arg0, @OriginalArg(3) Js5 arg1, @OriginalArg(4) Js5 arg2) {
-		return Static234.method4016(arg1, 0, arg0) ? Static29.method799(arg2.getfile(arg0, 0)) : null;
+		return Static234.method4016(arg1, 0, arg0) ? Static29.method799(arg2.method4495(arg0, 0)) : null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(IIIIZIZ)V")
@@ -163,6 +162,28 @@ public final class Static127 {
 		Static107.anInt2875 = -1;
 		Static99.aClass69_64.method2278();
 		Static217.aClass69_116.method2278();
+	}
+
+	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(B)Lclient!da;")
+	public static DelayedStateChange poll() {
+		@Pc(10) DelayedStateChange local10 = (DelayedStateChange) Static215.aClass16_9.method795();
+		if (local10 != null) {
+			local10.remove();
+			local10.method4365();
+			return local10;
+		}
+		do {
+			local10 = (DelayedStateChange) Static140.aClass16_7.method795();
+			if (local10 == null) {
+				return null;
+			}
+			if (local10.method1009() > MonotonicClock.currentTimeMillis()) {
+				return null;
+			}
+			local10.remove();
+			local10.method4365();
+		} while ((Long.MIN_VALUE & local10.aLong185) == 0L);
+		return local10;
 	}
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!be;Lclient!na;I)Lclient!na;")

@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -25,7 +24,7 @@ public final class Static37 {
 		if (arg0.anInt3376 == 0) {
 			return;
 		}
-		@Pc(13) BASType local13 = arg0.method2681();
+		@Pc(13) BasType local13 = arg0.method2681();
 		@Pc(43) int local43;
 		@Pc(36) int local36;
 		if (arg0.anInt3370 != -1 && arg0.anInt3370 < 32768) {

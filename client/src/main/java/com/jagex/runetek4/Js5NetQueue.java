@@ -59,7 +59,7 @@ public final class Js5NetQueue {
 	public final boolean loop() {
 		@Pc(19) int local19;
 		if (this.aClass95_1 != null) {
-			@Pc(12) long local12 = MonotonicTime.get();
+			@Pc(12) long local12 = MonotonicClock.currentTimeMillis();
 			local19 = (int) (local12 - this.aLong104);
 			this.aLong104 = local12;
 			if (local19 > 200) {
@@ -80,17 +80,17 @@ public final class Js5NetQueue {
 		try {
 			this.aClass95_1.method2832();
 			@Pc(75) Js5NetRequest local75;
-			for (local75 = (Js5NetRequest) this.aClass16_2.peekFront(); local75 != null; local75 = (Js5NetRequest) this.aClass16_2.method797()) {
+			for (local75 = (Js5NetRequest) this.aClass16_2.method795(); local75 != null; local75 = (Js5NetRequest) this.aClass16_2.method797()) {
 				this.aClass3_Sub15_4.pos = 0;
 				this.aClass3_Sub15_4.p1(1);
-				this.aClass3_Sub15_4.p3((int) local75.secondaryNodeId);
+				this.aClass3_Sub15_4.p3((int) local75.aLong185);
 				this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
 				this.aClass16_3.method798(local75);
 			}
-			for (local75 = (Js5NetRequest) this.aClass16_4.peekFront(); local75 != null; local75 = (Js5NetRequest) this.aClass16_4.method797()) {
+			for (local75 = (Js5NetRequest) this.aClass16_4.method795(); local75 != null; local75 = (Js5NetRequest) this.aClass16_4.method797()) {
 				this.aClass3_Sub15_4.pos = 0;
 				this.aClass3_Sub15_4.p1(0);
-				this.aClass3_Sub15_4.p3((int) local75.secondaryNodeId);
+				this.aClass3_Sub15_4.p3((int) local75.aLong185);
 				this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
 				this.aClass16_5.method798(local75);
 			}
@@ -130,8 +130,8 @@ public final class Js5NetQueue {
 					this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 += local235;
 					this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos += local235;
 					if (this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos == local228) {
-						this.aClass3_Sub2_Sub5_Sub2_2.secondaryRemove();
-						this.aClass3_Sub2_Sub5_Sub2_2.awaitingResponse = false;
+						this.aClass3_Sub2_Sub5_Sub2_2.method4365();
+						this.aClass3_Sub2_Sub5_Sub2_2.aBoolean226 = false;
 						this.aClass3_Sub2_Sub5_Sub2_2 = null;
 					} else if (this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 == 512) {
 						this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 = 0;
@@ -160,10 +160,10 @@ public final class Js5NetQueue {
 							@Pc(501) long local501 = (long) ((local235 << 16) + local283);
 							@Pc(509) Js5NetRequest local509;
 							if (local491) {
-								for (local509 = (Js5NetRequest) this.aClass16_5.peekFront(); local509 != null && local509.secondaryNodeId != local501; local509 = (Js5NetRequest) this.aClass16_5.method797()) {
+								for (local509 = (Js5NetRequest) this.aClass16_5.method795(); local509 != null && local509.aLong185 != local501; local509 = (Js5NetRequest) this.aClass16_5.method797()) {
 								}
 							} else {
-								for (local509 = (Js5NetRequest) this.aClass16_3.peekFront(); local509 != null && local501 != local509.secondaryNodeId; local509 = (Js5NetRequest) this.aClass16_3.method797()) {
+								for (local509 = (Js5NetRequest) this.aClass16_3.method795(); local509 != null && local501 != local509.aLong185; local509 = (Js5NetRequest) this.aClass16_3.method797()) {
 								}
 							}
 							if (local509 == null) {
@@ -292,7 +292,7 @@ public final class Js5NetQueue {
 							}
 						}
 						this.anInt2962 = 0;
-						this.aLong104 = MonotonicTime.get();
+						this.aLong104 = MonotonicClock.currentTimeMillis();
 						return;
 					}
 					this.aClass16_4.method798(local44);
@@ -336,7 +336,7 @@ public final class Js5NetQueue {
 		@Pc(7) Js5NetRequest local7 = new Js5NetRequest();
 		@Pc(14) long local14 = (long) (arg2 + (arg0 << 16));
 		local7.aBoolean225 = arg3;
-		local7.secondaryNodeId = local14;
+		local7.aLong185 = local14;
 		local7.aByte16 = arg1;
 		if (arg3) {
 			if (this.method2328() >= 20) {

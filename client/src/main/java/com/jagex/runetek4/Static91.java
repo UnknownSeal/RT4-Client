@@ -36,7 +36,7 @@ public final class Static91 {
 		if (local12 != null) {
 			return local12;
 		}
-		@Pc(22) byte[] local22 = Static16.aClass153_9.getfile(arg0, 0);
+		@Pc(22) byte[] local22 = Static16.aClass153_9.method4495(arg0, 0);
 		if (local22 == null) {
 			return null;
 		}

@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static208 {

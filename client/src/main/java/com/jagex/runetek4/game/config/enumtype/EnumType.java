@@ -1,11 +1,14 @@
 package com.jagex.runetek4.game.config.enumtype;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.core.datastruct.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
+import com.jagex.runetek4.core.datastruct.IntWrapper;
+import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.JagStringWrapper;
+import com.jagex.runetek4.core.datastruct.Node;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!ml")

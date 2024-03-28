@@ -27,11 +27,14 @@ public final class Static228 {
 	@OriginalMember(owner = "runetek4.client!sh", name = "j", descriptor = "Lclient!na;")
 	public static final JagString aClass100_968 = Static28.parse("headicons_prayer");
 
+	@OriginalMember(owner = "runetek4.client!sh", name = "k", descriptor = "Z")
+	public static final boolean aBoolean248 = false;
+
 	@OriginalMember(owner = "runetek4.client!sh", name = "l", descriptor = "[J")
 	public static final long[] aLongArray8 = new long[32];
 
 	@OriginalMember(owner = "runetek4.client!sh", name = "a", descriptor = "(II)[B")
-	public static synchronized byte[] alloc(@OriginalArg(1) int arg0) {
+	public static synchronized byte[] allocate(@OriginalArg(1) int arg0) {
 		@Pc(22) byte[] local22;
 		if (arg0 == 100 && Static115.anInt2937 > 0) {
 			local22 = Static277.aByteArrayArray16[--Static115.anInt2937];

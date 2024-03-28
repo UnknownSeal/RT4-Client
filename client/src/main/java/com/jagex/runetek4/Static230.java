@@ -139,9 +139,9 @@ public final class Static230 {
 		}
 		@Pc(27) byte[] local27;
 		if (arg0 < 32768) {
-			local27 = Static238.aClass153_96.getfile(1, arg0);
+			local27 = Static238.aClass153_96.method4495(1, arg0);
 		} else {
-			local27 = Static262.aClass153_108.getfile(1, arg0 & 0x7FFF);
+			local27 = Static262.aClass153_108.method4495(1, arg0 & 0x7FFF);
 		}
 		local10 = new Class3_Sub2_Sub6();
 		if (local27 != null) {
@@ -167,7 +167,7 @@ public final class Static230 {
 			if (arg0.length() == 0) {
 				local48 = Static34.method882(new JagString[] { local48, Static245.aClass100_1018 });
 			} else {
-				local48 = Static34.method882(new JagString[] { local48, Static263.aClass100_1082, Static33.method873(MonotonicTime.get() + 94608000000L), Static64.aClass100_431, Static154.method2929(94608000L) });
+				local48 = Static34.method882(new JagString[] { local48, Static263.aClass100_1082, Static33.method873(MonotonicClock.currentTimeMillis() + 94608000000L), Static64.aClass100_431, Static154.method2929(94608000L) });
 			}
 			Static34.method882(new JagString[] { Static221.aClass100_821, local48, Static223.aClass100_946 }).method3134(Static71.signLink.anApplet2);
 		} catch (@Pc(124) Throwable local124) {

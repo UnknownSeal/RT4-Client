@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -32,7 +31,7 @@ public final class Static105 {
 	public static int anInt2863 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "a", descriptor = "(II)I")
-	public static int hslToRgb(@OriginalArg(1) int arg0) {
+	public static int method2253(@OriginalArg(1) int arg0) {
 		@Pc(10) double local10 = (double) (arg0 >> 16 & 0xFF) / 256.0D;
 		@Pc(19) double local19 = (double) (arg0 >> 8 & 0xFF) / 256.0D;
 		@Pc(25) double local25 = 0.0D;

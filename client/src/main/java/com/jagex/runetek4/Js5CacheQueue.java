@@ -61,7 +61,7 @@ public final class Js5CacheQueue implements Runnable {
 		@Pc(7) Js5CacheRequest local7 = new Js5CacheRequest();
 		local7.aByteArray11 = arg1;
 		local7.aBoolean225 = false;
-		local7.secondaryNodeId = arg2;
+		local7.aLong185 = arg2;
 		local7.aClass49_3 = arg0;
 		local7.anInt824 = 2;
 		this.method2461(local7);
@@ -74,7 +74,7 @@ public final class Js5CacheQueue implements Runnable {
 		local7.aClass49_3 = arg1;
 		local7.anInt824 = 3;
 		local7.aBoolean225 = false;
-		local7.secondaryNodeId = arg0;
+		local7.aLong185 = arg0;
 		this.method2461(local7);
 		return local7;
 	}
@@ -85,21 +85,21 @@ public final class Js5CacheQueue implements Runnable {
 		local9.anInt824 = 1;
 		@Pc(16) SecondaryLinkedList local16 = this.aClass16_6;
 		synchronized (this.aClass16_6) {
-			@Pc(31) Js5CacheRequest local31 = (Js5CacheRequest) this.aClass16_6.peekFront();
+			@Pc(31) Js5CacheRequest local31 = (Js5CacheRequest) this.aClass16_6.method795();
 			while (true) {
 				if (local31 == null) {
 					break;
 				}
-				if (local31.secondaryNodeId == (long) arg1 && local31.aClass49_3 == arg0 && local31.anInt824 == 2) {
+				if (local31.aLong185 == (long) arg1 && local31.aClass49_3 == arg0 && local31.anInt824 == 2) {
 					local9.aByteArray11 = local31.aByteArray11;
-					local9.awaitingResponse = false;
+					local9.aBoolean226 = false;
 					return local9;
 				}
 				local31 = (Js5CacheRequest) this.aClass16_6.method797();
 			}
 		}
 		local9.aByteArray11 = arg0.method1701(arg1);
-		local9.awaitingResponse = false;
+		local9.aBoolean226 = false;
 		local9.aBoolean225 = true;
 		return local9;
 	}
@@ -123,14 +123,14 @@ public final class Js5CacheQueue implements Runnable {
 			}
 			try {
 				if (local19.anInt824 == 2) {
-					local19.aClass49_3.method1700((int) local19.secondaryNodeId, local19.aByteArray11.length, local19.aByteArray11);
+					local19.aClass49_3.method1700((int) local19.aLong185, local19.aByteArray11.length, local19.aByteArray11);
 				} else if (local19.anInt824 == 3) {
-					local19.aByteArray11 = local19.aClass49_3.method1701((int) local19.secondaryNodeId);
+					local19.aByteArray11 = local19.aClass49_3.method1701((int) local19.aLong185);
 				}
 			} catch (@Pc(83) Exception local83) {
 				Static89.report(null, local83);
 			}
-			local19.awaitingResponse = false;
+			local19.aBoolean226 = false;
 		}
 	}
 }

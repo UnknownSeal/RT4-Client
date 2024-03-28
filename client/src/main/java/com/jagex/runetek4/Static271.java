@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.loctype.LocType;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -49,7 +48,7 @@ public final class Static271 {
 
 	@OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(ZI)V")
 	public static void method4600(@OriginalArg(1) int arg0) {
-		@Pc(8) DelayedStateChange local8 = DelayedStateChange.method4143(4, arg0);
+		@Pc(8) DelayedStateChange local8 = Static238.method4143(4, arg0);
 		local8.method1007();
 	}
 
@@ -59,7 +58,7 @@ public final class Static271 {
 		if (locType != null) {
 			return locType;
 		}
-		@Pc(30) byte[] bytes = Static146.aClass153_54.getfile(Static253.method4328(id), Static33.method872(id));
+		@Pc(30) byte[] bytes = Static146.aClass153_54.method4495(Static253.method4328(id), Static33.method872(id));
 		locType = new LocType();
 		locType.anInt4426 = id;
 		if (bytes != null) {

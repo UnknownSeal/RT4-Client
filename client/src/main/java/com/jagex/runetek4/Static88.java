@@ -7,7 +7,6 @@ import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.client.ClientInvCache;
 import com.jagex.runetek4.game.config.enumtype.EnumType;
-import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.game.config.objtype.ObjType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -2161,7 +2160,7 @@ public final class Static88 {
 											if (local5294.method2078()) {
 												Static3.aClass100Array176[local26++] = Static214.method4363(local809).getParam(local803, local5294.aClass100_544);
 											} else {
-												Static254.anIntArray487[local28++] = Static214.method4363(local809).getParam(local803, local5294.anInt2667);
+												Static254.anIntArray487[local28++] = Static214.method4363(local809).method2936(local803, local5294.anInt2667);
 											}
 											continue;
 										}
@@ -2777,7 +2776,7 @@ public final class Static88 {
 														local2522 = Static3.aClass100Array176[local26];
 														local7566 = false;
 														@Pc(7577) SecondaryLinkedList local7577 = Static183.method3333(local809 >> 14 & 0x3FFF, local809 & 0x3FFF);
-														for (@Pc(7582) Map local7582 = (Map) local7577.peekFront(); local7582 != null; local7582 = (Map) local7577.method797()) {
+														for (@Pc(7582) Map local7582 = (Map) local7577.method795(); local7582 != null; local7582 = (Map) local7577.method797()) {
 															if (local7582.aClass100_138.method3111(local2522)) {
 																local7566 = true;
 																break;
@@ -2910,7 +2909,7 @@ public final class Static88 {
 													}
 													if (local226 == 5401) {
 														local28 -= 2;
-														Static259.aShortArray88[Static254.anIntArray487[local28]] = (short) Static105.hslToRgb(Static254.anIntArray487[local28 + 1]);
+														Static259.aShortArray88[Static254.anIntArray487[local28]] = (short) Static105.method2253(Static254.anIntArray487[local28 + 1]);
 														Static211.method924();
 														Static269.method2172();
 														Static278.method4649();
@@ -3632,11 +3631,11 @@ public final class Static88 {
 													}
 												} else if (local226 < 6400) {
 													if (local226 == 6300) {
-														Static254.anIntArray487[local28++] = (int) (MonotonicTime.get() / 60000L);
+														Static254.anIntArray487[local28++] = (int) (MonotonicClock.currentTimeMillis() / 60000L);
 														continue;
 													}
 													if (local226 == 6301) {
-														Static254.anIntArray487[local28++] = (int) (MonotonicTime.get() / 86400000L) - 11745;
+														Static254.anIntArray487[local28++] = (int) (MonotonicClock.currentTimeMillis() / 86400000L) - 11745;
 														continue;
 													}
 													if (local226 == 6302) {
@@ -3652,7 +3651,7 @@ public final class Static88 {
 													}
 													if (local226 == 6303) {
 														Static102.aCalendar2.clear();
-														Static102.aCalendar2.setTime(new Date(MonotonicTime.get()));
+														Static102.aCalendar2.setTime(new Date(MonotonicClock.currentTimeMillis()));
 														Static254.anIntArray487[local28++] = Static102.aCalendar2.get(1);
 														continue;
 													}

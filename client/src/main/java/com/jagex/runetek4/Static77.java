@@ -35,4 +35,9 @@ public final class Static77 {
 		return local53 * (128 - local31) + local79 * local31 >> 7;
 	}
 
+	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(Lclient!ve;II)Lclient!gb;")
+	public static RawModel method1686(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
+		@Pc(5) byte[] local5 = arg0.method4495(arg1, 0);
+		return local5 == null ? null : new RawModel(local5);
+	}
 }

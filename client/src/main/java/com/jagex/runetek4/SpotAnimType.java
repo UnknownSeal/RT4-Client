@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -105,19 +104,19 @@ public final class SpotAnimType {
 	public final Model method1319(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
 		@Pc(13) Model local13 = (Model) Static56.aClass99_9.method3106((long) this.anInt1751);
 		if (local13 == null) {
-			@Pc(28) ModelUnlit local28 = ModelUnlit.get(Static93.aClass153_41, this.anInt1753);
+			@Pc(28) RawModel local28 = Static77.method1686(Static93.aClass153_41, this.anInt1753);
 			if (local28 == null) {
 				return null;
 			}
 			@Pc(40) int local40;
 			if (this.aShortArray15 != null) {
 				for (local40 = 0; local40 < this.aShortArray15.length; local40++) {
-					local28.recolor(this.aShortArray15[local40], this.aShortArray18[local40]);
+					local28.method1687(this.aShortArray15[local40], this.aShortArray18[local40]);
 				}
 			}
 			if (this.aShortArray16 != null) {
 				for (local40 = 0; local40 < this.aShortArray16.length; local40++) {
-					local28.retexture(this.aShortArray16[local40], this.aShortArray17[local40]);
+					local28.method1669(this.aShortArray16[local40], this.aShortArray17[local40]);
 				}
 			}
 			local13 = local28.method1679(this.anInt1749 + 64, this.anInt1748 + 850, -30, -50, -30);

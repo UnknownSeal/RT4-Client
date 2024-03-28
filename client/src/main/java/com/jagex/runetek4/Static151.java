@@ -32,7 +32,7 @@ public final class Static151 {
 	public static void method2807() {
 		@Pc(11) byte[] local11;
 		if (aByteBuffer7 == null) {
-			@Pc(5) NoiseGenerator3D_Sub1_Sub1 local5 = new NoiseGenerator3D_Sub1_Sub1();
+			@Pc(5) Class106_Sub1_Sub1 local5 = new Class106_Sub1_Sub1();
 			local11 = local5.method3215();
 			aByteBuffer7 = ByteBuffer.allocateDirect(local11.length);
 			aByteBuffer7.position(0);
@@ -42,7 +42,7 @@ public final class Static151 {
 		if (aByteBuffer6 != null) {
 			return;
 		}
-		@Pc(32) NoiseGenerator3D_Sub2_Sub1 local32 = new NoiseGenerator3D_Sub2_Sub1();
+		@Pc(32) Class106_Sub2_Sub1 local32 = new Class106_Sub2_Sub1();
 		local11 = local32.method3854();
 		aByteBuffer6 = ByteBuffer.allocateDirect(local11.length);
 		aByteBuffer6.position(0);

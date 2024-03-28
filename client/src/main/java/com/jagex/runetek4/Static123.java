@@ -28,7 +28,7 @@ public final class Static123 {
 		if (local10 != null) {
 			return local10;
 		}
-		@Pc(26) byte[] local26 = Static23.aClass153_11.getfile(26, arg0);
+		@Pc(26) byte[] local26 = Static23.aClass153_11.method4495(26, arg0);
 		local10 = new StructType();
 		if (local26 != null) {
 			local10.method2806(new Packet(local26));

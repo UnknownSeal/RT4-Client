@@ -5,7 +5,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!u")
-public abstract class ByteBuffer {
+public abstract class ByteArray {
 
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(I)[B")
 	public abstract byte[] method4236();

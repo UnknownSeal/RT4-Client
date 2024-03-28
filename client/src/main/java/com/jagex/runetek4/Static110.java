@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.bastype.BASType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -29,7 +28,7 @@ public final class Static110 {
 		if (local6 != null) {
 			return local6;
 		}
-		@Pc(30) byte[] local30 = Static39.aClass153_23.getfile(11, arg0);
+		@Pc(30) byte[] local30 = Static39.aClass153_23.method4495(11, arg0);
 		local6 = new Class3_Sub2_Sub12();
 		if (local30 != null) {
 			local6.method2076(new Packet(local30));
@@ -50,7 +49,7 @@ public final class Static110 {
 			Static150.method2804(arg1, local6, arg3, arg0, arg2);
 		}
 		@Pc(37) byte local37;
-		@Pc(42) BASType local42;
+		@Pc(42) BasType local42;
 		@Pc(141) int local141;
 		for (local6 = (AreaSound) Static152.aClass69_87.method2289(); local6 != null; local6 = (AreaSound) Static152.aClass69_87.method2288()) {
 			local37 = 1;

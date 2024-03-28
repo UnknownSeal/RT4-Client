@@ -65,7 +65,7 @@ public final class Static214 {
 		if (local10 != null) {
 			return local10;
 		}
-		@Pc(26) byte[] local26 = Static58.aClass153_28.getfile(Static60.method1447(arg0), Static179.method3322(arg0));
+		@Pc(26) byte[] local26 = Static58.aClass153_28.method4495(Static60.method1447(arg0), Static179.method3322(arg0));
 		local10 = new NPCType();
 		local10.anInt3741 = arg0;
 		if (local26 != null) {

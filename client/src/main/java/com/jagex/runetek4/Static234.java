@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -64,7 +63,7 @@ public final class Static234 {
 				}
 				local47 = Static57.aClass3_Sub15_Sub1_3.g4me();
 				@Pc(147) boolean local147 = true;
-				if (local43 != -1 && local14.anInt3432 != -1 && Static36.method941(Static34.method877(local43).anInt1754).priority < Static36.method941(Static34.method877(local14.anInt3432).anInt1754).priority) {
+				if (local43 != -1 && local14.anInt3432 != -1 && Static36.method941(Static34.method877(local43).anInt1754).anInt5355 < Static36.method941(Static34.method877(local14.anInt3432).anInt1754).anInt5355) {
 					local147 = false;
 				}
 				if (local147) {
@@ -89,13 +88,13 @@ public final class Static234 {
 				}
 			}
 			if ((local18 & 0x1) != 0) {
-				if (local14.npcType.hasBackgroundSound()) {
+				if (local14.npcType.method2935()) {
 					Static91.method1877(local14);
 				}
 				local14.method2698(Static214.method4363(Static57.aClass3_Sub15_Sub1_3.g2le()));
 				local14.setSize(local14.npcType.size);
 				local14.anInt3365 = local14.npcType.bas;
-				if (local14.npcType.hasBackgroundSound()) {
+				if (local14.npcType.method2935()) {
 					Static122.method2411(local14.movementQueueZ[0], null, 0, local14, local14.movementQueueX[0], Static55.level, null);
 				}
 			}
@@ -128,7 +127,7 @@ public final class Static234 {
 
 	@OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "(Lclient!ve;III)Z")
 	public static boolean method4016(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(9) byte[] local9 = arg0.getfile(arg2, arg1);
+		@Pc(9) byte[] local9 = arg0.method4495(arg2, arg1);
 		if (local9 == null) {
 			return false;
 		} else {
@@ -153,7 +152,7 @@ public final class Static234 {
 		@Pc(25) int local25 = Static119.aClass153_44.method4482(Static54.aClass100_374);
 		@Pc(30) int[] local30 = Static119.aClass153_44.method4503(local25);
 		for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {
-			Static228.aClass69_120.method2282(Static210.method3713(new Packet(Static119.aClass153_44.getfile(local25, local30[local32]))));
+			Static228.aClass69_120.method2282(Static210.method3713(new Packet(Static119.aClass153_44.method4495(local25, local30[local32]))));
 		}
 	}
 

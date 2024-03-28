@@ -1,7 +1,6 @@
 package com.jagex.runetek4.game.world.entity;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -12,7 +11,7 @@ import com.jagex.runetek4.core.io.Packet;
 public final class Player extends PathingEntity {
 
 	@OriginalMember(owner = "client!e", name = "Bc", descriptor = "Lclient!hh;")
-	public PlayerModel model;
+	public Class59 model;
 
 	@OriginalMember(owner = "client!e", name = "Mc", descriptor = "Lclient!na;")
 	public JagString aClass100_364;
@@ -157,7 +156,7 @@ public final class Player extends PathingEntity {
 			}
 		}
 		if (this.model == null) {
-			this.model = new PlayerModel();
+			this.model = new Class59();
 		}
 		local175 = this.model.anInt2492;
 		this.model.method1950(local197, local22, local26 == 1, local44, this.anInt3365);

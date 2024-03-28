@@ -187,7 +187,7 @@ public final class Static33 {
 		}
 		if (arg0.length > 136 && !Static84.aBoolean127) {
 			try {
-				@Pc(27) ByteBuffer local27 = (ByteBuffer) Class.forName("com.jagex.runetek4.DirectByteBuffer").getDeclaredConstructor().newInstance();
+				@Pc(27) ByteArray local27 = (ByteArray) Class.forName("com.jagex.runetek4.DirectByteArray").getDeclaredConstructor().newInstance();
 				local27.method4238(arg0);
 				return local27;
 			} catch (@Pc(34) Throwable local34) {

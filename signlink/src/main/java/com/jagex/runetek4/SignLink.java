@@ -260,7 +260,7 @@ public final class SignLink implements Runnable {
 
 	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "(I)V")
 	public final void method5110() {
-		aLong1314 = MonotonicTime.get() + 5000L;
+		aLong1314 = MonotonicClock.currentTimeMillis() + 5000L;
 	}
 
 	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "(Z)Z")
@@ -349,7 +349,7 @@ public final class SignLink implements Runnable {
 			try {
 				@Pc(45) int local45 = local16.type;
 				if (local45 == 1) {
-					if (aLong1314 > MonotonicTime.get()) {
+					if (aLong1314 > MonotonicClock.currentTimeMillis()) {
 						throw new IOException();
 					}
 					local16.result = new Socket(InetAddress.getByName((String) local16.objectArg), local16.intArg2);
@@ -360,7 +360,7 @@ public final class SignLink implements Runnable {
 					local813.setPriority(local16.intArg2);
 					local16.result = local813;
 				} else if (local45 == 4) {
-					if (aLong1314 > MonotonicTime.get()) {
+					if (aLong1314 > MonotonicClock.currentTimeMillis()) {
 						throw new IOException();
 					}
 					local16.result = new DataInputStream(((URL) local16.objectArg).openStream());
@@ -381,7 +381,7 @@ public final class SignLink implements Runnable {
 					} else {
 						@Pc(147) String local147;
 						if (local45 == 3) {
-							if (MonotonicTime.get() < aLong1314) {
+							if (MonotonicClock.currentTimeMillis() < aLong1314) {
 								throw new IOException();
 							}
 							local147 = (local16.intArg2 >> 24 & 0xFF) + "." + (local16.intArg2 >> 16 & 0xFF) + "." + (local16.intArg2 >> 8 & 0xFF) + "." + (local16.intArg2 & 0xFF);

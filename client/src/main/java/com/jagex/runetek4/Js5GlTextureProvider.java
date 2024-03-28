@@ -69,7 +69,7 @@ public final class Js5GlTextureProvider implements GlTextureProvider {
 		} else {
 			this.aClass54_11 = null;
 		}
-		@Pc(51) Packet local51 = new Packet(arg1.getfile(0, 0));
+		@Pc(51) Packet local51 = new Packet(arg1.method4495(0, 0));
 		@Pc(55) int local55 = local51.g2();
 		this.aByteArray61 = new byte[local55];
 		this.aByteArray60 = new byte[local55];
@@ -170,7 +170,7 @@ public final class Js5GlTextureProvider implements GlTextureProvider {
 		if (local14 != null) {
 			return local14;
 		}
-		@Pc(30) byte[] local30 = this.aClass153_73.getfile(arg0, 0);
+		@Pc(30) byte[] local30 = this.aClass153_73.method4495(arg0, 0);
 		if (local30 == null) {
 			return null;
 		} else {

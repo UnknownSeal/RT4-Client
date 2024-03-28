@@ -6,13 +6,13 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!sb")
-public final class NoiseGenerator3D_Sub2_Sub1 extends NoiseGenerator3D_Sub2 {
+public final class Class106_Sub2_Sub1 extends Class106_Sub2 {
 
 	@OriginalMember(owner = "runetek4.client!sb", name = "I", descriptor = "[B")
 	private byte[] aByteArray68;
 
 	@OriginalMember(owner = "runetek4.client!sb", name = "<init>", descriptor = "()V")
-	public NoiseGenerator3D_Sub2_Sub1() {
+	public Class106_Sub2_Sub1() {
 		super(12, 5, 16, 2, 2, 0.45F);
 	}
 

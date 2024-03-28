@@ -1,8 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.SecondaryNode;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.seqtype.SeqType;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -169,7 +167,7 @@ public final class Static84 {
 			}
 			local17 = Static57.aClass3_Sub15_Sub1_3.p4rme();
 			@Pc(573) boolean local573 = true;
-			if (local13 != -1 && arg2.anInt3432 != -1 && Static36.method941(Static34.method877(local13).anInt1754).priority < Static36.method941(Static34.method877(arg2.anInt3432).anInt1754).priority) {
+			if (local13 != -1 && arg2.anInt3432 != -1 && Static36.method941(Static34.method877(local13).anInt1754).anInt5355 < Static36.method941(Static34.method877(arg2.anInt3432).anInt1754).anInt5355) {
 				local573 = false;
 			}
 			if (local573) {
@@ -295,12 +293,12 @@ public final class Static84 {
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "(Lclient!rg;Lclient!rg;B)V")
 	public static void method1772(@OriginalArg(0) SecondaryNode arg0, @OriginalArg(1) SecondaryNode arg1) {
-		if (arg1.secondaryNext != null) {
-			arg1.secondaryRemove();
+		if (arg1.aClass3_Sub2_66 != null) {
+			arg1.method4365();
 		}
-		arg1.secondaryNext = arg0;
-		arg1.secondaryPrev = arg0.secondaryPrev;
-		arg1.secondaryNext.secondaryPrev = arg1;
-		arg1.secondaryPrev.secondaryNext = arg1;
+		arg1.aClass3_Sub2_66 = arg0;
+		arg1.aClass3_Sub2_67 = arg0.aClass3_Sub2_67;
+		arg1.aClass3_Sub2_66.aClass3_Sub2_67 = arg1;
+		arg1.aClass3_Sub2_67.aClass3_Sub2_66 = arg1;
 	}
 }

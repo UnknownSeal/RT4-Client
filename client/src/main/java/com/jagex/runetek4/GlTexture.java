@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import java.nio.ByteBuffer;
 
-import com.jagex.runetek4.core.datastruct.SecondaryNode;
 import com.jagex.runetek4.core.io.Packet;
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.glu.gl2es1.GLUgl2es1;

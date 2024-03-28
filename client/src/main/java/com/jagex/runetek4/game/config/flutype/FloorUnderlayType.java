@@ -40,22 +40,22 @@ public final class FloorUnderlayType {
 			if (code == 0) {
 				return;
 			}
-			this.decode(packet, code);
+			this.decode(code, packet);
 		}
 	}
 
 	@OriginalMember(owner = "client!ni", name = "a", descriptor = "(BILclient!wa;I)V")
-	private void decode(@OriginalArg(2) Packet packet, @OriginalArg(1) int code) {
+	private void decode(@OriginalArg(1) int code, @OriginalArg(2) Packet arg1) {
 		if (code == 1) {
-			this.colour = packet.g3();
+			this.colour = arg1.g3();
 			this.computeColour(this.colour);
 		} else if (code == 2) {
-			this.material = packet.g2();
+			this.material = arg1.g2();
 			if (this.material == 65535) {
 				this.material = -1;
 			}
 		} else if (code == 3) {
-			this.hardshadow = packet.g2();
+			this.hardshadow = arg1.g2();
 		} else if (code == 4) {
 			this.occlude = false;
 		}

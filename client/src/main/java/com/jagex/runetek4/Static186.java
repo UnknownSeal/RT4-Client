@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.seqtype.SeqType;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -183,7 +182,7 @@ public final class Static186 {
 			if (local92 == 2) {
 				arg2.anInt3371 = 0;
 			}
-		} else if (arg1 == -1 || arg2.anInt3369 == -1 || Static36.method941(arg1).priority >= Static36.method941(arg2.anInt3369).priority) {
+		} else if (arg1 == -1 || arg2.anInt3369 == -1 || Static36.method941(arg1).anInt5355 >= Static36.method941(arg2.anInt3369).anInt5355) {
 			arg2.anInt3373 = 1;
 			arg2.anInt3425 = 0;
 			arg2.anInt3420 = arg0;

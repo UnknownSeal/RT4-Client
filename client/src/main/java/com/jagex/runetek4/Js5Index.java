@@ -13,7 +13,7 @@ public final class Js5Index {
 	public int[][] anIntArrayArray21;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "d", descriptor = "[I")
-	public int[] crcs;
+	public int[] anIntArray268;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "f", descriptor = "I")
 	public int anInt2902;
@@ -25,13 +25,13 @@ public final class Js5Index {
 	public int[] anIntArray269;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "n", descriptor = "[I")
-	public int[] groupCapacities;
+	public int[] anIntArray270;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "o", descriptor = "[I")
 	public int[] anIntArray271;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "p", descriptor = "[I")
-	public int[] groupSizes;
+	public int[] anIntArray272;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "r", descriptor = "[I")
 	public int[] anIntArray273;
@@ -49,12 +49,12 @@ public final class Js5Index {
 	public IntHashTable[] aClass76Array1;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "z", descriptor = "I")
-	public final int crc;
+	public final int anInt2911;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "<init>", descriptor = "([BI)V")
 	public Js5Index(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int arg1) {
-		this.crc = Packet.getcrc(arg0, arg0.length);
-		if (arg1 != this.crc) {
+		this.anInt2911 = Static71.method1442(arg0, arg0.length);
+		if (arg1 != this.anInt2911) {
 			throw new RuntimeException();
 		}
 		this.method2293(arg0);
@@ -87,9 +87,9 @@ public final class Js5Index {
 		this.anInt2907 = local59 + 1;
 		this.anIntArray273 = new int[this.anInt2907];
 		this.anIntArrayArray22 = new int[this.anInt2907][];
-		this.crcs = new int[this.anInt2907];
-		this.groupCapacities = new int[this.anInt2907];
-		this.groupSizes = new int[this.anInt2907];
+		this.anIntArray268 = new int[this.anInt2907];
+		this.anIntArray270 = new int[this.anInt2907];
+		this.anIntArray272 = new int[this.anInt2907];
 		if (local48 != 0) {
 			this.anIntArray271 = new int[this.anInt2907];
 			for (local66 = 0; local66 < this.anInt2907; local66++) {
@@ -101,13 +101,13 @@ public final class Js5Index {
 			this.aClass76_1 = new IntHashTable(this.anIntArray271);
 		}
 		for (local66 = 0; local66 < this.anInt2902; local66++) {
-			this.crcs[this.anIntArray269[local66]] = local12.g4();
+			this.anIntArray268[this.anIntArray269[local66]] = local12.g4();
 		}
 		for (local66 = 0; local66 < this.anInt2902; local66++) {
 			this.anIntArray273[this.anIntArray269[local66]] = local12.g4();
 		}
 		for (local66 = 0; local66 < this.anInt2902; local66++) {
-			this.groupSizes[this.anIntArray269[local66]] = local12.g2();
+			this.anIntArray272[this.anIntArray269[local66]] = local12.g2();
 		}
 		@Pc(273) int local273;
 		@Pc(278) int local278;
@@ -116,7 +116,7 @@ public final class Js5Index {
 		for (local66 = 0; local66 < this.anInt2902; local66++) {
 			local50 = 0;
 			local273 = this.anIntArray269[local66];
-			local278 = this.groupSizes[local273];
+			local278 = this.anIntArray272[local273];
 			local280 = -1;
 			this.anIntArrayArray22[local273] = new int[local278];
 			for (local288 = 0; local288 < local278; local288++) {
@@ -125,7 +125,7 @@ public final class Js5Index {
 					local280 = local306;
 				}
 			}
-			this.groupCapacities[local273] = local280 + 1;
+			this.anIntArray270[local273] = local280 + 1;
 			if (local280 + 1 == local278) {
 				this.anIntArrayArray22[local273] = null;
 			}
@@ -137,9 +137,9 @@ public final class Js5Index {
 		this.anIntArrayArray21 = new int[local59 + 1][];
 		for (local66 = 0; local66 < this.anInt2902; local66++) {
 			local273 = this.anIntArray269[local66];
-			local278 = this.groupSizes[local273];
-			this.anIntArrayArray21[local273] = new int[this.groupCapacities[local273]];
-			for (local280 = 0; local280 < this.groupCapacities[local273]; local280++) {
+			local278 = this.anIntArray272[local273];
+			this.anIntArrayArray21[local273] = new int[this.anIntArray270[local273]];
+			for (local280 = 0; local280 < this.anIntArray270[local273]; local280++) {
 				this.anIntArrayArray21[local273][local280] = -1;
 			}
 			for (local280 = 0; local280 < local278; local280++) {

@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -99,8 +98,8 @@ public final class SpotAnim extends Entity {
 			return;
 		}
 		this.anInt607 += arg0;
-		while (this.anInt607 > this.aClass144_1.frames[this.anInt593]) {
-			this.anInt607 -= this.aClass144_1.frames[this.anInt593];
+		while (this.anInt607 > this.aClass144_1.anIntArray474[this.anInt593]) {
+			this.anInt607 -= this.aClass144_1.anIntArray474[this.anInt593];
 			this.anInt593++;
 			if (this.aClass144_1.anIntArray473.length <= this.anInt593) {
 				this.aBoolean41 = true;

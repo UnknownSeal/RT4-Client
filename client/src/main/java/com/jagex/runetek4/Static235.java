@@ -29,9 +29,9 @@ public final class Static235 {
 		}
 		@Pc(24) byte[] local24;
 		if (arg0 < 32768) {
-			local24 = Static87.aClass153_38.getfile(0, arg0);
+			local24 = Static87.aClass153_38.method4495(0, arg0);
 		} else {
-			local24 = Static29.aClass153_19.getfile(0, arg0 & 0x7FFF);
+			local24 = Static29.aClass153_19.method4495(0, arg0 & 0x7FFF);
 		}
 		local10 = new Class3_Sub2_Sub2();
 		if (local24 != null) {

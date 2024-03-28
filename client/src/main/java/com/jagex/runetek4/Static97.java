@@ -7,7 +7,6 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.iftype.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

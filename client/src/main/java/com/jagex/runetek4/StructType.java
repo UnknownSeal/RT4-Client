@@ -1,6 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.*;
+import com.jagex.runetek4.core.datastruct.IntWrapper;
+import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.JagStringWrapper;
+import com.jagex.runetek4.core.datastruct.Node;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

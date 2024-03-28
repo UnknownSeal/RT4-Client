@@ -4,9 +4,6 @@ import java.awt.Point;
 import java.io.IOException;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.game.config.idktype.IDKType;
-import com.jagex.runetek4.game.config.iftype.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -58,27 +55,27 @@ public final class Static81 {
 		}
 	}
 
-	@OriginalMember(owner = "client!gg", name = "a", descriptor = "([[IZ)V")
+	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "([[IZ)V")
 	public static void method1751(@OriginalArg(0) int[][] arg0) {
 		Static71.anIntArrayArray10 = arg0;
 	}
 
-	@OriginalMember(owner = "client!gg", name = "d", descriptor = "(II)Lclient!dm;")
-	public static IDKType get(@OriginalArg(0) int id) {
-		@Pc(10) IDKType idkType = (IDKType) Static67.aClass99_20.method3106((long) id);
-		if (idkType != null) {
-			return idkType;
+	@OriginalMember(owner = "runetek4.client!gg", name = "d", descriptor = "(II)Lclient!dm;")
+	public static IdkType method1752(@OriginalArg(0) int arg0) {
+		@Pc(10) IdkType local10 = (IdkType) Static67.aClass99_20.method3106((long) arg0);
+		if (local10 != null) {
+			return local10;
 		}
-		@Pc(21) byte[] bytes = Static216.aClass153_31.getfile(3, id);
-		idkType = new IDKType();
-		if (bytes != null) {
-			idkType.decode(new Packet(bytes));
+		@Pc(21) byte[] local21 = Static216.aClass153_31.method4495(3, arg0);
+		local10 = new IdkType();
+		if (local21 != null) {
+			local10.method1209(new Packet(local21));
 		}
-		Static67.aClass99_20.method3095(idkType, (long) id);
-		return idkType;
+		Static67.aClass99_20.method3095(local10, (long) arg0);
+		return local10;
 	}
 
-	@OriginalMember(owner = "client!gg", name = "e", descriptor = "(II)V")
+	@OriginalMember(owner = "runetek4.client!gg", name = "e", descriptor = "(II)V")
 	public static void method1753(@OriginalArg(0) int arg0) {
 		if (!Static245.load(arg0)) {
 			return;
@@ -94,12 +91,12 @@ public final class Static81 {
 		}
 	}
 
-	@OriginalMember(owner = "client!gg", name = "a", descriptor = "(ILclient!ve;)V")
+	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "(ILclient!ve;)V")
 	public static void method1754(@OriginalArg(1) Js5 arg0) {
 		Static138.anInt3443 = arg0.method4482(Static12.aClass100_73);
 	}
 
-	@OriginalMember(owner = "client!gg", name = "a", descriptor = "(Z)V")
+	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "(Z)V")
 	public static void method1756() {
 		// todo: consolidate/rename static classes
 		if (Static267.anInt5775 > 0) {
@@ -293,7 +290,7 @@ public final class Static81 {
 		}
 		@Pc(782) int modelId;
 		// runetek4.DelayedStateChange
-		for (@Pc(709) DelayedStateChange change = DelayedStateChange.poll(); change != null; change = DelayedStateChange.poll()) {
+		for (@Pc(709) DelayedStateChange change = Static127.poll(); change != null; change = Static127.poll()) {
 			samples = change.method1011();
 			i = change.method1012();
 			if (samples == 1) {

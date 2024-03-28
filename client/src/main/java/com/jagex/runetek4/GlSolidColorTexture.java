@@ -1,8 +1,6 @@
 package com.jagex.runetek4;
 
 import java.nio.ByteBuffer;
-
-import com.jagex.runetek4.core.datastruct.SecondaryNode;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

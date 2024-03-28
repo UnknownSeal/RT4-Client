@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.loctype.LocType;
-import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -88,7 +87,7 @@ public final class Loc extends Entity {
 			} else {
 				local67 = Static271.get(this.anInt1299);
 				if (local67.multiloc != null) {
-					local67 = local67.getVisible();
+					local67 = local67.method3417();
 				}
 				if (local67 != null) {
 					Static9.method181(local67, 0, this.anInt1295, 0, this.anInt1307, this.anInt1308, this.anInt1300, this.anInt1303);
@@ -115,16 +114,16 @@ public final class Loc extends Entity {
 					return;
 				}
 			}
-			if (arg7 && this.aClass144_2.replayoff != -1) {
+			if (arg7 && this.aClass144_2.anInt5362 != -1) {
 				this.anInt1297 = (int) (Math.random() * (double) this.aClass144_2.anIntArray473.length);
 				this.anInt1304 = this.anInt1297 + 1;
 				if (this.anInt1304 >= this.aClass144_2.anIntArray473.length) {
-					this.anInt1304 -= this.aClass144_2.replayoff;
+					this.anInt1304 -= this.aClass144_2.anInt5362;
 					if (this.anInt1304 < 0 || this.anInt1304 >= this.aClass144_2.anIntArray473.length) {
 						this.anInt1304 = -1;
 					}
 				}
-				this.anInt1317 = (int) (Math.random() * (double) this.aClass144_2.frames[this.anInt1297]) + 1;
+				this.anInt1317 = (int) (Math.random() * (double) this.aClass144_2.anIntArray474[this.anInt1297]) + 1;
 				this.anInt1320 = Static83.anInt372 - this.anInt1317;
 			}
 		}
@@ -179,33 +178,33 @@ public final class Loc extends Entity {
 			return;
 		}
 		@Pc(10) int local10 = Static83.anInt372 - this.anInt1320;
-		if (local10 > 100 && this.aClass144_2.replayoff > 0) {
-			@Pc(29) int local29 = this.aClass144_2.anIntArray473.length - this.aClass144_2.replayoff;
-			while (this.anInt1297 < local29 && this.aClass144_2.frames[this.anInt1297] < local10) {
-				local10 -= this.aClass144_2.frames[this.anInt1297];
+		if (local10 > 100 && this.aClass144_2.anInt5362 > 0) {
+			@Pc(29) int local29 = this.aClass144_2.anIntArray473.length - this.aClass144_2.anInt5362;
+			while (this.anInt1297 < local29 && this.aClass144_2.anIntArray474[this.anInt1297] < local10) {
+				local10 -= this.aClass144_2.anIntArray474[this.anInt1297];
 				this.anInt1297++;
 			}
 			if (this.anInt1297 >= local29) {
 				@Pc(77) int local77 = 0;
 				for (@Pc(79) int local79 = local29; local79 < this.aClass144_2.anIntArray473.length; local79++) {
-					local77 += this.aClass144_2.frames[local79];
+					local77 += this.aClass144_2.anIntArray474[local79];
 				}
 				local10 %= local77;
 			}
 			this.anInt1304 = this.anInt1297 + 1;
 			if (this.anInt1304 >= this.aClass144_2.anIntArray473.length) {
-				this.anInt1304 -= this.aClass144_2.replayoff;
+				this.anInt1304 -= this.aClass144_2.anInt5362;
 				if (this.anInt1304 < 0 || this.aClass144_2.anIntArray473.length <= this.anInt1304) {
 					this.anInt1304 = -1;
 				}
 			}
 		}
-		while (local10 > this.aClass144_2.frames[this.anInt1297]) {
+		while (local10 > this.aClass144_2.anIntArray474[this.anInt1297]) {
 			Static152.method2836(arg0, this.aClass144_2, arg1, false, this.anInt1297);
-			local10 -= this.aClass144_2.frames[this.anInt1297];
+			local10 -= this.aClass144_2.anIntArray474[this.anInt1297];
 			this.anInt1297++;
 			if (this.aClass144_2.anIntArray473.length <= this.anInt1297) {
-				this.anInt1297 -= this.aClass144_2.replayoff;
+				this.anInt1297 -= this.aClass144_2.anInt5362;
 				if (this.anInt1297 < 0 || this.aClass144_2.anIntArray473.length <= this.anInt1297) {
 					this.aClass144_2 = null;
 					break;
@@ -213,7 +212,7 @@ public final class Loc extends Entity {
 			}
 			this.anInt1304 = this.anInt1297 + 1;
 			if (this.aClass144_2.anIntArray473.length <= this.anInt1304) {
-				this.anInt1304 -= this.aClass144_2.replayoff;
+				this.anInt1304 -= this.aClass144_2.anInt5362;
 				if (this.anInt1304 < 0 || this.anInt1304 >= this.aClass144_2.anIntArray473.length) {
 					this.anInt1304 = -1;
 				}
@@ -227,9 +226,9 @@ public final class Loc extends Entity {
 	private Entity method1048(@OriginalArg(0) boolean arg0) {
 		@Pc(12) boolean local12 = Static107.anIntArrayArrayArray10 != Static83.anIntArrayArrayArray4;
 		@Pc(19) LocType local19 = Static271.get(this.anInt1299);
-		@Pc(22) int local22 = local19.seqindex;
+		@Pc(22) int local22 = local19.anInt4430;
 		if (local19.multiloc != null) {
-			local19 = local19.getVisible();
+			local19 = local19.method3417();
 		}
 		if (local19 == null) {
 			if (GlRenderer.enabled && !local12) {
@@ -238,9 +237,9 @@ public final class Loc extends Entity {
 			return null;
 		}
 		@Pc(69) int local69;
-		if (Static266.game != 0 && this.aBoolean80 && (this.aClass144_2 == null || this.aClass144_2 != null && this.aClass144_2.anInt5361 != local19.seqindex)) {
-			local69 = local19.seqindex;
-			if (local19.seqindex == -1) {
+		if (Static266.game != 0 && this.aBoolean80 && (this.aClass144_2 == null || this.aClass144_2 != null && this.aClass144_2.anInt5361 != local19.anInt4430)) {
+			local69 = local19.anInt4430;
+			if (local19.anInt4430 == -1) {
 				local69 = local22;
 			}
 			if (local69 == -1) {
@@ -249,9 +248,9 @@ public final class Loc extends Entity {
 				this.aClass144_2 = Static36.method941(local69);
 			}
 			if (this.aClass144_2 != null) {
-				if (local19.randseq && this.aClass144_2.replayoff != -1) {
+				if (local19.randseq && this.aClass144_2.anInt5362 != -1) {
 					this.anInt1297 = (int) (Math.random() * (double) this.aClass144_2.anIntArray473.length);
-					this.anInt1320 -= (int) (Math.random() * (double) this.aClass144_2.frames[this.anInt1297]);
+					this.anInt1320 -= (int) (Math.random() * (double) this.aClass144_2.anIntArray474[this.anInt1297]);
 				} else {
 					this.anInt1297 = 0;
 					this.anInt1320 = Static83.anInt372 - 1;
