@@ -322,7 +322,7 @@ public final class ObjType {
 		}
 		@Pc(76) Model local76 = (Model) Static244.aClass99_32.method3106((long) this.anInt2354);
 		if (local76 == null) {
-			@Pc(85) RawModel local85 = Static77.method1686(Static230.aClass153_95, this.mesh);
+			@Pc(85) ModelUnlit local85 = Static77.method1686(Static230.aClass153_95, this.mesh);
 			if (local85 == null) {
 				return null;
 			}
@@ -536,7 +536,7 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ZB)Lclient!gb;")
-	public final RawModel method1830(@OriginalArg(0) boolean arg0) {
+	public final ModelUnlit method1830(@OriginalArg(0) boolean arg0) {
 		@Pc(4) int local4 = this.manhead2;
 		@Pc(17) int local17 = this.manhead;
 		if (arg0) {
@@ -546,11 +546,11 @@ public final class ObjType {
 		if (local17 == -1) {
 			return null;
 		}
-		@Pc(36) RawModel local36 = Static77.method1686(Static230.aClass153_95, local17);
+		@Pc(36) ModelUnlit local36 = Static77.method1686(Static230.aClass153_95, local17);
 		if (local4 != -1) {
-			@Pc(44) RawModel local44 = Static77.method1686(Static230.aClass153_95, local4);
-			@Pc(55) RawModel[] local55 = new RawModel[] { local36, local44 };
-			local36 = new RawModel(local55, 2);
+			@Pc(44) ModelUnlit local44 = Static77.method1686(Static230.aClass153_95, local4);
+			@Pc(55) ModelUnlit[] local55 = new ModelUnlit[] { local36, local44 };
+			local36 = new ModelUnlit(local55, 2);
 		}
 		@Pc(66) int local66;
 		if (this.recol_s != null) {
@@ -567,7 +567,7 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ZI)Lclient!gb;")
-	public final RawModel method1831(@OriginalArg(0) boolean arg0) {
+	public final ModelUnlit method1831(@OriginalArg(0) boolean arg0) {
 		@Pc(4) int local4 = this.manwear;
 		@Pc(18) int local18 = this.manwear2;
 		@Pc(21) int local21 = this.manwear3;
@@ -579,16 +579,16 @@ public final class ObjType {
 		if (local4 == -1) {
 			return null;
 		}
-		@Pc(43) RawModel local43 = Static77.method1686(Static230.aClass153_95, local4);
+		@Pc(43) ModelUnlit local43 = Static77.method1686(Static230.aClass153_95, local4);
 		if (local18 != -1) {
-			@Pc(54) RawModel local54 = Static77.method1686(Static230.aClass153_95, local18);
+			@Pc(54) ModelUnlit local54 = Static77.method1686(Static230.aClass153_95, local18);
 			if (local21 == -1) {
-				@Pc(68) RawModel[] local68 = new RawModel[] { local43, local54 };
-				local43 = new RawModel(local68, 2);
+				@Pc(68) ModelUnlit[] local68 = new ModelUnlit[] { local43, local54 };
+				local43 = new ModelUnlit(local68, 2);
 			} else {
-				@Pc(81) RawModel local81 = Static77.method1686(Static230.aClass153_95, local21);
-				@Pc(96) RawModel[] local96 = new RawModel[] { local43, local54, local81 };
-				local43 = new RawModel(local96, 3);
+				@Pc(81) ModelUnlit local81 = Static77.method1686(Static230.aClass153_95, local21);
+				@Pc(96) ModelUnlit[] local96 = new ModelUnlit[] { local43, local54, local81 };
+				local43 = new ModelUnlit(local96, 3);
 			}
 		}
 		if (!arg0 && (this.manwearxoff != 0 || this.manwearyoff != 0 || this.manwearzoff != 0)) {
@@ -633,7 +633,7 @@ public final class ObjType {
 
 	@OriginalMember(owner = "client!h", name = "d", descriptor = "(I)Lclient!w;")
 	public final SoftwareModel method1834() {
-		@Pc(11) RawModel local11 = Static77.method1686(Static230.aClass153_95, this.mesh);
+		@Pc(11) ModelUnlit local11 = Static77.method1686(Static230.aClass153_95, this.mesh);
 		if (local11 == null) {
 			return null;
 		}

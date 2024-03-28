@@ -82,15 +82,15 @@ public final class IDKType {
 	}
 
 	@OriginalMember(owner = "client!dm", name = "a", descriptor = "(Z)Lclient!gb;")
-	public RawModel method1198() {
+	public ModelUnlit method1198() {
 		@Pc(13) int local13 = 0;
-		@Pc(16) RawModel[] local16 = new RawModel[5];
+		@Pc(16) ModelUnlit[] local16 = new ModelUnlit[5];
 		for (@Pc(18) int local18 = 0; local18 < 5; local18++) {
 			if (this.heads[local18] != -1) {
 				local16[local13++] = Static77.method1686(Static14.aClass153_8, this.heads[local18]);
 			}
 		}
-		@Pc(52) RawModel local52 = new RawModel(local16, local13);
+		@Pc(52) ModelUnlit local52 = new ModelUnlit(local16, local13);
 		@Pc(58) int local58;
 		if (this.recol_s != null) {
 			for (local58 = 0; local58 < this.recol_s.length; local58++) {
@@ -120,19 +120,19 @@ public final class IDKType {
 	}
 
 	@OriginalMember(owner = "client!dm", name = "b", descriptor = "(B)Lclient!gb;")
-	public RawModel method1204() {
+	public ModelUnlit method1204() {
 		if (this.models == null) {
 			return null;
 		}
-		@Pc(16) RawModel[] local16 = new RawModel[this.models.length];
+		@Pc(16) ModelUnlit[] local16 = new ModelUnlit[this.models.length];
 		for (@Pc(18) int local18 = 0; local18 < this.models.length; local18++) {
 			local16[local18] = Static77.method1686(Static14.aClass153_8, this.models[local18]);
 		}
-		@Pc(56) RawModel local56;
+		@Pc(56) ModelUnlit local56;
 		if (local16.length == 1) {
 			local56 = local16[0];
 		} else {
-			local56 = new RawModel(local16, local16.length);
+			local56 = new ModelUnlit(local16, local16.length);
 		}
 		@Pc(70) int local70;
 		if (this.recol_s != null) {

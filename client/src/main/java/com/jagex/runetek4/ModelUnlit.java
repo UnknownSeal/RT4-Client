@@ -7,7 +7,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!gb")
-public final class RawModel extends Entity {
+public final class ModelUnlit extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "s", descriptor = "[B")
 	public byte[] aByteArray26;
@@ -148,11 +148,11 @@ public final class RawModel extends Entity {
 	public int anInt2139 = 0;
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "<init>", descriptor = "()V")
-	private RawModel() {
+	private ModelUnlit() {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "<init>", descriptor = "([B)V")
-	public RawModel(@OriginalArg(0) byte[] arg0) {
+	public ModelUnlit(@OriginalArg(0) byte[] arg0) {
 		if (arg0[arg0.length - 1] == -1 && arg0[arg0.length - 2] == -1) {
 			this.method1674(arg0);
 		} else {
@@ -161,7 +161,7 @@ public final class RawModel extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "<init>", descriptor = "(III)V")
-	public RawModel(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public ModelUnlit(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		this.anIntArray202 = new int[arg0];
 		this.anIntArray201 = new int[arg0];
 		this.anIntArray203 = new int[arg0];
@@ -179,7 +179,7 @@ public final class RawModel extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "<init>", descriptor = "([Lclient!gb;I)V")
-	public RawModel(@OriginalArg(0) RawModel[] arg0, @OriginalArg(1) int arg1) {
+	public ModelUnlit(@OriginalArg(0) ModelUnlit[] arg0, @OriginalArg(1) int arg1) {
 		@Pc(15) boolean local15 = false;
 		@Pc(17) boolean local17 = false;
 		@Pc(19) boolean local19 = false;
@@ -192,7 +192,7 @@ public final class RawModel extends Entity {
 		this.aByte7 = -1;
 		@Pc(43) int local43;
 		for (local43 = 0; local43 < arg1; local43++) {
-			@Pc(50) RawModel local50 = arg0[local43];
+			@Pc(50) ModelUnlit local50 = arg0[local43];
 			if (local50 != null) {
 				this.anInt2139 += local50.anInt2139;
 				this.anInt2136 += local50.anInt2136;
@@ -261,7 +261,7 @@ public final class RawModel extends Entity {
 		this.anInt2137 = 0;
 		for (local43 = 0; local43 < arg1; local43++) {
 			@Pc(323) short local323 = (short) (0x1 << local43);
-			@Pc(327) RawModel local327 = arg0[local43];
+			@Pc(327) ModelUnlit local327 = arg0[local43];
 			if (local327 != null) {
 				@Pc(331) int local331;
 				for (local331 = 0; local331 < local327.anInt2136; local331++) {
@@ -331,7 +331,7 @@ public final class RawModel extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "<init>", descriptor = "(Lclient!gb;ZZZZ)V")
-	public RawModel(@OriginalArg(0) RawModel arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) boolean arg3, @OriginalArg(4) boolean arg4) {
+	public ModelUnlit(@OriginalArg(0) ModelUnlit arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) boolean arg3, @OriginalArg(4) boolean arg4) {
 		this.anInt2139 = arg0.anInt2139;
 		this.anInt2136 = arg0.anInt2136;
 		this.anInt2137 = arg0.anInt2137;
@@ -488,7 +488,7 @@ public final class RawModel extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(Lclient!gb;IS)I")
-	private int method1666(@OriginalArg(0) RawModel arg0, @OriginalArg(1) int arg1, @OriginalArg(2) short arg2) {
+	private int method1666(@OriginalArg(0) ModelUnlit arg0, @OriginalArg(1) int arg1, @OriginalArg(2) short arg2) {
 		@Pc(4) int local4 = arg0.anIntArray202[arg1];
 		@Pc(9) int local9 = arg0.anIntArray201[arg1];
 		@Pc(14) int local14 = arg0.anIntArray203[arg1];
@@ -634,7 +634,7 @@ public final class RawModel extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(II[[I[[IIIIZZ)Lclient!gb;")
-	public final RawModel method1670(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int[][] arg2, @OriginalArg(3) int[][] arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
+	public final ModelUnlit method1670(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int[][] arg2, @OriginalArg(3) int[][] arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
 		this.method1664();
 		@Pc(6) int local6 = arg4 + this.aShort14;
 		@Pc(11) int local11 = arg4 + this.aShort16;
@@ -659,7 +659,7 @@ public final class RawModel extends Entity {
 				return this;
 			}
 		}
-		@Pc(147) RawModel local147 = new RawModel();
+		@Pc(147) ModelUnlit local147 = new ModelUnlit();
 		local147.anInt2139 = this.anInt2139;
 		local147.anInt2136 = this.anInt2136;
 		local147.anInt2137 = this.anInt2137;
@@ -1153,8 +1153,8 @@ public final class RawModel extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "i", descriptor = "()Lclient!gb;")
-	public final RawModel method1675() {
-		@Pc(3) RawModel local3 = new RawModel();
+	public final ModelUnlit method1675() {
+		@Pc(3) ModelUnlit local3 = new ModelUnlit();
 		if (this.aByteArray30 != null) {
 			local3.aByteArray30 = new byte[this.anInt2136];
 			for (@Pc(13) int local13 = 0; local13 < this.anInt2136; local13++) {
@@ -1263,7 +1263,7 @@ public final class RawModel extends Entity {
 	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(Lclient!th;IIIZ)V")
 	@Override
 	public final void method4544(@OriginalArg(0) Entity arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
-		@Pc(2) RawModel local2 = (RawModel) arg0;
+		@Pc(2) ModelUnlit local2 = (ModelUnlit) arg0;
 		local2.method1664();
 		local2.method1668();
 		Static77.anInt2138++;

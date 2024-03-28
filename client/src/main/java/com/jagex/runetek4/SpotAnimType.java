@@ -104,7 +104,7 @@ public final class SpotAnimType {
 	public final Model method1319(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
 		@Pc(13) Model local13 = (Model) Static56.aClass99_9.method3106((long) this.anInt1751);
 		if (local13 == null) {
-			@Pc(28) RawModel local28 = Static77.method1686(Static93.aClass153_41, this.anInt1753);
+			@Pc(28) ModelUnlit local28 = Static77.method1686(Static93.aClass153_41, this.anInt1753);
 			if (local28 == null) {
 				return null;
 			}

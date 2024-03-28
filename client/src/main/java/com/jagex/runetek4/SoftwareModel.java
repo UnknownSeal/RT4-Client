@@ -130,7 +130,7 @@ public final class SoftwareModel extends Model {
 	}
 
 	@OriginalMember(owner = "runetek4.client!w", name = "<init>", descriptor = "(Lclient!gb;IIIII)V")
-	public SoftwareModel(@OriginalArg(0) RawModel arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
+	public SoftwareModel(@OriginalArg(0) ModelUnlit arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
 		arg0.method1668();
 		arg0.method1683();
 		this.anInt5788 = arg0.anInt2139;

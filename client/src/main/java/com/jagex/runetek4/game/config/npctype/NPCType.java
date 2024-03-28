@@ -252,7 +252,7 @@ public final class NPCType {
 			if (local46) {
 				return null;
 			}
-			@Pc(84) RawModel[] local84 = new RawModel[this.models.length];
+			@Pc(84) ModelUnlit[] local84 = new ModelUnlit[this.models.length];
 			for (@Pc(86) int local86 = 0; local86 < this.models.length; local86++) {
 				if (this.models[local86] != -1) {
 					local84[local86] = Static77.method1686(Static86.aClass153_37, this.models[local86]);
@@ -319,11 +319,11 @@ public final class NPCType {
 					}
 				}
 			}
-			@Pc(593) RawModel local593;
+			@Pc(593) ModelUnlit local593;
 			if (local84.length == 1) {
 				local593 = local84[0];
 			} else {
-				local593 = new RawModel(local84, local84.length);
+				local593 = new ModelUnlit(local84, local84.length);
 			}
 			if (this.recol_s != null) {
 				for (local173 = 0; local173 < this.recol_s.length; local173++) {
@@ -527,15 +527,15 @@ public final class NPCType {
 				if (local46) {
 					return null;
 				}
-				@Pc(82) RawModel[] local82 = new RawModel[this.heads.length];
+				@Pc(82) ModelUnlit[] local82 = new ModelUnlit[this.heads.length];
 				for (@Pc(84) int local84 = 0; local84 < this.heads.length; local84++) {
 					local82[local84] = Static77.method1686(Static86.aClass153_37, this.heads[local84]);
 				}
-				@Pc(119) RawModel local119;
+				@Pc(119) ModelUnlit local119;
 				if (local82.length == 1) {
 					local119 = local82[0];
 				} else {
-					local119 = new RawModel(local82, local82.length);
+					local119 = new ModelUnlit(local82, local82.length);
 				}
 				@Pc(130) int local130;
 				if (this.recol_s != null) {
