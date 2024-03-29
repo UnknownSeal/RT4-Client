@@ -238,10 +238,10 @@ public final class Static164 {
 			local133.method314(arg0);
 		}
 		if (local5.certtemplate != -1) {
-			local71.method1423(0, 0);
+			local71.drawSprite(0, 0);
 		} else if (local5.lenttemplate != -1) {
 			Static129.method2491(local71.anIntArray20, 36, 32);
-			local133.method1423(0, 0);
+			local133.drawSprite(0, 0);
 			local133 = local71;
 		}
 		if (arg3 && (local5.stackable == 1 || arg5 != 1) && arg5 != -1) {

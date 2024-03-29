@@ -411,10 +411,10 @@ public final class Static81 {
 			}
 		}
 		// Cross
-		if (Static70.type != 0) {
-			Static17.milliseconds += 20;
-			if (Static17.milliseconds >= 400) {
-				Static70.type = 0;
+		if (Static70.crossMode != 0) {
+			Static17.crossCycle += 20;
+			if (Static17.crossCycle >= 400) {
+				Static70.crossMode = 0;
 			}
 		}
 		Static178.anInt4247++;
@@ -545,8 +545,8 @@ public final class Static81 {
 													Static6.outboundBuffer.p2add(Static225.originX + Static56.anInt1742);
 													Static6.outboundBuffer.p2leadd(Static15.anInt506);
 													Static6.outboundBuffer.p2add(Static116.anInt2954 + Static142.originZ);
-													Static70.type = 1;
-													Static17.milliseconds = 0;
+													Static70.crossMode = 1;
+													Static17.crossCycle = 0;
 													Static25.y = Static60.clickY;
 													Static122.x = Static7.clickX;
 												}
@@ -556,8 +556,8 @@ public final class Static81 {
 													Static6.outboundBuffer.pIsaac1(179);
 													Static6.outboundBuffer.p2(Static142.originZ + Static116.anInt2954);
 													Static6.outboundBuffer.p2(Static56.anInt1742 + Static225.originX);
-													Static17.milliseconds = 0;
-													Static70.type = 1;
+													Static17.crossCycle = 0;
+													Static70.crossMode = 1;
 													Static122.x = Static7.clickX;
 													Static25.y = Static60.clickY;
 												}
@@ -566,9 +566,9 @@ public final class Static81 {
 												@Pc(1871) boolean local1871 = Static102.method2075(Static173.self.movementQueueZ[0], 0, 0, true, 0, Static56.anInt1742, 0, 0, 0, Static116.anInt2954, Static173.self.movementQueueX[0]);
 												if (local1871) {
 													Static25.y = Static60.clickY;
-													Static17.milliseconds = 0;
+													Static17.crossCycle = 0;
 													Static122.x = Static7.clickX;
-													Static70.type = 1;
+													Static70.crossMode = 1;
 												}
 											}
 											Static56.anInt1742 = -1;

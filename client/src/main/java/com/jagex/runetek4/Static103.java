@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.game.config.npctype.NPCType;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -44,8 +45,8 @@ public final class Static103 {
 			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
 			if (local43 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
-				Static70.type = 2;
-				Static17.milliseconds = 0;
+				Static70.crossMode = 2;
+				Static17.crossCycle = 0;
 				Static122.x = Static7.clickX;
 				Static25.y = Static60.clickY;
 				Static6.outboundBuffer.pIsaac1(71);
@@ -77,8 +78,8 @@ public final class Static103 {
 			if (local192 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.self.movementQueueX[0]);
 				Static122.x = Static7.clickX;
-				Static70.type = 2;
-				Static17.milliseconds = 0;
+				Static70.crossMode = 2;
+				Static17.crossCycle = 0;
 				Static25.y = Static60.clickY;
 				Static6.outboundBuffer.pIsaac1(30);
 				Static6.outboundBuffer.p2(local36);
@@ -89,8 +90,8 @@ public final class Static103 {
 			if (local192 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.self.movementQueueX[0]);
 				Static122.x = Static7.clickX;
-				Static17.milliseconds = 0;
-				Static70.type = 2;
+				Static17.crossCycle = 0;
+				Static70.crossMode = 2;
 				Static25.y = Static60.clickY;
 				Static6.outboundBuffer.pIsaac1(78);
 				Static6.outboundBuffer.p2le(local36);
@@ -101,9 +102,9 @@ public final class Static103 {
 			if (local43 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
 				Static122.x = Static7.clickX;
-				Static70.type = 2;
+				Static70.crossMode = 2;
 				Static25.y = Static60.clickY;
-				Static17.milliseconds = 0;
+				Static17.crossCycle = 0;
 				Static6.outboundBuffer.pIsaac1(133);
 				Static6.outboundBuffer.p2le(local36);
 			}
@@ -132,8 +133,8 @@ public final class Static103 {
 			if (local192 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.self.movementQueueX[0]);
 				Static122.x = Static7.clickX;
-				Static70.type = 2;
-				Static17.milliseconds = 0;
+				Static70.crossMode = 2;
+				Static17.crossCycle = 0;
 				Static25.y = Static60.clickY;
 				Static6.outboundBuffer.pIsaac1(239);
 				Static6.outboundBuffer.p4le2(Static98.anInt2512);
@@ -152,8 +153,8 @@ public final class Static103 {
 				}
 			}
 			Static122.x = Static7.clickX;
-			Static17.milliseconds = 0;
-			Static70.type = 2;
+			Static17.crossCycle = 0;
+			Static70.crossMode = 2;
 			Static25.y = Static60.clickY;
 			Static6.outboundBuffer.pIsaac1(66);
 			Static6.outboundBuffer.p2le(Static225.originX + local15);
@@ -168,10 +169,10 @@ public final class Static103 {
 			Static6.outboundBuffer.p2leadd(local19 + Static142.originZ);
 		}
 		if (local23 == 1002) {
-			Static70.type = 2;
+			Static70.crossMode = 2;
 			Static122.x = Static7.clickX;
 			Static25.y = Static60.clickY;
-			Static17.milliseconds = 0;
+			Static17.crossCycle = 0;
 			Static6.outboundBuffer.pIsaac1(92);
 			Static6.outboundBuffer.p2leadd(local36);
 		}
@@ -210,8 +211,8 @@ public final class Static103 {
 			}
 		}
 		if (local23 == 1007) {
-			Static17.milliseconds = 0;
-			Static70.type = 2;
+			Static17.crossCycle = 0;
+			Static70.crossMode = 2;
 			Static25.y = Static60.clickY;
 			Static122.x = Static7.clickX;
 			local192 = Static175.aClass8_Sub4_Sub2Array1[local36];
@@ -250,10 +251,10 @@ public final class Static103 {
 			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
 			if (local43 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
-				Static70.type = 2;
+				Static70.crossMode = 2;
 				Static25.y = Static60.clickY;
 				Static122.x = Static7.clickX;
-				Static17.milliseconds = 0;
+				Static17.crossCycle = 0;
 				Static6.outboundBuffer.pIsaac1(4);
 				Static6.outboundBuffer.p2le(local36);
 			}
@@ -292,8 +293,8 @@ public final class Static103 {
 			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
 			if (local43 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
-				Static17.milliseconds = 0;
-				Static70.type = 2;
+				Static17.crossCycle = 0;
+				Static70.crossMode = 2;
 				Static25.y = Static60.clickY;
 				Static122.x = Static7.clickX;
 				Static6.outboundBuffer.pIsaac1(114);
@@ -321,9 +322,9 @@ public final class Static103 {
 					Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
 				}
 			}
-			Static70.type = 2;
+			Static70.crossMode = 2;
 			Static122.x = Static7.clickX;
-			Static17.milliseconds = 0;
+			Static17.crossCycle = 0;
 			Static25.y = Static60.clickY;
 			Static6.outboundBuffer.pIsaac1(228);
 			Static6.outboundBuffer.p2(local36);
@@ -334,8 +335,8 @@ public final class Static103 {
 			local192 = Static175.aClass8_Sub4_Sub2Array1[local36];
 			if (local192 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.self.movementQueueX[0]);
-				Static70.type = 2;
-				Static17.milliseconds = 0;
+				Static70.crossMode = 2;
+				Static17.crossCycle = 0;
 				Static25.y = Static60.clickY;
 				Static122.x = Static7.clickX;
 				Static6.outboundBuffer.pIsaac1(148);
@@ -366,8 +367,8 @@ public final class Static103 {
 			if (local43 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
 				Static25.y = Static60.clickY;
-				Static17.milliseconds = 0;
-				Static70.type = 2;
+				Static17.crossCycle = 0;
+				Static70.crossMode = 2;
 				Static122.x = Static7.clickX;
 				Static6.outboundBuffer.pIsaac1(180);
 				Static6.outboundBuffer.p2leadd(local36);
@@ -386,8 +387,8 @@ public final class Static103 {
 			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
 			if (local43 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
-				Static17.milliseconds = 0;
-				Static70.type = 2;
+				Static17.crossCycle = 0;
+				Static70.crossMode = 2;
 				Static122.x = Static7.clickX;
 				Static25.y = Static60.clickY;
 				Static6.outboundBuffer.pIsaac1(195);
@@ -406,9 +407,9 @@ public final class Static103 {
 				}
 			}
 			Static122.x = Static7.clickX;
-			Static70.type = 2;
+			Static70.crossMode = 2;
 			Static25.y = Static60.clickY;
-			Static17.milliseconds = 0;
+			Static17.crossCycle = 0;
 			Static6.outboundBuffer.pIsaac1(109);
 			Static6.outboundBuffer.p2le(local19 + Static142.originZ);
 			Static6.outboundBuffer.p2(local15 + Static225.originX);
@@ -428,9 +429,9 @@ public final class Static103 {
 			if (local192 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.self.movementQueueX[0]);
 				Static25.y = Static60.clickY;
-				Static70.type = 2;
+				Static70.crossMode = 2;
 				Static122.x = Static7.clickX;
-				Static17.milliseconds = 0;
+				Static17.crossCycle = 0;
 				Static6.outboundBuffer.pIsaac1(218);
 				Static6.outboundBuffer.p2le(local36);
 			}
@@ -452,8 +453,8 @@ public final class Static103 {
 			local192 = Static175.aClass8_Sub4_Sub2Array1[local36];
 			if (local192 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.self.movementQueueX[0]);
-				Static70.type = 2;
-				Static17.milliseconds = 0;
+				Static70.crossMode = 2;
+				Static17.crossCycle = 0;
 				Static25.y = Static60.clickY;
 				Static122.x = Static7.clickX;
 				Static6.outboundBuffer.pIsaac1(115);
@@ -479,9 +480,9 @@ public final class Static103 {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
 			}
 			Static122.x = Static7.clickX;
-			Static17.milliseconds = 0;
+			Static17.crossCycle = 0;
 			Static25.y = Static60.clickY;
-			Static70.type = 2;
+			Static70.crossMode = 2;
 			Static6.outboundBuffer.pIsaac1(101);
 			Static6.outboundBuffer.p2leadd(local15 + Static225.originX);
 			Static6.outboundBuffer.p2le(Static185.anInt4370);
@@ -491,9 +492,9 @@ public final class Static103 {
 			Static6.outboundBuffer.p4me(Static224.anInt5062);
 		}
 		if (local23 == 1004) {
-			Static17.milliseconds = 0;
+			Static17.crossCycle = 0;
 			Static122.x = Static7.clickX;
-			Static70.type = 2;
+			Static70.crossMode = 2;
 			Static25.y = Static60.clickY;
 			Static6.outboundBuffer.pIsaac1(94);
 			Static6.outboundBuffer.p2leadd(local36);
@@ -525,9 +526,9 @@ public final class Static103 {
 			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
 			if (local43 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
-				Static17.milliseconds = 0;
+				Static17.crossCycle = 0;
 				Static25.y = Static60.clickY;
-				Static70.type = 2;
+				Static70.crossMode = 2;
 				Static122.x = Static7.clickX;
 				Static6.outboundBuffer.pIsaac1(248);
 				Static6.outboundBuffer.p2leadd(local36);
@@ -554,10 +555,10 @@ public final class Static103 {
 					Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
 				}
 			}
-			Static70.type = 2;
+			Static70.crossMode = 2;
 			Static25.y = Static60.clickY;
 			Static122.x = Static7.clickX;
-			Static17.milliseconds = 0;
+			Static17.crossCycle = 0;
 			Static6.outboundBuffer.pIsaac1(48);
 			Static6.outboundBuffer.p2add(local15 + Static225.originX);
 			Static6.outboundBuffer.p2leadd(local36);
@@ -584,10 +585,10 @@ public final class Static103 {
 			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
 			if (local43 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
-				Static70.type = 2;
+				Static70.crossMode = 2;
 				Static25.y = Static60.clickY;
 				Static122.x = Static7.clickX;
-				Static17.milliseconds = 0;
+				Static17.crossCycle = 0;
 				Static6.outboundBuffer.pIsaac1(175);
 				Static6.outboundBuffer.p2add(local36);
 			}
@@ -626,10 +627,10 @@ public final class Static103 {
 			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
 			if (local43 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
-				Static17.milliseconds = 0;
+				Static17.crossCycle = 0;
 				Static122.x = Static7.clickX;
 				Static25.y = Static60.clickY;
-				Static70.type = 2;
+				Static70.crossMode = 2;
 				Static6.outboundBuffer.pIsaac1(68);
 				Static6.outboundBuffer.p2leadd(local36);
 			}
@@ -650,8 +651,8 @@ public final class Static103 {
 			}
 			Static25.y = Static60.clickY;
 			Static122.x = Static7.clickX;
-			Static70.type = 2;
-			Static17.milliseconds = 0;
+			Static70.crossMode = 2;
+			Static17.crossCycle = 0;
 			Static6.outboundBuffer.pIsaac1(73);
 			Static6.outboundBuffer.p4rme(Static98.anInt2512);
 			Static6.outboundBuffer.p2(Static142.originZ + local19);
@@ -683,8 +684,8 @@ public final class Static103 {
 			if (local43 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
 				Static25.y = Static60.clickY;
-				Static17.milliseconds = 0;
-				Static70.type = 2;
+				Static17.crossCycle = 0;
+				Static70.crossMode = 2;
 				Static122.x = Static7.clickX;
 				Static6.outboundBuffer.pIsaac1(106);
 				Static6.outboundBuffer.p2(local36);
@@ -700,9 +701,9 @@ public final class Static103 {
 				}
 			}
 			Static25.y = Static60.clickY;
-			Static17.milliseconds = 0;
+			Static17.crossCycle = 0;
 			Static122.x = Static7.clickX;
-			Static70.type = 2;
+			Static70.crossMode = 2;
 			Static6.outboundBuffer.pIsaac1(33);
 			Static6.outboundBuffer.p2(local36);
 			Static6.outboundBuffer.p2(Static225.originX + local15);
@@ -713,9 +714,9 @@ public final class Static103 {
 			if (local192 != null) {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.self.movementQueueX[0]);
 				Static122.x = Static7.clickX;
-				Static17.milliseconds = 0;
+				Static17.crossCycle = 0;
 				Static25.y = Static60.clickY;
-				Static70.type = 2;
+				Static70.crossMode = 2;
 				Static6.outboundBuffer.pIsaac1(3);
 				Static6.outboundBuffer.p2leadd(local36);
 			}

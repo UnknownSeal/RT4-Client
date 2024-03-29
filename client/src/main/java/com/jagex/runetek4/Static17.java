@@ -18,7 +18,7 @@ public final class Static17 {
 	public static final int[] anIntArray53 = new int[128];
 
 	@OriginalMember(owner = "runetek4.client!bg", name = "M", descriptor = "I")
-	public static int milliseconds = 0;
+	public static int crossCycle = 0;
 
 	@OriginalMember(owner = "runetek4.client!bg", name = "N", descriptor = "Lclient!na;")
 	public static final JagString aClass100_102 = Static28.parse("mapfunction");

@@ -17,7 +17,7 @@ public final class Static91 {
 	public static int anInt2428;
 
 	@OriginalMember(owner = "runetek4.client!hc", name = "d", descriptor = "(I)I")
-	public static int method1874() {
+	public static int getZoom() {
 		if ((double) Static138.aFloat14 == 3.0D) {
 			return 37;
 		} else if ((double) Static138.aFloat14 == 4.0D) {

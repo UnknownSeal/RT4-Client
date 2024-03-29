@@ -17,6 +17,8 @@ public final class WorldMapFont {
 
 	@OriginalMember(owner = "runetek4.client!fd", name = "d", descriptor = "Ljava/lang/String;")
 	public static final String aString2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()-_=+[{]};:'@#~,<.>/?\\| " + String.valueOf('Ä') + 'Ë' + 'Ï' + 'Ö' + 'Ü' + 'ä' + 'ë' + 'ï' + 'ö' + 'ü' + 'ÿ' + 'ß' + 'Á' + 'À' + 'É' + 'È' + 'Í' + 'Ì' + 'Ó' + 'Ò' + 'Ú' + 'Ù' + 'á' + 'à' + 'é' + 'è' + 'í' + 'ì' + 'ó' + 'ò' + 'ú' + 'ù' + 'Â' + 'Ê' + 'Î' + 'Ô' + 'Û' + 'â' + 'ê' + 'î' + 'ô' + 'û' + 'Æ' + 'æ';
+	@OriginalMember(owner = "client!fd", name = "e", descriptor = "I")
+	public static final int anInt1956 = aString2.length();
 
 	@OriginalMember(owner = "runetek4.client!fd", name = "f", descriptor = "[I")
 	private static final int[] anIntArray155 = new int[256];
@@ -42,26 +44,26 @@ public final class WorldMapFont {
 
 	@OriginalMember(owner = "runetek4.client!fd", name = "<init>", descriptor = "(IZLjava/awt/runetek4.Component;)V")
 	public WorldMapFont(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) Component arg2) {
-		this.anInt1955 = Static66.anInt1956 * 9;
+		this.anInt1955 = anInt1956 * 9;
 		this.aBoolean112 = false;
 		@Pc(30) Font local30 = new Font("Helvetica", 1, arg0);
 		@Pc(34) FontMetrics local34 = arg2.getFontMetrics(local30);
 		@Pc(36) int local36;
-		for (local36 = 0; local36 < Static66.anInt1956; local36++) {
+		for (local36 = 0; local36 < anInt1956; local36++) {
 			this.method1509(local30, local34, aString2.charAt(local36), local36, false);
 		}
 		if (this.aBoolean112) {
-			this.anInt1955 = Static66.anInt1956 * 9;
+			this.anInt1955 = anInt1956 * 9;
 			this.aBoolean112 = false;
 			local30 = new Font("Helvetica", 0, arg0);
 			local34 = arg2.getFontMetrics(local30);
-			for (local36 = 0; local36 < Static66.anInt1956; local36++) {
+			for (local36 = 0; local36 < anInt1956; local36++) {
 				this.method1509(local30, local34, aString2.charAt(local36), local36, false);
 			}
 			if (!this.aBoolean112) {
-				this.anInt1955 = Static66.anInt1956 * 9;
+				this.anInt1955 = anInt1956 * 9;
 				this.aBoolean112 = false;
-				for (local36 = 0; local36 < Static66.anInt1956; local36++) {
+				for (local36 = 0; local36 < anInt1956; local36++) {
 					this.method1509(local30, local34, aString2.charAt(local36), local36, true);
 				}
 			}

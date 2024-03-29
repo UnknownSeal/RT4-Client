@@ -37,7 +37,7 @@ public final class Static160 {
 			if (GlRenderer.enabled) {
 				@Pc(44) Sprite local44 = arg2.method489(false);
 				if (local44 != null) {
-					local44.method1423(arg0, arg1);
+					local44.drawSprite(arg0, arg1);
 				}
 			} else {
 				Static129.method2504(arg0, arg1, arg2.anIntArray37, arg2.anIntArray45);

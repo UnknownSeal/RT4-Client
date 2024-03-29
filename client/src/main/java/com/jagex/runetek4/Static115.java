@@ -60,11 +60,11 @@ public final class Static115 {
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(IIIIB)V")
 	public static void method2310(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		if (Static70.type == 1) {
-			Static240.aClass3_Sub2_Sub1Array10[Static17.milliseconds / 100].method1423(Static122.x - 8, Static25.y + -8);
+		if (Static70.crossMode == 1) {
+			Static240.crossSprites[Static17.crossCycle / 100].drawSprite(Static122.x - 8, Static25.y + -8);
 		}
-		if (Static70.type == 2) {
-			Static240.aClass3_Sub2_Sub1Array10[Static17.milliseconds / 100 + 4].method1423(Static122.x - 8, Static25.y + -8);
+		if (Static70.crossMode == 2) {
+			Static240.crossSprites[Static17.crossCycle / 100 + 4].drawSprite(Static122.x - 8, Static25.y + -8);
 		}
 		Static256.method4392();
 	}
@@ -148,7 +148,7 @@ public final class Static115 {
 	public static void method2315() {
 		Static215.aClass3_Sub2_Sub9_32 = null;
 		Static213.aClass3_Sub2_Sub1Array8 = null;
-		Static240.aClass3_Sub2_Sub1Array10 = null;
+		Static240.crossSprites = null;
 		Static159.aClass36Array12 = null;
 		Static265.aClass3_Sub2_Sub9_Sub1_2 = null;
 		Static173.aClass3_Sub2_Sub1_Sub1Array9 = null;

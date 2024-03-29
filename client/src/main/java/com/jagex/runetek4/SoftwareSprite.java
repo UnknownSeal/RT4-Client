@@ -730,7 +730,7 @@ public class SoftwareSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "e", descriptor = "(II)V")
 	@Override
-	public void method1423(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public void drawSprite(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.anInt1863;
 		arg1 += this.anInt1861;
 		@Pc(15) int local15 = arg0 + arg1 * Static129.anInt3144;

@@ -29,8 +29,8 @@ public final class PacketBit extends Packet {
 	}
 
 	@OriginalMember(owner = "client!i", name = "r", descriptor = "(II)V")
-	public void pIsaac1(@OriginalArg(1) int arg0) {
-		this.data[this.pos++] = (byte) (arg0 + this.isaac.nextInt());
+	public void pIsaac1(@OriginalArg(1) int value) {
+		this.data[this.pos++] = (byte) (value + this.isaac.nextInt());
 	}
 
 	@OriginalMember(owner = "client!i", name = "s", descriptor = "(I)I")

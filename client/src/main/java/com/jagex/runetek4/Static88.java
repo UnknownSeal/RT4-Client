@@ -2661,7 +2661,7 @@ public final class Static88 {
 														continue;
 													}
 													if (local226 == 5201) {
-														Static254.anIntArray487[local28++] = Static91.method1874();
+														Static254.anIntArray487[local28++] = Static91.getZoom();
 														continue;
 													}
 													if (local226 == 5202) {

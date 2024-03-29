@@ -14,7 +14,7 @@ public final class Static70 {
 	public static byte[][][] aByteArrayArrayArray7;
 
 	@OriginalMember(owner = "runetek4.client!fi", name = "k", descriptor = "I")
-	public static int type = 0;
+	public static int crossMode = 0;
 
 	@OriginalMember(owner = "runetek4.client!fi", name = "l", descriptor = "I")
 	public static int anInt2014 = 0;

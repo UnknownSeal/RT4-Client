@@ -7,20 +7,21 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static65 {
 
-	@OriginalMember(owner = "runetek4.client!fc", name = "a", descriptor = "I")
+	@OriginalMember(owner = "client!fc", name = "a", descriptor = "I")
 	public static int anInt1951 = -1;
 
-	@OriginalMember(owner = "runetek4.client!fc", name = "f", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!fc", name = "f", descriptor = "Lclient!na;")
 	public static final JagString aClass100_435 = Static28.parse("<img=0>");
 
-	@OriginalMember(owner = "runetek4.client!fc", name = "a", descriptor = "(Lclient!wa;I)Lclient!na;")
+	@OriginalMember(owner = "client!fc", name = "a", descriptor = "(Lclient!wa;I)Lclient!na;")
 	public static JagString method1497(@OriginalArg(0) Packet arg0) {
 		return Static254.method4350(arg0);
 	}
 
-	@OriginalMember(owner = "runetek4.client!fc", name = "a", descriptor = "(III)I")
+	// MapLoader should be owning class.
+	@OriginalMember(owner = "client!fc", name = "a", descriptor = "(III)I")
 	public static int method1498(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(36) int local36 = Static115.method2309(4, arg1 + 45365, arg0 - -91923) + (Static115.method2309(2, arg1 + 10294, arg0 + 37821) - 128 >> 1) + (Static115.method2309(1, arg1, arg0) + -128 >> 2) - 128;
+		@Pc(36) int local36 = Static115.method2309(4, arg1 + 45365, arg0 + 91923) + (Static115.method2309(2, arg1 + 10294, arg0 + 37821) - 128 >> 1) + (Static115.method2309(1, arg1, arg0) + -128 >> 2) - 128;
 		local36 = (int) ((double) local36 * 0.3D) + 35;
 		if (local36 < 10) {
 			local36 = 10;
@@ -30,7 +31,7 @@ public final class Static65 {
 		return local36;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fc", name = "a", descriptor = "()V")
+	@OriginalMember(owner = "client!fc", name = "a", descriptor = "()V")
 	public static void method1500() {
 		@Pc(3) int local3;
 		@Pc(9) int local9;
@@ -74,7 +75,7 @@ public final class Static65 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fc", name = "b", descriptor = "(I)V")
+	@OriginalMember(owner = "client!fc", name = "b", descriptor = "(I)V")
 	public static void method1501() {
 		@Pc(12) Keyboard local12 = Static10.aClass149_1;
 		synchronized (Static10.aClass149_1) {

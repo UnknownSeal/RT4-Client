@@ -34,7 +34,7 @@ public final class Static30 {
 		Static276.aClass3_Sub2_Sub1Array11 = Static209.method3708(Static202.anInt4741, arg0);
 		Static149.aClass3_Sub2_Sub1Array7 = Static209.method3708(Static149.anInt3551, arg0);
 		Static84.aClass3_Sub2_Sub1_4 = Static150.method2800(Static19.anInt647, arg0);
-		Static240.aClass3_Sub2_Sub1Array10 = Static131.method2580(Static32.anInt1016, arg0);
+		Static240.crossSprites = Static131.method2580(Static32.anInt1016, arg0);
 		Static139.aClass3_Sub2_Sub1Array6 = Static131.method2580(Static78.anInt2147, arg0);
 		Static241.aClass36Array16 = Static146.method2749(arg0, Static124.anInt3083);
 		Static159.aClass36Array12 = Static146.method2749(arg0, Static224.anInt5057);

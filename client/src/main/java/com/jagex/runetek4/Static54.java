@@ -203,7 +203,7 @@ public final class Static54 {
 		} else if (GlRenderer.enabled) {
 			@Pc(1041) Sprite local1041 = arg3.method489(false);
 			if (local1041 != null) {
-				local1041.method1423(arg2, arg1);
+				local1041.drawSprite(arg2, arg1);
 			}
 		} else {
 			Static129.method2504(arg2, arg1, arg3.anIntArray37, arg3.anIntArray45);

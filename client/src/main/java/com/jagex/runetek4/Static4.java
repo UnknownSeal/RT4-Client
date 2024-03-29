@@ -6,6 +6,7 @@ import com.jagex.runetek4.game.client.ClientInvCache;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.game.config.objtype.ObjType;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
 import com.jagex.runetek4.game.world.entity.Player;
@@ -1176,7 +1177,7 @@ public final class Static4 {
 								local133 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
 								local786 = local133 >> 2;
 								local864 = local133 & 0x3;
-								local171 = Static133.anIntArray453[local786];
+								local171 = Static133.locShapeToLayer[local786];
 								local1146 = Static57.aClass3_Sub15_Sub1_3.g2();
 								local277 = Static57.aClass3_Sub15_Sub1_3.g4();
 								if (local1146 == 65535) {

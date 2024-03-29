@@ -1,5 +1,6 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.game.config.iftype.componentproperties;
 
+import com.jagex.runetek4.Static199;
 import com.jagex.runetek4.core.datastruct.Node;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -21,52 +22,52 @@ public final class ServerActiveProperties extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "a", descriptor = "(IB)Z")
-	public final boolean method503(@OriginalArg(0) int arg0) {
+	public boolean method503(@OriginalArg(0) int arg0) {
 		return (this.anInt546 >> arg0 + 1 & 0x1) != 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "d", descriptor = "(I)Z")
-	public final boolean method504() {
+	public boolean method504() {
 		return (this.anInt546 >> 29 & 0x1) != 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "e", descriptor = "(B)I")
-	public final int method505() {
+	public int method505() {
 		return this.anInt546 >> 18 & 0x7;
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "e", descriptor = "(I)Z")
-	public final boolean method506() {
+	public boolean method506() {
 		return (this.anInt546 & 0x1) != 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "f", descriptor = "(I)Z")
-	public final boolean method507() {
+	public boolean method507() {
 		return (this.anInt546 >> 31 & 0x1) != 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "g", descriptor = "(I)Z")
-	public final boolean method508() {
+	public boolean method508() {
 		return (this.anInt546 >> 22 & 0x1) != 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "a", descriptor = "(Z)Z")
-	public final boolean method509() {
+	public boolean method509() {
 		return (this.anInt546 >> 21 & 0x1) != 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "h", descriptor = "(I)Z")
-	public final boolean method510() {
+	public boolean method510() {
 		return (this.anInt546 >> 30 & 0x1) != 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "f", descriptor = "(B)Z")
-	public final boolean method511() {
+	public boolean method511() {
 		return (this.anInt546 >> 28 & 0x1) != 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "i", descriptor = "(I)I")
-	public final int method512() {
+	public int method512() {
 		return Static199.method3594(this.anInt546);
 	}
 }

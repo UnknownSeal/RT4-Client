@@ -2,6 +2,7 @@ package com.jagex.runetek4.game.config.iftype;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.game.config.objtype.ObjType;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
 import com.jagex.runetek4.game.world.entity.PlayerModel;
