@@ -3,6 +3,7 @@ package com.jagex.runetek4.game.config.npctype;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
+import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

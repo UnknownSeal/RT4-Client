@@ -1,157 +1,158 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.graphics;
 
+import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!gb")
+@OriginalClass("client!gb")
 public final class ModelUnlit extends Entity {
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "s", descriptor = "[B")
+	@OriginalMember(owner = "client!gb", name = "s", descriptor = "[B")
 	public byte[] aByteArray26;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "t", descriptor = "S")
+	@OriginalMember(owner = "client!gb", name = "t", descriptor = "S")
 	private short aShort13;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "u", descriptor = "[B")
+	@OriginalMember(owner = "client!gb", name = "u", descriptor = "[B")
 	public byte[] aByteArray27;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "v", descriptor = "[S")
-	public short[] aShortArray20;
+	@OriginalMember(owner = "client!gb", name = "v", descriptor = "[S")
+	public short[] textureTriangleVertex2;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "w", descriptor = "[I")
+	@OriginalMember(owner = "client!gb", name = "w", descriptor = "[I")
 	public int[] anIntArray192;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "z", descriptor = "S")
+	@OriginalMember(owner = "client!gb", name = "z", descriptor = "S")
 	private short aShort14;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "A", descriptor = "[S")
+	@OriginalMember(owner = "client!gb", name = "A", descriptor = "[S")
 	public short[] aShortArray21;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "B", descriptor = "[B")
-	public byte[] aByteArray28;
+	@OriginalMember(owner = "client!gb", name = "B", descriptor = "[B")
+	public byte[] textureTriangleTranslationU;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "D", descriptor = "S")
+	@OriginalMember(owner = "client!gb", name = "D", descriptor = "S")
 	private short aShort15;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "E", descriptor = "[S")
+	@OriginalMember(owner = "client!gb", name = "E", descriptor = "[S")
 	public short[] aShortArray22;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "F", descriptor = "[[I")
+	@OriginalMember(owner = "client!gb", name = "F", descriptor = "[[I")
 	public int[][] anIntArrayArray15;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "G", descriptor = "[B")
+	@OriginalMember(owner = "client!gb", name = "G", descriptor = "[B")
 	public byte[] aByteArray29;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "H", descriptor = "[S")
-	public short[] aShortArray23;
+	@OriginalMember(owner = "client!gb", name = "H", descriptor = "[S")
+	public short[] unmodifiedTriangleTexture;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "I", descriptor = "[B")
+	@OriginalMember(owner = "client!gb", name = "I", descriptor = "[B")
 	public byte[] aByteArray30;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "J", descriptor = "[I")
+	@OriginalMember(owner = "client!gb", name = "J", descriptor = "[I")
 	public int[] anIntArray193;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "M", descriptor = "I")
+	@OriginalMember(owner = "client!gb", name = "M", descriptor = "I")
 	public int anInt2137;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "O", descriptor = "[I")
+	@OriginalMember(owner = "client!gb", name = "O", descriptor = "[I")
 	public int[] anIntArray196;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "P", descriptor = "[I")
+	@OriginalMember(owner = "client!gb", name = "P", descriptor = "[I")
 	public int[] anIntArray197;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "Q", descriptor = "[B")
+	@OriginalMember(owner = "client!gb", name = "Q", descriptor = "[B")
 	public byte[] aByteArray31;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "R", descriptor = "[B")
+	@OriginalMember(owner = "client!gb", name = "R", descriptor = "[B")
 	public byte[] aByteArray32;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "T", descriptor = "[B")
-	public byte[] aByteArray33;
+	@OriginalMember(owner = "client!gb", name = "T", descriptor = "[B")
+	public byte[] textureTriangleTranslationV;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "U", descriptor = "[S")
-	public short[] aShortArray24;
+	@OriginalMember(owner = "client!gb", name = "U", descriptor = "[S")
+	public short[] unmodifiedTriangleColour;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "W", descriptor = "[Lclient!hd;")
+	@OriginalMember(owner = "client!gb", name = "W", descriptor = "[Lclient!hd;")
 	public Class57[] aClass57Array1;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "X", descriptor = "S")
+	@OriginalMember(owner = "client!gb", name = "X", descriptor = "S")
 	private short aShort16;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "Y", descriptor = "S")
+	@OriginalMember(owner = "client!gb", name = "Y", descriptor = "S")
 	private short aShort17;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "ab", descriptor = "S")
+	@OriginalMember(owner = "client!gb", name = "ab", descriptor = "S")
 	public short aShort18;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "bb", descriptor = "[B")
+	@OriginalMember(owner = "client!gb", name = "bb", descriptor = "[B")
 	public byte[] aByteArray34;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "cb", descriptor = "[I")
+	@OriginalMember(owner = "client!gb", name = "cb", descriptor = "[I")
 	public int[] anIntArray200;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "db", descriptor = "S")
+	@OriginalMember(owner = "client!gb", name = "db", descriptor = "S")
 	public short aShort19;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "eb", descriptor = "S")
+	@OriginalMember(owner = "client!gb", name = "eb", descriptor = "S")
 	private short aShort20;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "fb", descriptor = "[I")
+	@OriginalMember(owner = "client!gb", name = "fb", descriptor = "[I")
 	public int[] anIntArray201;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "gb", descriptor = "[S")
+	@OriginalMember(owner = "client!gb", name = "gb", descriptor = "[S")
 	public short[] aShortArray25;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "hb", descriptor = "[Lclient!hd;")
+	@OriginalMember(owner = "client!gb", name = "hb", descriptor = "[Lclient!hd;")
 	public Class57[] aClass57Array2;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "ib", descriptor = "[S")
-	public short[] aShortArray26;
+	@OriginalMember(owner = "client!gb", name = "ib", descriptor = "[S")
+	public short[] textureTriangleVertex1;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "jb", descriptor = "[I")
+	@OriginalMember(owner = "client!gb", name = "jb", descriptor = "[I")
 	public int[] anIntArray202;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "kb", descriptor = "[Lclient!qj;")
+	@OriginalMember(owner = "client!gb", name = "kb", descriptor = "[Lclient!qj;")
 	public TriangleNormal[] aClass126Array1;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "mb", descriptor = "[S")
+	@OriginalMember(owner = "client!gb", name = "mb", descriptor = "[S")
 	public short[] aShortArray27;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "nb", descriptor = "[B")
-	public byte[] aByteArray35;
+	@OriginalMember(owner = "client!gb", name = "nb", descriptor = "[B")
+	public byte[] facePriority;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "ob", descriptor = "[[I")
+	@OriginalMember(owner = "client!gb", name = "ob", descriptor = "[[I")
 	public int[][] anIntArrayArray16;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "pb", descriptor = "[S")
-	public short[] aShortArray28;
+	@OriginalMember(owner = "client!gb", name = "pb", descriptor = "[S")
+	public short[] textureTriangleVertex3;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "qb", descriptor = "[I")
+	@OriginalMember(owner = "client!gb", name = "qb", descriptor = "[I")
 	public int[] anIntArray203;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "rb", descriptor = "[S")
-	public short[] aShortArray29;
+	@OriginalMember(owner = "client!gb", name = "rb", descriptor = "[S")
+	public short[] vertexSourceModels;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "C", descriptor = "Z")
+	@OriginalMember(owner = "client!gb", name = "C", descriptor = "Z")
 	private boolean aBoolean121 = false;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "y", descriptor = "I")
-	public int anInt2136 = 0;
+	@OriginalMember(owner = "client!gb", name = "y", descriptor = "I")
+	public int faceCount = 0;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "x", descriptor = "B")
+	@OriginalMember(owner = "client!gb", name = "x", descriptor = "B")
 	public byte aByte7 = 0;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "lb", descriptor = "I")
-	public int anInt2139 = 0;
+	@OriginalMember(owner = "client!gb", name = "lb", descriptor = "I")
+	public int vertexCount = 0;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "<init>", descriptor = "()V")
+	@OriginalMember(owner = "client!gb", name = "<init>", descriptor = "()V")
 	private ModelUnlit() {
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "<init>", descriptor = "([B)V")
+	@OriginalMember(owner = "client!gb", name = "<init>", descriptor = "([B)V")
 	public ModelUnlit(@OriginalArg(0) byte[] arg0) {
 		if (arg0[arg0.length - 1] == -1 && arg0[arg0.length - 2] == -1) {
 			this.method1674(arg0);
@@ -160,7 +161,7 @@ public final class ModelUnlit extends Entity {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "<init>", descriptor = "(III)V")
+	@OriginalMember(owner = "client!gb", name = "<init>", descriptor = "(III)V")
 	public ModelUnlit(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		this.anIntArray202 = new int[arg0];
 		this.anIntArray201 = new int[arg0];
@@ -170,15 +171,15 @@ public final class ModelUnlit extends Entity {
 		this.anIntArray200 = new int[arg1];
 		this.anIntArray196 = new int[arg1];
 		this.aByteArray30 = new byte[arg1];
-		this.aByteArray35 = new byte[arg1];
+		this.facePriority = new byte[arg1];
 		this.aByteArray26 = new byte[arg1];
-		this.aShortArray24 = new short[arg1];
-		this.aShortArray23 = new short[arg1];
+		this.unmodifiedTriangleColour = new short[arg1];
+		this.unmodifiedTriangleTexture = new short[arg1];
 		this.aByteArray31 = new byte[arg1];
 		this.anIntArray192 = new int[arg1];
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "<init>", descriptor = "([Lclient!gb;I)V")
+	@OriginalMember(owner = "client!gb", name = "<init>", descriptor = "([Lclient!gb;I)V")
 	public ModelUnlit(@OriginalArg(0) ModelUnlit[] arg0, @OriginalArg(1) int arg1) {
 		@Pc(15) boolean local15 = false;
 		@Pc(17) boolean local17 = false;
@@ -186,18 +187,18 @@ public final class ModelUnlit extends Entity {
 		@Pc(21) boolean local21 = false;
 		@Pc(23) boolean local23 = false;
 		@Pc(25) boolean local25 = false;
-		this.anInt2139 = 0;
-		this.anInt2136 = 0;
+		this.vertexCount = 0;
+		this.faceCount = 0;
 		this.anInt2137 = 0;
 		this.aByte7 = -1;
 		@Pc(43) int local43;
 		for (local43 = 0; local43 < arg1; local43++) {
 			@Pc(50) ModelUnlit local50 = arg0[local43];
 			if (local50 != null) {
-				this.anInt2139 += local50.anInt2139;
-				this.anInt2136 += local50.anInt2136;
+				this.vertexCount += local50.vertexCount;
+				this.faceCount += local50.faceCount;
 				this.anInt2137 += local50.anInt2137;
-				if (local50.aByteArray35 == null) {
+				if (local50.facePriority == null) {
 					if (this.aByte7 == -1) {
 						this.aByte7 = local50.aByte7;
 					}
@@ -210,109 +211,109 @@ public final class ModelUnlit extends Entity {
 				local15 |= local50.aByteArray30 != null;
 				local19 |= local50.aByteArray26 != null;
 				local21 |= local50.anIntArray192 != null;
-				local23 |= local50.aShortArray23 != null;
+				local23 |= local50.unmodifiedTriangleTexture != null;
 				local25 |= local50.aByteArray31 != null;
 			}
 		}
-		this.anIntArray202 = new int[this.anInt2139];
-		this.anIntArray201 = new int[this.anInt2139];
-		this.anIntArray203 = new int[this.anInt2139];
-		this.anIntArray193 = new int[this.anInt2139];
-		this.aShortArray29 = new short[this.anInt2139];
-		this.anIntArray197 = new int[this.anInt2136];
-		this.anIntArray200 = new int[this.anInt2136];
-		this.anIntArray196 = new int[this.anInt2136];
+		this.anIntArray202 = new int[this.vertexCount];
+		this.anIntArray201 = new int[this.vertexCount];
+		this.anIntArray203 = new int[this.vertexCount];
+		this.anIntArray193 = new int[this.vertexCount];
+		this.vertexSourceModels = new short[this.vertexCount];
+		this.anIntArray197 = new int[this.faceCount];
+		this.anIntArray200 = new int[this.faceCount];
+		this.anIntArray196 = new int[this.faceCount];
 		if (local15) {
-			this.aByteArray30 = new byte[this.anInt2136];
+			this.aByteArray30 = new byte[this.faceCount];
 		}
 		if (local17) {
-			this.aByteArray35 = new byte[this.anInt2136];
+			this.facePriority = new byte[this.faceCount];
 		}
 		if (local19) {
-			this.aByteArray26 = new byte[this.anInt2136];
+			this.aByteArray26 = new byte[this.faceCount];
 		}
 		if (local21) {
-			this.anIntArray192 = new int[this.anInt2136];
+			this.anIntArray192 = new int[this.faceCount];
 		}
 		if (local23) {
-			this.aShortArray23 = new short[this.anInt2136];
+			this.unmodifiedTriangleTexture = new short[this.faceCount];
 		}
 		if (local25) {
-			this.aByteArray31 = new byte[this.anInt2136];
+			this.aByteArray31 = new byte[this.faceCount];
 		}
-		this.aShortArray24 = new short[this.anInt2136];
-		this.aShortArray22 = new short[this.anInt2136];
+		this.unmodifiedTriangleColour = new short[this.faceCount];
+		this.aShortArray22 = new short[this.faceCount];
 		if (this.anInt2137 > 0) {
 			this.aByteArray29 = new byte[this.anInt2137];
-			this.aShortArray26 = new short[this.anInt2137];
-			this.aShortArray20 = new short[this.anInt2137];
-			this.aShortArray28 = new short[this.anInt2137];
+			this.textureTriangleVertex1 = new short[this.anInt2137];
+			this.textureTriangleVertex2 = new short[this.anInt2137];
+			this.textureTriangleVertex3 = new short[this.anInt2137];
 			this.aShortArray27 = new short[this.anInt2137];
 			this.aShortArray25 = new short[this.anInt2137];
 			this.aShortArray21 = new short[this.anInt2137];
 			this.aByteArray27 = new byte[this.anInt2137];
 			this.aByteArray32 = new byte[this.anInt2137];
 			this.aByteArray34 = new byte[this.anInt2137];
-			this.aByteArray28 = new byte[this.anInt2137];
-			this.aByteArray33 = new byte[this.anInt2137];
+			this.textureTriangleTranslationU = new byte[this.anInt2137];
+			this.textureTriangleTranslationV = new byte[this.anInt2137];
 		}
-		this.anInt2139 = 0;
-		this.anInt2136 = 0;
+		this.vertexCount = 0;
+		this.faceCount = 0;
 		this.anInt2137 = 0;
 		for (local43 = 0; local43 < arg1; local43++) {
 			@Pc(323) short local323 = (short) (0x1 << local43);
 			@Pc(327) ModelUnlit local327 = arg0[local43];
 			if (local327 != null) {
 				@Pc(331) int local331;
-				for (local331 = 0; local331 < local327.anInt2136; local331++) {
+				for (local331 = 0; local331 < local327.faceCount; local331++) {
 					if (local15 && local327.aByteArray30 != null) {
-						this.aByteArray30[this.anInt2136] = local327.aByteArray30[local331];
+						this.aByteArray30[this.faceCount] = local327.aByteArray30[local331];
 					}
 					if (local17) {
-						if (local327.aByteArray35 == null) {
-							this.aByteArray35[this.anInt2136] = local327.aByte7;
+						if (local327.facePriority == null) {
+							this.facePriority[this.faceCount] = local327.aByte7;
 						} else {
-							this.aByteArray35[this.anInt2136] = local327.aByteArray35[local331];
+							this.facePriority[this.faceCount] = local327.facePriority[local331];
 						}
 					}
 					if (local19 && local327.aByteArray26 != null) {
-						this.aByteArray26[this.anInt2136] = local327.aByteArray26[local331];
+						this.aByteArray26[this.faceCount] = local327.aByteArray26[local331];
 					}
 					if (local21 && local327.anIntArray192 != null) {
-						this.anIntArray192[this.anInt2136] = local327.anIntArray192[local331];
+						this.anIntArray192[this.faceCount] = local327.anIntArray192[local331];
 					}
 					if (local23) {
-						if (local327.aShortArray23 == null) {
-							this.aShortArray23[this.anInt2136] = -1;
+						if (local327.unmodifiedTriangleTexture == null) {
+							this.unmodifiedTriangleTexture[this.faceCount] = -1;
 						} else {
-							this.aShortArray23[this.anInt2136] = local327.aShortArray23[local331];
+							this.unmodifiedTriangleTexture[this.faceCount] = local327.unmodifiedTriangleTexture[local331];
 						}
 					}
 					if (local25) {
 						if (local327.aByteArray31 == null || local327.aByteArray31[local331] == -1) {
-							this.aByteArray31[this.anInt2136] = -1;
+							this.aByteArray31[this.faceCount] = -1;
 						} else {
-							this.aByteArray31[this.anInt2136] = (byte) (local327.aByteArray31[local331] + this.anInt2137);
+							this.aByteArray31[this.faceCount] = (byte) (local327.aByteArray31[local331] + this.anInt2137);
 						}
 					}
-					this.aShortArray24[this.anInt2136] = local327.aShortArray24[local331];
-					this.aShortArray22[this.anInt2136] = local323;
-					this.anIntArray197[this.anInt2136] = this.method1666(local327, local327.anIntArray197[local331], local323);
-					this.anIntArray200[this.anInt2136] = this.method1666(local327, local327.anIntArray200[local331], local323);
-					this.anIntArray196[this.anInt2136] = this.method1666(local327, local327.anIntArray196[local331], local323);
-					this.anInt2136++;
+					this.unmodifiedTriangleColour[this.faceCount] = local327.unmodifiedTriangleColour[local331];
+					this.aShortArray22[this.faceCount] = local323;
+					this.anIntArray197[this.faceCount] = this.method1666(local327, local327.anIntArray197[local331], local323);
+					this.anIntArray200[this.faceCount] = this.method1666(local327, local327.anIntArray200[local331], local323);
+					this.anIntArray196[this.faceCount] = this.method1666(local327, local327.anIntArray196[local331], local323);
+					this.faceCount++;
 				}
 				for (local331 = 0; local331 < local327.anInt2137; local331++) {
 					@Pc(530) byte local530 = this.aByteArray29[this.anInt2137] = local327.aByteArray29[local331];
 					if (local530 == 0) {
-						this.aShortArray26[this.anInt2137] = (short) this.method1666(local327, local327.aShortArray26[local331], local323);
-						this.aShortArray20[this.anInt2137] = (short) this.method1666(local327, local327.aShortArray20[local331], local323);
-						this.aShortArray28[this.anInt2137] = (short) this.method1666(local327, local327.aShortArray28[local331], local323);
+						this.textureTriangleVertex1[this.anInt2137] = (short) this.method1666(local327, local327.textureTriangleVertex1[local331], local323);
+						this.textureTriangleVertex2[this.anInt2137] = (short) this.method1666(local327, local327.textureTriangleVertex2[local331], local323);
+						this.textureTriangleVertex3[this.anInt2137] = (short) this.method1666(local327, local327.textureTriangleVertex3[local331], local323);
 					}
 					if (local530 >= 1 && local530 <= 3) {
-						this.aShortArray26[this.anInt2137] = local327.aShortArray26[local331];
-						this.aShortArray20[this.anInt2137] = local327.aShortArray20[local331];
-						this.aShortArray28[this.anInt2137] = local327.aShortArray28[local331];
+						this.textureTriangleVertex1[this.anInt2137] = local327.textureTriangleVertex1[local331];
+						this.textureTriangleVertex2[this.anInt2137] = local327.textureTriangleVertex2[local331];
+						this.textureTriangleVertex3[this.anInt2137] = local327.textureTriangleVertex3[local331];
 						this.aShortArray27[this.anInt2137] = local327.aShortArray27[local331];
 						this.aShortArray25[this.anInt2137] = local327.aShortArray25[local331];
 						this.aShortArray21[this.anInt2137] = local327.aShortArray21[local331];
@@ -321,8 +322,8 @@ public final class ModelUnlit extends Entity {
 						this.aByteArray34[this.anInt2137] = local327.aByteArray34[local331];
 					}
 					if (local530 == 2) {
-						this.aByteArray28[this.anInt2137] = local327.aByteArray28[local331];
-						this.aByteArray33[this.anInt2137] = local327.aByteArray33[local331];
+						this.textureTriangleTranslationU[this.anInt2137] = local327.textureTriangleTranslationU[local331];
+						this.textureTriangleTranslationV[this.anInt2137] = local327.textureTriangleTranslationV[local331];
 					}
 					this.anInt2137++;
 				}
@@ -330,10 +331,10 @@ public final class ModelUnlit extends Entity {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "<init>", descriptor = "(Lclient!gb;ZZZZ)V")
+	@OriginalMember(owner = "client!gb", name = "<init>", descriptor = "(Lclient!gb;ZZZZ)V")
 	public ModelUnlit(@OriginalArg(0) ModelUnlit arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) boolean arg3, @OriginalArg(4) boolean arg4) {
-		this.anInt2139 = arg0.anInt2139;
-		this.anInt2136 = arg0.anInt2136;
+		this.vertexCount = arg0.vertexCount;
+		this.faceCount = arg0.faceCount;
 		this.anInt2137 = arg0.anInt2137;
 		@Pc(57) int local57;
 		if (arg1) {
@@ -341,29 +342,29 @@ public final class ModelUnlit extends Entity {
 			this.anIntArray201 = arg0.anIntArray201;
 			this.anIntArray203 = arg0.anIntArray203;
 		} else {
-			this.anIntArray202 = new int[this.anInt2139];
-			this.anIntArray201 = new int[this.anInt2139];
-			this.anIntArray203 = new int[this.anInt2139];
-			for (local57 = 0; local57 < this.anInt2139; local57++) {
+			this.anIntArray202 = new int[this.vertexCount];
+			this.anIntArray201 = new int[this.vertexCount];
+			this.anIntArray203 = new int[this.vertexCount];
+			for (local57 = 0; local57 < this.vertexCount; local57++) {
 				this.anIntArray202[local57] = arg0.anIntArray202[local57];
 				this.anIntArray201[local57] = arg0.anIntArray201[local57];
 				this.anIntArray203[local57] = arg0.anIntArray203[local57];
 			}
 		}
 		if (arg2) {
-			this.aShortArray24 = arg0.aShortArray24;
+			this.unmodifiedTriangleColour = arg0.unmodifiedTriangleColour;
 		} else {
-			this.aShortArray24 = new short[this.anInt2136];
-			for (local57 = 0; local57 < this.anInt2136; local57++) {
-				this.aShortArray24[local57] = arg0.aShortArray24[local57];
+			this.unmodifiedTriangleColour = new short[this.faceCount];
+			for (local57 = 0; local57 < this.faceCount; local57++) {
+				this.unmodifiedTriangleColour[local57] = arg0.unmodifiedTriangleColour[local57];
 			}
 		}
-		if (arg3 || arg0.aShortArray23 == null) {
-			this.aShortArray23 = arg0.aShortArray23;
+		if (arg3 || arg0.unmodifiedTriangleTexture == null) {
+			this.unmodifiedTriangleTexture = arg0.unmodifiedTriangleTexture;
 		} else {
-			this.aShortArray23 = new short[this.anInt2136];
-			for (local57 = 0; local57 < this.anInt2136; local57++) {
-				this.aShortArray23[local57] = arg0.aShortArray23[local57];
+			this.unmodifiedTriangleTexture = new short[this.faceCount];
+			for (local57 = 0; local57 < this.faceCount; local57++) {
+				this.unmodifiedTriangleTexture[local57] = arg0.unmodifiedTriangleTexture[local57];
 			}
 		}
 		this.aByteArray26 = arg0.aByteArray26;
@@ -371,21 +372,21 @@ public final class ModelUnlit extends Entity {
 		this.anIntArray200 = arg0.anIntArray200;
 		this.anIntArray196 = arg0.anIntArray196;
 		this.aByteArray30 = arg0.aByteArray30;
-		this.aByteArray35 = arg0.aByteArray35;
+		this.facePriority = arg0.facePriority;
 		this.aByteArray31 = arg0.aByteArray31;
 		this.aByte7 = arg0.aByte7;
 		this.aByteArray29 = arg0.aByteArray29;
-		this.aShortArray26 = arg0.aShortArray26;
-		this.aShortArray20 = arg0.aShortArray20;
-		this.aShortArray28 = arg0.aShortArray28;
+		this.textureTriangleVertex1 = arg0.textureTriangleVertex1;
+		this.textureTriangleVertex2 = arg0.textureTriangleVertex2;
+		this.textureTriangleVertex3 = arg0.textureTriangleVertex3;
 		this.aShortArray27 = arg0.aShortArray27;
 		this.aShortArray25 = arg0.aShortArray25;
 		this.aShortArray21 = arg0.aShortArray21;
 		this.aByteArray27 = arg0.aByteArray27;
 		this.aByteArray32 = arg0.aByteArray32;
 		this.aByteArray34 = arg0.aByteArray34;
-		this.aByteArray28 = arg0.aByteArray28;
-		this.aByteArray33 = arg0.aByteArray33;
+		this.textureTriangleTranslationU = arg0.textureTriangleTranslationU;
+		this.textureTriangleTranslationV = arg0.textureTriangleTranslationV;
 		this.anIntArray193 = arg0.anIntArray193;
 		this.anIntArray192 = arg0.anIntArray192;
 		this.anIntArrayArray16 = arg0.anIntArrayArray16;
@@ -397,24 +398,24 @@ public final class ModelUnlit extends Entity {
 		this.aShort18 = arg0.aShort18;
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(Lclient!ve;II)Lclient!gb;")
+	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(Lclient!ve;II)Lclient!gb;")
 	public static ModelUnlit get(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
 		@Pc(5) byte[] local5 = arg0.method4495(arg1, 0);
 		return local5 == null ? null : new ModelUnlit(local5);
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "c", descriptor = "()V")
-	public final void method1660() {
-		for (@Pc(1) int local1 = 0; local1 < this.anInt2139; local1++) {
+	@OriginalMember(owner = "client!gb", name = "c", descriptor = "()V")
+	public void method1660() {
+		for (@Pc(1) int local1 = 0; local1 < this.vertexCount; local1++) {
 			this.anIntArray202[local1] = -this.anIntArray202[local1];
 			this.anIntArray203[local1] = -this.anIntArray203[local1];
 		}
 		this.method1678();
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "e", descriptor = "()V")
-	public final void method1662() {
-		for (@Pc(1) int local1 = 0; local1 < this.anInt2139; local1++) {
+	@OriginalMember(owner = "client!gb", name = "e", descriptor = "()V")
+	public void method1662() {
+		for (@Pc(1) int local1 = 0; local1 < this.vertexCount; local1++) {
 			@Pc(10) int local10 = this.anIntArray202[local1];
 			this.anIntArray202[local1] = this.anIntArray203[local1];
 			this.anIntArray203[local1] = -local10;
@@ -422,11 +423,11 @@ public final class ModelUnlit extends Entity {
 		this.method1678();
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "b", descriptor = "(I)V")
+	@OriginalMember(owner = "client!gb", name = "b", descriptor = "(I)V")
 	private void method1663(@OriginalArg(0) int arg0) {
 		@Pc(3) int local3 = Static77.anIntArray198[arg0];
 		@Pc(7) int local7 = Static77.anIntArray195[arg0];
-		for (@Pc(9) int local9 = 0; local9 < this.anInt2139; local9++) {
+		for (@Pc(9) int local9 = 0; local9 < this.vertexCount; local9++) {
 			@Pc(29) int local29 = this.anIntArray201[local9] * local3 + this.anIntArray202[local9] * local7 >> 16;
 			this.anIntArray201[local9] = this.anIntArray201[local9] * local7 - this.anIntArray202[local9] * local3 >> 16;
 			this.anIntArray202[local9] = local29;
@@ -434,7 +435,7 @@ public final class ModelUnlit extends Entity {
 		this.method1678();
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "f", descriptor = "()V")
+	@OriginalMember(owner = "client!gb", name = "f", descriptor = "()V")
 	private void method1664() {
 		if (this.aBoolean121) {
 			return;
@@ -446,7 +447,7 @@ public final class ModelUnlit extends Entity {
 		@Pc(14) int local14 = -32768;
 		@Pc(16) int local16 = -32768;
 		@Pc(18) int local18 = -32768;
-		for (@Pc(20) int local20 = 0; local20 < this.anInt2139; local20++) {
+		for (@Pc(20) int local20 = 0; local20 < this.vertexCount; local20++) {
 			@Pc(29) int local29 = this.anIntArray202[local20];
 			@Pc(34) int local34 = this.anIntArray201[local20];
 			@Pc(39) int local39 = this.anIntArray203[local20];
@@ -477,9 +478,9 @@ public final class ModelUnlit extends Entity {
 		this.aShort17 = (short) local18;
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "b", descriptor = "(III)V")
-	public final void method1665(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		for (@Pc(1) int local1 = 0; local1 < this.anInt2139; local1++) {
+	@OriginalMember(owner = "client!gb", name = "b", descriptor = "(III)V")
+	public void method1665(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+		for (@Pc(1) int local1 = 0; local1 < this.vertexCount; local1++) {
 			this.anIntArray202[local1] = this.anIntArray202[local1] * arg0 / 128;
 			this.anIntArray201[local1] = this.anIntArray201[local1] * arg1 / 128;
 			this.anIntArray203[local1] = this.anIntArray203[local1] * arg2 / 128;
@@ -487,34 +488,34 @@ public final class ModelUnlit extends Entity {
 		this.method1678();
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(III)Lclient!th;")
+	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(III)Lclient!th;")
 	@Override
-	public final Entity method4539() {
+	public Entity method4539() {
 		return this.method1679(this.aShort19, this.aShort18, -50, -10, -50);
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(Lclient!gb;IS)I")
+	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(Lclient!gb;IS)I")
 	private int method1666(@OriginalArg(0) ModelUnlit arg0, @OriginalArg(1) int arg1, @OriginalArg(2) short arg2) {
 		@Pc(4) int local4 = arg0.anIntArray202[arg1];
 		@Pc(9) int local9 = arg0.anIntArray201[arg1];
 		@Pc(14) int local14 = arg0.anIntArray203[arg1];
-		for (@Pc(16) int local16 = 0; local16 < this.anInt2139; local16++) {
+		for (@Pc(16) int local16 = 0; local16 < this.vertexCount; local16++) {
 			if (local4 == this.anIntArray202[local16] && local9 == this.anIntArray201[local16] && local14 == this.anIntArray203[local16]) {
-				this.aShortArray29[local16] |= arg2;
+				this.vertexSourceModels[local16] |= arg2;
 				return local16;
 			}
 		}
-		this.anIntArray202[this.anInt2139] = local4;
-		this.anIntArray201[this.anInt2139] = local9;
-		this.anIntArray203[this.anInt2139] = local14;
-		this.aShortArray29[this.anInt2139] = arg2;
+		this.anIntArray202[this.vertexCount] = local4;
+		this.anIntArray201[this.vertexCount] = local9;
+		this.anIntArray203[this.vertexCount] = local14;
+		this.vertexSourceModels[this.vertexCount] = arg2;
 		if (arg0.anIntArray193 != null) {
-			this.anIntArray193[this.anInt2139] = arg0.anIntArray193[arg1];
+			this.anIntArray193[this.vertexCount] = arg0.anIntArray193[arg1];
 		}
-		return this.anInt2139++;
+		return this.vertexCount++;
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "([[IIIIII)V")
+	@OriginalMember(owner = "client!gb", name = "a", descriptor = "([[IIIIII)V")
 	private void method1667(@OriginalArg(0) int[][] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
 		@Pc(10) int local10 = -arg4 / 2;
 		@Pc(15) int local15 = -arg5 / 2;
@@ -533,13 +534,13 @@ public final class ModelUnlit extends Entity {
 		@Pc(98) int local98 = local42 < local77 ? local42 : local77;
 		@Pc(105) int local105 = local24 < local60 ? local24 : local60;
 		if (arg5 != 0) {
-			@Pc(120) int local120 = (int) (Math.atan2((double) (local84 - local91), (double) arg5) * 325.95D) & 0x7FF;
+			@Pc(120) int local120 = (int) (Math.atan2(local84 - local91, arg5) * 325.95D) & 0x7FF;
 			if (local120 != 0) {
 				this.method1677(local120);
 			}
 		}
 		if (arg4 != 0) {
-			@Pc(140) int local140 = (int) (Math.atan2((double) (local105 - local98), (double) arg4) * 325.95D) & 0x7FF;
+			@Pc(140) int local140 = (int) (Math.atan2(local105 - local98, arg4) * 325.95D) & 0x7FF;
 			if (local140 != 0) {
 				this.method1663(local140);
 			}
@@ -554,22 +555,22 @@ public final class ModelUnlit extends Entity {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
+	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public final void method4546(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
+	public void method4546(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "g", descriptor = "()V")
-	public final void method1668() {
+	@OriginalMember(owner = "client!gb", name = "g", descriptor = "()V")
+	public void method1668() {
 		if (this.aClass57Array1 != null) {
 			return;
 		}
-		this.aClass57Array1 = new Class57[this.anInt2139];
+		this.aClass57Array1 = new Class57[this.vertexCount];
 		@Pc(10) int local10;
-		for (local10 = 0; local10 < this.anInt2139; local10++) {
+		for (local10 = 0; local10 < this.vertexCount; local10++) {
 			this.aClass57Array1[local10] = new Class57();
 		}
-		for (local10 = 0; local10 < this.anInt2136; local10++) {
+		for (local10 = 0; local10 < this.faceCount; local10++) {
 			@Pc(34) int local34 = this.anIntArray197[local10];
 			@Pc(39) int local39 = this.anIntArray200[local10];
 			@Pc(44) int local44 = this.anIntArray196[local10];
@@ -586,7 +587,7 @@ public final class ModelUnlit extends Entity {
 				local112 >>= 0x1;
 				local120 >>= 0x1;
 			}
-			@Pc(174) int local174 = (int) Math.sqrt((double) (local112 * local112 + local120 * local120 + local128 * local128));
+			@Pc(174) int local174 = (int) Math.sqrt(local112 * local112 + local120 * local120 + local128 * local128);
 			if (local174 <= 0) {
 				local174 = 1;
 			}
@@ -617,7 +618,7 @@ public final class ModelUnlit extends Entity {
 				local272.anInt2432++;
 			} else if (local201 == 1) {
 				if (this.aClass126Array1 == null) {
-					this.aClass126Array1 = new TriangleNormal[this.anInt2136];
+					this.aClass126Array1 = new TriangleNormal[this.faceCount];
 				}
 				@Pc(317) TriangleNormal local317 = this.aClass126Array1[local10] = new TriangleNormal();
 				local317.anInt4769 = local112;
@@ -627,20 +628,20 @@ public final class ModelUnlit extends Entity {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(SS)V")
-	public final void retexture(@OriginalArg(0) short arg0, @OriginalArg(1) short arg1) {
-		if (this.aShortArray23 == null) {
+	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(SS)V")
+	public void retexture(@OriginalArg(0) short arg0, @OriginalArg(1) short arg1) {
+		if (this.unmodifiedTriangleTexture == null) {
 			return;
 		}
-		for (@Pc(5) int local5 = 0; local5 < this.anInt2136; local5++) {
-			if (this.aShortArray23[local5] == arg0) {
-				this.aShortArray23[local5] = arg1;
+		for (@Pc(5) int local5 = 0; local5 < this.faceCount; local5++) {
+			if (this.unmodifiedTriangleTexture[local5] == arg0) {
+				this.unmodifiedTriangleTexture[local5] = arg1;
 			}
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(II[[I[[IIIIZZ)Lclient!gb;")
-	public final ModelUnlit method1670(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int[][] arg2, @OriginalArg(3) int[][] arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
+	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(II[[I[[IIIIZZ)Lclient!gb;")
+	public ModelUnlit method1670(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int[][] arg2, @OriginalArg(3) int[][] arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
 		this.method1664();
 		@Pc(6) int local6 = arg4 + this.aShort14;
 		@Pc(11) int local11 = arg4 + this.aShort16;
@@ -666,31 +667,31 @@ public final class ModelUnlit extends Entity {
 			}
 		}
 		@Pc(147) ModelUnlit local147 = new ModelUnlit();
-		local147.anInt2139 = this.anInt2139;
-		local147.anInt2136 = this.anInt2136;
+		local147.vertexCount = this.vertexCount;
+		local147.faceCount = this.faceCount;
 		local147.anInt2137 = this.anInt2137;
 		local147.anIntArray197 = this.anIntArray197;
 		local147.anIntArray200 = this.anIntArray200;
 		local147.anIntArray196 = this.anIntArray196;
 		local147.aByteArray30 = this.aByteArray30;
-		local147.aByteArray35 = this.aByteArray35;
+		local147.facePriority = this.facePriority;
 		local147.aByteArray26 = this.aByteArray26;
 		local147.aByteArray31 = this.aByteArray31;
-		local147.aShortArray24 = this.aShortArray24;
-		local147.aShortArray23 = this.aShortArray23;
+		local147.unmodifiedTriangleColour = this.unmodifiedTriangleColour;
+		local147.unmodifiedTriangleTexture = this.unmodifiedTriangleTexture;
 		local147.aByte7 = this.aByte7;
 		local147.aByteArray29 = this.aByteArray29;
-		local147.aShortArray26 = this.aShortArray26;
-		local147.aShortArray20 = this.aShortArray20;
-		local147.aShortArray28 = this.aShortArray28;
+		local147.textureTriangleVertex1 = this.textureTriangleVertex1;
+		local147.textureTriangleVertex2 = this.textureTriangleVertex2;
+		local147.textureTriangleVertex3 = this.textureTriangleVertex3;
 		local147.aShortArray27 = this.aShortArray27;
 		local147.aShortArray25 = this.aShortArray25;
 		local147.aShortArray21 = this.aShortArray21;
 		local147.aByteArray27 = this.aByteArray27;
 		local147.aByteArray32 = this.aByteArray32;
 		local147.aByteArray34 = this.aByteArray34;
-		local147.aByteArray28 = this.aByteArray28;
-		local147.aByteArray33 = this.aByteArray33;
+		local147.textureTriangleTranslationU = this.textureTriangleTranslationU;
+		local147.textureTriangleTranslationV = this.textureTriangleTranslationV;
 		local147.anIntArray193 = this.anIntArray193;
 		local147.anIntArray192 = this.anIntArray192;
 		local147.anIntArrayArray16 = this.anIntArrayArray16;
@@ -706,7 +707,7 @@ public final class ModelUnlit extends Entity {
 			local147.anIntArray203 = Static115.method2308(this.anIntArray203);
 		} else {
 			local147.anIntArray202 = this.anIntArray202;
-			local147.anIntArray201 = new int[local147.anInt2139];
+			local147.anIntArray201 = new int[local147.vertexCount];
 			local147.anIntArray203 = this.anIntArray203;
 		}
 		@Pc(326) int local326;
@@ -720,7 +721,7 @@ public final class ModelUnlit extends Entity {
 		@Pc(408) int local408;
 		@Pc(420) int local420;
 		if (arg0 == 1) {
-			for (local326 = 0; local326 < local147.anInt2139; local326++) {
+			for (local326 = 0; local326 < local147.vertexCount; local326++) {
 				local337 = this.anIntArray202[local326] + arg4;
 				local344 = this.anIntArray203[local326] + arg6;
 				local348 = local337 & 0x7F;
@@ -735,7 +736,7 @@ public final class ModelUnlit extends Entity {
 		} else {
 			@Pc(547) int local547;
 			if (arg0 == 2) {
-				for (local326 = 0; local326 < local147.anInt2139; local326++) {
+				for (local326 = 0; local326 < local147.vertexCount; local326++) {
 					local337 = (this.anIntArray201[local326] << 16) / this.aShort15;
 					if (local337 < arg1) {
 						local344 = this.anIntArray202[local326] + arg4;
@@ -758,7 +759,7 @@ public final class ModelUnlit extends Entity {
 				this.method1667(arg2, arg4, arg5, arg6, local326, local337);
 			} else if (arg0 == 4) {
 				local326 = this.aShort13 - this.aShort15;
-				for (local337 = 0; local337 < this.anInt2139; local337++) {
+				for (local337 = 0; local337 < this.vertexCount; local337++) {
 					local344 = this.anIntArray202[local337] + arg4;
 					local348 = this.anIntArray203[local337] + arg6;
 					local352 = local344 & 0x7F;
@@ -772,7 +773,7 @@ public final class ModelUnlit extends Entity {
 				}
 			} else if (arg0 == 5) {
 				local326 = this.aShort13 - this.aShort15;
-				for (local337 = 0; local337 < this.anInt2139; local337++) {
+				for (local337 = 0; local337 < this.vertexCount; local337++) {
 					local344 = this.anIntArray202[local337] + arg4;
 					local348 = this.anIntArray203[local337] + arg6;
 					local352 = local344 & 0x7F;
@@ -794,19 +795,19 @@ public final class ModelUnlit extends Entity {
 		return local147;
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "b", descriptor = "(IIIII)Lclient!w;")
-	public final SoftwareModel method1671(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	@OriginalMember(owner = "client!gb", name = "b", descriptor = "(IIIII)Lclient!w;")
+	public SoftwareModel method1671(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		return new SoftwareModel(this, arg0, arg1, -50, -10, -50);
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(IIIII)V")
+	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(IIIII)V")
 	@Override
-	public final void method4545(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	public void method4545(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "c", descriptor = "(III)V")
-	public final void method1672(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		for (@Pc(1) int local1 = 0; local1 < this.anInt2139; local1++) {
+	@OriginalMember(owner = "client!gb", name = "c", descriptor = "(III)V")
+	public void method1672(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+		for (@Pc(1) int local1 = 0; local1 < this.vertexCount; local1++) {
 			this.anIntArray202[local1] += arg0;
 			this.anIntArray201[local1] += arg1;
 			this.anIntArray203[local1] += arg2;
@@ -814,13 +815,13 @@ public final class ModelUnlit extends Entity {
 		this.method1678();
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "h", descriptor = "()V")
-	public final void method1673() {
+	@OriginalMember(owner = "client!gb", name = "h", descriptor = "()V")
+	public void method1673() {
 		@Pc(1) int local1;
-		for (local1 = 0; local1 < this.anInt2139; local1++) {
+		for (local1 = 0; local1 < this.vertexCount; local1++) {
 			this.anIntArray203[local1] = -this.anIntArray203[local1];
 		}
-		for (local1 = 0; local1 < this.anInt2136; local1++) {
+		for (local1 = 0; local1 < this.faceCount; local1++) {
 			@Pc(27) int local27 = this.anIntArray197[local1];
 			this.anIntArray197[local1] = this.anIntArray196[local1];
 			this.anIntArray196[local1] = local27;
@@ -828,13 +829,13 @@ public final class ModelUnlit extends Entity {
 		this.method1678();
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "()Z")
+	@OriginalMember(owner = "client!gb", name = "a", descriptor = "()Z")
 	@Override
-	public final boolean method4543() {
+	public boolean method4543() {
 		return true;
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "([B)V")
+	@OriginalMember(owner = "client!gb", name = "a", descriptor = "([B)V")
 	private void method1674(@OriginalArg(0) byte[] arg0) {
 		@Pc(4) Packet local4 = new Packet(arg0);
 		@Pc(9) Packet local9 = new Packet(arg0);
@@ -931,8 +932,8 @@ public final class ModelUnlit extends Entity {
 		local131 += local118;
 		@Pc(304) int local304 = local131;
 		local131 += local118 + local120 * 2;
-		this.anInt2139 = local44;
-		this.anInt2136 = local48;
+		this.vertexCount = local44;
+		this.faceCount = local48;
 		this.anInt2137 = local52;
 		this.anIntArray202 = new int[local44];
 		this.anIntArray201 = new int[local44];
@@ -947,7 +948,7 @@ public final class ModelUnlit extends Entity {
 			this.aByteArray30 = new byte[local48];
 		}
 		if (local78 == 255) {
-			this.aByteArray35 = new byte[local48];
+			this.facePriority = new byte[local48];
 		} else {
 			this.aByte7 = (byte) local78;
 		}
@@ -958,16 +959,16 @@ public final class ModelUnlit extends Entity {
 			this.anIntArray192 = new int[local48];
 		}
 		if (local90 == 1) {
-			this.aShortArray23 = new short[local48];
+			this.unmodifiedTriangleTexture = new short[local48];
 		}
 		if (local90 == 1 && local52 > 0) {
 			this.aByteArray31 = new byte[local48];
 		}
-		this.aShortArray24 = new short[local48];
+		this.unmodifiedTriangleColour = new short[local48];
 		if (local52 > 0) {
-			this.aShortArray26 = new short[local52];
-			this.aShortArray20 = new short[local52];
-			this.aShortArray28 = new short[local52];
+			this.textureTriangleVertex1 = new short[local52];
+			this.textureTriangleVertex2 = new short[local52];
+			this.textureTriangleVertex3 = new short[local52];
 			if (local118 > 0) {
 				this.aShortArray27 = new short[local118];
 				this.aShortArray25 = new short[local118];
@@ -977,8 +978,8 @@ public final class ModelUnlit extends Entity {
 				this.aByteArray34 = new byte[local118];
 			}
 			if (local120 > 0) {
-				this.aByteArray28 = new byte[local120];
-				this.aByteArray33 = new byte[local120];
+				this.textureTriangleTranslationU = new byte[local120];
+				this.textureTriangleTranslationV = new byte[local120];
 			}
 		}
 		local4.pos = local52;
@@ -1026,12 +1027,12 @@ public final class ModelUnlit extends Entity {
 		local29.pos = local225;
 		local34.pos = local236;
 		for (local479 = 0; local479 < local48; local479++) {
-			this.aShortArray24[local479] = (short) local4.g2();
+			this.unmodifiedTriangleColour[local479] = (short) local4.g2();
 			if (local65) {
 				this.aByteArray30[local479] = local9.g1s();
 			}
 			if (local78 == 255) {
-				this.aByteArray35[local479] = local14.g1s();
+				this.facePriority[local479] = local14.g1s();
 			}
 			if (local82 == 1) {
 				this.aByteArray26[local479] = local19.g1s();
@@ -1040,10 +1041,10 @@ public final class ModelUnlit extends Entity {
 				this.anIntArray192[local479] = local24.g1();
 			}
 			if (local90 == 1) {
-				this.aShortArray23[local479] = (short) (local29.g2() - 1);
+				this.unmodifiedTriangleTexture[local479] = (short) (local29.g2() - 1);
 			}
 			if (this.aByteArray31 != null) {
-				if (this.aShortArray23[local479] == -1) {
+				if (this.unmodifiedTriangleTexture[local479] == -1) {
 					this.aByteArray31[local479] = -1;
 				} else {
 					this.aByteArray31[local479] = (byte) (local34.g1() - 1);
@@ -1104,14 +1105,14 @@ public final class ModelUnlit extends Entity {
 		for (local508 = 0; local508 < local52; local508++) {
 			local700 = this.aByteArray29[local508] & 0xFF;
 			if (local700 == 0) {
-				this.aShortArray26[local508] = (short) local4.g2();
-				this.aShortArray20[local508] = (short) local4.g2();
-				this.aShortArray28[local508] = (short) local4.g2();
+				this.textureTriangleVertex1[local508] = (short) local4.g2();
+				this.textureTriangleVertex2[local508] = (short) local4.g2();
+				this.textureTriangleVertex3[local508] = (short) local4.g2();
 			}
 			if (local700 == 1) {
-				this.aShortArray26[local508] = (short) local9.g2();
-				this.aShortArray20[local508] = (short) local9.g2();
-				this.aShortArray28[local508] = (short) local9.g2();
+				this.textureTriangleVertex1[local508] = (short) local9.g2();
+				this.textureTriangleVertex2[local508] = (short) local9.g2();
+				this.textureTriangleVertex3[local508] = (short) local9.g2();
 				this.aShortArray27[local508] = (short) local14.g2();
 				this.aShortArray25[local508] = (short) local14.g2();
 				this.aShortArray21[local508] = (short) local14.g2();
@@ -1120,22 +1121,22 @@ public final class ModelUnlit extends Entity {
 				this.aByteArray34[local508] = local29.g1s();
 			}
 			if (local700 == 2) {
-				this.aShortArray26[local508] = (short) local9.g2();
-				this.aShortArray20[local508] = (short) local9.g2();
-				this.aShortArray28[local508] = (short) local9.g2();
+				this.textureTriangleVertex1[local508] = (short) local9.g2();
+				this.textureTriangleVertex2[local508] = (short) local9.g2();
+				this.textureTriangleVertex3[local508] = (short) local9.g2();
 				this.aShortArray27[local508] = (short) local14.g2();
 				this.aShortArray25[local508] = (short) local14.g2();
 				this.aShortArray21[local508] = (short) local14.g2();
 				this.aByteArray27[local508] = local19.g1s();
 				this.aByteArray32[local508] = local24.g1s();
 				this.aByteArray34[local508] = local29.g1s();
-				this.aByteArray28[local508] = local29.g1s();
-				this.aByteArray33[local508] = local29.g1s();
+				this.textureTriangleTranslationU[local508] = local29.g1s();
+				this.textureTriangleTranslationV[local508] = local29.g1s();
 			}
 			if (local700 == 3) {
-				this.aShortArray26[local508] = (short) local9.g2();
-				this.aShortArray20[local508] = (short) local9.g2();
-				this.aShortArray28[local508] = (short) local9.g2();
+				this.textureTriangleVertex1[local508] = (short) local9.g2();
+				this.textureTriangleVertex2[local508] = (short) local9.g2();
+				this.textureTriangleVertex3[local508] = (short) local9.g2();
 				this.aShortArray27[local508] = (short) local14.g2();
 				this.aShortArray25[local508] = (short) local14.g2();
 				this.aShortArray21[local508] = (short) local14.g2();
@@ -1158,17 +1159,15 @@ public final class ModelUnlit extends Entity {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "i", descriptor = "()Lclient!gb;")
-	public final ModelUnlit method1675() {
+	@OriginalMember(owner = "client!gb", name = "i", descriptor = "()Lclient!gb;")
+	public ModelUnlit method1675() {
 		@Pc(3) ModelUnlit local3 = new ModelUnlit();
 		if (this.aByteArray30 != null) {
-			local3.aByteArray30 = new byte[this.anInt2136];
-			for (@Pc(13) int local13 = 0; local13 < this.anInt2136; local13++) {
-				local3.aByteArray30[local13] = this.aByteArray30[local13];
-			}
+			local3.aByteArray30 = new byte[this.faceCount];
+			System.arraycopy(this.aByteArray30, 0, local3.aByteArray30, 0, this.faceCount);
 		}
-		local3.anInt2139 = this.anInt2139;
-		local3.anInt2136 = this.anInt2136;
+		local3.vertexCount = this.vertexCount;
+		local3.faceCount = this.faceCount;
 		local3.anInt2137 = this.anInt2137;
 		local3.anIntArray202 = this.anIntArray202;
 		local3.anIntArray201 = this.anIntArray201;
@@ -1176,24 +1175,24 @@ public final class ModelUnlit extends Entity {
 		local3.anIntArray197 = this.anIntArray197;
 		local3.anIntArray200 = this.anIntArray200;
 		local3.anIntArray196 = this.anIntArray196;
-		local3.aByteArray35 = this.aByteArray35;
+		local3.facePriority = this.facePriority;
 		local3.aByteArray26 = this.aByteArray26;
 		local3.aByteArray31 = this.aByteArray31;
-		local3.aShortArray24 = this.aShortArray24;
-		local3.aShortArray23 = this.aShortArray23;
+		local3.unmodifiedTriangleColour = this.unmodifiedTriangleColour;
+		local3.unmodifiedTriangleTexture = this.unmodifiedTriangleTexture;
 		local3.aByte7 = this.aByte7;
 		local3.aByteArray29 = this.aByteArray29;
-		local3.aShortArray26 = this.aShortArray26;
-		local3.aShortArray20 = this.aShortArray20;
-		local3.aShortArray28 = this.aShortArray28;
+		local3.textureTriangleVertex1 = this.textureTriangleVertex1;
+		local3.textureTriangleVertex2 = this.textureTriangleVertex2;
+		local3.textureTriangleVertex3 = this.textureTriangleVertex3;
 		local3.aShortArray27 = this.aShortArray27;
 		local3.aShortArray25 = this.aShortArray25;
 		local3.aShortArray21 = this.aShortArray21;
 		local3.aByteArray27 = this.aByteArray27;
 		local3.aByteArray32 = this.aByteArray32;
 		local3.aByteArray34 = this.aByteArray34;
-		local3.aByteArray28 = this.aByteArray28;
-		local3.aByteArray33 = this.aByteArray33;
+		local3.textureTriangleTranslationU = this.textureTriangleTranslationU;
+		local3.textureTriangleTranslationV = this.textureTriangleTranslationV;
 		local3.anIntArray193 = this.anIntArray193;
 		local3.anIntArray192 = this.anIntArray192;
 		local3.anIntArrayArray16 = this.anIntArrayArray16;
@@ -1205,24 +1204,24 @@ public final class ModelUnlit extends Entity {
 		return local3;
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(IIIBSB)I")
-	public final int method1676(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) short arg3, @OriginalArg(5) byte arg4) {
-		this.anIntArray197[this.anInt2136] = arg0;
-		this.anIntArray200[this.anInt2136] = arg1;
-		this.anIntArray196[this.anInt2136] = arg2;
-		this.aByteArray30[this.anInt2136] = 1;
-		this.aByteArray31[this.anInt2136] = -1;
-		this.aShortArray24[this.anInt2136] = arg3;
-		this.aShortArray23[this.anInt2136] = -1;
-		this.aByteArray26[this.anInt2136] = arg4;
-		return this.anInt2136++;
+	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(IIIBSB)I")
+	public int method1676(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) short arg3, @OriginalArg(5) byte arg4) {
+		this.anIntArray197[this.faceCount] = arg0;
+		this.anIntArray200[this.faceCount] = arg1;
+		this.anIntArray196[this.faceCount] = arg2;
+		this.aByteArray30[this.faceCount] = 1;
+		this.aByteArray31[this.faceCount] = -1;
+		this.unmodifiedTriangleColour[this.faceCount] = arg3;
+		this.unmodifiedTriangleTexture[this.faceCount] = -1;
+		this.aByteArray26[this.faceCount] = arg4;
+		return this.faceCount++;
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "c", descriptor = "(I)V")
+	@OriginalMember(owner = "client!gb", name = "c", descriptor = "(I)V")
 	private void method1677(@OriginalArg(0) int arg0) {
 		@Pc(3) int local3 = Static77.anIntArray198[arg0];
 		@Pc(7) int local7 = Static77.anIntArray195[arg0];
-		for (@Pc(9) int local9 = 0; local9 < this.anInt2139; local9++) {
+		for (@Pc(9) int local9 = 0; local9 < this.vertexCount; local9++) {
 			@Pc(29) int local29 = this.anIntArray201[local9] * local7 - this.anIntArray203[local9] * local3 >> 16;
 			this.anIntArray203[local9] = this.anIntArray201[local9] * local3 + this.anIntArray203[local9] * local7 >> 16;
 			this.anIntArray201[local9] = local29;
@@ -1230,7 +1229,7 @@ public final class ModelUnlit extends Entity {
 		this.method1678();
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "j", descriptor = "()V")
+	@OriginalMember(owner = "client!gb", name = "j", descriptor = "()V")
 	private void method1678() {
 		this.aClass57Array1 = null;
 		this.aClass57Array2 = null;
@@ -1238,8 +1237,8 @@ public final class ModelUnlit extends Entity {
 		this.aBoolean121 = false;
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "c", descriptor = "(IIIII)Lclient!ak;")
-	public final Model method1679(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	@OriginalMember(owner = "client!gb", name = "c", descriptor = "(IIIII)Lclient!ak;")
+	public Model method1679(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		if (GlRenderer.enabled) {
 			@Pc(9) GlModel local9 = new GlModel(this, arg0, arg1, true);
 			local9.method4099();
@@ -1249,35 +1248,35 @@ public final class ModelUnlit extends Entity {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "b", descriptor = "()I")
+	@OriginalMember(owner = "client!gb", name = "b", descriptor = "()I")
 	@Override
-	public final int method4549() {
+	public int method4549() {
 		if (!this.aBoolean121) {
 			this.method1664();
 		}
 		return this.aShort15;
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "k", descriptor = "()V")
-	public final void method1681() {
+	@OriginalMember(owner = "client!gb", name = "k", descriptor = "()V")
+	public void method1681() {
 		this.anIntArray193 = null;
 		this.anIntArray192 = null;
 		this.anIntArrayArray16 = null;
 		this.anIntArrayArray15 = null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(Lclient!th;IIIZ)V")
+	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(Lclient!th;IIIZ)V")
 	@Override
-	public final void method4544(@OriginalArg(0) Entity arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
+	public void method4544(@OriginalArg(0) Entity arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
 		@Pc(2) ModelUnlit local2 = (ModelUnlit) arg0;
 		local2.method1664();
 		local2.method1668();
 		Static77.anInt2138++;
 		@Pc(12) int local12 = 0;
 		@Pc(15) int[] local15 = local2.anIntArray202;
-		@Pc(18) int local18 = local2.anInt2139;
+		@Pc(18) int local18 = local2.vertexCount;
 		@Pc(20) int local20;
-		for (local20 = 0; local20 < this.anInt2139; local20++) {
+		for (local20 = 0; local20 < this.vertexCount; local20++) {
 			@Pc(29) Class57 local29 = this.aClass57Array1[local20];
 			if (local29.anInt2432 != 0) {
 				@Pc(40) int local40 = this.anIntArray201[local20] - arg2;
@@ -1290,7 +1289,7 @@ public final class ModelUnlit extends Entity {
 								@Pc(91) Class57 local91 = local2.aClass57Array1[local83];
 								if (local56 == local15[local83] && local72 == local2.anIntArray203[local83] && local40 == local2.anIntArray201[local83] && local91.anInt2432 != 0) {
 									if (this.aClass57Array2 == null) {
-										this.aClass57Array2 = new Class57[this.anInt2139];
+										this.aClass57Array2 = new Class57[this.vertexCount];
 									}
 									if (local2.aClass57Array2 == null) {
 										local2.aClass57Array2 = new Class57[local18];
@@ -1324,29 +1323,29 @@ public final class ModelUnlit extends Entity {
 		if (local12 < 3 || !arg4) {
 			return;
 		}
-		for (local20 = 0; local20 < this.anInt2136; local20++) {
+		for (local20 = 0; local20 < this.faceCount; local20++) {
 			if (Static77.anIntArray194[this.anIntArray197[local20]] == Static77.anInt2138 && Static77.anIntArray194[this.anIntArray200[local20]] == Static77.anInt2138 && Static77.anIntArray194[this.anIntArray196[local20]] == Static77.anInt2138) {
 				if (this.aByteArray30 == null) {
-					this.aByteArray30 = new byte[this.anInt2136];
+					this.aByteArray30 = new byte[this.faceCount];
 				}
 				this.aByteArray30[local20] = 2;
 			}
 		}
-		for (local20 = 0; local20 < local2.anInt2136; local20++) {
+		for (local20 = 0; local20 < local2.faceCount; local20++) {
 			if (Static77.anIntArray199[local2.anIntArray197[local20]] == Static77.anInt2138 && Static77.anIntArray199[local2.anIntArray200[local20]] == Static77.anInt2138 && Static77.anIntArray199[local2.anIntArray196[local20]] == Static77.anInt2138) {
 				if (local2.aByteArray30 == null) {
-					local2.aByteArray30 = new byte[local2.anInt2136];
+					local2.aByteArray30 = new byte[local2.faceCount];
 				}
 				local2.aByteArray30[local20] = 2;
 			}
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "d", descriptor = "(I)V")
-	public final void method1682() {
+	@OriginalMember(owner = "client!gb", name = "d", descriptor = "(I)V")
+	public void method1682() {
 		@Pc(3) int local3 = Static77.anIntArray198[256];
 		@Pc(7) int local7 = Static77.anIntArray195[256];
-		for (@Pc(9) int local9 = 0; local9 < this.anInt2139; local9++) {
+		for (@Pc(9) int local9 = 0; local9 < this.vertexCount; local9++) {
 			@Pc(29) int local29 = this.anIntArray203[local9] * local3 + this.anIntArray202[local9] * local7 >> 16;
 			this.anIntArray203[local9] = this.anIntArray203[local9] * local7 - this.anIntArray202[local9] * local3 >> 16;
 			this.anIntArray202[local9] = local29;
@@ -1354,8 +1353,8 @@ public final class ModelUnlit extends Entity {
 		this.method1678();
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "l", descriptor = "()V")
-	public final void method1683() {
+	@OriginalMember(owner = "client!gb", name = "l", descriptor = "()V")
+	public void method1683() {
 		@Pc(5) int[] local5;
 		@Pc(7) int local7;
 		@Pc(22) int local22;
@@ -1364,7 +1363,7 @@ public final class ModelUnlit extends Entity {
 		if (this.anIntArray193 != null) {
 			local5 = new int[256];
 			local7 = 0;
-			for (local9 = 0; local9 < this.anInt2139; local9++) {
+			for (local9 = 0; local9 < this.vertexCount; local9++) {
 				local18 = this.anIntArray193[local9];
 				local22 = local5[local18]++;
 				if (local18 > local7) {
@@ -1377,7 +1376,7 @@ public final class ModelUnlit extends Entity {
 				local5[local9] = 0;
 			}
 			local9 = 0;
-			while (local9 < this.anInt2139) {
+			while (local9 < this.vertexCount) {
 				local18 = this.anIntArray193[local9];
 				this.anIntArrayArray16[local18][local5[local18]++] = local9++;
 			}
@@ -1388,7 +1387,7 @@ public final class ModelUnlit extends Entity {
 		}
 		local5 = new int[256];
 		local7 = 0;
-		for (local9 = 0; local9 < this.anInt2136; local9++) {
+		for (local9 = 0; local9 < this.faceCount; local9++) {
 			local18 = this.anIntArray192[local9];
 			local22 = local5[local18]++;
 			if (local18 > local7) {
@@ -1401,15 +1400,15 @@ public final class ModelUnlit extends Entity {
 			local5[local9] = 0;
 		}
 		local9 = 0;
-		while (local9 < this.anInt2136) {
+		while (local9 < this.faceCount) {
 			local18 = this.anIntArray192[local9];
 			this.anIntArrayArray15[local18][local5[local18]++] = local9++;
 		}
 		this.anIntArray192 = null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "d", descriptor = "(III)V")
-	public final void method1684(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	@OriginalMember(owner = "client!gb", name = "d", descriptor = "(III)V")
+	public void method1684(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		@Pc(5) int local5;
 		@Pc(9) int local9;
 		@Pc(11) int local11;
@@ -1417,7 +1416,7 @@ public final class ModelUnlit extends Entity {
 		if (arg2 != 0) {
 			local5 = Static77.anIntArray198[arg2];
 			local9 = Static77.anIntArray195[arg2];
-			for (local11 = 0; local11 < this.anInt2139; local11++) {
+			for (local11 = 0; local11 < this.vertexCount; local11++) {
 				local31 = this.anIntArray201[local11] * local5 + this.anIntArray202[local11] * local9 >> 16;
 				this.anIntArray201[local11] = this.anIntArray201[local11] * local9 - this.anIntArray202[local11] * local5 >> 16;
 				this.anIntArray202[local11] = local31;
@@ -1426,7 +1425,7 @@ public final class ModelUnlit extends Entity {
 		if (arg0 != 0) {
 			local5 = Static77.anIntArray198[arg0];
 			local9 = Static77.anIntArray195[arg0];
-			for (local11 = 0; local11 < this.anInt2139; local11++) {
+			for (local11 = 0; local11 < this.vertexCount; local11++) {
 				local31 = this.anIntArray201[local11] * local9 - this.anIntArray203[local11] * local5 >> 16;
 				this.anIntArray203[local11] = this.anIntArray201[local11] * local5 + this.anIntArray203[local11] * local9 >> 16;
 				this.anIntArray201[local11] = local31;
@@ -1437,36 +1436,36 @@ public final class ModelUnlit extends Entity {
 		}
 		local5 = Static77.anIntArray198[arg1];
 		local9 = Static77.anIntArray195[arg1];
-		for (local11 = 0; local11 < this.anInt2139; local11++) {
+		for (local11 = 0; local11 < this.vertexCount; local11++) {
 			local31 = this.anIntArray203[local11] * local5 + this.anIntArray202[local11] * local9 >> 16;
 			this.anIntArray203[local11] = this.anIntArray203[local11] * local9 - this.anIntArray202[local11] * local5 >> 16;
 			this.anIntArray202[local11] = local31;
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "e", descriptor = "(III)I")
-	public final int method1685(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		for (@Pc(1) int local1 = 0; local1 < this.anInt2139; local1++) {
+	@OriginalMember(owner = "client!gb", name = "e", descriptor = "(III)I")
+	public int method1685(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
+		for (@Pc(1) int local1 = 0; local1 < this.vertexCount; local1++) {
 			if (this.anIntArray202[local1] == arg0 && this.anIntArray201[local1] == 0 && this.anIntArray203[local1] == arg1) {
 				return local1;
 			}
 		}
-		this.anIntArray202[this.anInt2139] = arg0;
-		this.anIntArray201[this.anInt2139] = 0;
-		this.anIntArray203[this.anInt2139] = arg1;
-		return this.anInt2139++;
+		this.anIntArray202[this.vertexCount] = arg0;
+		this.anIntArray201[this.vertexCount] = 0;
+		this.anIntArray203[this.vertexCount] = arg1;
+		return this.vertexCount++;
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "b", descriptor = "(SS)V")
-	public final void recolor(@OriginalArg(0) short arg0, @OriginalArg(1) short arg1) {
-		for (@Pc(1) int local1 = 0; local1 < this.anInt2136; local1++) {
-			if (this.aShortArray24[local1] == arg0) {
-				this.aShortArray24[local1] = arg1;
+	@OriginalMember(owner = "client!gb", name = "b", descriptor = "(SS)V")
+	public void recolor(@OriginalArg(0) short arg0, @OriginalArg(1) short arg1) {
+		for (@Pc(1) int local1 = 0; local1 < this.faceCount; local1++) {
+			if (this.unmodifiedTriangleColour[local1] == arg0) {
+				this.unmodifiedTriangleColour[local1] = arg1;
 			}
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "b", descriptor = "([B)V")
+	@OriginalMember(owner = "client!gb", name = "b", descriptor = "([B)V")
 	private void method1688(@OriginalArg(0) byte[] arg0) {
 		@Pc(1) boolean local1 = false;
 		@Pc(3) boolean local3 = false;
@@ -1521,8 +1520,8 @@ public final class ModelUnlit extends Entity {
 		local90 += local70;
 		@Pc(171) int local171 = local90;
 		local90 += local74;
-		this.anInt2139 = local38;
-		this.anInt2136 = local42;
+		this.vertexCount = local38;
+		this.faceCount = local42;
 		this.anInt2137 = local46;
 		this.anIntArray202 = new int[local38];
 		this.anIntArray201 = new int[local38];
@@ -1532,9 +1531,9 @@ public final class ModelUnlit extends Entity {
 		this.anIntArray196 = new int[local42];
 		if (local46 > 0) {
 			this.aByteArray29 = new byte[local46];
-			this.aShortArray26 = new short[local46];
-			this.aShortArray20 = new short[local46];
-			this.aShortArray28 = new short[local46];
+			this.textureTriangleVertex1 = new short[local46];
+			this.textureTriangleVertex2 = new short[local46];
+			this.textureTriangleVertex3 = new short[local46];
 		}
 		if (local66 == 1) {
 			this.anIntArray193 = new int[local38];
@@ -1542,10 +1541,10 @@ public final class ModelUnlit extends Entity {
 		if (local50 == 1) {
 			this.aByteArray30 = new byte[local42];
 			this.aByteArray31 = new byte[local42];
-			this.aShortArray23 = new short[local42];
+			this.unmodifiedTriangleTexture = new short[local42];
 		}
 		if (local54 == 255) {
-			this.aByteArray35 = new byte[local42];
+			this.facePriority = new byte[local42];
 		} else {
 			this.aByte7 = (byte) local54;
 		}
@@ -1555,7 +1554,7 @@ public final class ModelUnlit extends Entity {
 		if (local62 == 1) {
 			this.anIntArray192 = new int[local42];
 		}
-		this.aShortArray24 = new short[local42];
+		this.unmodifiedTriangleColour = new short[local42];
 		local8.pos = 0;
 		local13.pos = local165;
 		local18.pos = local171;
@@ -1599,7 +1598,7 @@ public final class ModelUnlit extends Entity {
 		local23.pos = local134;
 		local28.pos = local107;
 		for (local307 = 0; local307 < local42; local307++) {
-			this.aShortArray24[local307] = (short) local8.g2();
+			this.unmodifiedTriangleColour[local307] = (short) local8.g2();
 			if (local50 == 1) {
 				local314 = local13.g1();
 				if ((local314 & 0x1) == 1) {
@@ -1610,18 +1609,18 @@ public final class ModelUnlit extends Entity {
 				}
 				if ((local314 & 0x2) == 2) {
 					this.aByteArray31[local307] = (byte) (local314 >> 2);
-					this.aShortArray23[local307] = this.aShortArray24[local307];
-					this.aShortArray24[local307] = 127;
-					if (this.aShortArray23[local307] != -1) {
+					this.unmodifiedTriangleTexture[local307] = this.unmodifiedTriangleColour[local307];
+					this.unmodifiedTriangleColour[local307] = 127;
+					if (this.unmodifiedTriangleTexture[local307] != -1) {
 						local3 = true;
 					}
 				} else {
 					this.aByteArray31[local307] = -1;
-					this.aShortArray23[local307] = -1;
+					this.unmodifiedTriangleTexture[local307] = -1;
 				}
 			}
 			if (local54 == 255) {
-				this.aByteArray35[local307] = local18.g1s();
+				this.facePriority[local307] = local18.g1s();
 			}
 			if (local58 == 1) {
 				this.aByteArray26[local307] = local23.g1s();
@@ -1679,16 +1678,16 @@ public final class ModelUnlit extends Entity {
 		local8.pos = local157;
 		for (local336 = 0; local336 < local46; local336++) {
 			this.aByteArray29[local336] = 0;
-			this.aShortArray26[local336] = (short) local8.g2();
-			this.aShortArray20[local336] = (short) local8.g2();
-			this.aShortArray28[local336] = (short) local8.g2();
+			this.textureTriangleVertex1[local336] = (short) local8.g2();
+			this.textureTriangleVertex2[local336] = (short) local8.g2();
+			this.textureTriangleVertex3[local336] = (short) local8.g2();
 		}
 		if (this.aByteArray31 != null) {
 			@Pc(721) boolean local721 = false;
 			for (local545 = 0; local545 < local42; local545++) {
 				local648 = this.aByteArray31[local545] & 0xFF;
 				if (local648 != 255) {
-					if ((this.aShortArray26[local648] & 0xFFFF) == this.anIntArray197[local545] && (this.aShortArray20[local648] & 0xFFFF) == this.anIntArray200[local545] && (this.aShortArray28[local648] & 0xFFFF) == this.anIntArray196[local545]) {
+					if ((this.textureTriangleVertex1[local648] & 0xFFFF) == this.anIntArray197[local545] && (this.textureTriangleVertex2[local648] & 0xFFFF) == this.anIntArray200[local545] && (this.textureTriangleVertex3[local648] & 0xFFFF) == this.anIntArray196[local545]) {
 						this.aByteArray31[local545] = -1;
 					} else {
 						local721 = true;
@@ -1700,16 +1699,16 @@ public final class ModelUnlit extends Entity {
 			}
 		}
 		if (!local3) {
-			this.aShortArray23 = null;
+			this.unmodifiedTriangleTexture = null;
 		}
 		if (!local1) {
 			this.aByteArray30 = null;
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "m", descriptor = "()V")
-	public final void method1689() {
-		for (@Pc(1) int local1 = 0; local1 < this.anInt2139; local1++) {
+	@OriginalMember(owner = "client!gb", name = "m", descriptor = "()V")
+	public void method1689() {
+		for (@Pc(1) int local1 = 0; local1 < this.vertexCount; local1++) {
 			@Pc(10) int local10 = this.anIntArray203[local1];
 			this.anIntArray203[local1] = this.anIntArray202[local1];
 			this.anIntArray202[local1] = -local10;

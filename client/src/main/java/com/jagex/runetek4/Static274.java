@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 

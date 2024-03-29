@@ -4,39 +4,40 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.idktype.IDKType;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
+import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!hh")
+@OriginalClass("client!hh")
 public final class PlayerModel {
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "e", descriptor = "I")
+	@OriginalMember(owner = "client!hh", name = "e", descriptor = "I")
 	public int anInt2492;
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "i", descriptor = "J")
+	@OriginalMember(owner = "client!hh", name = "i", descriptor = "J")
 	private long aLong87;
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "l", descriptor = "[I")
+	@OriginalMember(owner = "client!hh", name = "l", descriptor = "[I")
 	private int[] anIntArray233;
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "m", descriptor = "I")
+	@OriginalMember(owner = "client!hh", name = "m", descriptor = "I")
 	private int anInt2497;
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "q", descriptor = "J")
+	@OriginalMember(owner = "client!hh", name = "q", descriptor = "J")
 	private long aLong88;
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "t", descriptor = "[I")
+	@OriginalMember(owner = "client!hh", name = "t", descriptor = "[I")
 	private int[] anIntArray236;
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "w", descriptor = "[[I")
+	@OriginalMember(owner = "client!hh", name = "w", descriptor = "[[I")
 	private int[][] anIntArrayArray19;
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "x", descriptor = "Z")
+	@OriginalMember(owner = "client!hh", name = "x", descriptor = "Z")
 	public boolean aBoolean141;
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(IIIILclient!tk;III)Lclient!ak;")
+	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(IIIILclient!tk;III)Lclient!ak;")
 	public final Model method1946(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) SeqType arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
 		@Pc(24) long local24 = (long) arg2 | (long) (arg6 << 16) | (long) arg1 << 32;
 		@Pc(30) Model local30 = (Model) Static139.aClass99_21.method3106(local24);
@@ -77,7 +78,7 @@ public final class PlayerModel {
 		return local30;
 	}
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(I)V")
+	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(I)V")
 	private void method1947() {
 		@Pc(8) long local8 = this.aLong88;
 		this.aLong88 = -1L;
@@ -100,13 +101,13 @@ public final class PlayerModel {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(ZZ)V")
+	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(ZZ)V")
 	public final void method1948(@OriginalArg(0) boolean arg0) {
 		this.aBoolean141 = arg0;
 		this.method1947();
 	}
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "([IIZI[II)V")
+	@OriginalMember(owner = "client!hh", name = "a", descriptor = "([IIZI[II)V")
 	public final void method1950(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) boolean arg2, @OriginalArg(4) int[] arg3, @OriginalArg(5) int arg4) {
 		if (arg4 != this.anInt2497) {
 			this.anInt2497 = arg4;
@@ -131,18 +132,18 @@ public final class PlayerModel {
 		this.method1947();
 	}
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(IZI)V")
+	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(IZI)V")
 	public final void method1951(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
 		this.anIntArray236[arg0] = arg1;
 		this.method1947();
 	}
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "b", descriptor = "(I)I")
+	@OriginalMember(owner = "client!hh", name = "b", descriptor = "(I)I")
 	public final int method1952() {
 		return this.anInt2492 == -1 ? (this.anIntArray233[8] << 10) + ((this.anIntArray236[0] << 25) + (this.anIntArray236[4] << 20)) + (this.anIntArray233[0] << 15) + (this.anIntArray233[11] << 5) + this.anIntArray233[1] : Static214.get(this.anInt2492).id + 305419896;
 	}
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(III)V")
+	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(III)V")
 	public final void method1953(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		@Pc(7) int local7 = Static272.anIntArray451[arg0];
 		if (0 != this.anIntArray233[local7] && Static81.method1752(arg1) != null) {
@@ -151,7 +152,7 @@ public final class PlayerModel {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "([Lclient!ub;ILclient!tk;Lclient!tk;IIIIZII)Lclient!ak;")
+	@OriginalMember(owner = "client!hh", name = "a", descriptor = "([Lclient!ub;ILclient!tk;Lclient!tk;IIIIZII)Lclient!ak;")
 	public final Model method1954(@OriginalArg(0) Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) SeqType arg2, @OriginalArg(3) SeqType arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(7) int arg6, @OriginalArg(9) int arg7, @OriginalArg(10) int arg8) {
 		if (this.anInt2492 != -1) {
 			return Static214.get(this.anInt2492).method2937(arg0, arg5, arg8, arg1, arg6, arg7, arg2, arg4, arg3);
@@ -442,7 +443,7 @@ public final class PlayerModel {
 		return local1284;
 	}
 
-	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(IBLclient!tk;II)Lclient!ak;")
+	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(IBLclient!tk;II)Lclient!ak;")
 	public final Model method1956(@OriginalArg(0) int arg0, @OriginalArg(2) SeqType arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		if (this.anInt2492 != -1) {
 			return Static214.get(this.anInt2492).getHeadModel(arg1, arg0, arg3, arg2);

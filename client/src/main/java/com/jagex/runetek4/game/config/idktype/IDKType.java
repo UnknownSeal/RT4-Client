@@ -1,6 +1,6 @@
 package com.jagex.runetek4.game.config.idktype;
 
-import com.jagex.runetek4.ModelUnlit;
+import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.Static14;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
