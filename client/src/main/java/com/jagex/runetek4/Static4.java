@@ -7,6 +7,7 @@ import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.game.config.objtype.ObjType;
+import com.jagex.runetek4.game.config.seqtype.SeqType;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -578,7 +579,7 @@ public final class Static4 {
 										local171 = -1;
 									}
 									local1245 = true;
-									if (local171 != -1 && local1894.anInt3432 != -1 && Static36.method941(Static34.method877(local171).anInt1754).anInt5355 < Static36.method941(Static34.method877(local1894.anInt3432).anInt1754).anInt5355) {
+									if (local171 != -1 && local1894.anInt3432 != -1 && Static36.method941(Static34.method877(local171).anInt1754).priority < Static36.method941(Static34.method877(local1894.anInt3432).anInt1754).priority) {
 										local1245 = false;
 									}
 									if (local1245) {
@@ -615,7 +616,7 @@ public final class Static4 {
 										local171 = -1;
 									}
 									local1245 = true;
-									if (local171 != -1 && local2033.anInt3432 != -1 && Static36.method941(Static34.method877(local171).anInt1754).anInt5355 < Static36.method941(Static34.method877(local2033.anInt3432).anInt1754).anInt5355) {
+									if (local171 != -1 && local2033.anInt3432 != -1 && Static36.method941(Static34.method877(local171).anInt1754).priority < Static36.method941(Static34.method877(local2033.anInt3432).anInt1754).priority) {
 										local1245 = false;
 									}
 									if (local1245) {

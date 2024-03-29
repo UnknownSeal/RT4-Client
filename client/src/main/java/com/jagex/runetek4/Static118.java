@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -60,18 +61,18 @@ public final class Static118 {
 							@Pc(118) SeqType local118 = Static36.method941(local105);
 							if (local118 != null) {
 								local15.anInt500 += Static178.anInt4247;
-								while (local15.anInt500 > local118.anIntArray474[local15.anInt510]) {
-									local15.anInt500 -= local118.anIntArray474[local15.anInt510];
+								while (local15.anInt500 > local118.frames[local15.anInt510]) {
+									local15.anInt500 -= local118.frames[local15.anInt510];
 									local15.anInt510++;
 									if (local118.anIntArray473.length <= local15.anInt510) {
-										local15.anInt510 -= local118.anInt5362;
+										local15.anInt510 -= local118.replayoff;
 										if (local15.anInt510 < 0 || local118.anIntArray473.length <= local15.anInt510) {
 											local15.anInt510 = 0;
 										}
 									}
 									local15.anInt496 = local15.anInt510 + 1;
 									if (local118.anIntArray473.length <= local15.anInt496) {
-										local15.anInt496 -= local118.anInt5362;
+										local15.anInt496 -= local118.replayoff;
 										if (local15.anInt496 < 0 || local118.anIntArray473.length <= local15.anInt496) {
 											local15.anInt496 = -1;
 										}

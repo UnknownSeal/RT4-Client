@@ -1,6 +1,8 @@
 package com.jagex.runetek4;
 
 import java.awt.Component;
+
+import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -50,7 +52,7 @@ public final class Static223 {
 			if (local13 == 2) {
 				arg2.anInt3371 = 0;
 			}
-		} else if (arg1 == -1 || arg2.anInt3369 == -1 || Static36.method941(arg1).anInt5355 >= Static36.method941(arg2.anInt3369).anInt5355) {
+		} else if (arg1 == -1 || arg2.anInt3369 == -1 || Static36.method941(arg1).priority >= Static36.method941(arg2.anInt3369).priority) {
 			arg2.anInt3360 = 0;
 			arg2.anInt3369 = arg1;
 			arg2.anInt3373 = 1;

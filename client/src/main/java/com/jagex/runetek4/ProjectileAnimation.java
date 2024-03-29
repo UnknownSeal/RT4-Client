@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -151,20 +152,20 @@ public final class ProjectileAnimation extends Entity {
 		while (true) {
 			do {
 				do {
-					if (this.frameCycle <= this.seqType.anIntArray474[this.seqFrame]) {
+					if (this.frameCycle <= this.seqType.frames[this.seqFrame]) {
 						return;
 					}
-					this.frameCycle -= this.seqType.anIntArray474[this.seqFrame];
+					this.frameCycle -= this.seqType.frames[this.seqFrame];
 					this.seqFrame++;
 					if (this.seqFrame >= this.seqType.anIntArray473.length) {
-						this.seqFrame -= this.seqType.anInt5362;
+						this.seqFrame -= this.seqType.replayoff;
 						if (this.seqFrame < 0 || this.seqType.anIntArray473.length <= this.seqFrame) {
 							this.seqFrame = 0;
 						}
 					}
 					this.anInt4798 = this.seqFrame + 1;
 				} while (this.seqType.anIntArray473.length > this.anInt4798);
-				this.anInt4798 -= this.seqType.anInt5362;
+				this.anInt4798 -= this.seqType.replayoff;
 			} while (this.anInt4798 >= 0 && this.anInt4798 < this.seqType.anIntArray473.length);
 			this.anInt4798 = -1;
 		}

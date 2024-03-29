@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.idktype.IDKType;
+import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -156,26 +157,26 @@ public final class Class59 {
 		}
 		@Pc(38) int[] local38 = this.anIntArray233;
 		@Pc(41) long local41 = this.aLong88;
-		if (arg3 != null && (arg3.anInt5353 >= 0 || arg3.anInt5348 >= 0)) {
+		if (arg3 != null && (arg3.mainhand >= 0 || arg3.offhans >= 0)) {
 			local38 = new int[12];
 			for (@Pc(61) int local61 = 0; local61 < 12; local61++) {
 				local38[local61] = this.anIntArray233[local61];
 			}
-			if (arg3.anInt5353 >= 0) {
-				if (arg3.anInt5353 == 65535) {
+			if (arg3.mainhand >= 0) {
+				if (arg3.mainhand == 65535) {
 					local41 ^= 0xFFFFFFFF00000000L;
 					local38[5] = 0;
 				} else {
-					local38[5] = arg3.anInt5353 | 0x40000000;
+					local38[5] = arg3.mainhand | 0x40000000;
 					local41 ^= (long) local38[5] << 32;
 				}
 			}
-			if (arg3.anInt5348 >= 0) {
-				if (arg3.anInt5348 == 65535) {
+			if (arg3.offhans >= 0) {
+				if (arg3.offhans == 65535) {
 					local38[3] = 0;
 					local41 ^= 0xFFFFFFFFL;
 				} else {
-					local38[3] = arg3.anInt5348 | 0x40000000;
+					local38[3] = arg3.offhans | 0x40000000;
 					local41 ^= local38[3];
 				}
 			}
@@ -331,7 +332,7 @@ public final class Class59 {
 						local838 |= local858.aBoolean278;
 					}
 					if ((local858.aBoolean277 || Static204.aBoolean234) && local367 != -1 && local367 < local858.anIntArray473.length) {
-						Static262.anIntArray515[local353] = local858.anIntArray474[local374];
+						Static262.anIntArray515[local353] = local858.frames[local374];
 						Static73.anIntArray183[local353] = arg0[local353].anInt5404;
 						local979 = local858.anIntArray473[local367];
 						Static133.aClass3_Sub2_Sub7Array7[local353] = Static72.method1566(local979 >>> 16);
@@ -372,7 +373,7 @@ public final class Class59 {
 				local360 = arg3.anIntArray473[arg1];
 				local451 = local360 >>> 16;
 				local360 &= 0xFFFF;
-				local374 = arg3.anIntArray474[arg7];
+				local374 = arg3.frames[arg7];
 				if (local979 == local451) {
 					local1040 = local1042;
 				} else {
@@ -400,7 +401,7 @@ public final class Class59 {
 				local838 |= arg2.aBoolean278;
 			}
 			if ((arg2.aBoolean277 || Static204.aBoolean234) && arg5 != -1 && arg2.anIntArray473.length > arg5) {
-				local457 = arg2.anIntArray474[arg8];
+				local457 = arg2.frames[arg8];
 				local451 = arg2.anIntArray473[arg5];
 				local481 = local451 >>> 16;
 				local451 &= 0xFFFF;

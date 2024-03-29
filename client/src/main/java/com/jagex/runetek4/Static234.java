@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -63,7 +64,7 @@ public final class Static234 {
 				}
 				local47 = Static57.aClass3_Sub15_Sub1_3.g4me();
 				@Pc(147) boolean local147 = true;
-				if (local43 != -1 && local14.anInt3432 != -1 && Static36.method941(Static34.method877(local43).anInt1754).anInt5355 < Static36.method941(Static34.method877(local14.anInt3432).anInt1754).anInt5355) {
+				if (local43 != -1 && local14.anInt3432 != -1 && Static36.method941(Static34.method877(local43).anInt1754).priority < Static36.method941(Static34.method877(local14.anInt3432).anInt1754).priority) {
 					local147 = false;
 				}
 				if (local147) {

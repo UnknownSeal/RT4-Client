@@ -2,6 +2,7 @@ package com.jagex.runetek4.game.config.npctype;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.game.config.bastype.BASType;
+import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -563,7 +564,7 @@ public final class NPCType {
 						local725 |= local753.aBoolean278;
 					}
 					if ((local753.aBoolean277 || Static204.aBoolean234) && local207 != -1 && local753.anIntArray473.length > local207) {
-						Static71.anIntArray147[local235] = local753.anIntArray474[local200];
+						Static71.anIntArray147[local235] = local753.frames[local200];
 						Static214.anIntArray492[local235] = arg0[local235].anInt5404;
 						local228 = local753.anIntArray473[local207];
 						Static131.aClass3_Sub2_Sub7Array5[local235] = Static72.method1566(local228 >>> 16);
@@ -606,7 +607,7 @@ public final class NPCType {
 				local725 |= arg8.aBoolean278;
 			}
 			if ((arg8.aBoolean277 || Static204.aBoolean234) && arg3 != -1 && arg8.anIntArray473.length > arg3) {
-				local200 = arg8.anIntArray474[arg5];
+				local200 = arg8.frames[arg5];
 				local221 = arg8.anIntArray473[arg3];
 				local1040 = local221 >>> 16;
 				local221 &= 0xFFFF;
@@ -637,7 +638,7 @@ public final class NPCType {
 				local725 |= arg6.aBoolean278;
 			}
 			if ((arg6.aBoolean277 || Static204.aBoolean234) && arg1 != -1 && arg1 < arg6.anIntArray473.length) {
-				local300 = arg6.anIntArray474[arg2];
+				local300 = arg6.frames[arg2];
 				local1040 = arg6.anIntArray473[arg1];
 				local318 = local1040 >>> 16;
 				local1040 &= 0xFFFF;

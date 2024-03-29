@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -114,16 +115,16 @@ public final class Loc extends Entity {
 					return;
 				}
 			}
-			if (arg7 && this.aClass144_2.anInt5362 != -1) {
+			if (arg7 && this.aClass144_2.replayoff != -1) {
 				this.anInt1297 = (int) (Math.random() * (double) this.aClass144_2.anIntArray473.length);
 				this.anInt1304 = this.anInt1297 + 1;
 				if (this.anInt1304 >= this.aClass144_2.anIntArray473.length) {
-					this.anInt1304 -= this.aClass144_2.anInt5362;
+					this.anInt1304 -= this.aClass144_2.replayoff;
 					if (this.anInt1304 < 0 || this.anInt1304 >= this.aClass144_2.anIntArray473.length) {
 						this.anInt1304 = -1;
 					}
 				}
-				this.anInt1317 = (int) (Math.random() * (double) this.aClass144_2.anIntArray474[this.anInt1297]) + 1;
+				this.anInt1317 = (int) (Math.random() * (double) this.aClass144_2.frames[this.anInt1297]) + 1;
 				this.anInt1320 = Static83.anInt372 - this.anInt1317;
 			}
 		}
@@ -178,33 +179,33 @@ public final class Loc extends Entity {
 			return;
 		}
 		@Pc(10) int local10 = Static83.anInt372 - this.anInt1320;
-		if (local10 > 100 && this.aClass144_2.anInt5362 > 0) {
-			@Pc(29) int local29 = this.aClass144_2.anIntArray473.length - this.aClass144_2.anInt5362;
-			while (this.anInt1297 < local29 && this.aClass144_2.anIntArray474[this.anInt1297] < local10) {
-				local10 -= this.aClass144_2.anIntArray474[this.anInt1297];
+		if (local10 > 100 && this.aClass144_2.replayoff > 0) {
+			@Pc(29) int local29 = this.aClass144_2.anIntArray473.length - this.aClass144_2.replayoff;
+			while (this.anInt1297 < local29 && this.aClass144_2.frames[this.anInt1297] < local10) {
+				local10 -= this.aClass144_2.frames[this.anInt1297];
 				this.anInt1297++;
 			}
 			if (this.anInt1297 >= local29) {
 				@Pc(77) int local77 = 0;
 				for (@Pc(79) int local79 = local29; local79 < this.aClass144_2.anIntArray473.length; local79++) {
-					local77 += this.aClass144_2.anIntArray474[local79];
+					local77 += this.aClass144_2.frames[local79];
 				}
 				local10 %= local77;
 			}
 			this.anInt1304 = this.anInt1297 + 1;
 			if (this.anInt1304 >= this.aClass144_2.anIntArray473.length) {
-				this.anInt1304 -= this.aClass144_2.anInt5362;
+				this.anInt1304 -= this.aClass144_2.replayoff;
 				if (this.anInt1304 < 0 || this.aClass144_2.anIntArray473.length <= this.anInt1304) {
 					this.anInt1304 = -1;
 				}
 			}
 		}
-		while (local10 > this.aClass144_2.anIntArray474[this.anInt1297]) {
+		while (local10 > this.aClass144_2.frames[this.anInt1297]) {
 			Static152.method2836(arg0, this.aClass144_2, arg1, false, this.anInt1297);
-			local10 -= this.aClass144_2.anIntArray474[this.anInt1297];
+			local10 -= this.aClass144_2.frames[this.anInt1297];
 			this.anInt1297++;
 			if (this.aClass144_2.anIntArray473.length <= this.anInt1297) {
-				this.anInt1297 -= this.aClass144_2.anInt5362;
+				this.anInt1297 -= this.aClass144_2.replayoff;
 				if (this.anInt1297 < 0 || this.aClass144_2.anIntArray473.length <= this.anInt1297) {
 					this.aClass144_2 = null;
 					break;
@@ -212,7 +213,7 @@ public final class Loc extends Entity {
 			}
 			this.anInt1304 = this.anInt1297 + 1;
 			if (this.aClass144_2.anIntArray473.length <= this.anInt1304) {
-				this.anInt1304 -= this.aClass144_2.anInt5362;
+				this.anInt1304 -= this.aClass144_2.replayoff;
 				if (this.anInt1304 < 0 || this.anInt1304 >= this.aClass144_2.anIntArray473.length) {
 					this.anInt1304 = -1;
 				}
@@ -248,9 +249,9 @@ public final class Loc extends Entity {
 				this.aClass144_2 = Static36.method941(local69);
 			}
 			if (this.aClass144_2 != null) {
-				if (local19.randomanimframe && this.aClass144_2.anInt5362 != -1) {
+				if (local19.randomanimframe && this.aClass144_2.replayoff != -1) {
 					this.anInt1297 = (int) (Math.random() * (double) this.aClass144_2.anIntArray473.length);
-					this.anInt1320 -= (int) (Math.random() * (double) this.aClass144_2.anIntArray474[this.anInt1297]);
+					this.anInt1320 -= (int) (Math.random() * (double) this.aClass144_2.frames[this.anInt1297]);
 				} else {
 					this.anInt1297 = 0;
 					this.anInt1320 = Static83.anInt372 - 1;

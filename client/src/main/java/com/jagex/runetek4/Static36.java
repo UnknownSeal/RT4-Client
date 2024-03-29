@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -52,9 +53,9 @@ public final class Static36 {
 		local17 = new SeqType();
 		local17.anInt5361 = arg0;
 		if (local32 != null) {
-			local17.method4213(new Packet(local32));
+			local17.decode(new Packet(local32));
 		}
-		local17.method4218();
+		local17.postDecode();
 		Static142.aClass99_23.method3095(local17, (long) arg0);
 		return local17;
 	}

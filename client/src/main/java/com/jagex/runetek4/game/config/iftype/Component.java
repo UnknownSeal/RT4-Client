@@ -3,6 +3,7 @@ package com.jagex.runetek4.game.config.iftype;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.objtype.ObjType;
+import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
