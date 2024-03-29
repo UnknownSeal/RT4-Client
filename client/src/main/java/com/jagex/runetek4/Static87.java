@@ -692,7 +692,7 @@ public final class Static87 {
 												}
 											} else if (local30.modelType == 5) {
 												if (local30.modelId == -1) {
-													local2589 = Static134.aClass59_2.method1954(null, -1, null, null, 0, -1, 0, -1, -1);
+													local2589 = Static134.A_PLAYER_MODEL___2.method1954(null, -1, null, null, 0, -1, 0, -1, -1);
 												} else {
 													local514 = local30.modelId & 0x7FF;
 													if (local514 == Static16.anInt549) {

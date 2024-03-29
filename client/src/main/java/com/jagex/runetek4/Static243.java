@@ -133,7 +133,7 @@ public final class Static243 {
 		Static39.aClass13_10 = null;
 		Static60.aBoolean108 = false;
 		Static231.anInt5204 = 0;
-		Static134.aClass59_2.method1950(new int[] { 0, 0, 0, 0, 0 }, -1, false, null, -1);
+		Static134.A_PLAYER_MODEL___2.method1950(new int[] { 0, 0, 0, 0, 0 }, -1, false, null, -1);
 		for (local3506 = 0; local3506 < 8; local3506++) {
 			Static160.aClass100Array121[local3506] = null;
 			Static1.aBooleanArray1[local3506] = false;

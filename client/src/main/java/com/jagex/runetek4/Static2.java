@@ -266,7 +266,7 @@ public final class Static2 {
 				Static158.anInt3851 = arg0.anInt477;
 				Static145.anInt3502 = arg0.anInt519;
 			}
-			if (Static134.aClass59_2.aBoolean141) {
+			if (Static134.A_PLAYER_MODEL___2.aBoolean141) {
 				arg0.anInt477 = Static158.anInt3851;
 			} else {
 				arg0.anInt477 = Static145.anInt3502;
@@ -276,7 +276,7 @@ public final class Static2 {
 				Static145.anInt3502 = arg0.anInt519;
 				Static158.anInt3851 = arg0.anInt477;
 			}
-			if (Static134.aClass59_2.aBoolean141) {
+			if (Static134.A_PLAYER_MODEL___2.aBoolean141) {
 				arg0.anInt477 = Static145.anInt3502;
 			} else {
 				arg0.anInt477 = Static158.anInt3851;

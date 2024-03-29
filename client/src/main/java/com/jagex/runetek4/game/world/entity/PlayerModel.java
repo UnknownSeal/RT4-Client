@@ -1,5 +1,6 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.game.world.entity;
 
+import com.jagex.runetek4.*;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.idktype.IDKType;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
@@ -9,7 +10,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!hh")
-public final class Class59 {
+public final class PlayerModel {
 
 	@OriginalMember(owner = "runetek4.client!hh", name = "e", descriptor = "I")
 	public int anInt2492;
