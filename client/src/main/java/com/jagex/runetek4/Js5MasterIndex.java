@@ -44,10 +44,10 @@ public final class Js5MasterIndex {
 			}
 			this.aClass3_Sub2_Sub5_Sub2_1 = this.aClass73_1.method2330(255, (byte) 0, 255, true);
 		}
-		if (this.aClass3_Sub2_Sub5_Sub2_1.aBoolean226) {
+		if (this.aClass3_Sub2_Sub5_Sub2_1.awaitingResponse) {
 			return false;
 		} else {
-			this.aClass3_Sub15_1 = new Packet(this.aClass3_Sub2_Sub5_Sub2_1.method3554());
+			this.aClass3_Sub15_1 = new Packet(this.aClass3_Sub2_Sub5_Sub2_1.getBytes());
 			this.aClass14_Sub1Array1 = new Js5CachedResourceProvider[(this.aClass3_Sub15_1.data.length - 5) / 8];
 			return true;
 		}

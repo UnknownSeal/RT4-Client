@@ -92,14 +92,14 @@ public final class Js5CacheQueue implements Runnable {
 				}
 				if (local31.secondaryNodeId == (long) arg1 && local31.aClass49_3 == arg0 && local31.anInt824 == 2) {
 					local9.aByteArray11 = local31.aByteArray11;
-					local9.aBoolean226 = false;
+					local9.awaitingResponse = false;
 					return local9;
 				}
 				local31 = (Js5CacheRequest) this.aClass16_6.method797();
 			}
 		}
 		local9.aByteArray11 = arg0.method1701(arg1);
-		local9.aBoolean226 = false;
+		local9.awaitingResponse = false;
 		local9.aBoolean225 = true;
 		return local9;
 	}
@@ -130,7 +130,7 @@ public final class Js5CacheQueue implements Runnable {
 			} catch (@Pc(83) Exception local83) {
 				Static89.report(null, local83);
 			}
-			local19.aBoolean226 = false;
+			local19.awaitingResponse = false;
 		}
 	}
 }

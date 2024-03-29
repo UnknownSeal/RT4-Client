@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.js5.Js5Request;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -117,10 +118,10 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 			}
 			this.aClass3_Sub2_Sub5_1 = this.aClass73_2.method2330(255, (byte) 0, this.anInt576, true);
 		}
-		if (this.aClass3_Sub2_Sub5_1.aBoolean226) {
+		if (this.aClass3_Sub2_Sub5_1.awaitingResponse) {
 			return null;
 		}
-		@Pc(52) byte[] local52 = this.aClass3_Sub2_Sub5_1.method3554();
+		@Pc(52) byte[] local52 = this.aClass3_Sub2_Sub5_1.getBytes();
 		if (this.aClass3_Sub2_Sub5_1 instanceof Js5CacheRequest) {
 			try {
 				if (local52 == null) {
@@ -285,7 +286,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 			return;
 		}
 		for (@Pc(331) Js5Request local331 = (Js5Request) this.aClass133_1.peekFront(); local331 != null; local331 = (Js5Request) this.aClass133_1.prev()) {
-			if (!local331.aBoolean226) {
+			if (!local331.awaitingResponse) {
 				if (local331.aBoolean227) {
 					if (!local331.aBoolean225) {
 						throw new RuntimeException();
@@ -303,7 +304,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 	@Override
 	public final int method524(@OriginalArg(0) int arg0) {
 		@Pc(15) Js5Request local15 = (Js5Request) this.aClass133_1.getNode((long) arg0);
-		return local15 == null ? 0 : local15.method3553();
+		return local15 == null ? 0 : local15.getPercentageComplete();
 	}
 
 	@OriginalMember(owner = "runetek4.client!bg", name = "b", descriptor = "(B)I")
@@ -314,7 +315,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 	@OriginalMember(owner = "runetek4.client!bg", name = "a", descriptor = "(III)Lclient!il;")
 	private Js5Request method536(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		@Pc(13) Js5Request local13 = (Js5Request) this.aClass133_1.getNode((long) arg1);
-		if (local13 != null && arg0 == 0 && !local13.aBoolean225 && local13.aBoolean226) {
+		if (local13 != null && arg0 == 0 && !local13.aBoolean225 && local13.awaitingResponse) {
 			local13.remove();
 			local13 = null;
 		}
@@ -349,10 +350,10 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 			}
 			this.aClass133_1.pushNode(local13, (long) arg1);
 		}
-		if (local13.aBoolean226) {
+		if (local13.awaitingResponse) {
 			return null;
 		}
-		@Pc(161) byte[] local161 = local13.method3554();
+		@Pc(161) byte[] local161 = local13.getBytes();
 		@Pc(199) int local199;
 		@Pc(252) Js5NetRequest local252;
 		if (!(local13 instanceof Js5CacheRequest)) {
@@ -452,7 +453,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 	@OriginalMember(owner = "runetek4.client!bg", name = "f", descriptor = "(I)I")
 	public final int method538() {
 		if (this.method521() == null) {
-			return this.aClass3_Sub2_Sub5_1 == null ? 0 : this.aClass3_Sub2_Sub5_1.method3553();
+			return this.aClass3_Sub2_Sub5_1 == null ? 0 : this.aClass3_Sub2_Sub5_1.getPercentageComplete();
 		} else {
 			return 100;
 		}
@@ -465,7 +466,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 		if (local9 == null) {
 			return null;
 		} else {
-			@Pc(17) byte[] local17 = local9.method3554();
+			@Pc(17) byte[] local17 = local9.getBytes();
 			local9.remove();
 			return local17;
 		}

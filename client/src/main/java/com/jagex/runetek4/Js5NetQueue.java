@@ -131,7 +131,7 @@ public final class Js5NetQueue {
 					this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos += local235;
 					if (this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos == local228) {
 						this.aClass3_Sub2_Sub5_Sub2_2.secondaryRemove();
-						this.aClass3_Sub2_Sub5_Sub2_2.aBoolean226 = false;
+						this.aClass3_Sub2_Sub5_Sub2_2.awaitingResponse = false;
 						this.aClass3_Sub2_Sub5_Sub2_2 = null;
 					} else if (this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 == 512) {
 						this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 = 0;
