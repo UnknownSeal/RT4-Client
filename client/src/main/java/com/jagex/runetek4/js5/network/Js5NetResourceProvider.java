@@ -3,6 +3,7 @@ package com.jagex.runetek4.js5.network;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.game.client.DiskStore;
 import com.jagex.runetek4.js5.Js5Request;
 import com.jagex.runetek4.js5.Js5ResourceProvider;
 import com.jagex.runetek4.js5.index.Js5Index;
@@ -42,7 +43,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private final int anInt576;
 
 	@OriginalMember(owner = "client!bg", name = "F", descriptor = "Lclient!ge;")
-	private final Cache aClass49_2;
+	private final DiskStore aClass49_2;
 
 	@OriginalMember(owner = "client!bg", name = "Q", descriptor = "Z")
 	private boolean aBoolean35;
@@ -60,7 +61,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private final boolean aBoolean37;
 
 	@OriginalMember(owner = "client!bg", name = "k", descriptor = "Lclient!ge;")
-	private final Cache aClass49_1;
+	private final DiskStore aClass49_1;
 
 	@OriginalMember(owner = "client!bg", name = "D", descriptor = "Lclient!jb;")
 	private final Js5NetQueue tcpClient;
@@ -72,7 +73,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private Js5Request currentRequest;
 
 	@OriginalMember(owner = "client!bg", name = "<init>", descriptor = "(ILclient!ge;Lclient!ge;Lclient!jb;Lclient!k;IIZ)V")
-	public Js5NetResourceProvider(@OriginalArg(0) int arg0, @OriginalArg(1) Cache arg1, @OriginalArg(2) Cache arg2, @OriginalArg(3) Js5NetQueue arg3, @OriginalArg(4) Js5CacheQueue arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7) {
+	public Js5NetResourceProvider(@OriginalArg(0) int arg0, @OriginalArg(1) DiskStore arg1, @OriginalArg(2) DiskStore arg2, @OriginalArg(3) Js5NetQueue arg3, @OriginalArg(4) Js5CacheQueue arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7) {
 		this.anInt576 = arg0;
 		this.aClass49_2 = arg1;
 		if (this.aClass49_2 == null) {

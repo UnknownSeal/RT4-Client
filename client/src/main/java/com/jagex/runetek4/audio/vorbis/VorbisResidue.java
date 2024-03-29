@@ -1,5 +1,8 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.audio.vorbis;
 
+import com.jagex.runetek4.Static117;
+import com.jagex.runetek4.audio.vorbis.VorbisCodebook;
+import com.jagex.runetek4.audio.vorbis.VorbisSound;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -9,22 +12,22 @@ import org.openrs2.deob.annotation.Pc;
 public final class VorbisResidue {
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "c", descriptor = "I")
-	private final int anInt5679 = Static117.method2350(16);
+	private final int anInt5679 = VorbisSound.read(16);
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "b", descriptor = "I")
-	private final int anInt5678 = Static117.method2350(24);
+	private final int anInt5678 = VorbisSound.read(24);
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "d", descriptor = "I")
-	private final int anInt5680 = Static117.method2350(24);
+	private final int anInt5680 = VorbisSound.read(24);
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "e", descriptor = "I")
-	private final int anInt5681 = Static117.method2350(24) + 1;
+	private final int anInt5681 = VorbisSound.read(24) + 1;
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "g", descriptor = "I")
-	private final int anInt5682 = Static117.method2350(6) + 1;
+	private final int anInt5682 = VorbisSound.read(6) + 1;
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "a", descriptor = "I")
-	private final int anInt5677 = Static117.method2350(8);
+	private final int anInt5677 = VorbisSound.read(8);
 
 	@OriginalMember(owner = "runetek4.client!vb", name = "f", descriptor = "[I")
 	private final int[] anIntArray511;
@@ -35,16 +38,16 @@ public final class VorbisResidue {
 		@Pc(35) int local35;
 		for (local35 = 0; local35 < this.anInt5682; local35++) {
 			@Pc(41) int local41 = 0;
-			@Pc(44) int local44 = Static117.method2350(3);
-			@Pc(50) boolean local50 = Static117.method2346() != 0;
+			@Pc(44) int local44 = VorbisSound.read(3);
+			@Pc(50) boolean local50 = VorbisSound.readBit() != 0;
 			if (local50) {
-				local41 = Static117.method2350(5);
+				local41 = VorbisSound.read(5);
 			}
 			local33[local35] = local41 << 3 | local44;
 		}
 		this.anIntArray511 = new int[this.anInt5682 * 8];
 		for (local35 = 0; local35 < this.anInt5682 * 8; local35++) {
-			this.anIntArray511[local35] = (local33[local35 >> 3] & 0x1 << (local35 & 0x7)) == 0 ? -1 : Static117.method2350(8);
+			this.anIntArray511[local35] = (local33[local35 >> 3] & 0x1 << (local35 & 0x7)) == 0 ? -1 : VorbisSound.read(8);
 		}
 	}
 
@@ -67,7 +70,7 @@ public final class VorbisResidue {
 				@Pc(51) int local51;
 				@Pc(55) int local55;
 				if (local35 == 0) {
-					local51 = Static117.aClass78Array1[this.anInt5677].method2415();
+					local51 = Static117.aClass78Array1[this.anInt5677].decodeScalar();
 					for (local55 = local1 - 1; local55 >= 0; local55--) {
 						if (local40 + local55 < local30) {
 							local33[local40 + local55] = local51 % this.anInt5682;

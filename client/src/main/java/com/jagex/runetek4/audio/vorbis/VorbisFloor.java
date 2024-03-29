@@ -1,47 +1,51 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.audio.vorbis;
 
+import com.jagex.runetek4.Static108;
+import com.jagex.runetek4.Static117;
+import com.jagex.runetek4.Static204;
+import com.jagex.runetek4.audio.vorbis.VorbisSound;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!ie")
-public final class Class67 {
+@OriginalClass("client!ie")
+public final class VorbisFloor {
 
-	@OriginalMember(owner = "runetek4.client!ie", name = "e", descriptor = "[I")
+	@OriginalMember(owner = "client!ie", name = "e", descriptor = "[I")
 	private final int[] anIntArray262;
 
-	@OriginalMember(owner = "runetek4.client!ie", name = "i", descriptor = "[I")
+	@OriginalMember(owner = "client!ie", name = "i", descriptor = "[I")
 	private final int[] anIntArray265;
 
-	@OriginalMember(owner = "runetek4.client!ie", name = "g", descriptor = "[I")
+	@OriginalMember(owner = "client!ie", name = "g", descriptor = "[I")
 	private final int[] anIntArray263;
 
-	@OriginalMember(owner = "runetek4.client!ie", name = "a", descriptor = "[I")
+	@OriginalMember(owner = "client!ie", name = "a", descriptor = "[I")
 	private final int[] anIntArray260;
 
-	@OriginalMember(owner = "runetek4.client!ie", name = "c", descriptor = "[[I")
+	@OriginalMember(owner = "client!ie", name = "c", descriptor = "[[I")
 	private final int[][] anIntArrayArray20;
 
-	@OriginalMember(owner = "runetek4.client!ie", name = "f", descriptor = "I")
+	@OriginalMember(owner = "client!ie", name = "f", descriptor = "I")
 	private final int anInt2880;
 
-	@OriginalMember(owner = "runetek4.client!ie", name = "d", descriptor = "[I")
+	@OriginalMember(owner = "client!ie", name = "d", descriptor = "[I")
 	private final int[] anIntArray261;
 
-	@OriginalMember(owner = "runetek4.client!ie", name = "<init>", descriptor = "()V")
-	public Class67() {
-		@Pc(4) int local4 = Static117.method2350(16);
+	@OriginalMember(owner = "client!ie", name = "<init>", descriptor = "()V")
+	public VorbisFloor() {
+		@Pc(4) int local4 = VorbisSound.read(16);
 		if (local4 != 1) {
 			throw new RuntimeException();
 		}
-		@Pc(14) int local14 = Static117.method2350(5);
+		@Pc(14) int local14 = VorbisSound.read(5);
 		@Pc(16) int local16 = 0;
 		this.anIntArray262 = new int[local14];
 		@Pc(22) int local22;
 		@Pc(28) int local28;
 		for (local22 = 0; local22 < local14; local22++) {
-			local28 = Static117.method2350(4);
+			local28 = VorbisSound.read(4);
 			this.anIntArray262[local22] = local28;
 			if (local28 >= local16) {
 				local16 = local28 + 1;
@@ -53,20 +57,20 @@ public final class Class67 {
 		this.anIntArrayArray20 = new int[local16][];
 		@Pc(101) int local101;
 		for (local22 = 0; local22 < local16; local22++) {
-			this.anIntArray265[local22] = Static117.method2350(3) + 1;
-			local28 = this.anIntArray263[local22] = Static117.method2350(2);
+			this.anIntArray265[local22] = VorbisSound.read(3) + 1;
+			local28 = this.anIntArray263[local22] = VorbisSound.read(2);
 			if (local28 != 0) {
-				this.anIntArray260[local22] = Static117.method2350(8);
+				this.anIntArray260[local22] = VorbisSound.read(8);
 			}
 			local28 = 0x1 << local28;
 			@Pc(94) int[] local94 = new int[local28];
 			this.anIntArrayArray20[local22] = local94;
 			for (local101 = 0; local101 < local28; local101++) {
-				local94[local101] = Static117.method2350(8) - 1;
+				local94[local101] = VorbisSound.read(8) - 1;
 			}
 		}
-		this.anInt2880 = Static117.method2350(2) + 1;
-		local22 = Static117.method2350(4);
+		this.anInt2880 = VorbisSound.read(2) + 1;
+		local22 = VorbisSound.read(4);
 		local28 = 2;
 		@Pc(128) int local128;
 		for (local128 = 0; local128 < local14; local128++) {
@@ -79,7 +83,7 @@ public final class Class67 {
 		for (local128 = 0; local128 < local14; local128++) {
 			local101 = this.anIntArray262[local128];
 			for (@Pc(173) int local173 = 0; local173 < this.anIntArray265[local101]; local173++) {
-				this.anIntArray261[local28++] = Static117.method2350(local22);
+				this.anIntArray261[local28++] = VorbisSound.read(local22);
 			}
 		}
 		if (Static108.anIntArray264 == null || Static108.anIntArray264.length < local28) {
@@ -89,7 +93,7 @@ public final class Class67 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ie", name = "a", descriptor = "(IIII[FI)V")
+	@OriginalMember(owner = "client!ie", name = "a", descriptor = "(IIII[FI)V")
 	private void method2265(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) float[] arg4, @OriginalArg(5) int arg5) {
 		@Pc(3) int local3 = arg3 - arg1;
 		@Pc(7) int local7 = arg2 - arg0;
@@ -115,7 +119,7 @@ public final class Class67 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ie", name = "a", descriptor = "(II)V")
+	@OriginalMember(owner = "client!ie", name = "a", descriptor = "(II)V")
 	private void method2266(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		if (arg0 >= arg1) {
 			return;
@@ -143,7 +147,7 @@ public final class Class67 {
 		this.method2266(local5 + 1, arg1);
 	}
 
-	@OriginalMember(owner = "runetek4.client!ie", name = "a", descriptor = "(IIIII)I")
+	@OriginalMember(owner = "client!ie", name = "a", descriptor = "(IIIII)I")
 	private int method2267(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		@Pc(3) int local3 = arg3 - arg1;
 		@Pc(7) int local7 = arg2 - arg0;
@@ -153,8 +157,8 @@ public final class Class67 {
 		return local3 < 0 ? arg1 - local24 : arg1 + local24;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ie", name = "a", descriptor = "([FI)V")
-	public final void method2269(@OriginalArg(0) float[] arg0, @OriginalArg(1) int arg1) {
+	@OriginalMember(owner = "client!ie", name = "a", descriptor = "([FI)V")
+	public void method2269(@OriginalArg(0) float[] arg0, @OriginalArg(1) int arg1) {
 		@Pc(3) int local3 = this.anIntArray261.length;
 		@Pc(10) int local10 = Static108.anIntArray267[this.anInt2880 - 1];
 		Static108.aBooleanArray60[0] = Static108.aBooleanArray60[1] = true;
@@ -204,9 +208,9 @@ public final class Class67 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ie", name = "b", descriptor = "()Z")
-	public final boolean method2272() {
-		@Pc(5) boolean local5 = Static117.method2346() != 0;
+	@OriginalMember(owner = "client!ie", name = "b", descriptor = "()Z")
+	public boolean method2272() {
+		@Pc(5) boolean local5 = VorbisSound.readBit() != 0;
 		if (!local5) {
 			return false;
 		}
@@ -217,8 +221,8 @@ public final class Class67 {
 		}
 		local15 = Static108.anIntArray267[this.anInt2880 - 1];
 		@Pc(40) int local40 = Static204.method3674(local15 - 1);
-		Static108.anIntArray266[0] = Static117.method2350(local40);
-		Static108.anIntArray266[1] = Static117.method2350(local40);
+		Static108.anIntArray266[0] = VorbisSound.read(local40);
+		Static108.anIntArray266[1] = VorbisSound.read(local40);
 		@Pc(52) int local52 = 2;
 		for (@Pc(54) int local54 = 0; local54 < this.anIntArray262.length; local54++) {
 			@Pc(64) int local64 = this.anIntArray262[local54];
@@ -227,12 +231,12 @@ public final class Class67 {
 			@Pc(80) int local80 = (0x1 << local74) - 1;
 			@Pc(82) int local82 = 0;
 			if (local74 > 0) {
-				local82 = Static117.aClass78Array1[this.anIntArray260[local64]].method2415();
+				local82 = Static117.aClass78Array1[this.anIntArray260[local64]].decodeScalar();
 			}
 			for (@Pc(94) int local94 = 0; local94 < local69; local94++) {
 				@Pc(106) int local106 = this.anIntArrayArray20[local64][local82 & local80];
 				local82 >>>= local74;
-				Static108.anIntArray266[local52++] = local106 >= 0 ? Static117.aClass78Array1[local106].method2415() : 0;
+				Static108.anIntArray266[local52++] = local106 >= 0 ? Static117.aClass78Array1[local106].decodeScalar() : 0;
 			}
 		}
 		return true;

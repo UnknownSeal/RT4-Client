@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.util.GregorianCalendar;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.game.client.DiskStore;
 import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.js5.index.Js5MasterIndex;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -389,7 +390,7 @@ public final class client extends GameShell {
 					Static47.cacheIndexes[i] = new BufferedFile(Static71.signLink.cacheIndexes[i], 6000, 0);
 				}
 				Static190.cacheMasterIndex = new BufferedFile(Static71.signLink.cacheMasterIndex, 6000, 0);
-				Static148.masterCache = new Cache(255, Static172.cacheData, Static190.cacheMasterIndex, 500000);
+				Static148.masterDiskStore = new DiskStore(255, Static172.cacheData, Static190.cacheMasterIndex, 500000);
 				Static121.uid = new BufferedFile(Static71.signLink.uid, 24, 0);
 				Static71.signLink.cacheIndexes = null;
 				Static71.signLink.cacheMasterIndex = null;
@@ -400,7 +401,7 @@ public final class client extends GameShell {
 			Static121.uid = null;
 			Static172.cacheData = null;
 			Static190.cacheMasterIndex = null;
-			Static148.masterCache = null;
+			Static148.masterDiskStore = null;
 		}
 		Static278.mainLoadPrimaryText = LocalizedText.GAME0_LOADING;
 		if (Static83.modeWhere != 0) {

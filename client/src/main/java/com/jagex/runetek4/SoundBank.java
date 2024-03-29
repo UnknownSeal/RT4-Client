@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.audio.vorbis.VorbisSound;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;

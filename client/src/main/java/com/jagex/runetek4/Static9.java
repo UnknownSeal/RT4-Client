@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.game.client.DiskStore;
 import com.jagex.runetek4.game.config.loctype.LocType;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -81,11 +82,11 @@ public final class Static9 {
 
 	@OriginalMember(owner = "runetek4.client!al", name = "a", descriptor = "(ZZZIZ)Lclient!ve;")
 	public static Js5 method183(@OriginalArg(0) boolean arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) int arg3) {
-		@Pc(7) Cache local7 = null;
+		@Pc(7) DiskStore local7 = null;
 		if (Static172.cacheData != null) {
-			local7 = new Cache(arg3, Static172.cacheData, Static47.cacheIndexes[arg3], 1000000);
+			local7 = new DiskStore(arg3, Static172.cacheData, Static47.cacheIndexes[arg3], 1000000);
 		}
-		Static269.aClass14_Sub1Array3[arg3] = Static257.aClass9_2.method180(arg3, Static148.masterCache, local7);
+		Static269.aClass14_Sub1Array3[arg3] = Static257.aClass9_2.method180(arg3, Static148.masterDiskStore, local7);
 		if (arg1) {
 			Static269.aClass14_Sub1Array3[arg3].method528();
 		}
