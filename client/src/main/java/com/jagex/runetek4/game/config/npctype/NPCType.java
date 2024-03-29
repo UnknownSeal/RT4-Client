@@ -255,7 +255,7 @@ public final class NPCType {
 			@Pc(84) ModelUnlit[] local84 = new ModelUnlit[this.models.length];
 			for (@Pc(86) int local86 = 0; local86 < this.models.length; local86++) {
 				if (this.models[local86] != -1) {
-					local84[local86] = Static77.method1686(Static86.aClass153_37, this.models[local86]);
+					local84[local86] = ModelUnlit.get(Static86.aClass153_37, this.models[local86]);
 					if (this.modeloffset != null && this.modeloffset[local86] != null && local84[local86] != null) {
 						local84[local86].method1672(this.modeloffset[local86][0], this.modeloffset[local86][1], this.modeloffset[local86][2]);
 					}
@@ -328,15 +328,15 @@ public final class NPCType {
 			if (this.recol_s != null) {
 				for (local173 = 0; local173 < this.recol_s.length; local173++) {
 					if (this.recol_d_palette == null || this.recol_d_palette.length <= local173) {
-						local593.method1687(this.recol_s[local173], this.recol_d[local173]);
+						local593.recolor(this.recol_s[local173], this.recol_d[local173]);
 					} else {
-						local593.method1687(this.recol_s[local173], Static232.aShortArray74[this.recol_d_palette[local173] & 0xFF]);
+						local593.recolor(this.recol_s[local173], Static232.aShortArray74[this.recol_d_palette[local173] & 0xFF]);
 					}
 				}
 			}
 			if (this.retex_s != null) {
 				for (local173 = 0; local173 < this.retex_s.length; local173++) {
-					local593.method1669(this.retex_s[local173], this.retex_d[local173]);
+					local593.retexture(this.retex_s[local173], this.retex_d[local173]);
 				}
 			}
 			local40 = local593.method1679(this.ambient + 64, this.contrast + 850, -30, -50, -30);
@@ -529,7 +529,7 @@ public final class NPCType {
 				}
 				@Pc(82) ModelUnlit[] local82 = new ModelUnlit[this.heads.length];
 				for (@Pc(84) int local84 = 0; local84 < this.heads.length; local84++) {
-					local82[local84] = Static77.method1686(Static86.aClass153_37, this.heads[local84]);
+					local82[local84] = ModelUnlit.get(Static86.aClass153_37, this.heads[local84]);
 				}
 				@Pc(119) ModelUnlit local119;
 				if (local82.length == 1) {
@@ -541,15 +541,15 @@ public final class NPCType {
 				if (this.recol_s != null) {
 					for (local130 = 0; local130 < this.recol_s.length; local130++) {
 						if (this.recol_d_palette == null || local130 >= this.recol_d_palette.length) {
-							local119.method1687(this.recol_s[local130], this.recol_d[local130]);
+							local119.recolor(this.recol_s[local130], this.recol_d[local130]);
 						} else {
-							local119.method1687(this.recol_s[local130], Static232.aShortArray74[this.recol_d_palette[local130] & 0xFF]);
+							local119.recolor(this.recol_s[local130], Static232.aShortArray74[this.recol_d_palette[local130] & 0xFF]);
 						}
 					}
 				}
 				if (this.retex_s != null) {
 					for (local130 = 0; local130 < this.retex_s.length; local130++) {
-						local119.method1669(this.retex_s[local130], this.retex_d[local130]);
+						local119.retexture(this.retex_s[local130], this.retex_d[local130]);
 					}
 				}
 				local41 = local119.method1679(64, 768, -50, -10, -50);

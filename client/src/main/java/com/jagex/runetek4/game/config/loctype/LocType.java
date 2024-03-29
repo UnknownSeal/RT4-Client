@@ -253,7 +253,7 @@ public final class LocType {
 				}
 				local7 = (ModelUnlit) Static169.aClass99_24.method3106((long) local60);
 				if (local7 == null) {
-					local7 = Static77.method1686(Static121.aClass153_45, local60 & 0xFFFF);
+					local7 = ModelUnlit.get(Static121.aClass153_45, local60 & 0xFFFF);
 					if (local7 == null) {
 						return null;
 					}
@@ -286,7 +286,7 @@ public final class LocType {
 			}
 			local7 = (ModelUnlit) Static169.aClass99_24.method3106((long) local48);
 			if (local7 == null) {
-				local7 = Static77.method1686(Static121.aClass153_45, local48 & 0xFFFF);
+				local7 = ModelUnlit.get(Static121.aClass153_45, local48 & 0xFFFF);
 				if (local7 == null) {
 					return null;
 				}
@@ -325,15 +325,15 @@ public final class LocType {
 		if (this.recol_s != null) {
 			for (local315 = 0; local315 < this.recol_s.length; local315++) {
 				if (this.recol_d_palette == null || this.recol_d_palette.length <= local315) {
-					local265.method1687(this.recol_s[local315], this.recol_d[local315]);
+					local265.recolor(this.recol_s[local315], this.recol_d[local315]);
 				} else {
-					local265.method1687(this.recol_s[local315], Static62.aShortArray19[this.recol_d_palette[local315] & 0xFF]);
+					local265.recolor(this.recol_s[local315], Static62.aShortArray19[this.recol_d_palette[local315] & 0xFF]);
 				}
 			}
 		}
 		if (this.retex_s != null) {
 			for (local315 = 0; local315 < this.retex_s.length; local315++) {
-				local265.method1669(this.retex_s[local315], this.retex_d[local315]);
+				local265.retexture(this.retex_s[local315], this.retex_d[local315]);
 			}
 		}
 		if (local211) {
@@ -654,7 +654,7 @@ public final class LocType {
 			if (local79 == null) {
 				@Pc(175) ModelUnlit local175 = null;
 				for (local177 = 0; local177 < local24; local177++) {
-					local175 = Static77.method1686(Static121.aClass153_45, this.shapes[local177] & 0xFFFF);
+					local175 = ModelUnlit.get(Static121.aClass153_45, this.shapes[local177] & 0xFFFF);
 					if (local175 == null) {
 						return null;
 					}
@@ -686,7 +686,7 @@ public final class LocType {
 			}
 			local79 = (GlModel) Static169.aClass99_24.method3106((long) local26);
 			if (local79 == null) {
-				@Pc(90) ModelUnlit local90 = Static77.method1686(Static121.aClass153_45, local26 & 0xFFFF);
+				@Pc(90) ModelUnlit local90 = ModelUnlit.get(Static121.aClass153_45, local26 & 0xFFFF);
 				if (local90 == null) {
 					return null;
 				}

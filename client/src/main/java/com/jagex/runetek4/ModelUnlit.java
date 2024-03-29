@@ -397,6 +397,12 @@ public final class ModelUnlit extends Entity {
 		this.aShort18 = arg0.aShort18;
 	}
 
+	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(Lclient!ve;II)Lclient!gb;")
+	public static ModelUnlit get(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
+		@Pc(5) byte[] local5 = arg0.method4495(arg1, 0);
+		return local5 == null ? null : new ModelUnlit(local5);
+	}
+
 	@OriginalMember(owner = "runetek4.client!gb", name = "c", descriptor = "()V")
 	public final void method1660() {
 		for (@Pc(1) int local1 = 0; local1 < this.anInt2139; local1++) {
@@ -622,7 +628,7 @@ public final class ModelUnlit extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "(SS)V")
-	public final void method1669(@OriginalArg(0) short arg0, @OriginalArg(1) short arg1) {
+	public final void retexture(@OriginalArg(0) short arg0, @OriginalArg(1) short arg1) {
 		if (this.aShortArray23 == null) {
 			return;
 		}
@@ -1452,7 +1458,7 @@ public final class ModelUnlit extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "b", descriptor = "(SS)V")
-	public final void method1687(@OriginalArg(0) short arg0, @OriginalArg(1) short arg1) {
+	public final void recolor(@OriginalArg(0) short arg0, @OriginalArg(1) short arg1) {
 		for (@Pc(1) int local1 = 0; local1 < this.anInt2136; local1++) {
 			if (this.aShortArray24[local1] == arg0) {
 				this.aShortArray24[local1] = arg1;

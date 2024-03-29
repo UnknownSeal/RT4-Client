@@ -322,7 +322,7 @@ public final class ObjType {
 		}
 		@Pc(76) Model local76 = (Model) Static244.aClass99_32.method3106((long) this.anInt2354);
 		if (local76 == null) {
-			@Pc(85) ModelUnlit local85 = Static77.method1686(Static230.aClass153_95, this.mesh);
+			@Pc(85) ModelUnlit local85 = ModelUnlit.get(Static230.aClass153_95, this.mesh);
 			if (local85 == null) {
 				return null;
 			}
@@ -330,15 +330,15 @@ public final class ObjType {
 			if (this.recol_s != null) {
 				for (local97 = 0; local97 < this.recol_s.length; local97++) {
 					if (this.recol_d_palette == null || local97 >= this.recol_d_palette.length) {
-						local85.method1687(this.recol_s[local97], this.recol_d[local97]);
+						local85.recolor(this.recol_s[local97], this.recol_d[local97]);
 					} else {
-						local85.method1687(this.recol_s[local97], Static259.aShortArray87[this.recol_d_palette[local97] & 0xFF]);
+						local85.recolor(this.recol_s[local97], Static259.aShortArray87[this.recol_d_palette[local97] & 0xFF]);
 					}
 				}
 			}
 			if (this.retex_s != null) {
 				for (local97 = 0; local97 < this.retex_s.length; local97++) {
-					local85.method1669(this.retex_s[local97], this.retex_d[local97]);
+					local85.retexture(this.retex_s[local97], this.retex_d[local97]);
 				}
 			}
 			local76 = local85.method1679(this.ambient + 64, this.contrast + 768, -50, -10, -50);
@@ -546,21 +546,21 @@ public final class ObjType {
 		if (local17 == -1) {
 			return null;
 		}
-		@Pc(36) ModelUnlit local36 = Static77.method1686(Static230.aClass153_95, local17);
+		@Pc(36) ModelUnlit local36 = ModelUnlit.get(Static230.aClass153_95, local17);
 		if (local4 != -1) {
-			@Pc(44) ModelUnlit local44 = Static77.method1686(Static230.aClass153_95, local4);
+			@Pc(44) ModelUnlit local44 = ModelUnlit.get(Static230.aClass153_95, local4);
 			@Pc(55) ModelUnlit[] local55 = new ModelUnlit[] { local36, local44 };
 			local36 = new ModelUnlit(local55, 2);
 		}
 		@Pc(66) int local66;
 		if (this.recol_s != null) {
 			for (local66 = 0; local66 < this.recol_s.length; local66++) {
-				local36.method1687(this.recol_s[local66], this.recol_d[local66]);
+				local36.recolor(this.recol_s[local66], this.recol_d[local66]);
 			}
 		}
 		if (this.retex_s != null) {
 			for (local66 = 0; local66 < this.retex_s.length; local66++) {
-				local36.method1669(this.retex_s[local66], this.retex_d[local66]);
+				local36.retexture(this.retex_s[local66], this.retex_d[local66]);
 			}
 		}
 		return local36;
@@ -579,14 +579,14 @@ public final class ObjType {
 		if (local4 == -1) {
 			return null;
 		}
-		@Pc(43) ModelUnlit local43 = Static77.method1686(Static230.aClass153_95, local4);
+		@Pc(43) ModelUnlit local43 = ModelUnlit.get(Static230.aClass153_95, local4);
 		if (local18 != -1) {
-			@Pc(54) ModelUnlit local54 = Static77.method1686(Static230.aClass153_95, local18);
+			@Pc(54) ModelUnlit local54 = ModelUnlit.get(Static230.aClass153_95, local18);
 			if (local21 == -1) {
 				@Pc(68) ModelUnlit[] local68 = new ModelUnlit[] { local43, local54 };
 				local43 = new ModelUnlit(local68, 2);
 			} else {
-				@Pc(81) ModelUnlit local81 = Static77.method1686(Static230.aClass153_95, local21);
+				@Pc(81) ModelUnlit local81 = ModelUnlit.get(Static230.aClass153_95, local21);
 				@Pc(96) ModelUnlit[] local96 = new ModelUnlit[] { local43, local54, local81 };
 				local43 = new ModelUnlit(local96, 3);
 			}
@@ -600,12 +600,12 @@ public final class ObjType {
 		@Pc(165) int local165;
 		if (this.recol_s != null) {
 			for (local165 = 0; local165 < this.recol_s.length; local165++) {
-				local43.method1687(this.recol_s[local165], this.recol_d[local165]);
+				local43.recolor(this.recol_s[local165], this.recol_d[local165]);
 			}
 		}
 		if (this.retex_s != null) {
 			for (local165 = 0; local165 < this.retex_s.length; local165++) {
-				local43.method1669(this.retex_s[local165], this.retex_d[local165]);
+				local43.retexture(this.retex_s[local165], this.retex_d[local165]);
 			}
 		}
 		return local43;
@@ -633,7 +633,7 @@ public final class ObjType {
 
 	@OriginalMember(owner = "client!h", name = "d", descriptor = "(I)Lclient!w;")
 	public final SoftwareModel method1834() {
-		@Pc(11) ModelUnlit local11 = Static77.method1686(Static230.aClass153_95, this.mesh);
+		@Pc(11) ModelUnlit local11 = ModelUnlit.get(Static230.aClass153_95, this.mesh);
 		if (local11 == null) {
 			return null;
 		}
@@ -641,15 +641,15 @@ public final class ObjType {
 		if (this.recol_s != null) {
 			for (local21 = 0; local21 < this.recol_s.length; local21++) {
 				if (this.recol_d_palette == null || local21 >= this.recol_d_palette.length) {
-					local11.method1687(this.recol_s[local21], this.recol_d[local21]);
+					local11.recolor(this.recol_s[local21], this.recol_d[local21]);
 				} else {
-					local11.method1687(this.recol_s[local21], Static259.aShortArray87[this.recol_d_palette[local21] & 0xFF]);
+					local11.recolor(this.recol_s[local21], Static259.aShortArray87[this.recol_d_palette[local21] & 0xFF]);
 				}
 			}
 		}
 		if (this.retex_s != null) {
 			for (local21 = 0; local21 < this.retex_s.length; local21++) {
-				local11.method1669(this.retex_s[local21], this.retex_d[local21]);
+				local11.retexture(this.retex_s[local21], this.retex_d[local21]);
 			}
 		}
 		@Pc(107) SoftwareModel local107 = local11.method1671(this.ambient + 64, 768 - -this.contrast);

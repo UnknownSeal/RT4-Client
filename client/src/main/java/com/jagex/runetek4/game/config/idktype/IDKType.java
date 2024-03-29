@@ -1,5 +1,7 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.game.config.idktype;
 
+import com.jagex.runetek4.ModelUnlit;
+import com.jagex.runetek4.Static14;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -50,8 +52,6 @@ public final class IDKType {
 			this.type = packet.g1();
 			return;
 		}
-		@Pc(22) int local22;
-		@Pc(28) int local28;
 		if (code == 2) {
 			int length = packet.g1();
 			this.models = new int[length];
@@ -64,9 +64,9 @@ public final class IDKType {
 			int length = packet.g1();
 			this.recol_s = new short[length];
 			this.recol_d = new short[length];
-			for (local28 = 0; local28 < length; local28++) {
-				this.recol_s[local28] = (short) packet.g2();
-				this.recol_d[local28] = (short) packet.g2();
+			for (int index = 0; index < length; index++) {
+				this.recol_s[index] = (short) packet.g2();
+				this.recol_d[index] = (short) packet.g2();
 			}
 		} else if (code == 41) {
 			int length = packet.g1();
@@ -81,28 +81,39 @@ public final class IDKType {
 		}
 	}
 
-	@OriginalMember(owner = "client!dm", name = "a", descriptor = "(Z)Lclient!gb;")
-	public ModelUnlit method1198() {
-		@Pc(13) int local13 = 0;
-		@Pc(16) ModelUnlit[] local16 = new ModelUnlit[5];
-		for (@Pc(18) int local18 = 0; local18 < 5; local18++) {
-			if (this.heads[local18] != -1) {
-				local16[local13++] = Static77.method1686(Static14.aClass153_8, this.heads[local18]);
+	@OriginalMember(owner = "client!dm", name = "c", descriptor = "(I)Z")
+	public boolean hasReadyHeads() {
+		@Pc(3) boolean ready = true;
+		for (@Pc(12) int index = 0; index < 5; index++) {
+			if (this.heads[index] != -1 && !Static14.aClass153_8.requestDownload(this.heads[index], 0)) {
+				ready = false;
 			}
 		}
-		@Pc(52) ModelUnlit local52 = new ModelUnlit(local16, local13);
-		@Pc(58) int local58;
+		return ready;
+	}
+
+	@OriginalMember(owner = "client!dm", name = "a", descriptor = "(Z)Lclient!gb;")
+	public ModelUnlit getHeadModel() {
+		@Pc(13) int length = 0;
+		@Pc(16) ModelUnlit[] heads = new ModelUnlit[5];
+		for (@Pc(18) int index = 0; index < 5; index++) {
+			if (this.heads[index] != -1) {
+				heads[length++] = ModelUnlit.get(Static14.aClass153_8, this.heads[index]);
+			}
+		}
+		@Pc(52) ModelUnlit head = new ModelUnlit(heads, length);
+
 		if (this.recol_s != null) {
-			for (local58 = 0; local58 < this.recol_s.length; local58++) {
-				local52.method1687(this.recol_s[local58], this.recol_d[local58]);
+			for (int index = 0; index < this.recol_s.length; index++) {
+				head.recolor(this.recol_s[index], this.recol_d[index]);
 			}
 		}
 		if (this.retex_s != null) {
-			for (local58 = 0; local58 < this.retex_s.length; local58++) {
-				local52.method1669(this.retex_s[local58], this.retex_d[local58]);
+			for (int index = 0; index < this.retex_s.length; index++) {
+				head.retexture(this.retex_s[index], this.retex_d[index]);
 			}
 		}
-		return local52;
+		return head;
 	}
 
 	@OriginalMember(owner = "client!dm", name = "a", descriptor = "(I)Z")
@@ -120,42 +131,31 @@ public final class IDKType {
 	}
 
 	@OriginalMember(owner = "client!dm", name = "b", descriptor = "(B)Lclient!gb;")
-	public ModelUnlit method1204() {
+	public ModelUnlit getModel() {
 		if (this.models == null) {
 			return null;
 		}
-		@Pc(16) ModelUnlit[] local16 = new ModelUnlit[this.models.length];
-		for (@Pc(18) int local18 = 0; local18 < this.models.length; local18++) {
-			local16[local18] = Static77.method1686(Static14.aClass153_8, this.models[local18]);
+		@Pc(16) ModelUnlit[] models = new ModelUnlit[this.models.length];
+		for (@Pc(18) int index = 0; index < this.models.length; index++) {
+			models[index] = ModelUnlit.get(Static14.aClass153_8, this.models[index]);
 		}
-		@Pc(56) ModelUnlit local56;
-		if (local16.length == 1) {
-			local56 = local16[0];
+		@Pc(56) ModelUnlit body;
+		if (models.length == 1) {
+			body = models[0];
 		} else {
-			local56 = new ModelUnlit(local16, local16.length);
+			body = new ModelUnlit(models, models.length);
 		}
-		@Pc(70) int local70;
+
 		if (this.recol_s != null) {
-			for (local70 = 0; local70 < this.recol_s.length; local70++) {
-				local56.method1687(this.recol_s[local70], this.recol_d[local70]);
+			for (int index = 0; index < this.recol_s.length; index++) {
+				body.recolor(this.recol_s[index], this.recol_d[index]);
 			}
 		}
 		if (this.retex_s != null) {
-			for (local70 = 0; local70 < this.retex_s.length; local70++) {
-				local56.method1669(this.retex_s[local70], this.retex_d[local70]);
+			for (int index = 0; index < this.retex_s.length; index++) {
+				body.retexture(this.retex_s[index], this.retex_d[index]);
 			}
 		}
-		return local56;
-	}
-
-	@OriginalMember(owner = "client!dm", name = "c", descriptor = "(I)Z")
-	public boolean method1205() {
-		@Pc(3) boolean local3 = true;
-		for (@Pc(12) int local12 = 0; local12 < 5; local12++) {
-			if (this.heads[local12] != -1 && !Static14.aClass153_8.requestDownload(this.heads[local12], 0)) {
-				local3 = false;
-			}
-		}
-		return local3;
+		return body;
 	}
 }
