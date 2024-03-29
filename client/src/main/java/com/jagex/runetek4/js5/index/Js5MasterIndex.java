@@ -1,30 +1,31 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.js5.index;
 
+import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!al")
+@OriginalClass("client!al")
 public final class Js5MasterIndex {
 
-	@OriginalMember(owner = "runetek4.client!al", name = "a", descriptor = "Lclient!wa;")
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "Lclient!wa;")
 	private Packet aClass3_Sub15_1;
 
-	@OriginalMember(owner = "runetek4.client!al", name = "s", descriptor = "[Lclient!bg;")
+	@OriginalMember(owner = "client!al", name = "s", descriptor = "[Lclient!bg;")
 	private Js5CachedResourceProvider[] aClass14_Sub1Array1;
 
-	@OriginalMember(owner = "runetek4.client!al", name = "j", descriptor = "Lclient!k;")
+	@OriginalMember(owner = "client!al", name = "j", descriptor = "Lclient!k;")
 	private final Js5CacheQueue aClass80_1;
 
-	@OriginalMember(owner = "runetek4.client!al", name = "f", descriptor = "Lclient!jb;")
+	@OriginalMember(owner = "client!al", name = "f", descriptor = "Lclient!jb;")
 	private final Js5NetQueue aClass73_1;
 
-	@OriginalMember(owner = "runetek4.client!al", name = "c", descriptor = "Lclient!pm;")
+	@OriginalMember(owner = "client!al", name = "c", descriptor = "Lclient!pm;")
 	private Js5NetRequest aClass3_Sub2_Sub5_Sub2_1;
 
-	@OriginalMember(owner = "runetek4.client!al", name = "<init>", descriptor = "(Lclient!jb;Lclient!k;)V")
+	@OriginalMember(owner = "client!al", name = "<init>", descriptor = "(Lclient!jb;Lclient!k;)V")
 	public Js5MasterIndex(@OriginalArg(0) Js5NetQueue arg0, @OriginalArg(1) Js5CacheQueue arg1) {
 		this.aClass80_1 = arg1;
 		this.aClass73_1 = arg0;
@@ -33,8 +34,8 @@ public final class Js5MasterIndex {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!al", name = "b", descriptor = "(I)Z")
-	public final boolean method178() {
+	@OriginalMember(owner = "client!al", name = "b", descriptor = "(I)Z")
+	public boolean method178() {
 		if (this.aClass3_Sub15_1 != null) {
 			return true;
 		}
@@ -53,8 +54,8 @@ public final class Js5MasterIndex {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!al", name = "a", descriptor = "(B)V")
-	public final void method179() {
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(B)V")
+	public void method179() {
 		if (this.aClass14_Sub1Array1 == null) {
 			return;
 		}
@@ -71,12 +72,12 @@ public final class Js5MasterIndex {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!al", name = "a", descriptor = "(IILclient!ge;Lclient!ge;)Lclient!bg;")
-	public final Js5CachedResourceProvider method180(@OriginalArg(1) int arg0, @OriginalArg(2) Cache arg1, @OriginalArg(3) Cache arg2) {
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(IILclient!ge;Lclient!ge;)Lclient!bg;")
+	public Js5CachedResourceProvider method180(@OriginalArg(1) int arg0, @OriginalArg(2) Cache arg1, @OriginalArg(3) Cache arg2) {
 		return this.method188(arg2, arg0, arg1);
 	}
 
-	@OriginalMember(owner = "runetek4.client!al", name = "a", descriptor = "(Lclient!ge;IIZLclient!ge;)Lclient!bg;")
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(Lclient!ge;IIZLclient!ge;)Lclient!bg;")
 	private Js5CachedResourceProvider method188(@OriginalArg(0) Cache arg0, @OriginalArg(2) int arg1, @OriginalArg(4) Cache arg2) {
 		if (this.aClass3_Sub15_1 == null) {
 			throw new RuntimeException();

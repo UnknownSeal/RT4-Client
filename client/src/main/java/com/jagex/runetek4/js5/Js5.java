@@ -2,6 +2,7 @@ package com.jagex.runetek4.js5;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.js5.index.Js5Index;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -328,7 +329,7 @@ public final class Js5 {
 			try {
 				bytes = uncompress(local114);
 			} catch (@Pc(142) RuntimeException local142) {
-				System.out.println("T3 - " + (key != null) + "," + group + "," + local114.length + "," + Static71.method1442(local114, local114.length) + "," + Static71.method1442(local114, local114.length - 2) + "," + this.index.anIntArray268[group] + "," + this.index.crc);
+				System.out.println("T3 - " + (key != null) + "," + group + "," + local114.length + "," + Packet.getcrc(local114, local114.length) + "," + Packet.getcrc(local114, local114.length - 2) + "," + this.index.anIntArray268[group] + "," + this.index.crc);
 				bytes = new byte[] { 0 };
 			}
 			if (this.aBoolean296) {

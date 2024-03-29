@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.core.datastruct.Node;
 import com.jagex.runetek4.js5.Js5Request;
+import com.jagex.runetek4.js5.index.Js5Index;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -128,7 +129,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 					throw new RuntimeException();
 				}
 				this.aClass70_1 = new Js5Index(local52, this.anInt573);
-				if (this.anInt566 != this.aClass70_1.anInt2908) {
+				if (this.anInt566 != this.aClass70_1.indexversion) {
 					throw new RuntimeException();
 				}
 			} catch (@Pc(88) RuntimeException local88) {
@@ -191,7 +192,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 			@Pc(25) Node local25 = this.aClass69_17.method2289();
 			return local25 == null ? 0 : (int) local25.nodeId;
 		} else {
-			return this.aClass70_1.anInt2902;
+			return this.aClass70_1.length;
 		}
 	}
 
@@ -309,7 +310,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 
 	@OriginalMember(owner = "runetek4.client!bg", name = "b", descriptor = "(B)I")
 	public final int method535() {
-		return this.aClass70_1 == null ? 0 : this.aClass70_1.anInt2902;
+		return this.aClass70_1 == null ? 0 : this.aClass70_1.length;
 	}
 
 	@OriginalMember(owner = "runetek4.client!bg", name = "a", descriptor = "(III)Lclient!il;")

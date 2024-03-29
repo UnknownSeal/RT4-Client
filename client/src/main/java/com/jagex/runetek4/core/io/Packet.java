@@ -82,12 +82,17 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!nf", name = "a", descriptor = "(II[BB)I")
-	public static int getcrc(@OriginalArg(0) int off, @OriginalArg(1) int len, @OriginalArg(2) byte[] src) {
+	public static int getcrc(@OriginalArg(2) byte[] src, @OriginalArg(0) int off, @OriginalArg(1) int len) {
 		@Pc(5) int crc = -1;
 		for (@Pc(15) int index = off; index < len; index++) {
 			crc = crc >>> 8 ^ crctable[(crc ^ src[index]) & 0xFF];
 		}
 		return ~crc;
+	}
+
+	@OriginalMember(owner = "runetek4.client!fk", name = "a", descriptor = "([BIZ)I")
+	public static int getcrc(@OriginalArg(0) byte[] src, @OriginalArg(1) int len) {
+		return getcrc(src, 0, len);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "c", descriptor = "(I)I")
@@ -489,7 +494,7 @@ public class Packet extends Node {
 
 	@OriginalMember(owner = "client!wa", name = "c", descriptor = "(BI)I")
 	public final int pCrc32(@OriginalArg(1) int off) {
-		@Pc(16) int checksum = getcrc(off, this.pos, this.data);
+		@Pc(16) int checksum = getcrc(this.data, off, this.pos);
 		this.p4(checksum);
 		return checksum;
 	}
