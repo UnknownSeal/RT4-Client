@@ -60,7 +60,7 @@ public final class Js5CacheQueue implements Runnable {
 	public final Js5CacheRequest method2467(@OriginalArg(0) Cache arg0, @OriginalArg(2) byte[] arg1, @OriginalArg(3) int arg2) {
 		@Pc(7) Js5CacheRequest local7 = new Js5CacheRequest();
 		local7.aByteArray11 = arg1;
-		local7.aBoolean225 = false;
+		local7.urgent = false;
 		local7.secondaryNodeId = arg2;
 		local7.aClass49_3 = arg0;
 		local7.anInt824 = 2;
@@ -73,7 +73,7 @@ public final class Js5CacheQueue implements Runnable {
 		@Pc(7) Js5CacheRequest local7 = new Js5CacheRequest();
 		local7.aClass49_3 = arg1;
 		local7.anInt824 = 3;
-		local7.aBoolean225 = false;
+		local7.urgent = false;
 		local7.secondaryNodeId = arg0;
 		this.method2461(local7);
 		return local7;
@@ -95,12 +95,12 @@ public final class Js5CacheQueue implements Runnable {
 					local9.awaitingResponse = false;
 					return local9;
 				}
-				local31 = (Js5CacheRequest) this.aClass16_6.method797();
+				local31 = (Js5CacheRequest) this.aClass16_6.prev();
 			}
 		}
 		local9.aByteArray11 = arg0.method1701(arg1);
 		local9.awaitingResponse = false;
-		local9.aBoolean225 = true;
+		local9.urgent = true;
 		return local9;
 	}
 
@@ -111,7 +111,7 @@ public final class Js5CacheQueue implements Runnable {
 			@Pc(12) SecondaryLinkedList local12 = this.aClass16_6;
 			@Pc(19) Js5CacheRequest local19;
 			synchronized (this.aClass16_6) {
-				local19 = (Js5CacheRequest) this.aClass16_6.method796();
+				local19 = (Js5CacheRequest) this.aClass16_6.pollFront();
 				if (local19 == null) {
 					try {
 						this.aClass16_6.wait();

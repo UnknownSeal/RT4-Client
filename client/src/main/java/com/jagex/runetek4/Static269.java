@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.lighttype.LightType;
+import com.jagex.runetek4.js5.network.Js5NetResourceProvider;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -21,7 +22,7 @@ public final class Static269 {
 	public static final JagString aClass100_556 = Static28.parse("<br>");
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "Eb", descriptor = "[Lclient!bg;")
-	public static final Js5CachedResourceProvider[] aClass14_Sub1Array3 = new Js5CachedResourceProvider[28];
+	public static final Js5NetResourceProvider[] aClass14_Sub1Array3 = new Js5NetResourceProvider[28];
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(Z)V")
 	public static void method2170() {

@@ -27,7 +27,7 @@ public final class Static216 {
 		try {
 			if (++Static92.anInt2430 > 2000) {
 				if (Static124.socket != null) {
-					Static124.socket.method2834();
+					Static124.socket.closeGracefully();
 					Static124.socket = null;
 				}
 				if (Static276.anInt5816 >= 1) {
@@ -79,7 +79,7 @@ public final class Static216 {
 				if (local150 != 0) {
 					Static266.anInt5336 = local150;
 					Static184.anInt4348 = 0;
-					Static124.socket.method2834();
+					Static124.socket.closeGracefully();
 					Static124.socket = null;
 					return;
 				}
@@ -188,13 +188,13 @@ public final class Static216 {
 					Static184.anInt4348 = 1;
 					Static276.anInt5816++;
 					Static92.anInt2430 = 0;
-					Static124.socket.method2834();
+					Static124.socket.closeGracefully();
 					Static124.socket = null;
 					return;
 				} else {
 					Static266.anInt5336 = local623;
 					Static184.anInt4348 = 0;
-					Static124.socket.method2834();
+					Static124.socket.closeGracefully();
 					Static124.socket = null;
 					return;
 				}
@@ -211,7 +211,7 @@ public final class Static216 {
 					Static231.anInt5202 = (Static124.socket.read() + 3) * 60;
 					Static184.anInt4348 = 0;
 					Static266.anInt5336 = 21;
-					Static124.socket.method2834();
+					Static124.socket.closeGracefully();
 					Static124.socket = null;
 					return;
 				}
@@ -222,7 +222,7 @@ public final class Static216 {
 					Static204.anInt4765 = Static124.socket.read();
 					Static184.anInt4348 = 0;
 					Static266.anInt5336 = 29;
-					Static124.socket.method2834();
+					Static124.socket.closeGracefully();
 					Static124.socket = null;
 					return;
 				}
@@ -279,7 +279,7 @@ public final class Static216 {
 			}
 		} catch (@Pc(977) IOException local977) {
 			if (Static124.socket != null) {
-				Static124.socket.method2834();
+				Static124.socket.closeGracefully();
 				Static124.socket = null;
 			}
 			if (Static276.anInt5816 >= 1) {

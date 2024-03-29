@@ -29,7 +29,7 @@ public final class Static10 {
 	@OriginalMember(owner = "runetek4.client!an", name = "a", descriptor = "(BI)I")
 	public static int method347(@OriginalArg(1) int arg0) {
 		if (Static124.socket != null) {
-			Static124.socket.method2834();
+			Static124.socket.closeGracefully();
 			Static124.socket = null;
 		}
 		Static127.anInt3132++;

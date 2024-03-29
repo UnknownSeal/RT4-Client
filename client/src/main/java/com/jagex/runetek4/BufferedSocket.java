@@ -167,7 +167,7 @@ public final class BufferedSocket implements Runnable {
 	@OriginalMember(owner = "runetek4.client!ma", name = "finalize", descriptor = "()V")
 	@Override
 	public final void finalize() {
-		this.method2834();
+		this.closeGracefully();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ma", name = "c", descriptor = "(I)I")
@@ -192,7 +192,7 @@ public final class BufferedSocket implements Runnable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ma", name = "e", descriptor = "(I)V")
-	public final void method2834() {
+	public final void closeGracefully() {
 		if (this.aBoolean177) {
 			return;
 		}

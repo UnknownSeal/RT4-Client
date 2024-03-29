@@ -35,7 +35,7 @@ public final class SoftLruHashTable {
 	public final void method3095(@OriginalArg(1) Object arg0, @OriginalArg(2) long arg1) {
 		this.method3098(arg1);
 		if (this.anInt3966 == 0) {
-			@Pc(26) ReferenceNode local26 = (ReferenceNode) this.aClass16_8.method796();
+			@Pc(26) ReferenceNode local26 = (ReferenceNode) this.aClass16_8.pollFront();
 			local26.remove();
 			local26.secondaryRemove();
 		} else {
@@ -60,7 +60,7 @@ public final class SoftLruHashTable {
 	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(I)I")
 	public final int method3100() {
 		@Pc(10) int local10 = 0;
-		for (@Pc(16) ReferenceNode local16 = (ReferenceNode) this.aClass16_8.method795(); local16 != null; local16 = (ReferenceNode) this.aClass16_8.method797()) {
+		for (@Pc(16) ReferenceNode local16 = (ReferenceNode) this.aClass16_8.method795(); local16 != null; local16 = (ReferenceNode) this.aClass16_8.prev()) {
 			if (!local16.method3619()) {
 				local10++;
 			}
@@ -73,7 +73,7 @@ public final class SoftLruHashTable {
 		if (Static252.aClass22_1 == null) {
 			return;
 		}
-		for (@Pc(9) ReferenceNode local9 = (ReferenceNode) this.aClass16_8.method795(); local9 != null; local9 = (ReferenceNode) this.aClass16_8.method797()) {
+		for (@Pc(9) ReferenceNode local9 = (ReferenceNode) this.aClass16_8.method795(); local9 != null; local9 = (ReferenceNode) this.aClass16_8.prev()) {
 			if (local9.method3619()) {
 				if (local9.method3618() == null) {
 					local9.remove();
@@ -92,7 +92,7 @@ public final class SoftLruHashTable {
 
 	@OriginalMember(owner = "runetek4.client!n", name = "b", descriptor = "(B)V")
 	public final void method3103() {
-		for (@Pc(7) ReferenceNode local7 = (ReferenceNode) this.aClass16_8.method795(); local7 != null; local7 = (ReferenceNode) this.aClass16_8.method797()) {
+		for (@Pc(7) ReferenceNode local7 = (ReferenceNode) this.aClass16_8.method795(); local7 != null; local7 = (ReferenceNode) this.aClass16_8.prev()) {
 			if (local7.method3619()) {
 				local7.remove();
 				local7.secondaryRemove();

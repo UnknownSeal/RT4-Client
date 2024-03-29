@@ -54,11 +54,11 @@ public final class LruHashTable {
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(Lclient!rg;JB)V")
 	public final void method1811(@OriginalArg(0) SecondaryNode arg0, @OriginalArg(1) long arg1) {
 		if (this.anInt2314 == 0) {
-			@Pc(14) SecondaryNode local14 = this.aClass16_1.method796();
+			@Pc(14) SecondaryNode local14 = this.aClass16_1.pollFront();
 			local14.remove();
 			local14.secondaryRemove();
 			if (this.aClass3_Sub2_37 == local14) {
-				local14 = this.aClass16_1.method796();
+				local14 = this.aClass16_1.pollFront();
 				local14.remove();
 				local14.secondaryRemove();
 			}

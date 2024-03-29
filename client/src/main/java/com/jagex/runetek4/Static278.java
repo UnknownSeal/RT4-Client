@@ -181,7 +181,7 @@ public final class Static278 {
 	@OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "(B)V")
 	public static void method4653() {
 		if (Static124.socket != null) {
-			Static124.socket.method2834();
+			Static124.socket.closeGracefully();
 			Static124.socket = null;
 		}
 		Static217.method3768();

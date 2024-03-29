@@ -216,7 +216,7 @@ public final class client extends GameShell {
 		}
 		Static178.instance = null;
 		if (Static124.socket != null) {
-			Static124.socket.method2834();
+			Static124.socket.closeGracefully();
 			Static124.socket = null;
 		}
 		Static31.method847(Static154.canvas);

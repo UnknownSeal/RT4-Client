@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 public abstract class Js5Request extends SecondaryNode {
 
 	@OriginalMember(owner = "client!il", name = "L", descriptor = "Z")
-	public boolean aBoolean225;
+	public boolean urgent;
 
 	@OriginalMember(owner = "client!il", name = "T", descriptor = "Z")
 	public boolean aBoolean227;

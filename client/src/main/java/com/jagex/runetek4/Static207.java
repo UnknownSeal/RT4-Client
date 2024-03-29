@@ -173,7 +173,7 @@ public final class Static207 {
 						Static101.aClass10_Sub1Array1[local124++] = local247;
 					}
 				}
-				Static124.socket.method2834();
+				Static124.socket.closeGracefully();
 				Static124.socket = null;
 				Static127.anInt3132 = 0;
 				Static82.anInt2231 = 0;

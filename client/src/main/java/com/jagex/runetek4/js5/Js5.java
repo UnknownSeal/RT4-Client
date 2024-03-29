@@ -408,9 +408,9 @@ public final class Js5 {
 	@OriginalMember(owner = "client!ve", name = "b", descriptor = "(ZI)V")
 	private void fetchgroup(@OriginalArg(1) int arg0) {
 		if (this.aBoolean296) {
-			this.packed[arg0] = this.provider.method525(arg0);
+			this.packed[arg0] = this.provider.fetchgroup(arg0);
 		} else {
-			this.packed[arg0] = Static33.method869(this.provider.method525(arg0));
+			this.packed[arg0] = Static33.method869(this.provider.fetchgroup(arg0));
 		}
 	}
 

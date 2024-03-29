@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.io.IOException;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.js5.network.Js5NetRequest;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -24,7 +25,7 @@ public final class Js5NetQueue {
 	private Js5NetRequest aClass3_Sub2_Sub5_Sub2_2;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "Lclient!ce;")
-	private final SecondaryLinkedList aClass16_2 = new SecondaryLinkedList();
+	private final SecondaryLinkedList urgent = new SecondaryLinkedList();
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "q", descriptor = "Lclient!ce;")
 	private final SecondaryLinkedList aClass16_3 = new SecondaryLinkedList();
@@ -68,26 +69,26 @@ public final class Js5NetQueue {
 			this.anInt2962 += local19;
 			if (this.anInt2962 > 30000) {
 				try {
-					this.aClass95_1.method2834();
+					this.aClass95_1.closeGracefully();
 				} catch (@Pc(43) Exception local43) {
 				}
 				this.aClass95_1 = null;
 			}
 		}
 		if (this.aClass95_1 == null) {
-			return this.method2328() == 0 && this.method2321() == 0;
+			return this.getTotalUrgents() == 0 && this.method2321() == 0;
 		}
 		try {
 			this.aClass95_1.method2832();
 			@Pc(75) Js5NetRequest local75;
-			for (local75 = (Js5NetRequest) this.aClass16_2.method795(); local75 != null; local75 = (Js5NetRequest) this.aClass16_2.method797()) {
+			for (local75 = (Js5NetRequest) this.urgent.method795(); local75 != null; local75 = (Js5NetRequest) this.urgent.prev()) {
 				this.aClass3_Sub15_4.pos = 0;
 				this.aClass3_Sub15_4.p1(1);
 				this.aClass3_Sub15_4.p3((int) local75.secondaryNodeId);
 				this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
 				this.aClass16_3.method798(local75);
 			}
-			for (local75 = (Js5NetRequest) this.aClass16_4.method795(); local75 != null; local75 = (Js5NetRequest) this.aClass16_4.method797()) {
+			for (local75 = (Js5NetRequest) this.aClass16_4.method795(); local75 != null; local75 = (Js5NetRequest) this.aClass16_4.prev()) {
 				this.aClass3_Sub15_4.pos = 0;
 				this.aClass3_Sub15_4.p1(0);
 				this.aClass3_Sub15_4.p3((int) local75.secondaryNodeId);
@@ -113,23 +114,23 @@ public final class Js5NetQueue {
 				@Pc(235) int local235;
 				@Pc(283) int local283;
 				if (local196 <= 0) {
-					local228 = this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.data.length - this.aClass3_Sub2_Sub5_Sub2_2.aByte16;
+					local228 = this.aClass3_Sub2_Sub5_Sub2_2.packet.data.length - this.aClass3_Sub2_Sub5_Sub2_2.offset;
 					local235 = 512 - this.aClass3_Sub2_Sub5_Sub2_2.anInt4617;
-					if (local235 > local228 - this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos) {
-						local235 = local228 - this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos;
+					if (local235 > local228 - this.aClass3_Sub2_Sub5_Sub2_2.packet.pos) {
+						local235 = local228 - this.aClass3_Sub2_Sub5_Sub2_2.packet.pos;
 					}
 					if (local235 > local19) {
 						local235 = local19;
 					}
-					this.aClass95_1.method2827(this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos, local235, this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.data);
+					this.aClass95_1.method2827(this.aClass3_Sub2_Sub5_Sub2_2.packet.pos, local235, this.aClass3_Sub2_Sub5_Sub2_2.packet.data);
 					if (this.aByte8 != 0) {
 						for (local283 = 0; local283 < local235; local283++) {
-							this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.data[this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos + local283] = (byte) (this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.data[this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos + local283] ^ this.aByte8);
+							this.aClass3_Sub2_Sub5_Sub2_2.packet.data[this.aClass3_Sub2_Sub5_Sub2_2.packet.pos + local283] = (byte) (this.aClass3_Sub2_Sub5_Sub2_2.packet.data[this.aClass3_Sub2_Sub5_Sub2_2.packet.pos + local283] ^ this.aByte8);
 						}
 					}
 					this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 += local235;
-					this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos += local235;
-					if (this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.pos == local228) {
+					this.aClass3_Sub2_Sub5_Sub2_2.packet.pos += local235;
+					if (this.aClass3_Sub2_Sub5_Sub2_2.packet.pos == local228) {
 						this.aClass3_Sub2_Sub5_Sub2_2.secondaryRemove();
 						this.aClass3_Sub2_Sub5_Sub2_2.awaitingResponse = false;
 						this.aClass3_Sub2_Sub5_Sub2_2 = null;
@@ -160,10 +161,10 @@ public final class Js5NetQueue {
 							@Pc(501) long local501 = (long) ((local235 << 16) + local283);
 							@Pc(509) Js5NetRequest local509;
 							if (local491) {
-								for (local509 = (Js5NetRequest) this.aClass16_5.method795(); local509 != null && local509.secondaryNodeId != local501; local509 = (Js5NetRequest) this.aClass16_5.method797()) {
+								for (local509 = (Js5NetRequest) this.aClass16_5.method795(); local509 != null && local509.secondaryNodeId != local501; local509 = (Js5NetRequest) this.aClass16_5.prev()) {
 								}
 							} else {
-								for (local509 = (Js5NetRequest) this.aClass16_3.method795(); local509 != null && local501 != local509.secondaryNodeId; local509 = (Js5NetRequest) this.aClass16_3.method797()) {
+								for (local509 = (Js5NetRequest) this.aClass16_3.method795(); local509 != null && local501 != local509.secondaryNodeId; local509 = (Js5NetRequest) this.aClass16_3.prev()) {
 								}
 							}
 							if (local509 == null) {
@@ -171,9 +172,9 @@ public final class Js5NetQueue {
 							}
 							@Pc(568) int local568 = local480 == 0 ? 5 : 9;
 							this.aClass3_Sub2_Sub5_Sub2_2 = local509;
-							this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7 = new Packet(local476 + local568 + this.aClass3_Sub2_Sub5_Sub2_2.aByte16);
-							this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.p1(local480);
-							this.aClass3_Sub2_Sub5_Sub2_2.aClass3_Sub15_7.p4(local476);
+							this.aClass3_Sub2_Sub5_Sub2_2.packet = new Packet(local476 + local568 + this.aClass3_Sub2_Sub5_Sub2_2.offset);
+							this.aClass3_Sub2_Sub5_Sub2_2.packet.p1(local480);
+							this.aClass3_Sub2_Sub5_Sub2_2.packet.p4(local476);
 							this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 = 8;
 							this.aClass3_Sub15_5.pos = 0;
 						} else if (this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 != 0) {
@@ -190,13 +191,13 @@ public final class Js5NetQueue {
 			return true;
 		} catch (@Pc(644) IOException local644) {
 			try {
-				this.aClass95_1.method2834();
+				this.aClass95_1.closeGracefully();
 			} catch (@Pc(650) Exception local650) {
 			}
 			this.response = -2;
 			this.errors++;
 			this.aClass95_1 = null;
-			return this.method2328() == 0 && this.method2321() == 0;
+			return this.getTotalUrgents() == 0 && this.method2321() == 0;
 		}
 	}
 
@@ -212,7 +213,7 @@ public final class Js5NetQueue {
 			this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
 		} catch (@Pc(39) IOException local39) {
 			try {
-				this.aClass95_1.method2834();
+				this.aClass95_1.closeGracefully();
 			} catch (@Pc(45) Exception local45) {
 			}
 			this.errors++;
@@ -223,7 +224,7 @@ public final class Js5NetQueue {
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "b", descriptor = "(I)I")
 	private int method2321() {
-		return this.aClass16_4.method793() + this.aClass16_5.method793();
+		return this.aClass16_4.length() + this.aClass16_5.length();
 	}
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "(ZZ)V")
@@ -238,7 +239,7 @@ public final class Js5NetQueue {
 			this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
 		} catch (@Pc(42) IOException local42) {
 			try {
-				this.aClass95_1.method2834();
+				this.aClass95_1.closeGracefully();
 			} catch (@Pc(48) Exception local48) {
 			}
 			this.errors++;
@@ -258,7 +259,7 @@ public final class Js5NetQueue {
 	public final void loggedOut(@OriginalArg(0) boolean arg0, @OriginalArg(1) BufferedSocket arg1) {
 		if (this.aClass95_1 != null) {
 			try {
-				this.aClass95_1.method2834();
+				this.aClass95_1.closeGracefully();
 			} catch (@Pc(14) Exception local14) {
 			}
 			this.aClass95_1 = null;
@@ -269,10 +270,10 @@ public final class Js5NetQueue {
 		this.aClass3_Sub15_5.pos = 0;
 		this.aClass3_Sub2_Sub5_Sub2_2 = null;
 		while (true) {
-			@Pc(44) Js5NetRequest local44 = (Js5NetRequest) this.aClass16_3.method796();
+			@Pc(44) Js5NetRequest local44 = (Js5NetRequest) this.aClass16_3.pollFront();
 			if (local44 == null) {
 				while (true) {
-					local44 = (Js5NetRequest) this.aClass16_5.method796();
+					local44 = (Js5NetRequest) this.aClass16_5.pollFront();
 					if (local44 == null) {
 						if (this.aByte8 != 0) {
 							try {
@@ -283,7 +284,7 @@ public final class Js5NetQueue {
 								this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
 							} catch (@Pc(107) IOException local107) {
 								try {
-									this.aClass95_1.method2834();
+									this.aClass95_1.closeGracefully();
 								} catch (@Pc(113) Exception local113) {
 								}
 								this.response = -2;
@@ -298,19 +299,19 @@ public final class Js5NetQueue {
 					this.aClass16_4.method798(local44);
 				}
 			}
-			this.aClass16_2.method798(local44);
+			this.urgent.method798(local44);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "c", descriptor = "(B)Z")
-	public final boolean method2326() {
-		return this.method2328() >= 20;
+	public boolean isUrgentsFull() {
+		return this.getTotalUrgents() >= 20;
 	}
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "d", descriptor = "(B)V")
-	public final void method2327() {
+	public void method2327() {
 		try {
-			this.aClass95_1.method2834();
+			this.aClass95_1.closeGracefully();
 		} catch (@Pc(17) Exception local17) {
 		}
 		this.response = -1;
@@ -320,14 +321,14 @@ public final class Js5NetQueue {
 	}
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "d", descriptor = "(I)I")
-	public final int method2328() {
-		return this.aClass16_2.method793() + this.aClass16_3.method793();
+	public final int getTotalUrgents() {
+		return this.urgent.length() + this.aClass16_3.length();
 	}
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "b", descriptor = "(Z)V")
 	public final void method2329() {
 		if (this.aClass95_1 != null) {
-			this.aClass95_1.method2834();
+			this.aClass95_1.closeGracefully();
 		}
 	}
 
@@ -335,14 +336,14 @@ public final class Js5NetQueue {
 	public final Js5NetRequest method2330(@OriginalArg(1) int arg0, @OriginalArg(2) byte arg1, @OriginalArg(3) int arg2, @OriginalArg(4) boolean arg3) {
 		@Pc(7) Js5NetRequest local7 = new Js5NetRequest();
 		@Pc(14) long local14 = (long) (arg2 + (arg0 << 16));
-		local7.aBoolean225 = arg3;
+		local7.urgent = arg3;
 		local7.secondaryNodeId = local14;
-		local7.aByte16 = arg1;
+		local7.offset = arg1;
 		if (arg3) {
-			if (this.method2328() >= 20) {
+			if (this.getTotalUrgents() >= 20) {
 				throw new RuntimeException();
 			}
-			this.aClass16_2.method798(local7);
+			this.urgent.method798(local7);
 		} else if (this.method2321() < 20) {
 			this.aClass16_4.method798(local7);
 		} else {
@@ -363,7 +364,7 @@ public final class Js5NetQueue {
 			this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
 		} catch (@Pc(37) IOException local37) {
 			try {
-				this.aClass95_1.method2834();
+				this.aClass95_1.closeGracefully();
 			} catch (@Pc(43) Exception local43) {
 			}
 			this.errors++;
