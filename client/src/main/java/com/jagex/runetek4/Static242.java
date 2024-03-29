@@ -11,7 +11,7 @@ public final class Static242 {
 	public static SoftwareIndexedSprite aClass36_Sub1_4;
 
 	@OriginalMember(owner = "runetek4.client!tj", name = "b", descriptor = "[[Lclient!wm;")
-	public static Class165[][] aClass165ArrayArray1;
+	public static OpenGLRenderer[][] aOpenGLRendererArrayArray1;
 
 	@OriginalMember(owner = "runetek4.client!tj", name = "c", descriptor = "I")
 	private static int anInt5345;
@@ -99,7 +99,7 @@ public final class Static242 {
 		@Pc(31) int local31 = arg1 + arg3 - 1 - 1 >> 7;
 		for (@Pc(33) int local33 = local5; local33 <= local15; local33++) {
 			for (@Pc(38) int local38 = local21; local38 <= local31; local38++) {
-				aClass165ArrayArray1[local33][local38].aBoolean313 = true;
+				aOpenGLRendererArrayArray1[local33][local38].aBoolean313 = true;
 			}
 		}
 	}
@@ -136,7 +136,7 @@ public final class Static242 {
 					if (local29 - arg0 >= -arg2 && local29 - arg0 <= arg2) {
 						for (@Pc(51) int local51 = local22 * 8; local51 < local22 * 8 + 8; local51++) {
 							if (local51 - arg1 >= -arg2 && local51 - arg1 <= arg2 && arg4[local29 + arg2 - arg0][local51 + arg2 - arg1]) {
-								@Pc(89) Class165 local89 = aClass165ArrayArray1[local17][local22];
+								@Pc(89) OpenGLRenderer local89 = aOpenGLRendererArrayArray1[local17][local22];
 								if (local89.aBoolean313) {
 									local89.method4677(aClass36_Sub1_4, local17, local22);
 									local89.aBoolean313 = false;
@@ -229,10 +229,10 @@ public final class Static242 {
 		anInt5346 = 13;
 		anInt5345 = 13;
 		aClass36_Sub1_4 = new SoftwareIndexedSprite(anInt5346 * 128 + 2, anInt5345 * 128 + 2, 0);
-		aClass165ArrayArray1 = new Class165[anInt5346][anInt5345];
+		aOpenGLRendererArrayArray1 = new OpenGLRenderer[anInt5346][anInt5345];
 		for (@Pc(32) int local32 = 0; local32 < anInt5346; local32++) {
 			for (@Pc(37) int local37 = 0; local37 < anInt5345; local37++) {
-				aClass165ArrayArray1[local32][local37] = new Class165();
+				aOpenGLRendererArrayArray1[local32][local37] = new OpenGLRenderer();
 			}
 		}
 	}
@@ -284,7 +284,7 @@ public final class Static242 {
 	public static void method4203() {
 		aClass36_Sub1_4 = null;
 		aClass36_Sub1Array2 = null;
-		aClass165ArrayArray1 = null;
+		aOpenGLRendererArrayArray1 = null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!tj", name = "b", descriptor = "([B[BIIIIII)V")

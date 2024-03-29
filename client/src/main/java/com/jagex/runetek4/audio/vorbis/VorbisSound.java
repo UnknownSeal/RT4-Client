@@ -186,8 +186,19 @@ public final class VorbisSound extends Node {
 		}
 	}
 
+	@OriginalMember(owner = "runetek4.client!jc", name = "c", descriptor = "(I)F")
+	public static float float32Unpack(@OriginalArg(0) int x) {
+		@Pc(3) int mantiss = x & 0x1FFFFF;
+		@Pc(7) int sign = x & Integer.MIN_VALUE;
+		@Pc(13) int exponent = x >> 21 & 0x3FF;
+		if (sign != 0) {
+			mantiss = -mantiss;
+		}
+		return (float) ((double) mantiss * Math.pow(2.0D, exponent - 788));
+	}
+
 	@OriginalMember(owner = "runetek4.client!jc", name = "a", descriptor = "([I)Lclient!kj;")
-	public final PcmSound method2341(@OriginalArg(0) int[] arg0) {
+	public PcmSound method2341(@OriginalArg(0) int[] arg0) {
 		if (arg0 != null && arg0[0] <= 0) {
 			return null;
 		}

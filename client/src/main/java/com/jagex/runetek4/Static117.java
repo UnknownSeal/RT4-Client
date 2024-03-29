@@ -58,17 +58,6 @@ public final class Static117 {
 	@OriginalMember(owner = "runetek4.client!jc", name = "H", descriptor = "Z")
 	private static boolean aBoolean149 = false;
 
-	@OriginalMember(owner = "runetek4.client!jc", name = "c", descriptor = "(I)F")
-	public static float method2340(@OriginalArg(0) int arg0) {
-		@Pc(3) int local3 = arg0 & 0x1FFFFF;
-		@Pc(7) int local7 = arg0 & Integer.MIN_VALUE;
-		@Pc(13) int local13 = arg0 >> 21 & 0x3FF;
-		if (local7 != 0) {
-			local3 = -local3;
-		}
-		return (float) ((double) local3 * Math.pow(2.0D, (double) (local13 - 788)));
-	}
-
 	@OriginalMember(owner = "runetek4.client!jc", name = "a", descriptor = "(Lclient!ve;)Z")
 	private static boolean method2344(@OriginalArg(0) Js5 arg0) {
 		if (!aBoolean149) {

@@ -11,7 +11,10 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!wm")
-public final class Class165 {
+public final class OpenGLRenderer {
+
+	@OriginalMember(owner = "runetek4.client!wm", name = "g", descriptor = "[B")
+	public static final byte[] aByteArray82 = new byte[16384];
 
 	@OriginalMember(owner = "runetek4.client!wm", name = "a", descriptor = "Lclient!vi;")
 	private GlVertexBufferObject aClass155_6;
@@ -35,7 +38,7 @@ public final class Class165 {
 	private final int anInt5901;
 
 	@OriginalMember(owner = "runetek4.client!wm", name = "<init>", descriptor = "()V")
-	public Class165() {
+	public OpenGLRenderer() {
 		@Pc(9) GL2 local9 = GlRenderer.gl;
 		@Pc(12) int[] local12 = new int[1];
 		local9.glGenTextures(1, local12, 0);
@@ -148,16 +151,16 @@ public final class Class165 {
 					if (local2[local19 + local5] != 0) {
 						local96++;
 					}
-					Static281.aByteArray82[local23++] = (byte) (local96 * 17);
+					aByteArray82[local23++] = (byte) (local96 * 17);
 				} else {
-					Static281.aByteArray82[local23++] = 68;
+					aByteArray82[local23++] = 68;
 				}
 				local19++;
 			}
 			local19 += local5 - 128;
 		}
 		@Pc(145) GL2 local145 = GlRenderer.gl;
-		@Pc(148) ByteBuffer local148 = ByteBuffer.wrap(Static281.aByteArray82);
+		@Pc(148) ByteBuffer local148 = ByteBuffer.wrap(aByteArray82);
 		local148.limit(16384);
 		GlRenderer.setTextureId(this.anInt5901);
 		local145.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_ALPHA, 128, 128, 0, GL2.GL_ALPHA, GL2.GL_UNSIGNED_BYTE, local148);

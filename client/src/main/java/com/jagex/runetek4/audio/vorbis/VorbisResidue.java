@@ -1,8 +1,6 @@
 package com.jagex.runetek4.audio.vorbis;
 
 import com.jagex.runetek4.Static117;
-import com.jagex.runetek4.audio.vorbis.VorbisCodebook;
-import com.jagex.runetek4.audio.vorbis.VorbisSound;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -60,7 +58,7 @@ public final class VorbisResidue {
 		if (arg2) {
 			return;
 		}
-		local1 = Static117.aClass78Array1[this.anInt5677].anInt3055;
+		local1 = Static117.aClass78Array1[this.anInt5677].dim;
 		@Pc(25) int local25 = this.anInt5680 - this.anInt5678;
 		@Pc(30) int local30 = local25 / this.anInt5681;
 		@Pc(33) int[] local33 = new int[local30];
@@ -86,10 +84,10 @@ public final class VorbisResidue {
 						@Pc(110) VorbisCodebook local110 = Static117.aClass78Array1[local96];
 						@Pc(119) int local119;
 						if (this.anInt5679 == 0) {
-							local119 = this.anInt5681 / local110.anInt3055;
+							local119 = this.anInt5681 / local110.dim;
 							for (@Pc(121) int local121 = 0; local121 < local119; local121++) {
 								@Pc(127) float[] local127 = local110.method2413();
-								for (@Pc(129) int local129 = 0; local129 < local110.anInt3055; local129++) {
+								for (@Pc(129) int local129 = 0; local129 < local110.dim; local129++) {
 									arg0[local106 + local121 + local129 * local119] += local127[local129];
 								}
 							}
@@ -97,7 +95,7 @@ public final class VorbisResidue {
 							local119 = 0;
 							while (local119 < this.anInt5681) {
 								@Pc(162) float[] local162 = local110.method2413();
-								for (@Pc(164) int local164 = 0; local164 < local110.anInt3055; local164++) {
+								for (@Pc(164) int local164 = 0; local164 < local110.dim; local164++) {
 									arg0[local106 + local119] += local162[local164];
 									local119++;
 								}

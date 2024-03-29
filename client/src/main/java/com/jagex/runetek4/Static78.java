@@ -184,7 +184,7 @@ public final class Static78 {
 			Static242.aClass36_Sub1_4.method1392();
 			for (local427 = 0; local427 < 13; local427++) {
 				for (local320 = 0; local320 < 13; local320++) {
-					Static242.aClass165ArrayArray1[local427][local320].aBoolean313 = true;
+					Static242.aOpenGLRendererArrayArray1[local427][local320].aBoolean313 = true;
 				}
 			}
 		}
@@ -263,7 +263,7 @@ public final class Static78 {
 		if (GlRenderer.enabled) {
 			for (local320 = 0; local320 < 13; local320++) {
 				for (local309 = 0; local309 < 13; local309++) {
-					Static242.aClass165ArrayArray1[local320][local309].method4676(Static83.anIntArrayArrayArray4[0], local320 * 8, local309 * 8);
+					Static242.aOpenGLRendererArrayArray1[local320][local309].method4676(Static83.anIntArrayArrayArray4[0], local320 * 8, local309 * 8);
 				}
 			}
 		}
