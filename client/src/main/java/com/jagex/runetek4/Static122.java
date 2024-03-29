@@ -75,7 +75,7 @@ public final class Static122 {
 			@Pc(138) NPCType local138 = arg3.npcType;
 			if (local138.multinpc != null) {
 				local13.aBoolean117 = true;
-				local138 = local138.method2932();
+				local138 = local138.getvisible();
 			}
 			if (local138 != null) {
 				local13.anInt2028 = (local138.size + arg0) * 128;

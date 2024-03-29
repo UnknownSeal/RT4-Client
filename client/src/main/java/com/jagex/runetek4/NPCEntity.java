@@ -38,7 +38,7 @@ public final class NPCEntity extends PathingEntity {
 		this.anInt3413 = local74.method4549();
 		@Pc(84) NPCType local84 = this.npcType;
 		if (local84.multinpc != null) {
-			local84 = local84.method2932();
+			local84 = local84.getvisible();
 		}
 		@Pc(140) Model local140;
 		if (Static209.aBoolean240 && local84.spotshadow) {
@@ -102,7 +102,7 @@ public final class NPCEntity extends PathingEntity {
 	@Override
 	protected final int method2688() {
 		if (Static266.game != 0 && this.npcType.multinpc != null) {
-			@Pc(17) NPCType local17 = this.npcType.method2932();
+			@Pc(17) NPCType local17 = this.npcType.getvisible();
 			if (local17 != null && local17.bas != -1) {
 				return local17.bas;
 			}

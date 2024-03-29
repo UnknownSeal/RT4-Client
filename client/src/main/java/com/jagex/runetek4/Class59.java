@@ -137,7 +137,7 @@ public final class Class59 {
 
 	@OriginalMember(owner = "runetek4.client!hh", name = "b", descriptor = "(I)I")
 	public final int method1952() {
-		return this.anInt2492 == -1 ? (this.anIntArray233[8] << 10) + ((this.anIntArray236[0] << 25) + (this.anIntArray236[4] << 20)) + (this.anIntArray233[0] << 15) + (this.anIntArray233[11] << 5) + this.anIntArray233[1] : Static214.method4363(this.anInt2492).anInt3741 + 305419896;
+		return this.anInt2492 == -1 ? (this.anIntArray233[8] << 10) + ((this.anIntArray236[0] << 25) + (this.anIntArray236[4] << 20)) + (this.anIntArray233[0] << 15) + (this.anIntArray233[11] << 5) + this.anIntArray233[1] : Static214.get(this.anInt2492).id + 305419896;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(III)V")
@@ -152,7 +152,7 @@ public final class Class59 {
 	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "([Lclient!ub;ILclient!tk;Lclient!tk;IIIIZII)Lclient!ak;")
 	public final Model method1954(@OriginalArg(0) Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) SeqType arg2, @OriginalArg(3) SeqType arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(7) int arg6, @OriginalArg(9) int arg7, @OriginalArg(10) int arg8) {
 		if (this.anInt2492 != -1) {
-			return Static214.method4363(this.anInt2492).method2937(arg0, arg5, arg8, arg1, arg6, arg7, arg2, arg4, arg3);
+			return Static214.get(this.anInt2492).method2937(arg0, arg5, arg8, arg1, arg6, arg7, arg2, arg4, arg3);
 		}
 		@Pc(38) int[] local38 = this.anIntArray233;
 		@Pc(41) long local41 = this.aLong88;
@@ -443,7 +443,7 @@ public final class Class59 {
 	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(IBLclient!tk;II)Lclient!ak;")
 	public final Model method1956(@OriginalArg(0) int arg0, @OriginalArg(2) SeqType arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		if (this.anInt2492 != -1) {
-			return Static214.method4363(this.anInt2492).method2943(arg1, arg0, arg3, arg2);
+			return Static214.get(this.anInt2492).getHeadModel(arg1, arg0, arg3, arg2);
 		}
 		@Pc(30) Model local30 = (Model) Static139.aClass99_21.method3106(this.aLong88);
 		if (local30 == null) {

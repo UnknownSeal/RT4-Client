@@ -218,11 +218,11 @@ public final class Static103 {
 			if (local192 != null) {
 				@Pc(884) NPCType local884 = local192.npcType;
 				if (local884.multinpc != null) {
-					local884 = local884.method2932();
+					local884 = local884.getvisible();
 				}
 				if (local884 != null) {
 					Static6.outboundBuffer.pIsaac1(72);
-					Static6.outboundBuffer.p2(local884.anInt3741);
+					Static6.outboundBuffer.p2(local884.id);
 				}
 			}
 		}

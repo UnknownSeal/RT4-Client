@@ -89,7 +89,7 @@ public final class AreaSound extends Node {
 				@Pc(100) NPCType local100 = this.aClass8_Sub4_Sub2_1.npcType;
 				this.anInt2044 = local92;
 				if (local100.multinpc != null) {
-					local100 = local100.method2932();
+					local100 = local100.getvisible();
 				}
 				if (local100 == null) {
 					this.anInt2042 = 0;

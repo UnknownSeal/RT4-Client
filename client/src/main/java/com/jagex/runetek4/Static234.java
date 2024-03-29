@@ -88,13 +88,13 @@ public final class Static234 {
 				}
 			}
 			if ((local18 & 0x1) != 0) {
-				if (local14.npcType.method2935()) {
+				if (local14.npcType.hasBackgroundSound()) {
 					Static91.method1877(local14);
 				}
-				local14.method2698(Static214.method4363(Static57.aClass3_Sub15_Sub1_3.g2le()));
+				local14.method2698(Static214.get(Static57.aClass3_Sub15_Sub1_3.g2le()));
 				local14.setSize(local14.npcType.size);
 				local14.anInt3365 = local14.npcType.bas;
-				if (local14.npcType.method2935()) {
+				if (local14.npcType.hasBackgroundSound()) {
 					Static122.method2411(local14.movementQueueZ[0], null, 0, local14, local14.movementQueueX[0], Static55.level, null);
 				}
 			}

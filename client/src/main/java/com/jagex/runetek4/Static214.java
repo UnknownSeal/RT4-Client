@@ -60,20 +60,20 @@ public final class Static214 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "b", descriptor = "(II)Lclient!me;")
-	public static NPCType method4363(@OriginalArg(0) int arg0) {
-		@Pc(10) NPCType local10 = (NPCType) Static93.aClass99_13.method3106((long) arg0);
-		if (local10 != null) {
-			return local10;
+	public static NPCType get(@OriginalArg(0) int id) {
+		@Pc(10) NPCType npcType = (NPCType) Static93.aClass99_13.method3106((long) id);
+		if (npcType != null) {
+			return npcType;
 		}
-		@Pc(26) byte[] local26 = Static58.aClass153_28.method4495(Static60.method1447(arg0), Static179.method3322(arg0));
-		local10 = new NPCType();
-		local10.anInt3741 = arg0;
-		if (local26 != null) {
-			local10.decode(new Packet(local26));
+		@Pc(26) byte[] bytes = Static58.aClass153_28.method4495(Static60.method1447(id), Static179.method3322(id));
+		npcType = new NPCType();
+		npcType.id = id;
+		if (bytes != null) {
+			npcType.decode(new Packet(bytes));
 		}
-		local10.method2942();
-		Static93.aClass99_13.method3095(local10, (long) arg0);
-		return local10;
+		npcType.postDecode();
+		Static93.aClass99_13.method3095(npcType, (long) id);
+		return npcType;
 	}
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(IIIIIIIII)V")

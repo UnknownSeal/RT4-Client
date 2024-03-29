@@ -61,7 +61,7 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "client!e", name = "c", descriptor = "(B)I")
 	@Override
 	public int size() {
-		return this.model == null || this.model.anInt2492 == -1 ? super.size() : Static214.method4363(this.model.anInt2492).size;
+		return this.model == null || this.model.anInt2492 == -1 ? super.size() : Static214.get(this.model.anInt2492).size;
 	}
 
 	@OriginalMember(owner = "client!e", name = "b", descriptor = "(I)I")
@@ -199,7 +199,7 @@ public final class Player extends PathingEntity {
 		}
 		this.anInt3413 = local76.method4549();
 		@Pc(184) Model local184;
-		if (Static209.aBoolean240 && (this.model.anInt2492 == -1 || Static214.method4363(this.model.anInt2492).spotshadow)) {
+		if (Static209.aBoolean240 && (this.model.anInt2492 == -1 || Static214.get(this.model.anInt2492).spotshadow)) {
 			local184 = Static41.method1043(160, this.aBoolean171, local54 == null ? local25 : local54, this.anInt3412, 0, this.anInt3421, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, 240);
 			if (GlRenderer.enabled) {
 				@Pc(188) float local188 = GlRenderer.method4179();

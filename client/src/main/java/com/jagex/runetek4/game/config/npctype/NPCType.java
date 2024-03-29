@@ -43,7 +43,7 @@ public final class NPCType {
 	private IterableMap params;
 
 	@OriginalMember(owner = "client!me", name = "X", descriptor = "I")
-	public int anInt3741;
+	public int id;
 
 	@OriginalMember(owner = "client!me", name = "cb", descriptor = "[I")
 	private int[] models;
@@ -162,337 +162,6 @@ public final class NPCType {
 	@OriginalMember(owner = "client!me", name = "ob", descriptor = "I")
 	public int cursorattack = -1;
 
-	@OriginalMember(owner = "client!me", name = "a", descriptor = "(B)Lclient!me;")
-	public final NPCType method2932() {
-		@Pc(5) int local5 = -1;
-		if (this.multivarbit != -1) {
-			local5 = Static155.method2945(this.multivarbit);
-		} else if (this.multivarp != -1) {
-			local5 = Static7.anIntArray75[this.multivarp];
-		}
-		if (local5 < 0 || local5 >= this.multinpc.length - 1 || this.multinpc[local5] == -1) {
-			@Pc(55) int local55 = this.multinpc[this.multinpc.length - 1];
-			return local55 == -1 ? null : Static214.method4363(local55);
-		} else {
-			return Static214.method4363(this.multinpc[local5]);
-		}
-	}
-
-	@OriginalMember(owner = "client!me", name = "b", descriptor = "(B)Z")
-	public final boolean method2933() {
-		if (this.multinpc == null) {
-			return true;
-		}
-		@Pc(16) int local16 = -1;
-		if (this.multivarbit != -1) {
-			local16 = Static155.method2945(this.multivarbit);
-		} else if (this.multivarp != -1) {
-			local16 = Static7.anIntArray75[this.multivarp];
-		}
-		if (local16 < 0 || local16 >= this.multinpc.length - 1 || this.multinpc[local16] == -1) {
-			@Pc(62) int local62 = this.multinpc[this.multinpc.length - 1];
-			return local62 != -1;
-		} else {
-			return true;
-		}
-	}
-
-	@OriginalMember(owner = "client!me", name = "a", descriptor = "(I)Z")
-	public final boolean method2935() {
-		if (this.multinpc == null) {
-			return this.bgsound != -1 || this.bgsound_walk != -1 || this.bgsound_run != -1;
-		}
-		for (@Pc(35) int local35 = 0; local35 < this.multinpc.length; local35++) {
-			if (this.multinpc[local35] != -1) {
-				@Pc(60) NPCType local60 = Static214.method4363(this.multinpc[local35]);
-				if (local60.bgsound != -1 || local60.bgsound_walk != -1 || local60.bgsound_run != -1) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	@OriginalMember(owner = "client!me", name = "a", descriptor = "(III)I")
-	public final int method2936(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		if (this.params == null) {
-			return arg1;
-		} else {
-			@Pc(18) IntWrapper local18 = (IntWrapper) this.params.getNode((long) arg0);
-			return local18 == null ? arg1 : local18.value;
-		}
-	}
-
-	@OriginalMember(owner = "client!me", name = "a", descriptor = "([Lclient!ub;IBIIIILclient!tk;ILclient!tk;)Lclient!ak;")
-	public final Model method2937(@OriginalArg(0) Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) SeqType arg6, @OriginalArg(8) int arg7, @OriginalArg(9) SeqType arg8) {
-		if (this.multinpc != null) {
-			@Pc(13) NPCType local13 = this.method2932();
-			return local13 == null ? null : local13.method2937(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
-		}
-		@Pc(40) Model local40 = (Model) Static125.aClass99_18.method3106((long) this.anInt3741);
-		@Pc(46) boolean local46;
-		@Pc(173) int local173;
-		@Pc(235) int local235;
-		@Pc(221) int local221;
-		@Pc(200) int local200;
-		@Pc(207) int local207;
-		@Pc(214) int local214;
-		@Pc(228) int local228;
-		@Pc(300) int local300;
-		@Pc(324) int local324;
-		@Pc(318) int local318;
-		@Pc(330) int local330;
-		if (local40 == null) {
-			local46 = false;
-			for (@Pc(48) int local48 = 0; local48 < this.models.length; local48++) {
-				if (this.models[local48] != -1 && !Static86.aClass153_37.requestDownload(this.models[local48], 0)) {
-					local46 = true;
-				}
-			}
-			if (local46) {
-				return null;
-			}
-			@Pc(84) ModelUnlit[] local84 = new ModelUnlit[this.models.length];
-			for (@Pc(86) int local86 = 0; local86 < this.models.length; local86++) {
-				if (this.models[local86] != -1) {
-					local84[local86] = ModelUnlit.get(Static86.aClass153_37, this.models[local86]);
-					if (this.modeloffset != null && this.modeloffset[local86] != null && local84[local86] != null) {
-						local84[local86].method1672(this.modeloffset[local86][0], this.modeloffset[local86][1], this.modeloffset[local86][2]);
-					}
-				}
-			}
-			@Pc(156) BASType local156 = null;
-			if (this.bas != -1) {
-				local156 = Static90.method1856(this.bas);
-			}
-			if (local156 != null && local156.anIntArrayArray7 != null) {
-				for (local173 = 0; local173 < local156.anIntArrayArray7.length; local173++) {
-					if (local156.anIntArrayArray7[local173] != null && local84.length > local173 && local84[local173] != null) {
-						local200 = local156.anIntArrayArray7[local173][2];
-						local207 = local156.anIntArrayArray7[local173][3];
-						local214 = local156.anIntArrayArray7[local173][4];
-						local221 = local156.anIntArrayArray7[local173][1];
-						local228 = local156.anIntArrayArray7[local173][5];
-						local235 = local156.anIntArrayArray7[local173][0];
-						if (this.anIntArrayArray28 == null) {
-							this.anIntArrayArray28 = new int[local156.anIntArrayArray7.length][];
-						}
-						if (this.anIntArrayArray28[local173] == null) {
-							@Pc(259) int[] local259 = this.anIntArrayArray28[local173] = new int[15];
-							if (local207 == 0 && local214 == 0 && local228 == 0) {
-								local259[13] = -local221;
-								local259[14] = -local200;
-								local259[0] = local259[4] = local259[8] = 32768;
-								local259[12] = -local235;
-							} else {
-								local300 = MathUtils.anIntArray225[local207] >> 1;
-								@Pc(306) int local306 = MathUtils.anIntArray223[local207] >> 1;
-								@Pc(312) int local312 = MathUtils.anIntArray225[local214] >> 1;
-								local318 = MathUtils.anIntArray225[local228] >> 1;
-								local324 = MathUtils.anIntArray223[local214] >> 1;
-								local330 = MathUtils.anIntArray223[local228] >> 1;
-								local259[3] = local300 * local330 + 16384 >> 15;
-								local259[8] = local300 * local312 + 16384 >> 15;
-								local259[5] = -local306;
-								@Pc(363) int local363 = local306 * local330 + 16384 >> 15;
-								@Pc(371) int local371 = local318 * local306 + 16384 >> 15;
-								local259[1] = -local330 * local312 + local371 * local324 + 16384 >> 15;
-								local259[2] = local324 * local300 + 16384 >> 15;
-								local259[6] = -local324 * local318 + local363 * local312 + 16384 >> 15;
-								local259[14] = local259[8] * -local200 + -local221 * local259[5] + local259[2] * -local235 + 16384 >> 15;
-								local259[4] = local300 * local318 + 16384 >> 15;
-								local259[7] = -local324 * -local330 + local371 * local312 + 16384 >> 15;
-								local259[0] = local324 * local363 + local312 * local318 + 16384 >> 15;
-								local259[12] = local259[6] * -local200 + local259[3] * -local221 + -local235 * local259[0] + 16384 >> 15;
-								local259[13] = -local200 * local259[7] + -local235 * local259[1] + -local221 * local259[4] + 16384 >> 15;
-							}
-							local259[10] = local221;
-							local259[9] = local235;
-							local259[11] = local200;
-						}
-						if (local207 != 0 || local214 != 0 || local228 != 0) {
-							local84[local173].method1684(local207, local214, local228);
-						}
-						if (local235 != 0 || local221 != 0 || local200 != 0) {
-							local84[local173].method1672(local235, local221, local200);
-						}
-					}
-				}
-			}
-			@Pc(593) ModelUnlit local593;
-			if (local84.length == 1) {
-				local593 = local84[0];
-			} else {
-				local593 = new ModelUnlit(local84, local84.length);
-			}
-			if (this.recol_s != null) {
-				for (local173 = 0; local173 < this.recol_s.length; local173++) {
-					if (this.recol_d_palette == null || this.recol_d_palette.length <= local173) {
-						local593.recolor(this.recol_s[local173], this.recol_d[local173]);
-					} else {
-						local593.recolor(this.recol_s[local173], Static232.aShortArray74[this.recol_d_palette[local173] & 0xFF]);
-					}
-				}
-			}
-			if (this.retex_s != null) {
-				for (local173 = 0; local173 < this.retex_s.length; local173++) {
-					local593.retexture(this.retex_s[local173], this.retex_d[local173]);
-				}
-			}
-			local40 = local593.method1679(this.ambient + 64, this.contrast + 850, -30, -50, -30);
-			if (GlRenderer.enabled) {
-				((GlModel) local40).method4111(false, false, false, false, false, true);
-			}
-			Static125.aClass99_18.method3095(local40, (long) this.anInt3741);
-		}
-		local46 = false;
-		@Pc(721) boolean local721 = false;
-		@Pc(723) boolean local723 = false;
-		@Pc(725) boolean local725 = false;
-		local173 = arg0 == null ? 0 : arg0.length;
-		for (local235 = 0; local235 < local173; local235++) {
-			if (arg0[local235] != null) {
-				@Pc(753) SeqType local753 = Static36.method941(arg0[local235].anInt5396);
-				if (local753.anIntArray473 != null) {
-					Static146.aClass144Array1[local235] = local753;
-					local207 = arg0[local235].anInt5398;
-					local46 = true;
-					local200 = arg0[local235].anInt5399;
-					local214 = local753.anIntArray473[local200];
-					Static6.aClass3_Sub2_Sub7Array1[local235] = Static72.method1566(local214 >>> 16);
-					local214 &= 0xFFFF;
-					Static107.anIntArray259[local235] = local214;
-					if (Static6.aClass3_Sub2_Sub7Array1[local235] != null) {
-						local723 |= Static6.aClass3_Sub2_Sub7Array1[local235].method903(local214);
-						local721 |= Static6.aClass3_Sub2_Sub7Array1[local235].method901(local214);
-						local725 |= local753.aBoolean278;
-					}
-					if ((local753.aBoolean277 || Static204.aBoolean234) && local207 != -1 && local753.anIntArray473.length > local207) {
-						Static71.anIntArray147[local235] = local753.anIntArray474[local200];
-						Static214.anIntArray492[local235] = arg0[local235].anInt5404;
-						local228 = local753.anIntArray473[local207];
-						Static131.aClass3_Sub2_Sub7Array5[local235] = Static72.method1566(local228 >>> 16);
-						local228 &= 0xFFFF;
-						Static61.anIntArray148[local235] = local228;
-						if (Static131.aClass3_Sub2_Sub7Array5[local235] != null) {
-							local723 |= Static131.aClass3_Sub2_Sub7Array5[local235].method903(local228);
-							local721 |= Static131.aClass3_Sub2_Sub7Array5[local235].method901(local228);
-						}
-					} else {
-						Static71.anIntArray147[local235] = 0;
-						Static214.anIntArray492[local235] = 0;
-						Static131.aClass3_Sub2_Sub7Array5[local235] = null;
-						Static61.anIntArray148[local235] = -1;
-					}
-				}
-			}
-		}
-		if (!local46 && arg8 == null && arg6 == null) {
-			@Pc(933) Model local933 = local40.method4572(true, true, true);
-			if (this.resizeh != 128 || this.resizev != 128) {
-				local933.method4559(this.resizeh, this.resizev, this.resizeh);
-			}
-			return local933;
-		}
-		local221 = -1;
-		local235 = -1;
-		local200 = 0;
-		@Pc(962) AnimFrameset local962 = null;
-		@Pc(964) AnimFrameset local964 = null;
-		@Pc(1040) int local1040;
-		if (arg8 != null) {
-			local235 = arg8.anIntArray473[arg5];
-			local228 = local235 >>> 16;
-			local235 &= 0xFFFF;
-			local962 = Static72.method1566(local228);
-			if (local962 != null) {
-				local723 |= local962.method903(local235);
-				local721 |= local962.method901(local235);
-				local725 |= arg8.aBoolean278;
-			}
-			if ((arg8.aBoolean277 || Static204.aBoolean234) && arg3 != -1 && arg8.anIntArray473.length > arg3) {
-				local200 = arg8.anIntArray474[arg5];
-				local221 = arg8.anIntArray473[arg3];
-				local1040 = local221 >>> 16;
-				local221 &= 0xFFFF;
-				if (local228 == local1040) {
-					local964 = local962;
-				} else {
-					local964 = Static72.method1566(local221 >>> 16);
-				}
-				if (local964 != null) {
-					local723 |= local964.method903(local221);
-					local721 |= local964.method901(local221);
-				}
-			}
-		}
-		local228 = -1;
-		local1040 = -1;
-		@Pc(1088) AnimFrameset local1088 = null;
-		local300 = 0;
-		@Pc(1092) AnimFrameset local1092 = null;
-		if (arg6 != null) {
-			local228 = arg6.anIntArray473[arg2];
-			local324 = local228 >>> 16;
-			local228 &= 0xFFFF;
-			local1088 = Static72.method1566(local324);
-			if (local1088 != null) {
-				local723 |= local1088.method903(local228);
-				local721 |= local1088.method901(local228);
-				local725 |= arg6.aBoolean278;
-			}
-			if ((arg6.aBoolean277 || Static204.aBoolean234) && arg1 != -1 && arg1 < arg6.anIntArray473.length) {
-				local300 = arg6.anIntArray474[arg2];
-				local1040 = arg6.anIntArray473[arg1];
-				local318 = local1040 >>> 16;
-				local1040 &= 0xFFFF;
-				if (local318 == local324) {
-					local1092 = local1088;
-				} else {
-					local1092 = Static72.method1566(local1040 >>> 16);
-				}
-				if (local1092 != null) {
-					local723 |= local1092.method903(local1040);
-					local721 |= local1092.method901(local1040);
-				}
-			}
-		}
-		@Pc(1218) Model local1218 = local40.method4572(!local721, !local723, !local725);
-		local330 = 1;
-		for (local318 = 0; local318 < local173; local318++) {
-			if (Static6.aClass3_Sub2_Sub7Array1[local318] != null) {
-				local1218.method4565(Static6.aClass3_Sub2_Sub7Array1[local318], Static107.anIntArray259[local318], Static131.aClass3_Sub2_Sub7Array5[local318], Static61.anIntArray148[local318], Static214.anIntArray492[local318] - 1, Static71.anIntArray147[local318], local330, Static146.aClass144Array1[local318].aBoolean278, this.anIntArrayArray28[local318]);
-			}
-			local330 <<= 0x1;
-		}
-		if (local962 != null && local1088 != null) {
-			local1218.method4570(local962, local235, local964, local221, arg4 - 1, local200, local1088, local228, local1092, local1040, arg7 - 1, local300, arg8.aBooleanArray123, arg8.aBoolean278 | arg6.aBoolean278);
-		} else if (local962 != null) {
-			local1218.method4558(local962, local235, local964, local221, arg4 - 1, local200, arg8.aBoolean278);
-		} else if (local1088 != null) {
-			local1218.method4558(local1088, local228, local1092, local1040, arg7 - 1, local300, arg6.aBoolean278);
-		}
-		for (local318 = 0; local318 < local173; local318++) {
-			Static6.aClass3_Sub2_Sub7Array1[local318] = null;
-			Static131.aClass3_Sub2_Sub7Array5[local318] = null;
-			Static146.aClass144Array1[local318] = null;
-		}
-		if (this.resizeh != 128 || this.resizev != 128) {
-			local1218.method4559(this.resizeh, this.resizev, this.resizeh);
-		}
-		return local1218;
-	}
-
-	@OriginalMember(owner = "client!me", name = "a", descriptor = "(ILclient!na;Z)Lclient!na;")
-	public JagString getParam(@OriginalArg(0) int arg0, @OriginalArg(1) JagString arg1) {
-		if (this.params == null) {
-			return arg1;
-		} else {
-			@Pc(18) JagStringWrapper local18 = (JagStringWrapper) this.params.getNode((long) arg0);
-			return local18 == null ? arg1 : local18.value;
-		}
-	}
-
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(Lclient!wa;I)V")
 	public void decode(@OriginalArg(0) Packet packet) {
 		while (true) {
@@ -501,64 +170,6 @@ public final class NPCType {
 				return;
 			}
 			this.decode(code, packet);
-		}
-	}
-
-	@OriginalMember(owner = "client!me", name = "b", descriptor = "(I)V")
-	public final void method2942() {
-	}
-
-	@OriginalMember(owner = "client!me", name = "a", descriptor = "(Lclient!tk;IIII)Lclient!ak;")
-	public final Model method2943(@OriginalArg(0) SeqType arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
-		if (this.multinpc != null) {
-			@Pc(13) NPCType local13 = this.method2932();
-			return local13 == null ? null : local13.method2943(arg0, arg1, arg2, arg3);
-		} else if (this.heads == null) {
-			return null;
-		} else {
-			@Pc(41) Model local41 = (Model) Static262.aClass99_35.method3106((long) this.anInt3741);
-			if (local41 == null) {
-				@Pc(46) boolean local46 = false;
-				for (@Pc(48) int local48 = 0; local48 < this.heads.length; local48++) {
-					if (!Static86.aClass153_37.requestDownload(this.heads[local48], 0)) {
-						local46 = true;
-					}
-				}
-				if (local46) {
-					return null;
-				}
-				@Pc(82) ModelUnlit[] local82 = new ModelUnlit[this.heads.length];
-				for (@Pc(84) int local84 = 0; local84 < this.heads.length; local84++) {
-					local82[local84] = ModelUnlit.get(Static86.aClass153_37, this.heads[local84]);
-				}
-				@Pc(119) ModelUnlit local119;
-				if (local82.length == 1) {
-					local119 = local82[0];
-				} else {
-					local119 = new ModelUnlit(local82, local82.length);
-				}
-				@Pc(130) int local130;
-				if (this.recol_s != null) {
-					for (local130 = 0; local130 < this.recol_s.length; local130++) {
-						if (this.recol_d_palette == null || local130 >= this.recol_d_palette.length) {
-							local119.recolor(this.recol_s[local130], this.recol_d[local130]);
-						} else {
-							local119.recolor(this.recol_s[local130], Static232.aShortArray74[this.recol_d_palette[local130] & 0xFF]);
-						}
-					}
-				}
-				if (this.retex_s != null) {
-					for (local130 = 0; local130 < this.retex_s.length; local130++) {
-						local119.retexture(this.retex_s[local130], this.retex_d[local130]);
-					}
-				}
-				local41 = local119.method1679(64, 768, -50, -10, -50);
-				Static262.aClass99_35.method3095(local41, (long) this.anInt3741);
-			}
-			if (arg0 != null) {
-				local41 = arg0.method4215(local41, arg2, arg1, arg3);
-			}
-			return local41;
 		}
 	}
 
@@ -723,12 +334,12 @@ public final class NPCType {
 		} else if (code == 137) {
 			this.cursorattack = packet.g2();
 		} else if (code == 249) {
-			local12 = packet.g1();
+			int length = packet.g1();
 			if (this.params == null) {
-				local18 = Static165.bitceil(local12);
+				local18 = Static165.bitceil(length);
 				this.params = new IterableMap(local18);
 			}
-			for (int index = 0; index < local12; index++) {
+			for (int index = 0; index < length; index++) {
 				@Pc(592) boolean local592 = packet.g1() == 1;
 				@Pc(596) int local596 = packet.g3();
 				@Pc(605) Node node;
@@ -737,8 +348,397 @@ public final class NPCType {
 				} else {
 					node = new IntWrapper(packet.g4());
 				}
-				this.params.pushNode(node, (long) local596);
+				this.params.pushNode(node, local596);
 			}
+		}
+	}
+
+	@OriginalMember(owner = "client!me", name = "b", descriptor = "(I)V")
+	public void postDecode() {
+	}
+
+	@OriginalMember(owner = "client!me", name = "a", descriptor = "(B)Lclient!me;")
+	public NPCType getvisible() {
+		@Pc(5) int i = -1;
+		if (this.multivarbit != -1) {
+			i = Static155.method2945(this.multivarbit);
+		} else if (this.multivarp != -1) {
+			i = Static7.anIntArray75[this.multivarp];
+		}
+		if (i < 0 || i >= this.multinpc.length - 1 || this.multinpc[i] == -1) {
+			@Pc(55) int local55 = this.multinpc[this.multinpc.length - 1];
+			return local55 == -1 ? null : Static214.get(local55);
+		} else {
+			return Static214.get(this.multinpc[i]);
+		}
+	}
+
+	@OriginalMember(owner = "client!me", name = "b", descriptor = "(B)Z")
+	public boolean method2933() {
+		if (this.multinpc == null) {
+			return true;
+		}
+		@Pc(16) int local16 = -1;
+		if (this.multivarbit != -1) {
+			local16 = Static155.method2945(this.multivarbit);
+		} else if (this.multivarp != -1) {
+			local16 = Static7.anIntArray75[this.multivarp];
+		}
+		if (local16 < 0 || local16 >= this.multinpc.length - 1 || this.multinpc[local16] == -1) {
+			@Pc(62) int local62 = this.multinpc[this.multinpc.length - 1];
+			return local62 != -1;
+		} else {
+			return true;
+		}
+	}
+
+	@OriginalMember(owner = "client!me", name = "a", descriptor = "(I)Z")
+	public boolean hasBackgroundSound() {
+		if (this.multinpc == null) {
+			return this.bgsound != -1 || this.bgsound_walk != -1 || this.bgsound_run != -1;
+		}
+		for (@Pc(35) int index = 0; index < this.multinpc.length; index++) {
+			if (this.multinpc[index] != -1) {
+				@Pc(60) NPCType npcType = Static214.get(this.multinpc[index]);
+				if (npcType.bgsound != -1 || npcType.bgsound_walk != -1 || npcType.bgsound_run != -1) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	@OriginalMember(owner = "client!me", name = "a", descriptor = "(III)I")
+	public int getParam(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
+		if (this.params == null) {
+			return arg1;
+		} else {
+			@Pc(18) IntWrapper local18 = (IntWrapper) this.params.getNode(arg0);
+			return local18 == null ? arg1 : local18.value;
+		}
+	}
+
+	@OriginalMember(owner = "client!me", name = "a", descriptor = "([Lclient!ub;IBIIIILclient!tk;ILclient!tk;)Lclient!ak;")
+	public Model method2937(@OriginalArg(0) Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) SeqType arg6, @OriginalArg(8) int arg7, @OriginalArg(9) SeqType arg8) {
+		if (this.multinpc != null) {
+			@Pc(13) NPCType local13 = this.getvisible();
+			return local13 == null ? null : local13.method2937(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+		}
+		@Pc(40) Model local40 = (Model) Static125.aClass99_18.method3106(this.id);
+		@Pc(46) boolean local46;
+		@Pc(173) int local173;
+		@Pc(235) int local235;
+		@Pc(221) int local221;
+		@Pc(200) int local200;
+		@Pc(207) int local207;
+		@Pc(214) int local214;
+		@Pc(228) int local228;
+		@Pc(300) int local300;
+		@Pc(324) int local324;
+		@Pc(318) int local318;
+		@Pc(330) int local330;
+		if (local40 == null) {
+			local46 = false;
+			for (@Pc(48) int local48 = 0; local48 < this.models.length; local48++) {
+				if (this.models[local48] != -1 && !Static86.aClass153_37.requestDownload(this.models[local48], 0)) {
+					local46 = true;
+				}
+			}
+			if (local46) {
+				return null;
+			}
+			@Pc(84) ModelUnlit[] local84 = new ModelUnlit[this.models.length];
+			for (@Pc(86) int local86 = 0; local86 < this.models.length; local86++) {
+				if (this.models[local86] != -1) {
+					local84[local86] = ModelUnlit.get(Static86.aClass153_37, this.models[local86]);
+					if (this.modeloffset != null && this.modeloffset[local86] != null && local84[local86] != null) {
+						local84[local86].method1672(this.modeloffset[local86][0], this.modeloffset[local86][1], this.modeloffset[local86][2]);
+					}
+				}
+			}
+			@Pc(156) BASType local156 = null;
+			if (this.bas != -1) {
+				local156 = Static90.method1856(this.bas);
+			}
+			if (local156 != null && local156.anIntArrayArray7 != null) {
+				for (local173 = 0; local173 < local156.anIntArrayArray7.length; local173++) {
+					if (local156.anIntArrayArray7[local173] != null && local84.length > local173 && local84[local173] != null) {
+						local200 = local156.anIntArrayArray7[local173][2];
+						local207 = local156.anIntArrayArray7[local173][3];
+						local214 = local156.anIntArrayArray7[local173][4];
+						local221 = local156.anIntArrayArray7[local173][1];
+						local228 = local156.anIntArrayArray7[local173][5];
+						local235 = local156.anIntArrayArray7[local173][0];
+						if (this.anIntArrayArray28 == null) {
+							this.anIntArrayArray28 = new int[local156.anIntArrayArray7.length][];
+						}
+						if (this.anIntArrayArray28[local173] == null) {
+							@Pc(259) int[] local259 = this.anIntArrayArray28[local173] = new int[15];
+							if (local207 == 0 && local214 == 0 && local228 == 0) {
+								local259[13] = -local221;
+								local259[14] = -local200;
+								local259[0] = local259[4] = local259[8] = 32768;
+								local259[12] = -local235;
+							} else {
+								local300 = MathUtils.anIntArray225[local207] >> 1;
+								@Pc(306) int local306 = MathUtils.anIntArray223[local207] >> 1;
+								@Pc(312) int local312 = MathUtils.anIntArray225[local214] >> 1;
+								local318 = MathUtils.anIntArray225[local228] >> 1;
+								local324 = MathUtils.anIntArray223[local214] >> 1;
+								local330 = MathUtils.anIntArray223[local228] >> 1;
+								local259[3] = local300 * local330 + 16384 >> 15;
+								local259[8] = local300 * local312 + 16384 >> 15;
+								local259[5] = -local306;
+								@Pc(363) int local363 = local306 * local330 + 16384 >> 15;
+								@Pc(371) int local371 = local318 * local306 + 16384 >> 15;
+								local259[1] = -local330 * local312 + local371 * local324 + 16384 >> 15;
+								local259[2] = local324 * local300 + 16384 >> 15;
+								local259[6] = -local324 * local318 + local363 * local312 + 16384 >> 15;
+								local259[14] = local259[8] * -local200 + -local221 * local259[5] + local259[2] * -local235 + 16384 >> 15;
+								local259[4] = local300 * local318 + 16384 >> 15;
+								local259[7] = -local324 * -local330 + local371 * local312 + 16384 >> 15;
+								local259[0] = local324 * local363 + local312 * local318 + 16384 >> 15;
+								local259[12] = local259[6] * -local200 + local259[3] * -local221 + -local235 * local259[0] + 16384 >> 15;
+								local259[13] = -local200 * local259[7] + -local235 * local259[1] + -local221 * local259[4] + 16384 >> 15;
+							}
+							local259[10] = local221;
+							local259[9] = local235;
+							local259[11] = local200;
+						}
+						if (local207 != 0 || local214 != 0 || local228 != 0) {
+							local84[local173].method1684(local207, local214, local228);
+						}
+						if (local235 != 0 || local221 != 0 || local200 != 0) {
+							local84[local173].method1672(local235, local221, local200);
+						}
+					}
+				}
+			}
+			@Pc(593) ModelUnlit local593;
+			if (local84.length == 1) {
+				local593 = local84[0];
+			} else {
+				local593 = new ModelUnlit(local84, local84.length);
+			}
+			if (this.recol_s != null) {
+				for (local173 = 0; local173 < this.recol_s.length; local173++) {
+					if (this.recol_d_palette == null || this.recol_d_palette.length <= local173) {
+						local593.recolor(this.recol_s[local173], this.recol_d[local173]);
+					} else {
+						local593.recolor(this.recol_s[local173], Static232.aShortArray74[this.recol_d_palette[local173] & 0xFF]);
+					}
+				}
+			}
+			if (this.retex_s != null) {
+				for (local173 = 0; local173 < this.retex_s.length; local173++) {
+					local593.retexture(this.retex_s[local173], this.retex_d[local173]);
+				}
+			}
+			local40 = local593.method1679(this.ambient + 64, this.contrast + 850, -30, -50, -30);
+			if (GlRenderer.enabled) {
+				((GlModel) local40).method4111(false, false, false, false, false, true);
+			}
+			Static125.aClass99_18.method3095(local40, this.id);
+		}
+		local46 = false;
+		@Pc(721) boolean local721 = false;
+		@Pc(723) boolean local723 = false;
+		@Pc(725) boolean local725 = false;
+		local173 = arg0 == null ? 0 : arg0.length;
+		for (local235 = 0; local235 < local173; local235++) {
+			if (arg0[local235] != null) {
+				@Pc(753) SeqType local753 = Static36.method941(arg0[local235].anInt5396);
+				if (local753.anIntArray473 != null) {
+					Static146.aClass144Array1[local235] = local753;
+					local207 = arg0[local235].anInt5398;
+					local46 = true;
+					local200 = arg0[local235].anInt5399;
+					local214 = local753.anIntArray473[local200];
+					Static6.aClass3_Sub2_Sub7Array1[local235] = Static72.method1566(local214 >>> 16);
+					local214 &= 0xFFFF;
+					Static107.anIntArray259[local235] = local214;
+					if (Static6.aClass3_Sub2_Sub7Array1[local235] != null) {
+						local723 |= Static6.aClass3_Sub2_Sub7Array1[local235].method903(local214);
+						local721 |= Static6.aClass3_Sub2_Sub7Array1[local235].method901(local214);
+						local725 |= local753.aBoolean278;
+					}
+					if ((local753.aBoolean277 || Static204.aBoolean234) && local207 != -1 && local753.anIntArray473.length > local207) {
+						Static71.anIntArray147[local235] = local753.anIntArray474[local200];
+						Static214.anIntArray492[local235] = arg0[local235].anInt5404;
+						local228 = local753.anIntArray473[local207];
+						Static131.aClass3_Sub2_Sub7Array5[local235] = Static72.method1566(local228 >>> 16);
+						local228 &= 0xFFFF;
+						Static61.anIntArray148[local235] = local228;
+						if (Static131.aClass3_Sub2_Sub7Array5[local235] != null) {
+							local723 |= Static131.aClass3_Sub2_Sub7Array5[local235].method903(local228);
+							local721 |= Static131.aClass3_Sub2_Sub7Array5[local235].method901(local228);
+						}
+					} else {
+						Static71.anIntArray147[local235] = 0;
+						Static214.anIntArray492[local235] = 0;
+						Static131.aClass3_Sub2_Sub7Array5[local235] = null;
+						Static61.anIntArray148[local235] = -1;
+					}
+				}
+			}
+		}
+		if (!local46 && arg8 == null && arg6 == null) {
+			@Pc(933) Model local933 = local40.method4572(true, true, true);
+			if (this.resizeh != 128 || this.resizev != 128) {
+				local933.method4559(this.resizeh, this.resizev, this.resizeh);
+			}
+			return local933;
+		}
+		local221 = -1;
+		local235 = -1;
+		local200 = 0;
+		@Pc(962) AnimFrameset local962 = null;
+		@Pc(964) AnimFrameset local964 = null;
+		@Pc(1040) int local1040;
+		if (arg8 != null) {
+			local235 = arg8.anIntArray473[arg5];
+			local228 = local235 >>> 16;
+			local235 &= 0xFFFF;
+			local962 = Static72.method1566(local228);
+			if (local962 != null) {
+				local723 |= local962.method903(local235);
+				local721 |= local962.method901(local235);
+				local725 |= arg8.aBoolean278;
+			}
+			if ((arg8.aBoolean277 || Static204.aBoolean234) && arg3 != -1 && arg8.anIntArray473.length > arg3) {
+				local200 = arg8.anIntArray474[arg5];
+				local221 = arg8.anIntArray473[arg3];
+				local1040 = local221 >>> 16;
+				local221 &= 0xFFFF;
+				if (local228 == local1040) {
+					local964 = local962;
+				} else {
+					local964 = Static72.method1566(local221 >>> 16);
+				}
+				if (local964 != null) {
+					local723 |= local964.method903(local221);
+					local721 |= local964.method901(local221);
+				}
+			}
+		}
+		local228 = -1;
+		local1040 = -1;
+		@Pc(1088) AnimFrameset local1088 = null;
+		local300 = 0;
+		@Pc(1092) AnimFrameset local1092 = null;
+		if (arg6 != null) {
+			local228 = arg6.anIntArray473[arg2];
+			local324 = local228 >>> 16;
+			local228 &= 0xFFFF;
+			local1088 = Static72.method1566(local324);
+			if (local1088 != null) {
+				local723 |= local1088.method903(local228);
+				local721 |= local1088.method901(local228);
+				local725 |= arg6.aBoolean278;
+			}
+			if ((arg6.aBoolean277 || Static204.aBoolean234) && arg1 != -1 && arg1 < arg6.anIntArray473.length) {
+				local300 = arg6.anIntArray474[arg2];
+				local1040 = arg6.anIntArray473[arg1];
+				local318 = local1040 >>> 16;
+				local1040 &= 0xFFFF;
+				if (local318 == local324) {
+					local1092 = local1088;
+				} else {
+					local1092 = Static72.method1566(local1040 >>> 16);
+				}
+				if (local1092 != null) {
+					local723 |= local1092.method903(local1040);
+					local721 |= local1092.method901(local1040);
+				}
+			}
+		}
+		@Pc(1218) Model local1218 = local40.method4572(!local721, !local723, !local725);
+		local330 = 1;
+		for (local318 = 0; local318 < local173; local318++) {
+			if (Static6.aClass3_Sub2_Sub7Array1[local318] != null) {
+				local1218.method4565(Static6.aClass3_Sub2_Sub7Array1[local318], Static107.anIntArray259[local318], Static131.aClass3_Sub2_Sub7Array5[local318], Static61.anIntArray148[local318], Static214.anIntArray492[local318] - 1, Static71.anIntArray147[local318], local330, Static146.aClass144Array1[local318].aBoolean278, this.anIntArrayArray28[local318]);
+			}
+			local330 <<= 0x1;
+		}
+		if (local962 != null && local1088 != null) {
+			local1218.method4570(local962, local235, local964, local221, arg4 - 1, local200, local1088, local228, local1092, local1040, arg7 - 1, local300, arg8.aBooleanArray123, arg8.aBoolean278 | arg6.aBoolean278);
+		} else if (local962 != null) {
+			local1218.method4558(local962, local235, local964, local221, arg4 - 1, local200, arg8.aBoolean278);
+		} else if (local1088 != null) {
+			local1218.method4558(local1088, local228, local1092, local1040, arg7 - 1, local300, arg6.aBoolean278);
+		}
+		for (local318 = 0; local318 < local173; local318++) {
+			Static6.aClass3_Sub2_Sub7Array1[local318] = null;
+			Static131.aClass3_Sub2_Sub7Array5[local318] = null;
+			Static146.aClass144Array1[local318] = null;
+		}
+		if (this.resizeh != 128 || this.resizev != 128) {
+			local1218.method4559(this.resizeh, this.resizev, this.resizeh);
+		}
+		return local1218;
+	}
+
+	@OriginalMember(owner = "client!me", name = "a", descriptor = "(ILclient!na;Z)Lclient!na;")
+	public JagString getParam(@OriginalArg(0) int arg0, @OriginalArg(1) JagString arg1) {
+		if (this.params == null) {
+			return arg1;
+		} else {
+			@Pc(18) JagStringWrapper local18 = (JagStringWrapper) this.params.getNode(arg0);
+			return local18 == null ? arg1 : local18.value;
+		}
+	}
+
+	@OriginalMember(owner = "client!me", name = "a", descriptor = "(Lclient!tk;IIII)Lclient!ak;")
+	public Model getHeadModel(@OriginalArg(0) SeqType arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
+		if (this.multinpc != null) {
+			@Pc(13) NPCType local13 = this.getvisible();
+			return local13 == null ? null : local13.getHeadModel(arg0, arg1, arg2, arg3);
+		} else if (this.heads == null) {
+			return null;
+		} else {
+			@Pc(41) Model local41 = (Model) Static262.aClass99_35.method3106(this.id);
+			if (local41 == null) {
+				@Pc(46) boolean local46 = false;
+				for (@Pc(48) int local48 = 0; local48 < this.heads.length; local48++) {
+					if (!Static86.aClass153_37.requestDownload(this.heads[local48], 0)) {
+						local46 = true;
+					}
+				}
+				if (local46) {
+					return null;
+				}
+				@Pc(82) ModelUnlit[] local82 = new ModelUnlit[this.heads.length];
+				for (@Pc(84) int local84 = 0; local84 < this.heads.length; local84++) {
+					local82[local84] = ModelUnlit.get(Static86.aClass153_37, this.heads[local84]);
+				}
+				@Pc(119) ModelUnlit local119;
+				if (local82.length == 1) {
+					local119 = local82[0];
+				} else {
+					local119 = new ModelUnlit(local82, local82.length);
+				}
+
+				if (this.recol_s != null) {
+					for (int index = 0; index < this.recol_s.length; index++) {
+						if (this.recol_d_palette == null || index >= this.recol_d_palette.length) {
+							local119.recolor(this.recol_s[index], this.recol_d[index]);
+						} else {
+							local119.recolor(this.recol_s[index], Static232.aShortArray74[this.recol_d_palette[index] & 0xFF]);
+						}
+					}
+				}
+				if (this.retex_s != null) {
+					for (int index = 0; index < this.retex_s.length; index++) {
+						local119.retexture(this.retex_s[index], this.retex_d[index]);
+					}
+				}
+				local41 = local119.method1679(64, 768, -50, -10, -50);
+				Static262.aClass99_35.method3095(local41, this.id);
+			}
+			if (arg0 != null) {
+				local41 = arg0.method4215(local41, arg2, arg1, arg3);
+			}
+			return local41;
 		}
 	}
 }

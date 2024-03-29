@@ -115,7 +115,7 @@ public final class Static54 {
 				if (local498 != null && local498.method2682()) {
 					@Pc(507) NPCType local507 = local498.npcType;
 					if (local507 != null && local507.multinpc != null) {
-						local507 = local507.method2932();
+						local507 = local507.getvisible();
 					}
 					if (local507 != null && local507.minimap && local507.active) {
 						local154 = local498.anInt3412 / 32 - Static173.self.anInt3412 / 32;

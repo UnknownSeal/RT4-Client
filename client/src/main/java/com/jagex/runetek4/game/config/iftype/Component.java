@@ -866,7 +866,7 @@ public final class Component {
 				}
 				return local61;
 			} else if (local10 == 2) {
-				local61 = Static214.method4363(local13).method2943(arg1, arg3, arg0, arg2);
+				local61 = Static214.get(local13).getHeadModel(arg1, arg3, arg0, arg2);
 				if (local61 == null) {
 					Static211.aBoolean72 = true;
 					return null;
@@ -894,7 +894,7 @@ public final class Component {
 					return local173;
 				}
 			} else if (local10 == 6) {
-				local61 = Static214.method4363(local13).method2937(null, 0, 0, arg0, arg3, arg2, null, 0, arg1);
+				local61 = Static214.get(local13).method2937(null, 0, 0, arg0, arg3, arg2, null, 0, arg1);
 				if (local61 == null) {
 					Static211.aBoolean72 = true;
 					return null;

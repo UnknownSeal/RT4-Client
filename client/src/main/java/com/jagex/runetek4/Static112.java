@@ -120,7 +120,7 @@ public final class Static112 {
 	public static int method2299(@OriginalArg(0) NPCEntity arg0) {
 		@Pc(13) NPCType local13 = arg0.npcType;
 		if (local13.multinpc != null) {
-			local13 = local13.method2932();
+			local13 = local13.getvisible();
 			if (local13 == null) {
 				return -1;
 			}
