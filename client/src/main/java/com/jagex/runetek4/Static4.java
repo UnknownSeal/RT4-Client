@@ -675,7 +675,7 @@ public final class Static4 {
 						Static99.anIntArray240[local864] = local133;
 						Static141.anIntArray326[local864] = 1;
 						for (local171 = 0; local171 < 98; local171++) {
-							if (ObjType.anIntArray213[local171] <= local786) {
+							if (ObjType.table[local171] <= local786) {
 								Static141.anIntArray326[local864] = local171 + 2;
 							}
 						}

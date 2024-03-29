@@ -2125,7 +2125,7 @@ public final class Static88 {
 											local803 = Static254.anIntArray487[local28 + 1];
 											local5294 = Static110.method2277(local803);
 											if (local5294.method2078()) {
-												Static3.aClass100Array176[local26++] = Static71.get(local809).method1819(local5294.aClass100_544, local803);
+												Static3.aClass100Array176[local26++] = Static71.get(local809).getParam(local5294.aClass100_544, local803);
 											} else {
 												Static254.anIntArray487[local28++] = Static71.get(local809).getParam(local5294.anInt2667, local803);
 											}

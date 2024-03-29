@@ -15,7 +15,7 @@ import com.jagex.runetek4.core.io.Packet;
 public final class ObjType {
 
 	@OriginalMember(owner = "client!h", name = "S", descriptor = "[I")
-	public static final int[] anIntArray213 = new int[99];
+	public static final int[] table = new int[99];
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "[S")
 	private short[] retex_d;
@@ -179,188 +179,6 @@ public final class ObjType {
 	@OriginalMember(owner = "client!h", name = "xb", descriptor = "Z")
 	public boolean stockmarket = false;
 
-	static {
-		@Pc(4) int local4 = 0;
-		for (@Pc(6) int local6 = 0; local6 < 99; local6++) {
-			@Pc(13) int local13 = local6 + 1;
-			@Pc(26) int local26 = (int) (Math.pow(2.0D, (double) local13 / 7.0D) * 300.0D + (double) local13);
-			local4 += local26;
-			anIntArray213[local6] = local4 / 4;
-		}
-	}
-
-	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ZZ)Z")
-	public final boolean method1816(@OriginalArg(0) boolean arg0) {
-		@Pc(6) int local6 = this.manhead;
-		@Pc(9) int local9 = this.manhead2;
-		if (arg0) {
-			local6 = this.womanhead;
-			local9 = this.womanhead2;
-		}
-		if (local6 == -1) {
-			return true;
-		}
-		@Pc(33) boolean local33 = true;
-		if (!Static230.aClass153_95.requestDownload(local6, 0)) {
-			local33 = false;
-		}
-		if (local9 != -1 && !Static230.aClass153_95.requestDownload(local9, 0)) {
-			local33 = false;
-		}
-		return local33;
-	}
-
-	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ILclient!na;I)Lclient!na;")
-	public final JagString method1819(@OriginalArg(1) JagString arg0, @OriginalArg(2) int arg1) {
-		if (this.params == null) {
-			return arg0;
-		} else {
-			@Pc(21) JagStringWrapper local21 = (JagStringWrapper) this.params.getNode((long) arg1);
-			return local21 == null ? arg0 : local21.value;
-		}
-	}
-
-	@OriginalMember(owner = "client!h", name = "a", descriptor = "(II)Lclient!h;")
-	public ObjType getMeshAddress(@OriginalArg(0) int n) {
-		if (this.countobj != null && n > 1) {
-			@Pc(23) int id = -1;
-			for (@Pc(25) int index = 0; index < 10; index++) {
-				if (n >= this.countco[index] && this.countco[index] != 0) {
-					id = this.countobj[index];
-				}
-			}
-			if (id != -1) {
-				return Static71.get(id);
-			}
-		}
-		return this;
-	}
-
-	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BZ)Z")
-	public final boolean method1822(@OriginalArg(1) boolean arg0) {
-		@Pc(6) int local6 = this.manwear2;
-		@Pc(9) int local9 = this.manwear;
-		@Pc(20) int local20 = this.manwear3;
-		if (arg0) {
-			local20 = this.womanwear3;
-			local9 = this.womanwear;
-			local6 = this.womanwear2;
-		}
-		if (local9 == -1) {
-			return true;
-		}
-		@Pc(41) boolean local41 = true;
-		if (!Static230.aClass153_95.requestDownload(local9, 0)) {
-			local41 = false;
-		}
-		if (local6 != -1 && !Static230.aClass153_95.requestDownload(local6, 0)) {
-			local41 = false;
-		}
-		if (local20 != -1 && !Static230.aClass153_95.requestDownload(local20, 0)) {
-			local41 = false;
-		}
-		return local41;
-	}
-
-	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BLclient!h;Lclient!h;)V")
-	public void genLent(@OriginalArg(2) ObjType from, @OriginalArg(1) ObjType to) {
-		this.recol_d_palette = to.recol_d_palette;
-		this.manwearyoff = to.manwearyoff;
-		this.params = to.params;
-		this.manwear3 = to.manwear3;
-		this.womanwear = to.womanwear;
-		this.manwearzoff = to.manwearzoff;
-		this.iops = new JagString[5];
-		this.mesh = from.mesh;
-		this.zoom2d = from.zoom2d;
-		this.cost = 0;
-		this.team = to.team;
-		this.womanhead = to.womanhead;
-		this.recol_s = to.recol_s;
-		this.zan2d = from.zan2d;
-		this.manwear2 = to.manwear2;
-		this.yan2d = from.yan2d;
-		this.manhead = to.manhead;
-		this.manhead2 = to.manhead2;
-		this.manwearxoff = to.manwearxoff;
-		this.xan2d = from.xan2d;
-		this.yof2d = from.yof2d;
-		this.womanhead2 = to.womanhead2;
-		this.womanwearxoff = to.womanwearxoff;
-		this.recol_d = to.recol_d;
-		this.womanwearyoff = to.womanwearyoff;
-		this.womanwearzoff = to.womanwearzoff;
-		this.xof2d = from.xof2d;
-		this.manwear = to.manwear;
-		this.womanwear2 = to.womanwear2;
-		this.name = to.name;
-		this.retex_d = to.retex_d;
-		this.retex_s = to.retex_s;
-		this.ops = to.ops;
-		this.members = to.members;
-		this.womanwear3 = to.womanwear3;
-		if (to.iops != null) {
-			for (@Pc(157) int local157 = 0; local157 < 4; local157++) {
-				this.iops[local157] = to.iops[local157];
-			}
-		}
-		this.iops[4] = LocalizedText.LENT_ITEM_RETURN;
-	}
-
-	@OriginalMember(owner = "client!h", name = "a", descriptor = "(IIILclient!tk;II)Lclient!ak;")
-	public final Model method1824(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) SeqType arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		if (this.countobj != null && arg3 > 1) {
-			@Pc(22) int local22 = -1;
-			for (@Pc(24) int local24 = 0; local24 < 10; local24++) {
-				if (arg3 >= this.countco[local24] && this.countco[local24] != 0) {
-					local22 = this.countobj[local24];
-				}
-			}
-			if (local22 != -1) {
-				return Static71.get(local22).method1824(arg0, arg1, arg2, 1, arg4);
-			}
-		}
-		@Pc(76) Model local76 = (Model) Static244.aClass99_32.method3106((long) this.anInt2354);
-		if (local76 == null) {
-			@Pc(85) ModelUnlit local85 = ModelUnlit.get(Static230.aClass153_95, this.mesh);
-			if (local85 == null) {
-				return null;
-			}
-			@Pc(97) int local97;
-			if (this.recol_s != null) {
-				for (local97 = 0; local97 < this.recol_s.length; local97++) {
-					if (this.recol_d_palette == null || local97 >= this.recol_d_palette.length) {
-						local85.recolor(this.recol_s[local97], this.recol_d[local97]);
-					} else {
-						local85.recolor(this.recol_s[local97], Static259.aShortArray87[this.recol_d_palette[local97] & 0xFF]);
-					}
-				}
-			}
-			if (this.retex_s != null) {
-				for (local97 = 0; local97 < this.retex_s.length; local97++) {
-					local85.retexture(this.retex_s[local97], this.retex_d[local97]);
-				}
-			}
-			local76 = local85.method1679(this.ambient + 64, this.contrast + 768, -50, -10, -50);
-			if (this.resizex != 128 || this.resizey != 128 || this.resizez != 128) {
-				local76.method4559(this.resizex, this.resizey, this.resizez);
-			}
-			local76.aBoolean303 = true;
-			if (GlRenderer.enabled) {
-				((GlModel) local76).method4111(false, false, false, false, false, true);
-			}
-			Static244.aClass99_32.method3095(local76, (long) this.anInt2354);
-		}
-		if (arg2 != null) {
-			local76 = arg2.method4215(local76, arg0, arg1, arg4);
-		}
-		return local76;
-	}
-
-	@OriginalMember(owner = "client!h", name = "c", descriptor = "(I)V")
-	public void postDecode() {
-	}
-
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ILclient!wa;)V")
 	public void decode(@OriginalArg(1) Packet packet) {
 		while (true) {
@@ -421,9 +239,9 @@ public final class ObjType {
 				int length = packet.g1();
 				this.recol_s = new short[length];
 				this.recol_d = new short[length];
-				for (local179 = 0; local179 < length; local179++) {
-					this.recol_s[local179] = (short) packet.g2();
-					this.recol_d[local179] = (short) packet.g2();
+				for (int index = 0; index < length; index++) {
+					this.recol_s[index] = (short) packet.g2();
+					this.recol_d[index] = (short) packet.g2();
 				}
 			} else if (code == 41) {
 				int length = packet.g1();
@@ -519,10 +337,184 @@ public final class ObjType {
 					} else {
 						node = new IntWrapper(packet.g4());
 					}
-					this.params.pushNode(node, (long) local514);
+					this.params.pushNode(node, local514);
 				}
 			}
 		}
+	}
+
+	@OriginalMember(owner = "client!h", name = "c", descriptor = "(I)V")
+	public void postDecode() {
+	}
+
+	static {
+		@Pc(4) int local4 = 0;
+		for (@Pc(6) int local6 = 0; local6 < 99; local6++) {
+			@Pc(13) int local13 = local6 + 1;
+			@Pc(26) int local26 = (int) (Math.pow(2.0D, (double) local13 / 7.0D) * 300.0D + (double) local13);
+			local4 += local26;
+			table[local6] = local4 / 4;
+		}
+	}
+
+	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ZZ)Z")
+	public boolean method1816(@OriginalArg(0) boolean arg0) {
+		@Pc(6) int local6 = this.manhead;
+		@Pc(9) int local9 = this.manhead2;
+		if (arg0) {
+			local6 = this.womanhead;
+			local9 = this.womanhead2;
+		}
+		if (local6 == -1) {
+			return true;
+		}
+		@Pc(33) boolean local33 = Static230.aClass153_95.requestDownload(local6, 0);
+		if (local9 != -1 && !Static230.aClass153_95.requestDownload(local9, 0)) {
+			local33 = false;
+		}
+		return local33;
+	}
+
+	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ILclient!na;I)Lclient!na;")
+	public JagString getParam(@OriginalArg(1) JagString arg0, @OriginalArg(2) int arg1) {
+		if (this.params == null) {
+			return arg0;
+		} else {
+			@Pc(21) JagStringWrapper local21 = (JagStringWrapper) this.params.getNode(arg1);
+			return local21 == null ? arg0 : local21.value;
+		}
+	}
+
+	@OriginalMember(owner = "client!h", name = "a", descriptor = "(II)Lclient!h;")
+	public ObjType getMeshAddress(@OriginalArg(0) int n) {
+		if (this.countobj != null && n > 1) {
+			@Pc(23) int id = -1;
+			for (@Pc(25) int index = 0; index < 10; index++) {
+				if (n >= this.countco[index] && this.countco[index] != 0) {
+					id = this.countobj[index];
+				}
+			}
+			if (id != -1) {
+				return Static71.get(id);
+			}
+		}
+		return this;
+	}
+
+	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BZ)Z")
+	public boolean method1822(@OriginalArg(1) boolean arg0) {
+		@Pc(6) int local6 = this.manwear2;
+		@Pc(9) int local9 = this.manwear;
+		@Pc(20) int local20 = this.manwear3;
+		if (arg0) {
+			local20 = this.womanwear3;
+			local9 = this.womanwear;
+			local6 = this.womanwear2;
+		}
+		if (local9 == -1) {
+			return true;
+		}
+		@Pc(41) boolean local41 = Static230.aClass153_95.requestDownload(local9, 0);
+		if (local6 != -1 && !Static230.aClass153_95.requestDownload(local6, 0)) {
+			local41 = false;
+		}
+		if (local20 != -1 && !Static230.aClass153_95.requestDownload(local20, 0)) {
+			local41 = false;
+		}
+		return local41;
+	}
+
+	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BLclient!h;Lclient!h;)V")
+	public void genLent(@OriginalArg(2) ObjType from, @OriginalArg(1) ObjType to) {
+		this.recol_d_palette = to.recol_d_palette;
+		this.manwearyoff = to.manwearyoff;
+		this.params = to.params;
+		this.manwear3 = to.manwear3;
+		this.womanwear = to.womanwear;
+		this.manwearzoff = to.manwearzoff;
+		this.iops = new JagString[5];
+		this.mesh = from.mesh;
+		this.zoom2d = from.zoom2d;
+		this.cost = 0;
+		this.team = to.team;
+		this.womanhead = to.womanhead;
+		this.recol_s = to.recol_s;
+		this.zan2d = from.zan2d;
+		this.manwear2 = to.manwear2;
+		this.yan2d = from.yan2d;
+		this.manhead = to.manhead;
+		this.manhead2 = to.manhead2;
+		this.manwearxoff = to.manwearxoff;
+		this.xan2d = from.xan2d;
+		this.yof2d = from.yof2d;
+		this.womanhead2 = to.womanhead2;
+		this.womanwearxoff = to.womanwearxoff;
+		this.recol_d = to.recol_d;
+		this.womanwearyoff = to.womanwearyoff;
+		this.womanwearzoff = to.womanwearzoff;
+		this.xof2d = from.xof2d;
+		this.manwear = to.manwear;
+		this.womanwear2 = to.womanwear2;
+		this.name = to.name;
+		this.retex_d = to.retex_d;
+		this.retex_s = to.retex_s;
+		this.ops = to.ops;
+		this.members = to.members;
+		this.womanwear3 = to.womanwear3;
+		if (to.iops != null) {
+			System.arraycopy(to.iops, 0, this.iops, 0, 4);
+		}
+		this.iops[4] = LocalizedText.LENT_ITEM_RETURN;
+	}
+
+	@OriginalMember(owner = "client!h", name = "a", descriptor = "(IIILclient!tk;II)Lclient!ak;")
+	public Model method1824(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) SeqType arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
+		if (this.countobj != null && arg3 > 1) {
+			@Pc(22) int local22 = -1;
+			for (@Pc(24) int local24 = 0; local24 < 10; local24++) {
+				if (arg3 >= this.countco[local24] && this.countco[local24] != 0) {
+					local22 = this.countobj[local24];
+				}
+			}
+			if (local22 != -1) {
+				return Static71.get(local22).method1824(arg0, arg1, arg2, 1, arg4);
+			}
+		}
+		@Pc(76) Model local76 = (Model) Static244.aClass99_32.method3106(this.anInt2354);
+		if (local76 == null) {
+			@Pc(85) ModelUnlit local85 = ModelUnlit.get(Static230.aClass153_95, this.mesh);
+			if (local85 == null) {
+				return null;
+			}
+			@Pc(97) int local97;
+			if (this.recol_s != null) {
+				for (local97 = 0; local97 < this.recol_s.length; local97++) {
+					if (this.recol_d_palette == null || local97 >= this.recol_d_palette.length) {
+						local85.recolor(this.recol_s[local97], this.recol_d[local97]);
+					} else {
+						local85.recolor(this.recol_s[local97], Static259.aShortArray87[this.recol_d_palette[local97] & 0xFF]);
+					}
+				}
+			}
+			if (this.retex_s != null) {
+				for (local97 = 0; local97 < this.retex_s.length; local97++) {
+					local85.retexture(this.retex_s[local97], this.retex_d[local97]);
+				}
+			}
+			local76 = local85.method1679(this.ambient + 64, this.contrast + 768, -50, -10, -50);
+			if (this.resizex != 128 || this.resizey != 128 || this.resizez != 128) {
+				local76.method4559(this.resizex, this.resizey, this.resizez);
+			}
+			local76.aBoolean303 = true;
+			if (GlRenderer.enabled) {
+				((GlModel) local76).method4111(false, false, false, false, false, true);
+			}
+			Static244.aClass99_32.method3095(local76, this.anInt2354);
+		}
+		if (arg2 != null) {
+			local76 = arg2.method4215(local76, arg0, arg1, arg4);
+		}
+		return local76;
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(III)I")
@@ -530,13 +522,13 @@ public final class ObjType {
 		if (this.params == null) {
 			return arg0;
 		} else {
-			@Pc(25) IntWrapper local25 = (IntWrapper) this.params.getNode((long) arg1);
+			@Pc(25) IntWrapper local25 = (IntWrapper) this.params.getNode(arg1);
 			return local25 == null ? arg0 : local25.value;
 		}
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ZB)Lclient!gb;")
-	public final ModelUnlit method1830(@OriginalArg(0) boolean arg0) {
+	public ModelUnlit method1830(@OriginalArg(0) boolean arg0) {
 		@Pc(4) int local4 = this.manhead2;
 		@Pc(17) int local17 = this.manhead;
 		if (arg0) {
@@ -567,7 +559,7 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ZI)Lclient!gb;")
-	public final ModelUnlit method1831(@OriginalArg(0) boolean arg0) {
+	public ModelUnlit method1831(@OriginalArg(0) boolean arg0) {
 		@Pc(4) int local4 = this.manwear;
 		@Pc(18) int local18 = this.manwear2;
 		@Pc(21) int local21 = this.manwear3;
@@ -632,7 +624,7 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "d", descriptor = "(I)Lclient!w;")
-	public final SoftwareModel method1834() {
+	public SoftwareModel method1834() {
 		@Pc(11) ModelUnlit local11 = ModelUnlit.get(Static230.aClass153_95, this.mesh);
 		if (local11 == null) {
 			return null;
