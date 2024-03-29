@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -72,7 +73,7 @@ public final class Static202 {
 						for (@Pc(199) int local199 = 0; local199 < local95; local199++) {
 							local210 = arg1.g4();
 							local193[local199] = new byte[local210];
-							arg1.gBytes(local210, local193[local199]);
+							arg1.gdata(local210, local193[local199]);
 						}
 					}
 					local17.anIntArray139[local59] = local71;

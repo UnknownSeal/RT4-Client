@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.js5.Js5;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;

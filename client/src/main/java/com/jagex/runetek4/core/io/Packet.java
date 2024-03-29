@@ -277,7 +277,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(II[BB)V")
-	public final void gBytes(@OriginalArg(1) int len, @OriginalArg(2) byte[] dest) {
+	public final void gdata(@OriginalArg(1) int len, @OriginalArg(2) byte[] dest) {
 		for (@Pc(8) int i = 0; i < len; i++) {
 			dest[i] = this.data[this.pos++];
 		}
@@ -525,7 +525,7 @@ public class Packet extends Node {
 		@Pc(2) int len = this.pos;
 		this.pos = 0;
 		@Pc(8) byte[] plaintextBytes = new byte[len];
-		this.gBytes(len, plaintextBytes);
+		this.gdata(len, plaintextBytes);
 		@Pc(23) BigInteger plaintext = new BigInteger(plaintextBytes);
 		@Pc(28) BigInteger ciphertext = plaintext.modPow(exp, mod);
 		@Pc(38) byte[] ciphertextBytes = ciphertext.toByteArray();

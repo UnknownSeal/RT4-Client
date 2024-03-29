@@ -27,9 +27,6 @@ public final class Static228 {
 	@OriginalMember(owner = "runetek4.client!sh", name = "j", descriptor = "Lclient!na;")
 	public static final JagString aClass100_968 = Static28.parse("headicons_prayer");
 
-	@OriginalMember(owner = "runetek4.client!sh", name = "k", descriptor = "Z")
-	public static final boolean aBoolean248 = false;
-
 	@OriginalMember(owner = "runetek4.client!sh", name = "l", descriptor = "[J")
 	public static final long[] aLongArray8 = new long[32];
 

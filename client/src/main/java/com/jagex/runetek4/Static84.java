@@ -4,6 +4,7 @@ import com.jagex.runetek4.core.datastruct.SecondaryNode;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
 import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -108,7 +109,7 @@ public final class Static84 {
 			local13 = Static57.aClass3_Sub15_Sub1_3.g1add();
 			@Pc(309) byte[] local309 = new byte[local13];
 			@Pc(314) Packet local314 = new Packet(local309);
-			Static57.aClass3_Sub15_Sub1_3.gBytes(local13, local309);
+			Static57.aClass3_Sub15_Sub1_3.gdata(local13, local309);
 			Static115.aClass3_Sub15Array1[arg1] = local314;
 			arg2.method1262(local314);
 		}

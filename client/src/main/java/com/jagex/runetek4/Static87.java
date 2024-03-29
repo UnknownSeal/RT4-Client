@@ -4,6 +4,7 @@ import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.game.config.objtype.ObjType;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
 import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

@@ -37,8 +37,8 @@ public final class Static52 {
 
 	@OriginalMember(owner = "runetek4.client!eb", name = "d", descriptor = "(I)V")
 	public static void method1287() {
-		Static241.components = new Component[Static202.aClass153_84.method4483()][];
-		Static223.aBooleanArray115 = new boolean[Static202.aClass153_84.method4483()];
+		Static241.components = new Component[Static202.aClass153_84.capacity()][];
+		Static223.aBooleanArray115 = new boolean[Static202.aClass153_84.capacity()];
 	}
 
 	@OriginalMember(owner = "runetek4.client!eb", name = "b", descriptor = "(II)Lclient!na;")

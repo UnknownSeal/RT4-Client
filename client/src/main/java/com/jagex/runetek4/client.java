@@ -777,28 +777,28 @@ public final class client extends GameShell {
 			Static196.method3534(5);
 			Static166.anInt4051 = 70;
 		} else if (Static166.anInt4051 == 70) {
-			Static274.aClass153_90.method4475();
-			local98 = Static274.aClass153_90.method4498();
-			Static280.aClass153_110.method4475();
-			local98 += Static280.aClass153_110.method4498();
-			Static138.aClass153_50.method4475();
-			local98 += Static138.aClass153_50.method4498();
-			Static172.aClass153_71.method4475();
-			local98 += Static172.aClass153_71.method4498();
-			Static171.aClass153_68.method4475();
-			local98 += Static171.aClass153_68.method4498();
-			Static253.aClass153_104.method4475();
-			local98 += Static253.aClass153_104.method4498();
-			Static122.aClass153_46.method4475();
-			local98 += Static122.aClass153_46.method4498();
-			Static156.aClass153_59.method4475();
-			local98 += Static156.aClass153_59.method4498();
-			Static254.aClass153_105.method4475();
-			local98 += Static254.aClass153_105.method4498();
-			Static28.aClass153_18.method4475();
-			local98 += Static28.aClass153_18.method4498();
-			Static226.aClass153_93.method4475();
-			local98 += Static226.aClass153_93.method4498();
+			Static274.aClass153_90.fetchAll();
+			local98 = Static274.aClass153_90.getPercentageComplete();
+			Static280.aClass153_110.fetchAll();
+			local98 += Static280.aClass153_110.getPercentageComplete();
+			Static138.aClass153_50.fetchAll();
+			local98 += Static138.aClass153_50.getPercentageComplete();
+			Static172.aClass153_71.fetchAll();
+			local98 += Static172.aClass153_71.getPercentageComplete();
+			Static171.aClass153_68.fetchAll();
+			local98 += Static171.aClass153_68.getPercentageComplete();
+			Static253.aClass153_104.fetchAll();
+			local98 += Static253.aClass153_104.getPercentageComplete();
+			Static122.aClass153_46.fetchAll();
+			local98 += Static122.aClass153_46.getPercentageComplete();
+			Static156.aClass153_59.fetchAll();
+			local98 += Static156.aClass153_59.getPercentageComplete();
+			Static254.aClass153_105.fetchAll();
+			local98 += Static254.aClass153_105.getPercentageComplete();
+			Static28.aClass153_18.fetchAll();
+			local98 += Static28.aClass153_18.getPercentageComplete();
+			Static226.aClass153_93.fetchAll();
+			local98 += Static226.aClass153_93.getPercentageComplete();
 			if (local98 >= 1100) {
 				Static226.method3899(Static274.aClass153_90);
 				Static199.method3595(Static274.aClass153_90);
@@ -842,7 +842,7 @@ public final class client extends GameShell {
 				Static126.aClass100_602 = LocalizedText.MAINLOAD80B;
 			}
 		} else if (Static166.anInt4051 == 90) {
-			if (Static167.aClass153_63.method4475()) {
+			if (Static167.aClass153_63.fetchAll()) {
 				@Pc(951) Js5GlTextureProvider local951 = new Js5GlTextureProvider(Static195.aClass153_80, Static167.aClass153_63, Static209.aClass153_86, 20, !Static53.aBoolean99);
 				Rasteriser.method1914(local951);
 				if (Static113.anInt4609 == 1) {
@@ -861,7 +861,7 @@ public final class client extends GameShell {
 				Static166.anInt4051 = 100;
 				Static199.anInt4670 = 70;
 			} else {
-				Static126.aClass100_602 = Static34.method882(new JagString[] { LocalizedText.MAINLOAD90, Static123.method2423(Static167.aClass153_63.method4498()), Static49.aClass100_352 });
+				Static126.aClass100_602 = Static34.method882(new JagString[] { LocalizedText.MAINLOAD90, Static123.method2423(Static167.aClass153_63.getPercentageComplete()), Static49.aClass100_352 });
 				Static199.anInt4670 = 70;
 			}
 		} else if (Static166.anInt4051 == 100) {
@@ -886,14 +886,14 @@ public final class client extends GameShell {
 				Static199.anInt4670 = 80;
 			}
 		} else if (Static166.anInt4051 == 130) {
-			if (!Static41.aClass153_25.method4475()) {
-				Static126.aClass100_602 = Static34.method882(new JagString[] { LocalizedText.MAINLOAD130, Static123.method2423(Static41.aClass153_25.method4498() * 3 / 4), Static49.aClass100_352 });
+			if (!Static41.aClass153_25.fetchAll()) {
+				Static126.aClass100_602 = Static34.method882(new JagString[] { LocalizedText.MAINLOAD130, Static123.method2423(Static41.aClass153_25.getPercentageComplete() * 3 / 4), Static49.aClass100_352 });
 				Static199.anInt4670 = 85;
-			} else if (!Static16.aClass153_9.method4475()) {
-				Static126.aClass100_602 = Static34.method882(new JagString[] { LocalizedText.MAINLOAD130, Static123.method2423(Static16.aClass153_9.method4498() / 10 + 75), Static49.aClass100_352 });
+			} else if (!Static16.aClass153_9.fetchAll()) {
+				Static126.aClass100_602 = Static34.method882(new JagString[] { LocalizedText.MAINLOAD130, Static123.method2423(Static16.aClass153_9.getPercentageComplete() / 10 + 75), Static49.aClass100_352 });
 				Static199.anInt4670 = 85;
-			} else if (!Static261.aClass153_107.method4475()) {
-				Static126.aClass100_602 = Static34.method882(new JagString[] { LocalizedText.MAINLOAD130, Static123.method2423(Static261.aClass153_107.method4498() / 20 + 85), Static49.aClass100_352 });
+			} else if (!Static261.aClass153_107.fetchAll()) {
+				Static126.aClass100_602 = Static34.method882(new JagString[] { LocalizedText.MAINLOAD130, Static123.method2423(Static261.aClass153_107.getPercentageComplete() / 20 + 85), Static49.aClass100_352 });
 				Static199.anInt4670 = 85;
 			} else if (Static227.aClass153_94.method4489(Static165.aClass100_777)) {
 				Static234.method4018(Static173.aClass3_Sub2_Sub1_Sub1Array9, Static227.aClass153_94);

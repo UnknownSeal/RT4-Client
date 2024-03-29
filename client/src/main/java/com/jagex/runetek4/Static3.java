@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -86,7 +87,7 @@ public final class Static3 {
 		Static167.aClass153_64 = arg0;
 		Static202.aClass153_84 = arg2;
 		Static203.aClass153_85 = arg3;
-		Static241.components = new Component[Static202.aClass153_84.method4483()][];
-		Static223.aBooleanArray115 = new boolean[Static202.aClass153_84.method4483()];
+		Static241.components = new Component[Static202.aClass153_84.capacity()][];
+		Static223.aBooleanArray115 = new boolean[Static202.aClass153_84.capacity()];
 	}
 }

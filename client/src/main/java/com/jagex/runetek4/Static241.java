@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -87,7 +88,7 @@ public final class Static241 {
 		Static240.aBoolean276 = true;
 		Static230.aClass153_95 = arg2;
 		Static167.aClass153_61 = arg0;
-		@Pc(23) int local23 = Static167.aClass153_61.method4483() - 1;
+		@Pc(23) int local23 = Static167.aClass153_61.capacity() - 1;
 		Static170.anInt3245 = Static167.aClass153_61.method4504(local23) + local23 * 256;
 		Static143.aClass100Array104 = new JagString[] { null, null, null, null, LocalizedText.DROP};
 		Static269.aClass100Array87 = new JagString[] { null, null, LocalizedText.TAKE, null, null };

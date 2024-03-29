@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -53,7 +54,7 @@ public final class SoundBank {
 
 	@OriginalMember(owner = "runetek4.client!le", name = "a", descriptor = "(II[I)Lclient!kj;")
 	public final PcmSound method2738(@OriginalArg(0) int arg0, @OriginalArg(2) int[] arg1) {
-		if (this.aClass153_52.method4483() == 1) {
+		if (this.aClass153_52.capacity() == 1) {
 			return this.method2737(arg1, 0, arg0);
 		} else if (this.aClass153_52.method4504(arg0) == 1) {
 			return this.method2737(arg1, arg0, 0);
@@ -94,7 +95,7 @@ public final class SoundBank {
 
 	@OriginalMember(owner = "runetek4.client!le", name = "b", descriptor = "(II[I)Lclient!kj;")
 	public final PcmSound method2741(@OriginalArg(1) int arg0, @OriginalArg(2) int[] arg1) {
-		if (this.aClass153_53.method4483() == 1) {
+		if (this.aClass153_53.capacity() == 1) {
 			return this.method2740(0, arg1, arg0);
 		} else if (this.aClass153_53.method4504(arg0) == 1) {
 			return this.method2740(arg0, arg1, 0);

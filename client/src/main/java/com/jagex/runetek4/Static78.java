@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -76,7 +77,7 @@ public final class Static78 {
 				}
 			}
 			if (Static172.anIntArray366[local14] != -1 && Static156.aByteArrayArray11[local14] == null) {
-				Static156.aByteArrayArray11[local14] = Static26.aClass153_16.method4488(Static172.anIntArray366[local14], Static72.anIntArrayArray14[local14], 0);
+				Static156.aByteArrayArray11[local14] = Static26.aClass153_16.getfile(Static172.anIntArray366[local14], 0, Static72.anIntArrayArray14[local14]);
 				if (Static156.aByteArrayArray11[local14] == null) {
 					local12 = false;
 					Static175.anInt4220++;
@@ -99,7 +100,7 @@ public final class Static78 {
 				}
 			}
 			if (Static175.anIntArray371 != null && Static191.aByteArrayArray15[local14] == null && Static175.anIntArray371[local14] != -1) {
-				Static191.aByteArrayArray15[local14] = Static26.aClass153_16.method4488(Static175.anIntArray371[local14], Static72.anIntArrayArray14[local14], 0);
+				Static191.aByteArrayArray15[local14] = Static26.aClass153_16.getfile(Static175.anIntArray371[local14], 0, Static72.anIntArrayArray14[local14]);
 				if (Static191.aByteArrayArray15[local14] == null) {
 					Static175.anInt4220++;
 					local12 = false;
