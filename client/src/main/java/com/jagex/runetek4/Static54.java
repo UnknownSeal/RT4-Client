@@ -93,12 +93,12 @@ public final class Static54 {
 				local150 = Static93.anIntArray219[local146] * 4 + 2 - Static173.self.anInt3421 / 32;
 				@Pc(382) LocType local382 = Static271.get(Static199.anIntArray417[local146]);
 				if (local382.multiloc != null) {
-					local382 = local382.method3417();
-					if (local382 == null || local382.anInt4400 == -1) {
+					local382 = local382.getVisible();
+					if (local382 == null || local382.mapelement == -1) {
 						continue;
 					}
 				}
-				Static60.method1446(arg3, Static67.aClass3_Sub2_Sub1Array4[local382.anInt4400], local150, local181, arg1, arg2);
+				Static60.method1446(arg3, Static67.aClass3_Sub2_Sub1Array4[local382.mapelement], local150, local181, arg1, arg2);
 			}
 			for (local146 = 0; local146 < 104; local146++) {
 				for (local181 = 0; local181 < 104; local181++) {

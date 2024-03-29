@@ -220,8 +220,8 @@ public final class Static185 {
 			if (local62.blockwalk != 0 && arg4 != null) {
 				arg4.method3040(arg9, arg6, local62.aBoolean207, arg8, arg7);
 			}
-			if (local62.anInt4428 != 16) {
-				Static18.method559(arg2, arg7, arg8, local62.anInt4428);
+			if (local62.walloff != 16) {
+				Static18.method559(arg2, arg7, arg8, local62.walloff);
 			}
 		} else if (arg6 == 1) {
 			if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
@@ -288,8 +288,8 @@ public final class Static185 {
 				if (local62.blockwalk != 0 && arg4 != null) {
 					arg4.method3040(arg9, arg6, local62.aBoolean207, arg8, arg7);
 				}
-				if (local62.anInt4428 != 16) {
-					Static18.method559(arg2, arg7, arg8, local62.anInt4428);
+				if (local62.walloff != 16) {
+					Static18.method559(arg2, arg7, arg8, local62.walloff);
 				}
 			} else if (arg6 == 3) {
 				if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
@@ -330,8 +330,8 @@ public final class Static185 {
 				if (local62.blockwalk != 0 && arg4 != null) {
 					arg4.method3043(arg7, local62.aBoolean207, arg8, local84, local81);
 				}
-				if (local62.anInt4428 != 16) {
-					Static18.method559(arg2, arg7, arg8, local62.anInt4428);
+				if (local62.walloff != 16) {
+					Static18.method559(arg2, arg7, arg8, local62.walloff);
 				}
 			} else if (arg6 == 4) {
 				if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
@@ -352,7 +352,7 @@ public final class Static185 {
 					local1226 = 16;
 					local1889 = Static265.method4521(arg2, arg7, arg8);
 					if (local1889 != 0L) {
-						local1226 = Static271.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).anInt4428;
+						local1226 = Static271.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).walloff;
 					}
 					if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
 						local1950 = local62.method3428(arg9, local165, local153, 4, local199, local213, arg1, null, local330, local173);
@@ -368,7 +368,7 @@ public final class Static185 {
 					local1226 = 8;
 					local1889 = Static265.method4521(arg2, arg7, arg8);
 					if (local1889 != 0L) {
-						local1226 = Static271.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).anInt4428 / 2;
+						local1226 = Static271.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).walloff / 2;
 					}
 					if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
 						local1950 = local62.method3428(arg9 + 4, local165, local153, 4, local199, local213, arg1, null, local330, local173);
@@ -396,7 +396,7 @@ public final class Static185 {
 					local1226 = 8;
 					local1889 = Static265.method4521(arg2, arg7, arg8);
 					if (local1889 != 0L) {
-						local1226 = Static271.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).anInt4428 / 2;
+						local1226 = Static271.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).walloff / 2;
 					}
 					@Pc(2244) int local2244 = arg9 + 2 & 0x3;
 					@Pc(2289) Entity local2289;

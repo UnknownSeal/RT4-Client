@@ -104,7 +104,7 @@ public final class Static176 {
 				if (local133 == 2 && Static257.method523(Static55.level, local47, local147, local121)) {
 					@Pc(172) LocType local172 = Static271.get(local140);
 					if (local172.multiloc != null) {
-						local172 = local172.method3417();
+						local172 = local172.getVisible();
 					}
 					if (local172 == null) {
 						continue;
