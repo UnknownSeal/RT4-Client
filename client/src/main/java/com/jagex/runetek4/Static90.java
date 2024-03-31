@@ -35,7 +35,7 @@ public final class Static90 {
 
 	@OriginalMember(owner = "runetek4.client!hb", name = "a", descriptor = "(ZI)Lclient!ck;")
 	public static BASType method1856(@OriginalArg(1) int arg0) {
-		@Pc(10) BASType local10 = (BASType) Static262.aClass99_34.method3106((long) arg0);
+		@Pc(10) BASType local10 = (BASType) Static262.aClass99_34.get((long) arg0);
 		if (local10 != null) {
 			return local10;
 		}

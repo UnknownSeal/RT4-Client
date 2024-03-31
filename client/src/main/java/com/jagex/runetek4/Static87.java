@@ -62,10 +62,10 @@ public final class Static87 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(BI)Lclient!na;")
-	public static JagString method1804(@OriginalArg(1) int arg0) {
+	public static JagString method1804(@OriginalArg(1) int capacity) {
 		@Pc(13) JagString local13 = new JagString();
 		local13.anInt4030 = 0;
-		local13.aByteArray52 = new byte[arg0];
+		local13.aByteArray52 = new byte[capacity];
 		return local13;
 	}
 

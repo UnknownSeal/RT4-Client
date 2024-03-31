@@ -24,7 +24,7 @@ public final class Static3 {
 	public static void method4656(@OriginalArg(0) JagString arg0) {
 		@Pc(9) int local9 = Static171.method3218(arg0);
 		if (local9 != -1) {
-			Static80.method3616(Static203.aClass134_1.aShortArray73[local9], Static203.aClass134_1.aShortArray72[local9]);
+			Static80.method3616(Static203.aMapElementTypeList_1.aShortArray73[local9], Static203.aMapElementTypeList_1.aShortArray72[local9]);
 		}
 	}
 

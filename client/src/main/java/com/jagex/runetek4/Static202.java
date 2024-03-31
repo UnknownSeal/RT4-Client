@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.game.config.cursortype.CursorType;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -133,15 +134,15 @@ public final class Static202 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "d", descriptor = "(II)Lclient!ia;")
-	public static Class63 method3660(@OriginalArg(0) int arg0) {
-		@Pc(10) Class63 local10 = (Class63) Static79.aClass99_11.method3106((long) arg0);
+	public static CursorType method3660(@OriginalArg(0) int arg0) {
+		@Pc(10) CursorType local10 = (CursorType) Static79.aClass99_11.get((long) arg0);
 		if (local10 != null) {
 			return local10;
 		}
 		@Pc(20) byte[] local20 = Static153.aClass153_57.method4495(33, arg0);
-		local10 = new Class63();
+		local10 = new CursorType();
 		if (local20 != null) {
-			local10.method2249(new Packet(local20), arg0);
+			local10.decode(new Packet(local20));
 		}
 		Static79.aClass99_11.method3095(local10, (long) arg0);
 		return local10;

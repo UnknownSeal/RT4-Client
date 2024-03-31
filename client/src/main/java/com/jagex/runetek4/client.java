@@ -1,14 +1,14 @@
 package com.jagex.runetek4;
 
-import java.awt.Container;
-import java.awt.Graphics;
-import java.awt.Insets;
+import java.awt.*;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.GregorianCalendar;
 
+import com.jagex.runetek4.core.io.BufferedFile;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.DiskStore;
+import com.jagex.runetek4.game.config.cursortype.CursorType;
 import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.js5.index.Js5MasterIndex;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -18,6 +18,11 @@ import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!client")
 public final class client extends GameShell {
+
+	@OriginalMember(owner = "runetek4.client!kf", name = "h", descriptor = "[I")
+	public static final int[] locShapeToLayer = new int[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3 };
+	@OriginalMember(owner = "runetek4.client!ja", name = "r", descriptor = "I")
+	public static int currentCursor = -1;
 
 	@OriginalMember(owner = "client!client", name = "main", descriptor = "([Ljava/lang/String;)V")
 	public static void main(@OriginalArg(0) String[] arg0) {
@@ -77,6 +82,32 @@ public final class client extends GameShell {
 			Static39.aFrame1.setLocation(40, 40);
 		} catch (@Pc(167) Exception local167) {
 			Static89.report(null, local167);
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!gg", name = "c", descriptor = "(II)V")
+	public static void method1750(@OriginalArg(0) int arg0) {
+		if (!Static64.aBoolean111) {
+			arg0 = -1;
+		}
+
+		if (arg0 == currentCursor) {
+			return;
+		}
+
+		if (arg0 != -1) {
+			@Pc(24) CursorType cursorType = Static202.method3660(arg0);
+			@Pc(28) SoftwareSprite local28 = cursorType.getSprite();
+			if (local28 == null) {
+				arg0 = -1;
+			} else {
+				Static71.signLink.method5113(local28.method301(), local28.anInt1860, Static154.canvas, new Point(cursorType.hotspotx, cursorType.hotspoty), local28.anInt1866);
+				currentCursor = arg0;
+			}
+		}
+		if (arg0 == -1 && currentCursor != -1) {
+			Static71.signLink.method5113(null, -1, Static154.canvas, new Point(), -1);
+			currentCursor = -1;
 		}
 	}
 
@@ -354,7 +385,6 @@ public final class client extends GameShell {
 		}
 		if (Static266.game == 1) {
 			Static172.shiftClick = true;
-			Static161.anInt3923 = 16777215;
 			Static161.anInt3922 = 0;
 			Static33.aShortArrayArray2 = Static198.aShortArrayArray4;
 			Static172.aShortArrayArray7 = Static32.aShortArrayArray1;

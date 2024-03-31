@@ -193,7 +193,7 @@ public final class Static75 {
 			local15 = Static57.aClass3_Sub15_Sub1_3.p1neg();
 			local19 = local15 & 0x3;
 			local23 = local15 >> 2;
-			local27 = Static133.locShapeToLayer[local23];
+			local27 = client.locShapeToLayer[local23];
 			local31 = Static57.aClass3_Sub15_Sub1_3.g1();
 			local39 = (local31 >> 4 & 0x7) + Static115.anInt2940;
 			local45 = (local31 & 0x7) + Static180.anInt4264;
@@ -267,7 +267,7 @@ public final class Static75 {
 				local15 = Static57.aClass3_Sub15_Sub1_3.g1add();
 				local23 = local15 >> 2;
 				local19 = local15 & 0x3;
-				local27 = Static133.locShapeToLayer[local23];
+				local27 = client.locShapeToLayer[local23];
 				local31 = Static57.aClass3_Sub15_Sub1_3.g1();
 				local39 = Static115.anInt2940 + (local31 >> 4 & 0x7);
 				local45 = (local31 & 0x7) + Static180.anInt4264;
@@ -282,7 +282,7 @@ public final class Static75 {
 				local27 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
 				local31 = local27 >> 2;
 				local39 = local27 & 0x3;
-				local45 = Static133.locShapeToLayer[local31];
+				local45 = client.locShapeToLayer[local31];
 				local218 = Static57.aClass3_Sub15_Sub1_3.g2le();
 				if (local218 == 65535) {
 					local218 = -1;

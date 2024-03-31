@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.game.config.msitype.MSIType;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -88,15 +89,15 @@ public final class Static40 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!da", name = "c", descriptor = "(II)Lclient!aa;")
-	public static Class2 method1013(@OriginalArg(0) int arg0) {
-		@Pc(10) Class2 local10 = (Class2) Static231.aClass99_29.method3106((long) arg0);
+	public static MSIType get(@OriginalArg(0) int arg0) {
+		@Pc(10) MSIType local10 = (MSIType) Static231.aClass99_29.get((long) arg0);
 		if (local10 != null) {
 			return local10;
 		}
-		@Pc(20) byte[] local20 = Static98.aClass153_42.method4495(34, arg0);
-		local10 = new Class2();
-		if (local20 != null) {
-			local10.method6(new Packet(local20), arg0);
+		@Pc(20) byte[] bytes = Static98.aClass153_42.method4495(34, arg0);
+		local10 = new MSIType();
+		if (bytes != null) {
+			local10.decode(new Packet(bytes));
 		}
 		Static231.aClass99_29.method3095(local10, (long) arg0);
 		return local10;

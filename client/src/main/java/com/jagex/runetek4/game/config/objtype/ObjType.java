@@ -482,7 +482,7 @@ public final class ObjType {
 				return Static71.get(local22).method1824(arg0, arg1, arg2, 1, arg4);
 			}
 		}
-		@Pc(76) Model local76 = (Model) Static244.aClass99_32.method3106(this.anInt2354);
+		@Pc(76) Model local76 = (Model) Static244.aClass99_32.get(this.anInt2354);
 		if (local76 == null) {
 			@Pc(85) ModelUnlit local85 = ModelUnlit.get(Static230.aClass153_95, this.mesh);
 			if (local85 == null) {

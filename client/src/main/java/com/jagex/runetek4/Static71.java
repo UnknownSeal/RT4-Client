@@ -29,7 +29,7 @@ public final class Static71 {
 
 	@OriginalMember(owner = "client!fk", name = "a", descriptor = "(IB)Lclient!h;")
 	public static ObjType get(@OriginalArg(0) int id) {
-		@Pc(6) ObjType objType = (ObjType) Static27.aClass99_4.method3106((long) id);
+		@Pc(6) ObjType objType = (ObjType) Static27.aClass99_4.get((long) id);
 		if (objType != null) {
 			return objType;
 		}

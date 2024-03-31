@@ -98,7 +98,7 @@ public final class Static256 {
 
 	@OriginalMember(owner = "runetek4.client!um", name = "a", descriptor = "(BI)Lclient!wl;")
 	public static FloorOverlayType method4395(@OriginalArg(1) int arg0) {
-		@Pc(6) FloorOverlayType local6 = (FloorOverlayType) Static233.aClass99_31.method3106((long) arg0);
+		@Pc(6) FloorOverlayType local6 = (FloorOverlayType) Static233.aClass99_31.get((long) arg0);
 		if (local6 != null) {
 			return local6;
 		}

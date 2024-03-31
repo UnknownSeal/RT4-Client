@@ -4,6 +4,7 @@ import java.nio.ByteBuffer;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.graphics.VertexNormal;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -560,14 +561,14 @@ public final class GlModel extends Model {
 			if (local902 == 0) {
 				@Pc(1994) long local1994 = (long) (local833 << 2) + ((long) (local553 << 24) + (long) (local817 << 8) + (long) local844 << 32);
 				local919 = arg0.anIntArray197[local810];
-				@Pc(2004) Class57 local2004 = arg0.aClass57Array1[local919];
-				this.aShortArray77[local439] = this.method4098(arg0, local919, local1994, local2004.anInt2437, local2004.anInt2431, local2004.anInt2436, local2004.anInt2432, local854, local856);
+				@Pc(2004) VertexNormal local2004 = arg0.aVertexNormalArray1[local919];
+				this.aShortArray77[local439] = this.method4098(arg0, local919, local1994, local2004.x, local2004.y, local2004.z, local2004.magnitude, local854, local856);
 				local1280 = arg0.anIntArray200[local810];
-				@Pc(2033) Class57 local2033 = arg0.aClass57Array1[local1280];
-				this.aShortArray82[local439] = this.method4098(arg0, local1280, local1994 + (long) local866, local2033.anInt2437, local2033.anInt2431, local2033.anInt2436, local2033.anInt2432, local858, local683);
+				@Pc(2033) VertexNormal local2033 = arg0.aVertexNormalArray1[local1280];
+				this.aShortArray82[local439] = this.method4098(arg0, local1280, local1994 + (long) local866, local2033.x, local2033.y, local2033.z, local2033.magnitude, local858, local683);
 				@Pc(2060) int local2060 = arg0.anIntArray196[local810];
-				@Pc(2065) Class57 local2065 = arg0.aClass57Array1[local2060];
-				this.aShortArray83[local439] = this.method4098(arg0, local2060, local1994 + (long) local868, local2065.anInt2437, local2065.anInt2431, local2065.anInt2436, local2065.anInt2432, local714, local685);
+				@Pc(2065) VertexNormal local2065 = arg0.aVertexNormalArray1[local2060];
+				this.aShortArray83[local439] = this.method4098(arg0, local2060, local1994 + (long) local868, local2065.x, local2065.y, local2065.z, local2065.magnitude, local714, local685);
 			} else if (local902 == 1) {
 				@Pc(2096) TriangleNormal local2096 = arg0.aClass126Array1[local810];
 				@Pc(2137) long local2137 = (long) ((local833 << 2) + (local2096.anInt4769 > 0 ? 1024 : 2048) + (local2096.anInt4770 + 256 << 12) + (local2096.anInt4767 + 256 << 22)) + ((long) (local553 << 24) + (long) (local817 << 8) + (long) local844 << 32);

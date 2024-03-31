@@ -1,50 +1,53 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.core.io;
 
 import java.io.EOFException;
 import java.io.File;
 import java.io.IOException;
+
+import com.jagex.runetek4.FileOnDisk;
+import com.jagex.runetek4.Static289;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!en")
+@OriginalClass("client!en")
 public final class BufferedFile {
 
-	@OriginalMember(owner = "runetek4.client!en", name = "m", descriptor = "J")
+	@OriginalMember(owner = "client!en", name = "m", descriptor = "J")
 	private long aLong67;
 
-	@OriginalMember(owner = "runetek4.client!en", name = "v", descriptor = "I")
+	@OriginalMember(owner = "client!en", name = "v", descriptor = "I")
 	private int anInt1906;
 
-	@OriginalMember(owner = "runetek4.client!en", name = "p", descriptor = "J")
+	@OriginalMember(owner = "client!en", name = "p", descriptor = "J")
 	private long aLong68 = -1L;
 
-	@OriginalMember(owner = "runetek4.client!en", name = "g", descriptor = "I")
+	@OriginalMember(owner = "client!en", name = "g", descriptor = "I")
 	private int anInt1899 = 0;
 
-	@OriginalMember(owner = "runetek4.client!en", name = "w", descriptor = "J")
+	@OriginalMember(owner = "client!en", name = "w", descriptor = "J")
 	private long aLong69 = -1L;
 
-	@OriginalMember(owner = "runetek4.client!en", name = "s", descriptor = "Lsignlink!qm;")
+	@OriginalMember(owner = "client!en", name = "s", descriptor = "Lsignlink!qm;")
 	private final FileOnDisk aClass214_1;
 
-	@OriginalMember(owner = "runetek4.client!en", name = "a", descriptor = "J")
+	@OriginalMember(owner = "client!en", name = "a", descriptor = "J")
 	private long aLong64;
 
-	@OriginalMember(owner = "runetek4.client!en", name = "j", descriptor = "J")
+	@OriginalMember(owner = "client!en", name = "j", descriptor = "J")
 	private long aLong65;
 
-	@OriginalMember(owner = "runetek4.client!en", name = "q", descriptor = "[B")
+	@OriginalMember(owner = "client!en", name = "q", descriptor = "[B")
 	private final byte[] aByteArray20;
 
-	@OriginalMember(owner = "runetek4.client!en", name = "b", descriptor = "[B")
+	@OriginalMember(owner = "client!en", name = "b", descriptor = "[B")
 	private final byte[] aByteArray19;
 
-	@OriginalMember(owner = "runetek4.client!en", name = "k", descriptor = "J")
+	@OriginalMember(owner = "client!en", name = "k", descriptor = "J")
 	private long aLong66;
 
-	@OriginalMember(owner = "runetek4.client!en", name = "<init>", descriptor = "(Lsignlink!qm;II)V")
+	@OriginalMember(owner = "client!en", name = "<init>", descriptor = "(Lsignlink!qm;II)V")
 	public BufferedFile(@OriginalArg(0) FileOnDisk arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) throws IOException {
 		this.aClass214_1 = arg0;
 		this.aLong65 = this.aLong64 = arg0.method5137();
@@ -53,7 +56,7 @@ public final class BufferedFile {
 		this.aLong66 = 0L;
 	}
 
-	@OriginalMember(owner = "runetek4.client!en", name = "a", descriptor = "(B)V")
+	@OriginalMember(owner = "client!en", name = "a", descriptor = "(B)V")
 	private void method1450() throws IOException {
 		if (this.aLong68 == -1L) {
 			return;
@@ -87,18 +90,18 @@ public final class BufferedFile {
 		this.aLong68 = -1L;
 	}
 
-	@OriginalMember(owner = "runetek4.client!en", name = "a", descriptor = "(I)J")
-	public final long method1451() {
+	@OriginalMember(owner = "client!en", name = "a", descriptor = "(I)J")
+	public long method1451() {
 		return this.aLong65;
 	}
 
-	@OriginalMember(owner = "runetek4.client!en", name = "b", descriptor = "(I)Ljava/io/File;")
+	@OriginalMember(owner = "client!en", name = "b", descriptor = "(I)Ljava/io/File;")
 	private File method1452() {
 		return this.aClass214_1.method5138();
 	}
 
-	@OriginalMember(owner = "runetek4.client!en", name = "a", descriptor = "(I[BII)V")
-	public final void method1453(@OriginalArg(0) int arg0, @OriginalArg(1) byte[] arg1, @OriginalArg(2) int arg2) throws IOException {
+	@OriginalMember(owner = "client!en", name = "a", descriptor = "(I[BII)V")
+	public void method1453(@OriginalArg(0) int arg0, @OriginalArg(1) byte[] arg1, @OriginalArg(2) int arg2) throws IOException {
 		try {
 			if (arg2 > arg1.length) {
 				throw new ArrayIndexOutOfBoundsException(arg2 - arg1.length);
@@ -187,13 +190,13 @@ public final class BufferedFile {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!en", name = "b", descriptor = "(Z)V")
-	public final void method1455() throws IOException {
+	@OriginalMember(owner = "client!en", name = "b", descriptor = "(Z)V")
+	public void method1455() throws IOException {
 		this.method1450();
 		this.aClass214_1.method5136();
 	}
 
-	@OriginalMember(owner = "runetek4.client!en", name = "c", descriptor = "(I)V")
+	@OriginalMember(owner = "client!en", name = "c", descriptor = "(I)V")
 	private void method1456() throws IOException {
 		this.anInt1906 = 0;
 		if (this.aLong67 != this.aLong66) {
@@ -215,13 +218,13 @@ public final class BufferedFile {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!en", name = "a", descriptor = "(Z[B)V")
-	public final void method1457(@OriginalArg(1) byte[] arg0) throws IOException {
+	@OriginalMember(owner = "client!en", name = "a", descriptor = "(Z[B)V")
+	public void method1457(@OriginalArg(1) byte[] arg0) throws IOException {
 		this.method1453(0, arg0, arg0.length);
 	}
 
-	@OriginalMember(owner = "runetek4.client!en", name = "a", descriptor = "([BIII)V")
-	public final void method1458(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) throws IOException {
+	@OriginalMember(owner = "client!en", name = "a", descriptor = "([BIII)V")
+	public void method1458(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) throws IOException {
 		try {
 			if (this.aLong65 < (long) arg2 + this.aLong66) {
 				this.aLong65 = (long) arg2 + this.aLong66;
@@ -281,8 +284,8 @@ public final class BufferedFile {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!en", name = "a", descriptor = "(IJ)V")
-	public final void method1459(@OriginalArg(1) long arg0) throws IOException {
+	@OriginalMember(owner = "client!en", name = "a", descriptor = "(IJ)V")
+	public void method1459(@OriginalArg(1) long arg0) throws IOException {
 		if (arg0 < 0L) {
 			throw new IOException("Invalid seek to " + arg0 + " in file " + this.method1452());
 		}

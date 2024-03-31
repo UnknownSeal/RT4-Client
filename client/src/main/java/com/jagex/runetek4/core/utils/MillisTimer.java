@@ -1,39 +1,42 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.core.utils;
 
+import com.jagex.runetek4.MonotonicClock;
+import com.jagex.runetek4.Static231;
+import com.jagex.runetek4.core.utils.Timer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!lj")
+@OriginalClass("client!lj")
 public final class MillisTimer extends Timer {
 
-	@OriginalMember(owner = "runetek4.client!lj", name = "o", descriptor = "I")
+	@OriginalMember(owner = "client!lj", name = "o", descriptor = "I")
 	private int anInt3549;
 
-	@OriginalMember(owner = "runetek4.client!lj", name = "x", descriptor = "[J")
+	@OriginalMember(owner = "client!lj", name = "x", descriptor = "[J")
 	private final long[] aLongArray4 = new long[10];
 
-	@OriginalMember(owner = "runetek4.client!lj", name = "r", descriptor = "I")
+	@OriginalMember(owner = "client!lj", name = "r", descriptor = "I")
 	private int anInt3550 = 256;
 
-	@OriginalMember(owner = "runetek4.client!lj", name = "u", descriptor = "I")
+	@OriginalMember(owner = "client!lj", name = "u", descriptor = "I")
 	private int anInt3552 = 1;
 
-	@OriginalMember(owner = "runetek4.client!lj", name = "v", descriptor = "I")
+	@OriginalMember(owner = "client!lj", name = "v", descriptor = "I")
 	private int anInt3553 = 0;
 
-	@OriginalMember(owner = "runetek4.client!lj", name = "k", descriptor = "J")
+	@OriginalMember(owner = "client!lj", name = "k", descriptor = "J")
 	private long aLong122 = MonotonicClock.currentTimeMillis();
 
-	@OriginalMember(owner = "runetek4.client!lj", name = "<init>", descriptor = "()V")
+	@OriginalMember(owner = "client!lj", name = "<init>", descriptor = "()V")
 	public MillisTimer() {
 		for (@Pc(22) int local22 = 0; local22 < 10; local22++) {
 			this.aLongArray4[local22] = this.aLong122;
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!lj", name = "b", descriptor = "(I)V")
+	@OriginalMember(owner = "client!lj", name = "b", descriptor = "(I)V")
 	@Override
 	public final void method3394() {
 		for (@Pc(7) int local7 = 0; local7 < 10; local7++) {
@@ -41,7 +44,7 @@ public final class MillisTimer extends Timer {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!lj", name = "a", descriptor = "(III)I")
+	@OriginalMember(owner = "client!lj", name = "a", descriptor = "(III)I")
 	@Override
 	public final int method3391(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
 		@Pc(17) int local17 = this.anInt3552;

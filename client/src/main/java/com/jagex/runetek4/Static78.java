@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -107,11 +108,11 @@ public final class Static78 {
 				}
 			}
 		}
-		if (Static235.aClass134_2 == null) {
+		if (Static235.aMapElementTypeList_2 == null) {
 			if (Static158.aClass3_Sub2_Sub4_3 == null || !Static227.aClass153_94.method4497(Static34.method882(new JagString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, Static50.aClass100_363 }))) {
-				Static235.aClass134_2 = new Class134(0);
+				Static235.aMapElementTypeList_2 = new MapElementTypeList(0);
 			} else if (Static227.aClass153_94.method4489(Static34.method882(new JagString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, Static50.aClass100_363 }))) {
-				Static235.aClass134_2 = Static140.method2711(Static34.method882(new JagString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, Static50.aClass100_363 }), Static227.aClass153_94);
+				Static235.aMapElementTypeList_2 = MapElementTypeList.create(Static34.method882(new JagString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, Static50.aClass100_363 }), Static227.aClass153_94);
 			} else {
 				local12 = false;
 				Static175.anInt4220++;

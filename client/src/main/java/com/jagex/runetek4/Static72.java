@@ -41,7 +41,7 @@ public final class Static72 {
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "b", descriptor = "(II)Lclient!cl;")
 	public static AnimFrameset method1566(@OriginalArg(0) int arg0) {
-		@Pc(19) AnimFrameset local19 = (AnimFrameset) Static267.aClass99_37.method3106((long) arg0);
+		@Pc(19) AnimFrameset local19 = (AnimFrameset) Static267.aClass99_37.get((long) arg0);
 		if (local19 != null) {
 			return local19;
 		}

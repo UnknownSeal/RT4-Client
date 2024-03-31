@@ -26,9 +26,6 @@ public final class Static115 {
 	@OriginalMember(owner = "runetek4.client!ja", name = "n", descriptor = "I")
 	public static int anInt2939 = 0;
 
-	@OriginalMember(owner = "runetek4.client!ja", name = "r", descriptor = "I")
-	public static int anInt2941 = -1;
-
 	@OriginalMember(owner = "runetek4.client!ja", name = "s", descriptor = "Lclient!na;")
 	public static final JagString aClass100_582 = Static28.parse("http:)4)4");
 

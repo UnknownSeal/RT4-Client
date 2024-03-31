@@ -51,7 +51,7 @@ public final class Static116 {
 		Static41.anInt1309 = 0;
 		Static269.aClass3_Sub2_Sub4_2 = null;
 		Static145.aClass69_84.method2278();
-		Static203.aClass134_1 = null;
+		Static203.aMapElementTypeList_1 = null;
 		Static217.anInt4901 = -1;
 		Static130.aClass41_2 = null;
 		Static160.aClass41_4 = null;

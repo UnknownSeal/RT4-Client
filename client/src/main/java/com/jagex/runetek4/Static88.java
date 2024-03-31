@@ -9,6 +9,7 @@ import com.jagex.runetek4.game.client.ClientInvCache;
 import com.jagex.runetek4.game.config.enumtype.EnumType;
 import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.game.config.objtype.ObjType;
+import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -2475,11 +2476,11 @@ public final class Static88 {
 												if (local226 == 5056) {
 													local28--;
 													local809 = Static254.anIntArray487[local28];
-													@Pc(6527) Class3_Sub2_Sub6 local6527 = Static230.method3953(local809);
-													if (local6527.anIntArray72 == null) {
+													@Pc(6527) QuickChatPhraseType local6527 = Static230.method3953(local809);
+													if (local6527.autoResponses == null) {
 														Static254.anIntArray487[local28++] = 0;
 													} else {
-														Static254.anIntArray487[local28++] = local6527.anIntArray72.length;
+														Static254.anIntArray487[local28++] = local6527.autoResponses.length;
 													}
 													continue;
 												}
@@ -2487,15 +2488,15 @@ public final class Static88 {
 													local28 -= 2;
 													local803 = Static254.anIntArray487[local28 + 1];
 													local809 = Static254.anIntArray487[local28];
-													Static254.anIntArray487[local28++] = Static230.method3953(local809).anIntArray72[local803];
+													Static254.anIntArray487[local28++] = Static230.method3953(local809).autoResponses[local803];
 													continue;
 												}
 												if (local226 == 5058) {
 													Static122.aClass12_1 = new Class12();
 													local28--;
 													Static122.aClass12_1.anInt439 = Static254.anIntArray487[local28];
-													Static122.aClass12_1.aClass3_Sub2_Sub6_1 = Static230.method3953(Static122.aClass12_1.anInt439);
-													Static122.aClass12_1.anIntArray33 = new int[Static122.aClass12_1.aClass3_Sub2_Sub6_1.method767()];
+													Static122.aClass12_1.aQuickChatPhraseType_1 = Static230.method3953(Static122.aClass12_1.anInt439);
+													Static122.aClass12_1.anIntArray33 = new int[Static122.aClass12_1.aQuickChatPhraseType_1.method767()];
 													continue;
 												}
 												if (local226 == 5059) {
@@ -2504,7 +2505,7 @@ public final class Static88 {
 													local809 = Static6.outboundBuffer.pos;
 													Static6.outboundBuffer.p1(0);
 													Static6.outboundBuffer.p2(Static122.aClass12_1.anInt439);
-													Static122.aClass12_1.aClass3_Sub2_Sub6_1.method760(Static6.outboundBuffer, Static122.aClass12_1.anIntArray33);
+													Static122.aClass12_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aClass12_1.anIntArray33);
 													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - local809);
 													continue;
 												}
@@ -2516,7 +2517,7 @@ public final class Static88 {
 													local803 = Static6.outboundBuffer.pos;
 													Static6.outboundBuffer.p8(local609.encode37());
 													Static6.outboundBuffer.p2(Static122.aClass12_1.anInt439);
-													Static122.aClass12_1.aClass3_Sub2_Sub6_1.method760(Static6.outboundBuffer, Static122.aClass12_1.anIntArray33);
+													Static122.aClass12_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aClass12_1.anIntArray33);
 													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - local803);
 													continue;
 												}
@@ -2526,7 +2527,7 @@ public final class Static88 {
 													local809 = Static6.outboundBuffer.pos;
 													Static6.outboundBuffer.p1(1);
 													Static6.outboundBuffer.p2(Static122.aClass12_1.anInt439);
-													Static122.aClass12_1.aClass3_Sub2_Sub6_1.method760(Static6.outboundBuffer, Static122.aClass12_1.anIntArray33);
+													Static122.aClass12_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aClass12_1.anIntArray33);
 													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - local809);
 													continue;
 												}
@@ -2599,7 +2600,7 @@ public final class Static88 {
 													local809 = Static254.anIntArray487[local28];
 													local1052 = Static254.anIntArray487[local28 + 2];
 													local803 = Static254.anIntArray487[local28 + 1];
-													@Pc(6996) Class3_Sub2_Sub6 local6996 = Static230.method3953(local809);
+													@Pc(6996) QuickChatPhraseType local6996 = Static230.method3953(local809);
 													if (local6996.method765(local803) != 0) {
 														throw new RuntimeException("bad command");
 													}
@@ -2743,8 +2744,8 @@ public final class Static88 {
 														if (local809 == -1) {
 															local2522 = Static72.aClass100_447;
 														} else {
-															local2522 = Static203.aClass134_1.aClass100Array153[local809];
-															local1052 = Static203.aClass134_1.method3894(local809);
+															local2522 = Static203.aMapElementTypeList_1.aClass100Array153[local809];
+															local1052 = Static203.aMapElementTypeList_1.method3894(local809);
 														}
 														local2522 = local2522.method3140(Static67.aClass100_639, Static5.aClass100_10);
 														Static3.aClass100Array176[local26++] = local2522;
@@ -2757,8 +2758,8 @@ public final class Static88 {
 														if (local809 == -1) {
 															local2522 = Static72.aClass100_447;
 														} else {
-															local2522 = Static203.aClass134_1.aClass100Array153[local809];
-															local1052 = Static203.aClass134_1.method3894(local809);
+															local2522 = Static203.aMapElementTypeList_1.aClass100Array153[local809];
+															local1052 = Static203.aMapElementTypeList_1.method3894(local809);
 														}
 														local2522 = local2522.method3140(Static67.aClass100_639, Static5.aClass100_10);
 														Static3.aClass100Array176[local26++] = local2522;

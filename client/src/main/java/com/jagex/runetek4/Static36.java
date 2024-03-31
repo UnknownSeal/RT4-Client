@@ -46,7 +46,7 @@ public final class Static36 {
 
 	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "a", descriptor = "(IB)Lclient!tk;")
 	public static SeqType method941(@OriginalArg(0) int arg0) {
-		@Pc(17) SeqType local17 = (SeqType) Static142.aClass99_23.method3106((long) arg0);
+		@Pc(17) SeqType local17 = (SeqType) Static142.aClass99_23.get((long) arg0);
 		if (local17 != null) {
 			return local17;
 		}

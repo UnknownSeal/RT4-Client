@@ -19,15 +19,15 @@ public final class Static171 {
 	public static int anInt4157;
 
 	@OriginalMember(owner = "runetek4.client!ni", name = "n", descriptor = "Lclient!sm;")
-	public static Class139 aClass139_1 = new Class139();
+	public static LocEntity aLocEntity_1 = new LocEntity();
 
 	@OriginalMember(owner = "runetek4.client!ni", name = "a", descriptor = "(ILclient!na;)I")
 	public static int method3218(@OriginalArg(1) JagString arg0) {
-		if (Static203.aClass134_1 == null || arg0.length() == 0) {
+		if (Static203.aMapElementTypeList_1 == null || arg0.length() == 0) {
 			return -1;
 		}
-		for (@Pc(20) int local20 = 0; local20 < Static203.aClass134_1.anInt5074; local20++) {
-			if (Static203.aClass134_1.aClass100Array153[local20].method3140(Static101.aClass100_538, Static197.aClass100_872).method3142(arg0)) {
+		for (@Pc(20) int local20 = 0; local20 < Static203.aMapElementTypeList_1.anInt5074; local20++) {
+			if (Static203.aMapElementTypeList_1.aClass100Array153[local20].method3140(Static101.aClass100_538, Static197.aClass100_872).method3142(arg0)) {
 				return local20;
 			}
 		}

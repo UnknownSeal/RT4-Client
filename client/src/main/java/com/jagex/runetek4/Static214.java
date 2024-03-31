@@ -62,7 +62,7 @@ public final class Static214 {
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "b", descriptor = "(II)Lclient!me;")
 	public static NPCType get(@OriginalArg(0) int id) {
-		@Pc(10) NPCType npcType = (NPCType) Static93.aClass99_13.method3106((long) id);
+		@Pc(10) NPCType npcType = (NPCType) Static93.aClass99_13.get((long) id);
 		if (npcType != null) {
 			return npcType;
 		}

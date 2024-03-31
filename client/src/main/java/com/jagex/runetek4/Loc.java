@@ -291,7 +291,7 @@ public final class Loc extends Entity {
 			Static242.method4207(this.aClass36_Sub1_2, this.anInt1296, this.anInt1294, this.anInt1319);
 		}
 		@Pc(356) boolean local356 = this.aClass36_Sub1_2 == null;
-		@Pc(389) Class139 local389;
+		@Pc(389) LocEntity local389;
 		if (this.aClass144_2 == null) {
 			local389 = local19.method3428(this.anInt1295, local302, local267, this.anInt1307, local293, local314, false, local356 ? Static32.aClass36_Sub1_1 : this.aClass36_Sub1_2, local256, local311);
 		} else {
@@ -302,14 +302,14 @@ public final class Loc extends Entity {
 		}
 		if (GlRenderer.enabled && local256) {
 			if (local356) {
-				Static32.aClass36_Sub1_1 = local389.aClass36_Sub1_3;
+				Static32.aClass36_Sub1_1 = local389.sprite;
 			}
 			@Pc(429) int local429 = 0;
 			if (this.anInt1303 != 0) {
 				@Pc(439) int[][] local439 = Static83.anIntArrayArrayArray4[0];
 				local429 = local293 - (local439[local178][local192] + local439[local185][local192] + local439[local185][local201] + local439[local178][local201] >> 2);
 			}
-			@Pc(471) SoftwareIndexedSprite local471 = local389.aClass36_Sub1_3;
+			@Pc(471) SoftwareIndexedSprite local471 = local389.sprite;
 			if (this.aBoolean81 && Static242.method4209(local471, local302, local429, local311)) {
 				this.aBoolean81 = false;
 			}
@@ -326,7 +326,7 @@ public final class Loc extends Entity {
 			this.anInt1321 = local19.anInt4426;
 			this.anInt1322 = this.anInt1297;
 		}
-		return local389.aClass8_10;
+		return local389.model;
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "d", descriptor = "(I)Lclient!th;")

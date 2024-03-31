@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.graphics.VertexNormal;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -235,32 +236,32 @@ public final class SoftwareModel extends Model {
 			if (local377 == -1) {
 				local366 = 2;
 			}
-			@Pc(435) Class57 local435;
+			@Pc(435) VertexNormal local435;
 			@Pc(468) int local468;
 			@Pc(614) TriangleNormal local614;
 			if (local388 == -1) {
 				if (local366 == 0) {
 					@Pc(416) int local416 = arg0.unmodifiedTriangleColour[local133] & 0xFFFF;
-					if (arg0.aClass57Array2 == null || arg0.aClass57Array2[this.anIntArray534[local133]] == null) {
-						local435 = arg0.aClass57Array1[this.anIntArray534[local133]];
+					if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray534[local133]] == null) {
+						local435 = arg0.aVertexNormalArray1[this.anIntArray534[local133]];
 					} else {
-						local435 = arg0.aClass57Array2[this.anIntArray534[local133]];
+						local435 = arg0.aVertexNormalArray2[this.anIntArray534[local133]];
 					}
-					local468 = arg1 + (arg3 * local435.anInt2437 + arg4 * local435.anInt2431 + arg5 * local435.anInt2436) / (local108 * local435.anInt2432) << 17;
+					local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude) << 17;
 					this.anIntArray533[local133] = local468 | Static268.method4585(local416, local468 >> 17);
-					if (arg0.aClass57Array2 == null || arg0.aClass57Array2[this.anIntArray524[local133]] == null) {
-						local435 = arg0.aClass57Array1[this.anIntArray524[local133]];
+					if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray524[local133]] == null) {
+						local435 = arg0.aVertexNormalArray1[this.anIntArray524[local133]];
 					} else {
-						local435 = arg0.aClass57Array2[this.anIntArray524[local133]];
+						local435 = arg0.aVertexNormalArray2[this.anIntArray524[local133]];
 					}
-					local468 = arg1 + (arg3 * local435.anInt2437 + arg4 * local435.anInt2431 + arg5 * local435.anInt2436) / (local108 * local435.anInt2432) << 17;
+					local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude) << 17;
 					this.anIntArray523[local133] = local468 | Static268.method4585(local416, local468 >> 17);
-					if (arg0.aClass57Array2 == null || arg0.aClass57Array2[this.anIntArray529[local133]] == null) {
-						local435 = arg0.aClass57Array1[this.anIntArray529[local133]];
+					if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray529[local133]] == null) {
+						local435 = arg0.aVertexNormalArray1[this.anIntArray529[local133]];
 					} else {
-						local435 = arg0.aClass57Array2[this.anIntArray529[local133]];
+						local435 = arg0.aVertexNormalArray2[this.anIntArray529[local133]];
 					}
-					local468 = arg1 + (arg3 * local435.anInt2437 + arg4 * local435.anInt2431 + arg5 * local435.anInt2436) / (local108 * local435.anInt2432) << 17;
+					local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude) << 17;
 					this.anIntArray532[local133] = local468 | Static268.method4585(local416, local468 >> 17);
 				} else if (local366 == 1) {
 					local614 = arg0.aClass126Array1[local133];
@@ -274,26 +275,26 @@ public final class SoftwareModel extends Model {
 					this.anIntArray532[local133] = -2;
 				}
 			} else if (local366 == 0) {
-				if (arg0.aClass57Array2 == null || arg0.aClass57Array2[this.anIntArray534[local133]] == null) {
-					local435 = arg0.aClass57Array1[this.anIntArray534[local133]];
+				if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray534[local133]] == null) {
+					local435 = arg0.aVertexNormalArray1[this.anIntArray534[local133]];
 				} else {
-					local435 = arg0.aClass57Array2[this.anIntArray534[local133]];
+					local435 = arg0.aVertexNormalArray2[this.anIntArray534[local133]];
 				}
-				local468 = arg1 + (arg3 * local435.anInt2437 + arg4 * local435.anInt2431 + arg5 * local435.anInt2436) / (local108 * local435.anInt2432);
+				local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude);
 				this.anIntArray533[local133] = Static268.method4582(local468);
-				if (arg0.aClass57Array2 == null || arg0.aClass57Array2[this.anIntArray524[local133]] == null) {
-					local435 = arg0.aClass57Array1[this.anIntArray524[local133]];
+				if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray524[local133]] == null) {
+					local435 = arg0.aVertexNormalArray1[this.anIntArray524[local133]];
 				} else {
-					local435 = arg0.aClass57Array2[this.anIntArray524[local133]];
+					local435 = arg0.aVertexNormalArray2[this.anIntArray524[local133]];
 				}
-				local468 = arg1 + (arg3 * local435.anInt2437 + arg4 * local435.anInt2431 + arg5 * local435.anInt2436) / (local108 * local435.anInt2432);
+				local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude);
 				this.anIntArray523[local133] = Static268.method4582(local468);
-				if (arg0.aClass57Array2 == null || arg0.aClass57Array2[this.anIntArray529[local133]] == null) {
-					local435 = arg0.aClass57Array1[this.anIntArray529[local133]];
+				if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray529[local133]] == null) {
+					local435 = arg0.aVertexNormalArray1[this.anIntArray529[local133]];
 				} else {
-					local435 = arg0.aClass57Array2[this.anIntArray529[local133]];
+					local435 = arg0.aVertexNormalArray2[this.anIntArray529[local133]];
 				}
-				local468 = arg1 + (arg3 * local435.anInt2437 + arg4 * local435.anInt2431 + arg5 * local435.anInt2436) / (local108 * local435.anInt2432);
+				local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude);
 				this.anIntArray532[local133] = Static268.method4582(local468);
 			} else if (local366 == 1) {
 				local614 = arg0.aClass126Array1[local133];

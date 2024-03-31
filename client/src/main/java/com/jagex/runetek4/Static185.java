@@ -105,15 +105,15 @@ public final class Static185 {
 		@Pc(330) boolean local330 = local62.hardshadow & !arg3;
 		local261 |= (long) arg5 << 32;
 		@Pc(387) Entity local387;
-		@Pc(403) Class139 local403;
+		@Pc(403) LocEntity local403;
 		if (arg6 == 22) {
 			if (Static250.aBoolean283 || local62.active != 0 || local62.blockwalk == 1 || local62.forcedecor) {
 				if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
 					local403 = local62.method3428(arg9, local165, local153, 22, local199, local213, arg1, null, local330, local173);
 					if (GlRenderer.enabled && local330) {
-						Static242.method4211(local403.aClass36_Sub1_3, local165, local201, local173);
+						Static242.method4211(local403.sprite, local165, local201, local173);
 					}
-					local387 = local403.aClass8_10;
+					local387 = local403.model;
 				} else {
 					local387 = new Loc(arg5, 22, arg9, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);
 				}
@@ -126,9 +126,9 @@ public final class Static185 {
 			if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
 				local403 = local62.method3428(arg6 == 11 ? arg9 + 4 : arg9, local165, local153, 10, local199, local213, arg1, null, local330, local173);
 				if (GlRenderer.enabled && local330) {
-					Static242.method4211(local403.aClass36_Sub1_3, local165, local201, local173);
+					Static242.method4211(local403.sprite, local165, local201, local173);
 				}
-				local387 = local403.aClass8_10;
+				local387 = local403.model;
 			} else {
 				local387 = new Loc(arg5, 10, arg6 == 11 ? arg9 + 4 : arg9, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);
 			}
@@ -158,9 +158,9 @@ public final class Static185 {
 			if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
 				local403 = local62.method3428(arg9, local165, local153, arg6, local199, local213, arg1, null, local330, local173);
 				if (GlRenderer.enabled && local330) {
-					Static242.method4211(local403.aClass36_Sub1_3, local165, local201, local173);
+					Static242.method4211(local403.sprite, local165, local201, local173);
 				}
-				local387 = local403.aClass8_10;
+				local387 = local403.model;
 			} else {
 				local387 = new Loc(arg5, arg6, arg9, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);
 			}
@@ -175,9 +175,9 @@ public final class Static185 {
 			if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
 				local403 = local62.method3428(arg9, local165, local153, 0, local199, local213, arg1, null, local330, local173);
 				if (GlRenderer.enabled && local330) {
-					Static242.method4211(local403.aClass36_Sub1_3, local165, local201, local173);
+					Static242.method4211(local403.sprite, local165, local201, local173);
 				}
-				local387 = local403.aClass8_10;
+				local387 = local403.model;
 			} else {
 				local387 = new Loc(arg5, 0, arg9, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);
 			}
@@ -227,9 +227,9 @@ public final class Static185 {
 			if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
 				local403 = local62.method3428(arg9, local165, local153, 1, local199, local213, arg1, null, local330, local173);
 				if (GlRenderer.enabled && local330) {
-					Static242.method4211(local403.aClass36_Sub1_3, local165, local201, local173);
+					Static242.method4211(local403.sprite, local165, local201, local173);
 				}
-				local387 = local403.aClass8_10;
+				local387 = local403.model;
 			} else {
 				local387 = new Loc(arg5, 1, arg9, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);
 			}
@@ -255,16 +255,16 @@ public final class Static185 {
 				@Pc(1269) Entity local1269;
 				@Pc(1254) Entity local1254;
 				if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
-					@Pc(1287) Class139 local1287 = local62.method3428(arg9 + 4, local165, local153, 2, local199, local213, arg1, null, local330, local173);
+					@Pc(1287) LocEntity local1287 = local62.method3428(arg9 + 4, local165, local153, 2, local199, local213, arg1, null, local330, local173);
 					if (GlRenderer.enabled && local330) {
-						Static242.method4211(local1287.aClass36_Sub1_3, local165, local201, local173);
+						Static242.method4211(local1287.sprite, local165, local201, local173);
 					}
-					local1254 = local1287.aClass8_10;
+					local1254 = local1287.model;
 					local1287 = local62.method3428(local1226, local165, local153, 2, local199, local213, arg1, null, local330, local173);
 					if (GlRenderer.enabled && local330) {
-						Static242.method4211(local1287.aClass36_Sub1_3, local165, local201, local173);
+						Static242.method4211(local1287.sprite, local165, local201, local173);
 					}
-					local1269 = local1287.aClass8_10;
+					local1269 = local1287.model;
 				} else {
 					local1254 = new Loc(arg5, 2, arg9 + 4, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);
 					local1269 = new Loc(arg5, 2, local1226, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);
@@ -295,9 +295,9 @@ public final class Static185 {
 				if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
 					local403 = local62.method3428(arg9, local165, local153, 3, local199, local213, arg1, null, local330, local173);
 					if (GlRenderer.enabled && local330) {
-						Static242.method4211(local403.aClass36_Sub1_3, local165, local201, local173);
+						Static242.method4211(local403.sprite, local165, local201, local173);
 					}
-					local387 = local403.aClass8_10;
+					local387 = local403.model;
 				} else {
 					local387 = new Loc(arg5, 3, arg9, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);
 				}
@@ -320,9 +320,9 @@ public final class Static185 {
 				if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
 					local403 = local62.method3428(arg9, local165, local153, arg6, local199, local213, arg1, null, local330, local173);
 					if (GlRenderer.enabled && local330) {
-						Static242.method4211(local403.aClass36_Sub1_3, local165, local201, local173);
+						Static242.method4211(local403.sprite, local165, local201, local173);
 					}
-					local387 = local403.aClass8_10;
+					local387 = local403.model;
 				} else {
 					local387 = new Loc(arg5, arg6, arg9, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);
 				}
@@ -337,9 +337,9 @@ public final class Static185 {
 				if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
 					local403 = local62.method3428(arg9, local165, local153, 4, local199, local213, arg1, null, local330, local173);
 					if (GlRenderer.enabled && local330) {
-						Static242.method4211(local403.aClass36_Sub1_3, local165, local201, local173);
+						Static242.method4211(local403.sprite, local165, local201, local173);
 					}
-					local387 = local403.aClass8_10;
+					local387 = local403.model;
 				} else {
 					local387 = new Loc(arg5, 4, arg9, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);
 				}
@@ -347,7 +347,7 @@ public final class Static185 {
 			} else {
 				@Pc(1889) long local1889;
 				@Pc(1934) Entity local1934;
-				@Pc(1950) Class139 local1950;
+				@Pc(1950) LocEntity local1950;
 				if (arg6 == 5) {
 					local1226 = 16;
 					local1889 = Static265.method4521(arg2, arg7, arg8);
@@ -357,9 +357,9 @@ public final class Static185 {
 					if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
 						local1950 = local62.method3428(arg9, local165, local153, 4, local199, local213, arg1, null, local330, local173);
 						if (GlRenderer.enabled && local330) {
-							Static242.method4211(local1950.aClass36_Sub1_3, local165 - Static34.anIntArray80[arg9] * 8, local201, local173 - Static238.anIntArray469[arg9] * 8);
+							Static242.method4211(local1950.sprite, local165 - Static34.anIntArray80[arg9] * 8, local201, local173 - Static238.anIntArray469[arg9] * 8);
 						}
-						local1934 = local1950.aClass8_10;
+						local1934 = local1950.model;
 					} else {
 						local1934 = new Loc(arg5, 4, arg9, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);
 					}
@@ -373,9 +373,9 @@ public final class Static185 {
 					if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
 						local1950 = local62.method3428(arg9 + 4, local165, local153, 4, local199, local213, arg1, null, local330, local173);
 						if (GlRenderer.enabled && local330) {
-							Static242.method4211(local1950.aClass36_Sub1_3, local165 - Static114.anIntArray565[arg9] * 8, local201, local173 - Static64.anIntArray154[arg9] * 8);
+							Static242.method4211(local1950.sprite, local165 - Static114.anIntArray565[arg9] * 8, local201, local173 - Static64.anIntArray154[arg9] * 8);
 						}
-						local1934 = local1950.aClass8_10;
+						local1934 = local1950.model;
 					} else {
 						local1934 = new Loc(arg5, 4, arg9 + 4, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);
 					}
@@ -383,11 +383,11 @@ public final class Static185 {
 				} else if (arg6 == 7) {
 					@Pc(2137) int local2137 = arg9 + 2 & 0x3;
 					if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
-						@Pc(2183) Class139 local2183 = local62.method3428(local2137 + 4, local165, local153, 4, local199, local213, arg1, null, local330, local173);
+						@Pc(2183) LocEntity local2183 = local62.method3428(local2137 + 4, local165, local153, 4, local199, local213, arg1, null, local330, local173);
 						if (GlRenderer.enabled && local330) {
-							Static242.method4211(local2183.aClass36_Sub1_3, local165, local201, local173);
+							Static242.method4211(local2183.sprite, local165, local201, local173);
 						}
-						local387 = local2183.aClass8_10;
+						local387 = local2183.model;
 					} else {
 						local387 = new Loc(arg5, 4, local2137 + 4, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);
 					}
@@ -403,16 +403,16 @@ public final class Static185 {
 					if (local62.anInt4430 == -1 && local62.multiloc == null && !local62.aBoolean214) {
 						@Pc(2297) int local2297 = Static64.anIntArray154[arg9] * 8;
 						@Pc(2303) int local2303 = Static114.anIntArray565[arg9] * 8;
-						@Pc(2319) Class139 local2319 = local62.method3428(arg9 + 4, local165, local153, 4, local199, local213, arg1, null, local330, local173);
+						@Pc(2319) LocEntity local2319 = local62.method3428(arg9 + 4, local165, local153, 4, local199, local213, arg1, null, local330, local173);
 						if (GlRenderer.enabled && local330) {
-							Static242.method4211(local2319.aClass36_Sub1_3, local165 - local2303, local201, local173 - local2297);
+							Static242.method4211(local2319.sprite, local165 - local2303, local201, local173 - local2297);
 						}
-						local1934 = local2319.aClass8_10;
+						local1934 = local2319.model;
 						local2319 = local62.method3428(local2244 + 4, local165, local153, 4, local199, local213, arg1, null, local330, local173);
 						if (GlRenderer.enabled && local330) {
-							Static242.method4211(local2319.aClass36_Sub1_3, local165 - local2303, local201, local173 - local2297);
+							Static242.method4211(local2319.sprite, local165 - local2303, local201, local173 - local2297);
 						}
-						local2289 = local2319.aClass8_10;
+						local2289 = local2319.model;
 					} else {
 						local1934 = new Loc(arg5, 4, arg9 + 4, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);
 						local2289 = new Loc(arg5, 4, local2244 + 4, arg0, arg7, arg8, local62.anInt4430, local62.randomanimframe, null);

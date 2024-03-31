@@ -15,9 +15,6 @@ public final class Static133 {
 	@OriginalMember(owner = "runetek4.client!kf", name = "d", descriptor = "[Lclient!cl;")
 	public static final AnimFrameset[] aClass3_Sub2_Sub7Array7 = new AnimFrameset[14];
 
-	@OriginalMember(owner = "runetek4.client!kf", name = "h", descriptor = "[I")
-	public static final int[] locShapeToLayer = new int[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3 };
-
 	@OriginalMember(owner = "runetek4.client!kf", name = "l", descriptor = "I")
 	public static int anInt5235 = 0;
 

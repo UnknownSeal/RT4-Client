@@ -71,7 +71,7 @@ public final class Static84 {
 						@Pc(112) Class12 local112 = Static264.method3568(Static270.aClass3_Sub15_9);
 						local13 &= 0x7FFF;
 						local106 = local112.anInt439;
-						local127 = local112.aClass3_Sub2_Sub6_1.method770(Static270.aClass3_Sub15_9);
+						local127 = local112.aQuickChatPhraseType_1.method770(Static270.aClass3_Sub15_9);
 					} else {
 						local127 = Static218.method2862(Static65.method1497(Static270.aClass3_Sub15_9).method3116());
 					}

@@ -1,4 +1,4 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.core.io;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -6,12 +6,12 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
-@OriginalClass("runetek4.client!vg")
+@OriginalClass("client!vg")
 public final class BrokenOutputStream extends OutputStream {
 
-	@OriginalMember(owner = "runetek4.client!vg", name = "write", descriptor = "(I)V")
+	@OriginalMember(owner = "client!vg", name = "write", descriptor = "(I)V")
 	@Override
-	public final void write(@OriginalArg(0) int arg0) throws IOException {
+	public void write(@OriginalArg(0) int arg0) throws IOException {
 		throw new IOException();
 	}
 }

@@ -11,58 +11,59 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!fj")
+// Light_Class45
+@OriginalClass("client!fj")
 public final class Class45 {
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "a", descriptor = "Lclient!vi;")
+	@OriginalMember(owner = "client!fj", name = "a", descriptor = "Lclient!vi;")
 	private GlVertexBufferObject aClass155_1;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "b", descriptor = "[I")
+	@OriginalMember(owner = "client!fj", name = "b", descriptor = "[I")
 	private int[] anIntArray177;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "c", descriptor = "[B")
+	@OriginalMember(owner = "client!fj", name = "c", descriptor = "[B")
 	private byte[] aByteArray23;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "d", descriptor = "[I")
+	@OriginalMember(owner = "client!fj", name = "d", descriptor = "[I")
 	private int[] anIntArray178;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "e", descriptor = "Lclient!vi;")
+	@OriginalMember(owner = "client!fj", name = "e", descriptor = "Lclient!vi;")
 	private GlVertexBufferObject aClass155_2;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "f", descriptor = "Ljava/nio/ByteBuffer;")
+	@OriginalMember(owner = "client!fj", name = "f", descriptor = "Ljava/nio/ByteBuffer;")
 	private ByteBuffer aByteBuffer1;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "g", descriptor = "[I")
+	@OriginalMember(owner = "client!fj", name = "g", descriptor = "[I")
 	private int[] anIntArray179;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "h", descriptor = "[I")
+	@OriginalMember(owner = "client!fj", name = "h", descriptor = "[I")
 	private int[] anIntArray180;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "i", descriptor = "[B")
+	@OriginalMember(owner = "client!fj", name = "i", descriptor = "[B")
 	private byte[] aByteArray24;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "j", descriptor = "I")
+	@OriginalMember(owner = "client!fj", name = "j", descriptor = "I")
 	public int anInt2016;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "k", descriptor = "Ljava/nio/ByteBuffer;")
+	@OriginalMember(owner = "client!fj", name = "k", descriptor = "Ljava/nio/ByteBuffer;")
 	private ByteBuffer aByteBuffer2;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "l", descriptor = "I")
+	@OriginalMember(owner = "client!fj", name = "l", descriptor = "I")
 	public int anInt2017;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "m", descriptor = "[B")
+	@OriginalMember(owner = "client!fj", name = "m", descriptor = "[B")
 	private byte[] aByteArray25;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "n", descriptor = "I")
+	@OriginalMember(owner = "client!fj", name = "n", descriptor = "I")
 	public int anInt2018;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "o", descriptor = "Lclient!sc;")
+	@OriginalMember(owner = "client!fj", name = "o", descriptor = "Lclient!sc;")
 	private IterableMap aClass133_4;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "p", descriptor = "I")
+	@OriginalMember(owner = "client!fj", name = "p", descriptor = "I")
 	public int anInt2019;
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "a", descriptor = "(Lclient!gi;IIIFFF)I")
+	@OriginalMember(owner = "client!fj", name = "a", descriptor = "(Lclient!gi;IIIFFF)I")
 	public final int method1553(@OriginalArg(0) Light arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) float arg4, @OriginalArg(5) float arg5, @OriginalArg(6) float arg6) {
 		@Pc(1) long local1 = 0L;
 		if ((arg1 & 0x7F) == 0 || (arg3 & 0x7F) == 0) {
@@ -116,7 +117,7 @@ public final class Class45 {
 		return this.anInt2017++;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "a", descriptor = "()V")
+	@OriginalMember(owner = "client!fj", name = "a", descriptor = "()V")
 	public final void method1554() {
 		@Pc(7) Packet local7 = new Packet(this.anInt2018 * 4);
 		@Pc(15) Packet local15 = new Packet(this.anInt2017 * 16);
@@ -173,7 +174,7 @@ public final class Class45 {
 		this.aClass133_4 = null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "b", descriptor = "()V")
+	@OriginalMember(owner = "client!fj", name = "b", descriptor = "()V")
 	public final void method1555() {
 		this.anIntArray177 = new int[this.anInt2016];
 		this.anIntArray178 = new int[this.anInt2019];
@@ -185,7 +186,7 @@ public final class Class45 {
 		this.aClass133_4 = new IterableMap(Static165.bitceil(this.anInt2019));
 	}
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "c", descriptor = "()V")
+	@OriginalMember(owner = "client!fj", name = "c", descriptor = "()V")
 	public final void method1556() {
 		@Pc(1) GL2 local1 = GlRenderer.gl;
 		if (GlRenderer.arbVboSupported) {
@@ -205,7 +206,7 @@ public final class Class45 {
 		local1.glDrawElements(GL2.GL_TRIANGLES, this.anInt2018, GL2.GL_UNSIGNED_INT, this.aByteBuffer2);
 	}
 
-	@OriginalMember(owner = "runetek4.client!fj", name = "a", descriptor = "([I)V")
+	@OriginalMember(owner = "client!fj", name = "a", descriptor = "([I)V")
 	public final void method1557(@OriginalArg(0) int[] arg0) {
 		for (@Pc(1) int local1 = 1; local1 < arg0.length - 1; local1++) {
 			this.anIntArray177[this.anInt2018++] = arg0[0];

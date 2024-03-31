@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -117,9 +118,9 @@ public final class Static186 {
 				if (!Static119.aClass153_44.method4489(Static34.method882(new JagString[] { Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086 }))) {
 					return;
 				}
-				Static203.aClass134_1 = Static140.method2711(Static34.method882(new JagString[] { Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086 }), Static119.aClass153_44);
+				Static203.aMapElementTypeList_1 = MapElementTypeList.create(Static34.method882(new JagString[] { Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086 }), Static119.aClass153_44);
 			} else {
-				Static203.aClass134_1 = new Class134(0);
+				Static203.aMapElementTypeList_1 = new MapElementTypeList(0);
 			}
 			Static41.anInt1309 = 70;
 			Static234.method4020();

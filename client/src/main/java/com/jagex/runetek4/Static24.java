@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -43,7 +44,7 @@ public final class Static24 {
 		@Pc(28) int local28 = arg0 ? 32768 : 0;
 		@Pc(36) int local36 = (arg0 ? Static34.anInt1047 : Static144.anInt3490) + local28;
 		for (@Pc(38) int local38 = local28; local38 < local36; local38++) {
-			@Pc(45) Class3_Sub2_Sub6 local45 = Static230.method3953(local38);
+			@Pc(45) QuickChatPhraseType local45 = Static230.method3953(local38);
 			if (local45.aBoolean60 && local45.method769().toLowerCase().indexOf(local9) != -1) {
 				if (local11 >= 50) {
 					Static111.anInt2905 = -1;

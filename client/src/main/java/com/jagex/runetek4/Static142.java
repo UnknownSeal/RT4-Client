@@ -130,7 +130,7 @@ public final class Static142 {
 					@Pc(512) Sprite local512 = Static116.aClass3_Sub2_Sub1Array3[1];
 					if (local17 instanceof NPCEntity) {
 						@Pc(518) NPCEntity local518 = (NPCEntity) local17;
-						@Pc(528) Sprite[] local528 = (Sprite[]) Static73.aClass99_10.method3106((long) local518.npcType.anInt3736);
+						@Pc(528) Sprite[] local528 = (Sprite[]) Static73.aClass99_10.get((long) local518.npcType.anInt3736);
 						if (local528 == null) {
 							local528 = Static209.method3708(local518.npcType.anInt3736, Static209.aClass153_86);
 							if (local528 != null) {

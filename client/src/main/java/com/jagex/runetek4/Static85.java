@@ -28,7 +28,7 @@ public final class Static85 {
 	public static void method1775(@OriginalArg(1) int arg0) {
 		Static103.method2245();
 		Static119.method2386();
-		@Pc(17) int local17 = Static247.method4248(arg0).anInt1765;
+		@Pc(17) int local17 = Static247.method4248(arg0).clientCode;
 		if (local17 == 0) {
 			return;
 		}

@@ -426,7 +426,7 @@ public final class NPCType {
 			@Pc(13) NPCType local13 = this.getvisible();
 			return local13 == null ? null : local13.method2937(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
 		}
-		@Pc(40) Model local40 = (Model) Static125.aClass99_18.method3106(this.id);
+		@Pc(40) Model local40 = (Model) Static125.aClass99_18.get(this.id);
 		@Pc(46) boolean local46;
 		@Pc(173) int local173;
 		@Pc(235) int local235;
@@ -698,7 +698,7 @@ public final class NPCType {
 		} else if (this.heads == null) {
 			return null;
 		} else {
-			@Pc(41) Model local41 = (Model) Static262.aClass99_35.method3106(this.id);
+			@Pc(41) Model local41 = (Model) Static262.aClass99_35.get(this.id);
 			if (local41 == null) {
 				@Pc(46) boolean local46 = false;
 				for (@Pc(48) int local48 = 0; local48 < this.heads.length; local48++) {

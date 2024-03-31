@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import java.awt.Point;
 import java.io.IOException;
 
 import com.jagex.runetek4.core.io.Packet;
@@ -35,48 +34,24 @@ public final class Static81 {
 	@OriginalMember(owner = "runetek4.client!gg", name = "db", descriptor = "I")
 	public static int anInt2225 = -1;
 
-	@OriginalMember(owner = "runetek4.client!gg", name = "c", descriptor = "(II)V")
-	public static void method1750(@OriginalArg(0) int arg0) {
-		if (!Static64.aBoolean111) {
-			arg0 = -1;
-		}
-		if (arg0 == Static115.anInt2941) {
-			return;
-		}
-		if (arg0 != -1) {
-			@Pc(24) Class63 local24 = Static202.method3660(arg0);
-			@Pc(28) SoftwareSprite local28 = local24.method2246();
-			if (local28 == null) {
-				arg0 = -1;
-			} else {
-				Static71.signLink.method5113(local28.method301(), local28.anInt1860, Static154.canvas, new Point(local24.anInt2852, local24.anInt2850), local28.anInt1866);
-				Static115.anInt2941 = arg0;
-			}
-		}
-		if (arg0 == -1 && Static115.anInt2941 != -1) {
-			Static71.signLink.method5113(null, -1, Static154.canvas, new Point(), -1);
-			Static115.anInt2941 = -1;
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "([[IZ)V")
 	public static void method1751(@OriginalArg(0) int[][] arg0) {
 		Static71.anIntArrayArray10 = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "d", descriptor = "(II)Lclient!dm;")
-	public static IDKType method1752(@OriginalArg(0) int arg0) {
-		@Pc(10) IDKType local10 = (IDKType) Static67.aClass99_20.method3106((long) arg0);
-		if (local10 != null) {
-			return local10;
+	public static IDKType get(@OriginalArg(0) int arg0) {
+		@Pc(10) IDKType idkType = (IDKType) Static67.aClass99_20.get((long) arg0);
+		if (idkType != null) {
+			return idkType;
 		}
-		@Pc(21) byte[] local21 = Static216.aClass153_31.method4495(3, arg0);
-		local10 = new IDKType();
-		if (local21 != null) {
-			local10.decode(new Packet(local21));
+		@Pc(21) byte[] bytes = Static216.aClass153_31.method4495(3, arg0);
+		idkType = new IDKType();
+		if (bytes != null) {
+			idkType.decode(new Packet(bytes));
 		}
-		Static67.aClass99_20.method3095(local10, (long) arg0);
-		return local10;
+		Static67.aClass99_20.method3095(idkType, (long) arg0);
+		return idkType;
 	}
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "e", descriptor = "(II)V")

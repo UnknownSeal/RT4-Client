@@ -781,7 +781,7 @@ public final class Component {
 		if (local29 == -1) {
 			return null;
 		}
-		@Pc(43) Sprite local43 = (Sprite) Static190.aClass99_26.method3106(local29);
+		@Pc(43) Sprite local43 = (Sprite) Static190.aClass99_26.get(local29);
 		if (local43 != null) {
 			return local43;
 		}
@@ -855,7 +855,7 @@ public final class Component {
 		} else {
 			@Pc(61) Model local61;
 			if (local10 == 1) {
-				local61 = (Model) Static124.aClass99_17.method3106((local10 << 16) + local13);
+				local61 = (Model) Static124.aClass99_17.get((local10 << 16) + local13);
 				if (local61 == null) {
 					@Pc(69) ModelUnlit local69 = ModelUnlit.get(Static203.aClass153_85, local13);
 					if (local69 == null) {
@@ -937,7 +937,7 @@ public final class Component {
 			return null;
 		}
 		@Pc(66) long local66 = ((this.aBoolean21 ? 1L : 0L) << 38) + ((this.aBoolean18 ? 1L : 0L) << 35) + (long) local12 + ((long) this.anInt514 << 36) + ((this.aBoolean26 ? 1L : 0L) << 39) + ((long) this.anInt513 << 40);
-		@Pc(72) Sprite local72 = (Sprite) Static190.aClass99_26.method3106(local66);
+		@Pc(72) Sprite local72 = (Sprite) Static190.aClass99_26.get(local66);
 		if (local72 != null) {
 			return local72;
 		}
@@ -1169,7 +1169,7 @@ public final class Component {
 		if (this.anInt502 == -1) {
 			return null;
 		}
-		@Pc(21) Font local21 = (Font) Static87.aClass99_12.method3106(this.anInt502);
+		@Pc(21) Font local21 = (Font) Static87.aClass99_12.get(this.anInt502);
 		if (local21 != null) {
 			return local21;
 		}

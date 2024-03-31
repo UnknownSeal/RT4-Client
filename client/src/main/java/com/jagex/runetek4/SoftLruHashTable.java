@@ -109,7 +109,7 @@ public final class SoftLruHashTable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "b", descriptor = "(JB)Ljava/lang/Object;")
-	public final Object method3106(@OriginalArg(0) long arg0) {
+	public final Object get(@OriginalArg(0) long arg0) {
 		@Pc(12) ReferenceNode local12 = (ReferenceNode) this.aClass133_18.getNode(arg0);
 		if (local12 == null) {
 			return null;

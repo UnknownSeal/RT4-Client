@@ -52,7 +52,7 @@ public final class Static271 {
 
 	@OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(II)Lclient!pb;")
 	public static LocType get(@OriginalArg(1) int id) {
-		@Pc(15) LocType locType = (LocType) Static179.aClass99_25.method3106((long) id);
+		@Pc(15) LocType locType = (LocType) Static179.aClass99_25.get((long) id);
 		if (locType != null) {
 			return locType;
 		}

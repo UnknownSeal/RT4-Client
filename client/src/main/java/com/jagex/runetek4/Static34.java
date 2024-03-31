@@ -92,7 +92,7 @@ public final class Static34 {
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "(BI)Lclient!eg;")
 	public static SpotAnimType method877(@OriginalArg(1) int arg0) {
-		@Pc(10) SpotAnimType local10 = (SpotAnimType) Static279.aClass99_38.method3106((long) arg0);
+		@Pc(10) SpotAnimType local10 = (SpotAnimType) Static279.aClass99_38.get((long) arg0);
 		if (local10 != null) {
 			return local10;
 		}

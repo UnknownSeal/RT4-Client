@@ -280,10 +280,10 @@ public final class Static231 {
 			return;
 		}
 		if (arg0 % 10L == 0L) {
-			Static220.method3799(arg0 - 1L);
-			Static220.method3799(1L);
+			Static220.sleep0(arg0 - 1L);
+			Static220.sleep0(1L);
 		} else {
-			Static220.method3799(arg0);
+			Static220.sleep0(arg0);
 		}
 	}
 

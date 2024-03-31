@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -39,21 +38,6 @@ public final class Static206 {
 		Static10.method348(1, 2048);
 		local15.method584(0, local11);
 		return local11;
-	}
-
-	@OriginalMember(owner = "runetek4.client!qk", name = "a", descriptor = "(BLclient!wa;)Lclient!j;")
-	public static TextureOp method3680(@OriginalArg(1) Packet arg0) {
-		arg0.g1();
-		@Pc(13) int local13 = arg0.g1();
-		@Pc(17) TextureOp local17 = Static223.method3860(local13);
-		local17.anInt5840 = arg0.g1();
-		@Pc(26) int local26 = arg0.g1();
-		for (@Pc(34) int local34 = 0; local34 < local26; local34++) {
-			@Pc(41) int local41 = arg0.g1();
-			local17.method4629(local41, arg0);
-		}
-		local17.method4630();
-		return local17;
 	}
 
 	@OriginalMember(owner = "runetek4.client!qk", name = "a", descriptor = "(ZI)I")

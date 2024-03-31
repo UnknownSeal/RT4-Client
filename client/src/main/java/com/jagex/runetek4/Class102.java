@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
+// MapMarker
 @OriginalClass("runetek4.client!nc")
 public final class Class102 {
 

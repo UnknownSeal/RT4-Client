@@ -48,37 +48,37 @@ public final class Static54 {
 			@Pc(200) int local200;
 			@Pc(239) int local239;
 			@Pc(271) int local271;
-			if (Static235.aClass134_2 != null) {
-				for (@Pc(117) int local117 = 0; local117 < Static235.aClass134_2.anInt5074; local117++) {
-					if (Static235.aClass134_2.method3892(local117)) {
-						local146 = (Static235.aClass134_2.aShortArray73[local117] - Static225.originX) * 4 + 2 - Static173.self.anInt3412 / 32;
+			if (Static235.aMapElementTypeList_2 != null) {
+				for (@Pc(117) int local117 = 0; local117 < Static235.aMapElementTypeList_2.anInt5074; local117++) {
+					if (Static235.aMapElementTypeList_2.method3892(local117)) {
+						local146 = (Static235.aMapElementTypeList_2.aShortArray73[local117] - Static225.originX) * 4 + 2 - Static173.self.anInt3412 / 32;
 						local150 = MathUtils.anIntArray223[local48];
 						local154 = MathUtils.anIntArray225[local48];
 						@Pc(156) Font local156 = Static114.aClass3_Sub2_Sub9_42;
 						@Pc(164) int local164 = local150 * 256 / (Static273.anInt4130 + 256);
-						local181 = (Static235.aClass134_2.aShortArray72[local117] - Static142.originZ) * 4 + 2 - Static173.self.anInt3421 / 32;
+						local181 = (Static235.aMapElementTypeList_2.aShortArray72[local117] - Static142.originZ) * 4 + 2 - Static173.self.anInt3421 / 32;
 						@Pc(189) int local189 = local154 * 256 / (Static273.anInt4130 + 256);
 						local200 = local181 * local189 - local146 * local164 >> 16;
-						if (Static235.aClass134_2.method3894(local117) == 1) {
+						if (Static235.aMapElementTypeList_2.method3894(local117) == 1) {
 							local156 = Static215.aClass3_Sub2_Sub9_32;
 						}
-						if (Static235.aClass134_2.method3894(local117) == 2) {
+						if (Static235.aMapElementTypeList_2.method3894(local117) == 2) {
 							local156 = Static280.aClass3_Sub2_Sub9_43;
 						}
 						local231 = local164 * local181 + local189 * local146 >> 16;
-						local239 = local156.method2856(Static235.aClass134_2.aClass100Array153[local117], 100);
+						local239 = local156.method2856(Static235.aMapElementTypeList_2.aClass100Array153[local117], 100);
 						@Pc(245) int local245 = local231 - local239 / 2;
 						if (local245 >= -arg3.anInt445 && local245 <= arg3.anInt445 && local200 >= -arg3.anInt459 && local200 <= arg3.anInt459) {
 							local271 = 16777215;
-							if (Static235.aClass134_2.anIntArray444[local117] != -1) {
-								local271 = Static235.aClass134_2.anIntArray444[local117];
+							if (Static235.aMapElementTypeList_2.anIntArray444[local117] != -1) {
+								local271 = Static235.aMapElementTypeList_2.anIntArray444[local117];
 							}
 							if (GlRenderer.enabled) {
 								Static46.method1188((GlSprite) arg3.method489(false));
 							} else {
 								Static129.method2486(arg3.anIntArray37, arg3.anIntArray45);
 							}
-							local156.method2869(Static235.aClass134_2.aClass100Array153[local117], arg2 + local245 + arg3.anInt445 / 2, arg1 + arg3.anInt459 / 2 + -local200, local239, 50, local271, 0, 1, 0, 0);
+							local156.method2869(Static235.aMapElementTypeList_2.aClass100Array153[local117], arg2 + local245 + arg3.anInt445 / 2, arg1 + arg3.anInt459 / 2 + -local200, local239, 50, local271, 0, 1, 0, 0);
 							if (GlRenderer.enabled) {
 								Static46.method1173();
 							} else {

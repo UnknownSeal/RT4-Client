@@ -6,31 +6,31 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static228 {
 
-	@OriginalMember(owner = "runetek4.client!sh", name = "a", descriptor = "Lclient!ih;")
+	@OriginalMember(owner = "client!sh", name = "a", descriptor = "Lclient!ih;")
 	public static final LinkedList aClass69_120 = new LinkedList();
 
-	@OriginalMember(owner = "runetek4.client!sh", name = "c", descriptor = "I")
+	@OriginalMember(owner = "client!sh", name = "c", descriptor = "I")
 	public static int anInt5101 = 0;
 
-	@OriginalMember(owner = "runetek4.client!sh", name = "e", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!sh", name = "e", descriptor = "Lclient!na;")
 	public static final JagString aClass100_967 = Static28.parse("");
 
-	@OriginalMember(owner = "runetek4.client!sh", name = "f", descriptor = "I")
+	@OriginalMember(owner = "client!sh", name = "f", descriptor = "I")
 	public static int anInt5103 = -1;
 
-	@OriginalMember(owner = "runetek4.client!sh", name = "h", descriptor = "I")
+	@OriginalMember(owner = "client!sh", name = "h", descriptor = "I")
 	public static int anInt5105 = 0;
 
-	@OriginalMember(owner = "runetek4.client!sh", name = "i", descriptor = "[[I")
+	@OriginalMember(owner = "client!sh", name = "i", descriptor = "[[I")
 	public static final int[][] anIntArrayArray35 = new int[][] { { 0, 128, 0, 0, 128, 0, 128, 128 }, { 0, 128, 0, 0, 128, 0 }, { 0, 0, 64, 128, 0, 128 }, { 128, 128, 64, 128, 128, 0 }, { 0, 0, 128, 0, 128, 128, 64, 128 }, { 0, 128, 0, 0, 128, 0, 64, 128 }, { 64, 128, 0, 128, 0, 0, 64, 0 }, { 0, 0, 64, 0, 0, 64 }, { 128, 0, 128, 128, 0, 128, 0, 64, 64, 0 }, { 0, 128, 0, 0, 32, 64, 64, 96, 128, 128 }, { 0, 0, 128, 0, 128, 128, 64, 96, 32, 64 }, { 0, 0, 128, 0, 96, 32, 32, 32 } };
 
-	@OriginalMember(owner = "runetek4.client!sh", name = "j", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!sh", name = "j", descriptor = "Lclient!na;")
 	public static final JagString aClass100_968 = Static28.parse("headicons_prayer");
 
-	@OriginalMember(owner = "runetek4.client!sh", name = "l", descriptor = "[J")
+	@OriginalMember(owner = "client!sh", name = "l", descriptor = "[J")
 	public static final long[] aLongArray8 = new long[32];
 
-	@OriginalMember(owner = "runetek4.client!sh", name = "a", descriptor = "(II)[B")
+	@OriginalMember(owner = "client!sh", name = "a", descriptor = "(II)[B")
 	public static synchronized byte[] alloc(@OriginalArg(1) int arg0) {
 		@Pc(22) byte[] local22;
 		if (arg0 == 100 && Static115.anInt2937 > 0) {
@@ -50,12 +50,12 @@ public final class Static228 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!sh", name = "a", descriptor = "(IZBIZ)V")
+	@OriginalMember(owner = "client!sh", name = "a", descriptor = "(IZBIZ)V")
 	public static void method3908(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(3) int arg2, @OriginalArg(4) boolean arg3) {
 		Static79.method1697(arg0, arg2, Static101.aClass10_Sub1Array1.length - 1, arg3, 0, arg1);
 	}
 
-	@OriginalMember(owner = "runetek4.client!sh", name = "a", descriptor = "(I[JII[Ljava/lang/Object;)V")
+	@OriginalMember(owner = "client!sh", name = "a", descriptor = "(I[JII[Ljava/lang/Object;)V")
 	public static void method3909(@OriginalArg(0) int arg0, @OriginalArg(1) long[] arg1, @OriginalArg(3) int arg2, @OriginalArg(4) Object[] arg3) {
 		if (arg2 >= arg0) {
 			return;

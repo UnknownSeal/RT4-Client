@@ -59,7 +59,7 @@ public final class Static127 {
 		Static158.aClass3_Sub2_Sub4_3 = Static29.method803(Static80.anInt4701 * 8, Static52.anInt1695 * 8);
 		@Pc(81) int local81 = Static142.originZ - local53;
 		@Pc(86) int local86 = Static225.originX - local55;
-		Static235.aClass134_2 = null;
+		Static235.aMapElementTypeList_2 = null;
 		@Pc(96) int local96;
 		@Pc(103) NPCEntity local103;
 		@Pc(109) int local109;

@@ -53,7 +53,7 @@ public final class Static148 {
 
 	@OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(II)Lclient!dd;")
 	public static SoftwareFont method2768(@OriginalArg(1) int arg0) {
-		@Pc(16) SoftwareFont local16 = (SoftwareFont) Static139.aClass99_22.method3106((long) arg0);
+		@Pc(16) SoftwareFont local16 = (SoftwareFont) Static139.aClass99_22.get((long) arg0);
 		if (local16 != null) {
 			return local16;
 		}

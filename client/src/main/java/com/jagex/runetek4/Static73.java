@@ -47,7 +47,7 @@ public final class Static73 {
 			Static74.method1626(Static154.topLevelInterace);
 		}
 		Static35.anInt1092 = -1;
-		Static81.method1750(Static270.anInt5794);
+		client.method1750(Static270.anInt5794);
 		Static173.self = new Player();
 		Static173.self.anInt3421 = 3000;
 		Static173.self.anInt3412 = 3000;

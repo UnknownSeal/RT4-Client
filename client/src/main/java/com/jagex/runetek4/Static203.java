@@ -4,6 +4,7 @@ import java.awt.Container;
 import java.awt.Insets;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -12,7 +13,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static203 {
 
 	@OriginalMember(owner = "runetek4.client!qh", name = "a", descriptor = "Lclient!se;")
-	public static Class134 aClass134_1;
+	public static MapElementTypeList aMapElementTypeList_1;
 
 	@OriginalMember(owner = "runetek4.client!qh", name = "d", descriptor = "Lclient!fd;")
 	public static WorldMapFont aClass41_8;

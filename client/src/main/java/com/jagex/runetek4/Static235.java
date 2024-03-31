@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -8,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static235 {
 
 	@OriginalMember(owner = "runetek4.client!tb", name = "X", descriptor = "Lclient!se;")
-	public static Class134 aClass134_2;
+	public static MapElementTypeList aMapElementTypeList_2;
 
 	@OriginalMember(owner = "runetek4.client!tb", name = "P", descriptor = "Lclient!na;")
 	public static final JagString aClass100_1002 = Static28.parse("(U5");

@@ -217,7 +217,7 @@ public final class Static89 {
 		if (local60 == -1) {
 			local60 = Static270.anInt5794;
 		}
-		Static81.method1750(local60);
+		client.method1750(local60);
 		if (Static125.anInt3096 == 1) {
 			Static125.anInt3096 = 2;
 		}

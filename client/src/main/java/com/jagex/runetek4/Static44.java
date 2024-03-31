@@ -117,7 +117,7 @@ public final class Static44 {
 	public static void method1149(@OriginalArg(0) JagString arg0) {
 		@Pc(7) int local7 = Static91.method1879(arg0);
 		if (local7 != -1) {
-			Static80.method3616(Static203.aClass134_1.aShortArray73[local7], Static203.aClass134_1.aShortArray72[local7]);
+			Static80.method3616(Static203.aMapElementTypeList_1.aShortArray73[local7], Static203.aMapElementTypeList_1.aShortArray72[local7]);
 		}
 	}
 

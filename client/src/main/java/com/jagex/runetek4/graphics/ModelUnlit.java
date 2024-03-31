@@ -78,7 +78,7 @@ public final class ModelUnlit extends Entity {
 	public short[] unmodifiedTriangleColour;
 
 	@OriginalMember(owner = "client!gb", name = "W", descriptor = "[Lclient!hd;")
-	public Class57[] aClass57Array1;
+	public VertexNormal[] aVertexNormalArray1;
 
 	@OriginalMember(owner = "client!gb", name = "X", descriptor = "S")
 	private short aShort16;
@@ -108,7 +108,7 @@ public final class ModelUnlit extends Entity {
 	public short[] aShortArray25;
 
 	@OriginalMember(owner = "client!gb", name = "hb", descriptor = "[Lclient!hd;")
-	public Class57[] aClass57Array2;
+	public VertexNormal[] aVertexNormalArray2;
 
 	@OriginalMember(owner = "client!gb", name = "ib", descriptor = "[S")
 	public short[] textureTriangleVertex1;
@@ -392,9 +392,9 @@ public final class ModelUnlit extends Entity {
 		this.anIntArray192 = arg0.anIntArray192;
 		this.anIntArrayArray16 = arg0.anIntArrayArray16;
 		this.anIntArrayArray15 = arg0.anIntArrayArray15;
-		this.aClass57Array1 = arg0.aClass57Array1;
+		this.aVertexNormalArray1 = arg0.aVertexNormalArray1;
 		this.aClass126Array1 = arg0.aClass126Array1;
-		this.aClass57Array2 = arg0.aClass57Array2;
+		this.aVertexNormalArray2 = arg0.aVertexNormalArray2;
 		this.aShort19 = arg0.aShort19;
 		this.aShort18 = arg0.aShort18;
 	}
@@ -563,13 +563,13 @@ public final class ModelUnlit extends Entity {
 
 	@OriginalMember(owner = "client!gb", name = "g", descriptor = "()V")
 	public void method1668() {
-		if (this.aClass57Array1 != null) {
+		if (this.aVertexNormalArray1 != null) {
 			return;
 		}
-		this.aClass57Array1 = new Class57[this.vertexCount];
+		this.aVertexNormalArray1 = new VertexNormal[this.vertexCount];
 		@Pc(10) int local10;
 		for (local10 = 0; local10 < this.vertexCount; local10++) {
-			this.aClass57Array1[local10] = new Class57();
+			this.aVertexNormalArray1[local10] = new VertexNormal();
 		}
 		for (local10 = 0; local10 < this.faceCount; local10++) {
 			@Pc(34) int local34 = this.anIntArray197[local10];
@@ -602,21 +602,21 @@ public final class ModelUnlit extends Entity {
 				local201 = this.aByteArray30[local10];
 			}
 			if (local201 == 0) {
-				@Pc(214) Class57 local214 = this.aClass57Array1[local34];
-				local214.anInt2437 += local112;
-				local214.anInt2431 += local120;
-				local214.anInt2436 += local128;
-				local214.anInt2432++;
-				@Pc(243) Class57 local243 = this.aClass57Array1[local39];
-				local243.anInt2437 += local112;
-				local243.anInt2431 += local120;
-				local243.anInt2436 += local128;
-				local243.anInt2432++;
-				@Pc(272) Class57 local272 = this.aClass57Array1[local44];
-				local272.anInt2437 += local112;
-				local272.anInt2431 += local120;
-				local272.anInt2436 += local128;
-				local272.anInt2432++;
+				@Pc(214) VertexNormal local214 = this.aVertexNormalArray1[local34];
+				local214.x += local112;
+				local214.y += local120;
+				local214.z += local128;
+				local214.magnitude++;
+				@Pc(243) VertexNormal local243 = this.aVertexNormalArray1[local39];
+				local243.x += local112;
+				local243.y += local120;
+				local243.z += local128;
+				local243.magnitude++;
+				@Pc(272) VertexNormal local272 = this.aVertexNormalArray1[local44];
+				local272.x += local112;
+				local272.y += local120;
+				local272.z += local128;
+				local272.magnitude++;
 			} else if (local201 == 1) {
 				if (this.aClass126Array1 == null) {
 					this.aClass126Array1 = new TriangleNormal[this.faceCount];
@@ -699,9 +699,9 @@ public final class ModelUnlit extends Entity {
 		local147.anIntArrayArray15 = this.anIntArrayArray15;
 		local147.aShort19 = this.aShort19;
 		local147.aShort18 = this.aShort18;
-		local147.aClass57Array1 = this.aClass57Array1;
+		local147.aVertexNormalArray1 = this.aVertexNormalArray1;
 		local147.aClass126Array1 = this.aClass126Array1;
-		local147.aClass57Array2 = this.aClass57Array2;
+		local147.aVertexNormalArray2 = this.aVertexNormalArray2;
 		if (arg0 == 3) {
 			local147.anIntArray202 = Static115.method2308(this.anIntArray202);
 			local147.anIntArray201 = Static115.method2308(this.anIntArray201);
@@ -1198,7 +1198,7 @@ public final class ModelUnlit extends Entity {
 		local3.anIntArray192 = this.anIntArray192;
 		local3.anIntArrayArray16 = this.anIntArrayArray16;
 		local3.anIntArrayArray15 = this.anIntArrayArray15;
-		local3.aClass57Array1 = this.aClass57Array1;
+		local3.aVertexNormalArray1 = this.aVertexNormalArray1;
 		local3.aClass126Array1 = this.aClass126Array1;
 		local3.aShort19 = this.aShort19;
 		local3.aShort18 = this.aShort18;
@@ -1232,8 +1232,8 @@ public final class ModelUnlit extends Entity {
 
 	@OriginalMember(owner = "client!gb", name = "j", descriptor = "()V")
 	private void method1678() {
-		this.aClass57Array1 = null;
-		this.aClass57Array2 = null;
+		this.aVertexNormalArray1 = null;
+		this.aVertexNormalArray2 = null;
 		this.aClass126Array1 = null;
 		this.aBoolean121 = false;
 	}
@@ -1278,8 +1278,8 @@ public final class ModelUnlit extends Entity {
 		@Pc(18) int local18 = local2.vertexCount;
 		@Pc(20) int local20;
 		for (local20 = 0; local20 < this.vertexCount; local20++) {
-			@Pc(29) Class57 local29 = this.aClass57Array1[local20];
-			if (local29.anInt2432 != 0) {
+			@Pc(29) VertexNormal local29 = this.aVertexNormalArray1[local20];
+			if (local29.magnitude != 0) {
 				@Pc(40) int local40 = this.anIntArray201[local20] - arg2;
 				if (local40 >= local2.aShort15 && local40 <= local2.aShort13) {
 					@Pc(56) int local56 = this.anIntArray202[local20] - arg1;
@@ -1287,30 +1287,30 @@ public final class ModelUnlit extends Entity {
 						@Pc(72) int local72 = this.anIntArray203[local20] - arg3;
 						if (local72 >= local2.aShort20 && local72 <= local2.aShort17) {
 							for (@Pc(83) int local83 = 0; local83 < local18; local83++) {
-								@Pc(91) Class57 local91 = local2.aClass57Array1[local83];
-								if (local56 == local15[local83] && local72 == local2.anIntArray203[local83] && local40 == local2.anIntArray201[local83] && local91.anInt2432 != 0) {
-									if (this.aClass57Array2 == null) {
-										this.aClass57Array2 = new Class57[this.vertexCount];
+								@Pc(91) VertexNormal local91 = local2.aVertexNormalArray1[local83];
+								if (local56 == local15[local83] && local72 == local2.anIntArray203[local83] && local40 == local2.anIntArray201[local83] && local91.magnitude != 0) {
+									if (this.aVertexNormalArray2 == null) {
+										this.aVertexNormalArray2 = new VertexNormal[this.vertexCount];
 									}
-									if (local2.aClass57Array2 == null) {
-										local2.aClass57Array2 = new Class57[local18];
+									if (local2.aVertexNormalArray2 == null) {
+										local2.aVertexNormalArray2 = new VertexNormal[local18];
 									}
-									@Pc(131) Class57 local131 = this.aClass57Array2[local20];
+									@Pc(131) VertexNormal local131 = this.aVertexNormalArray2[local20];
 									if (local131 == null) {
-										local131 = this.aClass57Array2[local20] = new Class57(local29);
+										local131 = this.aVertexNormalArray2[local20] = new VertexNormal(local29);
 									}
-									@Pc(148) Class57 local148 = local2.aClass57Array2[local83];
+									@Pc(148) VertexNormal local148 = local2.aVertexNormalArray2[local83];
 									if (local148 == null) {
-										local148 = local2.aClass57Array2[local83] = new Class57(local91);
+										local148 = local2.aVertexNormalArray2[local83] = new VertexNormal(local91);
 									}
-									local131.anInt2437 += local91.anInt2437;
-									local131.anInt2431 += local91.anInt2431;
-									local131.anInt2436 += local91.anInt2436;
-									local131.anInt2432 += local91.anInt2432;
-									local148.anInt2437 += local29.anInt2437;
-									local148.anInt2431 += local29.anInt2431;
-									local148.anInt2436 += local29.anInt2436;
-									local148.anInt2432 += local29.anInt2432;
+									local131.x += local91.x;
+									local131.y += local91.y;
+									local131.z += local91.z;
+									local131.magnitude += local91.magnitude;
+									local148.x += local29.x;
+									local148.y += local29.y;
+									local148.z += local29.z;
+									local148.magnitude += local29.magnitude;
 									local12++;
 									Static77.anIntArray194[local20] = Static77.anInt2138;
 									Static77.anIntArray199[local83] = Static77.anInt2138;

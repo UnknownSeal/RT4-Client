@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.game.config.msitype.MSIType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -228,7 +229,7 @@ public final class Static144 {
 									local233 = local222 & 0x3FFF;
 									if (local233 != 0) {
 										local254 = local222 >> 14 & 0x3;
-										@Pc(998) Class2 local998 = Static40.method1013(local233 - 1);
+										@Pc(998) MSIType local998 = Static40.get(local233 - 1);
 										@Pc(1003) SoftwareIndexedSprite local1003 = local998.method9(local254);
 										if (local1003 != null) {
 											local276 = local162 * local1003.anInt4278 / 4;

@@ -6,27 +6,28 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!eh")
+// VarpType
+@OriginalClass("client!eh")
 public final class Class35 {
 
-	@OriginalMember(owner = "runetek4.client!eh", name = "e", descriptor = "I")
-	public int anInt1765 = 0;
+	@OriginalMember(owner = "client!eh", name = "e", descriptor = "I")
+	public int clientCode = 0;
 
-	@OriginalMember(owner = "runetek4.client!eh", name = "a", descriptor = "(ILclient!wa;)V")
-	public final void method1323(@OriginalArg(1) Packet arg0) {
+	@OriginalMember(owner = "client!eh", name = "a", descriptor = "(ILclient!wa;)V")
+	public void decode(@OriginalArg(1) Packet packet) {
 		while (true) {
-			@Pc(5) int local5 = arg0.g1();
-			if (local5 == 0) {
+			@Pc(5) int code = packet.g1();
+			if (code == 0) {
 				return;
 			}
-			this.method1325(arg0, local5);
+			this.decode(packet, code);
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!eh", name = "a", descriptor = "(Lclient!wa;BI)V")
-	private void method1325(@OriginalArg(0) Packet arg0, @OriginalArg(2) int arg1) {
-		if (arg1 == 5) {
-			this.anInt1765 = arg0.g2();
+	@OriginalMember(owner = "client!eh", name = "a", descriptor = "(Lclient!wa;BI)V")
+	private void decode(@OriginalArg(0) Packet packet, @OriginalArg(2) int code) {
+		if (code == 5) {
+			this.clientCode = packet.g2();
 		}
 	}
 }

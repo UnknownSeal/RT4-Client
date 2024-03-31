@@ -7,7 +7,6 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.lighttype.LightType;
 import com.jagex.runetek4.game.world.entity.Player;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -105,7 +104,7 @@ public final class Static140 {
 
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(II)Lclient!ic;")
 	public static LightType method2709(@OriginalArg(1) int arg0) {
-		@Pc(10) LightType local10 = (LightType) Static220.aClass99_28.method3106((long) arg0);
+		@Pc(10) LightType local10 = (LightType) Static220.aClass99_28.get((long) arg0);
 		if (local10 != null) {
 			return local10;
 		}
@@ -118,22 +117,4 @@ public final class Static140 {
 		return local10;
 	}
 
-	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(ILclient!na;Lclient!ve;)Lclient!se;")
-	public static Class134 method2711(@OriginalArg(1) JagString arg0, @OriginalArg(2) Js5 arg1) {
-		@Pc(10) int local10 = arg1.method4482(arg0);
-		if (local10 == -1) {
-			return new Class134(0);
-		}
-		@Pc(29) int[] local29 = arg1.method4503(local10);
-		@Pc(35) Class134 local35 = new Class134(local29.length);
-		for (@Pc(37) int local37 = 0; local37 < local35.anInt5074; local37++) {
-			@Pc(56) Packet local56 = new Packet(arg1.method4495(local10, local29[local37]));
-			local35.aClass100Array153[local37] = local56.gjstr();
-			local35.aByteArray69[local37] = local56.g1s();
-			local35.aShortArray73[local37] = (short) local56.g2();
-			local35.aShortArray72[local37] = (short) local56.g2();
-			local35.anIntArray444[local37] = local56.g4();
-		}
-		return local35;
-	}
 }

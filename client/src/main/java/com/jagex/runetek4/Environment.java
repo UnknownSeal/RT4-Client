@@ -38,7 +38,7 @@ public final class Environment {
 
 	@OriginalMember(owner = "runetek4.client!li", name = "<init>", descriptor = "()V")
 	public Environment() {
-		this.anInt3526 = Static161.anInt3923;
+		this.anInt3526 = 16777215;
 		this.aFloat17 = 1.2F;
 		this.anInt3527 = -50;
 		this.aFloat16 = 1.1523438F;
@@ -50,46 +50,46 @@ public final class Environment {
 	}
 
 	@OriginalMember(owner = "runetek4.client!li", name = "<init>", descriptor = "(Lclient!wa;)V")
-	public Environment(@OriginalArg(0) Packet arg0) {
-		@Pc(7) int local7 = arg0.g1();
+	public Environment(@OriginalArg(0) Packet packet) {
+		@Pc(7) int local7 = packet.g1();
 		if ((local7 & 0x1) == 0) {
-			this.anInt3526 = Static161.anInt3923;
+			this.anInt3526 = 16777215;
 		} else {
-			this.anInt3526 = arg0.g4();
+			this.anInt3526 = packet.g4();
 		}
 		if ((local7 & 0x2) == 0) {
 			this.aFloat16 = 1.1523438F;
 		} else {
-			this.aFloat16 = (float) arg0.g2() / 256.0F;
+			this.aFloat16 = (float) packet.g2() / 256.0F;
 		}
 		if ((local7 & 0x4) == 0) {
 			this.aFloat18 = 0.69921875F;
 		} else {
-			this.aFloat18 = (float) arg0.g2() / 256.0F;
+			this.aFloat18 = (float) packet.g2() / 256.0F;
 		}
 		if ((local7 & 0x8) == 0) {
 			this.aFloat17 = 1.2F;
 		} else {
-			this.aFloat17 = (float) arg0.g2() / 256.0F;
+			this.aFloat17 = (float) packet.g2() / 256.0F;
 		}
 		if ((local7 & 0x10) == 0) {
 			this.anInt3527 = -50;
 			this.anInt3530 = -50;
 			this.anInt3528 = -60;
 		} else {
-			this.anInt3530 = arg0.g2s();
-			this.anInt3528 = arg0.g2s();
-			this.anInt3527 = arg0.g2s();
+			this.anInt3530 = packet.g2s();
+			this.anInt3528 = packet.g2s();
+			this.anInt3527 = packet.g2s();
 		}
 		if ((local7 & 0x20) == 0) {
 			this.anInt3525 = Static161.anInt3922;
 		} else {
-			this.anInt3525 = arg0.g4();
+			this.anInt3525 = packet.g4();
 		}
 		if ((local7 & 0x40) == 0) {
 			this.anInt3529 = 0;
 		} else {
-			this.anInt3529 = arg0.g2();
+			this.anInt3529 = packet.g2();
 		}
 	}
 }

@@ -64,7 +64,7 @@ public final class Static220 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(JB)V")
-	public static void method3799(@OriginalArg(0) long arg0) {
+	public static void sleep0(@OriginalArg(0) long arg0) {
 		try {
 			Thread.sleep(arg0);
 		} catch (@Pc(11) InterruptedException local11) {
@@ -74,7 +74,7 @@ public final class Static220 {
 	@OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(ZIIIILclient!ak;I)Lclient!ak;")
 	public static Model method3800(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) Model arg4, @OriginalArg(6) int arg5) {
 		@Pc(4) long local4 = (long) arg2;
-		@Pc(10) Model local10 = (Model) Static110.aClass99_15.method3106(local4);
+		@Pc(10) Model local10 = (Model) Static110.aClass99_15.get(local4);
 		if (local10 == null) {
 			@Pc(22) ModelUnlit local22 = ModelUnlit.get(Static267.aClass153_109, arg2);
 			if (local22 == null) {

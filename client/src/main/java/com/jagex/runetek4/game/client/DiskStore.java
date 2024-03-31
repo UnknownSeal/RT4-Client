@@ -3,7 +3,7 @@ package com.jagex.runetek4.game.client;
 import java.io.EOFException;
 import java.io.IOException;
 
-import com.jagex.runetek4.BufferedFile;
+import com.jagex.runetek4.core.io.BufferedFile;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

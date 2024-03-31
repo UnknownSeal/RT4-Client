@@ -37,9 +37,6 @@ public final class Static161 {
 	@OriginalMember(owner = "runetek4.client!mk", name = "j", descriptor = "[F")
 	private static final float[] aFloatArray20 = new float[4];
 
-	@OriginalMember(owner = "runetek4.client!mk", name = "k", descriptor = "I")
-	public static int anInt3923 = 16777215;
-
 	@OriginalMember(owner = "runetek4.client!mk", name = "l", descriptor = "I")
 	private static int anInt3924 = -1;
 
@@ -149,7 +146,7 @@ public final class Static161 {
 
 	@OriginalMember(owner = "runetek4.client!mk", name = "f", descriptor = "()V")
 	private static void method3067() {
-		method3060(anInt3923, 1.1523438F, 0.69921875F, 1.2F);
+		method3060(16777215, 1.1523438F, 0.69921875F, 1.2F);
 		method3063(-50.0F, -60.0F, -50.0F);
 		method3062(anInt3922, 0);
 	}

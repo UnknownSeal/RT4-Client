@@ -30,7 +30,7 @@ public final class Static199 {
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "a", descriptor = "(ZI)Lclient!ni;")
 	public static FloorUnderlayType method3593(@OriginalArg(1) int arg0) {
-		@Pc(10) FloorUnderlayType local10 = (FloorUnderlayType) Static83.aClass99_3.method3106((long) arg0);
+		@Pc(10) FloorUnderlayType local10 = (FloorUnderlayType) Static83.aClass99_3.get((long) arg0);
 		if (local10 != null) {
 			return local10;
 		}

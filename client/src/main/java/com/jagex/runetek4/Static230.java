@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.io.UnsupportedEncodingException;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -133,8 +134,8 @@ public final class Static230 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "b", descriptor = "(II)Lclient!cb;")
-	public static Class3_Sub2_Sub6 method3953(@OriginalArg(1) int arg0) {
-		@Pc(10) Class3_Sub2_Sub6 local10 = (Class3_Sub2_Sub6) Static249.aClass54_15.method1806((long) arg0);
+	public static QuickChatPhraseType method3953(@OriginalArg(1) int arg0) {
+		@Pc(10) QuickChatPhraseType local10 = (QuickChatPhraseType) Static249.aClass54_15.method1806((long) arg0);
 		if (local10 != null) {
 			return local10;
 		}
@@ -144,12 +145,12 @@ public final class Static230 {
 		} else {
 			local27 = Static262.aClass153_108.method4495(1, arg0 & 0x7FFF);
 		}
-		local10 = new Class3_Sub2_Sub6();
+		local10 = new QuickChatPhraseType();
 		if (local27 != null) {
-			local10.method761(new Packet(local27));
+			local10.decode(new Packet(local27));
 		}
 		if (arg0 >= 32768) {
-			local10.method763();
+			local10.postDecode();
 		}
 		Static249.aClass54_15.method1811(local10, (long) arg0);
 		return local10;

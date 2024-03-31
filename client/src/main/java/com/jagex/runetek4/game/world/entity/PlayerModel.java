@@ -40,23 +40,23 @@ public final class PlayerModel {
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(IIIILclient!tk;III)Lclient!ak;")
 	public final Model method1946(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) SeqType arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
 		@Pc(24) long local24 = (long) arg2 | (long) (arg6 << 16) | (long) arg1 << 32;
-		@Pc(30) Model local30 = (Model) Static139.aClass99_21.method3106(local24);
+		@Pc(30) Model local30 = (Model) Static139.aClass99_21.get(local24);
 		if (local30 == null) {
 			@Pc(36) ModelUnlit[] local36 = new ModelUnlit[3];
 			@Pc(38) int local38 = 0;
-			if (!Static81.method1752(arg2).hasReadyHeads() || !Static81.method1752(arg6).hasReadyHeads() || !Static81.method1752(arg1).hasReadyHeads()) {
+			if (!Static81.get(arg2).hasReadyHeads() || !Static81.get(arg6).hasReadyHeads() || !Static81.get(arg1).hasReadyHeads()) {
 				return null;
 			}
-			@Pc(66) ModelUnlit local66 = Static81.method1752(arg2).getHeadModel();
+			@Pc(66) ModelUnlit local66 = Static81.get(arg2).getHeadModel();
 			if (local66 != null) {
 				local38++;
 				local36[0] = local66;
 			}
-			local66 = Static81.method1752(arg6).getHeadModel();
+			local66 = Static81.get(arg6).getHeadModel();
 			if (local66 != null) {
 				local36[local38++] = local66;
 			}
-			local66 = Static81.method1752(arg1).getHeadModel();
+			local66 = Static81.get(arg1).getHeadModel();
 			if (local66 != null) {
 				local36[local38++] = local66;
 			}
@@ -117,7 +117,7 @@ public final class PlayerModel {
 			arg3 = new int[12];
 			for (@Pc(24) int local24 = 0; local24 < 8; local24++) {
 				for (@Pc(31) int local31 = 0; local31 < Static53.anInt1716; local31++) {
-					@Pc(38) IDKType local38 = Static81.method1752(local31);
+					@Pc(38) IDKType local38 = Static81.get(local31);
 					if (local38 != null && !local38.disable && local38.type == (arg2 ? Static153.anIntArray351[local24] : Static204.anIntArray425[local24])) {
 						arg3[Static272.anIntArray451[local24]] = Integer.MIN_VALUE | local31;
 						break;
@@ -146,7 +146,7 @@ public final class PlayerModel {
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(III)V")
 	public final void method1953(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		@Pc(7) int local7 = Static272.anIntArray451[arg0];
-		if (0 != this.anIntArray233[local7] && Static81.method1752(arg1) != null) {
+		if (0 != this.anIntArray233[local7] && Static81.get(arg1) != null) {
 			this.anIntArray233[local7] = arg1 | Integer.MIN_VALUE;
 			this.method1947();
 		}
@@ -183,7 +183,7 @@ public final class PlayerModel {
 				}
 			}
 		}
-		@Pc(154) Model local154 = (Model) Static250.aClass99_33.method3106(local41);
+		@Pc(154) Model local154 = (Model) Static250.aClass99_33.get(local41);
 		@Pc(158) boolean local158;
 		@Pc(353) int local353;
 		@Pc(360) int local360;
@@ -202,7 +202,7 @@ public final class PlayerModel {
 			for (@Pc(160) int local160 = 0; local160 < 12; local160++) {
 				local169 = local38[local160];
 				if ((local169 & 0x40000000) == 0) {
-					if ((local169 & Integer.MIN_VALUE) != 0 && !Static81.method1752(local169 & 0x3FFFFFFF).hasReadyModels()) {
+					if ((local169 & Integer.MIN_VALUE) != 0 && !Static81.get(local169 & 0x3FFFFFFF).hasReadyModels()) {
 						local158 = true;
 					}
 				} else if (!Static71.get(local169 & 0x3FFFFFFF).method1822(this.aBoolean141)) {
@@ -211,7 +211,7 @@ public final class PlayerModel {
 			}
 			if (local158) {
 				if (this.aLong87 != -1L) {
-					local154 = (Model) Static250.aClass99_33.method3106(this.aLong87);
+					local154 = (Model) Static250.aClass99_33.get(this.aLong87);
 				}
 				if (local154 == null) {
 					return null;
@@ -229,7 +229,7 @@ public final class PlayerModel {
 							local239[local169] = local272;
 						}
 					} else if ((Integer.MIN_VALUE & local250) != 0) {
-						local272 = Static81.method1752(local250 & 0x3FFFFFFF).getModel();
+						local272 = Static81.get(local250 & 0x3FFFFFFF).getModel();
 						if (local272 != null) {
 							local239[local169] = local272;
 						}
@@ -448,14 +448,14 @@ public final class PlayerModel {
 		if (this.anInt2492 != -1) {
 			return Static214.get(this.anInt2492).getHeadModel(arg1, arg0, arg3, arg2);
 		}
-		@Pc(30) Model local30 = (Model) Static139.aClass99_21.method3106(this.aLong88);
+		@Pc(30) Model local30 = (Model) Static139.aClass99_21.get(this.aLong88);
 		if (local30 == null) {
 			@Pc(42) boolean local42 = false;
 			@Pc(52) int local52;
 			for (@Pc(44) int local44 = 0; local44 < 12; local44++) {
 				local52 = this.anIntArray233[local44];
 				if ((local52 & 0x40000000) == 0) {
-					if ((local52 & Integer.MIN_VALUE) != 0 && !Static81.method1752(local52 & 0x3FFFFFFF).hasReadyHeads()) {
+					if ((local52 & Integer.MIN_VALUE) != 0 && !Static81.get(local52 & 0x3FFFFFFF).hasReadyHeads()) {
 						local42 = true;
 					}
 				} else if (!Static71.get(local52 & 0x3FFFFFFF).method1816(this.aBoolean141)) {
@@ -477,7 +477,7 @@ public final class PlayerModel {
 						local100[local52++] = local134;
 					}
 				} else if ((Integer.MIN_VALUE & local114) != 0) {
-					local134 = Static81.method1752(local114 & 0x3FFFFFFF).getHeadModel();
+					local134 = Static81.get(local114 & 0x3FFFFFFF).getHeadModel();
 					if (local134 != null) {
 						local100[local52++] = local134;
 					}

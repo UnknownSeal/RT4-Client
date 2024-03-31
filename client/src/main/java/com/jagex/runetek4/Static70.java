@@ -1,5 +1,7 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.core.utils.MillisTimer;
+import com.jagex.runetek4.core.utils.Timer;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -25,7 +27,7 @@ public final class Static70 {
 	@OriginalMember(owner = "runetek4.client!fi", name = "a", descriptor = "(B)Lclient!s;")
 	public static Timer method1547() {
 		try {
-			return (Timer) Class.forName("com.jagex.runetek4.NanoTimer").getDeclaredConstructor().newInstance();
+			return (Timer) Class.forName("com.jagex.runetek4.core.utils.NanoTimer").getDeclaredConstructor().newInstance();
 		} catch (@Pc(15) Throwable local15) {
 			return new MillisTimer();
 		}
