@@ -39,7 +39,7 @@ public final class Static90 {
 		if (local10 != null) {
 			return local10;
 		}
-		@Pc(21) byte[] local21 = Static167.aClass153_62.method4495(32, arg0);
+		@Pc(21) byte[] local21 = Static167.aClass153_62.getfile(32, arg0);
 		local10 = new BASType();
 		if (local21 != null) {
 			local10.decode(new Packet(local21));

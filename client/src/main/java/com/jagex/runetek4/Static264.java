@@ -29,7 +29,7 @@ public final class Static264 {
 	public static Class12 method3568(@OriginalArg(1) Packet arg0) {
 		@Pc(3) Class12 local3 = new Class12();
 		local3.anInt439 = arg0.g2();
-		local3.aQuickChatPhraseType_1 = Static230.method3953(local3.anInt439);
+		local3.aQuickChatPhraseType_1 = Static230.list(local3.anInt439);
 		return local3;
 	}
 

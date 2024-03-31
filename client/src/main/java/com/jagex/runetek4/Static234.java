@@ -129,7 +129,7 @@ public final class Static234 {
 
 	@OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "(Lclient!ve;III)Z")
 	public static boolean method4016(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(9) byte[] local9 = arg0.method4495(arg2, arg1);
+		@Pc(9) byte[] local9 = arg0.getfile(arg2, arg1);
 		if (local9 == null) {
 			return false;
 		} else {
@@ -154,7 +154,7 @@ public final class Static234 {
 		@Pc(25) int local25 = Static119.aClass153_44.method4482(Static54.aClass100_374);
 		@Pc(30) int[] local30 = Static119.aClass153_44.method4503(local25);
 		for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {
-			Static228.aClass69_120.method2282(Static210.method3713(new Packet(Static119.aClass153_44.method4495(local25, local30[local32]))));
+			Static228.aClass69_120.method2282(Static210.method3713(new Packet(Static119.aClass153_44.getfile(local25, local30[local32]))));
 		}
 	}
 

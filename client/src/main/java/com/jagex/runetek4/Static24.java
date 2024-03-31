@@ -44,7 +44,7 @@ public final class Static24 {
 		@Pc(28) int local28 = arg0 ? 32768 : 0;
 		@Pc(36) int local36 = (arg0 ? Static34.anInt1047 : Static144.anInt3490) + local28;
 		for (@Pc(38) int local38 = local28; local38 < local36; local38++) {
-			@Pc(45) QuickChatPhraseType local45 = Static230.method3953(local38);
+			@Pc(45) QuickChatPhraseType local45 = Static230.list(local38);
 			if (local45.aBoolean60 && local45.method769().toLowerCase().indexOf(local9) != -1) {
 				if (local11 >= 50) {
 					Static111.anInt2905 = -1;
@@ -66,7 +66,7 @@ public final class Static24 {
 		Static67.anInt3356 = 0;
 		@Pc(113) JagString[] local113 = new JagString[Static111.anInt2905];
 		for (@Pc(115) int local115 = 0; local115 < Static111.anInt2905; local115++) {
-			local113[local115] = Static230.method3953(local22[local115]).method769();
+			local113[local115] = Static230.list(local22[local115]).method769();
 		}
 		Static202.method3656(local113, Static169.aShortArray52);
 	}

@@ -94,7 +94,7 @@ public final class Static40 {
 		if (local10 != null) {
 			return local10;
 		}
-		@Pc(20) byte[] bytes = Static98.aClass153_42.method4495(34, arg0);
+		@Pc(20) byte[] bytes = Static98.aClass153_42.getfile(34, arg0);
 		local10 = new MSIType();
 		if (bytes != null) {
 			local10.decode(new Packet(bytes));

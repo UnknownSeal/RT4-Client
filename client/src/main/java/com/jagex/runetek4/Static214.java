@@ -66,7 +66,7 @@ public final class Static214 {
 		if (npcType != null) {
 			return npcType;
 		}
-		@Pc(26) byte[] bytes = Static58.aClass153_28.method4495(Static60.method1447(id), Static179.method3322(id));
+		@Pc(26) byte[] bytes = Static58.aClass153_28.getfile(Static60.method1447(id), Static179.method3322(id));
 		npcType = new NPCType();
 		npcType.id = id;
 		if (bytes != null) {

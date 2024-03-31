@@ -70,7 +70,7 @@ public final class Js5GlTextureProvider implements GlTextureProvider {
 		} else {
 			this.aClass54_11 = null;
 		}
-		@Pc(51) Packet local51 = new Packet(arg1.method4495(0, 0));
+		@Pc(51) Packet local51 = new Packet(arg1.getfile(0, 0));
 		@Pc(55) int local55 = local51.g2();
 		this.aByteArray61 = new byte[local55];
 		this.aByteArray60 = new byte[local55];
@@ -167,17 +167,17 @@ public final class Js5GlTextureProvider implements GlTextureProvider {
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "i", descriptor = "(II)Lclient!uh;")
 	private GlTexture method3242(@OriginalArg(0) int arg0) {
-		@Pc(14) GlTexture local14 = (GlTexture) this.aClass54_12.method1806((long) arg0);
+		@Pc(14) GlTexture local14 = (GlTexture) this.aClass54_12.get((long) arg0);
 		if (local14 != null) {
 			return local14;
 		}
-		@Pc(30) byte[] local30 = this.aClass153_73.method4495(arg0, 0);
+		@Pc(30) byte[] local30 = this.aClass153_73.getfile(arg0, 0);
 		if (local30 == null) {
 			return null;
 		} else {
 			@Pc(41) Packet local41 = new Packet(local30);
 			local14 = new GlTexture(local41);
-			this.aClass54_12.method1811(local14, (long) arg0);
+			this.aClass54_12.put(local14, (long) arg0);
 			return local14;
 		}
 	}
@@ -208,10 +208,10 @@ public final class Js5GlTextureProvider implements GlTextureProvider {
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "j", descriptor = "(II)Lclient!sd;")
 	private GlSolidColorTexture method3244(@OriginalArg(1) int arg0) {
-		@Pc(19) GlSolidColorTexture local19 = (GlSolidColorTexture) this.aClass54_11.method1806((long) arg0);
+		@Pc(19) GlSolidColorTexture local19 = (GlSolidColorTexture) this.aClass54_11.get((long) arg0);
 		if (local19 == null) {
 			local19 = new GlSolidColorTexture(this.aShortArray59[arg0] & 0xFFFF);
-			this.aClass54_11.method1811(local19, (long) arg0);
+			this.aClass54_11.put(local19, (long) arg0);
 			return local19;
 		} else {
 			return local19;

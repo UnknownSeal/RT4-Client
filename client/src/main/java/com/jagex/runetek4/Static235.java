@@ -24,15 +24,15 @@ public final class Static235 {
 
 	@OriginalMember(owner = "runetek4.client!tb", name = "b", descriptor = "(IB)Lclient!bc;")
 	public static Class3_Sub2_Sub2 method4045(@OriginalArg(0) int arg0) {
-		@Pc(10) Class3_Sub2_Sub2 local10 = (Class3_Sub2_Sub2) Static73.aClass54_7.method1806((long) arg0);
+		@Pc(10) Class3_Sub2_Sub2 local10 = (Class3_Sub2_Sub2) Static73.aClass54_7.get((long) arg0);
 		if (local10 != null) {
 			return local10;
 		}
 		@Pc(24) byte[] local24;
 		if (arg0 < 32768) {
-			local24 = Static87.aClass153_38.method4495(0, arg0);
+			local24 = Static87.aClass153_38.getfile(0, arg0);
 		} else {
-			local24 = Static29.aClass153_19.method4495(0, arg0 & 0x7FFF);
+			local24 = Static29.aClass153_19.getfile(0, arg0 & 0x7FFF);
 		}
 		local10 = new Class3_Sub2_Sub2();
 		if (local24 != null) {
@@ -41,7 +41,7 @@ public final class Static235 {
 		if (arg0 >= 32768) {
 			local10.method465();
 		}
-		Static73.aClass54_7.method1811(local10, (long) arg0);
+		Static73.aClass54_7.put(local10, (long) arg0);
 		return local10;
 	}
 }

@@ -179,7 +179,7 @@ public final class Js5 {
 		@Pc(28) int local28 = this.index.aClass76_1.method2405(local15.method3154());
 		if (this.isGroupValid(local28)) {
 			@Pc(53) int local53 = this.index.aClass76Array1[local28].method2405(local19.method3154());
-			return this.method4495(local28, local53);
+			return this.getfile(local28, local53);
 		} else {
 			return null;
 		}
@@ -401,8 +401,8 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(IBI)[B")
-	public byte[] method4495(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		return this.getfile(arg0, arg1, null);
+	public byte[] getfile(@OriginalArg(0) int group, @OriginalArg(2) int file) {
+		return this.getfile(group, file, null);
 	}
 
 	@OriginalMember(owner = "client!ve", name = "b", descriptor = "(ZI)V")
@@ -461,11 +461,11 @@ public final class Js5 {
 		if (!this.isIndexReady()) {
 			return null;
 		} else if (this.index.groupCapacities.length == 1) {
-			return this.method4495(0, arg0);
+			return this.getfile(0, arg0);
 		} else if (!this.isGroupValid(arg0)) {
 			return null;
 		} else if (this.index.groupCapacities[arg0] == 1) {
-			return this.method4495(arg0, 0);
+			return this.getfile(arg0, 0);
 		} else {
 			throw new RuntimeException();
 		}

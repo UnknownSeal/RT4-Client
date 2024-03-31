@@ -33,7 +33,7 @@ public final class Static71 {
 		if (objType != null) {
 			return objType;
 		}
-		@Pc(25) byte[] bytes = Static167.aClass153_61.method4495(Static18.method554(id), Static247.method4247(id));
+		@Pc(25) byte[] bytes = Static167.aClass153_61.getfile(Static18.method554(id), Static247.method4247(id));
 		objType = new ObjType();
 		objType.anInt2354 = id;
 		if (bytes != null) {

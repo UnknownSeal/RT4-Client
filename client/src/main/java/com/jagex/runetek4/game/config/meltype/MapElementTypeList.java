@@ -48,7 +48,7 @@ public final class MapElementTypeList {
 		@Pc(29) int[] local29 = arg1.method4503(local10);
 		@Pc(35) MapElementTypeList local35 = new MapElementTypeList(local29.length);
 		for (@Pc(37) int local37 = 0; local37 < local35.anInt5074; local37++) {
-			@Pc(56) Packet local56 = new Packet(arg1.method4495(local10, local29[local37]));
+			@Pc(56) Packet local56 = new Packet(arg1.getfile(local10, local29[local37]));
 			local35.aClass100Array153[local37] = local56.gjstr();
 			local35.aByteArray69[local37] = local56.g1s();
 			local35.aShortArray73[local37] = (short) local56.g2();

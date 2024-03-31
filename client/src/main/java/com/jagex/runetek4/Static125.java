@@ -53,7 +53,7 @@ public final class Static125 {
 		if (local10 != null) {
 			return local10;
 		}
-		@Pc(31) byte[] local31 = Static172.aClass153_69.method4495(Static254.method4349(arg0), Static274.method3845(arg0));
+		@Pc(31) byte[] local31 = Static172.aClass153_69.getfile(Static254.method4349(arg0), Static274.method3845(arg0));
 		local10 = new Class85();
 		if (local31 != null) {
 			local10.decode(new Packet(local31));

@@ -96,7 +96,7 @@ public final class Static34 {
 		if (local10 != null) {
 			return local10;
 		}
-		@Pc(26) byte[] local26 = Static132.aClass153_48.method4495(Static206.method3681(arg0), Static133.method4010(arg0));
+		@Pc(26) byte[] local26 = Static132.aClass153_48.getfile(Static206.method3681(arg0), Static133.method4010(arg0));
 		local10 = new SpotAnimType();
 		local10.anInt1751 = arg0;
 		if (local26 != null) {

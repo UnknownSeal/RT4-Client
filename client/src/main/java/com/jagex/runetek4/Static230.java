@@ -134,26 +134,28 @@ public final class Static230 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "b", descriptor = "(II)Lclient!cb;")
-	public static QuickChatPhraseType method3953(@OriginalArg(1) int arg0) {
-		@Pc(10) QuickChatPhraseType local10 = (QuickChatPhraseType) Static249.aClass54_15.method1806((long) arg0);
-		if (local10 != null) {
-			return local10;
+	public static QuickChatPhraseType list(@OriginalArg(1) int id) {
+		@Pc(10) QuickChatPhraseType cached = (QuickChatPhraseType) Static249.recentUse.get((long) id);
+		if (cached != null) {
+			return cached;
 		}
-		@Pc(27) byte[] local27;
-		if (arg0 < 32768) {
-			local27 = Static238.aClass153_96.method4495(1, arg0);
+
+		@Pc(27) byte[] bytes;
+		if (id >= 32768) {
+			bytes = Static262.configClientLarge.getfile(1, id & 0x7FFF);
 		} else {
-			local27 = Static262.aClass153_108.method4495(1, arg0 & 0x7FFF);
+			bytes = Static238.configClientSmall.getfile(1, id);
 		}
-		local10 = new QuickChatPhraseType();
-		if (local27 != null) {
-			local10.decode(new Packet(local27));
+
+		QuickChatPhraseType quickChatPhraseType = new QuickChatPhraseType();
+		if (bytes != null) {
+			quickChatPhraseType.decode(new Packet(bytes));
 		}
-		if (arg0 >= 32768) {
-			local10.postDecode();
+		if (id >= 32768) {
+			quickChatPhraseType.postDecode();
 		}
-		Static249.aClass54_15.method1811(local10, (long) arg0);
-		return local10;
+		Static249.recentUse.put(quickChatPhraseType, (long) id);
+		return quickChatPhraseType;
 	}
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(ILclient!na;)V")

@@ -56,7 +56,7 @@ public final class Static271 {
 		if (locType != null) {
 			return locType;
 		}
-		@Pc(30) byte[] bytes = Static146.aClass153_54.method4495(Static253.method4328(id), Static33.method872(id));
+		@Pc(30) byte[] bytes = Static146.aClass153_54.getfile(Static253.method4328(id), Static33.method872(id));
 		locType = new LocType();
 		locType.anInt4426 = id;
 		if (bytes != null) {

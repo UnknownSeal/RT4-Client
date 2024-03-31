@@ -137,16 +137,16 @@ public final class Static246 {
 
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(II)Lclient!md;")
 	public static InvType get(@OriginalArg(0) int arg0) {
-		@Pc(16) InvType invType = (InvType) Static89.aClass54_8.method1806((long) arg0);
+		@Pc(16) InvType invType = (InvType) Static89.aClass54_8.get((long) arg0);
 		if (invType != null) {
 			return invType;
 		}
-		@Pc(27) byte[] bytes = Static9.aClass153_2.method4495(5, arg0);
+		@Pc(27) byte[] bytes = Static9.aClass153_2.getfile(5, arg0);
 		invType = new InvType();
 		if (bytes != null) {
 			invType.decode(new Packet(bytes));
 		}
-		Static89.aClass54_8.method1811(invType, (long) arg0);
+		Static89.aClass54_8.put(invType, (long) arg0);
 		return invType;
 	}
 }

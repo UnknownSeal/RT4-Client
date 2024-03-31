@@ -182,16 +182,16 @@ public final class Static253 {
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "a", descriptor = "(IZ)Lclient!ml;")
 	public static EnumType get(@OriginalArg(0) int id) {
-		@Pc(10) EnumType enumType = (EnumType) Static149.aClass54_10.method1806((long) id);
+		@Pc(10) EnumType enumType = (EnumType) Static149.aClass54_10.get((long) id);
 		if (enumType != null) {
 			return enumType;
 		}
-		@Pc(24) byte[] bytes = Static84.aClass153_35.method4495(Static97.method1959(id), Static103.method2236(id));
+		@Pc(24) byte[] bytes = Static84.aClass153_35.getfile(Static97.method1959(id), Static103.method2236(id));
 		enumType = new EnumType();
 		if (bytes != null) {
 			enumType.decode(new Packet(bytes));
 		}
-		Static149.aClass54_10.method1811(enumType, (long) id);
+		Static149.aClass54_10.put(enumType, (long) id);
 		return enumType;
 	}
 

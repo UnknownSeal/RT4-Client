@@ -11,7 +11,7 @@ public final class Static262 {
 	public static int anInt5752;
 
 	@OriginalMember(owner = "runetek4.client!vf", name = "n", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_108;
+	public static Js5 configClientLarge;
 
 	@OriginalMember(owner = "runetek4.client!vf", name = "a", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable aClass99_34 = new SoftLruHashTable(64);

@@ -2470,13 +2470,13 @@ public final class Static88 {
 												if (local226 == 5055) {
 													local28--;
 													local809 = Static254.anIntArray487[local28];
-													Static3.aClass100Array176[local26++] = Static230.method3953(local809).method769();
+													Static3.aClass100Array176[local26++] = Static230.list(local809).method769();
 													continue;
 												}
 												if (local226 == 5056) {
 													local28--;
 													local809 = Static254.anIntArray487[local28];
-													@Pc(6527) QuickChatPhraseType local6527 = Static230.method3953(local809);
+													@Pc(6527) QuickChatPhraseType local6527 = Static230.list(local809);
 													if (local6527.autoResponses == null) {
 														Static254.anIntArray487[local28++] = 0;
 													} else {
@@ -2488,14 +2488,14 @@ public final class Static88 {
 													local28 -= 2;
 													local803 = Static254.anIntArray487[local28 + 1];
 													local809 = Static254.anIntArray487[local28];
-													Static254.anIntArray487[local28++] = Static230.method3953(local809).autoResponses[local803];
+													Static254.anIntArray487[local28++] = Static230.list(local809).autoResponses[local803];
 													continue;
 												}
 												if (local226 == 5058) {
 													Static122.aClass12_1 = new Class12();
 													local28--;
 													Static122.aClass12_1.anInt439 = Static254.anIntArray487[local28];
-													Static122.aClass12_1.aQuickChatPhraseType_1 = Static230.method3953(Static122.aClass12_1.anInt439);
+													Static122.aClass12_1.aQuickChatPhraseType_1 = Static230.list(Static122.aClass12_1.anInt439);
 													Static122.aClass12_1.anIntArray33 = new int[Static122.aClass12_1.aQuickChatPhraseType_1.method767()];
 													continue;
 												}
@@ -2570,14 +2570,14 @@ public final class Static88 {
 												if (local226 == 5066) {
 													local28--;
 													local809 = Static254.anIntArray487[local28];
-													Static254.anIntArray487[local28++] = Static230.method3953(local809).method767();
+													Static254.anIntArray487[local28++] = Static230.list(local809).method767();
 													continue;
 												}
 												if (local226 == 5067) {
 													local28 -= 2;
 													local803 = Static254.anIntArray487[local28 + 1];
 													local809 = Static254.anIntArray487[local28];
-													local1052 = Static230.method3953(local809).method765(local803);
+													local1052 = Static230.list(local809).method765(local803);
 													Static254.anIntArray487[local28++] = local1052;
 													continue;
 												}
@@ -2600,7 +2600,7 @@ public final class Static88 {
 													local809 = Static254.anIntArray487[local28];
 													local1052 = Static254.anIntArray487[local28 + 2];
 													local803 = Static254.anIntArray487[local28 + 1];
-													@Pc(6996) QuickChatPhraseType local6996 = Static230.method3953(local809);
+													@Pc(6996) QuickChatPhraseType local6996 = Static230.list(local809);
 													if (local6996.method765(local803) != 0) {
 														throw new RuntimeException("bad command");
 													}

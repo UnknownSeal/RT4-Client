@@ -108,7 +108,7 @@ public final class Static140 {
 		if (local10 != null) {
 			return local10;
 		}
-		@Pc(26) byte[] local26 = Static85.aClass153_36.method4495(31, arg0);
+		@Pc(26) byte[] local26 = Static85.aClass153_36.getfile(31, arg0);
 		local10 = new LightType();
 		if (local26 != null) {
 			local10.decode(new Packet(local26));

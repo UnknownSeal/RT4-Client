@@ -44,7 +44,7 @@ public final class Static245 {
 			}
 			for (@Pc(46) int local46 = 0; local46 < local25; local46++) {
 				if (Static241.components[arg0][local46] == null) {
-					@Pc(62) byte[] local62 = Static202.aClass153_84.method4495(arg0, local46);
+					@Pc(62) byte[] local62 = Static202.aClass153_84.getfile(arg0, local46);
 					if (local62 != null) {
 						@Pc(74) Component local74 = Static241.components[arg0][local46] = new Component();
 						local74.anInt507 = local46 + (arg0 << 16);

@@ -45,7 +45,7 @@ public final class Static81 {
 		if (idkType != null) {
 			return idkType;
 		}
-		@Pc(21) byte[] bytes = Static216.aClass153_31.method4495(3, arg0);
+		@Pc(21) byte[] bytes = Static216.aClass153_31.getfile(3, arg0);
 		idkType = new IDKType();
 		if (bytes != null) {
 			idkType.decode(new Packet(bytes));

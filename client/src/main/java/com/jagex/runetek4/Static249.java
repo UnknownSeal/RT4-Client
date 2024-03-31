@@ -17,7 +17,7 @@ public final class Static249 {
 	public static int anInt5431 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ud", name = "P", descriptor = "Lclient!gn;")
-	public static final LruHashTable aClass54_15 = new LruHashTable(64);
+	public static final LruHashTable recentUse = new LruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!ud", name = "Q", descriptor = "Lclient!na;")
 	public static final JagString aClass100_1039 = Static28.parse(" x ");

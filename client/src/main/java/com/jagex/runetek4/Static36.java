@@ -50,7 +50,7 @@ public final class Static36 {
 		if (local17 != null) {
 			return local17;
 		}
-		@Pc(32) byte[] local32 = Static243.aClass153_98.method4495(Static221.method3389(arg0), Static118.method2356(arg0));
+		@Pc(32) byte[] local32 = Static243.aClass153_98.getfile(Static221.method3389(arg0), Static118.method2356(arg0));
 		local17 = new SeqType();
 		local17.anInt5361 = arg0;
 		if (local32 != null) {

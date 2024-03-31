@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static238 {
 
 	@OriginalMember(owner = "runetek4.client!te", name = "y", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_96;
+	public static Js5 configClientSmall;
 
 	@OriginalMember(owner = "runetek4.client!te", name = "H", descriptor = "[I")
 	public static int[] anIntArray470;

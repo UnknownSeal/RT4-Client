@@ -71,7 +71,7 @@ public final class Static78 {
 		@Pc(14) int local14;
 		for (local14 = 0; local14 < Static273.aByteArrayArray13.length; local14++) {
 			if (Static36.anIntArray84[local14] != -1 && Static273.aByteArrayArray13[local14] == null) {
-				Static273.aByteArrayArray13[local14] = Static26.aClass153_16.method4495(Static36.anIntArray84[local14], 0);
+				Static273.aByteArrayArray13[local14] = Static26.aClass153_16.getfile(Static36.anIntArray84[local14], 0);
 				if (Static273.aByteArrayArray13[local14] == null) {
 					Static175.anInt4220++;
 					local12 = false;
@@ -86,14 +86,14 @@ public final class Static78 {
 			}
 			if (GlRenderer.enabled) {
 				if (Static99.anIntArray239[local14] != -1 && Static186.aByteArrayArray14[local14] == null) {
-					Static186.aByteArrayArray14[local14] = Static26.aClass153_16.method4495(Static99.anIntArray239[local14], 0);
+					Static186.aByteArrayArray14[local14] = Static26.aClass153_16.getfile(Static99.anIntArray239[local14], 0);
 					if (Static186.aByteArrayArray14[local14] == null) {
 						local12 = false;
 						Static175.anInt4220++;
 					}
 				}
 				if (Static35.anIntArray82[local14] != -1 && Static19.aByteArrayArray4[local14] == null) {
-					Static19.aByteArrayArray4[local14] = Static26.aClass153_16.method4495(Static35.anIntArray82[local14], 0);
+					Static19.aByteArrayArray4[local14] = Static26.aClass153_16.getfile(Static35.anIntArray82[local14], 0);
 					if (Static19.aByteArrayArray4[local14] == null) {
 						Static175.anInt4220++;
 						local12 = false;
