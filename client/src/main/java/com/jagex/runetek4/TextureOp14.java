@@ -53,7 +53,7 @@ public final class TextureOp14 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "e", descriptor = "(I)V")
 	@Override
-	public final void method4630() {
+	public final void postDecode() {
 		this.aByteArray38 = Static89.method1837(this.anInt2639);
 		this.method2052();
 	}
@@ -63,15 +63,15 @@ public final class TextureOp14 extends TextureOp {
 	public final int[] method4626(@OriginalArg(0) int arg0) {
 		@Pc(19) int[] local19 = this.aClass121_41.method3445(arg0);
 		if (this.aClass121_41.aBoolean221) {
-			@Pc(32) int local32 = this.anInt2646 * Static64.anIntArray153[arg0] + 2048;
+			@Pc(32) int local32 = this.anInt2646 * Texture.heightFractions[arg0] + 2048;
 			@Pc(36) int local36 = local32 >> 12;
 			@Pc(40) int local40 = local36 + 1;
-			for (@Pc(42) int local42 = 0; local42 < Static189.anInt4457; local42++) {
+			for (@Pc(42) int local42 = 0; local42 < Texture.width; local42++) {
 				Static253.anInt5526 = Integer.MAX_VALUE;
 				Static250.anInt5443 = Integer.MAX_VALUE;
 				Static121.anInt3041 = Integer.MAX_VALUE;
 				Static35.anInt1091 = Integer.MAX_VALUE;
-				@Pc(62) int local62 = this.anInt2645 * Static173.anIntArray367[local42] + 2048;
+				@Pc(62) int local62 = this.anInt2645 * Texture.widthFractions[local42] + 2048;
 				@Pc(66) int local66 = local62 >> 12;
 				@Pc(70) int local70 = local66 + 1;
 				@Pc(165) int local165;
@@ -141,21 +141,21 @@ public final class TextureOp14 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
-		if (arg0 == 0) {
-			this.anInt2645 = this.anInt2646 = arg1.g1();
-		} else if (arg0 == 1) {
-			this.anInt2639 = arg1.g1();
-		} else if (arg0 == 2) {
-			this.anInt2636 = arg1.g2();
-		} else if (arg0 == 3) {
-			this.anInt2635 = arg1.g1();
-		} else if (arg0 == 4) {
-			this.anInt2638 = arg1.g1();
-		} else if (arg0 == 5) {
-			this.anInt2645 = arg1.g1();
-		} else if (arg0 == 6) {
-			this.anInt2646 = arg1.g1();
+	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
+		if (code == 0) {
+			this.anInt2645 = this.anInt2646 = packet.g1();
+		} else if (code == 1) {
+			this.anInt2639 = packet.g1();
+		} else if (code == 2) {
+			this.anInt2636 = packet.g2();
+		} else if (code == 3) {
+			this.anInt2635 = packet.g1();
+		} else if (code == 4) {
+			this.anInt2638 = packet.g1();
+		} else if (code == 5) {
+			this.anInt2645 = packet.g1();
+		} else if (code == 6) {
+			this.anInt2646 = packet.g1();
 		}
 	}
 }

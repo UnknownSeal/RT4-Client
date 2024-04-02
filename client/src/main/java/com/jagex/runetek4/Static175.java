@@ -25,7 +25,7 @@ public final class Static175 {
 	@OriginalMember(owner = "runetek4.client!nm", name = "a", descriptor = "(Z)V")
 	public static void method3279() {
 		if (Static267.anInt5775 > 0) {
-			Static278.method4653();
+			Static278.processLogout();
 		} else {
 			Static233.aClass95_4 = Static124.socket;
 			Static124.socket = null;

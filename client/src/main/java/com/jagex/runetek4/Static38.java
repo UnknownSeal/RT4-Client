@@ -157,7 +157,7 @@ public final class Static38 {
 
 	@OriginalMember(owner = "runetek4.client!cn", name = "b", descriptor = "(ZI)V")
 	public static void method964(@OriginalArg(0) boolean arg0) {
-		@Pc(3) int local3 = Static267.anInt5774;
+		@Pc(3) int local3 = Static267.size;
 		if (Static115.anInt2939 == Static173.self.anInt3412 >> 7 && Static173.self.anInt3421 >> 7 == Static84.anInt2255) {
 			Static115.anInt2939 = 0;
 		}
@@ -176,7 +176,7 @@ public final class Static38 {
 			if (arg0) {
 				local39 = Static173.self;
 			} else {
-				local39 = Static159.aClass8_Sub4_Sub1Array1[Static105.anIntArray256[local28]];
+				local39 = Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local28]];
 			}
 			if (local39 != null && local39.method2682()) {
 				@Pc(55) int local55 = local39.size();
@@ -220,12 +220,12 @@ public final class Static38 {
 				local39 = Static173.self;
 				local272 = 8791798054912L;
 			} else {
-				local39 = Static159.aClass8_Sub4_Sub1Array1[Static105.anIntArray256[local28]];
-				local272 = (long) Static105.anIntArray256[local28] << 32;
+				local39 = Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local28]];
+				local272 = (long) Static105.ids[local28] << 32;
 			}
 			if (local39 != null && local39.method2682()) {
 				local39.aBoolean98 = false;
-				if ((Static15.aBoolean33 && Static267.anInt5774 > 200 || Static267.anInt5774 > 50) && !arg0 && local39.anInt3366 == local39.method2681().anInt1037) {
+				if ((Static15.aBoolean33 && Static267.size > 200 || Static267.size > 50) && !arg0 && local39.anInt3366 == local39.method2681().anInt1037) {
 					local39.aBoolean98 = true;
 				}
 				local82 = local39.size();

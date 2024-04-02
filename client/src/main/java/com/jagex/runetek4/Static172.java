@@ -19,10 +19,7 @@ public final class Static172 {
 	@OriginalMember(owner = "runetek4.client!nj", name = "j", descriptor = "[I")
 	public static int[] anIntArray366;
 
-	@OriginalMember(owner = "runetek4.client!nj", name = "k", descriptor = "I")
-	public static int anInt4165;
-
-	@OriginalMember(owner = "runetek4.client!nj", name = "l", descriptor = "Lclient!ve;")
+    @OriginalMember(owner = "runetek4.client!nj", name = "l", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_71;
 
 	@OriginalMember(owner = "runetek4.client!nj", name = "m", descriptor = "[[S")

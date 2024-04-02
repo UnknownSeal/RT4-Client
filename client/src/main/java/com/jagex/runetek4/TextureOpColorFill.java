@@ -44,7 +44,7 @@ public final class TextureOpColorFill extends TextureOp {
 			@Pc(31) int[] local31 = local22[0];
 			@Pc(35) int[] local35 = local22[1];
 			@Pc(39) int[] local39 = local22[2];
-			for (@Pc(41) int local41 = 0; local41 < Static189.anInt4457; local41++) {
+			for (@Pc(41) int local41 = 0; local41 < Texture.width; local41++) {
 				local31[local41] = this.anInt2073;
 				local35[local41] = this.anInt2078;
 				local39[local41] = this.anInt2080;
@@ -55,9 +55,9 @@ public final class TextureOpColorFill extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
-		if (arg0 == 0) {
-			this.method1595(arg1.g3());
+	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
+		if (code == 0) {
+			this.method1595(packet.g3());
 		}
 	}
 }

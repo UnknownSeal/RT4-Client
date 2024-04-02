@@ -15,6 +15,6 @@ public final class TextureOp27 extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!rl", name = "a", descriptor = "(IB)[I")
 	@Override
 	public final int[] method4626(@OriginalArg(0) int arg0) {
-		return Static173.anIntArray367;
+		return Texture.widthFractions;
 	}
 }

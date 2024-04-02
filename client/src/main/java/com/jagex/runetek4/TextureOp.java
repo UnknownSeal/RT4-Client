@@ -47,11 +47,11 @@ public abstract class TextureOp extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!j", name = "a", descriptor = "(ILclient!wa;Z)V")
-	public void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
+	public void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
 	}
 
 	@OriginalMember(owner = "runetek4.client!j", name = "e", descriptor = "(I)V")
-	public void method4630() {
+	public void postDecode() {
 	}
 
 	@OriginalMember(owner = "runetek4.client!j", name = "f", descriptor = "(I)I")

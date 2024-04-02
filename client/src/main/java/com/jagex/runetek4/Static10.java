@@ -7,13 +7,13 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static10 {
 
-	@OriginalMember(owner = "runetek4.client!an", name = "ab", descriptor = "Lclient!uf;")
+	@OriginalMember(owner = "client!an", name = "ab", descriptor = "Lclient!uf;")
 	public static Keyboard aClass149_1 = new Keyboard();
 
-	@OriginalMember(owner = "runetek4.client!an", name = "db", descriptor = "S")
+	@OriginalMember(owner = "client!an", name = "db", descriptor = "S")
 	public static short aShort9 = 205;
 
-	@OriginalMember(owner = "runetek4.client!an", name = "a", descriptor = "([BIII)Lclient!na;")
+	@OriginalMember(owner = "client!an", name = "a", descriptor = "([BIII)Lclient!na;")
 	public static JagString decodeString(@OriginalArg(0) byte[] arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
 		@Pc(7) JagString local7 = new JagString();
 		local7.aByteArray52 = new byte[arg1];
@@ -26,7 +26,7 @@ public final class Static10 {
 		return local7;
 	}
 
-	@OriginalMember(owner = "runetek4.client!an", name = "a", descriptor = "(BI)I")
+	@OriginalMember(owner = "client!an", name = "a", descriptor = "(BI)I")
 	public static int method347(@OriginalArg(1) int arg0) {
 		if (Static124.socket != null) {
 			Static124.socket.closeGracefully();
@@ -47,33 +47,7 @@ public final class Static10 {
 		return -1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!an", name = "c", descriptor = "(III)V")
-	public static void method348(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		if (Static189.anInt4457 != arg1) {
-			Static173.anIntArray367 = new int[arg1];
-			for (@Pc(10) int local10 = 0; local10 < arg1; local10++) {
-				Static173.anIntArray367[local10] = (local10 << 12) / arg1;
-			}
-			Static165.anInt4042 = arg1 == 64 ? 2048 : 4096;
-			Static34.anInt1060 = arg1 - 1;
-			Static189.anInt4457 = arg1;
-		}
-		if (Static172.anInt4165 == arg0) {
-			return;
-		}
-		if (Static189.anInt4457 == arg0) {
-			Static64.anIntArray153 = Static173.anIntArray367;
-		} else {
-			Static64.anIntArray153 = new int[arg0];
-			for (@Pc(61) int local61 = 0; local61 < arg0; local61++) {
-				Static64.anIntArray153[local61] = (local61 << 12) / arg0;
-			}
-		}
-		Static172.anInt4165 = arg0;
-		Static141.anInt3473 = arg0 - 1;
-	}
-
-	@OriginalMember(owner = "runetek4.client!an", name = "h", descriptor = "(I)Z")
+	@OriginalMember(owner = "client!an", name = "h", descriptor = "(I)Z")
 	public static boolean readPacket() {
 		try {
 			return Static4.method26();
@@ -86,24 +60,24 @@ public final class Static10 {
 				local61 = local61 + Static57.aClass3_Sub15_Sub1_3.data[local63] + ",";
 			}
 			Static89.report(local61, local19);
-			Static278.method4653();
+			Static278.processLogout();
 			return true;
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!an", name = "a", descriptor = "(Z)V")
+	@OriginalMember(owner = "client!an", name = "a", descriptor = "(Z)V")
 	public static void method350() {
 		Static142.aClass99_23.method3104();
 		Static267.aClass99_37.method3104();
 	}
 
-	@OriginalMember(owner = "runetek4.client!an", name = "i", descriptor = "(I)V")
+	@OriginalMember(owner = "client!an", name = "i", descriptor = "(I)V")
 	public static void method351() {
 		Static79.aClass99_11.method3104();
 		Static7.aClass99_5.method3104();
 	}
 
-	@OriginalMember(owner = "runetek4.client!an", name = "a", descriptor = "(IIIIIII)V")
+	@OriginalMember(owner = "client!an", name = "a", descriptor = "(IIIIIII)V")
 	public static void method352(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {
 		@Pc(11) int local11 = Static78.method1690(Static106.anInt2869, arg5, Static267.anInt5773);
 		@Pc(17) int local17 = Static78.method1690(Static106.anInt2869, arg0, Static267.anInt5773);

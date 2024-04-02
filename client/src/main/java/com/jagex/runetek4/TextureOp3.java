@@ -22,11 +22,11 @@ public final class TextureOp3 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!an", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
-		if (arg0 == 0) {
-			this.anInt316 = arg1.g2();
-		} else if (arg0 == 1) {
-			this.aBoolean11 = arg1.g1() == 1;
+	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
+		if (code == 0) {
+			this.anInt316 = packet.g2();
+		} else if (code == 1) {
+			this.aBoolean11 = packet.g1() == 1;
 		}
 	}
 
@@ -35,15 +35,15 @@ public final class TextureOp3 extends TextureOp {
 	public final int[][] method4638(@OriginalArg(1) int arg0) {
 		@Pc(11) int[][] local11 = this.aClass103_41.method3173(arg0);
 		if (this.aClass103_41.aBoolean195) {
-			@Pc(25) int[] local25 = this.method4624(0, Static141.anInt3473 & arg0 - 1);
+			@Pc(25) int[] local25 = this.method4624(0, Texture.heightMask & arg0 - 1);
 			@Pc(31) int[] local31 = this.method4624(0, arg0);
-			@Pc(41) int[] local41 = this.method4624(0, arg0 + 1 & Static141.anInt3473);
+			@Pc(41) int[] local41 = this.method4624(0, arg0 + 1 & Texture.heightMask);
 			@Pc(45) int[] local45 = local11[0];
 			@Pc(49) int[] local49 = local11[1];
 			@Pc(53) int[] local53 = local11[2];
-			for (@Pc(55) int local55 = 0; local55 < Static189.anInt4457; local55++) {
+			for (@Pc(55) int local55 = 0; local55 < Texture.width; local55++) {
 				@Pc(70) int local70 = this.anInt316 * (local41[local55] - local25[local55]);
-				@Pc(90) int local90 = this.anInt316 * (local31[local55 + 1 & Static34.anInt1060] - local31[Static34.anInt1060 & local55 - 1]);
+				@Pc(90) int local90 = this.anInt316 * (local31[local55 + 1 & Texture.widthMask] - local31[Texture.widthMask & local55 - 1]);
 				@Pc(94) int local94 = local70 >> 12;
 				@Pc(98) int local98 = local90 >> 12;
 				@Pc(104) int local104 = local94 * local94 >> 12;

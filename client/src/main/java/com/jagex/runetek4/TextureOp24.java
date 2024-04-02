@@ -28,19 +28,19 @@ public final class TextureOp24 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!pk", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
-		if (arg0 == 0) {
-			this.anInt4580 = arg1.g2();
-		} else if (arg0 == 1) {
-			this.anInt4577 = arg1.g2();
-		} else if (arg0 == 2) {
-			this.anInt4584 = arg1.g2();
+	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
+		if (code == 0) {
+			this.anInt4580 = packet.g2();
+		} else if (code == 1) {
+			this.anInt4577 = packet.g2();
+		} else if (code == 2) {
+			this.anInt4584 = packet.g2();
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!pk", name = "e", descriptor = "(I)V")
 	@Override
-	public final void method4630() {
+	public final void postDecode() {
 		this.method3533();
 	}
 
@@ -50,11 +50,11 @@ public final class TextureOp24 extends TextureOp {
 		@Pc(19) int[] local19 = this.aClass121_41.method3445(arg0);
 		if (this.aClass121_41.aBoolean221) {
 			@Pc(30) int local30 = Static165.anInt4042 * this.anInt4580 >> 12;
-			@Pc(40) int[] local40 = this.method4624(0, Static141.anInt3473 & arg0 - 1);
+			@Pc(40) int[] local40 = this.method4624(0, Texture.heightMask & arg0 - 1);
 			@Pc(46) int[] local46 = this.method4624(0, arg0);
-			@Pc(56) int[] local56 = this.method4624(0, arg0 + 1 & Static141.anInt3473);
-			for (@Pc(58) int local58 = 0; local58 < Static189.anInt4457; local58++) {
-				@Pc(81) int local81 = (local46[Static34.anInt1060 & local58 - 1] - local46[local58 + 1 & Static34.anInt1060]) * local30 >> 12;
+			@Pc(56) int[] local56 = this.method4624(0, arg0 + 1 & Texture.heightMask);
+			for (@Pc(58) int local58 = 0; local58 < Texture.width; local58++) {
+				@Pc(81) int local81 = (local46[Texture.widthMask & local58 - 1] - local46[local58 + 1 & Texture.widthMask]) * local30 >> 12;
 				@Pc(94) int local94 = local30 * (local56[local58] - local40[local58]) >> 12;
 				@Pc(98) int local98 = local81 >> 4;
 				if (local98 < 0) {

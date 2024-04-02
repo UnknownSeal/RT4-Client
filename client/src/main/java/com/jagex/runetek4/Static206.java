@@ -34,8 +34,8 @@ public final class Static206 {
 		local15.anInt641 = 8;
 		local15.anInt648 = (int) (arg0 * 4096.0F);
 		local15.aBoolean44 = true;
-		local15.method4630();
-		Static10.method348(1, 2048);
+		local15.postDecode();
+		Texture.setSize(1, 2048);
 		local15.method584(0, local11);
 		return local11;
 	}

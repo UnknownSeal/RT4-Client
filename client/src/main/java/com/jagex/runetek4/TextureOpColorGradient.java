@@ -22,7 +22,7 @@ public final class TextureOpColorGradient extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!um", name = "e", descriptor = "(I)V")
 	@Override
-	public final void method4630() {
+	public final void postDecode() {
 		if (this.anIntArrayArray39 == null) {
 			this.method4390(1);
 		}
@@ -225,21 +225,21 @@ public final class TextureOpColorGradient extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!um", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
-		if (arg0 != 0) {
+	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
+		if (code != 0) {
 			return;
 		}
-		@Pc(15) int local15 = arg1.g1();
+		@Pc(15) int local15 = packet.g1();
 		if (local15 != 0) {
 			this.method4390(local15);
 			return;
 		}
-		this.anIntArrayArray39 = new int[arg1.g1()][4];
+		this.anIntArrayArray39 = new int[packet.g1()][4];
 		for (@Pc(35) int local35 = 0; local35 < this.anIntArrayArray39.length; local35++) {
-			this.anIntArrayArray39[local35][0] = arg1.g2();
-			this.anIntArrayArray39[local35][1] = arg1.g1() << 4;
-			this.anIntArrayArray39[local35][2] = arg1.g1() << 4;
-			this.anIntArrayArray39[local35][3] = arg1.g1() << 4;
+			this.anIntArrayArray39[local35][0] = packet.g2();
+			this.anIntArrayArray39[local35][1] = packet.g1() << 4;
+			this.anIntArrayArray39[local35][2] = packet.g1() << 4;
+			this.anIntArrayArray39[local35][3] = packet.g1() << 4;
 		}
 	}
 
@@ -310,7 +310,7 @@ public final class TextureOpColorGradient extends TextureOp {
 			@Pc(35) int[] local35 = local11[1];
 			@Pc(39) int[] local39 = local11[0];
 			@Pc(43) int[] local43 = local11[2];
-			for (@Pc(45) int local45 = 0; local45 < Static189.anInt4457; local45++) {
+			for (@Pc(45) int local45 = 0; local45 < Texture.width; local45++) {
 				@Pc(54) int local54 = local31[local45] >> 4;
 				if (local54 < 0) {
 					local54 = 0;

@@ -173,36 +173,38 @@ public final class Static41 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "b", descriptor = "(Z)V")
-	public static void method1050() {
+	public static void readPlayerInfo() {
 		@Pc(6) int local6 = Static57.aClass3_Sub15_Sub1_3.gBit(8);
-		@Pc(20) int local20;
-		if (Static267.anInt5774 > local6) {
-			for (local20 = local6; local20 < Static267.anInt5774; local20++) {
-				Static52.anIntArray136[Static240.anInt5335++] = Static105.anIntArray256[local20];
+
+		if (Static267.size > local6) {
+			for (int inxed = local6; inxed < Static267.size; inxed++) {
+				Static52.removedIds[Static240.removedCount++] = Static105.ids[inxed];
 			}
 		}
-		if (local6 > Static267.anInt5774) {
+		if (local6 > Static267.size) {
 			throw new RuntimeException("gppov1");
 		}
-		Static267.anInt5774 = 0;
-		for (local20 = 0; local20 < local6; local20++) {
-			@Pc(75) int local75 = Static105.anIntArray256[local20];
+
+		Static267.size = 0;
+
+		for (int index = 0; index < local6; index++) {
+			@Pc(75) int local75 = Static105.ids[index];
 			@Pc(79) Player local79 = Static159.aClass8_Sub4_Sub1Array1[local75];
 			@Pc(84) int local84 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
 			if (local84 == 0) {
-				Static105.anIntArray256[Static267.anInt5774++] = local75;
+				Static105.ids[Static267.size++] = local75;
 				local79.anInt3430 = Static83.anInt372;
 			} else {
 				@Pc(107) int local107 = Static57.aClass3_Sub15_Sub1_3.gBit(2);
 				if (local107 == 0) {
-					Static105.anIntArray256[Static267.anInt5774++] = local75;
+					Static105.ids[Static267.size++] = local75;
 					local79.anInt3430 = Static83.anInt372;
 					Static44.anIntArray106[Static116.anInt2951++] = local75;
 				} else {
 					@Pc(153) int local153;
 					@Pc(163) int local163;
 					if (local107 == 1) {
-						Static105.anIntArray256[Static267.anInt5774++] = local75;
+						Static105.ids[Static267.size++] = local75;
 						local79.anInt3430 = Static83.anInt372;
 						local153 = Static57.aClass3_Sub15_Sub1_3.gBit(3);
 						local79.method2684(1, local153);
@@ -211,7 +213,7 @@ public final class Static41 {
 							Static44.anIntArray106[Static116.anInt2951++] = local75;
 						}
 					} else if (local107 == 2) {
-						Static105.anIntArray256[Static267.anInt5774++] = local75;
+						Static105.ids[Static267.size++] = local75;
 						local79.anInt3430 = Static83.anInt372;
 						if (Static57.aClass3_Sub15_Sub1_3.gBit(1) == 1) {
 							local153 = Static57.aClass3_Sub15_Sub1_3.gBit(3);
@@ -227,7 +229,7 @@ public final class Static41 {
 							Static44.anIntArray106[Static116.anInt2951++] = local75;
 						}
 					} else if (local107 == 3) {
-						Static52.anIntArray136[Static240.anInt5335++] = local75;
+						Static52.removedIds[Static240.removedCount++] = local75;
 					}
 				}
 			}

@@ -43,7 +43,7 @@ public final class TextureOp4 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!bi", name = "a", descriptor = "(ZI[I)V")
 	public final void method584(@OriginalArg(1) int arg0, @OriginalArg(2) int[] arg1) {
-		@Pc(12) int local12 = this.anInt641 * Static64.anIntArray153[arg0];
+		@Pc(12) int local12 = this.anInt641 * Texture.heightFractions[arg0];
 		@Pc(115) int local115;
 		@Pc(129) int local129;
 		@Pc(40) int local40;
@@ -73,15 +73,15 @@ public final class TextureOp4 extends TextureOp {
 			}
 			local103 = this.aByteArray10[local68 & 0xFF] & 0xFF;
 			if (this.aBoolean44) {
-				for (local105 = 0; local105 < Static189.anInt4457; local105++) {
-					local115 = this.anInt646 * Static173.anIntArray367[local105];
+				for (local105 = 0; local105 < Texture.width; local105++) {
+					local115 = this.anInt646 * Texture.widthFractions[local105];
 					local129 = this.method590(local40 * local115 >> 12, local103, local77, local54, local60, local85);
 					local129 = local27 * local129 >> 12;
 					arg1[local105] = (local129 >> 1) + 2048;
 				}
 			} else {
-				for (local105 = 0; local105 < Static189.anInt4457; local105++) {
-					local115 = this.anInt646 * Static173.anIntArray367[local105];
+				for (local105 = 0; local105 < Texture.width; local105++) {
+					local115 = this.anInt646 * Texture.widthFractions[local105];
 					local129 = this.method590(local40 * local115 >> 12, local103, local77, local54, local60, local85);
 					arg1[local105] = local27 * local129 >> 12;
 				}
@@ -103,8 +103,8 @@ public final class TextureOp4 extends TextureOp {
 				local68 = 0;
 			}
 			local103 = this.aByteArray10[local68 & 0xFF] & 0xFF;
-			for (local105 = 0; local105 < Static189.anInt4457; local105++) {
-				local115 = Static173.anIntArray367[local105] * this.anInt646;
+			for (local105 = 0; local105 < Texture.width; local105++) {
+				local115 = Texture.widthFractions[local105] * this.anInt646;
 				local129 = this.method590(local115 * local40 >> 12, local103, local77, local54, local81, local85);
 				arg1[local105] = local129 * local27 >> 12;
 			}
@@ -126,15 +126,15 @@ public final class TextureOp4 extends TextureOp {
 				}
 				local103 = this.aByteArray10[local68 & 0xFF] & 0xFF;
 				if (this.aBoolean44 && local142 == this.anInt642 - 1) {
-					for (local105 = 0; local105 < Static189.anInt4457; local105++) {
-						local115 = Static173.anIntArray367[local105] * this.anInt646;
+					for (local105 = 0; local105 < Texture.width; local105++) {
+						local115 = Texture.widthFractions[local105] * this.anInt646;
 						local129 = this.method590(local40 * local115 >> 12, local103, local77, local54, local60, local85);
 						local129 = (local27 * local129 >> 12) + arg1[local105];
 						arg1[local105] = (local129 >> 1) + 2048;
 					}
 				} else {
-					for (local105 = 0; local105 < Static189.anInt4457; local105++) {
-						local115 = Static173.anIntArray367[local105] * this.anInt646;
+					for (local105 = 0; local105 < Texture.width; local105++) {
+						local115 = Texture.widthFractions[local105] * this.anInt646;
 						local129 = this.method590(local115 * local40 >> 12, local103, local77, local54, local60, local85);
 						arg1[local105] += local129 * local27 >> 12;
 					}
@@ -145,7 +145,7 @@ public final class TextureOp4 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!bi", name = "e", descriptor = "(I)V")
 	@Override
-	public final void method4630() {
+	public final void postDecode() {
 		this.aByteArray10 = Static89.method1837(this.anInt650);
 		this.method589();
 		for (@Pc(15) int local15 = this.anInt642 - 1; local15 >= 1; local15--) {
@@ -159,27 +159,27 @@ public final class TextureOp4 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!bi", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
-		if (arg0 == 0) {
-			this.aBoolean44 = arg1.g1() == 1;
-		} else if (arg0 == 1) {
-			this.anInt642 = arg1.g1();
-		} else if (arg0 == 2) {
-			this.anInt648 = arg1.g2s();
+	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
+		if (code == 0) {
+			this.aBoolean44 = packet.g1() == 1;
+		} else if (code == 1) {
+			this.anInt642 = packet.g1();
+		} else if (code == 2) {
+			this.anInt648 = packet.g2s();
 			if (this.anInt648 < 0) {
 				this.aShortArray4 = new short[this.anInt642];
 				for (@Pc(93) int local93 = 0; local93 < this.anInt642; local93++) {
-					this.aShortArray4[local93] = (short) arg1.g2s();
+					this.aShortArray4[local93] = (short) packet.g2s();
 				}
 			}
-		} else if (arg0 == 3) {
-			this.anInt646 = this.anInt641 = arg1.g1();
-		} else if (arg0 == 4) {
-			this.anInt650 = arg1.g1();
-		} else if (arg0 == 5) {
-			this.anInt646 = arg1.g1();
-		} else if (arg0 == 6) {
-			this.anInt641 = arg1.g1();
+		} else if (code == 3) {
+			this.anInt646 = this.anInt641 = packet.g1();
+		} else if (code == 4) {
+			this.anInt650 = packet.g1();
+		} else if (code == 5) {
+			this.anInt646 = packet.g1();
+		} else if (code == 6) {
+			this.anInt641 = packet.g1();
 		}
 	}
 

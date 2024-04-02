@@ -25,13 +25,13 @@ public final class TextureOp18 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!mg", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
-		if (arg0 == 0) {
-			this.anInt3816 = arg1.g2();
-		} else if (arg0 == 1) {
-			this.anInt3812 = arg1.g2();
-		} else if (arg0 == 2) {
-			this.anInt3815 = arg1.g2();
+	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
+		if (code == 0) {
+			this.anInt3816 = packet.g2();
+		} else if (code == 1) {
+			this.anInt3812 = packet.g2();
+		} else if (code == 2) {
+			this.anInt3815 = packet.g2();
 		}
 	}
 
@@ -47,7 +47,7 @@ public final class TextureOp18 extends TextureOp {
 			@Pc(43) int[] local43 = local16[1];
 			@Pc(47) int[] local47 = local16[0];
 			@Pc(51) int[] local51 = local16[2];
-			for (@Pc(53) int local53 = 0; local53 < Static189.anInt4457; local53++) {
+			for (@Pc(53) int local53 = 0; local53 < Texture.width; local53++) {
 				@Pc(64) int local64 = local31[local53];
 				@Pc(68) int local68 = local35[local53];
 				@Pc(72) int local72 = local39[local53];

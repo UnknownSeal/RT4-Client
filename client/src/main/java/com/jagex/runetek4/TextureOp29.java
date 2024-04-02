@@ -29,10 +29,10 @@ public final class TextureOp29 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(I[[I)V")
 	private void method3934(@OriginalArg(1) int[][] arg0) {
-		@Pc(7) int local7 = Static172.anInt4165;
-		@Pc(9) int local9 = Static189.anInt4457;
+		@Pc(7) int local7 = Texture.height;
+		@Pc(9) int local9 = Texture.width;
 		Static81.method1751(arg0);
-		Static107.method2263(Static141.anInt3473, Static34.anInt1060);
+		Static107.method2263(Texture.heightMask, Texture.widthMask);
 		if (this.aClass18Array1 == null) {
 			return;
 		}
@@ -54,23 +54,23 @@ public final class TextureOp29 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
-		if (arg0 == 0) {
-			this.aClass18Array1 = new TextureOp29SubOp[arg1.g1()];
+	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
+		if (code == 0) {
+			this.aClass18Array1 = new TextureOp29SubOp[packet.g1()];
 			for (@Pc(11) int local11 = 0; local11 < this.aClass18Array1.length; local11++) {
-				@Pc(24) int local24 = arg1.g1();
+				@Pc(24) int local24 = packet.g1();
 				if (local24 == 0) {
-					this.aClass18Array1[local11] = Static9.method184(arg1);
+					this.aClass18Array1[local11] = Static9.method184(packet);
 				} else if (local24 == 1) {
-					this.aClass18Array1[local11] = Static21.method620(arg1);
+					this.aClass18Array1[local11] = Static21.method620(packet);
 				} else if (local24 == 2) {
-					this.aClass18Array1[local11] = Static156.method2960(arg1);
+					this.aClass18Array1[local11] = Static156.method2960(packet);
 				} else if (local24 == 3) {
-					this.aClass18Array1[local11] = Static137.method2664(arg1);
+					this.aClass18Array1[local11] = Static137.method2664(packet);
 				}
 			}
-		} else if (arg0 == 1) {
-			this.aBoolean309 = arg1.g1() == 1;
+		} else if (code == 1) {
+			this.aBoolean309 = packet.g1() == 1;
 		}
 	}
 
@@ -79,18 +79,18 @@ public final class TextureOp29 extends TextureOp {
 	public final int[][] method4638(@OriginalArg(1) int arg0) {
 		@Pc(14) int[][] local14 = this.aClass103_41.method3173(arg0);
 		if (this.aClass103_41.aBoolean195) {
-			@Pc(20) int local20 = Static189.anInt4457;
-			@Pc(22) int local22 = Static172.anInt4165;
+			@Pc(20) int local20 = Texture.width;
+			@Pc(22) int local22 = Texture.height;
 			@Pc(26) int[][] local26 = new int[local22][local20];
 			@Pc(31) int[][][] local31 = this.aClass103_41.method3168();
 			this.method3934(local26);
-			for (@Pc(37) int local37 = 0; local37 < Static172.anInt4165; local37++) {
+			for (@Pc(37) int local37 = 0; local37 < Texture.height; local37++) {
 				@Pc(44) int[] local44 = local26[local37];
 				@Pc(48) int[][] local48 = local31[local37];
 				@Pc(52) int[] local52 = local48[0];
 				@Pc(56) int[] local56 = local48[1];
 				@Pc(60) int[] local60 = local48[2];
-				for (@Pc(62) int local62 = 0; local62 < Static189.anInt4457; local62++) {
+				for (@Pc(62) int local62 = 0; local62 < Texture.width; local62++) {
 					@Pc(73) int local73 = local44[local62];
 					local60[local62] = (local73 & 0xFF) << 4;
 					local56[local62] = local73 >> 4 & 0xFF0;

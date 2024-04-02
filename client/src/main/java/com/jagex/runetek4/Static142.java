@@ -30,14 +30,14 @@ public final class Static142 {
 		@Pc(310) int local310;
 		@Pc(359) int local359;
 		@Pc(639) int local639;
-		for (local5 = -1; local5 < Static267.anInt5774 + Static272.anInt5214; local5++) {
+		for (local5 = -1; local5 < Static267.size + Static272.anInt5214; local5++) {
 			@Pc(17) PathingEntity local17;
 			if (local5 == -1) {
 				local17 = Static173.self;
-			} else if (Static267.anInt5774 > local5) {
-				local17 = Static159.aClass8_Sub4_Sub1Array1[Static105.anIntArray256[local5]];
+			} else if (Static267.size > local5) {
+				local17 = Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local5]];
 			} else {
-				local17 = Static175.aClass8_Sub4_Sub2Array1[Static33.anIntArray79[local5 - Static267.anInt5774]];
+				local17 = Static175.aClass8_Sub4_Sub2Array1[Static33.anIntArray79[local5 - Static267.size]];
 			}
 			if (local17 != null && local17.method2682()) {
 				@Pc(58) NPCType local58;
@@ -51,7 +51,7 @@ public final class Static142 {
 					}
 				}
 				@Pc(161) int local161;
-				if (local5 >= Static267.anInt5774) {
+				if (local5 >= Static267.size) {
 					local58 = ((NPCEntity) local17).npcType;
 					if (local58.multinpc != null) {
 						local58 = local58.getvisible();
@@ -70,7 +70,7 @@ public final class Static142 {
 					@Pc(308) Class102[] local308 = Static143.aClass102Array1;
 					for (local310 = 0; local310 < local308.length; local310++) {
 						@Pc(322) Class102 local322 = local308[local310];
-						if (local322 != null && local322.anInt4058 == 1 && local322.anInt4057 == Static33.anIntArray79[local5 - Static267.anInt5774] && Static83.anInt372 % 20 < 10) {
+						if (local322 != null && local322.anInt4058 == 1 && local322.anInt4057 == Static33.anIntArray79[local5 - Static267.size] && Static83.anInt372 % 20 < 10) {
 							if (local58.overlayheight == -1) {
 								local359 = local17.method2691() + 15;
 							} else {
@@ -102,7 +102,7 @@ public final class Static142 {
 						@Pc(159) Class102[] local159 = Static143.aClass102Array1;
 						for (local161 = 0; local161 < local159.length; local161++) {
 							@Pc(173) Class102 local173 = local159[local161];
-							if (local173 != null && local173.anInt4058 == 10 && Static105.anIntArray256[local5] == local173.anInt4057) {
+							if (local173 != null && local173.anInt4058 == 10 && Static105.ids[local5] == local173.anInt4057) {
 								Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.method2691() + 15, arg1 >> 1);
 								if (Static65.anInt1951 > -1) {
 									Static276.aClass3_Sub2_Sub1Array11[local173.anInt4048].drawSprite(arg2 + Static65.anInt1951 - 12, arg0 + (Static16.anInt548 - local74));
@@ -111,7 +111,7 @@ public final class Static142 {
 						}
 					}
 				}
-				if (local17.aClass100_640 != null && (local5 >= Static267.anInt5774 || Static59.anInt1812 == 0 || Static59.anInt1812 == 3 || Static59.anInt1812 == 1 && Static98.method1965(((Player) local17).aClass100_364))) {
+				if (local17.aClass100_640 != null && (local5 >= Static267.size || Static59.anInt1812 == 0 || Static59.anInt1812 == 3 || Static59.anInt1812 == 1 && Static98.method1965(((Player) local17).aClass100_364))) {
 					Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.method2691(), arg1 >> 1);
 					if (Static65.anInt1951 > -1 && Static277.anInt5854 < Static191.anInt4506) {
 						Static191.anIntArray389[Static277.anInt5854] = Static280.aClass3_Sub2_Sub9_43.method2858(local17.aClass100_640) / 2;

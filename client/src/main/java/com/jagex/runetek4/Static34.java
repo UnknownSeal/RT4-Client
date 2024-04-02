@@ -15,10 +15,7 @@ public final class Static34 {
 	@OriginalMember(owner = "runetek4.client!ck", name = "J", descriptor = "[[[B")
 	public static byte[][][] aByteArrayArrayArray3;
 
-	@OriginalMember(owner = "runetek4.client!ck", name = "X", descriptor = "I")
-	public static int anInt1060;
-
-	@OriginalMember(owner = "runetek4.client!ck", name = "b", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "runetek4.client!ck", name = "b", descriptor = "Lclient!na;")
 	private static final JagString aClass100_195 = Static28.parse("Discard");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "d", descriptor = "[I")

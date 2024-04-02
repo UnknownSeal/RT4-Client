@@ -174,12 +174,12 @@ public final class Static176 {
 								Static246.method4240(local502.npcType, local47, Static33.anIntArray79[local493], local147);
 							}
 						}
-						for (local493 = 0; local493 < Static267.anInt5774; local493++) {
-							local597 = Static159.aClass8_Sub4_Sub1Array1[Static105.anIntArray256[local493]];
+						for (local493 = 0; local493 < Static267.size; local493++) {
+							local597 = Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local493]];
 							local514 = local597.anInt3412 + 64 - local597.size() * 64;
 							local526 = local597.anInt3421 + 64 - local597.size() * 64;
 							if (local597 != null && local514 >= local479 && local597.size() <= local421.npcType.size - (local514 - local479 >> 7) && local526 >= local240 && local597.size() <= local421.npcType.size - (local526 - local240 >> 7)) {
-								Static217.method3767(Static105.anIntArray256[local493], local147, local597, local47);
+								Static217.method3767(Static105.ids[local493], local147, local597, local47);
 							}
 						}
 					}
@@ -198,12 +198,12 @@ public final class Static176 {
 								Static246.method4240(local502.npcType, local47, Static33.anIntArray79[local493], local147);
 							}
 						}
-						for (local493 = 0; local493 < Static267.anInt5774; local493++) {
-							local597 = Static159.aClass8_Sub4_Sub1Array1[Static105.anIntArray256[local493]];
+						for (local493 = 0; local493 < Static267.size; local493++) {
+							local597 = Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local493]];
 							local514 = local597.anInt3412 - (local597.size() - 1) * 64;
 							local526 = local597.anInt3421 + 64 - local597.size() * 64;
 							if (local597 != null && local597 != local688 && local479 <= local514 && local597.size() <= local688.size() - (local514 - local479 >> 7) && local526 >= local240 && local597.size() <= local688.size() - (local526 - local240 >> 7)) {
-								Static217.method3767(Static105.anIntArray256[local493], local147, local597, local47);
+								Static217.method3767(Static105.ids[local493], local147, local597, local47);
 							}
 						}
 					}

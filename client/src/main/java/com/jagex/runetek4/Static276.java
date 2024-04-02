@@ -54,26 +54,26 @@ public final class Static276 {
 	public static void method4613(@OriginalArg(0) int arg0, @OriginalArg(2) JagString arg1) {
 		@Pc(7) JagString local7 = arg1.method3159().method3125();
 		@Pc(13) boolean local13 = false;
-		for (@Pc(15) int local15 = 0; local15 < Static267.anInt5774; local15++) {
-			@Pc(28) Player local28 = Static159.aClass8_Sub4_Sub1Array1[Static105.anIntArray256[local15]];
+		for (@Pc(15) int local15 = 0; local15 < Static267.size; local15++) {
+			@Pc(28) Player local28 = Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local15]];
 			if (local28 != null && local28.aClass100_364 != null && local28.aClass100_364.method3111(local7)) {
 				local13 = true;
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local28.movementQueueX[0], 1, 0, 2, local28.movementQueueZ[0], Static173.self.movementQueueX[0]);
 				if (arg0 == 1) {
 					Static6.outboundBuffer.pIsaac1(68);
-					Static6.outboundBuffer.p2leadd(Static105.anIntArray256[local15]);
+					Static6.outboundBuffer.p2leadd(Static105.ids[local15]);
 				} else if (arg0 == 4) {
 					Static6.outboundBuffer.pIsaac1(180);
-					Static6.outboundBuffer.p2leadd(Static105.anIntArray256[local15]);
+					Static6.outboundBuffer.p2leadd(Static105.ids[local15]);
 				} else if (arg0 == 5) {
 					Static6.outboundBuffer.pIsaac1(4);
-					Static6.outboundBuffer.p2le(Static105.anIntArray256[local15]);
+					Static6.outboundBuffer.p2le(Static105.ids[local15]);
 				} else if (arg0 == 6) {
 					Static6.outboundBuffer.pIsaac1(133);
-					Static6.outboundBuffer.p2le(Static105.anIntArray256[local15]);
+					Static6.outboundBuffer.p2le(Static105.ids[local15]);
 				} else if (arg0 == 7) {
 					Static6.outboundBuffer.pIsaac1(114);
-					Static6.outboundBuffer.p2leadd(Static105.anIntArray256[local15]);
+					Static6.outboundBuffer.p2leadd(Static105.ids[local15]);
 				}
 				break;
 			}

@@ -71,12 +71,12 @@ public final class Static71 {
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "b", descriptor = "(I)V")
 	public static void method1444() {
-		for (@Pc(7) int local7 = -1; local7 < Static267.anInt5774; local7++) {
+		for (@Pc(7) int local7 = -1; local7 < Static267.size; local7++) {
 			@Pc(21) int local21;
 			if (local7 == -1) {
 				local21 = 2047;
 			} else {
-				local21 = Static105.anIntArray256[local7];
+				local21 = Static105.ids[local7];
 			}
 			@Pc(31) Player local31 = Static159.aClass8_Sub4_Sub1Array1[local21];
 			if (local31 != null) {

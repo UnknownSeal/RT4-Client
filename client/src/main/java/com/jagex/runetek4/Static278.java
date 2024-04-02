@@ -179,7 +179,7 @@ public final class Static278 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "(B)V")
-	public static void method4653() {
+	public static void processLogout() {
 		if (Static124.socket != null) {
 			Static124.socket.closeGracefully();
 			Static124.socket = null;
@@ -204,7 +204,7 @@ public final class Static278 {
 		for (local19 = 0; local19 < Static143.aClass102Array1.length; local19++) {
 			Static143.aClass102Array1[local19] = null;
 		}
-		Static267.anInt5774 = 0;
+		Static267.size = 0;
 		Static272.anInt5214 = 0;
 		for (local19 = 0; local19 < 2048; local19++) {
 			Static159.aClass8_Sub4_Sub1Array1[local19] = null;

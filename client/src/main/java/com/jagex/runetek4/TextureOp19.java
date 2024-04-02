@@ -37,21 +37,21 @@ public final class TextureOp19 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!mh", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
-		if (arg0 == 0) {
-			this.anInt3860 = arg1.g2();
-		} else if (arg0 == 1) {
-			this.anInt3843 = arg1.g2();
-		} else if (arg0 == 2) {
-			this.anInt3848 = arg1.g2();
-		} else if (arg0 == 3) {
-			this.anInt3854 = arg1.g2();
-		} else if (arg0 == 4) {
-			this.anInt3847 = arg1.g2();
-		} else if (arg0 == 5) {
-			this.anInt3844 = arg1.g2();
-		} else if (arg0 == 6) {
-			this.anInt3862 = arg1.g2();
+	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
+		if (code == 0) {
+			this.anInt3860 = packet.g2();
+		} else if (code == 1) {
+			this.anInt3843 = packet.g2();
+		} else if (code == 2) {
+			this.anInt3848 = packet.g2();
+		} else if (code == 3) {
+			this.anInt3854 = packet.g2();
+		} else if (code == 4) {
+			this.anInt3847 = packet.g2();
+		} else if (code == 5) {
+			this.anInt3844 = packet.g2();
+		} else if (code == 6) {
+			this.anInt3862 = packet.g2();
 		}
 	}
 
@@ -60,10 +60,10 @@ public final class TextureOp19 extends TextureOp {
 	public final int[] method4626(@OriginalArg(0) int arg0) {
 		@Pc(19) int[] local19 = this.aClass121_41.method3445(arg0);
 		if (this.aClass121_41.aBoolean221) {
-			@Pc(30) int local30 = Static64.anIntArray153[arg0] - 2048;
-			for (@Pc(32) int local32 = 0; local32 < Static189.anInt4457; local32++) {
+			@Pc(30) int local30 = Texture.heightFractions[arg0] - 2048;
+			for (@Pc(32) int local32 = 0; local32 < Texture.width; local32++) {
 				@Pc(40) int local40 = local30 + this.anInt3843;
-				@Pc(46) int local46 = Static173.anIntArray367[local32] - 2048;
+				@Pc(46) int local46 = Texture.widthFractions[local32] - 2048;
 				@Pc(51) int local51 = this.anInt3860 + local46;
 				@Pc(62) int local62 = local40 < -2048 ? local40 + 4096 : local40;
 				@Pc(71) int local71 = local62 > 2048 ? local62 - 4096 : local62;
@@ -93,7 +93,7 @@ public final class TextureOp19 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!mh", name = "e", descriptor = "(I)V")
 	@Override
-	public final void method4630() {
+	public final void postDecode() {
 		Static9.method185();
 	}
 

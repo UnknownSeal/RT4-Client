@@ -74,7 +74,7 @@ public final class Static243 {
 		Static84.anInt2255 = 0;
 		Static57.anInt1747 = (int) (Math.random() * 20.0D) - 10 & 0x7FF;
 		Static107.anInt2875 = -1;
-		Static267.anInt5774 = 0;
+		Static267.size = 0;
 		Static270.anInt5795 = 0;
 		Static206.anInt4774 = (int) (Math.random() * 110.0D) - 55;
 		Static241.aBoolean302 = false;

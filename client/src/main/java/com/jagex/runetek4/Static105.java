@@ -20,7 +20,7 @@ public final class Static105 {
 	public static Component aClass13_14 = null;
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "f", descriptor = "[I")
-	public static final int[] anIntArray256 = new int[2048];
+	public static final int[] ids = new int[2048];
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "g", descriptor = "Lclient!na;")
 	public static final JagString aClass100_559 = Static28.parse("<col=ffff00>");

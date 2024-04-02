@@ -39,13 +39,13 @@ public final class Static86 {
 	@OriginalMember(owner = "runetek4.client!gm", name = "h", descriptor = "(I)V")
 	public static void method1800() {
 		Static116.anInt2951 = 0;
-		Static240.anInt5335 = 0;
+		Static240.removedCount = 0;
 		Static49.method1202();
 		Static278.method4645();
 		Static234.method4014();
 		@Pc(19) int local19;
-		for (local19 = 0; local19 < Static240.anInt5335; local19++) {
-			@Pc(30) int local30 = Static52.anIntArray136[local19];
+		for (local19 = 0; local19 < Static240.removedCount; local19++) {
+			@Pc(30) int local30 = Static52.removedIds[local19];
 			if (Static175.aClass8_Sub4_Sub2Array1[local30].anInt3430 != Static83.anInt372) {
 				if (Static175.aClass8_Sub4_Sub2Array1[local30].npcType.hasBackgroundSound()) {
 					Static91.method1877(Static175.aClass8_Sub4_Sub2Array1[local30]);

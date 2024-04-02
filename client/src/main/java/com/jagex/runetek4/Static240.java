@@ -27,7 +27,7 @@ public final class Static240 {
 	public static final JagString aClass100_1008 = Static28.parse("<col=00ffff>");
 
 	@OriginalMember(owner = "runetek4.client!tg", name = "h", descriptor = "I")
-	public static int anInt5335 = 0;
+	public static int removedCount = 0;
 
 	@OriginalMember(owner = "runetek4.client!tg", name = "i", descriptor = "Lclient!na;")
 	public static final JagString aClass100_1009 = Static28.parse("::pcachesize");

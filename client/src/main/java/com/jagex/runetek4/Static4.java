@@ -1366,7 +1366,7 @@ public final class Static4 {
 									Static164.anInt3985 = -1;
 									return true;
 								} else if (Static164.anInt3985 == 86) {
-									Static278.method4653();
+									Static278.processLogout();
 									Static164.anInt3985 = -1;
 									return false;
 								} else if (Static164.anInt3985 == 116) {
@@ -1596,7 +1596,7 @@ public final class Static4 {
 									return true;
 								} else {
 									Static89.report("T1 - " + Static164.anInt3985 + "," + Static5.anInt45 + "," + Static49.anInt1462 + " - " + Static223.anInt5028, null);
-									Static278.method4653();
+									Static278.processLogout();
 									return true;
 								}
 							}

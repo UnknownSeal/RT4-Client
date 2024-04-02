@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static64 {
 
-	@OriginalMember(owner = "runetek4.client!fb", name = "h", descriptor = "[I")
-	public static int[] anIntArray153;
-
 	@OriginalMember(owner = "runetek4.client!fb", name = "n", descriptor = "[[B")
 	public static byte[][] aByteArrayArray9;
 
@@ -30,14 +27,14 @@ public final class Static64 {
 	@OriginalMember(owner = "runetek4.client!fb", name = "b", descriptor = "(B)V")
 	public static void method1495() {
 		Static116.anInt2951 = 0;
-		Static240.anInt5335 = 0;
+		Static240.removedCount = 0;
 		Static17.method527();
-		Static41.method1050();
+		Static41.readPlayerInfo();
 		Static225.method3889();
 		Static245.method4226();
 		@Pc(23) int local23;
-		for (local23 = 0; local23 < Static240.anInt5335; local23++) {
-			@Pc(30) int local30 = Static52.anIntArray136[local23];
+		for (local23 = 0; local23 < Static240.removedCount; local23++) {
+			@Pc(30) int local30 = Static52.removedIds[local23];
 			if (Static83.anInt372 != Static159.aClass8_Sub4_Sub1Array1[local30].anInt3430) {
 				if (Static159.aClass8_Sub4_Sub1Array1[local30].anInt1664 > 0) {
 					Static271.method4597(Static159.aClass8_Sub4_Sub1Array1[local30]);
@@ -48,9 +45,9 @@ public final class Static64 {
 		if (Static223.anInt5028 != Static57.aClass3_Sub15_Sub1_3.pos) {
 			throw new RuntimeException("gpp1 pos:" + Static57.aClass3_Sub15_Sub1_3.pos + " psize:" + Static223.anInt5028);
 		}
-		for (local23 = 0; local23 < Static267.anInt5774; local23++) {
-			if (Static159.aClass8_Sub4_Sub1Array1[Static105.anIntArray256[local23]] == null) {
-				throw new RuntimeException("gpp2 pos:" + local23 + " size:" + Static267.anInt5774);
+		for (local23 = 0; local23 < Static267.size; local23++) {
+			if (Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local23]] == null) {
+				throw new RuntimeException("gpp2 pos:" + local23 + " size:" + Static267.size);
 			}
 		}
 	}

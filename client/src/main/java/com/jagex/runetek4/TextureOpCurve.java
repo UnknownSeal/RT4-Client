@@ -114,7 +114,7 @@ public final class TextureOpCurve extends TextureOp {
 		@Pc(19) int[] local19 = this.aClass121_41.method3445(arg0);
 		if (this.aClass121_41.aBoolean221) {
 			@Pc(29) int[] local29 = this.method4624(0, arg0);
-			for (@Pc(31) int local31 = 0; local31 < Static189.anInt4457; local31++) {
+			for (@Pc(31) int local31 = 0; local31 < Texture.width; local31++) {
 				@Pc(44) int local44 = local29[local31] >> 4;
 				if (local44 < 0) {
 					local44 = 0;
@@ -130,7 +130,7 @@ public final class TextureOpCurve extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!wi", name = "e", descriptor = "(I)V")
 	@Override
-	public final void method4630() {
+	public final void postDecode() {
 		if (this.anIntArrayArray47 == null) {
 			this.anIntArrayArray47 = new int[][] { { 0, 0 }, { 4096, 4096 } };
 		}
@@ -156,15 +156,15 @@ public final class TextureOpCurve extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!wi", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
-		if (arg0 != 0) {
+	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
+		if (code != 0) {
 			return;
 		}
-		this.anInt5852 = arg1.g1();
-		this.anIntArrayArray47 = new int[arg1.g1()][2];
+		this.anInt5852 = packet.g1();
+		this.anIntArrayArray47 = new int[packet.g1()][2];
 		for (@Pc(23) int local23 = 0; local23 < this.anIntArrayArray47.length; local23++) {
-			this.anIntArrayArray47[local23][0] = arg1.g2();
-			this.anIntArrayArray47[local23][1] = arg1.g2();
+			this.anIntArrayArray47[local23][0] = packet.g2();
+			this.anIntArrayArray47[local23][1] = packet.g2();
 		}
 	}
 

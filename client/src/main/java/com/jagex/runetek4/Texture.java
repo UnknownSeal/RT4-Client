@@ -7,27 +7,43 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!lc")
+@OriginalClass("client!lc")
 public final class Texture {
 
-	@OriginalMember(owner = "runetek4.client!lc", name = "k", descriptor = "[I")
+	@OriginalMember(owner = "runetek4.client!i", name = "ac", descriptor = "[I")
+	public static final int[] brightnessMap = new int[256];
+	@OriginalMember(owner = "runetek4.client!ck", name = "X", descriptor = "I")
+	public static int widthMask;
+	@OriginalMember(owner = "runetek4.client!pe", name = "r", descriptor = "I")
+	public static int width;
+	@OriginalMember(owner = "runetek4.client!nk", name = "d", descriptor = "[I")
+	public static int[] widthFractions;
+	@OriginalMember(owner = "runetek4.client!nj", name = "k", descriptor = "I")
+	public static int height;
+	@OriginalMember(owner = "runetek4.client!fb", name = "h", descriptor = "[I")
+	public static int[] heightFractions;
+	@OriginalMember(owner = "runetek4.client!lb", name = "z", descriptor = "I")
+	public static int heightMask;
+	@OriginalMember(owner = "runetek4.client!jh", name = "f", descriptor = "D")
+	public static double brightness = -1.0D;
+	@OriginalMember(owner = "client!lc", name = "k", descriptor = "[I")
 	private final int[] anIntArray328;
 
-	@OriginalMember(owner = "runetek4.client!lc", name = "b", descriptor = "[I")
+	@OriginalMember(owner = "client!lc", name = "b", descriptor = "[I")
 	private final int[] anIntArray327;
 
-	@OriginalMember(owner = "runetek4.client!lc", name = "d", descriptor = "Lclient!j;")
+	@OriginalMember(owner = "client!lc", name = "d", descriptor = "Lclient!j;")
 	private final TextureOp aClass3_Sub1_1;
 
-	@OriginalMember(owner = "runetek4.client!lc", name = "i", descriptor = "Lclient!j;")
+	@OriginalMember(owner = "client!lc", name = "i", descriptor = "Lclient!j;")
 	private final TextureOp aClass3_Sub1_2;
 
-	@OriginalMember(owner = "runetek4.client!lc", name = "g", descriptor = "[Lclient!j;")
+	@OriginalMember(owner = "client!lc", name = "g", descriptor = "[Lclient!j;")
 	private final TextureOp[] aClass3_Sub1Array22;
 
-	@OriginalMember(owner = "runetek4.client!lc", name = "<init>", descriptor = "(Lclient!wa;)V")
-	public Texture(@OriginalArg(0) Packet arg0) {
-		@Pc(7) int local7 = arg0.g1();
+	@OriginalMember(owner = "client!lc", name = "<init>", descriptor = "(Lclient!wa;)V")
+	public Texture(@OriginalArg(0) Packet packet) {
+		@Pc(7) int local7 = packet.g1();
 		this.aClass3_Sub1Array22 = new TextureOp[local7];
 		@Pc(14) int[][] local14 = new int[local7][];
 		@Pc(16) int local16 = 0;
@@ -37,7 +53,7 @@ public final class Texture {
 		@Pc(45) int local45;
 		@Pc(52) int local52;
 		for (local20 = 0; local20 < local7; local20++) {
-			local27 = method3680(arg0);
+			local27 = method3680(packet);
 			if (local27.method4631() >= 0) {
 				local18++;
 			}
@@ -47,7 +63,7 @@ public final class Texture {
 			local45 = local27.aClass3_Sub1Array42.length;
 			local14[local20] = new int[local45];
 			for (local52 = 0; local52 < local45; local52++) {
-				local14[local20][local52] = arg0.g1();
+				local14[local20][local52] = packet.g1();
 			}
 			this.aClass3_Sub1Array22[local20] = local27;
 		}
@@ -71,119 +87,157 @@ public final class Texture {
 			}
 			local14[local20] = null;
 		}
-		this.aClass3_Sub1_1 = this.aClass3_Sub1Array22[arg0.g1()];
+		this.aClass3_Sub1_1 = this.aClass3_Sub1Array22[packet.g1()];
 		local14 = null;
-		this.aClass3_Sub1_2 = this.aClass3_Sub1Array22[arg0.g1()];
+		this.aClass3_Sub1_2 = this.aClass3_Sub1Array22[packet.g1()];
 	}
 
-	@OriginalMember(owner = "runetek4.client!qk", name = "a", descriptor = "(BLclient!wa;)Lclient!j;")
+	@OriginalMember(owner = "client!qk", name = "a", descriptor = "(BLclient!wa;)Lclient!j;")
 	public static TextureOp method3680(@OriginalArg(1) Packet packet) {
 		packet.g1();
 		@Pc(13) int local13 = packet.g1();
-		@Pc(17) TextureOp local17 = method3860(local13);
+		@Pc(17) TextureOp local17 = create(local13);
 		local17.anInt5840 = packet.g1();
 		@Pc(26) int local26 = packet.g1();
 		for (@Pc(34) int local34 = 0; local34 < local26; local34++) {
-			@Pc(41) int local41 = packet.g1();
-			local17.method4629(local41, packet);
+			@Pc(41) int code = packet.g1();
+			local17.decode(packet, code);
 		}
-		local17.method4630();
+		local17.postDecode();
 		return local17;
 	}
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(IZ)Lclient!j;")
-	public static TextureOp method3860(@OriginalArg(0) int arg0) {
-		if (arg0 == 0) {
+	@OriginalMember(owner = "client!sc", name = "a", descriptor = "(IZ)Lclient!j;")
+	public static TextureOp create(@OriginalArg(0) int type) {
+		if (type == 0) {
 			return new TextureOp20();
-		} else if (arg0 == 1) {
+		} else if (type == 1) {
 			return new TextureOpColorFill();
-		} else if (arg0 == 2) {
+		} else if (type == 2) {
 			return new TextureOp27();
-		} else if (arg0 == 3) {
+		} else if (type == 3) {
 			return new TextureOp25();
-		} else if (arg0 == 4) {
+		} else if (type == 4) {
 			return new TextureOp17();
-		} else if (arg0 == 5) {
+		} else if (type == 5) {
 			return new TextureOp21();
-		} else if (arg0 == 6) {
+		} else if (type == 6) {
 			return new TextureOp2();
-		} else if (arg0 == 7) {
+		} else if (type == 7) {
 			return new TextureOpCombine();
-		} else if (arg0 == 8) {
+		} else if (type == 8) {
 			return new TextureOpCurve();
-		} else if (arg0 == 9) {
+		} else if (type == 9) {
 			return new TextureOp7();
-		} else if (arg0 == 10) {
+		} else if (type == 10) {
 			return new TextureOpColorGradient();
-		} else if (arg0 == 11) {
+		} else if (type == 11) {
 			return new TextureOp18();
-		} else if (arg0 == 12) {
+		} else if (type == 12) {
 			return new TextureOp1();
-		} else if (arg0 == 13) {
+		} else if (type == 13) {
 			return new TextureOp26();
-		} else if (arg0 == 14) {
+		} else if (type == 14) {
 			return new TextureOp28();
-		} else if (arg0 == 15) {
+		} else if (type == 15) {
 			return new TextureOp14();
-		} else if (arg0 == 16) {
+		} else if (type == 16) {
 			return new TextureOp8();
-		} else if (arg0 == 17) {
+		} else if (type == 17) {
 			return new TextureOp13();
-		} else if (arg0 == 18) {
+		} else if (type == 18) {
 			return new TextureOpTiledSprite();
-		} else if (arg0 == 19) {
+		} else if (type == 19) {
 			return new TextureOp16();
-		} else if (arg0 == 20) {
+		} else if (type == 20) {
 			return new TextureOp11();
-		} else if (arg0 == 21) {
+		} else if (type == 21) {
 			return new TextureOp5();
-		} else if (arg0 == 22) {
+		} else if (type == 22) {
 			return new TextureOp31();
-		} else if (arg0 == 23) {
+		} else if (type == 23) {
 			return new TextureOp15();
-		} else if (arg0 == 24) {
+		} else if (type == 24) {
 			return new TextureOp10();
-		} else if (arg0 == 25) {
+		} else if (type == 25) {
 			return new TextureOp30();
-		} else if (arg0 == 26) {
+		} else if (type == 26) {
 			return new TextureOpBinary();
-		} else if (arg0 == 27) {
+		} else if (type == 27) {
 			return new TextureOp6();
-		} else if (arg0 == 28) {
+		} else if (type == 28) {
 			return new TextureOp22();
-		} else if (arg0 == 29) {
+		} else if (type == 29) {
 			return new TextureOp29();
-		} else if (arg0 == 30) {
+		} else if (type == 30) {
 			return new TextureOp9();
-		} else if (arg0 == 31) {
+		} else if (type == 31) {
 			return new TextureOp12();
-		} else if (arg0 == 32) {
+		} else if (type == 32) {
 			return new TextureOp24();
-		} else if (arg0 == 33) {
+		} else if (type == 33) {
 			return new TextureOp3();
-		} else if (arg0 == 34) {
+		} else if (type == 34) {
 			return new TextureOp4();
-		} else if (arg0 == 35) {
+		} else if (type == 35) {
 			return new TextureOp23();
-		} else if (arg0 == 36) {
+		} else if (type == 36) {
 			return new TextureOp32();
-		} else if (arg0 == 37) {
+		} else if (type == 37) {
 			return new TextureOp19();
-		} else if (arg0 == 38) {
+		} else if (type == 38) {
 			return new TextureOp33();
-		} else if (arg0 == 39) {
+		} else if (type == 39) {
 			return new TextureOpSprite();
 		} else {
 			return null;
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!lc", name = "a", descriptor = "(IZIDILclient!ve;Lclient!m;Z)[I")
-	public final int[] method2725(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(3) double arg3, @OriginalArg(5) Js5 arg4, @OriginalArg(6) GlTextureProvider arg5, @OriginalArg(7) boolean arg6) {
-		Static241.method4537(arg3);
+	@OriginalMember(owner = "client!an", name = "c", descriptor = "(III)V")
+	public static void setSize(@OriginalArg(1) int height, @OriginalArg(2) int arg1) {
+		if (width != arg1) {
+			widthFractions = new int[arg1];
+			for (@Pc(10) int x = 0; x < arg1; x++) {
+				widthFractions[x] = (x << 12) / arg1;
+			}
+			Static165.anInt4042 = arg1 == 64 ? 2048 : 4096;
+			widthMask = arg1 - 1;
+			width = arg1;
+		}
+		if (Texture.height == height) {
+			return;
+		}
+		if (width == height) {
+			heightFractions = widthFractions;
+		} else {
+			heightFractions = new int[height];
+			for (@Pc(61) int y = 0; y < height; y++) {
+				heightFractions[y] = (y << 12) / height;
+			}
+		}
+		Texture.height = height;
+		heightMask = height - 1;
+	}
+
+	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(DI)V")
+	public static void setBrightness(@OriginalArg(0) double arg0) {
+		if (brightness == arg0) {
+			return;
+		}
+		for (@Pc(12) int local12 = 0; local12 < 256; local12++) {
+			@Pc(25) int local25 = (int) (Math.pow((double) local12 / 255.0D, arg0) * 255.0D);
+			brightnessMap[local12] = local25 > 255 ? 255 : local25;
+		}
+		brightness = arg0;
+	}
+
+	@OriginalMember(owner = "client!lc", name = "a", descriptor = "(IZIDILclient!ve;Lclient!m;Z)[I")
+	public int[] method2725(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(3) double arg3, @OriginalArg(5) Js5 arg4, @OriginalArg(6) GlTextureProvider arg5, @OriginalArg(7) boolean arg6) {
+		setBrightness(arg3);
 		Static37.anInterface1_1 = arg5;
 		Static176.aClass153_76 = arg4;
-		Static10.method348(arg0, arg2);
+		setSize(arg0, arg2);
 		@Pc(20) int local20;
 		for (local20 = 0; local20 < this.aClass3_Sub1Array22.length; local20++) {
 			this.aClass3_Sub1Array22[local20].method4632(arg0, arg2);
@@ -228,7 +282,7 @@ public final class Texture {
 				if (local136 < 0) {
 					local136 = 0;
 				}
-				local136 = Static103.anIntArray253[local136];
+				local136 = brightnessMap[local136];
 				@Pc(159) int local159 = local105[local127] >> 4;
 				@Pc(165) int local165 = local103[local127] >> 4;
 				if (local165 > 255) {
@@ -240,11 +294,11 @@ public final class Texture {
 				if (local159 > 255) {
 					local159 = 255;
 				}
-				local165 = Static103.anIntArray253[local165];
+				local165 = brightnessMap[local165];
 				if (local159 < 0) {
 					local159 = 0;
 				}
-				local159 = Static103.anIntArray253[local159];
+				local159 = brightnessMap[local159];
 				local56[local76++] = (local136 << 16) + (local165 << 8) + local159;
 				if (arg1) {
 					local76 += arg2 - 1;
@@ -257,13 +311,13 @@ public final class Texture {
 		return local56;
 	}
 
-	@OriginalMember(owner = "runetek4.client!lc", name = "a", descriptor = "(IIZLclient!m;DILclient!ve;)[B")
+	@OriginalMember(owner = "client!lc", name = "a", descriptor = "(IIZLclient!m;DILclient!ve;)[B")
 	public final byte[] method2728(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) GlTextureProvider arg3, @OriginalArg(4) double arg4, @OriginalArg(6) Js5 arg5) {
 		@Pc(8) byte[] local8 = new byte[arg1 * 4 * arg0];
-		Static241.method4537(arg4);
+		setBrightness(arg4);
 		Static176.aClass153_76 = arg5;
 		Static37.anInterface1_1 = arg3;
-		Static10.method348(arg0, arg1);
+		setSize(arg0, arg1);
 		@Pc(31) int local31;
 		for (local31 = 0; local31 < this.aClass3_Sub1Array22.length; local31++) {
 			this.aClass3_Sub1Array22[local31].method4632(arg0, arg1);
@@ -310,15 +364,15 @@ public final class Texture {
 				if (local167 > 255) {
 					local167 = 255;
 				}
-				local138 = Static103.anIntArray253[local138];
+				local138 = brightnessMap[local138];
 				if (local167 < 0) {
 					local167 = 0;
 				}
 				if (local154 < 0) {
 					local154 = 0;
 				}
-				local154 = Static103.anIntArray253[local154];
-				local167 = Static103.anIntArray253[local167];
+				local154 = brightnessMap[local154];
+				local167 = brightnessMap[local167];
 				@Pc(220) int local220;
 				if (local138 == 0 && local154 == 0 && local167 == 0) {
 					local220 = 0;
@@ -346,7 +400,7 @@ public final class Texture {
 		return local8;
 	}
 
-	@OriginalMember(owner = "runetek4.client!lc", name = "a", descriptor = "(ZLclient!m;Lclient!ve;)Z")
+	@OriginalMember(owner = "client!lc", name = "a", descriptor = "(ZLclient!m;Lclient!ve;)Z")
 	public final boolean method2729(@OriginalArg(1) GlTextureProvider arg0, @OriginalArg(2) Js5 arg1) {
 		@Pc(10) int local10;
 		if (Static215.anInt4868 > 0) {

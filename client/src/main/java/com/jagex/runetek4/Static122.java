@@ -22,10 +22,7 @@ public final class Static122 {
 	@OriginalMember(owner = "runetek4.client!jh", name = "b", descriptor = "[Lclient!na;")
 	public static final JagString[] aClass100Array92 = new JagString[200];
 
-	@OriginalMember(owner = "runetek4.client!jh", name = "f", descriptor = "D")
-	public static double aDouble1 = -1.0D;
-
-	@OriginalMember(owner = "runetek4.client!jh", name = "g", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "runetek4.client!jh", name = "g", descriptor = "Lclient!na;")
 	public static final JagString aClass100_591 = Static28.parse("(Udns");
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "j", descriptor = "I")

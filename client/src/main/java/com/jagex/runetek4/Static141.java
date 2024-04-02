@@ -8,10 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static141 {
 
-	@OriginalMember(owner = "runetek4.client!lb", name = "z", descriptor = "I")
-	public static int anInt3473;
-
-	@OriginalMember(owner = "runetek4.client!lb", name = "p", descriptor = "[I")
+    @OriginalMember(owner = "runetek4.client!lb", name = "p", descriptor = "[I")
 	public static final int[] anIntArray326 = new int[25];
 
 	@OriginalMember(owner = "runetek4.client!lb", name = "s", descriptor = "Lclient!na;")

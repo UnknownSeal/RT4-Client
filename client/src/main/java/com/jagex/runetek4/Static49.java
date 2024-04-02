@@ -87,7 +87,7 @@ public final class Static49 {
 		@Pc(22) int local22;
 		if (Static272.anInt5214 > local13) {
 			for (local22 = local13; local22 < Static272.anInt5214; local22++) {
-				Static52.anIntArray136[Static240.anInt5335++] = Static33.anIntArray79[local22];
+				Static52.removedIds[Static240.removedCount++] = Static33.anIntArray79[local22];
 			}
 		}
 		if (Static272.anInt5214 < local13) {
@@ -136,7 +136,7 @@ public final class Static49 {
 							Static44.anIntArray106[Static116.anInt2951++] = local61;
 						}
 					} else if (local92 == 3) {
-						Static52.anIntArray136[Static240.anInt5335++] = local61;
+						Static52.removedIds[Static240.removedCount++] = local61;
 					}
 				}
 			}

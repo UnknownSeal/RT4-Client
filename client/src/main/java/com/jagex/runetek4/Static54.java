@@ -128,8 +128,8 @@ public final class Static54 {
 					}
 				}
 			}
-			for (local146 = 0; local146 < Static267.anInt5774; local146++) {
-				@Pc(591) Player local591 = Static159.aClass8_Sub4_Sub1Array1[Static105.anIntArray256[local146]];
+			for (local146 = 0; local146 < Static267.size; local146++) {
+				@Pc(591) Player local591 = Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local146]];
 				if (local591 != null && local591.method2682()) {
 					local154 = local591.anInt3421 / 32 - Static173.self.anInt3421 / 32;
 					local150 = local591.anInt3412 / 32 - Static173.self.anInt3412 / 32;

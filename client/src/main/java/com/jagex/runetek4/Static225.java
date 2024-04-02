@@ -39,7 +39,7 @@ public final class Static225 {
 							Static159.aClass8_Sub4_Sub1Array1[local20].method1262(Static115.aClass3_Sub15Array1[local20]);
 						}
 					}
-					Static105.anIntArray256[Static267.anInt5774++] = local20;
+					Static105.ids[Static267.size++] = local20;
 					@Pc(65) Player local65 = Static159.aClass8_Sub4_Sub1Array1[local20];
 					local65.anInt3430 = Static83.anInt372;
 					@Pc(73) int local73 = Static57.aClass3_Sub15_Sub1_3.gBit(1);

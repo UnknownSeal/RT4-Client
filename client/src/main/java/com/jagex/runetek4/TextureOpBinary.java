@@ -26,7 +26,7 @@ public final class TextureOpBinary extends TextureOp {
 		@Pc(19) int[] local19 = this.aClass121_41.method3445(arg0);
 		if (this.aClass121_41.aBoolean221) {
 			@Pc(29) int[] local29 = this.method4624(0, arg0);
-			for (@Pc(31) int local31 = 0; local31 < Static189.anInt4457; local31++) {
+			for (@Pc(31) int local31 = 0; local31 < Texture.width; local31++) {
 				@Pc(38) int local38 = local29[local31];
 				local19[local31] = this.anInt857 <= local38 && local38 <= this.anInt861 ? 4096 : 0;
 			}
@@ -36,11 +36,11 @@ public final class TextureOpBinary extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!ca", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
-		if (arg0 == 0) {
-			this.anInt857 = arg1.g2();
-		} else if (arg0 == 1) {
-			this.anInt861 = arg1.g2();
+	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
+		if (code == 0) {
+			this.anInt857 = packet.g2();
+		} else if (code == 1) {
+			this.anInt861 = packet.g2();
 		}
 	}
 }

@@ -33,23 +33,23 @@ public final class TextureOp33 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!vc", name = "e", descriptor = "(I)V")
 	@Override
-	public final void method4630() {
+	public final void postDecode() {
 		Static9.method185();
 	}
 
 	@OriginalMember(owner = "runetek4.client!vc", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void method4629(@OriginalArg(0) int arg0, @OriginalArg(1) Packet arg1) {
-		if (arg0 == 0) {
-			this.anInt5716 = arg1.g1();
-		} else if (arg0 == 1) {
-			this.anInt5712 = arg1.g2();
-		} else if (arg0 == 2) {
-			this.anInt5715 = arg1.g1();
-		} else if (arg0 == 3) {
-			this.anInt5709 = arg1.g2();
-		} else if (arg0 == 4) {
-			this.anInt5714 = arg1.g2();
+	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
+		if (code == 0) {
+			this.anInt5716 = packet.g1();
+		} else if (code == 1) {
+			this.anInt5712 = packet.g2();
+		} else if (code == 2) {
+			this.anInt5715 = packet.g1();
+		} else if (code == 3) {
+			this.anInt5709 = packet.g2();
+		} else if (code == 4) {
+			this.anInt5714 = packet.g2();
 		}
 	}
 
@@ -63,9 +63,9 @@ public final class TextureOp33 extends TextureOp {
 			@Pc(40) Random local40 = new Random((long) this.anInt5716);
 			for (@Pc(42) int local42 = 0; local42 < this.anInt5712; local42++) {
 				@Pc(64) int local64 = this.anInt5714 > 0 ? this.anInt5709 + Static171.method3219(this.anInt5714, local40) - local28 : this.anInt5709;
-				@Pc(69) int local69 = Static171.method3219(Static189.anInt4457, local40);
+				@Pc(69) int local69 = Static171.method3219(Texture.width, local40);
 				@Pc(75) int local75 = local64 >> 4 & 0xFF;
-				@Pc(80) int local80 = Static171.method3219(Static172.anInt4165, local40);
+				@Pc(80) int local80 = Static171.method3219(Texture.height, local40);
 				@Pc(92) int local92 = local69 + (this.anInt5715 * Static130.anIntArray299[local75] >> 12);
 				@Pc(103) int local103 = local80 + (Static119.anIntArray282[local75] * this.anInt5715 >> 12);
 				@Pc(107) int local107 = local92 - local69;
@@ -109,12 +109,12 @@ public final class TextureOp33 extends TextureOp {
 					for (@Pc(233) int local233 = local69; local233 < local92; local233++) {
 						local206 += local190;
 						@Pc(251) int local251 = local231 * (local233 - local69) + local216 + 1024;
-						@Pc(255) int local255 = local150 & Static141.anInt3473;
+						@Pc(255) int local255 = local150 & Texture.heightMask;
 						if (local206 > 0) {
 							local206 += -local152;
 							local150 += local227;
 						}
-						@Pc(271) int local271 = Static34.anInt1060 & local233;
+						@Pc(271) int local271 = Texture.widthMask & local233;
 						if (local146) {
 							local33[local255][local271] = local251;
 						} else {

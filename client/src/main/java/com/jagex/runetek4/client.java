@@ -1059,7 +1059,7 @@ public final class client extends GameShell {
 				if (Static266.anInt5336 == 15) {
 					Static44.method1146();
 				} else if (Static266.anInt5336 != 2) {
-					Static278.method4653();
+					Static278.processLogout();
 				}
 			}
 		}
