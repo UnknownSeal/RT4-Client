@@ -14,10 +14,7 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static97 {
 
-	@OriginalMember(owner = "runetek4.client!hi", name = "g", descriptor = "I")
-	public static int worldListAlternatePort;
-
-	@OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "I")
+    @OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "I")
 	public static int anInt2503 = -1;
 
 	@OriginalMember(owner = "runetek4.client!hi", name = "f", descriptor = "J")

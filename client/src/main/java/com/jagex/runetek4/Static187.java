@@ -12,10 +12,7 @@ public final class Static187 {
 	@OriginalMember(owner = "runetek4.client!pb", name = "x", descriptor = "[[[I")
 	public static final int[][][] anIntArrayArrayArray18 = new int[4][13][13];
 
-	@OriginalMember(owner = "runetek4.client!pb", name = "Q", descriptor = "I")
-	public static int worldListId = 1;
-
-	@OriginalMember(owner = "runetek4.client!pb", name = "ab", descriptor = "I")
+    @OriginalMember(owner = "runetek4.client!pb", name = "ab", descriptor = "I")
 	public static int anInt4422 = 0;
 
 	@OriginalMember(owner = "runetek4.client!pb", name = "rb", descriptor = "S")

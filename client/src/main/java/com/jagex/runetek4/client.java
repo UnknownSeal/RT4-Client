@@ -23,6 +23,28 @@ public final class client extends GameShell {
 	public static final int[] locShapeToLayer = new int[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3 };
 	@OriginalMember(owner = "runetek4.client!ja", name = "r", descriptor = "I")
 	public static int currentCursor = -1;
+	@OriginalMember(owner = "runetek4.client!gm", name = "T", descriptor = "Lclient!k;")
+	public static Js5CacheQueue js5CacheQueue;
+	@OriginalMember(owner = "runetek4.client!id", name = "l", descriptor = "Lclient!jb;")
+	public static Js5NetQueue js5NetQueue;
+	@OriginalMember(owner = "runetek4.client!gj", name = "b", descriptor = "I")
+	public static int modeWhere = 0;
+	@OriginalMember(owner = "runetek4.client!ld", name = "k", descriptor = "Ljava/lang/String;")
+	public static String worldListHostname;
+	@OriginalMember(owner = "runetek4.client!hi", name = "g", descriptor = "I")
+	public static int worldListAlternatePort;
+	@OriginalMember(owner = "runetek4.client!ud", name = "K", descriptor = "I")
+	public static int worldListDefaultPort;
+	@OriginalMember(owner = "runetek4.client!pb", name = "Q", descriptor = "I")
+	public static int worldListId = 1;
+	@OriginalMember(owner = "runetek4.client!jg", name = "c", descriptor = "Lclient!en;")
+	public static BufferedFile uid;
+	@OriginalMember(owner = "runetek4.client!nj", name = "f", descriptor = "Lclient!en;")
+	public static BufferedFile cacheData;
+	@OriginalMember(owner = "runetek4.client!pf", name = "f", descriptor = "Lclient!en;")
+	public static BufferedFile cacheMasterIndex;
+	@OriginalMember(owner = "runetek4.client!li", name = "l", descriptor = "Lclient!ge;")
+	public static DiskStore masterDiskStore;
 
 	@OriginalMember(owner = "client!client", name = "main", descriptor = "([Ljava/lang/String;)V")
 	public static void main(@OriginalArg(0) String[] arg0) {
@@ -36,8 +58,8 @@ public final class client extends GameShell {
 				// Static131.method2577("argument count");
 			}
 			@Pc(15) int local15 = -1;
-			Static187.worldListId = Integer.parseInt(arg0[0]);
-			Static83.modeWhere = 2;
+			worldListId = Integer.parseInt(arg0[0]);
+			modeWhere = 2;
 			if (arg0[1].equals("live")) {
 				Static81.modeWhat = 0;
 			} else if (arg0[1].equals("rc")) {
@@ -265,11 +287,11 @@ public final class client extends GameShell {
 		if (Static147.aClass62_2 != null) {
 			Static147.aClass62_2.method3575();
 		}
-		Static107.js5NetQueue.method2329();
-		Static86.js5CacheQueue.method2466();
+		js5NetQueue.method2329();
+		js5CacheQueue.method2466();
 		try {
-			if (Static172.cacheData != null) {
-				Static172.cacheData.method1455();
+			if (cacheData != null) {
+				cacheData.method1455();
 			}
 			if (Static47.cacheIndexes != null) {
 				for (@Pc(95) int local95 = 0; local95 < Static47.cacheIndexes.length; local95++) {
@@ -278,11 +300,11 @@ public final class client extends GameShell {
 					}
 				}
 			}
-			if (Static190.cacheMasterIndex != null) {
-				Static190.cacheMasterIndex.method1455();
+			if (cacheMasterIndex != null) {
+				cacheMasterIndex.method1455();
 			}
-			if (Static121.uid != null) {
-				Static121.uid.method1455();
+			if (uid != null) {
+				uid.method1455();
 			}
 		} catch (@Pc(129) IOException local129) {
 		}
@@ -294,10 +316,10 @@ public final class client extends GameShell {
 		if (!this.method925()) {
 			return;
 		}
-		Static187.worldListId = Integer.parseInt(this.getParameter("worldid"));
-		Static83.modeWhere = Integer.parseInt(this.getParameter("modewhere"));
-		if (Static83.modeWhere < 0 || Static83.modeWhere > 1) {
-			Static83.modeWhere = 0;
+		worldListId = Integer.parseInt(this.getParameter("worldid"));
+		modeWhere = Integer.parseInt(this.getParameter("modewhere"));
+		if (modeWhere < 0 || modeWhere > 1) {
+			modeWhere = 0;
 		}
 		Static81.modeWhat = Integer.parseInt(this.getParameter("modewhat"));
 		if (Static81.modeWhat < 0 || Static81.modeWhat > 2) {
@@ -362,26 +384,29 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "client!client", name = "g", descriptor = "(I)V")
 	@Override
-	protected final void method935() {
+	protected void method935() {
 		Static203.method3662();
-		Static86.js5CacheQueue = new Js5CacheQueue();
-		Static107.js5NetQueue = new Js5NetQueue();
+		js5CacheQueue = new Js5CacheQueue();
+		js5NetQueue = new Js5NetQueue();
+
 		if (Static81.modeWhat != 0) {
 			Static51.aByteArrayArray8 = new byte[50][];
 		}
+
 		Static80.read(Static71.signLink); // preferences
-		if (Static83.modeWhere == 0) {
-			Static143.worldListHostname = this.getCodeBase().getHost();
-			Static97.worldListAlternatePort = 443;
-			Static249.worldListDefaultPort = 43594;
-		} else if (Static83.modeWhere == 1) {
-			Static143.worldListHostname = this.getCodeBase().getHost();
-			Static97.worldListAlternatePort = Static187.worldListId + 50000;
-			Static249.worldListDefaultPort = Static187.worldListId + 40000;
-		} else if (Static83.modeWhere == 2) {
-			Static143.worldListHostname = "127.0.0.1";
-			Static97.worldListAlternatePort = Static187.worldListId + 50000;
-			Static249.worldListDefaultPort = Static187.worldListId + 40000;
+
+		if (modeWhere == 0) {
+			worldListHostname = this.getCodeBase().getHost();
+			worldListAlternatePort = 443;
+			worldListDefaultPort = 43594;
+		} else if (modeWhere == 1) {
+			worldListHostname = this.getCodeBase().getHost();
+			worldListAlternatePort = worldListId + 50000;
+			worldListDefaultPort = worldListId + 40000;
+		} else if (modeWhere == 2) {
+			worldListHostname = "127.0.0.1";
+			worldListAlternatePort = worldListId + 50000;
+			worldListDefaultPort = worldListId + 40000;
 		}
 		if (Static266.game == 1) {
 			Static172.shiftClick = true;
@@ -396,15 +421,17 @@ public final class client extends GameShell {
 			Static172.aShortArrayArray7 = Static43.aShortArrayArray5;
 			Static200.aShortArray65 = Static260.aShortArray71;
 		}
-		Static55.alternatePort = Static97.worldListAlternatePort;
-		Static271.defaultPort = Static249.worldListDefaultPort;
-		Static60.hostname = Static143.worldListHostname;
-		Static208.worldListPort = Static249.worldListDefaultPort;
+		Static55.alternatePort = worldListAlternatePort;
+		Static271.defaultPort = worldListDefaultPort;
+		Static60.hostname = worldListHostname;
+		Static208.worldListPort = worldListDefaultPort;
 		Static259.aShortArray88 = Static62.aShortArray19 = Static232.aShortArray74 = Static259.aShortArray87 = new short[256];
 		Static209.port = Static208.worldListPort;
-		if ((SignLink.anInt5928 == 3 && Static83.modeWhere != 2)) {
-			Static125.worldId = Static187.worldListId;
+
+		if ((SignLink.anInt5928 == 3 && modeWhere != 2)) {
+			Static125.worldId = worldListId;
 		}
+
 		Static156.init(); // keyboard
 		Static19.start(Static154.canvas); // keyboard
 		Static88.start(Static154.canvas); // mouse
@@ -415,26 +442,26 @@ public final class client extends GameShell {
 		Static7.anInt986 = SignLink.anInt5928;
 		try {
 			if (Static71.signLink.cacheData != null) {
-				Static172.cacheData = new BufferedFile(Static71.signLink.cacheData, 5200, 0);
+				cacheData = new BufferedFile(Static71.signLink.cacheData, 5200, 0);
 				for (@Pc(162) int i = 0; i < 28; i++) {
 					Static47.cacheIndexes[i] = new BufferedFile(Static71.signLink.cacheIndexes[i], 6000, 0);
 				}
-				Static190.cacheMasterIndex = new BufferedFile(Static71.signLink.cacheMasterIndex, 6000, 0);
-				Static148.masterDiskStore = new DiskStore(255, Static172.cacheData, Static190.cacheMasterIndex, 500000);
-				Static121.uid = new BufferedFile(Static71.signLink.uid, 24, 0);
+				cacheMasterIndex = new BufferedFile(Static71.signLink.cacheMasterIndex, 6000, 0);
+				masterDiskStore = new DiskStore(255, cacheData, cacheMasterIndex, 500000);
+				uid = new BufferedFile(Static71.signLink.uid, 24, 0);
 				Static71.signLink.cacheIndexes = null;
 				Static71.signLink.cacheMasterIndex = null;
 				Static71.signLink.uid = null;
 				Static71.signLink.cacheData = null;
 			}
 		} catch (@Pc(220) IOException ex) {
-			Static121.uid = null;
-			Static172.cacheData = null;
-			Static190.cacheMasterIndex = null;
-			Static148.masterDiskStore = null;
+			uid = null;
+			cacheData = null;
+			cacheMasterIndex = null;
+			masterDiskStore = null;
 		}
 		Static278.mainLoadPrimaryText = LocalizedText.GAME0_LOADING;
-		if (Static83.modeWhere != 0) {
+		if (modeWhere != 0) {
 			Static43.displayFps = true;
 		}
 	}
@@ -446,9 +473,9 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "a", descriptor = "(ZI)V")
 	private void setJs5Response(@OriginalArg(1) int arg0) {
-		Static107.js5NetQueue.errors++;
+		js5NetQueue.errors++;
 		Static37.js5SocketRequest = null;
-		Static107.js5NetQueue.response = arg0;
+		js5NetQueue.response = arg0;
 		Static206.js5Socket = null;
 		Static4.js5ConnectState = 0;
 	}
@@ -571,7 +598,7 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "d", descriptor = "(Z)V")
 	private void js5NetworkLoop() {
-		@Pc(3) boolean idle = Static107.js5NetQueue.loop();
+		@Pc(3) boolean idle = js5NetQueue.loop();
 		if (!idle) {
 			this.js5Connect();
 		}
@@ -579,8 +606,8 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "h", descriptor = "(I)V")
 	private void js5Connect() {
-		if (Static233.js5PrevErrors < Static107.js5NetQueue.errors) {
-			Static22.js5ConnectDelay = 5 * 50 * (Static107.js5NetQueue.errors - 1);
+		if (Static233.js5PrevErrors < js5NetQueue.errors) {
+			Static22.js5ConnectDelay = 5 * 50 * (js5NetQueue.errors - 1);
 			if (Static271.defaultPort == Static209.port) {
 				Static209.port = Static55.alternatePort;
 			} else {
@@ -589,20 +616,20 @@ public final class client extends GameShell {
 			if (Static22.js5ConnectDelay > 3000) {
 				Static22.js5ConnectDelay = 3000;
 			}
-			if (Static107.js5NetQueue.errors >= 2 && Static107.js5NetQueue.response == 6) {
+			if (js5NetQueue.errors >= 2 && js5NetQueue.response == 6) {
 				this.method927("js5connect_outofdate");
 				Static244.anInt5370 = 1000;
 				return;
 			}
-			if (Static107.js5NetQueue.errors >= 4 && Static107.js5NetQueue.response == -1) {
+			if (js5NetQueue.errors >= 4 && js5NetQueue.response == -1) {
 				this.method927("js5crc");
 				Static244.anInt5370 = 1000;
 				return;
 			}
-			if (Static107.js5NetQueue.errors >= 4 && (Static244.anInt5370 == 0 || Static244.anInt5370 == 5)) {
-				if (Static107.js5NetQueue.response == 7 || Static107.js5NetQueue.response == 9) {
+			if (js5NetQueue.errors >= 4 && (Static244.anInt5370 == 0 || Static244.anInt5370 == 5)) {
+				if (js5NetQueue.response == 7 || js5NetQueue.response == 9) {
 					this.method927("js5connect_full");
-				} else if (Static107.js5NetQueue.response > 0) {
+				} else if (js5NetQueue.response > 0) {
 					this.method927("js5connect");
 				} else {
 					this.method927("js5io");
@@ -611,7 +638,7 @@ public final class client extends GameShell {
 				return;
 			}
 		}
-		Static233.js5PrevErrors = Static107.js5NetQueue.errors;
+		Static233.js5PrevErrors = js5NetQueue.errors;
 		if (Static22.js5ConnectDelay > 0) {
 			Static22.js5ConnectDelay--;
 			return;
@@ -654,7 +681,7 @@ public final class client extends GameShell {
 			}
 			if (Static4.js5ConnectState == 4) {
 				@Pc(296) boolean loggedOut = Static244.anInt5370 == 5 || Static244.anInt5370 == 10 || Static244.anInt5370 == 28;
-				Static107.js5NetQueue.loggedOut(!loggedOut, Static206.js5Socket);
+				js5NetQueue.loggedOut(!loggedOut, Static206.js5Socket);
 				Static206.js5Socket = null;
 				Static37.js5SocketRequest = null;
 				Static4.js5ConnectState = 0;
@@ -709,7 +736,7 @@ public final class client extends GameShell {
 			Static126.aClass100_602 = LocalizedText.MAINLOAD10B;
 		} else if (Static166.anInt4051 == 30) {
 			if (Static257.aClass9_2 == null) {
-				Static257.aClass9_2 = new Js5MasterIndex(Static107.js5NetQueue, Static86.js5CacheQueue);
+				Static257.aClass9_2 = new Js5MasterIndex(js5NetQueue, js5CacheQueue);
 			}
 			if (Static257.aClass9_2.method178()) {
 				Static213.aClass153_88 = Static9.method183(false, true, true, 0);

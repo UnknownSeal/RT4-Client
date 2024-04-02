@@ -22,10 +22,10 @@ public final class Static140 {
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(Lclient!wa;Z)V")
 	public static void method2705(@OriginalArg(0) Packet arg0) {
 		@Pc(15) byte[] local15 = new byte[24];
-		if (Static121.uid != null) {
+		if (client.uid != null) {
 			try {
-				Static121.uid.method1459(0L);
-				Static121.uid.method1457(local15);
+				client.uid.method1459(0L);
+				client.uid.method1457(local15);
 				@Pc(28) int local28;
 				for (local28 = 0; local28 < 24 && local15[local28] == 0; local28++) {
 				}

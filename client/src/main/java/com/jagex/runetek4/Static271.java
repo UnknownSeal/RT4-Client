@@ -34,10 +34,10 @@ public final class Static271 {
 
 	@OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(Lclient!wa;I)V")
 	public static void method4598(@OriginalArg(0) Packet arg0) {
-		if (Static121.uid != null) {
+		if (client.uid != null) {
 			try {
-				Static121.uid.method1459(0L);
-				Static121.uid.method1458(arg0.data, arg0.pos, 24);
+				client.uid.method1459(0L);
+				client.uid.method1458(arg0.data, arg0.pos, 24);
 			} catch (@Pc(16) Exception local16) {
 			}
 		}

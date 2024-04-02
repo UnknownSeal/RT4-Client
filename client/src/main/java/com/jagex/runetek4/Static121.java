@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.io.BufferedFile;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -14,10 +13,7 @@ public final class Static121 {
 	@OriginalMember(owner = "runetek4.client!jg", name = "b", descriptor = "I")
 	public static int anInt3039;
 
-	@OriginalMember(owner = "runetek4.client!jg", name = "c", descriptor = "Lclient!en;")
-	public static BufferedFile uid;
-
-	@OriginalMember(owner = "runetek4.client!jg", name = "g", descriptor = "I")
+    @OriginalMember(owner = "runetek4.client!jg", name = "g", descriptor = "I")
 	public static int anInt3041;
 
 	@OriginalMember(owner = "runetek4.client!jg", name = "j", descriptor = "Lclient!ve;")

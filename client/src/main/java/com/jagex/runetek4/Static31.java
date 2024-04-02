@@ -63,14 +63,14 @@ public final class Static31 {
 				Static20.anInt673 = 0;
 				Static196.anInt4587++;
 				Static219.anInt4937 = 1;
-				if (Static208.worldListPort == Static249.worldListDefaultPort) {
-					Static208.worldListPort = Static97.worldListAlternatePort;
+				if (Static208.worldListPort == client.worldListDefaultPort) {
+					Static208.worldListPort = client.worldListAlternatePort;
 				} else {
-					Static208.worldListPort = Static249.worldListDefaultPort;
+					Static208.worldListPort = client.worldListDefaultPort;
 				}
 			}
 			if (Static219.anInt4937 == 1) {
-				Static72.aClass212_3 = Static71.signLink.openSocket(Static143.worldListHostname, Static208.worldListPort);
+				Static72.aClass212_3 = Static71.signLink.openSocket(client.worldListHostname, Static208.worldListPort);
 				Static219.anInt4937 = 2;
 			}
 			@Pc(126) int local126;
@@ -131,10 +131,10 @@ public final class Static31 {
 				Static124.socket = null;
 			}
 			if (Static196.anInt4587 < 1) {
-				if (Static208.worldListPort == Static249.worldListDefaultPort) {
-					Static208.worldListPort = Static97.worldListAlternatePort;
+				if (Static208.worldListPort == client.worldListDefaultPort) {
+					Static208.worldListPort = client.worldListAlternatePort;
 				} else {
-					Static208.worldListPort = Static249.worldListDefaultPort;
+					Static208.worldListPort = client.worldListDefaultPort;
 				}
 				Static219.anInt4937 = 1;
 				Static20.anInt673 = 0;

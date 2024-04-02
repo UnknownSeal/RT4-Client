@@ -83,10 +83,10 @@ public final class Static9 {
 	@OriginalMember(owner = "runetek4.client!al", name = "a", descriptor = "(ZZZIZ)Lclient!ve;")
 	public static Js5 method183(@OriginalArg(0) boolean arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) int arg3) {
 		@Pc(7) DiskStore local7 = null;
-		if (Static172.cacheData != null) {
-			local7 = new DiskStore(arg3, Static172.cacheData, Static47.cacheIndexes[arg3], 1000000);
+		if (client.cacheData != null) {
+			local7 = new DiskStore(arg3, client.cacheData, Static47.cacheIndexes[arg3], 1000000);
 		}
-		Static269.aClass14_Sub1Array3[arg3] = Static257.aClass9_2.method180(arg3, Static148.masterDiskStore, local7);
+		Static269.aClass14_Sub1Array3[arg3] = Static257.aClass9_2.method180(arg3, client.masterDiskStore, local7);
 		if (arg1) {
 			Static269.aClass14_Sub1Array3[arg3].method528();
 		}

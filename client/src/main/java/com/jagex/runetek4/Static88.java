@@ -4129,7 +4129,7 @@ public final class Static88 {
 			}
 		} catch (@Pc(14378) Exception local14378) {
 			if (local14.aClass100_880 == null) {
-				if (Static83.modeWhere != 0) {
+				if (client.modeWhere != 0) {
 					Static103.method2231(Static72.aClass100_447, 0, Static136.aClass100_633);
 				}
 				Static89.report("CS2 - scr:" + local14.nodeId + " op:" + local44, local14378);
@@ -4143,7 +4143,7 @@ public final class Static88 {
 					local58 = local33[local30];
 					local14385.method3113(Static176.aClass100_802).method3113(Static123.method2423(local58));
 				}
-				if (Static83.modeWhere != 0) {
+				if (client.modeWhere != 0) {
 					Static103.method2231(Static72.aClass100_447, 0, Static34.method882(new JagString[] { Static167.aClass100_780, local14.aClass100_880 }));
 				}
 				Static89.report("CS2 - scr:" + local14.nodeId + " op:" + local44 + new String(local14385.method3148()), local14378);

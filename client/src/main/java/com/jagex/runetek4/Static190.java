@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.io.BufferedFile;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -8,10 +7,7 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static190 {
 
-	@OriginalMember(owner = "runetek4.client!pf", name = "f", descriptor = "Lclient!en;")
-	public static BufferedFile cacheMasterIndex;
-
-	@OriginalMember(owner = "runetek4.client!pf", name = "b", descriptor = "Lclient!n;")
+    @OriginalMember(owner = "runetek4.client!pf", name = "b", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable aClass99_26 = new SoftLruHashTable(200);
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "h", descriptor = "[J")

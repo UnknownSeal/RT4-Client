@@ -95,7 +95,7 @@ public final class Static207 {
 					return 0;
 				}
 				System.out.println(Static208.worldListPort);
-				Static72.aClass212_3 = Static71.signLink.openSocket(Static143.worldListHostname, Static208.worldListPort);
+				Static72.aClass212_3 = Static71.signLink.openSocket(client.worldListHostname, Static208.worldListPort);
 				Static15.aLong18 = MonotonicClock.currentTimeMillis();
 				Static82.anInt2231 = 1;
 			}

@@ -39,10 +39,10 @@ public final class Static10 {
 			return arg0;
 		}
 		Static82.anInt2231 = 0;
-		if (Static208.worldListPort == Static249.worldListDefaultPort) {
-			Static208.worldListPort = Static97.worldListAlternatePort;
+		if (Static208.worldListPort == client.worldListDefaultPort) {
+			Static208.worldListPort = client.worldListAlternatePort;
 		} else {
-			Static208.worldListPort = Static249.worldListDefaultPort;
+			Static208.worldListPort = client.worldListDefaultPort;
 		}
 		return -1;
 	}

@@ -331,10 +331,10 @@ public final class ObjType {
 					this.params = new IterableMap(local179);
 				}
 				for (int index = 0; index < length; index++) {
-					@Pc(510) boolean local510 = packet.g1() == 1;
+					@Pc(510) boolean isString = packet.g1() == 1;
 					@Pc(514) int local514 = packet.g3();
 					@Pc(523) Node node;
-					if (local510) {
+					if (isString) {
 						node = new JagStringWrapper(packet.gjstr());
 					} else {
 						node = new IntWrapper(packet.g4());

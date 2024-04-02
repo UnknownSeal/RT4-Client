@@ -13,10 +13,7 @@ public final class Static86 {
 
 	public static final BigInteger RSA_EXPONENT = new BigInteger("58778699976184461502525193738213253649000149147835990136706041084440742975821");
 
-	@OriginalMember(owner = "runetek4.client!gm", name = "T", descriptor = "Lclient!k;")
-	public static Js5CacheQueue js5CacheQueue;
-
-	@OriginalMember(owner = "runetek4.client!gm", name = "ib", descriptor = "Lclient!ve;")
+    @OriginalMember(owner = "runetek4.client!gm", name = "ib", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_37;
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "R", descriptor = "I")

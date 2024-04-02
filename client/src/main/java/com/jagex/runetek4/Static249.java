@@ -10,10 +10,7 @@ public final class Static249 {
 	@OriginalMember(owner = "runetek4.client!ud", name = "J", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_100;
 
-	@OriginalMember(owner = "runetek4.client!ud", name = "K", descriptor = "I")
-	public static int worldListDefaultPort;
-
-	@OriginalMember(owner = "runetek4.client!ud", name = "O", descriptor = "I")
+    @OriginalMember(owner = "runetek4.client!ud", name = "O", descriptor = "I")
 	public static int anInt5431 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ud", name = "P", descriptor = "Lclient!gn;")

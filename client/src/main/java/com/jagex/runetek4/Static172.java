@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.io.BufferedFile;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -14,10 +13,7 @@ public final class Static172 {
 	@OriginalMember(owner = "runetek4.client!nj", name = "e", descriptor = "Lclient!va;")
 	public static MidiPcmStream aClass3_Sub3_Sub4_2;
 
-	@OriginalMember(owner = "runetek4.client!nj", name = "f", descriptor = "Lclient!en;")
-	public static BufferedFile cacheData;
-
-	@OriginalMember(owner = "runetek4.client!nj", name = "g", descriptor = "Lclient!ve;")
+    @OriginalMember(owner = "runetek4.client!nj", name = "g", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_70;
 
 	@OriginalMember(owner = "runetek4.client!nj", name = "j", descriptor = "[I")

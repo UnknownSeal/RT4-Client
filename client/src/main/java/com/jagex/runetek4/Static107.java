@@ -15,10 +15,7 @@ public final class Static107 {
 	@OriginalMember(owner = "runetek4.client!id", name = "k", descriptor = "I")
 	public static int anInt2878;
 
-	@OriginalMember(owner = "runetek4.client!id", name = "l", descriptor = "Lclient!jb;")
-	public static Js5NetQueue js5NetQueue;
-
-	@OriginalMember(owner = "runetek4.client!id", name = "b", descriptor = "I")
+    @OriginalMember(owner = "runetek4.client!id", name = "b", descriptor = "I")
 	public static int anInt2875 = -1;
 
 	@OriginalMember(owner = "runetek4.client!id", name = "c", descriptor = "Lclient!na;")

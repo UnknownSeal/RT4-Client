@@ -288,15 +288,15 @@ public final class Static127 {
 				Static175.method3279();
 			}
 			if (arg0.method3111(Static279.aClass100_1106)) {
-				Static107.js5NetQueue.method2329();
+				client.js5NetQueue.method2329();
 			}
 			if (arg0.method3111(Static185.aClass100_823)) {
-				Static107.js5NetQueue.method2319();
+				client.js5NetQueue.method2319();
 			}
 			if (arg0.method3111(Static165.aClass100_775)) {
 				Static71.signLink.method5110();
 				Static124.socket.method2833();
-				Static107.js5NetQueue.method2323();
+				client.js5NetQueue.method2323();
 			}
 			if (arg0.method3111(Static114.aClass100_1100)) {
 				Static35.aBoolean66 = true;
@@ -336,7 +336,7 @@ public final class Static127 {
 				Static203.method3663(Static71.signLink);
 				Static18.sentToServer = false;
 			}
-			if (arg0.method3138(Static170.aClass100_623) && Static83.modeWhere != 0) {
+			if (arg0.method3138(Static170.aClass100_623) && client.modeWhere != 0) {
 				Static115.method2312(arg0.method3136(6).method3132());
 			}
 			if (arg0.method3111(Static272.aClass100_990)) {

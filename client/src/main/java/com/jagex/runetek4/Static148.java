@@ -1,17 +1,13 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.game.client.DiskStore;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static148 {
 
-	@OriginalMember(owner = "runetek4.client!li", name = "l", descriptor = "Lclient!ge;")
-	public static DiskStore masterDiskStore;
-
-	@OriginalMember(owner = "runetek4.client!li", name = "t", descriptor = "I")
+    @OriginalMember(owner = "runetek4.client!li", name = "t", descriptor = "I")
 	public static int anInt3534;
 
 	@OriginalMember(owner = "runetek4.client!li", name = "v", descriptor = "Lclient!va;")

@@ -15,10 +15,7 @@ public final class Static83 {
 	@OriginalMember(owner = "runetek4.client!gj", name = "r", descriptor = "F")
 	public static float aFloat3;
 
-	@OriginalMember(owner = "runetek4.client!gj", name = "b", descriptor = "I")
-	public static int modeWhere = 0;
-
-	@OriginalMember(owner = "runetek4.client!gj", name = "d", descriptor = "I")
+    @OriginalMember(owner = "runetek4.client!gj", name = "d", descriptor = "I")
 	public static int anInt372 = 0;
 
 	@OriginalMember(owner = "runetek4.client!gj", name = "p", descriptor = "Lclient!n;")
