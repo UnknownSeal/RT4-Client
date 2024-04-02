@@ -197,14 +197,14 @@ public final class Static247 {
 											}
 											if (var24) {
 												@Pc(549) GroundDecor local549 = local8.aClass15_1;
-												if (local549 != null && (local549.aLong26 & 0x80000000L) != 0L) {
+												if (local549 != null && (local549.key & 0x80000000L) != 0L) {
 													if (GlRenderer.enabled && local549.aBoolean49) {
 														GlRenderer.method4159(local33 + 50.0F - 1.5F);
 													}
 													if (GlRenderer.enabled) {
 														Static120.method2393(Static149.anInt3555, Static162.anInt3947, Static217.anInt4903, local24, local18, local21);
 													}
-													local549.aClass8_1.method4546(0, Static109.anInt2886, Static121.anInt3038, Static231.anInt5205, Static81.anInt2222, local549.anInt732 - Static149.anInt3555, local549.anInt733 - Static162.anInt3947, local549.anInt736 - Static217.anInt4903, local549.aLong26, local24, null);
+													local549.entity.method4546(0, Static109.anInt2886, Static121.anInt3038, Static231.anInt5205, Static81.anInt2222, local549.xFine - Static149.anInt3555, local549.anInt733 - Static162.anInt3947, local549.zFine - Static217.anInt4903, local549.key, local24, null);
 													if (GlRenderer.enabled && local549.aBoolean49) {
 														GlRenderer.method4159(local33);
 													}
@@ -304,14 +304,14 @@ public final class Static247 {
 											}
 											if (var24) {
 												@Pc(1001) GroundDecor local1001 = local8.aClass15_1;
-												if (local1001 != null && (local1001.aLong26 & 0x80000000L) == 0L) {
+												if (local1001 != null && (local1001.key & 0x80000000L) == 0L) {
 													if (GlRenderer.enabled && local1001.aBoolean49) {
 														GlRenderer.method4159(local33 + 50.0F - 1.5F);
 													}
 													if (GlRenderer.enabled) {
 														Static120.method2393(Static149.anInt3555, Static162.anInt3947, Static217.anInt4903, local24, local18, local21);
 													}
-													local1001.aClass8_1.method4546(0, Static109.anInt2886, Static121.anInt3038, Static231.anInt5205, Static81.anInt2222, local1001.anInt732 - Static149.anInt3555, local1001.anInt733 - Static162.anInt3947, local1001.anInt736 - Static217.anInt4903, local1001.aLong26, local24, null);
+													local1001.entity.method4546(0, Static109.anInt2886, Static121.anInt3038, Static231.anInt5205, Static81.anInt2222, local1001.xFine - Static149.anInt3555, local1001.anInt733 - Static162.anInt3947, local1001.zFine - Static217.anInt4903, local1001.key, local24, null);
 													if (GlRenderer.enabled && local1001.aBoolean49) {
 														GlRenderer.method4159(local33);
 													}

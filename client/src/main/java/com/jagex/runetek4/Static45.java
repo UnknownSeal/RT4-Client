@@ -193,9 +193,9 @@ public final class Static45 {
 			}
 			for (local168 = 1; local168 < 103; local168++) {
 				label771: for (local173 = 1; local173 < 103; local173++) {
-					if (arg1 || Static138.method2697() || (Static12.aByteArrayArrayArray2[0][local168][local173] & 0x2) != 0 || (Static12.aByteArrayArrayArray2[local152][local168][local173] & 0x10) == 0 && Static4.method22(local173, local168, local152) == Static41.anInt1316) {
-						if (Static146.anInt3508 > local152) {
-							Static146.anInt3508 = local152;
+					if (arg1 || Static138.allLevelsvisible() || (Static12.aByteArrayArrayArray2[0][local168][local173] & 0x2) != 0 || (Static12.aByteArrayArrayArray2[local152][local168][local173] & 0x10) == 0 && Static4.getRenderLevel(local173, local168, local152) == Static41.anInt1316) {
+						if (Static146.firstvisibleLevel > local152) {
+							Static146.firstvisibleLevel = local152;
 						}
 						local178 = Static253.aByteArrayArrayArray16[local152][local168][local173] & 0xFF;
 						local194 = Static240.aByteArrayArrayArray14[local152][local168][local173] & 0xFF;

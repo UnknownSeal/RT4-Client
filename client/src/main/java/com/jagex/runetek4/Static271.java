@@ -68,7 +68,7 @@ public final class Static271 {
 		}
 		if (locType.breakroutefinding) {
 			locType.blockwalk = 0;
-			locType.aBoolean207 = false;
+			locType.blockrange = false;
 		}
 		Static179.aClass99_25.method3095(locType, (long) id);
 		return locType;

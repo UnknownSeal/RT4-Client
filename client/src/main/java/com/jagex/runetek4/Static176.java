@@ -136,14 +136,14 @@ public final class Static176 {
 									if (local240 == 2) {
 										local254 = 49;
 									}
-									if (local172.anInt4406 == local240) {
-										local268 = local172.anInt4416;
+									if (local172.cursor1op == local240) {
+										local268 = local172.cursor1;
 									}
 									if (local240 == 3) {
 										local254 = 46;
 									}
-									if (local240 == local172.anInt4420) {
-										local268 = local172.anInt4423;
+									if (local240 == local172.cursor2op) {
+										local268 = local172.cursor2;
 									}
 									if (local240 == 4) {
 										local254 = 1001;

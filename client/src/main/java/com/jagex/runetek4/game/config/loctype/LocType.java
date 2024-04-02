@@ -59,7 +59,7 @@ public final class LocType {
 	public int height = 1;
 
 	@OriginalMember(owner = "client!pb", name = "C", descriptor = "Z")
-	public boolean aBoolean211 = false;
+	public boolean renderUnderFeet = false;
 
 	@OriginalMember(owner = "client!pb", name = "u", descriptor = "I")
 	private int ambient = 0;
@@ -71,7 +71,7 @@ public final class LocType {
 	public boolean hardshadow = true;
 
 	@OriginalMember(owner = "client!pb", name = "t", descriptor = "I")
-	public int anInt4406 = -1;
+	public int cursor1op = -1;
 
 	@OriginalMember(owner = "client!pb", name = "R", descriptor = "I")
 	public int bgsound_maxdelay = 0;
@@ -86,7 +86,7 @@ public final class LocType {
 	public boolean members = false;
 
 	@OriginalMember(owner = "client!pb", name = "T", descriptor = "I")
-	public int anInt4416 = -1;
+	public int cursor1 = -1;
 
 	@OriginalMember(owner = "client!pb", name = "w", descriptor = "I")
 	private int xoff = 0;
@@ -101,7 +101,7 @@ public final class LocType {
 	public boolean aBoolean214 = false;
 
 	@OriginalMember(owner = "client!pb", name = "Y", descriptor = "I")
-	public int anInt4420 = -1;
+	public int cursor2op = -1;
 
 	@OriginalMember(owner = "client!pb", name = "A", descriptor = "S")
 	private short hillskew_value = -1;
@@ -137,19 +137,19 @@ public final class LocType {
 	private int multivarp = -1;
 
 	@OriginalMember(owner = "client!pb", name = "bb", descriptor = "I")
-	public int anInt4423 = -1;
+	public int cursor2 = -1;
 
 	@OriginalMember(owner = "client!pb", name = "pb", descriptor = "I")
-	public int anInt4433 = 0;
+	public int blocksides = 0;
 
 	@OriginalMember(owner = "client!pb", name = "m", descriptor = "Z")
-	public boolean aBoolean207 = true;
+	public boolean blockrange = true;
 
 	@OriginalMember(owner = "client!pb", name = "qb", descriptor = "I")
 	private int zoff = 0;
 
 	@OriginalMember(owner = "client!pb", name = "c", descriptor = "I")
-	public int anInt4395 = 0;
+	public int mapSceneAngleOffset = 0;
 
 	@OriginalMember(owner = "client!pb", name = "jb", descriptor = "I")
 	public int walloff = 16;
@@ -167,10 +167,10 @@ public final class LocType {
 	private int contrast = 0;
 
 	@OriginalMember(owner = "client!pb", name = "mb", descriptor = "I")
-	public int anInt4430 = -1;
+	public int anim = -1;
 
 	@OriginalMember(owner = "client!pb", name = "I", descriptor = "Z")
-	public boolean aBoolean213 = false;
+	public boolean overrideSDFLO = false;
 
 	@OriginalMember(owner = "client!pb", name = "O", descriptor = "I")
 	public int bgsound_sound = -1;
@@ -206,7 +206,6 @@ public final class LocType {
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "(Lclient!wa;II)V")
 	private void decode(@OriginalArg(0) Packet packet, @OriginalArg(1) int code) {
-		@Pc(38) int local38;
 		if (code == 1) {
 			int length = packet.g1();
 			if (length > 0) {
@@ -242,9 +241,9 @@ public final class LocType {
 			this.height = packet.g1();
 		} else if (code == 17) {
 			this.blockwalk = 0;
-			this.aBoolean207 = false;
+			this.blockrange = false;
 		} else if (code == 18) {
-			this.aBoolean207 = false;
+			this.blockrange = false;
 		} else if (code == 19) {
 			this.active = packet.g1();
 		} else if (code == 21) {
@@ -254,9 +253,9 @@ public final class LocType {
 		} else if (code == 23) {
 			this.occlude = true;
 		} else if (code == 24) {
-			this.anInt4430 = packet.g2();
-			if (this.anInt4430 == 65535) {
-				this.anInt4430 = -1;
+			this.anim = packet.g2();
+			if (this.anim == 65535) {
+				this.anim = -1;
 			}
 		} else if (code == 27) {
 			this.blockwalk = 1;
@@ -306,7 +305,7 @@ public final class LocType {
 		} else if (code == 67) {
 			this.resizez = packet.g2();
 		} else if (code == 69) {
-			this.anInt4433 = packet.g1();
+			this.blocksides = packet.g1();
 		} else if (code == 70) {
 			this.xoff = packet.g2s();
 		} else if (code == 71) {
@@ -369,7 +368,7 @@ public final class LocType {
 		} else if (code == 89) {
 			this.randomanimframe = false;
 		} else if (code == 90) {
-			this.aBoolean211 = true;
+			this.renderUnderFeet = true; // TODO(Proper name)
 		} else if (code == 91) {
 			this.members = true;
 		} else if (code == 93) {
@@ -380,37 +379,37 @@ public final class LocType {
 		} else if (code == 95) {
 			this.hillskew_mode = 5;
 		} else if (code == 96) {
-			this.aBoolean213 = true;
+			this.overrideSDFLO = true; // TODO(Name needs verification)
 		} else if (code == 97) {
 			this.mapsceneiconrotate = true;
 		} else if (code == 98) {
 			this.aBoolean214 = true;
 		} else if (code == 99) {
-			this.anInt4406 = packet.g1();
-			this.anInt4416 = packet.g2();
+			this.cursor1op = packet.g1();
+			this.cursor1 = packet.g2();
 		} else if (code == 100) {
-			this.anInt4420 = packet.g1();
-			this.anInt4423 = packet.g2();
+			this.cursor2op = packet.g1();
+			this.cursor2 = packet.g2();
 		} else if (code == 101) {
-			this.anInt4395 = packet.g1();
+			this.mapSceneAngleOffset = packet.g1(); // TODO(Name needs verification)
 		} else if (code == 102) {
 			this.mapsceneicon = packet.g2();
 		} else if (code == 249) {
 			int length = packet.g1();
 			if (this.params == null) {
-				local38 = Static165.bitceil(length);
-				this.params = new IterableMap(local38);
+				int len = Static165.bitceil(length);
+				this.params = new IterableMap(len);
 			}
 			for (int index = 0; index < length; index++) {
-				@Pc(576) boolean local576 = packet.g1() == 1;
-				@Pc(580) int local580 = packet.g3();
+				@Pc(576) boolean isString = packet.g1() == 1;
+				@Pc(580) int key = packet.g3();
 				@Pc(589) Node node;
-				if (local576) {
+				if (isString) {
 					node = new JagStringWrapper(packet.gjstr());
 				} else {
 					node = new IntWrapper(packet.g4());
 				}
-				this.params.pushNode(node, (long) local580);
+				this.params.pushNode(node, (long) key);
 			}
 		}
 	}
@@ -589,7 +588,7 @@ public final class LocType {
 	}
 
 	@OriginalMember(owner = "client!pb", name = "d", descriptor = "(I)Z")
-	public boolean method3422() {
+	public boolean hasBackgroundSound() {
 		if (this.multiloc == null) {
 			return this.bgsound_sound != -1 || this.bgsound_random != null;
 		}

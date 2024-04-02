@@ -227,7 +227,7 @@ public final class Loc extends Entity {
 	private Entity method1048(@OriginalArg(0) boolean arg0) {
 		@Pc(12) boolean local12 = Static107.anIntArrayArrayArray10 != Static83.anIntArrayArrayArray4;
 		@Pc(19) LocType local19 = Static271.get(this.anInt1299);
-		@Pc(22) int local22 = local19.anInt4430;
+		@Pc(22) int local22 = local19.anim;
 		if (local19.multiloc != null) {
 			local19 = local19.getVisible();
 		}
@@ -238,9 +238,9 @@ public final class Loc extends Entity {
 			return null;
 		}
 		@Pc(69) int local69;
-		if (Static266.game != 0 && this.aBoolean80 && (this.aClass144_2 == null || this.aClass144_2 != null && this.aClass144_2.anInt5361 != local19.anInt4430)) {
-			local69 = local19.anInt4430;
-			if (local19.anInt4430 == -1) {
+		if (Static266.game != 0 && this.aBoolean80 && (this.aClass144_2 == null || this.aClass144_2 != null && this.aClass144_2.anInt5361 != local19.anim)) {
+			local69 = local19.anim;
+			if (local19.anim == -1) {
 				local69 = local22;
 			}
 			if (local69 == -1) {

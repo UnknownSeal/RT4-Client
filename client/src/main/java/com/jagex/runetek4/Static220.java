@@ -138,9 +138,9 @@ public final class Static220 {
 							}
 						}
 						@Pc(131) GroundDecor local131 = local22.aClass15_1;
-						if (local131 != null && local131.aClass8_1.method4543()) {
-							Static264.method3574(local131.aClass8_1, local1, local6, local11);
-							local131.aClass8_1 = local131.aClass8_1.method4539();
+						if (local131 != null && local131.entity.method4543()) {
+							Static264.method3574(local131.entity, local1, local6, local11);
+							local131.entity = local131.entity.method4539();
 						}
 					}
 				}

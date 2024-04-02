@@ -44,7 +44,7 @@ public final class Static4 {
 	public static Component aClass13_1 = null;
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "a", descriptor = "(IIII)I")
-	public static int method22(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) {
+	public static int getRenderLevel(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) {
 		if ((Static12.aByteArrayArrayArray2[arg2][arg1][arg0] & 0x8) == 0) {
 			return arg2 <= 0 || (Static12.aByteArrayArrayArray2[1][arg1][arg0] & 0x2) == 0 ? arg2 : arg2 - 1;
 		} else {

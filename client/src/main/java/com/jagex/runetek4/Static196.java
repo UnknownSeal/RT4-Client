@@ -78,7 +78,7 @@ public final class Static196 {
 	public static void method3535(@OriginalArg(0) boolean arg0) {
 		Static221.anIntArray376 = new int[104];
 		Static139.anIntArray325 = new int[104];
-		Static146.anInt3508 = 99;
+		Static146.firstvisibleLevel = 99;
 		Static251.anIntArray479 = new int[104];
 		@Pc(14) byte local14;
 		if (arg0) {

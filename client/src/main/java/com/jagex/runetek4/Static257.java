@@ -33,7 +33,7 @@ public final class Static257 {
 			return true;
 		} else if (local7.aClass24_1 != null && local7.aClass24_1.aLong52 == arg3) {
 			return true;
-		} else if (local7.aClass15_1 != null && local7.aClass15_1.aLong26 == arg3) {
+		} else if (local7.aClass15_1 != null && local7.aClass15_1.key == arg3) {
 			return true;
 		} else {
 			for (@Pc(46) int local46 = 0; local46 < local7.anInt662; local46++) {

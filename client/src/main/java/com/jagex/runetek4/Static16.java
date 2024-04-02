@@ -37,9 +37,9 @@ public final class Static16 {
 					@Pc(54) Tile local54 = local30[local32][local42];
 					if (local54 != null) {
 						@Pc(71) GlModel local71;
-						if (local54.aClass15_1 != null && local54.aClass15_1.aClass8_1 instanceof GlModel) {
-							local71 = (GlModel) local54.aClass15_1.aClass8_1;
-							if ((local54.aClass15_1.aLong26 & Long.MIN_VALUE) == 0L) {
+						if (local54.aClass15_1 != null && local54.aClass15_1.entity instanceof GlModel) {
+							local71 = (GlModel) local54.aClass15_1.entity;
+							if ((local54.aClass15_1.key & Long.MIN_VALUE) == 0L) {
 								local71.method4111(false, true, true, false, true, true);
 							} else {
 								local71.method4111(true, true, true, true, true, true);

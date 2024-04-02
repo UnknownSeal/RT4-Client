@@ -3480,7 +3480,7 @@ public final class Static88 {
 														continue;
 													}
 													if (local226 == 6102) {
-														Static254.anIntArray487[local28++] = Static138.method2697() ? 1 : 0;
+														Static254.anIntArray487[local28++] = Static138.allLevelsvisible() ? 1 : 0;
 														continue;
 													}
 													if (local226 == 6103) {

@@ -68,7 +68,7 @@ public final class Static192 {
 				} else if (local164 == 3) {
 					@Pc(216) GroundDecor local216 = Static269.method2210(Static55.level, local17.anInt1190, local17.anInt1204);
 					if (local216 != null) {
-						local159 = local216.aClass8_1;
+						local159 = local216.entity;
 					}
 				}
 				if (local159 != null) {

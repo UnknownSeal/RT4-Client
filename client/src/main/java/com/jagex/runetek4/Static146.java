@@ -22,7 +22,7 @@ public final class Static146 {
 	public static final SeqType[] aClass144Array1 = new SeqType[14];
 
 	@OriginalMember(owner = "runetek4.client!lg", name = "k", descriptor = "I")
-	public static int anInt3508 = 99;
+	public static int firstvisibleLevel = 99;
 
 	@OriginalMember(owner = "runetek4.client!lg", name = "a", descriptor = "(ZLclient!wa;Lclient!na;)I")
 	public static int method2748(@OriginalArg(1) Packet arg0, @OriginalArg(2) JagString arg1) {

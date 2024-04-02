@@ -140,7 +140,7 @@ public final class Static233 {
 				local59 = local46.width;
 				local62 = local46.height;
 			}
-			@Pc(73) int local73 = local46.anInt4433;
+			@Pc(73) int local73 = local46.blocksides;
 			if (local24 != 0) {
 				local73 = (local73 << local24 & 0xF) + (local73 >> 4 - local24);
 			}

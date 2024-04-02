@@ -31,11 +31,11 @@ public final class Static170 {
 			return;
 		}
 		@Pc(6) GroundDecor local6 = new GroundDecor();
-		local6.aClass8_1 = arg4;
-		local6.anInt732 = arg1 * 128 + 64;
-		local6.anInt736 = arg2 * 128 + 64;
+		local6.entity = arg4;
+		local6.xFine = arg1 * 128 + 64;
+		local6.zFine = arg2 * 128 + 64;
 		local6.anInt733 = arg3;
-		local6.aLong26 = arg5;
+		local6.key = arg5;
 		local6.aBoolean49 = arg6;
 		if (Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2] == null) {
 			Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2] = new Tile(arg0, arg1, arg2);

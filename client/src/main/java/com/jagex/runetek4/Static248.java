@@ -84,7 +84,7 @@ public final class Static248 {
 								}
 								if (local46.aClass15_1 != null) {
 									@Pc(167) GroundDecor local167 = local46.aClass15_1;
-									local167.aClass8_1.method4545(0, local23, local167.anInt733, local167.anInt732, local167.anInt736);
+									local167.entity.method4545(0, local23, local167.anInt733, local167.xFine, local167.zFine);
 								}
 								if (local46.aClass31Array1 != null) {
 									for (local183 = 0; local183 < local46.anInt662; local183++) {

@@ -48,7 +48,7 @@ public final class Static79 {
 			return;
 		}
 		@Pc(39) int local39;
-		if (!Static138.method2697() && (Static12.aByteArrayArrayArray2[0][arg1][arg4] & 0x2) == 0) {
+		if (!Static138.allLevelsvisible() && (Static12.aByteArrayArrayArray2[0][arg1][arg4] & 0x2) == 0) {
 			local39 = arg2;
 			if ((Static12.aByteArrayArrayArray2[arg2][arg1][arg4] & 0x8) != 0) {
 				local39 = 0;

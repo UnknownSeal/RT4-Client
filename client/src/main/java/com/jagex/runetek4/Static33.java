@@ -31,7 +31,7 @@ public final class Static33 {
 			return true;
 		}
 		if (arg1.mapsceneiconrotate) {
-			@Pc(24) int local24 = arg3 + arg1.anInt4395;
+			@Pc(24) int local24 = arg3 + arg1.mapSceneAngleOffset;
 			arg3 = local24 & 0x3;
 		} else {
 			arg3 = 0;

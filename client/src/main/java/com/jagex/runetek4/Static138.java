@@ -106,7 +106,7 @@ public final class Static138 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!km", name = "f", descriptor = "(I)Z")
-	public static boolean method2697() {
+	public static boolean allLevelsvisible() {
 		return GlRenderer.enabled ? true : Static162.aBoolean190;
 	}
 

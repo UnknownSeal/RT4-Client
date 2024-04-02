@@ -229,16 +229,16 @@ public final class Static78 {
 			Static120.method2395();
 		}
 		Static7.method842(true);
-		local427 = Static146.anInt3508;
+		local427 = Static146.firstvisibleLevel;
 		if (local427 > Static55.level) {
 			local427 = Static55.level;
 		}
 		if (local427 < Static55.level - 1) {
 		}
-		if (Static138.method2697()) {
+		if (Static138.allLevelsvisible()) {
 			Static146.method2750(0);
 		} else {
-			Static146.method2750(Static146.anInt3508);
+			Static146.method2750(Static146.firstvisibleLevel);
 		}
 		Static105.method2255();
 		if (GlRenderer.enabled && local420) {

@@ -38,26 +38,26 @@ public final class Static264 {
 		@Pc(12) Tile local12;
 		if (arg2 < Static152.anInt3594) {
 			local12 = Static130.aClass3_Sub5ArrayArrayArray1[arg1][arg2 + 1][arg3];
-			if (local12 != null && local12.aClass15_1 != null && local12.aClass15_1.aClass8_1.method4543()) {
-				arg0.method4544(local12.aClass15_1.aClass8_1, 128, 0, 0, true);
+			if (local12 != null && local12.aClass15_1 != null && local12.aClass15_1.entity.method4543()) {
+				arg0.method4544(local12.aClass15_1.entity, 128, 0, 0, true);
 			}
 		}
 		if (arg3 < Static152.anInt3594) {
 			local12 = Static130.aClass3_Sub5ArrayArrayArray1[arg1][arg2][arg3 + 1];
-			if (local12 != null && local12.aClass15_1 != null && local12.aClass15_1.aClass8_1.method4543()) {
-				arg0.method4544(local12.aClass15_1.aClass8_1, 0, 0, 128, true);
+			if (local12 != null && local12.aClass15_1 != null && local12.aClass15_1.entity.method4543()) {
+				arg0.method4544(local12.aClass15_1.entity, 0, 0, 128, true);
 			}
 		}
 		if (arg2 < Static152.anInt3594 && arg3 < Static99.anInt2550) {
 			local12 = Static130.aClass3_Sub5ArrayArrayArray1[arg1][arg2 + 1][arg3 + 1];
-			if (local12 != null && local12.aClass15_1 != null && local12.aClass15_1.aClass8_1.method4543()) {
-				arg0.method4544(local12.aClass15_1.aClass8_1, 128, 0, 128, true);
+			if (local12 != null && local12.aClass15_1 != null && local12.aClass15_1.entity.method4543()) {
+				arg0.method4544(local12.aClass15_1.entity, 128, 0, 128, true);
 			}
 		}
 		if (arg2 < Static152.anInt3594 && arg3 > 0) {
 			local12 = Static130.aClass3_Sub5ArrayArrayArray1[arg1][arg2 + 1][arg3 - 1];
-			if (local12 != null && local12.aClass15_1 != null && local12.aClass15_1.aClass8_1.method4543()) {
-				arg0.method4544(local12.aClass15_1.aClass8_1, 128, 0, -128, true);
+			if (local12 != null && local12.aClass15_1 != null && local12.aClass15_1.entity.method4543()) {
+				arg0.method4544(local12.aClass15_1.entity, 128, 0, -128, true);
 			}
 		}
 	}

@@ -82,7 +82,7 @@ public final class Static53 {
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(IZ)V")
 	public static void method1293(@OriginalArg(1) boolean arg0) {
 		Static162.aBoolean190 = arg0;
-		Static87.aBoolean130 = !Static138.method2697();
+		Static87.aBoolean130 = !Static138.allLevelsvisible();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(B)V")

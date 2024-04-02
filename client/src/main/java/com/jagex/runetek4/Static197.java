@@ -192,7 +192,7 @@ public final class Static197 {
 			Static95.method1939();
 			Static114.method4637();
 		}
-		Static87.aBoolean130 = !Static138.method2697();
+		Static87.aBoolean130 = !Static138.allLevelsvisible();
 		if (arg2) {
 			Static141.method2721();
 		}
