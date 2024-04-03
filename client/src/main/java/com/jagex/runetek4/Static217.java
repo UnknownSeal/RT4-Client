@@ -29,7 +29,7 @@ public final class Static217 {
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "a", descriptor = "(IIILclient!e;I)V")
 	public static void method3767(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Player arg2, @OriginalArg(4) int arg3) {
-		if (Static173.self == arg2 || Static231.anInt5204 >= 400) {
+		if (Static173.self == arg2 || PreciseSleep.anInt5204 >= 400) {
 			return;
 		}
 		@Pc(158) JagString local158;
@@ -85,7 +85,7 @@ public final class Static217 {
 		} else if ((Static274.anInt4999 & 0x8) != 0) {
 			Static98.method1966(Static246.anInt5393, (long) arg0, Static34.method882(new JagString[] { Static78.aClass100_466, Static105.aClass100_561, local158 }), arg3, (short) 15, Static102.aClass100_545, arg1);
 		}
-		for (local275 = 0; local275 < Static231.anInt5204; local275++) {
+		for (local275 = 0; local275 < PreciseSleep.anInt5204; local275++) {
 			if (Static39.aShortArray6[local275] == 60) {
 				Static233.aClass100Array160[local275] = Static34.method882(new JagString[] { Static204.aClass100_896, local158 });
 				break;

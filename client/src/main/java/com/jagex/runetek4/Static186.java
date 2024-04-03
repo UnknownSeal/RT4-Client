@@ -105,7 +105,7 @@ public final class Static186 {
 			Static41.anInt1309 = 40;
 			Static234.method4020();
 		} else if (Static41.anInt1309 == 40) {
-			Static231.method3980(new Packet(Static119.aClass153_44.method4485(Static73.aClass100_455, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
+			PreciseSleep.method3980(new Packet(Static119.aClass153_44.method4485(Static73.aClass100_455, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
 			Static41.anInt1309 = 50;
 			Static234.method4020();
 		} else if (Static41.anInt1309 == 50) {

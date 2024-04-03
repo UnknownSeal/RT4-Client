@@ -5,7 +5,7 @@ import java.applet.Applet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
-public final class Static287 {
+public final class BrowserControl {
 
 	@OriginalMember(owner = "runetek4.client!gh", name = "a", descriptor = "(Ljava/lang/String;BLjava/applet/Applet;)Ljava/lang/Object;")
 	public static Object method1757(@OriginalArg(0) String arg0, @OriginalArg(2) Applet arg1) throws Throwable {

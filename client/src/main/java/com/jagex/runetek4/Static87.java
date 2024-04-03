@@ -135,7 +135,7 @@ public final class Static87 {
 				} else {
 					local57 = arg8;
 				}
-				local30.anInt465 = Static83.anInt372;
+				local30.anInt465 = Static83.loopCycle;
 				local30.anInt517 = local57;
 				if (!local30.aBoolean32 || !Static36.method947(local30)) {
 					if (local30.anInt453 > 0) {
@@ -315,7 +315,7 @@ public final class Static87 {
 								}
 								local270 = local30.anInt445 + local123;
 								local276 = local114 + 15;
-								Static215.aClass3_Sub2_Sub9_32.method2864(Static34.method882(new JagString[] { Static101.aClass100_539, Static123.method2423(Static243.anInt5359) }), local270, local276, 16776960, -1);
+								Static215.aClass3_Sub2_Sub9_32.method2864(Static34.method882(new JagString[] { Static101.aClass100_539, Static123.method2423(Static243.fps) }), local270, local276, 16776960, -1);
 								local276 += 15;
 								@Pc(795) Runtime local795 = Runtime.getRuntime();
 								local503 = (int) ((local795.totalMemory() - local795.freeMemory()) / 1024L);
@@ -360,7 +360,7 @@ public final class Static87 {
 						}
 						if (!Static60.aBoolean108) {
 							if (local30.anInt452 == 0 && local30.aBoolean29 && Static155.anInt3751 >= local166 && Static60.anInt1892 >= local164 && Static155.anInt3751 < local302 && local291 > Static60.anInt1892 && !Static121.aBoolean154) {
-								Static231.anInt5204 = 1;
+								PreciseSleep.anInt5204 = 1;
 								Static190.anIntArray382[0] = Static35.anInt1092;
 								Static254.aClass100Array168[0] = LocalizedText.CANCEL;
 								Static233.aClass100Array160[0] = Static186.aClass100_827;
@@ -390,7 +390,7 @@ public final class Static87 {
 							if (local1186 != null) {
 								if (local1186.anInt5879 == 0 && !Static60.aBoolean108 && Static155.anInt3751 >= local166 && local164 <= Static60.anInt1892 && local302 > Static155.anInt3751 && Static60.anInt1892 < local291 && !Static121.aBoolean154) {
 									Static254.aClass100Array168[0] = LocalizedText.CANCEL;
-									Static231.anInt5204 = 1;
+									PreciseSleep.anInt5204 = 1;
 									Static190.anIntArray382[0] = Static35.anInt1092;
 									Static39.aShortArray6[0] = 1005;
 									Static233.aClass100Array160[0] = Static186.aClass100_827;

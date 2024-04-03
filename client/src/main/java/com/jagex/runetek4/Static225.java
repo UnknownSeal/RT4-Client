@@ -41,7 +41,7 @@ public final class Static225 {
 					}
 					Static105.ids[Static267.size++] = local20;
 					@Pc(65) Player local65 = Static159.aClass8_Sub4_Sub1Array1[local20];
-					local65.anInt3430 = Static83.anInt372;
+					local65.anInt3430 = Static83.loopCycle;
 					@Pc(73) int local73 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
 					if (local73 == 1) {
 						Static44.anIntArray106[Static116.anInt2951++] = local20;

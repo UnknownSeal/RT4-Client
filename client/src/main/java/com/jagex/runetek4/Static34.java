@@ -131,7 +131,7 @@ public final class Static34 {
 			}
 		}
 		@Pc(156) int local156;
-		if (arg0.anInt3432 != -1 && Static83.anInt372 >= arg0.anInt3359) {
+		if (arg0.anInt3432 != -1 && Static83.loopCycle >= arg0.anInt3359) {
 			local156 = method877(arg0.anInt3432).anInt1754;
 			if (local156 == -1) {
 				arg0.anInt3432 = -1;
@@ -162,7 +162,7 @@ public final class Static34 {
 		}
 		if (arg0.anInt3369 != -1 && arg0.anInt3420 <= 1) {
 			local18 = Static36.method941(arg0.anInt3369);
-			if (local18.anInt5363 == 1 && arg0.anInt3405 > 0 && Static83.anInt372 >= arg0.anInt3395 && Static83.anInt372 > arg0.anInt3386) {
+			if (local18.anInt5363 == 1 && arg0.anInt3405 > 0 && Static83.loopCycle >= arg0.anInt3395 && Static83.loopCycle > arg0.anInt3386) {
 				arg0.anInt3420 = 1;
 				return;
 			}

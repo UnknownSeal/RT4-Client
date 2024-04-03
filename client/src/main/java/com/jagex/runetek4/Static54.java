@@ -166,7 +166,7 @@ public final class Static54 {
 			@Pc(756) Class102[] local756 = Static143.aClass102Array1;
 			for (local181 = 0; local181 < local756.length; local181++) {
 				@Pc(770) Class102 local770 = local756[local181];
-				if (local770 != null && local770.anInt4058 != 0 && Static83.anInt372 % 20 < 10) {
+				if (local770 != null && local770.anInt4058 != 0 && Static83.loopCycle % 20 < 10) {
 					if (local770.anInt4058 == 1 && local770.anInt4057 >= 0 && local770.anInt4057 < Static175.aClass8_Sub4_Sub2Array1.length) {
 						@Pc(804) NPCEntity local804 = Static175.aClass8_Sub4_Sub2Array1[local770.anInt4057];
 						if (local804 != null) {

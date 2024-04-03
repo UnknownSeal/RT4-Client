@@ -405,7 +405,7 @@ public final class JagString implements StringInterface {
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(ZLjava/applet/Applet;)V")
 	public final void method3134(@OriginalArg(1) Applet arg0) throws Throwable {
 		@Pc(16) String local16 = new String(this.aByteArray52, 0, this.anInt4030);
-		Static287.method1759(arg0, local16);
+		BrowserControl.method1759(arg0, local16);
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(III)I")
@@ -783,7 +783,7 @@ public final class JagString implements StringInterface {
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(ILjava/applet/Applet;)Ljava/lang/Object;")
 	public final Object method3157(@OriginalArg(1) Applet arg0) throws Throwable {
 		@Pc(12) String local12 = new String(this.aByteArray52, 0, this.anInt4030);
-		@Pc(17) Object local17 = Static287.method1757(local12, arg0);
+		@Pc(17) Object local17 = BrowserControl.method1757(local12, arg0);
 		if (local17 instanceof String) {
 			@Pc(24) byte[] local24 = ((String) local17).getBytes();
 			local17 = Static10.decodeString(local24, local24.length, 0);

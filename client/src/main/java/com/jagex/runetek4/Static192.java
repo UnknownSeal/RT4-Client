@@ -73,13 +73,13 @@ public final class Static192 {
 				}
 				if (local159 != null) {
 					Static29.method800(Static55.level, local17.anInt1204, 0, local17.anInt1190, local17.anInt1205 + 1, -1, local164, 0, local17.anInt1187 + 1);
-					local40.anInt3375 = local17.anInt1205 + Static83.anInt372;
+					local40.anInt3375 = local17.anInt1205 + Static83.loopCycle;
 					local40.anInt3426 = local83 * 64 + local17.anInt1204 * 128;
 					local40.anInt3379 = local86 * 64 + local17.anInt1190 * 128;
 					local40.anObject5 = local159;
 					@Pc(292) int local292 = local17.anInt1188;
 					local40.anInt3406 = local157;
-					local40.anInt3390 = Static83.anInt372 + local17.anInt1187;
+					local40.anInt3390 = Static83.loopCycle + local17.anInt1187;
 					@Pc(304) int local304 = local17.anInt1191;
 					@Pc(307) int local307 = local17.anInt1197;
 					@Pc(310) int local310 = local17.anInt1200;

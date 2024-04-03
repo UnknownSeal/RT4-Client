@@ -100,19 +100,19 @@ public final class Static49 {
 			@Pc(70) int local70 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
 			if (local70 == 0) {
 				Static33.anIntArray79[Static272.anInt5214++] = local61;
-				local65.anInt3430 = Static83.anInt372;
+				local65.anInt3430 = Static83.loopCycle;
 			} else {
 				@Pc(92) int local92 = Static57.aClass3_Sub15_Sub1_3.gBit(2);
 				if (local92 == 0) {
 					Static33.anIntArray79[Static272.anInt5214++] = local61;
-					local65.anInt3430 = Static83.anInt372;
+					local65.anInt3430 = Static83.loopCycle;
 					Static44.anIntArray106[Static116.anInt2951++] = local61;
 				} else {
 					@Pc(139) int local139;
 					@Pc(149) int local149;
 					if (local92 == 1) {
 						Static33.anIntArray79[Static272.anInt5214++] = local61;
-						local65.anInt3430 = Static83.anInt372;
+						local65.anInt3430 = Static83.loopCycle;
 						local139 = Static57.aClass3_Sub15_Sub1_3.gBit(3);
 						local65.method2684(1, local139);
 						local149 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
@@ -121,7 +121,7 @@ public final class Static49 {
 						}
 					} else if (local92 == 2) {
 						Static33.anIntArray79[Static272.anInt5214++] = local61;
-						local65.anInt3430 = Static83.anInt372;
+						local65.anInt3430 = Static83.loopCycle;
 						if (Static57.aClass3_Sub15_Sub1_3.gBit(1) == 1) {
 							local139 = Static57.aClass3_Sub15_Sub1_3.gBit(3);
 							local65.method2684(2, local139);
@@ -175,7 +175,7 @@ public final class Static49 {
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "a", descriptor = "(Lclient!be;III)V")
 	public static void method1207(@OriginalArg(0) Component arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		if (Static231.anInt5204 < 2 && Static260.anInt5014 == 0 && !Static241.aBoolean302) {
+		if (PreciseSleep.anInt5204 < 2 && Static260.anInt5014 == 0 && !Static241.aBoolean302) {
 			return;
 		}
 		@Pc(24) JagString local24 = Static13.method471();
@@ -195,7 +195,7 @@ public final class Static49 {
 	@OriginalMember(owner = "runetek4.client!dm", name = "d", descriptor = "(I)V")
 	public static void method1208() {
 		Static224.aBoolean247 = false;
-		Static231.anInt5202 = 0;
+		PreciseSleep.anInt5202 = 0;
 		Static266.anInt5336 = -3;
 		Static92.anInt2430 = 0;
 		Static184.anInt4348 = 1;

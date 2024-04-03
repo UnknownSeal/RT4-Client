@@ -446,9 +446,9 @@ public final class Static81 {
 						Static6.outboundBuffer.p2add(Static18.anInt588);
 						Static6.outboundBuffer.p1sub(local1363);
 					}
-				} else if ((Static116.anInt2952 == 1 || Static277.method4640(Static231.anInt5204 - 1)) && Static231.anInt5204 > 2) {
+				} else if ((Static116.anInt2952 == 1 || Static277.method4640(PreciseSleep.anInt5204 - 1)) && PreciseSleep.anInt5204 > 2) {
 					Static226.method3901();
-				} else if (Static231.anInt5204 > 0) {
+				} else if (PreciseSleep.anInt5204 > 0) {
 					Static59.method1372();
 				}
 				Static150.clickButton = 0;
@@ -472,7 +472,7 @@ public final class Static81 {
 		// WorldMap.component
 		Static24.component = null;
 		if (Static154.topLevelInterace != -1) {
-			Static57.method1320(0, 0, 0, Static48.anInt1448, Static154.topLevelInterace, 0, Static254.anInt5554);
+			Static57.method1320(0, 0, 0, Static48.canvasWid, Static154.topLevelInterace, 0, Static254.canvasHei);
 		}
 		Static119.transmitTimer++;
 		while (true) {

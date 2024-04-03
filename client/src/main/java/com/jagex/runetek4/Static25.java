@@ -39,14 +39,14 @@ public final class Static25 {
 		while (true) {
 			@Pc(16) PrivilegedRequest local16 = arg1.method5115(arg0);
 			while (local16.status == 0) {
-				Static231.sleep(10L);
+				PreciseSleep.sleep(10L);
 			}
 			if (local16.status == 1) {
 				arg0.setVisible(false);
 				arg0.dispose();
 				return;
 			}
-			Static231.sleep(100L);
+			PreciseSleep.sleep(100L);
 		}
 	}
 

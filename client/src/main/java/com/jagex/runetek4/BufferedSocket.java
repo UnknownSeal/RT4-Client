@@ -205,7 +205,7 @@ public final class BufferedSocket implements Runnable {
 		}
 		if (this.aClass212_4 != null) {
 			while (this.aClass212_4.status == 0) {
-				Static231.sleep(1L);
+				PreciseSleep.sleep(1L);
 			}
 			if (this.aClass212_4.status == 1) {
 				try {

@@ -68,7 +68,7 @@ public final class SecondaryLinkedList {
 	}
 
 	@OriginalMember(owner = "client!ce", name = "a", descriptor = "(Lclient!rg;B)V")
-	public void method798(@OriginalArg(0) SecondaryNode arg0) {
+	public void pushBack(@OriginalArg(0) SecondaryNode arg0) {
 		if (arg0.secondaryNext != null) {
 			arg0.secondaryRemove();
 		}

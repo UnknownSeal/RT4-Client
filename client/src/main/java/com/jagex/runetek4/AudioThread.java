@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class AudioThread implements Runnable {
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "m", descriptor = "Lsignlink!ll;")
-	public SignLink aClass213_1;
+	public SignLink canvas;
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "p", descriptor = "[Lclient!vh;")
 	public final AudioChannel[] aClass62Array1 = new AudioChannel[2];
@@ -31,8 +31,8 @@ public final class AudioThread implements Runnable {
 						local19.method3565();
 					}
 				}
-				Static231.sleep(10L);
-				Static140.method2708(this.aClass213_1, null);
+				PreciseSleep.sleep(10L);
+				GameShell.method2708(this.canvas, null);
 			}
 		} catch (@Pc(43) Exception local43) {
 			Static89.report(null, local43);

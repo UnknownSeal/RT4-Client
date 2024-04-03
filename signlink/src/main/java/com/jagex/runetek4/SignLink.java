@@ -26,10 +26,10 @@ import org.openrs2.deob.annotation.Pc;
 public final class SignLink implements Runnable {
 
 	@OriginalMember(owner = "signlink!ll", name = "o", descriptor = "Ljava/lang/String;")
-	public static String aString14;
+	public static String javaVersion;
 
 	@OriginalMember(owner = "signlink!ll", name = "n", descriptor = "Ljava/lang/String;")
-	public static String aString15;
+	public static String osName;
 
 	@OriginalMember(owner = "signlink!ll", name = "l", descriptor = "Ljava/lang/String;")
 	private static String aString16;
@@ -41,7 +41,7 @@ public final class SignLink implements Runnable {
 	private static String aString18;
 
 	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "Ljava/lang/String;")
-	public static String aString20;
+	public static String javaVendor;
 
 	@OriginalMember(owner = "signlink!ll", name = "b", descriptor = "Ljava/lang/String;")
 	private static String aString21;
@@ -92,7 +92,7 @@ public final class SignLink implements Runnable {
 	private final int anInt5929;
 
 	@OriginalMember(owner = "signlink!ll", name = "k", descriptor = "Ljava/awt/EventQueue;")
-	public EventQueue anEventQueue1;
+	public EventQueue eventQueue;
 
 	@OriginalMember(owner = "signlink!ll", name = "c", descriptor = "[Lsignlink!qm;")
 	public FileOnDisk[] cacheIndexes;
@@ -169,14 +169,14 @@ public final class SignLink implements Runnable {
 
 	@OriginalMember(owner = "signlink!ll", name = "<init>", descriptor = "(Ljava/applet/Applet;ILjava/lang/String;I)V")
 	public SignLink(@OriginalArg(0) Applet arg0, @OriginalArg(1) int arg1, @OriginalArg(2) String arg2, @OriginalArg(3) int arg3) throws Exception {
-		aString14 = "1.1";
+		javaVersion = "1.1";
 		this.aString19 = arg2;
 		this.anInt5929 = arg1;
 		this.anApplet2 = arg0;
-		aString20 = "Unknown";
+		javaVendor = "Unknown";
 		try {
-			aString20 = System.getProperty("java.vendor");
-			aString14 = System.getProperty("java.version");
+			javaVendor = System.getProperty("java.vendor");
+			javaVersion = System.getProperty("java.version");
 		} catch (@Pc(43) Exception local43) {
 		}
 		try {
@@ -184,7 +184,7 @@ public final class SignLink implements Runnable {
 		} catch (@Pc(48) Exception local48) {
 			aString16 = "Unknown";
 		}
-		aString15 = aString16.toLowerCase();
+		osName = aString16.toLowerCase();
 		try {
 			aString21 = System.getProperty("os.arch").toLowerCase();
 		} catch (@Pc(59) Exception local59) {
@@ -206,7 +206,7 @@ public final class SignLink implements Runnable {
 			aString17 = "~/";
 		}
 		try {
-			this.anEventQueue1 = Toolkit.getDefaultToolkit().getSystemEventQueue();
+			this.eventQueue = Toolkit.getDefaultToolkit().getSystemEventQueue();
 		} catch (@Pc(97) Throwable local97) {
 		}
 		try {
@@ -260,7 +260,7 @@ public final class SignLink implements Runnable {
 
 	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "(I)V")
 	public final void method5110() {
-		aLong1314 = MonotonicClock.currentTimeMillis() + 5000L;
+		aLong1314 = MonotonicTime.get() + 5000L;
 	}
 
 	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "(Z)Z")
@@ -349,7 +349,7 @@ public final class SignLink implements Runnable {
 			try {
 				@Pc(45) int local45 = local16.type;
 				if (local45 == 1) {
-					if (aLong1314 > MonotonicClock.currentTimeMillis()) {
+					if (aLong1314 > MonotonicTime.get()) {
 						throw new IOException();
 					}
 					local16.result = new Socket(InetAddress.getByName((String) local16.objectArg), local16.intArg2);
@@ -360,7 +360,7 @@ public final class SignLink implements Runnable {
 					local813.setPriority(local16.intArg2);
 					local16.result = local813;
 				} else if (local45 == 4) {
-					if (aLong1314 > MonotonicClock.currentTimeMillis()) {
+					if (aLong1314 > MonotonicTime.get()) {
 						throw new IOException();
 					}
 					local16.result = new DataInputStream(((URL) local16.objectArg).openStream());
@@ -381,7 +381,7 @@ public final class SignLink implements Runnable {
 					} else {
 						@Pc(147) String local147;
 						if (local45 == 3) {
-							if (MonotonicClock.currentTimeMillis() < aLong1314) {
+							if (MonotonicTime.get() < aLong1314) {
 								throw new IOException();
 							}
 							local147 = (local16.intArg2 >> 24 & 0xFF) + "." + (local16.intArg2 >> 16 & 0xFF) + "." + (local16.intArg2 >> 8 & 0xFF) + "." + (local16.intArg2 & 0xFF);
@@ -415,10 +415,10 @@ public final class SignLink implements Runnable {
 								this.aClass211_1.method5109(local595, local591);
 							} else if (local45 == 17) {
 								local687 = (Object[]) local16.objectArg;
-								this.aClass211_1.method5107((Point) local687[2], local16.intArg2, (Component) local687[0], local16.intArg1, (int[]) local687[1]);
+								this.aClass211_1.setcustomcursor((Point) local687[2], local16.intArg2, (Component) local687[0], local16.intArg1, (int[]) local687[1]);
 							} else if (local45 == 16) {
 								try {
-									if (!aString15.startsWith("win")) {
+									if (!osName.startsWith("win")) {
 										throw new Exception();
 									}
 									local147 = (String) local16.objectArg;

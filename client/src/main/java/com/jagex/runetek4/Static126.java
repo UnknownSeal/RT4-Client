@@ -31,7 +31,7 @@ public final class Static126 {
 		}
 		Static97.anInt2503 = -1;
 		Static169.aClass13_18 = null;
-		Static182.anInt4311 = Static83.anInt372;
+		Static182.anInt4311 = Static83.loopCycle;
 		if (GlRenderer.enabled) {
 			Static263.aBoolean299 = true;
 		}

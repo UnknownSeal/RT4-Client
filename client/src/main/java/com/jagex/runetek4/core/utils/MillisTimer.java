@@ -1,8 +1,7 @@
 package com.jagex.runetek4.core.utils;
 
-import com.jagex.runetek4.MonotonicClock;
-import com.jagex.runetek4.Static231;
-import com.jagex.runetek4.core.utils.Timer;
+import com.jagex.runetek4.MonotonicTime;
+import com.jagex.runetek4.PreciseSleep;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -27,7 +26,7 @@ public final class MillisTimer extends Timer {
 	private int anInt3553 = 0;
 
 	@OriginalMember(owner = "client!lj", name = "k", descriptor = "J")
-	private long aLong122 = MonotonicClock.currentTimeMillis();
+	private long aLong122 = MonotonicTime.get();
 
 	@OriginalMember(owner = "client!lj", name = "<init>", descriptor = "()V")
 	public MillisTimer() {
@@ -51,7 +50,7 @@ public final class MillisTimer extends Timer {
 		@Pc(20) int local20 = this.anInt3550;
 		this.anInt3550 = 300;
 		this.anInt3552 = 1;
-		this.aLong122 = MonotonicClock.currentTimeMillis();
+		this.aLong122 = MonotonicTime.get();
 		if (this.aLongArray4[this.anInt3549] == 0L) {
 			this.anInt3550 = local20;
 			this.anInt3552 = local17;
@@ -81,7 +80,7 @@ public final class MillisTimer extends Timer {
 		if (arg0 > this.anInt3552) {
 			this.anInt3552 = arg0;
 		}
-		Static231.sleep((long) this.anInt3552);
+		PreciseSleep.sleep((long) this.anInt3552);
 		local139 = 0;
 		while (this.anInt3553 < 256) {
 			this.anInt3553 += this.anInt3550;

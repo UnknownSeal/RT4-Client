@@ -114,9 +114,9 @@ public final class Static263 {
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(IILclient!fe;)V")
 	public static void method4514(@OriginalArg(0) int arg0, @OriginalArg(2) PathingEntity arg1) {
-		if (Static83.anInt372 < arg1.anInt3395) {
+		if (Static83.loopCycle < arg1.anInt3395) {
 			Static18.method553(arg1);
-		} else if (arg1.anInt3386 >= Static83.anInt372) {
+		} else if (arg1.anInt3386 >= Static83.loopCycle) {
 			Static280.method4665(arg1);
 		} else {
 			Static104.method2247(arg1);

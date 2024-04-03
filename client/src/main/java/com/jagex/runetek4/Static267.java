@@ -105,7 +105,7 @@ public final class Static267 {
 			Static1.anInt6++;
 		}
 		Static226.anInt5084 += arg0;
-		local60 = (arg0 + (Static83.anInt372 & 0x1)) / 2;
+		local60 = (arg0 + (Static83.loopCycle & 0x1)) / 2;
 		if (local60 <= 0) {
 			return;
 		}
@@ -150,7 +150,7 @@ public final class Static267 {
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "b", descriptor = "(I)V")
 	public static void method4529() {
-		Static231.aClass99_29.method3103();
+		PreciseSleep.aClass99_29.method3103();
 		Static219.aClass99_27.method3103();
 	}
 }

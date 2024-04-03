@@ -119,8 +119,8 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.p1(Static249.aBoolean282 ? 1 : 0);
 				Static17.aClass3_Sub15_Sub1_2.p1(1);
 				Static17.aClass3_Sub15_Sub1_2.p1(Static144.method2736());
-				Static17.aClass3_Sub15_Sub1_2.p2(Static48.anInt1448);
-				Static17.aClass3_Sub15_Sub1_2.p2(Static254.anInt5554);
+				Static17.aClass3_Sub15_Sub1_2.p2(Static48.canvasWid);
+				Static17.aClass3_Sub15_Sub1_2.p2(Static254.canvasHei);
 				Static17.aClass3_Sub15_Sub1_2.p1(Static186.anInt4392);
 				Static140.method2705(Static17.aClass3_Sub15_Sub1_2);
 				Static17.aClass3_Sub15_Sub1_2.pjstr(Static47.aClass100_991);
@@ -208,7 +208,7 @@ public final class Static216 {
 			}
 			if (Static184.anInt4348 == 7) {
 				if (Static124.socket.available() >= 1) {
-					Static231.anInt5202 = (Static124.socket.read() + 3) * 60;
+					PreciseSleep.anInt5202 = (Static124.socket.read() + 3) * 60;
 					Static184.anInt4348 = 0;
 					Static266.anInt5336 = 21;
 					Static124.socket.closeGracefully();

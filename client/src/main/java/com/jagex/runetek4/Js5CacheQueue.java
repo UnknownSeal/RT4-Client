@@ -25,7 +25,7 @@ public final class Js5CacheQueue implements Runnable {
 	public Js5CacheQueue() {
 		@Pc(20) PrivilegedRequest local20 = Static71.signLink.method5130(5, this);
 		while (local20.status == 0) {
-			Static231.sleep(10L);
+			PreciseSleep.sleep(10L);
 		}
 		if (local20.status == 2) {
 			throw new RuntimeException();
@@ -37,7 +37,7 @@ public final class Js5CacheQueue implements Runnable {
 	private void method2461(@OriginalArg(0) Js5CacheRequest arg0) {
 		@Pc(7) SecondaryLinkedList local7 = this.aClass16_6;
 		synchronized (this.aClass16_6) {
-			this.aClass16_6.method798(arg0);
+			this.aClass16_6.pushBack(arg0);
 			this.anInt3131++;
 			this.aClass16_6.notifyAll();
 		}

@@ -79,7 +79,7 @@ public final class Static80 {
 		try {
 			@Pc(78) PrivilegedRequest local78 = arg0.method5112("runescape");
 			while (local78.status == 0) {
-				Static231.sleep(1L);
+				PreciseSleep.sleep(1L);
 			}
 			if (local78.status == 1) {
 				local48 = (FileOnDisk) local78.result;

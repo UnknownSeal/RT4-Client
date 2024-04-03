@@ -166,7 +166,7 @@ public final class Static158 {
 						Static175.aClass8_Sub4_Sub2Array1[local97] = new NPCEntity();
 						@Pc(198) NPCEntity local198 = Static175.aClass8_Sub4_Sub2Array1[local97];
 						Static33.anIntArray79[Static272.anInt5214++] = local97;
-						local198.anInt3430 = Static83.anInt372;
+						local198.anInt3430 = Static83.loopCycle;
 						local198.method2698(local148);
 						local198.setSize(local198.npcType.size);
 						local198.anInt3400 = local198.anInt3381 = Static56.anIntArray141[local198.npcType.respawndir];

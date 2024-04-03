@@ -180,7 +180,7 @@ public final class Static127 {
 			if (local10 == null) {
 				return null;
 			}
-			if (local10.method1009() > MonotonicClock.currentTimeMillis()) {
+			if (local10.method1009() > MonotonicTime.get()) {
 				return null;
 			}
 			local10.remove();
@@ -299,7 +299,7 @@ public final class Static127 {
 				client.js5NetQueue.method2323();
 			}
 			if (arg0.method3111(Static114.aClass100_1100)) {
-				Static35.aBoolean66 = true;
+				Static35.canvasReplaceRecommended = true;
 			}
 			if (arg0.method3111(Static148.aClass100_677)) {
 				Static196.method3534(25);

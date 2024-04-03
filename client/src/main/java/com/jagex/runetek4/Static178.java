@@ -16,7 +16,7 @@ public final class Static178 {
 	public static boolean highDetailLighting = true;
 
 	@OriginalMember(owner = "runetek4.client!od", name = "e", descriptor = "I")
-	public static int anInt4246 = 0;
+	public static int topMargin = 0;
 
 	@OriginalMember(owner = "runetek4.client!od", name = "g", descriptor = "S")
 	public static short aShort25 = 256;

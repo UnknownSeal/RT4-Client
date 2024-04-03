@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 import com.jagex.runetek4.core.io.Packet;
@@ -87,19 +86,6 @@ public final class Static140 {
 		Static185.anInt4369 = Static119.transmitTimer;
 		Static6.outboundBuffer.pIsaac1(34);
 		Static6.outboundBuffer.p8(arg0);
-	}
-
-	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(Lsignlink!ll;Ljava/lang/Object;I)V")
-	public static void method2708(@OriginalArg(0) SignLink arg0, @OriginalArg(1) Object arg1) {
-		if (arg0.anEventQueue1 == null) {
-			return;
-		}
-		for (@Pc(19) int local19 = 0; local19 < 50 && arg0.anEventQueue1.peekEvent() != null; local19++) {
-			Static231.sleep(1L);
-		}
-		if (arg1 != null) {
-			arg0.anEventQueue1.postEvent(new ActionEvent(arg1, 1001, "dummy"));
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(II)Lclient!ic;")

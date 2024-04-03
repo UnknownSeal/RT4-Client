@@ -23,10 +23,10 @@ public final class Static243 {
 	public static Scenery[] aClass31Array3;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "c", descriptor = "J")
-	public static volatile long aLong178 = 0L;
+	public static volatile long lastCanvasReplace = 0L;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "v", descriptor = "I")
-	public static int anInt5359 = 0;
+	public static int fps = 0;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "K", descriptor = "[I")
 	public static int[] anIntArray476 = new int[2];
@@ -63,7 +63,7 @@ public final class Static243 {
 		for (local3506 = 0; local3506 < Static143.aClass102Array1.length; local3506++) {
 			Static143.aClass102Array1[local3506] = null;
 		}
-		Static231.anInt5204 = 0;
+		PreciseSleep.anInt5204 = 0;
 		Static60.aBoolean108 = false;
 		Static48.setIdleLoops(0);
 		for (local3506 = 0; local3506 < 100; local3506++) {
@@ -112,7 +112,7 @@ public final class Static243 {
 		Static133.anInt5230 = 0;
 		Static233.anInt5217 = 0;
 		Static265.anInt5765 = 0;
-		Static231.anInt5203 = 0;
+		PreciseSleep.anInt5203 = 0;
 		Static248.anInt4232 = 0;
 		Static245.anInt5375 = 0;
 		Static57.anInt1744 = 0;
@@ -133,7 +133,7 @@ public final class Static243 {
 		Static52.method1287();
 		Static39.aClass13_10 = null;
 		Static60.aBoolean108 = false;
-		Static231.anInt5204 = 0;
+		PreciseSleep.anInt5204 = 0;
 		Static134.A_PLAYER_MODEL___2.method1950(new int[] { 0, 0, 0, 0, 0 }, -1, false, null, -1);
 		for (local3506 = 0; local3506 < 8; local3506++) {
 			Static160.aClass100Array121[local3506] = null;

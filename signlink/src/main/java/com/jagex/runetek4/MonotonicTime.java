@@ -5,7 +5,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("signlink!ad")
-public final class MonotonicClock {
+public final class MonotonicTime {
 
 	@OriginalMember(owner = "signlink!ad", name = "a", descriptor = "J")
 	private static long leapMillis;
@@ -14,7 +14,7 @@ public final class MonotonicClock {
 	private static long previous;
 
 	@OriginalMember(owner = "signlink!ad", name = "a", descriptor = "(B)J")
-	public static synchronized long currentTimeMillis() {
+	public static synchronized long get() {
 		@Pc(1) long now = System.currentTimeMillis();
 		if (previous > now) {
 			leapMillis += previous - now;

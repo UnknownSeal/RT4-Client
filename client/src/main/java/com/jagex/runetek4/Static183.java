@@ -32,7 +32,7 @@ public final class Static183 {
 		@Pc(9) SecondaryLinkedList local9 = new SecondaryLinkedList();
 		for (@Pc(14) Map local14 = (Map) Static228.aClass69_120.method2289(); local14 != null; local14 = (Map) Static228.aClass69_120.method2288()) {
 			if (local14.aBoolean50 && local14.method664(arg1, arg0)) {
-				local9.method798(local14);
+				local9.pushBack(local14);
 			}
 		}
 		return local9;

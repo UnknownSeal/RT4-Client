@@ -140,7 +140,7 @@ public final class Static38 {
 
 	@OriginalMember(owner = "runetek4.client!cn", name = "a", descriptor = "(ZI)I")
 	public static int poll(@OriginalArg(0) boolean arg0) {
-		@Pc(4) long local4 = MonotonicClock.currentTimeMillis();
+		@Pc(4) long local4 = MonotonicTime.get();
 		for (@Pc(28) LongNode local28 = arg0 ? (LongNode) Static199.aClass133_20.peekFront() : (LongNode) Static199.aClass133_20.prev(); local28 != null; local28 = (LongNode) Static199.aClass133_20.prev()) {
 			if ((local28.aLong55 & 0x3FFFFFFFFFFFFFFFL) < local4) {
 				if ((local28.aLong55 & 0x4000000000000000L) != 0L) {
@@ -282,7 +282,7 @@ public final class Static38 {
 						}
 					}
 				}
-				if (local39.anObject5 == null || Static83.anInt372 < local39.anInt3390 || local39.anInt3375 <= Static83.anInt372) {
+				if (local39.anObject5 == null || Static83.loopCycle < local39.anInt3390 || local39.anInt3375 <= Static83.loopCycle) {
 					local39.anInt3424 = Static207.method3685(Static55.level, local39.anInt3412, local39.anInt3421);
 					Static43.method1141(Static55.level, local39.anInt3412, local39.anInt3421, local39.anInt3424, (local82 - 1) * 64 + 60, local39, local39.anInt3381, local272, local39.aBoolean171);
 				} else {

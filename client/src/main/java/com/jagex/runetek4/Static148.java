@@ -40,10 +40,10 @@ public final class Static148 {
 		Static7.anIntArray75[arg0] = arg1;
 		@Pc(21) LongNode local21 = (LongNode) Static199.aClass133_20.getNode((long) arg0);
 		if (local21 == null) {
-			local21 = new LongNode(MonotonicClock.currentTimeMillis() + 500L);
+			local21 = new LongNode(MonotonicTime.get() + 500L);
 			Static199.aClass133_20.pushNode(local21, (long) arg0);
 		} else {
-			local21.aLong55 = MonotonicClock.currentTimeMillis() + 500L;
+			local21.aLong55 = MonotonicTime.get() + 500L;
 		}
 	}
 

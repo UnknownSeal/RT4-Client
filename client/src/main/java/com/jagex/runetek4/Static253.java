@@ -132,10 +132,10 @@ public final class Static253 {
 			} else {
 				local171 = Static103.method2235(Static178.anInt4247, Static173.self.movementQueueZ[0] >> 3, Static113.anInt4609, Static173.self.movementQueueX[0] >> 3);
 			}
-			Static120.method2394(Static83.anInt372, !Static11.aBoolean15);
+			Static120.method2394(Static83.loopCycle, !Static11.aBoolean15);
 			GlRenderer.clearColorAndDepthBuffers(local171);
 			Static143.method2731(Static240.anInt5333, Static134.anInt3302, Static5.anInt40, Static138.anInt3439, Static184.anInt4358);
-			GlRenderer.anInt5323 = Static83.anInt372;
+			GlRenderer.anInt5323 = Static83.loopCycle;
 			Static156.method2954(Static138.anInt3439, Static5.anInt40, Static134.anInt3302, Static240.anInt5333, Static184.anInt4358, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Static55.level + 1, local387, Static173.self.anInt3412 >> 7, Static173.self.anInt3421 >> 7);
 			Static263.aBoolean299 = true;
 			Static120.method2390();

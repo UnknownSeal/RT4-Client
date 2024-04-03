@@ -28,7 +28,7 @@ public class AudioChannel {
 	private final int anInt4621 = 32;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "f", descriptor = "J")
-	private long aLong151 = MonotonicClock.currentTimeMillis();
+	private long aLong151 = MonotonicTime.get();
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "w", descriptor = "[Lclient!qb;")
 	private final PcmStream[] aClass3_Sub3Array5 = new PcmStream[8];
@@ -163,7 +163,7 @@ public class AudioChannel {
 		if (this.aClass3_Sub3_6 != null) {
 			this.aClass3_Sub3_6.method4408(arg0, 0, 256);
 		}
-		this.aLong151 = MonotonicClock.currentTimeMillis();
+		this.aLong151 = MonotonicTime.get();
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(B)V")
@@ -171,7 +171,7 @@ public class AudioChannel {
 		if (this.anIntArray411 == null) {
 			return;
 		}
-		@Pc(14) long local14 = MonotonicClock.currentTimeMillis();
+		@Pc(14) long local14 = MonotonicTime.get();
 		try {
 			if (this.aLong153 != 0L) {
 				if (local14 < this.aLong153) {
@@ -270,7 +270,7 @@ public class AudioChannel {
 			this.method3563();
 		} catch (@Pc(10) Exception local10) {
 			this.method3572();
-			this.aLong153 = MonotonicClock.currentTimeMillis() + 2000L;
+			this.aLong153 = MonotonicTime.get() + 2000L;
 		}
 	}
 
@@ -309,7 +309,7 @@ public class AudioChannel {
 			if (local6) {
 				Static60.aClass19_1.aBoolean62 = true;
 				while (Static60.aClass19_1.aBoolean64) {
-					Static231.sleep(50L);
+					PreciseSleep.sleep(50L);
 				}
 				Static60.aClass19_1 = null;
 			}
