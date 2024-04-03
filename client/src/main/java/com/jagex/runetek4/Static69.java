@@ -16,7 +16,7 @@ public final class Static69 {
 	public static SignLink aClass213_4;
 
 	@OriginalMember(owner = "runetek4.client!fh", name = "P", descriptor = "Z")
-	public static volatile boolean aBoolean115 = true;
+	public static volatile boolean fullredraw = true;
 
 	@OriginalMember(owner = "runetek4.client!fh", name = "U", descriptor = "[[Z")
 	public static final boolean[][] aBooleanArrayArray2 = new boolean[][] { new boolean[0], { true, false, true }, { true, false, false, true }, { false, false, true, true }, { true, true, false }, { false, true, true }, { true, false, false, true }, { false, false, false, true, true }, { false, true, true }, { true, false, true, true, true }, { false, true, true, true, true }, { false, true, true, true, true, false } };

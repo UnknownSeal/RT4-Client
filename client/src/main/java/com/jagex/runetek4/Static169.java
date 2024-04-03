@@ -38,7 +38,7 @@ public final class Static169 {
 		}
 		if (GlRenderer.enabled && Static40.aBoolean78) {
 			try {
-				Static287.method1758(Static71.signLink.anApplet2, "openjs", new Object[] { arg0.method3127(Static230.anApplet_Sub1_1.getCodeBase()).toString() });
+				BrowserControl.method1758(Static71.signLink.anApplet2, "openjs", new Object[] { arg0.method3127(Static230.anApplet_Sub1_1.getCodeBase()).toString() });
 				return;
 			} catch (@Pc(48) Throwable local48) {
 			}
@@ -70,7 +70,7 @@ public final class Static169 {
 		}
 		@Pc(90) PrivilegedRequest local90 = arg3.method5129(arg0, arg1, arg2);
 		while (local90.status == 0) {
-			Static231.sleep(10L);
+			PreciseSleep.sleep(10L);
 		}
 		@Pc(103) Frame local103 = (Frame) local90.result;
 		if (local103 == null) {

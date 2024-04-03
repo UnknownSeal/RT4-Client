@@ -23,7 +23,7 @@ public final class CursorManager {
 	}
 
 	@OriginalMember(owner = "signlink!g", name = "a", descriptor = "(BLjava/awt/Point;ILjava/awt/Component;I[I)V")
-	public final void method5107(@OriginalArg(1) Point arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Component arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int[] arg4) {
+	public final void setcustomcursor(@OriginalArg(1) Point arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Component arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int[] arg4) {
 		if (arg4 == null) {
 			arg2.setCursor(null);
 		} else {

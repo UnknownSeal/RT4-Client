@@ -35,7 +35,7 @@ public final class Static64 {
 		@Pc(23) int local23;
 		for (local23 = 0; local23 < Static240.removedCount; local23++) {
 			@Pc(30) int local30 = Static52.removedIds[local23];
-			if (Static83.anInt372 != Static159.aClass8_Sub4_Sub1Array1[local30].anInt3430) {
+			if (Static83.loopCycle != Static159.aClass8_Sub4_Sub1Array1[local30].anInt3430) {
 				if (Static159.aClass8_Sub4_Sub1Array1[local30].anInt1664 > 0) {
 					Static271.method4597(Static159.aClass8_Sub4_Sub1Array1[local30]);
 				}

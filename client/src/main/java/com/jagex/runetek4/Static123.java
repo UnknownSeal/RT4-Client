@@ -24,7 +24,7 @@ public final class Static123 {
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(BI)Lclient!lk;")
 	public static StructType method2417(@OriginalArg(1) int arg0) {
-		@Pc(10) StructType local10 = (StructType) Static231.aClass54_13.get((long) arg0);
+		@Pc(10) StructType local10 = (StructType) PreciseSleep.aClass54_13.get((long) arg0);
 		if (local10 != null) {
 			return local10;
 		}
@@ -33,7 +33,7 @@ public final class Static123 {
 		if (local26 != null) {
 			local10.method2806(new Packet(local26));
 		}
-		Static231.aClass54_13.put(local10, (long) arg0);
+		PreciseSleep.aClass54_13.put(local10, (long) arg0);
 		return local10;
 	}
 

@@ -1,7 +1,6 @@
 package com.jagex.runetek4.core.utils;
 
-import com.jagex.runetek4.Static231;
-import com.jagex.runetek4.core.utils.Timer;
+import com.jagex.runetek4.PreciseSleep;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -27,7 +26,7 @@ public final class NanoTimer extends Timer {
 		if (local9 > local14) {
 			local14 = local9;
 		}
-		Static231.sleep(local14 / 1000000L);
+		PreciseSleep.sleep(local14 / 1000000L);
 		@Pc(31) int local31 = 0;
 		@Pc(33) long local33 = System.nanoTime();
 		while (local31 < 10 && (local31 < 1 || this.aLong142 < local33)) {

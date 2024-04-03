@@ -31,7 +31,7 @@ public final class Static246 {
 			@Pc(15) SpotAnim local15 = local9.aClass8_Sub2_1;
 			if (local15.anInt606 != Static55.level || local15.aBoolean41) {
 				local9.remove();
-			} else if (local15.anInt590 <= Static83.anInt372) {
+			} else if (local15.anInt590 <= Static83.loopCycle) {
 				local15.method558(Static178.anInt4247);
 				if (local15.aBoolean41) {
 					local9.remove();
@@ -44,7 +44,7 @@ public final class Static246 {
 
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(Lclient!me;IIII)V")
 	public static void method4240(@OriginalArg(0) NPCType npcType, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		if (Static231.anInt5204 >= 400) {
+		if (PreciseSleep.anInt5204 >= 400) {
 			return;
 		}
 		if (npcType.multinpc != null) {

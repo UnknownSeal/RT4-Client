@@ -135,9 +135,9 @@ public final class Static89 {
 			if (Static69.aClass213_4.anApplet2 == null) {
 				return;
 			}
-			@Pc(109) PrivilegedRequest local109 = Static69.aClass213_4.method5118(new URL(Static69.aClass213_4.anApplet2.getCodeBase(), "clienterror.ws?c=" + Static131.anInt3252 + "&u=" + Static101.aLong98 + "&v1=" + SignLink.aString20 + "&v2=" + SignLink.aString14 + "&e=" + local13));
+			@Pc(109) PrivilegedRequest local109 = Static69.aClass213_4.method5118(new URL(Static69.aClass213_4.anApplet2.getCodeBase(), "clienterror.ws?c=" + Static131.anInt3252 + "&u=" + Static101.aLong98 + "&v1=" + SignLink.javaVendor + "&v2=" + SignLink.javaVersion + "&e=" + local13));
 			while (local109.status == 0) {
-				Static231.sleep(1L);
+				PreciseSleep.sleep(1L);
 			}
 			if (local109.status == 1) {
 				@Pc(128) DataInputStream local128 = (DataInputStream) local109.result;
@@ -167,7 +167,7 @@ public final class Static89 {
 				Static155.anInt3751 = Static7.clickX;
 				Static60.anInt1892 = Static60.clickY;
 			}
-			Static231.anInt5204 = 1;
+			PreciseSleep.anInt5204 = 1;
 			Static254.aClass100Array168[0] = LocalizedText.CANCEL;
 			Static233.aClass100Array160[0] = Static186.aClass100_827;
 			Static39.aShortArray6[0] = 1005;
@@ -191,7 +191,7 @@ public final class Static89 {
 		if (GlRenderer.enabled) {
 			Static263.aBoolean299 = true;
 		}
-		Static182.anInt4311 = Static83.anInt372;
+		Static182.anInt4311 = Static83.loopCycle;
 		if (Static154.topLevelInterace != -1) {
 			Static24.anInt766 = 0;
 			Static9.method182();

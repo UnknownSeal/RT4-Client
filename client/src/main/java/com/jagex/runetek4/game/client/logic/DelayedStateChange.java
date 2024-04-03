@@ -1,7 +1,7 @@
 package com.jagex.runetek4.game.client.logic;
 
 import com.jagex.runetek4.JagString;
-import com.jagex.runetek4.MonotonicClock;
+import com.jagex.runetek4.MonotonicTime;
 import com.jagex.runetek4.Static140;
 import com.jagex.runetek4.Static215;
 import com.jagex.runetek4.core.datastruct.SecondaryNode;
@@ -32,8 +32,8 @@ public final class DelayedStateChange extends SecondaryNode {
 
 	@OriginalMember(owner = "client!da", name = "a", descriptor = "(Z)V")
 	public final void method1007() {
-		this.secondaryNodeId = MonotonicClock.currentTimeMillis() + 500L | Long.MIN_VALUE & this.secondaryNodeId;
-		Static140.aClass16_7.method798(this);
+		this.secondaryNodeId = MonotonicTime.get() + 500L | Long.MIN_VALUE & this.secondaryNodeId;
+		Static140.aClass16_7.pushBack(this);
 	}
 
 	@OriginalMember(owner = "client!da", name = "b", descriptor = "(Z)J")
@@ -55,7 +55,7 @@ public final class DelayedStateChange extends SecondaryNode {
 	public final void method1017() {
 		this.secondaryNodeId |= Long.MIN_VALUE;
 		if (this.method1009() == 0L) {
-			Static215.aClass16_9.method798(this);
+			Static215.aClass16_9.pushBack(this);
 		}
 	}
 }

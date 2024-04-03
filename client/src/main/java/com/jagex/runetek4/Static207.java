@@ -91,15 +91,15 @@ public final class Static207 {
 	public static int method3684() {
 		try {
 			if (Static82.anInt2231 == 0) {
-				if (MonotonicClock.currentTimeMillis() - 5000L < Static231.aLong174) {
+				if (MonotonicTime.get() - 5000L < PreciseSleep.aLong174) {
 					return 0;
 				}
 				System.out.println(Static208.worldListPort);
 				Static72.aClass212_3 = Static71.signLink.openSocket(client.worldListHostname, Static208.worldListPort);
-				Static15.aLong18 = MonotonicClock.currentTimeMillis();
+				Static15.aLong18 = MonotonicTime.get();
 				Static82.anInt2231 = 1;
 			}
-			if (Static15.aLong18 + 30000L < MonotonicClock.currentTimeMillis()) {
+			if (Static15.aLong18 + 30000L < MonotonicTime.get()) {
 				return Static10.method347(1000);
 			}
 			@Pc(82) int local82;
@@ -178,7 +178,7 @@ public final class Static207 {
 				Static127.anInt3132 = 0;
 				Static82.anInt2231 = 0;
 				Static229.aByteArray70 = null;
-				Static231.aLong174 = MonotonicClock.currentTimeMillis();
+				PreciseSleep.aLong174 = MonotonicTime.get();
 				return 0;
 			} else {
 				return Static10.method347(1002);

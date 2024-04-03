@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static48 {
 
 	@OriginalMember(owner = "runetek4.client!dl", name = "d", descriptor = "I")
-	public static int anInt1448;
+	public static int canvasWid;
 
 	@OriginalMember(owner = "runetek4.client!dl", name = "e", descriptor = "I")
 	public static int anInt1449;

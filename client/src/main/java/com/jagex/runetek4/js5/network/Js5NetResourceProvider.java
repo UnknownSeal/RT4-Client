@@ -213,7 +213,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				for (local37 = this.aClass69_17.method2289(); local37 != null; local37 = this.aClass69_17.method2288()) {
 					local43 = (int) local37.nodeId;
 					if (this.aByteArray9[local43] == 0) {
-						this.method536(local43, 1);
+						this.fetchgroup_inner(local43, 1);
 					}
 					if (this.aByteArray9[local43] == 0) {
 						local32 = false;
@@ -230,7 +230,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 							break;
 						}
 						if (this.aByteArray9[this.anInt578] == 0) {
-							this.method536(this.anInt578, 1);
+							this.fetchgroup_inner(this.anInt578, 1);
 						}
 						if (this.aByteArray9[this.anInt578] == 0) {
 							local32 = false;
@@ -250,7 +250,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				for (local37 = this.aClass69_17.method2289(); local37 != null; local37 = this.aClass69_17.method2288()) {
 					local43 = (int) local37.nodeId;
 					if (this.aByteArray9[local43] != 1) {
-						this.method536(local43, 2);
+						this.fetchgroup_inner(local43, 2);
 					}
 					if (this.aByteArray9[local43] == 1) {
 						local37.remove();
@@ -267,7 +267,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 							break;
 						}
 						if (this.aByteArray9[this.anInt578] != 1) {
-							this.method536(this.anInt578, 2);
+							this.fetchgroup_inner(this.anInt578, 2);
 						}
 						if (this.aByteArray9[this.anInt578] != 1) {
 							local37 = new Node();
@@ -286,7 +286,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				this.aClass69_17 = null;
 			}
 		}
-		if (!this.aBoolean37 || this.aLong20 > MonotonicClock.currentTimeMillis()) {
+		if (!this.aBoolean37 || this.aLong20 > MonotonicTime.get()) {
 			return;
 		}
 		for (@Pc(331) Js5Request local331 = (Js5Request) this.requests.peekFront(); local331 != null; local331 = (Js5Request) this.requests.prev()) {
@@ -301,7 +301,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				}
 			}
 		}
-		this.aLong20 = MonotonicClock.currentTimeMillis() + 1000L;
+		this.aLong20 = MonotonicTime.get() + 1000L;
 	}
 
 	@OriginalMember(owner = "client!bg", name = "b", descriptor = "(II)I")
@@ -317,7 +317,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	}
 
 	@OriginalMember(owner = "client!bg", name = "a", descriptor = "(III)Lclient!il;")
-	private Js5Request method536(@OriginalArg(1) int group, @OriginalArg(0) int arg0) {
+	private Js5Request fetchgroup_inner(@OriginalArg(1) int group, @OriginalArg(0) int arg0) {
 		@Pc(13) Js5Request request = (Js5Request) this.requests.getNode(group);
 		if (request != null && arg0 == 0 && !request.urgent && request.awaitingResponse) {
 			request.remove();
@@ -442,10 +442,10 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				local21.remove();
 			} else {
 				if (this.aByteArray9[local28] == 0) {
-					this.method536(local28, 1);
+					this.fetchgroup_inner(local28, 1);
 				}
 				if (this.aByteArray9[local28] == -1) {
-					this.method536(local28, 2);
+					this.fetchgroup_inner(local28, 2);
 				}
 				if (this.aByteArray9[local28] == 1) {
 					local21.remove();
@@ -466,7 +466,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	@OriginalMember(owner = "client!bg", name = "c", descriptor = "(II)[B")
 	@Override
 	public byte[] fetchgroup(@OriginalArg(0) int group) {
-		@Pc(9) Js5Request request = this.method536(group, 0);
+		@Pc(9) Js5Request request = this.fetchgroup_inner(group, 0);
 		if (request == null) {
 			return null;
 		} else {

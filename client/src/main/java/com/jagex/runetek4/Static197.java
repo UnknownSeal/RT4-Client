@@ -28,7 +28,7 @@ public final class Static197 {
 		}
 		@Pc(17) PrivilegedRequest local17 = arg0.method5132();
 		while (local17.status == 0) {
-			Static231.sleep(10L);
+			PreciseSleep.sleep(10L);
 		}
 		if (local17.status == 2) {
 			return new Class114[0];
@@ -70,29 +70,29 @@ public final class Static197 {
 		@Pc(85) Container local85;
 		if (Static69.aFrame2 != null) {
 			local85 = Static69.aFrame2;
-		} else if (Static39.aFrame1 == null) {
+		} else if (Static39.frame == null) {
 			local85 = Static71.signLink.anApplet2;
 		} else {
-			local85 = Static39.aFrame1;
+			local85 = Static39.frame;
 		}
-		Static72.anInt2046 = local85.getSize().width;
-		Static122.anInt3045 = local85.getSize().height;
+		Static72.frameWid = local85.getSize().width;
+		Static122.frameHei = local85.getSize().height;
 		@Pc(109) Insets local109;
-		if (Static39.aFrame1 == local85) {
-			local109 = Static39.aFrame1.getInsets();
-			Static72.anInt2046 -= local109.right + local109.left;
-			Static122.anInt3045 -= local109.bottom + local109.top;
+		if (Static39.frame == local85) {
+			local109 = Static39.frame.getInsets();
+			Static72.frameWid -= local109.right + local109.left;
+			Static122.frameHei -= local109.bottom + local109.top;
 		}
 		if (arg1 >= 2) {
-			Static48.anInt1448 = Static72.anInt2046;
-			Static254.anInt5554 = Static122.anInt3045;
-			Static145.anInt3497 = 0;
-			Static178.anInt4246 = 0;
+			Static48.canvasWid = Static72.frameWid;
+			Static254.canvasHei = Static122.frameHei;
+			Static145.leftMargin = 0;
+			Static178.topMargin = 0;
 		} else {
-			Static178.anInt4246 = 0;
-			Static145.anInt3497 = (Static72.anInt2046 - 765) / 2;
-			Static48.anInt1448 = 765;
-			Static254.anInt5554 = 503;
+			Static178.topMargin = 0;
+			Static145.leftMargin = (Static72.frameWid - 765) / 2;
+			Static48.canvasWid = 765;
+			Static254.canvasHei = 503;
 		}
 		if (arg0) {
 			Static31.method847(Static154.canvas);
@@ -108,14 +108,14 @@ public final class Static197 {
 			}
 		} else {
 			if (GlRenderer.enabled) {
-				GlRenderer.setCanvasSize(Static48.anInt1448, Static254.anInt5554);
+				GlRenderer.setCanvasSize(Static48.canvasWid, Static254.canvasHei);
 			}
-			Static154.canvas.setSize(Static48.anInt1448, Static254.anInt5554);
-			if (Static39.aFrame1 == local85) {
-				local109 = Static39.aFrame1.getInsets();
-				Static154.canvas.setLocation(local109.left + Static145.anInt3497, local109.top + Static178.anInt4246);
+			Static154.canvas.setSize(Static48.canvasWid, Static254.canvasHei);
+			if (Static39.frame == local85) {
+				local109 = Static39.frame.getInsets();
+				Static154.canvas.setLocation(local109.left + Static145.leftMargin, local109.top + Static178.topMargin);
 			} else {
-				Static154.canvas.setLocation(Static145.anInt3497, Static178.anInt4246);
+				Static154.canvas.setLocation(Static145.leftMargin, Static178.topMargin);
 			}
 		}
 		if (arg1 == 0 && arg3 > 0) {
@@ -126,7 +126,7 @@ public final class Static197 {
 			if (!Static211.aBoolean73) {
 				Static65.method1500();
 				Static260.aClass27_2 = null;
-				Static260.aClass27_2 = Static131.method2579(Static254.anInt5554, Static48.anInt1448, Static154.canvas);
+				Static260.aClass27_2 = Static131.method2579(Static254.canvasHei, Static48.canvasWid, Static154.canvas);
 				Static129.method2492();
 				if (Static244.anInt5370 == 5) {
 					Static182.method3359(true, Static280.aClass3_Sub2_Sub9_43);
@@ -146,7 +146,7 @@ public final class Static197 {
 				}
 				@Pc(300) PrivilegedRequest local300 = Static71.signLink.method5123(Static215.aClient1.getClass());
 				while (local300.status == 0) {
-					Static231.sleep(100L);
+					PreciseSleep.sleep(100L);
 				}
 				if (local300.status == 1) {
 					Static211.aBoolean73 = true;
@@ -210,6 +210,6 @@ public final class Static197 {
 		for (@Pc(466) int local466 = 0; local466 < 100; local466++) {
 			Static186.aBooleanArray100[local466] = true;
 		}
-		Static69.aBoolean115 = true;
+		Static69.fullredraw = true;
 	}
 }

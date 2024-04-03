@@ -93,8 +93,8 @@ public final class Static84 {
 		if ((arg0 & 0x1) != 0) {
 			local13 = Static57.aClass3_Sub15_Sub1_3.gSmart1or2();
 			local17 = Static57.aClass3_Sub15_Sub1_3.g1add();
-			arg2.method2686(local17, Static83.anInt372, local13);
-			arg2.anInt3378 = Static83.anInt372 + 300;
+			arg2.method2686(local17, Static83.loopCycle, local13);
+			arg2.anInt3378 = Static83.loopCycle + 300;
 			arg2.anInt3372 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
 		}
 		if ((arg0 & 0x8) != 0) {
@@ -124,8 +124,8 @@ public final class Static84 {
 			arg2.anInt3428 = Static57.aClass3_Sub15_Sub1_3.g1();
 			arg2.anInt3416 = Static57.aClass3_Sub15_Sub1_3.g1add();
 			arg2.anInt3392 = Static57.aClass3_Sub15_Sub1_3.g1();
-			arg2.anInt3395 = Static57.aClass3_Sub15_Sub1_3.g2le() + Static83.anInt372;
-			arg2.anInt3386 = Static57.aClass3_Sub15_Sub1_3.g2le() + Static83.anInt372;
+			arg2.anInt3395 = Static57.aClass3_Sub15_Sub1_3.g2le() + Static83.loopCycle;
+			arg2.anInt3386 = Static57.aClass3_Sub15_Sub1_3.g2le() + Static83.loopCycle;
 			arg2.anInt3431 = Static57.aClass3_Sub15_Sub1_3.p1neg();
 			arg2.routeLength = 1;
 			arg2.anInt3405 = 0;
@@ -145,7 +145,7 @@ public final class Static84 {
 		if ((arg0 & 0x200) != 0) {
 			local13 = Static57.aClass3_Sub15_Sub1_3.gSmart1or2();
 			local17 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
-			arg2.method2686(local17, Static83.anInt372, local13);
+			arg2.method2686(local17, Static83.loopCycle, local13);
 		}
 		if ((arg0 & 0x800) != 0) {
 			local13 = Static57.aClass3_Sub15_Sub1_3.p1neg();
@@ -174,16 +174,16 @@ public final class Static84 {
 				local573 = false;
 			}
 			if (local573) {
-				arg2.anInt3359 = (local17 & 0xFFFF) + Static83.anInt372;
+				arg2.anInt3359 = (local17 & 0xFFFF) + Static83.loopCycle;
 				arg2.anInt3361 = 0;
 				arg2.anInt3399 = 0;
 				arg2.anInt3432 = local13;
-				if (arg2.anInt3359 > Static83.anInt372) {
+				if (arg2.anInt3359 > Static83.loopCycle) {
 					arg2.anInt3399 = -1;
 				}
 				arg2.anInt3394 = local17 >> 16;
 				arg2.anInt3418 = 1;
-				if (arg2.anInt3432 != -1 && Static83.anInt372 == arg2.anInt3359) {
+				if (arg2.anInt3432 != -1 && Static83.loopCycle == arg2.anInt3359) {
 					local24 = Static34.method877(arg2.anInt3432).anInt1754;
 					if (local24 != -1) {
 						@Pc(663) SeqType local663 = Static36.method941(local24);

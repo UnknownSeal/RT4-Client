@@ -36,10 +36,10 @@ public final class Static139 {
 
 	@OriginalMember(owner = "runetek4.client!l", name = "b", descriptor = "(I)V")
 	public static void method2704() {
-		@Pc(7) int local7 = Static178.anInt4246;
-		@Pc(9) int local9 = Static145.anInt3497;
-		@Pc(16) int local16 = Static122.anInt3045 - Static254.anInt5554 - local7;
-		@Pc(23) int local23 = Static72.anInt2046 - local9 - Static48.anInt1448;
+		@Pc(7) int local7 = Static178.topMargin;
+		@Pc(9) int local9 = Static145.leftMargin;
+		@Pc(16) int local16 = Static122.frameHei - Static254.canvasHei - local7;
+		@Pc(23) int local23 = Static72.frameWid - local9 - Static48.canvasWid;
 		if (local9 <= 0 && local23 <= 0 && local7 <= 0 && local16 <= 0) {
 			return;
 		}
@@ -47,31 +47,31 @@ public final class Static139 {
 			@Pc(46) Container local46;
 			if (Static69.aFrame2 != null) {
 				local46 = Static69.aFrame2;
-			} else if (Static39.aFrame1 == null) {
+			} else if (Static39.frame == null) {
 				local46 = Static71.signLink.anApplet2;
 			} else {
-				local46 = Static39.aFrame1;
+				local46 = Static39.frame;
 			}
 			@Pc(59) int local59 = 0;
 			@Pc(61) int local61 = 0;
-			if (Static39.aFrame1 == local46) {
-				@Pc(68) Insets local68 = Static39.aFrame1.getInsets();
+			if (Static39.frame == local46) {
+				@Pc(68) Insets local68 = Static39.frame.getInsets();
 				local61 = local68.left;
 				local59 = local68.top;
 			}
 			@Pc(77) Graphics local77 = local46.getGraphics();
 			local77.setColor(Color.black);
 			if (local9 > 0) {
-				local77.fillRect(local61, local59, local9, Static122.anInt3045);
+				local77.fillRect(local61, local59, local9, Static122.frameHei);
 			}
 			if (local7 > 0) {
-				local77.fillRect(local61, local59, Static72.anInt2046, local7);
+				local77.fillRect(local61, local59, Static72.frameWid, local7);
 			}
 			if (local23 > 0) {
-				local77.fillRect(local61 + Static72.anInt2046 - local23, local59, local23, Static122.anInt3045);
+				local77.fillRect(local61 + Static72.frameWid - local23, local59, local23, Static122.frameHei);
 			}
 			if (local16 > 0) {
-				local77.fillRect(local61, local59 + Static122.anInt3045 - local16, Static72.anInt2046, local16);
+				local77.fillRect(local61, local59 + Static122.frameHei - local16, Static72.frameWid, local16);
 			}
 		} catch (@Pc(132) Exception local132) {
 		}

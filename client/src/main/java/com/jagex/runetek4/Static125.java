@@ -66,11 +66,11 @@ public final class Static125 {
 	public static void method2450() {
 		@Pc(9) int local9 = Static248.anInt4232 * 128 + 64;
 		@Pc(15) int local15 = Static245.anInt5375 * 128 + 64;
-		@Pc(23) int local23 = Static207.method3685(Static55.level, local15, local9) - Static231.anInt5203;
+		@Pc(23) int local23 = Static207.method3685(Static55.level, local15, local9) - PreciseSleep.anInt5203;
 		if (Static113.anInt4612 >= 100) {
 			Static138.anInt3439 = Static245.anInt5375 * 128 + 64;
 			Static134.anInt3302 = Static248.anInt4232 * 128 + 64;
-			Static5.anInt40 = Static207.method3685(Static55.level, Static138.anInt3439, Static134.anInt3302) - Static231.anInt5203;
+			Static5.anInt40 = Static207.method3685(Static55.level, Static138.anInt3439, Static134.anInt3302) - PreciseSleep.anInt5203;
 		} else {
 			if (Static138.anInt3439 < local15) {
 				Static138.anInt3439 += Static233.anInt5225 + Static113.anInt4612 * (local15 - Static138.anInt3439) / 1000;

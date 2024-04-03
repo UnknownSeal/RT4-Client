@@ -43,7 +43,7 @@ public final class SoftLruHashTable {
 		}
 		@Pc(44) HardReferenceNode local44 = new HardReferenceNode(arg0);
 		this.aClass133_18.pushNode(local44, arg1);
-		this.aClass16_8.method798(local44);
+		this.aClass16_8.pushBack(local44);
 		local44.secondaryNodeId = 0L;
 	}
 
@@ -124,12 +124,12 @@ public final class SoftLruHashTable {
 		if (local12.method3619()) {
 			@Pc(53) HardReferenceNode local53 = new HardReferenceNode(local27);
 			this.aClass133_18.pushNode(local53, local12.nodeId);
-			this.aClass16_8.method798(local53);
+			this.aClass16_8.pushBack(local53);
 			local53.secondaryNodeId = 0L;
 			local12.remove();
 			local12.secondaryRemove();
 		} else {
-			this.aClass16_8.method798(local12);
+			this.aClass16_8.pushBack(local12);
 			local12.secondaryNodeId = 0L;
 		}
 		return local27;

@@ -11,7 +11,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static122 {
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "c", descriptor = "I")
-	public static int anInt3045;
+	public static int frameHei;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "n", descriptor = "Lclient!bd;")
 	public static Class12 aClass12_1;

@@ -246,8 +246,8 @@ public final class Static75 {
 					local27 = local27 * 64;
 					local19 = local19 * 64;
 					local23 = local23 * 64;
-					local317 = new ProjectileAnimation(local45, Static55.level, local23, local19, Static207.method3685(Static55.level, local23, local19) - local218, Static83.anInt372 + local228, local232 + Static83.anInt372, local236, local247, local39, local224);
-					local317.setTarget(local31, Static83.anInt372 + local228, -local224 + Static207.method3685(Static55.level, local27, local31), local27);
+					local317 = new ProjectileAnimation(local45, Static55.level, local23, local19, Static207.method3685(Static55.level, local23, local19) - local218, Static83.loopCycle + local228, local232 + Static83.loopCycle, local236, local247, local39, local224);
+					local317.setTarget(local31, Static83.loopCycle + local228, -local224 + Static207.method3685(Static55.level, local27, local31), local27);
 					Static217.aClass69_116.method2282(new ProjAnimNode(local317));
 				}
 			} else if (Static164.anInt3985 == 17) {
@@ -260,7 +260,7 @@ public final class Static75 {
 				if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104) {
 					local23 = local23 * 128 + 64;
 					local19 = local19 * 128 + 64;
-					@Pc(427) SpotAnim local427 = new SpotAnim(local27, Static55.level, local23, local19, Static207.method3685(Static55.level, local23, local19) - local31, local39, Static83.anInt372);
+					@Pc(427) SpotAnim local427 = new SpotAnim(local27, Static55.level, local23, local19, Static207.method3685(Static55.level, local23, local19) - local31, local39, Static83.loopCycle);
 					Static99.aClass69_64.method2282(new SpotAnimNode(local427));
 				}
 			} else if (Static164.anInt3985 == 179) {
@@ -368,8 +368,8 @@ public final class Static75 {
 						local19 = local19 * 128 + 64;
 						local23 = local23 * 128 + 64;
 						local27 = local27 * 128 + 64;
-						local317 = new ProjectileAnimation(local45, Static55.level, local23, local19, Static207.method3685(Static55.level, local23, local19) - local218, local228 + Static83.anInt372, local232 + Static83.anInt372, local236, local247, local39, local224);
-						local317.setTarget(local31, Static83.anInt372 + local228, Static207.method3685(Static55.level, local27, local31) - local224, local27);
+						local317 = new ProjectileAnimation(local45, Static55.level, local23, local19, Static207.method3685(Static55.level, local23, local19) - local218, local228 + Static83.loopCycle, local232 + Static83.loopCycle, local236, local247, local39, local224);
+						local317.setTarget(local31, Static83.loopCycle + local228, Static207.method3685(Static55.level, local27, local31) - local224, local27);
 						Static217.aClass69_116.method2282(new ProjAnimNode(local317));
 					}
 				} else if (Static164.anInt3985 == 104) {
@@ -430,8 +430,8 @@ public final class Static75 {
 								}
 							}
 						}
-						@Pc(1331) ProjectileAnimation local1331 = new ProjectileAnimation(local218, Static55.level, local23, local19, Static207.method3685(Static55.level, local23, local19) - local224, local232 + Static83.anInt372, local236 + Static83.anInt372, local247, local633, local45, local228);
-						local1331.setTarget(local31, local232 + Static83.anInt372, -local228 + Static207.method3685(Static55.level, local27, local31), local27);
+						@Pc(1331) ProjectileAnimation local1331 = new ProjectileAnimation(local218, Static55.level, local23, local19, Static207.method3685(Static55.level, local23, local19) - local224, local232 + Static83.loopCycle, local236 + Static83.loopCycle, local247, local633, local45, local228);
+						local1331.setTarget(local31, local232 + Static83.loopCycle, -local228 + Static207.method3685(Static55.level, local27, local31), local27);
 						Static217.aClass69_116.method2282(new ProjAnimNode(local1331));
 					}
 				} else if (Static164.anInt3985 == 97) {

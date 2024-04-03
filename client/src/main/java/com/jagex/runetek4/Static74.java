@@ -23,7 +23,7 @@ public final class Static74 {
 		} else if (arg1 - arg6 >= Static172.anInt4164 && arg6 + arg1 <= Static224.anInt5063 && Static267.anInt5773 <= arg2 - arg3 && Static106.anInt2869 >= arg2 + arg3) {
 			Static270.method4594(arg5, arg1, arg2, arg4, arg6, arg3, arg0);
 		} else {
-			Static231.method3981(arg6, arg5, arg4, arg0, arg2, arg1, arg3);
+			PreciseSleep.method3981(arg6, arg5, arg4, arg0, arg2, arg1, arg3);
 		}
 	}
 
@@ -67,8 +67,8 @@ public final class Static74 {
 		@Pc(19) int local19;
 		@Pc(17) int local17;
 		if (local7 == null) {
-			local17 = Static254.anInt5554;
-			local19 = Static48.anInt1448;
+			local17 = Static254.canvasHei;
+			local19 = Static48.canvasWid;
 		} else {
 			local17 = local7.anInt459;
 			local19 = local7.anInt445;

@@ -36,7 +36,7 @@ public final class Static156 {
 		}
 		Static109.anInt2886 = MathUtils.anIntArray223[arg3];
 		Static121.anInt3038 = MathUtils.anIntArray225[arg3];
-		Static231.anInt5205 = MathUtils.anIntArray223[arg4];
+		PreciseSleep.anInt5205 = MathUtils.anIntArray223[arg4];
 		Static81.anInt2222 = MathUtils.anIntArray225[arg4];
 		Static149.anInt3555 = arg0;
 		Static162.anInt3947 = arg1;
@@ -122,7 +122,7 @@ public final class Static156 {
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "e", descriptor = "(I)V")
 	public static void init() {
-		if (SignLink.aString20.toLowerCase().indexOf("microsoft") != -1) {
+		if (SignLink.javaVendor.toLowerCase().indexOf("microsoft") != -1) {
 			Static196.anIntArray407[187] = 27;
 			Static196.anIntArray407[223] = 28;
 			Static196.anIntArray407[221] = 43;

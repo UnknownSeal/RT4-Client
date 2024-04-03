@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static39 {
 
 	@OriginalMember(owner = "runetek4.client!d", name = "Y", descriptor = "Ljava/awt/Frame;")
-	public static Frame aFrame1;
+	public static Frame frame;
 
 	@OriginalMember(owner = "runetek4.client!d", name = "hb", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_23;

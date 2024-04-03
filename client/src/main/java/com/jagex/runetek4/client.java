@@ -101,7 +101,7 @@ public final class client extends GameShell {
 			@Pc(146) client local146 = new client();
 			Static215.aClient1 = local146;
 			local146.method936(Static81.modeWhat + 32, "runescape");
-			Static39.aFrame1.setLocation(40, 40);
+			Static39.frame.setLocation(40, 40);
 		} catch (@Pc(167) Exception local167) {
 			Static89.report(null, local167);
 		}
@@ -135,7 +135,7 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "client!client", name = "f", descriptor = "(I)V")
 	@Override
-	protected final void method934() {
+	protected final void mainredraw() {
 		if (Static244.anInt5370 == 1000) {
 			return;
 		}
@@ -143,8 +143,8 @@ public final class client extends GameShell {
 		if (local15 && Static144.aBoolean173 && Static11.aClass62_1 != null) {
 			Static11.aClass62_1.method3570();
 		}
-		if ((Static244.anInt5370 == 30 || Static244.anInt5370 == 10) && (Static35.aBoolean66 || Static97.aLong89 != 0L && Static97.aLong89 < MonotonicClock.currentTimeMillis())) {
-			Static241.method4540(Static35.aBoolean66, Static144.method2736(), Static114.anInt5831, Static22.anInt729);
+		if ((Static244.anInt5370 == 30 || Static244.anInt5370 == 10) && (Static35.canvasReplaceRecommended || Static97.aLong89 != 0L && Static97.aLong89 < MonotonicTime.get())) {
+			Static241.method4540(Static35.canvasReplaceRecommended, Static144.method2736(), Static114.anInt5831, Static22.anInt729);
 		}
 		@Pc(80) int local80;
 		@Pc(84) int local84;
@@ -152,30 +152,30 @@ public final class client extends GameShell {
 			@Pc(65) Container local65;
 			if (Static69.aFrame2 != null) {
 				local65 = Static69.aFrame2;
-			} else if (Static39.aFrame1 == null) {
+			} else if (Static39.frame == null) {
 				local65 = Static71.signLink.anApplet2;
 			} else {
-				local65 = Static39.aFrame1;
+				local65 = Static39.frame;
 			}
 			local80 = local65.getSize().width;
 			local84 = local65.getSize().height;
-			if (local65 == Static39.aFrame1) {
-				@Pc(90) Insets local90 = Static39.aFrame1.getInsets();
+			if (local65 == Static39.frame) {
+				@Pc(90) Insets local90 = Static39.frame.getInsets();
 				local80 -= local90.right + local90.left;
 				local84 -= local90.top + local90.bottom;
 			}
-			if (local80 != Static72.anInt2046 || local84 != Static122.anInt3045) {
+			if (local80 != Static72.frameWid || local84 != Static122.frameHei) {
 				Static203.method3662();
-				Static97.aLong89 = MonotonicClock.currentTimeMillis() + 500L;
+				Static97.aLong89 = MonotonicTime.get() + 500L;
 			}
 		}
 		if (Static69.aFrame2 != null && !Static26.focus && (Static244.anInt5370 == 30 || Static244.anInt5370 == 10)) {
 			Static241.method4540(false, Static214.anInt5581, -1, -1);
 		}
 		@Pc(158) boolean local158 = false;
-		if (Static69.aBoolean115) {
+		if (Static69.fullredraw) {
 			local158 = true;
-			Static69.aBoolean115 = false;
+			Static69.fullredraw = false;
 		}
 		if (local158) {
 			Static139.method2704();
@@ -254,7 +254,7 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "client!client", name = "c", descriptor = "(B)V")
 	@Override
-	protected final void method928() {
+	protected final void mainquit() {
 		if (GlRenderer.enabled) {
 			GlRenderer.quit();
 		}
@@ -488,7 +488,7 @@ public final class client extends GameShell {
 		}
 		Static178.anInt4247++;
 		if (Static154.topLevelInterace != -1) {
-			Static57.method1320(0, 0, 0, Static48.anInt1448, Static154.topLevelInterace, 0, Static254.anInt5554);
+			Static57.method1320(0, 0, 0, Static48.canvasWid, Static154.topLevelInterace, 0, Static254.canvasHei);
 		}
 		Static119.transmitTimer++;
 		if (GlRenderer.enabled) {
@@ -563,7 +563,7 @@ public final class client extends GameShell {
 												Static175.url = null;
 												Static33.openUrlRequest = null;
 											}
-											if (Static83.anInt372 % 1500 == 0) {
+											if (Static83.loopCycle % 1500 == 0) {
 												Static123.method2418();
 											}
 											return;
@@ -617,22 +617,22 @@ public final class client extends GameShell {
 				Static22.js5ConnectDelay = 3000;
 			}
 			if (js5NetQueue.errors >= 2 && js5NetQueue.response == 6) {
-				this.method927("js5connect_outofdate");
+				this.error("js5connect_outofdate");
 				Static244.anInt5370 = 1000;
 				return;
 			}
 			if (js5NetQueue.errors >= 4 && js5NetQueue.response == -1) {
-				this.method927("js5crc");
+				this.error("js5crc");
 				Static244.anInt5370 = 1000;
 				return;
 			}
 			if (js5NetQueue.errors >= 4 && (Static244.anInt5370 == 0 || Static244.anInt5370 == 5)) {
 				if (js5NetQueue.response == 7 || js5NetQueue.response == 9) {
-					this.method927("js5connect_full");
+					this.error("js5connect_full");
 				} else if (js5NetQueue.response > 0) {
-					this.method927("js5connect");
+					this.error("js5connect");
 				} else {
-					this.method927("js5io");
+					this.error("js5io");
 				}
 				Static244.anInt5370 = 1000;
 				return;
@@ -664,7 +664,7 @@ public final class client extends GameShell {
 				packet.p4(530);
 				Static206.js5Socket.write(packet.data, 5);
 				Static4.js5ConnectState++;
-				Static217.js5ConnectTime = MonotonicClock.currentTimeMillis();
+				Static217.js5ConnectTime = MonotonicTime.get();
 			}
 			if (Static4.js5ConnectState == 3) {
 				if (Static244.anInt5370 == 0 || Static244.anInt5370 == 5 || Static206.js5Socket.available() > 0) {
@@ -674,7 +674,7 @@ public final class client extends GameShell {
 						return;
 					}
 					Static4.js5ConnectState++;
-				} else if (MonotonicClock.currentTimeMillis() - Static217.js5ConnectTime > 30000L) {
+				} else if (MonotonicTime.get() - Static217.js5ConnectTime > 30000L) {
 					this.setJs5Response(1001);
 					return;
 				}
@@ -707,7 +707,7 @@ public final class client extends GameShell {
 		if (Static166.anInt4051 == 0) {
 			@Pc(34) Runtime local34 = Runtime.getRuntime();
 			local43 = (int) (0L / 1024L);
-			@Pc(46) long local46 = MonotonicClock.currentTimeMillis();
+			@Pc(46) long local46 = MonotonicTime.get();
 			if (Static175.aLong138 == 0L) {
 				Static175.aLong138 = local46;
 			}
@@ -924,7 +924,7 @@ public final class client extends GameShell {
 				Static199.anInt4670 = 70;
 			}
 		} else if (Static166.anInt4051 == 100) {
-			if (Static231.method3986(Static209.aClass153_86)) {
+			if (PreciseSleep.method3986(Static209.aClass153_86)) {
 				Static166.anInt4051 = 110;
 			}
 		} else if (Static166.anInt4051 == 110) {
@@ -969,14 +969,14 @@ public final class client extends GameShell {
 				Static199.anInt4670 = 95;
 				Static126.aClass100_602 = LocalizedText.MAINLOAD135;
 			} else if (local98 == 7 || local98 == 9) {
-				this.method927("worldlistfull");
+				this.error("worldlistfull");
 				Static196.method3534(1000);
 			} else if (Static61.aBoolean109) {
 				Static126.aClass100_602 = LocalizedText.MAINLOAD135B;
 				Static166.anInt4051 = 140;
 				Static199.anInt4670 = 96;
 			} else {
-				this.method927("worldlistio_" + local98);
+				this.error("worldlistio_" + local98);
 				Static196.method3534(1000);
 			}
 		} else if (Static166.anInt4051 == 140) {
@@ -1012,12 +1012,12 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "client!client", name = "a", descriptor = "(B)V")
 	@Override
-	protected final void method921() {
+	protected final void mainloop() {
 		if (Static244.anInt5370 == 1000) {
 			return;
 		}
-		Static83.anInt372++;
-		if (Static83.anInt372 % 1000 == 1) {
+		Static83.loopCycle++;
+		if (Static83.loopCycle % 1000 == 1) {
 			@Pc(24) GregorianCalendar local24 = new GregorianCalendar();
 			Static60.anInt1895 = local24.get(11) * 600 + local24.get(12) * 10 + local24.get(13) / 6;
 			Static39.aRandom1.setSeed((long) Static60.anInt1895);

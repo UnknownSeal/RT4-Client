@@ -35,14 +35,14 @@ public final class Static234 {
 			if ((local18 & 0x40) != 0) {
 				local43 = Static57.aClass3_Sub15_Sub1_3.g1();
 				local47 = Static57.aClass3_Sub15_Sub1_3.p1neg();
-				local14.method2686(local47, Static83.anInt372, local43);
-				local14.anInt3378 = Static83.anInt372 + 300;
+				local14.method2686(local47, Static83.loopCycle, local43);
+				local14.anInt3378 = Static83.loopCycle + 300;
 				local14.anInt3372 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
 			}
 			if ((local18 & 0x2) != 0) {
 				local43 = Static57.aClass3_Sub15_Sub1_3.p1neg();
 				local47 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
-				local14.method2686(local47, Static83.anInt372, local43);
+				local14.method2686(local47, Static83.loopCycle, local43);
 			}
 			if ((local18 & 0x10) != 0) {
 				local43 = Static57.aClass3_Sub15_Sub1_3.g2();
@@ -70,15 +70,15 @@ public final class Static234 {
 				}
 				if (local147) {
 					local14.anInt3432 = local43;
-					local14.anInt3359 = (local47 & 0xFFFF) + Static83.anInt372;
+					local14.anInt3359 = (local47 & 0xFFFF) + Static83.loopCycle;
 					local14.anInt3361 = 0;
 					local14.anInt3399 = 0;
 					local14.anInt3394 = local47 >> 16;
 					local14.anInt3418 = 1;
-					if (local14.anInt3359 > Static83.anInt372) {
+					if (local14.anInt3359 > Static83.loopCycle) {
 						local14.anInt3399 = -1;
 					}
-					if (local14.anInt3432 != -1 && local14.anInt3359 == Static83.anInt372) {
+					if (local14.anInt3432 != -1 && local14.anInt3359 == Static83.loopCycle) {
 						@Pc(227) int local227 = Static34.method877(local14.anInt3432).anInt1754;
 						if (local227 != -1) {
 							@Pc(236) SeqType local236 = Static36.method941(local227);

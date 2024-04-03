@@ -24,18 +24,18 @@ public final class Static59 {
 		if (Static162.anInt3953 == 2) {
 			if (Static155.anInt3751 == Static277.anInt5850 && Static60.anInt1892 == Static280.anInt5895) {
 				Static162.anInt3953 = 0;
-				if (Static172.shiftClick && Static187.pressedKeys[81] && Static231.anInt5204 > 2) {
-					Static103.method2232(Static231.anInt5204 - 2);
+				if (Static172.shiftClick && Static187.pressedKeys[81] && PreciseSleep.anInt5204 > 2) {
+					Static103.method2232(PreciseSleep.anInt5204 - 2);
 				} else {
-					Static103.method2232(Static231.anInt5204 - 1);
+					Static103.method2232(PreciseSleep.anInt5204 - 1);
 				}
 			}
 		} else if (Static155.anInt3751 == Static7.clickX && Static60.anInt1892 == Static60.clickY) {
 			Static162.anInt3953 = 0;
-			if (Static172.shiftClick && Static187.pressedKeys[81] && Static231.anInt5204 > 2) {
-				Static103.method2232(Static231.anInt5204 - 2);
+			if (Static172.shiftClick && Static187.pressedKeys[81] && PreciseSleep.anInt5204 > 2) {
+				Static103.method2232(PreciseSleep.anInt5204 - 2);
 			} else {
-				Static103.method2232(Static231.anInt5204 - 1);
+				Static103.method2232(PreciseSleep.anInt5204 - 1);
 			}
 		} else {
 			Static280.anInt5895 = Static60.clickY;
@@ -48,8 +48,8 @@ public final class Static59 {
 	public static void method1373() {
 		Static6.outboundBuffer.pIsaac1(243);
 		Static6.outboundBuffer.p1(Static144.method2736());
-		Static6.outboundBuffer.p2(Static48.anInt1448);
-		Static6.outboundBuffer.p2(Static254.anInt5554);
+		Static6.outboundBuffer.p2(Static48.canvasWid);
+		Static6.outboundBuffer.p2(Static254.canvasHei);
 		Static6.outboundBuffer.p1(Static186.anInt4392);
 	}
 

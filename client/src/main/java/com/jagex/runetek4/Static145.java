@@ -21,7 +21,7 @@ public final class Static145 {
 	public static final int[] anIntArray331 = new int[1000];
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "f", descriptor = "I")
-	public static int anInt3497 = 0;
+	public static int leftMargin = 0;
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "k", descriptor = "I")
 	public static int anInt3502 = -1;
@@ -87,8 +87,8 @@ public final class Static145 {
 		Static280.aClass3_Sub2_Sub9_43.method2857(LocalizedText.CHOOSE_OPTION, local11 + 3, local3 + 14, 6116423, -1);
 		@Pc(96) int local96 = Static223.anInt5032;
 		@Pc(98) int local98 = Static215.anInt4873;
-		for (@Pc(107) int local107 = 0; local107 < Static231.anInt5204; local107++) {
-			@Pc(127) int local127 = (Static231.anInt5204 - local107 - 1) * 15 + local3 + 31;
+		for (@Pc(107) int local107 = 0; local107 < PreciseSleep.anInt5204; local107++) {
+			@Pc(127) int local127 = (PreciseSleep.anInt5204 - local107 - 1) * 15 + local3 + 31;
 			@Pc(129) int local129 = 16777215;
 			if (local11 < local98 && local98 < local11 + local9 && local127 - 13 < local96 && local96 < local127 + 3) {
 				local129 = 16776960;

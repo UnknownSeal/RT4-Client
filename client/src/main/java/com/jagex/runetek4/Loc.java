@@ -104,7 +104,7 @@ public final class Loc extends Entity {
 				this.anInt1304 = 1;
 			}
 			this.anInt1317 = 1;
-			this.anInt1320 = Static83.anInt372 - 1;
+			this.anInt1320 = Static83.loopCycle - 1;
 			if (this.aClass144_2.anInt5347 == 0 && arg8 != null && arg8 instanceof Loc) {
 				@Pc(142) Loc local142 = (Loc) arg8;
 				if (this.aClass144_2 == local142.aClass144_2) {
@@ -125,7 +125,7 @@ public final class Loc extends Entity {
 					}
 				}
 				this.anInt1317 = (int) (Math.random() * (double) this.aClass144_2.frames[this.anInt1297]) + 1;
-				this.anInt1320 = Static83.anInt372 - this.anInt1317;
+				this.anInt1320 = Static83.loopCycle - this.anInt1317;
 			}
 		}
 		if (GlRenderer.enabled && arg8 != null) {
@@ -178,7 +178,7 @@ public final class Loc extends Entity {
 		if (this.aClass144_2 == null) {
 			return;
 		}
-		@Pc(10) int local10 = Static83.anInt372 - this.anInt1320;
+		@Pc(10) int local10 = Static83.loopCycle - this.anInt1320;
 		if (local10 > 100 && this.aClass144_2.replayoff > 0) {
 			@Pc(29) int local29 = this.aClass144_2.anIntArray473.length - this.aClass144_2.replayoff;
 			while (this.anInt1297 < local29 && this.aClass144_2.frames[this.anInt1297] < local10) {
@@ -220,7 +220,7 @@ public final class Loc extends Entity {
 			}
 		}
 		this.anInt1317 = local10;
-		this.anInt1320 = Static83.anInt372 - local10;
+		this.anInt1320 = Static83.loopCycle - local10;
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(ZI)Lclient!th;")
@@ -254,7 +254,7 @@ public final class Loc extends Entity {
 					this.anInt1320 -= (int) (Math.random() * (double) this.aClass144_2.frames[this.anInt1297]);
 				} else {
 					this.anInt1297 = 0;
-					this.anInt1320 = Static83.anInt372 - 1;
+					this.anInt1320 = Static83.loopCycle - 1;
 				}
 			}
 		}

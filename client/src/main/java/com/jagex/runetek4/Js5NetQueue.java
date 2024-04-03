@@ -31,7 +31,7 @@ public final class Js5NetQueue {
 	private final SecondaryLinkedList aClass16_3 = new SecondaryLinkedList();
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "v", descriptor = "Lclient!ce;")
-	private final SecondaryLinkedList aClass16_4 = new SecondaryLinkedList();
+	private final SecondaryLinkedList prefetch = new SecondaryLinkedList();
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "z", descriptor = "Lclient!ce;")
 	private final SecondaryLinkedList aClass16_5 = new SecondaryLinkedList();
@@ -40,7 +40,7 @@ public final class Js5NetQueue {
 	private final Packet aClass3_Sub15_4 = new Packet(4);
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "G", descriptor = "B")
-	private byte aByte8 = 0;
+	private byte xorcode = 0;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "I", descriptor = "I")
 	public volatile int errors = 0;
@@ -60,7 +60,7 @@ public final class Js5NetQueue {
 	public final boolean loop() {
 		@Pc(19) int local19;
 		if (this.aClass95_1 != null) {
-			@Pc(12) long local12 = MonotonicClock.currentTimeMillis();
+			@Pc(12) long local12 = MonotonicTime.get();
 			local19 = (int) (local12 - this.aLong104);
 			this.aLong104 = local12;
 			if (local19 > 200) {
@@ -86,14 +86,14 @@ public final class Js5NetQueue {
 				this.aClass3_Sub15_4.p1(1);
 				this.aClass3_Sub15_4.p3((int) local75.secondaryNodeId);
 				this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
-				this.aClass16_3.method798(local75);
+				this.aClass16_3.pushBack(local75);
 			}
-			for (local75 = (Js5NetRequest) this.aClass16_4.method795(); local75 != null; local75 = (Js5NetRequest) this.aClass16_4.prev()) {
+			for (local75 = (Js5NetRequest) this.prefetch.method795(); local75 != null; local75 = (Js5NetRequest) this.prefetch.prev()) {
 				this.aClass3_Sub15_4.pos = 0;
 				this.aClass3_Sub15_4.p1(0);
 				this.aClass3_Sub15_4.p3((int) local75.secondaryNodeId);
 				this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
-				this.aClass16_5.method798(local75);
+				this.aClass16_5.pushBack(local75);
 			}
 			for (@Pc(172) int local172 = 0; local172 < 100; local172++) {
 				local19 = this.aClass95_1.available();
@@ -123,9 +123,9 @@ public final class Js5NetQueue {
 						local235 = local19;
 					}
 					this.aClass95_1.method2827(this.aClass3_Sub2_Sub5_Sub2_2.packet.pos, local235, this.aClass3_Sub2_Sub5_Sub2_2.packet.data);
-					if (this.aByte8 != 0) {
+					if (this.xorcode != 0) {
 						for (local283 = 0; local283 < local235; local283++) {
-							this.aClass3_Sub2_Sub5_Sub2_2.packet.data[this.aClass3_Sub2_Sub5_Sub2_2.packet.pos + local283] = (byte) (this.aClass3_Sub2_Sub5_Sub2_2.packet.data[this.aClass3_Sub2_Sub5_Sub2_2.packet.pos + local283] ^ this.aByte8);
+							this.aClass3_Sub2_Sub5_Sub2_2.packet.data[this.aClass3_Sub2_Sub5_Sub2_2.packet.pos + local283] = (byte) (this.aClass3_Sub2_Sub5_Sub2_2.packet.data[this.aClass3_Sub2_Sub5_Sub2_2.packet.pos + local283] ^ this.xorcode);
 						}
 					}
 					this.aClass3_Sub2_Sub5_Sub2_2.anInt4617 += local235;
@@ -143,9 +143,9 @@ public final class Js5NetQueue {
 						local228 = local19;
 					}
 					this.aClass95_1.method2827(this.aClass3_Sub15_5.pos, local228, this.aClass3_Sub15_5.data);
-					if (this.aByte8 != 0) {
+					if (this.xorcode != 0) {
 						for (local235 = 0; local235 < local228; local235++) {
-							this.aClass3_Sub15_5.data[local235 + this.aClass3_Sub15_5.pos] ^= this.aByte8;
+							this.aClass3_Sub15_5.data[local235 + this.aClass3_Sub15_5.pos] ^= this.xorcode;
 						}
 					}
 					this.aClass3_Sub15_5.pos += local228;
@@ -224,7 +224,7 @@ public final class Js5NetQueue {
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "b", descriptor = "(I)I")
 	private int method2321() {
-		return this.aClass16_4.length() + this.aClass16_5.length();
+		return this.prefetch.length() + this.aClass16_5.length();
 	}
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "(ZZ)V")
@@ -275,11 +275,11 @@ public final class Js5NetQueue {
 				while (true) {
 					local44 = (Js5NetRequest) this.aClass16_5.pollFront();
 					if (local44 == null) {
-						if (this.aByte8 != 0) {
+						if (this.xorcode != 0) {
 							try {
 								this.aClass3_Sub15_4.pos = 0;
 								this.aClass3_Sub15_4.p1(4);
-								this.aClass3_Sub15_4.p1(this.aByte8);
+								this.aClass3_Sub15_4.p1(this.xorcode);
 								this.aClass3_Sub15_4.p2(0);
 								this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
 							} catch (@Pc(107) IOException local107) {
@@ -293,13 +293,13 @@ public final class Js5NetQueue {
 							}
 						}
 						this.anInt2962 = 0;
-						this.aLong104 = MonotonicClock.currentTimeMillis();
+						this.aLong104 = MonotonicTime.get();
 						return;
 					}
-					this.aClass16_4.method798(local44);
+					this.prefetch.pushBack(local44);
 				}
 			}
-			this.urgent.method798(local44);
+			this.urgent.pushBack(local44);
 		}
 	}
 
@@ -315,7 +315,7 @@ public final class Js5NetQueue {
 		} catch (@Pc(17) Exception local17) {
 		}
 		this.response = -1;
-		this.aByte8 = (byte) (Math.random() * 255.0D + 1.0D);
+		this.xorcode = (byte) (Math.random() * 255.0D + 1.0D);
 		this.aClass95_1 = null;
 		this.errors++;
 	}
@@ -343,9 +343,9 @@ public final class Js5NetQueue {
 			if (this.getTotalUrgents() >= 20) {
 				throw new RuntimeException();
 			}
-			this.urgent.method798(local7);
+			this.urgent.pushBack(local7);
 		} else if (this.method2321() < 20) {
-			this.aClass16_4.method798(local7);
+			this.prefetch.pushBack(local7);
 		} else {
 			throw new RuntimeException();
 		}

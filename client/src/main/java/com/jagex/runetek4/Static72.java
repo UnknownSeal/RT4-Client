@@ -16,13 +16,13 @@ public final class Static72 {
 	public static int[][] anIntArrayArray14;
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "U", descriptor = "I")
-	public static int anInt2046;
+	public static int frameWid;
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "s", descriptor = "I")
 	public static int anInt2031 = 128;
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "w", descriptor = "J")
-	public static long aLong74 = 0L;
+	public static long killtime = 0L;
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "B", descriptor = "I")
 	public static int updatedVarcstrsWriterIndex = 0;

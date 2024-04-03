@@ -32,7 +32,7 @@ public final class Static278 {
 					}
 					@Pc(37) NPCEntity local37 = Static175.aClass8_Sub4_Sub2Array1[local14];
 					Static33.anIntArray79[Static272.anInt5214++] = local14;
-					local37.anInt3430 = Static83.anInt372;
+					local37.anInt3430 = Static83.loopCycle;
 					if (local37.npcType != null && local37.npcType.hasBackgroundSound()) {
 						Static91.method1877(local37);
 					}

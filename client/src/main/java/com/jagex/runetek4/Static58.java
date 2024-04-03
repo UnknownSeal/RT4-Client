@@ -15,7 +15,7 @@ public final class Static58 {
 	public static int[][][] anIntArrayArrayArray5;
 
 	@OriginalMember(owner = "runetek4.client!eh", name = "a", descriptor = "Z")
-	public static boolean aBoolean101 = false;
+	public static boolean shutdown = false;
 
 	@OriginalMember(owner = "runetek4.client!eh", name = "j", descriptor = "I")
 	public static int wheelRotation = 0;

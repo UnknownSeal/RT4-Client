@@ -41,7 +41,7 @@ public final class LruHashTable {
 	public final SecondaryNode get(@OriginalArg(0) long arg0) {
 		@Pc(16) SecondaryNode node = (SecondaryNode) this.aClass133_5.getNode(arg0);
 		if (node != null) {
-			this.aClass16_1.method798(node);
+			this.aClass16_1.pushBack(node);
 		}
 		return node;
 	}
@@ -66,7 +66,7 @@ public final class LruHashTable {
 			this.anInt2314--;
 		}
 		this.aClass133_5.pushNode(arg0, arg1);
-		this.aClass16_1.method798(arg0);
+		this.aClass16_1.pushBack(arg0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "b", descriptor = "(I)Lclient!ab;")

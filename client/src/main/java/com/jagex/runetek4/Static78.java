@@ -277,8 +277,8 @@ public final class Static78 {
 		Static107.method2261();
 		Static219.method3796();
 		Static217.method3768();
-		Static231.aBoolean252 = false;
-		if (Static39.aFrame1 != null && Static124.socket != null && Static244.anInt5370 == 25) {
+		PreciseSleep.aBoolean252 = false;
+		if (Static39.frame != null && Static124.socket != null && Static244.anInt5370 == 25) {
 			Static6.outboundBuffer.pIsaac1(20);
 			Static6.outboundBuffer.p4(1057001181);
 		}

@@ -26,7 +26,7 @@ public final class Static16 {
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "c", descriptor = "(I)V")
 	public static void method501() {
-		if (!GlRenderer.enabled || Static231.aBoolean252) {
+		if (!GlRenderer.enabled || PreciseSleep.aBoolean252) {
 			return;
 		}
 		@Pc(14) Tile[][][] local14 = Static130.aClass3_Sub5ArrayArrayArray1;
@@ -95,6 +95,6 @@ public final class Static16 {
 				}
 			}
 		}
-		Static231.aBoolean252 = true;
+		PreciseSleep.aBoolean252 = true;
 	}
 }

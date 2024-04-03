@@ -696,7 +696,7 @@ public final class GlRenderer {
 				if (swapBuffersAttempts++ > 5) {
 					return -2;
 				}
-				Static231.sleep(1000L);
+				PreciseSleep.sleep(1000L);
 			}
 			if (window.getLock().isLocked()) {
 				window.unlockSurface();
@@ -724,7 +724,7 @@ public final class GlRenderer {
 						quit();
 						return -3;
 					}
-					Static231.sleep(100L);
+					PreciseSleep.sleep(100L);
 				}
 			}
 			gl.glClear(GL2.GL_COLOR_BUFFER_BIT);
