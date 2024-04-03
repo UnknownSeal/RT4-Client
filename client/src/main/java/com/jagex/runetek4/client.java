@@ -19,31 +19,31 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("client!client")
 public final class client extends GameShell {
 
-	@OriginalMember(owner = "runetek4.client!kf", name = "h", descriptor = "[I")
+	@OriginalMember(owner = "client!kf", name = "h", descriptor = "[I")
 	public static final int[] locShapeToLayer = new int[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3 };
-	@OriginalMember(owner = "runetek4.client!ja", name = "r", descriptor = "I")
+	@OriginalMember(owner = "client!ja", name = "r", descriptor = "I")
 	public static int currentCursor = -1;
-	@OriginalMember(owner = "runetek4.client!gm", name = "T", descriptor = "Lclient!k;")
+	@OriginalMember(owner = "client!gm", name = "T", descriptor = "Lclient!k;")
 	public static Js5CacheQueue js5CacheQueue;
-	@OriginalMember(owner = "runetek4.client!id", name = "l", descriptor = "Lclient!jb;")
+	@OriginalMember(owner = "client!id", name = "l", descriptor = "Lclient!jb;")
 	public static Js5NetQueue js5NetQueue;
-	@OriginalMember(owner = "runetek4.client!gj", name = "b", descriptor = "I")
+	@OriginalMember(owner = "client!gj", name = "b", descriptor = "I")
 	public static int modeWhere = 0;
-	@OriginalMember(owner = "runetek4.client!ld", name = "k", descriptor = "Ljava/lang/String;")
+	@OriginalMember(owner = "client!ld", name = "k", descriptor = "Ljava/lang/String;")
 	public static String worldListHostname;
-	@OriginalMember(owner = "runetek4.client!hi", name = "g", descriptor = "I")
+	@OriginalMember(owner = "client!hi", name = "g", descriptor = "I")
 	public static int worldListAlternatePort;
-	@OriginalMember(owner = "runetek4.client!ud", name = "K", descriptor = "I")
+	@OriginalMember(owner = "client!ud", name = "K", descriptor = "I")
 	public static int worldListDefaultPort;
-	@OriginalMember(owner = "runetek4.client!pb", name = "Q", descriptor = "I")
+	@OriginalMember(owner = "client!pb", name = "Q", descriptor = "I")
 	public static int worldListId = 1;
-	@OriginalMember(owner = "runetek4.client!jg", name = "c", descriptor = "Lclient!en;")
+	@OriginalMember(owner = "client!jg", name = "c", descriptor = "Lclient!en;")
 	public static BufferedFile uid;
-	@OriginalMember(owner = "runetek4.client!nj", name = "f", descriptor = "Lclient!en;")
+	@OriginalMember(owner = "client!nj", name = "f", descriptor = "Lclient!en;")
 	public static BufferedFile cacheData;
-	@OriginalMember(owner = "runetek4.client!pf", name = "f", descriptor = "Lclient!en;")
+	@OriginalMember(owner = "client!pf", name = "f", descriptor = "Lclient!en;")
 	public static BufferedFile cacheMasterIndex;
-	@OriginalMember(owner = "runetek4.client!li", name = "l", descriptor = "Lclient!ge;")
+	@OriginalMember(owner = "client!li", name = "l", descriptor = "Lclient!ge;")
 	public static DiskStore masterDiskStore;
 
 	@OriginalMember(owner = "client!client", name = "main", descriptor = "([Ljava/lang/String;)V")
@@ -107,7 +107,7 @@ public final class client extends GameShell {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gg", name = "c", descriptor = "(II)V")
+	@OriginalMember(owner = "client!gg", name = "c", descriptor = "(II)V")
 	public static void method1750(@OriginalArg(0) int arg0) {
 		if (!Static64.aBoolean111) {
 			arg0 = -1;
@@ -466,12 +466,12 @@ public final class client extends GameShell {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "c", descriptor = "(I)V")
+	@OriginalMember(owner = "client!client", name = "c", descriptor = "(I)V")
 	@Override
-	protected final void method929() {
+	protected void method929() {
 	}
 
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "a", descriptor = "(ZI)V")
+	@OriginalMember(owner = "client!client", name = "a", descriptor = "(ZI)V")
 	private void setJs5Response(@OriginalArg(1) int arg0) {
 		js5NetQueue.errors++;
 		Static37.js5SocketRequest = null;
@@ -480,7 +480,7 @@ public final class client extends GameShell {
 		Static4.js5ConnectState = 0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "d", descriptor = "(B)V")
+	@OriginalMember(owner = "client!client", name = "d", descriptor = "(B)V")
 	private void method943() {
 		for (Static182.keyQueueSize = 0; Static25.nextKey() && Static182.keyQueueSize < 128; Static182.keyQueueSize++) {
 			Static227.keyCodes[Static182.keyQueueSize] = Static102.keyCode;
@@ -596,7 +596,7 @@ public final class client extends GameShell {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "d", descriptor = "(Z)V")
+	@OriginalMember(owner = "client!client", name = "d", descriptor = "(Z)V")
 	private void js5NetworkLoop() {
 		@Pc(3) boolean idle = js5NetQueue.loop();
 		if (!idle) {
@@ -604,7 +604,7 @@ public final class client extends GameShell {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "h", descriptor = "(I)V")
+	@OriginalMember(owner = "client!client", name = "h", descriptor = "(I)V")
 	private void js5Connect() {
 		if (Static233.js5PrevErrors < js5NetQueue.errors) {
 			Static22.js5ConnectDelay = 5 * 50 * (js5NetQueue.errors - 1);
@@ -691,7 +691,7 @@ public final class client extends GameShell {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "i", descriptor = "(I)V")
+	@OriginalMember(owner = "client!client", name = "i", descriptor = "(I)V")
 	private void method948() {
 		if (!Static164.aBoolean191) {
 			label252: while (true) {
@@ -1010,7 +1010,7 @@ public final class client extends GameShell {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "a", descriptor = "(B)V")
+	@OriginalMember(owner = "client!client", name = "a", descriptor = "(B)V")
 	@Override
 	protected final void method921() {
 		if (Static244.anInt5370 == 1000) {
