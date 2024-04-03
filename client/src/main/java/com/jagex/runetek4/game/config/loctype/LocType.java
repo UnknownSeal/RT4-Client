@@ -594,8 +594,8 @@ public final class LocType {
 		}
 		for (@Pc(44) int index = 0; index < this.multiloc.length; index++) {
 			if (this.multiloc[index] != -1) {
-				@Pc(70) LocType local70 = Static271.get(this.multiloc[index]);
-				if (local70.bgsound_sound != -1 || local70.bgsound_random != null) {
+				@Pc(70) LocType locType = Static271.get(this.multiloc[index]);
+				if (locType.bgsound_sound != -1 || locType.bgsound_random != null) {
 					return true;
 				}
 			}
@@ -614,7 +614,7 @@ public final class LocType {
 	}
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "(Z)Z")
-	public final boolean method3426() {
+	public boolean method3426() {
 		if (this.shapes == null) {
 			return true;
 		}
@@ -706,7 +706,7 @@ public final class LocType {
 		}
 		if (arg2 == 4 && arg0 > 3) {
 			local351.method4123();
-			local351.method4575(45, 0, -45);
+			local351.translate(45, 0, -45);
 		}
 		@Pc(374) int local374 = arg0 & 0x3;
 		if (local374 == 1) {
@@ -727,10 +727,10 @@ public final class LocType {
 			}
 		}
 		if (this.resizex != 128 || this.resizey != 128 || this.resizez != 128) {
-			local351.method4559(this.resizex, this.resizey, this.resizez);
+			local351.resize(this.resizex, this.resizey, this.resizez);
 		}
 		if (this.xoff != 0 || this.yoff != 0 || this.zoff != 0) {
-			local351.method4575(this.xoff, this.yoff, this.zoff);
+			local351.translate(this.xoff, this.yoff, this.zoff);
 		}
 		if (local10 != local351.method4094()) {
 			local351.method4105(local10);

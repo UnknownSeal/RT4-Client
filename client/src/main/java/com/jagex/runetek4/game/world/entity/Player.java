@@ -251,7 +251,7 @@ public final class Player extends PathingEntity {
 			@Pc(471) SpotAnimType local471 = Static34.method877(this.anInt3432);
 			local184 = local471.method1319(this.anInt3418, this.anInt3399, this.anInt3361);
 			if (local184 != null) {
-				local184.method4575(0, -this.anInt3394, 0);
+				local184.translate(0, -this.anInt3394, 0);
 				if (local471.aBoolean100) {
 					if (Static101.anInt2640 != 0) {
 						local184.method4574(Static101.anInt2640);
@@ -260,7 +260,7 @@ public final class Player extends PathingEntity {
 						local184.method4564(Static102.anInt2680);
 					}
 					if (Static62.anInt1938 != 0) {
-						local184.method4575(0, Static62.anInt1938, 0);
+						local184.translate(0, Static62.anInt1938, 0);
 					}
 				}
 			}
@@ -276,7 +276,7 @@ public final class Player extends PathingEntity {
 				} else {
 					local515 = (Model) this.anObject5;
 				}
-				local515.method4575(this.anInt3379 - this.anInt3412, this.anInt3406 + -this.anInt3424, this.anInt3426 - this.anInt3421);
+				local515.translate(this.anInt3379 - this.anInt3412, this.anInt3406 + -this.anInt3424, this.anInt3426 - this.anInt3421);
 				if (this.anInt3400 == 512) {
 					local515.method4578();
 				} else if (this.anInt3400 == 1024) {
@@ -313,7 +313,7 @@ public final class Player extends PathingEntity {
 		} else if (this.anInt3400 == 1536) {
 			local515.method4578();
 		}
-		local515.method4575(this.anInt3412 - this.anInt3379, -this.anInt3406 + this.anInt3424, this.anInt3421 - this.anInt3426);
+		local515.translate(this.anInt3412 - this.anInt3379, -this.anInt3406 + this.anInt3424, this.anInt3421 - this.anInt3426);
 	}
 
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(Lclient!ga;ILclient!ak;IIIIIIIIIIII)V")

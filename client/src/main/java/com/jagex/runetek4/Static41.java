@@ -133,12 +133,12 @@ public final class Static41 {
 		}
 		if (local386 == null) {
 			local33 = local33.method4560(true, true, true);
-			local33.method4559((local115 - local384) / 2, 128, (local130 - local126) / 2);
-			local33.method4575((local384 + local115) / 2, 0, (local126 + local130) / 2);
+			local33.resize((local115 - local384) / 2, 128, (local130 - local126) / 2);
+			local33.translate((local384 + local115) / 2, 0, (local126 + local130) / 2);
 		} else {
 			local33 = local33.method4560(!local386.method901(arg10), !local386.method903(arg10), true);
-			local33.method4559((local115 - local384) / 2, 128, (local130 - local126) / 2);
-			local33.method4575((local384 + local115) / 2, 0, (local126 + local130) / 2);
+			local33.resize((local115 - local384) / 2, 128, (local130 - local126) / 2);
+			local33.translate((local384 + local115) / 2, 0, (local126 + local130) / 2);
 			local33.method4555(local386, arg10);
 		}
 		if (arg9 != 0) {
@@ -148,10 +148,10 @@ public final class Static41 {
 			@Pc(650) GlModel local650 = (GlModel) local33;
 			if (Static207.method3685(Static55.level, arg3 + local384, local126 + arg5) != arg11 || Static207.method3685(Static55.level, local115 + arg3, arg5 - -local130) != arg11) {
 				for (local162 = 0; local162 < local650.anInt5295; local162++) {
-					local650.anIntArray465[local162] += Static207.method3685(Static55.level, local650.anIntArray461[local162] + arg3, arg5 + local650.anIntArray466[local162]) - arg11;
+					local650.vertexY[local162] += Static207.method3685(Static55.level, local650.vertexX[local162] + arg3, arg5 + local650.vertexZ[local162]) - arg11;
 				}
-				local650.aClass5_1.aBoolean3 = false;
-				local650.aClass127_4.aBoolean235 = false;
+				local650.bounds.valid = false;
+				local650.vertexBuffer.valid = false;
 			}
 		} else {
 			@Pc(574) SoftwareModel local574 = (SoftwareModel) local33;

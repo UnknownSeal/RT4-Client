@@ -6,30 +6,60 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!wi")
+@OriginalClass("client!wi")
 public final class TextureOpCurve extends TextureOp {
 
-	@OriginalMember(owner = "runetek4.client!wi", name = "Q", descriptor = "[I")
+	@OriginalMember(owner = "client!wi", name = "Q", descriptor = "[I")
 	private int[] anIntArray566;
 
-	@OriginalMember(owner = "runetek4.client!wi", name = "gb", descriptor = "[I")
+	@OriginalMember(owner = "client!wi", name = "gb", descriptor = "[I")
 	private int[] anIntArray567;
 
-	@OriginalMember(owner = "runetek4.client!wi", name = "ib", descriptor = "[[I")
+	@OriginalMember(owner = "client!wi", name = "ib", descriptor = "[[I")
 	private int[][] anIntArrayArray47;
 
-	@OriginalMember(owner = "runetek4.client!wi", name = "cb", descriptor = "[S")
+	@OriginalMember(owner = "client!wi", name = "cb", descriptor = "[S")
 	private final short[] aShortArray96 = new short[257];
 
-	@OriginalMember(owner = "runetek4.client!wi", name = "Z", descriptor = "I")
+	@OriginalMember(owner = "client!wi", name = "Z", descriptor = "I")
 	private int anInt5852 = 0;
 
-	@OriginalMember(owner = "runetek4.client!wi", name = "<init>", descriptor = "()V")
+	@OriginalMember(owner = "client!wi", name = "<init>", descriptor = "()V")
 	public TextureOpCurve() {
 		super(1, true);
 	}
 
-	@OriginalMember(owner = "runetek4.client!wi", name = "h", descriptor = "(I)V")
+	@OriginalMember(owner = "client!wi", name = "a", descriptor = "(ILclient!wa;Z)V")
+	@Override
+	public void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
+		if (code != 0) {
+			return;
+		}
+		this.anInt5852 = packet.g1();
+		this.anIntArrayArray47 = new int[packet.g1()][2];
+		for (@Pc(23) int local23 = 0; local23 < this.anIntArrayArray47.length; local23++) {
+			this.anIntArrayArray47[local23][0] = packet.g2();
+			this.anIntArrayArray47[local23][1] = packet.g2();
+		}
+	}
+
+	@OriginalMember(owner = "client!wi", name = "e", descriptor = "(I)V")
+	@Override
+	public void postDecode() {
+		if (this.anIntArrayArray47 == null) {
+			this.anIntArrayArray47 = new int[][] { { 0, 0 }, { 4096, 4096 } };
+		}
+		if (this.anIntArrayArray47.length < 2) {
+			throw new RuntimeException("Curve operation requires at least two markers");
+		}
+		if (this.anInt5852 == 2) {
+			this.method4642();
+		}
+		Static9.method185();
+		this.method4639();
+	}
+
+	@OriginalMember(owner = "client!wi", name = "h", descriptor = "(I)V")
 	private void method4639() {
 		@Pc(8) int local8 = this.anInt5852;
 		@Pc(29) int local29;
@@ -108,9 +138,9 @@ public final class TextureOpCurve extends TextureOp {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!wi", name = "a", descriptor = "(IB)[I")
+	@OriginalMember(owner = "client!wi", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
+	public int[] method4626(@OriginalArg(0) int arg0) {
 		@Pc(19) int[] local19 = this.aClass121_41.method3445(arg0);
 		if (this.aClass121_41.aBoolean221) {
 			@Pc(29) int[] local29 = this.method4624(0, arg0);
@@ -128,23 +158,7 @@ public final class TextureOpCurve extends TextureOp {
 		return local19;
 	}
 
-	@OriginalMember(owner = "runetek4.client!wi", name = "e", descriptor = "(I)V")
-	@Override
-	public final void postDecode() {
-		if (this.anIntArrayArray47 == null) {
-			this.anIntArrayArray47 = new int[][] { { 0, 0 }, { 4096, 4096 } };
-		}
-		if (this.anIntArrayArray47.length < 2) {
-			throw new RuntimeException("Curve operation requires at least two markers");
-		}
-		if (this.anInt5852 == 2) {
-			this.method4642();
-		}
-		Static9.method185();
-		this.method4639();
-	}
-
-	@OriginalMember(owner = "runetek4.client!wi", name = "a", descriptor = "(Z)V")
+	@OriginalMember(owner = "client!wi", name = "a", descriptor = "(Z)V")
 	private void method4642() {
 		@Pc(8) int[] local8 = this.anIntArrayArray47[0];
 		@Pc(20) int[] local20 = this.anIntArrayArray47[1];
@@ -154,21 +168,7 @@ public final class TextureOpCurve extends TextureOp {
 		this.anIntArray567 = new int[] { local29[0] + local29[0] - local38[0], -local38[1] - -local29[1] + local29[1] };
 	}
 
-	@OriginalMember(owner = "runetek4.client!wi", name = "a", descriptor = "(ILclient!wa;Z)V")
-	@Override
-	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
-		if (code != 0) {
-			return;
-		}
-		this.anInt5852 = packet.g1();
-		this.anIntArrayArray47 = new int[packet.g1()][2];
-		for (@Pc(23) int local23 = 0; local23 < this.anIntArrayArray47.length; local23++) {
-			this.anIntArrayArray47[local23][0] = packet.g2();
-			this.anIntArrayArray47[local23][1] = packet.g2();
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!wi", name = "a", descriptor = "(BI)[I")
+	@OriginalMember(owner = "client!wi", name = "a", descriptor = "(BI)[I")
 	private int[] method4643(@OriginalArg(1) int arg0) {
 		if (arg0 >= 0) {
 			return arg0 >= this.anIntArrayArray47.length ? this.anIntArray567 : this.anIntArrayArray47[arg0];

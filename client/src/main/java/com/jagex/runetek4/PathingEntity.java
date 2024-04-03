@@ -400,7 +400,7 @@ public abstract class PathingEntity extends Entity {
 		}
 		Static62.anInt1938 = (Static62.anInt1938 >> 1) - this.anInt3424;
 		if (Static62.anInt1938 != 0) {
-			arg0.method4575(0, Static62.anInt1938, 0);
+			arg0.translate(0, Static62.anInt1938, 0);
 		}
 	}
 
@@ -521,9 +521,9 @@ public abstract class PathingEntity extends Entity {
 		if (this.anInt3383 != 0) {
 			local101 = this.anInt3383 >> 5 & 0x7FF;
 			local106 = arg0.method4549() / 2;
-			arg0.method4575(0, -local106, 0);
+			arg0.translate(0, -local106, 0);
 			arg0.method4564(local101);
-			arg0.method4575(0, local106, 0);
+			arg0.translate(0, local106, 0);
 		}
 		if (local28 != this.anInt3367) {
 			this.anInt3367 = local28;
@@ -612,9 +612,9 @@ public abstract class PathingEntity extends Entity {
 		}
 		local101 = this.anInt3427 >> 5 & 0x7FF;
 		local106 = arg0.method4549() / 2;
-		arg0.method4575(0, -local106, 0);
+		arg0.translate(0, -local106, 0);
 		arg0.method4574(local101);
-		arg0.method4575(0, local106, 0);
+		arg0.translate(0, local106, 0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!fe", name = "b", descriptor = "(I)I")

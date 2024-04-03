@@ -587,7 +587,7 @@ public final class NPCType {
 		if (!local46 && arg8 == null && arg6 == null) {
 			@Pc(933) Model local933 = local40.method4572(true, true, true);
 			if (this.resizeh != 128 || this.resizev != 128) {
-				local933.method4559(this.resizeh, this.resizev, this.resizeh);
+				local933.resize(this.resizeh, this.resizev, this.resizeh);
 			}
 			return local933;
 		}
@@ -675,7 +675,7 @@ public final class NPCType {
 			Static146.aClass144Array1[local318] = null;
 		}
 		if (this.resizeh != 128 || this.resizev != 128) {
-			local1218.method4559(this.resizeh, this.resizev, this.resizeh);
+			local1218.resize(this.resizeh, this.resizev, this.resizeh);
 		}
 		return local1218;
 	}

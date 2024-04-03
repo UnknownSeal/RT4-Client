@@ -96,10 +96,10 @@ public final class Static220 {
 			@Pc(68) GlModel local68 = (GlModel) local10;
 			if (arg5 != Static207.method3685(Static55.level, arg3 + local42, arg1 + local48) || arg5 != Static207.method3685(Static55.level, arg3 + local45, local51 + arg1)) {
 				for (local94 = 0; local94 < local68.anInt5295; local94++) {
-					local68.anIntArray465[local94] += Static207.method3685(Static55.level, local68.anIntArray461[local94] + arg3, local68.anIntArray466[local94] + arg1) - arg5;
+					local68.vertexY[local94] += Static207.method3685(Static55.level, local68.vertexX[local94] + arg3, local68.vertexZ[local94] + arg1) - arg5;
 				}
-				local68.aClass127_4.aBoolean235 = false;
-				local68.aClass5_1.aBoolean3 = false;
+				local68.vertexBuffer.valid = false;
+				local68.bounds.valid = false;
 			}
 		} else {
 			@Pc(142) SoftwareModel local142 = (SoftwareModel) local10;

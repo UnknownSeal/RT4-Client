@@ -130,7 +130,7 @@ public final class SpotAnimType {
 			local118 = Static36.method941(this.anInt1754).method4219(arg0, arg2, arg1, local13);
 		}
 		if (this.anInt1745 != 128 || this.anInt1752 != 128) {
-			local118.method4559(this.anInt1745, this.anInt1752, this.anInt1745);
+			local118.resize(this.anInt1745, this.anInt1752, this.anInt1745);
 		}
 		if (this.anInt1755 != 0) {
 			if (this.anInt1755 == 90) {

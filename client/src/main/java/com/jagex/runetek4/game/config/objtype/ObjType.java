@@ -505,7 +505,7 @@ public final class ObjType {
 			}
 			local76 = local85.method1679(this.ambient + 64, this.contrast + 768, -50, -10, -50);
 			if (this.resizex != 128 || this.resizey != 128 || this.resizez != 128) {
-				local76.method4559(this.resizex, this.resizey, this.resizez);
+				local76.resize(this.resizex, this.resizey, this.resizez);
 			}
 			local76.aBoolean303 = true;
 			if (GlRenderer.enabled) {
@@ -648,7 +648,7 @@ public final class ObjType {
 		}
 		@Pc(107) SoftwareModel local107 = local11.method1671(this.ambient + 64, 768 - -this.contrast);
 		if (this.resizex != 128 || this.resizey != 128 || this.resizez != 128) {
-			local107.method4559(this.resizex, this.resizey, this.resizez);
+			local107.resize(this.resizex, this.resizey, this.resizez);
 		}
 		return local107;
 	}

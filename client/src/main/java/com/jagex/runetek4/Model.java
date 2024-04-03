@@ -220,7 +220,7 @@ public abstract class Model extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "b", descriptor = "(III)V")
-	public abstract void method4559(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2);
+	public abstract void resize(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2);
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "a", descriptor = "(ZZZ)Lclient!ak;")
 	public abstract Model method4560(@OriginalArg(0) boolean arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2);
@@ -341,7 +341,7 @@ public abstract class Model extends Entity {
 		}
 		local149 = (local149 >> 1) - arg2;
 		if (local149 != 0) {
-			this.method4575(0, local149, 0);
+			this.translate(0, local149, 0);
 		}
 	}
 
@@ -354,7 +354,7 @@ public abstract class Model extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "c", descriptor = "(III)V")
-	public abstract void method4575(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2);
+	public abstract void translate(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2);
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "k", descriptor = "()I")
 	public abstract int method4576();
