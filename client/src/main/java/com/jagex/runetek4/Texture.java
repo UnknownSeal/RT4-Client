@@ -95,16 +95,16 @@ public final class Texture {
 	@OriginalMember(owner = "client!qk", name = "a", descriptor = "(BLclient!wa;)Lclient!j;")
 	public static TextureOp method3680(@OriginalArg(1) Packet packet) {
 		packet.g1();
-		@Pc(13) int local13 = packet.g1();
-		@Pc(17) TextureOp local17 = create(local13);
-		local17.anInt5840 = packet.g1();
+		@Pc(13) int type = packet.g1();
+		@Pc(17) TextureOp textureOp = create(type);
+		textureOp.anInt5840 = packet.g1();
 		@Pc(26) int local26 = packet.g1();
 		for (@Pc(34) int local34 = 0; local34 < local26; local34++) {
 			@Pc(41) int code = packet.g1();
-			local17.decode(packet, code);
+			textureOp.decode(packet, code);
 		}
-		local17.postDecode();
-		return local17;
+		textureOp.postDecode();
+		return textureOp;
 	}
 
 	@OriginalMember(owner = "client!sc", name = "a", descriptor = "(IZ)Lclient!j;")
@@ -195,41 +195,41 @@ public final class Texture {
 	}
 
 	@OriginalMember(owner = "client!an", name = "c", descriptor = "(III)V")
-	public static void setSize(@OriginalArg(1) int height, @OriginalArg(2) int arg1) {
-		if (width != arg1) {
-			widthFractions = new int[arg1];
-			for (@Pc(10) int x = 0; x < arg1; x++) {
-				widthFractions[x] = (x << 12) / arg1;
+	public static void setSize(@OriginalArg(1) int newHeight, @OriginalArg(2) int newWidth) {
+		if (width != newWidth) {
+			widthFractions = new int[newWidth];
+			for (@Pc(10) int widthIndex = 0; widthIndex < newWidth; widthIndex++) {
+				widthFractions[widthIndex] = (widthIndex << 12) / newWidth;
 			}
-			Static165.anInt4042 = arg1 == 64 ? 2048 : 4096;
-			widthMask = arg1 - 1;
-			width = arg1;
+			Static165.anInt4042 = newWidth == 64 ? 2048 : 4096;
+			widthMask = newWidth - 1;
+			width = newWidth;
 		}
-		if (Texture.height == height) {
+		if (Texture.height == newHeight) {
 			return;
 		}
-		if (width == height) {
+		if (width == newHeight) {
 			heightFractions = widthFractions;
 		} else {
-			heightFractions = new int[height];
-			for (@Pc(61) int y = 0; y < height; y++) {
-				heightFractions[y] = (y << 12) / height;
+			heightFractions = new int[newHeight];
+			for (@Pc(61) int heightIndex = 0; heightIndex < newHeight; heightIndex++) {
+				heightFractions[heightIndex] = (heightIndex << 12) / newHeight;
 			}
 		}
-		Texture.height = height;
-		heightMask = height - 1;
+		Texture.height = newHeight;
+		heightMask = newHeight - 1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(DI)V")
-	public static void setBrightness(@OriginalArg(0) double arg0) {
-		if (brightness == arg0) {
+	@OriginalMember(owner = "client!th", name = "a", descriptor = "(DI)V")
+	public static void setBrightness(@OriginalArg(0) double brightnessValue) {
+		if (brightness == brightnessValue) {
 			return;
 		}
-		for (@Pc(12) int local12 = 0; local12 < 256; local12++) {
-			@Pc(25) int local25 = (int) (Math.pow((double) local12 / 255.0D, arg0) * 255.0D);
-			brightnessMap[local12] = local25 > 255 ? 255 : local25;
+		for (@Pc(12) int index = 0; index < 256; index++) {
+			@Pc(25) int computedBrightness = (int) (Math.pow((double) index / 255.0D, brightnessValue) * 255.0D);
+			brightnessMap[index] = computedBrightness > 255 ? 255 : computedBrightness;
 		}
-		brightness = arg0;
+		brightness = brightnessValue;
 	}
 
 	@OriginalMember(owner = "client!lc", name = "a", descriptor = "(IZIDILclient!ve;Lclient!m;Z)[I")
@@ -401,7 +401,7 @@ public final class Texture {
 	}
 
 	@OriginalMember(owner = "client!lc", name = "a", descriptor = "(ZLclient!m;Lclient!ve;)Z")
-	public final boolean method2729(@OriginalArg(1) GlTextureProvider arg0, @OriginalArg(2) Js5 arg1) {
+	public boolean method2729(@OriginalArg(1) GlTextureProvider arg0, @OriginalArg(2) Js5 arg1) {
 		@Pc(10) int local10;
 		if (Static215.anInt4868 > 0) {
 			for (local10 = 0; local10 < this.anIntArray327.length; local10++) {
