@@ -7,32 +7,32 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!mb")
+@OriginalClass("client!mb")
 public final class GlFont extends Font {
 
-	@OriginalMember(owner = "runetek4.client!mb", name = "Gb", descriptor = "[I")
+	@OriginalMember(owner = "client!mb", name = "Gb", descriptor = "[I")
 	private int[] anIntArray349;
 
-	@OriginalMember(owner = "runetek4.client!mb", name = "Hb", descriptor = "I")
+	@OriginalMember(owner = "client!mb", name = "Hb", descriptor = "I")
 	private int anInt3639;
 
-	@OriginalMember(owner = "runetek4.client!mb", name = "Ib", descriptor = "I")
+	@OriginalMember(owner = "client!mb", name = "Ib", descriptor = "I")
 	private int anInt3640;
 
-	@OriginalMember(owner = "runetek4.client!mb", name = "Fb", descriptor = "I")
+	@OriginalMember(owner = "client!mb", name = "Fb", descriptor = "I")
 	private int anInt3638 = -1;
 
-	@OriginalMember(owner = "runetek4.client!mb", name = "Eb", descriptor = "I")
+	@OriginalMember(owner = "client!mb", name = "Eb", descriptor = "I")
 	private int anInt3637 = 0;
 
-	@OriginalMember(owner = "runetek4.client!mb", name = "<init>", descriptor = "([B[I[I[I[I[[B)V")
+	@OriginalMember(owner = "client!mb", name = "<init>", descriptor = "([B[I[I[I[I[[B)V")
 	public GlFont(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int[] arg1, @OriginalArg(2) int[] arg2, @OriginalArg(3) int[] arg3, @OriginalArg(4) int[] arg4, @OriginalArg(5) byte[][] arg5) {
 		super(arg0, arg1, arg2, arg3, arg4);
 		this.method2881(arg5);
 		this.method2880();
 	}
 
-	@OriginalMember(owner = "runetek4.client!mb", name = "finalize", descriptor = "()V")
+	@OriginalMember(owner = "client!mb", name = "finalize", descriptor = "()V")
 	@Override
 	public final void finalize() throws Throwable {
 		if (this.anInt3638 != -1) {
@@ -49,7 +49,7 @@ public final class GlFont extends Font {
 		super.finalize();
 	}
 
-	@OriginalMember(owner = "runetek4.client!mb", name = "a", descriptor = "(IIIIIIZ)V")
+	@OriginalMember(owner = "client!mb", name = "a", descriptor = "(IIIIIIZ)V")
 	@Override
 	protected final void method2854(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
 		@Pc(4) GL2 local4;
@@ -103,7 +103,7 @@ public final class GlFont extends Font {
 		local4.glLoadIdentity();
 	}
 
-	@OriginalMember(owner = "runetek4.client!mb", name = "a", descriptor = "(IIIIIIIZ)V")
+	@OriginalMember(owner = "client!mb", name = "a", descriptor = "(IIIIIIIZ)V")
 	@Override
 	protected final void method2855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
 		GlRenderer.method4151();
@@ -115,7 +115,7 @@ public final class GlFont extends Font {
 		local2.glLoadIdentity();
 	}
 
-	@OriginalMember(owner = "runetek4.client!mb", name = "b", descriptor = "()V")
+	@OriginalMember(owner = "client!mb", name = "b", descriptor = "()V")
 	private void method2880() {
 		if (this.anIntArray349 != null) {
 			return;
@@ -144,7 +144,7 @@ public final class GlFont extends Font {
 		this.anInt3639 = Static63.anInt1943;
 	}
 
-	@OriginalMember(owner = "runetek4.client!mb", name = "a", descriptor = "([[B)V")
+	@OriginalMember(owner = "client!mb", name = "a", descriptor = "([[B)V")
 	private void method2881(@OriginalArg(0) byte[][] arg0) {
 		if (this.anInt3638 != -1) {
 			return;

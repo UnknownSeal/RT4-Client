@@ -8,43 +8,43 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!rk")
+@OriginalClass("client!rk")
 public abstract class Font extends SecondaryNode {
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "W", descriptor = "[I")
+	@OriginalMember(owner = "client!rk", name = "W", descriptor = "[I")
 	private int[] anIntArray346;
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "gb", descriptor = "[B")
+	@OriginalMember(owner = "client!rk", name = "gb", descriptor = "[B")
 	private byte[] aByteArray50;
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "jb", descriptor = "[I")
+	@OriginalMember(owner = "client!rk", name = "jb", descriptor = "[I")
 	private int[] anIntArray348;
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "nb", descriptor = "[Lclient!ok;")
+	@OriginalMember(owner = "client!rk", name = "nb", descriptor = "[Lclient!ok;")
 	private IndexedSprite[] aClass36Array11;
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "ab", descriptor = "I")
+	@OriginalMember(owner = "client!rk", name = "ab", descriptor = "I")
 	public int anInt3626 = 0;
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "S", descriptor = "[I")
+	@OriginalMember(owner = "client!rk", name = "S", descriptor = "[I")
 	private int[] anIntArray344;
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "db", descriptor = "[I")
+	@OriginalMember(owner = "client!rk", name = "db", descriptor = "[I")
 	private int[] anIntArray347;
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "I", descriptor = "[I")
+	@OriginalMember(owner = "client!rk", name = "I", descriptor = "[I")
 	protected int[] anIntArray343;
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "U", descriptor = "[I")
+	@OriginalMember(owner = "client!rk", name = "U", descriptor = "[I")
 	protected int[] anIntArray345;
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "V", descriptor = "I")
+	@OriginalMember(owner = "client!rk", name = "V", descriptor = "I")
 	private int anInt3625;
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "J", descriptor = "I")
+	@OriginalMember(owner = "client!rk", name = "J", descriptor = "I")
 	private int anInt3624;
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "<init>", descriptor = "([B[I[I[I[I)V")
+	@OriginalMember(owner = "client!rk", name = "<init>", descriptor = "([B[I[I[I[I)V")
 	protected Font(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int[] arg1, @OriginalArg(2) int[] arg2, @OriginalArg(3) int[] arg3, @OriginalArg(4) int[] arg4) {
 		this.anIntArray344 = arg1;
 		this.anIntArray347 = arg2;
@@ -65,17 +65,17 @@ public abstract class Font extends SecondaryNode {
 		this.anInt3624 = local23 - this.anInt3626;
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "<init>", descriptor = "([B)V")
+	@OriginalMember(owner = "client!rk", name = "<init>", descriptor = "([B)V")
 	public Font(@OriginalArg(0) byte[] arg0) {
 		this.method2876(arg0);
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "(Lclient!na;IIIIIIIII)I")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;IIIIIIIII)I")
 	public final int method2852(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9) {
 		return this.method2869(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "(Lclient!na;II)V")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;II)V")
 	private void method2853(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		@Pc(4) int local4 = arg2 - this.anInt3626;
 		@Pc(6) int local6 = -1;
@@ -173,13 +173,13 @@ public abstract class Font extends SecondaryNode {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "(IIIIIIZ)V")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(IIIIIIZ)V")
 	protected abstract void method2854(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5);
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "(IIIIIIIZ)V")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(IIIIIIIZ)V")
 	protected abstract void method2855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6);
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "b", descriptor = "(Lclient!na;I)I")
+	@OriginalMember(owner = "client!rk", name = "b", descriptor = "(Lclient!na;I)I")
 	public final int method2856(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1) {
 		@Pc(10) int local10 = this.method2867(arg0, new int[] { arg1 }, Static218.aClass100Array110);
 		@Pc(12) int local12 = 0;
@@ -192,7 +192,7 @@ public abstract class Font extends SecondaryNode {
 		return local12;
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "(Lclient!na;IIII)V")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;IIII)V")
 	public final void method2857(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		if (arg0 != null) {
 			this.method2874(arg3, arg4);
@@ -200,7 +200,7 @@ public abstract class Font extends SecondaryNode {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "(Lclient!na;)I")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;)I")
 	public final int method2858(@OriginalArg(0) JagString arg0) {
 		if (arg0 == null) {
 			return 0;
@@ -258,7 +258,7 @@ public abstract class Font extends SecondaryNode {
 		return local9;
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "(Lclient!na;IIIILjava/util/Random;I)I")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;IIIILjava/util/Random;I)I")
 	public final int method2859(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(5) Random arg3, @OriginalArg(6) int arg4) {
 		if (arg0 == null) {
 			return 0;
@@ -278,12 +278,12 @@ public abstract class Font extends SecondaryNode {
 		return local26;
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "c", descriptor = "(Lclient!na;I)I")
+	@OriginalMember(owner = "client!rk", name = "c", descriptor = "(Lclient!na;I)I")
 	public final int method2860(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1) {
 		return this.method2867(arg0, new int[] { arg1 }, Static218.aClass100Array110);
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "b", descriptor = "(Lclient!na;)V")
+	@OriginalMember(owner = "client!rk", name = "b", descriptor = "(Lclient!na;)V")
 	private void method2861(@OriginalArg(0) JagString arg0) {
 		try {
 			if (arg0.method3138(Static218.aClass100_705)) {
@@ -319,12 +319,12 @@ public abstract class Font extends SecondaryNode {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "d", descriptor = "(I)I")
+	@OriginalMember(owner = "client!rk", name = "d", descriptor = "(I)I")
 	private int method2863(@OriginalArg(0) int arg0) {
 		return this.anIntArray348[arg0 & 0xFF];
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "b", descriptor = "(Lclient!na;IIII)V")
+	@OriginalMember(owner = "client!rk", name = "b", descriptor = "(Lclient!na;IIII)V")
 	public final void method2864(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		if (arg0 != null) {
 			this.method2874(arg3, arg4);
@@ -332,7 +332,7 @@ public abstract class Font extends SecondaryNode {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "d", descriptor = "(Lclient!na;I)V")
+	@OriginalMember(owner = "client!rk", name = "d", descriptor = "(Lclient!na;I)V")
 	private void method2866(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1) {
 		@Pc(1) int local1 = 0;
 		@Pc(3) boolean local3 = false;
@@ -352,7 +352,7 @@ public abstract class Font extends SecondaryNode {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "(Lclient!na;[I[Lclient!na;)I")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;[I[Lclient!na;)I")
 	public final int method2867(@OriginalArg(0) JagString arg0, @OriginalArg(1) int[] arg1, @OriginalArg(2) JagString[] arg2) {
 		if (arg0 == null) {
 			return 0;
@@ -495,7 +495,7 @@ public abstract class Font extends SecondaryNode {
 		return local23;
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "(Lclient!na;IIIIII)V")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;IIIIII)V")
 	public final void method2868(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {
 		if (arg0 == null) {
 			return;
@@ -513,7 +513,7 @@ public abstract class Font extends SecondaryNode {
 		this.method2879(arg0, arg1 - this.method2858(arg0) / 2, arg2, null, local26);
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "(Lclient!na;IIIIIIIIII)I")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;IIIIIIIIII)I")
 	public final int method2869(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8, @OriginalArg(10) int arg9) {
 		if (arg0 == null) {
 			return 0;
@@ -565,7 +565,7 @@ public abstract class Font extends SecondaryNode {
 		return local42;
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "(Lclient!na;IIIII)V")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;IIIII)V")
 	public final void method2871(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(5) int arg4) {
 		if (arg0 == null) {
 			return;
@@ -581,7 +581,7 @@ public abstract class Font extends SecondaryNode {
 		this.method2879(arg0, arg1 - this.method2858(arg0) / 2, arg2, local13, local16);
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "b", descriptor = "(Lclient!na;IIIII)V")
+	@OriginalMember(owner = "client!rk", name = "b", descriptor = "(Lclient!na;IIIII)V")
 	public final void method2872(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(5) int arg4) {
 		if (arg0 == null) {
 			return;
@@ -595,7 +595,7 @@ public abstract class Font extends SecondaryNode {
 		this.method2879(arg0, arg1 - this.method2858(arg0) / 2, arg2, null, local13);
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "([Lclient!ok;[I)V")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "([Lclient!ok;[I)V")
 	public final void method2873(@OriginalArg(0) IndexedSprite[] arg0, @OriginalArg(1) int[] arg1) {
 		if (arg1 != null && arg1.length != arg0.length) {
 			throw new IllegalArgumentException();
@@ -604,7 +604,7 @@ public abstract class Font extends SecondaryNode {
 		this.anIntArray346 = arg1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "c", descriptor = "(II)V")
+	@OriginalMember(owner = "client!rk", name = "c", descriptor = "(II)V")
 	private void method2874(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		Static218.anInt3627 = -1;
 		Static218.anInt3628 = -1;
@@ -618,7 +618,7 @@ public abstract class Font extends SecondaryNode {
 		Static218.anInt3629 = 0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "c", descriptor = "(Lclient!na;IIII)V")
+	@OriginalMember(owner = "client!rk", name = "c", descriptor = "(Lclient!na;IIII)V")
 	public final void method2875(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		if (arg0 != null) {
 			this.method2874(arg3, arg4);
@@ -626,7 +626,7 @@ public abstract class Font extends SecondaryNode {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "([B)V")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "([B)V")
 	private void method2876(@OriginalArg(0) byte[] arg0) {
 		this.anIntArray348 = new int[256];
 		@Pc(9) int local9;
@@ -683,7 +683,7 @@ public abstract class Font extends SecondaryNode {
 		this.anInt3626 = local58[32] + local55[32];
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "(III)V")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(III)V")
 	private void method2877(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		Static218.anInt3627 = -1;
 		Static218.anInt3628 = -1;
@@ -697,7 +697,7 @@ public abstract class Font extends SecondaryNode {
 		Static218.anInt3629 = 0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "(Lclient!na;IIIIIIIILjava/util/Random;I[I)I")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;IIIIIIIILjava/util/Random;I[I)I")
 	public final int method2878(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) Random arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int[] arg11) {
 		if (arg0 == null) {
 			return 0;
@@ -742,7 +742,7 @@ public abstract class Font extends SecondaryNode {
 		return local26;
 	}
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "a", descriptor = "(Lclient!na;II[I[I)V")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;II[I[I)V")
 	private void method2879(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int[] arg3, @OriginalArg(4) int[] arg4) {
 		@Pc(4) int local4 = arg2 - this.anInt3626;
 		@Pc(6) int local6 = -1;

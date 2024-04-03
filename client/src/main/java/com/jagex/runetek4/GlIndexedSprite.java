@@ -7,31 +7,31 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!oh")
+@OriginalClass("client!oh")
 public final class GlIndexedSprite extends IndexedSprite {
 
-	@OriginalMember(owner = "runetek4.client!oh", name = "r", descriptor = "I")
+	@OriginalMember(owner = "client!oh", name = "r", descriptor = "I")
 	private int anInt4285;
 
-	@OriginalMember(owner = "runetek4.client!oh", name = "s", descriptor = "I")
+	@OriginalMember(owner = "client!oh", name = "s", descriptor = "I")
 	private int anInt4286;
 
-	@OriginalMember(owner = "runetek4.client!oh", name = "t", descriptor = "I")
+	@OriginalMember(owner = "client!oh", name = "t", descriptor = "I")
 	private int anInt4287;
 
-	@OriginalMember(owner = "runetek4.client!oh", name = "n", descriptor = "I")
+	@OriginalMember(owner = "client!oh", name = "n", descriptor = "I")
 	private int anInt4281 = -1;
 
-	@OriginalMember(owner = "runetek4.client!oh", name = "p", descriptor = "I")
+	@OriginalMember(owner = "client!oh", name = "p", descriptor = "I")
 	private int anInt4283 = 0;
 
-	@OriginalMember(owner = "runetek4.client!oh", name = "o", descriptor = "I")
+	@OriginalMember(owner = "client!oh", name = "o", descriptor = "I")
 	private int anInt4282 = -1;
 
-	@OriginalMember(owner = "runetek4.client!oh", name = "q", descriptor = "I")
+	@OriginalMember(owner = "client!oh", name = "q", descriptor = "I")
 	private int anInt4284 = 0;
 
-	@OriginalMember(owner = "runetek4.client!oh", name = "<init>", descriptor = "(IIIIII[B[I)V")
+	@OriginalMember(owner = "client!oh", name = "<init>", descriptor = "(IIIIII[B[I)V")
 	public GlIndexedSprite(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) byte[] arg6, @OriginalArg(7) int[] arg7) {
 		this.anInt4279 = arg0;
 		this.anInt4276 = arg1;
@@ -43,7 +43,7 @@ public final class GlIndexedSprite extends IndexedSprite {
 		this.method3339();
 	}
 
-	@OriginalMember(owner = "runetek4.client!oh", name = "a", descriptor = "([B[I)V")
+	@OriginalMember(owner = "client!oh", name = "a", descriptor = "([B[I)V")
 	private void method3337(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int[] arg1) {
 		this.anInt4287 = Static165.bitceil(this.anInt4270);
 		this.anInt4286 = Static165.bitceil(this.anInt4278);
@@ -79,7 +79,7 @@ public final class GlIndexedSprite extends IndexedSprite {
 		this.anInt4284 = local93.limit();
 	}
 
-	@OriginalMember(owner = "runetek4.client!oh", name = "a", descriptor = "(III)V")
+	@OriginalMember(owner = "client!oh", name = "a", descriptor = "(III)V")
 	@Override
 	public final void method3335(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		GlRenderer.method4155();
@@ -94,7 +94,7 @@ public final class GlIndexedSprite extends IndexedSprite {
 		local12.glLoadIdentity();
 	}
 
-	@OriginalMember(owner = "runetek4.client!oh", name = "b", descriptor = "(I)V")
+	@OriginalMember(owner = "client!oh", name = "b", descriptor = "(I)V")
 	private void method3338() {
 		if (this.anInt4283 != 1) {
 			this.anInt4283 = 1;
@@ -104,7 +104,7 @@ public final class GlIndexedSprite extends IndexedSprite {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!oh", name = "a", descriptor = "(II)V")
+	@OriginalMember(owner = "client!oh", name = "a", descriptor = "(II)V")
 	@Override
 	public final void method3336(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		GlRenderer.method4149();
@@ -118,7 +118,7 @@ public final class GlIndexedSprite extends IndexedSprite {
 		local12.glLoadIdentity();
 	}
 
-	@OriginalMember(owner = "runetek4.client!oh", name = "finalize", descriptor = "()V")
+	@OriginalMember(owner = "client!oh", name = "finalize", descriptor = "()V")
 	@Override
 	public final void finalize() throws Throwable {
 		if (this.anInt4281 != -1) {
@@ -133,7 +133,7 @@ public final class GlIndexedSprite extends IndexedSprite {
 		super.finalize();
 	}
 
-	@OriginalMember(owner = "runetek4.client!oh", name = "a", descriptor = "()V")
+	@OriginalMember(owner = "client!oh", name = "a", descriptor = "()V")
 	private void method3339() {
 		@Pc(7) float local7 = (float) this.anInt4270 / (float) this.anInt4287;
 		@Pc(15) float local15 = (float) this.anInt4278 / (float) this.anInt4286;

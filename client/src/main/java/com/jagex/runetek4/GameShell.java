@@ -15,19 +15,19 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!rc")
+@OriginalClass("client!rc")
 public abstract class GameShell extends Applet implements Runnable, FocusListener, WindowListener {
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "b", descriptor = "Z")
+	@OriginalMember(owner = "client!rc", name = "b", descriptor = "Z")
 	private boolean aBoolean71 = false;
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "providesignlink", descriptor = "(Lsignlink!ll;)V")
+	@OriginalMember(owner = "client!rc", name = "providesignlink", descriptor = "(Lsignlink!ll;)V")
 	public static void providesignlink(@OriginalArg(0) SignLink arg0) {
 		Static71.signLink = arg0;
 		Static69.aClass213_4 = arg0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(Lsignlink!ll;Ljava/lang/Object;I)V")
+	@OriginalMember(owner = "client!la", name = "a", descriptor = "(Lsignlink!ll;Ljava/lang/Object;I)V")
 	public static void method2708(@OriginalArg(0) SignLink arg0, @OriginalArg(1) Object arg1) {
 		if (arg0.eventQueue == null) {
 			return;
@@ -40,32 +40,32 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "focusLost", descriptor = "(Ljava/awt/event/FocusEvent;)V")
+	@OriginalMember(owner = "client!rc", name = "focusLost", descriptor = "(Ljava/awt/event/FocusEvent;)V")
 	@Override
 	public final void focusLost(@OriginalArg(0) FocusEvent arg0) {
 		Static233.focus_in = false;
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(B)V")
+	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(B)V")
 	protected abstract void mainloop();
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "windowClosing", descriptor = "(Ljava/awt/event/WindowEvent;)V")
+	@OriginalMember(owner = "client!rc", name = "windowClosing", descriptor = "(Ljava/awt/event/WindowEvent;)V")
 	@Override
 	public final void windowClosing(@OriginalArg(0) WindowEvent arg0) {
 		this.destroy();
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "windowIconified", descriptor = "(Ljava/awt/event/WindowEvent;)V")
+	@OriginalMember(owner = "client!rc", name = "windowIconified", descriptor = "(Ljava/awt/event/WindowEvent;)V")
 	@Override
 	public final void windowIconified(@OriginalArg(0) WindowEvent arg0) {
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "windowDeactivated", descriptor = "(Ljava/awt/event/WindowEvent;)V")
+	@OriginalMember(owner = "client!rc", name = "windowDeactivated", descriptor = "(Ljava/awt/event/WindowEvent;)V")
 	@Override
 	public final void windowDeactivated(@OriginalArg(0) WindowEvent arg0) {
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "getAppletContext", descriptor = "()Ljava/applet/AppletContext;")
+	@OriginalMember(owner = "client!rc", name = "getAppletContext", descriptor = "()Ljava/applet/AppletContext;")
 	@Override
 	public final AppletContext getAppletContext() {
 		if (Static39.frame == null) {
@@ -75,24 +75,24 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "focusGained", descriptor = "(Ljava/awt/event/FocusEvent;)V")
+	@OriginalMember(owner = "client!rc", name = "focusGained", descriptor = "(Ljava/awt/event/FocusEvent;)V")
 	@Override
 	public final void focusGained(@OriginalArg(0) FocusEvent arg0) {
 		Static233.focus_in = true;
 		Static69.fullredraw = true;
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "windowClosed", descriptor = "(Ljava/awt/event/WindowEvent;)V")
+	@OriginalMember(owner = "client!rc", name = "windowClosed", descriptor = "(Ljava/awt/event/WindowEvent;)V")
 	@Override
 	public final void windowClosed(@OriginalArg(0) WindowEvent arg0) {
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "b", descriptor = "(I)Z")
+	@OriginalMember(owner = "client!rc", name = "b", descriptor = "(I)Z")
 	protected final boolean method925() {
 		return true;
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "b", descriptor = "(B)V")
+	@OriginalMember(owner = "client!rc", name = "b", descriptor = "(B)V")
 	public final synchronized void method926() {
 		if (Static154.canvas != null) {
 			Static154.canvas.removeFocusListener(this);
@@ -126,7 +126,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		Static243.lastCanvasReplace = MonotonicTime.get();
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "destroy", descriptor = "()V")
+	@OriginalMember(owner = "client!rc", name = "destroy", descriptor = "()V")
 	@Override
 	public final void destroy() {
 		if (Static230.anApplet_Sub1_1 == this && !Static58.shutdown) {
@@ -137,13 +137,13 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "update", descriptor = "(Ljava/awt/Graphics;)V")
+	@OriginalMember(owner = "client!rc", name = "update", descriptor = "(Ljava/awt/Graphics;)V")
 	@Override
 	public final void update(@OriginalArg(0) Graphics arg0) {
 		this.paint(arg0);
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(Ljava/lang/String;I)V")
+	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(Ljava/lang/String;I)V")
 	protected final void error(@OriginalArg(0) String arg0) {
 		if (this.aBoolean71) {
 			return;
@@ -156,13 +156,13 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "c", descriptor = "(B)V")
+	@OriginalMember(owner = "client!rc", name = "c", descriptor = "(B)V")
 	protected abstract void mainquit();
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "c", descriptor = "(I)V")
+	@OriginalMember(owner = "client!rc", name = "c", descriptor = "(I)V")
 	protected abstract void method929();
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "getDocumentBase", descriptor = "()Ljava/net/URL;")
+	@OriginalMember(owner = "client!rc", name = "getDocumentBase", descriptor = "()Ljava/net/URL;")
 	@Override
 	public final URL getDocumentBase() {
 		if (Static39.frame == null) {
@@ -172,7 +172,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "paint", descriptor = "(Ljava/awt/Graphics;)V")
+	@OriginalMember(owner = "client!rc", name = "paint", descriptor = "(Ljava/awt/Graphics;)V")
 	@Override
 	public final synchronized void paint(@OriginalArg(0) Graphics arg0) {
 		if (Static230.anApplet_Sub1_1 != this || Static58.shutdown) {
@@ -187,12 +187,12 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "windowDeiconified", descriptor = "(Ljava/awt/event/WindowEvent;)V")
+	@OriginalMember(owner = "client!rc", name = "windowDeiconified", descriptor = "(Ljava/awt/event/WindowEvent;)V")
 	@Override
 	public final void windowDeiconified(@OriginalArg(0) WindowEvent arg0) {
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(IZ)V")
+	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(IZ)V")
 	private void shutdown(@OriginalArg(1) boolean arg0) {
 		synchronized (this) {
 			if (Static58.shutdown) {
@@ -230,12 +230,12 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		System.out.println("Shutdown complete - clean:" + arg0);
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "windowActivated", descriptor = "(Ljava/awt/event/WindowEvent;)V")
+	@OriginalMember(owner = "client!rc", name = "windowActivated", descriptor = "(Ljava/awt/event/WindowEvent;)V")
 	@Override
 	public final void windowActivated(@OriginalArg(0) WindowEvent arg0) {
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "b", descriptor = "(Z)V")
+	@OriginalMember(owner = "client!rc", name = "b", descriptor = "(Z)V")
 	private void mainloopwrapper() {
 		@Pc(6) long local6 = MonotonicTime.get();
 		@Pc(10) long local10 = Static228.aLongArray8[Static261.anInt5741];
@@ -249,7 +249,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "e", descriptor = "(I)V")
+	@OriginalMember(owner = "client!rc", name = "e", descriptor = "(I)V")
 	private void mainredrawwrapper() {
 		@Pc(2) long local2 = MonotonicTime.get();
 		@Pc(6) long local6 = Static7.aLongArray2[Static111.anInt2903];
@@ -274,10 +274,10 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		this.mainredraw();
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "f", descriptor = "(I)V")
+	@OriginalMember(owner = "client!rc", name = "f", descriptor = "(I)V")
 	protected abstract void mainredraw();
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "getCodeBase", descriptor = "()Ljava/net/URL;")
+	@OriginalMember(owner = "client!rc", name = "getCodeBase", descriptor = "()Ljava/net/URL;")
 	@Override
 	public final URL getCodeBase() {
 		if (Static39.frame == null) {
@@ -287,7 +287,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "run", descriptor = "()V")
+	@OriginalMember(owner = "client!rc", name = "run", descriptor = "()V")
 	@Override
 	public final void run() {
 		try {
@@ -350,7 +350,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		this.shutdown(true);
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "getParameter", descriptor = "(Ljava/lang/String;)Ljava/lang/String;")
+	@OriginalMember(owner = "client!rc", name = "getParameter", descriptor = "(Ljava/lang/String;)Ljava/lang/String;")
 	@Override
 	public final String getParameter(@OriginalArg(0) String arg0) {
 		if (Static39.frame == null) {
@@ -360,10 +360,10 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "g", descriptor = "(I)V")
+	@OriginalMember(owner = "client!rc", name = "g", descriptor = "(I)V")
 	protected abstract void method935();
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "stop", descriptor = "()V")
+	@OriginalMember(owner = "client!rc", name = "stop", descriptor = "()V")
 	@Override
 	public final void stop() {
 		if (Static230.anApplet_Sub1_1 == this && !Static58.shutdown) {
@@ -371,10 +371,10 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "init", descriptor = "()V")
+	@OriginalMember(owner = "client!rc", name = "init", descriptor = "()V")
 	public abstract void init();
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(IIZILjava/lang/String;III)V")
+	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(IIZILjava/lang/String;III)V")
 	protected final void method936(@OriginalArg(0) int arg0, @OriginalArg(4) String arg1) {
 		try {
 			Static254.canvasHei = 768;
@@ -404,12 +404,12 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "windowOpened", descriptor = "(Ljava/awt/event/WindowEvent;)V")
+	@OriginalMember(owner = "client!rc", name = "windowOpened", descriptor = "(Ljava/awt/event/WindowEvent;)V")
 	@Override
 	public final void windowOpened(@OriginalArg(0) WindowEvent arg0) {
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "start", descriptor = "()V")
+	@OriginalMember(owner = "client!rc", name = "start", descriptor = "()V")
 	@Override
 	public final void start() {
 		if (Static230.anApplet_Sub1_1 == this && !Static58.shutdown) {
@@ -417,7 +417,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(BIIII)V")
+	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(BIIII)V")
 	protected final void method937(@OriginalArg(2) int arg0) {
 		try {
 			if (Static230.anApplet_Sub1_1 != null) {
