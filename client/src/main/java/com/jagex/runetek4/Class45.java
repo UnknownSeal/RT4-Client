@@ -124,10 +124,10 @@ public final class Class45 {
 		@Pc(19) int local19;
 		if (GlRenderer.bigEndian) {
 			for (local19 = 0; local19 < this.anInt2017; local19++) {
-				local15.p1(this.aByteArray25[local19]);
-				local15.p1(this.aByteArray23[local19]);
-				local15.p1(this.aByteArray24[local19]);
-				local15.p1(255);
+				local15.p1b(this.aByteArray25[local19]);
+				local15.p1b(this.aByteArray23[local19]);
+				local15.p1b(this.aByteArray24[local19]);
+				local15.p1b(255);
 				local15.pFloat((float) this.anIntArray178[local19]);
 				local15.pFloat((float) this.anIntArray180[local19]);
 				local15.pFloat((float) this.anIntArray179[local19]);
@@ -137,10 +137,10 @@ public final class Class45 {
 			}
 		} else {
 			for (local19 = 0; local19 < this.anInt2017; local19++) {
-				local15.p1(this.aByteArray25[local19]);
-				local15.p1(this.aByteArray23[local19]);
-				local15.p1(this.aByteArray24[local19]);
-				local15.p1(255);
+				local15.p1b(this.aByteArray25[local19]);
+				local15.p1b(this.aByteArray23[local19]);
+				local15.p1b(this.aByteArray24[local19]);
+				local15.p1b(255);
 				local15.gFloat((float) this.anIntArray178[local19]);
 				local15.gFloat((float) this.anIntArray180[local19]);
 				local15.gFloat((float) this.anIntArray179[local19]);

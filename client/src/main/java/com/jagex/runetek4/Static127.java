@@ -369,7 +369,7 @@ public final class Static127 {
 			}
 		}
 		Static6.outboundBuffer.pIsaac1(44);
-		Static6.outboundBuffer.p1(arg0.length() - 1);
+		Static6.outboundBuffer.p1b(arg0.length() - 1);
 		Static6.outboundBuffer.pjstr(arg0.method3136(2));
 	}
 }

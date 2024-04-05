@@ -59,9 +59,9 @@ public final class Static216 {
 				Static72.aClass212_3 = null;
 				@Pc(106) long local106 = Static101.aLong98 = Static186.username.encode37();
 				Static6.outboundBuffer.pos = 0;
-				Static6.outboundBuffer.p1(14);
+				Static6.outboundBuffer.p1b(14);
 				@Pc(120) int local120 = (int) (local106 >> 16 & 0x1FL);
-				Static6.outboundBuffer.p1(local120);
+				Static6.outboundBuffer.p1b(local120);
 				Static124.socket.write(Static6.outboundBuffer.data, 2);
 				if (Static11.aClass62_1 != null) {
 					Static11.aClass62_1.method3571();
@@ -98,7 +98,7 @@ public final class Static216 {
 				local210[3] = (int) Static193.aLong147;
 				local210[1] = (int) (Math.random() * 9.9999999E7D);
 				local210[0] = (int) (Math.random() * 9.9999999E7D);
-				Static6.outboundBuffer.p1(10);
+				Static6.outboundBuffer.p1b(10);
 				Static6.outboundBuffer.p4(local210[0]);
 				Static6.outboundBuffer.p4(local210[1]);
 				Static6.outboundBuffer.p4(local210[2]);
@@ -108,20 +108,20 @@ public final class Static216 {
 				Static6.outboundBuffer.encryptRsa(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
 				Static17.aClass3_Sub15_Sub1_2.pos = 0;
 				if (Static244.anInt5370 == 40) {
-					Static17.aClass3_Sub15_Sub1_2.p1(18);
+					Static17.aClass3_Sub15_Sub1_2.p1b(18);
 				} else {
-					Static17.aClass3_Sub15_Sub1_2.p1(16);
+					Static17.aClass3_Sub15_Sub1_2.p1b(16);
 				}
 
 				Static17.aClass3_Sub15_Sub1_2.p2(Static6.outboundBuffer.pos + Static229.method3937(Static47.aClass100_991) + 159);
 				Static17.aClass3_Sub15_Sub1_2.p4(530);
-				Static17.aClass3_Sub15_Sub1_2.p1(Static5.anInt39);
-				Static17.aClass3_Sub15_Sub1_2.p1(Static249.aBoolean282 ? 1 : 0);
-				Static17.aClass3_Sub15_Sub1_2.p1(1);
-				Static17.aClass3_Sub15_Sub1_2.p1(Static144.method2736());
+				Static17.aClass3_Sub15_Sub1_2.p1b(Static5.anInt39);
+				Static17.aClass3_Sub15_Sub1_2.p1b(Static249.aBoolean282 ? 1 : 0);
+				Static17.aClass3_Sub15_Sub1_2.p1b(1);
+				Static17.aClass3_Sub15_Sub1_2.p1b(Static144.method2736());
 				Static17.aClass3_Sub15_Sub1_2.p2(Static48.canvasWid);
 				Static17.aClass3_Sub15_Sub1_2.p2(Static254.canvasHei);
-				Static17.aClass3_Sub15_Sub1_2.p1(Static186.anInt4392);
+				Static17.aClass3_Sub15_Sub1_2.p1b(Static186.anInt4392);
 				Static140.method2705(Static17.aClass3_Sub15_Sub1_2);
 				Static17.aClass3_Sub15_Sub1_2.pjstr(Static47.aClass100_991);
 				Static17.aClass3_Sub15_Sub1_2.p4(Static204.anInt4760);

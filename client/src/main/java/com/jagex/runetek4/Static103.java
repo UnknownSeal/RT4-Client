@@ -47,24 +47,24 @@ public final class Static103 {
 				Static122.x = Static7.clickX;
 				Static25.y = Static60.clickY;
 				Static6.outboundBuffer.pIsaac1(71);
-				Static6.outboundBuffer.p2leadd(local36);
+				Static6.outboundBuffer.p2_alt3(local36);
 			}
 		}
 		if (local23 == 46) {
 			Static233.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(247);
 			Static6.outboundBuffer.p2le(Static142.originZ + local19);
-			Static6.outboundBuffer.p2leadd(local15 + Static225.originX);
+			Static6.outboundBuffer.p2_alt3(local15 + Static225.originX);
 			Static6.outboundBuffer.p2(Integer.MAX_VALUE & (int) (local31 >>> 32));
 		}
 		if (local23 == 40) {
 			Static6.outboundBuffer.pIsaac1(27);
 			Static6.outboundBuffer.p2(Static185.anInt4370);
-			Static6.outboundBuffer.p4le2(local19);
+			Static6.outboundBuffer.p4_alt1(local19);
 			Static6.outboundBuffer.p2le(local15);
-			Static6.outboundBuffer.p4le2(Static224.anInt5062);
-			Static6.outboundBuffer.p2leadd(Static274.anInt4997);
-			Static6.outboundBuffer.p2leadd(local36);
+			Static6.outboundBuffer.p4_alt1(Static224.anInt5062);
+			Static6.outboundBuffer.p2_alt3(Static274.anInt4997);
+			Static6.outboundBuffer.p2_alt3(local36);
 			Static72.anInt2043 = 0;
 			Static257.aClass13_7 = Static5.getComponent(local19);
 			Static250.anInt5444 = local15;
@@ -108,9 +108,9 @@ public final class Static103 {
 		}
 		if (local23 == 58) {
 			Static6.outboundBuffer.pIsaac1(135);
-			Static6.outboundBuffer.p2add(local36);
-			Static6.outboundBuffer.p2add(local15);
-			Static6.outboundBuffer.p4me(local19);
+			Static6.outboundBuffer.p2_alt2(local36);
+			Static6.outboundBuffer.p2_alt2(local15);
+			Static6.outboundBuffer.p4_alt3(local19);
 			Static72.anInt2043 = 0;
 			Static257.aClass13_7 = Static5.getComponent(local19);
 			Static250.anInt5444 = local15;
@@ -119,7 +119,7 @@ public final class Static103 {
 			Static233.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(254);
 			Static6.outboundBuffer.p2le(local15 + Static225.originX);
-			Static6.outboundBuffer.p2add((int) (local31 >>> 32) & Integer.MAX_VALUE);
+			Static6.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
 			Static6.outboundBuffer.p2(local19 + Static142.originZ);
 		}
 		if (local23 == 28) {
@@ -134,9 +134,9 @@ public final class Static103 {
 				Static17.crossCycle = 0;
 				Static25.y = Static60.clickY;
 				Static6.outboundBuffer.pIsaac1(239);
-				Static6.outboundBuffer.p4le2(Static98.anInt2512);
-				Static6.outboundBuffer.p2add(Static15.anInt506);
-				Static6.outboundBuffer.p2leadd(local36);
+				Static6.outboundBuffer.p4_alt1(Static98.anInt2512);
+				Static6.outboundBuffer.p2_alt2(Static15.anInt506);
+				Static6.outboundBuffer.p2_alt3(local36);
 			}
 		}
 		@Pc(560) boolean local560;
@@ -156,14 +156,14 @@ public final class Static103 {
 			Static6.outboundBuffer.pIsaac1(66);
 			Static6.outboundBuffer.p2le(Static225.originX + local15);
 			Static6.outboundBuffer.p2(local36);
-			Static6.outboundBuffer.p2leadd(local19 + Static142.originZ);
+			Static6.outboundBuffer.p2_alt3(local19 + Static142.originZ);
 		}
 		if (local23 == 1001) {
 			Static233.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(170);
-			Static6.outboundBuffer.p2leadd(Integer.MAX_VALUE & (int) (local31 >>> 32));
-			Static6.outboundBuffer.p2leadd(local15 + Static225.originX);
-			Static6.outboundBuffer.p2leadd(local19 + Static142.originZ);
+			Static6.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (local31 >>> 32));
+			Static6.outboundBuffer.p2_alt3(local15 + Static225.originX);
+			Static6.outboundBuffer.p2_alt3(local19 + Static142.originZ);
 		}
 		if (local23 == 1002) {
 			Static70.crossMode = 2;
@@ -171,14 +171,14 @@ public final class Static103 {
 			Static25.y = Static60.clickY;
 			Static17.crossCycle = 0;
 			Static6.outboundBuffer.pIsaac1(92);
-			Static6.outboundBuffer.p2leadd(local36);
+			Static6.outboundBuffer.p2_alt3(local36);
 		}
 		@Pc(693) Component local693;
 		if (local23 == 1006) {
 			local693 = Static5.getComponent(local19);
 			if (local693 == null || local693.objCounts[local15] < 100000) {
 				Static6.outboundBuffer.pIsaac1(92);
-				Static6.outboundBuffer.p2leadd(local36);
+				Static6.outboundBuffer.p2_alt3(local36);
 			} else {
 				method2231(Static186.aClass100_827, 0, Static34.method882(new JagString[] { Static123.method2423(local693.objCounts[local15]), Static249.aClass100_1039, Static71.get(local36).name}));
 			}
@@ -193,17 +193,17 @@ public final class Static103 {
 				if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
 					Static61.teleport(Static225.originX + local15, Static142.originZ + local19, Static55.level);
 				} else if (Static102.method2075(Static173.self.movementQueueZ[0], 0, 0, true, 0, local15, 0, 0, 1, local19, Static173.self.movementQueueX[0])) {
-					Static6.outboundBuffer.p1(Static1.anInt5);
-					Static6.outboundBuffer.p1(Static107.anInt2878);
+					Static6.outboundBuffer.p1b(Static1.anInt5);
+					Static6.outboundBuffer.p1b(Static107.anInt2878);
 					Static6.outboundBuffer.p2(Static57.anInt1747);
-					Static6.outboundBuffer.p1(57);
-					Static6.outboundBuffer.p1(Static59.anInt1814);
-					Static6.outboundBuffer.p1(Static273.anInt4130);
-					Static6.outboundBuffer.p1(89);
+					Static6.outboundBuffer.p1b(57);
+					Static6.outboundBuffer.p1b(Static59.anInt1814);
+					Static6.outboundBuffer.p1b(Static273.anInt4130);
+					Static6.outboundBuffer.p1b(89);
 					Static6.outboundBuffer.p2(Static173.self.anInt3412);
 					Static6.outboundBuffer.p2(Static173.self.anInt3421);
-					Static6.outboundBuffer.p1(Static221.anInt4364);
-					Static6.outboundBuffer.p1(63);
+					Static6.outboundBuffer.p1b(Static221.anInt4364);
+					Static6.outboundBuffer.p1b(63);
 				}
 			}
 		}
@@ -226,19 +226,19 @@ public final class Static103 {
 		}
 		if (local23 == 47) {
 			Static6.outboundBuffer.pIsaac1(156);
-			Static6.outboundBuffer.p2leadd(local15);
-			Static6.outboundBuffer.p2add(local36);
-			Static6.outboundBuffer.p4le2(local19);
+			Static6.outboundBuffer.p2_alt3(local15);
+			Static6.outboundBuffer.p2_alt2(local36);
+			Static6.outboundBuffer.p4_alt1(local19);
 			Static72.anInt2043 = 0;
 			Static257.aClass13_7 = Static5.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 3) {
 			Static6.outboundBuffer.pIsaac1(253);
-			Static6.outboundBuffer.p4le2(Static98.anInt2512);
-			Static6.outboundBuffer.p2leadd(local15);
-			Static6.outboundBuffer.p4le2(local19);
-			Static6.outboundBuffer.p2add(local36);
+			Static6.outboundBuffer.p4_alt1(Static98.anInt2512);
+			Static6.outboundBuffer.p2_alt3(local15);
+			Static6.outboundBuffer.p4_alt1(local19);
+			Static6.outboundBuffer.p2_alt2(local36);
 			Static6.outboundBuffer.p2le(Static15.anInt506);
 			Static72.anInt2043 = 0;
 			Static257.aClass13_7 = Static5.getComponent(local19);
@@ -264,27 +264,27 @@ public final class Static103 {
 		if (local23 == 49) {
 			Static233.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(84);
-			Static6.outboundBuffer.p2leadd(Integer.MAX_VALUE & (int) (local31 >>> 32));
-			Static6.outboundBuffer.p2leadd(Static142.originZ + local19);
+			Static6.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (local31 >>> 32));
+			Static6.outboundBuffer.p2_alt3(Static142.originZ + local19);
 			Static6.outboundBuffer.p2le(local15 + Static225.originX);
 		}
 		if (local23 == 23) {
 			Static6.outboundBuffer.pIsaac1(206);
-			Static6.outboundBuffer.p2add(local36);
+			Static6.outboundBuffer.p2_alt2(local36);
 			Static6.outboundBuffer.p2le(local15);
-			Static6.outboundBuffer.p4le2(local19);
+			Static6.outboundBuffer.p4_alt1(local19);
 			Static72.anInt2043 = 0;
 			Static257.aClass13_7 = Static5.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 14 && Static233.method4003(local31, local19, local15)) {
 			Static6.outboundBuffer.pIsaac1(134);
-			Static6.outboundBuffer.p2add(Static225.originX + local15);
+			Static6.outboundBuffer.p2_alt2(Static225.originX + local15);
 			Static6.outboundBuffer.p2(Static274.anInt4997);
 			Static6.outboundBuffer.p2le(local19 + Static142.originZ);
 			Static6.outboundBuffer.p2(Static185.anInt4370);
-			Static6.outboundBuffer.p4me(Static224.anInt5062);
-			Static6.outboundBuffer.p2add((int) (local31 >>> 32) & Integer.MAX_VALUE);
+			Static6.outboundBuffer.p4_alt3(Static224.anInt5062);
+			Static6.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
 		}
 		if (local23 == 37) {
 			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
@@ -295,7 +295,7 @@ public final class Static103 {
 				Static25.y = Static60.clickY;
 				Static122.x = Static7.clickX;
 				Static6.outboundBuffer.pIsaac1(114);
-				Static6.outboundBuffer.p2leadd(local36);
+				Static6.outboundBuffer.p2_alt3(local36);
 			}
 		}
 		if (local23 == 9 || local23 == 1003) {
@@ -304,7 +304,7 @@ public final class Static103 {
 		if (local23 == 5) {
 			Static6.outboundBuffer.pIsaac1(55);
 			Static6.outboundBuffer.p2le(local36);
-			Static6.outboundBuffer.p2add(local15);
+			Static6.outboundBuffer.p2_alt2(local15);
 			Static6.outboundBuffer.p4rme(local19);
 			Static72.anInt2043 = 0;
 			Static257.aClass13_7 = Static5.getComponent(local19);
@@ -326,7 +326,7 @@ public final class Static103 {
 			Static6.outboundBuffer.pIsaac1(228);
 			Static6.outboundBuffer.p2(local36);
 			Static6.outboundBuffer.p2le(Static225.originX + local15);
-			Static6.outboundBuffer.p2leadd(Static142.originZ + local19);
+			Static6.outboundBuffer.p2_alt3(Static142.originZ + local19);
 		}
 		if (local23 == 4) {
 			local192 = Static175.aClass8_Sub4_Sub2Array1[local36];
@@ -337,7 +337,7 @@ public final class Static103 {
 				Static25.y = Static60.clickY;
 				Static122.x = Static7.clickX;
 				Static6.outboundBuffer.pIsaac1(148);
-				Static6.outboundBuffer.p2add(local36);
+				Static6.outboundBuffer.p2_alt2(local36);
 			}
 		}
 		if (local23 == 32) {
@@ -368,14 +368,14 @@ public final class Static103 {
 				Static70.crossMode = 2;
 				Static122.x = Static7.clickX;
 				Static6.outboundBuffer.pIsaac1(180);
-				Static6.outboundBuffer.p2leadd(local36);
+				Static6.outboundBuffer.p2_alt3(local36);
 			}
 		}
 		if (local23 == 35) {
 			Static6.outboundBuffer.pIsaac1(161);
-			Static6.outboundBuffer.p4le2(local19);
-			Static6.outboundBuffer.p2leadd(local36);
-			Static6.outboundBuffer.p2leadd(local15);
+			Static6.outboundBuffer.p4_alt1(local19);
+			Static6.outboundBuffer.p2_alt3(local36);
+			Static6.outboundBuffer.p2_alt3(local15);
 			Static72.anInt2043 = 0;
 			Static257.aClass13_7 = Static5.getComponent(local19);
 			Static250.anInt5444 = local15;
@@ -389,9 +389,9 @@ public final class Static103 {
 				Static122.x = Static7.clickX;
 				Static25.y = Static60.clickY;
 				Static6.outboundBuffer.pIsaac1(195);
-				Static6.outboundBuffer.p2add(Static15.anInt506);
-				Static6.outboundBuffer.p4le2(Static98.anInt2512);
-				Static6.outboundBuffer.p2leadd(local36);
+				Static6.outboundBuffer.p2_alt2(Static15.anInt506);
+				Static6.outboundBuffer.p4_alt1(Static98.anInt2512);
+				Static6.outboundBuffer.p2_alt3(local36);
 			}
 		}
 		if (local23 == 34) {
@@ -410,11 +410,11 @@ public final class Static103 {
 			Static6.outboundBuffer.pIsaac1(109);
 			Static6.outboundBuffer.p2le(local19 + Static142.originZ);
 			Static6.outboundBuffer.p2(local15 + Static225.originX);
-			Static6.outboundBuffer.p2leadd(local36);
+			Static6.outboundBuffer.p2_alt3(local36);
 		}
 		if (local23 == 25) {
 			Static6.outboundBuffer.pIsaac1(81);
-			Static6.outboundBuffer.p2add(local15);
+			Static6.outboundBuffer.p2_alt2(local15);
 			Static6.outboundBuffer.p2(local36);
 			Static6.outboundBuffer.p4rme(local19);
 			Static72.anInt2043 = 0;
@@ -455,10 +455,10 @@ public final class Static103 {
 				Static25.y = Static60.clickY;
 				Static122.x = Static7.clickX;
 				Static6.outboundBuffer.pIsaac1(115);
-				Static6.outboundBuffer.p4me(Static224.anInt5062);
+				Static6.outboundBuffer.p4_alt3(Static224.anInt5062);
 				Static6.outboundBuffer.p2le(Static185.anInt4370);
 				Static6.outboundBuffer.p2le(local36);
-				Static6.outboundBuffer.p2leadd(Static274.anInt4997);
+				Static6.outboundBuffer.p2_alt3(Static274.anInt4997);
 			}
 		}
 		if (local23 == 59) {
@@ -481,12 +481,12 @@ public final class Static103 {
 			Static25.y = Static60.clickY;
 			Static70.crossMode = 2;
 			Static6.outboundBuffer.pIsaac1(101);
-			Static6.outboundBuffer.p2leadd(local15 + Static225.originX);
+			Static6.outboundBuffer.p2_alt3(local15 + Static225.originX);
 			Static6.outboundBuffer.p2le(Static185.anInt4370);
 			Static6.outboundBuffer.p2le(Static274.anInt4997);
 			Static6.outboundBuffer.p2le(local36);
-			Static6.outboundBuffer.p2leadd(Static142.originZ + local19);
-			Static6.outboundBuffer.p4me(Static224.anInt5062);
+			Static6.outboundBuffer.p2_alt3(Static142.originZ + local19);
+			Static6.outboundBuffer.p4_alt3(Static224.anInt5062);
 		}
 		if (local23 == 1004) {
 			Static17.crossCycle = 0;
@@ -494,7 +494,7 @@ public final class Static103 {
 			Static70.crossMode = 2;
 			Static25.y = Static60.clickY;
 			Static6.outboundBuffer.pIsaac1(94);
-			Static6.outboundBuffer.p2leadd(local36);
+			Static6.outboundBuffer.p2_alt3(local36);
 		}
 		if (local23 == 11) {
 			if (local36 == 0) {
@@ -502,10 +502,10 @@ public final class Static103 {
 				Static113.method3556(Static55.level, local15, local19);
 			} else if (local36 == 1) {
 				Static6.outboundBuffer.pIsaac1(131);
-				Static6.outboundBuffer.p4me(Static98.anInt2512);
-				Static6.outboundBuffer.p2add(Static225.originX + local15);
-				Static6.outboundBuffer.p2leadd(Static15.anInt506);
-				Static6.outboundBuffer.p2add(local19 + Static142.originZ);
+				Static6.outboundBuffer.p4_alt3(Static98.anInt2512);
+				Static6.outboundBuffer.p2_alt2(Static225.originX + local15);
+				Static6.outboundBuffer.p2_alt3(Static15.anInt506);
+				Static6.outboundBuffer.p2_alt2(local19 + Static142.originZ);
 			}
 		}
 		if (local23 == 8) {
@@ -528,17 +528,17 @@ public final class Static103 {
 				Static70.crossMode = 2;
 				Static122.x = Static7.clickX;
 				Static6.outboundBuffer.pIsaac1(248);
-				Static6.outboundBuffer.p2leadd(local36);
+				Static6.outboundBuffer.p2_alt3(local36);
 				Static6.outboundBuffer.p2(Static274.anInt4997);
 				Static6.outboundBuffer.p2(Static185.anInt4370);
-				Static6.outboundBuffer.p4me(Static224.anInt5062);
+				Static6.outboundBuffer.p4_alt3(Static224.anInt5062);
 			}
 		}
 		if (local23 == 7) {
 			Static6.outboundBuffer.pIsaac1(85);
 			Static6.outboundBuffer.p4rme(local19);
 			Static6.outboundBuffer.p2(local15);
-			Static6.outboundBuffer.p2add(local36);
+			Static6.outboundBuffer.p2_alt2(local36);
 			Static72.anInt2043 = 0;
 			Static257.aClass13_7 = Static5.getComponent(local19);
 			Static250.anInt5444 = local15;
@@ -557,22 +557,22 @@ public final class Static103 {
 			Static122.x = Static7.clickX;
 			Static17.crossCycle = 0;
 			Static6.outboundBuffer.pIsaac1(48);
-			Static6.outboundBuffer.p2add(local15 + Static225.originX);
-			Static6.outboundBuffer.p2leadd(local36);
+			Static6.outboundBuffer.p2_alt2(local15 + Static225.originX);
+			Static6.outboundBuffer.p2_alt3(local36);
 			Static6.outboundBuffer.p2le(Static142.originZ + local19);
 		}
 		if (local23 == 38 && Static233.method4003(local31, local19, local15)) {
 			Static6.outboundBuffer.pIsaac1(233);
-			Static6.outboundBuffer.p2leadd(local19 + Static142.originZ);
-			Static6.outboundBuffer.p2add(Static225.originX + local15);
-			Static6.outboundBuffer.p2leadd(Static15.anInt506);
+			Static6.outboundBuffer.p2_alt3(local19 + Static142.originZ);
+			Static6.outboundBuffer.p2_alt2(Static225.originX + local15);
+			Static6.outboundBuffer.p2_alt3(Static15.anInt506);
 			Static6.outboundBuffer.p4rme(Static98.anInt2512);
-			Static6.outboundBuffer.p2add((int) (local31 >>> 32) & Integer.MAX_VALUE);
+			Static6.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
 		}
 		if (local23 == 13) {
 			Static6.outboundBuffer.pIsaac1(6);
 			Static6.outboundBuffer.p4(local19);
-			Static6.outboundBuffer.p2add(local15);
+			Static6.outboundBuffer.p2_alt2(local15);
 			Static6.outboundBuffer.p2le(local36);
 			Static72.anInt2043 = 0;
 			Static257.aClass13_7 = Static5.getComponent(local19);
@@ -587,7 +587,7 @@ public final class Static103 {
 				Static122.x = Static7.clickX;
 				Static17.crossCycle = 0;
 				Static6.outboundBuffer.pIsaac1(175);
-				Static6.outboundBuffer.p2add(local36);
+				Static6.outboundBuffer.p2_alt2(local36);
 			}
 		}
 		if (local23 == 22) {
@@ -607,7 +607,7 @@ public final class Static103 {
 		if (local23 == 50) {
 			Static233.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(194);
-			Static6.outboundBuffer.p2leadd(local19 + Static142.originZ);
+			Static6.outboundBuffer.p2_alt3(local19 + Static142.originZ);
 			Static6.outboundBuffer.p2le(Static225.originX + local15);
 			Static6.outboundBuffer.p2((int) (local31 >>> 32) & Integer.MAX_VALUE);
 		}
@@ -615,7 +615,7 @@ public final class Static103 {
 			Static6.outboundBuffer.pIsaac1(154);
 			Static6.outboundBuffer.p2le(local15);
 			Static6.outboundBuffer.p4rme(local19);
-			Static6.outboundBuffer.p2leadd(local36);
+			Static6.outboundBuffer.p2_alt3(local36);
 			Static72.anInt2043 = 0;
 			Static257.aClass13_7 = Static5.getComponent(local19);
 			Static250.anInt5444 = local15;
@@ -629,12 +629,12 @@ public final class Static103 {
 				Static25.y = Static60.clickY;
 				Static70.crossMode = 2;
 				Static6.outboundBuffer.pIsaac1(68);
-				Static6.outboundBuffer.p2leadd(local36);
+				Static6.outboundBuffer.p2_alt3(local36);
 			}
 		}
 		if (local23 == 43) {
 			Static6.outboundBuffer.pIsaac1(153);
-			Static6.outboundBuffer.p4le2(local19);
+			Static6.outboundBuffer.p4_alt1(local19);
 			Static6.outboundBuffer.p2le(local15);
 			Static6.outboundBuffer.p2le(local36);
 			Static72.anInt2043 = 0;
@@ -653,8 +653,8 @@ public final class Static103 {
 			Static6.outboundBuffer.pIsaac1(73);
 			Static6.outboundBuffer.p4rme(Static98.anInt2512);
 			Static6.outboundBuffer.p2(Static142.originZ + local19);
-			Static6.outboundBuffer.p2leadd(local36);
-			Static6.outboundBuffer.p2leadd(local15 + Static225.originX);
+			Static6.outboundBuffer.p2_alt3(local36);
+			Static6.outboundBuffer.p2_alt3(local15 + Static225.originX);
 			Static6.outboundBuffer.p2le(Static15.anInt506);
 		}
 		if (local23 == 12) {
@@ -662,7 +662,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p2(Static15.anInt506);
 			Static6.outboundBuffer.p4rme(local19);
 			Static6.outboundBuffer.p4(Static98.anInt2512);
-			Static6.outboundBuffer.p2leadd(local15);
+			Static6.outboundBuffer.p2_alt3(local15);
 		}
 		if (local23 == 36) {
 			if (local36 == 0) {
@@ -715,7 +715,7 @@ public final class Static103 {
 				Static25.y = Static60.clickY;
 				Static70.crossMode = 2;
 				Static6.outboundBuffer.pIsaac1(3);
-				Static6.outboundBuffer.p2leadd(local36);
+				Static6.outboundBuffer.p2_alt3(local36);
 			}
 		}
 		if (Static260.anInt5014 != 0) {

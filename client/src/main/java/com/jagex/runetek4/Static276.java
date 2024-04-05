@@ -61,10 +61,10 @@ public final class Static276 {
 				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local28.movementQueueX[0], 1, 0, 2, local28.movementQueueZ[0], Static173.self.movementQueueX[0]);
 				if (arg0 == 1) {
 					Static6.outboundBuffer.pIsaac1(68);
-					Static6.outboundBuffer.p2leadd(Static105.ids[local15]);
+					Static6.outboundBuffer.p2_alt3(Static105.ids[local15]);
 				} else if (arg0 == 4) {
 					Static6.outboundBuffer.pIsaac1(180);
-					Static6.outboundBuffer.p2leadd(Static105.ids[local15]);
+					Static6.outboundBuffer.p2_alt3(Static105.ids[local15]);
 				} else if (arg0 == 5) {
 					Static6.outboundBuffer.pIsaac1(4);
 					Static6.outboundBuffer.p2le(Static105.ids[local15]);
@@ -73,7 +73,7 @@ public final class Static276 {
 					Static6.outboundBuffer.p2le(Static105.ids[local15]);
 				} else if (arg0 == 7) {
 					Static6.outboundBuffer.pIsaac1(114);
-					Static6.outboundBuffer.p2leadd(Static105.ids[local15]);
+					Static6.outboundBuffer.p2_alt3(Static105.ids[local15]);
 				}
 				break;
 			}

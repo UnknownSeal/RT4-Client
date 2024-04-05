@@ -96,7 +96,7 @@ public final class Static225 {
 			Static266.anInt5336 = -3;
 			Static219.anInt4937 = 1;
 			@Pc(43) Packet local43 = new Packet(128);
-			local43.p1(10);
+			local43.p1b(10);
 			local43.p2((int) (Math.random() * 99999.0D));
 			local43.p2(530);
 			local43.p8(Static186.username.encode37());
@@ -105,8 +105,8 @@ public final class Static225 {
 			local43.p4((int) (Math.random() * 9.9999999E7D));
 			local43.encryptRsa(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
 			Static6.outboundBuffer.pos = 0;
-			Static6.outboundBuffer.p1(210);
-			Static6.outboundBuffer.p1(local43.pos);
+			Static6.outboundBuffer.p1b(210);
+			Static6.outboundBuffer.p1b(local43.pos);
 			Static6.outboundBuffer.pBytes(local43.data, local43.pos);
 		} else {
 			Static49.method1208();

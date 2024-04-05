@@ -118,7 +118,7 @@ public final class Static207 {
 				if (Static61.aBoolean109) {
 					local82 = Static80.anInt4702;
 				}
-				Static6.outboundBuffer.p1(255);
+				Static6.outboundBuffer.p1b(255);
 				Static6.outboundBuffer.p4(local82);
 				Static124.socket.write(Static6.outboundBuffer.data, Static6.outboundBuffer.pos);
 				if (Static11.aClass62_1 != null) {

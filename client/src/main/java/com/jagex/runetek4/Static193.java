@@ -290,25 +290,31 @@ public final class Static193 {
 		@Pc(27) int local27 = Static84.anIntArray209[arg0];
 		if (arg1 == 0) {
 			Static6.outboundBuffer.pIsaac1(215);
-			Static6.outboundBuffer.p1(local13 + local13 + 3);
+			Static6.outboundBuffer.p1b(local13 + local13 + 3);
+			System.out.println("Steps: " + (local13 + local13 + 3));
 		}
 		if (arg1 == 1) {
 			Static6.outboundBuffer.pIsaac1(39);
-			Static6.outboundBuffer.p1(local13 + local13 + 3 + 14);
+			Static6.outboundBuffer.p1b(local13 + local13 + 3 + 14);
 		}
 		if (arg1 == 2) {
 			Static6.outboundBuffer.pIsaac1(77);
-			Static6.outboundBuffer.p1(local13 + local13 + 3);
+			Static6.outboundBuffer.p1b(local13 + local13 + 3);
 		}
-		Static6.outboundBuffer.p1a(Static187.pressedKeys[82] ? 1 : 0);
-		Static6.outboundBuffer.p2(Static225.originX + local23);
-		Static6.outboundBuffer.p2add(Static142.originZ + local27);
+		Static6.outboundBuffer.p1b_alt1(Static187.pressedKeys[82] ? 1 : 0);
+		System.out.println("InvertRun: " + (Static187.pressedKeys[82] ? 1 : 0) );
+		Static6.outboundBuffer.p2((Static225.originX + local23));
+		System.out.println("StartX: " + (Static225.originX + local23));
+		Static6.outboundBuffer.p2_alt2(Static142.originZ + local27);
+		System.out.println("StartZ: " + (Static142.originZ + local27));
 		Static84.anInt2255 = Static84.anIntArray209[0];
 		Static115.anInt2939 = Static259.anIntArray514[0];
 		for (@Pc(126) int local126 = 1; local126 < local13; local126++) {
 			arg0--;
-			Static6.outboundBuffer.p1a(Static259.anIntArray514[arg0] - local23);
-			Static6.outboundBuffer.p1sub(Static84.anIntArray209[arg0] - local27);
+			Static6.outboundBuffer.p1b_alt1(Static259.anIntArray514[arg0] - local23);
+			System.out.println(Static259.anIntArray514[arg0] - local23);
+			Static6.outboundBuffer.p1_alt3(Static84.anIntArray209[arg0] - local27);
+			System.out.println(Static84.anIntArray209[arg0] - local27);
 		}
 	}
 }

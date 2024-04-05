@@ -195,46 +195,46 @@ public final class Song extends Node {
 					local567 = local583 & 0xF;
 					if (local583 == 7) {
 						if (local590) {
-							local500.p1(255);
+							local500.p1b(255);
 						}
-						local500.p1(47);
-						local500.p1(0);
+						local500.p1b(47);
+						local500.p1b(0);
 						local500.p4len(local500.pos - local565);
 						continue label221;
 					}
 					if (local583 == 23) {
 						if (local590) {
-							local500.p1(255);
+							local500.p1b(255);
 						}
-						local500.p1(81);
-						local500.p1(3);
-						local500.p1(arg0.data[local482++]);
-						local500.p1(arg0.data[local482++]);
-						local500.p1(arg0.data[local482++]);
+						local500.p1b(81);
+						local500.p1b(3);
+						local500.p1b(arg0.data[local482++]);
+						local500.p1b(arg0.data[local482++]);
+						local500.p1b(arg0.data[local482++]);
 					} else {
 						local530 ^= local583 >> 4;
 						if (local567 == 0) {
 							if (local590) {
-								local500.p1(local530 + 144);
+								local500.p1b(local530 + 144);
 							}
 							local532 += arg0.data[local361++];
 							local534 += arg0.data[local374++];
-							local500.p1(local532 & 0x7F);
-							local500.p1(local534 & 0x7F);
+							local500.p1b(local532 & 0x7F);
+							local500.p1b(local534 & 0x7F);
 						} else if (local567 == 1) {
 							if (local590) {
-								local500.p1(local530 + 128);
+								local500.p1b(local530 + 128);
 							}
 							local532 += arg0.data[local361++];
 							local536 += arg0.data[local392++];
-							local500.p1(local532 & 0x7F);
-							local500.p1(local536 & 0x7F);
+							local500.p1b(local532 & 0x7F);
+							local500.p1b(local536 & 0x7F);
 						} else if (local567 == 2) {
 							if (local590) {
-								local500.p1(local530 + 176);
+								local500.p1b(local530 + 176);
 							}
 							local203 = local203 + arg0.data[local52++] & 0x7F;
-							local500.p1(local203);
+							local500.p1b(local203);
 							@Pc(775) byte local775;
 							if (local203 == 0 || local203 == 32) {
 								local775 = arg0.data[local428++];
@@ -265,34 +265,34 @@ public final class Song extends Node {
 							}
 							@Pc(910) int local910 = local775 + local545[local203];
 							local545[local203] = local910;
-							local500.p1(local910 & 0x7F);
+							local500.p1b(local910 & 0x7F);
 						} else if (local567 == 3) {
 							if (local590) {
-								local500.p1(local530 + 224);
+								local500.p1b(local530 + 224);
 							}
 							local538 += arg0.data[local437++];
 							local538 += arg0.data[local325++] << 7;
-							local500.p1(local538 & 0x7F);
-							local500.p1(local538 >> 7 & 0x7F);
+							local500.p1b(local538 & 0x7F);
+							local500.p1b(local538 >> 7 & 0x7F);
 						} else if (local567 == 4) {
 							if (local590) {
-								local500.p1(local530 + 208);
+								local500.p1b(local530 + 208);
 							}
 							local540 += arg0.data[local316++];
-							local500.p1(local540 & 0x7F);
+							local500.p1b(local540 & 0x7F);
 						} else if (local567 == 5) {
 							if (local590) {
-								local500.p1(local530 + 160);
+								local500.p1b(local530 + 160);
 							}
 							local532 += arg0.data[local361++];
 							local542 += arg0.data[local307++];
-							local500.p1(local532 & 0x7F);
-							local500.p1(local542 & 0x7F);
+							local500.p1b(local532 & 0x7F);
+							local500.p1b(local542 & 0x7F);
 						} else if (local567 == 6) {
 							if (local590) {
-								local500.p1(local530 + 192);
+								local500.p1b(local530 + 192);
 							}
-							local500.p1(arg0.data[local428++]);
+							local500.p1b(arg0.data[local428++]);
 						} else {
 							throw new RuntimeException();
 						}

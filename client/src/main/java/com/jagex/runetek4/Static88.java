@@ -1271,7 +1271,7 @@ public final class Static88 {
 										local26--;
 										local609 = Static3.aClass100Array176[local26];
 										Static6.outboundBuffer.pIsaac1(65);
-										Static6.outboundBuffer.p1(local609.length() + 1);
+										Static6.outboundBuffer.p1b(local609.length() + 1);
 										Static6.outboundBuffer.pjstr(local609);
 										continue;
 									}
@@ -2180,9 +2180,9 @@ public final class Static88 {
 													Static49.anInt1459 = Static254.anIntArray487[local28 + 1];
 													Static84.anInt2256 = Static254.anIntArray487[local28 + 2];
 													Static6.outboundBuffer.pIsaac1(157);
-													Static6.outboundBuffer.p1(Static59.anInt1812);
-													Static6.outboundBuffer.p1(Static49.anInt1459);
-													Static6.outboundBuffer.p1(Static84.anInt2256);
+													Static6.outboundBuffer.p1b(Static59.anInt1812);
+													Static6.outboundBuffer.p1b(Static49.anInt1459);
+													Static6.outboundBuffer.p1b(Static84.anInt2256);
 													continue;
 												}
 												if (local226 == 5002) {
@@ -2193,8 +2193,8 @@ public final class Static88 {
 													local1052 = Static254.anIntArray487[local28 + 1];
 													Static6.outboundBuffer.pIsaac1(99);
 													Static6.outboundBuffer.p8(local609.encode37());
-													Static6.outboundBuffer.p1(local803 - 1);
-													Static6.outboundBuffer.p1(local1052);
+													Static6.outboundBuffer.p1b(local803 - 1);
+													Static6.outboundBuffer.p1b(local1052);
 													continue;
 												}
 												if (local226 == 5003) {
@@ -2344,10 +2344,10 @@ public final class Static88 {
 															}
 														}
 														Static6.outboundBuffer.pIsaac1(237);
-														Static6.outboundBuffer.p1(0);
+														Static6.outboundBuffer.p1b(0);
 														local4859 = Static6.outboundBuffer.pos;
-														Static6.outboundBuffer.p1(local5555);
-														Static6.outboundBuffer.p1(local5943);
+														Static6.outboundBuffer.p1b(local5555);
+														Static6.outboundBuffer.p1b(local5943);
 														Static146.method2748(Static6.outboundBuffer, local609);
 														Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - local4859);
 														continue;
@@ -2361,7 +2361,7 @@ public final class Static88 {
 													local609 = Static3.aClass100Array176[local26];
 													if (Static191.staffModLevel != 0 || (!Static124.aBoolean157 || Static207.aBoolean236) && !Static86.aBoolean129) {
 														Static6.outboundBuffer.pIsaac1(201);
-														Static6.outboundBuffer.p1(0);
+														Static6.outboundBuffer.p1b(0);
 														local1052 = Static6.outboundBuffer.pos;
 														Static6.outboundBuffer.p8(local609.encode37());
 														Static146.method2748(Static6.outboundBuffer, local2522);
@@ -2501,9 +2501,9 @@ public final class Static88 {
 												}
 												if (local226 == 5059) {
 													Static6.outboundBuffer.pIsaac1(167);
-													Static6.outboundBuffer.p1(0);
+													Static6.outboundBuffer.p1b(0);
 													local809 = Static6.outboundBuffer.pos;
-													Static6.outboundBuffer.p1(0);
+													Static6.outboundBuffer.p1b(0);
 													Static6.outboundBuffer.p2(Static122.aClass12_1.anInt439);
 													Static122.aClass12_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aClass12_1.anIntArray33);
 													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - local809);
@@ -2513,7 +2513,7 @@ public final class Static88 {
 													local26--;
 													local609 = Static3.aClass100Array176[local26];
 													Static6.outboundBuffer.pIsaac1(178);
-													Static6.outboundBuffer.p1(0);
+													Static6.outboundBuffer.p1b(0);
 													local803 = Static6.outboundBuffer.pos;
 													Static6.outboundBuffer.p8(local609.encode37());
 													Static6.outboundBuffer.p2(Static122.aClass12_1.anInt439);
@@ -2523,9 +2523,9 @@ public final class Static88 {
 												}
 												if (local226 == 5061) {
 													Static6.outboundBuffer.pIsaac1(167);
-													Static6.outboundBuffer.p1(0);
+													Static6.outboundBuffer.p1b(0);
 													local809 = Static6.outboundBuffer.pos;
-													Static6.outboundBuffer.p1(1);
+													Static6.outboundBuffer.p1b(1);
 													Static6.outboundBuffer.p2(Static122.aClass12_1.anInt439);
 													Static122.aClass12_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aClass12_1.anIntArray33);
 													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - local809);
@@ -2904,10 +2904,10 @@ public final class Static88 {
 														local28--;
 														local1052 = Static254.anIntArray487[local28];
 														Static6.outboundBuffer.pIsaac1(117);
-														Static6.outboundBuffer.p1(Static229.method3937(local609) + Static229.method3937(local2522) + 1);
+														Static6.outboundBuffer.p1b(Static229.method3937(local609) + Static229.method3937(local2522) + 1);
 														Static6.outboundBuffer.pjstr(local609);
 														Static6.outboundBuffer.pjstr(local2522);
-														Static6.outboundBuffer.p1(local1052);
+														Static6.outboundBuffer.p1b(local1052);
 														continue;
 													}
 													if (local226 == 5401) {

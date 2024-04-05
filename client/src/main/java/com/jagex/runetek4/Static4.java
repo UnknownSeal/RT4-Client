@@ -1658,7 +1658,7 @@ public final class Static4 {
 					}
 					if (Static56.aClass13_12 != null && Static36.method938(Static105.aClass13_14) != null) {
 						Static6.outboundBuffer.pIsaac1(79);
-						Static6.outboundBuffer.p4me(Static105.aClass13_14.anInt507);
+						Static6.outboundBuffer.p4_alt3(Static105.aClass13_14.anInt507);
 						Static6.outboundBuffer.p2le(Static56.aClass13_12.componentId);
 						Static6.outboundBuffer.p4(Static56.aClass13_12.anInt507);
 						Static6.outboundBuffer.p2le(Static105.aClass13_14.componentId);

@@ -297,8 +297,8 @@ public final class Static75 {
 					local27 = Static57.aClass3_Sub15_Sub1_3.g1();
 					local31 = (local27 >> 4 & 0x7) + Static115.anInt2940;
 					local39 = (local27 & 0x7) + Static180.anInt4264;
-					@Pc(605) byte local605 = Static57.aClass3_Sub15_Sub1_3.p1sub();
-					@Pc(609) byte local609 = Static57.aClass3_Sub15_Sub1_3.p1sub();
+					@Pc(605) byte local605 = Static57.aClass3_Sub15_Sub1_3.p1_alt3();
+					@Pc(609) byte local609 = Static57.aClass3_Sub15_Sub1_3.p1_alt3();
 					@Pc(613) byte local613 = Static57.aClass3_Sub15_Sub1_3.g1sub();
 					local228 = Static57.aClass3_Sub15_Sub1_3.g2sub();
 					local232 = Static57.aClass3_Sub15_Sub1_3.g2le();

@@ -152,7 +152,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "d", descriptor = "(II)V")
-	public final void p1sub(@OriginalArg(1) int value) {
+	public final void p1_alt3(@OriginalArg(1) int value) {
 		this.data[this.pos++] = (byte) (128 - value);
 	}
 
@@ -199,7 +199,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(BI)V")
-	public final void p1(@OriginalArg(1) int value) {
+	public final void p1b(@OriginalArg(1) int value) {
 		this.data[this.pos++] = (byte) value;
 	}
 
@@ -243,7 +243,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "f", descriptor = "(II)V")
-	public final void p4me(@OriginalArg(1) int value) {
+	public final void p4_alt3(@OriginalArg(1) int value) {
 		this.data[this.pos++] = (byte) (value >> 16);
 		this.data[this.pos++] = (byte) (value >> 24);
 		this.data[this.pos++] = (byte) value;
@@ -289,7 +289,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(IB)V")
-	public final void p2leadd(@OriginalArg(0) int value) {
+	public final void p2_alt3(@OriginalArg(0) int value) {
 		this.data[this.pos++] = (byte) (value + 128);
 		this.data[this.pos++] = (byte) (value >> 8);
 	}
@@ -303,7 +303,7 @@ public class Packet extends Node {
 	@OriginalMember(owner = "client!wa", name = "g", descriptor = "(II)V")
 	public final void pSmart1or2(@OriginalArg(1) int value) {
 		if (value >= 0 && value < 128) {
-			this.p1(value);
+			this.p1b(value);
 		} else if (value >= 0 && value < 0x8000) {
 			this.p2(value + 0x8000);
 		} else {
@@ -344,15 +344,15 @@ public class Packet extends Node {
 			if ((-16384 & value) != 0) {
 				if ((value & 0xFFE00000) != 0) {
 					if ((value & 0xF0000000) != 0) {
-						this.p1(value >>> 28 | 0x80);
+						this.p1b(value >>> 28 | 0x80);
 					}
-					this.p1(value >>> 21 | 0x80);
+					this.p1b(value >>> 21 | 0x80);
 				}
-				this.p1(value >>> 14 | 0x80);
+				this.p1b(value >>> 14 | 0x80);
 			}
-			this.p1(value >>> 7 | 0x80);
+			this.p1b(value >>> 7 | 0x80);
 		}
-		this.p1(value & 0x7F);
+		this.p1b(value & 0x7F);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "i", descriptor = "(II)J")
@@ -434,13 +434,13 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "l", descriptor = "(II)V")
-	public final void p2add(@OriginalArg(0) int value) {
+	public final void p2_alt2(@OriginalArg(0) int value) {
 		this.data[this.pos++] = (byte) (value >> 8);
 		this.data[this.pos++] = (byte) (value + 128);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "b", descriptor = "(IB)V")
-	public final void p4le2(@OriginalArg(0) int value) {
+	public final void p4_alt1(@OriginalArg(0) int value) {
 		this.data[this.pos++] = (byte) value;
 		this.data[this.pos++] = (byte) (value >> 8);
 		this.data[this.pos++] = (byte) (value >> 16);
@@ -473,12 +473,12 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "n", descriptor = "(I)B")
-	public final byte p1sub() {
+	public final byte p1_alt3() {
 		return (byte) (this.data[this.pos++] - 128);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "m", descriptor = "(II)V")
-	public final void p1a(@OriginalArg(0) int value) {
+	public final void p1b_alt1(@OriginalArg(0) int value) {
 		this.data[this.pos++] = (byte) (value + 128);
 	}
 
@@ -535,7 +535,7 @@ public class Packet extends Node {
 		@Pc(28) BigInteger ciphertext = plaintext.modPow(exp, mod);
 		@Pc(38) byte[] ciphertextBytes = ciphertext.toByteArray();
 		this.pos = 0;
-		this.p1(ciphertextBytes.length);
+		this.p1b(ciphertextBytes.length);
 		this.pBytes(ciphertextBytes, ciphertextBytes.length);
 	}
 

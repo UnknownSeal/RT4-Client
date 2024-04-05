@@ -110,7 +110,7 @@ public final class Static81 {
 			} else if (Static150.clickButton != 0 || Static178.instance.samples >= 40) {
 				Static6.outboundBuffer.pIsaac1(123);
 				samples = 0;
-				Static6.outboundBuffer.p1(0);
+				Static6.outboundBuffer.p1b(0);
 				offset = Static6.outboundBuffer.pos;
 				for (i = 0; Static178.instance.samples > i && Static6.outboundBuffer.pos - offset < 240; i++) {
 					samples++;
@@ -143,13 +143,13 @@ public final class Static81 {
 							Static6.outboundBuffer.p2(dy + (Static204.anInt4762 << 12) + (dx << 6));
 							Static204.anInt4762 = 0;
 						} else if (Static204.anInt4762 < 32 && dx >= -128 && dx <= 127 && dy >= -128 && dy <= 127) {
-							Static6.outboundBuffer.p1(Static204.anInt4762 + 128);
+							Static6.outboundBuffer.p1b(Static204.anInt4762 + 128);
 							dy += 128;
 							dx += 128;
 							Static6.outboundBuffer.p2((dx << 8) + dy);
 							Static204.anInt4762 = 0;
 						} else if (Static204.anInt4762 < 32) {
-							Static6.outboundBuffer.p1(Static204.anInt4762 + 192);
+							Static6.outboundBuffer.p1b(Static204.anInt4762 + 192);
 							if (outsideWindow) {
 								Static6.outboundBuffer.p4(Integer.MIN_VALUE);
 							} else {
@@ -205,8 +205,8 @@ public final class Static81 {
 				button = 1;
 			}
 			Static6.outboundBuffer.pIsaac1(75);
-			Static6.outboundBuffer.p2leadd(button << 15 | x);
-			Static6.outboundBuffer.p4me(i | samples << 16);
+			Static6.outboundBuffer.p2_alt3(button << 15 | x);
+			Static6.outboundBuffer.p4_alt3(i | samples << 16);
 		}
 		if (Static16.anInt551 > 0) {
 			Static16.anInt551--;
@@ -226,18 +226,18 @@ public final class Static81 {
 			Static16.anInt551 = 20;
 			Static197.aBoolean228 = false;
 			Static6.outboundBuffer.pIsaac1(21);
-			Static6.outboundBuffer.p2add(Static72.anInt2031);
+			Static6.outboundBuffer.p2_alt2(Static72.anInt2031);
 			Static6.outboundBuffer.p2le(Static57.anInt1747);
 		}
 		if (Static26.focus && !Static67.prevFocus) {
 			Static67.prevFocus = true;
 			Static6.outboundBuffer.pIsaac1(22);
-			Static6.outboundBuffer.p1(1);
+			Static6.outboundBuffer.p1b(1);
 		}
 		if (!Static26.focus && Static67.prevFocus) {
 			Static67.prevFocus = false;
 			Static6.outboundBuffer.pIsaac1(22);
-			Static6.outboundBuffer.p1(0);
+			Static6.outboundBuffer.p1b(0);
 		}
 		if (!Static18.sentToServer) {
 			Static6.outboundBuffer.pIsaac1(98);
@@ -442,9 +442,9 @@ public final class Static81 {
 						}
 						Static6.outboundBuffer.pIsaac1(231);
 						Static6.outboundBuffer.p2(Static4.anInt36);
-						Static6.outboundBuffer.p4le2(Static118.aClass13_15.anInt507);
-						Static6.outboundBuffer.p2add(Static18.anInt588);
-						Static6.outboundBuffer.p1sub(local1363);
+						Static6.outboundBuffer.p4_alt1(Static118.aClass13_15.anInt507);
+						Static6.outboundBuffer.p2_alt2(Static18.anInt588);
+						Static6.outboundBuffer.p1_alt3(local1363);
 					}
 				} else if ((Static116.anInt2952 == 1 || Static277.method4640(PreciseSleep.anInt5204 - 1)) && PreciseSleep.anInt5204 > 2) {
 					Static226.method3901();
@@ -516,10 +516,10 @@ public final class Static81 {
 											} else if (Static125.anInt3096 == 2) {
 												if (Static56.anInt1742 != -1) {
 													Static6.outboundBuffer.pIsaac1(131);
-													Static6.outboundBuffer.p4me(Static98.anInt2512);
-													Static6.outboundBuffer.p2add(Static225.originX + Static56.anInt1742);
-													Static6.outboundBuffer.p2leadd(Static15.anInt506);
-													Static6.outboundBuffer.p2add(Static116.anInt2954 + Static142.originZ);
+													Static6.outboundBuffer.p4_alt3(Static98.anInt2512);
+													Static6.outboundBuffer.p2_alt2(Static225.originX + Static56.anInt1742);
+													Static6.outboundBuffer.p2_alt3(Static15.anInt506);
+													Static6.outboundBuffer.p2_alt2(Static116.anInt2954 + Static142.originZ);
 													Static70.crossMode = 1;
 													Static17.crossCycle = 0;
 													Static25.y = Static60.clickY;

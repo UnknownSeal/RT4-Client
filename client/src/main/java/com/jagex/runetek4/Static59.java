@@ -47,10 +47,10 @@ public final class Static59 {
 	@OriginalMember(owner = "runetek4.client!ej", name = "i", descriptor = "(I)V")
 	public static void method1373() {
 		Static6.outboundBuffer.pIsaac1(243);
-		Static6.outboundBuffer.p1(Static144.method2736());
+		Static6.outboundBuffer.p1b(Static144.method2736());
 		Static6.outboundBuffer.p2(Static48.canvasWid);
 		Static6.outboundBuffer.p2(Static254.canvasHei);
-		Static6.outboundBuffer.p1(Static186.anInt4392);
+		Static6.outboundBuffer.p1b(Static186.anInt4392);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ej", name = "a", descriptor = "(Lclient!ve;ILclient!ve;Lclient!of;)V")
