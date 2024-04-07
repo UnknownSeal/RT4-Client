@@ -279,7 +279,7 @@ public final class Static4 {
 			return true;
 		} else if (Static164.anInt3985 == 230) {
 			Static180.anInt4264 = Static57.aClass3_Sub15_Sub1_3.g1add();
-			Static115.anInt2940 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
+			Static115.anInt2940 = Static57.aClass3_Sub15_Sub1_3.g1_alt3();
 			while (Static223.anInt5028 > Static57.aClass3_Sub15_Sub1_3.pos) {
 				Static164.anInt3985 = Static57.aClass3_Sub15_Sub1_3.g1();
 				Static75.method1634();
@@ -774,7 +774,7 @@ public final class Static4 {
 						Static164.anInt3985 = -1;
 						return true;
 					} else if (Static164.anInt3985 == 13) {
-						local133 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
+						local133 = Static57.aClass3_Sub15_Sub1_3.g1_alt3();
 						local786 = Static57.aClass3_Sub15_Sub1_3.g1add();
 						local864 = Static57.aClass3_Sub15_Sub1_3.g1();
 						Static55.level = local786 >> 1;
@@ -1026,7 +1026,7 @@ public final class Static4 {
 								return true;
 							} else if (Static164.anInt3985 == 102) {
 								local133 = Static57.aClass3_Sub15_Sub1_3.g2le();
-								local786 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
+								local786 = Static57.aClass3_Sub15_Sub1_3.g1_alt3();
 								local864 = Static57.aClass3_Sub15_Sub1_3.g2();
 								@Pc(3766) NPCEntity local3766 = Static175.aClass8_Sub4_Sub2Array1[local133];
 								if (local3766 != null) {
@@ -1174,7 +1174,7 @@ public final class Static4 {
 								Static164.anInt3985 = -1;
 								return true;
 							} else if (Static164.anInt3985 == 235) {
-								local133 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
+								local133 = Static57.aClass3_Sub15_Sub1_3.g1_alt3();
 								local786 = local133 >> 2;
 								local864 = local133 & 0x3;
 								local171 = client.locShapeToLayer[local786];
@@ -1550,7 +1550,7 @@ public final class Static4 {
 									Static14.method475(local786);
 									local171 = Static57.aClass3_Sub15_Sub1_3.g2();
 									for (local1146 = 0; local1146 < local171; local1146++) {
-										local277 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
+										local277 = Static57.aClass3_Sub15_Sub1_3.g1_alt3();
 										if (local277 == 255) {
 											local277 = Static57.aClass3_Sub15_Sub1_3.g4();
 										}

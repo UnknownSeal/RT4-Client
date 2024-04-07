@@ -105,7 +105,7 @@ public final class Static216 {
 				Static6.outboundBuffer.p4(local210[3]);
 				Static6.outboundBuffer.p8(Static186.username.encode37());
 				Static6.outboundBuffer.pjstr(Static186.password);
-				Static6.outboundBuffer.encryptRsa(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
+				Static6.outboundBuffer.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
 				Static17.aClass3_Sub15_Sub1_2.pos = 0;
 				if (Static244.anInt5370 == 40) {
 					Static17.aClass3_Sub15_Sub1_2.p1b(18);
@@ -156,7 +156,7 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.p4(Static28.aClass153_18.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static167.aClass153_63.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static226.aClass153_93.getChecksum());
-				Static17.aClass3_Sub15_Sub1_2.pBytes(Static6.outboundBuffer.data, Static6.outboundBuffer.pos);
+				Static17.aClass3_Sub15_Sub1_2.pdata(Static6.outboundBuffer.data, Static6.outboundBuffer.pos);
 				Static124.socket.write(Static17.aClass3_Sub15_Sub1_2.data, Static17.aClass3_Sub15_Sub1_2.pos);
 				Static6.outboundBuffer.method2240(local210);
 				for (@Pc(583) int local583 = 0; local583 < 4; local583++) {

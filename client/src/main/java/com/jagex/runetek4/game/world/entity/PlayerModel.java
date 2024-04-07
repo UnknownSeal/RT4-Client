@@ -1,6 +1,7 @@
 package com.jagex.runetek4.game.world.entity;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.idktype.IDKType;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
@@ -82,7 +83,7 @@ public final class PlayerModel {
 	private void method1947() {
 		@Pc(8) long local8 = this.aLong88;
 		this.aLong88 = -1L;
-		@Pc(13) long[] local13 = TriangleNormal.aLongArray7;
+		@Pc(13) long[] local13 = Packet.crc64table;
 		this.aLong88 = local13[(int) (((long) (this.anInt2497 >> 8) ^ this.aLong88) & 0xFFL)] ^ this.aLong88 >>> 8;
 		this.aLong88 = local13[(int) ((this.aLong88 ^ (long) this.anInt2497) & 0xFFL)] ^ this.aLong88 >>> 8;
 		@Pc(53) int local53;

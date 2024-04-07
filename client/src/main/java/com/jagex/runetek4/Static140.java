@@ -37,7 +37,7 @@ public final class Static140 {
 				}
 			}
 		}
-		arg0.pBytes(local15, 24);
+		arg0.pdata(local15, 24);
 	}
 
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(ILclient!e;)I")

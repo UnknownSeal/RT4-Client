@@ -141,11 +141,11 @@ public final class Static40 {
 		local8.p2(arg5);
 		local8.p2(arg1);
 		local8.p4((int) (Math.random() * 9.9999999E7D));
-		local8.encryptRsa(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
+		local8.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
 		Static6.outboundBuffer.pos = 0;
 		Static6.outboundBuffer.p1b(36);
 		Static6.outboundBuffer.p1b(local8.pos);
-		Static6.outboundBuffer.pBytes(local8.data, local8.pos);
+		Static6.outboundBuffer.pdata(local8.data, local8.pos);
 		Static223.anInt5034 = -3;
 		Static179.anInt4261 = 1;
 		Static226.anInt5079 = 0;

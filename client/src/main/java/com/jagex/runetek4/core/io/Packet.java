@@ -46,8 +46,10 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("client!wa")
 public class Packet extends Node {
 
-	@OriginalMember(owner = "runetek4.client!fi", name = "c", descriptor = "[I")
-	public static final int[] crctable = new int[256];
+
+	private static final int CRC32_POLYNOMIAL = 0xEDB88320;
+
+	private static final long CRC64_POLYNOMIAL = 0xC96C5795D7870F42L;
 
 	@OriginalMember(owner = "client!wa", name = "y", descriptor = "[B")
 	public byte[] data;
@@ -55,17 +57,35 @@ public class Packet extends Node {
 	@OriginalMember(owner = "client!wa", name = "T", descriptor = "I")
 	public int pos;
 
+	@OriginalMember(owner = "client!fi", name = "c", descriptor = "[I")
+	public static final int[] crctable = new int[256];
+
+	@OriginalMember(owner = "client!qj", name = "a", descriptor = "[J")
+	public static final long[] crc64table = new long[256];
+
 	static {
-		for (@Pc(4) int local4 = 0; local4 < 256; local4++) {
-			@Pc(9) int local9 = local4;
+		for (@Pc(4) int i = 0; i < 256; i++) {
+			@Pc(9) int local9 = i;
 			for (@Pc(11) int local11 = 0; local11 < 8; local11++) {
 				if ((local9 & 0x1) == 1) {
-					local9 = local9 >>> 1 ^ 0xEDB88320;
+					local9 = local9 >>> 1 ^ CRC32_POLYNOMIAL;
 				} else {
 					local9 >>>= 0x1;
 				}
 			}
-			crctable[local4] = local9;
+			crctable[i] = local9;
+		}
+
+		for (@Pc(4) int i = 0; i < 256; i++) {
+			@Pc(10) long local10 = i;
+			for (@Pc(12) int local12 = 0; local12 < 8; local12++) {
+				if ((local10 & 0x1L) == 1L) {
+					local10 = local10 >>> 1 ^ CRC64_POLYNOMIAL;
+				} else {
+					local10 >>>= 0x1;
+				}
+			}
+			crc64table[i] = local10;
 		}
 	}
 
@@ -204,14 +224,14 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "([BIII)V")
-	public final void pBytes(@OriginalArg(0) byte[] src, @OriginalArg(2) int len) {
+	public final void pdata(@OriginalArg(0) byte[] src, @OriginalArg(2) int len) {
 		for (@Pc(7) int i = 0; i < len; i++) {
 			this.data[this.pos++] = src[i];
 		}
 	}
 
 	@OriginalMember(owner = "client!wa", name = "c", descriptor = "(Z)I")
-	public final int g1ssub() {
+	public final int g1_alt3() {
 		return 128 - this.data[this.pos++] & 0xFF;
 	}
 
@@ -526,7 +546,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(Ljava/math/BigInteger;Ljava/math/BigInteger;I)V")
-	public final void encryptRsa(@OriginalArg(0) BigInteger exp, @OriginalArg(1) BigInteger mod) {
+	public final void rsaenc(@OriginalArg(0) BigInteger exp, @OriginalArg(1) BigInteger mod) {
 		@Pc(2) int len = this.pos;
 		this.pos = 0;
 		@Pc(8) byte[] plaintextBytes = new byte[len];
@@ -536,7 +556,7 @@ public class Packet extends Node {
 		@Pc(38) byte[] ciphertextBytes = ciphertext.toByteArray();
 		this.pos = 0;
 		this.p1b(ciphertextBytes.length);
-		this.pBytes(ciphertextBytes, ciphertextBytes.length);
+		this.pdata(ciphertextBytes, ciphertextBytes.length);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(IF)V")

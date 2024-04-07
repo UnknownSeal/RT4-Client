@@ -37,11 +37,11 @@ public final class Static234 {
 				local47 = Static57.aClass3_Sub15_Sub1_3.p1neg();
 				local14.method2686(local47, Static83.loopCycle, local43);
 				local14.anInt3378 = Static83.loopCycle + 300;
-				local14.anInt3372 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
+				local14.anInt3372 = Static57.aClass3_Sub15_Sub1_3.g1_alt3();
 			}
 			if ((local18 & 0x2) != 0) {
 				local43 = Static57.aClass3_Sub15_Sub1_3.p1neg();
-				local47 = Static57.aClass3_Sub15_Sub1_3.g1ssub();
+				local47 = Static57.aClass3_Sub15_Sub1_3.g1_alt3();
 				local14.method2686(local47, Static83.loopCycle, local43);
 			}
 			if ((local18 & 0x10) != 0) {
@@ -115,7 +115,7 @@ public final class Static234 {
 						local350 = -1;
 					}
 					local331[local339] = local350;
-					local334[local339] = Static57.aClass3_Sub15_Sub1_3.g1ssub();
+					local334[local339] = Static57.aClass3_Sub15_Sub1_3.g1_alt3();
 					local337[local339] = Static57.aClass3_Sub15_Sub1_3.g2();
 				}
 				Static159.method3037(local337, local14, local334, local331);
