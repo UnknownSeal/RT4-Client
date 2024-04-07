@@ -255,7 +255,7 @@ public final class Static2 {
 	public static void method10(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
 		Static6.outboundBuffer.pIsaac1(132);
 		Static6.outboundBuffer.p4rme(arg1);
-		Static6.outboundBuffer.p2le(arg0);
+		Static6.outboundBuffer.p2_alt1(arg0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(BLclient!be;)V")

@@ -17,7 +17,7 @@ public final class Static186 {
 	public static boolean aBoolean205 = false;
 
 	@OriginalMember(owner = "runetek4.client!pa", name = "N", descriptor = "I")
-	public static int anInt4392 = 0;
+	public static int antialiasingMode = 0;
 
 	@OriginalMember(owner = "runetek4.client!pa", name = "O", descriptor = "Lclient!na;")
 	public static final JagString aClass100_827 = Static28.parse("");

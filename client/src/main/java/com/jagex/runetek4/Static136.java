@@ -110,7 +110,7 @@ public final class Static136 {
 		if (Static102.anInt2679 > 2) {
 			Static102.anInt2679 = 2;
 		}
-		Static186.anInt4392 = Static102.anInt2679;
+		Static186.antialiasingMode = Static102.anInt2679;
 		Static99.aBoolean143 = arg0.g1() == 1;
 		Static125.anInt3104 = arg0.g1();
 		if (Static125.anInt3104 > 127) {

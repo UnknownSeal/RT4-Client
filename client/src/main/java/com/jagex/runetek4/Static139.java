@@ -38,8 +38,8 @@ public final class Static139 {
 	public static void method2704() {
 		@Pc(7) int local7 = Static178.topMargin;
 		@Pc(9) int local9 = Static145.leftMargin;
-		@Pc(16) int local16 = Static122.frameHei - Static254.canvasHei - local7;
-		@Pc(23) int local23 = Static72.frameWid - local9 - Static48.canvasWid;
+		@Pc(16) int local16 = Static122.frameHei - Static254.canvasHeigth - local7;
+		@Pc(23) int local23 = Static72.frameWid - local9 - Static48.canvasWidth;
 		if (local9 <= 0 && local23 <= 0 && local7 <= 0 && local16 <= 0) {
 			return;
 		}

@@ -3368,7 +3368,7 @@ public final class Static88 {
 														if (local809 < 0 || local809 > 2) {
 															local809 = 0;
 														}
-														Static186.anInt4392 = local809;
+														Static186.antialiasingMode = local809;
 														continue;
 													}
 													if (local226 == 6017) {
@@ -3528,7 +3528,7 @@ public final class Static88 {
 														continue;
 													}
 													if (local226 == 6116) {
-														Static254.anIntArray487[local28++] = Static186.anInt4392;
+														Static254.anIntArray487[local28++] = Static186.antialiasingMode;
 														continue;
 													}
 													if (local226 == 6117) {

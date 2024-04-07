@@ -119,9 +119,9 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.p1b(Static249.aBoolean282 ? 1 : 0);
 				Static17.aClass3_Sub15_Sub1_2.p1b(1);
 				Static17.aClass3_Sub15_Sub1_2.p1b(Static144.method2736());
-				Static17.aClass3_Sub15_Sub1_2.p2(Static48.canvasWid);
-				Static17.aClass3_Sub15_Sub1_2.p2(Static254.canvasHei);
-				Static17.aClass3_Sub15_Sub1_2.p1b(Static186.anInt4392);
+				Static17.aClass3_Sub15_Sub1_2.p2(Static48.canvasWidth);
+				Static17.aClass3_Sub15_Sub1_2.p2(Static254.canvasHeigth);
+				Static17.aClass3_Sub15_Sub1_2.p1b(Static186.antialiasingMode);
 				Static140.method2705(Static17.aClass3_Sub15_Sub1_2);
 				Static17.aClass3_Sub15_Sub1_2.pjstr(Static47.aClass100_991);
 				Static17.aClass3_Sub15_Sub1_2.p4(Static204.anInt4760);

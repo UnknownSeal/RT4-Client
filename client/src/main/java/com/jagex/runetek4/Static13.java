@@ -62,7 +62,7 @@ public final class Static13 {
 			}
 			if (arg1) {
 				local6.setColor(Color.black);
-				local6.fillRect(0, 0, Static48.canvasWid, Static254.canvasHei);
+				local6.fillRect(0, 0, Static48.canvasWidth, Static254.canvasHeigth);
 			}
 			if (arg0 == null) {
 				arg0 = new Color(140, 17, 17);
@@ -81,10 +81,10 @@ public final class Static13 {
 				local56.setFont(Static222.aFont1);
 				local56.setColor(Color.white);
 				arg2.method3112(22, (304 - arg2.method3155(Static240.aFontMetrics1)) / 2, local56);
-				local6.drawImage(Static149.anImage3, Static48.canvasWid / 2 - 152, Static254.canvasHei / 2 + -18, null);
+				local6.drawImage(Static149.anImage3, Static48.canvasWidth / 2 - 152, Static254.canvasHeigth / 2 + -18, null);
 			} catch (@Pc(134) Exception local134) {
-				@Pc(140) int local140 = Static48.canvasWid / 2 - 152;
-				@Pc(146) int local146 = Static254.canvasHei / 2 - 18;
+				@Pc(140) int local140 = Static48.canvasWidth / 2 - 152;
+				@Pc(146) int local146 = Static254.canvasHeigth / 2 - 18;
 				local6.setColor(arg0);
 				local6.drawRect(local140, local146, 303, 33);
 				local6.fillRect(local140 + 2, local146 + 2, arg3 * 3, 30);
@@ -98,7 +98,7 @@ public final class Static13 {
 			if (Static278.mainLoadPrimaryText != null) {
 				local6.setFont(Static222.aFont1);
 				local6.setColor(Color.white);
-				Static278.mainLoadPrimaryText.method3112(Static254.canvasHei / 2 - 26, Static48.canvasWid / 2 - Static278.mainLoadPrimaryText.method3155(Static240.aFontMetrics1) / 2, local6);
+				Static278.mainLoadPrimaryText.method3112(Static254.canvasHeigth / 2 - 26, Static48.canvasWidth / 2 - Static278.mainLoadPrimaryText.method3155(Static240.aFontMetrics1) / 2, local6);
 			}
 		} catch (@Pc(252) Exception local252) {
 			Static154.canvas.repaint();

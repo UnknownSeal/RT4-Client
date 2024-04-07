@@ -67,10 +67,10 @@ public final class Static276 {
 					Static6.outboundBuffer.p2_alt3(Static105.ids[local15]);
 				} else if (arg0 == 5) {
 					Static6.outboundBuffer.pIsaac1(4);
-					Static6.outboundBuffer.p2le(Static105.ids[local15]);
+					Static6.outboundBuffer.p2_alt1(Static105.ids[local15]);
 				} else if (arg0 == 6) {
 					Static6.outboundBuffer.pIsaac1(133);
-					Static6.outboundBuffer.p2le(Static105.ids[local15]);
+					Static6.outboundBuffer.p2_alt1(Static105.ids[local15]);
 				} else if (arg0 == 7) {
 					Static6.outboundBuffer.pIsaac1(114);
 					Static6.outboundBuffer.p2_alt3(Static105.ids[local15]);

@@ -132,7 +132,7 @@ public final class Static81 {
 						y = -1;
 						x = -1;
 					}
-					if (Static264.mouseRecorderPrevX != x || y != Static179.mouseRecorderPrevY) {
+					if (Static264.mouseRecorderPrevX != x || Static179.mouseRecorderPrevY != y) {
 						dx = x - Static264.mouseRecorderPrevX;
 						Static264.mouseRecorderPrevX = x;
 						dy = y - Static179.mouseRecorderPrevY;
@@ -227,7 +227,7 @@ public final class Static81 {
 			Static197.aBoolean228 = false;
 			Static6.outboundBuffer.pIsaac1(21);
 			Static6.outboundBuffer.p2_alt2(Static72.anInt2031);
-			Static6.outboundBuffer.p2le(Static57.anInt1747);
+			Static6.outboundBuffer.p2_alt1(Static57.anInt1747);
 		}
 		if (Static26.focus && !Static67.prevFocus) {
 			Static67.prevFocus = true;
@@ -472,7 +472,7 @@ public final class Static81 {
 		// WorldMap.component
 		Static24.component = null;
 		if (Static154.topLevelInterace != -1) {
-			Static57.method1320(0, 0, 0, Static48.canvasWid, Static154.topLevelInterace, 0, Static254.canvasHei);
+			Static57.method1320(0, 0, 0, Static48.canvasWidth, Static154.topLevelInterace, 0, Static254.canvasHeigth);
 		}
 		Static119.transmitTimer++;
 		while (true) {

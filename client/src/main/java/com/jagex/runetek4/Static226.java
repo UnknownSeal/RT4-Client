@@ -79,11 +79,11 @@ public final class Static226 {
 		@Pc(43) int local43 = Static60.anInt1892;
 		local16 += 8;
 		local27 = Static155.anInt3751 - local16 / 2;
-		if (local43 + local18 > Static254.canvasHei) {
-			local43 = Static254.canvasHei - local18;
+		if (local43 + local18 > Static254.canvasHeigth) {
+			local43 = Static254.canvasHeigth - local18;
 		}
-		if (Static48.canvasWid < local27 + local16) {
-			local27 = Static48.canvasWid - local16;
+		if (Static48.canvasWidth < local27 + local16) {
+			local27 = Static48.canvasWidth - local16;
 		}
 		if (local27 < 0) {
 			local27 = 0;

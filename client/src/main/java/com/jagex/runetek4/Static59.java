@@ -48,9 +48,9 @@ public final class Static59 {
 	public static void method1373() {
 		Static6.outboundBuffer.pIsaac1(243);
 		Static6.outboundBuffer.p1b(Static144.method2736());
-		Static6.outboundBuffer.p2(Static48.canvasWid);
-		Static6.outboundBuffer.p2(Static254.canvasHei);
-		Static6.outboundBuffer.p1b(Static186.anInt4392);
+		Static6.outboundBuffer.p2(Static48.canvasWidth);
+		Static6.outboundBuffer.p2(Static254.canvasHeigth);
+		Static6.outboundBuffer.p1b(Static186.antialiasingMode);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ej", name = "a", descriptor = "(Lclient!ve;ILclient!ve;Lclient!of;)V")

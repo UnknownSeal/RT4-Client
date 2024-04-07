@@ -84,15 +84,15 @@ public final class Static197 {
 			Static122.frameHei -= local109.bottom + local109.top;
 		}
 		if (arg1 >= 2) {
-			Static48.canvasWid = Static72.frameWid;
-			Static254.canvasHei = Static122.frameHei;
+			Static48.canvasWidth = Static72.frameWid;
+			Static254.canvasHeigth = Static122.frameHei;
 			Static145.leftMargin = 0;
 			Static178.topMargin = 0;
 		} else {
 			Static178.topMargin = 0;
 			Static145.leftMargin = (Static72.frameWid - 765) / 2;
-			Static48.canvasWid = 765;
-			Static254.canvasHei = 503;
+			Static48.canvasWidth = 765;
+			Static254.canvasHeigth = 503;
 		}
 		if (arg0) {
 			Static31.method847(Static154.canvas);
@@ -108,9 +108,9 @@ public final class Static197 {
 			}
 		} else {
 			if (GlRenderer.enabled) {
-				GlRenderer.setCanvasSize(Static48.canvasWid, Static254.canvasHei);
+				GlRenderer.setCanvasSize(Static48.canvasWidth, Static254.canvasHeigth);
 			}
-			Static154.canvas.setSize(Static48.canvasWid, Static254.canvasHei);
+			Static154.canvas.setSize(Static48.canvasWidth, Static254.canvasHeigth);
 			if (Static39.frame == local85) {
 				local109 = Static39.frame.getInsets();
 				Static154.canvas.setLocation(local109.left + Static145.leftMargin, local109.top + Static178.topMargin);
@@ -126,7 +126,7 @@ public final class Static197 {
 			if (!Static211.aBoolean73) {
 				Static65.method1500();
 				Static260.aClass27_2 = null;
-				Static260.aClass27_2 = Static131.method2579(Static254.canvasHei, Static48.canvasWid, Static154.canvas);
+				Static260.aClass27_2 = Static131.method2579(Static254.canvasHeigth, Static48.canvasWidth, Static154.canvas);
 				Static129.method2492();
 				if (Static244.anInt5370 == 5) {
 					Static182.method3359(true, Static280.aClass3_Sub2_Sub9_43);
@@ -153,7 +153,7 @@ public final class Static197 {
 				}
 			}
 			if (Static211.aBoolean73) {
-				GlRenderer.init(Static154.canvas, Static186.anInt4392 * 2);
+				GlRenderer.init(Static154.canvas, Static186.antialiasingMode * 2);
 			}
 		}
 		if (!GlRenderer.enabled && arg1 > 0) {

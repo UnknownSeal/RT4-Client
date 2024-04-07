@@ -61,7 +61,7 @@ public final class Static80 {
 		Static178.highDetailLighting = true;
 		Static12.anInt391 = 255;
 		Static53.aBoolean99 = true;
-		Static186.anInt4392 = 0;
+		Static186.antialiasingMode = 0;
 		@Pc(48) FileOnDisk local48 = null;
 		Static125.anInt3104 = 127;
 		if (Static238.anInt5316 >= 96) {

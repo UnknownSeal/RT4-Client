@@ -49,20 +49,20 @@ public final class Static203 {
 			Static72.frameWid -= local35.right + local35.left;
 		}
 		if (Static144.method2736() >= 2) {
-			Static48.canvasWid = Static72.frameWid;
+			Static48.canvasWidth = Static72.frameWid;
 			Static145.leftMargin = 0;
 			Static178.topMargin = 0;
-			Static254.canvasHei = Static122.frameHei;
+			Static254.canvasHeigth = Static122.frameHei;
 		} else {
 			Static178.topMargin = 0;
 			Static145.leftMargin = (Static72.frameWid - 765) / 2;
-			Static254.canvasHei = 503;
-			Static48.canvasWid = 765;
+			Static254.canvasHeigth = 503;
+			Static48.canvasWidth = 765;
 		}
 		if (GlRenderer.enabled) {
-			GlRenderer.setCanvasSize(Static48.canvasWid, Static254.canvasHei);
+			GlRenderer.setCanvasSize(Static48.canvasWidth, Static254.canvasHeigth);
 		}
-		Static154.canvas.setSize(Static48.canvasWid, Static254.canvasHei);
+		Static154.canvas.setSize(Static48.canvasWidth, Static254.canvasHeigth);
 		if (local8 == Static39.frame) {
 			local35 = Static39.frame.getInsets();
 			Static154.canvas.setLocation(local35.left + Static145.leftMargin, Static178.topMargin + local35.top);

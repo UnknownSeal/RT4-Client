@@ -12,7 +12,7 @@ public final class Static254 {
 	public static int[] anIntArray488;
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "B", descriptor = "I")
-	public static int canvasHei;
+	public static int canvasHeigth;
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "E", descriptor = "I")
 	public static int anInt5556;

@@ -26,7 +26,7 @@ public final class Static210 {
 
 	@OriginalMember(owner = "runetek4.client!rb", name = "a", descriptor = "(ZB)V")
 	public static void method3712(@OriginalArg(0) boolean arg0) {
-		Static234.method4017(Static254.canvasHei, arg0, Static154.topLevelInterace, Static48.canvasWid);
+		Static234.method4017(Static254.canvasHeigth, arg0, Static154.topLevelInterace, Static48.canvasWidth);
 	}
 
 	@OriginalMember(owner = "runetek4.client!rb", name = "a", descriptor = "(Lclient!wa;Z)Lclient!bn;")

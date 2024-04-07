@@ -109,7 +109,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		local19.setLayout(null);
 		Static154.canvas = new GameCanvas(this);
 		local19.add(Static154.canvas);
-		Static154.canvas.setSize(Static48.canvasWid, Static254.canvasHei);
+		Static154.canvas.setSize(Static48.canvasWidth, Static254.canvasHeigth);
 		Static154.canvas.setVisible(true);
 		if (local19 == Static39.frame) {
 			@Pc(66) Insets local66 = Static39.frame.getInsets();
@@ -262,7 +262,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		if (Static184.anInt4355++ > 50) {
 			Static69.fullredraw = true;
 			Static184.anInt4355 -= 50;
-			Static154.canvas.setSize(Static48.canvasWid, Static254.canvasHei);
+			Static154.canvas.setSize(Static48.canvasWidth, Static254.canvasHeigth);
 			Static154.canvas.setVisible(true);
 			if (Static39.frame != null && Static69.aFrame2 == null) {
 				@Pc(84) Insets local84 = Static39.frame.getInsets();
@@ -332,7 +332,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			}
 			Static224.method3888();
 			this.method926();
-			Static260.aClass27_2 = Static131.method2579(Static254.canvasHei, Static48.canvasWid, Static154.canvas);
+			Static260.aClass27_2 = Static131.method2579(Static254.canvasHeigth, Static48.canvasWidth, Static154.canvas);
 			this.method935();
 			Static200.aClass93_1 = Static70.method1547();
 			while (Static72.killtime == 0L || Static72.killtime > MonotonicTime.get()) {
@@ -377,11 +377,11 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(IIZILjava/lang/String;III)V")
 	protected final void method936(@OriginalArg(0) int arg0, @OriginalArg(4) String arg1) {
 		try {
-			Static254.canvasHei = 768;
+			Static254.canvasHeigth = 768;
 			Static122.frameHei = 768;
 			Static145.leftMargin = 0;
 			Static131.anInt3252 = 530;
-			Static48.canvasWid = 1024;
+			Static48.canvasWidth = 1024;
 			Static72.frameWid = 1024;
 			Static178.topMargin = 0;
 			Static230.anApplet_Sub1_1 = this;
@@ -432,10 +432,10 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			Static230.anApplet_Sub1_1 = this;
 			Static178.topMargin = 0;
 			Static131.anInt3252 = 1530;
-			Static48.canvasWid = 765;
+			Static48.canvasWidth = 765;
 			Static72.frameWid = 765;
 			Static145.leftMargin = 0;
-			Static254.canvasHei = 503;
+			Static254.canvasHeigth = 503;
 			Static122.frameHei = 503;
 			@Pc(54) String local54 = this.getParameter("openwinjs");
 			if (local54 != null && local54.equals("1")) {

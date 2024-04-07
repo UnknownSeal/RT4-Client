@@ -488,7 +488,7 @@ public final class client extends GameShell {
 		}
 		Static178.anInt4247++;
 		if (Static154.topLevelInterace != -1) {
-			Static57.method1320(0, 0, 0, Static48.canvasWid, Static154.topLevelInterace, 0, Static254.canvasHei);
+			Static57.method1320(0, 0, 0, Static48.canvasWidth, Static154.topLevelInterace, 0, Static254.canvasHeigth);
 		}
 		Static119.transmitTimer++;
 		if (GlRenderer.enabled) {
@@ -995,7 +995,7 @@ public final class client extends GameShell {
 			Static151.method2807();
 			if (Static164.aBoolean191) {
 				Static102.anInt2679 = 0;
-				Static186.anInt4392 = 0;
+				Static186.antialiasingMode = 0;
 				Static214.anInt5581 = 0;
 				Static141.anInt3474 = 0;
 			}

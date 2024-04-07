@@ -506,7 +506,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "n", descriptor = "(II)V")
-	public final void p2le(@OriginalArg(1) int value) {
+	public final void p2_alt1(@OriginalArg(1) int value) {
 		this.data[this.pos++] = (byte) value;
 		this.data[this.pos++] = (byte) (value >> 8);
 	}
