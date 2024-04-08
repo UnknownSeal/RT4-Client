@@ -360,7 +360,7 @@ public final class NPCType {
 	}
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(B)Lclient!me;")
-	public NPCType getvisible() {
+	public NPCType getMultiNPC() {
 		@Pc(5) int i = -1;
 		if (this.multivarbit != -1) {
 			i = Static155.method2945(this.multivarbit);
@@ -423,7 +423,7 @@ public final class NPCType {
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "([Lclient!ub;IBIIIILclient!tk;ILclient!tk;)Lclient!ak;")
 	public Model method2937(@OriginalArg(0) Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) SeqType arg6, @OriginalArg(8) int arg7, @OriginalArg(9) SeqType arg8) {
 		if (this.multinpc != null) {
-			@Pc(13) NPCType local13 = this.getvisible();
+			@Pc(13) NPCType local13 = this.getMultiNPC();
 			return local13 == null ? null : local13.method2937(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
 		}
 		@Pc(40) Model local40 = (Model) Static125.aClass99_18.get(this.id);
@@ -693,7 +693,7 @@ public final class NPCType {
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(Lclient!tk;IIII)Lclient!ak;")
 	public Model getHeadModel(@OriginalArg(0) SeqType arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
 		if (this.multinpc != null) {
-			@Pc(13) NPCType local13 = this.getvisible();
+			@Pc(13) NPCType local13 = this.getMultiNPC();
 			return local13 == null ? null : local13.getHeadModel(arg0, arg1, arg2, arg3);
 		} else if (this.heads == null) {
 			return null;

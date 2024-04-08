@@ -178,7 +178,7 @@ public final class Static38 {
 			} else {
 				local39 = Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local28]];
 			}
-			if (local39 != null && local39.method2682()) {
+			if (local39 != null && local39.exists()) {
 				@Pc(55) int local55 = local39.size();
 				@Pc(77) int local77;
 				if (local55 == 1) {
@@ -223,7 +223,7 @@ public final class Static38 {
 				local39 = Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local28]];
 				local272 = (long) Static105.ids[local28] << 32;
 			}
-			if (local39 != null && local39.method2682()) {
+			if (local39 != null && local39.exists()) {
 				local39.aBoolean98 = false;
 				if ((Static15.aBoolean33 && Static267.size > 200 || Static267.size > 50) && !arg0 && local39.anInt3366 == local39.method2681().anInt1037) {
 					local39.aBoolean98 = true;

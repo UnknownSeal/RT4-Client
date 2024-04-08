@@ -8,6 +8,8 @@ import java.io.StringWriter;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.game.shared.framework.gwc.GWCLocation;
+import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -101,11 +103,11 @@ public final class Static97 {
 	@OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(Lclient!wa;I)V")
 	public static void method1962(@OriginalArg(0) Packet packet) {
 		@Pc(9) int local9 = packet.gSmart1or2();
-		Static203.aClass32Array1 = new Class32[local9];
+		Static203.aGWCLocationArray1 = new GWCLocation[local9];
 		for (int index = 0; index < local9; index++) {
-			Static203.aClass32Array1[index] = new Class32();
-			Static203.aClass32Array1[index].anInt1739 = packet.gSmart1or2();
-			Static203.aClass32Array1[index].aClass100_378 = packet.gjstr2();
+			Static203.aGWCLocationArray1[index] = new GWCLocation();
+			Static203.aGWCLocationArray1[index].anInt1739 = packet.gSmart1or2();
+			Static203.aGWCLocationArray1[index].aClass100_378 = packet.gjstr2();
 		}
 		Static19.anInt636 = packet.gSmart1or2();
 		Static171.anInt4157 = packet.gSmart1or2();

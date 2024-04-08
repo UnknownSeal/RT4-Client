@@ -5,6 +5,7 @@ import java.awt.Insets;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
+import com.jagex.runetek4.game.shared.framework.gwc.GWCLocation;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -19,7 +20,7 @@ public final class Static203 {
 	public static WorldMapFont aClass41_8;
 
 	@OriginalMember(owner = "runetek4.client!qh", name = "e", descriptor = "[Lclient!ee;")
-	public static Class32[] aClass32Array1;
+	public static GWCLocation[] aGWCLocationArray1;
 
 	@OriginalMember(owner = "runetek4.client!qh", name = "g", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_85;

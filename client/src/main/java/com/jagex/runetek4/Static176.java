@@ -3,6 +3,8 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.game.config.loctype.LocType;
 import com.jagex.runetek4.game.config.objtype.ObjType;
+import com.jagex.runetek4.game.scene.entities.NPCEntity;
+import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.game.world.entity.Player;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;

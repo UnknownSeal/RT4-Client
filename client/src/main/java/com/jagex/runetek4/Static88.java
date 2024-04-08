@@ -10,6 +10,8 @@ import com.jagex.runetek4.game.config.enumtype.EnumType;
 import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.game.config.objtype.ObjType;
 import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
+import com.jagex.runetek4.game.shared.framework.gwc.GWCLocation;
+import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -3694,7 +3696,7 @@ public final class Static88 {
 														Static254.anIntArray487[local28++] = 1;
 														continue;
 													}
-													@Pc(10247) Class32 local10247;
+													@Pc(10247) GWCLocation local10247;
 													@Pc(10191) GWCWorld local10191;
 													if (local226 == 6501) {
 														local10191 = Static18.method556();
@@ -3769,7 +3771,7 @@ public final class Static88 {
 														} else {
 															Static254.anIntArray487[local28++] = local10440.anInt381;
 															Static3.aClass100Array176[local26++] = local10440.aClass100_69;
-															@Pc(10458) Class32 local10458 = local10440.method445();
+															@Pc(10458) GWCLocation local10458 = local10440.method445();
 															Static254.anIntArray487[local28++] = local10458.anInt1739;
 															Static3.aClass100Array176[local26++] = local10458.aClass100_378;
 															Static254.anIntArray487[local28++] = local10440.anInt379;

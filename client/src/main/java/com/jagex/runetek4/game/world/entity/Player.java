@@ -2,6 +2,8 @@ package com.jagex.runetek4.game.world.entity;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
+import com.jagex.runetek4.game.scene.entities.NPCEntity;
+import com.jagex.runetek4.game.scene.entities.PathingEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -198,7 +200,7 @@ public final class Player extends PathingEntity {
 		if (local76 == null) {
 			return;
 		}
-		this.anInt3413 = local76.method4549();
+		this.height = local76.method4549();
 		@Pc(184) Model local184;
 		if (Static209.aBoolean240 && (this.model.anInt2492 == -1 || Static214.get(this.model.anInt2492).spotshadow)) {
 			local184 = Static41.method1043(160, this.aBoolean171, local54 == null ? local25 : local54, this.anInt3412, 0, this.anInt3421, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, 240);
@@ -342,7 +344,7 @@ public final class Player extends PathingEntity {
 
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(B)Z")
 	@Override
-	public boolean method2682() {
+	public boolean exists() {
 		return this.model != null;
 	}
 
@@ -376,6 +378,6 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "client!e", name = "b", descriptor = "()I")
 	@Override
 	public int method4549() {
-		return this.anInt3413;
+		return this.height;
 	}
 }

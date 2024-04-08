@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.game.scene.entities.NPCEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

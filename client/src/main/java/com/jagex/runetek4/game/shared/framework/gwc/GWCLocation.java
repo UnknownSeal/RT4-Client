@@ -1,15 +1,15 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.game.shared.framework.gwc;
 
+import com.jagex.runetek4.JagString;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
-// WorldInfo
 @OriginalClass("client!ee")
-public final class Class32 {
-
-	@OriginalMember(owner = "client!ee", name = "h", descriptor = "I")
-	public int anInt1739;
+public final class GWCLocation {
 
 	@OriginalMember(owner = "client!ee", name = "i", descriptor = "Lclient!na;")
 	public JagString aClass100_378;
+
+	@OriginalMember(owner = "client!ee", name = "h", descriptor = "I")
+	public int anInt1739;
 }

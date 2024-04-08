@@ -3,6 +3,8 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.game.config.loctype.LocType;
 import com.jagex.runetek4.game.config.npctype.NPCType;
+import com.jagex.runetek4.game.scene.entities.NPCEntity;
+import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -112,10 +114,10 @@ public final class Static54 {
 			}
 			for (local146 = 0; local146 < Static272.anInt5214; local146++) {
 				@Pc(498) NPCEntity local498 = Static175.aClass8_Sub4_Sub2Array1[Static33.anIntArray79[local146]];
-				if (local498 != null && local498.method2682()) {
+				if (local498 != null && local498.exists()) {
 					@Pc(507) NPCType local507 = local498.npcType;
 					if (local507 != null && local507.multinpc != null) {
-						local507 = local507.getvisible();
+						local507 = local507.getMultiNPC();
 					}
 					if (local507 != null && local507.minimap && local507.active) {
 						local154 = local498.anInt3412 / 32 - Static173.self.anInt3412 / 32;
@@ -130,7 +132,7 @@ public final class Static54 {
 			}
 			for (local146 = 0; local146 < Static267.size; local146++) {
 				@Pc(591) Player local591 = Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local146]];
-				if (local591 != null && local591.method2682()) {
+				if (local591 != null && local591.exists()) {
 					local154 = local591.anInt3421 / 32 - Static173.self.anInt3421 / 32;
 					local150 = local591.anInt3412 / 32 - Static173.self.anInt3412 / 32;
 					@Pc(624) long local624 = local591.aClass100_364.encode37();

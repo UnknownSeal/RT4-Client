@@ -10,6 +10,7 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.DiskStore;
 import com.jagex.runetek4.game.config.cursortype.CursorType;
 import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.game.scene.entities.NPCEntity;
 import com.jagex.runetek4.js5.index.Js5MasterIndex;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

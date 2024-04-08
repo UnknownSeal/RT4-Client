@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.loctype.LocType;
 import com.jagex.runetek4.game.config.objtype.ObjType;
+import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;

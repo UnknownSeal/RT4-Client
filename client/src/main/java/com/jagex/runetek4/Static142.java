@@ -1,6 +1,8 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.npctype.NPCType;
+import com.jagex.runetek4.game.scene.entities.NPCEntity;
+import com.jagex.runetek4.game.scene.entities.PathingEntity;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -39,12 +41,12 @@ public final class Static142 {
 			} else {
 				local17 = Static175.aClass8_Sub4_Sub2Array1[Static33.anIntArray79[local5 - Static267.size]];
 			}
-			if (local17 != null && local17.method2682()) {
+			if (local17 != null && local17.exists()) {
 				@Pc(58) NPCType local58;
 				if (local17 instanceof NPCEntity) {
 					local58 = ((NPCEntity) local17).npcType;
 					if (local58.multinpc != null) {
-						local58 = local58.getvisible();
+						local58 = local58.getMultiNPC();
 					}
 					if (local58 == null) {
 						continue;
@@ -54,11 +56,11 @@ public final class Static142 {
 				if (local5 >= Static267.size) {
 					local58 = ((NPCEntity) local17).npcType;
 					if (local58.multinpc != null) {
-						local58 = local58.getvisible();
+						local58 = local58.getMultiNPC();
 					}
 					if (local58.anInt3732 >= 0 && Static138.aClass3_Sub2_Sub1Array5.length > local58.anInt3732) {
 						if (local58.overlayheight == -1) {
-							local265 = local17.method2691() + 15;
+							local265 = local17.height() + 15;
 						} else {
 							local265 = local58.overlayheight + 15;
 						}
@@ -72,7 +74,7 @@ public final class Static142 {
 						@Pc(322) Class102 local322 = local308[local310];
 						if (local322 != null && local322.anInt4058 == 1 && local322.anInt4057 == Static33.anIntArray79[local5 - Static267.size] && Static83.loopCycle % 20 < 10) {
 							if (local58.overlayheight == -1) {
-								local359 = local17.method2691() + 15;
+								local359 = local17.height() + 15;
 							} else {
 								local359 = local58.overlayheight + 15;
 							}
@@ -86,7 +88,7 @@ public final class Static142 {
 					local74 = 30;
 					@Pc(77) Player local77 = (Player) local17;
 					if (local77.anInt1669 != -1 || local77.anInt1649 != -1) {
-						Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.method2691() + 15, arg1 >> 1);
+						Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.height() + 15, arg1 >> 1);
 						if (Static65.anInt1951 > -1) {
 							if (local77.anInt1669 != -1) {
 								Static219.aClass3_Sub2_Sub1Array9[local77.anInt1669].drawSprite(Static65.anInt1951 + arg2 - 12, arg0 + -30 + Static16.anInt548);
@@ -103,7 +105,7 @@ public final class Static142 {
 						for (local161 = 0; local161 < local159.length; local161++) {
 							@Pc(173) Class102 local173 = local159[local161];
 							if (local173 != null && local173.anInt4058 == 10 && Static105.ids[local5] == local173.anInt4057) {
-								Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.method2691() + 15, arg1 >> 1);
+								Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.height() + 15, arg1 >> 1);
 								if (Static65.anInt1951 > -1) {
 									Static276.aClass3_Sub2_Sub1Array11[local173.anInt4048].drawSprite(arg2 + Static65.anInt1951 - 12, arg0 + (Static16.anInt548 - local74));
 								}
@@ -112,7 +114,7 @@ public final class Static142 {
 					}
 				}
 				if (local17.aClass100_640 != null && (local5 >= Static267.size || Static59.anInt1812 == 0 || Static59.anInt1812 == 3 || Static59.anInt1812 == 1 && Static98.method1965(((Player) local17).aClass100_364))) {
-					Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.method2691(), arg1 >> 1);
+					Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.height(), arg1 >> 1);
 					if (Static65.anInt1951 > -1 && Static277.anInt5854 < Static191.anInt4506) {
 						Static191.anIntArray389[Static277.anInt5854] = Static280.aClass3_Sub2_Sub9_43.method2858(local17.aClass100_640) / 2;
 						Static191.anIntArray387[Static277.anInt5854] = Static280.aClass3_Sub2_Sub9_43.anInt3626;
@@ -143,12 +145,12 @@ public final class Static142 {
 						}
 						@Pc(571) NPCType local571 = local518.npcType;
 						if (local571.overlayheight == -1) {
-							local310 = local17.method2691();
+							local310 = local17.height();
 						} else {
 							local310 = local571.overlayheight;
 						}
 					} else {
-						local310 = local17.method2691();
+						local310 = local17.height();
 					}
 					Static180.method3326(arg4 >> 1, arg3, local17, arg5, local508.anInt1859 + local310 + 10, arg1 >> 1);
 					if (Static65.anInt1951 > -1) {
@@ -176,12 +178,12 @@ public final class Static142 {
 							@Pc(725) NPCEntity local725 = (NPCEntity) local17;
 							@Pc(728) NPCType local728 = local725.npcType;
 							if (local728.overlayheight == -1) {
-								local265 = local17.method2691() / 2;
+								local265 = local17.height() / 2;
 							} else {
 								local265 = local728.overlayheight / 2;
 							}
 						} else {
-							local265 = local17.method2691() / 2;
+							local265 = local17.height() / 2;
 						}
 						Static180.method3326(arg4 >> 1, arg3, local17, arg5, local265, arg1 >> 1);
 						if (Static65.anInt1951 > -1) {

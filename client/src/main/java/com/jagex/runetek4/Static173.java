@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.game.scene.entities.NPCEntity;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -31,7 +32,7 @@ public final class Static173 {
 		@Pc(171) int local171;
 		for (local7 = 0; local7 < Static272.anInt5214; local7++) {
 			local16 = Static175.aClass8_Sub4_Sub2Array1[Static33.anIntArray79[local7]];
-			if (local16 != null && local16.method2682() && local16.npcType.drawabove == arg0 && local16.npcType.method2933()) {
+			if (local16 != null && local16.exists() && local16.npcType.drawabove == arg0 && local16.npcType.method2933()) {
 				@Pc(42) int local42 = local16.size();
 				@Pc(97) int local97;
 				if (local42 == 1) {
@@ -70,7 +71,7 @@ public final class Static173 {
 		label200: for (local7 = 0; local7 < Static272.anInt5214; local7++) {
 			local16 = Static175.aClass8_Sub4_Sub2Array1[Static33.anIntArray79[local7]];
 			@Pc(262) long local262 = (long) Static33.anIntArray79[local7] << 32 | 0x20000000L;
-			if (local16 != null && local16.method2682() && local16.npcType.drawabove == arg0 && local16.npcType.method2933()) {
+			if (local16 != null && local16.exists() && local16.npcType.drawabove == arg0 && local16.npcType.method2933()) {
 				local107 = local16.size();
 				if (local107 == 1) {
 					if ((local16.anInt3412 & 0x7F) == 64 && (local16.anInt3421 & 0x7F) == 64) {

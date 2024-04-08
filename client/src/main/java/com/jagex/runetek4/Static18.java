@@ -1,5 +1,7 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.game.scene.entities.PathingEntity;
+import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

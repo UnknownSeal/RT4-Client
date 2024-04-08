@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.datastruct.Node;
 import com.jagex.runetek4.game.config.loctype.LocType;
 import com.jagex.runetek4.game.config.npctype.NPCType;
+import com.jagex.runetek4.game.scene.entities.NPCEntity;
 import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -89,7 +90,7 @@ public final class AreaSound extends Node {
 				@Pc(100) NPCType local100 = this.aClass8_Sub4_Sub2_1.npcType;
 				this.anInt2044 = local92;
 				if (local100.multinpc != null) {
-					local100 = local100.getvisible();
+					local100 = local100.getMultiNPC();
 				}
 				if (local100 == null) {
 					this.anInt2042 = 0;

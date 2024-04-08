@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.loctype.LocType;
 import com.jagex.runetek4.game.config.npctype.NPCType;
+import com.jagex.runetek4.game.scene.entities.NPCEntity;
 import com.jagex.runetek4.game.world.entity.Player;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -73,7 +74,7 @@ public final class Static122 {
 			@Pc(138) NPCType local138 = arg3.npcType;
 			if (local138.multinpc != null) {
 				local13.aBoolean117 = true;
-				local138 = local138.getvisible();
+				local138 = local138.getMultiNPC();
 			}
 			if (local138 != null) {
 				local13.anInt2028 = (local138.size + arg0) * 128;

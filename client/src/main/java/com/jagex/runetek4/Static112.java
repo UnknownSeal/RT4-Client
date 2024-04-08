@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.npctype.NPCType;
+import com.jagex.runetek4.game.scene.entities.NPCEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -120,7 +121,7 @@ public final class Static112 {
 	public static int method2299(@OriginalArg(0) NPCEntity arg0) {
 		@Pc(13) NPCType local13 = arg0.npcType;
 		if (local13.multinpc != null) {
-			local13 = local13.getvisible();
+			local13 = local13.getMultiNPC();
 			if (local13 == null) {
 				return -1;
 			}

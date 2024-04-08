@@ -1,272 +1,273 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.game.scene.entities;
 
+import com.jagex.runetek4.*;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!fe")
+@OriginalClass("client!fe")
 public abstract class PathingEntity extends Entity {
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "A", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "A", descriptor = "I")
 	public int anInt3359;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "S", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "S", descriptor = "I")
 	public int anInt3372;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "U", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "U", descriptor = "I")
 	public int anInt3374;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Z", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Z", descriptor = "I")
 	public int anInt3379;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "bb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "bb", descriptor = "I")
 	public int anInt3380;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "cb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "cb", descriptor = "I")
 	public int anInt3381;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "fb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "fb", descriptor = "I")
 	public int anInt3384;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "hb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "hb", descriptor = "I")
 	public int anInt3386;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "nb", descriptor = "Ljava/lang/Object;")
+	@OriginalMember(owner = "client!fe", name = "nb", descriptor = "Ljava/lang/Object;")
 	public Object anObject5;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "rb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "rb", descriptor = "I")
 	public int anInt3392;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "tb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "tb", descriptor = "I")
 	public int anInt3394;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "ub", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "ub", descriptor = "I")
 	public int anInt3395;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "vb", descriptor = "Lclient!ga;")
+	@OriginalMember(owner = "client!fe", name = "vb", descriptor = "Lclient!ga;")
 	protected ParticleSystem aClass47_Sub1_5;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Ab", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Ab", descriptor = "I")
 	public int anInt3400;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Jb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Jb", descriptor = "I")
 	public int anInt3406;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Ob", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Ob", descriptor = "I")
 	public int anInt3410;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Pb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Pb", descriptor = "I")
 	public int anInt3411;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Qb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Qb", descriptor = "I")
 	public int anInt3412;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Ub", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Ub", descriptor = "I")
 	public int anInt3416;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "ac", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "ac", descriptor = "I")
 	public int anInt3421;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "dc", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "dc", descriptor = "I")
 	public int anInt3424;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "fc", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "fc", descriptor = "I")
 	public int anInt3426;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "hc", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "hc", descriptor = "I")
 	public int anInt3428;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "mc", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "mc", descriptor = "I")
 	public int anInt3431;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "w", descriptor = "[I")
+	@OriginalMember(owner = "client!fe", name = "w", descriptor = "[I")
 	public final int[] movementQueueZ = new int[10];
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "z", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "z", descriptor = "I")
 	public int anInt3358 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "J", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "J", descriptor = "I")
 	private int anInt3367 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "L", descriptor = "[I")
+	@OriginalMember(owner = "client!fe", name = "L", descriptor = "[I")
 	public final int[] anIntArray319 = new int[4];
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "K", descriptor = "[I")
+	@OriginalMember(owner = "client!fe", name = "K", descriptor = "[I")
 	public final int[] movementQueueX = new int[10];
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "B", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "B", descriptor = "I")
 	public int anInt3360 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "O", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "O", descriptor = "I")
 	public int anInt3369 = -1;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "ab", descriptor = "Z")
+	@OriginalMember(owner = "client!fe", name = "ab", descriptor = "Z")
 	private boolean aBoolean169 = false;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "M", descriptor = "Z")
+	@OriginalMember(owner = "client!fe", name = "M", descriptor = "Z")
 	public boolean aBoolean167 = false;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "db", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "db", descriptor = "I")
 	public int anInt3382 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Q", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Q", descriptor = "I")
 	public int anInt3371 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "E", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "E", descriptor = "I")
 	public int anInt3363 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "yb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "yb", descriptor = "I")
 	private int anInt3398 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "G", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "G", descriptor = "I")
 	public int anInt3365 = -1;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "gb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "gb", descriptor = "I")
 	public int anInt3385 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "pb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "pb", descriptor = "I")
 	public int anInt3390 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "mb", descriptor = "[B")
+	@OriginalMember(owner = "client!fe", name = "mb", descriptor = "[B")
 	public final byte[] aByteArray48 = new byte[10];
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "W", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "W", descriptor = "I")
 	public int anInt3376 = 32;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "P", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "P", descriptor = "I")
 	public int anInt3370 = -1;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Bb", descriptor = "Z")
+	@OriginalMember(owner = "client!fe", name = "Bb", descriptor = "Z")
 	private boolean aBoolean170 = false;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "eb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "eb", descriptor = "I")
 	private int anInt3383 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "ib", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "ib", descriptor = "I")
 	public int anInt3387 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "X", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "X", descriptor = "I")
 	public int anInt3377 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Eb", descriptor = "[Lclient!ub;")
+	@OriginalMember(owner = "client!fe", name = "Eb", descriptor = "[Lclient!ub;")
 	public final Class147[] aClass147Array3 = new Class147[12];
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Lb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Lb", descriptor = "I")
 	public int anInt3408 = 100;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "V", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "V", descriptor = "I")
 	public int anInt3375 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Y", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Y", descriptor = "I")
 	public int anInt3378 = -1000;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Rb", descriptor = "I")
-	protected int anInt3413 = -32768;
+	@OriginalMember(owner = "client!fe", name = "Rb", descriptor = "I")
+	protected int height = -32768;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Nb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Nb", descriptor = "I")
 	public int routeLength = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Zb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Zb", descriptor = "I")
 	public int anInt3420 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "cc", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "cc", descriptor = "I")
 	private int anInt3423 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "C", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "C", descriptor = "I")
 	public int anInt3361 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Yb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Yb", descriptor = "I")
 	private int anInt3419 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "v", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "v", descriptor = "I")
 	private int anInt3355 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Mb", descriptor = "[I")
+	@OriginalMember(owner = "client!fe", name = "Mb", descriptor = "[I")
 	public final int[] anIntArray321 = new int[4];
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "zb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "zb", descriptor = "I")
 	public int anInt3399 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Db", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Db", descriptor = "I")
 	public int anInt3402 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Vb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Vb", descriptor = "I")
 	public int anInt3417 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "s", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "s", descriptor = "I")
 	public int anInt3352 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "T", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "T", descriptor = "I")
 	public int anInt3373 = -1;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Fb", descriptor = "Z")
+	@OriginalMember(owner = "client!fe", name = "Fb", descriptor = "Z")
 	public boolean aBoolean171 = false;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "xb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "xb", descriptor = "I")
 	public int anInt3397 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "kb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "kb", descriptor = "I")
 	public int anInt3388 = -1;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Sb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Sb", descriptor = "I")
 	public int anInt3414 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "H", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "H", descriptor = "I")
 	public int anInt3366 = -1;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "gc", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "gc", descriptor = "I")
 	private int anInt3427 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Tb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Tb", descriptor = "I")
 	private int size = 1;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Kb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Kb", descriptor = "I")
 	public int anInt3407 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "ic", descriptor = "[I")
+	@OriginalMember(owner = "client!fe", name = "ic", descriptor = "[I")
 	public final int[] anIntArray322 = new int[4];
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Ib", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Ib", descriptor = "I")
 	public int anInt3405 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "y", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "y", descriptor = "I")
 	private int anInt3357 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "wb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "wb", descriptor = "I")
 	public int anInt3396 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "jc", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "jc", descriptor = "I")
 	public int anInt3429 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "kc", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "kc", descriptor = "I")
 	public int anInt3430 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "ec", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "ec", descriptor = "I")
 	public int anInt3425 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Wb", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!fe", name = "Wb", descriptor = "Lclient!na;")
 	public JagString aClass100_640 = null;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "oc", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "oc", descriptor = "I")
 	public int anInt3432 = -1;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "Xb", descriptor = "I")
+	@OriginalMember(owner = "client!fe", name = "Xb", descriptor = "I")
 	public int anInt3418 = -1;
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "b", descriptor = "(Z)Lclient!ck;")
+	@OriginalMember(owner = "client!fe", name = "b", descriptor = "(Z)Lclient!ck;")
 	public final BASType method2681() {
 		@Pc(7) int local7 = this.method2688();
 		return local7 == -1 ? Static4.aClass20_1 : Static90.method1856(local7);
 	}
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "a", descriptor = "(B)Z")
-	public boolean method2682() {
+	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(B)Z")
+	public boolean exists() {
 		return false;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "a", descriptor = "(IIIIZ)V")
+	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(IIIIZ)V")
 	public final void method2683(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) boolean arg3) {
 		if (this.anInt3369 != -1 && Static36.method941(this.anInt3369).anInt5349 == 1) {
 			this.anInt3369 = -1;
@@ -301,7 +302,7 @@ public abstract class PathingEntity extends Entity {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "a", descriptor = "(IBI)V")
+	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(IBI)V")
 	public final void method2684(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
 		@Pc(10) int local10 = this.movementQueueX[0];
 		@Pc(15) int local15 = this.movementQueueZ[0];
@@ -349,7 +350,7 @@ public abstract class PathingEntity extends Entity {
 		this.movementQueueZ[0] = local15;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "a", descriptor = "(BLclient!ak;I)V")
+	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(BLclient!ak;I)V")
 	protected final void method2685(@OriginalArg(1) Model arg0, @OriginalArg(2) int arg1) {
 		Static102.anInt2680 = 0;
 		Static101.anInt2640 = 0;
@@ -404,7 +405,7 @@ public abstract class PathingEntity extends Entity {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "a", descriptor = "(IIII)V")
+	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(IIII)V")
 	public final void method2686(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
 		for (@Pc(11) int local11 = 0; local11 < 4; local11++) {
 			if (arg1 >= this.anIntArray319[local11]) {
@@ -416,7 +417,7 @@ public abstract class PathingEntity extends Entity {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "a", descriptor = "(Lclient!ak;B)V")
+	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(Lclient!ak;B)V")
 	protected final void method2687(@OriginalArg(0) Model arg0) {
 		@Pc(16) BASType local16 = this.method2681();
 		if (local16.anInt1064 == 0 && local16.anInt1041 == 0) {
@@ -617,26 +618,26 @@ public abstract class PathingEntity extends Entity {
 		arg0.translate(0, local106, 0);
 	}
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "b", descriptor = "(I)I")
+	@OriginalMember(owner = "client!fe", name = "b", descriptor = "(I)I")
 	protected abstract int method2688();
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "c", descriptor = "(I)V")
+	@OriginalMember(owner = "client!fe", name = "c", descriptor = "(I)V")
 	public final void method2689() {
 		this.routeLength = 0;
 		this.anInt3405 = 0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "d", descriptor = "(I)I")
-	public final int method2691() {
-		return this.anInt3413 == -32768 ? 200 : -this.anInt3413;
+	@OriginalMember(owner = "client!fe", name = "d", descriptor = "(I)I")
+	public final int height() {
+		return this.height == -32768 ? 200 : -this.height;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "a", descriptor = "(II)V")
+	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(II)V")
 	public final void setSize(@OriginalArg(0) int size) {
 		this.size = size;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fe", name = "c", descriptor = "(B)I")
+	@OriginalMember(owner = "client!fe", name = "c", descriptor = "(B)I")
 	public int size() {
 		return this.size;
 	}

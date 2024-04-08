@@ -48,7 +48,7 @@ public final class Static246 {
 			return;
 		}
 		if (npcType.multinpc != null) {
-			npcType = npcType.getvisible();
+			npcType = npcType.getMultiNPC();
 		}
 		if (npcType == null || !npcType.active) {
 			return;
