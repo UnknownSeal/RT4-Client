@@ -140,8 +140,8 @@ public final class Static270 {
 	@OriginalMember(owner = "runetek4.client!wb", name = "a", descriptor = "(Lclient!ba;IILclient!ba;Z)I")
 	public static int method4595(@OriginalArg(0) GWCWorld arg0, @OriginalArg(1) int arg1, @OriginalArg(3) GWCWorld arg2, @OriginalArg(4) boolean arg3) {
 		if (arg1 == 1) {
-			@Pc(11) int local11 = arg0.anInt379;
-			@Pc(14) int local14 = arg2.anInt379;
+			@Pc(11) int local11 = arg0.players;
+			@Pc(14) int local14 = arg2.players;
 			if (!arg3) {
 				if (local14 == -1) {
 					local14 = 2001;
@@ -152,31 +152,31 @@ public final class Static270 {
 			}
 			return local11 - local14;
 		} else if (arg1 == 2) {
-			return arg0.method445().aClass100_378.method3126(arg2.method445().aClass100_378);
+			return arg0.getGWCLocation().name.method3126(arg2.getGWCLocation().name);
 		} else if (arg1 == 3) {
-			if (arg0.aClass100_69.method3108(Static111.aClass100_570)) {
-				if (arg2.aClass100_69.method3108(Static111.aClass100_570)) {
+			if (arg0.activity.method3108(Static111.aClass100_570)) {
+				if (arg2.activity.method3108(Static111.aClass100_570)) {
 					return 0;
 				} else if (arg3) {
 					return -1;
 				} else {
 					return 1;
 				}
-			} else if (arg2.aClass100_69.method3108(Static111.aClass100_570)) {
+			} else if (arg2.activity.method3108(Static111.aClass100_570)) {
 				return arg3 ? 1 : -1;
 			} else {
-				return arg0.aClass100_69.method3126(arg2.aClass100_69);
+				return arg0.activity.method3126(arg2.activity);
 			}
 		} else if (arg1 == 4) {
-			return arg0.method441() ? (arg2.method441() ? 0 : 1) : arg2.method441() ? -1 : 0;
+			return arg0.lootshare() ? (arg2.lootshare() ? 0 : 1) : arg2.lootshare() ? -1 : 0;
 		} else if (arg1 == 5) {
-			return arg0.method442() ? (arg2.method442() ? 0 : 1) : (arg2.method442() ? -1 : 0);
+			return arg0.quickchat() ? (arg2.quickchat() ? 0 : 1) : (arg2.quickchat() ? -1 : 0);
 		} else if (arg1 == 6) {
-			return arg0.method439() ? (arg2.method439() ? 0 : 1) : (arg2.method439() ? -1 : 0);
+			return arg0.pvp() ? (arg2.pvp() ? 0 : 1) : (arg2.pvp() ? -1 : 0);
 		} else if (arg1 == 7) {
-			return arg0.method437() ? (arg2.method437() ? 0 : 1) : (arg2.method437() ? -1 : 0);
+			return arg0.members() ? (arg2.members() ? 0 : 1) : (arg2.members() ? -1 : 0);
 		} else {
-			return arg0.anInt382 - arg2.anInt382;
+			return arg0.id - arg2.id;
 		}
 	}
 }

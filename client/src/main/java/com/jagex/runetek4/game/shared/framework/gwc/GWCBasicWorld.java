@@ -7,31 +7,31 @@ import org.openrs2.deob.annotation.OriginalMember;
 public abstract class GWCBasicWorld {
 
 	@OriginalMember(owner = "client!gj", name = "j", descriptor = "I")
-	public int anInt377;
+	public int country;
 
 	@OriginalMember(owner = "client!gj", name = "l", descriptor = "I")
-	public int anInt379;
+	public int players;
 
 	@OriginalMember(owner = "client!gj", name = "o", descriptor = "I")
-	public int anInt381;
+	public int flags;
 
 	@OriginalMember(owner = "client!gj", name = "a", descriptor = "(I)Z")
-	public final boolean method437() {
-		return (this.anInt381 & 0x1) != 0;
+	public final boolean members() {
+		return (this.flags & 0x1) != 0;
 	}
 
 	@OriginalMember(owner = "client!gj", name = "a", descriptor = "(Z)Z")
-	public final boolean method439() {
-		return (this.anInt381 & 0x4) != 0;
+	public final boolean pvp() {
+		return (this.flags & 0x4) != 0;
 	}
 
 	@OriginalMember(owner = "client!gj", name = "c", descriptor = "(I)Z")
-	public final boolean method441() {
-		return (this.anInt381 & 0x8) != 0;
+	public final boolean lootshare() {
+		return (this.flags & 0x8) != 0;
 	}
 
 	@OriginalMember(owner = "client!gj", name = "d", descriptor = "(I)Z")
-	public final boolean method442() {
-		return (this.anInt381 & 0x2) != 0;
+	public final boolean quickchat() {
+		return (this.flags & 0x2) != 0;
 	}
 }

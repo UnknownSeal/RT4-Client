@@ -9,12 +9,12 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!uf")
+@OriginalClass("client!uf")
 public final class Keyboard implements KeyListener, FocusListener {
 
-	@OriginalMember(owner = "runetek4.client!uf", name = "keyPressed", descriptor = "(Ljava/awt/event/KeyEvent;)V")
+	@OriginalMember(owner = "client!uf", name = "keyPressed", descriptor = "(Ljava/awt/event/KeyEvent;)V")
 	@Override
-	public final synchronized void keyPressed(@OriginalArg(0) KeyEvent arg0) {
+	public synchronized void keyPressed(@OriginalArg(0) KeyEvent arg0) {
 		if (Static10.aClass149_1 == null) {
 			return;
 		}
@@ -50,9 +50,9 @@ public final class Keyboard implements KeyListener, FocusListener {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!uf", name = "keyTyped", descriptor = "(Ljava/awt/event/KeyEvent;)V")
+	@OriginalMember(owner = "client!uf", name = "keyTyped", descriptor = "(Ljava/awt/event/KeyEvent;)V")
 	@Override
-	public final void keyTyped(@OriginalArg(0) KeyEvent arg0) {
+	public void keyTyped(@OriginalArg(0) KeyEvent arg0) {
 		if (Static10.aClass149_1 != null) {
 			@Pc(9) int local9 = Static136.method2650(arg0);
 			if (local9 >= 0) {
@@ -67,17 +67,9 @@ public final class Keyboard implements KeyListener, FocusListener {
 		arg0.consume();
 	}
 
-	@OriginalMember(owner = "runetek4.client!uf", name = "focusLost", descriptor = "(Ljava/awt/event/FocusEvent;)V")
+	@OriginalMember(owner = "client!uf", name = "keyReleased", descriptor = "(Ljava/awt/event/KeyEvent;)V")
 	@Override
-	public final synchronized void focusLost(@OriginalArg(0) FocusEvent arg0) {
-		if (Static10.aClass149_1 != null) {
-			Static114.anInt5844 = -1;
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!uf", name = "keyReleased", descriptor = "(Ljava/awt/event/KeyEvent;)V")
-	@Override
-	public final synchronized void keyReleased(@OriginalArg(0) KeyEvent arg0) {
+	public synchronized void keyReleased(@OriginalArg(0) KeyEvent arg0) {
 		if (Static10.aClass149_1 != null) {
 			Static229.anInt5140 = 0;
 			@Pc(11) int local11 = arg0.getKeyCode();
@@ -97,8 +89,16 @@ public final class Keyboard implements KeyListener, FocusListener {
 		arg0.consume();
 	}
 
-	@OriginalMember(owner = "runetek4.client!uf", name = "focusGained", descriptor = "(Ljava/awt/event/FocusEvent;)V")
+	@OriginalMember(owner = "client!uf", name = "focusGained", descriptor = "(Ljava/awt/event/FocusEvent;)V")
 	@Override
-	public final void focusGained(@OriginalArg(0) FocusEvent arg0) {
+	public void focusGained(@OriginalArg(0) FocusEvent focusEvent) {
+	}
+
+	@OriginalMember(owner = "client!uf", name = "focusLost", descriptor = "(Ljava/awt/event/FocusEvent;)V")
+	@Override
+	public synchronized void focusLost(@OriginalArg(0) FocusEvent focusEvent) {
+		if (Static10.aClass149_1 != null) {
+			Static114.anInt5844 = -1;
+		}
 	}
 }

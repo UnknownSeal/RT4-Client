@@ -3708,13 +3708,13 @@ public final class Static88 {
 															Static3.aClass100Array176[local26++] = Static72.aClass100_447;
 															Static254.anIntArray487[local28++] = 0;
 														} else {
-															Static254.anIntArray487[local28++] = local10191.anInt382;
-															Static254.anIntArray487[local28++] = local10191.anInt381;
-															Static3.aClass100Array176[local26++] = local10191.aClass100_69;
-															local10247 = local10191.method445();
-															Static254.anIntArray487[local28++] = local10247.anInt1739;
-															Static3.aClass100Array176[local26++] = local10247.aClass100_378;
-															Static254.anIntArray487[local28++] = local10191.anInt379;
+															Static254.anIntArray487[local28++] = local10191.id;
+															Static254.anIntArray487[local28++] = local10191.flags;
+															Static3.aClass100Array176[local26++] = local10191.activity;
+															local10247 = local10191.getGWCLocation();
+															Static254.anIntArray487[local28++] = local10247.flag;
+															Static3.aClass100Array176[local26++] = local10247.name;
+															Static254.anIntArray487[local28++] = local10191.players;
 														}
 														continue;
 													}
@@ -3728,13 +3728,13 @@ public final class Static88 {
 															Static3.aClass100Array176[local26++] = Static72.aClass100_447;
 															Static254.anIntArray487[local28++] = 0;
 														} else {
-															Static254.anIntArray487[local28++] = local10191.anInt382;
-															Static254.anIntArray487[local28++] = local10191.anInt381;
-															Static3.aClass100Array176[local26++] = local10191.aClass100_69;
-															local10247 = local10191.method445();
-															Static254.anIntArray487[local28++] = local10247.anInt1739;
-															Static3.aClass100Array176[local26++] = local10247.aClass100_378;
-															Static254.anIntArray487[local28++] = local10191.anInt379;
+															Static254.anIntArray487[local28++] = local10191.id;
+															Static254.anIntArray487[local28++] = local10191.flags;
+															Static3.aClass100Array176[local26++] = local10191.activity;
+															local10247 = local10191.getGWCLocation();
+															Static254.anIntArray487[local28++] = local10247.flag;
+															Static3.aClass100Array176[local26++] = local10247.name;
+															Static254.anIntArray487[local28++] = local10191.players;
 														}
 														continue;
 													}
@@ -3769,12 +3769,12 @@ public final class Static88 {
 															Static3.aClass100Array176[local26++] = Static72.aClass100_447;
 															Static254.anIntArray487[local28++] = 0;
 														} else {
-															Static254.anIntArray487[local28++] = local10440.anInt381;
-															Static3.aClass100Array176[local26++] = local10440.aClass100_69;
-															@Pc(10458) GWCLocation local10458 = local10440.method445();
-															Static254.anIntArray487[local28++] = local10458.anInt1739;
-															Static3.aClass100Array176[local26++] = local10458.aClass100_378;
-															Static254.anIntArray487[local28++] = local10440.anInt379;
+															Static254.anIntArray487[local28++] = local10440.flags;
+															Static3.aClass100Array176[local26++] = local10440.activity;
+															@Pc(10458) GWCLocation local10458 = local10440.getGWCLocation();
+															Static254.anIntArray487[local28++] = local10458.flag;
+															Static3.aClass100Array176[local26++] = local10458.name;
+															Static254.anIntArray487[local28++] = local10440.players;
 														}
 														continue;
 													}
