@@ -4,3 +4,7 @@
 
 bin/
 build/
+client/target/classes/
+signlink/target/classes/
+gl/target/classes/
+deob-annotations/target/classes/
