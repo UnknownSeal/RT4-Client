@@ -68,9 +68,9 @@ public final class Static245 {
 		for (@Pc(7) int local7 = 0; local7 < Static116.anInt2951; local7++) {
 			@Pc(31) int local31 = Static44.anIntArray106[local7];
 			@Pc(35) Player local35 = Static159.aClass8_Sub4_Sub1Array1[local31];
-			@Pc(39) int local39 = Static57.aClass3_Sub15_Sub1_3.g1();
+			@Pc(39) int local39 = Static57.inboundBuffer.g1();
 			if ((local39 & 0x10) != 0) {
-				local39 += Static57.aClass3_Sub15_Sub1_3.g1() << 8;
+				local39 += Static57.inboundBuffer.g1() << 8;
 			}
 			Static84.method1768(local39, local31, local35);
 		}
@@ -83,7 +83,7 @@ public final class Static245 {
 			for (@Pc(10) int local10 = 0; local10 < 8; local10++) {
 				for (local17 = 0; local17 < 8; local17++) {
 					if (arg1 + local10 > 0 && local10 + arg1 < 103 && local17 + arg4 > 0 && arg4 + local17 < 103) {
-						arg3[arg2].anIntArrayArray30[local10 + arg1][local17 + arg4] &= 0xFEFFFFFF;
+						arg3[arg2].flags[local10 + arg1][local17 + arg4] &= 0xFEFFFFFF;
 					}
 				}
 			}

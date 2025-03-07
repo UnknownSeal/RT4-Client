@@ -400,7 +400,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(II[BI)V")
-	public final void gBytesRev(@OriginalArg(1) int offset, @OriginalArg(2) byte[] dest) {
+	public final void gBytesRev(@OriginalArg(2) byte[] dest, @OriginalArg(1) int offset) {
 		for (@Pc(12) int i = offset - 1; i >= 0; i--) {
 			dest[i] = this.data[this.pos++];
 		}

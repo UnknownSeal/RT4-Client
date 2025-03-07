@@ -42,8 +42,8 @@ public final class Static64 {
 				Static159.aClass8_Sub4_Sub1Array1[local30] = null;
 			}
 		}
-		if (Static223.anInt5028 != Static57.aClass3_Sub15_Sub1_3.pos) {
-			throw new RuntimeException("gpp1 pos:" + Static57.aClass3_Sub15_Sub1_3.pos + " psize:" + Static223.anInt5028);
+		if (Static223.anInt5028 != Static57.inboundBuffer.pos) {
+			throw new RuntimeException("gpp1 pos:" + Static57.inboundBuffer.pos + " psize:" + Static223.anInt5028);
 		}
 		for (local23 = 0; local23 < Static267.size; local23++) {
 			if (Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local23]] == null) {
@@ -69,13 +69,13 @@ public final class Static64 {
 				return;
 			}
 		}
-		for (local42 = 0; local42 < Static35.anInt1093; local42++) {
-			if (arg0 == Static190.aLongArray6[local42]) {
+		for (local42 = 0; local42 < Static35.size; local42++) {
+			if (arg0 == Static190.encodedUsernames[local42]) {
 				Static103.method2231(Static186.aClass100_827, 0, Static34.method882(new JagString[] { LocalizedText.REMOVESOCIAL1, local35, LocalizedText.REMOVEIGNORE}));
 				return;
 			}
 		}
-		if (local35.method3108(Static173.self.aClass100_364)) {
+		if (local35.method3108(Static173.self.username)) {
 			Static103.method2231(Static186.aClass100_827, 0, LocalizedText.FRIENDCANTADDSELF);
 			return;
 		}

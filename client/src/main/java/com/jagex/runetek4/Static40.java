@@ -146,10 +146,10 @@ public final class Static40 {
 		Static6.outboundBuffer.p1b(36);
 		Static6.outboundBuffer.p1b(local8.pos);
 		Static6.outboundBuffer.pdata(local8.data, local8.pos);
-		Static223.anInt5034 = -3;
-		Static179.anInt4261 = 1;
-		Static226.anInt5079 = 0;
-		Static57.anInt1758 = 0;
+		Static223.reply = -3;
+		Static179.step = 1;
+		Static226.loops = 0;
+		Static57.errors = 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!da", name = "h", descriptor = "(B)V")

@@ -8,19 +8,19 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static23 {
 
-	@OriginalMember(owner = "runetek4.client!bm", name = "a", descriptor = "F")
+	@OriginalMember(owner = "client!bm", name = "a", descriptor = "F")
 	public static float aFloat5;
 
-	@OriginalMember(owner = "runetek4.client!bm", name = "e", descriptor = "Lclient!ve;")
+	@OriginalMember(owner = "client!bm", name = "e", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_11;
 
-	@OriginalMember(owner = "runetek4.client!bm", name = "f", descriptor = "Lclient!ve;")
+	@OriginalMember(owner = "client!bm", name = "f", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_12;
 
-	@OriginalMember(owner = "runetek4.client!bm", name = "p", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!bm", name = "p", descriptor = "Lclient!na;")
 	public static final JagString aClass100_133 = Static28.parse("(U1");
 
-	@OriginalMember(owner = "runetek4.client!bm", name = "a", descriptor = "(IBIIII)V")
+	@OriginalMember(owner = "client!bm", name = "a", descriptor = "(IBIIII)V")
 	public static void method645(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		@Pc(3) int local3;
 		@Pc(10) int local10;
@@ -72,7 +72,7 @@ public final class Static23 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!bm", name = "a", descriptor = "(III)I")
+	@OriginalMember(owner = "client!bm", name = "a", descriptor = "(III)I")
 	public static int method647(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
 		@Pc(10) ClientInvCache local10 = (ClientInvCache) ClientInvCache.recentUse.getNode((long) arg0);
 		if (local10 == null) {
@@ -84,7 +84,7 @@ public final class Static23 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!bm", name = "a", descriptor = "(B[B)[B")
+	@OriginalMember(owner = "client!bm", name = "a", descriptor = "(B[B)[B")
 	public static byte[] method648(@OriginalArg(1) byte[] arg0) {
 		@Pc(6) int local6 = arg0.length;
 		@Pc(9) byte[] local9 = new byte[local6];

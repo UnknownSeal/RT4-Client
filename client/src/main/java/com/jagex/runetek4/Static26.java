@@ -7,31 +7,31 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static26 {
 
-	@OriginalMember(owner = "runetek4.client!ca", name = "Y", descriptor = "[I")
+	@OriginalMember(owner = "client!ca", name = "Y", descriptor = "[I")
 	public static int[] anIntArray66;
 
-	@OriginalMember(owner = "runetek4.client!ca", name = "Z", descriptor = "Lclient!ve;")
+	@OriginalMember(owner = "client!ca", name = "Z", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_16;
 
-	@OriginalMember(owner = "runetek4.client!ca", name = "ab", descriptor = "Z")
+	@OriginalMember(owner = "client!ca", name = "ab", descriptor = "Z")
 	public static boolean focus;
 
-	@OriginalMember(owner = "runetek4.client!ca", name = "X", descriptor = "Lclient!ih;")
+	@OriginalMember(owner = "client!ca", name = "X", descriptor = "Lclient!ih;")
 	public static LinkedList aClass69_27 = new LinkedList();
 
-	@OriginalMember(owner = "runetek4.client!ca", name = "cb", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!ca", name = "cb", descriptor = "Lclient!na;")
 	public static final JagString aClass100_160 = Static165.method3165();
 
-	@OriginalMember(owner = "runetek4.client!ca", name = "db", descriptor = "I")
+	@OriginalMember(owner = "client!ca", name = "db", descriptor = "I")
 	public static int anInt865 = 0;
 
-	@OriginalMember(owner = "runetek4.client!ca", name = "eb", descriptor = "[I")
+	@OriginalMember(owner = "client!ca", name = "eb", descriptor = "[I")
 	public static final int[] anIntArray67 = new int[100];
 
-	@OriginalMember(owner = "runetek4.client!ca", name = "fb", descriptor = "[I")
+	@OriginalMember(owner = "client!ca", name = "fb", descriptor = "[I")
 	public static final int[] anIntArray68 = new int[50];
 
-	@OriginalMember(owner = "runetek4.client!ca", name = "h", descriptor = "(I)V")
+	@OriginalMember(owner = "client!ca", name = "h", descriptor = "(I)V")
 	public static void method740() {
 		@Pc(10) int local10 = (Static138.anInt3439 >> 10) + (Static225.originX >> 3);
 		@Pc(23) int local23 = (Static134.anInt3302 >> 10) + (Static142.originZ >> 3);
@@ -77,13 +77,13 @@ public final class Static26 {
 		Static127.method2463(0, local23, local10, 8, true, 8);
 	}
 
-	@OriginalMember(owner = "runetek4.client!ca", name = "a", descriptor = "(Z)V")
+	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(Z)V")
 	public static void method741() {
 		Static79.aClass99_11.method3103();
 		Static7.aClass99_5.method3103();
 	}
 
-	@OriginalMember(owner = "runetek4.client!ca", name = "a", descriptor = "(ZI)V")
+	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(ZI)V")
 	public static void method743(@OriginalArg(0) boolean arg0) {
 		@Pc(13) int local13 = Static273.aByteArrayArray13.length;
 		@Pc(19) byte[][] local19;
@@ -103,7 +103,7 @@ public final class Static26 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ca", name = "a", descriptor = "(IIII)V")
+	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(IIII)V")
 	public static void method744(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		if (Static125.anInt3104 == 0 || arg0 == 0 || Static189.anInt4451 >= 50 || arg1 == -1) {
 			return;

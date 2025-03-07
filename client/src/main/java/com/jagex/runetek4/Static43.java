@@ -76,7 +76,7 @@ public final class Static43 {
 		@Pc(70) int local70 = (int) (local9 >>> 32) & Integer.MAX_VALUE;
 		@Pc(74) LocType local74 = Static271.get(local70);
 		if (local74.hasBackgroundSound()) {
-			Static209.method3701(arg1, local74, arg0, arg2);
+			AreaSoundManager.remove(arg1, local74, arg0, arg2);
 		}
 		@Pc(92) int local92 = (int) local9 >> 20 & 0x3;
 		if (local9 == 0L) {

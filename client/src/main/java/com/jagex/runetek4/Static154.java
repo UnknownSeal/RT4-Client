@@ -55,7 +55,7 @@ public final class Static154 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!md", name = "a", descriptor = "(IILclient!na;Lclient!na;BLclient!na;)V")
-	public static void method2928(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JagString arg2, @OriginalArg(3) JagString arg3, @OriginalArg(5) JagString arg4) {
+	public static void add(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JagString arg2, @OriginalArg(3) JagString arg3, @OriginalArg(5) JagString arg4) {
 		for (@Pc(14) int local14 = 99; local14 > 0; local14--) {
 			Static26.anIntArray67[local14] = Static26.anIntArray67[local14 - 1];
 			Static153.aClass100Array112[local14] = Static153.aClass100Array112[local14 - 1];

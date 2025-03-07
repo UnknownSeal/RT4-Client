@@ -100,7 +100,7 @@ public final class Static185 {
 			local261 |= 0x80000000L;
 		}
 		if (locType.hasBackgroundSound()) {
-			Static122.method2411(arg8, locType, arg9, null, arg7, level, null);
+			AreaSoundManager.add(arg8, locType, arg9, null, arg7, level, null);
 		}
 		@Pc(330) boolean local330 = locType.hardshadow & !arg3;
 		local261 |= (long) arg5 << 32;

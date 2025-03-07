@@ -10,7 +10,7 @@ public final class Static204 {
 	public static Sprite aClass3_Sub2_Sub1_10;
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "C", descriptor = "Lclient!ei;")
-	public static MixerPcmStream aClass3_Sub3_Sub2_1;
+	public static MixerPcmStream soundStream;
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "r", descriptor = "I")
 	public static int anInt4760 = 0;

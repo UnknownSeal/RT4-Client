@@ -34,7 +34,7 @@ public final class Static44 {
 		Static270.anInt5795 = 0;
 		Static60.rebootTimer = 0;
 		Static49.anInt1462 = -1;
-		Static57.aClass3_Sub15_Sub1_3.pos = 0;
+		Static57.inboundBuffer.pos = 0;
 		Static201.anInt1862 = 0;
 		Static164.anInt3985 = -1;
 		@Pc(35) int local35;

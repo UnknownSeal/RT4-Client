@@ -38,7 +38,7 @@ public final class Static169 {
 		}
 		if (GlRenderer.enabled && Static40.aBoolean78) {
 			try {
-				BrowserControl.method1758(Static71.signLink.anApplet2, "openjs", new Object[] { arg0.method3127(Static230.anApplet_Sub1_1.getCodeBase()).toString() });
+				BrowserControl.method1758(GameShell.signLink.anApplet2, "openjs", new Object[] { arg0.method3127(Static230.anApplet_Sub1_1.getCodeBase()).toString() });
 				return;
 			} catch (@Pc(48) Throwable local48) {
 			}

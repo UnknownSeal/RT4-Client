@@ -227,7 +227,7 @@ public final class Static164 {
 		}
 		@Pc(176) int local176 = MathUtils.anIntArray225[local5.xan2d] * local145 >> 16;
 		@Pc(185) int local185 = MathUtils.anIntArray223[local5.xan2d] * local145 >> 16;
-		local60.method4571(local5.yan2d, local5.zan2d, local5.xan2d, local5.xof2d, local185 + local5.yof2d - local60.method4549() / 2, local5.yof2d + local176, -1L);
+		local60.method4571(local5.yan2d, local5.zan2d, local5.xan2d, local5.xof2d, local185 + local5.yof2d - local60.getHeight() / 2, local5.yof2d + local176, -1L);
 		if (arg4 >= 1) {
 			local133.method303(1);
 			if (arg4 >= 2) {

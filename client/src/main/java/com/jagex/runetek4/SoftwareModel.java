@@ -508,7 +508,7 @@ public final class SoftwareModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!w", name = "b", descriptor = "()I")
 	@Override
-	public final int method4549() {
+	public final int getHeight() {
 		if (!this.aBoolean305) {
 			this.method4592();
 		}

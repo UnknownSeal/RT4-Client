@@ -40,7 +40,7 @@ public final class Static238 {
 		if (arg0 == null) {
 			return false;
 		}
-		for (@Pc(11) int local11 = 0; local11 < Static35.anInt1093; local11++) {
+		for (@Pc(11) int local11 = 0; local11 < Static35.size; local11++) {
 			if (arg0.method3111(Static193.aClass100Array134[local11])) {
 				return true;
 			}

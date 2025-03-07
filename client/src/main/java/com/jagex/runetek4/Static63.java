@@ -43,7 +43,7 @@ public final class Static63 {
 		if (arg2 == anInt1943) {
 			@Pc(8) IntWrapper local8 = new IntWrapper(arg1);
 			local8.nodeId = arg0;
-			aClass69_50.method2282(local8);
+			aClass69_50.addTail(local8);
 		}
 	}
 
@@ -52,7 +52,7 @@ public final class Static63 {
 		if (arg1 == anInt1943) {
 			@Pc(7) IntWrapper local7 = new IntWrapper();
 			local7.nodeId = arg0;
-			aClass69_51.method2282(local7);
+			aClass69_51.addTail(local7);
 		}
 	}
 
@@ -73,7 +73,7 @@ public final class Static63 {
 		if (arg2 == anInt1943) {
 			@Pc(8) IntWrapper local8 = new IntWrapper(arg1);
 			local8.nodeId = arg0;
-			aClass69_48.method2282(local8);
+			aClass69_48.addTail(local8);
 		}
 	}
 
@@ -140,7 +140,7 @@ public final class Static63 {
 		if (arg2 == anInt1943) {
 			@Pc(8) IntWrapper local8 = new IntWrapper(arg1);
 			local8.nodeId = arg0;
-			aClass69_49.method2282(local8);
+			aClass69_49.addTail(local8);
 		}
 	}
 }

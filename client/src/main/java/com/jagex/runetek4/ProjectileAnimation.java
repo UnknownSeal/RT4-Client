@@ -202,13 +202,13 @@ public final class ProjectileAnimation extends Entity {
 		@Pc(3) Model local3 = this.method3703();
 		if (local3 != null) {
 			local3.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_6);
-			this.anInt4814 = local3.method4549();
+			this.anInt4814 = local3.getHeight();
 		}
 	}
 
 	@OriginalMember(owner = "client!ra", name = "b", descriptor = "()I")
 	@Override
-	public int method4549() {
+	public int getHeight() {
 		return this.anInt4814;
 	}
 }

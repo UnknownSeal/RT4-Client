@@ -4,32 +4,31 @@ import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public final class Static119 {
 
-	@OriginalMember(owner = "runetek4.client!je", name = "W", descriptor = "Lclient!ve;")
+	@OriginalMember(owner = "client!je", name = "W", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_44;
 
-	@OriginalMember(owner = "runetek4.client!je", name = "eb", descriptor = "[I")
+	@OriginalMember(owner = "client!je", name = "eb", descriptor = "[I")
 	public static int[] anIntArray282;
 
-	@OriginalMember(owner = "runetek4.client!je", name = "R", descriptor = "Z")
+	@OriginalMember(owner = "client!je", name = "R", descriptor = "Z")
 	public static boolean aBoolean153 = false;
 
-	@OriginalMember(owner = "runetek4.client!je", name = "T", descriptor = "Lclient!sc;")
+	@OriginalMember(owner = "client!je", name = "T", descriptor = "Lclient!sc;")
 	public static IterableMap aClass133_9 = new IterableMap(8);
 
-	@OriginalMember(owner = "runetek4.client!je", name = "U", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!je", name = "U", descriptor = "Lclient!na;")
 	public static final JagString aClass100_588 = Static28.parse("showingVideoAd");
 
-	@OriginalMember(owner = "runetek4.client!je", name = "db", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!je", name = "db", descriptor = "Lclient!na;")
 	public static final JagString aClass100_589 = Static28.parse(" <col=ffffff>");
 
-	@OriginalMember(owner = "runetek4.client!je", name = "fb", descriptor = "I")
+	@OriginalMember(owner = "client!je", name = "fb", descriptor = "I")
 	public static int transmitTimer = 1;
 
-	@OriginalMember(owner = "runetek4.client!je", name = "h", descriptor = "(I)V")
+	@OriginalMember(owner = "client!je", name = "h", descriptor = "(I)V")
 	public static void method2380() {
 		Static252.method4301();
 		Static224.method3885();
@@ -53,7 +52,7 @@ public final class Static119 {
 		Static139.aClass99_22.method3103();
 	}
 
-	@OriginalMember(owner = "runetek4.client!je", name = "f", descriptor = "(B)V")
+	@OriginalMember(owner = "client!je", name = "f", descriptor = "(B)V")
 	public static void method2381() {
 		if (Static18.aBoolean40) {
 			Static243.aClass36_1 = null;
@@ -62,12 +61,12 @@ public final class Static119 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!je", name = "a", descriptor = "(ILclient!ve;)V")
+	@OriginalMember(owner = "client!je", name = "a", descriptor = "(ILclient!ve;)V")
 	public static void method2384(@OriginalArg(1) Js5 arg0) {
 		Static9.aClass153_2 = arg0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!je", name = "j", descriptor = "(I)I")
+	@OriginalMember(owner = "client!je", name = "j", descriptor = "(I)I")
 	public static int method2385() {
 		if (Static203.aMapElementTypeList_1 == null) {
 			return -1;
@@ -81,22 +80,7 @@ public final class Static119 {
 		return -1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!je", name = "k", descriptor = "(I)V")
-	public static void method2386() {
-		@Pc(6) AreaSound local6;
-		for (local6 = (AreaSound) Static3.aClass69_135.method2289(); local6 != null; local6 = (AreaSound) Static3.aClass69_135.method2288()) {
-			if (local6.aBoolean117) {
-				local6.method1567();
-			}
-		}
-		for (local6 = (AreaSound) Static152.aClass69_87.method2289(); local6 != null; local6 = (AreaSound) Static152.aClass69_87.method2288()) {
-			if (local6.aBoolean117) {
-				local6.method1567();
-			}
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!je", name = "a", descriptor = "(IIIII)V")
+	@OriginalMember(owner = "client!je", name = "a", descriptor = "(IIIII)V")
 	public static void method2387(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		Static13.anInt435 = Static48.anInt1449 * arg2 / arg0;
 		Static28.anInt919 = Static181.anInt4296 * arg1 / arg3;

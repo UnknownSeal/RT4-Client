@@ -27,43 +27,43 @@ public final class Static158 {
 	public static int anInt3857 = 0;
 
 	@OriginalMember(owner = "runetek4.client!mh", name = "f", descriptor = "(B)V")
-	public static void method3008() {
-		if (Static179.anInt4261 == 0) {
+	public static void loop() {
+		if (Static179.step == 0) {
 			return;
 		}
 		try {
-			if (++Static226.anInt5079 > 2000) {
+			if (++Static226.loops > 2000) {
 				if (Static124.socket != null) {
 					Static124.socket.closeGracefully();
 					Static124.socket = null;
 				}
-				if (Static57.anInt1758 >= 1) {
-					Static223.anInt5034 = -5;
-					Static179.anInt4261 = 0;
+				if (Static57.errors >= 1) {
+					Static223.reply = -5;
+					Static179.step = 0;
 					return;
 				}
-				Static179.anInt4261 = 1;
-				Static226.anInt5079 = 0;
-				Static57.anInt1758++;
-				if (Static209.port == Static271.defaultPort) {
+				Static179.step = 1;
+				Static226.loops = 0;
+				Static57.errors++;
+				if (Static271.defaultPort == Static209.port) {
 					Static209.port = Static55.alternatePort;
 				} else {
 					Static209.port = Static271.defaultPort;
 				}
 			}
-			if (Static179.anInt4261 == 1) {
-				Static72.aClass212_3 = Static71.signLink.openSocket(Static60.hostname, Static209.port);
-				Static179.anInt4261 = 2;
+			if (Static179.step == 1) {
+				Static72.aClass212_3 = GameShell.signLink.openSocket(Static60.hostname, Static209.port);
+				Static179.step = 2;
 			}
 			@Pc(120) int local120;
-			if (Static179.anInt4261 == 2) {
+			if (Static179.step == 2) {
 				if (Static72.aClass212_3.status == 2) {
 					throw new IOException();
 				}
 				if (Static72.aClass212_3.status != 1) {
 					return;
 				}
-				Static124.socket = new BufferedSocket((Socket) Static72.aClass212_3.result, Static71.signLink);
+				Static124.socket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
 				Static72.aClass212_3 = null;
 				Static124.socket.write(Static6.outboundBuffer.data, Static6.outboundBuffer.pos);
 				if (Static11.aClass62_1 != null) {
@@ -80,53 +80,53 @@ public final class Static158 {
 					Static147.aClass62_2.method3571();
 				}
 				if (local120 != 21) {
-					Static223.anInt5034 = local120;
-					Static179.anInt4261 = 0;
+					Static223.reply = local120;
+					Static179.step = 0;
 					Static124.socket.closeGracefully();
 					Static124.socket = null;
 					return;
 				}
-				Static179.anInt4261 = 3;
+				Static179.step = 3;
 			}
-			if (Static179.anInt4261 == 3) {
+			if (Static179.step == 3) {
 				if (Static124.socket.available() < 1) {
 					return;
 				}
 				Static229.aClass100Array156 = new JagString[Static124.socket.read()];
-				Static179.anInt4261 = 4;
+				Static179.step = 4;
 			}
-			if (Static179.anInt4261 == 4) {
+			if (Static179.step == 4) {
 				if (Static124.socket.available() < Static229.aClass100Array156.length * 8) {
 					return;
 				}
-				Static57.aClass3_Sub15_Sub1_3.pos = 0;
-				Static124.socket.method2827(0, Static229.aClass100Array156.length * 8, Static57.aClass3_Sub15_Sub1_3.data);
+				Static57.inboundBuffer.pos = 0;
+				Static124.socket.method2827(0, Static229.aClass100Array156.length * 8, Static57.inboundBuffer.data);
 				for (local120 = 0; local120 < Static229.aClass100Array156.length; local120++) {
-					Static229.aClass100Array156[local120] = Static79.decode37(Static57.aClass3_Sub15_Sub1_3.g8());
+					Static229.aClass100Array156[local120] = Static79.decode37(Static57.inboundBuffer.g8());
 				}
-				Static223.anInt5034 = 21;
-				Static179.anInt4261 = 0;
+				Static223.reply = 21;
+				Static179.step = 0;
 				Static124.socket.closeGracefully();
 				Static124.socket = null;
 				return;
 			}
-		} catch (@Pc(238) IOException local238) {
+		} catch (@Pc(238) IOException ioException) {
 			if (Static124.socket != null) {
 				Static124.socket.closeGracefully();
 				Static124.socket = null;
 			}
-			if (Static57.anInt1758 < 1) {
-				Static57.anInt1758++;
+			if (Static57.errors < 1) {
+				Static57.errors++;
 				if (Static271.defaultPort == Static209.port) {
 					Static209.port = Static55.alternatePort;
 				} else {
 					Static209.port = Static271.defaultPort;
 				}
-				Static226.anInt5079 = 0;
-				Static179.anInt4261 = 1;
+				Static226.loops = 0;
+				Static179.step = 1;
 			} else {
-				Static223.anInt5034 = -4;
-				Static179.anInt4261 = 0;
+				Static223.reply = -4;
+				Static179.step = 0;
 			}
 		}
 	}

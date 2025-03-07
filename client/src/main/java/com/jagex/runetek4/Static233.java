@@ -158,7 +158,7 @@ public final class Static233 {
 	@OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(Lclient!i;II)V")
 	public static void loop(@OriginalArg(0) PacketBit arg0) {
 		while (true) {
-			@Pc(18) ReflectionCheck local18 = (ReflectionCheck) Static204.aClass69_113.method2289();
+			@Pc(18) ReflectionCheck local18 = (ReflectionCheck) Static204.aClass69_113.head();
 			if (local18 == null) {
 				return;
 			}

@@ -10,19 +10,19 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static9 {
 
-	@OriginalMember(owner = "runetek4.client!al", name = "e", descriptor = "I")
+	@OriginalMember(owner = "client!al", name = "e", descriptor = "I")
 	public static int anInt172;
 
-	@OriginalMember(owner = "runetek4.client!al", name = "q", descriptor = "Lclient!ve;")
+	@OriginalMember(owner = "client!al", name = "q", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_2;
 
-	@OriginalMember(owner = "runetek4.client!al", name = "m", descriptor = "I")
+	@OriginalMember(owner = "client!al", name = "m", descriptor = "I")
 	public static int anInt178 = 0;
 
-	@OriginalMember(owner = "runetek4.client!al", name = "r", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!al", name = "r", descriptor = "Lclient!na;")
 	public static final JagString aClass100_35 = Static28.parse("showVideoAd");
 
-	@OriginalMember(owner = "runetek4.client!al", name = "a", descriptor = "(Lclient!pb;BIIIIIII)V")
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(Lclient!pb;BIIIIIII)V")
 	public static void method181(@OriginalArg(0) LocType arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
 		@Pc(5) int local5 = arg2 & 0x3;
 		@Pc(28) int local28;
@@ -70,7 +70,7 @@ public final class Static9 {
 		Static242.method4207(local215.sprite, local80 - arg3, local122, local88 - arg1);
 	}
 
-	@OriginalMember(owner = "runetek4.client!al", name = "a", descriptor = "(Z)V")
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(Z)V")
 	public static void method182() {
 		Static241.aClass13Array13 = null;
 		Static6.method86(Static154.topLevelInterace, 0, Static48.canvasWidth, 0, -1, Static254.canvasHeigth, 0, 0);
@@ -80,7 +80,7 @@ public final class Static9 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!al", name = "a", descriptor = "(ZZZIZ)Lclient!ve;")
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ZZZIZ)Lclient!ve;")
 	public static Js5 method183(@OriginalArg(0) boolean arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) int arg3) {
 		@Pc(7) DiskStore local7 = null;
 		if (client.cacheData != null) {
@@ -93,12 +93,12 @@ public final class Static9 {
 		return new Js5(Static269.aClass14_Sub1Array3[arg3], arg0, arg2);
 	}
 
-	@OriginalMember(owner = "runetek4.client!al", name = "a", descriptor = "(ILclient!wa;)Lclient!ci;")
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ILclient!wa;)Lclient!ci;")
 	public static TextureOp29SubOp1 method184(@OriginalArg(1) Packet arg0) {
 		return new TextureOp29SubOp1(arg0.g2s(), arg0.g2s(), arg0.g2s(), arg0.g2s(), arg0.g3(), arg0.g1());
 	}
 
-	@OriginalMember(owner = "runetek4.client!al", name = "b", descriptor = "(B)V")
+	@OriginalMember(owner = "client!al", name = "b", descriptor = "(B)V")
 	public static void method185() {
 		if (Static119.anIntArray282 != null && Static130.anIntArray299 != null) {
 			return;
@@ -112,7 +112,7 @@ public final class Static9 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!al", name = "a", descriptor = "(ZI)V")
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ZI)V")
 	public static void method186(@OriginalArg(0) boolean arg0) {
 		if (arg0 != Static240.aBoolean276) {
 			Static240.aBoolean276 = arg0;
@@ -120,7 +120,7 @@ public final class Static9 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!al", name = "a", descriptor = "(III)Z")
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(III)Z")
 	public static boolean method187(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		@Pc(7) int local7 = Static140.anIntArrayArrayArray12[arg0][arg1][arg2];
 		if (local7 == -Static13.anInt437) {

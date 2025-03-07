@@ -48,7 +48,7 @@ public final class Static139 {
 			if (Static69.aFrame2 != null) {
 				local46 = Static69.aFrame2;
 			} else if (Static39.frame == null) {
-				local46 = Static71.signLink.anApplet2;
+				local46 = GameShell.signLink.anApplet2;
 			} else {
 				local46 = Static39.frame;
 			}

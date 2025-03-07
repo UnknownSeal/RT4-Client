@@ -30,7 +30,7 @@ public final class Static220 {
 		@Pc(28) int local28 = -99999999;
 		@Pc(30) ObjStackNode local30 = null;
 		@Pc(35) ObjStackNode local35;
-		for (local35 = (ObjStackNode) local9.method2289(); local35 != null; local35 = (ObjStackNode) local9.method2288()) {
+		for (local35 = (ObjStackNode) local9.head(); local35 != null; local35 = (ObjStackNode) local9.next()) {
 			@Pc(44) ObjType local44 = Static71.get(local35.aClass8_Sub7_1.anInt5555);
 			@Pc(47) int local47 = local44.cost;
 			if (local44.stackable == 1) {
@@ -48,7 +48,7 @@ public final class Static220 {
 		local9.method2283(local30);
 		@Pc(89) ObjStack local89 = null;
 		@Pc(91) ObjStack local91 = null;
-		for (local35 = (ObjStackNode) local9.method2289(); local35 != null; local35 = (ObjStackNode) local9.method2288()) {
+		for (local35 = (ObjStackNode) local9.head(); local35 != null; local35 = (ObjStackNode) local9.next()) {
 			@Pc(103) ObjStack local103 = local35.aClass8_Sub7_1;
 			if (local103.anInt5555 != local30.aClass8_Sub7_1.anInt5555) {
 				if (local89 == null) {

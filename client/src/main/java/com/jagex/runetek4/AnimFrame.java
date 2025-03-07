@@ -6,42 +6,42 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!ne")
+@OriginalClass("client!ne")
 public final class AnimFrame {
 
-	@OriginalMember(owner = "runetek4.client!ne", name = "c", descriptor = "Lclient!jm;")
-	public AnimBase aClass3_Sub20_1 = null;
+	@OriginalMember(owner = "client!ne", name = "c", descriptor = "Lclient!jm;")
+	public AnimBase animBase = null;
 
-	@OriginalMember(owner = "runetek4.client!ne", name = "b", descriptor = "I")
+	@OriginalMember(owner = "client!ne", name = "b", descriptor = "I")
 	public int anInt4070 = -1;
 
-	@OriginalMember(owner = "runetek4.client!ne", name = "e", descriptor = "Z")
+	@OriginalMember(owner = "client!ne", name = "e", descriptor = "Z")
 	public boolean aBoolean197 = false;
 
-	@OriginalMember(owner = "runetek4.client!ne", name = "a", descriptor = "Z")
+	@OriginalMember(owner = "client!ne", name = "a", descriptor = "Z")
 	public boolean aBoolean196 = false;
 
-	@OriginalMember(owner = "runetek4.client!ne", name = "d", descriptor = "[S")
+	@OriginalMember(owner = "client!ne", name = "d", descriptor = "[S")
 	public final short[] aShortArray42;
 
-	@OriginalMember(owner = "runetek4.client!ne", name = "g", descriptor = "[S")
+	@OriginalMember(owner = "client!ne", name = "g", descriptor = "[S")
 	public final short[] aShortArray44;
 
-	@OriginalMember(owner = "runetek4.client!ne", name = "o", descriptor = "[S")
+	@OriginalMember(owner = "client!ne", name = "o", descriptor = "[S")
 	public final short[] aShortArray50;
 
-	@OriginalMember(owner = "runetek4.client!ne", name = "n", descriptor = "[S")
+	@OriginalMember(owner = "client!ne", name = "n", descriptor = "[S")
 	public final short[] aShortArray49;
 
-	@OriginalMember(owner = "runetek4.client!ne", name = "f", descriptor = "[S")
+	@OriginalMember(owner = "client!ne", name = "f", descriptor = "[S")
 	public final short[] aShortArray43;
 
-	@OriginalMember(owner = "runetek4.client!ne", name = "l", descriptor = "[B")
+	@OriginalMember(owner = "client!ne", name = "l", descriptor = "[B")
 	public final byte[] aByteArray55;
 
-	@OriginalMember(owner = "runetek4.client!ne", name = "<init>", descriptor = "([BLclient!jm;)V")
+	@OriginalMember(owner = "client!ne", name = "<init>", descriptor = "([BLclient!jm;)V")
 	public AnimFrame(@OriginalArg(0) byte[] arg0, @OriginalArg(1) AnimBase arg1) {
-		this.aClass3_Sub20_1 = arg1;
+		this.animBase = arg1;
 		@Pc(21) Packet local21 = new Packet(arg0);
 		@Pc(26) Packet local26 = new Packet(arg0);
 		local21.pos = 2;
@@ -52,7 +52,7 @@ public final class AnimFrame {
 		local26.pos = local21.pos + local33;
 		@Pc(47) int local47;
 		for (local47 = 0; local47 < local33; local47++) {
-			@Pc(56) int local56 = this.aClass3_Sub20_1.anIntArray291[local47];
+			@Pc(56) int local56 = this.animBase.types[local47];
 			if (local56 == 0) {
 				local37 = local47;
 			}

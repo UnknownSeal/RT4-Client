@@ -9,102 +9,102 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!fl")
+@OriginalClass("client!fl")
 public final class AreaSound extends Node {
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "p", descriptor = "I")
+	@OriginalMember(owner = "client!fl", name = "p", descriptor = "I")
 	public int anInt2028;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "q", descriptor = "I")
+	@OriginalMember(owner = "client!fl", name = "q", descriptor = "I")
 	public int anInt2029;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "t", descriptor = "I")
-	public int anInt2032;
+	@OriginalMember(owner = "client!fl", name = "t", descriptor = "I")
+	public int minInterval;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "v", descriptor = "Lclient!b;")
-	public SoundPcmStream aClass3_Sub3_Sub1_1;
+	@OriginalMember(owner = "client!fl", name = "v", descriptor = "Lclient!b;")
+	public SoundPcmStream primaryStream;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "x", descriptor = "I")
-	public int anInt2033;
+	@OriginalMember(owner = "client!fl", name = "x", descriptor = "I")
+	public int level;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "y", descriptor = "Lclient!b;")
-	public SoundPcmStream aClass3_Sub3_Sub1_2;
+	@OriginalMember(owner = "client!fl", name = "y", descriptor = "Lclient!b;")
+	public SoundPcmStream secondaryStream;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "z", descriptor = "I")
-	public int anInt2034;
+	@OriginalMember(owner = "client!fl", name = "z", descriptor = "I")
+	public int remainingLoops;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "E", descriptor = "Lclient!pb;")
-	public LocType aClass118_1;
+	@OriginalMember(owner = "client!fl", name = "E", descriptor = "Lclient!pb;")
+	public LocType loc;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "F", descriptor = "I")
+	@OriginalMember(owner = "client!fl", name = "F", descriptor = "I")
 	public int anInt2037;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "I", descriptor = "Lclient!km;")
-	public NPCEntity aClass8_Sub4_Sub2_1;
+	@OriginalMember(owner = "client!fl", name = "I", descriptor = "Lclient!km;")
+	public NPCEntity npc;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "K", descriptor = "I")
-	public int anInt2040;
+	@OriginalMember(owner = "client!fl", name = "K", descriptor = "I")
+	public int maxInterval;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "L", descriptor = "I")
+	@OriginalMember(owner = "client!fl", name = "L", descriptor = "I")
 	public int anInt2041;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "M", descriptor = "Lclient!e;")
-	public Player aClass8_Sub4_Sub1_1;
+	@OriginalMember(owner = "client!fl", name = "M", descriptor = "Lclient!e;")
+	public Player player;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "N", descriptor = "I")
-	public int anInt2042;
+	@OriginalMember(owner = "client!fl", name = "N", descriptor = "I")
+	public int radius;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "O", descriptor = "Z")
-	public boolean aBoolean117;
+	@OriginalMember(owner = "client!fl", name = "O", descriptor = "Z")
+	public boolean multiLocOrNpc;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "R", descriptor = "I")
-	public int anInt2044;
+	@OriginalMember(owner = "client!fl", name = "R", descriptor = "I")
+	public int sound;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "T", descriptor = "[I")
-	public int[] anIntArray181;
+	@OriginalMember(owner = "client!fl", name = "T", descriptor = "[I")
+	public int[] sounds;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "G", descriptor = "I")
+	@OriginalMember(owner = "client!fl", name = "G", descriptor = "I")
 	public int anInt2038 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "c", descriptor = "(I)V")
-	public final void method1567() {
-		@Pc(8) int local8 = this.anInt2044;
-		if (this.aClass118_1 != null) {
-			@Pc(17) LocType local17 = this.aClass118_1.getVisible();
-			if (local17 == null) {
-				this.anInt2044 = -1;
-				this.anIntArray181 = null;
-				this.anInt2040 = 0;
-				this.anInt2042 = 0;
-				this.anInt2032 = 0;
+	@OriginalMember(owner = "client!fl", name = "c", descriptor = "(I)V")
+	public void update() {
+		@Pc(8) int sound = this.sound;
+		if (this.loc != null) {
+			@Pc(17) LocType locType = this.loc.getVisible();
+			if (locType == null) {
+				this.sound = -1;
+				this.sounds = null;
+				this.maxInterval = 0;
+				this.radius = 0;
+				this.minInterval = 0;
 			} else {
-				this.anInt2040 = local17.bgsound_maxdelay;
-				this.anInt2044 = local17.bgsound_sound;
-				this.anInt2032 = local17.bgsound_mindelay;
-				this.anInt2042 = local17.bgsound_range * 128;
-				this.anIntArray181 = local17.bgsound_random;
+				this.maxInterval = locType.bgsound_maxdelay;
+				this.sound = locType.bgsound_sound;
+				this.minInterval = locType.bgsound_mindelay;
+				this.radius = locType.bgsound_range * 128;
+				this.sounds = locType.bgsound_random;
 			}
-		} else if (this.aClass8_Sub4_Sub2_1 != null) {
-			@Pc(92) int local92 = Static112.method2299(this.aClass8_Sub4_Sub2_1);
-			if (local8 != local92) {
-				@Pc(100) NPCType local100 = this.aClass8_Sub4_Sub2_1.npcType;
-				this.anInt2044 = local92;
-				if (local100.multinpc != null) {
-					local100 = local100.getMultiNPC();
+		} else if (this.npc != null) {
+			@Pc(92) int npcSound = NPCEntity.getSound(this.npc);
+			if (sound != npcSound) {
+				@Pc(100) NPCType npcType = this.npc.npcType;
+				this.sound = npcSound;
+				if (npcType.multinpc != null) {
+					npcType = npcType.getMultiNPC();
 				}
-				if (local100 == null) {
-					this.anInt2042 = 0;
+				if (npcType == null) {
+					this.radius = 0;
 				} else {
-					this.anInt2042 = local100.bgsound_range * 128;
+					this.radius = npcType.bgsound_range * 128;
 				}
 			}
-		} else if (this.aClass8_Sub4_Sub1_1 != null) {
-			this.anInt2044 = Static140.method2706(this.aClass8_Sub4_Sub1_1);
-			this.anInt2042 = this.aClass8_Sub4_Sub1_1.anInt1664 * 128;
+		} else if (this.player != null) {
+			this.sound = Player.getSound(this.player);
+			this.radius = this.player.anInt1664 * 128;
 		}
-		if (this.anInt2044 != local8 && this.aClass3_Sub3_Sub1_1 != null) {
-			Static204.aClass3_Sub3_Sub2_1.method1347(this.aClass3_Sub3_Sub1_1);
-			this.aClass3_Sub3_Sub1_1 = null;
+		if (this.sound != sound && this.primaryStream != null) {
+			Static204.soundStream.removeSubStream(this.primaryStream);
+			this.primaryStream = null;
 		}
 	}
 }

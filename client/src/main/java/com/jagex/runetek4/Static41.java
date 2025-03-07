@@ -174,7 +174,7 @@ public final class Static41 {
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "b", descriptor = "(Z)V")
 	public static void readPlayerInfo() {
-		@Pc(6) int local6 = Static57.aClass3_Sub15_Sub1_3.gBit(8);
+		@Pc(6) int local6 = Static57.inboundBuffer.gBit(8);
 
 		if (Static267.size > local6) {
 			for (int inxed = local6; inxed < Static267.size; inxed++) {
@@ -190,12 +190,12 @@ public final class Static41 {
 		for (int index = 0; index < local6; index++) {
 			@Pc(75) int local75 = Static105.ids[index];
 			@Pc(79) Player local79 = Static159.aClass8_Sub4_Sub1Array1[local75];
-			@Pc(84) int local84 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
+			@Pc(84) int local84 = Static57.inboundBuffer.gBit(1);
 			if (local84 == 0) {
 				Static105.ids[Static267.size++] = local75;
 				local79.anInt3430 = Static83.loopCycle;
 			} else {
-				@Pc(107) int local107 = Static57.aClass3_Sub15_Sub1_3.gBit(2);
+				@Pc(107) int local107 = Static57.inboundBuffer.gBit(2);
 				if (local107 == 0) {
 					Static105.ids[Static267.size++] = local75;
 					local79.anInt3430 = Static83.loopCycle;
@@ -206,25 +206,25 @@ public final class Static41 {
 					if (local107 == 1) {
 						Static105.ids[Static267.size++] = local75;
 						local79.anInt3430 = Static83.loopCycle;
-						local153 = Static57.aClass3_Sub15_Sub1_3.gBit(3);
+						local153 = Static57.inboundBuffer.gBit(3);
 						local79.method2684(1, local153);
-						local163 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
+						local163 = Static57.inboundBuffer.gBit(1);
 						if (local163 == 1) {
 							Static44.anIntArray106[Static116.anInt2951++] = local75;
 						}
 					} else if (local107 == 2) {
 						Static105.ids[Static267.size++] = local75;
 						local79.anInt3430 = Static83.loopCycle;
-						if (Static57.aClass3_Sub15_Sub1_3.gBit(1) == 1) {
-							local153 = Static57.aClass3_Sub15_Sub1_3.gBit(3);
+						if (Static57.inboundBuffer.gBit(1) == 1) {
+							local153 = Static57.inboundBuffer.gBit(3);
 							local79.method2684(2, local153);
-							local163 = Static57.aClass3_Sub15_Sub1_3.gBit(3);
+							local163 = Static57.inboundBuffer.gBit(3);
 							local79.method2684(2, local163);
 						} else {
-							local153 = Static57.aClass3_Sub15_Sub1_3.gBit(3);
+							local153 = Static57.inboundBuffer.gBit(3);
 							local79.method2684(0, local153);
 						}
-						local153 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
+						local153 = Static57.inboundBuffer.gBit(1);
 						if (local153 == 1) {
 							Static44.anIntArray106[Static116.anInt2951++] = local75;
 						}

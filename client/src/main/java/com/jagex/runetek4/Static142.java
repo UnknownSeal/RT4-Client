@@ -113,17 +113,17 @@ public final class Static142 {
 						}
 					}
 				}
-				if (local17.aClass100_640 != null && (local5 >= Static267.size || Static59.anInt1812 == 0 || Static59.anInt1812 == 3 || Static59.anInt1812 == 1 && Static98.method1965(((Player) local17).aClass100_364))) {
+				if (local17.chatMessage != null && (local5 >= Static267.size || Static59.anInt1812 == 0 || Static59.anInt1812 == 3 || Static59.anInt1812 == 1 && Static98.method1965(((Player) local17).username))) {
 					Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.height(), arg1 >> 1);
 					if (Static65.anInt1951 > -1 && Static277.anInt5854 < Static191.anInt4506) {
-						Static191.anIntArray389[Static277.anInt5854] = Static280.aClass3_Sub2_Sub9_43.method2858(local17.aClass100_640) / 2;
+						Static191.anIntArray389[Static277.anInt5854] = Static280.aClass3_Sub2_Sub9_43.method2858(local17.chatMessage) / 2;
 						Static191.anIntArray387[Static277.anInt5854] = Static280.aClass3_Sub2_Sub9_43.anInt3626;
 						Static191.anIntArray385[Static277.anInt5854] = Static65.anInt1951;
 						Static191.anIntArray392[Static277.anInt5854] = Static16.anInt548;
-						Static191.anIntArray390[Static277.anInt5854] = local17.anInt3429;
-						Static191.anIntArray391[Static277.anInt5854] = local17.anInt3352;
-						Static191.anIntArray384[Static277.anInt5854] = local17.anInt3408;
-						Static191.aClass100Array132[Static277.anInt5854] = local17.aClass100_640;
+						Static191.anIntArray390[Static277.anInt5854] = local17.chatColor;
+						Static191.anIntArray391[Static277.anInt5854] = local17.chatEffect;
+						Static191.anIntArray384[Static277.anInt5854] = local17.chatLoops;
+						Static191.aClass100Array132[Static277.anInt5854] = local17.chatMessage;
 						Static277.anInt5854++;
 					}
 				}

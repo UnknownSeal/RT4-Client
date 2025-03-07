@@ -52,15 +52,15 @@ public final class Static197 {
 			GlRenderer.quit();
 		}
 		if (Static69.aFrame2 != null && (arg1 != 3 || arg4 != Static114.anInt5831 || arg5 != Static22.anInt729)) {
-			Static25.method714(Static69.aFrame2, Static71.signLink);
+			Static25.method714(Static69.aFrame2, GameShell.signLink);
 			Static69.aFrame2 = null;
 		}
 		if (arg1 == 3 && Static69.aFrame2 == null) {
-			Static69.aFrame2 = Static169.method3176(0, arg5, arg4, Static71.signLink);
+			Static69.aFrame2 = Static169.method3176(0, arg5, arg4, GameShell.signLink);
 			if (Static69.aFrame2 != null) {
 				Static22.anInt729 = arg5;
 				Static114.anInt5831 = arg4;
-				Static203.method3663(Static71.signLink);
+				Static203.method3663(GameShell.signLink);
 			}
 		}
 		if (arg1 == 3 && Static69.aFrame2 == null) {
@@ -71,7 +71,7 @@ public final class Static197 {
 		if (Static69.aFrame2 != null) {
 			local85 = Static69.aFrame2;
 		} else if (Static39.frame == null) {
-			local85 = Static71.signLink.anApplet2;
+			local85 = GameShell.signLink.anApplet2;
 		} else {
 			local85 = Static39.frame;
 		}
@@ -144,7 +144,7 @@ public final class Static197 {
 				} else {
 					Static260.aClass27_2 = null;
 				}
-				@Pc(300) PrivilegedRequest local300 = Static71.signLink.method5123(Static215.aClient1.getClass());
+				@Pc(300) PrivilegedRequest local300 = GameShell.signLink.method5123(Static215.aClient1.getClass());
 				while (local300.status == 0) {
 					PreciseSleep.sleep(100L);
 				}

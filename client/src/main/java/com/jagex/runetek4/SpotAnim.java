@@ -79,7 +79,7 @@ public final class SpotAnim extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "b", descriptor = "()I")
 	@Override
-	public final int method4549() {
+	public final int getHeight() {
 		return this.anInt603;
 	}
 
@@ -89,7 +89,7 @@ public final class SpotAnim extends Entity {
 		@Pc(7) Model local7 = this.method552();
 		if (local7 != null) {
 			local7.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_1);
-			this.anInt603 = local7.method4549();
+			this.anInt603 = local7.getHeight();
 		}
 	}
 

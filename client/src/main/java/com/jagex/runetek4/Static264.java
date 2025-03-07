@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -24,14 +23,6 @@ public final class Static264 {
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "u", descriptor = "[I")
 	public static final int[] anIntArray413 = new int[128];
-
-	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(ILclient!wa;)Lclient!bd;")
-	public static Class12 method3568(@OriginalArg(1) Packet arg0) {
-		@Pc(3) Class12 local3 = new Class12();
-		local3.anInt439 = arg0.g2();
-		local3.aQuickChatPhraseType_1 = Static230.list(local3.anInt439);
-		return local3;
-	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(Lclient!th;III)V")
 	public static void method3574(@OriginalArg(0) Entity arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {

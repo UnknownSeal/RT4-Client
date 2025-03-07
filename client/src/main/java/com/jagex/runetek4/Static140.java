@@ -3,9 +3,7 @@ package com.jagex.runetek4;
 import java.io.IOException;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.lighttype.LightType;
-import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -40,33 +38,19 @@ public final class Static140 {
 		arg0.pdata(local15, 24);
 	}
 
-	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(ILclient!e;)I")
-	public static int method2706(@OriginalArg(1) Player arg0) {
-		@Pc(14) int local14 = arg0.anInt1654;
-		@Pc(18) BASType local18 = arg0.method2681();
-		if (local18.anInt1037 == arg0.anInt3366) {
-			local14 = arg0.anInt1648;
-		} else if (local18.anInt1058 == arg0.anInt3366 || arg0.anInt3366 == local18.anInt1054 || arg0.anInt3366 == local18.anInt1045 || local18.anInt1043 == arg0.anInt3366) {
-			local14 = arg0.anInt1670;
-		} else if (arg0.anInt3366 == local18.anInt1062 || arg0.anInt3366 == local18.anInt1042 || arg0.anInt3366 == local18.anInt1048 || arg0.anInt3366 == local18.anInt1066) {
-			local14 = arg0.anInt1658;
-		}
-		return local14;
-	}
-
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(IJ)V")
 	public static void method2707(@OriginalArg(1) long arg0) {
 		if (arg0 == 0L) {
 			return;
 		}
-		if (Static35.anInt1093 >= 100) {
+		if (Static35.size >= 100) {
 			Static103.method2231(Static186.aClass100_827, 0, LocalizedText.IGNORELISTFULL);
 			return;
 		}
 		@Pc(34) JagString local34 = Static79.decode37(arg0).method3125();
 		@Pc(36) int local36;
-		for (local36 = 0; local36 < Static35.anInt1093; local36++) {
-			if (Static190.aLongArray6[local36] == arg0) {
+		for (local36 = 0; local36 < Static35.size; local36++) {
+			if (Static190.encodedUsernames[local36] == arg0) {
 				Static103.method2231(Static186.aClass100_827, 0, Static34.method882(new JagString[] { local34, LocalizedText.IGNORELISTDUPE}));
 				return;
 			}
@@ -77,12 +61,12 @@ public final class Static140 {
 				return;
 			}
 		}
-		if (local34.method3108(Static173.self.aClass100_364)) {
+		if (local34.method3108(Static173.self.username)) {
 			Static103.method2231(Static186.aClass100_827, 0, LocalizedText.IGNORECANTADDSELF);
 			return;
 		}
-		Static190.aLongArray6[Static35.anInt1093] = arg0;
-		Static193.aClass100Array134[Static35.anInt1093++] = Static79.decode37(arg0);
+		Static190.encodedUsernames[Static35.size] = arg0;
+		Static193.aClass100Array134[Static35.size++] = Static79.decode37(arg0);
 		Static185.anInt4369 = Static119.transmitTimer;
 		Static6.outboundBuffer.pIsaac1(34);
 		Static6.outboundBuffer.p8(arg0);

@@ -73,7 +73,7 @@ public final class Static170 {
 		local7.anInt1188 = arg7;
 		local7.anInt1191 = arg0;
 		local7.anInt1198 = arg9;
-		Static128.aClass69_77.method2282(local7);
+		Static128.aClass69_77.addTail(local7);
 	}
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(BII)V")

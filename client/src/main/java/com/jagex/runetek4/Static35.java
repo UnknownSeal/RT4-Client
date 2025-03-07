@@ -26,7 +26,7 @@ public final class Static35 {
 	public static int anInt1092 = -1;
 
 	@OriginalMember(owner = "runetek4.client!cl", name = "Z", descriptor = "I")
-	public static int anInt1093 = 0;
+	public static int size = 0;
 
 	@OriginalMember(owner = "runetek4.client!cl", name = "ab", descriptor = "[I")
 	public static final int[] anIntArray83 = new int[256];

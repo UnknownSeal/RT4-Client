@@ -48,7 +48,7 @@ public final class Static96 {
 		Static84.anIntArray209[0] = arg11;
 		@Pc(69) int local69 = 0;
 		@Pc(71) boolean local71 = false;
-		@Pc(76) int[][] local76 = Static148.aClass97Array1[Static55.level].anIntArrayArray30;
+		@Pc(76) int[][] local76 = Static148.aClass97Array1[Static55.level].flags;
 		@Pc(201) int local201;
 		@Pc(242) int local242;
 		label397: while (local69 != local65) {

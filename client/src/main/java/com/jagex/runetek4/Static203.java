@@ -37,7 +37,7 @@ public final class Static203 {
 		if (Static69.aFrame2 != null) {
 			local8 = Static69.aFrame2;
 		} else if (Static39.frame == null) {
-			local8 = Static71.signLink.anApplet2;
+			local8 = GameShell.signLink.anApplet2;
 		} else {
 			local8 = Static39.frame;
 		}

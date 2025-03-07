@@ -21,13 +21,13 @@ public final class Static271 {
 
     @OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(Lclient!e;I)V")
 	public static void method4597(@OriginalArg(0) Player arg0) {
-		@Pc(10) AreaSound local10 = (AreaSound) Static93.aClass133_7.getNode(arg0.aClass100_364.encode37());
+		@Pc(10) AreaSound local10 = (AreaSound) AreaSoundManager.playerSounds.getNode(arg0.username.encode37());
 		if (local10 == null) {
 			return;
 		}
-		if (local10.aClass3_Sub3_Sub1_1 != null) {
-			Static204.aClass3_Sub3_Sub2_1.method1347(local10.aClass3_Sub3_Sub1_1);
-			local10.aClass3_Sub3_Sub1_1 = null;
+		if (local10.primaryStream != null) {
+			Static204.soundStream.removeSubStream(local10.primaryStream);
+			local10.primaryStream = null;
 		}
 		local10.remove();
 	}

@@ -138,7 +138,7 @@ public final class Static127 {
 				}
 			}
 		}
-		for (@Pc(451) Class3_Sub7 local451 = (Class3_Sub7) Static26.aClass69_27.method2289(); local451 != null; local451 = (Class3_Sub7) Static26.aClass69_27.method2288()) {
+		for (@Pc(451) Class3_Sub7 local451 = (Class3_Sub7) Static26.aClass69_27.head(); local451 != null; local451 = (Class3_Sub7) Static26.aClass69_27.next()) {
 			local451.anInt916 -= local81;
 			local451.anInt928 -= local86;
 			if (local451.anInt928 < 0 || local451.anInt916 < 0 || local451.anInt928 >= 104 || local451.anInt916 >= 104) {
@@ -295,7 +295,7 @@ public final class Static127 {
 				client.js5NetQueue.method2319();
 			}
 			if (arg0.method3111(Static165.aClass100_775)) {
-				Static71.signLink.method5110();
+				GameShell.signLink.method5110();
 				Static124.socket.method2833();
 				client.js5NetQueue.method2323();
 			}
@@ -327,14 +327,14 @@ public final class Static127 {
 				for (local18 = 0; local18 < 4; local18++) {
 					for (local38 = 1; local38 < 103; local38++) {
 						for (local117 = 1; local117 < 103; local117++) {
-							Static148.aClass97Array1[local18].anIntArrayArray30[local38][local117] = 0;
+							Static148.aClass97Array1[local18].flags[local38][local117] = 0;
 						}
 					}
 				}
 			}
 			if (arg0.method3138(Static241.aClass100_1088)) {
 				Static76.method1645(arg0.method3136(15).method3132());
-				Static203.method3663(Static71.signLink);
+				Static203.method3663(GameShell.signLink);
 				Static18.sentToServer = false;
 			}
 			if (arg0.method3138(Static170.aClass100_623) && client.modeWhere != 0) {
@@ -344,7 +344,7 @@ public final class Static127 {
 				throw new RuntimeException();
 			}
 			if (arg0.method3138(Static211.aClass100_232)) {
-				Static199.anInt4672 = arg0.method3136(12).method3144().method3132();
+				Static199.anInt4672 = arg0.method3136(12).trim().method3132();
 				Static103.method2231(null, 0, Static34.method882(new JagString[] { Static276.aClass100_1096, Static123.method2423(Static199.anInt4672) }));
 			}
 			if (arg0.method3111(Static181.aClass100_810)) {

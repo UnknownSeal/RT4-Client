@@ -27,7 +27,7 @@ public final class Static87 {
 	public static boolean method1802() {
 		if (Static150.aBoolean175) {
 			try {
-				Static9.aClass100_35.method3157(Static71.signLink.anApplet2);
+				Static9.aClass100_35.method3157(GameShell.signLink.anApplet2);
 				return true;
 			} catch (@Pc(14) Throwable local14) {
 			}
@@ -688,7 +688,7 @@ public final class Static87 {
 													if (local2589 == null) {
 														Static43.method1143(local30);
 													} else {
-														local503 = -local2589.method4549() / 2;
+														local503 = -local2589.getHeight() / 2;
 													}
 												}
 											} else if (local30.modelType == 5) {
@@ -701,7 +701,7 @@ public final class Static87 {
 													}
 													@Pc(2751) Player local2751 = Static159.aClass8_Sub4_Sub1Array1[local514];
 													@Pc(2760) SeqType local2760 = local276 == -1 ? null : Static36.method941(local276);
-													if (local2751 != null && (int) local2751.aClass100_364.encode37() << 11 == (local30.modelId & 0xFFFFF800)) {
+													if (local2751 != null && (int) local2751.username.encode37() << 11 == (local30.modelId & 0xFFFFF800)) {
 														local2589 = local2751.model.method1954(null, -1, null, local2760, 0, -1, 0, local30.anInt510, 0);
 													}
 												}

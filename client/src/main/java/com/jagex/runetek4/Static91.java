@@ -92,11 +92,11 @@ public final class Static91 {
 
 	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(Lclient!km;Z)V")
 	public static void method1877(@OriginalArg(0) NPCEntity arg0) {
-		for (@Pc(13) AreaSound local13 = (AreaSound) Static152.aClass69_87.method2289(); local13 != null; local13 = (AreaSound) Static152.aClass69_87.method2288()) {
-			if (arg0 == local13.aClass8_Sub4_Sub2_1) {
-				if (local13.aClass3_Sub3_Sub1_1 != null) {
-					Static204.aClass3_Sub3_Sub2_1.method1347(local13.aClass3_Sub3_Sub1_1);
-					local13.aClass3_Sub3_Sub1_1 = null;
+		for (@Pc(13) AreaSound local13 = (AreaSound) AreaSoundManager.npcSounds.head(); local13 != null; local13 = (AreaSound) AreaSoundManager.npcSounds.next()) {
+			if (arg0 == local13.npc) {
+				if (local13.primaryStream != null) {
+					Static204.soundStream.removeSubStream(local13.primaryStream);
+					local13.primaryStream = null;
 				}
 				local13.remove();
 				return;

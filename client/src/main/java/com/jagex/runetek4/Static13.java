@@ -11,22 +11,22 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static13 {
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "W", descriptor = "I")
+	@OriginalMember(owner = "client!bc", name = "W", descriptor = "I")
 	public static int anInt435;
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "X", descriptor = "I")
+	@OriginalMember(owner = "client!bc", name = "X", descriptor = "I")
 	public static int anInt436;
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "Z", descriptor = "I")
+	@OriginalMember(owner = "client!bc", name = "Z", descriptor = "I")
 	public static int anInt437;
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "I", descriptor = "Z")
+	@OriginalMember(owner = "client!bc", name = "I", descriptor = "Z")
 	public static boolean aBoolean16 = false;
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "N", descriptor = "Lclient!lb;")
+	@OriginalMember(owner = "client!bc", name = "N", descriptor = "Lclient!lb;")
 	public static final Class3_Sub23 aClass3_Sub23_1 = new Class3_Sub23(0, 0);
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "f", descriptor = "(B)Lclient!na;")
+	@OriginalMember(owner = "client!bc", name = "f", descriptor = "(B)Lclient!na;")
 	public static JagString method471() {
 		@Pc(32) JagString local32;
 		if (Static260.anInt5014 == 1 && PreciseSleep.anInt5204 < 2) {
@@ -44,7 +44,7 @@ public final class Static13 {
 		return local32;
 	}
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "d", descriptor = "(II)V")
+	@OriginalMember(owner = "client!bc", name = "d", descriptor = "(II)V")
 	public static void method472(@OriginalArg(0) int arg0) {
 		@Pc(14) ClientInvCache local14 = (ClientInvCache) ClientInvCache.recentUse.getNode((long) arg0);
 		if (local14 != null) {
@@ -52,7 +52,7 @@ public final class Static13 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!bc", name = "a", descriptor = "(Ljava/awt/Color;ZZLclient!na;I)V")
+	@OriginalMember(owner = "client!bc", name = "a", descriptor = "(Ljava/awt/Color;ZZLclient!na;I)V")
 	public static void method473(@OriginalArg(0) Color arg0, @OriginalArg(2) boolean arg1, @OriginalArg(3) JagString arg2, @OriginalArg(4) int arg3) {
 		try {
 			@Pc(6) Graphics local6 = Static154.canvas.getGraphics();

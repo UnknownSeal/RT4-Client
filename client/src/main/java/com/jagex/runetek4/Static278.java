@@ -23,8 +23,8 @@ public final class Static278 {
 	@OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(I)V")
 	public static void method4645() {
 		while (true) {
-			if (Static57.aClass3_Sub15_Sub1_3.bitsAvailable(Static223.anInt5028) >= 27) {
-				@Pc(14) int local14 = Static57.aClass3_Sub15_Sub1_3.gBit(15);
+			if (Static57.inboundBuffer.bitsAvailable(Static223.anInt5028) >= 27) {
+				@Pc(14) int local14 = Static57.inboundBuffer.gBit(15);
 				if (local14 != 32767) {
 					@Pc(19) boolean local19 = false;
 					if (Static175.aClass8_Sub4_Sub2Array1[local14] == null) {
@@ -37,21 +37,21 @@ public final class Static278 {
 					if (local37.npcType != null && local37.npcType.hasBackgroundSound()) {
 						Static91.method1877(local37);
 					}
-					@Pc(66) int local66 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
-					@Pc(73) int local73 = Static56.anIntArray141[Static57.aClass3_Sub15_Sub1_3.gBit(3)];
+					@Pc(66) int local66 = Static57.inboundBuffer.gBit(1);
+					@Pc(73) int local73 = Static56.anIntArray141[Static57.inboundBuffer.gBit(3)];
 					if (local19) {
 						local37.anInt3400 = local37.anInt3381 = local73;
 					}
-					@Pc(86) int local86 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
+					@Pc(86) int local86 = Static57.inboundBuffer.gBit(1);
 					if (local86 == 1) {
 						Static44.anIntArray106[Static116.anInt2951++] = local14;
 					}
-					@Pc(105) int local105 = Static57.aClass3_Sub15_Sub1_3.gBit(5);
-					local37.method2698(Static214.get(Static57.aClass3_Sub15_Sub1_3.gBit(14)));
+					@Pc(105) int local105 = Static57.inboundBuffer.gBit(5);
+					local37.method2698(Static214.get(Static57.inboundBuffer.gBit(14)));
 					if (local105 > 15) {
 						local105 -= 32;
 					}
-					@Pc(124) int local124 = Static57.aClass3_Sub15_Sub1_3.gBit(5);
+					@Pc(124) int local124 = Static57.inboundBuffer.gBit(5);
 					if (local124 > 15) {
 						local124 -= 32;
 					}
@@ -63,12 +63,12 @@ public final class Static278 {
 					}
 					local37.method2683(local37.size(), Static173.self.movementQueueX[0] + local124, local105 + Static173.self.movementQueueZ[0], local66 == 1);
 					if (local37.npcType.hasBackgroundSound()) {
-						Static122.method2411(local37.movementQueueZ[0], null, 0, local37, local37.movementQueueX[0], Static55.level, null);
+						AreaSoundManager.add(local37.movementQueueZ[0], null, 0, local37, local37.movementQueueX[0], Static55.level, null);
 					}
 					continue;
 				}
 			}
-			Static57.aClass3_Sub15_Sub1_3.accessBytes();
+			Static57.inboundBuffer.accessBytes();
 			return;
 		}
 	}
@@ -189,14 +189,14 @@ public final class Static278 {
 		Static65.method1500();
 		@Pc(19) int local19;
 		for (local19 = 0; local19 < 4; local19++) {
-			Static148.aClass97Array1[local19].method3050();
+			Static148.aClass97Array1[local19].reset();
 		}
 		Static116.method2325(false);
 		System.gc();
 		Static29.method801();
 		Static144.aBoolean173 = false;
 		Static221.anInt4363 = -1;
-		Static260.method3852(true);
+		AreaSoundManager.clear(true);
 		Static230.aBoolean250 = false;
 		Static142.originZ = 0;
 		Static80.anInt4701 = 0;

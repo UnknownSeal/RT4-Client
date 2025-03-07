@@ -336,7 +336,7 @@ public final class Loc extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "b", descriptor = "()I")
 	@Override
-	public final int method4549() {
+	public final int getHeight() {
 		return this.anInt1311;
 	}
 }

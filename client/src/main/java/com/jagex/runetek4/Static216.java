@@ -45,7 +45,7 @@ public final class Static216 {
 				Static276.anInt5816++;
 			}
 			if (Static184.anInt4348 == 1) {
-				Static72.aClass212_3 = Static71.signLink.openSocket(Static60.hostname, Static209.port);
+				Static72.aClass212_3 = GameShell.signLink.openSocket(Static60.hostname, Static209.port);
 				Static184.anInt4348 = 2;
 			}
 			if (Static184.anInt4348 == 2) {
@@ -55,7 +55,7 @@ public final class Static216 {
 				if (Static72.aClass212_3.status != 1) {
 					return;
 				}
-				Static124.socket = new BufferedSocket((Socket) Static72.aClass212_3.result, Static71.signLink);
+				Static124.socket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
 				Static72.aClass212_3 = null;
 				@Pc(106) long local106 = Static101.aLong98 = Static186.username.encode37();
 				Static6.outboundBuffer.pos = 0;
@@ -89,9 +89,9 @@ public final class Static216 {
 				if (Static124.socket.available() < 8) {
 					return;
 				}
-				Static124.socket.method2827(0, 8, Static57.aClass3_Sub15_Sub1_3.data);
-				Static57.aClass3_Sub15_Sub1_3.pos = 0;
-				Static193.aLong147 = Static57.aClass3_Sub15_Sub1_3.g8();
+				Static124.socket.method2827(0, 8, Static57.inboundBuffer.data);
+				Static57.inboundBuffer.pos = 0;
+				Static193.aLong147 = Static57.inboundBuffer.g8();
 				@Pc(210) int[] local210 = new int[4];
 				Static6.outboundBuffer.pos = 0;
 				local210[2] = (int) (Static193.aLong147 >> 32);
@@ -162,7 +162,7 @@ public final class Static216 {
 				for (@Pc(583) int local583 = 0; local583 < 4; local583++) {
 					local210[local583] += 50;
 				}
-				Static57.aClass3_Sub15_Sub1_3.method2240(local210);
+				Static57.inboundBuffer.method2240(local210);
 				Static184.anInt4348 = 4;
 			}
 			if (Static184.anInt4348 == 4) {
@@ -232,43 +232,43 @@ public final class Static216 {
 				if (Static124.socket.available() < 14) {
 					return;
 				}
-				Static124.socket.method2827(0, 14, Static57.aClass3_Sub15_Sub1_3.data);
-				Static57.aClass3_Sub15_Sub1_3.pos = 0;
-				Static191.staffModLevel = Static57.aClass3_Sub15_Sub1_3.g1();
-				Static249.anInt5431 = Static57.aClass3_Sub15_Sub1_3.g1();
-				Static124.aBoolean157 = Static57.aClass3_Sub15_Sub1_3.g1() == 1;
-				Static207.aBoolean236 = Static57.aClass3_Sub15_Sub1_3.g1() == 1;
-				Static25.aBoolean57 = Static57.aClass3_Sub15_Sub1_3.g1() == 1;
-				Static86.aBoolean129 = Static57.aClass3_Sub15_Sub1_3.g1() == 1;
-				Static245.enabled = Static57.aClass3_Sub15_Sub1_3.g1() == 1;
-				Static16.anInt549 = Static57.aClass3_Sub15_Sub1_3.g2();
-				Static202.aBoolean233 = Static57.aClass3_Sub15_Sub1_3.g1() == 1;
-				Static2.aBoolean1 = Static57.aClass3_Sub15_Sub1_3.g1() == 1;
+				Static124.socket.method2827(0, 14, Static57.inboundBuffer.data);
+				Static57.inboundBuffer.pos = 0;
+				Static191.staffModLevel = Static57.inboundBuffer.g1();
+				Static249.anInt5431 = Static57.inboundBuffer.g1();
+				Static124.aBoolean157 = Static57.inboundBuffer.g1() == 1;
+				Static207.parentalChatConsent = Static57.inboundBuffer.g1() == 1;
+				Static25.aBoolean57 = Static57.inboundBuffer.g1() == 1;
+				Static86.aBoolean129 = Static57.inboundBuffer.g1() == 1;
+				Static245.enabled = Static57.inboundBuffer.g1() == 1;
+				Static16.anInt549 = Static57.inboundBuffer.g2();
+				Static202.aBoolean233 = Static57.inboundBuffer.g1() == 1;
+				Static2.aBoolean1 = Static57.inboundBuffer.g1() == 1;
 				Static189.method3438(Static2.aBoolean1);
 				Static9.method186(Static2.aBoolean1);
 				if (!Static249.aBoolean282) {
 					if (Static124.aBoolean157 && !Static25.aBoolean57 || Static202.aBoolean233) {
 						try {
-							Static167.aClass100_781.method3157(Static71.signLink.anApplet2);
+							Static167.aClass100_781.method3157(GameShell.signLink.anApplet2);
 						} catch (@Pc(910) Throwable local910) {
 						}
 					} else {
 						try {
-							Static56.aClass100_380.method3157(Static71.signLink.anApplet2);
+							Static56.aClass100_380.method3157(GameShell.signLink.anApplet2);
 						} catch (@Pc(920) Throwable local920) {
 						}
 					}
 				}
-				Static164.anInt3985 = Static57.aClass3_Sub15_Sub1_3.gIssac1();
-				Static223.anInt5028 = Static57.aClass3_Sub15_Sub1_3.g2();
+				Static164.anInt3985 = Static57.inboundBuffer.gIssac1();
+				Static223.anInt5028 = Static57.inboundBuffer.g2();
 				Static184.anInt4348 = 9;
 			}
 			if (Static184.anInt4348 == 9) {
 				if (Static124.socket.available() < Static223.anInt5028) {
 					return;
 				}
-				Static57.aClass3_Sub15_Sub1_3.pos = 0;
-				Static124.socket.method2827(0, Static223.anInt5028, Static57.aClass3_Sub15_Sub1_3.data);
+				Static57.inboundBuffer.pos = 0;
+				Static124.socket.method2827(0, Static223.anInt5028, Static57.inboundBuffer.data);
 				Static266.anInt5336 = 2;
 				Static184.anInt4348 = 0;
 				Static243.method4221();

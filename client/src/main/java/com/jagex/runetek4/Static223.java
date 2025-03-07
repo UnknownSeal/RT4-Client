@@ -29,7 +29,7 @@ public final class Static223 {
 	public static int anInt5032 = 0;
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "y", descriptor = "I")
-	public static int anInt5034 = -2;
+	public static int reply = -2;
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "z", descriptor = "[Z")
 	public static final boolean[] aBooleanArray116 = new boolean[100];

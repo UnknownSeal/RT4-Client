@@ -66,7 +66,7 @@ public final class Static232 {
 											local243.anInt4307 = local65;
 											local243.anInt4314 = local144;
 											local243.anInt4308 = local222.mapelement;
-											Static172.aClass69_97.method2282(local243);
+											Static172.aClass69_97.addTail(local243);
 										} else {
 											Static241.aClass3_Sub2_Sub1_Sub1Array13[local222.mapelement].drawSprite(local65 - 7, local144 + -7);
 										}
@@ -78,7 +78,7 @@ public final class Static232 {
 				}
 			}
 		}
-		for (@Pc(285) Class3_Sub26 local285 = (Class3_Sub26) Static172.aClass69_97.method2289(); local285 != null; local285 = (Class3_Sub26) Static172.aClass69_97.method2288()) {
+		for (@Pc(285) Class3_Sub26 local285 = (Class3_Sub26) Static172.aClass69_97.head(); local285 != null; local285 = (Class3_Sub26) Static172.aClass69_97.next()) {
 			Static129.method2502(local285.anInt4307, local285.anInt4314, 15, local11);
 			Static129.method2502(local285.anInt4307, local285.anInt4314, 13, local11);
 			Static129.method2502(local285.anInt4307, local285.anInt4314, 11, local11);

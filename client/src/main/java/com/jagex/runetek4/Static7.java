@@ -10,31 +10,31 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static7 {
 
-	@OriginalMember(owner = "runetek4.client!ah", name = "l", descriptor = "[[B")
+	@OriginalMember(owner = "client!ah", name = "l", descriptor = "[[B")
 	public static byte[][] aByteArrayArray5;
 
-	@OriginalMember(owner = "runetek4.client!ah", name = "t", descriptor = "I")
+	@OriginalMember(owner = "client!ah", name = "t", descriptor = "I")
 	public static int anInt986;
 
-	@OriginalMember(owner = "runetek4.client!ah", name = "i", descriptor = "Lclient!n;")
+	@OriginalMember(owner = "client!ah", name = "i", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable aClass99_5 = new SoftLruHashTable(2);
 
-	@OriginalMember(owner = "runetek4.client!ah", name = "j", descriptor = "[I")
+	@OriginalMember(owner = "client!ah", name = "j", descriptor = "[I")
 	public static final int[] anIntArray75 = new int[2500];
 
-	@OriginalMember(owner = "runetek4.client!ah", name = "k", descriptor = "[J")
+	@OriginalMember(owner = "client!ah", name = "k", descriptor = "[J")
 	public static final long[] aLongArray2 = new long[32];
 
-	@OriginalMember(owner = "runetek4.client!ah", name = "n", descriptor = "I")
+	@OriginalMember(owner = "client!ah", name = "n", descriptor = "I")
 	public static int anInt983 = 0;
 
-	@OriginalMember(owner = "runetek4.client!ah", name = "p", descriptor = "Lclient!ih;")
+	@OriginalMember(owner = "client!ah", name = "p", descriptor = "Lclient!ih;")
 	public static final LinkedList aClass69_32 = new LinkedList();
 
-	@OriginalMember(owner = "runetek4.client!ah", name = "s", descriptor = "I")
+	@OriginalMember(owner = "client!ah", name = "s", descriptor = "I")
 	public static int clickX = 0;
 
-	@OriginalMember(owner = "runetek4.client!ah", name = "a", descriptor = "(BZ)V")
+	@OriginalMember(owner = "client!ah", name = "a", descriptor = "(BZ)V")
 	public static void method842(@OriginalArg(1) boolean arg0) {
 		Static107.method2261();
 		if (Static244.anInt5370 != 30 && Static244.anInt5370 != 25) {
@@ -57,7 +57,7 @@ public final class Static7 {
 		Static107.method2261();
 	}
 
-	@OriginalMember(owner = "runetek4.client!ah", name = "b", descriptor = "(I)V")
+	@OriginalMember(owner = "client!ah", name = "b", descriptor = "(I)V")
 	public static void method843() {
 		if (Static118.aClass13_15 != null || Static105.aClass13_14 != null) {
 			return;

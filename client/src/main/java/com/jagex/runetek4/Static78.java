@@ -42,10 +42,10 @@ public final class Static78 {
 		Static6.outboundBuffer.pos = 0;
 		Static6.outboundBuffer.p1b(186);
 		Static6.outboundBuffer.p8(name);
-		Static179.anInt4261 = 1;
-		Static226.anInt5079 = 0;
-		Static57.anInt1758 = 0;
-		Static223.anInt5034 = -3;
+		Static179.step = 1;
+		Static226.loops = 0;
+		Static57.errors = 0;
+		Static223.reply = -3;
 	}
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(ILclient!ve;II)Lclient!mm;")
@@ -171,7 +171,7 @@ public final class Static78 {
 		}
 		Static28.method792(GlRenderer.enabled ? 28 : 25, local420);
 		for (local427 = 0; local427 < 4; local427++) {
-			Static148.aClass97Array1[local427].method3050();
+			Static148.aClass97Array1[local427].reset();
 		}
 		for (local427 = 0; local427 < 4; local427++) {
 			for (local320 = 0; local320 < 104; local320++) {
@@ -180,7 +180,7 @@ public final class Static78 {
 				}
 			}
 		}
-		Static260.method3852(false);
+		AreaSoundManager.clear(false);
 		if (GlRenderer.enabled) {
 			Static242.aClass36_Sub1_4.method1392();
 			for (local427 = 0; local427 < 13; local427++) {

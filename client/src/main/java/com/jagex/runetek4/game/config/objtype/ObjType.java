@@ -318,10 +318,10 @@ public final class ObjType {
 			} else if (code == 128) {
 				this.anInt2355 = packet.g1();
 				this.anInt2321 = packet.g2();
-			} else if (code == 129) {
+			} else if (code == 129) { // Unused in current revision.
 				packet.g1();
 				packet.g2();
-			} else if (code == 130) {
+			} else if (code == 130) { // Unused in current revision.
 				packet.g1();
 				packet.g2();
 			} else if (code == 249) {

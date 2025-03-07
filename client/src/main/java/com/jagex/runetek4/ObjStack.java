@@ -28,13 +28,13 @@ public final class ObjStack extends Entity {
 		@Pc(16) Model local16 = Static71.get(this.anInt5555).method1824(-1, 0, null, this.anInt5550, 0);
 		if (local16 != null) {
 			local16.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
-			this.anInt5553 = local16.method4549();
+			this.anInt5553 = local16.getHeight();
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "b", descriptor = "()I")
 	@Override
-	public final int method4549() {
+	public final int getHeight() {
 		return this.anInt5553;
 	}
 }

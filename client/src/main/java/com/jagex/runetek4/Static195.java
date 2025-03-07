@@ -30,7 +30,7 @@ public final class Static195 {
 
 	@OriginalMember(owner = "runetek4.client!pk", name = "i", descriptor = "(I)V")
 	public static void method3532() {
-		for (@Pc(16) ProjAnimNode local16 = (ProjAnimNode) Static217.aClass69_116.method2289(); local16 != null; local16 = (ProjAnimNode) Static217.aClass69_116.method2288()) {
+		for (@Pc(16) ProjAnimNode local16 = (ProjAnimNode) Static217.aClass69_116.head(); local16 != null; local16 = (ProjAnimNode) Static217.aClass69_116.next()) {
 			@Pc(21) ProjectileAnimation local21 = local16.aClass8_Sub6_1;
 			if (Static55.level != local21.anInt4810 || local21.lastCycle < Static83.loopCycle) {
 				local16.remove();

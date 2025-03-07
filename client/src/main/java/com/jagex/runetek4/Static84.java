@@ -36,167 +36,172 @@ public final class Static84 {
 	public static int anInt2256 = 0;
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "(IIBLclient!e;)V")
-	public static void method1768(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) Player arg2) {
-		@Pc(13) int local13;
-		@Pc(17) int local17;
+	public static void method1768(@OriginalArg(0) int flags, @OriginalArg(1) int arg1, @OriginalArg(3) Player player) {
+		@Pc(13) int chatFlags;
+		@Pc(17) int staffModLevel;
 		@Pc(24) int local24;
-		if ((arg0 & 0x80) != 0) {
-			local13 = Static57.aClass3_Sub15_Sub1_3.g2le();
-			local17 = Static57.aClass3_Sub15_Sub1_3.g1();
-			@Pc(21) int local21 = Static57.aClass3_Sub15_Sub1_3.g1();
-			local24 = Static57.aClass3_Sub15_Sub1_3.pos;
-			@Pc(35) boolean local35 = (local13 & 0x8000) != 0;
-			if (arg2.aClass100_364 != null && arg2.model != null) {
-				@Pc(48) long local48 = arg2.aClass100_364.encode37();
-				@Pc(50) boolean local50 = false;
-				if (local17 <= 1) {
-					if (!local35 && (Static124.aBoolean157 && !Static207.aBoolean236 || Static86.aBoolean129)) {
-						local50 = true;
+		if ((flags & 0x80) != 0) {
+
+			chatFlags = Static57.inboundBuffer.g2le();
+			staffModLevel = Static57.inboundBuffer.g1();
+			@Pc(21) int len = Static57.inboundBuffer.g1();
+			local24 = Static57.inboundBuffer.pos;
+
+			@Pc(35) boolean quickChat = (chatFlags & 0x8000) != 0;
+
+			if (player.username != null && player.model != null) {
+				@Pc(48) long encodedUsername = player.username.encode37();
+				@Pc(50) boolean ignore = false;
+				if (staffModLevel <= 1) {
+					if (!quickChat && (Static124.aBoolean157 && !Static207.parentalChatConsent || Static86.aBoolean129)) {
+						ignore = true;
 					} else {
-						for (@Pc(69) int local69 = 0; local69 < Static35.anInt1093; local69++) {
-							if (Static190.aLongArray6[local69] == local48) {
-								local50 = true;
+						for (@Pc(69) int i = 0; i < Static35.size; i++) {
+							if (Static190.encodedUsernames[i] == encodedUsername) {
+								ignore = true;
 								break;
 							}
 						}
 					}
 				}
-				if (!local50 && Static11.anInt384 == 0) {
-					Static270.aClass3_Sub15_9.pos = 0;
-					Static57.aClass3_Sub15_Sub1_3.gBytesRev(local21, Static270.aClass3_Sub15_9.data);
-					Static270.aClass3_Sub15_9.pos = 0;
-					@Pc(106) int local106 = -1;
-					@Pc(127) JagString local127;
-					if (local35) {
-						@Pc(112) Class12 local112 = Static264.method3568(Static270.aClass3_Sub15_9);
-						local13 &= 0x7FFF;
-						local106 = local112.anInt439;
-						local127 = local112.aQuickChatPhraseType_1.method770(Static270.aClass3_Sub15_9);
+				if (!ignore && Player.inTutorialIsland == 0) {
+					Static270.chatBuffer.pos = 0;
+					Static57.inboundBuffer.gBytesRev(Static270.chatBuffer.data, len);
+					Static270.chatBuffer.pos = 0;
+
+					@Pc(106) int phraseId = -1;
+
+					@Pc(127) JagString message;
+					if (quickChat) {
+						@Pc(112) QuickChatPhrase quickChatPhrase = QuickChatPhrase.decode(Static270.chatBuffer);
+						chatFlags &= 0x7FFF;
+						phraseId = quickChatPhrase.anInt439;
+						message = quickChatPhrase.aQuickChatPhraseType_1.method770(Static270.chatBuffer);
 					} else {
-						local127 = Static218.method2862(Static65.method1497(Static270.aClass3_Sub15_9).method3116());
+						message = Static218.method2862(Static65.method1497(Static270.chatBuffer).method3116());
 					}
-					arg2.aClass100_640 = local127.method3144();
-					arg2.anInt3352 = local13 & 0xFF;
-					arg2.anInt3408 = 150;
-					arg2.anInt3429 = local13 >> 8;
-					if (local17 == 2) {
-						Static154.method2928(local106, local35 ? 17 : 1, local127, null, Static34.method882(new JagString[] { Static44.aClass100_336, arg2.method1264() }));
-					} else if (local17 == 1) {
-						Static154.method2928(local106, local35 ? 17 : 1, local127, null, Static34.method882(new JagString[] { Static65.aClass100_435, arg2.method1264() }));
+					player.chatMessage = message.trim();
+					player.chatEffect = chatFlags & 0xFF;
+					player.chatLoops = 150;
+					player.chatColor = chatFlags >> 8;
+					if (staffModLevel == 2) {
+						Static154.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JagString[] { Static44.aClass100_336, player.getName() }));
+					} else if (staffModLevel == 1) {
+						Static154.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JagString[] { Static65.aClass100_435, player.getName() }));
 					} else {
-						Static154.method2928(local106, local35 ? 17 : 2, local127, null, arg2.method1264());
+						Static154.add(phraseId, quickChat ? 17 : 2, message, null, player.getName());
 					}
 				}
 			}
-			Static57.aClass3_Sub15_Sub1_3.pos = local24 + local21;
+			Static57.inboundBuffer.pos = local24 + len;
 		}
-		if ((arg0 & 0x1) != 0) {
-			local13 = Static57.aClass3_Sub15_Sub1_3.gSmart1or2();
-			local17 = Static57.aClass3_Sub15_Sub1_3.g1add();
-			arg2.method2686(local17, Static83.loopCycle, local13);
-			arg2.anInt3378 = Static83.loopCycle + 300;
-			arg2.anInt3372 = Static57.aClass3_Sub15_Sub1_3.g1_alt3();
+		if ((flags & 0x1) != 0) {
+			chatFlags = Static57.inboundBuffer.gSmart1or2();
+			staffModLevel = Static57.inboundBuffer.g1add();
+			player.method2686(staffModLevel, Static83.loopCycle, chatFlags);
+			player.anInt3378 = Static83.loopCycle + 300;
+			player.anInt3372 = Static57.inboundBuffer.g1_alt3();
 		}
-		if ((arg0 & 0x8) != 0) {
-			local13 = Static57.aClass3_Sub15_Sub1_3.g2();
-			if (local13 == 65535) {
-				local13 = -1;
+		if ((flags & 0x8) != 0) {
+			chatFlags = Static57.inboundBuffer.g2();
+			if (chatFlags == 65535) {
+				chatFlags = -1;
 			}
-			local17 = Static57.aClass3_Sub15_Sub1_3.g1();
-			Static186.method3415(local17, local13, arg2);
+			staffModLevel = Static57.inboundBuffer.g1();
+			Static186.method3415(staffModLevel, chatFlags, player);
 		}
-		if ((arg0 & 0x4) != 0) {
-			local13 = Static57.aClass3_Sub15_Sub1_3.g1add();
-			@Pc(309) byte[] local309 = new byte[local13];
+		if ((flags & 0x4) != 0) {
+			chatFlags = Static57.inboundBuffer.g1add();
+			@Pc(309) byte[] local309 = new byte[chatFlags];
 			@Pc(314) Packet local314 = new Packet(local309);
-			Static57.aClass3_Sub15_Sub1_3.gdata(local13, local309);
+			Static57.inboundBuffer.gdata(chatFlags, local309);
 			Static115.aClass3_Sub15Array1[arg1] = local314;
-			arg2.method1262(local314);
+			player.method1262(local314);
 		}
-		if ((arg0 & 0x2) != 0) {
-			arg2.anInt3370 = Static57.aClass3_Sub15_Sub1_3.g2sub();
-			if (arg2.anInt3370 == 65535) {
-				arg2.anInt3370 = -1;
+		if ((flags & 0x2) != 0) {
+			player.anInt3370 = Static57.inboundBuffer.g2sub();
+			if (player.anInt3370 == 65535) {
+				player.anInt3370 = -1;
 			}
 		}
-		if ((arg0 & 0x400) != 0) {
-			arg2.anInt3380 = Static57.aClass3_Sub15_Sub1_3.p1neg();
-			arg2.anInt3428 = Static57.aClass3_Sub15_Sub1_3.g1();
-			arg2.anInt3416 = Static57.aClass3_Sub15_Sub1_3.g1add();
-			arg2.anInt3392 = Static57.aClass3_Sub15_Sub1_3.g1();
-			arg2.anInt3395 = Static57.aClass3_Sub15_Sub1_3.g2le() + Static83.loopCycle;
-			arg2.anInt3386 = Static57.aClass3_Sub15_Sub1_3.g2le() + Static83.loopCycle;
-			arg2.anInt3431 = Static57.aClass3_Sub15_Sub1_3.p1neg();
-			arg2.routeLength = 1;
-			arg2.anInt3405 = 0;
+		if ((flags & 0x400) != 0) {
+			player.anInt3380 = Static57.inboundBuffer.p1neg();
+			player.anInt3428 = Static57.inboundBuffer.g1();
+			player.anInt3416 = Static57.inboundBuffer.g1add();
+			player.anInt3392 = Static57.inboundBuffer.g1();
+			player.anInt3395 = Static57.inboundBuffer.g2le() + Static83.loopCycle;
+			player.anInt3386 = Static57.inboundBuffer.g2le() + Static83.loopCycle;
+			player.anInt3431 = Static57.inboundBuffer.p1neg();
+			player.routeLength = 1;
+			player.anInt3405 = 0;
 		}
-		if ((arg0 & 0x20) != 0) {
-			arg2.aClass100_640 = Static57.aClass3_Sub15_Sub1_3.gjstr();
-			if (arg2.aClass100_640.method3149(0) == 126) {
-				arg2.aClass100_640 = arg2.aClass100_640.method3136(1);
-				Static103.method2231(arg2.method1264(), 2, arg2.aClass100_640);
-			} else if (arg2 == Static173.self) {
-				Static103.method2231(arg2.method1264(), 2, arg2.aClass100_640);
+		if ((flags & 0x20) != 0) {
+			player.chatMessage = Static57.inboundBuffer.gjstr();
+			if (player.chatMessage.method3149(0) == 126) {
+				player.chatMessage = player.chatMessage.method3136(1);
+				Static103.method2231(player.getName(), 2, player.chatMessage);
+			} else if (player == Static173.self) {
+				Static103.method2231(player.getName(), 2, player.chatMessage);
 			}
-			arg2.anInt3352 = 0;
-			arg2.anInt3429 = 0;
-			arg2.anInt3408 = 150;
+			player.chatEffect = 0;
+			player.chatColor = 0;
+			player.chatLoops = 150;
 		}
-		if ((arg0 & 0x200) != 0) {
-			local13 = Static57.aClass3_Sub15_Sub1_3.gSmart1or2();
-			local17 = Static57.aClass3_Sub15_Sub1_3.g1_alt3();
-			arg2.method2686(local17, Static83.loopCycle, local13);
+		if ((flags & 0x200) != 0) {
+			chatFlags = Static57.inboundBuffer.gSmart1or2();
+			staffModLevel = Static57.inboundBuffer.g1_alt3();
+			player.method2686(staffModLevel, Static83.loopCycle, chatFlags);
 		}
-		if ((arg0 & 0x800) != 0) {
-			local13 = Static57.aClass3_Sub15_Sub1_3.p1neg();
-			@Pc(502) int[] local502 = new int[local13];
-			@Pc(505) int[] local505 = new int[local13];
-			@Pc(508) int[] local508 = new int[local13];
-			for (@Pc(510) int local510 = 0; local510 < local13; local510++) {
-				@Pc(521) int local521 = Static57.aClass3_Sub15_Sub1_3.g2le();
+		if ((flags & 0x800) != 0) {
+			chatFlags = Static57.inboundBuffer.p1neg();
+			@Pc(502) int[] local502 = new int[chatFlags];
+			@Pc(505) int[] local505 = new int[chatFlags];
+			@Pc(508) int[] local508 = new int[chatFlags];
+			for (@Pc(510) int local510 = 0; local510 < chatFlags; local510++) {
+				@Pc(521) int local521 = Static57.inboundBuffer.g2le();
 				if (local521 == 65535) {
 					local521 = -1;
 				}
 				local502[local510] = local521;
-				local505[local510] = Static57.aClass3_Sub15_Sub1_3.g1add();
-				local508[local510] = Static57.aClass3_Sub15_Sub1_3.g2();
+				local505[local510] = Static57.inboundBuffer.g1add();
+				local508[local510] = Static57.inboundBuffer.g2();
 			}
-			Static32.method865(local505, local502, arg2, local508);
+			Static32.method865(local505, local502, player, local508);
 		}
-		if ((arg0 & 0x100) != 0) {
-			local13 = Static57.aClass3_Sub15_Sub1_3.g2le();
-			if (local13 == 65535) {
-				local13 = -1;
+		if ((flags & 0x100) != 0) {
+			chatFlags = Static57.inboundBuffer.g2le();
+			if (chatFlags == 65535) {
+				chatFlags = -1;
 			}
-			local17 = Static57.aClass3_Sub15_Sub1_3.p4rme();
+			staffModLevel = Static57.inboundBuffer.p4rme();
 			@Pc(573) boolean local573 = true;
-			if (local13 != -1 && arg2.anInt3432 != -1 && Static36.method941(Static34.method877(local13).anInt1754).priority < Static36.method941(Static34.method877(arg2.anInt3432).anInt1754).priority) {
+			if (chatFlags != -1 && player.anInt3432 != -1 && Static36.method941(Static34.method877(chatFlags).anInt1754).priority < Static36.method941(Static34.method877(player.anInt3432).anInt1754).priority) {
 				local573 = false;
 			}
 			if (local573) {
-				arg2.anInt3359 = (local17 & 0xFFFF) + Static83.loopCycle;
-				arg2.anInt3361 = 0;
-				arg2.anInt3399 = 0;
-				arg2.anInt3432 = local13;
-				if (arg2.anInt3359 > Static83.loopCycle) {
-					arg2.anInt3399 = -1;
+				player.anInt3359 = (staffModLevel & 0xFFFF) + Static83.loopCycle;
+				player.anInt3361 = 0;
+				player.anInt3399 = 0;
+				player.anInt3432 = chatFlags;
+				if (player.anInt3359 > Static83.loopCycle) {
+					player.anInt3399 = -1;
 				}
-				arg2.anInt3394 = local17 >> 16;
-				arg2.anInt3418 = 1;
-				if (arg2.anInt3432 != -1 && Static83.loopCycle == arg2.anInt3359) {
-					local24 = Static34.method877(arg2.anInt3432).anInt1754;
+				player.anInt3394 = staffModLevel >> 16;
+				player.anInt3418 = 1;
+				if (player.anInt3432 != -1 && Static83.loopCycle == player.anInt3359) {
+					local24 = Static34.method877(player.anInt3432).anInt1754;
 					if (local24 != -1) {
 						@Pc(663) SeqType local663 = Static36.method941(local24);
 						if (local663 != null && local663.anIntArray473 != null) {
-							Static152.method2836(arg2.anInt3421, local663, arg2.anInt3412, arg2 == Static173.self, 0);
+							Static152.method2836(player.anInt3421, local663, player.anInt3412, player == Static173.self, 0);
 						}
 					}
 				}
 			}
 		}
-		if ((arg0 & 0x40) != 0) {
-			arg2.anInt3382 = Static57.aClass3_Sub15_Sub1_3.g2();
-			arg2.anInt3363 = Static57.aClass3_Sub15_Sub1_3.g2leadd();
+		if ((flags & 0x40) != 0) {
+			player.anInt3382 = Static57.inboundBuffer.g2();
+			player.anInt3363 = Static57.inboundBuffer.g2leadd();
 		}
 	}
 

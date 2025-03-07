@@ -584,7 +584,7 @@ public final class JagString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "h", descriptor = "(I)Lclient!na;")
-	public final JagString method3144() {
+	public final JagString trim() {
 		@Pc(17) int local17;
 		for (local17 = 0; local17 < this.anInt4030 && (this.aByteArray52[local17] >= 0 && this.aByteArray52[local17] <= 32 || (this.aByteArray52[local17] & 0xFF) == 160); local17++) {
 		}

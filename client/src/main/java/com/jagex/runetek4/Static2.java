@@ -95,7 +95,7 @@ public final class Static2 {
 		@Pc(61) int local61 = 0;
 		@Pc(64) int local64 = local53 + 1;
 		Static84.anIntArray209[0] = arg3;
-		@Pc(71) int[][] local71 = Static148.aClass97Array1[Static55.level].anIntArrayArray30;
+		@Pc(71) int[][] local71 = Static148.aClass97Array1[Static55.level].flags;
 		@Pc(193) int local193;
 		while (local61 != local64) {
 			local3 = Static259.anIntArray514[local61];
@@ -287,13 +287,13 @@ public final class Static2 {
 			arg0.modelType = 5;
 			arg0.modelId = -1;
 		} else if (local16 == 328) {
-			if (Static173.self.aClass100_364 == null) {
+			if (Static173.self.username == null) {
 				arg0.modelId = 0;
 			} else {
 				arg0.modelXAngle = 150;
 				arg0.modelYAngle = (int) (Math.sin((double) Static83.loopCycle / 40.0D) * 256.0D) & 0x7FF;
 				arg0.modelType = 5;
-				arg0.modelId = ((int) Static173.self.aClass100_364.encode37() << 11) + 2047;
+				arg0.modelId = ((int) Static173.self.username.encode37() << 11) + 2047;
 				arg0.anInt496 = Static173.self.anInt3388;
 				arg0.anInt500 = 0;
 				arg0.anInt522 = Static173.self.anInt3366;

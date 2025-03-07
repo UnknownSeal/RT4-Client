@@ -58,7 +58,7 @@ public final class Static243 {
 		Static6.outboundBuffer.pos = 0;
 		Static230.anInt5152 = -1;
 		Static201.anInt1862 = 0;
-		Static57.aClass3_Sub15_Sub1_3.pos = 0;
+		Static57.inboundBuffer.pos = 0;
 		@Pc(3506) int local3506;
 		for (local3506 = 0; local3506 < Static143.aClass102Array1.length; local3506++) {
 			Static143.aClass102Array1[local3506] = null;

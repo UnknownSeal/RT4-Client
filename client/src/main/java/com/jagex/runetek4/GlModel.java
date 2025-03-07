@@ -1556,7 +1556,7 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!td", name = "b", descriptor = "()I")
 	@Override
-	public final int method4549() {
+	public final int getHeight() {
 		if (!this.bounds.valid) {
 			this.method4108();
 		}

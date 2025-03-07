@@ -11,7 +11,7 @@ public final class Static190 {
 	public static final SoftLruHashTable aClass99_26 = new SoftLruHashTable(200);
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "h", descriptor = "[J")
-	public static final long[] aLongArray6 = new long[100];
+	public static final long[] encodedUsernames = new long[100];
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "r", descriptor = "[I")
 	public static final int[] anIntArray382 = new int[500];

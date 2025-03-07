@@ -83,8 +83,8 @@ public final class Static49 {
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "a", descriptor = "(B)V")
 	public static void method1202() {
-		Static57.aClass3_Sub15_Sub1_3.accessBits();
-		@Pc(13) int local13 = Static57.aClass3_Sub15_Sub1_3.gBit(8);
+		Static57.inboundBuffer.accessBits();
+		@Pc(13) int local13 = Static57.inboundBuffer.gBit(8);
 		@Pc(22) int local22;
 		if (Static272.anInt5214 > local13) {
 			for (local22 = local13; local22 < Static272.anInt5214; local22++) {
@@ -98,12 +98,12 @@ public final class Static49 {
 		for (local22 = 0; local22 < local13; local22++) {
 			@Pc(61) int local61 = Static33.anIntArray79[local22];
 			@Pc(65) NPCEntity local65 = Static175.aClass8_Sub4_Sub2Array1[local61];
-			@Pc(70) int local70 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
+			@Pc(70) int local70 = Static57.inboundBuffer.gBit(1);
 			if (local70 == 0) {
 				Static33.anIntArray79[Static272.anInt5214++] = local61;
 				local65.anInt3430 = Static83.loopCycle;
 			} else {
-				@Pc(92) int local92 = Static57.aClass3_Sub15_Sub1_3.gBit(2);
+				@Pc(92) int local92 = Static57.inboundBuffer.gBit(2);
 				if (local92 == 0) {
 					Static33.anIntArray79[Static272.anInt5214++] = local61;
 					local65.anInt3430 = Static83.loopCycle;
@@ -114,25 +114,25 @@ public final class Static49 {
 					if (local92 == 1) {
 						Static33.anIntArray79[Static272.anInt5214++] = local61;
 						local65.anInt3430 = Static83.loopCycle;
-						local139 = Static57.aClass3_Sub15_Sub1_3.gBit(3);
+						local139 = Static57.inboundBuffer.gBit(3);
 						local65.method2684(1, local139);
-						local149 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
+						local149 = Static57.inboundBuffer.gBit(1);
 						if (local149 == 1) {
 							Static44.anIntArray106[Static116.anInt2951++] = local61;
 						}
 					} else if (local92 == 2) {
 						Static33.anIntArray79[Static272.anInt5214++] = local61;
 						local65.anInt3430 = Static83.loopCycle;
-						if (Static57.aClass3_Sub15_Sub1_3.gBit(1) == 1) {
-							local139 = Static57.aClass3_Sub15_Sub1_3.gBit(3);
+						if (Static57.inboundBuffer.gBit(1) == 1) {
+							local139 = Static57.inboundBuffer.gBit(3);
 							local65.method2684(2, local139);
-							local149 = Static57.aClass3_Sub15_Sub1_3.gBit(3);
+							local149 = Static57.inboundBuffer.gBit(3);
 							local65.method2684(2, local149);
 						} else {
-							local139 = Static57.aClass3_Sub15_Sub1_3.gBit(3);
+							local139 = Static57.inboundBuffer.gBit(3);
 							local65.method2684(0, local139);
 						}
-						local139 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
+						local139 = Static57.inboundBuffer.gBit(1);
 						if (local139 == 1) {
 							Static44.anIntArray106[Static116.anInt2951++] = local61;
 						}

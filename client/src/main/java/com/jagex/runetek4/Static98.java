@@ -37,7 +37,7 @@ public final class Static98 {
 				return true;
 			}
 		}
-		if (arg0.method3111(Static173.self.aClass100_364)) {
+		if (arg0.method3111(Static173.self.username)) {
 			return true;
 		} else {
 			return false;

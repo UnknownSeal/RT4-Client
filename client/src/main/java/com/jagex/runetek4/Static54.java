@@ -135,7 +135,7 @@ public final class Static54 {
 				if (local591 != null && local591.exists()) {
 					local154 = local591.anInt3421 / 32 - Static173.self.anInt3421 / 32;
 					local150 = local591.anInt3412 / 32 - Static173.self.anInt3412 / 32;
-					@Pc(624) long local624 = local591.aClass100_364.encode37();
+					@Pc(624) long local624 = local591.username.encode37();
 					@Pc(626) boolean local626 = false;
 					for (local239 = 0; local239 < Static9.anInt178; local239++) {
 						if (local624 == Static92.aLongArray3[local239] && Static104.anIntArray255[local239] != 0) {
@@ -321,7 +321,7 @@ public final class Static54 {
 						@Pc(223) PcmSound local223 = local79.method3989().method2648(Static56.aClass156_1);
 						@Pc(228) SoundPcmStream local228 = Static284.method404(local223, local209);
 						local228.method396(Static276.anIntArray563[local5] - 1);
-						Static204.aClass3_Sub3_Sub2_1.method1343(local228);
+						Static204.soundStream.method1343(local228);
 					}
 					Static164.anIntArray362[local5] = -100;
 				}

@@ -2,6 +2,8 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.bastype.BASType;
+import com.jagex.runetek4.game.scene.entities.NPCEntity;
+import com.jagex.runetek4.game.world.entity.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -46,64 +48,64 @@ public final class Static110 {
 	@OriginalMember(owner = "runetek4.client!ih", name = "a", descriptor = "(IIIII)V")
 	public static void method2281(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
 		@Pc(6) AreaSound local6;
-		for (local6 = (AreaSound) Static3.aClass69_135.method2289(); local6 != null; local6 = (AreaSound) Static3.aClass69_135.method2288()) {
+		for (local6 = (AreaSound) AreaSoundManager.locSounds.head(); local6 != null; local6 = (AreaSound) AreaSoundManager.locSounds.next()) {
 			Static150.method2804(arg1, local6, arg3, arg0, arg2);
 		}
 		@Pc(37) byte local37;
 		@Pc(42) BASType local42;
 		@Pc(141) int local141;
-		for (local6 = (AreaSound) Static152.aClass69_87.method2289(); local6 != null; local6 = (AreaSound) Static152.aClass69_87.method2288()) {
+		for (local6 = (AreaSound) AreaSoundManager.npcSounds.head(); local6 != null; local6 = (AreaSound) AreaSoundManager.npcSounds.next()) {
 			local37 = 1;
-			local42 = local6.aClass8_Sub4_Sub2_1.method2681();
-			if (local42.anInt1037 == local6.aClass8_Sub4_Sub2_1.anInt3366) {
+			local42 = local6.npc.method2681();
+			if (local42.anInt1037 == local6.npc.anInt3366) {
 				local37 = 0;
-			} else if (local42.anInt1058 == local6.aClass8_Sub4_Sub2_1.anInt3366 || local42.anInt1054 == local6.aClass8_Sub4_Sub2_1.anInt3366 || local42.anInt1045 == local6.aClass8_Sub4_Sub2_1.anInt3366 || local42.anInt1043 == local6.aClass8_Sub4_Sub2_1.anInt3366) {
+			} else if (local42.anInt1058 == local6.npc.anInt3366 || local42.anInt1054 == local6.npc.anInt3366 || local42.anInt1045 == local6.npc.anInt3366 || local42.anInt1043 == local6.npc.anInt3366) {
 				local37 = 2;
-			} else if (local42.anInt1062 == local6.aClass8_Sub4_Sub2_1.anInt3366 || local42.anInt1042 == local6.aClass8_Sub4_Sub2_1.anInt3366 || local6.aClass8_Sub4_Sub2_1.anInt3366 == local42.anInt1048 || local42.anInt1066 == local6.aClass8_Sub4_Sub2_1.anInt3366) {
+			} else if (local42.anInt1062 == local6.npc.anInt3366 || local42.anInt1042 == local6.npc.anInt3366 || local6.npc.anInt3366 == local42.anInt1048 || local42.anInt1066 == local6.npc.anInt3366) {
 				local37 = 3;
 			}
 			if (local6.anInt2038 != local37) {
-				local141 = Static112.method2299(local6.aClass8_Sub4_Sub2_1);
-				if (local141 != local6.anInt2044) {
-					if (local6.aClass3_Sub3_Sub1_1 != null) {
-						Static204.aClass3_Sub3_Sub2_1.method1347(local6.aClass3_Sub3_Sub1_1);
-						local6.aClass3_Sub3_Sub1_1 = null;
+				local141 = NPCEntity.getSound(local6.npc);
+				if (local141 != local6.sound) {
+					if (local6.primaryStream != null) {
+						Static204.soundStream.removeSubStream(local6.primaryStream);
+						local6.primaryStream = null;
 					}
-					local6.anInt2044 = local141;
+					local6.sound = local141;
 				}
 				local6.anInt2038 = local37;
 			}
-			local6.anInt2041 = local6.aClass8_Sub4_Sub2_1.anInt3412;
-			local6.anInt2037 = local6.aClass8_Sub4_Sub2_1.anInt3412 + local6.aClass8_Sub4_Sub2_1.size() * 64;
-			local6.anInt2029 = local6.aClass8_Sub4_Sub2_1.anInt3421;
-			local6.anInt2028 = local6.aClass8_Sub4_Sub2_1.anInt3421 + local6.aClass8_Sub4_Sub2_1.size() * 64;
+			local6.anInt2041 = local6.npc.anInt3412;
+			local6.anInt2037 = local6.npc.anInt3412 + local6.npc.size() * 64;
+			local6.anInt2029 = local6.npc.anInt3421;
+			local6.anInt2028 = local6.npc.anInt3421 + local6.npc.size() * 64;
 			Static150.method2804(arg1, local6, arg3, arg0, arg2);
 		}
-		for (local6 = (AreaSound) Static93.aClass133_7.peekFront(); local6 != null; local6 = (AreaSound) Static93.aClass133_7.prev()) {
+		for (local6 = (AreaSound) AreaSoundManager.playerSounds.peekFront(); local6 != null; local6 = (AreaSound) AreaSoundManager.playerSounds.prev()) {
 			local37 = 1;
-			local42 = local6.aClass8_Sub4_Sub1_1.method2681();
-			if (local6.aClass8_Sub4_Sub1_1.anInt3366 == local42.anInt1037) {
+			local42 = local6.player.method2681();
+			if (local6.player.anInt3366 == local42.anInt1037) {
 				local37 = 0;
-			} else if (local6.aClass8_Sub4_Sub1_1.anInt3366 == local42.anInt1058 || local6.aClass8_Sub4_Sub1_1.anInt3366 == local42.anInt1054 || local6.aClass8_Sub4_Sub1_1.anInt3366 == local42.anInt1045 || local42.anInt1043 == local6.aClass8_Sub4_Sub1_1.anInt3366) {
+			} else if (local6.player.anInt3366 == local42.anInt1058 || local6.player.anInt3366 == local42.anInt1054 || local6.player.anInt3366 == local42.anInt1045 || local42.anInt1043 == local6.player.anInt3366) {
 				local37 = 2;
-			} else if (local42.anInt1062 == local6.aClass8_Sub4_Sub1_1.anInt3366 || local6.aClass8_Sub4_Sub1_1.anInt3366 == local42.anInt1042 || local6.aClass8_Sub4_Sub1_1.anInt3366 == local42.anInt1048 || local6.aClass8_Sub4_Sub1_1.anInt3366 == local42.anInt1066) {
+			} else if (local42.anInt1062 == local6.player.anInt3366 || local6.player.anInt3366 == local42.anInt1042 || local6.player.anInt3366 == local42.anInt1048 || local6.player.anInt3366 == local42.anInt1066) {
 				local37 = 3;
 			}
 			if (local6.anInt2038 != local37) {
-				local141 = Static140.method2706(local6.aClass8_Sub4_Sub1_1);
-				if (local6.anInt2044 != local141) {
-					if (local6.aClass3_Sub3_Sub1_1 != null) {
-						Static204.aClass3_Sub3_Sub2_1.method1347(local6.aClass3_Sub3_Sub1_1);
-						local6.aClass3_Sub3_Sub1_1 = null;
+				local141 = Player.getSound(local6.player);
+				if (local6.sound != local141) {
+					if (local6.primaryStream != null) {
+						Static204.soundStream.removeSubStream(local6.primaryStream);
+						local6.primaryStream = null;
 					}
-					local6.anInt2044 = local141;
+					local6.sound = local141;
 				}
 				local6.anInt2038 = local37;
 			}
-			local6.anInt2041 = local6.aClass8_Sub4_Sub1_1.anInt3412;
-			local6.anInt2037 = local6.aClass8_Sub4_Sub1_1.anInt3412 + local6.aClass8_Sub4_Sub1_1.size() * 64;
-			local6.anInt2029 = local6.aClass8_Sub4_Sub1_1.anInt3421;
-			local6.anInt2028 = local6.aClass8_Sub4_Sub1_1.anInt3421 + local6.aClass8_Sub4_Sub1_1.size() * 64;
+			local6.anInt2041 = local6.player.anInt3412;
+			local6.anInt2037 = local6.player.anInt3412 + local6.player.size() * 64;
+			local6.anInt2029 = local6.player.anInt3421;
+			local6.anInt2028 = local6.player.anInt3421 + local6.player.size() * 64;
 			Static150.method2804(arg1, local6, arg3, arg0, arg2);
 		}
 	}

@@ -13,9 +13,6 @@ public final class Static152 {
 	@OriginalMember(owner = "runetek4.client!ma", name = "q", descriptor = "Lclient!fd;")
 	public static WorldMapFont aClass41_3;
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "x", descriptor = "Lclient!ih;")
-	public static final LinkedList aClass69_87 = new LinkedList();
-
 	@OriginalMember(owner = "runetek4.client!ma", name = "z", descriptor = "I")
 	public static int anInt3604 = -1;
 

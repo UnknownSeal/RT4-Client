@@ -19,11 +19,11 @@ public final class Static273 {
 	public static int anInt4130 = 0;
 
 	@OriginalMember(owner = "runetek4.client!we", name = "a", descriptor = "(BI)I")
-	public static int method3211(@OriginalArg(1) int arg0) {
-		@Pc(13) int local13 = arg0 * (arg0 * arg0 >> 12) >> 12;
-		@Pc(26) int local26 = arg0 * 6 - 61440;
-		@Pc(34) int local34 = (arg0 * local26 >> 12) + 40960;
-		return local13 * local34 >> 12;
+	public static int fade(@OriginalArg(1) int t) {
+		@Pc(13) int depth = t * (t * t >> 12) >> 12;
+		@Pc(26) int x = t * 6 - 61440;
+		@Pc(34) int y = (t * x >> 12) + 40960;
+		return depth * y >> 12;
 	}
 
 	@OriginalMember(owner = "runetek4.client!we", name = "a", descriptor = "(BILclient!be;)I")

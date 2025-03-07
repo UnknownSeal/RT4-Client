@@ -27,7 +27,7 @@ public final class Static246 {
 
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(Z)V")
 	public static void method4239() {
-		for (@Pc(9) SpotAnimNode local9 = (SpotAnimNode) Static99.aClass69_64.method2289(); local9 != null; local9 = (SpotAnimNode) Static99.aClass69_64.method2288()) {
+		for (@Pc(9) SpotAnimNode local9 = (SpotAnimNode) Static99.aClass69_64.head(); local9 != null; local9 = (SpotAnimNode) Static99.aClass69_64.next()) {
 			@Pc(15) SpotAnim local15 = local9.aClass8_Sub2_1;
 			if (local15.anInt606 != Static55.level || local15.aBoolean41) {
 				local9.remove();

@@ -9,25 +9,25 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static31 {
 
-	@OriginalMember(owner = "runetek4.client!ch", name = "w", descriptor = "I")
+	@OriginalMember(owner = "client!ch", name = "w", descriptor = "I")
 	public static int anInt987;
 
-	@OriginalMember(owner = "runetek4.client!ch", name = "v", descriptor = "[B")
+	@OriginalMember(owner = "client!ch", name = "v", descriptor = "[B")
 	public static final byte[] aByteArray12 = new byte[] { 95, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57 };
 
-	@OriginalMember(owner = "runetek4.client!ch", name = "x", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!ch", name = "x", descriptor = "Lclient!na;")
 	public static final JagString aClass100_193 = Static28.parse(":");
 
-	@OriginalMember(owner = "runetek4.client!ch", name = "y", descriptor = "[Z")
+	@OriginalMember(owner = "client!ch", name = "y", descriptor = "[Z")
 	public static final boolean[] aBooleanArray29 = new boolean[100];
 
-	@OriginalMember(owner = "runetek4.client!ch", name = "z", descriptor = "[I")
+	@OriginalMember(owner = "client!ch", name = "z", descriptor = "[I")
 	public static final int[] anIntArray76 = new int[5];
 
-	@OriginalMember(owner = "runetek4.client!ch", name = "C", descriptor = "[[I")
+	@OriginalMember(owner = "client!ch", name = "C", descriptor = "[[I")
 	public static final int[][] anIntArrayArray6 = new int[104][104];
 
-	@OriginalMember(owner = "runetek4.client!ch", name = "c", descriptor = "(I)V")
+	@OriginalMember(owner = "client!ch", name = "c", descriptor = "(I)V")
 	public static void method846() {
 		if (!Static138.allLevelsvisible() && Static41.anInt1316 != Static55.level) {
 			Static127.method2463(Static55.level, Static52.anInt1695, Static80.anInt4701, Static173.self.movementQueueZ[0], false, Static173.self.movementQueueX[0]);
@@ -37,14 +37,14 @@ public final class Static31 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ch", name = "a", descriptor = "(Ljava/awt/runetek4.Component;I)V")
+	@OriginalMember(owner = "client!ch", name = "a", descriptor = "(Ljava/awt/Component;I)V")
 	public static void method847(@OriginalArg(0) Component arg0) {
 		arg0.removeKeyListener(Static10.aClass149_1);
 		arg0.removeFocusListener(Static10.aClass149_1);
 		Static114.anInt5844 = -1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ch", name = "b", descriptor = "(B)V")
+	@OriginalMember(owner = "client!ch", name = "b", descriptor = "(B)V")
 	public static void method848() {
 		if (Static219.anInt4937 == 0) {
 			return;
@@ -70,7 +70,7 @@ public final class Static31 {
 				}
 			}
 			if (Static219.anInt4937 == 1) {
-				Static72.aClass212_3 = Static71.signLink.openSocket(client.worldListHostname, Static208.worldListPort);
+				Static72.aClass212_3 = GameShell.signLink.openSocket(client.worldListHostname, Static208.worldListPort);
 				Static219.anInt4937 = 2;
 			}
 			@Pc(126) int local126;
@@ -81,7 +81,7 @@ public final class Static31 {
 				if (Static72.aClass212_3.status != 1) {
 					return;
 				}
-				Static124.socket = new BufferedSocket((Socket) Static72.aClass212_3.result, Static71.signLink);
+				Static124.socket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
 				Static72.aClass212_3 = null;
 				Static124.socket.write(Static6.outboundBuffer.data, Static6.outboundBuffer.pos);
 				if (Static11.aClass62_1 != null) {
@@ -123,7 +123,6 @@ public final class Static31 {
 				Static124.socket.closeGracefully();
 				Static124.socket = null;
 				Static49.method1208();
-				return;
 			}
 		} catch (@Pc(210) IOException local210) {
 			if (Static124.socket != null) {

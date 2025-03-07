@@ -5,28 +5,28 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static12 {
 
-	@OriginalMember(owner = "runetek4.client!bb", name = "M", descriptor = "I")
+	@OriginalMember(owner = "client!bb", name = "M", descriptor = "I")
 	public static int anInt406;
 
-	@OriginalMember(owner = "runetek4.client!bb", name = "g", descriptor = "[[[B")
+	@OriginalMember(owner = "client!bb", name = "g", descriptor = "[[[B")
 	public static final byte[][][] aByteArrayArrayArray2 = new byte[4][104][104];
 
-	@OriginalMember(owner = "runetek4.client!bb", name = "m", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!bb", name = "m", descriptor = "Lclient!na;")
 	public static final JagString aClass100_73 = Static28.parse("runes");
 
-	@OriginalMember(owner = "runetek4.client!bb", name = "n", descriptor = "I")
+	@OriginalMember(owner = "client!bb", name = "n", descriptor = "I")
 	public static int anInt391 = 255;
 
-	@OriginalMember(owner = "runetek4.client!bb", name = "t", descriptor = "[[B")
+	@OriginalMember(owner = "client!bb", name = "t", descriptor = "[[B")
 	public static final byte[][] aByteArrayArray2 = new byte[250][];
 
-	@OriginalMember(owner = "runetek4.client!bb", name = "A", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!bb", name = "A", descriptor = "Lclient!na;")
 	public static final JagString aClass100_74 = Static28.parse("::");
 
-	@OriginalMember(owner = "runetek4.client!bb", name = "E", descriptor = "I")
+	@OriginalMember(owner = "client!bb", name = "E", descriptor = "I")
 	public static int anInt400 = 0;
 
-	@OriginalMember(owner = "runetek4.client!bb", name = "a", descriptor = "(I)V")
+	@OriginalMember(owner = "client!bb", name = "a", descriptor = "(I)V")
 	public static void method447() {
 		if (Static83.aFloat3 < Static138.aFloat14) {
 			Static83.aFloat3 = (float) ((double) Static83.aFloat3 + (double) Static83.aFloat3 / 30.0D);
@@ -60,5 +60,4 @@ public final class Static12 {
 		}
 		Static38.method965();
 	}
-
 }

@@ -589,7 +589,7 @@ public final class Static1 {
 		} else {
 			local225 = Static91.anInt2428 * 25;
 		}
-		for (@Pc(238) Class3_Sub26 local238 = (Class3_Sub26) Static145.aClass69_84.method2289(); local238 != null; local238 = (Class3_Sub26) Static145.aClass69_84.method2288()) {
+		for (@Pc(238) Class3_Sub26 local238 = (Class3_Sub26) Static145.aClass69_84.head(); local238 != null; local238 = (Class3_Sub26) Static145.aClass69_84.next()) {
 			if (local238.anInt4308 == Static9.anInt172) {
 				@Pc(258) int local258 = arg3 + local238.anInt4314 * arg1 / Static181.anInt4296;
 				@Pc(267) int local267 = arg2 * local238.anInt4307 / Static48.anInt1449 + arg0;

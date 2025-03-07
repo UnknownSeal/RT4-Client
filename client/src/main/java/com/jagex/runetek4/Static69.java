@@ -41,11 +41,11 @@ public final class Static69 {
 		if (arg0 == 0L) {
 			return;
 		}
-		for (@Pc(12) int local12 = 0; local12 < Static35.anInt1093; local12++) {
-			if (Static190.aLongArray6[local12] == arg0) {
-				Static35.anInt1093--;
-				for (@Pc(36) int local36 = local12; local36 < Static35.anInt1093; local36++) {
-					Static190.aLongArray6[local36] = Static190.aLongArray6[local36 + 1];
+		for (@Pc(12) int local12 = 0; local12 < Static35.size; local12++) {
+			if (Static190.encodedUsernames[local12] == arg0) {
+				Static35.size--;
+				for (@Pc(36) int local36 = local12; local36 < Static35.size; local36++) {
+					Static190.encodedUsernames[local36] = Static190.encodedUsernames[local36 + 1];
 					Static193.aClass100Array134[local36] = Static193.aClass100Array134[local36 + 1];
 				}
 				Static185.anInt4369 = Static119.transmitTimer;
@@ -72,7 +72,7 @@ public final class Static69 {
 			for (@Pc(46) int local46 = 0; local46 < local42.anInt662; local46++) {
 				@Pc(55) Scenery local55 = local42.aClass31Array1[local46];
 				if ((local55.aLong56 & 0x400000L) == 4194304L) {
-					@Pc(66) int local66 = local55.aClass8_4.method4549();
+					@Pc(66) int local66 = local55.aClass8_4.getHeight();
 					if (local66 != -32768 && local66 < local34) {
 						local34 = local66;
 					}

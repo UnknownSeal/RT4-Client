@@ -7,16 +7,16 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static28 {
 
-	@OriginalMember(owner = "runetek4.client!cd", name = "s", descriptor = "I")
+	@OriginalMember(owner = "client!cd", name = "s", descriptor = "I")
 	public static int anInt917;
 
-	@OriginalMember(owner = "runetek4.client!cd", name = "u", descriptor = "I")
+	@OriginalMember(owner = "client!cd", name = "u", descriptor = "I")
 	public static int anInt919;
 
-	@OriginalMember(owner = "runetek4.client!cd", name = "B", descriptor = "Lclient!ve;")
+	@OriginalMember(owner = "client!cd", name = "B", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_18;
 
-	@OriginalMember(owner = "runetek4.client!cd", name = "a", descriptor = "(Lclient!ve;B)I")
+	@OriginalMember(owner = "client!cd", name = "a", descriptor = "(Lclient!ve;B)I")
 	public static int method789(@OriginalArg(0) Js5 arg0) {
 		@Pc(5) int local5 = 0;
 		if (arg0.method4506(Static280.anInt5900)) {
@@ -67,7 +67,7 @@ public final class Static28 {
 		return local5;
 	}
 
-	@OriginalMember(owner = "runetek4.client!cd", name = "a", descriptor = "(Ljava/lang/String;B)Lclient!na;")
+	@OriginalMember(owner = "client!cd", name = "a", descriptor = "(Ljava/lang/String;B)Lclient!na;")
 	public static JagString parse(@OriginalArg(0) String arg0) {
 		@Pc(6) byte[] local6 = arg0.getBytes();
 		@Pc(9) int local9 = local6.length;
@@ -90,7 +90,7 @@ public final class Static28 {
 		return local13.method3151();
 	}
 
-	@OriginalMember(owner = "runetek4.client!cd", name = "a", descriptor = "(IIIIZ)V")
+	@OriginalMember(owner = "client!cd", name = "a", descriptor = "(IIIIZ)V")
 	public static void method792(@OriginalArg(3) int arg0, @OriginalArg(4) boolean arg1) {
 		Static152.anInt3594 = 104;
 		Static99.anInt2550 = 104;

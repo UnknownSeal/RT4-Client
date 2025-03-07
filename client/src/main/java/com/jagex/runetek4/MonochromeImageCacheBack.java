@@ -12,7 +12,7 @@ public final class MonochromeImageCacheBack {
 
 	static {
 		for (@Pc(4) int local4 = 0; local4 < 4096; local4++) {
-			anIntArray1[local4] = Static273.method3211(local4);
+			anIntArray1[local4] = Static273.fade(local4);
 		}
 	}
 }

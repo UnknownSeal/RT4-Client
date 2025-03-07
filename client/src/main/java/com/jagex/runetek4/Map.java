@@ -65,7 +65,7 @@ public final class Map extends SecondaryNode {
 		if (this.anInt763 > arg1 || arg1 > this.anInt770 || arg0 < this.anInt771 || arg0 > this.anInt758) {
 			return false;
 		}
-		for (@Pc(33) Class3_Sub24 local33 = (Class3_Sub24) this.aClass69_23.method2289(); local33 != null; local33 = (Class3_Sub24) this.aClass69_23.method2288()) {
+		for (@Pc(33) Class3_Sub24 local33 = (Class3_Sub24) this.aClass69_23.head(); local33 != null; local33 = (Class3_Sub24) this.aClass69_23.next()) {
 			if (local33.method2760(arg0, arg1)) {
 				return true;
 			}
@@ -79,7 +79,7 @@ public final class Map extends SecondaryNode {
 		this.anInt770 = 0;
 		this.anInt758 = 0;
 		this.anInt763 = 12800;
-		for (@Pc(29) Class3_Sub24 local29 = (Class3_Sub24) this.aClass69_23.method2289(); local29 != null; local29 = (Class3_Sub24) this.aClass69_23.method2288()) {
+		for (@Pc(29) Class3_Sub24 local29 = (Class3_Sub24) this.aClass69_23.head(); local29 != null; local29 = (Class3_Sub24) this.aClass69_23.next()) {
 			if (local29.anInt3522 < this.anInt771) {
 				this.anInt771 = local29.anInt3522;
 			}

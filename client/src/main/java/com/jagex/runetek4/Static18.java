@@ -8,25 +8,25 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static18 {
 
-	@OriginalMember(owner = "runetek4.client!bh", name = "M", descriptor = "Z")
+	@OriginalMember(owner = "client!bh", name = "M", descriptor = "Z")
 	public static boolean aBoolean40;
 
-	@OriginalMember(owner = "runetek4.client!bh", name = "s", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!bh", name = "s", descriptor = "Lclient!na;")
 	public static final JagString aClass100_106 = Static28.parse("p11_full");
 
-	@OriginalMember(owner = "runetek4.client!bh", name = "t", descriptor = "I")
+	@OriginalMember(owner = "client!bh", name = "t", descriptor = "I")
 	public static int anInt588 = 0;
 
-	@OriginalMember(owner = "runetek4.client!bh", name = "v", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!bh", name = "v", descriptor = "Lclient!na;")
 	public static final JagString aClass100_107 = Static28.parse("floorshadows");
 
-	@OriginalMember(owner = "runetek4.client!bh", name = "z", descriptor = "Z")
+	@OriginalMember(owner = "client!bh", name = "z", descriptor = "Z")
 	public static boolean sentToServer = true;
 
-	@OriginalMember(owner = "runetek4.client!bh", name = "C", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!bh", name = "C", descriptor = "Lclient!na;")
 	public static final JagString aClass100_108 = Static28.parse("<br>(X100(U(Y");
 
-	@OriginalMember(owner = "runetek4.client!bh", name = "a", descriptor = "(Lclient!fe;Z)V")
+	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(Lclient!fe;Z)V")
 	public static void method553(@OriginalArg(0) PathingEntity arg0) {
 		@Pc(8) int local8 = arg0.anInt3395 - Static83.loopCycle;
 		@Pc(20) int local20 = arg0.anInt3380 * 128 + arg0.size() * 64;
@@ -48,12 +48,12 @@ public final class Static18 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!bh", name = "a", descriptor = "(IB)I")
+	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(IB)I")
 	public static int method554(@OriginalArg(0) int arg0) {
 		return arg0 >>> 8;
 	}
 
-	@OriginalMember(owner = "runetek4.client!bh", name = "a", descriptor = "(IIIIIIII)V")
+	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(IIIIIIII)V")
 	public static void method555(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {
 		@Pc(5) int local5;
 		@Pc(29) int local29;
@@ -93,13 +93,13 @@ public final class Static18 {
 		Static5.anInt40 = arg2 - local59;
 	}
 
-	@OriginalMember(owner = "runetek4.client!bh", name = "a", descriptor = "(B)Lclient!ba;")
+	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(B)Lclient!ba;")
 	public static GWCWorld method556() {
 		Static51.anInt1682 = 0;
 		return Static88.method1821();
 	}
 
-	@OriginalMember(owner = "runetek4.client!bh", name = "a", descriptor = "(IIII)V")
+	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(IIII)V")
 	public static void method559(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
 		@Pc(7) Tile local7 = Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2];
 		if (local7 == null) {

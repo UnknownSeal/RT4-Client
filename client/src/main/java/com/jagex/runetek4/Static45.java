@@ -512,7 +512,7 @@ public final class Static45 {
 		Static259.anIntArray514[0] = arg2;
 		@Pc(71) int local71 = local51 + 1;
 		Static84.anIntArray209[0] = arg9;
-		@Pc(78) int[][] local78 = Static148.aClass97Array1[Static55.level].anIntArrayArray30;
+		@Pc(78) int[][] local78 = Static148.aClass97Array1[Static55.level].flags;
 		@Pc(198) int local198;
 		while (local71 != local64) {
 			local10 = Static84.anIntArray209[local64];

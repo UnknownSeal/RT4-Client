@@ -155,7 +155,7 @@ public abstract class PathingEntity extends Entity {
 	public final Class147[] aClass147Array3 = new Class147[12];
 
 	@OriginalMember(owner = "client!fe", name = "Lb", descriptor = "I")
-	public int anInt3408 = 100;
+	public int chatLoops = 100;
 
 	@OriginalMember(owner = "client!fe", name = "V", descriptor = "I")
 	public int anInt3375 = 0;
@@ -197,7 +197,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3417 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "s", descriptor = "I")
-	public int anInt3352 = 0;
+	public int chatEffect = 0;
 
 	@OriginalMember(owner = "client!fe", name = "T", descriptor = "I")
 	public int anInt3373 = -1;
@@ -239,7 +239,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3396 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "jc", descriptor = "I")
-	public int anInt3429 = 0;
+	public int chatColor = 0;
 
 	@OriginalMember(owner = "client!fe", name = "kc", descriptor = "I")
 	public int anInt3430 = 0;
@@ -248,7 +248,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3425 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Wb", descriptor = "Lclient!na;")
-	public JagString aClass100_640 = null;
+	public JagString chatMessage = null;
 
 	@OriginalMember(owner = "client!fe", name = "oc", descriptor = "I")
 	public int anInt3432 = -1;
@@ -521,7 +521,7 @@ public abstract class PathingEntity extends Entity {
 		this.anInt3383 += this.anInt3355;
 		if (this.anInt3383 != 0) {
 			local101 = this.anInt3383 >> 5 & 0x7FF;
-			local106 = arg0.method4549() / 2;
+			local106 = arg0.getHeight() / 2;
 			arg0.translate(0, -local106, 0);
 			arg0.method4564(local101);
 			arg0.translate(0, local106, 0);
@@ -612,7 +612,7 @@ public abstract class PathingEntity extends Entity {
 			return;
 		}
 		local101 = this.anInt3427 >> 5 & 0x7FF;
-		local106 = arg0.method4549() / 2;
+		local106 = arg0.getHeight() / 2;
 		arg0.translate(0, -local106, 0);
 		arg0.method4574(local101);
 		arg0.translate(0, local106, 0);

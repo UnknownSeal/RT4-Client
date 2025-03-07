@@ -93,13 +93,13 @@ public final class Static150 {
 			@Pc(305) HookRequest local305 = new HookRequest();
 			local305.anObjectArray31 = arg2.anObjectArray17;
 			local305.source = arg2;
-			Static185.aClass69_101.method2282(local305);
+			Static185.aClass69_101.addTail(local305);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!lk", name = "a", descriptor = "(ILclient!fl;IIII)V")
 	public static void method2804(@OriginalArg(0) int arg0, @OriginalArg(1) AreaSound arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
-		if (arg1.anInt2044 == -1 && arg1.anIntArray181 == null) {
+		if (arg1.sound == -1 && arg1.sounds == null) {
 			return;
 		}
 		@Pc(20) int local20 = 0;
@@ -113,14 +113,14 @@ public final class Static150 {
 		} else if (arg4 < arg1.anInt2029) {
 			local20 += arg1.anInt2029 - arg4;
 		}
-		if (arg1.anInt2042 == 0 || arg1.anInt2042 < local20 - 64 || Static30.anInt978 == 0 || arg2 != arg1.anInt2033) {
-			if (arg1.aClass3_Sub3_Sub1_1 != null) {
-				Static204.aClass3_Sub3_Sub2_1.method1347(arg1.aClass3_Sub3_Sub1_1);
-				arg1.aClass3_Sub3_Sub1_1 = null;
+		if (arg1.radius == 0 || arg1.radius < local20 - 64 || Static30.anInt978 == 0 || arg2 != arg1.level) {
+			if (arg1.primaryStream != null) {
+				Static204.soundStream.removeSubStream(arg1.primaryStream);
+				arg1.primaryStream = null;
 			}
-			if (arg1.aClass3_Sub3_Sub1_2 != null) {
-				Static204.aClass3_Sub3_Sub2_1.method1347(arg1.aClass3_Sub3_Sub1_2);
-				arg1.aClass3_Sub3_Sub1_2 = null;
+			if (arg1.secondaryStream != null) {
+				Static204.soundStream.removeSubStream(arg1.secondaryStream);
+				arg1.secondaryStream = null;
 			}
 			return;
 		}
@@ -128,34 +128,34 @@ public final class Static150 {
 		if (local20 < 0) {
 			local20 = 0;
 		}
-		@Pc(134) int local134 = (arg1.anInt2042 - local20) * Static30.anInt978 / arg1.anInt2042;
-		if (arg1.aClass3_Sub3_Sub1_1 != null) {
-			arg1.aClass3_Sub3_Sub1_1.method386(local134);
-		} else if (arg1.anInt2044 >= 0) {
-			@Pc(150) SynthSound local150 = Static292.method3988(Static248.aClass153_75, arg1.anInt2044, 0);
+		@Pc(134) int local134 = (arg1.radius - local20) * Static30.anInt978 / arg1.radius;
+		if (arg1.primaryStream != null) {
+			arg1.primaryStream.method386(local134);
+		} else if (arg1.sound >= 0) {
+			@Pc(150) SynthSound local150 = Static292.method3988(Static248.aClass153_75, arg1.sound, 0);
 			if (local150 != null) {
 				@Pc(158) PcmSound local158 = local150.method3989().method2648(Static56.aClass156_1);
 				@Pc(163) SoundPcmStream local163 = Static284.method404(local158, local134);
 				local163.method396(-1);
-				Static204.aClass3_Sub3_Sub2_1.method1343(local163);
-				arg1.aClass3_Sub3_Sub1_1 = local163;
+				Static204.soundStream.method1343(local163);
+				arg1.primaryStream = local163;
 			}
 		}
-		if (arg1.aClass3_Sub3_Sub1_2 != null) {
-			arg1.aClass3_Sub3_Sub1_2.method386(local134);
-			if (!arg1.aClass3_Sub3_Sub1_2.hasNext()) {
-				arg1.aClass3_Sub3_Sub1_2 = null;
+		if (arg1.secondaryStream != null) {
+			arg1.secondaryStream.method386(local134);
+			if (!arg1.secondaryStream.hasNext()) {
+				arg1.secondaryStream = null;
 			}
-		} else if (arg1.anIntArray181 != null && (arg1.anInt2034 -= arg3) <= 0) {
-			@Pc(219) int local219 = (int) ((double) arg1.anIntArray181.length * Math.random());
-			@Pc(227) SynthSound local227 = Static292.method3988(Static248.aClass153_75, arg1.anIntArray181[local219], 0);
+		} else if (arg1.sounds != null && (arg1.remainingLoops -= arg3) <= 0) {
+			@Pc(219) int local219 = (int) ((double) arg1.sounds.length * Math.random());
+			@Pc(227) SynthSound local227 = Static292.method3988(Static248.aClass153_75, arg1.sounds[local219], 0);
 			if (local227 != null) {
 				@Pc(236) PcmSound local236 = local227.method3989().method2648(Static56.aClass156_1);
 				@Pc(241) SoundPcmStream local241 = Static284.method404(local236, local134);
 				local241.method396(0);
-				Static204.aClass3_Sub3_Sub2_1.method1343(local241);
-				arg1.anInt2034 = (int) ((double) (arg1.anInt2040 - arg1.anInt2032) * Math.random()) + arg1.anInt2032;
-				arg1.aClass3_Sub3_Sub1_2 = local241;
+				Static204.soundStream.method1343(local241);
+				arg1.remainingLoops = (int) ((double) (arg1.maxInterval - arg1.minInterval) * Math.random()) + arg1.minInterval;
+				arg1.secondaryStream = local241;
 			}
 		}
 	}

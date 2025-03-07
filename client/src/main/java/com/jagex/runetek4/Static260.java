@@ -176,36 +176,4 @@ public final class Static260 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!vd", name = "a", descriptor = "(BZ)V")
-	public static void method3852(@OriginalArg(1) boolean arg0) {
-		@Pc(14) AreaSound local14;
-		for (local14 = (AreaSound) Static3.aClass69_135.method2289(); local14 != null; local14 = (AreaSound) Static3.aClass69_135.method2288()) {
-			if (local14.aClass3_Sub3_Sub1_1 != null) {
-				Static204.aClass3_Sub3_Sub2_1.method1347(local14.aClass3_Sub3_Sub1_1);
-				local14.aClass3_Sub3_Sub1_1 = null;
-			}
-			if (local14.aClass3_Sub3_Sub1_2 != null) {
-				Static204.aClass3_Sub3_Sub2_1.method1347(local14.aClass3_Sub3_Sub1_2);
-				local14.aClass3_Sub3_Sub1_2 = null;
-			}
-			local14.remove();
-		}
-		if (!arg0) {
-			return;
-		}
-		for (local14 = (AreaSound) Static152.aClass69_87.method2289(); local14 != null; local14 = (AreaSound) Static152.aClass69_87.method2288()) {
-			if (local14.aClass3_Sub3_Sub1_1 != null) {
-				Static204.aClass3_Sub3_Sub2_1.method1347(local14.aClass3_Sub3_Sub1_1);
-				local14.aClass3_Sub3_Sub1_1 = null;
-			}
-			local14.remove();
-		}
-		for (local14 = (AreaSound) Static93.aClass133_7.peekFront(); local14 != null; local14 = (AreaSound) Static93.aClass133_7.prev()) {
-			if (local14.aClass3_Sub3_Sub1_1 != null) {
-				Static204.aClass3_Sub3_Sub2_1.method1347(local14.aClass3_Sub3_Sub1_1);
-				local14.aClass3_Sub3_Sub1_1 = null;
-			}
-			local14.remove();
-		}
-	}
 }

@@ -1251,7 +1251,7 @@ public final class ModelUnlit extends Entity {
 
 	@OriginalMember(owner = "client!gb", name = "b", descriptor = "()I")
 	@Override
-	public int method4549() {
+	public int getHeight() {
 		if (!this.aBoolean121) {
 			this.method1664();
 		}

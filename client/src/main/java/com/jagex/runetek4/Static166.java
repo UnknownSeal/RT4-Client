@@ -89,7 +89,7 @@ public final class Static166 {
 										local353.anInt4308 = local312.mapelement;
 										local353.anInt4307 = local53;
 										local353.anInt4314 = local65;
-										Static145.aClass69_84.method2282(local353);
+										Static145.aClass69_84.addTail(local353);
 									}
 								}
 							}

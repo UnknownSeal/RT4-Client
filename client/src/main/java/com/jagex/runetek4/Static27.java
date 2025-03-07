@@ -6,28 +6,28 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static27 {
 
-	@OriginalMember(owner = "runetek4.client!cb", name = "hb", descriptor = "Lclient!le;")
+	@OriginalMember(owner = "client!cb", name = "hb", descriptor = "Lclient!le;")
 	public static SoundBank aClass89_1;
 
-	@OriginalMember(owner = "runetek4.client!cb", name = "I", descriptor = "[I")
+	@OriginalMember(owner = "client!cb", name = "I", descriptor = "[I")
 	public static final int[] anIntArray70 = new int[32];
 
-	@OriginalMember(owner = "runetek4.client!cb", name = "Y", descriptor = "Lclient!n;")
+	@OriginalMember(owner = "client!cb", name = "Y", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable aClass99_4 = new SoftLruHashTable(64);
 
-	@OriginalMember(owner = "runetek4.client!cb", name = "ab", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!cb", name = "ab", descriptor = "Lclient!na;")
 	public static final JagString aClass100_164 = Static28.parse(" )2> <col=00ffff>");
 
-	@OriginalMember(owner = "runetek4.client!cb", name = "cb", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!cb", name = "cb", descriptor = "Lclient!na;")
 	public static final JagString aClass100_165 = Static28.parse("titlebg");
 
-	@OriginalMember(owner = "runetek4.client!cb", name = "eb", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!cb", name = "eb", descriptor = "Lclient!na;")
 	public static final JagString aClass100_167 = Static28.parse("name_icons");
 
-	@OriginalMember(owner = "runetek4.client!cb", name = "fb", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!cb", name = "fb", descriptor = "Lclient!na;")
 	public static final JagString aClass100_168 = Static28.parse(": ");
 
-	@OriginalMember(owner = "runetek4.client!cb", name = "b", descriptor = "(III)V")
+	@OriginalMember(owner = "client!cb", name = "b", descriptor = "(III)V")
 	public static void setMaterial(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
 		if (arg1 == 4 && !Static220.aBoolean244) {
 			arg1 = 2;

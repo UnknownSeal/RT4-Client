@@ -17,7 +17,7 @@ public final class Static226 {
 	public static int anInt5085;
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "a", descriptor = "I")
-	public static int anInt5079 = 0;
+	public static int loops = 0;
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "d", descriptor = "I")
 	public static int anInt5081 = 1;

@@ -1,6 +1,7 @@
 package com.jagex.runetek4.game.scene.entities;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.npctype.NPCType;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -14,20 +15,41 @@ public final class NPCEntity extends PathingEntity {
 	@OriginalMember(owner = "client!km", name = "rc", descriptor = "Lclient!me;")
 	public NPCType npcType;
 
-	@OriginalMember(owner = "client!km", name = "finalize", descriptor = "()V")
+    @OriginalMember(owner = "client!ij", name = "a", descriptor = "(Lclient!km;I)I")
+    public static int getSound(@OriginalArg(0) NPCEntity arg0) {
+        @Pc(13) NPCType local13 = arg0.npcType;
+        if (local13.multinpc != null) {
+            local13 = local13.getMultiNPC();
+            if (local13 == null) {
+                return -1;
+            }
+        }
+        @Pc(29) int local29 = local13.bgsound_walk;
+        @Pc(33) BASType local33 = arg0.method2681();
+        if (local33.anInt1037 == arg0.anInt3366) {
+            local29 = local13.bgsound;
+        } else if (arg0.anInt3366 == local33.anInt1058 || local33.anInt1054 == arg0.anInt3366 || arg0.anInt3366 == local33.anInt1045 || arg0.anInt3366 == local33.anInt1043) {
+            local29 = local13.bgsound_run;
+        } else if (local33.anInt1062 == arg0.anInt3366 || arg0.anInt3366 == local33.anInt1042 || arg0.anInt3366 == local33.anInt1048 || arg0.anInt3366 == local33.anInt1066) {
+            local29 = local13.bgsound_crawl;
+        }
+        return local29;
+    }
+
+    @OriginalMember(owner = "client!km", name = "finalize", descriptor = "()V")
 	@Override
-	public final void finalize() {
+	public void finalize() {
 	}
 
 	@OriginalMember(owner = "client!km", name = "b", descriptor = "()I")
 	@Override
-	public final int method4549() {
+	public int getHeight() {
 		return this.height;
 	}
 
 	@OriginalMember(owner = "client!km", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public final void method4546(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
+	public void method4546(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
 		if (this.npcType == null) {
 			return;
 		}
@@ -37,7 +59,7 @@ public final class NPCEntity extends PathingEntity {
 		if (local74 == null) {
 			return;
 		}
-		this.height = local74.method4549();
+		this.height = local74.getHeight();
 		@Pc(84) NPCType local84 = this.npcType;
 		if (local84.multinpc != null) {
 			local84 = local84.getMultiNPC();
@@ -114,7 +136,7 @@ public final class NPCEntity extends PathingEntity {
 
 	@OriginalMember(owner = "client!km", name = "a", descriptor = "(IIIII)V")
 	@Override
-	public final void method4545(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	public void method4545(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		if (this.npcType == null) {
 			;
 		}
@@ -127,7 +149,7 @@ public final class NPCEntity extends PathingEntity {
 	}
 
 	@OriginalMember(owner = "client!km", name = "a", descriptor = "(ILclient!me;)V")
-	public final void method2698(@OriginalArg(1) NPCType arg0) {
+	public void method2698(@OriginalArg(1) NPCType arg0) {
 		this.npcType = arg0;
 		if (this.aClass47_Sub1_5 != null) {
 			this.aClass47_Sub1_5.method1646();

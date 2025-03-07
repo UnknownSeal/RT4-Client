@@ -22,7 +22,7 @@ public final class Static103 {
 
 	@OriginalMember(owner = "runetek4.client!i", name = "a", descriptor = "(Lclient!na;ILclient!na;I)V")
 	public static void method2231(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JagString arg2) {
-		Static154.method2928(-1, arg1, arg2, null, arg0);
+		Static154.add(-1, arg1, arg2, null, arg0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!i", name = "p", descriptor = "(II)V")

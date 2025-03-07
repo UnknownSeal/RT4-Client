@@ -1,6 +1,7 @@
 package com.jagex.runetek4.game.world.entity;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
 import com.jagex.runetek4.game.scene.entities.NPCEntity;
 import com.jagex.runetek4.game.scene.entities.PathingEntity;
@@ -13,11 +14,13 @@ import com.jagex.runetek4.core.io.Packet;
 @OriginalClass("client!e")
 public final class Player extends PathingEntity {
 
-	@OriginalMember(owner = "client!e", name = "Bc", descriptor = "Lclient!hh;")
+    @OriginalMember(owner = "runetek4.client!ba", name = "w", descriptor = "I")
+    public static int inTutorialIsland = 0;
+    @OriginalMember(owner = "client!e", name = "Bc", descriptor = "Lclient!hh;")
 	public PlayerModel model;
 
 	@OriginalMember(owner = "client!e", name = "Mc", descriptor = "Lclient!na;")
-	public JagString aClass100_364;
+	public JagString username;
 
 	@OriginalMember(owner = "client!e", name = "tc", descriptor = "I")
 	public int anInt1649 = -1;
@@ -61,7 +64,21 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "client!e", name = "Wc", descriptor = "I")
 	public int anInt1670 = -1;
 
-	@OriginalMember(owner = "client!e", name = "c", descriptor = "(B)I")
+    @OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(ILclient!e;)I")
+    public static int getSound(@OriginalArg(1) Player arg0) {
+        @Pc(14) int local14 = arg0.anInt1654;
+        @Pc(18) BASType local18 = arg0.method2681();
+        if (local18.anInt1037 == arg0.anInt3366) {
+            local14 = arg0.anInt1648;
+        } else if (local18.anInt1058 == arg0.anInt3366 || arg0.anInt3366 == local18.anInt1054 || arg0.anInt3366 == local18.anInt1045 || local18.anInt1043 == arg0.anInt3366) {
+            local14 = arg0.anInt1670;
+        } else if (arg0.anInt3366 == local18.anInt1062 || arg0.anInt3366 == local18.anInt1042 || arg0.anInt3366 == local18.anInt1048 || arg0.anInt3366 == local18.anInt1066) {
+            local14 = arg0.anInt1658;
+        }
+        return local14;
+    }
+
+    @OriginalMember(owner = "client!e", name = "c", descriptor = "(B)I")
 	@Override
 	public int size() {
 		return this.model == null || this.model.anInt2492 == -1 ? super.size() : Static214.get(this.model.anInt2492).size;
@@ -127,7 +144,7 @@ public final class Player extends PathingEntity {
 		}
 		this.anInt3365 = arg0.g2();
 		@Pc(236) long local236 = arg0.g8();
-		this.aClass100_364 = Static79.decode37(local236).method3125();
+		this.username = Static79.decode37(local236).method3125();
 		this.anInt1652 = arg0.g1();
 		if (local37) {
 			this.anInt1671 = arg0.g2();
@@ -200,7 +217,7 @@ public final class Player extends PathingEntity {
 		if (local76 == null) {
 			return;
 		}
-		this.height = local76.method4549();
+		this.height = local76.getHeight();
 		@Pc(184) Model local184;
 		if (Static209.aBoolean240 && (this.model.anInt2492 == -1 || Static214.get(this.model.anInt2492).spotshadow)) {
 			local184 = Static41.method1043(160, this.aBoolean171, local54 == null ? local25 : local54, this.anInt3412, 0, this.anInt3421, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, 240);
@@ -349,8 +366,8 @@ public final class Player extends PathingEntity {
 	}
 
 	@OriginalMember(owner = "client!e", name = "e", descriptor = "(I)Lclient!na;")
-	public JagString method1264() {
-		@Pc(2) JagString local2 = this.aClass100_364;
+	public JagString getName() {
+		@Pc(2) JagString local2 = this.username;
 		if (Static103.aClass100Array88 != null) {
 			local2 = Static34.method882(new JagString[] { Static103.aClass100Array88[this.anInt1651], local2 });
 		}
@@ -377,7 +394,7 @@ public final class Player extends PathingEntity {
 
 	@OriginalMember(owner = "client!e", name = "b", descriptor = "()I")
 	@Override
-	public int method4549() {
+	public int getHeight() {
 		return this.height;
 	}
 }

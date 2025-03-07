@@ -41,10 +41,10 @@ public final class Static125 {
 		Static6.outboundBuffer.p1b(arg3);
 		Static6.outboundBuffer.p2(arg0);
 		Static6.outboundBuffer.p2(arg1);
-		Static226.anInt5079 = 0;
-		Static57.anInt1758 = 0;
-		Static179.anInt4261 = 1;
-		Static223.anInt5034 = -3;
+		Static226.loops = 0;
+		Static57.errors = 0;
+		Static179.step = 1;
+		Static223.reply = -3;
 	}
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "a", descriptor = "(IB)Lclient!kk;")

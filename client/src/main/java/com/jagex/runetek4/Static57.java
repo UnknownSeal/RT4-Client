@@ -16,10 +16,10 @@ public final class Static57 {
 	public static int anInt1747 = 0;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "e", descriptor = "Lclient!i;")
-	public static final PacketBit aClass3_Sub15_Sub1_3 = new PacketBit(65536);
+	public static final PacketBit inboundBuffer = new PacketBit(65536);
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "v", descriptor = "I")
-	public static int anInt1758 = 0;
+	public static int errors = 0;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "w", descriptor = "I")
 	public static volatile int anInt1759 = 0;

@@ -17,9 +17,6 @@ public final class Static3 {
 	@OriginalMember(owner = "runetek4.client!ab", name = "j", descriptor = "[Lclient!na;")
 	public static final JagString[] aClass100Array176 = new JagString[1000];
 
-	@OriginalMember(owner = "runetek4.client!ab", name = "n", descriptor = "Lclient!ih;")
-	public static final LinkedList aClass69_135 = new LinkedList();
-
 	@OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "(Lclient!na;I)V")
 	public static void method4656(@OriginalArg(0) JagString arg0) {
 		@Pc(9) int local9 = Static171.method3218(arg0);
@@ -50,7 +47,7 @@ public final class Static3 {
 	@OriginalMember(owner = "runetek4.client!ab", name = "c", descriptor = "(B)[Lclient!od;")
 	public static Class114[] method4660() {
 		if (Static105.aClass114Array1 == null) {
-			@Pc(16) Class114[] local16 = Static197.method3558(Static71.signLink);
+			@Pc(16) Class114[] local16 = Static197.method3558(GameShell.signLink);
 			@Pc(20) Class114[] local20 = new Class114[local16.length];
 			@Pc(22) int local22 = 0;
 			label52: for (@Pc(24) int local24 = 0; local24 < local16.length; local24++) {

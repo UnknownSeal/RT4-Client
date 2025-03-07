@@ -28,8 +28,8 @@ public final class Static225 {
 	@OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "(I)V")
 	public static void method3889() {
 		while (true) {
-			if (Static57.aClass3_Sub15_Sub1_3.bitsAvailable(Static223.anInt5028) >= 11) {
-				@Pc(20) int local20 = Static57.aClass3_Sub15_Sub1_3.gBit(11);
+			if (Static57.inboundBuffer.bitsAvailable(Static223.anInt5028) >= 11) {
+				@Pc(20) int local20 = Static57.inboundBuffer.gBit(11);
 				if (local20 != 2047) {
 					@Pc(27) boolean local27 = false;
 					if (Static159.aClass8_Sub4_Sub1Array1[local20] == null) {
@@ -42,20 +42,20 @@ public final class Static225 {
 					Static105.ids[Static267.size++] = local20;
 					@Pc(65) Player local65 = Static159.aClass8_Sub4_Sub1Array1[local20];
 					local65.anInt3430 = Static83.loopCycle;
-					@Pc(73) int local73 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
+					@Pc(73) int local73 = Static57.inboundBuffer.gBit(1);
 					if (local73 == 1) {
 						Static44.anIntArray106[Static116.anInt2951++] = local20;
 					}
-					@Pc(92) int local92 = Static57.aClass3_Sub15_Sub1_3.gBit(5);
-					@Pc(99) int local99 = Static56.anIntArray141[Static57.aClass3_Sub15_Sub1_3.gBit(3)];
+					@Pc(92) int local92 = Static57.inboundBuffer.gBit(5);
+					@Pc(99) int local99 = Static56.anIntArray141[Static57.inboundBuffer.gBit(3)];
 					if (local92 > 15) {
 						local92 -= 32;
 					}
 					if (local27) {
 						local65.anInt3400 = local65.anInt3381 = local99;
 					}
-					@Pc(116) int local116 = Static57.aClass3_Sub15_Sub1_3.gBit(1);
-					@Pc(121) int local121 = Static57.aClass3_Sub15_Sub1_3.gBit(5);
+					@Pc(116) int local116 = Static57.inboundBuffer.gBit(1);
+					@Pc(121) int local121 = Static57.inboundBuffer.gBit(5);
 					if (local121 > 15) {
 						local121 -= 32;
 					}
@@ -63,7 +63,7 @@ public final class Static225 {
 					continue;
 				}
 			}
-			Static57.aClass3_Sub15_Sub1_3.accessBytes();
+			Static57.inboundBuffer.accessBytes();
 			return;
 		}
 	}

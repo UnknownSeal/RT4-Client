@@ -8,7 +8,6 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-// QuickChatPhraseType
 @OriginalClass("client!cb")
 public final class QuickChatPhraseType extends SecondaryNode {
 
