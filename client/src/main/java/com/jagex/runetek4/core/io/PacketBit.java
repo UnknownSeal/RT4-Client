@@ -30,18 +30,18 @@ public final class PacketBit extends Packet {
 
 	@OriginalMember(owner = "client!i", name = "r", descriptor = "(II)V")
 	public void pIsaac1(@OriginalArg(1) int value) {
-		this.data[this.pos++] = (byte) (value + this.isaac.nextInt());
+		this.data[this.pos++] = (byte) (value + this.isaac.takeNextValue());
 	}
 
 	@OriginalMember(owner = "client!i", name = "s", descriptor = "(I)I")
 	public int gIssac1() {
-		return this.data[this.pos++] - this.isaac.nextInt() & 0xFF;
+		return this.data[this.pos++] - this.isaac.takeNextValue() & 0xFF;
 	}
 
 	@OriginalMember(owner = "client!i", name = "a", descriptor = "(BI[BI)V")
 	public void method2237(@OriginalArg(2) byte[] arg0, @OriginalArg(3) int arg1) {
 		for (@Pc(17) int local17 = 0; local17 < arg1; local17++) {
-			arg0[local17] = (byte) (this.data[this.pos++] - this.isaac.nextInt());
+			arg0[local17] = (byte) (this.data[this.pos++] - this.isaac.takeNextValue());
 		}
 	}
 

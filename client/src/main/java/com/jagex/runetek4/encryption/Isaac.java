@@ -33,14 +33,15 @@ public final class Isaac {
 
 	@OriginalMember(owner = "client!ij", name = "a", descriptor = "(Z)V")
 	private void init() {
-		@Pc(14) int h = -1640531527;
-		@Pc(16) int g = -1640531527;
-		@Pc(18) int e = -1640531527;
-		@Pc(20) int f = -1640531527;
-		@Pc(22) int d = -1640531527;
-		@Pc(24) int c = -1640531527;
-		@Pc(26) int b = -1640531527;
-		@Pc(27) int a = -1640531527;
+		@Pc(14) int h = 0x9e3779b9;
+		@Pc(16) int g = 0x9e3779b9;
+		@Pc(18) int e = 0x9e3779b9;
+		@Pc(20) int f = 0x9e3779b9;
+		@Pc(22) int d = 0x9e3779b9;
+		@Pc(24) int c = 0x9e3779b9;
+		@Pc(26) int b = 0x9e3779b9;
+		@Pc(27) int a = 0x9e3779b9;
+
 		@Pc(29) int i;
 		for (i = 0; i < 4; i++) {
 			a ^= b << 11;
@@ -152,18 +153,18 @@ public final class Isaac {
 			this.mem[i + 6] = g;
 			this.mem[i + 7] = h;
 		}
-		this.isaac();
+		this.generate();
 		this.count = 256;
 	}
 
 	@OriginalMember(owner = "client!ij", name = "a", descriptor = "(I)I")
-	public int nextInt() {
+	public int takeNextValue() {
 		// TODO - Add proper support server side.
 		boolean useIsaac = false;
 
 		if (useIsaac) {
 			if (this.count-- == 0) {
-				this.isaac();
+				this.generate();
 				this.count = 255;
 			}
 			return this.rsl[this.count];
@@ -173,20 +174,27 @@ public final class Isaac {
 	}
 
 	@OriginalMember(owner = "client!ij", name = "b", descriptor = "(I)V")
-	private void isaac() {
+	private void generate() {
 		this.b += ++this.c;
+
 		for (@Pc(17) int i = 0; i < 256; i++) {
 			@Pc(33) int x = this.mem[i];
-			if ((i & 0x2) == 0) {
-				if ((i & 0x1) == 0) {
+			switch (i & 0x3) {
+				case 0:
 					this.a ^= this.a << 13;
-				} else {
+					break;
+
+				case 1:
 					this.a ^= this.a >>> 6;
-				}
-			} else if ((i & 0x1) == 0) {
-				this.a ^= this.a << 2;
-			} else {
-				this.a ^= this.a >>> 16;
+					break;
+
+				case 2:
+					this.a ^= this.a << 2;
+					break;
+
+				case 3:
+					this.a ^= this.a >>> 16;
+					break;
 			}
 			this.a += this.mem[i + 128 & 0xFF];
 			@Pc(119) int y;
