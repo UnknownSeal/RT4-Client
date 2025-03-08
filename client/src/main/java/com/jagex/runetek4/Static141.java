@@ -9,10 +9,10 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static141 {
 
     @OriginalMember(owner = "runetek4.client!lb", name = "p", descriptor = "[I")
-	public static final int[] anIntArray326 = new int[25];
+	public static final int[] skillBaseLevel = new int[25];
 
 	@OriginalMember(owner = "runetek4.client!lb", name = "s", descriptor = "Lclient!na;")
-	public static final JagString aClass100_664 = Static28.parse(":clan:");
+	public static final JagString CLAN = Static28.parse(":clan:");
 
 	@OriginalMember(owner = "runetek4.client!lb", name = "u", descriptor = "I")
 	public static int anInt3469 = 0;
@@ -48,7 +48,7 @@ public final class Static141 {
 		Static116.method2325(false);
 		Static119.method2381();
 		for (@Pc(39) int local39 = 0; local39 < 2048; local39++) {
-			@Pc(46) Player local46 = Static159.aClass8_Sub4_Sub1Array1[local39];
+			@Pc(46) Player local46 = Static159.players[local39];
 			if (local46 != null) {
 				local46.anObject5 = null;
 			}

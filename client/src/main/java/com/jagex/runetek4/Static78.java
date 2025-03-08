@@ -171,7 +171,7 @@ public final class Static78 {
 		}
 		Static28.method792(GlRenderer.enabled ? 28 : 25, local420);
 		for (local427 = 0; local427 < 4; local427++) {
-			Static148.aClass97Array1[local427].reset();
+			Static148.levelCollisionMap[local427].reset();
 		}
 		for (local427 = 0; local427 < 4; local427++) {
 			for (local320 = 0; local320 < 104; local320++) {
@@ -203,8 +203,8 @@ public final class Static78 {
 			Static87.method1805(false);
 			Static7.method842(true);
 			if (GlRenderer.enabled) {
-				local427 = Static173.self.movementQueueX[0] >> 3;
-				local320 = Static173.self.movementQueueZ[0] >> 3;
+				local427 = Static173.localPlayer.movementQueueX[0] >> 3;
+				local320 = Static173.localPlayer.movementQueueZ[0] >> 3;
 				Static73.method1597(local320, local427);
 			}
 			Static26.method743(false);
@@ -216,15 +216,15 @@ public final class Static78 {
 			Static89.method1835(false);
 			Static7.method842(true);
 			if (GlRenderer.enabled) {
-				local427 = Static173.self.movementQueueX[0] >> 3;
-				local320 = Static173.self.movementQueueZ[0] >> 3;
+				local427 = Static173.localPlayer.movementQueueX[0] >> 3;
+				local320 = Static173.localPlayer.movementQueueZ[0] >> 3;
 				Static73.method1597(local320, local427);
 			}
 			Static233.method4002(false);
 		}
 		Static217.method3768();
 		Static7.method842(true);
-		Static45.method1169(Static148.aClass97Array1, false);
+		Static45.method1169(Static148.levelCollisionMap, false);
 		if (GlRenderer.enabled) {
 			Static120.method2395();
 		}
@@ -256,7 +256,7 @@ public final class Static78 {
 			}
 			Static217.method3768();
 			Static7.method842(true);
-			Static45.method1169(Static148.aClass97Array1, true);
+			Static45.method1169(Static148.levelCollisionMap, true);
 			Static7.method842(true);
 			Static105.method2255();
 			Static278.method4648(false);

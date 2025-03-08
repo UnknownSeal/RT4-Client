@@ -33,11 +33,11 @@ public final class Static98 {
 			return false;
 		}
 		for (@Pc(12) int local12 = 0; local12 < Static9.anInt178; local12++) {
-			if (arg0.method3111(Static122.aClass100Array92[local12])) {
+			if (arg0.equalsIgnoreCase(Static122.aClass100Array92[local12])) {
 				return true;
 			}
 		}
-		if (arg0.method3111(Static173.self.username)) {
+		if (arg0.equalsIgnoreCase(Static173.localPlayer.username)) {
 			return true;
 		} else {
 			return false;

@@ -46,19 +46,19 @@ public final class Static86 {
 		@Pc(19) int local19;
 		for (local19 = 0; local19 < Static240.removedCount; local19++) {
 			@Pc(30) int local30 = Static52.removedIds[local19];
-			if (Static175.aClass8_Sub4_Sub2Array1[local30].anInt3430 != Static83.loopCycle) {
-				if (Static175.aClass8_Sub4_Sub2Array1[local30].npcType.hasBackgroundSound()) {
-					Static91.method1877(Static175.aClass8_Sub4_Sub2Array1[local30]);
+			if (Static175.npcs[local30].anInt3430 != Static83.loopCycle) {
+				if (Static175.npcs[local30].npcType.hasBackgroundSound()) {
+					Static91.method1877(Static175.npcs[local30]);
 				}
-				Static175.aClass8_Sub4_Sub2Array1[local30].method2698(null);
-				Static175.aClass8_Sub4_Sub2Array1[local30] = null;
+				Static175.npcs[local30].method2698(null);
+				Static175.npcs[local30] = null;
 			}
 		}
-		if (Static223.anInt5028 != Static57.inboundBuffer.pos) {
-			throw new RuntimeException("gnp1 pos:" + Static57.inboundBuffer.pos + " psize:" + Static223.anInt5028);
+		if (Static223.packetSize != Static57.in.pos) {
+			throw new RuntimeException("gnp1 pos:" + Static57.in.pos + " psize:" + Static223.packetSize);
 		}
 		for (local19 = 0; local19 < Static272.anInt5214; local19++) {
-			if (Static175.aClass8_Sub4_Sub2Array1[Static33.anIntArray79[local19]] == null) {
+			if (Static175.npcs[Static33.anIntArray79[local19]] == null) {
 				throw new RuntimeException("gnp2 pos:" + local19 + " size:" + Static272.anInt5214);
 			}
 		}

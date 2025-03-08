@@ -113,7 +113,7 @@ public final class Static233 {
 							@Pc(99) int local99 = local89 / 8 + (local83 / 8 << 8);
 							for (@Pc(101) int local101 = 0; local101 < Static238.anIntArray470.length; local101++) {
 								if (Static238.anIntArray470[local101] == local99 && local21[local101] != null) {
-									Static217.method3771(Static148.aClass97Array1, local29, local21[local101], local67, local77, local36 * 8, local43 * 8, arg0, (local83 & 0x7) * 8, (local89 & 0x7) * 8);
+									Static217.method3771(Static148.levelCollisionMap, local29, local21[local101], local67, local77, local36 * 8, local43 * 8, arg0, (local83 & 0x7) * 8, (local89 & 0x7) * 8);
 									break;
 								}
 							}
@@ -144,9 +144,9 @@ public final class Static233 {
 			if (local24 != 0) {
 				local73 = (local73 << local24 & 0xF) + (local73 >> 4 - local24);
 			}
-			Static102.method2075(Static173.self.movementQueueZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, Static173.self.movementQueueX[0]);
+			Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, Static173.localPlayer.movementQueueX[0]);
 		} else {
-			Static102.method2075(Static173.self.movementQueueZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, Static173.self.movementQueueX[0]);
+			Static102.method2075(Static173.localPlayer.movementQueueZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, Static173.localPlayer.movementQueueX[0]);
 		}
 		Static25.y = Static60.clickY;
 		Static17.crossCycle = 0;

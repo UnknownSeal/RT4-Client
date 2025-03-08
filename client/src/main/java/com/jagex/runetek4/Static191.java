@@ -38,7 +38,7 @@ public final class Static191 {
 	public static final int[] anIntArray389 = new int[anInt4506];
 
 	@OriginalMember(owner = "runetek4.client!pg", name = "db", descriptor = "Lclient!na;")
-	public static final JagString aClass100_845 = Static28.parse(":assistreq:");
+	public static final JagString ASSISTREQ = Static28.parse(":assistreq:");
 
 	@OriginalMember(owner = "runetek4.client!pg", name = "eb", descriptor = "[I")
 	public static final int[] anIntArray390 = new int[anInt4506];

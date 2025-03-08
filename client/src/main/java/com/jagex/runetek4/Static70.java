@@ -37,7 +37,7 @@ public final class Static70 {
 	public static JagString method1548(@OriginalArg(1) int arg0) {
 		@Pc(9) JagString local9 = Static123.method2423(arg0);
 		for (@Pc(21) int local21 = local9.length() - 3; local21 > 0; local21 -= 3) {
-			local9 = Static34.method882(new JagString[] { local9.substring(local21, 0), Static159.aClass100_760, local9.method3136(local21) });
+			local9 = Static34.method882(new JagString[] { local9.substring(local21, 0), Static159.aClass100_760, local9.substring(local21) });
 		}
 		if (local9.length() > 9) {
 			return Static34.method882(new JagString[] { Static250.aClass100_1043, local9.substring(local9.length() - 8, 0), LocalizedText.MILLION_SHORT, Static123.aClass100_593, local9, Static116.aClass100_583 });

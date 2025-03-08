@@ -14,7 +14,7 @@ public final class Static201 {
 	public static int anInt1862 = 0;
 
 	@OriginalMember(owner = "runetek4.client!qf", name = "N", descriptor = "Lclient!na;")
-	public static final JagString aClass100_406 = Static28.parse("::cardmem");
+	public static final JagString CARDMEM = Static28.parse("::cardmem");
 
 	@OriginalMember(owner = "runetek4.client!qf", name = "Q", descriptor = "Lclient!na;")
 	public static final JagString aClass100_407 = Static28.parse(" )2> <col=ffff00>");

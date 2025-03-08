@@ -24,7 +24,7 @@ public final class Static241 {
 	public static SoftwareSprite[] aClass3_Sub2_Sub1_Sub1Array13;
 
 	@OriginalMember(owner = "runetek4.client!th", name = "h", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1088 = Static28.parse("::setparticles");
+	public static final JagString SETPARTICLES = Static28.parse("::setparticles");
 
 	@OriginalMember(owner = "runetek4.client!th", name = "i", descriptor = "[I")
 	public static final int[] anIntArray520 = new int[14];

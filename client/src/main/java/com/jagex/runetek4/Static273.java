@@ -16,7 +16,7 @@ public final class Static273 {
 	public static byte[][] aByteArrayArray13;
 
 	@OriginalMember(owner = "runetek4.client!we", name = "w", descriptor = "I")
-	public static int anInt4130 = 0;
+	public static int minimapZoom = 0;
 
 	@OriginalMember(owner = "runetek4.client!we", name = "a", descriptor = "(BI)I")
 	public static int fade(@OriginalArg(1) int t) {
@@ -56,7 +56,7 @@ public final class Static273 {
 					local48 = 3;
 				}
 				if (local46 == 2) {
-					local41 = Static141.anIntArray326[local33[local39++]];
+					local41 = Static141.skillBaseLevel[local33[local39++]];
 				}
 				if (local46 == 3) {
 					local41 = Static227.anIntArray446[local33[local39++]];
@@ -82,18 +82,18 @@ public final class Static273 {
 					local41 = Static7.anIntArray75[local33[local39++]];
 				}
 				if (local46 == 6) {
-					local41 = ObjType.table[Static141.anIntArray326[local33[local39++]] - 1];
+					local41 = ObjType.levelExperience[Static141.skillBaseLevel[local33[local39++]] - 1];
 				}
 				if (local46 == 7) {
 					local41 = Static7.anIntArray75[local33[local39++]] * 100 / 46875;
 				}
 				if (local46 == 8) {
-					local41 = Static173.self.anInt1652;
+					local41 = Static173.localPlayer.anInt1652;
 				}
 				if (local46 == 9) {
 					for (local124 = 0; local124 < 25; local124++) {
 						if (Static182.aBooleanArray97[local124]) {
-							local41 += Static141.anIntArray326[local124];
+							local41 += Static141.skillBaseLevel[local124];
 						}
 					}
 				}
@@ -127,10 +127,10 @@ public final class Static273 {
 					local41 = Static155.method2945(local124);
 				}
 				if (local46 == 18) {
-					local41 = (Static173.self.anInt3412 >> 7) + Static225.originX;
+					local41 = (Static173.localPlayer.x >> 7) + Static225.originX;
 				}
 				if (local46 == 19) {
-					local41 = (Static173.self.anInt3421 >> 7) + Static142.originZ;
+					local41 = (Static173.localPlayer.z >> 7) + Static142.originZ;
 				}
 				if (local46 == 20) {
 					local41 = local33[local39++];

@@ -267,7 +267,7 @@ public final class LocType {
 			this.contrast = packet.g1s() * 5;
 		} else if (code >= 30 && code < 35) {
 			this.op[code - 30] = packet.gjstr();
-			if (this.op[code - 30].method3111(LocalizedText.HIDDEN)) {
+			if (this.op[code - 30].equalsIgnoreCase(LocalizedText.HIDDEN)) {
 				this.op[code - 30] = null;
 			}
 		} else if (code == 40) {

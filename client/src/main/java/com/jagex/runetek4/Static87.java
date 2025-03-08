@@ -91,7 +91,7 @@ public final class Static87 {
 			local53 = local9[local20];
 			if (local53 != null) {
 				Static107.method2261();
-				Static269.method2203(Static148.aClass97Array1, arg0, Static80.anInt4701 * 8 - 48, local49, local38, (Static52.anInt1695 - 6) * 8, local53);
+				Static269.method2203(Static148.levelCollisionMap, arg0, Static80.anInt4701 * 8 - 48, local49, local38, (Static52.anInt1695 - 6) * 8, local53);
 			}
 		}
 		for (local20 = 0; local20 < local18; local20++) {
@@ -243,16 +243,16 @@ public final class Static87 {
 									continue;
 								}
 								local276 -= local30.anInt459 / 2;
-								local503 = Static57.anInt1747 + Static59.anInt1814 & 0x7FF;
+								local503 = Static57.orbitCameraYaw + Static59.minimapAnticheatAngle & 0x7FF;
 								local270 -= local30.anInt445 / 2;
 								local514 = MathUtils.anIntArray223[local503];
 								local518 = MathUtils.anIntArray225[local503];
-								local514 = (Static273.anInt4130 + 256) * local514 >> 8;
-								local518 = (Static273.anInt4130 + 256) * local518 >> 8;
+								local514 = (Static273.minimapZoom + 256) * local514 >> 8;
+								local518 = (Static273.minimapZoom + 256) * local518 >> 8;
 								local545 = local518 * local276 - local514 * local270 >> 11;
 								local556 = local276 * local514 + local270 * local518 >> 11;
-								local563 = Static173.self.anInt3412 + local556 >> 7;
-								local571 = Static173.self.anInt3421 - local545 >> 7;
+								local563 = Static173.localPlayer.x + local556 >> 7;
+								local571 = Static173.localPlayer.z - local545 >> 7;
 								if (Static241.aBoolean302 && (Static274.anInt4999 & 0x40) != 0) {
 									@Pc(583) Component local583 = Static201.method1418(Static98.anInt2512, Static15.anInt506);
 									if (local583 == null) {
@@ -327,7 +327,7 @@ public final class Static87 {
 								local276 += 15;
 								if (GlRenderer.enabled) {
 									local514 = 16776960;
-									local518 = (Static63.anInt1942 + Static63.anInt1945 + Static63.anInt1944) / 1024;
+									local518 = (Static63.oncard_texture + Static63.oncard_geometry + Static63.oncard_2d) / 1024;
 									if (local518 > 65536) {
 										local514 = 16711680;
 									}
@@ -699,20 +699,20 @@ public final class Static87 {
 													if (local514 == Static16.anInt549) {
 														local514 = 2047;
 													}
-													@Pc(2751) Player local2751 = Static159.aClass8_Sub4_Sub1Array1[local514];
+													@Pc(2751) Player local2751 = Static159.players[local514];
 													@Pc(2760) SeqType local2760 = local276 == -1 ? null : Static36.method941(local276);
 													if (local2751 != null && (int) local2751.username.encode37() << 11 == (local30.modelId & 0xFFFFF800)) {
 														local2589 = local2751.model.method1954(null, -1, null, local2760, 0, -1, 0, local30.anInt510, 0);
 													}
 												}
 											} else if (local276 == -1) {
-												local2589 = local30.method488(-1, null, -1, 0, local2587, Static173.self.model);
+												local2589 = local30.method488(-1, null, -1, 0, local2587, Static173.localPlayer.model);
 												if (local2589 == null && Static211.aBoolean72) {
 													Static43.method1143(local30);
 												}
 											} else {
 												@Pc(2689) SeqType local2689 = Static36.method941(local276);
-												local2589 = local30.method488(local30.anInt496, local2689, local30.anInt510, local30.anInt500, local2587, Static173.self.model);
+												local2589 = local30.method488(local30.anInt496, local2689, local30.anInt510, local30.anInt500, local2587, Static173.localPlayer.model);
 												if (local2589 == null && Static211.aBoolean72) {
 													Static43.method1143(local30);
 												}
@@ -822,7 +822,7 @@ public final class Static87 {
 														local3297 = Static186.aClass100_827;
 													} else {
 														local3325 = local3297.substring(local518, 0);
-														local3297 = local3297.method3136(local518 + 4);
+														local3297 = local3297.substring(local518 + 4);
 													}
 													local556 = local3299.method2858(local3325);
 													local276 += local3299.anInt3626 + 1;
@@ -860,7 +860,7 @@ public final class Static87 {
 														local3297 = Static186.aClass100_827;
 													} else {
 														local3325 = local3297.substring(local563, 0);
-														local3297 = local3297.method3136(local563 + 4);
+														local3297 = local3297.substring(local563 + 4);
 													}
 													local3299.method2857(local3325, local518 + 3, local545, 0, -1);
 													local545 += local3299.anInt3626 + 1;
@@ -907,7 +907,7 @@ public final class Static87 {
 		if (Static72.anInt2031 > 383) {
 			Static72.anInt2031 = 383;
 		}
-		Static57.anInt1747 &= 0x7FF;
+		Static57.orbitCameraYaw &= 0x7FF;
 		@Pc(33) int local33 = Static81.anInt2223 >> 7;
 		@Pc(37) int local37 = Static111.anInt2900 >> 7;
 		@Pc(43) int local43 = Static207.method3685(Static55.level, Static81.anInt2223, Static111.anInt2900);

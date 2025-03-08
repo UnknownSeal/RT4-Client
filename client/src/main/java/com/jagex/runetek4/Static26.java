@@ -17,7 +17,7 @@ public final class Static26 {
 	public static boolean focus;
 
 	@OriginalMember(owner = "client!ca", name = "X", descriptor = "Lclient!ih;")
-	public static LinkedList aClass69_27 = new LinkedList();
+	public static LinkedList spawnedLocations = new LinkedList();
 
 	@OriginalMember(owner = "client!ca", name = "cb", descriptor = "Lclient!na;")
 	public static final JagString aClass100_160 = Static165.method3165();
@@ -98,7 +98,7 @@ public final class Static26 {
 				@Pc(45) int local45 = (Static238.anIntArray470[local25] >> 8) * 64 - Static225.originX;
 				@Pc(56) int local56 = (Static238.anIntArray470[local25] & 0xFF) * 64 - Static142.originZ;
 				Static107.method2261();
-				Static124.method2437(local45, arg0, local32, local56, Static148.aClass97Array1);
+				Static124.method2437(local45, arg0, local32, local56, Static148.levelCollisionMap);
 			}
 		}
 	}

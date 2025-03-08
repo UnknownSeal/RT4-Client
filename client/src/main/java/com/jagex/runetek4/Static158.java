@@ -99,10 +99,10 @@ public final class Static158 {
 				if (Static124.socket.available() < Static229.aClass100Array156.length * 8) {
 					return;
 				}
-				Static57.inboundBuffer.pos = 0;
-				Static124.socket.method2827(0, Static229.aClass100Array156.length * 8, Static57.inboundBuffer.data);
+				Static57.in.pos = 0;
+				Static124.socket.read(0, Static229.aClass100Array156.length * 8, Static57.in.data);
 				for (local120 = 0; local120 < Static229.aClass100Array156.length; local120++) {
-					Static229.aClass100Array156[local120] = Static79.decode37(Static57.inboundBuffer.g8());
+					Static229.aClass100Array156[local120] = Static79.decode37(Static57.in.g8());
 				}
 				Static223.reply = 21;
 				Static179.step = 0;
@@ -163,9 +163,9 @@ public final class Static158 {
 					@Pc(129) int local129 = local103 & 0x3F;
 					@Pc(142) int local142 = local129 + (Static238.anIntArray470[local16] & 0xFF) * 64 - Static142.originZ;
 					@Pc(148) NPCType local148 = Static214.get(local74.g2());
-					if (Static175.aClass8_Sub4_Sub2Array1[local97] == null && (local148.walkflags & 0x1) > 0 && local107 == Static41.anInt1316 && local125 >= 0 && local148.size + local125 < 104 && local142 >= 0 && local142 + local148.size < 104) {
-						Static175.aClass8_Sub4_Sub2Array1[local97] = new NPCEntity();
-						@Pc(198) NPCEntity local198 = Static175.aClass8_Sub4_Sub2Array1[local97];
+					if (Static175.npcs[local97] == null && (local148.walkflags & 0x1) > 0 && local107 == Static41.anInt1316 && local125 >= 0 && local148.size + local125 < 104 && local142 >= 0 && local142 + local148.size < 104) {
+						Static175.npcs[local97] = new NPCEntity();
+						@Pc(198) NPCEntity local198 = Static175.npcs[local97];
 						Static33.anIntArray79[Static272.anInt5214++] = local97;
 						local198.anInt3430 = Static83.loopCycle;
 						local198.method2698(local148);

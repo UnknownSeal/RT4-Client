@@ -20,7 +20,7 @@ public final class Static185 {
 	public static int anInt4369 = 0;
 
 	@OriginalMember(owner = "runetek4.client!p", name = "f", descriptor = "Lclient!na;")
-	public static final JagString aClass100_823 = Static28.parse("::serverjs5drop");
+	public static final JagString SERVERJS5DROP = Static28.parse("::serverjs5drop");
 
 	@OriginalMember(owner = "runetek4.client!p", name = "a", descriptor = "(I)V")
 	public static void method3395() {

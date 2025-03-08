@@ -21,7 +21,7 @@ public final class Static230 {
 	public static int anInt5150 = 1;
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "q", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array158 = new JagString[100];
+	public static final JagString[] messageText = new JagString[100];
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "t", descriptor = "I")
 	public static int anInt5152 = 0;
@@ -36,7 +36,7 @@ public final class Static230 {
 	public static GameShell anApplet_Sub1_1 = null;
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "H", descriptor = "I")
-	public static int anInt5161 = 0;
+	public static int cameraAnticheatAngle = 0;
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "c", descriptor = "(I)V")
 	public static void method3947() {

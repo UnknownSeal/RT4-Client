@@ -96,7 +96,7 @@ public final class JagString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(ILclient!na;)Z")
-	public final boolean method3111(@OriginalArg(1) JagString arg0) {
+	public final boolean equalsIgnoreCase(@OriginalArg(1) JagString arg0) {
 		if (arg0 == null) {
 			return false;
 		} else if (this.anInt4030 == arg0.anInt4030) {
@@ -340,7 +340,7 @@ public final class JagString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "c", descriptor = "(Z)V")
-	public final void method3129() {
+	public final void printToConsole() {
 		@Pc(16) String local16;
 		try {
 			local16 = new String(this.aByteArray52, 0, this.anInt4030, "ISO-8859-1");
@@ -351,7 +351,7 @@ public final class JagString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "c", descriptor = "(BLclient!na;)Z")
-	public final boolean method3130(@OriginalArg(1) JagString arg0) {
+	public final boolean endsWith(@OriginalArg(1) JagString arg0) {
 		if (arg0.anInt4030 > this.anInt4030) {
 			return false;
 		}
@@ -420,7 +420,7 @@ public final class JagString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IB)Lclient!na;")
-	public final JagString method3136(@OriginalArg(0) int arg0) {
+	public final JagString substring(@OriginalArg(0) int arg0) {
 		return this.substring(this.anInt4030, arg0);
 	}
 
@@ -434,7 +434,7 @@ public final class JagString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "b", descriptor = "(Lclient!na;I)Z")
-	public final boolean method3138(@OriginalArg(0) JagString arg0) {
+	public final boolean startsWith(@OriginalArg(0) JagString arg0) {
 		if (this.anInt4030 < arg0.anInt4030) {
 			return false;
 		}

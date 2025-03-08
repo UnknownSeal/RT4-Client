@@ -22,13 +22,13 @@ public final class Static192 {
 			if (local17.anInt1192 < 0) {
 				local29 = -local17.anInt1192 - 1;
 				if (local29 == Static16.anInt549) {
-					local40 = Static173.self;
+					local40 = Static173.localPlayer;
 				} else {
-					local40 = Static159.aClass8_Sub4_Sub1Array1[local29];
+					local40 = Static159.players[local29];
 				}
 			} else {
 				local29 = local17.anInt1192 - 1;
-				local40 = Static175.aClass8_Sub4_Sub2Array1[local29];
+				local40 = Static175.npcs[local29];
 			}
 			if (local40 != null) {
 				@Pc(63) LocType local63 = Static271.get(local17.anInt1189);

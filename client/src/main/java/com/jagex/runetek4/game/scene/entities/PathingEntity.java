@@ -62,13 +62,13 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3411;
 
 	@OriginalMember(owner = "client!fe", name = "Qb", descriptor = "I")
-	public int anInt3412;
+	public int x;
 
 	@OriginalMember(owner = "client!fe", name = "Ub", descriptor = "I")
 	public int anInt3416;
 
 	@OriginalMember(owner = "client!fe", name = "ac", descriptor = "I")
-	public int anInt3421;
+	public int z;
 
 	@OriginalMember(owner = "client!fe", name = "dc", descriptor = "I")
 	public int anInt3424;
@@ -295,9 +295,9 @@ public abstract class PathingEntity extends Entity {
 		this.movementQueueZ[0] = arg2;
 		this.routeLength = 0;
 		this.anInt3405 = 0;
-		this.anInt3421 = arg0 * 64 + this.movementQueueZ[0] * 128;
-		this.anInt3412 = arg0 * 64 + this.movementQueueX[0] * 128;
-		if (GlRenderer.enabled && Static173.self == this) {
+		this.z = arg0 * 64 + this.movementQueueZ[0] * 128;
+		this.x = arg0 * 64 + this.movementQueueX[0] * 128;
+		if (GlRenderer.enabled && Static173.localPlayer == this) {
 			Static86.method1799();
 		}
 	}
@@ -367,13 +367,13 @@ public abstract class PathingEntity extends Entity {
 		@Pc(53) int local53 = -local27 / 2;
 		@Pc(64) int local64 = local53 * local43 - local48 * local39 >> 16;
 		@Pc(75) int local75 = local39 * local53 + local43 * local48 >> 16;
-		@Pc(87) int local87 = Static207.method3685(Static55.level, local75 + this.anInt3412, this.anInt3421 + local64);
+		@Pc(87) int local87 = Static207.method3685(Static55.level, local75 + this.x, this.z + local64);
 		@Pc(91) int local91 = local24 / 2;
 		@Pc(96) int local96 = -local27 / 2;
 		@Pc(106) int local106 = local91 * local43 + local96 * local39 >> 16;
 		@Pc(110) int local110 = local27 / 2;
 		@Pc(121) int local121 = local96 * local43 - local91 * local39 >> 16;
-		@Pc(134) int local134 = Static207.method3685(Static55.level, local106 + this.anInt3412, this.anInt3421 - -local121);
+		@Pc(134) int local134 = Static207.method3685(Static55.level, local106 + this.x, this.z - -local121);
 		@Pc(139) int local139 = -local24 / 2;
 		@Pc(150) int local150 = local110 * local43 - local39 * local139 >> 16;
 		@Pc(154) int local154 = local27 / 2;
@@ -381,9 +381,9 @@ public abstract class PathingEntity extends Entity {
 		@Pc(169) int local169 = local39 * local110 + local43 * local139 >> 16;
 		@Pc(179) int local179 = local154 * local43 - local39 * local158 >> 16;
 		@Pc(189) int local189 = local39 * local154 + local43 * local158 >> 16;
-		@Pc(201) int local201 = Static207.method3685(Static55.level, this.anInt3412 + local169, local150 + this.anInt3421);
+		@Pc(201) int local201 = Static207.method3685(Static55.level, this.x + local169, local150 + this.z);
 		@Pc(212) int local212 = local134 > local87 ? local87 : local134;
-		@Pc(224) int local224 = Static207.method3685(Static55.level, local189 + this.anInt3412, local179 + this.anInt3421);
+		@Pc(224) int local224 = Static207.method3685(Static55.level, local189 + this.x, local179 + this.z);
 		@Pc(231) int local231 = local224 > local201 ? local201 : local224;
 		@Pc(238) int local238 = local224 > local134 ? local134 : local224;
 		@Pc(245) int local245 = local201 <= local87 ? local201 : local87;

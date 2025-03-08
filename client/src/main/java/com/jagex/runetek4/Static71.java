@@ -75,7 +75,7 @@ public final class Static71 {
 			} else {
 				local21 = Static105.ids[local7];
 			}
-			@Pc(31) Player local31 = Static159.aClass8_Sub4_Sub1Array1[local21];
+			@Pc(31) Player local31 = Static159.players[local21];
 			if (local31 != null) {
 				Static263.method4514(local31.size(), local31);
 			}

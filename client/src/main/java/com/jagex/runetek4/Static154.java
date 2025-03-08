@@ -16,10 +16,10 @@ public final class Static154 {
 	public static int anInt3709;
 
 	@OriginalMember(owner = "runetek4.client!md", name = "Q", descriptor = "Lclient!na;")
-	public static final JagString aClass100_735 = Static28.parse("::mm");
+	public static final JagString MM = Static28.parse("::mm");
 
 	@OriginalMember(owner = "runetek4.client!md", name = "T", descriptor = "Lclient!na;")
-	public static final JagString aClass100_736 = Static28.parse("Shift)2click disabled)3");
+	public static final JagString SHIFTCLICK_DISABLED = Static28.parse("Shift)2click disabled)3");
 
 	@OriginalMember(owner = "runetek4.client!md", name = "V", descriptor = "[[S")
 	public static final short[][] aShortArrayArray6 = new short[][] { { 6798, 107, 10283, 16, 4797, 7744, 5799, 4634, -31839, 22433, 2983, -11343, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010 }, { 8741, 12, -1506, -22374, 7735, 8404, 1701, -27106, 24094, 10153, -8915, 4783, 1341, 16578, -30533, 25239, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010 }, { 25238, 8742, 12, -1506, -22374, 7735, 8404, 1701, -27106, 24094, 10153, -8915, 4783, 1341, 16578, -30533, 8, 5281, 10438, 3650, -27322, -21845, 200, 571, 908, 21830, 28946, -15701, -14010 }, { 4626, 11146, 6439, 12, 4758, 10270 }, { 4550, 4537, 5681, 5673, 5790, 6806, 8076, 4574 } };
@@ -59,7 +59,7 @@ public final class Static154 {
 		for (@Pc(14) int local14 = 99; local14 > 0; local14--) {
 			Static26.anIntArray67[local14] = Static26.anIntArray67[local14 - 1];
 			Static153.aClass100Array112[local14] = Static153.aClass100Array112[local14 - 1];
-			Static230.aClass100Array158[local14] = Static230.aClass100Array158[local14 - 1];
+			Static230.messageText[local14] = Static230.messageText[local14 - 1];
 			Static64.aClass100Array62[local14] = Static64.aClass100Array62[local14 - 1];
 			Static241.anIntArray521[local14] = Static241.anIntArray521[local14 - 1];
 		}
@@ -68,7 +68,7 @@ public final class Static154 {
 		Static153.aClass100Array112[0] = arg4;
 		Static49.anInt1464 = Static119.transmitTimer;
 		Static241.anIntArray521[0] = arg0;
-		Static230.aClass100Array158[0] = arg2;
+		Static230.messageText[0] = arg2;
 		Static64.aClass100Array62[0] = arg3;
 	}
 

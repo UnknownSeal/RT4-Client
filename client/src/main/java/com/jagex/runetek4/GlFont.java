@@ -193,7 +193,7 @@ public final class GlFont extends Font {
 		}
 		GlRenderer.setTextureId(this.anInt3638);
 		local155.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_LUMINANCE_ALPHA, this.anInt3640, this.anInt3640, 0, GL2.GL_LUMINANCE_ALPHA, GL2.GL_UNSIGNED_BYTE, local153);
-		Static63.anInt1944 += local153.limit() - this.anInt3637;
+		Static63.oncard_2d += local153.limit() - this.anInt3637;
 		this.anInt3637 = local153.limit();
 		local155.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_NEAREST);
 		local155.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_NEAREST);

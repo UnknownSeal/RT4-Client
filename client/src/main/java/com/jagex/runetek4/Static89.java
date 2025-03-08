@@ -56,7 +56,7 @@ public final class Static89 {
 							@Pc(98) int local98 = (local88 / 8 << 8) + local76 / 8;
 							for (@Pc(100) int local100 = 0; local100 < Static238.anIntArray470.length; local100++) {
 								if (Static238.anIntArray470[local100] == local98 && local13[local100] != null) {
-									Static245.method4228(local82, local32 * 8, local21, Static148.aClass97Array1, local39 * 8, local13[local100], local65, (local76 & 0x7) * 8, (local88 & 0x7) * 8, arg0);
+									Static245.method4228(local82, local32 * 8, local21, Static148.levelCollisionMap, local39 * 8, local13[local100], local65, (local76 & 0x7) * 8, (local88 & 0x7) * 8, arg0);
 									local54 = true;
 									break;
 								}
@@ -241,7 +241,7 @@ public final class Static89 {
 				}
 			}
 		}
-		Static110.method2281(Static178.anInt4247, Static173.self.anInt3412, Static173.self.anInt3421, Static55.level);
+		Static110.method2281(Static178.anInt4247, Static173.localPlayer.x, Static173.localPlayer.z, Static55.level);
 		Static178.anInt4247 = 0;
 	}
 

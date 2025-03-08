@@ -14,7 +14,7 @@ public final class Static114 {
 	public static int anInt5831 = 0;
 
 	@OriginalMember(owner = "runetek4.client!j", name = "z", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1099 = Static28.parse("::shiftclick");
+	public static final JagString SHIFTCLICK = Static28.parse("::shiftclick");
 
 	@OriginalMember(owner = "runetek4.client!j", name = "K", descriptor = "I")
 	public static int anInt5843 = 0;
@@ -23,7 +23,7 @@ public final class Static114 {
 	public static int anInt5844 = 0;
 
 	@OriginalMember(owner = "runetek4.client!j", name = "M", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1100 = Static28.parse("::replacecanvas");
+	public static final JagString REPLACECANVAS = Static28.parse("::replacecanvas");
 
 	@OriginalMember(owner = "runetek4.client!j", name = "O", descriptor = "[I")
 	public static final int[] anIntArray565 = new int[] { 1, -1, -1, 1 };

@@ -17,7 +17,7 @@ public final class Static50 {
 	public static int[] anIntArray134 = new int[2];
 
 	@OriginalMember(owner = "runetek4.client!e", name = "Ac", descriptor = "Lclient!na;")
-	public static final JagString aClass100_362 = Static28.parse("Forced tweening ENABLED(Q");
+	public static final JagString FORCES_TWEENING_ENABLED = Static28.parse("Forced tweening ENABLED(Q");
 
 	@OriginalMember(owner = "runetek4.client!e", name = "Dc", descriptor = "Lclient!na;")
 	public static final JagString aClass100_363 = Static28.parse("_labels");

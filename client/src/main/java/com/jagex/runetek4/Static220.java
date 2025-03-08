@@ -22,7 +22,7 @@ public final class Static220 {
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(IBI)V")
 	public static void method3797(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(9) LinkedList local9 = Static159.aClass69ArrayArrayArray1[Static55.level][arg1][arg0];
+		@Pc(9) LinkedList local9 = Static159.levelObjStacks[Static55.level][arg1][arg0];
 		if (local9 == null) {
 			Static187.method3420(Static55.level, arg1, arg0);
 			return;

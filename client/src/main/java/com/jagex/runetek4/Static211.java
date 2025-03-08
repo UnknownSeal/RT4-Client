@@ -22,7 +22,7 @@ public final class Static211 {
 	public static final JagString aClass100_231 = Static28.parse(")3)3)3");
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "K", descriptor = "Lclient!na;")
-	public static final JagString aClass100_232 = Static28.parse("::rect_debug");
+	public static final JagString RECT_DEBUG = Static28.parse("::rect_debug");
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "M", descriptor = "Z")
 	public static boolean aBoolean73 = false;

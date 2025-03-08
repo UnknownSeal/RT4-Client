@@ -30,5 +30,5 @@ public final class Static240 {
 	public static int removedCount = 0;
 
 	@OriginalMember(owner = "runetek4.client!tg", name = "i", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1009 = Static28.parse("::pcachesize");
+	public static final JagString PCACHESIZE = Static28.parse("::pcachesize");
 }

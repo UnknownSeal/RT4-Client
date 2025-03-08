@@ -31,10 +31,10 @@ public final class Static37 {
 		@Pc(43) int local43;
 		@Pc(36) int local36;
 		if (arg0.anInt3370 != -1 && arg0.anInt3370 < 32768) {
-			@Pc(26) NPCEntity local26 = Static175.aClass8_Sub4_Sub2Array1[arg0.anInt3370];
+			@Pc(26) NPCEntity local26 = Static175.npcs[arg0.anInt3370];
 			if (local26 != null) {
-				local36 = arg0.anInt3421 - local26.anInt3421;
-				local43 = arg0.anInt3412 - local26.anInt3412;
+				local36 = arg0.z - local26.z;
+				local43 = arg0.x - local26.x;
 				if (local43 != 0 || local36 != 0) {
 					arg0.anInt3400 = (int) (Math.atan2((double) local43, (double) local36) * 325.949D) & 0x7FF;
 				}
@@ -47,18 +47,18 @@ public final class Static37 {
 			if (local70 == Static16.anInt549) {
 				local70 = 2047;
 			}
-			@Pc(83) Player local83 = Static159.aClass8_Sub4_Sub1Array1[local70];
+			@Pc(83) Player local83 = Static159.players[local70];
 			if (local83 != null) {
-				local94 = arg0.anInt3421 - local83.anInt3421;
-				local36 = arg0.anInt3412 - local83.anInt3412;
+				local94 = arg0.z - local83.z;
+				local36 = arg0.x - local83.x;
 				if (local36 != 0 || local94 != 0) {
 					arg0.anInt3400 = (int) (Math.atan2((double) local36, (double) local94) * 325.949D) & 0x7FF;
 				}
 			}
 		}
 		if ((arg0.anInt3382 != 0 || arg0.anInt3363 != 0) && (arg0.routeLength == 0 || arg0.anInt3417 > 0)) {
-			local70 = arg0.anInt3412 - (arg0.anInt3382 - Static225.originX - Static225.originX) * 64;
-			local43 = arg0.anInt3421 - (arg0.anInt3363 - Static142.originZ - Static142.originZ) * 64;
+			local70 = arg0.x - (arg0.anInt3382 - Static225.originX - Static225.originX) * 64;
+			local43 = arg0.z - (arg0.anInt3363 - Static142.originZ - Static142.originZ) * 64;
 			if (local70 != 0 || local43 != 0) {
 				arg0.anInt3400 = (int) (Math.atan2((double) local70, (double) local43) * 325.949D) & 0x7FF;
 			}

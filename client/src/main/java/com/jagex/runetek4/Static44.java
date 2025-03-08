@@ -27,25 +27,25 @@ public final class Static44 {
 		Static6.outboundBuffer.pos = 0;
 		Static5.anInt45 = -1;
 		Static60.aBoolean108 = false;
-		Static223.anInt5028 = 0;
+		Static223.packetSize = 0;
 		Static115.anInt2939 = 0;
 		PreciseSleep.anInt5204 = 0;
 		Static230.anInt5152 = -1;
 		Static270.anInt5795 = 0;
 		Static60.rebootTimer = 0;
 		Static49.anInt1462 = -1;
-		Static57.inboundBuffer.pos = 0;
+		Static57.in.pos = 0;
 		Static201.anInt1862 = 0;
-		Static164.anInt3985 = -1;
+		Static164.packetType = -1;
 		@Pc(35) int local35;
-		for (local35 = 0; local35 < Static159.aClass8_Sub4_Sub1Array1.length; local35++) {
-			if (Static159.aClass8_Sub4_Sub1Array1[local35] != null) {
-				Static159.aClass8_Sub4_Sub1Array1[local35].anInt3370 = -1;
+		for (local35 = 0; local35 < Static159.players.length; local35++) {
+			if (Static159.players[local35] != null) {
+				Static159.players[local35].anInt3370 = -1;
 			}
 		}
-		for (local35 = 0; local35 < Static175.aClass8_Sub4_Sub2Array1.length; local35++) {
-			if (Static175.aClass8_Sub4_Sub2Array1[local35] != null) {
-				Static175.aClass8_Sub4_Sub2Array1[local35].anInt3370 = -1;
+		for (local35 = 0; local35 < Static175.npcs.length; local35++) {
+			if (Static175.npcs[local35] != null) {
+				Static175.npcs[local35].anInt3370 = -1;
 			}
 		}
 		Static102.method2073();

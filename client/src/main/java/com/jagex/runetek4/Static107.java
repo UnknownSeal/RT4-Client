@@ -19,7 +19,7 @@ public final class Static107 {
 	public static int anInt2875 = -1;
 
 	@OriginalMember(owner = "runetek4.client!id", name = "c", descriptor = "Lclient!na;")
-	public static final JagString aClass100_566 = Static28.parse("::fpson");
+	public static final JagString FPSON = Static28.parse("::fpson");
 
 	@OriginalMember(owner = "runetek4.client!id", name = "d", descriptor = "[[[I")
 	public static final int[][][] anIntArrayArrayArray9 = new int[2][][];

@@ -21,7 +21,7 @@ public final class Static103 {
 	public static final JagString aClass100_558 = Static28.parse("m");
 
 	@OriginalMember(owner = "runetek4.client!i", name = "a", descriptor = "(Lclient!na;ILclient!na;I)V")
-	public static void method2231(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JagString arg2) {
+	public static void addMessage(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JagString arg2) {
 		Static154.add(-1, arg1, arg2, null, arg0);
 	}
 
@@ -40,9 +40,9 @@ public final class Static103 {
 		@Pc(36) int local36 = (int) Static159.aLongArray5[arg0];
 		@Pc(43) Player local43;
 		if (local23 == 31) {
-			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
+			local43 = Static159.players[local36];
 			if (local43 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
 				Static122.x = Static7.clickX;
@@ -72,9 +72,9 @@ public final class Static103 {
 		}
 		@Pc(192) NPCEntity local192;
 		if (local23 == 19) {
-			local192 = Static175.aClass8_Sub4_Sub2Array1[local36];
+			local192 = Static175.npcs[local36];
 			if (local192 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static122.x = Static7.clickX;
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
@@ -84,9 +84,9 @@ public final class Static103 {
 			}
 		}
 		if (local23 == 17) {
-			local192 = Static175.aClass8_Sub4_Sub2Array1[local36];
+			local192 = Static175.npcs[local36];
 			if (local192 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static122.x = Static7.clickX;
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
@@ -96,9 +96,9 @@ public final class Static103 {
 			}
 		}
 		if (local23 == 44) {
-			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
+			local43 = Static159.players[local36];
 			if (local43 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static122.x = Static7.clickX;
 				Static70.crossMode = 2;
 				Static25.y = Static60.clickY;
@@ -127,9 +127,9 @@ public final class Static103 {
 			Static153.method2909();
 		}
 		if (local23 == 45) {
-			local192 = Static175.aClass8_Sub4_Sub2Array1[local36];
+			local192 = Static175.npcs[local36];
 			if (local192 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static122.x = Static7.clickX;
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
@@ -143,11 +143,11 @@ public final class Static103 {
 		@Pc(560) boolean local560;
 		if (local23 == 18) {
 			if (Static266.game == 1) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 			} else {
-				local560 = Static102.method2075(Static173.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, Static173.self.movementQueueX[0]);
+				local560 = Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 				if (!local560) {
-					Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
+					Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 				}
 			}
 			Static122.x = Static7.clickX;
@@ -181,7 +181,7 @@ public final class Static103 {
 				Static6.outboundBuffer.pIsaac1(92);
 				Static6.outboundBuffer.p2_alt3(local36);
 			} else {
-				method2231(Static186.aClass100_827, 0, Static34.method882(new JagString[] { Static123.method2423(local693.objCounts[local15]), Static249.aClass100_1039, Static71.get(local36).name}));
+				addMessage(Static186.aClass100_827, 0, Static34.method882(new JagString[] { Static123.method2423(local693.objCounts[local15]), Static249.aClass100_1039, Static71.get(local36).name}));
 			}
 			Static72.anInt2043 = 0;
 			Static257.aClass13_7 = Static5.getComponent(local19);
@@ -193,16 +193,16 @@ public final class Static103 {
 			} else if (local36 == 1) {
 				if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
 					Static61.teleport(Static225.originX + local15, Static142.originZ + local19, Static55.level);
-				} else if (Static102.method2075(Static173.self.movementQueueZ[0], 0, 0, true, 0, local15, 0, 0, 1, local19, Static173.self.movementQueueX[0])) {
+				} else if (Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 0, true, 0, local15, 0, 0, 1, local19, Static173.localPlayer.movementQueueX[0])) {
 					Static6.outboundBuffer.p1b(Static1.anInt5);
 					Static6.outboundBuffer.p1b(Static107.anInt2878);
-					Static6.outboundBuffer.p2(Static57.anInt1747);
+					Static6.outboundBuffer.p2(Static57.orbitCameraYaw);
 					Static6.outboundBuffer.p1b(57);
-					Static6.outboundBuffer.p1b(Static59.anInt1814);
-					Static6.outboundBuffer.p1b(Static273.anInt4130);
+					Static6.outboundBuffer.p1b(Static59.minimapAnticheatAngle);
+					Static6.outboundBuffer.p1b(Static273.minimapZoom);
 					Static6.outboundBuffer.p1b(89);
-					Static6.outboundBuffer.p2(Static173.self.anInt3412);
-					Static6.outboundBuffer.p2(Static173.self.anInt3421);
+					Static6.outboundBuffer.p2(Static173.localPlayer.x);
+					Static6.outboundBuffer.p2(Static173.localPlayer.z);
 					Static6.outboundBuffer.p1b(Static221.anInt4364);
 					Static6.outboundBuffer.p1b(63);
 				}
@@ -213,7 +213,7 @@ public final class Static103 {
 			Static70.crossMode = 2;
 			Static25.y = Static60.clickY;
 			Static122.x = Static7.clickX;
-			local192 = Static175.aClass8_Sub4_Sub2Array1[local36];
+			local192 = Static175.npcs[local36];
 			if (local192 != null) {
 				@Pc(884) NPCType local884 = local192.npcType;
 				if (local884.multinpc != null) {
@@ -246,9 +246,9 @@ public final class Static103 {
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 10) {
-			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
+			local43 = Static159.players[local36];
 			if (local43 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static70.crossMode = 2;
 				Static25.y = Static60.clickY;
 				Static122.x = Static7.clickX;
@@ -288,9 +288,9 @@ public final class Static103 {
 			Static6.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
 		}
 		if (local23 == 37) {
-			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
+			local43 = Static159.players[local36];
 			if (local43 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
 				Static25.y = Static60.clickY;
@@ -313,11 +313,11 @@ public final class Static103 {
 		}
 		if (local23 == 21) {
 			if (Static266.game == 1) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 			} else {
-				local560 = Static102.method2075(Static173.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, Static173.self.movementQueueX[0]);
+				local560 = Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 				if (!local560) {
-					Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
+					Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 				}
 			}
 			Static70.crossMode = 2;
@@ -330,9 +330,9 @@ public final class Static103 {
 			Static6.outboundBuffer.p2_alt3(Static142.originZ + local19);
 		}
 		if (local23 == 4) {
-			local192 = Static175.aClass8_Sub4_Sub2Array1[local36];
+			local192 = Static175.npcs[local36];
 			if (local192 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
 				Static25.y = Static60.clickY;
@@ -361,9 +361,9 @@ public final class Static103 {
 			return;
 		}
 		if (local23 == 29) {
-			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
+			local43 = Static159.players[local36];
 			if (local43 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static25.y = Static60.clickY;
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
@@ -382,9 +382,9 @@ public final class Static103 {
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 15) {
-			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
+			local43 = Static159.players[local36];
 			if (local43 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
 				Static122.x = Static7.clickX;
@@ -397,11 +397,11 @@ public final class Static103 {
 		}
 		if (local23 == 34) {
 			if (Static266.game == 1) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 			} else {
-				local560 = Static102.method2075(Static173.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, Static173.self.movementQueueX[0]);
+				local560 = Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 				if (!local560) {
-					Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
+					Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 				}
 			}
 			Static122.x = Static7.clickX;
@@ -423,9 +423,9 @@ public final class Static103 {
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 2) {
-			local192 = Static175.aClass8_Sub4_Sub2Array1[local36];
+			local192 = Static175.npcs[local36];
 			if (local192 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static25.y = Static60.clickY;
 				Static70.crossMode = 2;
 				Static122.x = Static7.clickX;
@@ -448,9 +448,9 @@ public final class Static103 {
 			}
 		}
 		if (local23 == 26) {
-			local192 = Static175.aClass8_Sub4_Sub2Array1[local36];
+			local192 = Static175.npcs[local36];
 			if (local192 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
 				Static25.y = Static60.clickY;
@@ -473,9 +473,9 @@ public final class Static103 {
 			}
 		}
 		if (local23 == 33) {
-			local560 = Static102.method2075(Static173.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, Static173.self.movementQueueX[0]);
+			local560 = Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 			if (!local560) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 			}
 			Static122.x = Static7.clickX;
 			Static17.crossCycle = 0;
@@ -521,9 +521,9 @@ public final class Static103 {
 			}
 		}
 		if (local23 == 1) {
-			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
+			local43 = Static159.players[local36];
 			if (local43 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static17.crossCycle = 0;
 				Static25.y = Static60.clickY;
 				Static70.crossMode = 2;
@@ -546,11 +546,11 @@ public final class Static103 {
 		}
 		if (local23 == 24) {
 			if (Static266.game == 1) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 			} else {
-				local560 = Static102.method2075(Static173.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, Static173.self.movementQueueX[0]);
+				local560 = Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 				if (!local560) {
-					Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
+					Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 				}
 			}
 			Static70.crossMode = 2;
@@ -580,9 +580,9 @@ public final class Static103 {
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 57) {
-			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
+			local43 = Static159.players[local36];
 			if (local43 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static70.crossMode = 2;
 				Static25.y = Static60.clickY;
 				Static122.x = Static7.clickX;
@@ -622,9 +622,9 @@ public final class Static103 {
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 30) {
-			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
+			local43 = Static159.players[local36];
 			if (local43 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static17.crossCycle = 0;
 				Static122.x = Static7.clickX;
 				Static25.y = Static60.clickY;
@@ -643,9 +643,9 @@ public final class Static103 {
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 39) {
-			local560 = Static102.method2075(Static173.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, Static173.self.movementQueueX[0]);
+			local560 = Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 			if (!local560) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 			}
 			Static25.y = Static60.clickY;
 			Static122.x = Static7.clickX;
@@ -678,9 +678,9 @@ public final class Static103 {
 			}
 		}
 		if (local23 == 6) {
-			local43 = Static159.aClass8_Sub4_Sub1Array1[local36];
+			local43 = Static159.players[local36];
 			if (local43 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static25.y = Static60.clickY;
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
@@ -691,11 +691,11 @@ public final class Static103 {
 		}
 		if (local23 == 20) {
 			if (Static266.game == 1) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 			} else {
-				local560 = Static102.method2075(Static173.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, Static173.self.movementQueueX[0]);
+				local560 = Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 				if (!local560) {
-					Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.self.movementQueueX[0]);
+					Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.movementQueueX[0]);
 				}
 			}
 			Static25.y = Static60.clickY;
@@ -708,9 +708,9 @@ public final class Static103 {
 			Static6.outboundBuffer.p2_alt1(Static142.originZ + local19);
 		}
 		if (local23 == 16) {
-			local192 = Static175.aClass8_Sub4_Sub2Array1[local36];
+			local192 = Static175.npcs[local36];
 			if (local192 != null) {
-				Static102.method2075(Static173.self.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.self.movementQueueX[0]);
+				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local192.movementQueueX[0], 1, 0, 2, local192.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
 				Static122.x = Static7.clickX;
 				Static17.crossCycle = 0;
 				Static25.y = Static60.clickY;

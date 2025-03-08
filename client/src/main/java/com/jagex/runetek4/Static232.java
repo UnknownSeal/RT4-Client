@@ -85,7 +85,7 @@ public final class Static232 {
 			Static129.method2502(local285.anInt4307, local285.anInt4314, 9, local11);
 			Static241.aClass3_Sub2_Sub1_Sub1Array13[local285.anInt4308].drawSprite(local285.anInt4307 - 7, local285.anInt4314 + -7);
 		}
-		Static172.aClass69_97.method2278();
+		Static172.aClass69_97.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!sm", name = "a", descriptor = "(II)V")

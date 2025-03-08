@@ -37,8 +37,8 @@ public final class Static280 {
 			@Pc(64) int local64 = arg0.anInt3428 * 128 + arg0.size() * 64;
 			@Pc(75) int local75 = arg0.anInt3416 * 128 + arg0.size() * 64;
 			@Pc(86) int local86 = arg0.anInt3392 * 128 + arg0.size() * 64;
-			arg0.anInt3412 = (local41 * local75 + local52 * (local35 - local41)) / local35;
-			arg0.anInt3421 = (local86 * local41 + local64 * (local35 - local41)) / local35;
+			arg0.x = (local41 * local75 + local52 * (local35 - local41)) / local35;
+			arg0.z = (local86 * local41 + local64 * (local35 - local41)) / local35;
 		}
 		arg0.anInt3417 = 0;
 		if (arg0.anInt3431 == 0) {

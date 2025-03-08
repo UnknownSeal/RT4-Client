@@ -25,21 +25,21 @@ public final class Static217 {
 	public static final int[] anIntArray434 = new int[64];
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "ab", descriptor = "Lclient!na;")
-	public static final JagString aClass100_916 = Static28.parse(":clanreq:");
+	public static final JagString CLANREQ = Static28.parse(":clanreq:");
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "a", descriptor = "(IIILclient!e;I)V")
 	public static void method3767(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Player arg2, @OriginalArg(4) int arg3) {
-		if (Static173.self == arg2 || PreciseSleep.anInt5204 >= 400) {
+		if (Static173.localPlayer == arg2 || PreciseSleep.anInt5204 >= 400) {
 			return;
 		}
 		@Pc(158) JagString local158;
 		if (arg2.anInt1671 == 0) {
 			@Pc(22) boolean local22 = true;
-			if (Static173.self.anInt1667 != -1 && arg2.anInt1667 != -1) {
-				@Pc(43) int local43 = arg2.anInt1652 < Static173.self.anInt1652 ? Static173.self.anInt1652 : arg2.anInt1652;
-				@Pc(58) int local58 = Static173.self.anInt1667 < arg2.anInt1667 ? Static173.self.anInt1667 : arg2.anInt1667;
+			if (Static173.localPlayer.anInt1667 != -1 && arg2.anInt1667 != -1) {
+				@Pc(43) int local43 = arg2.anInt1652 < Static173.localPlayer.anInt1652 ? Static173.localPlayer.anInt1652 : arg2.anInt1652;
+				@Pc(58) int local58 = Static173.localPlayer.anInt1667 < arg2.anInt1667 ? Static173.localPlayer.anInt1667 : arg2.anInt1667;
 				@Pc(69) int local69 = local43 * 10 / 100 + local58 + 5;
-				@Pc(76) int local76 = Static173.self.anInt1652 - arg2.anInt1652;
+				@Pc(76) int local76 = Static173.localPlayer.anInt1652 - arg2.anInt1652;
 				if (local76 < 0) {
 					local76 = -local76;
 				}
@@ -49,9 +49,9 @@ public final class Static217 {
 			}
 			@Pc(95) JagString local95 = Static266.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
 			if (arg2.anInt1652 < arg2.anInt1656) {
-				local158 = Static34.method882(new JagString[] { arg2.getName(), local22 ? Static123.method2420(arg2.anInt1652, Static173.self.anInt1652) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.anInt1652), Static78.aClass100_465, Static123.method2423(arg2.anInt1656 - arg2.anInt1652), Static72.aClass100_448 });
+				local158 = Static34.method882(new JagString[] { arg2.getName(), local22 ? Static123.method2420(arg2.anInt1652, Static173.localPlayer.anInt1652) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.anInt1652), Static78.aClass100_465, Static123.method2423(arg2.anInt1656 - arg2.anInt1652), Static72.aClass100_448 });
 			} else {
-				local158 = Static34.method882(new JagString[] { arg2.getName(), local22 ? Static123.method2420(arg2.anInt1652, Static173.self.anInt1652) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.anInt1652), Static72.aClass100_448 });
+				local158 = Static34.method882(new JagString[] { arg2.getName(), local22 ? Static123.method2420(arg2.anInt1652, Static173.localPlayer.anInt1652) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.anInt1652), Static72.aClass100_448 });
 			}
 		} else {
 			local158 = Static34.method882(new JagString[] { arg2.getName(), Static123.aClass100_593, LocalizedText.SKILL, Static123.method2423(arg2.anInt1671), Static72.aClass100_448 });
@@ -63,12 +63,12 @@ public final class Static217 {
 			for (local275 = 7; local275 >= 0; local275--) {
 				if (Static160.aClass100Array121[local275] != null) {
 					@Pc(291) short local291 = 0;
-					if (Static266.game == 0 && Static160.aClass100Array121[local275].method3111(LocalizedText.ATTACK)) {
-						if (arg2.anInt1652 > Static173.self.anInt1652) {
+					if (Static266.game == 0 && Static160.aClass100Array121[local275].equalsIgnoreCase(LocalizedText.ATTACK)) {
+						if (arg2.anInt1652 > Static173.localPlayer.anInt1652) {
 							local291 = 2000;
 						}
-						if (Static173.self.anInt1650 != 0 && arg2.anInt1650 != 0) {
-							if (Static173.self.anInt1650 == arg2.anInt1650) {
+						if (Static173.localPlayer.anInt1650 != 0 && arg2.anInt1650 != 0) {
+							if (Static173.localPlayer.anInt1650 == arg2.anInt1650) {
 								local291 = 2000;
 							} else {
 								local291 = 0;

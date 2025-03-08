@@ -26,7 +26,7 @@ public final class Static124 {
 	public static final SoftLruHashTable aClass99_17 = new SoftLruHashTable(50);
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "F", descriptor = "Lclient!na;")
-	public static final JagString aClass100_596 = Static28.parse("::tween");
+	public static final JagString TWEEN = Static28.parse("::tween");
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "G", descriptor = "Z")
 	public static boolean aBoolean157 = false;

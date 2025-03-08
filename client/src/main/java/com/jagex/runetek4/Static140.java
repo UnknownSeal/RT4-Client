@@ -44,28 +44,28 @@ public final class Static140 {
 			return;
 		}
 		if (Static35.size >= 100) {
-			Static103.method2231(Static186.aClass100_827, 0, LocalizedText.IGNORELISTFULL);
+			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.IGNORELISTFULL);
 			return;
 		}
 		@Pc(34) JagString local34 = Static79.decode37(arg0).method3125();
 		@Pc(36) int local36;
 		for (local36 = 0; local36 < Static35.size; local36++) {
-			if (Static190.encodedUsernames[local36] == arg0) {
-				Static103.method2231(Static186.aClass100_827, 0, Static34.method882(new JagString[] { local34, LocalizedText.IGNORELISTDUPE}));
+			if (Static190.ignoreName37[local36] == arg0) {
+				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JagString[] { local34, LocalizedText.IGNORELISTDUPE}));
 				return;
 			}
 		}
 		for (local36 = 0; local36 < Static9.anInt178; local36++) {
 			if (Static92.aLongArray3[local36] == arg0) {
-				Static103.method2231(Static186.aClass100_827, 0, Static34.method882(new JagString[] { LocalizedText.REMOVESOCIAL2, local34, LocalizedText.REMOVEFRIEND}));
+				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JagString[] { LocalizedText.REMOVESOCIAL2, local34, LocalizedText.REMOVEFRIEND}));
 				return;
 			}
 		}
-		if (local34.method3108(Static173.self.username)) {
-			Static103.method2231(Static186.aClass100_827, 0, LocalizedText.IGNORECANTADDSELF);
+		if (local34.method3108(Static173.localPlayer.username)) {
+			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.IGNORECANTADDSELF);
 			return;
 		}
-		Static190.encodedUsernames[Static35.size] = arg0;
+		Static190.ignoreName37[Static35.size] = arg0;
 		Static193.aClass100Array134[Static35.size++] = Static79.decode37(arg0);
 		Static185.anInt4369 = Static119.transmitTimer;
 		Static6.outboundBuffer.pIsaac1(34);

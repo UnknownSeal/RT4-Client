@@ -14,17 +14,17 @@ public final class Static256 {
 
 	@OriginalMember(owner = "runetek4.client!um", name = "a", descriptor = "(Z)V")
 	public static void method4392() {
-		Player.inTutorialIsland = 0;
-		@Pc(17) int local17 = Static225.originX + (Static173.self.anInt3412 >> 7);
-		@Pc(25) int local25 = (Static173.self.anInt3421 >> 7) + Static142.originZ;
+		Player.overrideChat = 0;
+		@Pc(17) int local17 = Static225.originX + (Static173.localPlayer.x >> 7);
+		@Pc(25) int local25 = (Static173.localPlayer.z >> 7) + Static142.originZ;
 		if (local17 >= 3053 && local17 <= 3156 && local25 >= 3056 && local25 <= 3136) {
-			Player.inTutorialIsland = 1;
+			Player.overrideChat = 1;
 		}
 		if (local17 >= 3072 && local17 <= 3118 && local25 >= 9492 && local25 <= 9535) {
-			Player.inTutorialIsland = 1;
+			Player.overrideChat = 1;
 		}
-		if (Player.inTutorialIsland == 1 && local17 >= 3139 && local17 <= 3199 && local25 >= 3008 && local25 <= 3062) {
-			Player.inTutorialIsland = 0;
+		if (Player.overrideChat == 1 && local17 >= 3139 && local17 <= 3199 && local25 >= 3008 && local25 <= 3062) {
+			Player.overrideChat = 0;
 		}
 	}
 

@@ -19,7 +19,7 @@ public final class Static96 {
 	public static final JagString aClass100_521 = Static28.parse("::tele ");
 
 	@OriginalMember(owner = "runetek4.client!hh", name = "k", descriptor = "Lclient!na;")
-	public static final JagString aClass100_522 = Static28.parse("::wm0");
+	public static final JagString WM0 = Static28.parse("::wm0");
 
 	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(II)V")
 	public static void method1949(@OriginalArg(1) int arg0) {
@@ -48,7 +48,7 @@ public final class Static96 {
 		Static84.anIntArray209[0] = arg11;
 		@Pc(69) int local69 = 0;
 		@Pc(71) boolean local71 = false;
-		@Pc(76) int[][] local76 = Static148.aClass97Array1[Static55.level].flags;
+		@Pc(76) int[][] local76 = Static148.levelCollisionMap[Static55.level].flags;
 		@Pc(201) int local201;
 		@Pc(242) int local242;
 		label397: while (local69 != local65) {
@@ -60,16 +60,16 @@ public final class Static96 {
 				break;
 			}
 			if (arg6 != 0) {
-				if ((arg6 < 5 || arg6 == 10) && Static148.aClass97Array1[Static55.level].method3042(arg0, local3, local10, arg5, arg6 - 1, arg4, arg3)) {
+				if ((arg6 < 5 || arg6 == 10) && Static148.levelCollisionMap[Static55.level].method3042(arg0, local3, local10, arg5, arg6 - 1, arg4, arg3)) {
 					local71 = true;
 					break;
 				}
-				if (arg6 < 10 && Static148.aClass97Array1[Static55.level].method3046(arg0, arg6 - 1, arg5, local10, arg4, arg3, local3)) {
+				if (arg6 < 10 && Static148.levelCollisionMap[Static55.level].method3046(arg0, arg6 - 1, arg5, local10, arg4, arg3, local3)) {
 					local71 = true;
 					break;
 				}
 			}
-			if (arg1 != 0 && arg9 != 0 && Static148.aClass97Array1[Static55.level].method3052(arg5, local10, local3, arg4, arg1, arg7, arg0, arg9)) {
+			if (arg1 != 0 && arg9 != 0 && Static148.levelCollisionMap[Static55.level].method3052(arg5, local10, local3, arg4, arg1, arg7, arg0, arg9)) {
 				local71 = true;
 				break;
 			}

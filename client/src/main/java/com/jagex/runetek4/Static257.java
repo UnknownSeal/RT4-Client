@@ -22,7 +22,7 @@ public final class Static257 {
 	public static final float[] aFloatArray2 = new float[] { 0.073F, 0.169F, 0.24F, 1.0F };
 
 	@OriginalMember(owner = "runetek4.client!v", name = "d", descriptor = "Lclient!na;")
-	public static final JagString aClass100_99 = Static28.parse("::clientdrop");
+	public static final JagString CLIENTDROP = Static28.parse("::clientdrop");
 
 	@OriginalMember(owner = "runetek4.client!v", name = "a", descriptor = "(IIIJ)Z")
 	public static boolean method523(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) long arg3) {

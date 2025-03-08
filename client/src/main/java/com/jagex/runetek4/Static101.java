@@ -28,7 +28,7 @@ public final class Static101 {
 	@OriginalMember(owner = "runetek4.client!hm", name = "a", descriptor = "(Lclient!na;B)I")
 	public static int method2053(@OriginalArg(0) JagString arg0) {
 		for (@Pc(12) int local12 = 0; local12 < Static153.aClass100Array113.length; local12++) {
-			if (Static153.aClass100Array113[local12].method3111(arg0)) {
+			if (Static153.aClass100Array113[local12].equalsIgnoreCase(arg0)) {
 				return local12;
 			}
 		}

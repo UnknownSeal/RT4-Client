@@ -20,10 +20,10 @@ public final class Static148 {
 	public static int anInt3535;
 
 	@OriginalMember(owner = "runetek4.client!li", name = "h", descriptor = "[Lclient!mj;")
-	public static final CollisionMap[] aClass97Array1 = new CollisionMap[4];
+	public static final CollisionMap[] levelCollisionMap = new CollisionMap[4];
 
 	@OriginalMember(owner = "runetek4.client!li", name = "p", descriptor = "Lclient!na;")
-	public static final JagString aClass100_677 = Static28.parse("::rebuild");
+	public static final JagString REBUILD = Static28.parse("::rebuild");
 
 	@OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(ZI)V")
 	public static void method2765(@OriginalArg(1) int arg0) {

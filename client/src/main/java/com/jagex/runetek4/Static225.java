@@ -28,42 +28,42 @@ public final class Static225 {
 	@OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "(I)V")
 	public static void method3889() {
 		while (true) {
-			if (Static57.inboundBuffer.bitsAvailable(Static223.anInt5028) >= 11) {
-				@Pc(20) int local20 = Static57.inboundBuffer.gBit(11);
+			if (Static57.in.bitsAvailable(Static223.packetSize) >= 11) {
+				@Pc(20) int local20 = Static57.in.gBit(11);
 				if (local20 != 2047) {
 					@Pc(27) boolean local27 = false;
-					if (Static159.aClass8_Sub4_Sub1Array1[local20] == null) {
-						Static159.aClass8_Sub4_Sub1Array1[local20] = new Player();
+					if (Static159.players[local20] == null) {
+						Static159.players[local20] = new Player();
 						local27 = true;
-						if (Static115.aClass3_Sub15Array1[local20] != null) {
-							Static159.aClass8_Sub4_Sub1Array1[local20].method1262(Static115.aClass3_Sub15Array1[local20]);
+						if (Static115.playerAppearanceBuffer[local20] != null) {
+							Static159.players[local20].method1262(Static115.playerAppearanceBuffer[local20]);
 						}
 					}
 					Static105.ids[Static267.size++] = local20;
-					@Pc(65) Player local65 = Static159.aClass8_Sub4_Sub1Array1[local20];
+					@Pc(65) Player local65 = Static159.players[local20];
 					local65.anInt3430 = Static83.loopCycle;
-					@Pc(73) int local73 = Static57.inboundBuffer.gBit(1);
+					@Pc(73) int local73 = Static57.in.gBit(1);
 					if (local73 == 1) {
 						Static44.anIntArray106[Static116.anInt2951++] = local20;
 					}
-					@Pc(92) int local92 = Static57.inboundBuffer.gBit(5);
-					@Pc(99) int local99 = Static56.anIntArray141[Static57.inboundBuffer.gBit(3)];
+					@Pc(92) int local92 = Static57.in.gBit(5);
+					@Pc(99) int local99 = Static56.anIntArray141[Static57.in.gBit(3)];
 					if (local92 > 15) {
 						local92 -= 32;
 					}
 					if (local27) {
 						local65.anInt3400 = local65.anInt3381 = local99;
 					}
-					@Pc(116) int local116 = Static57.inboundBuffer.gBit(1);
-					@Pc(121) int local121 = Static57.inboundBuffer.gBit(5);
+					@Pc(116) int local116 = Static57.in.gBit(1);
+					@Pc(121) int local121 = Static57.in.gBit(5);
 					if (local121 > 15) {
 						local121 -= 32;
 					}
-					local65.method1265(local92 + Static173.self.movementQueueX[0], local116 == 1, Static173.self.movementQueueZ[0] + local121);
+					local65.method1265(local92 + Static173.localPlayer.movementQueueX[0], local116 == 1, Static173.localPlayer.movementQueueZ[0] + local121);
 					continue;
 				}
 			}
-			Static57.inboundBuffer.accessBytes();
+			Static57.in.accessBytes();
 			return;
 		}
 	}

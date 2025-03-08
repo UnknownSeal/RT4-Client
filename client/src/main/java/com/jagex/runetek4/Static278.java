@@ -23,35 +23,35 @@ public final class Static278 {
 	@OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(I)V")
 	public static void method4645() {
 		while (true) {
-			if (Static57.inboundBuffer.bitsAvailable(Static223.anInt5028) >= 27) {
-				@Pc(14) int local14 = Static57.inboundBuffer.gBit(15);
+			if (Static57.in.bitsAvailable(Static223.packetSize) >= 27) {
+				@Pc(14) int local14 = Static57.in.gBit(15);
 				if (local14 != 32767) {
 					@Pc(19) boolean local19 = false;
-					if (Static175.aClass8_Sub4_Sub2Array1[local14] == null) {
+					if (Static175.npcs[local14] == null) {
 						local19 = true;
-						Static175.aClass8_Sub4_Sub2Array1[local14] = new NPCEntity();
+						Static175.npcs[local14] = new NPCEntity();
 					}
-					@Pc(37) NPCEntity local37 = Static175.aClass8_Sub4_Sub2Array1[local14];
+					@Pc(37) NPCEntity local37 = Static175.npcs[local14];
 					Static33.anIntArray79[Static272.anInt5214++] = local14;
 					local37.anInt3430 = Static83.loopCycle;
 					if (local37.npcType != null && local37.npcType.hasBackgroundSound()) {
 						Static91.method1877(local37);
 					}
-					@Pc(66) int local66 = Static57.inboundBuffer.gBit(1);
-					@Pc(73) int local73 = Static56.anIntArray141[Static57.inboundBuffer.gBit(3)];
+					@Pc(66) int local66 = Static57.in.gBit(1);
+					@Pc(73) int local73 = Static56.anIntArray141[Static57.in.gBit(3)];
 					if (local19) {
 						local37.anInt3400 = local37.anInt3381 = local73;
 					}
-					@Pc(86) int local86 = Static57.inboundBuffer.gBit(1);
+					@Pc(86) int local86 = Static57.in.gBit(1);
 					if (local86 == 1) {
 						Static44.anIntArray106[Static116.anInt2951++] = local14;
 					}
-					@Pc(105) int local105 = Static57.inboundBuffer.gBit(5);
-					local37.method2698(Static214.get(Static57.inboundBuffer.gBit(14)));
+					@Pc(105) int local105 = Static57.in.gBit(5);
+					local37.method2698(Static214.get(Static57.in.gBit(14)));
 					if (local105 > 15) {
 						local105 -= 32;
 					}
-					@Pc(124) int local124 = Static57.inboundBuffer.gBit(5);
+					@Pc(124) int local124 = Static57.in.gBit(5);
 					if (local124 > 15) {
 						local124 -= 32;
 					}
@@ -61,14 +61,14 @@ public final class Static278 {
 					if (local37.anInt3376 == 0) {
 						local37.anInt3381 = 0;
 					}
-					local37.method2683(local37.size(), Static173.self.movementQueueX[0] + local124, local105 + Static173.self.movementQueueZ[0], local66 == 1);
+					local37.method2683(local37.size(), Static173.localPlayer.movementQueueX[0] + local124, local105 + Static173.localPlayer.movementQueueZ[0], local66 == 1);
 					if (local37.npcType.hasBackgroundSound()) {
 						AreaSoundManager.add(local37.movementQueueZ[0], null, 0, local37, local37.movementQueueX[0], Static55.level, null);
 					}
 					continue;
 				}
 			}
-			Static57.inboundBuffer.accessBytes();
+			Static57.in.accessBytes();
 			return;
 		}
 	}
@@ -189,7 +189,7 @@ public final class Static278 {
 		Static65.method1500();
 		@Pc(19) int local19;
 		for (local19 = 0; local19 < 4; local19++) {
-			Static148.aClass97Array1[local19].reset();
+			Static148.levelCollisionMap[local19].reset();
 		}
 		Static116.method2325(false);
 		System.gc();
@@ -208,16 +208,16 @@ public final class Static278 {
 		Static267.size = 0;
 		Static272.anInt5214 = 0;
 		for (local19 = 0; local19 < 2048; local19++) {
-			Static159.aClass8_Sub4_Sub1Array1[local19] = null;
-			Static115.aClass3_Sub15Array1[local19] = null;
+			Static159.players[local19] = null;
+			Static115.playerAppearanceBuffer[local19] = null;
 		}
 		for (local19 = 0; local19 < 32768; local19++) {
-			Static175.aClass8_Sub4_Sub2Array1[local19] = null;
+			Static175.npcs[local19] = null;
 		}
 		for (local19 = 0; local19 < 4; local19++) {
 			for (@Pc(115) int local115 = 0; local115 < 104; local115++) {
 				for (@Pc(122) int local122 = 0; local122 < 104; local122++) {
-					Static159.aClass69ArrayArrayArray1[local19][local115][local122] = null;
+					Static159.levelObjStacks[local19][local115][local122] = null;
 				}
 			}
 		}

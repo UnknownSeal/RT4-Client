@@ -33,7 +33,7 @@ public final class Static251 {
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "a", descriptor = "(B)V")
 	public static void loop() {
-		for (@Pc(10) Class3_Sub7 local10 = (Class3_Sub7) Static26.aClass69_27.head(); local10 != null; local10 = (Class3_Sub7) Static26.aClass69_27.next()) {
+		for (@Pc(10) Class3_Sub7 local10 = (Class3_Sub7) Static26.spawnedLocations.head(); local10 != null; local10 = (Class3_Sub7) Static26.spawnedLocations.next()) {
 			if (local10.anInt924 > 0) {
 				local10.anInt924--;
 			}

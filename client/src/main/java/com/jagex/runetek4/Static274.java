@@ -27,7 +27,7 @@ public final class Static274 {
 	public static final ModelUnlit[] aClass8_Sub5Array5 = new ModelUnlit[4];
 
 	@OriginalMember(owner = "runetek4.client!wf", name = "s", descriptor = "Lclient!na;")
-	public static final JagString aClass100_943 = Static28.parse("Forced tweening disabled)3");
+	public static final JagString FORCED_TWEENING_DISABLED = Static28.parse("Forced tweening disabled)3");
 
 	@OriginalMember(owner = "runetek4.client!wf", name = "a", descriptor = "(II)I")
 	public static int method3845(@OriginalArg(0) int arg0) {

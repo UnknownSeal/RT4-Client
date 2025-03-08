@@ -48,9 +48,9 @@ public final class Static73 {
 		}
 		Static35.anInt1092 = -1;
 		client.method1750(Static270.anInt5794);
-		Static173.self = new Player();
-		Static173.self.anInt3421 = 3000;
-		Static173.self.anInt3412 = 3000;
+		Static173.localPlayer = new Player();
+		Static173.localPlayer.z = 3000;
+		Static173.localPlayer.x = 3000;
 		if (!GlRenderer.enabled) {
 			Static145.method2743(Static209.aClass153_86);
 			Static196.method3534(10);

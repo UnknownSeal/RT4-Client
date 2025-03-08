@@ -35,11 +35,11 @@ public final class Static142 {
 		for (local5 = -1; local5 < Static267.size + Static272.anInt5214; local5++) {
 			@Pc(17) PathingEntity local17;
 			if (local5 == -1) {
-				local17 = Static173.self;
+				local17 = Static173.localPlayer;
 			} else if (Static267.size > local5) {
-				local17 = Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local5]];
+				local17 = Static159.players[Static105.ids[local5]];
 			} else {
-				local17 = Static175.aClass8_Sub4_Sub2Array1[Static33.anIntArray79[local5 - Static267.size]];
+				local17 = Static175.npcs[Static33.anIntArray79[local5 - Static267.size]];
 			}
 			if (local17 != null && local17.exists()) {
 				@Pc(58) NPCType local58;

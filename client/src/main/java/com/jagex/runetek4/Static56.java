@@ -21,7 +21,7 @@ public final class Static56 {
 	public static final int[] anIntArray142 = new int[500];
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "f", descriptor = "Lclient!na;")
-	public static final JagString aClass100_379 = Static28.parse(":duelstake:");
+	public static final JagString DUELSTAKE = Static28.parse(":duelstake:");
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "g", descriptor = "I")
 	public static int anInt1742 = -1;

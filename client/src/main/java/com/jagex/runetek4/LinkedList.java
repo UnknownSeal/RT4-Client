@@ -22,7 +22,7 @@ public final class LinkedList {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "a", descriptor = "(I)V")
-	public final void method2278() {
+	public final void clear() {
 		while (true) {
 			@Pc(5) Node local5 = this.aClass3_109.prev;
 			if (local5 == this.aClass3_109) {

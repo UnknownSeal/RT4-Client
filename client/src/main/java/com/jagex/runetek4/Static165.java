@@ -25,7 +25,7 @@ public final class Static165 {
 	public static int anInt4035 = 0;
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "e", descriptor = "Lclient!na;")
-	public static final JagString aClass100_775 = Static28.parse("::breakcon");
+	public static final JagString BREAKCON = Static28.parse("::breakcon");
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "j", descriptor = "I")
 	public static volatile int anInt4039 = -1;

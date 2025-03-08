@@ -469,7 +469,7 @@ public class GlSprite extends Sprite {
 		}
 		GlRenderer.setTextureId(this.anInt1872);
 		local93.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, this.anInt1870, this.anInt1874, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, local91);
-		Static63.anInt1944 += local91.limit() - this.anInt1869;
+		Static63.oncard_2d += local91.limit() - this.anInt1869;
 		this.anInt1869 = local91.limit();
 	}
 

@@ -288,7 +288,7 @@ public final class client extends GameShell {
 		if (Static147.aClass62_2 != null) {
 			Static147.aClass62_2.method3575();
 		}
-		js5NetQueue.method2329();
+		js5NetQueue.clientDrop();
 		js5CacheQueue.method2466();
 		try {
 			if (cacheData != null) {
@@ -494,7 +494,7 @@ public final class client extends GameShell {
 		Static119.transmitTimer++;
 		if (GlRenderer.enabled) {
 			label191: for (@Pc(57) int local57 = 0; local57 < 32768; local57++) {
-				@Pc(66) NPCEntity npcEntity = Static175.aClass8_Sub4_Sub2Array1[local57];
+				@Pc(66) NPCEntity npcEntity = Static175.npcs[local57];
 				if (npcEntity != null) {
 					@Pc(73) byte walkflags = npcEntity.npcType.walkflags;
 					if ((walkflags & 0x2) > 0 && npcEntity.routeLength == 0 && Math.random() * 1000.0D < 10.0D) {
@@ -502,14 +502,14 @@ public final class client extends GameShell {
 						@Pc(106) int local106 = (int) Math.round(Math.random() * 2.0D - 1.0D);
 						if (local98 != 0 || local106 != 0) {
 							npcEntity.aByteArray48[0] = 1;
-							npcEntity.movementQueueX[0] = local98 + (npcEntity.anInt3412 >> 7);
-							npcEntity.movementQueueZ[0] = local106 + (npcEntity.anInt3421 >> 7);
-							Static148.aClass97Array1[Static55.level].method3056(npcEntity.anInt3412 >> 7, npcEntity.size(), false, 0, npcEntity.size(), npcEntity.anInt3421 >> 7);
-							if (npcEntity.movementQueueX[0] >= 0 && npcEntity.movementQueueX[0] <= 104 - npcEntity.size() && npcEntity.movementQueueZ[0] >= 0 && npcEntity.movementQueueZ[0] <= 104 - npcEntity.size() && Static148.aClass97Array1[Static55.level].method3054(npcEntity.anInt3421 >> 7, npcEntity.movementQueueZ[0], npcEntity.movementQueueX[0], npcEntity.anInt3412 >> 7)) {
+							npcEntity.movementQueueX[0] = local98 + (npcEntity.x >> 7);
+							npcEntity.movementQueueZ[0] = local106 + (npcEntity.z >> 7);
+							Static148.levelCollisionMap[Static55.level].method3056(npcEntity.x >> 7, npcEntity.size(), false, 0, npcEntity.size(), npcEntity.z >> 7);
+							if (npcEntity.movementQueueX[0] >= 0 && npcEntity.movementQueueX[0] <= 104 - npcEntity.size() && npcEntity.movementQueueZ[0] >= 0 && npcEntity.movementQueueZ[0] <= 104 - npcEntity.size() && Static148.levelCollisionMap[Static55.level].method3054(npcEntity.z >> 7, npcEntity.movementQueueZ[0], npcEntity.movementQueueX[0], npcEntity.x >> 7)) {
 								if (npcEntity.size() > 1) {
 									for (@Pc(226) int local226 = npcEntity.movementQueueX[0]; npcEntity.movementQueueX[0] + npcEntity.size() > local226; local226++) {
 										for (@Pc(246) int local246 = npcEntity.movementQueueZ[0]; npcEntity.movementQueueZ[0] + npcEntity.size() > local246; local246++) {
-											if ((Static148.aClass97Array1[Static55.level].flags[local226][local246] & 0x12401FF) != 0) {
+											if ((Static148.levelCollisionMap[Static55.level].flags[local226][local246] & 0x12401FF) != 0) {
 												continue label191;
 											}
 										}
@@ -522,7 +522,7 @@ public final class client extends GameShell {
 					Static104.method2247(npcEntity);
 					Static37.method949(npcEntity);
 					Static34.method879(npcEntity);
-					Static148.aClass97Array1[Static55.level].method3043(npcEntity.anInt3412 >> 7, false, npcEntity.anInt3421 >> 7, npcEntity.size(), npcEntity.size());
+					Static148.levelCollisionMap[Static55.level].method3043(npcEntity.x >> 7, false, npcEntity.z >> 7, npcEntity.size(), npcEntity.size());
 				}
 			}
 		}
@@ -730,7 +730,7 @@ public final class client extends GameShell {
 		if (Static166.anInt4051 == 10) {
 			Static120.method2392();
 			for (local98 = 0; local98 < 4; local98++) {
-				Static148.aClass97Array1[local98] = new CollisionMap(104, 104);
+				Static148.levelCollisionMap[local98] = new CollisionMap(104, 104);
 			}
 			Static199.anInt4670 = 10;
 			Static166.anInt4051 = 30;

@@ -194,7 +194,7 @@ public final class NPCType {
 			this.size = packet.g1();
 		} else if (code >= 30 && code < 35) {
 			this.ops[code - 30] = packet.gjstr();
-			if (this.ops[code - 30].method3111(LocalizedText.HIDDEN)) {
+			if (this.ops[code - 30].equalsIgnoreCase(LocalizedText.HIDDEN)) {
 				this.ops[code - 30] = null;
 			}
 		} else if (code == 40) {
@@ -564,7 +564,7 @@ public final class NPCType {
 						local721 |= Static6.aClass3_Sub2_Sub7Array1[local235].method901(local214);
 						local725 |= local753.aBoolean278;
 					}
-					if ((local753.aBoolean277 || Static204.aBoolean234) && local207 != -1 && local753.anIntArray473.length > local207) {
+					if ((local753.aBoolean277 || Static204.tween) && local207 != -1 && local753.anIntArray473.length > local207) {
 						Static71.anIntArray147[local235] = local753.frames[local200];
 						Static214.anIntArray492[local235] = arg0[local235].anInt5404;
 						local228 = local753.anIntArray473[local207];
@@ -607,7 +607,7 @@ public final class NPCType {
 				local721 |= local962.method901(local235);
 				local725 |= arg8.aBoolean278;
 			}
-			if ((arg8.aBoolean277 || Static204.aBoolean234) && arg3 != -1 && arg8.anIntArray473.length > arg3) {
+			if ((arg8.aBoolean277 || Static204.tween) && arg3 != -1 && arg8.anIntArray473.length > arg3) {
 				local200 = arg8.frames[arg5];
 				local221 = arg8.anIntArray473[arg3];
 				local1040 = local221 >>> 16;
@@ -638,7 +638,7 @@ public final class NPCType {
 				local721 |= local1088.method901(local228);
 				local725 |= arg6.aBoolean278;
 			}
-			if ((arg6.aBoolean277 || Static204.aBoolean234) && arg1 != -1 && arg1 < arg6.anIntArray473.length) {
+			if ((arg6.aBoolean277 || Static204.tween) && arg1 != -1 && arg1 < arg6.anIntArray473.length) {
 				local300 = arg6.frames[arg2];
 				local1040 = arg6.anIntArray473[arg1];
 				local318 = local1040 >>> 16;

@@ -38,8 +38,8 @@ public final class Static250 {
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "a", descriptor = "(B)V")
 	public static void method4273() {
-		@Pc(14) int local14 = Static173.self.anInt3412 + Static132.anInt3291;
-		@Pc(20) int local20 = Static173.self.anInt3421 + Static206.anInt4774;
+		@Pc(14) int local14 = Static173.localPlayer.x + Static132.cameraAnticheatOffsetX;
+		@Pc(20) int local20 = Static173.localPlayer.z + Static206.cameraAnticheatOffsetZ;
 		if (Static81.anInt2223 - local14 < -500 || Static81.anInt2223 - local14 > 500 || Static111.anInt2900 - local20 < -500 || Static111.anInt2900 - local20 > 500) {
 			Static81.anInt2223 = local14;
 			Static111.anInt2900 = local20;
@@ -58,9 +58,9 @@ public final class Static250 {
 				} else if (local104 == 99) {
 					Static72.anInt2031 = Static72.anInt2031 - 17 & 0xFFFFFFF0;
 				} else if (local104 == 96) {
-					Static57.anInt1747 = Static57.anInt1747 - 65 & 0xFFFFFF80;
+					Static57.orbitCameraYaw = Static57.orbitCameraYaw - 65 & 0xFFFFFF80;
 				} else if (local104 == 97) {
-					Static57.anInt1747 = Static57.anInt1747 + 191 & 0xFFFFFF80;
+					Static57.orbitCameraYaw = Static57.orbitCameraYaw + 191 & 0xFFFFFF80;
 				}
 			}
 		} else {
@@ -79,7 +79,7 @@ public final class Static250 {
 				Static38.anInt1203 /= 2;
 			}
 			Static72.anInt2031 += Static56.anInt1743 / 2;
-			Static57.anInt1747 += Static38.anInt1203 / 2;
+			Static57.orbitCameraYaw += Static38.anInt1203 / 2;
 		}
 		Static87.method1812();
 	}

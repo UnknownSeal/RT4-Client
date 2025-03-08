@@ -14,7 +14,7 @@ public final class Static244 {
 
 
 	@OriginalMember(owner = "runetek4.client!tl", name = "f", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1014 = Static28.parse(":assist:");
+	public static final JagString ASSIST = Static28.parse(":assist:");
 
 	@OriginalMember(owner = "runetek4.client!tl", name = "i", descriptor = "Lclient!na;")
 	public static final JagString aClass100_1017 = Static28.parse(")1");

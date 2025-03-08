@@ -20,13 +20,13 @@ public final class Static164 {
 	public static boolean aBoolean191 = false;
 
 	@OriginalMember(owner = "runetek4.client!na", name = "l", descriptor = "I")
-	public static int anInt3985 = 0;
+	public static int packetType = 0;
 
 	@OriginalMember(owner = "runetek4.client!na", name = "o", descriptor = "I")
 	public static int anInt3988 = 0;
 
 	@OriginalMember(owner = "runetek4.client!na", name = "cb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_770 = Static28.parse(":allyreq:");
+	public static final JagString ALLYREQ = Static28.parse(":allyreq:");
 
 	@OriginalMember(owner = "runetek4.client!na", name = "mb", descriptor = "[I")
 	public static final int[] anIntArray362 = new int[50];

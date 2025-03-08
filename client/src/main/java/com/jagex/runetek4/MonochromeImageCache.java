@@ -73,7 +73,7 @@ public final class MonochromeImageCache {
 		}
 		this.aClass3_Sub23Array1 = null;
 		this.anIntArrayArrayArray13 = null;
-		this.aClass69_96.method2278();
+		this.aClass69_96.clear();
 		this.aClass69_96 = null;
 	}
 

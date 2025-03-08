@@ -67,10 +67,10 @@ public final class Static245 {
 	public static void method4226() {
 		for (@Pc(7) int local7 = 0; local7 < Static116.anInt2951; local7++) {
 			@Pc(31) int local31 = Static44.anIntArray106[local7];
-			@Pc(35) Player local35 = Static159.aClass8_Sub4_Sub1Array1[local31];
-			@Pc(39) int local39 = Static57.inboundBuffer.g1();
+			@Pc(35) Player local35 = Static159.players[local31];
+			@Pc(39) int local39 = Static57.in.g1();
 			if ((local39 & 0x10) != 0) {
-				local39 += Static57.inboundBuffer.g1() << 8;
+				local39 += Static57.in.g1() << 8;
 			}
 			Static84.method1768(local39, local31, local35);
 		}

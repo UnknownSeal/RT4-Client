@@ -47,7 +47,7 @@ public final class ColorImageCache {
 		}
 		this.anIntArrayArray34 = null;
 		this.aClass3_Sub28Array1 = null;
-		this.aClass69_103.method2278();
+		this.aClass69_103.clear();
 		this.aClass69_103 = null;
 	}
 

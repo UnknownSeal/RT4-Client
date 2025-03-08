@@ -16,7 +16,7 @@ public final class Static272 {
 	public static final JagString aClass100_989 = Static28.parse("cookieprefix");
 
 	@OriginalMember(owner = "runetek4.client!wd", name = "f", descriptor = "Lclient!na;")
-	public static final JagString aClass100_990 = Static28.parse("::errortest");
+	public static final JagString ERRORTEST = Static28.parse("::errortest");
 
 	@OriginalMember(owner = "runetek4.client!wd", name = "g", descriptor = "I")
 	public static int anInt5214 = 0;

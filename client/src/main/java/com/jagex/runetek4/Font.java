@@ -106,9 +106,9 @@ public abstract class Font extends SecondaryNode {
 						local22 = 169;
 					} else {
 						if (!local42.method3108(Static218.aClass100_718)) {
-							if (local42.method3138(Static218.aClass100_715)) {
+							if (local42.startsWith(Static218.aClass100_715)) {
 								try {
-									local120 = local42.method3136(4).method3132();
+									local120 = local42.substring(4).method3132();
 									@Pc(125) IndexedSprite local125 = this.aClass36Array11[local120];
 									@Pc(136) int local136 = this.anIntArray346 == null ? local125.anInt4276 : this.anIntArray346[local120];
 									if (Static218.anInt3631 == 256) {
@@ -233,9 +233,9 @@ public abstract class Font extends SecondaryNode {
 						local23 = 169;
 					} else {
 						if (!local43.method3108(Static218.aClass100_718)) {
-							if (local43.method3138(Static218.aClass100_715)) {
+							if (local43.startsWith(Static218.aClass100_715)) {
 								try {
-									@Pc(121) int local121 = local43.method3136(4).method3132();
+									@Pc(121) int local121 = local43.substring(4).method3132();
 									local9 += this.aClass36Array11[local121].anInt4279;
 									local7 = 0;
 								} catch (@Pc(133) Exception local133) {
@@ -286,28 +286,28 @@ public abstract class Font extends SecondaryNode {
 	@OriginalMember(owner = "client!rk", name = "b", descriptor = "(Lclient!na;)V")
 	private void method2861(@OriginalArg(0) JagString arg0) {
 		try {
-			if (arg0.method3138(Static218.aClass100_705)) {
-				Static218.anInt3635 = arg0.method3136(4).method3110(16);
+			if (arg0.startsWith(Static218.aClass100_705)) {
+				Static218.anInt3635 = arg0.substring(4).method3110(16);
 			} else if (arg0.method3108(Static218.aClass100_703)) {
 				Static218.anInt3635 = Static218.anInt3630;
-			} else if (arg0.method3138(Static218.aClass100_699)) {
-				Static218.anInt3631 = arg0.method3136(6).method3132();
+			} else if (arg0.startsWith(Static218.aClass100_699)) {
+				Static218.anInt3631 = arg0.substring(6).method3132();
 			} else if (arg0.method3108(Static218.aClass100_709)) {
 				Static218.anInt3631 = Static218.anInt3632;
-			} else if (arg0.method3138(Static218.aClass100_701)) {
-				Static218.anInt3627 = arg0.method3136(4).method3110(16);
+			} else if (arg0.startsWith(Static218.aClass100_701)) {
+				Static218.anInt3627 = arg0.substring(4).method3110(16);
 			} else if (arg0.method3108(Static218.aClass100_719)) {
 				Static218.anInt3627 = 8388608;
 			} else if (arg0.method3108(Static218.aClass100_717)) {
 				Static218.anInt3627 = -1;
-			} else if (arg0.method3138(Static218.aClass100_700)) {
-				Static218.anInt3628 = arg0.method3136(2).method3110(16);
+			} else if (arg0.startsWith(Static218.aClass100_700)) {
+				Static218.anInt3628 = arg0.substring(2).method3110(16);
 			} else if (arg0.method3108(Static218.aClass100_707)) {
 				Static218.anInt3628 = 0;
 			} else if (arg0.method3108(Static218.aClass100_712)) {
 				Static218.anInt3628 = -1;
-			} else if (arg0.method3138(Static218.aClass100_697)) {
-				Static218.anInt3634 = arg0.method3136(5).method3110(16);
+			} else if (arg0.startsWith(Static218.aClass100_697)) {
+				Static218.anInt3634 = arg0.substring(5).method3110(16);
 			} else if (arg0.method3108(Static218.aClass100_714)) {
 				Static218.anInt3634 = 0;
 			} else if (arg0.method3108(Static218.aClass100_704)) {
@@ -438,9 +438,9 @@ public abstract class Font extends SecondaryNode {
 							local9 += this.aByteArray50[(local21 << 8) + 174];
 						}
 						local21 = 174;
-					} else if (local57.method3138(Static218.aClass100_715)) {
+					} else if (local57.startsWith(Static218.aClass100_715)) {
 						try {
-							@Pc(377) int local377 = local57.method3136(4).method3132();
+							@Pc(377) int local377 = local57.substring(4).method3132();
 							local9 += this.aClass36Array11[local377].anInt4279;
 							local21 = 0;
 						} catch (@Pc(389) Exception local389) {
@@ -776,7 +776,7 @@ public abstract class Font extends SecondaryNode {
 						local24 = 169;
 					} else {
 						if (!local44.method3108(Static218.aClass100_718)) {
-							if (local44.method3138(Static218.aClass100_715)) {
+							if (local44.startsWith(Static218.aClass100_715)) {
 								try {
 									if (arg3 == null) {
 										local121 = 0;
@@ -789,7 +789,7 @@ public abstract class Font extends SecondaryNode {
 										local130 = arg4[local10];
 									}
 									local10++;
-									local141 = local44.method3136(4).method3132();
+									local141 = local44.substring(4).method3132();
 									@Pc(146) IndexedSprite local146 = this.aClass36Array11[local141];
 									@Pc(157) int local157 = this.anIntArray346 == null ? local146.anInt4276 : this.anIntArray346[local141];
 									if (Static218.anInt3631 == 256) {

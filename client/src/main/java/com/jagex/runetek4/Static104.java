@@ -32,13 +32,13 @@ public final class Static104 {
 				return;
 			}
 		}
-		@Pc(79) int local79 = arg0.anInt3412;
-		@Pc(82) int local82 = arg0.anInt3421;
+		@Pc(79) int local79 = arg0.x;
+		@Pc(82) int local82 = arg0.z;
 		@Pc(99) int local99 = arg0.movementQueueX[arg0.routeLength - 1] * 128 + arg0.size() * 64;
 		@Pc(116) int local116 = arg0.movementQueueZ[arg0.routeLength - 1] * 128 + arg0.size() * 64;
 		if (local99 - local79 > 256 || local99 - local79 < -256 || local116 - local82 > 256 || local116 - local82 < -256) {
-			arg0.anInt3412 = local99;
-			arg0.anInt3421 = local116;
+			arg0.x = local99;
+			arg0.z = local116;
 			return;
 		}
 		if (local99 <= local79) {
@@ -141,9 +141,9 @@ public final class Static104 {
 		if (local9.anInt1032 != -1) {
 			local273 <<= 0x7;
 			if (arg0.routeLength == 1) {
-				@Pc(594) int local594 = (local99 >= arg0.anInt3412 ? local99 - arg0.anInt3412 : -local99 + arg0.anInt3412) << 7;
+				@Pc(594) int local594 = (local99 >= arg0.x ? local99 - arg0.x : -local99 + arg0.x) << 7;
 				@Pc(600) int local600 = arg0.anInt3358 * arg0.anInt3358;
-				@Pc(622) int local622 = (local116 < arg0.anInt3421 ? arg0.anInt3421 - local116 : -arg0.anInt3421 + local116) << 7;
+				@Pc(622) int local622 = (local116 < arg0.z ? arg0.z - local116 : -arg0.z + local116) << 7;
 				@Pc(629) int local629 = local594 > local622 ? local594 : local622;
 				@Pc(636) int local636 = local9.anInt1032 * 2 * local629;
 				if (local636 < local600) {
@@ -176,28 +176,28 @@ public final class Static104 {
 			}
 		}
 		if (local79 < local99) {
-			arg0.anInt3412 += local273;
-			if (local99 < arg0.anInt3412) {
-				arg0.anInt3412 = local99;
+			arg0.x += local273;
+			if (local99 < arg0.x) {
+				arg0.x = local99;
 			}
 		} else if (local79 > local99) {
-			arg0.anInt3412 -= local273;
-			if (local99 > arg0.anInt3412) {
-				arg0.anInt3412 = local99;
+			arg0.x -= local273;
+			if (local99 > arg0.x) {
+				arg0.x = local99;
 			}
 		}
 		if (local82 < local116) {
-			arg0.anInt3421 += local273;
-			if (arg0.anInt3421 > local116) {
-				arg0.anInt3421 = local116;
+			arg0.z += local273;
+			if (arg0.z > local116) {
+				arg0.z = local116;
 			}
 		} else if (local116 < local82) {
-			arg0.anInt3421 -= local273;
-			if (local116 > arg0.anInt3421) {
-				arg0.anInt3421 = local116;
+			arg0.z -= local273;
+			if (local116 > arg0.z) {
+				arg0.z = local116;
 			}
 		}
-		if (arg0.anInt3412 == local99 && local116 == arg0.anInt3421) {
+		if (arg0.x == local99 && local116 == arg0.z) {
 			arg0.routeLength--;
 			if (arg0.anInt3405 > 0) {
 				arg0.anInt3405--;

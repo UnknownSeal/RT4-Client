@@ -22,7 +22,7 @@ public final class Static69 {
 	public static final boolean[][] aBooleanArrayArray2 = new boolean[][] { new boolean[0], { true, false, true }, { true, false, false, true }, { false, false, true, true }, { true, true, false }, { false, true, true }, { true, false, false, true }, { false, false, false, true, true }, { false, true, true }, { true, false, true, true, true }, { false, true, true, true, true }, { false, true, true, true, true, false } };
 
 	@OriginalMember(owner = "runetek4.client!fh", name = "ab", descriptor = "Lclient!na;")
-	public static final JagString aClass100_443 = Static28.parse("::noclip");
+	public static final JagString NOCLIP = Static28.parse("::noclip");
 
 	@OriginalMember(owner = "runetek4.client!fh", name = "a", descriptor = "(IIII)I")
 	public static int method1540(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
@@ -42,10 +42,10 @@ public final class Static69 {
 			return;
 		}
 		for (@Pc(12) int local12 = 0; local12 < Static35.size; local12++) {
-			if (Static190.encodedUsernames[local12] == arg0) {
+			if (Static190.ignoreName37[local12] == arg0) {
 				Static35.size--;
 				for (@Pc(36) int local36 = local12; local36 < Static35.size; local36++) {
-					Static190.encodedUsernames[local36] = Static190.encodedUsernames[local36 + 1];
+					Static190.ignoreName37[local36] = Static190.ignoreName37[local36 + 1];
 					Static193.aClass100Array134[local36] = Static193.aClass100Array134[local36 + 1];
 				}
 				Static185.anInt4369 = Static119.transmitTimer;

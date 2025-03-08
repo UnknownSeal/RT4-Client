@@ -34,8 +34,8 @@ public final class Static18 {
 		if (arg0.anInt3431 == 0) {
 			arg0.anInt3400 = 1024;
 		}
-		arg0.anInt3412 += (local20 - arg0.anInt3412) / local8;
-		arg0.anInt3421 += (local36 - arg0.anInt3421) / local8;
+		arg0.x += (local20 - arg0.x) / local8;
+		arg0.z += (local36 - arg0.z) / local8;
 		if (arg0.anInt3431 == 1) {
 			arg0.anInt3400 = 1536;
 		}

@@ -22,13 +22,13 @@ public final class Static159 {
 	public static final JagString aClass100_760 = Static28.parse(")1");
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "S", descriptor = "[Lclient!e;")
-	public static final Player[] aClass8_Sub4_Sub1Array1 = new Player[2048];
+	public static final Player[] players = new Player[2048];
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "U", descriptor = "[J")
 	public static final long[] aLongArray5 = new long[500];
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "Y", descriptor = "[[[Lclient!ih;")
-	public static final LinkedList[][][] aClass69ArrayArrayArray1 = new LinkedList[4][104][104];
+	public static final LinkedList[][][] levelObjStacks = new LinkedList[4][104][104];
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "ab", descriptor = "Z")
 	public static boolean aBoolean189 = true;
@@ -57,7 +57,7 @@ public final class Static159 {
 									local65.anInt5398 = 1;
 									local65.anInt5404 = 0;
 									local65.anInt5408 = local23;
-									Static152.method2836(arg1.anInt3421, local60, arg1.anInt3412, false, 0);
+									Static152.method2836(arg1.z, local60, arg1.x, false, 0);
 								} else if (local68 == 2) {
 									local65.anInt5400 = 0;
 								}
@@ -73,7 +73,7 @@ public final class Static159 {
 							local65.anInt5396 = local15;
 							local65.anInt5400 = 0;
 							local65.anInt5399 = 0;
-							Static152.method2836(arg1.anInt3421, local60, arg1.anInt3412, false, 0);
+							Static152.method2836(arg1.z, local60, arg1.x, false, 0);
 						}
 					}
 				}

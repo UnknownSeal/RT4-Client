@@ -66,7 +66,7 @@ public final class NPCEntity extends PathingEntity {
 		}
 		@Pc(140) Model local140;
 		if (Static209.aBoolean240 && local84.spotshadow) {
-			local140 = Static41.method1043(this.npcType.spotshadowtrans_1, this.aBoolean171, local53 == null ? local29 : local53, this.anInt3412, this.npcType.spotshadowcolour_2, this.anInt3421, this.npcType.spotshadowcolour_1, this.npcType.size, local74, arg0, local53 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, this.npcType.spotshadowtrans_2);
+			local140 = Static41.method1043(this.npcType.spotshadowtrans_1, this.aBoolean171, local53 == null ? local29 : local53, this.x, this.npcType.spotshadowcolour_2, this.z, this.npcType.spotshadowcolour_1, this.npcType.size, local74, arg0, local53 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, this.npcType.spotshadowtrans_2);
 			if (GlRenderer.enabled) {
 				@Pc(144) float local144 = GlRenderer.method4179();
 				@Pc(146) float local146 = GlRenderer.method4166();

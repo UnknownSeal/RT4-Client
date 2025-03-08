@@ -16,7 +16,7 @@ public final class Static279 {
 	public static final SoftLruHashTable aClass99_38 = new SoftLruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!wk", name = "u", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1106 = Static28.parse("::clientjs5drop");
+	public static final JagString CLIENTJS5DROP = Static28.parse("::clientjs5drop");
 
 	@OriginalMember(owner = "runetek4.client!wk", name = "x", descriptor = "Lclient!na;")
 	public static final JagString aClass100_1107 = Static28.parse(")4l=");

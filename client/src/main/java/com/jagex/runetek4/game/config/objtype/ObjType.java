@@ -17,7 +17,7 @@ import com.jagex.runetek4.core.io.Packet;
 public final class ObjType {
 
 	@OriginalMember(owner = "client!h", name = "S", descriptor = "[I")
-	public static final int[] table = new int[99];
+	public static final int[] levelExperience = new int[99];
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "[S")
 	private short[] retex_d;
@@ -230,7 +230,7 @@ public final class ObjType {
 			this.womanwear2 = packet.g2();
 		} else if (code >= 30 && code < 35) {
 			this.ops[code - 30] = packet.gjstr();
-			if (this.ops[code - 30].method3111(LocalizedText.HIDDEN)) {
+			if (this.ops[code - 30].equalsIgnoreCase(LocalizedText.HIDDEN)) {
 				this.ops[code - 30] = null;
 			}
 		} else if (code >= 35 && code < 40) {
@@ -355,7 +355,7 @@ public final class ObjType {
 			@Pc(13) int local13 = local6 + 1;
 			@Pc(26) int local26 = (int) (Math.pow(2.0D, (double) local13 / 7.0D) * 300.0D + (double) local13);
 			local4 += local26;
-			table[local6] = local4 / 4;
+			levelExperience[local6] = local4 / 4;
 		}
 	}
 

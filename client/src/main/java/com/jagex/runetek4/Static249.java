@@ -28,7 +28,7 @@ public final class Static249 {
 	@OriginalMember(owner = "runetek4.client!ud", name = "a", descriptor = "(ILclient!be;)Z")
 	public static boolean method4265(@OriginalArg(1) Component arg0) {
 		if (arg0.anInt453 == 205) {
-			Static267.anInt5775 = 250;
+			Static267.idleTimeout = 250;
 			return true;
 		} else {
 			return false;

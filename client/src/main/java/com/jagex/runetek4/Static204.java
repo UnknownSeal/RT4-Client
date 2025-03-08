@@ -22,7 +22,7 @@ public final class Static204 {
 	public static LinkedList aClass69_113 = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "v", descriptor = "Z")
-	public static boolean aBoolean234 = false;
+	public static boolean tween = false;
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "x", descriptor = "[I")
 	public static final int[] anIntArray425 = new int[] { 0, 1, 2, 3, 4, 5, 6, 14 };
