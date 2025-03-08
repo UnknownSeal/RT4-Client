@@ -1434,7 +1434,7 @@ public final class Static88 {
 										continue;
 									}
 									if (local226 == 3317) {
-										Static254.anIntArray487[local28++] = Static60.rebootTimer;
+										Static254.anIntArray487[local28++] = Static60.systemUpdateTimer;
 										continue;
 									}
 									if (local226 == 3318) {

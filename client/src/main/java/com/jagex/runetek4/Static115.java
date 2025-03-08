@@ -18,7 +18,7 @@ public final class Static115 {
 	public static int anInt2937 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "k", descriptor = "Lclient!na;")
-	public static final JagString aClass100_579 = Static28.parse("Fps:");
+	public static final JagString FPS = Static28.parse("Fps:");
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "l", descriptor = "[Lclient!wa;")
 	public static final Packet[] playerAppearanceBuffer = new Packet[2048];

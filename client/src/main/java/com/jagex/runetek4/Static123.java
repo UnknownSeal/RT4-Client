@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static123 {
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "d", descriptor = "Lclient!na;")
-	public static final JagString aClass100_592 = Static28.parse("headicons_pk");
+	public static final JagString HEADICONS_PK = Static28.parse("headicons_pk");
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "e", descriptor = "I")
 	public static int anInt3058 = 0;

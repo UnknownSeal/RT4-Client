@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static220 {
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "c", descriptor = "I")
-	public static int anInt4941 = 1;
+	public static int cameraOffsetYawModifier = 1;
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "d", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable aClass99_28 = new SoftLruHashTable(64);

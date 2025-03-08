@@ -21,13 +21,13 @@ public final class Static73 {
 	public static final LruHashTable aClass54_7 = new LruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "eb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_454 = Static28.parse("b12_full");
+	public static final JagString B12_FULL = Static28.parse("b12_full");
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "fb", descriptor = "[I")
 	public static final int[] anIntArray183 = new int[14];
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "gb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_455 = Static28.parse("overlay2");
+	public static final JagString OVERLAY2 = Static28.parse("overlay2");
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(ZI)V")
 	public static void method1596(@OriginalArg(0) boolean arg0) {

@@ -13,7 +13,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static54 {
 
 	@OriginalMember(owner = "runetek4.client!ed", name = "D", descriptor = "Lclient!na;")
-	public static final JagString aClass100_374 = Static28.parse("details");
+	public static final JagString DETAILS = Static28.parse("details");
 
 	@OriginalMember(owner = "runetek4.client!ed", name = "H", descriptor = "Lclient!na;")
 	public static final JagString aClass100_375 = Static28.parse("<)4col> x");

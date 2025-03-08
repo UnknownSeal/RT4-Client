@@ -153,7 +153,7 @@ public final class Static132 {
 		@Pc(475) int local475;
 		if ((local307 - local323) * (local299 - local331) - (local315 - local331) * (local291 - local323) > 0) {
 			if (Static158.aBoolean187 && Static19.method583(Static89.anInt2388 + Rasteriser.anInt2471, Static131.anInt3259 + Rasteriser.anInt2469, local315, local331, local299, local307, local323, local291)) {
-				Static56.anInt1742 = arg6;
+				Static56.clickTileX = arg6;
 				Static116.anInt2954 = arg7;
 			}
 			if (!GlRenderer.enabled && !arg8) {
@@ -179,7 +179,7 @@ public final class Static132 {
 			return;
 		}
 		if (Static158.aBoolean187 && Static19.method583(Static89.anInt2388 + Rasteriser.anInt2471, Static131.anInt3259 + Rasteriser.anInt2469, local283, local299, local331, local275, local291, local323)) {
-			Static56.anInt1742 = arg6;
+			Static56.clickTileX = arg6;
 			Static116.anInt2954 = arg7;
 		}
 		if (GlRenderer.enabled || arg8) {

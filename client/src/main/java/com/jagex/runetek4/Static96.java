@@ -206,7 +206,7 @@ public final class Static96 {
 				local65 = local65 + 1 & 0xFFF;
 			}
 		}
-		Static221.anInt4364 = 0;
+		Static221.tryMoveNearest = 0;
 		if (!local71) {
 			if (!arg10) {
 				return false;
@@ -244,7 +244,7 @@ public final class Static96 {
 			if (local3 == arg8 && arg11 == local10) {
 				return false;
 			}
-			Static221.anInt4364 = 1;
+			Static221.tryMoveNearest = 1;
 		}
 		@Pc(1438) byte local1438 = 0;
 		Static259.anIntArray514[0] = local3;

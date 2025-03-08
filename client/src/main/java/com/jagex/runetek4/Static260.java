@@ -10,7 +10,7 @@ public final class Static260 {
 	public static FrameBuffer aClass27_2;
 
 	@OriginalMember(owner = "runetek4.client!vd", name = "v", descriptor = "Lclient!na;")
-	public static final JagString aClass100_944 = Static28.parse("hitbar_default");
+	public static final JagString HITBAR_DEFAULT = Static28.parse("hitbar_default");
 
 	@OriginalMember(owner = "runetek4.client!vd", name = "B", descriptor = "[S")
 	public static final short[] aShortArray71 = new short[] { 6798, 8741, 25238, 4626, 4550 };

@@ -55,7 +55,7 @@ public final class Static10 {
 			Static175.tryReconnect();
 			return true;
 		} catch (@Pc(19) Exception local19) {
-			@Pc(61) String local61 = "T2 - " + Static164.packetType + "," + Static5.anInt45 + "," + Static49.anInt1462 + " - " + Static223.packetSize + "," + (Static225.originX + Static173.localPlayer.movementQueueX[0]) + "," + (Static173.localPlayer.movementQueueZ[0] + Static142.originZ) + " - ";
+			@Pc(61) String local61 = "T2 - " + Static164.packetType + "," + Static5.anInt45 + "," + Static49.anInt1462 + " - " + Static223.packetSize + "," + (Static225.originX + Static173.localPlayer.pathTileX[0]) + "," + (Static173.localPlayer.pathTileZ[0] + Static142.originZ) + " - ";
 			for (@Pc(63) int local63 = 0; local63 < Static223.packetSize && local63 < 50; local63++) {
 				local61 = local61 + Static57.in.data[local63] + ",";
 			}

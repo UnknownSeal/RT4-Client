@@ -71,7 +71,7 @@ public final class ObjType {
 	public int team = 0;
 
 	@OriginalMember(owner = "client!h", name = "E", descriptor = "Lclient!na;")
-	public JagString name = Static78.aClass100_464;
+	public JagString name = Static78.NULL;
 
 	@OriginalMember(owner = "client!h", name = "J", descriptor = "I")
 	private int manwearzoff = 0;

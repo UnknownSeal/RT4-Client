@@ -32,7 +32,7 @@ public final class Static7 {
 	public static final LinkedList aClass69_32 = new LinkedList();
 
 	@OriginalMember(owner = "client!ah", name = "s", descriptor = "I")
-	public static int clickX = 0;
+	public static int mouseClickX = 0;
 
 	@OriginalMember(owner = "client!ah", name = "a", descriptor = "(BZ)V")
 	public static void method842(@OriginalArg(1) boolean arg0) {
@@ -80,8 +80,8 @@ public final class Static7 {
 							Static43.method1143(Static118.aClass13_15);
 						}
 						Static118.aClass13_15 = Static5.getComponent(local99);
-						Static149.anInt3554 = clickX;
-						Static206.anInt4773 = Static60.clickY;
+						Static149.anInt3554 = mouseClickX;
+						Static206.anInt4773 = Static60.mouseClickY;
 						Static4.anInt36 = local93;
 						Static43.method1143(Static118.aClass13_15);
 						return;
@@ -114,8 +114,8 @@ public final class Static7 {
 		local204 = Static183.anInt4271;
 		local93 = Static229.anInt5138;
 		local99 = Static24.anInt761;
-		@Pc(265) int local265 = clickX;
-		@Pc(267) int local267 = Static60.clickY;
+		@Pc(265) int local265 = mouseClickX;
+		@Pc(267) int local267 = Static60.mouseClickY;
 		@Pc(269) int local269 = -1;
 		for (@Pc(271) int local271 = 0; local271 < PreciseSleep.anInt5204; local271++) {
 			@Pc(289) int local289;

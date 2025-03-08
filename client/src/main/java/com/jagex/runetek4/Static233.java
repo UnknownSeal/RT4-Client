@@ -144,14 +144,14 @@ public final class Static233 {
 			if (local24 != 0) {
 				local73 = (local73 << local24 & 0xF) + (local73 >> 4 - local24);
 			}
-			Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, Static173.localPlayer.movementQueueX[0]);
+			Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, Static173.localPlayer.pathTileX[0]);
 		} else {
-			Static102.method2075(Static173.localPlayer.movementQueueZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, Static173.localPlayer.movementQueueX[0]);
+			Static102.tryMove(Static173.localPlayer.pathTileZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, Static173.localPlayer.pathTileX[0]);
 		}
-		Static25.y = Static60.clickY;
+		Static25.y = Static60.mouseClickY;
 		Static17.crossCycle = 0;
 		Static70.crossMode = 2;
-		Static122.x = Static7.clickX;
+		Static122.x = Static7.mouseClickX;
 		return true;
 	}
 

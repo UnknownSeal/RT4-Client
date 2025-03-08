@@ -59,7 +59,7 @@ public final class Static225 {
 					if (local121 > 15) {
 						local121 -= 32;
 					}
-					local65.method1265(local92 + Static173.localPlayer.movementQueueX[0], local116 == 1, Static173.localPlayer.movementQueueZ[0] + local121);
+					local65.method1265(local92 + Static173.localPlayer.pathTileX[0], local116 == 1, Static173.localPlayer.pathTileZ[0] + local121);
 					continue;
 				}
 			}

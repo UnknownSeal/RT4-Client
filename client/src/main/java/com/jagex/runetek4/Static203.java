@@ -29,7 +29,7 @@ public final class Static203 {
 	public static final JagString aClass100_893 = Static28.parse("Memory before cleanup=");
 
 	@OriginalMember(owner = "runetek4.client!qh", name = "i", descriptor = "Lclient!na;")
-	public static final JagString aClass100_894 = Static28.parse("Mem:");
+	public static final JagString MEM = Static28.parse("Mem:");
 
 	@OriginalMember(owner = "runetek4.client!qh", name = "a", descriptor = "(Z)V")
 	public static void method3662() {

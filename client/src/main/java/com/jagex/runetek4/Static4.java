@@ -118,7 +118,7 @@ public final class Static4 {
 		Static49.anInt1462 = Static5.anInt45;
 		Static5.anInt45 = Static230.anInt5152;
 		Static230.anInt5152 = Static164.packetType;
-		Static201.anInt1862 = 0;
+		Static201.idleNetCycles = 0;
 		@Pc(133) int level;
 		if (Static164.packetType == 60) {
 			level = Static57.in.g2sub();
@@ -587,14 +587,14 @@ public final class Static4 {
 									if (local1245) {
 										local1894.anInt3361 = 0;
 										local1894.anInt3432 = slot;
-										local1894.anInt3359 = Static83.loopCycle + level;
-										local1894.anInt3399 = 0;
-										if (local1894.anInt3359 > Static83.loopCycle) {
-											local1894.anInt3399 = -1;
+										local1894.spotanimLastCycle = Static83.loopCycle + level;
+										local1894.spotanimId = 0;
+										if (local1894.spotanimLastCycle > Static83.loopCycle) {
+											local1894.spotanimId = -1;
 										}
-										local1894.anInt3394 = xp;
+										local1894.spotanimOffset = xp;
 										local1894.anInt3418 = 1;
-										if (local1894.anInt3432 != -1 && Static83.loopCycle == local1894.anInt3359) {
+										if (local1894.anInt3432 != -1 && Static83.loopCycle == local1894.spotanimLastCycle) {
 											local1986 = Static34.method877(local1894.anInt3432).anInt1754;
 											if (local1986 != -1) {
 												local1994 = Static36.method941(local1986);
@@ -622,19 +622,19 @@ public final class Static4 {
 										local1245 = false;
 									}
 									if (local1245) {
-										local2033.anInt3359 = level + Static83.loopCycle;
-										local2033.anInt3394 = xp;
+										local2033.spotanimLastCycle = level + Static83.loopCycle;
+										local2033.spotanimOffset = xp;
 										local2033.anInt3432 = slot;
 										if (local2033.anInt3432 == 65535) {
 											local2033.anInt3432 = -1;
 										}
 										local2033.anInt3418 = 1;
 										local2033.anInt3361 = 0;
-										local2033.anInt3399 = 0;
-										if (local2033.anInt3359 > Static83.loopCycle) {
-											local2033.anInt3399 = -1;
+										local2033.spotanimId = 0;
+										if (local2033.spotanimLastCycle > Static83.loopCycle) {
+											local2033.spotanimId = -1;
 										}
-										if (local2033.anInt3432 != -1 && local2033.anInt3359 == Static83.loopCycle) {
+										if (local2033.anInt3432 != -1 && local2033.spotanimLastCycle == Static83.loopCycle) {
 											local1986 = Static34.method877(local2033.anInt3432).anInt1754;
 											if (local1986 != -1) {
 												local1994 = Static36.method941(local1986);
@@ -991,7 +991,7 @@ public final class Static4 {
 								Static164.packetType = -1;
 								return true;
 							} else if (Static164.packetType == 85) {
-								Static60.rebootTimer = Static57.in.g2() * 30;
+								Static60.systemUpdateTimer = Static57.in.g2() * 30;
 								Static164.packetType = -1;
 								Static209.miscTransmitAt = Static119.transmitTimer;
 								return true;

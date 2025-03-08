@@ -26,7 +26,7 @@ public final class Static81 {
 	public static int modeWhat = 0;
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "W", descriptor = "Lclient!na;")
-	public static final JagString aClass100_475 = Static28.parse("null");
+	public static final JagString NULL = Static28.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "Y", descriptor = "Lclient!na;")
 	public static final JagString GC = Static28.parse("::gc");
@@ -81,8 +81,8 @@ public final class Static81 {
 		if (Static267.idleTimeout > 0) {
 			Static267.idleTimeout--;
 		}
-		if (Static60.rebootTimer > 1) {
-			Static60.rebootTimer--;
+		if (Static60.systemUpdateTimer > 1) {
+			Static60.systemUpdateTimer--;
 			Static209.miscTransmitAt = Static119.transmitTimer;
 		}
 		if (Static224.aBoolean247) {
@@ -183,7 +183,7 @@ public final class Static81 {
 		}
 		if (Static150.clickButton != 0) {
 			@Pc(411) long loops = (Static133.clickTime - Static183.prevClickTime) / 50L;
-			samples = Static60.clickY;
+			samples = Static60.mouseClickY;
 			if (samples < 0) {
 				samples = 0;
 			} else if (samples > 65535) {
@@ -192,7 +192,7 @@ public final class Static81 {
 			if (loops > 32767L) {
 				loops = 32767L;
 			}
-			i = Static7.clickX;
+			i = Static7.mouseClickX;
 			Static183.prevClickTime = Static133.clickTime;
 			@Pc(437) byte button = 0;
 			if (i < 0) {
@@ -251,8 +251,8 @@ public final class Static81 {
 		Static251.loop(); // ChangeLocRequest
 		Static192.loop(); // AttachLocRequest
 		Static54.loop(); // SoundPlayer
-		Static201.anInt1862++;
-		if (Static201.anInt1862 > 750) {
+		Static201.idleNetCycles++;
+		if (Static201.idleNetCycles > 750) {
 			Static175.tryReconnect();
 			return;
 		}
@@ -267,7 +267,7 @@ public final class Static81 {
 			Static85.method1775(i);
 			Static83.updatedVarps[Static70.updatedVarpsWriterIndex++ & 0x1F] = i;
 		}
-		@Pc(782) int modelId;
+		@Pc(782) int rand;
 		// runetek4.DelayedStateChange
 		for (@Pc(709) DelayedStateChange change = Static127.poll(); change != null; change = Static127.poll()) {
 			samples = change.method1011();
@@ -290,9 +290,9 @@ public final class Static81 {
 					component = Static5.getComponent(i);
 					x = change.intArg1;
 					dx = change.intArg2;
-					modelId = change.intArg3;
-					if (component.modelType != x || component.modelId != modelId || dx != component.anInt498) {
-						component.modelId = modelId;
+					rand = change.intArg3;
+					if (component.modelType != x || component.modelId != rand || dx != component.anInt498) {
+						component.modelId = rand;
 						component.anInt498 = dx;
 						component.modelType = x;
 						Static43.method1143(component);
@@ -310,9 +310,9 @@ public final class Static81 {
 					y = change.intArg1;
 					x = y >> 10 & 0x1F;
 					dx = y & 0x1F;
-					modelId = y >> 5 & 0x1F;
+					rand = y >> 5 & 0x1F;
 					@Pc(1189) Component local1189 = Static5.getComponent(i);
-					dy = (dx << 3) + (modelId << 11) + (x << 19);
+					dy = (dx << 3) + (rand << 11) + (x << 19);
 					if (dy != local1189.anInt474) {
 						local1189.anInt474 = dy;
 						Static43.method1143(local1189);
@@ -505,48 +505,48 @@ public final class Static81 {
 													y = 3;
 												}
 												// Cheat
-												Static61.teleport(Static173.localPlayer.movementQueueX[0] + Static225.originX, Static173.localPlayer.movementQueueZ[0] + Static142.originZ, y);
+												Static61.teleport(Static173.localPlayer.pathTileX[0] + Static225.originX, Static173.localPlayer.pathTileZ[0] + Static142.originZ, y);
 											}
 											if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
-												if (Static56.anInt1742 != -1) {
-													Static61.teleport(Static225.originX + Static56.anInt1742, Static142.originZ - -Static116.anInt2954, Static55.level);
+												if (Static56.clickTileX != -1) {
+													Static61.teleport(Static225.originX + Static56.clickTileX, Static142.originZ - -Static116.anInt2954, Static55.level);
 												}
 												Static187.anInt4422 = 0;
 												Static125.anInt3096 = 0;
 											} else if (Static125.anInt3096 == 2) {
-												if (Static56.anInt1742 != -1) {
+												if (Static56.clickTileX != -1) {
 													Static6.outboundBuffer.pIsaac1(131);
 													Static6.outboundBuffer.p4_alt3(Static98.anInt2512);
-													Static6.outboundBuffer.p2_alt2(Static225.originX + Static56.anInt1742);
+													Static6.outboundBuffer.p2_alt2(Static225.originX + Static56.clickTileX);
 													Static6.outboundBuffer.p2_alt3(Static15.anInt506);
 													Static6.outboundBuffer.p2_alt2(Static116.anInt2954 + Static142.originZ);
 													Static70.crossMode = 1;
 													Static17.crossCycle = 0;
-													Static25.y = Static60.clickY;
-													Static122.x = Static7.clickX;
+													Static25.y = Static60.mouseClickY;
+													Static122.x = Static7.mouseClickX;
 												}
 												Static125.anInt3096 = 0;
 											} else if (Static187.anInt4422 == 2) {
-												if (Static56.anInt1742 != -1) {
+												if (Static56.clickTileX != -1) {
 													Static6.outboundBuffer.pIsaac1(179);
 													Static6.outboundBuffer.p2(Static142.originZ + Static116.anInt2954);
-													Static6.outboundBuffer.p2(Static56.anInt1742 + Static225.originX);
+													Static6.outboundBuffer.p2(Static56.clickTileX + Static225.originX);
 													Static17.crossCycle = 0;
 													Static70.crossMode = 1;
-													Static122.x = Static7.clickX;
-													Static25.y = Static60.clickY;
+													Static122.x = Static7.mouseClickX;
+													Static25.y = Static60.mouseClickY;
 												}
 												Static187.anInt4422 = 0;
-											} else if (Static56.anInt1742 != -1 && Static125.anInt3096 == 0 && Static187.anInt4422 == 0) {
-												@Pc(1871) boolean local1871 = Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 0, true, 0, Static56.anInt1742, 0, 0, 0, Static116.anInt2954, Static173.localPlayer.movementQueueX[0]);
-												if (local1871) {
-													Static25.y = Static60.clickY;
+											} else if (Static56.clickTileX != -1 && Static125.anInt3096 == 0 && Static187.anInt4422 == 0) {
+												@Pc(1871) boolean success = Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, Static173.localPlayer.pathTileX[0]);
+												if (success) {
+													Static25.y = Static60.mouseClickY;
 													Static17.crossCycle = 0;
-													Static122.x = Static7.clickX;
+													Static122.x = Static7.mouseClickX;
 													Static70.crossMode = 1;
 												}
 											}
-											Static56.anInt1742 = -1;
+											Static56.clickTileX = -1;
 											Static7.method843();
 											if (Static180.aClass13_22 != local1361) {
 												if (local1361 != null) {
@@ -600,60 +600,60 @@ public final class Static81 {
 												Static164.newTab = false;
 											}
 											Static131.anInt3251++;
-											Static82.anInt2252++;
-											Static143.anInt3486++;
-											if (Static143.anInt3486 > 500) {
-												Static143.anInt3486 = 0;
-												modelId = (int) (Math.random() * 8.0D);
-												if ((modelId & 0x4) == 4) {
-													Static230.cameraAnticheatAngle += Static220.anInt4941;
+											Static82.minimapOffsetCycle++;
+											Static143.cameraOffsetCycle++;
+											if (Static143.cameraOffsetCycle > 500) {
+												Static143.cameraOffsetCycle = 0;
+												rand = (int) (Math.random() * 8.0D);
+												if ((rand & 0x4) == 4) {
+													Static230.cameraAnticheatAngle += Static220.cameraOffsetYawModifier;
 												}
-												if ((modelId & 0x2) == 2) {
-													Static206.cameraAnticheatOffsetZ += Static20.anInt659;
+												if ((rand & 0x2) == 2) {
+													Static206.cameraAnticheatOffsetZ += Static20.cameraOffsetZModifier;
 												}
-												if ((modelId & 0x1) == 1) {
-													Static132.cameraAnticheatOffsetX += Static248.anInt4229;
+												if ((rand & 0x1) == 1) {
+													Static132.cameraAnticheatOffsetX += Static248.cameraOffsetXModifier;
 												}
 											}
-											if (Static82.anInt2252 > 500) {
-												Static82.anInt2252 = 0;
-												modelId = (int) (Math.random() * 8.0D);
-												if ((modelId & 0x1) == 1) {
-													Static59.minimapAnticheatAngle += Static263.anInt5755;
+											if (Static82.minimapOffsetCycle > 500) {
+												Static82.minimapOffsetCycle = 0;
+												rand = (int) (Math.random() * 8.0D);
+												if ((rand & 0x1) == 1) {
+													Static59.minimapAnticheatAngle += Static263.minimapAngleModifier;
 												}
-												if ((modelId & 0x2) == 2) {
-													Static273.minimapZoom += Static179.anInt4262;
+												if ((rand & 0x2) == 2) {
+													Static273.minimapZoom += Static179.minimapZoomModifier;
 												}
 											}
 											if (Static132.cameraAnticheatOffsetX < -50) {
-												Static248.anInt4229 = 2;
+												Static248.cameraOffsetXModifier = 2;
 											}
 											if (Static59.minimapAnticheatAngle < -60) {
-												Static263.anInt5755 = 2;
+												Static263.minimapAngleModifier = 2;
 											}
 											if (Static273.minimapZoom < -20) {
-												Static179.anInt4262 = 1;
+												Static179.minimapZoomModifier = 1;
 											}
 											if (Static206.cameraAnticheatOffsetZ < -55) {
-												Static20.anInt659 = 2;
+												Static20.cameraOffsetZModifier = 2;
 											}
 											if (Static206.cameraAnticheatOffsetZ > 55) {
-												Static20.anInt659 = -2;
+												Static20.cameraOffsetZModifier = -2;
 											}
 											if (Static230.cameraAnticheatAngle < -40) {
-												Static220.anInt4941 = 1;
+												Static220.cameraOffsetYawModifier = 1;
 											}
 											if (Static132.cameraAnticheatOffsetX > 50) {
-												Static248.anInt4229 = -2;
+												Static248.cameraOffsetXModifier = -2;
 											}
 											if (Static230.cameraAnticheatAngle > 40) {
-												Static220.anInt4941 = -1;
+												Static220.cameraOffsetYawModifier = -1;
 											}
 											if (Static273.minimapZoom > 10) {
-												Static179.anInt4262 = -1;
+												Static179.minimapZoomModifier = -1;
 											}
 											if (Static59.minimapAnticheatAngle > 60) {
-												Static263.anInt5755 = -2;
+												Static263.minimapAngleModifier = -2;
 											}
 											if (Static131.anInt3251 > 50) {
 												Static6.outboundBuffer.pIsaac1(93);

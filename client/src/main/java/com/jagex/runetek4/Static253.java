@@ -130,7 +130,7 @@ public final class Static253 {
 			if (Static244.anInt5370 == 10) {
 				local171 = Static103.method2235(Static178.anInt4247, Static134.anInt3302 >> 10, Static113.anInt4609, Static138.anInt3439 >> 10);
 			} else {
-				local171 = Static103.method2235(Static178.anInt4247, Static173.localPlayer.movementQueueZ[0] >> 3, Static113.anInt4609, Static173.localPlayer.movementQueueX[0] >> 3);
+				local171 = Static103.method2235(Static178.anInt4247, Static173.localPlayer.pathTileZ[0] >> 3, Static113.anInt4609, Static173.localPlayer.pathTileX[0] >> 3);
 			}
 			Static120.method2394(Static83.loopCycle, !Static11.aBoolean15);
 			GlRenderer.clearColorAndDepthBuffers(local171);

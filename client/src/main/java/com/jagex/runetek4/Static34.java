@@ -65,7 +65,7 @@ public final class Static34 {
 	public static volatile int anInt1034 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "o", descriptor = "Lclient!na;")
-	private static final JagString aClass100_200 = Static28.parse("Loaded world list data");
+	private static final JagString LOADED_WORLD_LIST_DATA = Static28.parse("Loaded world list data");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "C", descriptor = "I")
 	public static int anInt1047 = 0;
@@ -132,7 +132,7 @@ public final class Static34 {
 			}
 		}
 		@Pc(156) int local156;
-		if (arg0.anInt3432 != -1 && Static83.loopCycle >= arg0.anInt3359) {
+		if (arg0.anInt3432 != -1 && Static83.loopCycle >= arg0.spotanimLastCycle) {
 			local156 = method877(arg0.anInt3432).anInt1754;
 			if (local156 == -1) {
 				arg0.anInt3432 = -1;
@@ -141,20 +141,20 @@ public final class Static34 {
 				if (local165 == null || local165.anIntArray473 == null) {
 					arg0.anInt3432 = -1;
 				} else {
-					if (arg0.anInt3399 < 0) {
-						arg0.anInt3399 = 0;
+					if (arg0.spotanimId < 0) {
+						arg0.spotanimId = 0;
 						Static152.method2836(arg0.z, local165, arg0.x, Static173.localPlayer == arg0, 0);
 					}
 					arg0.anInt3361++;
-					if (arg0.anInt3399 < local165.anIntArray473.length && local165.frames[arg0.anInt3399] < arg0.anInt3361) {
-						arg0.anInt3399++;
+					if (arg0.spotanimId < local165.anIntArray473.length && local165.frames[arg0.spotanimId] < arg0.anInt3361) {
+						arg0.spotanimId++;
 						arg0.anInt3361 = 1;
-						Static152.method2836(arg0.z, local165, arg0.x, Static173.localPlayer == arg0, arg0.anInt3399);
+						Static152.method2836(arg0.z, local165, arg0.x, Static173.localPlayer == arg0, arg0.spotanimId);
 					}
-					if (arg0.anInt3399 >= local165.anIntArray473.length) {
+					if (arg0.spotanimId >= local165.anIntArray473.length) {
 						arg0.anInt3432 = -1;
 					}
-					arg0.anInt3418 = arg0.anInt3399 + 1;
+					arg0.anInt3418 = arg0.spotanimId + 1;
 					if (local165.anIntArray473.length <= arg0.anInt3418) {
 						arg0.anInt3418 = -1;
 					}

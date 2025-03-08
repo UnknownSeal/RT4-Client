@@ -65,7 +65,7 @@ public final class LocType {
 	private int ambient = 0;
 
 	@OriginalMember(owner = "client!pb", name = "E", descriptor = "Lclient!na;")
-	public JagString name = Static81.aClass100_475;
+	public JagString name = Static81.NULL;
 
 	@OriginalMember(owner = "client!pb", name = "D", descriptor = "Z")
 	public boolean hardshadow = true;

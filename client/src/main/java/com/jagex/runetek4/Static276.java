@@ -58,7 +58,7 @@ public final class Static276 {
 			@Pc(28) Player local28 = Static159.players[Static105.ids[local15]];
 			if (local28 != null && local28.username != null && local28.username.equalsIgnoreCase(local7)) {
 				local13 = true;
-				Static102.method2075(Static173.localPlayer.movementQueueZ[0], 0, 1, false, 0, local28.movementQueueX[0], 1, 0, 2, local28.movementQueueZ[0], Static173.localPlayer.movementQueueX[0]);
+				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local28.pathTileX[0], 1, 0, 2, local28.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
 				if (arg0 == 1) {
 					Static6.outboundBuffer.pIsaac1(68);
 					Static6.outboundBuffer.p2_alt3(Static105.ids[local15]);

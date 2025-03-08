@@ -19,7 +19,7 @@ public final class Static113 {
 		Static160.anInt3902 = arg0;
 		Static89.anInt2388 = arg1;
 		Static131.anInt3259 = arg2;
-		Static56.anInt1742 = -1;
+		Static56.clickTileX = -1;
 		Static116.anInt2954 = -1;
 	}
 

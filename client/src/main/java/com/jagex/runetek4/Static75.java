@@ -449,7 +449,7 @@ public final class Static75 {
 					local45 = local31 & 0x7;
 					if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104) {
 						local224 = local39 + 1;
-						if (Static173.localPlayer.movementQueueX[0] >= local23 - local224 && local224 + local23 >= Static173.localPlayer.movementQueueX[0] && Static173.localPlayer.movementQueueZ[0] >= local19 - local224 && Static173.localPlayer.movementQueueZ[0] <= local224 + local19 && Static30.anInt978 != 0 && local45 > 0 && Static189.anInt4451 < 50 && local27 != -1) {
+						if (Static173.localPlayer.pathTileX[0] >= local23 - local224 && local224 + local23 >= Static173.localPlayer.pathTileX[0] && Static173.localPlayer.pathTileZ[0] >= local19 - local224 && Static173.localPlayer.pathTileZ[0] <= local224 + local19 && Static30.anInt978 != 0 && local45 > 0 && Static189.anInt4451 < 50 && local27 != -1) {
 							Static200.anIntArray421[Static189.anInt4451] = local27;
 							Static276.anIntArray563[Static189.anInt4451] = local45;
 							Static164.anIntArray362[Static189.anInt4451] = local218;
@@ -485,23 +485,23 @@ public final class Static75 {
 
 	@OriginalMember(owner = "runetek4.client!g", name = "a", descriptor = "(ILclient!ve;)V")
 	public static void method1635(@OriginalArg(1) Js5 arg0) {
-		Static166.anInt4049 = arg0.method4482(Static18.aClass100_106);
-		Static130.anInt3161 = arg0.method4482(Static55.aClass100_377);
-		Static73.anInt2077 = arg0.method4482(Static73.aClass100_454);
-		Static280.anInt5900 = arg0.method4482(Static17.aClass100_102);
-		Static131.anInt3261 = arg0.method4482(Static219.aClass100_920);
-		Static36.anInt1165 = arg0.method4482(Static260.aClass100_944);
-		Static214.anInt5579 = arg0.method4482(Static123.aClass100_592);
-		Static34.anInt1049 = arg0.method4482(Static228.aClass100_968);
-		Static202.anInt4741 = arg0.method4482(Static98.aClass100_524);
-		Static149.anInt3551 = arg0.method4482(Static189.aClass100_835);
-		Static19.anInt647 = arg0.method4482(Static259.aClass100_1075);
-		Static32.anInt1016 = arg0.method4482(Static86.aClass100_490);
-		Static78.anInt2147 = arg0.method4482(Static189.aClass100_837);
-		Static124.anInt3083 = arg0.method4482(Static250.aClass100_1041);
-		Static224.anInt5057 = arg0.method4482(Static27.aClass100_167);
-		Static84.anInt2257 = arg0.method4482(Static18.aClass100_107);
-		Static163.anInt3962 = arg0.method4482(Static280.aClass100_1108);
-		Static128.anInt3143 = arg0.method4482(Static5.aClass100_9);
+		Static166.anInt4049 = arg0.method4482(Static18.P11_FULL);
+		Static130.anInt3161 = arg0.method4482(Static55.P12_FULL);
+		Static73.anInt2077 = arg0.method4482(Static73.B12_FULL);
+		Static280.anInt5900 = arg0.method4482(Static17.MAPFUNCTION);
+		Static131.anInt3261 = arg0.method4482(Static219.HITMARKS);
+		Static36.anInt1165 = arg0.method4482(Static260.HITBAR_DEFAULT);
+		Static214.anInt5579 = arg0.method4482(Static123.HEADICONS_PK);
+		Static34.anInt1049 = arg0.method4482(Static228.HEADICONS_PRAYER);
+		Static202.anInt4741 = arg0.method4482(Static98.HINT_HEADICONS);
+		Static149.anInt3551 = arg0.method4482(Static189.HINT_MAPMARKERS);
+		Static19.anInt647 = arg0.method4482(Static259.MAPFLAGS);
+		Static32.anInt1016 = arg0.method4482(Static86.CROSS);
+		Static78.anInt2147 = arg0.method4482(Static189.MAPDOTS);
+		Static124.anInt3083 = arg0.method4482(Static250.SCROLLBAR);
+		Static224.anInt5057 = arg0.method4482(Static27.NAME_ICONS);
+		Static84.anInt2257 = arg0.method4482(Static18.FLOORSHADOWS);
+		Static163.anInt3962 = arg0.method4482(Static280.COMPASS);
+		Static128.anInt3143 = arg0.method4482(Static5.HINT_MAPEDGE);
 	}
 }

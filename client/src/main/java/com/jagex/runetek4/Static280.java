@@ -20,7 +20,7 @@ public final class Static280 {
 	public static int anInt5900;
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "d", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1108 = Static28.parse("compass");
+	public static final JagString COMPASS = Static28.parse("compass");
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "h", descriptor = "Lclient!be;")
 	public static Component aClass13_26 = null;

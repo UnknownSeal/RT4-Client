@@ -116,24 +116,24 @@ public final class Static125 {
 		@Pc(241) int local241 = local9 - Static134.anInt3302;
 		@Pc(246) int local246 = local15 - Static138.anInt3439;
 		@Pc(257) int local257 = (int) Math.sqrt((double) (local246 * local246 + local241 * local241));
-		@Pc(268) int local268 = (int) (Math.atan2((double) local236, (double) local257) * 325.949D) & 0x7FF;
-		if (local268 < 128) {
-			local268 = 128;
+		@Pc(268) int cameraPitch = (int) (Math.atan2((double) local236, (double) local257) * 325.949D) & 0x7FF;
+		if (cameraPitch < 128) {
+			cameraPitch = 128;
 		}
-		if (local268 > 383) {
-			local268 = 383;
+		if (cameraPitch > 383) {
+			cameraPitch = 383;
 		}
 		@Pc(292) int local292 = (int) (-325.949D * Math.atan2((double) local246, (double) local241)) & 0x7FF;
-		if (Static240.anInt5333 < local268) {
-			Static240.anInt5333 += Static133.anInt5230 + Static233.anInt5217 * (local268 - Static240.anInt5333) / 1000;
-			if (Static240.anInt5333 > local268) {
-				Static240.anInt5333 = local268;
+		if (Static240.anInt5333 < cameraPitch) {
+			Static240.anInt5333 += Static133.anInt5230 + Static233.anInt5217 * (cameraPitch - Static240.anInt5333) / 1000;
+			if (Static240.anInt5333 > cameraPitch) {
+				Static240.anInt5333 = cameraPitch;
 			}
 		}
-		if (Static240.anInt5333 > local268) {
-			Static240.anInt5333 -= (Static240.anInt5333 - local268) * Static233.anInt5217 / 1000 + Static133.anInt5230;
-			if (Static240.anInt5333 < local268) {
-				Static240.anInt5333 = local268;
+		if (Static240.anInt5333 > cameraPitch) {
+			Static240.anInt5333 -= (Static240.anInt5333 - cameraPitch) * Static233.anInt5217 / 1000 + Static133.anInt5230;
+			if (Static240.anInt5333 < cameraPitch) {
+				Static240.anInt5333 = cameraPitch;
 			}
 		}
 		@Pc(350) int local350 = local292 - Static184.anInt4358;

@@ -14,7 +14,7 @@ public final class Static259 {
 	public static final long[] aLongArray11 = new long[1000];
 
 	@OriginalMember(owner = "runetek4.client!vc", name = "ab", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1075 = Static28.parse("mapflag");
+	public static final JagString MAPFLAGS = Static28.parse("mapflag");
 
 	@OriginalMember(owner = "runetek4.client!vc", name = "bb", descriptor = "[S")
 	public static short[] aShortArray87 = new short[256];

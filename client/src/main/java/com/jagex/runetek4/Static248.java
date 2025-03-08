@@ -18,7 +18,7 @@ public final class Static248 {
 	public static int anInt4232;
 
 	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "I")
-	public static int anInt4229 = 2;
+	public static int cameraOffsetXModifier = 2;
 
 	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(IB)Z")
 	public static boolean method3288(@OriginalArg(0) int arg0) {

@@ -25,7 +25,7 @@ public final class Static250 {
 	public static final SoftLruHashTable aClass99_33 = new SoftLruHashTable(260);
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "o", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1041 = Static28.parse("scrollbar");
+	public static final JagString SCROLLBAR = Static28.parse("scrollbar");
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "q", descriptor = "Lclient!na;")
 	public static final JagString aClass100_1042 = Static28.parse("Null");

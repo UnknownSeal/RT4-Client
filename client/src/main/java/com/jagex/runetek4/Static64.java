@@ -10,7 +10,7 @@ public final class Static64 {
 	public static byte[][] aByteArrayArray9;
 
 	@OriginalMember(owner = "runetek4.client!fb", name = "i", descriptor = "Lclient!na;")
-	public static final JagString aClass100_431 = Static28.parse("; Max)2Age=");
+	public static final JagString MAX_AGE = Static28.parse("; Max)2Age=");
 
 	@OriginalMember(owner = "runetek4.client!fb", name = "l", descriptor = "[Lclient!na;")
 	public static final JagString[] aClass100Array62 = new JagString[100];

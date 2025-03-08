@@ -73,8 +73,8 @@ public final class Static127 {
 					local103.z -= local81 * 128;
 					if (local103.x >= 0 && local103.x <= 13184 && local103.z >= 0 && local103.z <= 13184) {
 						for (local109 = 0; local109 < 10; local109++) {
-							local103.movementQueueX[local109] -= local86;
-							local103.movementQueueZ[local109] -= local81;
+							local103.pathTileX[local109] -= local86;
+							local103.pathTileZ[local109] -= local81;
 						}
 						Static33.anIntArray79[Static272.anInt5214++] = local96;
 					} else {
@@ -88,8 +88,8 @@ public final class Static127 {
 				local103 = Static175.npcs[local96];
 				if (local103 != null) {
 					for (local109 = 0; local109 < 10; local109++) {
-						local103.movementQueueX[local109] -= local86;
-						local103.movementQueueZ[local109] -= local81;
+						local103.pathTileX[local109] -= local86;
+						local103.pathTileZ[local109] -= local81;
 					}
 					local103.x -= local86 * 128;
 					local103.z -= local81 * 128;
@@ -100,8 +100,8 @@ public final class Static127 {
 			@Pc(265) Player local265 = Static159.players[local96];
 			if (local265 != null) {
 				for (local109 = 0; local109 < 10; local109++) {
-					local265.movementQueueX[local109] -= local86;
-					local265.movementQueueZ[local109] -= local81;
+					local265.pathTileX[local109] -= local86;
+					local265.pathTileZ[local109] -= local81;
 				}
 				local265.x -= local86 * 128;
 				local265.z -= local81 * 128;
@@ -356,7 +356,7 @@ public final class Static127 {
 					Static103.addMessage(null, 0, Static274.FORCED_TWEENING_DISABLED);
 				} else {
 					Static204.tween = true;
-					Static103.addMessage(null, 0, Static50.FORCES_TWEENING_ENABLED);
+					Static103.addMessage(null, 0, Static50.FORCED_TWEENING_ENABLED);
 				}
 			}
 			if (chatTyped.equalsIgnoreCase(Static114.SHIFTCLICK)) {

@@ -316,7 +316,7 @@ public final class Static269 {
 		}
 		@Pc(405) int local405 = arg1 + arg2 - 8;
 		@Pc(412) int local412 = arg0 + arg3 - 5;
-		Static215.aClass3_Sub2_Sub9_32.method2864(Static34.method882(new JagString[] { Static115.aClass100_579, Static123.method2423(Static243.fps) }), local412, local405, 16776960, -1);
+		Static215.aClass3_Sub2_Sub9_32.method2864(Static34.method882(new JagString[] { Static115.FPS, Static123.method2423(Static243.fps) }), local412, local405, 16776960, -1);
 		@Pc(434) Runtime local434 = Runtime.getRuntime();
 		@Pc(443) int local443 = (int) ((local434.totalMemory() - local434.freeMemory()) / 1024L);
 		@Pc(445) int local445 = 16776960;
@@ -324,7 +324,7 @@ public final class Static269 {
 		if (local443 > 65536) {
 			local445 = 16711680;
 		}
-		Static215.aClass3_Sub2_Sub9_32.method2864(Static34.method882(new JagString[] { Static203.aClass100_894, Static123.method2423(local443), Static19.aClass100_112 }), local412, local446, local445, -1);
+		Static215.aClass3_Sub2_Sub9_32.method2864(Static34.method882(new JagString[] { Static203.MEM, Static123.method2423(local443), Static19.aClass100_112 }), local412, local446, local445, -1);
 		local405 = local446 - 15;
 	}
 

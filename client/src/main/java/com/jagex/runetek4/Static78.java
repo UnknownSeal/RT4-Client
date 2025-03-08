@@ -18,7 +18,7 @@ public final class Static78 {
 	public static Sprite aClass3_Sub2_Sub1_3;
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "b", descriptor = "Lclient!na;")
-	public static final JagString aClass100_464 = Static28.parse("null");
+	public static final JagString NULL = Static28.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "c", descriptor = "Lclient!na;")
 	public static final JagString aClass100_465 = Static28.parse(")0");
@@ -203,8 +203,8 @@ public final class Static78 {
 			Static87.method1805(false);
 			Static7.method842(true);
 			if (GlRenderer.enabled) {
-				local427 = Static173.localPlayer.movementQueueX[0] >> 3;
-				local320 = Static173.localPlayer.movementQueueZ[0] >> 3;
+				local427 = Static173.localPlayer.pathTileX[0] >> 3;
+				local320 = Static173.localPlayer.pathTileZ[0] >> 3;
 				Static73.method1597(local320, local427);
 			}
 			Static26.method743(false);
@@ -216,8 +216,8 @@ public final class Static78 {
 			Static89.method1835(false);
 			Static7.method842(true);
 			if (GlRenderer.enabled) {
-				local427 = Static173.localPlayer.movementQueueX[0] >> 3;
-				local320 = Static173.localPlayer.movementQueueZ[0] >> 3;
+				local427 = Static173.localPlayer.pathTileX[0] >> 3;
+				local320 = Static173.localPlayer.pathTileZ[0] >> 3;
 				Static73.method1597(local320, local427);
 			}
 			Static233.method4002(false);

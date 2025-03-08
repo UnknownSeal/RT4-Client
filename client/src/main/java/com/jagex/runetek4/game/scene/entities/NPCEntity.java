@@ -82,11 +82,11 @@ public final class NPCEntity extends PathingEntity {
 		this.method2687(local74);
 		this.method2685(local74, arg0);
 		local140 = null;
-		if (this.anInt3432 != -1 && this.anInt3399 != -1) {
+		if (this.anInt3432 != -1 && this.spotanimId != -1) {
 			@Pc(211) SpotAnimType local211 = Static34.method877(this.anInt3432);
-			local140 = local211.method1319(this.anInt3418, this.anInt3399, this.anInt3361);
+			local140 = local211.method1319(this.anInt3418, this.spotanimId, this.anInt3361);
 			if (local140 != null) {
-				local140.translate(0, -this.anInt3394, 0);
+				local140.translate(0, -this.spotanimOffset, 0);
 				if (local211.aBoolean100) {
 					if (Static101.anInt2640 != 0) {
 						local140.method4574(Static101.anInt2640);

@@ -164,8 +164,8 @@ public final class Static89 {
 				Static155.anInt3751 = Static215.anInt4873;
 				Static60.anInt1892 = Static223.anInt5032;
 			} else {
-				Static155.anInt3751 = Static7.clickX;
-				Static60.anInt1892 = Static60.clickY;
+				Static155.anInt3751 = Static7.mouseClickX;
+				Static60.anInt1892 = Static60.mouseClickY;
 			}
 			PreciseSleep.anInt5204 = 1;
 			Static254.aClass100Array168[0] = LocalizedText.CANCEL;

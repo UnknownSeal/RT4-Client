@@ -21,7 +21,7 @@ public final class Static179 {
 	public static int step = 0;
 
 	@OriginalMember(owner = "runetek4.client!oe", name = "n", descriptor = "I")
-	public static int anInt4262 = 1;
+	public static int minimapZoomModifier = 1;
 
 	@OriginalMember(owner = "runetek4.client!oe", name = "o", descriptor = "Lclient!na;")
 	public static final JagString aClass100_807 = Static28.parse("n");

@@ -17,7 +17,7 @@ public final class Static267 {
 	public static final int[] anIntArray517 = new int[] { 1, 2, 4, 8 };
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "f", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1087 = Static28.parse("Cabbage");
+	public static final JagString CABBAGE = Static28.parse("Cabbage");
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "h", descriptor = "I")
 	public static int anInt5773 = 0;
@@ -50,7 +50,7 @@ public final class Static267 {
 	public static boolean method4527() {
 		if (Static150.aBoolean175) {
 			try {
-				return !((Boolean) Static119.aClass100_588.method3157(GameShell.signLink.anApplet2));
+				return !((Boolean) Static119.SHOWINGVIDEOAD.method3157(GameShell.signLink.anApplet2));
 			} catch (@Pc(21) Throwable local21) {
 			}
 		}

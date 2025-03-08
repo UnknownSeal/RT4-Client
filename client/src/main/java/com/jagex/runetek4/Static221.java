@@ -17,7 +17,7 @@ public final class Static221 {
 	public static int anInt4363 = -1;
 
 	@OriginalMember(owner = "runetek4.client!s", name = "d", descriptor = "I")
-	public static int anInt4364 = 0;
+	public static int tryMoveNearest = 0;
 
 	@OriginalMember(owner = "runetek4.client!s", name = "e", descriptor = "[I")
 	public static final int[] anIntArray375 = new int[128];

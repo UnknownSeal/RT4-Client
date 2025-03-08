@@ -32,10 +32,10 @@ public final class Static44 {
 		PreciseSleep.anInt5204 = 0;
 		Static230.anInt5152 = -1;
 		Static270.anInt5795 = 0;
-		Static60.rebootTimer = 0;
+		Static60.systemUpdateTimer = 0;
 		Static49.anInt1462 = -1;
 		Static57.in.pos = 0;
-		Static201.anInt1862 = 0;
+		Static201.idleNetCycles = 0;
 		Static164.packetType = -1;
 		@Pc(35) int local35;
 		for (local35 = 0; local35 < Static159.players.length; local35++) {

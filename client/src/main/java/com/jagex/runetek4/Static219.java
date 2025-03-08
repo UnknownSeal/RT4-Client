@@ -12,7 +12,7 @@ public final class Static219 {
 	public static final SoftLruHashTable aClass99_27 = new SoftLruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!rl", name = "S", descriptor = "Lclient!na;")
-	public static final JagString aClass100_920 = Static28.parse("hitmarks");
+	public static final JagString HITMARKS = Static28.parse("hitmarks");
 
 	@OriginalMember(owner = "runetek4.client!rl", name = "T", descriptor = "Lclient!na;")
 	private static final JagString aClass100_921 = Static28.parse("Sat");

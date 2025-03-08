@@ -20,7 +20,7 @@ public final class Static119 {
 	public static IterableMap aClass133_9 = new IterableMap(8);
 
 	@OriginalMember(owner = "client!je", name = "U", descriptor = "Lclient!na;")
-	public static final JagString aClass100_588 = Static28.parse("showingVideoAd");
+	public static final JagString SHOWINGVIDEOAD = Static28.parse("showingVideoAd");
 
 	@OriginalMember(owner = "client!je", name = "db", descriptor = "Lclient!na;")
 	public static final JagString aClass100_589 = Static28.parse(" <col=ffffff>");

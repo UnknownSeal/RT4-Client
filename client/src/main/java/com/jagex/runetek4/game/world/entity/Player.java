@@ -181,8 +181,8 @@ public final class Player extends PathingEntity {
 		local175 = this.model.anInt2492;
 		this.model.method1950(local197, local22, local26 == 1, local44, this.anInt3365);
 		if (local175 != local22) {
-			this.x = this.movementQueueX[0] * 128 + this.size() * 64;
-			this.z = this.movementQueueZ[0] * 128 + this.size() * 64;
+			this.x = this.pathTileX[0] * 128 + this.size() * 64;
+			this.z = this.pathTileZ[0] * 128 + this.size() * 64;
 		}
 		if (this.aClass47_Sub1_5 != null) {
 			this.aClass47_Sub1_5.method1646();
@@ -237,27 +237,27 @@ public final class Player extends PathingEntity {
 			for (local102 = Static143.aClass102Array1.length - 1; local102 >= 0; local102--) {
 				@Pc(245) Class102 local245 = Static143.aClass102Array1[local102];
 				if (local245 != null && local245.anInt4052 != -1) {
-					@Pc(291) int local291;
-					@Pc(302) int local302;
+					@Pc(291) int anchorX;
+					@Pc(302) int anchorY;
 					if (local245.anInt4058 == 1 && local245.anInt4057 >= 0 && Static175.npcs.length > local245.anInt4057) {
-						@Pc(278) NPCEntity local278 = Static175.npcs[local245.anInt4057];
-						if (local278 != null) {
-							local291 = local278.x / 32 - Static173.localPlayer.x / 32;
-							local302 = local278.z / 32 - Static173.localPlayer.z / 32;
-							this.method1263(null, local302, local76, local291, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
+						@Pc(278) NPCEntity npc = Static175.npcs[local245.anInt4057];
+						if (npc != null) {
+							anchorX = npc.x / 32 - Static173.localPlayer.x / 32;
+							anchorY = npc.z / 32 - Static173.localPlayer.z / 32;
+							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
 						}
 					}
 					if (local245.anInt4058 == 2) {
 						@Pc(340) int local340 = (local245.anInt4053 - Static225.originX) * 4 + 2 - Static173.localPlayer.x / 32;
-						local291 = (local245.anInt4046 - Static142.originZ) * 4 + 2 - Static173.localPlayer.z / 32;
-						this.method1263(null, local291, local76, local340, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
+						anchorX = (local245.anInt4046 - Static142.originZ) * 4 + 2 - Static173.localPlayer.z / 32;
+						this.drawOnMinimap(null, anchorX, local76, local340, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
 					}
 					if (local245.anInt4058 == 10 && local245.anInt4057 >= 0 && Static159.players.length > local245.anInt4057) {
-						@Pc(395) Player local395 = Static159.players[local245.anInt4057];
-						if (local395 != null) {
-							local291 = local395.x / 32 - Static173.localPlayer.x / 32;
-							local302 = local395.z / 32 - Static173.localPlayer.z / 32;
-							this.method1263(null, local302, local76, local291, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
+						@Pc(395) Player player = Static159.players[local245.anInt4057];
+						if (player != null) {
+							anchorX = player.x / 32 - Static173.localPlayer.x / 32;
+							anchorY = player.z / 32 - Static173.localPlayer.z / 32;
+							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
 						}
 					}
 				}
@@ -266,11 +266,11 @@ public final class Player extends PathingEntity {
 		this.method2687(local76);
 		this.method2685(local76, arg0);
 		local184 = null;
-		if (!this.aBoolean98 && this.anInt3432 != -1 && this.anInt3399 != -1) {
+		if (!this.aBoolean98 && this.anInt3432 != -1 && this.spotanimId != -1) {
 			@Pc(471) SpotAnimType local471 = Static34.method877(this.anInt3432);
-			local184 = local471.method1319(this.anInt3418, this.anInt3399, this.anInt3361);
+			local184 = local471.method1319(this.anInt3418, this.spotanimId, this.anInt3361);
 			if (local184 != null) {
-				local184.translate(0, -this.anInt3394, 0);
+				local184.translate(0, -this.spotanimOffset, 0);
 				if (local471.aBoolean100) {
 					if (Static101.anInt2640 != 0) {
 						local184.method4574(Static101.anInt2640);
@@ -336,7 +336,7 @@ public final class Player extends PathingEntity {
 	}
 
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(Lclient!ga;ILclient!ak;IIIIIIIIIIII)V")
-	private void method1263(@OriginalArg(0) ParticleSystem arg0, @OriginalArg(1) int arg1, @OriginalArg(2) Model arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8, @OriginalArg(10) int arg9, @OriginalArg(11) int arg10, @OriginalArg(12) int arg11, @OriginalArg(13) int arg12, @OriginalArg(14) int arg13) {
+	private void drawOnMinimap(@OriginalArg(0) ParticleSystem arg0, @OriginalArg(1) int arg1, @OriginalArg(2) Model arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8, @OriginalArg(10) int arg9, @OriginalArg(11) int arg10, @OriginalArg(12) int arg11, @OriginalArg(13) int arg12, @OriginalArg(14) int arg13) {
 		@Pc(12) int local12 = arg3 * arg3 + arg1 * arg1;
 		if (local12 < 16 || local12 > 360000) {
 			return;

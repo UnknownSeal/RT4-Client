@@ -76,9 +76,9 @@ public final class Static111 {
 			Static215.anInt4873 = Static147.anInt3521;
 			Static223.anInt5032 = Static165.anInt4039;
 			Static150.clickButton = Static41.anInt1313;
-			Static7.clickX = Static34.anInt1034;
+			Static7.mouseClickX = Static34.anInt1034;
 			Static93.anInt2467++;
-			Static60.clickY = Static222.anInt4973;
+			Static60.mouseClickY = Static222.anInt4973;
 			Static133.clickTime = Static209.aLong161;
 			Static41.anInt1313 = 0;
 		}

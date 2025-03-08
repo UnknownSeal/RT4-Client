@@ -179,16 +179,16 @@ public final class Static84 {
 				local573 = false;
 			}
 			if (local573) {
-				player.anInt3359 = (staffModLevel & 0xFFFF) + Static83.loopCycle;
+				player.spotanimLastCycle = (staffModLevel & 0xFFFF) + Static83.loopCycle;
 				player.anInt3361 = 0;
-				player.anInt3399 = 0;
+				player.spotanimId = 0;
 				player.anInt3432 = chatFlags;
-				if (player.anInt3359 > Static83.loopCycle) {
-					player.anInt3399 = -1;
+				if (player.spotanimLastCycle > Static83.loopCycle) {
+					player.spotanimId = -1;
 				}
-				player.anInt3394 = staffModLevel >> 16;
+				player.spotanimOffset = staffModLevel >> 16;
 				player.anInt3418 = 1;
-				if (player.anInt3432 != -1 && Static83.loopCycle == player.anInt3359) {
+				if (player.anInt3432 != -1 && Static83.loopCycle == player.spotanimLastCycle) {
 					local24 = Static34.method877(player.anInt3432).anInt1754;
 					if (local24 != -1) {
 						@Pc(663) SeqType local663 = Static36.method941(local24);

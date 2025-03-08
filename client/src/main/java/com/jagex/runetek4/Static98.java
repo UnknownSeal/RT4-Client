@@ -17,7 +17,7 @@ public final class Static98 {
 	public static Js5 aClass153_42;
 
 	@OriginalMember(owner = "runetek4.client!hj", name = "d", descriptor = "Lclient!na;")
-	public static final JagString aClass100_524 = Static28.parse("hint_headicons");
+	public static final JagString HINT_HEADICONS = Static28.parse("hint_headicons");
 
 	@OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "(II)V")
 	public static void method1964(@OriginalArg(0) int arg0) {

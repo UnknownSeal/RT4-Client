@@ -10,7 +10,7 @@ public final class Static82 {
 	public static int anInt2231 = 0;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "H", descriptor = "I")
-	public static int anInt2252 = 0;
+	public static int minimapOffsetCycle = 0;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "a", descriptor = "(IIIIB)V")
 	public static void method1760(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {

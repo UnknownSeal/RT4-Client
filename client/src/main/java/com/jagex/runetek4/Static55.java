@@ -17,7 +17,7 @@ public final class Static55 {
 	public static final JagString aClass100_376 = Static28.parse(" GMT");
 
 	@OriginalMember(owner = "runetek4.client!ee", name = "e", descriptor = "Lclient!na;")
-	public static final JagString aClass100_377 = Static28.parse("p12_full");
+	public static final JagString P12_FULL = Static28.parse("p12_full");
 
 	@OriginalMember(owner = "runetek4.client!ee", name = "f", descriptor = "S")
 	public static short aShort12 = 1;

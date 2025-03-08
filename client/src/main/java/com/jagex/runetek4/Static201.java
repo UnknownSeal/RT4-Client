@@ -11,7 +11,7 @@ public final class Static201 {
 	public static int anInt1864;
 
 	@OriginalMember(owner = "runetek4.client!qf", name = "M", descriptor = "I")
-	public static int anInt1862 = 0;
+	public static int idleNetCycles = 0;
 
 	@OriginalMember(owner = "runetek4.client!qf", name = "N", descriptor = "Lclient!na;")
 	public static final JagString CARDMEM = Static28.parse("::cardmem");

@@ -230,7 +230,7 @@ public final class Static254 {
 			arg0.pos += Static62.aClass44_1.method1552(0, local7, local15, arg0.data, arg0.pos);
 			return Static10.decodeString(local15, local7, 0);
 		} catch (@Pc(47) Exception local47) {
-			return Static267.aClass100_1087;
+			return Static267.CABBAGE;
 		}
 	}
 }

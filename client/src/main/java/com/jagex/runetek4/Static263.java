@@ -21,7 +21,7 @@ public final class Static263 {
 	public static boolean aBoolean299 = false;
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "d", descriptor = "I")
-	public static int anInt5755 = 2;
+	public static int minimapAngleModifier = 2;
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "f", descriptor = "Lclient!na;")
 	public static final JagString aClass100_1081 = Static28.parse("<col=80ff00>");
@@ -127,8 +127,8 @@ public final class Static263 {
 			arg1.anInt3432 = -1;
 			arg1.anInt3395 = 0;
 			arg1.anInt3386 = 0;
-			arg1.x = arg1.movementQueueX[0] * 128 + arg1.size() * 64;
-			arg1.z = arg1.movementQueueZ[0] * 128 + arg1.size() * 64;
+			arg1.x = arg1.pathTileX[0] * 128 + arg1.size() * 64;
+			arg1.z = arg1.pathTileZ[0] * 128 + arg1.size() * 64;
 			arg1.method2689();
 		}
 		if (arg1 == Static173.localPlayer && (arg1.x < 1536 || arg1.z < 1536 || arg1.x >= 11776 || arg1.z >= 11776)) {
@@ -136,8 +136,8 @@ public final class Static263 {
 			arg1.anInt3395 = 0;
 			arg1.anInt3386 = 0;
 			arg1.anInt3369 = -1;
-			arg1.x = arg1.movementQueueX[0] * 128 + arg1.size() * 64;
-			arg1.z = arg1.movementQueueZ[0] * 128 + arg1.size() * 64;
+			arg1.x = arg1.pathTileX[0] * 128 + arg1.size() * 64;
+			arg1.z = arg1.pathTileZ[0] * 128 + arg1.size() * 64;
 			arg1.method2689();
 		}
 		Static37.method949(arg1);

@@ -22,7 +22,7 @@ public final class Static27 {
 	public static final JagString aClass100_165 = Static28.parse("titlebg");
 
 	@OriginalMember(owner = "client!cb", name = "eb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_167 = Static28.parse("name_icons");
+	public static final JagString NAME_ICONS = Static28.parse("name_icons");
 
 	@OriginalMember(owner = "client!cb", name = "fb", descriptor = "Lclient!na;")
 	public static final JagString aClass100_168 = Static28.parse(": ");

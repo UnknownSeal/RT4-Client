@@ -21,7 +21,7 @@ public final class Static17 {
 	public static int crossCycle = 0;
 
 	@OriginalMember(owner = "client!bg", name = "N", descriptor = "Lclient!na;")
-	public static final JagString aClass100_102 = Static28.parse("mapfunction");
+	public static final JagString MAPFUNCTION = Static28.parse("mapfunction");
 
 	@OriginalMember(owner = "client!bg", name = "a", descriptor = "(B)V")
 	public static void method527() {

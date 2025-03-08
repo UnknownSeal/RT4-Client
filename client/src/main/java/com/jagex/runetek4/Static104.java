@@ -34,8 +34,8 @@ public final class Static104 {
 		}
 		@Pc(79) int local79 = arg0.x;
 		@Pc(82) int local82 = arg0.z;
-		@Pc(99) int local99 = arg0.movementQueueX[arg0.routeLength - 1] * 128 + arg0.size() * 64;
-		@Pc(116) int local116 = arg0.movementQueueZ[arg0.routeLength - 1] * 128 + arg0.size() * 64;
+		@Pc(99) int local99 = arg0.pathTileX[arg0.routeLength - 1] * 128 + arg0.size() * 64;
+		@Pc(116) int local116 = arg0.pathTileZ[arg0.routeLength - 1] * 128 + arg0.size() * 64;
 		if (local99 - local79 > 256 || local99 - local79 < -256 || local116 - local82 > 256 || local116 - local82 < -256) {
 			arg0.x = local99;
 			arg0.z = local116;

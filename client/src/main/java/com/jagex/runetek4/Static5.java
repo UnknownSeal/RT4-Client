@@ -18,7 +18,7 @@ public final class Static5 {
 	public static int anInt39 = -1;
 
 	@OriginalMember(owner = "runetek4.client!af", name = "g", descriptor = "Lclient!na;")
-	public static final JagString aClass100_9 = Static28.parse("hint_mapedge");
+	public static final JagString HINT_MAPEDGE = Static28.parse("hint_mapedge");
 
 	@OriginalMember(owner = "runetek4.client!af", name = "k", descriptor = "I")
 	public static int anInt45 = 0;

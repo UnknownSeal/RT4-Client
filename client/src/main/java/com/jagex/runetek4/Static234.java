@@ -32,26 +32,26 @@ public final class Static234 {
 				local18 += Static57.in.g1() << 8;
 			}
 			@Pc(43) int local43;
-			@Pc(47) int local47;
+			@Pc(47) int info;
 			if ((local18 & 0x40) != 0) {
 				local43 = Static57.in.g1();
-				local47 = Static57.in.p1neg();
-				local14.method2686(local47, Static83.loopCycle, local43);
+				info = Static57.in.p1neg();
+				local14.method2686(info, Static83.loopCycle, local43);
 				local14.anInt3378 = Static83.loopCycle + 300;
 				local14.anInt3372 = Static57.in.g1_alt3();
 			}
 			if ((local18 & 0x2) != 0) {
 				local43 = Static57.in.p1neg();
-				local47 = Static57.in.g1_alt3();
-				local14.method2686(local47, Static83.loopCycle, local43);
+				info = Static57.in.g1_alt3();
+				local14.method2686(info, Static83.loopCycle, local43);
 			}
 			if ((local18 & 0x10) != 0) {
 				local43 = Static57.in.g2();
-				local47 = Static57.in.g1();
+				info = Static57.in.g1();
 				if (local43 == 65535) {
 					local43 = -1;
 				}
-				Static223.method3855(local47, local43, local14);
+				Static223.method3855(info, local43, local14);
 			}
 			if ((local18 & 0x4) != 0) {
 				local14.anInt3370 = Static57.in.g2sub();
@@ -64,22 +64,22 @@ public final class Static234 {
 				if (local43 == 65535) {
 					local43 = -1;
 				}
-				local47 = Static57.in.g4me();
+				info = Static57.in.g4me();
 				@Pc(147) boolean local147 = true;
 				if (local43 != -1 && local14.anInt3432 != -1 && Static36.method941(Static34.method877(local43).anInt1754).priority < Static36.method941(Static34.method877(local14.anInt3432).anInt1754).priority) {
 					local147 = false;
 				}
 				if (local147) {
 					local14.anInt3432 = local43;
-					local14.anInt3359 = (local47 & 0xFFFF) + Static83.loopCycle;
+					local14.spotanimLastCycle = (info & 0xFFFF) + Static83.loopCycle;
 					local14.anInt3361 = 0;
-					local14.anInt3399 = 0;
-					local14.anInt3394 = local47 >> 16;
+					local14.spotanimId = 0;
+					local14.spotanimOffset = info >> 16;
 					local14.anInt3418 = 1;
-					if (local14.anInt3359 > Static83.loopCycle) {
-						local14.anInt3399 = -1;
+					if (local14.spotanimLastCycle > Static83.loopCycle) {
+						local14.spotanimId = -1;
 					}
-					if (local14.anInt3432 != -1 && local14.anInt3359 == Static83.loopCycle) {
+					if (local14.anInt3432 != -1 && local14.spotanimLastCycle == Static83.loopCycle) {
 						@Pc(227) int local227 = Static34.method877(local14.anInt3432).anInt1754;
 						if (local227 != -1) {
 							@Pc(236) SeqType local236 = Static36.method941(local227);
@@ -98,7 +98,7 @@ public final class Static234 {
 				local14.setSize(local14.npcType.size);
 				local14.anInt3365 = local14.npcType.bas;
 				if (local14.npcType.hasBackgroundSound()) {
-					AreaSoundManager.add(local14.movementQueueZ[0], null, 0, local14, local14.movementQueueX[0], Static55.level, null);
+					AreaSoundManager.add(local14.pathTileZ[0], null, 0, local14, local14.pathTileX[0], Static55.level, null);
 				}
 			}
 			if ((local18 & 0x20) != 0) {
@@ -152,7 +152,7 @@ public final class Static234 {
 		Static241.aClass3_Sub2_Sub1_Sub1Array13 = arg0;
 		Static258.aBooleanArray130 = new boolean[Static241.aClass3_Sub2_Sub1_Sub1Array13.length];
 		Static228.aClass69_120.clear();
-		@Pc(25) int local25 = Static119.aClass153_44.method4482(Static54.aClass100_374);
+		@Pc(25) int local25 = Static119.aClass153_44.method4482(Static54.DETAILS);
 		@Pc(30) int[] local30 = Static119.aClass153_44.method4503(local25);
 		for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {
 			Static228.aClass69_120.addTail(Static210.method3713(new Packet(Static119.aClass153_44.getfile(local25, local30[local32]))));

@@ -30,7 +30,7 @@ public final class Static31 {
 	@OriginalMember(owner = "client!ch", name = "c", descriptor = "(I)V")
 	public static void method846() {
 		if (!Static138.allLevelsvisible() && Static41.anInt1316 != Static55.level) {
-			Static127.method2463(Static55.level, Static52.anInt1695, Static80.anInt4701, Static173.localPlayer.movementQueueZ[0], false, Static173.localPlayer.movementQueueX[0]);
+			Static127.method2463(Static55.level, Static52.anInt1695, Static80.anInt4701, Static173.localPlayer.pathTileZ[0], false, Static173.localPlayer.pathTileX[0]);
 		} else if (Static55.level != Static107.anInt2875 && Static137.method2665(Static55.level)) {
 			Static107.anInt2875 = Static55.level;
 			Static269.method2218();
