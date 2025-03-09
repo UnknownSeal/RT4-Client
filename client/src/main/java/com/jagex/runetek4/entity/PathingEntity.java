@@ -131,7 +131,7 @@ public abstract class PathingEntity extends Entity {
 	public int locStartCycle = 0;
 
 	@OriginalMember(owner = "client!fe", name = "mb", descriptor = "[B")
-	public final byte[] aByteArray48 = new byte[10];
+	public final byte[] pathRunning = new byte[10];
 
 	@OriginalMember(owner = "client!fe", name = "W", descriptor = "I")
 	public int anInt3376 = 32;
@@ -167,7 +167,7 @@ public abstract class PathingEntity extends Entity {
 	protected int height = -32768;
 
 	@OriginalMember(owner = "client!fe", name = "Nb", descriptor = "I")
-	public int routeLength = 0;
+	public int pathLength = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Zb", descriptor = "I")
 	public int anInt3420 = 0;
@@ -268,32 +268,32 @@ public abstract class PathingEntity extends Entity {
 	}
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(IIIIZ)V")
-	public final void method2683(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) boolean arg3) {
+	public final void teleport(@OriginalArg(1) int arg0, @OriginalArg(2) int x, @OriginalArg(3) int z, @OriginalArg(4) boolean jump) {
 		if (this.primarySeqId != -1 && Static36.method941(this.primarySeqId).anInt5349 == 1) {
 			this.primarySeqId = -1;
 		}
-		if (!arg3) {
-			@Pc(32) int local32 = arg1 - this.pathTileX[0];
-			@Pc(40) int local40 = arg2 - this.pathTileZ[0];
-			if (local32 >= -8 && local32 <= 8 && local40 >= -8 && local40 <= 8) {
-				if (this.routeLength < 9) {
-					this.routeLength++;
+		if (!jump) {
+			@Pc(32) int dx = x - this.pathTileX[0];
+			@Pc(40) int dz = z - this.pathTileZ[0];
+			if (dx >= -8 && dx <= 8 && dz >= -8 && dz <= 8) {
+				if (this.pathLength < 9) {
+					this.pathLength++;
 				}
-				for (@Pc(72) int local72 = this.routeLength; local72 > 0; local72--) {
+				for (@Pc(72) int local72 = this.pathLength; local72 > 0; local72--) {
 					this.pathTileX[local72] = this.pathTileX[local72 - 1];
 					this.pathTileZ[local72] = this.pathTileZ[local72 - 1];
-					this.aByteArray48[local72] = this.aByteArray48[local72 - 1];
+					this.pathRunning[local72] = this.pathRunning[local72 - 1];
 				}
-				this.aByteArray48[0] = 1;
-				this.pathTileX[0] = arg1;
-				this.pathTileZ[0] = arg2;
+				this.pathRunning[0] = 1;
+				this.pathTileX[0] = x;
+				this.pathTileZ[0] = z;
 				return;
 			}
 		}
 		this.anInt3417 = 0;
-		this.pathTileX[0] = arg1;
-		this.pathTileZ[0] = arg2;
-		this.routeLength = 0;
+		this.pathTileX[0] = x;
+		this.pathTileZ[0] = z;
+		this.pathLength = 0;
 		this.anInt3405 = 0;
 		this.z = arg0 * 64 + this.pathTileZ[0] * 128;
 		this.x = arg0 * 64 + this.pathTileX[0] * 128;
@@ -313,18 +313,18 @@ public abstract class PathingEntity extends Entity {
 		if (this.primarySeqId != -1 && Static36.method941(this.primarySeqId).anInt5349 == 1) {
 			this.primarySeqId = -1;
 		}
-		if (this.routeLength < 9) {
-			this.routeLength++;
+		if (this.pathLength < 9) {
+			this.pathLength++;
 		}
-		for (@Pc(50) int local50 = this.routeLength; local50 > 0; local50--) {
+		for (@Pc(50) int local50 = this.pathLength; local50 > 0; local50--) {
 			this.pathTileX[local50] = this.pathTileX[local50 - 1];
 			this.pathTileZ[local50] = this.pathTileZ[local50 - 1];
-			this.aByteArray48[local50] = this.aByteArray48[local50 - 1];
+			this.pathRunning[local50] = this.pathRunning[local50 - 1];
 		}
 		if (arg1 == 1) {
 			local15++;
 		}
-		this.aByteArray48[0] = (byte) arg0;
+		this.pathRunning[0] = (byte) arg0;
 		if (arg1 == 2) {
 			local15++;
 			local10++;
@@ -623,7 +623,7 @@ public abstract class PathingEntity extends Entity {
 
 	@OriginalMember(owner = "client!fe", name = "c", descriptor = "(I)V")
 	public final void method2689() {
-		this.routeLength = 0;
+		this.pathLength = 0;
 		this.anInt3405 = 0;
 	}
 

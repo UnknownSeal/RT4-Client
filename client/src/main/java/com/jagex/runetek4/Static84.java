@@ -132,7 +132,7 @@ public final class Static84 {
 			player.anInt3395 = Static57.in.g2le() + Static83.loopCycle;
 			player.anInt3386 = Static57.in.g2le() + Static83.loopCycle;
 			player.anInt3431 = Static57.in.p1neg();
-			player.routeLength = 1;
+			player.pathLength = 1;
 			player.anInt3405 = 0;
 		}
 		if ((flags & 0x20) != 0) {

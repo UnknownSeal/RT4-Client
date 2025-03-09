@@ -56,7 +56,7 @@ public final class Static37 {
 				}
 			}
 		}
-		if ((e.anInt3382 != 0 || e.anInt3363 != 0) && (e.routeLength == 0 || e.anInt3417 > 0)) {
+		if ((e.anInt3382 != 0 || e.anInt3363 != 0) && (e.pathLength == 0 || e.anInt3417 > 0)) {
 			index = e.x - (e.anInt3382 - Static225.originX - Static225.originX) * 64;
 			dstX = e.z - (e.anInt3363 - Static142.originZ - Static142.originZ) * 64;
 			if (index != 0 || dstX != 0) {

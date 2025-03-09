@@ -176,7 +176,7 @@ public final class Static158 {
 							local198.anInt3381 = 0;
 						}
 						local198.anInt3365 = local198.type.bas;
-						local198.method2683(local198.size(), local125, local142, true);
+						local198.teleport(local198.size(), local125, local142, true);
 					}
 				}
 			}

@@ -497,11 +497,11 @@ public final class client extends GameShell {
 				@Pc(66) NPCEntity npcEntity = Static175.npcs[local57];
 				if (npcEntity != null) {
 					@Pc(73) byte walkflags = npcEntity.type.walkflags;
-					if ((walkflags & 0x2) > 0 && npcEntity.routeLength == 0 && Math.random() * 1000.0D < 10.0D) {
+					if ((walkflags & 0x2) > 0 && npcEntity.pathLength == 0 && Math.random() * 1000.0D < 10.0D) {
 						@Pc(98) int local98 = (int) Math.round(Math.random() * 2.0D - 1.0D);
 						@Pc(106) int local106 = (int) Math.round(Math.random() * 2.0D - 1.0D);
 						if (local98 != 0 || local106 != 0) {
-							npcEntity.aByteArray48[0] = 1;
+							npcEntity.pathRunning[0] = 1;
 							npcEntity.pathTileX[0] = local98 + (npcEntity.x >> 7);
 							npcEntity.pathTileZ[0] = local106 + (npcEntity.z >> 7);
 							Static148.levelCollisionMap[Static55.currentLevel].method3056(npcEntity.x >> 7, npcEntity.size(), false, 0, npcEntity.size(), npcEntity.z >> 7);
@@ -515,7 +515,7 @@ public final class client extends GameShell {
 										}
 									}
 								}
-								npcEntity.routeLength = 1;
+								npcEntity.pathLength = 1;
 							}
 						}
 					}

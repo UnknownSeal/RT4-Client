@@ -61,7 +61,7 @@ public final class Static278 {
 					if (local37.anInt3376 == 0) {
 						local37.anInt3381 = 0;
 					}
-					local37.method2683(local37.size(), Static173.localPlayer.pathTileX[0] + local124, local105 + Static173.localPlayer.pathTileZ[0], local66 == 1);
+					local37.teleport(local37.size(), Static173.localPlayer.pathTileX[0] + local124, local105 + Static173.localPlayer.pathTileZ[0], local66 == 1);
 					if (local37.type.hasBackgroundSound()) {
 						AreaSoundManager.add(local37.pathTileZ[0], null, 0, local37, local37.pathTileX[0], Static55.currentLevel, null);
 					}

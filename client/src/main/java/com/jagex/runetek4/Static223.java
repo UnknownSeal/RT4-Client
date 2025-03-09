@@ -59,7 +59,7 @@ public final class Static223 {
 			arg2.anInt3373 = 1;
 			arg2.anInt3371 = 0;
 			arg2.anInt3420 = arg0;
-			arg2.anInt3405 = arg2.routeLength;
+			arg2.anInt3405 = arg2.pathLength;
 			arg2.anInt3425 = 0;
 			if (arg2.primarySeqId != -1) {
 				Static152.method2836(arg2.z, Static36.method941(arg2.primarySeqId), arg2.x, false, arg2.anInt3425);

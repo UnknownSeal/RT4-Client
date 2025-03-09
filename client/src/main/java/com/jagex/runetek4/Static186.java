@@ -188,7 +188,7 @@ public final class Static186 {
 			arg2.anInt3373 = 1;
 			arg2.anInt3425 = 0;
 			arg2.anInt3420 = arg0;
-			arg2.anInt3405 = arg2.routeLength;
+			arg2.anInt3405 = arg2.pathLength;
 			arg2.anInt3371 = 0;
 			arg2.anInt3360 = 0;
 			arg2.primarySeqId = arg1;
