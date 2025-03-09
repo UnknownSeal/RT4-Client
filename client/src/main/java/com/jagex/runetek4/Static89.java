@@ -164,7 +164,7 @@ public final class Static89 {
 				Static155.anInt3751 = Static215.anInt4873;
 				Static60.anInt1892 = Static223.anInt5032;
 			} else {
-				Static155.anInt3751 = Static7.mouseClickX;
+				Static155.anInt3751 = VarpDefinition.mouseClickX;
 				Static60.anInt1892 = Static60.mouseClickY;
 			}
 			PreciseSleep.anInt5204 = 1;

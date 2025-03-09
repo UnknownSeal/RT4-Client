@@ -80,7 +80,7 @@ public final class Static138 {
 	public static final JString TRADE = Static28.parse(":trade:");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "ad", descriptor = "I")
-	public static int anInt3445 = 0;
+	public static int invokedScriptIndex = 0;
 
 	@OriginalMember(owner = "runetek4.client!km", name = "b", descriptor = "(III)I")
 	public static int method2695(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {

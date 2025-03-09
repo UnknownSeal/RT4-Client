@@ -23,5 +23,5 @@ public final class Static67 {
 	public static final int[] anIntArray320 = new int[100];
 
 	@OriginalMember(owner = "runetek4.client!fe", name = "nc", descriptor = "[Lclient!hj;")
-	public static final GoSubFrame[] aClass61Array3 = new GoSubFrame[50];
+	public static final InvokedScript[] invokedScripts = new InvokedScript[50];
 }

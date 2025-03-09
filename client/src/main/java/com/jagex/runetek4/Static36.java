@@ -125,7 +125,7 @@ public final class Static36 {
 							local212 = true;
 						}
 						@Pc(221) boolean local221 = false;
-						if (Static150.clickButton == 1 && Static7.mouseClickX >= local61 && Static60.mouseClickY >= local63 && Static7.mouseClickX < local65 && Static60.mouseClickY < local67) {
+						if (Static150.clickButton == 1 && VarpDefinition.mouseClickX >= local61 && Static60.mouseClickY >= local63 && VarpDefinition.mouseClickX < local65 && Static60.mouseClickY < local67) {
 							local221 = true;
 						}
 						@Pc(243) int local243;
@@ -154,7 +154,7 @@ public final class Static36 {
 							}
 						}
 						if (local221) {
-							Static40.method1015(Static60.mouseClickY - local55, Static7.mouseClickX - local50, local9);
+							Static40.method1015(Static60.mouseClickY - local55, VarpDefinition.mouseClickX - local50, local9);
 						}
 						if (Static105.aClass13_14 != null && Static105.aClass13_14 != local9 && local207 && method940(local9).method509()) {
 							Static56.aClass13_12 = local9;
@@ -188,7 +188,7 @@ public final class Static36 {
 								}
 								if (local9.anInt453 == 1338) {
 									if (local221) {
-										Static1.anInt5 = Static7.mouseClickX - local50;
+										Static1.anInt5 = VarpDefinition.mouseClickX - local50;
 										Static107.anInt2878 = Static60.mouseClickY - local55;
 									}
 									continue;
@@ -197,7 +197,7 @@ public final class Static36 {
 									Static24.component = local9;
 									if (local221) {
 										if (Static187.pressedKeys[82] && Static191.staffModLevel > 0) {
-											local243 = (int) ((double) (Static7.mouseClickX - local50 - local9.anInt445 / 2) * 2.0D / (double) Static83.aFloat3);
+											local243 = (int) ((double) (VarpDefinition.mouseClickX - local50 - local9.anInt445 / 2) * 2.0D / (double) Static83.aFloat3);
 											local508 = (int) ((double) (Static60.mouseClickY - local55 - local9.anInt459 / 2) * 2.0D / (double) Static83.aFloat3);
 											local322 = Static13.anInt435 + local243;
 											@Pc(516) int local516 = Static28.anInt919 + local508;
@@ -246,7 +246,7 @@ public final class Static36 {
 									local399 = new HookRequest();
 									local399.aBoolean158 = true;
 									local399.source = local9;
-									local399.anInt3102 = Static7.mouseClickX - local50;
+									local399.anInt3102 = VarpDefinition.mouseClickX - local50;
 									local399.anInt3097 = Static60.mouseClickY - local55;
 									local399.anObjectArray31 = local9.anObjectArray5;
 									Static185.aClass69_101.addTail(local399);

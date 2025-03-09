@@ -364,7 +364,7 @@ public final class NPCType {
 		if (this.multivarbit != -1) {
 			i = Static155.getVarbitValue(this.multivarbit);
 		} else if (this.multivarp != -1) {
-			i = Static7.varps[this.multivarp];
+			i = VarpDefinition.varps[this.multivarp];
 		}
 		if (i < 0 || i >= this.multinpc.length - 1 || this.multinpc[i] == -1) {
 			@Pc(55) int local55 = this.multinpc[this.multinpc.length - 1];
@@ -383,7 +383,7 @@ public final class NPCType {
 		if (this.multivarbit != -1) {
 			local16 = Static155.getVarbitValue(this.multivarbit);
 		} else if (this.multivarp != -1) {
-			local16 = Static7.varps[this.multivarp];
+			local16 = VarpDefinition.varps[this.multivarp];
 		}
 		if (local16 < 0 || local16 >= this.multinpc.length - 1 || this.multinpc[local16] == -1) {
 			@Pc(62) int local62 = this.multinpc[this.multinpc.length - 1];

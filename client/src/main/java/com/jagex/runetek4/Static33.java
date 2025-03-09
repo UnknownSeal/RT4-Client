@@ -203,7 +203,7 @@ public final class Static33 {
 		@Pc(6) Sprite[] local6 = new Sprite[Static165.anInt4038];
 		for (@Pc(15) int local15 = 0; local15 < Static165.anInt4038; local15++) {
 			@Pc(30) int local30 = Static254.anIntArray488[local15] * Static26.anIntArray66[local15];
-			@Pc(34) byte[] local34 = Static7.aByteArrayArray5[local15];
+			@Pc(34) byte[] local34 = VarpDefinition.aByteArrayArray5[local15];
 			@Pc(37) int[] local37 = new int[local30];
 			for (@Pc(39) int local39 = 0; local39 < local30; local39++) {
 				local37[local39] = Static259.anIntArray513[local34[local39] & 0xFF];

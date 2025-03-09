@@ -125,7 +125,7 @@ public final class Static8 {
 			@Pc(19) VarpType local19 = Static247.method4248(local3);
 			if (local19 != null && local19.clientCode == 0) {
 				Static106.anIntArray257[local3] = 0;
-				Static7.varps[local3] = 0;
+				VarpDefinition.varps[local3] = 0;
 			}
 		}
 		Static199.aClass133_20 = new IterableMap(16);

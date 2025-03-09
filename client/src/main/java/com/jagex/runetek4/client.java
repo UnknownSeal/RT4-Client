@@ -440,7 +440,7 @@ public final class client extends GameShell {
 		if (Static71.mouseWheel != null) {
 			Static71.mouseWheel.start(Static154.canvas);
 		}
-		Static7.anInt986 = SignLink.anInt5928;
+		VarpDefinition.anInt986 = SignLink.anInt5928;
 		try {
 			if (GameShell.signLink.cacheData != null) {
 				cacheData = new BufferedFile(GameShell.signLink.cacheData, 5200, 0);

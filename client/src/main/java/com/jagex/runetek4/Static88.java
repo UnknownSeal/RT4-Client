@@ -27,362 +27,390 @@ public final class Static88 {
 
 	@OriginalMember(owner = "runetek4.client!h", name = "a", descriptor = "(BILclient!jl;)V")
 	public static void method1818(@OriginalArg(1) int arg0, @OriginalArg(2) HookRequest arg1) {
-		@Pc(4) Object[] local4 = arg1.anObjectArray31;
-		@Pc(10) int local10 = (Integer) local4[0];
-		@Pc(14) ClientScript local14 = ClientScript.decodeClientScript(local10);
-		if (local14 == null) {
+		@Pc(4) Object[] listeners = arg1.anObjectArray31;
+		@Pc(10) int local10 = (Integer) listeners[0];
+		@Pc(14) ClientScript clientScript = ClientScript.decodeClientScript(local10);
+		if (clientScript == null) {
 			return;
 		}
-		Static138.anInt3445 = 0;
+		Static138.invokedScriptIndex = 0;
 		@Pc(26) int local26 = 0;
-		@Pc(28) int local28 = 0;
-		@Pc(30) int local30 = -1;
-		@Pc(33) int[] local33 = local14.intOperands;
-		@Pc(36) int[] local36 = local14.opcodes;
+		@Pc(28) int intValueIndex = 0;
+		@Pc(30) int scriptIndex = -1;
+		@Pc(33) int[] local33 = clientScript.intOperands;
+		@Pc(36) int[] scriptOpcodes = clientScript.opcodes;
 		@Pc(44) byte local44 = -1;
-		@Pc(58) int local58;
+		@Pc(58) int i;
 		try {
-			Static215.anIntArray432 = new int[local14.anInt4667];
-			@Pc(50) int local50 = 0;
-			Static180.aClass100Array125 = new JString[local14.anInt4671];
-			@Pc(56) int local56 = 0;
-			@Pc(77) int local77;
+			Static215.localInts = new int[clientScript.anInt4667];
+			@Pc(50) int localIntIndex = 0;
+			Static180.localStrings = new JString[clientScript.anInt4671];
+			@Pc(56) int localStringIndex = 0;
+			@Pc(77) int j;
 			@Pc(194) JString local194;
-			for (local58 = 1; local58 < local4.length; local58++) {
-				if (local4[local58] instanceof Integer) {
-					local77 = (Integer) local4[local58];
-					if (local77 == -2147483647) {
-						local77 = arg1.anInt3102;
+			for (i = 1; i < listeners.length; i++) {
+				if (listeners[i] instanceof Integer) {
+					j = (Integer) listeners[i];
+					if (j == -2147483647) { // 0
+						j = arg1.anInt3102;
 					}
-					if (local77 == -2147483646) {
-						local77 = arg1.anInt3097;
+					if (j == -2147483646) { // 1
+						j = arg1.anInt3097;
 					}
-					if (local77 == -2147483645) {
-						local77 = arg1.source == null ? -1 : arg1.source.anInt507;
+					if (j == -2147483645) { // 2
+						j = arg1.source == null ? -1 : arg1.source.anInt507;
 					}
-					if (local77 == -2147483644) {
-						local77 = arg1.anInt3101;
+					if (j == -2147483644) { // 3
+						j = arg1.anInt3101;
 					}
-					if (local77 == -2147483643) {
-						local77 = arg1.source == null ? -1 : arg1.source.componentId;
+					if (j == -2147483643) {
+						j = arg1.source == null ? -1 : arg1.source.componentId;
 					}
-					if (local77 == -2147483642) {
-						local77 = arg1.aClass13_16 == null ? -1 : arg1.aClass13_16.anInt507;
+					if (j == -2147483642) {
+						j = arg1.aClass13_16 == null ? -1 : arg1.aClass13_16.anInt507;
 					}
-					if (local77 == -2147483641) {
-						local77 = arg1.aClass13_16 == null ? -1 : arg1.aClass13_16.componentId;
+					if (j == -2147483641) {
+						j = arg1.aClass13_16 == null ? -1 : arg1.aClass13_16.componentId;
 					}
-					if (local77 == -2147483640) {
-						local77 = arg1.anInt3100;
+					if (j == -2147483640) {
+						j = arg1.anInt3100;
 					}
-					if (local77 == -2147483639) {
-						local77 = arg1.anInt3099;
+					if (j == -2147483639) {
+						j = arg1.anInt3099;
 					}
-					Static215.anIntArray432[local50++] = local77;
-				} else if (local4[local58] instanceof JString) {
-					local194 = (JString) local4[local58];
+					Static215.localInts[localIntIndex++] = j;
+				} else if (listeners[i] instanceof JString) {
+					local194 = (JString) listeners[i];
 					if (local194.method3108(Static15.aClass100_83)) {
 						local194 = arg1.aClass100_598;
 					}
-					Static180.aClass100Array125[local56++] = local194;
+					Static180.localStrings[localStringIndex++] = local194;
 				}
 			}
-			local58 = 0;
+			i = 0;
 			label4266: while (true) {
-				local58++;
-				if (arg0 < local58) {
+				i++;
+				if (arg0 < i) {
 					throw new RuntimeException("slow");
 				}
-				local30++;
-				@Pc(226) int local226 = local36[local30];
-				@Pc(803) int local803;
+				scriptIndex++;
+				@Pc(226) int scriptOpcode = scriptOpcodes[scriptIndex];
+				@Pc(803) int interfaceType;
 				@Pc(652) int local652;
-				@Pc(809) int local809;
+				@Pc(809) int interfaceData;
 				@Pc(609) JString chatTyped;
-				if (local226 < 100) {
-					if (local226 == 0) {
-						Static254.anIntArray487[local28++] = local33[local30];
+				if (scriptOpcode < 100) {
+					// core language ops (not commands)
+
+					if (scriptOpcode == 0) {
+						// push_constant_int
+						Static254.scriptIntValues[intValueIndex++] = local33[scriptIndex];
 						continue;
 					}
-					if (local226 == 1) {
-						local77 = local33[local30];
-						Static254.anIntArray487[local28++] = Static7.varps[local77];
+					if (scriptOpcode == 1) {
+						// push_varp
+						j = local33[scriptIndex];
+						Static254.scriptIntValues[intValueIndex++] = VarpDefinition.varps[j];
 						continue;
 					}
-					if (local226 == 2) {
-						local77 = local33[local30];
-						local28--;
-						Static148.method2766(local77, Static254.anIntArray487[local28]);
+					if (scriptOpcode == 2) {
+						// pop_varp
+						j = local33[scriptIndex];
+						intValueIndex--;
+						Static148.method2766(j, Static254.scriptIntValues[intValueIndex]);
 						continue;
 					}
-					if (local226 == 3) {
-						Static3.aClass100Array176[local26++] = local14.stringOperands[local30];
+					if (scriptOpcode == 3) {
+						// push_constant_string
+						Static3.scriptStringValues[local26++] = clientScript.stringOperands[scriptIndex];
 						continue;
 					}
-					if (local226 == 6) {
-						local30 += local33[local30];
+					if (scriptOpcode == 6) {
+						// branch
+						scriptIndex += local33[scriptIndex];
 						continue;
 					}
-					if (local226 == 7) {
-						local28 -= 2;
-						if (Static254.anIntArray487[local28] != Static254.anIntArray487[local28 + 1]) {
-							local30 += local33[local30];
+					if (scriptOpcode == 7) {
+						// branch_not
+						intValueIndex -= 2;
+						if (Static254.scriptIntValues[intValueIndex] != Static254.scriptIntValues[intValueIndex + 1]) {
+							scriptIndex += local33[scriptIndex];
 						}
 						continue;
 					}
-					if (local226 == 8) {
-						local28 -= 2;
-						if (Static254.anIntArray487[local28 + 1] == Static254.anIntArray487[local28]) {
-							local30 += local33[local30];
+					if (scriptOpcode == 8) {
+						// branch_equal
+						intValueIndex -= 2;
+						if (Static254.scriptIntValues[intValueIndex + 1] == Static254.scriptIntValues[intValueIndex]) {
+							scriptIndex += local33[scriptIndex];
 						}
 						continue;
 					}
-					if (local226 == 9) {
-						local28 -= 2;
-						if (Static254.anIntArray487[local28] < Static254.anIntArray487[local28 + 1]) {
-							local30 += local33[local30];
+					if (scriptOpcode == 9) {
+						// branch_equals
+						intValueIndex -= 2;
+						if (Static254.scriptIntValues[intValueIndex] < Static254.scriptIntValues[intValueIndex + 1]) {
+							scriptIndex += local33[scriptIndex];
 						}
 						continue;
 					}
-					if (local226 == 10) {
-						local28 -= 2;
-						if (Static254.anIntArray487[local28 + 1] < Static254.anIntArray487[local28]) {
-							local30 += local33[local30];
+					if (scriptOpcode == 10) {
+						// branch_greater_than
+						intValueIndex -= 2;
+						if (Static254.scriptIntValues[intValueIndex + 1] < Static254.scriptIntValues[intValueIndex]) {
+							scriptIndex += local33[scriptIndex];
 						}
 						continue;
 					}
-					if (local226 == 21) {
-						if (Static138.anInt3445 == 0) {
+					if (scriptOpcode == 21) {
+						// return
+						if (Static138.invokedScriptIndex == 0) {
 							return;
 						}
-						@Pc(423) GoSubFrame local423 = Static67.aClass61Array3[--Static138.anInt3445];
-						local14 = local423.aClass3_Sub2_Sub17_1;
-						Static215.anIntArray432 = local423.anIntArray237;
-						local36 = local14.opcodes;
-						local30 = local423.anInt2515;
-						Static180.aClass100Array125 = local423.aClass100Array79;
-						local33 = local14.intOperands;
+						@Pc(423) InvokedScript invokedScript = Static67.invokedScripts[--Static138.invokedScriptIndex];
+						clientScript = invokedScript.script;
+						Static215.localInts = invokedScript.localInts;
+						scriptOpcodes = clientScript.opcodes;
+						scriptIndex = invokedScript.anInt2515;
+						Static180.localStrings = invokedScript.aClass100Array79;
+						local33 = clientScript.intOperands;
 						continue;
 					}
-					if (local226 == 25) {
-						local77 = local33[local30];
-						Static254.anIntArray487[local28++] = Static155.getVarbitValue(local77);
+					if (scriptOpcode == 25) {
+						// push_varbit
+						j = local33[scriptIndex];
+						Static254.scriptIntValues[intValueIndex++] = Static155.getVarbitValue(j);
 						continue;
 					}
-					if (local226 == 27) {
-						local77 = local33[local30];
-						local28--;
-						Static202.method3655(local77, Static254.anIntArray487[local28]);
+					if (scriptOpcode == 27) {
+						// pop_varbit
+						j = local33[scriptIndex];
+						intValueIndex--;
+						Static202.method3655(j, Static254.scriptIntValues[intValueIndex]);
 						continue;
 					}
-					if (local226 == 31) {
-						local28 -= 2;
-						if (Static254.anIntArray487[local28 + 1] >= Static254.anIntArray487[local28]) {
-							local30 += local33[local30];
+					if (scriptOpcode == 31) {
+						// branch_less_than_or_equals
+						intValueIndex -= 2;
+						if (Static254.scriptIntValues[intValueIndex + 1] >= Static254.scriptIntValues[intValueIndex]) {
+							scriptIndex += local33[scriptIndex];
 						}
 						continue;
 					}
-					if (local226 == 32) {
-						local28 -= 2;
-						if (Static254.anIntArray487[local28] >= Static254.anIntArray487[local28 + 1]) {
-							local30 += local33[local30];
+					if (scriptOpcode == 32) {
+						// branch_greater_than_or_equals
+						intValueIndex -= 2;
+						if (Static254.scriptIntValues[intValueIndex] >= Static254.scriptIntValues[intValueIndex + 1]) {
+							scriptIndex += local33[scriptIndex];
 						}
 						continue;
 					}
-					if (local226 == 33) {
-						Static254.anIntArray487[local28++] = Static215.anIntArray432[local33[local30]];
+					if (scriptOpcode == 33) {
+						// push_int_local
+						Static254.scriptIntValues[intValueIndex++] = Static215.localInts[local33[scriptIndex]];
 						continue;
 					}
 					@Pc(555) int local555;
-					if (local226 == 34) {
-						local555 = local33[local30];
-						local28--;
-						Static215.anIntArray432[local555] = Static254.anIntArray487[local28];
+					if (scriptOpcode == 34) {
+						// pop_int_local
+						local555 = local33[scriptIndex];
+						intValueIndex--;
+						Static215.localInts[local555] = Static254.scriptIntValues[intValueIndex];
 						continue;
 					}
-					if (local226 == 35) {
-						Static3.aClass100Array176[local26++] = Static180.aClass100Array125[local33[local30]];
+					if (scriptOpcode == 35) {
+						// push_string_local
+						Static3.scriptStringValues[local26++] = Static180.localStrings[local33[scriptIndex]];
 						continue;
 					}
-					if (local226 == 36) {
-						local555 = local33[local30];
+					if (scriptOpcode == 36) {
+						// pop_string_local
+						local555 = local33[scriptIndex];
 						local26--;
-						Static180.aClass100Array125[local555] = Static3.aClass100Array176[local26];
+						Static180.localStrings[local555] = Static3.scriptStringValues[local26];
 						continue;
 					}
-					if (local226 == 37) {
-						local77 = local33[local30];
-						local26 -= local77;
-						chatTyped = Static118.method2355(local26, local77, Static3.aClass100Array176);
-						Static3.aClass100Array176[local26++] = chatTyped;
+					if (scriptOpcode == 37) {
+						// join_string
+						j = local33[scriptIndex];
+						local26 -= j;
+						chatTyped = Static118.method2355(local26, j, Static3.scriptStringValues);
+						Static3.scriptStringValues[local26++] = chatTyped;
 						continue;
 					}
-					if (local226 == 38) {
-						local28--;
+					if (scriptOpcode == 38) {
+						// pop_int_discard
+						intValueIndex--;
 						continue;
 					}
-					if (local226 == 39) {
+					if (scriptOpcode == 39) {
+						// pop_string_discard
 						local26--;
 						continue;
 					}
-					if (local226 == 40) {
-						local77 = local33[local30];
-						@Pc(642) ClientScript local642 = ClientScript.decodeClientScript(local77);
-						@Pc(646) int[] local646 = new int[local642.anInt4667];
-						@Pc(650) JString[] local650 = new JString[local642.anInt4671];
-						for (local652 = 0; local652 < local642.anInt4665; local652++) {
-							local646[local652] = Static254.anIntArray487[local652 + local28 - local642.anInt4665];
+					if (scriptOpcode == 40) {
+						// gosub_with_params
+						j = local33[scriptIndex];
+						@Pc(642) ClientScript invokeScript = ClientScript.decodeClientScript(j);
+						@Pc(646) int[] local646 = new int[invokeScript.anInt4667];
+						@Pc(650) JString[] local650 = new JString[invokeScript.anInt4671];
+						for (local652 = 0; local652 < invokeScript.anInt4665; local652++) {
+							local646[local652] = Static254.scriptIntValues[local652 + intValueIndex - invokeScript.anInt4665];
 						}
-						for (local652 = 0; local652 < local642.anInt4669; local652++) {
-							local650[local652] = Static3.aClass100Array176[local652 + local26 - local642.anInt4669];
+						for (local652 = 0; local652 < invokeScript.anInt4669; local652++) {
+							local650[local652] = Static3.scriptStringValues[local652 + local26 - invokeScript.anInt4669];
 						}
-						local28 -= local642.anInt4665;
-						local26 -= local642.anInt4669;
-						@Pc(705) GoSubFrame local705 = new GoSubFrame();
-						local705.aClass100Array79 = Static180.aClass100Array125;
-						local705.anIntArray237 = Static215.anIntArray432;
-						local705.anInt2515 = local30;
-						local705.aClass3_Sub2_Sub17_1 = local14;
-						if (Static138.anInt3445 >= Static67.aClass61Array3.length) {
+						intValueIndex -= invokeScript.anInt4665;
+						local26 -= invokeScript.anInt4669;
+						@Pc(705) InvokedScript invokedScript = new InvokedScript();
+						invokedScript.aClass100Array79 = Static180.localStrings;
+						invokedScript.localInts = Static215.localInts;
+						invokedScript.anInt2515 = scriptIndex;
+						invokedScript.script = clientScript;
+						if (Static138.invokedScriptIndex >= Static67.invokedScripts.length) {
 							throw new RuntimeException();
 						}
-						local14 = local642;
-						local30 = -1;
-						Static67.aClass61Array3[Static138.anInt3445++] = local705;
-						Static215.anIntArray432 = local646;
-						local33 = local642.intOperands;
-						local36 = local642.opcodes;
-						Static180.aClass100Array125 = local650;
+						clientScript = invokeScript;
+						scriptIndex = -1;
+						Static67.invokedScripts[Static138.invokedScriptIndex++] = invokedScript;
+						Static215.localInts = local646;
+						local33 = invokeScript.intOperands;
+						scriptOpcodes = invokeScript.opcodes;
+						Static180.localStrings = local650;
 						continue;
 					}
-					if (local226 == 42) {
-						Static254.anIntArray487[local28++] = Static155.varcs[local33[local30]];
+					if (scriptOpcode == 42) {
+						// push_varc_int
+						Static254.scriptIntValues[intValueIndex++] = Static155.varcs[local33[scriptIndex]];
 						continue;
 					}
-					if (local226 == 43) {
-						local77 = local33[local30];
-						local28--;
-						Static155.varcs[local77] = Static254.anIntArray487[local28];
-						Static4.method24(local77);
+					if (scriptOpcode == 43) {
+						// pop_varc_int
+						j = local33[scriptIndex];
+						intValueIndex--;
+						Static155.varcs[j] = Static254.scriptIntValues[intValueIndex];
+						Static4.method24(j);
 						continue;
 					}
-					if (local226 == 44) {
-						local77 = local33[local30] >> 16;
-						local28--;
-						local803 = Static254.anIntArray487[local28];
-						local809 = local33[local30] & 0xFFFF;
-						if (local803 >= 0 && local803 <= 5000) {
-							Static55.anIntArray140[local77] = local803;
+					if (scriptOpcode == 44) {
+						j = local33[scriptIndex] >> 16;
+						intValueIndex--;
+						interfaceType = Static254.scriptIntValues[intValueIndex];
+						interfaceData = local33[scriptIndex] & 0xFFFF;
+						if (interfaceType >= 0 && interfaceType <= 5000) {
+							Static55.anIntArray140[j] = interfaceType;
 							@Pc(828) byte local828 = -1;
-							if (local809 == 105) {
+							if (interfaceData == 105) {
 								local828 = 0;
 							}
 							local652 = 0;
 							while (true) {
-								if (local803 <= local652) {
+								if (interfaceType <= local652) {
 									continue label4266;
 								}
-								Static179.anIntArrayArray33[local77][local652] = local828;
+								Static179.anIntArrayArray33[j][local652] = local828;
 								local652++;
 							}
 						}
 						throw new RuntimeException();
 					}
-					if (local226 == 45) {
-						local77 = local33[local30];
-						local28--;
-						local809 = Static254.anIntArray487[local28];
-						if (local809 >= 0 && local809 < Static55.anIntArray140[local77]) {
-							Static254.anIntArray487[local28++] = Static179.anIntArrayArray33[local77][local809];
+					if (scriptOpcode == 45) {
+						j = local33[scriptIndex];
+						intValueIndex--;
+						interfaceData = Static254.scriptIntValues[intValueIndex];
+						if (interfaceData >= 0 && interfaceData < Static55.anIntArray140[j]) {
+							Static254.scriptIntValues[intValueIndex++] = Static179.anIntArrayArray33[j][interfaceData];
 							continue;
 						}
 						throw new RuntimeException();
 					}
-					if (local226 == 46) {
-						local77 = local33[local30];
-						local28 -= 2;
-						local809 = Static254.anIntArray487[local28];
-						if (local809 >= 0 && local809 < Static55.anIntArray140[local77]) {
-							Static179.anIntArrayArray33[local77][local809] = Static254.anIntArray487[local28 + 1];
+					if (scriptOpcode == 46) {
+						j = local33[scriptIndex];
+						intValueIndex -= 2;
+						interfaceData = Static254.scriptIntValues[intValueIndex];
+						if (interfaceData >= 0 && interfaceData < Static55.anIntArray140[j]) {
+							Static179.anIntArrayArray33[j][interfaceData] = Static254.scriptIntValues[intValueIndex + 1];
 							continue;
 						}
 						throw new RuntimeException();
 					}
-					if (local226 == 47) {
-						local194 = Static226.varcstrs[local33[local30]];
+					if (scriptOpcode == 47) {
+						local194 = Static226.varcstrs[local33[scriptIndex]];
 						if (local194 == null) {
 							local194 = Static254.aClass100_1061;
 						}
-						Static3.aClass100Array176[local26++] = local194;
+						Static3.scriptStringValues[local26++] = local194;
 						continue;
 					}
-					if (local226 == 48) {
-						local77 = local33[local30];
+					if (scriptOpcode == 48) {
+						j = local33[scriptIndex];
 						local26--;
-						Static226.varcstrs[local77] = Static3.aClass100Array176[local26];
-						Static89.method1840(local77);
+						Static226.varcstrs[j] = Static3.scriptStringValues[local26];
+						Static89.method1840(j);
 						continue;
 					}
-					if (local226 == 51) {
-						@Pc(992) IterableMap local992 = local14.aClass133Array1[local33[local30]];
-						local28--;
-						@Pc(1002) IntWrapper local1002 = (IntWrapper) local992.getNode((long) Static254.anIntArray487[local28]);
+					if (scriptOpcode == 51) {
+						@Pc(992) IterableMap local992 = clientScript.aClass133Array1[local33[scriptIndex]];
+						intValueIndex--;
+						@Pc(1002) IntWrapper local1002 = (IntWrapper) local992.getNode((long) Static254.scriptIntValues[intValueIndex]);
 						if (local1002 != null) {
-							local30 += local1002.value;
+							scriptIndex += local1002.value;
 						}
 						continue;
 					}
 				}
 				@Pc(1020) boolean local1020;
-				if (local33[local30] == 1) {
+				if (local33[scriptIndex] == 1) {
 					local1020 = true;
 				} else {
 					local1020 = false;
 				}
 				@Pc(1182) Component local1182;
-				@Pc(1052) int local1052;
-				@Pc(1063) Component local1063;
-				@Pc(1087) int local1087;
+				@Pc(1052) int childCount;
+				@Pc(1063) Component component;
+				@Pc(1087) int childId;
 				@Pc(1256) Component local1256;
-				if (local226 < 300) {
-					if (local226 == 100) {
-						local28 -= 3;
-						local809 = Static254.anIntArray487[local28];
-						local803 = Static254.anIntArray487[local28 + 1];
-						local1052 = Static254.anIntArray487[local28 + 2];
-						if (local803 != 0) {
-							local1063 = Static5.getComponent(local809);
-							if (local1063.createdComponents == null) {
-								local1063.createdComponents = new Component[local1052 + 1];
+				if (scriptOpcode < 300) {
+					if (scriptOpcode == 100) {
+						// cc_create
+						intValueIndex -= 3;
+						interfaceData = Static254.scriptIntValues[intValueIndex];
+						interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+						childCount = Static254.scriptIntValues[intValueIndex + 2];
+						if (interfaceType != 0) {
+							component = Static5.getComponent(interfaceData);
+							if (component.createdComponents == null) {
+								component.createdComponents = new Component[childCount + 1];
 							}
-							if (local1052 >= local1063.createdComponents.length) {
-								@Pc(1085) Component[] local1085 = new Component[local1052 + 1];
-								for (local1087 = 0; local1087 < local1063.createdComponents.length; local1087++) {
-									local1085[local1087] = local1063.createdComponents[local1087];
+							if (childCount >= component.createdComponents.length) {
+								@Pc(1085) Component[] childInterfaces = new Component[childCount + 1];
+								for (childId = 0; childId < component.createdComponents.length; childId++) {
+									childInterfaces[childId] = component.createdComponents[childId];
 								}
-								local1063.createdComponents = local1085;
+								component.createdComponents = childInterfaces;
 							}
-							if (local1052 > 0 && local1063.createdComponents[local1052 - 1] == null) {
-								throw new RuntimeException("Gap at:" + (local1052 - 1));
+							if (childCount > 0 && component.createdComponents[childCount - 1] == null) {
+								throw new RuntimeException("Gap at:" + (childCount - 1));
 							}
 							@Pc(1137) Component local1137 = new Component();
 							local1137.aBoolean32 = true;
-							local1137.componentId = local1052;
-							local1137.layer = local1137.anInt507 = local1063.anInt507;
-							local1137.anInt452 = local803;
-							local1063.createdComponents[local1052] = local1137;
+							local1137.componentId = childCount;
+							local1137.layer = local1137.anInt507 = component.anInt507;
+							local1137.anInt452 = interfaceType;
+							component.createdComponents[childCount] = local1137;
 							if (local1020) {
 								Static274.aClass13_24 = local1137;
 							} else {
 								Static227.aClass13_25 = local1137;
 							}
-							Static43.method1143(local1063);
+							Static43.method1143(component);
 							continue;
 						}
 						throw new RuntimeException();
 					}
 					@Pc(1204) Component local1204;
-					if (local226 == 101) {
+					if (scriptOpcode == 101) {
+						// cc_delete
 						local1182 = local1020 ? Static274.aClass13_24 : Static227.aClass13_25;
 						if (local1182.componentId == -1) {
 							if (!local1020) {
@@ -395,20 +423,21 @@ public final class Static88 {
 						Static43.method1143(local1204);
 						continue;
 					}
-					if (local226 == 102) {
-						local28--;
-						local1182 = Static5.getComponent(Static254.anIntArray487[local28]);
+					if (scriptOpcode == 102) {
+						// cc_deleteall
+						intValueIndex--;
+						local1182 = Static5.getComponent(Static254.scriptIntValues[intValueIndex]);
 						local1182.createdComponents = null;
 						Static43.method1143(local1182);
 						continue;
 					}
-					if (local226 == 200) {
-						local28 -= 2;
-						local809 = Static254.anIntArray487[local28];
-						local803 = Static254.anIntArray487[local28 + 1];
-						local1256 = Static201.method1418(local809, local803);
-						if (local1256 != null && local803 != -1) {
-							Static254.anIntArray487[local28++] = 1;
+					if (scriptOpcode == 200) {
+						intValueIndex -= 2;
+						interfaceData = Static254.scriptIntValues[intValueIndex];
+						interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+						local1256 = Static201.method1418(interfaceData, interfaceType);
+						if (local1256 != null && interfaceType != -1) {
+							Static254.scriptIntValues[intValueIndex++] = 1;
 							if (local1020) {
 								Static274.aClass13_24 = local1256;
 							} else {
@@ -416,17 +445,17 @@ public final class Static88 {
 							}
 							continue;
 						}
-						Static254.anIntArray487[local28++] = 0;
+						Static254.scriptIntValues[intValueIndex++] = 0;
 						continue;
 					}
-					if (local226 == 201) {
-						local28--;
-						local809 = Static254.anIntArray487[local28];
-						local1204 = Static5.getComponent(local809);
+					if (scriptOpcode == 201) {
+						intValueIndex--;
+						interfaceData = Static254.scriptIntValues[intValueIndex];
+						local1204 = Static5.getComponent(interfaceData);
 						if (local1204 == null) {
-							Static254.anIntArray487[local28++] = 0;
+							Static254.scriptIntValues[intValueIndex++] = 0;
 						} else {
-							Static254.anIntArray487[local28++] = 1;
+							Static254.scriptIntValues[intValueIndex++] = 1;
 							if (local1020) {
 								Static274.aClass13_24 = local1204;
 							} else {
@@ -437,64 +466,65 @@ public final class Static88 {
 					}
 				} else {
 					@Pc(12388) boolean local12388;
-					if (local226 < 500) {
-						if (local226 == 403) {
-							local28 -= 2;
-							local803 = Static254.anIntArray487[local28 + 1];
-							local809 = Static254.anIntArray487[local28];
-							for (local1052 = 0; local1052 < Static204.anIntArray425.length; local1052++) {
-								if (local809 == Static204.anIntArray425[local1052]) {
-									Static173.localPlayer.model.method1953(local1052, local803);
+					if (scriptOpcode < 500) {
+						if (scriptOpcode == 403) {
+							intValueIndex -= 2;
+							interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+							interfaceData = Static254.scriptIntValues[intValueIndex];
+							for (childCount = 0; childCount < Static204.anIntArray425.length; childCount++) {
+								if (interfaceData == Static204.anIntArray425[childCount]) {
+									Static173.localPlayer.model.method1953(childCount, interfaceType);
 									continue label4266;
 								}
 							}
-							local1052 = 0;
+							childCount = 0;
 							while (true) {
-								if (local1052 >= Static153.anIntArray351.length) {
+								if (childCount >= Static153.anIntArray351.length) {
 									continue label4266;
 								}
-								if (local809 == Static153.anIntArray351[local1052]) {
-									Static173.localPlayer.model.method1953(local1052, local803);
+								if (interfaceData == Static153.anIntArray351[childCount]) {
+									Static173.localPlayer.model.method1953(childCount, interfaceType);
 									continue label4266;
 								}
-								local1052++;
+								childCount++;
 							}
 						}
-						if (local226 == 404) {
-							local28 -= 2;
-							local809 = Static254.anIntArray487[local28];
-							local803 = Static254.anIntArray487[local28 + 1];
-							Static173.localPlayer.model.method1951(local809, local803);
+						if (scriptOpcode == 404) {
+							intValueIndex -= 2;
+							interfaceData = Static254.scriptIntValues[intValueIndex];
+							interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+							Static173.localPlayer.model.method1951(interfaceData, interfaceType);
 							continue;
 						}
-						if (local226 == 410) {
-							local28--;
-							local12388 = Static254.anIntArray487[local28] != 0;
+						if (scriptOpcode == 410) {
+							intValueIndex--;
+							local12388 = Static254.scriptIntValues[intValueIndex] != 0;
 							Static173.localPlayer.model.method1948(local12388);
 							continue;
 						}
 					} else {
 						@Pc(1552) boolean local1552;
-						if ((local226 < 1000 || local226 >= 1100) && (local226 < 2000 || local226 >= 2100)) {
+						if ((scriptOpcode < 1000 || scriptOpcode >= 1100) && (scriptOpcode < 2000 || scriptOpcode >= 2100)) {
 							@Pc(2522) JString chatTypedLowercase;
-							if (local226 >= 1100 && local226 < 1200 || !(local226 < 2100 || local226 >= 2200)) {
-								if (local226 < 2000) {
+							if (scriptOpcode >= 1100 && scriptOpcode < 1200 || !(scriptOpcode < 2100 || scriptOpcode >= 2200)) {
+								if (scriptOpcode < 2000) {
 									local1182 = local1020 ? Static274.aClass13_24 : Static227.aClass13_25;
 								} else {
-									local226 -= 1000;
-									local28--;
-									local1182 = Static5.getComponent(Static254.anIntArray487[local28]);
+									scriptOpcode -= 1000;
+									intValueIndex--;
+									local1182 = Static5.getComponent(Static254.scriptIntValues[intValueIndex]);
 								}
-								if (local226 == 1100) {
-									local28 -= 2;
-									local1182.anInt489 = Static254.anIntArray487[local28];
+								if (scriptOpcode == 1100) {
+									// setscrollpos
+									intValueIndex -= 2;
+									local1182.anInt489 = Static254.scriptIntValues[intValueIndex];
 									if (local1182.anInt489 > local1182.anInt486 - local1182.anInt445) {
 										local1182.anInt489 = local1182.anInt486 - local1182.anInt445;
 									}
 									if (local1182.anInt489 < 0) {
 										local1182.anInt489 = 0;
 									}
-									local1182.scrollY = Static254.anIntArray487[local28 + 1];
+									local1182.scrollY = Static254.scriptIntValues[intValueIndex + 1];
 									if (local1182.scrollY > local1182.anInt491 - local1182.anInt459) {
 										local1182.scrollY = local1182.anInt491 - local1182.anInt459;
 									}
@@ -507,69 +537,77 @@ public final class Static88 {
 									}
 									continue;
 								}
-								if (local226 == 1101) {
-									local28--;
-									local1182.anInt474 = Static254.anIntArray487[local28];
+								if (scriptOpcode == 1101) {
+									// setcolor
+									intValueIndex--;
+									local1182.anInt474 = Static254.scriptIntValues[intValueIndex];
 									Static43.method1143(local1182);
 									if (local1182.componentId == -1) {
 										Static245.method4224(local1182.anInt507);
 									}
 									continue;
 								}
-								if (local226 == 1102) {
-									local28--;
-									local1182.aBoolean30 = Static254.anIntArray487[local28] == 1;
+								if (scriptOpcode == 1102) {
+									// setfill
+									intValueIndex--;
+									local1182.aBoolean30 = Static254.scriptIntValues[intValueIndex] == 1;
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1103) {
-									local28--;
-									local1182.anInt476 = Static254.anIntArray487[local28];
+								if (scriptOpcode == 1103) {
+									// settrans
+									intValueIndex--;
+									local1182.anInt476 = Static254.scriptIntValues[intValueIndex];
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1104) {
-									local28--;
-									local1182.anInt490 = Static254.anIntArray487[local28];
+								if (scriptOpcode == 1104) {
+									// setlinewid
+									intValueIndex--;
+									local1182.anInt490 = Static254.scriptIntValues[intValueIndex];
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1105) {
-									local28--;
-									local1182.anInt477 = Static254.anIntArray487[local28];
+								if (scriptOpcode == 1105) {
+									// setgraphic
+									intValueIndex--;
+									local1182.anInt477 = Static254.scriptIntValues[intValueIndex];
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1106) {
-									local28--;
-									local1182.anInt521 = Static254.anIntArray487[local28];
+								if (scriptOpcode == 1106) {
+									intValueIndex--;
+									local1182.anInt521 = Static254.scriptIntValues[intValueIndex];
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1107) {
-									local28--;
-									local1182.aBoolean23 = Static254.anIntArray487[local28] == 1;
+								if (scriptOpcode == 1107) {
+									// settiling
+									intValueIndex--;
+									local1182.aBoolean23 = Static254.scriptIntValues[intValueIndex] == 1;
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1108) {
+								if (scriptOpcode == 1108) {
+									// setmodel
 									local1182.modelType = 1;
-									local28--;
-									local1182.modelId = Static254.anIntArray487[local28];
+									intValueIndex--;
+									local1182.modelId = Static254.scriptIntValues[intValueIndex];
 									Static43.method1143(local1182);
 									if (local1182.componentId == -1) {
 										Static271.method4600(local1182.anInt507);
 									}
 									continue;
 								}
-								if (local226 == 1109) {
-									local28 -= 6;
-									local1182.modelXOffset = Static254.anIntArray487[local28];
-									local1182.modelZOffset = Static254.anIntArray487[local28 + 1];
-									local1182.modelXAngle = Static254.anIntArray487[local28 + 2];
-									local1182.modelYAngle = Static254.anIntArray487[local28 + 3];
-									local1182.modelYOffset = Static254.anIntArray487[local28 + 4];
-									local1182.modelZoom = Static254.anIntArray487[local28 + 5];
+								if (scriptOpcode == 1109) {
+									// setmodelangle
+									intValueIndex -= 6;
+									local1182.modelXOffset = Static254.scriptIntValues[intValueIndex];
+									local1182.modelZOffset = Static254.scriptIntValues[intValueIndex + 1];
+									local1182.modelXAngle = Static254.scriptIntValues[intValueIndex + 2];
+									local1182.modelYAngle = Static254.scriptIntValues[intValueIndex + 3];
+									local1182.modelYOffset = Static254.scriptIntValues[intValueIndex + 4];
+									local1182.modelZoom = Static254.scriptIntValues[intValueIndex + 5];
 									Static43.method1143(local1182);
 									if (local1182.componentId == -1) {
 										Static153.method2910(local1182.anInt507);
@@ -577,11 +615,12 @@ public final class Static88 {
 									}
 									continue;
 								}
-								if (local226 == 1110) {
-									local28--;
-									local803 = Static254.anIntArray487[local28];
-									if (local1182.anInt522 != local803) {
-										local1182.anInt522 = local803;
+								if (scriptOpcode == 1110) {
+									// setmodelanim
+									intValueIndex--;
+									interfaceType = Static254.scriptIntValues[intValueIndex];
+									if (local1182.anInt522 != interfaceType) {
+										local1182.anInt522 = interfaceType;
 										local1182.anInt510 = 0;
 										local1182.anInt500 = 0;
 										local1182.anInt496 = 1;
@@ -592,15 +631,17 @@ public final class Static88 {
 									}
 									continue;
 								}
-								if (local226 == 1111) {
-									local28--;
-									local1182.aBoolean22 = Static254.anIntArray487[local28] == 1;
+								if (scriptOpcode == 1111) {
+									// setmodelorthog
+									intValueIndex--;
+									local1182.aBoolean22 = Static254.scriptIntValues[intValueIndex] == 1;
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1112) {
+								if (scriptOpcode == 1112) {
+									// settext
 									local26--;
-									chatTypedLowercase = Static3.aClass100Array176[local26];
+									chatTypedLowercase = Static3.scriptStringValues[local26];
 									if (!chatTypedLowercase.method3108(local1182.aClass100_84)) {
 										local1182.aClass100_84 = chatTypedLowercase;
 										Static43.method1143(local1182);
@@ -610,108 +651,111 @@ public final class Static88 {
 									}
 									continue;
 								}
-								if (local226 == 1113) {
-									local28--;
-									local1182.anInt502 = Static254.anIntArray487[local28];
+								if (scriptOpcode == 1113) {
+									// settextfont
+									intValueIndex--;
+									local1182.anInt502 = Static254.scriptIntValues[intValueIndex];
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1114) {
-									local28 -= 3;
-									local1182.anInt460 = Static254.anIntArray487[local28];
-									local1182.anInt478 = Static254.anIntArray487[local28 + 1];
-									local1182.anInt467 = Static254.anIntArray487[local28 + 2];
+								if (scriptOpcode == 1114) {
+									// settextalign
+									intValueIndex -= 3;
+									local1182.anInt460 = Static254.scriptIntValues[intValueIndex];
+									local1182.anInt478 = Static254.scriptIntValues[intValueIndex + 1];
+									local1182.anInt467 = Static254.scriptIntValues[intValueIndex + 2];
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1115) {
-									local28--;
-									local1182.aBoolean28 = Static254.anIntArray487[local28] == 1;
+								if (scriptOpcode == 1115) {
+									// settextshadow
+									intValueIndex--;
+									local1182.aBoolean28 = Static254.scriptIntValues[intValueIndex] == 1;
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1116) {
-									local28--;
-									local1182.anInt514 = Static254.anIntArray487[local28];
+								if (scriptOpcode == 1116) {
+									intValueIndex--;
+									local1182.anInt514 = Static254.scriptIntValues[intValueIndex];
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1117) {
-									local28--;
-									local1182.anInt513 = Static254.anIntArray487[local28];
+								if (scriptOpcode == 1117) {
+									intValueIndex--;
+									local1182.anInt513 = Static254.scriptIntValues[intValueIndex];
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1118) {
-									local28--;
-									local1182.aBoolean21 = Static254.anIntArray487[local28] == 1;
+								if (scriptOpcode == 1118) {
+									intValueIndex--;
+									local1182.aBoolean21 = Static254.scriptIntValues[intValueIndex] == 1;
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1119) {
-									local28--;
-									local1182.aBoolean26 = Static254.anIntArray487[local28] == 1;
+								if (scriptOpcode == 1119) {
+									intValueIndex--;
+									local1182.aBoolean26 = Static254.scriptIntValues[intValueIndex] == 1;
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1120) {
-									local28 -= 2;
-									local1182.anInt486 = Static254.anIntArray487[local28];
-									local1182.anInt491 = Static254.anIntArray487[local28 + 1];
+								if (scriptOpcode == 1120) {
+									intValueIndex -= 2;
+									local1182.anInt486 = Static254.scriptIntValues[intValueIndex];
+									local1182.anInt491 = Static254.scriptIntValues[intValueIndex + 1];
 									Static43.method1143(local1182);
 									if (local1182.anInt452 == 0) {
 										Static17.method531(local1182, false);
 									}
 									continue;
 								}
-								if (local226 == 1121) {
-									local28 -= 2;
-									local1182.aShort11 = (short) Static254.anIntArray487[local28];
-									local1182.aShort10 = (short) Static254.anIntArray487[local28 + 1];
+								if (scriptOpcode == 1121) {
+									intValueIndex -= 2;
+									local1182.aShort11 = (short) Static254.scriptIntValues[intValueIndex];
+									local1182.aShort10 = (short) Static254.scriptIntValues[intValueIndex + 1];
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1122) {
-									local28--;
-									local1182.aBoolean18 = Static254.anIntArray487[local28] == 1;
+								if (scriptOpcode == 1122) {
+									intValueIndex--;
+									local1182.aBoolean18 = Static254.scriptIntValues[intValueIndex] == 1;
 									Static43.method1143(local1182);
 									continue;
 								}
-								if (local226 == 1123) {
-									local28--;
-									local1182.modelZoom = Static254.anIntArray487[local28];
+								if (scriptOpcode == 1123) {
+									intValueIndex--;
+									local1182.modelZoom = Static254.scriptIntValues[intValueIndex];
 									Static43.method1143(local1182);
 									if (local1182.componentId == -1) {
 										Static153.method2910(local1182.anInt507);
 									}
 									continue;
 								}
-							} else if (local226 >= 1200 && local226 < 1300 || !(local226 < 2200 || local226 >= 2300)) {
-								if (local226 < 2000) {
+							} else if (scriptOpcode >= 1200 && scriptOpcode < 1300 || !(scriptOpcode < 2200 || scriptOpcode >= 2300)) {
+								if (scriptOpcode < 2000) {
 									local1182 = local1020 ? Static274.aClass13_24 : Static227.aClass13_25;
 								} else {
-									local28--;
-									local1182 = Static5.getComponent(Static254.anIntArray487[local28]);
-									local226 -= 1000;
+									intValueIndex--;
+									local1182 = Static5.getComponent(Static254.scriptIntValues[intValueIndex]);
+									scriptOpcode -= 1000;
 								}
 								Static43.method1143(local1182);
-								if (local226 == 1200 || local226 == 1205) {
-									local28 -= 2;
-									local1052 = Static254.anIntArray487[local28 + 1];
-									local803 = Static254.anIntArray487[local28];
+								if (scriptOpcode == 1200 || scriptOpcode == 1205) {
+									intValueIndex -= 2;
+									childCount = Static254.scriptIntValues[intValueIndex + 1];
+									interfaceType = Static254.scriptIntValues[intValueIndex];
 									if (local1182.componentId == -1) {
 										Static251.method4279(local1182.anInt507);
 										Static153.method2910(local1182.anInt507);
 										Static180.method3328(local1182.anInt507);
 									}
-									if (local803 == -1) {
+									if (interfaceType == -1) {
 										local1182.modelId = -1;
 										local1182.modelType = 1;
 										local1182.objId = -1;
 									} else {
-										local1182.objId = local803;
-										local1182.objCount = local1052;
-										@Pc(13416) ObjType local13416 = Static71.get(local803);
+										local1182.objId = interfaceType;
+										local1182.objCount = childCount;
+										@Pc(13416) ObjType local13416 = Static71.get(interfaceType);
 										local1182.modelYOffset = local13416.zan2d;
 										local1182.modelXOffset = local13416.xof2d;
 										local1182.modelXAngle = local13416.xan2d;
@@ -723,7 +767,7 @@ public final class Static88 {
 										} else if (local1182.baseWidth > 0) {
 											local1182.modelZoom = local1182.modelZoom * 32 / local1182.baseWidth;
 										}
-										if (local226 == 1205) {
+										if (scriptOpcode == 1205) {
 											local1182.aBoolean31 = false;
 										} else {
 											local1182.aBoolean31 = true;
@@ -731,134 +775,141 @@ public final class Static88 {
 									}
 									continue;
 								}
-								if (local226 == 1201) {
+								if (scriptOpcode == 1201) {
+									// setnpchead
 									local1182.modelType = 2;
-									local28--;
-									local1182.modelId = Static254.anIntArray487[local28];
+									intValueIndex--;
+									local1182.modelId = Static254.scriptIntValues[intValueIndex];
 									if (local1182.componentId == -1) {
 										Static271.method4600(local1182.anInt507);
 									}
 									continue;
 								}
-								if (local226 == 1202) {
+								if (scriptOpcode == 1202) {
+									// setplayerhead_self
 									local1182.modelType = 3;
-									local1182.modelId = Static173.localPlayer.model.method1952();
+									local1182.modelId = Static173.localPlayer.model.getHeadModelId();
 									if (local1182.componentId == -1) {
 										Static271.method4600(local1182.anInt507);
 									}
 									continue;
 								}
-								if (local226 == 1203) {
+								if (scriptOpcode == 1203) {
+									// setnpcmodel
 									local1182.modelType = 6;
-									local28--;
-									local1182.modelId = Static254.anIntArray487[local28];
+									intValueIndex--;
+									local1182.modelId = Static254.scriptIntValues[intValueIndex];
 									if (local1182.componentId == -1) {
 										Static271.method4600(local1182.anInt507);
 									}
 									continue;
 								}
-								if (local226 == 1204) {
+								if (scriptOpcode == 1204) {
 									local1182.modelType = 5;
-									local28--;
-									local1182.modelId = Static254.anIntArray487[local28];
+									intValueIndex--;
+									local1182.modelId = Static254.scriptIntValues[intValueIndex];
 									if (local1182.componentId == -1) {
 										Static271.method4600(local1182.anInt507);
 									}
 									continue;
 								}
-							} else if (local226 >= 1300 && local226 < 1400 || local226 >= 2300 && local226 < 2400) {
-								if (local226 >= 2000) {
-									local28--;
-									local1182 = Static5.getComponent(Static254.anIntArray487[local28]);
-									local226 -= 1000;
+							} else if (scriptOpcode >= 1300 && scriptOpcode < 1400 || scriptOpcode >= 2300 && scriptOpcode < 2400) {
+								if (scriptOpcode >= 2000) {
+									// if_
+									intValueIndex--;
+									local1182 = Static5.getComponent(Static254.scriptIntValues[intValueIndex]);
+									scriptOpcode -= 1000;
 								} else {
+									// cc_
 									local1182 = local1020 ? Static274.aClass13_24 : Static227.aClass13_25;
 								}
-								if (local226 == 1300) {
-									local28--;
-									local803 = Static254.anIntArray487[local28] - 1;
-									if (local803 >= 0 && local803 <= 9) {
+								if (scriptOpcode == 1300) {
+									intValueIndex--;
+									interfaceType = Static254.scriptIntValues[intValueIndex] - 1;
+									if (interfaceType >= 0 && interfaceType <= 9) {
 										local26--;
-										local1182.method480(Static3.aClass100Array176[local26], local803);
+										local1182.method480(Static3.scriptStringValues[local26], interfaceType);
 										continue;
 									}
 									local26--;
 									continue;
 								}
-								if (local226 == 1301) {
-									local28 -= 2;
-									local1052 = Static254.anIntArray487[local28 + 1];
-									local803 = Static254.anIntArray487[local28];
-									local1182.aClass13_5 = Static201.method1418(local803, local1052);
+								if (scriptOpcode == 1301) {
+									intValueIndex -= 2;
+									childCount = Static254.scriptIntValues[intValueIndex + 1];
+									interfaceType = Static254.scriptIntValues[intValueIndex];
+									local1182.aClass13_5 = Static201.method1418(interfaceType, childCount);
 									continue;
 								}
-								if (local226 == 1302) {
-									local28--;
-									local1182.aBoolean27 = Static254.anIntArray487[local28] == 1;
+								if (scriptOpcode == 1302) {
+									intValueIndex--;
+									local1182.aBoolean27 = Static254.scriptIntValues[intValueIndex] == 1;
 									continue;
 								}
-								if (local226 == 1303) {
-									local28--;
-									local1182.anInt472 = Static254.anIntArray487[local28];
+								if (scriptOpcode == 1303) {
+									intValueIndex--;
+									local1182.anInt472 = Static254.scriptIntValues[intValueIndex];
 									continue;
 								}
-								if (local226 == 1304) {
-									local28--;
-									local1182.anInt447 = Static254.anIntArray487[local28];
+								if (scriptOpcode == 1304) {
+									intValueIndex--;
+									local1182.anInt447 = Static254.scriptIntValues[intValueIndex];
 									continue;
 								}
-								if (local226 == 1305) {
+								if (scriptOpcode == 1305) {
 									local26--;
-									local1182.aClass100_88 = Static3.aClass100Array176[local26];
+									local1182.aClass100_88 = Static3.scriptStringValues[local26];
 									continue;
 								}
-								if (local226 == 1306) {
+								if (scriptOpcode == 1306) {
 									local26--;
-									local1182.aClass100_86 = Static3.aClass100Array176[local26];
+									local1182.aClass100_86 = Static3.scriptStringValues[local26];
 									continue;
 								}
-								if (local226 == 1307) {
+								if (scriptOpcode == 1307) {
 									local1182.aClass100Array18 = null;
 									continue;
 								}
-								if (local226 == 1308) {
-									local28--;
-									local1182.anInt484 = Static254.anIntArray487[local28];
-									local28--;
-									local1182.anInt499 = Static254.anIntArray487[local28];
+								if (scriptOpcode == 1308) {
+									intValueIndex--;
+									local1182.anInt484 = Static254.scriptIntValues[intValueIndex];
+									intValueIndex--;
+									local1182.anInt499 = Static254.scriptIntValues[intValueIndex];
 									continue;
 								}
-								if (local226 == 1309) {
-									local28--;
-									local803 = Static254.anIntArray487[local28];
-									local28--;
-									local1052 = Static254.anIntArray487[local28];
-									if (local1052 >= 1 && local1052 <= 10) {
-										local1182.method477(local1052 - 1, local803);
+								if (scriptOpcode == 1309) {
+									intValueIndex--;
+									interfaceType = Static254.scriptIntValues[intValueIndex];
+									intValueIndex--;
+									childCount = Static254.scriptIntValues[intValueIndex];
+									if (childCount >= 1 && childCount <= 10) {
+										local1182.method477(childCount - 1, interfaceType);
 									}
 									continue;
 								}
 							} else {
 								@Pc(4859) int start;
-								if (local226 >= 1400 && local226 < 1500 || local226 >= 2400 && local226 < 2500) {
-									if (local226 < 2000) {
+								if (scriptOpcode >= 1400 && scriptOpcode < 1500 || scriptOpcode >= 2400 && scriptOpcode < 2500) {
+									if (scriptOpcode < 2000) {
+										// if_
 										local1182 = local1020 ? Static274.aClass13_24 : Static227.aClass13_25;
 									} else {
-										local226 -= 1000;
-										local28--;
-										local1182 = Static5.getComponent(Static254.anIntArray487[local28]);
+										// cc_
+										scriptOpcode -= 1000;
+										intValueIndex--;
+										local1182 = Static5.getComponent(Static254.scriptIntValues[intValueIndex]);
 									}
 									@Pc(12937) int[] local12937 = null;
 									local26--;
-									chatTypedLowercase = Static3.aClass100Array176[local26];
+									chatTypedLowercase = Static3.scriptStringValues[local26];
 									if (chatTypedLowercase.length() > 0 && chatTypedLowercase.method3149(chatTypedLowercase.length() - 1) == 89) {
-										local28--;
-										local652 = Static254.anIntArray487[local28];
+										intValueIndex--;
+										local652 = Static254.scriptIntValues[intValueIndex];
 										if (local652 > 0) {
 											local12937 = new int[local652];
 											while (local652-- > 0) {
-												local28--;
-												local12937[local652] = Static254.anIntArray487[local28];
+												intValueIndex--;
+												local12937[local652] = Static254.scriptIntValues[intValueIndex];
 											}
 										}
 										chatTypedLowercase = chatTypedLowercase.substring(chatTypedLowercase.length() - 1, 0);
@@ -867,1368 +918,1404 @@ public final class Static88 {
 									for (start = local13000.length - 1; start >= 1; start--) {
 										if (chatTypedLowercase.method3149(start - 1) == 115) {
 											local26--;
-											local13000[start] = Static3.aClass100Array176[local26];
+											local13000[start] = Static3.scriptStringValues[local26];
 										} else {
-											local28--;
-											local13000[start] = Integer.valueOf(Static254.anIntArray487[local28]);
+											intValueIndex--;
+											local13000[start] = Integer.valueOf(Static254.scriptIntValues[intValueIndex]);
 										}
 									}
-									local28--;
-									start = Static254.anIntArray487[local28];
+									intValueIndex--;
+									start = Static254.scriptIntValues[intValueIndex];
 									if (start == -1) {
 										local13000 = null;
 									} else {
 										local13000[0] = Integer.valueOf(start);
 									}
 									local1182.aBoolean25 = true;
-									if (local226 == 1400) {
+									if (scriptOpcode == 1400) {
 										local1182.anObjectArray5 = local13000;
-									} else if (local226 == 1401) {
+									} else if (scriptOpcode == 1401) {
 										local1182.anObjectArray9 = local13000;
-									} else if (local226 == 1402) {
+									} else if (scriptOpcode == 1402) {
 										local1182.anObjectArray18 = local13000;
-									} else if (local226 == 1403) {
+									} else if (scriptOpcode == 1403) {
 										local1182.anObjectArray19 = local13000;
-									} else if (local226 == 1404) {
+									} else if (scriptOpcode == 1404) {
 										local1182.anObjectArray24 = local13000;
-									} else if (local226 == 1405) {
+									} else if (scriptOpcode == 1405) {
 										local1182.anObjectArray26 = local13000;
-									} else if (local226 == 1406) {
+									} else if (scriptOpcode == 1406) {
 										local1182.anObjectArray27 = local13000;
-									} else if (local226 == 1407) {
+									} else if (scriptOpcode == 1407) {
 										local1182.anIntArray44 = local12937;
 										local1182.anObjectArray25 = local13000;
-									} else if (local226 == 1408) {
+									} else if (scriptOpcode == 1408) {
 										local1182.anObjectArray22 = local13000;
-									} else if (local226 == 1409) {
+									} else if (scriptOpcode == 1409) {
 										local1182.anObjectArray29 = local13000;
-									} else if (local226 == 1410) {
+									} else if (scriptOpcode == 1410) {
 										local1182.anObjectArray16 = local13000;
-									} else if (local226 == 1411) {
+									} else if (scriptOpcode == 1411) {
 										local1182.anObjectArray6 = local13000;
-									} else if (local226 == 1412) {
+									} else if (scriptOpcode == 1412) {
 										local1182.anObjectArray23 = local13000;
-									} else if (local226 == 1414) {
+									} else if (scriptOpcode == 1414) {
 										local1182.anIntArray34 = local12937;
 										local1182.anObjectArray7 = local13000;
-									} else if (local226 == 1415) {
+									} else if (scriptOpcode == 1415) {
 										local1182.anIntArray42 = local12937;
 										local1182.anObjectArray2 = local13000;
-									} else if (local226 == 1416) {
+									} else if (scriptOpcode == 1416) {
 										local1182.anObjectArray11 = local13000;
-									} else if (local226 == 1417) {
+									} else if (scriptOpcode == 1417) {
 										local1182.anObjectArray10 = local13000;
-									} else if (local226 == 1418) {
+									} else if (scriptOpcode == 1418) {
 										local1182.anObjectArray20 = local13000;
-									} else if (local226 == 1419) {
+									} else if (scriptOpcode == 1419) {
 										local1182.anObjectArray14 = local13000;
-									} else if (local226 == 1420) {
+									} else if (scriptOpcode == 1420) {
 										local1182.anObjectArray1 = local13000;
-									} else if (local226 == 1421) {
+									} else if (scriptOpcode == 1421) {
 										local1182.anObjectArray28 = local13000;
-									} else if (local226 == 1422) {
+									} else if (scriptOpcode == 1422) {
 										local1182.anObjectArray30 = local13000;
-									} else if (local226 == 1423) {
+									} else if (scriptOpcode == 1423) {
 										local1182.anObjectArray12 = local13000;
-									} else if (local226 == 1424) {
+									} else if (scriptOpcode == 1424) {
 										local1182.anObjectArray8 = local13000;
-									} else if (local226 == 1425) {
+									} else if (scriptOpcode == 1425) {
 										local1182.anObjectArray21 = local13000;
-									} else if (local226 == 1426) {
+									} else if (scriptOpcode == 1426) {
 										local1182.anObjectArray13 = local13000;
-									} else if (local226 == 1427) {
+									} else if (scriptOpcode == 1427) {
 										local1182.anObjectArray17 = local13000;
-									} else if (local226 == 1428) {
+									} else if (scriptOpcode == 1428) {
 										local1182.anObjectArray4 = local13000;
 										local1182.anIntArray38 = local12937;
-									} else if (local226 == 1429) {
+									} else if (scriptOpcode == 1429) {
 										local1182.anIntArray35 = local12937;
 										local1182.anObjectArray15 = local13000;
 									}
 									continue;
 								}
-								if (local226 < 1600) {
+								if (scriptOpcode < 1600) {
 									local1182 = local1020 ? Static274.aClass13_24 : Static227.aClass13_25;
-									if (local226 == 1500) {
-										Static254.anIntArray487[local28++] = local1182.x;
+									if (scriptOpcode == 1500) {
+										// cc_getx
+										Static254.scriptIntValues[intValueIndex++] = local1182.x;
 										continue;
 									}
-									if (local226 == 1501) {
-										Static254.anIntArray487[local28++] = local1182.y;
+									if (scriptOpcode == 1501) {
+										// cc_gety
+										Static254.scriptIntValues[intValueIndex++] = local1182.y;
 										continue;
 									}
-									if (local226 == 1502) {
-										Static254.anIntArray487[local28++] = local1182.anInt445;
+									if (scriptOpcode == 1502) {
+										// cc_getwidth
+										Static254.scriptIntValues[intValueIndex++] = local1182.anInt445;
 										continue;
 									}
-									if (local226 == 1503) {
-										Static254.anIntArray487[local28++] = local1182.anInt459;
+									if (scriptOpcode == 1503) {
+										// cc_getheight
+										Static254.scriptIntValues[intValueIndex++] = local1182.anInt459;
 										continue;
 									}
-									if (local226 == 1504) {
-										Static254.anIntArray487[local28++] = local1182.hidden ? 1 : 0;
+									if (scriptOpcode == 1504) {
+										// cc_gethide
+										Static254.scriptIntValues[intValueIndex++] = local1182.hidden ? 1 : 0;
 										continue;
 									}
-									if (local226 == 1505) {
-										Static254.anIntArray487[local28++] = local1182.layer;
+									if (scriptOpcode == 1505) {
+										// set_getlayer
+										Static254.scriptIntValues[intValueIndex++] = local1182.layer;
 										continue;
 									}
-								} else if (local226 < 1700) {
+								} else if (scriptOpcode < 1700) {
 									local1182 = local1020 ? Static274.aClass13_24 : Static227.aClass13_25;
-									if (local226 == 1600) {
-										Static254.anIntArray487[local28++] = local1182.anInt489;
+									if (scriptOpcode == 1600) {
+										// cc_getscrollx
+										Static254.scriptIntValues[intValueIndex++] = local1182.anInt489;
 										continue;
 									}
-									if (local226 == 1601) {
-										Static254.anIntArray487[local28++] = local1182.scrollY;
+									if (scriptOpcode == 1601) {
+										// cc_getscrolly
+										Static254.scriptIntValues[intValueIndex++] = local1182.scrollY;
 										continue;
 									}
-									if (local226 == 1602) {
-										Static3.aClass100Array176[local26++] = local1182.aClass100_84;
+									if (scriptOpcode == 1602) {
+										Static3.scriptStringValues[local26++] = local1182.aClass100_84;
 										continue;
 									}
-									if (local226 == 1603) {
-										Static254.anIntArray487[local28++] = local1182.anInt486;
+									if (scriptOpcode == 1603) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.anInt486;
 										continue;
 									}
-									if (local226 == 1604) {
-										Static254.anIntArray487[local28++] = local1182.anInt491;
+									if (scriptOpcode == 1604) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.anInt491;
 										continue;
 									}
-									if (local226 == 1605) {
-										Static254.anIntArray487[local28++] = local1182.modelZoom;
+									if (scriptOpcode == 1605) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.modelZoom;
 										continue;
 									}
-									if (local226 == 1606) {
-										Static254.anIntArray487[local28++] = local1182.modelXAngle;
+									if (scriptOpcode == 1606) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.modelXAngle;
 										continue;
 									}
-									if (local226 == 1607) {
-										Static254.anIntArray487[local28++] = local1182.modelYOffset;
+									if (scriptOpcode == 1607) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.modelYOffset;
 										continue;
 									}
-									if (local226 == 1608) {
-										Static254.anIntArray487[local28++] = local1182.modelYAngle;
+									if (scriptOpcode == 1608) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.modelYAngle;
 										continue;
 									}
-									if (local226 == 1609) {
-										Static254.anIntArray487[local28++] = local1182.anInt476;
+									if (scriptOpcode == 1609) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.anInt476;
 										continue;
 									}
-									if (local226 == 1610) {
-										Static254.anIntArray487[local28++] = local1182.modelXOffset;
+									if (scriptOpcode == 1610) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.modelXOffset;
 										continue;
 									}
-									if (local226 == 1611) {
-										Static254.anIntArray487[local28++] = local1182.modelZOffset;
+									if (scriptOpcode == 1611) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.modelZOffset;
 										continue;
 									}
-									if (local226 == 1612) {
-										Static254.anIntArray487[local28++] = local1182.anInt477;
+									if (scriptOpcode == 1612) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.anInt477;
 										continue;
 									}
-								} else if (local226 < 1800) {
+								} else if (scriptOpcode < 1800) {
 									local1182 = local1020 ? Static274.aClass13_24 : Static227.aClass13_25;
-									if (local226 == 1700) {
-										Static254.anIntArray487[local28++] = local1182.objId;
+									if (scriptOpcode == 1700) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.objId;
 										continue;
 									}
-									if (local226 == 1701) {
+									if (scriptOpcode == 1701) {
 										if (local1182.objId == -1) {
-											Static254.anIntArray487[local28++] = 0;
+											Static254.scriptIntValues[intValueIndex++] = 0;
 										} else {
-											Static254.anIntArray487[local28++] = local1182.objCount;
+											Static254.scriptIntValues[intValueIndex++] = local1182.objCount;
 										}
 										continue;
 									}
-									if (local226 == 1702) {
-										Static254.anIntArray487[local28++] = local1182.componentId;
+									if (scriptOpcode == 1702) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.componentId;
 										continue;
 									}
-								} else if (local226 < 1900) {
+								} else if (scriptOpcode < 1900) {
 									local1182 = local1020 ? Static274.aClass13_24 : Static227.aClass13_25;
-									if (local226 == 1800) {
-										Static254.anIntArray487[local28++] = Static36.method940(local1182).method512();
+									if (scriptOpcode == 1800) {
+										Static254.scriptIntValues[intValueIndex++] = Static36.method940(local1182).method512();
 										continue;
 									}
-									if (local226 == 1801) {
-										local28--;
-										local803 = Static254.anIntArray487[local28];
-										local803--;
-										if (local1182.aClass100Array18 != null && local803 < local1182.aClass100Array18.length && local1182.aClass100Array18[local803] != null) {
-											Static3.aClass100Array176[local26++] = local1182.aClass100Array18[local803];
+									if (scriptOpcode == 1801) {
+										intValueIndex--;
+										interfaceType = Static254.scriptIntValues[intValueIndex];
+										interfaceType--;
+										if (local1182.aClass100Array18 != null && interfaceType < local1182.aClass100Array18.length && local1182.aClass100Array18[interfaceType] != null) {
+											Static3.scriptStringValues[local26++] = local1182.aClass100Array18[interfaceType];
 											continue;
 										}
-										Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+										Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										continue;
 									}
-									if (local226 == 1802) {
+									if (scriptOpcode == 1802) {
 										if (local1182.aClass100_88 == null) {
-											Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+											Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										} else {
-											Static3.aClass100Array176[local26++] = local1182.aClass100_88;
+											Static3.scriptStringValues[local26++] = local1182.aClass100_88;
 										}
 										continue;
 									}
-								} else if (local226 < 2600) {
-									local28--;
-									local1182 = Static5.getComponent(Static254.anIntArray487[local28]);
-									if (local226 == 2500) {
-										Static254.anIntArray487[local28++] = local1182.x;
+								} else if (scriptOpcode < 2600) {
+									intValueIndex--;
+									local1182 = Static5.getComponent(Static254.scriptIntValues[intValueIndex]);
+									if (scriptOpcode == 2500) {
+										// if_getx
+										Static254.scriptIntValues[intValueIndex++] = local1182.x;
 										continue;
 									}
-									if (local226 == 2501) {
-										Static254.anIntArray487[local28++] = local1182.y;
+									if (scriptOpcode == 2501) {
+										// if_gety
+										Static254.scriptIntValues[intValueIndex++] = local1182.y;
 										continue;
 									}
-									if (local226 == 2502) {
-										Static254.anIntArray487[local28++] = local1182.anInt445;
+									if (scriptOpcode == 2502) {
+										// if_getwidth
+										Static254.scriptIntValues[intValueIndex++] = local1182.anInt445;
 										continue;
 									}
-									if (local226 == 2503) {
-										Static254.anIntArray487[local28++] = local1182.anInt459;
+									if (scriptOpcode == 2503) {
+										// if_getheight
+										Static254.scriptIntValues[intValueIndex++] = local1182.anInt459;
 										continue;
 									}
-									if (local226 == 2504) {
-										Static254.anIntArray487[local28++] = local1182.hidden ? 1 : 0;
+									if (scriptOpcode == 2504) {
+										// if_gethide
+										Static254.scriptIntValues[intValueIndex++] = local1182.hidden ? 1 : 0;
 										continue;
 									}
-									if (local226 == 2505) {
-										Static254.anIntArray487[local28++] = local1182.layer;
+									if (scriptOpcode == 2505) {
+										// if_getlayer
+										Static254.scriptIntValues[intValueIndex++] = local1182.layer;
 										continue;
 									}
-								} else if (local226 < 2700) {
-									local28--;
-									local1182 = Static5.getComponent(Static254.anIntArray487[local28]);
-									if (local226 == 2600) {
-										Static254.anIntArray487[local28++] = local1182.anInt489;
+								} else if (scriptOpcode < 2700) {
+									intValueIndex--;
+									local1182 = Static5.getComponent(Static254.scriptIntValues[intValueIndex]);
+									if (scriptOpcode == 2600) {
+										// if_getscrollx
+										Static254.scriptIntValues[intValueIndex++] = local1182.anInt489;
 										continue;
 									}
-									if (local226 == 2601) {
-										Static254.anIntArray487[local28++] = local1182.scrollY;
+									if (scriptOpcode == 2601) {
+										// if_getscrolly
+										Static254.scriptIntValues[intValueIndex++] = local1182.scrollY;
 										continue;
 									}
-									if (local226 == 2602) {
-										Static3.aClass100Array176[local26++] = local1182.aClass100_84;
+									if (scriptOpcode == 2602) {
+										Static3.scriptStringValues[local26++] = local1182.aClass100_84;
 										continue;
 									}
-									if (local226 == 2603) {
-										Static254.anIntArray487[local28++] = local1182.anInt486;
+									if (scriptOpcode == 2603) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.anInt486;
 										continue;
 									}
-									if (local226 == 2604) {
-										Static254.anIntArray487[local28++] = local1182.anInt491;
+									if (scriptOpcode == 2604) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.anInt491;
 										continue;
 									}
-									if (local226 == 2605) {
-										Static254.anIntArray487[local28++] = local1182.modelZoom;
+									if (scriptOpcode == 2605) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.modelZoom;
 										continue;
 									}
-									if (local226 == 2606) {
-										Static254.anIntArray487[local28++] = local1182.modelXAngle;
+									if (scriptOpcode == 2606) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.modelXAngle;
 										continue;
 									}
-									if (local226 == 2607) {
-										Static254.anIntArray487[local28++] = local1182.modelYOffset;
+									if (scriptOpcode == 2607) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.modelYOffset;
 										continue;
 									}
-									if (local226 == 2608) {
-										Static254.anIntArray487[local28++] = local1182.modelYAngle;
+									if (scriptOpcode == 2608) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.modelYAngle;
 										continue;
 									}
-									if (local226 == 2609) {
-										Static254.anIntArray487[local28++] = local1182.anInt476;
+									if (scriptOpcode == 2609) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.anInt476;
 										continue;
 									}
-									if (local226 == 2610) {
-										Static254.anIntArray487[local28++] = local1182.modelXOffset;
+									if (scriptOpcode == 2610) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.modelXOffset;
 										continue;
 									}
-									if (local226 == 2611) {
-										Static254.anIntArray487[local28++] = local1182.modelZOffset;
+									if (scriptOpcode == 2611) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.modelZOffset;
 										continue;
 									}
-									if (local226 == 2612) {
-										Static254.anIntArray487[local28++] = local1182.anInt477;
+									if (scriptOpcode == 2612) {
+										Static254.scriptIntValues[intValueIndex++] = local1182.anInt477;
 										continue;
 									}
-								} else if (local226 < 2800) {
-									if (local226 == 2700) {
-										local28--;
-										local1182 = Static5.getComponent(Static254.anIntArray487[local28]);
-										Static254.anIntArray487[local28++] = local1182.objId;
+								} else if (scriptOpcode < 2800) {
+									if (scriptOpcode == 2700) {
+										intValueIndex--;
+										local1182 = Static5.getComponent(Static254.scriptIntValues[intValueIndex]);
+										Static254.scriptIntValues[intValueIndex++] = local1182.objId;
 										continue;
 									}
-									if (local226 == 2701) {
-										local28--;
-										local1182 = Static5.getComponent(Static254.anIntArray487[local28]);
+									if (scriptOpcode == 2701) {
+										intValueIndex--;
+										local1182 = Static5.getComponent(Static254.scriptIntValues[intValueIndex]);
 										if (local1182.objId == -1) {
-											Static254.anIntArray487[local28++] = 0;
+											Static254.scriptIntValues[intValueIndex++] = 0;
 										} else {
-											Static254.anIntArray487[local28++] = local1182.objCount;
+											Static254.scriptIntValues[intValueIndex++] = local1182.objCount;
 										}
 										continue;
 									}
-									if (local226 == 2702) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										@Pc(12566) Class3_Sub31 local12566 = (Class3_Sub31) Static119.aClass133_9.getNode((long) local809);
+									if (scriptOpcode == 2702) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										@Pc(12566) Class3_Sub31 local12566 = (Class3_Sub31) Static119.aClass133_9.getNode((long) interfaceData);
 										if (local12566 == null) {
-											Static254.anIntArray487[local28++] = 0;
+											Static254.scriptIntValues[intValueIndex++] = 0;
 										} else {
-											Static254.anIntArray487[local28++] = 1;
+											Static254.scriptIntValues[intValueIndex++] = 1;
 										}
 										continue;
 									}
-									if (local226 == 2703) {
-										local28--;
-										local1182 = Static5.getComponent(Static254.anIntArray487[local28]);
+									if (scriptOpcode == 2703) {
+										intValueIndex--;
+										local1182 = Static5.getComponent(Static254.scriptIntValues[intValueIndex]);
 										if (local1182.createdComponents == null) {
-											Static254.anIntArray487[local28++] = 0;
+											Static254.scriptIntValues[intValueIndex++] = 0;
 											continue;
 										}
-										local803 = local1182.createdComponents.length;
-										for (local1052 = 0; local1052 < local1182.createdComponents.length; local1052++) {
-											if (local1182.createdComponents[local1052] == null) {
-												local803 = local1052;
+										interfaceType = local1182.createdComponents.length;
+										for (childCount = 0; childCount < local1182.createdComponents.length; childCount++) {
+											if (local1182.createdComponents[childCount] == null) {
+												interfaceType = childCount;
 												break;
 											}
 										}
-										Static254.anIntArray487[local28++] = local803;
+										Static254.scriptIntValues[intValueIndex++] = interfaceType;
 										continue;
 									}
-									if (local226 == 2704 || local226 == 2705) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										@Pc(12663) Class3_Sub31 local12663 = (Class3_Sub31) Static119.aClass133_9.getNode((long) local809);
-										if (local12663 != null && local12663.anInt5878 == local803) {
-											Static254.anIntArray487[local28++] = 1;
+									if (scriptOpcode == 2704 || scriptOpcode == 2705) {
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										@Pc(12663) Class3_Sub31 local12663 = (Class3_Sub31) Static119.aClass133_9.getNode((long) interfaceData);
+										if (local12663 != null && local12663.anInt5878 == interfaceType) {
+											Static254.scriptIntValues[intValueIndex++] = 1;
 											continue;
 										}
-										Static254.anIntArray487[local28++] = 0;
+										Static254.scriptIntValues[intValueIndex++] = 0;
 										continue;
 									}
-								} else if (local226 < 2900) {
-									local28--;
-									local1182 = Static5.getComponent(Static254.anIntArray487[local28]);
-									if (local226 == 2800) {
-										Static254.anIntArray487[local28++] = Static36.method940(local1182).method512();
+								} else if (scriptOpcode < 2900) {
+									intValueIndex--;
+									local1182 = Static5.getComponent(Static254.scriptIntValues[intValueIndex]);
+									if (scriptOpcode == 2800) {
+										Static254.scriptIntValues[intValueIndex++] = Static36.method940(local1182).method512();
 										continue;
 									}
-									if (local226 == 2801) {
-										local28--;
-										local803 = Static254.anIntArray487[local28];
-										local803--;
-										if (local1182.aClass100Array18 != null && local1182.aClass100Array18.length > local803 && local1182.aClass100Array18[local803] != null) {
-											Static3.aClass100Array176[local26++] = local1182.aClass100Array18[local803];
+									if (scriptOpcode == 2801) {
+										intValueIndex--;
+										interfaceType = Static254.scriptIntValues[intValueIndex];
+										interfaceType--;
+										if (local1182.aClass100Array18 != null && local1182.aClass100Array18.length > interfaceType && local1182.aClass100Array18[interfaceType] != null) {
+											Static3.scriptStringValues[local26++] = local1182.aClass100Array18[interfaceType];
 											continue;
 										}
-										Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+										Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										continue;
 									}
-									if (local226 == 2802) {
+									if (scriptOpcode == 2802) {
 										if (local1182.aClass100_88 == null) {
-											Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+											Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										} else {
-											Static3.aClass100Array176[local26++] = local1182.aClass100_88;
+											Static3.scriptStringValues[local26++] = local1182.aClass100_88;
 										}
 										continue;
 									}
-								} else if (local226 < 3200) {
-									if (local226 == 3100) {
+								} else if (scriptOpcode < 3200) {
+									if (scriptOpcode == 3100) {
+										// mes
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTyped = Static3.scriptStringValues[local26];
 										Static103.addMessage(Static72.aClass100_447, 0, chatTyped);
 										continue;
 									}
-									if (local226 == 3101) {
-										local28 -= 2;
-										Static186.method3415(Static254.anIntArray487[local28 + 1], Static254.anIntArray487[local28], Static173.localPlayer);
+									if (scriptOpcode == 3101) {
+										// anim
+										intValueIndex -= 2;
+										Static186.method3415(Static254.scriptIntValues[intValueIndex + 1], Static254.scriptIntValues[intValueIndex], Static173.localPlayer);
 										continue;
 									}
-									if (local226 == 3103) {
+									if (scriptOpcode == 3103) {
 										Static153.method2909();
 										continue;
 									}
-									if (local226 == 3104) {
+									if (scriptOpcode == 3104) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
-										local803 = 0;
+										chatTyped = Static3.scriptStringValues[local26];
+										interfaceType = 0;
 										if (chatTyped.method3123()) {
-											local803 = chatTyped.method3132();
+											interfaceType = chatTyped.method3132();
 										}
 										Static6.outboundBuffer.pIsaac1(23);
-										Static6.outboundBuffer.p4(local803);
+										Static6.outboundBuffer.p4(interfaceType);
 										continue;
 									}
-									if (local226 == 3105) {
+									if (scriptOpcode == 3105) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTyped = Static3.scriptStringValues[local26];
 										Static6.outboundBuffer.pIsaac1(244);
 										Static6.outboundBuffer.p8(chatTyped.toBase37());
 										continue;
 									}
-									if (local226 == 3106) {
+									if (scriptOpcode == 3106) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTyped = Static3.scriptStringValues[local26];
 										Static6.outboundBuffer.pIsaac1(65);
 										Static6.outboundBuffer.p1b(chatTyped.length() + 1);
 										Static6.outboundBuffer.pjstr(chatTyped);
 										continue;
 									}
-									if (local226 == 3107) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
+									if (scriptOpcode == 3107) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
 										local26--;
-										chatTypedLowercase = Static3.aClass100Array176[local26];
-										Static276.method4613(local809, chatTypedLowercase);
+										chatTypedLowercase = Static3.scriptStringValues[local26];
+										Static276.method4613(interfaceData, chatTypedLowercase);
 										continue;
 									}
-									if (local226 == 3108) {
-										local28 -= 3;
-										local803 = Static254.anIntArray487[local28 + 1];
-										local809 = Static254.anIntArray487[local28];
-										local1052 = Static254.anIntArray487[local28 + 2];
-										local1063 = Static5.getComponent(local1052);
-										Static40.method1015(local803, local809, local1063);
+									if (scriptOpcode == 3108) {
+										intValueIndex -= 3;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										childCount = Static254.scriptIntValues[intValueIndex + 2];
+										component = Static5.getComponent(childCount);
+										Static40.method1015(interfaceType, interfaceData, component);
 										continue;
 									}
-									if (local226 == 3109) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28];
+									if (scriptOpcode == 3109) {
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
 										local1256 = local1020 ? Static274.aClass13_24 : Static227.aClass13_25;
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static40.method1015(local803, local809, local1256);
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static40.method1015(interfaceType, interfaceData, local1256);
 										continue;
 									}
-									if (local226 == 3110) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
+									if (scriptOpcode == 3110) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
 										Static6.outboundBuffer.pIsaac1(111);
-										Static6.outboundBuffer.p2(local809);
+										Static6.outboundBuffer.p2(interfaceData);
 										continue;
 									}
-								} else if (local226 < 3300) {
-									if (local226 == 3200) {
-										local28 -= 3;
-										Static26.method744(Static254.anIntArray487[local28 + 1], Static254.anIntArray487[local28], Static254.anIntArray487[local28 + 2]);
+								} else if (scriptOpcode < 3300) {
+									if (scriptOpcode == 3200) {
+										// sound_synth
+										intValueIndex -= 3;
+										Static26.method744(Static254.scriptIntValues[intValueIndex + 1], Static254.scriptIntValues[intValueIndex], Static254.scriptIntValues[intValueIndex + 2]);
 										continue;
 									}
-									if (local226 == 3201) {
-										local28--;
-										Static148.method2765(Static254.anIntArray487[local28]);
+									if (scriptOpcode == 3201) {
+										// sound_song
+										intValueIndex--;
+										Static148.method2765(Static254.scriptIntValues[intValueIndex]);
 										continue;
 									}
-									if (local226 == 3202) {
-										local28 -= 2;
-										Static278.method4650(Static254.anIntArray487[local28 + 1], Static254.anIntArray487[local28]);
+									if (scriptOpcode == 3202) {
+										// sound_jingle
+										intValueIndex -= 2;
+										Static278.method4650(Static254.scriptIntValues[intValueIndex + 1], Static254.scriptIntValues[intValueIndex]);
 										continue;
 									}
-								} else if (local226 < 3400) {
-									if (local226 == 3300) {
-										Static254.anIntArray487[local28++] = Static83.loopCycle;
+								} else if (scriptOpcode < 3400) {
+									if (scriptOpcode == 3300) {
+										// clientclock
+										Static254.scriptIntValues[intValueIndex++] = Static83.loopCycle;
 										continue;
 									}
-									if (local226 == 3301) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = Static15.method484(local809, local803);
+									if (scriptOpcode == 3301) {
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = Static15.method484(interfaceData, interfaceType);
 										continue;
 									}
-									if (local226 == 3302) {
-										local28 -= 2;
-										local803 = Static254.anIntArray487[local28 + 1];
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static23.method647(local809, local803);
+									if (scriptOpcode == 3302) {
+										intValueIndex -= 2;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static23.method647(interfaceData, interfaceType);
 										continue;
 									}
-									if (local226 == 3303) {
-										local28 -= 2;
-										local803 = Static254.anIntArray487[local28 + 1];
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = ClientInvCache.total(local809, local803);
+									if (scriptOpcode == 3303) {
+										intValueIndex -= 2;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = ClientInvCache.total(interfaceData, interfaceType);
 										continue;
 									}
-									if (local226 == 3304) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static246.get(local809).size;
+									if (scriptOpcode == 3304) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static246.get(interfaceData).size;
 										continue;
 									}
-									if (local226 == 3305) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static99.skillLevel[local809];
+									if (scriptOpcode == 3305) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static99.skillLevel[interfaceData];
 										continue;
 									}
-									if (local226 == 3306) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static141.skillBaseLevel[local809];
+									if (scriptOpcode == 3306) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static141.skillBaseLevel[interfaceData];
 										continue;
 									}
-									if (local226 == 3307) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static227.skillExperience[local809];
+									if (scriptOpcode == 3307) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static227.skillExperience[interfaceData];
 										continue;
 									}
-									if (local226 == 3308) {
-										local809 = Static55.currentLevel;
-										local803 = Static225.originX + (Static173.localPlayer.x >> 7);
-										local1052 = (Static173.localPlayer.z >> 7) + Static142.originZ;
-										Static254.anIntArray487[local28++] = (local809 << 28) - (-(local803 << 14) - local1052);
+									if (scriptOpcode == 3308) {
+										interfaceData = Static55.currentLevel;
+										interfaceType = Static225.originX + (Static173.localPlayer.x >> 7);
+										childCount = (Static173.localPlayer.z >> 7) + Static142.originZ;
+										Static254.scriptIntValues[intValueIndex++] = (interfaceData << 28) - (-(interfaceType << 14) - childCount);
 										continue;
 									}
-									if (local226 == 3309) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = local809 >> 14 & 0x3FFF;
+									if (scriptOpcode == 3309) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = interfaceData >> 14 & 0x3FFF;
 										continue;
 									}
-									if (local226 == 3310) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = local809 >> 28;
+									if (scriptOpcode == 3310) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = interfaceData >> 28;
 										continue;
 									}
-									if (local226 == 3311) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = local809 & 0x3FFF;
+									if (scriptOpcode == 3311) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = interfaceData & 0x3FFF;
 										continue;
 									}
-									if (local226 == 3312) {
-										Static254.anIntArray487[local28++] = Static2.membersWorld ? 1 : 0;
+									if (scriptOpcode == 3312) {
+										Static254.scriptIntValues[intValueIndex++] = Static2.membersWorld ? 1 : 0;
 										continue;
 									}
-									if (local226 == 3313) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28] + 32768;
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = Static15.method484(local809, local803);
+									if (scriptOpcode == 3313) {
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex] + 32768;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = Static15.method484(interfaceData, interfaceType);
 										continue;
 									}
-									if (local226 == 3314) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28] + 32768;
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = Static23.method647(local809, local803);
+									if (scriptOpcode == 3314) {
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex] + 32768;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = Static23.method647(interfaceData, interfaceType);
 										continue;
 									}
-									if (local226 == 3315) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28] + 32768;
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = ClientInvCache.total(local809, local803);
+									if (scriptOpcode == 3315) {
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex] + 32768;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = ClientInvCache.total(interfaceData, interfaceType);
 										continue;
 									}
-									if (local226 == 3316) {
+									if (scriptOpcode == 3316) {
 										if (Static191.staffModLevel < 2) {
-											Static254.anIntArray487[local28++] = 0;
+											Static254.scriptIntValues[intValueIndex++] = 0;
 										} else {
-											Static254.anIntArray487[local28++] = Static191.staffModLevel;
+											Static254.scriptIntValues[intValueIndex++] = Static191.staffModLevel;
 										}
 										continue;
 									}
-									if (local226 == 3317) {
-										Static254.anIntArray487[local28++] = Static60.systemUpdateTimer;
+									if (scriptOpcode == 3317) {
+										Static254.scriptIntValues[intValueIndex++] = Static60.systemUpdateTimer;
 										continue;
 									}
-									if (local226 == 3318) {
-										Static254.anIntArray487[local28++] = Static125.worldId;
+									if (scriptOpcode == 3318) {
+										Static254.scriptIntValues[intValueIndex++] = Static125.worldId;
 										continue;
 									}
-									if (local226 == 3321) {
-										Static254.anIntArray487[local28++] = Static12.energy;
+									if (scriptOpcode == 3321) {
+										Static254.scriptIntValues[intValueIndex++] = Static12.energy;
 										continue;
 									}
-									if (local226 == 3322) {
-										Static254.anIntArray487[local28++] = Static251.weightCarried;
+									if (scriptOpcode == 3322) {
+										Static254.scriptIntValues[intValueIndex++] = Static251.weightCarried;
 										continue;
 									}
-									if (local226 == 3323) {
+									if (scriptOpcode == 3323) {
 										if (Static249.anInt5431 >= 5 && Static249.anInt5431 <= 9) {
-											Static254.anIntArray487[local28++] = 1;
+											Static254.scriptIntValues[intValueIndex++] = 1;
 											continue;
 										}
-										Static254.anIntArray487[local28++] = 0;
+										Static254.scriptIntValues[intValueIndex++] = 0;
 										continue;
 									}
-									if (local226 == 3324) {
+									if (scriptOpcode == 3324) {
 										if (Static249.anInt5431 >= 5 && Static249.anInt5431 <= 9) {
-											Static254.anIntArray487[local28++] = Static249.anInt5431;
+											Static254.scriptIntValues[intValueIndex++] = Static249.anInt5431;
 											continue;
 										}
-										Static254.anIntArray487[local28++] = 0;
+										Static254.scriptIntValues[intValueIndex++] = 0;
 										continue;
 									}
-									if (local226 == 3325) {
-										Static254.anIntArray487[local28++] = Static202.members ? 1 : 0;
+									if (scriptOpcode == 3325) {
+										Static254.scriptIntValues[intValueIndex++] = Static202.members ? 1 : 0;
 										continue;
 									}
-									if (local226 == 3326) {
-										Static254.anIntArray487[local28++] = Static173.localPlayer.combatLevel;
+									if (scriptOpcode == 3326) {
+										Static254.scriptIntValues[intValueIndex++] = Static173.localPlayer.combatLevel;
 										continue;
 									}
-									if (local226 == 3327) {
-										Static254.anIntArray487[local28++] = Static173.localPlayer.model.aBoolean141 ? 1 : 0;
+									if (scriptOpcode == 3327) {
+										Static254.scriptIntValues[intValueIndex++] = Static173.localPlayer.model.aBoolean141 ? 1 : 0;
 										continue;
 									}
-									if (local226 == 3328) {
-										Static254.anIntArray487[local28++] = Static124.aBoolean157 && !Static207.parentalChatConsent ? 1 : 0;
+									if (scriptOpcode == 3328) {
+										Static254.scriptIntValues[intValueIndex++] = Static124.aBoolean157 && !Static207.parentalChatConsent ? 1 : 0;
 										continue;
 									}
-									if (local226 == 3329) {
-										Static254.anIntArray487[local28++] = Static86.aBoolean129 ? 1 : 0;
+									if (scriptOpcode == 3329) {
+										Static254.scriptIntValues[intValueIndex++] = Static86.aBoolean129 ? 1 : 0;
 										continue;
 									}
-									if (local226 == 3330) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = ClientInvCache.method446(local809);
+									if (scriptOpcode == 3330) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = ClientInvCache.method446(interfaceData);
 										continue;
 									}
-									if (local226 == 3331) {
-										local28 -= 2;
-										local803 = Static254.anIntArray487[local28 + 1];
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static178.method3319(false, local809, local803);
+									if (scriptOpcode == 3331) {
+										intValueIndex -= 2;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static178.method3319(false, interfaceData, interfaceType);
 										continue;
 									}
-									if (local226 == 3332) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = Static178.method3319(true, local809, local803);
+									if (scriptOpcode == 3332) {
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = Static178.method3319(true, interfaceData, interfaceType);
 										continue;
 									}
-									if (local226 == 3333) {
-										Static254.anIntArray487[local28++] = Static5.anInt39;
+									if (scriptOpcode == 3333) {
+										Static254.scriptIntValues[intValueIndex++] = Static5.anInt39;
 										continue;
 									}
-									if (local226 == 3335) {
-										Static254.anIntArray487[local28++] = Static141.anInt3470;
+									if (scriptOpcode == 3335) {
+										Static254.scriptIntValues[intValueIndex++] = Static141.anInt3470;
 										continue;
 									}
-									if (local226 == 3336) {
-										local28 -= 4;
-										local803 = Static254.anIntArray487[local28 + 1];
-										local809 = Static254.anIntArray487[local28];
-										local809 += local803 << 14;
-										local652 = Static254.anIntArray487[local28 + 3];
-										local1052 = Static254.anIntArray487[local28 + 2];
-										local809 += local1052 << 28;
-										local809 += local652;
-										Static254.anIntArray487[local28++] = local809;
+									if (scriptOpcode == 3336) {
+										intValueIndex -= 4;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceData += interfaceType << 14;
+										local652 = Static254.scriptIntValues[intValueIndex + 3];
+										childCount = Static254.scriptIntValues[intValueIndex + 2];
+										interfaceData += childCount << 28;
+										interfaceData += local652;
+										Static254.scriptIntValues[intValueIndex++] = interfaceData;
 										continue;
 									}
-									if (local226 == 3337) {
-										Static254.anIntArray487[local28++] = Static204.anInt4760;
+									if (scriptOpcode == 3337) {
+										Static254.scriptIntValues[intValueIndex++] = Static204.anInt4760;
 										continue;
 									}
-								} else if (local226 < 3500) {
+								} else if (scriptOpcode < 3500) {
 									@Pc(3422) EnumType local3422;
-									if (local226 == 3400) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										local3422 = Static253.get(local809);
+									if (scriptOpcode == 3400) {
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										local3422 = Static253.get(interfaceData);
 										if (local3422.outputtype == 115) {
 										}
-										Static3.aClass100Array176[local26++] = local3422.getValueString(local803);
+										Static3.scriptStringValues[local26++] = local3422.getValueString(interfaceType);
 										continue;
 									}
-									if (local226 == 3408) {
-										local28 -= 4;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										local652 = Static254.anIntArray487[local28 + 3];
-										local1052 = Static254.anIntArray487[local28 + 2];
-										@Pc(3469) EnumType local3469 = Static253.get(local1052);
-										if (local3469.inputtype == local809 && local3469.outputtype == local803) {
-											if (local803 == 115) {
-												Static3.aClass100Array176[local26++] = local3469.getValueString(local652);
+									if (scriptOpcode == 3408) {
+										intValueIndex -= 4;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										local652 = Static254.scriptIntValues[intValueIndex + 3];
+										childCount = Static254.scriptIntValues[intValueIndex + 2];
+										@Pc(3469) EnumType local3469 = Static253.get(childCount);
+										if (local3469.inputtype == interfaceData && local3469.outputtype == interfaceType) {
+											if (interfaceType == 115) {
+												Static3.scriptStringValues[local26++] = local3469.getValueString(local652);
 											} else {
-												Static254.anIntArray487[local28++] = local3469.getValueInt(local652);
+												Static254.scriptIntValues[intValueIndex++] = local3469.getValueInt(local652);
 											}
 											continue;
 										}
 										throw new RuntimeException("C3408-1");
 									}
-									if (local226 == 3409) {
-										local28 -= 3;
-										local803 = Static254.anIntArray487[local28 + 1];
-										local1052 = Static254.anIntArray487[local28 + 2];
-										local809 = Static254.anIntArray487[local28];
-										if (local803 == -1) {
+									if (scriptOpcode == 3409) {
+										intValueIndex -= 3;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										childCount = Static254.scriptIntValues[intValueIndex + 2];
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										if (interfaceType == -1) {
 											throw new RuntimeException("C3409-2");
 										}
-										@Pc(3549) EnumType local3549 = Static253.get(local803);
-										if (local3549.outputtype != local809) {
+										@Pc(3549) EnumType local3549 = Static253.get(interfaceType);
+										if (local3549.outputtype != interfaceData) {
 											throw new RuntimeException("C3409-1");
 										}
-										Static254.anIntArray487[local28++] = local3549.method3090(local1052) ? 1 : 0;
+										Static254.scriptIntValues[intValueIndex++] = local3549.method3090(childCount) ? 1 : 0;
 										continue;
 									}
-									if (local226 == 3410) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
+									if (scriptOpcode == 3410) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
 										local26--;
-										chatTypedLowercase = Static3.aClass100Array176[local26];
-										if (local809 == -1) {
+										chatTypedLowercase = Static3.scriptStringValues[local26];
+										if (interfaceData == -1) {
 											throw new RuntimeException("C3410-2");
 										}
-										local3422 = Static253.get(local809);
+										local3422 = Static253.get(interfaceData);
 										if (local3422.outputtype != 115) {
 											throw new RuntimeException("C3410-1");
 										}
-										Static254.anIntArray487[local28++] = local3422.method3086(chatTypedLowercase) ? 1 : 0;
+										Static254.scriptIntValues[intValueIndex++] = local3422.method3086(chatTypedLowercase) ? 1 : 0;
 										continue;
 									}
-									if (local226 == 3411) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										@Pc(3645) EnumType local3645 = Static253.get(local809);
-										Static254.anIntArray487[local28++] = local3645.values.length();
+									if (scriptOpcode == 3411) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										@Pc(3645) EnumType local3645 = Static253.get(interfaceData);
+										Static254.scriptIntValues[intValueIndex++] = local3645.values.length();
 										continue;
 									}
-								} else if (local226 < 3700) {
-									if (local226 == 3600) {
+								} else if (scriptOpcode < 3700) {
+									if (scriptOpcode == 3600) {
 										if (Static166.anInt4054 == 0) {
-											Static254.anIntArray487[local28++] = -2;
+											Static254.scriptIntValues[intValueIndex++] = -2;
 										} else if (Static166.anInt4054 == 1) {
-											Static254.anIntArray487[local28++] = -1;
+											Static254.scriptIntValues[intValueIndex++] = -1;
 										} else {
-											Static254.anIntArray487[local28++] = Static9.friendCount;
+											Static254.scriptIntValues[intValueIndex++] = Static9.friendCount;
 										}
 										continue;
 									}
-									if (local226 == 3601) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										if (Static166.anInt4054 == 2 && local809 < Static9.friendCount) {
-											Static3.aClass100Array176[local26++] = Static122.friendName[local809];
+									if (scriptOpcode == 3601) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										if (Static166.anInt4054 == 2 && interfaceData < Static9.friendCount) {
+											Static3.scriptStringValues[local26++] = Static122.friendName[interfaceData];
 											continue;
 										}
-										Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+										Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										continue;
 									}
-									if (local226 == 3602) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										if (Static166.anInt4054 == 2 && Static9.friendCount > local809) {
-											Static254.anIntArray487[local28++] = Static104.friendWorld[local809];
+									if (scriptOpcode == 3602) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										if (Static166.anInt4054 == 2 && Static9.friendCount > interfaceData) {
+											Static254.scriptIntValues[intValueIndex++] = Static104.friendWorld[interfaceData];
 											continue;
 										}
-										Static254.anIntArray487[local28++] = 0;
+										Static254.scriptIntValues[intValueIndex++] = 0;
 										continue;
 									}
-									if (local226 == 3603) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										if (Static166.anInt4054 == 2 && Static9.friendCount > local809) {
-											Static254.anIntArray487[local28++] = Static106.anIntArray258[local809];
+									if (scriptOpcode == 3603) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										if (Static166.anInt4054 == 2 && Static9.friendCount > interfaceData) {
+											Static254.scriptIntValues[intValueIndex++] = Static106.anIntArray258[interfaceData];
 											continue;
 										}
-										Static254.anIntArray487[local28++] = 0;
+										Static254.scriptIntValues[intValueIndex++] = 0;
 										continue;
 									}
-									if (local226 == 3604) {
-										local28--;
-										local803 = Static254.anIntArray487[local28];
+									if (scriptOpcode == 3604) {
+										intValueIndex--;
+										interfaceType = Static254.scriptIntValues[intValueIndex];
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
-										Static171.method3221(chatTyped, local803);
+										chatTyped = Static3.scriptStringValues[local26];
+										Static171.method3221(chatTyped, interfaceType);
 										continue;
 									}
-									if (local226 == 3605) {
+									if (scriptOpcode == 3605) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTyped = Static3.scriptStringValues[local26];
 										Static64.addFriend(chatTyped.toBase37());
 										continue;
 									}
-									if (local226 == 3606) {
+									if (scriptOpcode == 3606) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTyped = Static3.scriptStringValues[local26];
 										Static193.removeFriend(chatTyped.toBase37());
 										continue;
 									}
-									if (local226 == 3607) {
+									if (scriptOpcode == 3607) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTyped = Static3.scriptStringValues[local26];
 										Static140.addIgnore(chatTyped.toBase37());
 										continue;
 									}
-									if (local226 == 3608) {
+									if (scriptOpcode == 3608) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTyped = Static3.scriptStringValues[local26];
 										Static69.method1542(chatTyped.toBase37());
 										continue;
 									}
-									if (local226 == 3609) {
+									if (scriptOpcode == 3609) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTyped = Static3.scriptStringValues[local26];
 										if (chatTyped.startsWith(Static72.aClass100_446) || chatTyped.startsWith(Static101.aClass100_537)) {
 											chatTyped = chatTyped.substring(7);
 										}
-										Static254.anIntArray487[local28++] = Static98.method1965(chatTyped) ? 1 : 0;
+										Static254.scriptIntValues[intValueIndex++] = Static98.method1965(chatTyped) ? 1 : 0;
 										continue;
 									}
-									if (local226 == 3610) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										if (Static166.anInt4054 == 2 && Static9.friendCount > local809) {
-											Static3.aClass100Array176[local26++] = Static214.aClass100Array170[local809];
+									if (scriptOpcode == 3610) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										if (Static166.anInt4054 == 2 && Static9.friendCount > interfaceData) {
+											Static3.scriptStringValues[local26++] = Static214.aClass100Array170[interfaceData];
 											continue;
 										}
-										Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+										Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										continue;
 									}
-									if (local226 == 3611) {
+									if (scriptOpcode == 3611) {
 										if (Static15.aClass100_87 == null) {
-											Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+											Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										} else {
-											Static3.aClass100Array176[local26++] = Static15.aClass100_87.method3125();
+											Static3.scriptStringValues[local26++] = Static15.aClass100_87.method3125();
 										}
 										continue;
 									}
-									if (local226 == 3612) {
+									if (scriptOpcode == 3612) {
 										if (Static15.aClass100_87 == null) {
-											Static254.anIntArray487[local28++] = 0;
+											Static254.scriptIntValues[intValueIndex++] = 0;
 										} else {
-											Static254.anIntArray487[local28++] = Static214.anInt5577;
+											Static254.scriptIntValues[intValueIndex++] = Static214.anInt5577;
 										}
 										continue;
 									}
-									if (local226 == 3613) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										if (Static15.aClass100_87 != null && Static214.anInt5577 > local809) {
-											Static3.aClass100Array176[local26++] = Static199.aClass3_Sub22Array1[local809].aClass100_636.method3125();
+									if (scriptOpcode == 3613) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										if (Static15.aClass100_87 != null && Static214.anInt5577 > interfaceData) {
+											Static3.scriptStringValues[local26++] = Static199.aClass3_Sub22Array1[interfaceData].aClass100_636.method3125();
 											continue;
 										}
-										Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+										Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										continue;
 									}
-									if (local226 == 3614) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										if (Static15.aClass100_87 != null && local809 < Static214.anInt5577) {
-											Static254.anIntArray487[local28++] = Static199.aClass3_Sub22Array1[local809].anInt3340;
+									if (scriptOpcode == 3614) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										if (Static15.aClass100_87 != null && interfaceData < Static214.anInt5577) {
+											Static254.scriptIntValues[intValueIndex++] = Static199.aClass3_Sub22Array1[interfaceData].anInt3340;
 											continue;
 										}
-										Static254.anIntArray487[local28++] = 0;
+										Static254.scriptIntValues[intValueIndex++] = 0;
 										continue;
 									}
-									if (local226 == 3615) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										if (Static15.aClass100_87 != null && Static214.anInt5577 > local809) {
-											Static254.anIntArray487[local28++] = Static199.aClass3_Sub22Array1[local809].aByte9;
+									if (scriptOpcode == 3615) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										if (Static15.aClass100_87 != null && Static214.anInt5577 > interfaceData) {
+											Static254.scriptIntValues[intValueIndex++] = Static199.aClass3_Sub22Array1[interfaceData].aByte9;
 											continue;
 										}
-										Static254.anIntArray487[local28++] = 0;
+										Static254.scriptIntValues[intValueIndex++] = 0;
 										continue;
 									}
-									if (local226 == 3616) {
-										Static254.anIntArray487[local28++] = Static50.aByte6;
+									if (scriptOpcode == 3616) {
+										Static254.scriptIntValues[intValueIndex++] = Static50.aByte6;
 										continue;
 									}
-									if (local226 == 3617) {
+									if (scriptOpcode == 3617) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTyped = Static3.scriptStringValues[local26];
 										Static178.method3318(chatTyped);
 										continue;
 									}
-									if (local226 == 3618) {
-										Static254.anIntArray487[local28++] = Static160.aByte14;
+									if (scriptOpcode == 3618) {
+										Static254.scriptIntValues[intValueIndex++] = Static160.aByte14;
 										continue;
 									}
-									if (local226 == 3619) {
+									if (scriptOpcode == 3619) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTyped = Static3.scriptStringValues[local26];
 										Static156.method2956(chatTyped.toBase37());
 										continue;
 									}
-									if (local226 == 3620) {
+									if (scriptOpcode == 3620) {
 										Static134.method2623();
 										continue;
 									}
-									if (local226 == 3621) {
+									if (scriptOpcode == 3621) {
 										if (Static166.anInt4054 == 0) {
-											Static254.anIntArray487[local28++] = -1;
+											Static254.scriptIntValues[intValueIndex++] = -1;
 										} else {
-											Static254.anIntArray487[local28++] = Static35.ignoreCount;
+											Static254.scriptIntValues[intValueIndex++] = Static35.ignoreCount;
 										}
 										continue;
 									}
-									if (local226 == 3622) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										if (Static166.anInt4054 != 0 && Static35.ignoreCount > local809) {
-											Static3.aClass100Array176[local26++] = Static79.decode37(Static190.ignoreName37[local809]).method3125();
+									if (scriptOpcode == 3622) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										if (Static166.anInt4054 != 0 && Static35.ignoreCount > interfaceData) {
+											Static3.scriptStringValues[local26++] = Static79.decode37(Static190.ignoreName37[interfaceData]).method3125();
 											continue;
 										}
-										Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+										Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										continue;
 									}
-									if (local226 == 3623) {
+									if (scriptOpcode == 3623) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTyped = Static3.scriptStringValues[local26];
 										if (chatTyped.startsWith(Static72.aClass100_446) || chatTyped.startsWith(Static101.aClass100_537)) {
 											chatTyped = chatTyped.substring(7);
 										}
-										Static254.anIntArray487[local28++] = Static238.method4144(chatTyped) ? 1 : 0;
+										Static254.scriptIntValues[intValueIndex++] = Static238.method4144(chatTyped) ? 1 : 0;
 										continue;
 									}
-									if (local226 == 3624) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										if (Static199.aClass3_Sub22Array1 != null && Static214.anInt5577 > local809 && Static199.aClass3_Sub22Array1[local809].aClass100_636.equalsIgnoreCase(Static173.localPlayer.name)) {
-											Static254.anIntArray487[local28++] = 1;
+									if (scriptOpcode == 3624) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										if (Static199.aClass3_Sub22Array1 != null && Static214.anInt5577 > interfaceData && Static199.aClass3_Sub22Array1[interfaceData].aClass100_636.equalsIgnoreCase(Static173.localPlayer.name)) {
+											Static254.scriptIntValues[intValueIndex++] = 1;
 											continue;
 										}
-										Static254.anIntArray487[local28++] = 0;
+										Static254.scriptIntValues[intValueIndex++] = 0;
 										continue;
 									}
-									if (local226 == 3625) {
+									if (scriptOpcode == 3625) {
 										if (Static270.aClass100_1094 == null) {
-											Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+											Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										} else {
-											Static3.aClass100Array176[local26++] = Static270.aClass100_1094.method3125();
+											Static3.scriptStringValues[local26++] = Static270.aClass100_1094.method3125();
 										}
 										continue;
 									}
-									if (local226 == 3626) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										if (Static15.aClass100_87 != null && Static214.anInt5577 > local809) {
-											Static3.aClass100Array176[local26++] = Static199.aClass3_Sub22Array1[local809].aClass100_635;
+									if (scriptOpcode == 3626) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										if (Static15.aClass100_87 != null && Static214.anInt5577 > interfaceData) {
+											Static3.scriptStringValues[local26++] = Static199.aClass3_Sub22Array1[interfaceData].aClass100_635;
 											continue;
 										}
-										Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+										Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										continue;
 									}
-									if (local226 == 3627) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										if (Static166.anInt4054 == 2 && local809 >= 0 && local809 < Static9.friendCount) {
-											Static254.anIntArray487[local28++] = Static3.aBooleanArray135[local809] ? 1 : 0;
+									if (scriptOpcode == 3627) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										if (Static166.anInt4054 == 2 && interfaceData >= 0 && interfaceData < Static9.friendCount) {
+											Static254.scriptIntValues[intValueIndex++] = Static3.aBooleanArray135[interfaceData] ? 1 : 0;
 											continue;
 										}
-										Static254.anIntArray487[local28++] = 0;
+										Static254.scriptIntValues[intValueIndex++] = 0;
 										continue;
 									}
-									if (local226 == 3628) {
+									if (scriptOpcode == 3628) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTyped = Static3.scriptStringValues[local26];
 										if (chatTyped.startsWith(Static72.aClass100_446) || chatTyped.startsWith(Static101.aClass100_537)) {
 											chatTyped = chatTyped.substring(7);
 										}
-										Static254.anIntArray487[local28++] = Static4.method25(chatTyped);
+										Static254.scriptIntValues[intValueIndex++] = Static4.method25(chatTyped);
 										continue;
 									}
-									if (local226 == 3629) {
-										Static254.anIntArray487[local28++] = Static279.anInt5880;
+									if (scriptOpcode == 3629) {
+										Static254.scriptIntValues[intValueIndex++] = Static279.anInt5880;
 										continue;
 									}
-								} else if (local226 < 4000) {
-									if (local226 == 3903) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static229.aClass136Array1[local809].method3905();
+								} else if (scriptOpcode < 4000) {
+									if (scriptOpcode == 3903) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static229.aClass136Array1[interfaceData].method3905();
 										continue;
 									}
-									if (local226 == 3904) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static229.aClass136Array1[local809].anInt5094;
+									if (scriptOpcode == 3904) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static229.aClass136Array1[interfaceData].anInt5094;
 										continue;
 									}
-									if (local226 == 3905) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static229.aClass136Array1[local809].anInt5099;
+									if (scriptOpcode == 3905) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static229.aClass136Array1[interfaceData].anInt5099;
 										continue;
 									}
-									if (local226 == 3906) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static229.aClass136Array1[local809].anInt5090;
+									if (scriptOpcode == 3906) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static229.aClass136Array1[interfaceData].anInt5090;
 										continue;
 									}
-									if (local226 == 3907) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static229.aClass136Array1[local809].anInt5089;
+									if (scriptOpcode == 3907) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static229.aClass136Array1[interfaceData].anInt5089;
 										continue;
 									}
-									if (local226 == 3908) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static229.aClass136Array1[local809].anInt5092;
+									if (scriptOpcode == 3908) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static229.aClass136Array1[interfaceData].anInt5092;
 										continue;
 									}
-									if (local226 == 3910) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static229.aClass136Array1[local809].method3904();
-										Static254.anIntArray487[local28++] = local803 == 0 ? 1 : 0;
+									if (scriptOpcode == 3910) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static229.aClass136Array1[interfaceData].method3904();
+										Static254.scriptIntValues[intValueIndex++] = interfaceType == 0 ? 1 : 0;
 										continue;
 									}
-									if (local226 == 3911) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static229.aClass136Array1[local809].method3904();
-										Static254.anIntArray487[local28++] = local803 == 2 ? 1 : 0;
+									if (scriptOpcode == 3911) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static229.aClass136Array1[interfaceData].method3904();
+										Static254.scriptIntValues[intValueIndex++] = interfaceType == 2 ? 1 : 0;
 										continue;
 									}
-									if (local226 == 3912) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static229.aClass136Array1[local809].method3904();
-										Static254.anIntArray487[local28++] = local803 == 5 ? 1 : 0;
+									if (scriptOpcode == 3912) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static229.aClass136Array1[interfaceData].method3904();
+										Static254.scriptIntValues[intValueIndex++] = interfaceType == 5 ? 1 : 0;
 										continue;
 									}
-									if (local226 == 3913) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static229.aClass136Array1[local809].method3904();
-										Static254.anIntArray487[local28++] = local803 == 1 ? 1 : 0;
+									if (scriptOpcode == 3913) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static229.aClass136Array1[interfaceData].method3904();
+										Static254.scriptIntValues[intValueIndex++] = interfaceType == 1 ? 1 : 0;
 										continue;
 									}
-								} else if (local226 < 4100) {
-									if (local226 == 4000) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = local803 + local809;
+								} else if (scriptOpcode < 4100) {
+									if (scriptOpcode == 4000) {
+										// add
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = interfaceType + interfaceData;
 										continue;
 									}
-									if (local226 == 4001) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = local809 - local803;
+									if (scriptOpcode == 4001) {
+										// sub
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = interfaceData - interfaceType;
 										continue;
 									}
-									if (local226 == 4002) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = local803 * local809;
+									if (scriptOpcode == 4002) {
+										// multiply
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = interfaceType * interfaceData;
 										continue;
 									}
-									if (local226 == 4003) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = local809 / local803;
+									if (scriptOpcode == 4003) {
+										// divide
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = interfaceData / interfaceType;
 										continue;
 									}
-									if (local226 == 4004) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = (int) ((double) local809 * Math.random());
+									if (scriptOpcode == 4004) {
+										// random
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = (int) ((double) interfaceData * Math.random());
 										continue;
 									}
-									if (local226 == 4005) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = (int) (Math.random() * (double) (local809 + 1));
+									if (scriptOpcode == 4005) {
+										// randominc
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = (int) (Math.random() * (double) (interfaceData + 1));
 										continue;
 									}
-									if (local226 == 4006) {
-										local28 -= 5;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										local652 = Static254.anIntArray487[local28 + 3];
-										local1052 = Static254.anIntArray487[local28 + 2];
-										start = Static254.anIntArray487[local28 + 4];
-										Static254.anIntArray487[local28++] = (local803 - local809) * (start + -local1052) / (local652 - local1052) + local809;
+									if (scriptOpcode == 4006) {
+										// interpolate
+										intValueIndex -= 5;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										local652 = Static254.scriptIntValues[intValueIndex + 3];
+										childCount = Static254.scriptIntValues[intValueIndex + 2];
+										start = Static254.scriptIntValues[intValueIndex + 4];
+										Static254.scriptIntValues[intValueIndex++] = (interfaceType - interfaceData) * (start + -childCount) / (local652 - childCount) + interfaceData;
 										continue;
 									}
 									@Pc(4899) long local4899;
 									@Pc(4892) long local4892;
-									if (local226 == 4007) {
-										local28 -= 2;
-										local4892 = Static254.anIntArray487[local28];
-										local4899 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = (int) (local4892 * local4899 / 100L + local4892);
+									if (scriptOpcode == 4007) {
+										// addpercent
+										intValueIndex -= 2;
+										local4892 = Static254.scriptIntValues[intValueIndex];
+										local4899 = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = (int) (local4892 * local4899 / 100L + local4892);
 										continue;
 									}
-									if (local226 == 4008) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = local809 | 0x1 << local803;
+									if (scriptOpcode == 4008) {
+										// setbit
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = interfaceData | 0x1 << interfaceType;
 										continue;
 									}
-									if (local226 == 4009) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = -(0x1 << local803) - 1 & local809;
+									if (scriptOpcode == 4009) {
+										// clearbit
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = -(0x1 << interfaceType) - 1 & interfaceData;
 										continue;
 									}
-									if (local226 == 4010) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = (local809 & 0x1 << local803) == 0 ? 0 : 1;
+									if (scriptOpcode == 4010) {
+										// testbit
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = (interfaceData & 0x1 << interfaceType) == 0 ? 0 : 1;
 										continue;
 									}
-									if (local226 == 4011) {
-										local28 -= 2;
-										local803 = Static254.anIntArray487[local28 + 1];
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = local809 % local803;
+									if (scriptOpcode == 4011) {
+										// modulo
+										intValueIndex -= 2;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = interfaceData % interfaceType;
 										continue;
 									}
-									if (local226 == 4012) {
-										local28 -= 2;
-										local803 = Static254.anIntArray487[local28 + 1];
-										local809 = Static254.anIntArray487[local28];
-										if (local809 == 0) {
-											Static254.anIntArray487[local28++] = 0;
+									if (scriptOpcode == 4012) {
+										// pow
+										intValueIndex -= 2;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										if (interfaceData == 0) {
+											Static254.scriptIntValues[intValueIndex++] = 0;
 										} else {
-											Static254.anIntArray487[local28++] = (int) Math.pow((double) local809, (double) local803);
+											Static254.scriptIntValues[intValueIndex++] = (int) Math.pow((double) interfaceData, (double) interfaceType);
 										}
 										continue;
 									}
-									if (local226 == 4013) {
-										local28 -= 2;
-										local803 = Static254.anIntArray487[local28 + 1];
-										local809 = Static254.anIntArray487[local28];
-										if (local809 == 0) {
-											Static254.anIntArray487[local28++] = 0;
-										} else if (local803 == 0) {
-											Static254.anIntArray487[local28++] = Integer.MAX_VALUE;
+									if (scriptOpcode == 4013) {
+										// invpow
+										intValueIndex -= 2;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										if (interfaceData == 0) {
+											Static254.scriptIntValues[intValueIndex++] = 0;
+										} else if (interfaceType == 0) {
+											Static254.scriptIntValues[intValueIndex++] = Integer.MAX_VALUE;
 										} else {
-											Static254.anIntArray487[local28++] = (int) Math.pow((double) local809, 1.0D / (double) local803);
+											Static254.scriptIntValues[intValueIndex++] = (int) Math.pow((double) interfaceData, 1.0D / (double) interfaceType);
 										}
 										continue;
 									}
-									if (local226 == 4014) {
-										local28 -= 2;
-										local803 = Static254.anIntArray487[local28 + 1];
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = local803 & local809;
+									if (scriptOpcode == 4014) {
+										intValueIndex -= 2;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = interfaceType & interfaceData;
 										continue;
 									}
-									if (local226 == 4015) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = local809 | local803;
+									if (scriptOpcode == 4015) {
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = interfaceData | interfaceType;
 										continue;
 									}
-									if (local226 == 4016) {
-										local28 -= 2;
-										local809 = Static254.anIntArray487[local28];
-										local803 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = local809 < local803 ? local809 : local803;
+									if (scriptOpcode == 4016) {
+										intValueIndex -= 2;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = interfaceData < interfaceType ? interfaceData : interfaceType;
 										continue;
 									}
-									if (local226 == 4017) {
-										local28 -= 2;
-										local803 = Static254.anIntArray487[local28 + 1];
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = local803 >= local809 ? local803 : local809;
+									if (scriptOpcode == 4017) {
+										intValueIndex -= 2;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = interfaceType >= interfaceData ? interfaceType : interfaceData;
 										continue;
 									}
-									if (local226 == 4018) {
-										local28 -= 3;
-										local4892 = Static254.anIntArray487[local28];
-										local4899 = Static254.anIntArray487[local28 + 1];
-										@Pc(5251) long local5251 = (long) Static254.anIntArray487[local28 + 2];
-										Static254.anIntArray487[local28++] = (int) (local4892 * local5251 / local4899);
+									if (scriptOpcode == 4018) {
+										intValueIndex -= 3;
+										local4892 = Static254.scriptIntValues[intValueIndex];
+										local4899 = Static254.scriptIntValues[intValueIndex + 1];
+										@Pc(5251) long local5251 = (long) Static254.scriptIntValues[intValueIndex + 2];
+										Static254.scriptIntValues[intValueIndex++] = (int) (local4892 * local5251 / local4899);
 										continue;
 									}
-								} else if (local226 >= 4200) {
+								} else if (scriptOpcode >= 4200) {
 									@Pc(5294) Class3_Sub2_Sub12 local5294;
-									if (local226 < 4300) {
-										if (local226 == 4200) {
-											local28--;
-											local809 = Static254.anIntArray487[local28];
-											Static3.aClass100Array176[local26++] = Static71.get(local809).name;
+									if (scriptOpcode < 4300) {
+										if (scriptOpcode == 4200) {
+											intValueIndex--;
+											interfaceData = Static254.scriptIntValues[intValueIndex];
+											Static3.scriptStringValues[local26++] = Static71.get(interfaceData).name;
 											continue;
 										}
 										@Pc(11269) ObjType local11269;
-										if (local226 == 4201) {
-											local28 -= 2;
-											local809 = Static254.anIntArray487[local28];
-											local803 = Static254.anIntArray487[local28 + 1];
-											local11269 = Static71.get(local809);
-											if (local803 >= 1 && local803 <= 5 && local11269.ops[local803 - 1] != null) {
-												Static3.aClass100Array176[local26++] = local11269.ops[local803 - 1];
+										if (scriptOpcode == 4201) {
+											intValueIndex -= 2;
+											interfaceData = Static254.scriptIntValues[intValueIndex];
+											interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+											local11269 = Static71.get(interfaceData);
+											if (interfaceType >= 1 && interfaceType <= 5 && local11269.ops[interfaceType - 1] != null) {
+												Static3.scriptStringValues[local26++] = local11269.ops[interfaceType - 1];
 												continue;
 											}
-											Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+											Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 											continue;
 										}
-										if (local226 == 4202) {
-											local28 -= 2;
-											local809 = Static254.anIntArray487[local28];
-											local803 = Static254.anIntArray487[local28 + 1];
-											local11269 = Static71.get(local809);
-											if (local803 >= 1 && local803 <= 5 && local11269.iops[local803 - 1] != null) {
-												Static3.aClass100Array176[local26++] = local11269.iops[local803 - 1];
+										if (scriptOpcode == 4202) {
+											intValueIndex -= 2;
+											interfaceData = Static254.scriptIntValues[intValueIndex];
+											interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+											local11269 = Static71.get(interfaceData);
+											if (interfaceType >= 1 && interfaceType <= 5 && local11269.iops[interfaceType - 1] != null) {
+												Static3.scriptStringValues[local26++] = local11269.iops[interfaceType - 1];
 												continue;
 											}
-											Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+											Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 											continue;
 										}
-										if (local226 == 4203) {
-											local28--;
-											local809 = Static254.anIntArray487[local28];
-											Static254.anIntArray487[local28++] = Static71.get(local809).cost;
+										if (scriptOpcode == 4203) {
+											intValueIndex--;
+											interfaceData = Static254.scriptIntValues[intValueIndex];
+											Static254.scriptIntValues[intValueIndex++] = Static71.get(interfaceData).cost;
 											continue;
 										}
-										if (local226 == 4204) {
-											local28--;
-											local809 = Static254.anIntArray487[local28];
-											Static254.anIntArray487[local28++] = Static71.get(local809).stackable == 1 ? 1 : 0;
+										if (scriptOpcode == 4204) {
+											intValueIndex--;
+											interfaceData = Static254.scriptIntValues[intValueIndex];
+											Static254.scriptIntValues[intValueIndex++] = Static71.get(interfaceData).stackable == 1 ? 1 : 0;
 											continue;
 										}
 										@Pc(11417) ObjType local11417;
-										if (local226 == 4205) {
-											local28--;
-											local809 = Static254.anIntArray487[local28];
-											local11417 = Static71.get(local809);
+										if (scriptOpcode == 4205) {
+											intValueIndex--;
+											interfaceData = Static254.scriptIntValues[intValueIndex];
+											local11417 = Static71.get(interfaceData);
 											if (local11417.certtemplate == -1 && local11417.certlink >= 0) {
-												Static254.anIntArray487[local28++] = local11417.certlink;
+												Static254.scriptIntValues[intValueIndex++] = local11417.certlink;
 												continue;
 											}
-											Static254.anIntArray487[local28++] = local809;
+											Static254.scriptIntValues[intValueIndex++] = interfaceData;
 											continue;
 										}
-										if (local226 == 4206) {
-											local28--;
-											local809 = Static254.anIntArray487[local28];
-											local11417 = Static71.get(local809);
+										if (scriptOpcode == 4206) {
+											intValueIndex--;
+											interfaceData = Static254.scriptIntValues[intValueIndex];
+											local11417 = Static71.get(interfaceData);
 											if (local11417.certtemplate >= 0 && local11417.certlink >= 0) {
-												Static254.anIntArray487[local28++] = local11417.certlink;
+												Static254.scriptIntValues[intValueIndex++] = local11417.certlink;
 												continue;
 											}
-											Static254.anIntArray487[local28++] = local809;
+											Static254.scriptIntValues[intValueIndex++] = interfaceData;
 											continue;
 										}
-										if (local226 == 4207) {
-											local28--;
-											local809 = Static254.anIntArray487[local28];
-											Static254.anIntArray487[local28++] = Static71.get(local809).members ? 1 : 0;
+										if (scriptOpcode == 4207) {
+											intValueIndex--;
+											interfaceData = Static254.scriptIntValues[intValueIndex];
+											Static254.scriptIntValues[intValueIndex++] = Static71.get(interfaceData).members ? 1 : 0;
 											continue;
 										}
-										if (local226 == 4208) {
-											local28 -= 2;
-											local809 = Static254.anIntArray487[local28];
-											local803 = Static254.anIntArray487[local28 + 1];
-											local5294 = Static110.method2277(local803);
+										if (scriptOpcode == 4208) {
+											intValueIndex -= 2;
+											interfaceData = Static254.scriptIntValues[intValueIndex];
+											interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+											local5294 = Static110.method2277(interfaceType);
 											if (local5294.method2078()) {
-												Static3.aClass100Array176[local26++] = Static71.get(local809).getParam(local5294.aClass100_544, local803);
+												Static3.scriptStringValues[local26++] = Static71.get(interfaceData).getParam(local5294.aClass100_544, interfaceType);
 											} else {
-												Static254.anIntArray487[local28++] = Static71.get(local809).getParam(local5294.anInt2667, local803);
+												Static254.scriptIntValues[intValueIndex++] = Static71.get(interfaceData).getParam(local5294.anInt2667, interfaceType);
 											}
 											continue;
 										}
-										if (local226 == 4210) {
+										if (scriptOpcode == 4210) {
 											local26--;
-											chatTyped = Static3.aClass100Array176[local26];
-											local28--;
-											local803 = Static254.anIntArray487[local28];
-											Static155.method2941(local803 == 1, chatTyped);
-											Static254.anIntArray487[local28++] = Static111.anInt2905;
+											chatTyped = Static3.scriptStringValues[local26];
+											intValueIndex--;
+											interfaceType = Static254.scriptIntValues[intValueIndex];
+											Static155.method2941(interfaceType == 1, chatTyped);
+											Static254.scriptIntValues[intValueIndex++] = Static111.anInt2905;
 											continue;
 										}
-										if (local226 == 4211) {
+										if (scriptOpcode == 4211) {
 											if (Static169.aShortArray52 != null && Static67.anInt3356 < Static111.anInt2905) {
-												Static254.anIntArray487[local28++] = Static169.aShortArray52[Static67.anInt3356++] & 0xFFFF;
+												Static254.scriptIntValues[intValueIndex++] = Static169.aShortArray52[Static67.anInt3356++] & 0xFFFF;
 												continue;
 											}
-											Static254.anIntArray487[local28++] = -1;
+											Static254.scriptIntValues[intValueIndex++] = -1;
 											continue;
 										}
-										if (local226 == 4212) {
+										if (scriptOpcode == 4212) {
 											Static67.anInt3356 = 0;
 											continue;
 										}
-									} else if (local226 < 4400) {
-										if (local226 == 4300) {
-											local28 -= 2;
-											local809 = Static254.anIntArray487[local28];
-											local803 = Static254.anIntArray487[local28 + 1];
-											local5294 = Static110.method2277(local803);
+									} else if (scriptOpcode < 4400) {
+										if (scriptOpcode == 4300) {
+											intValueIndex -= 2;
+											interfaceData = Static254.scriptIntValues[intValueIndex];
+											interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+											local5294 = Static110.method2277(interfaceType);
 											if (local5294.method2078()) {
-												Static3.aClass100Array176[local26++] = Static214.get(local809).getParam(local803, local5294.aClass100_544);
+												Static3.scriptStringValues[local26++] = Static214.get(interfaceData).getParam(interfaceType, local5294.aClass100_544);
 											} else {
-												Static254.anIntArray487[local28++] = Static214.get(local809).getParam(local803, local5294.anInt2667);
+												Static254.scriptIntValues[intValueIndex++] = Static214.get(interfaceData).getParam(interfaceType, local5294.anInt2667);
 											}
 											continue;
 										}
-									} else if (local226 >= 4500) {
-										if (local226 >= 4600) {
-											if (local226 < 5100) {
-												if (local226 == 5000) {
-													Static254.anIntArray487[local28++] = Static59.anInt1812;
+									} else if (scriptOpcode >= 4500) {
+										if (scriptOpcode >= 4600) {
+											if (scriptOpcode < 5100) {
+												if (scriptOpcode == 5000) {
+													Static254.scriptIntValues[intValueIndex++] = Static59.anInt1812;
 													continue;
 												}
-												if (local226 == 5001) {
-													local28 -= 3;
-													Static59.anInt1812 = Static254.anIntArray487[local28];
-													Static49.anInt1459 = Static254.anIntArray487[local28 + 1];
-													Static84.anInt2256 = Static254.anIntArray487[local28 + 2];
+												if (scriptOpcode == 5001) {
+													intValueIndex -= 3;
+													Static59.anInt1812 = Static254.scriptIntValues[intValueIndex];
+													Static49.anInt1459 = Static254.scriptIntValues[intValueIndex + 1];
+													Static84.anInt2256 = Static254.scriptIntValues[intValueIndex + 2];
 													Static6.outboundBuffer.pIsaac1(157);
 													Static6.outboundBuffer.p1b(Static59.anInt1812);
 													Static6.outboundBuffer.p1b(Static49.anInt1459);
 													Static6.outboundBuffer.p1b(Static84.anInt2256);
 													continue;
 												}
-												if (local226 == 5002) {
+												if (scriptOpcode == 5002) {
 													local26--;
-													chatTyped = Static3.aClass100Array176[local26];
-													local28 -= 2;
-													local803 = Static254.anIntArray487[local28];
-													local1052 = Static254.anIntArray487[local28 + 1];
+													chatTyped = Static3.scriptStringValues[local26];
+													intValueIndex -= 2;
+													interfaceType = Static254.scriptIntValues[intValueIndex];
+													childCount = Static254.scriptIntValues[intValueIndex + 1];
 													Static6.outboundBuffer.pIsaac1(99);
 													Static6.outboundBuffer.p8(chatTyped.toBase37());
-													Static6.outboundBuffer.p1b(local803 - 1);
-													Static6.outboundBuffer.p1b(local1052);
+													Static6.outboundBuffer.p1b(interfaceType - 1);
+													Static6.outboundBuffer.p1b(childCount);
 													continue;
 												}
-												if (local226 == 5003) {
+												if (scriptOpcode == 5003) {
 													chatTypedLowercase = null;
-													local28--;
-													local809 = Static254.anIntArray487[local28];
-													if (local809 < 100) {
-														chatTypedLowercase = Static230.messageText[local809];
+													intValueIndex--;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													if (interfaceData < 100) {
+														chatTypedLowercase = Static230.messageText[interfaceData];
 													}
 													if (chatTypedLowercase == null) {
 														chatTypedLowercase = Static72.aClass100_447;
 													}
-													Static3.aClass100Array176[local26++] = chatTypedLowercase;
+													Static3.scriptStringValues[local26++] = chatTypedLowercase;
 													continue;
 												}
-												if (local226 == 5004) {
-													local28--;
-													local809 = Static254.anIntArray487[local28];
-													local803 = -1;
-													if (local809 < 100 && Static230.messageText[local809] != null) {
-														local803 = Static26.anIntArray67[local809];
+												if (scriptOpcode == 5004) {
+													intValueIndex--;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													interfaceType = -1;
+													if (interfaceData < 100 && Static230.messageText[interfaceData] != null) {
+														interfaceType = Static26.anIntArray67[interfaceData];
 													}
-													Static254.anIntArray487[local28++] = local803;
+													Static254.scriptIntValues[intValueIndex++] = interfaceType;
 													continue;
 												}
-												if (local226 == 5005) {
-													Static254.anIntArray487[local28++] = Static49.anInt1459;
+												if (scriptOpcode == 5005) {
+													Static254.scriptIntValues[intValueIndex++] = Static49.anInt1459;
 													continue;
 												}
-												if (local226 == 5008) {
+												if (scriptOpcode == 5008) {
 													local26--;
-													chatTyped = Static3.aClass100Array176[local26];
+													chatTyped = Static3.scriptStringValues[local26];
 													if (!chatTyped.startsWith(Static12.aClass100_74)) {
 														if (Static191.staffModLevel == 0 && (Static124.aBoolean157 && !Static207.parentalChatConsent || Static86.aBoolean129)) {
 															continue;
@@ -2357,430 +2444,430 @@ public final class Static88 {
 													Static127.method2470(chatTyped);
 													continue;
 												}
-												if (local226 == 5009) {
+												if (scriptOpcode == 5009) {
 													local26 -= 2;
-													chatTypedLowercase = Static3.aClass100Array176[local26 + 1];
-													chatTyped = Static3.aClass100Array176[local26];
+													chatTypedLowercase = Static3.scriptStringValues[local26 + 1];
+													chatTyped = Static3.scriptStringValues[local26];
 													if (Static191.staffModLevel != 0 || (!Static124.aBoolean157 || Static207.parentalChatConsent) && !Static86.aBoolean129) {
 														Static6.outboundBuffer.pIsaac1(201);
 														Static6.outboundBuffer.p1b(0);
-														local1052 = Static6.outboundBuffer.pos;
+														childCount = Static6.outboundBuffer.pos;
 														Static6.outboundBuffer.p8(chatTyped.toBase37());
 														Static146.method2748(Static6.outboundBuffer, chatTypedLowercase);
-														Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - local1052);
+														Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - childCount);
 													}
 													continue;
 												}
-												if (local226 == 5010) {
-													local28--;
-													local809 = Static254.anIntArray487[local28];
+												if (scriptOpcode == 5010) {
+													intValueIndex--;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
 													chatTypedLowercase = null;
-													if (local809 < 100) {
-														chatTypedLowercase = Static153.aClass100Array112[local809];
+													if (interfaceData < 100) {
+														chatTypedLowercase = Static153.aClass100Array112[interfaceData];
 													}
 													if (chatTypedLowercase == null) {
 														chatTypedLowercase = Static72.aClass100_447;
 													}
-													Static3.aClass100Array176[local26++] = chatTypedLowercase;
+													Static3.scriptStringValues[local26++] = chatTypedLowercase;
 													continue;
 												}
-												if (local226 == 5011) {
-													local28--;
-													local809 = Static254.anIntArray487[local28];
+												if (scriptOpcode == 5011) {
+													intValueIndex--;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
 													chatTypedLowercase = null;
-													if (local809 < 100) {
-														chatTypedLowercase = Static64.aClass100Array62[local809];
+													if (interfaceData < 100) {
+														chatTypedLowercase = Static64.aClass100Array62[interfaceData];
 													}
 													if (chatTypedLowercase == null) {
 														chatTypedLowercase = Static72.aClass100_447;
 													}
-													Static3.aClass100Array176[local26++] = chatTypedLowercase;
+													Static3.scriptStringValues[local26++] = chatTypedLowercase;
 													continue;
 												}
-												if (local226 == 5012) {
-													local28--;
-													local809 = Static254.anIntArray487[local28];
-													local803 = -1;
-													if (local809 < 100) {
-														local803 = Static241.anIntArray521[local809];
+												if (scriptOpcode == 5012) {
+													intValueIndex--;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													interfaceType = -1;
+													if (interfaceData < 100) {
+														interfaceType = Static241.anIntArray521[interfaceData];
 													}
-													Static254.anIntArray487[local28++] = local803;
+													Static254.scriptIntValues[intValueIndex++] = interfaceType;
 													continue;
 												}
-												if (local226 == 5015) {
+												if (scriptOpcode == 5015) {
 													if (Static173.localPlayer == null || Static173.localPlayer.name == null) {
 														chatTyped = Static186.username;
 													} else {
 														chatTyped = Static173.localPlayer.getName();
 													}
-													Static3.aClass100Array176[local26++] = chatTyped;
+													Static3.scriptStringValues[local26++] = chatTyped;
 													continue;
 												}
-												if (local226 == 5016) {
-													Static254.anIntArray487[local28++] = Static84.anInt2256;
+												if (scriptOpcode == 5016) {
+													Static254.scriptIntValues[intValueIndex++] = Static84.anInt2256;
 													continue;
 												}
-												if (local226 == 5017) {
-													Static254.anIntArray487[local28++] = Static62.anInt1941;
+												if (scriptOpcode == 5017) {
+													Static254.scriptIntValues[intValueIndex++] = Static62.anInt1941;
 													continue;
 												}
-												if (local226 == 5050) {
-													local28--;
-													local809 = Static254.anIntArray487[local28];
-													Static3.aClass100Array176[local26++] = Static235.method4045(local809).aClass100_79;
+												if (scriptOpcode == 5050) {
+													intValueIndex--;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													Static3.scriptStringValues[local26++] = Static235.method4045(interfaceData).aClass100_79;
 													continue;
 												}
 												@Pc(6378) Class3_Sub2_Sub2 local6378;
-												if (local226 == 5051) {
-													local28--;
-													local809 = Static254.anIntArray487[local28];
-													local6378 = Static235.method4045(local809);
+												if (scriptOpcode == 5051) {
+													intValueIndex--;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													local6378 = Static235.method4045(interfaceData);
 													if (local6378.anIntArray30 == null) {
-														Static254.anIntArray487[local28++] = 0;
+														Static254.scriptIntValues[intValueIndex++] = 0;
 													} else {
-														Static254.anIntArray487[local28++] = local6378.anIntArray30.length;
+														Static254.scriptIntValues[intValueIndex++] = local6378.anIntArray30.length;
 													}
 													continue;
 												}
-												if (local226 == 5052) {
-													local28 -= 2;
-													local809 = Static254.anIntArray487[local28];
-													local803 = Static254.anIntArray487[local28 + 1];
-													@Pc(6416) Class3_Sub2_Sub2 local6416 = Static235.method4045(local809);
-													local652 = local6416.anIntArray30[local803];
-													Static254.anIntArray487[local28++] = local652;
+												if (scriptOpcode == 5052) {
+													intValueIndex -= 2;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+													@Pc(6416) Class3_Sub2_Sub2 local6416 = Static235.method4045(interfaceData);
+													local652 = local6416.anIntArray30[interfaceType];
+													Static254.scriptIntValues[intValueIndex++] = local652;
 													continue;
 												}
-												if (local226 == 5053) {
-													local28--;
-													local809 = Static254.anIntArray487[local28];
-													local6378 = Static235.method4045(local809);
+												if (scriptOpcode == 5053) {
+													intValueIndex--;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													local6378 = Static235.method4045(interfaceData);
 													if (local6378.anIntArray32 == null) {
-														Static254.anIntArray487[local28++] = 0;
+														Static254.scriptIntValues[intValueIndex++] = 0;
 													} else {
-														Static254.anIntArray487[local28++] = local6378.anIntArray32.length;
+														Static254.scriptIntValues[intValueIndex++] = local6378.anIntArray32.length;
 													}
 													continue;
 												}
-												if (local226 == 5054) {
-													local28 -= 2;
-													local803 = Static254.anIntArray487[local28 + 1];
-													local809 = Static254.anIntArray487[local28];
-													Static254.anIntArray487[local28++] = Static235.method4045(local809).anIntArray32[local803];
+												if (scriptOpcode == 5054) {
+													intValueIndex -= 2;
+													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													Static254.scriptIntValues[intValueIndex++] = Static235.method4045(interfaceData).anIntArray32[interfaceType];
 													continue;
 												}
-												if (local226 == 5055) {
-													local28--;
-													local809 = Static254.anIntArray487[local28];
-													Static3.aClass100Array176[local26++] = Static230.list(local809).method769();
+												if (scriptOpcode == 5055) {
+													intValueIndex--;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													Static3.scriptStringValues[local26++] = Static230.list(interfaceData).method769();
 													continue;
 												}
-												if (local226 == 5056) {
-													local28--;
-													local809 = Static254.anIntArray487[local28];
-													@Pc(6527) QuickChatPhraseType local6527 = Static230.list(local809);
+												if (scriptOpcode == 5056) {
+													intValueIndex--;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													@Pc(6527) QuickChatPhraseType local6527 = Static230.list(interfaceData);
 													if (local6527.autoResponses == null) {
-														Static254.anIntArray487[local28++] = 0;
+														Static254.scriptIntValues[intValueIndex++] = 0;
 													} else {
-														Static254.anIntArray487[local28++] = local6527.autoResponses.length;
+														Static254.scriptIntValues[intValueIndex++] = local6527.autoResponses.length;
 													}
 													continue;
 												}
-												if (local226 == 5057) {
-													local28 -= 2;
-													local803 = Static254.anIntArray487[local28 + 1];
-													local809 = Static254.anIntArray487[local28];
-													Static254.anIntArray487[local28++] = Static230.list(local809).autoResponses[local803];
+												if (scriptOpcode == 5057) {
+													intValueIndex -= 2;
+													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													Static254.scriptIntValues[intValueIndex++] = Static230.list(interfaceData).autoResponses[interfaceType];
 													continue;
 												}
-												if (local226 == 5058) {
+												if (scriptOpcode == 5058) {
 													Static122.aQuickChatPhrase_1 = new QuickChatPhrase();
-													local28--;
-													Static122.aQuickChatPhrase_1.anInt439 = Static254.anIntArray487[local28];
+													intValueIndex--;
+													Static122.aQuickChatPhrase_1.anInt439 = Static254.scriptIntValues[intValueIndex];
 													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1 = Static230.list(Static122.aQuickChatPhrase_1.anInt439);
 													Static122.aQuickChatPhrase_1.anIntArray33 = new int[Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.method767()];
 													continue;
 												}
-												if (local226 == 5059) {
+												if (scriptOpcode == 5059) {
 													Static6.outboundBuffer.pIsaac1(167);
 													Static6.outboundBuffer.p1b(0);
-													local809 = Static6.outboundBuffer.pos;
+													interfaceData = Static6.outboundBuffer.pos;
 													Static6.outboundBuffer.p1b(0);
 													Static6.outboundBuffer.p2(Static122.aQuickChatPhrase_1.anInt439);
 													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aQuickChatPhrase_1.anIntArray33);
-													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - local809);
+													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - interfaceData);
 													continue;
 												}
-												if (local226 == 5060) {
+												if (scriptOpcode == 5060) {
 													local26--;
-													chatTyped = Static3.aClass100Array176[local26];
+													chatTyped = Static3.scriptStringValues[local26];
 													Static6.outboundBuffer.pIsaac1(178);
 													Static6.outboundBuffer.p1b(0);
-													local803 = Static6.outboundBuffer.pos;
+													interfaceType = Static6.outboundBuffer.pos;
 													Static6.outboundBuffer.p8(chatTyped.toBase37());
 													Static6.outboundBuffer.p2(Static122.aQuickChatPhrase_1.anInt439);
 													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aQuickChatPhrase_1.anIntArray33);
-													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - local803);
+													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - interfaceType);
 													continue;
 												}
-												if (local226 == 5061) {
+												if (scriptOpcode == 5061) {
 													Static6.outboundBuffer.pIsaac1(167);
 													Static6.outboundBuffer.p1b(0);
-													local809 = Static6.outboundBuffer.pos;
+													interfaceData = Static6.outboundBuffer.pos;
 													Static6.outboundBuffer.p1b(1);
 													Static6.outboundBuffer.p2(Static122.aQuickChatPhrase_1.anInt439);
 													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aQuickChatPhrase_1.anIntArray33);
-													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - local809);
+													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - interfaceData);
 													continue;
 												}
-												if (local226 == 5062) {
-													local28 -= 2;
-													local803 = Static254.anIntArray487[local28 + 1];
-													local809 = Static254.anIntArray487[local28];
-													Static254.anIntArray487[local28++] = Static235.method4045(local809).anIntArray31[local803];
+												if (scriptOpcode == 5062) {
+													intValueIndex -= 2;
+													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													Static254.scriptIntValues[intValueIndex++] = Static235.method4045(interfaceData).anIntArray31[interfaceType];
 													continue;
 												}
-												if (local226 == 5063) {
-													local28 -= 2;
-													local803 = Static254.anIntArray487[local28 + 1];
-													local809 = Static254.anIntArray487[local28];
-													Static254.anIntArray487[local28++] = Static235.method4045(local809).anIntArray29[local803];
+												if (scriptOpcode == 5063) {
+													intValueIndex -= 2;
+													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													Static254.scriptIntValues[intValueIndex++] = Static235.method4045(interfaceData).anIntArray29[interfaceType];
 													continue;
 												}
-												if (local226 == 5064) {
-													local28 -= 2;
-													local803 = Static254.anIntArray487[local28 + 1];
-													local809 = Static254.anIntArray487[local28];
-													if (local803 == -1) {
-														Static254.anIntArray487[local28++] = -1;
+												if (scriptOpcode == 5064) {
+													intValueIndex -= 2;
+													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													if (interfaceType == -1) {
+														Static254.scriptIntValues[intValueIndex++] = -1;
 													} else {
-														Static254.anIntArray487[local28++] = Static235.method4045(local809).method469(local803);
+														Static254.scriptIntValues[intValueIndex++] = Static235.method4045(interfaceData).method469(interfaceType);
 													}
 													continue;
 												}
-												if (local226 == 5065) {
-													local28 -= 2;
-													local809 = Static254.anIntArray487[local28];
-													local803 = Static254.anIntArray487[local28 + 1];
-													if (local803 == -1) {
-														Static254.anIntArray487[local28++] = -1;
+												if (scriptOpcode == 5065) {
+													intValueIndex -= 2;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+													if (interfaceType == -1) {
+														Static254.scriptIntValues[intValueIndex++] = -1;
 													} else {
-														Static254.anIntArray487[local28++] = Static235.method4045(local809).method466(local803);
+														Static254.scriptIntValues[intValueIndex++] = Static235.method4045(interfaceData).method466(interfaceType);
 													}
 													continue;
 												}
-												if (local226 == 5066) {
-													local28--;
-													local809 = Static254.anIntArray487[local28];
-													Static254.anIntArray487[local28++] = Static230.list(local809).method767();
+												if (scriptOpcode == 5066) {
+													intValueIndex--;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													Static254.scriptIntValues[intValueIndex++] = Static230.list(interfaceData).method767();
 													continue;
 												}
-												if (local226 == 5067) {
-													local28 -= 2;
-													local803 = Static254.anIntArray487[local28 + 1];
-													local809 = Static254.anIntArray487[local28];
-													local1052 = Static230.list(local809).method765(local803);
-													Static254.anIntArray487[local28++] = local1052;
+												if (scriptOpcode == 5067) {
+													intValueIndex -= 2;
+													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													childCount = Static230.list(interfaceData).method765(interfaceType);
+													Static254.scriptIntValues[intValueIndex++] = childCount;
 													continue;
 												}
-												if (local226 == 5068) {
-													local28 -= 2;
-													local809 = Static254.anIntArray487[local28];
-													local803 = Static254.anIntArray487[local28 + 1];
-													Static122.aQuickChatPhrase_1.anIntArray33[local809] = local803;
+												if (scriptOpcode == 5068) {
+													intValueIndex -= 2;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+													Static122.aQuickChatPhrase_1.anIntArray33[interfaceData] = interfaceType;
 													continue;
 												}
-												if (local226 == 5069) {
-													local28 -= 2;
-													local809 = Static254.anIntArray487[local28];
-													local803 = Static254.anIntArray487[local28 + 1];
-													Static122.aQuickChatPhrase_1.anIntArray33[local809] = local803;
+												if (scriptOpcode == 5069) {
+													intValueIndex -= 2;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+													Static122.aQuickChatPhrase_1.anIntArray33[interfaceData] = interfaceType;
 													continue;
 												}
-												if (local226 == 5070) {
-													local28 -= 3;
-													local809 = Static254.anIntArray487[local28];
-													local1052 = Static254.anIntArray487[local28 + 2];
-													local803 = Static254.anIntArray487[local28 + 1];
-													@Pc(6996) QuickChatPhraseType local6996 = Static230.list(local809);
-													if (local6996.method765(local803) != 0) {
+												if (scriptOpcode == 5070) {
+													intValueIndex -= 3;
+													interfaceData = Static254.scriptIntValues[intValueIndex];
+													childCount = Static254.scriptIntValues[intValueIndex + 2];
+													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+													@Pc(6996) QuickChatPhraseType local6996 = Static230.list(interfaceData);
+													if (local6996.method765(interfaceType) != 0) {
 														throw new RuntimeException("bad command");
 													}
-													Static254.anIntArray487[local28++] = local6996.method764(local1052, local803);
+													Static254.scriptIntValues[intValueIndex++] = local6996.method764(childCount, interfaceType);
 													continue;
 												}
-												if (local226 == 5071) {
+												if (scriptOpcode == 5071) {
 													local26--;
-													chatTyped = Static3.aClass100Array176[local26];
-													local28--;
-													local1552 = Static254.anIntArray487[local28] == 1;
+													chatTyped = Static3.scriptStringValues[local26];
+													intValueIndex--;
+													local1552 = Static254.scriptIntValues[intValueIndex] == 1;
 													Static24.method668(local1552, chatTyped);
-													Static254.anIntArray487[local28++] = Static111.anInt2905;
+													Static254.scriptIntValues[intValueIndex++] = Static111.anInt2905;
 													continue;
 												}
-												if (local226 == 5072) {
+												if (scriptOpcode == 5072) {
 													if (Static169.aShortArray52 != null && Static67.anInt3356 < Static111.anInt2905) {
-														Static254.anIntArray487[local28++] = Static169.aShortArray52[Static67.anInt3356++] & 0xFFFF;
+														Static254.scriptIntValues[intValueIndex++] = Static169.aShortArray52[Static67.anInt3356++] & 0xFFFF;
 														continue;
 													}
-													Static254.anIntArray487[local28++] = -1;
+													Static254.scriptIntValues[intValueIndex++] = -1;
 													continue;
 												}
-												if (local226 == 5073) {
+												if (scriptOpcode == 5073) {
 													Static67.anInt3356 = 0;
 													continue;
 												}
-											} else if (local226 < 5200) {
-												if (local226 == 5100) {
+											} else if (scriptOpcode < 5200) {
+												if (scriptOpcode == 5100) {
 													if (Static187.pressedKeys[86]) {
-														Static254.anIntArray487[local28++] = 1;
+														Static254.scriptIntValues[intValueIndex++] = 1;
 													} else {
-														Static254.anIntArray487[local28++] = 0;
+														Static254.scriptIntValues[intValueIndex++] = 0;
 													}
 													continue;
 												}
-												if (local226 == 5101) {
+												if (scriptOpcode == 5101) {
 													if (Static187.pressedKeys[82]) {
-														Static254.anIntArray487[local28++] = 1;
+														Static254.scriptIntValues[intValueIndex++] = 1;
 													} else {
-														Static254.anIntArray487[local28++] = 0;
+														Static254.scriptIntValues[intValueIndex++] = 0;
 													}
 													continue;
 												}
-												if (local226 == 5102) {
+												if (scriptOpcode == 5102) {
 													if (Static187.pressedKeys[81]) {
-														Static254.anIntArray487[local28++] = 1;
+														Static254.scriptIntValues[intValueIndex++] = 1;
 													} else {
-														Static254.anIntArray487[local28++] = 0;
+														Static254.scriptIntValues[intValueIndex++] = 0;
 													}
 													continue;
 												}
 											} else {
 												@Pc(7566) boolean local7566;
-												if (local226 < 5300) {
-													if (local226 == 5200) {
-														local28--;
-														Static155.method2940(Static254.anIntArray487[local28]);
+												if (scriptOpcode < 5300) {
+													if (scriptOpcode == 5200) {
+														intValueIndex--;
+														Static155.method2940(Static254.scriptIntValues[intValueIndex]);
 														continue;
 													}
-													if (local226 == 5201) {
-														Static254.anIntArray487[local28++] = Static91.getZoom();
+													if (scriptOpcode == 5201) {
+														Static254.scriptIntValues[intValueIndex++] = Static91.getZoom();
 														continue;
 													}
-													if (local226 == 5202) {
-														local28--;
-														Static258.method4444(Static254.anIntArray487[local28]);
+													if (scriptOpcode == 5202) {
+														intValueIndex--;
+														Static258.method4444(Static254.scriptIntValues[intValueIndex]);
 														continue;
 													}
-													if (local226 == 5203) {
+													if (scriptOpcode == 5203) {
 														local26--;
-														Static3.method4656(Static3.aClass100Array176[local26]);
+														Static3.method4656(Static3.scriptStringValues[local26]);
 														continue;
 													}
-													if (local226 == 5204) {
-														Static3.aClass100Array176[local26 - 1] = Static211.method923(Static3.aClass100Array176[local26 - 1]);
+													if (scriptOpcode == 5204) {
+														Static3.scriptStringValues[local26 - 1] = Static211.method923(Static3.scriptStringValues[local26 - 1]);
 														continue;
 													}
-													if (local226 == 5205) {
+													if (scriptOpcode == 5205) {
 														local26--;
-														Static90.method1853(Static3.aClass100Array176[local26]);
+														Static90.method1853(Static3.scriptStringValues[local26]);
 														continue;
 													}
-													if (local226 == 5206) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														@Pc(7264) Map local7264 = Static29.method803(local809 >> 14 & 0x3FFF, local809 & 0x3FFF);
+													if (scriptOpcode == 5206) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														@Pc(7264) Map local7264 = Static29.method803(interfaceData >> 14 & 0x3FFF, interfaceData & 0x3FFF);
 														if (local7264 == null) {
-															Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+															Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 														} else {
-															Static3.aClass100Array176[local26++] = local7264.aClass100_138;
+															Static3.scriptStringValues[local26++] = local7264.aClass100_138;
 														}
 														continue;
 													}
 													@Pc(7293) Map local7293;
-													if (local226 == 5207) {
+													if (scriptOpcode == 5207) {
 														local26--;
-														local7293 = Static124.method2434(Static3.aClass100Array176[local26]);
+														local7293 = Static124.method2434(Static3.scriptStringValues[local26]);
 														if (local7293 != null && local7293.aClass100_137 != null) {
-															Static3.aClass100Array176[local26++] = local7293.aClass100_137;
+															Static3.scriptStringValues[local26++] = local7293.aClass100_137;
 															continue;
 														}
-														Static3.aClass100Array176[local26++] = Static72.aClass100_447;
+														Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 														continue;
 													}
-													if (local226 == 5208) {
-														Static254.anIntArray487[local28++] = Static89.anInt2387;
-														Static254.anIntArray487[local28++] = Static37.anInt1176;
+													if (scriptOpcode == 5208) {
+														Static254.scriptIntValues[intValueIndex++] = Static89.anInt2387;
+														Static254.scriptIntValues[intValueIndex++] = Static37.anInt1176;
 														continue;
 													}
-													if (local226 == 5209) {
-														Static254.anIntArray487[local28++] = Static158.anInt3846 + Static13.anInt435;
-														Static254.anIntArray487[local28++] = Static2.anInt13 + Static181.anInt4296 - Static28.anInt919 - 1;
+													if (scriptOpcode == 5209) {
+														Static254.scriptIntValues[intValueIndex++] = Static158.anInt3846 + Static13.anInt435;
+														Static254.scriptIntValues[intValueIndex++] = Static2.anInt13 + Static181.anInt4296 - Static28.anInt919 - 1;
 														continue;
 													}
-													if (local226 == 5210) {
+													if (scriptOpcode == 5210) {
 														local7293 = Static214.method4361();
 														if (local7293 == null) {
-															Static254.anIntArray487[local28++] = 0;
-															Static254.anIntArray487[local28++] = 0;
+															Static254.scriptIntValues[intValueIndex++] = 0;
+															Static254.scriptIntValues[intValueIndex++] = 0;
 														} else {
-															Static254.anIntArray487[local28++] = local7293.anInt769 * 64;
-															Static254.anIntArray487[local28++] = local7293.anInt764 * 64;
+															Static254.scriptIntValues[intValueIndex++] = local7293.anInt769 * 64;
+															Static254.scriptIntValues[intValueIndex++] = local7293.anInt764 * 64;
 														}
 														continue;
 													}
-													if (local226 == 5211) {
+													if (scriptOpcode == 5211) {
 														local7293 = Static214.method4361();
 														if (local7293 == null) {
-															Static254.anIntArray487[local28++] = 0;
-															Static254.anIntArray487[local28++] = 0;
+															Static254.scriptIntValues[intValueIndex++] = 0;
+															Static254.scriptIntValues[intValueIndex++] = 0;
 														} else {
-															Static254.anIntArray487[local28++] = local7293.anInt770 - local7293.anInt763;
-															Static254.anIntArray487[local28++] = local7293.anInt758 - local7293.anInt771;
+															Static254.scriptIntValues[intValueIndex++] = local7293.anInt770 - local7293.anInt763;
+															Static254.scriptIntValues[intValueIndex++] = local7293.anInt758 - local7293.anInt771;
 														}
 														continue;
 													}
-													if (local226 == 5212) {
-														local809 = Static118.method2352();
-														local1052 = 0;
-														if (local809 == -1) {
+													if (scriptOpcode == 5212) {
+														interfaceData = Static118.method2352();
+														childCount = 0;
+														if (interfaceData == -1) {
 															chatTypedLowercase = Static72.aClass100_447;
 														} else {
-															chatTypedLowercase = Static203.aMapElementTypeList_1.aClass100Array153[local809];
-															local1052 = Static203.aMapElementTypeList_1.method3894(local809);
+															chatTypedLowercase = Static203.aMapElementTypeList_1.aClass100Array153[interfaceData];
+															childCount = Static203.aMapElementTypeList_1.method3894(interfaceData);
 														}
 														chatTypedLowercase = chatTypedLowercase.method3140(Static67.aClass100_639, Static5.aClass100_10);
-														Static3.aClass100Array176[local26++] = chatTypedLowercase;
-														Static254.anIntArray487[local28++] = local1052;
+														Static3.scriptStringValues[local26++] = chatTypedLowercase;
+														Static254.scriptIntValues[intValueIndex++] = childCount;
 														continue;
 													}
-													if (local226 == 5213) {
-														local1052 = 0;
-														local809 = Static119.method2385();
-														if (local809 == -1) {
+													if (scriptOpcode == 5213) {
+														childCount = 0;
+														interfaceData = Static119.method2385();
+														if (interfaceData == -1) {
 															chatTypedLowercase = Static72.aClass100_447;
 														} else {
-															chatTypedLowercase = Static203.aMapElementTypeList_1.aClass100Array153[local809];
-															local1052 = Static203.aMapElementTypeList_1.method3894(local809);
+															chatTypedLowercase = Static203.aMapElementTypeList_1.aClass100Array153[interfaceData];
+															childCount = Static203.aMapElementTypeList_1.method3894(interfaceData);
 														}
 														chatTypedLowercase = chatTypedLowercase.method3140(Static67.aClass100_639, Static5.aClass100_10);
-														Static3.aClass100Array176[local26++] = chatTypedLowercase;
-														Static254.anIntArray487[local28++] = local1052;
+														Static3.scriptStringValues[local26++] = chatTypedLowercase;
+														Static254.scriptIntValues[intValueIndex++] = childCount;
 														continue;
 													}
-													if (local226 == 5214) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														Static80.method3616(local809 >> 14 & 0x3FFF, local809 & 0x3FFF);
+													if (scriptOpcode == 5214) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														Static80.method3616(interfaceData >> 14 & 0x3FFF, interfaceData & 0x3FFF);
 														continue;
 													}
-													if (local226 == 5215) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
+													if (scriptOpcode == 5215) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
 														local26--;
-														chatTypedLowercase = Static3.aClass100Array176[local26];
+														chatTypedLowercase = Static3.scriptStringValues[local26];
 														local7566 = false;
-														@Pc(7577) SecondaryLinkedList local7577 = Static183.method3333(local809 >> 14 & 0x3FFF, local809 & 0x3FFF);
+														@Pc(7577) SecondaryLinkedList local7577 = Static183.method3333(interfaceData >> 14 & 0x3FFF, interfaceData & 0x3FFF);
 														for (@Pc(7582) Map local7582 = (Map) local7577.method795(); local7582 != null; local7582 = (Map) local7577.prev()) {
 															if (local7582.aClass100_138.equalsIgnoreCase(chatTypedLowercase)) {
 																local7566 = true;
@@ -2788,133 +2875,133 @@ public final class Static88 {
 															}
 														}
 														if (local7566) {
-															Static254.anIntArray487[local28++] = 1;
+															Static254.scriptIntValues[intValueIndex++] = 1;
 														} else {
-															Static254.anIntArray487[local28++] = 0;
+															Static254.scriptIntValues[intValueIndex++] = 0;
 														}
 														continue;
 													}
-													if (local226 == 5216) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														Static253.method4332(local809);
+													if (scriptOpcode == 5216) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														Static253.method4332(interfaceData);
 														continue;
 													}
-													if (local226 == 5217) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														if (Static90.method1855(local809)) {
-															Static254.anIntArray487[local28++] = 1;
+													if (scriptOpcode == 5217) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														if (Static90.method1855(interfaceData)) {
+															Static254.scriptIntValues[intValueIndex++] = 1;
 														} else {
-															Static254.anIntArray487[local28++] = 0;
+															Static254.scriptIntValues[intValueIndex++] = 0;
 														}
 														continue;
 													}
-													if (local226 == 5218) {
+													if (scriptOpcode == 5218) {
 														local7293 = Static214.method4361();
 														if (local7293 == null) {
-															Static254.anIntArray487[local28++] = -1;
+															Static254.scriptIntValues[intValueIndex++] = -1;
 														} else {
-															Static254.anIntArray487[local28++] = local7293.anInt772;
+															Static254.scriptIntValues[intValueIndex++] = local7293.anInt772;
 														}
 														continue;
 													}
-													if (local226 == 5219) {
+													if (scriptOpcode == 5219) {
 														local26--;
-														Static44.method1149(Static3.aClass100Array176[local26]);
+														Static44.method1149(Static3.scriptStringValues[local26]);
 														continue;
 													}
-													if (local226 == 5220) {
-														Static254.anIntArray487[local28++] = Static41.anInt1309 == 100 ? 1 : 0;
+													if (scriptOpcode == 5220) {
+														Static254.scriptIntValues[intValueIndex++] = Static41.anInt1309 == 100 ? 1 : 0;
 														continue;
 													}
-												} else if (local226 < 5400) {
-													if (local226 == 5300) {
-														local28 -= 2;
-														local803 = Static254.anIntArray487[local28 + 1];
-														local809 = Static254.anIntArray487[local28];
-														Static241.method4540(false, 3, local809, local803);
-														Static254.anIntArray487[local28++] = Static69.aFrame2 == null ? 0 : 1;
+												} else if (scriptOpcode < 5400) {
+													if (scriptOpcode == 5300) {
+														intValueIndex -= 2;
+														interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														Static241.method4540(false, 3, interfaceData, interfaceType);
+														Static254.scriptIntValues[intValueIndex++] = Static69.aFrame2 == null ? 0 : 1;
 														continue;
 													}
-													if (local226 == 5301) {
+													if (scriptOpcode == 5301) {
 														if (Static69.aFrame2 != null) {
 															Static241.method4540(false, Static214.anInt5581, -1, -1);
 														}
 														continue;
 													}
-													if (local226 == 5302) {
+													if (scriptOpcode == 5302) {
 														@Pc(7780) Class114[] local7780 = Static3.method4660();
-														Static254.anIntArray487[local28++] = local7780.length;
+														Static254.scriptIntValues[intValueIndex++] = local7780.length;
 														continue;
 													}
-													if (local226 == 5303) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
+													if (scriptOpcode == 5303) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
 														@Pc(7800) Class114[] local7800 = Static3.method4660();
-														Static254.anIntArray487[local28++] = local7800[local809].anInt4248;
-														Static254.anIntArray487[local28++] = local7800[local809].anInt4250;
+														Static254.scriptIntValues[intValueIndex++] = local7800[interfaceData].anInt4248;
+														Static254.scriptIntValues[intValueIndex++] = local7800[interfaceData].anInt4250;
 														continue;
 													}
-													if (local226 == 5305) {
-														local803 = Static22.anInt729;
-														local809 = Static114.anInt5831;
-														local1052 = -1;
+													if (scriptOpcode == 5305) {
+														interfaceType = Static22.anInt729;
+														interfaceData = Static114.anInt5831;
+														childCount = -1;
 														@Pc(7833) Class114[] local7833 = Static3.method4660();
 														for (start = 0; start < local7833.length; start++) {
 															@Pc(7843) Class114 local7843 = local7833[start];
-															if (local809 == local7843.anInt4248 && local7843.anInt4250 == local803) {
-																local1052 = start;
+															if (interfaceData == local7843.anInt4248 && local7843.anInt4250 == interfaceType) {
+																childCount = start;
 																break;
 															}
 														}
-														Static254.anIntArray487[local28++] = local1052;
+														Static254.scriptIntValues[intValueIndex++] = childCount;
 														continue;
 													}
-													if (local226 == 5306) {
-														Static254.anIntArray487[local28++] = Static144.method2736();
+													if (scriptOpcode == 5306) {
+														Static254.scriptIntValues[intValueIndex++] = Static144.method2736();
 														continue;
 													}
-													if (local226 == 5307) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														if (local809 < 0 || local809 > 2) {
-															local809 = 0;
+													if (scriptOpcode == 5307) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														if (interfaceData < 0 || interfaceData > 2) {
+															interfaceData = 0;
 														}
-														Static241.method4540(false, local809, -1, -1);
+														Static241.method4540(false, interfaceData, -1, -1);
 														continue;
 													}
-													if (local226 == 5308) {
-														Static254.anIntArray487[local28++] = Static214.anInt5581;
+													if (scriptOpcode == 5308) {
+														Static254.scriptIntValues[intValueIndex++] = Static214.anInt5581;
 														continue;
 													}
-													if (local226 == 5309) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														if (local809 < 0 || local809 > 2) {
-															local809 = 0;
+													if (scriptOpcode == 5309) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														if (interfaceData < 0 || interfaceData > 2) {
+															interfaceData = 0;
 														}
-														Static214.anInt5581 = local809;
+														Static214.anInt5581 = interfaceData;
 														Static203.method3663(GameShell.signLink);
 														continue;
 													}
-												} else if (local226 < 5500) {
-													if (local226 == 5400) {
+												} else if (scriptOpcode < 5500) {
+													if (scriptOpcode == 5400) {
 														local26 -= 2;
-														chatTyped = Static3.aClass100Array176[local26];
-														chatTypedLowercase = Static3.aClass100Array176[local26 + 1];
-														local28--;
-														local1052 = Static254.anIntArray487[local28];
+														chatTyped = Static3.scriptStringValues[local26];
+														chatTypedLowercase = Static3.scriptStringValues[local26 + 1];
+														intValueIndex--;
+														childCount = Static254.scriptIntValues[intValueIndex];
 														Static6.outboundBuffer.pIsaac1(117);
 														Static6.outboundBuffer.p1b(Static229.method3937(chatTyped) + Static229.method3937(chatTypedLowercase) + 1);
 														Static6.outboundBuffer.pjstr(chatTyped);
 														Static6.outboundBuffer.pjstr(chatTypedLowercase);
-														Static6.outboundBuffer.p1b(local1052);
+														Static6.outboundBuffer.p1b(childCount);
 														continue;
 													}
-													if (local226 == 5401) {
-														local28 -= 2;
-														Static259.aShortArray88[Static254.anIntArray487[local28]] = (short) Static105.hslToRgb(Static254.anIntArray487[local28 + 1]);
+													if (scriptOpcode == 5401) {
+														intValueIndex -= 2;
+														Static259.aShortArray88[Static254.scriptIntValues[intValueIndex]] = (short) Static105.hslToRgb(Static254.scriptIntValues[intValueIndex + 1]);
 														Static211.method924();
 														Static269.method2172();
 														Static278.method4649();
@@ -2922,37 +3009,37 @@ public final class Static88 {
 														Static87.method1807();
 														continue;
 													}
-													if (local226 == 5405) {
-														local28 -= 2;
-														local809 = Static254.anIntArray487[local28];
-														local803 = Static254.anIntArray487[local28 + 1];
-														if (local809 >= 0 && local809 < 2) {
-															Static107.anIntArrayArrayArray9[local809] = new int[local803 << 1][4];
+													if (scriptOpcode == 5405) {
+														intValueIndex -= 2;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+														if (interfaceData >= 0 && interfaceData < 2) {
+															Static107.anIntArrayArrayArray9[interfaceData] = new int[interfaceType << 1][4];
 														}
 														continue;
 													}
-													if (local226 == 5406) {
-														local28 -= 7;
-														local809 = Static254.anIntArray487[local28];
-														local803 = Static254.anIntArray487[local28 + 1] << 1;
-														local652 = Static254.anIntArray487[local28 + 3];
-														local1052 = Static254.anIntArray487[local28 + 2];
-														start = Static254.anIntArray487[local28 + 4];
-														@Pc(8108) int local8108 = Static254.anIntArray487[local28 + 6];
-														local1087 = Static254.anIntArray487[local28 + 5];
-														if (local809 >= 0 && local809 < 2 && Static107.anIntArrayArrayArray9[local809] != null && local803 >= 0 && Static107.anIntArrayArrayArray9[local809].length > local803) {
-															Static107.anIntArrayArrayArray9[local809][local803] = new int[] { (local1052 >> 14 & 0x3FFF) * 128, local652, (local1052 & 0x3FFF) * 128, local8108 };
-															Static107.anIntArrayArrayArray9[local809][local803 + 1] = new int[] { (start >> 14 & 0x3FFF) * 128, local1087, (start & 0x3FFF) * 128 };
+													if (scriptOpcode == 5406) {
+														intValueIndex -= 7;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														interfaceType = Static254.scriptIntValues[intValueIndex + 1] << 1;
+														local652 = Static254.scriptIntValues[intValueIndex + 3];
+														childCount = Static254.scriptIntValues[intValueIndex + 2];
+														start = Static254.scriptIntValues[intValueIndex + 4];
+														@Pc(8108) int local8108 = Static254.scriptIntValues[intValueIndex + 6];
+														childId = Static254.scriptIntValues[intValueIndex + 5];
+														if (interfaceData >= 0 && interfaceData < 2 && Static107.anIntArrayArrayArray9[interfaceData] != null && interfaceType >= 0 && Static107.anIntArrayArrayArray9[interfaceData].length > interfaceType) {
+															Static107.anIntArrayArrayArray9[interfaceData][interfaceType] = new int[] { (childCount >> 14 & 0x3FFF) * 128, local652, (childCount & 0x3FFF) * 128, local8108 };
+															Static107.anIntArrayArrayArray9[interfaceData][interfaceType + 1] = new int[] { (start >> 14 & 0x3FFF) * 128, childId, (start & 0x3FFF) * 128 };
 														}
 														continue;
 													}
-													if (local226 == 5407) {
-														local28--;
-														local809 = Static107.anIntArrayArrayArray9[Static254.anIntArray487[local28]].length >> 1;
-														Static254.anIntArray487[local28++] = local809;
+													if (scriptOpcode == 5407) {
+														intValueIndex--;
+														interfaceData = Static107.anIntArrayArrayArray9[Static254.scriptIntValues[intValueIndex]].length >> 1;
+														Static254.scriptIntValues[intValueIndex++] = interfaceData;
 														continue;
 													}
-													if (local226 == 5411) {
+													if (scriptOpcode == 5411) {
 														if (Static69.aFrame2 != null) {
 															Static241.method4540(false, Static214.anInt5581, -1, -1);
 														}
@@ -2963,7 +3050,7 @@ public final class Static88 {
 														}
 														continue;
 													}
-													if (local226 == 5419) {
+													if (scriptOpcode == 5419) {
 														chatTyped = Static72.aClass100_447;
 														if (Static232.aClass212_5 != null) {
 															chatTyped = Static181.method3341(Static232.aClass212_5.intArg2);
@@ -2975,21 +3062,21 @@ public final class Static88 {
 															} catch (@Pc(8290) UnsupportedEncodingException local8290) {
 															}
 														}
-														Static3.aClass100Array176[local26++] = chatTyped;
+														Static3.scriptStringValues[local26++] = chatTyped;
 														continue;
 													}
-													if (local226 == 5420) {
-														Static254.anIntArray487[local28++] = SignLink.anInt5928 == 3 ? 1 : 0;
+													if (scriptOpcode == 5420) {
+														Static254.scriptIntValues[intValueIndex++] = SignLink.anInt5928 == 3 ? 1 : 0;
 														continue;
 													}
-													if (local226 == 5421) {
+													if (scriptOpcode == 5421) {
 														if (Static69.aFrame2 != null) {
 															Static241.method4540(false, Static214.anInt5581, -1, -1);
 														}
-														local28--;
-														local1552 = Static254.anIntArray487[local28] == 1;
+														intValueIndex--;
+														local1552 = Static254.scriptIntValues[intValueIndex] == 1;
 														local26--;
-														chatTyped = Static3.aClass100Array176[local26];
+														chatTyped = Static3.scriptStringValues[local26];
 														@Pc(8356) JString local8356 = Static34.method882(new JString[] { Static15.method479(), chatTyped });
 														if (Static39.frame != null || local1552 && SignLink.anInt5928 != 3 && SignLink.osName.startsWith("win") && !Static178.aBoolean203) {
 															Static164.newTab = local1552;
@@ -3000,44 +3087,44 @@ public final class Static88 {
 														Static169.openUrl(local8356, local1552);
 														continue;
 													}
-													if (local226 == 5422) {
-														local28--;
-														local1052 = Static254.anIntArray487[local28];
+													if (scriptOpcode == 5422) {
+														intValueIndex--;
+														childCount = Static254.scriptIntValues[intValueIndex];
 														local26 -= 2;
-														chatTypedLowercase = Static3.aClass100Array176[local26 + 1];
-														chatTyped = Static3.aClass100Array176[local26];
+														chatTypedLowercase = Static3.scriptStringValues[local26 + 1];
+														chatTyped = Static3.scriptStringValues[local26];
 														if (chatTyped.length() > 0) {
 															if (Static103.aClass100Array88 == null) {
 																Static103.aClass100Array88 = new JString[Static132.anIntArray309[Static266.game]];
 															}
-															Static103.aClass100Array88[local1052] = chatTyped;
+															Static103.aClass100Array88[childCount] = chatTyped;
 														}
 														if (chatTypedLowercase.length() > 0) {
 															if (Static263.aClass100Array174 == null) {
 																Static263.aClass100Array174 = new JString[Static132.anIntArray309[Static266.game]];
 															}
-															Static263.aClass100Array174[local1052] = chatTypedLowercase;
+															Static263.aClass100Array174[childCount] = chatTypedLowercase;
 														}
 														continue;
 													}
-													if (local226 == 5423) {
+													if (scriptOpcode == 5423) {
 														local26--;
-														Static3.aClass100Array176[local26].printToConsole();
+														Static3.scriptStringValues[local26].printToConsole();
 														continue;
 													}
-													if (local226 == 5424) {
-														local28 -= 11;
-														Static40.anInt1275 = Static254.anIntArray487[local28];
-														Static111.anInt2910 = Static254.anIntArray487[local28 + 1];
-														Static251.anInt5457 = Static254.anIntArray487[local28 + 2];
-														Static232.anInt5208 = Static254.anIntArray487[local28 + 3];
-														Static55.anInt1736 = Static254.anIntArray487[local28 + 4];
-														Static169.anInt4073 = Static254.anIntArray487[local28 + 5];
-														Static85.anInt2261 = Static254.anIntArray487[local28 + 6];
-														Static136.anInt3324 = Static254.anIntArray487[local28 + 7];
-														Static254.anInt5556 = Static254.anIntArray487[local28 + 8];
-														Static195.anInt4581 = Static254.anIntArray487[local28 + 9];
-														Static262.anInt5752 = Static254.anIntArray487[local28 + 10];
+													if (scriptOpcode == 5424) {
+														intValueIndex -= 11;
+														Static40.anInt1275 = Static254.scriptIntValues[intValueIndex];
+														Static111.anInt2910 = Static254.scriptIntValues[intValueIndex + 1];
+														Static251.anInt5457 = Static254.scriptIntValues[intValueIndex + 2];
+														Static232.anInt5208 = Static254.scriptIntValues[intValueIndex + 3];
+														Static55.anInt1736 = Static254.scriptIntValues[intValueIndex + 4];
+														Static169.anInt4073 = Static254.scriptIntValues[intValueIndex + 5];
+														Static85.anInt2261 = Static254.scriptIntValues[intValueIndex + 6];
+														Static136.anInt3324 = Static254.scriptIntValues[intValueIndex + 7];
+														Static254.anInt5556 = Static254.scriptIntValues[intValueIndex + 8];
+														Static195.anInt4581 = Static254.scriptIntValues[intValueIndex + 9];
+														Static262.anInt5752 = Static254.scriptIntValues[intValueIndex + 10];
 														Static209.aClass153_86.method4506(Static55.anInt1736);
 														Static209.aClass153_86.method4506(Static169.anInt4073);
 														Static209.aClass153_86.method4506(Static85.anInt2261);
@@ -3046,62 +3133,62 @@ public final class Static88 {
 														Static261.aBoolean298 = true;
 														continue;
 													}
-													if (local226 == 5425) {
+													if (scriptOpcode == 5425) {
 														Static114.method4637();
 														Static261.aBoolean298 = false;
 														continue;
 													}
-													if (local226 == 5426) {
-														local28--;
-														Static270.anInt5794 = Static254.anIntArray487[local28];
+													if (scriptOpcode == 5426) {
+														intValueIndex--;
+														Static270.anInt5794 = Static254.scriptIntValues[intValueIndex];
 														continue;
 													}
-													if (local226 == 5427) {
-														local28 -= 2;
-														Static169.anInt4075 = Static254.anIntArray487[local28];
-														Static225.anInt5073 = Static254.anIntArray487[local28 + 1];
+													if (scriptOpcode == 5427) {
+														intValueIndex -= 2;
+														Static169.anInt4075 = Static254.scriptIntValues[intValueIndex];
+														Static225.anInt5073 = Static254.scriptIntValues[intValueIndex + 1];
 														continue;
 													}
-												} else if (local226 < 5600) {
-													if (local226 == 5500) {
-														local28 -= 4;
-														local809 = Static254.anIntArray487[local28];
-														local652 = Static254.anIntArray487[local28 + 3];
-														local1052 = Static254.anIntArray487[local28 + 2];
-														local803 = Static254.anIntArray487[local28 + 1];
-														Static141.method2722(false, local1052, local803, local652, (local809 & 0x3FFF) - Static142.originZ, (local809 >> 14 & 0x3FFF) - Static225.originX);
+												} else if (scriptOpcode < 5600) {
+													if (scriptOpcode == 5500) {
+														intValueIndex -= 4;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														local652 = Static254.scriptIntValues[intValueIndex + 3];
+														childCount = Static254.scriptIntValues[intValueIndex + 2];
+														interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+														Static141.method2722(false, childCount, interfaceType, local652, (interfaceData & 0x3FFF) - Static142.originZ, (interfaceData >> 14 & 0x3FFF) - Static225.originX);
 														continue;
 													}
-													if (local226 == 5501) {
-														local28 -= 4;
-														local803 = Static254.anIntArray487[local28 + 1];
-														local809 = Static254.anIntArray487[local28];
-														local652 = Static254.anIntArray487[local28 + 3];
-														local1052 = Static254.anIntArray487[local28 + 2];
-														Static260.method3849(local803, (local809 & 0x3FFF) - Static142.originZ, local1052, (local809 >> 14 & 0x3FFF) - Static225.originX, local652);
+													if (scriptOpcode == 5501) {
+														intValueIndex -= 4;
+														interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														local652 = Static254.scriptIntValues[intValueIndex + 3];
+														childCount = Static254.scriptIntValues[intValueIndex + 2];
+														Static260.method3849(interfaceType, (interfaceData & 0x3FFF) - Static142.originZ, childCount, (interfaceData >> 14 & 0x3FFF) - Static225.originX, local652);
 														continue;
 													}
-													if (local226 == 5502) {
-														local28 -= 6;
-														local809 = Static254.anIntArray487[local28];
-														if (local809 >= 2) {
+													if (scriptOpcode == 5502) {
+														intValueIndex -= 6;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														if (interfaceData >= 2) {
 															throw new RuntimeException();
 														}
-														Static155.anInt3718 = local809;
-														local803 = Static254.anIntArray487[local28 + 1];
-														if (Static107.anIntArrayArrayArray9[Static155.anInt3718].length >> 1 <= local803 + 1) {
+														Static155.anInt3718 = interfaceData;
+														interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+														if (Static107.anIntArrayArrayArray9[Static155.anInt3718].length >> 1 <= interfaceType + 1) {
 															throw new RuntimeException();
 														}
-														Static127.anInt3125 = local803;
+														Static127.anInt3125 = interfaceType;
 														Static233.anInt5224 = 0;
-														Static228.anInt5101 = Static254.anIntArray487[local28 + 2];
-														Static114.anInt5843 = Static254.anIntArray487[local28 + 3];
-														local1052 = Static254.anIntArray487[local28 + 4];
-														if (local1052 >= 2) {
+														Static228.anInt5101 = Static254.scriptIntValues[intValueIndex + 2];
+														Static114.anInt5843 = Static254.scriptIntValues[intValueIndex + 3];
+														childCount = Static254.scriptIntValues[intValueIndex + 4];
+														if (childCount >= 2) {
 															throw new RuntimeException();
 														}
-														Static52.anInt1694 = local1052;
-														local652 = Static254.anIntArray487[local28 + 5];
+														Static52.anInt1694 = childCount;
+														local652 = Static254.scriptIntValues[intValueIndex + 5];
 														if (Static107.anIntArrayArrayArray9[Static52.anInt1694].length >> 1 <= local652 + 1) {
 															throw new RuntimeException();
 														}
@@ -3109,14 +3196,14 @@ public final class Static88 {
 														Static227.anInt5096 = 3;
 														continue;
 													}
-													if (local226 == 5503) {
+													if (scriptOpcode == 5503) {
 														Static35.method902();
 														continue;
 													}
-													if (local226 == 5504) {
-														local28 -= 2;
-														Static72.orbitCameraPitch = Static254.anIntArray487[local28];
-														Static57.orbitCameraYaw = Static254.anIntArray487[local28 + 1];
+													if (scriptOpcode == 5504) {
+														intValueIndex -= 2;
+														Static72.orbitCameraPitch = Static254.scriptIntValues[intValueIndex];
+														Static57.orbitCameraYaw = Static254.scriptIntValues[intValueIndex + 1];
 														if (Static227.anInt5096 == 2) {
 															Static184.cameraYaw = Static57.orbitCameraYaw;
 															Static240.cameraPitch = Static72.orbitCameraPitch;
@@ -3124,98 +3211,98 @@ public final class Static88 {
 														Static87.method1812();
 														continue;
 													}
-													if (local226 == 5505) {
-														Static254.anIntArray487[local28++] = Static72.orbitCameraPitch;
+													if (scriptOpcode == 5505) {
+														Static254.scriptIntValues[intValueIndex++] = Static72.orbitCameraPitch;
 														continue;
 													}
-													if (local226 == 5506) {
-														Static254.anIntArray487[local28++] = Static57.orbitCameraYaw;
+													if (scriptOpcode == 5506) {
+														Static254.scriptIntValues[intValueIndex++] = Static57.orbitCameraYaw;
 														continue;
 													}
-												} else if (local226 < 5700) {
-													if (local226 == 5600) {
+												} else if (scriptOpcode < 5700) {
+													if (scriptOpcode == 5600) {
 														local26 -= 2;
-														chatTyped = Static3.aClass100Array176[local26];
-														chatTypedLowercase = Static3.aClass100Array176[local26 + 1];
-														local28--;
-														local1052 = Static254.anIntArray487[local28];
+														chatTyped = Static3.scriptStringValues[local26];
+														chatTypedLowercase = Static3.scriptStringValues[local26 + 1];
+														intValueIndex--;
+														childCount = Static254.scriptIntValues[intValueIndex];
 														if (Static244.anInt5370 == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
-															Static225.method3896(chatTyped, chatTypedLowercase, local1052);
+															Static225.method3896(chatTyped, chatTypedLowercase, childCount);
 														}
 														continue;
 													}
-													if (local226 == 5601) {
+													if (scriptOpcode == 5601) {
 														Static185.method3395();
 														continue;
 													}
-													if (local226 == 5602) {
+													if (scriptOpcode == 5602) {
 														if (Static184.anInt4348 == 0) {
 															Static266.anInt5336 = -2;
 														}
 														continue;
 													}
-													if (local226 == 5603) {
-														local28 -= 4;
+													if (scriptOpcode == 5603) {
+														intValueIndex -= 4;
 														if (Static244.anInt5370 == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
-															Static125.method2448(Static254.anIntArray487[local28 + 2], Static254.anIntArray487[local28 + 3], Static254.anIntArray487[local28], Static254.anIntArray487[local28 + 1]);
+															Static125.method2448(Static254.scriptIntValues[intValueIndex + 2], Static254.scriptIntValues[intValueIndex + 3], Static254.scriptIntValues[intValueIndex], Static254.scriptIntValues[intValueIndex + 1]);
 														}
 														continue;
 													}
-													if (local226 == 5604) {
+													if (scriptOpcode == 5604) {
 														local26--;
 														if (Static244.anInt5370 == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
-															Static78.method1691(Static3.aClass100Array176[local26].toBase37());
+															Static78.method1691(Static3.scriptStringValues[local26].toBase37());
 														}
 														continue;
 													}
-													if (local226 == 5605) {
-														local28 -= 4;
+													if (scriptOpcode == 5605) {
+														intValueIndex -= 4;
 														local26 -= 2;
 														if (Static244.anInt5370 == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
-															Static40.method1016(Static254.anIntArray487[local28], Static254.anIntArray487[local28 + 3], Static254.anIntArray487[local28 + 1], Static3.aClass100Array176[local26 + 1], Static3.aClass100Array176[local26].toBase37(), Static254.anIntArray487[local28 + 2]);
+															Static40.method1016(Static254.scriptIntValues[intValueIndex], Static254.scriptIntValues[intValueIndex + 3], Static254.scriptIntValues[intValueIndex + 1], Static3.scriptStringValues[local26 + 1], Static3.scriptStringValues[local26].toBase37(), Static254.scriptIntValues[intValueIndex + 2]);
 														}
 														continue;
 													}
-													if (local226 == 5606) {
+													if (scriptOpcode == 5606) {
 														if (Static179.step == 0) {
 															Static223.reply = -2;
 														}
 														continue;
 													}
-													if (local226 == 5607) {
-														Static254.anIntArray487[local28++] = Static266.anInt5336;
+													if (scriptOpcode == 5607) {
+														Static254.scriptIntValues[intValueIndex++] = Static266.anInt5336;
 														continue;
 													}
-													if (local226 == 5608) {
-														Static254.anIntArray487[local28++] = PreciseSleep.anInt5202;
+													if (scriptOpcode == 5608) {
+														Static254.scriptIntValues[intValueIndex++] = PreciseSleep.anInt5202;
 														continue;
 													}
-													if (local226 == 5609) {
-														Static254.anIntArray487[local28++] = Static223.reply;
+													if (scriptOpcode == 5609) {
+														Static254.scriptIntValues[intValueIndex++] = Static223.reply;
 														continue;
 													}
-													if (local226 == 5610) {
-														for (local809 = 0; local809 < 5; local809++) {
-															Static3.aClass100Array176[local26++] = Static229.aClass100Array156.length > local809 ? Static229.aClass100Array156[local809].method3125() : Static72.aClass100_447;
+													if (scriptOpcode == 5610) {
+														for (interfaceData = 0; interfaceData < 5; interfaceData++) {
+															Static3.scriptStringValues[local26++] = Static229.aClass100Array156.length > interfaceData ? Static229.aClass100Array156[interfaceData].method3125() : Static72.aClass100_447;
 														}
 														Static229.aClass100Array156 = null;
 														continue;
 													}
-													if (local226 == 5611) {
-														Static254.anIntArray487[local28++] = Static204.anInt4765;
+													if (scriptOpcode == 5611) {
+														Static254.scriptIntValues[intValueIndex++] = Static204.anInt4765;
 														continue;
 													}
-												} else if (local226 < 6100) {
-													if (local226 == 6001) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														if (local809 < 1) {
-															local809 = 1;
+												} else if (scriptOpcode < 6100) {
+													if (scriptOpcode == 6001) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														if (interfaceData < 1) {
+															interfaceData = 1;
 														}
-														if (local809 > 4) {
-															local809 = 4;
+														if (interfaceData > 4) {
+															interfaceData = 4;
 														}
-														Static113.anInt4609 = local809;
+														Static113.anInt4609 = interfaceData;
 														if (!GlRenderer.enabled || !Static178.highDetailLighting) {
 															if (Static113.anInt4609 == 1) {
 																Pix3D.method1911(0.9F);
@@ -3241,9 +3328,9 @@ public final class Static88 {
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6002) {
-														local28--;
-														Static53.method1293(Static254.anIntArray487[local28] == 1);
+													if (scriptOpcode == 6002) {
+														intValueIndex--;
+														Static53.method1293(Static254.scriptIntValues[intValueIndex] == 1);
 														Static90.method1854();
 														Static145.method2742();
 														Static269.method2218();
@@ -3251,75 +3338,75 @@ public final class Static88 {
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6003) {
-														local28--;
-														Static80.aBoolean231 = Static254.anIntArray487[local28] == 1;
+													if (scriptOpcode == 6003) {
+														intValueIndex--;
+														Static80.aBoolean231 = Static254.scriptIntValues[intValueIndex] == 1;
 														Static269.method2218();
 														Static203.method3663(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6005) {
-														local28--;
-														Static250.aBoolean283 = Static254.anIntArray487[local28] == 1;
+													if (scriptOpcode == 6005) {
+														intValueIndex--;
+														Static250.aBoolean283 = Static254.scriptIntValues[intValueIndex] == 1;
 														Static145.method2742();
 														Static203.method3663(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6006) {
-														local28--;
-														Static53.aBoolean99 = Static254.anIntArray487[local28] == 1;
+													if (scriptOpcode == 6006) {
+														intValueIndex--;
+														Static53.aBoolean99 = Static254.scriptIntValues[intValueIndex] == 1;
 														((Js5GlTextureProvider) Pix3D.anInterface1_2).method3245(!Static53.aBoolean99);
 														Static203.method3663(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6007) {
-														local28--;
-														Static15.lowMemory = Static254.anIntArray487[local28] == 1;
+													if (scriptOpcode == 6007) {
+														intValueIndex--;
+														Static15.lowMemory = Static254.scriptIntValues[intValueIndex] == 1;
 														Static203.method3663(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6008) {
-														local28--;
-														Static11.aBoolean15 = Static254.anIntArray487[local28] == 1;
+													if (scriptOpcode == 6008) {
+														intValueIndex--;
+														Static11.aBoolean15 = Static254.scriptIntValues[intValueIndex] == 1;
 														Static203.method3663(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6009) {
-														local28--;
-														Static159.aBoolean189 = Static254.anIntArray487[local28] == 1;
+													if (scriptOpcode == 6009) {
+														intValueIndex--;
+														Static159.aBoolean189 = Static254.scriptIntValues[intValueIndex] == 1;
 														Static203.method3663(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6010) {
-														local28--;
-														Static209.aBoolean240 = Static254.anIntArray487[local28] == 1;
+													if (scriptOpcode == 6010) {
+														intValueIndex--;
+														Static209.aBoolean240 = Static254.scriptIntValues[intValueIndex] == 1;
 														Static203.method3663(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6011) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														if (local809 < 0 || local809 > 2) {
-															local809 = 0;
+													if (scriptOpcode == 6011) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														if (interfaceData < 0 || interfaceData > 2) {
+															interfaceData = 0;
 														}
-														Static139.anInt3451 = local809;
+														Static139.anInt3451 = interfaceData;
 														Static203.method3663(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6012) {
+													if (scriptOpcode == 6012) {
 														if (GlRenderer.enabled) {
 															Static27.setMaterial(0, 0);
 														}
-														local28--;
-														Static178.highDetailLighting = Static254.anIntArray487[local28] == 1;
+														intValueIndex--;
+														Static178.highDetailLighting = Static254.scriptIntValues[intValueIndex] == 1;
 														if (GlRenderer.enabled && Static178.highDetailLighting) {
 															Pix3D.method1911(0.7F);
 														} else {
@@ -3341,9 +3428,9 @@ public final class Static88 {
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6014) {
-														local28--;
-														Static220.aBoolean244 = Static254.anIntArray487[local28] == 1;
+													if (scriptOpcode == 6014) {
+														intValueIndex--;
+														Static220.aBoolean244 = Static254.scriptIntValues[intValueIndex] == 1;
 														if (GlRenderer.enabled) {
 															Static145.method2742();
 														}
@@ -3351,9 +3438,9 @@ public final class Static88 {
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6015) {
-														local28--;
-														Static71.aBoolean107 = Static254.anIntArray487[local28] == 1;
+													if (scriptOpcode == 6015) {
+														intValueIndex--;
+														Static71.aBoolean107 = Static254.scriptIntValues[intValueIndex] == 1;
 														if (GlRenderer.enabled) {
 															Static86.method1799();
 														}
@@ -3361,256 +3448,256 @@ public final class Static88 {
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6016) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
+													if (scriptOpcode == 6016) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
 														if (GlRenderer.enabled) {
 															Static35.canvasReplaceRecommended = true;
 														}
-														if (local809 < 0 || local809 > 2) {
-															local809 = 0;
+														if (interfaceData < 0 || interfaceData > 2) {
+															interfaceData = 0;
 														}
-														Static186.antialiasingMode = local809;
+														Static186.antialiasingMode = interfaceData;
 														continue;
 													}
-													if (local226 == 6017) {
-														local28--;
-														Static99.aBoolean143 = Static254.anIntArray487[local28] == 1;
+													if (scriptOpcode == 6017) {
+														intValueIndex--;
+														Static99.aBoolean143 = Static254.scriptIntValues[intValueIndex] == 1;
 														Static211.method930();
 														Static203.method3663(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6018) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														if (local809 < 0) {
-															local809 = 0;
+													if (scriptOpcode == 6018) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														if (interfaceData < 0) {
+															interfaceData = 0;
 														}
-														if (local809 > 127) {
-															local809 = 127;
+														if (interfaceData > 127) {
+															interfaceData = 127;
 														}
-														Static125.anInt3104 = local809;
+														Static125.anInt3104 = interfaceData;
 														Static203.method3663(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6019) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														if (local809 < 0) {
-															local809 = 0;
+													if (scriptOpcode == 6019) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														if (interfaceData < 0) {
+															interfaceData = 0;
 														}
-														if (local809 > 255) {
-															local809 = 255;
+														if (interfaceData > 255) {
+															interfaceData = 255;
 														}
-														if (local809 != Static12.anInt391) {
+														if (interfaceData != Static12.anInt391) {
 															if (Static12.anInt391 == 0 && BZip2State.anInt4363 != -1) {
-																Static122.method2410(Static130.aClass153_47, BZip2State.anInt4363, local809);
+																Static122.method2410(Static130.aClass153_47, BZip2State.anInt4363, interfaceData);
 																Static144.aBoolean173 = false;
-															} else if (local809 == 0) {
+															} else if (interfaceData == 0) {
 																Static241.method4548();
 																Static144.aBoolean173 = false;
 															} else {
-																Static230.method3956(local809);
+																Static230.method3956(interfaceData);
 															}
-															Static12.anInt391 = local809;
+															Static12.anInt391 = interfaceData;
 														}
 														Static203.method3663(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6020) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														if (local809 < 0) {
-															local809 = 0;
+													if (scriptOpcode == 6020) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														if (interfaceData < 0) {
+															interfaceData = 0;
 														}
-														if (local809 > 127) {
-															local809 = 127;
+														if (interfaceData > 127) {
+															interfaceData = 127;
 														}
-														Static30.anInt978 = local809;
+														Static30.anInt978 = interfaceData;
 														Static203.method3663(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
-													if (local226 == 6021) {
-														local28--;
-														Static127.aBoolean160 = Static254.anIntArray487[local28] == 1;
+													if (scriptOpcode == 6021) {
+														intValueIndex--;
+														Static127.aBoolean160 = Static254.scriptIntValues[intValueIndex] == 1;
 														Static269.method2218();
 														continue;
 													}
-													if (local226 == 6023) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														if (local809 < 0) {
-															local809 = 0;
+													if (scriptOpcode == 6023) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														if (interfaceData < 0) {
+															interfaceData = 0;
 														}
-														if (local809 > 2) {
-															local809 = 2;
+														if (interfaceData > 2) {
+															interfaceData = 2;
 														}
 														local1552 = false;
 														if (Static238.anInt5316 < 96) {
 															local1552 = true;
-															local809 = 0;
+															interfaceData = 0;
 														}
-														Static76.method1645(local809);
+														Static76.method1645(interfaceData);
 														Static203.method3663(GameShell.signLink);
 														Static18.sentToServer = false;
-														Static254.anIntArray487[local28++] = local1552 ? 0 : 1;
+														Static254.scriptIntValues[intValueIndex++] = local1552 ? 0 : 1;
 														continue;
 													}
-													if (local226 == 6024) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														if (local809 < 0 || local809 > 2) {
-															local809 = 0;
+													if (scriptOpcode == 6024) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														if (interfaceData < 0 || interfaceData > 2) {
+															interfaceData = 0;
 														}
-														Static102.anInt2679 = local809;
+														Static102.anInt2679 = interfaceData;
 														Static203.method3663(GameShell.signLink);
 														continue;
 													}
-													if (local226 == 6028) {
-														local28--;
-														Static64.aBoolean111 = Static254.anIntArray487[local28] != 0;
+													if (scriptOpcode == 6028) {
+														intValueIndex--;
+														Static64.aBoolean111 = Static254.scriptIntValues[intValueIndex] != 0;
 														Static203.method3663(GameShell.signLink);
 														continue;
 													}
-												} else if (local226 < 6200) {
-													if (local226 == 6101) {
-														Static254.anIntArray487[local28++] = Static113.anInt4609;
+												} else if (scriptOpcode < 6200) {
+													if (scriptOpcode == 6101) {
+														Static254.scriptIntValues[intValueIndex++] = Static113.anInt4609;
 														continue;
 													}
-													if (local226 == 6102) {
-														Static254.anIntArray487[local28++] = Static138.allLevelsvisible() ? 1 : 0;
+													if (scriptOpcode == 6102) {
+														Static254.scriptIntValues[intValueIndex++] = Static138.allLevelsvisible() ? 1 : 0;
 														continue;
 													}
-													if (local226 == 6103) {
-														Static254.anIntArray487[local28++] = Static80.aBoolean231 ? 1 : 0;
+													if (scriptOpcode == 6103) {
+														Static254.scriptIntValues[intValueIndex++] = Static80.aBoolean231 ? 1 : 0;
 														continue;
 													}
-													if (local226 == 6105) {
-														Static254.anIntArray487[local28++] = Static250.aBoolean283 ? 1 : 0;
+													if (scriptOpcode == 6105) {
+														Static254.scriptIntValues[intValueIndex++] = Static250.aBoolean283 ? 1 : 0;
 														continue;
 													}
-													if (local226 == 6106) {
-														Static254.anIntArray487[local28++] = Static53.aBoolean99 ? 1 : 0;
+													if (scriptOpcode == 6106) {
+														Static254.scriptIntValues[intValueIndex++] = Static53.aBoolean99 ? 1 : 0;
 														continue;
 													}
-													if (local226 == 6107) {
-														Static254.anIntArray487[local28++] = Static15.lowMemory ? 1 : 0;
+													if (scriptOpcode == 6107) {
+														Static254.scriptIntValues[intValueIndex++] = Static15.lowMemory ? 1 : 0;
 														continue;
 													}
-													if (local226 == 6108) {
-														Static254.anIntArray487[local28++] = Static11.aBoolean15 ? 1 : 0;
+													if (scriptOpcode == 6108) {
+														Static254.scriptIntValues[intValueIndex++] = Static11.aBoolean15 ? 1 : 0;
 														continue;
 													}
-													if (local226 == 6109) {
-														Static254.anIntArray487[local28++] = Static159.aBoolean189 ? 1 : 0;
+													if (scriptOpcode == 6109) {
+														Static254.scriptIntValues[intValueIndex++] = Static159.aBoolean189 ? 1 : 0;
 														continue;
 													}
-													if (local226 == 6110) {
-														Static254.anIntArray487[local28++] = Static209.aBoolean240 ? 1 : 0;
+													if (scriptOpcode == 6110) {
+														Static254.scriptIntValues[intValueIndex++] = Static209.aBoolean240 ? 1 : 0;
 														continue;
 													}
-													if (local226 == 6111) {
-														Static254.anIntArray487[local28++] = Static139.anInt3451;
+													if (scriptOpcode == 6111) {
+														Static254.scriptIntValues[intValueIndex++] = Static139.anInt3451;
 														continue;
 													}
-													if (local226 == 6112) {
-														Static254.anIntArray487[local28++] = Static178.highDetailLighting ? 1 : 0;
+													if (scriptOpcode == 6112) {
+														Static254.scriptIntValues[intValueIndex++] = Static178.highDetailLighting ? 1 : 0;
 														continue;
 													}
-													if (local226 == 6114) {
-														Static254.anIntArray487[local28++] = Static220.aBoolean244 ? 1 : 0;
+													if (scriptOpcode == 6114) {
+														Static254.scriptIntValues[intValueIndex++] = Static220.aBoolean244 ? 1 : 0;
 														continue;
 													}
-													if (local226 == 6115) {
-														Static254.anIntArray487[local28++] = Static71.aBoolean107 ? 1 : 0;
+													if (scriptOpcode == 6115) {
+														Static254.scriptIntValues[intValueIndex++] = Static71.aBoolean107 ? 1 : 0;
 														continue;
 													}
-													if (local226 == 6116) {
-														Static254.anIntArray487[local28++] = Static186.antialiasingMode;
+													if (scriptOpcode == 6116) {
+														Static254.scriptIntValues[intValueIndex++] = Static186.antialiasingMode;
 														continue;
 													}
-													if (local226 == 6117) {
-														Static254.anIntArray487[local28++] = Static99.aBoolean143 ? 1 : 0;
+													if (scriptOpcode == 6117) {
+														Static254.scriptIntValues[intValueIndex++] = Static99.aBoolean143 ? 1 : 0;
 														continue;
 													}
-													if (local226 == 6118) {
-														Static254.anIntArray487[local28++] = Static125.anInt3104;
+													if (scriptOpcode == 6118) {
+														Static254.scriptIntValues[intValueIndex++] = Static125.anInt3104;
 														continue;
 													}
-													if (local226 == 6119) {
-														Static254.anIntArray487[local28++] = Static12.anInt391;
+													if (scriptOpcode == 6119) {
+														Static254.scriptIntValues[intValueIndex++] = Static12.anInt391;
 														continue;
 													}
-													if (local226 == 6120) {
-														Static254.anIntArray487[local28++] = Static30.anInt978;
+													if (scriptOpcode == 6120) {
+														Static254.scriptIntValues[intValueIndex++] = Static30.anInt978;
 														continue;
 													}
-													if (local226 == 6121) {
+													if (scriptOpcode == 6121) {
 														if (GlRenderer.enabled) {
-															Static254.anIntArray487[local28++] = GlRenderer.arbMultisampleSupported ? 1 : 0;
+															Static254.scriptIntValues[intValueIndex++] = GlRenderer.arbMultisampleSupported ? 1 : 0;
 														} else {
-															Static254.anIntArray487[local28++] = 0;
+															Static254.scriptIntValues[intValueIndex++] = 0;
 														}
 														continue;
 													}
-													if (local226 == 6123) {
-														Static254.anIntArray487[local28++] = Static76.method1644();
+													if (scriptOpcode == 6123) {
+														Static254.scriptIntValues[intValueIndex++] = Static76.method1644();
 														continue;
 													}
-													if (local226 == 6124) {
-														Static254.anIntArray487[local28++] = Static102.anInt2679;
+													if (scriptOpcode == 6124) {
+														Static254.scriptIntValues[intValueIndex++] = Static102.anInt2679;
 														continue;
 													}
-													if (local226 == 6128) {
-														Static254.anIntArray487[local28++] = Static64.aBoolean111 ? 1 : 0;
+													if (scriptOpcode == 6128) {
+														Static254.scriptIntValues[intValueIndex++] = Static64.aBoolean111 ? 1 : 0;
 														continue;
 													}
-												} else if (local226 < 6300) {
-													if (local226 == 6200) {
-														local28 -= 2;
-														Static178.aShort25 = (short) Static254.anIntArray487[local28];
+												} else if (scriptOpcode < 6300) {
+													if (scriptOpcode == 6200) {
+														intValueIndex -= 2;
+														Static178.aShort25 = (short) Static254.scriptIntValues[intValueIndex];
 														if (Static178.aShort25 <= 0) {
 															Static178.aShort25 = 256;
 														}
-														Static10.aShort9 = (short) Static254.anIntArray487[local28 + 1];
+														Static10.aShort9 = (short) Static254.scriptIntValues[intValueIndex + 1];
 														if (Static10.aShort9 <= 0) {
 															Static10.aShort9 = 205;
 														}
 														continue;
 													}
-													if (local226 == 6201) {
-														local28 -= 2;
-														Static263.aShort30 = (short) Static254.anIntArray487[local28];
+													if (scriptOpcode == 6201) {
+														intValueIndex -= 2;
+														Static263.aShort30 = (short) Static254.scriptIntValues[intValueIndex];
 														if (Static263.aShort30 <= 0) {
 															Static263.aShort30 = 256;
 														}
-														Static187.aShort27 = (short) Static254.anIntArray487[local28 + 1];
+														Static187.aShort27 = (short) Static254.scriptIntValues[intValueIndex + 1];
 														if (Static187.aShort27 <= 0) {
 															Static187.aShort27 = 320;
 														}
 														continue;
 													}
-													if (local226 == 6202) {
-														local28 -= 4;
-														Static153.aShort22 = (short) Static254.anIntArray487[local28];
+													if (scriptOpcode == 6202) {
+														intValueIndex -= 4;
+														Static153.aShort22 = (short) Static254.scriptIntValues[intValueIndex];
 														if (Static153.aShort22 <= 0) {
 															Static153.aShort22 = 1;
 														}
-														Static4.aShort1 = (short) Static254.anIntArray487[local28 + 1];
+														Static4.aShort1 = (short) Static254.scriptIntValues[intValueIndex + 1];
 														if (Static4.aShort1 <= 0) {
 															Static4.aShort1 = 32767;
 														} else if (Static153.aShort22 > Static4.aShort1) {
 															Static4.aShort1 = Static153.aShort22;
 														}
-														Static55.aShort12 = (short) Static254.anIntArray487[local28 + 2];
+														Static55.aShort12 = (short) Static254.scriptIntValues[intValueIndex + 2];
 														if (Static55.aShort12 <= 0) {
 															Static55.aShort12 = 1;
 														}
-														Static131.aShort21 = (short) Static254.anIntArray487[local28 + 3];
+														Static131.aShort21 = (short) Static254.scriptIntValues[intValueIndex + 3];
 														if (Static131.aShort21 <= 0) {
 															Static131.aShort21 = 32767;
 														} else if (Static131.aShort21 < Static55.aShort12) {
@@ -3618,368 +3705,376 @@ public final class Static88 {
 														}
 														continue;
 													}
-													if (local226 == 6203) {
+													if (scriptOpcode == 6203) {
 														Static115.method2314(Static280.aClass13_26.anInt445, 0, Static280.aClass13_26.anInt459, 0, false);
-														Static254.anIntArray487[local28++] = Static166.anInt4055;
-														Static254.anIntArray487[local28++] = Static245.anInt5377;
+														Static254.scriptIntValues[intValueIndex++] = Static166.anInt4055;
+														Static254.scriptIntValues[intValueIndex++] = Static245.anInt5377;
 														continue;
 													}
-													if (local226 == 6204) {
-														Static254.anIntArray487[local28++] = Static263.aShort30;
-														Static254.anIntArray487[local28++] = Static187.aShort27;
+													if (scriptOpcode == 6204) {
+														Static254.scriptIntValues[intValueIndex++] = Static263.aShort30;
+														Static254.scriptIntValues[intValueIndex++] = Static187.aShort27;
 														continue;
 													}
-													if (local226 == 6205) {
-														Static254.anIntArray487[local28++] = Static178.aShort25;
-														Static254.anIntArray487[local28++] = Static10.aShort9;
+													if (scriptOpcode == 6205) {
+														Static254.scriptIntValues[intValueIndex++] = Static178.aShort25;
+														Static254.scriptIntValues[intValueIndex++] = Static10.aShort9;
 														continue;
 													}
-												} else if (local226 < 6400) {
-													if (local226 == 6300) {
-														Static254.anIntArray487[local28++] = (int) (MonotonicTime.get() / 60000L);
+												} else if (scriptOpcode < 6400) {
+													if (scriptOpcode == 6300) {
+														Static254.scriptIntValues[intValueIndex++] = (int) (MonotonicTime.get() / 60000L);
 														continue;
 													}
-													if (local226 == 6301) {
-														Static254.anIntArray487[local28++] = (int) (MonotonicTime.get() / 86400000L) - 11745;
+													if (scriptOpcode == 6301) {
+														Static254.scriptIntValues[intValueIndex++] = (int) (MonotonicTime.get() / 86400000L) - 11745;
 														continue;
 													}
-													if (local226 == 6302) {
-														local28 -= 3;
-														local1052 = Static254.anIntArray487[local28 + 2];
-														local803 = Static254.anIntArray487[local28 + 1];
-														local809 = Static254.anIntArray487[local28];
+													if (scriptOpcode == 6302) {
+														intValueIndex -= 3;
+														childCount = Static254.scriptIntValues[intValueIndex + 2];
+														interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+														interfaceData = Static254.scriptIntValues[intValueIndex];
 														Static102.aCalendar2.clear();
 														Static102.aCalendar2.set(11, 12);
-														Static102.aCalendar2.set(local1052, local803, local809);
-														Static254.anIntArray487[local28++] = (int) (Static102.aCalendar2.getTime().getTime() / 86400000L) - 11745;
+														Static102.aCalendar2.set(childCount, interfaceType, interfaceData);
+														Static254.scriptIntValues[intValueIndex++] = (int) (Static102.aCalendar2.getTime().getTime() / 86400000L) - 11745;
 														continue;
 													}
-													if (local226 == 6303) {
+													if (scriptOpcode == 6303) {
 														Static102.aCalendar2.clear();
 														Static102.aCalendar2.setTime(new Date(MonotonicTime.get()));
-														Static254.anIntArray487[local28++] = Static102.aCalendar2.get(1);
+														Static254.scriptIntValues[intValueIndex++] = Static102.aCalendar2.get(1);
 														continue;
 													}
-													if (local226 == 6304) {
+													if (scriptOpcode == 6304) {
 														local1552 = true;
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														if (local809 < 0) {
-															local1552 = (local809 + 1) % 4 == 0;
-														} else if (local809 < 1582) {
-															local1552 = local809 % 4 == 0;
-														} else if (local809 % 4 != 0) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														if (interfaceData < 0) {
+															local1552 = (interfaceData + 1) % 4 == 0;
+														} else if (interfaceData < 1582) {
+															local1552 = interfaceData % 4 == 0;
+														} else if (interfaceData % 4 != 0) {
 															local1552 = false;
-														} else if (local809 % 100 != 0) {
+														} else if (interfaceData % 100 != 0) {
 															local1552 = true;
-														} else if (local809 % 400 != 0) {
+														} else if (interfaceData % 400 != 0) {
 															local1552 = false;
 														}
-														Static254.anIntArray487[local28++] = local1552 ? 1 : 0;
+														Static254.scriptIntValues[intValueIndex++] = local1552 ? 1 : 0;
 														continue;
 													}
-												} else if (local226 < 6500) {
-													if (local226 == 6405) {
-														Static254.anIntArray487[local28++] = Static87.method1802() ? 1 : 0;
+												} else if (scriptOpcode < 6500) {
+													if (scriptOpcode == 6405) {
+														Static254.scriptIntValues[intValueIndex++] = Static87.method1802() ? 1 : 0;
 														continue;
 													}
-													if (local226 == 6406) {
-														Static254.anIntArray487[local28++] = Static267.method4527() ? 1 : 0;
+													if (scriptOpcode == 6406) {
+														Static254.scriptIntValues[intValueIndex++] = Static267.method4527() ? 1 : 0;
 														continue;
 													}
-												} else if (local226 < 6600) {
-													if (local226 == 6500) {
+												} else if (scriptOpcode < 6600) {
+													if (scriptOpcode == 6500) {
 														if (Static244.anInt5370 == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0) {
-															Static254.anIntArray487[local28++] = Static207.method3684() == -1 ? 0 : 1;
+															Static254.scriptIntValues[intValueIndex++] = Static207.method3684() == -1 ? 0 : 1;
 															continue;
 														}
-														Static254.anIntArray487[local28++] = 1;
+														Static254.scriptIntValues[intValueIndex++] = 1;
 														continue;
 													}
 													@Pc(10247) GWCLocation local10247;
 													@Pc(10191) GWCWorld local10191;
-													if (local226 == 6501) {
+													if (scriptOpcode == 6501) {
 														local10191 = Static18.method556();
 														if (local10191 == null) {
-															Static254.anIntArray487[local28++] = -1;
-															Static254.anIntArray487[local28++] = 0;
-															Static3.aClass100Array176[local26++] = Static72.aClass100_447;
-															Static254.anIntArray487[local28++] = 0;
-															Static3.aClass100Array176[local26++] = Static72.aClass100_447;
-															Static254.anIntArray487[local28++] = 0;
+															Static254.scriptIntValues[intValueIndex++] = -1;
+															Static254.scriptIntValues[intValueIndex++] = 0;
+															Static3.scriptStringValues[local26++] = Static72.aClass100_447;
+															Static254.scriptIntValues[intValueIndex++] = 0;
+															Static3.scriptStringValues[local26++] = Static72.aClass100_447;
+															Static254.scriptIntValues[intValueIndex++] = 0;
 														} else {
-															Static254.anIntArray487[local28++] = local10191.id;
-															Static254.anIntArray487[local28++] = local10191.flags;
-															Static3.aClass100Array176[local26++] = local10191.activity;
+															Static254.scriptIntValues[intValueIndex++] = local10191.id;
+															Static254.scriptIntValues[intValueIndex++] = local10191.flags;
+															Static3.scriptStringValues[local26++] = local10191.activity;
 															local10247 = local10191.getGWCLocation();
-															Static254.anIntArray487[local28++] = local10247.flag;
-															Static3.aClass100Array176[local26++] = local10247.name;
-															Static254.anIntArray487[local28++] = local10191.players;
+															Static254.scriptIntValues[intValueIndex++] = local10247.flag;
+															Static3.scriptStringValues[local26++] = local10247.name;
+															Static254.scriptIntValues[intValueIndex++] = local10191.players;
 														}
 														continue;
 													}
-													if (local226 == 6502) {
+													if (scriptOpcode == 6502) {
 														local10191 = method1821();
 														if (local10191 == null) {
-															Static254.anIntArray487[local28++] = -1;
-															Static254.anIntArray487[local28++] = 0;
-															Static3.aClass100Array176[local26++] = Static72.aClass100_447;
-															Static254.anIntArray487[local28++] = 0;
-															Static3.aClass100Array176[local26++] = Static72.aClass100_447;
-															Static254.anIntArray487[local28++] = 0;
+															Static254.scriptIntValues[intValueIndex++] = -1;
+															Static254.scriptIntValues[intValueIndex++] = 0;
+															Static3.scriptStringValues[local26++] = Static72.aClass100_447;
+															Static254.scriptIntValues[intValueIndex++] = 0;
+															Static3.scriptStringValues[local26++] = Static72.aClass100_447;
+															Static254.scriptIntValues[intValueIndex++] = 0;
 														} else {
-															Static254.anIntArray487[local28++] = local10191.id;
-															Static254.anIntArray487[local28++] = local10191.flags;
-															Static3.aClass100Array176[local26++] = local10191.activity;
+															Static254.scriptIntValues[intValueIndex++] = local10191.id;
+															Static254.scriptIntValues[intValueIndex++] = local10191.flags;
+															Static3.scriptStringValues[local26++] = local10191.activity;
 															local10247 = local10191.getGWCLocation();
-															Static254.anIntArray487[local28++] = local10247.flag;
-															Static3.aClass100Array176[local26++] = local10247.name;
-															Static254.anIntArray487[local28++] = local10191.players;
+															Static254.scriptIntValues[intValueIndex++] = local10247.flag;
+															Static3.scriptStringValues[local26++] = local10247.name;
+															Static254.scriptIntValues[intValueIndex++] = local10191.players;
 														}
 														continue;
 													}
-													if (local226 == 6503) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
+													if (scriptOpcode == 6503) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
 														if (Static244.anInt5370 == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0) {
-															Static254.anIntArray487[local28++] = Static176.method3303(local809) ? 1 : 0;
+															Static254.scriptIntValues[intValueIndex++] = Static176.method3303(interfaceData) ? 1 : 0;
 															continue;
 														}
-														Static254.anIntArray487[local28++] = 0;
+														Static254.scriptIntValues[intValueIndex++] = 0;
 														continue;
 													}
-													if (local226 == 6504) {
-														local28--;
-														Static164.anInt3988 = Static254.anIntArray487[local28];
+													if (scriptOpcode == 6504) {
+														intValueIndex--;
+														Static164.anInt3988 = Static254.scriptIntValues[intValueIndex];
 														Static203.method3663(GameShell.signLink);
 														continue;
 													}
-													if (local226 == 6505) {
-														Static254.anIntArray487[local28++] = Static164.anInt3988;
+													if (scriptOpcode == 6505) {
+														Static254.scriptIntValues[intValueIndex++] = Static164.anInt3988;
 														continue;
 													}
-													if (local226 == 6506) {
-														local28--;
-														local809 = Static254.anIntArray487[local28];
-														@Pc(10440) GWCWorld local10440 = Static54.method1310(local809);
+													if (scriptOpcode == 6506) {
+														intValueIndex--;
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														@Pc(10440) GWCWorld local10440 = Static54.method1310(interfaceData);
 														if (local10440 == null) {
-															Static254.anIntArray487[local28++] = -1;
-															Static3.aClass100Array176[local26++] = Static72.aClass100_447;
-															Static254.anIntArray487[local28++] = 0;
-															Static3.aClass100Array176[local26++] = Static72.aClass100_447;
-															Static254.anIntArray487[local28++] = 0;
+															Static254.scriptIntValues[intValueIndex++] = -1;
+															Static3.scriptStringValues[local26++] = Static72.aClass100_447;
+															Static254.scriptIntValues[intValueIndex++] = 0;
+															Static3.scriptStringValues[local26++] = Static72.aClass100_447;
+															Static254.scriptIntValues[intValueIndex++] = 0;
 														} else {
-															Static254.anIntArray487[local28++] = local10440.flags;
-															Static3.aClass100Array176[local26++] = local10440.activity;
+															Static254.scriptIntValues[intValueIndex++] = local10440.flags;
+															Static3.scriptStringValues[local26++] = local10440.activity;
 															@Pc(10458) GWCLocation local10458 = local10440.getGWCLocation();
-															Static254.anIntArray487[local28++] = local10458.flag;
-															Static3.aClass100Array176[local26++] = local10458.name;
-															Static254.anIntArray487[local28++] = local10440.players;
+															Static254.scriptIntValues[intValueIndex++] = local10458.flag;
+															Static3.scriptStringValues[local26++] = local10458.name;
+															Static254.scriptIntValues[intValueIndex++] = local10440.players;
 														}
 														continue;
 													}
-													if (local226 == 6507) {
-														local28 -= 4;
-														local1052 = Static254.anIntArray487[local28 + 2];
-														local809 = Static254.anIntArray487[local28];
-														local7566 = Static254.anIntArray487[local28 + 3] == 1;
-														local1552 = Static254.anIntArray487[local28 + 1] == 1;
-														Static228.method3908(local1052, local1552, local809, local7566);
+													if (scriptOpcode == 6507) {
+														intValueIndex -= 4;
+														childCount = Static254.scriptIntValues[intValueIndex + 2];
+														interfaceData = Static254.scriptIntValues[intValueIndex];
+														local7566 = Static254.scriptIntValues[intValueIndex + 3] == 1;
+														local1552 = Static254.scriptIntValues[intValueIndex + 1] == 1;
+														Static228.method3908(childCount, local1552, interfaceData, local7566);
 														continue;
 													}
-												} else if (local226 < 6700) {
-													if (local226 == 6600) {
-														local28--;
-														Static33.aBoolean63 = Static254.anIntArray487[local28] == 1;
+												} else if (scriptOpcode < 6700) {
+													if (scriptOpcode == 6600) {
+														intValueIndex--;
+														Static33.aBoolean63 = Static254.scriptIntValues[intValueIndex] == 1;
 														Static203.method3663(GameShell.signLink);
 														continue;
 													}
-													if (local226 == 6601) {
-														Static254.anIntArray487[local28++] = Static33.aBoolean63 ? 1 : 0;
+													if (scriptOpcode == 6601) {
+														Static254.scriptIntValues[intValueIndex++] = Static33.aBoolean63 ? 1 : 0;
 														continue;
 													}
 												}
 											}
-										} else if (local226 == 4500) {
-											local28 -= 2;
-											local809 = Static254.anIntArray487[local28];
-											local803 = Static254.anIntArray487[local28 + 1];
-											local5294 = Static110.method2277(local803);
+										} else if (scriptOpcode == 4500) {
+											intValueIndex -= 2;
+											interfaceData = Static254.scriptIntValues[intValueIndex];
+											interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+											local5294 = Static110.method2277(interfaceType);
 											if (local5294.method2078()) {
-												Static3.aClass100Array176[local26++] = Static123.method2417(local809).method2802(local5294.aClass100_544, local803);
+												Static3.scriptStringValues[local26++] = Static123.method2417(interfaceData).method2802(local5294.aClass100_544, interfaceType);
 											} else {
-												Static254.anIntArray487[local28++] = Static123.method2417(local809).method2798(local803, local5294.anInt2667);
+												Static254.scriptIntValues[intValueIndex++] = Static123.method2417(interfaceData).method2798(interfaceType, local5294.anInt2667);
 											}
 											continue;
 										}
-									} else if (local226 == 4400) {
-										local28 -= 2;
-										local803 = Static254.anIntArray487[local28 + 1];
-										local809 = Static254.anIntArray487[local28];
-										local5294 = Static110.method2277(local803);
+									} else if (scriptOpcode == 4400) {
+										intValueIndex -= 2;
+										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										local5294 = Static110.method2277(interfaceType);
 										if (local5294.method2078()) {
-											Static3.aClass100Array176[local26++] = Static271.get(local809).getParam(local5294.aClass100_544, local803);
+											Static3.scriptStringValues[local26++] = Static271.get(interfaceData).getParam(local5294.aClass100_544, interfaceType);
 										} else {
-											Static254.anIntArray487[local28++] = Static271.get(local809).getParam(local5294.anInt2667, local803);
+											Static254.scriptIntValues[intValueIndex++] = Static271.get(interfaceData).getParam(local5294.anInt2667, interfaceType);
 										}
 										continue;
 									}
 								} else {
-									if (local226 == 4100) {
+									if (scriptOpcode == 4100) {
+										// append_num
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
-										local28--;
-										local803 = Static254.anIntArray487[local28];
-										Static3.aClass100Array176[local26++] = Static34.method882(new JString[] { chatTyped, Static123.method2423(local803) });
+										chatTyped = Static3.scriptStringValues[local26];
+										intValueIndex--;
+										interfaceType = Static254.scriptIntValues[intValueIndex];
+										Static3.scriptStringValues[local26++] = Static34.method882(new JString[] { chatTyped, Static123.method2423(interfaceType) });
 										continue;
 									}
-									if (local226 == 4101) {
+									if (scriptOpcode == 4101) {
+										// append
 										local26 -= 2;
-										chatTypedLowercase = Static3.aClass100Array176[local26 + 1];
-										chatTyped = Static3.aClass100Array176[local26];
-										Static3.aClass100Array176[local26++] = Static34.method882(new JString[] { chatTyped, chatTypedLowercase });
+										chatTypedLowercase = Static3.scriptStringValues[local26 + 1];
+										chatTyped = Static3.scriptStringValues[local26];
+										Static3.scriptStringValues[local26++] = Static34.method882(new JString[] { chatTyped, chatTypedLowercase });
 										continue;
 									}
-									if (local226 == 4102) {
+									if (scriptOpcode == 4102) {
+										// append_signnum
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
-										local28--;
-										local803 = Static254.anIntArray487[local28];
-										Static3.aClass100Array176[local26++] = Static34.method882(new JString[] { chatTyped, Static110.method2285(local803) });
+										chatTyped = Static3.scriptStringValues[local26];
+										intValueIndex--;
+										interfaceType = Static254.scriptIntValues[intValueIndex];
+										Static3.scriptStringValues[local26++] = Static34.method882(new JString[] { chatTyped, Static110.method2285(interfaceType) });
 										continue;
 									}
-									if (local226 == 4103) {
+									if (scriptOpcode == 4103) {
+										// lowercase
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
-										Static3.aClass100Array176[local26++] = chatTyped.toLowerCase();
+										chatTyped = Static3.scriptStringValues[local26];
+										Static3.scriptStringValues[local26++] = chatTyped.toLowerCase();
 										continue;
 									}
-									if (local226 == 4104) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										@Pc(11770) long local11770 = (long) local809 * 86400000L + 1014768000000L;
+									if (scriptOpcode == 4104) {
+										// fromdate
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										@Pc(11770) long local11770 = (long) interfaceData * 86400000L + 1014768000000L;
 										Static102.aCalendar2.setTime(new Date(local11770));
 										local652 = Static102.aCalendar2.get(5);
 										start = Static102.aCalendar2.get(2);
-										local1087 = Static102.aCalendar2.get(1);
-										Static3.aClass100Array176[local26++] = Static34.method882(new JString[] { Static123.method2423(local652), Static163.aClass100_767, Static34.aClass100Array40[start], Static163.aClass100_767, Static123.method2423(local1087) });
+										childId = Static102.aCalendar2.get(1);
+										Static3.scriptStringValues[local26++] = Static34.method882(new JString[] { Static123.method2423(local652), Static163.aClass100_767, Static34.aClass100Array40[start], Static163.aClass100_767, Static123.method2423(childId) });
 										continue;
 									}
-									if (local226 == 4105) {
+									if (scriptOpcode == 4105) {
+										// text_gender
 										local26 -= 2;
-										chatTypedLowercase = Static3.aClass100Array176[local26 + 1];
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTypedLowercase = Static3.scriptStringValues[local26 + 1];
+										chatTyped = Static3.scriptStringValues[local26];
 										if (Static173.localPlayer.model != null && Static173.localPlayer.model.aBoolean141) {
-											Static3.aClass100Array176[local26++] = chatTypedLowercase;
+											Static3.scriptStringValues[local26++] = chatTypedLowercase;
 											continue;
 										}
-										Static3.aClass100Array176[local26++] = chatTyped;
+										Static3.scriptStringValues[local26++] = chatTyped;
 										continue;
 									}
-									if (local226 == 4106) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static3.aClass100Array176[local26++] = Static123.method2423(local809);
+									if (scriptOpcode == 4106) {
+										// tostring
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static3.scriptStringValues[local26++] = Static123.method2423(interfaceData);
 										continue;
 									}
-									if (local226 == 4107) {
+									if (scriptOpcode == 4107) {
+										// compare
 										local26 -= 2;
-										Static254.anIntArray487[local28++] = Static3.aClass100Array176[local26].method3126(Static3.aClass100Array176[local26 + 1]);
+										Static254.scriptIntValues[intValueIndex++] = Static3.scriptStringValues[local26].method3126(Static3.scriptStringValues[local26 + 1]);
 										continue;
 									}
-									if (local226 == 4108) {
+									if (scriptOpcode == 4108) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
-										local28 -= 2;
-										local1052 = Static254.anIntArray487[local28 + 1];
-										local803 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static148.method2768(local1052).method2860(chatTyped, local803);
+										chatTyped = Static3.scriptStringValues[local26];
+										intValueIndex -= 2;
+										childCount = Static254.scriptIntValues[intValueIndex + 1];
+										interfaceType = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static148.method2768(childCount).method2860(chatTyped, interfaceType);
 										continue;
 									}
-									if (local226 == 4109) {
-										local28 -= 2;
+									if (scriptOpcode == 4109) {
+										intValueIndex -= 2;
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
-										local1052 = Static254.anIntArray487[local28 + 1];
-										local803 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static148.method2768(local1052).method2856(chatTyped, local803);
+										chatTyped = Static3.scriptStringValues[local26];
+										childCount = Static254.scriptIntValues[intValueIndex + 1];
+										interfaceType = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static148.method2768(childCount).method2856(chatTyped, interfaceType);
 										continue;
 									}
-									if (local226 == 4110) {
+									if (scriptOpcode == 4110) {
 										local26 -= 2;
-										chatTyped = Static3.aClass100Array176[local26];
-										chatTypedLowercase = Static3.aClass100Array176[local26 + 1];
-										local28--;
-										if (Static254.anIntArray487[local28] == 1) {
-											Static3.aClass100Array176[local26++] = chatTyped;
+										chatTyped = Static3.scriptStringValues[local26];
+										chatTypedLowercase = Static3.scriptStringValues[local26 + 1];
+										intValueIndex--;
+										if (Static254.scriptIntValues[intValueIndex] == 1) {
+											Static3.scriptStringValues[local26++] = chatTyped;
 										} else {
-											Static3.aClass100Array176[local26++] = chatTypedLowercase;
+											Static3.scriptStringValues[local26++] = chatTypedLowercase;
 										}
 										continue;
 									}
-									if (local226 == 4111) {
+									if (scriptOpcode == 4111) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
-										Static3.aClass100Array176[local26++] = Static218.method2862(chatTyped);
+										chatTyped = Static3.scriptStringValues[local26];
+										Static3.scriptStringValues[local26++] = Static218.method2862(chatTyped);
 										continue;
 									}
-									if (local226 == 4112) {
+									if (scriptOpcode == 4112) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
-										local28--;
-										local803 = Static254.anIntArray487[local28];
-										if (local803 == -1) {
+										chatTyped = Static3.scriptStringValues[local26];
+										intValueIndex--;
+										interfaceType = Static254.scriptIntValues[intValueIndex];
+										if (interfaceType == -1) {
 											throw new RuntimeException("null char");
 										}
-										Static3.aClass100Array176[local26++] = chatTyped.method3128(local803);
+										Static3.scriptStringValues[local26++] = chatTyped.method3128(interfaceType);
 										continue;
 									}
-									if (local226 == 4113) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static273.method3213(local809) ? 1 : 0;
+									if (scriptOpcode == 4113) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static273.method3213(interfaceData) ? 1 : 0;
 										continue;
 									}
-									if (local226 == 4114) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static83.method433(local809) ? 1 : 0;
+									if (scriptOpcode == 4114) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static83.method433(interfaceData) ? 1 : 0;
 										continue;
 									}
-									if (local226 == 4115) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static258.method4428(local809) ? 1 : 0;
+									if (scriptOpcode == 4115) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static258.method4428(interfaceData) ? 1 : 0;
 										continue;
 									}
-									if (local226 == 4116) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static24.method671(local809) ? 1 : 0;
+									if (scriptOpcode == 4116) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static24.method671(interfaceData) ? 1 : 0;
 										continue;
 									}
-									if (local226 == 4117) {
+									if (scriptOpcode == 4117) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTyped = Static3.scriptStringValues[local26];
 										if (chatTyped == null) {
-											Static254.anIntArray487[local28++] = 0;
+											Static254.scriptIntValues[intValueIndex++] = 0;
 										} else {
-											Static254.anIntArray487[local28++] = chatTyped.length();
+											Static254.scriptIntValues[intValueIndex++] = chatTyped.length();
 										}
 										continue;
 									}
-									if (local226 == 4118) {
-										local28 -= 2;
+									if (scriptOpcode == 4118) {
+										intValueIndex -= 2;
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
-										local803 = Static254.anIntArray487[local28];
-										local1052 = Static254.anIntArray487[local28 + 1];
-										Static3.aClass100Array176[local26++] = chatTyped.substring(local1052, local803);
+										chatTyped = Static3.scriptStringValues[local26];
+										interfaceType = Static254.scriptIntValues[intValueIndex];
+										childCount = Static254.scriptIntValues[intValueIndex + 1];
+										Static3.scriptStringValues[local26++] = chatTyped.substring(childCount, interfaceType);
 										continue;
 									}
-									if (local226 == 4119) {
+									if (scriptOpcode == 4119) {
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
+										chatTyped = Static3.scriptStringValues[local26];
 										chatTypedLowercase = Static87.method1804(chatTyped.length());
 										@Pc(12220) boolean local12220 = false;
 										for (local652 = 0; local652 < chatTyped.length(); local652++) {
@@ -3993,75 +4088,76 @@ public final class Static88 {
 											}
 										}
 										chatTypedLowercase.method3156();
-										Static3.aClass100Array176[local26++] = chatTypedLowercase;
+										Static3.scriptStringValues[local26++] = chatTypedLowercase;
 										continue;
 									}
-									if (local226 == 4120) {
-										local28 -= 2;
+									if (scriptOpcode == 4120) {
+										intValueIndex -= 2;
 										local26--;
-										chatTyped = Static3.aClass100Array176[local26];
-										local803 = Static254.anIntArray487[local28];
-										local1052 = Static254.anIntArray487[local28 + 1];
-										Static254.anIntArray487[local28++] = chatTyped.method3135(local803, local1052);
+										chatTyped = Static3.scriptStringValues[local26];
+										interfaceType = Static254.scriptIntValues[intValueIndex];
+										childCount = Static254.scriptIntValues[intValueIndex + 1];
+										Static254.scriptIntValues[intValueIndex++] = chatTyped.method3135(interfaceType, childCount);
 										continue;
 									}
-									if (local226 == 4121) {
+									if (scriptOpcode == 4121) {
 										local26 -= 2;
-										chatTyped = Static3.aClass100Array176[local26];
-										chatTypedLowercase = Static3.aClass100Array176[local26 + 1];
-										local28--;
-										local1052 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = chatTyped.method3146(chatTypedLowercase, local1052);
+										chatTyped = Static3.scriptStringValues[local26];
+										chatTypedLowercase = Static3.scriptStringValues[local26 + 1];
+										intValueIndex--;
+										childCount = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = chatTyped.method3146(chatTypedLowercase, childCount);
 										continue;
 									}
-									if (local226 == 4122) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = PreciseSleep.method3984(local809);
+									if (scriptOpcode == 4122) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = PreciseSleep.method3984(interfaceData);
 										continue;
 									}
-									if (local226 == 4123) {
-										local28--;
-										local809 = Static254.anIntArray487[local28];
-										Static254.anIntArray487[local28++] = Static143.method2733(local809);
+									if (scriptOpcode == 4123) {
+										intValueIndex--;
+										interfaceData = Static254.scriptIntValues[intValueIndex];
+										Static254.scriptIntValues[intValueIndex++] = Static143.method2733(interfaceData);
 										continue;
 									}
-									if (local226 == 4124) {
-										local28--;
-										local12388 = Static254.anIntArray487[local28] != 0;
-										local28--;
-										local803 = Static254.anIntArray487[local28];
-										Static3.aClass100Array176[local26++] = Static182.method3360(Static141.anInt3470, local12388, 0, (long) local803);
+									if (scriptOpcode == 4124) {
+										intValueIndex--;
+										local12388 = Static254.scriptIntValues[intValueIndex] != 0;
+										intValueIndex--;
+										interfaceType = Static254.scriptIntValues[intValueIndex];
+										Static3.scriptStringValues[local26++] = Static182.method3360(Static141.anInt3470, local12388, 0, (long) interfaceType);
 										continue;
 									}
 								}
 							}
 						} else {
-							if (local226 < 2000) {
+							if (scriptOpcode < 2000) {
 								local1182 = local1020 ? Static274.aClass13_24 : Static227.aClass13_25;
 							} else {
-								local28--;
-								local1182 = Static5.getComponent(Static254.anIntArray487[local28]);
-								local226 -= 1000;
+								intValueIndex--;
+								local1182 = Static5.getComponent(Static254.scriptIntValues[intValueIndex]);
+								scriptOpcode -= 1000;
 							}
-							if (local226 == 1000) {
-								local28 -= 4;
-								local1182.baseX = Static254.anIntArray487[local28];
-								local1182.baseY = Static254.anIntArray487[local28 + 1];
-								local1052 = Static254.anIntArray487[local28 + 3];
-								if (local1052 < 0) {
-									local1052 = 0;
-								} else if (local1052 > 5) {
-									local1052 = 5;
+							if (scriptOpcode == 1000) {
+								// setposition
+								intValueIndex -= 4;
+								local1182.baseX = Static254.scriptIntValues[intValueIndex];
+								local1182.baseY = Static254.scriptIntValues[intValueIndex + 1];
+								childCount = Static254.scriptIntValues[intValueIndex + 3];
+								if (childCount < 0) {
+									childCount = 0;
+								} else if (childCount > 5) {
+									childCount = 5;
 								}
-								local803 = Static254.anIntArray487[local28 + 2];
-								if (local803 < 0) {
-									local803 = 0;
-								} else if (local803 > 5) {
-									local803 = 5;
+								interfaceType = Static254.scriptIntValues[intValueIndex + 2];
+								if (interfaceType < 0) {
+									interfaceType = 0;
+								} else if (interfaceType > 5) {
+									interfaceType = 5;
 								}
-								local1182.xMode = (byte) local1052;
-								local1182.yMode = (byte) local803;
+								local1182.xMode = (byte) childCount;
+								local1182.yMode = (byte) interfaceType;
 								Static43.method1143(local1182);
 								Static74.method1625(local1182);
 								if (local1182.componentId == -1) {
@@ -4069,26 +4165,27 @@ public final class Static88 {
 								}
 								continue;
 							}
-							if (local226 == 1001) {
-								local28 -= 4;
-								local1182.baseWidth = Static254.anIntArray487[local28];
-								local1182.anInt488 = Static254.anIntArray487[local28 + 1];
+							if (scriptOpcode == 1001) {
+								// setsize
+								intValueIndex -= 4;
+								local1182.baseWidth = Static254.scriptIntValues[intValueIndex];
+								local1182.anInt488 = Static254.scriptIntValues[intValueIndex + 1];
 								local1182.anInt451 = 0;
 								local1182.anInt526 = 0;
-								local803 = Static254.anIntArray487[local28 + 2];
-								local1052 = Static254.anIntArray487[local28 + 3];
-								if (local1052 < 0) {
-									local1052 = 0;
-								} else if (local1052 > 4) {
-									local1052 = 4;
+								interfaceType = Static254.scriptIntValues[intValueIndex + 2];
+								childCount = Static254.scriptIntValues[intValueIndex + 3];
+								if (childCount < 0) {
+									childCount = 0;
+								} else if (childCount > 4) {
+									childCount = 4;
 								}
-								local1182.aByte3 = (byte) local1052;
-								if (local803 < 0) {
-									local803 = 0;
-								} else if (local803 > 4) {
-									local803 = 4;
+								local1182.aByte3 = (byte) childCount;
+								if (interfaceType < 0) {
+									interfaceType = 0;
+								} else if (interfaceType > 4) {
+									interfaceType = 4;
 								}
-								local1182.aByte5 = (byte) local803;
+								local1182.aByte5 = (byte) interfaceType;
 								Static43.method1143(local1182);
 								Static74.method1625(local1182);
 								if (local1182.anInt452 == 0) {
@@ -4096,9 +4193,10 @@ public final class Static88 {
 								}
 								continue;
 							}
-							if (local226 == 1003) {
-								local28--;
-								local1552 = Static254.anIntArray487[local28] == 1;
+							if (scriptOpcode == 1003) {
+								// sethide
+								intValueIndex--;
+								local1552 = Static254.scriptIntValues[intValueIndex] == 1;
 								if (local1552 != local1182.hidden) {
 									local1182.hidden = local1552;
 									Static43.method1143(local1182);
@@ -4108,10 +4206,11 @@ public final class Static88 {
 								}
 								continue;
 							}
-							if (local226 == 1004) {
-								local28 -= 2;
-								local1182.anInt473 = Static254.anIntArray487[local28];
-								local1182.anInt442 = Static254.anIntArray487[local28 + 1];
+							if (scriptOpcode == 1004) {
+								// setaspect
+								intValueIndex -= 2;
+								local1182.anInt473 = Static254.scriptIntValues[intValueIndex];
+								local1182.anInt442 = Static254.scriptIntValues[intValueIndex + 1];
 								Static43.method1143(local1182);
 								Static74.method1625(local1182);
 								if (local1182.anInt452 == 0) {
@@ -4119,9 +4218,9 @@ public final class Static88 {
 								}
 								continue;
 							}
-							if (local226 == 1005) {
-								local28--;
-								local1182.aBoolean29 = Static254.anIntArray487[local28] == 1;
+							if (scriptOpcode == 1005) {
+								intValueIndex--;
+								local1182.aBoolean29 = Static254.scriptIntValues[intValueIndex] == 1;
 								continue;
 							}
 						}
@@ -4130,25 +4229,25 @@ public final class Static88 {
 				throw new IllegalStateException();
 			}
 		} catch (@Pc(14378) Exception local14378) {
-			if (local14.aClass100_880 == null) {
+			if (clientScript.aClass100_880 == null) {
 				if (client.modeWhere != 0) {
 					Static103.addMessage(Static72.aClass100_447, 0, Static136.aClass100_633);
 				}
-				Static89.report("CS2 - scr:" + local14.nodeId + " op:" + local44, local14378);
+				Static89.report("CS2 - scr:" + clientScript.nodeId + " op:" + local44, local14378);
 			} else {
 				@Pc(14385) JString local14385 = Static87.method1804(30);
-				local14385.method3113(Static219.aClass100_928).method3113(local14.aClass100_880);
-				for (local58 = Static138.anInt3445 - 1; local58 >= 0; local58--) {
-					local14385.method3113(Static40.aClass100_253).method3113(Static67.aClass61Array3[local58].aClass3_Sub2_Sub17_1.aClass100_880);
+				local14385.method3113(Static219.aClass100_928).method3113(clientScript.aClass100_880);
+				for (i = Static138.invokedScriptIndex - 1; i >= 0; i--) {
+					local14385.method3113(Static40.aClass100_253).method3113(Static67.invokedScripts[i].script.aClass100_880);
 				}
 				if (local44 == 40) {
-					local58 = local33[local30];
-					local14385.method3113(Static176.aClass100_802).method3113(Static123.method2423(local58));
+					i = local33[scriptIndex];
+					local14385.method3113(Static176.aClass100_802).method3113(Static123.method2423(i));
 				}
 				if (client.modeWhere != 0) {
-					Static103.addMessage(Static72.aClass100_447, 0, Static34.method882(new JString[] { Static167.aClass100_780, local14.aClass100_880 }));
+					Static103.addMessage(Static72.aClass100_447, 0, Static34.method882(new JString[] { Static167.aClass100_780, clientScript.aClass100_880 }));
 				}
-				Static89.report("CS2 - scr:" + local14.nodeId + " op:" + local44 + new String(local14385.method3148()), local14378);
+				Static89.report("CS2 - scr:" + clientScript.nodeId + " op:" + local44 + new String(local14385.method3148()), local14378);
 			}
 		}
 	}

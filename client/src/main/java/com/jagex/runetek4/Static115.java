@@ -138,7 +138,7 @@ public final class Static115 {
 		Static166.anInt4055 = (short) arg0;
 		Static245.anInt5377 = (short) arg2;
 		Static24.anInt773 = arg1;
-		Static7.anInt983 = arg3;
+		VarpDefinition.anInt983 = arg3;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(Z)V")

@@ -192,7 +192,7 @@ public final class Static81 {
 			if (loops > 32767L) {
 				loops = 32767L;
 			}
-			i = Static7.mouseClickX;
+			i = VarpDefinition.mouseClickX;
 			Static183.prevClickTime = Static133.clickTime;
 			@Pc(437) byte button = 0;
 			if (i < 0) {
@@ -523,7 +523,7 @@ public final class Static81 {
 													Static70.crossMode = 1;
 													Static17.crossCycle = 0;
 													Static25.y = Static60.mouseClickY;
-													Static122.x = Static7.mouseClickX;
+													Static122.x = VarpDefinition.mouseClickX;
 												}
 												Static125.anInt3096 = 0;
 											} else if (Static187.anInt4422 == 2) {
@@ -533,7 +533,7 @@ public final class Static81 {
 													Static6.outboundBuffer.p2(Static56.clickTileX + Static225.originX);
 													Static17.crossCycle = 0;
 													Static70.crossMode = 1;
-													Static122.x = Static7.mouseClickX;
+													Static122.x = VarpDefinition.mouseClickX;
 													Static25.y = Static60.mouseClickY;
 												}
 												Static187.anInt4422 = 0;
@@ -542,12 +542,12 @@ public final class Static81 {
 												if (success) {
 													Static25.y = Static60.mouseClickY;
 													Static17.crossCycle = 0;
-													Static122.x = Static7.mouseClickX;
+													Static122.x = VarpDefinition.mouseClickX;
 													Static70.crossMode = 1;
 												}
 											}
 											Static56.clickTileX = -1;
-											Static7.method843();
+											VarpDefinition.method843();
 											if (Static180.aClass13_22 != local1361) {
 												if (local1361 != null) {
 													Static43.method1143(local1361);

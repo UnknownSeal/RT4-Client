@@ -15,7 +15,7 @@ public final class Static3 {
 	public static final boolean[] aBooleanArray135 = new boolean[200];
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "j", descriptor = "[Lclient!na;")
-	public static final JString[] aClass100Array176 = new JString[1000];
+	public static final JString[] scriptStringValues = new JString[1000];
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "(Lclient!na;I)V")
 	public static void method4656(@OriginalArg(0) JString arg0) {

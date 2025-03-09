@@ -173,7 +173,7 @@ public final class Static234 {
 		Static200.aClass93_1.method3394();
 		@Pc(10) int local10;
 		for (local10 = 0; local10 < 32; local10++) {
-			Static7.aLongArray2[local10] = 0L;
+			VarpDefinition.aLongArray2[local10] = 0L;
 		}
 		for (local10 = 0; local10 < 32; local10++) {
 			Static228.aLongArray8[local10] = 0L;

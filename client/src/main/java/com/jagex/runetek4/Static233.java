@@ -151,7 +151,7 @@ public final class Static233 {
 		Static25.y = Static60.mouseClickY;
 		Static17.crossCycle = 0;
 		Static70.crossMode = 2;
-		Static122.x = Static7.mouseClickX;
+		Static122.x = VarpDefinition.mouseClickX;
 		return true;
 	}
 

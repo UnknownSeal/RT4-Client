@@ -463,7 +463,7 @@ public final class LocMergeEntity {
 		if (this.multivarbit != -1) {
 			i = Static155.getVarbitValue(this.multivarbit);
 		} else if (this.multivarp != -1) {
-			i = Static7.varps[this.multivarp];
+			i = VarpDefinition.varps[this.multivarp];
 		}
 		if (i < 0 || i >= this.multiloc.length - 1 || this.multiloc[i] == -1) {
 			@Pc(84) int local84 = this.multiloc[this.multiloc.length - 1];

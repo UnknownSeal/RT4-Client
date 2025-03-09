@@ -27,7 +27,7 @@ public final class Static254 {
 	public static final JString aClass100_1061 = Static28.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "t", descriptor = "[I")
-	public static final int[] anIntArray487 = new int[1000];
+	public static final int[] scriptIntValues = new int[1000];
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "A", descriptor = "[I")
 	public static final int[] WALL_CORNER_TYPE_32_BLOCK_LOC_SPANS = new int[] { 2, 0, 0, 2, 0, 0, 0, 4, 4 };

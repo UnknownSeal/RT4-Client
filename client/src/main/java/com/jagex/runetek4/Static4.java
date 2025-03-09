@@ -874,9 +874,9 @@ public final class Static4 {
 							Static164.packetType = -1;
 							return true;
 						} else if (Static164.packetType == 128) {
-							for (ii = 0; ii < Static7.varps.length; ii++) {
-								if (Static106.anIntArray257[ii] != Static7.varps[ii]) {
-									Static7.varps[ii] = Static106.anIntArray257[ii];
+							for (ii = 0; ii < VarpDefinition.varps.length; ii++) {
+								if (Static106.anIntArray257[ii] != VarpDefinition.varps[ii]) {
+									VarpDefinition.varps[ii] = Static106.anIntArray257[ii];
 									Static85.method1775(ii);
 									Static83.updatedVarps[Static70.updatedVarpsWriterIndex++ & 0x1F] = ii;
 								}
@@ -1310,7 +1310,7 @@ public final class Static4 {
 								if (Static248.method3288(ii)) {
 									world = 0;
 									if (Static173.localPlayer.model != null) {
-										world = Static173.localPlayer.model.method1952();
+										world = Static173.localPlayer.model.getHeadModelId();
 									}
 									Static132.method2607(-1, 3, xp, world);
 								}

@@ -152,13 +152,13 @@ public final class ClientScript extends SecondaryNode {
 					}
 				}
 				if (opcode == 5) {  // load_var {id}
-					register1 = Static7.varps[script[pc++]];
+					register1 = VarpDefinition.varps[script[pc++]];
 				}
 				if (opcode == 6) {  // load_next_level_xp {skill}
 					register1 = ObjType.levelExperience[Static141.skillBaseLevel[script[pc++]] - 1];
 				}
 				if (opcode == 7) {
-					register1 = Static7.varps[script[pc++]] * 100 / 46875;
+					register1 = VarpDefinition.varps[script[pc++]] * 100 / 46875;
 				}
 				if (opcode == 8) { // load_combat_level
 					register1 = Static173.localPlayer.combatLevel;
@@ -191,7 +191,7 @@ public final class ClientScript extends SecondaryNode {
 					register1 = Static251.weightCarried;
 				}
 				if (opcode == 13) { // load_bool {varp} {bit: 0..31}
-					i = Static7.varps[script[pc++]];
+					i = VarpDefinition.varps[script[pc++]];
 					@Pc(353) int leastSignificantBit = script[pc++];
 					register1 = (0x1 << leastSignificantBit & i) == 0 ? 0 : 1;
 				}

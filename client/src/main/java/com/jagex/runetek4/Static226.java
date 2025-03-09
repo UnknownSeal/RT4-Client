@@ -101,7 +101,7 @@ public final class Static226 {
 				Static60.aBoolean108 = true;
 				Static24.anInt761 = local16;
 			}
-		} else if (Static155.anInt3751 == Static7.mouseClickX && Static60.anInt1892 == Static60.mouseClickY) {
+		} else if (Static155.anInt3751 == VarpDefinition.mouseClickX && Static60.anInt1892 == Static60.mouseClickY) {
 			Static183.anInt4271 = local27;
 			Static162.anInt3953 = 0;
 			Static24.anInt761 = local16;
@@ -110,7 +110,7 @@ public final class Static226 {
 			Static60.aBoolean108 = true;
 		} else {
 			Static280.anInt5895 = Static60.mouseClickY;
-			Static277.anInt5850 = Static7.mouseClickX;
+			Static277.anInt5850 = VarpDefinition.mouseClickX;
 			Static162.anInt3953 = 1;
 		}
 	}

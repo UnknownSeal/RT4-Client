@@ -30,7 +30,7 @@ public final class Static59 {
 					Static103.method2232(PreciseSleep.anInt5204 - 1);
 				}
 			}
-		} else if (Static155.anInt3751 == Static7.mouseClickX && Static60.anInt1892 == Static60.mouseClickY) {
+		} else if (Static155.anInt3751 == VarpDefinition.mouseClickX && Static60.anInt1892 == Static60.mouseClickY) {
 			Static162.anInt3953 = 0;
 			if (Static172.shiftClick && Static187.pressedKeys[81] && PreciseSleep.anInt5204 > 2) {
 				Static103.method2232(PreciseSleep.anInt5204 - 2);
@@ -40,7 +40,7 @@ public final class Static59 {
 		} else {
 			Static280.anInt5895 = Static60.mouseClickY;
 			Static162.anInt3953 = 2;
-			Static277.anInt5850 = Static7.mouseClickX;
+			Static277.anInt5850 = VarpDefinition.mouseClickX;
 		}
 	}
 

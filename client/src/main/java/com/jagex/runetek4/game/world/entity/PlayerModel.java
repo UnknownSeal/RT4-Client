@@ -140,7 +140,7 @@ public final class PlayerModel {
 	}
 
 	@OriginalMember(owner = "client!hh", name = "b", descriptor = "(I)I")
-	public final int method1952() {
+	public final int getHeadModelId() {
 		return this.anInt2492 == -1 ? (this.anIntArray233[8] << 10) + ((this.anIntArray236[0] << 25) + (this.anIntArray236[4] << 20)) + (this.anIntArray233[0] << 15) + (this.anIntArray233[11] << 5) + this.anIntArray233[1] : Static214.get(this.anInt2492).id + 305419896;
 	}
 

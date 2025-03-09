@@ -32,7 +32,7 @@ public final class Static85 {
 		if (local17 == 0) {
 			return;
 		}
-		@Pc(25) int local25 = Static7.varps[arg0];
+		@Pc(25) int local25 = VarpDefinition.varps[arg0];
 		if (local17 == 6) {
 			Static79.anInt2157 = local25;
 		}

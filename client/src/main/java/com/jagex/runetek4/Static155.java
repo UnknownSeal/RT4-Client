@@ -73,6 +73,6 @@ public final class Static155 {
 		@Pc(19) int mostSignificantBit = varbitDefinition.anInt3323;
 		@Pc(22) int leastSignificantBit = varbitDefinition.anInt3318;
 		@Pc(29) int mask = Class3_Sub9.varbitMasks[mostSignificantBit - leastSignificantBit];
-		return Static7.varps[varPlayerIndex] >> leastSignificantBit & mask;
+		return VarpDefinition.varps[varPlayerIndex] >> leastSignificantBit & mask;
 	}
 }

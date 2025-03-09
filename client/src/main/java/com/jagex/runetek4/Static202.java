@@ -111,7 +111,7 @@ public final class Static202 {
 			arg1 = 0;
 		}
 		local25 <<= local16;
-		Static148.method2766(local19, local25 & arg1 << local16 | Static7.varps[local19] & ~local25);
+		Static148.method2766(local19, local25 & arg1 << local16 | VarpDefinition.varps[local19] & ~local25);
 	}
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "([Lclient!na;[SI)V")

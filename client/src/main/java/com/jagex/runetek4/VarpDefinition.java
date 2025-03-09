@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-public final class Static7 {
+public final class VarpDefinition {
 
 	@OriginalMember(owner = "client!ah", name = "l", descriptor = "[[B")
 	public static byte[][] aByteArrayArray5;
