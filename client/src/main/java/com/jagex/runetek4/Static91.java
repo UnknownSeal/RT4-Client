@@ -1,8 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.IntWrapper;
-import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.Entity;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.js5.Js5;
@@ -31,64 +28,6 @@ public final class Static91 {
 		} else {
 			return 200;
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(IB)Lclient!qc;")
-	public static ClientScript decodeClientScript(@OriginalArg(0) int scriptId) {
-		@Pc(12) ClientScript clientScript = (ClientScript) Static105.clientScriptCache.get((long) scriptId);
-		if (clientScript != null) {
-			return clientScript;
-		}
-		@Pc(22) byte[] local22 = Static16.aClass153_9.getfile(scriptId, 0);
-		if (local22 == null) {
-			return null;
-		}
-		clientScript = new ClientScript();
-		@Pc(42) Packet local42 = new Packet(local22);
-		local42.pos = local42.data.length - 2;
-		@Pc(53) int local53 = local42.g2();
-		@Pc(63) int local63 = local42.data.length - local53 - 12 - 2;
-		local42.pos = local63;
-		@Pc(70) int opcodeCount = local42.g4();
-		clientScript.anInt4667 = local42.g2();
-		clientScript.anInt4671 = local42.g2();
-		clientScript.anInt4665 = local42.g2();
-		clientScript.anInt4669 = local42.g2();
-		@Pc(98) int local98 = local42.g1();
-		@Pc(107) int local107;
-		@Pc(114) int opcode;
-		if (local98 > 0) {
-			clientScript.aClass133Array1 = new IterableMap[local98];
-			for (local107 = 0; local107 < local98; local107++) {
-				opcode = local42.g2();
-				@Pc(121) IterableMap local121 = new IterableMap(Static165.bitceil(opcode));
-				clientScript.aClass133Array1[local107] = local121;
-				while (opcode-- > 0) {
-					@Pc(136) int local136 = local42.g4();
-					@Pc(140) int local140 = local42.g4();
-					local121.pushNode(new IntWrapper(local140), (long) local136);
-				}
-			}
-		}
-		local42.pos = 0;
-		clientScript.aClass100_880 = local42.gjstrFast();
-		clientScript.opcodes = new int[opcodeCount];
-		clientScript.stringOperands = new JString[opcodeCount];
-		local107 = 0;
-		clientScript.intOperands = new int[opcodeCount];
-		while (local63 > local42.pos) {
-			opcode = local42.g2();
-			if (opcode == 3) {
-				clientScript.stringOperands[local107] = local42.gjstr();
-			} else if (opcode >= 100 || opcode == 21 || opcode == 38 || opcode == 39) {
-				clientScript.intOperands[local107] = local42.g1();
-			} else {
-				clientScript.intOperands[local107] = local42.g4();
-			}
-			clientScript.opcodes[local107++] = opcode;
-		}
-		Static105.clientScriptCache.put(clientScript, (long) scriptId);
-		return clientScript;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(Lclient!km;Z)V")

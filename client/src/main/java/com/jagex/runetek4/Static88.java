@@ -29,7 +29,7 @@ public final class Static88 {
 	public static void method1818(@OriginalArg(1) int arg0, @OriginalArg(2) HookRequest arg1) {
 		@Pc(4) Object[] local4 = arg1.anObjectArray31;
 		@Pc(10) int local10 = (Integer) local4[0];
-		@Pc(14) ClientScript local14 = Static91.decodeClientScript(local10);
+		@Pc(14) ClientScript local14 = ClientScript.decodeClientScript(local10);
 		if (local14 == null) {
 			return;
 		}
@@ -227,7 +227,7 @@ public final class Static88 {
 					}
 					if (local226 == 40) {
 						local77 = local33[local30];
-						@Pc(642) ClientScript local642 = Static91.decodeClientScript(local77);
+						@Pc(642) ClientScript local642 = ClientScript.decodeClientScript(local77);
 						@Pc(646) int[] local646 = new int[local642.anInt4667];
 						@Pc(650) JString[] local650 = new JString[local642.anInt4671];
 						for (local652 = 0; local652 < local642.anInt4665; local652++) {
