@@ -11,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import com.jagex.runetek4.core.io.PacketBit;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -130,7 +130,7 @@ public final class Static233 {
 		@Pc(24) int local24 = (int) arg0 >> 20 & 0x3;
 		@Pc(31) int local31 = (int) (arg0 >>> 32) & Integer.MAX_VALUE;
 		if (local12 == 10 || local12 == 11 || local12 == 22) {
-			@Pc(46) LocType local46 = Static271.get(local31);
+			@Pc(46) LocMergeEntity local46 = Static271.get(local31);
 			@Pc(62) int local62;
 			@Pc(59) int local59;
 			if (local24 == 0 || local24 == 2) {

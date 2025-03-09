@@ -114,33 +114,33 @@ public final class Static263 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(IILclient!fe;)V")
-	public static void updateEntity(@OriginalArg(0) int arg0, @OriginalArg(2) PathingEntity arg1) {
-		if (Static83.loopCycle < arg1.anInt3395) {
-			Static18.method553(arg1);
-		} else if (arg1.anInt3386 >= Static83.loopCycle) {
-			Static280.method4665(arg1);
+	public static void updateEntity(@OriginalArg(0) int arg0, @OriginalArg(2) PathingEntity entity) {
+		if (Static83.loopCycle < entity.anInt3395) {
+			Static18.method553(entity);
+		} else if (entity.anInt3386 >= Static83.loopCycle) {
+			Static280.method4665(entity);
 		} else {
-			Static104.method2247(arg1);
+			Static104.method2247(entity);
 		}
-		if (arg1.x < 128 || arg1.z < 128 || arg1.x >= 13184 || arg1.z >= 13184) {
-			arg1.primarySeqId = -1;
-			arg1.spotanimFrame = -1;
-			arg1.anInt3395 = 0;
-			arg1.anInt3386 = 0;
-			arg1.x = arg1.pathTileX[0] * 128 + arg1.size() * 64;
-			arg1.z = arg1.pathTileZ[0] * 128 + arg1.size() * 64;
-			arg1.method2689();
+		if (entity.x < 128 || entity.z < 128 || entity.x >= 13184 || entity.z >= 13184) {
+			entity.primarySeqId = -1;
+			entity.spotanimFrame = -1;
+			entity.anInt3395 = 0;
+			entity.anInt3386 = 0;
+			entity.x = entity.pathTileX[0] * 128 + entity.size() * 64;
+			entity.z = entity.pathTileZ[0] * 128 + entity.size() * 64;
+			entity.method2689();
 		}
-		if (arg1 == Static173.localPlayer && (arg1.x < 1536 || arg1.z < 1536 || arg1.x >= 11776 || arg1.z >= 11776)) {
-			arg1.spotanimFrame = -1;
-			arg1.anInt3395 = 0;
-			arg1.anInt3386 = 0;
-			arg1.primarySeqId = -1;
-			arg1.x = arg1.pathTileX[0] * 128 + arg1.size() * 64;
-			arg1.z = arg1.pathTileZ[0] * 128 + arg1.size() * 64;
-			arg1.method2689();
+		if (entity == Static173.localPlayer && (entity.x < 1536 || entity.z < 1536 || entity.x >= 11776 || entity.z >= 11776)) {
+			entity.spotanimFrame = -1;
+			entity.anInt3395 = 0;
+			entity.anInt3386 = 0;
+			entity.primarySeqId = -1;
+			entity.x = entity.pathTileX[0] * 128 + entity.size() * 64;
+			entity.z = entity.pathTileZ[0] * 128 + entity.size() * 64;
+			entity.method2689();
 		}
-		Static37.method949(arg1);
-		Static34.method879(arg1);
+		Static37.method949(entity);
+		Static34.method879(entity);
 	}
 }

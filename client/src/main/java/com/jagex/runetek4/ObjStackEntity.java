@@ -22,7 +22,7 @@ public final class ObjStackEntity {
 	public int anInt3061;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "n", descriptor = "I")
-	public int anInt3063;
+	public int offset;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "o", descriptor = "I")
 	public int anInt3064;

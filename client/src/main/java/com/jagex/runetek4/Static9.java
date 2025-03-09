@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.DiskStore;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -23,7 +23,7 @@ public final class Static9 {
 	public static final JagString aClass100_35 = Static28.parse("showVideoAd");
 
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(Lclient!pb;BIIIIIII)V")
-	public static void method181(@OriginalArg(0) LocType arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
+	public static void method181(@OriginalArg(0) LocMergeEntity arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
 		@Pc(5) int local5 = arg2 & 0x3;
 		@Pc(28) int local28;
 		@Pc(31) int local31;

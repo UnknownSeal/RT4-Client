@@ -68,11 +68,11 @@ public final class PlayerEntity extends PathingEntity {
     public static int getSound(@OriginalArg(1) PlayerEntity arg0) {
         @Pc(14) int local14 = arg0.anInt1654;
         @Pc(18) BASType local18 = arg0.method2681();
-        if (local18.anInt1037 == arg0.anInt3366) {
+        if (local18.anInt1037 == arg0.secondarySeqId) {
             local14 = arg0.anInt1648;
-        } else if (local18.anInt1058 == arg0.anInt3366 || arg0.anInt3366 == local18.anInt1054 || arg0.anInt3366 == local18.anInt1045 || local18.anInt1043 == arg0.anInt3366) {
+        } else if (local18.anInt1058 == arg0.secondarySeqId || arg0.secondarySeqId == local18.anInt1054 || arg0.secondarySeqId == local18.anInt1045 || local18.anInt1043 == arg0.secondarySeqId) {
             local14 = arg0.anInt1670;
-        } else if (arg0.anInt3366 == local18.anInt1062 || arg0.anInt3366 == local18.anInt1042 || arg0.anInt3366 == local18.anInt1048 || arg0.anInt3366 == local18.anInt1066) {
+        } else if (arg0.secondarySeqId == local18.anInt1062 || arg0.secondarySeqId == local18.anInt1042 || arg0.secondarySeqId == local18.anInt1048 || arg0.secondarySeqId == local18.anInt1066) {
             local14 = arg0.anInt1658;
         }
         return local14;
@@ -191,12 +191,12 @@ public final class PlayerEntity extends PathingEntity {
 
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public void method4546(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
+	public void draw(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
 		if (this.model == null) {
 			return;
 		}
 		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? Static36.method941(this.primarySeqId) : null;
-		@Pc(54) SeqType local54 = this.anInt3366 == -1 || this.lowMemory || this.anInt3366 == this.method2681().anInt1037 && local25 != null ? null : Static36.method941(this.anInt3366);
+		@Pc(54) SeqType local54 = this.secondarySeqId == -1 || this.lowMemory || this.secondarySeqId == this.method2681().anInt1037 && local25 != null ? null : Static36.method941(this.secondarySeqId);
 		@Pc(76) Model local76 = this.model.method1954(this.aClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
 		@Pc(79) int local79 = Static198.method1029();
 		if (GlRenderer.enabled && Static238.anInt5316 < 96 && local79 > 50) {
@@ -220,17 +220,17 @@ public final class PlayerEntity extends PathingEntity {
 		this.height = local76.getHeight();
 		@Pc(184) Model model;
 		if (Static209.aBoolean240 && (this.model.anInt2492 == -1 || Static214.get(this.model.anInt2492).spotshadow)) {
-			model = Static41.method1043(160, this.aBoolean171, local54 == null ? local25 : local54, this.x, 0, this.z, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.y, 240);
+			model = Static41.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.x, 0, this.z, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.y, 240);
 			if (GlRenderer.enabled) {
 				@Pc(188) float local188 = GlRenderer.method4179();
 				@Pc(190) float local190 = GlRenderer.method4166();
 				GlRenderer.disableDepthMask();
 				GlRenderer.method4152(local188, local190 - 150.0F);
-				model.method4546(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, null);
+				model.draw(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, null);
 				GlRenderer.enableDepthMask();
 				GlRenderer.method4152(local188, local190);
 			} else {
-				model.method4546(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, null);
+				model.draw(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, null);
 			}
 		}
 		if (Static173.localPlayer == this) {
@@ -307,10 +307,10 @@ public final class PlayerEntity extends PathingEntity {
 		}
 		if (GlRenderer.enabled) {
 			local76.pickable = true;
-			local76.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+			local76.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 			if (model != null) {
 				model.pickable = true;
-				model.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+				model.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 			}
 		} else {
 			if (model != null) {
@@ -320,7 +320,7 @@ public final class PlayerEntity extends PathingEntity {
 				local76 = ((SoftwareModel) local76).method4588(loc);
 			}
 			local76.pickable = true;
-			local76.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+			local76.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 		}
 		if (loc == null) {
 			return;
@@ -347,14 +347,14 @@ public final class PlayerEntity extends PathingEntity {
 			return;
 		}
 		if (!GlRenderer.enabled) {
-			local46.method4546(0, arg10, arg12, arg9, arg8, arg4, arg13, arg7, -1L, arg5, arg0);
+			local46.draw(0, arg10, arg12, arg9, arg8, arg4, arg13, arg7, -1L, arg5, arg0);
 			return;
 		}
 		@Pc(52) float local52 = GlRenderer.method4179();
 		@Pc(54) float local54 = GlRenderer.method4166();
 		GlRenderer.disableDepthMask();
 		GlRenderer.method4152(local52, local54 - 150.0F);
-		local46.method4546(0, arg10, arg12, arg9, arg8, arg4, arg13, arg7, -1L, arg5, arg0);
+		local46.draw(0, arg10, arg12, arg9, arg8, arg4, arg13, arg7, -1L, arg5, arg0);
 		GlRenderer.enableDepthMask();
 		GlRenderer.method4152(local52, local54);
 	}

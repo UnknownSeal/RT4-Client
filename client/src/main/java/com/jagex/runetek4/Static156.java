@@ -38,12 +38,12 @@ public final class Static156 {
 		Static121.anInt3038 = MathUtils.anIntArray225[arg3];
 		PreciseSleep.anInt5205 = MathUtils.anIntArray223[arg4];
 		Static81.anInt2222 = MathUtils.anIntArray225[arg4];
-		Static149.anInt3555 = arg0;
-		Static162.anInt3947 = arg1;
-		Static217.anInt4903 = arg2;
-		Static167.anInt4069 = arg0 / 128;
+		Static149.eyeX = arg0;
+		Static162.eyeY = arg1;
+		Static217.eyeZ = arg2;
+		Static167.eyeTileX = arg0 / 128;
 		Static193.anInt4539 = arg2 / 128;
-		Static31.anInt987 = Static167.anInt4069 - Static277.anInt5855;
+		Static31.anInt987 = Static167.eyeTileX - Static277.anInt5855;
 		if (Static31.anInt987 < 0) {
 			Static31.anInt987 = 0;
 		}
@@ -51,7 +51,7 @@ public final class Static156 {
 		if (Static80.anInt4698 < 0) {
 			Static80.anInt4698 = 0;
 		}
-		Static2.anInt15 = Static167.anInt4069 + Static277.anInt5855;
+		Static2.anInt15 = Static167.eyeTileX + Static277.anInt5855;
 		if (Static2.anInt15 > Static152.anInt3594) {
 			Static2.anInt15 = Static152.anInt3594;
 		}
@@ -69,18 +69,18 @@ public final class Static156 {
 		@Pc(113) int local113;
 		for (local104 = 0; local104 < Static277.anInt5855 + Static277.anInt5855 + 2; local104++) {
 			for (local113 = 0; local113 < Static277.anInt5855 + Static277.anInt5855 + 2; local113++) {
-				@Pc(130) int local130 = (local104 - Static277.anInt5855 << 7) - (Static149.anInt3555 & 0x7F);
-				@Pc(140) int local140 = (local113 - Static277.anInt5855 << 7) - (Static217.anInt4903 & 0x7F);
-				@Pc(146) int local146 = Static167.anInt4069 + local104 - Static277.anInt5855;
+				@Pc(130) int local130 = (local104 - Static277.anInt5855 << 7) - (Static149.eyeX & 0x7F);
+				@Pc(140) int local140 = (local113 - Static277.anInt5855 << 7) - (Static217.eyeZ & 0x7F);
+				@Pc(146) int local146 = Static167.eyeTileX + local104 - Static277.anInt5855;
 				@Pc(152) int local152 = Static193.anInt4539 + local113 - Static277.anInt5855;
 				if (local146 >= 0 && local152 >= 0 && local146 < Static152.anInt3594 && local152 < Static99.anInt2550) {
 					@Pc(176) int local176;
 					if (Static80.anIntArrayArrayArray19 == null) {
-						local176 = Static107.anIntArrayArrayArray10[0][local146][local152] + 128 - Static162.anInt3947;
+						local176 = Static107.anIntArrayArrayArray10[0][local146][local152] + 128 - Static162.eyeY;
 					} else {
-						local176 = Static80.anIntArrayArrayArray19[0][local146][local152] + 128 - Static162.anInt3947;
+						local176 = Static80.anIntArrayArrayArray19[0][local146][local152] + 128 - Static162.eyeY;
 					}
-					@Pc(201) int local201 = Static107.anIntArrayArrayArray10[3][local146][local152] - Static162.anInt3947 - 1000;
+					@Pc(201) int local201 = Static107.anIntArrayArrayArray10[3][local146][local152] - Static162.eyeY - 1000;
 					Static89.aBooleanArrayArray3[local104][local113] = Static160.method3049(local130, local201, local176, local140, local99);
 				} else {
 					Static89.aBooleanArrayArray3[local104][local113] = false;
@@ -167,10 +167,10 @@ public final class Static156 {
 		GlRenderer.disableDepthMask();
 		for (@Pc(19) int local19 = 0; local19 < Static36.aClass3_Sub14ArrayArray1[0].length; local19++) {
 			@Pc(31) Class3_Sub14 local31 = Static36.aClass3_Sub14ArrayArray1[0][local19];
-			if (local31.anInt2485 >= 0 && Rasteriser.anInterface1_2.method3237(local31.anInt2485) == 4) {
+			if (local31.anInt2485 >= 0 && Pix3D.anInterface1_2.method3237(local31.anInt2485) == 4) {
 				local1.glColor4fv(Static190.method3441(local31.anInt2486), 0);
 				@Pc(57) float local57 = 201.5F - (local31.aBoolean140 ? 1.0F : 0.5F);
-				local31.method1944(Static130.aClass3_Sub5ArrayArrayArray1, local57, true);
+				local31.method1944(Static130.levelTiles, local57, true);
 			}
 		}
 		local1.glEnableClientState(GL2.GL_COLOR_ARRAY);

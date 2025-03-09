@@ -80,7 +80,7 @@ public final class Static196 {
 		BZip2State.anIntArray376 = new int[104];
 		Static139.anIntArray325 = new int[104];
 		Static146.firstvisibleLevel = 99;
-		Static251.anIntArray479 = new int[104];
+		Static251.blendChroma = new int[104];
 		@Pc(14) byte local14;
 		if (arg0) {
 			local14 = 1;
@@ -88,13 +88,13 @@ public final class Static196 {
 			local14 = 4;
 		}
 		Static163.aByteArrayArrayArray11 = new byte[local14][104][104];
-		Static128.anIntArray293 = new int[104];
+		Static128.blendMagnitude = new int[104];
 		Static60.anIntArrayArrayArray6 = new int[local14][105][105];
 		Static118.levelShademap = new byte[local14][105][105];
 		Static240.aByteArrayArrayArray14 = new byte[local14][104][104];
 		Static279.anIntArray568 = new int[104];
 		Static4.aByteArrayArrayArray1 = new byte[local14][104][104];
-		Static253.aByteArrayArrayArray16 = new byte[local14][104][104];
+		Static253.levelTileUnderlayIds = new byte[local14][104][104];
 	}
 
 	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(I)Lclient!mm;")

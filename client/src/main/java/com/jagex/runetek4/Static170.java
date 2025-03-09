@@ -37,10 +37,10 @@ public final class Static170 {
 		local6.anInt733 = arg3;
 		local6.key = arg5;
 		local6.aBoolean49 = arg6;
-		if (Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2] == null) {
-			Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2] = new Tile(arg0, arg1, arg2);
+		if (Static130.levelTiles[arg0][arg1][arg2] == null) {
+			Static130.levelTiles[arg0][arg1][arg2] = new Ground(arg0, arg1, arg2);
 		}
-		Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2].aClass15_1 = local6;
+		Static130.levelTiles[arg0][arg1][arg2].groundDecor = local6;
 	}
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(I[B)Z")
@@ -61,7 +61,7 @@ public final class Static170 {
 	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(IIIIIIIIIIIII)V")
 	public static void method2574(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(11) int arg10, @OriginalArg(12) int arg11) {
 		@Pc(7) Class3_Sub8 local7 = new Class3_Sub8();
-		local7.anInt1206 = arg6;
+		local7.angle = arg6;
 		local7.anInt1205 = arg3;
 		local7.anInt1187 = arg1;
 		local7.anInt1200 = arg5;

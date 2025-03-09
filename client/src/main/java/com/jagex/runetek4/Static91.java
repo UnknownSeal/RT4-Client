@@ -127,22 +127,22 @@ public final class Static91 {
 		if (arg4 == null) {
 			return;
 		}
-		@Pc(6) WallDecor local6 = new WallDecor();
+		@Pc(6) Decor local6 = new Decor();
 		local6.aLong52 = arg10;
-		local6.anInt1390 = arg1 * 128 + 64;
-		local6.anInt1393 = arg2 * 128 + 64;
-		local6.anInt1391 = arg3;
-		local6.aClass8_3 = arg4;
+		local6.x = arg1 * 128 + 64;
+		local6.z = arg2 * 128 + 64;
+		local6.y = arg3;
+		local6.model = arg4;
 		local6.aClass8_2 = arg5;
-		local6.anInt1395 = arg6;
-		local6.anInt1388 = arg7;
+		local6.type = arg6;
+		local6.angle = arg7;
 		local6.anInt1394 = arg8;
 		local6.anInt1392 = arg9;
 		for (@Pc(46) int local46 = arg0; local46 >= 0; local46--) {
-			if (Static130.aClass3_Sub5ArrayArrayArray1[local46][arg1][arg2] == null) {
-				Static130.aClass3_Sub5ArrayArrayArray1[local46][arg1][arg2] = new Tile(local46, arg1, arg2);
+			if (Static130.levelTiles[local46][arg1][arg2] == null) {
+				Static130.levelTiles[local46][arg1][arg2] = new Ground(local46, arg1, arg2);
 			}
 		}
-		Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2].aClass24_1 = local6;
+		Static130.levelTiles[arg0][arg1][arg2].decor = local6;
 	}
 }

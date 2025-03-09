@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.flutype.FloorUnderlayType;
+import com.jagex.runetek4.game.config.flutype.FloType;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -29,13 +29,13 @@ public final class Static199 {
 	public static final int[] anIntArray417 = new int[1000];
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "a", descriptor = "(ZI)Lclient!ni;")
-	public static FloorUnderlayType method3593(@OriginalArg(1) int arg0) {
-		@Pc(10) FloorUnderlayType local10 = (FloorUnderlayType) Static83.aClass99_3.get((long) arg0);
+	public static FloType method3593(@OriginalArg(1) int arg0) {
+		@Pc(10) FloType local10 = (FloType) Static83.aClass99_3.get((long) arg0);
 		if (local10 != null) {
 			return local10;
 		}
 		@Pc(27) byte[] local27 = Static182.aClass153_77.getfile(1, arg0);
-		local10 = new FloorUnderlayType();
+		local10 = new FloType();
 		if (local27 != null) {
 			local10.decode(new Packet(local27));
 		}

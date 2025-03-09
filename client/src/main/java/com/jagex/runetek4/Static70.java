@@ -54,7 +54,7 @@ public final class Static70 {
 			@Pc(18) FloorOverlayType local18 = Static256.method4395(local11);
 			if (local18 != null) {
 				@Pc(24) int local24 = local18.material;
-				if (local24 >= 0 && !Rasteriser.anInterface1_2.method3236(local24)) {
+				if (local24 >= 0 && !Pix3D.anInterface1_2.method3236(local24)) {
 					local24 = -1;
 				}
 				@Pc(53) int local53;
@@ -70,9 +70,9 @@ public final class Static70 {
 						local72 = 127;
 					}
 					local95 = (local66 & 0x380) + (arg1 + local66 & 0xFC00) + local72;
-					local53 = Rasteriser.anIntArray220[Static230.method3949(local95, 96)];
+					local53 = Pix3D.anIntArray220[Static230.method3949(local95, 96)];
 				} else if (local24 >= 0) {
-					local53 = Rasteriser.anIntArray220[Static230.method3949(Rasteriser.anInterface1_2.method3234(local24), 96)];
+					local53 = Pix3D.anIntArray220[Static230.method3949(Pix3D.anInterface1_2.method3234(local24), 96)];
 				} else if (local18.rgb == -1) {
 					local53 = -1;
 				} else {
@@ -84,7 +84,7 @@ public final class Static70 {
 						local72 = 127;
 					}
 					local95 = local72 + (local66 & 0x380) + (local66 + arg1 & 0xFC00);
-					local53 = Rasteriser.anIntArray220[Static230.method3949(local95, 96)];
+					local53 = Pix3D.anIntArray220[Static230.method3949(local95, 96)];
 				}
 				Static145.anIntArray330[local11 + 1] = local53;
 			}

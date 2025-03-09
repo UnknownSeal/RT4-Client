@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.iftype.Component;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -74,7 +74,7 @@ public final class Static43 {
 		}
 		@Pc(57) int local57 = (int) local9 >> 14 & 0x1F;
 		@Pc(70) int local70 = (int) (local9 >>> 32) & Integer.MAX_VALUE;
-		@Pc(74) LocType local74 = Static271.get(local70);
+		@Pc(74) LocMergeEntity local74 = Static271.get(local70);
 		if (local74.hasBackgroundSound()) {
 			AreaSoundManager.remove(arg1, local74, arg0, arg2);
 		}
@@ -87,16 +87,16 @@ public final class Static43 {
 		if (arg3 == 0) {
 			@Pc(110) Wall local110 = Static110.method2276(arg2, arg1, arg0);
 			if (local110 != null) {
-				local100 = local110.aClass8_5;
-				local102 = local110.aClass8_6;
+				local100 = local110.modelA;
+				local102 = local110.modelB;
 			}
 			if (local74.blockwalk != 0) {
 				arg5.method3039(local92, local74.blockrange, arg0, local57, arg1);
 			}
 		} else if (arg3 == 1) {
-			@Pc(233) WallDecor local233 = Static75.method1633(arg2, arg1, arg0);
+			@Pc(233) Decor local233 = Static75.method1633(arg2, arg1, arg0);
 			if (local233 != null) {
-				local100 = local233.aClass8_3;
+				local100 = local233.model;
 				local102 = local233.aClass8_2;
 			}
 		} else if (arg3 == 2) {

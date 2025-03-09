@@ -29,7 +29,7 @@ public final class Static7 {
 	public static int anInt983 = 0;
 
 	@OriginalMember(owner = "client!ah", name = "p", descriptor = "Lclient!ih;")
-	public static final LinkList aClass69_32 = new LinkList();
+	public static final LinkList drawTileQueue = new LinkList();
 
 	@OriginalMember(owner = "client!ah", name = "s", descriptor = "I")
 	public static int mouseClickX = 0;

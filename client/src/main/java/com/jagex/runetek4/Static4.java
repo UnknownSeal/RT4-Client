@@ -1514,25 +1514,25 @@ public final class Static4 {
 									}
 									slot = Static57.in.g2le();
 									if (Static248.method3288(slot)) {
-										@Pc(5603) Component local5603 = Static5.getComponent(xp);
-										@Pc(5615) ObjType local5615;
-										if (local5603.aBoolean32) {
+										@Pc(5603) Component com = Static5.getComponent(xp);
+										@Pc(5615) ObjType obj;
+										if (com.aBoolean32) {
 											Static209.method3707(xp, ii, world);
-											local5615 = Static71.get(world);
-											Static261.method4505(local5615.zoom2d, xp, local5615.yan2d, local5615.xan2d);
-											Static145.method2745(xp, local5615.zan2d, local5615.yof2d, local5615.xof2d);
+											obj = Static71.get(world);
+											Static261.method4505(obj.zoom2d, xp, obj.yan2d, obj.xan2d);
+											Static145.method2745(xp, obj.zan2d, obj.yof2d, obj.xof2d);
 										} else if (world == -1) {
-											local5603.modelType = 0;
+											com.modelType = 0;
 											Static164.packetType = -1;
 											return true;
 										} else {
-											local5615 = Static71.get(world);
-											local5603.modelXAngle = local5615.xan2d;
-											local5603.modelZoom = local5615.zoom2d * 100 / ii;
-											local5603.modelType = 4;
-											local5603.modelId = world;
-											local5603.modelYAngle = local5615.yan2d;
-											Static43.method1143(local5603);
+											obj = Static71.get(world);
+											com.modelXAngle = obj.xan2d;
+											com.modelZoom = obj.zoom2d * 100 / ii;
+											com.modelType = 4;
+											com.modelId = world;
+											com.modelYAngle = obj.yan2d;
+											Static43.method1143(com);
 										}
 									}
 									Static164.packetType = -1;

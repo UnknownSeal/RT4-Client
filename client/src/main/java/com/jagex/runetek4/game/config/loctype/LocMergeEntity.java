@@ -14,7 +14,7 @@ import com.jagex.runetek4.core.datastruct.Node;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!pb")
-public final class LocType {
+public final class LocMergeEntity {
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "[S")
 	private short[] retex_s;
@@ -458,7 +458,7 @@ public final class LocType {
 	}
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "(I)Lclient!pb;")
-	public LocType getVisible() {
+	public LocMergeEntity getVisible() {
 		@Pc(26) int i = -1;
 		if (this.multivarbit != -1) {
 			i = Static155.method2945(this.multivarbit);
@@ -590,7 +590,7 @@ public final class LocType {
 		}
 		for (@Pc(44) int index = 0; index < this.multiloc.length; index++) {
 			if (this.multiloc[index] != -1) {
-				@Pc(70) LocType locType = Static271.get(this.multiloc[index]);
+				@Pc(70) LocMergeEntity locType = Static271.get(this.multiloc[index]);
 				if (locType.bgsound_sound != -1 || locType.bgsound_random != null) {
 					return true;
 				}

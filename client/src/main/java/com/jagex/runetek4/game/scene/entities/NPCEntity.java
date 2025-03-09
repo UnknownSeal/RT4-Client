@@ -26,11 +26,11 @@ public final class NPCEntity extends PathingEntity {
         }
         @Pc(29) int local29 = local13.bgsound_walk;
         @Pc(33) BASType local33 = arg0.method2681();
-        if (local33.anInt1037 == arg0.anInt3366) {
+        if (local33.anInt1037 == arg0.secondarySeqId) {
             local29 = local13.bgsound;
-        } else if (arg0.anInt3366 == local33.anInt1058 || local33.anInt1054 == arg0.anInt3366 || arg0.anInt3366 == local33.anInt1045 || arg0.anInt3366 == local33.anInt1043) {
+        } else if (arg0.secondarySeqId == local33.anInt1058 || local33.anInt1054 == arg0.secondarySeqId || arg0.secondarySeqId == local33.anInt1045 || arg0.secondarySeqId == local33.anInt1043) {
             local29 = local13.bgsound_run;
-        } else if (local33.anInt1062 == arg0.anInt3366 || arg0.anInt3366 == local33.anInt1042 || arg0.anInt3366 == local33.anInt1048 || arg0.anInt3366 == local33.anInt1066) {
+        } else if (local33.anInt1062 == arg0.secondarySeqId || arg0.secondarySeqId == local33.anInt1042 || arg0.secondarySeqId == local33.anInt1048 || arg0.secondarySeqId == local33.anInt1066) {
             local29 = local13.bgsound_crawl;
         }
         return local29;
@@ -49,12 +49,12 @@ public final class NPCEntity extends PathingEntity {
 
 	@OriginalMember(owner = "client!km", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public void method4546(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
+	public void draw(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
 		if (this.type == null) {
 			return;
 		}
 		@Pc(29) SeqType local29 = this.primarySeqId != -1 && this.anInt3420 == 0 ? Static36.method941(this.primarySeqId) : null;
-		@Pc(53) SeqType local53 = this.anInt3366 == -1 || this.anInt3366 == this.method2681().anInt1037 && local29 != null ? null : Static36.method941(this.anInt3366);
+		@Pc(53) SeqType local53 = this.secondarySeqId == -1 || this.secondarySeqId == this.method2681().anInt1037 && local29 != null ? null : Static36.method941(this.secondarySeqId);
 		@Pc(74) Model tmp = this.type.method2937(this.aClass147Array3, this.anInt3388, this.anInt3407, this.anInt3373, this.anInt3360, this.anInt3425, local53, this.anInt3396, local29);
 		if (tmp == null) {
 			return;
@@ -66,17 +66,17 @@ public final class NPCEntity extends PathingEntity {
 		}
 		@Pc(140) Model local140;
 		if (Static209.aBoolean240 && local84.spotshadow) {
-			local140 = Static41.method1043(this.type.spotshadowtrans_1, this.aBoolean171, local53 == null ? local29 : local53, this.x, this.type.spotshadowcolour_2, this.z, this.type.spotshadowcolour_1, this.type.size, tmp, arg0, local53 == null ? this.anInt3425 : this.anInt3407, this.y, this.type.spotshadowtrans_2);
+			local140 = Static41.method1043(this.type.spotshadowtrans_1, this.seqStretches, local53 == null ? local29 : local53, this.x, this.type.spotshadowcolour_2, this.z, this.type.spotshadowcolour_1, this.type.size, tmp, arg0, local53 == null ? this.anInt3425 : this.anInt3407, this.y, this.type.spotshadowtrans_2);
 			if (GlRenderer.enabled) {
 				@Pc(144) float local144 = GlRenderer.method4179();
 				@Pc(146) float local146 = GlRenderer.method4166();
 				GlRenderer.disableDepthMask();
 				GlRenderer.method4152(local144, local146 - 150.0F);
-				local140.method4546(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, this.aClass47_Sub1_5);
+				local140.draw(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, this.aClass47_Sub1_5);
 				GlRenderer.enableDepthMask();
 				GlRenderer.method4152(local144, local146);
 			} else {
-				local140.method4546(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, this.aClass47_Sub1_5);
+				local140.draw(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, this.aClass47_Sub1_5);
 			}
 		}
 		this.method2687(tmp);
@@ -107,18 +107,18 @@ public final class NPCEntity extends PathingEntity {
 			if (this.type.size == 1) {
 				tmp.pickable = true;
 			}
-			tmp.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+			tmp.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 			return;
 		}
 		if (this.type.size == 1) {
 			tmp.pickable = true;
 		}
-		tmp.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+		tmp.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 		if (local140 != null) {
 			if (this.type.size == 1) {
 				local140.pickable = true;
 			}
-			local140.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+			local140.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 		}
 	}
 

@@ -28,7 +28,7 @@ public final class Static131 {
 	public static final int anInt3254 = (int) (Math.random() * 17.0D) - 8;
 
 	@OriginalMember(owner = "runetek4.client!kd", name = "sb", descriptor = "[I")
-	public static final int[] anIntArray307 = new int[] { 1, 1, 0, 0, 0, 8, 0, 0, 8 };
+	public static final int[] WALL_CORNER_TYPE_128_BLOCK_LOC_SPANS = new int[] { 1, 1, 0, 0, 0, 8, 0, 0, 8 };
 
 	@OriginalMember(owner = "runetek4.client!kd", name = "yb", descriptor = "S")
 	public static short aShort21 = 32767;

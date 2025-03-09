@@ -49,41 +49,41 @@ public final class Static248 {
 		@Pc(37) int local37;
 		@Pc(183) int local183;
 		for (@Pc(23) int local23 = Static235.anInt5276; local23 < Static126.anInt3114; local23++) {
-			@Pc(30) Tile[][] local30 = Static130.aClass3_Sub5ArrayArrayArray1[local23];
+			@Pc(30) Ground[][] local30 = Static130.levelTiles[local23];
 			for (local32 = Static31.anInt987; local32 < Static2.anInt15; local32++) {
 				for (local37 = Static80.anInt4698; local37 < Static215.anInt4866; local37++) {
-					@Pc(46) Tile local46 = local30[local32][local37];
+					@Pc(46) Ground local46 = local30[local32][local37];
 					if (local46 != null) {
-						if (Static48.aBooleanArrayArray1[local32 + Static277.anInt5855 - Static167.anInt4069][local37 + Static277.anInt5855 - Static193.anInt4539] && (arg3 == null || local23 < arg4 || arg3[local23][local32][local37] != arg5)) {
+						if (Static48.aBooleanArrayArray1[local32 + Static277.anInt5855 - Static167.eyeTileX][local37 + Static277.anInt5855 - Static193.anInt4539] && (arg3 == null || local23 < arg4 || arg3[local23][local32][local37] != arg5)) {
 							local46.aBoolean45 = true;
 							local46.aBoolean46 = true;
 							if (local46.anInt662 > 0) {
-								local46.aBoolean47 = true;
+								local46.containsLocs = true;
 							} else {
-								local46.aBoolean47 = false;
+								local46.containsLocs = false;
 							}
 							Static211.anInt1142++;
 						} else {
 							local46.aBoolean45 = false;
 							local46.aBoolean46 = false;
-							local46.anInt663 = 0;
+							local46.checkLocSpans = 0;
 							if (local32 >= local9 && local32 <= local13 && local37 >= local17 && local37 <= local21) {
-								if (local46.aClass77_1 != null) {
-									@Pc(103) Wall local103 = local46.aClass77_1;
-									local103.aClass8_5.method4545(0, local23, local103.anInt3051, local103.anInt3048, local103.anInt3044);
-									if (local103.aClass8_6 != null) {
-										local103.aClass8_6.method4545(0, local23, local103.anInt3051, local103.anInt3048, local103.anInt3044);
+								if (local46.wall != null) {
+									@Pc(103) Wall local103 = local46.wall;
+									local103.modelA.method4545(0, local23, local103.anInt3051, local103.anInt3048, local103.anInt3044);
+									if (local103.modelB != null) {
+										local103.modelB.method4545(0, local23, local103.anInt3051, local103.anInt3048, local103.anInt3044);
 									}
 								}
-								if (local46.aClass24_1 != null) {
-									@Pc(134) WallDecor local134 = local46.aClass24_1;
-									local134.aClass8_3.method4545(local134.anInt1388, local23, local134.anInt1391, local134.anInt1390, local134.anInt1393);
+								if (local46.decor != null) {
+									@Pc(134) Decor local134 = local46.decor;
+									local134.model.method4545(local134.angle, local23, local134.y, local134.x, local134.z);
 									if (local134.aClass8_2 != null) {
-										local134.aClass8_2.method4545(local134.anInt1388, local23, local134.anInt1391, local134.anInt1390, local134.anInt1393);
+										local134.aClass8_2.method4545(local134.angle, local23, local134.y, local134.x, local134.z);
 									}
 								}
-								if (local46.aClass15_1 != null) {
-									@Pc(167) GroundDecor local167 = local46.aClass15_1;
+								if (local46.groundDecor != null) {
+									@Pc(167) GroundDecor local167 = local46.groundDecor;
 									local167.entity.method4545(0, local23, local167.anInt733, local167.xFine, local167.zFine);
 								}
 								if (local46.aClass31Array1 != null) {
@@ -118,27 +118,27 @@ public final class Static248 {
 						Static21.method619(local285.anInt2486);
 						Static161.method3066(Static123.method2422());
 					}
-					local285.method1944(Static130.aClass3_Sub5ArrayArrayArray1, local294, false);
+					local285.method1944(Static130.levelTiles, local294, false);
 				}
 				Static275.method4608();
 			} else {
 				local32 = Static235.anInt5276;
 				while (true) {
 					if (local32 >= Static126.anInt3114) {
-						Static120.method2402(Static167.anInt4069, Static193.anInt4539, Static130.aClass3_Sub5ArrayArrayArray1);
+						Static120.method2402(Static167.eyeTileX, Static193.anInt4539, Static130.levelTiles);
 						break;
 					}
 					for (local37 = 0; local37 < Static182.aClass3_Sub14ArrayArray2[local32].length; local37++) {
 						@Pc(336) Class3_Sub14 local336 = Static182.aClass3_Sub14ArrayArray2[local32][local37];
 						@Pc(350) float local350 = 201.5F - (float) local32 * 50.0F - (local336.aBoolean140 ? 1.0F : 0.5F);
-						if (local336.anInt2485 != -1 && Rasteriser.anInterface1_2.method3237(local336.anInt2485) == 4 && Static220.aBoolean244) {
+						if (local336.anInt2485 != -1 && Pix3D.anInterface1_2.method3237(local336.anInt2485) == 4 && Static220.aBoolean244) {
 							Static21.method619(local336.anInt2486);
 						}
-						local336.method1944(Static130.aClass3_Sub5ArrayArrayArray1, local350, false);
+						local336.method1944(Static130.levelTiles, local350, false);
 					}
 					if (local32 == 0 && Static139.anInt3451 > 0) {
 						GlRenderer.method4159(101.5F);
-						Static242.method4198(Static167.anInt4069, Static193.anInt4539, Static277.anInt5855, arg1, Static48.aBooleanArrayArray1, Static83.levelHeightMap[0]);
+						Static242.method4198(Static167.eyeTileX, Static193.anInt4539, Static277.anInt5855, arg1, Static48.aBooleanArrayArray1, Static83.levelHeightMap[0]);
 					}
 					local32++;
 				}
@@ -147,16 +147,16 @@ public final class Static248 {
 		}
 		@Pc(434) int local434;
 		@Pc(438) int local438;
-		@Pc(450) Tile local450;
+		@Pc(450) Ground local450;
 		@Pc(399) int local399;
-		@Pc(406) Tile[][] local406;
+		@Pc(406) Ground[][] local406;
 		@Pc(415) int local415;
 		@Pc(428) int local428;
 		for (local399 = Static235.anInt5276; local399 < Static126.anInt3114; local399++) {
-			local406 = Static130.aClass3_Sub5ArrayArrayArray1[local399];
+			local406 = Static130.levelTiles[local399];
 			for (local37 = -Static277.anInt5855; local37 <= 0; local37++) {
-				local415 = Static167.anInt4069 + local37;
-				local183 = Static167.anInt4069 - local37;
+				local415 = Static167.eyeTileX + local37;
+				local183 = Static167.eyeTileX - local37;
 				if (local415 >= Static31.anInt987 || local183 < Static2.anInt15) {
 					for (local428 = -Static277.anInt5855; local428 <= 0; local428++) {
 						local434 = Static193.anInt4539 + local428;
@@ -200,10 +200,10 @@ public final class Static248 {
 			}
 		}
 		for (local399 = Static235.anInt5276; local399 < Static126.anInt3114; local399++) {
-			local406 = Static130.aClass3_Sub5ArrayArrayArray1[local399];
+			local406 = Static130.levelTiles[local399];
 			for (local37 = -Static277.anInt5855; local37 <= 0; local37++) {
-				local415 = Static167.anInt4069 + local37;
-				local183 = Static167.anInt4069 - local37;
+				local415 = Static167.eyeTileX + local37;
+				local183 = Static167.eyeTileX - local37;
 				if (local415 >= Static31.anInt987 || local183 < Static2.anInt15) {
 					for (local428 = -Static277.anInt5855; local428 <= 0; local428++) {
 						local434 = Static193.anInt4539 + local428;

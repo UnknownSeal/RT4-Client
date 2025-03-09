@@ -41,5 +41,5 @@ public final class Class3_Sub8 extends Node {
 	public int anInt1205;
 
 	@OriginalMember(owner = "runetek4.client!cn", name = "O", descriptor = "I")
-	public int anInt1206;
+	public int angle;
 }

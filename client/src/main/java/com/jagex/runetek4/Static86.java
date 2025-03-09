@@ -29,7 +29,7 @@ public final class Static86 {
 	public static final JagString CROSS = Static28.parse("cross");
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "gb", descriptor = "[I")
-	public static final int[] anIntArray211 = new int[] { 0, 4, 4, 8, 0, 0, 8, 0, 0 };
+	public static final int[] WALL_CORNER_TYPE_64_BLOCK_LOC_SPANS = new int[] { 0, 4, 4, 8, 0, 0, 8, 0, 0 };
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "f", descriptor = "(B)V")
 	public static void method1799() {

@@ -74,7 +74,7 @@ public final class Static138 {
 	public static final JagString LOGINSCREEN = Static28.parse("loginscreen");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Rc", descriptor = "[I")
-	public static final int[] anIntArray324 = new int[] { 19, 55, 38, 155, 255, 110, 137, 205, 76 };
+	public static final int[] FRONT_WALL_TYPES = new int[] { 19, 55, 38, 155, 255, 110, 137, 205, 76 };
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Sc", descriptor = "Lclient!na;")
 	public static final JagString TRADE = Static28.parse(":trade:");

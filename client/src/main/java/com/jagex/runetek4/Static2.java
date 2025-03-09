@@ -296,7 +296,7 @@ public final class Static2 {
 				arg0.modelId = ((int) Static173.localPlayer.username.encode37() << 11) + 2047;
 				arg0.anInt496 = Static173.localPlayer.anInt3388;
 				arg0.anInt500 = 0;
-				arg0.anInt522 = Static173.localPlayer.anInt3366;
+				arg0.anInt522 = Static173.localPlayer.secondarySeqId;
 				arg0.anInt510 = Static173.localPlayer.anInt3407;
 			}
 		}

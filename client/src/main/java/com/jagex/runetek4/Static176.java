@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.iftype.Component;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
 import com.jagex.runetek4.game.config.objtype.ObjType;
 import com.jagex.runetek4.game.scene.entities.NPCEntity;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
@@ -105,7 +105,7 @@ public final class Static176 {
 				local112 = local121;
 				@Pc(240) int local240;
 				if (local133 == 2 && Static257.method523(Static55.currentLevel, local47, local147, local121)) {
-					@Pc(172) LocType local172 = Static271.get(local140);
+					@Pc(172) LocMergeEntity local172 = Static271.get(local140);
 					if (local172.multiloc != null) {
 						local172 = local172.getVisible();
 					}
@@ -273,27 +273,27 @@ public final class Static176 {
 		if (arg3 == 0) {
 			local12 = new PlainTile(arg10, arg11, arg12, arg13, -1, arg18, false);
 			for (local14 = arg0; local14 >= 0; local14--) {
-				if (Static130.aClass3_Sub5ArrayArrayArray1[local14][arg1][arg2] == null) {
-					Static130.aClass3_Sub5ArrayArrayArray1[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
+				if (Static130.levelTiles[local14][arg1][arg2] == null) {
+					Static130.levelTiles[local14][arg1][arg2] = new Ground(local14, arg1, arg2);
 				}
 			}
-			Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2].aClass131_1 = local12;
+			Static130.levelTiles[arg0][arg1][arg2].underlay = local12;
 		} else if (arg3 == 1) {
 			local12 = new PlainTile(arg14, arg15, arg16, arg17, arg5, arg19, arg6 == arg7 && arg6 == arg8 && arg6 == arg9);
 			for (local14 = arg0; local14 >= 0; local14--) {
-				if (Static130.aClass3_Sub5ArrayArrayArray1[local14][arg1][arg2] == null) {
-					Static130.aClass3_Sub5ArrayArrayArray1[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
+				if (Static130.levelTiles[local14][arg1][arg2] == null) {
+					Static130.levelTiles[local14][arg1][arg2] = new Ground(local14, arg1, arg2);
 				}
 			}
-			Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2].aClass131_1 = local12;
+			Static130.levelTiles[arg0][arg1][arg2].underlay = local12;
 		} else {
 			@Pc(134) ShapedTile local134 = new ShapedTile(arg3, arg4, arg5, arg1, arg2, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17, arg18, arg19);
 			for (local14 = arg0; local14 >= 0; local14--) {
-				if (Static130.aClass3_Sub5ArrayArrayArray1[local14][arg1][arg2] == null) {
-					Static130.aClass3_Sub5ArrayArrayArray1[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
+				if (Static130.levelTiles[local14][arg1][arg2] == null) {
+					Static130.levelTiles[local14][arg1][arg2] = new Ground(local14, arg1, arg2);
 				}
 			}
-			Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2].aClass43_1 = local134;
+			Static130.levelTiles[arg0][arg1][arg2].overlay = local134;
 		}
 	}
 

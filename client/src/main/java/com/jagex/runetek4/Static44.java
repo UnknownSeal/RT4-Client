@@ -40,12 +40,12 @@ public final class Static44 {
 		@Pc(35) int local35;
 		for (local35 = 0; local35 < Static159.players.length; local35++) {
 			if (Static159.players[local35] != null) {
-				Static159.players[local35].anInt3370 = -1;
+				Static159.players[local35].targetId = -1;
 			}
 		}
 		for (local35 = 0; local35 < Static175.npcs.length; local35++) {
 			if (Static175.npcs[local35] != null) {
-				Static175.npcs[local35].anInt3370 = -1;
+				Static175.npcs[local35].targetId = -1;
 			}
 		}
 		Static102.method2073();

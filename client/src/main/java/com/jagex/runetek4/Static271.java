@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
 import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -51,13 +51,13 @@ public final class Static271 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(II)Lclient!pb;")
-	public static LocType get(@OriginalArg(1) int id) {
-		@Pc(15) LocType locType = (LocType) Static179.aClass99_25.get((long) id);
+	public static LocMergeEntity get(@OriginalArg(1) int id) {
+		@Pc(15) LocMergeEntity locType = (LocMergeEntity) Static179.aClass99_25.get((long) id);
 		if (locType != null) {
 			return locType;
 		}
 		@Pc(30) byte[] bytes = Static146.aClass153_54.getfile(Static253.method4328(id), Static33.method872(id));
-		locType = new LocType();
+		locType = new LocMergeEntity();
 		locType.anInt4426 = id;
 		if (bytes != null) {
 			locType.decode(new Packet(bytes));

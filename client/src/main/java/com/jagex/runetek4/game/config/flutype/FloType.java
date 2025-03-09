@@ -7,7 +7,7 @@ import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!ni")
-public final class FloorUnderlayType {
+public final class FloType {
 
 	@OriginalMember(owner = "client!ni", name = "d", descriptor = "I")
 	public int anInt4149;

@@ -3,8 +3,8 @@ package com.jagex.runetek4;
 import java.util.Date;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.flutype.FloorUnderlayType;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.flutype.FloType;
+import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
 import com.jagex.runetek4.game.config.msitype.MSIType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -25,7 +25,7 @@ public final class Static33 {
 	public static final int[] npcIds = new int[32768];
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(ILclient!pb;ZIIII)Z")
-	public static boolean method867(@OriginalArg(0) int arg0, @OriginalArg(1) LocType arg1, @OriginalArg(5) int arg2, @OriginalArg(6) int arg3) {
+	public static boolean method867(@OriginalArg(0) int arg0, @OriginalArg(1) LocMergeEntity arg1, @OriginalArg(5) int arg2, @OriginalArg(6) int arg3) {
 		@Pc(10) MSIType local10 = Static40.get(arg1.mapsceneicon);
 		if (local10.spriteId == -1) {
 			return true;
@@ -112,7 +112,7 @@ public final class Static33 {
 				if (local175 > local114) {
 					local225 = local23[local114][local203] & 0xFF;
 					if (local225 > 0) {
-						@Pc(236) FloorUnderlayType local236 = Static199.method3593(local225 - 1);
+						@Pc(236) FloType local236 = Static199.method3593(local225 - 1);
 						local183[local203] += local236.anInt4154;
 						local180[local203] += local236.anInt4149;
 						local186[local203] += local236.anInt4158;
@@ -124,7 +124,7 @@ public final class Static33 {
 				if (local225 >= 0) {
 					local293 = local23[local225][local203] & 0xFF;
 					if (local293 > 0) {
-						@Pc(302) FloorUnderlayType local302 = Static199.method3593(local293 - 1);
+						@Pc(302) FloType local302 = Static199.method3593(local293 - 1);
 						local183[local203] -= local302.anInt4154;
 						local180[local203] -= local302.anInt4149;
 						local186[local203] -= local302.anInt4158;
@@ -171,7 +171,7 @@ public final class Static33 {
 								local519 = 127;
 							}
 							@Pc(541) int local541 = local519 + (local480 & 0x380) + (local480 + local19 & 0xFC00);
-							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = Rasteriser.anIntArray220[Static87.method1814(96, local541)];
+							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = Pix3D.anIntArray220[Static87.method1814(96, local541)];
 						} else if (local462 != null) {
 							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = 0;
 						}

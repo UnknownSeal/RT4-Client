@@ -225,7 +225,7 @@ public final class Static38 {
 			}
 			if (player != null && player.isVisible()) {
 				player.lowMemory = false;
-				if ((Static15.lowMemory && Static267.playerCount > 200 || Static267.playerCount > 50) && !arg0 && player.anInt3366 == player.method2681().anInt1037) {
+				if ((Static15.lowMemory && Static267.playerCount > 200 || Static267.playerCount > 50) && !arg0 && player.secondarySeqId == player.method2681().anInt1037) {
 					player.lowMemory = true;
 				}
 				stz = player.size();
@@ -284,7 +284,7 @@ public final class Static38 {
 				}
 				if (player.locModel == null || Static83.loopCycle < player.locStartCycle || player.locStopCycle <= Static83.loopCycle) {
 					player.y = Static207.getHeightmapY(Static55.currentLevel, player.x, player.z);
-					Static43.addTemporary(Static55.currentLevel, player.x, player.z, player.y, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.aBoolean171);
+					Static43.addTemporary(Static55.currentLevel, player.x, player.z, player.y, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
 				} else {
 					player.lowMemory = false;
 					player.y = Static207.getHeightmapY(Static55.currentLevel, player.x, player.z);

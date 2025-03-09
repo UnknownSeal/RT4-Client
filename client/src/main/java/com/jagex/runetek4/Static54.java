@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.iftype.Component;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
 import com.jagex.runetek4.game.config.npctype.NPCType;
 import com.jagex.runetek4.game.scene.entities.NPCEntity;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
@@ -93,7 +93,7 @@ public final class Static54 {
 			for (local146 = 0; local146 < Static251.anInt5454; local146++) {
 				local181 = Static145.anIntArray331[local146] * 4 + 2 - Static173.localPlayer.x / 32;
 				local150 = Static93.anIntArray219[local146] * 4 + 2 - Static173.localPlayer.z / 32;
-				@Pc(382) LocType local382 = Static271.get(Static199.anIntArray417[local146]);
+				@Pc(382) LocMergeEntity local382 = Static271.get(Static199.anIntArray417[local146]);
 				if (local382.multiloc != null) {
 					local382 = local382.getVisible();
 					if (local382 == null || local382.mapfunction == -1) {

@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -31,7 +31,7 @@ public final class Static113 {
 		if (arg1 >= 5 && arg1 <= 8) {
 			arg1 = 4;
 		}
-		@Pc(30) LocType local30 = Static271.get(arg0);
+		@Pc(30) LocMergeEntity local30 = Static271.get(arg0);
 		return local30.method3416(arg1);
 	}
 }

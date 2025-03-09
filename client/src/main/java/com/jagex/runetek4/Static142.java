@@ -226,7 +226,7 @@ public final class Static142 {
 			if (Static79.anInt2157 == 0) {
 				local639 = 16776960;
 				if (Static191.anIntArray390[local5] < 6) {
-					local639 = Static16.anIntArray52[Static191.anIntArray390[local5]];
+					local639 = Static16.CHAT_COLORS[Static191.anIntArray390[local5]];
 				}
 				if (Static191.anIntArray390[local5] == 6) {
 					local639 = Static136.anInt3325 % 20 >= 10 ? 16776960 : 16711680;

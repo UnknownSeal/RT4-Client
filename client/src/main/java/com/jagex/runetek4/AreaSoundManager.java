@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
 import com.jagex.runetek4.game.config.npctype.NPCType;
 import com.jagex.runetek4.game.scene.entities.NPCEntity;
 import com.jagex.runetek4.game.world.entity.PlayerEntity;
@@ -19,7 +19,7 @@ public class AreaSoundManager {
     public static final IterableMap playerSounds = new IterableMap(16);
 
     @OriginalMember(owner = "client!jh", name = "a", descriptor = "(IZLclient!pb;ILclient!km;IILclient!e;)V")
-    public static void add(@OriginalArg(0) int arg0, @OriginalArg(2) LocType arg1, @OriginalArg(3) int arg2, @OriginalArg(4) NPCEntity npcEntity, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) PlayerEntity player) {
+    public static void add(@OriginalArg(0) int arg0, @OriginalArg(2) LocMergeEntity arg1, @OriginalArg(3) int arg2, @OriginalArg(4) NPCEntity npcEntity, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) PlayerEntity player) {
         @Pc(13) AreaSound areaSound = new AreaSound();
         areaSound.level = arg5;
         areaSound.anInt2029 = arg0 * 128;
@@ -72,7 +72,7 @@ public class AreaSoundManager {
     }
 
     @OriginalMember(owner = "client!ra", name = "a", descriptor = "(ILclient!pb;BII)V")
-    public static void remove(@OriginalArg(0) int arg0, @OriginalArg(1) LocType locType, @OriginalArg(3) int arg2, @OriginalArg(4) int level) {
+    public static void remove(@OriginalArg(0) int arg0, @OriginalArg(1) LocMergeEntity locType, @OriginalArg(3) int arg2, @OriginalArg(4) int level) {
         for (@Pc(10) AreaSound areaSound = (AreaSound) locSounds.head(); areaSound != null; areaSound = (AreaSound) locSounds.next()) {
             if (areaSound.level == level && areaSound.anInt2041 == arg0 * 128 && areaSound.anInt2029 == arg2 * 128 && locType.anInt4426 == areaSound.loc.anInt4426) {
                 if (areaSound.primaryStream != null) {

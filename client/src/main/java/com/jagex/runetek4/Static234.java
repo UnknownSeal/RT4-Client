@@ -54,9 +54,9 @@ public final class Static234 {
 				Static223.method3855(info, local43, local14);
 			}
 			if ((local18 & 0x4) != 0) {
-				local14.anInt3370 = Static57.in.g2sub();
-				if (local14.anInt3370 == 65535) {
-					local14.anInt3370 = -1;
+				local14.targetId = Static57.in.g2sub();
+				if (local14.targetId == 65535) {
+					local14.targetId = -1;
 				}
 			}
 			if ((local18 & 0x80) != 0) {

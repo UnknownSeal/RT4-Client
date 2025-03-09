@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.Node;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
 import com.jagex.runetek4.game.config.npctype.NPCType;
 import com.jagex.runetek4.game.scene.entities.NPCEntity;
 import com.jagex.runetek4.game.world.entity.PlayerEntity;
@@ -34,7 +34,7 @@ public final class AreaSound extends Node {
 	public int remainingLoops;
 
 	@OriginalMember(owner = "client!fl", name = "E", descriptor = "Lclient!pb;")
-	public LocType loc;
+	public LocMergeEntity loc;
 
 	@OriginalMember(owner = "client!fl", name = "F", descriptor = "I")
 	public int anInt2037;
@@ -70,7 +70,7 @@ public final class AreaSound extends Node {
 	public void update() {
 		@Pc(8) int sound = this.sound;
 		if (this.loc != null) {
-			@Pc(17) LocType locType = this.loc.getVisible();
+			@Pc(17) LocMergeEntity locType = this.loc.getVisible();
 			if (locType == null) {
 				this.sound = -1;
 				this.sounds = null;

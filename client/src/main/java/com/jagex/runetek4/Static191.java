@@ -23,7 +23,7 @@ public final class Static191 {
 	public static int staffModLevel = 0;
 
 	@OriginalMember(owner = "runetek4.client!pg", name = "T", descriptor = "[I")
-	public static final int[] anIntArray386 = new int[] { 76, 8, 137, 4, 0, 1, 38, 2, 19 };
+	public static final int[] BACK_WALL_TYPES = new int[] { 76, 8, 137, 4, 0, 1, 38, 2, 19 };
 
 	@OriginalMember(owner = "runetek4.client!pg", name = "V", descriptor = "I")
 	public static final int anInt4504 = 50;

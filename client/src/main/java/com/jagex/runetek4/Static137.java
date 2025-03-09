@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -57,13 +57,13 @@ public final class Static137 {
 				for (local76 = 0; local76 < 104; local76++) {
 					@Pc(169) long local169 = Static20.method602(Static55.currentLevel, local37 + 0, local76);
 					if (local169 != 0L) {
-						@Pc(184) LocType local184 = Static271.get((int) (local169 >>> 32) & Integer.MAX_VALUE);
+						@Pc(184) LocMergeEntity local184 = Static271.get((int) (local169 >>> 32) & Integer.MAX_VALUE);
 						@Pc(187) int local187 = local184.mapfunction;
 						@Pc(194) int local194;
 						if (local184.multiloc != null) {
 							for (local194 = 0; local194 < local184.multiloc.length; local194++) {
 								if (local184.multiloc[local194] != -1) {
-									@Pc(216) LocType local216 = Static271.get(local184.multiloc[local194]);
+									@Pc(216) LocMergeEntity local216 = Static271.get(local184.multiloc[local194]);
 									if (local216.mapfunction >= 0) {
 										local187 = local216.mapfunction;
 										break;

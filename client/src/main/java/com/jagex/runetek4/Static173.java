@@ -130,7 +130,7 @@ public final class Static173 {
 					bitset |= Long.MIN_VALUE;
 				}
 				npc.y = Static207.getHeightmapY(Static55.currentLevel, npc.x, npc.z);
-				Static43.addTemporary(Static55.currentLevel, npc.x, npc.z, npc.y, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.aBoolean171);
+				Static43.addTemporary(Static55.currentLevel, npc.x, npc.z, npc.y, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.seqStretches);
 			}
 		}
 	}

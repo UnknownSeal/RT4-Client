@@ -7,7 +7,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class Static162 {
 
 	@OriginalMember(owner = "runetek4.client!ml", name = "K", descriptor = "I")
-	public static int anInt3947;
+	public static int eyeY;
 
 	@OriginalMember(owner = "runetek4.client!ml", name = "Q", descriptor = "I")
 	public static int anInt3953 = 0;

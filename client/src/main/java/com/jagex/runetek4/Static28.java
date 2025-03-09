@@ -95,13 +95,13 @@ public final class Static28 {
 		Static152.anInt3594 = 104;
 		Static99.anInt2550 = 104;
 		Static277.anInt5855 = arg0;
-		Static197.aClass3_Sub5ArrayArrayArray2 = new Tile[4][Static152.anInt3594][Static99.anInt2550];
+		Static197.aClass3_Sub5ArrayArrayArray2 = new Ground[4][Static152.anInt3594][Static99.anInt2550];
 		Static107.anIntArrayArrayArray10 = new int[4][Static152.anInt3594 + 1][Static99.anInt2550 + 1];
 		if (GlRenderer.enabled) {
 			Static36.aClass3_Sub14ArrayArray1 = new Class3_Sub14[4][];
 		}
 		if (arg1) {
-			Static276.aClass3_Sub5ArrayArrayArray3 = new Tile[1][Static152.anInt3594][Static99.anInt2550];
+			Static276.aClass3_Sub5ArrayArrayArray3 = new Ground[1][Static152.anInt3594][Static99.anInt2550];
 			Static62.anIntArrayArray11 = new int[Static152.anInt3594][Static99.anInt2550];
 			Static80.anIntArrayArrayArray19 = new int[1][Static152.anInt3594 + 1][Static99.anInt2550 + 1];
 			if (GlRenderer.enabled) {

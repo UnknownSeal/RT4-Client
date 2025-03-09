@@ -14,7 +14,7 @@ public final class Static167 {
 	public static Js5 aClass153_62;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "s", descriptor = "I")
-	public static int anInt4069;
+	public static int eyeTileX;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "t", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_63;

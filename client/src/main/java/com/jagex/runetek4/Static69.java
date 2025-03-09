@@ -67,7 +67,7 @@ public final class Static69 {
 		local3.aClass8_7 = arg6;
 		local3.aClass8_8 = arg7;
 		@Pc(34) int local34 = 0;
-		@Pc(42) Tile local42 = Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2];
+		@Pc(42) Ground local42 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local42 != null) {
 			for (@Pc(46) int local46 = 0; local46 < local42.anInt662; local46++) {
 				@Pc(55) Scenery local55 = local42.aClass31Array1[local46];
@@ -79,11 +79,11 @@ public final class Static69 {
 				}
 			}
 		}
-		local3.anInt3063 = -local34;
-		if (Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2] == null) {
-			Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2] = new Tile(arg0, arg1, arg2);
+		local3.offset = -local34;
+		if (Static130.levelTiles[arg0][arg1][arg2] == null) {
+			Static130.levelTiles[arg0][arg1][arg2] = new Ground(arg0, arg1, arg2);
 		}
-		Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2].aClass79_1 = local3;
+		Static130.levelTiles[arg0][arg1][arg2].aClass79_1 = local3;
 	}
 
 	@OriginalMember(owner = "runetek4.client!fh", name = "a", descriptor = "(Lclient!th;IIIII)V")
@@ -99,16 +99,16 @@ public final class Static69 {
 					if (local28 >= 0 && local28 < Static152.anInt3594) {
 						for (@Pc(39) int local39 = local11; local39 <= local15; local39++) {
 							if (local39 >= 0 && local39 < Static99.anInt2550 && (!local1 || local28 >= local7 || local39 >= local15 || local39 < arg3 && local28 != arg2)) {
-								@Pc(71) Tile local71 = Static130.aClass3_Sub5ArrayArrayArray1[local17][local28][local39];
+								@Pc(71) Ground local71 = Static130.levelTiles[local17][local28][local39];
 								if (local71 != null) {
 									@Pc(158) int local158 = (Static83.levelHeightMap[local17][local28][local39] + Static83.levelHeightMap[local17][local28 + 1][local39] + Static83.levelHeightMap[local17][local28][local39 + 1] + Static83.levelHeightMap[local17][local28 + 1][local39 + 1]) / 4 - (Static83.levelHeightMap[arg1][arg2][arg3] + Static83.levelHeightMap[arg1][arg2 + 1][arg3] + Static83.levelHeightMap[arg1][arg2][arg3 + 1] + Static83.levelHeightMap[arg1][arg2 + 1][arg3 + 1]) / 4;
-									@Pc(161) Wall local161 = local71.aClass77_1;
+									@Pc(161) Wall local161 = local71.wall;
 									if (local161 != null) {
-										if (local161.aClass8_5.method4543()) {
-											arg0.method4544(local161.aClass8_5, (local28 - arg2) * 128 + (1 - arg4) * 64, local158, (local39 - arg3) * 128 + (1 - arg5) * 64, local1);
+										if (local161.modelA.method4543()) {
+											arg0.method4544(local161.modelA, (local28 - arg2) * 128 + (1 - arg4) * 64, local158, (local39 - arg3) * 128 + (1 - arg5) * 64, local1);
 										}
-										if (local161.aClass8_6 != null && local161.aClass8_6.method4543()) {
-											arg0.method4544(local161.aClass8_6, (local28 - arg2) * 128 + (1 - arg4) * 64, local158, (local39 - arg3) * 128 + (1 - arg5) * 64, local1);
+										if (local161.modelB != null && local161.modelB.method4543()) {
+											arg0.method4544(local161.modelB, (local28 - arg2) * 128 + (1 - arg4) * 64, local158, (local39 - arg3) * 128 + (1 - arg5) * 64, local1);
 										}
 									}
 									for (@Pc(232) int local232 = 0; local232 < local71.anInt662; local232++) {

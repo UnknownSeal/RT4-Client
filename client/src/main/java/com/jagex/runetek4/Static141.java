@@ -39,7 +39,7 @@ public final class Static141 {
 		Static217.method3768();
 		Static255.aClass54_16.method1815();
 		Static171.aLocEntity_1 = new LocEntity();
-		((Js5GlTextureProvider) Rasteriser.anInterface1_2).method3247();
+		((Js5GlTextureProvider) Pix3D.anInterface1_2).method3247();
 		Static120.anInt3034 = 0;
 		Static120.aClass51Array1 = new Light[255];
 		Static237.method4120();

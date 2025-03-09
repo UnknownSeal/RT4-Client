@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.game.config.flutype.FloorUnderlayType;
+import com.jagex.runetek4.game.config.flutype.FloType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -72,7 +72,7 @@ public final class Static193 {
 					local25 = arg2[local11 - 1][local16 - 1];
 				}
 				if (local25 != 0) {
-					@Pc(77) FloorUnderlayType local77 = Static199.method3593((local25 & 0xFF) - 1);
+					@Pc(77) FloType local77 = Static199.method3593((local25 & 0xFF) - 1);
 					local9[local11][local16] = (local77.material + 1 << 16) + local77.hardshadow;
 				}
 			}

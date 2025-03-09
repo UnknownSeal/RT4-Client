@@ -49,7 +49,7 @@ public final class Static260 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vd", name = "b", descriptor = "(IIII)Z")
-	public static boolean method3850(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
+	public static boolean wallVisible(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
 		if (!Static9.method187(arg0, arg1, arg2)) {
 			return false;
 		}
@@ -61,7 +61,7 @@ public final class Static260 {
 		@Pc(36) int local36 = local24 - 238;
 		if (arg3 < 16) {
 			if (arg3 == 1) {
-				if (local10 > Static149.anInt3555) {
+				if (local10 > Static149.eyeX) {
 					if (!Static256.method4394(local10, local24, local14)) {
 						return false;
 					}
@@ -86,7 +86,7 @@ public final class Static260 {
 				return true;
 			}
 			if (arg3 == 2) {
-				if (local14 < Static217.anInt4903) {
+				if (local14 < Static217.eyeZ) {
 					if (!Static256.method4394(local10, local24, local14 + 128)) {
 						return false;
 					}
@@ -111,7 +111,7 @@ public final class Static260 {
 				return true;
 			}
 			if (arg3 == 4) {
-				if (local10 < Static149.anInt3555) {
+				if (local10 < Static149.eyeX) {
 					if (!Static256.method4394(local10 + 128, local24, local14)) {
 						return false;
 					}
@@ -136,7 +136,7 @@ public final class Static260 {
 				return true;
 			}
 			if (arg3 == 8) {
-				if (local14 > Static217.anInt4903) {
+				if (local14 > Static217.eyeZ) {
 					if (!Static256.method4394(local10, local24, local14)) {
 						return false;
 					}

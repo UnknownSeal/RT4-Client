@@ -4,7 +4,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-public final class Rasteriser {
+public final class Pix3D {
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "I")
 	public static int anInt2469;
@@ -46,7 +46,7 @@ public final class Rasteriser {
 	public static boolean aBoolean138 = false;
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "q", descriptor = "I")
-	public static int anInt2473 = 0;
+	public static int trans = 0;
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "()V")
 	public static void method1908() {
@@ -54,7 +54,7 @@ public final class Rasteriser {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(IIIIIIIIIIIIIIIIIII)V")
-	public static void method1909(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12, @OriginalArg(13) int arg13, @OriginalArg(14) int arg14, @OriginalArg(15) int arg15, @OriginalArg(16) int arg16, @OriginalArg(17) int arg17, @OriginalArg(18) int arg18) {
+	public static void textureTriangle(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12, @OriginalArg(13) int arg13, @OriginalArg(14) int arg14, @OriginalArg(15) int arg15, @OriginalArg(16) int arg16, @OriginalArg(17) int arg17, @OriginalArg(18) int arg18) {
 		@Pc(5) int[] local5 = anInterface1_2.method3232(arg18, aFloat11);
 		@Pc(12) int local12;
 		if (local5 == null) {
@@ -639,7 +639,7 @@ public final class Rasteriser {
 	public static void method1912(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12, @OriginalArg(13) int arg13, @OriginalArg(14) int arg14, @OriginalArg(15) int arg15, @OriginalArg(16) int arg16, @OriginalArg(17) int arg17, @OriginalArg(18) int arg18) {
 		@Pc(5) int[] local5 = anInterface1_2.method3232(arg18, aFloat11);
 		@Pc(15) int local15;
-		if (local5 == null || anInt2473 > 10) {
+		if (local5 == null || trans > 10) {
 			local15 = anInterface1_2.method3234(arg18);
 			aBoolean134 = true;
 			method1928(arg0, arg1, arg2, arg3, arg4, arg5, method1910(local15, arg6), method1910(local15, arg7), method1910(local15, arg8));
@@ -2357,15 +2357,15 @@ public final class Rasteriser {
 		@Pc(46) int local46;
 		if (!aBoolean136) {
 			local32 = arg3 - arg2;
-			if (anInt2473 == 0) {
+			if (trans == 0) {
 				do {
 					arg0[arg1++] = anIntArray220[arg4 >> 8];
 					arg4 += arg5;
 					local32--;
 				} while (local32 > 0);
 			} else {
-				local98 = anInt2473;
-				local102 = 256 - anInt2473;
+				local98 = trans;
+				local102 = 256 - trans;
 				do {
 					local46 = anIntArray220[arg4 >> 8];
 					arg4 += arg5;
@@ -2380,7 +2380,7 @@ public final class Rasteriser {
 		local32 = arg3 - arg2 >> 2;
 		@Pc(36) int local36 = arg5 << 2;
 		@Pc(53) int local53;
-		if (anInt2473 == 0) {
+		if (trans == 0) {
 			if (local32 > 0) {
 				do {
 					local46 = anIntArray220[arg4 >> 8];
@@ -2406,8 +2406,8 @@ public final class Rasteriser {
 			}
 			return;
 		}
-		local98 = anInt2473;
-		local102 = 256 - anInt2473;
+		local98 = trans;
+		local102 = 256 - trans;
 		if (local32 > 0) {
 			do {
 				local46 = anIntArray220[arg4 >> 8];
@@ -2835,7 +2835,7 @@ public final class Rasteriser {
 		arg1 += arg3;
 		@Pc(24) int local24 = arg4 - arg3 >> 2;
 		@Pc(32) int local32;
-		if (anInt2473 == 0) {
+		if (trans == 0) {
 			while (true) {
 				local24--;
 				if (local24 < 0) {
@@ -2857,7 +2857,7 @@ public final class Rasteriser {
 				arg1 = local42 + 1;
 				arg0[local42] = arg2;
 			}
-		} else if (anInt2473 == 254) {
+		} else if (trans == 254) {
 			while (true) {
 				local24--;
 				if (local24 < 0) {
@@ -2878,8 +2878,8 @@ public final class Rasteriser {
 				arg0[local32] = arg0[arg1];
 			}
 		} else {
-			@Pc(119) int local119 = anInt2473;
-			@Pc(123) int local123 = 256 - anInt2473;
+			@Pc(119) int local119 = trans;
+			@Pc(123) int local123 = 256 - trans;
 			@Pc(143) int local143 = ((arg2 & 0xFF00FF) * local123 >> 8 & 0xFF00FF) + ((arg2 & 0xFF00) * local123 >> 8 & 0xFF00);
 			while (true) {
 				local24--;

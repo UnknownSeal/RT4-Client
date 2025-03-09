@@ -101,11 +101,11 @@ public final class Static18 {
 
 	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(IIII)V")
 	public static void method559(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		@Pc(7) Tile local7 = Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2];
+		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return;
 		}
-		@Pc(13) WallDecor local13 = local7.aClass24_1;
+		@Pc(13) Decor local13 = local7.decor;
 		if (local13 != null) {
 			local13.anInt1394 = local13.anInt1394 * arg3 / 16;
 			local13.anInt1392 = local13.anInt1392 * arg3 / 16;

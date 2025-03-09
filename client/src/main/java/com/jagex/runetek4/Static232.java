@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -59,7 +59,7 @@ public final class Static232 {
 								@Pc(203) int local203 = (local50 + arg4 & 0x3F) + ((arg6 + local119 & 0x3F) << 6);
 								@Pc(209) int local209 = local116[local163][local203];
 								if (local209 != 0) {
-									@Pc(222) LocType local222 = Static271.get(local209 - 1);
+									@Pc(222) LocMergeEntity local222 = Static271.get(local209 - 1);
 									if (!Static258.aBooleanArray130[local222.mapfunction]) {
 										if (local11 != -1 && local222.mapfunction == Static9.anInt172) {
 											@Pc(243) Class3_Sub26 local243 = new Class3_Sub26();

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
 import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -10,7 +10,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static217 {
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "R", descriptor = "I")
-	public static int anInt4903;
+	public static int eyeZ;
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "Y", descriptor = "J")
 	public static long js5ConnectTime;
@@ -121,7 +121,7 @@ public final class Static217 {
 		Static90.method1857();
 		Static139.aClass99_22.method3104();
 		if (!GlRenderer.enabled) {
-			((Js5GlTextureProvider) Rasteriser.anInterface1_2).method3247();
+			((Js5GlTextureProvider) Pix3D.anInterface1_2).method3247();
 		}
 		Static105.aClass54_9.method1815();
 		Static213.aClass153_88.method4499();
@@ -162,7 +162,7 @@ public final class Static217 {
 				@Pc(68) int local68 = local64 >> 2;
 				@Pc(72) int local72 = local64 & 0x3;
 				if (arg3 == local60 && local56 >= arg8 && local56 < arg8 + 8 && arg9 <= local50 && arg9 + 8 > local50) {
-					@Pc(103) LocType local103 = Static271.get(local7);
+					@Pc(103) LocMergeEntity local103 = Static271.get(local7);
 					@Pc(120) int local120 = Static52.method1286(local50 & 0x7, arg4, local72, local103.length, local103.width, local56 & 0x7) + arg5;
 					@Pc(137) int local137 = Static241.method4541(local103.width, arg4, local103.length, local56 & 0x7, local72, local50 & 0x7) + arg6;
 					if (local120 > 0 && local137 > 0 && local120 < 103 && local137 < 103) {

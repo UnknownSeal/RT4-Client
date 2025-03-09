@@ -119,9 +119,9 @@ public final class Static84 {
 			player.read(local314);
 		}
 		if ((flags & 0x2) != 0) {
-			player.anInt3370 = Static57.in.g2sub();
-			if (player.anInt3370 == 65535) {
-				player.anInt3370 = -1;
+			player.targetId = Static57.in.g2sub();
+			if (player.targetId == 65535) {
+				player.targetId = -1;
 			}
 		}
 		if ((flags & 0x400) != 0) {

@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.iftype.Component;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
 import com.jagex.runetek4.game.scene.entities.NPCEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -40,7 +40,7 @@ public final class Static49 {
 			@Pc(39) boolean local39 = false;
 			while (true) {
 				@Pc(78) int local78;
-				@Pc(95) LocType local95;
+				@Pc(95) LocMergeEntity local95;
 				do {
 					@Pc(72) int local72;
 					@Pc(68) int local68;

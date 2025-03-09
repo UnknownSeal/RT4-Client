@@ -26,14 +26,14 @@ public final class Static257 {
 
 	@OriginalMember(owner = "runetek4.client!v", name = "a", descriptor = "(IIIJ)Z")
 	public static boolean method523(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) long arg3) {
-		@Pc(7) Tile local7 = Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2];
+		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return false;
-		} else if (local7.aClass77_1 != null && local7.aClass77_1.aLong107 == arg3) {
+		} else if (local7.wall != null && local7.wall.aLong107 == arg3) {
 			return true;
-		} else if (local7.aClass24_1 != null && local7.aClass24_1.aLong52 == arg3) {
+		} else if (local7.decor != null && local7.decor.aLong52 == arg3) {
 			return true;
-		} else if (local7.aClass15_1 != null && local7.aClass15_1.key == arg3) {
+		} else if (local7.groundDecor != null && local7.groundDecor.key == arg3) {
 			return true;
 		} else {
 			for (@Pc(46) int local46 = 0; local46 < local7.anInt662; local46++) {

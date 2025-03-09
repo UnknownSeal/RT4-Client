@@ -6,7 +6,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!bj")
-public final class Tile extends Node {
+public final class Ground extends Node {
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "x", descriptor = "Z")
 	public boolean aBoolean45;
@@ -18,43 +18,43 @@ public final class Tile extends Node {
 	public boolean aBoolean46;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "B", descriptor = "Lclient!fg;")
-	public ShapedTile aClass43_1;
+	public ShapedTile overlay;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "C", descriptor = "I")
-	public int anInt663;
+	public int checkLocSpans;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "E", descriptor = "I")
-	public int anInt665;
+	public int blockLocSpans;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "G", descriptor = "Lclient!bm;")
-	public GroundDecor aClass15_1;
+	public GroundDecor groundDecor;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "I", descriptor = "I")
-	public int anInt667;
+	public int inverseBlockLocSpans;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "J", descriptor = "Lclient!df;")
-	public WallDecor aClass24_1;
+	public Decor decor;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "K", descriptor = "Lclient!jh;")
-	public Wall aClass77_1;
+	public Wall wall;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "M", descriptor = "Lclient!bj;")
-	public Tile aClass3_Sub5_1;
+	public Ground aClass3_Sub5_1;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "N", descriptor = "Z")
-	public boolean aBoolean47;
+	public boolean containsLocs;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "S", descriptor = "Lclient!rh;")
-	public PlainTile aClass131_1;
+	public PlainTile underlay;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "T", descriptor = "I")
-	public int anInt670;
+	public int backWallTypes;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "X", descriptor = "Lclient!jj;")
 	public ObjStackEntity aClass79_1;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "D", descriptor = "I")
-	public int anInt664 = 0;
+	public int locSpans = 0;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "w", descriptor = "[Lclient!ec;")
 	public final Scenery[] aClass31Array1 = new Scenery[5];
@@ -75,7 +75,7 @@ public final class Tile extends Node {
 	public final int anInt669;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "<init>", descriptor = "(III)V")
-	public Tile(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public Ground(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		this.anInt666 = arg2;
 		this.anInt668 = this.anInt672 = arg0;
 		this.anInt669 = arg1;

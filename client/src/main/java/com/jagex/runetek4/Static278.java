@@ -93,15 +93,15 @@ public final class Static278 {
 	@OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(Z)V")
 	public static void method4648(@OriginalArg(0) boolean arg0) {
 		if (arg0) {
-			Static130.aClass3_Sub5ArrayArrayArray1 = Static276.aClass3_Sub5ArrayArrayArray3;
+			Static130.levelTiles = Static276.aClass3_Sub5ArrayArrayArray3;
 			Static83.levelHeightMap = Static80.anIntArrayArrayArray19;
 			Static182.aClass3_Sub14ArrayArray2 = Static195.aClass3_Sub14ArrayArray3;
 		} else {
-			Static130.aClass3_Sub5ArrayArrayArray1 = Static197.aClass3_Sub5ArrayArrayArray2;
+			Static130.levelTiles = Static197.aClass3_Sub5ArrayArrayArray2;
 			Static83.levelHeightMap = Static107.anIntArrayArrayArray10;
 			Static182.aClass3_Sub14ArrayArray2 = Static36.aClass3_Sub14ArrayArray1;
 		}
-		Static126.anInt3114 = Static130.aClass3_Sub5ArrayArrayArray1.length;
+		Static126.anInt3114 = Static130.levelTiles.length;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "(I)V")
@@ -172,7 +172,7 @@ public final class Static278 {
 				Static163.aByteArrayArrayArray11[arg7][arg5][arg4] = (byte) ((local32 - 2) / 4);
 				Static4.aByteArrayArrayArray1[arg7][arg5][arg4] = (byte) (local32 + arg6 - 2 & 0x3);
 			} else if (local32 > 81) {
-				Static253.aByteArrayArrayArray16[arg7][arg5][arg4] = (byte) (local32 - 81);
+				Static253.levelTileUnderlayIds[arg7][arg5][arg4] = (byte) (local32 - 81);
 			} else if (!arg2) {
 				Static12.aByteArrayArrayArray2[arg7][arg5][arg4] = (byte) (local32 - 49);
 			}

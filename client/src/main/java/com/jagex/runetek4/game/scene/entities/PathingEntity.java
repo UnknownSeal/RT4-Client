@@ -137,7 +137,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3376 = 32;
 
 	@OriginalMember(owner = "client!fe", name = "P", descriptor = "I")
-	public int anInt3370 = -1;
+	public int targetId = -1;
 
 	@OriginalMember(owner = "client!fe", name = "Bb", descriptor = "Z")
 	private boolean aBoolean170 = false;
@@ -203,7 +203,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3373 = -1;
 
 	@OriginalMember(owner = "client!fe", name = "Fb", descriptor = "Z")
-	public boolean aBoolean171 = false;
+	public boolean seqStretches = false;
 
 	@OriginalMember(owner = "client!fe", name = "xb", descriptor = "I")
 	public int anInt3397 = 0;
@@ -215,7 +215,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3414 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "H", descriptor = "I")
-	public int anInt3366 = -1;
+	public int secondarySeqId = -1;
 
 	@OriginalMember(owner = "client!fe", name = "gc", descriptor = "I")
 	private int anInt3427 = 0;

@@ -16,7 +16,7 @@ public final class Static104 {
 	@OriginalMember(owner = "runetek4.client!ia", name = "a", descriptor = "(BLclient!fe;)V")
 	public static void method2247(@OriginalArg(1) PathingEntity arg0) {
 		@Pc(9) BASType local9 = arg0.method2681();
-		arg0.anInt3366 = local9.anInt1037;
+		arg0.secondarySeqId = local9.anInt1037;
 		if (arg0.routeLength == 0) {
 			arg0.anInt3417 = 0;
 			return;
@@ -80,12 +80,12 @@ public final class Static104 {
 		if (local227 == -1) {
 			local227 = local9.anInt1051;
 		}
-		arg0.anInt3366 = local227;
+		arg0.secondarySeqId = local227;
 		if (arg0 instanceof NPCEntity) {
 			local233 = ((NPCEntity) arg0).type.walksmoothing;
 		}
 		if (local233) {
-			if (arg0.anInt3381 != arg0.dstYaw && arg0.anInt3370 == -1 && arg0.anInt3376 != 0) {
+			if (arg0.anInt3381 != arg0.dstYaw && arg0.targetId == -1 && arg0.anInt3376 != 0) {
 				local273 = 2;
 			}
 			if (arg0.routeLength > 2) {
@@ -119,24 +119,24 @@ public final class Static104 {
 		}
 		if (local273 < 8 || local9.anInt1058 == -1) {
 			if (local9.anInt1062 != -1 && local235 == 0) {
-				if (local9.anInt1056 == arg0.anInt3366 && local9.anInt1042 != -1) {
-					arg0.anInt3366 = local9.anInt1042;
-				} else if (local9.anInt1057 == arg0.anInt3366 && local9.anInt1066 != -1) {
-					arg0.anInt3366 = local9.anInt1066;
-				} else if (local9.anInt1035 == arg0.anInt3366 && local9.anInt1048 != -1) {
-					arg0.anInt3366 = local9.anInt1048;
+				if (local9.anInt1056 == arg0.secondarySeqId && local9.anInt1042 != -1) {
+					arg0.secondarySeqId = local9.anInt1042;
+				} else if (local9.anInt1057 == arg0.secondarySeqId && local9.anInt1066 != -1) {
+					arg0.secondarySeqId = local9.anInt1066;
+				} else if (local9.anInt1035 == arg0.secondarySeqId && local9.anInt1048 != -1) {
+					arg0.secondarySeqId = local9.anInt1048;
 				} else {
-					arg0.anInt3366 = local9.anInt1062;
+					arg0.secondarySeqId = local9.anInt1062;
 				}
 			}
-		} else if (local9.anInt1056 == arg0.anInt3366 && local9.anInt1054 != -1) {
-			arg0.anInt3366 = local9.anInt1054;
-		} else if (arg0.anInt3366 == local9.anInt1057 && local9.anInt1043 != -1) {
-			arg0.anInt3366 = local9.anInt1043;
-		} else if (arg0.anInt3366 == local9.anInt1035 && local9.anInt1045 != -1) {
-			arg0.anInt3366 = local9.anInt1045;
+		} else if (local9.anInt1056 == arg0.secondarySeqId && local9.anInt1054 != -1) {
+			arg0.secondarySeqId = local9.anInt1054;
+		} else if (arg0.secondarySeqId == local9.anInt1057 && local9.anInt1043 != -1) {
+			arg0.secondarySeqId = local9.anInt1043;
+		} else if (arg0.secondarySeqId == local9.anInt1035 && local9.anInt1045 != -1) {
+			arg0.secondarySeqId = local9.anInt1045;
 		} else {
-			arg0.anInt3366 = local9.anInt1058;
+			arg0.secondarySeqId = local9.anInt1058;
 		}
 		if (local9.anInt1032 != -1) {
 			local273 <<= 0x7;

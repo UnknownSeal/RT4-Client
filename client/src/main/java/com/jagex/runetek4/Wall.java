@@ -10,22 +10,22 @@ public final class Wall {
 	public int anInt3044;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "e", descriptor = "Lclient!th;")
-	public Entity aClass8_5;
+	public Entity modelA;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "h", descriptor = "Lclient!th;")
-	public Entity aClass8_6;
+	public Entity modelB;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "k", descriptor = "I")
 	public int anInt3048;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "l", descriptor = "I")
-	public int anInt3049;
+	public int typeA;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "o", descriptor = "I")
 	public int anInt3051;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "q", descriptor = "I")
-	public int anInt3052;
+	public int typeB;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "d", descriptor = "J")
 	public long aLong107 = 0L;
