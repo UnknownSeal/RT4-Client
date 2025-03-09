@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,16 +11,16 @@ public final class Static201 {
 	public static int anInt1864;
 
 	@OriginalMember(owner = "runetek4.client!qf", name = "M", descriptor = "I")
-	public static int anInt1862 = 0;
+	public static int idleNetCycles = 0;
 
 	@OriginalMember(owner = "runetek4.client!qf", name = "N", descriptor = "Lclient!na;")
-	public static final JagString aClass100_406 = Static28.parse("::cardmem");
+	public static final JString CARDMEM = Static28.parse("::cardmem");
 
 	@OriginalMember(owner = "runetek4.client!qf", name = "Q", descriptor = "Lclient!na;")
-	public static final JagString aClass100_407 = Static28.parse(" )2> <col=ffff00>");
+	public static final JString aClass100_407 = Static28.parse(" )2> <col=ffff00>");
 
 	@OriginalMember(owner = "runetek4.client!qf", name = "R", descriptor = "Lclient!na;")
-	public static final JagString aClass100_408 = Static28.parse(" )2> ");
+	public static final JString aClass100_408 = Static28.parse(" )2> ");
 
 	@OriginalMember(owner = "runetek4.client!qf", name = "X", descriptor = "Lclient!be;")
 	public static Component aClass13_13 = null;

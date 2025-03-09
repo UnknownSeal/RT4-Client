@@ -11,10 +11,10 @@ public final class Static116 {
 	public static Sprite[] aClass3_Sub2_Sub1Array3;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "c", descriptor = "Lclient!na;")
-	public static final JagString aClass100_583 = Static28.parse("(Y<)4col>");
+	public static final JString aClass100_583 = Static28.parse("(Y<)4col>");
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "m", descriptor = "I")
-	public static int anInt2951 = 0;
+	public static int entityUpdateCount = 0;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "n", descriptor = "I")
 	public static int anInt2952 = 0;
@@ -50,7 +50,7 @@ public final class Static116 {
 		Static248.anIntArrayArrayArray17 = null;
 		Static41.anInt1309 = 0;
 		Static269.aClass3_Sub2_Sub4_2 = null;
-		Static145.aClass69_84.method2278();
+		Static145.aClass69_84.clear();
 		Static203.aMapElementTypeList_1 = null;
 		Static217.anInt4901 = -1;
 		Static130.aClass41_2 = null;

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.seqtype.SeqType;
+import com.jagex.runetek4.config.SeqType;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -25,7 +25,7 @@ public final class Static146 {
 	public static int firstvisibleLevel = 99;
 
 	@OriginalMember(owner = "runetek4.client!lg", name = "a", descriptor = "(ZLclient!wa;Lclient!na;)I")
-	public static int method2748(@OriginalArg(1) Packet arg0, @OriginalArg(2) JagString arg1) {
+	public static int method2748(@OriginalArg(1) Packet arg0, @OriginalArg(2) JString arg1) {
 		@Pc(6) int local6 = arg0.pos;
 		@Pc(14) byte[] local14 = arg1.method3148();
 		arg0.pSmart1or2(local14.length);
@@ -43,8 +43,8 @@ public final class Static146 {
 		Static235.anInt5276 = arg0;
 		for (@Pc(3) int local3 = 0; local3 < Static152.anInt3594; local3++) {
 			for (@Pc(8) int local8 = 0; local8 < Static99.anInt2550; local8++) {
-				if (Static130.aClass3_Sub5ArrayArrayArray1[arg0][local3][local8] == null) {
-					Static130.aClass3_Sub5ArrayArrayArray1[arg0][local3][local8] = new Tile(arg0, local3, local8);
+				if (Static130.levelTiles[arg0][local3][local8] == null) {
+					Static130.levelTiles[arg0][local3][local8] = new Ground(arg0, local3, local8);
 				}
 			}
 		}

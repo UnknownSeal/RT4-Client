@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.game.config.flutype.FloorUnderlayType;
+import com.jagex.runetek4.config.FloType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -19,37 +19,37 @@ public final class Static193 {
 	public static long aLong147 = 0L;
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "Q", descriptor = "Lclient!na;")
-	public static final JagString aClass100_853 = Static28.parse("null");
+	public static final JString aClass100_853 = Static28.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "V", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array134 = new JagString[100];
+	public static final JString[] ignoreName = new JString[100];
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "a", descriptor = "(Lclient!na;BI)V")
-	public static void method3498(@OriginalArg(0) JagString arg0, @OriginalArg(2) int arg1) {
+	public static void method3498(@OriginalArg(0) JString arg0, @OriginalArg(2) int arg1) {
 		@Pc(10) DelayedStateChange local10 = Static238.method4143(2, arg1);
 		local10.method1017();
 		local10.stringArg = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "a", descriptor = "(JI)V")
-	public static void method3500(@OriginalArg(0) long arg0) {
-		if (arg0 == 0L) {
+	public static void removeFriend(@OriginalArg(0) long username) {
+		if (username == 0L) {
 			return;
 		}
-		for (@Pc(13) int local13 = 0; local13 < Static9.anInt178; local13++) {
-			if (Static92.aLongArray3[local13] == arg0) {
-				Static9.anInt178--;
-				for (@Pc(41) int local41 = local13; local41 < Static9.anInt178; local41++) {
-					Static122.aClass100Array92[local41] = Static122.aClass100Array92[local41 + 1];
-					Static104.anIntArray255[local41] = Static104.anIntArray255[local41 + 1];
-					Static214.aClass100Array170[local41] = Static214.aClass100Array170[local41 + 1];
-					Static92.aLongArray3[local41] = Static92.aLongArray3[local41 + 1];
-					Static106.anIntArray258[local41] = Static106.anIntArray258[local41 + 1];
-					Static3.aBooleanArray135[local41] = Static3.aBooleanArray135[local41 + 1];
+		for (@Pc(13) int local13 = 0; local13 < Static9.friendCount; local13++) {
+			if (Static92.friendName37[local13] == username) {
+				Static9.friendCount--;
+				for (@Pc(41) int i = local13; i < Static9.friendCount; i++) {
+					Static122.friendName[i] = Static122.friendName[i + 1];
+					Static104.friendWorld[i] = Static104.friendWorld[i + 1];
+					Static214.aClass100Array170[i] = Static214.aClass100Array170[i + 1];
+					Static92.friendName37[i] = Static92.friendName37[i + 1];
+					Static106.anIntArray258[i] = Static106.anIntArray258[i + 1];
+					Static3.aBooleanArray135[i] = Static3.aBooleanArray135[i + 1];
 				}
 				Static185.anInt4369 = Static119.transmitTimer;
 				Static6.outboundBuffer.pIsaac1(57);
-				Static6.outboundBuffer.p8(arg0);
+				Static6.outboundBuffer.p8(username);
 				break;
 			}
 		}
@@ -72,7 +72,7 @@ public final class Static193 {
 					local25 = arg2[local11 - 1][local16 - 1];
 				}
 				if (local25 != 0) {
-					@Pc(77) FloorUnderlayType local77 = Static199.method3593((local25 & 0xFF) - 1);
+					@Pc(77) FloType local77 = Static199.method3593((local25 & 0xFF) - 1);
 					local9[local11][local16] = (local77.material + 1 << 16) + local77.hardshadow;
 				}
 			}
@@ -263,7 +263,7 @@ public final class Static193 {
 		}
 		for (local493 = (Class3_Sub14) local103.peekFront(); local493 != null; local493 = (Class3_Sub14) local103.prev()) {
 			if (local493.anInt2483 == 0) {
-				local493.remove();
+				local493.unlink();
 			} else {
 				local493.method1943();
 			}

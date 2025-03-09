@@ -8,19 +8,19 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static123 {
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "d", descriptor = "Lclient!na;")
-	public static final JagString aClass100_592 = Static28.parse("headicons_pk");
+	public static final JString HEADICONS_PK = Static28.parse("headicons_pk");
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "e", descriptor = "I")
 	public static int anInt3058 = 0;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "g", descriptor = "Lclient!na;")
-	public static final JagString aClass100_593 = Static28.parse(" (X");
+	public static final JString aClass100_593 = Static28.parse(" (X");
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "j", descriptor = "Z")
 	public static boolean aBoolean155 = false;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "m", descriptor = "Lclient!na;")
-	public static final JagString aClass100_594 = Static28.parse("<)4col>");
+	public static final JString aClass100_594 = Static28.parse("<)4col>");
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(BI)Lclient!lk;")
 	public static StructType method2417(@OriginalArg(1) int arg0) {
@@ -65,7 +65,7 @@ public final class Static123 {
 			@Pc(158) int local158;
 			@Pc(137) boolean local137;
 			if (local10.anInt4453 == 1) {
-				local14 = local10.anInt4452 + Static277.anInt5855 - Static167.anInt4069;
+				local14 = local10.anInt4452 + Static277.anInt5855 - Static167.eyeTileX;
 				if (local14 >= 0 && local14 <= Static277.anInt5855 + Static277.anInt5855) {
 					local115 = local10.anInt4461 + Static277.anInt5855 - Static193.anInt4539;
 					if (local115 < 0) {
@@ -83,7 +83,7 @@ public final class Static123 {
 						}
 					}
 					if (local137) {
-						local158 = Static149.anInt3555 - local10.anInt4460;
+						local158 = Static149.eyeX - local10.anInt4460;
 						if (local158 > 32) {
 							local10.anInt4462 = 1;
 						} else {
@@ -93,21 +93,21 @@ public final class Static123 {
 							local10.anInt4462 = 2;
 							local158 = -local158;
 						}
-						local10.anInt4454 = (local10.anInt4458 - Static217.anInt4903 << 8) / local158;
-						local10.anInt4450 = (local10.anInt4449 - Static217.anInt4903 << 8) / local158;
-						local10.anInt4459 = (local10.anInt4444 - Static162.anInt3947 << 8) / local158;
-						local10.anInt4463 = (local10.anInt4447 - Static162.anInt3947 << 8) / local158;
+						local10.anInt4454 = (local10.anInt4458 - Static217.eyeZ << 8) / local158;
+						local10.anInt4450 = (local10.anInt4449 - Static217.eyeZ << 8) / local158;
+						local10.anInt4459 = (local10.anInt4444 - Static162.eyeY << 8) / local158;
+						local10.anInt4463 = (local10.anInt4447 - Static162.eyeY << 8) / local158;
 						Static247.aClass120Array2[Static215.anInt4870++] = local10;
 					}
 				}
 			} else if (local10.anInt4453 == 2) {
 				local14 = local10.anInt4461 + Static277.anInt5855 - Static193.anInt4539;
 				if (local14 >= 0 && local14 <= Static277.anInt5855 + Static277.anInt5855) {
-					local115 = local10.anInt4452 + Static277.anInt5855 - Static167.anInt4069;
+					local115 = local10.anInt4452 + Static277.anInt5855 - Static167.eyeTileX;
 					if (local115 < 0) {
 						local115 = 0;
 					}
-					local126 = local10.anInt4446 + Static277.anInt5855 - Static167.anInt4069;
+					local126 = local10.anInt4446 + Static277.anInt5855 - Static167.eyeTileX;
 					if (local126 > Static277.anInt5855 + Static277.anInt5855) {
 						local126 = Static277.anInt5855 + Static277.anInt5855;
 					}
@@ -119,7 +119,7 @@ public final class Static123 {
 						}
 					}
 					if (local137) {
-						local158 = Static217.anInt4903 - local10.anInt4458;
+						local158 = Static217.eyeZ - local10.anInt4458;
 						if (local158 > 32) {
 							local10.anInt4462 = 3;
 						} else {
@@ -129,15 +129,15 @@ public final class Static123 {
 							local10.anInt4462 = 4;
 							local158 = -local158;
 						}
-						local10.anInt4448 = (local10.anInt4460 - Static149.anInt3555 << 8) / local158;
-						local10.anInt4456 = (local10.anInt4445 - Static149.anInt3555 << 8) / local158;
-						local10.anInt4459 = (local10.anInt4444 - Static162.anInt3947 << 8) / local158;
-						local10.anInt4463 = (local10.anInt4447 - Static162.anInt3947 << 8) / local158;
+						local10.anInt4448 = (local10.anInt4460 - Static149.eyeX << 8) / local158;
+						local10.anInt4456 = (local10.anInt4445 - Static149.eyeX << 8) / local158;
+						local10.anInt4459 = (local10.anInt4444 - Static162.eyeY << 8) / local158;
+						local10.anInt4463 = (local10.anInt4447 - Static162.eyeY << 8) / local158;
 						Static247.aClass120Array2[Static215.anInt4870++] = local10;
 					}
 				}
 			} else if (local10.anInt4453 == 4) {
-				local14 = local10.anInt4444 - Static162.anInt3947;
+				local14 = local10.anInt4444 - Static162.eyeY;
 				if (local14 > 128) {
 					local115 = local10.anInt4461 + Static277.anInt5855 - Static193.anInt4539;
 					if (local115 < 0) {
@@ -148,11 +148,11 @@ public final class Static123 {
 						local126 = Static277.anInt5855 + Static277.anInt5855;
 					}
 					if (local115 <= local126) {
-						@Pc(408) int local408 = local10.anInt4452 + Static277.anInt5855 - Static167.anInt4069;
+						@Pc(408) int local408 = local10.anInt4452 + Static277.anInt5855 - Static167.eyeTileX;
 						if (local408 < 0) {
 							local408 = 0;
 						}
-						local158 = local10.anInt4446 + Static277.anInt5855 - Static167.anInt4069;
+						local158 = local10.anInt4446 + Static277.anInt5855 - Static167.eyeTileX;
 						if (local158 > Static277.anInt5855 + Static277.anInt5855) {
 							local158 = Static277.anInt5855 + Static277.anInt5855;
 						}
@@ -167,10 +167,10 @@ public final class Static123 {
 						}
 						if (local430) {
 							local10.anInt4462 = 5;
-							local10.anInt4448 = (local10.anInt4460 - Static149.anInt3555 << 8) / local14;
-							local10.anInt4456 = (local10.anInt4445 - Static149.anInt3555 << 8) / local14;
-							local10.anInt4454 = (local10.anInt4458 - Static217.anInt4903 << 8) / local14;
-							local10.anInt4450 = (local10.anInt4449 - Static217.anInt4903 << 8) / local14;
+							local10.anInt4448 = (local10.anInt4460 - Static149.eyeX << 8) / local14;
+							local10.anInt4456 = (local10.anInt4445 - Static149.eyeX << 8) / local14;
+							local10.anInt4454 = (local10.anInt4458 - Static217.eyeZ << 8) / local14;
+							local10.anInt4450 = (local10.anInt4449 - Static217.eyeZ << 8) / local14;
 							Static247.aClass120Array2[Static215.anInt4870++] = local10;
 						}
 					}
@@ -180,24 +180,24 @@ public final class Static123 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(IBI)Lclient!na;")
-	public static JagString method2420(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(4) int local4 = arg1 - arg0;
-		if (local4 < -9) {
-			return Static175.aClass100_798;
-		} else if (local4 < -6) {
-			return Static64.aClass100_433;
-		} else if (local4 < -3) {
-			return Static223.aClass100_951;
-		} else if (local4 < 0) {
-			return Static229.aClass100_972;
-		} else if (local4 > 9) {
-			return Static42.aClass100_332;
-		} else if (local4 > 6) {
-			return Static6.aClass100_18;
-		} else if (local4 <= 3) {
-			return local4 > 0 ? Static41.aClass100_266 : Static226.aClass100_965;
+	public static JString getCombatLevelColorTag(@OriginalArg(0) int viewerLevel, @OriginalArg(2) int otherLevel) {
+		@Pc(4) int diff = otherLevel - viewerLevel;
+		if (diff < -9) {
+			return Static175.RED;
+		} else if (diff < -6) {
+			return Static64.RED2;
+		} else if (diff < -3) {
+			return Static223.ORANGE;
+		} else if (diff < 0) {
+			return Static229.YELLOW;
+		} else if (diff > 9) {
+			return Static42.GREEN;
+		} else if (diff > 6) {
+			return Static6.GREEN2;
+		} else if (diff <= 3) {
+			return diff > 0 ? Static41.GREEN3 : Static226.YELLOW2;
 		} else {
-			return Static263.aClass100_1081;
+			return Static263.GREEN3;
 		}
 	}
 
@@ -217,7 +217,7 @@ public final class Static123 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "b", descriptor = "(BI)Lclient!na;")
-	public static JagString method2423(@OriginalArg(1) int arg0) {
+	public static JString method2423(@OriginalArg(1) int arg0) {
 		return Static198.method1025(false, arg0);
 	}
 }

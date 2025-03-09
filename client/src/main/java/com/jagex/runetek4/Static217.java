@@ -1,8 +1,8 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.loctype.LocType;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -10,7 +10,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static217 {
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "R", descriptor = "I")
-	public static int anInt4903;
+	public static int eyeZ;
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "Y", descriptor = "J")
 	public static long js5ConnectTime;
@@ -19,27 +19,27 @@ public final class Static217 {
 	public static int anInt4901 = -1;
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "U", descriptor = "Lclient!ih;")
-	public static final LinkedList aClass69_116 = new LinkedList();
+	public static final LinkList projectiles = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "Z", descriptor = "[I")
 	public static final int[] anIntArray434 = new int[64];
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "ab", descriptor = "Lclient!na;")
-	public static final JagString aClass100_916 = Static28.parse(":clanreq:");
+	public static final JString CLANREQ = Static28.parse(":clanreq:");
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "a", descriptor = "(IIILclient!e;I)V")
-	public static void method3767(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Player arg2, @OriginalArg(4) int arg3) {
-		if (Static173.self == arg2 || PreciseSleep.anInt5204 >= 400) {
+	public static void method3767(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) PlayerEntity arg2, @OriginalArg(4) int arg3) {
+		if (Static173.localPlayer == arg2 || PreciseSleep.anInt5204 >= 400) {
 			return;
 		}
-		@Pc(158) JagString local158;
+		@Pc(158) JString local158;
 		if (arg2.anInt1671 == 0) {
 			@Pc(22) boolean local22 = true;
-			if (Static173.self.anInt1667 != -1 && arg2.anInt1667 != -1) {
-				@Pc(43) int local43 = arg2.anInt1652 < Static173.self.anInt1652 ? Static173.self.anInt1652 : arg2.anInt1652;
-				@Pc(58) int local58 = Static173.self.anInt1667 < arg2.anInt1667 ? Static173.self.anInt1667 : arg2.anInt1667;
+			if (Static173.localPlayer.anInt1667 != -1 && arg2.anInt1667 != -1) {
+				@Pc(43) int local43 = arg2.combatLevel < Static173.localPlayer.combatLevel ? Static173.localPlayer.combatLevel : arg2.combatLevel;
+				@Pc(58) int local58 = Static173.localPlayer.anInt1667 < arg2.anInt1667 ? Static173.localPlayer.anInt1667 : arg2.anInt1667;
 				@Pc(69) int local69 = local43 * 10 / 100 + local58 + 5;
-				@Pc(76) int local76 = Static173.self.anInt1652 - arg2.anInt1652;
+				@Pc(76) int local76 = Static173.localPlayer.combatLevel - arg2.combatLevel;
 				if (local76 < 0) {
 					local76 = -local76;
 				}
@@ -47,28 +47,28 @@ public final class Static217 {
 					local22 = false;
 				}
 			}
-			@Pc(95) JagString local95 = Static266.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
-			if (arg2.anInt1652 < arg2.anInt1656) {
-				local158 = Static34.method882(new JagString[] { arg2.getName(), local22 ? Static123.method2420(arg2.anInt1652, Static173.self.anInt1652) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.anInt1652), Static78.aClass100_465, Static123.method2423(arg2.anInt1656 - arg2.anInt1652), Static72.aClass100_448 });
+			@Pc(95) JString local95 = Static266.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
+			if (arg2.combatLevel < arg2.anInt1656) {
+				local158 = Static34.method882(new JString[] { arg2.getName(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, Static173.localPlayer.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static78.aClass100_465, Static123.method2423(arg2.anInt1656 - arg2.combatLevel), Static72.aClass100_448 });
 			} else {
-				local158 = Static34.method882(new JagString[] { arg2.getName(), local22 ? Static123.method2420(arg2.anInt1652, Static173.self.anInt1652) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.anInt1652), Static72.aClass100_448 });
+				local158 = Static34.method882(new JString[] { arg2.getName(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, Static173.localPlayer.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static72.aClass100_448 });
 			}
 		} else {
-			local158 = Static34.method882(new JagString[] { arg2.getName(), Static123.aClass100_593, LocalizedText.SKILL, Static123.method2423(arg2.anInt1671), Static72.aClass100_448 });
+			local158 = Static34.method882(new JString[] { arg2.getName(), Static123.aClass100_593, LocalizedText.SKILL, Static123.method2423(arg2.anInt1671), Static72.aClass100_448 });
 		}
 		@Pc(275) int local275;
 		if (Static260.anInt5014 == 1) {
-			Static98.method1966(Static169.anInt4075, (long) arg0, Static34.method882(new JagString[] { Static34.aClass100_203, Static105.aClass100_561, local158 }), arg3, (short) 1, LocalizedText.USE, arg1);
+			Static98.method1966(Static169.anInt4075, (long) arg0, Static34.method882(new JString[] { Static34.aClass100_203, Static105.aClass100_561, local158 }), arg3, (short) 1, LocalizedText.USE, arg1);
 		} else if (!Static241.aBoolean302) {
 			for (local275 = 7; local275 >= 0; local275--) {
 				if (Static160.aClass100Array121[local275] != null) {
 					@Pc(291) short local291 = 0;
-					if (Static266.game == 0 && Static160.aClass100Array121[local275].method3111(LocalizedText.ATTACK)) {
-						if (arg2.anInt1652 > Static173.self.anInt1652) {
+					if (Static266.game == 0 && Static160.aClass100Array121[local275].equalsIgnoreCase(LocalizedText.ATTACK)) {
+						if (arg2.combatLevel > Static173.localPlayer.combatLevel) {
 							local291 = 2000;
 						}
-						if (Static173.self.anInt1650 != 0 && arg2.anInt1650 != 0) {
-							if (Static173.self.anInt1650 == arg2.anInt1650) {
+						if (Static173.localPlayer.anInt1650 != 0 && arg2.anInt1650 != 0) {
+							if (Static173.localPlayer.anInt1650 == arg2.anInt1650) {
 								local291 = 2000;
 							} else {
 								local291 = 0;
@@ -79,15 +79,15 @@ public final class Static217 {
 					}
 					@Pc(353) short local353 = Static5.aShortArray2[local275];
 					@Pc(358) short local358 = (short) (local353 + local291);
-					Static98.method1966(Static191.anIntArray388[local275], (long) arg0, Static34.method882(new JagString[] { Static204.aClass100_896, local158 }), arg3, local358, Static160.aClass100Array121[local275], arg1);
+					Static98.method1966(Static191.anIntArray388[local275], (long) arg0, Static34.method882(new JString[] { Static204.aClass100_896, local158 }), arg3, local358, Static160.aClass100Array121[local275], arg1);
 				}
 			}
 		} else if ((Static274.anInt4999 & 0x8) != 0) {
-			Static98.method1966(Static246.anInt5393, (long) arg0, Static34.method882(new JagString[] { Static78.aClass100_466, Static105.aClass100_561, local158 }), arg3, (short) 15, Static102.aClass100_545, arg1);
+			Static98.method1966(Static246.anInt5393, (long) arg0, Static34.method882(new JString[] { Static78.aClass100_466, Static105.aClass100_561, local158 }), arg3, (short) 15, Static102.aClass100_545, arg1);
 		}
 		for (local275 = 0; local275 < PreciseSleep.anInt5204; local275++) {
 			if (Static39.aShortArray6[local275] == 60) {
-				Static233.aClass100Array160[local275] = Static34.method882(new JagString[] { Static204.aClass100_896, local158 });
+				Static233.aClass100Array160[local275] = Static34.method882(new JString[] { Static204.aClass100_896, local158 });
 				break;
 			}
 		}
@@ -121,9 +121,9 @@ public final class Static217 {
 		Static90.method1857();
 		Static139.aClass99_22.method3104();
 		if (!GlRenderer.enabled) {
-			((Js5GlTextureProvider) Rasteriser.anInterface1_2).method3247();
+			((Js5GlTextureProvider) Pix3D.anInterface1_2).method3247();
 		}
-		Static105.aClass54_9.method1815();
+		Static105.clientScriptCache.method1815();
 		Static213.aClass153_88.method4499();
 		Static249.aClass153_100.method4499();
 		Static41.aClass153_25.method4499();
@@ -162,9 +162,9 @@ public final class Static217 {
 				@Pc(68) int local68 = local64 >> 2;
 				@Pc(72) int local72 = local64 & 0x3;
 				if (arg3 == local60 && local56 >= arg8 && local56 < arg8 + 8 && arg9 <= local50 && arg9 + 8 > local50) {
-					@Pc(103) LocType local103 = Static271.get(local7);
-					@Pc(120) int local120 = Static52.method1286(local50 & 0x7, arg4, local72, local103.height, local103.width, local56 & 0x7) + arg5;
-					@Pc(137) int local137 = Static241.method4541(local103.width, arg4, local103.height, local56 & 0x7, local72, local50 & 0x7) + arg6;
+					@Pc(103) LocMergeEntity local103 = Static271.get(local7);
+					@Pc(120) int local120 = Static52.method1286(local50 & 0x7, arg4, local72, local103.length, local103.width, local56 & 0x7) + arg5;
+					@Pc(137) int local137 = Static241.method4541(local103.width, arg4, local103.length, local56 & 0x7, local72, local50 & 0x7) + arg6;
 					if (local120 > 0 && local137 > 0 && local120 < 103 && local137 < 103) {
 						@Pc(154) CollisionMap local154 = null;
 						if (!arg7) {

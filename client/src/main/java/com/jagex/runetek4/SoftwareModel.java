@@ -143,9 +143,9 @@ public final class SoftwareModel extends Model {
 		this.anIntArray534 = arg0.anIntArray197;
 		this.anIntArray524 = arg0.anIntArray200;
 		this.anIntArray529 = arg0.anIntArray196;
-		this.aByteArray73 = arg0.facePriority;
+		this.aByteArray73 = arg0.facePriorities;
 		this.aByteArray75 = arg0.aByteArray26;
-		this.aByte20 = arg0.aByte7;
+		this.aByte20 = arg0.modelPriority;
 		this.aShortArray89 = arg0.unmodifiedTriangleColour;
 		this.anIntArrayArray41 = arg0.anIntArrayArray16;
 		this.anIntArrayArray42 = arg0.anIntArrayArray15;
@@ -163,15 +163,15 @@ public final class SoftwareModel extends Model {
 			this.aShortArray92 = new short[this.anInt5787];
 			for (local133 = 0; local133 < this.anInt5787; local133++) {
 				@Pc(142) short local142 = arg0.unmodifiedTriangleTexture[local133];
-				if (local142 != -1 && Rasteriser.anInterface1_2.method3236(local142)) {
+				if (local142 != -1 && Pix3D.anInterface1_2.method3236(local142)) {
 					this.aShortArray92[local133] = local142;
 				} else {
 					this.aShortArray92[local133] = -1;
 				}
 			}
 		}
-		if (arg0.anInt2137 > 0 && arg0.aByteArray31 != null) {
-			@Pc(177) int[] local177 = new int[arg0.anInt2137];
+		if (arg0.texturedFaceCount > 0 && arg0.aByteArray31 != null) {
+			@Pc(177) int[] local177 = new int[arg0.texturedFaceCount];
 			@Pc(179) int local179;
 			for (local179 = 0; local179 < this.anInt5787; local179++) {
 				if (arg0.aByteArray31[local179] != -1) {
@@ -179,7 +179,7 @@ public final class SoftwareModel extends Model {
 				}
 			}
 			this.anInt5789 = 0;
-			for (local179 = 0; local179 < arg0.anInt2137; local179++) {
+			for (local179 = 0; local179 < arg0.texturedFaceCount; local179++) {
 				if (local177[local179] > 0 && arg0.aByteArray29[local179] == 0) {
 					this.anInt5789++;
 				}
@@ -189,7 +189,7 @@ public final class SoftwareModel extends Model {
 			this.anIntArray525 = new int[this.anInt5789];
 			local179 = 0;
 			@Pc(248) int local248;
-			for (local248 = 0; local248 < arg0.anInt2137; local248++) {
+			for (local248 = 0; local248 < arg0.texturedFaceCount; local248++) {
 				if (local177[local248] > 0 && arg0.aByteArray29[local248] == 0) {
 					this.anIntArray526[local179] = arg0.textureTriangleVertex1[local248] & 0xFFFF;
 					this.anIntArray530[local179] = arg0.textureTriangleVertex2[local248] & 0xFFFF;
@@ -433,11 +433,11 @@ public final class SoftwareModel extends Model {
 		@Pc(12) int local12 = this.anIntArray534[arg0];
 		@Pc(17) int local17 = this.anIntArray524[arg0];
 		@Pc(22) int local22 = this.anIntArray529[arg0];
-		Rasteriser.aBoolean138 = Static268.aBooleanArray133[arg0];
+		Pix3D.aBoolean138 = Static268.aBooleanArray133[arg0];
 		if (this.aByteArray75 == null) {
-			Rasteriser.anInt2473 = 0;
+			Pix3D.trans = 0;
 		} else {
-			Rasteriser.anInt2473 = this.aByteArray75[arg0] & 0xFF;
+			Pix3D.trans = this.aByteArray75[arg0] & 0xFF;
 		}
 		if (this.aShortArray92 != null && this.aShortArray92[arg0] != -1) {
 			@Pc(141) int local141;
@@ -454,14 +454,14 @@ public final class SoftwareModel extends Model {
 				local151 = this.anIntArray525[local136];
 			}
 			if (this.anIntArray532[arg0] == -1) {
-				Rasteriser.method1912(Static268.anIntArray551[local12], Static268.anIntArray551[local17], Static268.anIntArray551[local22], Static268.anIntArray556[local12], Static268.anIntArray556[local17], Static268.anIntArray556[local22], this.anIntArray533[arg0], this.anIntArray533[arg0], this.anIntArray533[arg0], Static268.anIntArray560[local141], Static268.anIntArray560[local146], Static268.anIntArray560[local151], Static268.anIntArray548[local141], Static268.anIntArray548[local146], Static268.anIntArray548[local151], Static268.anIntArray544[local141], Static268.anIntArray544[local146], Static268.anIntArray544[local151], this.aShortArray92[arg0]);
+				Pix3D.method1912(Static268.anIntArray551[local12], Static268.anIntArray551[local17], Static268.anIntArray551[local22], Static268.anIntArray556[local12], Static268.anIntArray556[local17], Static268.anIntArray556[local22], this.anIntArray533[arg0], this.anIntArray533[arg0], this.anIntArray533[arg0], Static268.anIntArray560[local141], Static268.anIntArray560[local146], Static268.anIntArray560[local151], Static268.anIntArray548[local141], Static268.anIntArray548[local146], Static268.anIntArray548[local151], Static268.anIntArray544[local141], Static268.anIntArray544[local146], Static268.anIntArray544[local151], this.aShortArray92[arg0]);
 			} else {
-				Rasteriser.method1912(Static268.anIntArray551[local12], Static268.anIntArray551[local17], Static268.anIntArray551[local22], Static268.anIntArray556[local12], Static268.anIntArray556[local17], Static268.anIntArray556[local22], this.anIntArray533[arg0], this.anIntArray523[arg0], this.anIntArray532[arg0], Static268.anIntArray560[local141], Static268.anIntArray560[local146], Static268.anIntArray560[local151], Static268.anIntArray548[local141], Static268.anIntArray548[local146], Static268.anIntArray548[local151], Static268.anIntArray544[local141], Static268.anIntArray544[local146], Static268.anIntArray544[local151], this.aShortArray92[arg0]);
+				Pix3D.method1912(Static268.anIntArray551[local12], Static268.anIntArray551[local17], Static268.anIntArray551[local22], Static268.anIntArray556[local12], Static268.anIntArray556[local17], Static268.anIntArray556[local22], this.anIntArray533[arg0], this.anIntArray523[arg0], this.anIntArray532[arg0], Static268.anIntArray560[local141], Static268.anIntArray560[local146], Static268.anIntArray560[local151], Static268.anIntArray548[local141], Static268.anIntArray548[local146], Static268.anIntArray548[local151], Static268.anIntArray544[local141], Static268.anIntArray544[local146], Static268.anIntArray544[local151], this.aShortArray92[arg0]);
 			}
 		} else if (this.anIntArray532[arg0] == -1) {
-			Rasteriser.method1918(Static268.anIntArray551[local12], Static268.anIntArray551[local17], Static268.anIntArray551[local22], Static268.anIntArray556[local12], Static268.anIntArray556[local17], Static268.anIntArray556[local22], Rasteriser.anIntArray220[this.anIntArray533[arg0] & 0xFFFF]);
+			Pix3D.method1918(Static268.anIntArray551[local12], Static268.anIntArray551[local17], Static268.anIntArray551[local22], Static268.anIntArray556[local12], Static268.anIntArray556[local17], Static268.anIntArray556[local22], Pix3D.anIntArray220[this.anIntArray533[arg0] & 0xFFFF]);
 		} else {
-			Rasteriser.method1928(Static268.anIntArray551[local12], Static268.anIntArray551[local17], Static268.anIntArray551[local22], Static268.anIntArray556[local12], Static268.anIntArray556[local17], Static268.anIntArray556[local22], this.anIntArray533[arg0] & 0xFFFF, this.anIntArray523[arg0] & 0xFFFF, this.anIntArray532[arg0] & 0xFFFF);
+			Pix3D.method1928(Static268.anIntArray551[local12], Static268.anIntArray551[local17], Static268.anIntArray551[local22], Static268.anIntArray556[local12], Static268.anIntArray556[local17], Static268.anIntArray556[local22], this.anIntArray533[arg0] & 0xFFFF, this.anIntArray523[arg0] & 0xFFFF, this.anIntArray532[arg0] & 0xFFFF);
 		}
 	}
 
@@ -576,7 +576,7 @@ public final class SoftwareModel extends Model {
 		arg2.anIntArrayArray42 = this.anIntArrayArray42;
 		arg2.aShortArray91 = this.aShortArray91;
 		arg2.aShortArray90 = this.aShortArray90;
-		arg2.aBoolean303 = this.aBoolean303;
+		arg2.pickable = this.pickable;
 		arg2.aBoolean305 = false;
 		return arg2;
 	}
@@ -622,7 +622,7 @@ public final class SoftwareModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!w", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public final void method4546(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
+	public final void draw(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
 		if (!this.aBoolean305) {
 			this.method4592();
 		}
@@ -654,8 +654,8 @@ public final class SoftwareModel extends Model {
 		@Pc(154) boolean local154 = false;
 		@Pc(161) boolean local161 = local53 <= 50;
 		@Pc(170) boolean local170 = local161 || this.anInt5789 > 0;
-		@Pc(172) int local172 = Rasteriser.anInt2471;
-		@Pc(174) int local174 = Rasteriser.anInt2469;
+		@Pc(172) int local172 = Pix3D.anInt2471;
+		@Pc(174) int local174 = Pix3D.anInt2469;
 		@Pc(176) int local176 = 0;
 		@Pc(178) int local178 = 0;
 		if (arg0 != 0) {
@@ -726,7 +726,7 @@ public final class SoftwareModel extends Model {
 					}
 				}
 				if (Static150.anInt3582 >= local204 && Static150.anInt3582 <= local208 && Static34.anInt1053 >= local223 && Static34.anInt1053 <= local227) {
-					if (this.aBoolean303) {
+					if (this.pickable) {
 						Static259.aLongArray11[Static2.anInt7++] = arg8;
 					} else {
 						local190 = true;
@@ -825,7 +825,7 @@ public final class SoftwareModel extends Model {
 			local150.anIntArrayArray42 = this.anIntArrayArray42;
 			local150.aShortArray91 = this.aShortArray91;
 			local150.aShortArray90 = this.aShortArray90;
-			local150.aBoolean303 = this.aBoolean303;
+			local150.pickable = this.pickable;
 			if (arg0 == 3) {
 				local150.anIntArray528 = Static115.method2308(this.anIntArray528);
 				local150.anIntArray527 = Static115.method2308(this.anIntArray527);
@@ -941,8 +941,8 @@ public final class SoftwareModel extends Model {
 			if (!this.aBoolean305) {
 				this.method4592();
 			}
-			@Pc(6) int local6 = Rasteriser.anInt2471;
-			@Pc(8) int local8 = Rasteriser.anInt2469;
+			@Pc(6) int local6 = Pix3D.anInt2471;
+			@Pc(8) int local8 = Pix3D.anInt2469;
 			@Pc(12) int local12 = MathUtils.anIntArray223[0];
 			@Pc(16) int local16 = MathUtils.anIntArray225[0];
 			@Pc(20) int local20 = MathUtils.anIntArray223[arg0];
@@ -988,8 +988,8 @@ public final class SoftwareModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!w", name = "g", descriptor = "(I)V")
 	private void method4587(@OriginalArg(0) int arg0) {
-		@Pc(1) int local1 = Rasteriser.anInt2471;
-		@Pc(3) int local3 = Rasteriser.anInt2469;
+		@Pc(1) int local1 = Pix3D.anInt2471;
+		@Pc(3) int local3 = Pix3D.anInt2469;
 		@Pc(5) int local5 = 0;
 		@Pc(10) int local10 = this.anIntArray534[arg0];
 		@Pc(15) int local15 = this.anIntArray524[arg0];
@@ -998,9 +998,9 @@ public final class SoftwareModel extends Model {
 		@Pc(28) int local28 = Static268.anIntArray544[local15];
 		@Pc(32) int local32 = Static268.anIntArray544[local20];
 		if (this.aByteArray75 == null) {
-			Rasteriser.anInt2473 = 0;
+			Pix3D.trans = 0;
 		} else {
-			Rasteriser.anInt2473 = this.aByteArray75[arg0] & 0xFF;
+			Pix3D.trans = this.aByteArray75[arg0] & 0xFF;
 		}
 		@Pc(75) int local75;
 		@Pc(79) int local79;
@@ -1077,14 +1077,14 @@ public final class SoftwareModel extends Model {
 		local99 = Static268.anIntArray547[0];
 		@Pc(614) int local614 = Static268.anIntArray547[1];
 		@Pc(618) int local618 = Static268.anIntArray547[2];
-		Rasteriser.aBoolean138 = false;
+		Pix3D.aBoolean138 = false;
 		@Pc(709) int local709;
 		@Pc(714) int local714;
 		@Pc(719) int local719;
 		@Pc(704) int local704;
 		if (local5 == 3) {
-			if (local75 < 0 || local79 < 0 || local86 < 0 || local75 > Rasteriser.anInt2472 || local79 > Rasteriser.anInt2472 || local86 > Rasteriser.anInt2472) {
-				Rasteriser.aBoolean138 = true;
+			if (local75 < 0 || local79 < 0 || local86 < 0 || local75 > Pix3D.anInt2472 || local79 > Pix3D.anInt2472 || local86 > Pix3D.anInt2472) {
+				Pix3D.aBoolean138 = true;
 			}
 			if (this.aShortArray92 != null && this.aShortArray92[arg0] != -1) {
 				if (this.aByteArray74 == null || this.aByteArray74[arg0] == -1) {
@@ -1098,21 +1098,21 @@ public final class SoftwareModel extends Model {
 					local719 = this.anIntArray525[local704];
 				}
 				if (this.anIntArray532[arg0] == -1) {
-					Rasteriser.method1912(local99, local614, local618, local75, local79, local86, this.anIntArray533[arg0], this.anIntArray533[arg0], this.anIntArray533[arg0], Static268.anIntArray560[local709], Static268.anIntArray560[local714], Static268.anIntArray560[local719], Static268.anIntArray548[local709], Static268.anIntArray548[local714], Static268.anIntArray548[local719], Static268.anIntArray544[local709], Static268.anIntArray544[local714], Static268.anIntArray544[local719], this.aShortArray92[arg0]);
+					Pix3D.method1912(local99, local614, local618, local75, local79, local86, this.anIntArray533[arg0], this.anIntArray533[arg0], this.anIntArray533[arg0], Static268.anIntArray560[local709], Static268.anIntArray560[local714], Static268.anIntArray560[local719], Static268.anIntArray548[local709], Static268.anIntArray548[local714], Static268.anIntArray548[local719], Static268.anIntArray544[local709], Static268.anIntArray544[local714], Static268.anIntArray544[local719], this.aShortArray92[arg0]);
 				} else {
-					Rasteriser.method1912(local99, local614, local618, local75, local79, local86, Static268.anIntArray553[0], Static268.anIntArray553[1], Static268.anIntArray553[2], Static268.anIntArray560[local709], Static268.anIntArray560[local714], Static268.anIntArray560[local719], Static268.anIntArray548[local709], Static268.anIntArray548[local714], Static268.anIntArray548[local719], Static268.anIntArray544[local709], Static268.anIntArray544[local714], Static268.anIntArray544[local719], this.aShortArray92[arg0]);
+					Pix3D.method1912(local99, local614, local618, local75, local79, local86, Static268.anIntArray553[0], Static268.anIntArray553[1], Static268.anIntArray553[2], Static268.anIntArray560[local709], Static268.anIntArray560[local714], Static268.anIntArray560[local719], Static268.anIntArray548[local709], Static268.anIntArray548[local714], Static268.anIntArray548[local719], Static268.anIntArray544[local709], Static268.anIntArray544[local714], Static268.anIntArray544[local719], this.aShortArray92[arg0]);
 				}
 			} else if (this.anIntArray532[arg0] == -1) {
-				Rasteriser.method1918(local99, local614, local618, local75, local79, local86, Rasteriser.anIntArray220[this.anIntArray533[arg0] & 0xFFFF]);
+				Pix3D.method1918(local99, local614, local618, local75, local79, local86, Pix3D.anIntArray220[this.anIntArray533[arg0] & 0xFFFF]);
 			} else {
-				Rasteriser.method1928(local99, local614, local618, local75, local79, local86, Static268.anIntArray553[0], Static268.anIntArray553[1], Static268.anIntArray553[2]);
+				Pix3D.method1928(local99, local614, local618, local75, local79, local86, Static268.anIntArray553[0], Static268.anIntArray553[1], Static268.anIntArray553[2]);
 			}
 		}
 		if (local5 != 4) {
 			return;
 		}
-		if (local75 < 0 || local79 < 0 || local86 < 0 || local75 > Rasteriser.anInt2472 || local79 > Rasteriser.anInt2472 || local86 > Rasteriser.anInt2472 || Static268.anIntArray542[3] < 0 || Static268.anIntArray542[3] > Rasteriser.anInt2472) {
-			Rasteriser.aBoolean138 = true;
+		if (local75 < 0 || local79 < 0 || local86 < 0 || local75 > Pix3D.anInt2472 || local79 > Pix3D.anInt2472 || local86 > Pix3D.anInt2472 || Static268.anIntArray542[3] < 0 || Static268.anIntArray542[3] > Pix3D.anInt2472) {
+			Pix3D.aBoolean138 = true;
 		}
 		if (this.aShortArray92 != null && this.aShortArray92[arg0] != -1) {
 			if (this.aByteArray74 == null || this.aByteArray74[arg0] == -1) {
@@ -1127,19 +1127,19 @@ public final class SoftwareModel extends Model {
 			}
 			@Pc(984) short local984 = this.aShortArray92[arg0];
 			if (this.anIntArray532[arg0] == -1) {
-				Rasteriser.method1912(local99, local614, local618, local75, local79, local86, this.anIntArray533[arg0], this.anIntArray533[arg0], this.anIntArray533[arg0], Static268.anIntArray560[local709], Static268.anIntArray560[local714], Static268.anIntArray560[local719], Static268.anIntArray548[local709], Static268.anIntArray548[local714], Static268.anIntArray548[local719], Static268.anIntArray544[local709], Static268.anIntArray544[local714], Static268.anIntArray544[local719], local984);
-				Rasteriser.method1912(local99, local618, Static268.anIntArray547[3], local75, local86, Static268.anIntArray542[3], this.anIntArray533[arg0], this.anIntArray533[arg0], this.anIntArray533[arg0], Static268.anIntArray560[local709], Static268.anIntArray560[local714], Static268.anIntArray560[local719], Static268.anIntArray548[local709], Static268.anIntArray548[local714], Static268.anIntArray548[local719], Static268.anIntArray544[local709], Static268.anIntArray544[local714], Static268.anIntArray544[local719], local984);
+				Pix3D.method1912(local99, local614, local618, local75, local79, local86, this.anIntArray533[arg0], this.anIntArray533[arg0], this.anIntArray533[arg0], Static268.anIntArray560[local709], Static268.anIntArray560[local714], Static268.anIntArray560[local719], Static268.anIntArray548[local709], Static268.anIntArray548[local714], Static268.anIntArray548[local719], Static268.anIntArray544[local709], Static268.anIntArray544[local714], Static268.anIntArray544[local719], local984);
+				Pix3D.method1912(local99, local618, Static268.anIntArray547[3], local75, local86, Static268.anIntArray542[3], this.anIntArray533[arg0], this.anIntArray533[arg0], this.anIntArray533[arg0], Static268.anIntArray560[local709], Static268.anIntArray560[local714], Static268.anIntArray560[local719], Static268.anIntArray548[local709], Static268.anIntArray548[local714], Static268.anIntArray548[local719], Static268.anIntArray544[local709], Static268.anIntArray544[local714], Static268.anIntArray544[local719], local984);
 			} else {
-				Rasteriser.method1912(local99, local614, local618, local75, local79, local86, Static268.anIntArray553[0], Static268.anIntArray553[1], Static268.anIntArray553[2], Static268.anIntArray560[local709], Static268.anIntArray560[local714], Static268.anIntArray560[local719], Static268.anIntArray548[local709], Static268.anIntArray548[local714], Static268.anIntArray548[local719], Static268.anIntArray544[local709], Static268.anIntArray544[local714], Static268.anIntArray544[local719], local984);
-				Rasteriser.method1912(local99, local618, Static268.anIntArray547[3], local75, local86, Static268.anIntArray542[3], Static268.anIntArray553[0], Static268.anIntArray553[2], Static268.anIntArray553[3], Static268.anIntArray560[local709], Static268.anIntArray560[local714], Static268.anIntArray560[local719], Static268.anIntArray548[local709], Static268.anIntArray548[local714], Static268.anIntArray548[local719], Static268.anIntArray544[local709], Static268.anIntArray544[local714], Static268.anIntArray544[local719], local984);
+				Pix3D.method1912(local99, local614, local618, local75, local79, local86, Static268.anIntArray553[0], Static268.anIntArray553[1], Static268.anIntArray553[2], Static268.anIntArray560[local709], Static268.anIntArray560[local714], Static268.anIntArray560[local719], Static268.anIntArray548[local709], Static268.anIntArray548[local714], Static268.anIntArray548[local719], Static268.anIntArray544[local709], Static268.anIntArray544[local714], Static268.anIntArray544[local719], local984);
+				Pix3D.method1912(local99, local618, Static268.anIntArray547[3], local75, local86, Static268.anIntArray542[3], Static268.anIntArray553[0], Static268.anIntArray553[2], Static268.anIntArray553[3], Static268.anIntArray560[local709], Static268.anIntArray560[local714], Static268.anIntArray560[local719], Static268.anIntArray548[local709], Static268.anIntArray548[local714], Static268.anIntArray548[local719], Static268.anIntArray544[local709], Static268.anIntArray544[local714], Static268.anIntArray544[local719], local984);
 			}
 		} else if (this.anIntArray532[arg0] == -1) {
-			local709 = Rasteriser.anIntArray220[this.anIntArray533[arg0] & 0xFFFF];
-			Rasteriser.method1918(local99, local614, local618, local75, local79, local86, local709);
-			Rasteriser.method1918(local99, local618, Static268.anIntArray547[3], local75, local86, Static268.anIntArray542[3], local709);
+			local709 = Pix3D.anIntArray220[this.anIntArray533[arg0] & 0xFFFF];
+			Pix3D.method1918(local99, local614, local618, local75, local79, local86, local709);
+			Pix3D.method1918(local99, local618, Static268.anIntArray547[3], local75, local86, Static268.anIntArray542[3], local709);
 		} else {
-			Rasteriser.method1928(local99, local614, local618, local75, local79, local86, Static268.anIntArray553[0], Static268.anIntArray553[1], Static268.anIntArray553[2]);
-			Rasteriser.method1928(local99, local618, Static268.anIntArray547[3], local75, local86, Static268.anIntArray542[3], Static268.anIntArray553[0], Static268.anIntArray553[2], Static268.anIntArray553[3]);
+			Pix3D.method1928(local99, local614, local618, local75, local79, local86, Static268.anIntArray553[0], Static268.anIntArray553[1], Static268.anIntArray553[2]);
+			Pix3D.method1928(local99, local618, Static268.anIntArray547[3], local75, local86, Static268.anIntArray542[3], Static268.anIntArray553[0], Static268.anIntArray553[2], Static268.anIntArray553[3]);
 		}
 	}
 
@@ -1491,13 +1491,13 @@ public final class SoftwareModel extends Model {
 						}
 					}
 				} else {
-					if (arg1 && this.method4589(Static150.anInt3582 + Rasteriser.anInt2471, Static34.anInt1053 + Rasteriser.anInt2469, Static268.anIntArray551[local51], Static268.anIntArray551[local56], Static268.anIntArray551[local61], local65, local69, local73)) {
+					if (arg1 && this.method4589(Static150.anInt3582 + Pix3D.anInt2471, Static34.anInt1053 + Pix3D.anInt2469, Static268.anIntArray551[local51], Static268.anIntArray551[local56], Static268.anIntArray551[local61], local65, local69, local73)) {
 						Static259.aLongArray11[Static2.anInt7++] = arg2;
 						arg1 = false;
 					}
 					if ((local65 - local69) * (Static268.anIntArray551[local61] - Static268.anIntArray551[local56]) - (Static268.anIntArray551[local51] - Static268.anIntArray551[local56]) * (local73 - local69) > 0) {
 						Static268.aBooleanArray132[local11] = false;
-						if (local65 >= 0 && local69 >= 0 && local73 >= 0 && local65 <= Rasteriser.anInt2472 && local69 <= Rasteriser.anInt2472 && local73 <= Rasteriser.anInt2472) {
+						if (local65 >= 0 && local69 >= 0 && local73 >= 0 && local65 <= Pix3D.anInt2472 && local69 <= Pix3D.anInt2472 && local73 <= Pix3D.anInt2472) {
 							Static268.aBooleanArray133[local11] = false;
 						} else {
 							Static268.aBooleanArray133[local11] = true;
@@ -1743,8 +1743,8 @@ public final class SoftwareModel extends Model {
 			if (!this.aBoolean305) {
 				this.method4592();
 			}
-			@Pc(6) int local6 = Rasteriser.anInt2471;
-			@Pc(8) int local8 = Rasteriser.anInt2469;
+			@Pc(6) int local6 = Pix3D.anInt2471;
+			@Pc(8) int local8 = Pix3D.anInt2469;
 			@Pc(12) int local12 = MathUtils.anIntArray223[0];
 			@Pc(16) int local16 = MathUtils.anIntArray225[0];
 			@Pc(20) int local20 = MathUtils.anIntArray223[arg0];

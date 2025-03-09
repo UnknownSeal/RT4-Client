@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import java.awt.Frame;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -22,13 +22,13 @@ public final class Static169 {
 	public static Component aClass13_18;
 
 	@OriginalMember(owner = "runetek4.client!nf", name = "f", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_24 = new SoftLruHashTable(500);
+	public static final SoftLruHashTable modelCacheStatic = new SoftLruHashTable(500);
 
 	@OriginalMember(owner = "runetek4.client!nf", name = "i", descriptor = "I")
 	public static int anInt4075 = -1;
 
 	@OriginalMember(owner = "runetek4.client!nf", name = "a", descriptor = "(Lclient!na;BZ)V")
-	public static void openUrl(@OriginalArg(0) JagString arg0, @OriginalArg(2) boolean arg1) {
+	public static void openUrl(@OriginalArg(0) JString arg0, @OriginalArg(2) boolean arg1) {
 		if (!arg1) {
 			try {
 				Static230.anApplet_Sub1_1.getAppletContext().showDocument(arg0.method3127(Static230.anApplet_Sub1_1.getCodeBase()), "_top");

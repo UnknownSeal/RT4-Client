@@ -15,7 +15,7 @@ public final class AnimFrameset extends SecondaryNode {
 
 	@OriginalMember(owner = "client!cl", name = "<init>", descriptor = "(Lclient!ve;Lclient!ve;IZ)V")
 	public AnimFrameset(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1, @OriginalArg(2) int arg2, @OriginalArg(3) boolean arg3) {
-		@Pc(5) LinkedList local5 = new LinkedList();
+		@Pc(5) LinkList local5 = new LinkList();
 		@Pc(10) int local10 = arg0.method4504(arg2);
 		this.frames = new AnimFrame[local10];
 		@Pc(19) int[] local19 = arg0.method4503(arg2);

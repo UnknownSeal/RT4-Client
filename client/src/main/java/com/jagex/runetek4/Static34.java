@@ -1,8 +1,9 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.config.SpotAnimType;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.seqtype.SeqType;
-import com.jagex.runetek4.game.scene.entities.PathingEntity;
+import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -17,61 +18,61 @@ public final class Static34 {
 	public static byte[][][] aByteArrayArrayArray3;
 
     @OriginalMember(owner = "runetek4.client!ck", name = "b", descriptor = "Lclient!na;")
-	private static final JagString aClass100_195 = Static28.parse("Discard");
+	private static final JString aClass100_195 = Static28.parse("Discard");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "d", descriptor = "[I")
-	public static final int[] anIntArray80 = new int[] { 1, 0, -1, 0 };
+	public static final int[] WALL_DECORATION_ROTATION_FORWARD_X = new int[] { 1, 0, -1, 0 };
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "T", descriptor = "Lclient!na;")
-	private static final JagString aClass100_207 = Static28.parse("Jan");
+	private static final JString aClass100_207 = Static28.parse("Jan");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "hb", descriptor = "Lclient!na;")
-	private static final JagString aClass100_212 = Static28.parse("Feb");
+	private static final JString aClass100_212 = Static28.parse("Feb");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "gb", descriptor = "Lclient!na;")
-	private static final JagString aClass100_211 = Static28.parse("Mar");
+	private static final JString aClass100_211 = Static28.parse("Mar");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "db", descriptor = "Lclient!na;")
-	private static final JagString aClass100_210 = Static28.parse("Apr");
+	private static final JString aClass100_210 = Static28.parse("Apr");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "n", descriptor = "Lclient!na;")
-	private static final JagString aClass100_199 = Static28.parse("May");
+	private static final JString aClass100_199 = Static28.parse("May");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "L", descriptor = "Lclient!na;")
-	private static final JagString aClass100_204 = Static28.parse("Jun");
+	private static final JString aClass100_204 = Static28.parse("Jun");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "B", descriptor = "Lclient!na;")
-	private static final JagString aClass100_202 = Static28.parse("Jul");
+	private static final JString aClass100_202 = Static28.parse("Jul");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "l", descriptor = "Lclient!na;")
-	private static final JagString aClass100_198 = Static28.parse("Aug");
+	private static final JString aClass100_198 = Static28.parse("Aug");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "V", descriptor = "Lclient!na;")
-	private static final JagString aClass100_208 = Static28.parse("Sep");
+	private static final JString aClass100_208 = Static28.parse("Sep");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "S", descriptor = "Lclient!na;")
-	private static final JagString aClass100_206 = Static28.parse("Oct");
+	private static final JString aClass100_206 = Static28.parse("Oct");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "Y", descriptor = "Lclient!na;")
-	private static final JagString aClass100_209 = Static28.parse("Nov");
+	private static final JString aClass100_209 = Static28.parse("Nov");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "O", descriptor = "Lclient!na;")
-	private static final JagString aClass100_205 = Static28.parse("Dec");
+	private static final JString aClass100_205 = Static28.parse("Dec");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "f", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array40 = new JagString[] { aClass100_207, aClass100_212, aClass100_211, aClass100_210, aClass100_199, aClass100_204, aClass100_202, aClass100_198, aClass100_208, aClass100_206, aClass100_209, aClass100_205 };
+	public static final JString[] aClass100Array40 = new JString[] { aClass100_207, aClass100_212, aClass100_211, aClass100_210, aClass100_199, aClass100_204, aClass100_202, aClass100_198, aClass100_208, aClass100_206, aClass100_209, aClass100_205 };
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "k", descriptor = "I")
 	public static volatile int anInt1034 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "o", descriptor = "Lclient!na;")
-	private static final JagString aClass100_200 = Static28.parse("Loaded world list data");
+	private static final JString LOADED_WORLD_LIST_DATA = Static28.parse("Loaded world list data");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "C", descriptor = "I")
 	public static int anInt1047 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "D", descriptor = "Lclient!na;")
-	public static JagString aClass100_203 = null;
+	public static JString aClass100_203 = null;
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "K", descriptor = "I")
 	public static int anInt1053 = 0;
@@ -100,106 +101,106 @@ public final class Static34 {
 		if (local26 != null) {
 			local10.method1316(new Packet(local26));
 		}
-		Static279.aClass99_38.method3095(local10, (long) arg0);
+		Static279.aClass99_38.put(local10, (long) arg0);
 		return local10;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "(Lclient!fe;I)V")
 	public static void method879(@OriginalArg(0) PathingEntity arg0) {
-		arg0.aBoolean171 = false;
-		@Pc(18) SeqType local18;
-		if (arg0.anInt3366 != -1) {
-			local18 = Static36.method941(arg0.anInt3366);
-			if (local18 == null || local18.anIntArray473 == null) {
-				arg0.anInt3366 = -1;
+		arg0.seqStretches = false;
+		@Pc(18) SeqType seq;
+		if (arg0.secondarySeqId != -1) {
+			seq = Static36.method941(arg0.secondarySeqId);
+			if (seq == null || seq.anIntArray473 == null) {
+				arg0.secondarySeqId = -1;
 			} else {
 				arg0.anInt3396++;
-				if (local18.anIntArray473.length > arg0.anInt3407 && arg0.anInt3396 > local18.frames[arg0.anInt3407]) {
+				if (seq.anIntArray473.length > arg0.anInt3407 && arg0.anInt3396 > seq.frames[arg0.anInt3407]) {
 					arg0.anInt3396 = 1;
 					arg0.anInt3407++;
 					arg0.anInt3388++;
-					Static152.method2836(arg0.anInt3421, local18, arg0.anInt3412, arg0 == Static173.self, arg0.anInt3407);
+					Static152.method2836(arg0.z, seq, arg0.x, arg0 == Static173.localPlayer, arg0.anInt3407);
 				}
-				if (arg0.anInt3407 >= local18.anIntArray473.length) {
+				if (arg0.anInt3407 >= seq.anIntArray473.length) {
 					arg0.anInt3407 = 0;
 					arg0.anInt3396 = 0;
-					Static152.method2836(arg0.anInt3421, local18, arg0.anInt3412, Static173.self == arg0, arg0.anInt3407);
+					Static152.method2836(arg0.z, seq, arg0.x, Static173.localPlayer == arg0, arg0.anInt3407);
 				}
 				arg0.anInt3388 = arg0.anInt3407 + 1;
-				if (arg0.anInt3388 >= local18.anIntArray473.length) {
+				if (arg0.anInt3388 >= seq.anIntArray473.length) {
 					arg0.anInt3388 = 0;
 				}
 			}
 		}
 		@Pc(156) int local156;
-		if (arg0.anInt3432 != -1 && Static83.loopCycle >= arg0.anInt3359) {
-			local156 = method877(arg0.anInt3432).anInt1754;
+		if (arg0.spotanimFrame != -1 && Static83.loopCycle >= arg0.spotanimLastCycle) {
+			local156 = method877(arg0.spotanimFrame).anInt1754;
 			if (local156 == -1) {
-				arg0.anInt3432 = -1;
+				arg0.spotanimFrame = -1;
 			} else {
 				@Pc(165) SeqType local165 = Static36.method941(local156);
 				if (local165 == null || local165.anIntArray473 == null) {
-					arg0.anInt3432 = -1;
+					arg0.spotanimFrame = -1;
 				} else {
-					if (arg0.anInt3399 < 0) {
-						arg0.anInt3399 = 0;
-						Static152.method2836(arg0.anInt3421, local165, arg0.anInt3412, Static173.self == arg0, 0);
+					if (arg0.spotanimId < 0) {
+						arg0.spotanimId = 0;
+						Static152.method2836(arg0.z, local165, arg0.x, Static173.localPlayer == arg0, 0);
 					}
 					arg0.anInt3361++;
-					if (arg0.anInt3399 < local165.anIntArray473.length && local165.frames[arg0.anInt3399] < arg0.anInt3361) {
-						arg0.anInt3399++;
+					if (arg0.spotanimId < local165.anIntArray473.length && local165.frames[arg0.spotanimId] < arg0.anInt3361) {
+						arg0.spotanimId++;
 						arg0.anInt3361 = 1;
-						Static152.method2836(arg0.anInt3421, local165, arg0.anInt3412, Static173.self == arg0, arg0.anInt3399);
+						Static152.method2836(arg0.z, local165, arg0.x, Static173.localPlayer == arg0, arg0.spotanimId);
 					}
-					if (arg0.anInt3399 >= local165.anIntArray473.length) {
-						arg0.anInt3432 = -1;
+					if (arg0.spotanimId >= local165.anIntArray473.length) {
+						arg0.spotanimFrame = -1;
 					}
-					arg0.anInt3418 = arg0.anInt3399 + 1;
+					arg0.anInt3418 = arg0.spotanimId + 1;
 					if (local165.anIntArray473.length <= arg0.anInt3418) {
 						arg0.anInt3418 = -1;
 					}
 				}
 			}
 		}
-		if (arg0.anInt3369 != -1 && arg0.anInt3420 <= 1) {
-			local18 = Static36.method941(arg0.anInt3369);
-			if (local18.anInt5363 == 1 && arg0.anInt3405 > 0 && Static83.loopCycle >= arg0.anInt3395 && Static83.loopCycle > arg0.anInt3386) {
+		if (arg0.primarySeqId != -1 && arg0.anInt3420 <= 1) {
+			seq = Static36.method941(arg0.primarySeqId);
+			if (seq.anInt5363 == 1 && arg0.anInt3405 > 0 && Static83.loopCycle >= arg0.anInt3395 && Static83.loopCycle > arg0.anInt3386) {
 				arg0.anInt3420 = 1;
 				return;
 			}
 		}
-		if (arg0.anInt3369 != -1 && arg0.anInt3420 == 0) {
-			local18 = Static36.method941(arg0.anInt3369);
-			if (local18 == null || local18.anIntArray473 == null) {
-				arg0.anInt3369 = -1;
+		if (arg0.primarySeqId != -1 && arg0.anInt3420 == 0) {
+			seq = Static36.method941(arg0.primarySeqId);
+			if (seq == null || seq.anIntArray473 == null) {
+				arg0.primarySeqId = -1;
 			} else {
 				arg0.anInt3360++;
-				if (arg0.anInt3425 < local18.anIntArray473.length && arg0.anInt3360 > local18.frames[arg0.anInt3425]) {
+				if (arg0.anInt3425 < seq.anIntArray473.length && arg0.anInt3360 > seq.frames[arg0.anInt3425]) {
 					arg0.anInt3360 = 1;
 					arg0.anInt3425++;
-					Static152.method2836(arg0.anInt3421, local18, arg0.anInt3412, arg0 == Static173.self, arg0.anInt3425);
+					Static152.method2836(arg0.z, seq, arg0.x, arg0 == Static173.localPlayer, arg0.anInt3425);
 				}
-				if (local18.anIntArray473.length <= arg0.anInt3425) {
-					arg0.anInt3425 -= local18.replayoff;
+				if (seq.anIntArray473.length <= arg0.anInt3425) {
+					arg0.anInt3425 -= seq.replayoff;
 					arg0.anInt3371++;
-					if (arg0.anInt3371 >= local18.replaycount) {
-						arg0.anInt3369 = -1;
-					} else if (arg0.anInt3425 >= 0 && local18.anIntArray473.length > arg0.anInt3425) {
-						Static152.method2836(arg0.anInt3421, local18, arg0.anInt3412, Static173.self == arg0, arg0.anInt3425);
+					if (arg0.anInt3371 >= seq.replaycount) {
+						arg0.primarySeqId = -1;
+					} else if (arg0.anInt3425 >= 0 && seq.anIntArray473.length > arg0.anInt3425) {
+						Static152.method2836(arg0.z, seq, arg0.x, Static173.localPlayer == arg0, arg0.anInt3425);
 					} else {
-						arg0.anInt3369 = -1;
+						arg0.primarySeqId = -1;
 					}
 				}
 				arg0.anInt3373 = arg0.anInt3425 + 1;
-				if (arg0.anInt3373 >= local18.anIntArray473.length) {
-					arg0.anInt3373 -= local18.replayoff;
-					if (local18.replaycount <= arg0.anInt3371 + 1) {
+				if (arg0.anInt3373 >= seq.anIntArray473.length) {
+					arg0.anInt3373 -= seq.replayoff;
+					if (seq.replaycount <= arg0.anInt3371 + 1) {
 						arg0.anInt3373 = -1;
-					} else if (arg0.anInt3373 < 0 || arg0.anInt3373 >= local18.anIntArray473.length) {
+					} else if (arg0.anInt3373 < 0 || arg0.anInt3373 >= seq.anIntArray473.length) {
 						arg0.anInt3373 = -1;
 					}
 				}
-				arg0.aBoolean171 = local18.stretches;
+				arg0.seqStretches = seq.stretches;
 			}
 		}
 		if (arg0.anInt3420 > 0) {
@@ -219,7 +220,7 @@ public final class Static34 {
 						if (local545.anInt5399 < local570.anIntArray473.length && local545.anInt5404 > local570.frames[local545.anInt5399]) {
 							local545.anInt5399++;
 							local545.anInt5404 = 1;
-							Static152.method2836(arg0.anInt3421, local570, arg0.anInt3412, arg0 == Static173.self, local545.anInt5399);
+							Static152.method2836(arg0.z, local570, arg0.x, arg0 == Static173.localPlayer, local545.anInt5399);
 						}
 						if (local570.anIntArray473.length <= local545.anInt5399) {
 							local545.anInt5400++;
@@ -227,7 +228,7 @@ public final class Static34 {
 							if (local570.replaycount <= local545.anInt5400) {
 								arg0.aClass147Array3[local156] = null;
 							} else if (local545.anInt5399 >= 0 && local545.anInt5399 < local570.anIntArray473.length) {
-								Static152.method2836(arg0.anInt3421, local570, arg0.anInt3412, Static173.self == arg0, local545.anInt5399);
+								Static152.method2836(arg0.z, local570, arg0.x, Static173.localPlayer == arg0, local545.anInt5399);
 							} else {
 								arg0.aClass147Array3[local156] = null;
 							}
@@ -248,7 +249,7 @@ public final class Static34 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "([Lclient!na;B)Lclient!na;")
-	public static JagString method882(@OriginalArg(0) JagString[] arg0) {
+	public static JString method882(@OriginalArg(0) JString[] arg0) {
 		if (arg0.length < 2) {
 			throw new IllegalArgumentException();
 		}

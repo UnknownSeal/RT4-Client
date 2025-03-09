@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -21,7 +21,7 @@ public final class Static266 {
 	public static int anInt5336 = -2;
 
 	@OriginalMember(owner = "runetek4.client!vk", name = "d", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1010 = Static28.parse("null");
+	public static final JString aClass100_1010 = Static28.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!vk", name = "h", descriptor = "I")
 	public static final int anInt5338 = (int) (Math.random() * 33.0D) - 16;
@@ -65,7 +65,7 @@ public final class Static266 {
 	public static void method4193(@OriginalArg(0) Scenery arg0) {
 		for (@Pc(2) int local2 = arg0.anInt1701; local2 <= arg0.anInt1713; local2++) {
 			for (@Pc(9) int local9 = arg0.anInt1696; local9 <= arg0.anInt1698; local9++) {
-				@Pc(22) Tile local22 = Static130.aClass3_Sub5ArrayArrayArray1[arg0.anInt1709][local2][local9];
+				@Pc(22) Ground local22 = Static130.levelTiles[arg0.anInt1709][local2][local9];
 				if (local22 != null) {
 					@Pc(26) int local26;
 					for (local26 = 0; local26 < local22.anInt662; local26++) {
@@ -79,9 +79,9 @@ public final class Static266 {
 							break;
 						}
 					}
-					local22.anInt664 = 0;
+					local22.locSpans = 0;
 					for (local26 = 0; local26 < local22.anInt662; local26++) {
-						local22.anInt664 |= local22.anIntArray59[local26];
+						local22.locSpans |= local22.anIntArray59[local26];
 					}
 				}
 			}

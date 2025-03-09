@@ -1,7 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.loctype.LocType;
-import com.jagex.runetek4.game.config.seqtype.SeqType;
+import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.dash3d.entity.LocEntity;
+import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.config.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -81,7 +83,7 @@ public final class Loc extends Entity {
 		this.anInt1307 = arg1;
 		this.anInt1299 = arg0;
 		this.anInt1300 = arg5;
-		@Pc(67) LocType local67;
+		@Pc(67) LocMergeEntity local67;
 		if (GlRenderer.enabled && arg8 != null) {
 			if (arg8 instanceof Loc) {
 				((Loc) arg8).method1046();
@@ -151,10 +153,10 @@ public final class Loc extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public final void method4546(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
+	public final void draw(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
 		@Pc(3) Entity local3 = this.method1049();
 		if (local3 != null) {
-			local3.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_2);
+			local3.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_2);
 		}
 	}
 
@@ -225,8 +227,8 @@ public final class Loc extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(ZI)Lclient!th;")
 	private Entity method1048(@OriginalArg(0) boolean arg0) {
-		@Pc(12) boolean local12 = Static107.anIntArrayArrayArray10 != Static83.anIntArrayArrayArray4;
-		@Pc(19) LocType local19 = Static271.get(this.anInt1299);
+		@Pc(12) boolean local12 = Static107.anIntArrayArrayArray10 != Static83.levelHeightMap;
+		@Pc(19) LocMergeEntity local19 = Static271.get(this.anInt1299);
 		@Pc(22) int local22 = local19.anim;
 		if (local19.multiloc != null) {
 			local19 = local19.getVisible();
@@ -263,21 +265,21 @@ public final class Loc extends Entity {
 		@Pc(157) int local157;
 		if (local69 == 1 || local69 == 3) {
 			local157 = local19.width;
-			local160 = local19.height;
+			local160 = local19.length;
 		} else {
 			local160 = local19.width;
-			local157 = local19.height;
+			local157 = local19.length;
 		}
 		@Pc(178) int local178 = this.anInt1308 + (local160 + 1 >> 1);
 		@Pc(185) int local185 = (local160 >> 1) + this.anInt1308;
 		@Pc(192) int local192 = (local157 >> 1) + this.anInt1300;
 		@Pc(201) int local201 = (local157 + 1 >> 1) + this.anInt1300;
 		this.method1047(local192 * 128, local185 * 128);
-		@Pc(256) boolean local256 = !local12 && local19.hardshadow && (local19.anInt4426 != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || Static204.aBoolean234) && this.anInt1297 != this.anInt1304) && Static139.anInt3451 >= 2);
+		@Pc(256) boolean local256 = !local12 && local19.hardshadow && (local19.anInt4426 != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || Static204.tween) && this.anInt1297 != this.anInt1304) && Static139.anInt3451 >= 2);
 		if (arg0 && !local256) {
 			return null;
 		}
-		@Pc(267) int[][] local267 = Static83.anIntArrayArrayArray4[this.anInt1303];
+		@Pc(267) int[][] local267 = Static83.levelHeightMap[this.anInt1303];
 		@Pc(293) int local293 = local267[local178][local201] + local267[local185][local201] + local267[local185][local192] + local267[local178][local192] >> 2;
 		@Pc(302) int local302 = (local160 << 6) + (this.anInt1308 << 7);
 		@Pc(311) int local311 = (local157 << 6) + (this.anInt1300 << 7);
@@ -285,7 +287,7 @@ public final class Loc extends Entity {
 		if (local12) {
 			local314 = Static107.anIntArrayArrayArray10[0];
 		} else if (this.anInt1303 < 3) {
-			local314 = Static83.anIntArrayArrayArray4[this.anInt1303 + 1];
+			local314 = Static83.levelHeightMap[this.anInt1303 + 1];
 		}
 		if (GlRenderer.enabled && local256) {
 			Static242.method4207(this.aClass36_Sub1_2, this.anInt1296, this.anInt1294, this.anInt1319);
@@ -306,7 +308,7 @@ public final class Loc extends Entity {
 			}
 			@Pc(429) int local429 = 0;
 			if (this.anInt1303 != 0) {
-				@Pc(439) int[][] local439 = Static83.anIntArrayArrayArray4[0];
+				@Pc(439) int[][] local439 = Static83.levelHeightMap[0];
 				local429 = local293 - (local439[local178][local192] + local439[local185][local192] + local439[local185][local201] + local439[local178][local201] >> 2);
 			}
 			@Pc(471) SoftwareIndexedSprite local471 = local389.sprite;

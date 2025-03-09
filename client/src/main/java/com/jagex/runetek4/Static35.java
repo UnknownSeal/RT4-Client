@@ -26,7 +26,7 @@ public final class Static35 {
 	public static int anInt1092 = -1;
 
 	@OriginalMember(owner = "runetek4.client!cl", name = "Z", descriptor = "I")
-	public static int size = 0;
+	public static int ignoreCount = 0;
 
 	@OriginalMember(owner = "runetek4.client!cl", name = "ab", descriptor = "[I")
 	public static final int[] anIntArray83 = new int[256];
@@ -97,7 +97,7 @@ public final class Static35 {
 
 	@OriginalMember(owner = "runetek4.client!cl", name = "a", descriptor = "(III)J")
 	public static long method899(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Tile local7 = Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2];
+		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return 0L;
 		}
@@ -113,7 +113,7 @@ public final class Static35 {
 	@OriginalMember(owner = "runetek4.client!cl", name = "e", descriptor = "(I)V")
 	public static void method902() {
 		for (@Pc(3) int local3 = 0; local3 < 5; local3++) {
-			Static176.aBooleanArray95[local3] = false;
+			Static176.cameraModifierEnabled[local3] = false;
 		}
 		Static133.anInt5230 = 0;
 		Static233.anInt5217 = 0;

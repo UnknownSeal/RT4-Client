@@ -10,7 +10,7 @@ public final class Static252 {
 	public static Js5 aClass153_103;
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "Y", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1049 = Static28.parse("huffman");
+	public static final JString aClass100_1049 = Static28.parse("huffman");
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "ab", descriptor = "Lclient!q;")
 	public static final ReferenceNodeFactory aClass22_1 = Static44.method1147();
@@ -34,7 +34,7 @@ public final class Static252 {
 				Static266.aByteArrayArrayArray15[local33][local31][local40] = local27;
 			}
 		}
-		if (Static55.level == 3) {
+		if (Static55.currentLevel == 3) {
 			return;
 		}
 		for (local33 = 0; local33 < 2; local33++) {
@@ -45,28 +45,28 @@ public final class Static252 {
 			Static50.anIntArray134[local33] = 0;
 		}
 		if (Static227.anInt5096 != 1) {
-			local33 = Static207.method3685(Static55.level, Static138.anInt3439, Static134.anInt3302);
-			if (local33 - Static5.anInt40 < 800 && (Static12.aByteArrayArrayArray2[Static55.level][Static138.anInt3439 >> 7][Static134.anInt3302 >> 7] & 0x4) != 0) {
-				Static254.method4348(false, Static138.anInt3439 >> 7, Static134.anInt3302 >> 7, Static130.aClass3_Sub5ArrayArrayArray1, 1);
+			local33 = Static207.getHeightmapY(Static55.currentLevel, Static138.cameraX, Static134.cameraZ);
+			if (local33 - Static5.cameraY < 800 && (Static12.aByteArrayArrayArray2[Static55.currentLevel][Static138.cameraX >> 7][Static134.cameraZ >> 7] & 0x4) != 0) {
+				Static254.method4348(false, Static138.cameraX >> 7, Static134.cameraZ >> 7, Static130.levelTiles, 1);
 			}
 			return;
 		}
-		if ((Static12.aByteArrayArrayArray2[Static55.level][Static173.self.anInt3412 >> 7][Static173.self.anInt3421 >> 7] & 0x4) != 0) {
-			Static254.method4348(false, Static173.self.anInt3412 >> 7, Static173.self.anInt3421 >> 7, Static130.aClass3_Sub5ArrayArrayArray1, 0);
+		if ((Static12.aByteArrayArrayArray2[Static55.currentLevel][Static173.localPlayer.x >> 7][Static173.localPlayer.z >> 7] & 0x4) != 0) {
+			Static254.method4348(false, Static173.localPlayer.x >> 7, Static173.localPlayer.z >> 7, Static130.levelTiles, 0);
 		}
-		if (Static240.anInt5333 >= 310) {
+		if (Static240.cameraPitch >= 310) {
 			return;
 		}
-		@Pc(135) int local135 = Static173.self.anInt3421 >> 7;
-		local40 = Static134.anInt3302 >> 7;
+		@Pc(135) int local135 = Static173.localPlayer.z >> 7;
+		local40 = Static134.cameraZ >> 7;
 		@Pc(146) int local146;
 		if (local40 < local135) {
 			local146 = local135 - local40;
 		} else {
 			local146 = local40 - local135;
 		}
-		local33 = Static138.anInt3439 >> 7;
-		@Pc(162) int local162 = Static173.self.anInt3412 >> 7;
+		local33 = Static138.cameraX >> 7;
+		@Pc(162) int local162 = Static173.localPlayer.x >> 7;
 		@Pc(174) int local174;
 		if (local162 > local33) {
 			local174 = local162 - local33;
@@ -84,8 +84,8 @@ public final class Static252 {
 				} else if (local40 > local135) {
 					local40--;
 				}
-				if ((Static12.aByteArrayArrayArray2[Static55.level][local33][local40] & 0x4) != 0) {
-					Static254.method4348(false, local33, local40, Static130.aClass3_Sub5ArrayArrayArray1, 1);
+				if ((Static12.aByteArrayArrayArray2[Static55.currentLevel][local33][local40] & 0x4) != 0) {
+					Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
 					break;
 				}
 				local186 += local192;
@@ -96,8 +96,8 @@ public final class Static252 {
 						local33--;
 					}
 					local186 -= 65536;
-					if ((Static12.aByteArrayArrayArray2[Static55.level][local33][local40] & 0x4) != 0) {
-						Static254.method4348(false, local33, local40, Static130.aClass3_Sub5ArrayArrayArray1, 1);
+					if ((Static12.aByteArrayArrayArray2[Static55.currentLevel][local33][local40] & 0x4) != 0) {
+						Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
 						break;
 					}
 				}
@@ -112,8 +112,8 @@ public final class Static252 {
 			} else if (local33 > local162) {
 				local33--;
 			}
-			if ((Static12.aByteArrayArrayArray2[Static55.level][local33][local40] & 0x4) != 0) {
-				Static254.method4348(false, local33, local40, Static130.aClass3_Sub5ArrayArrayArray1, 1);
+			if ((Static12.aByteArrayArrayArray2[Static55.currentLevel][local33][local40] & 0x4) != 0) {
+				Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
 				break;
 			}
 			local186 += local192;
@@ -124,8 +124,8 @@ public final class Static252 {
 					local40--;
 				}
 				local186 -= 65536;
-				if ((Static12.aByteArrayArrayArray2[Static55.level][local33][local40] & 0x4) != 0) {
-					Static254.method4348(false, local33, local40, Static130.aClass3_Sub5ArrayArrayArray1, 1);
+				if ((Static12.aByteArrayArrayArray2[Static55.currentLevel][local33][local40] & 0x4) != 0) {
+					Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
 					break;
 				}
 			}

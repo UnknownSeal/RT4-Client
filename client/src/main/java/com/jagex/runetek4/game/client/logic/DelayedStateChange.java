@@ -1,6 +1,6 @@
 package com.jagex.runetek4.game.client.logic;
 
-import com.jagex.runetek4.JagString;
+import com.jagex.runetek4.JString;
 import com.jagex.runetek4.MonotonicTime;
 import com.jagex.runetek4.Static140;
 import com.jagex.runetek4.Static215;
@@ -23,7 +23,7 @@ public final class DelayedStateChange extends SecondaryNode {
 	public int intArg1;
 
 	@OriginalMember(owner = "client!da", name = "W", descriptor = "Lclient!na;")
-	public JagString stringArg;
+	public JString stringArg;
 
 	@OriginalMember(owner = "client!da", name = "<init>", descriptor = "(II)V")
 	public DelayedStateChange(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {

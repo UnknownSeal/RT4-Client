@@ -62,17 +62,17 @@ public final class Static79 {
 		if (arg2 < 3 && (Static12.aByteArrayArrayArray2[1][arg1][arg4] & 0x2) == 2) {
 			local39 = arg2 + 1;
 		}
-		Static43.method1144(arg4, arg1, arg2, arg6, local39, Static148.aClass97Array1[arg2]);
+		Static43.method1144(arg4, arg1, arg2, arg6, local39, Static148.levelCollisionMap[arg2]);
 		if (arg0 >= 0) {
 			@Pc(92) boolean local92 = Static250.aBoolean283;
 			Static250.aBoolean283 = true;
-			Static185.method3397(local39, false, arg2, false, Static148.aClass97Array1[arg2], arg0, arg5, arg1, arg4, arg3);
+			Static185.method3397(local39, false, arg2, false, Static148.levelCollisionMap[arg2], arg0, arg5, arg1, arg4, arg3);
 			Static250.aBoolean283 = local92;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ge", name = "a", descriptor = "(IJ)Lclient!na;")
-	public static JagString decode37(@OriginalArg(1) long arg0) {
+	public static JString decode37(@OriginalArg(1) long arg0) {
 		if (arg0 <= 0L || arg0 >= 6582952005840035281L) {
 			return null;
 		} else if (arg0 % 37L == 0L) {
@@ -91,7 +91,7 @@ public final class Static79 {
 				local32--;
 				local48[local32] = Static31.aByteArray12[(int) (local65 - arg0 * 37L)];
 			}
-			@Pc(88) JagString local88 = new JagString();
+			@Pc(88) JString local88 = new JString();
 			local88.aByteArray52 = local48;
 			local88.anInt4030 = local48.length;
 			return local88;

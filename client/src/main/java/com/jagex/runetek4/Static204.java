@@ -19,10 +19,10 @@ public final class Static204 {
 	public static int anInt4762 = 0;
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "u", descriptor = "Lclient!ih;")
-	public static LinkedList aClass69_113 = new LinkedList();
+	public static LinkList aClass69_113 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "v", descriptor = "Z")
-	public static boolean aBoolean234 = false;
+	public static boolean tween = false;
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "x", descriptor = "[I")
 	public static final int[] anIntArray425 = new int[] { 0, 1, 2, 3, 4, 5, 6, 14 };
@@ -31,7 +31,7 @@ public final class Static204 {
 	public static int anInt4765 = -1;
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "B", descriptor = "Lclient!na;")
-	public static final JagString aClass100_896 = Static28.parse("<col=ffffff>");
+	public static final JString aClass100_896 = Static28.parse("<col=ffffff>");
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "e", descriptor = "(B)V")
 	public static void method3673() {

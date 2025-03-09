@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.dash3d.entity.Entity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -9,7 +10,7 @@ import org.openrs2.deob.annotation.Pc;
 public abstract class Model extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "s", descriptor = "Z")
-	public boolean aBoolean303 = false;
+	public boolean pickable = false;
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "c", descriptor = "()I")
 	public abstract int method4550();
@@ -360,7 +361,7 @@ public abstract class Model extends Entity {
 	public abstract int method4576();
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
-	public abstract void method4546(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10);
+	public abstract void draw(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10);
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "a", descriptor = "(I[IIIIZI[I)V")
 	protected abstract void method4577(@OriginalArg(0) int arg0, @OriginalArg(1) int[] arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int[] arg7);

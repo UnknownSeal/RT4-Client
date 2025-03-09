@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -75,7 +75,7 @@ public final class Static38 {
 					local80 -= local84.method1503() * (local211 - 1) / 2;
 					local80 += local84.method1511() / 2;
 					for (@Pc(231) int local231 = 0; local231 < local211; local231++) {
-						@Pc(242) JagString local242 = Static45.aClass100Array53[local231];
+						@Pc(242) JString local242 = Static45.aClass100Array53[local231];
 						if (local211 - 1 > local231) {
 							local242.method3133(local242.length() - 4);
 						}
@@ -145,94 +145,94 @@ public final class Static38 {
 			if ((local28.aLong55 & 0x3FFFFFFFFFFFFFFFL) < local4) {
 				if ((local28.aLong55 & 0x4000000000000000L) != 0L) {
 					@Pc(58) int local58 = (int) local28.nodeId;
-					Static7.anIntArray75[local58] = Static106.anIntArray257[local58];
-					local28.remove();
+					VarpDefinition.varps[local58] = Static106.anIntArray257[local58];
+					local28.unlink();
 					return local58;
 				}
-				local28.remove();
+				local28.unlink();
 			}
 		}
 		return -1;
 	}
 
 	@OriginalMember(owner = "runetek4.client!cn", name = "b", descriptor = "(ZI)V")
-	public static void method964(@OriginalArg(0) boolean arg0) {
-		@Pc(3) int local3 = Static267.size;
-		if (Static115.anInt2939 == Static173.self.anInt3412 >> 7 && Static173.self.anInt3421 >> 7 == Static84.anInt2255) {
+	public static void pushPlayers(@OriginalArg(0) boolean arg0) {
+		@Pc(3) int local3 = Static267.playerCount;
+		if (Static115.anInt2939 == Static173.localPlayer.x >> 7 && Static173.localPlayer.z >> 7 == Static84.anInt2255) {
 			Static115.anInt2939 = 0;
 		}
 		if (arg0) {
 			local3 = 1;
 		}
-		@Pc(28) int local28;
-		@Pc(39) Player local39;
-		@Pc(82) int local82;
+		@Pc(28) int i;
+		@Pc(39) PlayerEntity player;
+		@Pc(82) int stz;
 		@Pc(182) int local182;
 		@Pc(200) int local200;
 		@Pc(214) int local214;
 		@Pc(223) int local223;
 		@Pc(106) int local106;
-		for (local28 = 0; local28 < local3; local28++) {
+		for (i = 0; i < local3; i++) {
 			if (arg0) {
-				local39 = Static173.self;
+				player = Static173.localPlayer;
 			} else {
-				local39 = Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local28]];
+				player = Static159.players[Static105.playerIds[i]];
 			}
-			if (local39 != null && local39.exists()) {
-				@Pc(55) int local55 = local39.size();
-				@Pc(77) int local77;
+			if (player != null && player.isVisible()) {
+				@Pc(55) int local55 = player.size();
+				@Pc(77) int stx;
 				if (local55 == 1) {
-					if ((local39.anInt3412 & 0x7F) == 64 && (local39.anInt3421 & 0x7F) == 64) {
-						local77 = local39.anInt3412 >> 7;
-						local82 = local39.anInt3421 >> 7;
-						if (local77 >= 0 && local77 < 104 && local82 >= 0 && local82 < 104) {
-							local106 = Static31.anIntArrayArray6[local77][local82]++;
+					if ((player.x & 0x7F) == 64 && (player.z & 0x7F) == 64) {
+						stx = player.x >> 7;
+						stz = player.z >> 7;
+						if (stx >= 0 && stx < 104 && stz >= 0 && stz < 104) {
+							local106 = Static31.anIntArrayArray6[stx][stz]++;
 						}
 					}
-				} else if (((local55 & 0x1) != 0 || (local39.anInt3412 & 0x7F) == 0 && (local39.anInt3421 & 0x7F) == 0) && ((local55 & 0x1) != 1 || (local39.anInt3412 & 0x7F) == 64 && (local39.anInt3421 & 0x7F) == 64)) {
-					local77 = local39.anInt3412 - local55 * 64 >> 7;
-					local82 = local39.anInt3421 - local55 * 64 >> 7;
-					local182 = local39.size() + local77;
+				} else if (((local55 & 0x1) != 0 || (player.x & 0x7F) == 0 && (player.z & 0x7F) == 0) && ((local55 & 0x1) != 1 || (player.x & 0x7F) == 64 && (player.z & 0x7F) == 64)) {
+					stx = player.x - local55 * 64 >> 7;
+					stz = player.z - local55 * 64 >> 7;
+					local182 = player.size() + stx;
 					if (local182 > 104) {
 						local182 = 104;
 					}
-					if (local77 < 0) {
-						local77 = 0;
+					if (stx < 0) {
+						stx = 0;
 					}
-					local200 = local82 + local39.size();
-					if (local82 < 0) {
-						local82 = 0;
+					local200 = stz + player.size();
+					if (stz < 0) {
+						stz = 0;
 					}
 					if (local200 > 104) {
 						local200 = 104;
 					}
-					for (local214 = local77; local214 < local182; local214++) {
-						for (local223 = local82; local223 < local200; local223++) {
+					for (local214 = stx; local214 < local182; local214++) {
+						for (local223 = stz; local223 < local200; local223++) {
 							local106 = Static31.anIntArrayArray6[local214][local223]++;
 						}
 					}
 				}
 			}
 		}
-		label220: for (local28 = 0; local28 < local3; local28++) {
-			@Pc(272) long local272;
+		label220: for (i = 0; i < local3; i++) {
+			@Pc(272) long id;
 			if (arg0) {
-				local39 = Static173.self;
-				local272 = 8791798054912L;
+				player = Static173.localPlayer;
+				id = 8791798054912L;
 			} else {
-				local39 = Static159.aClass8_Sub4_Sub1Array1[Static105.ids[local28]];
-				local272 = (long) Static105.ids[local28] << 32;
+				player = Static159.players[Static105.playerIds[i]];
+				id = (long) Static105.playerIds[i] << 32;
 			}
-			if (local39 != null && local39.exists()) {
-				local39.aBoolean98 = false;
-				if ((Static15.aBoolean33 && Static267.size > 200 || Static267.size > 50) && !arg0 && local39.anInt3366 == local39.method2681().anInt1037) {
-					local39.aBoolean98 = true;
+			if (player != null && player.isVisible()) {
+				player.lowMemory = false;
+				if ((Static15.lowMemory && Static267.playerCount > 200 || Static267.playerCount > 50) && !arg0 && player.secondarySeqId == player.method2681().anInt1037) {
+					player.lowMemory = true;
 				}
-				local82 = local39.size();
-				if (local82 == 1) {
-					if ((local39.anInt3412 & 0x7F) == 64 && (local39.anInt3421 & 0x7F) == 64) {
-						local182 = local39.anInt3412 >> 7;
-						local200 = local39.anInt3421 >> 7;
+				stz = player.size();
+				if (stz == 1) {
+					if ((player.x & 0x7F) == 64 && (player.z & 0x7F) == 64) {
+						local182 = player.x >> 7;
+						local200 = player.z >> 7;
 						if (local182 < 0 || local182 >= 104 || local200 < 0 || local200 >= 104) {
 							continue;
 						}
@@ -241,17 +241,17 @@ public final class Static38 {
 							continue;
 						}
 					}
-				} else if ((local82 & 0x1) == 0 && (local39.anInt3412 & 0x7F) == 0 && (local39.anInt3421 & 0x7F) == 0 || (local82 & 0x1) == 1 && (local39.anInt3412 & 0x7F) == 64 && (local39.anInt3421 & 0x7F) == 0) {
-					local182 = local39.anInt3412 - local82 * 64 >> 7;
-					local214 = local82 + local182;
-					local200 = local39.anInt3421 - local82 * 64 >> 7;
+				} else if ((stz & 0x1) == 0 && (player.x & 0x7F) == 0 && (player.z & 0x7F) == 0 || (stz & 0x1) == 1 && (player.x & 0x7F) == 64 && (player.z & 0x7F) == 0) {
+					local182 = player.x - stz * 64 >> 7;
+					local214 = stz + local182;
+					local200 = player.z - stz * 64 >> 7;
 					if (local214 > 104) {
 						local214 = 104;
 					}
 					if (local182 < 0) {
 						local182 = 0;
 					}
-					local223 = local82 + local200;
+					local223 = stz + local200;
 					if (local200 < 0) {
 						local200 = 0;
 					}
@@ -282,13 +282,13 @@ public final class Static38 {
 						}
 					}
 				}
-				if (local39.anObject5 == null || Static83.loopCycle < local39.anInt3390 || local39.anInt3375 <= Static83.loopCycle) {
-					local39.anInt3424 = Static207.method3685(Static55.level, local39.anInt3412, local39.anInt3421);
-					Static43.method1141(Static55.level, local39.anInt3412, local39.anInt3421, local39.anInt3424, (local82 - 1) * 64 + 60, local39, local39.anInt3381, local272, local39.aBoolean171);
+				if (player.locModel == null || Static83.loopCycle < player.locStartCycle || player.locStopCycle <= Static83.loopCycle) {
+					player.y = Static207.getHeightmapY(Static55.currentLevel, player.x, player.z);
+					Static43.addTemporary(Static55.currentLevel, player.x, player.z, player.y, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
 				} else {
-					local39.aBoolean98 = false;
-					local39.anInt3424 = Static207.method3685(Static55.level, local39.anInt3412, local39.anInt3421);
-					Static184.method3387(Static55.level, local39.anInt3412, local39.anInt3421, local39.anInt3424, local39, local39.anInt3381, local272, local39.anInt3384, local39.anInt3374, local39.anInt3411, local39.anInt3410);
+					player.lowMemory = false;
+					player.y = Static207.getHeightmapY(Static55.currentLevel, player.x, player.z);
+					Static184.addTemporary(Static55.currentLevel, player.x, player.z, player.y, player, player.anInt3381, id, player.anInt3384, player.anInt3374, player.anInt3411, player.anInt3410);
 				}
 			}
 		}

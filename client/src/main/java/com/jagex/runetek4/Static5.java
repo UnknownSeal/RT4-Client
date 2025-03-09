@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -12,13 +13,13 @@ public final class Static5 {
 	public static Js5 aClass153_1;
 
 	@OriginalMember(owner = "runetek4.client!af", name = "d", descriptor = "I")
-	public static int anInt40;
+	public static int cameraY;
 
 	@OriginalMember(owner = "runetek4.client!af", name = "c", descriptor = "I")
 	public static int anInt39 = -1;
 
 	@OriginalMember(owner = "runetek4.client!af", name = "g", descriptor = "Lclient!na;")
-	public static final JagString aClass100_9 = Static28.parse("hint_mapedge");
+	public static final JString HINT_MAPEDGE = Static28.parse("hint_mapedge");
 
 	@OriginalMember(owner = "runetek4.client!af", name = "k", descriptor = "I")
 	public static int anInt45 = 0;
@@ -27,7 +28,7 @@ public final class Static5 {
 	public static final short[] aShortArray2 = new short[] { 30, 6, 31, 29, 10, 44, 37, 57 };
 
 	@OriginalMember(owner = "runetek4.client!af", name = "m", descriptor = "Lclient!na;")
-	public static final JagString aClass100_10 = Static28.parse("<br>");
+	public static final JString aClass100_10 = Static28.parse("<br>");
 
 	@OriginalMember(owner = "runetek4.client!af", name = "a", descriptor = "(ILjava/lang/String;)V")
 	public static void method31(@OriginalArg(1) String arg0) {
@@ -65,7 +66,7 @@ public final class Static5 {
 		} else {
 			@Pc(11) int local11 = arg1 * 128 + arg4 * 64;
 			@Pc(19) int local19 = arg2 * 128 + arg5 * 64;
-			return Static105.method2256(arg0, arg1, arg2, arg4, arg5, local11, local19, arg3, arg6, 0, false, arg7);
+			return Static105.addLoc(arg0, arg1, arg2, arg4, arg5, local11, local19, arg3, arg6, 0, false, arg7);
 		}
 	}
 }

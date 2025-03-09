@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,7 +11,7 @@ public final class Static52 {
 	public static int anInt1695;
 
 	@OriginalMember(owner = "runetek4.client!eb", name = "p", descriptor = "[I")
-	public static final int[] removedIds = new int[1000];
+	public static final int[] entityRemovalIds = new int[1000];
 
 	@OriginalMember(owner = "runetek4.client!eb", name = "t", descriptor = "I")
 	public static int anInt1694 = -1;
@@ -42,13 +42,13 @@ public final class Static52 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!eb", name = "b", descriptor = "(II)Lclient!na;")
-	public static JagString method1288(@OriginalArg(1) int arg0) {
+	public static JString method1288(@OriginalArg(1) int arg0) {
 		if (arg0 < 100000) {
-			return Static34.method882(new JagString[] { Static105.aClass100_559, Static123.method2423(arg0), Static123.aClass100_594 });
+			return Static34.method882(new JString[] { Static105.aClass100_559, Static123.method2423(arg0), Static123.aClass100_594 });
 		} else if (arg0 >= 10000000) {
-			return Static34.method882(new JagString[] { Static184.aClass100_819, Static123.method2423(arg0 / 1000000), LocalizedText.MILLION, Static123.aClass100_594 });
+			return Static34.method882(new JString[] { Static184.aClass100_819, Static123.method2423(arg0 / 1000000), LocalizedText.MILLION, Static123.aClass100_594 });
 		} else {
-			return Static34.method882(new JagString[] { Static137.aClass100_637, Static123.method2423(arg0 / 1000), LocalizedText.THOUSAND, Static123.aClass100_594 });
+			return Static34.method882(new JString[] { Static137.aClass100_637, Static123.method2423(arg0 / 1000), LocalizedText.THOUSAND, Static123.aClass100_594 });
 		}
 	}
 }

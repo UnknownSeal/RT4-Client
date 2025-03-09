@@ -21,7 +21,7 @@ public final class Static102 {
 	public static int anInt2678 = 0;
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "W", descriptor = "Lclient!na;")
-	public static JagString aClass100_545 = null;
+	public static JString aClass100_545 = null;
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "X", descriptor = "I")
 	public static int anInt2679 = 0;
@@ -32,7 +32,7 @@ public final class Static102 {
 	@OriginalMember(owner = "runetek4.client!hn", name = "d", descriptor = "(I)Lclient!mm;")
 	public static SoftwareSprite method2071() {
 		@Pc(13) int local13 = Static26.anIntArray66[0] * Static254.anIntArray488[0];
-		@Pc(17) byte[] local17 = Static7.aByteArrayArray5[0];
+		@Pc(17) byte[] local17 = VarpDefinition.aByteArrayArray5[0];
 		@Pc(78) SoftwareSprite local78;
 		if (Static159.aBooleanArray87[0]) {
 			@Pc(30) byte[] local30 = Static64.aByteArrayArray9[0];
@@ -70,13 +70,13 @@ public final class Static102 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "a", descriptor = "(IIIZIIIIIIII)Z")
-	public static boolean method2075(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) boolean arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8, @OriginalArg(10) int arg9, @OriginalArg(11) int arg10) {
-		if (Static173.self.size() == 2) {
+	public static boolean tryMove(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) boolean arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8, @OriginalArg(10) int arg9, @OriginalArg(11) int arg10) {
+		if (Static173.localPlayer.size() == 2) {
 			return Static2.method8(arg6, arg7, arg4, arg0, arg9, arg3, arg2, arg1, arg5, arg8, arg10);
-		} else if (Static173.self.size() <= 2) {
+		} else if (Static173.localPlayer.size() <= 2) {
 			return Static45.method1171(arg5, arg4, arg10, arg9, arg8, arg2, arg1, arg3, arg7, arg0, arg6);
 		} else {
-			return Static96.method1955(arg9, arg6, arg8, arg1, Static173.self.size(), arg5, arg7, arg4, arg10, arg2, arg3, arg0);
+			return Static96.method1955(arg9, arg6, arg8, arg1, Static173.localPlayer.size(), arg5, arg7, arg4, arg10, arg2, arg3, arg0);
 		}
 	}
 }

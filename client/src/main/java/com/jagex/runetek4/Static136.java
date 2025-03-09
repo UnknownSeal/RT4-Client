@@ -20,7 +20,7 @@ public final class Static136 {
 	public static int anInt3325 = 0;
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "m", descriptor = "Lclient!na;")
-	public static final JagString aClass100_633 = Static28.parse("Clientscript error )2 check log for details");
+	public static final JString aClass100_633 = Static28.parse("Clientscript error )2 check log for details");
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "a", descriptor = "(IIB)V")
 	public static void method2649(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
@@ -90,7 +90,7 @@ public final class Static136 {
 		Static80.aBoolean231 = arg0.g1() == 1;
 		Static250.aBoolean283 = arg0.g1() == 1;
 		Static53.aBoolean99 = arg0.g1() == 1;
-		Static15.aBoolean33 = arg0.g1() == 1;
+		Static15.lowMemory = arg0.g1() == 1;
 		Static11.aBoolean15 = arg0.g1() == 1;
 		Static159.aBoolean189 = arg0.g1() == 1;
 		Static209.aBoolean240 = arg0.g1() == 1;

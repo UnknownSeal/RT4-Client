@@ -1,7 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.loctype.LocType;
-import com.jagex.runetek4.game.scene.entities.PathingEntity;
+import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -17,70 +18,70 @@ public final class Static192 {
 			if (local17 == null) {
 				return;
 			}
-			@Pc(40) PathingEntity local40;
-			@Pc(29) int local29;
+			@Pc(40) PathingEntity pathingEntity;
+			@Pc(29) int pid;
 			if (local17.anInt1192 < 0) {
-				local29 = -local17.anInt1192 - 1;
-				if (local29 == Static16.anInt549) {
-					local40 = Static173.self;
+				pid = -local17.anInt1192 - 1;
+				if (pid == Static16.localPid) {
+					pathingEntity = Static173.localPlayer;
 				} else {
-					local40 = Static159.aClass8_Sub4_Sub1Array1[local29];
+					pathingEntity = Static159.players[pid];
 				}
 			} else {
-				local29 = local17.anInt1192 - 1;
-				local40 = Static175.aClass8_Sub4_Sub2Array1[local29];
+				pid = local17.anInt1192 - 1;
+				pathingEntity = Static175.npcs[pid];
 			}
-			if (local40 != null) {
-				@Pc(63) LocType local63 = Static271.get(local17.anInt1189);
-				if (Static55.level < 3) {
+			if (pathingEntity != null) {
+				@Pc(63) LocMergeEntity loc = Static271.get(local17.anInt1189);
+				if (Static55.currentLevel < 3) {
 				}
 				@Pc(86) int local86;
 				@Pc(83) int local83;
-				if (local17.anInt1206 == 1 || local17.anInt1206 == 3) {
-					local83 = local63.width;
-					local86 = local63.height;
+				if (local17.angle == 1 || local17.angle == 3) {
+					local83 = loc.width;
+					local86 = loc.length;
 				} else {
-					local86 = local63.width;
-					local83 = local63.height;
+					local86 = loc.width;
+					local83 = loc.length;
 				}
 				@Pc(103) int local103 = (local86 + 1 >> 1) + local17.anInt1190;
 				@Pc(110) int local110 = (local86 >> 1) + local17.anInt1190;
 				@Pc(117) int local117 = (local83 >> 1) + local17.anInt1204;
 				@Pc(126) int local126 = (local83 + 1 >> 1) + local17.anInt1204;
-				@Pc(130) int[][] local130 = Static83.anIntArrayArrayArray4[Static55.level];
+				@Pc(130) int[][] local130 = Static83.levelHeightMap[Static55.currentLevel];
 				@Pc(157) int local157 = local130[local103][local126] + local130[local110][local126] + local130[local110][local117] + local130[local103][local117] >> 2;
 				@Pc(159) Entity local159 = null;
 				@Pc(164) int local164 = client.locShapeToLayer[local17.anInt1198];
 				if (local164 == 0) {
-					@Pc(176) Wall local176 = Static262.method4509(Static55.level, local17.anInt1190, local17.anInt1204);
+					@Pc(176) Wall local176 = Static262.method4509(Static55.currentLevel, local17.anInt1190, local17.anInt1204);
 					if (local176 != null) {
-						local159 = local176.aClass8_5;
+						local159 = local176.modelA;
 					}
 				} else if (local164 == 1) {
-					@Pc(231) WallDecor local231 = Static83.method435(Static55.level, local17.anInt1190, local17.anInt1204);
+					@Pc(231) Decor local231 = Static83.method435(Static55.currentLevel, local17.anInt1190, local17.anInt1204);
 					if (local231 != null) {
-						local159 = local231.aClass8_3;
+						local159 = local231.model;
 					}
 				} else if (local164 == 2) {
-					@Pc(198) Scenery local198 = Static133.method4008(Static55.level, local17.anInt1190, local17.anInt1204);
+					@Pc(198) Scenery local198 = Static133.method4008(Static55.currentLevel, local17.anInt1190, local17.anInt1204);
 					if (local198 != null) {
 						local159 = local198.aClass8_4;
 					}
 				} else if (local164 == 3) {
-					@Pc(216) GroundDecor local216 = Static269.method2210(Static55.level, local17.anInt1190, local17.anInt1204);
+					@Pc(216) GroundDecor local216 = Static269.method2210(Static55.currentLevel, local17.anInt1190, local17.anInt1204);
 					if (local216 != null) {
 						local159 = local216.entity;
 					}
 				}
 				if (local159 != null) {
-					Static29.method800(Static55.level, local17.anInt1204, 0, local17.anInt1190, local17.anInt1205 + 1, -1, local164, 0, local17.anInt1187 + 1);
-					local40.anInt3375 = local17.anInt1205 + Static83.loopCycle;
-					local40.anInt3426 = local83 * 64 + local17.anInt1204 * 128;
-					local40.anInt3379 = local86 * 64 + local17.anInt1190 * 128;
-					local40.anObject5 = local159;
+					Static29.method800(Static55.currentLevel, local17.anInt1204, 0, local17.anInt1190, local17.anInt1205 + 1, -1, local164, 0, local17.anInt1187 + 1);
+					pathingEntity.locStopCycle = local17.anInt1205 + Static83.loopCycle;
+					pathingEntity.locOffsetZ = local83 * 64 + local17.anInt1204 * 128;
+					pathingEntity.locOffsetX = local86 * 64 + local17.anInt1190 * 128;
+					pathingEntity.locModel = local159;
 					@Pc(292) int local292 = local17.anInt1188;
-					local40.anInt3406 = local157;
-					local40.anInt3390 = Static83.loopCycle + local17.anInt1187;
+					pathingEntity.locOffsetY = local157;
+					pathingEntity.locStartCycle = Static83.loopCycle + local17.anInt1187;
 					@Pc(304) int local304 = local17.anInt1191;
 					@Pc(307) int local307 = local17.anInt1197;
 					@Pc(310) int local310 = local17.anInt1200;
@@ -90,15 +91,15 @@ public final class Static192 {
 						local292 = local304;
 						local304 = local316;
 					}
-					local40.anInt3411 = local17.anInt1190 + local304;
+					pathingEntity.anInt3411 = local17.anInt1190 + local304;
 					if (local307 > local310) {
 						local316 = local307;
 						local307 = local310;
 						local310 = local316;
 					}
-					local40.anInt3374 = local17.anInt1204 + local307;
-					local40.anInt3410 = local310 + local17.anInt1204;
-					local40.anInt3384 = local17.anInt1190 + local292;
+					pathingEntity.anInt3374 = local17.anInt1204 + local307;
+					pathingEntity.anInt3410 = local310 + local17.anInt1204;
+					pathingEntity.anInt3384 = local17.anInt1190 + local292;
 				}
 			}
 		}

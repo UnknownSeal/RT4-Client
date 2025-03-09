@@ -14,7 +14,7 @@ public final class Static167 {
 	public static Js5 aClass153_62;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "s", descriptor = "I")
-	public static int anInt4069;
+	public static int eyeTileX;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "t", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_63;
@@ -26,16 +26,16 @@ public final class Static167 {
 	public static SoftwareSprite aClass3_Sub2_Sub1_Sub1_3;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "b", descriptor = "Lclient!na;")
-	public static final JagString aClass100_780 = Static28.parse("Clientscript error in: ");
+	public static final JString aClass100_780 = Static28.parse("Clientscript error in: ");
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "q", descriptor = "[[I")
 	public static final int[][] anIntArrayArray31 = new int[104][104];
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "r", descriptor = "Lclient!na;")
-	public static final JagString aClass100_781 = Static28.parse("zap");
+	public static final JString aClass100_781 = Static28.parse("zap");
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "x", descriptor = "Lclient!na;")
-	public static final JagString aClass100_783 = Static28.parse(")4p=");
+	public static final JString aClass100_783 = Static28.parse(")4p=");
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "a", descriptor = "(ZLclient!qb;)V")
 	public static void method3170(@OriginalArg(1) PcmStream arg0) {
@@ -51,6 +51,6 @@ public final class Static167 {
 	@OriginalMember(owner = "runetek4.client!nd", name = "a", descriptor = "(ILclient!ve;)V")
 	public static void method3172(@OriginalArg(1) Js5 arg0) {
 		Static262.anInt5754 = arg0.method4482(Static27.aClass100_165);
-		Static136.anInt3322 = arg0.method4482(Static165.aClass100_776);
+		Static136.anInt3322 = arg0.method4482(Static165.LOGO);
 	}
 }

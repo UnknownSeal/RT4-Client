@@ -16,7 +16,7 @@ public class Node {
 	public Node next;
 
 	@OriginalMember(owner = "client!ab", name = "b", descriptor = "(I)V")
-	public final void remove() {
+	public final void unlink() {
 		if (this.next != null) {
 			this.next.prev = this.prev;
 			this.prev.next = this.next;

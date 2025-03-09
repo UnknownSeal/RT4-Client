@@ -25,21 +25,21 @@ public final class Static250 {
 	public static final SoftLruHashTable aClass99_33 = new SoftLruHashTable(260);
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "o", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1041 = Static28.parse("scrollbar");
+	public static final JString SCROLLBAR = Static28.parse("scrollbar");
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "q", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1042 = Static28.parse("Null");
+	public static final JString aClass100_1042 = Static28.parse("Null");
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "s", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1043 = Static28.parse(" <col=00ff80>");
+	public static final JString aClass100_1043 = Static28.parse(" <col=00ff80>");
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "t", descriptor = "I")
 	public static int anInt5444 = 0;
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "a", descriptor = "(B)V")
 	public static void method4273() {
-		@Pc(14) int local14 = Static173.self.anInt3412 + Static132.anInt3291;
-		@Pc(20) int local20 = Static173.self.anInt3421 + Static206.anInt4774;
+		@Pc(14) int local14 = Static173.localPlayer.x + Static132.cameraAnticheatOffsetX;
+		@Pc(20) int local20 = Static173.localPlayer.z + Static206.cameraAnticheatOffsetZ;
 		if (Static81.anInt2223 - local14 < -500 || Static81.anInt2223 - local14 > 500 || Static111.anInt2900 - local20 < -500 || Static111.anInt2900 - local20 > 500) {
 			Static81.anInt2223 = local14;
 			Static111.anInt2900 = local20;
@@ -54,13 +54,13 @@ public final class Static250 {
 			for (@Pc(93) int local93 = 0; local93 < Static182.keyQueueSize; local93++) {
 				@Pc(104) int local104 = Static227.keyCodes[local93];
 				if (local104 == 98) {
-					Static72.anInt2031 = Static72.anInt2031 + 47 & 0xFFFFFFF0;
+					Static72.orbitCameraPitch = Static72.orbitCameraPitch + 47 & 0xFFFFFFF0;
 				} else if (local104 == 99) {
-					Static72.anInt2031 = Static72.anInt2031 - 17 & 0xFFFFFFF0;
+					Static72.orbitCameraPitch = Static72.orbitCameraPitch - 17 & 0xFFFFFFF0;
 				} else if (local104 == 96) {
-					Static57.anInt1747 = Static57.anInt1747 - 65 & 0xFFFFFF80;
+					Static57.orbitCameraYaw = Static57.orbitCameraYaw - 65 & 0xFFFFFF80;
 				} else if (local104 == 97) {
-					Static57.anInt1747 = Static57.anInt1747 + 191 & 0xFFFFFF80;
+					Static57.orbitCameraYaw = Static57.orbitCameraYaw + 191 & 0xFFFFFF80;
 				}
 			}
 		} else {
@@ -78,8 +78,8 @@ public final class Static250 {
 			} else {
 				Static38.anInt1203 /= 2;
 			}
-			Static72.anInt2031 += Static56.anInt1743 / 2;
-			Static57.anInt1747 += Static38.anInt1203 / 2;
+			Static72.orbitCameraPitch += Static56.anInt1743 / 2;
+			Static57.orbitCameraYaw += Static38.anInt1203 / 2;
 		}
 		Static87.method1812();
 	}

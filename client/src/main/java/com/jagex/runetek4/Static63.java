@@ -9,10 +9,10 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static63 {
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "a", descriptor = "I")
-	public static int anInt1942 = 0;
+	public static int oncard_texture = 0;
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "b", descriptor = "Lclient!ih;")
-	private static final LinkedList aClass69_48 = new LinkedList();
+	private static final LinkList aClass69_48 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "c", descriptor = "I")
 	public static int anInt1943 = 0;
@@ -21,19 +21,19 @@ public final class Static63 {
 	private static long aLong71 = 0L;
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "e", descriptor = "I")
-	public static int anInt1944 = 0;
+	public static int oncard_2d = 0;
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "f", descriptor = "I")
-	public static int anInt1945 = 0;
+	public static int oncard_geometry = 0;
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "g", descriptor = "Lclient!ih;")
-	private static final LinkedList aClass69_49 = new LinkedList();
+	private static final LinkList aClass69_49 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "h", descriptor = "Lclient!ih;")
-	private static final LinkedList aClass69_50 = new LinkedList();
+	private static final LinkList aClass69_50 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "i", descriptor = "Lclient!ih;")
-	private static final LinkedList aClass69_51 = new LinkedList();
+	private static final LinkList aClass69_51 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "j", descriptor = "[I")
 	private static final int[] anIntArray151 = new int[1000];
@@ -59,13 +59,13 @@ public final class Static63 {
 	@OriginalMember(owner = "runetek4.client!fa", name = "b", descriptor = "()V")
 	public static synchronized void clear() {
 		anInt1943++;
-		aClass69_48.method2278();
-		aClass69_49.method2278();
-		aClass69_50.method2278();
-		aClass69_51.method2278();
-		anInt1945 = 0;
-		anInt1944 = 0;
-		anInt1942 = 0;
+		aClass69_48.clear();
+		aClass69_49.clear();
+		aClass69_50.clear();
+		aClass69_51.clear();
+		oncard_geometry = 0;
+		oncard_2d = 0;
+		oncard_texture = 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "b", descriptor = "(III)V")
@@ -100,7 +100,7 @@ public final class Static63 {
 								while (true) {
 									local8 = (IntWrapper) aClass69_51.method2287();
 									if (local8 == null) {
-										if (anInt1945 + anInt1944 + anInt1942 > 100663296 && MonotonicTime.get() > aLong71 + 60000L) {
+										if (oncard_geometry + oncard_2d + oncard_texture > 100663296 && MonotonicTime.get() > aLong71 + 60000L) {
 											System.gc();
 											aLong71 = MonotonicTime.get();
 										}
@@ -111,7 +111,7 @@ public final class Static63 {
 								}
 							}
 							anIntArray151[local3++] = (int) local8.nodeId;
-							anInt1942 -= local8.value;
+							oncard_texture -= local8.value;
 							if (local3 == 1000) {
 								local1.glDeleteTextures(local3, anIntArray151, 0);
 								local3 = 0;
@@ -119,7 +119,7 @@ public final class Static63 {
 						}
 					}
 					anIntArray151[local3++] = (int) local8.nodeId;
-					anInt1944 -= local8.value;
+					oncard_2d -= local8.value;
 					if (local3 == 1000) {
 						local1.glDeleteTextures(local3, anIntArray151, 0);
 						local3 = 0;
@@ -127,7 +127,7 @@ public final class Static63 {
 				}
 			}
 			anIntArray151[local3++] = (int) local8.nodeId;
-			anInt1945 -= local8.value;
+			oncard_geometry -= local8.value;
 			if (local3 == 1000) {
 				local1.glDeleteBuffers(local3, anIntArray151, 0);
 				local3 = 0;

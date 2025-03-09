@@ -11,7 +11,7 @@ public final class Static229 {
 	public static byte[][][] aByteArrayArrayArray12;
 
 	@OriginalMember(owner = "runetek4.client!si", name = "S", descriptor = "[Lclient!na;")
-	public static JagString[] aClass100Array156;
+	public static JString[] aClass100Array156;
 
 	@OriginalMember(owner = "runetek4.client!si", name = "ab", descriptor = "I")
 	public static int anInt5138;
@@ -23,13 +23,13 @@ public final class Static229 {
 	public static final StockMarketOffer[] aClass136Array1 = new StockMarketOffer[6];
 
 	@OriginalMember(owner = "runetek4.client!si", name = "Z", descriptor = "Lclient!na;")
-	public static final JagString aClass100_972 = Static28.parse("<col=ffb000>");
+	public static final JString YELLOW = Static28.parse("<col=ffb000>");
 
 	@OriginalMember(owner = "runetek4.client!si", name = "eb", descriptor = "I")
 	public static volatile int anInt5140 = 0;
 
 	@OriginalMember(owner = "runetek4.client!si", name = "gb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_974 = Static28.parse("<br>(X");
+	public static final JString aClass100_974 = Static28.parse("<br>(X");
 
 	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(ZB)I")
 	public static int method3933(@OriginalArg(1) byte arg0) {
@@ -45,7 +45,7 @@ public final class Static229 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(BLclient!na;)I")
-	public static int method3937(@OriginalArg(1) JagString arg0) {
+	public static int method3937(@OriginalArg(1) JString arg0) {
 		return arg0.length() + 1;
 	}
 

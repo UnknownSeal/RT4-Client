@@ -1,7 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,45 +13,45 @@ public final class Static43 {
 	public static Component aClass13_11;
 
 	@OriginalMember(owner = "runetek4.client!dg", name = "b", descriptor = "Lclient!na;")
-	public static final JagString aClass100_333 = Static28.parse("Shift)2click ENABLED(Q");
+	public static final JString SHIFTCLICK_ENABLED = Static28.parse("Shift)2click ENABLED(Q");
 
 	@OriginalMember(owner = "runetek4.client!dg", name = "c", descriptor = "[[S")
 	public static final short[][] aShortArrayArray5 = new short[][] { { 6554, 115, 10304, 28, 5702, 7756, 5681, 4510, -31835, 22437, 2859, -11339, 16, 5157, 10446, 3658, -27314, -21965, 472, 580, 784, 21966, 28950, -15697, -14002 }, { 9104, 10275, 7595, 3610, 7975, 8526, 918, -26734, 24466, 10145, -6882, 5027, 1457, 16565, -30545, 25486, 24, 5392, 10429, 3673, -27335, -21957, 192, 687, 412, 21821, 28835, -15460, -14019 }, new short[0], new short[0], new short[0] };
 
 	@OriginalMember(owner = "runetek4.client!dg", name = "d", descriptor = "Lclient!na;")
-	public static final JagString aClass100_334 = Static28.parse("Cache:");
+	public static final JString aClass100_334 = Static28.parse("Cache:");
 
 	@OriginalMember(owner = "runetek4.client!dg", name = "f", descriptor = "Z")
 	public static boolean displayFps = false;
 
 	@OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(IIIIILclient!th;IJZ)Z")
-	public static boolean method1141(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) Entity arg5, @OriginalArg(6) int arg6, @OriginalArg(7) long arg7, @OriginalArg(8) boolean arg8) {
+	public static boolean addTemporary(@OriginalArg(0) int arg0, @OriginalArg(1) int x, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) int padding, @OriginalArg(5) Entity arg5, @OriginalArg(6) int yaw, @OriginalArg(7) long arg7, @OriginalArg(8) boolean arg8) {
 		if (arg5 == null) {
 			return true;
 		}
-		@Pc(7) int local7 = arg1 - arg4;
-		@Pc(11) int local11 = arg2 - arg4;
-		@Pc(15) int local15 = arg1 + arg4;
-		@Pc(19) int local19 = arg2 + arg4;
+		@Pc(7) int x0 = x - padding;
+		@Pc(11) int z0 = z - padding;
+		@Pc(15) int x1 = x + padding;
+		@Pc(19) int z1 = z + padding;
 		if (arg8) {
-			if (arg6 > 640 && arg6 < 1408) {
-				local19 += 128;
+			if (yaw > 640 && yaw < 1408) {
+				z1 += 128;
 			}
-			if (arg6 > 1152 && arg6 < 1920) {
-				local15 += 128;
+			if (yaw > 1152 && yaw < 1920) {
+				x1 += 128;
 			}
-			if (arg6 > 1664 || arg6 < 384) {
-				local11 -= 128;
+			if (yaw > 1664 || yaw < 384) {
+				z0 -= 128;
 			}
-			if (arg6 > 128 && arg6 < 896) {
-				local7 -= 128;
+			if (yaw > 128 && yaw < 896) {
+				x0 -= 128;
 			}
 		}
-		local7 /= 128;
-		local11 /= 128;
-		local15 /= 128;
-		local19 /= 128;
-		return Static105.method2256(arg0, local7, local11, local15 + 1 - local7, local19 - local11 + 1, arg1, arg2, arg3, arg5, arg6, true, arg7);
+		x0 /= 128;
+		z0 /= 128;
+		x1 /= 128;
+		z1 /= 128;
+		return Static105.addLoc(arg0, x0, z0, x1 + 1 - x0, z1 - z0 + 1, x, z, arg3, arg5, yaw, true, arg7);
 	}
 
 	@OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(ILclient!be;)V")
@@ -74,7 +75,7 @@ public final class Static43 {
 		}
 		@Pc(57) int local57 = (int) local9 >> 14 & 0x1F;
 		@Pc(70) int local70 = (int) (local9 >>> 32) & Integer.MAX_VALUE;
-		@Pc(74) LocType local74 = Static271.get(local70);
+		@Pc(74) LocMergeEntity local74 = Static271.get(local70);
 		if (local74.hasBackgroundSound()) {
 			AreaSoundManager.remove(arg1, local74, arg0, arg2);
 		}
@@ -87,16 +88,16 @@ public final class Static43 {
 		if (arg3 == 0) {
 			@Pc(110) Wall local110 = Static110.method2276(arg2, arg1, arg0);
 			if (local110 != null) {
-				local100 = local110.aClass8_5;
-				local102 = local110.aClass8_6;
+				local100 = local110.modelA;
+				local102 = local110.modelB;
 			}
 			if (local74.blockwalk != 0) {
 				arg5.method3039(local92, local74.blockrange, arg0, local57, arg1);
 			}
 		} else if (arg3 == 1) {
-			@Pc(233) WallDecor local233 = Static75.method1633(arg2, arg1, arg0);
+			@Pc(233) Decor local233 = Static75.method1633(arg2, arg1, arg0);
 			if (local233 != null) {
-				local100 = local233.aClass8_3;
+				local100 = local233.model;
 				local102 = local233.aClass8_2;
 			}
 		} else if (arg3 == 2) {
@@ -104,8 +105,8 @@ public final class Static43 {
 			if (local148 != null) {
 				local100 = local148.aClass8_4;
 			}
-			if (local74.blockwalk != 0 && local74.width + arg1 < 104 && local74.width + arg0 < 104 && arg1 + local74.height < 104 && arg0 + local74.height < 104) {
-				arg5.method3056(arg1, local74.width, local74.blockrange, local92, local74.height, arg0);
+			if (local74.blockwalk != 0 && local74.width + arg1 < 104 && local74.width + arg0 < 104 && arg1 + local74.length < 104 && arg0 + local74.length < 104) {
+				arg5.method3056(arg1, local74.width, local74.blockrange, local92, local74.length, arg0);
 			}
 		} else if (arg3 == 3) {
 			@Pc(211) GroundDecor local211 = Static267.method4526(arg2, arg1, arg0);
@@ -134,7 +135,7 @@ public final class Static43 {
 			if (local100 instanceof Loc) {
 				((Loc) local100).method1046();
 			} else {
-				Static9.method181(local74, Static238.anIntArray469[local92] * 8, local92, Static34.anIntArray80[local92] * 8, 4, arg1, arg0, arg4);
+				Static9.method181(local74, Static238.WALL_DECORATION_ROTATION_FORWARD_Z[local92] * 8, local92, Static34.WALL_DECORATION_ROTATION_FORWARD_X[local92] * 8, 4, arg1, arg0, arg4);
 			}
 		} else if (local57 == 6) {
 			if (local100 instanceof Loc) {

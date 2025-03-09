@@ -214,7 +214,7 @@ public final class Class3_Sub14 extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "a", descriptor = "([[[Lclient!bj;FZ)V")
-	public final void method1944(@OriginalArg(0) Tile[][][] arg0, @OriginalArg(1) float arg1, @OriginalArg(2) boolean arg2) {
+	public final void method1944(@OriginalArg(0) Ground[][][] arg0, @OriginalArg(1) float arg1, @OriginalArg(2) boolean arg2) {
 		if (Static95.aClass3_Sub15_3 == null || Static95.aClass3_Sub15_3.data.length < this.anInt2488 * 4) {
 			Static95.aClass3_Sub15_3 = new Packet(this.anInt2488 * 4);
 		} else {
@@ -226,7 +226,7 @@ public final class Class3_Sub14 extends Node {
 			Static95.aClass3_Sub15_2.pos = 0;
 		}
 		@Pc(47) int local47;
-		@Pc(68) Tile local68;
+		@Pc(68) Ground local68;
 		@Pc(111) Packet local111;
 		@Pc(78) int[] local78;
 		@Pc(86) int[] local86;
@@ -287,7 +287,7 @@ public final class Class3_Sub14 extends Node {
 			GlRenderer.setTextureId(-1);
 			Static27.setMaterial(0, 0);
 		} else {
-			Rasteriser.anInterface1_2.method3227(this.anInt2485);
+			Pix3D.anInterface1_2.method3227(this.anInt2485);
 		}
 		@Pc(282) int local282 = this.aBoolean139 ? 40 : 36;
 		if (this.aClass155_3 == null) {

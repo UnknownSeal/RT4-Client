@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import java.util.Random;
 
+import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -22,7 +23,7 @@ public final class Static171 {
 	public static LocEntity aLocEntity_1 = new LocEntity();
 
 	@OriginalMember(owner = "runetek4.client!ni", name = "a", descriptor = "(ILclient!na;)I")
-	public static int method3218(@OriginalArg(1) JagString arg0) {
+	public static int method3218(@OriginalArg(1) JString arg0) {
 		if (Static203.aMapElementTypeList_1 == null || arg0.length() == 0) {
 			return -1;
 		}
@@ -51,9 +52,9 @@ public final class Static171 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ni", name = "a", descriptor = "(ILclient!na;I)V")
-	public static void method3221(@OriginalArg(1) JagString arg0, @OriginalArg(2) int arg1) {
+	public static void method3221(@OriginalArg(1) JString arg0, @OriginalArg(2) int arg1) {
 		Static6.outboundBuffer.pIsaac1(188);
 		Static6.outboundBuffer.p1b_alt1(arg1);
-		Static6.outboundBuffer.p8(arg0.encode37());
+		Static6.outboundBuffer.p8(arg0.toBase37());
 	}
 }

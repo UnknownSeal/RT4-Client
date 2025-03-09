@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,38 +14,38 @@ public final class Static44 {
 	public static boolean aBoolean83 = false;
 
 	@OriginalMember(owner = "runetek4.client!dh", name = "d", descriptor = "[I")
-	public static final int[] anIntArray106 = new int[2048];
+	public static final int[] entityUpdateIds = new int[2048];
 
 	@OriginalMember(owner = "runetek4.client!dh", name = "e", descriptor = "Lclient!na;")
-	public static final JagString aClass100_335 = Static28.parse("Number of player models in cache:");
+	public static final JString aClass100_335 = Static28.parse("Number of player models in cache:");
 
 	@OriginalMember(owner = "runetek4.client!dh", name = "i", descriptor = "Lclient!na;")
-	public static final JagString aClass100_336 = Static28.parse("<img=1>");
+	public static final JString aClass100_336 = Static28.parse("<img=1>");
 
 	@OriginalMember(owner = "runetek4.client!dh", name = "a", descriptor = "(Z)V")
 	public static void method1146() {
 		Static6.outboundBuffer.pos = 0;
 		Static5.anInt45 = -1;
 		Static60.aBoolean108 = false;
-		Static223.anInt5028 = 0;
+		Static223.packetSize = 0;
 		Static115.anInt2939 = 0;
 		PreciseSleep.anInt5204 = 0;
 		Static230.anInt5152 = -1;
 		Static270.anInt5795 = 0;
-		Static60.rebootTimer = 0;
+		Static60.systemUpdateTimer = 0;
 		Static49.anInt1462 = -1;
-		Static57.inboundBuffer.pos = 0;
-		Static201.anInt1862 = 0;
-		Static164.anInt3985 = -1;
+		Static57.in.pos = 0;
+		Static201.idleNetCycles = 0;
+		Static164.packetType = -1;
 		@Pc(35) int local35;
-		for (local35 = 0; local35 < Static159.aClass8_Sub4_Sub1Array1.length; local35++) {
-			if (Static159.aClass8_Sub4_Sub1Array1[local35] != null) {
-				Static159.aClass8_Sub4_Sub1Array1[local35].anInt3370 = -1;
+		for (local35 = 0; local35 < Static159.players.length; local35++) {
+			if (Static159.players[local35] != null) {
+				Static159.players[local35].targetId = -1;
 			}
 		}
-		for (local35 = 0; local35 < Static175.aClass8_Sub4_Sub2Array1.length; local35++) {
-			if (Static175.aClass8_Sub4_Sub2Array1[local35] != null) {
-				Static175.aClass8_Sub4_Sub2Array1[local35].anInt3370 = -1;
+		for (local35 = 0; local35 < Static175.npcs.length; local35++) {
+			if (Static175.npcs[local35] != null) {
+				Static175.npcs[local35].targetId = -1;
 			}
 		}
 		Static102.method2073();
@@ -114,7 +114,7 @@ public final class Static44 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!dh", name = "a", descriptor = "(Lclient!na;I)V")
-	public static void method1149(@OriginalArg(0) JagString arg0) {
+	public static void method1149(@OriginalArg(0) JString arg0) {
 		@Pc(7) int local7 = Static91.method1879(arg0);
 		if (local7 != -1) {
 			Static80.method3616(Static203.aMapElementTypeList_1.aShortArray73[local7], Static203.aMapElementTypeList_1.aShortArray72[local7]);

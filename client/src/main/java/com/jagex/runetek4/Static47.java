@@ -9,14 +9,14 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static47 {
 
 	@OriginalMember(owner = "runetek4.client!dk", name = "h", descriptor = "Lclient!na;")
-	public static JagString aClass100_991 = null;
+	public static JString aClass100_991 = null;
 
 	@OriginalMember(owner = "runetek4.client!dk", name = "j", descriptor = "[Lclient!en;")
 	public static final BufferedFile[] cacheIndexes = new BufferedFile[28];
 
 	@OriginalMember(owner = "runetek4.client!dk", name = "a", descriptor = "(III)Lclient!ec;")
 	public static Scenery method3996(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Tile local7 = Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2];
+		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return null;
 		}

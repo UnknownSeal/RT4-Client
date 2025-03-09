@@ -10,7 +10,7 @@ public final class Static82 {
 	public static int anInt2231 = 0;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "H", descriptor = "I")
-	public static int anInt2252 = 0;
+	public static int minimapOffsetCycle = 0;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "a", descriptor = "(IIIIB)V")
 	public static void method1760(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
@@ -23,7 +23,7 @@ public final class Static82 {
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "b", descriptor = "(I)Lclient!qf;")
 	public static Sprite method1764() {
-		@Pc(9) byte[] local9 = Static7.aByteArrayArray5[0];
+		@Pc(9) byte[] local9 = VarpDefinition.aByteArrayArray5[0];
 		@Pc(17) int local17 = Static254.anIntArray488[0] * Static26.anIntArray66[0];
 		@Pc(20) int[] local20 = new int[local17];
 		for (@Pc(28) int local28 = 0; local28 < local17; local28++) {

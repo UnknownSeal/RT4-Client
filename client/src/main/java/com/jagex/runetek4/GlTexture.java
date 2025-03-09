@@ -194,7 +194,7 @@ public final class GlTexture extends SecondaryNode {
 					local201.gluBuild2DMipmaps(3553, 6408, local28, local28, 6408, 5121, local82);
 					local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR_MIPMAP_LINEAR);
 					local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
-					Static63.anInt1942 += local82.limit() * 4 / 3 - this.anInt5495;
+					Static63.oncard_texture += local82.limit() * 4 / 3 - this.anInt5495;
 					this.anInt5495 = local82.limit() * 4 / 3;
 				} else if (this.anInt5489 == 1) {
 					@Pc(129) int local129 = 0;
@@ -204,7 +204,7 @@ public final class GlTexture extends SecondaryNode {
 						if (local28 == 0) {
 							local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR_MIPMAP_LINEAR);
 							local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
-							Static63.anInt1942 += local82.limit() * 4 / 3 - this.anInt5495;
+							Static63.oncard_texture += local82.limit() * 4 / 3 - this.anInt5495;
 							this.anInt5495 = local82.limit() * 4 / 3;
 							break;
 						}
@@ -214,7 +214,7 @@ public final class GlTexture extends SecondaryNode {
 					local22.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, local28, local28, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, local82);
 					local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR);
 					local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
-					Static63.anInt1942 += local82.limit() - this.anInt5495;
+					Static63.oncard_texture += local82.limit() - this.anInt5495;
 					this.anInt5495 = local82.limit();
 				}
 				local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_WRAP_S, this.aBoolean285 ? GL2.GL_REPEAT : GL2.GL_CLAMP_TO_EDGE);

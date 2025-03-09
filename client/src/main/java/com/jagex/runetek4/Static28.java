@@ -68,10 +68,10 @@ public final class Static28 {
 	}
 
 	@OriginalMember(owner = "client!cd", name = "a", descriptor = "(Ljava/lang/String;B)Lclient!na;")
-	public static JagString parse(@OriginalArg(0) String arg0) {
+	public static JString parse(@OriginalArg(0) String arg0) {
 		@Pc(6) byte[] local6 = arg0.getBytes();
 		@Pc(9) int local9 = local6.length;
-		@Pc(13) JagString local13 = new JagString();
+		@Pc(13) JString local13 = new JString();
 		@Pc(15) int local15 = 0;
 		local13.aByteArray52 = new byte[local9];
 		while (local9 > local15) {
@@ -95,13 +95,13 @@ public final class Static28 {
 		Static152.anInt3594 = 104;
 		Static99.anInt2550 = 104;
 		Static277.anInt5855 = arg0;
-		Static197.aClass3_Sub5ArrayArrayArray2 = new Tile[4][Static152.anInt3594][Static99.anInt2550];
+		Static197.aClass3_Sub5ArrayArrayArray2 = new Ground[4][Static152.anInt3594][Static99.anInt2550];
 		Static107.anIntArrayArrayArray10 = new int[4][Static152.anInt3594 + 1][Static99.anInt2550 + 1];
 		if (GlRenderer.enabled) {
 			Static36.aClass3_Sub14ArrayArray1 = new Class3_Sub14[4][];
 		}
 		if (arg1) {
-			Static276.aClass3_Sub5ArrayArrayArray3 = new Tile[1][Static152.anInt3594][Static99.anInt2550];
+			Static276.aClass3_Sub5ArrayArrayArray3 = new Ground[1][Static152.anInt3594][Static99.anInt2550];
 			Static62.anIntArrayArray11 = new int[Static152.anInt3594][Static99.anInt2550];
 			Static80.anIntArrayArrayArray19 = new int[1][Static152.anInt3594 + 1][Static99.anInt2550 + 1];
 			if (GlRenderer.enabled) {

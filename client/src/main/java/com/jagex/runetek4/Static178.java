@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.game.client.ClientInvCache;
-import com.jagex.runetek4.game.config.objtype.ObjType;
+import com.jagex.runetek4.config.ObjType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -22,17 +22,17 @@ public final class Static178 {
 	public static short aShort25 = 256;
 
 	@OriginalMember(owner = "runetek4.client!od", name = "i", descriptor = "I")
-	public static int anInt4247 = 0;
+	public static int sceneDelta = 0;
 
 	@OriginalMember(owner = "runetek4.client!od", name = "n", descriptor = "Z")
 	public static boolean aBoolean203 = false;
 
 	@OriginalMember(owner = "runetek4.client!od", name = "a", descriptor = "(ILclient!na;)V")
-	public static void method3318(@OriginalArg(1) JagString arg0) {
+	public static void method3318(@OriginalArg(1) JString arg0) {
 		if (Static199.aClass3_Sub22Array1 == null) {
 			return;
 		}
-		@Pc(22) long local22 = arg0.encode37();
+		@Pc(22) long local22 = arg0.toBase37();
 		@Pc(24) int local24 = 0;
 		if (local22 == 0L) {
 			return;

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -15,19 +15,19 @@ public final class Static73 {
 	public static final SoftLruHashTable aClass99_10 = new SoftLruHashTable(4);
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "W", descriptor = "Lclient!na;")
-	public static final JagString aClass100_453 = Static28.parse(")2");
+	public static final JString aClass100_453 = Static28.parse(")2");
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "db", descriptor = "Lclient!gn;")
 	public static final LruHashTable aClass54_7 = new LruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "eb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_454 = Static28.parse("b12_full");
+	public static final JString B12_FULL = Static28.parse("b12_full");
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "fb", descriptor = "[I")
 	public static final int[] anIntArray183 = new int[14];
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "gb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_455 = Static28.parse("overlay2");
+	public static final JString OVERLAY2 = Static28.parse("overlay2");
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(ZI)V")
 	public static void method1596(@OriginalArg(0) boolean arg0) {
@@ -48,17 +48,17 @@ public final class Static73 {
 		}
 		Static35.anInt1092 = -1;
 		client.method1750(Static270.anInt5794);
-		Static173.self = new Player();
-		Static173.self.anInt3421 = 3000;
-		Static173.self.anInt3412 = 3000;
+		Static173.localPlayer = new PlayerEntity();
+		Static173.localPlayer.z = 3000;
+		Static173.localPlayer.x = 3000;
 		if (!GlRenderer.enabled) {
 			Static145.method2743(Static209.aClass153_86);
 			Static196.method3534(10);
 			return;
 		}
 		if (Static227.anInt5096 == 2) {
-			Static138.anInt3439 = Static245.anInt5375 << 7;
-			Static134.anInt3302 = Static248.anInt4232 << 7;
+			Static138.cameraX = Static245.anInt5375 << 7;
+			Static134.cameraZ = Static248.anInt4232 << 7;
 		} else {
 			Static40.method1008();
 		}
@@ -76,7 +76,7 @@ public final class Static73 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(ILclient!na;Lclient!na;Lclient!na;I)V")
-	public static void method1598(@OriginalArg(1) JagString arg0, @OriginalArg(2) JagString arg1, @OriginalArg(3) JagString arg2) {
+	public static void method1598(@OriginalArg(1) JString arg0, @OriginalArg(2) JString arg1, @OriginalArg(3) JString arg2) {
 		Static154.add(-1, 9, arg0, arg2, arg1);
 	}
 
@@ -94,7 +94,7 @@ public final class Static73 {
 			}
 			local16 = (arg1 << 7) + 1;
 			local20 = (arg3 << 7) + 2;
-			@Pc(156) int local156 = Static83.anIntArrayArrayArray4[arg0][arg1][arg3] + arg5;
+			@Pc(156) int local156 = Static83.levelHeightMap[arg0][arg1][arg3] + arg5;
 			if (!Static256.method4394(local16, local156, local20)) {
 				return false;
 			}
@@ -113,7 +113,7 @@ public final class Static73 {
 		} else if (Static9.method187(arg0, arg1, arg3)) {
 			local16 = arg1 << 7;
 			local20 = arg3 << 7;
-			return Static256.method4394(local16 + 1, Static83.anIntArrayArrayArray4[arg0][arg1][arg3] + arg5, local20 + 1) && Static256.method4394(local16 + 128 - 1, Static83.anIntArrayArrayArray4[arg0][arg1 + 1][arg3] + arg5, local20 + 1) && Static256.method4394(local16 + 128 - 1, Static83.anIntArrayArrayArray4[arg0][arg1 + 1][arg3 + 1] + arg5, local20 + 128 - 1) && Static256.method4394(local16 + 1, Static83.anIntArrayArrayArray4[arg0][arg1][arg3 + 1] + arg5, local20 + 128 - 1);
+			return Static256.method4394(local16 + 1, Static83.levelHeightMap[arg0][arg1][arg3] + arg5, local20 + 1) && Static256.method4394(local16 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg3] + arg5, local20 + 1) && Static256.method4394(local16 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg3 + 1] + arg5, local20 + 128 - 1) && Static256.method4394(local16 + 1, Static83.levelHeightMap[arg0][arg1][arg3 + 1] + arg5, local20 + 128 - 1);
 		} else {
 			return false;
 		}

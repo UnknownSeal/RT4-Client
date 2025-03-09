@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -104,6 +104,6 @@ public final class Static53 {
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "b", descriptor = "(I)V")
 	public static void method1295() {
-		Static125.aClass99_19.method3104();
+		Static125.varbitDefinitionCache.method3104();
 	}
 }

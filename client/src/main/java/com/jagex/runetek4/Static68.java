@@ -20,7 +20,7 @@ public final class Static68 {
 	public static final int[] anIntArray165 = new int[6];
 
 	@OriginalMember(owner = "runetek4.client!fg", name = "r", descriptor = "[I")
-	public static final int[] anIntArray169 = new int[6];
+	public static final int[] tmpViewspaceZ = new int[6];
 
 	@OriginalMember(owner = "runetek4.client!fg", name = "t", descriptor = "[I")
 	public static final int[] anIntArray170 = new int[6];

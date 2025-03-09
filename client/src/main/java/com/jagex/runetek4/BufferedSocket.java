@@ -121,7 +121,7 @@ public final class BufferedSocket implements Runnable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ma", name = "a", descriptor = "(III[B)V")
-	public final void method2827(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) byte[] arg2) throws IOException {
+	public final void read(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) byte[] arg2) throws IOException {
 		if (this.aBoolean177) {
 			return;
 		}

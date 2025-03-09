@@ -10,7 +10,7 @@ public final class Static130 {
 	public static WorldMapFont aClass41_1;
 
 	@OriginalMember(owner = "runetek4.client!kc", name = "o", descriptor = "[[[Lclient!bj;")
-	public static Tile[][][] aClass3_Sub5ArrayArrayArray1;
+	public static Ground[][][] levelTiles;
 
 	@OriginalMember(owner = "runetek4.client!kc", name = "p", descriptor = "[I")
 	public static int[] anIntArray299;

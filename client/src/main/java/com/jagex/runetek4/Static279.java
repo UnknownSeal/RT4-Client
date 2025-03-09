@@ -16,10 +16,10 @@ public final class Static279 {
 	public static final SoftLruHashTable aClass99_38 = new SoftLruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!wk", name = "u", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1106 = Static28.parse("::clientjs5drop");
+	public static final JString CLIENTJS5DROP = Static28.parse("::clientjs5drop");
 
 	@OriginalMember(owner = "runetek4.client!wk", name = "x", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1107 = Static28.parse(")4l=");
+	public static final JString aClass100_1107 = Static28.parse(")4l=");
 
 	@OriginalMember(owner = "runetek4.client!wk", name = "b", descriptor = "(II)V")
 	public static void method4662() {
@@ -28,12 +28,12 @@ public final class Static279 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!wk", name = "a", descriptor = "(I[Lclient!na;)[Lclient!na;")
-	public static JagString[] method4664(@OriginalArg(1) JagString[] arg0) {
-		@Pc(8) JagString[] local8 = new JagString[5];
+	public static JString[] method4664(@OriginalArg(1) JString[] arg0) {
+		@Pc(8) JString[] local8 = new JString[5];
 		for (@Pc(15) int local15 = 0; local15 < 5; local15++) {
-			local8[local15] = Static34.method882(new JagString[] { Static123.method2423(local15), Static27.aClass100_168 });
+			local8[local15] = Static34.method882(new JString[] { Static123.method2423(local15), Static27.aClass100_168 });
 			if (arg0 != null && arg0[local15] != null) {
-				local8[local15] = Static34.method882(new JagString[] { local8[local15], arg0[local15] });
+				local8[local15] = Static34.method882(new JString[] { local8[local15], arg0[local15] });
 			}
 		}
 		return local8;

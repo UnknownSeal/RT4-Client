@@ -13,13 +13,13 @@ public final class Static92 {
 	public static int anInt2430 = 0;
 
 	@OriginalMember(owner = "runetek4.client!hd", name = "g", descriptor = "[J")
-	public static final long[] aLongArray3 = new long[200];
+	public static final long[] friendName37 = new long[200];
 
 	@OriginalMember(owner = "runetek4.client!hd", name = "i", descriptor = "I")
 	public static int anInt2433 = 0;
 
 	@OriginalMember(owner = "runetek4.client!hd", name = "l", descriptor = "Lclient!na;")
-	public static final JagString aClass100_510 = Static28.parse("null");
+	public static final JString aClass100_510 = Static28.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!hd", name = "a", descriptor = "(IIIIIIII)V")
 	public static void method1881(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {
@@ -32,25 +32,25 @@ public final class Static92 {
 			if (local28 != null) {
 				local38 = Integer.MAX_VALUE & (int) (local28.aLong107 >>> 32);
 				if (arg2 == 2) {
-					local28.aClass8_5 = new Loc(local38, 2, arg1 + 4, arg0, arg5, arg3, arg6, false, local28.aClass8_5);
-					local28.aClass8_6 = new Loc(local38, 2, arg1 + 1 & 0x3, arg0, arg5, arg3, arg6, false, local28.aClass8_6);
+					local28.modelA = new Loc(local38, 2, arg1 + 4, arg0, arg5, arg3, arg6, false, local28.modelA);
+					local28.modelB = new Loc(local38, 2, arg1 + 1 & 0x3, arg0, arg5, arg3, arg6, false, local28.modelB);
 				} else {
-					local28.aClass8_5 = new Loc(local38, arg2, arg1, arg0, arg5, arg3, arg6, false, local28.aClass8_5);
+					local28.modelA = new Loc(local38, arg2, arg1, arg0, arg5, arg3, arg6, false, local28.modelA);
 				}
 			}
 		}
 		if (arg4 == 1) {
-			@Pc(106) WallDecor local106 = Static83.method435(arg0, arg5, arg3);
+			@Pc(106) Decor local106 = Static83.method435(arg0, arg5, arg3);
 			if (local106 != null) {
 				local38 = (int) (local106.aLong52 >>> 32) & Integer.MAX_VALUE;
 				if (arg2 == 4 || arg2 == 5) {
-					local106.aClass8_3 = new Loc(local38, 4, arg1, arg0, arg5, arg3, arg6, false, local106.aClass8_3);
+					local106.model = new Loc(local38, 4, arg1, arg0, arg5, arg3, arg6, false, local106.model);
 				} else if (arg2 == 6) {
-					local106.aClass8_3 = new Loc(local38, 4, arg1 + 4, arg0, arg5, arg3, arg6, false, local106.aClass8_3);
+					local106.model = new Loc(local38, 4, arg1 + 4, arg0, arg5, arg3, arg6, false, local106.model);
 				} else if (arg2 == 7) {
-					local106.aClass8_3 = new Loc(local38, 4, (arg1 + 2 & 0x3) + 4, arg0, arg5, arg3, arg6, false, local106.aClass8_3);
+					local106.model = new Loc(local38, 4, (arg1 + 2 & 0x3) + 4, arg0, arg5, arg3, arg6, false, local106.model);
 				} else if (arg2 == 8) {
-					local106.aClass8_3 = new Loc(local38, 4, arg1 + 4, arg0, arg5, arg3, arg6, false, local106.aClass8_3);
+					local106.model = new Loc(local38, 4, arg1 + 4, arg0, arg5, arg3, arg6, false, local106.model);
 					local106.aClass8_2 = new Loc(local38, 4, (arg1 + 2 & 0x3) + 4, arg0, arg5, arg3, arg6, false, local106.aClass8_2);
 				}
 			}

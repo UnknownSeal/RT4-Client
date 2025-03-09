@@ -32,11 +32,11 @@ public final class SoftLruHashTable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(BLjava/lang/Object;J)V")
-	public final void method3095(@OriginalArg(1) Object arg0, @OriginalArg(2) long arg1) {
+	public final void put(@OriginalArg(1) Object arg0, @OriginalArg(2) long arg1) {
 		this.method3098(arg1);
 		if (this.anInt3966 == 0) {
 			@Pc(26) ReferenceNode local26 = (ReferenceNode) this.aClass16_8.pollFront();
-			local26.remove();
+			local26.unlink();
 			local26.secondaryRemove();
 		} else {
 			this.anInt3966--;
@@ -51,7 +51,7 @@ public final class SoftLruHashTable {
 	public final void method3098(@OriginalArg(0) long arg0) {
 		@Pc(6) ReferenceNode local6 = (ReferenceNode) this.aClass133_18.getNode(arg0);
 		if (local6 != null) {
-			local6.remove();
+			local6.unlink();
 			local6.secondaryRemove();
 			this.anInt3966++;
 		}
@@ -76,7 +76,7 @@ public final class SoftLruHashTable {
 		for (@Pc(9) ReferenceNode local9 = (ReferenceNode) this.aClass16_8.method795(); local9 != null; local9 = (ReferenceNode) this.aClass16_8.prev()) {
 			if (local9.method3619()) {
 				if (local9.method3618() == null) {
-					local9.remove();
+					local9.unlink();
 					local9.secondaryRemove();
 					this.anInt3966++;
 				}
@@ -84,7 +84,7 @@ public final class SoftLruHashTable {
 				@Pc(33) ReferenceNode local33 = Static252.aClass22_1.method1027(local9);
 				this.aClass133_18.pushNode(local33, local9.nodeId);
 				Static84.method1772(local9, local33);
-				local9.remove();
+				local9.unlink();
 				local9.secondaryRemove();
 			}
 		}
@@ -94,7 +94,7 @@ public final class SoftLruHashTable {
 	public final void method3103() {
 		for (@Pc(7) ReferenceNode local7 = (ReferenceNode) this.aClass16_8.method795(); local7 != null; local7 = (ReferenceNode) this.aClass16_8.prev()) {
 			if (local7.method3619()) {
-				local7.remove();
+				local7.unlink();
 				local7.secondaryRemove();
 				this.anInt3966++;
 			}
@@ -116,7 +116,7 @@ public final class SoftLruHashTable {
 		}
 		@Pc(27) Object local27 = local12.method3618();
 		if (local27 == null) {
-			local12.remove();
+			local12.unlink();
 			local12.secondaryRemove();
 			this.anInt3966++;
 			return null;
@@ -126,7 +126,7 @@ public final class SoftLruHashTable {
 			this.aClass133_18.pushNode(local53, local12.nodeId);
 			this.aClass16_8.pushBack(local53);
 			local53.secondaryNodeId = 0L;
-			local12.remove();
+			local12.unlink();
 			local12.secondaryRemove();
 		} else {
 			this.aClass16_8.pushBack(local12);

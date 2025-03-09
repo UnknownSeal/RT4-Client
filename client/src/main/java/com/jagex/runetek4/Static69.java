@@ -3,6 +3,8 @@ package com.jagex.runetek4;
 import java.awt.Frame;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -22,7 +24,7 @@ public final class Static69 {
 	public static final boolean[][] aBooleanArrayArray2 = new boolean[][] { new boolean[0], { true, false, true }, { true, false, false, true }, { false, false, true, true }, { true, true, false }, { false, true, true }, { true, false, false, true }, { false, false, false, true, true }, { false, true, true }, { true, false, true, true, true }, { false, true, true, true, true }, { false, true, true, true, true, false } };
 
 	@OriginalMember(owner = "runetek4.client!fh", name = "ab", descriptor = "Lclient!na;")
-	public static final JagString aClass100_443 = Static28.parse("::noclip");
+	public static final JString NOCLIP = Static28.parse("::noclip");
 
 	@OriginalMember(owner = "runetek4.client!fh", name = "a", descriptor = "(IIII)I")
 	public static int method1540(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
@@ -41,12 +43,12 @@ public final class Static69 {
 		if (arg0 == 0L) {
 			return;
 		}
-		for (@Pc(12) int local12 = 0; local12 < Static35.size; local12++) {
-			if (Static190.encodedUsernames[local12] == arg0) {
-				Static35.size--;
-				for (@Pc(36) int local36 = local12; local36 < Static35.size; local36++) {
-					Static190.encodedUsernames[local36] = Static190.encodedUsernames[local36 + 1];
-					Static193.aClass100Array134[local36] = Static193.aClass100Array134[local36 + 1];
+		for (@Pc(12) int local12 = 0; local12 < Static35.ignoreCount; local12++) {
+			if (Static190.ignoreName37[local12] == arg0) {
+				Static35.ignoreCount--;
+				for (@Pc(36) int local36 = local12; local36 < Static35.ignoreCount; local36++) {
+					Static190.ignoreName37[local36] = Static190.ignoreName37[local36 + 1];
+					Static193.ignoreName[local36] = Static193.ignoreName[local36 + 1];
 				}
 				Static185.anInt4369 = Static119.transmitTimer;
 				Static6.outboundBuffer.pIsaac1(213);
@@ -67,7 +69,7 @@ public final class Static69 {
 		local3.aClass8_7 = arg6;
 		local3.aClass8_8 = arg7;
 		@Pc(34) int local34 = 0;
-		@Pc(42) Tile local42 = Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2];
+		@Pc(42) Ground local42 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local42 != null) {
 			for (@Pc(46) int local46 = 0; local46 < local42.anInt662; local46++) {
 				@Pc(55) Scenery local55 = local42.aClass31Array1[local46];
@@ -79,11 +81,11 @@ public final class Static69 {
 				}
 			}
 		}
-		local3.anInt3063 = -local34;
-		if (Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2] == null) {
-			Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2] = new Tile(arg0, arg1, arg2);
+		local3.offset = -local34;
+		if (Static130.levelTiles[arg0][arg1][arg2] == null) {
+			Static130.levelTiles[arg0][arg1][arg2] = new Ground(arg0, arg1, arg2);
 		}
-		Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2].aClass79_1 = local3;
+		Static130.levelTiles[arg0][arg1][arg2].aClass79_1 = local3;
 	}
 
 	@OriginalMember(owner = "runetek4.client!fh", name = "a", descriptor = "(Lclient!th;IIIII)V")
@@ -99,16 +101,16 @@ public final class Static69 {
 					if (local28 >= 0 && local28 < Static152.anInt3594) {
 						for (@Pc(39) int local39 = local11; local39 <= local15; local39++) {
 							if (local39 >= 0 && local39 < Static99.anInt2550 && (!local1 || local28 >= local7 || local39 >= local15 || local39 < arg3 && local28 != arg2)) {
-								@Pc(71) Tile local71 = Static130.aClass3_Sub5ArrayArrayArray1[local17][local28][local39];
+								@Pc(71) Ground local71 = Static130.levelTiles[local17][local28][local39];
 								if (local71 != null) {
-									@Pc(158) int local158 = (Static83.anIntArrayArrayArray4[local17][local28][local39] + Static83.anIntArrayArrayArray4[local17][local28 + 1][local39] + Static83.anIntArrayArrayArray4[local17][local28][local39 + 1] + Static83.anIntArrayArrayArray4[local17][local28 + 1][local39 + 1]) / 4 - (Static83.anIntArrayArrayArray4[arg1][arg2][arg3] + Static83.anIntArrayArrayArray4[arg1][arg2 + 1][arg3] + Static83.anIntArrayArrayArray4[arg1][arg2][arg3 + 1] + Static83.anIntArrayArrayArray4[arg1][arg2 + 1][arg3 + 1]) / 4;
-									@Pc(161) Wall local161 = local71.aClass77_1;
+									@Pc(158) int local158 = (Static83.levelHeightMap[local17][local28][local39] + Static83.levelHeightMap[local17][local28 + 1][local39] + Static83.levelHeightMap[local17][local28][local39 + 1] + Static83.levelHeightMap[local17][local28 + 1][local39 + 1]) / 4 - (Static83.levelHeightMap[arg1][arg2][arg3] + Static83.levelHeightMap[arg1][arg2 + 1][arg3] + Static83.levelHeightMap[arg1][arg2][arg3 + 1] + Static83.levelHeightMap[arg1][arg2 + 1][arg3 + 1]) / 4;
+									@Pc(161) Wall local161 = local71.wall;
 									if (local161 != null) {
-										if (local161.aClass8_5.method4543()) {
-											arg0.method4544(local161.aClass8_5, (local28 - arg2) * 128 + (1 - arg4) * 64, local158, (local39 - arg3) * 128 + (1 - arg5) * 64, local1);
+										if (local161.modelA.method4543()) {
+											arg0.method4544(local161.modelA, (local28 - arg2) * 128 + (1 - arg4) * 64, local158, (local39 - arg3) * 128 + (1 - arg5) * 64, local1);
 										}
-										if (local161.aClass8_6 != null && local161.aClass8_6.method4543()) {
-											arg0.method4544(local161.aClass8_6, (local28 - arg2) * 128 + (1 - arg4) * 64, local158, (local39 - arg3) * 128 + (1 - arg5) * 64, local1);
+										if (local161.modelB != null && local161.modelB.method4543()) {
+											arg0.method4544(local161.modelB, (local28 - arg2) * 128 + (1 - arg4) * 64, local158, (local39 - arg3) * 128 + (1 - arg5) * 64, local1);
 										}
 									}
 									for (@Pc(232) int local232 = 0; local232 < local71.anInt662; local232++) {

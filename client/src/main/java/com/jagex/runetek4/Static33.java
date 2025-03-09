@@ -3,8 +3,8 @@ package com.jagex.runetek4;
 import java.util.Date;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.flutype.FloorUnderlayType;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.config.FloType;
+import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.game.config.msitype.MSIType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -22,10 +22,10 @@ public final class Static33 {
 	public static PrivilegedRequest openUrlRequest;
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "i", descriptor = "[I")
-	public static final int[] anIntArray79 = new int[32768];
+	public static final int[] npcIds = new int[32768];
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(ILclient!pb;ZIIII)Z")
-	public static boolean method867(@OriginalArg(0) int arg0, @OriginalArg(1) LocType arg1, @OriginalArg(5) int arg2, @OriginalArg(6) int arg3) {
+	public static boolean method867(@OriginalArg(0) int arg0, @OriginalArg(1) LocMergeEntity arg1, @OriginalArg(5) int arg2, @OriginalArg(6) int arg3) {
 		@Pc(10) MSIType local10 = Static40.get(arg1.mapsceneicon);
 		if (local10.spriteId == -1) {
 			return true;
@@ -41,9 +41,9 @@ public final class Static33 {
 			return false;
 		}
 		@Pc(49) int local49 = arg1.width;
-		@Pc(52) int local52 = arg1.height;
+		@Pc(52) int local52 = arg1.length;
 		if ((arg3 & 0x1) == 1) {
-			local49 = arg1.height;
+			local49 = arg1.length;
 			local52 = arg1.width;
 		}
 		@Pc(66) int local66 = local42.anInt4279;
@@ -112,7 +112,7 @@ public final class Static33 {
 				if (local175 > local114) {
 					local225 = local23[local114][local203] & 0xFF;
 					if (local225 > 0) {
-						@Pc(236) FloorUnderlayType local236 = Static199.method3593(local225 - 1);
+						@Pc(236) FloType local236 = Static199.method3593(local225 - 1);
 						local183[local203] += local236.anInt4154;
 						local180[local203] += local236.anInt4149;
 						local186[local203] += local236.anInt4158;
@@ -124,7 +124,7 @@ public final class Static33 {
 				if (local225 >= 0) {
 					local293 = local23[local225][local203] & 0xFF;
 					if (local293 > 0) {
-						@Pc(302) FloorUnderlayType local302 = Static199.method3593(local293 - 1);
+						@Pc(302) FloType local302 = Static199.method3593(local293 - 1);
 						local183[local203] -= local302.anInt4154;
 						local180[local203] -= local302.anInt4149;
 						local186[local203] -= local302.anInt4158;
@@ -171,7 +171,7 @@ public final class Static33 {
 								local519 = 127;
 							}
 							@Pc(541) int local541 = local519 + (local480 & 0x380) + (local480 + local19 & 0xFC00);
-							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = Rasteriser.anIntArray220[Static87.method1814(96, local541)];
+							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = Pix3D.anIntArray220[Static87.method1814(96, local541)];
 						} else if (local462 != null) {
 							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = 0;
 						}
@@ -203,7 +203,7 @@ public final class Static33 {
 		@Pc(6) Sprite[] local6 = new Sprite[Static165.anInt4038];
 		for (@Pc(15) int local15 = 0; local15 < Static165.anInt4038; local15++) {
 			@Pc(30) int local30 = Static254.anIntArray488[local15] * Static26.anIntArray66[local15];
-			@Pc(34) byte[] local34 = Static7.aByteArrayArray5[local15];
+			@Pc(34) byte[] local34 = VarpDefinition.aByteArrayArray5[local15];
 			@Pc(37) int[] local37 = new int[local30];
 			for (@Pc(39) int local39 = 0; local39 < local30; local39++) {
 				local37[local39] = Static259.anIntArray513[local34[local39] & 0xFF];
@@ -224,7 +224,7 @@ public final class Static33 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(JB)Lclient!na;")
-	public static JagString method873(@OriginalArg(0) long arg0) {
+	public static JString method873(@OriginalArg(0) long arg0) {
 		Static35.aCalendar1.setTime(new Date(arg0));
 		@Pc(13) int local13 = Static35.aCalendar1.get(7);
 		@Pc(17) int local17 = Static35.aCalendar1.get(5);
@@ -233,7 +233,7 @@ public final class Static33 {
 		@Pc(36) int local36 = Static35.aCalendar1.get(11);
 		@Pc(40) int local40 = Static35.aCalendar1.get(12);
 		@Pc(44) int local44 = Static35.aCalendar1.get(13);
-		return Static34.method882(new JagString[] { Static219.aClass100Array149[local13 - 1], Static74.aClass100_461, Static123.method2423(local17 / 10), Static123.method2423(local17 % 10), Static270.aClass100_1089, Static138.aClass100Array102[local21], Static270.aClass100_1089, Static123.method2423(local32), Static49.aClass100_351, Static123.method2423(local36 / 10), Static123.method2423(local36 % 10), Static264.aClass100_875, Static123.method2423(local40 / 10), Static123.method2423(local40 % 10), Static264.aClass100_875, Static123.method2423(local44 / 10), Static123.method2423(local44 % 10), Static55.aClass100_376 });
+		return Static34.method882(new JString[] { Static219.aClass100Array149[local13 - 1], Static74.aClass100_461, Static123.method2423(local17 / 10), Static123.method2423(local17 % 10), Static270.aClass100_1089, Static138.MONTHS[local21], Static270.aClass100_1089, Static123.method2423(local32), Static49.aClass100_351, Static123.method2423(local36 / 10), Static123.method2423(local36 % 10), Static264.aClass100_875, Static123.method2423(local40 / 10), Static123.method2423(local40 % 10), Static264.aClass100_875, Static123.method2423(local44 / 10), Static123.method2423(local44 % 10), Static55.aClass100_376 });
 	}
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(ZIIIIIIFB)[[I")

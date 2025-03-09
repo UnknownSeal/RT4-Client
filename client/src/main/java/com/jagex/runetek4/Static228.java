@@ -7,13 +7,13 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static228 {
 
 	@OriginalMember(owner = "client!sh", name = "a", descriptor = "Lclient!ih;")
-	public static final LinkedList aClass69_120 = new LinkedList();
+	public static final LinkList aClass69_120 = new LinkList();
 
 	@OriginalMember(owner = "client!sh", name = "c", descriptor = "I")
 	public static int anInt5101 = 0;
 
 	@OriginalMember(owner = "client!sh", name = "e", descriptor = "Lclient!na;")
-	public static final JagString aClass100_967 = Static28.parse("");
+	public static final JString aClass100_967 = Static28.parse("");
 
 	@OriginalMember(owner = "client!sh", name = "f", descriptor = "I")
 	public static int anInt5103 = -1;
@@ -25,7 +25,7 @@ public final class Static228 {
 	public static final int[][] anIntArrayArray35 = new int[][] { { 0, 128, 0, 0, 128, 0, 128, 128 }, { 0, 128, 0, 0, 128, 0 }, { 0, 0, 64, 128, 0, 128 }, { 128, 128, 64, 128, 128, 0 }, { 0, 0, 128, 0, 128, 128, 64, 128 }, { 0, 128, 0, 0, 128, 0, 64, 128 }, { 64, 128, 0, 128, 0, 0, 64, 0 }, { 0, 0, 64, 0, 0, 64 }, { 128, 0, 128, 128, 0, 128, 0, 64, 64, 0 }, { 0, 128, 0, 0, 32, 64, 64, 96, 128, 128 }, { 0, 0, 128, 0, 128, 128, 64, 96, 32, 64 }, { 0, 0, 128, 0, 96, 32, 32, 32 } };
 
 	@OriginalMember(owner = "client!sh", name = "j", descriptor = "Lclient!na;")
-	public static final JagString aClass100_968 = Static28.parse("headicons_prayer");
+	public static final JString HEADICONS_PRAYER = Static28.parse("headicons_prayer");
 
 	@OriginalMember(owner = "client!sh", name = "l", descriptor = "[J")
 	public static final long[] aLongArray8 = new long[32];

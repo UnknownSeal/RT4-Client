@@ -24,8 +24,8 @@ public final class PacketBit extends Packet {
 	}
 
 	@OriginalMember(owner = "client!i", name = "a", descriptor = "([IZ)V")
-	public void method2240(@OriginalArg(0) int[] arg0) {
-		this.isaac = new Isaac(arg0);
+	public void Isaac(@OriginalArg(0) int[] seed) {
+		this.isaac = new Isaac(seed);
 	}
 
 	@OriginalMember(owner = "client!i", name = "r", descriptor = "(II)V")

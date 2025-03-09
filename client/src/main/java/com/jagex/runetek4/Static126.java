@@ -12,10 +12,10 @@ public final class Static126 {
 	public static float aFloat13;
 
 	@OriginalMember(owner = "runetek4.client!jm", name = "A", descriptor = "Lclient!na;")
-	private static final JagString aClass100_603 = Static28.parse("");
+	private static final JString aClass100_603 = Static28.parse("");
 
 	@OriginalMember(owner = "runetek4.client!jm", name = "z", descriptor = "Lclient!na;")
-	public static JagString aClass100_602 = aClass100_603;
+	public static JString aClass100_602 = aClass100_603;
 
 	@OriginalMember(owner = "runetek4.client!jm", name = "a", descriptor = "(Z)V")
 	public static void method2460() {
@@ -45,6 +45,6 @@ public final class Static126 {
 		} else {
 			Static129.method2503();
 		}
-		Static178.anInt4247 = 0;
+		Static178.sceneDelta = 0;
 	}
 }

@@ -11,7 +11,7 @@ public final class Static190 {
 	public static final SoftLruHashTable aClass99_26 = new SoftLruHashTable(200);
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "h", descriptor = "[J")
-	public static final long[] encodedUsernames = new long[100];
+	public static final long[] ignoreName37 = new long[100];
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "r", descriptor = "[I")
 	public static final int[] anIntArray382 = new int[500];
@@ -39,10 +39,10 @@ public final class Static190 {
 		if (local43 != null) {
 			return local43;
 		}
-		Rasteriser.aBoolean134 = false;
+		Pix3D.aBoolean134 = false;
 		local43 = Static164.method3150(arg4, false, arg1, arg2, arg0, arg3, false);
-		if (local43 != null && !Rasteriser.aBoolean134) {
-			Static118.aClass99_16.method3095(local43, local37);
+		if (local43 != null && !Pix3D.aBoolean134) {
+			Static118.aClass99_16.put(local43, local37);
 		}
 		return local43;
 	}

@@ -16,16 +16,16 @@ public final class Static202 {
 	public static Js5 aClass153_84;
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "U", descriptor = "Lclient!na;")
-	public static final JagString aClass100_891 = Static28.parse("");
+	public static final JString aClass100_891 = Static28.parse("");
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "W", descriptor = "Z")
-	public static boolean aBoolean233 = false;
+	public static boolean members = false;
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "Y", descriptor = "[I")
-	public static final int[] anIntArray424 = new int[5];
+	public static final int[] cameraModifierWobbleSpeed = new int[5];
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "Z", descriptor = "Lclient!na;")
-	public static final JagString aClass100_892 = Static28.parse("mem=");
+	public static final JString aClass100_892 = Static28.parse("mem=");
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "h", descriptor = "(I)V")
 	public static void method3653() {
@@ -102,20 +102,20 @@ public final class Static202 {
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(IZI)V")
 	public static void method3655(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(7) Class85 local7 = Static125.method2449(arg0);
+		@Pc(7) VarbitDefinition local7 = VarbitDefinition.getDefinition(arg0);
 		@Pc(10) int local10 = local7.anInt3323;
 		@Pc(16) int local16 = local7.anInt3318;
-		@Pc(19) int local19 = local7.anInt3327;
-		@Pc(25) int local25 = Class3_Sub9.anIntArray135[local10 - local16];
+		@Pc(19) int local19 = local7.index;
+		@Pc(25) int local25 = VarbitDefinition.varbitMasks[local10 - local16];
 		if (arg1 < 0 || arg1 > local25) {
 			arg1 = 0;
 		}
 		local25 <<= local16;
-		Static148.method2766(local19, local25 & arg1 << local16 | Static7.anIntArray75[local19] & ~local25);
+		Static148.method2766(local19, local25 & arg1 << local16 | VarpDefinition.varps[local19] & ~local25);
 	}
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "([Lclient!na;[SI)V")
-	public static void method3656(@OriginalArg(0) JagString[] arg0, @OriginalArg(1) short[] arg1) {
+	public static void method3656(@OriginalArg(0) JString[] arg0, @OriginalArg(1) short[] arg1) {
 		Static54.method1307(arg1, arg0.length - 1, arg0, 0);
 	}
 
@@ -144,7 +144,7 @@ public final class Static202 {
 		if (local20 != null) {
 			local10.decode(new Packet(local20));
 		}
-		Static79.aClass99_11.method3095(local10, (long) arg0);
+		Static79.aClass99_11.put(local10, (long) arg0);
 		return local10;
 	}
 }

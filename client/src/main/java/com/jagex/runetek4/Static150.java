@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static150 {
 
 	@OriginalMember(owner = "runetek4.client!lk", name = "J", descriptor = "Lclient!na;")
-	public static final JagString aClass100_687 = Static28.parse(")4p=");
+	public static final JString aClass100_687 = Static28.parse(")4p=");
 
 	@OriginalMember(owner = "runetek4.client!lk", name = "U", descriptor = "Z")
 	public static boolean aBoolean175 = false;

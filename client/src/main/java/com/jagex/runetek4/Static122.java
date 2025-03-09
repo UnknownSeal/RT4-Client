@@ -16,10 +16,10 @@ public final class Static122 {
 	public static Js5 aClass153_46;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "b", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array92 = new JagString[200];
+	public static final JString[] friendName = new JString[200];
 
     @OriginalMember(owner = "runetek4.client!jh", name = "g", descriptor = "Lclient!na;")
-	public static final JagString aClass100_591 = Static28.parse("(Udns");
+	public static final JString aClass100_591 = Static28.parse("(Udns");
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "j", descriptor = "I")
 	public static int x = 0;

@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -20,7 +20,7 @@ public final class Static232 {
 	public static int anInt5212;
 
 	@OriginalMember(owner = "runetek4.client!sm", name = "c", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_30 = new SoftLruHashTable(64);
+	public static final SoftLruHashTable varpDefinitionCache = new SoftLruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!sm", name = "l", descriptor = "[S")
 	public static short[] aShortArray74 = new short[256];
@@ -59,16 +59,16 @@ public final class Static232 {
 								@Pc(203) int local203 = (local50 + arg4 & 0x3F) + ((arg6 + local119 & 0x3F) << 6);
 								@Pc(209) int local209 = local116[local163][local203];
 								if (local209 != 0) {
-									@Pc(222) LocType local222 = Static271.get(local209 - 1);
-									if (!Static258.aBooleanArray130[local222.mapelement]) {
-										if (local11 != -1 && local222.mapelement == Static9.anInt172) {
+									@Pc(222) LocMergeEntity local222 = Static271.get(local209 - 1);
+									if (!Static258.aBooleanArray130[local222.mapfunction]) {
+										if (local11 != -1 && local222.mapfunction == Static9.anInt172) {
 											@Pc(243) Class3_Sub26 local243 = new Class3_Sub26();
 											local243.anInt4307 = local65;
 											local243.anInt4314 = local144;
-											local243.anInt4308 = local222.mapelement;
+											local243.anInt4308 = local222.mapfunction;
 											Static172.aClass69_97.addTail(local243);
 										} else {
-											Static241.aClass3_Sub2_Sub1_Sub1Array13[local222.mapelement].drawSprite(local65 - 7, local144 + -7);
+											Static241.aClass3_Sub2_Sub1_Sub1Array13[local222.mapfunction].drawSprite(local65 - 7, local144 + -7);
 										}
 									}
 								}
@@ -85,7 +85,7 @@ public final class Static232 {
 			Static129.method2502(local285.anInt4307, local285.anInt4314, 9, local11);
 			Static241.aClass3_Sub2_Sub1_Sub1Array13[local285.anInt4308].drawSprite(local285.anInt4307 - 7, local285.anInt4314 + -7);
 		}
-		Static172.aClass69_97.method2278();
+		Static172.aClass69_97.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!sm", name = "a", descriptor = "(II)V")

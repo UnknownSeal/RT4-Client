@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.seqtype.SeqType;
+import com.jagex.runetek4.config.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -27,11 +27,11 @@ public final class Static152 {
 
 	@OriginalMember(owner = "runetek4.client!ma", name = "a", descriptor = "([IIIIII)V")
 	public static void method2835(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		@Pc(7) Tile local7 = Static130.aClass3_Sub5ArrayArrayArray1[arg2][arg3][arg4];
+		@Pc(7) Ground local7 = Static130.levelTiles[arg2][arg3][arg4];
 		if (local7 == null) {
 			return;
 		}
-		@Pc(13) PlainTile local13 = local7.aClass131_1;
+		@Pc(13) PlainTile local13 = local7.underlay;
 		@Pc(23) int local23;
 		if (local13 != null) {
 			@Pc(18) int local18 = local13.anInt4871;
@@ -46,7 +46,7 @@ public final class Static152 {
 			}
 			return;
 		}
-		@Pc(58) ShapedTile local58 = local7.aClass43_1;
+		@Pc(58) ShapedTile local58 = local7.overlay;
 		if (local58 == null) {
 			return;
 		}

@@ -37,7 +37,7 @@ public final class Static48 {
 		local4.p1b(Static80.aBoolean231 ? 1 : 0);
 		local4.p1b(Static250.aBoolean283 ? 1 : 0);
 		local4.p1b(Static53.aBoolean99 ? 1 : 0);
-		local4.p1b(Static15.aBoolean33 ? 1 : 0);
+		local4.p1b(Static15.lowMemory ? 1 : 0);
 		local4.p1b(Static11.aBoolean15 ? 1 : 0);
 		local4.p1b(Static159.aBoolean189 ? 1 : 0);
 		local4.p1b(Static209.aBoolean240 ? 1 : 0);

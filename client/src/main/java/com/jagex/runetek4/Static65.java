@@ -11,10 +11,10 @@ public final class Static65 {
 	public static int anInt1951 = -1;
 
 	@OriginalMember(owner = "client!fc", name = "f", descriptor = "Lclient!na;")
-	public static final JagString aClass100_435 = Static28.parse("<img=0>");
+	public static final JString aClass100_435 = Static28.parse("<img=0>");
 
 	@OriginalMember(owner = "client!fc", name = "a", descriptor = "(Lclient!wa;I)Lclient!na;")
-	public static JagString method1497(@OriginalArg(0) Packet arg0) {
+	public static JString method1497(@OriginalArg(0) Packet arg0) {
 		return Static254.method4350(arg0);
 	}
 

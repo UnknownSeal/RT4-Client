@@ -58,7 +58,7 @@ public final class MSIType {
 			for (@Pc(59) int local59 = 0; local59 < arg0; local59++) {
 				local17.method1395();
 			}
-			Static219.aClass99_27.method3095(local17, (long) arg0 << 16 | this.spriteId);
+			Static219.aClass99_27.put(local17, (long) arg0 << 16 | this.spriteId);
 		}
 		return local17;
 	}

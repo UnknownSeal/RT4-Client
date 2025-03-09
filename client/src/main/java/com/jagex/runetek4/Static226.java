@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -23,31 +24,31 @@ public final class Static226 {
 	public static int anInt5081 = 1;
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "g", descriptor = "Lclient!na;")
-	public static final JagString aClass100_965 = Static28.parse("<col=ffff00>");
+	public static final JString YELLOW2 = Static28.parse("<col=ffff00>");
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "h", descriptor = "[Lclient!na;")
-	public static final JagString[] varcstrs = new JagString[1000];
+	public static final JString[] varcstrs = new JString[1000];
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "i", descriptor = "I")
 	public static int anInt5084 = 0;
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "a", descriptor = "(ILclient!cd;)V")
-	public static void method3898(@OriginalArg(1) Class3_Sub7 arg0) {
+	public static void method3898(@OriginalArg(1) LocAddEntity arg0) {
 		@Pc(5) long local5 = 0L;
 		@Pc(7) int local7 = -1;
 		@Pc(14) int local14 = 0;
 		if (arg0.anInt927 == 0) {
-			local5 = Static265.method4521(arg0.anInt918, arg0.anInt928, arg0.anInt916);
+			local5 = Static265.method4521(arg0.anInt918, arg0.x, arg0.z);
 		}
 		@Pc(31) int local31 = 0;
 		if (arg0.anInt927 == 1) {
-			local5 = Static139.method2703(arg0.anInt918, arg0.anInt928, arg0.anInt916);
+			local5 = Static139.method2703(arg0.anInt918, arg0.x, arg0.z);
 		}
 		if (arg0.anInt927 == 2) {
-			local5 = Static35.method899(arg0.anInt918, arg0.anInt928, arg0.anInt916);
+			local5 = Static35.method899(arg0.anInt918, arg0.x, arg0.z);
 		}
 		if (arg0.anInt927 == 3) {
-			local5 = Static20.method602(arg0.anInt918, arg0.anInt928, arg0.anInt916);
+			local5 = Static20.method602(arg0.anInt918, arg0.x, arg0.z);
 		}
 		if (local5 != 0L) {
 			local7 = Integer.MAX_VALUE & (int) (local5 >>> 32);
@@ -100,7 +101,7 @@ public final class Static226 {
 				Static60.aBoolean108 = true;
 				Static24.anInt761 = local16;
 			}
-		} else if (Static155.anInt3751 == Static7.clickX && Static60.anInt1892 == Static60.clickY) {
+		} else if (Static155.anInt3751 == VarpDefinition.mouseClickX && Static60.anInt1892 == Static60.mouseClickY) {
 			Static183.anInt4271 = local27;
 			Static162.anInt3953 = 0;
 			Static24.anInt761 = local16;
@@ -108,8 +109,8 @@ public final class Static226 {
 			Static13.anInt436 = (Static261.aBoolean298 ? 26 : 22) + PreciseSleep.anInt5204 * 15;
 			Static60.aBoolean108 = true;
 		} else {
-			Static280.anInt5895 = Static60.clickY;
-			Static277.anInt5850 = Static7.clickX;
+			Static280.anInt5895 = Static60.mouseClickY;
+			Static277.anInt5850 = VarpDefinition.mouseClickX;
 			Static162.anInt3953 = 1;
 		}
 	}

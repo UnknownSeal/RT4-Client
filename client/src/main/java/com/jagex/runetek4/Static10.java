@@ -14,8 +14,8 @@ public final class Static10 {
 	public static short aShort9 = 205;
 
 	@OriginalMember(owner = "client!an", name = "a", descriptor = "([BIII)Lclient!na;")
-	public static JagString decodeString(@OriginalArg(0) byte[] arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		@Pc(7) JagString local7 = new JagString();
+	public static JString decodeString(@OriginalArg(0) byte[] arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
+		@Pc(7) JString local7 = new JString();
 		local7.aByteArray52 = new byte[arg1];
 		local7.anInt4030 = 0;
 		for (@Pc(22) int local22 = arg2; local22 < arg1 + arg2; local22++) {
@@ -52,12 +52,12 @@ public final class Static10 {
 		try {
 			return Static4.method26();
 		} catch (@Pc(14) IOException local14) {
-			Static175.method3279();
+			Static175.tryReconnect();
 			return true;
 		} catch (@Pc(19) Exception local19) {
-			@Pc(61) String local61 = "T2 - " + Static164.anInt3985 + "," + Static5.anInt45 + "," + Static49.anInt1462 + " - " + Static223.anInt5028 + "," + (Static225.originX + Static173.self.movementQueueX[0]) + "," + (Static173.self.movementQueueZ[0] + Static142.originZ) + " - ";
-			for (@Pc(63) int local63 = 0; local63 < Static223.anInt5028 && local63 < 50; local63++) {
-				local61 = local61 + Static57.inboundBuffer.data[local63] + ",";
+			@Pc(61) String local61 = "T2 - " + Static164.packetType + "," + Static5.anInt45 + "," + Static49.anInt1462 + " - " + Static223.packetSize + "," + (Static225.originX + Static173.localPlayer.pathTileX[0]) + "," + (Static173.localPlayer.pathTileZ[0] + Static142.originZ) + " - ";
+			for (@Pc(63) int local63 = 0; local63 < Static223.packetSize && local63 < 50; local63++) {
+				local61 = local61 + Static57.in.data[local63] + ",";
 			}
 			Static89.report(local61, local19);
 			Static278.processLogout();
@@ -74,7 +74,7 @@ public final class Static10 {
 	@OriginalMember(owner = "client!an", name = "i", descriptor = "(I)V")
 	public static void method351() {
 		Static79.aClass99_11.method3104();
-		Static7.aClass99_5.method3104();
+		VarpDefinition.aClass99_5.method3104();
 	}
 
 	@OriginalMember(owner = "client!an", name = "a", descriptor = "(IIIIIII)V")

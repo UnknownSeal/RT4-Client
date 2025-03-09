@@ -48,7 +48,7 @@ public final class StructType extends SecondaryNode {
 	}
 
 	@OriginalMember(owner = "runetek4.client!lk", name = "a", descriptor = "(Lclient!na;BI)Lclient!na;")
-	public final JagString method2802(@OriginalArg(0) JagString arg0, @OriginalArg(2) int arg1) {
+	public final JString method2802(@OriginalArg(0) JString arg0, @OriginalArg(2) int arg1) {
 		if (this.aClass133_14 == null) {
 			return arg0;
 		} else {

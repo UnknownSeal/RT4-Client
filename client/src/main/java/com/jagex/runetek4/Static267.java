@@ -14,10 +14,10 @@ public final class Static267 {
 	public static final SoftLruHashTable aClass99_37 = new SoftLruHashTable(100);
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "e", descriptor = "[I")
-	public static final int[] anIntArray517 = new int[] { 1, 2, 4, 8 };
+	public static final int[] ROTATION_WALL_TYPE = new int[] { 1, 2, 4, 8 };
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "f", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1087 = Static28.parse("Cabbage");
+	public static final JString CABBAGE = Static28.parse("Cabbage");
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "h", descriptor = "I")
 	public static int anInt5773 = 0;
@@ -26,22 +26,22 @@ public final class Static267 {
 	public static int[] anIntArray518 = new int[2];
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "j", descriptor = "I")
-	public static int size = 0;
+	public static int playerCount = 0;
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "k", descriptor = "I")
-	public static int anInt5775 = 0;
+	public static int idleTimeout = 0;
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "l", descriptor = "I")
 	public static int anInt5776 = 0;
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "a", descriptor = "(III)Lclient!bm;")
 	public static GroundDecor method4526(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Tile local7 = Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2];
+		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return null;
 		} else {
-			@Pc(14) GroundDecor local14 = local7.aClass15_1;
-			local7.aClass15_1 = null;
+			@Pc(14) GroundDecor local14 = local7.groundDecor;
+			local7.groundDecor = null;
 			return local14;
 		}
 	}
@@ -50,7 +50,7 @@ public final class Static267 {
 	public static boolean method4527() {
 		if (Static150.aBoolean175) {
 			try {
-				return !((Boolean) Static119.aClass100_588.method3157(GameShell.signLink.anApplet2));
+				return !((Boolean) Static119.SHOWINGVIDEOAD.method3157(GameShell.signLink.anApplet2));
 			} catch (@Pc(21) Throwable local21) {
 			}
 		}

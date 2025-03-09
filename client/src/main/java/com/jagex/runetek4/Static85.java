@@ -28,11 +28,11 @@ public final class Static85 {
 	public static void method1775(@OriginalArg(1) int arg0) {
 		Static103.method2245();
 		AreaSoundManager.method2386();
-		@Pc(17) int local17 = Static247.method4248(arg0).clientCode;
+		@Pc(17) int local17 = VarpDefinition.getDefinition(arg0).clientCode;
 		if (local17 == 0) {
 			return;
 		}
-		@Pc(25) int local25 = Static7.anIntArray75[arg0];
+		@Pc(25) int local25 = VarpDefinition.varps[arg0];
 		if (local17 == 6) {
 			Static79.anInt2157 = local25;
 		}

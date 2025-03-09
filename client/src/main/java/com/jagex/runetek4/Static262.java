@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.dash3d.entity.Entity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -29,35 +30,35 @@ public final class Static262 {
 	public static int anInt5754 = -1;
 
 	@OriginalMember(owner = "runetek4.client!vf", name = "a", descriptor = "(IIIILclient!th;Lclient!th;IIJ)V")
-	public static void method4508(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Entity arg4, @OriginalArg(5) Entity arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8) {
-		if (arg4 == null && arg5 == null) {
+	public static void addWall(@OriginalArg(0) int level, @OriginalArg(1) int arg1, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) Entity modelA, @OriginalArg(5) Entity modelB, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8) {
+		if (modelA == null && modelB == null) {
 			return;
 		}
-		@Pc(8) Wall local8 = new Wall();
-		local8.aLong107 = arg8;
-		local8.anInt3048 = arg1 * 128 + 64;
-		local8.anInt3044 = arg2 * 128 + 64;
-		local8.anInt3051 = arg3;
-		local8.aClass8_5 = arg4;
-		local8.aClass8_6 = arg5;
-		local8.anInt3049 = arg6;
-		local8.anInt3052 = arg7;
-		for (@Pc(42) int local42 = arg0; local42 >= 0; local42--) {
-			if (Static130.aClass3_Sub5ArrayArrayArray1[local42][arg1][arg2] == null) {
-				Static130.aClass3_Sub5ArrayArrayArray1[local42][arg1][arg2] = new Tile(local42, arg1, arg2);
+		@Pc(8) Wall wall = new Wall();
+		wall.aLong107 = arg8;
+		wall.anInt3048 = arg1 * 128 + 64;
+		wall.anInt3044 = z * 128 + 64;
+		wall.anInt3051 = arg3;
+		wall.modelA = modelA;
+		wall.modelB = modelB;
+		wall.typeA = arg6;
+		wall.typeB = arg7;
+		for (@Pc(42) int l = level; l >= 0; l--) {
+			if (Static130.levelTiles[l][arg1][z] == null) {
+				Static130.levelTiles[l][arg1][z] = new Ground(l, arg1, z);
 			}
 		}
-		Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2].aClass77_1 = local8;
+		Static130.levelTiles[level][arg1][z].wall = wall;
 	}
 
 	@OriginalMember(owner = "runetek4.client!vf", name = "a", descriptor = "(III)Lclient!jh;")
 	public static Wall method4509(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Tile local7 = Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2];
-		return local7 == null ? null : local7.aClass77_1;
+		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
+		return local7 == null ? null : local7.wall;
 	}
 
 	@OriginalMember(owner = "runetek4.client!vf", name = "a", descriptor = "(IB)Lclient!na;")
-	public static JagString method4510(@OriginalArg(0) int arg0) {
+	public static JString method4510(@OriginalArg(0) int arg0) {
 		return arg0 >= 999999999 ? Static220.aClass100_930 : Static123.method2423(arg0);
 	}
 }

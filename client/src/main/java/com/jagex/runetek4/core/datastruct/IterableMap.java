@@ -46,7 +46,7 @@ public final class IterableMap {
 				if (node == next) {
 					break;
 				}
-				next.remove();
+				next.unlink();
 			}
 		}
 		this.next = null;
@@ -80,7 +80,7 @@ public final class IterableMap {
 	@OriginalMember(owner = "client!sc", name = "a", descriptor = "(ILclient!ab;J)V")
 	public void pushNode(@OriginalArg(1) Node node, @OriginalArg(2) long id) {
 		if (node.next != null) {
-			node.remove();
+			node.unlink();
 		}
 		@Pc(21) Node local21 = this.nodes[(int) (id & (long) (this.size - 1))];
 		node.prev = local21;

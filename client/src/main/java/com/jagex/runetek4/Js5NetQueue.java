@@ -122,7 +122,7 @@ public final class Js5NetQueue {
 					if (local235 > local19) {
 						local235 = local19;
 					}
-					this.aClass95_1.method2827(this.aClass3_Sub2_Sub5_Sub2_2.packet.pos, local235, this.aClass3_Sub2_Sub5_Sub2_2.packet.data);
+					this.aClass95_1.read(this.aClass3_Sub2_Sub5_Sub2_2.packet.pos, local235, this.aClass3_Sub2_Sub5_Sub2_2.packet.data);
 					if (this.xorcode != 0) {
 						for (local283 = 0; local283 < local235; local283++) {
 							this.aClass3_Sub2_Sub5_Sub2_2.packet.data[this.aClass3_Sub2_Sub5_Sub2_2.packet.pos + local283] = (byte) (this.aClass3_Sub2_Sub5_Sub2_2.packet.data[this.aClass3_Sub2_Sub5_Sub2_2.packet.pos + local283] ^ this.xorcode);
@@ -142,7 +142,7 @@ public final class Js5NetQueue {
 					if (local19 < local228) {
 						local228 = local19;
 					}
-					this.aClass95_1.method2827(this.aClass3_Sub15_5.pos, local228, this.aClass3_Sub15_5.data);
+					this.aClass95_1.read(this.aClass3_Sub15_5.pos, local228, this.aClass3_Sub15_5.data);
 					if (this.xorcode != 0) {
 						for (local235 = 0; local235 < local228; local235++) {
 							this.aClass3_Sub15_5.data[local235 + this.aClass3_Sub15_5.pos] ^= this.xorcode;
@@ -202,7 +202,7 @@ public final class Js5NetQueue {
 	}
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "(Z)V")
-	public final void method2319() {
+	public final void serverDrop() {
 		if (this.aClass95_1 == null) {
 			return;
 		}
@@ -326,7 +326,7 @@ public final class Js5NetQueue {
 	}
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "b", descriptor = "(Z)V")
-	public final void method2329() {
+	public final void clientDrop() {
 		if (this.aClass95_1 != null) {
 			this.aClass95_1.closeGracefully();
 		}

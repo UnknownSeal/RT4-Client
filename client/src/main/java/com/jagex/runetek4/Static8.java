@@ -1,7 +1,8 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.config.varpDefinition;
 import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -15,7 +16,7 @@ public final class Static8 {
 	public static int[] anIntArray8;
 
 	@OriginalMember(owner = "client!aj", name = "R", descriptor = "Lclient!na;")
-	public static final JagString aClass100_32 = Static28.parse("<col=ff9040>");
+	public static final JString aClass100_32 = Static28.parse("<col=ff9040>");
 
 	@OriginalMember(owner = "client!aj", name = "a", descriptor = "(BILclient!be;)I")
 	public static int method118(@OriginalArg(1) int arg0, @OriginalArg(2) Component arg1) {
@@ -121,10 +122,10 @@ public final class Static8 {
 	@OriginalMember(owner = "client!aj", name = "i", descriptor = "(I)V")
 	public static void method121() {
 		for (@Pc(3) int local3 = 0; local3 < Static165.anInt4043; local3++) {
-			@Pc(19) Class35 local19 = Static247.method4248(local3);
+			@Pc(19) varpDefinition local19 = VarpDefinition.getDefinition(local3);
 			if (local19 != null && local19.clientCode == 0) {
 				Static106.anIntArray257[local3] = 0;
-				Static7.anIntArray75[local3] = 0;
+				VarpDefinition.varps[local3] = 0;
 			}
 		}
 		Static199.aClass133_20 = new IterableMap(16);

@@ -11,14 +11,14 @@ public final class Static99 {
 	public static int[] anIntArray239;
 
 	@OriginalMember(owner = "runetek4.client!hk", name = "W", descriptor = "Lclient!ih;")
-	public static final LinkedList aClass69_64 = new LinkedList();
+	public static final LinkList spotanims = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!hk", name = "db", descriptor = "Lclient!na;")
-	public static final JagString aClass100_529 = Static28.parse("::wm3");
+	public static final JString WM3 = Static28.parse("::wm3");
 
 	@OriginalMember(owner = "runetek4.client!hk", name = "eb", descriptor = "Z")
 	public static boolean aBoolean143 = true;
 
 	@OriginalMember(owner = "runetek4.client!hk", name = "fb", descriptor = "[I")
-	public static final int[] anIntArray240 = new int[25];
+	public static final int[] skillLevel = new int[25];
 }

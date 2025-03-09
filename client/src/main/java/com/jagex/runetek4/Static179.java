@@ -21,10 +21,10 @@ public final class Static179 {
 	public static int step = 0;
 
 	@OriginalMember(owner = "runetek4.client!oe", name = "n", descriptor = "I")
-	public static int anInt4262 = 1;
+	public static int minimapZoomModifier = 1;
 
 	@OriginalMember(owner = "runetek4.client!oe", name = "o", descriptor = "Lclient!na;")
-	public static final JagString aClass100_807 = Static28.parse("n");
+	public static final JString aClass100_807 = Static28.parse("n");
 
 	@OriginalMember(owner = "runetek4.client!oe", name = "a", descriptor = "(IZ)I")
 	public static int method3322(@OriginalArg(0) int arg0) {
@@ -34,7 +34,7 @@ public final class Static179 {
 	@OriginalMember(owner = "runetek4.client!oe", name = "b", descriptor = "(I)V")
 	public static void method3323() {
 		aClass99_25.method3103();
-		Static169.aClass99_24.method3103();
+		Static169.modelCacheStatic.method3103();
 		Static93.aClass99_14.method3103();
 		Static262.aClass99_36.method3103();
 	}

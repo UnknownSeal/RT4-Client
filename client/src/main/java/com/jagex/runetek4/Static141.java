@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.dash3d.entity.LocEntity;
+import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -9,10 +10,10 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static141 {
 
     @OriginalMember(owner = "runetek4.client!lb", name = "p", descriptor = "[I")
-	public static final int[] anIntArray326 = new int[25];
+	public static final int[] skillBaseLevel = new int[25];
 
 	@OriginalMember(owner = "runetek4.client!lb", name = "s", descriptor = "Lclient!na;")
-	public static final JagString aClass100_664 = Static28.parse(":clan:");
+	public static final JString CLAN = Static28.parse(":clan:");
 
 	@OriginalMember(owner = "runetek4.client!lb", name = "u", descriptor = "I")
 	public static int anInt3469 = 0;
@@ -39,7 +40,7 @@ public final class Static141 {
 		Static217.method3768();
 		Static255.aClass54_16.method1815();
 		Static171.aLocEntity_1 = new LocEntity();
-		((Js5GlTextureProvider) Rasteriser.anInterface1_2).method3247();
+		((Js5GlTextureProvider) Pix3D.anInterface1_2).method3247();
 		Static120.anInt3034 = 0;
 		Static120.aClass51Array1 = new Light[255];
 		Static237.method4120();
@@ -48,9 +49,9 @@ public final class Static141 {
 		Static116.method2325(false);
 		Static119.method2381();
 		for (@Pc(39) int local39 = 0; local39 < 2048; local39++) {
-			@Pc(46) Player local46 = Static159.aClass8_Sub4_Sub1Array1[local39];
+			@Pc(46) PlayerEntity local46 = Static159.players[local39];
 			if (local46 != null) {
-				local46.anObject5 = null;
+				local46.locModel = null;
 			}
 		}
 		if (GlRenderer.enabled) {
@@ -83,9 +84,9 @@ public final class Static141 {
 		Static233.anInt5225 = arg1;
 		Static248.anInt4232 = arg4;
 		if (arg0 && Static113.anInt4612 >= 100) {
-			Static138.anInt3439 = Static245.anInt5375 * 128 + 64;
-			Static134.anInt3302 = Static248.anInt4232 * 128 + 64;
-			Static5.anInt40 = Static207.method3685(Static55.level, Static138.anInt3439, Static134.anInt3302) - PreciseSleep.anInt5203;
+			Static138.cameraX = Static245.anInt5375 * 128 + 64;
+			Static134.cameraZ = Static248.anInt4232 * 128 + 64;
+			Static5.cameraY = Static207.getHeightmapY(Static55.currentLevel, Static138.cameraX, Static134.cameraZ) - PreciseSleep.anInt5203;
 		}
 		Static227.anInt5096 = 2;
 	}

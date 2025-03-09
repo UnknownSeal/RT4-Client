@@ -17,7 +17,7 @@ public final class Static59 {
 	public static int anInt1812 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ej", name = "W", descriptor = "I")
-	public static int anInt1814 = 0;
+	public static int minimapAnticheatAngle = 0;
 
 	@OriginalMember(owner = "runetek4.client!ej", name = "h", descriptor = "(I)V")
 	public static void method1372() {
@@ -30,7 +30,7 @@ public final class Static59 {
 					Static103.method2232(PreciseSleep.anInt5204 - 1);
 				}
 			}
-		} else if (Static155.anInt3751 == Static7.clickX && Static60.anInt1892 == Static60.clickY) {
+		} else if (Static155.anInt3751 == VarpDefinition.mouseClickX && Static60.anInt1892 == Static60.mouseClickY) {
 			Static162.anInt3953 = 0;
 			if (Static172.shiftClick && Static187.pressedKeys[81] && PreciseSleep.anInt5204 > 2) {
 				Static103.method2232(PreciseSleep.anInt5204 - 2);
@@ -38,9 +38,9 @@ public final class Static59 {
 				Static103.method2232(PreciseSleep.anInt5204 - 1);
 			}
 		} else {
-			Static280.anInt5895 = Static60.clickY;
+			Static280.anInt5895 = Static60.mouseClickY;
 			Static162.anInt3953 = 2;
-			Static277.anInt5850 = Static7.clickX;
+			Static277.anInt5850 = VarpDefinition.mouseClickX;
 		}
 	}
 
@@ -67,7 +67,7 @@ public final class Static59 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ej", name = "a", descriptor = "(IZIJ)Lclient!na;")
-	public static JagString method1376(@OriginalArg(3) long arg0) {
+	public static JString method1376(@OriginalArg(3) long arg0) {
 		@Pc(35) long local35 = arg0 / (long) 10;
 		@Pc(37) int local37 = 1;
 		while (local35 != 0L) {
@@ -93,7 +93,7 @@ public final class Static59 {
 			}
 			local61[local51 - local79 - 1] = (byte) (local92 + 48);
 		}
-		@Pc(126) JagString local126 = new JagString();
+		@Pc(126) JString local126 = new JString();
 		local126.aByteArray52 = local61;
 		local126.anInt4030 = local51;
 		return local126;

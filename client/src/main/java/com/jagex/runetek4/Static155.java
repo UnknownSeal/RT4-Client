@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.objtype.ObjType;
+import com.jagex.runetek4.config.ObjType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,9 +12,6 @@ public final class Static155 {
 
 	@OriginalMember(owner = "runetek4.client!me", name = "k", descriptor = "I")
 	public static int anInt3718 = -1;
-
-	@OriginalMember(owner = "runetek4.client!me", name = "P", descriptor = "[I")
-	public static final int[] varcs = new int[2000];
 
 	@OriginalMember(owner = "runetek4.client!me", name = "a", descriptor = "(IB)V")
 	public static void method2940(@OriginalArg(0) int arg0) {
@@ -34,9 +31,9 @@ public final class Static155 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!me", name = "a", descriptor = "(ZLclient!na;I)V")
-	public static void method2941(@OriginalArg(0) boolean arg0, @OriginalArg(1) JagString arg1) {
+	public static void method2941(@OriginalArg(0) boolean arg0, @OriginalArg(1) JString arg1) {
 		@Pc(8) short[] local8 = new short[16];
-		@Pc(12) JagString local12 = arg1.toLowerCase();
+		@Pc(12) JString local12 = arg1.toLowerCase();
 		@Pc(14) int local14 = 0;
 		for (@Pc(16) int local16 = 0; local16 < Static170.anInt3245; local16++) {
 			@Pc(27) ObjType local27 = Static71.get(local16);
@@ -59,20 +56,11 @@ public final class Static155 {
 		Static169.aShortArray52 = local8;
 		Static67.anInt3356 = 0;
 		Static111.anInt2905 = local14;
-		@Pc(117) JagString[] local117 = new JagString[Static111.anInt2905];
+		@Pc(117) JString[] local117 = new JString[Static111.anInt2905];
 		for (@Pc(119) int local119 = 0; local119 < Static111.anInt2905; local119++) {
 			local117[local119] = Static71.get(local8[local119]).name;
 		}
 		Static202.method3656(local117, Static169.aShortArray52);
 	}
 
-	@OriginalMember(owner = "runetek4.client!me", name = "a", descriptor = "(II)I")
-	public static int method2945(@OriginalArg(1) int arg0) {
-		@Pc(13) Class85 local13 = Static125.method2449(arg0);
-		@Pc(16) int local16 = local13.anInt3327;
-		@Pc(19) int local19 = local13.anInt3323;
-		@Pc(22) int local22 = local13.anInt3318;
-		@Pc(29) int local29 = Class3_Sub9.anIntArray135[local19 - local22];
-		return Static7.anIntArray75[local16] >> local22 & local29;
-	}
 }

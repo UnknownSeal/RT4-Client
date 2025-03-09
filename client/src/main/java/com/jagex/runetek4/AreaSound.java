@@ -1,10 +1,10 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.Node;
-import com.jagex.runetek4.game.config.loctype.LocType;
-import com.jagex.runetek4.game.config.npctype.NPCType;
-import com.jagex.runetek4.game.scene.entities.NPCEntity;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.config.NPCType;
+import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -34,7 +34,7 @@ public final class AreaSound extends Node {
 	public int remainingLoops;
 
 	@OriginalMember(owner = "client!fl", name = "E", descriptor = "Lclient!pb;")
-	public LocType loc;
+	public LocMergeEntity loc;
 
 	@OriginalMember(owner = "client!fl", name = "F", descriptor = "I")
 	public int anInt2037;
@@ -49,7 +49,7 @@ public final class AreaSound extends Node {
 	public int anInt2041;
 
 	@OriginalMember(owner = "client!fl", name = "M", descriptor = "Lclient!e;")
-	public Player player;
+	public PlayerEntity player;
 
 	@OriginalMember(owner = "client!fl", name = "N", descriptor = "I")
 	public int radius;
@@ -70,7 +70,7 @@ public final class AreaSound extends Node {
 	public void update() {
 		@Pc(8) int sound = this.sound;
 		if (this.loc != null) {
-			@Pc(17) LocType locType = this.loc.getVisible();
+			@Pc(17) LocMergeEntity locType = this.loc.getVisible();
 			if (locType == null) {
 				this.sound = -1;
 				this.sounds = null;
@@ -87,7 +87,7 @@ public final class AreaSound extends Node {
 		} else if (this.npc != null) {
 			@Pc(92) int npcSound = NPCEntity.getSound(this.npc);
 			if (sound != npcSound) {
-				@Pc(100) NPCType npcType = this.npc.npcType;
+				@Pc(100) NPCType npcType = this.npc.type;
 				this.sound = npcSound;
 				if (npcType.multinpc != null) {
 					npcType = npcType.getMultiNPC();
@@ -99,7 +99,7 @@ public final class AreaSound extends Node {
 				}
 			}
 		} else if (this.player != null) {
-			this.sound = Player.getSound(this.player);
+			this.sound = PlayerEntity.getSound(this.player);
 			this.radius = this.player.anInt1664 * 128;
 		}
 		if (this.sound != sound && this.primaryStream != null) {

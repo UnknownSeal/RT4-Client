@@ -12,7 +12,7 @@ public final class Static235 {
 	public static MapElementTypeList aMapElementTypeList_2;
 
 	@OriginalMember(owner = "runetek4.client!tb", name = "P", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1002 = Static28.parse("(U5");
+	public static final JString aClass100_1002 = Static28.parse("(U5");
 
 	@OriginalMember(owner = "runetek4.client!tb", name = "Q", descriptor = "I")
 	public static int anInt5276 = 0;

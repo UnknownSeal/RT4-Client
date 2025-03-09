@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.Random;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -56,7 +56,7 @@ public final class Static89 {
 							@Pc(98) int local98 = (local88 / 8 << 8) + local76 / 8;
 							for (@Pc(100) int local100 = 0; local100 < Static238.anIntArray470.length; local100++) {
 								if (Static238.anIntArray470[local100] == local98 && local13[local100] != null) {
-									Static245.method4228(local82, local32 * 8, local21, Static148.aClass97Array1, local39 * 8, local13[local100], local65, (local76 & 0x7) * 8, (local88 & 0x7) * 8, arg0);
+									Static245.method4228(local82, local32 * 8, local21, Static148.levelCollisionMap, local39 * 8, local13[local100], local65, (local76 & 0x7) * 8, (local88 & 0x7) * 8, arg0);
 									local54 = true;
 									break;
 								}
@@ -104,9 +104,9 @@ public final class Static89 {
 	}
 
 	@OriginalMember(owner = "client!ha", name = "a", descriptor = "([IJIZ)Lclient!na;")
-	public static JagString method1838(@OriginalArg(0) int[] arg0, @OriginalArg(1) long arg1, @OriginalArg(2) int arg2) {
+	public static JString method1838(@OriginalArg(0) int[] arg0, @OriginalArg(1) long arg1, @OriginalArg(2) int arg2) {
 		if (Static107.anInterface3_1 != null) {
-			@Pc(17) JagString local17 = Static107.anInterface3_1.method30(arg2, arg0, arg1);
+			@Pc(17) JString local17 = Static107.anInterface3_1.method30(arg2, arg0, arg1);
 			if (local17 != null) {
 				return local17;
 			}
@@ -164,8 +164,8 @@ public final class Static89 {
 				Static155.anInt3751 = Static215.anInt4873;
 				Static60.anInt1892 = Static223.anInt5032;
 			} else {
-				Static155.anInt3751 = Static7.clickX;
-				Static60.anInt1892 = Static60.clickY;
+				Static155.anInt3751 = VarpDefinition.mouseClickX;
+				Static60.anInt1892 = Static60.mouseClickY;
 			}
 			PreciseSleep.anInt5204 = 1;
 			Static254.aClass100Array168[0] = LocalizedText.CANCEL;
@@ -241,8 +241,8 @@ public final class Static89 {
 				}
 			}
 		}
-		Static110.method2281(Static178.anInt4247, Static173.self.anInt3412, Static173.self.anInt3421, Static55.level);
-		Static178.anInt4247 = 0;
+		Static110.method2281(Static178.sceneDelta, Static173.localPlayer.x, Static173.localPlayer.z, Static55.currentLevel);
+		Static178.sceneDelta = 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(IIIII)V")

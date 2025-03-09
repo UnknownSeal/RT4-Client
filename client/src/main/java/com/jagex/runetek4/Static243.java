@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -52,61 +52,61 @@ public final class Static243 {
 		Static114.method4625();
 		Static49.anInt1462 = -1;
 		Static5.anInt45 = -1;
-		Static164.anInt3985 = -1;
-		Static267.anInt5775 = 0;
-		Static60.rebootTimer = 0;
+		Static164.packetType = -1;
+		Static267.idleTimeout = 0;
+		Static60.systemUpdateTimer = 0;
 		Static6.outboundBuffer.pos = 0;
 		Static230.anInt5152 = -1;
-		Static201.anInt1862 = 0;
-		Static57.inboundBuffer.pos = 0;
-		@Pc(3506) int local3506;
-		for (local3506 = 0; local3506 < Static143.aClass102Array1.length; local3506++) {
-			Static143.aClass102Array1[local3506] = null;
+		Static201.idleNetCycles = 0;
+		Static57.in.pos = 0;
+		@Pc(3506) int i;
+		for (i = 0; i < Static143.aClass102Array1.length; i++) {
+			Static143.aClass102Array1[i] = null;
 		}
 		PreciseSleep.anInt5204 = 0;
 		Static60.aBoolean108 = false;
 		Static48.setIdleLoops(0);
-		for (local3506 = 0; local3506 < 100; local3506++) {
-			Static230.aClass100Array158[local3506] = null;
+		for (i = 0; i < 100; i++) {
+			Static230.messageText[i] = null;
 		}
 		Static260.anInt5014 = 0;
-		Static132.anInt3291 = (int) (Math.random() * 100.0D) - 50;
+		Static132.cameraAnticheatOffsetX = (int) (Math.random() * 100.0D) - 50;
 		Static84.anInt2255 = 0;
-		Static57.anInt1747 = (int) (Math.random() * 20.0D) - 10 & 0x7FF;
+		Static57.orbitCameraYaw = (int) (Math.random() * 20.0D) - 10 & 0x7FF;
 		Static107.anInt2875 = -1;
-		Static267.size = 0;
+		Static267.playerCount = 0;
 		Static270.anInt5795 = 0;
-		Static206.anInt4774 = (int) (Math.random() * 110.0D) - 55;
+		Static206.cameraAnticheatOffsetZ = (int) (Math.random() * 110.0D) - 55;
 		Static241.aBoolean302 = false;
-		Static273.anInt4130 = (int) (Math.random() * 30.0D) - 20;
+		Static273.minimapZoom = (int) (Math.random() * 30.0D) - 20;
 		Static189.anInt4451 = 0;
 		Static115.anInt2939 = 0;
-		Static59.anInt1814 = (int) (Math.random() * 120.0D) - 60;
+		Static59.minimapAnticheatAngle = (int) (Math.random() * 120.0D) - 60;
 		Static62.anInt1941 = 0;
-		Static230.anInt5161 = (int) (Math.random() * 80.0D) - 40;
-		Static272.anInt5214 = 0;
-		for (local3506 = 0; local3506 < 2048; local3506++) {
-			Static159.aClass8_Sub4_Sub1Array1[local3506] = null;
-			Static115.aClass3_Sub15Array1[local3506] = null;
+		Static230.cameraAnticheatAngle = (int) (Math.random() * 80.0D) - 40;
+		Static272.npcCount = 0;
+		for (i = 0; i < 2048; i++) {
+			Static159.players[i] = null;
+			Static115.playerAppearanceBuffer[i] = null;
 		}
-		for (local3506 = 0; local3506 < 32768; local3506++) {
-			Static175.aClass8_Sub4_Sub2Array1[local3506] = null;
+		for (i = 0; i < 32768; i++) {
+			Static175.npcs[i] = null;
 		}
-		Static173.self = Static159.aClass8_Sub4_Sub1Array1[2047] = new Player();
-		Static217.aClass69_116.method2278();
-		Static99.aClass69_64.method2278();
-		if (Static159.aClass69ArrayArrayArray1 != null) {
-			for (local3506 = 0; local3506 < 4; local3506++) {
+		Static173.localPlayer = Static159.players[2047] = new PlayerEntity();
+		Static217.projectiles.clear();
+		Static99.spotanims.clear();
+		if (Static159.levelObjStacks != null) {
+			for (i = 0; i < 4; i++) {
 				for (@Pc(3663) int local3663 = 0; local3663 < 104; local3663++) {
 					for (@Pc(3670) int local3670 = 0; local3670 < 104; local3670++) {
-						Static159.aClass69ArrayArrayArray1[local3506][local3663][local3670] = null;
+						Static159.levelObjStacks[i][local3663][local3670] = null;
 					}
 				}
 			}
 		}
-		Static26.aClass69_27 = new LinkedList();
+		Static26.spawnedLocations = new LinkList();
 		Static166.anInt4054 = 0;
-		Static9.anInt178 = 0;
+		Static9.friendCount = 0;
 		Static8.method121();
 		Static20.method601();
 		Static133.anInt5230 = 0;
@@ -119,8 +119,8 @@ public final class Static243 {
 		Static251.anInt5449 = 0;
 		Static113.anInt4612 = 0;
 		Static233.anInt5225 = 0;
-		for (local3506 = 0; local3506 < Static155.varcs.length; local3506++) {
-			Static155.varcs[local3506] = -1;
+		for (i = 0; i < VarpDefinition.varcs.length; i++) {
+			VarpDefinition.varcs[i] = -1;
 		}
 		if (Static154.topLevelInterace != -1) {
 			Static109.method2275(Static154.topLevelInterace);
@@ -135,26 +135,26 @@ public final class Static243 {
 		Static60.aBoolean108 = false;
 		PreciseSleep.anInt5204 = 0;
 		Static134.A_PLAYER_MODEL___2.method1950(new int[] { 0, 0, 0, 0, 0 }, -1, false, null, -1);
-		for (local3506 = 0; local3506 < 8; local3506++) {
-			Static160.aClass100Array121[local3506] = null;
-			Static1.aBooleanArray1[local3506] = false;
-			Static191.anIntArray388[local3506] = -1;
+		for (i = 0; i < 8; i++) {
+			Static160.aClass100Array121[i] = null;
+			Static1.aBooleanArray1[i] = false;
+			Static191.anIntArray388[i] = -1;
 		}
 		Static102.method2073();
 		Static19.aBoolean43 = true;
-		for (local3506 = 0; local3506 < 100; local3506++) {
-			Static186.aBooleanArray100[local3506] = true;
+		for (i = 0; i < 100; i++) {
+			Static186.aBooleanArray100[i] = true;
 		}
 		Static214.anInt5577 = 0;
 		Static199.aClass3_Sub22Array1 = null;
 		Static15.aClass100_87 = null;
-		for (local3506 = 0; local3506 < 6; local3506++) {
-			Static229.aClass136Array1[local3506] = new StockMarketOffer();
+		for (i = 0; i < 6; i++) {
+			Static229.aClass136Array1[i] = new StockMarketOffer();
 		}
-		for (local3506 = 0; local3506 < 25; local3506++) {
-			Static99.anIntArray240[local3506] = 0;
-			Static141.anIntArray326[local3506] = 0;
-			Static227.anIntArray446[local3506] = 0;
+		for (i = 0; i < 25; i++) {
+			Static99.skillLevel[i] = 0;
+			Static141.skillBaseLevel[i] = 0;
+			Static227.skillExperience[i] = 0;
 		}
 		if (GlRenderer.enabled) {
 			Static86.method1799();

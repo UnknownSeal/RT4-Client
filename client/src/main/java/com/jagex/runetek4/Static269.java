@@ -16,10 +16,10 @@ public final class Static269 {
 	public static Map aClass3_Sub2_Sub4_2;
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "X", descriptor = "[Lclient!na;")
-	public static JagString[] aClass100Array87 = null;
+	public static JString[] aClass100Array87 = null;
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "pb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_556 = Static28.parse("<br>");
+	public static final JString aClass100_556 = Static28.parse("<br>");
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "Eb", descriptor = "[Lclient!bg;")
 	public static final Js5NetResourceProvider[] aClass14_Sub1Array3 = new Js5NetResourceProvider[28];
@@ -200,7 +200,7 @@ public final class Static269 {
 					local190 = local529.anInt2240 >> 7;
 					if (local190 >= 0 && local194 >= 0 && local190 < 104 && local194 < 104) {
 						local529.aBoolean125 = (Static12.aByteArrayArrayArray2[1][local190][local194] & 0x2) != 0;
-						local529.anInt2235 = Static83.anIntArrayArrayArray4[local529.anInt2241][local190][local194] - local529.anInt2235;
+						local529.anInt2235 = Static83.levelHeightMap[local529.anInt2241][local190][local194] - local529.anInt2235;
 						Static120.method2389(local529);
 					}
 				}
@@ -224,8 +224,8 @@ public final class Static269 {
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(III)Lclient!bm;")
 	public static GroundDecor method2210(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Tile local7 = Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2];
-		return local7 == null || local7.aClass15_1 == null ? null : local7.aClass15_1;
+		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
+		return local7 == null || local7.groundDecor == null ? null : local7.groundDecor;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "o", descriptor = "(I)V")
@@ -246,7 +246,7 @@ public final class Static269 {
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "d", descriptor = "(BI)V")
 	public static void method2221() {
-		Static125.aClass99_19.method3102(5);
+		Static125.varbitDefinitionCache.method3102(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(IIIII)V")
@@ -316,7 +316,7 @@ public final class Static269 {
 		}
 		@Pc(405) int local405 = arg1 + arg2 - 8;
 		@Pc(412) int local412 = arg0 + arg3 - 5;
-		Static215.aClass3_Sub2_Sub9_32.method2864(Static34.method882(new JagString[] { Static115.aClass100_579, Static123.method2423(Static243.fps) }), local412, local405, 16776960, -1);
+		Static215.aClass3_Sub2_Sub9_32.method2864(Static34.method882(new JString[] { Static115.FPS, Static123.method2423(Static243.fps) }), local412, local405, 16776960, -1);
 		@Pc(434) Runtime local434 = Runtime.getRuntime();
 		@Pc(443) int local443 = (int) ((local434.totalMemory() - local434.freeMemory()) / 1024L);
 		@Pc(445) int local445 = 16776960;
@@ -324,12 +324,12 @@ public final class Static269 {
 		if (local443 > 65536) {
 			local445 = 16711680;
 		}
-		Static215.aClass3_Sub2_Sub9_32.method2864(Static34.method882(new JagString[] { Static203.aClass100_894, Static123.method2423(local443), Static19.aClass100_112 }), local412, local446, local445, -1);
+		Static215.aClass3_Sub2_Sub9_32.method2864(Static34.method882(new JString[] { Static203.MEM, Static123.method2423(local443), Static19.aClass100_112 }), local412, local446, local445, -1);
 		local405 = local446 - 15;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(IZ)Lclient!na;")
-	public static JagString method2228(@OriginalArg(0) int arg0) {
-		return Static233.aClass100Array160[arg0].length() > 0 ? Static34.method882(new JagString[] { Static254.aClass100Array168[arg0], LocalizedText.MINISEPARATOR, Static233.aClass100Array160[arg0] }) : Static254.aClass100Array168[arg0];
+	public static JString method2228(@OriginalArg(0) int arg0) {
+		return Static233.aClass100Array160[arg0].length() > 0 ? Static34.method882(new JString[] { Static254.aClass100Array168[arg0], LocalizedText.MINISEPARATOR, Static233.aClass100Array160[arg0] }) : Static254.aClass100Array168[arg0];
 	}
 }

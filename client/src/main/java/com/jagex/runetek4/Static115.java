@@ -12,22 +12,22 @@ public final class Static115 {
 	public static int anInt2940;
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "f", descriptor = "Lclient!ih;")
-	public static final LinkedList aClass69_70 = new LinkedList();
+	public static final LinkList aClass69_70 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "j", descriptor = "I")
 	public static int anInt2937 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "k", descriptor = "Lclient!na;")
-	public static final JagString aClass100_579 = Static28.parse("Fps:");
+	public static final JString FPS = Static28.parse("Fps:");
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "l", descriptor = "[Lclient!wa;")
-	public static final Packet[] aClass3_Sub15Array1 = new Packet[2048];
+	public static final Packet[] playerAppearanceBuffer = new Packet[2048];
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "n", descriptor = "I")
 	public static int anInt2939 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "s", descriptor = "Lclient!na;")
-	public static final JagString aClass100_582 = Static28.parse("http:)4)4");
+	public static final JString aClass100_582 = Static28.parse("http:)4)4");
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "([II)[I")
 	public static int[] method2308(@OriginalArg(0) int[] arg0) {
@@ -138,7 +138,7 @@ public final class Static115 {
 		Static166.anInt4055 = (short) arg0;
 		Static245.anInt5377 = (short) arg2;
 		Static24.anInt773 = arg1;
-		Static7.anInt983 = arg3;
+		VarpDefinition.anInt983 = arg3;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(Z)V")

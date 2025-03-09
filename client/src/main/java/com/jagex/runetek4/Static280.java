@@ -1,8 +1,8 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.game.config.iftype.Component;
-import com.jagex.runetek4.game.scene.entities.PathingEntity;
+import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -20,7 +20,7 @@ public final class Static280 {
 	public static int anInt5900;
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "d", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1108 = Static28.parse("compass");
+	public static final JString COMPASS = Static28.parse("compass");
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "h", descriptor = "Lclient!be;")
 	public static Component aClass13_26 = null;
@@ -30,30 +30,30 @@ public final class Static280 {
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!fe;B)V")
 	public static void method4665(@OriginalArg(0) PathingEntity arg0) {
-		if (Static83.loopCycle == arg0.anInt3386 || arg0.anInt3369 == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > Static36.method941(arg0.anInt3369).frames[arg0.anInt3425]) {
+		if (Static83.loopCycle == arg0.anInt3386 || arg0.primarySeqId == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > Static36.method941(arg0.primarySeqId).frames[arg0.anInt3425]) {
 			@Pc(35) int local35 = arg0.anInt3386 - arg0.anInt3395;
 			@Pc(41) int local41 = Static83.loopCycle - arg0.anInt3395;
 			@Pc(52) int local52 = arg0.anInt3380 * 128 + arg0.size() * 64;
 			@Pc(64) int local64 = arg0.anInt3428 * 128 + arg0.size() * 64;
 			@Pc(75) int local75 = arg0.anInt3416 * 128 + arg0.size() * 64;
 			@Pc(86) int local86 = arg0.anInt3392 * 128 + arg0.size() * 64;
-			arg0.anInt3412 = (local41 * local75 + local52 * (local35 - local41)) / local35;
-			arg0.anInt3421 = (local86 * local41 + local64 * (local35 - local41)) / local35;
+			arg0.x = (local41 * local75 + local52 * (local35 - local41)) / local35;
+			arg0.z = (local86 * local41 + local64 * (local35 - local41)) / local35;
 		}
 		arg0.anInt3417 = 0;
 		if (arg0.anInt3431 == 0) {
-			arg0.anInt3400 = 1024;
+			arg0.dstYaw = 1024;
 		}
 		if (arg0.anInt3431 == 1) {
-			arg0.anInt3400 = 1536;
+			arg0.dstYaw = 1536;
 		}
 		if (arg0.anInt3431 == 2) {
-			arg0.anInt3400 = 0;
+			arg0.dstYaw = 0;
 		}
 		if (arg0.anInt3431 == 3) {
-			arg0.anInt3400 = 512;
+			arg0.dstYaw = 512;
 		}
-		arg0.anInt3381 = arg0.anInt3400;
+		arg0.anInt3381 = arg0.dstYaw;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(IIII)V")
@@ -686,11 +686,11 @@ public final class Static280 {
 			local3 = true;
 			for (@Pc(13) int local13 = 0; local13 < PreciseSleep.anInt5204 - 1; local13++) {
 				if (Static39.aShortArray6[local13] < 1000 && Static39.aShortArray6[local13 + 1] > 1000) {
-					@Pc(41) JagString local41 = Static233.aClass100Array160[local13];
+					@Pc(41) JString local41 = Static233.aClass100Array160[local13];
 					local3 = false;
 					Static233.aClass100Array160[local13] = Static233.aClass100Array160[local13 + 1];
 					Static233.aClass100Array160[local13 + 1] = local41;
-					@Pc(61) JagString local61 = Static254.aClass100Array168[local13];
+					@Pc(61) JString local61 = Static254.aClass100Array168[local13];
 					Static254.aClass100Array168[local13] = Static254.aClass100Array168[local13 + 1];
 					Static254.aClass100Array168[local13 + 1] = local61;
 					@Pc(79) int local79 = Static196.anIntArray408[local13];

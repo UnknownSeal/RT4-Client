@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
-import com.jagex.runetek4.game.scene.entities.PathingEntity;
+import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static263 {
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "[Lclient!na;")
-	public static JagString[] aClass100Array174;
+	public static JString[] aClass100Array174;
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "e", descriptor = "[I")
 	public static int[] anIntArray516;
@@ -21,13 +21,13 @@ public final class Static263 {
 	public static boolean aBoolean299 = false;
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "d", descriptor = "I")
-	public static int anInt5755 = 2;
+	public static int minimapAngleModifier = 2;
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "f", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1081 = Static28.parse("<col=80ff00>");
+	public static final JString GREEN3 = Static28.parse("<col=80ff00>");
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "h", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1082 = Static28.parse("; Expires=");
+	public static final JString aClass100_1082 = Static28.parse("; Expires=");
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(I[S)[S")
 	public static short[] method4511(@OriginalArg(1) short[] arg0) {
@@ -41,7 +41,7 @@ public final class Static263 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(Lclient!na;IIBI)V")
-	public static void method4512(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
+	public static void method4512(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
 		@Pc(8) Component local8 = Static201.method1418(arg3, arg1);
 		if (local8 == null) {
 			return;
@@ -114,33 +114,33 @@ public final class Static263 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(IILclient!fe;)V")
-	public static void method4514(@OriginalArg(0) int arg0, @OriginalArg(2) PathingEntity arg1) {
-		if (Static83.loopCycle < arg1.anInt3395) {
-			Static18.method553(arg1);
-		} else if (arg1.anInt3386 >= Static83.loopCycle) {
-			Static280.method4665(arg1);
+	public static void updateEntity(@OriginalArg(0) int arg0, @OriginalArg(2) PathingEntity entity) {
+		if (Static83.loopCycle < entity.anInt3395) {
+			Static18.method553(entity);
+		} else if (entity.anInt3386 >= Static83.loopCycle) {
+			Static280.method4665(entity);
 		} else {
-			Static104.method2247(arg1);
+			Static104.method2247(entity);
 		}
-		if (arg1.anInt3412 < 128 || arg1.anInt3421 < 128 || arg1.anInt3412 >= 13184 || arg1.anInt3421 >= 13184) {
-			arg1.anInt3369 = -1;
-			arg1.anInt3432 = -1;
-			arg1.anInt3395 = 0;
-			arg1.anInt3386 = 0;
-			arg1.anInt3412 = arg1.movementQueueX[0] * 128 + arg1.size() * 64;
-			arg1.anInt3421 = arg1.movementQueueZ[0] * 128 + arg1.size() * 64;
-			arg1.method2689();
+		if (entity.x < 128 || entity.z < 128 || entity.x >= 13184 || entity.z >= 13184) {
+			entity.primarySeqId = -1;
+			entity.spotanimFrame = -1;
+			entity.anInt3395 = 0;
+			entity.anInt3386 = 0;
+			entity.x = entity.pathTileX[0] * 128 + entity.size() * 64;
+			entity.z = entity.pathTileZ[0] * 128 + entity.size() * 64;
+			entity.method2689();
 		}
-		if (arg1 == Static173.self && (arg1.anInt3412 < 1536 || arg1.anInt3421 < 1536 || arg1.anInt3412 >= 11776 || arg1.anInt3421 >= 11776)) {
-			arg1.anInt3432 = -1;
-			arg1.anInt3395 = 0;
-			arg1.anInt3386 = 0;
-			arg1.anInt3369 = -1;
-			arg1.anInt3412 = arg1.movementQueueX[0] * 128 + arg1.size() * 64;
-			arg1.anInt3421 = arg1.movementQueueZ[0] * 128 + arg1.size() * 64;
-			arg1.method2689();
+		if (entity == Static173.localPlayer && (entity.x < 1536 || entity.z < 1536 || entity.x >= 11776 || entity.z >= 11776)) {
+			entity.spotanimFrame = -1;
+			entity.anInt3395 = 0;
+			entity.anInt3386 = 0;
+			entity.primarySeqId = -1;
+			entity.x = entity.pathTileX[0] * 128 + entity.size() * 64;
+			entity.z = entity.pathTileZ[0] * 128 + entity.size() * 64;
+			entity.method2689();
 		}
-		Static37.method949(arg1);
-		Static34.method879(arg1);
+		Static37.method949(entity);
+		Static34.method879(entity);
 	}
 }

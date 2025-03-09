@@ -4,7 +4,7 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.idktype.IDKType;
-import com.jagex.runetek4.game.config.seqtype.SeqType;
+import com.jagex.runetek4.config.SeqType;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -71,7 +71,7 @@ public final class PlayerModel {
 				}
 			}
 			local30 = local66.method1679(64, 768, -50, -10, -50);
-			Static139.aClass99_21.method3095(local30, local24);
+			Static139.aClass99_21.put(local30, local24);
 		}
 		if (arg4 != null) {
 			local30 = arg4.method4215(local30, arg0, arg3, arg5);
@@ -140,7 +140,7 @@ public final class PlayerModel {
 	}
 
 	@OriginalMember(owner = "client!hh", name = "b", descriptor = "(I)I")
-	public final int method1952() {
+	public final int getHeadModelId() {
 		return this.anInt2492 == -1 ? (this.anIntArray233[8] << 10) + ((this.anIntArray236[0] << 25) + (this.anIntArray236[4] << 20)) + (this.anIntArray233[0] << 15) + (this.anIntArray233[11] << 5) + this.anIntArray233[1] : Static214.get(this.anInt2492).id + 305419896;
 	}
 
@@ -289,25 +289,25 @@ public final class PlayerModel {
 								local239[local250].method1684(local374, local367, local381);
 							}
 							if (local346 != 0 || local353 != 0 || local360 != 0) {
-								local239[local250].method1672(local346, local353, local360);
+								local239[local250].translate(local346, local353, local360);
 							}
 						}
 					}
 				}
-				@Pc(740) ModelUnlit local740 = new ModelUnlit(local239, local239.length);
+				@Pc(740) ModelUnlit model = new ModelUnlit(local239, local239.length);
 				for (local346 = 0; local346 < 5; local346++) {
 					if (Static33.aShortArrayArray2[local346].length > this.anIntArray236[local346]) {
-						local740.recolor(Static200.aShortArray65[local346], Static33.aShortArrayArray2[local346][this.anIntArray236[local346]]);
+						model.recolor(Static200.aShortArray65[local346], Static33.aShortArrayArray2[local346][this.anIntArray236[local346]]);
 					}
 					if (Static172.aShortArrayArray7[local346].length > this.anIntArray236[local346]) {
-						local740.recolor(Static160.aShortArray41[local346], Static172.aShortArrayArray7[local346][this.anIntArray236[local346]]);
+						model.recolor(Static160.aShortArray41[local346], Static172.aShortArrayArray7[local346][this.anIntArray236[local346]]);
 					}
 				}
-				local154 = local740.method1679(64, 850, -30, -50, -30);
+				local154 = model.method1679(64, 850, -30, -50, -30);
 				if (GlRenderer.enabled) {
 					((GlModel) local154).method4111(false, false, true, false, false, true);
 				}
-				Static250.aClass99_33.method3095(local154, local41);
+				Static250.aClass99_33.put(local154, local41);
 				this.aLong87 = local41;
 			}
 		}
@@ -334,7 +334,7 @@ public final class PlayerModel {
 						local827 |= Static276.aClass3_Sub2_Sub7Array8[local353].method901(local381);
 						local838 |= local858.aBoolean278;
 					}
-					if ((local858.aBoolean277 || Static204.aBoolean234) && local367 != -1 && local367 < local858.anIntArray473.length) {
+					if ((local858.aBoolean277 || Static204.tween) && local367 != -1 && local367 < local858.anIntArray473.length) {
 						Static262.anIntArray515[local353] = local858.frames[local374];
 						Static73.anIntArray183[local353] = arg0[local353].anInt5404;
 						local979 = local858.anIntArray473[local367];
@@ -372,7 +372,7 @@ public final class PlayerModel {
 				local827 |= local1042.method901(local353);
 				local838 |= arg3.aBoolean278;
 			}
-			if ((arg3.aBoolean277 || Static204.aBoolean234) && arg1 != -1 && arg3.anIntArray473.length > arg1) {
+			if ((arg3.aBoolean277 || Static204.tween) && arg1 != -1 && arg3.anIntArray473.length > arg1) {
 				local360 = arg3.anIntArray473[arg1];
 				local451 = local360 >>> 16;
 				local360 &= 0xFFFF;
@@ -403,7 +403,7 @@ public final class PlayerModel {
 				local827 |= local1154.method901(local979);
 				local838 |= arg2.aBoolean278;
 			}
-			if ((arg2.aBoolean277 || Static204.aBoolean234) && arg5 != -1 && arg2.anIntArray473.length > arg5) {
+			if ((arg2.aBoolean277 || Static204.tween) && arg5 != -1 && arg2.anIntArray473.length > arg5) {
 				local457 = arg2.frames[arg8];
 				local451 = arg2.anIntArray473[arg5];
 				local481 = local451 >>> 16;
@@ -494,7 +494,7 @@ public final class PlayerModel {
 				}
 			}
 			local30 = local171.method1679(64, 768, -50, -10, -50);
-			Static139.aClass99_21.method3095(local30, this.aLong88);
+			Static139.aClass99_21.put(local30, this.aLong88);
 		}
 		if (arg1 != null) {
 			local30 = arg1.method4215(local30, arg3, arg0, arg2);

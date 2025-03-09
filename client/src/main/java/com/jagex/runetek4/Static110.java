@@ -2,8 +2,8 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.bastype.BASType;
-import com.jagex.runetek4.game.scene.entities.NPCEntity;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -15,12 +15,12 @@ public final class Static110 {
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "a", descriptor = "(III)Lclient!jh;")
 	public static Wall method2276(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Tile local7 = Static130.aClass3_Sub5ArrayArrayArray1[arg0][arg1][arg2];
+		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return null;
 		} else {
-			@Pc(14) Wall local14 = local7.aClass77_1;
-			local7.aClass77_1 = null;
+			@Pc(14) Wall local14 = local7.wall;
+			local7.wall = null;
 			return local14;
 		}
 	}
@@ -57,11 +57,11 @@ public final class Static110 {
 		for (local6 = (AreaSound) AreaSoundManager.npcSounds.head(); local6 != null; local6 = (AreaSound) AreaSoundManager.npcSounds.next()) {
 			local37 = 1;
 			local42 = local6.npc.method2681();
-			if (local42.anInt1037 == local6.npc.anInt3366) {
+			if (local42.anInt1037 == local6.npc.secondarySeqId) {
 				local37 = 0;
-			} else if (local42.anInt1058 == local6.npc.anInt3366 || local42.anInt1054 == local6.npc.anInt3366 || local42.anInt1045 == local6.npc.anInt3366 || local42.anInt1043 == local6.npc.anInt3366) {
+			} else if (local42.anInt1058 == local6.npc.secondarySeqId || local42.anInt1054 == local6.npc.secondarySeqId || local42.anInt1045 == local6.npc.secondarySeqId || local42.anInt1043 == local6.npc.secondarySeqId) {
 				local37 = 2;
-			} else if (local42.anInt1062 == local6.npc.anInt3366 || local42.anInt1042 == local6.npc.anInt3366 || local6.npc.anInt3366 == local42.anInt1048 || local42.anInt1066 == local6.npc.anInt3366) {
+			} else if (local42.anInt1062 == local6.npc.secondarySeqId || local42.anInt1042 == local6.npc.secondarySeqId || local6.npc.secondarySeqId == local42.anInt1048 || local42.anInt1066 == local6.npc.secondarySeqId) {
 				local37 = 3;
 			}
 			if (local6.anInt2038 != local37) {
@@ -75,24 +75,24 @@ public final class Static110 {
 				}
 				local6.anInt2038 = local37;
 			}
-			local6.anInt2041 = local6.npc.anInt3412;
-			local6.anInt2037 = local6.npc.anInt3412 + local6.npc.size() * 64;
-			local6.anInt2029 = local6.npc.anInt3421;
-			local6.anInt2028 = local6.npc.anInt3421 + local6.npc.size() * 64;
+			local6.anInt2041 = local6.npc.x;
+			local6.anInt2037 = local6.npc.x + local6.npc.size() * 64;
+			local6.anInt2029 = local6.npc.z;
+			local6.anInt2028 = local6.npc.z + local6.npc.size() * 64;
 			Static150.method2804(arg1, local6, arg3, arg0, arg2);
 		}
 		for (local6 = (AreaSound) AreaSoundManager.playerSounds.peekFront(); local6 != null; local6 = (AreaSound) AreaSoundManager.playerSounds.prev()) {
 			local37 = 1;
 			local42 = local6.player.method2681();
-			if (local6.player.anInt3366 == local42.anInt1037) {
+			if (local6.player.secondarySeqId == local42.anInt1037) {
 				local37 = 0;
-			} else if (local6.player.anInt3366 == local42.anInt1058 || local6.player.anInt3366 == local42.anInt1054 || local6.player.anInt3366 == local42.anInt1045 || local42.anInt1043 == local6.player.anInt3366) {
+			} else if (local6.player.secondarySeqId == local42.anInt1058 || local6.player.secondarySeqId == local42.anInt1054 || local6.player.secondarySeqId == local42.anInt1045 || local42.anInt1043 == local6.player.secondarySeqId) {
 				local37 = 2;
-			} else if (local42.anInt1062 == local6.player.anInt3366 || local6.player.anInt3366 == local42.anInt1042 || local6.player.anInt3366 == local42.anInt1048 || local6.player.anInt3366 == local42.anInt1066) {
+			} else if (local42.anInt1062 == local6.player.secondarySeqId || local6.player.secondarySeqId == local42.anInt1042 || local6.player.secondarySeqId == local42.anInt1048 || local6.player.secondarySeqId == local42.anInt1066) {
 				local37 = 3;
 			}
 			if (local6.anInt2038 != local37) {
-				local141 = Player.getSound(local6.player);
+				local141 = PlayerEntity.getSound(local6.player);
 				if (local6.sound != local141) {
 					if (local6.primaryStream != null) {
 						Static204.soundStream.removeSubStream(local6.primaryStream);
@@ -102,16 +102,16 @@ public final class Static110 {
 				}
 				local6.anInt2038 = local37;
 			}
-			local6.anInt2041 = local6.player.anInt3412;
-			local6.anInt2037 = local6.player.anInt3412 + local6.player.size() * 64;
-			local6.anInt2029 = local6.player.anInt3421;
-			local6.anInt2028 = local6.player.anInt3421 + local6.player.size() * 64;
+			local6.anInt2041 = local6.player.x;
+			local6.anInt2037 = local6.player.x + local6.player.size() * 64;
+			local6.anInt2029 = local6.player.z;
+			local6.anInt2028 = local6.player.z + local6.player.size() * 64;
 			Static150.method2804(arg1, local6, arg3, arg0, arg2);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "a", descriptor = "(ZII)Lclient!na;")
-	public static JagString method2285(@OriginalArg(2) int arg0) {
+	public static JString method2285(@OriginalArg(2) int arg0) {
 		return Static198.method1025(true, arg0);
 	}
 }

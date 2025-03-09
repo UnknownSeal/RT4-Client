@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -15,10 +15,10 @@ public final class Static3 {
 	public static final boolean[] aBooleanArray135 = new boolean[200];
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "j", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array176 = new JagString[1000];
+	public static final JString[] scriptStringValues = new JString[1000];
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "(Lclient!na;I)V")
-	public static void method4656(@OriginalArg(0) JagString arg0) {
+	public static void method4656(@OriginalArg(0) JString arg0) {
 		@Pc(9) int local9 = Static171.method3218(arg0);
 		if (local9 != -1) {
 			Static80.method3616(Static203.aMapElementTypeList_1.aShortArray73[local9], Static203.aMapElementTypeList_1.aShortArray72[local9]);
@@ -27,7 +27,7 @@ public final class Static3 {
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "b", descriptor = "(B)V")
 	public static void method4657() {
-		Static232.aClass99_30.method3103();
+		Static232.varpDefinitionCache.method3103();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "(II)V")

@@ -15,7 +15,7 @@ public final class Static149 {
 	public static Image anImage3;
 
 	@OriginalMember(owner = "runetek4.client!lj", name = "B", descriptor = "I")
-	public static int anInt3555;
+	public static int eyeX;
 
 	@OriginalMember(owner = "runetek4.client!lj", name = "p", descriptor = "Lclient!gn;")
 	public static final LruHashTable aClass54_10 = new LruHashTable(128);

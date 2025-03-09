@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static56 {
@@ -21,13 +21,13 @@ public final class Static56 {
 	public static final int[] anIntArray142 = new int[500];
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "f", descriptor = "Lclient!na;")
-	public static final JagString aClass100_379 = Static28.parse(":duelstake:");
+	public static final JString DUELSTAKE = Static28.parse(":duelstake:");
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "g", descriptor = "I")
-	public static int anInt1742 = -1;
+	public static int clickTileX = -1;
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "h", descriptor = "Lclient!na;")
-	public static final JagString aClass100_380 = Static28.parse("unzap");
+	public static final JString aClass100_380 = Static28.parse("unzap");
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "i", descriptor = "I")
 	public static int anInt1743 = 0;

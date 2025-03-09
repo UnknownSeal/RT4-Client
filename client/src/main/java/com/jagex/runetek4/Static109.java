@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.scene.entities.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -20,12 +20,12 @@ public final class Static109 {
 	public static int anInt2886;
 
 	@OriginalMember(owner = "runetek4.client!ig", name = "a", descriptor = "(I)V")
-	public static void method2274() {
-		for (@Pc(7) int local7 = 0; local7 < Static272.anInt5214; local7++) {
-			@Pc(18) int local18 = Static33.anIntArray79[local7];
-			@Pc(22) NPCEntity local22 = Static175.aClass8_Sub4_Sub2Array1[local18];
-			if (local22 != null) {
-				Static263.method4514(local22.npcType.size, local22);
+	public static void updateNpcs() {
+		for (@Pc(7) int i = 0; i < Static272.npcCount; i++) {
+			@Pc(18) int id = Static33.npcIds[i];
+			@Pc(22) NPCEntity npc = Static175.npcs[id];
+			if (npc != null) {
+				Static263.updateEntity(npc.type.size, npc);
 			}
 		}
 	}

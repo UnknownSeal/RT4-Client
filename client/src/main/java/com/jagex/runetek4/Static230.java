@@ -21,7 +21,7 @@ public final class Static230 {
 	public static int anInt5150 = 1;
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "q", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array158 = new JagString[100];
+	public static final JString[] messageText = new JString[100];
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "t", descriptor = "I")
 	public static int anInt5152 = 0;
@@ -30,13 +30,13 @@ public final class Static230 {
 	public static boolean aBoolean250 = false;
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "w", descriptor = "Lclient!na;")
-	public static final JagString aClass100_978 = Static28.parse("<)4col>");
+	public static final JString aClass100_978 = Static28.parse("<)4col>");
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "F", descriptor = "Lclient!rc;")
 	public static GameShell anApplet_Sub1_1 = null;
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "H", descriptor = "I")
-	public static int anInt5161 = 0;
+	public static int cameraAnticheatAngle = 0;
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "c", descriptor = "(I)V")
 	public static void method3947() {
@@ -110,19 +110,19 @@ public final class Static230 {
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(Lclient!ve;B)V")
 	public static void method3951(@OriginalArg(0) Js5 arg0) {
-		Static81.aClass153_34 = arg0;
-		Static165.anInt4043 = Static81.aClass153_34.method4504(16);
+		Static81.gameDefinitionsCacheArchive = arg0;
+		Static165.anInt4043 = Static81.gameDefinitionsCacheArchive.method4504(16);
 	}
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(Ljava/lang/String;I)Lclient!na;")
-	public static JagString method3952(@OriginalArg(0) String arg0) {
+	public static JString method3952(@OriginalArg(0) String arg0) {
 		@Pc(14) byte[] local14;
 		try {
 			local14 = arg0.getBytes("ISO-8859-1");
 		} catch (@Pc(16) UnsupportedEncodingException local16) {
 			local14 = arg0.getBytes();
 		}
-		@Pc(23) JagString local23 = new JagString();
+		@Pc(23) JString local23 = new JString();
 		local23.aByteArray52 = local14;
 		local23.anInt4030 = 0;
 		for (@Pc(31) int local31 = 0; local31 < local14.length; local31++) {
@@ -159,21 +159,21 @@ public final class Static230 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(ILclient!na;)V")
-	public static void method3954(@OriginalArg(1) JagString arg0) {
+	public static void method3954(@OriginalArg(1) JString arg0) {
 		Static47.aClass100_991 = arg0;
 		if (GameShell.signLink.anApplet2 == null) {
 			return;
 		}
 		try {
-			@Pc(17) JagString local17 = Static272.aClass100_989.method3153(GameShell.signLink.anApplet2);
-			@Pc(23) JagString local23 = Static246.aClass100_1029.method3153(GameShell.signLink.anApplet2);
-			@Pc(48) JagString local48 = Static34.method882(new JagString[] { local17, Static142.aClass100_667, arg0, Static276.aClass100_1095, local23 });
+			@Pc(17) JString local17 = Static272.aClass100_989.method3153(GameShell.signLink.anApplet2);
+			@Pc(23) JString local23 = Static246.aClass100_1029.method3153(GameShell.signLink.anApplet2);
+			@Pc(48) JString local48 = Static34.method882(new JString[] { local17, Static142.aClass100_667, arg0, Static276.aClass100_1095, local23 });
 			if (arg0.length() == 0) {
-				local48 = Static34.method882(new JagString[] { local48, Static245.aClass100_1018 });
+				local48 = Static34.method882(new JString[] { local48, Static245.aClass100_1018 });
 			} else {
-				local48 = Static34.method882(new JagString[] { local48, Static263.aClass100_1082, Static33.method873(MonotonicTime.get() + 94608000000L), Static64.aClass100_431, Static154.method2929(94608000L) });
+				local48 = Static34.method882(new JString[] { local48, Static263.aClass100_1082, Static33.method873(MonotonicTime.get() + 94608000000L), Static64.MAX_AGE, Static154.method2929(94608000L) });
 			}
-			Static34.method882(new JagString[] { Static221.aClass100_821, local48, Static223.aClass100_946 }).method3134(GameShell.signLink.anApplet2);
+			Static34.method882(new JString[] { BZip2State.aClass100_821, local48, Static223.aClass100_946 }).method3134(GameShell.signLink.anApplet2);
 		} catch (@Pc(124) Throwable local124) {
 		}
 	}

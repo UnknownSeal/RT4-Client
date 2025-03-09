@@ -17,7 +17,7 @@ public final class Static98 {
 	public static Js5 aClass153_42;
 
 	@OriginalMember(owner = "runetek4.client!hj", name = "d", descriptor = "Lclient!na;")
-	public static final JagString aClass100_524 = Static28.parse("hint_headicons");
+	public static final JString HINT_HEADICONS = Static28.parse("hint_headicons");
 
 	@OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "(II)V")
 	public static void method1964(@OriginalArg(0) int arg0) {
@@ -28,16 +28,16 @@ public final class Static98 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "(Lclient!na;B)Z")
-	public static boolean method1965(@OriginalArg(0) JagString arg0) {
-		if (arg0 == null) {
+	public static boolean method1965(@OriginalArg(0) JString username) {
+		if (username == null) {
 			return false;
 		}
-		for (@Pc(12) int local12 = 0; local12 < Static9.anInt178; local12++) {
-			if (arg0.method3111(Static122.aClass100Array92[local12])) {
+		for (@Pc(12) int i = 0; i < Static9.friendCount; i++) {
+			if (username.equalsIgnoreCase(Static122.friendName[i])) {
 				return true;
 			}
 		}
-		if (arg0.method3111(Static173.self.username)) {
+		if (username.equalsIgnoreCase(Static173.localPlayer.name)) {
 			return true;
 		} else {
 			return false;
@@ -45,7 +45,7 @@ public final class Static98 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "(IJBLclient!na;ISLclient!na;I)V")
-	public static void method1966(@OriginalArg(0) int arg0, @OriginalArg(1) long arg1, @OriginalArg(3) JagString arg2, @OriginalArg(4) int arg3, @OriginalArg(5) short arg4, @OriginalArg(6) JagString arg5, @OriginalArg(7) int arg6) {
+	public static void method1966(@OriginalArg(0) int arg0, @OriginalArg(1) long arg1, @OriginalArg(3) JString arg2, @OriginalArg(4) int arg3, @OriginalArg(5) short arg4, @OriginalArg(6) JString arg5, @OriginalArg(7) int arg6) {
 		if (Static60.aBoolean108 || PreciseSleep.anInt5204 >= 500) {
 			return;
 		}

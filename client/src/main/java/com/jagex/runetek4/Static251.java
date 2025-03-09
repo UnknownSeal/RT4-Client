@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -8,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static251 {
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "d", descriptor = "[I")
-	public static int[] anIntArray479;
+	public static int[] blendChroma;
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "h", descriptor = "I")
 	public static int anInt5449;
@@ -26,14 +27,14 @@ public final class Static251 {
 	public static int anInt5454 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "o", descriptor = "I")
-	public static int anInt5456 = 0;
+	public static int weightCarried = 0;
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "r", descriptor = "I")
 	public static int anInt5459 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "a", descriptor = "(B)V")
 	public static void loop() {
-		for (@Pc(10) Class3_Sub7 local10 = (Class3_Sub7) Static26.aClass69_27.head(); local10 != null; local10 = (Class3_Sub7) Static26.aClass69_27.next()) {
+		for (@Pc(10) LocAddEntity local10 = (LocAddEntity) Static26.spawnedLocations.head(); local10 != null; local10 = (LocAddEntity) Static26.spawnedLocations.next()) {
 			if (local10.anInt924 > 0) {
 				local10.anInt924--;
 			}
@@ -41,18 +42,18 @@ public final class Static251 {
 				if (local10.anInt925 > 0) {
 					local10.anInt925--;
 				}
-				if (local10.anInt925 == 0 && local10.anInt928 >= 1 && local10.anInt916 >= 1 && local10.anInt928 <= 102 && local10.anInt916 <= 102 && (local10.anInt929 < 0 || Static113.method3557(local10.anInt929, local10.anInt926))) {
-					Static79.method1698(local10.anInt929, local10.anInt928, local10.anInt918, local10.anInt922, local10.anInt916, local10.anInt926, local10.anInt927);
+				if (local10.anInt925 == 0 && local10.x >= 1 && local10.z >= 1 && local10.x <= 102 && local10.z <= 102 && (local10.anInt929 < 0 || Static113.method3557(local10.anInt929, local10.anInt926))) {
+					Static79.method1698(local10.anInt929, local10.x, local10.anInt918, local10.anInt922, local10.z, local10.anInt926, local10.anInt927);
 					local10.anInt925 = -1;
 					if (local10.anInt921 == local10.anInt929 && local10.anInt921 == -1) {
-						local10.remove();
+						local10.unlink();
 					} else if (local10.anInt929 == local10.anInt921 && local10.anInt922 == local10.anInt923 && local10.anInt920 == local10.anInt926) {
-						local10.remove();
+						local10.unlink();
 					}
 				}
 			} else if (local10.anInt921 < 0 || Static113.method3557(local10.anInt921, local10.anInt920)) {
-				Static79.method1698(local10.anInt921, local10.anInt928, local10.anInt918, local10.anInt923, local10.anInt916, local10.anInt920, local10.anInt927);
-				local10.remove();
+				Static79.method1698(local10.anInt921, local10.x, local10.anInt918, local10.anInt923, local10.z, local10.anInt920, local10.anInt927);
+				local10.unlink();
 			}
 		}
 	}

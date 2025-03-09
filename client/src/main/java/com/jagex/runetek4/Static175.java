@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.scene.entities.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static175 {
@@ -9,10 +9,10 @@ public final class Static175 {
 	public static int[] anIntArray371;
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "W", descriptor = "Lclient!na;")
-	public static JagString url;
+	public static JString url;
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "S", descriptor = "[Lclient!km;")
-	public static final NPCEntity[] aClass8_Sub4_Sub2Array1 = new NPCEntity[32768];
+	public static final NPCEntity[] npcs = new NPCEntity[32768];
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "U", descriptor = "I")
 	public static int anInt4220 = 0;
@@ -21,11 +21,11 @@ public final class Static175 {
 	public static long aLong138 = 0L;
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "bb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_798 = Static28.parse("<col=ff0000>");
+	public static final JString RED = Static28.parse("<col=ff0000>");
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "a", descriptor = "(Z)V")
-	public static void method3279() {
-		if (Static267.anInt5775 > 0) {
+	public static void tryReconnect() {
+		if (Static267.idleTimeout > 0) {
 			Static278.processLogout();
 		} else {
 			Static233.aClass95_4 = Static124.socket;

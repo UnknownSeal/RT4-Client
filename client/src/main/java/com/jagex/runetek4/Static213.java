@@ -43,7 +43,7 @@ public final class Static213 {
 	public static Sprite[] method3730() {
 		@Pc(14) Sprite[] local14 = new Sprite[Static165.anInt4038];
 		for (@Pc(16) int local16 = 0; local16 < Static165.anInt4038; local16++) {
-			@Pc(23) byte[] local23 = Static7.aByteArrayArray5[local16];
+			@Pc(23) byte[] local23 = VarpDefinition.aByteArrayArray5[local16];
 			@Pc(31) int local31 = Static26.anIntArray66[local16] * Static254.anIntArray488[local16];
 			if (Static159.aBooleanArray87[local16]) {
 				@Pc(38) int[] local38 = new int[local31];

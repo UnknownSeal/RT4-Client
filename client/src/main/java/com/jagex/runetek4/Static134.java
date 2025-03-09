@@ -8,14 +8,14 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static134 {
 
 	@OriginalMember(owner = "runetek4.client!kh", name = "f", descriptor = "I")
-	public static int anInt3302;
+	public static int cameraZ;
 
 	@OriginalMember(owner = "runetek4.client!kh", name = "g", descriptor = "Lclient!hh;")
 	public static final PlayerModel A_PLAYER_MODEL___2 = new PlayerModel();
 
 	@OriginalMember(owner = "runetek4.client!kh", name = "a", descriptor = "(B)Lclient!ek;")
 	public static SoftwareIndexedSprite method2619() {
-		@Pc(25) SoftwareIndexedSprite local25 = new SoftwareIndexedSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[0], Static269.anIntArray252[0], Static254.anIntArray488[0], Static26.anIntArray66[0], Static7.aByteArrayArray5[0], Static259.anIntArray513);
+		@Pc(25) SoftwareIndexedSprite local25 = new SoftwareIndexedSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[0], Static269.anIntArray252[0], Static254.anIntArray488[0], Static26.anIntArray66[0], VarpDefinition.aByteArrayArray5[0], Static259.anIntArray513);
 		Static75.method1631();
 		return local25;
 	}

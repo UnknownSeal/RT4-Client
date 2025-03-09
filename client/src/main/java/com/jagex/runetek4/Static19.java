@@ -3,8 +3,8 @@ package com.jagex.runetek4;
 import java.awt.Component;
 import java.lang.reflect.Method;
 
-import com.jagex.runetek4.game.scene.entities.NPCEntity;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -21,7 +21,7 @@ public final class Static19 {
 	public static int anInt647;
 
 	@OriginalMember(owner = "client!bi", name = "W", descriptor = "Lclient!na;")
-	public static final JagString aClass100_112 = Static28.parse("k");
+	public static final JString aClass100_112 = Static28.parse("k");
 
 	@OriginalMember(owner = "client!bi", name = "jb", descriptor = "Z")
 	public static boolean aBoolean43 = true;
@@ -52,14 +52,14 @@ public final class Static19 {
 	@OriginalMember(owner = "client!bi", name = "f", descriptor = "(B)V")
 	public static void loop() {
 		@Pc(11) int local11;
-		for (local11 = -1; local11 < Static267.size; local11++) {
+		for (local11 = -1; local11 < Static267.playerCount; local11++) {
 			@Pc(22) int local22;
 			if (local11 == -1) {
 				local22 = 2047;
 			} else {
-				local22 = Static105.ids[local11];
+				local22 = Static105.playerIds[local11];
 			}
-			@Pc(30) Player local30 = Static159.aClass8_Sub4_Sub1Array1[local22];
+			@Pc(30) PlayerEntity local30 = Static159.players[local22];
 			if (local30 != null && local30.chatLoops > 0) {
 				local30.chatLoops--;
 				if (local30.chatLoops == 0) {
@@ -67,9 +67,9 @@ public final class Static19 {
 				}
 			}
 		}
-		for (local11 = 0; local11 < Static272.anInt5214; local11++) {
-			@Pc(68) int local68 = Static33.anIntArray79[local11];
-			@Pc(72) NPCEntity local72 = Static175.aClass8_Sub4_Sub2Array1[local68];
+		for (local11 = 0; local11 < Static272.npcCount; local11++) {
+			@Pc(68) int local68 = Static33.npcIds[local11];
+			@Pc(72) NPCEntity local72 = Static175.npcs[local68];
 			if (local72 != null && local72.chatLoops > 0) {
 				local72.chatLoops--;
 				if (local72.chatLoops == 0) {
@@ -81,9 +81,9 @@ public final class Static19 {
 
 	@OriginalMember(owner = "client!bi", name = "a", descriptor = "(IIBI)I")
 	public static int method588(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) {
-		@Pc(19) int local19 = Rasteriser.anIntArray220[Static268.method4585(arg1, arg2)];
+		@Pc(19) int local19 = Pix3D.anIntArray220[Static268.method4585(arg1, arg2)];
 		if (arg0 > 0) {
-			@Pc(31) int local31 = Rasteriser.anInterface1_2.method3238(arg0 & 0xFFFF);
+			@Pc(31) int local31 = Pix3D.anInterface1_2.method3238(arg0 & 0xFFFF);
 			@Pc(49) int local49;
 			@Pc(73) int local73;
 			if (local31 != 0) {
@@ -101,7 +101,7 @@ public final class Static19 {
 					local19 = ((local49 & 0xFF00) * local31 + local73 * (local19 & 0xFF00) & 0xFF0000) + (local31 * (local49 & 0xFF00FF) + ((local19 & 0xFF00FF) * local73) & 0xFF00FF00) >> 8;
 				}
 			}
-			local49 = Rasteriser.anInterface1_2.method3229(arg0 & 0xFFFF);
+			local49 = Pix3D.anInterface1_2.method3229(arg0 & 0xFFFF);
 			if (local49 != 0) {
 				local49 += 256;
 				@Pc(125) int local125 = (local19 >> 16 & 0xFF) * local49;

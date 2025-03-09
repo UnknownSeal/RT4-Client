@@ -19,7 +19,7 @@ public final class Static72 {
 	public static int frameWid;
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "s", descriptor = "I")
-	public static int anInt2031 = 128;
+	public static int orbitCameraPitch = 128;
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "w", descriptor = "J")
 	public static long killtime = 0L;
@@ -28,16 +28,16 @@ public final class Static72 {
 	public static int updatedVarcstrsWriterIndex = 0;
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "H", descriptor = "Lclient!na;")
-	public static final JagString aClass100_446 = Static28.parse("<img=0>");
+	public static final JString aClass100_446 = Static28.parse("<img=0>");
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "P", descriptor = "I")
 	public static int anInt2043 = 0;
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "Q", descriptor = "Lclient!na;")
-	public static final JagString aClass100_447 = Static28.parse("");
+	public static final JString aClass100_447 = Static28.parse("");
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "V", descriptor = "Lclient!na;")
-	public static final JagString aClass100_448 = Static28.parse("(Y");
+	public static final JString aClass100_448 = Static28.parse("(Y");
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "b", descriptor = "(II)Lclient!cl;")
 	public static AnimFrameset method1566(@OriginalArg(0) int arg0) {
@@ -47,7 +47,7 @@ public final class Static72 {
 		}
 		local19 = Static87.method1803(Static225.aClass153_92, Static5.aClass153_1, arg0);
 		if (local19 != null) {
-			Static267.aClass99_37.method3095(local19, (long) arg0);
+			Static267.aClass99_37.put(local19, (long) arg0);
 		}
 		return local19;
 	}

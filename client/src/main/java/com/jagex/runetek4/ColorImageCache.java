@@ -15,7 +15,7 @@ public final class ColorImageCache {
 	private int anInt4471 = -1;
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "p", descriptor = "Lclient!ih;")
-	private LinkedList aClass69_103 = new LinkedList();
+	private LinkList aClass69_103 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "t", descriptor = "Z")
 	public boolean aBoolean221 = false;
@@ -47,7 +47,7 @@ public final class ColorImageCache {
 		}
 		this.anIntArrayArray34 = null;
 		this.aClass3_Sub28Array1 = null;
-		this.aClass69_103.method2278();
+		this.aClass69_103.clear();
 		this.aClass69_103 = null;
 	}
 
@@ -72,7 +72,7 @@ public final class ColorImageCache {
 					@Pc(66) ColorImageCacheEntry local66 = (ColorImageCacheEntry) this.aClass69_103.method2279();
 					local29 = new ColorImageCacheEntry(arg0, local66.anInt4761);
 					this.aClass3_Sub28Array1[local66.anInt4759] = null;
-					local66.remove();
+					local66.unlink();
 				}
 				this.aClass3_Sub28Array1[arg0] = local29;
 			} else {

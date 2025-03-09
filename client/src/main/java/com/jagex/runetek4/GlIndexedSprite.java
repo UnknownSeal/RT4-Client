@@ -75,7 +75,7 @@ public final class GlIndexedSprite extends IndexedSprite {
 		}
 		GlRenderer.setTextureId(this.anInt4281);
 		local95.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, this.anInt4287, this.anInt4286, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, local93);
-		Static63.anInt1944 += local93.limit() - this.anInt4284;
+		Static63.oncard_2d += local93.limit() - this.anInt4284;
 		this.anInt4284 = local93.limit();
 	}
 

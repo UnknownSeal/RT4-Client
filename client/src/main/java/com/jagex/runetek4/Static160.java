@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -17,10 +17,10 @@ public final class Static160 {
 	public static short[] aShortArray41;
 
 	@OriginalMember(owner = "runetek4.client!mj", name = "d", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array121 = new JagString[8];
+	public static final JString[] aClass100Array121 = new JString[8];
 
 	@OriginalMember(owner = "runetek4.client!mj", name = "g", descriptor = "Lclient!na;")
-	public static final JagString aClass100_761 = Static28.parse("(U3");
+	public static final JString aClass100_761 = Static28.parse("(U3");
 
 	@OriginalMember(owner = "runetek4.client!mj", name = "i", descriptor = "I")
 	public static int anInt3902 = 0;
@@ -43,9 +43,9 @@ public final class Static160 {
 				Static129.method2504(arg0, arg1, arg2.anIntArray37, arg2.anIntArray45);
 			}
 		} else if (GlRenderer.enabled) {
-			((GlSprite) Static106.aClass3_Sub2_Sub1_7).method1427(arg0, arg1, arg2.anInt445, arg2.anInt459, Static106.aClass3_Sub2_Sub1_7.anInt1867 / 2, Static106.aClass3_Sub2_Sub1_7.anInt1859 / 2, Static57.anInt1747, 256, (GlSprite) arg2.method489(false));
+			((GlSprite) Static106.aClass3_Sub2_Sub1_7).method1427(arg0, arg1, arg2.anInt445, arg2.anInt459, Static106.aClass3_Sub2_Sub1_7.anInt1867 / 2, Static106.aClass3_Sub2_Sub1_7.anInt1859 / 2, Static57.orbitCameraYaw, 256, (GlSprite) arg2.method489(false));
 		} else {
-			((SoftwareSprite) Static106.aClass3_Sub2_Sub1_7).method313(arg0, arg1, arg2.anInt445, arg2.anInt459, Static106.aClass3_Sub2_Sub1_7.anInt1867 / 2, Static106.aClass3_Sub2_Sub1_7.anInt1859 / 2, Static57.anInt1747, arg2.anIntArray37, arg2.anIntArray45);
+			((SoftwareSprite) Static106.aClass3_Sub2_Sub1_7).method313(arg0, arg1, arg2.anInt445, arg2.anInt459, Static106.aClass3_Sub2_Sub1_7.anInt1867 / 2, Static106.aClass3_Sub2_Sub1_7.anInt1859 / 2, Static57.orbitCameraYaw, arg2.anIntArray37, arg2.anIntArray45);
 		}
 		Static31.aBooleanArray29[arg3] = true;
 	}

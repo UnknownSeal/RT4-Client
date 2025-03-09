@@ -6,7 +6,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static112 {
 
 	@OriginalMember(owner = "runetek4.client!ij", name = "a", descriptor = "Lclient!na;")
-	public static final JagString aClass100_574 = Static28.parse(":duelfriend:");
+	public static final JString DUELFRIEND = Static28.parse(":duelfriend:");
 
 	@OriginalMember(owner = "runetek4.client!ij", name = "a", descriptor = "(B)V")
 	public static void method2297() {

@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -20,50 +20,50 @@ public final class Static225 {
 	public static int anInt5073 = -1;
 
 	@OriginalMember(owner = "runetek4.client!se", name = "m", descriptor = "Lclient!na;")
-	public static final JagString aClass100_961 = Static28.parse(" )2>");
+	public static final JString aClass100_961 = Static28.parse(" )2>");
 
 	@OriginalMember(owner = "runetek4.client!se", name = "t", descriptor = "[I")
 	public static final int[] anIntArray445 = new int[] { 12543016, 15504954, 15914854, 16773818 };
 
 	@OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "(I)V")
-	public static void method3889() {
+	public static void getPlayerNewVis() {
 		while (true) {
-			if (Static57.inboundBuffer.bitsAvailable(Static223.anInt5028) >= 11) {
-				@Pc(20) int local20 = Static57.inboundBuffer.gBit(11);
-				if (local20 != 2047) {
+			if (Static57.in.bitsAvailable(Static223.packetSize) >= 11) {
+				@Pc(20) int index = Static57.in.gBit(11);
+				if (index != 2047) {
 					@Pc(27) boolean local27 = false;
-					if (Static159.aClass8_Sub4_Sub1Array1[local20] == null) {
-						Static159.aClass8_Sub4_Sub1Array1[local20] = new Player();
+					if (Static159.players[index] == null) {
+						Static159.players[index] = new PlayerEntity();
 						local27 = true;
-						if (Static115.aClass3_Sub15Array1[local20] != null) {
-							Static159.aClass8_Sub4_Sub1Array1[local20].method1262(Static115.aClass3_Sub15Array1[local20]);
+						if (Static115.playerAppearanceBuffer[index] != null) {
+							Static159.players[index].read(Static115.playerAppearanceBuffer[index]);
 						}
 					}
-					Static105.ids[Static267.size++] = local20;
-					@Pc(65) Player local65 = Static159.aClass8_Sub4_Sub1Array1[local20];
-					local65.anInt3430 = Static83.loopCycle;
-					@Pc(73) int local73 = Static57.inboundBuffer.gBit(1);
+					Static105.playerIds[Static267.playerCount++] = index;
+					@Pc(65) PlayerEntity player = Static159.players[index];
+					player.cycle = Static83.loopCycle;
+					@Pc(73) int local73 = Static57.in.gBit(1);
 					if (local73 == 1) {
-						Static44.anIntArray106[Static116.anInt2951++] = local20;
+						Static44.entityUpdateIds[Static116.entityUpdateCount++] = index;
 					}
-					@Pc(92) int local92 = Static57.inboundBuffer.gBit(5);
-					@Pc(99) int local99 = Static56.anIntArray141[Static57.inboundBuffer.gBit(3)];
-					if (local92 > 15) {
-						local92 -= 32;
+					@Pc(92) int dx = Static57.in.gBit(5);
+					@Pc(99) int local99 = Static56.anIntArray141[Static57.in.gBit(3)];
+					if (dx > 15) {
+						dx -= 32;
 					}
 					if (local27) {
-						local65.anInt3400 = local65.anInt3381 = local99;
+						player.dstYaw = player.anInt3381 = local99;
 					}
-					@Pc(116) int local116 = Static57.inboundBuffer.gBit(1);
-					@Pc(121) int local121 = Static57.inboundBuffer.gBit(5);
-					if (local121 > 15) {
-						local121 -= 32;
+					@Pc(116) int jump = Static57.in.gBit(1);
+					@Pc(121) int dz = Static57.in.gBit(5);
+					if (dz > 15) {
+						dz -= 32;
 					}
-					local65.method1265(local92 + Static173.self.movementQueueX[0], local116 == 1, Static173.self.movementQueueZ[0] + local121);
+					player.teleport(dx + Static173.localPlayer.pathTileX[0], jump == 1, Static173.localPlayer.pathTileZ[0] + dz);
 					continue;
 				}
 			}
-			Static57.inboundBuffer.accessBytes();
+			Static57.in.accessBytes();
 			return;
 		}
 	}
@@ -84,7 +84,7 @@ public final class Static225 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "(Lclient!na;Lclient!na;IB)V")
-	public static void method3896(@OriginalArg(0) JagString arg0, @OriginalArg(1) JagString arg1, @OriginalArg(2) int arg2) {
+	public static void method3896(@OriginalArg(0) JString arg0, @OriginalArg(1) JString arg1, @OriginalArg(2) int arg2) {
 		Static186.password = arg1;
 		Static5.anInt39 = arg2;
 		Static186.username = arg0;
@@ -99,7 +99,7 @@ public final class Static225 {
 			local43.p1b(10);
 			local43.p2((int) (Math.random() * 99999.0D));
 			local43.p2(530);
-			local43.p8(Static186.username.encode37());
+			local43.p8(Static186.username.toBase37());
 			local43.p4((int) (Math.random() * 9.9999999E7D));
 			local43.pjstr(Static186.password);
 			local43.p4((int) (Math.random() * 9.9999999E7D));

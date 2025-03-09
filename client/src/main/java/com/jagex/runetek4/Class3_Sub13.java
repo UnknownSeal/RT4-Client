@@ -9,10 +9,10 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class Class3_Sub13 extends Node {
 
 	@OriginalMember(owner = "runetek4.client!hb", name = "y", descriptor = "Lclient!na;")
-	public final JagString aClass100_503;
+	public final JString aClass100_503;
 
 	@OriginalMember(owner = "runetek4.client!hb", name = "<init>", descriptor = "(Lclient!na;I)V")
-	public Class3_Sub13(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1) {
+	public Class3_Sub13(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1) {
 		this.aClass100_503 = arg0;
 	}
 }

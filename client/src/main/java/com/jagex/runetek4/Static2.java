@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -23,7 +23,7 @@ public final class Static2 {
 	public static final short[] aShortArray1 = new short[] { 960, 957, -21568, -21571, 22464 };
 
 	@OriginalMember(owner = "runetek4.client!aa", name = "l", descriptor = "Z")
-	public static boolean aBoolean1 = false;
+	public static boolean membersWorld = false;
 
 	@OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(SI)Z")
 	public static boolean method5(@OriginalArg(0) short arg0) {
@@ -95,7 +95,7 @@ public final class Static2 {
 		@Pc(61) int local61 = 0;
 		@Pc(64) int local64 = local53 + 1;
 		Static84.anIntArray209[0] = arg3;
-		@Pc(71) int[][] local71 = Static148.aClass97Array1[Static55.level].flags;
+		@Pc(71) int[][] local71 = Static148.levelCollisionMap[Static55.currentLevel].flags;
 		@Pc(193) int local193;
 		while (local61 != local64) {
 			local3 = Static259.anIntArray514[local61];
@@ -106,16 +106,16 @@ public final class Static2 {
 				break;
 			}
 			if (arg1 != 0) {
-				if ((arg1 < 5 || arg1 == 10) && Static148.aClass97Array1[Static55.level].method3042(arg4, local3, local8, arg8, arg1 - 1, 2, arg7)) {
+				if ((arg1 < 5 || arg1 == 10) && Static148.levelCollisionMap[Static55.currentLevel].method3042(arg4, local3, local8, arg8, arg1 - 1, 2, arg7)) {
 					local59 = true;
 					break;
 				}
-				if (arg1 < 10 && Static148.aClass97Array1[Static55.level].method3046(arg4, arg1 - 1, arg8, local8, 2, arg7, local3)) {
+				if (arg1 < 10 && Static148.levelCollisionMap[Static55.currentLevel].method3046(arg4, arg1 - 1, arg8, local8, 2, arg7, local3)) {
 					local59 = true;
 					break;
 				}
 			}
-			if (arg0 != 0 && arg6 != 0 && Static148.aClass97Array1[Static55.level].method3052(arg8, local8, local3, 2, arg0, arg2, arg4, arg6)) {
+			if (arg0 != 0 && arg6 != 0 && Static148.levelCollisionMap[Static55.currentLevel].method3052(arg8, local8, local3, 2, arg0, arg2, arg4, arg6)) {
 				local59 = true;
 				break;
 			}
@@ -177,7 +177,7 @@ public final class Static2 {
 				Static167.anIntArrayArray31[local3 + 1][local8 + 1] = local193;
 			}
 		}
-		Static221.anInt4364 = 0;
+		BZip2State.tryMoveNearest = 0;
 		@Pc(921) int local921;
 		if (!local59) {
 			if (!arg5) {
@@ -216,7 +216,7 @@ public final class Static2 {
 			if (arg10 == local3 && local8 == arg3) {
 				return false;
 			}
-			Static221.anInt4364 = 1;
+			BZip2State.tryMoveNearest = 1;
 		}
 		@Pc(1121) byte local1121 = 0;
 		Static259.anIntArray514[0] = local3;
@@ -287,17 +287,17 @@ public final class Static2 {
 			arg0.modelType = 5;
 			arg0.modelId = -1;
 		} else if (local16 == 328) {
-			if (Static173.self.username == null) {
+			if (Static173.localPlayer.name == null) {
 				arg0.modelId = 0;
 			} else {
 				arg0.modelXAngle = 150;
 				arg0.modelYAngle = (int) (Math.sin((double) Static83.loopCycle / 40.0D) * 256.0D) & 0x7FF;
 				arg0.modelType = 5;
-				arg0.modelId = ((int) Static173.self.username.encode37() << 11) + 2047;
-				arg0.anInt496 = Static173.self.anInt3388;
+				arg0.modelId = ((int) Static173.localPlayer.name.toBase37() << 11) + 2047;
+				arg0.anInt496 = Static173.localPlayer.anInt3388;
 				arg0.anInt500 = 0;
-				arg0.anInt522 = Static173.self.anInt3366;
-				arg0.anInt510 = Static173.self.anInt3407;
+				arg0.anInt522 = Static173.localPlayer.secondarySeqId;
+				arg0.anInt510 = Static173.localPlayer.anInt3407;
 			}
 		}
 	}

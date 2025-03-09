@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -17,7 +17,7 @@ public final class Static249 {
 	public static final LruHashTable recentUse = new LruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!ud", name = "Q", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1039 = Static28.parse(" x ");
+	public static final JString aClass100_1039 = Static28.parse(" x ");
 
 	@OriginalMember(owner = "runetek4.client!ud", name = "S", descriptor = "Z")
 	public static boolean aBoolean282 = false;
@@ -28,7 +28,7 @@ public final class Static249 {
 	@OriginalMember(owner = "runetek4.client!ud", name = "a", descriptor = "(ILclient!be;)Z")
 	public static boolean method4265(@OriginalArg(1) Component arg0) {
 		if (arg0.anInt453 == 205) {
-			Static267.anInt5775 = 250;
+			Static267.idleTimeout = 250;
 			return true;
 		} else {
 			return false;
@@ -37,6 +37,6 @@ public final class Static249 {
 
 	@OriginalMember(owner = "runetek4.client!ud", name = "d", descriptor = "(I)V")
 	public static void method4266() {
-		Static232.aClass99_30.method3104();
+		Static232.varpDefinitionCache.method3104();
 	}
 }

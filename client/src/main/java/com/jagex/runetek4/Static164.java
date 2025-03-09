@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.loctype.LocType;
-import com.jagex.runetek4.game.config.objtype.ObjType;
+import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.config.ObjType;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -20,13 +20,13 @@ public final class Static164 {
 	public static boolean aBoolean191 = false;
 
 	@OriginalMember(owner = "runetek4.client!na", name = "l", descriptor = "I")
-	public static int anInt3985 = 0;
+	public static int packetType = 0;
 
 	@OriginalMember(owner = "runetek4.client!na", name = "o", descriptor = "I")
 	public static int anInt3988 = 0;
 
 	@OriginalMember(owner = "runetek4.client!na", name = "cb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_770 = Static28.parse(":allyreq:");
+	public static final JString ALLYREQ = Static28.parse(":allyreq:");
 
 	@OriginalMember(owner = "runetek4.client!na", name = "mb", descriptor = "[I")
 	public static final int[] anIntArray362 = new int[50];
@@ -37,7 +37,7 @@ public final class Static164 {
 		@Pc(28) int local28;
 		@Pc(35) int local35;
 		@Pc(42) int local42;
-		@Pc(46) LocType local46;
+		@Pc(46) LocMergeEntity local46;
 		@Pc(65) int local65;
 		@Pc(75) int[] local75;
 		@Pc(90) int local90;
@@ -148,7 +148,7 @@ public final class Static164 {
 		if (local14 != 0L) {
 			local28 = (int) local14 >> 20 & 0x3;
 			local35 = (int) (local14 >>> 32) & Integer.MAX_VALUE;
-			@Pc(586) LocType local586 = Static271.get(local35);
+			@Pc(586) LocMergeEntity local586 = Static271.get(local35);
 			if (local586.mapsceneicon != -1 && !Static33.method867(arg0, local586, arg2, local28)) {
 				return false;
 			}
@@ -216,10 +216,10 @@ public final class Static164 {
 		Static129.method2497(local125);
 		@Pc(133) SoftwareSprite local133 = new SoftwareSprite(36, 32);
 		Static129.method2491(local133.anIntArray20, 36, 32);
-		Rasteriser.method1908();
-		Rasteriser.method1919(16, 16);
+		Pix3D.method1908();
+		Pix3D.method1919(16, 16);
 		@Pc(145) int local145 = local5.zoom2d;
-		Rasteriser.aBoolean136 = false;
+		Pix3D.aBoolean136 = false;
 		if (arg6) {
 			local145 = (int) ((double) local145 * 1.5D);
 		} else if (arg4 == 2) {
@@ -250,8 +250,8 @@ public final class Static164 {
 		}
 		Static129.method2491(local118, local120, local122);
 		Static129.method2488(local125);
-		Rasteriser.method1908();
-		Rasteriser.aBoolean136 = true;
+		Pix3D.method1908();
+		Pix3D.aBoolean136 = true;
 		return GlRenderer.enabled && !arg1 ? new GlSprite(local133) : local133;
 	}
 }

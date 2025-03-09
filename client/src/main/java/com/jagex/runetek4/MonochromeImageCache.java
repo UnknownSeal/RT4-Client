@@ -18,7 +18,7 @@ public final class MonochromeImageCache {
 	private int anInt4066 = 0;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "g", descriptor = "Lclient!ih;")
-	private LinkedList aClass69_96 = new LinkedList();
+	private LinkList aClass69_96 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "w", descriptor = "Z")
 	public boolean aBoolean195 = false;
@@ -73,7 +73,7 @@ public final class MonochromeImageCache {
 		}
 		this.aClass3_Sub23Array1 = null;
 		this.anIntArrayArrayArray13 = null;
-		this.aClass69_96.method2278();
+		this.aClass69_96.clear();
 		this.aClass69_96 = null;
 	}
 
@@ -98,7 +98,7 @@ public final class MonochromeImageCache {
 					@Pc(80) Class3_Sub23 local80 = (Class3_Sub23) this.aClass69_96.method2279();
 					local44 = new Class3_Sub23(arg0, local80.anInt3468);
 					this.aClass3_Sub23Array1[local80.anInt3476] = null;
-					local80.remove();
+					local80.unlink();
 				}
 				this.aClass3_Sub23Array1[arg0] = local44;
 			} else {

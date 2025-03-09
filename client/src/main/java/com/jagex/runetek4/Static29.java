@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -17,9 +18,9 @@ public final class Static29 {
 		}
 		@Pc(27) Font local27;
 		if (GlRenderer.enabled) {
-			local27 = new GlFont(arg0, Static274.anIntArray440, Static269.anIntArray252, Static254.anIntArray488, Static26.anIntArray66, Static7.aByteArrayArray5);
+			local27 = new GlFont(arg0, Static274.anIntArray440, Static269.anIntArray252, Static254.anIntArray488, Static26.anIntArray66, VarpDefinition.aByteArrayArray5);
 		} else {
-			local27 = new SoftwareFont(arg0, Static274.anIntArray440, Static269.anIntArray252, Static254.anIntArray488, Static26.anIntArray66, Static7.aByteArrayArray5);
+			local27 = new SoftwareFont(arg0, Static274.anIntArray440, Static269.anIntArray252, Static254.anIntArray488, Static26.anIntArray66, VarpDefinition.aByteArrayArray5);
 		}
 		Static75.method1631();
 		return local27;
@@ -27,21 +28,21 @@ public final class Static29 {
 
 	@OriginalMember(owner = "client!ce", name = "a", descriptor = "(IIIIIIIIII)V")
 	public static void method800(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8) {
-		@Pc(9) Class3_Sub7 local9 = null;
-		for (@Pc(14) Class3_Sub7 local14 = (Class3_Sub7) Static26.aClass69_27.head(); local14 != null; local14 = (Class3_Sub7) Static26.aClass69_27.next()) {
-			if (local14.anInt918 == arg0 && arg3 == local14.anInt928 && local14.anInt916 == arg1 && arg6 == local14.anInt927) {
+		@Pc(9) LocAddEntity local9 = null;
+		for (@Pc(14) LocAddEntity local14 = (LocAddEntity) Static26.spawnedLocations.head(); local14 != null; local14 = (LocAddEntity) Static26.spawnedLocations.next()) {
+			if (local14.anInt918 == arg0 && arg3 == local14.x && local14.z == arg1 && arg6 == local14.anInt927) {
 				local9 = local14;
 				break;
 			}
 		}
 		if (local9 == null) {
-			local9 = new Class3_Sub7();
-			local9.anInt928 = arg3;
-			local9.anInt916 = arg1;
+			local9 = new LocAddEntity();
+			local9.x = arg3;
+			local9.z = arg1;
 			local9.anInt918 = arg0;
 			local9.anInt927 = arg6;
 			Static226.method3898(local9);
-			Static26.aClass69_27.addTail(local9);
+			Static26.spawnedLocations.addTail(local9);
 		}
 		local9.anInt926 = arg7;
 		local9.anInt925 = arg8;

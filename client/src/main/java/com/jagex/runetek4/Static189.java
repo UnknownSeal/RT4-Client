@@ -12,10 +12,10 @@ public final class Static189 {
 	public static int anInt4451 = 0;
 
 	@OriginalMember(owner = "runetek4.client!pe", name = "n", descriptor = "Lclient!na;")
-	public static final JagString aClass100_835 = Static28.parse("hint_mapmarkers");
+	public static final JString HINT_MAPMARKERS = Static28.parse("hint_mapmarkers");
 
 	@OriginalMember(owner = "runetek4.client!pe", name = "z", descriptor = "Lclient!na;")
-	public static final JagString aClass100_837 = Static28.parse("mapdots");
+	public static final JString MAPDOTS = Static28.parse("mapdots");
 
 	@OriginalMember(owner = "runetek4.client!pe", name = "a", descriptor = "(BZ)V")
 	public static void method3438(@OriginalArg(1) boolean arg0) {

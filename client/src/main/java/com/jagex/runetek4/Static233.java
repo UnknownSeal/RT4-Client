@@ -11,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import com.jagex.runetek4.core.io.PacketBit;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -37,7 +37,7 @@ public final class Static233 {
 	public static final SoftLruHashTable aClass99_31 = new SoftLruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!t", name = "v", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array160 = new JagString[500];
+	public static final JString[] aClass100Array160 = new JString[500];
 
 	@OriginalMember(owner = "runetek4.client!t", name = "w", descriptor = "[J")
 	public static final long[] aLongArray9 = new long[100];
@@ -52,7 +52,7 @@ public final class Static233 {
 	public static int anInt5224 = 0;
 
 	@OriginalMember(owner = "runetek4.client!t", name = "C", descriptor = "Lclient!na;")
-	public static final JagString aClass100_994 = Static28.parse(")3");
+	public static final JString aClass100_994 = Static28.parse(")3");
 
 	@OriginalMember(owner = "runetek4.client!t", name = "E", descriptor = "[I")
 	public static final int[] updatedVarcstrs = new int[32];
@@ -113,7 +113,7 @@ public final class Static233 {
 							@Pc(99) int local99 = local89 / 8 + (local83 / 8 << 8);
 							for (@Pc(101) int local101 = 0; local101 < Static238.anIntArray470.length; local101++) {
 								if (Static238.anIntArray470[local101] == local99 && local21[local101] != null) {
-									Static217.method3771(Static148.aClass97Array1, local29, local21[local101], local67, local77, local36 * 8, local43 * 8, arg0, (local83 & 0x7) * 8, (local89 & 0x7) * 8);
+									Static217.method3771(Static148.levelCollisionMap, local29, local21[local101], local67, local77, local36 * 8, local43 * 8, arg0, (local83 & 0x7) * 8, (local89 & 0x7) * 8);
 									break;
 								}
 							}
@@ -130,28 +130,28 @@ public final class Static233 {
 		@Pc(24) int local24 = (int) arg0 >> 20 & 0x3;
 		@Pc(31) int local31 = (int) (arg0 >>> 32) & Integer.MAX_VALUE;
 		if (local12 == 10 || local12 == 11 || local12 == 22) {
-			@Pc(46) LocType local46 = Static271.get(local31);
+			@Pc(46) LocMergeEntity local46 = Static271.get(local31);
 			@Pc(62) int local62;
 			@Pc(59) int local59;
 			if (local24 == 0 || local24 == 2) {
-				local59 = local46.height;
+				local59 = local46.length;
 				local62 = local46.width;
 			} else {
 				local59 = local46.width;
-				local62 = local46.height;
+				local62 = local46.length;
 			}
-			@Pc(73) int local73 = local46.blocksides;
+			@Pc(73) int local73 = local46.forceapproach;
 			if (local24 != 0) {
 				local73 = (local73 << local24 & 0xF) + (local73 >> 4 - local24);
 			}
-			Static102.method2075(Static173.self.movementQueueZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, Static173.self.movementQueueX[0]);
+			Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, Static173.localPlayer.pathTileX[0]);
 		} else {
-			Static102.method2075(Static173.self.movementQueueZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, Static173.self.movementQueueX[0]);
+			Static102.tryMove(Static173.localPlayer.pathTileZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, Static173.localPlayer.pathTileX[0]);
 		}
-		Static25.y = Static60.clickY;
+		Static25.y = Static60.mouseClickY;
 		Static17.crossCycle = 0;
 		Static70.crossMode = 2;
-		Static122.x = Static7.clickX;
+		Static122.x = VarpDefinition.mouseClickX;
 		return true;
 	}
 
@@ -225,9 +225,9 @@ public final class Static233 {
 							} else if (local272 instanceof Number) {
 								arg0.p1b(1);
 								arg0.p8(((Number) local272).longValue());
-							} else if (local272 instanceof JagString) {
+							} else if (local272 instanceof JString) {
 								arg0.p1b(2);
-								arg0.pjstr((JagString) local272);
+								arg0.pjstr((JString) local272);
 							} else {
 								arg0.p1b(4);
 							}
@@ -268,7 +268,7 @@ public final class Static233 {
 			}
 			arg0.pCrc32(local25);
 			arg0.p1len(arg0.pos - local25);
-			local18.remove();
+			local18.unlink();
 		}
 	}
 }

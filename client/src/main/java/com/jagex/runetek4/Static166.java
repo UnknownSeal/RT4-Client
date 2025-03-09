@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.loctype.LocType;
+import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -15,7 +15,7 @@ public final class Static166 {
 	public static int anInt4049;
 
 	@OriginalMember(owner = "runetek4.client!nc", name = "e", descriptor = "Lclient!na;")
-	public static final JagString aClass100_779 = Static28.parse("underlay");
+	public static final JString aClass100_779 = Static28.parse("underlay");
 
 	@OriginalMember(owner = "runetek4.client!nc", name = "j", descriptor = "I")
 	public static int anInt4051 = 0;
@@ -77,16 +77,16 @@ public final class Static166 {
 											Static83.anIntArrayArrayArray3[local84][local95] = new int[4096];
 										}
 										local214--;
-										@Pc(312) LocType local312 = Static271.get(local214);
+										@Pc(312) LocMergeEntity local312 = Static271.get(local214);
 										if (local312.multiloc != null) {
 											local312 = local312.getVisible();
-											if (local312 == null || local312.mapelement == -1) {
+											if (local312 == null || local312.mapfunction == -1) {
 												continue;
 											}
 										}
 										Static83.anIntArrayArrayArray3[local84][local95][(63 - local155 << 6) + local150] = local312.anInt4426 + 1;
 										@Pc(353) Class3_Sub26 local353 = new Class3_Sub26();
-										local353.anInt4308 = local312.mapelement;
+										local353.anInt4308 = local312.mapfunction;
 										local353.anInt4307 = local53;
 										local353.anInt4314 = local65;
 										Static145.aClass69_84.addTail(local353);

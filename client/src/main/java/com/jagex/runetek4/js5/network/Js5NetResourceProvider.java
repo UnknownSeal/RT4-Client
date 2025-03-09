@@ -34,7 +34,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private int anInt578 = 0;
 
 	@OriginalMember(owner = "client!bg", name = "R", descriptor = "Lclient!ih;")
-	private final LinkedList aClass69_16 = new LinkedList();
+	private final LinkList aClass69_16 = new LinkList();
 
 	@OriginalMember(owner = "client!bg", name = "V", descriptor = "J")
 	private long aLong20 = 0L;
@@ -49,7 +49,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private boolean aBoolean35;
 
 	@OriginalMember(owner = "client!bg", name = "U", descriptor = "Lclient!ih;")
-	private LinkedList aClass69_17;
+	private LinkList aClass69_17;
 
 	@OriginalMember(owner = "client!bg", name = "J", descriptor = "Lclient!k;")
 	private final Js5CacheQueue aClass80_2;
@@ -80,7 +80,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 			this.aBoolean35 = false;
 		} else {
 			this.aBoolean35 = true;
-			this.aClass69_17 = new LinkedList();
+			this.aClass69_17 = new LinkList();
 		}
 		this.aClass80_2 = arg4;
 		this.anInt573 = arg5;
@@ -177,7 +177,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 		if (this.aClass49_2 != null) {
 			this.aBoolean36 = true;
 			if (this.aClass69_17 == null) {
-				this.aClass69_17 = new LinkedList();
+				this.aClass69_17 = new LinkList();
 			}
 		}
 	}
@@ -218,7 +218,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 					if (this.aByteArray9[local43] == 0) {
 						local32 = false;
 					} else {
-						local37.remove();
+						local37.unlink();
 					}
 				}
 				while (this.index.groupSizes.length > this.anInt578) {
@@ -253,7 +253,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 						this.fetchgroup_inner(local43, 2);
 					}
 					if (this.aByteArray9[local43] == 1) {
-						local37.remove();
+						local37.unlink();
 					} else {
 						local32 = false;
 					}
@@ -295,7 +295,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 					if (!local331.urgent) {
 						throw new RuntimeException();
 					}
-					local331.remove();
+					local331.unlink();
 				} else {
 					local331.aBoolean227 = true;
 				}
@@ -320,7 +320,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private Js5Request fetchgroup_inner(@OriginalArg(1) int group, @OriginalArg(0) int arg0) {
 		@Pc(13) Js5Request request = (Js5Request) this.requests.getNode(group);
 		if (request != null && arg0 == 0 && !request.urgent && request.awaitingResponse) {
-			request.remove();
+			request.unlink();
 			request = null;
 		}
 		if (request == null) {
@@ -375,7 +375,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				this.tcpClient.response = 0;
 			} catch (@Pc(225) RuntimeException local225) {
 				this.tcpClient.method2327();
-				request.remove();
+				request.unlink();
 				if (request.urgent && !this.tcpClient.isUrgentsFull()) {
 					local252 = this.tcpClient.method2330(this.anInt576, (byte) 2, group, true);
 					this.requests.pushNode(local252, group);
@@ -392,7 +392,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				}
 			}
 			if (!request.urgent) {
-				request.remove();
+				request.unlink();
 			}
 			return request;
 		}
@@ -417,12 +417,12 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				this.aByteArray9[group] = 1;
 			}
 			if (!request.urgent) {
-				request.remove();
+				request.unlink();
 			}
 			return request;
 		} catch (@Pc(437) Exception local437) {
 			this.aByteArray9[group] = -1;
-			request.remove();
+			request.unlink();
 			if (request.urgent && !this.tcpClient.isUrgentsFull()) {
 				local252 = this.tcpClient.method2330(this.anInt576, (byte) 2, group, true);
 				this.requests.pushNode(local252, group);
@@ -439,7 +439,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 		for (@Pc(21) Node local21 = this.aClass69_16.head(); local21 != null; local21 = this.aClass69_16.next()) {
 			@Pc(28) int local28 = (int) local21.nodeId;
 			if (local28 < 0 || this.index.capacity <= local28 || this.index.groupSizes[local28] == 0) {
-				local21.remove();
+				local21.unlink();
 			} else {
 				if (this.aByteArray9[local28] == 0) {
 					this.fetchgroup_inner(local28, 1);
@@ -448,7 +448,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 					this.fetchgroup_inner(local28, 2);
 				}
 				if (this.aByteArray9[local28] == 1) {
-					local21.remove();
+					local21.unlink();
 				}
 			}
 		}
@@ -471,7 +471,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 			return null;
 		} else {
 			@Pc(17) byte[] bytes = request.getBytes();
-			request.remove();
+			request.unlink();
 			return bytes;
 		}
 	}

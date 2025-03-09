@@ -15,7 +15,7 @@ public final class Static238 {
 	public static int[] anIntArray470;
 
 	@OriginalMember(owner = "runetek4.client!te", name = "B", descriptor = "[I")
-	public static final int[] anIntArray469 = new int[] { 0, -1, 0, 1 };
+	public static final int[] WALL_DECORATION_ROTATION_FORWARD_Z = new int[] { 0, -1, 0, 1 };
 
 	@OriginalMember(owner = "runetek4.client!te", name = "C", descriptor = "I")
 	public static int anInt5316 = 64;
@@ -36,12 +36,12 @@ public final class Static238 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!te", name = "b", descriptor = "(Lclient!na;I)Z")
-	public static boolean method4144(@OriginalArg(0) JagString arg0) {
+	public static boolean method4144(@OriginalArg(0) JString arg0) {
 		if (arg0 == null) {
 			return false;
 		}
-		for (@Pc(11) int local11 = 0; local11 < Static35.size; local11++) {
-			if (arg0.method3111(Static193.aClass100Array134[local11])) {
+		for (@Pc(11) int local11 = 0; local11 < Static35.ignoreCount; local11++) {
+			if (arg0.equalsIgnoreCase(Static193.ignoreName[local11])) {
 				return true;
 			}
 		}

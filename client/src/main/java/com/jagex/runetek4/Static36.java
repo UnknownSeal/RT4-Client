@@ -2,9 +2,9 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
-import com.jagex.runetek4.game.config.seqtype.SeqType;
+import com.jagex.runetek4.config.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -50,14 +50,14 @@ public final class Static36 {
 		if (local17 != null) {
 			return local17;
 		}
-		@Pc(32) byte[] local32 = Static243.aClass153_98.getfile(Static221.method3389(arg0), Static118.method2356(arg0));
+		@Pc(32) byte[] local32 = Static243.aClass153_98.getfile(BZip2State.method3389(arg0), Static118.method2356(arg0));
 		local17 = new SeqType();
 		local17.anInt5361 = arg0;
 		if (local32 != null) {
 			local17.decode(new Packet(local32));
 		}
 		local17.postDecode();
-		Static142.aClass99_23.method3095(local17, (long) arg0);
+		Static142.aClass99_23.put(local17, (long) arg0);
 		return local17;
 	}
 
@@ -102,7 +102,7 @@ public final class Static36 {
 						if (local9.aBoolean29 && Static215.anInt4873 >= local61 && Static223.anInt5032 >= local63 && Static215.anInt4873 < local65 && Static223.anInt5032 < local67) {
 							for (@Pc(164) HookRequest local164 = (HookRequest) Static185.aClass69_101.head(); local164 != null; local164 = (HookRequest) Static185.aClass69_101.next()) {
 								if (local164.aBoolean158) {
-									local164.remove();
+									local164.unlink();
 									local164.source.aBoolean19 = false;
 								}
 							}
@@ -125,7 +125,7 @@ public final class Static36 {
 							local212 = true;
 						}
 						@Pc(221) boolean local221 = false;
-						if (Static150.clickButton == 1 && Static7.clickX >= local61 && Static60.clickY >= local63 && Static7.clickX < local65 && Static60.clickY < local67) {
+						if (Static150.clickButton == 1 && VarpDefinition.mouseClickX >= local61 && Static60.mouseClickY >= local63 && VarpDefinition.mouseClickX < local65 && Static60.mouseClickY < local67) {
 							local221 = true;
 						}
 						@Pc(243) int local243;
@@ -154,7 +154,7 @@ public final class Static36 {
 							}
 						}
 						if (local221) {
-							Static40.method1015(Static60.clickY - local55, Static7.clickX - local50, local9);
+							Static40.method1015(Static60.mouseClickY - local55, VarpDefinition.mouseClickX - local50, local9);
 						}
 						if (Static105.aClass13_14 != null && Static105.aClass13_14 != local9 && local207 && method940(local9).method509()) {
 							Static56.aClass13_12 = local9;
@@ -188,8 +188,8 @@ public final class Static36 {
 								}
 								if (local9.anInt453 == 1338) {
 									if (local221) {
-										Static1.anInt5 = Static7.clickX - local50;
-										Static107.anInt2878 = Static60.clickY - local55;
+										Static1.anInt5 = VarpDefinition.mouseClickX - local50;
+										Static107.anInt2878 = Static60.mouseClickY - local55;
 									}
 									continue;
 								}
@@ -197,8 +197,8 @@ public final class Static36 {
 									Static24.component = local9;
 									if (local221) {
 										if (Static187.pressedKeys[82] && Static191.staffModLevel > 0) {
-											local243 = (int) ((double) (Static7.clickX - local50 - local9.anInt445 / 2) * 2.0D / (double) Static83.aFloat3);
-											local508 = (int) ((double) (Static60.clickY - local55 - local9.anInt459 / 2) * 2.0D / (double) Static83.aFloat3);
+											local243 = (int) ((double) (VarpDefinition.mouseClickX - local50 - local9.anInt445 / 2) * 2.0D / (double) Static83.aFloat3);
+											local508 = (int) ((double) (Static60.mouseClickY - local55 - local9.anInt459 / 2) * 2.0D / (double) Static83.aFloat3);
 											local322 = Static13.anInt435 + local243;
 											@Pc(516) int local516 = Static28.anInt919 + local508;
 											@Pc(520) int local520 = local322 + Static158.anInt3846;
@@ -246,8 +246,8 @@ public final class Static36 {
 									local399 = new HookRequest();
 									local399.aBoolean158 = true;
 									local399.source = local9;
-									local399.anInt3102 = Static7.clickX - local50;
-									local399.anInt3097 = Static60.clickY - local55;
+									local399.anInt3102 = VarpDefinition.mouseClickX - local50;
+									local399.anInt3097 = Static60.mouseClickY - local55;
 									local399.anObjectArray31 = local9.anObjectArray5;
 									Static185.aClass69_101.addTail(local399);
 								}
