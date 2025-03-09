@@ -23,7 +23,7 @@ public final class Static2 {
 	public static final short[] aShortArray1 = new short[] { 960, 957, -21568, -21571, 22464 };
 
 	@OriginalMember(owner = "runetek4.client!aa", name = "l", descriptor = "Z")
-	public static boolean aBoolean1 = false;
+	public static boolean membersWorld = false;
 
 	@OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(SI)Z")
 	public static boolean method5(@OriginalArg(0) short arg0) {

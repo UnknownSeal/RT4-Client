@@ -123,7 +123,7 @@ public final class Static217 {
 		if (!GlRenderer.enabled) {
 			((Js5GlTextureProvider) Pix3D.anInterface1_2).method3247();
 		}
-		Static105.aClass54_9.method1815();
+		Static105.clientScriptCache.method1815();
 		Static213.aClass153_88.method4499();
 		Static249.aClass153_100.method4499();
 		Static41.aClass153_25.method4499();

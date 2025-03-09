@@ -230,19 +230,19 @@ public final class Static127 {
 													arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), local246, arg1.substring(local14 + 4) });
 												}
 											}
-											arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(4, arg0)), arg1.substring(local14 + 2) });
+											arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.executeClientscript1(4, arg0)), arg1.substring(local14 + 2) });
 										}
 									}
-									arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(3, arg0)), arg1.substring(local14 + 2) });
+									arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.executeClientscript1(3, arg0)), arg1.substring(local14 + 2) });
 								}
 							}
-							arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(2, arg0)), arg1.substring(local14 + 2) });
+							arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.executeClientscript1(2, arg0)), arg1.substring(local14 + 2) });
 						}
 					}
-					arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(1, arg0)), arg1.substring(local14 + 2) });
+					arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.executeClientscript1(1, arg0)), arg1.substring(local14 + 2) });
 				}
 			}
-			arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(0, arg0)), arg1.substring(local14 + 2) });
+			arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.executeClientscript1(0, arg0)), arg1.substring(local14 + 2) });
 		}
 	}
 

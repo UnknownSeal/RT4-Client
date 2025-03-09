@@ -15,7 +15,7 @@ public final class Static105 {
 	public static final ColorImageCacheEntry aClass3_Sub28_1 = new ColorImageCacheEntry(0, 0);
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "d", descriptor = "Lclient!gn;")
-	public static final LruHashTable aClass54_9 = new LruHashTable(128);
+	public static final LruHashTable clientScriptCache = new LruHashTable(128);
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "e", descriptor = "Lclient!be;")
 	public static Component aClass13_14 = null;

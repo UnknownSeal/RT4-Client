@@ -29,7 +29,7 @@ public final class Static88 {
 	public static void method1818(@OriginalArg(1) int arg0, @OriginalArg(2) HookRequest arg1) {
 		@Pc(4) Object[] local4 = arg1.anObjectArray31;
 		@Pc(10) int local10 = (Integer) local4[0];
-		@Pc(14) ClientScript local14 = Static91.method1875(local10);
+		@Pc(14) ClientScript local14 = Static91.decodeClientScript(local10);
 		if (local14 == null) {
 			return;
 		}
@@ -37,8 +37,8 @@ public final class Static88 {
 		@Pc(26) int local26 = 0;
 		@Pc(28) int local28 = 0;
 		@Pc(30) int local30 = -1;
-		@Pc(33) int[] local33 = local14.anIntArray416;
-		@Pc(36) int[] local36 = local14.anIntArray415;
+		@Pc(33) int[] local33 = local14.intOperands;
+		@Pc(36) int[] local36 = local14.opcodes;
 		@Pc(44) byte local44 = -1;
 		@Pc(58) int local58;
 		try {
@@ -116,7 +116,7 @@ public final class Static88 {
 						continue;
 					}
 					if (local226 == 3) {
-						Static3.aClass100Array176[local26++] = local14.aClass100Array140[local30];
+						Static3.aClass100Array176[local26++] = local14.stringOperands[local30];
 						continue;
 					}
 					if (local226 == 6) {
@@ -158,15 +158,15 @@ public final class Static88 {
 						@Pc(423) GoSubFrame local423 = Static67.aClass61Array3[--Static138.anInt3445];
 						local14 = local423.aClass3_Sub2_Sub17_1;
 						Static215.anIntArray432 = local423.anIntArray237;
-						local36 = local14.anIntArray415;
+						local36 = local14.opcodes;
 						local30 = local423.anInt2515;
 						Static180.aClass100Array125 = local423.aClass100Array79;
-						local33 = local14.anIntArray416;
+						local33 = local14.intOperands;
 						continue;
 					}
 					if (local226 == 25) {
 						local77 = local33[local30];
-						Static254.anIntArray487[local28++] = Static155.method2945(local77);
+						Static254.anIntArray487[local28++] = Static155.getVarbitValue(local77);
 						continue;
 					}
 					if (local226 == 27) {
@@ -227,7 +227,7 @@ public final class Static88 {
 					}
 					if (local226 == 40) {
 						local77 = local33[local30];
-						@Pc(642) ClientScript local642 = Static91.method1875(local77);
+						@Pc(642) ClientScript local642 = Static91.decodeClientScript(local77);
 						@Pc(646) int[] local646 = new int[local642.anInt4667];
 						@Pc(650) JString[] local650 = new JString[local642.anInt4671];
 						for (local652 = 0; local652 < local642.anInt4665; local652++) {
@@ -250,8 +250,8 @@ public final class Static88 {
 						local30 = -1;
 						Static67.aClass61Array3[Static138.anInt3445++] = local705;
 						Static215.anIntArray432 = local646;
-						local33 = local642.anIntArray416;
-						local36 = local642.anIntArray415;
+						local33 = local642.intOperands;
+						local36 = local642.opcodes;
 						Static180.aClass100Array125 = local650;
 						continue;
 					}
@@ -1401,7 +1401,7 @@ public final class Static88 {
 										continue;
 									}
 									if (local226 == 3312) {
-										Static254.anIntArray487[local28++] = Static2.aBoolean1 ? 1 : 0;
+										Static254.anIntArray487[local28++] = Static2.membersWorld ? 1 : 0;
 										continue;
 									}
 									if (local226 == 3313) {

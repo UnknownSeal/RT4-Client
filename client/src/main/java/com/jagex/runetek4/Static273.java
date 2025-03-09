@@ -27,39 +27,39 @@ public final class Static273 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!we", name = "a", descriptor = "(BILclient!be;)I")
-	public static int method3212(@OriginalArg(1) int arg0, @OriginalArg(2) Component arg1) {
-		if (arg1.scripts == null || arg0 >= arg1.scripts.length) {
+	public static int executeClientscript1(@OriginalArg(1) int scriptIndex, @OriginalArg(2) Component component) {
+		if (component.scripts == null || scriptIndex >= component.scripts.length) {
 			return -2;
 		}
 		try {
-			@Pc(33) int[] script = arg1.scripts[arg0];
+			@Pc(33) int[] script = component.scripts[scriptIndex];
 			@Pc(35) byte local35 = 0;
-			@Pc(37) int local37 = 0;
+			@Pc(37) int register = 0;
 			@Pc(39) int pc = 0;
 			while (true) {
-				@Pc(41) int register = 0;
+				@Pc(41) int register1 = 0;
 				@Pc(46) int opcode = script[pc++];
-				@Pc(48) byte local48 = 0;
+				@Pc(48) byte nextOperator = 0;
 				if (opcode == 0) {
-					return local37;
+					return register;
 				}
 				if (opcode == 15) {
-					local48 = 1;
+					nextOperator = 1;
 				}
 				if (opcode == 16) {
-					local48 = 2;
+					nextOperator = 2;
 				}
 				if (opcode == 1) { // load_skill_level {skill}
-					register = Static99.skillLevel[script[pc++]];
+					register1 = Static99.skillLevel[script[pc++]];
 				}
 				if (opcode == 17) {
-					local48 = 3;
+					nextOperator = 3;
 				}
 				if (opcode == 2) { // load_skill_base_level {skill}
-					register = Static141.skillBaseLevel[script[pc++]];
+					register1 = Static141.skillBaseLevel[script[pc++]];
 				}
 				if (opcode == 3) { // load_skill_exp {skill}
-					register = Static227.skillExperience[script[pc++]];
+					register1 = Static227.skillExperience[script[pc++]];
 				}
 				@Pc(124) int i;
 				@Pc(135) Component com;
@@ -70,30 +70,30 @@ public final class Static273 {
 					@Pc(131) int local131 = i + script[pc++];
 					com = Static5.getComponent(local131);
 					local140 = script[pc++];
-					if (local140 != -1 && (!Static71.get(local140).members || Static2.aBoolean1)) {
+					if (local140 != -1 && (!Static71.get(local140).members || Static2.membersWorld)) {
 						for (j = 0; j < com.invSlotObjId.length; j++) {
 							if (local140 + 1 == com.invSlotObjId[j]) {
-								register += com.invSlotObjCount[j];
+								register1 += com.invSlotObjCount[j];
 							}
 						}
 					}
 				}
 				if (opcode == 5) {  // load_var {id}
-					register = Static7.varps[script[pc++]];
+					register1 = Static7.varps[script[pc++]];
 				}
 				if (opcode == 6) {  // load_next_level_xp {skill}
-					register = ObjType.levelExperience[Static141.skillBaseLevel[script[pc++]] - 1];
+					register1 = ObjType.levelExperience[Static141.skillBaseLevel[script[pc++]] - 1];
 				}
 				if (opcode == 7) {
-					register = Static7.varps[script[pc++]] * 100 / 46875;
+					register1 = Static7.varps[script[pc++]] * 100 / 46875;
 				}
 				if (opcode == 8) { // load_combat_level
-					register = Static173.localPlayer.combatLevel;
+					register1 = Static173.localPlayer.combatLevel;
 				}
 				if (opcode == 9) { // load_total_level
 					for (i = 0; i < 25; i++) {
 						if (Static182.aBooleanArray97[i]) {
-							register += Static141.skillBaseLevel[i];
+							register1 += Static141.skillBaseLevel[i];
 						}
 					}
 				}
@@ -102,55 +102,55 @@ public final class Static273 {
 					i += script[pc++];
 					com = Static5.getComponent(i);
 					local140 = script[pc++];
-					if (local140 != -1 && (!Static71.get(local140).members || Static2.aBoolean1)) {
+					if (local140 != -1 && (!Static71.get(local140).members || Static2.membersWorld)) {
 						for (j = 0; j < com.invSlotObjId.length; j++) {
 							if (com.invSlotObjId[j] == local140 + 1) {
-								register = 999999999;
+								register1 = 999999999;
 								break;
 							}
 						}
 					}
 				}
 				if (opcode == 11) { // load_energy
-					register = Static12.energy;
+					register1 = Static12.energy;
 				}
 				if (opcode == 12) { // load_weight
-					register = Static251.weightCarried;
+					register1 = Static251.weightCarried;
 				}
 				if (opcode == 13) { // load_bool {varp} {bit: 0..31}
 					i = Static7.varps[script[pc++]];
-					@Pc(353) int lsb = script[pc++];
-					register = (0x1 << lsb & i) == 0 ? 0 : 1;
+					@Pc(353) int leastSignificantBit = script[pc++];
+					register1 = (0x1 << leastSignificantBit & i) == 0 ? 0 : 1;
 				}
 				if (opcode == 14) {
 					i = script[pc++];
-					register = Static155.method2945(i);
+					register1 = Static155.getVarbitValue(i);
 				}
 				if (opcode == 18) {
-					register = (Static173.localPlayer.x >> 7) + Static225.originX;
+					register1 = (Static173.localPlayer.x >> 7) + Static225.originX;
 				}
 				if (opcode == 19) {
-					register = (Static173.localPlayer.z >> 7) + Static142.originZ;
+					register1 = (Static173.localPlayer.z >> 7) + Static142.originZ;
 				}
 				if (opcode == 20) {
-					register = script[pc++];
+					register1 = script[pc++];
 				}
-				if (local48 == 0) {
+				if (nextOperator == 0) {
 					if (local35 == 0) {
-						local37 += register;
+						register += register1;
 					}
 					if (local35 == 1) {
-						local37 -= register;
+						register -= register1;
 					}
-					if (local35 == 2 && register != 0) {
-						local37 /= register;
+					if (local35 == 2 && register1 != 0) {
+						register /= register1;
 					}
 					if (local35 == 3) {
-						local37 *= register;
+						register *= register1;
 					}
 					local35 = 0;
 				} else {
-					local35 = local48;
+					local35 = nextOperator;
 				}
 			}
 		} catch (@Pc(464) Exception local464) {

@@ -18,7 +18,7 @@ public final class ClientScript extends SecondaryNode {
 	public int anInt4669;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "O", descriptor = "[I")
-	public int[] anIntArray415;
+	public int[] opcodes;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "Q", descriptor = "[Lclient!sc;")
 	public IterableMap[] aClass133Array1;
@@ -30,8 +30,8 @@ public final class ClientScript extends SecondaryNode {
 	public int anInt4671;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "T", descriptor = "[Lclient!na;")
-	public JString[] aClass100Array140;
+	public JString[] stringOperands;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "W", descriptor = "[I")
-	public int[] anIntArray416;
+	public int[] intOperands;
 }

@@ -34,36 +34,36 @@ public final class Static91 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(IB)Lclient!qc;")
-	public static ClientScript method1875(@OriginalArg(0) int arg0) {
-		@Pc(12) ClientScript local12 = (ClientScript) Static105.aClass54_9.get((long) arg0);
-		if (local12 != null) {
-			return local12;
+	public static ClientScript decodeClientScript(@OriginalArg(0) int scriptId) {
+		@Pc(12) ClientScript clientScript = (ClientScript) Static105.clientScriptCache.get((long) scriptId);
+		if (clientScript != null) {
+			return clientScript;
 		}
-		@Pc(22) byte[] local22 = Static16.aClass153_9.getfile(arg0, 0);
+		@Pc(22) byte[] local22 = Static16.aClass153_9.getfile(scriptId, 0);
 		if (local22 == null) {
 			return null;
 		}
-		local12 = new ClientScript();
+		clientScript = new ClientScript();
 		@Pc(42) Packet local42 = new Packet(local22);
 		local42.pos = local42.data.length - 2;
 		@Pc(53) int local53 = local42.g2();
 		@Pc(63) int local63 = local42.data.length - local53 - 12 - 2;
 		local42.pos = local63;
-		@Pc(70) int local70 = local42.g4();
-		local12.anInt4667 = local42.g2();
-		local12.anInt4671 = local42.g2();
-		local12.anInt4665 = local42.g2();
-		local12.anInt4669 = local42.g2();
+		@Pc(70) int opcodeCount = local42.g4();
+		clientScript.anInt4667 = local42.g2();
+		clientScript.anInt4671 = local42.g2();
+		clientScript.anInt4665 = local42.g2();
+		clientScript.anInt4669 = local42.g2();
 		@Pc(98) int local98 = local42.g1();
 		@Pc(107) int local107;
-		@Pc(114) int local114;
+		@Pc(114) int opcode;
 		if (local98 > 0) {
-			local12.aClass133Array1 = new IterableMap[local98];
+			clientScript.aClass133Array1 = new IterableMap[local98];
 			for (local107 = 0; local107 < local98; local107++) {
-				local114 = local42.g2();
-				@Pc(121) IterableMap local121 = new IterableMap(Static165.bitceil(local114));
-				local12.aClass133Array1[local107] = local121;
-				while (local114-- > 0) {
+				opcode = local42.g2();
+				@Pc(121) IterableMap local121 = new IterableMap(Static165.bitceil(opcode));
+				clientScript.aClass133Array1[local107] = local121;
+				while (opcode-- > 0) {
 					@Pc(136) int local136 = local42.g4();
 					@Pc(140) int local140 = local42.g4();
 					local121.pushNode(new IntWrapper(local140), (long) local136);
@@ -71,24 +71,24 @@ public final class Static91 {
 			}
 		}
 		local42.pos = 0;
-		local12.aClass100_880 = local42.gjstrFast();
-		local12.anIntArray415 = new int[local70];
-		local12.aClass100Array140 = new JString[local70];
+		clientScript.aClass100_880 = local42.gjstrFast();
+		clientScript.opcodes = new int[opcodeCount];
+		clientScript.stringOperands = new JString[opcodeCount];
 		local107 = 0;
-		local12.anIntArray416 = new int[local70];
+		clientScript.intOperands = new int[opcodeCount];
 		while (local63 > local42.pos) {
-			local114 = local42.g2();
-			if (local114 == 3) {
-				local12.aClass100Array140[local107] = local42.gjstr();
-			} else if (local114 >= 100 || local114 == 21 || local114 == 38 || local114 == 39) {
-				local12.anIntArray416[local107] = local42.g1();
+			opcode = local42.g2();
+			if (opcode == 3) {
+				clientScript.stringOperands[local107] = local42.gjstr();
+			} else if (opcode >= 100 || opcode == 21 || opcode == 38 || opcode == 39) {
+				clientScript.intOperands[local107] = local42.g1();
 			} else {
-				local12.anIntArray416[local107] = local42.g4();
+				clientScript.intOperands[local107] = local42.g4();
 			}
-			local12.anIntArray415[local107++] = local114;
+			clientScript.opcodes[local107++] = opcode;
 		}
-		Static105.aClass54_9.put(local12, (long) arg0);
-		return local12;
+		Static105.clientScriptCache.put(clientScript, (long) scriptId);
+		return clientScript;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(Lclient!km;Z)V")

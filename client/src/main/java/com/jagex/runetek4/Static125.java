@@ -48,13 +48,13 @@ public final class Static125 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "a", descriptor = "(IB)Lclient!kk;")
-	public static Class85 method2449(@OriginalArg(0) int arg0) {
-		@Pc(10) Class85 local10 = (Class85) aClass99_19.get((long) arg0);
+	public static VarbitDefinition getDefinition(@OriginalArg(0) int arg0) {
+		@Pc(10) VarbitDefinition local10 = (VarbitDefinition) aClass99_19.get((long) arg0);
 		if (local10 != null) {
 			return local10;
 		}
 		@Pc(31) byte[] local31 = Static172.aClass153_69.getfile(Static254.method4349(arg0), Static274.method3845(arg0));
-		local10 = new Class85();
+		local10 = new VarbitDefinition();
 		if (local31 != null) {
 			local10.decode(new Packet(local31));
 		}

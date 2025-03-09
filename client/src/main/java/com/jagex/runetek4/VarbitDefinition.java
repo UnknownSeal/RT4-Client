@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 
 // Varbit
 @OriginalClass("client!kk")
-public final class Class85 {
+public final class VarbitDefinition {
 
 	@OriginalMember(owner = "client!kk", name = "c", descriptor = "I")
 	public int anInt3318;
@@ -17,7 +17,7 @@ public final class Class85 {
 	public int anInt3323;
 
 	@OriginalMember(owner = "client!kk", name = "l", descriptor = "I")
-	public int anInt3327;
+	public int index;
 
 	@OriginalMember(owner = "client!kk", name = "a", descriptor = "(Lclient!wa;I)V")
 	public void decode(@OriginalArg(0) Packet packet) {
@@ -33,7 +33,7 @@ public final class Class85 {
 	@OriginalMember(owner = "client!kk", name = "a", descriptor = "(Lclient!wa;II)V")
 	private void decode(@OriginalArg(0) Packet packet, @OriginalArg(2) int code) {
 		if (code == 1) {
-			this.anInt3327 = packet.g2();
+			this.index = packet.g2();
 			this.anInt3318 = packet.g1();
 			this.anInt3323 = packet.g1();
 		}

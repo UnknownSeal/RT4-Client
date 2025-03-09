@@ -362,7 +362,7 @@ public final class NPCType {
 	public NPCType getMultiNPC() {
 		@Pc(5) int i = -1;
 		if (this.multivarbit != -1) {
-			i = Static155.method2945(this.multivarbit);
+			i = Static155.getVarbitValue(this.multivarbit);
 		} else if (this.multivarp != -1) {
 			i = Static7.varps[this.multivarp];
 		}
@@ -381,7 +381,7 @@ public final class NPCType {
 		}
 		@Pc(16) int local16 = -1;
 		if (this.multivarbit != -1) {
-			local16 = Static155.method2945(this.multivarbit);
+			local16 = Static155.getVarbitValue(this.multivarbit);
 		} else if (this.multivarp != -1) {
 			local16 = Static7.varps[this.multivarp];
 		}
