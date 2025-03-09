@@ -1,9 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.entity.ProjectileEntity;
-import com.jagex.runetek4.entity.SpotAnimEntity;
+import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
+import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.config.bastype.BASType;
-import com.jagex.runetek4.entity.PathingEntity;
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;

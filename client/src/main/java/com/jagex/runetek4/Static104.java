@@ -2,8 +2,8 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.config.SeqType;
-import com.jagex.runetek4.entity.NPCEntity;
-import com.jagex.runetek4.entity.PathingEntity;
+import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

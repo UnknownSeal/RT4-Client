@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.entity.SpotAnimEntity;
+import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.config.invtype.InvType;
 import com.jagex.runetek4.config.NPCType;
 import com.jagex.runetek4.js5.Js5;

@@ -1,8 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.entity.NPCEntity;
-import com.jagex.runetek4.entity.PlayerEntity;
-import com.jagex.runetek4.entity.ProjectileEntity;
+import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

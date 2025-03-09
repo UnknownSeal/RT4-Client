@@ -1,4 +1,4 @@
-package com.jagex.runetek4.entity;
+package com.jagex.runetek4.dash3d.entity;
 
 import com.jagex.runetek4.SoftwareIndexedSprite;
 import org.openrs2.deob.annotation.OriginalClass;

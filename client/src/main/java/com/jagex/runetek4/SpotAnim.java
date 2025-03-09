@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.config.SpotAnimType;
-import com.jagex.runetek4.entity.Entity;
+import com.jagex.runetek4.dash3d.entity.Entity;
 import com.jagex.runetek4.config.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

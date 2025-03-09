@@ -3,8 +3,8 @@ package com.jagex.runetek4;
 import java.awt.Component;
 import java.lang.reflect.Method;
 
-import com.jagex.runetek4.entity.NPCEntity;
-import com.jagex.runetek4.entity.PlayerEntity;
+import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

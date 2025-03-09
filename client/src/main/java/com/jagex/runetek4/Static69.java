@@ -3,8 +3,8 @@ package com.jagex.runetek4;
 import java.awt.Frame;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.entity.Entity;
-import com.jagex.runetek4.entity.ObjStackEntity;
+import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

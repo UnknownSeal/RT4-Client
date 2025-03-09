@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import java.nio.ByteBuffer;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.entity.Entity;
+import com.jagex.runetek4.dash3d.entity.Entity;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.graphics.VertexNormal;
 import com.jogamp.opengl.*;

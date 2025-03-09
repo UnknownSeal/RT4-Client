@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static175 {
