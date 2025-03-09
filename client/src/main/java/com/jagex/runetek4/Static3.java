@@ -27,7 +27,7 @@ public final class Static3 {
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "b", descriptor = "(B)V")
 	public static void method4657() {
-		Static232.aClass99_30.method3103();
+		Static232.varpDefinitionCache.method3103();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "(II)V")

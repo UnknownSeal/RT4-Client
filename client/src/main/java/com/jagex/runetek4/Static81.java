@@ -17,7 +17,7 @@ public final class Static81 {
 	public static int anInt2222;
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "ab", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_34;
+	public static Js5 gameDefinitionsCacheArchive;
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "bb", descriptor = "I")
 	public static int anInt2223;
@@ -273,7 +273,7 @@ public final class Static81 {
 			samples = change.method1011();
 			i = change.method1012();
 			if (samples == 1) {
-				Static155.varcs[i] = change.intArg1;
+				VarpDefinition.varcs[i] = change.intArg1;
 				Static138.updatedVarcs[Static4.updatedVarcsWriterIndex++ & 0x1F] = i;
 			} else if (samples == 2) {
 				Static226.varcstrs[i] = change.stringArg;

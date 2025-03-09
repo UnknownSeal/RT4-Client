@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 
 // VarpType
 @OriginalClass("client!eh")
-public final class VarpType {
+public final class varpDefinition {
 
 	@OriginalMember(owner = "client!eh", name = "e", descriptor = "I")
 	public int clientCode = 0;

@@ -3,6 +3,8 @@ package com.jagex.runetek4;
 import java.io.IOException;
 
 import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.config.varpDefinition;
+import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -10,6 +12,8 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class VarpDefinition {
 
+	@OriginalMember(owner = "runetek4.client!me", name = "P", descriptor = "[I")
+	public static final int[] varcs = new int[2000];
 	@OriginalMember(owner = "client!ah", name = "l", descriptor = "[[B")
 	public static byte[][] aByteArrayArray5;
 
@@ -133,5 +137,20 @@ public final class VarpDefinition {
 		}
 		Static60.aBoolean108 = false;
 		Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
+	}
+
+	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(II)Lclient!eh;")
+	public static varpDefinition getDefinition(@OriginalArg(1) int varPlayerIndex) {
+		@Pc(10) varpDefinition definition = (varpDefinition) Static232.varpDefinitionCache.get((long) varPlayerIndex);
+		if (definition != null) {
+			return definition;
+		}
+		@Pc(20) byte[] cacheData = Static81.gameDefinitionsCacheArchive.getfile(16, varPlayerIndex);
+		definition = new varpDefinition();
+		if (cacheData != null) {
+			definition.decode(new Packet(cacheData));
+		}
+		Static232.varpDefinitionCache.put(definition, (long) varPlayerIndex);
+		return definition;
 	}
 }

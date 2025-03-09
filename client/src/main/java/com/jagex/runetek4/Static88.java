@@ -281,14 +281,14 @@ public final class Static88 {
 					}
 					if (scriptOpcode == 42) {
 						// push_varc_int
-						Static254.scriptIntValues[intValueIndex++] = Static155.varcs[local33[scriptIndex]];
+						Static254.scriptIntValues[intValueIndex++] = VarpDefinition.varcs[local33[scriptIndex]];
 						continue;
 					}
 					if (scriptOpcode == 43) {
 						// pop_varc_int
 						j = local33[scriptIndex];
 						intValueIndex--;
-						Static155.varcs[j] = Static254.scriptIntValues[intValueIndex];
+						VarpDefinition.varcs[j] = Static254.scriptIntValues[intValueIndex];
 						Static4.method24(j);
 						continue;
 					}

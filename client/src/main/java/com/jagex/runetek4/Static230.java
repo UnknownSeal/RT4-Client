@@ -110,8 +110,8 @@ public final class Static230 {
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(Lclient!ve;B)V")
 	public static void method3951(@OriginalArg(0) Js5 arg0) {
-		Static81.aClass153_34 = arg0;
-		Static165.anInt4043 = Static81.aClass153_34.method4504(16);
+		Static81.gameDefinitionsCacheArchive = arg0;
+		Static165.anInt4043 = Static81.gameDefinitionsCacheArchive.method4504(16);
 	}
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(Ljava/lang/String;I)Lclient!na;")

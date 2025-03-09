@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.VarpType;
-import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
 import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -686,21 +684,6 @@ public final class Static247 {
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(IB)I")
 	public static int method4247(@OriginalArg(0) int arg0) {
 		return arg0 & 0xFF;
-	}
-
-	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(II)Lclient!eh;")
-	public static VarpType method4248(@OriginalArg(1) int arg0) {
-		@Pc(10) VarpType local10 = (VarpType) Static232.aClass99_30.get((long) arg0);
-		if (local10 != null) {
-			return local10;
-		}
-		@Pc(20) byte[] local20 = Static81.aClass153_34.getfile(16, arg0);
-		local10 = new VarpType();
-		if (local20 != null) {
-			local10.decode(new Packet(local20));
-		}
-		Static232.aClass99_30.put(local10, (long) arg0);
-		return local10;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(Z)V")

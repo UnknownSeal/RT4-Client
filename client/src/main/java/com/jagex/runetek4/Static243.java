@@ -119,8 +119,8 @@ public final class Static243 {
 		Static251.anInt5449 = 0;
 		Static113.anInt4612 = 0;
 		Static233.anInt5225 = 0;
-		for (i = 0; i < Static155.varcs.length; i++) {
-			Static155.varcs[i] = -1;
+		for (i = 0; i < VarpDefinition.varcs.length; i++) {
+			VarpDefinition.varcs[i] = -1;
 		}
 		if (Static154.topLevelInterace != -1) {
 			Static109.method2275(Static154.topLevelInterace);

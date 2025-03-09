@@ -22,7 +22,7 @@ public final class Static24 {
 
 	@OriginalMember(owner = "client!bn", name = "c", descriptor = "(II)V")
 	public static void method666() {
-		Static232.aClass99_30.method3102(5);
+		Static232.varpDefinitionCache.method3102(5);
 	}
 
 	@OriginalMember(owner = "client!bn", name = "a", descriptor = "(III)I")
