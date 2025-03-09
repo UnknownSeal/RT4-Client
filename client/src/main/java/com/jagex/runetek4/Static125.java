@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -18,7 +17,7 @@ public final class Static125 {
 	public static final SoftLruHashTable aClass99_18 = new SoftLruHashTable(50);
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "G", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_19 = new SoftLruHashTable(64);
+	public static final SoftLruHashTable varbitDefinitionCache = new SoftLruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "H", descriptor = "I")
 	public static int worldId = -1;
@@ -45,21 +44,6 @@ public final class Static125 {
 		Static57.errors = 0;
 		Static179.step = 1;
 		Static223.reply = -3;
-	}
-
-	@OriginalMember(owner = "runetek4.client!jl", name = "a", descriptor = "(IB)Lclient!kk;")
-	public static VarbitDefinition getDefinition(@OriginalArg(0) int arg0) {
-		@Pc(10) VarbitDefinition local10 = (VarbitDefinition) aClass99_19.get((long) arg0);
-		if (local10 != null) {
-			return local10;
-		}
-		@Pc(31) byte[] local31 = Static172.aClass153_69.getfile(Static254.method4349(arg0), Static274.method3845(arg0));
-		local10 = new VarbitDefinition();
-		if (local31 != null) {
-			local10.decode(new Packet(local31));
-		}
-		aClass99_19.put(local10, (long) arg0);
-		return local10;
 	}
 
 	@OriginalMember(owner = "client!jl", name = "c", descriptor = "(I)V")

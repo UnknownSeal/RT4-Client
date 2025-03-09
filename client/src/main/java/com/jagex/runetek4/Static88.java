@@ -179,7 +179,7 @@ public final class Static88 {
 					if (scriptOpcode == 25) {
 						// push_varbit
 						j = local33[scriptIndex];
-						Static254.scriptIntValues[intValueIndex++] = Static155.getVarbitValue(j);
+						Static254.scriptIntValues[intValueIndex++] = VarbitDefinition.getVarbitValue(j);
 						continue;
 					}
 					if (scriptOpcode == 27) {

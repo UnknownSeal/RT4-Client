@@ -66,13 +66,4 @@ public final class Static155 {
 		Static202.method3656(local117, Static169.aShortArray52);
 	}
 
-	@OriginalMember(owner = "runetek4.client!me", name = "a", descriptor = "(II)I")
-	public static int getVarbitValue(@OriginalArg(1) int varbitId) {
-		@Pc(13) VarbitDefinition varbitDefinition = Static125.getDefinition(varbitId);
-		@Pc(16) int varPlayerIndex = varbitDefinition.index;
-		@Pc(19) int mostSignificantBit = varbitDefinition.anInt3323;
-		@Pc(22) int leastSignificantBit = varbitDefinition.anInt3318;
-		@Pc(29) int mask = Class3_Sub9.varbitMasks[mostSignificantBit - leastSignificantBit];
-		return VarpDefinition.varps[varPlayerIndex] >> leastSignificantBit & mask;
-	}
 }

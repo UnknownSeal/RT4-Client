@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static172 {
 
 	@OriginalMember(owner = "runetek4.client!nj", name = "c", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_69;
+	public static Js5 gameDefinitionsCacheArchive;
 
 	@OriginalMember(owner = "runetek4.client!nj", name = "e", descriptor = "Lclient!va;")
 	public static MidiPcmStream aClass3_Sub3_Sub4_2;

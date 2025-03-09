@@ -40,7 +40,7 @@ public final class Static180 {
 
 	@OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(Lclient!ve;I)V")
 	public static void method3327(@OriginalArg(0) Js5 arg0) {
-		Static172.aClass153_69 = arg0;
+		Static172.gameDefinitionsCacheArchive = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(II)V")

@@ -104,6 +104,6 @@ public final class Static53 {
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "b", descriptor = "(I)V")
 	public static void method1295() {
-		Static125.aClass99_19.method3104();
+		Static125.varbitDefinitionCache.method3104();
 	}
 }

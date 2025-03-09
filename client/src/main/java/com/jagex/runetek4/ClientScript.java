@@ -197,7 +197,7 @@ public final class ClientScript extends SecondaryNode {
 				}
 				if (opcode == 14) {
 					i = script[pc++];
-					register1 = Static155.getVarbitValue(i);
+					register1 = VarbitDefinition.getVarbitValue(i);
 				}
 				if (opcode == 18) {
 					register1 = (Static173.localPlayer.x >> 7) + Static225.originX;

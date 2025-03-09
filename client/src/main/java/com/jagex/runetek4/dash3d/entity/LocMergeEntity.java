@@ -461,7 +461,7 @@ public final class LocMergeEntity {
 	public LocMergeEntity getVisible() {
 		@Pc(26) int i = -1;
 		if (this.multivarbit != -1) {
-			i = Static155.getVarbitValue(this.multivarbit);
+			i = VarbitDefinition.getVarbitValue(this.multivarbit);
 		} else if (this.multivarp != -1) {
 			i = VarpDefinition.varps[this.multivarp];
 		}
