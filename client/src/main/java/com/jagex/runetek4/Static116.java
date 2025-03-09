@@ -11,7 +11,7 @@ public final class Static116 {
 	public static Sprite[] aClass3_Sub2_Sub1Array3;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "c", descriptor = "Lclient!na;")
-	public static final JagString aClass100_583 = Static28.parse("(Y<)4col>");
+	public static final JString aClass100_583 = Static28.parse("(Y<)4col>");
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "m", descriptor = "I")
 	public static int entityUpdateCount = 0;

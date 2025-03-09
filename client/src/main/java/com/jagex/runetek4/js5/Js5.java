@@ -110,9 +110,9 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(ILclient!na;)I")
-	public int method4478(@OriginalArg(1) JagString arg0) {
+	public int method4478(@OriginalArg(1) JString arg0) {
 		if (this.isIndexReady()) {
-			@Pc(15) JagString local15 = arg0.toLowerCase();
+			@Pc(15) JString local15 = arg0.toLowerCase();
 			@Pc(29) int local29 = this.index.aClass76_1.method2405(local15.method3154());
 			return this.getPercentageComplete(local29);
 		} else {
@@ -141,9 +141,9 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(Lclient!na;B)I")
-	public int method4482(@OriginalArg(0) JagString arg0) {
+	public int method4482(@OriginalArg(0) JString arg0) {
 		if (this.isIndexReady()) {
-			@Pc(16) JagString local16 = arg0.toLowerCase();
+			@Pc(16) JString local16 = arg0.toLowerCase();
 			@Pc(27) int local27 = this.index.aClass76_1.method2405(local16.method3154());
 			return this.isGroupValid(local27) ? local27 : -1;
 		} else {
@@ -170,12 +170,12 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(ILclient!na;Lclient!na;)[B")
-	public byte[] method4485(@OriginalArg(1) JagString arg0, @OriginalArg(2) JagString arg1) {
+	public byte[] method4485(@OriginalArg(1) JString arg0, @OriginalArg(2) JString arg1) {
 		if (!this.isIndexReady()) {
 			return null;
 		}
-		@Pc(15) JagString local15 = arg1.toLowerCase();
-		@Pc(19) JagString local19 = arg0.toLowerCase();
+		@Pc(15) JString local15 = arg1.toLowerCase();
+		@Pc(19) JString local19 = arg0.toLowerCase();
 		@Pc(28) int local28 = this.index.aClass76_1.method2405(local15.method3154());
 		if (this.isGroupValid(local28)) {
 			@Pc(53) int local53 = this.index.aClass76Array1[local28].method2405(local19.method3154());
@@ -186,21 +186,21 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "b", descriptor = "(ILclient!na;)V")
-	public void method4486(@OriginalArg(1) JagString arg0) {
+	public void method4486(@OriginalArg(1) JString arg0) {
 		if (this.isIndexReady()) {
-			@Pc(13) JagString local13 = arg0.toLowerCase();
+			@Pc(13) JString local13 = arg0.toLowerCase();
 			@Pc(22) int local22 = this.index.aClass76_1.method2405(local13.method3154());
 			this.method4493(local22);
 		}
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(Lclient!na;BLclient!na;)Z")
-	public boolean method4487(@OriginalArg(0) JagString arg0, @OriginalArg(2) JagString arg1) {
+	public boolean method4487(@OriginalArg(0) JString arg0, @OriginalArg(2) JString arg1) {
 		if (!this.isIndexReady()) {
 			return false;
 		}
-		@Pc(17) JagString local17 = arg1.toLowerCase();
-		@Pc(21) JagString local21 = arg0.toLowerCase();
+		@Pc(17) JString local17 = arg1.toLowerCase();
+		@Pc(21) JString local21 = arg0.toLowerCase();
 		@Pc(30) int local30 = this.index.aClass76_1.method2405(local17.method3154());
 		if (this.isGroupValid(local30)) {
 			@Pc(49) int local49 = this.index.aClass76Array1[local30].method2405(local21.method3154());
@@ -236,9 +236,9 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(BLclient!na;)Z")
-	public boolean method4489(@OriginalArg(1) JagString arg0) {
+	public boolean method4489(@OriginalArg(1) JString arg0) {
 		if (this.isIndexReady()) {
-			@Pc(14) JagString local14 = arg0.toLowerCase();
+			@Pc(14) JString local14 = arg0.toLowerCase();
 			@Pc(25) int local25 = this.index.aClass76_1.method2405(local14.method3154());
 			return this.method4479(local25);
 		} else {
@@ -415,9 +415,9 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(Lclient!na;I)Z")
-	public boolean method4497(@OriginalArg(0) JagString arg0) {
+	public boolean method4497(@OriginalArg(0) JString arg0) {
 		if (this.isIndexReady()) {
-			@Pc(19) JagString local19 = arg0.toLowerCase();
+			@Pc(19) JString local19 = arg0.toLowerCase();
 			@Pc(28) int local28 = this.index.aClass76_1.method2405(local19.method3154());
 			return local28 >= 0;
 		} else {

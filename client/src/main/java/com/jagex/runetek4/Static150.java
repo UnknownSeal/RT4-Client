@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static150 {
 
 	@OriginalMember(owner = "runetek4.client!lk", name = "J", descriptor = "Lclient!na;")
-	public static final JagString aClass100_687 = Static28.parse(")4p=");
+	public static final JString aClass100_687 = Static28.parse(")4p=");
 
 	@OriginalMember(owner = "runetek4.client!lk", name = "U", descriptor = "Z")
 	public static boolean aBoolean175 = false;

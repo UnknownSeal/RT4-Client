@@ -26,7 +26,7 @@ public final class Static124 {
 	public static final SoftLruHashTable aClass99_17 = new SoftLruHashTable(50);
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "F", descriptor = "Lclient!na;")
-	public static final JagString TWEEN = Static28.parse("::tween");
+	public static final JString TWEEN = Static28.parse("::tween");
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "G", descriptor = "Z")
 	public static boolean aBoolean157 = false;
@@ -37,7 +37,7 @@ public final class Static124 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "a", descriptor = "(ILclient!na;)Lclient!bn;")
-	public static Map method2434(@OriginalArg(1) JagString arg0) {
+	public static Map method2434(@OriginalArg(1) JString arg0) {
 		for (@Pc(15) Map local15 = (Map) Static228.aClass69_120.head(); local15 != null; local15 = (Map) Static228.aClass69_120.next()) {
 			if (local15.aClass100_138.method3108(arg0)) {
 				return local15;

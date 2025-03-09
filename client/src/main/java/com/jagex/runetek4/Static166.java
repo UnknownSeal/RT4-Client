@@ -15,7 +15,7 @@ public final class Static166 {
 	public static int anInt4049;
 
 	@OriginalMember(owner = "runetek4.client!nc", name = "e", descriptor = "Lclient!na;")
-	public static final JagString aClass100_779 = Static28.parse("underlay");
+	public static final JString aClass100_779 = Static28.parse("underlay");
 
 	@OriginalMember(owner = "runetek4.client!nc", name = "j", descriptor = "I")
 	public static int anInt4051 = 0;

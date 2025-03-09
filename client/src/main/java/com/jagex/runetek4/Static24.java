@@ -37,8 +37,8 @@ public final class Static24 {
 	}
 
 	@OriginalMember(owner = "client!bn", name = "a", descriptor = "(BZLclient!na;)V")
-	public static void method668(@OriginalArg(1) boolean arg0, @OriginalArg(2) JagString arg1) {
-		@Pc(9) JagString local9 = arg1.toLowerCase();
+	public static void method668(@OriginalArg(1) boolean arg0, @OriginalArg(2) JString arg1) {
+		@Pc(9) JString local9 = arg1.toLowerCase();
 		@Pc(11) int local11 = 0;
 		@Pc(22) short[] local22 = new short[16];
 		@Pc(28) int local28 = arg0 ? 32768 : 0;
@@ -64,7 +64,7 @@ public final class Static24 {
 		Static169.aShortArray52 = local22;
 		Static111.anInt2905 = local11;
 		Static67.anInt3356 = 0;
-		@Pc(113) JagString[] local113 = new JagString[Static111.anInt2905];
+		@Pc(113) JString[] local113 = new JString[Static111.anInt2905];
 		for (@Pc(115) int local115 = 0; local115 < Static111.anInt2905; local115++) {
 			local113[local115] = Static230.list(local22[local115]).method769();
 		}

@@ -26,10 +26,10 @@ public final class Static81 {
 	public static int modeWhat = 0;
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "W", descriptor = "Lclient!na;")
-	public static final JagString NULL = Static28.parse("null");
+	public static final JString NULL = Static28.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "Y", descriptor = "Lclient!na;")
-	public static final JagString GC = Static28.parse("::gc");
+	public static final JString GC = Static28.parse("::gc");
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "db", descriptor = "I")
 	public static int anInt2225 = -1;

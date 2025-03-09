@@ -20,13 +20,13 @@ public final class Static86 {
 	public static int anInt2293 = (int) (Math.random() * 17.0D) - 8;
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "W", descriptor = "Lclient!na;")
-	public static final JagString aClass100_488 = Static28.parse("_");
+	public static final JString aClass100_488 = Static28.parse("_");
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "bb", descriptor = "Z")
 	public static boolean aBoolean129 = false;
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "db", descriptor = "Lclient!na;")
-	public static final JagString CROSS = Static28.parse("cross");
+	public static final JString CROSS = Static28.parse("cross");
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "gb", descriptor = "[I")
 	public static final int[] WALL_CORNER_TYPE_64_BLOCK_LOC_SPANS = new int[] { 0, 4, 4, 8, 0, 0, 8, 0, 0 };

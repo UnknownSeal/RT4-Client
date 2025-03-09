@@ -20,7 +20,7 @@ public final class Class3_Sub2_Sub2 extends SecondaryNode {
 	public int[] anIntArray31;
 
 	@OriginalMember(owner = "runetek4.client!bc", name = "Y", descriptor = "Lclient!na;")
-	public JagString aClass100_79;
+	public JString aClass100_79;
 
 	@OriginalMember(owner = "runetek4.client!bc", name = "ab", descriptor = "[I")
 	public int[] anIntArray32;

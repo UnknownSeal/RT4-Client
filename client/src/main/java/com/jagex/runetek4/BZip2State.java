@@ -23,7 +23,7 @@ public final class BZip2State {
 	public static final int[] anIntArray375 = new int[128];
 
 	@OriginalMember(owner = "runetek4.client!s", name = "g", descriptor = "Lclient!na;")
-	public static final JagString aClass100_821 = Static28.parse("document)3cookie=(R");
+	public static final JString aClass100_821 = Static28.parse("document)3cookie=(R");
 
 	@OriginalMember(owner = "runetek4.client!s", name = "a", descriptor = "(II)I")
 	public static int method3389(@OriginalArg(0) int arg0) {

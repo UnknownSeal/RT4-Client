@@ -75,7 +75,7 @@ public final class Static38 {
 					local80 -= local84.method1503() * (local211 - 1) / 2;
 					local80 += local84.method1511() / 2;
 					for (@Pc(231) int local231 = 0; local231 < local211; local231++) {
-						@Pc(242) JagString local242 = Static45.aClass100Array53[local231];
+						@Pc(242) JString local242 = Static45.aClass100Array53[local231];
 						if (local211 - 1 > local231) {
 							local242.method3133(local242.length() - 4);
 						}

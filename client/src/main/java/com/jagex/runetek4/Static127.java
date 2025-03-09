@@ -192,7 +192,7 @@ public final class Static127 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!be;Lclient!na;I)Lclient!na;")
-	public static JagString method2465(@OriginalArg(0) Component arg0, @OriginalArg(1) JagString arg1) {
+	public static JString method2465(@OriginalArg(0) Component arg0, @OriginalArg(1) JString arg1) {
 		if (arg1.indexOf(Static49.aClass100_352) == -1) {
 			return arg1;
 		}
@@ -216,7 +216,7 @@ public final class Static127 {
 													if (local14 == -1) {
 														return arg1;
 													}
-													@Pc(246) JagString local246 = Static186.aClass100_827;
+													@Pc(246) JString local246 = Static186.aClass100_827;
 													if (Static232.aClass212_5 != null) {
 														local246 = Static181.method3341(Static232.aClass212_5.intArg2);
 														try {
@@ -227,27 +227,27 @@ public final class Static127 {
 														} catch (@Pc(274) UnsupportedEncodingException local274) {
 														}
 													}
-													arg1 = Static34.method882(new JagString[] { arg1.substring(local14, 0), local246, arg1.substring(local14 + 4) });
+													arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), local246, arg1.substring(local14 + 4) });
 												}
 											}
-											arg1 = Static34.method882(new JagString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(4, arg0)), arg1.substring(local14 + 2) });
+											arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(4, arg0)), arg1.substring(local14 + 2) });
 										}
 									}
-									arg1 = Static34.method882(new JagString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(3, arg0)), arg1.substring(local14 + 2) });
+									arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(3, arg0)), arg1.substring(local14 + 2) });
 								}
 							}
-							arg1 = Static34.method882(new JagString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(2, arg0)), arg1.substring(local14 + 2) });
+							arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(2, arg0)), arg1.substring(local14 + 2) });
 						}
 					}
-					arg1 = Static34.method882(new JagString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(1, arg0)), arg1.substring(local14 + 2) });
+					arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(1, arg0)), arg1.substring(local14 + 2) });
 				}
 			}
-			arg1 = Static34.method882(new JagString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(0, arg0)), arg1.substring(local14 + 2) });
+			arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(Static273.method3212(0, arg0)), arg1.substring(local14 + 2) });
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!na;Z)V")
-	public static void method2470(@OriginalArg(0) JagString chatTyped) {
+	public static void method2470(@OriginalArg(0) JString chatTyped) {
 		if (Static191.staffModLevel >= 2) {
 			@Pc(18) int level;
 			@Pc(38) int x;
@@ -259,7 +259,7 @@ public final class Static127 {
 				}
 				local29 = Runtime.getRuntime();
 				x = (int) ((local29.totalMemory() - local29.freeMemory()) / 1024L);
-				Static103.addMessage(null, 0, Static34.method882(new JagString[] { Static202.aClass100_892, Static123.method2423(x), Static17.aClass100_101 }));
+				Static103.addMessage(null, 0, Static34.method882(new JString[] { Static202.aClass100_892, Static123.method2423(x), Static17.aClass100_101 }));
 			}
 			@Pc(117) int z;
 			if (chatTyped.equalsIgnoreCase(Static154.MM)) {
@@ -269,17 +269,17 @@ public final class Static127 {
 				}
 				local29 = Runtime.getRuntime();
 				x = (int) ((local29.totalMemory() - local29.freeMemory()) / 1024L);
-				Static103.addMessage(null, 0, Static34.method882(new JagString[] { Static203.aClass100_893, Static123.method2423(x), Static17.aClass100_101 }));
+				Static103.addMessage(null, 0, Static34.method882(new JString[] { Static203.aClass100_893, Static123.method2423(x), Static17.aClass100_101 }));
 				Static16.method501();
 				Static119.method2380();
 				for (z = 0; z < 10; z++) {
 					System.gc();
 				}
 				x = (int) ((local29.totalMemory() - local29.freeMemory()) / 1024L);
-				Static103.addMessage(null, 0, Static34.method882(new JagString[] { Static270.aClass100_1093, Static123.method2423(x), Static17.aClass100_101 }));
+				Static103.addMessage(null, 0, Static34.method882(new JString[] { Static270.aClass100_1093, Static123.method2423(x), Static17.aClass100_101 }));
 			}
 			if (chatTyped.equalsIgnoreCase(Static240.PCACHESIZE)) {
-				Static103.addMessage(null, 0, Static34.method882(new JagString[] { Static44.aClass100_335, Static123.method2423(Static198.method1029()) }));
+				Static103.addMessage(null, 0, Static34.method882(new JString[] { Static44.aClass100_335, Static123.method2423(Static198.method1029()) }));
 			}
 			if (GlRenderer.enabled && chatTyped.equalsIgnoreCase(Static201.CARDMEM)) {
 				System.out.println("oncard_geometry:" + Static63.oncard_geometry);
@@ -346,7 +346,7 @@ public final class Static127 {
 			}
 			if (chatTyped.startsWith(Static211.RECT_DEBUG)) {
 				Static199.anInt4672 = chatTyped.substring(12).trim().method3132();
-				Static103.addMessage(null, 0, Static34.method882(new JagString[] { Static276.aClass100_1096, Static123.method2423(Static199.anInt4672) }));
+				Static103.addMessage(null, 0, Static34.method882(new JString[] { Static276.aClass100_1096, Static123.method2423(Static199.anInt4672) }));
 			}
 			if (chatTyped.equalsIgnoreCase(Static181.QA_OP_TEST)) {
 				Static121.aBoolean154 = true;

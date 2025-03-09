@@ -10,7 +10,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static45 {
 
 	@OriginalMember(owner = "runetek4.client!di", name = "q", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array53 = new JagString[5];
+	public static final JString[] aClass100Array53 = new JString[5];
 
 	@OriginalMember(owner = "runetek4.client!di", name = "F", descriptor = "Lclient!bf;")
 	public static final ServerActiveProperties aClass3_Sub4_2 = new ServerActiveProperties(0, -1);

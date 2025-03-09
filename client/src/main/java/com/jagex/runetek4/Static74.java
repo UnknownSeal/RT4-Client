@@ -14,7 +14,7 @@ public final class Static74 {
 	public static final CRC32 aCRC32_1 = new CRC32();
 
 	@OriginalMember(owner = "runetek4.client!fn", name = "Z", descriptor = "Lclient!na;")
-	public static final JagString aClass100_461 = Static28.parse(")1 ");
+	public static final JString aClass100_461 = Static28.parse(")1 ");
 
 	@OriginalMember(owner = "runetek4.client!fn", name = "a", descriptor = "(ZIIIIIII)V")
 	public static void method1623(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {

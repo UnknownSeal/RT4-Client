@@ -24,7 +24,7 @@ public final class Static179 {
 	public static int minimapZoomModifier = 1;
 
 	@OriginalMember(owner = "runetek4.client!oe", name = "o", descriptor = "Lclient!na;")
-	public static final JagString aClass100_807 = Static28.parse("n");
+	public static final JString aClass100_807 = Static28.parse("n");
 
 	@OriginalMember(owner = "runetek4.client!oe", name = "a", descriptor = "(IZ)I")
 	public static int method3322(@OriginalArg(0) int arg0) {

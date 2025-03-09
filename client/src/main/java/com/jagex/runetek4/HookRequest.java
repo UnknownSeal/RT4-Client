@@ -12,7 +12,7 @@ public final class HookRequest extends Node {
 	public Component aClass13_16;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "r", descriptor = "Lclient!na;")
-	public JagString aClass100_598;
+	public JString aClass100_598;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "w", descriptor = "I")
 	public int anInt3097;

@@ -70,7 +70,7 @@ public final class ObjType {
 	public int team = 0;
 
 	@OriginalMember(owner = "client!h", name = "E", descriptor = "Lclient!na;")
-	public JagString name = Static78.NULL;
+	public JString name = Static78.NULL;
 
 	@OriginalMember(owner = "client!h", name = "J", descriptor = "I")
 	private int manwearzoff = 0;
@@ -160,7 +160,7 @@ public final class ObjType {
 	public int manwear = -1;
 
 	@OriginalMember(owner = "client!h", name = "qb", descriptor = "[Lclient!na;")
-	public JagString[] ops = new JagString[] { null, null, LocalizedText.TAKE, null, null };
+	public JString[] ops = new JString[] { null, null, LocalizedText.TAKE, null, null };
 
 	@OriginalMember(owner = "client!h", name = "ub", descriptor = "I")
 	private int resizex = 128;
@@ -172,7 +172,7 @@ public final class ObjType {
 	private int manwearyoff = 0;
 
 	@OriginalMember(owner = "client!h", name = "U", descriptor = "[Lclient!na;")
-	public JagString[] iops = new JagString[] { null, null, null, null, LocalizedText.DROP};
+	public JString[] iops = new JString[] { null, null, null, null, LocalizedText.DROP};
 
 	@OriginalMember(owner = "client!h", name = "Ab", descriptor = "I")
 	public int zoom2d = 2000;
@@ -377,7 +377,7 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ILclient!na;I)Lclient!na;")
-	public JagString getParam(@OriginalArg(1) JagString arg0, @OriginalArg(2) int arg1) {
+	public JString getParam(@OriginalArg(1) JString arg0, @OriginalArg(2) int arg1) {
 		if (this.params == null) {
 			return arg0;
 		} else {
@@ -433,7 +433,7 @@ public final class ObjType {
 		this.manwear3 = to.manwear3;
 		this.womanwear = to.womanwear;
 		this.manwearzoff = to.manwearzoff;
-		this.iops = new JagString[5];
+		this.iops = new JString[5];
 		this.mesh = from.mesh;
 		this.zoom2d = from.zoom2d;
 		this.cost = 0;

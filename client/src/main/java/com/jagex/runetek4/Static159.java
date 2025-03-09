@@ -19,7 +19,7 @@ public final class Static159 {
 	public static int anInt3893;
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "R", descriptor = "Lclient!na;")
-	public static final JagString aClass100_760 = Static28.parse(")1");
+	public static final JString aClass100_760 = Static28.parse(")1");
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "S", descriptor = "[Lclient!e;")
 	public static final PlayerEntity[] players = new PlayerEntity[2048];

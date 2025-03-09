@@ -17,7 +17,7 @@ public final class Static249 {
 	public static final LruHashTable recentUse = new LruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!ud", name = "Q", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1039 = Static28.parse(" x ");
+	public static final JString aClass100_1039 = Static28.parse(" x ");
 
 	@OriginalMember(owner = "runetek4.client!ud", name = "S", descriptor = "Z")
 	public static boolean aBoolean282 = false;

@@ -20,7 +20,7 @@ public final class PlayerEntity extends PathingEntity {
 	public PlayerModel model;
 
 	@OriginalMember(owner = "client!e", name = "Mc", descriptor = "Lclient!na;")
-	public JagString username;
+	public JString name;
 
 	@OriginalMember(owner = "client!e", name = "tc", descriptor = "I")
 	public int anInt1649 = -1;
@@ -144,7 +144,7 @@ public final class PlayerEntity extends PathingEntity {
 		}
 		this.anInt3365 = arg0.g2();
 		@Pc(236) long local236 = arg0.g8();
-		this.username = Static79.decode37(local236).method3125();
+		this.name = Static79.decode37(local236).method3125();
 		this.combatLevel = arg0.g1();
 		if (local37) {
 			this.anInt1671 = arg0.g2();
@@ -366,13 +366,13 @@ public final class PlayerEntity extends PathingEntity {
 	}
 
 	@OriginalMember(owner = "client!e", name = "e", descriptor = "(I)Lclient!na;")
-	public JagString getName() {
-		@Pc(2) JagString local2 = this.username;
+	public JString getName() {
+		@Pc(2) JString local2 = this.name;
 		if (Static103.aClass100Array88 != null) {
-			local2 = Static34.method882(new JagString[] { Static103.aClass100Array88[this.anInt1651], local2 });
+			local2 = Static34.method882(new JString[] { Static103.aClass100Array88[this.anInt1651], local2 });
 		}
 		if (Static263.aClass100Array174 != null) {
-			local2 = Static34.method882(new JagString[] { local2, Static263.aClass100Array174[this.anInt1651] });
+			local2 = Static34.method882(new JString[] { local2, Static263.aClass100Array174[this.anInt1651] });
 		}
 		return local2;
 	}

@@ -11,13 +11,13 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static49 {
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "j", descriptor = "Lclient!na;")
-	public static final JagString aClass100_351 = Static28.parse(" ");
+	public static final JString aClass100_351 = Static28.parse(" ");
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "m", descriptor = "I")
 	public static int anInt1459 = 0;
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "n", descriptor = "Lclient!na;")
-	public static final JagString aClass100_352 = Static28.parse("(U");
+	public static final JString aClass100_352 = Static28.parse("(U");
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "q", descriptor = "I")
 	public static int anInt1462 = 0;
@@ -179,7 +179,7 @@ public final class Static49 {
 		if (PreciseSleep.anInt5204 < 2 && Static260.anInt5014 == 0 && !Static241.aBoolean302) {
 			return;
 		}
-		@Pc(24) JagString local24 = Static13.method471();
+		@Pc(24) JString local24 = Static13.method471();
 		if (arg0 == null) {
 			@Pc(40) int local40 = Static280.aClass3_Sub2_Sub9_43.method2859(local24, arg2 + 4, arg1 - -15, Static39.aRandom1, Static60.anInt1895);
 			Static133.method4012(arg2 + 4, Static280.aClass3_Sub2_Sub9_43.method2858(local24) + local40, arg1, 15);

@@ -15,7 +15,7 @@ public final class Static90 {
 	public static final int[] DIRECTION_ALLOW_WALL_CORNER_TYPE = new int[] { 160, 192, 80, 96, 0, 144, 80, 48, 160 };
 
 	@OriginalMember(owner = "runetek4.client!hb", name = "b", descriptor = "(Lclient!na;I)V")
-	public static void method1853(@OriginalArg(0) JagString arg0) {
+	public static void method1853(@OriginalArg(0) JString arg0) {
 		Static116.method2325(false);
 		Static133.method4011(arg0);
 	}

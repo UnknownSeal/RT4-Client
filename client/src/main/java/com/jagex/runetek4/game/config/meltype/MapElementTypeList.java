@@ -1,6 +1,6 @@
 package com.jagex.runetek4.game.config.meltype;
 
-import com.jagex.runetek4.JagString;
+import com.jagex.runetek4.JString;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -15,7 +15,7 @@ public final class MapElementTypeList {
 	public final int anInt5074;
 
 	@OriginalMember(owner = "client!se", name = "j", descriptor = "[Lclient!na;")
-	public final JagString[] aClass100Array153;
+	public final JString[] aClass100Array153;
 
 	@OriginalMember(owner = "client!se", name = "d", descriptor = "[S")
 	public final short[] aShortArray72;
@@ -32,7 +32,7 @@ public final class MapElementTypeList {
 	@OriginalMember(owner = "client!se", name = "<init>", descriptor = "(I)V")
 	public MapElementTypeList(@OriginalArg(0) int arg0) {
 		this.anInt5074 = arg0;
-		this.aClass100Array153 = new JagString[this.anInt5074];
+		this.aClass100Array153 = new JString[this.anInt5074];
 		this.aShortArray72 = new short[this.anInt5074];
 		this.anIntArray444 = new int[this.anInt5074];
 		this.aByteArray69 = new byte[this.anInt5074];
@@ -40,7 +40,7 @@ public final class MapElementTypeList {
 	}
 
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(ILclient!na;Lclient!ve;)Lclient!se;")
-	public static MapElementTypeList create(@OriginalArg(1) JagString arg0, @OriginalArg(2) Js5 arg1) {
+	public static MapElementTypeList create(@OriginalArg(1) JString arg0, @OriginalArg(2) Js5 arg1) {
 		@Pc(10) int local10 = arg1.method4482(arg0);
 		if (local10 == -1) {
 			return new MapElementTypeList(0);

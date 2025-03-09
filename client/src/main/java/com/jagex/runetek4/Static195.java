@@ -19,7 +19,7 @@ public final class Static195 {
 	public static Js5 aClass153_80;
 
 	@OriginalMember(owner = "runetek4.client!pk", name = "bb", descriptor = "Lclient!na;")
-	public static JagString aClass100_859;
+	public static JString aClass100_859;
 
 	@OriginalMember(owner = "runetek4.client!pk", name = "V", descriptor = "[S")
 	public static final short[] aShortArray64 = new short[] { -10304, 9104, -1, -1, -1 };

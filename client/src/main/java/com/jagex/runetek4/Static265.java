@@ -14,7 +14,7 @@ public final class Static265 {
 	public static SoftwareFont aClass3_Sub2_Sub9_Sub1_2;
 
 	@OriginalMember(owner = "runetek4.client!vj", name = "m", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1086 = Static28.parse("_labels");
+	public static final JString aClass100_1086 = Static28.parse("_labels");
 
 	@OriginalMember(owner = "runetek4.client!vj", name = "a", descriptor = "(III)J")
 	public static long method4521(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {

@@ -71,7 +71,7 @@ public final class NPCType {
 	public short spotshadowcolour_2 = 0;
 
 	@OriginalMember(owner = "client!me", name = "L", descriptor = "Lclient!na;")
-	public JagString name = Static266.aClass100_1010;
+	public JString name = Static266.aClass100_1010;
 
 	@OriginalMember(owner = "client!me", name = "x", descriptor = "I")
 	public int vislevel = -1;
@@ -122,7 +122,7 @@ public final class NPCType {
 	public int turnspeed = 32;
 
 	@OriginalMember(owner = "client!me", name = "u", descriptor = "[Lclient!na;")
-	public final JagString[] ops = new JagString[5];
+	public final JString[] ops = new JString[5];
 
 	@OriginalMember(owner = "client!me", name = "ib", descriptor = "I")
 	public int bgsound_walk = -1;
@@ -680,7 +680,7 @@ public final class NPCType {
 	}
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(ILclient!na;Z)Lclient!na;")
-	public JagString getParam(@OriginalArg(0) int arg0, @OriginalArg(1) JagString arg1) {
+	public JString getParam(@OriginalArg(0) int arg0, @OriginalArg(1) JString arg1) {
 		if (this.params == null) {
 			return arg1;
 		} else {

@@ -24,7 +24,7 @@ public final class Static241 {
 	public static SoftwareSprite[] aClass3_Sub2_Sub1_Sub1Array13;
 
 	@OriginalMember(owner = "runetek4.client!th", name = "h", descriptor = "Lclient!na;")
-	public static final JagString SETPARTICLES = Static28.parse("::setparticles");
+	public static final JString SETPARTICLES = Static28.parse("::setparticles");
 
 	@OriginalMember(owner = "runetek4.client!th", name = "i", descriptor = "[I")
 	public static final int[] anIntArray520 = new int[14];
@@ -78,8 +78,8 @@ public final class Static241 {
 		Static167.aClass153_61 = arg0;
 		@Pc(23) int local23 = Static167.aClass153_61.capacity() - 1;
 		Static170.anInt3245 = Static167.aClass153_61.method4504(local23) + local23 * 256;
-		Static143.aClass100Array104 = new JagString[] { null, null, null, null, LocalizedText.DROP};
-		Static269.aClass100Array87 = new JagString[] { null, null, LocalizedText.TAKE, null, null };
+		Static143.aClass100Array104 = new JString[] { null, null, null, null, LocalizedText.DROP};
+		Static269.aClass100Array87 = new JString[] { null, null, LocalizedText.TAKE, null, null };
 		Static256.aClass3_Sub2_Sub9_Sub1_1 = arg1;
 	}
 

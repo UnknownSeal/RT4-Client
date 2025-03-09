@@ -29,55 +29,55 @@ public final class Static138 {
 	public static boolean aBoolean172 = false;
 
 	@OriginalMember(owner = "runetek4.client!km", name = "tc", descriptor = "Lclient!na;")
-	private static final JagString DEC = Static28.parse("Dec");
+	private static final JString DEC = Static28.parse("Dec");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "vc", descriptor = "Lclient!na;")
-	private static final JagString JUL = Static28.parse("Jul");
+	private static final JString JUL = Static28.parse("Jul");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "xc", descriptor = "Lclient!na;")
-	private static final JagString MAY = Static28.parse("May");
+	private static final JString MAY = Static28.parse("May");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "yc", descriptor = "Lclient!na;")
-	private static final JagString NOV = Static28.parse("Nov");
+	private static final JString NOV = Static28.parse("Nov");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "zc", descriptor = "Lclient!na;")
-	private static final JagString MAR = Static28.parse("Mar");
+	private static final JString MAR = Static28.parse("Mar");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Gc", descriptor = "Lclient!na;")
-	private static final JagString JAN = Static28.parse("Jan");
+	private static final JString JAN = Static28.parse("Jan");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Hc", descriptor = "Lclient!na;")
-	private static final JagString FEB = Static28.parse("Feb");
+	private static final JString FEB = Static28.parse("Feb");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Tc", descriptor = "Lclient!na;")
-	private static final JagString APR = Static28.parse("Apr");
+	private static final JString APR = Static28.parse("Apr");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Wc", descriptor = "Lclient!na;")
-	private static final JagString JUN = Static28.parse("Jun");
+	private static final JString JUN = Static28.parse("Jun");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Qc", descriptor = "Lclient!na;")
-	private static final JagString AUG = Static28.parse("Aug");
+	private static final JString AUG = Static28.parse("Aug");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "cd", descriptor = "Lclient!na;")
-	private static final JagString SEP = Static28.parse("Sep");
+	private static final JString SEP = Static28.parse("Sep");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "dd", descriptor = "Lclient!na;")
-	private static final JagString OCT = Static28.parse("Oct");
+	private static final JString OCT = Static28.parse("Oct");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Ac", descriptor = "[Lclient!na;")
-	public static final JagString[] MONTHS = new JagString[] {JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC};
+	public static final JString[] MONTHS = new JString[] {JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC};
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Bc", descriptor = "[I")
 	public static final int[] updatedVarcs = new int[32];
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Mc", descriptor = "Lclient!na;")
-	public static final JagString LOGINSCREEN = Static28.parse("loginscreen");
+	public static final JString LOGINSCREEN = Static28.parse("loginscreen");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Rc", descriptor = "[I")
 	public static final int[] FRONT_WALL_TYPES = new int[] { 19, 55, 38, 155, 255, 110, 137, 205, 76 };
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Sc", descriptor = "Lclient!na;")
-	public static final JagString TRADE = Static28.parse(":trade:");
+	public static final JString TRADE = Static28.parse(":trade:");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "ad", descriptor = "I")
 	public static int anInt3445 = 0;

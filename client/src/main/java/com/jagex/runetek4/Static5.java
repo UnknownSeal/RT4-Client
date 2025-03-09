@@ -19,7 +19,7 @@ public final class Static5 {
 	public static int anInt39 = -1;
 
 	@OriginalMember(owner = "runetek4.client!af", name = "g", descriptor = "Lclient!na;")
-	public static final JagString HINT_MAPEDGE = Static28.parse("hint_mapedge");
+	public static final JString HINT_MAPEDGE = Static28.parse("hint_mapedge");
 
 	@OriginalMember(owner = "runetek4.client!af", name = "k", descriptor = "I")
 	public static int anInt45 = 0;
@@ -28,7 +28,7 @@ public final class Static5 {
 	public static final short[] aShortArray2 = new short[] { 30, 6, 31, 29, 10, 44, 37, 57 };
 
 	@OriginalMember(owner = "runetek4.client!af", name = "m", descriptor = "Lclient!na;")
-	public static final JagString aClass100_10 = Static28.parse("<br>");
+	public static final JString aClass100_10 = Static28.parse("<br>");
 
 	@OriginalMember(owner = "runetek4.client!af", name = "a", descriptor = "(ILjava/lang/String;)V")
 	public static void method31(@OriginalArg(1) String arg0) {

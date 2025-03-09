@@ -177,7 +177,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(ILclient!na;)V")
-	public final void pjstr(@OriginalArg(1) JagString value) {
+	public final void pjstr(@OriginalArg(1) JString value) {
 		this.pos += value.encodeString(this.data, this.pos, value.length());
 		this.data[this.pos++] = 0;
 	}
@@ -204,7 +204,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "f", descriptor = "(B)Lclient!na;")
-	public final JagString gjstrFast() {
+	public final JString gjstrFast() {
 		if (this.data[this.pos] == 0) {
 			this.pos++;
 			return null;
@@ -276,7 +276,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "h", descriptor = "(I)Lclient!na;")
-	public final JagString gjstr2() {
+	public final JString gjstr2() {
 		@Pc(10) byte version = this.data[this.pos++];
 		if (version != 0) {
 			throw new IllegalStateException("Bad version number in gjstr2");
@@ -415,7 +415,7 @@ public class Packet extends Node {
 	}
 
 	@OriginalMember(owner = "client!wa", name = "e", descriptor = "(Z)Lclient!na;")
-	public final JagString gjstr() {
+	public final JString gjstr() {
 		@Pc(12) int start = this.pos;
 		while (this.data[this.pos++] != 0) {
 		}

@@ -24,10 +24,10 @@ public final class Static226 {
 	public static int anInt5081 = 1;
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "g", descriptor = "Lclient!na;")
-	public static final JagString YELLOW2 = Static28.parse("<col=ffff00>");
+	public static final JString YELLOW2 = Static28.parse("<col=ffff00>");
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "h", descriptor = "[Lclient!na;")
-	public static final JagString[] varcstrs = new JagString[1000];
+	public static final JString[] varcstrs = new JString[1000];
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "i", descriptor = "I")
 	public static int anInt5084 = 0;

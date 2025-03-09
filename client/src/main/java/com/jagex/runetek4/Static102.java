@@ -21,7 +21,7 @@ public final class Static102 {
 	public static int anInt2678 = 0;
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "W", descriptor = "Lclient!na;")
-	public static JagString aClass100_545 = null;
+	public static JString aClass100_545 = null;
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "X", descriptor = "I")
 	public static int anInt2679 = 0;

@@ -65,7 +65,7 @@ public final class LocMergeEntity {
 	private int ambient = 0;
 
 	@OriginalMember(owner = "client!pb", name = "E", descriptor = "Lclient!na;")
-	public JagString name = Static81.NULL;
+	public JString name = Static81.NULL;
 
 	@OriginalMember(owner = "client!pb", name = "D", descriptor = "Z")
 	public boolean hardshadow = true;
@@ -110,7 +110,7 @@ public final class LocMergeEntity {
 	private int resizez = 128;
 
 	@OriginalMember(owner = "client!pb", name = "z", descriptor = "[Lclient!na;")
-	public JagString[] op = new JagString[5];
+	public JString[] op = new JString[5];
 
 	@OriginalMember(owner = "client!pb", name = "d", descriptor = "I")
 	private int resizex = 128;
@@ -913,7 +913,7 @@ public final class LocMergeEntity {
 	}
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "(Lclient!na;II)Lclient!na;")
-	public JagString getParam(@OriginalArg(0) JagString arg0, @OriginalArg(2) int arg1) {
+	public JString getParam(@OriginalArg(0) JString arg0, @OriginalArg(2) int arg1) {
 		if (this.params == null) {
 			return arg0;
 		} else {

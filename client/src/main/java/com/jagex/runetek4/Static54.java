@@ -13,10 +13,10 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static54 {
 
 	@OriginalMember(owner = "runetek4.client!ed", name = "D", descriptor = "Lclient!na;")
-	public static final JagString DETAILS = Static28.parse("details");
+	public static final JString DETAILS = Static28.parse("details");
 
 	@OriginalMember(owner = "runetek4.client!ed", name = "H", descriptor = "Lclient!na;")
-	public static final JagString aClass100_375 = Static28.parse("<)4col> x");
+	public static final JString aClass100_375 = Static28.parse("<)4col> x");
 
 	@OriginalMember(owner = "runetek4.client!ed", name = "a", descriptor = "(III)V")
 	public static void method1304(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
@@ -135,7 +135,7 @@ public final class Static54 {
 				if (local591 != null && local591.isVisible()) {
 					local154 = local591.z / 32 - Static173.localPlayer.z / 32;
 					local150 = local591.x / 32 - Static173.localPlayer.x / 32;
-					@Pc(624) long local624 = local591.username.encode37();
+					@Pc(624) long local624 = local591.name.toBase37();
 					@Pc(626) boolean local626 = false;
 					for (local239 = 0; local239 < Static9.friendCount; local239++) {
 						if (local624 == Static92.friendName37[local239] && Static104.friendWorld[local239] != 0) {
@@ -223,13 +223,13 @@ public final class Static54 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ed", name = "a", descriptor = "([SI[Lclient!na;II)V")
-	public static void method1307(@OriginalArg(0) short[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JagString[] arg2, @OriginalArg(4) int arg3) {
+	public static void method1307(@OriginalArg(0) short[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JString[] arg2, @OriginalArg(4) int arg3) {
 		if (arg1 <= arg3) {
 			return;
 		}
 		@Pc(14) int local14 = arg3;
 		@Pc(21) int local21 = (arg3 + arg1) / 2;
-		@Pc(25) JagString local25 = arg2[local21];
+		@Pc(25) JString local25 = arg2[local21];
 		arg2[local21] = arg2[arg1];
 		arg2[arg1] = local25;
 		@Pc(39) short local39 = arg0[local21];
@@ -237,7 +237,7 @@ public final class Static54 {
 		arg0[arg1] = local39;
 		for (@Pc(51) int local51 = arg3; local51 < arg1; local51++) {
 			if (local25 == null || arg2[local51] != null && arg2[local51].method3139(local25) < (local51 & 0x1)) {
-				@Pc(80) JagString local80 = arg2[local51];
+				@Pc(80) JString local80 = arg2[local51];
 				arg2[local51] = arg2[local14];
 				arg2[local14] = local80;
 				@Pc(94) short local94 = arg0[local51];

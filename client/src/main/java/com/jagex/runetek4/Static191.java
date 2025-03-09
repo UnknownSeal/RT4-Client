@@ -11,7 +11,7 @@ public final class Static191 {
 	public static final int anInt4506 = 50;
 
 	@OriginalMember(owner = "runetek4.client!pg", name = "P", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array132 = new JagString[anInt4506];
+	public static final JString[] aClass100Array132 = new JString[anInt4506];
 
 	@OriginalMember(owner = "runetek4.client!pg", name = "Q", descriptor = "[I")
 	public static final int[] anIntArray384 = new int[anInt4506];
@@ -38,7 +38,7 @@ public final class Static191 {
 	public static final int[] anIntArray389 = new int[anInt4506];
 
 	@OriginalMember(owner = "runetek4.client!pg", name = "db", descriptor = "Lclient!na;")
-	public static final JagString ASSISTREQ = Static28.parse(":assistreq:");
+	public static final JString ASSISTREQ = Static28.parse(":assistreq:");
 
 	@OriginalMember(owner = "runetek4.client!pg", name = "eb", descriptor = "[I")
 	public static final int[] anIntArray390 = new int[anInt4506];

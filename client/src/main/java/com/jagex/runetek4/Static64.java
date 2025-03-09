@@ -10,16 +10,16 @@ public final class Static64 {
 	public static byte[][] aByteArrayArray9;
 
 	@OriginalMember(owner = "runetek4.client!fb", name = "i", descriptor = "Lclient!na;")
-	public static final JagString MAX_AGE = Static28.parse("; Max)2Age=");
+	public static final JString MAX_AGE = Static28.parse("; Max)2Age=");
 
 	@OriginalMember(owner = "runetek4.client!fb", name = "l", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array62 = new JagString[100];
+	public static final JString[] aClass100Array62 = new JString[100];
 
 	@OriginalMember(owner = "runetek4.client!fb", name = "m", descriptor = "Z")
 	public static boolean aBoolean111 = true;
 
 	@OriginalMember(owner = "runetek4.client!fb", name = "p", descriptor = "Lclient!na;")
-	public static final JagString RED2 = Static28.parse("<col=ff3000>");
+	public static final JString RED2 = Static28.parse("<col=ff3000>");
 
 	@OriginalMember(owner = "runetek4.client!fb", name = "q", descriptor = "[I")
 	public static final int[] anIntArray154 = new int[] { -1, -1, 1, 1 };
@@ -61,21 +61,21 @@ public final class Static64 {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDLISTFULL);
 			return;
 		}
-		@Pc(35) JagString displayName = Static79.decode37(username).method3125();
+		@Pc(35) JString displayName = Static79.decode37(username).method3125();
 		@Pc(42) int i;
 		for (i = 0; i < Static9.friendCount; i++) {
 			if (Static92.friendName37[i] == username) {
-				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JagString[] { displayName, LocalizedText.FRIENDLISTDUPE}));
+				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { displayName, LocalizedText.FRIENDLISTDUPE}));
 				return;
 			}
 		}
 		for (i = 0; i < Static35.ignoreCount; i++) {
 			if (username == Static190.ignoreName37[i]) {
-				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JagString[] { LocalizedText.REMOVESOCIAL1, displayName, LocalizedText.REMOVEIGNORE}));
+				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { LocalizedText.REMOVESOCIAL1, displayName, LocalizedText.REMOVEIGNORE}));
 				return;
 			}
 		}
-		if (displayName.method3108(Static173.localPlayer.username)) {
+		if (displayName.method3108(Static173.localPlayer.name)) {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDCANTADDSELF);
 			return;
 		}

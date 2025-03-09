@@ -13,7 +13,7 @@ public final class Static141 {
 	public static final int[] skillBaseLevel = new int[25];
 
 	@OriginalMember(owner = "runetek4.client!lb", name = "s", descriptor = "Lclient!na;")
-	public static final JagString CLAN = Static28.parse(":clan:");
+	public static final JString CLAN = Static28.parse(":clan:");
 
 	@OriginalMember(owner = "runetek4.client!lb", name = "u", descriptor = "I")
 	public static int anInt3469 = 0;

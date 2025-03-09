@@ -15,10 +15,10 @@ public final class Static143 {
 	public static int anInt3484 = -1;
 
 	@OriginalMember(owner = "runetek4.client!ld", name = "d", descriptor = "Lclient!na;")
-	public static final JagString HIDDEN_USE = Static28.parse("Hidden)2use");
+	public static final JString HIDDEN_USE = Static28.parse("Hidden)2use");
 
 	@OriginalMember(owner = "runetek4.client!ld", name = "g", descriptor = "[Lclient!na;")
-	public static JagString[] aClass100Array104 = null;
+	public static JString[] aClass100Array104 = null;
 
 	@OriginalMember(owner = "runetek4.client!ld", name = "i", descriptor = "I")
 	public static int cameraOffsetCycle = 0;

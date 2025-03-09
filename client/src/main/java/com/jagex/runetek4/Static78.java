@@ -18,16 +18,16 @@ public final class Static78 {
 	public static Sprite aClass3_Sub2_Sub1_3;
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "b", descriptor = "Lclient!na;")
-	public static final JagString NULL = Static28.parse("null");
+	public static final JString NULL = Static28.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "c", descriptor = "Lclient!na;")
-	public static final JagString aClass100_465 = Static28.parse(")0");
+	public static final JString aClass100_465 = Static28.parse(")0");
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "h", descriptor = "[I")
 	public static final int[] ROTATION_WALL_CORNER_TYPE = new int[] { 16, 32, 64, 128 };
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "i", descriptor = "Lclient!na;")
-	public static JagString aClass100_466 = null;
+	public static JString aClass100_466 = null;
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "j", descriptor = "I")
 	public static int anInt2145 = 0;
@@ -109,10 +109,10 @@ public final class Static78 {
 			}
 		}
 		if (Static235.aMapElementTypeList_2 == null) {
-			if (Static158.aClass3_Sub2_Sub4_3 == null || !Static227.aClass153_94.method4497(Static34.method882(new JagString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, Static50.aClass100_363 }))) {
+			if (Static158.aClass3_Sub2_Sub4_3 == null || !Static227.aClass153_94.method4497(Static34.method882(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, Static50.aClass100_363 }))) {
 				Static235.aMapElementTypeList_2 = new MapElementTypeList(0);
-			} else if (Static227.aClass153_94.method4489(Static34.method882(new JagString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, Static50.aClass100_363 }))) {
-				Static235.aMapElementTypeList_2 = MapElementTypeList.create(Static34.method882(new JagString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, Static50.aClass100_363 }), Static227.aClass153_94);
+			} else if (Static227.aClass153_94.method4489(Static34.method882(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, Static50.aClass100_363 }))) {
+				Static235.aMapElementTypeList_2 = MapElementTypeList.create(Static34.method882(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, Static50.aClass100_363 }), Static227.aClass153_94);
 			} else {
 				local12 = false;
 				Static175.anInt4220++;
@@ -155,7 +155,7 @@ public final class Static78 {
 			return;
 		}
 		if (Static233.anInt5223 != 0) {
-			Static114.method4636(true, Static34.method882(new JagString[] { LocalizedText.LOADING, Static18.aClass100_108 }));
+			Static114.method4636(true, Static34.method882(new JString[] { LocalizedText.LOADING, Static18.aClass100_108 }));
 		}
 		Static107.method2261();
 		Static217.method3768();
@@ -290,8 +290,8 @@ public final class Static78 {
 			for (@Pc(837) int local837 = local320 - 1; local837 <= local309 + 1; local837++) {
 				for (@Pc(850) int local850 = local821 - 1; local850 <= local815 + 1; local850++) {
 					if (local837 < local320 || local837 > local309 || local850 < local821 || local850 > local815) {
-						Static26.aClass153_16.method4486(Static34.method882(new JagString[] { Static103.aClass100_558, Static123.method2423(local837), Static86.aClass100_488, Static123.method2423(local850) }));
-						Static26.aClass153_16.method4486(Static34.method882(new JagString[] { Static270.aClass100_1090, Static123.method2423(local837), Static86.aClass100_488, Static123.method2423(local850) }));
+						Static26.aClass153_16.method4486(Static34.method882(new JString[] { Static103.aClass100_558, Static123.method2423(local837), Static86.aClass100_488, Static123.method2423(local850) }));
+						Static26.aClass153_16.method4486(Static34.method882(new JString[] { Static270.aClass100_1090, Static123.method2423(local837), Static86.aClass100_488, Static123.method2423(local850) }));
 					}
 				}
 			}

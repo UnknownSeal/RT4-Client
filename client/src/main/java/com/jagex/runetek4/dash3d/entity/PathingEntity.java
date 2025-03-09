@@ -248,7 +248,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3425 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Wb", descriptor = "Lclient!na;")
-	public JagString chatMessage = null;
+	public JString chatMessage = null;
 
 	@OriginalMember(owner = "client!fe", name = "oc", descriptor = "I")
 	public int spotanimFrame = -1;

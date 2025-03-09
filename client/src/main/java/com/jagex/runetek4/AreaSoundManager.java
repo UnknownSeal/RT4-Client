@@ -67,7 +67,7 @@ public class AreaSoundManager {
             areaSound.anInt2028 = (arg0 + player.size()) * 128;
             areaSound.sound = PlayerEntity.getSound(player);
             areaSound.radius = player.anInt1664 * 128;
-            playerSounds.pushNode(areaSound, player.username.encode37());
+            playerSounds.pushNode(areaSound, player.name.toBase37());
         }
     }
 

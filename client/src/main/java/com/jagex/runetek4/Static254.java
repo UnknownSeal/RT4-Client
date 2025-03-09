@@ -24,7 +24,7 @@ public final class Static254 {
 	public static Js5 aClass153_105;
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "s", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1061 = Static28.parse("null");
+	public static final JString aClass100_1061 = Static28.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "t", descriptor = "[I")
 	public static final int[] anIntArray487 = new int[1000];
@@ -33,7 +33,7 @@ public final class Static254 {
 	public static final int[] WALL_CORNER_TYPE_32_BLOCK_LOC_SPANS = new int[] { 2, 0, 0, 2, 0, 0, 0, 4, 4 };
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "C", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array168 = new JagString[500];
+	public static final JString[] aClass100Array168 = new JString[500];
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "a", descriptor = "(BLclient!ve;I)Z")
 	public static boolean method4346(@OriginalArg(1) Js5 arg0, @OriginalArg(2) int arg1) {
@@ -220,7 +220,7 @@ public final class Static254 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "a", descriptor = "(Lclient!wa;II)Lclient!na;")
-	public static JagString method4350(@OriginalArg(0) Packet arg0) {
+	public static JString method4350(@OriginalArg(0) Packet arg0) {
 		try {
 			@Pc(7) int local7 = arg0.gSmart1or2();
 			if (local7 > 32767) {

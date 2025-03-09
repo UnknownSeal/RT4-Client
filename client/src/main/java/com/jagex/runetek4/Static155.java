@@ -34,9 +34,9 @@ public final class Static155 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!me", name = "a", descriptor = "(ZLclient!na;I)V")
-	public static void method2941(@OriginalArg(0) boolean arg0, @OriginalArg(1) JagString arg1) {
+	public static void method2941(@OriginalArg(0) boolean arg0, @OriginalArg(1) JString arg1) {
 		@Pc(8) short[] local8 = new short[16];
-		@Pc(12) JagString local12 = arg1.toLowerCase();
+		@Pc(12) JString local12 = arg1.toLowerCase();
 		@Pc(14) int local14 = 0;
 		for (@Pc(16) int local16 = 0; local16 < Static170.anInt3245; local16++) {
 			@Pc(27) ObjType local27 = Static71.get(local16);
@@ -59,7 +59,7 @@ public final class Static155 {
 		Static169.aShortArray52 = local8;
 		Static67.anInt3356 = 0;
 		Static111.anInt2905 = local14;
-		@Pc(117) JagString[] local117 = new JagString[Static111.anInt2905];
+		@Pc(117) JString[] local117 = new JString[Static111.anInt2905];
 		for (@Pc(119) int local119 = 0; local119 < Static111.anInt2905; local119++) {
 			local117[local119] = Static71.get(local8[local119]).name;
 		}

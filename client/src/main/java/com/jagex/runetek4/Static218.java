@@ -7,82 +7,82 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static218 {
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "K", descriptor = "Lclient!na;")
-	public static final JagString aClass100_695 = Static28.parse("gt");
+	public static final JString aClass100_695 = Static28.parse("gt");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "L", descriptor = "Lclient!na;")
-	public static final JagString aClass100_696 = Static28.parse("lt");
+	public static final JString aClass100_696 = Static28.parse("lt");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "M", descriptor = "Lclient!na;")
-	public static final JagString aClass100_697 = Static28.parse("shad=");
+	public static final JString aClass100_697 = Static28.parse("shad=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "N", descriptor = "Lclient!na;")
-	public static final JagString aClass100_698 = Static28.parse("shy");
+	public static final JString aClass100_698 = Static28.parse("shy");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "O", descriptor = "Lclient!na;")
-	public static final JagString aClass100_699 = Static28.parse("trans=");
+	public static final JString aClass100_699 = Static28.parse("trans=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "P", descriptor = "Lclient!na;")
-	public static final JagString aClass100_700 = Static28.parse("u=");
+	public static final JString aClass100_700 = Static28.parse("u=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "Q", descriptor = "Lclient!na;")
-	public static final JagString aClass100_701 = Static28.parse("str=");
+	public static final JString aClass100_701 = Static28.parse("str=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "R", descriptor = "Lclient!na;")
-	public static final JagString aClass100_702 = Static28.parse("euro");
+	public static final JString aClass100_702 = Static28.parse("euro");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "T", descriptor = "Lclient!na;")
-	public static final JagString aClass100_703 = Static28.parse(")4col");
+	public static final JString aClass100_703 = Static28.parse(")4col");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "X", descriptor = "Lclient!na;")
-	public static final JagString aClass100_704 = Static28.parse(")4shad");
+	public static final JString aClass100_704 = Static28.parse(")4shad");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "Y", descriptor = "Lclient!na;")
-	public static final JagString aClass100_705 = Static28.parse("col=");
+	public static final JString aClass100_705 = Static28.parse("col=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "Z", descriptor = "Lclient!na;")
-	private static final JagString aClass100_706 = Static28.parse("<gt>");
+	private static final JString aClass100_706 = Static28.parse("<gt>");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "bb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_707 = Static28.parse("u");
+	public static final JString aClass100_707 = Static28.parse("u");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "cb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_708 = Static28.parse("times");
+	public static final JString aClass100_708 = Static28.parse("times");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "eb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_709 = Static28.parse(")4trans");
+	public static final JString aClass100_709 = Static28.parse(")4trans");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "fb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_710 = Static28.parse("nbsp");
+	public static final JString aClass100_710 = Static28.parse("nbsp");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "hb", descriptor = "Lclient!na;")
-	private static final JagString aClass100_711 = Static28.parse("<lt>");
+	private static final JString aClass100_711 = Static28.parse("<lt>");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "ib", descriptor = "Lclient!na;")
-	public static final JagString aClass100_712 = Static28.parse(")4u");
+	public static final JString aClass100_712 = Static28.parse(")4u");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "kb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_713 = Static28.parse("br");
+	public static final JString aClass100_713 = Static28.parse("br");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "lb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_714 = Static28.parse("shad");
+	public static final JString aClass100_714 = Static28.parse("shad");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "mb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_715 = Static28.parse("img=");
+	public static final JString aClass100_715 = Static28.parse("img=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "ob", descriptor = "Lclient!na;")
-	public static final JagString aClass100_716 = Static28.parse("copy");
+	public static final JString aClass100_716 = Static28.parse("copy");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "pb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_717 = Static28.parse(")4str");
+	public static final JString aClass100_717 = Static28.parse(")4str");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "qb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_718 = Static28.parse("reg");
+	public static final JString aClass100_718 = Static28.parse("reg");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "rb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_719 = Static28.parse("str");
+	public static final JString aClass100_719 = Static28.parse("str");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "sb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_720 = Static87.method1804(100);
+	public static final JString aClass100_720 = Static87.method1804(100);
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "tb", descriptor = "I")
 	public static int anInt3627 = -1;
@@ -106,7 +106,7 @@ public final class Static218 {
 	public static int anInt3633 = -1;
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "Ab", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array110 = new JagString[100];
+	public static final JString[] aClass100Array110 = new JString[100];
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "Bb", descriptor = "I")
 	public static int anInt3634 = -1;
@@ -118,7 +118,7 @@ public final class Static218 {
 	public static int anInt3636 = 0;
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "c", descriptor = "(Lclient!na;)Lclient!na;")
-	public static JagString method2862(@OriginalArg(0) JagString arg0) {
+	public static JString method2862(@OriginalArg(0) JString arg0) {
 		@Pc(3) int local3 = arg0.length();
 		@Pc(5) int local5 = 0;
 		@Pc(15) int local15;
@@ -128,7 +128,7 @@ public final class Static218 {
 				local5 += 3;
 			}
 		}
-		@Pc(30) JagString local30 = Static87.method1804(local3 + local5);
+		@Pc(30) JString local30 = Static87.method1804(local3 + local5);
 		for (local15 = 0; local15 < local3; local15++) {
 			@Pc(40) int local40 = arg0.method3149(local15);
 			if (local40 == 60) {

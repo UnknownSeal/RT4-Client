@@ -67,7 +67,7 @@ public final class Static59 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ej", name = "a", descriptor = "(IZIJ)Lclient!na;")
-	public static JagString method1376(@OriginalArg(3) long arg0) {
+	public static JString method1376(@OriginalArg(3) long arg0) {
 		@Pc(35) long local35 = arg0 / (long) 10;
 		@Pc(37) int local37 = 1;
 		while (local35 != 0L) {
@@ -93,7 +93,7 @@ public final class Static59 {
 			}
 			local61[local51 - local79 - 1] = (byte) (local92 + 48);
 		}
-		@Pc(126) JagString local126 = new JagString();
+		@Pc(126) JString local126 = new JString();
 		local126.aByteArray52 = local61;
 		local126.anInt4030 = local51;
 		return local126;

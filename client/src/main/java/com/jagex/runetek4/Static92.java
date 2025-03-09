@@ -19,7 +19,7 @@ public final class Static92 {
 	public static int anInt2433 = 0;
 
 	@OriginalMember(owner = "runetek4.client!hd", name = "l", descriptor = "Lclient!na;")
-	public static final JagString aClass100_510 = Static28.parse("null");
+	public static final JString aClass100_510 = Static28.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!hd", name = "a", descriptor = "(IIIIIIII)V")
 	public static void method1881(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {

@@ -16,7 +16,7 @@ public final class Static137 {
 	public static int anInt3337 = 0;
 
 	@OriginalMember(owner = "runetek4.client!kl", name = "u", descriptor = "Lclient!na;")
-	public static final JagString aClass100_637 = Static28.parse("<col=ffffff>");
+	public static final JString aClass100_637 = Static28.parse("<col=ffffff>");
 
 	@OriginalMember(owner = "runetek4.client!kl", name = "a", descriptor = "(Lclient!wa;B)Lclient!kc;")
 	public static TextureOp29SubOp2 method2664(@OriginalArg(0) Packet arg0) {

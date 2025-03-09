@@ -20,7 +20,7 @@ public final class Static214 {
 	public static int anInt5579;
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "r", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array170 = new JagString[200];
+	public static final JString[] aClass100Array170 = new JString[200];
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "s", descriptor = "I")
 	public static int anInt5574 = -1;
@@ -33,7 +33,7 @@ public final class Static214 {
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(Lclient!e;I)V")
 	public static void method4359(@OriginalArg(0) PlayerEntity arg0) {
-		@Pc(12) AreaSound local12 = (AreaSound) AreaSoundManager.playerSounds.getNode(arg0.username.encode37());
+		@Pc(12) AreaSound local12 = (AreaSound) AreaSoundManager.playerSounds.getNode(arg0.name.toBase37());
 		if (local12 == null) {
 			AreaSoundManager.add(arg0.pathTileZ[0], null, 0, null, arg0.pathTileX[0], Static55.currentLevel, arg0);
 		} else {

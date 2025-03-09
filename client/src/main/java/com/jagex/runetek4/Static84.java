@@ -49,29 +49,29 @@ public final class Static84 {
 
 			@Pc(35) boolean quickChat = (chatFlags & 0x8000) != 0;
 
-			if (player.username != null && player.model != null) {
-				@Pc(48) long encodedUsername = player.username.encode37();
-				@Pc(50) boolean ignore = false;
+			if (player.name != null && player.model != null) {
+				@Pc(48) long encodedUsername = player.name.toBase37();
+				@Pc(50) boolean ignored = false;
 				if (staffModLevel <= 1) {
 					if (!quickChat && (Static124.aBoolean157 && !Static207.parentalChatConsent || Static86.aBoolean129)) {
-						ignore = true;
+						ignored = true;
 					} else {
 						for (@Pc(69) int i = 0; i < Static35.ignoreCount; i++) {
 							if (Static190.ignoreName37[i] == encodedUsername) {
-								ignore = true;
+								ignored = true;
 								break;
 							}
 						}
 					}
 				}
-				if (!ignore && PlayerEntity.overrideChat == 0) {
+				if (!ignored && PlayerEntity.overrideChat == 0) {
 					Static270.chatBuffer.pos = 0;
 					Static57.in.gBytesRev(Static270.chatBuffer.data, len);
 					Static270.chatBuffer.pos = 0;
 
 					@Pc(106) int phraseId = -1;
 
-					@Pc(127) JagString message;
+					@Pc(127) JString message;
 					if (quickChat) {
 						@Pc(112) QuickChatPhrase quickChatPhrase = QuickChatPhrase.decode(Static270.chatBuffer);
 						chatFlags &= 0x7FFF;
@@ -85,9 +85,9 @@ public final class Static84 {
 					player.chatLoops = 150;
 					player.chatColor = chatFlags >> 8;
 					if (staffModLevel == 2) {
-						Static154.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JagString[] { Static44.aClass100_336, player.getName() }));
+						Static154.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JString[] { Static44.aClass100_336, player.getName() }));
 					} else if (staffModLevel == 1) {
-						Static154.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JagString[] { Static65.aClass100_435, player.getName() }));
+						Static154.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JString[] { Static65.aClass100_435, player.getName() }));
 					} else {
 						Static154.add(phraseId, quickChat ? 17 : 2, message, null, player.getName());
 					}

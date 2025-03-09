@@ -14,7 +14,7 @@ public final class Static114 {
 	public static int anInt5831 = 0;
 
 	@OriginalMember(owner = "runetek4.client!j", name = "z", descriptor = "Lclient!na;")
-	public static final JagString SHIFTCLICK = Static28.parse("::shiftclick");
+	public static final JString SHIFTCLICK = Static28.parse("::shiftclick");
 
 	@OriginalMember(owner = "runetek4.client!j", name = "K", descriptor = "I")
 	public static int anInt5843 = 0;
@@ -23,7 +23,7 @@ public final class Static114 {
 	public static int anInt5844 = 0;
 
 	@OriginalMember(owner = "runetek4.client!j", name = "M", descriptor = "Lclient!na;")
-	public static final JagString REPLACECANVAS = Static28.parse("::replacecanvas");
+	public static final JString REPLACECANVAS = Static28.parse("::replacecanvas");
 
 	@OriginalMember(owner = "runetek4.client!j", name = "O", descriptor = "[I")
 	public static final int[] anIntArray565 = new int[] { 1, -1, -1, 1 };
@@ -45,7 +45,7 @@ public final class Static114 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!j", name = "a", descriptor = "(BZLclient!na;)V")
-	public static void method4636(@OriginalArg(1) boolean arg0, @OriginalArg(2) JagString arg1) {
+	public static void method4636(@OriginalArg(1) boolean arg0, @OriginalArg(2) JString arg1) {
 		@Pc(24) int local24 = Static215.aClass3_Sub2_Sub9_32.method2856(arg1, 250);
 		@Pc(31) int local31 = Static215.aClass3_Sub2_Sub9_32.method2860(arg1, 250) * 13;
 		if (GlRenderer.enabled) {

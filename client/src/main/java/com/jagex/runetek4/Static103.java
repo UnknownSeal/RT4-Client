@@ -12,16 +12,16 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static103 {
 
 	@OriginalMember(owner = "runetek4.client!i", name = "Ub", descriptor = "[Lclient!na;")
-	public static JagString[] aClass100Array88;
+	public static JString[] aClass100Array88;
 
 	@OriginalMember(owner = "runetek4.client!i", name = "ec", descriptor = "[I")
 	public static int[] anIntArray254;
 
     @OriginalMember(owner = "runetek4.client!i", name = "ic", descriptor = "Lclient!na;")
-	public static final JagString aClass100_558 = Static28.parse("m");
+	public static final JString aClass100_558 = Static28.parse("m");
 
 	@OriginalMember(owner = "runetek4.client!i", name = "a", descriptor = "(Lclient!na;ILclient!na;I)V")
-	public static void addMessage(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JagString arg2) {
+	public static void addMessage(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JString arg2) {
 		Static154.add(-1, arg1, arg2, null, arg0);
 	}
 
@@ -181,7 +181,7 @@ public final class Static103 {
 				Static6.outboundBuffer.pIsaac1(92);
 				Static6.outboundBuffer.p2_alt3(a);
 			} else {
-				addMessage(Static186.aClass100_827, 0, Static34.method882(new JagString[] { Static123.method2423(com.invSlotObjCount[local15]), Static249.aClass100_1039, Static71.get(a).name}));
+				addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { Static123.method2423(com.invSlotObjCount[local15]), Static249.aClass100_1039, Static71.get(a).name}));
 			}
 			Static72.anInt2043 = 0;
 			Static257.aClass13_7 = Static5.getComponent(local19);
@@ -353,9 +353,9 @@ public final class Static103 {
 					Static102.aClass100_545 = Static250.aClass100_1042;
 				}
 				if (com.aBoolean32) {
-					Static78.aClass100_466 = Static34.method882(new JagString[] { com.aClass100_88, Static204.aClass100_896 });
+					Static78.aClass100_466 = Static34.method882(new JString[] { com.aClass100_88, Static204.aClass100_896 });
 				} else {
-					Static78.aClass100_466 = Static34.method882(new JagString[] { Static42.GREEN, com.aClass100_85, Static204.aClass100_896 });
+					Static78.aClass100_466 = Static34.method882(new JString[] { Static42.GREEN, com.aClass100_85, Static204.aClass100_896 });
 				}
 			}
 			return;
@@ -599,7 +599,7 @@ public final class Static103 {
 			Static260.anInt5014 = 1;
 			Static274.anInt4997 = a;
 			Static43.method1143(com);
-			Static34.aClass100_203 = Static34.method882(new JagString[] { Static8.aClass100_32, Static71.get(a).name, Static204.aClass100_896 });
+			Static34.aClass100_203 = Static34.method882(new JString[] { Static8.aClass100_32, Static71.get(a).name, Static204.aClass100_896 });
 			if (Static34.aClass100_203 == null) {
 				Static34.aClass100_203 = Static92.aClass100_510;
 			}

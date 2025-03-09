@@ -28,7 +28,7 @@ public final class Static169 {
 	public static int anInt4075 = -1;
 
 	@OriginalMember(owner = "runetek4.client!nf", name = "a", descriptor = "(Lclient!na;BZ)V")
-	public static void openUrl(@OriginalArg(0) JagString arg0, @OriginalArg(2) boolean arg1) {
+	public static void openUrl(@OriginalArg(0) JString arg0, @OriginalArg(2) boolean arg1) {
 		if (!arg1) {
 			try {
 				Static230.anApplet_Sub1_1.getAppletContext().showDocument(arg0.method3127(Static230.anApplet_Sub1_1.getCodeBase()), "_top");

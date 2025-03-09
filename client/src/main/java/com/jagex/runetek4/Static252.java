@@ -10,7 +10,7 @@ public final class Static252 {
 	public static Js5 aClass153_103;
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "Y", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1049 = Static28.parse("huffman");
+	public static final JString aClass100_1049 = Static28.parse("huffman");
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "ab", descriptor = "Lclient!q;")
 	public static final ReferenceNodeFactory aClass22_1 = Static44.method1147();

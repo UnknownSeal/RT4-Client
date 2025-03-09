@@ -15,7 +15,7 @@ public final class Static1 {
 	public static int anInt5;
 
 	@OriginalMember(owner = "runetek4.client!a", name = "e", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1 = Static28.parse("scape main");
+	public static final JString aClass100_1 = Static28.parse("scape main");
 
 	@OriginalMember(owner = "runetek4.client!a", name = "f", descriptor = "[Z")
 	public static final boolean[] aBooleanArray1 = new boolean[8];
@@ -24,7 +24,7 @@ public final class Static1 {
 	public static int anInt6 = 0;
 
 	@OriginalMember(owner = "runetek4.client!a", name = "j", descriptor = "Lclient!na;")
-	public static final JagString aClass100_2 = Static28.parse("<col=ffffff> )4 ");
+	public static final JString aClass100_2 = Static28.parse("<col=ffffff> )4 ");
 
 	@OriginalMember(owner = "runetek4.client!a", name = "a", descriptor = "(Lclient!fi;I)V")
 	public static void method1(@OriginalArg(0) HuffmanCodec arg0) {

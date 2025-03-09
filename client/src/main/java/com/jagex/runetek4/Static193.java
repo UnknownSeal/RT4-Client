@@ -19,13 +19,13 @@ public final class Static193 {
 	public static long aLong147 = 0L;
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "Q", descriptor = "Lclient!na;")
-	public static final JagString aClass100_853 = Static28.parse("null");
+	public static final JString aClass100_853 = Static28.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "V", descriptor = "[Lclient!na;")
-	public static final JagString[] ignoreName = new JagString[100];
+	public static final JString[] ignoreName = new JString[100];
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "a", descriptor = "(Lclient!na;BI)V")
-	public static void method3498(@OriginalArg(0) JagString arg0, @OriginalArg(2) int arg1) {
+	public static void method3498(@OriginalArg(0) JString arg0, @OriginalArg(2) int arg1) {
 		@Pc(10) DelayedStateChange local10 = Static238.method4143(2, arg1);
 		local10.method1017();
 		local10.stringArg = arg0;

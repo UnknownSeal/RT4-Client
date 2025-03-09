@@ -14,10 +14,10 @@ public final class Static223 {
 	public static boolean[] aBooleanArray115;
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "f", descriptor = "Lclient!na;")
-	public static final JagString aClass100_946 = Static28.parse("(R");
+	public static final JString aClass100_946 = Static28.parse("(R");
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "g", descriptor = "Lclient!na;")
-	public static final JagString aClass100_947 = Static28.parse(" )2> <col=ff9040>");
+	public static final JString aClass100_947 = Static28.parse(" )2> <col=ff9040>");
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "o", descriptor = "I")
 	public static int packetSize = 0;
@@ -35,7 +35,7 @@ public final class Static223 {
 	public static final boolean[] aBooleanArray116 = new boolean[100];
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "D", descriptor = "Lclient!na;")
-	public static final JagString ORANGE = Static28.parse("<col=ff7000>");
+	public static final JString ORANGE = Static28.parse("<col=ff7000>");
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(IIILclient!km;)V")
 	public static void method3855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) NPCEntity arg2) {

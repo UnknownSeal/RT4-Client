@@ -17,7 +17,7 @@ public final class Static267 {
 	public static final int[] ROTATION_WALL_TYPE = new int[] { 1, 2, 4, 8 };
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "f", descriptor = "Lclient!na;")
-	public static final JagString CABBAGE = Static28.parse("Cabbage");
+	public static final JString CABBAGE = Static28.parse("Cabbage");
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "h", descriptor = "I")
 	public static int anInt5773 = 0;

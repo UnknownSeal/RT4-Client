@@ -17,7 +17,7 @@ public final class Static180 {
 	public static Component aClass13_22;
 
 	@OriginalMember(owner = "runetek4.client!og", name = "g", descriptor = "[Lclient!na;")
-	public static JagString[] aClass100Array125;
+	public static JString[] aClass100Array125;
 
 	@OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(Lclient!ve;Lclient!ve;B)V")
 	public static void method3324(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {

@@ -12,7 +12,7 @@ public final class Js5QuickChatCommandDecoder implements QuickChatCommandDecoder
 
 	@OriginalMember(owner = "client!af", name = "a", descriptor = "(I[IIJ)Lclient!na;")
 	@Override
-	public JagString method30(@OriginalArg(0) int arg0, @OriginalArg(1) int[] arg1, @OriginalArg(3) long arg2) {
+	public JString method30(@OriginalArg(0) int arg0, @OriginalArg(1) int[] arg1, @OriginalArg(3) long arg2) {
 		if (arg0 == 0) {
 			@Pc(12) EnumType local12 = Static253.get(arg1[0]);
 			return local12.getValueString((int) arg2);

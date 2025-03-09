@@ -17,10 +17,10 @@ public final class Static160 {
 	public static short[] aShortArray41;
 
 	@OriginalMember(owner = "runetek4.client!mj", name = "d", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array121 = new JagString[8];
+	public static final JString[] aClass100Array121 = new JString[8];
 
 	@OriginalMember(owner = "runetek4.client!mj", name = "g", descriptor = "Lclient!na;")
-	public static final JagString aClass100_761 = Static28.parse("(U3");
+	public static final JString aClass100_761 = Static28.parse("(U3");
 
 	@OriginalMember(owner = "runetek4.client!mj", name = "i", descriptor = "I")
 	public static int anInt3902 = 0;

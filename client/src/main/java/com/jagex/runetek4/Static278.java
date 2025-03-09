@@ -9,13 +9,13 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static278 {
 
 	@OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1101 = Static28.parse(" <col=ffff00>");
+	public static final JString aClass100_1101 = Static28.parse(" <col=ffff00>");
 
 	@OriginalMember(owner = "runetek4.client!wj", name = "e", descriptor = "Lclient!na;")
-	public static JagString mainLoadPrimaryText = null;
+	public static JString mainLoadPrimaryText = null;
 
 	@OriginalMember(owner = "runetek4.client!wj", name = "f", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1103 = Static28.parse("ul");
+	public static final JString aClass100_1103 = Static28.parse("ul");
 
 	@OriginalMember(owner = "runetek4.client!wj", name = "l", descriptor = "I")
 	public static int anInt5867 = 0;

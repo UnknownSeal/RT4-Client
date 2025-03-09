@@ -92,7 +92,7 @@ public final class Static158 {
 				if (Static124.socket.available() < 1) {
 					return;
 				}
-				Static229.aClass100Array156 = new JagString[Static124.socket.read()];
+				Static229.aClass100Array156 = new JString[Static124.socket.read()];
 				Static179.step = 4;
 			}
 			if (Static179.step == 4) {

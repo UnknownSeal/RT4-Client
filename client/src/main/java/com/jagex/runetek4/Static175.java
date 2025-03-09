@@ -9,7 +9,7 @@ public final class Static175 {
 	public static int[] anIntArray371;
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "W", descriptor = "Lclient!na;")
-	public static JagString url;
+	public static JString url;
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "S", descriptor = "[Lclient!km;")
 	public static final NPCEntity[] npcs = new NPCEntity[32768];
@@ -21,7 +21,7 @@ public final class Static175 {
 	public static long aLong138 = 0L;
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "bb", descriptor = "Lclient!na;")
-	public static final JagString RED = Static28.parse("<col=ff0000>");
+	public static final JString RED = Static28.parse("<col=ff0000>");
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "a", descriptor = "(Z)V")
 	public static void tryReconnect() {

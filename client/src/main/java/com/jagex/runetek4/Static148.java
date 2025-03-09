@@ -23,7 +23,7 @@ public final class Static148 {
 	public static final CollisionMap[] levelCollisionMap = new CollisionMap[4];
 
 	@OriginalMember(owner = "runetek4.client!li", name = "p", descriptor = "Lclient!na;")
-	public static final JagString REBUILD = Static28.parse("::rebuild");
+	public static final JString REBUILD = Static28.parse("::rebuild");
 
 	@OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(ZI)V")
 	public static void method2765(@OriginalArg(1) int arg0) {

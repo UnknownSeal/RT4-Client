@@ -21,7 +21,7 @@ public final class Static271 {
 
     @OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(Lclient!e;I)V")
 	public static void method4597(@OriginalArg(0) PlayerEntity arg0) {
-		@Pc(10) AreaSound local10 = (AreaSound) AreaSoundManager.playerSounds.getNode(arg0.username.encode37());
+		@Pc(10) AreaSound local10 = (AreaSound) AreaSoundManager.playerSounds.getNode(arg0.name.toBase37());
 		if (local10 == null) {
 			return;
 		}

@@ -34,10 +34,10 @@ public final class Map extends SecondaryNode {
 	public final int anInt764;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "bb", descriptor = "Lclient!na;")
-	public final JagString aClass100_138;
+	public final JString aClass100_138;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "Q", descriptor = "Lclient!na;")
-	public final JagString aClass100_137;
+	public final JString aClass100_137;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "Y", descriptor = "I")
 	public final int anInt769;
@@ -46,7 +46,7 @@ public final class Map extends SecondaryNode {
 	public final LinkList aClass69_23;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "<init>", descriptor = "(Lclient!na;Lclient!na;IIIZI)V")
-	public Map(@OriginalArg(0) JagString arg0, @OriginalArg(1) JagString arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5, @OriginalArg(6) int arg6) {
+	public Map(@OriginalArg(0) JString arg0, @OriginalArg(1) JString arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5, @OriginalArg(6) int arg6) {
 		this.anInt764 = arg3;
 		this.anInt759 = arg4;
 		this.aBoolean50 = arg5;

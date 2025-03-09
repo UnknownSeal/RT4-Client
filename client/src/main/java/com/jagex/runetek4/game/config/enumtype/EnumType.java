@@ -27,7 +27,7 @@ public final class EnumType extends SecondaryNode {
 	private int defaultInt;
 
 	@OriginalMember(owner = "client!ml", name = "Z", descriptor = "Lclient!na;")
-	private JagString defaultString = Static87.aClass100_494;
+	private JString defaultString = Static87.aClass100_494;
 
 	@OriginalMember(owner = "client!ml", name = "a", descriptor = "(Lclient!wa;I)V")
 	public void decode(@OriginalArg(0) Packet packet) {
@@ -77,7 +77,7 @@ public final class EnumType extends SecondaryNode {
 	}
 
 	@OriginalMember(owner = "client!ml", name = "a", descriptor = "(IB)Lclient!na;")
-	public JagString getValueString(@OriginalArg(0) int arg0) {
+	public JString getValueString(@OriginalArg(0) int arg0) {
 		if (this.values == null) {
 			return this.defaultString;
 		} else {
@@ -87,7 +87,7 @@ public final class EnumType extends SecondaryNode {
 	}
 
 	@OriginalMember(owner = "client!ml", name = "b", descriptor = "(Lclient!na;I)Z")
-	public boolean method3086(@OriginalArg(0) JagString arg0) {
+	public boolean method3086(@OriginalArg(0) JString arg0) {
 		if (this.values == null) {
 			return false;
 		}

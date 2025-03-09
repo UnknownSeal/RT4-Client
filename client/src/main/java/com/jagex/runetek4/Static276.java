@@ -23,16 +23,16 @@ public final class Static276 {
 	public static final int[] cameraModifierWobbleScale = new int[5];
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "n", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1095 = Static28.parse("; version=1; path=)4; domain=");
+	public static final JString aClass100_1095 = Static28.parse("; version=1; path=)4; domain=");
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "o", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1096 = Static28.parse("rect_debug=");
+	public static final JString aClass100_1096 = Static28.parse("rect_debug=");
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "s", descriptor = "I")
 	public static int anInt5816 = 0;
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "u", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1097 = Static28.parse("(U2");
+	public static final JString aClass100_1097 = Static28.parse("(U2");
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(IIII)Z")
 	public static boolean visible(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
@@ -51,12 +51,12 @@ public final class Static276 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(IILclient!na;)V")
-	public static void method4613(@OriginalArg(0) int arg0, @OriginalArg(2) JagString arg1) {
-		@Pc(7) JagString local7 = arg1.method3159().method3125();
+	public static void method4613(@OriginalArg(0) int arg0, @OriginalArg(2) JString arg1) {
+		@Pc(7) JString local7 = arg1.method3159().method3125();
 		@Pc(13) boolean local13 = false;
 		for (@Pc(15) int local15 = 0; local15 < Static267.playerCount; local15++) {
 			@Pc(28) PlayerEntity local28 = Static159.players[Static105.playerIds[local15]];
-			if (local28 != null && local28.username != null && local28.username.equalsIgnoreCase(local7)) {
+			if (local28 != null && local28.name != null && local28.name.equalsIgnoreCase(local7)) {
 				local13 = true;
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local28.pathTileX[0], 1, 0, 2, local28.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
 				if (arg0 == 1) {
@@ -79,7 +79,7 @@ public final class Static276 {
 			}
 		}
 		if (!local13) {
-			Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JagString[] { LocalizedText.UNABLETOFIND, local7 }));
+			Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { LocalizedText.UNABLETOFIND, local7 }));
 		}
 	}
 

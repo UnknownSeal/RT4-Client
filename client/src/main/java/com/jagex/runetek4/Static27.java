@@ -16,16 +16,16 @@ public final class Static27 {
 	public static final SoftLruHashTable aClass99_4 = new SoftLruHashTable(64);
 
 	@OriginalMember(owner = "client!cb", name = "ab", descriptor = "Lclient!na;")
-	public static final JagString aClass100_164 = Static28.parse(" )2> <col=00ffff>");
+	public static final JString aClass100_164 = Static28.parse(" )2> <col=00ffff>");
 
 	@OriginalMember(owner = "client!cb", name = "cb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_165 = Static28.parse("titlebg");
+	public static final JString aClass100_165 = Static28.parse("titlebg");
 
 	@OriginalMember(owner = "client!cb", name = "eb", descriptor = "Lclient!na;")
-	public static final JagString NAME_ICONS = Static28.parse("name_icons");
+	public static final JString NAME_ICONS = Static28.parse("name_icons");
 
 	@OriginalMember(owner = "client!cb", name = "fb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_168 = Static28.parse(": ");
+	public static final JString aClass100_168 = Static28.parse(": ");
 
 	@OriginalMember(owner = "client!cb", name = "b", descriptor = "(III)V")
 	public static void setMaterial(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {

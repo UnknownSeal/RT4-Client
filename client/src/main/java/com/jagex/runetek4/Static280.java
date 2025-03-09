@@ -20,7 +20,7 @@ public final class Static280 {
 	public static int anInt5900;
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "d", descriptor = "Lclient!na;")
-	public static final JagString COMPASS = Static28.parse("compass");
+	public static final JString COMPASS = Static28.parse("compass");
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "h", descriptor = "Lclient!be;")
 	public static Component aClass13_26 = null;
@@ -686,11 +686,11 @@ public final class Static280 {
 			local3 = true;
 			for (@Pc(13) int local13 = 0; local13 < PreciseSleep.anInt5204 - 1; local13++) {
 				if (Static39.aShortArray6[local13] < 1000 && Static39.aShortArray6[local13 + 1] > 1000) {
-					@Pc(41) JagString local41 = Static233.aClass100Array160[local13];
+					@Pc(41) JString local41 = Static233.aClass100Array160[local13];
 					local3 = false;
 					Static233.aClass100Array160[local13] = Static233.aClass100Array160[local13 + 1];
 					Static233.aClass100Array160[local13 + 1] = local41;
-					@Pc(61) JagString local61 = Static254.aClass100Array168[local13];
+					@Pc(61) JString local61 = Static254.aClass100Array168[local13];
 					Static254.aClass100Array168[local13] = Static254.aClass100Array168[local13 + 1];
 					Static254.aClass100Array168[local13 + 1] = local61;
 					@Pc(79) int local79 = Static196.anIntArray408[local13];

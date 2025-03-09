@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static263 {
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "[Lclient!na;")
-	public static JagString[] aClass100Array174;
+	public static JString[] aClass100Array174;
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "e", descriptor = "[I")
 	public static int[] anIntArray516;
@@ -24,10 +24,10 @@ public final class Static263 {
 	public static int minimapAngleModifier = 2;
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "f", descriptor = "Lclient!na;")
-	public static final JagString GREEN3 = Static28.parse("<col=80ff00>");
+	public static final JString GREEN3 = Static28.parse("<col=80ff00>");
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "h", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1082 = Static28.parse("; Expires=");
+	public static final JString aClass100_1082 = Static28.parse("; Expires=");
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(I[S)[S")
 	public static short[] method4511(@OriginalArg(1) short[] arg0) {
@@ -41,7 +41,7 @@ public final class Static263 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(Lclient!na;IIBI)V")
-	public static void method4512(@OriginalArg(0) JagString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
+	public static void method4512(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
 		@Pc(8) Component local8 = Static201.method1418(arg3, arg1);
 		if (local8 == null) {
 			return;

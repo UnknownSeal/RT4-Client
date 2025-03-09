@@ -16,19 +16,19 @@ public final class Static211 {
 	public static boolean aBoolean72 = false;
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "G", descriptor = "Lclient!na;")
-	public static final JagString aClass100_230 = Static28.parse("");
+	public static final JString aClass100_230 = Static28.parse("");
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "I", descriptor = "Lclient!na;")
-	public static final JagString aClass100_231 = Static28.parse(")3)3)3");
+	public static final JString aClass100_231 = Static28.parse(")3)3)3");
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "K", descriptor = "Lclient!na;")
-	public static final JagString RECT_DEBUG = Static28.parse("::rect_debug");
+	public static final JString RECT_DEBUG = Static28.parse("::rect_debug");
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "M", descriptor = "Z")
 	public static boolean aBoolean73 = false;
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(Lclient!na;Z)Lclient!na;")
-	public static JagString method923(@OriginalArg(0) JagString arg0) {
+	public static JString method923(@OriginalArg(0) JString arg0) {
 		@Pc(12) int local12 = Static171.method3218(arg0);
 		return local12 == -1 ? Static93.aClass100_517 : Static203.aMapElementTypeList_1.aClass100Array153[local12].method3140(Static101.aClass100_538, Static197.aClass100_872);
 	}

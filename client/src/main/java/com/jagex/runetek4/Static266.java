@@ -21,7 +21,7 @@ public final class Static266 {
 	public static int anInt5336 = -2;
 
 	@OriginalMember(owner = "runetek4.client!vk", name = "d", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1010 = Static28.parse("null");
+	public static final JString aClass100_1010 = Static28.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!vk", name = "h", descriptor = "I")
 	public static final int anInt5338 = (int) (Math.random() * 33.0D) - 16;

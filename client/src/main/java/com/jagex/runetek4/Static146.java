@@ -25,7 +25,7 @@ public final class Static146 {
 	public static int firstvisibleLevel = 99;
 
 	@OriginalMember(owner = "runetek4.client!lg", name = "a", descriptor = "(ZLclient!wa;Lclient!na;)I")
-	public static int method2748(@OriginalArg(1) Packet arg0, @OriginalArg(2) JagString arg1) {
+	public static int method2748(@OriginalArg(1) Packet arg0, @OriginalArg(2) JString arg1) {
 		@Pc(6) int local6 = arg0.pos;
 		@Pc(14) byte[] local14 = arg1.method3148();
 		arg0.pSmart1or2(local14.length);

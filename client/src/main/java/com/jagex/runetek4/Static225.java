@@ -20,7 +20,7 @@ public final class Static225 {
 	public static int anInt5073 = -1;
 
 	@OriginalMember(owner = "runetek4.client!se", name = "m", descriptor = "Lclient!na;")
-	public static final JagString aClass100_961 = Static28.parse(" )2>");
+	public static final JString aClass100_961 = Static28.parse(" )2>");
 
 	@OriginalMember(owner = "runetek4.client!se", name = "t", descriptor = "[I")
 	public static final int[] anIntArray445 = new int[] { 12543016, 15504954, 15914854, 16773818 };
@@ -84,7 +84,7 @@ public final class Static225 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "(Lclient!na;Lclient!na;IB)V")
-	public static void method3896(@OriginalArg(0) JagString arg0, @OriginalArg(1) JagString arg1, @OriginalArg(2) int arg2) {
+	public static void method3896(@OriginalArg(0) JString arg0, @OriginalArg(1) JString arg1, @OriginalArg(2) int arg2) {
 		Static186.password = arg1;
 		Static5.anInt39 = arg2;
 		Static186.username = arg0;
@@ -99,7 +99,7 @@ public final class Static225 {
 			local43.p1b(10);
 			local43.p2((int) (Math.random() * 99999.0D));
 			local43.p2(530);
-			local43.p8(Static186.username.encode37());
+			local43.p8(Static186.username.toBase37());
 			local43.p4((int) (Math.random() * 9.9999999E7D));
 			local43.pjstr(Static186.password);
 			local43.p4((int) (Math.random() * 9.9999999E7D));

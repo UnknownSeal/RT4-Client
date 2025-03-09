@@ -24,13 +24,13 @@ public final class ClientScript extends SecondaryNode {
 	public IterableMap[] aClass133Array1;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "R", descriptor = "Lclient!na;")
-	public JagString aClass100_880;
+	public JString aClass100_880;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "S", descriptor = "I")
 	public int anInt4671;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "T", descriptor = "[Lclient!na;")
-	public JagString[] aClass100Array140;
+	public JString[] aClass100Array140;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "W", descriptor = "[I")
 	public int[] anIntArray416;

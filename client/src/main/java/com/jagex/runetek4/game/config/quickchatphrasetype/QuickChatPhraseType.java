@@ -21,7 +21,7 @@ public final class QuickChatPhraseType extends SecondaryNode {
 	private int[][] anIntArrayArray5;
 
 	@OriginalMember(owner = "client!cb", name = "V", descriptor = "[Lclient!na;")
-	private JagString[] aClass100Array35;
+	private JString[] aClass100Array35;
 
 	@OriginalMember(owner = "client!cb", name = "O", descriptor = "Z")
 	public boolean aBoolean60 = true;
@@ -111,8 +111,8 @@ public final class QuickChatPhraseType extends SecondaryNode {
 	}
 
 	@OriginalMember(owner = "client!cb", name = "f", descriptor = "(I)Lclient!na;")
-	public JagString method769() {
-		@Pc(15) JagString local15 = Static87.method1804(80);
+	public JString method769() {
+		@Pc(15) JString local15 = Static87.method1804(80);
 		if (this.aClass100Array35 == null) {
 			return Static202.aClass100_891;
 		}
@@ -125,8 +125,8 @@ public final class QuickChatPhraseType extends SecondaryNode {
 	}
 
 	@OriginalMember(owner = "client!cb", name = "a", descriptor = "(ILclient!wa;)Lclient!na;")
-	public JagString method770(@OriginalArg(1) Packet arg0) {
-		@Pc(17) JagString local17 = Static87.method1804(80);
+	public JString method770(@OriginalArg(1) Packet arg0) {
+		@Pc(17) JString local17 = Static87.method1804(80);
 		if (this.commands != null) {
 			for (@Pc(22) int index = 0; index < this.commands.length; index++) {
 				local17.method3113(this.aClass100Array35[index]);

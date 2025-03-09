@@ -47,21 +47,21 @@ public final class Static140 {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.IGNORELISTFULL);
 			return;
 		}
-		@Pc(34) JagString displayName = Static79.decode37(username).method3125();
+		@Pc(34) JString displayName = Static79.decode37(username).method3125();
 		@Pc(36) int i;
 		for (i = 0; i < Static35.ignoreCount; i++) {
 			if (Static190.ignoreName37[i] == username) {
-				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JagString[] { displayName, LocalizedText.IGNORELISTDUPE}));
+				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { displayName, LocalizedText.IGNORELISTDUPE}));
 				return;
 			}
 		}
 		for (i = 0; i < Static9.friendCount; i++) {
 			if (Static92.friendName37[i] == username) {
-				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JagString[] { LocalizedText.REMOVESOCIAL2, displayName, LocalizedText.REMOVEFRIEND}));
+				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { LocalizedText.REMOVESOCIAL2, displayName, LocalizedText.REMOVEFRIEND}));
 				return;
 			}
 		}
-		if (displayName.method3108(Static173.localPlayer.username)) {
+		if (displayName.method3108(Static173.localPlayer.name)) {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.IGNORECANTADDSELF);
 			return;
 		}

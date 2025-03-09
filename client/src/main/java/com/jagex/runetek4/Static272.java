@@ -13,10 +13,10 @@ public final class Static272 {
 	public static final int[] anIntArray451 = new int[] { 8, 11, 4, 6, 9, 7, 10, 0 };
 
 	@OriginalMember(owner = "runetek4.client!wd", name = "e", descriptor = "Lclient!na;")
-	public static final JagString aClass100_989 = Static28.parse("cookieprefix");
+	public static final JString aClass100_989 = Static28.parse("cookieprefix");
 
 	@OriginalMember(owner = "runetek4.client!wd", name = "f", descriptor = "Lclient!na;")
-	public static final JagString ERRORTEST = Static28.parse("::errortest");
+	public static final JString ERRORTEST = Static28.parse("::errortest");
 
 	@OriginalMember(owner = "runetek4.client!wd", name = "g", descriptor = "I")
 	public static int npcCount = 0;

@@ -15,19 +15,19 @@ public final class Static73 {
 	public static final SoftLruHashTable aClass99_10 = new SoftLruHashTable(4);
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "W", descriptor = "Lclient!na;")
-	public static final JagString aClass100_453 = Static28.parse(")2");
+	public static final JString aClass100_453 = Static28.parse(")2");
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "db", descriptor = "Lclient!gn;")
 	public static final LruHashTable aClass54_7 = new LruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "eb", descriptor = "Lclient!na;")
-	public static final JagString B12_FULL = Static28.parse("b12_full");
+	public static final JString B12_FULL = Static28.parse("b12_full");
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "fb", descriptor = "[I")
 	public static final int[] anIntArray183 = new int[14];
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "gb", descriptor = "Lclient!na;")
-	public static final JagString OVERLAY2 = Static28.parse("overlay2");
+	public static final JString OVERLAY2 = Static28.parse("overlay2");
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(ZI)V")
 	public static void method1596(@OriginalArg(0) boolean arg0) {
@@ -76,7 +76,7 @@ public final class Static73 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(ILclient!na;Lclient!na;Lclient!na;I)V")
-	public static void method1598(@OriginalArg(1) JagString arg0, @OriginalArg(2) JagString arg1, @OriginalArg(3) JagString arg2) {
+	public static void method1598(@OriginalArg(1) JString arg0, @OriginalArg(2) JString arg1, @OriginalArg(3) JString arg2) {
 		Static154.add(-1, 9, arg0, arg2, arg1);
 	}
 

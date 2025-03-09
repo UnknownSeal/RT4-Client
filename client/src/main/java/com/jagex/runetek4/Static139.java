@@ -20,7 +20,7 @@ public final class Static139 {
 	public static final SoftLruHashTable aClass99_21 = new SoftLruHashTable(5);
 
 	@OriginalMember(owner = "runetek4.client!l", name = "d", descriptor = "Lclient!na;")
-	public static final JagString aClass100_659 = Static28.parse(")4j");
+	public static final JString aClass100_659 = Static28.parse(")4j");
 
 	@OriginalMember(owner = "runetek4.client!l", name = "f", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable aClass99_22 = new SoftLruHashTable(4);

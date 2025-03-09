@@ -25,13 +25,13 @@ public final class Static250 {
 	public static final SoftLruHashTable aClass99_33 = new SoftLruHashTable(260);
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "o", descriptor = "Lclient!na;")
-	public static final JagString SCROLLBAR = Static28.parse("scrollbar");
+	public static final JString SCROLLBAR = Static28.parse("scrollbar");
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "q", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1042 = Static28.parse("Null");
+	public static final JString aClass100_1042 = Static28.parse("Null");
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "s", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1043 = Static28.parse(" <col=00ff80>");
+	public static final JString aClass100_1043 = Static28.parse(" <col=00ff80>");
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "t", descriptor = "I")
 	public static int anInt5444 = 0;

@@ -37,7 +37,7 @@ public final class Static233 {
 	public static final SoftLruHashTable aClass99_31 = new SoftLruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!t", name = "v", descriptor = "[Lclient!na;")
-	public static final JagString[] aClass100Array160 = new JagString[500];
+	public static final JString[] aClass100Array160 = new JString[500];
 
 	@OriginalMember(owner = "runetek4.client!t", name = "w", descriptor = "[J")
 	public static final long[] aLongArray9 = new long[100];
@@ -52,7 +52,7 @@ public final class Static233 {
 	public static int anInt5224 = 0;
 
 	@OriginalMember(owner = "runetek4.client!t", name = "C", descriptor = "Lclient!na;")
-	public static final JagString aClass100_994 = Static28.parse(")3");
+	public static final JString aClass100_994 = Static28.parse(")3");
 
 	@OriginalMember(owner = "runetek4.client!t", name = "E", descriptor = "[I")
 	public static final int[] updatedVarcstrs = new int[32];
@@ -225,9 +225,9 @@ public final class Static233 {
 							} else if (local272 instanceof Number) {
 								arg0.p1b(1);
 								arg0.p8(((Number) local272).longValue());
-							} else if (local272 instanceof JagString) {
+							} else if (local272 instanceof JString) {
 								arg0.p1b(2);
-								arg0.pjstr((JagString) local272);
+								arg0.pjstr((JString) local272);
 							} else {
 								arg0.p1b(4);
 							}

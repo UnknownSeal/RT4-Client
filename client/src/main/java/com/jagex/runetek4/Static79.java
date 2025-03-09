@@ -72,7 +72,7 @@ public final class Static79 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ge", name = "a", descriptor = "(IJ)Lclient!na;")
-	public static JagString decode37(@OriginalArg(1) long arg0) {
+	public static JString decode37(@OriginalArg(1) long arg0) {
 		if (arg0 <= 0L || arg0 >= 6582952005840035281L) {
 			return null;
 		} else if (arg0 % 37L == 0L) {
@@ -91,7 +91,7 @@ public final class Static79 {
 				local32--;
 				local48[local32] = Static31.aByteArray12[(int) (local65 - arg0 * 37L)];
 			}
-			@Pc(88) JagString local88 = new JagString();
+			@Pc(88) JString local88 = new JString();
 			local88.aByteArray52 = local48;
 			local88.anInt4030 = local48.length;
 			return local88;

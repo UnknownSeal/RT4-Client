@@ -32,10 +32,10 @@ public final class Component {
 	public Object[] anObjectArray6;
 
 	@OriginalMember(owner = "client!be", name = "q", descriptor = "[Lclient!na;")
-	public JagString[] aClass100Array18;
+	public JString[] aClass100Array18;
 
 	@OriginalMember(owner = "client!be", name = "s", descriptor = "[Lclient!na;")
-	public JagString[] aClass100Array19;
+	public JString[] aClass100Array19;
 
 	@OriginalMember(owner = "client!be", name = "t", descriptor = "[Ljava/lang/Object;")
 	public Object[] anObjectArray7;
@@ -254,7 +254,7 @@ public final class Component {
 	public boolean aBoolean24 = false;
 
 	@OriginalMember(owner = "client!be", name = "Sb", descriptor = "Lclient!na;")
-	public JagString aClass100_85 = Static176.aClass100_800;
+	public JString aClass100_85 = Static176.aClass100_800;
 
 	@OriginalMember(owner = "client!be", name = "i", descriptor = "Z")
 	public boolean aBoolean19 = false;
@@ -302,7 +302,7 @@ public final class Component {
 	public int anInt492 = 0;
 
 	@OriginalMember(owner = "client!be", name = "Gb", descriptor = "Lclient!na;")
-	public JagString aClass100_84 = Static176.aClass100_800;
+	public JString aClass100_84 = Static176.aClass100_800;
 
 	@OriginalMember(owner = "client!be", name = "n", descriptor = "I")
 	public int anInt445 = 0;
@@ -332,7 +332,7 @@ public final class Component {
 	public int modelZOffset = 0;
 
 	@OriginalMember(owner = "client!be", name = "Dc", descriptor = "Lclient!na;")
-	public JagString aClass100_88 = Static176.aClass100_800;
+	public JString aClass100_88 = Static176.aClass100_800;
 
 	@OriginalMember(owner = "client!be", name = "Lc", descriptor = "I")
 	public int anInt511 = 0;
@@ -359,13 +359,13 @@ public final class Component {
 	public int modelXOffset = 0;
 
 	@OriginalMember(owner = "client!be", name = "Ub", descriptor = "Lclient!na;")
-	public JagString aClass100_86 = Static176.aClass100_800;
+	public JString aClass100_86 = Static176.aClass100_800;
 
 	@OriginalMember(owner = "client!be", name = "Lb", descriptor = "I")
 	public int modelRotationSpeed = 0;
 
 	@OriginalMember(owner = "client!be", name = "r", descriptor = "Lclient!na;")
-	public JagString aClass100_82 = Static176.aClass100_800;
+	public JString aClass100_82 = Static176.aClass100_800;
 
 	@OriginalMember(owner = "client!be", name = "Pc", descriptor = "I")
 	public int anInt514 = 0;
@@ -416,7 +416,7 @@ public final class Component {
 	public int anInt522 = -1;
 
 	@OriginalMember(owner = "client!be", name = "Rc", descriptor = "Lclient!na;")
-	public JagString aClass100_89 = LocalizedText.OK;
+	public JString aClass100_89 = LocalizedText.OK;
 
 	@OriginalMember(owner = "client!be", name = "Gc", descriptor = "I")
 	public int modelYOffset = 0;
@@ -537,9 +537,9 @@ public final class Component {
 	}
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(BLclient!na;I)V")
-	public void method480(@OriginalArg(1) JagString arg0, @OriginalArg(2) int arg1) {
+	public void method480(@OriginalArg(1) JString arg0, @OriginalArg(2) int arg1) {
 		if (this.aClass100Array18 == null || this.aClass100Array18.length <= arg1) {
-			@Pc(23) JagString[] local23 = new JagString[arg1 + 1];
+			@Pc(23) JString[] local23 = new JString[arg1 + 1];
 			if (this.aClass100Array18 != null) {
 				System.arraycopy(this.aClass100Array18, 0, local23, 0, this.aClass100Array18.length);
 			}
@@ -646,9 +646,9 @@ public final class Component {
 					this.anIntArray36[local364] = -1;
 				}
 			}
-			this.aClass100Array19 = new JagString[5];
+			this.aClass100Array19 = new JString[5];
 			for (local364 = 0; local364 < 5; local364++) {
-				@Pc(418) JagString local418 = arg0.gjstr();
+				@Pc(418) JString local418 = arg0.gjstr();
 				if (local418.length() > 0) {
 					this.aClass100Array19[local364] = local418;
 					local164 |= 0x1 << local364 + 23;
@@ -725,9 +725,9 @@ public final class Component {
 			if (local175 == 1) {
 				local164 |= 0x40000000;
 			}
-			this.aClass100Array19 = new JagString[5];
+			this.aClass100Array19 = new JString[5];
 			for (local183 = 0; local183 < 5; local183++) {
-				@Pc(756) JagString local756 = arg0.gjstr();
+				@Pc(756) JString local756 = arg0.gjstr();
 				if (local756.length() > 0) {
 					this.aClass100Array19[local183] = local756;
 					local164 |= 0x1 << local183 + 23;
@@ -1096,7 +1096,7 @@ public final class Component {
 		@Pc(557) int local557 = local497 & 0xF;
 		@Pc(567) int local567;
 		if (local557 > 0) {
-			this.aClass100Array18 = new JagString[local557];
+			this.aClass100Array18 = new JString[local557];
 			for (local567 = 0; local567 < local557; local567++) {
 				this.aClass100Array18[local567] = arg0.gjstr();
 			}

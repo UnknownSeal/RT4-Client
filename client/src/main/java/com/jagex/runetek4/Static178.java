@@ -28,11 +28,11 @@ public final class Static178 {
 	public static boolean aBoolean203 = false;
 
 	@OriginalMember(owner = "runetek4.client!od", name = "a", descriptor = "(ILclient!na;)V")
-	public static void method3318(@OriginalArg(1) JagString arg0) {
+	public static void method3318(@OriginalArg(1) JString arg0) {
 		if (Static199.aClass3_Sub22Array1 == null) {
 			return;
 		}
-		@Pc(22) long local22 = arg0.encode37();
+		@Pc(22) long local22 = arg0.toBase37();
 		@Pc(24) int local24 = 0;
 		if (local22 == 0L) {
 			return;

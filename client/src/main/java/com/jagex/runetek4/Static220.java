@@ -18,7 +18,7 @@ public final class Static220 {
 	public static boolean aBoolean244 = true;
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "i", descriptor = "Lclient!na;")
-	public static final JagString aClass100_930 = Static28.parse("(Z");
+	public static final JString aClass100_930 = Static28.parse("(Z");
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(IBI)V")
 	public static void method3797(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {

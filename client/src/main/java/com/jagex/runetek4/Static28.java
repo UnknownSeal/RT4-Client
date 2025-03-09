@@ -68,10 +68,10 @@ public final class Static28 {
 	}
 
 	@OriginalMember(owner = "client!cd", name = "a", descriptor = "(Ljava/lang/String;B)Lclient!na;")
-	public static JagString parse(@OriginalArg(0) String arg0) {
+	public static JString parse(@OriginalArg(0) String arg0) {
 		@Pc(6) byte[] local6 = arg0.getBytes();
 		@Pc(9) int local9 = local6.length;
-		@Pc(13) JagString local13 = new JagString();
+		@Pc(13) JString local13 = new JString();
 		@Pc(15) int local15 = 0;
 		local13.aByteArray52 = new byte[local9];
 		while (local9 > local15) {

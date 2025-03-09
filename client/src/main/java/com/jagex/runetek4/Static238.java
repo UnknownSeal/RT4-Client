@@ -36,7 +36,7 @@ public final class Static238 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!te", name = "b", descriptor = "(Lclient!na;I)Z")
-	public static boolean method4144(@OriginalArg(0) JagString arg0) {
+	public static boolean method4144(@OriginalArg(0) JString arg0) {
 		if (arg0 == null) {
 			return false;
 		}

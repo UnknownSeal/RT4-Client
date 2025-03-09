@@ -28,7 +28,7 @@ public final class Static227 {
 	public static int anInt5087 = 0;
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "e", descriptor = "Lclient!na;")
-	public static final JagString aClass100_966 = Static28.parse("settings");
+	public static final JString aClass100_966 = Static28.parse("settings");
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "q", descriptor = "[I")
 	public static final int[] keyCodes = new int[128];

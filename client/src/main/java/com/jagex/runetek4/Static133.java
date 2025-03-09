@@ -39,7 +39,7 @@ public final class Static133 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!kf", name = "a", descriptor = "(Lclient!na;I)V")
-	public static void method4011(@OriginalArg(0) JagString arg0) {
+	public static void method4011(@OriginalArg(0) JString arg0) {
 		for (@Pc(15) Map local15 = (Map) Static228.aClass69_120.head(); local15 != null; local15 = (Map) Static228.aClass69_120.next()) {
 			if (local15.aClass100_138.method3108(arg0)) {
 				Static269.aClass3_Sub2_Sub4_2 = local15;

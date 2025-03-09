@@ -12,7 +12,7 @@ public final class Static17 {
 	public static final PacketBit aClass3_Sub15_Sub1_2 = new PacketBit(5000);
 
 	@OriginalMember(owner = "client!bg", name = "z", descriptor = "Lclient!na;")
-	public static final JagString aClass100_101 = Static28.parse("k");
+	public static final JString aClass100_101 = Static28.parse("k");
 
 	@OriginalMember(owner = "client!bg", name = "A", descriptor = "[I")
 	public static final int[] anIntArray53 = new int[128];
@@ -21,7 +21,7 @@ public final class Static17 {
 	public static int crossCycle = 0;
 
 	@OriginalMember(owner = "client!bg", name = "N", descriptor = "Lclient!na;")
-	public static final JagString MAPFUNCTION = Static28.parse("mapfunction");
+	public static final JString MAPFUNCTION = Static28.parse("mapfunction");
 
 	@OriginalMember(owner = "client!bg", name = "a", descriptor = "(B)V")
 	public static void method527() {

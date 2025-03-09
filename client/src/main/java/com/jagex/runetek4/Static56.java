@@ -21,13 +21,13 @@ public final class Static56 {
 	public static final int[] anIntArray142 = new int[500];
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "f", descriptor = "Lclient!na;")
-	public static final JagString DUELSTAKE = Static28.parse(":duelstake:");
+	public static final JString DUELSTAKE = Static28.parse(":duelstake:");
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "g", descriptor = "I")
 	public static int clickTileX = -1;
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "h", descriptor = "Lclient!na;")
-	public static final JagString aClass100_380 = Static28.parse("unzap");
+	public static final JString aClass100_380 = Static28.parse("unzap");
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "i", descriptor = "I")
 	public static int anInt1743 = 0;

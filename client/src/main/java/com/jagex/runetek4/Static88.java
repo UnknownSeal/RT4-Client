@@ -44,10 +44,10 @@ public final class Static88 {
 		try {
 			Static215.anIntArray432 = new int[local14.anInt4667];
 			@Pc(50) int local50 = 0;
-			Static180.aClass100Array125 = new JagString[local14.anInt4671];
+			Static180.aClass100Array125 = new JString[local14.anInt4671];
 			@Pc(56) int local56 = 0;
 			@Pc(77) int local77;
-			@Pc(194) JagString local194;
+			@Pc(194) JString local194;
 			for (local58 = 1; local58 < local4.length; local58++) {
 				if (local4[local58] instanceof Integer) {
 					local77 = (Integer) local4[local58];
@@ -79,8 +79,8 @@ public final class Static88 {
 						local77 = arg1.anInt3099;
 					}
 					Static215.anIntArray432[local50++] = local77;
-				} else if (local4[local58] instanceof JagString) {
-					local194 = (JagString) local4[local58];
+				} else if (local4[local58] instanceof JString) {
+					local194 = (JString) local4[local58];
 					if (local194.method3108(Static15.aClass100_83)) {
 						local194 = arg1.aClass100_598;
 					}
@@ -98,7 +98,7 @@ public final class Static88 {
 				@Pc(803) int local803;
 				@Pc(652) int local652;
 				@Pc(809) int local809;
-				@Pc(609) JagString chatTyped;
+				@Pc(609) JString chatTyped;
 				if (local226 < 100) {
 					if (local226 == 0) {
 						Static254.anIntArray487[local28++] = local33[local30];
@@ -229,7 +229,7 @@ public final class Static88 {
 						local77 = local33[local30];
 						@Pc(642) ClientScript local642 = Static91.method1875(local77);
 						@Pc(646) int[] local646 = new int[local642.anInt4667];
-						@Pc(650) JagString[] local650 = new JagString[local642.anInt4671];
+						@Pc(650) JString[] local650 = new JString[local642.anInt4671];
 						for (local652 = 0; local652 < local642.anInt4665; local652++) {
 							local646[local652] = Static254.anIntArray487[local652 + local28 - local642.anInt4665];
 						}
@@ -476,7 +476,7 @@ public final class Static88 {
 					} else {
 						@Pc(1552) boolean local1552;
 						if ((local226 < 1000 || local226 >= 1100) && (local226 < 2000 || local226 >= 2100)) {
-							@Pc(2522) JagString chatTypedLowercase;
+							@Pc(2522) JString chatTypedLowercase;
 							if (local226 >= 1100 && local226 < 1200 || !(local226 < 2100 || local226 >= 2200)) {
 								if (local226 < 2000) {
 									local1182 = local1020 ? Static274.aClass13_24 : Static227.aClass13_25;
@@ -1266,7 +1266,7 @@ public final class Static88 {
 										local26--;
 										chatTyped = Static3.aClass100Array176[local26];
 										Static6.outboundBuffer.pIsaac1(244);
-										Static6.outboundBuffer.p8(chatTyped.encode37());
+										Static6.outboundBuffer.p8(chatTyped.toBase37());
 										continue;
 									}
 									if (local226 == 3106) {
@@ -1647,25 +1647,25 @@ public final class Static88 {
 									if (local226 == 3605) {
 										local26--;
 										chatTyped = Static3.aClass100Array176[local26];
-										Static64.addFriend(chatTyped.encode37());
+										Static64.addFriend(chatTyped.toBase37());
 										continue;
 									}
 									if (local226 == 3606) {
 										local26--;
 										chatTyped = Static3.aClass100Array176[local26];
-										Static193.removeFriend(chatTyped.encode37());
+										Static193.removeFriend(chatTyped.toBase37());
 										continue;
 									}
 									if (local226 == 3607) {
 										local26--;
 										chatTyped = Static3.aClass100Array176[local26];
-										Static140.addIgnore(chatTyped.encode37());
+										Static140.addIgnore(chatTyped.toBase37());
 										continue;
 									}
 									if (local226 == 3608) {
 										local26--;
 										chatTyped = Static3.aClass100Array176[local26];
-										Static69.method1542(chatTyped.encode37());
+										Static69.method1542(chatTyped.toBase37());
 										continue;
 									}
 									if (local226 == 3609) {
@@ -1750,7 +1750,7 @@ public final class Static88 {
 									if (local226 == 3619) {
 										local26--;
 										chatTyped = Static3.aClass100Array176[local26];
-										Static156.method2956(chatTyped.encode37());
+										Static156.method2956(chatTyped.toBase37());
 										continue;
 									}
 									if (local226 == 3620) {
@@ -1787,7 +1787,7 @@ public final class Static88 {
 									if (local226 == 3624) {
 										local28--;
 										local809 = Static254.anIntArray487[local28];
-										if (Static199.aClass3_Sub22Array1 != null && Static214.anInt5577 > local809 && Static199.aClass3_Sub22Array1[local809].aClass100_636.equalsIgnoreCase(Static173.localPlayer.username)) {
+										if (Static199.aClass3_Sub22Array1 != null && Static214.anInt5577 > local809 && Static199.aClass3_Sub22Array1[local809].aClass100_636.equalsIgnoreCase(Static173.localPlayer.name)) {
 											Static254.anIntArray487[local28++] = 1;
 											continue;
 										}
@@ -2194,7 +2194,7 @@ public final class Static88 {
 													local803 = Static254.anIntArray487[local28];
 													local1052 = Static254.anIntArray487[local28 + 1];
 													Static6.outboundBuffer.pIsaac1(99);
-													Static6.outboundBuffer.p8(chatTyped.encode37());
+													Static6.outboundBuffer.p8(chatTyped.toBase37());
 													Static6.outboundBuffer.p1b(local803 - 1);
 													Static6.outboundBuffer.p1b(local1052);
 													continue;
@@ -2365,7 +2365,7 @@ public final class Static88 {
 														Static6.outboundBuffer.pIsaac1(201);
 														Static6.outboundBuffer.p1b(0);
 														local1052 = Static6.outboundBuffer.pos;
-														Static6.outboundBuffer.p8(chatTyped.encode37());
+														Static6.outboundBuffer.p8(chatTyped.toBase37());
 														Static146.method2748(Static6.outboundBuffer, chatTypedLowercase);
 														Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - local1052);
 													}
@@ -2408,7 +2408,7 @@ public final class Static88 {
 													continue;
 												}
 												if (local226 == 5015) {
-													if (Static173.localPlayer == null || Static173.localPlayer.username == null) {
+													if (Static173.localPlayer == null || Static173.localPlayer.name == null) {
 														chatTyped = Static186.username;
 													} else {
 														chatTyped = Static173.localPlayer.getName();
@@ -2517,7 +2517,7 @@ public final class Static88 {
 													Static6.outboundBuffer.pIsaac1(178);
 													Static6.outboundBuffer.p1b(0);
 													local803 = Static6.outboundBuffer.pos;
-													Static6.outboundBuffer.p8(chatTyped.encode37());
+													Static6.outboundBuffer.p8(chatTyped.toBase37());
 													Static6.outboundBuffer.p2(Static122.aQuickChatPhrase_1.anInt439);
 													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aQuickChatPhrase_1.anIntArray33);
 													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - local803);
@@ -2990,7 +2990,7 @@ public final class Static88 {
 														local1552 = Static254.anIntArray487[local28] == 1;
 														local26--;
 														chatTyped = Static3.aClass100Array176[local26];
-														@Pc(8356) JagString local8356 = Static34.method882(new JagString[] { Static15.method479(), chatTyped });
+														@Pc(8356) JString local8356 = Static34.method882(new JString[] { Static15.method479(), chatTyped });
 														if (Static39.frame != null || local1552 && SignLink.anInt5928 != 3 && SignLink.osName.startsWith("win") && !Static178.aBoolean203) {
 															Static164.newTab = local1552;
 															Static175.url = local8356;
@@ -3008,13 +3008,13 @@ public final class Static88 {
 														chatTyped = Static3.aClass100Array176[local26];
 														if (chatTyped.length() > 0) {
 															if (Static103.aClass100Array88 == null) {
-																Static103.aClass100Array88 = new JagString[Static132.anIntArray309[Static266.game]];
+																Static103.aClass100Array88 = new JString[Static132.anIntArray309[Static266.game]];
 															}
 															Static103.aClass100Array88[local1052] = chatTyped;
 														}
 														if (chatTypedLowercase.length() > 0) {
 															if (Static263.aClass100Array174 == null) {
-																Static263.aClass100Array174 = new JagString[Static132.anIntArray309[Static266.game]];
+																Static263.aClass100Array174 = new JString[Static132.anIntArray309[Static266.game]];
 															}
 															Static263.aClass100Array174[local1052] = chatTypedLowercase;
 														}
@@ -3164,7 +3164,7 @@ public final class Static88 {
 													if (local226 == 5604) {
 														local26--;
 														if (Static244.anInt5370 == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
-															Static78.method1691(Static3.aClass100Array176[local26].encode37());
+															Static78.method1691(Static3.aClass100Array176[local26].toBase37());
 														}
 														continue;
 													}
@@ -3172,7 +3172,7 @@ public final class Static88 {
 														local28 -= 4;
 														local26 -= 2;
 														if (Static244.anInt5370 == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
-															Static40.method1016(Static254.anIntArray487[local28], Static254.anIntArray487[local28 + 3], Static254.anIntArray487[local28 + 1], Static3.aClass100Array176[local26 + 1], Static3.aClass100Array176[local26].encode37(), Static254.anIntArray487[local28 + 2]);
+															Static40.method1016(Static254.anIntArray487[local28], Static254.anIntArray487[local28 + 3], Static254.anIntArray487[local28 + 1], Static3.aClass100Array176[local26 + 1], Static3.aClass100Array176[local26].toBase37(), Static254.anIntArray487[local28 + 2]);
 														}
 														continue;
 													}
@@ -3830,14 +3830,14 @@ public final class Static88 {
 										chatTyped = Static3.aClass100Array176[local26];
 										local28--;
 										local803 = Static254.anIntArray487[local28];
-										Static3.aClass100Array176[local26++] = Static34.method882(new JagString[] { chatTyped, Static123.method2423(local803) });
+										Static3.aClass100Array176[local26++] = Static34.method882(new JString[] { chatTyped, Static123.method2423(local803) });
 										continue;
 									}
 									if (local226 == 4101) {
 										local26 -= 2;
 										chatTypedLowercase = Static3.aClass100Array176[local26 + 1];
 										chatTyped = Static3.aClass100Array176[local26];
-										Static3.aClass100Array176[local26++] = Static34.method882(new JagString[] { chatTyped, chatTypedLowercase });
+										Static3.aClass100Array176[local26++] = Static34.method882(new JString[] { chatTyped, chatTypedLowercase });
 										continue;
 									}
 									if (local226 == 4102) {
@@ -3845,7 +3845,7 @@ public final class Static88 {
 										chatTyped = Static3.aClass100Array176[local26];
 										local28--;
 										local803 = Static254.anIntArray487[local28];
-										Static3.aClass100Array176[local26++] = Static34.method882(new JagString[] { chatTyped, Static110.method2285(local803) });
+										Static3.aClass100Array176[local26++] = Static34.method882(new JString[] { chatTyped, Static110.method2285(local803) });
 										continue;
 									}
 									if (local226 == 4103) {
@@ -3862,7 +3862,7 @@ public final class Static88 {
 										local652 = Static102.aCalendar2.get(5);
 										start = Static102.aCalendar2.get(2);
 										local1087 = Static102.aCalendar2.get(1);
-										Static3.aClass100Array176[local26++] = Static34.method882(new JagString[] { Static123.method2423(local652), Static163.aClass100_767, Static34.aClass100Array40[start], Static163.aClass100_767, Static123.method2423(local1087) });
+										Static3.aClass100Array176[local26++] = Static34.method882(new JString[] { Static123.method2423(local652), Static163.aClass100_767, Static34.aClass100Array40[start], Static163.aClass100_767, Static123.method2423(local1087) });
 										continue;
 									}
 									if (local226 == 4105) {
@@ -4136,7 +4136,7 @@ public final class Static88 {
 				}
 				Static89.report("CS2 - scr:" + local14.nodeId + " op:" + local44, local14378);
 			} else {
-				@Pc(14385) JagString local14385 = Static87.method1804(30);
+				@Pc(14385) JString local14385 = Static87.method1804(30);
 				local14385.method3113(Static219.aClass100_928).method3113(local14.aClass100_880);
 				for (local58 = Static138.anInt3445 - 1; local58 >= 0; local58--) {
 					local14385.method3113(Static40.aClass100_253).method3113(Static67.aClass61Array3[local58].aClass3_Sub2_Sub17_1.aClass100_880);
@@ -4146,7 +4146,7 @@ public final class Static88 {
 					local14385.method3113(Static176.aClass100_802).method3113(Static123.method2423(local58));
 				}
 				if (client.modeWhere != 0) {
-					Static103.addMessage(Static72.aClass100_447, 0, Static34.method882(new JagString[] { Static167.aClass100_780, local14.aClass100_880 }));
+					Static103.addMessage(Static72.aClass100_447, 0, Static34.method882(new JString[] { Static167.aClass100_780, local14.aClass100_880 }));
 				}
 				Static89.report("CS2 - scr:" + local14.nodeId + " op:" + local44 + new String(local14385.method3148()), local14378);
 			}

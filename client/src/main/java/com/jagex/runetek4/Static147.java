@@ -13,7 +13,7 @@ public final class Static147 {
 	public static volatile int anInt3521 = -1;
 
 	@OriginalMember(owner = "runetek4.client!lh", name = "z", descriptor = "Lclient!na;")
-	public static final JagString aClass100_672 = Static28.parse("(U (X");
+	public static final JString aClass100_672 = Static28.parse("(U (X");
 
 	@OriginalMember(owner = "runetek4.client!lh", name = "b", descriptor = "(II)V")
 	public static void method2761(@OriginalArg(0) int arg0) {

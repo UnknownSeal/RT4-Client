@@ -11,10 +11,10 @@ public final class Static6 {
 	public static final PacketBit outboundBuffer = new PacketBit(5000);
 
 	@OriginalMember(owner = "client!ag", name = "ab", descriptor = "Lclient!na;")
-	public static final JagString aClass100_17 = Static28.parse("0");
+	public static final JString aClass100_17 = Static28.parse("0");
 
 	@OriginalMember(owner = "client!ag", name = "bb", descriptor = "Lclient!na;")
-	public static final JagString GREEN2 = Static28.parse("<col=40ff00>");
+	public static final JString GREEN2 = Static28.parse("<col=40ff00>");
 
 	@OriginalMember(owner = "client!ag", name = "cb", descriptor = "[Lclient!cl;")
 	public static final AnimFrameset[] aClass3_Sub2_Sub7Array1 = new AnimFrameset[14];

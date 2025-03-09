@@ -14,7 +14,7 @@ public final class Static99 {
 	public static final LinkList spotanims = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!hk", name = "db", descriptor = "Lclient!na;")
-	public static final JagString WM3 = Static28.parse("::wm3");
+	public static final JString WM3 = Static28.parse("::wm3");
 
 	@OriginalMember(owner = "runetek4.client!hk", name = "eb", descriptor = "Z")
 	public static boolean aBoolean143 = true;

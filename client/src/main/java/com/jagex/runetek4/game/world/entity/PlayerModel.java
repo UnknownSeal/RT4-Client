@@ -294,16 +294,16 @@ public final class PlayerModel {
 						}
 					}
 				}
-				@Pc(740) ModelUnlit local740 = new ModelUnlit(local239, local239.length);
+				@Pc(740) ModelUnlit model = new ModelUnlit(local239, local239.length);
 				for (local346 = 0; local346 < 5; local346++) {
 					if (Static33.aShortArrayArray2[local346].length > this.anIntArray236[local346]) {
-						local740.recolor(Static200.aShortArray65[local346], Static33.aShortArrayArray2[local346][this.anIntArray236[local346]]);
+						model.recolor(Static200.aShortArray65[local346], Static33.aShortArrayArray2[local346][this.anIntArray236[local346]]);
 					}
 					if (Static172.aShortArrayArray7[local346].length > this.anIntArray236[local346]) {
-						local740.recolor(Static160.aShortArray41[local346], Static172.aShortArrayArray7[local346][this.anIntArray236[local346]]);
+						model.recolor(Static160.aShortArray41[local346], Static172.aShortArrayArray7[local346][this.anIntArray236[local346]]);
 					}
 				}
-				local154 = local740.method1679(64, 850, -30, -50, -30);
+				local154 = model.method1679(64, 850, -30, -50, -30);
 				if (GlRenderer.enabled) {
 					((GlModel) local154).method4111(false, false, true, false, false, true);
 				}

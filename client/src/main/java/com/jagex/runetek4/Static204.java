@@ -31,7 +31,7 @@ public final class Static204 {
 	public static int anInt4765 = -1;
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "B", descriptor = "Lclient!na;")
-	public static final JagString aClass100_896 = Static28.parse("<col=ffffff>");
+	public static final JString aClass100_896 = Static28.parse("<col=ffffff>");
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "e", descriptor = "(B)V")
 	public static void method3673() {

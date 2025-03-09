@@ -25,14 +25,14 @@ public final class Static217 {
 	public static final int[] anIntArray434 = new int[64];
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "ab", descriptor = "Lclient!na;")
-	public static final JagString CLANREQ = Static28.parse(":clanreq:");
+	public static final JString CLANREQ = Static28.parse(":clanreq:");
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "a", descriptor = "(IIILclient!e;I)V")
 	public static void method3767(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) PlayerEntity arg2, @OriginalArg(4) int arg3) {
 		if (Static173.localPlayer == arg2 || PreciseSleep.anInt5204 >= 400) {
 			return;
 		}
-		@Pc(158) JagString local158;
+		@Pc(158) JString local158;
 		if (arg2.anInt1671 == 0) {
 			@Pc(22) boolean local22 = true;
 			if (Static173.localPlayer.anInt1667 != -1 && arg2.anInt1667 != -1) {
@@ -47,18 +47,18 @@ public final class Static217 {
 					local22 = false;
 				}
 			}
-			@Pc(95) JagString local95 = Static266.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
+			@Pc(95) JString local95 = Static266.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
 			if (arg2.combatLevel < arg2.anInt1656) {
-				local158 = Static34.method882(new JagString[] { arg2.getName(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, Static173.localPlayer.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static78.aClass100_465, Static123.method2423(arg2.anInt1656 - arg2.combatLevel), Static72.aClass100_448 });
+				local158 = Static34.method882(new JString[] { arg2.getName(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, Static173.localPlayer.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static78.aClass100_465, Static123.method2423(arg2.anInt1656 - arg2.combatLevel), Static72.aClass100_448 });
 			} else {
-				local158 = Static34.method882(new JagString[] { arg2.getName(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, Static173.localPlayer.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static72.aClass100_448 });
+				local158 = Static34.method882(new JString[] { arg2.getName(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, Static173.localPlayer.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static72.aClass100_448 });
 			}
 		} else {
-			local158 = Static34.method882(new JagString[] { arg2.getName(), Static123.aClass100_593, LocalizedText.SKILL, Static123.method2423(arg2.anInt1671), Static72.aClass100_448 });
+			local158 = Static34.method882(new JString[] { arg2.getName(), Static123.aClass100_593, LocalizedText.SKILL, Static123.method2423(arg2.anInt1671), Static72.aClass100_448 });
 		}
 		@Pc(275) int local275;
 		if (Static260.anInt5014 == 1) {
-			Static98.method1966(Static169.anInt4075, (long) arg0, Static34.method882(new JagString[] { Static34.aClass100_203, Static105.aClass100_561, local158 }), arg3, (short) 1, LocalizedText.USE, arg1);
+			Static98.method1966(Static169.anInt4075, (long) arg0, Static34.method882(new JString[] { Static34.aClass100_203, Static105.aClass100_561, local158 }), arg3, (short) 1, LocalizedText.USE, arg1);
 		} else if (!Static241.aBoolean302) {
 			for (local275 = 7; local275 >= 0; local275--) {
 				if (Static160.aClass100Array121[local275] != null) {
@@ -79,15 +79,15 @@ public final class Static217 {
 					}
 					@Pc(353) short local353 = Static5.aShortArray2[local275];
 					@Pc(358) short local358 = (short) (local353 + local291);
-					Static98.method1966(Static191.anIntArray388[local275], (long) arg0, Static34.method882(new JagString[] { Static204.aClass100_896, local158 }), arg3, local358, Static160.aClass100Array121[local275], arg1);
+					Static98.method1966(Static191.anIntArray388[local275], (long) arg0, Static34.method882(new JString[] { Static204.aClass100_896, local158 }), arg3, local358, Static160.aClass100Array121[local275], arg1);
 				}
 			}
 		} else if ((Static274.anInt4999 & 0x8) != 0) {
-			Static98.method1966(Static246.anInt5393, (long) arg0, Static34.method882(new JagString[] { Static78.aClass100_466, Static105.aClass100_561, local158 }), arg3, (short) 15, Static102.aClass100_545, arg1);
+			Static98.method1966(Static246.anInt5393, (long) arg0, Static34.method882(new JString[] { Static78.aClass100_466, Static105.aClass100_561, local158 }), arg3, (short) 15, Static102.aClass100_545, arg1);
 		}
 		for (local275 = 0; local275 < PreciseSleep.anInt5204; local275++) {
 			if (Static39.aShortArray6[local275] == 60) {
-				Static233.aClass100Array160[local275] = Static34.method882(new JagString[] { Static204.aClass100_896, local158 });
+				Static233.aClass100Array160[local275] = Static34.method882(new JString[] { Static204.aClass100_896, local158 });
 				break;
 			}
 		}

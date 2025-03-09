@@ -57,7 +57,7 @@ public final class Static216 {
 				}
 				Static124.socket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
 				Static72.aClass212_3 = null;
-				@Pc(106) long local106 = Static101.aLong98 = Static186.username.encode37();
+				@Pc(106) long local106 = Static101.aLong98 = Static186.username.toBase37();
 				Static6.outboundBuffer.pos = 0;
 				Static6.outboundBuffer.p1b(14);
 				@Pc(120) int local120 = (int) (local106 >> 16 & 0x1FL);
@@ -103,7 +103,7 @@ public final class Static216 {
 				Static6.outboundBuffer.p4(seed[1]);
 				Static6.outboundBuffer.p4(seed[2]);
 				Static6.outboundBuffer.p4(seed[3]);
-				Static6.outboundBuffer.p8(Static186.username.encode37());
+				Static6.outboundBuffer.p8(Static186.username.toBase37());
 				Static6.outboundBuffer.pjstr(Static186.password);
 				Static6.outboundBuffer.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
 				Static17.aClass3_Sub15_Sub1_2.pos = 0;

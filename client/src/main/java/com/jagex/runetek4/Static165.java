@@ -19,22 +19,22 @@ public final class Static165 {
 	public static int anInt4043;
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "a", descriptor = "Lclient!na;")
-	public static final JagString aClass100_772 = Static28.parse("um");
+	public static final JString aClass100_772 = Static28.parse("um");
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "d", descriptor = "I")
 	public static int anInt4035 = 0;
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "e", descriptor = "Lclient!na;")
-	public static final JagString BREAKCON = Static28.parse("::breakcon");
+	public static final JString BREAKCON = Static28.parse("::breakcon");
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "j", descriptor = "I")
 	public static volatile int anInt4039 = -1;
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "m", descriptor = "Lclient!na;")
-	public static final JagString LOGO = Static28.parse("logo");
+	public static final JString LOGO = Static28.parse("logo");
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "n", descriptor = "Lclient!na;")
-	public static final JagString DETAILS = Static28.parse("details");
+	public static final JString DETAILS = Static28.parse("details");
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "a", descriptor = "(IIIIIIIIII)V")
 	public static void method3162(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8) {
@@ -96,8 +96,8 @@ public final class Static165 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "a", descriptor = "(II)Lclient!na;")
-	public static JagString method3165() {
-		@Pc(21) JagString local21 = new JagString();
+	public static JString method3165() {
+		@Pc(21) JString local21 = new JString();
 		local21.anInt4030 = 1;
 		local21.aByteArray52 = new byte[1];
 		local21.aByteArray52[0] = -96;

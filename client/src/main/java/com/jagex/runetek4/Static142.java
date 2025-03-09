@@ -20,7 +20,7 @@ public final class Static142 {
 	public static int anInt3482 = -1;
 
 	@OriginalMember(owner = "runetek4.client!lc", name = "m", descriptor = "Lclient!na;")
-	public static final JagString aClass100_667 = Static28.parse("settings=");
+	public static final JString aClass100_667 = Static28.parse("settings=");
 
 	@OriginalMember(owner = "runetek4.client!lc", name = "a", descriptor = "(IIIIIII)V")
 	public static void method2726(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
@@ -113,7 +113,7 @@ public final class Static142 {
 						}
 					}
 				}
-				if (local17.chatMessage != null && (local5 >= Static267.playerCount || Static59.anInt1812 == 0 || Static59.anInt1812 == 3 || Static59.anInt1812 == 1 && Static98.method1965(((PlayerEntity) local17).username))) {
+				if (local17.chatMessage != null && (local5 >= Static267.playerCount || Static59.anInt1812 == 0 || Static59.anInt1812 == 3 || Static59.anInt1812 == 1 && Static98.method1965(((PlayerEntity) local17).name))) {
 					Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.height(), arg1 >> 1);
 					if (Static65.anInt1951 > -1 && Static277.anInt5854 < Static191.anInt4506) {
 						Static191.anIntArray389[Static277.anInt5854] = Static280.aClass3_Sub2_Sub9_43.method2858(local17.chatMessage) / 2;
@@ -222,7 +222,7 @@ public final class Static142 {
 			}
 			Static65.anInt1951 = Static191.anIntArray385[local5];
 			Static16.anInt548 = Static191.anIntArray392[local5] = local74;
-			@Pc(962) JagString local962 = Static191.aClass100Array132[local5];
+			@Pc(962) JString local962 = Static191.aClass100Array132[local5];
 			if (Static79.anInt2157 == 0) {
 				local639 = 16776960;
 				if (Static191.anIntArray390[local5] < 6) {

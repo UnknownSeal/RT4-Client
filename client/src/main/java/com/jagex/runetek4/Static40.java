@@ -17,7 +17,7 @@ public final class Static40 {
 	public static int anInt1275;
 
 	@OriginalMember(owner = "runetek4.client!da", name = "O", descriptor = "Lclient!na;")
-	public static final JagString aClass100_253 = Static28.parse("(U0a )2 via: ");
+	public static final JString aClass100_253 = Static28.parse("(U0a )2 via: ");
 
 	@OriginalMember(owner = "runetek4.client!da", name = "d", descriptor = "(I)V")
 	public static void method1008() {
@@ -125,7 +125,7 @@ public final class Static40 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!da", name = "a", descriptor = "(IIIILclient!na;JI)V")
-	public static void method1016(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) JagString password, @OriginalArg(5) long name, @OriginalArg(6) int arg5) {
+	public static void method1016(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) JString password, @OriginalArg(5) long name, @OriginalArg(6) int arg5) {
 		@Pc(8) Packet local8 = new Packet(128);
 		local8.p1b(10);
 		local8.p2((int) (Math.random() * 99999.0D));

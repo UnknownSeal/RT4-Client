@@ -11,13 +11,13 @@ public final class Static101 {
 	public static long aLong98;
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "R", descriptor = "Lclient!na;")
-	public static final JagString aClass100_537 = Static28.parse("<img=1>");
+	public static final JString aClass100_537 = Static28.parse("<img=1>");
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "T", descriptor = "Lclient!na;")
-	public static final JagString aClass100_538 = Static28.parse(" ");
+	public static final JString aClass100_538 = Static28.parse(" ");
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "Y", descriptor = "Lclient!na;")
-	public static final JagString aClass100_539 = Static28.parse("Fps:");
+	public static final JString aClass100_539 = Static28.parse("Fps:");
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "ab", descriptor = "I")
 	public static int anInt2640 = 0;
@@ -26,7 +26,7 @@ public final class Static101 {
 	public static GWCWorld[] aClass10_Sub1Array1 = new GWCWorld[0];
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "a", descriptor = "(Lclient!na;B)I")
-	public static int method2053(@OriginalArg(0) JagString arg0) {
+	public static int method2053(@OriginalArg(0) JString arg0) {
 		for (@Pc(12) int local12 = 0; local12 < Static153.aClass100Array113.length; local12++) {
 			if (Static153.aClass100Array113[local12].equalsIgnoreCase(arg0)) {
 				return local12;

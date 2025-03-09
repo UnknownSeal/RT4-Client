@@ -73,7 +73,7 @@ public final class Static91 {
 		local42.pos = 0;
 		local12.aClass100_880 = local42.gjstrFast();
 		local12.anIntArray415 = new int[local70];
-		local12.aClass100Array140 = new JagString[local70];
+		local12.aClass100Array140 = new JString[local70];
 		local107 = 0;
 		local12.anIntArray416 = new int[local70];
 		while (local63 > local42.pos) {
@@ -111,7 +111,7 @@ public final class Static91 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(Lclient!na;Z)I")
-	public static int method1879(@OriginalArg(0) JagString arg0) {
+	public static int method1879(@OriginalArg(0) JString arg0) {
 		if (Static203.aMapElementTypeList_1 == null || arg0.length() == 0) {
 			return -1;
 		}

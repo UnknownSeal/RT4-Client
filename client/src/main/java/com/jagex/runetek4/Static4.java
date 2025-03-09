@@ -35,7 +35,7 @@ public final class Static4 {
 	public static final BASType aClass20_1 = new BASType();
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "m", descriptor = "Lclient!na;")
-	public static final JagString aClass100_7 = Static28.parse("overlay");
+	public static final JString aClass100_7 = Static28.parse("overlay");
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "n", descriptor = "I")
 	public static int anInt36 = 0;
@@ -67,7 +67,7 @@ public final class Static4 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "a", descriptor = "(Lclient!na;I)I")
-	public static int method25(@OriginalArg(0) JagString arg0) {
+	public static int method25(@OriginalArg(0) JString arg0) {
 		if (arg0 == null) {
 			return -1;
 		}
@@ -130,7 +130,7 @@ public final class Static4 {
 			return true;
 		}
 		@Pc(171) int slot;
-		@Pc(156) JagString message2;
+		@Pc(156) JString message2;
 		if (Static164.packetType == 115) {
 			ii = Static57.in.g2();
 			message2 = Static57.in.gjstr();
@@ -154,12 +154,12 @@ public final class Static4 {
 		@Pc(275) long username;
 		@Pc(262) boolean ignored;
 		@Pc(277) int i;
-		@Pc(506) JagString local506;
+		@Pc(506) JString local506;
 		if (Static164.packetType == 70) {
-			@Pc(245) JagString message = Static57.in.gjstr();
+			@Pc(245) JString message = Static57.in.gjstr();
 			if (message.endsWith(Static196.TRADEREQ)) {
 				message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
-				username = message2.encode37();
+				username = message2.toBase37();
 				ignored = false;
 				for (i = 0; i < Static35.ignoreCount; i++) {
 					if (Static190.ignoreName37[i] == username) {
@@ -172,7 +172,7 @@ public final class Static4 {
 				}
 			} else if (message.endsWith(Static61.CHALREQ)) {
 				message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
-				username = message2.encode37();
+				username = message2.toBase37();
 				ignored = false;
 				for (i = 0; i < Static35.ignoreCount; i++) {
 					if (Static190.ignoreName37[i] == username) {
@@ -187,7 +187,7 @@ public final class Static4 {
 			} else if (message.endsWith(Static191.ASSISTREQ)) {
 				ignored = false;
 				message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
-				username = message2.encode37();
+				username = message2.toBase37();
 				for (i = 0; i < Static35.ignoreCount; i++) {
 					if (username == Static190.ignoreName37[i]) {
 						ignored = true;
@@ -213,7 +213,7 @@ public final class Static4 {
 			} else if (message.endsWith(Static56.DUELSTAKE)) {
 				ignored = false;
 				message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
-				username = message2.encode37();
+				username = message2.toBase37();
 				for (i = 0; i < Static35.ignoreCount; i++) {
 					if (username == Static190.ignoreName37[i]) {
 						ignored = true;
@@ -226,7 +226,7 @@ public final class Static4 {
 			} else if (message.endsWith(Static112.DUELFRIEND)) {
 				message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
 				ignored = false;
-				username = message2.encode37();
+				username = message2.toBase37();
 				for (i = 0; i < Static35.ignoreCount; i++) {
 					if (Static190.ignoreName37[i] == username) {
 						ignored = true;
@@ -238,7 +238,7 @@ public final class Static4 {
 				}
 			} else if (message.endsWith(Static217.CLANREQ)) {
 				message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
-				username = message2.encode37();
+				username = message2.toBase37();
 				ignored = false;
 				for (i = 0; i < Static35.ignoreCount; i++) {
 					if (username == Static190.ignoreName37[i]) {
@@ -252,7 +252,7 @@ public final class Static4 {
 			} else if (message.endsWith(Static164.ALLYREQ)) {
 				message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
 				ignored = false;
-				username = message2.encode37();
+				username = message2.toBase37();
 				for (i = 0; i < Static35.ignoreCount; i++) {
 					if (Static190.ignoreName37[i] == username) {
 						ignored = true;
@@ -270,7 +270,7 @@ public final class Static4 {
 			return true;
 		}
 		@Pc(786) int xp;
-		@Pc(790) JagString local790;
+		@Pc(790) JString local790;
 		if (Static164.packetType == 123) {
 			ii = Static57.in.g2le();
 			xp = Static57.in.g2sub();
@@ -343,11 +343,11 @@ public final class Static4 {
 				if (!local910 && PlayerEntity.overrideChat == 0) {
 					Static233.aLongArray9[Static251.anInt5447] = local922;
 					Static251.anInt5447 = (Static251.anInt5447 + 1) % 100;
-					@Pc(999) JagString local999 = Static230.list(local916).method770(Static57.in);
+					@Pc(999) JString local999 = Static230.list(local916).method770(Static57.in);
 					if (local908 == 2 || local908 == 3) {
-						Static154.add(local916, 20, local999, Static79.decode37(username).method3125(), Static34.method882(new JagString[] { Static44.aClass100_336, Static79.decode37(username2).method3125() }));
+						Static154.add(local916, 20, local999, Static79.decode37(username).method3125(), Static34.method882(new JString[] { Static44.aClass100_336, Static79.decode37(username2).method3125() }));
 					} else if (local908 == 1) {
-						Static154.add(local916, 20, local999, Static79.decode37(username).method3125(), Static34.method882(new JagString[] { Static65.aClass100_435, Static79.decode37(username2).method3125() }));
+						Static154.add(local916, 20, local999, Static79.decode37(username).method3125(), Static34.method882(new JString[] { Static65.aClass100_435, Static79.decode37(username2).method3125() }));
 					} else {
 						Static154.add(local916, 20, local999, Static79.decode37(username).method3125(), Static79.decode37(username2).method3125());
 					}
@@ -436,7 +436,7 @@ public final class Static4 {
 				Static164.packetType = -1;
 				return true;
 			} else {
-				@Pc(1409) JagString local1409;
+				@Pc(1409) JString local1409;
 				if (Static164.packetType == 44) {
 					ii = Static57.in.g2leadd();
 					if (ii == 65535) {
@@ -788,8 +788,8 @@ public final class Static4 {
 						return true;
 					} else {
 						@Pc(3002) int local3002;
-						@Pc(3038) JagString local3038;
-						@Pc(3020) JagString local3020;
+						@Pc(3038) JString local3038;
+						@Pc(3020) JString local3020;
 						if (Static164.packetType == 62) {
 							username2 = Static57.in.g8();
 							world = Static57.in.g2();
@@ -803,16 +803,16 @@ public final class Static4 {
 							if (world > 0) {
 								local506 = Static57.in.gjstr();
 							}
-							@Pc(2834) JagString displayName = Static79.decode37(username2).method3125();
+							@Pc(2834) JString displayName = Static79.decode37(username2).method3125();
 							for (j = 0; j < Static9.friendCount; j++) {
 								if (username2 == Static92.friendName37[j]) {
 									if (world != Static104.friendWorld[j]) {
 										Static104.friendWorld[j] = world;
 										if (world > 0) {
-											Static103.addMessage(Static186.aClass100_827, 5, Static34.method882(new JagString[] { displayName, LocalizedText.FRIENDLOGIN}));
+											Static103.addMessage(Static186.aClass100_827, 5, Static34.method882(new JString[] { displayName, LocalizedText.FRIENDLOGIN}));
 										}
 										if (world == 0) {
-											Static103.addMessage(Static186.aClass100_827, 5, Static34.method882(new JagString[] { displayName, LocalizedText.FRIENDLOGOUT}));
+											Static103.addMessage(Static186.aClass100_827, 5, Static34.method882(new JString[] { displayName, LocalizedText.FRIENDLOGOUT}));
 										}
 									}
 									Static214.aClass100Array170[j] = local506;
@@ -928,9 +928,9 @@ public final class Static4 {
 								Static251.anInt5447 = (Static251.anInt5447 + 1) % 100;
 								local3020 = Static230.list(j).method770(Static57.in);
 								if (local1160 == 2) {
-									Static154.add(j, 18, local3020, null, Static34.method882(new JagString[] { Static44.aClass100_336, Static79.decode37(username2).method3125() }));
+									Static154.add(j, 18, local3020, null, Static34.method882(new JString[] { Static44.aClass100_336, Static79.decode37(username2).method3125() }));
 								} else if (local1160 == 1) {
-									Static154.add(j, 18, local3020, null, Static34.method882(new JagString[] { Static65.aClass100_435, Static79.decode37(username2).method3125() }));
+									Static154.add(j, 18, local3020, null, Static34.method882(new JString[] { Static65.aClass100_435, Static79.decode37(username2).method3125() }));
 								} else {
 									Static154.add(j, 18, local3020, null, Static79.decode37(username2).method3125());
 								}
@@ -1233,11 +1233,11 @@ public final class Static4 {
 								if (!local4425 && PlayerEntity.overrideChat == 0) {
 									Static233.aLongArray9[Static251.anInt5447] = local4431;
 									Static251.anInt5447 = (Static251.anInt5447 + 1) % 100;
-									@Pc(4518) JagString local4518 = Static218.method2862(Static65.method1497(Static57.in).method3116());
+									@Pc(4518) JString local4518 = Static218.method2862(Static65.method1497(Static57.in).method3116());
 									if (local1160 == 2 || local1160 == 3) {
-										Static103.addMessage(Static34.method882(new JagString[] { Static44.aClass100_336, Static79.decode37(username2).method3125() }), 7, local4518);
+										Static103.addMessage(Static34.method882(new JString[] { Static44.aClass100_336, Static79.decode37(username2).method3125() }), 7, local4518);
 									} else if (local1160 == 1) {
-										Static103.addMessage(Static34.method882(new JagString[] { Static65.aClass100_435, Static79.decode37(username2).method3125() }), 7, local4518);
+										Static103.addMessage(Static34.method882(new JString[] { Static65.aClass100_435, Static79.decode37(username2).method3125() }), 7, local4518);
 									} else {
 										Static103.addMessage(Static79.decode37(username2).method3125(), 3, local4518);
 									}
@@ -1281,9 +1281,9 @@ public final class Static4 {
 									Static251.anInt5447 = (Static251.anInt5447 + 1) % 100;
 									local3038 = Static218.method2862(Static65.method1497(Static57.in).method3116());
 									if (local908 == 2 || local908 == 3) {
-										Static73.method1598(local3038, Static34.method882(new JagString[] { Static44.aClass100_336, Static79.decode37(username2).method3125() }), Static79.decode37(username).method3125());
+										Static73.method1598(local3038, Static34.method882(new JString[] { Static44.aClass100_336, Static79.decode37(username2).method3125() }), Static79.decode37(username).method3125());
 									} else if (local908 == 1) {
-										Static73.method1598(local3038, Static34.method882(new JagString[] { Static65.aClass100_435, Static79.decode37(username2).method3125() }), Static79.decode37(username).method3125());
+										Static73.method1598(local3038, Static34.method882(new JString[] { Static65.aClass100_435, Static79.decode37(username2).method3125() }), Static79.decode37(username).method3125());
 									} else {
 										Static73.method1598(local3038, Static79.decode37(username2).method3125(), Static79.decode37(username).method3125());
 									}

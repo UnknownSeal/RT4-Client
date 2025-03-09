@@ -125,12 +125,12 @@ public final class GlRenderer {
 	private static boolean fogEnabled = true;
 
 	@OriginalMember(owner = "client!tf", name = "I", descriptor = "Lclient!na;")
-	private static final JagString RADEON = Static28.parse("radeon");
+	private static final JString RADEON = Static28.parse("radeon");
 
 	private static JAWTWindow window;
 
 	@OriginalMember(owner = "client!tf", name = "a", descriptor = "(Ljava/lang/String;)Lclient!na;")
-	private static JagString method4147(@OriginalArg(0) String arg0) {
+	private static JString method4147(@OriginalArg(0) String arg0) {
 		@Pc(3) byte[] local3;
 		try {
 			local3 = arg0.getBytes("ISO-8859-1");
@@ -445,12 +445,12 @@ public final class GlRenderer {
 		arbTextureCubeMapSupported = gl.isExtensionAvailable("GL_ARB_texture_cube_map");
 		arbVertexProgramSupported = gl.isExtensionAvailable("GL_ARB_vertex_program");
 		extTexture3dSupported = gl.isExtensionAvailable("GL_EXT_texture3D");
-		@Pc(176) JagString renderer = method4147(GlRenderer.renderer).toLowerCase();
+		@Pc(176) JString renderer = method4147(GlRenderer.renderer).toLowerCase();
 		if (renderer.indexOf(RADEON) != -1) {
 			@Pc(184) int v = 0;
-			@Pc(193) JagString[] rendererParts = renderer.method3145().method3147(32);
+			@Pc(193) JString[] rendererParts = renderer.method3145().method3147(32);
 			for (@Pc(195) int i = 0; i < rendererParts.length; i++) {
-				@Pc(203) JagString part = rendererParts[i];
+				@Pc(203) JString part = rendererParts[i];
 				if (part.length() >= 4 && part.substring(4, 0).method3123()) {
 					v = part.substring(4, 0).method3132();
 					break;

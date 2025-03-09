@@ -23,7 +23,7 @@ public final class Static60 {
 	public static int anInt1895;
 
 	@OriginalMember(owner = "runetek4.client!em", name = "u", descriptor = "Lclient!na;")
-	public static final JagString aClass100_420 = Static28.parse(")1o");
+	public static final JString aClass100_420 = Static28.parse(")1o");
 
 	@OriginalMember(owner = "runetek4.client!em", name = "y", descriptor = "I")
 	public static int mouseClickY = 0;

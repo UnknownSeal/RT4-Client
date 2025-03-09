@@ -20,16 +20,16 @@ public final class Static186 {
 	public static int antialiasingMode = 0;
 
 	@OriginalMember(owner = "runetek4.client!pa", name = "O", descriptor = "Lclient!na;")
-	public static final JagString aClass100_827 = Static28.parse("");
+	public static final JString aClass100_827 = Static28.parse("");
 
 	@OriginalMember(owner = "runetek4.client!pa", name = "P", descriptor = "Lclient!na;")
-	public static JagString password = aClass100_827;
+	public static JString password = aClass100_827;
 
 	@OriginalMember(owner = "runetek4.client!pa", name = "R", descriptor = "[Z")
 	public static final boolean[] aBooleanArray100 = new boolean[100];
 
 	@OriginalMember(owner = "runetek4.client!pa", name = "S", descriptor = "Lclient!na;")
-	public static JagString username = aClass100_827;
+	public static JString username = aClass100_827;
 
 	@OriginalMember(owner = "runetek4.client!pa", name = "d", descriptor = "(I)V")
 	public static void method3413() {
@@ -114,11 +114,11 @@ public final class Static186 {
 			Static7.method842(true);
 			Static234.method4020();
 		} else if (Static41.anInt1309 == 60) {
-			if (Static119.aClass153_44.method4497(Static34.method882(new JagString[] { Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086 }))) {
-				if (!Static119.aClass153_44.method4489(Static34.method882(new JagString[] { Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086 }))) {
+			if (Static119.aClass153_44.method4497(Static34.method882(new JString[] { Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086 }))) {
+				if (!Static119.aClass153_44.method4489(Static34.method882(new JString[] { Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086 }))) {
 					return;
 				}
-				Static203.aMapElementTypeList_1 = MapElementTypeList.create(Static34.method882(new JagString[] { Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086 }), Static119.aClass153_44);
+				Static203.aMapElementTypeList_1 = MapElementTypeList.create(Static34.method882(new JString[] { Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086 }), Static119.aClass153_44);
 			} else {
 				Static203.aMapElementTypeList_1 = new MapElementTypeList(0);
 			}
