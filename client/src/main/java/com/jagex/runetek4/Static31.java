@@ -22,17 +22,17 @@ public final class Static31 {
 	public static final boolean[] aBooleanArray29 = new boolean[100];
 
 	@OriginalMember(owner = "client!ch", name = "z", descriptor = "[I")
-	public static final int[] anIntArray76 = new int[5];
+	public static final int[] cameraModifierCycle = new int[5];
 
 	@OriginalMember(owner = "client!ch", name = "C", descriptor = "[[I")
 	public static final int[][] anIntArrayArray6 = new int[104][104];
 
 	@OriginalMember(owner = "client!ch", name = "c", descriptor = "(I)V")
 	public static void method846() {
-		if (!Static138.allLevelsvisible() && Static41.anInt1316 != Static55.level) {
-			Static127.method2463(Static55.level, Static52.anInt1695, Static80.anInt4701, Static173.localPlayer.pathTileZ[0], false, Static173.localPlayer.pathTileX[0]);
-		} else if (Static55.level != Static107.anInt2875 && Static137.method2665(Static55.level)) {
-			Static107.anInt2875 = Static55.level;
+		if (!Static138.allLevelsvisible() && Static41.anInt1316 != Static55.currentLevel) {
+			Static127.method2463(Static55.currentLevel, Static52.anInt1695, Static80.anInt4701, Static173.localPlayer.pathTileZ[0], false, Static173.localPlayer.pathTileX[0]);
+		} else if (Static55.currentLevel != Static107.anInt2875 && Static137.method2665(Static55.currentLevel)) {
+			Static107.anInt2875 = Static55.currentLevel;
 			Static269.method2218();
 		}
 	}

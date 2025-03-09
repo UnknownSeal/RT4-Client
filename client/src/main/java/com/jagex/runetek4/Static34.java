@@ -20,7 +20,7 @@ public final class Static34 {
 	private static final JagString aClass100_195 = Static28.parse("Discard");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "d", descriptor = "[I")
-	public static final int[] anIntArray80 = new int[] { 1, 0, -1, 0 };
+	public static final int[] WALL_DECORATION_ROTATION_FORWARD_X = new int[] { 1, 0, -1, 0 };
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "T", descriptor = "Lclient!na;")
 	private static final JagString aClass100_207 = Static28.parse("Jan");
@@ -100,7 +100,7 @@ public final class Static34 {
 		if (local26 != null) {
 			local10.method1316(new Packet(local26));
 		}
-		Static279.aClass99_38.method3095(local10, (long) arg0);
+		Static279.aClass99_38.put(local10, (long) arg0);
 		return local10;
 	}
 
@@ -132,14 +132,14 @@ public final class Static34 {
 			}
 		}
 		@Pc(156) int local156;
-		if (arg0.anInt3432 != -1 && Static83.loopCycle >= arg0.spotanimLastCycle) {
-			local156 = method877(arg0.anInt3432).anInt1754;
+		if (arg0.spotanimFrame != -1 && Static83.loopCycle >= arg0.spotanimLastCycle) {
+			local156 = method877(arg0.spotanimFrame).anInt1754;
 			if (local156 == -1) {
-				arg0.anInt3432 = -1;
+				arg0.spotanimFrame = -1;
 			} else {
 				@Pc(165) SeqType local165 = Static36.method941(local156);
 				if (local165 == null || local165.anIntArray473 == null) {
-					arg0.anInt3432 = -1;
+					arg0.spotanimFrame = -1;
 				} else {
 					if (arg0.spotanimId < 0) {
 						arg0.spotanimId = 0;
@@ -152,7 +152,7 @@ public final class Static34 {
 						Static152.method2836(arg0.z, local165, arg0.x, Static173.localPlayer == arg0, arg0.spotanimId);
 					}
 					if (arg0.spotanimId >= local165.anIntArray473.length) {
-						arg0.anInt3432 = -1;
+						arg0.spotanimFrame = -1;
 					}
 					arg0.anInt3418 = arg0.spotanimId + 1;
 					if (local165.anIntArray473.length <= arg0.anInt3418) {
@@ -161,17 +161,17 @@ public final class Static34 {
 				}
 			}
 		}
-		if (arg0.anInt3369 != -1 && arg0.anInt3420 <= 1) {
-			local18 = Static36.method941(arg0.anInt3369);
+		if (arg0.primarySeqId != -1 && arg0.anInt3420 <= 1) {
+			local18 = Static36.method941(arg0.primarySeqId);
 			if (local18.anInt5363 == 1 && arg0.anInt3405 > 0 && Static83.loopCycle >= arg0.anInt3395 && Static83.loopCycle > arg0.anInt3386) {
 				arg0.anInt3420 = 1;
 				return;
 			}
 		}
-		if (arg0.anInt3369 != -1 && arg0.anInt3420 == 0) {
-			local18 = Static36.method941(arg0.anInt3369);
+		if (arg0.primarySeqId != -1 && arg0.anInt3420 == 0) {
+			local18 = Static36.method941(arg0.primarySeqId);
 			if (local18 == null || local18.anIntArray473 == null) {
-				arg0.anInt3369 = -1;
+				arg0.primarySeqId = -1;
 			} else {
 				arg0.anInt3360++;
 				if (arg0.anInt3425 < local18.anIntArray473.length && arg0.anInt3360 > local18.frames[arg0.anInt3425]) {
@@ -183,11 +183,11 @@ public final class Static34 {
 					arg0.anInt3425 -= local18.replayoff;
 					arg0.anInt3371++;
 					if (arg0.anInt3371 >= local18.replaycount) {
-						arg0.anInt3369 = -1;
+						arg0.primarySeqId = -1;
 					} else if (arg0.anInt3425 >= 0 && local18.anIntArray473.length > arg0.anInt3425) {
 						Static152.method2836(arg0.z, local18, arg0.x, Static173.localPlayer == arg0, arg0.anInt3425);
 					} else {
-						arg0.anInt3369 = -1;
+						arg0.primarySeqId = -1;
 					}
 				}
 				arg0.anInt3373 = arg0.anInt3425 + 1;

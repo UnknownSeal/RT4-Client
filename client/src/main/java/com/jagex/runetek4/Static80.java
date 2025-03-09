@@ -51,7 +51,7 @@ public final class Static80 {
 		Static22.anInt729 = 0;
 		Static250.aBoolean283 = true;
 		Static11.aBoolean15 = true;
-		Static15.aBoolean33 = true;
+		Static15.lowMemory = true;
 		Static30.anInt978 = 127;
 		Static71.aBoolean107 = true;
 		Static209.aBoolean240 = true;

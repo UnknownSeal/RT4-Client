@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class MidiNoteStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!te", name = "w", descriptor = "Lclient!ih;")
-	public final LinkedList aClass69_126 = new LinkedList();
+	public final LinkList aClass69_126 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!te", name = "K", descriptor = "Lclient!ei;")
 	public final MixerPcmStream aClass3_Sub3_Sub2_2 = new MixerPcmStream();

@@ -19,7 +19,7 @@ public final class Static72 {
 	public static int frameWid;
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "s", descriptor = "I")
-	public static int anInt2031 = 128;
+	public static int orbitCameraPitch = 128;
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "w", descriptor = "J")
 	public static long killtime = 0L;
@@ -47,7 +47,7 @@ public final class Static72 {
 		}
 		local19 = Static87.method1803(Static225.aClass153_92, Static5.aClass153_1, arg0);
 		if (local19 != null) {
-			Static267.aClass99_37.method3095(local19, (long) arg0);
+			Static267.aClass99_37.put(local19, (long) arg0);
 		}
 		return local19;
 	}

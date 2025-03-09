@@ -29,7 +29,7 @@ public final class Static172 {
 	public static boolean shiftClick = false;
 
 	@OriginalMember(owner = "runetek4.client!nj", name = "h", descriptor = "Lclient!ih;")
-	public static final LinkedList aClass69_97 = new LinkedList();
+	public static final LinkList aClass69_97 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!nj", name = "i", descriptor = "I")
 	public static int anInt4164 = 0;

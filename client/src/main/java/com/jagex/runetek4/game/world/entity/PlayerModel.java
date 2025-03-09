@@ -71,7 +71,7 @@ public final class PlayerModel {
 				}
 			}
 			local30 = local66.method1679(64, 768, -50, -10, -50);
-			Static139.aClass99_21.method3095(local30, local24);
+			Static139.aClass99_21.put(local30, local24);
 		}
 		if (arg4 != null) {
 			local30 = arg4.method4215(local30, arg0, arg3, arg5);
@@ -289,7 +289,7 @@ public final class PlayerModel {
 								local239[local250].method1684(local374, local367, local381);
 							}
 							if (local346 != 0 || local353 != 0 || local360 != 0) {
-								local239[local250].method1672(local346, local353, local360);
+								local239[local250].translate(local346, local353, local360);
 							}
 						}
 					}
@@ -307,7 +307,7 @@ public final class PlayerModel {
 				if (GlRenderer.enabled) {
 					((GlModel) local154).method4111(false, false, true, false, false, true);
 				}
-				Static250.aClass99_33.method3095(local154, local41);
+				Static250.aClass99_33.put(local154, local41);
 				this.aLong87 = local41;
 			}
 		}
@@ -494,7 +494,7 @@ public final class PlayerModel {
 				}
 			}
 			local30 = local171.method1679(64, 768, -50, -10, -50);
-			Static139.aClass99_21.method3095(local30, this.aLong88);
+			Static139.aClass99_21.put(local30, this.aLong88);
 		}
 		if (arg1 != null) {
 			local30 = arg1.method4215(local30, arg3, arg0, arg2);

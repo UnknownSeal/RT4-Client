@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.seqtype.SeqType;
 import com.jagex.runetek4.game.scene.entities.NPCEntity;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -22,13 +22,13 @@ public final class Static159 {
 	public static final JagString aClass100_760 = Static28.parse(")1");
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "S", descriptor = "[Lclient!e;")
-	public static final Player[] players = new Player[2048];
+	public static final PlayerEntity[] players = new PlayerEntity[2048];
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "U", descriptor = "[J")
 	public static final long[] aLongArray5 = new long[500];
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "Y", descriptor = "[[[Lclient!ih;")
-	public static final LinkedList[][][] levelObjStacks = new LinkedList[4][104][104];
+	public static final LinkList[][][] levelObjStacks = new LinkList[4][104][104];
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "ab", descriptor = "Z")
 	public static boolean aBoolean189 = true;

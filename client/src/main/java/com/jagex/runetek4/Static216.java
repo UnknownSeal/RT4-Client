@@ -241,13 +241,13 @@ public final class Static216 {
 				Static25.aBoolean57 = Static57.in.g1() == 1;
 				Static86.aBoolean129 = Static57.in.g1() == 1;
 				Static245.enabled = Static57.in.g1() == 1;
-				Static16.anInt549 = Static57.in.g2();
-				Static202.aBoolean233 = Static57.in.g1() == 1;
+				Static16.localPid = Static57.in.g2();
+				Static202.members = Static57.in.g1() == 1;
 				Static2.aBoolean1 = Static57.in.g1() == 1;
 				Static189.method3438(Static2.aBoolean1);
 				Static9.method186(Static2.aBoolean1);
 				if (!Static249.aBoolean282) {
-					if (Static124.aBoolean157 && !Static25.aBoolean57 || Static202.aBoolean233) {
+					if (Static124.aBoolean157 && !Static25.aBoolean57 || Static202.members) {
 						try {
 							Static167.aClass100_781.method3157(GameShell.signLink.anApplet2);
 						} catch (@Pc(910) Throwable local910) {

@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,17 +14,17 @@ public final class Static256 {
 
 	@OriginalMember(owner = "runetek4.client!um", name = "a", descriptor = "(Z)V")
 	public static void method4392() {
-		Player.overrideChat = 0;
+		PlayerEntity.overrideChat = 0;
 		@Pc(17) int local17 = Static225.originX + (Static173.localPlayer.x >> 7);
 		@Pc(25) int local25 = (Static173.localPlayer.z >> 7) + Static142.originZ;
 		if (local17 >= 3053 && local17 <= 3156 && local25 >= 3056 && local25 <= 3136) {
-			Player.overrideChat = 1;
+			PlayerEntity.overrideChat = 1;
 		}
 		if (local17 >= 3072 && local17 <= 3118 && local25 >= 9492 && local25 <= 9535) {
-			Player.overrideChat = 1;
+			PlayerEntity.overrideChat = 1;
 		}
-		if (Player.overrideChat == 1 && local17 >= 3139 && local17 <= 3199 && local25 >= 3008 && local25 <= 3062) {
-			Player.overrideChat = 0;
+		if (PlayerEntity.overrideChat == 1 && local17 >= 3139 && local17 <= 3199 && local25 >= 3008 && local25 <= 3062) {
+			PlayerEntity.overrideChat = 0;
 		}
 	}
 
@@ -108,7 +108,7 @@ public final class Static256 {
 		if (local30 != null) {
 			local6.decode(new Packet(local30), arg0);
 		}
-		Static233.aClass99_31.method3095(local6, (long) arg0);
+		Static233.aClass99_31.put(local6, (long) arg0);
 		return local6;
 	}
 }

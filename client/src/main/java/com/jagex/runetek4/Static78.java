@@ -24,7 +24,7 @@ public final class Static78 {
 	public static final JagString aClass100_465 = Static28.parse(")0");
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "h", descriptor = "[I")
-	public static final int[] anIntArray204 = new int[] { 16, 32, 64, 128 };
+	public static final int[] ROTATION_WALL_CORNER_TYPE = new int[] { 16, 32, 64, 128 };
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "i", descriptor = "Lclient!na;")
 	public static JagString aClass100_466 = null;
@@ -230,10 +230,10 @@ public final class Static78 {
 		}
 		Static7.method842(true);
 		local427 = Static146.firstvisibleLevel;
-		if (local427 > Static55.level) {
-			local427 = Static55.level;
+		if (local427 > Static55.currentLevel) {
+			local427 = Static55.currentLevel;
 		}
-		if (local427 < Static55.level - 1) {
+		if (local427 < Static55.currentLevel - 1) {
 		}
 		if (Static138.allLevelsvisible()) {
 			Static146.method2750(0);
@@ -264,7 +264,7 @@ public final class Static78 {
 		if (GlRenderer.enabled) {
 			for (local320 = 0; local320 < 13; local320++) {
 				for (local309 = 0; local309 < 13; local309++) {
-					Static242.aOpenGLRendererArrayArray1[local320][local309].method4676(Static83.anIntArrayArrayArray4[0], local320 * 8, local309 * 8);
+					Static242.aOpenGLRendererArrayArray1[local320][local309].method4676(Static83.levelHeightMap[0], local320 * 8, local309 * 8);
 				}
 			}
 		}

@@ -521,7 +521,7 @@ public final class Static1 {
 		}
 		for (local1161 = (Class3_Sub14) local10.peekFront(); local1161 != null; local1161 = (Class3_Sub14) local10.prev()) {
 			if (local1161.anInt2483 == 0) {
-				local1161.remove();
+				local1161.unlink();
 			} else {
 				local1161.method1943();
 			}

@@ -24,7 +24,7 @@ public final class Static12 {
 	public static final JagString aClass100_74 = Static28.parse("::");
 
 	@OriginalMember(owner = "client!bb", name = "E", descriptor = "I")
-	public static int anInt400 = 0;
+	public static int energy = 0;
 
 	@OriginalMember(owner = "client!bb", name = "a", descriptor = "(I)V")
 	public static void method447() {

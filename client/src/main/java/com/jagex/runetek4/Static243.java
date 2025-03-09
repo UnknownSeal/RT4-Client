@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -74,7 +74,7 @@ public final class Static243 {
 		Static84.anInt2255 = 0;
 		Static57.orbitCameraYaw = (int) (Math.random() * 20.0D) - 10 & 0x7FF;
 		Static107.anInt2875 = -1;
-		Static267.size = 0;
+		Static267.playerCount = 0;
 		Static270.anInt5795 = 0;
 		Static206.cameraAnticheatOffsetZ = (int) (Math.random() * 110.0D) - 55;
 		Static241.aBoolean302 = false;
@@ -84,7 +84,7 @@ public final class Static243 {
 		Static59.minimapAnticheatAngle = (int) (Math.random() * 120.0D) - 60;
 		Static62.anInt1941 = 0;
 		Static230.cameraAnticheatAngle = (int) (Math.random() * 80.0D) - 40;
-		Static272.anInt5214 = 0;
+		Static272.npcCount = 0;
 		for (i = 0; i < 2048; i++) {
 			Static159.players[i] = null;
 			Static115.playerAppearanceBuffer[i] = null;
@@ -92,9 +92,9 @@ public final class Static243 {
 		for (i = 0; i < 32768; i++) {
 			Static175.npcs[i] = null;
 		}
-		Static173.localPlayer = Static159.players[2047] = new Player();
-		Static217.aClass69_116.clear();
-		Static99.aClass69_64.clear();
+		Static173.localPlayer = Static159.players[2047] = new PlayerEntity();
+		Static217.projectiles.clear();
+		Static99.spotanims.clear();
 		if (Static159.levelObjStacks != null) {
 			for (i = 0; i < 4; i++) {
 				for (@Pc(3663) int local3663 = 0; local3663 < 104; local3663++) {
@@ -104,9 +104,9 @@ public final class Static243 {
 				}
 			}
 		}
-		Static26.spawnedLocations = new LinkedList();
+		Static26.spawnedLocations = new LinkList();
 		Static166.anInt4054 = 0;
-		Static9.anInt178 = 0;
+		Static9.friendCount = 0;
 		Static8.method121();
 		Static20.method601();
 		Static133.anInt5230 = 0;
@@ -152,9 +152,9 @@ public final class Static243 {
 			Static229.aClass136Array1[i] = new StockMarketOffer();
 		}
 		for (i = 0; i < 25; i++) {
-			Static99.anIntArray240[i] = 0;
+			Static99.skillLevel[i] = 0;
 			Static141.skillBaseLevel[i] = 0;
-			Static227.anIntArray446[i] = 0;
+			Static227.skillExperience[i] = 0;
 		}
 		if (GlRenderer.enabled) {
 			Static86.method1799();

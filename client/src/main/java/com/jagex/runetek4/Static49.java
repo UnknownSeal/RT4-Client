@@ -86,43 +86,43 @@ public final class Static49 {
 		Static57.in.accessBits();
 		@Pc(13) int local13 = Static57.in.gBit(8);
 		@Pc(22) int local22;
-		if (Static272.anInt5214 > local13) {
-			for (local22 = local13; local22 < Static272.anInt5214; local22++) {
-				Static52.removedIds[Static240.removedCount++] = Static33.anIntArray79[local22];
+		if (Static272.npcCount > local13) {
+			for (local22 = local13; local22 < Static272.npcCount; local22++) {
+				Static52.entityRemovalIds[Static240.entityRemovalCount++] = Static33.npcIds[local22];
 			}
 		}
-		if (Static272.anInt5214 < local13) {
+		if (Static272.npcCount < local13) {
 			throw new RuntimeException("gnpov1");
 		}
-		Static272.anInt5214 = 0;
+		Static272.npcCount = 0;
 		for (local22 = 0; local22 < local13; local22++) {
-			@Pc(61) int local61 = Static33.anIntArray79[local22];
+			@Pc(61) int local61 = Static33.npcIds[local22];
 			@Pc(65) NPCEntity local65 = Static175.npcs[local61];
 			@Pc(70) int local70 = Static57.in.gBit(1);
 			if (local70 == 0) {
-				Static33.anIntArray79[Static272.anInt5214++] = local61;
-				local65.anInt3430 = Static83.loopCycle;
+				Static33.npcIds[Static272.npcCount++] = local61;
+				local65.cycle = Static83.loopCycle;
 			} else {
 				@Pc(92) int local92 = Static57.in.gBit(2);
 				if (local92 == 0) {
-					Static33.anIntArray79[Static272.anInt5214++] = local61;
-					local65.anInt3430 = Static83.loopCycle;
-					Static44.anIntArray106[Static116.anInt2951++] = local61;
+					Static33.npcIds[Static272.npcCount++] = local61;
+					local65.cycle = Static83.loopCycle;
+					Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
 				} else {
 					@Pc(139) int local139;
 					@Pc(149) int local149;
 					if (local92 == 1) {
-						Static33.anIntArray79[Static272.anInt5214++] = local61;
-						local65.anInt3430 = Static83.loopCycle;
+						Static33.npcIds[Static272.npcCount++] = local61;
+						local65.cycle = Static83.loopCycle;
 						local139 = Static57.in.gBit(3);
 						local65.method2684(1, local139);
 						local149 = Static57.in.gBit(1);
 						if (local149 == 1) {
-							Static44.anIntArray106[Static116.anInt2951++] = local61;
+							Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
 						}
 					} else if (local92 == 2) {
-						Static33.anIntArray79[Static272.anInt5214++] = local61;
-						local65.anInt3430 = Static83.loopCycle;
+						Static33.npcIds[Static272.npcCount++] = local61;
+						local65.cycle = Static83.loopCycle;
 						if (Static57.in.gBit(1) == 1) {
 							local139 = Static57.in.gBit(3);
 							local65.method2684(2, local139);
@@ -134,10 +134,10 @@ public final class Static49 {
 						}
 						local139 = Static57.in.gBit(1);
 						if (local139 == 1) {
-							Static44.anIntArray106[Static116.anInt2951++] = local61;
+							Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
 						}
 					} else if (local92 == 3) {
-						Static52.removedIds[Static240.removedCount++] = local61;
+						Static52.entityRemovalIds[Static240.entityRemovalCount++] = local61;
 					}
 				}
 			}

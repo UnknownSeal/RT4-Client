@@ -17,7 +17,7 @@ public final class Static26 {
 	public static boolean focus;
 
 	@OriginalMember(owner = "client!ca", name = "X", descriptor = "Lclient!ih;")
-	public static LinkedList spawnedLocations = new LinkedList();
+	public static LinkList spawnedLocations = new LinkList();
 
 	@OriginalMember(owner = "client!ca", name = "cb", descriptor = "Lclient!na;")
 	public static final JagString aClass100_160 = Static165.method3165();
@@ -33,8 +33,8 @@ public final class Static26 {
 
 	@OriginalMember(owner = "client!ca", name = "h", descriptor = "(I)V")
 	public static void method740() {
-		@Pc(10) int local10 = (Static138.anInt3439 >> 10) + (Static225.originX >> 3);
-		@Pc(23) int local23 = (Static134.anInt3302 >> 10) + (Static142.originZ >> 3);
+		@Pc(10) int local10 = (Static138.cameraX >> 10) + (Static225.originX >> 3);
+		@Pc(23) int local23 = (Static134.cameraZ >> 10) + (Static142.originZ >> 3);
 		Static156.aByteArrayArray11 = new byte[18][];
 		Static35.anIntArray82 = new int[18];
 		Static191.aByteArrayArray15 = new byte[18][];

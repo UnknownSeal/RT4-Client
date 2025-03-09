@@ -56,7 +56,7 @@ public final class LocType {
 	public boolean forcedecor = false;
 
 	@OriginalMember(owner = "client!pb", name = "l", descriptor = "I")
-	public int height = 1;
+	public int length = 1;
 
 	@OriginalMember(owner = "client!pb", name = "C", descriptor = "Z")
 	public boolean renderUnderFeet = false;
@@ -89,13 +89,13 @@ public final class LocType {
 	public int cursor1 = -1;
 
 	@OriginalMember(owner = "client!pb", name = "w", descriptor = "I")
-	private int xoff = 0;
+	private int offsetx = 0;
 
 	@OriginalMember(owner = "client!pb", name = "W", descriptor = "I")
 	public int bgsound_mindelay = 0;
 
 	@OriginalMember(owner = "client!pb", name = "h", descriptor = "I")
-	public int mapelement = -1;
+	public int mapfunction = -1;
 
 	@OriginalMember(owner = "client!pb", name = "L", descriptor = "Z")
 	public boolean aBoolean214 = false;
@@ -140,25 +140,25 @@ public final class LocType {
 	public int cursor2 = -1;
 
 	@OriginalMember(owner = "client!pb", name = "pb", descriptor = "I")
-	public int blocksides = 0;
+	public int forceapproach = 0;
 
 	@OriginalMember(owner = "client!pb", name = "m", descriptor = "Z")
 	public boolean blockrange = true;
 
 	@OriginalMember(owner = "client!pb", name = "qb", descriptor = "I")
-	private int zoff = 0;
+	private int offsetz = 0;
 
 	@OriginalMember(owner = "client!pb", name = "c", descriptor = "I")
 	public int mapSceneAngleOffset = 0;
 
 	@OriginalMember(owner = "client!pb", name = "jb", descriptor = "I")
-	public int walloff = 16;
+	public int wallwidth = 16;
 
 	@OriginalMember(owner = "client!pb", name = "tb", descriptor = "Z")
 	public boolean mapsceneiconrotate = false;
 
 	@OriginalMember(owner = "client!pb", name = "N", descriptor = "I")
-	private int yoff = 0;
+	private int offsety = 0;
 
 	@OriginalMember(owner = "client!pb", name = "k", descriptor = "I")
 	public int bgsound_range = 0;
@@ -207,17 +207,17 @@ public final class LocType {
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "(Lclient!wa;II)V")
 	private void decode(@OriginalArg(0) Packet packet, @OriginalArg(1) int code) {
 		if (code == 1) {
-			int length = packet.g1();
-			if (length > 0) {
+			int count = packet.g1();
+			if (count > 0) {
 				if (this.shapes == null || Static87.aBoolean130) {
-					this.shapes = new int[length];
-					this.models = new int[length];
-					for (int index = 0; index < length; index++) {
-						this.shapes[index] = packet.g2();
-						this.models[index] = packet.g1();
+					this.shapes = new int[count];
+					this.models = new int[count];
+					for (int i = 0; i < count; i++) {
+						this.shapes[i] = packet.g2();
+						this.models[i] = packet.g1();
 					}
 				} else {
-					packet.pos += length * 3;
+					packet.pos += count * 3;
 				}
 			}
 		} else if (code == 2) {
@@ -238,7 +238,7 @@ public final class LocType {
 		} else if (code == 14) {
 			this.width = packet.g1();
 		} else if (code == 15) {
-			this.height = packet.g1();
+			this.length = packet.g1();
 		} else if (code == 17) {
 			this.blockwalk = 0;
 			this.blockrange = false;
@@ -260,7 +260,7 @@ public final class LocType {
 		} else if (code == 27) {
 			this.blockwalk = 1;
 		} else if (code == 28) {
-			this.walloff = packet.g1();
+			this.wallwidth = packet.g1();
 		} else if (code == 29) {
 			this.ambient = packet.g1s();
 		} else if (code == 39) {
@@ -293,7 +293,7 @@ public final class LocType {
 				this.recol_d_palette[index] = packet.g1s();
 			}
 		} else if (code == 60) {
-			this.mapelement = packet.g2();
+			this.mapfunction = packet.g2();
 		} else if (code == 62) {
 			this.mirror = true;
 		} else if (code == 64) {
@@ -305,13 +305,13 @@ public final class LocType {
 		} else if (code == 67) {
 			this.resizez = packet.g2();
 		} else if (code == 69) {
-			this.blocksides = packet.g1();
+			this.forceapproach = packet.g1();
 		} else if (code == 70) {
-			this.xoff = packet.g2s();
+			this.offsetx = packet.g2s();
 		} else if (code == 71) {
-			this.yoff = packet.g2s();
+			this.offsety = packet.g2s();
 		} else if (code == 72) {
-			this.zoff = packet.g2s();
+			this.offsetz = packet.g2s();
 		} else if (code == 73) {
 			this.forcedecor = true;
 		} else if (code == 74) {
@@ -411,6 +411,8 @@ public final class LocType {
 				}
 				this.params.pushNode(node, key);
 			}
+		} else {
+			System.out.println("Error unrecognised loc config code: " + code);
 		}
 	}
 
@@ -461,7 +463,7 @@ public final class LocType {
 		if (this.multivarbit != -1) {
 			i = Static155.method2945(this.multivarbit);
 		} else if (this.multivarp != -1) {
-			i = Static7.anIntArray75[this.multivarp];
+			i = Static7.varps[this.multivarp];
 		}
 		if (i < 0 || i >= this.multiloc.length - 1 || this.multiloc[i] == -1) {
 			@Pc(84) int local84 = this.multiloc[this.multiloc.length - 1];
@@ -472,14 +474,14 @@ public final class LocType {
 	}
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "(III)Lclient!gb;")
-	private ModelUnlit method3418(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		@Pc(7) ModelUnlit local7 = null;
-		@Pc(10) boolean local10 = this.mirror;
-		if (arg1 == 2 && arg0 > 3) {
-			local10 = !local10;
+	private ModelUnlit method3418(@OriginalArg(0) int rotation, @OriginalArg(1) int arg1) {
+		@Pc(7) ModelUnlit model = null;
+		@Pc(10) boolean flipped = this.mirror;
+		if (arg1 == 2 && rotation > 3) {
+			flipped = !flipped;
 		}
-		@Pc(46) int local46;
-		@Pc(48) int local48;
+		@Pc(46) int modelId;
+		@Pc(48) int modelId2;
 		if (this.models == null) {
 			if (arg1 != 10) {
 				return null;
@@ -487,98 +489,98 @@ public final class LocType {
 			if (this.shapes == null) {
 				return null;
 			}
-			local46 = this.shapes.length;
-			for (local48 = 0; local48 < local46; local48++) {
-				@Pc(60) int local60 = this.shapes[local48];
-				if (local10) {
+			modelId = this.shapes.length;
+			for (modelId2 = 0; modelId2 < modelId; modelId2++) {
+				@Pc(60) int local60 = this.shapes[modelId2];
+				if (flipped) {
 					local60 += 65536;
 				}
-				local7 = (ModelUnlit) Static169.aClass99_24.get(local60);
-				if (local7 == null) {
-					local7 = ModelUnlit.get(Static121.aClass153_45, local60 & 0xFFFF);
-					if (local7 == null) {
+				model = (ModelUnlit) Static169.modelCacheStatic.get(local60);
+				if (model == null) {
+					model = ModelUnlit.get(Static121.aClass153_45, local60 & 0xFFFF);
+					if (model == null) {
 						return null;
 					}
-					if (local10) {
-						local7.method1673();
+					if (flipped) {
+						model.rotateY180();
 					}
-					Static169.aClass99_24.method3095(local7, local60);
+					Static169.modelCacheStatic.put(model, local60);
 				}
-				if (local46 > 1) {
-					Static274.aClass8_Sub5Array5[local48] = local7;
+				if (modelId > 1) {
+					Static274.aClass8_Sub5Array5[modelId2] = model;
 				}
 			}
-			if (local46 > 1) {
-				local7 = new ModelUnlit(Static274.aClass8_Sub5Array5, local46);
+			if (modelId > 1) {
+				model = new ModelUnlit(Static274.aClass8_Sub5Array5, modelId);
 			}
 		} else {
-			local46 = -1;
-			for (local48 = 0; local48 < this.models.length; local48++) {
-				if (arg1 == this.models[local48]) {
-					local46 = local48;
+			modelId = -1;
+			for (modelId2 = 0; modelId2 < this.models.length; modelId2++) {
+				if (arg1 == this.models[modelId2]) {
+					modelId = modelId2;
 					break;
 				}
 			}
-			if (local46 == -1) {
+			if (modelId == -1) {
 				return null;
 			}
-			local48 = this.shapes[local46];
-			if (local10) {
-				local48 += 65536;
+			modelId2 = this.shapes[modelId];
+			if (flipped) {
+				modelId2 += 65536;
 			}
-			local7 = (ModelUnlit) Static169.aClass99_24.get(local48);
-			if (local7 == null) {
-				local7 = ModelUnlit.get(Static121.aClass153_45, local48 & 0xFFFF);
-				if (local7 == null) {
+			model = (ModelUnlit) Static169.modelCacheStatic.get(modelId2);
+			if (model == null) {
+				model = ModelUnlit.get(Static121.aClass153_45, modelId2 & 0xFFFF);
+				if (model == null) {
 					return null;
 				}
-				if (local10) {
-					local7.method1673();
+				if (flipped) {
+					model.rotateY180();
 				}
-				Static169.aClass99_24.method3095(local7, local48);
+				Static169.modelCacheStatic.put(model, modelId2);
 			}
 		}
-		@Pc(211) boolean local211;
-		local211 = this.resizex != 128 || this.resizey != 128 || this.resizez != 128;
+		@Pc(211) boolean scaled;
+		scaled = this.resizex != 128 || this.resizey != 128 || this.resizez != 128;
 
-		@Pc(230) boolean local230;
-		local230 = this.xoff != 0 || this.yoff != 0 || this.zoff != 0;
+		@Pc(230) boolean translated;
+		translated = this.offsetx != 0 || this.offsety != 0 || this.offsetz != 0;
 
-		@Pc(265) ModelUnlit local265 = new ModelUnlit(local7, arg0 == 0 && !local211 && !local230, this.recol_s == null, this.retex_s == null, true);
-		if (arg1 == 4 && arg0 > 3) {
-			local265.method1682();
-			local265.method1672(45, 0, -45);
+		@Pc(265) ModelUnlit modified = new ModelUnlit(model, rotation == 0 && !scaled && !translated, this.recol_s == null, this.retex_s == null, true);
+		if (arg1 == 4 && rotation > 3) {
+			modified.method1682();
+			modified.translate(45, 0, -45);
 		}
-		@Pc(285) int local285 = arg0 & 0x3;
+		@Pc(285) int local285 = rotation & 0x3;
 		if (local285 == 1) {
-			local265.method1662();
+			modified.method1662();
 		} else if (local285 == 2) {
-			local265.method1660();
+			modified.method1660();
 		} else if (local285 == 3) {
-			local265.method1689();
+			modified.method1689();
 		}
 		@Pc(315) int local315;
 		if (this.recol_s != null) {
 			for (local315 = 0; local315 < this.recol_s.length; local315++) {
 				if (this.recol_d_palette == null || this.recol_d_palette.length <= local315) {
-					local265.recolor(this.recol_s[local315], this.recol_d[local315]);
+					modified.recolor(this.recol_s[local315], this.recol_d[local315]);
 				} else {
-					local265.recolor(this.recol_s[local315], Static62.aShortArray19[this.recol_d_palette[local315] & 0xFF]);
+					modified.recolor(this.recol_s[local315], Static62.aShortArray19[this.recol_d_palette[local315] & 0xFF]);
 				}
 			}
 		}
 		if (this.retex_s != null) {
 			for (local315 = 0; local315 < this.retex_s.length; local315++) {
-				local265.retexture(this.retex_s[local315], this.retex_d[local315]);
+				modified.retexture(this.retex_s[local315], this.retex_d[local315]);
 			}
 		}
-		if (local211) {
-			local265.method1665(this.resizex, this.resizey, this.resizez);
+		if (scaled) {
+			modified.scale(this.resizex, this.resizey, this.resizez);
 		}
-		if (local230) {
-			local265.method1672(this.xoff, this.yoff, this.zoff);
+		if (translated) {
+			modified.translate(this.offsetx, this.offsety, this.offsetz);
 		}
-		return local265;
+		return modified;
 	}
 
 	@OriginalMember(owner = "client!pb", name = "d", descriptor = "(I)Z")
@@ -644,7 +646,7 @@ public final class LocType {
 			if (arg1) {
 				local135 = ~local135;
 			}
-			local79 = (GlModel) Static169.aClass99_24.get(local135);
+			local79 = (GlModel) Static169.modelCacheStatic.get(local135);
 			if (local79 == null) {
 				@Pc(175) ModelUnlit local175 = null;
 				for (local177 = 0; local177 < local24; local177++) {
@@ -660,7 +662,7 @@ public final class LocType {
 					local175 = new ModelUnlit(Static274.aClass8_Sub5Array5, local24);
 				}
 				local79 = new GlModel(local175, local10, local17, arg1);
-				Static169.aClass99_24.method3095(local79, local135);
+				Static169.modelCacheStatic.put(local79, local135);
 			}
 		} else {
 			local24 = -1;
@@ -678,22 +680,22 @@ public final class LocType {
 			if (arg1) {
 				local26 += 65536;
 			}
-			local79 = (GlModel) Static169.aClass99_24.get(local26);
+			local79 = (GlModel) Static169.modelCacheStatic.get(local26);
 			if (local79 == null) {
 				@Pc(90) ModelUnlit local90 = ModelUnlit.get(Static121.aClass153_45, local26 & 0xFFFF);
 				if (local90 == null) {
 					return null;
 				}
 				local79 = new GlModel(local90, local10, local17, arg1);
-				Static169.aClass99_24.method3095(local79, local26);
+				Static169.modelCacheStatic.put(local79, local26);
 			}
 		}
 		@Pc(236) boolean local236 = this.mirror;
 		if (arg2 == 2 && arg0 > 3) {
 			local236 = !local236;
 		}
-		@Pc(264) boolean local264 = this.resizey == 128 && this.yoff == 0;
-		@Pc(294) boolean local294 = arg0 == 0 && this.resizex == 128 && this.resizez == 128 && this.xoff == 0 && this.zoff == 0 && !local236;
+		@Pc(264) boolean local264 = this.resizey == 128 && this.offsety == 0;
+		@Pc(294) boolean local294 = arg0 == 0 && this.resizex == 128 && this.resizez == 128 && this.offsetx == 0 && this.offsetz == 0 && !local236;
 		@Pc(351) GlModel local351 = local79.method4117(local294, local264, this.recol_s == null, local79.method4094() == local10, arg0 == 0 && !local236, true, local17 == local79.method4115(), !local236, this.retex_s == null);
 		if (local236) {
 			local351.method4122();
@@ -723,8 +725,8 @@ public final class LocType {
 		if (this.resizex != 128 || this.resizey != 128 || this.resizez != 128) {
 			local351.resize(this.resizex, this.resizey, this.resizez);
 		}
-		if (this.xoff != 0 || this.yoff != 0 || this.zoff != 0) {
-			local351.translate(this.xoff, this.yoff, this.zoff);
+		if (this.offsetx != 0 || this.offsety != 0 || this.offsetz != 0) {
+			local351.translate(this.offsetx, this.offsety, this.offsetz);
 		}
 		if (local10 != local351.method4094()) {
 			local351.method4105(local10);
@@ -744,10 +746,10 @@ public final class LocType {
 			} else {
 				local29 = arg0 + ((long) this.anInt4426 << 10) + ((long) arg3 << 3);
 			}
-			@Pc(225) LocEntity local225 = (LocEntity) Static93.aClass99_14.get(local29);
+			@Pc(225) LocEntity loc = (LocEntity) Static93.aClass99_14.get(local29);
 			@Pc(235) GlModel local235;
 			@Pc(265) SoftwareIndexedSprite local265;
-			if (local225 == null) {
+			if (loc == null) {
 				local235 = this.method3427(arg0, false, arg3);
 				if (local235 == null) {
 					Static171.aLocEntity_1.model = null;
@@ -762,13 +764,13 @@ public final class LocType {
 				} else {
 					local265 = null;
 				}
-				local225 = new LocEntity();
-				local225.model = local235;
-				local225.sprite = local265;
-				Static93.aClass99_14.method3095(local225, local29);
+				loc = new LocEntity();
+				loc.model = local235;
+				loc.sprite = local265;
+				Static93.aClass99_14.put(loc, local29);
 			} else {
-				local235 = (GlModel) local225.model;
-				local265 = local225.sprite;
+				local235 = (GlModel) loc.model;
+				local265 = loc.sprite;
 			}
 			@Pc(298) boolean local298 = this.sharelight & arg6;
 			@Pc(330) GlModel local330 = local235.method4117(this.hillskew_mode != 3, this.hillskew_mode == 0, true, true, true, !local298, true, true, true);
@@ -812,7 +814,7 @@ public final class LocType {
 			} else {
 				local60 = new SoftwareModel(local69, this.ambient + 64, this.contrast * 5 + 768, -50, -10, -50);
 			}
-			Static93.aClass99_14.method3095(local60, local29);
+			Static93.aClass99_14.put(local60, local29);
 		}
 		if (local50) {
 			local60 = ((ModelUnlit) local60).method1675();
@@ -844,7 +846,7 @@ public final class LocType {
 					return null;
 				}
 				local195 = new SoftwareModel(local204, this.ambient + 64, this.contrast * 5 + 768, -50, -10, -50);
-				Static262.aClass99_36.method3095(local195, local30);
+				Static262.aClass99_36.put(local195, local30);
 			}
 			@Pc(234) boolean local234 = false;
 			if (arg4 != null) {
@@ -880,7 +882,7 @@ public final class LocType {
 			}
 			local46.method4099();
 			local46.method4111(false, false, false, false, false, true);
-			Static262.aClass99_36.method3095(local46, local30);
+			Static262.aClass99_36.put(local46, local30);
 		}
 		@Pc(80) boolean local80 = false;
 		@Pc(82) GlModel local82 = local46;

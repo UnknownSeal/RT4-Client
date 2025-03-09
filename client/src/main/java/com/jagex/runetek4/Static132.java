@@ -25,7 +25,7 @@ public final class Static132 {
 	public static void method2605(@OriginalArg(0) boolean arg0, @OriginalArg(1) Class3_Sub31 arg1) {
 		@Pc(9) int local9 = (int) arg1.nodeId;
 		@Pc(16) int local16 = arg1.anInt5878;
-		arg1.remove();
+		arg1.unlink();
 		if (arg0) {
 			Static109.method2275(local16);
 		}
@@ -102,10 +102,10 @@ public final class Static132 {
 		@Pc(21) int local21 = local20 = local7 + 128;
 		@Pc(26) int local26;
 		@Pc(27) int local27 = local26 = local15 + 128;
-		@Pc(37) int local37 = Static83.anIntArrayArrayArray4[arg1][arg6][arg7] - Static162.anInt3947;
-		@Pc(49) int local49 = Static83.anIntArrayArrayArray4[arg1][arg6 + 1][arg7] - Static162.anInt3947;
-		@Pc(63) int local63 = Static83.anIntArrayArrayArray4[arg1][arg6 + 1][arg7 + 1] - Static162.anInt3947;
-		@Pc(75) int local75 = Static83.anIntArrayArrayArray4[arg1][arg6][arg7 + 1] - Static162.anInt3947;
+		@Pc(37) int local37 = Static83.levelHeightMap[arg1][arg6][arg7] - Static162.anInt3947;
+		@Pc(49) int local49 = Static83.levelHeightMap[arg1][arg6 + 1][arg7] - Static162.anInt3947;
+		@Pc(63) int local63 = Static83.levelHeightMap[arg1][arg6 + 1][arg7 + 1] - Static162.anInt3947;
+		@Pc(75) int local75 = Static83.levelHeightMap[arg1][arg6][arg7 + 1] - Static162.anInt3947;
 		@Pc(85) int local85 = local15 * arg4 + local7 * arg5 >> 16;
 		@Pc(95) int local95 = local15 * arg5 - local7 * arg4 >> 16;
 		@Pc(97) int local97 = local85;

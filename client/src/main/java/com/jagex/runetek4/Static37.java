@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.scene.entities.NPCEntity;
 import com.jagex.runetek4.game.scene.entities.PathingEntity;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -36,7 +36,7 @@ public final class Static37 {
 				local36 = arg0.z - local26.z;
 				local43 = arg0.x - local26.x;
 				if (local43 != 0 || local36 != 0) {
-					arg0.anInt3400 = (int) (Math.atan2((double) local43, (double) local36) * 325.949D) & 0x7FF;
+					arg0.dstYaw = (int) (Math.atan2((double) local43, (double) local36) * 325.949D) & 0x7FF;
 				}
 			}
 		}
@@ -44,15 +44,15 @@ public final class Static37 {
 		@Pc(70) int local70;
 		if (arg0.anInt3370 >= 32768) {
 			local70 = arg0.anInt3370 - 32768;
-			if (local70 == Static16.anInt549) {
+			if (local70 == Static16.localPid) {
 				local70 = 2047;
 			}
-			@Pc(83) Player local83 = Static159.players[local70];
+			@Pc(83) PlayerEntity local83 = Static159.players[local70];
 			if (local83 != null) {
 				local94 = arg0.z - local83.z;
 				local36 = arg0.x - local83.x;
 				if (local36 != 0 || local94 != 0) {
-					arg0.anInt3400 = (int) (Math.atan2((double) local36, (double) local94) * 325.949D) & 0x7FF;
+					arg0.dstYaw = (int) (Math.atan2((double) local36, (double) local94) * 325.949D) & 0x7FF;
 				}
 			}
 		}
@@ -60,12 +60,12 @@ public final class Static37 {
 			local70 = arg0.x - (arg0.anInt3382 - Static225.originX - Static225.originX) * 64;
 			local43 = arg0.z - (arg0.anInt3363 - Static142.originZ - Static142.originZ) * 64;
 			if (local70 != 0 || local43 != 0) {
-				arg0.anInt3400 = (int) (Math.atan2((double) local70, (double) local43) * 325.949D) & 0x7FF;
+				arg0.dstYaw = (int) (Math.atan2((double) local70, (double) local43) * 325.949D) & 0x7FF;
 			}
 			arg0.anInt3363 = 0;
 			arg0.anInt3382 = 0;
 		}
-		local70 = arg0.anInt3400 - arg0.anInt3381 & 0x7FF;
+		local70 = arg0.dstYaw - arg0.anInt3381 & 0x7FF;
 		if (local70 == 0) {
 			arg0.anInt3385 = 0;
 			arg0.anInt3414 = 0;
@@ -76,7 +76,7 @@ public final class Static37 {
 				arg0.anInt3381 -= arg0.anInt3376;
 				local226 = true;
 				if (local70 < arg0.anInt3376 || local70 > 2048 - arg0.anInt3376) {
-					arg0.anInt3381 = arg0.anInt3400;
+					arg0.anInt3381 = arg0.dstYaw;
 					local226 = false;
 				}
 				if (local13.anInt1037 == arg0.anInt3366 && (arg0.anInt3385 > 25 || local226)) {
@@ -91,7 +91,7 @@ public final class Static37 {
 				arg0.anInt3381 += arg0.anInt3376;
 				if (arg0.anInt3376 > local70 || local70 > 2048 - arg0.anInt3376) {
 					local226 = false;
-					arg0.anInt3381 = arg0.anInt3400;
+					arg0.anInt3381 = arg0.dstYaw;
 				}
 				if (local13.anInt1037 == arg0.anInt3366 && (arg0.anInt3385 > 25 || local226)) {
 					if (local13.anInt1067 == -1) {
@@ -110,7 +110,7 @@ public final class Static37 {
 					arg0.anInt3366 = local13.anInt1067;
 				}
 			}
-			local43 = arg0.anInt3400 << 5;
+			local43 = arg0.dstYaw << 5;
 			if (local43 != arg0.anInt3402) {
 				arg0.anInt3387 = 0;
 				arg0.anInt3402 = local43;

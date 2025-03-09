@@ -85,7 +85,7 @@ public final class SoundBank {
 			if (local33 == null) {
 				return null;
 			} else {
-				local53.remove();
+				local53.unlink();
 				this.aClass133_12.pushNode(local33, local26);
 				return local33;
 			}

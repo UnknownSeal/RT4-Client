@@ -10,10 +10,10 @@ import org.openrs2.deob.annotation.Pc;
 public final class MixerPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "t", descriptor = "Lclient!ih;")
-	private final LinkedList aClass69_43 = new LinkedList();
+	private final LinkList aClass69_43 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "u", descriptor = "Lclient!ih;")
-	private final LinkedList aClass69_44 = new LinkedList();
+	private final LinkList aClass69_44 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "v", descriptor = "I")
 	private int anInt1780 = 0;
@@ -23,7 +23,7 @@ public final class MixerPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "a", descriptor = "(Lclient!cc;)V")
 	private void method1342(@OriginalArg(0) MixerListener arg0) {
-		arg0.remove();
+		arg0.unlink();
 		arg0.method780();
 		@Pc(9) Node local9 = this.aClass69_44.aClass3_109.prev;
 		if (local9 == this.aClass69_44.aClass3_109) {
@@ -105,7 +105,7 @@ public final class MixerPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "b", descriptor = "(Lclient!qb;)V")
 	public final synchronized void removeSubStream(@OriginalArg(0) PcmStream arg0) {
-		arg0.remove();
+		arg0.unlink();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "a", descriptor = "()I")

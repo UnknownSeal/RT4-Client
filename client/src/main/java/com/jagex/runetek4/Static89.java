@@ -241,8 +241,8 @@ public final class Static89 {
 				}
 			}
 		}
-		Static110.method2281(Static178.anInt4247, Static173.localPlayer.x, Static173.localPlayer.z, Static55.level);
-		Static178.anInt4247 = 0;
+		Static110.method2281(Static178.sceneDelta, Static173.localPlayer.x, Static173.localPlayer.z, Static55.currentLevel);
+		Static178.sceneDelta = 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(IIIII)V")

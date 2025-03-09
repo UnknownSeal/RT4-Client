@@ -22,7 +22,7 @@ public final class Static178 {
 	public static short aShort25 = 256;
 
 	@OriginalMember(owner = "runetek4.client!od", name = "i", descriptor = "I")
-	public static int anInt4247 = 0;
+	public static int sceneDelta = 0;
 
 	@OriginalMember(owner = "runetek4.client!od", name = "n", descriptor = "Z")
 	public static boolean aBoolean203 = false;

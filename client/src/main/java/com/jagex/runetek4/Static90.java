@@ -23,7 +23,7 @@ public final class Static90 {
 	@OriginalMember(owner = "runetek4.client!hb", name = "c", descriptor = "(I)V")
 	public static void method1854() {
 		Static179.aClass99_25.method3104();
-		Static169.aClass99_24.method3104();
+		Static169.modelCacheStatic.method3104();
 		Static93.aClass99_14.method3104();
 		Static262.aClass99_36.method3104();
 	}
@@ -45,7 +45,7 @@ public final class Static90 {
 			local10.decode(new Packet(local21));
 		}
 		local10.postDecode();
-		Static262.aClass99_34.method3095(local10, (long) arg0);
+		Static262.aClass99_34.put(local10, (long) arg0);
 		return local10;
 	}
 

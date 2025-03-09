@@ -14,7 +14,7 @@ public final class Static6 {
 	public static final JagString aClass100_17 = Static28.parse("0");
 
 	@OriginalMember(owner = "client!ag", name = "bb", descriptor = "Lclient!na;")
-	public static final JagString aClass100_18 = Static28.parse("<col=40ff00>");
+	public static final JagString GREEN2 = Static28.parse("<col=40ff00>");
 
 	@OriginalMember(owner = "client!ag", name = "cb", descriptor = "[Lclient!cl;")
 	public static final AnimFrameset[] aClass3_Sub2_Sub7Array1 = new AnimFrameset[14];
@@ -64,7 +64,7 @@ public final class Static6 {
 	@OriginalMember(owner = "client!ag", name = "a", descriptor = "(IIIIIIIII)V")
 	public static void method86(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
 		if (Static245.load(arg0)) {
-			Static87.method1809(arg1, arg7, arg3, Static241.components[arg0], arg2, -1, arg6, arg5, arg4);
+			Static87.drawGame(arg1, arg7, arg3, Static241.components[arg0], arg2, -1, arg6, arg5, arg4);
 		} else if (arg4 == -1) {
 			for (@Pc(27) int local27 = 0; local27 < 100; local27++) {
 				Static186.aBooleanArray100[local27] = true;

@@ -60,7 +60,7 @@ public final class Js5 {
 			}
 			@Pc(85) byte[] bytes = new byte[unpackedLength];
 			if (type == 1) {
-				Bzip2Decompressor.method3316(bytes, unpackedLength, src, len);
+				BZip2.read(bytes, unpackedLength, src, len);
 			} else {
 				Static156.aClass56_1.method1842(bytes, packet);
 			}

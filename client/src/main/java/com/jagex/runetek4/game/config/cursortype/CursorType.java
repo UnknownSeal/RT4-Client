@@ -51,7 +51,7 @@ public final class CursorType {
 		}
 		local7 = Static80.method3613(Static243.aClass153_97, this.graphic);
 		if (local7 != null) {
-			Static7.aClass99_5.method3095(local7, this.graphic);
+			Static7.aClass99_5.put(local7, this.graphic);
 		}
 		return local7;
 	}

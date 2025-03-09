@@ -30,7 +30,7 @@ public final class Static114 {
 
 	@OriginalMember(owner = "runetek4.client!j", name = "c", descriptor = "(I)V")
 	public static void method4625() {
-		Static204.aClass69_113 = new LinkedList();
+		Static204.aClass69_113 = new LinkList();
 	}
 
 	@OriginalMember(owner = "runetek4.client!j", name = "a", descriptor = "([BI)Lclient!dd;")

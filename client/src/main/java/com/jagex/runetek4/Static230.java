@@ -173,7 +173,7 @@ public final class Static230 {
 			} else {
 				local48 = Static34.method882(new JagString[] { local48, Static263.aClass100_1082, Static33.method873(MonotonicTime.get() + 94608000000L), Static64.MAX_AGE, Static154.method2929(94608000L) });
 			}
-			Static34.method882(new JagString[] { Static221.aClass100_821, local48, Static223.aClass100_946 }).method3134(GameShell.signLink.anApplet2);
+			Static34.method882(new JagString[] { BZip2State.aClass100_821, local48, Static223.aClass100_946 }).method3134(GameShell.signLink.anApplet2);
 		} catch (@Pc(124) Throwable local124) {
 		}
 	}

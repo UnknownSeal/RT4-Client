@@ -18,7 +18,7 @@ public final class Static258 {
 	@OriginalMember(owner = "runetek4.client!va", name = "b", descriptor = "(II)V")
 	public static void method4415() {
 		Static179.aClass99_25.method3102(5);
-		Static169.aClass99_24.method3102(5);
+		Static169.modelCacheStatic.method3102(5);
 		Static93.aClass99_14.method3102(5);
 		Static262.aClass99_36.method3102(5);
 	}
@@ -32,7 +32,7 @@ public final class Static258 {
 		if (arg2.anInt530 == 2 && !Static241.aBoolean302) {
 			local47 = Static97.method1963(arg2);
 			if (local47 != null) {
-				Static98.method1966(-1, 0L, Static34.method882(new JagString[] { Static42.aClass100_332, arg2.aClass100_85 }), -1, (short) 32, local47, arg2.anInt507);
+				Static98.method1966(-1, 0L, Static34.method882(new JagString[] { Static42.GREEN, arg2.aClass100_85 }), -1, (short) 32, local47, arg2.anInt507);
 			}
 		}
 		if (arg2.anInt530 == 3) {
@@ -62,9 +62,9 @@ public final class Static258 {
 					if (arg1 >= local195 && local202 <= arg0 && local195 + 32 > arg1 && local202 + 32 > arg0) {
 						Static169.aClass13_18 = arg2;
 						Static18.anInt588 = local171;
-						if (arg2.objTypes[local171] > 0) {
+						if (arg2.invSlotObjId[local171] > 0) {
 							@Pc(267) ServerActiveProperties local267 = Static36.method940(arg2);
-							@Pc(276) ObjType local276 = Static71.get(arg2.objTypes[local171] - 1);
+							@Pc(276) ObjType local276 = Static71.get(arg2.invSlotObjId[local171] - 1);
 							if (Static260.anInt5014 == 1 && local267.method510()) {
 								if (Static224.anInt5062 != arg2.anInt507 || Static185.anInt4370 != local171) {
 									Static98.method1966(-1, (long) local276.anInt2354, Static34.method882(new JagString[] { Static34.aClass100_203, Static223.aClass100_947, local276.name}), local171, (short) 40, LocalizedText.USE, arg2.anInt507);

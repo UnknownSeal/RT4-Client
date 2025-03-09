@@ -20,12 +20,12 @@ public final class Static234 {
 	public static final int[] anIntArray456 = new int[] { -1, 0, 8, 0, 2, 0, 0, 0, 0, 12, 0, 1, 0, 3, 7, 0, 15, 6, 0, 0, 4, 7, -2, -1, 2, 0, 2, 8, 0, 0, 0, 0, -2, 5, 0, 0, 8, 3, 6, 0, 0, 0, -1, 0, -1, 0, 0, 6, -2, 0, 12, 0, 0, 0, -1, -2, 10, 0, 0, 0, 3, 0, -1, 0, 0, 5, 6, 0, 0, 8, -1, -1, 0, 8, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 6, 2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 5, 0, 0, -2, 0, 0, 0, 0, 0, 12, 2, 0, -2, -2, 20, 0, 0, 10, 0, 15, 0, -1, 0, 8, -2, 0, 0, 0, 8, 0, 12, 0, 0, 7, 0, 0, 0, 0, 0, -1, -1, 0, 4, 5, 0, 0, 0, 6, 0, 0, 0, 0, 8, 9, 0, 0, 0, 2, -1, 0, -2, 0, 4, 14, 0, 0, 0, 24, 0, -2, 5, 0, 0, 0, 10, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 2, 1, 0, 0, 2, -1, 1, 0, 0, 0, 0, 14, 0, 0, 0, 0, 10, 5, 0, 0, 0, 0, 0, -2, 0, 0, 9, 0, 0, 8, 0, 0, 0, 0, -2, 6, 0, 0, 0, -2, 0, 3, 0, 1, 7, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 3, 0, 0 };
 
 	@OriginalMember(owner = "runetek4.client!ta", name = "B", descriptor = "I")
-	public static int anInt5245 = 0;
+	public static int cameraPitchClamp = 0;
 
 	@OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "(I)V")
 	public static void method4014() {
-		for (@Pc(3) int local3 = 0; local3 < Static116.anInt2951; local3++) {
-			@Pc(10) int local10 = Static44.anIntArray106[local3];
+		for (@Pc(3) int local3 = 0; local3 < Static116.entityUpdateCount; local3++) {
+			@Pc(10) int local10 = Static44.entityUpdateIds[local3];
 			@Pc(14) NPCEntity local14 = Static175.npcs[local10];
 			@Pc(18) int local18 = Static57.in.g1();
 			if ((local18 & 0x8) != 0) {
@@ -66,11 +66,11 @@ public final class Static234 {
 				}
 				info = Static57.in.g4me();
 				@Pc(147) boolean local147 = true;
-				if (local43 != -1 && local14.anInt3432 != -1 && Static36.method941(Static34.method877(local43).anInt1754).priority < Static36.method941(Static34.method877(local14.anInt3432).anInt1754).priority) {
+				if (local43 != -1 && local14.spotanimFrame != -1 && Static36.method941(Static34.method877(local43).anInt1754).priority < Static36.method941(Static34.method877(local14.spotanimFrame).anInt1754).priority) {
 					local147 = false;
 				}
 				if (local147) {
-					local14.anInt3432 = local43;
+					local14.spotanimFrame = local43;
 					local14.spotanimLastCycle = (info & 0xFFFF) + Static83.loopCycle;
 					local14.anInt3361 = 0;
 					local14.spotanimId = 0;
@@ -79,8 +79,8 @@ public final class Static234 {
 					if (local14.spotanimLastCycle > Static83.loopCycle) {
 						local14.spotanimId = -1;
 					}
-					if (local14.anInt3432 != -1 && local14.spotanimLastCycle == Static83.loopCycle) {
-						@Pc(227) int local227 = Static34.method877(local14.anInt3432).anInt1754;
+					if (local14.spotanimFrame != -1 && local14.spotanimLastCycle == Static83.loopCycle) {
+						@Pc(227) int local227 = Static34.method877(local14.spotanimFrame).anInt1754;
 						if (local227 != -1) {
 							@Pc(236) SeqType local236 = Static36.method941(local227);
 							if (local236 != null && local236.anIntArray473 != null) {
@@ -91,14 +91,14 @@ public final class Static234 {
 				}
 			}
 			if ((local18 & 0x1) != 0) {
-				if (local14.npcType.hasBackgroundSound()) {
+				if (local14.type.hasBackgroundSound()) {
 					Static91.method1877(local14);
 				}
 				local14.method2698(Static214.get(Static57.in.g2le()));
-				local14.setSize(local14.npcType.size);
-				local14.anInt3365 = local14.npcType.bas;
-				if (local14.npcType.hasBackgroundSound()) {
-					AreaSoundManager.add(local14.pathTileZ[0], null, 0, local14, local14.pathTileX[0], Static55.level, null);
+				local14.setSize(local14.type.size);
+				local14.anInt3365 = local14.type.bas;
+				if (local14.type.hasBackgroundSound()) {
+					AreaSoundManager.add(local14.pathTileZ[0], null, 0, local14, local14.pathTileX[0], Static55.currentLevel, null);
 				}
 			}
 			if ((local18 & 0x20) != 0) {

@@ -14,7 +14,7 @@ public final class Static116 {
 	public static final JagString aClass100_583 = Static28.parse("(Y<)4col>");
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "m", descriptor = "I")
-	public static int anInt2951 = 0;
+	public static int entityUpdateCount = 0;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "n", descriptor = "I")
 	public static int anInt2952 = 0;

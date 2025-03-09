@@ -95,7 +95,7 @@ public final class Static2 {
 		@Pc(61) int local61 = 0;
 		@Pc(64) int local64 = local53 + 1;
 		Static84.anIntArray209[0] = arg3;
-		@Pc(71) int[][] local71 = Static148.levelCollisionMap[Static55.level].flags;
+		@Pc(71) int[][] local71 = Static148.levelCollisionMap[Static55.currentLevel].flags;
 		@Pc(193) int local193;
 		while (local61 != local64) {
 			local3 = Static259.anIntArray514[local61];
@@ -106,16 +106,16 @@ public final class Static2 {
 				break;
 			}
 			if (arg1 != 0) {
-				if ((arg1 < 5 || arg1 == 10) && Static148.levelCollisionMap[Static55.level].method3042(arg4, local3, local8, arg8, arg1 - 1, 2, arg7)) {
+				if ((arg1 < 5 || arg1 == 10) && Static148.levelCollisionMap[Static55.currentLevel].method3042(arg4, local3, local8, arg8, arg1 - 1, 2, arg7)) {
 					local59 = true;
 					break;
 				}
-				if (arg1 < 10 && Static148.levelCollisionMap[Static55.level].method3046(arg4, arg1 - 1, arg8, local8, 2, arg7, local3)) {
+				if (arg1 < 10 && Static148.levelCollisionMap[Static55.currentLevel].method3046(arg4, arg1 - 1, arg8, local8, 2, arg7, local3)) {
 					local59 = true;
 					break;
 				}
 			}
-			if (arg0 != 0 && arg6 != 0 && Static148.levelCollisionMap[Static55.level].method3052(arg8, local8, local3, 2, arg0, arg2, arg4, arg6)) {
+			if (arg0 != 0 && arg6 != 0 && Static148.levelCollisionMap[Static55.currentLevel].method3052(arg8, local8, local3, 2, arg0, arg2, arg4, arg6)) {
 				local59 = true;
 				break;
 			}
@@ -177,7 +177,7 @@ public final class Static2 {
 				Static167.anIntArrayArray31[local3 + 1][local8 + 1] = local193;
 			}
 		}
-		Static221.tryMoveNearest = 0;
+		BZip2State.tryMoveNearest = 0;
 		@Pc(921) int local921;
 		if (!local59) {
 			if (!arg5) {
@@ -216,7 +216,7 @@ public final class Static2 {
 			if (arg10 == local3 && local8 == arg3) {
 				return false;
 			}
-			Static221.tryMoveNearest = 1;
+			BZip2State.tryMoveNearest = 1;
 		}
 		@Pc(1121) byte local1121 = 0;
 		Static259.anIntArray514[0] = local3;

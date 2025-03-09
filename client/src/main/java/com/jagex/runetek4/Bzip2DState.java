@@ -13,10 +13,10 @@ public final class Bzip2DState {
 	public byte[] aByteArray3;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "o", descriptor = "I")
-	public int anInt392;
+	public int save_nblock;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "u", descriptor = "I")
-	public int anInt394;
+	public int avail_out;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "v", descriptor = "[B")
 	public byte[] aByteArray4;
@@ -28,16 +28,16 @@ public final class Bzip2DState {
 	public int anInt396;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "z", descriptor = "I")
-	public int anInt397;
+	public int c_nblock_used;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "B", descriptor = "I")
-	public int anInt398;
+	public int tPos;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "D", descriptor = "I")
-	public int anInt399;
+	public int origPtr;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "F", descriptor = "I")
-	public int anInt401;
+	public int nInUse;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "I", descriptor = "I")
 	public int anInt402;
@@ -46,59 +46,59 @@ public final class Bzip2DState {
 	public int anInt403;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "K", descriptor = "I")
-	public int anInt404;
+	public int blockSize100k;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "L", descriptor = "I")
-	public int anInt405;
+	public int state_out_len;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "P", descriptor = "I")
 	public int anInt407;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "b", descriptor = "[B")
-	public final byte[] aByteArray1 = new byte[4096];
+	public final byte[] mtfa = new byte[4096];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "f", descriptor = "[Z")
-	public final boolean[] aBooleanArray13 = new boolean[256];
+	public final boolean[] inUse = new boolean[256];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "d", descriptor = "[[I")
-	public final int[][] anIntArrayArray2 = new int[6][258];
+	public final int[][] perm = new int[6][258];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "h", descriptor = "[B")
-	public final byte[] aByteArray2 = new byte[256];
+	public final byte[] seqToUnseq = new byte[256];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "a", descriptor = "[[I")
-	public final int[][] anIntArrayArray1 = new int[6][258];
+	public final int[][] base = new int[6][258];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "l", descriptor = "I")
 	public int anInt390 = 0;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "i", descriptor = "[[I")
-	public final int[][] anIntArrayArray3 = new int[6][258];
+	public final int[][] limit = new int[6][258];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "j", descriptor = "I")
 	public int anInt389 = 0;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "C", descriptor = "[I")
-	public final int[] anIntArray26 = new int[256];
+	public final int[] unzftab = new int[256];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "p", descriptor = "[I")
-	public final int[] anIntArray24 = new int[257];
+	public final int[] cftab = new int[257];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "y", descriptor = "[B")
-	public final byte[] aByteArray5 = new byte[18002];
+	public final byte[] selector = new byte[18002];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "r", descriptor = "[Z")
-	public final boolean[] aBooleanArray14 = new boolean[16];
+	public final boolean[] inUse16 = new boolean[16];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "q", descriptor = "[I")
-	public final int[] anIntArray25 = new int[16];
+	public final int[] mtfbase = new int[16];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "H", descriptor = "[B")
-	public final byte[] aByteArray6 = new byte[18002];
+	public final byte[] selectorMtf = new byte[18002];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "G", descriptor = "[I")
-	public final int[] anIntArray27 = new int[6];
+	public final int[] minLens = new int[6];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "O", descriptor = "[[B")
-	public final byte[][] aByteArrayArray3 = new byte[6][258];
+	public final byte[][] len = new byte[6][258];
 }

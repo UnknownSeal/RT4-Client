@@ -26,7 +26,7 @@ public final class Static25 {
 			if (Static228.anInt5105 == Static102.anInt2678) {
 				return false;
 			} else {
-				Static102.keyCode = Static221.anIntArray375[Static102.anInt2678];
+				Static102.keyCode = BZip2State.anIntArray375[Static102.anInt2678];
 				Static193.keyChar = Static264.anIntArray413[Static102.anInt2678];
 				Static102.anInt2678 = Static102.anInt2678 + 1 & 0x7F;
 				return true;

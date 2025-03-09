@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -26,40 +26,40 @@ public final class Static225 {
 	public static final int[] anIntArray445 = new int[] { 12543016, 15504954, 15914854, 16773818 };
 
 	@OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "(I)V")
-	public static void method3889() {
+	public static void getPlayerNewVis() {
 		while (true) {
 			if (Static57.in.bitsAvailable(Static223.packetSize) >= 11) {
-				@Pc(20) int local20 = Static57.in.gBit(11);
-				if (local20 != 2047) {
+				@Pc(20) int index = Static57.in.gBit(11);
+				if (index != 2047) {
 					@Pc(27) boolean local27 = false;
-					if (Static159.players[local20] == null) {
-						Static159.players[local20] = new Player();
+					if (Static159.players[index] == null) {
+						Static159.players[index] = new PlayerEntity();
 						local27 = true;
-						if (Static115.playerAppearanceBuffer[local20] != null) {
-							Static159.players[local20].method1262(Static115.playerAppearanceBuffer[local20]);
+						if (Static115.playerAppearanceBuffer[index] != null) {
+							Static159.players[index].read(Static115.playerAppearanceBuffer[index]);
 						}
 					}
-					Static105.ids[Static267.size++] = local20;
-					@Pc(65) Player local65 = Static159.players[local20];
-					local65.anInt3430 = Static83.loopCycle;
+					Static105.playerIds[Static267.playerCount++] = index;
+					@Pc(65) PlayerEntity player = Static159.players[index];
+					player.cycle = Static83.loopCycle;
 					@Pc(73) int local73 = Static57.in.gBit(1);
 					if (local73 == 1) {
-						Static44.anIntArray106[Static116.anInt2951++] = local20;
+						Static44.entityUpdateIds[Static116.entityUpdateCount++] = index;
 					}
-					@Pc(92) int local92 = Static57.in.gBit(5);
+					@Pc(92) int dx = Static57.in.gBit(5);
 					@Pc(99) int local99 = Static56.anIntArray141[Static57.in.gBit(3)];
-					if (local92 > 15) {
-						local92 -= 32;
+					if (dx > 15) {
+						dx -= 32;
 					}
 					if (local27) {
-						local65.anInt3400 = local65.anInt3381 = local99;
+						player.dstYaw = player.anInt3381 = local99;
 					}
-					@Pc(116) int local116 = Static57.in.gBit(1);
-					@Pc(121) int local121 = Static57.in.gBit(5);
-					if (local121 > 15) {
-						local121 -= 32;
+					@Pc(116) int jump = Static57.in.gBit(1);
+					@Pc(121) int dz = Static57.in.gBit(5);
+					if (dz > 15) {
+						dz -= 32;
 					}
-					local65.method1265(local92 + Static173.localPlayer.pathTileX[0], local116 == 1, Static173.localPlayer.pathTileZ[0] + local121);
+					player.teleport(dx + Static173.localPlayer.pathTileX[0], jump == 1, Static173.localPlayer.pathTileZ[0] + dz);
 					continue;
 				}
 			}

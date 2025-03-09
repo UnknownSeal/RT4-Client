@@ -180,24 +180,24 @@ public final class Static123 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(IBI)Lclient!na;")
-	public static JagString method2420(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(4) int local4 = arg1 - arg0;
-		if (local4 < -9) {
-			return Static175.aClass100_798;
-		} else if (local4 < -6) {
-			return Static64.aClass100_433;
-		} else if (local4 < -3) {
-			return Static223.aClass100_951;
-		} else if (local4 < 0) {
-			return Static229.aClass100_972;
-		} else if (local4 > 9) {
-			return Static42.aClass100_332;
-		} else if (local4 > 6) {
-			return Static6.aClass100_18;
-		} else if (local4 <= 3) {
-			return local4 > 0 ? Static41.aClass100_266 : Static226.aClass100_965;
+	public static JagString getCombatLevelColorTag(@OriginalArg(0) int viewerLevel, @OriginalArg(2) int otherLevel) {
+		@Pc(4) int diff = otherLevel - viewerLevel;
+		if (diff < -9) {
+			return Static175.RED;
+		} else if (diff < -6) {
+			return Static64.RED2;
+		} else if (diff < -3) {
+			return Static223.ORANGE;
+		} else if (diff < 0) {
+			return Static229.YELLOW;
+		} else if (diff > 9) {
+			return Static42.GREEN;
+		} else if (diff > 6) {
+			return Static6.GREEN2;
+		} else if (diff <= 3) {
+			return diff > 0 ? Static41.GREEN3 : Static226.YELLOW2;
 		} else {
-			return Static263.aClass100_1081;
+			return Static263.GREEN3;
 		}
 	}
 

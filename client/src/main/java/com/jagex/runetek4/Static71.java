@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.objtype.ObjType;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -51,7 +51,7 @@ public final class Static71 {
 			objType.stockmarket = false;
 			objType.ops = Static269.aClass100Array87;
 		}
-		Static27.aClass99_4.method3095(objType, (long) id);
+		Static27.aClass99_4.put(objType, (long) id);
 		return objType;
 	}
 
@@ -68,16 +68,16 @@ public final class Static71 {
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "b", descriptor = "(I)V")
 	public static void method1444() {
-		for (@Pc(7) int local7 = -1; local7 < Static267.size; local7++) {
+		for (@Pc(7) int local7 = -1; local7 < Static267.playerCount; local7++) {
 			@Pc(21) int local21;
 			if (local7 == -1) {
 				local21 = 2047;
 			} else {
-				local21 = Static105.ids[local7];
+				local21 = Static105.playerIds[local7];
 			}
-			@Pc(31) Player local31 = Static159.players[local21];
+			@Pc(31) PlayerEntity local31 = Static159.players[local21];
 			if (local31 != null) {
-				Static263.method4514(local31.size(), local31);
+				Static263.updateEntity(local31.size(), local31);
 			}
 		}
 	}

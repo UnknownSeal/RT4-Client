@@ -191,23 +191,23 @@ public final class Static207 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ql", name = "a", descriptor = "(IIII)I")
-	public static int method3685(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		if (Static83.anIntArrayArrayArray4 == null) {
+	public static int getHeightmapY(@OriginalArg(0) int arg0, @OriginalArg(2) int sceneX, @OriginalArg(3) int sceneZ) {
+		if (Static83.levelHeightMap == null) {
 			return 0;
 		}
-		@Pc(12) int local12 = arg1 >> 7;
-		@Pc(16) int local16 = arg2 >> 7;
-		if (local12 < 0 || local16 < 0 || local12 > 103 || local16 > 103) {
+		@Pc(12) int tileX = sceneX >> 7;
+		@Pc(16) int tileZ = sceneZ >> 7;
+		if (tileX < 0 || tileZ < 0 || tileX > 103 || tileZ > 103) {
 			return 0;
 		}
-		@Pc(36) int local36 = arg1 & 0x7F;
-		@Pc(40) int local40 = arg2 & 0x7F;
-		@Pc(42) int local42 = arg0;
-		if (arg0 < 3 && (Static12.aByteArrayArrayArray2[1][local12][local16] & 0x2) == 2) {
-			local42 = arg0 + 1;
+		@Pc(36) int tileLocalX = sceneX & 0x7F;
+		@Pc(40) int tileLocalZ = sceneZ & 0x7F;
+		@Pc(42) int realLevel = arg0;
+		if (arg0 < 3 && (Static12.aByteArrayArrayArray2[1][tileX][tileZ] & 0x2) == 2) {
+			realLevel = arg0 + 1;
 		}
-		@Pc(91) int local91 = local36 * Static83.anIntArrayArrayArray4[local42][local12 + 1][local16 + 1] + Static83.anIntArrayArrayArray4[local42][local12][local16 + 1] * (128 - local36) >> 7;
-		@Pc(118) int local118 = local36 * Static83.anIntArrayArrayArray4[local42][local12 + 1][local16] + (128 - local36) * Static83.anIntArrayArrayArray4[local42][local12][local16] >> 7;
-		return local40 * local91 + (128 - local40) * local118 >> 7;
+		@Pc(91) int y11 = tileLocalX * Static83.levelHeightMap[realLevel][tileX + 1][tileZ + 1] + Static83.levelHeightMap[realLevel][tileX][tileZ + 1] * (128 - tileLocalX) >> 7;
+		@Pc(118) int y00 = tileLocalX * Static83.levelHeightMap[realLevel][tileX + 1][tileZ] + (128 - tileLocalX) * Static83.levelHeightMap[realLevel][tileX][tileZ] >> 7;
+		return tileLocalZ * y11 + (128 - tileLocalZ) * y00 >> 7;
 	}
 }

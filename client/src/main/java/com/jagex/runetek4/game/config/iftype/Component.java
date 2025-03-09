@@ -112,7 +112,7 @@ public final class Component {
 	public int[] anIntArray39;
 
 	@OriginalMember(owner = "client!be", name = "dc", descriptor = "[I")
-	public int[] objTypes;
+	public int[] invSlotObjId;
 
 	@OriginalMember(owner = "client!be", name = "fc", descriptor = "[Ljava/lang/Object;")
 	public Object[] anObjectArray20;
@@ -157,7 +157,7 @@ public final class Component {
 	public Object[] anObjectArray26;
 
 	@OriginalMember(owner = "client!be", name = "ad", descriptor = "[[I")
-	public int[][] anIntArrayArray4;
+	public int[][] scripts;
 
 	@OriginalMember(owner = "client!be", name = "bd", descriptor = "[I")
 	public int[] anIntArray46;
@@ -169,7 +169,7 @@ public final class Component {
 	public Object[] anObjectArray27;
 
 	@OriginalMember(owner = "client!be", name = "kd", descriptor = "[I")
-	public int[] anIntArray48;
+	public int[] scriptOperand;
 
 	@OriginalMember(owner = "client!be", name = "nd", descriptor = "[I")
 	public int[] anIntArray49;
@@ -184,7 +184,7 @@ public final class Component {
 	public Object[] anObjectArray30;
 
 	@OriginalMember(owner = "client!be", name = "wd", descriptor = "[I")
-	public int[] objCounts;
+	public int[] invSlotObjCount;
 
 	@OriginalMember(owner = "client!be", name = "H", descriptor = "Z")
 	public boolean aBoolean23 = false;
@@ -578,11 +578,11 @@ public final class Component {
 		@Pc(109) int local109 = arg0.g1();
 		@Pc(125) int local125;
 		if (local109 > 0) {
-			this.anIntArray48 = new int[local109];
+			this.scriptOperand = new int[local109];
 			this.anIntArray43 = new int[local109];
 			for (local125 = 0; local125 < local109; local125++) {
 				this.anIntArray43[local125] = arg0.g1();
-				this.anIntArray48[local125] = arg0.g2();
+				this.scriptOperand[local125] = arg0.g2();
 			}
 		}
 		local125 = arg0.g1();
@@ -590,14 +590,14 @@ public final class Component {
 		@Pc(175) int local175;
 		@Pc(183) int local183;
 		if (local125 > 0) {
-			this.anIntArrayArray4 = new int[local125][];
+			this.scripts = new int[local125][];
 			for (local164 = 0; local164 < local125; local164++) {
 				local175 = arg0.g2();
-				this.anIntArrayArray4[local164] = new int[local175];
+				this.scripts[local164] = new int[local175];
 				for (local183 = 0; local183 < local175; local183++) {
-					this.anIntArrayArray4[local164][local183] = arg0.g2();
-					if (this.anIntArrayArray4[local164][local183] == 65535) {
-						this.anIntArrayArray4[local164][local183] = -1;
+					this.scripts[local164][local183] = arg0.g2();
+					if (this.scripts[local164][local183] == 65535) {
+						this.scripts[local164][local183] = -1;
 					}
 				}
 			}
@@ -613,8 +613,8 @@ public final class Component {
 		local164 = 0;
 		if (this.anInt452 == 2) {
 			this.aByte3 = 3;
-			this.objCounts = new int[this.baseWidth * this.anInt488];
-			this.objTypes = new int[this.anInt488 * this.baseWidth];
+			this.invSlotObjCount = new int[this.baseWidth * this.anInt488];
+			this.invSlotObjId = new int[this.anInt488 * this.baseWidth];
 			this.aByte5 = 3;
 			local175 = arg0.g1();
 			local183 = arg0.g1();
@@ -712,8 +712,8 @@ public final class Component {
 		if (this.anInt452 == 7) {
 			this.aByte3 = 3;
 			this.aByte5 = 3;
-			this.objCounts = new int[this.anInt488 * this.baseWidth];
-			this.objTypes = new int[this.baseWidth * this.anInt488];
+			this.invSlotObjCount = new int[this.anInt488 * this.baseWidth];
+			this.invSlotObjId = new int[this.baseWidth * this.anInt488];
 			this.anInt460 = arg0.g1();
 			this.anInt502 = arg0.g2();
 			if (this.anInt502 == 65535) {
@@ -789,7 +789,7 @@ public final class Component {
 		if (local43 == null) {
 			Static211.aBoolean72 = true;
 		} else {
-			Static190.aClass99_26.method3095(local43, local29);
+			Static190.aClass99_26.put(local43, local29);
 		}
 		return local43;
 	}
@@ -828,12 +828,12 @@ public final class Component {
 
 	@OriginalMember(owner = "client!be", name = "b", descriptor = "(III)V")
 	public void swapObjs(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		@Pc(8) int local8 = this.objTypes[arg1];
-		this.objTypes[arg1] = this.objTypes[arg0];
-		this.objTypes[arg0] = local8;
-		@Pc(34) int local34 = this.objCounts[arg1];
-		this.objCounts[arg1] = this.objCounts[arg0];
-		this.objCounts[arg0] = local34;
+		@Pc(8) int local8 = this.invSlotObjId[arg1];
+		this.invSlotObjId[arg1] = this.invSlotObjId[arg0];
+		this.invSlotObjId[arg0] = local8;
+		@Pc(34) int local34 = this.invSlotObjCount[arg1];
+		this.invSlotObjCount[arg1] = this.invSlotObjCount[arg0];
+		this.invSlotObjCount[arg0] = local34;
 	}
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(ILclient!tk;IIIZLclient!hh;)Lclient!ak;")
@@ -863,7 +863,7 @@ public final class Component {
 						return null;
 					}
 					local61 = local69.method1679(64, 768, -50, -10, -50);
-					Static124.aClass99_17.method3095(local61, local13 + (local10 << 16));
+					Static124.aClass99_17.put(local61, local13 + (local10 << 16));
 				}
 				if (arg1 != null) {
 					local61 = arg1.method4215(local61, arg0, arg3, arg2);
@@ -976,7 +976,7 @@ public final class Component {
 		} else {
 			local72 = new GlSprite(local85);
 		}
-		Static190.aClass99_26.method3095(local72, local66);
+		Static190.aClass99_26.put(local72, local66);
 		return local72;
 	}
 
@@ -1178,7 +1178,7 @@ public final class Component {
 			Static211.aBoolean72 = true;
 		} else {
 			local21.method2873(arg0, null);
-			Static87.aClass99_12.method3095(local21, this.anInt502);
+			Static87.aClass99_12.put(local21, this.anInt502);
 		}
 		return local21;
 	}

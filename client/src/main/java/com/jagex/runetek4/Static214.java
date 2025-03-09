@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.npctype.NPCType;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -32,10 +32,10 @@ public final class Static214 {
 	public static int anInt5581 = 0;
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(Lclient!e;I)V")
-	public static void method4359(@OriginalArg(0) Player arg0) {
+	public static void method4359(@OriginalArg(0) PlayerEntity arg0) {
 		@Pc(12) AreaSound local12 = (AreaSound) AreaSoundManager.playerSounds.getNode(arg0.username.encode37());
 		if (local12 == null) {
-			AreaSoundManager.add(arg0.pathTileZ[0], null, 0, null, arg0.pathTileX[0], Static55.level, arg0);
+			AreaSoundManager.add(arg0.pathTileZ[0], null, 0, null, arg0.pathTileX[0], Static55.currentLevel, arg0);
 		} else {
 			local12.update();
 		}
@@ -73,7 +73,7 @@ public final class Static214 {
 			npcType.decode(new Packet(bytes));
 		}
 		npcType.postDecode();
-		Static93.aClass99_13.method3095(npcType, (long) id);
+		Static93.aClass99_13.put(npcType, (long) id);
 		return npcType;
 	}
 

@@ -29,15 +29,15 @@ public final class Static148 {
 	public static void method2765(@OriginalArg(1) int arg0) {
 		if (arg0 == -1 && !Static144.aBoolean173) {
 			Static241.method4548();
-		} else if (arg0 != -1 && (Static221.anInt4363 != arg0 || !Static136.method2655()) && Static12.anInt391 != 0 && !Static144.aBoolean173) {
+		} else if (arg0 != -1 && (BZip2State.anInt4363 != arg0 || !Static136.method2655()) && Static12.anInt391 != 0 && !Static144.aBoolean173) {
 			Static257.method526(arg0, Static130.aClass153_47, Static12.anInt391);
 		}
-		Static221.anInt4363 = arg0;
+		BZip2State.anInt4363 = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(III)V")
 	public static void method2766(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		Static7.anIntArray75[arg0] = arg1;
+		Static7.varps[arg0] = arg1;
 		@Pc(21) LongNode local21 = (LongNode) Static199.aClass133_20.getNode((long) arg0);
 		if (local21 == null) {
 			local21 = new LongNode(MonotonicTime.get() + 500L);
@@ -56,7 +56,7 @@ public final class Static148 {
 		@Pc(26) byte[] local26 = Static261.aClass153_107.getfile(arg0, 0);
 		local16 = new SoftwareFont(local26);
 		local16.method2873(Static159.aClass36Array12, null);
-		Static139.aClass99_22.method3095(local16, (long) arg0);
+		Static139.aClass99_22.put(local16, (long) arg0);
 		return local16;
 	}
 }

@@ -4,7 +4,7 @@ import java.awt.Component;
 import java.lang.reflect.Method;
 
 import com.jagex.runetek4.game.scene.entities.NPCEntity;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -52,14 +52,14 @@ public final class Static19 {
 	@OriginalMember(owner = "client!bi", name = "f", descriptor = "(B)V")
 	public static void loop() {
 		@Pc(11) int local11;
-		for (local11 = -1; local11 < Static267.size; local11++) {
+		for (local11 = -1; local11 < Static267.playerCount; local11++) {
 			@Pc(22) int local22;
 			if (local11 == -1) {
 				local22 = 2047;
 			} else {
-				local22 = Static105.ids[local11];
+				local22 = Static105.playerIds[local11];
 			}
-			@Pc(30) Player local30 = Static159.players[local22];
+			@Pc(30) PlayerEntity local30 = Static159.players[local22];
 			if (local30 != null && local30.chatLoops > 0) {
 				local30.chatLoops--;
 				if (local30.chatLoops == 0) {
@@ -67,8 +67,8 @@ public final class Static19 {
 				}
 			}
 		}
-		for (local11 = 0; local11 < Static272.anInt5214; local11++) {
-			@Pc(68) int local68 = Static33.anIntArray79[local11];
+		for (local11 = 0; local11 < Static272.npcCount; local11++) {
+			@Pc(68) int local68 = Static33.npcIds[local11];
 			@Pc(72) NPCEntity local72 = Static175.npcs[local68];
 			if (local72 != null && local72.chatLoops > 0) {
 				local72.chatLoops--;

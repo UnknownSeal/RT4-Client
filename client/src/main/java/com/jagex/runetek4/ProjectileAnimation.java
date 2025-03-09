@@ -64,13 +64,13 @@ public final class ProjectileAnimation extends Entity {
 	private final int sourceX;
 
 	@OriginalMember(owner = "client!ra", name = "cb", descriptor = "I")
-	public final int anInt4819;
+	public final int target;
 
 	@OriginalMember(owner = "client!ra", name = "Y", descriptor = "I")
 	private final int anInt4816;
 
 	@OriginalMember(owner = "client!ra", name = "M", descriptor = "I")
-	public final int anInt4810;
+	public final int level;
 
 	@OriginalMember(owner = "client!ra", name = "mb", descriptor = "I")
 	private final int elevationPitch;
@@ -85,7 +85,7 @@ public final class ProjectileAnimation extends Entity {
 	private final int arcScale;
 
 	@OriginalMember(owner = "client!ra", name = "ib", descriptor = "I")
-	public final int anInt4822;
+	public final int startCycle;
 
 	@OriginalMember(owner = "client!ra", name = "S", descriptor = "I")
 	private final int sourceZ;
@@ -97,15 +97,15 @@ public final class ProjectileAnimation extends Entity {
 	public ProjectileAnimation(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10) {
 		this.lastCycle = arg6;
 		this.sourceX = arg2;
-		this.anInt4819 = arg9;
+		this.target = arg9;
 		this.anInt4816 = arg0;
-		this.anInt4810 = arg1;
+		this.level = arg1;
 		this.elevationPitch = arg7;
 		this.sourceY = arg3;
 		this.isMobile = false;
 		this.anInt4805 = arg10;
 		this.arcScale = arg8;
-		this.anInt4822 = arg5;
+		this.startCycle = arg5;
 		this.sourceZ = arg4;
 		@Pc(58) int local58 = Static34.method877(this.anInt4816).anInt1754;
 		if (local58 == -1) {
@@ -123,7 +123,7 @@ public final class ProjectileAnimation extends Entity {
 	@OriginalMember(owner = "client!ra", name = "b", descriptor = "(I)Lclient!ak;")
 	private Model method3703() {
 		@Pc(14) SpotAnimType local14 = Static34.method877(this.anInt4816);
-		@Pc(24) Model local24 = local14.method1319(this.anInt4798, this.seqFrame, this.frameCycle);
+		@Pc(24) Model local24 = local14.getModel(this.anInt4798, this.seqFrame, this.frameCycle);
 		if (local24 == null) {
 			return null;
 		} else {
@@ -133,7 +133,7 @@ public final class ProjectileAnimation extends Entity {
 	}
 
 	@OriginalMember(owner = "client!ra", name = "b", descriptor = "(BI)V")
-	public void method3704(@OriginalArg(1) int arg0) {
+	public void update(@OriginalArg(1) int arg0) {
 		this.x += this.velocityX * (double) arg0;
 		this.y += this.valocityY * (double) arg0;
 		this.isMobile = true;
@@ -172,7 +172,7 @@ public final class ProjectileAnimation extends Entity {
 	}
 
 	@OriginalMember(owner = "client!ra", name = "b", descriptor = "(IIIII)V")
-	public void setTarget(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+	public void updateVelocity(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		@Pc(17) double local17;
 		if (!this.isMobile) {
 			@Pc(10) double local10 = arg0 - this.sourceY;

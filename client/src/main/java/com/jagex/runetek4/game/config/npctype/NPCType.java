@@ -365,7 +365,7 @@ public final class NPCType {
 		if (this.multivarbit != -1) {
 			i = Static155.method2945(this.multivarbit);
 		} else if (this.multivarp != -1) {
-			i = Static7.anIntArray75[this.multivarp];
+			i = Static7.varps[this.multivarp];
 		}
 		if (i < 0 || i >= this.multinpc.length - 1 || this.multinpc[i] == -1) {
 			@Pc(55) int local55 = this.multinpc[this.multinpc.length - 1];
@@ -384,7 +384,7 @@ public final class NPCType {
 		if (this.multivarbit != -1) {
 			local16 = Static155.method2945(this.multivarbit);
 		} else if (this.multivarp != -1) {
-			local16 = Static7.anIntArray75[this.multivarp];
+			local16 = Static7.varps[this.multivarp];
 		}
 		if (local16 < 0 || local16 >= this.multinpc.length - 1 || this.multinpc[local16] == -1) {
 			@Pc(62) int local62 = this.multinpc[this.multinpc.length - 1];
@@ -454,7 +454,7 @@ public final class NPCType {
 				if (this.models[local86] != -1) {
 					local84[local86] = ModelUnlit.get(Static86.aClass153_37, this.models[local86]);
 					if (this.modeloffset != null && this.modeloffset[local86] != null && local84[local86] != null) {
-						local84[local86].method1672(this.modeloffset[local86][0], this.modeloffset[local86][1], this.modeloffset[local86][2]);
+						local84[local86].translate(this.modeloffset[local86][0], this.modeloffset[local86][1], this.modeloffset[local86][2]);
 					}
 				}
 			}
@@ -511,7 +511,7 @@ public final class NPCType {
 							local84[local173].method1684(local207, local214, local228);
 						}
 						if (local235 != 0 || local221 != 0 || local200 != 0) {
-							local84[local173].method1672(local235, local221, local200);
+							local84[local173].translate(local235, local221, local200);
 						}
 					}
 				}
@@ -540,7 +540,7 @@ public final class NPCType {
 			if (GlRenderer.enabled) {
 				((GlModel) local40).method4111(false, false, false, false, false, true);
 			}
-			Static125.aClass99_18.method3095(local40, this.id);
+			Static125.aClass99_18.put(local40, this.id);
 		}
 		local46 = false;
 		@Pc(721) boolean local721 = false;
@@ -735,7 +735,7 @@ public final class NPCType {
 					}
 				}
 				local41 = local119.method1679(64, 768, -50, -10, -50);
-				Static262.aClass99_35.method3095(local41, this.id);
+				Static262.aClass99_35.put(local41, this.id);
 			}
 			if (arg0 != null) {
 				local41 = arg0.method4215(local41, arg2, arg1, arg3);

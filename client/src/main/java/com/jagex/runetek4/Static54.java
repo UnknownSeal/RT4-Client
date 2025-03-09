@@ -5,7 +5,7 @@ import com.jagex.runetek4.game.config.loctype.LocType;
 import com.jagex.runetek4.game.config.npctype.NPCType;
 import com.jagex.runetek4.game.scene.entities.NPCEntity;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -96,15 +96,15 @@ public final class Static54 {
 				@Pc(382) LocType local382 = Static271.get(Static199.anIntArray417[local146]);
 				if (local382.multiloc != null) {
 					local382 = local382.getVisible();
-					if (local382 == null || local382.mapelement == -1) {
+					if (local382 == null || local382.mapfunction == -1) {
 						continue;
 					}
 				}
-				Static60.method1446(arg3, Static67.aClass3_Sub2_Sub1Array4[local382.mapelement], local150, local181, arg1, arg2);
+				Static60.method1446(arg3, Static67.aClass3_Sub2_Sub1Array4[local382.mapfunction], local150, local181, arg1, arg2);
 			}
 			for (local146 = 0; local146 < 104; local146++) {
 				for (local181 = 0; local181 < 104; local181++) {
-					@Pc(439) LinkedList local439 = Static159.levelObjStacks[Static55.level][local146][local181];
+					@Pc(439) LinkList local439 = Static159.levelObjStacks[Static55.currentLevel][local146][local181];
 					if (local439 != null) {
 						local154 = local146 * 4 + 2 - Static173.localPlayer.x / 32;
 						local231 = local181 * 4 + 2 - Static173.localPlayer.z / 32;
@@ -112,10 +112,10 @@ public final class Static54 {
 					}
 				}
 			}
-			for (local146 = 0; local146 < Static272.anInt5214; local146++) {
-				@Pc(498) NPCEntity local498 = Static175.npcs[Static33.anIntArray79[local146]];
-				if (local498 != null && local498.exists()) {
-					@Pc(507) NPCType local507 = local498.npcType;
+			for (local146 = 0; local146 < Static272.npcCount; local146++) {
+				@Pc(498) NPCEntity local498 = Static175.npcs[Static33.npcIds[local146]];
+				if (local498 != null && local498.isVisible()) {
+					@Pc(507) NPCType local507 = local498.type;
 					if (local507 != null && local507.multinpc != null) {
 						local507 = local507.getMultiNPC();
 					}
@@ -130,15 +130,15 @@ public final class Static54 {
 					}
 				}
 			}
-			for (local146 = 0; local146 < Static267.size; local146++) {
-				@Pc(591) Player local591 = Static159.players[Static105.ids[local146]];
-				if (local591 != null && local591.exists()) {
+			for (local146 = 0; local146 < Static267.playerCount; local146++) {
+				@Pc(591) PlayerEntity local591 = Static159.players[Static105.playerIds[local146]];
+				if (local591 != null && local591.isVisible()) {
 					local154 = local591.z / 32 - Static173.localPlayer.z / 32;
 					local150 = local591.x / 32 - Static173.localPlayer.x / 32;
 					@Pc(624) long local624 = local591.username.encode37();
 					@Pc(626) boolean local626 = false;
-					for (local239 = 0; local239 < Static9.anInt178; local239++) {
-						if (local624 == Static92.aLongArray3[local239] && Static104.anIntArray255[local239] != 0) {
+					for (local239 = 0; local239 < Static9.friendCount; local239++) {
+						if (local624 == Static92.friendName37[local239] && Static104.friendWorld[local239] != 0) {
 							local626 = true;
 							break;
 						}
@@ -183,7 +183,7 @@ public final class Static54 {
 						Static97.method1960(local770.anInt4048, arg1, arg2, local154, local231, arg3);
 					}
 					if (local770.anInt4058 == 10 && local770.anInt4057 >= 0 && Static159.players.length > local770.anInt4057) {
-						@Pc(905) Player local905 = Static159.players[local770.anInt4057];
+						@Pc(905) PlayerEntity local905 = Static159.players[local770.anInt4057];
 						if (local905 != null) {
 							local200 = local905.z / 32 - Static173.localPlayer.z / 32;
 							local231 = local905.x / 32 - Static173.localPlayer.x / 32;
@@ -338,14 +338,14 @@ public final class Static54 {
 			}
 		}
 		if (Static144.aBoolean173 && !Static136.method2655()) {
-			if (Static12.anInt391 != 0 && Static221.anInt4363 != -1) {
-				Static122.method2410(Static130.aClass153_47, Static221.anInt4363, Static12.anInt391);
+			if (Static12.anInt391 != 0 && BZip2State.anInt4363 != -1) {
+				Static122.method2410(Static130.aClass153_47, BZip2State.anInt4363, Static12.anInt391);
 			}
 			Static144.aBoolean173 = false;
-		} else if (Static12.anInt391 != 0 && Static221.anInt4363 != -1 && !Static136.method2655()) {
+		} else if (Static12.anInt391 != 0 && BZip2State.anInt4363 != -1 && !Static136.method2655()) {
 			Static6.outboundBuffer.pIsaac1(137);
-			Static6.outboundBuffer.p4(Static221.anInt4363);
-			Static221.anInt4363 = -1;
+			Static6.outboundBuffer.p4(BZip2State.anInt4363);
+			BZip2State.anInt4363 = -1;
 		}
 	}
 }

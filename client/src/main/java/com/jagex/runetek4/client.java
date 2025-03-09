@@ -487,7 +487,7 @@ public final class client extends GameShell {
 			Static227.keyCodes[Static182.keyQueueSize] = Static102.keyCode;
 			Static205.keyChars[Static182.keyQueueSize] = Static193.keyChar;
 		}
-		Static178.anInt4247++;
+		Static178.sceneDelta++;
 		if (Static154.topLevelInterace != -1) {
 			Static57.method1320(0, 0, 0, Static48.canvasWidth, Static154.topLevelInterace, 0, Static254.canvasHeigth);
 		}
@@ -496,7 +496,7 @@ public final class client extends GameShell {
 			label191: for (@Pc(57) int local57 = 0; local57 < 32768; local57++) {
 				@Pc(66) NPCEntity npcEntity = Static175.npcs[local57];
 				if (npcEntity != null) {
-					@Pc(73) byte walkflags = npcEntity.npcType.walkflags;
+					@Pc(73) byte walkflags = npcEntity.type.walkflags;
 					if ((walkflags & 0x2) > 0 && npcEntity.routeLength == 0 && Math.random() * 1000.0D < 10.0D) {
 						@Pc(98) int local98 = (int) Math.round(Math.random() * 2.0D - 1.0D);
 						@Pc(106) int local106 = (int) Math.round(Math.random() * 2.0D - 1.0D);
@@ -504,12 +504,12 @@ public final class client extends GameShell {
 							npcEntity.aByteArray48[0] = 1;
 							npcEntity.pathTileX[0] = local98 + (npcEntity.x >> 7);
 							npcEntity.pathTileZ[0] = local106 + (npcEntity.z >> 7);
-							Static148.levelCollisionMap[Static55.level].method3056(npcEntity.x >> 7, npcEntity.size(), false, 0, npcEntity.size(), npcEntity.z >> 7);
-							if (npcEntity.pathTileX[0] >= 0 && npcEntity.pathTileX[0] <= 104 - npcEntity.size() && npcEntity.pathTileZ[0] >= 0 && npcEntity.pathTileZ[0] <= 104 - npcEntity.size() && Static148.levelCollisionMap[Static55.level].method3054(npcEntity.z >> 7, npcEntity.pathTileZ[0], npcEntity.pathTileX[0], npcEntity.x >> 7)) {
+							Static148.levelCollisionMap[Static55.currentLevel].method3056(npcEntity.x >> 7, npcEntity.size(), false, 0, npcEntity.size(), npcEntity.z >> 7);
+							if (npcEntity.pathTileX[0] >= 0 && npcEntity.pathTileX[0] <= 104 - npcEntity.size() && npcEntity.pathTileZ[0] >= 0 && npcEntity.pathTileZ[0] <= 104 - npcEntity.size() && Static148.levelCollisionMap[Static55.currentLevel].method3054(npcEntity.z >> 7, npcEntity.pathTileZ[0], npcEntity.pathTileX[0], npcEntity.x >> 7)) {
 								if (npcEntity.size() > 1) {
 									for (@Pc(226) int local226 = npcEntity.pathTileX[0]; npcEntity.pathTileX[0] + npcEntity.size() > local226; local226++) {
 										for (@Pc(246) int local246 = npcEntity.pathTileZ[0]; npcEntity.pathTileZ[0] + npcEntity.size() > local246; local246++) {
-											if ((Static148.levelCollisionMap[Static55.level].flags[local226][local246] & 0x12401FF) != 0) {
+											if ((Static148.levelCollisionMap[Static55.currentLevel].flags[local226][local246] & 0x12401FF) != 0) {
 												continue label191;
 											}
 										}
@@ -522,7 +522,7 @@ public final class client extends GameShell {
 					Static104.method2247(npcEntity);
 					Static37.method949(npcEntity);
 					Static34.method879(npcEntity);
-					Static148.levelCollisionMap[Static55.level].method3043(npcEntity.x >> 7, false, npcEntity.z >> 7, npcEntity.size(), npcEntity.size());
+					Static148.levelCollisionMap[Static55.currentLevel].method3043(npcEntity.x >> 7, false, npcEntity.z >> 7, npcEntity.size(), npcEntity.size());
 				}
 			}
 		}
@@ -534,7 +534,7 @@ public final class client extends GameShell {
 			} else {
 				Static40.method1008();
 			}
-			if (Static138.anInt3439 >> 7 < 14 || Static138.anInt3439 >> 7 >= 90 || Static134.anInt3302 >> 7 < 14 || Static134.anInt3302 >> 7 >= 90) {
+			if (Static138.cameraX >> 7 < 14 || Static138.cameraX >> 7 >= 90 || Static134.cameraZ >> 7 < 14 || Static134.cameraZ >> 7 >= 90) {
 				Static26.method740();
 			}
 		}

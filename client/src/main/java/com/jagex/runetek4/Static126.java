@@ -45,6 +45,6 @@ public final class Static126 {
 		} else {
 			Static129.method2503();
 		}
-		Static178.anInt4247 = 0;
+		Static178.sceneDelta = 0;
 	}
 }

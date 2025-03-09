@@ -48,7 +48,7 @@ public final class Static13 {
 	public static void method472(@OriginalArg(0) int arg0) {
 		@Pc(14) ClientInvCache local14 = (ClientInvCache) ClientInvCache.recentUse.getNode((long) arg0);
 		if (local14 != null) {
-			local14.remove();
+			local14.unlink();
 		}
 	}
 

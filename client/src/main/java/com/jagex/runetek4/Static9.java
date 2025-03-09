@@ -17,7 +17,7 @@ public final class Static9 {
 	public static Js5 aClass153_2;
 
 	@OriginalMember(owner = "client!al", name = "m", descriptor = "I")
-	public static int anInt178 = 0;
+	public static int friendCount = 0;
 
 	@OriginalMember(owner = "client!al", name = "r", descriptor = "Lclient!na;")
 	public static final JagString aClass100_35 = Static28.parse("showVideoAd");
@@ -28,10 +28,10 @@ public final class Static9 {
 		@Pc(28) int local28;
 		@Pc(31) int local31;
 		if (local5 == 1 || local5 == 3) {
-			local28 = arg0.height;
+			local28 = arg0.length;
 			local31 = arg0.width;
 		} else {
-			local31 = arg0.height;
+			local31 = arg0.length;
 			local28 = arg0.width;
 		}
 		@Pc(53) int local53;
@@ -54,17 +54,17 @@ public final class Static9 {
 			local96 = arg5 + (local28 >> 1);
 			local100 = (local28 + 1 >> 1) + arg5;
 		}
-		@Pc(120) int[][] local120 = Static83.anIntArrayArrayArray4[arg7];
+		@Pc(120) int[][] local120 = Static83.levelHeightMap[arg7];
 		@Pc(122) int local122 = 0;
 		@Pc(148) int local148 = local120[local96][local51] + local120[local96][local53] + local120[local100][local53] + local120[local100][local51] >> 2;
 		@Pc(158) int[][] local158;
 		if (arg7 != 0) {
-			local158 = Static83.anIntArrayArrayArray4[0];
+			local158 = Static83.levelHeightMap[0];
 			local122 = local148 - (local158[local96][local51] + local158[local100][local53] + local158[local96][local53] + local158[local100][local51] >> 2);
 		}
 		local158 = null;
 		if (arg7 < 3) {
-			local158 = Static83.anIntArrayArrayArray4[arg7 + 1];
+			local158 = Static83.levelHeightMap[arg7 + 1];
 		}
 		@Pc(215) LocEntity local215 = arg0.method3428(arg2, local80, local120, arg4, local148, local158, false, null, true, local88);
 		Static242.method4207(local215.sprite, local80 - arg3, local122, local88 - arg1);
@@ -75,7 +75,7 @@ public final class Static9 {
 		Static241.aClass13Array13 = null;
 		Static6.method86(Static154.topLevelInterace, 0, Static48.canvasWidth, 0, -1, Static254.canvasHeigth, 0, 0);
 		if (Static241.aClass13Array13 != null) {
-			Static87.method1809(0, Static127.anInt3126, Static80.anInt4696, Static241.aClass13Array13, Static48.canvasWidth, -1412584499, 0, Static254.canvasHeigth, Static4.aClass13_1.anInt517);
+			Static87.drawGame(0, Static127.anInt3126, Static80.anInt4696, Static241.aClass13Array13, Static48.canvasWidth, -1412584499, 0, Static254.canvasHeigth, Static4.aClass13_1.anInt517);
 			Static241.aClass13Array13 = null;
 		}
 	}
@@ -130,7 +130,7 @@ public final class Static9 {
 		} else {
 			@Pc(22) int local22 = arg1 << 7;
 			@Pc(26) int local26 = arg2 << 7;
-			if (Static256.method4394(local22 + 1, Static83.anIntArrayArrayArray4[arg0][arg1][arg2], local26 + 1) && Static256.method4394(local22 + 128 - 1, Static83.anIntArrayArrayArray4[arg0][arg1 + 1][arg2], local26 + 1) && Static256.method4394(local22 + 128 - 1, Static83.anIntArrayArrayArray4[arg0][arg1 + 1][arg2 + 1], local26 + 128 - 1) && Static256.method4394(local22 + 1, Static83.anIntArrayArrayArray4[arg0][arg1][arg2 + 1], local26 + 128 - 1)) {
+			if (Static256.method4394(local22 + 1, Static83.levelHeightMap[arg0][arg1][arg2], local26 + 1) && Static256.method4394(local22 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg2], local26 + 1) && Static256.method4394(local22 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg2 + 1], local26 + 128 - 1) && Static256.method4394(local22 + 1, Static83.levelHeightMap[arg0][arg1][arg2 + 1], local26 + 128 - 1)) {
 				Static140.anIntArrayArrayArray12[arg0][arg1][arg2] = Static13.anInt437;
 				return true;
 			} else {

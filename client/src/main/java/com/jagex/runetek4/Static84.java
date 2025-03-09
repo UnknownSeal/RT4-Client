@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.datastruct.SecondaryNode;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -36,7 +36,7 @@ public final class Static84 {
 	public static int anInt2256 = 0;
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "(IIBLclient!e;)V")
-	public static void method1768(@OriginalArg(0) int flags, @OriginalArg(1) int arg1, @OriginalArg(3) Player player) {
+	public static void getPlayerExtended(@OriginalArg(0) int flags, @OriginalArg(1) int arg1, @OriginalArg(3) PlayerEntity player) {
 		@Pc(13) int chatFlags;
 		@Pc(17) int staffModLevel;
 		@Pc(24) int local24;
@@ -56,7 +56,7 @@ public final class Static84 {
 					if (!quickChat && (Static124.aBoolean157 && !Static207.parentalChatConsent || Static86.aBoolean129)) {
 						ignore = true;
 					} else {
-						for (@Pc(69) int i = 0; i < Static35.size; i++) {
+						for (@Pc(69) int i = 0; i < Static35.ignoreCount; i++) {
 							if (Static190.ignoreName37[i] == encodedUsername) {
 								ignore = true;
 								break;
@@ -64,7 +64,7 @@ public final class Static84 {
 						}
 					}
 				}
-				if (!ignore && Player.overrideChat == 0) {
+				if (!ignore && PlayerEntity.overrideChat == 0) {
 					Static270.chatBuffer.pos = 0;
 					Static57.in.gBytesRev(Static270.chatBuffer.data, len);
 					Static270.chatBuffer.pos = 0;
@@ -116,7 +116,7 @@ public final class Static84 {
 			@Pc(314) Packet local314 = new Packet(local309);
 			Static57.in.gdata(chatFlags, local309);
 			Static115.playerAppearanceBuffer[arg1] = local314;
-			player.method1262(local314);
+			player.read(local314);
 		}
 		if ((flags & 0x2) != 0) {
 			player.anInt3370 = Static57.in.g2sub();
@@ -175,21 +175,21 @@ public final class Static84 {
 			}
 			staffModLevel = Static57.in.p4rme();
 			@Pc(573) boolean local573 = true;
-			if (chatFlags != -1 && player.anInt3432 != -1 && Static36.method941(Static34.method877(chatFlags).anInt1754).priority < Static36.method941(Static34.method877(player.anInt3432).anInt1754).priority) {
+			if (chatFlags != -1 && player.spotanimFrame != -1 && Static36.method941(Static34.method877(chatFlags).anInt1754).priority < Static36.method941(Static34.method877(player.spotanimFrame).anInt1754).priority) {
 				local573 = false;
 			}
 			if (local573) {
 				player.spotanimLastCycle = (staffModLevel & 0xFFFF) + Static83.loopCycle;
 				player.anInt3361 = 0;
 				player.spotanimId = 0;
-				player.anInt3432 = chatFlags;
+				player.spotanimFrame = chatFlags;
 				if (player.spotanimLastCycle > Static83.loopCycle) {
 					player.spotanimId = -1;
 				}
 				player.spotanimOffset = staffModLevel >> 16;
 				player.anInt3418 = 1;
-				if (player.anInt3432 != -1 && Static83.loopCycle == player.spotanimLastCycle) {
-					local24 = Static34.method877(player.anInt3432).anInt1754;
+				if (player.spotanimFrame != -1 && Static83.loopCycle == player.spotanimLastCycle) {
+					local24 = Static34.method877(player.spotanimFrame).anInt1754;
 					if (local24 != -1) {
 						@Pc(663) SeqType local663 = Static36.method941(local24);
 						if (local663 != null && local663.anIntArray473 != null) {

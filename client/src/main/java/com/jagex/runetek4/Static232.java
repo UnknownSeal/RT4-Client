@@ -60,15 +60,15 @@ public final class Static232 {
 								@Pc(209) int local209 = local116[local163][local203];
 								if (local209 != 0) {
 									@Pc(222) LocType local222 = Static271.get(local209 - 1);
-									if (!Static258.aBooleanArray130[local222.mapelement]) {
-										if (local11 != -1 && local222.mapelement == Static9.anInt172) {
+									if (!Static258.aBooleanArray130[local222.mapfunction]) {
+										if (local11 != -1 && local222.mapfunction == Static9.anInt172) {
 											@Pc(243) Class3_Sub26 local243 = new Class3_Sub26();
 											local243.anInt4307 = local65;
 											local243.anInt4314 = local144;
-											local243.anInt4308 = local222.mapelement;
+											local243.anInt4308 = local222.mapfunction;
 											Static172.aClass69_97.addTail(local243);
 										} else {
-											Static241.aClass3_Sub2_Sub1_Sub1Array13[local222.mapelement].drawSprite(local65 - 7, local144 + -7);
+											Static241.aClass3_Sub2_Sub1_Sub1Array13[local222.mapfunction].drawSprite(local65 - 7, local144 + -7);
 										}
 									}
 								}

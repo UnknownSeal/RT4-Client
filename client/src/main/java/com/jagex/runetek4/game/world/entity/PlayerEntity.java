@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!e")
-public final class Player extends PathingEntity {
+public final class PlayerEntity extends PathingEntity {
 
     @OriginalMember(owner = "runetek4.client!ba", name = "w", descriptor = "I")
     public static int overrideChat = 0;
@@ -32,7 +32,7 @@ public final class Player extends PathingEntity {
 	public int anInt1650 = 0;
 
 	@OriginalMember(owner = "client!e", name = "yc", descriptor = "I")
-	public int anInt1652 = 0;
+	public int combatLevel = 0;
 
 	@OriginalMember(owner = "client!e", name = "Fc", descriptor = "I")
 	public int anInt1656 = 0;
@@ -53,7 +53,7 @@ public final class Player extends PathingEntity {
 	public int anInt1667 = -1;
 
 	@OriginalMember(owner = "client!e", name = "Oc", descriptor = "Z")
-	public boolean aBoolean98 = false;
+	public boolean lowMemory = false;
 
 	@OriginalMember(owner = "client!e", name = "Xc", descriptor = "I")
 	public int anInt1671 = 0;
@@ -65,7 +65,7 @@ public final class Player extends PathingEntity {
 	public int anInt1670 = -1;
 
     @OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(ILclient!e;)I")
-    public static int getSound(@OriginalArg(1) Player arg0) {
+    public static int getSound(@OriginalArg(1) PlayerEntity arg0) {
         @Pc(14) int local14 = arg0.anInt1654;
         @Pc(18) BASType local18 = arg0.method2681();
         if (local18.anInt1037 == arg0.anInt3366) {
@@ -91,7 +91,7 @@ public final class Player extends PathingEntity {
 	}
 
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(ILclient!wa;)V")
-	public void method1262(@OriginalArg(1) Packet arg0) {
+	public void read(@OriginalArg(1) Packet arg0) {
 		arg0.pos = 0;
 		@Pc(20) int local20 = arg0.g1();
 		@Pc(22) int local22 = -1;
@@ -145,10 +145,10 @@ public final class Player extends PathingEntity {
 		this.anInt3365 = arg0.g2();
 		@Pc(236) long local236 = arg0.g8();
 		this.username = Static79.decode37(local236).method3125();
-		this.anInt1652 = arg0.g1();
+		this.combatLevel = arg0.g1();
 		if (local37) {
 			this.anInt1671 = arg0.g2();
-			this.anInt1656 = this.anInt1652;
+			this.anInt1656 = this.combatLevel;
 			this.anInt1667 = -1;
 		} else {
 			this.anInt1671 = 0;
@@ -195,8 +195,8 @@ public final class Player extends PathingEntity {
 		if (this.model == null) {
 			return;
 		}
-		@Pc(25) SeqType local25 = this.anInt3369 != -1 && this.anInt3420 == 0 ? Static36.method941(this.anInt3369) : null;
-		@Pc(54) SeqType local54 = this.anInt3366 == -1 || this.aBoolean98 || this.anInt3366 == this.method2681().anInt1037 && local25 != null ? null : Static36.method941(this.anInt3366);
+		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? Static36.method941(this.primarySeqId) : null;
+		@Pc(54) SeqType local54 = this.anInt3366 == -1 || this.lowMemory || this.anInt3366 == this.method2681().anInt1037 && local25 != null ? null : Static36.method941(this.anInt3366);
 		@Pc(76) Model local76 = this.model.method1954(this.aClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
 		@Pc(79) int local79 = Static198.method1029();
 		if (GlRenderer.enabled && Static238.anInt5316 < 96 && local79 > 50) {
@@ -218,19 +218,19 @@ public final class Player extends PathingEntity {
 			return;
 		}
 		this.height = local76.getHeight();
-		@Pc(184) Model local184;
+		@Pc(184) Model model;
 		if (Static209.aBoolean240 && (this.model.anInt2492 == -1 || Static214.get(this.model.anInt2492).spotshadow)) {
-			local184 = Static41.method1043(160, this.aBoolean171, local54 == null ? local25 : local54, this.x, 0, this.z, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, 240);
+			model = Static41.method1043(160, this.aBoolean171, local54 == null ? local25 : local54, this.x, 0, this.z, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.y, 240);
 			if (GlRenderer.enabled) {
 				@Pc(188) float local188 = GlRenderer.method4179();
 				@Pc(190) float local190 = GlRenderer.method4166();
 				GlRenderer.disableDepthMask();
 				GlRenderer.method4152(local188, local190 - 150.0F);
-				local184.method4546(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, null);
+				model.method4546(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, null);
 				GlRenderer.enableDepthMask();
 				GlRenderer.method4152(local188, local190);
 			} else {
-				local184.method4546(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, null);
+				model.method4546(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, null);
 			}
 		}
 		if (Static173.localPlayer == this) {
@@ -253,7 +253,7 @@ public final class Player extends PathingEntity {
 						this.drawOnMinimap(null, anchorX, local76, local340, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
 					}
 					if (local245.anInt4058 == 10 && local245.anInt4057 >= 0 && Static159.players.length > local245.anInt4057) {
-						@Pc(395) Player player = Static159.players[local245.anInt4057];
+						@Pc(395) PlayerEntity player = Static159.players[local245.anInt4057];
 						if (player != null) {
 							anchorX = player.x / 32 - Static173.localPlayer.x / 32;
 							anchorY = player.z / 32 - Static173.localPlayer.z / 32;
@@ -265,74 +265,74 @@ public final class Player extends PathingEntity {
 		}
 		this.method2687(local76);
 		this.method2685(local76, arg0);
-		local184 = null;
-		if (!this.aBoolean98 && this.anInt3432 != -1 && this.spotanimId != -1) {
-			@Pc(471) SpotAnimType local471 = Static34.method877(this.anInt3432);
-			local184 = local471.method1319(this.anInt3418, this.spotanimId, this.anInt3361);
-			if (local184 != null) {
-				local184.translate(0, -this.spotanimOffset, 0);
-				if (local471.aBoolean100) {
+		model = null;
+		if (!this.lowMemory && this.spotanimFrame != -1 && this.spotanimId != -1) {
+			@Pc(471) SpotAnimType spotanim = Static34.method877(this.spotanimFrame);
+			model = spotanim.getModel(this.anInt3418, this.spotanimId, this.anInt3361);
+			if (model != null) {
+				model.translate(0, -this.spotanimOffset, 0);
+				if (spotanim.aBoolean100) {
 					if (Static101.anInt2640 != 0) {
-						local184.method4574(Static101.anInt2640);
+						model.method4574(Static101.anInt2640);
 					}
 					if (Static102.anInt2680 != 0) {
-						local184.method4564(Static102.anInt2680);
+						model.method4564(Static102.anInt2680);
 					}
 					if (Static62.anInt1938 != 0) {
-						local184.translate(0, Static62.anInt1938, 0);
+						model.translate(0, Static62.anInt1938, 0);
 					}
 				}
 			}
 		}
-		@Pc(515) Model local515 = null;
-		if (!this.aBoolean98 && this.anObject5 != null) {
-			if (Static83.loopCycle >= this.anInt3375) {
-				this.anObject5 = null;
+		@Pc(515) Model loc = null;
+		if (!this.lowMemory && this.locModel != null) {
+			if (Static83.loopCycle >= this.locStopCycle) {
+				this.locModel = null;
 			}
-			if (this.anInt3390 <= Static83.loopCycle && this.anInt3375 > Static83.loopCycle) {
-				if (this.anObject5 instanceof Loc) {
-					local515 = (Model) ((Loc) this.anObject5).method1049();
+			if (this.locStartCycle <= Static83.loopCycle && this.locStopCycle > Static83.loopCycle) {
+				if (this.locModel instanceof Loc) {
+					loc = (Model) ((Loc) this.locModel).method1049();
 				} else {
-					local515 = (Model) this.anObject5;
+					loc = (Model) this.locModel;
 				}
-				local515.translate(this.anInt3379 - this.x, this.anInt3406 + -this.anInt3424, this.anInt3426 - this.z);
-				if (this.anInt3400 == 512) {
-					local515.method4578();
-				} else if (this.anInt3400 == 1024) {
-					local515.method4552();
-				} else if (this.anInt3400 == 1536) {
-					local515.method4563();
+				loc.translate(this.locOffsetX - this.x, this.locOffsetY + -this.y, this.locOffsetZ - this.z);
+				if (this.dstYaw == 512) {
+					loc.method4578();
+				} else if (this.dstYaw == 1024) {
+					loc.method4552();
+				} else if (this.dstYaw == 1536) {
+					loc.method4563();
 				}
 			}
 		}
 		if (GlRenderer.enabled) {
-			local76.aBoolean303 = true;
+			local76.pickable = true;
 			local76.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
-			if (local184 != null) {
-				local184.aBoolean303 = true;
-				local184.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+			if (model != null) {
+				model.pickable = true;
+				model.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 			}
 		} else {
-			if (local184 != null) {
-				local76 = ((SoftwareModel) local76).method4588(local184);
+			if (model != null) {
+				local76 = ((SoftwareModel) local76).method4588(model);
 			}
-			if (local515 != null) {
-				local76 = ((SoftwareModel) local76).method4588(local515);
+			if (loc != null) {
+				local76 = ((SoftwareModel) local76).method4588(loc);
 			}
-			local76.aBoolean303 = true;
+			local76.pickable = true;
 			local76.method4546(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 		}
-		if (local515 == null) {
+		if (loc == null) {
 			return;
 		}
-		if (this.anInt3400 == 512) {
-			local515.method4563();
-		} else if (this.anInt3400 == 1024) {
-			local515.method4552();
-		} else if (this.anInt3400 == 1536) {
-			local515.method4578();
+		if (this.dstYaw == 512) {
+			loc.method4563();
+		} else if (this.dstYaw == 1024) {
+			loc.method4552();
+		} else if (this.dstYaw == 1536) {
+			loc.method4578();
 		}
-		local515.translate(this.x - this.anInt3379, -this.anInt3406 + this.anInt3424, this.z - this.anInt3426);
+		loc.translate(this.x - this.locOffsetX, -this.locOffsetY + this.y, this.z - this.locOffsetZ);
 	}
 
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(Lclient!ga;ILclient!ak;IIIIIIIIIIII)V")
@@ -342,7 +342,7 @@ public final class Player extends PathingEntity {
 			return;
 		}
 		@Pc(34) int local34 = (int) (Math.atan2(arg3, arg1) * 325.949D) & 0x7FF;
-		@Pc(46) Model local46 = Static220.method3800(local34, this.z, arg11, this.x, arg2, this.anInt3424);
+		@Pc(46) Model local46 = Static220.method3800(local34, this.z, arg11, this.x, arg2, this.y);
 		if (local46 == null) {
 			return;
 		}
@@ -361,7 +361,7 @@ public final class Player extends PathingEntity {
 
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(B)Z")
 	@Override
-	public boolean exists() {
+	public boolean isVisible() {
 		return this.model != null;
 	}
 
@@ -383,7 +383,7 @@ public final class Player extends PathingEntity {
 	}
 
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(BIZI)V")
-	public void method1265(@OriginalArg(1) int arg0, @OriginalArg(2) boolean arg1, @OriginalArg(3) int arg2) {
+	public void teleport(@OriginalArg(1) int arg0, @OriginalArg(2) boolean arg1, @OriginalArg(3) int arg2) {
 		super.method2683(this.size(), arg0, arg2, arg1);
 	}
 

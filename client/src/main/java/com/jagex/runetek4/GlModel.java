@@ -170,8 +170,8 @@ public final class GlModel extends Model {
 				}
 			}
 			@Pc(182) boolean local182 = arg0.aByteArray26 != null && arg0.aByteArray26[local125] != 0 || local135 != -1 && !Rasteriser.anInterface1_2.method3226(local135 & 0xFFFF);
-			if ((arg3 || local182) && arg0.facePriority != null) {
-				local127 += arg0.facePriority[local125] << 17;
+			if ((arg3 || local182) && arg0.facePriorities != null) {
+				local127 += arg0.facePriorities[local125] << 17;
 			}
 			if (local182) {
 				local127 += 65536;
@@ -237,7 +237,7 @@ public final class GlModel extends Model {
 		@Pc(714) float local714;
 		@Pc(685) float local685;
 		if (arg0.aByteArray31 != null) {
-			local439 = arg0.anInt2137;
+			local439 = arg0.texturedFaceCount;
 			@Pc(442) int[] local442 = new int[local439];
 			@Pc(445) int[] local445 = new int[local439];
 			@Pc(448) int[] local448 = new int[local439];
@@ -746,7 +746,7 @@ public final class GlModel extends Model {
 					}
 				}
 				if (Static150.anInt3582 >= local187 && Static150.anInt3582 <= local191 && Static34.anInt1053 >= local206 && Static34.anInt1053 <= local210) {
-					if (this.aBoolean303) {
+					if (this.pickable) {
 						Static259.aLongArray11[Static2.anInt7++] = arg8;
 					} else {
 						if (Static237.anIntArray468.length < this.anInt5296) {
@@ -2454,7 +2454,7 @@ public final class GlModel extends Model {
 		arg3.anIntArray463 = this.anIntArray463;
 		arg3.aShortArray81 = this.aShortArray81;
 		arg3.anIntArray462 = this.anIntArray462;
-		arg3.aBoolean303 = this.aBoolean303;
+		arg3.pickable = this.pickable;
 		arg3.aShortArray84 = this.aShortArray84;
 		arg3.aShortArray78 = this.aShortArray78;
 		return arg3;

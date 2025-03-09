@@ -22,9 +22,9 @@ public final class Static220 {
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(IBI)V")
 	public static void method3797(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(9) LinkedList local9 = Static159.levelObjStacks[Static55.level][arg1][arg0];
+		@Pc(9) LinkList local9 = Static159.levelObjStacks[Static55.currentLevel][arg1][arg0];
 		if (local9 == null) {
-			Static187.method3420(Static55.level, arg1, arg0);
+			Static187.method3420(Static55.currentLevel, arg1, arg0);
 			return;
 		}
 		@Pc(28) int local28 = -99999999;
@@ -42,7 +42,7 @@ public final class Static220 {
 			}
 		}
 		if (local30 == null) {
-			Static187.method3420(Static55.level, arg1, arg0);
+			Static187.method3420(Static55.currentLevel, arg1, arg0);
 			return;
 		}
 		local9.method2283(local30);
@@ -60,7 +60,7 @@ public final class Static220 {
 			}
 		}
 		@Pc(152) long local152 = (long) ((arg0 << 7) + arg1 + 1610612736);
-		Static69.method1543(Static55.level, arg1, arg0, Static207.method3685(Static55.level, arg1 * 128 + 64, arg0 * 128 + 64), local30.aClass8_Sub7_1, local152, local89, local91);
+		Static69.method1543(Static55.currentLevel, arg1, arg0, Static207.getHeightmapY(Static55.currentLevel, arg1 * 128 + 64, arg0 * 128 + 64), local30.aClass8_Sub7_1, local152, local89, local91);
 	}
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(JB)V")
@@ -81,7 +81,7 @@ public final class Static220 {
 				return null;
 			}
 			local10 = local22.method1679(64, 768, -50, -10, -50);
-			Static110.aClass99_15.method3095(local10, local4);
+			Static110.aClass99_15.put(local10, local4);
 		}
 		@Pc(42) int local42 = arg4.method4562();
 		@Pc(45) int local45 = arg4.method4561();
@@ -94,18 +94,18 @@ public final class Static220 {
 		@Pc(94) int local94;
 		if (GlRenderer.enabled) {
 			@Pc(68) GlModel local68 = (GlModel) local10;
-			if (arg5 != Static207.method3685(Static55.level, arg3 + local42, arg1 + local48) || arg5 != Static207.method3685(Static55.level, arg3 + local45, local51 + arg1)) {
+			if (arg5 != Static207.getHeightmapY(Static55.currentLevel, arg3 + local42, arg1 + local48) || arg5 != Static207.getHeightmapY(Static55.currentLevel, arg3 + local45, local51 + arg1)) {
 				for (local94 = 0; local94 < local68.anInt5295; local94++) {
-					local68.vertexY[local94] += Static207.method3685(Static55.level, local68.vertexX[local94] + arg3, local68.vertexZ[local94] + arg1) - arg5;
+					local68.vertexY[local94] += Static207.getHeightmapY(Static55.currentLevel, local68.vertexX[local94] + arg3, local68.vertexZ[local94] + arg1) - arg5;
 				}
 				local68.vertexBuffer.valid = false;
 				local68.bounds.valid = false;
 			}
 		} else {
 			@Pc(142) SoftwareModel local142 = (SoftwareModel) local10;
-			if (arg5 != Static207.method3685(Static55.level, local42 + arg3, local48 + arg1) || arg5 != Static207.method3685(Static55.level, arg3 + local45, local51 + arg1)) {
+			if (arg5 != Static207.getHeightmapY(Static55.currentLevel, local42 + arg3, local48 + arg1) || arg5 != Static207.getHeightmapY(Static55.currentLevel, arg3 + local45, local51 + arg1)) {
 				for (local94 = 0; local94 < local142.anInt5788; local94++) {
-					local142.anIntArray527[local94] += Static207.method3685(Static55.level, arg3 + local142.anIntArray528[local94], local142.anIntArray531[local94] + arg1) - arg5;
+					local142.anIntArray527[local94] += Static207.getHeightmapY(Static55.currentLevel, arg3 + local142.anIntArray528[local94], local142.anIntArray531[local94] + arg1) - arg5;
 				}
 				local142.aBoolean305 = false;
 			}

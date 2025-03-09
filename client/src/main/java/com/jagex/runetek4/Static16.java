@@ -16,7 +16,7 @@ public final class Static16 {
 	public static final int[] anIntArray51 = new int[] { 2, 2, 4, 2, 1, 8, 4, 1, 4, 4, 2, 1, 1, 1, 4, 1 };
 
 	@OriginalMember(owner = "client!bf", name = "E", descriptor = "I")
-	public static int anInt549 = -1;
+	public static int localPid = -1;
 
 	@OriginalMember(owner = "client!bf", name = "G", descriptor = "I")
 	public static int anInt551 = 0;

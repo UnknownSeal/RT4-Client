@@ -20,7 +20,7 @@ public final class Static7 {
 	public static final SoftLruHashTable aClass99_5 = new SoftLruHashTable(2);
 
 	@OriginalMember(owner = "client!ah", name = "j", descriptor = "[I")
-	public static final int[] anIntArray75 = new int[2500];
+	public static final int[] varps = new int[2500];
 
 	@OriginalMember(owner = "client!ah", name = "k", descriptor = "[J")
 	public static final long[] aLongArray2 = new long[32];
@@ -29,7 +29,7 @@ public final class Static7 {
 	public static int anInt983 = 0;
 
 	@OriginalMember(owner = "client!ah", name = "p", descriptor = "Lclient!ih;")
-	public static final LinkedList aClass69_32 = new LinkedList();
+	public static final LinkList aClass69_32 = new LinkList();
 
 	@OriginalMember(owner = "client!ah", name = "s", descriptor = "I")
 	public static int mouseClickX = 0;

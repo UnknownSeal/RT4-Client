@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -48,9 +48,9 @@ public final class Static141 {
 		Static116.method2325(false);
 		Static119.method2381();
 		for (@Pc(39) int local39 = 0; local39 < 2048; local39++) {
-			@Pc(46) Player local46 = Static159.players[local39];
+			@Pc(46) PlayerEntity local46 = Static159.players[local39];
 			if (local46 != null) {
-				local46.anObject5 = null;
+				local46.locModel = null;
 			}
 		}
 		if (GlRenderer.enabled) {
@@ -83,9 +83,9 @@ public final class Static141 {
 		Static233.anInt5225 = arg1;
 		Static248.anInt4232 = arg4;
 		if (arg0 && Static113.anInt4612 >= 100) {
-			Static138.anInt3439 = Static245.anInt5375 * 128 + 64;
-			Static134.anInt3302 = Static248.anInt4232 * 128 + 64;
-			Static5.anInt40 = Static207.method3685(Static55.level, Static138.anInt3439, Static134.anInt3302) - PreciseSleep.anInt5203;
+			Static138.cameraX = Static245.anInt5375 * 128 + 64;
+			Static134.cameraZ = Static248.anInt4232 * 128 + 64;
+			Static5.cameraY = Static207.getHeightmapY(Static55.currentLevel, Static138.cameraX, Static134.cameraZ) - PreciseSleep.anInt5203;
 		}
 		Static227.anInt5096 = 2;
 	}

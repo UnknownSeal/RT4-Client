@@ -98,7 +98,7 @@ public final class Static248 {
 				}
 			}
 		}
-		@Pc(240) boolean local240 = Static83.anIntArrayArrayArray4 == Static80.anIntArrayArrayArray19;
+		@Pc(240) boolean local240 = Static83.levelHeightMap == Static80.anIntArrayArrayArray19;
 		if (GlRenderer.enabled) {
 			@Pc(244) GL2 local244 = GlRenderer.gl;
 			local244.glPushMatrix();
@@ -138,7 +138,7 @@ public final class Static248 {
 					}
 					if (local32 == 0 && Static139.anInt3451 > 0) {
 						GlRenderer.method4159(101.5F);
-						Static242.method4198(Static167.anInt4069, Static193.anInt4539, Static277.anInt5855, arg1, Static48.aBooleanArrayArray1, Static83.anIntArrayArrayArray4[0]);
+						Static242.method4198(Static167.anInt4069, Static193.anInt4539, Static277.anInt5855, arg1, Static48.aBooleanArrayArray1, Static83.levelHeightMap[0]);
 					}
 					local32++;
 				}

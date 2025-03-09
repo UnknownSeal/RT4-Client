@@ -5,10 +5,10 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!cd")
-public final class Class3_Sub7 extends Node {
+public final class LocAddEntity extends Node {
 
 	@OriginalMember(owner = "runetek4.client!cd", name = "r", descriptor = "I")
-	public int anInt916;
+	public int z;
 
 	@OriginalMember(owner = "runetek4.client!cd", name = "t", descriptor = "I")
 	public int anInt918;
@@ -32,7 +32,7 @@ public final class Class3_Sub7 extends Node {
 	public int anInt927;
 
 	@OriginalMember(owner = "runetek4.client!cd", name = "H", descriptor = "I")
-	public int anInt928;
+	public int x;
 
 	@OriginalMember(owner = "runetek4.client!cd", name = "I", descriptor = "I")
 	public int anInt929;

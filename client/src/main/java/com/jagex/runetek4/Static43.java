@@ -24,33 +24,33 @@ public final class Static43 {
 	public static boolean displayFps = false;
 
 	@OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(IIIIILclient!th;IJZ)Z")
-	public static boolean method1141(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) Entity arg5, @OriginalArg(6) int arg6, @OriginalArg(7) long arg7, @OriginalArg(8) boolean arg8) {
+	public static boolean addTemporary(@OriginalArg(0) int arg0, @OriginalArg(1) int x, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) int padding, @OriginalArg(5) Entity arg5, @OriginalArg(6) int yaw, @OriginalArg(7) long arg7, @OriginalArg(8) boolean arg8) {
 		if (arg5 == null) {
 			return true;
 		}
-		@Pc(7) int local7 = arg1 - arg4;
-		@Pc(11) int local11 = arg2 - arg4;
-		@Pc(15) int local15 = arg1 + arg4;
-		@Pc(19) int local19 = arg2 + arg4;
+		@Pc(7) int x0 = x - padding;
+		@Pc(11) int z0 = z - padding;
+		@Pc(15) int x1 = x + padding;
+		@Pc(19) int z1 = z + padding;
 		if (arg8) {
-			if (arg6 > 640 && arg6 < 1408) {
-				local19 += 128;
+			if (yaw > 640 && yaw < 1408) {
+				z1 += 128;
 			}
-			if (arg6 > 1152 && arg6 < 1920) {
-				local15 += 128;
+			if (yaw > 1152 && yaw < 1920) {
+				x1 += 128;
 			}
-			if (arg6 > 1664 || arg6 < 384) {
-				local11 -= 128;
+			if (yaw > 1664 || yaw < 384) {
+				z0 -= 128;
 			}
-			if (arg6 > 128 && arg6 < 896) {
-				local7 -= 128;
+			if (yaw > 128 && yaw < 896) {
+				x0 -= 128;
 			}
 		}
-		local7 /= 128;
-		local11 /= 128;
-		local15 /= 128;
-		local19 /= 128;
-		return Static105.method2256(arg0, local7, local11, local15 + 1 - local7, local19 - local11 + 1, arg1, arg2, arg3, arg5, arg6, true, arg7);
+		x0 /= 128;
+		z0 /= 128;
+		x1 /= 128;
+		z1 /= 128;
+		return Static105.addLoc(arg0, x0, z0, x1 + 1 - x0, z1 - z0 + 1, x, z, arg3, arg5, yaw, true, arg7);
 	}
 
 	@OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(ILclient!be;)V")
@@ -104,8 +104,8 @@ public final class Static43 {
 			if (local148 != null) {
 				local100 = local148.aClass8_4;
 			}
-			if (local74.blockwalk != 0 && local74.width + arg1 < 104 && local74.width + arg0 < 104 && arg1 + local74.height < 104 && arg0 + local74.height < 104) {
-				arg5.method3056(arg1, local74.width, local74.blockrange, local92, local74.height, arg0);
+			if (local74.blockwalk != 0 && local74.width + arg1 < 104 && local74.width + arg0 < 104 && arg1 + local74.length < 104 && arg0 + local74.length < 104) {
+				arg5.method3056(arg1, local74.width, local74.blockrange, local92, local74.length, arg0);
 			}
 		} else if (arg3 == 3) {
 			@Pc(211) GroundDecor local211 = Static267.method4526(arg2, arg1, arg0);
@@ -134,7 +134,7 @@ public final class Static43 {
 			if (local100 instanceof Loc) {
 				((Loc) local100).method1046();
 			} else {
-				Static9.method181(local74, Static238.anIntArray469[local92] * 8, local92, Static34.anIntArray80[local92] * 8, 4, arg1, arg0, arg4);
+				Static9.method181(local74, Static238.WALL_DECORATION_ROTATION_FORWARD_Z[local92] * 8, local92, Static34.WALL_DECORATION_ROTATION_FORWARD_X[local92] * 8, 4, arg1, arg0, arg4);
 			}
 		} else if (local57 == 6) {
 			if (local100 instanceof Loc) {

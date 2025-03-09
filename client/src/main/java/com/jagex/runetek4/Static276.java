@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -20,7 +20,7 @@ public final class Static276 {
 	public static final AnimFrameset[] aClass3_Sub2_Sub7Array8 = new AnimFrameset[14];
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "m", descriptor = "[I")
-	public static final int[] anIntArray564 = new int[5];
+	public static final int[] cameraModifierWobbleScale = new int[5];
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "n", descriptor = "Lclient!na;")
 	public static final JagString aClass100_1095 = Static28.parse("; version=1; path=)4; domain=");
@@ -39,7 +39,7 @@ public final class Static276 {
 		if (Static9.method187(arg0, arg1, arg2)) {
 			@Pc(10) int local10 = arg1 << 7;
 			@Pc(14) int local14 = arg2 << 7;
-			return Static256.method4394(local10 + 1, Static83.anIntArrayArrayArray4[arg0][arg1][arg2] + arg3, local14 + 1) && Static256.method4394(local10 + 128 - 1, Static83.anIntArrayArrayArray4[arg0][arg1 + 1][arg2] + arg3, local14 + 1) && Static256.method4394(local10 + 128 - 1, Static83.anIntArrayArrayArray4[arg0][arg1 + 1][arg2 + 1] + arg3, local14 + 128 - 1) && Static256.method4394(local10 + 1, Static83.anIntArrayArrayArray4[arg0][arg1][arg2 + 1] + arg3, local14 + 128 - 1);
+			return Static256.method4394(local10 + 1, Static83.levelHeightMap[arg0][arg1][arg2] + arg3, local14 + 1) && Static256.method4394(local10 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg2] + arg3, local14 + 1) && Static256.method4394(local10 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg2 + 1] + arg3, local14 + 128 - 1) && Static256.method4394(local10 + 1, Static83.levelHeightMap[arg0][arg1][arg2 + 1] + arg3, local14 + 128 - 1);
 		} else {
 			return false;
 		}
@@ -54,26 +54,26 @@ public final class Static276 {
 	public static void method4613(@OriginalArg(0) int arg0, @OriginalArg(2) JagString arg1) {
 		@Pc(7) JagString local7 = arg1.method3159().method3125();
 		@Pc(13) boolean local13 = false;
-		for (@Pc(15) int local15 = 0; local15 < Static267.size; local15++) {
-			@Pc(28) Player local28 = Static159.players[Static105.ids[local15]];
+		for (@Pc(15) int local15 = 0; local15 < Static267.playerCount; local15++) {
+			@Pc(28) PlayerEntity local28 = Static159.players[Static105.playerIds[local15]];
 			if (local28 != null && local28.username != null && local28.username.equalsIgnoreCase(local7)) {
 				local13 = true;
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local28.pathTileX[0], 1, 0, 2, local28.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
 				if (arg0 == 1) {
 					Static6.outboundBuffer.pIsaac1(68);
-					Static6.outboundBuffer.p2_alt3(Static105.ids[local15]);
+					Static6.outboundBuffer.p2_alt3(Static105.playerIds[local15]);
 				} else if (arg0 == 4) {
 					Static6.outboundBuffer.pIsaac1(180);
-					Static6.outboundBuffer.p2_alt3(Static105.ids[local15]);
+					Static6.outboundBuffer.p2_alt3(Static105.playerIds[local15]);
 				} else if (arg0 == 5) {
 					Static6.outboundBuffer.pIsaac1(4);
-					Static6.outboundBuffer.p2_alt1(Static105.ids[local15]);
+					Static6.outboundBuffer.p2_alt1(Static105.playerIds[local15]);
 				} else if (arg0 == 6) {
 					Static6.outboundBuffer.pIsaac1(133);
-					Static6.outboundBuffer.p2_alt1(Static105.ids[local15]);
+					Static6.outboundBuffer.p2_alt1(Static105.playerIds[local15]);
 				} else if (arg0 == 7) {
 					Static6.outboundBuffer.pIsaac1(114);
-					Static6.outboundBuffer.p2_alt3(Static105.ids[local15]);
+					Static6.outboundBuffer.p2_alt3(Static105.playerIds[local15]);
 				}
 				break;
 			}

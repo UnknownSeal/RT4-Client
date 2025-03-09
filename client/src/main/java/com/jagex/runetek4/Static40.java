@@ -58,9 +58,9 @@ public final class Static40 {
 			local173 = Static107.anIntArrayArrayArray9[Static155.anInt3718][local70 + 2][local72] + local131 - local119 - local111;
 			local30[local72] = (float) local119 + (((float) local173 * local66 + (float) local155) * local66 + (float) local146) * local66;
 		}
-		Static5.anInt40 = (int) local30[1] * -1;
-		Static138.anInt3439 = (int) local30[0] - Static225.originX * 128;
-		Static134.anInt3302 = (int) local30[2] - Static142.originZ * 128;
+		Static5.cameraY = (int) local30[1] * -1;
+		Static138.cameraX = (int) local30[0] - Static225.originX * 128;
+		Static134.cameraZ = (int) local30[2] - Static142.originZ * 128;
 		@Pc(226) float[] local226 = new float[3];
 		local141 = Static75.anInt2119 * 2;
 		for (local131 = 0; local131 < 3; local131++) {
@@ -79,8 +79,8 @@ public final class Static40 {
 		@Pc(392) double local392 = Math.sqrt((double) (local371 * local371 + local363 * local363));
 		Static146.aFloat15 = (float) Math.atan2((double) local382, local392);
 		Static84.aFloat10 = -((float) Math.atan2((double) local363, (double) local371));
-		Static240.anInt5333 = (int) ((double) Static146.aFloat15 * 325.949D) & 0x7FF;
-		Static184.anInt4358 = (int) ((double) Static84.aFloat10 * 325.949D) & 0x7FF;
+		Static240.cameraPitch = (int) ((double) Static146.aFloat15 * 325.949D) & 0x7FF;
+		Static184.cameraYaw = (int) ((double) Static84.aFloat10 * 325.949D) & 0x7FF;
 	}
 
 	@OriginalMember(owner = "runetek4.client!da", name = "a", descriptor = "(ILclient!ve;Z)Lclient!ok;")
@@ -99,7 +99,7 @@ public final class Static40 {
 		if (bytes != null) {
 			local10.decode(new Packet(bytes));
 		}
-		PreciseSleep.aClass99_29.method3095(local10, (long) arg0);
+		PreciseSleep.aClass99_29.put(local10, (long) arg0);
 		return local10;
 	}
 

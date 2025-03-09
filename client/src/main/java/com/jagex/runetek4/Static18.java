@@ -32,19 +32,19 @@ public final class Static18 {
 		@Pc(20) int local20 = arg0.anInt3380 * 128 + arg0.size() * 64;
 		@Pc(36) int local36 = arg0.anInt3428 * 128 + arg0.size() * 64;
 		if (arg0.anInt3431 == 0) {
-			arg0.anInt3400 = 1024;
+			arg0.dstYaw = 1024;
 		}
 		arg0.x += (local20 - arg0.x) / local8;
 		arg0.z += (local36 - arg0.z) / local8;
 		if (arg0.anInt3431 == 1) {
-			arg0.anInt3400 = 1536;
+			arg0.dstYaw = 1536;
 		}
 		arg0.anInt3417 = 0;
 		if (arg0.anInt3431 == 2) {
-			arg0.anInt3400 = 0;
+			arg0.dstYaw = 0;
 		}
 		if (arg0.anInt3431 == 3) {
-			arg0.anInt3400 = 512;
+			arg0.dstYaw = 512;
 		}
 	}
 
@@ -54,7 +54,7 @@ public final class Static18 {
 	}
 
 	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(IIIIIIII)V")
-	public static void method555(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {
+	public static void orbitCamera(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {
 		@Pc(5) int local5;
 		@Pc(29) int local29;
 		if (GlRenderer.enabled) {
@@ -86,11 +86,11 @@ public final class Static18 {
 			local55 = local72 * local57 >> 16;
 			local57 = local57 * local68 >> 16;
 		}
-		Static240.anInt5333 = arg6;
-		Static184.anInt4358 = arg4;
-		Static134.anInt3302 = arg5 - local57;
-		Static138.anInt3439 = arg0 - local55;
-		Static5.anInt40 = arg2 - local59;
+		Static240.cameraPitch = arg6;
+		Static184.cameraYaw = arg4;
+		Static134.cameraZ = arg5 - local57;
+		Static138.cameraX = arg0 - local55;
+		Static5.cameraY = arg2 - local59;
 	}
 
 	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(B)Lclient!ba;")

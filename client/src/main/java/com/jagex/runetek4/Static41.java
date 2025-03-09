@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.seqtype.SeqType;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -14,7 +14,7 @@ public final class Static41 {
 	public static Js5 aClass153_25;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "v", descriptor = "Lclient!na;")
-	public static final JagString aClass100_266 = Static28.parse("<col=c0ff00>");
+	public static final JagString GREEN3 = Static28.parse("<col=c0ff00>");
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "E", descriptor = "Lclient!na;")
 	private static final JagString aClass100_267 = Static28.parse("wave:");
@@ -88,7 +88,7 @@ public final class Static41 {
 				}
 			}
 			local33 = local103.method1679(64, 768, -50, -10, -50);
-			Static45.aClass99_6.method3095(local33, local23);
+			Static45.aClass99_6.put(local33, local23);
 		}
 		@Pc(367) int local367 = arg7 * 64 - 1;
 		@Pc(376) int local376 = -local367;
@@ -146,18 +146,18 @@ public final class Static41 {
 		}
 		if (GlRenderer.enabled) {
 			@Pc(650) GlModel local650 = (GlModel) local33;
-			if (Static207.method3685(Static55.level, arg3 + local384, local126 + arg5) != arg11 || Static207.method3685(Static55.level, local115 + arg3, arg5 - -local130) != arg11) {
+			if (Static207.getHeightmapY(Static55.currentLevel, arg3 + local384, local126 + arg5) != arg11 || Static207.getHeightmapY(Static55.currentLevel, local115 + arg3, arg5 - -local130) != arg11) {
 				for (local162 = 0; local162 < local650.anInt5295; local162++) {
-					local650.vertexY[local162] += Static207.method3685(Static55.level, local650.vertexX[local162] + arg3, arg5 + local650.vertexZ[local162]) - arg11;
+					local650.vertexY[local162] += Static207.getHeightmapY(Static55.currentLevel, local650.vertexX[local162] + arg3, arg5 + local650.vertexZ[local162]) - arg11;
 				}
 				local650.bounds.valid = false;
 				local650.vertexBuffer.valid = false;
 			}
 		} else {
 			@Pc(574) SoftwareModel local574 = (SoftwareModel) local33;
-			if (Static207.method3685(Static55.level, arg3 + local384, arg5 - -local126) != arg11 || arg11 != Static207.method3685(Static55.level, arg3 + local115, arg5 - -local130)) {
+			if (Static207.getHeightmapY(Static55.currentLevel, arg3 + local384, arg5 - -local126) != arg11 || arg11 != Static207.getHeightmapY(Static55.currentLevel, arg3 + local115, arg5 - -local130)) {
 				for (local162 = 0; local162 < local574.anInt5788; local162++) {
-					local574.anIntArray527[local162] += Static207.method3685(Static55.level, arg3 + local574.anIntArray528[local162], arg5 + local574.anIntArray531[local162]) - arg11;
+					local574.anIntArray527[local162] += Static207.getHeightmapY(Static55.currentLevel, arg3 + local574.anIntArray528[local162], arg5 + local574.anIntArray531[local162]) - arg11;
 				}
 				local574.aBoolean305 = false;
 			}
@@ -176,45 +176,45 @@ public final class Static41 {
 	public static void readPlayerInfo() {
 		@Pc(6) int local6 = Static57.in.gBit(8);
 
-		if (Static267.size > local6) {
-			for (int inxed = local6; inxed < Static267.size; inxed++) {
-				Static52.removedIds[Static240.removedCount++] = Static105.ids[inxed];
+		if (Static267.playerCount > local6) {
+			for (int inxed = local6; inxed < Static267.playerCount; inxed++) {
+				Static52.entityRemovalIds[Static240.entityRemovalCount++] = Static105.playerIds[inxed];
 			}
 		}
-		if (local6 > Static267.size) {
+		if (local6 > Static267.playerCount) {
 			throw new RuntimeException("gppov1");
 		}
 
-		Static267.size = 0;
+		Static267.playerCount = 0;
 
 		for (int index = 0; index < local6; index++) {
-			@Pc(75) int local75 = Static105.ids[index];
-			@Pc(79) Player local79 = Static159.players[local75];
+			@Pc(75) int local75 = Static105.playerIds[index];
+			@Pc(79) PlayerEntity local79 = Static159.players[local75];
 			@Pc(84) int local84 = Static57.in.gBit(1);
 			if (local84 == 0) {
-				Static105.ids[Static267.size++] = local75;
-				local79.anInt3430 = Static83.loopCycle;
+				Static105.playerIds[Static267.playerCount++] = local75;
+				local79.cycle = Static83.loopCycle;
 			} else {
 				@Pc(107) int local107 = Static57.in.gBit(2);
 				if (local107 == 0) {
-					Static105.ids[Static267.size++] = local75;
-					local79.anInt3430 = Static83.loopCycle;
-					Static44.anIntArray106[Static116.anInt2951++] = local75;
+					Static105.playerIds[Static267.playerCount++] = local75;
+					local79.cycle = Static83.loopCycle;
+					Static44.entityUpdateIds[Static116.entityUpdateCount++] = local75;
 				} else {
 					@Pc(153) int local153;
 					@Pc(163) int local163;
 					if (local107 == 1) {
-						Static105.ids[Static267.size++] = local75;
-						local79.anInt3430 = Static83.loopCycle;
+						Static105.playerIds[Static267.playerCount++] = local75;
+						local79.cycle = Static83.loopCycle;
 						local153 = Static57.in.gBit(3);
 						local79.method2684(1, local153);
 						local163 = Static57.in.gBit(1);
 						if (local163 == 1) {
-							Static44.anIntArray106[Static116.anInt2951++] = local75;
+							Static44.entityUpdateIds[Static116.entityUpdateCount++] = local75;
 						}
 					} else if (local107 == 2) {
-						Static105.ids[Static267.size++] = local75;
-						local79.anInt3430 = Static83.loopCycle;
+						Static105.playerIds[Static267.playerCount++] = local75;
+						local79.cycle = Static83.loopCycle;
 						if (Static57.in.gBit(1) == 1) {
 							local153 = Static57.in.gBit(3);
 							local79.method2684(2, local153);
@@ -226,10 +226,10 @@ public final class Static41 {
 						}
 						local153 = Static57.in.gBit(1);
 						if (local153 == 1) {
-							Static44.anIntArray106[Static116.anInt2951++] = local75;
+							Static44.entityUpdateIds[Static116.entityUpdateCount++] = local75;
 						}
 					} else if (local107 == 3) {
-						Static52.removedIds[Static240.removedCount++] = local75;
+						Static52.entityRemovalIds[Static240.entityRemovalCount++] = local75;
 					}
 				}
 			}

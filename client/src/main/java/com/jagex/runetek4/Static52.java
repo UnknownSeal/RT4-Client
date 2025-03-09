@@ -11,7 +11,7 @@ public final class Static52 {
 	public static int anInt1695;
 
 	@OriginalMember(owner = "runetek4.client!eb", name = "p", descriptor = "[I")
-	public static final int[] removedIds = new int[1000];
+	public static final int[] entityRemovalIds = new int[1000];
 
 	@OriginalMember(owner = "runetek4.client!eb", name = "t", descriptor = "I")
 	public static int anInt1694 = -1;

@@ -54,9 +54,9 @@ public final class Static250 {
 			for (@Pc(93) int local93 = 0; local93 < Static182.keyQueueSize; local93++) {
 				@Pc(104) int local104 = Static227.keyCodes[local93];
 				if (local104 == 98) {
-					Static72.anInt2031 = Static72.anInt2031 + 47 & 0xFFFFFFF0;
+					Static72.orbitCameraPitch = Static72.orbitCameraPitch + 47 & 0xFFFFFFF0;
 				} else if (local104 == 99) {
-					Static72.anInt2031 = Static72.anInt2031 - 17 & 0xFFFFFFF0;
+					Static72.orbitCameraPitch = Static72.orbitCameraPitch - 17 & 0xFFFFFFF0;
 				} else if (local104 == 96) {
 					Static57.orbitCameraYaw = Static57.orbitCameraYaw - 65 & 0xFFFFFF80;
 				} else if (local104 == 97) {
@@ -78,7 +78,7 @@ public final class Static250 {
 			} else {
 				Static38.anInt1203 /= 2;
 			}
-			Static72.anInt2031 += Static56.anInt1743 / 2;
+			Static72.orbitCameraPitch += Static56.anInt1743 / 2;
 			Static57.orbitCameraYaw += Static38.anInt1203 / 2;
 		}
 		Static87.method1812();

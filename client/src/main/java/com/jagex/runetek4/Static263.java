@@ -24,7 +24,7 @@ public final class Static263 {
 	public static int minimapAngleModifier = 2;
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "f", descriptor = "Lclient!na;")
-	public static final JagString aClass100_1081 = Static28.parse("<col=80ff00>");
+	public static final JagString GREEN3 = Static28.parse("<col=80ff00>");
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "h", descriptor = "Lclient!na;")
 	public static final JagString aClass100_1082 = Static28.parse("; Expires=");
@@ -114,7 +114,7 @@ public final class Static263 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(IILclient!fe;)V")
-	public static void method4514(@OriginalArg(0) int arg0, @OriginalArg(2) PathingEntity arg1) {
+	public static void updateEntity(@OriginalArg(0) int arg0, @OriginalArg(2) PathingEntity arg1) {
 		if (Static83.loopCycle < arg1.anInt3395) {
 			Static18.method553(arg1);
 		} else if (arg1.anInt3386 >= Static83.loopCycle) {
@@ -123,8 +123,8 @@ public final class Static263 {
 			Static104.method2247(arg1);
 		}
 		if (arg1.x < 128 || arg1.z < 128 || arg1.x >= 13184 || arg1.z >= 13184) {
-			arg1.anInt3369 = -1;
-			arg1.anInt3432 = -1;
+			arg1.primarySeqId = -1;
+			arg1.spotanimFrame = -1;
 			arg1.anInt3395 = 0;
 			arg1.anInt3386 = 0;
 			arg1.x = arg1.pathTileX[0] * 128 + arg1.size() * 64;
@@ -132,10 +132,10 @@ public final class Static263 {
 			arg1.method2689();
 		}
 		if (arg1 == Static173.localPlayer && (arg1.x < 1536 || arg1.z < 1536 || arg1.x >= 11776 || arg1.z >= 11776)) {
-			arg1.anInt3432 = -1;
+			arg1.spotanimFrame = -1;
 			arg1.anInt3395 = 0;
 			arg1.anInt3386 = 0;
-			arg1.anInt3369 = -1;
+			arg1.primarySeqId = -1;
 			arg1.x = arg1.pathTileX[0] * 128 + arg1.size() * 64;
 			arg1.z = arg1.pathTileZ[0] * 128 + arg1.size() * 64;
 			arg1.method2689();

@@ -11,7 +11,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static104 {
 
 	@OriginalMember(owner = "runetek4.client!ia", name = "d", descriptor = "[I")
-	public static final int[] anIntArray255 = new int[200];
+	public static final int[] friendWorld = new int[200];
 
 	@OriginalMember(owner = "runetek4.client!ia", name = "a", descriptor = "(BLclient!fe;)V")
 	public static void method2247(@OriginalArg(1) PathingEntity arg0) {
@@ -21,8 +21,8 @@ public final class Static104 {
 			arg0.anInt3417 = 0;
 			return;
 		}
-		if (arg0.anInt3369 != -1 && arg0.anInt3420 == 0) {
-			@Pc(40) SeqType local40 = Static36.method941(arg0.anInt3369);
+		if (arg0.primarySeqId != -1 && arg0.anInt3420 == 0) {
+			@Pc(40) SeqType local40 = Static36.method941(arg0.primarySeqId);
 			if (arg0.anInt3405 > 0 && local40.anInt5363 == 0) {
 				arg0.anInt3417++;
 				return;
@@ -44,25 +44,25 @@ public final class Static104 {
 		if (local99 <= local79) {
 			if (local79 <= local99) {
 				if (local116 > local82) {
-					arg0.anInt3400 = 1024;
+					arg0.dstYaw = 1024;
 				} else if (local82 > local116) {
-					arg0.anInt3400 = 0;
+					arg0.dstYaw = 0;
 				}
 			} else if (local116 > local82) {
-				arg0.anInt3400 = 768;
+				arg0.dstYaw = 768;
 			} else if (local116 < local82) {
-				arg0.anInt3400 = 256;
+				arg0.dstYaw = 256;
 			} else {
-				arg0.anInt3400 = 512;
+				arg0.dstYaw = 512;
 			}
 		} else if (local116 > local82) {
-			arg0.anInt3400 = 1280;
+			arg0.dstYaw = 1280;
 		} else if (local82 > local116) {
-			arg0.anInt3400 = 1792;
+			arg0.dstYaw = 1792;
 		} else {
-			arg0.anInt3400 = 1536;
+			arg0.dstYaw = 1536;
 		}
-		@Pc(224) int local224 = arg0.anInt3400 - arg0.anInt3381 & 0x7FF;
+		@Pc(224) int local224 = arg0.dstYaw - arg0.anInt3381 & 0x7FF;
 		@Pc(227) int local227 = local9.anInt1056;
 		if (local224 > 1024) {
 			local224 -= 2048;
@@ -82,10 +82,10 @@ public final class Static104 {
 		}
 		arg0.anInt3366 = local227;
 		if (arg0 instanceof NPCEntity) {
-			local233 = ((NPCEntity) arg0).npcType.walksmoothing;
+			local233 = ((NPCEntity) arg0).type.walksmoothing;
 		}
 		if (local233) {
-			if (arg0.anInt3381 != arg0.anInt3400 && arg0.anInt3370 == -1 && arg0.anInt3376 != 0) {
+			if (arg0.anInt3381 != arg0.dstYaw && arg0.anInt3370 == -1 && arg0.anInt3376 != 0) {
 				local273 = 2;
 			}
 			if (arg0.routeLength > 2) {

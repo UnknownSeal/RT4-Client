@@ -166,16 +166,16 @@ public final class Static158 {
 					if (Static175.npcs[local97] == null && (local148.walkflags & 0x1) > 0 && local107 == Static41.anInt1316 && local125 >= 0 && local148.size + local125 < 104 && local142 >= 0 && local142 + local148.size < 104) {
 						Static175.npcs[local97] = new NPCEntity();
 						@Pc(198) NPCEntity local198 = Static175.npcs[local97];
-						Static33.anIntArray79[Static272.anInt5214++] = local97;
-						local198.anInt3430 = Static83.loopCycle;
+						Static33.npcIds[Static272.npcCount++] = local97;
+						local198.cycle = Static83.loopCycle;
 						local198.method2698(local148);
-						local198.setSize(local198.npcType.size);
-						local198.anInt3400 = local198.anInt3381 = Static56.anIntArray141[local198.npcType.respawndir];
-						local198.anInt3376 = local198.npcType.turnspeed;
+						local198.setSize(local198.type.size);
+						local198.dstYaw = local198.anInt3381 = Static56.anIntArray141[local198.type.respawndir];
+						local198.anInt3376 = local198.type.turnspeed;
 						if (local198.anInt3376 == 0) {
 							local198.anInt3381 = 0;
 						}
-						local198.anInt3365 = local198.npcType.bas;
+						local198.anInt3365 = local198.type.bas;
 						local198.method2683(local198.size(), local125, local142, true);
 					}
 				}

@@ -143,9 +143,9 @@ public final class SoftwareModel extends Model {
 		this.anIntArray534 = arg0.anIntArray197;
 		this.anIntArray524 = arg0.anIntArray200;
 		this.anIntArray529 = arg0.anIntArray196;
-		this.aByteArray73 = arg0.facePriority;
+		this.aByteArray73 = arg0.facePriorities;
 		this.aByteArray75 = arg0.aByteArray26;
-		this.aByte20 = arg0.aByte7;
+		this.aByte20 = arg0.modelPriority;
 		this.aShortArray89 = arg0.unmodifiedTriangleColour;
 		this.anIntArrayArray41 = arg0.anIntArrayArray16;
 		this.anIntArrayArray42 = arg0.anIntArrayArray15;
@@ -170,8 +170,8 @@ public final class SoftwareModel extends Model {
 				}
 			}
 		}
-		if (arg0.anInt2137 > 0 && arg0.aByteArray31 != null) {
-			@Pc(177) int[] local177 = new int[arg0.anInt2137];
+		if (arg0.texturedFaceCount > 0 && arg0.aByteArray31 != null) {
+			@Pc(177) int[] local177 = new int[arg0.texturedFaceCount];
 			@Pc(179) int local179;
 			for (local179 = 0; local179 < this.anInt5787; local179++) {
 				if (arg0.aByteArray31[local179] != -1) {
@@ -179,7 +179,7 @@ public final class SoftwareModel extends Model {
 				}
 			}
 			this.anInt5789 = 0;
-			for (local179 = 0; local179 < arg0.anInt2137; local179++) {
+			for (local179 = 0; local179 < arg0.texturedFaceCount; local179++) {
 				if (local177[local179] > 0 && arg0.aByteArray29[local179] == 0) {
 					this.anInt5789++;
 				}
@@ -189,7 +189,7 @@ public final class SoftwareModel extends Model {
 			this.anIntArray525 = new int[this.anInt5789];
 			local179 = 0;
 			@Pc(248) int local248;
-			for (local248 = 0; local248 < arg0.anInt2137; local248++) {
+			for (local248 = 0; local248 < arg0.texturedFaceCount; local248++) {
 				if (local177[local248] > 0 && arg0.aByteArray29[local248] == 0) {
 					this.anIntArray526[local179] = arg0.textureTriangleVertex1[local248] & 0xFFFF;
 					this.anIntArray530[local179] = arg0.textureTriangleVertex2[local248] & 0xFFFF;
@@ -576,7 +576,7 @@ public final class SoftwareModel extends Model {
 		arg2.anIntArrayArray42 = this.anIntArrayArray42;
 		arg2.aShortArray91 = this.aShortArray91;
 		arg2.aShortArray90 = this.aShortArray90;
-		arg2.aBoolean303 = this.aBoolean303;
+		arg2.pickable = this.pickable;
 		arg2.aBoolean305 = false;
 		return arg2;
 	}
@@ -726,7 +726,7 @@ public final class SoftwareModel extends Model {
 					}
 				}
 				if (Static150.anInt3582 >= local204 && Static150.anInt3582 <= local208 && Static34.anInt1053 >= local223 && Static34.anInt1053 <= local227) {
-					if (this.aBoolean303) {
+					if (this.pickable) {
 						Static259.aLongArray11[Static2.anInt7++] = arg8;
 					} else {
 						local190 = true;
@@ -825,7 +825,7 @@ public final class SoftwareModel extends Model {
 			local150.anIntArrayArray42 = this.anIntArrayArray42;
 			local150.aShortArray91 = this.aShortArray91;
 			local150.aShortArray90 = this.aShortArray90;
-			local150.aBoolean303 = this.aBoolean303;
+			local150.pickable = this.pickable;
 			if (arg0 == 3) {
 				local150.anIntArray528 = Static115.method2308(this.anIntArray528);
 				local150.anIntArray527 = Static115.method2308(this.anIntArray527);

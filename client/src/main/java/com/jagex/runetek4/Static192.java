@@ -21,7 +21,7 @@ public final class Static192 {
 			@Pc(29) int local29;
 			if (local17.anInt1192 < 0) {
 				local29 = -local17.anInt1192 - 1;
-				if (local29 == Static16.anInt549) {
+				if (local29 == Static16.localPid) {
 					local40 = Static173.localPlayer;
 				} else {
 					local40 = Static159.players[local29];
@@ -32,55 +32,55 @@ public final class Static192 {
 			}
 			if (local40 != null) {
 				@Pc(63) LocType local63 = Static271.get(local17.anInt1189);
-				if (Static55.level < 3) {
+				if (Static55.currentLevel < 3) {
 				}
 				@Pc(86) int local86;
 				@Pc(83) int local83;
 				if (local17.anInt1206 == 1 || local17.anInt1206 == 3) {
 					local83 = local63.width;
-					local86 = local63.height;
+					local86 = local63.length;
 				} else {
 					local86 = local63.width;
-					local83 = local63.height;
+					local83 = local63.length;
 				}
 				@Pc(103) int local103 = (local86 + 1 >> 1) + local17.anInt1190;
 				@Pc(110) int local110 = (local86 >> 1) + local17.anInt1190;
 				@Pc(117) int local117 = (local83 >> 1) + local17.anInt1204;
 				@Pc(126) int local126 = (local83 + 1 >> 1) + local17.anInt1204;
-				@Pc(130) int[][] local130 = Static83.anIntArrayArrayArray4[Static55.level];
+				@Pc(130) int[][] local130 = Static83.levelHeightMap[Static55.currentLevel];
 				@Pc(157) int local157 = local130[local103][local126] + local130[local110][local126] + local130[local110][local117] + local130[local103][local117] >> 2;
 				@Pc(159) Entity local159 = null;
 				@Pc(164) int local164 = client.locShapeToLayer[local17.anInt1198];
 				if (local164 == 0) {
-					@Pc(176) Wall local176 = Static262.method4509(Static55.level, local17.anInt1190, local17.anInt1204);
+					@Pc(176) Wall local176 = Static262.method4509(Static55.currentLevel, local17.anInt1190, local17.anInt1204);
 					if (local176 != null) {
 						local159 = local176.aClass8_5;
 					}
 				} else if (local164 == 1) {
-					@Pc(231) WallDecor local231 = Static83.method435(Static55.level, local17.anInt1190, local17.anInt1204);
+					@Pc(231) WallDecor local231 = Static83.method435(Static55.currentLevel, local17.anInt1190, local17.anInt1204);
 					if (local231 != null) {
 						local159 = local231.aClass8_3;
 					}
 				} else if (local164 == 2) {
-					@Pc(198) Scenery local198 = Static133.method4008(Static55.level, local17.anInt1190, local17.anInt1204);
+					@Pc(198) Scenery local198 = Static133.method4008(Static55.currentLevel, local17.anInt1190, local17.anInt1204);
 					if (local198 != null) {
 						local159 = local198.aClass8_4;
 					}
 				} else if (local164 == 3) {
-					@Pc(216) GroundDecor local216 = Static269.method2210(Static55.level, local17.anInt1190, local17.anInt1204);
+					@Pc(216) GroundDecor local216 = Static269.method2210(Static55.currentLevel, local17.anInt1190, local17.anInt1204);
 					if (local216 != null) {
 						local159 = local216.entity;
 					}
 				}
 				if (local159 != null) {
-					Static29.method800(Static55.level, local17.anInt1204, 0, local17.anInt1190, local17.anInt1205 + 1, -1, local164, 0, local17.anInt1187 + 1);
-					local40.anInt3375 = local17.anInt1205 + Static83.loopCycle;
-					local40.anInt3426 = local83 * 64 + local17.anInt1204 * 128;
-					local40.anInt3379 = local86 * 64 + local17.anInt1190 * 128;
-					local40.anObject5 = local159;
+					Static29.method800(Static55.currentLevel, local17.anInt1204, 0, local17.anInt1190, local17.anInt1205 + 1, -1, local164, 0, local17.anInt1187 + 1);
+					local40.locStopCycle = local17.anInt1205 + Static83.loopCycle;
+					local40.locOffsetZ = local83 * 64 + local17.anInt1204 * 128;
+					local40.locOffsetX = local86 * 64 + local17.anInt1190 * 128;
+					local40.locModel = local159;
 					@Pc(292) int local292 = local17.anInt1188;
-					local40.anInt3406 = local157;
-					local40.anInt3390 = Static83.loopCycle + local17.anInt1187;
+					local40.locOffsetY = local157;
+					local40.locStartCycle = Static83.loopCycle + local17.anInt1187;
 					@Pc(304) int local304 = local17.anInt1191;
 					@Pc(307) int local307 = local17.anInt1197;
 					@Pc(310) int local310 = local17.anInt1200;

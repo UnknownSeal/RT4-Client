@@ -50,7 +50,7 @@ public final class Static81 {
 		if (bytes != null) {
 			idkType.decode(new Packet(bytes));
 		}
-		Static67.aClass99_20.method3095(idkType, (long) arg0);
+		Static67.aClass99_20.put(idkType, (long) arg0);
 		return idkType;
 	}
 
@@ -226,7 +226,7 @@ public final class Static81 {
 			Static16.anInt551 = 20;
 			Static197.aBoolean228 = false;
 			Static6.outboundBuffer.pIsaac1(21);
-			Static6.outboundBuffer.p2_alt2(Static72.anInt2031);
+			Static6.outboundBuffer.p2_alt2(Static72.orbitCameraPitch);
 			Static6.outboundBuffer.p2_alt1(Static57.orbitCameraYaw);
 		}
 		if (Static26.focus && !Static67.prevFocus) {
@@ -257,7 +257,7 @@ public final class Static81 {
 			return;
 		}
 		Static71.method1444();
-		Static109.method2274();
+		Static109.updateNpcs();
 		Static19.loop(); // OverheadChat
 		if (Static24.component != null) {
 			Static12.method447();
@@ -392,7 +392,7 @@ public final class Static81 {
 				Static70.crossMode = 0;
 			}
 		}
-		Static178.anInt4247++;
+		Static178.sceneDelta++;
 		if (Static257.aClass13_7 != null) {
 			Static72.anInt2043++;
 			if (Static72.anInt2043 >= 15) {
@@ -415,16 +415,16 @@ public final class Static81 {
 						if (Static179.anInt4254 == 1 && local1361.anInt453 == 206) {
 							local1363 = 1;
 						}
-						if (local1361.objTypes[Static18.anInt588] <= 0) {
+						if (local1361.invSlotObjId[Static18.anInt588] <= 0) {
 							local1363 = 0;
 						}
 						if (Static36.method940(local1361).method504()) {
 							y = Static4.anInt36;
 							x = Static18.anInt588;
-							local1361.objTypes[x] = local1361.objTypes[y];
-							local1361.objCounts[x] = local1361.objCounts[y];
-							local1361.objTypes[y] = -1;
-							local1361.objCounts[y] = 0;
+							local1361.invSlotObjId[x] = local1361.invSlotObjId[y];
+							local1361.invSlotObjCount[x] = local1361.invSlotObjCount[y];
+							local1361.invSlotObjId[y] = -1;
+							local1361.invSlotObjCount[y] = 0;
 						} else if (local1363 == 1) {
 							x = Static18.anInt588;
 							y = Static4.anInt36;
@@ -498,7 +498,7 @@ public final class Static81 {
 												Static4.method28();
 											}
 											if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81] && Static58.wheelRotation != 0) {
-												y = Static55.level - Static58.wheelRotation;
+												y = Static55.currentLevel - Static58.wheelRotation;
 												if (y < 0) {
 													y = 0;
 												} else if (y > 3) {
@@ -509,7 +509,7 @@ public final class Static81 {
 											}
 											if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
 												if (Static56.clickTileX != -1) {
-													Static61.teleport(Static225.originX + Static56.clickTileX, Static142.originZ - -Static116.anInt2954, Static55.level);
+													Static61.teleport(Static225.originX + Static56.clickTileX, Static142.originZ - -Static116.anInt2954, Static55.currentLevel);
 												}
 												Static187.anInt4422 = 0;
 												Static125.anInt3096 = 0;
@@ -582,7 +582,7 @@ public final class Static81 {
 												Static40.method1008();
 											}
 											for (y = 0; y < 5; y++) {
-												@Pc(2001) int local2001 = Static31.anIntArray76[y]++;
+												@Pc(2001) int local2001 = Static31.cameraModifierCycle[y]++;
 											}
 											y = Static142.getIdleLoops(); // runetek4.Mouse
 											x = Static195.getIdleLoops(); // runetek4.Keyboard

@@ -90,7 +90,7 @@ public final class Static136 {
 		Static80.aBoolean231 = arg0.g1() == 1;
 		Static250.aBoolean283 = arg0.g1() == 1;
 		Static53.aBoolean99 = arg0.g1() == 1;
-		Static15.aBoolean33 = arg0.g1() == 1;
+		Static15.lowMemory = arg0.g1() == 1;
 		Static11.aBoolean15 = arg0.g1() == 1;
 		Static159.aBoolean189 = arg0.g1() == 1;
 		Static209.aBoolean240 = arg0.g1() == 1;

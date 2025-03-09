@@ -19,75 +19,75 @@ public final class Static64 {
 	public static boolean aBoolean111 = true;
 
 	@OriginalMember(owner = "runetek4.client!fb", name = "p", descriptor = "Lclient!na;")
-	public static final JagString aClass100_433 = Static28.parse("<col=ff3000>");
+	public static final JagString RED2 = Static28.parse("<col=ff3000>");
 
 	@OriginalMember(owner = "runetek4.client!fb", name = "q", descriptor = "[I")
 	public static final int[] anIntArray154 = new int[] { -1, -1, 1, 1 };
 
 	@OriginalMember(owner = "runetek4.client!fb", name = "b", descriptor = "(B)V")
-	public static void method1495() {
-		Static116.anInt2951 = 0;
-		Static240.removedCount = 0;
+	public static void getPlayer() {
+		Static116.entityUpdateCount = 0;
+		Static240.entityRemovalCount = 0;
 		Static17.method527();
 		Static41.readPlayerInfo();
-		Static225.method3889();
-		Static245.method4226();
-		@Pc(23) int local23;
-		for (local23 = 0; local23 < Static240.removedCount; local23++) {
-			@Pc(30) int local30 = Static52.removedIds[local23];
-			if (Static83.loopCycle != Static159.players[local30].anInt3430) {
-				if (Static159.players[local30].anInt1664 > 0) {
-					Static271.method4597(Static159.players[local30]);
+		Static225.getPlayerNewVis();
+		Static245.getPlayerExtended();
+		@Pc(23) int i;
+		for (i = 0; i < Static240.entityRemovalCount; i++) {
+			@Pc(30) int index = Static52.entityRemovalIds[i];
+			if (Static83.loopCycle != Static159.players[index].cycle) {
+				if (Static159.players[index].anInt1664 > 0) {
+					Static271.method4597(Static159.players[index]);
 				}
-				Static159.players[local30] = null;
+				Static159.players[index] = null;
 			}
 		}
 		if (Static223.packetSize != Static57.in.pos) {
 			throw new RuntimeException("gpp1 pos:" + Static57.in.pos + " psize:" + Static223.packetSize);
 		}
-		for (local23 = 0; local23 < Static267.size; local23++) {
-			if (Static159.players[Static105.ids[local23]] == null) {
-				throw new RuntimeException("gpp2 pos:" + local23 + " size:" + Static267.size);
+		for (i = 0; i < Static267.playerCount; i++) {
+			if (Static159.players[Static105.playerIds[i]] == null) {
+				throw new RuntimeException("gpp2 pos:" + i + " size:" + Static267.playerCount);
 			}
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!fb", name = "a", descriptor = "(JB)V")
-	public static void method1496(@OriginalArg(0) long arg0) {
-		if (arg0 == 0L) {
+	public static void addFriend(@OriginalArg(0) long username) {
+		if (username == 0L) {
 			return;
 		}
-		if (Static9.anInt178 >= 100 && !Static202.aBoolean233 || Static9.anInt178 >= 200) {
+		if (Static9.friendCount >= 100 && !Static202.members || Static9.friendCount >= 200) {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDLISTFULL);
 			return;
 		}
-		@Pc(35) JagString local35 = Static79.decode37(arg0).method3125();
-		@Pc(42) int local42;
-		for (local42 = 0; local42 < Static9.anInt178; local42++) {
-			if (Static92.aLongArray3[local42] == arg0) {
-				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JagString[] { local35, LocalizedText.FRIENDLISTDUPE}));
+		@Pc(35) JagString displayName = Static79.decode37(username).method3125();
+		@Pc(42) int i;
+		for (i = 0; i < Static9.friendCount; i++) {
+			if (Static92.friendName37[i] == username) {
+				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JagString[] { displayName, LocalizedText.FRIENDLISTDUPE}));
 				return;
 			}
 		}
-		for (local42 = 0; local42 < Static35.size; local42++) {
-			if (arg0 == Static190.ignoreName37[local42]) {
-				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JagString[] { LocalizedText.REMOVESOCIAL1, local35, LocalizedText.REMOVEIGNORE}));
+		for (i = 0; i < Static35.ignoreCount; i++) {
+			if (username == Static190.ignoreName37[i]) {
+				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JagString[] { LocalizedText.REMOVESOCIAL1, displayName, LocalizedText.REMOVEIGNORE}));
 				return;
 			}
 		}
-		if (local35.method3108(Static173.localPlayer.username)) {
+		if (displayName.method3108(Static173.localPlayer.username)) {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDCANTADDSELF);
 			return;
 		}
-		Static122.aClass100Array92[Static9.anInt178] = local35;
-		Static92.aLongArray3[Static9.anInt178] = arg0;
-		Static104.anIntArray255[Static9.anInt178] = 0;
-		Static214.aClass100Array170[Static9.anInt178] = Static186.aClass100_827;
-		Static106.anIntArray258[Static9.anInt178] = 0;
-		Static3.aBooleanArray135[Static9.anInt178] = false;
-		Static9.anInt178++;
+		Static122.friendName[Static9.friendCount] = displayName;
+		Static92.friendName37[Static9.friendCount] = username;
+		Static104.friendWorld[Static9.friendCount] = 0;
+		Static214.aClass100Array170[Static9.friendCount] = Static186.aClass100_827;
+		Static106.anIntArray258[Static9.friendCount] = 0;
+		Static3.aBooleanArray135[Static9.friendCount] = false;
+		Static9.friendCount++;
 		Static185.anInt4369 = Static119.transmitTimer;
 		Static6.outboundBuffer.pIsaac1(120);
-		Static6.outboundBuffer.p8(arg0);
+		Static6.outboundBuffer.p8(username);
 	}
 }

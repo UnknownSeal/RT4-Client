@@ -26,7 +26,7 @@ public final class Static35 {
 	public static int anInt1092 = -1;
 
 	@OriginalMember(owner = "runetek4.client!cl", name = "Z", descriptor = "I")
-	public static int size = 0;
+	public static int ignoreCount = 0;
 
 	@OriginalMember(owner = "runetek4.client!cl", name = "ab", descriptor = "[I")
 	public static final int[] anIntArray83 = new int[256];
@@ -113,7 +113,7 @@ public final class Static35 {
 	@OriginalMember(owner = "runetek4.client!cl", name = "e", descriptor = "(I)V")
 	public static void method902() {
 		for (@Pc(3) int local3 = 0; local3 < 5; local3++) {
-			Static176.aBooleanArray95[local3] = false;
+			Static176.cameraModifierEnabled[local3] = false;
 		}
 		Static133.anInt5230 = 0;
 		Static233.anInt5217 = 0;

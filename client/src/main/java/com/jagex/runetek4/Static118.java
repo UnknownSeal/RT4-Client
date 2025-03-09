@@ -10,7 +10,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static118 {
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "d", descriptor = "[[[B")
-	public static byte[][][] aByteArrayArrayArray9;
+	public static byte[][][] levelShademap;
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "i", descriptor = "Lclient!be;")
 	public static Component aClass13_15;
@@ -60,7 +60,7 @@ public final class Static118 {
 						if (local105 != -1) {
 							@Pc(118) SeqType local118 = Static36.method941(local105);
 							if (local118 != null) {
-								local15.anInt500 += Static178.anInt4247;
+								local15.anInt500 += Static178.sceneDelta;
 								while (local15.anInt500 > local118.frames[local15.anInt510]) {
 									local15.anInt500 -= local118.frames[local15.anInt510];
 									local15.anInt510++;
@@ -84,10 +84,10 @@ public final class Static118 {
 					}
 					if (local15.modelRotationSpeed != 0 && !local15.aBoolean32) {
 						@Pc(239) int local239 = local15.modelRotationSpeed >> 16;
-						@Pc(243) int local243 = local239 * Static178.anInt4247;
+						@Pc(243) int local243 = local239 * Static178.sceneDelta;
 						local105 = local15.modelRotationSpeed << 16 >> 16;
 						local15.modelXAngle = local243 + local15.modelXAngle & 0x7FF;
-						local105 *= Static178.anInt4247;
+						local105 *= Static178.sceneDelta;
 						local15.modelYAngle = local15.modelYAngle + local105 & 0x7FF;
 						Static43.method1143(local15);
 					}

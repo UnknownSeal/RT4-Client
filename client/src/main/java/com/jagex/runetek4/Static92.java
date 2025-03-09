@@ -13,7 +13,7 @@ public final class Static92 {
 	public static int anInt2430 = 0;
 
 	@OriginalMember(owner = "runetek4.client!hd", name = "g", descriptor = "[J")
-	public static final long[] aLongArray3 = new long[200];
+	public static final long[] friendName37 = new long[200];
 
 	@OriginalMember(owner = "runetek4.client!hd", name = "i", descriptor = "I")
 	public static int anInt2433 = 0;

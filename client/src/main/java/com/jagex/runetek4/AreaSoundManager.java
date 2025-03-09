@@ -4,7 +4,7 @@ import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.config.loctype.LocType;
 import com.jagex.runetek4.game.config.npctype.NPCType;
 import com.jagex.runetek4.game.scene.entities.NPCEntity;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -12,14 +12,14 @@ import org.openrs2.deob.annotation.Pc;
 
 public class AreaSoundManager {
     @OriginalMember(owner = "client!ab", name = "n", descriptor = "Lclient!ih;")
-    public static final LinkedList locSounds = new LinkedList();
+    public static final LinkList locSounds = new LinkList();
     @OriginalMember(owner = "client!ma", name = "x", descriptor = "Lclient!ih;")
-    public static final LinkedList npcSounds = new LinkedList();
+    public static final LinkList npcSounds = new LinkList();
     @OriginalMember(owner = "runetek4.client!he", name = "ab", descriptor = "Lclient!sc;")
     public static final IterableMap playerSounds = new IterableMap(16);
 
     @OriginalMember(owner = "client!jh", name = "a", descriptor = "(IZLclient!pb;ILclient!km;IILclient!e;)V")
-    public static void add(@OriginalArg(0) int arg0, @OriginalArg(2) LocType arg1, @OriginalArg(3) int arg2, @OriginalArg(4) NPCEntity npcEntity, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) Player player) {
+    public static void add(@OriginalArg(0) int arg0, @OriginalArg(2) LocType arg1, @OriginalArg(3) int arg2, @OriginalArg(4) NPCEntity npcEntity, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) PlayerEntity player) {
         @Pc(13) AreaSound areaSound = new AreaSound();
         areaSound.level = arg5;
         areaSound.anInt2029 = arg0 * 128;
@@ -32,9 +32,9 @@ public class AreaSoundManager {
             areaSound.sound = arg1.bgsound_sound;
             areaSound.minInterval = arg1.bgsound_mindelay;
             @Pc(57) int local57 = arg1.width;
-            @Pc(60) int local60 = arg1.height;
+            @Pc(60) int local60 = arg1.length;
             if (arg2 == 1 || arg2 == 3) {
-                local57 = arg1.height;
+                local57 = arg1.length;
                 local60 = arg1.width;
             }
             areaSound.anInt2028 = (local60 + arg0) * 128;
@@ -49,7 +49,7 @@ public class AreaSoundManager {
             locSounds.addTail(areaSound);
         } else if (npcEntity != null) {
             areaSound.npc = npcEntity;
-            @Pc(138) NPCType npcType = npcEntity.npcType;
+            @Pc(138) NPCType npcType = npcEntity.type;
             if (npcType.multinpc != null) {
                 areaSound.multiLocOrNpc = true;
                 npcType = npcType.getMultiNPC();
@@ -65,7 +65,7 @@ public class AreaSoundManager {
             areaSound.player = player;
             areaSound.anInt2037 = (arg4 + player.size()) * 128;
             areaSound.anInt2028 = (arg0 + player.size()) * 128;
-            areaSound.sound = Player.getSound(player);
+            areaSound.sound = PlayerEntity.getSound(player);
             areaSound.radius = player.anInt1664 * 128;
             playerSounds.pushNode(areaSound, player.username.encode37());
         }
@@ -83,7 +83,7 @@ public class AreaSoundManager {
                     Static204.soundStream.removeSubStream(areaSound.secondaryStream);
                     areaSound.secondaryStream = null;
                 }
-                areaSound.remove();
+                areaSound.unlink();
                 return;
             }
         }
@@ -101,7 +101,7 @@ public class AreaSoundManager {
                 Static204.soundStream.removeSubStream(areaSound.secondaryStream);
                 areaSound.secondaryStream = null;
             }
-            areaSound.remove();
+            areaSound.unlink();
         }
         if (!arg0) {
             return;
@@ -111,14 +111,14 @@ public class AreaSoundManager {
                 Static204.soundStream.removeSubStream(areaSound.primaryStream);
                 areaSound.primaryStream = null;
             }
-            areaSound.remove();
+            areaSound.unlink();
         }
         for (areaSound = (AreaSound) playerSounds.peekFront(); areaSound != null; areaSound = (AreaSound) playerSounds.prev()) {
             if (areaSound.primaryStream != null) {
                 Static204.soundStream.removeSubStream(areaSound.primaryStream);
                 areaSound.primaryStream = null;
             }
-            areaSound.remove();
+            areaSound.unlink();
         }
     }
 

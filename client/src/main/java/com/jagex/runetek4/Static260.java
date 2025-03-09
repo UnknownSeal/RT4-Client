@@ -31,18 +31,18 @@ public final class Static260 {
 		if (Static233.anInt5217 >= 100) {
 			@Pc(30) int local30 = Static251.anInt5449 * 128 + 64;
 			@Pc(36) int local36 = Static265.anInt5765 * 128 + 64;
-			@Pc(44) int local44 = Static207.method3685(Static55.level, local30, local36) - Static57.anInt1744;
-			@Pc(49) int local49 = local44 - Static5.anInt40;
-			@Pc(54) int local54 = local30 - Static138.anInt3439;
-			@Pc(59) int local59 = local36 - Static134.anInt3302;
+			@Pc(44) int local44 = Static207.getHeightmapY(Static55.currentLevel, local30, local36) - Static57.anInt1744;
+			@Pc(49) int local49 = local44 - Static5.cameraY;
+			@Pc(54) int local54 = local30 - Static138.cameraX;
+			@Pc(59) int local59 = local36 - Static134.cameraZ;
 			@Pc(70) int local70 = (int) Math.sqrt((double) (local59 * local59 + local54 * local54));
-			Static240.anInt5333 = (int) (Math.atan2((double) local49, (double) local70) * 325.949D) & 0x7FF;
-			Static184.anInt4358 = (int) (Math.atan2((double) local54, (double) local59) * -325.949D) & 0x7FF;
-			if (Static240.anInt5333 < 128) {
-				Static240.anInt5333 = 128;
+			Static240.cameraPitch = (int) (Math.atan2((double) local49, (double) local70) * 325.949D) & 0x7FF;
+			Static184.cameraYaw = (int) (Math.atan2((double) local54, (double) local59) * -325.949D) & 0x7FF;
+			if (Static240.cameraPitch < 128) {
+				Static240.cameraPitch = 128;
 			}
-			if (Static240.anInt5333 > 383) {
-				Static240.anInt5333 = 383;
+			if (Static240.cameraPitch > 383) {
+				Static240.cameraPitch = 383;
 			}
 		}
 		Static227.anInt5096 = 2;
@@ -55,7 +55,7 @@ public final class Static260 {
 		}
 		@Pc(10) int local10 = arg1 << 7;
 		@Pc(14) int local14 = arg2 << 7;
-		@Pc(24) int local24 = Static83.anIntArrayArrayArray4[arg0][arg1][arg2] - 1;
+		@Pc(24) int local24 = Static83.levelHeightMap[arg0][arg1][arg2] - 1;
 		@Pc(28) int local28 = local24 - 120;
 		@Pc(32) int local32 = local24 - 230;
 		@Pc(36) int local36 = local24 - 238;

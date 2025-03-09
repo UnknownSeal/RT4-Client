@@ -22,7 +22,7 @@ public final class Static227 {
 	public static int anInt5097;
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "b", descriptor = "[I")
-	public static final int[] anIntArray446 = new int[25];
+	public static final int[] skillExperience = new int[25];
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "c", descriptor = "I")
 	public static int anInt5087 = 0;

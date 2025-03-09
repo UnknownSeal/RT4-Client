@@ -19,7 +19,7 @@ public final class Static204 {
 	public static int anInt4762 = 0;
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "u", descriptor = "Lclient!ih;")
-	public static LinkedList aClass69_113 = new LinkedList();
+	public static LinkList aClass69_113 = new LinkList();
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "v", descriptor = "Z")
 	public static boolean tween = false;

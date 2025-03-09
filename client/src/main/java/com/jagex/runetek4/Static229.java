@@ -23,7 +23,7 @@ public final class Static229 {
 	public static final StockMarketOffer[] aClass136Array1 = new StockMarketOffer[6];
 
 	@OriginalMember(owner = "runetek4.client!si", name = "Z", descriptor = "Lclient!na;")
-	public static final JagString aClass100_972 = Static28.parse("<col=ffb000>");
+	public static final JagString YELLOW = Static28.parse("<col=ffb000>");
 
 	@OriginalMember(owner = "runetek4.client!si", name = "eb", descriptor = "I")
 	public static volatile int anInt5140 = 0;

@@ -174,7 +174,7 @@ public final class CollisionMap {
 	}
 
 	@OriginalMember(owner = "client!mj", name = "a", descriptor = "(IIIZII)V")
-	public void method3040(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) boolean arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
+	public void addWall(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) boolean arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		@Pc(4) int local4 = arg4 - this.anInt3912;
 		@Pc(13) int local13 = arg3 - this.anInt3907;
 		if (arg1 == 0) {

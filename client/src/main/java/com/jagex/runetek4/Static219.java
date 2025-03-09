@@ -49,12 +49,12 @@ public final class Static219 {
 
 	@OriginalMember(owner = "runetek4.client!rl", name = "i", descriptor = "(I)V")
 	public static void method3796() {
-		for (@Pc(10) Class3_Sub7 local10 = (Class3_Sub7) Static26.spawnedLocations.head(); local10 != null; local10 = (Class3_Sub7) Static26.spawnedLocations.next()) {
+		for (@Pc(10) LocAddEntity local10 = (LocAddEntity) Static26.spawnedLocations.head(); local10 != null; local10 = (LocAddEntity) Static26.spawnedLocations.next()) {
 			if (local10.anInt924 == -1) {
 				local10.anInt925 = 0;
 				Static226.method3898(local10);
 			} else {
-				local10.remove();
+				local10.unlink();
 			}
 		}
 	}

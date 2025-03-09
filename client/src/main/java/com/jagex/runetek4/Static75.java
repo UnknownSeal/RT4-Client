@@ -199,7 +199,7 @@ public final class Static75 {
 			local39 = (local31 >> 4 & 0x7) + Static115.anInt2940;
 			local45 = (local31 & 0x7) + Static180.anInt4264;
 			if (local39 >= 0 && local45 >= 0 && local39 < 104 && local45 < 104) {
-				Static29.method800(Static55.level, local45, local19, local39, -1, -1, local27, local23, 0);
+				Static29.method800(Static55.currentLevel, local45, local19, local39, -1, -1, local27, local23, 0);
 			}
 		} else if (Static164.packetType == 33) {
 			local15 = Static57.in.g2le();
@@ -211,10 +211,10 @@ public final class Static75 {
 				@Pc(122) ObjStack local122 = new ObjStack();
 				local122.anInt5550 = local31;
 				local122.anInt5555 = local15;
-				if (Static159.levelObjStacks[Static55.level][local19][local27] == null) {
-					Static159.levelObjStacks[Static55.level][local19][local27] = new LinkedList();
+				if (Static159.levelObjStacks[Static55.currentLevel][local19][local27] == null) {
+					Static159.levelObjStacks[Static55.currentLevel][local19][local27] = new LinkList();
 				}
-				Static159.levelObjStacks[Static55.level][local19][local27].addTail(new ObjStackNode(local122));
+				Static159.levelObjStacks[Static55.currentLevel][local19][local27].addTail(new ObjStackNode(local122));
 				Static220.method3797(local27, local19);
 			}
 		} else {
@@ -247,9 +247,9 @@ public final class Static75 {
 					local27 = local27 * 64;
 					local19 = local19 * 64;
 					local23 = local23 * 64;
-					local317 = new ProjectileAnimation(local45, Static55.level, local23, local19, Static207.method3685(Static55.level, local23, local19) - local218, Static83.loopCycle + local228, local232 + Static83.loopCycle, local236, local247, local39, local224);
-					local317.setTarget(local31, Static83.loopCycle + local228, -local224 + Static207.method3685(Static55.level, local27, local31), local27);
-					Static217.aClass69_116.addTail(new ProjAnimNode(local317));
+					local317 = new ProjectileAnimation(local45, Static55.currentLevel, local23, local19, Static207.getHeightmapY(Static55.currentLevel, local23, local19) - local218, Static83.loopCycle + local228, local232 + Static83.loopCycle, local236, local247, local39, local224);
+					local317.updateVelocity(local31, Static83.loopCycle + local228, -local224 + Static207.getHeightmapY(Static55.currentLevel, local27, local31), local27);
+					Static217.projectiles.addTail(new ProjectileEntity(local317));
 				}
 			} else if (Static164.packetType == 17) {
 				local15 = Static57.in.g1();
@@ -261,8 +261,8 @@ public final class Static75 {
 				if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104) {
 					local23 = local23 * 128 + 64;
 					local19 = local19 * 128 + 64;
-					@Pc(427) SpotAnim local427 = new SpotAnim(local27, Static55.level, local23, local19, Static207.method3685(Static55.level, local23, local19) - local31, local39, Static83.loopCycle);
-					Static99.aClass69_64.addTail(new SpotAnimNode(local427));
+					@Pc(427) SpotAnim local427 = new SpotAnim(local27, Static55.currentLevel, local23, local19, Static207.getHeightmapY(Static55.currentLevel, local23, local19) - local31, local39, Static83.loopCycle);
+					Static99.spotanims.addTail(new SpotAnimEntity(local427));
 				}
 			} else if (Static164.packetType == 179) {
 				local15 = Static57.in.g1add();
@@ -274,7 +274,7 @@ public final class Static75 {
 				local45 = (local31 & 0x7) + Static180.anInt4264;
 				local218 = Static57.in.g2sub();
 				if (local39 >= 0 && local45 >= 0 && local39 < 104 && local45 < 104) {
-					Static29.method800(Static55.level, local45, local19, local39, -1, local218, local27, local23, 0);
+					Static29.method800(Static55.currentLevel, local45, local19, local39, -1, local218, local27, local23, 0);
 				}
 			} else if (Static164.packetType == 20) {
 				local15 = Static57.in.g1_alt3();
@@ -288,7 +288,7 @@ public final class Static75 {
 				if (local218 == 65535) {
 					local218 = -1;
 				}
-				Static92.method1881(Static55.level, local39, local31, local19, local45, local23, local218);
+				Static92.method1881(Static55.currentLevel, local39, local31, local19, local45, local23, local218);
 			} else {
 				@Pc(633) int local633;
 				if (Static164.packetType == 202) {
@@ -318,7 +318,7 @@ public final class Static75 {
 					local31 = Static57.in.g2();
 					local39 = Static57.in.g2();
 					if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104) {
-						@Pc(710) LinkedList local710 = Static159.levelObjStacks[Static55.level][local23][local19];
+						@Pc(710) LinkList local710 = Static159.levelObjStacks[Static55.currentLevel][local23][local19];
 						if (local710 != null) {
 							for (@Pc(718) ObjStackNode local718 = (ObjStackNode) local710.head(); local718 != null; local718 = (ObjStackNode) local710.next()) {
 								@Pc(723) ObjStack local723 = local718.aClass8_Sub7_1;
@@ -337,14 +337,14 @@ public final class Static75 {
 					local19 = (local23 >> 4 & 0x7) + Static115.anInt2940;
 					local31 = Static57.in.g2le();
 					local39 = Static57.in.g2le();
-					if (local19 >= 0 && local27 >= 0 && local19 < 104 && local27 < 104 && Static16.anInt549 != local15) {
+					if (local19 >= 0 && local27 >= 0 && local19 < 104 && local27 < 104 && Static16.localPid != local15) {
 						@Pc(812) ObjStack local812 = new ObjStack();
 						local812.anInt5550 = local31;
 						local812.anInt5555 = local39;
-						if (Static159.levelObjStacks[Static55.level][local19][local27] == null) {
-							Static159.levelObjStacks[Static55.level][local19][local27] = new LinkedList();
+						if (Static159.levelObjStacks[Static55.currentLevel][local19][local27] == null) {
+							Static159.levelObjStacks[Static55.currentLevel][local19][local27] = new LinkList();
 						}
-						Static159.levelObjStacks[Static55.level][local19][local27].addTail(new ObjStackNode(local812));
+						Static159.levelObjStacks[Static55.currentLevel][local19][local27].addTail(new ObjStackNode(local812));
 						Static220.method3797(local27, local19);
 					}
 				} else if (Static164.packetType == 16) {
@@ -369,9 +369,9 @@ public final class Static75 {
 						local19 = local19 * 128 + 64;
 						local23 = local23 * 128 + 64;
 						local27 = local27 * 128 + 64;
-						local317 = new ProjectileAnimation(local45, Static55.level, local23, local19, Static207.method3685(Static55.level, local23, local19) - local218, local228 + Static83.loopCycle, local232 + Static83.loopCycle, local236, local247, local39, local224);
-						local317.setTarget(local31, Static83.loopCycle + local228, Static207.method3685(Static55.level, local27, local31) - local224, local27);
-						Static217.aClass69_116.addTail(new ProjAnimNode(local317));
+						local317 = new ProjectileAnimation(local45, Static55.currentLevel, local23, local19, Static207.getHeightmapY(Static55.currentLevel, local23, local19) - local218, local228 + Static83.loopCycle, local232 + Static83.loopCycle, local236, local247, local39, local224);
+						local317.updateVelocity(local31, Static83.loopCycle + local228, Static207.getHeightmapY(Static55.currentLevel, local27, local31) - local224, local27);
+						Static217.projectiles.addTail(new ProjectileEntity(local317));
 					}
 				} else if (Static164.packetType == 104) {
 					local15 = Static57.in.g1();
@@ -410,7 +410,7 @@ public final class Static75 {
 								local1184 = -local39 - 1;
 								local1194 = local1184 >> 11 & 0xF;
 								local1188 = local1184 & 0x7FF;
-								if (Static16.anInt549 == local1188) {
+								if (Static16.localPid == local1188) {
 									local1198 = Static173.localPlayer;
 								} else {
 									local1198 = Static159.players[local1188];
@@ -431,9 +431,9 @@ public final class Static75 {
 								}
 							}
 						}
-						@Pc(1331) ProjectileAnimation local1331 = new ProjectileAnimation(local218, Static55.level, local23, local19, Static207.method3685(Static55.level, local23, local19) - local224, local232 + Static83.loopCycle, local236 + Static83.loopCycle, local247, local633, local45, local228);
-						local1331.setTarget(local31, local232 + Static83.loopCycle, -local228 + Static207.method3685(Static55.level, local27, local31), local27);
-						Static217.aClass69_116.addTail(new ProjAnimNode(local1331));
+						@Pc(1331) ProjectileAnimation local1331 = new ProjectileAnimation(local218, Static55.currentLevel, local23, local19, Static207.getHeightmapY(Static55.currentLevel, local23, local19) - local224, local232 + Static83.loopCycle, local236 + Static83.loopCycle, local247, local633, local45, local228);
+						local1331.updateVelocity(local31, local232 + Static83.loopCycle, -local228 + Static207.getHeightmapY(Static55.currentLevel, local27, local31), local27);
+						Static217.projectiles.addTail(new ProjectileEntity(local1331));
 					}
 				} else if (Static164.packetType == 97) {
 					local15 = Static57.in.g1();
@@ -464,16 +464,16 @@ public final class Static75 {
 					local23 = (local15 >> 4 & 0x7) + Static115.anInt2940;
 					local27 = Static57.in.g2();
 					if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104) {
-						@Pc(1565) LinkedList local1565 = Static159.levelObjStacks[Static55.level][local23][local19];
+						@Pc(1565) LinkList local1565 = Static159.levelObjStacks[Static55.currentLevel][local23][local19];
 						if (local1565 != null) {
 							for (@Pc(1572) ObjStackNode local1572 = (ObjStackNode) local1565.head(); local1572 != null; local1572 = (ObjStackNode) local1565.next()) {
 								if (local1572.aClass8_Sub7_1.anInt5555 == (local27 & 0x7FFF)) {
-									local1572.remove();
+									local1572.unlink();
 									break;
 								}
 							}
 							if (local1565.head() == null) {
-								Static159.levelObjStacks[Static55.level][local23][local19] = null;
+								Static159.levelObjStacks[Static55.currentLevel][local23][local19] = null;
 							}
 							Static220.method3797(local19, local23);
 						}

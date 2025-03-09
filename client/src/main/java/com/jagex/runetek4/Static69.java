@@ -41,12 +41,12 @@ public final class Static69 {
 		if (arg0 == 0L) {
 			return;
 		}
-		for (@Pc(12) int local12 = 0; local12 < Static35.size; local12++) {
+		for (@Pc(12) int local12 = 0; local12 < Static35.ignoreCount; local12++) {
 			if (Static190.ignoreName37[local12] == arg0) {
-				Static35.size--;
-				for (@Pc(36) int local36 = local12; local36 < Static35.size; local36++) {
+				Static35.ignoreCount--;
+				for (@Pc(36) int local36 = local12; local36 < Static35.ignoreCount; local36++) {
 					Static190.ignoreName37[local36] = Static190.ignoreName37[local36 + 1];
-					Static193.aClass100Array134[local36] = Static193.aClass100Array134[local36 + 1];
+					Static193.ignoreName[local36] = Static193.ignoreName[local36 + 1];
 				}
 				Static185.anInt4369 = Static119.transmitTimer;
 				Static6.outboundBuffer.pIsaac1(213);
@@ -101,7 +101,7 @@ public final class Static69 {
 							if (local39 >= 0 && local39 < Static99.anInt2550 && (!local1 || local28 >= local7 || local39 >= local15 || local39 < arg3 && local28 != arg2)) {
 								@Pc(71) Tile local71 = Static130.aClass3_Sub5ArrayArrayArray1[local17][local28][local39];
 								if (local71 != null) {
-									@Pc(158) int local158 = (Static83.anIntArrayArrayArray4[local17][local28][local39] + Static83.anIntArrayArrayArray4[local17][local28 + 1][local39] + Static83.anIntArrayArrayArray4[local17][local28][local39 + 1] + Static83.anIntArrayArrayArray4[local17][local28 + 1][local39 + 1]) / 4 - (Static83.anIntArrayArrayArray4[arg1][arg2][arg3] + Static83.anIntArrayArrayArray4[arg1][arg2 + 1][arg3] + Static83.anIntArrayArrayArray4[arg1][arg2][arg3 + 1] + Static83.anIntArrayArrayArray4[arg1][arg2 + 1][arg3 + 1]) / 4;
+									@Pc(158) int local158 = (Static83.levelHeightMap[local17][local28][local39] + Static83.levelHeightMap[local17][local28 + 1][local39] + Static83.levelHeightMap[local17][local28][local39 + 1] + Static83.levelHeightMap[local17][local28 + 1][local39 + 1]) / 4 - (Static83.levelHeightMap[arg1][arg2][arg3] + Static83.levelHeightMap[arg1][arg2 + 1][arg3] + Static83.levelHeightMap[arg1][arg2][arg3 + 1] + Static83.levelHeightMap[arg1][arg2 + 1][arg3 + 1]) / 4;
 									@Pc(161) Wall local161 = local71.aClass77_1;
 									if (local161 != null) {
 										if (local161.aClass8_5.method4543()) {

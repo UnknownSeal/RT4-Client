@@ -22,7 +22,7 @@ public final class Static33 {
 	public static PrivilegedRequest openUrlRequest;
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "i", descriptor = "[I")
-	public static final int[] anIntArray79 = new int[32768];
+	public static final int[] npcIds = new int[32768];
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(ILclient!pb;ZIIII)Z")
 	public static boolean method867(@OriginalArg(0) int arg0, @OriginalArg(1) LocType arg1, @OriginalArg(5) int arg2, @OriginalArg(6) int arg3) {
@@ -41,9 +41,9 @@ public final class Static33 {
 			return false;
 		}
 		@Pc(49) int local49 = arg1.width;
-		@Pc(52) int local52 = arg1.height;
+		@Pc(52) int local52 = arg1.length;
 		if ((arg3 & 0x1) == 1) {
-			local49 = arg1.height;
+			local49 = arg1.length;
 			local52 = arg1.width;
 		}
 		@Pc(66) int local66 = local42.anInt4279;

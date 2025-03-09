@@ -22,22 +22,22 @@ public final class SpotAnim extends Entity {
 	private int anInt603 = -32768;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "T", descriptor = "Z")
-	public boolean aBoolean41 = false;
+	public boolean seqComplete = false;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "U", descriptor = "I")
 	private int anInt607 = 0;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "I", descriptor = "I")
-	public final int anInt598;
+	public final int z;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "Q", descriptor = "I")
-	public final int anInt604;
+	public final int x;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "S", descriptor = "I")
-	public final int anInt606;
+	public final int level;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "w", descriptor = "I")
-	public final int anInt590;
+	public final int startCycle;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "F", descriptor = "I")
 	private final int anInt596;
@@ -50,17 +50,17 @@ public final class SpotAnim extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "<init>", descriptor = "(IIIIIII)V")
 	public SpotAnim(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
-		this.anInt598 = arg3;
-		this.anInt604 = arg2;
-		this.anInt606 = arg1;
-		this.anInt590 = arg6 + arg5;
+		this.z = arg3;
+		this.x = arg2;
+		this.level = arg1;
+		this.startCycle = arg6 + arg5;
 		this.anInt596 = arg0;
 		this.anInt599 = arg4;
 		@Pc(42) int local42 = Static34.method877(this.anInt596).anInt1754;
 		if (local42 == -1) {
-			this.aBoolean41 = true;
+			this.seqComplete = true;
 		} else {
-			this.aBoolean41 = false;
+			this.seqComplete = false;
 			this.aClass144_1 = Static36.method941(local42);
 		}
 	}
@@ -69,10 +69,10 @@ public final class SpotAnim extends Entity {
 	private Model method552() {
 		@Pc(8) SpotAnimType local8 = Static34.method877(this.anInt596);
 		@Pc(26) Model local26;
-		if (this.aBoolean41) {
-			local26 = local8.method1319(-1, -1, 0);
+		if (this.seqComplete) {
+			local26 = local8.getModel(-1, -1, 0);
 		} else {
-			local26 = local8.method1319(this.anInt602, this.anInt593, this.anInt607);
+			local26 = local8.getModel(this.anInt602, this.anInt593, this.anInt607);
 		}
 		return local26 == null ? null : local26;
 	}
@@ -94,8 +94,8 @@ public final class SpotAnim extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "a", descriptor = "(ZI)V")
-	public final void method558(@OriginalArg(1) int arg0) {
-		if (this.aBoolean41) {
+	public final void update(@OriginalArg(1) int arg0) {
+		if (this.seqComplete) {
 			return;
 		}
 		this.anInt607 += arg0;
@@ -103,7 +103,7 @@ public final class SpotAnim extends Entity {
 			this.anInt607 -= this.aClass144_1.frames[this.anInt593];
 			this.anInt593++;
 			if (this.aClass144_1.anIntArray473.length <= this.anInt593) {
-				this.aBoolean41 = true;
+				this.seqComplete = true;
 				break;
 			}
 		}

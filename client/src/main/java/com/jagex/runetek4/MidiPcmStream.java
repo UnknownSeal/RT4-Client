@@ -228,7 +228,7 @@ public final class MidiPcmStream extends PcmStream {
 				if (local20.anInt3767 < 0) {
 					this.aClass3_Sub25ArrayArray1[local20.anInt3773][local20.anInt3779] = null;
 				}
-				local20.remove();
+				local20.unlink();
 			}
 		}
 	}
@@ -259,7 +259,7 @@ public final class MidiPcmStream extends PcmStream {
 	@OriginalMember(owner = "runetek4.client!va", name = "e", descriptor = "(I)V")
 	public final synchronized void method4426() {
 		for (@Pc(7) MidiInstrument local7 = (MidiInstrument) this.aClass133_23.peekFront(); local7 != null; local7 = (MidiInstrument) this.aClass133_23.prev()) {
-			local7.remove();
+			local7.unlink();
 		}
 	}
 
@@ -520,7 +520,7 @@ public final class MidiPcmStream extends PcmStream {
 		arg2.anInt3771 = Static44.anInt1404 / 100;
 		if (arg2.anInt3767 >= 0 && (arg2.aClass3_Sub3_Sub1_3 == null || arg2.aClass3_Sub3_Sub1_3.method411())) {
 			arg2.method2957();
-			arg2.remove();
+			arg2.unlink();
 			if (arg2.anInt3776 > 0 && arg2 == this.aClass3_Sub25ArrayArray2[arg2.anInt3773][arg2.anInt3776]) {
 				this.aClass3_Sub25ArrayArray2[arg2.anInt3773][arg2.anInt3776] = null;
 			}
@@ -591,7 +591,7 @@ public final class MidiPcmStream extends PcmStream {
 		}
 		arg2.method2957();
 		if (arg2.anInt3767 >= 0) {
-			arg2.remove();
+			arg2.unlink();
 			if (arg2.anInt3776 > 0 && this.aClass3_Sub25ArrayArray2[arg2.anInt3773][arg2.anInt3776] == arg2) {
 				this.aClass3_Sub25ArrayArray2[arg2.anInt3773][arg2.anInt3776] = null;
 			}
@@ -797,7 +797,7 @@ public final class MidiPcmStream extends PcmStream {
 			return false;
 		}
 		if (arg0.anInt3767 >= 0) {
-			arg0.remove();
+			arg0.unlink();
 			if (arg0.anInt3776 > 0 && this.aClass3_Sub25ArrayArray2[arg0.anInt3773][arg0.anInt3776] == arg0) {
 				this.aClass3_Sub25ArrayArray2[arg0.anInt3773][arg0.anInt3776] = null;
 			}

@@ -20,7 +20,7 @@ public final class Static138 {
 	public static Js5 aClass153_51;
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Pc", descriptor = "I")
-	public static int anInt3439;
+	public static int cameraX;
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Yc", descriptor = "I")
 	public static int anInt3443;

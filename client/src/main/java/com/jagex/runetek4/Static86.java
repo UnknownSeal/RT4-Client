@@ -38,16 +38,16 @@ public final class Static86 {
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "h", descriptor = "(I)V")
 	public static void method1800() {
-		Static116.anInt2951 = 0;
-		Static240.removedCount = 0;
+		Static116.entityUpdateCount = 0;
+		Static240.entityRemovalCount = 0;
 		Static49.method1202();
 		Static278.method4645();
 		Static234.method4014();
-		@Pc(19) int local19;
-		for (local19 = 0; local19 < Static240.removedCount; local19++) {
-			@Pc(30) int local30 = Static52.removedIds[local19];
-			if (Static175.npcs[local30].anInt3430 != Static83.loopCycle) {
-				if (Static175.npcs[local30].npcType.hasBackgroundSound()) {
+		@Pc(19) int i;
+		for (i = 0; i < Static240.entityRemovalCount; i++) {
+			@Pc(30) int local30 = Static52.entityRemovalIds[i];
+			if (Static175.npcs[local30].cycle != Static83.loopCycle) {
+				if (Static175.npcs[local30].type.hasBackgroundSound()) {
 					Static91.method1877(Static175.npcs[local30]);
 				}
 				Static175.npcs[local30].method2698(null);
@@ -57,9 +57,9 @@ public final class Static86 {
 		if (Static223.packetSize != Static57.in.pos) {
 			throw new RuntimeException("gnp1 pos:" + Static57.in.pos + " psize:" + Static223.packetSize);
 		}
-		for (local19 = 0; local19 < Static272.anInt5214; local19++) {
-			if (Static175.npcs[Static33.anIntArray79[local19]] == null) {
-				throw new RuntimeException("gnp2 pos:" + local19 + " size:" + Static272.anInt5214);
+		for (i = 0; i < Static272.npcCount; i++) {
+			if (Static175.npcs[Static33.npcIds[i]] == null) {
+				throw new RuntimeException("gnp2 pos:" + i + " size:" + Static272.npcCount);
 			}
 		}
 	}

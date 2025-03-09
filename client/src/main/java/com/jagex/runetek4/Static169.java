@@ -22,7 +22,7 @@ public final class Static169 {
 	public static Component aClass13_18;
 
 	@OriginalMember(owner = "runetek4.client!nf", name = "f", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_24 = new SoftLruHashTable(500);
+	public static final SoftLruHashTable modelCacheStatic = new SoftLruHashTable(500);
 
 	@OriginalMember(owner = "runetek4.client!nf", name = "i", descriptor = "I")
 	public static int anInt4075 = -1;

@@ -28,16 +28,16 @@ public final class Static98 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "(Lclient!na;B)Z")
-	public static boolean method1965(@OriginalArg(0) JagString arg0) {
-		if (arg0 == null) {
+	public static boolean method1965(@OriginalArg(0) JagString username) {
+		if (username == null) {
 			return false;
 		}
-		for (@Pc(12) int local12 = 0; local12 < Static9.anInt178; local12++) {
-			if (arg0.equalsIgnoreCase(Static122.aClass100Array92[local12])) {
+		for (@Pc(12) int i = 0; i < Static9.friendCount; i++) {
+			if (username.equalsIgnoreCase(Static122.friendName[i])) {
 				return true;
 			}
 		}
-		if (arg0.equalsIgnoreCase(Static173.localPlayer.username)) {
+		if (username.equalsIgnoreCase(Static173.localPlayer.username)) {
 			return true;
 		} else {
 			return false;

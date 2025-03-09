@@ -14,7 +14,7 @@ public final class Static44 {
 	public static boolean aBoolean83 = false;
 
 	@OriginalMember(owner = "runetek4.client!dh", name = "d", descriptor = "[I")
-	public static final int[] anIntArray106 = new int[2048];
+	public static final int[] entityUpdateIds = new int[2048];
 
 	@OriginalMember(owner = "runetek4.client!dh", name = "e", descriptor = "Lclient!na;")
 	public static final JagString aClass100_335 = Static28.parse("Number of player models in cache:");

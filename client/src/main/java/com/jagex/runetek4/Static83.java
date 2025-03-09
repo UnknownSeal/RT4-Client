@@ -10,7 +10,7 @@ public final class Static83 {
 	public static int[][][] anIntArrayArrayArray3;
 
 	@OriginalMember(owner = "runetek4.client!gj", name = "m", descriptor = "[[[I")
-	public static int[][][] anIntArrayArrayArray4;
+	public static int[][][] levelHeightMap;
 
 	@OriginalMember(owner = "runetek4.client!gj", name = "r", descriptor = "F")
 	public static float aFloat3;

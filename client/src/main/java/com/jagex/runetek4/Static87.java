@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.game.config.objtype.ObjType;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -115,7 +115,7 @@ public final class Static87 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(III[Lclient!be;IIIIBI)V")
-	public static void method1809(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) Component[] arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(9) int arg8) {
+	public static void drawGame(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) Component[] arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(9) int arg8) {
 		if (GlRenderer.enabled) {
 			Static46.method1187(arg0, arg6, arg4, arg7);
 		} else {
@@ -215,7 +215,7 @@ public final class Static87 {
 								Static280.aClass13_26 = local30;
 								Static214.anInt5574 = local114;
 								Static97.anInt2503 = local123;
-								Static253.method4326(local30.anInt459, local30.anInt453 == 1403, local123, local30.anInt445, local114);
+								Static253.drawScene(local30.anInt459, local30.anInt453 == 1403, local123, local30.anInt445, local114);
 								if (GlRenderer.enabled) {
 									Static46.method1187(arg0, arg6, arg4, arg7);
 								} else {
@@ -303,7 +303,7 @@ public final class Static87 {
 							}
 							if (local30.anInt453 == 1402) {
 								if (!GlRenderer.enabled) {
-									Static221.method3392(local123, local114);
+									BZip2State.method3392(local123, local114);
 									Static186.aBooleanArray100[local57] = true;
 									Static31.aBooleanArray29[local57] = true;
 								}
@@ -382,9 +382,9 @@ public final class Static87 {
 									local30.scrollY = 0;
 								}
 							}
-							method1809(local166, local114 - local30.scrollY, -local30.anInt489 + local123, arg3, local302, local30.anInt507, local164, local291, local57);
+							drawGame(local166, local114 - local30.scrollY, -local30.anInt489 + local123, arg3, local302, local30.anInt507, local164, local291, local57);
 							if (local30.createdComponents != null) {
-								method1809(local166, local114 - local30.scrollY, -local30.anInt489 + local123, local30.createdComponents, local302, local30.anInt507, local164, local291, local57);
+								drawGame(local166, local114 - local30.scrollY, -local30.anInt489 + local123, local30.createdComponents, local302, local30.anInt507, local164, local291, local57);
 							}
 							@Pc(1186) Class3_Sub31 local1186 = (Class3_Sub31) Static119.aClass133_9.getNode((long) local30.anInt507);
 							if (local1186 != null) {
@@ -419,14 +419,14 @@ public final class Static87 {
 												local514 += local30.anIntArray47[local270];
 												local503 += local30.anIntArray41[local270];
 											}
-											if (local30.objTypes[local270] > 0) {
-												local545 = local30.objTypes[local270] - 1;
+											if (local30.invSlotObjId[local270] > 0) {
+												local545 = local30.invSlotObjId[local270] - 1;
 												if (arg0 < local503 + 32 && local503 < arg4 && arg6 < local514 + 32 && local514 < arg7 || local30 == Static118.aClass13_15 && Static4.anInt36 == local270) {
 													@Pc(1476) Sprite local1476;
 													if (Static260.anInt5014 == 1 && Static185.anInt4370 == local270 && local30.anInt507 == Static224.anInt5062) {
-														local1476 = Static190.method3443(2, local545, local30.aBoolean31, local30.objCounts[local270], 0);
+														local1476 = Static190.method3443(2, local545, local30.aBoolean31, local30.invSlotObjCount[local270], 0);
 													} else {
-														local1476 = Static190.method3443(1, local545, local30.aBoolean31, local30.objCounts[local270], 3153952);
+														local1476 = Static190.method3443(1, local545, local30.aBoolean31, local30.invSlotObjCount[local270], 3153952);
 													}
 													if (Rasteriser.aBoolean134) {
 														Static186.aBooleanArray100[local57] = true;
@@ -460,9 +460,9 @@ public final class Static87 {
 															}
 															@Pc(1611) int local1611;
 															if (local1577 > local556 + local514 && local1571.scrollY > 0) {
-																local1611 = Static178.anInt4247 * (local1577 - local556 - local514) / 3;
-																if (local1611 > Static178.anInt4247 * 10) {
-																	local1611 = Static178.anInt4247 * 10;
+																local1611 = Static178.sceneDelta * (local1577 - local556 - local514) / 3;
+																if (local1611 > Static178.sceneDelta * 10) {
+																	local1611 = Static178.sceneDelta * 10;
 																}
 																if (local1611 > local1571.scrollY) {
 																	local1611 = local1571.scrollY;
@@ -472,9 +472,9 @@ public final class Static87 {
 																Static43.method1143(local1571);
 															}
 															if (local1575 < local556 + local514 + 32 && local1571.scrollY < local1571.anInt491 - local1571.anInt459) {
-																local1611 = (local514 + local556 + 32 - local1575) * Static178.anInt4247 / 3;
-																if (local1611 > Static178.anInt4247 * 10) {
-																	local1611 = Static178.anInt4247 * 10;
+																local1611 = (local514 + local556 + 32 - local1575) * Static178.sceneDelta / 3;
+																if (local1611 > Static178.sceneDelta * 10) {
+																	local1611 = Static178.sceneDelta * 10;
 																}
 																if (local1571.anInt491 - local1571.scrollY - local1571.anInt459 < local1611) {
 																	local1611 = local1571.anInt491 - local1571.anInt459 - local1571.scrollY;
@@ -696,10 +696,10 @@ public final class Static87 {
 													local2589 = Static134.A_PLAYER_MODEL___2.method1954(null, -1, null, null, 0, -1, 0, -1, -1);
 												} else {
 													local514 = local30.modelId & 0x7FF;
-													if (local514 == Static16.anInt549) {
+													if (local514 == Static16.localPid) {
 														local514 = 2047;
 													}
-													@Pc(2751) Player local2751 = Static159.players[local514];
+													@Pc(2751) PlayerEntity local2751 = Static159.players[local514];
 													@Pc(2760) SeqType local2760 = local276 == -1 ? null : Static36.method941(local276);
 													if (local2751 != null && (int) local2751.username.encode37() << 11 == (local30.modelId & 0xFFFFF800)) {
 														local2589 = local2751.model.method1954(null, -1, null, local2760, 0, -1, 0, local30.anInt510, 0);
@@ -786,13 +786,13 @@ public final class Static87 {
 												local276 = 0;
 												for (local468 = 0; local468 < local30.anInt488; local468++) {
 													for (local503 = 0; local503 < local30.baseWidth; local503++) {
-														if (local30.objTypes[local276] > 0) {
-															local2611 = Static71.get(local30.objTypes[local276] - 1);
+														if (local30.invSlotObjId[local276] > 0) {
+															local2611 = Static71.get(local30.invSlotObjId[local276] - 1);
 															@Pc(3159) JagString local3159;
-															if (local2611.stackable != 1 && local30.objCounts[local276] == 1) {
+															if (local2611.stackable != 1 && local30.invSlotObjCount[local276] == 1) {
 																local3159 = Static34.method882(new JagString[] { Static8.aClass100_32, local2611.name, Static230.aClass100_978 });
 															} else {
-																local3159 = Static34.method882(new JagString[] { Static8.aClass100_32, local2611.name, Static54.aClass100_375, Static70.method1548(local30.objCounts[local276]) });
+																local3159 = Static34.method882(new JagString[] { Static8.aClass100_32, local2611.name, Static54.aClass100_375, Static70.method1548(local30.invSlotObjCount[local276]) });
 															}
 															local556 = local123 + local503 * (local30.anInt512 + 115);
 															local545 = (local30.anInt516 + 12) * local468 + local114;
@@ -901,26 +901,26 @@ public final class Static87 {
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "b", descriptor = "(B)V")
 	public static void method1812() {
-		if (Static72.anInt2031 < 128) {
-			Static72.anInt2031 = 128;
+		if (Static72.orbitCameraPitch < 128) {
+			Static72.orbitCameraPitch = 128;
 		}
-		if (Static72.anInt2031 > 383) {
-			Static72.anInt2031 = 383;
+		if (Static72.orbitCameraPitch > 383) {
+			Static72.orbitCameraPitch = 383;
 		}
 		Static57.orbitCameraYaw &= 0x7FF;
 		@Pc(33) int local33 = Static81.anInt2223 >> 7;
 		@Pc(37) int local37 = Static111.anInt2900 >> 7;
-		@Pc(43) int local43 = Static207.method3685(Static55.level, Static81.anInt2223, Static111.anInt2900);
+		@Pc(43) int local43 = Static207.getHeightmapY(Static55.currentLevel, Static81.anInt2223, Static111.anInt2900);
 		@Pc(45) int local45 = 0;
 		@Pc(64) int local64;
 		if (local33 > 3 && local37 > 3 && local33 < 100 && local37 < 100) {
 			for (local64 = local33 - 4; local64 <= local33 + 4; local64++) {
 				for (@Pc(73) int local73 = local37 - 4; local73 <= local37 + 4; local73++) {
-					@Pc(80) int local80 = Static55.level;
+					@Pc(80) int local80 = Static55.currentLevel;
 					if (local80 < 3 && (Static12.aByteArrayArrayArray2[1][local64][local73] & 0x2) == 2) {
 						local80++;
 					}
-					@Pc(117) int local117 = (Static232.aByteArrayArrayArray13[local80][local64][local73] & 0xFF) * 8 + local43 - Static83.anIntArrayArrayArray4[local80][local64][local73];
+					@Pc(117) int local117 = (Static232.aByteArrayArrayArray13[local80][local64][local73] & 0xFF) * 8 + local43 - Static83.levelHeightMap[local80][local64][local73];
 					if (local117 > local45) {
 						local45 = local117;
 					}
@@ -934,10 +934,10 @@ public final class Static87 {
 		if (local64 < 32768) {
 			local64 = 32768;
 		}
-		if (Static234.anInt5245 < local64) {
-			Static234.anInt5245 += (local64 - Static234.anInt5245) / 24;
-		} else if (local64 < Static234.anInt5245) {
-			Static234.anInt5245 += (local64 - Static234.anInt5245) / 80;
+		if (Static234.cameraPitchClamp < local64) {
+			Static234.cameraPitchClamp += (local64 - Static234.cameraPitchClamp) / 24;
+		} else if (local64 < Static234.cameraPitchClamp) {
+			Static234.cameraPitchClamp += (local64 - Static234.cameraPitchClamp) / 80;
 		}
 	}
 

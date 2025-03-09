@@ -134,13 +134,13 @@ public final class Static233 {
 			@Pc(62) int local62;
 			@Pc(59) int local59;
 			if (local24 == 0 || local24 == 2) {
-				local59 = local46.height;
+				local59 = local46.length;
 				local62 = local46.width;
 			} else {
 				local59 = local46.width;
-				local62 = local46.height;
+				local62 = local46.length;
 			}
-			@Pc(73) int local73 = local46.blocksides;
+			@Pc(73) int local73 = local46.forceapproach;
 			if (local24 != 0) {
 				local73 = (local73 << local24 & 0xF) + (local73 >> 4 - local24);
 			}
@@ -268,7 +268,7 @@ public final class Static233 {
 			}
 			arg0.pCrc32(local25);
 			arg0.p1len(arg0.pos - local25);
-			local18.remove();
+			local18.unlink();
 		}
 	}
 }

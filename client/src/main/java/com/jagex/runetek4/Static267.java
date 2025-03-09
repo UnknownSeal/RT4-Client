@@ -14,7 +14,7 @@ public final class Static267 {
 	public static final SoftLruHashTable aClass99_37 = new SoftLruHashTable(100);
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "e", descriptor = "[I")
-	public static final int[] anIntArray517 = new int[] { 1, 2, 4, 8 };
+	public static final int[] ROTATION_WALL_TYPE = new int[] { 1, 2, 4, 8 };
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "f", descriptor = "Lclient!na;")
 	public static final JagString CABBAGE = Static28.parse("Cabbage");
@@ -26,7 +26,7 @@ public final class Static267 {
 	public static int[] anIntArray518 = new int[2];
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "j", descriptor = "I")
-	public static int size = 0;
+	public static int playerCount = 0;
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "k", descriptor = "I")
 	public static int idleTimeout = 0;

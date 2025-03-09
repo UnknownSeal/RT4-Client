@@ -20,7 +20,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3374;
 
 	@OriginalMember(owner = "client!fe", name = "Z", descriptor = "I")
-	public int anInt3379;
+	public int locOffsetX;
 
 	@OriginalMember(owner = "client!fe", name = "bb", descriptor = "I")
 	public int anInt3380;
@@ -35,7 +35,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3386;
 
 	@OriginalMember(owner = "client!fe", name = "nb", descriptor = "Ljava/lang/Object;")
-	public Object anObject5;
+	public Object locModel;
 
 	@OriginalMember(owner = "client!fe", name = "rb", descriptor = "I")
 	public int anInt3392;
@@ -50,10 +50,10 @@ public abstract class PathingEntity extends Entity {
 	protected ParticleSystem aClass47_Sub1_5;
 
 	@OriginalMember(owner = "client!fe", name = "Ab", descriptor = "I")
-	public int anInt3400;
+	public int dstYaw;
 
 	@OriginalMember(owner = "client!fe", name = "Jb", descriptor = "I")
-	public int anInt3406;
+	public int locOffsetY;
 
 	@OriginalMember(owner = "client!fe", name = "Ob", descriptor = "I")
 	public int anInt3410;
@@ -71,10 +71,10 @@ public abstract class PathingEntity extends Entity {
 	public int z;
 
 	@OriginalMember(owner = "client!fe", name = "dc", descriptor = "I")
-	public int anInt3424;
+	public int y;
 
 	@OriginalMember(owner = "client!fe", name = "fc", descriptor = "I")
-	public int anInt3426;
+	public int locOffsetZ;
 
 	@OriginalMember(owner = "client!fe", name = "hc", descriptor = "I")
 	public int anInt3428;
@@ -101,7 +101,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3360 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "O", descriptor = "I")
-	public int anInt3369 = -1;
+	public int primarySeqId = -1;
 
 	@OriginalMember(owner = "client!fe", name = "ab", descriptor = "Z")
 	private boolean aBoolean169 = false;
@@ -128,7 +128,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3385 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "pb", descriptor = "I")
-	public int anInt3390 = 0;
+	public int locStartCycle = 0;
 
 	@OriginalMember(owner = "client!fe", name = "mb", descriptor = "[B")
 	public final byte[] aByteArray48 = new byte[10];
@@ -158,7 +158,7 @@ public abstract class PathingEntity extends Entity {
 	public int chatLoops = 100;
 
 	@OriginalMember(owner = "client!fe", name = "V", descriptor = "I")
-	public int anInt3375 = 0;
+	public int locStopCycle = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Y", descriptor = "I")
 	public int anInt3378 = -1000;
@@ -242,7 +242,7 @@ public abstract class PathingEntity extends Entity {
 	public int chatColor = 0;
 
 	@OriginalMember(owner = "client!fe", name = "kc", descriptor = "I")
-	public int anInt3430 = 0;
+	public int cycle = 0;
 
 	@OriginalMember(owner = "client!fe", name = "ec", descriptor = "I")
 	public int anInt3425 = 0;
@@ -251,7 +251,7 @@ public abstract class PathingEntity extends Entity {
 	public JagString chatMessage = null;
 
 	@OriginalMember(owner = "client!fe", name = "oc", descriptor = "I")
-	public int anInt3432 = -1;
+	public int spotanimFrame = -1;
 
 	@OriginalMember(owner = "client!fe", name = "Xb", descriptor = "I")
 	public int anInt3418 = -1;
@@ -263,14 +263,14 @@ public abstract class PathingEntity extends Entity {
 	}
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(B)Z")
-	public boolean exists() {
+	public boolean isVisible() {
 		return false;
 	}
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(IIIIZ)V")
 	public final void method2683(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) boolean arg3) {
-		if (this.anInt3369 != -1 && Static36.method941(this.anInt3369).anInt5349 == 1) {
-			this.anInt3369 = -1;
+		if (this.primarySeqId != -1 && Static36.method941(this.primarySeqId).anInt5349 == 1) {
+			this.primarySeqId = -1;
 		}
 		if (!arg3) {
 			@Pc(32) int local32 = arg1 - this.pathTileX[0];
@@ -310,8 +310,8 @@ public abstract class PathingEntity extends Entity {
 			local10--;
 			local15++;
 		}
-		if (this.anInt3369 != -1 && Static36.method941(this.anInt3369).anInt5349 == 1) {
-			this.anInt3369 = -1;
+		if (this.primarySeqId != -1 && Static36.method941(this.primarySeqId).anInt5349 == 1) {
+			this.primarySeqId = -1;
 		}
 		if (this.routeLength < 9) {
 			this.routeLength++;
@@ -367,13 +367,13 @@ public abstract class PathingEntity extends Entity {
 		@Pc(53) int local53 = -local27 / 2;
 		@Pc(64) int local64 = local53 * local43 - local48 * local39 >> 16;
 		@Pc(75) int local75 = local39 * local53 + local43 * local48 >> 16;
-		@Pc(87) int local87 = Static207.method3685(Static55.level, local75 + this.x, this.z + local64);
+		@Pc(87) int local87 = Static207.getHeightmapY(Static55.currentLevel, local75 + this.x, this.z + local64);
 		@Pc(91) int local91 = local24 / 2;
 		@Pc(96) int local96 = -local27 / 2;
 		@Pc(106) int local106 = local91 * local43 + local96 * local39 >> 16;
 		@Pc(110) int local110 = local27 / 2;
 		@Pc(121) int local121 = local96 * local43 - local91 * local39 >> 16;
-		@Pc(134) int local134 = Static207.method3685(Static55.level, local106 + this.x, this.z - -local121);
+		@Pc(134) int local134 = Static207.getHeightmapY(Static55.currentLevel, local106 + this.x, this.z - -local121);
 		@Pc(139) int local139 = -local24 / 2;
 		@Pc(150) int local150 = local110 * local43 - local39 * local139 >> 16;
 		@Pc(154) int local154 = local27 / 2;
@@ -381,9 +381,9 @@ public abstract class PathingEntity extends Entity {
 		@Pc(169) int local169 = local39 * local110 + local43 * local139 >> 16;
 		@Pc(179) int local179 = local154 * local43 - local39 * local158 >> 16;
 		@Pc(189) int local189 = local39 * local154 + local43 * local158 >> 16;
-		@Pc(201) int local201 = Static207.method3685(Static55.level, this.x + local169, local150 + this.z);
+		@Pc(201) int local201 = Static207.getHeightmapY(Static55.currentLevel, this.x + local169, local150 + this.z);
 		@Pc(212) int local212 = local134 > local87 ? local87 : local134;
-		@Pc(224) int local224 = Static207.method3685(Static55.level, local189 + this.x, local179 + this.z);
+		@Pc(224) int local224 = Static207.getHeightmapY(Static55.currentLevel, local189 + this.x, local179 + this.z);
 		@Pc(231) int local231 = local224 > local201 ? local201 : local224;
 		@Pc(238) int local238 = local224 > local134 ? local134 : local224;
 		@Pc(245) int local245 = local201 <= local87 ? local201 : local87;
@@ -399,7 +399,7 @@ public abstract class PathingEntity extends Entity {
 		if (local201 + local134 < Static62.anInt1938) {
 			Static62.anInt1938 = local201 + local134;
 		}
-		Static62.anInt1938 = (Static62.anInt1938 >> 1) - this.anInt3424;
+		Static62.anInt1938 = (Static62.anInt1938 >> 1) - this.y;
 		if (Static62.anInt1938 != 0) {
 			arg0.translate(0, Static62.anInt1938, 0);
 		}

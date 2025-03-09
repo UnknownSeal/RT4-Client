@@ -50,14 +50,14 @@ public final class Static36 {
 		if (local17 != null) {
 			return local17;
 		}
-		@Pc(32) byte[] local32 = Static243.aClass153_98.getfile(Static221.method3389(arg0), Static118.method2356(arg0));
+		@Pc(32) byte[] local32 = Static243.aClass153_98.getfile(BZip2State.method3389(arg0), Static118.method2356(arg0));
 		local17 = new SeqType();
 		local17.anInt5361 = arg0;
 		if (local32 != null) {
 			local17.decode(new Packet(local32));
 		}
 		local17.postDecode();
-		Static142.aClass99_23.method3095(local17, (long) arg0);
+		Static142.aClass99_23.put(local17, (long) arg0);
 		return local17;
 	}
 
@@ -102,7 +102,7 @@ public final class Static36 {
 						if (local9.aBoolean29 && Static215.anInt4873 >= local61 && Static223.anInt5032 >= local63 && Static215.anInt4873 < local65 && Static223.anInt5032 < local67) {
 							for (@Pc(164) HookRequest local164 = (HookRequest) Static185.aClass69_101.head(); local164 != null; local164 = (HookRequest) Static185.aClass69_101.next()) {
 								if (local164.aBoolean158) {
-									local164.remove();
+									local164.unlink();
 									local164.source.aBoolean19 = false;
 								}
 							}

@@ -75,7 +75,7 @@ public final class Static247 {
 											local31 = Static130.aClass3_Sub5ArrayArrayArray1[local24];
 											@Pc(33) float local33 = 0.0F;
 											if (GlRenderer.enabled) {
-												if (Static80.anIntArrayArrayArray19 == Static83.anIntArrayArrayArray4) {
+												if (Static80.anIntArrayArrayArray19 == Static83.levelHeightMap) {
 													var9 = Static62.anIntArrayArray11[local18][local21];
 													var10 = var9 & 0xFFFFFF;
 													if (var10 != Static152.anInt3604) {
@@ -697,7 +697,7 @@ public final class Static247 {
 		if (local20 != null) {
 			local10.decode(new Packet(local20));
 		}
-		Static232.aClass99_30.method3095(local10, (long) arg0);
+		Static232.aClass99_30.put(local10, (long) arg0);
 		return local10;
 	}
 

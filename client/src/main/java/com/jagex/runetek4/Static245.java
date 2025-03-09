@@ -4,7 +4,7 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.game.config.lighttype.LightType;
-import com.jagex.runetek4.game.world.entity.Player;
+import com.jagex.runetek4.game.world.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -64,15 +64,15 @@ public final class Static245 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!tm", name = "a", descriptor = "(I)V")
-	public static void method4226() {
-		for (@Pc(7) int local7 = 0; local7 < Static116.anInt2951; local7++) {
-			@Pc(31) int local31 = Static44.anIntArray106[local7];
-			@Pc(35) Player local35 = Static159.players[local31];
-			@Pc(39) int local39 = Static57.in.g1();
-			if ((local39 & 0x10) != 0) {
-				local39 += Static57.in.g1() << 8;
+	public static void getPlayerExtended() {
+		for (@Pc(7) int i = 0; i < Static116.entityUpdateCount; i++) {
+			@Pc(31) int index = Static44.entityUpdateIds[i];
+			@Pc(35) PlayerEntity player = Static159.players[index];
+			@Pc(39) int mask = Static57.in.g1();
+			if ((mask & 0x10) != 0) {
+				mask += Static57.in.g1() << 8;
 			}
-			Static84.method1768(local39, local31, local35);
+			Static84.getPlayerExtended(mask, index, player);
 		}
 	}
 
@@ -218,7 +218,7 @@ public final class Static245 {
 						local255 = local517.anInt2245 >> 7;
 						if (local417 >= 0 && local255 >= 0 && local417 < 104 && local255 < 104) {
 							local517.aBoolean125 = (Static12.aByteArrayArrayArray2[1][local417][local255] & 0x2) != 0;
-							local517.anInt2235 = Static83.anIntArrayArrayArray4[local517.anInt2241][local417][local255] - local517.anInt2235;
+							local517.anInt2235 = Static83.levelHeightMap[local517.anInt2241][local417][local255] - local517.anInt2235;
 							Static120.method2389(local517);
 						}
 					}

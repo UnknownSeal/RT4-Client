@@ -19,10 +19,10 @@ public final class Static202 {
 	public static final JagString aClass100_891 = Static28.parse("");
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "W", descriptor = "Z")
-	public static boolean aBoolean233 = false;
+	public static boolean members = false;
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "Y", descriptor = "[I")
-	public static final int[] anIntArray424 = new int[5];
+	public static final int[] cameraModifierWobbleSpeed = new int[5];
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "Z", descriptor = "Lclient!na;")
 	public static final JagString aClass100_892 = Static28.parse("mem=");
@@ -111,7 +111,7 @@ public final class Static202 {
 			arg1 = 0;
 		}
 		local25 <<= local16;
-		Static148.method2766(local19, local25 & arg1 << local16 | Static7.anIntArray75[local19] & ~local25);
+		Static148.method2766(local19, local25 & arg1 << local16 | Static7.varps[local19] & ~local25);
 	}
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "([Lclient!na;[SI)V")
@@ -144,7 +144,7 @@ public final class Static202 {
 		if (local20 != null) {
 			local10.decode(new Packet(local20));
 		}
-		Static79.aClass99_11.method3095(local10, (long) arg0);
+		Static79.aClass99_11.put(local10, (long) arg0);
 		return local10;
 	}
 }

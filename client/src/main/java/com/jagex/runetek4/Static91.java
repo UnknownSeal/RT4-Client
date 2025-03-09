@@ -98,7 +98,7 @@ public final class Static91 {
 					Static204.soundStream.removeSubStream(local13.primaryStream);
 					local13.primaryStream = null;
 				}
-				local13.remove();
+				local13.unlink();
 				return;
 			}
 		}

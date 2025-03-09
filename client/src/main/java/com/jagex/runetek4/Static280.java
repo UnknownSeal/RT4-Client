@@ -30,7 +30,7 @@ public final class Static280 {
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!fe;B)V")
 	public static void method4665(@OriginalArg(0) PathingEntity arg0) {
-		if (Static83.loopCycle == arg0.anInt3386 || arg0.anInt3369 == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > Static36.method941(arg0.anInt3369).frames[arg0.anInt3425]) {
+		if (Static83.loopCycle == arg0.anInt3386 || arg0.primarySeqId == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > Static36.method941(arg0.primarySeqId).frames[arg0.anInt3425]) {
 			@Pc(35) int local35 = arg0.anInt3386 - arg0.anInt3395;
 			@Pc(41) int local41 = Static83.loopCycle - arg0.anInt3395;
 			@Pc(52) int local52 = arg0.anInt3380 * 128 + arg0.size() * 64;
@@ -42,18 +42,18 @@ public final class Static280 {
 		}
 		arg0.anInt3417 = 0;
 		if (arg0.anInt3431 == 0) {
-			arg0.anInt3400 = 1024;
+			arg0.dstYaw = 1024;
 		}
 		if (arg0.anInt3431 == 1) {
-			arg0.anInt3400 = 1536;
+			arg0.dstYaw = 1536;
 		}
 		if (arg0.anInt3431 == 2) {
-			arg0.anInt3400 = 0;
+			arg0.dstYaw = 0;
 		}
 		if (arg0.anInt3431 == 3) {
-			arg0.anInt3400 = 512;
+			arg0.dstYaw = 512;
 		}
-		arg0.anInt3381 = arg0.anInt3400;
+		arg0.anInt3381 = arg0.dstYaw;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(IIII)V")

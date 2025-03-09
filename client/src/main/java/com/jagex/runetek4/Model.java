@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public abstract class Model extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "s", descriptor = "Z")
-	public boolean aBoolean303 = false;
+	public boolean pickable = false;
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "c", descriptor = "()I")
 	public abstract int method4550();

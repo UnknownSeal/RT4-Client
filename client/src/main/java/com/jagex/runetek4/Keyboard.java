@@ -39,7 +39,7 @@ public final class Keyboard implements KeyListener, FocusListener {
 		if (local7 >= 0) {
 			local68 = Static53.anInt1708 + 1 & 0x7F;
 			if (local68 != Static102.anInt2678) {
-				Static221.anIntArray375[Static53.anInt1708] = local7;
+				BZip2State.anIntArray375[Static53.anInt1708] = local7;
 				Static264.anIntArray413[Static53.anInt1708] = -1;
 				Static53.anInt1708 = local68;
 			}
@@ -58,7 +58,7 @@ public final class Keyboard implements KeyListener, FocusListener {
 			if (local9 >= 0) {
 				@Pc(21) int local21 = Static53.anInt1708 + 1 & 0x7F;
 				if (Static102.anInt2678 != local21) {
-					Static221.anIntArray375[Static53.anInt1708] = -1;
+					BZip2State.anIntArray375[Static53.anInt1708] = -1;
 					Static264.anIntArray413[Static53.anInt1708] = local9;
 					Static53.anInt1708 = local21;
 				}

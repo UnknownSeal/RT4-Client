@@ -39,7 +39,7 @@ public final class Static199 {
 		if (local27 != null) {
 			local10.decode(new Packet(local27));
 		}
-		Static83.aClass99_3.method3095(local10, (long) arg0);
+		Static83.aClass99_3.put(local10, (long) arg0);
 		return local10;
 	}
 
