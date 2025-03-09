@@ -1,4 +1,4 @@
-package com.jagex.runetek4.game.config.loctype;
+package com.jagex.runetek4.entity;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.game.config.seqtype.SeqType;

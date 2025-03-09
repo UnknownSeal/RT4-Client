@@ -1,5 +1,6 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.entity;
 
+import com.jagex.runetek4.SoftwareIndexedSprite;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 

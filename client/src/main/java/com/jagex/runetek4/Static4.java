@@ -2,6 +2,8 @@ package com.jagex.runetek4;
 
 import java.io.IOException;
 
+import com.jagex.runetek4.entity.LocAddEntity;
+import com.jagex.runetek4.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.client.ClientInvCache;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.bastype.BASType;
@@ -9,8 +11,8 @@ import com.jagex.runetek4.game.config.iftype.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.game.config.objtype.ObjType;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
-import com.jagex.runetek4.game.scene.entities.NPCEntity;
-import com.jagex.runetek4.game.world.entity.PlayerEntity;
+import com.jagex.runetek4.entity.NPCEntity;
+import com.jagex.runetek4.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

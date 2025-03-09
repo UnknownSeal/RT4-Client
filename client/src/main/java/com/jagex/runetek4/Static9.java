@@ -1,8 +1,9 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.entity.LocEntity;
 import com.jagex.runetek4.game.client.DiskStore;
-import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
+import com.jagex.runetek4.entity.LocMergeEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;

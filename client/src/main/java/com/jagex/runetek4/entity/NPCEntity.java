@@ -1,4 +1,4 @@
-package com.jagex.runetek4.game.scene.entities;
+package com.jagex.runetek4.entity;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.game.config.bastype.BASType;

@@ -1,10 +1,9 @@
-package com.jagex.runetek4.game.world.entity;
+package com.jagex.runetek4.entity;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.game.config.seqtype.SeqType;
-import com.jagex.runetek4.game.scene.entities.NPCEntity;
-import com.jagex.runetek4.game.scene.entities.PathingEntity;
+import com.jagex.runetek4.game.world.entity.PlayerModel;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

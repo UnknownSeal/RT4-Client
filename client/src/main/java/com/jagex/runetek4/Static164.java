@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.loctype.LocMergeEntity;
+import com.jagex.runetek4.entity.LocMergeEntity;
 import com.jagex.runetek4.game.config.objtype.ObjType;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.js5.Js5;
