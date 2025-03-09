@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.objtype.ObjType;
+import com.jagex.runetek4.config.ObjType;
 import com.jagex.runetek4.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;

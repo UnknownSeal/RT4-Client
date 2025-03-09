@@ -1,8 +1,8 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.game.config.iftype.Component;
-import com.jagex.runetek4.game.config.seqtype.SeqType;
+import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.config.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.config.invtype.InvType;
-import com.jagex.runetek4.game.config.npctype.NPCType;
+import com.jagex.runetek4.config.NPCType;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;

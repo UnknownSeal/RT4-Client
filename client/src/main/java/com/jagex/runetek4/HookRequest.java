@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.Node;
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 

@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.Node;
 import com.jagex.runetek4.entity.LocMergeEntity;
-import com.jagex.runetek4.game.config.npctype.NPCType;
+import com.jagex.runetek4.config.NPCType;
 import com.jagex.runetek4.entity.NPCEntity;
 import com.jagex.runetek4.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalClass;

@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.entity.LocMergeEntity;
-import com.jagex.runetek4.game.config.npctype.NPCType;
+import com.jagex.runetek4.config.NPCType;
 import com.jagex.runetek4.entity.NPCEntity;
 import com.jagex.runetek4.entity.PlayerEntity;
 

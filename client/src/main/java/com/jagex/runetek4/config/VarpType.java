@@ -1,4 +1,4 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.config;
 
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 
 // VarpType
 @OriginalClass("client!eh")
-public final class Class35 {
+public final class VarpType {
 
 	@OriginalMember(owner = "client!eh", name = "e", descriptor = "I")
 	public int clientCode = 0;

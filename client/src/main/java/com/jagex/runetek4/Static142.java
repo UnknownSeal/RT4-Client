@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.npctype.NPCType;
+import com.jagex.runetek4.config.NPCType;
 import com.jagex.runetek4.entity.NPCEntity;
 import com.jagex.runetek4.entity.PathingEntity;
 import com.jagex.runetek4.entity.PlayerEntity;

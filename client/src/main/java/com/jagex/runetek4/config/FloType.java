@@ -1,4 +1,4 @@
-package com.jagex.runetek4.game.config.flutype;
+package com.jagex.runetek4.config;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

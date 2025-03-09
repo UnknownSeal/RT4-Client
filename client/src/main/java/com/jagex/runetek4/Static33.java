@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import java.util.Date;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.flutype.FloType;
+import com.jagex.runetek4.config.FloType;
 import com.jagex.runetek4.entity.LocMergeEntity;
 import com.jagex.runetek4.game.config.msitype.MSIType;
 import org.openrs2.deob.annotation.OriginalArg;

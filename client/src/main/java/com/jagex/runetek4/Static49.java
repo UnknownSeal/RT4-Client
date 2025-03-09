@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.entity.LocMergeEntity;
 import com.jagex.runetek4.entity.NPCEntity;
 import org.openrs2.deob.annotation.OriginalArg;

@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import java.awt.Frame;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

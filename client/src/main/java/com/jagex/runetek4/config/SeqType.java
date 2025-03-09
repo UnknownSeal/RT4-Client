@@ -1,4 +1,4 @@
-package com.jagex.runetek4.game.config.seqtype;
+package com.jagex.runetek4.config;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;

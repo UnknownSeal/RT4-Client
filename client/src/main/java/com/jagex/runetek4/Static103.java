@@ -1,8 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.iftype.Component;
+import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
-import com.jagex.runetek4.game.config.npctype.NPCType;
+import com.jagex.runetek4.config.NPCType;
 import com.jagex.runetek4.entity.NPCEntity;
 import com.jagex.runetek4.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;

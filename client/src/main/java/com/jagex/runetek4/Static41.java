@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.seqtype.SeqType;
+import com.jagex.runetek4.config.SeqType;
 import com.jagex.runetek4.entity.PlayerEntity;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.js5.Js5;

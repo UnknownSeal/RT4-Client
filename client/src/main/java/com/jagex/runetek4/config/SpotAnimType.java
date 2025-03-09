@@ -1,5 +1,9 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.config;
 
+import com.jagex.runetek4.Model;
+import com.jagex.runetek4.Static36;
+import com.jagex.runetek4.Static56;
+import com.jagex.runetek4.Static93;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;

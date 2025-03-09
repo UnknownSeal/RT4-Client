@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.npctype.NPCType;
+import com.jagex.runetek4.config.NPCType;
 import com.jagex.runetek4.entity.NPCEntity;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

@@ -1,8 +1,7 @@
-package com.jagex.runetek4.game.config.npctype;
+package com.jagex.runetek4.config;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.game.config.bastype.BASType;
-import com.jagex.runetek4.game.config.seqtype.SeqType;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
