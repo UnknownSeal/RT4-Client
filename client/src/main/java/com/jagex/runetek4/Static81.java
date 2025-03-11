@@ -92,7 +92,7 @@ public final class Static81 {
 		}
 		for (@Pc(34) int i = 0; i < 100 && Static10.readPacket(); i++) {
 		}
-		if (Static244.anInt5370 != 30) {
+		if (Static244.gamestate != 30) {
 			return;
 		}
 		Static233.loop(Static6.outboundBuffer); // runetek4.ReflectionCheck
@@ -245,7 +245,7 @@ public final class Static81 {
 			Static18.sentToServer = true;
 		}
 		Static31.method846();
-		if (Static244.anInt5370 != 30) {
+		if (Static244.gamestate != 30) {
 			return;
 		}
 		Static251.loop(); // ChangeLocRequest
@@ -664,7 +664,7 @@ public final class Static81 {
 											}
 											try {
 												if (Static124.socket != null && Static6.outboundBuffer.pos > 0) {
-													Static124.socket.write(Static6.outboundBuffer.data, Static6.outboundBuffer.pos);
+													Static124.socket.write(Static6.outboundBuffer.pos, Static6.outboundBuffer.data);
 													Static131.anInt3251 = 0;
 													Static6.outboundBuffer.pos = 0;
 												}

@@ -41,7 +41,7 @@ public final class VarpDefinition {
 	@OriginalMember(owner = "client!ah", name = "a", descriptor = "(BZ)V")
 	public static void method842(@OriginalArg(1) boolean arg0) {
 		Static107.method2261();
-		if (Static244.anInt5370 != 30 && Static244.anInt5370 != 25) {
+		if (Static244.gamestate != 30 && Static244.gamestate != 25) {
 			return;
 		}
 		Static131.anInt3251++;
@@ -52,7 +52,7 @@ public final class VarpDefinition {
 		if (!Static224.aBoolean247 && Static124.socket != null) {
 			Static6.outboundBuffer.pIsaac1(93);
 			try {
-				Static124.socket.write(Static6.outboundBuffer.data, Static6.outboundBuffer.pos);
+				Static124.socket.write(Static6.outboundBuffer.pos, Static6.outboundBuffer.data);
 				Static6.outboundBuffer.pos = 0;
 			} catch (@Pc(53) IOException local53) {
 				Static224.aBoolean247 = true;

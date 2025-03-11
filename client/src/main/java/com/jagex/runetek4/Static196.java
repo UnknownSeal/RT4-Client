@@ -24,10 +24,10 @@ public final class Static196 {
 
 	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(II)V")
 	public static void method3534(@OriginalArg(0) int arg0) {
-		if (Static244.anInt5370 == arg0) {
+		if (Static244.gamestate == arg0) {
 			return;
 		}
-		if (Static244.anInt5370 == 0) {
+		if (Static244.gamestate == 0) {
 			Static163.method3097();
 		}
 		if (arg0 == 40) {
@@ -54,7 +54,7 @@ public final class Static196 {
 		} else {
 			Static119.method2381();
 		}
-		@Pc(106) boolean local106 = Static244.anInt5370 == 5 || Static244.anInt5370 == 10 || Static244.anInt5370 == 28;
+		@Pc(106) boolean local106 = Static244.gamestate == 5 || Static244.gamestate == 10 || Static244.gamestate == 28;
 		if (local106 != local37) {
 			if (local37) {
 				BZip2State.anInt4363 = Static250.anInt5441;
@@ -72,7 +72,7 @@ public final class Static196 {
 		if (GlRenderer.enabled && (arg0 == 25 || arg0 == 28 || arg0 == 40)) {
 			GlRenderer.method4160();
 		}
-		Static244.anInt5370 = arg0;
+		Static244.gamestate = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(ZI)V")

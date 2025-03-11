@@ -128,7 +128,7 @@ public final class Static197 {
 				Static260.aClass27_2 = null;
 				Static260.aClass27_2 = Static131.method2579(Static254.canvasHeigth, Static48.canvasWidth, Static154.canvas);
 				Static129.method2492();
-				if (Static244.anInt5370 == 5) {
+				if (Static244.gamestate == 5) {
 					Static182.method3359(true, Static280.aClass3_Sub2_Sub9_43);
 				} else {
 					Static114.method4636(false, LocalizedText.LOADING);
@@ -204,7 +204,7 @@ public final class Static197 {
 		if (Static154.topLevelInterace != -1) {
 			Static210.method3712(true);
 		}
-		if (Static124.socket != null && (Static244.anInt5370 == 30 || Static244.anInt5370 == 25)) {
+		if (Static124.socket != null && (Static244.gamestate == 30 || Static244.gamestate == 25)) {
 			Static59.method1373();
 		}
 		for (@Pc(466) int local466 = 0; local466 < 100; local466++) {

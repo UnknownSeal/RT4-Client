@@ -127,7 +127,7 @@ public final class Static253 {
 			GlRenderer.method4173();
 			GlRenderer.setDepthTestEnabled(true);
 			GlRenderer.setFogEnabled(true);
-			if (Static244.anInt5370 == 10) {
+			if (Static244.gamestate == 10) {
 				jitter = Static103.method2235(Static178.sceneDelta, Static134.cameraZ >> 10, Static113.anInt4609, Static138.cameraX >> 10);
 			} else {
 				jitter = Static103.method2235(Static178.sceneDelta, Static173.localPlayer.pathTileZ[0] >> 3, Static113.anInt4609, Static173.localPlayer.pathTileX[0] >> 3);

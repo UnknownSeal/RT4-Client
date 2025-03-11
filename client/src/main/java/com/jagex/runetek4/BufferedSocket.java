@@ -135,13 +135,13 @@ public final class BufferedSocket implements Runnable {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "a", descriptor = "(I)I")
+	@OriginalMember(owner = "client!ma", name = "a", descriptor = "(I)I")
 	public final int read() throws IOException {
 		return this.aBoolean177 ? 0 : this.anInputStream1.read();
 	}
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "a", descriptor = "(ZI[BI)V")
-	public final void write(@OriginalArg(2) byte[] arg0, @OriginalArg(3) int arg1) throws IOException {
+	@OriginalMember(owner = "client!ma", name = "a", descriptor = "(ZI[BI)V")
+	public void write(@OriginalArg(3) int arg1, @OriginalArg(2) byte[] arg0) throws IOException {
 		if (this.aBoolean177) {
 			return;
 		}

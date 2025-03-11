@@ -85,14 +85,14 @@ public final class Js5NetQueue {
 				this.aClass3_Sub15_4.pos = 0;
 				this.aClass3_Sub15_4.p1b(1);
 				this.aClass3_Sub15_4.p3((int) local75.secondaryNodeId);
-				this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
+				this.aClass95_1.write(4, this.aClass3_Sub15_4.data);
 				this.aClass16_3.pushBack(local75);
 			}
 			for (local75 = (Js5NetRequest) this.prefetch.method795(); local75 != null; local75 = (Js5NetRequest) this.prefetch.prev()) {
 				this.aClass3_Sub15_4.pos = 0;
 				this.aClass3_Sub15_4.p1b(0);
 				this.aClass3_Sub15_4.p3((int) local75.secondaryNodeId);
-				this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
+				this.aClass95_1.write(4, this.aClass3_Sub15_4.data);
 				this.aClass16_5.pushBack(local75);
 			}
 			for (@Pc(172) int local172 = 0; local172 < 100; local172++) {
@@ -210,7 +210,7 @@ public final class Js5NetQueue {
 			this.aClass3_Sub15_4.pos = 0;
 			this.aClass3_Sub15_4.p1b(7);
 			this.aClass3_Sub15_4.p3(0);
-			this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
+			this.aClass95_1.write(4, this.aClass3_Sub15_4.data);
 		} catch (@Pc(39) IOException local39) {
 			try {
 				this.aClass95_1.closeGracefully();
@@ -236,7 +236,7 @@ public final class Js5NetQueue {
 			this.aClass3_Sub15_4.pos = 0;
 			this.aClass3_Sub15_4.p1b(arg0 ? 2 : 3);
 			this.aClass3_Sub15_4.p3(0);
-			this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
+			this.aClass95_1.write(4, this.aClass3_Sub15_4.data);
 		} catch (@Pc(42) IOException local42) {
 			try {
 				this.aClass95_1.closeGracefully();
@@ -281,7 +281,7 @@ public final class Js5NetQueue {
 								this.aClass3_Sub15_4.p1b(4);
 								this.aClass3_Sub15_4.p1b(this.xorcode);
 								this.aClass3_Sub15_4.p2(0);
-								this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
+								this.aClass95_1.write(4, this.aClass3_Sub15_4.data);
 							} catch (@Pc(107) IOException local107) {
 								try {
 									this.aClass95_1.closeGracefully();
@@ -361,7 +361,7 @@ public final class Js5NetQueue {
 			this.aClass3_Sub15_4.pos = 0;
 			this.aClass3_Sub15_4.p1b(6);
 			this.aClass3_Sub15_4.p3(3);
-			this.aClass95_1.write(this.aClass3_Sub15_4.data, 4);
+			this.aClass95_1.write(4, this.aClass3_Sub15_4.data);
 		} catch (@Pc(37) IOException local37) {
 			try {
 				this.aClass95_1.closeGracefully();

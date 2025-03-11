@@ -146,15 +146,15 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	}
 
 	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(Ljava/lang/String;I)V")
-	protected final void error(@OriginalArg(0) String arg0) {
+	protected final void error(@OriginalArg(0) String message) {
 		if (this.aBoolean71) {
 			return;
 		}
 		this.aBoolean71 = true;
-		System.out.println("error_game_" + arg0);
+		System.out.println("error_game_" + message);
 		try {
-			this.getAppletContext().showDocument(new URL(this.getCodeBase(), "error_game_" + arg0 + ".ws"), "_top");
-		} catch (@Pc(47) Exception local47) {
+			this.getAppletContext().showDocument(new URL(this.getCodeBase(), "error_game_" + message + ".ws"), "_top");
+		} catch (@Pc(47) Exception exception) {
 		}
 	}
 

@@ -3226,7 +3226,7 @@ public final class Static88 {
 														chatTypedLowercase = Static3.scriptStringValues[local26 + 1];
 														intValueIndex--;
 														childCount = Static254.scriptIntValues[intValueIndex];
-														if (Static244.anInt5370 == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
+														if (Static244.gamestate == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
 															Static225.method3896(chatTyped, chatTypedLowercase, childCount);
 														}
 														continue;
@@ -3243,14 +3243,14 @@ public final class Static88 {
 													}
 													if (scriptOpcode == 5603) {
 														intValueIndex -= 4;
-														if (Static244.anInt5370 == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
+														if (Static244.gamestate == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
 															Static125.method2448(Static254.scriptIntValues[intValueIndex + 2], Static254.scriptIntValues[intValueIndex + 3], Static254.scriptIntValues[intValueIndex], Static254.scriptIntValues[intValueIndex + 1]);
 														}
 														continue;
 													}
 													if (scriptOpcode == 5604) {
 														local26--;
-														if (Static244.anInt5370 == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
+														if (Static244.gamestate == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
 															Static78.method1691(Static3.scriptStringValues[local26].toBase37());
 														}
 														continue;
@@ -3258,7 +3258,7 @@ public final class Static88 {
 													if (scriptOpcode == 5605) {
 														intValueIndex -= 4;
 														local26 -= 2;
-														if (Static244.anInt5370 == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
+														if (Static244.gamestate == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
 															Static40.method1016(Static254.scriptIntValues[intValueIndex], Static254.scriptIntValues[intValueIndex + 3], Static254.scriptIntValues[intValueIndex + 1], Static3.scriptStringValues[local26 + 1], Static3.scriptStringValues[local26].toBase37(), Static254.scriptIntValues[intValueIndex + 2]);
 														}
 														continue;
@@ -3776,7 +3776,7 @@ public final class Static88 {
 													}
 												} else if (scriptOpcode < 6600) {
 													if (scriptOpcode == 6500) {
-														if (Static244.anInt5370 == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0) {
+														if (Static244.gamestate == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0) {
 															Static254.scriptIntValues[intValueIndex++] = Static207.method3684() == -1 ? 0 : 1;
 															continue;
 														}
@@ -3828,7 +3828,7 @@ public final class Static88 {
 													if (scriptOpcode == 6503) {
 														intValueIndex--;
 														interfaceData = Static254.scriptIntValues[intValueIndex];
-														if (Static244.anInt5370 == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0) {
+														if (Static244.gamestate == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0) {
 															Static254.scriptIntValues[intValueIndex++] = Static176.method3303(interfaceData) ? 1 : 0;
 															continue;
 														}

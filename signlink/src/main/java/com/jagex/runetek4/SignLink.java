@@ -308,8 +308,8 @@ public final class SignLink implements Runnable {
 	}
 
 	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "(BLjava/lang/String;I)Lsignlink!im;")
-	public final PrivilegedRequest openSocket(@OriginalArg(1) String arg0, @OriginalArg(2) int arg1) {
-		return this.method5114(1, 0, arg0, arg1);
+	public final PrivilegedRequest openSocket(@OriginalArg(1) String hostname, @OriginalArg(2) int port) {
+		return this.method5114(1, 0, hostname, port);
 	}
 
 	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "(Ljava/lang/Class;I)Lsignlink!im;")

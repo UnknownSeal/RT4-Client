@@ -20,7 +20,7 @@ public final class Static199 {
 	public static IterableMap aClass133_20 = new IterableMap(16);
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "P", descriptor = "I")
-	public static int anInt4670 = 10;
+	public static int mainLoadPercentage = 10;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "U", descriptor = "I")
 	public static int anInt4672 = 0;

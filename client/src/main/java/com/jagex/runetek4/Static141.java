@@ -65,13 +65,13 @@ public final class Static141 {
 		Static92.aClass3_Sub2_Sub1_6 = null;
 		Static165.aClass3_Sub2_Sub1_8 = null;
 		Static181.aClass3_Sub2_Sub1_9 = null;
-		if (Static244.anInt5370 == 5) {
+		if (Static244.gamestate == 5) {
 			Static181.method3344(Static209.aClass153_86);
 		}
-		if (Static244.anInt5370 == 10) {
+		if (Static244.gamestate == 10) {
 			Static73.method1596(false);
 		}
-		if (Static244.anInt5370 == 30) {
+		if (Static244.gamestate == 30) {
 			Static196.method3534(25);
 		}
 	}

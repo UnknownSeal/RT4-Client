@@ -21,7 +21,7 @@ public final class Static58 {
 	public static int wheelRotation = 0;
 
 	@OriginalMember(owner = "runetek4.client!eh", name = "a", descriptor = "(I)V")
-	public static void method1321() {
+	public static void init() {
 		@Pc(8) int[] local8 = new int[Static170.anInt3245];
 		@Pc(10) int local10 = 0;
 		@Pc(12) int local12;

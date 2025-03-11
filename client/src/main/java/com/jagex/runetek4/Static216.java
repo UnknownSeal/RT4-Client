@@ -62,7 +62,7 @@ public final class Static216 {
 				Static6.outboundBuffer.p1b(14);
 				@Pc(120) int local120 = (int) (local106 >> 16 & 0x1FL);
 				Static6.outboundBuffer.p1b(local120);
-				Static124.socket.write(Static6.outboundBuffer.data, 2);
+				Static124.socket.write(2, Static6.outboundBuffer.data);
 				if (Static11.aClass62_1 != null) {
 					Static11.aClass62_1.method3571();
 				}
@@ -107,7 +107,7 @@ public final class Static216 {
 				Static6.outboundBuffer.pjstr(Static186.password);
 				Static6.outboundBuffer.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
 				Static17.aClass3_Sub15_Sub1_2.pos = 0;
-				if (Static244.anInt5370 == 40) {
+				if (Static244.gamestate == 40) {
 					Static17.aClass3_Sub15_Sub1_2.p1b(18);
 				} else {
 					Static17.aClass3_Sub15_Sub1_2.p1b(16);
@@ -157,7 +157,7 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.p4(Static167.aClass153_63.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static226.aClass153_93.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.pdata(Static6.outboundBuffer.data, Static6.outboundBuffer.pos);
-				Static124.socket.write(Static17.aClass3_Sub15_Sub1_2.data, Static17.aClass3_Sub15_Sub1_2.pos);
+				Static124.socket.write(Static17.aClass3_Sub15_Sub1_2.pos, Static17.aClass3_Sub15_Sub1_2.data);
 				Static6.outboundBuffer.Isaac(seed);
 				for (@Pc(583) int i = 0; i < 4; i++) {
 					seed[i] += 50;
@@ -202,7 +202,7 @@ public final class Static216 {
 			if (Static184.anInt4348 == 6) {
 				Static6.outboundBuffer.pos = 0;
 				Static6.outboundBuffer.pIsaac1(17);
-				Static124.socket.write(Static6.outboundBuffer.data, Static6.outboundBuffer.pos);
+				Static124.socket.write(Static6.outboundBuffer.pos, Static6.outboundBuffer.data);
 				Static184.anInt4348 = 4;
 				return;
 			}

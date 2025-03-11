@@ -122,7 +122,7 @@ public final class Static207 {
 				}
 				Static6.outboundBuffer.p1b(255);
 				Static6.outboundBuffer.p4(local82);
-				Static124.socket.write(Static6.outboundBuffer.data, Static6.outboundBuffer.pos);
+				Static124.socket.write(Static6.outboundBuffer.pos, Static6.outboundBuffer.data);
 				if (Static11.aClass62_1 != null) {
 					Static11.aClass62_1.method3571();
 				}

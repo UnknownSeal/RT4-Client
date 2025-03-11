@@ -42,15 +42,15 @@ public final class Static182 {
 		if (GlRenderer.enabled) {
 			Static46.method1179(Static48.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
 			Static46.method1179(Static48.canvasWidth / 2 - 151, local9 - -1, 302, 32, 0);
-			Static46.method1186(Static48.canvasWidth / 2 - 150, local9 + 2, Static199.anInt4670 * 3, 30, 9179409);
-			Static46.method1186(Static48.canvasWidth / 2 + Static199.anInt4670 * 3 - 150, local9 + 2, 300 - Static199.anInt4670 * 3, 30, 0);
+			Static46.method1186(Static48.canvasWidth / 2 - 150, local9 + 2, Static199.mainLoadPercentage * 3, 30, 9179409);
+			Static46.method1186(Static48.canvasWidth / 2 + Static199.mainLoadPercentage * 3 - 150, local9 + 2, 300 - Static199.mainLoadPercentage * 3, 30, 0);
 		} else {
 			Static129.method2483(Static48.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
 			Static129.method2483(Static48.canvasWidth / 2 - 151, local9 + 1, 302, 32, 0);
-			Static129.method2495(Static48.canvasWidth / 2 - 150, local9 + 2, Static199.anInt4670 * 3, 30, 9179409);
-			Static129.method2495(Static199.anInt4670 * 3 + Static48.canvasWidth / 2 - 150, local9 + 2, 300 - Static199.anInt4670 * 3, 30, 0);
+			Static129.method2495(Static48.canvasWidth / 2 - 150, local9 + 2, Static199.mainLoadPercentage * 3, 30, 9179409);
+			Static129.method2495(Static199.mainLoadPercentage * 3 + Static48.canvasWidth / 2 - 150, local9 + 2, 300 - Static199.mainLoadPercentage * 3, 30, 0);
 		}
-		arg1.method2875(Static126.aClass100_602, Static48.canvasWidth / 2, Static254.canvasHeigth / 2 + 4, 16777215, -1);
+		arg1.method2875(Static126.mainLoadSecondaryText, Static48.canvasWidth / 2, Static254.canvasHeigth / 2 + 4, 16777215, -1);
 	}
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "a", descriptor = "(IZIJI)Lclient!na;")

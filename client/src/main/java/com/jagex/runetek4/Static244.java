@@ -10,7 +10,7 @@ public final class Static244 {
 	public static final SoftLruHashTable aClass99_32 = new SoftLruHashTable(50);
 
 	@OriginalMember(owner = "runetek4.client!tl", name = "d", descriptor = "I")
-	public static int anInt5370 = 0;
+	public static int gamestate = 0;
 
 
 	@OriginalMember(owner = "runetek4.client!tl", name = "f", descriptor = "Lclient!na;")
