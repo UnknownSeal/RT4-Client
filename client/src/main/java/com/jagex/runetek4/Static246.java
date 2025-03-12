@@ -45,7 +45,7 @@ public final class Static246 {
 
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(Lclient!me;IIII)V")
 	public static void method4240(@OriginalArg(0) NPCType npc, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		if (PreciseSleep.anInt5204 >= 400) {
+		if (PreciseSleep.menuActionRow >= 400) {
 			return;
 		}
 		if (npc.multinpc != null) {

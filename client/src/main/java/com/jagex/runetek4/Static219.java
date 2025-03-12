@@ -10,7 +10,7 @@ public final class Static219 {
 	public static Sprite[] aClass3_Sub2_Sub1Array9;
 
 	@OriginalMember(owner = "runetek4.client!rl", name = "P", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_27 = new SoftLruHashTable(64);
+	public static final NodeCache aClass99_27 = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!rl", name = "S", descriptor = "Lclient!na;")
 	public static final JString HITMARKS = Static28.parse("hitmarks");

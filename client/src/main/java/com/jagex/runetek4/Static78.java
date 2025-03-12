@@ -30,7 +30,7 @@ public final class Static78 {
 	public static JString aClass100_466 = null;
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "j", descriptor = "I")
-	public static int anInt2145 = 0;
+	public static int lastItemDragTime = 0;
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(IIBI)I")
 	public static int method1690(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) {
@@ -65,7 +65,7 @@ public final class Static78 {
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "c", descriptor = "(I)V")
 	public static void method1696() {
-		VarpDefinition.method842(false);
+		aClass6.method842(false);
 		Static175.anInt4220 = 0;
 		@Pc(12) boolean local12 = true;
 		@Pc(14) int local14;
@@ -197,11 +197,11 @@ public final class Static78 {
 		}
 		Static107.method2261();
 		System.gc();
-		VarpDefinition.method842(true);
+		aClass6.method842(true);
 		Static196.method3535(false);
 		if (!Static230.aBoolean250) {
 			Static87.method1805(false);
-			VarpDefinition.method842(true);
+			aClass6.method842(true);
 			if (GlRenderer.enabled) {
 				local427 = Static173.localPlayer.pathTileX[0] >> 3;
 				local320 = Static173.localPlayer.pathTileZ[0] >> 3;
@@ -214,7 +214,7 @@ public final class Static78 {
 		}
 		if (Static230.aBoolean250) {
 			Static89.method1835(false);
-			VarpDefinition.method842(true);
+			aClass6.method842(true);
 			if (GlRenderer.enabled) {
 				local427 = Static173.localPlayer.pathTileX[0] >> 3;
 				local320 = Static173.localPlayer.pathTileZ[0] >> 3;
@@ -223,12 +223,12 @@ public final class Static78 {
 			Static233.method4002(false);
 		}
 		Static217.method3768();
-		VarpDefinition.method842(true);
+		aClass6.method842(true);
 		Static45.method1169(Static148.levelCollisionMap, false);
 		if (GlRenderer.enabled) {
 			Static120.method2395();
 		}
-		VarpDefinition.method842(true);
+		aClass6.method842(true);
 		local427 = Static146.firstvisibleLevel;
 		if (local427 > Static55.currentLevel) {
 			local427 = Static55.currentLevel;
@@ -246,18 +246,18 @@ public final class Static78 {
 			Static196.method3535(true);
 			if (!Static230.aBoolean250) {
 				Static87.method1805(true);
-				VarpDefinition.method842(true);
+				aClass6.method842(true);
 				Static26.method743(true);
 			}
 			if (Static230.aBoolean250) {
 				Static89.method1835(true);
-				VarpDefinition.method842(true);
+				aClass6.method842(true);
 				Static233.method4002(true);
 			}
 			Static217.method3768();
-			VarpDefinition.method842(true);
+			aClass6.method842(true);
 			Static45.method1169(Static148.levelCollisionMap, true);
-			VarpDefinition.method842(true);
+			aClass6.method842(true);
 			Static105.method2255();
 			Static278.method4648(false);
 		}

@@ -56,8 +56,8 @@ public final class Static112 {
 		local112 = Static215.anInt4873;
 		@Pc(203) int local203;
 		@Pc(219) int local219;
-		for (local203 = 0; local203 < PreciseSleep.anInt5204; local203++) {
-			local219 = (PreciseSleep.anInt5204 - local203 - 1) * 15 + local9 + 35;
+		for (local203 = 0; local203 < PreciseSleep.menuActionRow; local203++) {
+			local219 = (PreciseSleep.menuActionRow - local203 - 1) * 15 + local9 + 35;
 			if (local3 < local112 && local112 < local3 + local13 && local114 > local219 - 13 && local114 < local219 + 3) {
 				if (GlRenderer.enabled) {
 					Static46.method1182(local3, local219 - 13, local13, 16, Static251.anInt5457, 256 - Static232.anInt5208);
@@ -102,8 +102,8 @@ public final class Static112 {
 			Static204.aClass3_Sub2_Sub1_10.drawSprite(local3, local11 + local9 - Static204.aClass3_Sub2_Sub1_10.anInt1859);
 			Static204.aClass3_Sub2_Sub1_10.method1421(local3 + local13 - Static204.aClass3_Sub2_Sub1_10.anInt1867, local9 - -local11 + -Static204.aClass3_Sub2_Sub1_10.anInt1859);
 		}
-		for (local203 = 0; local203 < PreciseSleep.anInt5204; local203++) {
-			local219 = (PreciseSleep.anInt5204 - local203 - 1) * 15 + local9 + 35;
+		for (local203 = 0; local203 < PreciseSleep.menuActionRow; local203++) {
+			local219 = (PreciseSleep.menuActionRow - local203 - 1) * 15 + local9 + 35;
 			local418 = Static195.anInt4581;
 			if (local3 < local112 && local13 + local3 > local112 && local219 - 13 < local114 && local114 < local219 + 3) {
 				local418 = Static262.anInt5752;

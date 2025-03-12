@@ -1,6 +1,8 @@
 package com.jagex.runetek4.config;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.cache.def.VarbitDefinition;
+import com.jagex.runetek4.cache.def.VarpDefinition;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;

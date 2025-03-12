@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.VarpDefinition;
 import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -22,7 +23,7 @@ public final class Static24 {
 
 	@OriginalMember(owner = "client!bn", name = "c", descriptor = "(II)V")
 	public static void method666() {
-		Static232.varpDefinitionCache.method3102(5);
+		VarpDefinition.varpDefinitionCache.method3102(5);
 	}
 
 	@OriginalMember(owner = "client!bn", name = "a", descriptor = "(III)I")

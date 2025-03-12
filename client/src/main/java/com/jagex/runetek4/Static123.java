@@ -17,7 +17,7 @@ public final class Static123 {
 	public static final JString aClass100_593 = Static28.parse(" (X");
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "j", descriptor = "Z")
-	public static boolean aBoolean155 = false;
+	public static boolean lastItemDragged = false;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "m", descriptor = "Lclient!na;")
 	public static final JString aClass100_594 = Static28.parse("<)4col>");

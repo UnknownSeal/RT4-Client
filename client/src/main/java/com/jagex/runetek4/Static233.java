@@ -34,7 +34,7 @@ public final class Static233 {
 	public static volatile boolean focus_in = true;
 
 	@OriginalMember(owner = "runetek4.client!t", name = "p", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_31 = new SoftLruHashTable(64);
+	public static final NodeCache aClass99_31 = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!t", name = "v", descriptor = "[Lclient!na;")
 	public static final JString[] aClass100Array160 = new JString[500];
@@ -151,7 +151,7 @@ public final class Static233 {
 		Static25.y = Static60.mouseClickY;
 		Static17.crossCycle = 0;
 		Static70.crossMode = 2;
-		Static122.x = VarpDefinition.mouseClickX;
+		Static122.x = aClass6.mouseClickX;
 		return true;
 	}
 

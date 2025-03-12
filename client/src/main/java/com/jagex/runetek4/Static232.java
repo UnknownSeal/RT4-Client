@@ -19,9 +19,6 @@ public final class Static232 {
 	@OriginalMember(owner = "runetek4.client!sm", name = "m", descriptor = "I")
 	public static int anInt5212;
 
-	@OriginalMember(owner = "runetek4.client!sm", name = "c", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable varpDefinitionCache = new SoftLruHashTable(64);
-
 	@OriginalMember(owner = "runetek4.client!sm", name = "l", descriptor = "[S")
 	public static short[] aShortArray74 = new short[256];
 

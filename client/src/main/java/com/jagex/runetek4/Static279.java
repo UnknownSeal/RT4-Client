@@ -13,7 +13,7 @@ public final class Static279 {
 	public static int anInt5880;
 
 	@OriginalMember(owner = "runetek4.client!wk", name = "t", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_38 = new SoftLruHashTable(64);
+	public static final NodeCache aClass99_38 = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!wk", name = "u", descriptor = "Lclient!na;")
 	public static final JString CLIENTJS5DROP = Static28.parse("::clientjs5drop");

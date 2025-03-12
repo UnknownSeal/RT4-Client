@@ -160,14 +160,14 @@ public final class Static89 {
 			if (Static162.anInt3953 != 0) {
 				Static155.anInt3751 = Static277.anInt5850;
 				Static60.anInt1892 = Static280.anInt5895;
-			} else if (Static150.clickButton == 0) {
+			} else if (Mouse.clickButton == 0) {
 				Static155.anInt3751 = Static215.anInt4873;
 				Static60.anInt1892 = Static223.anInt5032;
 			} else {
-				Static155.anInt3751 = VarpDefinition.mouseClickX;
+				Static155.anInt3751 = aClass6.mouseClickX;
 				Static60.anInt1892 = Static60.mouseClickY;
 			}
-			PreciseSleep.anInt5204 = 1;
+			PreciseSleep.menuActionRow = 1;
 			Static254.aClass100Array168[0] = LocalizedText.CANCEL;
 			Static233.aClass100Array160[0] = Static186.aClass100_827;
 			Static39.aShortArray6[0] = 1005;

@@ -1,5 +1,7 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.VarbitDefinition;
+import com.jagex.runetek4.cache.def.VarpDefinition;
 import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.config.ObjType;
 import com.jagex.runetek4.core.datastruct.IntWrapper;

@@ -14,10 +14,10 @@ public final class Static125 {
 	public static int anInt3096 = 0;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "x", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_18 = new SoftLruHashTable(50);
+	public static final NodeCache aClass99_18 = new NodeCache(50);
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "G", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable varbitDefinitionCache = new SoftLruHashTable(64);
+	public static final NodeCache varbitDefinitionCache = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "H", descriptor = "I")
 	public static int worldId = -1;
@@ -29,7 +29,7 @@ public final class Static125 {
 	public static void method2446(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
 		Static14.aClass153_8 = arg0;
 		Static216.aClass153_31 = arg1;
-		Static53.anInt1716 = Static216.aClass153_31.method4504(3);
+		Static53.anInt1716 = Static216.aClass153_31.fileLength(3);
 	}
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "a", descriptor = "(IIIII)V")

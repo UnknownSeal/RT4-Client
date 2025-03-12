@@ -67,17 +67,17 @@ public final class Static71 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "b", descriptor = "(I)V")
-	public static void method1444() {
-		for (@Pc(7) int local7 = -1; local7 < Static267.playerCount; local7++) {
-			@Pc(21) int local21;
-			if (local7 == -1) {
-				local21 = 2047;
+	public static void updatePlayers() {
+		for (@Pc(7) int currentPlayerIndex = -1; currentPlayerIndex < Static267.playerCount; currentPlayerIndex++) {
+			@Pc(21) int actualIndex;
+			if (currentPlayerIndex == -1) {
+				actualIndex = 2047;
 			} else {
-				local21 = Static105.playerIds[local7];
+				actualIndex = Static105.playerIds[currentPlayerIndex];
 			}
-			@Pc(31) PlayerEntity local31 = Static159.players[local21];
-			if (local31 != null) {
-				Static263.updateEntity(local31.size(), local31);
+			@Pc(31) PlayerEntity player = Static159.players[actualIndex];
+			if (player != null) {
+				Static263.updateEntity(player.size(), player);
 			}
 		}
 	}

@@ -156,7 +156,7 @@ public final class Static75 {
 		Static254.anIntArray488 = null;
 		Static269.anIntArray252 = null;
 		Static26.anIntArray66 = null;
-		VarpDefinition.aByteArrayArray5 = null;
+		aClass6.aByteArrayArray5 = null;
 		Static274.anIntArray440 = null;
 		Static259.anIntArray513 = null;
 	}

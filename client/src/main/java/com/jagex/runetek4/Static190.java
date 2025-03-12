@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static190 {
 
     @OriginalMember(owner = "runetek4.client!pf", name = "b", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_26 = new SoftLruHashTable(200);
+	public static final NodeCache aClass99_26 = new NodeCache(200);
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "h", descriptor = "[J")
 	public static final long[] ignoreName37 = new long[100];

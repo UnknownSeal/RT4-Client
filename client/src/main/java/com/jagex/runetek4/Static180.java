@@ -25,7 +25,7 @@ public final class Static180 {
 		@Pc(12) int local12 = (int) (Math.random() * 21.0D) - 10;
 		Static98.aClass153_42 = arg0;
 		@Pc(21) int local21 = (int) (Math.random() * 21.0D) - 10;
-		Static98.aClass153_42.method4504(34);
+		Static98.aClass153_42.fileLength(34);
 		@Pc(33) int local33 = (int) (Math.random() * 21.0D) - 10;
 		@Pc(40) int local40 = (int) (Math.random() * 41.0D) - 20;
 		Static266.anInt5344 = local40 + local21;

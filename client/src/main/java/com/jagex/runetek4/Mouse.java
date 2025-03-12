@@ -13,6 +13,9 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("runetek4.client!ug")
 public final class Mouse implements MouseListener, MouseMotionListener, FocusListener {
 
+	@OriginalMember(owner = "runetek4.client!lk", name = "Z", descriptor = "I")
+	public static int clickButton = 0;
+
 	@OriginalMember(owner = "runetek4.client!ug", name = "mouseMoved", descriptor = "(Ljava/awt/event/MouseEvent;)V")
 	@Override
 	public final synchronized void mouseMoved(@OriginalArg(0) MouseEvent arg0) {

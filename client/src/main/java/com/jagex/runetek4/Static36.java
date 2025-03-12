@@ -65,7 +65,7 @@ public final class Static36 {
 	public static void method946(@OriginalArg(0) Component[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
 		for (@Pc(1) int local1 = 0; local1 < arg0.length; local1++) {
 			@Pc(9) Component local9 = arg0[local1];
-			if (local9 != null && local9.layer == arg1 && (!local9.aBoolean32 || local9.anInt452 == 0 || local9.aBoolean25 || method940(local9).anInt546 != 0 || local9 == Static4.aClass13_1 || local9.anInt453 == 1338) && (!local9.aBoolean32 || !method947(local9))) {
+			if (local9 != null && local9.layer == arg1 && (!local9.aBoolean32 || local9.anInt452 == 0 || local9.aBoolean25 || method940(local9).anInt546 != 0 || local9 == Static4.aClass13_1 || local9.contentType == 1338) && (!local9.aBoolean32 || !method947(local9))) {
 				@Pc(50) int local50 = local9.x + arg6;
 				@Pc(55) int local55 = local9.y + arg7;
 				@Pc(61) int local61;
@@ -121,11 +121,11 @@ public final class Static36 {
 							local207 = false;
 						}
 						@Pc(212) boolean local212 = false;
-						if (Static22.anInt723 == 1 && local207) {
+						if (Static22.activeInterfaceType == 1 && local207) {
 							local212 = true;
 						}
 						@Pc(221) boolean local221 = false;
-						if (Static150.clickButton == 1 && VarpDefinition.mouseClickX >= local61 && Static60.mouseClickY >= local63 && VarpDefinition.mouseClickX < local65 && Static60.mouseClickY < local67) {
+						if (Mouse.clickButton == 1 && aClass6.mouseClickX >= local61 && Static60.mouseClickY >= local63 && aClass6.mouseClickX < local65 && Static60.mouseClickY < local67) {
 							local221 = true;
 						}
 						@Pc(243) int local243;
@@ -154,7 +154,7 @@ public final class Static36 {
 							}
 						}
 						if (local221) {
-							Static40.method1015(Static60.mouseClickY - local55, VarpDefinition.mouseClickX - local50, local9);
+							Static40.method1015(Static60.mouseClickY - local55, aClass6.mouseClickX - local50, local9);
 						}
 						if (Static105.aClass13_14 != null && Static105.aClass13_14 != local9 && local207 && method940(local9).method509()) {
 							Static56.aClass13_12 = local9;
@@ -164,7 +164,7 @@ public final class Static36 {
 							Static81.anInt2225 = local50;
 							Static228.anInt5103 = local55;
 						}
-						if (local9.aBoolean25 || local9.anInt453 != 0) {
+						if (local9.aBoolean25 || local9.contentType != 0) {
 							@Pc(399) HookRequest local399;
 							if (local207 && Static58.wheelRotation != 0 && local9.anObjectArray10 != null) {
 								local399 = new HookRequest();
@@ -174,30 +174,30 @@ public final class Static36 {
 								local399.anObjectArray31 = local9.anObjectArray10;
 								Static185.aClass69_101.addTail(local399);
 							}
-							if (Static105.aClass13_14 != null || Static118.aClass13_15 != null || Static60.aBoolean108 || local9.anInt453 != 1400 && Static137.anInt3337 > 0) {
+							if (Static105.aClass13_14 != null || Static118.component != null || Static60.aBoolean108 || local9.contentType != 1400 && Static137.anInt3337 > 0) {
 								local221 = false;
 								local212 = false;
 								local207 = false;
 							}
 							@Pc(508) int local508;
-							if (local9.anInt453 != 0) {
-								if (local9.anInt453 == 1337) {
+							if (local9.contentType != 0) {
+								if (local9.contentType == 1337) {
 									Static280.aClass13_26 = local9;
 									Static43.method1143(local9);
 									continue;
 								}
-								if (local9.anInt453 == 1338) {
+								if (local9.contentType == 1338) {
 									if (local221) {
-										Static1.anInt5 = VarpDefinition.mouseClickX - local50;
+										Static1.anInt5 = aClass6.mouseClickX - local50;
 										Static107.anInt2878 = Static60.mouseClickY - local55;
 									}
 									continue;
 								}
-								if (local9.anInt453 == 1400) {
+								if (local9.contentType == 1400) {
 									Static24.component = local9;
 									if (local221) {
 										if (Static187.pressedKeys[82] && Static191.staffModLevel > 0) {
-											local243 = (int) ((double) (VarpDefinition.mouseClickX - local50 - local9.anInt445 / 2) * 2.0D / (double) Static83.aFloat3);
+											local243 = (int) ((double) (aClass6.mouseClickX - local50 - local9.anInt445 / 2) * 2.0D / (double) Static83.aFloat3);
 											local508 = (int) ((double) (Static60.mouseClickY - local55 - local9.anInt459 / 2) * 2.0D / (double) Static83.aFloat3);
 											local322 = Static13.anInt435 + local243;
 											@Pc(516) int local516 = Static28.anInt919 + local508;
@@ -227,13 +227,13 @@ public final class Static36 {
 									Static137.anInt3337 = 0;
 									continue;
 								}
-								if (local9.anInt453 == 1401) {
+								if (local9.contentType == 1401) {
 									if (local212) {
 										Static119.method2387(local9.anInt445, Static223.anInt5032 - local55, Static215.anInt4873 - local50, local9.anInt459);
 									}
 									continue;
 								}
-								if (local9.anInt453 == 1402) {
+								if (local9.contentType == 1402) {
 									if (!GlRenderer.enabled) {
 										Static43.method1143(local9);
 									}
@@ -246,7 +246,7 @@ public final class Static36 {
 									local399 = new HookRequest();
 									local399.aBoolean158 = true;
 									local399.source = local9;
-									local399.anInt3102 = VarpDefinition.mouseClickX - local50;
+									local399.anInt3102 = aClass6.mouseClickX - local50;
 									local399.anInt3097 = Static60.mouseClickY - local55;
 									local399.anObjectArray31 = local9.anObjectArray5;
 									Static185.aClass69_101.addTail(local399);
@@ -481,7 +481,7 @@ public final class Static36 {
 							}
 						}
 					}
-					if (!local9.aBoolean32 && Static105.aClass13_14 == null && Static118.aClass13_15 == null && !Static60.aBoolean108) {
+					if (!local9.aBoolean32 && Static105.aClass13_14 == null && Static118.component == null && !Static60.aBoolean108) {
 						if ((local9.anInt470 >= 0 || local9.anInt480 != 0) && Static215.anInt4873 >= local61 && Static223.anInt5032 >= local63 && Static215.anInt4873 < local65 && Static223.anInt5032 < local67) {
 							if (local9.anInt470 >= 0) {
 								Static180.aClass13_22 = arg0[local9.anInt470];

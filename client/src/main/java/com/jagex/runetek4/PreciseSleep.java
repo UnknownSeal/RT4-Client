@@ -22,13 +22,13 @@ public final class PreciseSleep {
 	public static long aLong174 = 0L;
 
 	@OriginalMember(owner = "runetek4.client!sk", name = "hb", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_29 = new SoftLruHashTable(64);
+	public static final NodeCache aClass99_29 = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!sk", name = "ib", descriptor = "I")
 	public static int anInt5202 = 0;
 
 	@OriginalMember(owner = "runetek4.client!sk", name = "kb", descriptor = "I")
-	public static int anInt5204 = 0;
+	public static int menuActionRow = 0;
 
 	@OriginalMember(owner = "runetek4.client!sk", name = "lb", descriptor = "Z")
 	public static boolean aBoolean252 = false;

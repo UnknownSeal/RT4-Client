@@ -55,7 +55,7 @@ public final class Static263 {
 			Static82.method1767(local19);
 		}
 		@Pc(37) boolean local37 = true;
-		if (local8.anInt453 > 0) {
+		if (local8.contentType > 0) {
 			local37 = Static249.method4265(local8);
 		}
 		if (!local37 || !Static36.method940(local8).method503(arg2 - 1)) {

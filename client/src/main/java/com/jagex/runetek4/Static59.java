@@ -20,27 +20,27 @@ public final class Static59 {
 	public static int minimapAnticheatAngle = 0;
 
 	@OriginalMember(owner = "runetek4.client!ej", name = "h", descriptor = "(I)V")
-	public static void method1372() {
+	public static void processMenuActions() {
 		if (Static162.anInt3953 == 2) {
 			if (Static155.anInt3751 == Static277.anInt5850 && Static60.anInt1892 == Static280.anInt5895) {
 				Static162.anInt3953 = 0;
-				if (Static172.shiftClick && Static187.pressedKeys[81] && PreciseSleep.anInt5204 > 2) {
-					Static103.method2232(PreciseSleep.anInt5204 - 2);
+				if (Static172.shiftClick && Static187.pressedKeys[81] && PreciseSleep.menuActionRow > 2) {
+					Static103.method2232(PreciseSleep.menuActionRow - 2);
 				} else {
-					Static103.method2232(PreciseSleep.anInt5204 - 1);
+					Static103.method2232(PreciseSleep.menuActionRow - 1);
 				}
 			}
-		} else if (Static155.anInt3751 == VarpDefinition.mouseClickX && Static60.anInt1892 == Static60.mouseClickY) {
+		} else if (Static155.anInt3751 == aClass6.mouseClickX && Static60.anInt1892 == Static60.mouseClickY) {
 			Static162.anInt3953 = 0;
-			if (Static172.shiftClick && Static187.pressedKeys[81] && PreciseSleep.anInt5204 > 2) {
-				Static103.method2232(PreciseSleep.anInt5204 - 2);
+			if (Static172.shiftClick && Static187.pressedKeys[81] && PreciseSleep.menuActionRow > 2) {
+				Static103.method2232(PreciseSleep.menuActionRow - 2);
 			} else {
-				Static103.method2232(PreciseSleep.anInt5204 - 1);
+				Static103.method2232(PreciseSleep.menuActionRow - 1);
 			}
 		} else {
 			Static280.anInt5895 = Static60.mouseClickY;
 			Static162.anInt3953 = 2;
-			Static277.anInt5850 = VarpDefinition.mouseClickX;
+			Static277.anInt5850 = aClass6.mouseClickX;
 		}
 	}
 
@@ -59,10 +59,10 @@ public final class Static59 {
 		Static107.anInterface3_1 = arg2;
 		Static238.configClientSmall = arg1;
 		if (Static238.configClientSmall != null) {
-			Static144.anInt3490 = Static238.configClientSmall.method4504(1);
+			Static144.anInt3490 = Static238.configClientSmall.fileLength(1);
 		}
 		if (Static262.configClientLarge != null) {
-			Static34.anInt1047 = Static262.configClientLarge.method4504(1);
+			Static34.anInt1047 = Static262.configClientLarge.fileLength(1);
 		}
 	}
 

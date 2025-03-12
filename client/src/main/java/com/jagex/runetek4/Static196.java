@@ -100,7 +100,7 @@ public final class Static196 {
 	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(I)Lclient!mm;")
 	public static SoftwareSprite method3537() {
 		@Pc(13) int local13 = Static254.anIntArray488[0] * Static26.anIntArray66[0];
-		@Pc(17) byte[] local17 = VarpDefinition.aByteArrayArray5[0];
+		@Pc(17) byte[] local17 = aClass6.aByteArrayArray5[0];
 		@Pc(20) int[] local20 = new int[local13];
 		for (@Pc(22) int local22 = 0; local22 < local13; local22++) {
 			local20[local22] = Static259.anIntArray513[local17[local22] & 0xFF];

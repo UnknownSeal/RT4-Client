@@ -12,7 +12,7 @@ public final class Static73 {
 	public static int anInt2077;
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "S", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_10 = new SoftLruHashTable(4);
+	public static final NodeCache aClass99_10 = new NodeCache(4);
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "W", descriptor = "Lclient!na;")
 	public static final JString aClass100_453 = Static28.parse(")2");

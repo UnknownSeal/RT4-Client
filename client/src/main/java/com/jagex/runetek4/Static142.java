@@ -14,7 +14,7 @@ public final class Static142 {
 	public static int originZ;
 
 	@OriginalMember(owner = "runetek4.client!lc", name = "e", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_23 = new SoftLruHashTable(64);
+	public static final NodeCache aClass99_23 = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!lc", name = "l", descriptor = "I")
 	public static int anInt3482 = -1;
@@ -223,7 +223,7 @@ public final class Static142 {
 			Static65.anInt1951 = Static191.anIntArray385[local5];
 			Static16.anInt548 = Static191.anIntArray392[local5] = local74;
 			@Pc(962) JString local962 = Static191.aClass100Array132[local5];
-			if (Static79.anInt2157 == 0) {
+			if (Static79.chatEffectsDisabled == 0) {
 				local639 = 16776960;
 				if (Static191.anIntArray390[local5] < 6) {
 					local639 = Static16.CHAT_COLORS[Static191.anIntArray390[local5]];

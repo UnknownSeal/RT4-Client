@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.VarpDefinition;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -145,7 +146,7 @@ public final class Static38 {
 			if ((local28.aLong55 & 0x3FFFFFFFFFFFFFFFL) < local4) {
 				if ((local28.aLong55 & 0x4000000000000000L) != 0L) {
 					@Pc(58) int local58 = (int) local28.nodeId;
-					VarpDefinition.varps[local58] = Static106.anIntArray257[local58];
+					VarpDefinition.varps[local58] = VarpDefinition.varpCache[local58];
 					local28.unlink();
 					return local58;
 				}

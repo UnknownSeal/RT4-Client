@@ -61,7 +61,7 @@ public final class Static258 {
 					}
 					if (arg1 >= local195 && local202 <= arg0 && local195 + 32 > arg1 && local202 + 32 > arg0) {
 						Static169.aClass13_18 = arg2;
-						Static18.anInt588 = local171;
+						Static18.mouseInvInterfaceIndex = local171;
 						if (arg2.invSlotObjId[local171] > 0) {
 							@Pc(267) ServerActiveProperties local267 = Static36.method940(arg2);
 							@Pc(276) ObjType local276 = Static71.get(arg2.invSlotObjId[local171] - 1);

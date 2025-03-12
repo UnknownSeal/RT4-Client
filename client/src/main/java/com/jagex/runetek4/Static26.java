@@ -80,7 +80,7 @@ public final class Static26 {
 	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(Z)V")
 	public static void method741() {
 		Static79.aClass99_11.method3103();
-		VarpDefinition.aClass99_5.method3103();
+		aClass6.aClass99_5.method3103();
 	}
 
 	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(ZI)V")

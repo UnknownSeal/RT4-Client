@@ -7,7 +7,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static244 {
 
 	@OriginalMember(owner = "runetek4.client!tl", name = "c", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_32 = new SoftLruHashTable(50);
+	public static final NodeCache aClass99_32 = new NodeCache(50);
 
 	@OriginalMember(owner = "runetek4.client!tl", name = "d", descriptor = "I")
 	public static int gamestate = 0;

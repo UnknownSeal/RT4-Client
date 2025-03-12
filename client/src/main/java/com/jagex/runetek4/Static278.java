@@ -223,7 +223,7 @@ public final class Static278 {
 		}
 		Static35.method902();
 		Static189.anInt4443 = 0;
-		Static8.method121();
+		Static8.resetVarBits();
 		Static73.method1596(true);
 	}
 }

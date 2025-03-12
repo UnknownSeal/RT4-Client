@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.VarpDefinition;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -25,22 +26,22 @@ public final class Static85 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gl", name = "a", descriptor = "(II)V")
-	public static void method1775(@OriginalArg(1) int arg0) {
+	public static void handleVarps(@OriginalArg(1) int arg0) {
 		Static103.method2245();
-		AreaSoundManager.method2386();
-		@Pc(17) int local17 = VarpDefinition.getDefinition(arg0).clientCode;
-		if (local17 == 0) {
+		AreaSoundManager.setObjectSounds();
+		@Pc(17) int varpType = VarpDefinition.getDefinition(arg0).type;
+		if (varpType == 0) {
 			return;
 		}
-		@Pc(25) int local25 = VarpDefinition.varps[arg0];
-		if (local17 == 6) {
-			Static79.anInt2157 = local25;
+		@Pc(25) int varpValue = VarpDefinition.varps[arg0];
+		if (varpType == 6) {
+			Static79.chatEffectsDisabled = varpValue;
 		}
-		if (local17 == 5) {
-			Static116.anInt2952 = local25;
+		if (varpType == 5) {
+			Static116.oneMouseButton = varpValue;
 		}
-		if (local17 == 9) {
-			Static179.anInt4254 = local25;
+		if (varpType == 9) {
+			Static179.bankInsertMode = varpValue;
 		}
 	}
 }

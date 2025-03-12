@@ -176,7 +176,7 @@ public final class Static49 {
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "a", descriptor = "(Lclient!be;III)V")
 	public static void method1207(@OriginalArg(0) Component arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		if (PreciseSleep.anInt5204 < 2 && Static260.anInt5014 == 0 && !Static241.aBoolean302) {
+		if (PreciseSleep.menuActionRow < 2 && Static260.anInt5014 == 0 && !Static241.aBoolean302) {
 			return;
 		}
 		@Pc(24) JString local24 = Static13.method471();

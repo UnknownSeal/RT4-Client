@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.VarpDefinition;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
@@ -47,13 +48,13 @@ public final class Static243 {
 		Static204.anInt4762 = 0;
 		Static67.prevFocus = true;
 		Static183.prevClickTime = 0L;
-		Static178.instance.samples = 0;
+		Static178.mouseCapturer.coord = 0;
 		Static26.focus = true;
 		Static114.method4625();
 		Static49.anInt1462 = -1;
 		Static5.anInt45 = -1;
 		Static164.packetType = -1;
-		Static267.idleTimeout = 0;
+		Game.idleTimeout = 0;
 		Static60.systemUpdateTimer = 0;
 		Static6.outboundBuffer.position = 0;
 		Static230.anInt5152 = -1;
@@ -63,7 +64,7 @@ public final class Static243 {
 		for (i = 0; i < Static143.aClass102Array1.length; i++) {
 			Static143.aClass102Array1[i] = null;
 		}
-		PreciseSleep.anInt5204 = 0;
+		PreciseSleep.menuActionRow = 0;
 		Static60.aBoolean108 = false;
 		Static48.setIdleLoops(0);
 		for (i = 0; i < 100; i++) {
@@ -107,7 +108,7 @@ public final class Static243 {
 		Static26.spawnedLocations = new LinkList();
 		Static166.anInt4054 = 0;
 		Static9.friendCount = 0;
-		Static8.method121();
+		Static8.resetVarBits();
 		Static20.method601();
 		Static133.anInt5230 = 0;
 		Static233.anInt5217 = 0;
@@ -133,7 +134,7 @@ public final class Static243 {
 		Static52.method1287();
 		Static39.aClass13_10 = null;
 		Static60.aBoolean108 = false;
-		PreciseSleep.anInt5204 = 0;
+		PreciseSleep.menuActionRow = 0;
 		Static134.A_PLAYER_MODEL___2.method1950(new int[] { 0, 0, 0, 0, 0 }, -1, false, null, -1);
 		for (i = 0; i < 8; i++) {
 			Static160.aClass100Array121[i] = null;

@@ -25,7 +25,7 @@ public final class Static175 {
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "a", descriptor = "(Z)V")
 	public static void tryReconnect() {
-		if (Static267.idleTimeout > 0) {
+		if (Game.idleTimeout > 0) {
 			Static278.processLogout();
 		} else {
 			Static233.aClass95_4 = Static124.socket;

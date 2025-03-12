@@ -9,13 +9,13 @@ public final class Static179 {
 	public static int mouseRecorderPrevY = 0;
 
 	@OriginalMember(owner = "runetek4.client!oe", name = "b", descriptor = "I")
-	public static int anInt4254 = 0;
+	public static int bankInsertMode = 0;
 
 	@OriginalMember(owner = "runetek4.client!oe", name = "i", descriptor = "[[I")
 	public static final int[][] anIntArrayArray33 = new int[5][5000];
 
 	@OriginalMember(owner = "runetek4.client!oe", name = "j", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_25 = new SoftLruHashTable(64);
+	public static final NodeCache aClass99_25 = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!oe", name = "l", descriptor = "I")
 	public static int step = 0;

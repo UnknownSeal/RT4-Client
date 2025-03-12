@@ -216,7 +216,7 @@ public final class Static84 {
 		Static159.aBooleanArray87 = new boolean[Static165.anInt4038];
 		Static64.aByteArrayArray9 = new byte[Static165.anInt4038][];
 		Static269.anIntArray252 = new int[Static165.anInt4038];
-		VarpDefinition.aByteArrayArray5 = new byte[Static165.anInt4038][];
+		aClass6.aByteArrayArray5 = new byte[Static165.anInt4038][];
 		local4.position = arg0.length - Static165.anInt4038 * 8 - 7;
 		Static124.anInt3080 = local4.g2();
 		Static227.anInt5091 = local4.g2();
@@ -249,7 +249,7 @@ public final class Static84 {
 			@Pc(203) int local203 = local195 * local199;
 			@Pc(206) byte[] local206 = new byte[local203];
 			@Pc(208) boolean local208 = false;
-			VarpDefinition.aByteArrayArray5[local68] = local206;
+			aClass6.aByteArrayArray5[local68] = local206;
 			@Pc(215) byte[] local215 = new byte[local203];
 			Static64.aByteArrayArray9[local68] = local215;
 			@Pc(223) int local223 = local4.g1();

@@ -19,7 +19,7 @@ public final class Static83 {
 	public static int loopCycle = 0;
 
 	@OriginalMember(owner = "runetek4.client!gj", name = "p", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_3 = new SoftLruHashTable(64);
+	public static final NodeCache aClass99_3 = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!gj", name = "q", descriptor = "[I")
 	public static final int[] updatedVarps = new int[32];

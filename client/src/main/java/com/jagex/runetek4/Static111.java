@@ -72,11 +72,11 @@ public final class Static111 {
 	public static void method2292() {
 		@Pc(2) Mouse local2 = Static93.aClass150_1;
 		synchronized (Static93.aClass150_1) {
-			Static22.anInt723 = Static57.anInt1759;
+			Static22.activeInterfaceType = Static57.anInt1759;
 			Static215.anInt4873 = Static147.anInt3521;
 			Static223.anInt5032 = Static165.anInt4039;
-			Static150.clickButton = Static41.anInt1313;
-			VarpDefinition.mouseClickX = Static34.anInt1034;
+			Mouse.clickButton = Static41.anInt1313;
+			aClass6.mouseClickX = Static34.anInt1034;
 			Static93.anInt2467++;
 			Static60.mouseClickY = Static222.anInt4973;
 			Static133.clickTime = Static209.aLong161;

@@ -13,7 +13,7 @@ public final class Static27 {
 	public static final int[] anIntArray70 = new int[32];
 
 	@OriginalMember(owner = "client!cb", name = "Y", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_4 = new SoftLruHashTable(64);
+	public static final NodeCache aClass99_4 = new NodeCache(64);
 
 	@OriginalMember(owner = "client!cb", name = "ab", descriptor = "Lclient!na;")
 	public static final JString aClass100_164 = Static28.parse(" )2> <col=00ffff>");

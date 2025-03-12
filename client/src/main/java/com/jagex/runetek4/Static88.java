@@ -3,6 +3,8 @@ package com.jagex.runetek4;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
+import com.jagex.runetek4.cache.def.VarbitDefinition;
+import com.jagex.runetek4.cache.def.VarpDefinition;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.client.ClientInvCache;

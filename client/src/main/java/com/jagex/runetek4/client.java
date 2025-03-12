@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.GregorianCalendar;
 
+import com.jagex.runetek4.cache.def.VarpDefinition;
 import com.jagex.runetek4.core.io.BufferedFile;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.DiskStore;
@@ -266,10 +267,10 @@ public final class client extends GameShell {
 		if (GameShell.signLink != null) {
 			GameShell.signLink.method5121(this.getClass());
 		}
-		if (Static178.instance != null) {
-			Static178.instance.aBoolean151 = false;
+		if (Static178.mouseCapturer != null) {
+			Static178.mouseCapturer.aBoolean151 = false;
 		}
-		Static178.instance = null;
+		Static178.mouseCapturer = null;
 		if (Static124.socket != null) {
 			Static124.socket.closeGracefully();
 			Static124.socket = null;
@@ -440,7 +441,7 @@ public final class client extends GameShell {
 		if (Static71.mouseWheel != null) {
 			Static71.mouseWheel.start(Static154.canvas);
 		}
-		VarpDefinition.anInt986 = SignLink.anInt5928;
+		aClass6.anInt986 = SignLink.anInt5928;
 		try {
 			if (GameShell.signLink.cacheData != null) {
 				cacheData = new BufferedFile(GameShell.signLink.cacheData, 5200, 0);
@@ -872,7 +873,7 @@ public final class client extends GameShell {
 				Static79.method1703(Static274.aClass153_90);
 				Static266.method4187(Static267.aClass153_109, Static122.aClass153_46);
 				Static180.method3327(Static156.aClass153_59);
-				Static230.method3951(Static274.aClass153_90);
+				VarpDefinition.initializeVarPlayerDefinitionCache(Static274.aClass153_90);
 				Static3.method4661(Static261.aClass153_107, Static209.aClass153_86, Static41.aClass153_25, Static267.aClass153_109);
 				Static119.method2384(Static274.aClass153_90);
 				Static85.method1774(Static138.aClass153_50);
@@ -929,8 +930,8 @@ public final class client extends GameShell {
 				Static166.anInt4051 = 110;
 			}
 		} else if (Static166.anInt4051 == 110) {
-			Static178.instance = new MouseRecorder();
-			GameShell.signLink.method5130(10, Static178.instance);
+			Static178.mouseCapturer = new MouseRecorder();
+			GameShell.signLink.method5130(10, Static178.mouseCapturer);
 			Static126.mainLoadSecondaryText = LocalizedText.MAINLOAD110B;
 			Static199.mainLoadPercentage = 75;
 			Static166.anInt4051 = 120;
@@ -1053,7 +1054,7 @@ public final class client extends GameShell {
 			Static31.method848();
 			Static216.method1639();
 		} else if (Static244.gamestate == 30) {
-			Static81.method1756();
+			Game.updateGame();
 		} else if (Static244.gamestate == 40) {
 			Static216.method1639();
 			if (Static266.anInt5336 != -3) {

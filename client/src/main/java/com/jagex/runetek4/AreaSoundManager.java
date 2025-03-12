@@ -123,7 +123,7 @@ public class AreaSoundManager {
     }
 
     @OriginalMember(owner = "client!je", name = "k", descriptor = "(I)V")
-    public static void method2386() {
+    public static void setObjectSounds() {
         @Pc(6) AreaSound areaSound;
         for (areaSound = (AreaSound) locSounds.head(); areaSound != null; areaSound = (AreaSound) locSounds.next()) {
             if (areaSound.multiLocOrNpc) {

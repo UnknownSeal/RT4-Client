@@ -684,7 +684,7 @@ public final class Static280 {
 		@Pc(3) boolean local3 = false;
 		while (!local3) {
 			local3 = true;
-			for (@Pc(13) int local13 = 0; local13 < PreciseSleep.anInt5204 - 1; local13++) {
+			for (@Pc(13) int local13 = 0; local13 < PreciseSleep.menuActionRow - 1; local13++) {
 				if (Static39.aShortArray6[local13] < 1000 && Static39.aShortArray6[local13 + 1] > 1000) {
 					@Pc(41) JString local41 = Static233.aClass100Array160[local13];
 					local3 = false;

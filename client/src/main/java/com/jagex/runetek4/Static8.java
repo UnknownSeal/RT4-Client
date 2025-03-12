@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.varpDefinition;
+import com.jagex.runetek4.cache.def.VarpDefinition;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -120,12 +120,12 @@ public final class Static8 {
 	}
 
 	@OriginalMember(owner = "client!aj", name = "i", descriptor = "(I)V")
-	public static void method121() {
-		for (@Pc(3) int local3 = 0; local3 < Static165.anInt4043; local3++) {
-			@Pc(19) varpDefinition local19 = VarpDefinition.getDefinition(local3);
-			if (local19 != null && local19.clientCode == 0) {
-				Static106.anIntArray257[local3] = 0;
-				VarpDefinition.varps[local3] = 0;
+	public static void resetVarBits() {
+		for (@Pc(3) int varpIndex = 0; varpIndex < VarpDefinition.varPlayerDefinitionsSize; varpIndex++) {
+			@Pc(19) VarpDefinition varpDefinition = VarpDefinition.getDefinition(varpIndex);
+			if (varpDefinition != null && varpDefinition.type == 0) {
+				VarpDefinition.varpCache[varpIndex] = 0;
+				VarpDefinition.varps[varpIndex] = 0;
 			}
 		}
 		Static199.aClass133_20 = new IterableMap(16);
