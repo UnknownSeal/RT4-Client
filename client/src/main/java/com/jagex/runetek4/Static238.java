@@ -22,7 +22,7 @@ public final class Static238 {
 
 	@OriginalMember(owner = "runetek4.client!te", name = "a", descriptor = "(IZ)V")
 	public static void method4142() {
-		Static67.aClass99_20.method3102(5);
+		Static67.aClass99_20.clear(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!te", name = "a", descriptor = "(III)Lclient!da;")

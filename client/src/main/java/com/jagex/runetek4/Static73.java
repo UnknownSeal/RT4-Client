@@ -53,7 +53,7 @@ public final class Static73 {
 		Static173.localPlayer.x = 3000;
 		if (!GlRenderer.enabled) {
 			Static145.method2743(Static209.aClass153_86);
-			Static196.method3534(10);
+			Game.processGameStatus(10);
 			return;
 		}
 		if (Static227.anInt5096 == 2) {
@@ -64,7 +64,7 @@ public final class Static73 {
 		}
 		Static86.method1799();
 		Static26.method740();
-		Static196.method3534(28);
+		Game.processGameStatus(28);
 	}
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(ZII)V")

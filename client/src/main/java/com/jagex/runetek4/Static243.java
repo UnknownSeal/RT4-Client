@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.VarpDefinition;
+import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
@@ -120,8 +120,8 @@ public final class Static243 {
 		Static251.anInt5449 = 0;
 		Static113.anInt4612 = 0;
 		Static233.anInt5225 = 0;
-		for (i = 0; i < VarpDefinition.varcs.length; i++) {
-			VarpDefinition.varcs[i] = -1;
+		for (i = 0; i < VarPlayerDefinition.varcs.length; i++) {
+			VarPlayerDefinition.varcs[i] = -1;
 		}
 		if (Static154.topLevelInterace != -1) {
 			Static109.method2275(Static154.topLevelInterace);

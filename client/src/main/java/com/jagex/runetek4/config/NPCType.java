@@ -2,7 +2,7 @@ package com.jagex.runetek4.config;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.def.VarbitDefinition;
-import com.jagex.runetek4.cache.def.VarpDefinition;
+import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -366,7 +366,7 @@ public final class NPCType {
 		if (this.multivarbit != -1) {
 			i = VarbitDefinition.getVarbitValue(this.multivarbit);
 		} else if (this.multivarp != -1) {
-			i = VarpDefinition.varps[this.multivarp];
+			i = VarPlayerDefinition.varPlayers[this.multivarp];
 		}
 		if (i < 0 || i >= this.multinpc.length - 1 || this.multinpc[i] == -1) {
 			@Pc(55) int local55 = this.multinpc[this.multinpc.length - 1];
@@ -385,7 +385,7 @@ public final class NPCType {
 		if (this.multivarbit != -1) {
 			local16 = VarbitDefinition.getVarbitValue(this.multivarbit);
 		} else if (this.multivarp != -1) {
-			local16 = VarpDefinition.varps[this.multivarp];
+			local16 = VarPlayerDefinition.varPlayers[this.multivarp];
 		}
 		if (local16 < 0 || local16 >= this.multinpc.length - 1 || this.multinpc[local16] == -1) {
 			@Pc(62) int local62 = this.multinpc[this.multinpc.length - 1];

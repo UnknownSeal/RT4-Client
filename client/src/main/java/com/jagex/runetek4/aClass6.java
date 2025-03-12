@@ -42,10 +42,10 @@ public final class aClass6 {
 			return;
 		}
 		Static131.anInt3251 = 0;
-		if (!Static224.aBoolean247 && Static124.socket != null) {
+		if (!Static224.aBoolean247 && Static124.gameServerSocket != null) {
 			Static6.outboundBuffer.pIsaac1(93);
 			try {
-				Static124.socket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
+				Static124.gameServerSocket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
 				Static6.outboundBuffer.position = 0;
 			} catch (@Pc(53) IOException local53) {
 				Static224.aBoolean247 = true;

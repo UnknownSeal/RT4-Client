@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.SecondaryNode;
+import com.jagex.runetek4.core.datastruct.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!bc")
-public final class Class3_Sub2_Sub2 extends SecondaryNode {
+public final class Class3_Sub2_Sub2 extends CachedNode {
 
 	@OriginalMember(owner = "runetek4.client!bc", name = "O", descriptor = "[I")
 	public int[] anIntArray29;

@@ -16,7 +16,7 @@ public final class Js5NetQueue {
 	private long aLong104;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "B", descriptor = "Lclient!ma;")
-	private BufferedSocket socket;
+	private BufferedSocket updateServerSocket;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "C", descriptor = "I")
 	private int latency;
@@ -59,7 +59,7 @@ public final class Js5NetQueue {
 	@OriginalMember(owner = "client!jb", name = "b", descriptor = "(B)Z")
 	public boolean loop() {
 		@Pc(19) int available;
-		if (this.socket != null) {
+		if (this.updateServerSocket != null) {
 			@Pc(12) long now = MonotonicTime.get();
 			int duration = (int) (now - this.aLong104);
 			this.aLong104 = now;
@@ -69,34 +69,34 @@ public final class Js5NetQueue {
 			this.latency += duration;
 			if (this.latency > 30000) {
 				try {
-					this.socket.closeGracefully();
+					this.updateServerSocket.closeGracefully();
 				} catch (@Pc(43) Exception local43) {
 				}
-				this.socket = null;
+				this.updateServerSocket = null;
 			}
 		}
-		if (this.socket == null) {
+		if (this.updateServerSocket == null) {
 			return this.getUrgentRequestCount() == 0 && this.getPrefetchRequestCount() == 0;
 		}
 		try {
-			this.socket.checkError();
+			this.updateServerSocket.checkError();
 			@Pc(75) Js5NetRequest local75;
 			for (local75 = (Js5NetRequest) this.urgent.head(); local75 != null; local75 = (Js5NetRequest) this.urgent.prev()) {
 				this.outBuffer.position = 0;
 				this.outBuffer.p1(1);
 				this.outBuffer.p3((int) local75.secondaryNodeId);
-				this.socket.write(4, this.outBuffer.data);
+				this.updateServerSocket.write(4, this.outBuffer.data);
 				this.inFlightUrgentRequests.pushBack(local75);
 			}
 			for (local75 = (Js5NetRequest) this.prefetch.head(); local75 != null; local75 = (Js5NetRequest) this.prefetch.prev()) {
 				this.outBuffer.position = 0;
 				this.outBuffer.p1(0);
 				this.outBuffer.p3((int) local75.secondaryNodeId);
-				this.socket.write(4, this.outBuffer.data);
+				this.updateServerSocket.write(4, this.outBuffer.data);
 				this.inFlightPrefetchRequests.pushBack(local75);
 			}
 			for (@Pc(172) int i = 0; i < 100; i++) {
-				available = this.socket.available();
+				available = this.updateServerSocket.available();
 				if (available < 0) {
 					throw new IOException();
 				}
@@ -122,7 +122,7 @@ public final class Js5NetQueue {
 					if (archive > available) {
 						archive = available;
 					}
-					this.socket.read(this.current.packet.position, archive, this.current.packet.data);
+					this.updateServerSocket.read(this.current.packet.position, archive, this.current.packet.data);
 					if (this.encryptionKey != 0) {
 						for (group = 0; group < archive; group++) {
 							this.current.packet.data[this.current.packet.position + group] = (byte) (this.current.packet.data[this.current.packet.position + group] ^ this.encryptionKey);
@@ -131,7 +131,7 @@ public final class Js5NetQueue {
 					this.current.blockPosition += archive;
 					this.current.packet.position += archive;
 					if (this.current.packet.position == remaining) {
-						this.current.secondaryRemove();
+						this.current.clear();
 						this.current.awaitingResponse = false;
 						this.current = null;
 					} else if (this.current.blockPosition == 512) {
@@ -142,7 +142,7 @@ public final class Js5NetQueue {
 					if (remaining > available) {
 						remaining = available;
 					}
-					this.socket.read(this.inBuffer.position, remaining, this.inBuffer.data);
+					this.updateServerSocket.read(this.inBuffer.position, remaining, this.inBuffer.data);
 					if (this.encryptionKey != 0) {
 						for (archive = 0; archive < remaining; archive++) {
 							this.inBuffer.data[archive + this.inBuffer.position] ^= this.encryptionKey;
@@ -194,34 +194,34 @@ public final class Js5NetQueue {
 			return true;
 		} catch (@Pc(644) IOException ioException) {
 			try {
-				this.socket.closeGracefully();
+				this.updateServerSocket.closeGracefully();
 			} catch (@Pc(650) Exception closeException) {
 			}
 			this.response = -2;
 			this.errors++;
-			this.socket = null;
+			this.updateServerSocket = null;
 			return this.getUrgentRequestCount() == 0 && this.getPrefetchRequestCount() == 0;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "(Z)V")
 	public final void serverDrop() {
-		if (this.socket == null) {
+		if (this.updateServerSocket == null) {
 			return;
 		}
 		try {
 			this.outBuffer.position = 0;
 			this.outBuffer.p1(7);
 			this.outBuffer.p3(0);
-			this.socket.write(4, this.outBuffer.data);
+			this.updateServerSocket.write(4, this.outBuffer.data);
 		} catch (@Pc(39) IOException local39) {
 			try {
-				this.socket.closeGracefully();
+				this.updateServerSocket.closeGracefully();
 			} catch (@Pc(45) Exception local45) {
 			}
 			this.errors++;
 			this.response = -2;
-			this.socket = null;
+			this.updateServerSocket = null;
 		}
 	}
 
@@ -232,44 +232,44 @@ public final class Js5NetQueue {
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "(ZZ)V")
 	public void writeLoggedIn(@OriginalArg(0) boolean loggedIn) {
-		if (this.socket == null) {
+		if (this.updateServerSocket == null) {
 			return;
 		}
 		try {
 			this.outBuffer.position = 0;
 			this.outBuffer.p1(loggedIn ? 2 : 3);
 			this.outBuffer.p3(0);
-			this.socket.write(4, this.outBuffer.data);
+			this.updateServerSocket.write(4, this.outBuffer.data);
 		} catch (@Pc(42) IOException local42) {
 			try {
-				this.socket.closeGracefully();
+				this.updateServerSocket.closeGracefully();
 			} catch (@Pc(48) Exception local48) {
 			}
 			this.errors++;
 			this.response = -2;
-			this.socket = null;
+			this.updateServerSocket = null;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "c", descriptor = "(I)V")
 	public final void method2323() {
-		if (this.socket != null) {
-			this.socket.method2833();
+		if (this.updateServerSocket != null) {
+			this.updateServerSocket.method2833();
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "(ZLclient!ma;I)V")
-	public final void loggedOut(@OriginalArg(0) boolean arg0, @OriginalArg(1) BufferedSocket arg1) {
-		if (this.socket != null) {
+	public final void loggedOut(@OriginalArg(0) boolean isLoggedIn, @OriginalArg(1) BufferedSocket socket) {
+		if (this.updateServerSocket != null) {
 			try {
-				this.socket.closeGracefully();
-			} catch (@Pc(14) Exception local14) {
+				this.updateServerSocket.closeGracefully();
+			} catch (@Pc(14) Exception exception) {
 			}
-			this.socket = null;
+			this.updateServerSocket = null;
 		}
-		this.socket = arg1;
+		this.updateServerSocket = socket;
 		this.method2331();
-		this.writeLoggedIn(arg0);
+		this.writeLoggedIn(isLoggedIn);
 		this.inBuffer.position = 0;
 		this.current = null;
 		while (true) {
@@ -284,15 +284,15 @@ public final class Js5NetQueue {
 								this.outBuffer.p1(4);
 								this.outBuffer.p1(this.encryptionKey);
 								this.outBuffer.p2(0);
-								this.socket.write(4, this.outBuffer.data);
+								this.updateServerSocket.write(4, this.outBuffer.data);
 							} catch (@Pc(107) IOException local107) {
 								try {
-									this.socket.closeGracefully();
+									this.updateServerSocket.closeGracefully();
 								} catch (@Pc(113) Exception local113) {
 								}
 								this.response = -2;
 								this.errors++;
-								this.socket = null;
+								this.updateServerSocket = null;
 							}
 						}
 						this.latency = 0;
@@ -314,12 +314,12 @@ public final class Js5NetQueue {
 	@OriginalMember(owner = "runetek4.client!jb", name = "d", descriptor = "(B)V")
 	public void method2327() {
 		try {
-			this.socket.closeGracefully();
+			this.updateServerSocket.closeGracefully();
 		} catch (@Pc(17) Exception local17) {
 		}
 		this.response = -1;
 		this.encryptionKey = (byte) (Math.random() * 255.0D + 1.0D);
-		this.socket = null;
+		this.updateServerSocket = null;
 		this.errors++;
 	}
 
@@ -330,8 +330,8 @@ public final class Js5NetQueue {
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "b", descriptor = "(Z)V")
 	public final void clientDrop() {
-		if (this.socket != null) {
-			this.socket.closeGracefully();
+		if (this.updateServerSocket != null) {
+			this.updateServerSocket.closeGracefully();
 		}
 	}
 
@@ -357,21 +357,21 @@ public final class Js5NetQueue {
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "e", descriptor = "(B)V")
 	private void method2331() {
-		if (this.socket == null) {
+		if (this.updateServerSocket == null) {
 			return;
 		}
 		try {
 			this.outBuffer.position = 0;
 			this.outBuffer.p1(6);
 			this.outBuffer.p3(3);
-			this.socket.write(4, this.outBuffer.data);
+			this.updateServerSocket.write(4, this.outBuffer.data);
 		} catch (@Pc(37) IOException local37) {
 			try {
-				this.socket.closeGracefully();
+				this.updateServerSocket.closeGracefully();
 			} catch (@Pc(43) Exception local43) {
 			}
 			this.errors++;
-			this.socket = null;
+			this.updateServerSocket = null;
 			this.response = -2;
 		}
 	}

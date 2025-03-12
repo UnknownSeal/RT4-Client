@@ -10,19 +10,19 @@ import org.openrs2.deob.annotation.Pc;
 
 // VarpType
 @OriginalClass("client!eh")
-public final class VarpDefinition {
+public final class VarPlayerDefinition {
 
 	@OriginalMember(owner = "runetek4.client!me", name = "P", descriptor = "[I")
 	public static final int[] varcs = new int[2000];
 
 	@OriginalMember(owner = "client!ah", name = "j", descriptor = "[I")
-	public static final int[] varps = new int[2500];
+	public static final int[] varPlayers = new int[2500];
 
 	@OriginalMember(owner = "runetek4.client!sm", name = "c", descriptor = "Lclient!n;")
-	public static final NodeCache varpDefinitionCache = new NodeCache(64);
+	public static final NodeCache varPlayerDefinitionCache = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!ic", name = "e", descriptor = "[I")
-	public static final int[] varpCache = new int[2500];
+	public static final int[] varPlayerCache = new int[2500];
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "ab", descriptor = "Lclient!ve;")
 	public static Js5 gameDefinitionsCacheArchive;
@@ -34,17 +34,17 @@ public final class VarpDefinition {
 	public int type = 0;
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(II)Lclient!eh;")
-	public static VarpDefinition getDefinition(@OriginalArg(1) int varPlayerIndex) {
-		@Pc(10) VarpDefinition definition = (VarpDefinition) varpDefinitionCache.get((long) varPlayerIndex);
+	public static VarPlayerDefinition getDefinition(@OriginalArg(1) int varPlayerIndex) {
+		@Pc(10) VarPlayerDefinition definition = (VarPlayerDefinition) varPlayerDefinitionCache.get((long) varPlayerIndex);
 		if (definition != null) {
 			return definition;
 		}
 		@Pc(20) byte[] cacheData = gameDefinitionsCacheArchive.getfile(16, varPlayerIndex);
-		definition = new VarpDefinition();
+		definition = new VarPlayerDefinition();
 		if (cacheData != null) {
 			definition.decode(new Packet(cacheData));
 		}
-		varpDefinitionCache.put(definition, (long) varPlayerIndex);
+		varPlayerDefinitionCache.put(definition, (long) varPlayerIndex);
 		return definition;
 	}
 
@@ -52,6 +52,11 @@ public final class VarpDefinition {
 	public static void initializeVarPlayerDefinitionCache(@OriginalArg(0) Js5 cacheArchive) {
 		gameDefinitionsCacheArchive = cacheArchive;
 		varPlayerDefinitionsSize = gameDefinitionsCacheArchive.fileLength(16);
+	}
+
+	@OriginalMember(owner = "client!bn", name = "c", descriptor = "(II)V")
+	public static void clearVarPlayerDefinitionCache() {
+		varPlayerDefinitionCache.clear(5);
 	}
 
 	@OriginalMember(owner = "client!eh", name = "a", descriptor = "(ILclient!wa;)V")

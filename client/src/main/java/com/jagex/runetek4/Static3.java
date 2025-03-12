@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.VarpDefinition;
+import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -28,7 +28,7 @@ public final class Static3 {
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "b", descriptor = "(B)V")
 	public static void method4657() {
-		VarpDefinition.varpDefinitionCache.method3103();
+		VarPlayerDefinition.varPlayerDefinitionCache.method3103();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "(II)V")

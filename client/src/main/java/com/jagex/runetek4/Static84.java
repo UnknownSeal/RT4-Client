@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.SecondaryNode;
+import com.jagex.runetek4.core.datastruct.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.SeqType;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
@@ -300,9 +300,9 @@ public final class Static84 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "(Lclient!rg;Lclient!rg;B)V")
-	public static void method1772(@OriginalArg(0) SecondaryNode arg0, @OriginalArg(1) SecondaryNode arg1) {
+	public static void method1772(@OriginalArg(0) CachedNode arg0, @OriginalArg(1) CachedNode arg1) {
 		if (arg1.secondaryNext != null) {
-			arg1.secondaryRemove();
+			arg1.clear();
 		}
 		arg1.secondaryNext = arg0;
 		arg1.secondaryPrev = arg0.secondaryPrev;

@@ -51,9 +51,9 @@ public final class Static31 {
 		}
 		try {
 			if (++Static20.anInt673 > 1500) {
-				if (Static124.socket != null) {
-					Static124.socket.closeGracefully();
-					Static124.socket = null;
+				if (Static124.gameServerSocket != null) {
+					Static124.gameServerSocket.closeGracefully();
+					Static124.gameServerSocket = null;
 				}
 				if (Static196.anInt4587 >= 1) {
 					Static266.anInt5336 = -5;
@@ -81,16 +81,16 @@ public final class Static31 {
 				if (Static72.aClass212_3.status != 1) {
 					return;
 				}
-				Static124.socket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
+				Static124.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
 				Static72.aClass212_3 = null;
-				Static124.socket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
+				Static124.gameServerSocket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
 				if (Static11.aClass62_1 != null) {
 					Static11.aClass62_1.method3571();
 				}
 				if (Static147.aClass62_2 != null) {
 					Static147.aClass62_2.method3571();
 				}
-				local126 = Static124.socket.read();
+				local126 = Static124.gameServerSocket.read();
 				if (Static11.aClass62_1 != null) {
 					Static11.aClass62_1.method3571();
 				}
@@ -100,34 +100,34 @@ public final class Static31 {
 				if (local126 != 101) {
 					Static266.anInt5336 = local126;
 					Static219.anInt4937 = 0;
-					Static124.socket.closeGracefully();
-					Static124.socket = null;
+					Static124.gameServerSocket.closeGracefully();
+					Static124.gameServerSocket = null;
 					return;
 				}
 				Static219.anInt4937 = 3;
 			}
 			if (Static219.anInt4937 == 3) {
-				if (Static124.socket.available() < 2) {
+				if (Static124.gameServerSocket.available() < 2) {
 					return;
 				}
-				local126 = Static124.socket.read() << 8 | Static124.socket.read();
+				local126 = Static124.gameServerSocket.read() << 8 | Static124.gameServerSocket.read();
 				Static176.method3303(local126);
 				if (Static125.worldId == -1) {
 					Static219.anInt4937 = 0;
 					Static266.anInt5336 = 6;
-					Static124.socket.closeGracefully();
-					Static124.socket = null;
+					Static124.gameServerSocket.closeGracefully();
+					Static124.gameServerSocket = null;
 					return;
 				}
 				Static219.anInt4937 = 0;
-				Static124.socket.closeGracefully();
-				Static124.socket = null;
+				Static124.gameServerSocket.closeGracefully();
+				Static124.gameServerSocket = null;
 				Static49.method1208();
 			}
 		} catch (@Pc(210) IOException local210) {
-			if (Static124.socket != null) {
-				Static124.socket.closeGracefully();
-				Static124.socket = null;
+			if (Static124.gameServerSocket != null) {
+				Static124.gameServerSocket.closeGracefully();
+				Static124.gameServerSocket = null;
 			}
 			if (Static196.anInt4587 < 1) {
 				if (Static208.worldListPort == client.worldListDefaultPort) {

@@ -27,9 +27,9 @@ public final class Static53 {
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(II)V")
 	public static void method1289() {
-		Static190.aClass99_26.method3102(50);
-		Static124.aClass99_17.method3102(50);
-		Static87.aClass99_12.method3102(50);
+		Static190.aClass99_26.clear(50);
+		Static124.aClass99_17.clear(50);
+		Static87.aClass99_12.clear(50);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "([[IZILclient!hg;[IIIIZ[[FZI[[FIIIZ[[I[[FBI[Z)V")

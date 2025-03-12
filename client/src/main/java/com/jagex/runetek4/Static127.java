@@ -49,9 +49,9 @@ public final class Static127 {
 			Static41.anInt1316 = 0;
 		}
 		if (arg4) {
-			Static196.method3534(28);
+			Game.processGameStatus(28);
 		} else {
-			Static196.method3534(25);
+			Game.processGameStatus(25);
 		}
 		Static114.method4636(true, LocalizedText.LOADING);
 		@Pc(53) int local53 = Static142.originZ;
@@ -174,7 +174,7 @@ public final class Static127 {
 		@Pc(10) DelayedStateChange local10 = (DelayedStateChange) Static215.aClass16_9.head();
 		if (local10 != null) {
 			local10.unlink();
-			local10.secondaryRemove();
+			local10.clear();
 			return local10;
 		}
 		do {
@@ -186,7 +186,7 @@ public final class Static127 {
 				return null;
 			}
 			local10.unlink();
-			local10.secondaryRemove();
+			local10.clear();
 		} while ((Long.MIN_VALUE & local10.secondaryNodeId) == 0L);
 		return local10;
 	}
@@ -287,7 +287,7 @@ public final class Static127 {
 				System.out.println("oncard_texture:" + Static63.oncard_texture);
 			}
 			if (chatTyped.equalsIgnoreCase(Static257.CLIENTDROP)) {
-				Static175.tryReconnect();
+				Game.tryReconnect();
 			}
 			if (chatTyped.equalsIgnoreCase(Static279.CLIENTJS5DROP)) {
 				client.js5NetQueue.clientDrop();
@@ -297,14 +297,14 @@ public final class Static127 {
 			}
 			if (chatTyped.equalsIgnoreCase(Static165.BREAKCON)) {
 				GameShell.signLink.method5110();
-				Static124.socket.method2833();
+				Static124.gameServerSocket.method2833();
 				client.js5NetQueue.method2323();
 			}
 			if (chatTyped.equalsIgnoreCase(Static114.REPLACECANVAS)) {
 				Static35.canvasReplaceRecommended = true;
 			}
 			if (chatTyped.equalsIgnoreCase(Static148.REBUILD)) {
-				Static196.method3534(25);
+				Game.processGameStatus(25);
 			}
 			if (chatTyped.equalsIgnoreCase(Static107.FPSON)) {
 				Static43.displayFps = true;

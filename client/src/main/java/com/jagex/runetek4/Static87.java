@@ -258,14 +258,14 @@ public final class Static87 {
 									if (local583 == null) {
 										Static53.method1294();
 									} else {
-										Static98.method1966(Static246.anInt5393, 1L, Static225.aClass100_961, local563, (short) 11, Static102.aClass100_545, local571);
+										Static98.addActionRow(Static246.anInt5393, 1L, Static225.aClass100_961, local563, (short) 11, Static102.aClass100_545, local571);
 									}
 									continue;
 								}
 								if (Static266.game == 1) {
-									Static98.method1966(-1, 1L, Static186.aClass100_827, local563, (short) 36, LocalizedText.FACEHERE, local571);
+									Static98.addActionRow(-1, 1L, Static186.aClass100_827, local563, (short) 36, LocalizedText.FACEHERE, local571);
 								}
-								Static98.method1966(-1, 1L, Static186.aClass100_827, local563, (short) 60, Static195.aClass100_859, local571);
+								Static98.addActionRow(-1, 1L, Static186.aClass100_827, local563, (short) 60, Static195.aClass100_859, local571);
 								continue;
 							}
 							if (local30.contentType == 1339) {

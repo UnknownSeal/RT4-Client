@@ -29,10 +29,10 @@ public final class Static145 {
 	@OriginalMember(owner = "runetek4.client!lf", name = "a", descriptor = "(I)V")
 	public static void method2742() {
 		if (Static244.gamestate == 10 && GlRenderer.enabled) {
-			Static196.method3534(28);
+			Game.processGameStatus(28);
 		}
 		if (Static244.gamestate == 30) {
-			Static196.method3534(25);
+			Game.processGameStatus(25);
 		}
 	}
 

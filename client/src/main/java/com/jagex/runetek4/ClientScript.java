@@ -1,12 +1,12 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarbitDefinition;
-import com.jagex.runetek4.cache.def.VarpDefinition;
+import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.config.ObjType;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.core.datastruct.SecondaryNode;
+import com.jagex.runetek4.core.datastruct.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -14,7 +14,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!qc")
-public final class ClientScript extends SecondaryNode {
+public final class ClientScript extends CachedNode {
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "I", descriptor = "I")
 	public int anInt4665;
@@ -154,13 +154,13 @@ public final class ClientScript extends SecondaryNode {
 					}
 				}
 				if (opcode == 5) {  // load_var {id}
-					register1 = VarpDefinition.varps[script[pc++]];
+					register1 = VarPlayerDefinition.varPlayers[script[pc++]];
 				}
 				if (opcode == 6) {  // load_next_level_xp {skill}
 					register1 = ObjType.levelExperience[Static141.skillBaseLevel[script[pc++]] - 1];
 				}
 				if (opcode == 7) {
-					register1 = VarpDefinition.varps[script[pc++]] * 100 / 46875;
+					register1 = VarPlayerDefinition.varPlayers[script[pc++]] * 100 / 46875;
 				}
 				if (opcode == 8) { // load_combat_level
 					register1 = Static173.localPlayer.combatLevel;
@@ -193,7 +193,7 @@ public final class ClientScript extends SecondaryNode {
 					register1 = Static251.weightCarried;
 				}
 				if (opcode == 13) { // load_bool {varp} {bit: 0..31}
-					i = VarpDefinition.varps[script[pc++]];
+					i = VarPlayerDefinition.varPlayers[script[pc++]];
 					@Pc(353) int leastSignificantBit = script[pc++];
 					register1 = (0x1 << leastSignificantBit & i) == 0 ? 0 : 1;
 				}

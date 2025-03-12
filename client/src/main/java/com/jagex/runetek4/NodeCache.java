@@ -37,7 +37,7 @@ public final class NodeCache {
 		if (this.anInt3966 == 0) {
 			@Pc(26) ReferenceNode local26 = (ReferenceNode) this.aClass16_8.pollFront();
 			local26.unlink();
-			local26.secondaryRemove();
+			local26.clear();
 		} else {
 			this.anInt3966--;
 		}
@@ -52,7 +52,7 @@ public final class NodeCache {
 		@Pc(6) ReferenceNode local6 = (ReferenceNode) this.aClass133_18.getNode(arg0);
 		if (local6 != null) {
 			local6.unlink();
-			local6.secondaryRemove();
+			local6.clear();
 			this.anInt3966++;
 		}
 	}
@@ -69,23 +69,23 @@ public final class NodeCache {
 	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "c", descriptor = "(II)V")
-	public final void method3102(@OriginalArg(1) int arg0) {
+	public final void clear(@OriginalArg(1) int arg0) {
 		if (Static252.aClass22_1 == null) {
 			return;
 		}
-		for (@Pc(9) ReferenceNode local9 = (ReferenceNode) this.aClass16_8.head(); local9 != null; local9 = (ReferenceNode) this.aClass16_8.prev()) {
-			if (local9.method3619()) {
-				if (local9.method3618() == null) {
-					local9.unlink();
-					local9.secondaryRemove();
+		for (@Pc(9) ReferenceNode cachedNode = (ReferenceNode) this.aClass16_8.head(); cachedNode != null; cachedNode = (ReferenceNode) this.aClass16_8.prev()) {
+			if (cachedNode.method3619()) {
+				if (cachedNode.method3618() == null) {
+					cachedNode.unlink();
+					cachedNode.clear();
 					this.anInt3966++;
 				}
-			} else if (++local9.secondaryNodeId > (long) arg0) {
-				@Pc(33) ReferenceNode local33 = Static252.aClass22_1.method1027(local9);
-				this.aClass133_18.pushNode(local33, local9.nodeId);
-				Static84.method1772(local9, local33);
-				local9.unlink();
-				local9.secondaryRemove();
+			} else if (++cachedNode.secondaryNodeId > (long) arg0) {
+				@Pc(33) ReferenceNode local33 = Static252.aClass22_1.method1027(cachedNode);
+				this.aClass133_18.pushNode(local33, cachedNode.nodeId);
+				Static84.method1772(cachedNode, local33);
+				cachedNode.unlink();
+				cachedNode.clear();
 			}
 		}
 	}
@@ -95,7 +95,7 @@ public final class NodeCache {
 		for (@Pc(7) ReferenceNode local7 = (ReferenceNode) this.aClass16_8.head(); local7 != null; local7 = (ReferenceNode) this.aClass16_8.prev()) {
 			if (local7.method3619()) {
 				local7.unlink();
-				local7.secondaryRemove();
+				local7.clear();
 				this.anInt3966++;
 			}
 		}
@@ -117,7 +117,7 @@ public final class NodeCache {
 		@Pc(27) Object local27 = local12.method3618();
 		if (local27 == null) {
 			local12.unlink();
-			local12.secondaryRemove();
+			local12.clear();
 			this.anInt3966++;
 			return null;
 		}
@@ -127,7 +127,7 @@ public final class NodeCache {
 			this.aClass16_8.pushBack(local53);
 			local53.secondaryNodeId = 0L;
 			local12.unlink();
-			local12.secondaryRemove();
+			local12.clear();
 		} else {
 			this.aClass16_8.pushBack(local12);
 			local12.secondaryNodeId = 0L;

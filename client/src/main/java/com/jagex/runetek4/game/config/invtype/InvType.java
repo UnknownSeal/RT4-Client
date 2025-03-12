@@ -4,11 +4,11 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
-import com.jagex.runetek4.core.datastruct.SecondaryNode;
+import com.jagex.runetek4.core.datastruct.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!md")
-public final class InvType extends SecondaryNode {
+public final class InvType extends CachedNode {
 
 	@OriginalMember(owner = "client!md", name = "K", descriptor = "I")
 	public int size = 0;

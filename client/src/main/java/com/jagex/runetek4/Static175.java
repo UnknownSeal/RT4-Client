@@ -23,14 +23,4 @@ public final class Static175 {
 	@OriginalMember(owner = "runetek4.client!nm", name = "bb", descriptor = "Lclient!na;")
 	public static final JString RED = Static28.parse("<col=ff0000>");
 
-	@OriginalMember(owner = "runetek4.client!nm", name = "a", descriptor = "(Z)V")
-	public static void tryReconnect() {
-		if (Game.idleTimeout > 0) {
-			Static278.processLogout();
-		} else {
-			Static233.aClass95_4 = Static124.socket;
-			Static124.socket = null;
-			Static196.method3534(40);
-		}
-	}
 }

@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.VarpDefinition;
+import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.config.Component;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -31,7 +31,7 @@ public final class Static8 {
 
 	@OriginalMember(owner = "client!aj", name = "c", descriptor = "(II)V")
 	public static void method119() {
-		Static233.aClass99_31.method3102(5);
+		Static233.aClass99_31.clear(5);
 	}
 
 	@OriginalMember(owner = "client!aj", name = "a", descriptor = "(IIIZIII)V")
@@ -121,11 +121,11 @@ public final class Static8 {
 
 	@OriginalMember(owner = "client!aj", name = "i", descriptor = "(I)V")
 	public static void resetVarBits() {
-		for (@Pc(3) int varpIndex = 0; varpIndex < VarpDefinition.varPlayerDefinitionsSize; varpIndex++) {
-			@Pc(19) VarpDefinition varpDefinition = VarpDefinition.getDefinition(varpIndex);
-			if (varpDefinition != null && varpDefinition.type == 0) {
-				VarpDefinition.varpCache[varpIndex] = 0;
-				VarpDefinition.varps[varpIndex] = 0;
+		for (@Pc(3) int varpIndex = 0; varpIndex < VarPlayerDefinition.varPlayerDefinitionsSize; varpIndex++) {
+			@Pc(19) VarPlayerDefinition varPlayerDefinition = VarPlayerDefinition.getDefinition(varpIndex);
+			if (varPlayerDefinition != null && varPlayerDefinition.type == 0) {
+				varPlayerDefinition.varPlayerCache[varpIndex] = 0;
+				varPlayerDefinition.varPlayers[varpIndex] = 0;
 			}
 		}
 		Static199.aClass133_20 = new IterableMap(16);

@@ -63,7 +63,7 @@ public final class Static71 {
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "b", descriptor = "(IB)V")
 	public static void method1443() {
-		Static83.aClass99_3.method3102(5);
+		Static83.aClass99_3.clear(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "b", descriptor = "(I)V")

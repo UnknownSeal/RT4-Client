@@ -278,7 +278,7 @@ public final class Static78 {
 		Static219.method3796();
 		Static217.method3768();
 		PreciseSleep.aBoolean252 = false;
-		if (Static39.frame != null && Static124.socket != null && Static244.gamestate == 25) {
+		if (Static39.frame != null && Static124.gameServerSocket != null && Static244.gamestate == 25) {
 			Static6.outboundBuffer.pIsaac1(20);
 			Static6.outboundBuffer.p4(1057001181);
 		}
@@ -297,10 +297,10 @@ public final class Static78 {
 			}
 		}
 		if (Static244.gamestate == 28) {
-			Static196.method3534(10);
+			Game.processGameStatus(10);
 		} else {
-			Static196.method3534(30);
-			if (Static124.socket != null) {
+			Game.processGameStatus(30);
+			if (Static124.gameServerSocket != null) {
 				Static6.outboundBuffer.pIsaac1(110);
 			}
 		}

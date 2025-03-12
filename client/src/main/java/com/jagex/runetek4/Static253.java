@@ -32,15 +32,15 @@ public final class Static253 {
 		Static136.anInt3325++;
 		Static210.method3711();
 		if (!arg1) {
-			Static38.pushPlayers(true);
-			Static173.pushNpcs(true);
-			Static38.pushPlayers(false);
+			Game.pushPlayers(true);
+			Game.pushNpcs(true);
+			Game.pushPlayers(false);
 		}
-		Static173.pushNpcs(false);
+		Game.pushNpcs(false);
 		if (!arg1) {
-			Static195.pushProjectiles();
+			Game.pushProjectiles();
 		}
-		Static246.pushSpotanims();
+		Game.pushSpotanims();
 		if (GlRenderer.enabled) {
 			Static115.method2314(arg3, arg4, arg0, arg2, true);
 			arg2 = aClass6.anInt983;

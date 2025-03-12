@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.GregorianCalendar;
 
-import com.jagex.runetek4.cache.def.VarpDefinition;
+import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.io.BufferedFile;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.DiskStore;
@@ -69,7 +69,7 @@ public final class client extends GameShell {
 			} else if (arg0[1].equals("wip")) {
 				Static81.modeWhat = 2;
 			} else {
-				Static131.method2577("modewhat");
+				Game.printHelp("modewhat");
 			}
 			Static249.aBoolean282 = false;
 			try {
@@ -84,7 +84,7 @@ public final class client extends GameShell {
 			} else if (arg0[2].equals("german")) {
 				Static141.anInt3470 = 1;
 			} else {
-				Static131.method2577("language");
+				Game.printHelp("language");
 			}
 			Static3.method4659(Static141.anInt3470);
 			Static233.aBoolean254 = false;
@@ -94,7 +94,7 @@ public final class client extends GameShell {
 			} else if (arg0[3].equals("game1")) {
 				Static266.game = 1;
 			} else {
-				Static131.method2577("game");
+				Game.printHelp("game");
 			}
 			Static279.anInt5880 = 0;
 			Static178.aBoolean203 = false;
@@ -246,7 +246,7 @@ public final class client extends GameShell {
 			}
 		}
 		if (Static107.aBoolean147) {
-			Static213.method3729();
+			Game.clearCaches();
 		}
 		if (Static164.aBoolean191 && Static244.gamestate == 10 && Static154.topLevelInterace != -1) {
 			Static164.aBoolean191 = false;
@@ -271,9 +271,9 @@ public final class client extends GameShell {
 			Static178.mouseCapturer.aBoolean151 = false;
 		}
 		Static178.mouseCapturer = null;
-		if (Static124.socket != null) {
-			Static124.socket.closeGracefully();
-			Static124.socket = null;
+		if (Static124.gameServerSocket != null) {
+			Static124.gameServerSocket.closeGracefully();
+			Static124.gameServerSocket = null;
 		}
 		Static31.method847(Static154.canvas);
 		Static223.method3866(Static154.canvas);
@@ -835,7 +835,7 @@ public final class client extends GameShell {
 			Static102.method2074(Static261.aClass153_107, Static209.aClass153_86);
 			Static199.mainLoadPercentage = 45;
 			Static126.mainLoadSecondaryText = LocalizedText.MAINLOAD65B;
-			Static196.method3534(5);
+			Game.processGameStatus(5);
 			Static166.anInt4051 = 70;
 		} else if (Static166.anInt4051 == 70) {
 			Static274.aClass153_90.fetchAll();
@@ -873,7 +873,7 @@ public final class client extends GameShell {
 				Static79.method1703(Static274.aClass153_90);
 				Static266.method4187(Static267.aClass153_109, Static122.aClass153_46);
 				Static180.method3327(Static156.aClass153_59);
-				VarpDefinition.initializeVarPlayerDefinitionCache(Static274.aClass153_90);
+				VarPlayerDefinition.initializeVarPlayerDefinitionCache(Static274.aClass153_90);
 				Static3.method4661(Static261.aClass153_107, Static209.aClass153_86, Static41.aClass153_25, Static267.aClass153_109);
 				Static119.method2384(Static274.aClass153_90);
 				Static85.method1774(Static138.aClass153_50);
@@ -972,14 +972,14 @@ public final class client extends GameShell {
 				Static126.mainLoadSecondaryText = LocalizedText.MAINLOAD135;
 			} else if (local98 == 7 || local98 == 9) {
 				this.error("worldlistfull");
-				Static196.method3534(1000);
+				Game.processGameStatus(1000);
 			} else if (Static61.aBoolean109) {
 				Static126.mainLoadSecondaryText = LocalizedText.MAINLOAD135B;
 				Static166.anInt4051 = 140;
 				Static199.mainLoadPercentage = 96;
 			} else {
 				this.error("worldlistio_" + local98);
-				Static196.method3534(1000);
+				Game.processGameStatus(1000);
 			}
 		} else if (Static166.anInt4051 == 140) {
 			Static156.anInt3783 = Static41.aClass153_25.method4482(Static138.LOGINSCREEN);
@@ -1050,7 +1050,7 @@ public final class client extends GameShell {
 		}
 		if (Static244.gamestate == 10) {
 			this.method943();
-			Static158.loop();
+			Game.handleLoginScreenActions();
 			Static31.method848();
 			Static216.method1639();
 		} else if (Static244.gamestate == 30) {
@@ -1061,7 +1061,7 @@ public final class client extends GameShell {
 				if (Static266.anInt5336 == 15) {
 					Static44.method1146();
 				} else if (Static266.anInt5336 != 2) {
-					Static278.processLogout();
+					Game.processLogout();
 				}
 			}
 		}

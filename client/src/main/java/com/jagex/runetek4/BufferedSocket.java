@@ -38,7 +38,7 @@ public final class BufferedSocket implements Runnable {
 	private final SignLink aClass213_5;
 
 	@OriginalMember(owner = "runetek4.client!ma", name = "k", descriptor = "Ljava/net/Socket;")
-	private final Socket aSocket1;
+	private final Socket socket;
 
 	@OriginalMember(owner = "runetek4.client!ma", name = "e", descriptor = "Ljava/io/InputStream;")
 	private InputStream anInputStream1;
@@ -49,11 +49,11 @@ public final class BufferedSocket implements Runnable {
 	@OriginalMember(owner = "runetek4.client!ma", name = "<init>", descriptor = "(Ljava/net/Socket;Lsignlink!ll;)V")
 	public BufferedSocket(@OriginalArg(0) Socket arg0, @OriginalArg(1) SignLink arg1) throws IOException {
 		this.aClass213_5 = arg1;
-		this.aSocket1 = arg0;
-		this.aSocket1.setSoTimeout(30000);
-		this.aSocket1.setTcpNoDelay(true);
-		this.anInputStream1 = this.aSocket1.getInputStream();
-		this.anOutputStream1 = this.aSocket1.getOutputStream();
+		this.socket = arg0;
+		this.socket.setSoTimeout(30000);
+		this.socket.setTcpNoDelay(true);
+		this.anInputStream1 = this.socket.getInputStream();
+		this.anOutputStream1 = this.socket.getOutputStream();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ma", name = "run", descriptor = "()V")
@@ -91,8 +91,8 @@ public final class BufferedSocket implements Runnable {
 						if (this.anOutputStream1 != null) {
 							this.anOutputStream1.close();
 						}
-						if (this.aSocket1 != null) {
-							this.aSocket1.close();
+						if (this.socket != null) {
+							this.socket.close();
 						}
 					} catch (@Pc(119) IOException local119) {
 					}

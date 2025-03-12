@@ -4,14 +4,14 @@ import com.jagex.runetek4.JString;
 import com.jagex.runetek4.MonotonicTime;
 import com.jagex.runetek4.Static140;
 import com.jagex.runetek4.Static215;
-import com.jagex.runetek4.core.datastruct.SecondaryNode;
+import com.jagex.runetek4.core.datastruct.CachedNode;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("client!da")
-public final class DelayedStateChange extends SecondaryNode {
+public final class DelayedStateChange extends CachedNode {
 
 	@OriginalMember(owner = "client!da", name = "T", descriptor = "I")
 	public int intArg2;

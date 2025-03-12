@@ -2,14 +2,14 @@ package com.jagex.runetek4;
 
 import java.util.Random;
 
-import com.jagex.runetek4.core.datastruct.SecondaryNode;
+import com.jagex.runetek4.core.datastruct.CachedNode;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!rk")
-public abstract class Font extends SecondaryNode {
+public abstract class Font extends CachedNode {
 
 	@OriginalMember(owner = "client!rk", name = "W", descriptor = "[I")
 	private int[] anIntArray346;

@@ -11,7 +11,7 @@ public final class Static124 {
 	public static int anInt3080;
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "B", descriptor = "Lclient!ma;")
-	public static BufferedSocket socket;
+	public static BufferedSocket gameServerSocket;
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "J", descriptor = "I")
 	public static int anInt3083;

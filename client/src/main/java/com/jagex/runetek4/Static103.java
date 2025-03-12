@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.VarpDefinition;
+import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.config.NPCType;
@@ -442,8 +442,8 @@ public final class Static103 {
 			com = Static5.getComponent(local19);
 			if (com.scripts != null && com.scripts[0][0] == 5) {
 				varp = com.scripts[0][1];
-				if (VarpDefinition.varps[varp] != com.scriptOperand[0]) {
-					VarpDefinition.varps[varp] = com.scriptOperand[0];
+				if (VarPlayerDefinition.varPlayers[varp] != com.scriptOperand[0]) {
+					VarPlayerDefinition.varPlayers[varp] = com.scriptOperand[0];
 					Static85.handleVarps(varp);
 				}
 			}
@@ -469,7 +469,7 @@ public final class Static103 {
 			com = Static5.getComponent(local19);
 			if (com.scripts != null && com.scripts[0][0] == 5) {
 				varp = com.scripts[0][1];
-				VarpDefinition.varps[varp] = 1 - VarpDefinition.varps[varp];
+				VarPlayerDefinition.varPlayers[varp] = 1 - VarPlayerDefinition.varPlayers[varp];
 				Static85.handleVarps(varp);
 			}
 		}
