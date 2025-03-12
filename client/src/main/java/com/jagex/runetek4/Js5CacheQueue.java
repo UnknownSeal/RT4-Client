@@ -86,7 +86,7 @@ public final class Js5CacheQueue implements Runnable {
 		local9.anInt824 = 1;
 		@Pc(16) SecondaryLinkedList local16 = this.aClass16_6;
 		synchronized (this.aClass16_6) {
-			@Pc(31) Js5CacheRequest local31 = (Js5CacheRequest) this.aClass16_6.method795();
+			@Pc(31) Js5CacheRequest local31 = (Js5CacheRequest) this.aClass16_6.head();
 			while (true) {
 				if (local31 == null) {
 					break;

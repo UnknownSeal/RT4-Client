@@ -65,9 +65,9 @@ public final class MidiDecoder {
 		for (@Pc(8) int local8 = 0; local8 < local6; local8++) {
 			this.anIntArray310[local8] = 0;
 			this.anIntArray313[local8] = 0;
-			this.aClass3_Sub15_6.pos = this.anIntArray312[local8];
+			this.aClass3_Sub15_6.position = this.anIntArray312[local8];
 			this.method2632(local8);
-			this.anIntArray311[local8] = this.aClass3_Sub15_6.pos;
+			this.anIntArray311[local8] = this.aClass3_Sub15_6.position;
 		}
 	}
 
@@ -88,7 +88,7 @@ public final class MidiDecoder {
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "c", descriptor = "(I)V")
 	public final void method2631(@OriginalArg(0) int arg0) {
-		this.aClass3_Sub15_6.pos = this.anIntArray311[arg0];
+		this.aClass3_Sub15_6.position = this.anIntArray311[arg0];
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "d", descriptor = "(I)V")
@@ -114,7 +114,7 @@ public final class MidiDecoder {
 		@Pc(7) int local7 = this.aClass3_Sub15_6.g1();
 		local12 = this.aClass3_Sub15_6.gVarInt();
 		if (local7 == 47) {
-			this.aClass3_Sub15_6.pos += local12;
+			this.aClass3_Sub15_6.position += local12;
 			return 1;
 		} else if (local7 == 81) {
 			@Pc(32) int local32 = this.aClass3_Sub15_6.g3();
@@ -122,22 +122,22 @@ public final class MidiDecoder {
 			@Pc(38) int local38 = this.anIntArray310[arg0];
 			this.aLong117 += (long) local38 * (long) (this.anInt3304 - local32);
 			this.anInt3304 = local32;
-			this.aClass3_Sub15_6.pos += local12;
+			this.aClass3_Sub15_6.position += local12;
 			return 2;
 		} else {
-			this.aClass3_Sub15_6.pos += local12;
+			this.aClass3_Sub15_6.position += local12;
 			return 3;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "e", descriptor = "(I)I")
 	private int method2634(@OriginalArg(0) int arg0) {
-		@Pc(7) byte local7 = this.aClass3_Sub15_6.data[this.aClass3_Sub15_6.pos];
+		@Pc(7) byte local7 = this.aClass3_Sub15_6.data[this.aClass3_Sub15_6.position];
 		@Pc(13) int local13;
 		if (local7 < 0) {
 			local13 = local7 & 0xFF;
 			this.anIntArray313[arg0] = local13;
-			this.aClass3_Sub15_6.pos++;
+			this.aClass3_Sub15_6.position++;
 		} else {
 			local13 = this.anIntArray313[arg0];
 		}
@@ -146,21 +146,21 @@ public final class MidiDecoder {
 		}
 		@Pc(42) int local42 = this.aClass3_Sub15_6.gVarInt();
 		if (local13 == 247 && local42 > 0) {
-			@Pc(57) int local57 = this.aClass3_Sub15_6.data[this.aClass3_Sub15_6.pos] & 0xFF;
+			@Pc(57) int local57 = this.aClass3_Sub15_6.data[this.aClass3_Sub15_6.position] & 0xFF;
 			if (local57 >= 241 && local57 <= 243 || local57 == 246 || local57 == 248 || local57 >= 250 && local57 <= 252 || local57 == 254) {
-				this.aClass3_Sub15_6.pos++;
+				this.aClass3_Sub15_6.position++;
 				this.anIntArray313[arg0] = local57;
 				return this.method2633(arg0, local57);
 			}
 		}
-		this.aClass3_Sub15_6.pos += local42;
+		this.aClass3_Sub15_6.position += local42;
 		return 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "a", descriptor = "([B)V")
 	public final void method2635(@OriginalArg(0) byte[] arg0) {
 		this.aClass3_Sub15_6.data = arg0;
-		this.aClass3_Sub15_6.pos = 10;
+		this.aClass3_Sub15_6.position = 10;
 		@Pc(12) int local12 = this.aClass3_Sub15_6.g2();
 		this.anInt3303 = this.aClass3_Sub15_6.g2();
 		this.anInt3304 = 500000;
@@ -170,10 +170,10 @@ public final class MidiDecoder {
 			@Pc(35) int local35 = this.aClass3_Sub15_6.g4();
 			@Pc(40) int local40 = this.aClass3_Sub15_6.g4();
 			if (local35 == 1297379947) {
-				this.anIntArray312[local27] = this.aClass3_Sub15_6.pos;
+				this.anIntArray312[local27] = this.aClass3_Sub15_6.position;
 				local27++;
 			}
-			this.aClass3_Sub15_6.pos += local40;
+			this.aClass3_Sub15_6.position += local40;
 		}
 		this.aLong117 = 0L;
 		this.anIntArray311 = new int[local12];
@@ -186,7 +186,7 @@ public final class MidiDecoder {
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "f", descriptor = "(I)V")
 	public final void method2636(@OriginalArg(0) int arg0) {
-		this.anIntArray311[arg0] = this.aClass3_Sub15_6.pos;
+		this.anIntArray311[arg0] = this.aClass3_Sub15_6.position;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "e", descriptor = "()I")
@@ -214,6 +214,6 @@ public final class MidiDecoder {
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "g", descriptor = "()V")
 	public final void method2639() {
-		this.aClass3_Sub15_6.pos = -1;
+		this.aClass3_Sub15_6.position = -1;
 	}
 }

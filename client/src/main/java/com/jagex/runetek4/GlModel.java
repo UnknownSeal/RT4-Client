@@ -1682,7 +1682,7 @@ public final class GlModel extends Model {
 		if (Static237.aClass3_Sub15_8.data.length < this.anInt5296 * 12) {
 			Static237.aClass3_Sub15_8 = new Packet((this.anInt5296 + 100) * 12);
 		} else {
-			Static237.aClass3_Sub15_8.pos = 0;
+			Static237.aClass3_Sub15_8.position = 0;
 		}
 		@Pc(25) int local25;
 		if (GlRenderer.bigEndian) {
@@ -1699,8 +1699,8 @@ public final class GlModel extends Model {
 			}
 		}
 		if (!GlRenderer.arbVboSupported) {
-			@Pc(115) ByteBuffer local115 = ByteBuffer.allocateDirect(Static237.aClass3_Sub15_8.pos);
-			local115.put(Static237.aClass3_Sub15_8.data, 0, Static237.aClass3_Sub15_8.pos);
+			@Pc(115) ByteBuffer local115 = ByteBuffer.allocateDirect(Static237.aClass3_Sub15_8.position);
+			local115.put(Static237.aClass3_Sub15_8.data, 0, Static237.aClass3_Sub15_8.position);
 			local115.flip();
 			this.aClass127_5.valid = true;
 			this.aClass127_5.aByteBuffer8 = local115;
@@ -1708,7 +1708,7 @@ public final class GlModel extends Model {
 			return;
 		}
 		@Pc(88) GlVertexBufferObject local88 = new GlVertexBufferObject();
-		@Pc(95) ByteBuffer local95 = ByteBuffer.wrap(Static237.aClass3_Sub15_8.data, 0, Static237.aClass3_Sub15_8.pos);
+		@Pc(95) ByteBuffer local95 = ByteBuffer.wrap(Static237.aClass3_Sub15_8.data, 0, Static237.aClass3_Sub15_8.position);
 		local88.method4519(local95);
 		this.aClass127_5.valid = true;
 		this.aClass127_5.aByteBuffer8 = null;
@@ -2031,7 +2031,7 @@ public final class GlModel extends Model {
 		if (Static237.aClass3_Sub15_8.data.length < this.anInt5296 * local1) {
 			Static237.aClass3_Sub15_8 = new Packet((this.anInt5296 + 100) * local1);
 		} else {
-			Static237.aClass3_Sub15_8.pos = 0;
+			Static237.aClass3_Sub15_8.position = 0;
 		}
 		@Pc(60) int local60;
 		@Pc(71) int local71;
@@ -2054,7 +2054,7 @@ public final class GlModel extends Model {
 						if (local109 == -1) {
 							break;
 						}
-						Static237.aClass3_Sub15_8.pos = local109 * local1;
+						Static237.aClass3_Sub15_8.position = local109 * local1;
 						Static237.aClass3_Sub15_8.p4(local71);
 						Static237.aClass3_Sub15_8.p4(local78);
 						Static237.aClass3_Sub15_8.p4(local85);
@@ -2072,7 +2072,7 @@ public final class GlModel extends Model {
 						if (local109 == -1) {
 							break;
 						}
-						Static237.aClass3_Sub15_8.pos = local109 * local1;
+						Static237.aClass3_Sub15_8.position = local109 * local1;
 						Static237.aClass3_Sub15_8.p4le(local71);
 						Static237.aClass3_Sub15_8.p4le(local78);
 						Static237.aClass3_Sub15_8.p4le(local85);
@@ -2084,11 +2084,11 @@ public final class GlModel extends Model {
 			if (Static178.highDetailLighting) {
 				for (local60 = 0; local60 < this.anInt5297; local60++) {
 					local71 = Static237.method4096(this.aShortArray75[local60], this.aShortArray80[local60], this.aShort29, this.aByteArray71[local60]);
-					Static237.aClass3_Sub15_8.pos = this.aClass127_1.anInt4777 + this.aShortArray77[local60] * local1;
+					Static237.aClass3_Sub15_8.position = this.aClass127_1.anInt4777 + this.aShortArray77[local60] * local1;
 					Static237.aClass3_Sub15_8.p4(local71);
-					Static237.aClass3_Sub15_8.pos = this.aClass127_1.anInt4777 + this.aShortArray82[local60] * local1;
+					Static237.aClass3_Sub15_8.position = this.aClass127_1.anInt4777 + this.aShortArray82[local60] * local1;
 					Static237.aClass3_Sub15_8.p4(local71);
-					Static237.aClass3_Sub15_8.pos = this.aClass127_1.anInt4777 + this.aShortArray83[local60] * local1;
+					Static237.aClass3_Sub15_8.position = this.aClass127_1.anInt4777 + this.aShortArray83[local60] * local1;
 					Static237.aClass3_Sub15_8.p4(local71);
 				}
 			} else {
@@ -2156,11 +2156,11 @@ public final class GlModel extends Model {
 					@Pc(562) int local562 = Static237.method4096(this.aShortArray75[local99], this.aShortArray80[local99], local281, this.aByteArray71[local99]);
 					@Pc(577) int local577 = Static237.method4096(this.aShortArray75[local99], this.aShortArray80[local99], local375, this.aByteArray71[local99]);
 					@Pc(592) int local592 = Static237.method4096(this.aShortArray75[local99], this.aShortArray80[local99], local469, this.aByteArray71[local99]);
-					Static237.aClass3_Sub15_8.pos = this.aClass127_1.anInt4777 + local270 * local1;
+					Static237.aClass3_Sub15_8.position = this.aClass127_1.anInt4777 + local270 * local1;
 					Static237.aClass3_Sub15_8.p4(local562);
-					Static237.aClass3_Sub15_8.pos = this.aClass127_1.anInt4777 + local364 * local1;
+					Static237.aClass3_Sub15_8.position = this.aClass127_1.anInt4777 + local364 * local1;
 					Static237.aClass3_Sub15_8.p4(local577);
-					Static237.aClass3_Sub15_8.pos = this.aClass127_1.anInt4777 + local458 * local1;
+					Static237.aClass3_Sub15_8.position = this.aClass127_1.anInt4777 + local458 * local1;
 					Static237.aClass3_Sub15_8.p4(local592);
 				}
 				this.aShortArray76 = null;
@@ -2171,7 +2171,7 @@ public final class GlModel extends Model {
 		if (arg3) {
 			@Pc(723) float local723 = 3.0F / (float) this.aShort28;
 			@Pc(734) float local734 = 3.0F / (float) (this.aShort28 + this.aShort28 / 2);
-			Static237.aClass3_Sub15_8.pos = this.aClass127_2.anInt4777;
+			Static237.aClass3_Sub15_8.position = this.aClass127_2.anInt4777;
 			@Pc(752) short local752;
 			@Pc(790) float local790;
 			if (GlRenderer.bigEndian) {
@@ -2187,7 +2187,7 @@ public final class GlModel extends Model {
 						Static237.aClass3_Sub15_8.pFloat((float) this.aShortArray79[local78] * local790);
 						Static237.aClass3_Sub15_8.pFloat((float) this.aShortArray85[local78] * local790);
 					}
-					Static237.aClass3_Sub15_8.pos += local1 - 12;
+					Static237.aClass3_Sub15_8.position += local1 - 12;
 				}
 			} else {
 				for (local78 = 0; local78 < this.anInt5296; local78++) {
@@ -2202,31 +2202,31 @@ public final class GlModel extends Model {
 						Static237.aClass3_Sub15_8.gFloat((float) this.aShortArray79[local78] * local790);
 						Static237.aClass3_Sub15_8.gFloat((float) this.aShortArray85[local78] * local790);
 					}
-					Static237.aClass3_Sub15_8.pos += local1 - 12;
+					Static237.aClass3_Sub15_8.position += local1 - 12;
 				}
 			}
 		}
 		if (arg4) {
-			Static237.aClass3_Sub15_8.pos = this.aClass127_3.anInt4777;
+			Static237.aClass3_Sub15_8.position = this.aClass127_3.anInt4777;
 			if (GlRenderer.bigEndian) {
 				for (local60 = 0; local60 < this.anInt5296; local60++) {
 					Static237.aClass3_Sub15_8.pFloat(this.aFloatArray25[local60]);
 					Static237.aClass3_Sub15_8.pFloat(this.aFloatArray26[local60]);
-					Static237.aClass3_Sub15_8.pos += local1 - 8;
+					Static237.aClass3_Sub15_8.position += local1 - 8;
 				}
 			} else {
 				for (local60 = 0; local60 < this.anInt5296; local60++) {
 					Static237.aClass3_Sub15_8.gFloat(this.aFloatArray25[local60]);
 					Static237.aClass3_Sub15_8.gFloat(this.aFloatArray26[local60]);
-					Static237.aClass3_Sub15_8.pos += local1 - 8;
+					Static237.aClass3_Sub15_8.position += local1 - 8;
 				}
 			}
 		}
-		Static237.aClass3_Sub15_8.pos = local1 * this.anInt5296;
+		Static237.aClass3_Sub15_8.position = local1 * this.anInt5296;
 		@Pc(1007) ByteBuffer local1007;
 		if (arg0) {
 			if (GlRenderer.aBoolean273) {
-				local1007 = ByteBuffer.wrap(Static237.aClass3_Sub15_8.data, 0, Static237.aClass3_Sub15_8.pos);
+				local1007 = ByteBuffer.wrap(Static237.aClass3_Sub15_8.data, 0, Static237.aClass3_Sub15_8.position);
 				if (this.aClass155_5 == null) {
 					this.aClass155_5 = new GlVertexBufferObject(true);
 					this.aClass155_5.method4519(local1007);
@@ -2258,12 +2258,12 @@ public final class GlModel extends Model {
 					this.aClass127_3.anInt4782 = local1;
 				}
 			} else {
-				if (Static237.aByteBuffer9 == null || Static237.aByteBuffer9.capacity() < Static237.aClass3_Sub15_8.pos) {
-					Static237.aByteBuffer9 = ByteBuffer.allocateDirect(Static237.aClass3_Sub15_8.pos + local1 * 100);
+				if (Static237.aByteBuffer9 == null || Static237.aByteBuffer9.capacity() < Static237.aClass3_Sub15_8.position) {
+					Static237.aByteBuffer9 = ByteBuffer.allocateDirect(Static237.aClass3_Sub15_8.position + local1 * 100);
 				} else {
 					Static237.aByteBuffer9.clear();
 				}
-				Static237.aByteBuffer9.put(Static237.aClass3_Sub15_8.data, 0, Static237.aClass3_Sub15_8.pos);
+				Static237.aByteBuffer9.put(Static237.aClass3_Sub15_8.data, 0, Static237.aClass3_Sub15_8.position);
 				Static237.aByteBuffer9.flip();
 				if (arg1) {
 					this.vertexBuffer.valid = true;
@@ -2292,7 +2292,7 @@ public final class GlModel extends Model {
 			}
 		} else if (GlRenderer.arbVboSupported) {
 			@Pc(1211) GlVertexBufferObject local1211 = new GlVertexBufferObject();
-			@Pc(1218) ByteBuffer local1218 = ByteBuffer.wrap(Static237.aClass3_Sub15_8.data, 0, Static237.aClass3_Sub15_8.pos);
+			@Pc(1218) ByteBuffer local1218 = ByteBuffer.wrap(Static237.aClass3_Sub15_8.data, 0, Static237.aClass3_Sub15_8.position);
 			local1211.method4519(local1218);
 			if (arg1) {
 				this.vertexBuffer.valid = true;
@@ -2319,8 +2319,8 @@ public final class GlModel extends Model {
 				this.aClass127_3.anInt4782 = local1;
 			}
 		} else {
-			local1007 = ByteBuffer.allocateDirect(Static237.aClass3_Sub15_8.pos);
-			local1007.put(Static237.aClass3_Sub15_8.data, 0, Static237.aClass3_Sub15_8.pos);
+			local1007 = ByteBuffer.allocateDirect(Static237.aClass3_Sub15_8.position);
+			local1007.put(Static237.aClass3_Sub15_8.data, 0, Static237.aClass3_Sub15_8.position);
 			local1007.flip();
 			if (arg1) {
 				this.vertexBuffer.valid = true;

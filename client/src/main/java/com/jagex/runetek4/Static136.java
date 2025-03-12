@@ -44,7 +44,7 @@ public final class Static136 {
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "b", descriptor = "(Lclient!wa;I)V")
 	public static void method2654(@OriginalArg(0) Packet arg0) {
-		if (arg0.data.length - arg0.pos < 1) {
+		if (arg0.data.length - arg0.position < 1) {
 			return;
 		}
 		@Pc(21) int local21 = arg0.g1();
@@ -77,7 +77,7 @@ public final class Static136 {
 		} else {
 			local34 = 19;
 		}
-		if (arg0.data.length - arg0.pos < local34) {
+		if (arg0.data.length - arg0.position < local34) {
 			return;
 		}
 		Static113.anInt4609 = arg0.g1();

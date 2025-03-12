@@ -23,7 +23,7 @@ public final class SynthSound {
 		for (@Pc(7) int local7 = 0; local7 < 10; local7++) {
 			@Pc(14) int local14 = arg0.g1();
 			if (local14 != 0) {
-				arg0.pos--;
+				arg0.position--;
 				this.aClass123Array1[local7] = new SynthInstrument();
 				this.aClass123Array1[local7].method3506(arg0);
 			}

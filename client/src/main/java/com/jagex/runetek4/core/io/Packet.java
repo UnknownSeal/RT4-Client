@@ -55,7 +55,7 @@ public class Packet extends Node {
 	public byte[] data;
 
 	@OriginalMember(owner = "client!wa", name = "T", descriptor = "I")
-	public int pos;
+	public int position;
 
 	@OriginalMember(owner = "client!fi", name = "c", descriptor = "[I")
 	public static final int[] crctable = new int[256];
@@ -92,12 +92,12 @@ public class Packet extends Node {
 	@OriginalMember(owner = "client!wa", name = "<init>", descriptor = "(I)V")
 	public Packet(@OriginalArg(0) int size) {
 		this.data = Static228.alloc(size);
-		this.pos = 0;
+		this.position = 0;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "<init>", descriptor = "([B)V")
 	public Packet(@OriginalArg(0) byte[] src) {
-		this.pos = 0;
+		this.position = 0;
 		this.data = src;
 	}
 
@@ -117,16 +117,16 @@ public class Packet extends Node {
 
 	@OriginalMember(owner = "client!wa", name = "c", descriptor = "(I)I")
 	public final int g2() {
-		this.pos += 2;
-		return ((this.data[this.pos - 2] & 0xFF) << 8) + (this.data[this.pos - 1] & 0xFF);
+		this.position += 2;
+		return ((this.data[this.position - 2] & 0xFF) << 8) + (this.data[this.position - 1] & 0xFF);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "b", descriptor = "(II)V")
 	public final void p4(@OriginalArg(1) int value) {
-		this.data[this.pos++] = (byte) (value >> 24);
-		this.data[this.pos++] = (byte) (value >> 16);
-		this.data[this.pos++] = (byte) (value >> 8);
-		this.data[this.pos++] = (byte) value;
+		this.data[this.position++] = (byte) (value >> 24);
+		this.data[this.position++] = (byte) (value >> 16);
+		this.data[this.position++] = (byte) (value >> 8);
+		this.data[this.position++] = (byte) value;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(IIJ)V")
@@ -136,56 +136,56 @@ public class Packet extends Node {
 			throw new IllegalArgumentException();
 		}
 		for (@Pc(27) int shift = bytes * 8; shift >= 0; shift -= 8) {
-			this.data[this.pos++] = (byte) (value >> shift);
+			this.data[this.position++] = (byte) (value >> shift);
 		}
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(JI)V")
 	public final void p8(@OriginalArg(0) long value) {
-		this.data[this.pos++] = (byte) (value >> 56);
-		this.data[this.pos++] = (byte) (value >> 48);
-		this.data[this.pos++] = (byte) (value >> 40);
-		this.data[this.pos++] = (byte) (value >> 32);
-		this.data[this.pos++] = (byte) (value >> 24);
-		this.data[this.pos++] = (byte) (value >> 16);
-		this.data[this.pos++] = (byte) (value >> 8);
-		this.data[this.pos++] = (byte) value;
+		this.data[this.position++] = (byte) (value >> 56);
+		this.data[this.position++] = (byte) (value >> 48);
+		this.data[this.position++] = (byte) (value >> 40);
+		this.data[this.position++] = (byte) (value >> 32);
+		this.data[this.position++] = (byte) (value >> 24);
+		this.data[this.position++] = (byte) (value >> 16);
+		this.data[this.position++] = (byte) (value >> 8);
+		this.data[this.position++] = (byte) value;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "d", descriptor = "(B)I")
 	public final int gVarInt() {
-		@Pc(12) byte b = this.data[this.pos++];
+		@Pc(12) byte b = this.data[this.position++];
 		@Pc(24) int value = 0;
 		while (b < 0) {
 			value = (b & 0x7F | value) << 7;
-			b = this.data[this.pos++];
+			b = this.data[this.position++];
 		}
 		return b | value;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "c", descriptor = "(II)V")
 	public final void p4len(@OriginalArg(1) int len) {
-		this.data[this.pos - len - 4] = (byte) (len >> 24);
-		this.data[this.pos - len - 3] = (byte) (len >> 16);
-		this.data[this.pos - len - 2] = (byte) (len >> 8);
-		this.data[this.pos - len - 1] = (byte) len;
+		this.data[this.position - len - 4] = (byte) (len >> 24);
+		this.data[this.position - len - 3] = (byte) (len >> 16);
+		this.data[this.position - len - 2] = (byte) (len >> 8);
+		this.data[this.position - len - 1] = (byte) len;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "d", descriptor = "(II)V")
 	public final void p1_alt3(@OriginalArg(1) int value) {
-		this.data[this.pos++] = (byte) (128 - value);
+		this.data[this.position++] = (byte) (128 - value);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(ILclient!na;)V")
 	public final void pjstr(@OriginalArg(1) JString value) {
-		this.pos += value.encodeString(this.data, this.pos, value.length());
-		this.data[this.pos++] = 0;
+		this.position += value.encodeString(this.data, this.position, value.length());
+		this.data[this.position++] = 0;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "d", descriptor = "(I)I")
 	public final int g2sadd() {
-		this.pos += 2;
-		@Pc(34) int value = ((this.data[this.pos - 2] & 0xFF) << 8) + (this.data[this.pos - 1] - 128 & 0xFF);
+		this.position += 2;
+		@Pc(34) int value = ((this.data[this.position - 2] & 0xFF) << 8) + (this.data[this.position - 1] - 128 & 0xFF);
 		if (value > 32767) {
 			value -= 65536;
 		}
@@ -194,19 +194,19 @@ public class Packet extends Node {
 
 	@OriginalMember(owner = "client!wa", name = "e", descriptor = "(I)I")
 	public final int g4() {
-		this.pos += 4;
-		return ((this.data[this.pos - 4] & 0xFF) << 24) + ((this.data[this.pos - 3] & 0xFF) << 16) + ((this.data[this.pos - 2] & 0xFF) << 8) + (this.data[this.pos - 1] & 0xFF);
+		this.position += 4;
+		return ((this.data[this.position - 4] & 0xFF) << 24) + ((this.data[this.position - 3] & 0xFF) << 16) + ((this.data[this.position - 2] & 0xFF) << 8) + (this.data[this.position - 1] & 0xFF);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "b", descriptor = "(Z)B")
 	public final byte g1sub() {
-		return (byte) (128 - this.data[this.pos++]);
+		return (byte) (128 - this.data[this.position++]);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "f", descriptor = "(B)Lclient!na;")
 	public final JString gjstrFast() {
-		if (this.data[this.pos] == 0) {
-			this.pos++;
+		if (this.data[this.position] == 0) {
+			this.position++;
 			return null;
 		} else {
 			return this.gjstr();
@@ -215,30 +215,30 @@ public class Packet extends Node {
 
 	@OriginalMember(owner = "client!wa", name = "g", descriptor = "(B)I")
 	public final int g1add() {
-		return this.data[this.pos++] - 128 & 0xFF;
+		return this.data[this.position++] - 128 & 0xFF;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(BI)V")
-	public final void p1b(@OriginalArg(1) int value) {
-		this.data[this.pos++] = (byte) value;
+	public final void p1(@OriginalArg(1) int value) {
+		this.data[this.position++] = (byte) value;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "([BIII)V")
 	public final void pdata(@OriginalArg(0) byte[] src, @OriginalArg(2) int len) {
 		for (@Pc(7) int i = 0; i < len; i++) {
-			this.data[this.pos++] = src[i];
+			this.data[this.position++] = src[i];
 		}
 	}
 
 	@OriginalMember(owner = "client!wa", name = "c", descriptor = "(Z)I")
 	public final int g1_alt3() {
-		return 128 - this.data[this.pos++] & 0xFF;
+		return 128 - this.data[this.position++] & 0xFF;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "h", descriptor = "(B)I")
 	public final int g3le() {
-		this.pos += 3;
-		return (((this.data[this.pos - 1] & 0xFF) << 16) + (this.data[this.pos - 2] & 0xFF) << 8) + (this.data[this.pos - 3] & 0xFF);
+		this.position += 3;
+		return (((this.data[this.position - 1] & 0xFF) << 16) + (this.data[this.position - 2] & 0xFF) << 8) + (this.data[this.position - 3] & 0xFF);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "f", descriptor = "(I)J")
@@ -250,80 +250,80 @@ public class Packet extends Node {
 
 	@OriginalMember(owner = "client!wa", name = "e", descriptor = "(II)V")
 	public final void p4le(@OriginalArg(0) int value) {
-		this.data[this.pos++] = (byte) value;
-		this.data[this.pos++] = (byte) (value >> 8);
-		this.data[this.pos++] = (byte) (value >> 16);
-		this.data[this.pos++] = (byte) (value >> 24);
+		this.data[this.position++] = (byte) value;
+		this.data[this.position++] = (byte) (value >> 8);
+		this.data[this.position++] = (byte) (value >> 16);
+		this.data[this.position++] = (byte) (value >> 24);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "g", descriptor = "(I)I")
 	public final int g2sub() {
-		this.pos += 2;
-		return ((this.data[this.pos - 2] & 0xFF) << 8) + (this.data[this.pos - 1] - 128 & 0xFF);
+		this.position += 2;
+		return ((this.data[this.position - 2] & 0xFF) << 8) + (this.data[this.position - 1] - 128 & 0xFF);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "f", descriptor = "(II)V")
 	public final void p4_alt3(@OriginalArg(1) int value) {
-		this.data[this.pos++] = (byte) (value >> 16);
-		this.data[this.pos++] = (byte) (value >> 24);
-		this.data[this.pos++] = (byte) value;
-		this.data[this.pos++] = (byte) (value >> 8);
+		this.data[this.position++] = (byte) (value >> 16);
+		this.data[this.position++] = (byte) (value >> 24);
+		this.data[this.position++] = (byte) value;
+		this.data[this.position++] = (byte) (value >> 8);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "d", descriptor = "(Z)B")
 	public final byte g1s() {
-		return this.data[this.pos++];
+		return this.data[this.position++];
 	}
 
 	@OriginalMember(owner = "client!wa", name = "h", descriptor = "(I)Lclient!na;")
 	public final JString gjstr2() {
-		@Pc(10) byte version = this.data[this.pos++];
+		@Pc(10) byte version = this.data[this.position++];
 		if (version != 0) {
 			throw new IllegalStateException("Bad version number in gjstr2");
 		}
-		@Pc(32) int off = this.pos;
-		while (this.data[this.pos++] != 0) {
+		@Pc(32) int off = this.position;
+		while (this.data[this.position++] != 0) {
 		}
-		return Static10.decodeString(this.data, this.pos - off - 1, off);
+		return Static10.decodeString(this.data, this.position - off - 1, off);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(FB)V")
 	public final void gFloat(@OriginalArg(0) float value) {
 		@Pc(2) int valueInt = Float.floatToRawIntBits(value);
-		this.data[this.pos++] = (byte) valueInt;
-		this.data[this.pos++] = (byte) (valueInt >> 8);
-		this.data[this.pos++] = (byte) (valueInt >> 16);
-		this.data[this.pos++] = (byte) (valueInt >> 24);
+		this.data[this.position++] = (byte) valueInt;
+		this.data[this.position++] = (byte) (valueInt >> 8);
+		this.data[this.position++] = (byte) (valueInt >> 16);
+		this.data[this.position++] = (byte) (valueInt >> 24);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "i", descriptor = "(B)B")
 	public final byte g1neg() {
-		return (byte) -this.data[this.pos++];
+		return (byte) -this.data[this.position++];
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(II[BB)V")
 	public final void gdata(@OriginalArg(1) int len, @OriginalArg(2) byte[] dest) {
 		for (@Pc(8) int i = 0; i < len; i++) {
-			dest[i] = this.data[this.pos++];
+			dest[i] = this.data[this.position++];
 		}
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(IB)V")
 	public final void p2_alt3(@OriginalArg(0) int value) {
-		this.data[this.pos++] = (byte) (value + 128);
-		this.data[this.pos++] = (byte) (value >> 8);
+		this.data[this.position++] = (byte) (value + 128);
+		this.data[this.position++] = (byte) (value >> 8);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "i", descriptor = "(I)I")
 	public final int g2le() {
-		this.pos += 2;
-		return ((this.data[this.pos - 1] & 0xFF) << 8) + (this.data[this.pos - 2] & 0xFF);
+		this.position += 2;
+		return ((this.data[this.position - 1] & 0xFF) << 8) + (this.data[this.position - 2] & 0xFF);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "g", descriptor = "(II)V")
 	public final void pSmart1or2(@OriginalArg(1) int value) {
 		if (value >= 0 && value < 128) {
-			this.p1b(value);
+			this.p1(value);
 		} else if (value >= 0 && value < 0x8000) {
 			this.p2(value + 0x8000);
 		} else {
@@ -333,13 +333,13 @@ public class Packet extends Node {
 
 	@OriginalMember(owner = "client!wa", name = "b", descriptor = "(BI)V")
 	public final void p1len(@OriginalArg(1) int length) {
-		this.data[this.pos - length - 1] = (byte) length;
+		this.data[this.position - length - 1] = (byte) length;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "([IIII)V")
 	public final void decryptXtea(@OriginalArg(0) int[] key, @OriginalArg(3) int len) {
-		@Pc(6) int start = this.pos;
-		this.pos = 5;
+		@Pc(6) int start = this.position;
+		this.position = 5;
 		@Pc(16) int blocks = (len - 5) / 8;
 		for (@Pc(18) int i = 0; i < blocks; i++) {
 			@Pc(23) int sum = -957401312;
@@ -351,11 +351,11 @@ public class Packet extends Node {
 				sum -= -1640531527;
 				v0 -= (v1 >>> 5 ^ v1 << 4) + v1 ^ key[sum & 0x3] + sum;
 			}
-			this.pos -= 8;
+			this.position -= 8;
 			this.p4(v0);
 			this.p4(v1);
 		}
-		this.pos = start;
+		this.position = start;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "h", descriptor = "(II)V")
@@ -364,15 +364,15 @@ public class Packet extends Node {
 			if ((-16384 & value) != 0) {
 				if ((value & 0xFFE00000) != 0) {
 					if ((value & 0xF0000000) != 0) {
-						this.p1b(value >>> 28 | 0x80);
+						this.p1(value >>> 28 | 0x80);
 					}
-					this.p1b(value >>> 21 | 0x80);
+					this.p1(value >>> 21 | 0x80);
 				}
-				this.p1b(value >>> 14 | 0x80);
+				this.p1(value >>> 14 | 0x80);
 			}
-			this.p1b(value >>> 7 | 0x80);
+			this.p1(value >>> 7 | 0x80);
 		}
-		this.p1b(value & 0x7F);
+		this.p1(value & 0x7F);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "i", descriptor = "(II)J")
@@ -383,7 +383,7 @@ public class Packet extends Node {
 		}
 		@Pc(21) long value = 0L;
 		for (@Pc(25) int shift = bytes * 8; shift >= 0; shift -= 8) {
-			value |= ((long) this.data[this.pos++] & 0xFFL) << shift;
+			value |= ((long) this.data[this.position++] & 0xFFL) << shift;
 		}
 		return value;
 	}
@@ -402,80 +402,80 @@ public class Packet extends Node {
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(II[BI)V")
 	public final void gBytesRev(@OriginalArg(2) byte[] dest, @OriginalArg(1) int offset) {
 		for (@Pc(12) int i = offset - 1; i >= 0; i--) {
-			dest[i] = this.data[this.pos++];
+			dest[i] = this.data[this.position++];
 		}
 	}
 
 	@OriginalMember(owner = "client!wa", name = "j", descriptor = "(II)V")
 	public final void p4rme(@OriginalArg(0) int value) {
-		this.data[this.pos++] = (byte) (value >> 8);
-		this.data[this.pos++] = (byte) value;
-		this.data[this.pos++] = (byte) (value >> 24);
-		this.data[this.pos++] = (byte) (value >> 16);
+		this.data[this.position++] = (byte) (value >> 8);
+		this.data[this.position++] = (byte) value;
+		this.data[this.position++] = (byte) (value >> 24);
+		this.data[this.position++] = (byte) (value >> 16);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "e", descriptor = "(Z)Lclient!na;")
 	public final JString gjstr() {
-		@Pc(12) int start = this.pos;
-		while (this.data[this.pos++] != 0) {
+		@Pc(12) int start = this.position;
+		while (this.data[this.position++] != 0) {
 		}
-		return Static10.decodeString(this.data, this.pos - start - 1, start);
+		return Static10.decodeString(this.data, this.position - start - 1, start);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "f", descriptor = "(Z)I")
 	public final int gSmart1or2() {
-		@Pc(17) int value = this.data[this.pos] & 0xFF;
+		@Pc(17) int value = this.data[this.position] & 0xFF;
 		return value >= 128 ? this.g2() - 0x8000 : this.g1();
 	}
 
 	@OriginalMember(owner = "client!wa", name = "k", descriptor = "(II)V")
 	public final void p3(@OriginalArg(0) int value) {
-		this.data[this.pos++] = (byte) (value >> 16);
-		this.data[this.pos++] = (byte) (value >> 8);
-		this.data[this.pos++] = (byte) value;
+		this.data[this.position++] = (byte) (value >> 16);
+		this.data[this.position++] = (byte) (value >> 8);
+		this.data[this.position++] = (byte) value;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "k", descriptor = "(I)I")
 	public final int g4rme() {
-		this.pos += 4;
-		return ((this.data[this.pos - 2] & 0xFF) << 24) + ((this.data[this.pos - 1] & 0xFF) << 16) + ((this.data[this.pos - 4] & 0xFF) << 8) + (this.data[this.pos - 3] & 0xFF);
+		this.position += 4;
+		return ((this.data[this.position - 2] & 0xFF) << 24) + ((this.data[this.position - 1] & 0xFF) << 16) + ((this.data[this.position - 4] & 0xFF) << 8) + (this.data[this.position - 3] & 0xFF);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "k", descriptor = "(B)I")
 	public final int g2leadd() {
-		this.pos += 2;
-		return ((this.data[this.pos - 1] & 0xFF) << 8) + (this.data[this.pos - 2] - 128 & 0xFF);
+		this.position += 2;
+		return ((this.data[this.position - 1] & 0xFF) << 8) + (this.data[this.position - 2] - 128 & 0xFF);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "l", descriptor = "(I)I")
 	public final int g4me() {
-		this.pos += 4;
-		return ((this.data[this.pos - 2] & 0xFF) << 16) + ((this.data[this.pos - 1] & 0xFF) << 24) + ((this.data[this.pos - 3] & 0xFF) << 8) + (this.data[this.pos - 4] & 0xFF);
+		this.position += 4;
+		return ((this.data[this.position - 2] & 0xFF) << 16) + ((this.data[this.position - 1] & 0xFF) << 24) + ((this.data[this.position - 3] & 0xFF) << 8) + (this.data[this.position - 4] & 0xFF);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "l", descriptor = "(II)V")
 	public final void p2_alt2(@OriginalArg(0) int value) {
-		this.data[this.pos++] = (byte) (value >> 8);
-		this.data[this.pos++] = (byte) (value + 128);
+		this.data[this.position++] = (byte) (value >> 8);
+		this.data[this.position++] = (byte) (value + 128);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "b", descriptor = "(IB)V")
 	public final void p4_alt1(@OriginalArg(0) int value) {
-		this.data[this.pos++] = (byte) value;
-		this.data[this.pos++] = (byte) (value >> 8);
-		this.data[this.pos++] = (byte) (value >> 16);
-		this.data[this.pos++] = (byte) (value >> 24);
+		this.data[this.position++] = (byte) value;
+		this.data[this.position++] = (byte) (value >> 8);
+		this.data[this.position++] = (byte) (value >> 16);
+		this.data[this.position++] = (byte) (value >> 24);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "g", descriptor = "(Z)I")
 	public final int p1neg() {
-		return -this.data[this.pos++] & 0xFF;
+		return -this.data[this.position++] & 0xFF;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "l", descriptor = "(B)I")
 	public final int g2s() {
-		this.pos += 2;
-		@Pc(27) int value = ((this.data[this.pos - 2] & 0xFF) << 8) + (this.data[this.pos - 1] & 0xFF);
+		this.position += 2;
+		@Pc(27) int value = ((this.data[this.position - 2] & 0xFF) << 8) + (this.data[this.position - 1] & 0xFF);
 		if (value > 32767) {
 			value -= 0x10000;
 		}
@@ -484,8 +484,8 @@ public class Packet extends Node {
 
 	@OriginalMember(owner = "client!wa", name = "m", descriptor = "(I)I")
 	public final int g2lesadd() {
-		this.pos += 2;
-		@Pc(34) int value = ((this.data[this.pos - 1] & 0xFF) << 8) + (this.data[this.pos - 2] - 128 & 0xFF);
+		this.position += 2;
+		@Pc(34) int value = ((this.data[this.position - 1] & 0xFF) << 8) + (this.data[this.position - 2] - 128 & 0xFF);
 		if (value > 32767) {
 			value -= 0x10000;
 		}
@@ -494,18 +494,18 @@ public class Packet extends Node {
 
 	@OriginalMember(owner = "client!wa", name = "n", descriptor = "(I)B")
 	public final byte p1_alt3() {
-		return (byte) (this.data[this.pos++] - 128);
+		return (byte) (this.data[this.position++] - 128);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "m", descriptor = "(II)V")
 	public final void p1b_alt1(@OriginalArg(0) int value) {
-		this.data[this.pos++] = (byte) (value + 128);
+		this.data[this.position++] = (byte) (value + 128);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "m", descriptor = "(B)I")
 	public final int g2les() {
-		this.pos += 2;
-		@Pc(38) int value = (this.data[this.pos - 2] & 0xFF) + ((this.data[this.pos - 1] & 0xFF) << 8);
+		this.position += 2;
+		@Pc(38) int value = (this.data[this.position - 2] & 0xFF) + ((this.data[this.position - 1] & 0xFF) << 8);
 		if (value > 32767) {
 			value -= 0x10000;
 		}
@@ -514,68 +514,68 @@ public class Packet extends Node {
 
 	@OriginalMember(owner = "client!wa", name = "c", descriptor = "(BI)I")
 	public final int pCrc32(@OriginalArg(1) int off) {
-		@Pc(16) int checksum = getcrc(this.data, off, this.pos);
+		@Pc(16) int checksum = getcrc(this.data, off, this.position);
 		this.p4(checksum);
 		return checksum;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "n", descriptor = "(B)I")
 	public final int g3() {
-		this.pos += 3;
-		return ((this.data[this.pos - 3] & 0xFF) << 16) + ((this.data[this.pos - 2] << 8 & 0xFF00) + (this.data[this.pos - 1] & 0xFF));
+		this.position += 3;
+		return ((this.data[this.position - 3] & 0xFF) << 16) + ((this.data[this.position - 2] << 8 & 0xFF00) + (this.data[this.position - 1] & 0xFF));
 	}
 
 	@OriginalMember(owner = "client!wa", name = "n", descriptor = "(II)V")
 	public final void p2_alt1(@OriginalArg(1) int value) {
-		this.data[this.pos++] = (byte) value;
-		this.data[this.pos++] = (byte) (value >> 8);
+		this.data[this.position++] = (byte) value;
+		this.data[this.position++] = (byte) (value >> 8);
 	}
 
 	// range: -16384 to 16383
 	@OriginalMember(owner = "client!wa", name = "p", descriptor = "(I)I")
 	public final int gSmart1or2s() {
-		@Pc(11) int value = this.data[this.pos] & 0xFF;
+		@Pc(11) int value = this.data[this.position] & 0xFF;
 		return value < 128 ? this.g1() - 64 : this.g2() - 0xc000;
 	}
 
 	// reverse "middle-endian"
 	@OriginalMember(owner = "client!wa", name = "o", descriptor = "(B)I")
 	public final int p4rme() {
-		this.pos += 4;
-		return ((this.data[this.pos - 3] & 0xFF) << 24) + ((this.data[this.pos - 4] & 0xFF) << 16) + ((this.data[this.pos - 1] & 0xFF) << 8) + (this.data[this.pos - 2] & 0xFF);
+		this.position += 4;
+		return ((this.data[this.position - 3] & 0xFF) << 24) + ((this.data[this.position - 4] & 0xFF) << 16) + ((this.data[this.position - 1] & 0xFF) << 8) + (this.data[this.position - 2] & 0xFF);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(Ljava/math/BigInteger;Ljava/math/BigInteger;I)V")
 	public final void rsaenc(@OriginalArg(0) BigInteger exp, @OriginalArg(1) BigInteger mod) {
-		@Pc(2) int len = this.pos;
-		this.pos = 0;
+		@Pc(2) int len = this.position;
+		this.position = 0;
 		@Pc(8) byte[] plaintextBytes = new byte[len];
 		this.gdata(len, plaintextBytes);
 		@Pc(23) BigInteger plaintext = new BigInteger(plaintextBytes);
 		@Pc(28) BigInteger ciphertext = plaintext.modPow(exp, mod);
 		@Pc(38) byte[] ciphertextBytes = ciphertext.toByteArray();
-		this.pos = 0;
-		this.p1b(ciphertextBytes.length);
+		this.position = 0;
+		this.p1(ciphertextBytes.length);
 		this.pdata(ciphertextBytes, ciphertextBytes.length);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(IF)V")
 	public final void pFloat(@OriginalArg(1) float value) {
 		@Pc(6) int floatInt = Float.floatToRawIntBits(value);
-		this.data[this.pos++] = (byte) (floatInt >> 24);
-		this.data[this.pos++] = (byte) (floatInt >> 16);
-		this.data[this.pos++] = (byte) (floatInt >> 8);
-		this.data[this.pos++] = (byte) floatInt;
+		this.data[this.position++] = (byte) (floatInt >> 24);
+		this.data[this.position++] = (byte) (floatInt >> 16);
+		this.data[this.position++] = (byte) (floatInt >> 8);
+		this.data[this.position++] = (byte) floatInt;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "p", descriptor = "(B)I")
 	public final int g1() {
-		return this.data[this.pos++] & 0xFF;
+		return this.data[this.position++] & 0xFF;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "o", descriptor = "(II)V")
 	public final void p2(@OriginalArg(1) int value) {
-		this.data[this.pos++] = (byte) (value >> 8);
-		this.data[this.pos++] = (byte) value;
+		this.data[this.position++] = (byte) (value >> 8);
+		this.data[this.position++] = (byte) value;
 	}
 }

@@ -15,12 +15,12 @@ public final class Js5NetRequest extends Js5Request {
 	public byte offset;
 
 	@OriginalMember(owner = "client!pm", name = "Z", descriptor = "I")
-	public int anInt4617;
+	public int blockPosition;
 
 	@OriginalMember(owner = "client!pm", name = "b", descriptor = "(Z)[B")
 	@Override
 	public byte[] getBytes() {
-		if (this.awaitingResponse || this.packet.pos < this.packet.data.length - this.offset) {
+		if (this.awaitingResponse || this.packet.position < this.packet.data.length - this.offset) {
 			throw new RuntimeException("Not ready!");
 		}
 		return this.packet.data;
@@ -29,6 +29,6 @@ public final class Js5NetRequest extends Js5Request {
 	@OriginalMember(owner = "client!pm", name = "a", descriptor = "(Z)I")
 	@Override
 	public int getPercentageComplete() {
-		return this.packet == null ? 0 : this.packet.pos * 100 / (this.packet.data.length - this.offset);
+		return this.packet == null ? 0 : this.packet.position * 100 / (this.packet.data.length - this.offset);
 	}
 }

@@ -262,7 +262,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 					if (this.index.groupSizes[this.anInt578] == 0) {
 						this.anInt578++;
 					} else {
-						if (this.tcpClient.method2316()) {
+						if (this.tcpClient.isPrefetchRequestQueueFull()) {
 							local32 = false;
 							break;
 						}
@@ -345,7 +345,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				if (this.aByteArray9[group] != -1) {
 					throw new RuntimeException("fetchgroup_inner - PREFETCH requested, but cache isn't known invalid!");
 				}
-				if (this.tcpClient.method2316()) {
+				if (this.tcpClient.isPrefetchRequestQueueFull()) {
 					return null;
 				}
 				request = this.tcpClient.method2330(this.anInt576, (byte) 2, group, false);

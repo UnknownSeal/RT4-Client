@@ -290,16 +290,16 @@ public final class Static193 {
 		@Pc(27) int local27 = Static84.anIntArray209[arg0];
 		if (arg1 == 0) {
 			Static6.outboundBuffer.pIsaac1(215);
-			Static6.outboundBuffer.p1b(local13 + local13 + 3);
+			Static6.outboundBuffer.p1(local13 + local13 + 3);
 			System.out.println("Steps: " + (local13 + local13 + 3));
 		}
 		if (arg1 == 1) {
 			Static6.outboundBuffer.pIsaac1(39);
-			Static6.outboundBuffer.p1b(local13 + local13 + 3 + 14);
+			Static6.outboundBuffer.p1(local13 + local13 + 3 + 14);
 		}
 		if (arg1 == 2) {
 			Static6.outboundBuffer.pIsaac1(77);
-			Static6.outboundBuffer.p1b(local13 + local13 + 3);
+			Static6.outboundBuffer.p1(local13 + local13 + 3);
 		}
 		Static6.outboundBuffer.p1b_alt1(Static187.pressedKeys[82] ? 1 : 0);
 		System.out.println("InvertRun: " + (Static187.pressedKeys[82] ? 1 : 0) );

@@ -217,7 +217,7 @@ public final class LocMergeEntity {
 						this.models[i] = packet.g1();
 					}
 				} else {
-					packet.pos += count * 3;
+					packet.position += count * 3;
 				}
 			}
 		} else if (code == 2) {
@@ -232,7 +232,7 @@ public final class LocMergeEntity {
 						this.shapes[index] = packet.g2();
 					}
 				} else {
-					packet.pos += length * 2;
+					packet.position += length * 2;
 				}
 			}
 		} else if (code == 14) {

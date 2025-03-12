@@ -63,10 +63,10 @@ public final class Static196 {
 				} else {
 					Static257.method526(Static250.anInt5441, Static130.aClass153_47, 255);
 				}
-				client.js5NetQueue.method2322(false);
+				client.js5NetQueue.writeLoggedIn(false);
 			} else {
 				Static29.method801();
-				client.js5NetQueue.method2322(true);
+				client.js5NetQueue.writeLoggedIn(true);
 			}
 		}
 		if (GlRenderer.enabled && (arg0 == 25 || arg0 == 28 || arg0 == 40)) {

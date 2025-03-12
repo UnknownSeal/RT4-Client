@@ -981,7 +981,7 @@ public final class Component {
 	@OriginalMember(owner = "client!be", name = "c", descriptor = "(ILclient!wa;)V")
 	public void method490(@OriginalArg(1) Packet arg0) {
 		this.aBoolean32 = true;
-		arg0.pos++;
+		arg0.position++;
 		this.anInt452 = arg0.g1();
 		if ((this.anInt452 & 0x80) != 0) {
 			this.anInt452 &= 0x7F;

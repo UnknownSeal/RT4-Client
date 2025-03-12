@@ -58,10 +58,10 @@ public final class Static216 {
 				Static124.socket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
 				Static72.aClass212_3 = null;
 				@Pc(106) long local106 = Static101.aLong98 = Static186.username.toBase37();
-				Static6.outboundBuffer.pos = 0;
-				Static6.outboundBuffer.p1b(14);
+				Static6.outboundBuffer.position = 0;
+				Static6.outboundBuffer.p1(14);
 				@Pc(120) int local120 = (int) (local106 >> 16 & 0x1FL);
-				Static6.outboundBuffer.p1b(local120);
+				Static6.outboundBuffer.p1(local120);
 				Static124.socket.write(2, Static6.outboundBuffer.data);
 				if (Static11.aClass62_1 != null) {
 					Static11.aClass62_1.method3571();
@@ -90,15 +90,15 @@ public final class Static216 {
 					return;
 				}
 				Static124.socket.read(0, 8, Static57.in.data);
-				Static57.in.pos = 0;
+				Static57.in.position = 0;
 				Static193.aLong147 = Static57.in.g8();
 				@Pc(210) int[] seed = new int[4];
-				Static6.outboundBuffer.pos = 0;
+				Static6.outboundBuffer.position = 0;
 				seed[2] = (int) (Static193.aLong147 >> 32);
 				seed[3] = (int) Static193.aLong147;
 				seed[1] = (int) (Math.random() * 9.9999999E7D);
 				seed[0] = (int) (Math.random() * 9.9999999E7D);
-				Static6.outboundBuffer.p1b(10);
+				Static6.outboundBuffer.p1(10);
 				Static6.outboundBuffer.p4(seed[0]);
 				Static6.outboundBuffer.p4(seed[1]);
 				Static6.outboundBuffer.p4(seed[2]);
@@ -106,22 +106,22 @@ public final class Static216 {
 				Static6.outboundBuffer.p8(Static186.username.toBase37());
 				Static6.outboundBuffer.pjstr(Static186.password);
 				Static6.outboundBuffer.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
-				Static17.aClass3_Sub15_Sub1_2.pos = 0;
+				Static17.aClass3_Sub15_Sub1_2.position = 0;
 				if (Static244.gamestate == 40) {
-					Static17.aClass3_Sub15_Sub1_2.p1b(18);
+					Static17.aClass3_Sub15_Sub1_2.p1(18);
 				} else {
-					Static17.aClass3_Sub15_Sub1_2.p1b(16);
+					Static17.aClass3_Sub15_Sub1_2.p1(16);
 				}
 
-				Static17.aClass3_Sub15_Sub1_2.p2(Static6.outboundBuffer.pos + Static229.method3937(Static47.aClass100_991) + 159);
+				Static17.aClass3_Sub15_Sub1_2.p2(Static6.outboundBuffer.position + Static229.method3937(Static47.aClass100_991) + 159);
 				Static17.aClass3_Sub15_Sub1_2.p4(530);
-				Static17.aClass3_Sub15_Sub1_2.p1b(Static5.anInt39);
-				Static17.aClass3_Sub15_Sub1_2.p1b(Static249.aBoolean282 ? 1 : 0);
-				Static17.aClass3_Sub15_Sub1_2.p1b(1);
-				Static17.aClass3_Sub15_Sub1_2.p1b(Static144.method2736());
+				Static17.aClass3_Sub15_Sub1_2.p1(Static5.anInt39);
+				Static17.aClass3_Sub15_Sub1_2.p1(Static249.aBoolean282 ? 1 : 0);
+				Static17.aClass3_Sub15_Sub1_2.p1(1);
+				Static17.aClass3_Sub15_Sub1_2.p1(Static144.method2736());
 				Static17.aClass3_Sub15_Sub1_2.p2(Static48.canvasWidth);
 				Static17.aClass3_Sub15_Sub1_2.p2(Static254.canvasHeigth);
-				Static17.aClass3_Sub15_Sub1_2.p1b(Static186.antialiasingMode);
+				Static17.aClass3_Sub15_Sub1_2.p1(Static186.antialiasingMode);
 				Static140.method2705(Static17.aClass3_Sub15_Sub1_2);
 				Static17.aClass3_Sub15_Sub1_2.pjstr(Static47.aClass100_991);
 				Static17.aClass3_Sub15_Sub1_2.p4(Static204.anInt4760);
@@ -156,8 +156,8 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.p4(Static28.aClass153_18.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static167.aClass153_63.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static226.aClass153_93.getChecksum());
-				Static17.aClass3_Sub15_Sub1_2.pdata(Static6.outboundBuffer.data, Static6.outboundBuffer.pos);
-				Static124.socket.write(Static17.aClass3_Sub15_Sub1_2.pos, Static17.aClass3_Sub15_Sub1_2.data);
+				Static17.aClass3_Sub15_Sub1_2.pdata(Static6.outboundBuffer.data, Static6.outboundBuffer.position);
+				Static124.socket.write(Static17.aClass3_Sub15_Sub1_2.position, Static17.aClass3_Sub15_Sub1_2.data);
 				Static6.outboundBuffer.Isaac(seed);
 				for (@Pc(583) int i = 0; i < 4; i++) {
 					seed[i] += 50;
@@ -200,9 +200,9 @@ public final class Static216 {
 				}
 			}
 			if (Static184.anInt4348 == 6) {
-				Static6.outboundBuffer.pos = 0;
+				Static6.outboundBuffer.position = 0;
 				Static6.outboundBuffer.pIsaac1(17);
-				Static124.socket.write(Static6.outboundBuffer.pos, Static6.outboundBuffer.data);
+				Static124.socket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
 				Static184.anInt4348 = 4;
 				return;
 			}
@@ -233,7 +233,7 @@ public final class Static216 {
 					return;
 				}
 				Static124.socket.read(0, 14, Static57.in.data);
-				Static57.in.pos = 0;
+				Static57.in.position = 0;
 				Static191.staffModLevel = Static57.in.g1();
 				Static249.anInt5431 = Static57.in.g1();
 				Static124.aBoolean157 = Static57.in.g1() == 1;
@@ -267,7 +267,7 @@ public final class Static216 {
 				if (Static124.socket.available() < Static223.packetSize) {
 					return;
 				}
-				Static57.in.pos = 0;
+				Static57.in.position = 0;
 				Static124.socket.read(0, Static223.packetSize, Static57.in.data);
 				Static266.anInt5336 = 2;
 				Static184.anInt4348 = 0;

@@ -83,7 +83,7 @@ public final class Static31 {
 				}
 				Static124.socket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
 				Static72.aClass212_3 = null;
-				Static124.socket.write(Static6.outboundBuffer.pos, Static6.outboundBuffer.data);
+				Static124.socket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
 				if (Static11.aClass62_1 != null) {
 					Static11.aClass62_1.method3571();
 				}

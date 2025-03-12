@@ -661,7 +661,7 @@ public final class client extends GameShell {
 			if (Static4.js5ConnectState == 2) {
 				Static206.js5Socket = new BufferedSocket((Socket) Static37.js5SocketRequest.result, GameShell.signLink);
 				@Pc(194) Packet packet = new Packet(5);
-				packet.p1b(15);
+				packet.p1(15);
 				packet.p4(530);
 				Static206.js5Socket.write(5, packet.data);
 				Static4.js5ConnectState++;

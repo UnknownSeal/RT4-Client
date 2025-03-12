@@ -42,8 +42,8 @@ public final class Static64 {
 				Static159.players[index] = null;
 			}
 		}
-		if (Static223.packetSize != Static57.in.pos) {
-			throw new RuntimeException("gpp1 pos:" + Static57.in.pos + " psize:" + Static223.packetSize);
+		if (Static223.packetSize != Static57.in.position) {
+			throw new RuntimeException("gpp1 pos:" + Static57.in.position + " psize:" + Static223.packetSize);
 		}
 		for (i = 0; i < Static267.playerCount; i++) {
 			if (Static159.players[Static105.playerIds[i]] == null) {

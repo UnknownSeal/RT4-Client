@@ -194,17 +194,17 @@ public final class Static103 {
 				if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
 					Static61.teleport(Static225.originX + local15, Static142.originZ + local19, Static55.currentLevel);
 				} else if (Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 0, true, 0, local15, 0, 0, 1, local19, Static173.localPlayer.pathTileX[0])) {
-					Static6.outboundBuffer.p1b(Static1.anInt5);
-					Static6.outboundBuffer.p1b(Static107.anInt2878);
+					Static6.outboundBuffer.p1(Static1.anInt5);
+					Static6.outboundBuffer.p1(Static107.anInt2878);
 					Static6.outboundBuffer.p2(Static57.orbitCameraYaw);
-					Static6.outboundBuffer.p1b(57);
-					Static6.outboundBuffer.p1b(Static59.minimapAnticheatAngle);
-					Static6.outboundBuffer.p1b(Static273.minimapZoom);
-					Static6.outboundBuffer.p1b(89);
+					Static6.outboundBuffer.p1(57);
+					Static6.outboundBuffer.p1(Static59.minimapAnticheatAngle);
+					Static6.outboundBuffer.p1(Static273.minimapZoom);
+					Static6.outboundBuffer.p1(89);
 					Static6.outboundBuffer.p2(Static173.localPlayer.x);
 					Static6.outboundBuffer.p2(Static173.localPlayer.z);
-					Static6.outboundBuffer.p1b(BZip2State.tryMoveNearest);
-					Static6.outboundBuffer.p1b(63);
+					Static6.outboundBuffer.p1(BZip2State.tryMoveNearest);
+					Static6.outboundBuffer.p1(63);
 				}
 			}
 		}

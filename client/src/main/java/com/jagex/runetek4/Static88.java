@@ -1342,7 +1342,7 @@ public final class Static88 {
 										local26--;
 										chatTyped = Static3.scriptStringValues[local26];
 										Static6.outboundBuffer.pIsaac1(65);
-										Static6.outboundBuffer.p1b(chatTyped.length() + 1);
+										Static6.outboundBuffer.p1(chatTyped.length() + 1);
 										Static6.outboundBuffer.pjstr(chatTyped);
 										continue;
 									}
@@ -2269,9 +2269,9 @@ public final class Static88 {
 													Static49.anInt1459 = Static254.scriptIntValues[intValueIndex + 1];
 													Static84.anInt2256 = Static254.scriptIntValues[intValueIndex + 2];
 													Static6.outboundBuffer.pIsaac1(157);
-													Static6.outboundBuffer.p1b(Static59.anInt1812);
-													Static6.outboundBuffer.p1b(Static49.anInt1459);
-													Static6.outboundBuffer.p1b(Static84.anInt2256);
+													Static6.outboundBuffer.p1(Static59.anInt1812);
+													Static6.outboundBuffer.p1(Static49.anInt1459);
+													Static6.outboundBuffer.p1(Static84.anInt2256);
 													continue;
 												}
 												if (scriptOpcode == 5002) {
@@ -2282,8 +2282,8 @@ public final class Static88 {
 													childCount = Static254.scriptIntValues[intValueIndex + 1];
 													Static6.outboundBuffer.pIsaac1(99);
 													Static6.outboundBuffer.p8(chatTyped.toBase37());
-													Static6.outboundBuffer.p1b(interfaceType - 1);
-													Static6.outboundBuffer.p1b(childCount);
+													Static6.outboundBuffer.p1(interfaceType - 1);
+													Static6.outboundBuffer.p1(childCount);
 													continue;
 												}
 												if (scriptOpcode == 5003) {
@@ -2433,12 +2433,12 @@ public final class Static88 {
 															}
 														}
 														Static6.outboundBuffer.pIsaac1(237);
-														Static6.outboundBuffer.p1b(0);
-														start = Static6.outboundBuffer.pos;
-														Static6.outboundBuffer.p1b(color);
-														Static6.outboundBuffer.p1b(effect);
+														Static6.outboundBuffer.p1(0);
+														start = Static6.outboundBuffer.position;
+														Static6.outboundBuffer.p1(color);
+														Static6.outboundBuffer.p1(effect);
 														Static146.method2748(Static6.outboundBuffer, chatTyped);
-														Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - start);
+														Static6.outboundBuffer.p1len(Static6.outboundBuffer.position - start);
 														continue;
 													}
 													Static127.method2470(chatTyped);
@@ -2450,11 +2450,11 @@ public final class Static88 {
 													chatTyped = Static3.scriptStringValues[local26];
 													if (Static191.staffModLevel != 0 || (!Static124.aBoolean157 || Static207.parentalChatConsent) && !Static86.aBoolean129) {
 														Static6.outboundBuffer.pIsaac1(201);
-														Static6.outboundBuffer.p1b(0);
-														childCount = Static6.outboundBuffer.pos;
+														Static6.outboundBuffer.p1(0);
+														childCount = Static6.outboundBuffer.position;
 														Static6.outboundBuffer.p8(chatTyped.toBase37());
 														Static146.method2748(Static6.outboundBuffer, chatTypedLowercase);
-														Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - childCount);
+														Static6.outboundBuffer.p1len(Static6.outboundBuffer.position - childCount);
 													}
 													continue;
 												}
@@ -2590,34 +2590,34 @@ public final class Static88 {
 												}
 												if (scriptOpcode == 5059) {
 													Static6.outboundBuffer.pIsaac1(167);
-													Static6.outboundBuffer.p1b(0);
-													interfaceData = Static6.outboundBuffer.pos;
-													Static6.outboundBuffer.p1b(0);
+													Static6.outboundBuffer.p1(0);
+													interfaceData = Static6.outboundBuffer.position;
+													Static6.outboundBuffer.p1(0);
 													Static6.outboundBuffer.p2(Static122.aQuickChatPhrase_1.anInt439);
 													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aQuickChatPhrase_1.anIntArray33);
-													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - interfaceData);
+													Static6.outboundBuffer.p1len(Static6.outboundBuffer.position - interfaceData);
 													continue;
 												}
 												if (scriptOpcode == 5060) {
 													local26--;
 													chatTyped = Static3.scriptStringValues[local26];
 													Static6.outboundBuffer.pIsaac1(178);
-													Static6.outboundBuffer.p1b(0);
-													interfaceType = Static6.outboundBuffer.pos;
+													Static6.outboundBuffer.p1(0);
+													interfaceType = Static6.outboundBuffer.position;
 													Static6.outboundBuffer.p8(chatTyped.toBase37());
 													Static6.outboundBuffer.p2(Static122.aQuickChatPhrase_1.anInt439);
 													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aQuickChatPhrase_1.anIntArray33);
-													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - interfaceType);
+													Static6.outboundBuffer.p1len(Static6.outboundBuffer.position - interfaceType);
 													continue;
 												}
 												if (scriptOpcode == 5061) {
 													Static6.outboundBuffer.pIsaac1(167);
-													Static6.outboundBuffer.p1b(0);
-													interfaceData = Static6.outboundBuffer.pos;
-													Static6.outboundBuffer.p1b(1);
+													Static6.outboundBuffer.p1(0);
+													interfaceData = Static6.outboundBuffer.position;
+													Static6.outboundBuffer.p1(1);
 													Static6.outboundBuffer.p2(Static122.aQuickChatPhrase_1.anInt439);
 													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aQuickChatPhrase_1.anIntArray33);
-													Static6.outboundBuffer.p1len(Static6.outboundBuffer.pos - interfaceData);
+													Static6.outboundBuffer.p1len(Static6.outboundBuffer.position - interfaceData);
 													continue;
 												}
 												if (scriptOpcode == 5062) {
@@ -2868,7 +2868,7 @@ public final class Static88 {
 														chatTypedLowercase = Static3.scriptStringValues[local26];
 														local7566 = false;
 														@Pc(7577) SecondaryLinkedList local7577 = Static183.method3333(interfaceData >> 14 & 0x3FFF, interfaceData & 0x3FFF);
-														for (@Pc(7582) Map local7582 = (Map) local7577.method795(); local7582 != null; local7582 = (Map) local7577.prev()) {
+														for (@Pc(7582) Map local7582 = (Map) local7577.head(); local7582 != null; local7582 = (Map) local7577.prev()) {
 															if (local7582.aClass100_138.equalsIgnoreCase(chatTypedLowercase)) {
 																local7566 = true;
 																break;
@@ -2993,10 +2993,10 @@ public final class Static88 {
 														intValueIndex--;
 														childCount = Static254.scriptIntValues[intValueIndex];
 														Static6.outboundBuffer.pIsaac1(117);
-														Static6.outboundBuffer.p1b(Static229.method3937(chatTyped) + Static229.method3937(chatTypedLowercase) + 1);
+														Static6.outboundBuffer.p1(Static229.method3937(chatTyped) + Static229.method3937(chatTypedLowercase) + 1);
 														Static6.outboundBuffer.pjstr(chatTyped);
 														Static6.outboundBuffer.pjstr(chatTypedLowercase);
-														Static6.outboundBuffer.p1b(childCount);
+														Static6.outboundBuffer.p1(childCount);
 														continue;
 													}
 													if (scriptOpcode == 5401) {

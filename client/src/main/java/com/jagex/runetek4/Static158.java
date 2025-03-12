@@ -65,7 +65,7 @@ public final class Static158 {
 				}
 				Static124.socket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
 				Static72.aClass212_3 = null;
-				Static124.socket.write(Static6.outboundBuffer.pos, Static6.outboundBuffer.data);
+				Static124.socket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
 				if (Static11.aClass62_1 != null) {
 					Static11.aClass62_1.method3571();
 				}
@@ -99,7 +99,7 @@ public final class Static158 {
 				if (Static124.socket.available() < Static229.aClass100Array156.length * 8) {
 					return;
 				}
-				Static57.in.pos = 0;
+				Static57.in.position = 0;
 				Static124.socket.read(0, Static229.aClass100Array156.length * 8, Static57.in.data);
 				for (local120 = 0; local120 < Static229.aClass100Array156.length; local120++) {
 					Static229.aClass100Array156[local120] = Static79.decode37(Static57.in.g8());
@@ -154,7 +154,7 @@ public final class Static158 {
 				}
 				@Pc(67) int local67 = 0;
 				@Pc(74) Packet local74 = new Packet(Static191.aByteArrayArray15[local16]);
-				while (local74.pos < Static191.aByteArrayArray15[local16].length && local67 < 511) {
+				while (local74.position < Static191.aByteArrayArray15[local16].length && local67 < 511) {
 					@Pc(97) int local97 = local67++ << 6 | local25;
 					@Pc(103) int local103 = local74.g2();
 					@Pc(107) int local107 = local103 >> 14;

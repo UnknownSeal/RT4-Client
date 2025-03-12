@@ -33,7 +33,7 @@ public final class SecondaryLinkedList {
 	}
 
 	@OriginalMember(owner = "client!ce", name = "b", descriptor = "(B)Lclient!rg;")
-	public SecondaryNode method795() {
+	public SecondaryNode head() {
 		@Pc(3) SecondaryNode node = this.head.secondaryPrev;
 		if (this.head == node) {
 			this.peeked = null;

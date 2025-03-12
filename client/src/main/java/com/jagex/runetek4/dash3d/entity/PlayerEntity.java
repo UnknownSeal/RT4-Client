@@ -92,7 +92,7 @@ public final class PlayerEntity extends PathingEntity {
 
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(ILclient!wa;)V")
 	public void read(@OriginalArg(1) Packet arg0) {
-		arg0.pos = 0;
+		arg0.position = 0;
 		@Pc(20) int local20 = arg0.g1();
 		@Pc(22) int local22 = -1;
 		@Pc(26) int local26 = local20 & 0x1;

@@ -53,10 +53,10 @@ public final class ClientScript extends SecondaryNode {
 		}
 		clientScript = new ClientScript();
 		@Pc(42) Packet local42 = new Packet(local22);
-		local42.pos = local42.data.length - 2;
+		local42.position = local42.data.length - 2;
 		@Pc(53) int local53 = local42.g2();
 		@Pc(63) int local63 = local42.data.length - local53 - 12 - 2;
-		local42.pos = local63;
+		local42.position = local63;
 		@Pc(70) int opcodeCount = local42.g4();
 		clientScript.anInt4667 = local42.g2();
 		clientScript.anInt4671 = local42.g2();
@@ -78,13 +78,13 @@ public final class ClientScript extends SecondaryNode {
 				}
 			}
 		}
-		local42.pos = 0;
+		local42.position = 0;
 		clientScript.aClass100_880 = local42.gjstrFast();
 		clientScript.opcodes = new int[opcodeCount];
 		clientScript.stringOperands = new JString[opcodeCount];
 		local107 = 0;
 		clientScript.intOperands = new int[opcodeCount];
-		while (local63 > local42.pos) {
+		while (local63 > local42.position) {
 			opcode = local42.g2();
 			if (opcode == 3) {
 				clientScript.stringOperands[local107] = local42.gjstr();

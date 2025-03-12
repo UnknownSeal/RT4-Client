@@ -171,14 +171,14 @@ public final class Static127 {
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(B)Lclient!da;")
 	public static DelayedStateChange poll() {
-		@Pc(10) DelayedStateChange local10 = (DelayedStateChange) Static215.aClass16_9.method795();
+		@Pc(10) DelayedStateChange local10 = (DelayedStateChange) Static215.aClass16_9.head();
 		if (local10 != null) {
 			local10.unlink();
 			local10.secondaryRemove();
 			return local10;
 		}
 		do {
-			local10 = (DelayedStateChange) Static140.aClass16_7.method795();
+			local10 = (DelayedStateChange) Static140.aClass16_7.head();
 			if (local10 == null) {
 				return null;
 			}
@@ -371,7 +371,7 @@ public final class Static127 {
 			}
 		}
 		Static6.outboundBuffer.pIsaac1(44);
-		Static6.outboundBuffer.p1b(chatTyped.length() - 1);
+		Static6.outboundBuffer.p1(chatTyped.length() - 1);
 		Static6.outboundBuffer.pjstr(chatTyped.substring(2));
 	}
 }

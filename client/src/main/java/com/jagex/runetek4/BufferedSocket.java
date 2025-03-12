@@ -179,7 +179,7 @@ public final class BufferedSocket implements Runnable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ma", name = "d", descriptor = "(I)V")
-	public final void method2832() throws IOException {
+	public final void checkError() throws IOException {
 		if (!this.aBoolean177 && this.aBoolean178) {
 			this.aBoolean178 = false;
 			throw new IOException();

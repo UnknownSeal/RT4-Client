@@ -28,7 +28,7 @@ public final class Static75 {
 		@Pc(169) int local169;
 		if (!Static230.aBoolean250) {
 			local13 = Static57.in.g2sub();
-			local20 = (Static223.packetSize - Static57.in.pos) / 16;
+			local20 = (Static223.packetSize - Static57.in.position) / 16;
 			Static72.anIntArrayArray14 = new int[local20][4];
 			for (local26 = 0; local26 < local20; local26++) {
 				for (local31 = 0; local31 < 4; local31++) {
@@ -99,7 +99,7 @@ public final class Static75 {
 			}
 		}
 		Static57.in.accessBytes();
-		local60 = (Static223.packetSize - Static57.in.pos) / 16;
+		local60 = (Static223.packetSize - Static57.in.position) / 16;
 		Static72.anIntArrayArray14 = new int[local60][4];
 		for (local64 = 0; local64 < local60; local64++) {
 			for (local391 = 0; local391 < 4; local391++) {

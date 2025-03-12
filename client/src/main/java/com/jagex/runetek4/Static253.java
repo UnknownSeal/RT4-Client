@@ -159,7 +159,7 @@ public final class Static253 {
 		Static5.cameraY = local57;
 		Static138.cameraX = pitch;
 		Static184.cameraYaw = cameraYaw;
-		if (Static19.aBoolean43 && client.js5NetQueue.getTotalUrgents() == 0) {
+		if (Static19.aBoolean43 && client.js5NetQueue.getUrgentRequestCount() == 0) {
 			Static19.aBoolean43 = false;
 		}
 		if (Static19.aBoolean43) {

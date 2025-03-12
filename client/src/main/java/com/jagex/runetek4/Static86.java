@@ -54,8 +54,8 @@ public final class Static86 {
 				Static175.npcs[local30] = null;
 			}
 		}
-		if (Static223.packetSize != Static57.in.pos) {
-			throw new RuntimeException("gnp1 pos:" + Static57.in.pos + " psize:" + Static223.packetSize);
+		if (Static223.packetSize != Static57.in.position) {
+			throw new RuntimeException("gnp1 pos:" + Static57.in.position + " psize:" + Static223.packetSize);
 		}
 		for (i = 0; i < Static272.npcCount; i++) {
 			if (Static175.npcs[Static33.npcIds[i]] == null) {
