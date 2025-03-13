@@ -204,7 +204,7 @@ public final class Static197 {
 		if (Static154.topLevelInterace != -1) {
 			Static210.method3712(true);
 		}
-		if (Static124.socket != null && (Static244.gamestate == 30 || Static244.gamestate == 25)) {
+		if (Static124.gameServerSocket != null && (Static244.gamestate == 30 || Static244.gamestate == 25)) {
 			Static59.method1373();
 		}
 		for (@Pc(466) int local466 = 0; local466 < 100; local466++) {

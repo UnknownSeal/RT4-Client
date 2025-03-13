@@ -12,7 +12,7 @@ public final class Static220 {
 	public static int cameraOffsetYawModifier = 1;
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "d", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_28 = new SoftLruHashTable(64);
+	public static final NodeCache aClass99_28 = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "g", descriptor = "Z")
 	public static boolean aBoolean244 = true;

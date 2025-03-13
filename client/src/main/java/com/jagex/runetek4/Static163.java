@@ -23,7 +23,7 @@ public final class Static163 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(B)V")
-	public static void method3097() {
+	public static void disposeLoadingText() {
 		Static240.aFontMetrics1 = null;
 		Static222.aFont1 = null;
 		Static149.anImage3 = null;

@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.config.NPCType;
@@ -45,7 +46,7 @@ public final class Static103 {
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static25.y = Static60.mouseClickY;
 				Static6.outboundBuffer.pIsaac1(71);
 				Static6.outboundBuffer.p2_alt3(a);
@@ -75,7 +76,7 @@ public final class Static103 {
 			npc = Static175.npcs[a];
 			if (npc != null) {
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, npc.pathTileX[0], 1, 0, 2, npc.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
 				Static25.y = Static60.mouseClickY;
@@ -87,7 +88,7 @@ public final class Static103 {
 			npc = Static175.npcs[a];
 			if (npc != null) {
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, npc.pathTileX[0], 1, 0, 2, npc.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
 				Static25.y = Static60.mouseClickY;
@@ -99,7 +100,7 @@ public final class Static103 {
 			local43 = Static159.players[a];
 			if (local43 != null) {
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static70.crossMode = 2;
 				Static25.y = Static60.mouseClickY;
 				Static17.crossCycle = 0;
@@ -130,7 +131,7 @@ public final class Static103 {
 			npc = Static175.npcs[a];
 			if (npc != null) {
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, npc.pathTileX[0], 1, 0, 2, npc.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
 				Static25.y = Static60.mouseClickY;
@@ -150,7 +151,7 @@ public final class Static103 {
 					Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.pathTileX[0]);
 				}
 			}
-			Static122.x = VarpDefinition.mouseClickX;
+			Static122.x = aClass6.mouseClickX;
 			Static17.crossCycle = 0;
 			Static70.crossMode = 2;
 			Static25.y = Static60.mouseClickY;
@@ -168,7 +169,7 @@ public final class Static103 {
 		}
 		if (local23 == 1002) {
 			Static70.crossMode = 2;
-			Static122.x = VarpDefinition.mouseClickX;
+			Static122.x = aClass6.mouseClickX;
 			Static25.y = Static60.mouseClickY;
 			Static17.crossCycle = 0;
 			Static6.outboundBuffer.pIsaac1(92);
@@ -212,7 +213,7 @@ public final class Static103 {
 			Static17.crossCycle = 0;
 			Static70.crossMode = 2;
 			Static25.y = Static60.mouseClickY;
-			Static122.x = VarpDefinition.mouseClickX;
+			Static122.x = aClass6.mouseClickX;
 			npc = Static175.npcs[a];
 			if (npc != null) {
 				@Pc(884) NPCType local884 = npc.type;
@@ -251,7 +252,7 @@ public final class Static103 {
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
 				Static70.crossMode = 2;
 				Static25.y = Static60.mouseClickY;
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static17.crossCycle = 0;
 				Static6.outboundBuffer.pIsaac1(4);
 				Static6.outboundBuffer.p2_alt1(a);
@@ -294,7 +295,7 @@ public final class Static103 {
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
 				Static25.y = Static60.mouseClickY;
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static6.outboundBuffer.pIsaac1(114);
 				Static6.outboundBuffer.p2_alt3(a);
 			}
@@ -321,7 +322,7 @@ public final class Static103 {
 				}
 			}
 			Static70.crossMode = 2;
-			Static122.x = VarpDefinition.mouseClickX;
+			Static122.x = aClass6.mouseClickX;
 			Static17.crossCycle = 0;
 			Static25.y = Static60.mouseClickY;
 			Static6.outboundBuffer.pIsaac1(228);
@@ -336,7 +337,7 @@ public final class Static103 {
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
 				Static25.y = Static60.mouseClickY;
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static6.outboundBuffer.pIsaac1(148);
 				Static6.outboundBuffer.p2_alt2(a);
 			}
@@ -367,7 +368,7 @@ public final class Static103 {
 				Static25.y = Static60.mouseClickY;
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static6.outboundBuffer.pIsaac1(180);
 				Static6.outboundBuffer.p2_alt3(a);
 			}
@@ -387,7 +388,7 @@ public final class Static103 {
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static25.y = Static60.mouseClickY;
 				Static6.outboundBuffer.pIsaac1(195);
 				Static6.outboundBuffer.p2_alt2(Static15.anInt506);
@@ -404,7 +405,7 @@ public final class Static103 {
 					Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.pathTileX[0]);
 				}
 			}
-			Static122.x = VarpDefinition.mouseClickX;
+			Static122.x = aClass6.mouseClickX;
 			Static70.crossMode = 2;
 			Static25.y = Static60.mouseClickY;
 			Static17.crossCycle = 0;
@@ -428,7 +429,7 @@ public final class Static103 {
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, npc.pathTileX[0], 1, 0, 2, npc.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
 				Static25.y = Static60.mouseClickY;
 				Static70.crossMode = 2;
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static17.crossCycle = 0;
 				Static6.outboundBuffer.pIsaac1(218);
 				Static6.outboundBuffer.p2_alt1(a);
@@ -441,9 +442,9 @@ public final class Static103 {
 			com = Static5.getComponent(local19);
 			if (com.scripts != null && com.scripts[0][0] == 5) {
 				varp = com.scripts[0][1];
-				if (VarpDefinition.varps[varp] != com.scriptOperand[0]) {
-					VarpDefinition.varps[varp] = com.scriptOperand[0];
-					Static85.method1775(varp);
+				if (VarPlayerDefinition.varPlayers[varp] != com.scriptOperand[0]) {
+					VarPlayerDefinition.varPlayers[varp] = com.scriptOperand[0];
+					Static85.handleVarps(varp);
 				}
 			}
 		}
@@ -454,7 +455,7 @@ public final class Static103 {
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
 				Static25.y = Static60.mouseClickY;
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static6.outboundBuffer.pIsaac1(115);
 				Static6.outboundBuffer.p4_alt3(Static224.anInt5062);
 				Static6.outboundBuffer.p2_alt1(Static185.anInt4370);
@@ -468,8 +469,8 @@ public final class Static103 {
 			com = Static5.getComponent(local19);
 			if (com.scripts != null && com.scripts[0][0] == 5) {
 				varp = com.scripts[0][1];
-				VarpDefinition.varps[varp] = 1 - VarpDefinition.varps[varp];
-				Static85.method1775(varp);
+				VarPlayerDefinition.varPlayers[varp] = 1 - VarPlayerDefinition.varPlayers[varp];
+				Static85.handleVarps(varp);
 			}
 		}
 		if (local23 == 33) {
@@ -477,7 +478,7 @@ public final class Static103 {
 			if (!local560) {
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.pathTileX[0]);
 			}
-			Static122.x = VarpDefinition.mouseClickX;
+			Static122.x = aClass6.mouseClickX;
 			Static17.crossCycle = 0;
 			Static25.y = Static60.mouseClickY;
 			Static70.crossMode = 2;
@@ -491,7 +492,7 @@ public final class Static103 {
 		}
 		if (local23 == 1004) {
 			Static17.crossCycle = 0;
-			Static122.x = VarpDefinition.mouseClickX;
+			Static122.x = aClass6.mouseClickX;
 			Static70.crossMode = 2;
 			Static25.y = Static60.mouseClickY;
 			Static6.outboundBuffer.pIsaac1(94);
@@ -512,7 +513,7 @@ public final class Static103 {
 		if (local23 == 8) {
 			com = Static5.getComponent(local19);
 			@Pc(2287) boolean local2287 = true;
-			if (com.anInt453 > 0) {
+			if (com.contentType > 0) {
 				local2287 = Static249.method4265(com);
 			}
 			if (local2287) {
@@ -527,7 +528,7 @@ public final class Static103 {
 				Static17.crossCycle = 0;
 				Static25.y = Static60.mouseClickY;
 				Static70.crossMode = 2;
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static6.outboundBuffer.pIsaac1(248);
 				Static6.outboundBuffer.p2_alt3(a);
 				Static6.outboundBuffer.p2(Static274.anInt4997);
@@ -555,7 +556,7 @@ public final class Static103 {
 			}
 			Static70.crossMode = 2;
 			Static25.y = Static60.mouseClickY;
-			Static122.x = VarpDefinition.mouseClickX;
+			Static122.x = aClass6.mouseClickX;
 			Static17.crossCycle = 0;
 			Static6.outboundBuffer.pIsaac1(48);
 			Static6.outboundBuffer.p2_alt2(local15 + Static225.originX);
@@ -585,7 +586,7 @@ public final class Static103 {
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
 				Static70.crossMode = 2;
 				Static25.y = Static60.mouseClickY;
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static17.crossCycle = 0;
 				Static6.outboundBuffer.pIsaac1(175);
 				Static6.outboundBuffer.p2_alt2(a);
@@ -626,7 +627,7 @@ public final class Static103 {
 			if (local43 != null) {
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
 				Static17.crossCycle = 0;
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static25.y = Static60.mouseClickY;
 				Static70.crossMode = 2;
 				Static6.outboundBuffer.pIsaac1(68);
@@ -648,7 +649,7 @@ public final class Static103 {
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, Static173.localPlayer.pathTileX[0]);
 			}
 			Static25.y = Static60.mouseClickY;
-			Static122.x = VarpDefinition.mouseClickX;
+			Static122.x = aClass6.mouseClickX;
 			Static70.crossMode = 2;
 			Static17.crossCycle = 0;
 			Static6.outboundBuffer.pIsaac1(73);
@@ -684,7 +685,7 @@ public final class Static103 {
 				Static25.y = Static60.mouseClickY;
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static6.outboundBuffer.pIsaac1(106);
 				Static6.outboundBuffer.p2(a);
 			}
@@ -700,7 +701,7 @@ public final class Static103 {
 			}
 			Static25.y = Static60.mouseClickY;
 			Static17.crossCycle = 0;
-			Static122.x = VarpDefinition.mouseClickX;
+			Static122.x = aClass6.mouseClickX;
 			Static70.crossMode = 2;
 			Static6.outboundBuffer.pIsaac1(33);
 			Static6.outboundBuffer.p2(a);
@@ -711,7 +712,7 @@ public final class Static103 {
 			npc = Static175.npcs[a];
 			if (npc != null) {
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, npc.pathTileX[0], 1, 0, 2, npc.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
-				Static122.x = VarpDefinition.mouseClickX;
+				Static122.x = aClass6.mouseClickX;
 				Static17.crossCycle = 0;
 				Static25.y = Static60.mouseClickY;
 				Static70.crossMode = 2;

@@ -32,7 +32,7 @@ public final class Static102 {
 	@OriginalMember(owner = "runetek4.client!hn", name = "d", descriptor = "(I)Lclient!mm;")
 	public static SoftwareSprite method2071() {
 		@Pc(13) int local13 = Static26.anIntArray66[0] * Static254.anIntArray488[0];
-		@Pc(17) byte[] local17 = VarpDefinition.aByteArrayArray5[0];
+		@Pc(17) byte[] local17 = aClass6.aByteArrayArray5[0];
 		@Pc(78) SoftwareSprite local78;
 		if (Static159.aBooleanArray87[0]) {
 			@Pc(30) byte[] local30 = Static64.aByteArrayArray9[0];

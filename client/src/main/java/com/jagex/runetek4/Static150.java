@@ -17,9 +17,6 @@ public final class Static150 {
 	@OriginalMember(owner = "runetek4.client!lk", name = "V", descriptor = "I")
 	public static int anInt3582 = 0;
 
-	@OriginalMember(owner = "runetek4.client!lk", name = "Z", descriptor = "I")
-	public static int clickButton = 0;
-
 	@OriginalMember(owner = "runetek4.client!lk", name = "a", descriptor = "(ILclient!ve;)I")
 	public static int method2797(@OriginalArg(1) Js5 arg0) {
 		@Pc(1) int local1 = 0;
@@ -86,7 +83,7 @@ public final class Static150 {
 				}
 			}
 		}
-		if (arg2.anInt453 == 1337) {
+		if (arg2.contentType == 1337) {
 			Static280.aClass13_26 = arg2;
 		}
 		if (arg3 && arg2.anObjectArray17 != null && (local4 != arg2.anInt445 || arg2.anInt459 != local7)) {

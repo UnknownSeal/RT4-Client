@@ -11,7 +11,7 @@ public final class Static267 {
 	public static Js5 aClass153_109;
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "a", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_37 = new SoftLruHashTable(100);
+	public static final NodeCache aClass99_37 = new NodeCache(100);
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "e", descriptor = "[I")
 	public static final int[] ROTATION_WALL_TYPE = new int[] { 1, 2, 4, 8 };
@@ -27,9 +27,6 @@ public final class Static267 {
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "j", descriptor = "I")
 	public static int playerCount = 0;
-
-	@OriginalMember(owner = "runetek4.client!vl", name = "k", descriptor = "I")
-	public static int idleTimeout = 0;
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "l", descriptor = "I")
 	public static int anInt5776 = 0;

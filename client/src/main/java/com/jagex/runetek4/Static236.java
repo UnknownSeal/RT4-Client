@@ -30,7 +30,7 @@ public final class Static236 {
 		}
 		Static45.aBoolean84 = false;
 		@Pc(139) int local139;
-		if (Static22.anInt723 != 0) {
+		if (Static22.activeInterfaceType != 0) {
 			if (arg4 <= arg3 && arg4 + 16 > arg3 && arg0 >= arg5 && arg5 + 16 > arg0) {
 				arg2.scrollY -= 4;
 				Static43.method1143(arg2);

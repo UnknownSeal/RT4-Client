@@ -22,59 +22,6 @@ public final class Static196 {
 	@OriginalMember(owner = "runetek4.client!pl", name = "i", descriptor = "I")
 	public static int anInt4587 = 0;
 
-	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(II)V")
-	public static void method3534(@OriginalArg(0) int arg0) {
-		if (Static244.gamestate == arg0) {
-			return;
-		}
-		if (Static244.gamestate == 0) {
-			Static163.method3097();
-		}
-		if (arg0 == 40) {
-			Static49.method1208();
-		}
-		@Pc(37) boolean local37 = arg0 == 5 || arg0 == 10 || arg0 == 28;
-		if (arg0 != 40 && Static233.aClass95_4 != null) {
-			Static233.aClass95_4.closeGracefully();
-			Static233.aClass95_4 = null;
-		}
-		if (arg0 == 25 || arg0 == 28) {
-			Static271.anInt5804 = 0;
-			Static230.anInt5150 = 1;
-			Static233.anInt5223 = 0;
-			Static38.anInt1196 = 1;
-			Static175.anInt4220 = 0;
-			Static116.method2325(true);
-		}
-		if (arg0 == 25 || arg0 == 10) {
-			Static123.method2418();
-		}
-		if (arg0 == 5) {
-			Static181.method3344(Static209.aClass153_86);
-		} else {
-			Static119.method2381();
-		}
-		@Pc(106) boolean local106 = Static244.gamestate == 5 || Static244.gamestate == 10 || Static244.gamestate == 28;
-		if (local106 != local37) {
-			if (local37) {
-				BZip2State.anInt4363 = Static250.anInt5441;
-				if (Static12.anInt391 == 0) {
-					Static29.method801();
-				} else {
-					Static257.method526(Static250.anInt5441, Static130.aClass153_47, 255);
-				}
-				client.js5NetQueue.writeLoggedIn(false);
-			} else {
-				Static29.method801();
-				client.js5NetQueue.writeLoggedIn(true);
-			}
-		}
-		if (GlRenderer.enabled && (arg0 == 25 || arg0 == 28 || arg0 == 40)) {
-			GlRenderer.method4160();
-		}
-		Static244.gamestate = arg0;
-	}
-
 	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(ZI)V")
 	public static void method3535(@OriginalArg(0) boolean arg0) {
 		BZip2State.anIntArray376 = new int[104];
@@ -100,7 +47,7 @@ public final class Static196 {
 	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(I)Lclient!mm;")
 	public static SoftwareSprite method3537() {
 		@Pc(13) int local13 = Static254.anIntArray488[0] * Static26.anIntArray66[0];
-		@Pc(17) byte[] local17 = VarpDefinition.aByteArrayArray5[0];
+		@Pc(17) byte[] local17 = aClass6.aByteArrayArray5[0];
 		@Pc(20) int[] local20 = new int[local13];
 		for (@Pc(22) int local22 = 0; local22 < local13; local22++) {
 			local20[local22] = Static259.anIntArray513[local17[local22] & 0xFF];

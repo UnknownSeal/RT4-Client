@@ -29,10 +29,10 @@ public final class Static145 {
 	@OriginalMember(owner = "runetek4.client!lf", name = "a", descriptor = "(I)V")
 	public static void method2742() {
 		if (Static244.gamestate == 10 && GlRenderer.enabled) {
-			Static196.method3534(28);
+			Game.processGameStatus(28);
 		}
 		if (Static244.gamestate == 30) {
-			Static196.method3534(25);
+			Game.processGameStatus(25);
 		}
 	}
 
@@ -87,8 +87,8 @@ public final class Static145 {
 		Static280.aClass3_Sub2_Sub9_43.method2857(LocalizedText.CHOOSE_OPTION, local11 + 3, local3 + 14, 6116423, -1);
 		@Pc(96) int local96 = Static223.anInt5032;
 		@Pc(98) int local98 = Static215.anInt4873;
-		for (@Pc(107) int local107 = 0; local107 < PreciseSleep.anInt5204; local107++) {
-			@Pc(127) int local127 = (PreciseSleep.anInt5204 - local107 - 1) * 15 + local3 + 31;
+		for (@Pc(107) int local107 = 0; local107 < PreciseSleep.menuActionRow; local107++) {
+			@Pc(127) int local127 = (PreciseSleep.menuActionRow - local107 - 1) * 15 + local3 + 31;
 			@Pc(129) int local129 = 16777215;
 			if (local11 < local98 && local98 < local11 + local9 && local127 - 13 < local96 && local96 < local127 + 3) {
 				local129 = 16776960;

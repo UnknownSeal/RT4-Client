@@ -10,9 +10,6 @@ public final class Static106 {
 	@OriginalMember(owner = "runetek4.client!ic", name = "n", descriptor = "I")
 	public static int anInt2871;
 
-	@OriginalMember(owner = "runetek4.client!ic", name = "e", descriptor = "[I")
-	public static final int[] anIntArray257 = new int[2500];
-
 	@OriginalMember(owner = "runetek4.client!ic", name = "j", descriptor = "I")
 	public static int anInt2869 = 100;
 

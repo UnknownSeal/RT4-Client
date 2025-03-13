@@ -1,13 +1,13 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.SecondaryNode;
+import com.jagex.runetek4.core.datastruct.CachedNode;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!bn")
-public final class Map extends SecondaryNode {
+public final class Map extends CachedNode {
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "K", descriptor = "I")
 	public int anInt758 = 0;

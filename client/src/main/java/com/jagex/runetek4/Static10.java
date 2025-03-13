@@ -28,9 +28,9 @@ public final class Static10 {
 
 	@OriginalMember(owner = "client!an", name = "a", descriptor = "(BI)I")
 	public static int method347(@OriginalArg(1) int arg0) {
-		if (Static124.socket != null) {
-			Static124.socket.closeGracefully();
-			Static124.socket = null;
+		if (Static124.gameServerSocket != null) {
+			Static124.gameServerSocket.closeGracefully();
+			Static124.gameServerSocket = null;
 		}
 		Static127.anInt3132++;
 		if (Static127.anInt3132 > 4) {
@@ -52,7 +52,7 @@ public final class Static10 {
 		try {
 			return Static4.method26();
 		} catch (@Pc(14) IOException local14) {
-			Static175.tryReconnect();
+			Game.tryReconnect();
 			return true;
 		} catch (@Pc(19) Exception local19) {
 			@Pc(61) String local61 = "T2 - " + Static164.packetType + "," + Static5.anInt45 + "," + Static49.anInt1462 + " - " + Static223.packetSize + "," + (Static225.originX + Static173.localPlayer.pathTileX[0]) + "," + (Static173.localPlayer.pathTileZ[0] + Static142.originZ) + " - ";
@@ -60,7 +60,7 @@ public final class Static10 {
 				local61 = local61 + Static57.in.data[local63] + ",";
 			}
 			Static89.report(local61, local19);
-			Static278.processLogout();
+			Game.processLogout();
 			return true;
 		}
 	}
@@ -74,7 +74,7 @@ public final class Static10 {
 	@OriginalMember(owner = "client!an", name = "i", descriptor = "(I)V")
 	public static void method351() {
 		Static79.aClass99_11.method3104();
-		VarpDefinition.aClass99_5.method3104();
+		aClass6.aClass99_5.method3104();
 	}
 
 	@OriginalMember(owner = "client!an", name = "a", descriptor = "(IIIIIII)V")

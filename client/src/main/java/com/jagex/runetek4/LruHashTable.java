@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.core.datastruct.Node;
-import com.jagex.runetek4.core.datastruct.SecondaryNode;
+import com.jagex.runetek4.core.datastruct.CachedNode;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class LruHashTable {
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "l", descriptor = "Lclient!rg;")
-	private SecondaryNode aClass3_Sub2_37 = new SecondaryNode();
+	private CachedNode aClass3_Sub2_37 = new CachedNode();
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "s", descriptor = "Lclient!ce;")
 	private final SecondaryLinkedList aClass16_1 = new SecondaryLinkedList();
@@ -38,8 +38,8 @@ public final class LruHashTable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(JI)Lclient!rg;")
-	public final SecondaryNode get(@OriginalArg(0) long arg0) {
-		@Pc(16) SecondaryNode node = (SecondaryNode) this.aClass133_5.getNode(arg0);
+	public final CachedNode get(@OriginalArg(0) long arg0) {
+		@Pc(16) CachedNode node = (CachedNode) this.aClass133_5.getNode(arg0);
 		if (node != null) {
 			this.aClass16_1.pushBack(node);
 		}
@@ -52,15 +52,15 @@ public final class LruHashTable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(Lclient!rg;JB)V")
-	public final void put(@OriginalArg(0) SecondaryNode arg0, @OriginalArg(1) long arg1) {
+	public final void put(@OriginalArg(0) CachedNode arg0, @OriginalArg(1) long arg1) {
 		if (this.anInt2314 == 0) {
-			@Pc(14) SecondaryNode local14 = this.aClass16_1.pollFront();
+			@Pc(14) CachedNode local14 = this.aClass16_1.pollFront();
 			local14.unlink();
-			local14.secondaryRemove();
+			local14.clear();
 			if (this.aClass3_Sub2_37 == local14) {
 				local14 = this.aClass16_1.pollFront();
 				local14.unlink();
-				local14.secondaryRemove();
+				local14.clear();
 			}
 		} else {
 			this.anInt2314--;
@@ -78,7 +78,7 @@ public final class LruHashTable {
 	public final void method1815() {
 		this.aClass16_1.method802();
 		this.aClass133_5.removeAll();
-		this.aClass3_Sub2_37 = new SecondaryNode();
+		this.aClass3_Sub2_37 = new CachedNode();
 		this.anInt2314 = this.anInt2313;
 	}
 }

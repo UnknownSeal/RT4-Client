@@ -3,6 +3,8 @@ package com.jagex.runetek4;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
+import com.jagex.runetek4.cache.def.VarbitDefinition;
+import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.client.ClientInvCache;
@@ -110,7 +112,7 @@ public final class Static88 {
 					if (scriptOpcode == 1) {
 						// push_varp
 						j = local33[scriptIndex];
-						Static254.scriptIntValues[intValueIndex++] = VarpDefinition.varps[j];
+						Static254.scriptIntValues[intValueIndex++] = VarPlayerDefinition.varPlayers[j];
 						continue;
 					}
 					if (scriptOpcode == 2) {
@@ -281,14 +283,14 @@ public final class Static88 {
 					}
 					if (scriptOpcode == 42) {
 						// push_varc_int
-						Static254.scriptIntValues[intValueIndex++] = VarpDefinition.varcs[local33[scriptIndex]];
+						Static254.scriptIntValues[intValueIndex++] = VarPlayerDefinition.varcs[local33[scriptIndex]];
 						continue;
 					}
 					if (scriptOpcode == 43) {
 						// pop_varc_int
 						j = local33[scriptIndex];
 						intValueIndex--;
-						VarpDefinition.varcs[j] = Static254.scriptIntValues[intValueIndex];
+						VarPlayerDefinition.varcs[j] = Static254.scriptIntValues[intValueIndex];
 						Static4.method24(j);
 						continue;
 					}

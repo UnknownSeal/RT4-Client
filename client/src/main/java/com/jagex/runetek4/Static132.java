@@ -34,26 +34,26 @@ public final class Static132 {
 		if (local32 != null) {
 			Static43.method1143(local32);
 		}
-		@Pc(41) int local41 = PreciseSleep.anInt5204;
+		@Pc(41) int local41 = PreciseSleep.menuActionRow;
 		@Pc(43) int local43;
 		for (local43 = 0; local43 < local41; local43++) {
 			if (Static2.method5(Static39.aShortArray6[local43])) {
 				Static200.method3628(local43);
 			}
 		}
-		if (PreciseSleep.anInt5204 == 1) {
+		if (PreciseSleep.menuActionRow == 1) {
 			Static60.aBoolean108 = false;
 			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
 		} else {
 			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
 			local43 = Static280.aClass3_Sub2_Sub9_43.method2858(LocalizedText.CHOOSE_OPTION);
-			for (@Pc(75) int local75 = 0; local75 < PreciseSleep.anInt5204; local75++) {
+			for (@Pc(75) int local75 = 0; local75 < PreciseSleep.menuActionRow; local75++) {
 				@Pc(88) int local88 = Static280.aClass3_Sub2_Sub9_43.method2858(Static269.method2228(local75));
 				if (local43 < local88) {
 					local43 = local88;
 				}
 			}
-			Static13.anInt436 = PreciseSleep.anInt5204 * 15 + (Static261.aBoolean298 ? 26 : 22);
+			Static13.anInt436 = PreciseSleep.menuActionRow * 15 + (Static261.aBoolean298 ? 26 : 22);
 			Static24.anInt761 = local43 + 8;
 		}
 		if (Static154.topLevelInterace != -1) {

@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!ml")
-public final class EnumType extends SecondaryNode {
+public final class EnumType extends CachedNode {
 
 	@OriginalMember(owner = "client!ml", name = "N", descriptor = "I")
 	public int outputtype;

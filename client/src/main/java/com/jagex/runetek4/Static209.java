@@ -30,9 +30,9 @@ public final class Static209 {
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "c", descriptor = "(BI)V")
 	public static void method3706() {
-		Static93.aClass99_13.method3102(5);
-		Static125.aClass99_18.method3102(5);
-		Static262.aClass99_35.method3102(5);
+		Static93.aClass99_13.clear(5);
+		Static125.aClass99_18.clear(5);
+		Static262.aClass99_35.clear(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "a", descriptor = "(BIII)V")

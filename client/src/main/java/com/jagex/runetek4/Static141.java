@@ -72,7 +72,7 @@ public final class Static141 {
 			Static73.method1596(false);
 		}
 		if (Static244.gamestate == 30) {
-			Static196.method3534(25);
+			Game.processGameStatus(25);
 		}
 	}
 

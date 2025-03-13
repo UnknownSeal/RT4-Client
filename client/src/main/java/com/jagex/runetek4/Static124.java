@@ -11,7 +11,7 @@ public final class Static124 {
 	public static int anInt3080;
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "B", descriptor = "Lclient!ma;")
-	public static BufferedSocket socket;
+	public static BufferedSocket gameServerSocket;
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "J", descriptor = "I")
 	public static int anInt3083;
@@ -23,7 +23,7 @@ public final class Static124 {
 	public static boolean aBoolean156 = false;
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "z", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_17 = new SoftLruHashTable(50);
+	public static final NodeCache aClass99_17 = new NodeCache(50);
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "F", descriptor = "Lclient!na;")
 	public static final JString TWEEN = Static28.parse("::tween");

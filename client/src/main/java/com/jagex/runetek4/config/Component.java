@@ -428,7 +428,7 @@ public final class Component {
 	public int anInt517 = -1;
 
 	@OriginalMember(owner = "client!be", name = "K", descriptor = "I")
-	public int anInt453 = 0;
+	public int contentType = 0;
 
 	@OriginalMember(owner = "client!be", name = "Oc", descriptor = "I")
 	public int anInt513 = 0;
@@ -553,7 +553,7 @@ public final class Component {
 		this.aBoolean32 = false;
 		this.anInt452 = arg0.g1();
 		this.anInt530 = arg0.g1();
-		this.anInt453 = arg0.g2();
+		this.contentType = arg0.g2();
 		this.baseX = arg0.g2s();
 		this.baseY = arg0.g2s();
 		this.baseWidth = arg0.g2();
@@ -987,7 +987,7 @@ public final class Component {
 			this.anInt452 &= 0x7F;
 			arg0.gjstr();
 		}
-		this.anInt453 = arg0.g2();
+		this.contentType = arg0.g2();
 		this.baseX = arg0.g2s();
 		this.baseY = arg0.g2s();
 		this.baseWidth = arg0.g2();

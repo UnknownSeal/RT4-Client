@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.Entity;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -79,7 +80,7 @@ public final class Static170 {
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(BII)V")
 	public static void method2575(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		Static106.anIntArray257[arg1] = arg0;
+		VarPlayerDefinition.varPlayerCache[arg1] = arg0;
 		@Pc(20) LongNode local20 = (LongNode) Static199.aClass133_20.getNode((long) arg1);
 		if (local20 == null) {
 			local20 = new LongNode(4611686018427387905L);

@@ -519,7 +519,7 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(IB)I")
-	public int method4504(@OriginalArg(0) int arg0) {
+	public int fileLength(@OriginalArg(0) int arg0) {
 		return this.isGroupValid(arg0) ? this.index.groupCapacities[arg0] : 0;
 	}
 

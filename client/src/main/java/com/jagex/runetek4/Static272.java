@@ -1,5 +1,7 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.VarbitDefinition;
+import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -32,6 +34,6 @@ public final class Static272 {
 			arg0 = 0;
 		}
 		local29 <<= local23;
-		Static170.method2575(arg0 << local23 & local29 | ~local29 & Static106.anIntArray257[local17], local17);
+		Static170.method2575(arg0 << local23 & local29 | ~local29 & VarPlayerDefinition.varPlayerCache[local17], local17);
 	}
 }

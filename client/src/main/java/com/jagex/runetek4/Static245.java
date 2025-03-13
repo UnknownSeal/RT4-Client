@@ -34,7 +34,7 @@ public final class Static245 {
 		if (Static223.aBooleanArray115[arg0]) {
 			return true;
 		} else if (Static202.aClass153_84.method4479(arg0)) {
-			@Pc(25) int local25 = Static202.aClass153_84.method4504(arg0);
+			@Pc(25) int local25 = Static202.aClass153_84.fileLength(arg0);
 			if (local25 == 0) {
 				Static223.aBooleanArray115[arg0] = true;
 				return true;

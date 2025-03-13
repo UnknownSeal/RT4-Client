@@ -31,7 +31,7 @@ public final class Static247 {
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(Lclient!bj;Z)V")
 	public static void method4245(@OriginalArg(0) Ground arg0, @OriginalArg(1) boolean arg1) {
-		VarpDefinition.drawTileQueue.addTail(arg0);
+		aClass6.drawTileQueue.addTail(arg0);
 		while (true) {
 			@Pc(8) Ground tile;
 			@Pc(18) int tileX;
@@ -63,7 +63,7 @@ public final class Static247 {
 										@Pc(1179) Ground adjacent;
 										while (true) {
 											do {
-												tile = (Ground) VarpDefinition.drawTileQueue.method2287();
+												tile = (Ground) aClass6.drawTileQueue.method2287();
 												if (tile == null) {
 													return;
 												}
@@ -337,25 +337,25 @@ public final class Static247 {
 												if (tileX < Static167.eyeTileX && (x & 0x4) != 0) {
 													adjacent = tiles[tileX + 1][tileZ];
 													if (adjacent != null && adjacent.aBoolean46) {
-														VarpDefinition.drawTileQueue.addTail(adjacent);
+														aClass6.drawTileQueue.addTail(adjacent);
 													}
 												}
 												if (tileZ < Static193.anInt4539 && (x & 0x2) != 0) {
 													adjacent = tiles[tileX][tileZ + 1];
 													if (adjacent != null && adjacent.aBoolean46) {
-														VarpDefinition.drawTileQueue.addTail(adjacent);
+														aClass6.drawTileQueue.addTail(adjacent);
 													}
 												}
 												if (tileX > Static167.eyeTileX && (x & 0x1) != 0) {
 													adjacent = tiles[tileX - 1][tileZ];
 													if (adjacent != null && adjacent.aBoolean46) {
-														VarpDefinition.drawTileQueue.addTail(adjacent);
+														aClass6.drawTileQueue.addTail(adjacent);
 													}
 												}
 												if (tileZ > Static193.anInt4539 && (x & 0x8) != 0) {
 													adjacent = tiles[tileX][tileZ - 1];
 													if (adjacent != null && adjacent.aBoolean46) {
-														VarpDefinition.drawTileQueue.addTail(adjacent);
+														aClass6.drawTileQueue.addTail(adjacent);
 													}
 												}
 											}
@@ -522,9 +522,9 @@ public final class Static247 {
 													for (y = local1697.anInt1696; y <= local1697.anInt1698; y++) {
 														@Pc(1863) Ground local1863 = tiles[x][y];
 														if (local1863.checkLocSpans != 0) {
-															VarpDefinition.drawTileQueue.addTail(local1863);
+															aClass6.drawTileQueue.addTail(local1863);
 														} else if ((x != tileX || y != tileZ) && local1863.aBoolean46) {
-															VarpDefinition.drawTileQueue.addTail(local1863);
+															aClass6.drawTileQueue.addTail(local1863);
 														}
 													}
 												}
@@ -632,31 +632,31 @@ public final class Static247 {
 			if (local24 < Static126.anInt3114 - 1) {
 				local2388 = Static130.levelTiles[local24 + 1][tileX][tileZ];
 				if (local2388 != null && local2388.aBoolean46) {
-					VarpDefinition.drawTileQueue.addTail(local2388);
+					aClass6.drawTileQueue.addTail(local2388);
 				}
 			}
 			if (tileX < Static167.eyeTileX) {
 				local2388 = tiles[tileX + 1][tileZ];
 				if (local2388 != null && local2388.aBoolean46) {
-					VarpDefinition.drawTileQueue.addTail(local2388);
+					aClass6.drawTileQueue.addTail(local2388);
 				}
 			}
 			if (tileZ < Static193.anInt4539) {
 				local2388 = tiles[tileX][tileZ + 1];
 				if (local2388 != null && local2388.aBoolean46) {
-					VarpDefinition.drawTileQueue.addTail(local2388);
+					aClass6.drawTileQueue.addTail(local2388);
 				}
 			}
 			if (tileX > Static167.eyeTileX) {
 				local2388 = tiles[tileX - 1][tileZ];
 				if (local2388 != null && local2388.aBoolean46) {
-					VarpDefinition.drawTileQueue.addTail(local2388);
+					aClass6.drawTileQueue.addTail(local2388);
 				}
 			}
 			if (tileZ > Static193.anInt4539) {
 				local2388 = tiles[tileX][tileZ - 1];
 				if (local2388 != null && local2388.aBoolean46) {
-					VarpDefinition.drawTileQueue.addTail(local2388);
+					aClass6.drawTileQueue.addTail(local2388);
 				}
 			}
 		}

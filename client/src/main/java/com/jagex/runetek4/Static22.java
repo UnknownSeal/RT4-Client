@@ -9,7 +9,7 @@ public final class Static22 {
 	public static int js5ConnectDelay = 0;
 
 	@OriginalMember(owner = "client!bl", name = "Q", descriptor = "I")
-	public static int anInt723 = 0;
+	public static int activeInterfaceType = 0;
 
 	@OriginalMember(owner = "client!bl", name = "T", descriptor = "I")
 	public static int anInt726 = 0;

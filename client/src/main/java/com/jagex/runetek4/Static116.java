@@ -17,7 +17,7 @@ public final class Static116 {
 	public static int entityUpdateCount = 0;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "n", descriptor = "I")
-	public static int anInt2952 = 0;
+	public static int oneMouseButton = 0;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "p", descriptor = "I")
 	public static int anInt2954 = -1;

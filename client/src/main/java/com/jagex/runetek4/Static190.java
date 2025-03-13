@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static190 {
 
     @OriginalMember(owner = "runetek4.client!pf", name = "b", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_26 = new SoftLruHashTable(200);
+	public static final NodeCache aClass99_26 = new NodeCache(200);
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "h", descriptor = "[J")
 	public static final long[] ignoreName37 = new long[100];
@@ -56,8 +56,8 @@ public final class Static190 {
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "c", descriptor = "(II)V")
 	public static void method3447() {
-		Static27.aClass99_4.method3102(5);
-		Static244.aClass99_32.method3102(5);
-		Static118.aClass99_16.method3102(5);
+		Static27.aClass99_4.clear(5);
+		Static244.aClass99_32.clear(5);
+		Static118.aClass99_16.clear(5);
 	}
 }

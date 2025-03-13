@@ -1,6 +1,8 @@
 package com.jagex.runetek4.dash3d.entity;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.cache.def.VarbitDefinition;
+import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.config.SeqType;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -463,7 +465,7 @@ public final class LocMergeEntity {
 		if (this.multivarbit != -1) {
 			i = VarbitDefinition.getVarbitValue(this.multivarbit);
 		} else if (this.multivarp != -1) {
-			i = VarpDefinition.varps[this.multivarp];
+			i = VarPlayerDefinition.varPlayers[this.multivarp];
 		}
 		if (i < 0 || i >= this.multiloc.length - 1 || this.multiloc[i] == -1) {
 			@Pc(84) int local84 = this.multiloc[this.multiloc.length - 1];

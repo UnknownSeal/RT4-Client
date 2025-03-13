@@ -15,7 +15,7 @@ public final class Static18 {
 	public static final JString P11_FULL = Static28.parse("p11_full");
 
 	@OriginalMember(owner = "client!bh", name = "t", descriptor = "I")
-	public static int anInt588 = 0;
+	public static int mouseInvInterfaceIndex = 0;
 
 	@OriginalMember(owner = "client!bh", name = "v", descriptor = "Lclient!na;")
 	public static final JString FLOORSHADOWS = Static28.parse("floorshadows");

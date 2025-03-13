@@ -11,7 +11,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static110 {
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "l", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_15 = new SoftLruHashTable(4);
+	public static final NodeCache aClass99_15 = new NodeCache(4);
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "a", descriptor = "(III)Lclient!jh;")
 	public static Wall method2276(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {

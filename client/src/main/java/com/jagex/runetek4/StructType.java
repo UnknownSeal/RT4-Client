@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!lk")
-public final class StructType extends SecondaryNode {
+public final class StructType extends CachedNode {
 
 	@OriginalMember(owner = "runetek4.client!lk", name = "I", descriptor = "Lclient!sc;")
 	private IterableMap aClass133_14;

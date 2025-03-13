@@ -1,5 +1,6 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.cache.def;
 
+import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -28,7 +29,7 @@ public final class VarbitDefinition {
         @Pc(19) int mostSignificantBit = varbitDefinition.anInt3323;
         @Pc(22) int leastSignificantBit = varbitDefinition.anInt3318;
         @Pc(29) int mask = varbitMasks[mostSignificantBit - leastSignificantBit];
-        return VarpDefinition.varps[varPlayerIndex] >> leastSignificantBit & mask;
+        return VarPlayerDefinition.varPlayers[varPlayerIndex] >> leastSignificantBit & mask;
     }
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "a", descriptor = "(IB)Lclient!kk;")

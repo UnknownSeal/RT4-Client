@@ -254,8 +254,8 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "e", descriptor = "(I)V")
 	private void mainredrawwrapper() {
 		@Pc(2) long local2 = MonotonicTime.get();
-		@Pc(6) long local6 = VarpDefinition.aLongArray2[Static111.anInt2903];
-		VarpDefinition.aLongArray2[Static111.anInt2903] = local2;
+		@Pc(6) long local6 = aClass6.aLongArray2[Static111.anInt2903];
+		aClass6.aLongArray2[Static111.anInt2903] = local2;
 		Static111.anInt2903 = Static111.anInt2903 + 1 & 0x1F;
 		if (local6 != 0L && local2 > local6) {
 			@Pc(41) int local41 = (int) (local2 - local6);

@@ -28,7 +28,7 @@ public final class Static277 {
 	public static final boolean[][] aBooleanArrayArray4 = new boolean[][] { { true, true, true }, { false, false }, { false, true }, { true, false }, { false, true, true }, { true, false, true }, { false, true, false }, { true, false, false } };
 
 	@OriginalMember(owner = "runetek4.client!wi", name = "c", descriptor = "(II)Z")
-	public static boolean method4640(@OriginalArg(0) int arg0) {
+	public static boolean menuHasAddFriend(@OriginalArg(0) int arg0) {
 		if (arg0 < 0) {
 			return false;
 		}

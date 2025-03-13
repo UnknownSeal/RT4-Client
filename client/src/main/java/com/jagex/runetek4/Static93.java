@@ -12,7 +12,7 @@ public final class Static93 {
 	public static Js5 aClass153_41;
 
 	@OriginalMember(owner = "runetek4.client!he", name = "V", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_13 = new SoftLruHashTable(64);
+	public static final NodeCache aClass99_13 = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!he", name = "Y", descriptor = "I")
 	public static volatile int anInt2467 = 0;
@@ -27,7 +27,7 @@ public final class Static93 {
 	public static final int[] anIntArray219 = new int[1000];
 
 	@OriginalMember(owner = "runetek4.client!he", name = "fb", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_14 = new SoftLruHashTable(30);
+	public static final NodeCache aClass99_14 = new NodeCache(30);
 
 	@OriginalMember(owner = "runetek4.client!he", name = "gb", descriptor = "Lclient!na;")
 	public static final JString aClass100_518 = Static28.parse("www");

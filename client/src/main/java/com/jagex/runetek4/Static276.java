@@ -87,9 +87,9 @@ public final class Static276 {
 	public static IndexedSprite method4614() {
 		@Pc(27) IndexedSprite local27;
 		if (GlRenderer.enabled) {
-			local27 = new GlIndexedSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[0], Static269.anIntArray252[0], Static254.anIntArray488[0], Static26.anIntArray66[0], VarpDefinition.aByteArrayArray5[0], Static259.anIntArray513);
+			local27 = new GlIndexedSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[0], Static269.anIntArray252[0], Static254.anIntArray488[0], Static26.anIntArray66[0], aClass6.aByteArrayArray5[0], Static259.anIntArray513);
 		} else {
-			local27 = new SoftwareIndexedSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[0], Static269.anIntArray252[0], Static254.anIntArray488[0], Static26.anIntArray66[0], VarpDefinition.aByteArrayArray5[0], Static259.anIntArray513);
+			local27 = new SoftwareIndexedSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[0], Static269.anIntArray252[0], Static254.anIntArray488[0], Static26.anIntArray66[0], aClass6.aByteArrayArray5[0], Static259.anIntArray513);
 		}
 		Static75.method1631();
 		return local27;
@@ -97,7 +97,7 @@ public final class Static276 {
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(II)V")
 	public static void method4615() {
-		PreciseSleep.aClass99_29.method3102(5);
-		Static219.aClass99_27.method3102(5);
+		PreciseSleep.aClass99_29.clear(5);
+		Static219.aClass99_27.clear(5);
 	}
 }

@@ -46,11 +46,11 @@ public final class Static19 {
 
 	@OriginalMember(owner = "client!bi", name = "c", descriptor = "(II)V")
 	public static void method586() {
-		Static262.aClass99_34.method3102(5);
+		Static262.aClass99_34.clear(5);
 	}
 
 	@OriginalMember(owner = "client!bi", name = "f", descriptor = "(B)V")
-	public static void loop() {
+	public static void tickChatTimers() {
 		@Pc(11) int local11;
 		for (local11 = -1; local11 < Static267.playerCount; local11++) {
 			@Pc(22) int local22;

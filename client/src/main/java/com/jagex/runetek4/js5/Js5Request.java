@@ -1,11 +1,11 @@
 package com.jagex.runetek4.js5;
 
-import com.jagex.runetek4.core.datastruct.SecondaryNode;
+import com.jagex.runetek4.core.datastruct.CachedNode;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("client!il")
-public abstract class Js5Request extends SecondaryNode {
+public abstract class Js5Request extends CachedNode {
 
 	@OriginalMember(owner = "client!il", name = "L", descriptor = "Z")
 	public boolean urgent;

@@ -113,7 +113,7 @@ public final class Static207 {
 				if (Static72.aClass212_3.status != 1) {
 					return -1;
 				}
-				Static124.socket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
+				Static124.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
 				Static6.outboundBuffer.position = 0;
 				Static72.aClass212_3 = null;
 				local82 = 0;
@@ -122,14 +122,14 @@ public final class Static207 {
 				}
 				Static6.outboundBuffer.p1(255);
 				Static6.outboundBuffer.p4(local82);
-				Static124.socket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
+				Static124.gameServerSocket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
 				if (Static11.aClass62_1 != null) {
 					Static11.aClass62_1.method3571();
 				}
 				if (Static147.aClass62_2 != null) {
 					Static147.aClass62_2.method3571();
 				}
-				local124 = Static124.socket.read();
+				local124 = Static124.gameServerSocket.read();
 				if (Static11.aClass62_1 != null) {
 					Static11.aClass62_1.method3571();
 				}
@@ -142,12 +142,12 @@ public final class Static207 {
 				Static82.anInt2231 = 2;
 			}
 			if (Static82.anInt2231 == 2) {
-				if (Static124.socket.available() < 2) {
+				if (Static124.gameServerSocket.available() < 2) {
 					return -1;
 				}
-				Static116.anInt2961 = Static124.socket.read();
+				Static116.anInt2961 = Static124.gameServerSocket.read();
 				Static116.anInt2961 <<= 0x8;
-				Static116.anInt2961 += Static124.socket.read();
+				Static116.anInt2961 += Static124.gameServerSocket.read();
 				Static82.anInt2231 = 3;
 				Static141.anInt3469 = 0;
 				Static229.aByteArray70 = new byte[Static116.anInt2961];
@@ -155,14 +155,14 @@ public final class Static207 {
 			if (Static82.anInt2231 != 3) {
 				return -1;
 			}
-			local82 = Static124.socket.available();
+			local82 = Static124.gameServerSocket.available();
 			if (local82 < 1) {
 				return -1;
 			}
 			if (local82 > Static116.anInt2961 - Static141.anInt3469) {
 				local82 = Static116.anInt2961 - Static141.anInt3469;
 			}
-			Static124.socket.read(Static141.anInt3469, local82, Static229.aByteArray70);
+			Static124.gameServerSocket.read(Static141.anInt3469, local82, Static229.aByteArray70);
 			Static141.anInt3469 += local82;
 			if (Static141.anInt3469 < Static116.anInt2961) {
 				return -1;
@@ -175,8 +175,8 @@ public final class Static207 {
 						Static101.aClass10_Sub1Array1[local124++] = local247;
 					}
 				}
-				Static124.socket.closeGracefully();
-				Static124.socket = null;
+				Static124.gameServerSocket.closeGracefully();
+				Static124.gameServerSocket = null;
 				Static127.anInt3132 = 0;
 				Static82.anInt2231 = 0;
 				Static229.aByteArray70 = null;

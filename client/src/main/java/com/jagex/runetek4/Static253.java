@@ -32,18 +32,18 @@ public final class Static253 {
 		Static136.anInt3325++;
 		Static210.method3711();
 		if (!arg1) {
-			Static38.pushPlayers(true);
-			Static173.pushNpcs(true);
-			Static38.pushPlayers(false);
+			Game.pushPlayers(true);
+			Game.pushNpcs(true);
+			Game.pushPlayers(false);
 		}
-		Static173.pushNpcs(false);
+		Game.pushNpcs(false);
 		if (!arg1) {
-			Static195.pushProjectiles();
+			Game.pushProjectiles();
 		}
-		Static246.pushSpotanims();
+		Game.pushSpotanims();
 		if (GlRenderer.enabled) {
 			Static115.method2314(arg3, arg4, arg0, arg2, true);
-			arg2 = VarpDefinition.anInt983;
+			arg2 = aClass6.anInt983;
 			arg4 = Static24.anInt773;
 			arg3 = Static166.anInt4055;
 			arg0 = Static245.anInt5377;
@@ -200,9 +200,9 @@ public final class Static253 {
 		@Pc(8) IndexedSprite[] local8 = new IndexedSprite[Static165.anInt4038];
 		for (@Pc(10) int local10 = 0; local10 < Static165.anInt4038; local10++) {
 			if (GlRenderer.enabled) {
-				local8[local10] = new GlIndexedSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local10], Static269.anIntArray252[local10], Static254.anIntArray488[local10], Static26.anIntArray66[local10], VarpDefinition.aByteArrayArray5[local10], Static259.anIntArray513);
+				local8[local10] = new GlIndexedSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local10], Static269.anIntArray252[local10], Static254.anIntArray488[local10], Static26.anIntArray66[local10], aClass6.aByteArrayArray5[local10], Static259.anIntArray513);
 			} else {
-				local8[local10] = new SoftwareIndexedSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local10], Static269.anIntArray252[local10], Static254.anIntArray488[local10], Static26.anIntArray66[local10], VarpDefinition.aByteArrayArray5[local10], Static259.anIntArray513);
+				local8[local10] = new SoftwareIndexedSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local10], Static269.anIntArray252[local10], Static254.anIntArray488[local10], Static26.anIntArray66[local10], aClass6.aByteArrayArray5[local10], Static259.anIntArray513);
 			}
 		}
 		Static75.method1631();

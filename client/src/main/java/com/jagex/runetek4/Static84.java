@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.SecondaryNode;
+import com.jagex.runetek4.core.datastruct.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.SeqType;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
@@ -216,7 +216,7 @@ public final class Static84 {
 		Static159.aBooleanArray87 = new boolean[Static165.anInt4038];
 		Static64.aByteArrayArray9 = new byte[Static165.anInt4038][];
 		Static269.anIntArray252 = new int[Static165.anInt4038];
-		VarpDefinition.aByteArrayArray5 = new byte[Static165.anInt4038][];
+		aClass6.aByteArrayArray5 = new byte[Static165.anInt4038][];
 		local4.position = arg0.length - Static165.anInt4038 * 8 - 7;
 		Static124.anInt3080 = local4.g2();
 		Static227.anInt5091 = local4.g2();
@@ -249,7 +249,7 @@ public final class Static84 {
 			@Pc(203) int local203 = local195 * local199;
 			@Pc(206) byte[] local206 = new byte[local203];
 			@Pc(208) boolean local208 = false;
-			VarpDefinition.aByteArrayArray5[local68] = local206;
+			aClass6.aByteArrayArray5[local68] = local206;
 			@Pc(215) byte[] local215 = new byte[local203];
 			Static64.aByteArrayArray9[local68] = local215;
 			@Pc(223) int local223 = local4.g1();
@@ -300,9 +300,9 @@ public final class Static84 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "(Lclient!rg;Lclient!rg;B)V")
-	public static void method1772(@OriginalArg(0) SecondaryNode arg0, @OriginalArg(1) SecondaryNode arg1) {
+	public static void method1772(@OriginalArg(0) CachedNode arg0, @OriginalArg(1) CachedNode arg1) {
 		if (arg1.secondaryNext != null) {
-			arg1.secondaryRemove();
+			arg1.clear();
 		}
 		arg1.secondaryNext = arg0;
 		arg1.secondaryPrev = arg0.secondaryPrev;

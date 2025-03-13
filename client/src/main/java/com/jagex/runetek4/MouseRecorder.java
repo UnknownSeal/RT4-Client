@@ -14,7 +14,7 @@ public final class MouseRecorder implements Runnable {
 	public final Object lock = new Object();
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "k", descriptor = "I")
-	public int samples = 0;
+	public int coord = 0;
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "l", descriptor = "[I")
 	public final int[] y = new int[500];
@@ -28,10 +28,10 @@ public final class MouseRecorder implements Runnable {
 		while (this.aBoolean151) {
 			@Pc(12) Object local12 = this.lock;
 			synchronized (this.lock) {
-				if (this.samples < 500) {
-					this.x[this.samples] = Static215.anInt4873;
-					this.y[this.samples] = Static223.anInt5032;
-					this.samples++;
+				if (this.coord < 500) {
+					this.x[this.coord] = Static215.anInt4873;
+					this.y[this.coord] = Static223.anInt5032;
+					this.coord++;
 				}
 			}
 			PreciseSleep.sleep(50L);

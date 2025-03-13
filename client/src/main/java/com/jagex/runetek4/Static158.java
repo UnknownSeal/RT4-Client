@@ -1,8 +1,5 @@
 package com.jagex.runetek4;
 
-import java.io.IOException;
-import java.net.Socket;
-
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.NPCType;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
@@ -26,114 +23,9 @@ public final class Static158 {
 	@OriginalMember(owner = "runetek4.client!mh", name = "eb", descriptor = "I")
 	public static int anInt3857 = 0;
 
-	@OriginalMember(owner = "runetek4.client!mh", name = "f", descriptor = "(B)V")
-	public static void loop() {
-		if (Static179.step == 0) {
-			return;
-		}
-		try {
-			if (++Static226.loops > 2000) {
-				if (Static124.socket != null) {
-					Static124.socket.closeGracefully();
-					Static124.socket = null;
-				}
-				if (Static57.errors >= 1) {
-					Static223.reply = -5;
-					Static179.step = 0;
-					return;
-				}
-				Static179.step = 1;
-				Static226.loops = 0;
-				Static57.errors++;
-				if (Static271.defaultPort == Static209.port) {
-					Static209.port = Static55.alternatePort;
-				} else {
-					Static209.port = Static271.defaultPort;
-				}
-			}
-			if (Static179.step == 1) {
-				Static72.aClass212_3 = GameShell.signLink.openSocket(Static60.hostname, Static209.port);
-				Static179.step = 2;
-			}
-			@Pc(120) int local120;
-			if (Static179.step == 2) {
-				if (Static72.aClass212_3.status == 2) {
-					throw new IOException();
-				}
-				if (Static72.aClass212_3.status != 1) {
-					return;
-				}
-				Static124.socket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
-				Static72.aClass212_3 = null;
-				Static124.socket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
-				if (Static11.aClass62_1 != null) {
-					Static11.aClass62_1.method3571();
-				}
-				if (Static147.aClass62_2 != null) {
-					Static147.aClass62_2.method3571();
-				}
-				local120 = Static124.socket.read();
-				if (Static11.aClass62_1 != null) {
-					Static11.aClass62_1.method3571();
-				}
-				if (Static147.aClass62_2 != null) {
-					Static147.aClass62_2.method3571();
-				}
-				if (local120 != 21) {
-					Static223.reply = local120;
-					Static179.step = 0;
-					Static124.socket.closeGracefully();
-					Static124.socket = null;
-					return;
-				}
-				Static179.step = 3;
-			}
-			if (Static179.step == 3) {
-				if (Static124.socket.available() < 1) {
-					return;
-				}
-				Static229.aClass100Array156 = new JString[Static124.socket.read()];
-				Static179.step = 4;
-			}
-			if (Static179.step == 4) {
-				if (Static124.socket.available() < Static229.aClass100Array156.length * 8) {
-					return;
-				}
-				Static57.in.position = 0;
-				Static124.socket.read(0, Static229.aClass100Array156.length * 8, Static57.in.data);
-				for (local120 = 0; local120 < Static229.aClass100Array156.length; local120++) {
-					Static229.aClass100Array156[local120] = Static79.decode37(Static57.in.g8());
-				}
-				Static223.reply = 21;
-				Static179.step = 0;
-				Static124.socket.closeGracefully();
-				Static124.socket = null;
-				return;
-			}
-		} catch (@Pc(238) IOException ioException) {
-			if (Static124.socket != null) {
-				Static124.socket.closeGracefully();
-				Static124.socket = null;
-			}
-			if (Static57.errors < 1) {
-				Static57.errors++;
-				if (Static271.defaultPort == Static209.port) {
-					Static209.port = Static55.alternatePort;
-				} else {
-					Static209.port = Static271.defaultPort;
-				}
-				Static226.loops = 0;
-				Static179.step = 1;
-			} else {
-				Static223.reply = -4;
-				Static179.step = 0;
-			}
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!mh", name = "c", descriptor = "(II)V")
 	public static void method3010() {
-		Static110.aClass99_15.method3102(5);
+		Static110.aClass99_15.clear(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!mh", name = "h", descriptor = "(B)V")

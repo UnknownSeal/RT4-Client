@@ -13,10 +13,10 @@ public final class Static118 {
 	public static byte[][][] levelShademap;
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "i", descriptor = "Lclient!be;")
-	public static Component aClass13_15;
+	public static Component component;
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "c", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_16 = new SoftLruHashTable(100);
+	public static final NodeCache aClass99_16 = new NodeCache(100);
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "a", descriptor = "(B)I")
 	public static int method2352() {

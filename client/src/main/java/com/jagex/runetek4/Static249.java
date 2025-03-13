@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -27,8 +28,8 @@ public final class Static249 {
 
 	@OriginalMember(owner = "runetek4.client!ud", name = "a", descriptor = "(ILclient!be;)Z")
 	public static boolean method4265(@OriginalArg(1) Component arg0) {
-		if (arg0.anInt453 == 205) {
-			Static267.idleTimeout = 250;
+		if (arg0.contentType == 205) {
+			Game.idleTimeout = 250;
 			return true;
 		} else {
 			return false;
@@ -37,6 +38,6 @@ public final class Static249 {
 
 	@OriginalMember(owner = "runetek4.client!ud", name = "d", descriptor = "(I)V")
 	public static void method4266() {
-		Static232.varpDefinitionCache.method3104();
+		VarPlayerDefinition.varPlayerDefinitionCache.method3104();
 	}
 }

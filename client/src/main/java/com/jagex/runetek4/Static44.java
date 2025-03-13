@@ -29,7 +29,7 @@ public final class Static44 {
 		Static60.aBoolean108 = false;
 		Static223.packetSize = 0;
 		Static115.anInt2939 = 0;
-		PreciseSleep.anInt5204 = 0;
+		PreciseSleep.menuActionRow = 0;
 		Static230.anInt5152 = -1;
 		Static270.anInt5795 = 0;
 		Static60.systemUpdateTimer = 0;
@@ -50,7 +50,7 @@ public final class Static44 {
 		}
 		Static102.method2073();
 		Static227.anInt5096 = 1;
-		Static196.method3534(30);
+		Game.processGameStatus(30);
 		for (local35 = 0; local35 < 100; local35++) {
 			Static186.aBooleanArray100[local35] = true;
 		}
@@ -81,27 +81,27 @@ public final class Static44 {
 			Static43.method1143(Static39.aClass13_10);
 			Static39.aClass13_10 = null;
 		}
-		@Pc(45) int local45 = PreciseSleep.anInt5204;
+		@Pc(45) int local45 = PreciseSleep.menuActionRow;
 		@Pc(53) int local53;
 		for (local53 = 0; local53 < local45; local53++) {
 			if (Static2.method5(Static39.aShortArray6[local53])) {
 				Static200.method3628(local53);
 			}
 		}
-		if (PreciseSleep.anInt5204 == 1) {
+		if (PreciseSleep.menuActionRow == 1) {
 			Static60.aBoolean108 = false;
 			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
 		} else {
 			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
 			local53 = Static280.aClass3_Sub2_Sub9_43.method2858(LocalizedText.CHOOSE_OPTION);
-			for (@Pc(95) int local95 = 0; local95 < PreciseSleep.anInt5204; local95++) {
+			for (@Pc(95) int local95 = 0; local95 < PreciseSleep.menuActionRow; local95++) {
 				@Pc(104) int local104 = Static280.aClass3_Sub2_Sub9_43.method2858(Static269.method2228(local95));
 				if (local104 > local53) {
 					local53 = local104;
 				}
 			}
 			Static24.anInt761 = local53 + 8;
-			Static13.anInt436 = PreciseSleep.anInt5204 * 15 + (Static261.aBoolean298 ? 26 : 22);
+			Static13.anInt436 = PreciseSleep.menuActionRow * 15 + (Static261.aBoolean298 ? 26 : 22);
 		}
 		if (local28 != null) {
 			Static17.method531(local28, false);

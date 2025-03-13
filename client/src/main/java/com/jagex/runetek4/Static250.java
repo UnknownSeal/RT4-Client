@@ -22,7 +22,7 @@ public final class Static250 {
 	public static int anInt5434 = 0;
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "j", descriptor = "Lclient!n;")
-	public static final SoftLruHashTable aClass99_33 = new SoftLruHashTable(260);
+	public static final NodeCache aClass99_33 = new NodeCache(260);
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "o", descriptor = "Lclient!na;")
 	public static final JString SCROLLBAR = Static28.parse("scrollbar");
