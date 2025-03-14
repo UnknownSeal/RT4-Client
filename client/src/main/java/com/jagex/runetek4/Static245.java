@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.game.config.lighttype.LightType;

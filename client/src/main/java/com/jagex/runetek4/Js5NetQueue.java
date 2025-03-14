@@ -205,7 +205,7 @@ public final class Js5NetQueue {
 	}
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "(Z)V")
-	public final void serverDrop() {
+	public void serverDrop() {
 		if (this.updateServerSocket == null) {
 			return;
 		}
@@ -251,15 +251,15 @@ public final class Js5NetQueue {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!jb", name = "c", descriptor = "(I)V")
-	public final void method2323() {
+	@OriginalMember(owner = "client!jb", name = "c", descriptor = "(I)V")
+	public void method2323() {
 		if (this.updateServerSocket != null) {
 			this.updateServerSocket.method2833();
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "(ZLclient!ma;I)V")
-	public final void loggedOut(@OriginalArg(0) boolean isLoggedIn, @OriginalArg(1) BufferedSocket socket) {
+	@OriginalMember(owner = "client!jb", name = "a", descriptor = "(ZLclient!ma;I)V")
+	public void loggedOut(@OriginalArg(0) boolean isLoggedIn, @OriginalArg(1) BufferedSocket socket) {
 		if (this.updateServerSocket != null) {
 			try {
 				this.updateServerSocket.closeGracefully();
@@ -306,13 +306,13 @@ public final class Js5NetQueue {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!jb", name = "c", descriptor = "(B)Z")
+	@OriginalMember(owner = "client!jb", name = "c", descriptor = "(B)Z")
 	public boolean isUrgentsFull() {
 		return this.getUrgentRequestCount() >= 20;
 	}
 
-	@OriginalMember(owner = "runetek4.client!jb", name = "d", descriptor = "(B)V")
-	public void method2327() {
+	@OriginalMember(owner = "client!jb", name = "d", descriptor = "(B)V")
+	public void rekey() {
 		try {
 			this.updateServerSocket.closeGracefully();
 		} catch (@Pc(17) Exception local17) {
@@ -323,13 +323,13 @@ public final class Js5NetQueue {
 		this.errors++;
 	}
 
-	@OriginalMember(owner = "runetek4.client!jb", name = "d", descriptor = "(I)I")
-	public final int getUrgentRequestCount() {
+	@OriginalMember(owner = "client!jb", name = "d", descriptor = "(I)I")
+	public int getUrgentRequestCount() {
 		return this.urgent.length() + this.inFlightUrgentRequests.length();
 	}
 
-	@OriginalMember(owner = "runetek4.client!jb", name = "b", descriptor = "(Z)V")
-	public final void clientDrop() {
+	@OriginalMember(owner = "client!jb", name = "b", descriptor = "(Z)V")
+	public void clientDrop() {
 		if (this.updateServerSocket != null) {
 			this.updateServerSocket.closeGracefully();
 		}

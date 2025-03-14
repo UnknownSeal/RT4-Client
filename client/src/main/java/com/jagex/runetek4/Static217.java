@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;

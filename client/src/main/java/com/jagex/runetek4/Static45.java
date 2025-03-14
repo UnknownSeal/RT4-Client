@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.config.FloType;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;

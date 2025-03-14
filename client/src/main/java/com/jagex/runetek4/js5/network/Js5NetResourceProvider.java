@@ -151,7 +151,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				}
 				this.index = new Js5Index(local52, this.anInt573);
 			} catch (@Pc(131) RuntimeException local131) {
-				this.tcpClient.method2327();
+				this.tcpClient.rekey();
 				this.index = null;
 				if (this.tcpClient.isUrgentsFull()) {
 					this.currentRequest = null;
@@ -374,7 +374,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				this.tcpClient.errors = 0;
 				this.tcpClient.response = 0;
 			} catch (@Pc(225) RuntimeException local225) {
-				this.tcpClient.method2327();
+				this.tcpClient.rekey();
 				request.unlink();
 				if (request.urgent && !this.tcpClient.isUrgentsFull()) {
 					local252 = this.tcpClient.method2330(this.anInt576, (byte) 2, group, true);

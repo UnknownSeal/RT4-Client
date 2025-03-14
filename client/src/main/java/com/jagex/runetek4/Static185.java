@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.dash3d.entity.Entity;
 import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
@@ -220,7 +221,7 @@ public final class Static185 {
 				}
 			}
 			if (locType.blockwalk != 0 && collsion != null) {
-				collsion.addWall(rotation, shape, locType.blockrange, z, arg7);
+				collsion.addWall(arg7, z, shape, rotation, locType.blockrange);
 			}
 			if (locType.wallwidth != 16) {
 				Static18.method559(level, arg7, z, locType.wallwidth);
@@ -248,7 +249,7 @@ public final class Static185 {
 				}
 			}
 			if (locType.blockwalk != 0 && collsion != null) {
-				collsion.addWall(rotation, shape, locType.blockrange, z, arg7);
+				collsion.addWall(arg7, z, shape, rotation, locType.blockrange);
 			}
 		} else {
 			@Pc(1226) int local1226;
@@ -288,7 +289,7 @@ public final class Static185 {
 					}
 				}
 				if (locType.blockwalk != 0 && collsion != null) {
-					collsion.addWall(rotation, shape, locType.blockrange, z, arg7);
+					collsion.addWall(arg7, z, shape, rotation, locType.blockrange);
 				}
 				if (locType.wallwidth != 16) {
 					Static18.method559(level, arg7, z, locType.wallwidth);
@@ -316,7 +317,7 @@ public final class Static185 {
 					}
 				}
 				if (locType.blockwalk != 0 && collsion != null) {
-					collsion.addWall(rotation, shape, locType.blockrange, z, arg7);
+					collsion.addWall(arg7, z, shape, rotation, locType.blockrange);
 				}
 			} else if (shape == 9) {
 				if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {

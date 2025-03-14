@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.config.lighttype.LightType;
 import com.jagex.runetek4.js5.network.Js5NetResourceProvider;
 import org.openrs2.deob.annotation.OriginalArg;

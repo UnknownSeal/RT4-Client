@@ -8,6 +8,7 @@ import java.util.GregorianCalendar;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.io.BufferedFile;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.client.DiskStore;
 import com.jagex.runetek4.game.config.cursortype.CursorType;
 import com.jagex.runetek4.config.Component;
