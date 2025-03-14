@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.dash3d.entity.Entity;
-import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -33,23 +32,6 @@ public final class Static5 {
 	@OriginalMember(owner = "runetek4.client!af", name = "a", descriptor = "(ILjava/lang/String;)V")
 	public static void method31(@OriginalArg(1) String arg0) {
 		System.out.println("Error: " + Static40.method1014("%0a", "\n", arg0));
-	}
-
-	@OriginalMember(owner = "runetek4.client!af", name = "a", descriptor = "(BI)Lclient!be;")
-	public static Component getComponent(@OriginalArg(1) int id) {
-		@Pc(7) int interfaceId = id >> 16;
-		@Pc(18) int componentId = id & 0xFFFF;
-		if (Static241.components[interfaceId] == null || Static241.components[interfaceId][componentId] == null) {
-			@Pc(33) boolean success = Static245.load(interfaceId);
-			if (!success) {
-				return null;
-			}
-			// todo: this should not be necessary, data/server-related?
-			if (Static241.components.length <= interfaceId || Static241.components[interfaceId].length <= componentId) {
-				return null;
-			}
-		}
-		return Static241.components[interfaceId][componentId];
 	}
 
 	@OriginalMember(owner = "runetek4.client!af", name = "b", descriptor = "(B)V")

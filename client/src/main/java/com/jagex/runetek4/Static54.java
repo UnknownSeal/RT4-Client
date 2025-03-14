@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.config.NPCType;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
@@ -20,8 +20,8 @@ public final class Static54 {
 
 	@OriginalMember(owner = "runetek4.client!ed", name = "a", descriptor = "(III)V")
 	public static void method1304(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		if (Static245.load(arg1)) {
-			Static2.method7(Static241.components[arg1], arg0);
+		if (Component.load(arg1)) {
+			Static2.method7(Component.cachedComponents[arg1], arg0);
 		}
 	}
 

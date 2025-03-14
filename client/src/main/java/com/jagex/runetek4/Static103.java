@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.config.NPCType;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
@@ -68,7 +68,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p2_alt3(Static274.anInt4997);
 			Static6.outboundBuffer.p2_alt3(a);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Static5.getComponent(local19);
+			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		@Pc(192) NPCEntity npc;
@@ -114,7 +114,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p2_alt2(local15);
 			Static6.outboundBuffer.p4_alt3(local19);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Static5.getComponent(local19);
+			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 42) {
@@ -177,7 +177,7 @@ public final class Static103 {
 		}
 		@Pc(693) Component com;
 		if (local23 == 1006) {
-			com = Static5.getComponent(local19);
+			com = Component.getComponent(local19);
 			if (com == null || com.invSlotObjCount[local15] < 100000) {
 				Static6.outboundBuffer.pIsaac1(92);
 				Static6.outboundBuffer.p2_alt3(a);
@@ -185,7 +185,7 @@ public final class Static103 {
 				addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { Static123.method2423(com.invSlotObjCount[local15]), Static249.aClass100_1039, Static71.get(a).name}));
 			}
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Static5.getComponent(local19);
+			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 60) {
@@ -232,7 +232,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p2_alt2(a);
 			Static6.outboundBuffer.p4_alt1(local19);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Static5.getComponent(local19);
+			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 3) {
@@ -243,7 +243,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p2_alt2(a);
 			Static6.outboundBuffer.p2_alt1(Static15.anInt506);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Static5.getComponent(local19);
+			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 10) {
@@ -276,7 +276,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p2_alt1(local15);
 			Static6.outboundBuffer.p4_alt1(local19);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Static5.getComponent(local19);
+			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 14 && Static233.method4003(local31, local19, local15)) {
@@ -309,7 +309,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p2_alt2(local15);
 			Static6.outboundBuffer.p4rme(local19);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Static5.getComponent(local19);
+			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 21) {
@@ -379,7 +379,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p2_alt3(a);
 			Static6.outboundBuffer.p2_alt3(local15);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Static5.getComponent(local19);
+			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 15) {
@@ -420,7 +420,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p2(a);
 			Static6.outboundBuffer.p4rme(local19);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Static5.getComponent(local19);
+			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 2) {
@@ -439,7 +439,7 @@ public final class Static103 {
 		if (local23 == 51) {
 			Static6.outboundBuffer.pIsaac1(10);
 			Static6.outboundBuffer.p4(local19);
-			com = Static5.getComponent(local19);
+			com = Component.getComponent(local19);
 			if (com.scripts != null && com.scripts[0][0] == 5) {
 				varp = com.scripts[0][1];
 				if (VarPlayerDefinition.varPlayers[varp] != com.scriptOperand[0]) {
@@ -466,7 +466,7 @@ public final class Static103 {
 		if (local23 == 59) {
 			Static6.outboundBuffer.pIsaac1(10);
 			Static6.outboundBuffer.p4(local19);
-			com = Static5.getComponent(local19);
+			com = Component.getComponent(local19);
 			if (com.scripts != null && com.scripts[0][0] == 5) {
 				varp = com.scripts[0][1];
 				VarPlayerDefinition.varPlayers[varp] = 1 - VarPlayerDefinition.varPlayers[varp];
@@ -511,7 +511,7 @@ public final class Static103 {
 			}
 		}
 		if (local23 == 8) {
-			com = Static5.getComponent(local19);
+			com = Component.getComponent(local19);
 			@Pc(2287) boolean local2287 = true;
 			if (com.contentType > 0) {
 				local2287 = Static249.method4265(com);
@@ -542,7 +542,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p2(local15);
 			Static6.outboundBuffer.p2_alt2(a);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Static5.getComponent(local19);
+			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 24) {
@@ -577,7 +577,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p2_alt2(local15);
 			Static6.outboundBuffer.p2_alt1(a);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Static5.getComponent(local19);
+			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 57) {
@@ -594,7 +594,7 @@ public final class Static103 {
 		}
 		if (local23 == 22) {
 			Static53.method1294();
-			com = Static5.getComponent(local19);
+			com = Component.getComponent(local19);
 			Static224.anInt5062 = local19;
 			Static185.anInt4370 = local15;
 			Static260.anInt5014 = 1;
@@ -619,7 +619,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p4rme(local19);
 			Static6.outboundBuffer.p2_alt3(a);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Static5.getComponent(local19);
+			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 30) {
@@ -640,7 +640,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p2_alt1(local15);
 			Static6.outboundBuffer.p2_alt1(a);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Static5.getComponent(local19);
+			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 39) {
@@ -722,7 +722,7 @@ public final class Static103 {
 		}
 		if (Static260.anInt5014 != 0) {
 			Static260.anInt5014 = 0;
-			Static43.method1143(Static5.getComponent(Static224.anInt5062));
+			Static43.method1143(Component.getComponent(Static224.anInt5062));
 		}
 		if (Static241.aBoolean302) {
 			Static53.method1294();
@@ -802,9 +802,9 @@ public final class Static103 {
 	public static void method2245() {
 		for (@Pc(6) Class3_Sub31 local6 = (Class3_Sub31) Static119.aClass133_9.peekFront(); local6 != null; local6 = (Class3_Sub31) Static119.aClass133_9.prev()) {
 			@Pc(14) int local14 = local6.anInt5878;
-			if (Static245.load(local14)) {
+			if (Component.load(local14)) {
 				@Pc(21) boolean local21 = true;
-				@Pc(25) Component[] local25 = Static241.components[local14];
+				@Pc(25) Component[] local25 = Component.cachedComponents[local14];
 				@Pc(27) int local27;
 				for (local27 = 0; local27 < local25.length; local27++) {
 					if (local25[local27] != null) {
@@ -814,7 +814,7 @@ public final class Static103 {
 				}
 				if (!local21) {
 					local27 = (int) local6.nodeId;
-					@Pc(60) Component local60 = Static5.getComponent(local27);
+					@Pc(60) Component local60 = Component.getComponent(local27);
 					if (local60 != null) {
 						Static43.method1143(local60);
 					}

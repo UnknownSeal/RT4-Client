@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.config.ObjType;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -49,7 +49,7 @@ public final class Static258 {
 		}
 		@Pc(173) int local173;
 		@Pc(171) int local171;
-		if (arg2.anInt452 == 2) {
+		if (arg2.INVENTORY == 2) {
 			local171 = 0;
 			for (local173 = 0; local173 < arg2.anInt488; local173++) {
 				for (@Pc(183) int local183 = 0; local183 < arg2.baseWidth; local183++) {

@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -33,14 +34,14 @@ public final class Static73 {
 	public static void method1596(@OriginalArg(0) boolean arg0) {
 		if (arg0) {
 			if (Static154.topLevelInterace != -1) {
-				Static109.method2275(Static154.topLevelInterace);
+				Component.resetComponent(Static154.topLevelInterace);
 			}
 			for (@Pc(18) Class3_Sub31 local18 = (Class3_Sub31) Static119.aClass133_9.peekFront(); local18 != null; local18 = (Class3_Sub31) Static119.aClass133_9.prev()) {
 				Static132.method2605(true, local18);
 			}
 			Static154.topLevelInterace = -1;
 			Static119.aClass133_9 = new IterableMap(8);
-			Static52.method1287();
+			Component.createComponentMemoryBuffer();
 			Static154.topLevelInterace = Static156.anInt3783;
 			Static210.method3712(false);
 			Static87.method1807();

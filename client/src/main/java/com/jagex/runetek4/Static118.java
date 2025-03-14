@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.config.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -35,7 +35,7 @@ public final class Static118 {
 		for (@Pc(7) int local7 = 0; local7 < arg1.length; local7++) {
 			@Pc(15) Component local15 = arg1[local7];
 			if (local15 != null && local15.layer == arg0 && (!local15.aBoolean32 || !Static36.method947(local15))) {
-				if (local15.anInt452 == 0) {
+				if (local15.INVENTORY == 0) {
 					if (!local15.aBoolean32 && Static36.method947(local15) && local15 != Static180.aClass13_22) {
 						continue;
 					}
@@ -48,7 +48,7 @@ public final class Static118 {
 						Static96.method1949(local73.anInt5878);
 					}
 				}
-				if (local15.anInt452 == 6) {
+				if (local15.INVENTORY == 6) {
 					@Pc(105) int local105;
 					if (local15.anInt522 != -1 || local15.anInt462 != -1) {
 						@Pc(100) boolean local100 = Static154.method2926(local15);

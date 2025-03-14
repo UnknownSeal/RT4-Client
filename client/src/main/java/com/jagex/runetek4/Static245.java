@@ -1,9 +1,9 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.config.Component;
 import com.jagex.runetek4.game.config.lighttype.LightType;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -28,40 +28,6 @@ public final class Static245 {
 	public static void method4224(@OriginalArg(0) int arg0) {
 		@Pc(16) DelayedStateChange local16 = Static238.method4143(6, arg0);
 		local16.method1007();
-	}
-
-	@OriginalMember(owner = "runetek4.client!tm", name = "b", descriptor = "(II)Z")
-	public static boolean load(@OriginalArg(0) int arg0) {
-		if (Static223.aBooleanArray115[arg0]) {
-			return true;
-		} else if (Static202.aClass153_84.method4479(arg0)) {
-			@Pc(25) int local25 = Static202.aClass153_84.fileLength(arg0);
-			if (local25 == 0) {
-				Static223.aBooleanArray115[arg0] = true;
-				return true;
-			}
-			if (Static241.components[arg0] == null) {
-				Static241.components[arg0] = new Component[local25];
-			}
-			for (@Pc(46) int local46 = 0; local46 < local25; local46++) {
-				if (Static241.components[arg0][local46] == null) {
-					@Pc(62) byte[] local62 = Static202.aClass153_84.getfile(arg0, local46);
-					if (local62 != null) {
-						@Pc(74) Component local74 = Static241.components[arg0][local46] = new Component();
-						local74.anInt507 = local46 + (arg0 << 16);
-						if (local62[0] == -1) {
-							local74.method490(new Packet(local62));
-						} else {
-							local74.method481(new Packet(local62));
-						}
-					}
-				}
-			}
-			Static223.aBooleanArray115[arg0] = true;
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!tm", name = "a", descriptor = "(I)V")
@@ -102,7 +68,7 @@ public final class Static245 {
 			for (local103 = 0; local103 < 64; local103++) {
 				for (local108 = 0; local108 < 64; local108++) {
 					if (arg6 == local17 && arg8 <= local103 && arg8 + 8 > local103 && arg7 <= local108 && local108 < arg7 + 8) {
-						Static278.method4651(0, 0, arg9, local96, Static202.method3659(arg0, local103 & 0x7, local108 & 0x7) + arg4, Static214.method4360(arg0, local108 & 0x7, local103 & 0x7) + arg1, arg0, arg2);
+						Static278.method4651(0, 0, arg9, local96, CacheArchive.method3659(arg0, local103 & 0x7, local108 & 0x7) + arg4, Static214.method4360(arg0, local108 & 0x7, local103 & 0x7) + arg1, arg0, arg2);
 					} else {
 						Static278.method4651(0, 0, arg9, local96, -1, -1, 0, 0);
 					}
@@ -166,7 +132,7 @@ public final class Static245 {
 									for (local266 = local237; local266 < local237 + 4; local266++) {
 										if (local255 >= arg8 && local255 < arg8 + 8 && local266 >= arg7 && arg7 + 8 > arg7) {
 											local316 = arg1 + Static214.method4360(arg0, local266 & 0x7, local255 & 0x7);
-											@Pc(328) int local328 = Static202.method3659(arg0, local255 & 0x7, local266 & 0x7) + arg4;
+											@Pc(328) int local328 = CacheArchive.method3659(arg0, local255 & 0x7, local266 & 0x7) + arg4;
 											if (local316 >= 0 && local316 < 104 && local328 >= 0 && local328 < 104) {
 												Static232.aByteArrayArrayArray13[arg2][local316][local328] = local246;
 											}

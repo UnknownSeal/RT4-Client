@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -34,7 +35,7 @@ public final class Static28 {
 		if (arg0.method4506(Static34.anInt1049)) {
 			local5++;
 		}
-		if (arg0.method4506(Static202.anInt4741)) {
+		if (arg0.method4506(CacheArchive.anInt4741)) {
 			local5++;
 		}
 		if (arg0.method4506(Static149.anInt3551)) {

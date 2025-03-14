@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -73,7 +73,7 @@ public final class Static44 {
 		local9.anInt5878 = arg0;
 		Static119.aClass133_9.pushNode(local9, (long) arg1);
 		Static81.method1753(arg0);
-		@Pc(28) Component local28 = Static5.getComponent(arg1);
+		@Pc(28) Component local28 = Component.getComponent(arg1);
 		if (local28 != null) {
 			Static43.method1143(local28);
 		}

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -185,7 +185,7 @@ public final class Static49 {
 			Static133.method4012(arg2 + 4, Static280.aClass3_Sub2_Sub9_43.method2858(local24) + local40, arg1, 15);
 			return;
 		}
-		@Pc(59) Font local59 = arg0.method491(Static159.aClass36Array12);
+		@Pc(59) Font local59 = arg0.getFont(Static159.aClass36Array12);
 		if (local59 == null) {
 			local59 = Static280.aClass3_Sub2_Sub9_43;
 		}

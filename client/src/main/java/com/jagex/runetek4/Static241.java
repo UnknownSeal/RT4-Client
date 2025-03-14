@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -10,9 +10,6 @@ public final class Static241 {
 
 	@OriginalMember(owner = "runetek4.client!th", name = "f", descriptor = "[Lclient!ok;")
 	public static IndexedSprite[] aClass36Array16;
-
-	@OriginalMember(owner = "runetek4.client!th", name = "j", descriptor = "[[Lclient!be;")
-	public static Component[][] components;
 
 	@OriginalMember(owner = "runetek4.client!th", name = "m", descriptor = "[Lclient!be;")
 	public static Component[] aClass13Array13;

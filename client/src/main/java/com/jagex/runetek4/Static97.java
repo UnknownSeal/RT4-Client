@@ -7,7 +7,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCLocation;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import org.openrs2.deob.annotation.OriginalArg;

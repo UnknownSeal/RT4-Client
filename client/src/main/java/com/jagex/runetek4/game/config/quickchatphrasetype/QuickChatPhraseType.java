@@ -1,6 +1,7 @@
 package com.jagex.runetek4.game.config.quickchatphrasetype;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.datastruct.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -114,7 +115,7 @@ public final class QuickChatPhraseType extends CachedNode {
 	public JString method769() {
 		@Pc(15) JString local15 = Static87.method1804(80);
 		if (this.aClass100Array35 == null) {
-			return Static202.aClass100_891;
+			return CacheArchive.aClass100_891;
 		}
 		local15.method3113(this.aClass100Array35[0]);
 		for (@Pc(31) int local31 = 1; local31 < this.aClass100Array35.length; local31++) {

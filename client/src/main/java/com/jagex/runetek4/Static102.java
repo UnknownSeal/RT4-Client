@@ -59,14 +59,14 @@ public final class Static102 {
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "a", descriptor = "(Lclient!ve;ILclient!ve;)V")
 	public static void method2074(@OriginalArg(0) Js5 arg0, @OriginalArg(2) Js5 arg1) {
-		Static114.aClass3_Sub2_Sub9_42 = Static127.method2462(Static166.anInt4049, arg1, arg0);
+		Static114.aClass3_Sub2_Sub9_42 = Static127.getFont(Static166.anInt4049, arg1, arg0);
 		if (GlRenderer.enabled) {
 			Static265.aClass3_Sub2_Sub9_Sub1_2 = Static122.method2412(Static166.anInt4049, arg0, arg1);
 		} else {
 			Static265.aClass3_Sub2_Sub9_Sub1_2 = (SoftwareFont) Static114.aClass3_Sub2_Sub9_42;
 		}
-		Static215.aClass3_Sub2_Sub9_32 = Static127.method2462(Static130.anInt3161, arg1, arg0);
-		Static280.aClass3_Sub2_Sub9_43 = Static127.method2462(Static73.anInt2077, arg1, arg0);
+		Static215.aClass3_Sub2_Sub9_32 = Static127.getFont(Static130.anInt3161, arg1, arg0);
+		Static280.aClass3_Sub2_Sub9_43 = Static127.getFont(Static73.anInt2077, arg1, arg0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "a", descriptor = "(IIIZIIIIIIII)Z")

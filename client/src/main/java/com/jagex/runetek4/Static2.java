@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -43,7 +43,7 @@ public final class Static2 {
 		for (@Pc(11) int local11 = 0; local11 < arg0.length; local11++) {
 			@Pc(23) Component local23 = arg0[local11];
 			if (local23 != null) {
-				if (local23.anInt452 == 0) {
+				if (local23.INVENTORY == 0) {
 					if (local23.createdComponents != null) {
 						method7(local23.createdComponents, arg1);
 					}
@@ -61,7 +61,7 @@ public final class Static2 {
 				}
 				if (arg1 == 1 && local23.anObjectArray8 != null) {
 					if (local23.componentId >= 0) {
-						@Pc(103) Component local103 = Static5.getComponent(local23.anInt507);
+						@Pc(103) Component local103 = Component.getComponent(local23.anInt507);
 						if (local103 == null || local103.createdComponents == null || local23.componentId >= local103.createdComponents.length || local103.createdComponents[local23.componentId] != local23) {
 							continue;
 						}

@@ -5,13 +5,14 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.GregorianCalendar;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.io.BufferedFile;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.client.DiskStore;
 import com.jagex.runetek4.game.config.cursortype.CursorType;
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.js5.index.Js5MasterIndex;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -121,7 +122,7 @@ public final class client extends GameShell {
 		}
 
 		if (arg0 != -1) {
-			@Pc(24) CursorType cursorType = Static202.method3660(arg0);
+			@Pc(24) CursorType cursorType = CacheArchive.method3660(arg0);
 			@Pc(28) SoftwareSprite local28 = cursorType.getSprite();
 			if (local28 == null) {
 				arg0 = -1;
@@ -575,7 +576,7 @@ public final class client extends GameShell {
 										if (local379.componentId < 0) {
 											break;
 										}
-										local387 = Static5.getComponent(local379.layer);
+										local387 = Component.getComponent(local379.layer);
 									} while (local387 == null || local387.createdComponents == null || local387.createdComponents.length <= local379.componentId || local379 != local387.createdComponents[local379.componentId]);
 									Static82.method1767(local374);
 								}
@@ -584,7 +585,7 @@ public final class client extends GameShell {
 							if (local379.componentId < 0) {
 								break;
 							}
-							local387 = Static5.getComponent(local379.layer);
+							local387 = Component.getComponent(local379.layer);
 						} while (local387 == null || local387.createdComponents == null || local379.componentId >= local387.createdComponents.length || local379 != local387.createdComponents[local379.componentId]);
 						Static82.method1767(local374);
 					}
@@ -593,7 +594,7 @@ public final class client extends GameShell {
 				if (local379.componentId < 0) {
 					break;
 				}
-				local387 = Static5.getComponent(local379.layer);
+				local387 = Component.getComponent(local379.layer);
 			} while (local387 == null || local387.createdComponents == null || local387.createdComponents.length <= local379.componentId || local379 != local387.createdComponents[local379.componentId]);
 			Static82.method1767(local374);
 		}

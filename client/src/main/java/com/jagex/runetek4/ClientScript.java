@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.config.ObjType;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.datastruct.IterableMap;
@@ -20,7 +20,7 @@ public final class ClientScript extends CachedNode {
 	public int anInt4665;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "L", descriptor = "I")
-	public int anInt4667;
+	public int localIntCount;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "N", descriptor = "I")
 	public int anInt4669;
@@ -35,7 +35,7 @@ public final class ClientScript extends CachedNode {
 	public JString aClass100_880;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "S", descriptor = "I")
-	public int anInt4671;
+	public int localStringCount;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "T", descriptor = "[Lclient!na;")
 	public JString[] stringOperands;
@@ -60,8 +60,8 @@ public final class ClientScript extends CachedNode {
 		@Pc(63) int local63 = local42.data.length - local53 - 12 - 2;
 		local42.position = local63;
 		@Pc(70) int opcodeCount = local42.g4();
-		clientScript.anInt4667 = local42.g2();
-		clientScript.anInt4671 = local42.g2();
+		clientScript.localIntCount = local42.g2();
+		clientScript.localStringCount = local42.g2();
 		clientScript.anInt4665 = local42.g2();
 		clientScript.anInt4669 = local42.g2();
 		@Pc(98) int local98 = local42.g1();
@@ -143,7 +143,7 @@ public final class ClientScript extends CachedNode {
 				if (opcode == 4) { // load_inv_count {interface id} {obj id}
 					i = script[pc++] << 16;
 					@Pc(131) int local131 = i + script[pc++];
-					com = Static5.getComponent(local131);
+					com = Component.getComponent(local131);
 					local140 = script[pc++];
 					if (local140 != -1 && (!Static71.get(local140).members || Static2.membersWorld)) {
 						for (j = 0; j < com.invSlotObjId.length; j++) {
@@ -175,7 +175,7 @@ public final class ClientScript extends CachedNode {
 				if (opcode == 10) { // load_inv_contains {interface id} {obj id}
 					i = script[pc++] << 16;
 					i += script[pc++];
-					com = Static5.getComponent(i);
+					com = Component.getComponent(i);
 					local140 = script[pc++];
 					if (local140 != -1 && (!Static71.get(local140).members || Static2.membersWorld)) {
 						for (j = 0; j < com.invSlotObjId.length; j++) {

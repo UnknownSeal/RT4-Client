@@ -15,7 +15,7 @@ public final class Static23 {
 	public static Js5 aClass153_11;
 
 	@OriginalMember(owner = "client!bm", name = "f", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_12;
+	public static Js5 gameImageCacheArchive;
 
 	@OriginalMember(owner = "client!bm", name = "p", descriptor = "Lclient!na;")
 	public static final JString aClass100_133 = Static28.parse("(U1");

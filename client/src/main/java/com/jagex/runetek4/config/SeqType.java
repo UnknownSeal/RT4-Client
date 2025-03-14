@@ -38,7 +38,7 @@ public final class SeqType {
 	public int anInt5349 = -1;
 
 	@OriginalMember(owner = "client!tk", name = "e", descriptor = "I")
-	public int offhans = -1;
+	public int offhand = -1;
 
 	@OriginalMember(owner = "client!tk", name = "d", descriptor = "Z")
 	public boolean aBoolean278 = false;
@@ -107,7 +107,7 @@ public final class SeqType {
 		} else if (code == 6) {
 			this.mainhand = packet.g2();
 		} else if (code == 7) {
-			this.offhans = packet.g2();
+			this.offhand = packet.g2();
 		} else if (code == 8) {
 			this.replaycount = packet.g1();
 		} else if (code == 9) {

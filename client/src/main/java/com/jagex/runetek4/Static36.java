@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.config.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -30,7 +30,7 @@ public final class Static36 {
 			return null;
 		}
 		for (@Pc(10) int local10 = 0; local10 < local4; local10++) {
-			arg0 = Static5.getComponent(arg0.layer);
+			arg0 = Component.getComponent(arg0.layer);
 			if (arg0 == null) {
 				return null;
 			}
@@ -65,14 +65,14 @@ public final class Static36 {
 	public static void method946(@OriginalArg(0) Component[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
 		for (@Pc(1) int local1 = 0; local1 < arg0.length; local1++) {
 			@Pc(9) Component local9 = arg0[local1];
-			if (local9 != null && local9.layer == arg1 && (!local9.aBoolean32 || local9.anInt452 == 0 || local9.aBoolean25 || method940(local9).anInt546 != 0 || local9 == Static4.aClass13_1 || local9.contentType == 1338) && (!local9.aBoolean32 || !method947(local9))) {
+			if (local9 != null && local9.layer == arg1 && (!local9.aBoolean32 || local9.INVENTORY == 0 || local9.aBoolean25 || method940(local9).anInt546 != 0 || local9 == Static4.aClass13_1 || local9.contentType == 1338) && (!local9.aBoolean32 || !method947(local9))) {
 				@Pc(50) int local50 = local9.x + arg6;
 				@Pc(55) int local55 = local9.y + arg7;
 				@Pc(61) int local61;
 				@Pc(63) int local63;
 				@Pc(65) int local65;
 				@Pc(67) int local67;
-				if (local9.anInt452 == 2) {
+				if (local9.INVENTORY == 2) {
 					local61 = arg2;
 					local63 = arg3;
 					local65 = arg4;
@@ -80,7 +80,7 @@ public final class Static36 {
 				} else {
 					@Pc(73) int local73 = local50 + local9.anInt445;
 					@Pc(78) int local78 = local55 + local9.anInt459;
-					if (local9.anInt452 == 9) {
+					if (local9.INVENTORY == 9) {
 						local73++;
 						local78++;
 					}
@@ -95,7 +95,7 @@ public final class Static36 {
 					Static20.anInt660 = local55;
 				}
 				if (!local9.aBoolean32 || local61 < local65 && local63 < local67) {
-					if (local9.anInt452 == 0) {
+					if (local9.INVENTORY == 0) {
 						if (!local9.aBoolean32 && method947(local9) && Static180.aClass13_22 != local9) {
 							continue;
 						}
@@ -489,14 +489,14 @@ public final class Static36 {
 								Static180.aClass13_22 = local9;
 							}
 						}
-						if (local9.anInt452 == 8 && Static215.anInt4873 >= local61 && Static223.anInt5032 >= local63 && Static215.anInt4873 < local65 && Static223.anInt5032 < local67) {
+						if (local9.INVENTORY == 8 && Static215.anInt4873 >= local61 && Static223.anInt5032 >= local63 && Static215.anInt4873 < local65 && Static223.anInt5032 < local67) {
 							Static43.aClass13_11 = local9;
 						}
 						if (local9.anInt491 > local9.anInt459) {
 							Static236.method4049(Static223.anInt5032, local9.anInt459, local9, Static215.anInt4873, local50 + local9.anInt445, local55, local9.anInt491);
 						}
 					}
-					if (local9.anInt452 == 0) {
+					if (local9.INVENTORY == 0) {
 						method946(arg0, local9.anInt507, local61, local63, local65, local67, local50 - local9.anInt489, local55 - local9.scrollY);
 						if (local9.createdComponents != null) {
 							method946(local9.createdComponents, local9.anInt507, local61, local63, local65, local67, local50 - local9.anInt489, local55 - local9.scrollY);
@@ -517,7 +517,7 @@ public final class Static36 {
 			if (method940(arg0).anInt546 != 0) {
 				return false;
 			}
-			if (arg0.anInt452 == 0) {
+			if (arg0.INVENTORY == 0) {
 				return false;
 			}
 		}

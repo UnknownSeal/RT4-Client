@@ -247,7 +247,7 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "c", descriptor = "(II)V")
-	public void method4490(@OriginalArg(1) int arg0) {
+	public void unloadFile(@OriginalArg(1) int arg0) {
 		if (this.isGroupValid(arg0) && this.unpacked != null) {
 			this.unpacked[arg0] = null;
 		}

@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -90,8 +91,8 @@ public final class Static147 {
 
 	@OriginalMember(owner = "runetek4.client!lh", name = "d", descriptor = "(B)V")
 	public static void method2764() {
-		Static190.aClass99_26.method3104();
+		Component.interfaceItemImageCache.method3104();
 		Static124.aClass99_17.method3104();
-		Static87.aClass99_12.method3104();
+		Component.interfaceTypefaceCache.method3104();
 	}
 }
