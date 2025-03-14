@@ -41,6 +41,6 @@ public final class Static82 {
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "a", descriptor = "(ILclient!jl;)V")
 	public static void method1767(@OriginalArg(1) HookRequest arg0) {
-		Static88.method1818(200000, arg0);
+		Static88.runClientScripts(200000, arg0);
 	}
 }

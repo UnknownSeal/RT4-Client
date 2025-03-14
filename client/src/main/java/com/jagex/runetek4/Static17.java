@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.PacketBit;
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -80,7 +80,7 @@ public final class Static17 {
 	public static void method531(@OriginalArg(0) Component arg0, @OriginalArg(1) boolean arg1) {
 		@Pc(20) int local20 = arg0.anInt486 == 0 ? arg0.anInt445 : arg0.anInt486;
 		@Pc(32) int local32 = arg0.anInt491 == 0 ? arg0.anInt459 : arg0.anInt491;
-		Static266.method4190(arg0.anInt507, arg1, local20, local32, Static241.components[arg0.anInt507 >> 16]);
+		Static266.method4190(arg0.anInt507, arg1, local20, local32, Component.cachedComponents[arg0.anInt507 >> 16]);
 		if (arg0.createdComponents != null) {
 			Static266.method4190(arg0.anInt507, arg1, local20, local32, arg0.createdComponents);
 		}

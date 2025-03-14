@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -57,7 +58,7 @@ public final class Static64 {
 		if (username == 0L) {
 			return;
 		}
-		if (Static9.friendCount >= 100 && !Static202.members || Static9.friendCount >= 200) {
+		if (Static9.friendCount >= 100 && !CacheArchive.members || Static9.friendCount >= 200) {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDLISTFULL);
 			return;
 		}

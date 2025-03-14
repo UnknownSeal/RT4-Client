@@ -249,10 +249,10 @@ public final class Static34 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "([Lclient!na;B)Lclient!na;")
-	public static JString method882(@OriginalArg(0) JString[] arg0) {
-		if (arg0.length < 2) {
+	public static JString method882(@OriginalArg(0) JString[] string) {
+		if (string.length < 2) {
 			throw new IllegalArgumentException();
 		}
-		return Static118.method2355(0, arg0.length, arg0);
+		return Static118.method2355(0, string.length, string);
 	}
 }

@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -27,7 +27,7 @@ public final class Static201 {
 
 	@OriginalMember(owner = "runetek4.client!qf", name = "a", descriptor = "(BII)Lclient!be;")
 	public static Component method1418(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(7) Component local7 = Static5.getComponent(arg0);
+		@Pc(7) Component local7 = Component.getComponent(arg0);
 		if (arg1 == -1) {
 			return local7;
 		} else if (local7 == null || local7.createdComponents == null || local7.createdComponents.length <= arg1) {

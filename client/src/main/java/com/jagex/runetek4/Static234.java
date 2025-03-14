@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.SeqType;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
@@ -141,8 +142,8 @@ public final class Static234 {
 
 	@OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "(IZIII)V")
 	public static void method4017(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		if (Static245.load(arg2)) {
-			Static266.method4190(-1, arg1, arg3, arg0, Static241.components[arg2]);
+		if (Component.load(arg2)) {
+			Static266.method4190(-1, arg1, arg3, arg0, Component.cachedComponents[arg2]);
 		}
 	}
 

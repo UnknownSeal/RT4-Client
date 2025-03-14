@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
@@ -107,7 +108,7 @@ public final class Static217 {
 		Static53.method1295();
 		Static249.method4266();
 		Static124.method2433();
-		Static202.method3653();
+		CacheArchive.method3653();
 		Static78.method1695();
 		Static10.method351();
 		Static230.method3947();

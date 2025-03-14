@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.config.ObjType;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
@@ -246,7 +247,7 @@ public final class Static164 {
 			local133 = local71;
 		}
 		if (arg3 && (local5.stackable == 1 || arg5 != 1) && arg5 != -1) {
-			Static256.aClass3_Sub2_Sub9_Sub1_1.method2857(Static52.method1288(arg5), 0, 9, 16776960, 1);
+			Static256.aClass3_Sub2_Sub9_Sub1_1.method2857(Component.getShortenedAmountText(arg5), 0, 9, 16776960, 1);
 		}
 		Static129.method2491(local118, local120, local122);
 		Static129.method2488(local125);

@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -27,9 +27,9 @@ public final class Static53 {
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(II)V")
 	public static void method1289() {
-		Static190.aClass99_26.clear(50);
+		Component.interfaceItemImageCache.clear(50);
 		Static124.aClass99_17.clear(50);
-		Static87.aClass99_12.clear(50);
+		Component.interfaceTypefaceCache.clear(50);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "([[IZILclient!hg;[IIIIZ[[FZI[[FIIIZ[[I[[FBI[Z)V")

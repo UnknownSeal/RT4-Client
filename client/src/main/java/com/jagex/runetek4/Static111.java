@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -53,7 +53,7 @@ public final class Static111 {
 		} else {
 			arg0.x = arg2 - (arg2 * arg0.baseX >> 14) - arg0.anInt445;
 		}
-		if (!Static121.aBoolean154 || Static36.method940(arg0).anInt546 == 0 && arg0.anInt452 != 0) {
+		if (!Static121.aBoolean154 || Static36.method940(arg0).anInt546 == 0 && arg0.INVENTORY != 0) {
 			return;
 		}
 		if (arg0.y < 0) {

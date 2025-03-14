@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -27,10 +27,10 @@ public final class Static132 {
 		@Pc(16) int local16 = arg1.anInt5878;
 		arg1.unlink();
 		if (arg0) {
-			Static109.method2275(local16);
+			Component.resetComponent(local16);
 		}
 		Static273.method3214(local16);
-		@Pc(32) Component local32 = Static5.getComponent(local9);
+		@Pc(32) Component local32 = Component.getComponent(local9);
 		if (local32 != null) {
 			Static43.method1143(local32);
 		}

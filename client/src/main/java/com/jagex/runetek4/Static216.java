@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.io.IOException;
 import java.net.Socket;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -242,12 +243,12 @@ public final class Static216 {
 				Static86.aBoolean129 = Static57.in.g1() == 1;
 				Static245.enabled = Static57.in.g1() == 1;
 				Static16.localPid = Static57.in.g2();
-				Static202.members = Static57.in.g1() == 1;
+				CacheArchive.members = Static57.in.g1() == 1;
 				Static2.membersWorld = Static57.in.g1() == 1;
 				Static189.method3438(Static2.membersWorld);
 				Static9.method186(Static2.membersWorld);
 				if (!Static249.aBoolean282) {
-					if (Static124.aBoolean157 && !Static25.aBoolean57 || Static202.members) {
+					if (Static124.aBoolean157 && !Static25.aBoolean57 || CacheArchive.members) {
 						try {
 							Static167.aClass100_781.method3157(GameShell.signLink.anApplet2);
 						} catch (@Pc(910) Throwable local910) {

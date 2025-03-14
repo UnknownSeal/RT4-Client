@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import java.io.IOException;
 
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -68,7 +68,7 @@ public final class aClass6 {
 				if (local37 == 25 || local37 == 23 || local37 == 48 || local37 == 7 || local37 == 13 || local37 == 47 || local37 == 5 || local37 == 43 || local37 == 35 || local37 == 58 || local37 == 22 || local37 == 1006) {
 					local93 = Static196.anIntArray408[PreciseSleep.menuActionRow - 1];
 					local99 = Static56.anIntArray142[PreciseSleep.menuActionRow - 1];
-					@Pc(103) Component local103 = Static5.getComponent(local99);
+					@Pc(103) Component local103 = Component.getComponent(local99);
 					@Pc(106) ServerActiveProperties local106 = Static36.method940(local103);
 					if (local106.method511() || local106.method504()) {
 						Static78.lastItemDragTime = 0;
@@ -76,7 +76,7 @@ public final class aClass6 {
 						if (Static118.component != null) {
 							Static43.method1143(Static118.component);
 						}
-						Static118.component = Static5.getComponent(local99);
+						Static118.component = Component.getComponent(local99);
 						Static149.anInt3554 = mouseClickX;
 						Static206.anInt4773 = Static60.mouseClickY;
 						Static4.selectedInventorySlot = local93;

@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -31,7 +32,7 @@ public final class Static30 {
 		Static116.aClass3_Sub2_Sub1Array3 = Static209.method3708(Static36.anInt1165, arg0);
 		Static219.aClass3_Sub2_Sub1Array9 = Static209.method3708(Static214.anInt5579, arg0);
 		Static138.aClass3_Sub2_Sub1Array5 = Static209.method3708(Static34.anInt1049, arg0);
-		Static276.aClass3_Sub2_Sub1Array11 = Static209.method3708(Static202.anInt4741, arg0);
+		Static276.aClass3_Sub2_Sub1Array11 = Static209.method3708(CacheArchive.anInt4741, arg0);
 		Static149.aClass3_Sub2_Sub1Array7 = Static209.method3708(Static149.anInt3551, arg0);
 		Static84.aClass3_Sub2_Sub1_4 = Static150.method2800(Static19.anInt647, arg0);
 		Static240.crossSprites = Static131.method2580(Static32.anInt1016, arg0);

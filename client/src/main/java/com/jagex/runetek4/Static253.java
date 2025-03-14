@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.enumtype.EnumType;
 import com.jagex.runetek4.js5.Js5;
@@ -70,7 +71,7 @@ public final class Static253 {
 		@Pc(171) int jitter;
 		for (type = 0; type < 5; type++) {
 			if (Static176.cameraModifierEnabled[type]) {
-				jitter = (int) ((double) -Static222.cameraModifierJitter[type] + (double) (Static222.cameraModifierJitter[type] * 2 + 1) * Math.random() + Math.sin((double) Static31.cameraModifierCycle[type] * ((double) Static202.cameraModifierWobbleSpeed[type] / 100.0D)) * (double) Static276.cameraModifierWobbleScale[type]);
+				jitter = (int) ((double) -Static222.cameraModifierJitter[type] + (double) (Static222.cameraModifierJitter[type] * 2 + 1) * Math.random() + Math.sin((double) Static31.cameraModifierCycle[type] * ((double) CacheArchive.cameraModifierWobbleSpeed[type] / 100.0D)) * (double) Static276.cameraModifierWobbleScale[type]);
 				if (type == 3) {
 					Static184.cameraYaw = jitter + Static184.cameraYaw & 0x7FF;
 				}

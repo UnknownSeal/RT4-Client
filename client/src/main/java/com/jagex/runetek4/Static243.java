@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
@@ -124,14 +125,14 @@ public final class Static243 {
 			VarPlayerDefinition.varcs[i] = -1;
 		}
 		if (Static154.topLevelInterace != -1) {
-			Static109.method2275(Static154.topLevelInterace);
+			Component.resetComponent(Static154.topLevelInterace);
 		}
 		for (@Pc(3755) Class3_Sub31 local3755 = (Class3_Sub31) Static119.aClass133_9.peekFront(); local3755 != null; local3755 = (Class3_Sub31) Static119.aClass133_9.prev()) {
 			Static132.method2605(true, local3755);
 		}
 		Static154.topLevelInterace = -1;
 		Static119.aClass133_9 = new IterableMap(8);
-		Static52.method1287();
+		Component.createComponentMemoryBuffer();
 		Static39.aClass13_10 = null;
 		Static60.aBoolean108 = false;
 		PreciseSleep.menuActionRow = 0;

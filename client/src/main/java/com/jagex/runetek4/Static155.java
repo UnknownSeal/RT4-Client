@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.config.ObjType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -60,7 +61,7 @@ public final class Static155 {
 		for (@Pc(119) int local119 = 0; local119 < Static111.anInt2905; local119++) {
 			local117[local119] = Static71.get(local8[local119]).name;
 		}
-		Static202.method3656(local117, Static169.aShortArray52);
+		CacheArchive.method3656(local117, Static169.aShortArray52);
 	}
 
 }

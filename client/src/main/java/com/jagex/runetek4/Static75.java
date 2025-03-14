@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.config.bastype.BASType;
@@ -495,7 +496,7 @@ public final class Static75 {
 		Static36.anInt1165 = arg0.method4482(Static260.HITBAR_DEFAULT);
 		Static214.anInt5579 = arg0.method4482(Static123.HEADICONS_PK);
 		Static34.anInt1049 = arg0.method4482(Static228.HEADICONS_PRAYER);
-		Static202.anInt4741 = arg0.method4482(Static98.HINT_HEADICONS);
+		CacheArchive.anInt4741 = arg0.method4482(Static98.HINT_HEADICONS);
 		Static149.anInt3551 = arg0.method4482(Static189.HINT_MAPMARKERS);
 		Static19.anInt647 = arg0.method4482(Static259.MAPFLAGS);
 		Static32.anInt1016 = arg0.method4482(Static86.CROSS);

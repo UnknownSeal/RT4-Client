@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -45,9 +45,9 @@ public final class Static150 {
 		} else if (arg2.aByte5 == 2) {
 			arg2.anInt445 = arg2.baseWidth * arg1 >> 14;
 		} else if (arg2.aByte5 == 3) {
-			if (arg2.anInt452 == 2) {
+			if (arg2.INVENTORY == 2) {
 				arg2.anInt445 = arg2.baseWidth * 32 + (arg2.baseWidth - 1) * arg2.anInt512;
-			} else if (arg2.anInt452 == 7) {
+			} else if (arg2.INVENTORY == 7) {
 				arg2.anInt445 = arg2.baseWidth * 115 + arg2.anInt512 * (arg2.baseWidth - 1);
 			}
 		}
@@ -58,9 +58,9 @@ public final class Static150 {
 		} else if (arg2.aByte3 == 2) {
 			arg2.anInt459 = arg0 * arg2.anInt488 >> 14;
 		} else if (arg2.aByte3 == 3) {
-			if (arg2.anInt452 == 2) {
+			if (arg2.INVENTORY == 2) {
 				arg2.anInt459 = (arg2.anInt488 - 1) * arg2.anInt516 + arg2.anInt488 * 32;
-			} else if (arg2.anInt452 == 7) {
+			} else if (arg2.INVENTORY == 7) {
 				arg2.anInt459 = arg2.anInt488 * 12 + (arg2.anInt488 - 1) * arg2.anInt516;
 			}
 		}
@@ -70,7 +70,7 @@ public final class Static150 {
 		if (arg2.aByte3 == 4) {
 			arg2.anInt459 = arg2.anInt442 * arg2.anInt445 / arg2.anInt473;
 		}
-		if (Static121.aBoolean154 && (Static36.method940(arg2).anInt546 != 0 || arg2.anInt452 == 0)) {
+		if (Static121.aBoolean154 && (Static36.method940(arg2).anInt546 != 0 || arg2.INVENTORY == 0)) {
 			if (arg2.anInt459 < 5 && arg2.anInt445 < 5) {
 				arg2.anInt459 = 5;
 				arg2.anInt445 = 5;

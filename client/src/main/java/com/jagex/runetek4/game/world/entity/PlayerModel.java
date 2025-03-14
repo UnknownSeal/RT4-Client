@@ -160,7 +160,7 @@ public final class PlayerModel {
 		}
 		@Pc(38) int[] local38 = this.anIntArray233;
 		@Pc(41) long local41 = this.aLong88;
-		if (arg3 != null && (arg3.mainhand >= 0 || arg3.offhans >= 0)) {
+		if (arg3 != null && (arg3.mainhand >= 0 || arg3.offhand >= 0)) {
 			local38 = new int[12];
 			for (@Pc(61) int local61 = 0; local61 < 12; local61++) {
 				local38[local61] = this.anIntArray233[local61];
@@ -174,12 +174,12 @@ public final class PlayerModel {
 					local41 ^= (long) local38[5] << 32;
 				}
 			}
-			if (arg3.offhans >= 0) {
-				if (arg3.offhans == 65535) {
+			if (arg3.offhand >= 0) {
+				if (arg3.offhand == 65535) {
 					local38[3] = 0;
 					local41 ^= 0xFFFFFFFFL;
 				} else {
-					local38[3] = arg3.offhans | 0x40000000;
+					local38[3] = arg3.offhand | 0x40000000;
 					local41 ^= local38[3];
 				}
 			}

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
@@ -224,13 +224,13 @@ public class Game {
             } else {
                 @Pc(773) Component component;
                 if (samples == 3) {
-                    component = Static5.getComponent(i);
+                    component = Component.getComponent(i);
                     if (!change.stringArg.method3108(component.aClass100_84)) {
                         component.aClass100_84 = change.stringArg;
                         Static43.method1143(component);
                     }
                 } else if (samples == 4) {
-                    component = Static5.getComponent(i);
+                    component = Component.getComponent(i);
                     x = change.intArg1;
                     dx = change.intArg2;
                     rand = change.intArg3;
@@ -241,7 +241,7 @@ public class Game {
                         Static43.method1143(component);
                     }
                 } else if (samples == 5) {
-                    component = Static5.getComponent(i);
+                    component = Component.getComponent(i);
                     if (component.anInt522 != change.intArg1 || change.intArg1 == -1) {
                         component.anInt496 = 1;
                         component.anInt500 = 0;
@@ -254,14 +254,14 @@ public class Game {
                     x = y >> 10 & 0x1F;
                     dx = y & 0x1F;
                     rand = y >> 5 & 0x1F;
-                    @Pc(1189) Component local1189 = Static5.getComponent(i);
+                    @Pc(1189) Component local1189 = Component.getComponent(i);
                     dy = (dx << 3) + (rand << 11) + (x << 19);
                     if (dy != local1189.anInt474) {
                         local1189.anInt474 = dy;
                         Static43.method1143(local1189);
                     }
                 } else if (samples == 7) {
-                    component = Static5.getComponent(i);
+                    component = Component.getComponent(i);
                     // todo: this should not be necessary, data/server-related?
                     if (component != null) {
                         @Pc(1145) boolean hidden = change.intArg1 == 1;
@@ -271,7 +271,7 @@ public class Game {
                         }
                     }
                 } else if (samples == 8) {
-                    component = Static5.getComponent(i);
+                    component = Component.getComponent(i);
                     if (change.intArg1 != component.modelXAngle || component.modelYAngle != change.intArg3 || change.intArg2 != component.modelZoom) {
                         component.modelXAngle = change.intArg1;
                         component.modelZoom = change.intArg2;
@@ -286,14 +286,14 @@ public class Game {
                         Static43.method1143(component);
                     }
                 } else if (samples == 9) {
-                    component = Static5.getComponent(i);
+                    component = Component.getComponent(i);
                     if (change.intArg1 != component.objId || component.objCount != change.intArg3) {
                         component.objId = change.intArg1;
                         component.objCount = change.intArg3;
                         Static43.method1143(component);
                     }
                 } else if (samples == 10) {
-                    component = Static5.getComponent(i);
+                    component = Component.getComponent(i);
                     if (component.modelXOffset != change.intArg1 || change.intArg3 != component.modelZOffset || component.modelYOffset != change.intArg2) {
                         component.modelZOffset = change.intArg3;
                         component.modelYOffset = change.intArg2;
@@ -301,16 +301,16 @@ public class Game {
                         Static43.method1143(component);
                     }
                 } else if (samples == 11) {
-                    component = Static5.getComponent(i);
+                    component = Component.getComponent(i);
                     component.x = component.baseX = change.intArg1;
                     component.yMode = 0;
                     component.xMode = 0;
                     component.y = component.baseY = change.intArg3;
                     Static43.method1143(component);
                 } else if (samples == 12) {
-                    component = Static5.getComponent(i);
+                    component = Component.getComponent(i);
                     x = change.intArg1;
-                    if (component != null && component.anInt452 == 0) {
+                    if (component != null && component.INVENTORY == 0) {
                         if (x > component.anInt491 - component.anInt459) {
                             x = component.anInt491 - component.anInt459;
                         }
@@ -323,7 +323,7 @@ public class Game {
                         }
                     }
                 } else if (samples == 13) {
-                    component = Static5.getComponent(i);
+                    component = Component.getComponent(i);
                     component.modelRotationSpeed = change.intArg1;
                 }
             }
@@ -621,7 +621,7 @@ public class Game {
                                         if (highPrioritySource.componentId < 0) {
                                             break;
                                         }
-                                        highPriorityComponent = Static5.getComponent(highPrioritySource.layer);
+                                        highPriorityComponent = Component.getComponent(highPrioritySource.layer);
                                     } while (highPriorityComponent == null || highPriorityComponent.createdComponents == null || highPrioritySource.componentId >= highPriorityComponent.createdComponents.length || highPrioritySource != highPriorityComponent.createdComponents[highPrioritySource.componentId]);
                                     Static82.method1767(highPriorityRequest);
                                 }
@@ -630,7 +630,7 @@ public class Game {
                             if (highPrioritySource.componentId < 0) {
                                 break;
                             }
-                            highPriorityComponent = Static5.getComponent(highPrioritySource.layer);
+                            highPriorityComponent = Component.getComponent(highPrioritySource.layer);
                         } while (highPriorityComponent == null || highPriorityComponent.createdComponents == null || highPriorityComponent.createdComponents.length <= highPrioritySource.componentId || highPriorityComponent.createdComponents[highPrioritySource.componentId] != highPrioritySource);
                         Static82.method1767(highPriorityRequest);
                     }
@@ -639,7 +639,7 @@ public class Game {
                 if (highPrioritySource.componentId < 0) {
                     break;
                 }
-                highPriorityComponent = Static5.getComponent(highPrioritySource.layer);
+                highPriorityComponent = Component.getComponent(highPrioritySource.layer);
             } while (highPriorityComponent == null || highPriorityComponent.createdComponents == null || highPrioritySource.componentId >= highPriorityComponent.createdComponents.length || highPriorityComponent.createdComponents[highPrioritySource.componentId] != highPrioritySource);
             Static82.method1767(highPriorityRequest);
         }

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -551,13 +551,13 @@ public final class Static280 {
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!be;I)Lclient!be;")
 	public static Component method4668(@OriginalArg(0) Component arg0) {
 		if (arg0.layer != -1) {
-			return Static5.getComponent(arg0.layer);
+			return Component.getComponent(arg0.layer);
 		}
 		@Pc(28) int local28 = arg0.anInt507 >>> 16;
 		@Pc(33) HashTableIterator local33 = new HashTableIterator(Static119.aClass133_9);
 		for (@Pc(38) Class3_Sub31 local38 = (Class3_Sub31) local33.method2701(); local38 != null; local38 = (Class3_Sub31) local33.method2700()) {
 			if (local28 == local38.anInt5878) {
-				return Static5.getComponent((int) local38.nodeId);
+				return Component.getComponent((int) local38.nodeId);
 			}
 		}
 		return null;

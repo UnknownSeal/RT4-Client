@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.msitype.MSIType;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -154,8 +154,8 @@ public final class Static40 {
 
 	@OriginalMember(owner = "runetek4.client!da", name = "h", descriptor = "(B)V")
 	public static void method1019() {
-		Static190.aClass99_26.method3103();
+		Component.interfaceItemImageCache.method3103();
 		Static124.aClass99_17.method3103();
-		Static87.aClass99_12.method3103();
+		Component.interfaceTypefaceCache.method3103();
 	}
 }

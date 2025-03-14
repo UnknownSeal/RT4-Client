@@ -11,7 +11,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static223 {
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "m", descriptor = "[Z")
-	public static boolean[] aBooleanArray115;
+	public static boolean[] loadedComponents;
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "f", descriptor = "Lclient!na;")
 	public static final JString aClass100_946 = Static28.parse("(R");

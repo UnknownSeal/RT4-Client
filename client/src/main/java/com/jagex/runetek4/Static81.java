@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.idktype.IDKType;
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -50,10 +50,10 @@ public final class Static81 {
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "e", descriptor = "(II)V")
 	public static void method1753(@OriginalArg(0) int arg0) {
-		if (!Static245.load(arg0)) {
+		if (!Component.load(arg0)) {
 			return;
 		}
-		@Pc(15) Component[] local15 = Static241.components[arg0];
+		@Pc(15) Component[] local15 = Component.cachedComponents[arg0];
 		for (@Pc(17) int local17 = 0; local17 < local15.length; local17++) {
 			@Pc(29) Component local29 = local15[local17];
 			if (local29 != null) {

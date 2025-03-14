@@ -2,13 +2,14 @@ package com.jagex.runetek4;
 
 import java.io.IOException;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.client.ClientInvCache;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.bastype.BASType;
-import com.jagex.runetek4.config.Component;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.config.ObjType;
 import com.jagex.runetek4.config.SeqType;
@@ -559,7 +560,7 @@ public final class Static4 {
 									local1814 = new ServerActiveProperties(local1804.anInt546, ii);
 									local1804.unlink();
 								} else if (i == -1) {
-									local1814 = new ServerActiveProperties(Static5.getComponent(xp).aClass3_Sub4_1.anInt546, ii);
+									local1814 = new ServerActiveProperties(Component.getComponent(xp).aClass3_Sub4_1.anInt546, ii);
 								} else {
 									local1814 = new ServerActiveProperties(0, ii);
 								}
@@ -755,7 +756,7 @@ public final class Static4 {
 						return true;
 					} else if (Static164.packetType == 144) {
 						ii = Static57.in.p4rme();
-						@Pc(2666) Component local2666 = Static5.getComponent(ii);
+						@Pc(2666) Component local2666 = Component.getComponent(ii);
 						for (world = 0; world < local2666.invSlotObjId.length; world++) {
 							local2666.invSlotObjId[world] = -1;
 							local2666.invSlotObjId[world] = 0;
@@ -954,11 +955,11 @@ public final class Static4 {
 										local3449.unlink();
 										Static119.aClass133_9.pushNode(local3449, (long) world);
 									}
-									@Pc(3490) Component local3490 = Static5.getComponent(ii);
+									@Pc(3490) Component local3490 = Component.getComponent(ii);
 									if (local3490 != null) {
 										Static43.method1143(local3490);
 									}
-									local3490 = Static5.getComponent(world);
+									local3490 = Component.getComponent(world);
 									if (local3490 != null) {
 										Static43.method1143(local3490);
 										Static17.method531(local3490, true);
@@ -980,7 +981,7 @@ public final class Static4 {
 									Static176.cameraModifierEnabled[xp] = true;
 									Static222.cameraModifierJitter[xp] = world;
 									Static276.cameraModifierWobbleScale[xp] = slot;
-									Static202.cameraModifierWobbleSpeed[xp] = count;
+									CacheArchive.cameraModifierWobbleSpeed[xp] = count;
 									Static31.cameraModifierCycle[xp] = i;
 								}
 								Static164.packetType = -1;
@@ -1000,7 +1001,7 @@ public final class Static4 {
 								Static209.miscTransmitAt = Static119.transmitTimer;
 								return true;
 							} else if (Static164.packetType == 114) {
-								Static202.method3654(GameShell.signLink, Static57.in, Static223.packetSize);
+								CacheArchive.method3654(GameShell.signLink, Static57.in, Static223.packetSize);
 								Static164.packetType = -1;
 								return true;
 							} else if (Static164.packetType == 65) {
@@ -1343,7 +1344,7 @@ public final class Static4 {
 									if (ii < 0) {
 										local4956 = null;
 									} else {
-										local4956 = Static5.getComponent(ii);
+										local4956 = Component.getComponent(ii);
 									}
 									while (Static57.in.position < Static223.packetSize) {
 										slot = Static57.in.gSmart1or2();
@@ -1426,7 +1427,7 @@ public final class Static4 {
 												local1814 = new ServerActiveProperties(count, local1804.anInt540);
 												local1804.unlink();
 											} else if (i == -1) {
-												local1814 = new ServerActiveProperties(count, Static5.getComponent(world).aClass3_Sub4_1.anInt540);
+												local1814 = new ServerActiveProperties(count, Component.getComponent(world).aClass3_Sub4_1.anInt540);
 											} else {
 												local1814 = new ServerActiveProperties(count, -1);
 											}
@@ -1517,7 +1518,7 @@ public final class Static4 {
 									}
 									slot = Static57.in.g2le();
 									if (Static248.method3288(slot)) {
-										@Pc(5603) Component com = Static5.getComponent(xp);
+										@Pc(5603) Component com = Component.getComponent(xp);
 										@Pc(5615) ObjType obj;
 										if (com.aBoolean32) {
 											Static209.method3707(xp, ii, world);
@@ -1547,7 +1548,7 @@ public final class Static4 {
 										xp += 32768;
 									}
 									if (ii >= 0) {
-										local4956 = Static5.getComponent(ii);
+										local4956 = Component.getComponent(ii);
 									} else {
 										local4956 = null;
 									}
