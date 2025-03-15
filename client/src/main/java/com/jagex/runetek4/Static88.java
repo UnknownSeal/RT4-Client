@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.cache.cs.ClientScript;
 import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
@@ -1519,7 +1520,7 @@ public final class Static88 {
 										continue;
 									}
 									if (scriptOpcode == 3321) {
-										Static254.scriptIntValues[intValueIndex++] = Static12.energy;
+										Static254.scriptIntValues[intValueIndex++] = ClientScriptRunner.energy;
 										continue;
 									}
 									if (scriptOpcode == 3322) {

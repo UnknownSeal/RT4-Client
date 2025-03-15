@@ -59,6 +59,8 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!t", name = "F", descriptor = "I")
 	public static int js5PrevErrors = 0;
+	@OriginalMember(owner = "client!bb", name = "E", descriptor = "I")
+	public static int energy = 0;
 
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(I)V")
 	public static void method3999() {

@@ -1,5 +1,7 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.cache.bzip;
 
+import com.jagex.runetek4.BZip2State;
+import com.jagex.runetek4.Bzip2DState;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

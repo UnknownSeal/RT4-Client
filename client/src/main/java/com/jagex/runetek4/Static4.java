@@ -1016,7 +1016,7 @@ public final class Static4 {
 							} else if (Static164.packetType == 234) {
 								// UPDATE_RUNENERGY
 								Static103.method2245();
-								Static12.energy = Static57.in.g1();
+								ClientScriptRunner.energy = Static57.in.g1();
 								Static209.miscTransmitAt = Static119.transmitTimer;
 								Static164.packetType = -1;
 								return true;

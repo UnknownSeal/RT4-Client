@@ -458,7 +458,7 @@ public final class PlayerModel {
 			for (@Pc(44) int local44 = 0; local44 < 12; local44++) {
 				i = this.appearance[local44];
 				if ((i & 0x40000000) == 0) {
-					if ((i & Integer.MIN_VALUE) != 0 && !com.jagex.runetek4.cache.def.ItemDefinition.get(i & 0x3FFFFFFF).hasReadyHeads()) {
+					if ((i & Integer.MIN_VALUE) != 0 && !ItemDefinition.get(i & 0x3FFFFFFF).hasReadyHeads()) {
 						bool = true;
 					}
 				} else if (!Static71.get(i & 0x3FFFFFFF).headPieceReady(this.aBoolean141)) {
@@ -468,31 +468,31 @@ public final class PlayerModel {
 			if (bool) {
 				return null;
 			}
-			@Pc(100) ModelUnlit[] local100 = new ModelUnlit[12];
+			@Pc(100) ModelUnlit[] models = new ModelUnlit[12];
 			i = 0;
-			@Pc(114) int local114;
-			for (@Pc(104) int local104 = 0; local104 < 12; local104++) {
-				local114 = this.appearance[local104];
+			@Pc(114) int j;
+			for (@Pc(104) int equipmentSlot = 0; equipmentSlot < 12; equipmentSlot++) {
+				j = this.appearance[equipmentSlot];
 				@Pc(134) ModelUnlit local134;
-				if ((local114 & 0x40000000) != 0) {
-					local134 = Static71.get(local114 & 0x3FFFFFFF).method1830(this.aBoolean141);
+				if ((j & 0x40000000) != 0) {
+					local134 = Static71.get(j & 0x3FFFFFFF).method1830(this.aBoolean141);
 					if (local134 != null) {
-						local100[i++] = local134;
+						models[i++] = local134;
 					}
-				} else if ((Integer.MIN_VALUE & local114) != 0) {
-					local134 = ItemDefinition.get(local114 & 0x3FFFFFFF).getHeadModel();
+				} else if ((Integer.MIN_VALUE & j) != 0) {
+					local134 = ItemDefinition.get(j & 0x3FFFFFFF).getHeadModel();
 					if (local134 != null) {
-						local100[i++] = local134;
+						models[i++] = local134;
 					}
 				}
 			}
-			@Pc(171) ModelUnlit local171 = new ModelUnlit(local100, i);
-			for (local114 = 0; local114 < 5; local114++) {
-				if (Static33.aShortArrayArray2[local114].length > this.anIntArray236[local114]) {
-					local171.recolor(Static200.aShortArray65[local114], Static33.aShortArrayArray2[local114][this.anIntArray236[local114]]);
+			@Pc(171) ModelUnlit local171 = new ModelUnlit(models, i);
+			for (j = 0; j < 5; j++) {
+				if (Static33.aShortArrayArray2[j].length > this.anIntArray236[j]) {
+					local171.recolor(Static200.aShortArray65[j], Static33.aShortArrayArray2[j][this.anIntArray236[j]]);
 				}
-				if (Static172.aShortArrayArray7[local114].length > this.anIntArray236[local114]) {
-					local171.recolor(Static160.aShortArray41[local114], Static172.aShortArrayArray7[local114][this.anIntArray236[local114]]);
+				if (Static172.aShortArrayArray7[j].length > this.anIntArray236[j]) {
+					local171.recolor(Static160.aShortArray41[j], Static172.aShortArrayArray7[j][this.anIntArray236[j]]);
 				}
 			}
 			cachedModel = local171.applyLightning(64, 768, -50, -10, -50);

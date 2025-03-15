@@ -1,5 +1,6 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.cache.cs;
 
+import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
@@ -187,7 +188,7 @@ public final class ClientScript extends CachedNode {
 					}
 				}
 				if (opcode == 11) { // load_energy
-					register1 = Static12.energy;
+					register1 = ClientScriptRunner.energy;
 				}
 				if (opcode == 12) { // load_weight
 					register1 = Static251.weightCarried;

@@ -1,6 +1,6 @@
 package com.jagex.runetek4.js5.index;
 
-import com.jagex.runetek4.IntHashTable;
+import com.jagex.runetek4.NameHashCollection;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -21,7 +21,7 @@ public final class Js5Index {
 	public int length;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "h", descriptor = "Lclient!jg;")
-	public IntHashTable aClass76_1;
+	public NameHashCollection nameHashCollection;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "m", descriptor = "[I")
 	public int[] groupIds;
@@ -30,7 +30,7 @@ public final class Js5Index {
 	public int[] groupCapacities;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "o", descriptor = "[I")
-	public int[] anIntArray271;
+	public int[] nameHashes;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "p", descriptor = "[I")
 	public int[] groupSizes;
@@ -48,7 +48,7 @@ public final class Js5Index {
 	public int indexversion;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "x", descriptor = "[Lclient!jg;")
-	public IntHashTable[] aClass76Array1;
+	public NameHashCollection[] aClass76Array1;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "z", descriptor = "I")
 	public final int crc;
@@ -59,11 +59,11 @@ public final class Js5Index {
 		if (this.crc != crc) {
 			throw new RuntimeException("Invalid CRC - expected:" + crc + " got:" + this.crc);
 		}
-		this.method2293(bytes);
+		this.decodeArchive(bytes);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "a", descriptor = "(I[B)V")
-	private void method2293(@OriginalArg(1) byte[] arg0) {
+	private void decodeArchive(@OriginalArg(1) byte[] arg0) {
 		@Pc(12) Packet packet = new Packet(Js5.uncompress(arg0));
 		@Pc(16) int protocol = packet.g1();
 
@@ -97,14 +97,14 @@ public final class Js5Index {
 		this.groupCapacities = new int[this.capacity];
 		this.groupSizes = new int[this.capacity];
 		if (info != 0) {
-			this.anIntArray271 = new int[this.capacity];
+			this.nameHashes = new int[this.capacity];
 			for (int i = 0; i < this.capacity; i++) {
-				this.anIntArray271[i] = -1;
+				this.nameHashes[i] = -1;
 			}
 			for (int i = 0; i < this.length; i++) {
-				this.anIntArray271[this.groupIds[i]] = packet.g4();
+				this.nameHashes[this.groupIds[i]] = packet.g4();
 			}
-			this.aClass76_1 = new IntHashTable(this.anIntArray271);
+			this.nameHashCollection = new NameHashCollection(this.nameHashes);
 		}
 		for (int i = 0; i < this.length; i++) {
 			this.anIntArray268[this.groupIds[i]] = packet.g4();
@@ -139,7 +139,7 @@ public final class Js5Index {
 		if (info == 0) {
 			return;
 		}
-		this.aClass76Array1 = new IntHashTable[local59 + 1];
+		this.aClass76Array1 = new NameHashCollection[local59 + 1];
 		this.anIntArrayArray21 = new int[local59 + 1][];
 		for (int i = 0; i < this.length; i++) {
 			local273 = this.groupIds[i];
@@ -156,7 +156,7 @@ public final class Js5Index {
 				}
 				this.anIntArrayArray21[local273][local288] = packet.g4();
 			}
-			this.aClass76Array1[local273] = new IntHashTable(this.anIntArrayArray21[local273]);
+			this.aClass76Array1[local273] = new NameHashCollection(this.anIntArrayArray21[local273]);
 		}
 	}
 }

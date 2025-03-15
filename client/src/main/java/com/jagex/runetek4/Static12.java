@@ -23,9 +23,6 @@ public final class Static12 {
 	@OriginalMember(owner = "client!bb", name = "A", descriptor = "Lclient!na;")
 	public static final JString aClass100_74 = Static28.parse("::");
 
-	@OriginalMember(owner = "client!bb", name = "E", descriptor = "I")
-	public static int energy = 0;
-
 	@OriginalMember(owner = "client!bb", name = "a", descriptor = "(I)V")
 	public static void method447() {
 		if (Static83.aFloat3 < Static138.aFloat14) {

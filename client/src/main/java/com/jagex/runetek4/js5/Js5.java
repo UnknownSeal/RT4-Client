@@ -1,6 +1,7 @@
 package com.jagex.runetek4.js5;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.cache.bzip.BZip2;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.index.Js5Index;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -102,8 +103,8 @@ public final class Js5 {
 			return;
 		}
 		if (arg0) {
-			this.index.anIntArray271 = null;
-			this.index.aClass76_1 = null;
+			this.index.nameHashes = null;
+			this.index.nameHashCollection = null;
 		}
 		this.index.aClass76Array1 = null;
 		this.index.anIntArrayArray21 = null;
@@ -113,7 +114,7 @@ public final class Js5 {
 	public int method4478(@OriginalArg(1) JString arg0) {
 		if (this.isIndexReady()) {
 			@Pc(15) JString local15 = arg0.toLowerCase();
-			@Pc(29) int local29 = this.index.aClass76_1.method2405(local15.method3154());
+			@Pc(29) int local29 = this.index.nameHashCollection.method2405(local15.method3154());
 			return this.getPercentageComplete(local29);
 		} else {
 			return 0;
@@ -144,7 +145,7 @@ public final class Js5 {
 	public int method4482(@OriginalArg(0) JString arg0) {
 		if (this.isIndexReady()) {
 			@Pc(16) JString local16 = arg0.toLowerCase();
-			@Pc(27) int local27 = this.index.aClass76_1.method2405(local16.method3154());
+			@Pc(27) int local27 = this.index.nameHashCollection.method2405(local16.method3154());
 			return this.isGroupValid(local27) ? local27 : -1;
 		} else {
 			return -1;
@@ -176,7 +177,7 @@ public final class Js5 {
 		}
 		@Pc(15) JString local15 = arg1.toLowerCase();
 		@Pc(19) JString local19 = arg0.toLowerCase();
-		@Pc(28) int local28 = this.index.aClass76_1.method2405(local15.method3154());
+		@Pc(28) int local28 = this.index.nameHashCollection.method2405(local15.method3154());
 		if (this.isGroupValid(local28)) {
 			@Pc(53) int local53 = this.index.aClass76Array1[local28].method2405(local19.method3154());
 			return this.getfile(local28, local53);
@@ -189,7 +190,7 @@ public final class Js5 {
 	public void method4486(@OriginalArg(1) JString arg0) {
 		if (this.isIndexReady()) {
 			@Pc(13) JString local13 = arg0.toLowerCase();
-			@Pc(22) int local22 = this.index.aClass76_1.method2405(local13.method3154());
+			@Pc(22) int local22 = this.index.nameHashCollection.method2405(local13.method3154());
 			this.method4493(local22);
 		}
 	}
@@ -201,7 +202,7 @@ public final class Js5 {
 		}
 		@Pc(17) JString local17 = arg1.toLowerCase();
 		@Pc(21) JString local21 = arg0.toLowerCase();
-		@Pc(30) int local30 = this.index.aClass76_1.method2405(local17.method3154());
+		@Pc(30) int local30 = this.index.nameHashCollection.method2405(local17.method3154());
 		if (this.isGroupValid(local30)) {
 			@Pc(49) int local49 = this.index.aClass76Array1[local30].method2405(local21.method3154());
 			return this.requestDownload(local30, local49);
@@ -239,7 +240,7 @@ public final class Js5 {
 	public boolean method4489(@OriginalArg(1) JString arg0) {
 		if (this.isIndexReady()) {
 			@Pc(14) JString local14 = arg0.toLowerCase();
-			@Pc(25) int local25 = this.index.aClass76_1.method2405(local14.method3154());
+			@Pc(25) int local25 = this.index.nameHashCollection.method2405(local14.method3154());
 			return this.method4479(local25);
 		} else {
 			return false;
@@ -418,7 +419,7 @@ public final class Js5 {
 	public boolean method4497(@OriginalArg(0) JString arg0) {
 		if (this.isIndexReady()) {
 			@Pc(19) JString local19 = arg0.toLowerCase();
-			@Pc(28) int local28 = this.index.aClass76_1.method2405(local19.method3154());
+			@Pc(28) int local28 = this.index.nameHashCollection.method2405(local19.method3154());
 			return local28 >= 0;
 		} else {
 			return false;
