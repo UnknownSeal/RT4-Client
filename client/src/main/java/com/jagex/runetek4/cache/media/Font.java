@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.datastruct.CachedNode;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -157,14 +158,14 @@ public abstract class Font extends CachedNode {
 						if (GlRenderer.enabled) {
 							Static46.method1174(arg1, local4 + (int) ((double) this.anInt3626 * 0.7D), local323, Static218.anInt3627);
 						} else {
-							Static129.method2489(arg1, local4 + (int) ((double) this.anInt3626 * 0.7D), local323, Static218.anInt3627);
+							Rasterizer.drawHorizontalLine(arg1, local4 + (int) ((double) this.anInt3626 * 0.7D), local323, Static218.anInt3627);
 						}
 					}
 					if (Static218.anInt3628 != -1) {
 						if (GlRenderer.enabled) {
 							Static46.method1174(arg1, local4 + this.anInt3626 + 1, local323, Static218.anInt3628);
 						} else {
-							Static129.method2489(arg1, local4 + this.anInt3626 + 1, local323, Static218.anInt3628);
+							Rasterizer.drawHorizontalLine(arg1, local4 + this.anInt3626 + 1, local323, Static218.anInt3628);
 						}
 					}
 					arg1 += local323;
@@ -849,14 +850,14 @@ public abstract class Font extends CachedNode {
 						if (GlRenderer.enabled) {
 							Static46.method1174(arg1, local4 + (int) ((double) this.anInt3626 * 0.7D), local387, Static218.anInt3627);
 						} else {
-							Static129.method2489(arg1, local4 + (int) ((double) this.anInt3626 * 0.7D), local387, Static218.anInt3627);
+							Rasterizer.drawHorizontalLine(arg1, local4 + (int) ((double) this.anInt3626 * 0.7D), local387, Static218.anInt3627);
 						}
 					}
 					if (Static218.anInt3628 != -1) {
 						if (GlRenderer.enabled) {
 							Static46.method1174(arg1, local4 + this.anInt3626, local387, Static218.anInt3628);
 						} else {
-							Static129.method2489(arg1, local4 + this.anInt3626, local387, Static218.anInt3628);
+							Rasterizer.drawHorizontalLine(arg1, local4 + this.anInt3626, local387, Static218.anInt3628);
 						}
 					}
 					arg1 += local387;

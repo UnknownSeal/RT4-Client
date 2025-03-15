@@ -1,12 +1,14 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.Font;
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -32,7 +34,7 @@ public final class Static54 {
 		if (GlRenderer.enabled) {
 			Static46.method1187(arg2, arg1, arg2 + arg3.anInt445, arg1 + arg3.anInt459);
 		} else {
-			Static129.method2496(arg2, arg1, arg2 + arg3.anInt445, arg1 + arg3.anInt459);
+			Rasterizer.setBounds(arg2, arg1, arg2 + arg3.anInt445, arg1 + arg3.anInt459);
 		}
 		if (Static270.anInt5795 != 2 && Static270.anInt5795 != 5 && Static89.aClass3_Sub2_Sub1_5 != null) {
 			@Pc(48) int angle = Static59.minimapAnticheatAngle + Static57.orbitCameraYaw & 0x7FF;
@@ -41,7 +43,7 @@ public final class Static54 {
 			if (GlRenderer.enabled) {
 				((GlSprite) Static89.aClass3_Sub2_Sub1_5).method1427(arg2, arg1, arg3.anInt445, arg3.anInt459, anchorX, anchorY, angle, Static273.minimapZoom + 256, (GlSprite) arg3.method489(false));
 			} else {
-				((SoftwareSprite) Static89.aClass3_Sub2_Sub1_5).method310(arg2, arg1, arg3.anInt445, arg3.anInt459, anchorX, anchorY, angle, Static273.minimapZoom + 256, arg3.anIntArray37, arg3.anIntArray45);
+				((ImageRGB) Static89.aClass3_Sub2_Sub1_5).method310(arg2, arg1, arg3.anInt445, arg3.anInt459, anchorX, anchorY, angle, Static273.minimapZoom + 256, arg3.anIntArray37, arg3.anIntArray45);
 			}
 			@Pc(146) int local146;
 			@Pc(181) int local181;
@@ -79,13 +81,13 @@ public final class Static54 {
 							if (GlRenderer.enabled) {
 								Static46.method1188((GlSprite) arg3.method489(false));
 							} else {
-								Static129.method2486(arg3.anIntArray37, arg3.anIntArray45);
+								Rasterizer.method2486(arg3.anIntArray37, arg3.anIntArray45);
 							}
 							local156.method2869(Static235.aMapElementTypeList_2.aClass100Array153[local117], arg2 + local245 + arg3.anInt445 / 2, arg1 + arg3.anInt459 / 2 + -local200, local239, 50, local271, 0, 1, 0, 0);
 							if (GlRenderer.enabled) {
 								Static46.method1173();
 							} else {
-								Static129.method2482();
+								Rasterizer.method2482();
 							}
 						}
 					}
@@ -201,7 +203,7 @@ public final class Static54 {
 			if (GlRenderer.enabled) {
 				Static46.method1186(arg2 + arg3.anInt445 / 2 - 1, arg1 + -1 - -(arg3.anInt459 / 2), 3, 3, 16777215);
 			} else {
-				Static129.method2495(arg3.anInt445 / 2 + arg2 - 1, arg3.anInt459 / 2 + -1 + arg1, 3, 3, 16777215);
+				Rasterizer.drawFilledRectangle(arg3.anInt445 / 2 + arg2 - 1, arg3.anInt459 / 2 + -1 + arg1, 3, 3, 16777215);
 			}
 		} else if (GlRenderer.enabled) {
 			@Pc(1041) Sprite local1041 = arg3.method489(false);
@@ -209,7 +211,7 @@ public final class Static54 {
 				local1041.drawSprite(arg2, arg1);
 			}
 		} else {
-			Static129.method2504(arg2, arg1, arg3.anIntArray37, arg3.anIntArray45);
+			Rasterizer.method2504(arg2, arg1, arg3.anIntArray37, arg3.anIntArray45);
 		}
 		Static31.aBooleanArray29[arg0] = true;
 	}

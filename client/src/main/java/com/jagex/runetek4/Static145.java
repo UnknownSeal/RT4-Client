@@ -1,7 +1,9 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -66,7 +68,7 @@ public final class Static145 {
 		Static69.method1545(null);
 		Static103.anIntArray254 = new int[32768];
 		Static216.anIntArray188 = new int[32768];
-		Static167.aClass3_Sub2_Sub1_Sub1_3 = new SoftwareSprite(128, 254);
+		Static167.aClass3_Sub2_Sub1_Sub1_3 = new ImageRGB(128, 254);
 	}
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "b", descriptor = "(I)V")
@@ -80,9 +82,9 @@ public final class Static145 {
 			Static46.method1186(local11 + 1, local3 + 1, local9 - 2, 16, 0);
 			Static46.method1179(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
 		} else {
-			Static129.method2495(local11, local3, local9, local15, 6116423);
-			Static129.method2495(local11 + 1, local3 + 1, local9 - 2, 16, 0);
-			Static129.method2483(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
+			Rasterizer.drawFilledRectangle(local11, local3, local9, local15, 6116423);
+			Rasterizer.drawFilledRectangle(local11 + 1, local3 + 1, local9 - 2, 16, 0);
+			Rasterizer.method2483(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
 		}
 		Static280.aClass3_Sub2_Sub9_43.method2857(LocalizedText.CHOOSE_OPTION, local11 + 3, local3 + 14, 6116423, -1);
 		@Pc(96) int local96 = Static223.anInt5032;

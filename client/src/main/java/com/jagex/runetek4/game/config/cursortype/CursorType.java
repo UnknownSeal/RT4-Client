@@ -1,6 +1,6 @@
 package com.jagex.runetek4.game.config.cursortype;
 
-import com.jagex.runetek4.SoftwareSprite;
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.Static243;
 import com.jagex.runetek4.aClass6;
 import com.jagex.runetek4.Static80;
@@ -44,8 +44,8 @@ public final class CursorType {
 	}
 
 	@OriginalMember(owner = "client!ia", name = "a", descriptor = "(B)Lclient!mm;")
-	public SoftwareSprite getSprite() {
-		@Pc(7) SoftwareSprite local7 = (SoftwareSprite) aClass6.aClass99_5.get(this.graphic);
+	public ImageRGB getSprite() {
+		@Pc(7) ImageRGB local7 = (ImageRGB) aClass6.aClass99_5.get(this.graphic);
 		if (local7 != null) {
 			return local7;
 		}

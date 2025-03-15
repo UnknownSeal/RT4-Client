@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -76,10 +77,10 @@ public final class Static232 {
 			}
 		}
 		for (@Pc(285) Class3_Sub26 local285 = (Class3_Sub26) Static172.aClass69_97.head(); local285 != null; local285 = (Class3_Sub26) Static172.aClass69_97.next()) {
-			Static129.method2502(local285.anInt4307, local285.anInt4314, 15, local11);
-			Static129.method2502(local285.anInt4307, local285.anInt4314, 13, local11);
-			Static129.method2502(local285.anInt4307, local285.anInt4314, 11, local11);
-			Static129.method2502(local285.anInt4307, local285.anInt4314, 9, local11);
+			Rasterizer.method2502(local285.anInt4307, local285.anInt4314, 15, local11);
+			Rasterizer.method2502(local285.anInt4307, local285.anInt4314, 13, local11);
+			Rasterizer.method2502(local285.anInt4307, local285.anInt4314, 11, local11);
+			Rasterizer.method2502(local285.anInt4307, local285.anInt4314, 9, local11);
 			Static241.aClass3_Sub2_Sub1_Sub1Array13[local285.anInt4308].drawSprite(local285.anInt4307 - 7, local285.anInt4314 + -7);
 		}
 		Static172.aClass69_97.clear();

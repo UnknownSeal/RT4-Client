@@ -9,6 +9,7 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.CacheFileChannel;
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.cache.CacheIndex;
@@ -124,7 +125,7 @@ public final class client extends GameShell {
 
 		if (arg0 != -1) {
 			@Pc(24) CursorType cursorType = CacheArchive.method3660(arg0);
-			@Pc(28) SoftwareSprite local28 = cursorType.getSprite();
+			@Pc(28) ImageRGB local28 = cursorType.getSprite();
 			if (local28 == null) {
 				arg0 = -1;
 			} else {

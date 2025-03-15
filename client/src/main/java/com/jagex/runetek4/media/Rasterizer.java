@@ -1,16 +1,17 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.media;
 
+import com.jagex.runetek4.Pix3D;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-public final class Static129 {
+public final class Rasterizer {
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "I")
-	public static int anInt3144;
+	public static int destinationWidth;
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "c", descriptor = "I")
-	public static int anInt3146;
+	public static int destinationHeight;
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "f", descriptor = "[I")
 	public static int[] anIntArray295;
@@ -19,19 +20,19 @@ public final class Static129 {
 	public static int[] anIntArray296;
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "i", descriptor = "[I")
-	public static int[] anIntArray297;
+	public static int[] destinationPixels;
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "I")
-	public static int anInt3145 = 0;
+	public static int viewportLeft = 0;
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "d", descriptor = "I")
-	public static int anInt3147 = 0;
+	public static int viewportTop = 0;
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "e", descriptor = "I")
-	public static int anInt3148 = 0;
+	public static int viewportRight = 0;
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "h", descriptor = "I")
-	public static int anInt3149 = 0;
+	public static int viewportBottom = 0;
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "()V")
 	public static void method2482() {
@@ -41,37 +42,37 @@ public final class Static129 {
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(IIIII)V")
 	public static void method2483(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
-		method2489(arg0, arg1, arg2, arg4);
-		method2489(arg0, arg1 + arg3 - 1, arg2, arg4);
+		drawHorizontalLine(arg0, arg1, arg2, arg4);
+		drawHorizontalLine(arg0, arg1 + arg3 - 1, arg2, arg4);
 		method2490(arg0, arg1, arg3, arg4);
 		method2490(arg0 + arg2 - 1, arg1, arg3, arg4);
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(IIIIII)V")
 	public static void method2484(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
-		if (arg0 < anInt3145) {
-			arg2 -= anInt3145 - arg0;
-			arg0 = anInt3145;
+		if (arg0 < viewportLeft) {
+			arg2 -= viewportLeft - arg0;
+			arg0 = viewportLeft;
 		}
-		if (arg1 < anInt3147) {
-			arg3 -= anInt3147 - arg1;
-			arg1 = anInt3147;
+		if (arg1 < viewportTop) {
+			arg3 -= viewportTop - arg1;
+			arg1 = viewportTop;
 		}
-		if (arg0 + arg2 > anInt3148) {
-			arg2 = anInt3148 - arg0;
+		if (arg0 + arg2 > viewportRight) {
+			arg2 = viewportRight - arg0;
 		}
-		if (arg1 + arg3 > anInt3149) {
-			arg3 = anInt3149 - arg1;
+		if (arg1 + arg3 > viewportBottom) {
+			arg3 = viewportBottom - arg1;
 		}
 		@Pc(59) int local59 = ((arg4 & 0xFF00FF) * arg5 >> 8 & 0xFF00FF) + ((arg4 & 0xFF00) * arg5 >> 8 & 0xFF00);
 		@Pc(63) int local63 = 256 - arg5;
-		@Pc(67) int local67 = anInt3144 - arg2;
-		@Pc(73) int local73 = arg0 + arg1 * anInt3144;
+		@Pc(67) int local67 = destinationWidth - arg2;
+		@Pc(73) int local73 = arg0 + arg1 * destinationWidth;
 		for (@Pc(75) int local75 = 0; local75 < arg3; local75++) {
 			for (@Pc(81) int local81 = -arg2; local81 < 0; local81++) {
-				@Pc(87) int local87 = anIntArray297[local73];
+				@Pc(87) int local87 = destinationPixels[local73];
 				@Pc(107) int local107 = ((local87 & 0xFF00FF) * local63 >> 8 & 0xFF00FF) + ((local87 & 0xFF00) * local63 >> 8 & 0xFF00);
-				anIntArray297[local73++] = local59 + local107;
+				destinationPixels[local73++] = local59 + local107;
 			}
 			local73 += local67;
 		}
@@ -79,14 +80,14 @@ public final class Static129 {
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(III)V")
 	private static void method2485(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		if (arg0 >= anInt3145 && arg1 >= anInt3147 && arg0 < anInt3148 && arg1 < anInt3149) {
-			anIntArray297[arg0 + arg1 * anInt3144] = 16776960;
+		if (arg0 >= viewportLeft && arg1 >= viewportTop && arg0 < viewportRight && arg1 < viewportBottom) {
+			destinationPixels[arg0 + arg1 * destinationWidth] = 16776960;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "([I[I)V")
 	public static void method2486(@OriginalArg(0) int[] arg0, @OriginalArg(1) int[] arg1) {
-		if (arg0.length != anInt3149 - anInt3147 || arg1.length != anInt3149 - anInt3147) {
+		if (arg0.length != viewportBottom - viewportTop || arg1.length != viewportBottom - viewportTop) {
 			throw new IllegalArgumentException();
 		}
 		anIntArray295 = arg0;
@@ -95,110 +96,110 @@ public final class Static129 {
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "(IIIIII)V")
 	public static void method2487(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
-		method2493(arg0, arg1, arg2, arg4, arg5);
-		method2493(arg0, arg1 + arg3 - 1, arg2, arg4, arg5);
+		drawHorizontalLineAlpha(arg0, arg1, arg2, arg4, arg5);
+		drawHorizontalLineAlpha(arg0, arg1 + arg3 - 1, arg2, arg4, arg5);
 		if (arg3 >= 3) {
-			method2499(arg0, arg1 + 1, arg3 - 2, arg4, arg5);
-			method2499(arg0 + arg2 - 1, arg1 + 1, arg3 - 2, arg4, arg5);
+			drawVerticalLineAlpha(arg0, arg1 + 1, arg3 - 2, arg4, arg5);
+			drawVerticalLineAlpha(arg0 + arg2 - 1, arg1 + 1, arg3 - 2, arg4, arg5);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "([I)V")
 	public static void method2488(@OriginalArg(0) int[] arg0) {
-		anInt3145 = arg0[0];
-		anInt3147 = arg0[1];
-		anInt3148 = arg0[2];
-		anInt3149 = arg0[3];
+		viewportLeft = arg0[0];
+		viewportTop = arg0[1];
+		viewportRight = arg0[2];
+		viewportBottom = arg0[3];
 		method2482();
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(IIII)V")
-	public static void method2489(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		if (arg1 < anInt3147 || arg1 >= anInt3149) {
+	public static void drawHorizontalLine(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
+		if (arg1 < viewportTop || arg1 >= viewportBottom) {
 			return;
 		}
-		if (arg0 < anInt3145) {
-			arg2 -= anInt3145 - arg0;
-			arg0 = anInt3145;
+		if (arg0 < viewportLeft) {
+			arg2 -= viewportLeft - arg0;
+			arg0 = viewportLeft;
 		}
-		if (arg0 + arg2 > anInt3148) {
-			arg2 = anInt3148 - arg0;
+		if (arg0 + arg2 > viewportRight) {
+			arg2 = viewportRight - arg0;
 		}
-		@Pc(32) int local32 = arg0 + arg1 * anInt3144;
+		@Pc(32) int local32 = arg0 + arg1 * destinationWidth;
 		for (@Pc(34) int local34 = 0; local34 < arg2; local34++) {
-			anIntArray297[local32 + local34] = arg3;
+			destinationPixels[local32 + local34] = arg3;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "(IIII)V")
 	public static void method2490(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		if (arg0 < anInt3145 || arg0 >= anInt3148) {
+		if (arg0 < viewportLeft || arg0 >= viewportRight) {
 			return;
 		}
-		if (arg1 < anInt3147) {
-			arg2 -= anInt3147 - arg1;
-			arg1 = anInt3147;
+		if (arg1 < viewportTop) {
+			arg2 -= viewportTop - arg1;
+			arg1 = viewportTop;
 		}
-		if (arg1 + arg2 > anInt3149) {
-			arg2 = anInt3149 - arg1;
+		if (arg1 + arg2 > viewportBottom) {
+			arg2 = viewportBottom - arg1;
 		}
-		@Pc(32) int local32 = arg0 + arg1 * anInt3144;
+		@Pc(32) int local32 = arg0 + arg1 * destinationWidth;
 		for (@Pc(34) int local34 = 0; local34 < arg2; local34++) {
-			anIntArray297[local32 + local34 * anInt3144] = arg3;
+			destinationPixels[local32 + local34 * destinationWidth] = arg3;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "([III)V")
-	public static void method2491(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		anIntArray297 = arg0;
-		anInt3144 = arg1;
-		anInt3146 = arg2;
-		method2496(0, 0, arg1, arg2);
+	public static void prepare(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+		destinationPixels = arg0;
+		destinationWidth = arg1;
+		destinationHeight = arg2;
+		setBounds(0, 0, arg1, arg2);
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "()V")
 	public static void method2492() {
 		@Pc(1) int local1 = 0;
-		@Pc(7) int local7 = anInt3144 * anInt3146 - 7;
+		@Pc(7) int local7 = destinationWidth * destinationHeight - 7;
 		while (local1 < local7) {
-			anIntArray297[local1++] = 0;
-			anIntArray297[local1++] = 0;
-			anIntArray297[local1++] = 0;
-			anIntArray297[local1++] = 0;
-			anIntArray297[local1++] = 0;
-			anIntArray297[local1++] = 0;
-			anIntArray297[local1++] = 0;
-			anIntArray297[local1++] = 0;
+			destinationPixels[local1++] = 0;
+			destinationPixels[local1++] = 0;
+			destinationPixels[local1++] = 0;
+			destinationPixels[local1++] = 0;
+			destinationPixels[local1++] = 0;
+			destinationPixels[local1++] = 0;
+			destinationPixels[local1++] = 0;
+			destinationPixels[local1++] = 0;
 		}
 		local7 += 7;
 		while (local1 < local7) {
-			anIntArray297[local1++] = 0;
+			destinationPixels[local1++] = 0;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "(IIIII)V")
-	private static void method2493(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
-		if (arg1 < anInt3147 || arg1 >= anInt3149) {
+	private static void drawHorizontalLineAlpha(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int length, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+		if (y < viewportTop || y >= viewportBottom) {
 			return;
 		}
-		if (arg0 < anInt3145) {
-			arg2 -= anInt3145 - arg0;
-			arg0 = anInt3145;
+		if (x < viewportLeft) {
+			length -= viewportLeft - x;
+			x = viewportLeft;
 		}
-		if (arg0 + arg2 > anInt3148) {
-			arg2 = anInt3148 - arg0;
+		if (x + length > viewportRight) {
+			length = viewportRight - x;
 		}
-		@Pc(30) int local30 = 256 - arg4;
-		@Pc(38) int local38 = (arg3 >> 16 & 0xFF) * arg4;
-		@Pc(46) int local46 = (arg3 >> 8 & 0xFF) * arg4;
-		@Pc(52) int local52 = (arg3 & 0xFF) * arg4;
-		@Pc(58) int local58 = arg0 + arg1 * anInt3144;
-		for (@Pc(60) int local60 = 0; local60 < arg2; local60++) {
-			@Pc(73) int local73 = (anIntArray297[local58] >> 16 & 0xFF) * local30;
-			@Pc(83) int local83 = (anIntArray297[local58] >> 8 & 0xFF) * local30;
-			@Pc(91) int local91 = (anIntArray297[local58] & 0xFF) * local30;
-			@Pc(113) int local113 = (local38 + local73 >> 8 << 16) + (local46 + local83 >> 8 << 8) + (local52 + local91 >> 8);
-			anIntArray297[local58++] = local113;
+		@Pc(30) int a = 256 - arg4;
+		@Pc(38) int r = (arg3 >> 16 & 0xFF) * arg4;
+		@Pc(46) int g = (arg3 >> 8 & 0xFF) * arg4;
+		@Pc(52) int b = (arg3 & 0xFF) * arg4;
+		@Pc(58) int pixelOffset = x + y * destinationWidth;
+		for (@Pc(60) int lengthCounter = 0; lengthCounter < length; lengthCounter++) {
+			@Pc(73) int red = (destinationPixels[pixelOffset] >> 16 & 0xFF) * a;
+			@Pc(83) int green = (destinationPixels[pixelOffset] >> 8 & 0xFF) * a;
+			@Pc(91) int blue = (destinationPixels[pixelOffset] & 0xFF) * a;
+			@Pc(113) int rgba = (r + red >> 8 << 16) + (g + green >> 8 << 8) + (b + blue >> 8);
+			destinationPixels[pixelOffset++] = rgba;
 		}
 	}
 
@@ -243,170 +244,170 @@ public final class Static129 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "c", descriptor = "(IIIII)V")
-	public static void method2495(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
-		if (arg0 < anInt3145) {
-			arg2 -= anInt3145 - arg0;
-			arg0 = anInt3145;
+	public static void drawFilledRectangle(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int width, @OriginalArg(3) int height, @OriginalArg(4) int color) {
+		if (x < viewportLeft) {
+			width -= viewportLeft - x;
+			x = viewportLeft;
 		}
-		if (arg1 < anInt3147) {
-			arg3 -= anInt3147 - arg1;
-			arg1 = anInt3147;
+		if (y < viewportTop) {
+			height -= viewportTop - y;
+			y = viewportTop;
 		}
-		if (arg0 + arg2 > anInt3148) {
-			arg2 = anInt3148 - arg0;
+		if (x + width > viewportRight) {
+			width = viewportRight - x;
 		}
-		if (arg1 + arg3 > anInt3149) {
-			arg3 = anInt3149 - arg1;
+		if (y + height > viewportBottom) {
+			height = viewportBottom - y;
 		}
-		@Pc(43) int local43 = anInt3144 - arg2;
-		@Pc(49) int local49 = arg0 + arg1 * anInt3144;
-		for (@Pc(52) int local52 = -arg3; local52 < 0; local52++) {
-			for (@Pc(57) int local57 = -arg2; local57 < 0; local57++) {
-				anIntArray297[local49++] = arg4;
+		@Pc(43) int pixelOffset = destinationWidth - width;
+		@Pc(49) int pixel = x + y * destinationWidth;
+		for (@Pc(52) int heightCounter = -height; heightCounter < 0; heightCounter++) {
+			for (@Pc(57) int widthCounter = -width; widthCounter < 0; widthCounter++) {
+				destinationPixels[pixel++] = color;
 			}
-			local49 += local43;
+			pixel += pixelOffset;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "c", descriptor = "(IIII)V")
-	public static void method2496(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		if (arg0 < 0) {
-			arg0 = 0;
+	public static void setBounds(@OriginalArg(0) int minX, @OriginalArg(1) int minY, @OriginalArg(2) int maxX, @OriginalArg(3) int maxY) {
+		if (minX < 0) {
+			minX = 0;
 		}
-		if (arg1 < 0) {
-			arg1 = 0;
+		if (minY < 0) {
+			minY = 0;
 		}
-		if (arg2 > anInt3144) {
-			arg2 = anInt3144;
+		if (maxX > destinationWidth) {
+			maxX = destinationWidth;
 		}
-		if (arg3 > anInt3146) {
-			arg3 = anInt3146;
+		if (maxY > destinationHeight) {
+			maxY = destinationHeight;
 		}
-		anInt3145 = arg0;
-		anInt3147 = arg1;
-		anInt3148 = arg2;
-		anInt3149 = arg3;
+		viewportLeft = minX;
+		viewportTop = minY;
+		viewportRight = maxX;
+		viewportBottom = maxY;
 		method2482();
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "([I)V")
-	public static void method2497(@OriginalArg(0) int[] arg0) {
-		arg0[0] = anInt3145;
-		arg0[1] = anInt3147;
-		arg0[2] = anInt3148;
-		arg0[3] = anInt3149;
+	public static void getViewportDimensions(@OriginalArg(0) int[] arg0) {
+		arg0[0] = viewportLeft;
+		arg0[1] = viewportTop;
+		arg0[2] = viewportRight;
+		arg0[3] = viewportBottom;
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "d", descriptor = "(IIII)V")
 	public static void method2498(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		if (anInt3145 < arg0) {
-			anInt3145 = arg0;
+		if (viewportLeft < arg0) {
+			viewportLeft = arg0;
 		}
-		if (anInt3147 < arg1) {
-			anInt3147 = arg1;
+		if (viewportTop < arg1) {
+			viewportTop = arg1;
 		}
-		if (anInt3148 > arg2) {
-			anInt3148 = arg2;
+		if (viewportRight > arg2) {
+			viewportRight = arg2;
 		}
-		if (anInt3149 > arg3) {
-			anInt3149 = arg3;
+		if (viewportBottom > arg3) {
+			viewportBottom = arg3;
 		}
 		method2482();
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "d", descriptor = "(IIIII)V")
-	private static void method2499(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
-		if (arg0 < anInt3145 || arg0 >= anInt3148) {
+	private static void drawVerticalLineAlpha(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int length, @OriginalArg(3) int color, @OriginalArg(4) int alpha) {
+		if (x < viewportLeft || x >= viewportRight) {
 			return;
 		}
-		if (arg1 < anInt3147) {
-			arg2 -= anInt3147 - arg1;
-			arg1 = anInt3147;
+		if (y < viewportTop) {
+			length -= viewportTop - y;
+			y = viewportTop;
 		}
-		if (arg1 + arg2 > anInt3149) {
-			arg2 = anInt3149 - arg1;
+		if (y + length > viewportBottom) {
+			length = viewportBottom - y;
 		}
-		@Pc(30) int local30 = 256 - arg4;
-		@Pc(38) int local38 = (arg3 >> 16 & 0xFF) * arg4;
-		@Pc(46) int local46 = (arg3 >> 8 & 0xFF) * arg4;
-		@Pc(52) int local52 = (arg3 & 0xFF) * arg4;
-		@Pc(58) int local58 = arg0 + arg1 * anInt3144;
-		for (@Pc(60) int local60 = 0; local60 < arg2; local60++) {
-			@Pc(73) int local73 = (anIntArray297[local58] >> 16 & 0xFF) * local30;
-			@Pc(83) int local83 = (anIntArray297[local58] >> 8 & 0xFF) * local30;
-			@Pc(91) int local91 = (anIntArray297[local58] & 0xFF) * local30;
-			@Pc(113) int local113 = (local38 + local73 >> 8 << 16) + (local46 + local83 >> 8 << 8) + (local52 + local91 >> 8);
-			anIntArray297[local58] = local113;
-			local58 += anInt3144;
+		@Pc(30) int a = 256 - alpha;
+		@Pc(38) int r = (color >> 16 & 0xFF) * alpha;
+		@Pc(46) int g = (color >> 8 & 0xFF) * alpha;
+		@Pc(52) int b = (color & 0xFF) * alpha;
+		@Pc(58) int pixelOffset = x + y * destinationWidth;
+		for (@Pc(60) int lengthCounter = 0; lengthCounter < length; lengthCounter++) {
+			@Pc(73) int red = (destinationPixels[pixelOffset] >> 16 & 0xFF) * a;
+			@Pc(83) int green = (destinationPixels[pixelOffset] >> 8 & 0xFF) * a;
+			@Pc(91) int blue = (destinationPixels[pixelOffset] & 0xFF) * a;
+			@Pc(113) int rgba = (r + red >> 8 << 16) + (g + green >> 8 << 8) + (b + blue >> 8);
+			destinationPixels[pixelOffset] = rgba;
+			pixelOffset += destinationWidth;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "e", descriptor = "(IIIII)V")
-	public static void method2500(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
-		arg2 -= arg0;
-		arg3 -= arg1;
-		if (arg3 == 0) {
-			if (arg2 >= 0) {
-				method2489(arg0, arg1, arg2 + 1, arg4);
+	public static void drawDiagonalLine(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int destX, @OriginalArg(3) int destY, @OriginalArg(4) int color) {
+		destX -= x;
+		destY -= y;
+		if (destY == 0) {
+			if (destX >= 0) {
+				drawHorizontalLine(x, y, destX + 1, color);
 			} else {
-				method2489(arg0 + arg2, arg1, 1 - arg2, arg4);
+				drawHorizontalLine(x + destX, y, 1 - destX, color);
 			}
-		} else if (arg2 != 0) {
-			if (arg2 + arg3 < 0) {
-				arg0 += arg2;
-				arg2 = -arg2;
-				arg1 += arg3;
-				arg3 = -arg3;
+		} else if (destX != 0) {
+			if (destX + destY < 0) {
+				x += destX;
+				destX = -destX;
+				y += destY;
+				destY = -destY;
 			}
-			@Pc(96) int local96;
+			@Pc(96) int i;
 			@Pc(127) int local127;
-			if (arg2 > arg3) {
-				arg1 <<= 0x10;
-				arg1 += 32768;
-				@Pc(86) int local86 = arg3 << 16;
-				local96 = (int) Math.floor((double) local86 / (double) arg2 + 0.5D);
-				arg2 += arg0;
-				if (arg0 < anInt3145) {
-					arg1 += local96 * (anInt3145 - arg0);
-					arg0 = anInt3145;
+			if (destX > destY) {
+				y <<= 0x10;
+				y += 32768;
+				@Pc(86) int destY2 = destY << 16;
+				i = (int) Math.floor((double) destY2 / (double) destX + 0.5D);
+				destX += x;
+				if (x < viewportLeft) {
+					y += i * (viewportLeft - x);
+					x = viewportLeft;
 				}
-				if (arg2 >= anInt3148) {
-					arg2 = anInt3148 - 1;
+				if (destX >= viewportRight) {
+					destX = viewportRight - 1;
 				}
-				while (arg0 <= arg2) {
-					local127 = arg1 >> 16;
-					if (local127 >= anInt3147 && local127 < anInt3149) {
-						anIntArray297[arg0 + local127 * anInt3144] = arg4;
+				while (x <= destX) {
+					local127 = y >> 16;
+					if (local127 >= viewportTop && local127 < viewportBottom) {
+						destinationPixels[x + local127 * destinationWidth] = color;
 					}
-					arg1 += local96;
-					arg0++;
+					y += i;
+					x++;
 				}
 			} else {
-				arg0 <<= 0x10;
-				arg0 += 32768;
-				@Pc(160) int local160 = arg2 << 16;
-				local96 = (int) Math.floor((double) local160 / (double) arg3 + 0.5D);
-				arg3 += arg1;
-				if (arg1 < anInt3147) {
-					arg0 += local96 * (anInt3147 - arg1);
-					arg1 = anInt3147;
+				x <<= 0x10;
+				x += 32768;
+				@Pc(160) int j = destX << 16;
+				i = (int) Math.floor((double) j / (double) destY + 0.5D);
+				destY += y;
+				if (y < viewportTop) {
+					x += i * (viewportTop - y);
+					y = viewportTop;
 				}
-				if (arg3 >= anInt3149) {
-					arg3 = anInt3149 - 1;
+				if (destY >= viewportBottom) {
+					destY = viewportBottom - 1;
 				}
-				while (arg1 <= arg3) {
-					local127 = arg0 >> 16;
-					if (local127 >= anInt3145 && local127 < anInt3148) {
-						anIntArray297[local127 + arg1 * anInt3144] = arg4;
+				while (y <= destY) {
+					local127 = x >> 16;
+					if (local127 >= viewportLeft && local127 < viewportRight) {
+						destinationPixels[local127 + y * destinationWidth] = color;
 					}
-					arg0 += local96;
-					arg1++;
+					x += i;
+					y++;
 				}
 			}
-		} else if (arg3 >= 0) {
-			method2490(arg0, arg1, arg3 + 1, arg4);
+		} else if (destY >= 0) {
+			method2490(x, y, destY + 1, color);
 		} else {
-			method2490(arg0, arg1 + arg3, -arg3 + 1, arg4);
+			method2490(x, y + destY, -destY + 1, color);
 		}
 	}
 
@@ -420,12 +421,12 @@ public final class Static129 {
 			arg2 = -arg2;
 		}
 		@Pc(15) int local15 = arg1 - arg2;
-		if (local15 < anInt3147) {
-			local15 = anInt3147;
+		if (local15 < viewportTop) {
+			local15 = viewportTop;
 		}
 		@Pc(26) int local26 = arg1 + arg2 + 1;
-		if (local26 > anInt3149) {
-			local26 = anInt3149;
+		if (local26 > viewportBottom) {
+			local26 = viewportBottom;
 		}
 		@Pc(33) int local33 = local15;
 		@Pc(37) int local37 = arg2 * arg2;
@@ -446,16 +447,16 @@ public final class Static129 {
 				local51 += local39++ + local39;
 			}
 			local85 = arg0 + 1 - local39;
-			if (local85 < anInt3145) {
-				local85 = anInt3145;
+			if (local85 < viewportLeft) {
+				local85 = viewportLeft;
 			}
 			local94 = arg0 + local39;
-			if (local94 > anInt3148) {
-				local94 = anInt3148;
+			if (local94 > viewportRight) {
+				local94 = viewportRight;
 			}
-			local105 = local85 + local33 * anInt3144;
+			local105 = local85 + local33 * destinationWidth;
 			for (local107 = local85; local107 < local94; local107++) {
-				anIntArray297[local105++] = 16776960;
+				destinationPixels[local105++] = 16776960;
 			}
 			local33++;
 			local47 -= local43-- + local43;
@@ -472,16 +473,16 @@ public final class Static129 {
 				local47 -= local39 + local39;
 			}
 			local85 = arg0 - local39;
-			if (local85 < anInt3145) {
-				local85 = anInt3145;
+			if (local85 < viewportLeft) {
+				local85 = viewportLeft;
 			}
 			local94 = arg0 + local39;
-			if (local94 > anInt3148 - 1) {
-				local94 = anInt3148 - 1;
+			if (local94 > viewportRight - 1) {
+				local94 = viewportRight - 1;
 			}
-			local105 = local85 + local33 * anInt3144;
+			local105 = local85 + local33 * destinationWidth;
 			for (local107 = local85; local107 <= local94; local107++) {
-				anIntArray297[local105++] = 16776960;
+				destinationPixels[local105++] = 16776960;
 			}
 			local33++;
 			local51 += local43 + local43;
@@ -503,12 +504,12 @@ public final class Static129 {
 		@Pc(36) int local36 = arg3 * 255;
 		@Pc(42) int local42 = arg3 * 0;
 		@Pc(46) int local46 = arg1 - arg2;
-		if (local46 < anInt3147) {
-			local46 = anInt3147;
+		if (local46 < viewportTop) {
+			local46 = viewportTop;
 		}
 		@Pc(57) int local57 = arg1 + arg2 + 1;
-		if (local57 > anInt3149) {
-			local57 = anInt3149;
+		if (local57 > viewportBottom) {
+			local57 = viewportBottom;
 		}
 		@Pc(64) int local64 = local46;
 		@Pc(68) int local68 = arg2 * arg2;
@@ -533,20 +534,20 @@ public final class Static129 {
 				local82 += local70++ + local70;
 			}
 			local116 = arg0 + 1 - local70;
-			if (local116 < anInt3145) {
-				local116 = anInt3145;
+			if (local116 < viewportLeft) {
+				local116 = viewportLeft;
 			}
 			local125 = arg0 + local70;
-			if (local125 > anInt3148) {
-				local125 = anInt3148;
+			if (local125 > viewportRight) {
+				local125 = viewportRight;
 			}
-			local136 = local116 + local64 * anInt3144;
+			local136 = local116 + local64 * destinationWidth;
 			for (local138 = local116; local138 < local125; local138++) {
-				local151 = (anIntArray297[local136] >> 16 & 0xFF) * local20;
-				local161 = (anIntArray297[local136] >> 8 & 0xFF) * local20;
-				local169 = (anIntArray297[local136] & 0xFF) * local20;
+				local151 = (destinationPixels[local136] >> 16 & 0xFF) * local20;
+				local161 = (destinationPixels[local136] >> 8 & 0xFF) * local20;
+				local169 = (destinationPixels[local136] & 0xFF) * local20;
 				local191 = (local28 + local151 >> 8 << 16) + (local36 + local161 >> 8 << 8) + (local42 + local169 >> 8);
-				anIntArray297[local136++] = local191;
+				destinationPixels[local136++] = local191;
 			}
 			local64++;
 			local78 -= local74-- + local74;
@@ -563,20 +564,20 @@ public final class Static129 {
 				local78 -= local70 + local70;
 			}
 			local116 = arg0 - local70;
-			if (local116 < anInt3145) {
-				local116 = anInt3145;
+			if (local116 < viewportLeft) {
+				local116 = viewportLeft;
 			}
 			local125 = arg0 + local70;
-			if (local125 > anInt3148 - 1) {
-				local125 = anInt3148 - 1;
+			if (local125 > viewportRight - 1) {
+				local125 = viewportRight - 1;
 			}
-			local136 = local116 + local64 * anInt3144;
+			local136 = local116 + local64 * destinationWidth;
 			for (local138 = local116; local138 <= local125; local138++) {
-				local151 = (anIntArray297[local136] >> 16 & 0xFF) * local20;
-				local161 = (anIntArray297[local136] >> 8 & 0xFF) * local20;
-				local169 = (anIntArray297[local136] & 0xFF) * local20;
+				local151 = (destinationPixels[local136] >> 16 & 0xFF) * local20;
+				local161 = (destinationPixels[local136] >> 8 & 0xFF) * local20;
+				local169 = (destinationPixels[local136] & 0xFF) * local20;
 				local191 = (local28 + local151 >> 8 << 16) + (local36 + local161 >> 8 << 8) + (local42 + local169 >> 8);
-				anIntArray297[local136++] = local191;
+				destinationPixels[local136++] = local191;
 			}
 			local64++;
 			local82 += local74 + local74;
@@ -586,22 +587,22 @@ public final class Static129 {
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "c", descriptor = "()V")
 	public static void method2503() {
-		anInt3145 = 0;
-		anInt3147 = 0;
-		anInt3148 = anInt3144;
-		anInt3149 = anInt3146;
+		viewportLeft = 0;
+		viewportTop = 0;
+		viewportRight = destinationWidth;
+		viewportBottom = destinationHeight;
 		method2482();
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(III[I[I)V")
 	public static void method2504(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int[] arg2, @OriginalArg(4) int[] arg3) {
-		@Pc(5) int local5 = arg0 + arg1 * anInt3144;
+		@Pc(5) int local5 = arg0 + arg1 * destinationWidth;
 		for (@Pc(7) int local7 = 0; local7 < arg2.length; local7++) {
 			@Pc(17) int local17 = local5 + arg2[local7];
 			for (@Pc(22) int local22 = -arg3[local7]; local22 < 0; local22++) {
-				anIntArray297[local17++] = 0;
+				destinationPixels[local17++] = 0;
 			}
-			local5 += anInt3144;
+			local5 += destinationWidth;
 		}
 	}
 }

@@ -3,6 +3,8 @@ package com.jagex.runetek4;
 import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Insets;
+
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -127,7 +129,7 @@ public final class Static197 {
 				Static65.method1500();
 				Static260.aClass27_2 = null;
 				Static260.aClass27_2 = Static131.method2579(Static254.canvasHeigth, Static48.canvasWidth, Static154.canvas);
-				Static129.method2492();
+				Rasterizer.method2492();
 				if (Static244.gamestate == 5) {
 					Static182.method3359(true, Static280.aClass3_Sub2_Sub9_43);
 				} else {

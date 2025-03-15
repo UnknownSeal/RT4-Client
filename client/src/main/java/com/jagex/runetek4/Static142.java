@@ -4,6 +4,7 @@ import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -162,13 +163,13 @@ public final class Static142 {
 						if (GlRenderer.enabled) {
 							Static46.method1183(local161, local359, local161 + local639, local359 + local642);
 						} else {
-							Static129.method2498(local161, local359, local161 + local639, local642 + local359);
+							Rasterizer.method2498(local161, local359, local161 + local639, local642 + local359);
 						}
 						local512.drawSprite(local161, local359);
 						if (GlRenderer.enabled) {
 							Static46.method1187(arg2, arg0, arg1 + arg2, arg0 - -arg4);
 						} else {
-							Static129.method2496(arg2, arg0, arg1 + arg2, arg4 + arg0);
+							Rasterizer.setBounds(arg2, arg0, arg1 + arg2, arg4 + arg0);
 						}
 					}
 				}
@@ -284,13 +285,13 @@ public final class Static142 {
 					if (GlRenderer.enabled) {
 						Static46.method1183(Static65.anInt1951 + arg2 - 50, arg0, Static65.anInt1951 + arg2 + 50, arg4 + arg0);
 					} else {
-						Static129.method2498(arg2 + Static65.anInt1951 - 50, arg0, Static65.anInt1951 + arg2 + 50, arg4 + arg0);
+						Rasterizer.method2498(arg2 + Static65.anInt1951 - 50, arg0, Static65.anInt1951 + arg2 + 50, arg4 + arg0);
 					}
 					Static280.aClass3_Sub2_Sub9_43.method2857(local962, arg2 + Static65.anInt1951 + 50 - local642, arg0 + Static16.anInt548, local639, 0);
 					if (GlRenderer.enabled) {
 						Static46.method1187(arg2, arg0, arg1 + arg2, arg4 + arg0);
 					} else {
-						Static129.method2496(arg2, arg0, arg2 + arg1, arg0 + arg4);
+						Rasterizer.setBounds(arg2, arg0, arg2 + arg1, arg0 + arg4);
 					}
 				}
 				if (Static191.anIntArray391[local5] == 5) {
@@ -299,7 +300,7 @@ public final class Static142 {
 					if (GlRenderer.enabled) {
 						Static46.method1183(arg2, Static16.anInt548 + arg0 - Static280.aClass3_Sub2_Sub9_43.anInt3626 - 1, arg1 + arg2, arg0 + Static16.anInt548 + 5);
 					} else {
-						Static129.method2498(arg2, Static16.anInt548 + arg0 - Static280.aClass3_Sub2_Sub9_43.anInt3626 - 1, arg2 + arg1, Static16.anInt548 + arg0 + 5);
+						Rasterizer.method2498(arg2, Static16.anInt548 + arg0 - Static280.aClass3_Sub2_Sub9_43.anInt3626 - 1, arg2 + arg1, Static16.anInt548 + arg0 + 5);
 					}
 					if (local642 < 25) {
 						local1372 = local642 - 25;
@@ -310,7 +311,7 @@ public final class Static142 {
 					if (GlRenderer.enabled) {
 						Static46.method1187(arg2, arg0, arg2 + arg1, arg0 + arg4);
 					} else {
-						Static129.method2496(arg2, arg0, arg2 + arg1, arg0 + arg4);
+						Rasterizer.setBounds(arg2, arg0, arg2 + arg1, arg0 + arg4);
 					}
 				}
 			} else {

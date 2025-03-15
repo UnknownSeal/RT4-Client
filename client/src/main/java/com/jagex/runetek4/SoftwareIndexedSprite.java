@@ -1,5 +1,7 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -90,31 +92,31 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		if (local5 < local15) {
 			arg3 = ((local5 << 16) + local27 - local9 - 1) / local27;
 		}
-		local41 = arg0 + arg1 * Static129.anInt3144;
-		@Pc(125) int local125 = Static129.anInt3144 - arg2;
-		if (arg1 + arg3 > Static129.anInt3149) {
-			arg3 -= arg1 + arg3 - Static129.anInt3149;
+		local41 = arg0 + arg1 * Rasterizer.destinationWidth;
+		@Pc(125) int local125 = Rasterizer.destinationWidth - arg2;
+		if (arg1 + arg3 > Rasterizer.viewportBottom) {
+			arg3 -= arg1 + arg3 - Rasterizer.viewportBottom;
 		}
 		@Pc(145) int local145;
-		if (arg1 < Static129.anInt3147) {
-			local145 = Static129.anInt3147 - arg1;
+		if (arg1 < Rasterizer.viewportTop) {
+			local145 = Rasterizer.viewportTop - arg1;
 			arg3 -= local145;
-			local41 += local145 * Static129.anInt3144;
+			local41 += local145 * Rasterizer.destinationWidth;
 			local9 += local27 * local145;
 		}
-		if (arg0 + arg2 > Static129.anInt3148) {
-			local145 = arg0 + arg2 - Static129.anInt3148;
+		if (arg0 + arg2 > Rasterizer.viewportRight) {
+			local145 = arg0 + arg2 - Rasterizer.viewportRight;
 			arg2 -= local145;
 			local125 += local145;
 		}
-		if (arg0 < Static129.anInt3145) {
-			local145 = Static129.anInt3145 - arg0;
+		if (arg0 < Rasterizer.viewportLeft) {
+			local145 = Rasterizer.viewportLeft - arg0;
 			arg2 -= local145;
 			local41 += local145;
 			local7 += local21 * local145;
 			local125 += local145;
 		}
-		Static286.method1394(Static129.anIntArray297, this.aByteArray18, this.anIntArray144, local7, local9, local41, local125, arg2, arg3, local21, local27, local2, arg4);
+		Static286.method1394(Rasterizer.destinationPixels, this.aByteArray18, this.anIntArray144, local7, local9, local41, local125, arg2, arg3, local21, local27, local2, arg4);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "()V")
@@ -164,40 +166,40 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 	public final void method3335(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		arg0 += this.anInt4280;
 		arg1 += this.anInt4273;
-		@Pc(15) int local15 = arg0 + arg1 * Static129.anInt3144;
+		@Pc(15) int local15 = arg0 + arg1 * Rasterizer.destinationWidth;
 		@Pc(17) int local17 = 0;
 		@Pc(20) int local20 = this.anInt4278;
 		@Pc(23) int local23 = this.anInt4270;
-		@Pc(27) int local27 = Static129.anInt3144 - local23;
+		@Pc(27) int local27 = Rasterizer.destinationWidth - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < Static129.anInt3147) {
-			local36 = Static129.anInt3147 - arg1;
+		if (arg1 < Rasterizer.viewportTop) {
+			local36 = Rasterizer.viewportTop - arg1;
 			local20 -= local36;
-			arg1 = Static129.anInt3147;
+			arg1 = Rasterizer.viewportTop;
 			local17 = local36 * local23;
-			local15 += local36 * Static129.anInt3144;
+			local15 += local36 * Rasterizer.destinationWidth;
 		}
-		if (arg1 + local20 > Static129.anInt3149) {
-			local20 -= arg1 + local20 - Static129.anInt3149;
+		if (arg1 + local20 > Rasterizer.viewportBottom) {
+			local20 -= arg1 + local20 - Rasterizer.viewportBottom;
 		}
-		if (arg0 < Static129.anInt3145) {
-			local36 = Static129.anInt3145 - arg0;
+		if (arg0 < Rasterizer.viewportLeft) {
+			local36 = Rasterizer.viewportLeft - arg0;
 			local23 -= local36;
-			arg0 = Static129.anInt3145;
+			arg0 = Rasterizer.viewportLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > Static129.anInt3148) {
-			local36 = arg0 + local23 - Static129.anInt3148;
+		if (arg0 + local23 > Rasterizer.viewportRight) {
+			local36 = arg0 + local23 - Rasterizer.viewportRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
 		}
 		if (local23 > 0 && local20 > 0) {
-			Static286.method1397(Static129.anIntArray297, this.aByteArray18, this.anIntArray144, local17, local15, local23, local20, local27, local29, arg2);
+			Static286.method1397(Rasterizer.destinationPixels, this.aByteArray18, this.anIntArray144, local17, local15, local23, local20, local27, local29, arg2);
 		}
 	}
 
@@ -247,31 +249,31 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		if (local5 < local15) {
 			arg3 = ((local5 << 16) + local27 - local9 - 1) / local27;
 		}
-		local41 = arg0 + arg1 * Static129.anInt3144;
-		@Pc(125) int local125 = Static129.anInt3144 - arg2;
-		if (arg1 + arg3 > Static129.anInt3149) {
-			arg3 -= arg1 + arg3 - Static129.anInt3149;
+		local41 = arg0 + arg1 * Rasterizer.destinationWidth;
+		@Pc(125) int local125 = Rasterizer.destinationWidth - arg2;
+		if (arg1 + arg3 > Rasterizer.viewportBottom) {
+			arg3 -= arg1 + arg3 - Rasterizer.viewportBottom;
 		}
 		@Pc(145) int local145;
-		if (arg1 < Static129.anInt3147) {
-			local145 = Static129.anInt3147 - arg1;
+		if (arg1 < Rasterizer.viewportTop) {
+			local145 = Rasterizer.viewportTop - arg1;
 			arg3 -= local145;
-			local41 += local145 * Static129.anInt3144;
+			local41 += local145 * Rasterizer.destinationWidth;
 			local9 += local27 * local145;
 		}
-		if (arg0 + arg2 > Static129.anInt3148) {
-			local145 = arg0 + arg2 - Static129.anInt3148;
+		if (arg0 + arg2 > Rasterizer.viewportRight) {
+			local145 = arg0 + arg2 - Rasterizer.viewportRight;
 			arg2 -= local145;
 			local125 += local145;
 		}
-		if (arg0 < Static129.anInt3145) {
-			local145 = Static129.anInt3145 - arg0;
+		if (arg0 < Rasterizer.viewportLeft) {
+			local145 = Rasterizer.viewportLeft - arg0;
 			arg2 -= local145;
 			local41 += local145;
 			local7 += local21 * local145;
 			local125 += local145;
 		}
-		Static286.method1391(Static129.anIntArray297, this.aByteArray18, this.anIntArray144, local7, local9, local41, local125, arg2, arg3, local21, local27, local2);
+		Static286.method1391(Rasterizer.destinationPixels, this.aByteArray18, this.anIntArray144, local7, local9, local41, local125, arg2, arg3, local21, local27, local2);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "(II)V")
@@ -279,40 +281,40 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 	public final void method3336(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.anInt4280;
 		arg1 += this.anInt4273;
-		@Pc(15) int local15 = arg0 + arg1 * Static129.anInt3144;
+		@Pc(15) int local15 = arg0 + arg1 * Rasterizer.destinationWidth;
 		@Pc(17) int local17 = 0;
 		@Pc(20) int local20 = this.anInt4278;
 		@Pc(23) int local23 = this.anInt4270;
-		@Pc(27) int local27 = Static129.anInt3144 - local23;
+		@Pc(27) int local27 = Rasterizer.destinationWidth - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < Static129.anInt3147) {
-			local36 = Static129.anInt3147 - arg1;
+		if (arg1 < Rasterizer.viewportTop) {
+			local36 = Rasterizer.viewportTop - arg1;
 			local20 -= local36;
-			arg1 = Static129.anInt3147;
+			arg1 = Rasterizer.viewportTop;
 			local17 = local36 * local23;
-			local15 += local36 * Static129.anInt3144;
+			local15 += local36 * Rasterizer.destinationWidth;
 		}
-		if (arg1 + local20 > Static129.anInt3149) {
-			local20 -= arg1 + local20 - Static129.anInt3149;
+		if (arg1 + local20 > Rasterizer.viewportBottom) {
+			local20 -= arg1 + local20 - Rasterizer.viewportBottom;
 		}
-		if (arg0 < Static129.anInt3145) {
-			local36 = Static129.anInt3145 - arg0;
+		if (arg0 < Rasterizer.viewportLeft) {
+			local36 = Rasterizer.viewportLeft - arg0;
 			local23 -= local36;
-			arg0 = Static129.anInt3145;
+			arg0 = Rasterizer.viewportLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > Static129.anInt3148) {
-			local36 = arg0 + local23 - Static129.anInt3148;
+		if (arg0 + local23 > Rasterizer.viewportRight) {
+			local36 = arg0 + local23 - Rasterizer.viewportRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
 		}
 		if (local23 > 0 && local20 > 0) {
-			Static286.method1393(Static129.anIntArray297, this.aByteArray18, this.anIntArray144, local17, local15, local23, local20, local27, local29);
+			ImageRGB.blockCopyTrans(Rasterizer.destinationPixels, this.aByteArray18, this.anIntArray144, local17, local15, local23, local20, local27, local29);
 		}
 	}
 }

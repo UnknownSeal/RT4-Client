@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -32,16 +33,16 @@ public final class Static74 {
 		}
 		@Pc(54) int local54 = arg0 * (arg4 - local35 - 32) / (arg1 - arg4);
 		if (!GlRenderer.enabled) {
-			Static129.method2495(arg2, arg3 + 16, 16, arg4 - 32, Static182.anInt4306);
-			Static129.method2495(arg2, local54 + arg3 + 16, 16, local35, Static53.anInt1704);
-			Static129.method2490(arg2, local54 + arg3 + 16, local35, Static219.anInt4938);
-			Static129.method2490(arg2 + 1, local54 + 16 + arg3, local35, Static219.anInt4938);
-			Static129.method2489(arg2, arg3 + local54 + 16, 16, Static219.anInt4938);
-			Static129.method2489(arg2, arg3 + local54 + 17, 16, Static219.anInt4938);
-			Static129.method2490(arg2 + 15, local54 + 16 + arg3, local35, Static20.anInt671);
-			Static129.method2490(arg2 + 14, arg3 - -17 - -local54, local35 - 1, Static20.anInt671);
-			Static129.method2489(arg2, local35 + arg3 + local54 + 15, 16, Static20.anInt671);
-			Static129.method2489(arg2 + 1, local35 + arg3 - (-local54 + -14), 15, Static20.anInt671);
+			Rasterizer.drawFilledRectangle(arg2, arg3 + 16, 16, arg4 - 32, Static182.anInt4306);
+			Rasterizer.drawFilledRectangle(arg2, local54 + arg3 + 16, 16, local35, Static53.anInt1704);
+			Rasterizer.method2490(arg2, local54 + arg3 + 16, local35, Static219.anInt4938);
+			Rasterizer.method2490(arg2 + 1, local54 + 16 + arg3, local35, Static219.anInt4938);
+			Rasterizer.drawHorizontalLine(arg2, arg3 + local54 + 16, 16, Static219.anInt4938);
+			Rasterizer.drawHorizontalLine(arg2, arg3 + local54 + 17, 16, Static219.anInt4938);
+			Rasterizer.method2490(arg2 + 15, local54 + 16 + arg3, local35, Static20.anInt671);
+			Rasterizer.method2490(arg2 + 14, arg3 - -17 - -local54, local35 - 1, Static20.anInt671);
+			Rasterizer.drawHorizontalLine(arg2, local35 + arg3 + local54 + 15, 16, Static20.anInt671);
+			Rasterizer.drawHorizontalLine(arg2 + 1, local35 + arg3 - (-local54 + -14), 15, Static20.anInt671);
 			return;
 		}
 		Static46.method1186(arg2, arg3 + 16, 16, arg4 - 32, Static182.anInt4306);

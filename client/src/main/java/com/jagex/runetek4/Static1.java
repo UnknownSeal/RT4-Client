@@ -1,7 +1,9 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -543,15 +545,15 @@ public final class Static1 {
 			Static46.method1187(arg0, arg3, arg2 + arg0, arg1 + arg3);
 			Static46.method1186(arg0, arg3, arg2, arg1, 0);
 		} else {
-			Static129.method2496(arg0, arg3, arg2 + arg0, arg3 + arg1);
-			Static129.method2495(arg0, arg3, arg2, arg1, 0);
+			Rasterizer.setBounds(arg0, arg3, arg2 + arg0, arg3 + arg1);
+			Rasterizer.drawFilledRectangle(arg0, arg3, arg2, arg1, 0);
 		}
 		if (Static41.anInt1309 < 100) {
 			return;
 		}
 		if (Static70.aClass3_Sub2_Sub1_2 == null || arg2 != Static70.aClass3_Sub2_Sub1_2.anInt1867 || Static70.aClass3_Sub2_Sub1_2.anInt1859 != arg1) {
-			@Pc(63) SoftwareSprite local63 = new SoftwareSprite(arg2, arg1);
-			Static129.method2491(local63.anIntArray20, arg2, arg1);
+			@Pc(63) ImageRGB local63 = new ImageRGB(arg2, arg1);
+			Rasterizer.prepare(local63.pixels, arg2, arg1);
 			Static214.method4364(arg2, 0, Static48.anInt1449, 0, 0, Static181.anInt4296, arg1, 0);
 			if (GlRenderer.enabled) {
 				Static70.aClass3_Sub2_Sub1_2 = new GlSprite(local63);
@@ -559,7 +561,7 @@ public final class Static1 {
 				Static70.aClass3_Sub2_Sub1_2 = local63;
 			}
 			if (GlRenderer.enabled) {
-				Static129.anIntArray297 = null;
+				Rasterizer.destinationPixels = null;
 			} else {
 				Static260.aClass27_2.method4189();
 			}
@@ -577,8 +579,8 @@ public final class Static1 {
 			Static46.method1182(local161, local147, local167, local153, local169, 128);
 			Static46.method1179(local161, local147, local167, local153, local169);
 		} else {
-			Static129.method2484(local161, local147, local167, local153, local169, 128);
-			Static129.method2483(local161, local147, local167, local153, local169);
+			Rasterizer.method2484(local161, local147, local167, local153, local169, 128);
+			Rasterizer.method2483(local161, local147, local167, local153, local169);
 		}
 		if (Static201.anInt1864 <= 0) {
 			return;
@@ -596,7 +598,7 @@ public final class Static1 {
 				if (GlRenderer.enabled) {
 					Static46.method1182(local267 - 2, local258 + -2, 4, 4, 16776960, local225);
 				} else {
-					Static129.method2484(local267 - 2, local258 + -2, 4, 4, 16776960, local225);
+					Rasterizer.method2484(local267 - 2, local258 + -2, 4, 4, 16776960, local225);
 				}
 			}
 		}

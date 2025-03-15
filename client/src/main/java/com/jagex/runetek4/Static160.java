@@ -1,7 +1,9 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -41,12 +43,12 @@ public final class Static160 {
 					local44.drawSprite(arg0, arg1);
 				}
 			} else {
-				Static129.method2504(arg0, arg1, arg2.anIntArray37, arg2.anIntArray45);
+				Rasterizer.method2504(arg0, arg1, arg2.anIntArray37, arg2.anIntArray45);
 			}
 		} else if (GlRenderer.enabled) {
 			((GlSprite) Static106.aClass3_Sub2_Sub1_7).method1427(arg0, arg1, arg2.anInt445, arg2.anInt459, Static106.aClass3_Sub2_Sub1_7.anInt1867 / 2, Static106.aClass3_Sub2_Sub1_7.anInt1859 / 2, Static57.orbitCameraYaw, 256, (GlSprite) arg2.method489(false));
 		} else {
-			((SoftwareSprite) Static106.aClass3_Sub2_Sub1_7).method313(arg0, arg1, arg2.anInt445, arg2.anInt459, Static106.aClass3_Sub2_Sub1_7.anInt1867 / 2, Static106.aClass3_Sub2_Sub1_7.anInt1859 / 2, Static57.orbitCameraYaw, arg2.anIntArray37, arg2.anIntArray45);
+			((ImageRGB) Static106.aClass3_Sub2_Sub1_7).method313(arg0, arg1, arg2.anInt445, arg2.anInt459, Static106.aClass3_Sub2_Sub1_7.anInt1867 / 2, Static106.aClass3_Sub2_Sub1_7.anInt1859 / 2, Static57.orbitCameraYaw, arg2.anIntArray37, arg2.anIntArray45);
 		}
 		Static31.aBooleanArray29[arg3] = true;
 	}

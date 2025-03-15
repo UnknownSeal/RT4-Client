@@ -5,6 +5,7 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.config.SeqType;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
@@ -1043,7 +1044,7 @@ public final class Component {
 		if (local72 != null) {
 			return local72;
 		}
-		@Pc(85) SoftwareSprite local85;
+		@Pc(85) ImageRGB local85;
 		if (this.aBoolean18) {
 			local85 = Static80.method3613(Static23.gameImageCacheArchive, local12);
 		} else {

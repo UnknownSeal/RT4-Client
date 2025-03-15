@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -46,10 +47,10 @@ public final class Static182 {
 			Static46.method1186(Static48.canvasWidth / 2 - 150, local9 + 2, Static199.mainLoadPercentage * 3, 30, 9179409);
 			Static46.method1186(Static48.canvasWidth / 2 + Static199.mainLoadPercentage * 3 - 150, local9 + 2, 300 - Static199.mainLoadPercentage * 3, 30, 0);
 		} else {
-			Static129.method2483(Static48.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
-			Static129.method2483(Static48.canvasWidth / 2 - 151, local9 + 1, 302, 32, 0);
-			Static129.method2495(Static48.canvasWidth / 2 - 150, local9 + 2, Static199.mainLoadPercentage * 3, 30, 9179409);
-			Static129.method2495(Static199.mainLoadPercentage * 3 + Static48.canvasWidth / 2 - 150, local9 + 2, 300 - Static199.mainLoadPercentage * 3, 30, 0);
+			Rasterizer.method2483(Static48.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
+			Rasterizer.method2483(Static48.canvasWidth / 2 - 151, local9 + 1, 302, 32, 0);
+			Rasterizer.drawFilledRectangle(Static48.canvasWidth / 2 - 150, local9 + 2, Static199.mainLoadPercentage * 3, 30, 9179409);
+			Rasterizer.drawFilledRectangle(Static199.mainLoadPercentage * 3 + Static48.canvasWidth / 2 - 150, local9 + 2, 300 - Static199.mainLoadPercentage * 3, 30, 0);
 		}
 		arg1.method2875(Static126.mainLoadSecondaryText, Static48.canvasWidth / 2, Static254.canvasHeigth / 2 + 4, 16777215, -1);
 	}

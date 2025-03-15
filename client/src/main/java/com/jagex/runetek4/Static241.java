@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -18,7 +19,7 @@ public final class Static241 {
 	public static int[] anIntArray522;
 
 	@OriginalMember(owner = "runetek4.client!th", name = "p", descriptor = "[Lclient!mm;")
-	public static SoftwareSprite[] aClass3_Sub2_Sub1_Sub1Array13;
+	public static ImageRGB[] aClass3_Sub2_Sub1_Sub1Array13;
 
 	@OriginalMember(owner = "runetek4.client!th", name = "h", descriptor = "Lclient!na;")
 	public static final JString SETPARTICLES = Static28.parse("::setparticles");

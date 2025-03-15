@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -40,7 +41,7 @@ public final class Static213 {
 				if (GlRenderer.enabled) {
 					local14[local16] = new GlSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local16], Static269.anIntArray252[local16], Static254.anIntArray488[local16], Static26.anIntArray66[local16], local119);
 				} else {
-					local14[local16] = new SoftwareSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local16], Static269.anIntArray252[local16], Static254.anIntArray488[local16], Static26.anIntArray66[local16], local119);
+					local14[local16] = new ImageRGB(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local16], Static269.anIntArray252[local16], Static254.anIntArray488[local16], Static26.anIntArray66[local16], local119);
 				}
 			}
 		}

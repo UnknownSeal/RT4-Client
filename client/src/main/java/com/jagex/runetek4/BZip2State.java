@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -37,7 +38,7 @@ public final class BZip2State {
 			Static250.anInt5434 = 0;
 		}
 		@Pc(20) int local20 = 0;
-		@Pc(24) int local24 = Static129.anInt3144 * arg1;
+		@Pc(24) int local24 = Rasterizer.destinationWidth * arg1;
 		@Pc(26) int local26 = 0;
 		for (@Pc(28) int local28 = 1; local28 < 255; local28++) {
 			@Pc(43) int local43 = (256 - local28) * Static35.anIntArray83[local28] / 256;
@@ -47,10 +48,10 @@ public final class BZip2State {
 			local20 += local43;
 			@Pc(55) int local55;
 			for (local55 = local43; local55 < 128; local55++) {
-				@Pc(65) int local65 = Static129.anIntArray297[local24++ + arg0];
+				@Pc(65) int local65 = Rasterizer.destinationPixels[local24++ + arg0];
 				@Pc(70) int local70 = Static216.anIntArray188[local20++];
 				if (local70 == 0) {
-					Static167.aClass3_Sub2_Sub1_Sub1_3.anIntArray20[local26++] = local65;
+					Static167.aClass3_Sub2_Sub1_Sub1_3.pixels[local26++] = local65;
 				} else {
 					@Pc(76) int local76 = local70 + 18;
 					if (local76 > 255) {
@@ -61,16 +62,16 @@ public final class BZip2State {
 						local89 = 255;
 					}
 					local70 = Static96.anIntArray235[local70];
-					Static167.aClass3_Sub2_Sub1_Sub1_3.anIntArray20[local26++] = (local89 * (local65 & 0xFF00FF) + (local70 & 0xFF00FF) * local76 & 0xFF00FF00) + ((local70 & 0xFF00) * local76 + ((local65 & 0xFF00) * local89) & 0xFF0000) >> 8;
+					Static167.aClass3_Sub2_Sub1_Sub1_3.pixels[local26++] = (local89 * (local65 & 0xFF00FF) + (local70 & 0xFF00FF) * local76 & 0xFF00FF00) + ((local70 & 0xFF00) * local76 + ((local65 & 0xFF00) * local89) & 0xFF0000) >> 8;
 				}
 			}
 			for (local55 = 0; local55 < local43; local55++) {
-				Static167.aClass3_Sub2_Sub1_Sub1_3.anIntArray20[local26++] = Static129.anIntArray297[arg0 + local24++];
+				Static167.aClass3_Sub2_Sub1_Sub1_3.pixels[local26++] = Rasterizer.destinationPixels[arg0 + local24++];
 			}
-			local24 += Static129.anInt3144 - 128;
+			local24 += Rasterizer.destinationWidth - 128;
 		}
 		if (GlRenderer.enabled) {
-			Static46.method1178(Static167.aClass3_Sub2_Sub1_Sub1_3.anIntArray20, arg0, arg1, Static167.aClass3_Sub2_Sub1_Sub1_3.anInt1867, Static167.aClass3_Sub2_Sub1_Sub1_3.anInt1859);
+			Static46.method1178(Static167.aClass3_Sub2_Sub1_Sub1_3.pixels, arg0, arg1, Static167.aClass3_Sub2_Sub1_Sub1_3.anInt1867, Static167.aClass3_Sub2_Sub1_Sub1_3.anInt1859);
 		} else {
 			Static167.aClass3_Sub2_Sub1_Sub1_3.method1415(arg0, arg1);
 		}

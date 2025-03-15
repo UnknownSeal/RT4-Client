@@ -1,9 +1,11 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.config.lighttype.LightType;
 import com.jagex.runetek4.js5.network.Js5NetResourceProvider;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -258,7 +260,7 @@ public final class Static269 {
 		if (GlRenderer.enabled) {
 			Static46.method1187(arg0, arg1, arg0 + arg3, arg2 + arg1);
 		} else {
-			Static129.method2496(arg0, arg1, arg0 + arg3, arg2 + arg1);
+			Rasterizer.setBounds(arg0, arg1, arg0 + arg3, arg2 + arg1);
 		}
 		@Pc(50) int local50;
 		@Pc(61) int local61;
@@ -272,11 +274,11 @@ public final class Static269 {
 				Static46.method1186(local50 - 150, local61 + 2, Static41.anInt1309 * 3, 30, 9179409);
 				Static46.method1186(local50 + Static41.anInt1309 * 3 - 150, local61 - -2, 300 - Static41.anInt1309 * 3, 30, 0);
 			} else {
-				Static129.method2495(arg0, arg1, arg3, arg2, 0);
-				Static129.method2483(local50 - 152, local61, 304, 34, 9179409);
-				Static129.method2483(local50 - 151, local61 + 1, 302, 32, 0);
-				Static129.method2495(local50 - 150, local61 + 2, Static41.anInt1309 * 3, 30, 9179409);
-				Static129.method2495(Static41.anInt1309 * 3 + local50 - 150, local61 - -2, 300 - Static41.anInt1309 * 3, 30, 0);
+				Rasterizer.drawFilledRectangle(arg0, arg1, arg3, arg2, 0);
+				Rasterizer.method2483(local50 - 152, local61, 304, 34, 9179409);
+				Rasterizer.method2483(local50 - 151, local61 + 1, 302, 32, 0);
+				Rasterizer.drawFilledRectangle(local50 - 150, local61 + 2, Static41.anInt1309 * 3, 30, 9179409);
+				Rasterizer.drawFilledRectangle(Static41.anInt1309 * 3 + local50 - 150, local61 - -2, 300 - Static41.anInt1309 * 3, 30, 0);
 			}
 			Static280.aClass3_Sub2_Sub9_43.method2875(LocalizedText.LOADINGDOTDOTDOT, local50, local61 + 20, 16777215, -1);
 			return;
@@ -292,14 +294,14 @@ public final class Static269 {
 		if (GlRenderer.enabled) {
 			if (Static153.aClass3_Sub2_Sub1_Sub1_2 == null || Static153.aClass3_Sub2_Sub1_Sub1_2.anInt1867 != arg3 || Static153.aClass3_Sub2_Sub1_Sub1_2.anInt1859 != arg2) {
 				Static153.aClass3_Sub2_Sub1_Sub1_2 = null;
-				Static153.aClass3_Sub2_Sub1_Sub1_2 = new SoftwareSprite(arg3, arg2);
+				Static153.aClass3_Sub2_Sub1_Sub1_2 = new ImageRGB(arg3, arg2);
 			}
-			Static129.method2491(Static153.aClass3_Sub2_Sub1_Sub1_2.anIntArray20, arg3, arg2);
+			Rasterizer.prepare(Static153.aClass3_Sub2_Sub1_Sub1_2.pixels, arg3, arg2);
 			Static214.method4364(arg3, 0, local61, local50, 0, local236, arg2, local211);
 			Static48.method1195(arg3, 0, local61, local236, arg2, 0, local211, local50);
 			Static38.method959(0, 0, local211, arg3, local236, local50, local61, arg2);
-			Static46.method1178(Static153.aClass3_Sub2_Sub1_Sub1_2.anIntArray20, arg0, arg1, arg3, arg2);
-			Static129.anIntArray297 = null;
+			Static46.method1178(Static153.aClass3_Sub2_Sub1_Sub1_2.pixels, arg0, arg1, arg3, arg2);
+			Rasterizer.destinationPixels = null;
 		} else {
 			Static214.method4364(arg3 + arg0, arg1, local61, local50, arg0, local236, arg1 + arg2, local211);
 			Static48.method1195(arg0 + arg3, arg0, local61, local236, arg2 + arg1, arg1, local211, local50);
