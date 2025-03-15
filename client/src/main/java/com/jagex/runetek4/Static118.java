@@ -58,7 +58,7 @@ public final class Static118 {
 							local105 = local15.anInt522;
 						}
 						if (local105 != -1) {
-							@Pc(118) SeqType local118 = Static36.method941(local105);
+							@Pc(118) SeqType local118 = Static36.getAnimationSequence(local105);
 							if (local118 != null) {
 								local15.anInt500 += Static178.sceneDelta;
 								while (local15.anInt500 > local118.frames[local15.anInt510]) {

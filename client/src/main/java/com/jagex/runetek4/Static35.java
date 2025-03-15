@@ -116,7 +116,7 @@ public final class Static35 {
 			Static176.cameraModifierEnabled[local3] = false;
 		}
 		Static133.anInt5230 = 0;
-		Static233.anInt5217 = 0;
+		ClientScriptRunner.anInt5217 = 0;
 		Static155.anInt3718 = -1;
 		Static52.anInt1694 = -1;
 		Static227.anInt5096 = 1;

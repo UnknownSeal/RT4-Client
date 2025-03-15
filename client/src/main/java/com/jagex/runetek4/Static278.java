@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -47,7 +48,7 @@ public final class Static278 {
 						Static44.entityUpdateIds[Static116.entityUpdateCount++] = local14;
 					}
 					@Pc(105) int local105 = Static57.in.gBit(5);
-					local37.method2698(Static214.get(Static57.in.gBit(14)));
+					local37.method2698(ActorDefinition.getDefinition(Static57.in.gBit(14)));
 					if (local105 > 15) {
 						local105 -= 32;
 					}

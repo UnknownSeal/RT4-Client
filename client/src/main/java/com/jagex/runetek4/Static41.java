@@ -87,7 +87,7 @@ public final class Static41 {
 					}
 				}
 			}
-			local33 = local103.method1679(64, 768, -50, -10, -50);
+			local33 = local103.applyLightning(64, 768, -50, -10, -50);
 			Static45.aClass99_6.put(local33, local23);
 		}
 		@Pc(367) int local367 = arg7 * 64 - 1;

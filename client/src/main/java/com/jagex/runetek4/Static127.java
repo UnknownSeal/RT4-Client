@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.io.UnsupportedEncodingException;
 
 import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
@@ -253,7 +254,7 @@ public final class Static127 {
 			@Pc(18) int level;
 			@Pc(38) int x;
 			@Pc(29) Runtime local29;
-			if (chatTyped.equalsIgnoreCase(Static81.GC)) {
+			if (chatTyped.equalsIgnoreCase(ItemDefinition.GC)) {
 				Static119.method2380();
 				for (level = 0; level < 10; level++) {
 					System.gc();

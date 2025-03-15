@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.js5.Js5;
@@ -148,6 +149,6 @@ public final class Static137 {
 	@OriginalMember(owner = "runetek4.client!kl", name = "c", descriptor = "(II)V")
 	public static void method2666() {
 		Static279.aClass99_38.clear(5);
-		Static56.aClass99_9.clear(5);
+		SpotAnimDefinition.modelCache.clear(5);
 	}
 }

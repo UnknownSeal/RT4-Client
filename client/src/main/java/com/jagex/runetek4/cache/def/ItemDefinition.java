@@ -1,6 +1,7 @@
-package com.jagex.runetek4.config;
+package com.jagex.runetek4.cache.def;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.config.SeqType;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -13,7 +14,7 @@ import com.jagex.runetek4.core.datastruct.Node;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!h")
-public final class ObjType {
+public final class ItemDefinition {
 
 	@OriginalMember(owner = "client!h", name = "S", descriptor = "[I")
 	public static final int[] levelExperience = new int[99];
@@ -160,7 +161,7 @@ public final class ObjType {
 	public int manwear = -1;
 
 	@OriginalMember(owner = "client!h", name = "qb", descriptor = "[Lclient!na;")
-	public JString[] ops = new JString[] { null, null, LocalizedText.TAKE, null, null };
+	public JString[] groundOptions = new JString[] { null, null, LocalizedText.TAKE, null, null };
 
 	@OriginalMember(owner = "client!h", name = "ub", descriptor = "I")
 	private int resizex = 128;
@@ -172,7 +173,7 @@ public final class ObjType {
 	private int manwearyoff = 0;
 
 	@OriginalMember(owner = "client!h", name = "U", descriptor = "[Lclient!na;")
-	public JString[] iops = new JString[] { null, null, null, null, LocalizedText.DROP};
+	public JString[] interfaceOptions = new JString[] { null, null, null, null, LocalizedText.DROP};
 
 	@OriginalMember(owner = "client!h", name = "Ab", descriptor = "I")
 	public int zoom2d = 2000;
@@ -181,70 +182,70 @@ public final class ObjType {
 	public boolean stockmarket = false;
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ILclient!wa;)V")
-	public void decode(@OriginalArg(1) Packet packet) {
+	public void readValues(@OriginalArg(1) Packet packet) {
 		while (true) {
-			@Pc(5) int code = packet.g1();
-			if (code == 0) {
+			@Pc(5) int opcode = packet.g1();
+			if (opcode == 0) {
 				return;
 			}
-			this.decode(packet, code);
+			this.readValue(packet, opcode);
 		}
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BLclient!wa;I)V")
-	private void decode(@OriginalArg(1) Packet packet, @OriginalArg(2) int code) {
-		if (code == 1) {
+	private void readValue(@OriginalArg(1) Packet packet, @OriginalArg(2) int opcode) {
+		if (opcode == 1) {
 			this.mesh = packet.g2();
-		} else if (code == 2) {
+		} else if (opcode == 2) {
 			this.name = packet.gjstr();
-		} else if (code == 4) {
+		} else if (opcode == 4) {
 			this.zoom2d = packet.g2();
-		} else if (code == 5) {
+		} else if (opcode == 5) {
 			this.xan2d = packet.g2();
-		} else if (code == 6) {
+		} else if (opcode == 6) {
 			this.yan2d = packet.g2();
-		} else if (code == 7) {
+		} else if (opcode == 7) {
 			this.xof2d = packet.g2();
 			if (this.xof2d > 32767) {
 				this.xof2d -= 65536;
 			}
-		} else if (code == 8) {
+		} else if (opcode == 8) {
 			this.yof2d = packet.g2();
 			if (this.yof2d > 32767) {
 				this.yof2d -= 65536;
 			}
-		} else if (code == 11) {
+		} else if (opcode == 11) {
 			this.stackable = 1;
-		} else if (code == 12) {
+		} else if (opcode == 12) {
 			this.cost = packet.g4();
-		} else if (code == 16) {
+		} else if (opcode == 16) {
 			this.members = true;
-		} else if (code == 23) {
+		} else if (opcode == 23) {
 			this.manwear = packet.g2();
-		} else if (code == 24) {
+		} else if (opcode == 24) {
 			this.manwear2 = packet.g2();
-		} else if (code == 25) {
+		} else if (opcode == 25) {
 			this.womanwear = packet.g2();
-		} else if (code == 26) {
+		} else if (opcode == 26) {
 			this.womanwear2 = packet.g2();
-		} else if (code >= 30 && code < 35) {
-			this.ops[code - 30] = packet.gjstr();
-			if (this.ops[code - 30].equalsIgnoreCase(LocalizedText.HIDDEN)) {
-				this.ops[code - 30] = null;
+		} else if (opcode >= 30 && opcode < 35) {
+			this.groundOptions[opcode - 30] = packet.gjstr();
+			if (this.groundOptions[opcode - 30].equalsIgnoreCase(LocalizedText.HIDDEN)) {
+				this.groundOptions[opcode - 30] = null;
 			}
-		} else if (code >= 35 && code < 40) {
-			this.iops[code - 35] = packet.gjstr();
+		} else if (opcode >= 35 && opcode < 40) {
+			this.interfaceOptions[opcode - 35] = packet.gjstr();
 		} else {
 			@Pc(179) int local179;
-			if (code == 40) {
-				int length = packet.g1();
-				this.recol_s = new short[length];
-				this.recol_d = new short[length];
-				for (int index = 0; index < length; index++) {
-					this.recol_s[index] = (short) packet.g2();
-					this.recol_d[index] = (short) packet.g2();
+			if (opcode == 40) {
+				int colorCount = packet.g1();
+				this.recol_s = new short[colorCount];
+				this.recol_d = new short[colorCount];
+				for (int colorIndex = 0; colorIndex < colorCount; colorIndex++) {
+					this.recol_s[colorIndex] = (short) packet.g2();
+					this.recol_d[colorIndex] = (short) packet.g2();
 				}
-			} else if (code == 41) {
+			} else if (opcode == 41) {
 				int length = packet.g1();
 				this.retex_s = new short[length];
 				this.retex_d = new short[length];
@@ -252,78 +253,78 @@ public final class ObjType {
 					this.retex_s[index] = (short) packet.g2();
 					this.retex_d[index] = (short) packet.g2();
 				}
-			} else if (code == 42) {
+			} else if (opcode == 42) {
 				int length = packet.g1();
 				this.recol_d_palette = new byte[length];
 				for (int index = 0; index < length; index++) {
 					this.recol_d_palette[index] = packet.g1s();
 				}
-			} else if (code == 65) {
+			} else if (opcode == 65) {
 				this.stockmarket = true;
-			} else if (code == 78) {
+			} else if (opcode == 78) {
 				this.manwear3 = packet.g2();
-			} else if (code == 79) {
+			} else if (opcode == 79) {
 				this.womanwear3 = packet.g2();
-			} else if (code == 90) {
+			} else if (opcode == 90) {
 				this.manhead = packet.g2();
-			} else if (code == 91) {
+			} else if (opcode == 91) {
 				this.womanhead = packet.g2();
-			} else if (code == 92) {
+			} else if (opcode == 92) {
 				this.manhead2 = packet.g2();
-			} else if (code == 93) {
+			} else if (opcode == 93) {
 				this.womanhead2 = packet.g2();
-			} else if (code == 95) {
+			} else if (opcode == 95) {
 				this.zan2d = packet.g2();
-			} else if (code == 96) {
+			} else if (opcode == 96) {
 				this.dummyitem = packet.g1();
-			} else if (code == 97) {
+			} else if (opcode == 97) {
 				this.certlink = packet.g2();
-			} else if (code == 98) {
+			} else if (opcode == 98) {
 				this.certtemplate = packet.g2();
-			} else if (code >= 100 && code < 110) {
+			} else if (opcode >= 100 && opcode < 110) {
 				if (this.countobj == null) {
 					this.countobj = new int[10];
 					this.countco = new int[10];
 				}
-				this.countobj[code - 100] = packet.g2();
-				this.countco[code - 100] = packet.g2();
-			} else if (code == 110) {
+				this.countobj[opcode - 100] = packet.g2();
+				this.countco[opcode - 100] = packet.g2();
+			} else if (opcode == 110) {
 				this.resizex = packet.g2();
-			} else if (code == 111) {
+			} else if (opcode == 111) {
 				this.resizey = packet.g2();
-			} else if (code == 112) {
+			} else if (opcode == 112) {
 				this.resizez = packet.g2();
-			} else if (code == 113) {
+			} else if (opcode == 113) {
 				this.ambient = packet.g1s();
-			} else if (code == 114) {
+			} else if (opcode == 114) {
 				this.contrast = packet.g1s() * 5;
-			} else if (code == 115) {
+			} else if (opcode == 115) {
 				this.team = packet.g1();
-			} else if (code == 121) {
+			} else if (opcode == 121) {
 				this.lentlink = packet.g2();
-			} else if (code == 122) {
+			} else if (opcode == 122) {
 				this.lenttemplate = packet.g2();
-			} else if (code == 125) {
+			} else if (opcode == 125) {
 				this.manwearxoff = packet.g1s();
 				this.manwearyoff = packet.g1s();
 				this.manwearzoff = packet.g1s();
-			} else if (code == 126) {
+			} else if (opcode == 126) {
 				this.womanwearxoff = packet.g1s();
 				this.womanwearyoff = packet.g1s();
 				this.womanwearzoff = packet.g1s();
-			} else if (code == 127) {
+			} else if (opcode == 127) {
 				this.anInt2338 = packet.g1();
 				this.anInt2327 = packet.g2();
-			} else if (code == 128) {
+			} else if (opcode == 128) {
 				this.anInt2355 = packet.g1();
 				this.anInt2321 = packet.g2();
-			} else if (code == 129) { // Unused in current revision.
+			} else if (opcode == 129) { // Unused in current revision.
 				packet.g1();
 				packet.g2();
-			} else if (code == 130) { // Unused in current revision.
+			} else if (opcode == 130) { // Unused in current revision.
 				packet.g1();
 				packet.g2();
-			} else if (code == 249) {
+			} else if (opcode == 249) {
 				int length = packet.g1();
 				if (this.params == null) {
 					local179 = Static165.bitceil(length);
@@ -359,21 +360,21 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ZZ)Z")
-	public boolean method1816(@OriginalArg(0) boolean arg0) {
-		@Pc(6) int local6 = this.manhead;
-		@Pc(9) int local9 = this.manhead2;
-		if (arg0) {
-			local6 = this.womanhead;
-			local9 = this.womanhead2;
+	public boolean headPieceReady(@OriginalArg(0) boolean female) {
+		@Pc(6) int primaryId = this.manhead;
+		@Pc(9) int secondaryId = this.manhead2;
+		if (female) {
+			primaryId = this.womanhead;
+			secondaryId = this.womanhead2;
 		}
-		if (local6 == -1) {
+		if (primaryId == -1) {
 			return true;
 		}
-		@Pc(33) boolean local33 = Static230.aClass153_95.requestDownload(local6, 0);
-		if (local9 != -1 && !Static230.aClass153_95.requestDownload(local9, 0)) {
-			local33 = false;
+		@Pc(33) boolean ready = Static230.modelArchive.requestDownload(primaryId, 0);
+		if (secondaryId != -1 && !Static230.modelArchive.requestDownload(secondaryId, 0)) {
+			ready = false;
 		}
-		return local33;
+		return ready;
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ILclient!na;I)Lclient!na;")
@@ -387,7 +388,7 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(II)Lclient!h;")
-	public ObjType getMeshAddress(@OriginalArg(0) int n) {
+	public ItemDefinition getMeshAddress(@OriginalArg(0) int n) {
 		if (this.countobj != null && n > 1) {
 			@Pc(23) int id = -1;
 			for (@Pc(25) int index = 0; index < 10; index++) {
@@ -415,25 +416,25 @@ public final class ObjType {
 		if (local9 == -1) {
 			return true;
 		}
-		@Pc(41) boolean local41 = Static230.aClass153_95.requestDownload(local9, 0);
-		if (local6 != -1 && !Static230.aClass153_95.requestDownload(local6, 0)) {
+		@Pc(41) boolean local41 = Static230.modelArchive.requestDownload(local9, 0);
+		if (local6 != -1 && !Static230.modelArchive.requestDownload(local6, 0)) {
 			local41 = false;
 		}
-		if (local20 != -1 && !Static230.aClass153_95.requestDownload(local20, 0)) {
+		if (local20 != -1 && !Static230.modelArchive.requestDownload(local20, 0)) {
 			local41 = false;
 		}
 		return local41;
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BLclient!h;Lclient!h;)V")
-	public void genLent(@OriginalArg(2) ObjType from, @OriginalArg(1) ObjType to) {
+	public void genLent(@OriginalArg(2) ItemDefinition from, @OriginalArg(1) ItemDefinition to) {
 		this.recol_d_palette = to.recol_d_palette;
 		this.manwearyoff = to.manwearyoff;
 		this.params = to.params;
 		this.manwear3 = to.manwear3;
 		this.womanwear = to.womanwear;
 		this.manwearzoff = to.manwearzoff;
-		this.iops = new JString[5];
+		this.interfaceOptions = new JString[5];
 		this.mesh = from.mesh;
 		this.zoom2d = from.zoom2d;
 		this.cost = 0;
@@ -459,13 +460,13 @@ public final class ObjType {
 		this.name = to.name;
 		this.retex_d = to.retex_d;
 		this.retex_s = to.retex_s;
-		this.ops = to.ops;
+		this.groundOptions = to.groundOptions;
 		this.members = to.members;
 		this.womanwear3 = to.womanwear3;
-		if (to.iops != null) {
-			System.arraycopy(to.iops, 0, this.iops, 0, 4);
+		if (to.interfaceOptions != null) {
+			System.arraycopy(to.interfaceOptions, 0, this.interfaceOptions, 0, 4);
 		}
-		this.iops[4] = LocalizedText.LENT_ITEM_RETURN;
+		this.interfaceOptions[4] = LocalizedText.LENT_ITEM_RETURN;
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(IIILclient!tk;II)Lclient!ak;")
@@ -483,7 +484,7 @@ public final class ObjType {
 		}
 		@Pc(76) Model local76 = (Model) Static244.aClass99_32.get(this.anInt2354);
 		if (local76 == null) {
-			@Pc(85) ModelUnlit local85 = ModelUnlit.get(Static230.aClass153_95, this.mesh);
+			@Pc(85) ModelUnlit local85 = ModelUnlit.get(Static230.modelArchive, this.mesh);
 			if (local85 == null) {
 				return null;
 			}
@@ -502,7 +503,7 @@ public final class ObjType {
 					local85.retexture(this.retex_s[local97], this.retex_d[local97]);
 				}
 			}
-			local76 = local85.method1679(this.ambient + 64, this.contrast + 768, -50, -10, -50);
+			local76 = local85.applyLightning(this.ambient + 64, this.contrast + 768, -50, -10, -50);
 			if (this.resizex != 128 || this.resizey != 128 || this.resizez != 128) {
 				local76.resize(this.resizex, this.resizey, this.resizez);
 			}
@@ -539,9 +540,9 @@ public final class ObjType {
 		if (local17 == -1) {
 			return null;
 		}
-		@Pc(36) ModelUnlit local36 = ModelUnlit.get(Static230.aClass153_95, local17);
+		@Pc(36) ModelUnlit local36 = ModelUnlit.get(Static230.modelArchive, local17);
 		if (local4 != -1) {
-			@Pc(44) ModelUnlit local44 = ModelUnlit.get(Static230.aClass153_95, local4);
+			@Pc(44) ModelUnlit local44 = ModelUnlit.get(Static230.modelArchive, local4);
 			@Pc(55) ModelUnlit[] local55 = new ModelUnlit[] { local36, local44 };
 			local36 = new ModelUnlit(local55, 2);
 		}
@@ -572,14 +573,14 @@ public final class ObjType {
 		if (local4 == -1) {
 			return null;
 		}
-		@Pc(43) ModelUnlit local43 = ModelUnlit.get(Static230.aClass153_95, local4);
+		@Pc(43) ModelUnlit local43 = ModelUnlit.get(Static230.modelArchive, local4);
 		if (local18 != -1) {
-			@Pc(54) ModelUnlit local54 = ModelUnlit.get(Static230.aClass153_95, local18);
+			@Pc(54) ModelUnlit local54 = ModelUnlit.get(Static230.modelArchive, local18);
 			if (local21 == -1) {
 				@Pc(68) ModelUnlit[] local68 = new ModelUnlit[] { local43, local54 };
 				local43 = new ModelUnlit(local68, 2);
 			} else {
-				@Pc(81) ModelUnlit local81 = ModelUnlit.get(Static230.aClass153_95, local21);
+				@Pc(81) ModelUnlit local81 = ModelUnlit.get(Static230.modelArchive, local21);
 				@Pc(96) ModelUnlit[] local96 = new ModelUnlit[] { local43, local54, local81 };
 				local43 = new ModelUnlit(local96, 3);
 			}
@@ -605,7 +606,7 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(Lclient!h;Lclient!h;Z)V")
-	public void genCert(@OriginalArg(1) ObjType from, @OriginalArg(0) ObjType to) {
+	public void genCert(@OriginalArg(1) ItemDefinition from, @OriginalArg(0) ItemDefinition to) {
 		this.name = to.name;
 		this.zoom2d = from.zoom2d;
 		this.recol_s = from.recol_s;
@@ -626,7 +627,7 @@ public final class ObjType {
 
 	@OriginalMember(owner = "client!h", name = "d", descriptor = "(I)Lclient!w;")
 	public SoftwareModel method1834() {
-		@Pc(11) ModelUnlit local11 = ModelUnlit.get(Static230.aClass153_95, this.mesh);
+		@Pc(11) ModelUnlit local11 = ModelUnlit.get(Static230.modelArchive, this.mesh);
 		if (local11 == null) {
 			return null;
 		}

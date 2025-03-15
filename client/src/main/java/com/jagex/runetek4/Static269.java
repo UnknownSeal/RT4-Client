@@ -331,6 +331,6 @@ public final class Static269 {
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(IZ)Lclient!na;")
 	public static JString method2228(@OriginalArg(0) int arg0) {
-		return Static233.aClass100Array160[arg0].length() > 0 ? Static34.method882(new JString[] { Static254.aClass100Array168[arg0], LocalizedText.MINISEPARATOR, Static233.aClass100Array160[arg0] }) : Static254.aClass100Array168[arg0];
+		return ClientScriptRunner.aClass100Array160[arg0].length() > 0 ? Static34.method882(new JString[] { Static254.aClass100Array168[arg0], LocalizedText.MINISEPARATOR, ClientScriptRunner.aClass100Array160[arg0] }) : Static254.aClass100Array168[arg0];
 	}
 }

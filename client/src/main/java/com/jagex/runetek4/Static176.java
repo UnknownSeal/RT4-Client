@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.config.ObjType;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
@@ -59,7 +59,7 @@ public final class Static176 {
 			if (Static47.aClass100_991 != null) {
 				local89 = Static34.method882(new JString[] { Static167.aClass100_783, Static47.aClass100_991 });
 			}
-			@Pc(182) JString local182 = Static34.method882(new JString[] { Static115.aClass100_582, local3.hostname, local62, Static279.aClass100_1107, Static123.method2423(Static141.anInt3470), aClass100_801, Static123.method2423(Static204.anInt4760), local89, Static139.aClass100_659, Static150.aBoolean175 ? Static30.aClass100_184 : Static260.aClass100_945, Static60.aClass100_420, Static233.aBoolean254 ? Static30.aClass100_184 : Static260.aClass100_945, Static198.aClass100_260, Static249.aBoolean282 ? Static30.aClass100_184 : Static260.aClass100_945 });
+			@Pc(182) JString local182 = Static34.method882(new JString[] { Static115.aClass100_582, local3.hostname, local62, Static279.aClass100_1107, Static123.method2423(Static141.anInt3470), aClass100_801, Static123.method2423(Static204.anInt4760), local89, Static139.aClass100_659, Static150.aBoolean175 ? Static30.aClass100_184 : Static260.aClass100_945, Static60.aClass100_420, ClientScriptRunner.aBoolean254 ? Static30.aClass100_184 : Static260.aClass100_945, Static198.aClass100_260, Static249.aBoolean282 ? Static30.aClass100_184 : Static260.aClass100_945 });
 			try {
 				Static215.aClient1.getAppletContext().showDocument(local182.method3107(), "_self");
 				return true;
@@ -216,7 +216,7 @@ public final class Static176 {
 					if (local931 != null) {
 						for (@Pc(940) ObjStackNode local940 = (ObjStackNode) local931.method2279(); local940 != null; local940 = (ObjStackNode) local931.method2286()) {
 							local240 = local940.aClass8_Sub7_1.anInt5555;
-							@Pc(951) ObjType local951 = Static71.get(local240);
+							@Pc(951) ItemDefinition local951 = Static71.get(local240);
 							if (Static260.anInt5014 == 1) {
 								Static98.addActionRow(Static169.anInt4075, (long) local240, Static34.method882(new JString[] { Static34.aClass100_203, Static223.aClass100_947, local951.name}), local47, (short) 33, LocalizedText.USE, local147);
 							} else if (Static241.aBoolean302) {
@@ -225,7 +225,7 @@ public final class Static176 {
 									Static98.addActionRow(Static246.anInt5393, (long) local240, Static34.method882(new JString[] { Static78.aClass100_466, Static223.aClass100_947, local951.name}), local47, (short) 39, Static102.aClass100_545, local147);
 								}
 							} else {
-								@Pc(997) JString[] local997 = local951.ops;
+								@Pc(997) JString[] local997 = local951.groundOptions;
 								if (Static208.aBoolean237) {
 									local997 = Static279.method4664(local997);
 								}

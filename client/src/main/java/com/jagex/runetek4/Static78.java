@@ -119,7 +119,7 @@ public final class Static78 {
 			}
 		}
 		if (!local12) {
-			Static233.anInt5223 = 1;
+			ClientScriptRunner.anInt5223 = 1;
 			return;
 		}
 		Static271.anInt5804 = 0;
@@ -151,10 +151,10 @@ public final class Static78 {
 			}
 		}
 		if (!local12) {
-			Static233.anInt5223 = 2;
+			ClientScriptRunner.anInt5223 = 2;
 			return;
 		}
-		if (Static233.anInt5223 != 0) {
+		if (ClientScriptRunner.anInt5223 != 0) {
 			Static114.method4636(true, Static34.method882(new JString[] { LocalizedText.LOADING, Static18.aClass100_108 }));
 		}
 		Static107.method2261();
@@ -220,7 +220,7 @@ public final class Static78 {
 				local320 = Static173.localPlayer.pathTileZ[0] >> 3;
 				Static73.method1597(local320, local427);
 			}
-			Static233.method4002(false);
+			ClientScriptRunner.method4002(false);
 		}
 		Static217.method3768();
 		aClass6.method842(true);
@@ -252,7 +252,7 @@ public final class Static78 {
 			if (Static230.aBoolean250) {
 				Static89.method1835(true);
 				aClass6.method842(true);
-				Static233.method4002(true);
+				ClientScriptRunner.method4002(true);
 			}
 			Static217.method3768();
 			aClass6.method842(true);

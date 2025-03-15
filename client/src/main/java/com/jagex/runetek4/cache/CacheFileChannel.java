@@ -1,4 +1,4 @@
-package com.jagex.runetek4.core.io;
+package com.jagex.runetek4.cache;
 
 import java.io.EOFException;
 import java.io.File;
@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!en")
-public final class BufferedFile {
+public final class CacheFileChannel {
 
 	@OriginalMember(owner = "client!en", name = "m", descriptor = "J")
 	private long aLong67;
@@ -48,7 +48,7 @@ public final class BufferedFile {
 	private long aLong66;
 
 	@OriginalMember(owner = "client!en", name = "<init>", descriptor = "(Lsignlink!qm;II)V")
-	public BufferedFile(@OriginalArg(0) FileOnDisk arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) throws IOException {
+	public CacheFileChannel(@OriginalArg(0) FileOnDisk arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) throws IOException {
 		this.aClass214_1 = arg0;
 		this.aLong65 = this.aLong64 = arg0.method5137();
 		this.aByteArray20 = new byte[arg2];
@@ -91,7 +91,7 @@ public final class BufferedFile {
 	}
 
 	@OriginalMember(owner = "client!en", name = "a", descriptor = "(I)J")
-	public long method1451() {
+	public long getSize() {
 		return this.aLong65;
 	}
 
@@ -285,7 +285,7 @@ public final class BufferedFile {
 	}
 
 	@OriginalMember(owner = "client!en", name = "a", descriptor = "(IJ)V")
-	public void method1459(@OriginalArg(1) long arg0) throws IOException {
+	public void setReadIndex(@OriginalArg(1) long arg0) throws IOException {
 		if (arg0 < 0L) {
 			throw new IOException("Invalid seek to " + arg0 + " in file " + this.method1452());
 		}

@@ -1,8 +1,9 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.config.NPCType;
+import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
@@ -115,7 +116,7 @@ public final class Static54 {
 			for (local146 = 0; local146 < Static272.npcCount; local146++) {
 				@Pc(498) NPCEntity local498 = Static175.npcs[Static33.npcIds[local146]];
 				if (local498 != null && local498.isVisible()) {
-					@Pc(507) NPCType local507 = local498.type;
+					@Pc(507) ActorDefinition local507 = local498.type;
 					if (local507 != null && local507.multinpc != null) {
 						local507 = local507.getMultiNPC();
 					}

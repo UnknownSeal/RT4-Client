@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.invtype.InvType;
-import com.jagex.runetek4.config.NPCType;
+import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -26,7 +26,7 @@ public final class Static246 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(Lclient!me;IIII)V")
-	public static void method4240(@OriginalArg(0) NPCType npc, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+	public static void method4240(@OriginalArg(0) ActorDefinition npc, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		if (PreciseSleep.menuActionRow >= 400) {
 			return;
 		}

@@ -47,7 +47,7 @@ public final class Static276 {
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(I)V")
 	public static void method4612() {
-		Static233.aClass99_31.method3104();
+		ClientScriptRunner.aClass99_31.method3104();
 	}
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(IILclient!na;)V")

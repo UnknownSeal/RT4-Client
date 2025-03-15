@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.NPCType;
+import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
@@ -42,7 +42,7 @@ public final class Static142 {
 				local17 = Static175.npcs[Static33.npcIds[local5 - Static267.playerCount]];
 			}
 			if (local17 != null && local17.isVisible()) {
-				@Pc(58) NPCType local58;
+				@Pc(58) ActorDefinition local58;
 				if (local17 instanceof NPCEntity) {
 					local58 = ((NPCEntity) local17).type;
 					if (local58.multinpc != null) {
@@ -143,7 +143,7 @@ public final class Static142 {
 							local512 = local528[1];
 							local508 = local528[0];
 						}
-						@Pc(571) NPCType local571 = local518.type;
+						@Pc(571) ActorDefinition local571 = local518.type;
 						if (local571.overlayheight == -1) {
 							local310 = local17.height();
 						} else {
@@ -176,7 +176,7 @@ public final class Static142 {
 					if (local17.anIntArray319[local74] > Static83.loopCycle) {
 						if (local17 instanceof NPCEntity) {
 							@Pc(725) NPCEntity local725 = (NPCEntity) local17;
-							@Pc(728) NPCType local728 = local725.type;
+							@Pc(728) ActorDefinition local728 = local725.type;
 							if (local728.overlayheight == -1) {
 								local265 = local17.height() / 2;
 							} else {

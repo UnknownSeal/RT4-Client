@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static93 {
 
 	@OriginalMember(owner = "runetek4.client!he", name = "cb", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_41;
+	public static Js5 modelArchive;
 
 	@OriginalMember(owner = "runetek4.client!he", name = "V", descriptor = "Lclient!n;")
 	public static final NodeCache aClass99_13 = new NodeCache(64);

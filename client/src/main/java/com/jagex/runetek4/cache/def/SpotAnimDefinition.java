@@ -1,9 +1,6 @@
-package com.jagex.runetek4.config;
+package com.jagex.runetek4.cache.def;
 
-import com.jagex.runetek4.Model;
-import com.jagex.runetek4.Static36;
-import com.jagex.runetek4.Static56;
-import com.jagex.runetek4.Static93;
+import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -12,8 +9,10 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!eg")
-public final class SpotAnimType {
+public final class SpotAnimDefinition {
 
+	@OriginalMember(owner = "runetek4.client!ef", name = "b", descriptor = "Lclient!n;")
+	public static final NodeCache modelCache = new NodeCache(30);
 	@OriginalMember(owner = "runetek4.client!eg", name = "f", descriptor = "[S")
 	private short[] aShortArray15;
 
@@ -27,7 +26,7 @@ public final class SpotAnimType {
 	public int anInt1751;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "o", descriptor = "I")
-	private int anInt1753;
+	private int modelId;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "s", descriptor = "[S")
 	private short[] aShortArray18;
@@ -36,70 +35,70 @@ public final class SpotAnimType {
 	public boolean aBoolean100 = false;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "j", descriptor = "I")
-	private int anInt1748 = 0;
+	private int contrast = 0;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "k", descriptor = "I")
-	private int anInt1749 = 0;
+	private int ambient = 0;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "p", descriptor = "I")
-	public int anInt1754 = -1;
+	public int animationId = -1;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "n", descriptor = "I")
-	private int anInt1752 = 128;
+	private int resizeY = 128;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "b", descriptor = "I")
-	private int anInt1745 = 128;
+	private int resizeX = 128;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "q", descriptor = "I")
-	private int anInt1755 = 0;
+	private int rotation = 0;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "a", descriptor = "(Lclient!wa;B)V")
-	public final void method1316(@OriginalArg(0) Packet arg0) {
+	public final void readValues(@OriginalArg(0) Packet buffer) {
 		while (true) {
-			@Pc(17) int local17 = arg0.g1();
-			if (local17 == 0) {
+			@Pc(17) int opcode = buffer.g1();
+			if (opcode == 0) {
 				return;
 			}
-			this.method1318(arg0, local17);
+			this.readValue(buffer, opcode);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "a", descriptor = "(Lclient!wa;II)V")
-	private void method1318(@OriginalArg(0) Packet arg0, @OriginalArg(1) int arg1) {
-		if (arg1 == 1) {
-			this.anInt1753 = arg0.g2();
-		} else if (arg1 == 2) {
-			this.anInt1754 = arg0.g2();
-		} else if (arg1 == 4) {
-			this.anInt1745 = arg0.g2();
-		} else if (arg1 == 5) {
-			this.anInt1752 = arg0.g2();
-		} else if (arg1 == 6) {
-			this.anInt1755 = arg0.g2();
-		} else if (arg1 == 7) {
-			this.anInt1749 = arg0.g1();
-		} else if (arg1 == 8) {
-			this.anInt1748 = arg0.g1();
-		} else if (arg1 == 9) {
+	private void readValue(@OriginalArg(0) Packet buffer, @OriginalArg(1) int opcode) {
+		if (opcode == 1) {
+			this.modelId = buffer.g2();
+		} else if (opcode == 2) {
+			this.animationId = buffer.g2();
+		} else if (opcode == 4) {
+			this.resizeX = buffer.g2();
+		} else if (opcode == 5) {
+			this.resizeY = buffer.g2();
+		} else if (opcode == 6) {
+			this.rotation = buffer.g2();
+		} else if (opcode == 7) {
+			this.ambient = buffer.g1();
+		} else if (opcode == 8) {
+			this.contrast = buffer.g1();
+		} else if (opcode == 9) {
 			this.aBoolean100 = true;
 		} else {
 			@Pc(78) int local78;
 			@Pc(88) int local88;
-			if (arg1 == 40) {
-				local78 = arg0.g1();
+			if (opcode == 40) {
+				local78 = buffer.g1();
 				this.aShortArray15 = new short[local78];
 				this.aShortArray18 = new short[local78];
 				for (local88 = 0; local88 < local78; local88++) {
-					this.aShortArray15[local88] = (short) arg0.g2();
-					this.aShortArray18[local88] = (short) arg0.g2();
+					this.aShortArray15[local88] = (short) buffer.g2();
+					this.aShortArray18[local88] = (short) buffer.g2();
 				}
-			} else if (arg1 == 41) {
-				local78 = arg0.g1();
+			} else if (opcode == 41) {
+				local78 = buffer.g1();
 				this.aShortArray16 = new short[local78];
 				this.aShortArray17 = new short[local78];
 				for (local88 = 0; local88 < local78; local88++) {
-					this.aShortArray16[local88] = (short) arg0.g2();
-					this.aShortArray17[local88] = (short) arg0.g2();
+					this.aShortArray16[local88] = (short) buffer.g2();
+					this.aShortArray17[local88] = (short) buffer.g2();
 				}
 			}
 		}
@@ -107,43 +106,43 @@ public final class SpotAnimType {
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "a", descriptor = "(IBII)Lclient!ak;")
 	public final Model getModel(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		@Pc(13) Model local13 = (Model) Static56.aClass99_9.get((long) this.anInt1751);
-		if (local13 == null) {
-			@Pc(28) ModelUnlit local28 = ModelUnlit.get(Static93.aClass153_41, this.anInt1753);
-			if (local28 == null) {
+		@Pc(13) Model model = (Model) modelCache.get((long) this.anInt1751);
+		if (model == null) {
+			@Pc(28) ModelUnlit modelUnlit = ModelUnlit.get(Static93.modelArchive, this.modelId);
+			if (modelUnlit == null) {
 				return null;
 			}
-			@Pc(40) int local40;
+			@Pc(40) int i;
 			if (this.aShortArray15 != null) {
-				for (local40 = 0; local40 < this.aShortArray15.length; local40++) {
-					local28.recolor(this.aShortArray15[local40], this.aShortArray18[local40]);
+				for (i = 0; i < this.aShortArray15.length; i++) {
+					modelUnlit.recolor(this.aShortArray15[i], this.aShortArray18[i]);
 				}
 			}
 			if (this.aShortArray16 != null) {
-				for (local40 = 0; local40 < this.aShortArray16.length; local40++) {
-					local28.retexture(this.aShortArray16[local40], this.aShortArray17[local40]);
+				for (i = 0; i < this.aShortArray16.length; i++) {
+					modelUnlit.retexture(this.aShortArray16[i], this.aShortArray17[i]);
 				}
 			}
-			local13 = local28.method1679(this.anInt1749 + 64, this.anInt1748 + 850, -30, -50, -30);
-			Static56.aClass99_9.put(local13, (long) this.anInt1751);
+			model = modelUnlit.applyLightning(this.ambient + 64, this.contrast + 850, -30, -50, -30);
+			modelCache.put(model, (long) this.anInt1751);
 		}
 		@Pc(118) Model local118;
-		if (this.anInt1754 == -1 || arg1 == -1) {
-			local118 = local13.method4560(true, true, true);
+		if (this.animationId == -1 || arg1 == -1) {
+			local118 = model.method4560(true, true, true);
 		} else {
-			local118 = Static36.method941(this.anInt1754).method4219(arg0, arg2, arg1, local13);
+			local118 = Static36.getAnimationSequence(this.animationId).method4219(arg0, arg2, arg1, model);
 		}
-		if (this.anInt1745 != 128 || this.anInt1752 != 128) {
-			local118.resize(this.anInt1745, this.anInt1752, this.anInt1745);
+		if (this.resizeX != 128 || this.resizeY != 128) {
+			local118.resize(this.resizeX, this.resizeY, this.resizeX);
 		}
-		if (this.anInt1755 != 0) {
-			if (this.anInt1755 == 90) {
+		if (this.rotation != 0) {
+			if (this.rotation == 90) {
 				local118.method4563();
 			}
-			if (this.anInt1755 == 180) {
+			if (this.rotation == 180) {
 				local118.method4552();
 			}
-			if (this.anInt1755 == 270) {
+			if (this.rotation == 270) {
 				local118.method4578();
 			}
 		}

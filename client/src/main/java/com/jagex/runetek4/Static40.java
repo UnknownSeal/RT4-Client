@@ -24,11 +24,11 @@ public final class Static40 {
 		if (Static155.anInt3718 == -1 || Static52.anInt1694 == -1) {
 			return;
 		}
-		@Pc(27) int local27 = (Static233.anInt5224 * (Static114.anInt5843 - Static228.anInt5101) >> 16) + Static228.anInt5101;
+		@Pc(27) int local27 = (ClientScriptRunner.anInt5224 * (Static114.anInt5843 - Static228.anInt5101) >> 16) + Static228.anInt5101;
 		@Pc(30) float[] local30 = new float[3];
-		Static233.anInt5224 += local27;
-		if (Static233.anInt5224 >= 65535) {
-			Static233.anInt5224 = 65535;
+		ClientScriptRunner.anInt5224 += local27;
+		if (ClientScriptRunner.anInt5224 >= 65535) {
+			ClientScriptRunner.anInt5224 = 65535;
 			if (Static186.aBoolean205) {
 				Static13.aBoolean16 = false;
 			} else {
@@ -39,7 +39,7 @@ public final class Static40 {
 			Static186.aBoolean205 = false;
 			Static13.aBoolean16 = false;
 		}
-		@Pc(66) float local66 = (float) Static233.anInt5224 / 65535.0F;
+		@Pc(66) float local66 = (float) ClientScriptRunner.anInt5224 / 65535.0F;
 		@Pc(70) int local70 = Static127.anInt3125 * 2;
 		@Pc(141) int local141;
 		@Pc(131) int local131;

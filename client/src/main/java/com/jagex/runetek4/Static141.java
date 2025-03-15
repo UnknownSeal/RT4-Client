@@ -81,7 +81,7 @@ public final class Static141 {
 		Static113.anInt4612 = arg3;
 		PreciseSleep.anInt5203 = arg2;
 		Static245.anInt5375 = arg5;
-		Static233.anInt5225 = arg1;
+		ClientScriptRunner.anInt5225 = arg1;
 		Static248.anInt4232 = arg4;
 		if (arg0 && Static113.anInt4612 >= 100) {
 			Static138.cameraX = Static245.anInt5375 * 128 + 64;

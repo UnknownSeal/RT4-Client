@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.ObjType;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -31,7 +31,7 @@ public final class Static220 {
 		@Pc(30) ObjStackNode local30 = null;
 		@Pc(35) ObjStackNode local35;
 		for (local35 = (ObjStackNode) local9.head(); local35 != null; local35 = (ObjStackNode) local9.next()) {
-			@Pc(44) ObjType local44 = Static71.get(local35.aClass8_Sub7_1.anInt5555);
+			@Pc(44) ItemDefinition local44 = Static71.get(local35.aClass8_Sub7_1.anInt5555);
 			@Pc(47) int local47 = local44.cost;
 			if (local44.stackable == 1) {
 				local47 *= local35.aClass8_Sub7_1.anInt5550 + 1;
@@ -80,7 +80,7 @@ public final class Static220 {
 			if (local22 == null) {
 				return null;
 			}
-			local10 = local22.method1679(64, 768, -50, -10, -50);
+			local10 = local22.applyLightning(64, 768, -50, -10, -50);
 			Static110.aClass99_15.put(local10, local4);
 		}
 		@Pc(42) int local42 = arg4.method4562();

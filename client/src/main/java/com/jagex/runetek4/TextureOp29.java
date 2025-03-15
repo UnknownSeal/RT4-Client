@@ -31,7 +31,7 @@ public final class TextureOp29 extends TextureOp {
 	private void method3934(@OriginalArg(1) int[][] arg0) {
 		@Pc(7) int local7 = Texture.height;
 		@Pc(9) int local9 = Texture.width;
-		Static81.method1751(arg0);
+		ItemDefinition.method1751(arg0);
 		Static107.method2263(Texture.heightMask, Texture.widthMask);
 		if (this.aClass18Array1 == null) {
 			return;

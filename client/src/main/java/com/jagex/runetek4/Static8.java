@@ -31,7 +31,7 @@ public final class Static8 {
 
 	@OriginalMember(owner = "client!aj", name = "c", descriptor = "(II)V")
 	public static void method119() {
-		Static233.aClass99_31.clear(5);
+		ClientScriptRunner.aClass99_31.clear(5);
 	}
 
 	@OriginalMember(owner = "client!aj", name = "a", descriptor = "(IIIZIII)V")

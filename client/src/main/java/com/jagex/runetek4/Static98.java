@@ -50,7 +50,7 @@ public final class Static98 {
 			return;
 		}
 		Static254.aClass100Array168[PreciseSleep.menuActionRow] = arg5;
-		Static233.aClass100Array160[PreciseSleep.menuActionRow] = arg2;
+		ClientScriptRunner.aClass100Array160[PreciseSleep.menuActionRow] = arg2;
 		Static190.anIntArray382[PreciseSleep.menuActionRow] = arg0 == -1 ? Static35.anInt1092 : arg0;
 		Static39.aShortArray6[PreciseSleep.menuActionRow] = arg4;
 		Static159.aLongArray5[PreciseSleep.menuActionRow] = arg1;

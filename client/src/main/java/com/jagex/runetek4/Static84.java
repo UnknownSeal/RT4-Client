@@ -175,7 +175,7 @@ public final class Static84 {
 			}
 			staffModLevel = Static57.in.p4rme();
 			@Pc(573) boolean local573 = true;
-			if (chatFlags != -1 && player.spotanimFrame != -1 && Static36.method941(Static34.method877(chatFlags).anInt1754).priority < Static36.method941(Static34.method877(player.spotanimFrame).anInt1754).priority) {
+			if (chatFlags != -1 && player.spotanimFrame != -1 && Static36.getAnimationSequence(Static34.method877(chatFlags).animationId).priority < Static36.getAnimationSequence(Static34.method877(player.spotanimFrame).animationId).priority) {
 				local573 = false;
 			}
 			if (local573) {
@@ -189,9 +189,9 @@ public final class Static84 {
 				player.spotanimOffset = staffModLevel >> 16;
 				player.anInt3418 = 1;
 				if (player.spotanimFrame != -1 && Static83.loopCycle == player.spotanimLastCycle) {
-					local24 = Static34.method877(player.spotanimFrame).anInt1754;
+					local24 = Static34.method877(player.spotanimFrame).animationId;
 					if (local24 != -1) {
-						@Pc(663) SeqType local663 = Static36.method941(local24);
+						@Pc(663) SeqType local663 = Static36.getAnimationSequence(local24);
 						if (local663 != null && local663.anIntArray473 != null) {
 							Static152.method2836(player.z, local663, player.x, player == Static173.localPlayer, 0);
 						}

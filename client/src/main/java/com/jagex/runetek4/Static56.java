@@ -14,9 +14,6 @@ public final class Static56 {
 	@OriginalMember(owner = "runetek4.client!ef", name = "a", descriptor = "[I")
 	public static final int[] anIntArray141 = new int[] { 768, 1024, 1280, 512, 1536, 256, 0, 1792 };
 
-	@OriginalMember(owner = "runetek4.client!ef", name = "b", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_9 = new NodeCache(30);
-
 	@OriginalMember(owner = "runetek4.client!ef", name = "c", descriptor = "[I")
 	public static final int[] anIntArray142 = new int[500];
 

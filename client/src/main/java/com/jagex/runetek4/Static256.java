@@ -99,7 +99,7 @@ public final class Static256 {
 
 	@OriginalMember(owner = "runetek4.client!um", name = "a", descriptor = "(BI)Lclient!wl;")
 	public static FloorOverlayType method4395(@OriginalArg(1) int arg0) {
-		@Pc(6) FloorOverlayType local6 = (FloorOverlayType) Static233.aClass99_31.get((long) arg0);
+		@Pc(6) FloorOverlayType local6 = (FloorOverlayType) ClientScriptRunner.aClass99_31.get((long) arg0);
 		if (local6 != null) {
 			return local6;
 		}
@@ -108,7 +108,7 @@ public final class Static256 {
 		if (local30 != null) {
 			local6.decode(new Packet(local30), arg0);
 		}
-		Static233.aClass99_31.put(local6, (long) arg0);
+		ClientScriptRunner.aClass99_31.put(local6, (long) arg0);
 		return local6;
 	}
 }

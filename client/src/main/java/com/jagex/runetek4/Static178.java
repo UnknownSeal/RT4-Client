@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.game.client.ClientInvCache;
-import com.jagex.runetek4.config.ObjType;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -55,7 +55,7 @@ public final class Static178 {
 		@Pc(27) int local27 = 0;
 		for (@Pc(29) int local29 = 0; local29 < local19.invSlotObjId.length; local29++) {
 			if (local19.invSlotObjId[local29] >= 0 && Static170.anInt3245 > local19.invSlotObjId[local29]) {
-				@Pc(56) ObjType local56 = Static71.get(local19.invSlotObjId[local29]);
+				@Pc(56) ItemDefinition local56 = Static71.get(local19.invSlotObjId[local29]);
 				if (local56.params != null) {
 					@Pc(68) IntWrapper local68 = (IntWrapper) local56.params.getNode((long) arg2);
 					if (local68 != null) {

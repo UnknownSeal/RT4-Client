@@ -45,7 +45,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "focusLost", descriptor = "(Ljava/awt/event/FocusEvent;)V")
 	@Override
 	public final void focusLost(@OriginalArg(0) FocusEvent arg0) {
-		Static233.focus_in = false;
+		ClientScriptRunner.focus_in = false;
 	}
 
 	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(B)V")
@@ -80,7 +80,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "focusGained", descriptor = "(Ljava/awt/event/FocusEvent;)V")
 	@Override
 	public final void focusGained(@OriginalArg(0) FocusEvent arg0) {
-		Static233.focus_in = true;
+		ClientScriptRunner.focus_in = true;
 		Static69.fullredraw = true;
 	}
 
@@ -121,7 +121,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 		Static154.canvas.addFocusListener(this);
 		Static154.canvas.requestFocus();
-		Static233.focus_in = true;
+		ClientScriptRunner.focus_in = true;
 		Static69.fullredraw = true;
 		Static26.focus = true;
 		Static35.canvasReplaceRecommended = false;
@@ -244,7 +244,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		Static228.aLongArray8[Static261.anInt5741] = local6;
 		Static261.anInt5741 = Static261.anInt5741 + 1 & 0x1F;
 		synchronized (this) {
-			Static26.focus = Static233.focus_in;
+			Static26.focus = ClientScriptRunner.focus_in;
 		}
 		this.mainloop();
 		if (local10 != 0L && local6 <= local10) {

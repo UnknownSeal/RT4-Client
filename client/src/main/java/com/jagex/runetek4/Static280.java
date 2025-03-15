@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
@@ -30,7 +31,7 @@ public final class Static280 {
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!fe;B)V")
 	public static void method4665(@OriginalArg(0) PathingEntity arg0) {
-		if (Static83.loopCycle == arg0.anInt3386 || arg0.primarySeqId == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > Static36.method941(arg0.primarySeqId).frames[arg0.anInt3425]) {
+		if (Static83.loopCycle == arg0.anInt3386 || arg0.primarySeqId == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > Static36.getAnimationSequence(arg0.primarySeqId).frames[arg0.anInt3425]) {
 			@Pc(35) int local35 = arg0.anInt3386 - arg0.anInt3395;
 			@Pc(41) int local41 = Static83.loopCycle - arg0.anInt3395;
 			@Pc(52) int local52 = arg0.anInt3380 * 128 + arg0.size() * 64;
@@ -686,10 +687,10 @@ public final class Static280 {
 			local3 = true;
 			for (@Pc(13) int local13 = 0; local13 < PreciseSleep.menuActionRow - 1; local13++) {
 				if (Static39.aShortArray6[local13] < 1000 && Static39.aShortArray6[local13 + 1] > 1000) {
-					@Pc(41) JString local41 = Static233.aClass100Array160[local13];
+					@Pc(41) JString local41 = ClientScriptRunner.aClass100Array160[local13];
 					local3 = false;
-					Static233.aClass100Array160[local13] = Static233.aClass100Array160[local13 + 1];
-					Static233.aClass100Array160[local13 + 1] = local41;
+					ClientScriptRunner.aClass100Array160[local13] = ClientScriptRunner.aClass100Array160[local13 + 1];
+					ClientScriptRunner.aClass100Array160[local13 + 1] = local41;
 					@Pc(61) JString local61 = Static254.aClass100Array168[local13];
 					Static254.aClass100Array168[local13] = Static254.aClass100Array168[local13 + 1];
 					Static254.aClass100Array168[local13 + 1] = local61;

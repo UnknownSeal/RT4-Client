@@ -1,9 +1,9 @@
 package com.jagex.runetek4.dash3d.entity;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.config.SpotAnimType;
+import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.game.config.bastype.BASType;
-import com.jagex.runetek4.config.NPCType;
+import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.config.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -14,11 +14,11 @@ import org.openrs2.deob.annotation.Pc;
 public final class NPCEntity extends PathingEntity {
 
 	@OriginalMember(owner = "client!km", name = "rc", descriptor = "Lclient!me;")
-	public NPCType type;
+	public ActorDefinition type;
 
     @OriginalMember(owner = "client!ij", name = "a", descriptor = "(Lclient!km;I)I")
     public static int getSound(@OriginalArg(0) NPCEntity arg0) {
-        @Pc(13) NPCType local13 = arg0.type;
+        @Pc(13) ActorDefinition local13 = arg0.type;
         if (local13.multinpc != null) {
             local13 = local13.getMultiNPC();
             if (local13 == null) {
@@ -54,14 +54,14 @@ public final class NPCEntity extends PathingEntity {
 		if (this.type == null) {
 			return;
 		}
-		@Pc(29) SeqType local29 = this.primarySeqId != -1 && this.anInt3420 == 0 ? Static36.method941(this.primarySeqId) : null;
-		@Pc(53) SeqType local53 = this.secondarySeqId == -1 || this.secondarySeqId == this.method2681().anInt1037 && local29 != null ? null : Static36.method941(this.secondarySeqId);
+		@Pc(29) SeqType local29 = this.primarySeqId != -1 && this.anInt3420 == 0 ? Static36.getAnimationSequence(this.primarySeqId) : null;
+		@Pc(53) SeqType local53 = this.secondarySeqId == -1 || this.secondarySeqId == this.method2681().anInt1037 && local29 != null ? null : Static36.getAnimationSequence(this.secondarySeqId);
 		@Pc(74) Model tmp = this.type.method2937(this.aClass147Array3, this.anInt3388, this.anInt3407, this.anInt3373, this.anInt3360, this.anInt3425, local53, this.anInt3396, local29);
 		if (tmp == null) {
 			return;
 		}
 		this.height = tmp.getHeight();
-		@Pc(84) NPCType local84 = this.type;
+		@Pc(84) ActorDefinition local84 = this.type;
 		if (local84.multinpc != null) {
 			local84 = local84.getMultiNPC();
 		}
@@ -84,7 +84,7 @@ public final class NPCEntity extends PathingEntity {
 		this.method2685(tmp, arg0);
 		local140 = null;
 		if (this.spotanimFrame != -1 && this.spotanimId != -1) {
-			@Pc(211) SpotAnimType local211 = Static34.method877(this.spotanimFrame);
+			@Pc(211) SpotAnimDefinition local211 = Static34.method877(this.spotanimFrame);
 			local140 = local211.getModel(this.anInt3418, this.spotanimId, this.anInt3361);
 			if (local140 != null) {
 				local140.translate(0, -this.spotanimOffset, 0);
@@ -127,7 +127,7 @@ public final class NPCEntity extends PathingEntity {
 	@Override
 	protected int method2688() {
 		if (Static266.game != 0 && this.type.multinpc != null) {
-			@Pc(17) NPCType local17 = this.type.getMultiNPC();
+			@Pc(17) ActorDefinition local17 = this.type.getMultiNPC();
 			if (local17 != null && local17.bas != -1) {
 				return local17.bas;
 			}
@@ -150,7 +150,7 @@ public final class NPCEntity extends PathingEntity {
 	}
 
 	@OriginalMember(owner = "client!km", name = "a", descriptor = "(ILclient!me;)V")
-	public void method2698(@OriginalArg(1) NPCType arg0) {
+	public void method2698(@OriginalArg(1) ActorDefinition arg0) {
 		this.type = arg0;
 		if (this.aClass47_Sub1_5 != null) {
 			this.aClass47_Sub1_5.method1646();

@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static230 {
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "r", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_95;
+	public static Js5 modelArchive;
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "D", descriptor = "I")
 	public static int anInt5158;

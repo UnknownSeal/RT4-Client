@@ -36,7 +36,7 @@ public final class Static271 {
 	public static void method4598(@OriginalArg(0) Packet arg0) {
 		if (client.uid != null) {
 			try {
-				client.uid.method1459(0L);
+				client.uid.setReadIndex(0L);
 				client.uid.method1458(arg0.data, arg0.position, 24);
 			} catch (@Pc(16) Exception local16) {
 			}

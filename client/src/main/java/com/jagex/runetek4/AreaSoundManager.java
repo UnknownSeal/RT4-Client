@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.config.NPCType;
+import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 
@@ -49,16 +49,16 @@ public class AreaSoundManager {
             locSounds.addTail(areaSound);
         } else if (npcEntity != null) {
             areaSound.npc = npcEntity;
-            @Pc(138) NPCType npcType = npcEntity.type;
-            if (npcType.multinpc != null) {
+            @Pc(138) ActorDefinition actorDefinition = npcEntity.type;
+            if (actorDefinition.multinpc != null) {
                 areaSound.multiLocOrNpc = true;
-                npcType = npcType.getMultiNPC();
+                actorDefinition = actorDefinition.getMultiNPC();
             }
-            if (npcType != null) {
-                areaSound.anInt2028 = (arg0 + npcType.size) * 128;
-                areaSound.anInt2037 = (arg4 + npcType.size) * 128;
+            if (actorDefinition != null) {
+                areaSound.anInt2028 = (arg0 + actorDefinition.size) * 128;
+                areaSound.anInt2037 = (arg4 + actorDefinition.size) * 128;
                 areaSound.sound = NPCEntity.getSound(npcEntity);
-                areaSound.radius = npcType.bgsound_range * 128;
+                areaSound.radius = actorDefinition.bgsound_range * 128;
             }
             npcSounds.addTail(areaSound);
         } else if (player != null) {

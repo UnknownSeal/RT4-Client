@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-public final class Static81 {
+public final class ItemDefinition {
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "Z", descriptor = "I")
 	public static int anInt2222;

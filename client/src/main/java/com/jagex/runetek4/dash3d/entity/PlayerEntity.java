@@ -1,7 +1,8 @@
 package com.jagex.runetek4.dash3d.entity;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.config.SpotAnimType;
+import com.jagex.runetek4.cache.def.ActorDefinition;
+import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.config.SeqType;
 import com.jagex.runetek4.game.world.entity.PlayerModel;
@@ -81,7 +82,7 @@ public final class PlayerEntity extends PathingEntity {
     @OriginalMember(owner = "client!e", name = "c", descriptor = "(B)I")
 	@Override
 	public int size() {
-		return this.model == null || this.model.anInt2492 == -1 ? super.size() : Static214.get(this.model.anInt2492).size;
+		return this.model == null || this.model.transformationNpcId == -1 ? super.size() : ActorDefinition.getDefinition(this.model.transformationNpcId).size;
 	}
 
 	@OriginalMember(owner = "client!e", name = "b", descriptor = "(I)I")
@@ -178,7 +179,7 @@ public final class PlayerEntity extends PathingEntity {
 		if (this.model == null) {
 			this.model = new PlayerModel();
 		}
-		local175 = this.model.anInt2492;
+		local175 = this.model.transformationNpcId;
 		this.model.method1950(local197, local22, local26 == 1, local44, this.anInt3365);
 		if (local175 != local22) {
 			this.x = this.pathTileX[0] * 128 + this.size() * 64;
@@ -195,15 +196,15 @@ public final class PlayerEntity extends PathingEntity {
 		if (this.model == null) {
 			return;
 		}
-		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? Static36.method941(this.primarySeqId) : null;
-		@Pc(54) SeqType local54 = this.secondarySeqId == -1 || this.lowMemory || this.secondarySeqId == this.method2681().anInt1037 && local25 != null ? null : Static36.method941(this.secondarySeqId);
+		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? Static36.getAnimationSequence(this.primarySeqId) : null;
+		@Pc(54) SeqType local54 = this.secondarySeqId == -1 || this.lowMemory || this.secondarySeqId == this.method2681().anInt1037 && local25 != null ? null : Static36.getAnimationSequence(this.secondarySeqId);
 		@Pc(76) Model local76 = this.model.method1954(this.aClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
 		@Pc(79) int local79 = Static198.method1029();
 		if (GlRenderer.enabled && Static238.anInt5316 < 96 && local79 > 50) {
 			Static16.method501();
 		}
 		@Pc(102) int local102;
-		if (Static81.modeWhat != 0 && local79 < 50) {
+		if (ItemDefinition.modeWhat != 0 && local79 < 50) {
 			local102 = 50 - local79;
 			while (Static105.anInt2863 < local102) {
 				Static51.aByteArrayArray8[Static105.anInt2863] = new byte[102400];
@@ -219,7 +220,7 @@ public final class PlayerEntity extends PathingEntity {
 		}
 		this.height = local76.getHeight();
 		@Pc(184) Model model;
-		if (Static209.aBoolean240 && (this.model.anInt2492 == -1 || Static214.get(this.model.anInt2492).spotshadow)) {
+		if (Static209.aBoolean240 && (this.model.transformationNpcId == -1 || ActorDefinition.getDefinition(this.model.transformationNpcId).spotshadow)) {
 			model = Static41.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.x, 0, this.z, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.y, 240);
 			if (GlRenderer.enabled) {
 				@Pc(188) float local188 = GlRenderer.method4179();
@@ -267,7 +268,7 @@ public final class PlayerEntity extends PathingEntity {
 		this.method2685(local76, arg0);
 		model = null;
 		if (!this.lowMemory && this.spotanimFrame != -1 && this.spotanimId != -1) {
-			@Pc(471) SpotAnimType spotanim = Static34.method877(this.spotanimFrame);
+			@Pc(471) SpotAnimDefinition spotanim = Static34.method877(this.spotanimFrame);
 			model = spotanim.getModel(this.anInt3418, this.spotanimId, this.anInt3361);
 			if (model != null) {
 				model.translate(0, -this.spotanimOffset, 0);

@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
@@ -11,7 +12,7 @@ import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.client.ClientInvCache;
 import com.jagex.runetek4.game.config.enumtype.EnumType;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.config.ObjType;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCLocation;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
@@ -758,7 +759,7 @@ public final class Static88 {
 									} else {
 										local1182.objId = interfaceType;
 										local1182.objCount = childCount;
-										@Pc(13416) ObjType local13416 = Static71.get(interfaceType);
+										@Pc(13416) ItemDefinition local13416 = Static71.get(interfaceType);
 										local1182.modelYOffset = local13416.zan2d;
 										local1182.modelXOffset = local13416.xof2d;
 										local1182.modelXAngle = local13416.xan2d;
@@ -2147,14 +2148,14 @@ public final class Static88 {
 											Static3.scriptStringValues[local26++] = Static71.get(interfaceData).name;
 											continue;
 										}
-										@Pc(11269) ObjType local11269;
+										@Pc(11269) ItemDefinition local11269;
 										if (scriptOpcode == 4201) {
 											intValueIndex -= 2;
 											interfaceData = Static254.scriptIntValues[intValueIndex];
 											interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 											local11269 = Static71.get(interfaceData);
-											if (interfaceType >= 1 && interfaceType <= 5 && local11269.ops[interfaceType - 1] != null) {
-												Static3.scriptStringValues[local26++] = local11269.ops[interfaceType - 1];
+											if (interfaceType >= 1 && interfaceType <= 5 && local11269.groundOptions[interfaceType - 1] != null) {
+												Static3.scriptStringValues[local26++] = local11269.groundOptions[interfaceType - 1];
 												continue;
 											}
 											Static3.scriptStringValues[local26++] = Static72.aClass100_447;
@@ -2165,8 +2166,8 @@ public final class Static88 {
 											interfaceData = Static254.scriptIntValues[intValueIndex];
 											interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 											local11269 = Static71.get(interfaceData);
-											if (interfaceType >= 1 && interfaceType <= 5 && local11269.iops[interfaceType - 1] != null) {
-												Static3.scriptStringValues[local26++] = local11269.iops[interfaceType - 1];
+											if (interfaceType >= 1 && interfaceType <= 5 && local11269.interfaceOptions[interfaceType - 1] != null) {
+												Static3.scriptStringValues[local26++] = local11269.interfaceOptions[interfaceType - 1];
 												continue;
 											}
 											Static3.scriptStringValues[local26++] = Static72.aClass100_447;
@@ -2184,7 +2185,7 @@ public final class Static88 {
 											Static254.scriptIntValues[intValueIndex++] = Static71.get(interfaceData).stackable == 1 ? 1 : 0;
 											continue;
 										}
-										@Pc(11417) ObjType local11417;
+										@Pc(11417) ItemDefinition local11417;
 										if (scriptOpcode == 4205) {
 											intValueIndex--;
 											interfaceData = Static254.scriptIntValues[intValueIndex];
@@ -2253,9 +2254,9 @@ public final class Static88 {
 											interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 											local5294 = Static110.method2277(interfaceType);
 											if (local5294.method2078()) {
-												Static3.scriptStringValues[local26++] = Static214.get(interfaceData).getParam(interfaceType, local5294.aClass100_544);
+												Static3.scriptStringValues[local26++] = ActorDefinition.getDefinition(interfaceData).getParam(interfaceType, local5294.aClass100_544);
 											} else {
-												Static254.scriptIntValues[intValueIndex++] = Static214.get(interfaceData).getParam(interfaceType, local5294.anInt2667);
+												Static254.scriptIntValues[intValueIndex++] = ActorDefinition.getDefinition(interfaceData).getParam(interfaceType, local5294.anInt2667);
 											}
 											continue;
 										}
@@ -3183,7 +3184,7 @@ public final class Static88 {
 															throw new RuntimeException();
 														}
 														Static127.anInt3125 = interfaceType;
-														Static233.anInt5224 = 0;
+														ClientScriptRunner.anInt5224 = 0;
 														Static228.anInt5101 = Static254.scriptIntValues[intValueIndex + 2];
 														Static114.anInt5843 = Static254.scriptIntValues[intValueIndex + 3];
 														childCount = Static254.scriptIntValues[intValueIndex + 4];

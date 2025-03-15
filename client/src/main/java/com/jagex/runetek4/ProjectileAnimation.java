@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.SpotAnimType;
+import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.dash3d.entity.Entity;
 import com.jagex.runetek4.config.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -109,11 +109,11 @@ public final class ProjectileAnimation extends Entity {
 		this.arcScale = arg8;
 		this.startCycle = arg5;
 		this.sourceZ = arg4;
-		@Pc(58) int local58 = Static34.method877(this.anInt4816).anInt1754;
+		@Pc(58) int local58 = Static34.method877(this.anInt4816).animationId;
 		if (local58 == -1) {
 			this.seqType = null;
 		} else {
-			this.seqType = Static36.method941(local58);
+			this.seqType = Static36.getAnimationSequence(local58);
 		}
 	}
 
@@ -124,7 +124,7 @@ public final class ProjectileAnimation extends Entity {
 
 	@OriginalMember(owner = "client!ra", name = "b", descriptor = "(I)Lclient!ak;")
 	private Model method3703() {
-		@Pc(14) SpotAnimType local14 = Static34.method877(this.anInt4816);
+		@Pc(14) SpotAnimDefinition local14 = Static34.method877(this.anInt4816);
 		@Pc(24) Model local24 = local14.getModel(this.anInt4798, this.seqFrame, this.frameCycle);
 		if (local24 == null) {
 			return null;

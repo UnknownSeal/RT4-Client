@@ -10,8 +10,12 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
+import java.util.zip.CRC32;
+
 public final class CacheArchive {
 
+	@OriginalMember(owner = "runetek4.client!fn", name = "X", descriptor = "Ljava/util/zip/CRC32;")
+	public static final CRC32 crc32 = new CRC32();
 	@OriginalMember(owner = "runetek4.client!qg", name = "R", descriptor = "I")
 	public static int anInt4741;
 
@@ -39,15 +43,15 @@ public final class CacheArchive {
 	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(Lsignlink!ll;Lclient!wa;IB)V")
 	public static void method3654(@OriginalArg(0) SignLink arg0, @OriginalArg(1) Packet arg1, @OriginalArg(2) int arg2) {
 		@Pc(17) ReflectionCheck local17 = new ReflectionCheck();
-		local17.anInt1725 = arg1.g1();
-		local17.anInt1732 = arg1.g4();
-		local17.aClass212Array1 = new PrivilegedRequest[local17.anInt1725];
-		local17.anIntArray138 = new int[local17.anInt1725];
-		local17.aByteArrayArrayArray6 = new byte[local17.anInt1725][][];
-		local17.aClass212Array2 = new PrivilegedRequest[local17.anInt1725];
-		local17.anIntArray139 = new int[local17.anInt1725];
-		local17.anIntArray137 = new int[local17.anInt1725];
-		for (@Pc(59) int local59 = 0; local59 < local17.anInt1725; local59++) {
+		local17.scriptCount = arg1.g1();
+		local17.scriptId = arg1.g4();
+		local17.functionNodes = new PrivilegedRequest[local17.scriptCount];
+		local17.errorCodes = new int[local17.scriptCount];
+		local17.argumentValues = new byte[local17.scriptCount][][];
+		local17.valueNodes = new PrivilegedRequest[local17.scriptCount];
+		local17.anIntArray139 = new int[local17.scriptCount];
+		local17.anIntArray137 = new int[local17.scriptCount];
+		for (@Pc(59) int local59 = 0; local59 < local17.scriptCount; local59++) {
 			try {
 				@Pc(71) int local71 = arg1.g1();
 				@Pc(93) String local93;
@@ -62,7 +66,7 @@ public final class CacheArchive {
 					}
 					local17.anIntArray139[local59] = local71;
 					local17.anIntArray137[local59] = local95;
-					local17.aClass212Array2[local59] = arg0.method5126(local104, Static6.method85(local93));
+					local17.valueNodes[local59] = arg0.method5126(local104, Static6.method85(local93));
 				} else if (local71 == 3 || local71 == 4) {
 					local93 = new String(arg1.gjstr().method3148());
 					local104 = new String(arg1.gjstr().method3148());
@@ -85,19 +89,19 @@ public final class CacheArchive {
 					for (local210 = 0; local210 < local95; local210++) {
 						local234[local210] = Static6.method85(local171[local210]);
 					}
-					local17.aClass212Array1[local59] = arg0.method5122(Static6.method85(local93), local234, local104);
-					local17.aByteArrayArrayArray6[local59] = local193;
+					local17.functionNodes[local59] = arg0.method5122(Static6.method85(local93), local234, local104);
+					local17.argumentValues[local59] = local193;
 				}
 			} catch (@Pc(269) ClassNotFoundException local269) {
-				local17.anIntArray138[local59] = -1;
+				local17.errorCodes[local59] = -1;
 			} catch (@Pc(276) SecurityException local276) {
-				local17.anIntArray138[local59] = -2;
+				local17.errorCodes[local59] = -2;
 			} catch (@Pc(283) NullPointerException local283) {
-				local17.anIntArray138[local59] = -3;
+				local17.errorCodes[local59] = -3;
 			} catch (@Pc(290) Exception local290) {
-				local17.anIntArray138[local59] = -4;
+				local17.errorCodes[local59] = -4;
 			} catch (@Pc(297) Throwable local297) {
-				local17.anIntArray138[local59] = -5;
+				local17.errorCodes[local59] = -5;
 			}
 		}
 		Static204.aClass69_113.addTail(local17);

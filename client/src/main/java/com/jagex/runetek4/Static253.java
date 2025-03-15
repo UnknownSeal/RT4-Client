@@ -60,7 +60,7 @@ public final class Static253 {
 			if (Static176.cameraModifierEnabled[4] && Static276.cameraModifierWobbleScale[4] + 128 > pitch) {
 				pitch = Static276.cameraModifierWobbleScale[4] + 128;
 			}
-			Static18.orbitCamera(Static81.anInt2223, arg0, Static207.getHeightmapY(Static55.currentLevel, Static173.localPlayer.x, Static173.localPlayer.z) - 50, 600 - -(pitch * 3), local57, Static111.anInt2900, pitch);
+			Static18.orbitCamera(ItemDefinition.anInt2223, arg0, Static207.getHeightmapY(Static55.currentLevel, Static173.localPlayer.x, Static173.localPlayer.z) - 50, 600 - -(pitch * 3), local57, Static111.anInt2900, pitch);
 		}
 		local57 = Static5.cameraY;
 		pitch = Static138.cameraX;
@@ -144,14 +144,14 @@ public final class Static253 {
 			Static107.method2261();
 			Static223.method3858();
 			Static142.method2726(arg4, arg3, arg2, Static223.anInt5029, arg0, Static223.anInt5029);
-			Static233.method4000(arg3, arg2, arg0, Static223.anInt5029, Static223.anInt5029, arg4);
+			ClientScriptRunner.method4000(arg3, arg2, arg0, Static223.anInt5029, Static223.anInt5029, arg4);
 		} else {
 			Static129.method2495(arg2, arg4, arg3, arg0, 0);
 			Static156.method2954(Static138.cameraX, Static5.cameraY, Static134.cameraZ, Static240.cameraPitch, Static184.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Static55.currentLevel + 1, local387, Static173.localPlayer.x >> 7, Static173.localPlayer.z >> 7);
 			Static107.method2261();
 			Static223.method3858();
 			Static142.method2726(arg4, arg3, arg2, 256, arg0, 256);
-			Static233.method4000(arg3, arg2, arg0, 256, 256, arg4);
+			ClientScriptRunner.method4000(arg3, arg2, arg0, 256, 256, arg4);
 		}
 		((Js5GlTextureProvider) Pix3D.anInterface1_2).method3239(Static178.sceneDelta);
 		Static115.method2310(arg3, arg4, arg0, arg2);

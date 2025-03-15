@@ -7,10 +7,10 @@ import java.util.GregorianCalendar;
 
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.core.io.BufferedFile;
+import com.jagex.runetek4.cache.CacheFileChannel;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
-import com.jagex.runetek4.game.client.DiskStore;
+import com.jagex.runetek4.cache.CacheIndex;
 import com.jagex.runetek4.game.config.cursortype.CursorType;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
@@ -42,13 +42,13 @@ public final class client extends GameShell {
 	@OriginalMember(owner = "client!pb", name = "Q", descriptor = "I")
 	public static int worldListId = 1;
 	@OriginalMember(owner = "client!jg", name = "c", descriptor = "Lclient!en;")
-	public static BufferedFile uid;
+	public static CacheFileChannel uid;
 	@OriginalMember(owner = "client!nj", name = "f", descriptor = "Lclient!en;")
-	public static BufferedFile cacheData;
+	public static CacheFileChannel cacheData;
 	@OriginalMember(owner = "client!pf", name = "f", descriptor = "Lclient!en;")
-	public static BufferedFile cacheMasterIndex;
+	public static CacheFileChannel cacheMasterIndex;
 	@OriginalMember(owner = "client!li", name = "l", descriptor = "Lclient!ge;")
-	public static DiskStore masterDiskStore;
+	public static CacheIndex masterCacheIndex;
 
 	@OriginalMember(owner = "client!client", name = "main", descriptor = "([Ljava/lang/String;)V")
 	public static void main(@OriginalArg(0) String[] arg0) {
@@ -65,11 +65,11 @@ public final class client extends GameShell {
 			worldListId = Integer.parseInt(arg0[0]);
 			modeWhere = 2;
 			if (arg0[1].equals("live")) {
-				Static81.modeWhat = 0;
+				ItemDefinition.modeWhat = 0;
 			} else if (arg0[1].equals("rc")) {
-				Static81.modeWhat = 1;
+				ItemDefinition.modeWhat = 1;
 			} else if (arg0[1].equals("wip")) {
-				Static81.modeWhat = 2;
+				ItemDefinition.modeWhat = 2;
 			} else {
 				Game.printHelp("modewhat");
 			}
@@ -89,7 +89,7 @@ public final class client extends GameShell {
 				Game.printHelp("language");
 			}
 			Static3.method4659(Static141.anInt3470);
-			Static233.aBoolean254 = false;
+			ClientScriptRunner.aBoolean254 = false;
 			Static150.aBoolean175 = false;
 			if (arg0[3].equals("game0")) {
 				Static266.game = 0;
@@ -104,7 +104,7 @@ public final class client extends GameShell {
 			Static47.aClass100_991 = Static186.aClass100_827;
 			@Pc(146) client local146 = new client();
 			Static215.aClient1 = local146;
-			local146.method936(Static81.modeWhat + 32, "runescape");
+			local146.method936(ItemDefinition.modeWhat + 32, "runescape");
 			Static39.frame.setLocation(40, 40);
 		} catch (@Pc(167) Exception local167) {
 			Static89.report(null, local167);
@@ -196,13 +196,13 @@ public final class client extends GameShell {
 		} else if (Static244.gamestate == 10) {
 			Static126.method2460();
 		} else if (Static244.gamestate == 25 || Static244.gamestate == 28) {
-			if (Static233.anInt5223 == 1) {
+			if (ClientScriptRunner.anInt5223 == 1) {
 				if (Static230.anInt5150 < Static175.anInt4220) {
 					Static230.anInt5150 = Static175.anInt4220;
 				}
 				local80 = (Static230.anInt5150 - Static175.anInt4220) * 50 / Static230.anInt5150;
 				Static114.method4636(false, Static34.method882(new JString[] { LocalizedText.LOADING, Static229.aClass100_974, Static123.method2423(local80), Static14.aClass100_80 }));
-			} else if (Static233.anInt5223 == 2) {
+			} else if (ClientScriptRunner.anInt5223 == 2) {
 				if (Static38.anInt1196 < Static271.anInt5804) {
 					Static38.anInt1196 = Static271.anInt5804;
 				}
@@ -325,9 +325,9 @@ public final class client extends GameShell {
 		if (modeWhere < 0 || modeWhere > 1) {
 			modeWhere = 0;
 		}
-		Static81.modeWhat = Integer.parseInt(this.getParameter("modewhat"));
-		if (Static81.modeWhat < 0 || Static81.modeWhat > 2) {
-			Static81.modeWhat = 0;
+		ItemDefinition.modeWhat = Integer.parseInt(this.getParameter("modewhat"));
+		if (ItemDefinition.modeWhat < 0 || ItemDefinition.modeWhat > 2) {
+			ItemDefinition.modeWhat = 0;
 		}
 		@Pc(50) String local50 = this.getParameter("advertsuppressed");
 		if (local50 != null && local50.equals("1")) {
@@ -343,9 +343,9 @@ public final class client extends GameShell {
 		Static3.method4659(Static141.anInt3470);
 		@Pc(78) String local78 = this.getParameter("objecttag");
 		if (local78 != null && local78.equals("1")) {
-			Static233.aBoolean254 = true;
+			ClientScriptRunner.aBoolean254 = true;
 		} else {
-			Static233.aBoolean254 = false;
+			ClientScriptRunner.aBoolean254 = false;
 		}
 		@Pc(94) String local94 = this.getParameter("js");
 		if (local94 != null && local94.equals("1")) {
@@ -383,7 +383,7 @@ public final class client extends GameShell {
 			Static178.aBoolean203 = false;
 		}
 		Static215.aClient1 = this;
-		this.method937(Static81.modeWhat + 32);
+		this.method937(ItemDefinition.modeWhat + 32);
 	}
 
 	@OriginalMember(owner = "client!client", name = "g", descriptor = "(I)V")
@@ -393,7 +393,7 @@ public final class client extends GameShell {
 		js5CacheQueue = new Js5CacheQueue();
 		js5NetQueue = new Js5NetQueue();
 
-		if (Static81.modeWhat != 0) {
+		if (ItemDefinition.modeWhat != 0) {
 			Static51.aByteArrayArray8 = new byte[50][];
 		}
 
@@ -446,13 +446,13 @@ public final class client extends GameShell {
 		aClass6.anInt986 = SignLink.anInt5928;
 		try {
 			if (GameShell.signLink.cacheData != null) {
-				cacheData = new BufferedFile(GameShell.signLink.cacheData, 5200, 0);
+				cacheData = new CacheFileChannel(GameShell.signLink.cacheData, 5200, 0);
 				for (@Pc(162) int i = 0; i < 28; i++) {
-					Static47.cacheIndexes[i] = new BufferedFile(GameShell.signLink.cacheIndexes[i], 6000, 0);
+					Static47.cacheIndexes[i] = new CacheFileChannel(GameShell.signLink.cacheIndexes[i], 6000, 0);
 				}
-				cacheMasterIndex = new BufferedFile(GameShell.signLink.cacheMasterIndex, 6000, 0);
-				masterDiskStore = new DiskStore(255, cacheData, cacheMasterIndex, 500000);
-				uid = new BufferedFile(GameShell.signLink.uid, 24, 0);
+				cacheMasterIndex = new CacheFileChannel(GameShell.signLink.cacheMasterIndex, 6000, 0);
+				masterCacheIndex = new CacheIndex(255, cacheData, cacheMasterIndex, 500000);
+				uid = new CacheFileChannel(GameShell.signLink.uid, 24, 0);
 				GameShell.signLink.cacheIndexes = null;
 				GameShell.signLink.cacheMasterIndex = null;
 				GameShell.signLink.uid = null;
@@ -462,7 +462,7 @@ public final class client extends GameShell {
 			uid = null;
 			cacheData = null;
 			cacheMasterIndex = null;
-			masterDiskStore = null;
+			masterCacheIndex = null;
 		}
 		Static278.mainLoadPrimaryText = LocalizedText.GAME0_LOADING;
 		if (modeWhere != 0) {
@@ -610,7 +610,7 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "client!client", name = "h", descriptor = "(I)V")
 	private void js5Connect() {
-		if (Static233.js5PrevErrors < js5NetQueue.errors) {
+		if (ClientScriptRunner.js5PrevErrors < js5NetQueue.errors) {
 			Static22.js5ConnectDelay = 5 * 50 * (js5NetQueue.errors - 1);
 			if (Static271.defaultPort == Static209.port) {
 				Static209.port = Static55.alternatePort;
@@ -642,7 +642,7 @@ public final class client extends GameShell {
 				return;
 			}
 		}
-		Static233.js5PrevErrors = js5NetQueue.errors;
+		ClientScriptRunner.js5PrevErrors = js5NetQueue.errors;
 		if (Static22.js5ConnectDelay > 0) {
 			Static22.js5ConnectDelay--;
 			return;
@@ -788,7 +788,7 @@ public final class client extends GameShell {
 				Static126.mainLoadSecondaryText = LocalizedText.MAINLOAD40B;
 				Static75.method1635(Static209.aClass153_86);
 				Static167.method3172(Static209.aClass153_86);
-				Static81.method1754(Static209.aClass153_86);
+				ItemDefinition.method1754(Static209.aClass153_86);
 				Static166.anInt4051 = 45;
 			} else {
 				if (local98 != 0) {

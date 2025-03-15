@@ -31,7 +31,7 @@ public final class Static181 {
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(II)Lclient!na;")
 	public static JString method3341(@OriginalArg(0) int arg0) {
-		return Static34.method882(new JString[] { Static123.method2423(arg0 >> 24 & 0xFF), Static233.aClass100_994, Static123.method2423(arg0 >> 16 & 0xFF), Static233.aClass100_994, Static123.method2423(arg0 >> 8 & 0xFF), Static233.aClass100_994, Static123.method2423(arg0 & 0xFF) });
+		return Static34.method882(new JString[] { Static123.method2423(arg0 >> 24 & 0xFF), ClientScriptRunner.aClass100_994, Static123.method2423(arg0 >> 16 & 0xFF), ClientScriptRunner.aClass100_994, Static123.method2423(arg0 >> 8 & 0xFF), ClientScriptRunner.aClass100_994, Static123.method2423(arg0 & 0xFF) });
 	}
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(I)V")

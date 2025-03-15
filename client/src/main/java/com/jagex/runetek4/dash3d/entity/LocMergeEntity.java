@@ -67,7 +67,7 @@ public final class LocMergeEntity {
 	private int ambient = 0;
 
 	@OriginalMember(owner = "client!pb", name = "E", descriptor = "Lclient!na;")
-	public JString name = Static81.NULL;
+	public JString name = ItemDefinition.NULL;
 
 	@OriginalMember(owner = "client!pb", name = "D", descriptor = "Z")
 	public boolean hardshadow = true;

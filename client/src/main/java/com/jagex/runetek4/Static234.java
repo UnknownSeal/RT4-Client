@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.SeqType;
@@ -67,7 +68,7 @@ public final class Static234 {
 				}
 				info = Static57.in.g4me();
 				@Pc(147) boolean local147 = true;
-				if (local43 != -1 && local14.spotanimFrame != -1 && Static36.method941(Static34.method877(local43).anInt1754).priority < Static36.method941(Static34.method877(local14.spotanimFrame).anInt1754).priority) {
+				if (local43 != -1 && local14.spotanimFrame != -1 && Static36.getAnimationSequence(Static34.method877(local43).animationId).priority < Static36.getAnimationSequence(Static34.method877(local14.spotanimFrame).animationId).priority) {
 					local147 = false;
 				}
 				if (local147) {
@@ -81,9 +82,9 @@ public final class Static234 {
 						local14.spotanimId = -1;
 					}
 					if (local14.spotanimFrame != -1 && local14.spotanimLastCycle == Static83.loopCycle) {
-						@Pc(227) int local227 = Static34.method877(local14.spotanimFrame).anInt1754;
+						@Pc(227) int local227 = Static34.method877(local14.spotanimFrame).animationId;
 						if (local227 != -1) {
-							@Pc(236) SeqType local236 = Static36.method941(local227);
+							@Pc(236) SeqType local236 = Static36.getAnimationSequence(local227);
 							if (local236 != null && local236.anIntArray473 != null) {
 								Static152.method2836(local14.z, local236, local14.x, false, 0);
 							}
@@ -95,7 +96,7 @@ public final class Static234 {
 				if (local14.type.hasBackgroundSound()) {
 					Static91.method1877(local14);
 				}
-				local14.method2698(Static214.get(Static57.in.g2le()));
+				local14.method2698(ActorDefinition.getDefinition(Static57.in.g2le()));
 				local14.setSize(local14.type.size);
 				local14.anInt3365 = local14.type.bas;
 				if (local14.type.hasBackgroundSound()) {

@@ -89,7 +89,7 @@ public final class Static217 {
 		}
 		for (local275 = 0; local275 < PreciseSleep.menuActionRow; local275++) {
 			if (Static39.aShortArray6[local275] == 60) {
-				Static233.aClass100Array160[local275] = Static34.method882(new JString[] { Static204.aClass100_896, local158 });
+				ClientScriptRunner.aClass100Array160[local275] = Static34.method882(new JString[] { Static204.aClass100_896, local158 });
 				break;
 			}
 		}
@@ -99,7 +99,7 @@ public final class Static217 {
 	public static void method3768() {
 		Static276.method4612();
 		Static54.method1308();
-		Static233.method3999();
+		ClientScriptRunner.method3999();
 		Static90.method1854();
 		Static204.method3673();
 		Static176.method3302();
@@ -113,7 +113,7 @@ public final class Static217 {
 		Static10.method351();
 		Static230.method3947();
 		Static147.method2764();
-		if (Static81.modeWhat != 0) {
+		if (ItemDefinition.modeWhat != 0) {
 			for (@Pc(54) int local54 = 0; local54 < Static51.aByteArrayArray8.length; local54++) {
 				Static51.aByteArrayArray8[local54] = null;
 			}

@@ -37,7 +37,7 @@ public final class Static156 {
 		Static109.anInt2886 = MathUtils.anIntArray223[arg3];
 		Static121.anInt3038 = MathUtils.anIntArray225[arg3];
 		PreciseSleep.anInt5205 = MathUtils.anIntArray223[arg4];
-		Static81.anInt2222 = MathUtils.anIntArray225[arg4];
+		ItemDefinition.anInt2222 = MathUtils.anIntArray225[arg4];
 		Static149.eyeX = arg0;
 		Static162.eyeY = arg1;
 		Static217.eyeZ = arg2;

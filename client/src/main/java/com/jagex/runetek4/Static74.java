@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import java.util.zip.CRC32;
-
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -9,9 +7,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static74 {
-
-	@OriginalMember(owner = "runetek4.client!fn", name = "X", descriptor = "Ljava/util/zip/CRC32;")
-	public static final CRC32 aCRC32_1 = new CRC32();
 
 	@OriginalMember(owner = "runetek4.client!fn", name = "Z", descriptor = "Lclient!na;")
 	public static final JString aClass100_461 = Static28.parse(")1 ");

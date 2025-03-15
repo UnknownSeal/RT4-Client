@@ -34,7 +34,7 @@ public final class Static119 {
 		Static224.method3885();
 		Static181.method3342();
 		Static179.method3323();
-		Static233.method4001();
+		ClientScriptRunner.method4001();
 		Static103.method2239();
 		Static227.method3903();
 		Static71.method1441();

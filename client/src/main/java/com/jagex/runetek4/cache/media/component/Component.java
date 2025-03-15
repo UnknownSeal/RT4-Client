@@ -2,7 +2,9 @@ package com.jagex.runetek4.cache.media.component;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.config.ObjType;
+import com.jagex.runetek4.cache.def.ActorDefinition;
+import com.jagex.runetek4.cache.media.Font;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.config.SeqType;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
@@ -962,7 +964,7 @@ public final class Component {
 						Static211.aBoolean72 = true;
 						return null;
 					}
-					local61 = local69.method1679(64, 768, -50, -10, -50);
+					local61 = local69.applyLightning(64, 768, -50, -10, -50);
 					Static124.aClass99_17.put(local61, local13 + (local10 << 16));
 				}
 				if (arg1 != null) {
@@ -970,7 +972,7 @@ public final class Component {
 				}
 				return local61;
 			} else if (local10 == 2) {
-				local61 = Static214.get(local13).getHeadModel(arg1, arg3, arg0, arg2);
+				local61 = ActorDefinition.getDefinition(local13).getHeadModel(arg1, arg3, arg0, arg2);
 				if (local61 == null) {
 					Static211.aBoolean72 = true;
 					return null;
@@ -981,7 +983,7 @@ public final class Component {
 				if (arg5 == null) {
 					return null;
 				}
-				local61 = arg5.method1956(arg3, arg1, arg2, arg0);
+				local61 = arg5.getStaticModel(arg3, arg1, arg2, arg0);
 				if (local61 == null) {
 					Static211.aBoolean72 = true;
 					return null;
@@ -989,7 +991,7 @@ public final class Component {
 					return local61;
 				}
 			} else if (local10 == 4) {
-				@Pc(164) ObjType local164 = Static71.get(local13);
+				@Pc(164) ItemDefinition local164 = Static71.get(local13);
 				@Pc(173) Model local173 = local164.method1824(arg0, arg3, arg1, 10, arg2);
 				if (local173 == null) {
 					Static211.aBoolean72 = true;
@@ -998,7 +1000,7 @@ public final class Component {
 					return local173;
 				}
 			} else if (local10 == 6) {
-				local61 = Static214.get(local13).method2937(null, 0, 0, arg0, arg3, arg2, null, 0, arg1);
+				local61 = ActorDefinition.getDefinition(local13).method2937(null, 0, 0, arg0, arg3, arg2, null, 0, arg1);
 				if (local61 == null) {
 					Static211.aBoolean72 = true;
 					return null;

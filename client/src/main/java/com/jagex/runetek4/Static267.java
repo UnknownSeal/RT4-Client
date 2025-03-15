@@ -67,7 +67,7 @@ public final class Static267 {
 		if (Static270.anIntArray562.length < Static123.anInt3058) {
 			Static123.anInt3058 -= Static270.anIntArray562.length;
 			local40 = (int) (Math.random() * 12.0D);
-			Static69.method1545(Static233.aClass36_Sub1Array1[local40]);
+			Static69.method1545(ClientScriptRunner.aClass36_Sub1Array1[local40]);
 		}
 		local40 = 0;
 		@Pc(54) int local54 = (256 - arg0) * 128;

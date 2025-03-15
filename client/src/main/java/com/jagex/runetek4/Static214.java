@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.config.NPCType;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -58,23 +56,6 @@ public final class Static214 {
 	@OriginalMember(owner = "runetek4.client!rg", name = "d", descriptor = "(B)Lclient!bn;")
 	public static Map method4361() {
 		return Static269.aClass3_Sub2_Sub4_2;
-	}
-
-	@OriginalMember(owner = "runetek4.client!rg", name = "b", descriptor = "(II)Lclient!me;")
-	public static NPCType get(@OriginalArg(0) int id) {
-		@Pc(10) NPCType npcType = (NPCType) Static93.aClass99_13.get((long) id);
-		if (npcType != null) {
-			return npcType;
-		}
-		@Pc(26) byte[] bytes = Static58.aClass153_28.getfile(Static60.method1447(id), Static179.method3322(id));
-		npcType = new NPCType();
-		npcType.id = id;
-		if (bytes != null) {
-			npcType.decode(new Packet(bytes));
-		}
-		npcType.postDecode();
-		Static93.aClass99_13.put(npcType, (long) id);
-		return npcType;
 	}
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(IIIIIIIII)V")

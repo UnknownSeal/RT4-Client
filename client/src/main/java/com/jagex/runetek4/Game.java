@@ -38,7 +38,7 @@ public class Game {
         if (Static244.gamestate != 30) {
             return;
         }
-        Static233.loop(Static6.outboundBuffer); // runetek4.ReflectionCheck
+        ClientScriptRunner.createClientScriptCheckPacket(Static6.outboundBuffer); // runetek4.ReflectionCheck
         @Pc(60) Object mouseRecorder = Static178.mouseCapturer.lock;
         @Pc(86) int offset;
         @Pc(79) int samples;
@@ -220,7 +220,7 @@ public class Game {
                 Static138.updatedVarcs[Static4.updatedVarcsWriterIndex++ & 0x1F] = i;
             } else if (samples == 2) {
                 Static226.varcstrs[i] = change.stringArg;
-                Static233.updatedVarcstrs[Static72.updatedVarcstrsWriterIndex++ & 0x1F] = i;
+                ClientScriptRunner.updatedVarcstrs[Static72.updatedVarcstrsWriterIndex++ & 0x1F] = i;
             } else {
                 @Pc(773) Component component;
                 if (samples == 3) {
@@ -958,7 +958,7 @@ public class Game {
         if (idleTimeout > 0) {
             processLogout();
         } else {
-            Static233.aClass95_4 = Static124.gameServerSocket;
+            ClientScriptRunner.aClass95_4 = Static124.gameServerSocket;
             Static124.gameServerSocket = null;
             processGameStatus(40);
         }
@@ -1081,14 +1081,14 @@ public class Game {
             Static49.method1208();
         }
         @Pc(37) boolean local37 = statusCode == 5 || statusCode == 10 || statusCode == 28;
-        if (statusCode != 40 && Static233.aClass95_4 != null) {
-            Static233.aClass95_4.closeGracefully();
-            Static233.aClass95_4 = null;
+        if (statusCode != 40 && ClientScriptRunner.aClass95_4 != null) {
+            ClientScriptRunner.aClass95_4.closeGracefully();
+            ClientScriptRunner.aClass95_4 = null;
         }
         if (statusCode == 25 || statusCode == 28) {
             Static271.anInt5804 = 0;
             Static230.anInt5150 = 1;
-            Static233.anInt5223 = 0;
+            ClientScriptRunner.anInt5223 = 0;
             Static38.anInt1196 = 1;
             Static175.anInt4220 = 0;
             Static116.method2325(true);

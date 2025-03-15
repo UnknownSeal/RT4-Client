@@ -57,37 +57,37 @@ public final class Static125 {
 			Static5.cameraY = Static207.getHeightmapY(Static55.currentLevel, Static138.cameraX, Static134.cameraZ) - PreciseSleep.anInt5203;
 		} else {
 			if (Static138.cameraX < local15) {
-				Static138.cameraX += Static233.anInt5225 + Static113.anInt4612 * (local15 - Static138.cameraX) / 1000;
+				Static138.cameraX += ClientScriptRunner.anInt5225 + Static113.anInt4612 * (local15 - Static138.cameraX) / 1000;
 				if (Static138.cameraX > local15) {
 					Static138.cameraX = local15;
 				}
 			}
 			if (Static5.cameraY < local23) {
-				Static5.cameraY += (local23 - Static5.cameraY) * Static113.anInt4612 / 1000 + Static233.anInt5225;
+				Static5.cameraY += (local23 - Static5.cameraY) * Static113.anInt4612 / 1000 + ClientScriptRunner.anInt5225;
 				if (Static5.cameraY > local23) {
 					Static5.cameraY = local23;
 				}
 			}
 			if (Static138.cameraX > local15) {
-				Static138.cameraX -= Static233.anInt5225 + (Static138.cameraX - local15) * Static113.anInt4612 / 1000;
+				Static138.cameraX -= ClientScriptRunner.anInt5225 + (Static138.cameraX - local15) * Static113.anInt4612 / 1000;
 				if (Static138.cameraX < local15) {
 					Static138.cameraX = local15;
 				}
 			}
 			if (Static134.cameraZ < local9) {
-				Static134.cameraZ += Static233.anInt5225 + Static113.anInt4612 * (local9 - Static134.cameraZ) / 1000;
+				Static134.cameraZ += ClientScriptRunner.anInt5225 + Static113.anInt4612 * (local9 - Static134.cameraZ) / 1000;
 				if (local9 < Static134.cameraZ) {
 					Static134.cameraZ = local9;
 				}
 			}
 			if (local23 < Static5.cameraY) {
-				Static5.cameraY -= (Static5.cameraY - local23) * Static113.anInt4612 / 1000 + Static233.anInt5225;
+				Static5.cameraY -= (Static5.cameraY - local23) * Static113.anInt4612 / 1000 + ClientScriptRunner.anInt5225;
 				if (local23 > Static5.cameraY) {
 					Static5.cameraY = local23;
 				}
 			}
 			if (Static134.cameraZ > local9) {
-				Static134.cameraZ -= Static233.anInt5225 + (Static134.cameraZ - local9) * Static113.anInt4612 / 1000;
+				Static134.cameraZ -= ClientScriptRunner.anInt5225 + (Static134.cameraZ - local9) * Static113.anInt4612 / 1000;
 				if (local9 > Static134.cameraZ) {
 					Static134.cameraZ = local9;
 				}
@@ -109,13 +109,13 @@ public final class Static125 {
 		}
 		@Pc(292) int local292 = (int) (-325.949D * Math.atan2((double) local246, (double) local241)) & 0x7FF;
 		if (Static240.cameraPitch < cameraPitch) {
-			Static240.cameraPitch += Static133.anInt5230 + Static233.anInt5217 * (cameraPitch - Static240.cameraPitch) / 1000;
+			Static240.cameraPitch += Static133.anInt5230 + ClientScriptRunner.anInt5217 * (cameraPitch - Static240.cameraPitch) / 1000;
 			if (Static240.cameraPitch > cameraPitch) {
 				Static240.cameraPitch = cameraPitch;
 			}
 		}
 		if (Static240.cameraPitch > cameraPitch) {
-			Static240.cameraPitch -= (Static240.cameraPitch - cameraPitch) * Static233.anInt5217 / 1000 + Static133.anInt5230;
+			Static240.cameraPitch -= (Static240.cameraPitch - cameraPitch) * ClientScriptRunner.anInt5217 / 1000 + Static133.anInt5230;
 			if (Static240.cameraPitch < cameraPitch) {
 				Static240.cameraPitch = cameraPitch;
 			}
@@ -128,11 +128,11 @@ public final class Static125 {
 			local350 += 2048;
 		}
 		if (local350 > 0) {
-			Static184.cameraYaw += local350 * Static233.anInt5217 / 1000 + Static133.anInt5230;
+			Static184.cameraYaw += local350 * ClientScriptRunner.anInt5217 / 1000 + Static133.anInt5230;
 			Static184.cameraYaw &= 0x7FF;
 		}
 		if (local350 < 0) {
-			Static184.cameraYaw -= Static233.anInt5217 * -local350 / 1000 + Static133.anInt5230;
+			Static184.cameraYaw -= ClientScriptRunner.anInt5217 * -local350 / 1000 + Static133.anInt5230;
 			Static184.cameraYaw &= 0x7FF;
 		}
 		@Pc(404) int local404 = local292 - Static184.cameraYaw;

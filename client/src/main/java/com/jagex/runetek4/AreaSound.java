@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.Node;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.config.NPCType;
+import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -87,15 +87,15 @@ public final class AreaSound extends Node {
 		} else if (this.npc != null) {
 			@Pc(92) int npcSound = NPCEntity.getSound(this.npc);
 			if (sound != npcSound) {
-				@Pc(100) NPCType npcType = this.npc.type;
+				@Pc(100) ActorDefinition actorDefinition = this.npc.type;
 				this.sound = npcSound;
-				if (npcType.multinpc != null) {
-					npcType = npcType.getMultiNPC();
+				if (actorDefinition.multinpc != null) {
+					actorDefinition = actorDefinition.getMultiNPC();
 				}
-				if (npcType == null) {
+				if (actorDefinition == null) {
 					this.radius = 0;
 				} else {
-					this.radius = npcType.bgsound_range * 128;
+					this.radius = actorDefinition.bgsound_range * 128;
 				}
 			}
 		} else if (this.player != null) {

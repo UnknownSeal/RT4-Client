@@ -112,7 +112,7 @@ public final class Static243 {
 		Static8.resetVarBits();
 		Static20.method601();
 		Static133.anInt5230 = 0;
-		Static233.anInt5217 = 0;
+		ClientScriptRunner.anInt5217 = 0;
 		Static265.anInt5765 = 0;
 		PreciseSleep.anInt5203 = 0;
 		Static248.anInt4232 = 0;
@@ -120,7 +120,7 @@ public final class Static243 {
 		Static57.anInt1744 = 0;
 		Static251.anInt5449 = 0;
 		Static113.anInt4612 = 0;
-		Static233.anInt5225 = 0;
+		ClientScriptRunner.anInt5225 = 0;
 		for (i = 0; i < VarPlayerDefinition.varcs.length; i++) {
 			VarPlayerDefinition.varcs[i] = -1;
 		}

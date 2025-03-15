@@ -98,7 +98,7 @@ public final class Loc extends Entity {
 			}
 		}
 		if (arg6 != -1) {
-			this.aClass144_2 = Static36.method941(arg6);
+			this.aClass144_2 = Static36.getAnimationSequence(arg6);
 			this.anInt1297 = 0;
 			if (this.aClass144_2.anIntArray473.length <= 1) {
 				this.anInt1304 = 0;
@@ -248,7 +248,7 @@ public final class Loc extends Entity {
 			if (local69 == -1) {
 				this.aClass144_2 = null;
 			} else {
-				this.aClass144_2 = Static36.method941(local69);
+				this.aClass144_2 = Static36.getAnimationSequence(local69);
 			}
 			if (this.aClass144_2 != null) {
 				if (local19.randomanimframe && this.aClass144_2.replayoff != -1) {

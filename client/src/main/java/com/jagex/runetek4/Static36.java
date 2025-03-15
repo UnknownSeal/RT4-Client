@@ -45,7 +45,7 @@ public final class Static36 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "a", descriptor = "(IB)Lclient!tk;")
-	public static SeqType method941(@OriginalArg(0) int arg0) {
+	public static SeqType getAnimationSequence(@OriginalArg(0) int arg0) {
 		@Pc(17) SeqType local17 = (SeqType) Static142.aClass99_23.get((long) arg0);
 		if (local17 != null) {
 			return local17;
@@ -161,7 +161,7 @@ public final class Static36 {
 						}
 						if (local9 == Static4.aClass13_1) {
 							Static146.aBoolean174 = true;
-							Static81.anInt2225 = local50;
+							ItemDefinition.anInt2225 = local50;
 							Static228.anInt5103 = local55;
 						}
 						if (local9.aBoolean25 || local9.contentType != 0) {
@@ -352,7 +352,7 @@ public final class Static36 {
 									Static185.aClass69_101.addTail(local399);
 								} else {
 									label539: for (local243 = local9.anInt487; local243 < Static72.updatedVarcstrsWriterIndex; local243++) {
-										local508 = Static233.updatedVarcstrs[local243 & 0x1F];
+										local508 = ClientScriptRunner.updatedVarcstrs[local243 & 0x1F];
 										for (local322 = 0; local322 < local9.anIntArray35.length; local322++) {
 											if (local9.anIntArray35[local322] == local508) {
 												local966 = new HookRequest();

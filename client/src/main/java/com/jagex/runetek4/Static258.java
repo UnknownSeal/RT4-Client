@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
-import com.jagex.runetek4.config.ObjType;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -64,7 +64,7 @@ public final class Static258 {
 						Static18.mouseInvInterfaceIndex = local171;
 						if (arg2.invSlotObjId[local171] > 0) {
 							@Pc(267) ServerActiveProperties local267 = Static36.method940(arg2);
-							@Pc(276) ObjType local276 = Static71.get(arg2.invSlotObjId[local171] - 1);
+							@Pc(276) ItemDefinition local276 = Static71.get(arg2.invSlotObjId[local171] - 1);
 							if (Static260.anInt5014 == 1 && local267.method510()) {
 								if (Static224.anInt5062 != arg2.anInt507 || Static185.anInt4370 != local171) {
 									Static98.addActionRow(-1, (long) local276.anInt2354, Static34.method882(new JString[] { Static34.aClass100_203, Static223.aClass100_947, local276.name}), local171, (short) 40, LocalizedText.USE, arg2.anInt507);
@@ -75,7 +75,7 @@ public final class Static258 {
 									Static98.addActionRow(Static246.anInt5393, (long) local276.anInt2354, Static34.method882(new JString[] { Static78.aClass100_466, Static223.aClass100_947, local276.name}), local171, (short) 3, Static102.aClass100_545, arg2.anInt507);
 								}
 							} else {
-								@Pc(296) JString[] local296 = local276.iops;
+								@Pc(296) JString[] local296 = local276.interfaceOptions;
 								if (Static208.aBoolean237) {
 									local296 = Static279.method4664(local296);
 								}

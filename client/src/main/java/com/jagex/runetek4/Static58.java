@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.ObjType;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -26,7 +26,7 @@ public final class Static58 {
 		@Pc(10) int local10 = 0;
 		@Pc(12) int local12;
 		for (local12 = 0; local12 < Static170.anInt3245; local12++) {
-			@Pc(19) ObjType local19 = Static71.get(local12);
+			@Pc(19) ItemDefinition local19 = Static71.get(local12);
 			if (local19.manwear >= 0 || local19.womanwear >= 0) {
 				local8[local10++] = local12;
 			}
