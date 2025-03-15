@@ -143,24 +143,24 @@ public final class Static144 {
 										local546 -= 4;
 									}
 									if (local546 == 1) {
-										Rasterizer.method2490(local47, local222, local238, local575);
+										Rasterizer.drawVerticalLine(local47, local222, local238, local575);
 									} else if (local546 == 2) {
 										Rasterizer.drawHorizontalLine(local47, local222, local62, local575);
 									} else if (local546 == 3) {
-										Rasterizer.method2490(local437, local222, local238, local575);
+										Rasterizer.drawVerticalLine(local437, local222, local238, local575);
 									} else if (local546 == 4) {
 										Rasterizer.drawHorizontalLine(local47, local569, local62, local575);
 									} else if (local546 == 9) {
-										Rasterizer.method2490(local47, local222, local238, 16777215);
+										Rasterizer.drawVerticalLine(local47, local222, local238, 16777215);
 										Rasterizer.drawHorizontalLine(local47, local222, local62, local575);
 									} else if (local546 == 10) {
-										Rasterizer.method2490(local437, local222, local238, 16777215);
+										Rasterizer.drawVerticalLine(local437, local222, local238, 16777215);
 										Rasterizer.drawHorizontalLine(local47, local222, local62, local575);
 									} else if (local546 == 11) {
-										Rasterizer.method2490(local437, local222, local238, 16777215);
+										Rasterizer.drawVerticalLine(local437, local222, local238, 16777215);
 										Rasterizer.drawHorizontalLine(local47, local569, local62, local575);
 									} else if (local546 == 12) {
-										Rasterizer.method2490(local47, local222, local238, 16777215);
+										Rasterizer.drawVerticalLine(local47, local222, local238, 16777215);
 										Rasterizer.drawHorizontalLine(local47, local569, local62, local575);
 									} else if (local546 == 17) {
 										Rasterizer.drawHorizontalLine(local47, local222, 1, local575);

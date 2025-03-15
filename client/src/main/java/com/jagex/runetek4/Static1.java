@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
@@ -29,7 +30,7 @@ public final class Static1 {
 	public static final JString aClass100_2 = Static28.parse("<col=ffffff> )4 ");
 
 	@OriginalMember(owner = "runetek4.client!a", name = "a", descriptor = "(Lclient!fi;I)V")
-	public static void method1(@OriginalArg(0) HuffmanCodec arg0) {
+	public static void method1(@OriginalArg(0) HuffmanEncoding arg0) {
 		Static62.aClass44_1 = arg0;
 	}
 
@@ -579,8 +580,8 @@ public final class Static1 {
 			Static46.method1182(local161, local147, local167, local153, local169, 128);
 			Static46.method1179(local161, local147, local167, local153, local169);
 		} else {
-			Rasterizer.method2484(local161, local147, local167, local153, local169, 128);
-			Rasterizer.method2483(local161, local147, local167, local153, local169);
+			Rasterizer.drawFilledRectangleAlpha(local161, local147, local167, local153, local169, 128);
+			Rasterizer.drawUnfilledRectangle(local161, local147, local167, local153, local169);
 		}
 		if (Static201.anInt1864 <= 0) {
 			return;
@@ -592,13 +593,13 @@ public final class Static1 {
 			local225 = Static91.anInt2428 * 25;
 		}
 		for (@Pc(238) Class3_Sub26 local238 = (Class3_Sub26) Static145.aClass69_84.head(); local238 != null; local238 = (Class3_Sub26) Static145.aClass69_84.next()) {
-			if (local238.anInt4308 == Static9.anInt172) {
+			if (local238.anInt4308 == CacheArchive.anInt172) {
 				@Pc(258) int local258 = arg3 + local238.anInt4314 * arg1 / Static181.anInt4296;
 				@Pc(267) int local267 = arg2 * local238.anInt4307 / Static48.anInt1449 + arg0;
 				if (GlRenderer.enabled) {
 					Static46.method1182(local267 - 2, local258 + -2, 4, 4, 16776960, local225);
 				} else {
-					Rasterizer.method2484(local267 - 2, local258 + -2, 4, 4, 16776960, local225);
+					Rasterizer.drawFilledRectangleAlpha(local267 - 2, local258 + -2, 4, 4, 16776960, local225);
 				}
 			}
 		}

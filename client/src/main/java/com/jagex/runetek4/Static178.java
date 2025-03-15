@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static178 {
 
-	@OriginalMember(owner = "runetek4.client!od", name = "f", descriptor = "Lclient!jd;")
-	public static MouseRecorder mouseCapturer;
-
 	@OriginalMember(owner = "runetek4.client!od", name = "c", descriptor = "Z")
 	public static boolean highDetailLighting = true;
 

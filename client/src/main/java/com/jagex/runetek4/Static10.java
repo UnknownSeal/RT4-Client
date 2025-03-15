@@ -67,8 +67,8 @@ public final class Static10 {
 
 	@OriginalMember(owner = "client!an", name = "a", descriptor = "(Z)V")
 	public static void method350() {
-		Static142.aClass99_23.method3104();
-		Static267.aClass99_37.method3104();
+		Static142.animationSequenceCache.method3104();
+		Static267.skeletonCache.method3104();
 	}
 
 	@OriginalMember(owner = "client!an", name = "i", descriptor = "(I)V")

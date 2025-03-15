@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
@@ -144,13 +145,13 @@ public final class Static247 {
 												}
 												if (local153.underlay == null) {
 													if (local153.overlay != null) {
-														if (Static9.method187(0, tileX, tileZ)) {
+														if (CacheArchive.method187(0, tileX, tileZ)) {
 															Static147.drawTileOverlay(local153.overlay, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, true);
 														} else {
 															Static147.drawTileOverlay(local153.overlay, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, false);
 														}
 													}
-												} else if (Static9.method187(0, tileX, tileZ)) {
+												} else if (CacheArchive.method187(0, tileX, tileZ)) {
 													Static132.method2610(local153.underlay, 0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, true);
 												} else {
 													Static132.method2610(local153.underlay, 0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, false);
@@ -182,14 +183,14 @@ public final class Static247 {
 											tileDrawn = false;
 											if (tile.underlay == null) {
 												if (tile.overlay != null) {
-													if (Static9.method187(occludeLevel, tileX, tileZ)) {
+													if (CacheArchive.method187(occludeLevel, tileX, tileZ)) {
 														Static147.drawTileOverlay(tile.overlay, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, true);
 													} else {
 														tileDrawn = true;
 														Static147.drawTileOverlay(tile.overlay, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, false);
 													}
 												}
-											} else if (Static9.method187(occludeLevel, tileX, tileZ)) {
+											} else if (CacheArchive.method187(occludeLevel, tileX, tileZ)) {
 												Static132.method2610(tile.underlay, occludeLevel, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, true);
 											} else {
 												tileDrawn = true;

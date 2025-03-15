@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -86,7 +86,7 @@ public final class Static152 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ma", name = "a", descriptor = "(ILclient!tk;IIZI)V")
-	public static void method2836(@OriginalArg(0) int arg0, @OriginalArg(1) SeqType arg1, @OriginalArg(3) int arg2, @OriginalArg(4) boolean arg3, @OriginalArg(5) int arg4) {
+	public static void method2836(@OriginalArg(0) int arg0, @OriginalArg(1) AnimationSequence arg1, @OriginalArg(3) int arg2, @OriginalArg(4) boolean arg3, @OriginalArg(5) int arg4) {
 		if (Static189.anInt4451 >= 50 || (arg1.sound == null || arg4 >= arg1.sound.length || arg1.sound[arg4] == null)) {
 			return;
 		}

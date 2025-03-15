@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -99,7 +99,7 @@ public final class Static79 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ge", name = "a", descriptor = "(BLclient!ve;)V")
-	public static void method1703(@OriginalArg(1) Js5 arg0) {
-		Static167.aClass153_62 = arg0;
+	public static void method1703(@OriginalArg(1) CacheArchive arg0) {
+		com.jagex.runetek4.cache.CacheArchive.aClass153_62 = arg0;
 	}
 }

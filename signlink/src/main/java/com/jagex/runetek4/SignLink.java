@@ -517,7 +517,7 @@ public final class SignLink implements Runnable {
 	}
 
 	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "(IILjava/lang/Runnable;)Lsignlink!im;")
-	public final PrivilegedRequest method5130(@OriginalArg(1) int arg0, @OriginalArg(2) Runnable arg1) {
+	public final PrivilegedRequest putThreadNode(@OriginalArg(1) int arg0, @OriginalArg(2) Runnable arg1) {
 		return this.method5114(2, 0, arg1, arg0);
 	}
 

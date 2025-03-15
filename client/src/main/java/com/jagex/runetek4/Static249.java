@@ -2,14 +2,14 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static249 {
 
 	@OriginalMember(owner = "runetek4.client!ud", name = "J", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_100;
+	public static CacheArchive aClass153_100;
 
     @OriginalMember(owner = "runetek4.client!ud", name = "O", descriptor = "I")
 	public static int anInt5431 = 0;

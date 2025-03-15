@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import java.io.UnsupportedEncodingException;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.cs.ClientScript;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.media.Font;
@@ -11,7 +10,7 @@ import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -37,7 +36,7 @@ public final class Static127 {
 	public static int anInt3132 = 0;
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(IIBLclient!ve;Lclient!ve;)Lclient!rk;")
-	public static Font getFont(@OriginalArg(1) int arg0, @OriginalArg(3) Js5 arg1, @OriginalArg(4) Js5 arg2) {
+	public static Font getFont(@OriginalArg(1) int arg0, @OriginalArg(3) CacheArchive arg1, @OriginalArg(4) CacheArchive arg2) {
 		return Static234.method4016(arg1, 0, arg0) ? Static29.method799(arg2.getfile(arg0, 0)) : null;
 	}
 
@@ -263,7 +262,7 @@ public final class Static127 {
 				}
 				local29 = Runtime.getRuntime();
 				x = (int) ((local29.totalMemory() - local29.freeMemory()) / 1024L);
-				Static103.addMessage(null, 0, Static34.method882(new JString[] { CacheArchive.aClass100_892, Static123.method2423(x), Static17.aClass100_101 }));
+				Static103.addMessage(null, 0, Static34.method882(new JString[] { Class6.aClass100_892, Static123.method2423(x), Static17.aClass100_101 }));
 			}
 			@Pc(117) int z;
 			if (chatTyped.equalsIgnoreCase(Static154.MM)) {

@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -44,7 +44,7 @@ public final class Static159 {
 					if (local15 == -1) {
 						arg1.aClass147Array3[local25] = null;
 					} else {
-						@Pc(60) SeqType local60 = Static36.getAnimationSequence(local15);
+						@Pc(60) AnimationSequence local60 = AnimationSequence.getAnimationSequence(local15);
 						@Pc(65) Class147 local65 = arg1.aClass147Array3[local25];
 						@Pc(68) int local68 = local60.anInt5347;
 						if (local65 != null) {
@@ -61,7 +61,7 @@ public final class Static159 {
 								} else if (local68 == 2) {
 									local65.anInt5400 = 0;
 								}
-							} else if (local60.priority >= Static36.getAnimationSequence(local65.anInt5396).priority) {
+							} else if (local60.priority >= AnimationSequence.getAnimationSequence(local65.anInt5396).priority) {
 								local65 = arg1.aClass147Array3[local25] = null;
 							}
 						}

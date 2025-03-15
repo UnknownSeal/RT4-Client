@@ -2,9 +2,9 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -81,7 +81,7 @@ public final class Static34 {
 	public static boolean verifyIdChanged = false;
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "(ILclient!va;Lclient!ve;Lclient!ve;Lclient!ve;)Z")
-	public static boolean method876(@OriginalArg(1) MidiPcmStream arg0, @OriginalArg(2) Js5 arg1, @OriginalArg(3) Js5 arg2, @OriginalArg(4) Js5 arg3) {
+	public static boolean method876(@OriginalArg(1) MidiPcmStream arg0, @OriginalArg(2) CacheArchive arg1, @OriginalArg(3) CacheArchive arg2, @OriginalArg(4) CacheArchive arg3) {
 		Static210.aClass153_87 = arg1;
 		Static78.aClass153_32 = arg3;
 		Static252.aClass153_103 = arg2;
@@ -108,9 +108,9 @@ public final class Static34 {
 	@OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "(Lclient!fe;I)V")
 	public static void method879(@OriginalArg(0) PathingEntity arg0) {
 		arg0.seqStretches = false;
-		@Pc(18) SeqType seq;
+		@Pc(18) AnimationSequence seq;
 		if (arg0.secondarySeqId != -1) {
-			seq = Static36.getAnimationSequence(arg0.secondarySeqId);
+			seq = AnimationSequence.getAnimationSequence(arg0.secondarySeqId);
 			if (seq == null || seq.anIntArray473 == null) {
 				arg0.secondarySeqId = -1;
 			} else {
@@ -138,7 +138,7 @@ public final class Static34 {
 			if (local156 == -1) {
 				arg0.spotanimFrame = -1;
 			} else {
-				@Pc(165) SeqType local165 = Static36.getAnimationSequence(local156);
+				@Pc(165) AnimationSequence local165 = AnimationSequence.getAnimationSequence(local156);
 				if (local165 == null || local165.anIntArray473 == null) {
 					arg0.spotanimFrame = -1;
 				} else {
@@ -163,14 +163,14 @@ public final class Static34 {
 			}
 		}
 		if (arg0.primarySeqId != -1 && arg0.anInt3420 <= 1) {
-			seq = Static36.getAnimationSequence(arg0.primarySeqId);
+			seq = AnimationSequence.getAnimationSequence(arg0.primarySeqId);
 			if (seq.anInt5363 == 1 && arg0.anInt3405 > 0 && Static83.loopCycle >= arg0.anInt3395 && Static83.loopCycle > arg0.anInt3386) {
 				arg0.anInt3420 = 1;
 				return;
 			}
 		}
 		if (arg0.primarySeqId != -1 && arg0.anInt3420 == 0) {
-			seq = Static36.getAnimationSequence(arg0.primarySeqId);
+			seq = AnimationSequence.getAnimationSequence(arg0.primarySeqId);
 			if (seq == null || seq.anIntArray473 == null) {
 				arg0.primarySeqId = -1;
 			} else {
@@ -212,7 +212,7 @@ public final class Static34 {
 				if (local545.anInt5408 > 0) {
 					local545.anInt5408--;
 				} else {
-					@Pc(570) SeqType local570 = Static36.getAnimationSequence(local545.anInt5396);
+					@Pc(570) AnimationSequence local570 = AnimationSequence.getAnimationSequence(local545.anInt5396);
 					if (local570 == null || local570.anIntArray473 == null) {
 						arg0.aClass147Array3[local156] = null;
 					} else {

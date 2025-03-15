@@ -2,7 +2,7 @@ package com.jagex.runetek4.js5.index;
 
 import com.jagex.runetek4.cache.NameHashCollection;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -64,7 +64,7 @@ public final class Js5Index {
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "a", descriptor = "(I[B)V")
 	private void decodeArchive(@OriginalArg(1) byte[] arg0) {
-		@Pc(12) Packet packet = new Packet(Js5.uncompress(arg0));
+		@Pc(12) Packet packet = new Packet(CacheArchive.uncompress(arg0));
 		@Pc(16) int protocol = packet.g1();
 
 		if (protocol != 5 && protocol != 6) {

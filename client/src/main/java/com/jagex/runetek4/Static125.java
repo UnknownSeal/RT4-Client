@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -26,7 +26,7 @@ public final class Static125 {
 	public static int anInt3104 = 127;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "a", descriptor = "(ILclient!ve;Lclient!ve;)V")
-	public static void method2446(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
+	public static void method2446(@OriginalArg(1) CacheArchive arg0, @OriginalArg(2) CacheArchive arg1) {
 		Static14.aClass153_8 = arg0;
 		Static216.aClass153_31 = arg1;
 		Static53.anInt1716 = Static216.aClass153_31.fileLength(3);

@@ -5,7 +5,7 @@ import java.util.Calendar;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.client.ClientInvCache;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -59,7 +59,7 @@ public final class Static102 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "a", descriptor = "(Lclient!ve;ILclient!ve;)V")
-	public static void method2074(@OriginalArg(0) Js5 arg0, @OriginalArg(2) Js5 arg1) {
+	public static void method2074(@OriginalArg(0) CacheArchive arg0, @OriginalArg(2) CacheArchive arg1) {
 		Static114.aClass3_Sub2_Sub9_42 = Static127.getFont(Static166.anInt4049, arg1, arg0);
 		if (GlRenderer.enabled) {
 			Static265.aClass3_Sub2_Sub9_Sub1_2 = Static122.method2412(Static166.anInt4049, arg0, arg1);

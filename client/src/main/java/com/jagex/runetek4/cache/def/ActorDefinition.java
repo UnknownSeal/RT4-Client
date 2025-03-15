@@ -1,7 +1,7 @@
 package com.jagex.runetek4.cache.def;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -438,7 +438,7 @@ public final class ActorDefinition {
 	}
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "([Lclient!ub;IBIIIILclient!tk;ILclient!tk;)Lclient!ak;")
-	public Model method2937(@OriginalArg(0) Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) SeqType arg6, @OriginalArg(8) int arg7, @OriginalArg(9) SeqType arg8) {
+	public Model method2937(@OriginalArg(0) Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) AnimationSequence arg6, @OriginalArg(8) int arg7, @OriginalArg(9) AnimationSequence arg8) {
 		if (this.multinpc != null) {
 			@Pc(13) ActorDefinition local13 = this.getMultiNPC();
 			return local13 == null ? null : local13.method2937(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
@@ -566,7 +566,7 @@ public final class ActorDefinition {
 		local173 = arg0 == null ? 0 : arg0.length;
 		for (local235 = 0; local235 < local173; local235++) {
 			if (arg0[local235] != null) {
-				@Pc(753) SeqType local753 = Static36.getAnimationSequence(arg0[local235].anInt5396);
+				@Pc(753) AnimationSequence local753 = AnimationSequence.getAnimationSequence(arg0[local235].anInt5396);
 				if (local753.anIntArray473 != null) {
 					Static146.aClass144Array1[local235] = local753;
 					local207 = arg0[local235].anInt5398;
@@ -708,7 +708,7 @@ public final class ActorDefinition {
 	}
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(Lclient!tk;IIII)Lclient!ak;")
-	public Model getHeadModel(@OriginalArg(0) SeqType arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
+	public Model getHeadModel(@OriginalArg(0) AnimationSequence arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
 		if (this.multinpc != null) {
 			@Pc(13) ActorDefinition local13 = this.getMultiNPC();
 			return local13 == null ? null : local13.getHeadModel(arg0, arg1, arg2, arg3);

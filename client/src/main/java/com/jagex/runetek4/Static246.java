@@ -1,9 +1,9 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.invtype.InvType;
 import com.jagex.runetek4.cache.def.ActorDefinition;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -20,7 +20,7 @@ public final class Static246 {
 	public static final JString aClass100_1029 = Static28.parse("cookiehost");
 
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(BLclient!ve;Lclient!ve;)V")
-	public static void method4237(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
+	public static void method4237(@OriginalArg(1) com.jagex.runetek4.js5.CacheArchive arg0, @OriginalArg(2) com.jagex.runetek4.js5.CacheArchive arg1) {
 		Static153.aClass153_57 = arg0;
 		Static243.aClass153_97 = arg1;
 	}
@@ -124,7 +124,7 @@ public final class Static246 {
 		if (invType != null) {
 			return invType;
 		}
-		@Pc(27) byte[] bytes = Static9.aClass153_2.getfile(5, arg0);
+		@Pc(27) byte[] bytes = CacheArchive.aClass153_2.getfile(5, arg0);
 		invType = new InvType();
 		if (bytes != null) {
 			invType.decode(new Packet(bytes));

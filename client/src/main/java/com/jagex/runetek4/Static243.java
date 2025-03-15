@@ -1,11 +1,11 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -13,13 +13,13 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static243 {
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "j", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_97;
+	public static com.jagex.runetek4.js5.CacheArchive aClass153_97;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "o", descriptor = "Lclient!ok;")
 	public static IndexedSprite aClass36_1;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "s", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_98;
+	public static com.jagex.runetek4.js5.CacheArchive aClass153_98;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "D", descriptor = "[Lclient!ec;")
 	public static Scenery[] aClass31Array3;
@@ -49,7 +49,7 @@ public final class Static243 {
 		Static204.anInt4762 = 0;
 		Static67.prevFocus = true;
 		Static183.prevClickTime = 0L;
-		Static178.mouseCapturer.coord = 0;
+		Game.mouseCapturer.coord = 0;
 		Static26.focus = true;
 		Static114.method4625();
 		Static49.anInt1462 = -1;
@@ -108,7 +108,7 @@ public final class Static243 {
 		}
 		Static26.spawnedLocations = new LinkList();
 		Static166.anInt4054 = 0;
-		Static9.friendCount = 0;
+		CacheArchive.friendCount = 0;
 		Static8.resetVarBits();
 		Static20.method601();
 		Static133.anInt5230 = 0;

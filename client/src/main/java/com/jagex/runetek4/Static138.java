@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,10 +14,10 @@ public final class Static138 {
 	public static float aFloat14;
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Nc", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_50;
+	public static CacheArchive aClass153_50;
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Oc", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_51;
+	public static CacheArchive aClass153_51;
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Pc", descriptor = "I")
 	public static int cameraX;

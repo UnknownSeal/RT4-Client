@@ -1,15 +1,11 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.dash3d.entity.Entity;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static184 {
-
-	@OriginalMember(owner = "runetek4.client!ol", name = "U", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_78;
 
 	@OriginalMember(owner = "runetek4.client!ol", name = "ib", descriptor = "I")
 	public static int cameraYaw;

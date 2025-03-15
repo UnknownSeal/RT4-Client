@@ -6,7 +6,7 @@ import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.media.ImageRGB;
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.game.world.entity.PlayerModel;
@@ -940,7 +940,7 @@ public final class Component {
 	}
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(ILclient!tk;IIIZLclient!hh;)Lclient!ak;")
-	public Model method488(@OriginalArg(0) int arg0, @OriginalArg(1) SeqType arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) boolean arg4, @OriginalArg(6) PlayerModel arg5) {
+	public Model method488(@OriginalArg(0) int arg0, @OriginalArg(1) AnimationSequence arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) boolean arg4, @OriginalArg(6) PlayerModel arg5) {
 		Static211.aBoolean72 = false;
 		@Pc(10) int local10;
 		@Pc(13) int local13;
@@ -1276,7 +1276,7 @@ public final class Component {
 		if (font != null) {
 			return font;
 		}
-		font = Static127.getFont(this.fontId, Static23.gameImageCacheArchive, Static167.aClass153_64);
+		font = Static127.getFont(this.fontId, Static23.gameImageCacheArchive, CacheArchive.aClass153_64);
 		if (font == null) {
 			Static211.aBoolean72 = true;
 		} else {

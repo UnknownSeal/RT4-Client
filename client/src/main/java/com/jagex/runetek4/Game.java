@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
@@ -17,6 +18,8 @@ import java.net.Socket;
 public class Game {
     @OriginalMember(owner = "runetek4.client!vl", name = "k", descriptor = "I")
     public static int idleTimeout = 0;
+    @OriginalMember(owner = "runetek4.client!od", name = "f", descriptor = "Lclient!jd;")
+    public static MouseCapturer mouseCapturer;
 
     @OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "(Z)V")
     public static void updateGame() {
@@ -39,7 +42,7 @@ public class Game {
             return;
         }
         ClientScriptRunner.createClientScriptCheckPacket(Static6.outboundBuffer); // runetek4.ReflectionCheck
-        @Pc(60) Object mouseRecorder = Static178.mouseCapturer.lock;
+        @Pc(60) Object mouseRecorder = mouseCapturer.lock;
         @Pc(86) int offset;
         @Pc(79) int samples;
         @Pc(88) int i;
@@ -49,16 +52,16 @@ public class Game {
         @Pc(189) int dy;
         synchronized (mouseRecorder) {
             if (!Static245.enabled) {
-                Static178.mouseCapturer.coord = 0;
-            } else if (Mouse.clickButton != 0 || Static178.mouseCapturer.coord >= 40) {
+                mouseCapturer.coord = 0;
+            } else if (Mouse.clickButton != 0 || mouseCapturer.coord >= 40) {
                 Static6.outboundBuffer.pIsaac1(123);
                 samples = 0;
                 Static6.outboundBuffer.p1(0);
                 offset = Static6.outboundBuffer.position;
-                for (i = 0; Static178.mouseCapturer.coord > i && Static6.outboundBuffer.position - offset < 240; i++) {
+                for (i = 0; mouseCapturer.coord > i && Static6.outboundBuffer.position - offset < 240; i++) {
                     samples++;
-                    y = Static178.mouseCapturer.y[i];
-                    x = Static178.mouseCapturer.x[i];
+                    y = mouseCapturer.y[i];
+                    x = mouseCapturer.x[i];
                     if (y < 0) {
                         y = 0;
                     } else if (y > 65534) {
@@ -70,7 +73,7 @@ public class Game {
                         x = 65534;
                     }
                     @Pc(142) boolean outsideWindow = false;
-                    if (Static178.mouseCapturer.y[i] == -1 && Static178.mouseCapturer.x[i] == -1) {
+                    if (mouseCapturer.y[i] == -1 && mouseCapturer.x[i] == -1) {
                         outsideWindow = true;
                         y = -1;
                         x = -1;
@@ -113,14 +116,14 @@ public class Game {
                     }
                 }
                 Static6.outboundBuffer.p1len(Static6.outboundBuffer.position - offset);
-                if (Static178.mouseCapturer.coord > samples) {
-                    Static178.mouseCapturer.coord -= samples;
-                    for (i = 0; i < Static178.mouseCapturer.coord; i++) {
-                        Static178.mouseCapturer.x[i] = Static178.mouseCapturer.x[samples + i];
-                        Static178.mouseCapturer.y[i] = Static178.mouseCapturer.y[samples + i];
+                if (mouseCapturer.coord > samples) {
+                    mouseCapturer.coord -= samples;
+                    for (i = 0; i < mouseCapturer.coord; i++) {
+                        mouseCapturer.x[i] = mouseCapturer.x[samples + i];
+                        mouseCapturer.y[i] = mouseCapturer.y[samples + i];
                     }
                 } else {
-                    Static178.mouseCapturer.coord = 0;
+                    mouseCapturer.coord = 0;
                 }
             }
         }
@@ -1130,7 +1133,7 @@ public class Game {
         Static258.method4415();
         Static209.method3706();
         Static190.method3447();
-        Static72.method1570();
+        AnimationSequence.clearAnimationCache();
         Static137.method2666();
         Static269.method2221();
         VarPlayerDefinition.clearVarPlayerDefinitionCache();

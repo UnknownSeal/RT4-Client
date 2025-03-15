@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -13,7 +13,7 @@ public final class Static182 {
 	public static int[] anIntArray372;
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "x", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_77;
+	public static CacheArchive aClass153_77;
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "E", descriptor = "[[Lclient!hg;")
 	public static Class3_Sub14[][] aClass3_Sub14ArrayArray2;
@@ -47,8 +47,8 @@ public final class Static182 {
 			Static46.method1186(Static48.canvasWidth / 2 - 150, local9 + 2, Static199.mainLoadPercentage * 3, 30, 9179409);
 			Static46.method1186(Static48.canvasWidth / 2 + Static199.mainLoadPercentage * 3 - 150, local9 + 2, 300 - Static199.mainLoadPercentage * 3, 30, 0);
 		} else {
-			Rasterizer.method2483(Static48.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
-			Rasterizer.method2483(Static48.canvasWidth / 2 - 151, local9 + 1, 302, 32, 0);
+			Rasterizer.drawUnfilledRectangle(Static48.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
+			Rasterizer.drawUnfilledRectangle(Static48.canvasWidth / 2 - 151, local9 + 1, 302, 32, 0);
 			Rasterizer.drawFilledRectangle(Static48.canvasWidth / 2 - 150, local9 + 2, Static199.mainLoadPercentage * 3, 30, 9179409);
 			Rasterizer.drawFilledRectangle(Static199.mainLoadPercentage * 3 + Static48.canvasWidth / 2 - 150, local9 + 2, 300 - Static199.mainLoadPercentage * 3, 30, 0);
 		}

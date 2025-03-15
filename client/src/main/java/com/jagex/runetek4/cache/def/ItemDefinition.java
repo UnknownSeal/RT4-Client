@@ -2,10 +2,10 @@ package com.jagex.runetek4.cache.def;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.game.config.idktype.IDKType;
 import com.jagex.runetek4.graphics.ModelUnlit;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -473,7 +473,7 @@ public final class ItemDefinition {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(IIILclient!tk;II)Lclient!ak;")
-	public Model method1824(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) SeqType arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
+	public Model method1824(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) AnimationSequence arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		if (this.countobj != null && arg3 > 1) {
 			@Pc(22) int local22 = -1;
 			for (@Pc(24) int local24 = 0; local24 < 10; local24++) {
@@ -712,7 +712,7 @@ public final class ItemDefinition {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method1754(@OriginalArg(1) Js5 arg0) {
+	public static void method1754(@OriginalArg(1) CacheArchive arg0) {
 		Static138.anInt3443 = arg0.method4482(Static12.aClass100_73);
 	}
 }

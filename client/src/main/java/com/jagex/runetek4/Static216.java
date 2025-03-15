@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.Socket;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,7 +11,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static216 {
 
 	@OriginalMember(owner = "runetek4.client!ri", name = "c", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_31;
+	public static com.jagex.runetek4.js5.CacheArchive aClass153_31;
 
 	@OriginalMember(owner = "runetek4.client!ri", name = "d", descriptor = "[I")
 	public static int[] anIntArray188;
@@ -139,7 +138,7 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.p4(Static267.aClass153_109.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static209.aClass153_86.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static195.aClass153_80.getChecksum());
-				Static17.aClass3_Sub15_Sub1_2.p4(Static184.aClass153_78.getChecksum());
+				Static17.aClass3_Sub15_Sub1_2.p4(CacheArchive.huffmanCacheArchive.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static214.aClass153_106.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static16.aClass153_9.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static261.aClass153_107.getChecksum());
@@ -155,7 +154,7 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.p4(Static227.aClass153_94.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static254.aClass153_105.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static28.aClass153_18.getChecksum());
-				Static17.aClass3_Sub15_Sub1_2.p4(Static167.aClass153_63.getChecksum());
+				Static17.aClass3_Sub15_Sub1_2.p4(CacheArchive.gameTextureCacheArchive.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static226.aClass153_93.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.pdata(Static6.outboundBuffer.data, Static6.outboundBuffer.position);
 				Static124.gameServerSocket.write(Static17.aClass3_Sub15_Sub1_2.position, Static17.aClass3_Sub15_Sub1_2.data);
@@ -243,12 +242,12 @@ public final class Static216 {
 				Static86.aBoolean129 = Static57.in.g1() == 1;
 				Static245.enabled = Static57.in.g1() == 1;
 				Static16.localPid = Static57.in.g2();
-				CacheArchive.members = Static57.in.g1() == 1;
+				Class6.members = Static57.in.g1() == 1;
 				Static2.membersWorld = Static57.in.g1() == 1;
 				Static189.method3438(Static2.membersWorld);
-				Static9.method186(Static2.membersWorld);
+				CacheArchive.method186(Static2.membersWorld);
 				if (!Static249.aBoolean282) {
-					if (Static124.aBoolean157 && !Static25.aBoolean57 || CacheArchive.members) {
+					if (Static124.aBoolean157 && !Static25.aBoolean57 || Class6.members) {
 						try {
 							Static167.aClass100_781.method3157(GameShell.signLink.anApplet2);
 						} catch (@Pc(910) Throwable local910) {

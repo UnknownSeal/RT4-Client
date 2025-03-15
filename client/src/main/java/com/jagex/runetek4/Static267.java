@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -8,10 +8,10 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static267 {
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "g", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_109;
+	public static CacheArchive aClass153_109;
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "a", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_37 = new NodeCache(100);
+	public static final NodeCache skeletonCache = new NodeCache(100);
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "e", descriptor = "[I")
 	public static final int[] ROTATION_WALL_TYPE = new int[] { 1, 2, 4, 8 };

@@ -109,7 +109,7 @@ public final class Static217 {
 		Static53.method1295();
 		Static249.method4266();
 		Static124.method2433();
-		CacheArchive.method3653();
+		Class6.method3653();
 		Static78.method1695();
 		Static10.method351();
 		Static230.method3947();
@@ -135,7 +135,7 @@ public final class Static217 {
 		Static130.aClass153_47.method4499();
 		Static267.aClass153_109.method4499();
 		Static209.aClass153_86.method4499();
-		Static184.aClass153_78.method4499();
+		CacheArchive.huffmanCacheArchive.method4499();
 		Static214.aClass153_106.method4499();
 		Static16.aClass153_9.method4499();
 		Static73.aClass99_10.method3104();

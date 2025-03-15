@@ -41,47 +41,47 @@ public final class Rasterizer {
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(IIIII)V")
-	public static void method2483(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
-		drawHorizontalLine(arg0, arg1, arg2, arg4);
-		drawHorizontalLine(arg0, arg1 + arg3 - 1, arg2, arg4);
-		method2490(arg0, arg1, arg3, arg4);
-		method2490(arg0 + arg2 - 1, arg1, arg3, arg4);
+	public static void drawUnfilledRectangle(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int width, @OriginalArg(3) int height, @OriginalArg(4) int color) {
+		drawHorizontalLine(x, y, width, color);
+		drawHorizontalLine(x, y + height - 1, width, color);
+		drawVerticalLine(x, y, height, color);
+		drawVerticalLine(x + width - 1, y, height, color);
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(IIIIII)V")
-	public static void method2484(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
-		if (arg0 < viewportLeft) {
-			arg2 -= viewportLeft - arg0;
-			arg0 = viewportLeft;
+	public static void drawFilledRectangleAlpha(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int width, @OriginalArg(3) int height, @OriginalArg(4) int arg4, @OriginalArg(5) int alpha) {
+		if (x < viewportLeft) {
+			width -= viewportLeft - x;
+			x = viewportLeft;
 		}
-		if (arg1 < viewportTop) {
-			arg3 -= viewportTop - arg1;
-			arg1 = viewportTop;
+		if (y < viewportTop) {
+			height -= viewportTop - y;
+			y = viewportTop;
 		}
-		if (arg0 + arg2 > viewportRight) {
-			arg2 = viewportRight - arg0;
+		if (x + width > viewportRight) {
+			width = viewportRight - x;
 		}
-		if (arg1 + arg3 > viewportBottom) {
-			arg3 = viewportBottom - arg1;
+		if (y + height > viewportBottom) {
+			height = viewportBottom - y;
 		}
-		@Pc(59) int local59 = ((arg4 & 0xFF00FF) * arg5 >> 8 & 0xFF00FF) + ((arg4 & 0xFF00) * arg5 >> 8 & 0xFF00);
-		@Pc(63) int local63 = 256 - arg5;
-		@Pc(67) int local67 = destinationWidth - arg2;
-		@Pc(73) int local73 = arg0 + arg1 * destinationWidth;
-		for (@Pc(75) int local75 = 0; local75 < arg3; local75++) {
-			for (@Pc(81) int local81 = -arg2; local81 < 0; local81++) {
-				@Pc(87) int local87 = destinationPixels[local73];
-				@Pc(107) int local107 = ((local87 & 0xFF00FF) * local63 >> 8 & 0xFF00FF) + ((local87 & 0xFF00) * local63 >> 8 & 0xFF00);
-				destinationPixels[local73++] = local59 + local107;
+		@Pc(59) int rgba = ((arg4 & 0xFF00FF) * alpha >> 8 & 0xFF00FF) + ((arg4 & 0xFF00) * alpha >> 8 & 0xFF00);
+		@Pc(63) int a = 256 - alpha;
+		@Pc(67) int widthOffset = destinationWidth - width;
+		@Pc(73) int pixel = x + y * destinationWidth;
+		for (@Pc(75) int heightCounter = 0; heightCounter < height; heightCounter++) {
+			for (@Pc(81) int widthCounter = -width; widthCounter < 0; widthCounter++) {
+				@Pc(87) int local87 = destinationPixels[pixel];
+				@Pc(107) int local107 = ((local87 & 0xFF00FF) * a >> 8 & 0xFF00FF) + ((local87 & 0xFF00) * a >> 8 & 0xFF00);
+				destinationPixels[pixel++] = rgba + local107;
 			}
-			local73 += local67;
+			pixel += widthOffset;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(III)V")
-	private static void method2485(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		if (arg0 >= viewportLeft && arg1 >= viewportTop && arg0 < viewportRight && arg1 < viewportBottom) {
-			destinationPixels[arg0 + arg1 * destinationWidth] = 16776960;
+	private static void drawPixel(@OriginalArg(0) int x, @OriginalArg(1) int y) {
+		if (x >= viewportLeft && y >= viewportTop && x < viewportRight && y < viewportBottom) {
+			destinationPixels[x + y * destinationWidth] = 16776960;
 		}
 	}
 
@@ -95,17 +95,17 @@ public final class Rasterizer {
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "(IIIIII)V")
-	public static void method2487(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
-		drawHorizontalLineAlpha(arg0, arg1, arg2, arg4, arg5);
-		drawHorizontalLineAlpha(arg0, arg1 + arg3 - 1, arg2, arg4, arg5);
-		if (arg3 >= 3) {
-			drawVerticalLineAlpha(arg0, arg1 + 1, arg3 - 2, arg4, arg5);
-			drawVerticalLineAlpha(arg0 + arg2 - 1, arg1 + 1, arg3 - 2, arg4, arg5);
+	public static void drawUnfilledRectangleAlpha(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int width, @OriginalArg(3) int height, @OriginalArg(4) int color, @OriginalArg(5) int alpha) {
+		drawHorizontalLineAlpha(x, y, width, color, alpha);
+		drawHorizontalLineAlpha(x, y + height - 1, width, color, alpha);
+		if (height >= 3) {
+			drawVerticalLineAlpha(x, y + 1, height - 2, color, alpha);
+			drawVerticalLineAlpha(x + width - 1, y + 1, height - 2, color, alpha);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "([I)V")
-	public static void method2488(@OriginalArg(0) int[] arg0) {
+	public static void setViewportDimensions(@OriginalArg(0) int[] arg0) {
 		viewportLeft = arg0[0];
 		viewportTop = arg0[1];
 		viewportRight = arg0[2];
@@ -132,20 +132,20 @@ public final class Rasterizer {
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "(IIII)V")
-	public static void method2490(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		if (arg0 < viewportLeft || arg0 >= viewportRight) {
+	public static void drawVerticalLine(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int length, @OriginalArg(3) int color) {
+		if (x < viewportLeft || x >= viewportRight) {
 			return;
 		}
-		if (arg1 < viewportTop) {
-			arg2 -= viewportTop - arg1;
-			arg1 = viewportTop;
+		if (y < viewportTop) {
+			length -= viewportTop - y;
+			y = viewportTop;
 		}
-		if (arg1 + arg2 > viewportBottom) {
-			arg2 = viewportBottom - arg1;
+		if (y + length > viewportBottom) {
+			length = viewportBottom - y;
 		}
-		@Pc(32) int local32 = arg0 + arg1 * destinationWidth;
-		for (@Pc(34) int local34 = 0; local34 < arg2; local34++) {
-			destinationPixels[local32 + local34 * destinationWidth] = arg3;
+		@Pc(32) int pixelOffset = x + y * destinationWidth;
+		for (@Pc(34) int pixel = 0; pixel < length; pixel++) {
+			destinationPixels[pixelOffset + pixel * destinationWidth] = color;
 		}
 	}
 
@@ -405,43 +405,43 @@ public final class Rasterizer {
 				}
 			}
 		} else if (destY >= 0) {
-			method2490(x, y, destY + 1, color);
+			drawVerticalLine(x, y, destY + 1, color);
 		} else {
-			method2490(x, y + destY, -destY + 1, color);
+			drawVerticalLine(x, y + destY, -destY + 1, color);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "e", descriptor = "(IIII)V")
-	private static void method2501(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		if (arg2 == 0) {
-			method2485(arg0, arg1);
+	private static void drawCircle(@OriginalArg(0) int arg0, @OriginalArg(1) int y, @OriginalArg(2) int radius) {
+		if (radius == 0) {
+			drawPixel(arg0, y);
 			return;
 		}
-		if (arg2 < 0) {
-			arg2 = -arg2;
+		if (radius < 0) {
+			radius = -radius;
 		}
-		@Pc(15) int local15 = arg1 - arg2;
+		@Pc(15) int local15 = y - radius;
 		if (local15 < viewportTop) {
 			local15 = viewportTop;
 		}
-		@Pc(26) int local26 = arg1 + arg2 + 1;
+		@Pc(26) int local26 = y + radius + 1;
 		if (local26 > viewportBottom) {
 			local26 = viewportBottom;
 		}
 		@Pc(33) int local33 = local15;
-		@Pc(37) int local37 = arg2 * arg2;
+		@Pc(37) int local37 = radius * radius;
 		@Pc(39) int local39 = 0;
-		@Pc(43) int local43 = arg1 - local15;
+		@Pc(43) int local43 = y - local15;
 		@Pc(47) int local47 = local43 * local43;
 		@Pc(51) int local51 = local47 - local43;
-		if (arg1 > local26) {
-			arg1 = local26;
+		if (y > local26) {
+			y = local26;
 		}
 		@Pc(85) int local85;
 		@Pc(94) int local94;
 		@Pc(105) int local105;
 		@Pc(107) int local107;
-		while (local33 < arg1) {
+		while (local33 < y) {
 			while (local51 <= local37 || local47 <= local37) {
 				local47 += local39 + local39;
 				local51 += local39++ + local39;
@@ -462,10 +462,10 @@ public final class Rasterizer {
 			local47 -= local43-- + local43;
 			local51 -= local43 + local43;
 		}
-		local39 = arg2;
-		local43 = local33 - arg1;
+		local39 = radius;
+		local43 = local33 - y;
 		local51 = local43 * local43 + local37;
-		local47 = local51 - arg2;
+		local47 = local51 - radius;
 		local51 -= local43;
 		while (local33 < local26) {
 			while (local51 > local37 && local47 > local37) {
@@ -491,34 +491,34 @@ public final class Rasterizer {
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "f", descriptor = "(IIIII)V")
-	public static void method2502(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
-		if (arg3 == 0) {
+	public static void drawCircleAlpha(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int arg2, @OriginalArg(4) int alpha) {
+		if (alpha == 0) {
 			return;
 		}
-		if (arg3 == 256) {
-			method2501(arg0, arg1, arg2);
+		if (alpha == 256) {
+			drawCircle(x, y, arg2);
 			return;
 		}
-		@Pc(20) int local20 = 256 - arg3;
-		@Pc(28) int local28 = arg3 * 255;
-		@Pc(36) int local36 = arg3 * 255;
-		@Pc(42) int local42 = arg3 * 0;
-		@Pc(46) int local46 = arg1 - arg2;
-		if (local46 < viewportTop) {
-			local46 = viewportTop;
+		@Pc(20) int a = 256 - alpha;
+		@Pc(28) int local28 = alpha * 255;
+		@Pc(36) int local36 = alpha * 255;
+		@Pc(42) int local42 = alpha * 0;
+		@Pc(46) int topY = y - arg2;
+		if (topY < viewportTop) {
+			topY = viewportTop;
 		}
-		@Pc(57) int local57 = arg1 + arg2 + 1;
-		if (local57 > viewportBottom) {
-			local57 = viewportBottom;
+		@Pc(57) int bottomY = y + arg2 + 1;
+		if (bottomY > viewportBottom) {
+			bottomY = viewportBottom;
 		}
-		@Pc(64) int local64 = local46;
+		@Pc(64) int local64 = topY;
 		@Pc(68) int local68 = arg2 * arg2;
 		@Pc(70) int local70 = 0;
-		@Pc(74) int local74 = arg1 - local46;
+		@Pc(74) int local74 = y - topY;
 		@Pc(78) int local78 = local74 * local74;
 		@Pc(82) int local82 = local78 - local74;
-		if (arg1 > local57) {
-			arg1 = local57;
+		if (y > bottomY) {
+			y = bottomY;
 		}
 		@Pc(151) int local151;
 		@Pc(161) int local161;
@@ -528,24 +528,24 @@ public final class Rasterizer {
 		@Pc(136) int local136;
 		@Pc(138) int local138;
 		@Pc(191) int local191;
-		while (local64 < arg1) {
+		while (local64 < y) {
 			while (local82 <= local68 || local78 <= local68) {
 				local78 += local70 + local70;
 				local82 += local70++ + local70;
 			}
-			local116 = arg0 + 1 - local70;
+			local116 = x + 1 - local70;
 			if (local116 < viewportLeft) {
 				local116 = viewportLeft;
 			}
-			local125 = arg0 + local70;
+			local125 = x + local70;
 			if (local125 > viewportRight) {
 				local125 = viewportRight;
 			}
 			local136 = local116 + local64 * destinationWidth;
 			for (local138 = local116; local138 < local125; local138++) {
-				local151 = (destinationPixels[local136] >> 16 & 0xFF) * local20;
-				local161 = (destinationPixels[local136] >> 8 & 0xFF) * local20;
-				local169 = (destinationPixels[local136] & 0xFF) * local20;
+				local151 = (destinationPixels[local136] >> 16 & 0xFF) * a;
+				local161 = (destinationPixels[local136] >> 8 & 0xFF) * a;
+				local169 = (destinationPixels[local136] & 0xFF) * a;
 				local191 = (local28 + local151 >> 8 << 16) + (local36 + local161 >> 8 << 8) + (local42 + local169 >> 8);
 				destinationPixels[local136++] = local191;
 			}
@@ -558,24 +558,24 @@ public final class Rasterizer {
 		local82 = local74 * local74 + local68;
 		local78 = local82 - arg2;
 		local82 -= local74;
-		while (local64 < local57) {
+		while (local64 < bottomY) {
 			while (local82 > local68 && local78 > local68) {
 				local82 -= local70-- + local70;
 				local78 -= local70 + local70;
 			}
-			local116 = arg0 - local70;
+			local116 = x - local70;
 			if (local116 < viewportLeft) {
 				local116 = viewportLeft;
 			}
-			local125 = arg0 + local70;
+			local125 = x + local70;
 			if (local125 > viewportRight - 1) {
 				local125 = viewportRight - 1;
 			}
 			local136 = local116 + local64 * destinationWidth;
 			for (local138 = local116; local138 <= local125; local138++) {
-				local151 = (destinationPixels[local136] >> 16 & 0xFF) * local20;
-				local161 = (destinationPixels[local136] >> 8 & 0xFF) * local20;
-				local169 = (destinationPixels[local136] & 0xFF) * local20;
+				local151 = (destinationPixels[local136] >> 16 & 0xFF) * a;
+				local161 = (destinationPixels[local136] >> 8 & 0xFF) * a;
+				local169 = (destinationPixels[local136] & 0xFF) * a;
 				local191 = (local28 + local151 >> 8 << 16) + (local36 + local161 >> 8 << 8) + (local42 + local169 >> 8);
 				destinationPixels[local136++] = local191;
 			}
@@ -586,7 +586,7 @@ public final class Rasterizer {
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "c", descriptor = "()V")
-	public static void method2503() {
+	public static void resetBounds() {
 		viewportLeft = 0;
 		viewportTop = 0;
 		viewportRight = destinationWidth;

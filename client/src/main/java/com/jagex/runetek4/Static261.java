@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static261 {
 
 	@OriginalMember(owner = "runetek4.client!ve", name = "l", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_107;
+	public static CacheArchive aClass153_107;
 
 	@OriginalMember(owner = "runetek4.client!ve", name = "t", descriptor = "I")
 	public static int anInt5731;

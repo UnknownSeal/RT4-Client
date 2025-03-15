@@ -275,8 +275,8 @@ public final class Static269 {
 				Static46.method1186(local50 + Static41.anInt1309 * 3 - 150, local61 - -2, 300 - Static41.anInt1309 * 3, 30, 0);
 			} else {
 				Rasterizer.drawFilledRectangle(arg0, arg1, arg3, arg2, 0);
-				Rasterizer.method2483(local50 - 152, local61, 304, 34, 9179409);
-				Rasterizer.method2483(local50 - 151, local61 + 1, 302, 32, 0);
+				Rasterizer.drawUnfilledRectangle(local50 - 152, local61, 304, 34, 9179409);
+				Rasterizer.drawUnfilledRectangle(local50 - 151, local61 + 1, 302, 32, 0);
 				Rasterizer.drawFilledRectangle(local50 - 150, local61 + 2, Static41.anInt1309 * 3, 30, 9179409);
 				Rasterizer.drawFilledRectangle(Static41.anInt1309 * 3 + local50 - 150, local61 - -2, 300 - Static41.anInt1309 * 3, 30, 0);
 			}

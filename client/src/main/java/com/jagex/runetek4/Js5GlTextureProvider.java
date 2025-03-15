@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -17,10 +17,10 @@ public final class Js5GlTextureProvider implements GlTextureProvider {
 	private int anInt4186 = 50;
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "b", descriptor = "Lclient!ve;")
-	private final Js5 aClass153_72;
+	private final CacheArchive aClass153_72;
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "i", descriptor = "Lclient!ve;")
-	private final Js5 aClass153_73;
+	private final CacheArchive aClass153_73;
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "P", descriptor = "Lclient!gn;")
 	private LruHashTable aClass54_12;
@@ -59,7 +59,7 @@ public final class Js5GlTextureProvider implements GlTextureProvider {
 	private final boolean[] aBooleanArray93;
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "<init>", descriptor = "(Lclient!ve;Lclient!ve;Lclient!ve;IZ)V")
-	public Js5GlTextureProvider(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1, @OriginalArg(2) Js5 arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
+	public Js5GlTextureProvider(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) CacheArchive arg1, @OriginalArg(2) CacheArchive arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
 		this.aClass153_72 = arg2;
 		this.aBoolean200 = arg4;
 		this.anInt4186 = arg3;

@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import java.io.IOException;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.lighttype.LightType;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -55,7 +56,7 @@ public final class Static140 {
 				return;
 			}
 		}
-		for (i = 0; i < Static9.friendCount; i++) {
+		for (i = 0; i < CacheArchive.friendCount; i++) {
 			if (Static92.friendName37[i] == username) {
 				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { LocalizedText.REMOVESOCIAL2, displayName, LocalizedText.REMOVEFRIEND}));
 				return;

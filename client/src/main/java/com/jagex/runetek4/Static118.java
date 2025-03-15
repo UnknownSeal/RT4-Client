@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -58,7 +58,7 @@ public final class Static118 {
 							local105 = local15.anInt522;
 						}
 						if (local105 != -1) {
-							@Pc(118) SeqType local118 = Static36.getAnimationSequence(local105);
+							@Pc(118) AnimationSequence local118 = AnimationSequence.getAnimationSequence(local105);
 							if (local118 != null) {
 								local15.anInt500 += Static178.sceneDelta;
 								while (local15.anInt500 > local118.frames[local15.anInt510]) {

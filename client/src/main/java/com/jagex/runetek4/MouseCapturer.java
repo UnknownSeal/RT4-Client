@@ -5,7 +5,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!jd")
-public final class MouseRecorder implements Runnable {
+public final class MouseCapturer implements Runnable {
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "e", descriptor = "Z")
 	public boolean aBoolean151 = true;

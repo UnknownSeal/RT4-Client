@@ -5,7 +5,7 @@ import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -173,12 +173,12 @@ public final class Static164 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Lclient!ve;IZ)Lclient!mm;")
-	public static ImageRGB method3117(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
+	public static ImageRGB method3117(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) int arg1) {
 		return Static254.method4346(arg0, arg1) ? Static196.method3537() : null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IZILclient!ve;)Lclient!ek;")
-	public static SoftwareIndexedSprite method3119(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {
+	public static SoftwareIndexedSprite method3119(@OriginalArg(2) int arg0, @OriginalArg(3) CacheArchive arg1) {
 		return Static234.method4016(arg1, 0, arg0) ? Static134.method2619() : null;
 	}
 
@@ -212,7 +212,7 @@ public final class Static164 {
 				return null;
 			}
 		}
-		@Pc(118) int[] local118 = Rasterizer.destinationPixels;
+		@Pc(118) int[] pixels = Rasterizer.destinationPixels;
 		@Pc(120) int local120 = Rasterizer.destinationWidth;
 		@Pc(122) int local122 = Rasterizer.destinationHeight;
 		@Pc(125) int[] local125 = new int[4];
@@ -230,7 +230,7 @@ public final class Static164 {
 		}
 		@Pc(176) int local176 = MathUtils.anIntArray225[definition.xan2d] * local145 >> 16;
 		@Pc(185) int local185 = MathUtils.anIntArray223[definition.xan2d] * local145 >> 16;
-		local60.method4571(definition.yan2d, definition.zan2d, definition.xan2d, definition.xof2d, local185 + definition.yof2d - local60.getHeight() / 2, definition.yof2d + local176, -1L);
+		local60.drawModel(definition.yan2d, definition.zan2d, definition.xan2d, definition.xof2d, local185 + definition.yof2d - local60.getHeight() / 2, definition.yof2d + local176, -1L);
 		if (arg4 >= 1) {
 			rendered.method303(1);
 			if (arg4 >= 2) {
@@ -251,8 +251,8 @@ public final class Static164 {
 		if (arg3 && (definition.stackable == 1 || arg5 != 1) && arg5 != -1) {
 			Static256.aClass3_Sub2_Sub9_Sub1_1.method2857(Component.getShortenedAmountText(arg5), 0, 9, 16776960, 1);
 		}
-		Rasterizer.prepare(local118, local120, local122);
-		Rasterizer.method2488(local125);
+		Rasterizer.prepare(pixels, local120, local122);
+		Rasterizer.setViewportDimensions(local125);
 		Pix3D.method1908();
 		Pix3D.aBoolean136 = true;
 		return GlRenderer.enabled && !arg1 ? new GlSprite(rendered) : rendered;

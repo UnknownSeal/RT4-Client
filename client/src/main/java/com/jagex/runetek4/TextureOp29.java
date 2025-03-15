@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -61,7 +62,7 @@ public final class TextureOp29 extends TextureOp {
 			for (@Pc(11) int local11 = 0; local11 < this.aClass18Array1.length; local11++) {
 				@Pc(24) int local24 = packet.g1();
 				if (local24 == 0) {
-					this.aClass18Array1[local11] = Static9.method184(packet);
+					this.aClass18Array1[local11] = CacheArchive.method184(packet);
 				} else if (local24 == 1) {
 					this.aClass18Array1[local11] = Static21.method620(packet);
 				} else if (local24 == 2) {

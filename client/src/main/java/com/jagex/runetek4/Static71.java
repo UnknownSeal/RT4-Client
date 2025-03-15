@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.def.ItemDefinition;
@@ -31,7 +32,7 @@ public final class Static71 {
 		if (itemDefinition != null) {
 			return itemDefinition;
 		}
-		@Pc(25) byte[] bytes = Static167.aClass153_61.getfile(Static18.method554(id), Static247.method4247(id));
+		@Pc(25) byte[] bytes = CacheArchive.aClass153_61.getfile(Static18.method554(id), Static247.method4247(id));
 		itemDefinition = new ItemDefinition();
 		itemDefinition.anInt2354 = id;
 		if (bytes != null) {

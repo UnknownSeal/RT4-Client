@@ -4,7 +4,7 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.cache.def.ActorDefinition;
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -54,8 +54,8 @@ public final class NPCEntity extends PathingEntity {
 		if (this.type == null) {
 			return;
 		}
-		@Pc(29) SeqType local29 = this.primarySeqId != -1 && this.anInt3420 == 0 ? Static36.getAnimationSequence(this.primarySeqId) : null;
-		@Pc(53) SeqType local53 = this.secondarySeqId == -1 || this.secondarySeqId == this.method2681().anInt1037 && local29 != null ? null : Static36.getAnimationSequence(this.secondarySeqId);
+		@Pc(29) AnimationSequence local29 = this.primarySeqId != -1 && this.anInt3420 == 0 ? AnimationSequence.getAnimationSequence(this.primarySeqId) : null;
+		@Pc(53) AnimationSequence local53 = this.secondarySeqId == -1 || this.secondarySeqId == this.method2681().anInt1037 && local29 != null ? null : AnimationSequence.getAnimationSequence(this.secondarySeqId);
 		@Pc(74) Model tmp = this.type.method2937(this.aClass147Array3, this.anInt3388, this.anInt3407, this.anInt3373, this.anInt3360, this.anInt3425, local53, this.anInt3396, local29);
 		if (tmp == null) {
 			return;

@@ -41,13 +41,13 @@ public final class Static72 {
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "b", descriptor = "(II)Lclient!cl;")
 	public static AnimFrameset method1566(@OriginalArg(0) int arg0) {
-		@Pc(19) AnimFrameset local19 = (AnimFrameset) Static267.aClass99_37.get((long) arg0);
+		@Pc(19) AnimFrameset local19 = (AnimFrameset) Static267.skeletonCache.get((long) arg0);
 		if (local19 != null) {
 			return local19;
 		}
 		local19 = Static87.method1803(Static225.aClass153_92, Static5.aClass153_1, arg0);
 		if (local19 != null) {
-			Static267.aClass99_37.put(local19, (long) arg0);
+			Static267.skeletonCache.put(local19, (long) arg0);
 		}
 		return local19;
 	}
@@ -101,9 +101,4 @@ public final class Static72 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "a", descriptor = "(IB)V")
-	public static void method1570() {
-		Static142.aClass99_23.clear(5);
-		Static267.aClass99_37.clear(5);
-	}
 }

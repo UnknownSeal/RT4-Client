@@ -5,7 +5,7 @@ import java.io.IOException;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -37,7 +37,7 @@ public final class Static80 {
 	public static final int[] anIntArray419 = new int[] { 0, 2, 2, 2, 1, 1, 2, 2, 1, 3, 1, 1 };
 
 	@OriginalMember(owner = "runetek4.client!gf", name = "a", descriptor = "(Lclient!ve;IIB)Lclient!mm;")
-	public static ImageRGB method3613(@OriginalArg(0) Js5 arg0, @OriginalArg(2) int arg1) {
+	public static ImageRGB method3613(@OriginalArg(0) CacheArchive arg0, @OriginalArg(2) int arg1) {
 		return Static234.method4016(arg0, 0, arg1) ? Static102.method2071() : null;
 	}
 

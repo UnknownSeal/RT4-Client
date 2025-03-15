@@ -1,9 +1,10 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.dash3d.entity.Entity;
 import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -61,7 +62,7 @@ public final class Loc extends Entity {
 	private final int anInt1300;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "u", descriptor = "Lclient!tk;")
-	private SeqType aClass144_2;
+	private AnimationSequence aClass144_2;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "y", descriptor = "I")
 	private int anInt1297;
@@ -93,12 +94,12 @@ public final class Loc extends Entity {
 					local67 = local67.getVisible();
 				}
 				if (local67 != null) {
-					Static9.method181(local67, 0, this.anInt1295, 0, this.anInt1307, this.anInt1308, this.anInt1300, this.anInt1303);
+					CacheArchive.method181(local67, 0, this.anInt1295, 0, this.anInt1307, this.anInt1308, this.anInt1300, this.anInt1303);
 				}
 			}
 		}
 		if (arg6 != -1) {
-			this.aClass144_2 = Static36.getAnimationSequence(arg6);
+			this.aClass144_2 = AnimationSequence.getAnimationSequence(arg6);
 			this.anInt1297 = 0;
 			if (this.aClass144_2.anIntArray473.length <= 1) {
 				this.anInt1304 = 0;
@@ -248,7 +249,7 @@ public final class Loc extends Entity {
 			if (local69 == -1) {
 				this.aClass144_2 = null;
 			} else {
-				this.aClass144_2 = Static36.getAnimationSequence(local69);
+				this.aClass144_2 = AnimationSequence.getAnimationSequence(local69);
 			}
 			if (this.aClass144_2 != null) {
 				if (local19.randomanimframe && this.aClass144_2.replayoff != -1) {

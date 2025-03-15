@@ -12,7 +12,7 @@ import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -73,7 +73,7 @@ public final class Static4 {
 		if (arg0 == null) {
 			return -1;
 		}
-		for (@Pc(20) int local20 = 0; local20 < Static9.friendCount; local20++) {
+		for (@Pc(20) int local20 = 0; local20 < CacheArchive.friendCount; local20++) {
 			if (arg0.equalsIgnoreCase(Static122.friendName[local20])) {
 				return local20;
 			}
@@ -577,7 +577,7 @@ public final class Static4 {
 						world = Static57.in.g4rme();
 						slot = Static57.in.g2leadd();
 						if (world >> 30 == 0) {
-							@Pc(1994) SeqType local1994;
+							@Pc(1994) AnimationSequence local1994;
 							if (world >> 29 != 0) {
 								count = world & 0xFFFF;
 								@Pc(1894) NPCEntity local1894 = Static175.npcs[count];
@@ -586,7 +586,7 @@ public final class Static4 {
 										slot = -1;
 									}
 									local1245 = true;
-									if (slot != -1 && local1894.spotanimFrame != -1 && Static36.getAnimationSequence(Static34.method877(slot).animationId).priority < Static36.getAnimationSequence(Static34.method877(local1894.spotanimFrame).animationId).priority) {
+									if (slot != -1 && local1894.spotanimFrame != -1 && AnimationSequence.getAnimationSequence(Static34.method877(slot).animationId).priority < AnimationSequence.getAnimationSequence(Static34.method877(local1894.spotanimFrame).animationId).priority) {
 										local1245 = false;
 									}
 									if (local1245) {
@@ -602,7 +602,7 @@ public final class Static4 {
 										if (local1894.spotanimFrame != -1 && Static83.loopCycle == local1894.spotanimLastCycle) {
 											j = Static34.method877(local1894.spotanimFrame).animationId;
 											if (j != -1) {
-												local1994 = Static36.getAnimationSequence(j);
+												local1994 = AnimationSequence.getAnimationSequence(j);
 												if (local1994 != null && local1994.anIntArray473 != null) {
 													Static152.method2836(local1894.z, local1994, local1894.x, false, 0);
 												}
@@ -623,7 +623,7 @@ public final class Static4 {
 										slot = -1;
 									}
 									local1245 = true;
-									if (slot != -1 && local2033.spotanimFrame != -1 && Static36.getAnimationSequence(Static34.method877(slot).animationId).priority < Static36.getAnimationSequence(Static34.method877(local2033.spotanimFrame).animationId).priority) {
+									if (slot != -1 && local2033.spotanimFrame != -1 && AnimationSequence.getAnimationSequence(Static34.method877(slot).animationId).priority < AnimationSequence.getAnimationSequence(Static34.method877(local2033.spotanimFrame).animationId).priority) {
 										local1245 = false;
 									}
 									if (local1245) {
@@ -642,7 +642,7 @@ public final class Static4 {
 										if (local2033.spotanimFrame != -1 && local2033.spotanimLastCycle == Static83.loopCycle) {
 											j = Static34.method877(local2033.spotanimFrame).animationId;
 											if (j != -1) {
-												local1994 = Static36.getAnimationSequence(j);
+												local1994 = AnimationSequence.getAnimationSequence(j);
 												if (local1994 != null && local1994.anIntArray473 != null) {
 													Static152.method2836(local2033.z, local1994, local2033.x, local2033 == Static173.localPlayer, 0);
 												}
@@ -806,7 +806,7 @@ public final class Static4 {
 								local506 = Static57.in.gjstr();
 							}
 							@Pc(2834) JString displayName = Static79.decode37(username2).method3125();
-							for (j = 0; j < Static9.friendCount; j++) {
+							for (j = 0; j < CacheArchive.friendCount; j++) {
 								if (username2 == Static92.friendName37[j]) {
 									if (world != Static104.friendWorld[j]) {
 										Static104.friendWorld[j] = world;
@@ -824,17 +824,17 @@ public final class Static4 {
 									break;
 								}
 							}
-							if (displayName != null && Static9.friendCount < 200) {
-								Static92.friendName37[Static9.friendCount] = username2;
-								Static122.friendName[Static9.friendCount] = displayName;
-								Static104.friendWorld[Static9.friendCount] = world;
-								Static214.aClass100Array170[Static9.friendCount] = local506;
-								Static106.anIntArray258[Static9.friendCount] = slot;
-								Static3.aBooleanArray135[Static9.friendCount] = ignored;
-								Static9.friendCount++;
+							if (displayName != null && CacheArchive.friendCount < 200) {
+								Static92.friendName37[CacheArchive.friendCount] = username2;
+								Static122.friendName[CacheArchive.friendCount] = displayName;
+								Static104.friendWorld[CacheArchive.friendCount] = world;
+								Static214.aClass100Array170[CacheArchive.friendCount] = local506;
+								Static106.anIntArray258[CacheArchive.friendCount] = slot;
+								Static3.aBooleanArray135[CacheArchive.friendCount] = ignored;
+								CacheArchive.friendCount++;
 							}
 							Static185.anInt4369 = Static119.transmitTimer;
-							local908 = Static9.friendCount;
+							local908 = CacheArchive.friendCount;
 							while (local908 > 0) {
 								local908--;
 								@Pc(2961) boolean local2961 = true;
@@ -981,7 +981,7 @@ public final class Static4 {
 									Static176.cameraModifierEnabled[xp] = true;
 									Static222.cameraModifierJitter[xp] = world;
 									Static276.cameraModifierWobbleScale[xp] = slot;
-									CacheArchive.cameraModifierWobbleSpeed[xp] = count;
+									Class6.cameraModifierWobbleSpeed[xp] = count;
 									Static31.cameraModifierCycle[xp] = i;
 								}
 								Static164.packetType = -1;
@@ -1001,7 +1001,7 @@ public final class Static4 {
 								Static209.miscTransmitAt = Static119.transmitTimer;
 								return true;
 							} else if (Static164.packetType == 114) {
-								CacheArchive.method3654(GameShell.signLink, Static57.in, Static223.packetSize);
+								Class6.method3654(GameShell.signLink, Static57.in, Static223.packetSize);
 								Static164.packetType = -1;
 								return true;
 							} else if (Static164.packetType == 65) {

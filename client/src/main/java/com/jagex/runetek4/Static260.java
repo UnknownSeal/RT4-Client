@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -50,7 +51,7 @@ public final class Static260 {
 
 	@OriginalMember(owner = "runetek4.client!vd", name = "b", descriptor = "(IIII)Z")
 	public static boolean wallVisible(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		if (!Static9.method187(arg0, arg1, arg2)) {
+		if (!CacheArchive.method187(arg0, arg1, arg2)) {
 			return false;
 		}
 		@Pc(10) int local10 = arg1 << 7;

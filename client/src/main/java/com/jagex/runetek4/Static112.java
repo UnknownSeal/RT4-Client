@@ -35,7 +35,7 @@ public final class Static112 {
 			} else if (GlRenderer.enabled) {
 				Static46.method1182(local3, local9, local13, 20, Static40.anInt1275, 256 - Static111.anInt2910);
 			} else {
-				Rasterizer.method2484(local3, local9, local13, 20, Static40.anInt1275, 256 - Static111.anInt2910);
+				Rasterizer.drawFilledRectangleAlpha(local3, local9, local13, 20, Static40.anInt1275, 256 - Static111.anInt2910);
 			}
 		}
 		@Pc(112) int local112;
@@ -52,7 +52,7 @@ public final class Static112 {
 		if (GlRenderer.enabled) {
 			Static46.method1182(local3, local9 + 20, local13, local11 - 20, Static40.anInt1275, 256 - Static111.anInt2910);
 		} else {
-			Rasterizer.method2484(local3, local9 + 20, local13, local11 - 20, Static40.anInt1275, 256 - Static111.anInt2910);
+			Rasterizer.drawFilledRectangleAlpha(local3, local9 + 20, local13, local11 - 20, Static40.anInt1275, 256 - Static111.anInt2910);
 		}
 		local114 = Static223.anInt5032;
 		local112 = Static215.anInt4873;
@@ -64,7 +64,7 @@ public final class Static112 {
 				if (GlRenderer.enabled) {
 					Static46.method1182(local3, local219 - 13, local13, 16, Static251.anInt5457, 256 - Static232.anInt5208);
 				} else {
-					Rasterizer.method2484(local3, local219 - 13, local13, 16, Static251.anInt5457, 256 - Static232.anInt5208);
+					Rasterizer.drawFilledRectangleAlpha(local3, local219 - 13, local13, 16, Static251.anInt5457, 256 - Static232.anInt5208);
 				}
 			}
 		}

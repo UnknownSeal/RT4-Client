@@ -1,8 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.media.ImageRGB;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -22,18 +21,18 @@ public final class Static30 {
 	public static final JString aClass100_185 = Static28.parse(")3");
 
 	@OriginalMember(owner = "client!cg", name = "a", descriptor = "(ZILclient!ve;I)[Lclient!ek;")
-	private static SoftwareIndexedSprite[] method837(@OriginalArg(1) int arg0, @OriginalArg(2) Js5 arg1) {
+	private static SoftwareIndexedSprite[] method837(@OriginalArg(1) int arg0, @OriginalArg(2) CacheArchive arg1) {
 		return Static234.method4016(arg1, 0, arg0) ? Static121.method2406() : null;
 	}
 
 	@OriginalMember(owner = "client!cg", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method839(@OriginalArg(1) Js5 arg0) {
+	public static void method839(@OriginalArg(1) CacheArchive arg0) {
 		Static173.aClass3_Sub2_Sub1_Sub1Array9 = Static265.method4523(Static280.anInt5900, arg0);
 		Static213.aClass3_Sub2_Sub1Array8 = Static209.method3708(Static131.anInt3261, arg0);
 		Static116.aClass3_Sub2_Sub1Array3 = Static209.method3708(Static36.anInt1165, arg0);
 		Static219.aClass3_Sub2_Sub1Array9 = Static209.method3708(Static214.anInt5579, arg0);
 		Static138.aClass3_Sub2_Sub1Array5 = Static209.method3708(Static34.anInt1049, arg0);
-		Static276.aClass3_Sub2_Sub1Array11 = Static209.method3708(CacheArchive.anInt4741, arg0);
+		Static276.aClass3_Sub2_Sub1Array11 = Static209.method3708(Class6.anInt4741, arg0);
 		Static149.aClass3_Sub2_Sub1Array7 = Static209.method3708(Static149.anInt3551, arg0);
 		Static84.aClass3_Sub2_Sub1_4 = Static150.method2800(Static19.anInt647, arg0);
 		Static240.crossSprites = Static131.method2580(Static32.anInt1016, arg0);

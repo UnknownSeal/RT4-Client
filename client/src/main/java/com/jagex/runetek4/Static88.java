@@ -17,7 +17,6 @@ import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCLocation;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -25,7 +24,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static88 {
 
 	@OriginalMember(owner = "runetek4.client!h", name = "a", descriptor = "(Lclient!ve;Lclient!ve;Z)V")
-	public static void method1817(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
+	public static void method1817(@OriginalArg(0) com.jagex.runetek4.js5.CacheArchive arg0, @OriginalArg(1) com.jagex.runetek4.js5.CacheArchive arg1) {
 		Static86.aClass153_37 = arg0;
 		Static58.aClass153_28 = arg1;
 	}
@@ -191,7 +190,7 @@ public final class Static88 {
 						// pop_varbit
 						j = local33[scriptIndex];
 						intValueIndex--;
-						CacheArchive.method3655(j, Static254.scriptIntValues[intValueIndex]);
+						Class6.method3655(j, Static254.scriptIntValues[intValueIndex]);
 						continue;
 					}
 					if (scriptOpcode == 31) {
@@ -1544,7 +1543,7 @@ public final class Static88 {
 										continue;
 									}
 									if (scriptOpcode == 3325) {
-										Static254.scriptIntValues[intValueIndex++] = CacheArchive.members ? 1 : 0;
+										Static254.scriptIntValues[intValueIndex++] = Class6.members ? 1 : 0;
 										continue;
 									}
 									if (scriptOpcode == 3326) {
@@ -1680,14 +1679,14 @@ public final class Static88 {
 										} else if (Static166.anInt4054 == 1) {
 											Static254.scriptIntValues[intValueIndex++] = -1;
 										} else {
-											Static254.scriptIntValues[intValueIndex++] = Static9.friendCount;
+											Static254.scriptIntValues[intValueIndex++] = CacheArchive.friendCount;
 										}
 										continue;
 									}
 									if (scriptOpcode == 3601) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										if (Static166.anInt4054 == 2 && interfaceData < Static9.friendCount) {
+										if (Static166.anInt4054 == 2 && interfaceData < CacheArchive.friendCount) {
 											Static3.scriptStringValues[local26++] = Static122.friendName[interfaceData];
 											continue;
 										}
@@ -1697,7 +1696,7 @@ public final class Static88 {
 									if (scriptOpcode == 3602) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										if (Static166.anInt4054 == 2 && Static9.friendCount > interfaceData) {
+										if (Static166.anInt4054 == 2 && CacheArchive.friendCount > interfaceData) {
 											Static254.scriptIntValues[intValueIndex++] = Static104.friendWorld[interfaceData];
 											continue;
 										}
@@ -1707,7 +1706,7 @@ public final class Static88 {
 									if (scriptOpcode == 3603) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										if (Static166.anInt4054 == 2 && Static9.friendCount > interfaceData) {
+										if (Static166.anInt4054 == 2 && CacheArchive.friendCount > interfaceData) {
 											Static254.scriptIntValues[intValueIndex++] = Static106.anIntArray258[interfaceData];
 											continue;
 										}
@@ -1758,7 +1757,7 @@ public final class Static88 {
 									if (scriptOpcode == 3610) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										if (Static166.anInt4054 == 2 && Static9.friendCount > interfaceData) {
+										if (Static166.anInt4054 == 2 && CacheArchive.friendCount > interfaceData) {
 											Static3.scriptStringValues[local26++] = Static214.aClass100Array170[interfaceData];
 											continue;
 										}
@@ -1893,7 +1892,7 @@ public final class Static88 {
 									if (scriptOpcode == 3627) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										if (Static166.anInt4054 == 2 && interfaceData >= 0 && interfaceData < Static9.friendCount) {
+										if (Static166.anInt4054 == 2 && interfaceData >= 0 && interfaceData < CacheArchive.friendCount) {
 											Static254.scriptIntValues[intValueIndex++] = Static3.aBooleanArray135[interfaceData] ? 1 : 0;
 											continue;
 										}

@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.net.URL;
 import java.util.Random;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.media.Rasterizer;
@@ -195,12 +196,12 @@ public final class Static89 {
 		Static182.anInt4311 = Static83.loopCycle;
 		if (Static154.topLevelInterace != -1) {
 			Static24.anInt766 = 0;
-			Static9.method182();
+			CacheArchive.method182();
 		}
 		if (GlRenderer.enabled) {
 			Static46.method1177();
 		} else {
-			Rasterizer.method2503();
+			Rasterizer.resetBounds();
 		}
 		Static280.method4673();
 		if (Static60.aBoolean108) {
@@ -231,13 +232,13 @@ public final class Static89 {
 					if (GlRenderer.enabled) {
 						Static46.method1182(Static264.anIntArray410[local189], Static50.anIntArray133[local189], Static224.anIntArray443[local189], Static67.anIntArray320[local189], 16711935, 128);
 					} else {
-						Rasterizer.method2484(Static264.anIntArray410[local189], Static50.anIntArray133[local189], Static224.anIntArray443[local189], Static67.anIntArray320[local189], 16711935, 128);
+						Rasterizer.drawFilledRectangleAlpha(Static264.anIntArray410[local189], Static50.anIntArray133[local189], Static224.anIntArray443[local189], Static67.anIntArray320[local189], 16711935, 128);
 					}
 				} else if (Static31.aBooleanArray29[local189]) {
 					if (GlRenderer.enabled) {
 						Static46.method1182(Static264.anIntArray410[local189], Static50.anIntArray133[local189], Static224.anIntArray443[local189], Static67.anIntArray320[local189], 16711680, 128);
 					} else {
-						Rasterizer.method2484(Static264.anIntArray410[local189], Static50.anIntArray133[local189], Static224.anIntArray443[local189], Static67.anIntArray320[local189], 16711680, 128);
+						Rasterizer.drawFilledRectangleAlpha(Static264.anIntArray410[local189], Static50.anIntArray133[local189], Static224.anIntArray443[local189], Static67.anIntArray320[local189], 16711680, 128);
 					}
 				}
 			}

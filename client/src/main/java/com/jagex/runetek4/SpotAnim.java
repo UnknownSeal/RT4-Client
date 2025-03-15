@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.dash3d.entity.Entity;
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -48,7 +48,7 @@ public final class SpotAnim extends Entity {
 	public final int anInt599;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "J", descriptor = "Lclient!tk;")
-	private SeqType aClass144_1;
+	private AnimationSequence aClass144_1;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "<init>", descriptor = "(IIIIIII)V")
 	public SpotAnim(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
@@ -63,7 +63,7 @@ public final class SpotAnim extends Entity {
 			this.seqComplete = true;
 		} else {
 			this.seqComplete = false;
-			this.aClass144_1 = Static36.getAnimationSequence(local42);
+			this.aClass144_1 = AnimationSequence.getAnimationSequence(local42);
 		}
 	}
 

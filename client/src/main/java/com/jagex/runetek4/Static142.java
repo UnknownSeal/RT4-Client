@@ -15,7 +15,7 @@ public final class Static142 {
 	public static int originZ;
 
 	@OriginalMember(owner = "runetek4.client!lc", name = "e", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_23 = new NodeCache(64);
+	public static final NodeCache animationSequenceCache = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!lc", name = "l", descriptor = "I")
 	public static int anInt3482 = -1;

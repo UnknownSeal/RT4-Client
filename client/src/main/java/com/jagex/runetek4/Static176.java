@@ -6,7 +6,7 @@ import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,7 +14,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static176 {
 
 	@OriginalMember(owner = "runetek4.client!ob", name = "f", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_76;
+	public static CacheArchive aClass153_76;
 
 	@OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "[Z")
 	public static final boolean[] cameraModifierEnabled = new boolean[5];

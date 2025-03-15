@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.cache.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,7 +14,7 @@ public final class Static98 {
 	public static int anInt2512;
 
 	@OriginalMember(owner = "runetek4.client!hj", name = "m", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_42;
+	public static com.jagex.runetek4.js5.CacheArchive aClass153_42;
 
 	@OriginalMember(owner = "runetek4.client!hj", name = "d", descriptor = "Lclient!na;")
 	public static final JString HINT_HEADICONS = Static28.parse("hint_headicons");
@@ -32,7 +32,7 @@ public final class Static98 {
 		if (username == null) {
 			return false;
 		}
-		for (@Pc(12) int i = 0; i < Static9.friendCount; i++) {
+		for (@Pc(12) int i = 0; i < CacheArchive.friendCount; i++) {
 			if (username.equalsIgnoreCase(Static122.friendName[i])) {
 				return true;
 			}

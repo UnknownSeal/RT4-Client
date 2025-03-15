@@ -2,9 +2,9 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -15,7 +15,7 @@ public final class Static84 {
 	public static float aFloat10;
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "e", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_35;
+	public static CacheArchive aClass153_35;
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "j", descriptor = "I")
 	public static int anInt2257;
@@ -175,7 +175,7 @@ public final class Static84 {
 			}
 			staffModLevel = Static57.in.p4rme();
 			@Pc(573) boolean local573 = true;
-			if (chatFlags != -1 && player.spotanimFrame != -1 && Static36.getAnimationSequence(Static34.method877(chatFlags).animationId).priority < Static36.getAnimationSequence(Static34.method877(player.spotanimFrame).animationId).priority) {
+			if (chatFlags != -1 && player.spotanimFrame != -1 && AnimationSequence.getAnimationSequence(Static34.method877(chatFlags).animationId).priority < AnimationSequence.getAnimationSequence(Static34.method877(player.spotanimFrame).animationId).priority) {
 				local573 = false;
 			}
 			if (local573) {
@@ -191,7 +191,7 @@ public final class Static84 {
 				if (player.spotanimFrame != -1 && Static83.loopCycle == player.spotanimLastCycle) {
 					local24 = Static34.method877(player.spotanimFrame).animationId;
 					if (local24 != -1) {
-						@Pc(663) SeqType local663 = Static36.getAnimationSequence(local24);
+						@Pc(663) AnimationSequence local663 = AnimationSequence.getAnimationSequence(local24);
 						if (local663 != null && local663.anIntArray473 != null) {
 							Static152.method2836(player.z, local663, player.x, player == Static173.localPlayer, 0);
 						}

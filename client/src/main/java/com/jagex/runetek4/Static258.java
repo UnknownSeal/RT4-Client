@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.cache.def.ItemDefinition;
@@ -183,7 +184,7 @@ public final class Static258 {
 
 	@OriginalMember(owner = "runetek4.client!va", name = "c", descriptor = "(BI)V")
 	public static void method4444(@OriginalArg(1) int arg0) {
-		Static9.anInt172 = arg0;
+		CacheArchive.anInt172 = arg0;
 		Static91.anInt2428 = 20;
 		Static201.anInt1864 = 3;
 	}

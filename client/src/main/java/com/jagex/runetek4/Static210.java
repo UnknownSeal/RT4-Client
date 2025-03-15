@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -10,7 +10,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static210 {
 
 	@OriginalMember(owner = "runetek4.client!rb", name = "f", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_87;
+	public static CacheArchive aClass153_87;
 
 	@OriginalMember(owner = "runetek4.client!rb", name = "b", descriptor = "Lclient!sc;")
 	public static final IterableMap aClass133_21 = new IterableMap(512);

@@ -10,7 +10,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!ve")
-public final class Js5 {
+public final class CacheArchive {
 
 	@OriginalMember(owner = "client!sh", name = "k", descriptor = "Z")
 	public static final boolean RAISE_EXCEPTIONS = false;
@@ -37,7 +37,7 @@ public final class Js5 {
 	private final boolean discardUnpacked;
 
 	@OriginalMember(owner = "client!ve", name = "<init>", descriptor = "(Lclient!v;ZZ)V")
-	public Js5(@OriginalArg(0) Js5ResourceProvider arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2) {
+	public CacheArchive(@OriginalArg(0) Js5ResourceProvider arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2) {
 		this.provider = arg0;
 		this.aBoolean296 = arg1;
 		this.discardUnpacked = arg2;

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -301,7 +301,7 @@ public final class PreciseSleep {
 	}
 
 	@OriginalMember(owner = "runetek4.client!sk", name = "a", descriptor = "(Lclient!ve;I)Z")
-	public static boolean method3986(@OriginalArg(0) Js5 arg0) {
+	public static boolean method3986(@OriginalArg(0) CacheArchive arg0) {
 		return arg0.method4506(Static138.anInt3443);
 	}
 }

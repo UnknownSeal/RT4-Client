@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,7 +14,7 @@ public final class Static225 {
 	public static int originX;
 
 	@OriginalMember(owner = "runetek4.client!se", name = "l", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_92;
+	public static CacheArchive aClass153_92;
 
 	@OriginalMember(owner = "runetek4.client!se", name = "h", descriptor = "I")
 	public static int anInt5073 = -1;

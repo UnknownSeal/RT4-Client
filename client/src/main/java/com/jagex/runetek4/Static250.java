@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ItemDefinition;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -14,7 +14,7 @@ public final class Static250 {
 	public static int anInt5443;
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "r", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_101;
+	public static CacheArchive aClass153_101;
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "b", descriptor = "Z")
 	public static boolean aBoolean283 = true;

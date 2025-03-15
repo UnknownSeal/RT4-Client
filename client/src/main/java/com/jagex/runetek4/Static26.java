@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,7 +11,7 @@ public final class Static26 {
 	public static int[] anIntArray66;
 
 	@OriginalMember(owner = "client!ca", name = "Z", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_16;
+	public static CacheArchive aClass153_16;
 
 	@OriginalMember(owner = "client!ca", name = "ab", descriptor = "Z")
 	public static boolean focus;

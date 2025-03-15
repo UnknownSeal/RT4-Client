@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.cache.media.component.Component;
@@ -140,7 +141,7 @@ public final class Static54 {
 					local150 = local591.x / 32 - Static173.localPlayer.x / 32;
 					@Pc(624) long local624 = local591.name.toBase37();
 					@Pc(626) boolean local626 = false;
-					for (local239 = 0; local239 < Static9.friendCount; local239++) {
+					for (local239 = 0; local239 < CacheArchive.friendCount; local239++) {
 						if (local624 == Static92.friendName37[local239] && Static104.friendWorld[local239] != 0) {
 							local626 = true;
 							break;

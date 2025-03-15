@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -59,7 +60,7 @@ public final class Static232 {
 								if (local209 != 0) {
 									@Pc(222) LocMergeEntity local222 = Static271.get(local209 - 1);
 									if (!Static258.aBooleanArray130[local222.mapfunction]) {
-										if (local11 != -1 && local222.mapfunction == Static9.anInt172) {
+										if (local11 != -1 && local222.mapfunction == CacheArchive.anInt172) {
 											@Pc(243) Class3_Sub26 local243 = new Class3_Sub26();
 											local243.anInt4307 = local65;
 											local243.anInt4314 = local144;
@@ -77,10 +78,10 @@ public final class Static232 {
 			}
 		}
 		for (@Pc(285) Class3_Sub26 local285 = (Class3_Sub26) Static172.aClass69_97.head(); local285 != null; local285 = (Class3_Sub26) Static172.aClass69_97.next()) {
-			Rasterizer.method2502(local285.anInt4307, local285.anInt4314, 15, local11);
-			Rasterizer.method2502(local285.anInt4307, local285.anInt4314, 13, local11);
-			Rasterizer.method2502(local285.anInt4307, local285.anInt4314, 11, local11);
-			Rasterizer.method2502(local285.anInt4307, local285.anInt4314, 9, local11);
+			Rasterizer.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 15, local11);
+			Rasterizer.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 13, local11);
+			Rasterizer.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 11, local11);
+			Rasterizer.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 9, local11);
 			Static241.aClass3_Sub2_Sub1_Sub1Array13[local285.anInt4308].drawSprite(local285.anInt4307 - 7, local285.anInt4314 + -7);
 		}
 		Static172.aClass69_97.clear();

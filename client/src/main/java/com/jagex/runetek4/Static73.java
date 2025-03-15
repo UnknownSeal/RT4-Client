@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.dash3d.entity.PlayerEntity;
@@ -111,7 +112,7 @@ public final class Static73 {
 			} else {
 				return false;
 			}
-		} else if (Static9.method187(arg0, arg1, arg3)) {
+		} else if (CacheArchive.method187(arg0, arg1, arg3)) {
 			local16 = arg1 << 7;
 			local20 = arg3 << 7;
 			return Static256.method4394(local16 + 1, Static83.levelHeightMap[arg0][arg1][arg3] + arg5, local20 + 1) && Static256.method4394(local16 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg3] + arg5, local20 + 1) && Static256.method4394(local16 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg3 + 1] + arg5, local20 + 128 - 1) && Static256.method4394(local16 + 1, Static83.levelHeightMap[arg0][arg1][arg3 + 1] + arg5, local20 + 128 - 1);

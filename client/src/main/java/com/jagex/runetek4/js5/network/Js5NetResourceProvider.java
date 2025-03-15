@@ -456,7 +456,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	}
 
 	@OriginalMember(owner = "client!bg", name = "f", descriptor = "(I)I")
-	public int method538() {
+	public int getPercentLoaded() {
 		if (this.fetchIndex() == null) {
 			return this.currentRequest == null ? 0 : this.currentRequest.getPercentageComplete();
 		} else {

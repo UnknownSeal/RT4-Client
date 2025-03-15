@@ -4,7 +4,7 @@ import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -13,7 +13,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static137 {
 
 	@OriginalMember(owner = "runetek4.client!kl", name = "r", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_49;
+	public static CacheArchive aClass153_49;
 
 	@OriginalMember(owner = "runetek4.client!kl", name = "s", descriptor = "I")
 	public static int anInt3337 = 0;

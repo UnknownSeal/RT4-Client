@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -39,7 +40,7 @@ public final class Static90 {
 		if (local10 != null) {
 			return local10;
 		}
-		@Pc(21) byte[] local21 = Static167.aClass153_62.getfile(32, arg0);
+		@Pc(21) byte[] local21 = CacheArchive.aClass153_62.getfile(32, arg0);
 		local10 = new BASType();
 		if (local21 != null) {
 			local10.decode(new Packet(local21));

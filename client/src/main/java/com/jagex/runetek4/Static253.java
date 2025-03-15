@@ -1,10 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.enumtype.EnumType;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -22,7 +21,7 @@ public final class Static253 {
 	public static float aFloat36;
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "cb", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_104;
+	public static CacheArchive aClass153_104;
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "eb", descriptor = "[[[B")
 	public static byte[][][] levelTileUnderlayIds;
@@ -73,7 +72,7 @@ public final class Static253 {
 		@Pc(171) int jitter;
 		for (type = 0; type < 5; type++) {
 			if (Static176.cameraModifierEnabled[type]) {
-				jitter = (int) ((double) -Static222.cameraModifierJitter[type] + (double) (Static222.cameraModifierJitter[type] * 2 + 1) * Math.random() + Math.sin((double) Static31.cameraModifierCycle[type] * ((double) CacheArchive.cameraModifierWobbleSpeed[type] / 100.0D)) * (double) Static276.cameraModifierWobbleScale[type]);
+				jitter = (int) ((double) -Static222.cameraModifierJitter[type] + (double) (Static222.cameraModifierJitter[type] * 2 + 1) * Math.random() + Math.sin((double) Static31.cameraModifierCycle[type] * ((double) Class6.cameraModifierWobbleSpeed[type] / 100.0D)) * (double) Static276.cameraModifierWobbleScale[type]);
 				if (type == 3) {
 					Static184.cameraYaw = jitter + Static184.cameraYaw & 0x7FF;
 				}

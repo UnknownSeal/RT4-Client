@@ -1,11 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -487,7 +486,7 @@ public final class Static75 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!g", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method1635(@OriginalArg(1) Js5 arg0) {
+	public static void method1635(@OriginalArg(1) CacheArchive arg0) {
 		Static166.anInt4049 = arg0.method4482(Static18.P11_FULL);
 		Static130.anInt3161 = arg0.method4482(Static55.P12_FULL);
 		Static73.anInt2077 = arg0.method4482(Static73.B12_FULL);
@@ -496,7 +495,7 @@ public final class Static75 {
 		Static36.anInt1165 = arg0.method4482(Static260.HITBAR_DEFAULT);
 		Static214.anInt5579 = arg0.method4482(Static123.HEADICONS_PK);
 		Static34.anInt1049 = arg0.method4482(Static228.HEADICONS_PRAYER);
-		CacheArchive.anInt4741 = arg0.method4482(Static98.HINT_HEADICONS);
+		Class6.anInt4741 = arg0.method4482(Static98.HINT_HEADICONS);
 		Static149.anInt3551 = arg0.method4482(Static189.HINT_MAPMARKERS);
 		Static19.anInt647 = arg0.method4482(Static259.MAPFLAGS);
 		Static32.anInt1016 = arg0.method4482(Static86.CROSS);

@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -70,12 +70,12 @@ public final class Static241 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(ZBLclient!ve;Lclient!dd;Lclient!ve;)V")
-	public static void method4542(@OriginalArg(2) Js5 arg0, @OriginalArg(3) SoftwareFont arg1, @OriginalArg(4) Js5 arg2) {
+	public static void method4542(@OriginalArg(2) CacheArchive arg0, @OriginalArg(3) SoftwareFont arg1, @OriginalArg(4) CacheArchive arg2) {
 		Static240.aBoolean276 = true;
 		Static230.modelArchive = arg2;
-		Static167.aClass153_61 = arg0;
-		@Pc(23) int local23 = Static167.aClass153_61.capacity() - 1;
-		Static170.anInt3245 = Static167.aClass153_61.fileLength(local23) + local23 * 256;
+		com.jagex.runetek4.cache.CacheArchive.aClass153_61 = arg0;
+		@Pc(23) int local23 = com.jagex.runetek4.cache.CacheArchive.aClass153_61.capacity() - 1;
+		Static170.anInt3245 = com.jagex.runetek4.cache.CacheArchive.aClass153_61.fileLength(local23) + local23 * 256;
 		Static143.aClass100Array104 = new JString[] { null, null, null, null, LocalizedText.DROP};
 		Static269.aClass100Array87 = new JString[] { null, null, LocalizedText.TAKE, null, null };
 		Static256.aClass3_Sub2_Sub9_Sub1_1 = arg1;

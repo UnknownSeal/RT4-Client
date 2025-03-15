@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -8,19 +8,19 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static172 {
 
 	@OriginalMember(owner = "runetek4.client!nj", name = "c", descriptor = "Lclient!ve;")
-	public static Js5 gameDefinitionsCacheArchive;
+	public static CacheArchive gameDefinitionsCacheArchive;
 
 	@OriginalMember(owner = "runetek4.client!nj", name = "e", descriptor = "Lclient!va;")
 	public static MidiPcmStream aClass3_Sub3_Sub4_2;
 
     @OriginalMember(owner = "runetek4.client!nj", name = "g", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_70;
+	public static CacheArchive aClass153_70;
 
 	@OriginalMember(owner = "runetek4.client!nj", name = "j", descriptor = "[I")
 	public static int[] anIntArray366;
 
     @OriginalMember(owner = "runetek4.client!nj", name = "l", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_71;
+	public static CacheArchive aClass153_71;
 
 	@OriginalMember(owner = "runetek4.client!nj", name = "m", descriptor = "[[S")
 	public static short[][] aShortArrayArray7;

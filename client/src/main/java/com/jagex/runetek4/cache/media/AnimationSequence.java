@@ -1,4 +1,4 @@
-package com.jagex.runetek4.config;
+package com.jagex.runetek4.cache.media;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!tk")
-public final class SeqType {
+public final class AnimationSequence {
 
 	@OriginalMember(owner = "client!tk", name = "g", descriptor = "[I")
 	public int[] anIntArray473;
@@ -63,6 +63,29 @@ public final class SeqType {
 
 	@OriginalMember(owner = "client!tk", name = "L", descriptor = "Z")
 	public boolean aBoolean280 = false;
+
+	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "a", descriptor = "(IB)Lclient!tk;")
+	public static AnimationSequence getAnimationSequence(@OriginalArg(0) int animationId) {
+		@Pc(17) AnimationSequence animationSequence = (AnimationSequence) Static142.animationSequenceCache.get((long) animationId);
+		if (animationSequence != null) {
+			return animationSequence;
+		}
+		@Pc(32) byte[] is = Static243.aClass153_98.getfile(BZip2State.method3389(animationId), Static118.method2356(animationId));
+		animationSequence = new AnimationSequence();
+		animationSequence.anInt5361 = animationId;
+		if (is != null) {
+			animationSequence.decode(new Packet(is));
+		}
+		animationSequence.postDecode();
+		Static142.animationSequenceCache.put(animationSequence, (long) animationId);
+		return animationSequence;
+	}
+
+	@OriginalMember(owner = "runetek4.client!fl", name = "a", descriptor = "(IB)V")
+	public static void clearAnimationCache() {
+		Static142.animationSequenceCache.clear(5);
+		Static267.skeletonCache.clear(5);
+	}
 
 	@OriginalMember(owner = "client!tk", name = "a", descriptor = "(Lclient!wa;B)V")
 	public void decode(@OriginalArg(0) Packet packet) {

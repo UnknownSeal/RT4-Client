@@ -5,7 +5,7 @@ import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.game.config.bastype.BASType;
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.game.world.entity.PlayerModel;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -197,8 +197,8 @@ public final class PlayerEntity extends PathingEntity {
 		if (this.model == null) {
 			return;
 		}
-		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? Static36.getAnimationSequence(this.primarySeqId) : null;
-		@Pc(54) SeqType local54 = this.secondarySeqId == -1 || this.lowMemory || this.secondarySeqId == this.method2681().anInt1037 && local25 != null ? null : Static36.getAnimationSequence(this.secondarySeqId);
+		@Pc(25) AnimationSequence local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? AnimationSequence.getAnimationSequence(this.primarySeqId) : null;
+		@Pc(54) AnimationSequence local54 = this.secondarySeqId == -1 || this.lowMemory || this.secondarySeqId == this.method2681().anInt1037 && local25 != null ? null : AnimationSequence.getAnimationSequence(this.secondarySeqId);
 		@Pc(76) Model local76 = this.model.method1954(this.aClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
 		@Pc(79) int local79 = Static198.method1029();
 		if (GlRenderer.enabled && Static238.anInt5316 < 96 && local79 > 50) {

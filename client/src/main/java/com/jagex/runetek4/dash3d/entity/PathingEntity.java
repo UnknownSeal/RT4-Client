@@ -1,6 +1,7 @@
 package com.jagex.runetek4.dash3d.entity;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -269,7 +270,7 @@ public abstract class PathingEntity extends Entity {
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(IIIIZ)V")
 	public final void teleport(@OriginalArg(1) int arg0, @OriginalArg(2) int x, @OriginalArg(3) int z, @OriginalArg(4) boolean jump) {
-		if (this.primarySeqId != -1 && Static36.getAnimationSequence(this.primarySeqId).anInt5349 == 1) {
+		if (this.primarySeqId != -1 && AnimationSequence.getAnimationSequence(this.primarySeqId).anInt5349 == 1) {
 			this.primarySeqId = -1;
 		}
 		if (!jump) {
@@ -310,7 +311,7 @@ public abstract class PathingEntity extends Entity {
 			local10--;
 			local15++;
 		}
-		if (this.primarySeqId != -1 && Static36.getAnimationSequence(this.primarySeqId).anInt5349 == 1) {
+		if (this.primarySeqId != -1 && AnimationSequence.getAnimationSequence(this.primarySeqId).anInt5349 == 1) {
 			this.primarySeqId = -1;
 		}
 		if (this.pathLength < 9) {
