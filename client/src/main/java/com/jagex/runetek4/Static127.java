@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.io.UnsupportedEncodingException;
 
 import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;

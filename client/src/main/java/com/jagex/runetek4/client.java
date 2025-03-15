@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.GregorianCalendar;
 
 import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.CacheFileChannel;
 import com.jagex.runetek4.core.io.Packet;
@@ -65,11 +66,11 @@ public final class client extends GameShell {
 			worldListId = Integer.parseInt(arg0[0]);
 			modeWhere = 2;
 			if (arg0[1].equals("live")) {
-				ItemDefinition.modeWhat = 0;
+				com.jagex.runetek4.cache.def.ItemDefinition.modeWhat = 0;
 			} else if (arg0[1].equals("rc")) {
-				ItemDefinition.modeWhat = 1;
+				com.jagex.runetek4.cache.def.ItemDefinition.modeWhat = 1;
 			} else if (arg0[1].equals("wip")) {
-				ItemDefinition.modeWhat = 2;
+				com.jagex.runetek4.cache.def.ItemDefinition.modeWhat = 2;
 			} else {
 				Game.printHelp("modewhat");
 			}
@@ -104,7 +105,7 @@ public final class client extends GameShell {
 			Static47.aClass100_991 = Static186.aClass100_827;
 			@Pc(146) client local146 = new client();
 			Static215.aClient1 = local146;
-			local146.method936(ItemDefinition.modeWhat + 32, "runescape");
+			local146.method936(com.jagex.runetek4.cache.def.ItemDefinition.modeWhat + 32, "runescape");
 			Static39.frame.setLocation(40, 40);
 		} catch (@Pc(167) Exception local167) {
 			Static89.report(null, local167);
@@ -325,9 +326,9 @@ public final class client extends GameShell {
 		if (modeWhere < 0 || modeWhere > 1) {
 			modeWhere = 0;
 		}
-		ItemDefinition.modeWhat = Integer.parseInt(this.getParameter("modewhat"));
-		if (ItemDefinition.modeWhat < 0 || ItemDefinition.modeWhat > 2) {
-			ItemDefinition.modeWhat = 0;
+		com.jagex.runetek4.cache.def.ItemDefinition.modeWhat = Integer.parseInt(this.getParameter("modewhat"));
+		if (com.jagex.runetek4.cache.def.ItemDefinition.modeWhat < 0 || com.jagex.runetek4.cache.def.ItemDefinition.modeWhat > 2) {
+			com.jagex.runetek4.cache.def.ItemDefinition.modeWhat = 0;
 		}
 		@Pc(50) String local50 = this.getParameter("advertsuppressed");
 		if (local50 != null && local50.equals("1")) {
@@ -383,7 +384,7 @@ public final class client extends GameShell {
 			Static178.aBoolean203 = false;
 		}
 		Static215.aClient1 = this;
-		this.method937(ItemDefinition.modeWhat + 32);
+		this.method937(com.jagex.runetek4.cache.def.ItemDefinition.modeWhat + 32);
 	}
 
 	@OriginalMember(owner = "client!client", name = "g", descriptor = "(I)V")
@@ -393,7 +394,7 @@ public final class client extends GameShell {
 		js5CacheQueue = new Js5CacheQueue();
 		js5NetQueue = new Js5NetQueue();
 
-		if (ItemDefinition.modeWhat != 0) {
+		if (com.jagex.runetek4.cache.def.ItemDefinition.modeWhat != 0) {
 			Static51.aByteArrayArray8 = new byte[50][];
 		}
 

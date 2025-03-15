@@ -2,6 +2,7 @@ package com.jagex.runetek4.dash3d.entity;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.def.ActorDefinition;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.config.SeqType;

@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.enumtype.EnumType;
 import com.jagex.runetek4.js5.Js5;

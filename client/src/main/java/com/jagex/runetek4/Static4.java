@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.io.IOException;
 
 import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
@@ -480,7 +481,7 @@ public final class Static4 {
 							Static5.method34();
 						}
 						Static154.topLevelInterace = ii;
-						ItemDefinition.method1753(ii);
+						com.jagex.runetek4.cache.def.ItemDefinition.method1753(ii);
 						Static210.method3712(false);
 						Static74.method1626(Static154.topLevelInterace);
 						for (slot = 0; slot < 100; slot++) {
@@ -1624,12 +1625,12 @@ public final class Static4 {
 		if (Static44.aBoolean83 && Static146.aBoolean174) {
 			@Pc(30) int local30 = Static215.anInt4873;
 			local30 -= Static246.anInt5388;
-			if (ItemDefinition.anInt2225 > local30) {
-				local30 = ItemDefinition.anInt2225;
+			if (com.jagex.runetek4.cache.def.ItemDefinition.anInt2225 > local30) {
+				local30 = com.jagex.runetek4.cache.def.ItemDefinition.anInt2225;
 			}
 			@Pc(41) int local41 = Static223.anInt5032;
-			if (ItemDefinition.anInt2225 + aClass13_1.anInt445 < local30 - -Static105.aClass13_14.anInt445) {
-				local30 = ItemDefinition.anInt2225 + aClass13_1.anInt445 - Static105.aClass13_14.anInt445;
+			if (com.jagex.runetek4.cache.def.ItemDefinition.anInt2225 + aClass13_1.anInt445 < local30 - -Static105.aClass13_14.anInt445) {
+				local30 = com.jagex.runetek4.cache.def.ItemDefinition.anInt2225 + aClass13_1.anInt445 - Static105.aClass13_14.anInt445;
 			}
 			local41 -= Static165.anInt4035;
 			if (local41 < Static228.anInt5103) {

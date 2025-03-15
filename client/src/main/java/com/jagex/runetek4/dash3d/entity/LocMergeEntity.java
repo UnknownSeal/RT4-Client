@@ -1,6 +1,7 @@
 package com.jagex.runetek4.dash3d.entity;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.config.SeqType;

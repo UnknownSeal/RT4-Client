@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.config.SeqType;
@@ -165,11 +166,11 @@ public final class Static87 {
 							}
 							local114 = local164;
 							local166 -= Static246.anInt5388;
-							if (ItemDefinition.anInt2225 > local166) {
-								local166 = ItemDefinition.anInt2225;
+							if (com.jagex.runetek4.cache.def.ItemDefinition.anInt2225 > local166) {
+								local166 = com.jagex.runetek4.cache.def.ItemDefinition.anInt2225;
 							}
-							if (Static4.aClass13_1.anInt445 + ItemDefinition.anInt2225 < local30.anInt445 + local166) {
-								local166 = Static4.aClass13_1.anInt445 + ItemDefinition.anInt2225 - local30.anInt445;
+							if (Static4.aClass13_1.anInt445 + com.jagex.runetek4.cache.def.ItemDefinition.anInt2225 < local30.anInt445 + local166) {
+								local166 = Static4.aClass13_1.anInt445 + com.jagex.runetek4.cache.def.ItemDefinition.anInt2225 - local30.anInt445;
 							}
 							local123 = local166;
 						}
@@ -905,7 +906,7 @@ public final class Static87 {
 			Static72.orbitCameraPitch = 383;
 		}
 		Static57.orbitCameraYaw &= 0x7FF;
-		@Pc(33) int local33 = ItemDefinition.anInt2223 >> 7;
+		@Pc(33) int local33 = com.jagex.runetek4.cache.def.ItemDefinition.anInt2223 >> 7;
 		@Pc(37) int local37 = Static111.anInt2900 >> 7;
 		@Pc(43) int local43 = Static207.getHeightmapY(Static55.currentLevel, ItemDefinition.anInt2223, Static111.anInt2900);
 		@Pc(45) int local45 = 0;

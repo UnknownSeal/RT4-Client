@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.component.Component;
