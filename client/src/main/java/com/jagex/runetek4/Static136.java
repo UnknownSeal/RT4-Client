@@ -122,8 +122,8 @@ public final class Static136 {
 			Static30.anInt978 = 127;
 		}
 		if (local21 >= 1) {
-			Static114.anInt5831 = arg0.g2();
-			Static22.anInt729 = arg0.g2();
+			Preferences.fullScreenWidth = arg0.g2();
+			Preferences.fullScreenHeight = arg0.g2();
 		}
 		if (local21 >= 3 && local21 < 6) {
 			arg0.g1();
@@ -139,7 +139,7 @@ public final class Static136 {
 			Static164.anInt3988 = arg0.g4();
 		}
 		if (local21 >= 6) {
-			Static214.anInt5581 = arg0.g1();
+			Preferences.favoriteWorlds = arg0.g1();
 		}
 		if (local21 >= 7) {
 			Static164.aBoolean191 = arg0.g1() == 1;

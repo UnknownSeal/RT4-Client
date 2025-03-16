@@ -50,14 +50,14 @@ public final class Static80 {
 		Static99.aBoolean143 = true;
 		Static220.aBoolean244 = true;
 		Static102.anInt2679 = 0;
-		Static22.anInt729 = 0;
+		Preferences.fullScreenHeight = 0;
 		Static250.aBoolean283 = true;
 		Static11.aBoolean15 = true;
 		Static15.lowMemory = true;
 		Static30.anInt978 = 127;
 		Static71.aBoolean107 = true;
 		Static209.aBoolean240 = true;
-		Static114.anInt5831 = 0;
+		Preferences.fullScreenWidth = 0;
 		Static139.anInt3451 = 2;
 		Static159.aBoolean189 = true;
 		Static178.highDetailLighting = true;
@@ -77,7 +77,7 @@ public final class Static80 {
 		Static64.aBoolean111 = true;
 		Static164.aBoolean191 = false;
 		Static127.aBoolean159 = false;
-		Static214.anInt5581 = 0;
+		Preferences.favoriteWorlds = 0;
 		try {
 			@Pc(78) PrivilegedRequest local78 = arg0.method5112("runescape");
 			while (local78.status == 0) {

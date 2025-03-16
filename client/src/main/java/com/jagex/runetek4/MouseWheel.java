@@ -12,7 +12,7 @@ public abstract class MouseWheel {
 	public abstract int method3287();
 
 	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(ZLjava/awt/runetek4.Component;)V")
-	public abstract void method3291(@OriginalArg(1) Component arg0);
+	public abstract void stop(@OriginalArg(1) Component arg0);
 
 	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(Ljava/awt/runetek4.Component;I)V")
 	public abstract void start(@OriginalArg(0) Component arg0);

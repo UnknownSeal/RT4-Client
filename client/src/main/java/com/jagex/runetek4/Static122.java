@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static122 {
 
-	@OriginalMember(owner = "runetek4.client!jh", name = "c", descriptor = "I")
-	public static int frameHei;
-
 	@OriginalMember(owner = "runetek4.client!jh", name = "n", descriptor = "Lclient!bd;")
 	public static QuickChatPhrase aQuickChatPhrase_1;
 

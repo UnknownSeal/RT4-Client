@@ -56,7 +56,7 @@ public final class Static127 {
 		} else {
 			Game.processGameStatus(25);
 		}
-		Static114.method4636(true, LocalizedText.LOADING);
+		Font.drawTextOnScreen(true, LocalizedText.LOADING);
 		@Pc(53) int local53 = Static142.originZ;
 		@Pc(55) int local55 = Static225.originX;
 		Static142.originZ = arg1 * 8 - 48;
@@ -338,7 +338,7 @@ public final class Static127 {
 			}
 			if (chatTyped.startsWith(Static241.SETPARTICLES)) {
 				Static76.method1645(chatTyped.substring(15).method3132());
-				Static203.method3663(GameShell.signLink);
+				Preferences.write(GameShell.signLink);
 				Static18.sentToServer = false;
 			}
 			if (chatTyped.startsWith(ObjTypeList.FPS) && client.modeWhere != 0) {

@@ -119,8 +119,8 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.p1(Static249.aBoolean282 ? 1 : 0);
 				Static17.aClass3_Sub15_Sub1_2.p1(1);
 				Static17.aClass3_Sub15_Sub1_2.p1(Static144.method2736());
-				Static17.aClass3_Sub15_Sub1_2.p2(Static48.canvasWidth);
-				Static17.aClass3_Sub15_Sub1_2.p2(Static254.canvasHeigth);
+				Static17.aClass3_Sub15_Sub1_2.p2(GameShell.canvasWidth);
+				Static17.aClass3_Sub15_Sub1_2.p2(GameShell.canvasHeigth);
 				Static17.aClass3_Sub15_Sub1_2.p1(Static186.antialiasingMode);
 				Static140.method2705(Static17.aClass3_Sub15_Sub1_2);
 				Static17.aClass3_Sub15_Sub1_2.pjstr(Static47.aClass100_991);
@@ -249,12 +249,12 @@ public final class Static216 {
 				if (!Static249.aBoolean282) {
 					if (Static124.aBoolean157 && !Static25.aBoolean57 || Class6.members) {
 						try {
-							Static167.aClass100_781.method3157(GameShell.signLink.anApplet2);
+							Static167.aClass100_781.method3157(GameShell.signLink.applet);
 						} catch (@Pc(910) Throwable local910) {
 						}
 					} else {
 						try {
-							Static56.aClass100_380.method3157(GameShell.signLink.anApplet2);
+							Static56.aClass100_380.method3157(GameShell.signLink.applet);
 						} catch (@Pc(920) Throwable local920) {
 						}
 					}

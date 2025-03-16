@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import java.awt.Frame;
-
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.media.renderable.Renderable;
 import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
@@ -14,9 +12,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static69 {
-
-	@OriginalMember(owner = "runetek4.client!fh", name = "Y", descriptor = "Ljava/awt/Frame;")
-	public static Frame aFrame2;
 
 	@OriginalMember(owner = "runetek4.client!fh", name = "cb", descriptor = "Lsignlink!ll;")
 	public static SignLink aClass213_4;

@@ -22,7 +22,7 @@ public final class BufferedImageFrameBuffer extends FrameBuffer {
 
 	@OriginalMember(owner = "runetek4.client!ti", name = "a", descriptor = "(IILjava/awt/Graphics;I)V")
 	@Override
-	public final void method4186(@OriginalArg(2) Graphics arg0) {
+	public final void draw(@OriginalArg(2) Graphics arg0) {
 		arg0.drawImage(this.anImage4, 0, 0, this.aComponent1);
 	}
 

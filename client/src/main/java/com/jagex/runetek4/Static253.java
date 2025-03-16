@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.enumtype.EnumType;
 import com.jagex.runetek4.js5.CacheArchive;
@@ -170,7 +171,7 @@ public final class Static253 {
 			} else {
 				Rasterizer.drawFilledRectangle(arg2, arg4, arg3, arg0, 0);
 			}
-			Static114.method4636(false, LocalizedText.LOADING);
+			Font.drawTextOnScreen(false, LocalizedText.LOADING);
 		}
 		if (!arg1 && !Static19.aBoolean43 && !Static60.aBoolean108 && arg2 <= Static155.anInt3751 && arg3 + arg2 > Static155.anInt3751 && arg4 <= Static60.anInt1892 && arg0 + arg4 > Static60.anInt1892) {
 			Static176.method3304(arg4, arg3, arg0, arg2, Static60.anInt1892, Static155.anInt3751);

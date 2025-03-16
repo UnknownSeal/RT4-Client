@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static260 {
 
 	@OriginalMember(owner = "runetek4.client!vd", name = "w", descriptor = "Lclient!vk;")
-	public static FrameBuffer aClass27_2;
+	public static FrameBuffer frameBuffer;
 
 	@OriginalMember(owner = "runetek4.client!vd", name = "v", descriptor = "Lclient!na;")
 	public static final JString HITBAR_DEFAULT = Static28.parse("hitbar_default");

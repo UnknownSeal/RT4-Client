@@ -2928,12 +2928,12 @@ public final class Static88 {
 														interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 														interfaceData = Static254.scriptIntValues[intValueIndex];
 														Static241.method4540(false, 3, interfaceData, interfaceType);
-														Static254.scriptIntValues[intValueIndex++] = Static69.aFrame2 == null ? 0 : 1;
+														Static254.scriptIntValues[intValueIndex++] = GameShell.fullScreenFrame == null ? 0 : 1;
 														continue;
 													}
 													if (scriptOpcode == 5301) {
-														if (Static69.aFrame2 != null) {
-															Static241.method4540(false, Static214.anInt5581, -1, -1);
+														if (GameShell.fullScreenFrame != null) {
+															Static241.method4540(false, Preferences.favoriteWorlds, -1, -1);
 														}
 														continue;
 													}
@@ -2951,8 +2951,8 @@ public final class Static88 {
 														continue;
 													}
 													if (scriptOpcode == 5305) {
-														interfaceType = Static22.anInt729;
-														interfaceData = Static114.anInt5831;
+														interfaceType = Preferences.fullScreenHeight;
+														interfaceData = Preferences.fullScreenWidth;
 														childCount = -1;
 														@Pc(7833) DisplayMode[] local7833 = DisplayMode.getModes();
 														for (start = 0; start < local7833.length; start++) {
@@ -2979,7 +2979,7 @@ public final class Static88 {
 														continue;
 													}
 													if (scriptOpcode == 5308) {
-														Static254.scriptIntValues[intValueIndex++] = Static214.anInt5581;
+														Static254.scriptIntValues[intValueIndex++] = Preferences.favoriteWorlds;
 														continue;
 													}
 													if (scriptOpcode == 5309) {
@@ -2988,8 +2988,8 @@ public final class Static88 {
 														if (interfaceData < 0 || interfaceData > 2) {
 															interfaceData = 0;
 														}
-														Static214.anInt5581 = interfaceData;
-														Static203.method3663(GameShell.signLink);
+														Preferences.favoriteWorlds = interfaceData;
+														Preferences.write(GameShell.signLink);
 														continue;
 													}
 												} else if (scriptOpcode < 5500) {
@@ -3047,10 +3047,10 @@ public final class Static88 {
 														continue;
 													}
 													if (scriptOpcode == 5411) {
-														if (Static69.aFrame2 != null) {
-															Static241.method4540(false, Static214.anInt5581, -1, -1);
+														if (GameShell.fullScreenFrame != null) {
+															Static241.method4540(false, Preferences.favoriteWorlds, -1, -1);
 														}
-														if (Static39.frame == null) {
+														if (GameShell.frame == null) {
 															Static169.openUrl(Static15.method479(), false);
 														} else {
 															System.exit(0);
@@ -3077,15 +3077,15 @@ public final class Static88 {
 														continue;
 													}
 													if (scriptOpcode == 5421) {
-														if (Static69.aFrame2 != null) {
-															Static241.method4540(false, Static214.anInt5581, -1, -1);
+														if (GameShell.fullScreenFrame != null) {
+															Static241.method4540(false, Preferences.favoriteWorlds, -1, -1);
 														}
 														intValueIndex--;
 														local1552 = Static254.scriptIntValues[intValueIndex] == 1;
 														local26--;
 														chatTyped = Static3.scriptStringValues[local26];
 														@Pc(8356) JString local8356 = Static34.method882(new JString[] { Static15.method479(), chatTyped });
-														if (Static39.frame != null || local1552 && SignLink.anInt5928 != 3 && SignLink.osName.startsWith("win") && !Static178.aBoolean203) {
+														if (GameShell.frame != null || local1552 && SignLink.anInt5928 != 3 && SignLink.osName.startsWith("win") && !Static178.aBoolean203) {
 															Static164.newTab = local1552;
 															Static175.url = local8356;
 															Static33.openUrlRequest = GameShell.signLink.method5131(new String(local8356.method3148(), "ISO-8859-1"));
@@ -3331,7 +3331,7 @@ public final class Static88 {
 															}
 														}
 														Static269.method2172();
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3341,7 +3341,7 @@ public final class Static88 {
 														Static90.method1854();
 														Static145.method2742();
 														Static269.method2218();
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3349,7 +3349,7 @@ public final class Static88 {
 														intValueIndex--;
 														Static80.aBoolean231 = Static254.scriptIntValues[intValueIndex] == 1;
 														Static269.method2218();
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3357,7 +3357,7 @@ public final class Static88 {
 														intValueIndex--;
 														Static250.aBoolean283 = Static254.scriptIntValues[intValueIndex] == 1;
 														Static145.method2742();
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3365,35 +3365,35 @@ public final class Static88 {
 														intValueIndex--;
 														Static53.aBoolean99 = Static254.scriptIntValues[intValueIndex] == 1;
 														((Js5GlTextureProvider) Pix3D.anInterface1_2).method3245(!Static53.aBoolean99);
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
 													if (scriptOpcode == 6007) {
 														intValueIndex--;
 														Static15.lowMemory = Static254.scriptIntValues[intValueIndex] == 1;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
 													if (scriptOpcode == 6008) {
 														intValueIndex--;
 														Static11.aBoolean15 = Static254.scriptIntValues[intValueIndex] == 1;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
 													if (scriptOpcode == 6009) {
 														intValueIndex--;
 														Static159.aBoolean189 = Static254.scriptIntValues[intValueIndex] == 1;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
 													if (scriptOpcode == 6010) {
 														intValueIndex--;
 														Static209.aBoolean240 = Static254.scriptIntValues[intValueIndex] == 1;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3404,7 +3404,7 @@ public final class Static88 {
 															interfaceData = 0;
 														}
 														Static139.anInt3451 = interfaceData;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3431,7 +3431,7 @@ public final class Static88 {
 															}
 														}
 														Static145.method2742();
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3441,7 +3441,7 @@ public final class Static88 {
 														if (GlRenderer.enabled) {
 															Static145.method2742();
 														}
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3451,7 +3451,7 @@ public final class Static88 {
 														if (GlRenderer.enabled) {
 															Static86.method1799();
 														}
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3471,7 +3471,7 @@ public final class Static88 {
 														intValueIndex--;
 														Static99.aBoolean143 = Static254.scriptIntValues[intValueIndex] == 1;
 														Static211.method930();
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3485,7 +3485,7 @@ public final class Static88 {
 															interfaceData = 127;
 														}
 														Static125.anInt3104 = interfaceData;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3510,7 +3510,7 @@ public final class Static88 {
 															}
 															Static12.anInt391 = interfaceData;
 														}
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3524,7 +3524,7 @@ public final class Static88 {
 															interfaceData = 127;
 														}
 														Static30.anInt978 = interfaceData;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3549,7 +3549,7 @@ public final class Static88 {
 															interfaceData = 0;
 														}
 														Static76.method1645(interfaceData);
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														Static254.scriptIntValues[intValueIndex++] = local1552 ? 0 : 1;
 														continue;
@@ -3561,13 +3561,13 @@ public final class Static88 {
 															interfaceData = 0;
 														}
 														Static102.anInt2679 = interfaceData;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														continue;
 													}
 													if (scriptOpcode == 6028) {
 														intValueIndex--;
 														Static64.aBoolean111 = Static254.scriptIntValues[intValueIndex] != 0;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														continue;
 													}
 												} else if (scriptOpcode < 6200) {
@@ -3845,7 +3845,7 @@ public final class Static88 {
 													if (scriptOpcode == 6504) {
 														intValueIndex--;
 														Static164.anInt3988 = Static254.scriptIntValues[intValueIndex];
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														continue;
 													}
 													if (scriptOpcode == 6505) {
@@ -3885,7 +3885,7 @@ public final class Static88 {
 													if (scriptOpcode == 6600) {
 														intValueIndex--;
 														Static33.aBoolean63 = Static254.scriptIntValues[intValueIndex] == 1;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														continue;
 													}
 													if (scriptOpcode == 6601) {

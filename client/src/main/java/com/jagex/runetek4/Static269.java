@@ -257,7 +257,7 @@ public final class Static269 {
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(IIIII)V")
 	public static void method2225(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		if (Static41.anInt1309 < 100) {
-			Static186.method3413();
+			Preferences.method3413();
 		}
 		if (GlRenderer.enabled) {
 			Static46.method1187(arg0, arg1, arg0 + arg3, arg2 + arg1);

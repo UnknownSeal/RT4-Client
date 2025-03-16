@@ -15,9 +15,6 @@ public final class Static72 {
 	@OriginalMember(owner = "runetek4.client!fl", name = "D", descriptor = "[[I")
 	public static int[][] anIntArrayArray14;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "U", descriptor = "I")
-	public static int frameWid;
-
 	@OriginalMember(owner = "runetek4.client!fl", name = "s", descriptor = "I")
 	public static int orbitCameraPitch = 128;
 

@@ -48,14 +48,14 @@ public final class Static181 {
 		if (GlRenderer.enabled) {
 			Static46.method1184();
 		} else {
-			Rasterizer.method2492();
+			Rasterizer.clear();
 		}
 		Static78.aClass3_Sub2_Sub1_3 = Static130.method2514(arg0, Static262.anInt5754);
-		@Pc(20) int local20 = Static254.canvasHeigth;
+		@Pc(20) int local20 = GameShell.canvasHeigth;
 		@Pc(26) int local26 = local20 * 956 / 503;
-		Static78.aClass3_Sub2_Sub1_3.method1419((Static48.canvasWidth - local26) / 2, 0, local26, local20);
+		Static78.aClass3_Sub2_Sub1_3.method1419((GameShell.canvasWidth - local26) / 2, 0, local26, local20);
 		Static243.aClass36_1 = Static40.method1010(Static136.anInt3322, arg0);
-		Static243.aClass36_1.drawImage(Static48.canvasWidth / 2 - Static243.aClass36_1.anInt4270 / 2, 18);
+		Static243.aClass36_1.drawImage(GameShell.canvasWidth / 2 - Static243.aClass36_1.anInt4270 / 2, 18);
 		Static18.aBoolean40 = true;
 	}
 

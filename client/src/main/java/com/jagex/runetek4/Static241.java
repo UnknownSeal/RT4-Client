@@ -47,7 +47,7 @@ public final class Static241 {
 		if (arg0 && arg1 > 0) {
 			local44 = true;
 		}
-		Static197.method3560(arg0, arg1, local44, local4, arg2, arg3);
+		DisplayMode.setWindowMode(arg0, arg1, local44, local4, arg2, arg3);
 	}
 
 	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(IIBIIII)I")

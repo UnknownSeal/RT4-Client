@@ -15,9 +15,6 @@ public final class Static215 {
 	@OriginalMember(owner = "runetek4.client!rh", name = "h", descriptor = "Lclient!rk;")
 	public static Font aClass3_Sub2_Sub9_32;
 
-	@OriginalMember(owner = "runetek4.client!rh", name = "j", descriptor = "Lclient!runetek4.client;")
-	public static client aClient1;
-
 	@OriginalMember(owner = "runetek4.client!rh", name = "e", descriptor = "Lclient!ce;")
 	public static final NodeQueue aClass16_9 = new NodeQueue();
 

@@ -65,7 +65,7 @@ public final class Static176 {
 			}
 			@Pc(182) JString local182 = Static34.method882(new JString[] { Static115.aClass100_582, local3.hostname, local62, Static279.aClass100_1107, Static123.method2423(Static141.anInt3470), aClass100_801, Static123.method2423(Static204.anInt4760), local89, Static139.aClass100_659, Static150.aBoolean175 ? Static30.aClass100_184 : Static260.aClass100_945, Static60.aClass100_420, ClientScriptRunner.aBoolean254 ? Static30.aClass100_184 : Static260.aClass100_945, Static198.aClass100_260, Static249.aBoolean282 ? Static30.aClass100_184 : Static260.aClass100_945 });
 			try {
-				Static215.aClient1.getAppletContext().showDocument(local182.method3107(), "_self");
+				client.instance.getAppletContext().showDocument(local182.method3107(), "_self");
 				return true;
 			} catch (@Pc(191) Exception local191) {
 				return false;

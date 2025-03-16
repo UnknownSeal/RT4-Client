@@ -564,7 +564,7 @@ public final class Static1 {
 			if (GlRenderer.enabled) {
 				Rasterizer.destinationPixels = null;
 			} else {
-				Static260.aClass27_2.method4189();
+				Static260.frameBuffer.method4189();
 			}
 		}
 		Static70.aClass3_Sub2_Sub1_2.method1415(arg0, arg3);

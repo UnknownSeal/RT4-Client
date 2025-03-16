@@ -50,7 +50,7 @@ public final class Static267 {
 	public static boolean method4527() {
 		if (Static150.aBoolean175) {
 			try {
-				return !((Boolean) Static119.SHOWINGVIDEOAD.method3157(GameShell.signLink.anApplet2));
+				return !((Boolean) Static119.SHOWINGVIDEOAD.method3157(GameShell.signLink.applet));
 			} catch (@Pc(21) Throwable local21) {
 			}
 		}

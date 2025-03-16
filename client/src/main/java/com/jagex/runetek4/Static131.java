@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import java.awt.Component;
-
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -131,20 +129,6 @@ public final class Static131 {
 			local7[local13] = arg6.method1553(arg7, local393, local408, local400, local115, local123, local107);
 		}
 		arg6.method1557(local7);
-	}
-
-	@OriginalMember(owner = "runetek4.client!kd", name = "a", descriptor = "(IIZLjava/awt/runetek4.Component;)Lclient!vk;")
-	public static FrameBuffer method2579(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) Component arg2) {
-		try {
-			@Pc(12) Class local12 = Class.forName("com.jagex.runetek4.BufferedImageFrameBuffer");
-			@Pc(16) FrameBuffer local16 = (FrameBuffer) local12.getDeclaredConstructor().newInstance();
-			local16.method4192(arg0, arg1, arg2);
-			return local16;
-		} catch (@Pc(25) Throwable local25) {
-			@Pc(29) ImageProducerFrameBuffer local29 = new ImageProducerFrameBuffer();
-			local29.method4192(arg0, arg1, arg2);
-			return local29;
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!kd", name = "a", descriptor = "(IIILclient!ve;)[Lclient!qf;")

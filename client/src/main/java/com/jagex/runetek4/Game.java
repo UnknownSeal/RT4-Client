@@ -419,7 +419,7 @@ public class Game {
         // WorldMap.component
         Static24.component = null;
         if (Static154.topLevelInterace != -1) {
-            Static57.method1320(0, 0, 0, Static48.canvasWidth, Static154.topLevelInterace, 0, Static254.canvasHeigth);
+            Static57.method1320(0, 0, 0, GameShell.canvasWidth, Static154.topLevelInterace, 0, GameShell.canvasHeigth);
         }
         Static119.transmitTimer++;
         while (true) {
@@ -916,7 +916,7 @@ public class Game {
             Static124.gameServerSocket = null;
         }
         Static217.method3768();
-        Static65.method1500();
+        SceneGraph.clear();
         @Pc(19) int local19;
         for (local19 = 0; local19 < 4; local19++) {
             Static148.levelCollisionMap[local19].reset();

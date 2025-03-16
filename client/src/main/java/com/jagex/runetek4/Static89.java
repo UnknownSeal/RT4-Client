@@ -135,10 +135,10 @@ public final class Static89 {
 			local13 = Static40.method1014("@", "%40", local13);
 			local13 = Static40.method1014("&", "%26", local13);
 			local13 = Static40.method1014("#", "%23", local13);
-			if (Static69.aClass213_4.anApplet2 == null) {
+			if (Static69.aClass213_4.applet == null) {
 				return;
 			}
-			@Pc(109) PrivilegedRequest local109 = Static69.aClass213_4.method5118(new URL(Static69.aClass213_4.anApplet2.getCodeBase(), "clienterror.ws?c=" + Static131.anInt3252 + "&u=" + Static101.aLong98 + "&v1=" + SignLink.javaVendor + "&v2=" + SignLink.javaVersion + "&e=" + local13));
+			@Pc(109) PrivilegedRequest local109 = Static69.aClass213_4.method5118(new URL(Static69.aClass213_4.applet.getCodeBase(), "clienterror.ws?c=" + Static131.anInt3252 + "&u=" + Static101.aLong98 + "&v1=" + SignLink.javaVendor + "&v2=" + SignLink.javaVersion + "&e=" + local13));
 			while (local109.status == 0) {
 				PreciseSleep.sleep(1L);
 			}

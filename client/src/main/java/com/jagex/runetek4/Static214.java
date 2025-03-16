@@ -26,9 +26,6 @@ public final class Static214 {
 	@OriginalMember(owner = "runetek4.client!rg", name = "A", descriptor = "[I")
 	public static final int[] anIntArray492 = new int[14];
 
-	@OriginalMember(owner = "runetek4.client!rg", name = "F", descriptor = "I")
-	public static int anInt5581 = 0;
-
 	@OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(Lclient!e;I)V")
 	public static void method4359(@OriginalArg(0) Player arg0) {
 		@Pc(12) AreaSound local12 = (AreaSound) AreaSoundManager.playerSounds.getNode(arg0.name.toBase37());

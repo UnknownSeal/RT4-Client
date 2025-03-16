@@ -63,8 +63,8 @@ public final class Static74 {
 		@Pc(19) int local19;
 		@Pc(17) int local17;
 		if (local7 == null) {
-			local17 = Static254.canvasHeigth;
-			local19 = Static48.canvasWidth;
+			local17 = GameShell.canvasHeigth;
+			local19 = GameShell.canvasWidth;
 		} else {
 			local17 = local7.anInt459;
 			local19 = local7.anInt445;

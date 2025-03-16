@@ -14,9 +14,6 @@ public final class Static71 {
 	@OriginalMember(owner = "runetek4.client!fk", name = "e", descriptor = "I")
 	public static int anInt1885;
 
-	@OriginalMember(owner = "runetek4.client!fk", name = "q", descriptor = "Lclient!uc;")
-	public static MouseWheel mouseWheel;
-
 	@OriginalMember(owner = "runetek4.client!fk", name = "g", descriptor = "Z")
 	public static boolean aBoolean107 = true;
 

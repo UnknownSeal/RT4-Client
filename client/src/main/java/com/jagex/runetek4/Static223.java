@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import java.awt.Component;
-
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import com.jagex.runetek4.scene.InteractiveObject;
@@ -78,11 +76,4 @@ public final class Static223 {
 		Static22.anInt726 = 0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(ILjava/awt/runetek4.Component;)V")
-	public static void method3866(@OriginalArg(1) Component arg0) {
-		arg0.removeMouseListener(Static93.aClass150_1);
-		arg0.removeMouseMotionListener(Static93.aClass150_1);
-		arg0.removeFocusListener(Static93.aClass150_1);
-		Static57.anInt1759 = 0;
-	}
 }

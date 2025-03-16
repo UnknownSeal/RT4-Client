@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import java.awt.Frame;
 import java.util.Random;
 
 import com.jagex.runetek4.cache.media.component.Component;
@@ -10,9 +9,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static39 {
-
-	@OriginalMember(owner = "runetek4.client!d", name = "Y", descriptor = "Ljava/awt/Frame;")
-	public static Frame frame;
 
 	@OriginalMember(owner = "runetek4.client!d", name = "hb", descriptor = "Lclient!ve;")
 	public static CacheArchive aClass153_23;

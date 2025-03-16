@@ -34,7 +34,7 @@ public final class Static141 {
 
 	@OriginalMember(owner = "runetek4.client!lb", name = "a", descriptor = "(Z)V")
 	public static void method2721() {
-		Static65.method1500();
+		SceneGraph.clear();
 		Static89.aClass3_Sub2_Sub1_5 = null;
 		Static107.anInt2875 = -1;
 		Static217.method3768();

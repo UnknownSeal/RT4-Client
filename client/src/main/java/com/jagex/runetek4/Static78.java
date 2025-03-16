@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
 import com.jagex.runetek4.js5.CacheArchive;
@@ -156,7 +157,7 @@ public final class Static78 {
 			return;
 		}
 		if (ClientScriptRunner.anInt5223 != 0) {
-			Static114.method4636(true, Static34.method882(new JString[] { LocalizedText.LOADING, Static18.aClass100_108 }));
+			Font.drawTextOnScreen(true, Static34.method882(new JString[] { LocalizedText.LOADING, Static18.aClass100_108 }));
 		}
 		Static107.method2261();
 		Static217.method3768();
@@ -279,7 +280,7 @@ public final class Static78 {
 		Static219.method3796();
 		Static217.method3768();
 		PreciseSleep.aBoolean252 = false;
-		if (Static39.frame != null && Static124.gameServerSocket != null && Static244.gamestate == 25) {
+		if (GameShell.frame != null && Static124.gameServerSocket != null && Static244.gamestate == 25) {
 			Static6.outboundBuffer.pIsaac1(20);
 			Static6.outboundBuffer.p4(1057001181);
 		}

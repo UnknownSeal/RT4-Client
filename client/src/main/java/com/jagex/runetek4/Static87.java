@@ -25,7 +25,7 @@ public final class Static87 {
 	public static boolean method1802() {
 		if (Static150.aBoolean175) {
 			try {
-				CacheArchive.aClass100_35.method3157(GameShell.signLink.anApplet2);
+				CacheArchive.aClass100_35.method3157(GameShell.signLink.applet);
 				return true;
 			} catch (@Pc(14) Throwable local14) {
 			}

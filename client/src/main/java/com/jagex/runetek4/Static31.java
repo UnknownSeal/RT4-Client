@@ -1,9 +1,8 @@
 package com.jagex.runetek4;
 
-import java.awt.Component;
 import java.io.IOException;
 import java.net.Socket;
-import org.openrs2.deob.annotation.OriginalArg;
+
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -32,13 +31,6 @@ public final class Static31 {
 			Static107.anInt2875 = Static55.currentLevel;
 			Static269.method2218();
 		}
-	}
-
-	@OriginalMember(owner = "client!ch", name = "a", descriptor = "(Ljava/awt/Component;I)V")
-	public static void method847(@OriginalArg(0) Component arg0) {
-		arg0.removeKeyListener(Static10.aClass149_1);
-		arg0.removeFocusListener(Static10.aClass149_1);
-		Static114.anInt5844 = -1;
 	}
 
 	@OriginalMember(owner = "client!ch", name = "b", descriptor = "(B)V")

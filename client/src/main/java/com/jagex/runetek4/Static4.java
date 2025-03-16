@@ -1058,13 +1058,13 @@ public final class Static4 {
 								Static164.packetType = -1;
 								return true;
 							} else if (Static164.packetType == 42) {
-								if (Static69.aFrame2 != null) {
-									Static241.method4540(false, Static214.anInt5581, -1, -1);
+								if (GameShell.fullScreenFrame != null) {
+									Static241.method4540(false, Preferences.favoriteWorlds, -1, -1);
 								}
 								@Pc(3848) byte[] local3848 = new byte[Static223.packetSize];
 								Static57.in.method2237(local3848, Static223.packetSize);
 								message2 = Static10.decodeString(local3848, Static223.packetSize, 0);
-								if (Static39.frame == null && (SignLink.anInt5928 == 3 || !SignLink.osName.startsWith("win") || Static178.aBoolean203)) {
+								if (GameShell.frame == null && (SignLink.anInt5928 == 3 || !SignLink.osName.startsWith("win") || Static178.aBoolean203)) {
 									Static169.openUrl(message2, true);
 								} else {
 									Static175.url = message2;

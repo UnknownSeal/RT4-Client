@@ -8,6 +8,7 @@ import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
+import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!vk")
 public abstract class FrameBuffer {
@@ -24,8 +25,22 @@ public abstract class FrameBuffer {
 	@OriginalMember(owner = "client!vk", name = "k", descriptor = "I")
 	protected int anInt5341;
 
+	@OriginalMember(owner = "runetek4.client!kd", name = "a", descriptor = "(IIZLjava/awt/runetek4.Component;)Lclient!vk;")
+	public static FrameBuffer create(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) Component arg2) {
+		try {
+			@Pc(12) Class local12 = Class.forName("com.jagex.runetek4.BufferedImageFrameBuffer");
+			@Pc(16) FrameBuffer local16 = (FrameBuffer) local12.getDeclaredConstructor().newInstance();
+			local16.method4192(arg0, arg1, arg2);
+			return local16;
+		} catch (@Pc(25) Throwable local25) {
+			@Pc(29) ImageProducerFrameBuffer local29 = new ImageProducerFrameBuffer();
+			local29.method4192(arg0, arg1, arg2);
+			return local29;
+		}
+	}
+
 	@OriginalMember(owner = "client!vk", name = "a", descriptor = "(IILjava/awt/Graphics;I)V")
-	public abstract void method4186(@OriginalArg(2) Graphics arg0);
+	public abstract void draw(@OriginalArg(2) Graphics arg0);
 
 	@OriginalMember(owner = "client!vk", name = "a", descriptor = "(I)V")
 	public final void method4189() {

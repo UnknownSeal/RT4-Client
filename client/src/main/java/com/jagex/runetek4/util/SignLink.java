@@ -84,7 +84,7 @@ public final class SignLink implements Runnable {
 	private PrivilegedRequest aClass212_8 = null;
 
 	@OriginalMember(owner = "signlink!ll", name = "i", descriptor = "Ljava/applet/Applet;")
-	public Applet anApplet2 = null;
+	public Applet applet = null;
 
 	@OriginalMember(owner = "signlink!ll", name = "x", descriptor = "Ljava/lang/String;")
 	private final String aString19;
@@ -173,7 +173,7 @@ public final class SignLink implements Runnable {
 		javaVersion = "1.1";
 		this.aString19 = arg2;
 		this.anInt5929 = arg1;
-		this.anApplet2 = arg0;
+		this.applet = arg0;
 		javaVendor = "Unknown";
 		try {
 			javaVendor = System.getProperty("java.vendor");
@@ -453,7 +453,7 @@ public final class SignLink implements Runnable {
 	}
 
 	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "(ILjava/lang/Class;)Lsignlink!im;")
-	public final PrivilegedRequest method5123(@OriginalArg(1) Class arg0) {
+	public final PrivilegedRequest loadGlNatives(@OriginalArg(1) Class arg0) {
 		return this.method5114(10, 0, arg0, 0);
 	}
 
