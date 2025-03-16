@@ -127,7 +127,7 @@ public final class Npc extends PathingEntity {
 	@OriginalMember(owner = "client!km", name = "b", descriptor = "(I)I")
 	@Override
 	protected int method2688() {
-		if (Static266.game != 0 && this.type.multiNpcs != null) {
+		if (client.game != 0 && this.type.multiNpcs != null) {
 			@Pc(17) NpcType local17 = this.type.getMultiNPC();
 			if (local17 != null && local17.bas != -1) {
 				return local17.bas;

@@ -5,7 +5,6 @@ import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.game.config.idktype.IDKType;
 import com.jagex.runetek4.graphics.ModelUnlit;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -497,7 +496,7 @@ public final class ItemDefinition {
 					if (this.recol_d_palette == null || local97 >= this.recol_d_palette.length) {
 						local85.recolor(this.recol_s[local97], this.recol_d[local97]);
 					} else {
-						local85.recolor(this.recol_s[local97], Static259.aShortArray87[this.recol_d_palette[local97] & 0xFF]);
+						local85.recolor(this.recol_s[local97], client.aShortArray87[this.recol_d_palette[local97] & 0xFF]);
 					}
 				}
 			}
@@ -640,7 +639,7 @@ public final class ItemDefinition {
 				if (this.recol_d_palette == null || local21 >= this.recol_d_palette.length) {
 					local11.recolor(this.recol_s[local21], this.recol_d[local21]);
 				} else {
-					local11.recolor(this.recol_s[local21], Static259.aShortArray87[this.recol_d_palette[local21] & 0xFF]);
+					local11.recolor(this.recol_s[local21], client.aShortArray87[this.recol_d_palette[local21] & 0xFF]);
 				}
 			}
 		}
@@ -660,11 +659,8 @@ public final class ItemDefinition {
 	@OriginalMember(owner = "runetek4.client!gg", name = "Z", descriptor = "I")
 	public static int anInt2222;
 
-	@OriginalMember(owner = "runetek4.client!gg", name = "U", descriptor = "I")
-	public static int modeWhat = 0;
-
 	@OriginalMember(owner = "runetek4.client!gg", name = "W", descriptor = "Lclient!na;")
-	public static final JString NULL = Static28.parse("null");
+	public static final JString NULL = JString.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "db", descriptor = "I")
 	public static int anInt2225 = -1;
@@ -705,8 +701,4 @@ public final class ItemDefinition {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method1754(@OriginalArg(1) Js5 arg0) {
-		Static138.anInt3443 = arg0.method4482(Static12.aClass100_73);
-	}
 }

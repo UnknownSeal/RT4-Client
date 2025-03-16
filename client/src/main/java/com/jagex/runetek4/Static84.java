@@ -23,9 +23,6 @@ public final class Static84 {
 	@OriginalMember(owner = "runetek4.client!gk", name = "c", descriptor = "[I")
 	public static final int[] anIntArray209 = new int[4096];
 
-	@OriginalMember(owner = "runetek4.client!gk", name = "h", descriptor = "I")
-	public static int anInt2255 = 0;
-
 	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "(IIBLclient!e;)V")
 	public static void getPlayerExtended(@OriginalArg(0) int flags, @OriginalArg(1) int arg1, @OriginalArg(3) Player player) {
 		@Pc(13) int chatFlags;
@@ -33,10 +30,10 @@ public final class Static84 {
 		@Pc(24) int local24;
 		if ((flags & 0x80) != 0) {
 
-			chatFlags = Static57.in.g2le();
-			staffModLevel = Static57.in.g1();
-			@Pc(21) int len = Static57.in.g1();
-			local24 = Static57.in.offset;
+			chatFlags = Protocol.inboundBuffer.g2le();
+			staffModLevel = Protocol.inboundBuffer.g1();
+			@Pc(21) int len = Protocol.inboundBuffer.g1();
+			local24 = Protocol.inboundBuffer.offset;
 
 			@Pc(35) boolean quickChat = (chatFlags & 0x8000) != 0;
 
@@ -57,7 +54,7 @@ public final class Static84 {
 				}
 				if (!ignored && Player.overrideChat == 0) {
 					Static270.CHAT_PACKET.offset = 0;
-					Static57.in.gBytesRev(Static270.CHAT_PACKET.data, len);
+					Protocol.inboundBuffer.gBytesRev(Static270.CHAT_PACKET.data, len);
 					Static270.CHAT_PACKET.offset = 0;
 
 					@Pc(106) int phraseId = -1;
@@ -84,50 +81,50 @@ public final class Static84 {
 					}
 				}
 			}
-			Static57.in.offset = local24 + len;
+			Protocol.inboundBuffer.offset = local24 + len;
 		}
 		if ((flags & 0x1) != 0) {
-			chatFlags = Static57.in.gSmart1or2();
-			staffModLevel = Static57.in.g1add();
+			chatFlags = Protocol.inboundBuffer.gSmart1or2();
+			staffModLevel = Protocol.inboundBuffer.g1add();
 			player.method2686(staffModLevel, client.loop, chatFlags);
 			player.anInt3378 = client.loop + 300;
-			player.anInt3372 = Static57.in.g1_alt3();
+			player.anInt3372 = Protocol.inboundBuffer.g1_alt3();
 		}
 		if ((flags & 0x8) != 0) {
-			chatFlags = Static57.in.g2();
+			chatFlags = Protocol.inboundBuffer.g2();
 			if (chatFlags == 65535) {
 				chatFlags = -1;
 			}
-			staffModLevel = Static57.in.g1();
+			staffModLevel = Protocol.inboundBuffer.g1();
 			Static186.method3415(staffModLevel, chatFlags, player);
 		}
 		if ((flags & 0x4) != 0) {
-			chatFlags = Static57.in.g1add();
+			chatFlags = Protocol.inboundBuffer.g1add();
 			@Pc(309) byte[] local309 = new byte[chatFlags];
 			@Pc(314) Packet local314 = new Packet(local309);
-			Static57.in.gdata(chatFlags, local309);
-			Static115.PLAYER_APPEARANCE_PACKET[arg1] = local314;
+			Protocol.inboundBuffer.gdata(chatFlags, local309);
+			PlayerList.PLAYER_APPEARANCE_PACKET[arg1] = local314;
 			player.read(local314);
 		}
 		if ((flags & 0x2) != 0) {
-			player.targetId = Static57.in.g2sub();
+			player.targetId = Protocol.inboundBuffer.g2sub();
 			if (player.targetId == 65535) {
 				player.targetId = -1;
 			}
 		}
 		if ((flags & 0x400) != 0) {
-			player.anInt3380 = Static57.in.p1neg();
-			player.anInt3428 = Static57.in.g1();
-			player.anInt3416 = Static57.in.g1add();
-			player.anInt3392 = Static57.in.g1();
-			player.anInt3395 = Static57.in.g2le() + client.loop;
-			player.anInt3386 = Static57.in.g2le() + client.loop;
-			player.anInt3431 = Static57.in.p1neg();
-			player.pathLength = 1;
+			player.anInt3380 = Protocol.inboundBuffer.p1neg();
+			player.anInt3428 = Protocol.inboundBuffer.g1();
+			player.anInt3416 = Protocol.inboundBuffer.g1add();
+			player.anInt3392 = Protocol.inboundBuffer.g1();
+			player.anInt3395 = Protocol.inboundBuffer.g2le() + client.loop;
+			player.anInt3386 = Protocol.inboundBuffer.g2le() + client.loop;
+			player.anInt3431 = Protocol.inboundBuffer.p1neg();
+			player.movementQueueSize = 1;
 			player.anInt3405 = 0;
 		}
 		if ((flags & 0x20) != 0) {
-			player.chatMessage = Static57.in.gjstr();
+			player.chatMessage = Protocol.inboundBuffer.gjstr();
 			if (player.chatMessage.charAt(0) == 126) {
 				player.chatMessage = player.chatMessage.substring(1);
 				Chat.addMessage(player.getUsername(), 2, player.chatMessage);
@@ -139,32 +136,32 @@ public final class Static84 {
 			player.chatLoops = 150;
 		}
 		if ((flags & 0x200) != 0) {
-			chatFlags = Static57.in.gSmart1or2();
-			staffModLevel = Static57.in.g1_alt3();
+			chatFlags = Protocol.inboundBuffer.gSmart1or2();
+			staffModLevel = Protocol.inboundBuffer.g1_alt3();
 			player.method2686(staffModLevel, client.loop, chatFlags);
 		}
 		if ((flags & 0x800) != 0) {
-			chatFlags = Static57.in.p1neg();
+			chatFlags = Protocol.inboundBuffer.p1neg();
 			@Pc(502) int[] local502 = new int[chatFlags];
 			@Pc(505) int[] local505 = new int[chatFlags];
 			@Pc(508) int[] local508 = new int[chatFlags];
 			for (@Pc(510) int local510 = 0; local510 < chatFlags; local510++) {
-				@Pc(521) int local521 = Static57.in.g2le();
+				@Pc(521) int local521 = Protocol.inboundBuffer.g2le();
 				if (local521 == 65535) {
 					local521 = -1;
 				}
 				local502[local510] = local521;
-				local505[local510] = Static57.in.g1add();
-				local508[local510] = Static57.in.g2();
+				local505[local510] = Protocol.inboundBuffer.g1add();
+				local508[local510] = Protocol.inboundBuffer.g2();
 			}
 			Static32.method865(local505, local502, player, local508);
 		}
 		if ((flags & 0x100) != 0) {
-			chatFlags = Static57.in.g2le();
+			chatFlags = Protocol.inboundBuffer.g2le();
 			if (chatFlags == 65535) {
 				chatFlags = -1;
 			}
-			staffModLevel = Static57.in.p4rme();
+			staffModLevel = Protocol.inboundBuffer.p4rme();
 			@Pc(573) boolean local573 = true;
 			if (chatFlags != -1 && player.spotanimFrame != -1 && SeqType.getAnimationSequence(Static34.method877(chatFlags).animationId).priority < SeqType.getAnimationSequence(Static34.method877(player.spotanimFrame).animationId).priority) {
 				local573 = false;
@@ -191,8 +188,8 @@ public final class Static84 {
 			}
 		}
 		if ((flags & 0x40) != 0) {
-			player.anInt3382 = Static57.in.g2();
-			player.anInt3363 = Static57.in.g2leadd();
+			player.anInt3382 = Protocol.inboundBuffer.g2();
+			player.anInt3363 = Protocol.inboundBuffer.g2leadd();
 		}
 	}
 

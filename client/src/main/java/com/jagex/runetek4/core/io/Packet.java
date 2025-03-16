@@ -302,7 +302,7 @@ public class Packet extends Node {
 		@Pc(32) int off = this.offset;
 		while (this.data[this.offset++] != 0) {
 		}
-		return Static10.decodeString(this.data, this.offset - off - 1, off);
+		return JString.decodeString(this.data, this.offset - off - 1, off);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "a", descriptor = "(FB)V")
@@ -437,7 +437,7 @@ public class Packet extends Node {
 		@Pc(12) int start = this.offset;
 		while (this.data[this.offset++] != 0) {
 		}
-		return Static10.decodeString(this.data, this.offset - start - 1, start);
+		return JString.decodeString(this.data, this.offset - start - 1, start);
 	}
 
 	@OriginalMember(owner = "client!wa", name = "f", descriptor = "(Z)I")

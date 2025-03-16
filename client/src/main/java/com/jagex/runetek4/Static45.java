@@ -4,6 +4,7 @@ import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.config.FloType;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
+import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -249,7 +250,7 @@ public final class Static45 {
 												@Pc(1834) int local1834 = Static240.aByteArrayArrayArray14[level][local322][local1794] & 0xFF;
 												if (local1834 != 0) {
 													@Pc(1842) FloorOverlayType local1842 = Static256.method4395(local1834 - 1);
-													if (local1842.material != -1 && Pix3D.anInterface1_2.method3237(local1842.material) == 4) {
+													if (local1842.material != -1 && Rasterizer.textureProvider.method3237(local1842.material) == 4) {
 														Static62.anIntArrayArray11[z0][x0] = local1842.waterfogcolour + (local1842.waterfogscale << 24);
 														continue label771;
 													}
@@ -266,7 +267,7 @@ public final class Static45 {
 								@Pc(1353) int local1353;
 								@Pc(1288) int local1288;
 								if (GlRenderer.enabled && !arg1 && Static62.anIntArrayArray11 != null && level == 0) {
-									if (local1248.material != -1 && Pix3D.anInterface1_2.method3237(local1248.material) == 4) {
+									if (local1248.material != -1 && Rasterizer.textureProvider.method3237(local1248.material) == 4) {
 										Static62.anIntArrayArray11[z0][x0] = (local1248.waterfogscale << 24) + local1248.waterfogcolour;
 									} else {
 										label737: for (local1288 = z0 - 1; local1288 <= z0 + 1; local1288++) {
@@ -275,7 +276,7 @@ public final class Static45 {
 													local1353 = Static240.aByteArrayArrayArray14[level][local1288][local1301] & 0xFF;
 													if (local1353 != 0) {
 														@Pc(1366) FloorOverlayType local1366 = Static256.method4395(local1353 - 1);
-														if (local1366.material != -1 && Pix3D.anInterface1_2.method3237(local1366.material) == 4) {
+														if (local1366.material != -1 && Rasterizer.textureProvider.method3237(local1366.material) == 4) {
 															Static62.anIntArrayArray11[z0][x0] = local1366.waterfogcolour + (local1366.waterfogscale << 24);
 															break label737;
 														}
@@ -286,14 +287,14 @@ public final class Static45 {
 									}
 								}
 								local1288 = local1248.material;
-								if (local1288 >= 0 && !Pix3D.anInterface1_2.method3236(local1288)) {
+								if (local1288 >= 0 && !Rasterizer.textureProvider.method3236(local1288)) {
 									local1288 = -1;
 								}
 								@Pc(1458) int local1458;
 								@Pc(1429) int local1429;
 								if (local1288 >= 0) {
 									local1301 = -1;
-									local1353 = Pix3D.anIntArray220[Static230.method3949(Pix3D.anInterface1_2.method3234(local1288), 96)];
+									local1353 = Pix3D.anIntArray220[Static230.method3949(Rasterizer.textureProvider.method3234(local1288), 96)];
 								} else if (local1248.rgb == -1) {
 									local1301 = -2;
 									local1353 = 0;
@@ -352,7 +353,7 @@ public final class Static45 {
 							local2057[local2025.length + len] = local2049[len];
 						}
 						Static110.method2280(level, local2057);
-						BZip2State.method3393(local1900, Static253.levelTileUnderlayIds[level], Static4.aByteArrayArrayArray1[level], Static120.aClass51Array1, level, Static120.anInt3034, local1896, Static163.aByteArrayArrayArray11[level], Static240.aByteArrayArrayArray14[level], SceneGraph.tileHeights[level], local1888);
+						BZip2State.method3393(local1900, Static253.levelTileUnderlayIds[level], Static4.aByteArrayArrayArray1[level], LightingManager.lights, level, LightingManager.lightCount, local1896, Static163.aByteArrayArrayArray11[level], Static240.aByteArrayArrayArray14[level], SceneGraph.tileHeights[level], local1888);
 						break;
 					}
 					for (dx = 1; dx <= 103; dx++) {
@@ -380,7 +381,7 @@ public final class Static45 {
 		for (level = 0; level < 104; level++) {
 			for (local2204 = 0; local2204 < 104; local2204++) {
 				if ((SceneGraph.renderFlags[1][level][local2204] & 0x2) == 2) {
-					Static224.method3884(level, local2204);
+					FluTypeList.method3884(level, local2204);
 				}
 			}
 		}

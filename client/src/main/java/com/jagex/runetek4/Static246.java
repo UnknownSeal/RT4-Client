@@ -18,17 +18,17 @@ public final class Static246 {
 	public static int anInt5388 = 0;
 
 	@OriginalMember(owner = "runetek4.client!u", name = "g", descriptor = "Lclient!na;")
-	public static final JString aClass100_1029 = Static28.parse("cookiehost");
+	public static final JString aClass100_1029 = JString.parse("cookiehost");
 
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(BLclient!ve;Lclient!ve;)V")
-	public static void method4237(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
+	public static void init(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
 		Static153.aClass153_57 = arg0;
 		Static243.aClass153_97 = arg1;
 	}
 
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(Lclient!me;IIII)V")
 	public static void method4240(@OriginalArg(0) NpcType npc, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		if (PreciseSleep.menuActionRow >= 400) {
+		if (MiniMenu.menuActionRow >= 400) {
 			return;
 		}
 		if (npc.multiNpcs != null) {
@@ -39,12 +39,12 @@ public final class Static246 {
 		}
 		@Pc(35) JString tooltip = npc.name;
 		if (npc.vislevel != 0) {
-			@Pc(47) JString string = Static266.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
+			@Pc(47) JString string = client.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
 			tooltip = JString.concatenate(new JString[] { tooltip, Static123.getCombatLevelColorTag(npc.vislevel, PlayerList.self.combatLevel), Static123.aClass100_593, string, JString.parseInt(npc.vislevel), Static72.aClass100_448 });
 		}
-		if (Static260.anInt5014 == 1) {
+		if (MiniMenu.anInt5014 == 1) {
 			Static98.addActionRow(Static169.anInt4075, (long) arg2, JString.concatenate(new JString[] { Static34.aClass100_203, Static201.aClass100_407, tooltip }), arg1, (short) 26, LocalizedText.USE, arg3);
-		} else if (Static241.aBoolean302) {
+		} else if (MiniMenu.aBoolean302) {
 			@Pc(378) Class3_Sub2_Sub12 local378 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
 			if ((Static274.anInt4999 & 0x2) != 0 && (local378 == null || npc.getParam(Static121.anInt3039, local378.anInt2667) != local378.anInt2667)) {
 				Static98.addActionRow(anInt5393, (long) arg2, JString.concatenate(new JString[] { Static78.aClass100_466, Static201.aClass100_407, tooltip }), arg1, (short) 45, Static102.aClass100_545, arg3);
@@ -57,7 +57,7 @@ public final class Static246 {
 			@Pc(140) int op;
 			if (spellSelected != null) {
 				for (op = 4; op >= 0; op--) {
-					if (spellSelected[op] != null && (Static266.game != 0 || !spellSelected[op].equalsIgnoreCase(LocalizedText.ATTACK))) {
+					if (spellSelected[op] != null && (client.game != 0 || !spellSelected[op].equalsIgnoreCase(LocalizedText.ATTACK))) {
 						@Pc(161) byte local161 = 0;
 						if (op == 0) {
 							local161 = 17;
@@ -85,7 +85,7 @@ public final class Static246 {
 					}
 				}
 			}
-			if (Static266.game == 0 && spellSelected != null) {
+			if (client.game == 0 && spellSelected != null) {
 				for (op = 4; op >= 0; op--) {
 					if (spellSelected[op] != null && spellSelected[op].equalsIgnoreCase(LocalizedText.ATTACK)) {
 						@Pc(271) short action = 0;

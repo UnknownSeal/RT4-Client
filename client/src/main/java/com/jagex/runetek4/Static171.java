@@ -2,8 +2,6 @@ package com.jagex.runetek4;
 
 import java.util.Random;
 
-import com.jagex.runetek4.dash3d.entity.LocEntity;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -13,14 +11,8 @@ public final class Static171 {
 	@OriginalMember(owner = "runetek4.client!ni", name = "h", descriptor = "I")
 	public static int anInt4153;
 
-	@OriginalMember(owner = "runetek4.client!ni", name = "k", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_68;
-
 	@OriginalMember(owner = "runetek4.client!ni", name = "q", descriptor = "I")
 	public static int anInt4157;
-
-	@OriginalMember(owner = "runetek4.client!ni", name = "n", descriptor = "Lclient!sm;")
-	public static LocEntity aLocEntity_1 = new LocEntity();
 
 	@OriginalMember(owner = "runetek4.client!ni", name = "a", descriptor = "(ILclient!na;)I")
 	public static int method3218(@OriginalArg(1) JString arg0) {
@@ -53,8 +45,8 @@ public final class Static171 {
 
 	@OriginalMember(owner = "runetek4.client!ni", name = "a", descriptor = "(ILclient!na;I)V")
 	public static void method3221(@OriginalArg(1) JString arg0, @OriginalArg(2) int arg1) {
-		Static6.outboundBuffer.pIsaac1(188);
-		Static6.outboundBuffer.p1b_alt1(arg1);
-		Static6.outboundBuffer.p8(arg0.encode37());
+		Protocol.outboundBuffer.pIsaac1(188);
+		Protocol.outboundBuffer.p1b_alt1(arg1);
+		Protocol.outboundBuffer.p8(arg0.encode37());
 	}
 }

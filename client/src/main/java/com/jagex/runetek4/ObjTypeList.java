@@ -15,9 +15,6 @@ public final class ObjTypeList {
 	@OriginalMember(owner = "runetek4.client!nh", name = "Z", descriptor = "I")
 	public static int anInt3241 = 128;
 
-	@OriginalMember(owner = "runetek4.client!nh", name = "fb", descriptor = "[I")
-	public static final int[] anIntArray306 = new int[] { 4, 4, 1, 2, 6, 4, 2, 49, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-
 	@OriginalMember(owner = "runetek4.client!fk", name = "j", descriptor = "[[I")
 	public static int[][] anIntArrayArray10;
 
@@ -50,7 +47,7 @@ public final class ObjTypeList {
 			local20 = new LongNode(4611686018427387905L);
 			Static199.aClass133_20.put(local20, (long) arg1);
 		} else if (local20.aLong55 != 4611686018427387905L) {
-			local20.aLong55 = MonotonicTime.get() + 500L | 0x4000000000000000L;
+			local20.aLong55 = MonotonicTime.currentTimeMillis() + 500L | 0x4000000000000000L;
 		}
 	}
 }

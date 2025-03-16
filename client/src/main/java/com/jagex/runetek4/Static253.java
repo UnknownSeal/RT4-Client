@@ -1,9 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.enumtype.EnumType;
-import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -20,9 +18,6 @@ public final class Static253 {
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "T", descriptor = "F")
 	public static float aFloat36;
-
-	@OriginalMember(owner = "runetek4.client!ui", name = "cb", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_104;
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "eb", descriptor = "[[[B")
 	public static byte[][][] levelTileUnderlayIds;
@@ -97,7 +92,7 @@ public final class Static253 {
 				}
 			}
 		}
-		Static252.method4302();
+		FloTypeList.method4302();
 		if (GlRenderer.enabled) {
 			Static46.method1187(arg2, arg4, arg2 + arg3, arg4 - -arg0);
 			@Pc(248) float local248 = (float) Camera.cameraPitch * 0.17578125F;
@@ -111,7 +106,7 @@ public final class Static253 {
 			Rasterizer.setBounds(arg2, arg4, arg3 + arg2, arg0 + arg4);
 			Pix3D.method1908();
 		}
-		if (Static60.aBoolean108 || Static155.anInt3751 < arg2 || Static155.anInt3751 >= arg3 + arg2 || arg4 > Static60.anInt1892 || arg0 + arg4 <= Static60.anInt1892) {
+		if (ClientScriptRunner.aBoolean108 || Static155.anInt3751 < arg2 || Static155.anInt3751 >= arg3 + arg2 || arg4 > Static60.anInt1892 || arg0 + arg4 <= Static60.anInt1892) {
 			Static39.aBoolean77 = false;
 			Static2.anInt7 = 0;
 		} else {
@@ -124,16 +119,16 @@ public final class Static253 {
 			@Pc(361) int local361 = Static148.anInt3535;
 			Static34.anInt1053 = (local361 - local344) * (Static60.anInt1892 - arg4) / arg0 + local344;
 		}
-		Static107.method2261();
+		client.audioLoop();
 		@Pc(387) byte local387 = Static236.method4047() == 2 ? (byte) Static136.anInt3325 : 1;
 		if (GlRenderer.enabled) {
 			GlRenderer.method4173();
 			GlRenderer.setDepthTestEnabled(true);
 			GlRenderer.setFogEnabled(true);
-			if (Static244.gamestate == 10) {
-				jitter = Static103.method2235(Static178.sceneDelta, Camera.renderZ >> 10, Static113.anInt4609, Camera.renderX >> 10);
+			if (client.gameState == 10) {
+				jitter = Static103.method2235(Protocol.sceneDelta, Camera.renderZ >> 10, Static113.brightness, Camera.renderX >> 10);
 			} else {
-				jitter = Static103.method2235(Static178.sceneDelta, PlayerList.self.pathTileZ[0] >> 3, Static113.anInt4609, PlayerList.self.pathTileX[0] >> 3);
+				jitter = Static103.method2235(Protocol.sceneDelta, PlayerList.self.movementQueueZ[0] >> 3, Static113.brightness, PlayerList.self.movementQueueX[0] >> 3);
 			}
 			Static120.method2394(client.loop, !Static11.aBoolean15);
 			GlRenderer.clearColorAndDepthBuffers(jitter);
@@ -143,37 +138,37 @@ public final class Static253 {
 			Static263.aBoolean299 = true;
 			Static120.method2390();
 			Static143.method2731(0, 0, 0, 0, 0);
-			Static107.method2261();
+			client.audioLoop();
 			Static223.method3858();
 			Static142.method2726(arg4, arg3, arg2, Static223.anInt5029, arg0, Static223.anInt5029);
 			ClientScriptRunner.method4000(arg3, arg2, arg0, Static223.anInt5029, Static223.anInt5029, arg4);
 		} else {
 			Rasterizer.drawFilledRectangle(arg2, arg4, arg3, arg0, 0);
 			Static156.method2954(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
-			Static107.method2261();
+			client.audioLoop();
 			Static223.method3858();
 			Static142.method2726(arg4, arg3, arg2, 256, arg0, 256);
 			ClientScriptRunner.method4000(arg3, arg2, arg0, 256, 256, arg4);
 		}
-		((Js5GlTextureProvider) Pix3D.anInterface1_2).method3239(Static178.sceneDelta);
+		((Js5GlTextureProvider) Rasterizer.textureProvider).method3239(Protocol.sceneDelta);
 		Static115.method2310(arg3, arg4, arg0, arg2);
 		Camera.cameraPitch = cameraPitch;
 		Camera.renderZ = cameraZ;
 		Camera.cameraY = local57;
 		Camera.renderX = pitch;
 		Camera.cameraYaw = cameraYaw;
-		if (Static19.aBoolean43 && client.js5NetQueue.getUrgentRequestCount() == 0) {
-			Static19.aBoolean43 = false;
+		if (ClientScriptRunner.aBoolean43 && client.js5NetQueue.getUrgentRequestCount() == 0) {
+			ClientScriptRunner.aBoolean43 = false;
 		}
-		if (Static19.aBoolean43) {
+		if (ClientScriptRunner.aBoolean43) {
 			if (GlRenderer.enabled) {
 				Static46.method1186(arg2, arg4, arg3, arg0, 0);
 			} else {
 				Rasterizer.drawFilledRectangle(arg2, arg4, arg3, arg0, 0);
 			}
-			Font.drawTextOnScreen(false, LocalizedText.LOADING);
+			Fonts.drawTextOnScreen(false, LocalizedText.LOADING);
 		}
-		if (!arg1 && !Static19.aBoolean43 && !Static60.aBoolean108 && arg2 <= Static155.anInt3751 && arg3 + arg2 > Static155.anInt3751 && arg4 <= Static60.anInt1892 && arg0 + arg4 > Static60.anInt1892) {
+		if (!arg1 && !ClientScriptRunner.aBoolean43 && !ClientScriptRunner.aBoolean108 && arg2 <= Static155.anInt3751 && arg3 + arg2 > Static155.anInt3751 && arg4 <= Static60.anInt1892 && arg0 + arg4 > Static60.anInt1892) {
 			Static176.method3304(arg4, arg3, arg0, arg2, Static60.anInt1892, Static155.anInt3751);
 		}
 	}

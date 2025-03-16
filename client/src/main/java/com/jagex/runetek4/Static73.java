@@ -1,9 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -15,60 +12,22 @@ public final class Static73 {
 	public static int anInt2077;
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "S", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_10 = new NodeCache(4);
+	public static final NodeCache hitBars = new NodeCache(4);
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "W", descriptor = "Lclient!na;")
-	public static final JString aClass100_453 = Static28.parse(")2");
+	public static final JString aClass100_453 = JString.parse(")2");
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "db", descriptor = "Lclient!gn;")
 	public static final LruHashTable aClass54_7 = new LruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "eb", descriptor = "Lclient!na;")
-	public static final JString B12_FULL = Static28.parse("b12_full");
+	public static final JString B12_FULL = JString.parse("b12_full");
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "fb", descriptor = "[I")
 	public static final int[] anIntArray183 = new int[14];
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "gb", descriptor = "Lclient!na;")
-	public static final JString OVERLAY2 = Static28.parse("overlay2");
-
-	@OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(ZI)V")
-	public static void method1596(@OriginalArg(0) boolean arg0) {
-		if (arg0) {
-			if (Static154.topLevelInterace != -1) {
-				Component.resetComponent(Static154.topLevelInterace);
-			}
-			for (@Pc(18) Class3_Sub31 local18 = (Class3_Sub31) Static119.aClass133_9.head(); local18 != null; local18 = (Class3_Sub31) Static119.aClass133_9.prev()) {
-				Static132.method2605(true, local18);
-			}
-			Static154.topLevelInterace = -1;
-			Static119.aClass133_9 = new HashTable(8);
-			Component.createComponentMemoryBuffer();
-			Static154.topLevelInterace = Static156.anInt3783;
-			Static210.method3712(false);
-			Static87.method1807();
-			Static74.method1626(Static154.topLevelInterace);
-		}
-		Static35.anInt1092 = -1;
-		client.method1750(Static270.anInt5794);
-		PlayerList.self = new Player();
-		PlayerList.self.zFine = 3000;
-		PlayerList.self.xFine = 3000;
-		if (!GlRenderer.enabled) {
-			Static145.method2743(Static209.aClass153_86);
-			Game.processGameStatus(10);
-			return;
-		}
-		if (Camera.cameraType == 2) {
-			Camera.renderX = Camera.anInt5375 << 7;
-			Camera.renderZ = Camera.anInt4232 << 7;
-		} else {
-			Camera.updateLoginScreenCamera();
-		}
-		Static86.method1799();
-		Static26.method740();
-		Game.processGameStatus(28);
-	}
+	public static final JString OVERLAY2 = JString.parse("overlay2");
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(ZII)V")
 	public static void method1597(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {

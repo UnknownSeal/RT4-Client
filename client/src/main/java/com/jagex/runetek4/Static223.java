@@ -13,10 +13,10 @@ public final class Static223 {
 	public static boolean[] loadedComponents;
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "f", descriptor = "Lclient!na;")
-	public static final JString aClass100_946 = Static28.parse("(R");
+	public static final JString aClass100_946 = JString.parse("(R");
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "g", descriptor = "Lclient!na;")
-	public static final JString aClass100_947 = Static28.parse(" )2> <col=ff9040>");
+	public static final JString aClass100_947 = JString.parse(" )2> <col=ff9040>");
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "o", descriptor = "I")
 	public static int packetSize = 0;
@@ -34,7 +34,7 @@ public final class Static223 {
 	public static final boolean[] aBooleanArray116 = new boolean[100];
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "D", descriptor = "Lclient!na;")
-	public static final JString ORANGE = Static28.parse("<col=ff7000>");
+	public static final JString ORANGE = JString.parse("<col=ff7000>");
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(IIILclient!km;)V")
 	public static void method3855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) Npc arg2) {
@@ -58,7 +58,7 @@ public final class Static223 {
 			arg2.anInt3373 = 1;
 			arg2.anInt3371 = 0;
 			arg2.anInt3420 = arg0;
-			arg2.anInt3405 = arg2.pathLength;
+			arg2.anInt3405 = arg2.movementQueueSize;
 			arg2.anInt3425 = 0;
 			if (arg2.primarySeqId != -1) {
 				Static152.method2836(arg2.zFine, SeqType.getAnimationSequence(arg2.primarySeqId), arg2.xFine, false, arg2.anInt3425);

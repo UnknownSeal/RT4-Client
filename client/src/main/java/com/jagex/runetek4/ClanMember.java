@@ -5,17 +5,17 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!kl")
-public final class Class3_Sub22 extends Node {
+public final class ClanMember extends Node {
 
 	@OriginalMember(owner = "runetek4.client!kl", name = "p", descriptor = "B")
-	public byte aByte9;
+	public byte rank;
 
 	@OriginalMember(owner = "runetek4.client!kl", name = "q", descriptor = "Lclient!na;")
-	public JString aClass100_635;
+	public JString worldName;
 
 	@OriginalMember(owner = "runetek4.client!kl", name = "t", descriptor = "Lclient!na;")
-	public JString aClass100_636;
+	public JString username;
 
 	@OriginalMember(owner = "runetek4.client!kl", name = "x", descriptor = "I")
-	public int anInt3340;
+	public int world;
 }

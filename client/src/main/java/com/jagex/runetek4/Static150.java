@@ -9,25 +9,10 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static150 {
 
 	@OriginalMember(owner = "runetek4.client!lk", name = "J", descriptor = "Lclient!na;")
-	public static final JString aClass100_687 = Static28.parse(")4p=");
-
-	@OriginalMember(owner = "runetek4.client!lk", name = "U", descriptor = "Z")
-	public static boolean aBoolean175 = false;
+	public static final JString aClass100_687 = JString.parse(")4p=");
 
 	@OriginalMember(owner = "runetek4.client!lk", name = "V", descriptor = "I")
 	public static int anInt3582 = 0;
-
-	@OriginalMember(owner = "runetek4.client!lk", name = "a", descriptor = "(ILclient!ve;)I")
-	public static int method2797(@OriginalArg(1) Js5 arg0) {
-		@Pc(1) int local1 = 0;
-		if (arg0.method4506(Static262.anInt5754)) {
-			local1++;
-		}
-		if (arg0.method4506(Static136.anInt3322)) {
-			local1++;
-		}
-		return local1;
-	}
 
 	@OriginalMember(owner = "runetek4.client!lk", name = "a", descriptor = "(IIBLclient!ve;)Lclient!qf;")
 	public static Sprite method2800(@OriginalArg(1) int arg0, @OriginalArg(3) Js5 arg1) {

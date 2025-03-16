@@ -1,6 +1,5 @@
 package com.jagex.runetek4.cache.media;
 
-import java.awt.*;
 import java.util.Random;
 
 import com.jagex.runetek4.*;
@@ -15,30 +14,28 @@ import org.openrs2.deob.annotation.Pc;
 public abstract class Font extends CachedNode {
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "K", descriptor = "Lclient!na;")
-	public static final JString greaterThan = Static28.parse("gt");
+	public static final JString greaterThan = JString.parse("gt");
 	@OriginalMember(owner = "runetek4.client!rk", name = "L", descriptor = "Lclient!na;")
-	public static final JString lessThan = Static28.parse("lt");
+	public static final JString lessThan = JString.parse("lt");
 	@OriginalMember(owner = "runetek4.client!rk", name = "R", descriptor = "Lclient!na;")
-	public static final JString euroSymbol = Static28.parse("euro");
+	public static final JString euroSymbol = JString.parse("euro");
 	@OriginalMember(owner = "runetek4.client!rk", name = "cb", descriptor = "Lclient!na;")
-	public static final JString multiplicationSymbol = Static28.parse("times");
+	public static final JString multiplicationSymbol = JString.parse("times");
 	@OriginalMember(owner = "runetek4.client!rk", name = "fb", descriptor = "Lclient!na;")
-	public static final JString nonBreakingSpace = Static28.parse("nbsp");
+	public static final JString nonBreakingSpace = JString.parse("nbsp");
 	@OriginalMember(owner = "runetek4.client!rk", name = "mb", descriptor = "Lclient!na;")
-	public static final JString image = Static28.parse("img=");
+	public static final JString image = JString.parse("img=");
 	@OriginalMember(owner = "runetek4.client!rk", name = "ob", descriptor = "Lclient!na;")
-	public static final JString copyright = Static28.parse("copy");
+	public static final JString copyright = JString.parse("copy");
 	@OriginalMember(owner = "runetek4.client!rk", name = "qb", descriptor = "Lclient!na;")
-	public static final JString registeredTrademark = Static28.parse("reg");
+	public static final JString registeredTrademark = JString.parse("reg");
 	@OriginalMember(owner = "runetek4.client!rk", name = "N", descriptor = "Lclient!na;")
-	public static final JString softHyphen = Static28.parse("shy");
+	public static final JString softHyphen = JString.parse("shy");
 	@OriginalMember(owner = "runetek4.client!rk", name = "xb", descriptor = "I")
 	public static int opacity = 256;
 	@OriginalMember(owner = "runetek4.client!rk", name = "Cb", descriptor = "I")
 	public static int textColor = 0;
-    @OriginalMember(owner = "runetek4.client!wl", name = "q", descriptor = "Lclient!rk;")
-    public static Font b12Full;
-    @OriginalMember(owner = "client!rk", name = "W", descriptor = "[I")
+	@OriginalMember(owner = "client!rk", name = "W", descriptor = "[I")
 	private int[] moderatorIcon;
 
 	@OriginalMember(owner = "client!rk", name = "gb", descriptor = "[B")
@@ -97,34 +94,7 @@ public abstract class Font extends CachedNode {
 		this.method2876(arg0);
 	}
 
-    @OriginalMember(owner = "runetek4.client!j", name = "a", descriptor = "(BZLclient!na;)V")
-    public static void drawTextOnScreen(@OriginalArg(1) boolean arg0, @OriginalArg(2) JString arg1) {
-        @Pc(24) int local24 = Static215.aClass3_Sub2_Sub9_32.method2856(arg1, 250);
-        @Pc(31) int local31 = Static215.aClass3_Sub2_Sub9_32.method2860(arg1, 250) * 13;
-        if (GlRenderer.enabled) {
-            Static46.method1186(6, 6, local24 + 4 + 4, local31 + 8, 0);
-            Static46.method1179(6, 6, local24 + 4 + 4, local31 + 4 + 4, 16777215);
-        } else {
-            Rasterizer.drawFilledRectangle(6, 6, local24 + 4 + 4, local31 + 8, 0);
-            Rasterizer.drawUnfilledRectangle(6, 6, local24 + 8, 4 + 4 + local31, 16777215);
-        }
-        Static215.aClass3_Sub2_Sub9_32.method2852(arg1, 10, 10, local24, local31, 16777215, -1, 1, 1, 0);
-        Static133.method4012(6, local24 + 8, 6, local31 + 4 + 4);
-        if (!arg0) {
-            Static121.method2407(10, 10, local31, local24);
-        } else if (GlRenderer.enabled) {
-            GlRenderer.method4153();
-        } else {
-            try {
-                @Pc(159) Graphics local159 = GameShell.canvas.getGraphics();
-                Static260.frameBuffer.draw(local159);
-            } catch (@Pc(167) Exception local167) {
-                GameShell.canvas.repaint();
-            }
-        }
-    }
-
-    @OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;IIIIIIIII)I")
+	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;IIIIIIIII)I")
 	public final int method2852(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9) {
 		return this.method2869(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
 	}

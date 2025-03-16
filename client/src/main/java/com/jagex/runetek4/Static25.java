@@ -1,9 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.scene.Scenery;
 import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public final class Static25 {
 
@@ -15,21 +13,6 @@ public final class Static25 {
 
 	@OriginalMember(owner = "client!c", name = "hb", descriptor = "Z")
 	public static boolean aBoolean57 = false;
-
-	@OriginalMember(owner = "client!c", name = "d", descriptor = "(I)Z")
-	public static boolean nextKey() {
-		@Pc(6) Keyboard local6 = Static10.aClass149_1;
-		synchronized (Static10.aClass149_1) {
-			if (Static228.anInt5105 == Static102.anInt2678) {
-				return false;
-			} else {
-				Static102.keyCode = BZip2State.anIntArray375[Static102.anInt2678];
-				Static193.keyChar = Static264.anIntArray413[Static102.anInt2678];
-				Static102.anInt2678 = Static102.anInt2678 + 1 & 0x7F;
-				return true;
-			}
-		}
-	}
 
 	@OriginalMember(owner = "client!c", name = "c", descriptor = "(II)V")
 	public static void method715() {

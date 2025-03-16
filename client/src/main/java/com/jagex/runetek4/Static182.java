@@ -22,9 +22,6 @@ public final class Static182 {
 	@OriginalMember(owner = "runetek4.client!oj", name = "v", descriptor = "I")
 	public static int anInt4311 = -2;
 
-	@OriginalMember(owner = "runetek4.client!oj", name = "y", descriptor = "I")
-	public static int keyQueueSize = 0;
-
 	@OriginalMember(owner = "runetek4.client!oj", name = "z", descriptor = "[Z")
 	public static final boolean[] aBooleanArray97 = new boolean[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false };
 

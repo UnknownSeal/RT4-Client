@@ -24,11 +24,11 @@ public final class Static220 {
 	public static boolean aBoolean244 = true;
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "i", descriptor = "Lclient!na;")
-	public static final JString aClass100_930 = Static28.parse("(Z");
+	public static final JString aClass100_930 = JString.parse("(Z");
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(IBI)V")
 	public static void method3797(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(9) LinkedList local9 = Static159.levelObjStacks[Player.plane][arg1][arg0];
+		@Pc(9) LinkedList local9 = SceneGraph.objStacks[Player.plane][arg1][arg0];
 		if (local9 == null) {
 			Static187.method3420(Player.plane, arg1, arg0);
 			return;
@@ -82,7 +82,7 @@ public final class Static220 {
 		@Pc(4) long local4 = (long) arg2;
 		@Pc(10) Model local10 = (Model) Static110.aClass99_15.get(local4);
 		if (local10 == null) {
-			@Pc(22) ModelUnlit local22 = ModelUnlit.get(Static267.aClass153_109, arg2);
+			@Pc(22) ModelUnlit local22 = ModelUnlit.get(client.js5Archive7, arg2);
 			if (local22 == null) {
 				return null;
 			}

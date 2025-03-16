@@ -22,13 +22,13 @@ public final class Static276 {
 	public static final AnimFrameset[] aClass3_Sub2_Sub7Array8 = new AnimFrameset[14];
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "n", descriptor = "Lclient!na;")
-	public static final JString aClass100_1095 = Static28.parse("; version=1; path=)4; domain=");
+	public static final JString aClass100_1095 = JString.parse("; version=1; path=)4; domain=");
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "s", descriptor = "I")
 	public static int anInt5816 = 0;
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "u", descriptor = "Lclient!na;")
-	public static final JString aClass100_1097 = Static28.parse("(U2");
+	public static final JString aClass100_1097 = JString.parse("(U2");
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(IIII)Z")
 	public static boolean visible(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
@@ -42,40 +42,40 @@ public final class Static276 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(I)V")
-	public static void method4612() {
-		ClientScriptRunner.aClass99_31.method3104();
+	public static void clear() {
+		ClientScriptRunner.aClass99_31.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(IILclient!na;)V")
 	public static void method4613(@OriginalArg(0) int arg0, @OriginalArg(2) JString arg1) {
 		@Pc(7) JString local7 = arg1.method3159().method3125();
 		@Pc(13) boolean local13 = false;
-		for (@Pc(15) int local15 = 0; local15 < Static267.playerCount; local15++) {
-			@Pc(28) Player local28 = Static159.players[Static105.playerIds[local15]];
+		for (@Pc(15) int local15 = 0; local15 < PlayerList.playerCount; local15++) {
+			@Pc(28) Player local28 = PlayerList.players[Static105.playerIds[local15]];
 			if (local28 != null && local28.username != null && local28.username.equalsIgnoreCase(local7)) {
 				local13 = true;
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local28.pathTileX[0], 1, 0, 2, local28.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local28.movementQueueX[0], 1, 0, 2, local28.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				if (arg0 == 1) {
-					Static6.outboundBuffer.pIsaac1(68);
-					Static6.outboundBuffer.p2_alt3(Static105.playerIds[local15]);
+					Protocol.outboundBuffer.pIsaac1(68);
+					Protocol.outboundBuffer.p2_alt3(Static105.playerIds[local15]);
 				} else if (arg0 == 4) {
-					Static6.outboundBuffer.pIsaac1(180);
-					Static6.outboundBuffer.p2_alt3(Static105.playerIds[local15]);
+					Protocol.outboundBuffer.pIsaac1(180);
+					Protocol.outboundBuffer.p2_alt3(Static105.playerIds[local15]);
 				} else if (arg0 == 5) {
-					Static6.outboundBuffer.pIsaac1(4);
-					Static6.outboundBuffer.p2_alt1(Static105.playerIds[local15]);
+					Protocol.outboundBuffer.pIsaac1(4);
+					Protocol.outboundBuffer.p2_alt1(Static105.playerIds[local15]);
 				} else if (arg0 == 6) {
-					Static6.outboundBuffer.pIsaac1(133);
-					Static6.outboundBuffer.p2_alt1(Static105.playerIds[local15]);
+					Protocol.outboundBuffer.pIsaac1(133);
+					Protocol.outboundBuffer.p2_alt1(Static105.playerIds[local15]);
 				} else if (arg0 == 7) {
-					Static6.outboundBuffer.pIsaac1(114);
-					Static6.outboundBuffer.p2_alt3(Static105.playerIds[local15]);
+					Protocol.outboundBuffer.pIsaac1(114);
+					Protocol.outboundBuffer.p2_alt3(Static105.playerIds[local15]);
 				}
 				break;
 			}
 		}
 		if (!local13) {
-			Chat.addMessage(Static186.aClass100_827, 0, JString.concatenate(new JString[] { LocalizedText.UNABLETOFIND, local7 }));
+			Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { LocalizedText.UNABLETOFIND, local7 }));
 		}
 	}
 

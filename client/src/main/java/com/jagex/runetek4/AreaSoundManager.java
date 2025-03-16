@@ -67,8 +67,8 @@ public class AreaSoundManager {
             npcSounds.addTail(sound);
         } else if (player != null) {
             sound.player = player;
-            sound.maxXFine = (x + player.size()) * 128;
-            sound.maxZFine = (z + player.size()) * 128;
+            sound.maxXFine = (x + player.getSize()) * 128;
+            sound.maxZFine = (z + player.getSize()) * 128;
             sound.sound = Player.getSound(player);
             sound.radius = player.soundRadius * 128;
             playerSounds.put(sound, player.username.encode37());
@@ -199,9 +199,9 @@ public class AreaSoundManager {
                 areaSound.movementSpeed = movementSpeed;
             }
             areaSound.minXFine = areaSound.npc.xFine;
-            areaSound.maxXFine = areaSound.npc.xFine + areaSound.npc.size() * 64;
+            areaSound.maxXFine = areaSound.npc.xFine + areaSound.npc.getSize() * 64;
             areaSound.minZFine = areaSound.npc.zFine;
-            areaSound.maxZFine = areaSound.npc.zFine + areaSound.npc.size() * 64;
+            areaSound.maxZFine = areaSound.npc.zFine + areaSound.npc.getSize() * 64;
             redraw(arg1, areaSound, arg3, arg0, arg2);
         }
         for (areaSound = (AreaSound) playerSounds.head(); areaSound != null; areaSound = (AreaSound) playerSounds.prev()) {
@@ -226,9 +226,9 @@ public class AreaSoundManager {
                 areaSound.movementSpeed = movementSpeed;
             }
             areaSound.minXFine = areaSound.player.xFine;
-            areaSound.maxXFine = areaSound.player.xFine + areaSound.player.size() * 64;
+            areaSound.maxXFine = areaSound.player.xFine + areaSound.player.getSize() * 64;
             areaSound.minZFine = areaSound.player.zFine;
-            areaSound.maxZFine = areaSound.player.zFine + areaSound.player.size() * 64;
+            areaSound.maxZFine = areaSound.player.zFine + areaSound.player.getSize() * 64;
             redraw(arg1, areaSound, arg3, arg0, arg2);
         }
     }
@@ -270,7 +270,7 @@ public class AreaSoundManager {
         } else if (areaSound.sound >= 0) {
             @Pc(150) SynthSound synthSound = SynthSound.create(client.js5Archive4, areaSound.sound, 0);
             if (synthSound != null) {
-                @Pc(158) PcmSound pcmSound = synthSound.toPcmSound().resample(client.resampler);
+                @Pc(158) PcmSound pcmSound = synthSound.toPcmSound().resample(client.pcmResampler);
                 @Pc(163) SoundPcmStream stream = Static284.method404(pcmSound, volume);
                 stream.setLoops(-1);
                 client.soundStream.addSubStream(stream);
@@ -286,7 +286,7 @@ public class AreaSoundManager {
             @Pc(219) int index = (int) ((double) areaSound.sounds.length * Math.random());
             @Pc(227) SynthSound synthSound = SynthSound.create(client.js5Archive4, areaSound.sounds[index], 0);
             if (synthSound != null) {
-                @Pc(236) PcmSound pcmSound = synthSound.toPcmSound().resample(client.resampler);
+                @Pc(236) PcmSound pcmSound = synthSound.toPcmSound().resample(client.pcmResampler);
                 @Pc(241) SoundPcmStream stream = Static284.method404(pcmSound, volume);
                 stream.setLoops(0);
                 client.soundStream.addSubStream(stream);

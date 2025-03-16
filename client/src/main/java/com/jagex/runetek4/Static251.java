@@ -23,18 +23,8 @@ public final class Static251 {
 	public static int weightCarried = 0;
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "b", descriptor = "(B)V")
-	public static void method4276() {
+	public static void removeSoft() {
 		Static45.aClass99_6.removeSoft();
-	}
-
-	@OriginalMember(owner = "runetek4.client!ug", name = "a", descriptor = "(I)V")
-	public static void method4277() {
-		if (Static93.aClass150_1 != null) {
-			@Pc(5) Mouse local5 = Static93.aClass150_1;
-			synchronized (Static93.aClass150_1) {
-				Static93.aClass150_1 = null;
-			}
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "a", descriptor = "(II)V")

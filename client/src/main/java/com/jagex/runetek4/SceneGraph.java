@@ -11,6 +11,12 @@ import org.openrs2.deob.annotation.Pc;
 public class SceneGraph {
     @OriginalMember(owner = "client!bb", name = "g", descriptor = "[[[B")
     public static final byte[][][] renderFlags = new byte[4][104][104];
+    @OriginalMember(owner = "runetek4.client!rj", name = "U", descriptor = "Lclient!ih;")
+    public static final LinkedList projectiles = new LinkedList();
+    @OriginalMember(owner = "runetek4.client!hk", name = "W", descriptor = "Lclient!ih;")
+    public static final LinkedList spotanims = new LinkedList();
+    @OriginalMember(owner = "runetek4.client!mi", name = "Y", descriptor = "[[[Lclient!ih;")
+    public static final LinkedList[][][] objStacks = new LinkedList[4][104][104];
     @OriginalMember(owner = "runetek4.client!gj", name = "m", descriptor = "[[[I")
     public static int[][][] tileHeights;
     @OriginalMember(owner = "runetek4.client!sm", name = "e", descriptor = "[[[B")

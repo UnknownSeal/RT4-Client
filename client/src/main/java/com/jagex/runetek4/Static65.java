@@ -12,7 +12,7 @@ public final class Static65 {
 	public static int anInt1951 = -1;
 
 	@OriginalMember(owner = "client!fc", name = "f", descriptor = "Lclient!na;")
-	public static final JString aClass100_435 = Static28.parse("<img=0>");
+	public static final JString aClass100_435 = JString.parse("<img=0>");
 
 	@OriginalMember(owner = "client!fc", name = "a", descriptor = "(Lclient!wa;I)Lclient!na;")
 	public static JString method1497(@OriginalArg(0) Packet arg0) {

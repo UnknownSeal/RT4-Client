@@ -16,9 +16,6 @@ public final class Static199 {
 	@OriginalMember(owner = "runetek4.client!qc", name = "K", descriptor = "Lclient!sc;")
 	public static HashTable aClass133_20 = new HashTable(16);
 
-	@OriginalMember(owner = "runetek4.client!qc", name = "P", descriptor = "I")
-	public static int mainLoadPercentage = 10;
-
 	@OriginalMember(owner = "runetek4.client!qc", name = "ab", descriptor = "[I")
 	public static final int[] anIntArray417 = new int[1000];
 
@@ -43,7 +40,7 @@ public final class Static199 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "a", descriptor = "(ZLclient!ve;)V")
-	public static void method3595(@OriginalArg(1) Js5 arg0) {
+	public static void init(@OriginalArg(1) Js5 arg0) {
 		Static35.aClass153_22 = arg0;
 		Static98.anInt2510 = Static35.aClass153_22.getGroupCapacity(4);
 	}

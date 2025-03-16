@@ -4,7 +4,6 @@ import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
-import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -13,14 +12,11 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static280 {
 
-	@OriginalMember(owner = "runetek4.client!wl", name = "s", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_110;
-
 	@OriginalMember(owner = "runetek4.client!wl", name = "A", descriptor = "I")
 	public static int anInt5900;
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "d", descriptor = "Lclient!na;")
-	public static final JString COMPASS = Static28.parse("compass");
+	public static final JString COMPASS = JString.parse("compass");
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "h", descriptor = "Lclient!be;")
 	public static Component aClass13_26 = null;
@@ -33,10 +29,10 @@ public final class Static280 {
 		if (client.loop == arg0.anInt3386 || arg0.primarySeqId == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > SeqType.getAnimationSequence(arg0.primarySeqId).frames[arg0.anInt3425]) {
 			@Pc(35) int local35 = arg0.anInt3386 - arg0.anInt3395;
 			@Pc(41) int local41 = client.loop - arg0.anInt3395;
-			@Pc(52) int local52 = arg0.anInt3380 * 128 + arg0.size() * 64;
-			@Pc(64) int local64 = arg0.anInt3428 * 128 + arg0.size() * 64;
-			@Pc(75) int local75 = arg0.anInt3416 * 128 + arg0.size() * 64;
-			@Pc(86) int local86 = arg0.anInt3392 * 128 + arg0.size() * 64;
+			@Pc(52) int local52 = arg0.anInt3380 * 128 + arg0.getSize() * 64;
+			@Pc(64) int local64 = arg0.anInt3428 * 128 + arg0.getSize() * 64;
+			@Pc(75) int local75 = arg0.anInt3416 * 128 + arg0.getSize() * 64;
+			@Pc(86) int local86 = arg0.anInt3392 * 128 + arg0.getSize() * 64;
 			arg0.xFine = (local41 * local75 + local52 * (local35 - local41)) / local35;
 			arg0.zFine = (local86 * local41 + local64 * (local35 - local41)) / local35;
 		}
@@ -550,14 +546,14 @@ public final class Static280 {
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!be;I)Lclient!be;")
 	public static Component method4668(@OriginalArg(0) Component arg0) {
-		if (arg0.layer != -1) {
-			return Component.getComponent(arg0.layer);
+		if (arg0.overlayer != -1) {
+			return InterfaceList.getComponent(arg0.overlayer);
 		}
 		@Pc(28) int local28 = arg0.anInt507 >>> 16;
-		@Pc(33) HashTableIterator local33 = new HashTableIterator(Static119.aClass133_9);
-		for (@Pc(38) Class3_Sub31 local38 = (Class3_Sub31) local33.method2701(); local38 != null; local38 = (Class3_Sub31) local33.method2700()) {
+		@Pc(33) HashTableIterator local33 = new HashTableIterator(InterfaceList.openInterfaces);
+		for (@Pc(38) ComponentPointer local38 = (ComponentPointer) local33.method2701(); local38 != null; local38 = (ComponentPointer) local33.method2700()) {
 			if (local28 == local38.anInt5878) {
-				return Component.getComponent((int) local38.nodeId);
+				return InterfaceList.getComponent((int) local38.nodeId);
 			}
 		}
 		return null;
@@ -582,10 +578,10 @@ public final class Static280 {
 		@Pc(87) int local87;
 		if (arg1 >= Static267.anInt5773 && Static106.anInt2869 >= arg1) {
 			@Pc(52) int[] local52 = ObjTypeList.anIntArrayArray10[arg1];
-			local61 = Static78.method1690(Static224.anInt5063, arg5 - arg2, Static172.anInt4164);
-			local69 = Static78.method1690(Static224.anInt5063, arg2 + arg5, Static172.anInt4164);
-			local78 = Static78.method1690(Static224.anInt5063, arg5 - local18, Static172.anInt4164);
-			local87 = Static78.method1690(Static224.anInt5063, arg5 + local18, Static172.anInt4164);
+			local61 = Static78.method1690(FluTypeList.anInt5063, arg5 - arg2, Static172.anInt4164);
+			local69 = Static78.method1690(FluTypeList.anInt5063, arg2 + arg5, Static172.anInt4164);
+			local78 = Static78.method1690(FluTypeList.anInt5063, arg5 - local18, Static172.anInt4164);
+			local87 = Static78.method1690(FluTypeList.anInt5063, arg5 + local18, Static172.anInt4164);
 			ArrayUtils.fillRange(local52, local61, local78, arg3);
 			ArrayUtils.fillRange(local52, local78, local87, arg0);
 			ArrayUtils.fillRange(local52, local87, local69, arg3);
@@ -613,8 +609,8 @@ public final class Static280 {
 				local61 = arg1 + local32;
 				if (Static267.anInt5773 <= local61 && Static106.anInt2869 >= local161) {
 					if (local32 >= local18) {
-						local69 = Static78.method1690(Static224.anInt5063, local23 + arg5, Static172.anInt4164);
-						local78 = Static78.method1690(Static224.anInt5063, arg5 - local23, Static172.anInt4164);
+						local69 = Static78.method1690(FluTypeList.anInt5063, local23 + arg5, Static172.anInt4164);
+						local78 = Static78.method1690(FluTypeList.anInt5063, arg5 - local23, Static172.anInt4164);
 						if (Static106.anInt2869 >= local61) {
 							ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local61], local78, local69, arg3);
 						}
@@ -623,10 +619,10 @@ public final class Static280 {
 						}
 					} else {
 						local69 = Static241.anIntArray522[local32];
-						local78 = Static78.method1690(Static224.anInt5063, local23 + arg5, Static172.anInt4164);
-						local87 = Static78.method1690(Static224.anInt5063, arg5 - local23, Static172.anInt4164);
-						local264 = Static78.method1690(Static224.anInt5063, arg5 + local69, Static172.anInt4164);
-						local273 = Static78.method1690(Static224.anInt5063, arg5 - local69, Static172.anInt4164);
+						local78 = Static78.method1690(FluTypeList.anInt5063, local23 + arg5, Static172.anInt4164);
+						local87 = Static78.method1690(FluTypeList.anInt5063, arg5 - local23, Static172.anInt4164);
+						local264 = Static78.method1690(FluTypeList.anInt5063, arg5 + local69, Static172.anInt4164);
+						local273 = Static78.method1690(FluTypeList.anInt5063, arg5 - local69, Static172.anInt4164);
 						if (Static106.anInt2869 >= local61) {
 							local280 = ObjTypeList.anIntArrayArray10[local61];
 							ArrayUtils.fillRange(local280, local87, local273, arg3);
@@ -647,13 +643,13 @@ public final class Static280 {
 			if (Static267.anInt5773 <= local61 && Static106.anInt2869 >= local161) {
 				local69 = arg5 + local32;
 				local78 = arg5 - local32;
-				if (local69 >= Static172.anInt4164 && Static224.anInt5063 >= local78) {
-					local69 = Static78.method1690(Static224.anInt5063, local69, Static172.anInt4164);
-					local78 = Static78.method1690(Static224.anInt5063, local78, Static172.anInt4164);
+				if (local69 >= Static172.anInt4164 && FluTypeList.anInt5063 >= local78) {
+					local69 = Static78.method1690(FluTypeList.anInt5063, local69, Static172.anInt4164);
+					local78 = Static78.method1690(FluTypeList.anInt5063, local78, Static172.anInt4164);
 					if (local23 < local18) {
 						local87 = local40 >= local23 ? local40 : Static241.anIntArray522[local23];
-						local264 = Static78.method1690(Static224.anInt5063, local87 + arg5, Static172.anInt4164);
-						local273 = Static78.method1690(Static224.anInt5063, arg5 - local87, Static172.anInt4164);
+						local264 = Static78.method1690(FluTypeList.anInt5063, local87 + arg5, Static172.anInt4164);
+						local273 = Static78.method1690(FluTypeList.anInt5063, arg5 - local87, Static172.anInt4164);
 						if (Static106.anInt2869 >= local61) {
 							local280 = ObjTypeList.anIntArrayArray10[local61];
 							ArrayUtils.fillRange(local280, local78, local273, arg3);
@@ -684,7 +680,7 @@ public final class Static280 {
 		@Pc(3) boolean local3 = false;
 		while (!local3) {
 			local3 = true;
-			for (@Pc(13) int local13 = 0; local13 < PreciseSleep.menuActionRow - 1; local13++) {
+			for (@Pc(13) int local13 = 0; local13 < MiniMenu.menuActionRow - 1; local13++) {
 				if (Static39.aShortArray6[local13] < 1000 && Static39.aShortArray6[local13 + 1] > 1000) {
 					@Pc(41) JString local41 = ClientScriptRunner.aClass100Array160[local13];
 					local3 = false;

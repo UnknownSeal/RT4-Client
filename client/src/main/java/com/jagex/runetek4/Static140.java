@@ -1,8 +1,5 @@
 package com.jagex.runetek4;
 
-import java.io.IOException;
-
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.lighttype.LightType;
 import com.jagex.runetek4.node.NodeQueue;
@@ -18,60 +15,38 @@ public final class Static140 {
 	@OriginalMember(owner = "runetek4.client!la", name = "f", descriptor = "Lclient!ce;")
 	public static final NodeQueue aClass16_7 = new NodeQueue();
 
-	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(Lclient!wa;Z)V")
-	public static void method2705(@OriginalArg(0) Packet arg0) {
-		@Pc(15) byte[] local15 = new byte[24];
-		if (client.uid != null) {
-			try {
-				client.uid.seek(0L);
-				client.uid.read(local15);
-				@Pc(28) int local28;
-				for (local28 = 0; local28 < 24 && local15[local28] == 0; local28++) {
-				}
-				if (local28 >= 24) {
-					throw new IOException();
-				}
-			} catch (@Pc(55) Exception local55) {
-				for (@Pc(57) int local57 = 0; local57 < 24; local57++) {
-					local15[local57] = -1;
-				}
-			}
-		}
-		arg0.pdata(local15, 24);
-	}
-
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(IJ)V")
 	public static void addIgnore(@OriginalArg(1) long username) {
 		if (username == 0L) {
 			return;
 		}
 		if (Static35.ignoreCount >= 100) {
-			Chat.addMessage(Static186.aClass100_827, 0, LocalizedText.IGNORELISTFULL);
+			Chat.addMessage(JString.EMPTY, 0, LocalizedText.IGNORELISTFULL);
 			return;
 		}
 		@Pc(34) JString displayName = Base37.decode37(username).method3125();
 		@Pc(36) int i;
 		for (i = 0; i < Static35.ignoreCount; i++) {
 			if (Static190.ignoreName37[i] == username) {
-				Chat.addMessage(Static186.aClass100_827, 0, JString.concatenate(new JString[] { displayName, LocalizedText.IGNORELISTDUPE}));
+				Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { displayName, LocalizedText.IGNORELISTDUPE}));
 				return;
 			}
 		}
-		for (i = 0; i < CacheArchive.friendCount; i++) {
+		for (i = 0; i < FriendList.friendCount; i++) {
 			if (Static92.friendName37[i] == username) {
-				Chat.addMessage(Static186.aClass100_827, 0, JString.concatenate(new JString[] { LocalizedText.REMOVESOCIAL2, displayName, LocalizedText.REMOVEFRIEND}));
+				Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { LocalizedText.REMOVESOCIAL2, displayName, LocalizedText.REMOVEFRIEND}));
 				return;
 			}
 		}
 		if (displayName.method3108(PlayerList.self.username)) {
-			Chat.addMessage(Static186.aClass100_827, 0, LocalizedText.IGNORECANTADDSELF);
+			Chat.addMessage(JString.EMPTY, 0, LocalizedText.IGNORECANTADDSELF);
 			return;
 		}
 		Static190.ignoreName37[Static35.ignoreCount] = username;
 		Static193.ignoreName[Static35.ignoreCount++] = Base37.decode37(username);
 		Static185.anInt4369 = InterfaceList.transmitTimer;
-		Static6.outboundBuffer.pIsaac1(34);
-		Static6.outboundBuffer.p8(username);
+		Protocol.outboundBuffer.pIsaac1(34);
+		Protocol.outboundBuffer.p8(username);
 	}
 
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(II)Lclient!ic;")

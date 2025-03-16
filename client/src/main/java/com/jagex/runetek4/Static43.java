@@ -19,9 +19,6 @@ public final class Static43 {
 	@OriginalMember(owner = "runetek4.client!dg", name = "h", descriptor = "Lclient!be;")
 	public static Component aClass13_11;
 
-	@OriginalMember(owner = "runetek4.client!dg", name = "c", descriptor = "[[S")
-	public static final short[][] aShortArrayArray5 = new short[][] { { 6554, 115, 10304, 28, 5702, 7756, 5681, 4510, -31835, 22437, 2859, -11339, 16, 5157, 10446, 3658, -27314, -21965, 472, 580, 784, 21966, 28950, -15697, -14002 }, { 9104, 10275, 7595, 3610, 7975, 8526, 918, -26734, 24466, 10145, -6882, 5027, 1457, 16565, -30545, 25486, 24, 5392, 10429, 3673, -27335, -21957, 192, 687, 412, 21821, 28835, -15460, -14019 }, new short[0], new short[0], new short[0] };
-
 	@OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(IIIIILclient!th;IJZ)Z")
 	public static boolean addTemporary(@OriginalArg(0) int arg0, @OriginalArg(1) int x, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) int padding, @OriginalArg(5) Entity arg5, @OriginalArg(6) int yaw, @OriginalArg(7) long arg7, @OriginalArg(8) boolean arg8) {
 		if (arg5 == null) {
@@ -55,7 +52,7 @@ public final class Static43 {
 	@OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(ILclient!be;)V")
 	public static void method1143(@OriginalArg(1) Component arg0) {
 		if (Static182.anInt4311 == arg0.anInt465) {
-			Static186.aBooleanArray100[arg0.anInt517] = true;
+			InterfaceList.aBooleanArray100[arg0.anInt517] = true;
 		}
 	}
 
@@ -104,7 +101,7 @@ public final class Static43 {
 				local100 = local148.entity;
 			}
 			if (local74.blockwalk != 0 && local74.width + arg1 < 104 && local74.width + arg0 < 104 && arg1 + local74.length < 104 && arg0 + local74.length < 104) {
-				arg5.method3056(arg1, local74.width, local74.blockrange, local92, local74.length, arg0);
+				arg5.unflagScenery(arg1, local74.width, local74.blockrange, local92, local74.length, arg0);
 			}
 		} else if (arg3 == 3) {
 			@Pc(211) GroundDecor local211 = Static267.method4526(arg2, arg1, arg0);

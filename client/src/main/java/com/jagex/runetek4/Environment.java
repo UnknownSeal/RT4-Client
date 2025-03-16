@@ -42,7 +42,7 @@ public final class Environment {
 		this.aFloat17 = 1.2F;
 		this.anInt3527 = -50;
 		this.aFloat16 = 1.1523438F;
-		this.anInt3525 = Static161.anInt3922;
+		this.anInt3525 = FogManager.defaulFogColorRgb;
 		this.anInt3528 = -60;
 		this.aFloat18 = 0.69921875F;
 		this.anInt3529 = 0;
@@ -82,7 +82,7 @@ public final class Environment {
 			this.anInt3527 = packet.g2s();
 		}
 		if ((local7 & 0x20) == 0) {
-			this.anInt3525 = Static161.anInt3922;
+			this.anInt3525 = FogManager.defaulFogColorRgb;
 		} else {
 			this.anInt3525 = packet.g4();
 		}

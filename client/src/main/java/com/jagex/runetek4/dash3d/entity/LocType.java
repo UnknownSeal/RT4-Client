@@ -20,7 +20,9 @@ import com.jagex.runetek4.core.io.Packet;
 @OriginalClass("client!pb")
 public final class LocType {
 
-	@OriginalMember(owner = "client!pb", name = "a", descriptor = "[S")
+    @OriginalMember(owner = "runetek4.client!ni", name = "n", descriptor = "Lclient!sm;")
+    public static LocEntity aLocEntity_1 = new LocEntity();
+    @OriginalMember(owner = "client!pb", name = "a", descriptor = "[S")
 	private short[] retex_s;
 
 	@OriginalMember(owner = "client!pb", name = "b", descriptor = "[S")
@@ -569,7 +571,7 @@ public final class LocType {
 				if (this.recol_d_palette == null || this.recol_d_palette.length <= local315) {
 					modified.recolor(this.recol_s[local315], this.recol_d[local315]);
 				} else {
-					modified.recolor(this.recol_s[local315], Static62.aShortArray19[this.recol_d_palette[local315] & 0xFF]);
+					modified.recolor(this.recol_s[local315], client.aShortArray19[this.recol_d_palette[local315] & 0xFF]);
 				}
 			}
 		}
@@ -756,9 +758,9 @@ public final class LocType {
 			if (loc == null) {
 				local235 = this.method3427(arg0, false, arg3);
 				if (local235 == null) {
-					Static171.aLocEntity_1.model = null;
-					Static171.aLocEntity_1.sprite = null;
-					return Static171.aLocEntity_1;
+					aLocEntity_1.model = null;
+					aLocEntity_1.sprite = null;
+					return aLocEntity_1;
 				}
 				if (arg3 == 10 && arg0 > 3) {
 					local235.method4554(256);
@@ -782,10 +784,10 @@ public final class LocType {
 				local330.method4110(this.hillskew_mode, this.hillskew_value, local235, arg2, arg5, arg1, arg4, arg9);
 			}
 			local330.method4111(this.active == 0 && !this.aBoolean214, true, true, this.active == 0, true, false);
-			Static171.aLocEntity_1.model = local330;
+			aLocEntity_1.model = local330;
 			local330.aBoolean259 = local298;
-			Static171.aLocEntity_1.sprite = local265;
-			return Static171.aLocEntity_1;
+			aLocEntity_1.sprite = local265;
+			return aLocEntity_1;
 		}
 		if (this.models == null) {
 			local29 = ((long) this.anInt4426 << 10) + arg0;
@@ -803,8 +805,8 @@ public final class LocType {
 		if (local60 == null) {
 			@Pc(69) ModelUnlit local69 = this.method3418(arg0, arg3);
 			if (local69 == null) {
-				Static171.aLocEntity_1.model = null;
-				return Static171.aLocEntity_1;
+				aLocEntity_1.model = null;
+				return aLocEntity_1;
 			}
 			local69.method1681();
 			if (arg3 == 10 && arg0 > 3) {
@@ -830,8 +832,8 @@ public final class LocType {
 				local60 = ((ModelUnlit) local60).method1670(this.hillskew_mode, this.hillskew_value, arg2, arg5, arg1, arg4, arg9);
 			}
 		}
-		Static171.aLocEntity_1.model = local60;
-		return Static171.aLocEntity_1;
+		aLocEntity_1.model = local60;
+		return aLocEntity_1;
 	}
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "(IILclient!ek;ILclient!tk;I[[IZII[[IIII)Lclient!sm;")
@@ -870,8 +872,8 @@ public final class LocType {
 				}
 				local195 = local195.method4586(this.hillskew_mode, this.hillskew_value, arg6, arg9, arg1, arg3, arg0, false);
 			}
-			Static171.aLocEntity_1.model = local195;
-			return Static171.aLocEntity_1;
+			aLocEntity_1.model = local195;
+			return aLocEntity_1;
 		}
 		if (this.models == null) {
 			local30 = arg5 + ((long) this.anInt4426 << 10);
@@ -902,9 +904,9 @@ public final class LocType {
 			local82.method4554(256);
 		}
 		if (arg7) {
-			Static171.aLocEntity_1.sprite = local82.method4124(arg2);
+			aLocEntity_1.sprite = local82.method4124(arg2);
 		} else {
-			Static171.aLocEntity_1.sprite = null;
+			aLocEntity_1.sprite = null;
 		}
 		if (this.hillskew_mode != 0) {
 			if (!local80) {
@@ -912,8 +914,8 @@ public final class LocType {
 			}
 			local82.method4110(this.hillskew_mode, this.hillskew_value, local46, arg6, arg9, arg1, arg3, arg0);
 		}
-		Static171.aLocEntity_1.model = local82;
-		return Static171.aLocEntity_1;
+		aLocEntity_1.model = local82;
+		return aLocEntity_1;
 	}
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "(Lclient!na;II)Lclient!na;")

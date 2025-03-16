@@ -2,20 +2,14 @@ package com.jagex.runetek4;
 
 import java.util.Random;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.media.Rasterizer;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static89 {
-
-	@OriginalMember(owner = "runetek4.client!ha", name = "i", descriptor = "Lclient!qf;")
-	public static Sprite aClass3_Sub2_Sub1_5;
 
 	@OriginalMember(owner = "runetek4.client!ha", name = "k", descriptor = "[[Z")
 	public static boolean[][] aBooleanArrayArray3;
@@ -44,7 +38,7 @@ public final class Static89 {
 			local11 = 4;
 		}
 		for (@Pc(21) int local21 = 0; local21 < local11; local21++) {
-			Static107.method2261();
+			client.audioLoop();
 			for (@Pc(32) int local32 = 0; local32 < 13; local32++) {
 				for (@Pc(39) int local39 = 0; local39 < 13; local39++) {
 					@Pc(52) int local52 = Static187.anIntArrayArrayArray18[local21][local32][local39];
@@ -122,105 +116,14 @@ public final class Static89 {
 		local8.method1007();
 	}
 
-	@OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(I)V")
-	public static void method1841() {
-		if (!Static60.aBoolean108) {
-			if (Static162.anInt3953 != 0) {
-				Static155.anInt3751 = Static277.anInt5850;
-				Static60.anInt1892 = Static280.anInt5895;
-			} else if (Mouse.clickButton == 0) {
-				Static155.anInt3751 = Static215.anInt4873;
-				Static60.anInt1892 = Static223.anInt5032;
-			} else {
-				Static155.anInt3751 = aClass6.mouseClickX;
-				Static60.anInt1892 = Static60.mouseClickY;
-			}
-			PreciseSleep.menuActionRow = 1;
-			Static254.aClass100Array168[0] = LocalizedText.CANCEL;
-			ClientScriptRunner.aClass100Array160[0] = Static186.aClass100_827;
-			Static39.aShortArray6[0] = 1005;
-			Static190.anIntArray382[0] = Static35.anInt1092;
-		}
-		if (Static154.topLevelInterace != -1) {
-			Static96.method1949(Static154.topLevelInterace);
-		}
-		@Pc(60) int local60;
-		for (local60 = 0; local60 < Static24.anInt766; local60++) {
-			if (Static186.aBooleanArray100[local60]) {
-				Static31.aBooleanArray29[local60] = true;
-			}
-			Static223.aBooleanArray116[local60] = Static186.aBooleanArray100[local60];
-			Static186.aBooleanArray100[local60] = false;
-		}
-		Static201.aClass13_13 = null;
-		Static97.anInt2503 = -1;
-		Static214.anInt5574 = -1;
-		Static169.aClass13_18 = null;
-		if (GlRenderer.enabled) {
-			Static263.aBoolean299 = true;
-		}
-		Static182.anInt4311 = client.loop;
-		if (Static154.topLevelInterace != -1) {
-			Static24.anInt766 = 0;
-			CacheArchive.method182();
-		}
-		if (GlRenderer.enabled) {
-			Static46.method1177();
-		} else {
-			Rasterizer.resetBounds();
-		}
-		Static280.method4673();
-		if (Static60.aBoolean108) {
-			if (Static261.aBoolean298) {
-				Static112.method2297();
-			} else {
-				Static145.method2744();
-			}
-		} else if (Static201.aClass13_13 != null) {
-			Static49.method1207(Static201.aClass13_13, Static143.anInt3484, Static131.anInt3260);
-		} else if (Static97.anInt2503 != -1) {
-			Static49.method1207(null, Static214.anInt5574, Static97.anInt2503);
-		}
-		local60 = Static60.aBoolean108 ? -1 : Static235.method4044();
-		if (local60 == -1) {
-			local60 = Static270.anInt5794;
-		}
-		client.method1750(local60);
-		if (Static125.anInt3096 == 1) {
-			Static125.anInt3096 = 2;
-		}
-		if (Static187.anInt4422 == 1) {
-			Static187.anInt4422 = 2;
-		}
-		if (Cheat.rectDebug == 3) {
-			for (@Pc(189) int local189 = 0; local189 < Static24.anInt766; local189++) {
-				if (Static223.aBooleanArray116[local189]) {
-					if (GlRenderer.enabled) {
-						Static46.method1182(Static264.anIntArray410[local189], Static50.anIntArray133[local189], Static224.anIntArray443[local189], Static67.anIntArray320[local189], 16711935, 128);
-					} else {
-						Rasterizer.drawFilledRectangleAlpha(Static264.anIntArray410[local189], Static50.anIntArray133[local189], Static224.anIntArray443[local189], Static67.anIntArray320[local189], 16711935, 128);
-					}
-				} else if (Static31.aBooleanArray29[local189]) {
-					if (GlRenderer.enabled) {
-						Static46.method1182(Static264.anIntArray410[local189], Static50.anIntArray133[local189], Static224.anIntArray443[local189], Static67.anIntArray320[local189], 16711680, 128);
-					} else {
-						Rasterizer.drawFilledRectangleAlpha(Static264.anIntArray410[local189], Static50.anIntArray133[local189], Static224.anIntArray443[local189], Static67.anIntArray320[local189], 16711680, 128);
-					}
-				}
-			}
-		}
-		AreaSoundManager.redraw(Static178.sceneDelta, PlayerList.self.xFine, PlayerList.self.zFine, Player.plane);
-		Static178.sceneDelta = 0;
-	}
-
 	@OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(IIIII)V")
 	public static void method1843(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
 		@Pc(7) int local7 = 0;
 		@Pc(9) int local9 = arg2;
 		@Pc(12) int local12 = -arg2;
 		@Pc(14) int local14 = -1;
-		@Pc(22) int local22 = Static78.method1690(Static224.anInt5063, arg2 + arg3, Static172.anInt4164);
-		@Pc(30) int local30 = Static78.method1690(Static224.anInt5063, arg3 - arg2, Static172.anInt4164);
+		@Pc(22) int local22 = Static78.method1690(FluTypeList.anInt5063, arg2 + arg3, Static172.anInt4164);
+		@Pc(30) int local30 = Static78.method1690(FluTypeList.anInt5063, arg3 - arg2, Static172.anInt4164);
 		ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[arg1], local30, local22, arg0);
 		while (local7 < local9) {
 			local14 += 2;
@@ -235,8 +138,8 @@ public final class Static89 {
 				local12 -= local9 << 1;
 				local68 = arg1 + local9;
 				if (local68 >= Static267.anInt5773 && local58 <= Static106.anInt2869) {
-					local84 = Static78.method1690(Static224.anInt5063, arg3 + local7, Static172.anInt4164);
-					local93 = Static78.method1690(Static224.anInt5063, arg3 - local7, Static172.anInt4164);
+					local84 = Static78.method1690(FluTypeList.anInt5063, arg3 + local7, Static172.anInt4164);
+					local93 = Static78.method1690(FluTypeList.anInt5063, arg3 - local7, Static172.anInt4164);
 					if (Static106.anInt2869 >= local68) {
 						ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local68], local93, local84, arg0);
 					}
@@ -249,8 +152,8 @@ public final class Static89 {
 			local58 = arg1 - local7;
 			local68 = local7 + arg1;
 			if (local68 >= Static267.anInt5773 && Static106.anInt2869 >= local58) {
-				local84 = Static78.method1690(Static224.anInt5063, arg3 + local9, Static172.anInt4164);
-				local93 = Static78.method1690(Static224.anInt5063, arg3 - local9, Static172.anInt4164);
+				local84 = Static78.method1690(FluTypeList.anInt5063, arg3 + local9, Static172.anInt4164);
+				local93 = Static78.method1690(FluTypeList.anInt5063, arg3 - local9, Static172.anInt4164);
 				if (local68 <= Static106.anInt2869) {
 					ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local68], local93, local84, arg0);
 				}

@@ -6,7 +6,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!fi")
-public final class HuffmanEncoding {
+public final class HuffmanCodec {
 
 	@OriginalMember(owner = "runetek4.client!fi", name = "b", descriptor = "[I")
 	private int[] anIntArray174;
@@ -18,7 +18,7 @@ public final class HuffmanEncoding {
 	private final byte[] aByteArray22;
 
 	@OriginalMember(owner = "runetek4.client!fi", name = "<init>", descriptor = "([B)V")
-	public HuffmanEncoding(@OriginalArg(0) byte[] arg0) {
+	public HuffmanCodec(@OriginalArg(0) byte[] arg0) {
 		@Pc(6) int[] local6 = new int[33];
 		@Pc(9) int local9 = arg0.length;
 		this.anIntArray174 = new int[8];

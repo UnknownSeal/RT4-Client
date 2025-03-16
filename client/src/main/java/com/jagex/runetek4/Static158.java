@@ -55,10 +55,10 @@ public final class Static158 {
 					@Pc(129) int local129 = local103 & 0x3F;
 					@Pc(142) int local142 = local129 + (Static238.anIntArray470[local16] & 0xFF) * 64 - Camera.originZ;
 					@Pc(148) NpcType local148 = NpcType.getDefinition(local74.g2());
-					if (NpcList.npcs[local97] == null && (local148.walkflags & 0x1) > 0 && local107 == Static41.anInt1316 && local125 >= 0 && local148.size + local125 < 104 && local142 >= 0 && local142 + local148.size < 104) {
+					if (NpcList.npcs[local97] == null && (local148.loginscreenproperties & 0x1) > 0 && local107 == Static41.anInt1316 && local125 >= 0 && local148.size + local125 < 104 && local142 >= 0 && local142 + local148.size < 104) {
 						NpcList.npcs[local97] = new Npc();
 						@Pc(198) Npc local198 = NpcList.npcs[local97];
-						Static33.npcIds[Static272.npcCount++] = local97;
+						Static33.npcIds[NpcList.npcCount++] = local97;
 						local198.cycle = client.loop;
 						local198.method2698(local148);
 						local198.setSize(local198.type.size);
@@ -68,7 +68,7 @@ public final class Static158 {
 							local198.anInt3381 = 0;
 						}
 						local198.anInt3365 = local198.type.bas;
-						local198.teleport(local198.size(), local125, local142, true);
+						local198.teleport(local198.getSize(), local125, local142, true);
 					}
 				}
 			}

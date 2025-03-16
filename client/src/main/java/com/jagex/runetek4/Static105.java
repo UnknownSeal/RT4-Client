@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.media.renderable.Entity;
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -14,22 +13,16 @@ public final class Static105 {
 	public static final ColorImageCacheEntry aClass3_Sub28_1 = new ColorImageCacheEntry(0, 0);
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "d", descriptor = "Lclient!gn;")
-	public static final LruHashTable clientScriptCache = new LruHashTable(128);
-
-	@OriginalMember(owner = "runetek4.client!ib", name = "e", descriptor = "Lclient!be;")
-	public static Component aClass13_14 = null;
+	public static final LruHashTable scripts = new LruHashTable(128);
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "f", descriptor = "[I")
 	public static final int[] playerIds = new int[2048];
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "g", descriptor = "Lclient!na;")
-	public static final JString aClass100_559 = Static28.parse("<col=ffff00>");
+	public static final JString aClass100_559 = JString.parse("<col=ffff00>");
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "k", descriptor = "Lclient!na;")
-	public static final JString aClass100_561 = Static28.parse(" )2> <col=ffffff>");
-
-	@OriginalMember(owner = "runetek4.client!ib", name = "l", descriptor = "I")
-	public static int anInt2863 = 0;
+	public static final JString aClass100_561 = JString.parse(" )2> <col=ffffff>");
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "a", descriptor = "(II)I")
 	public static int hslToRgb(@OriginalArg(1) int arg0) {

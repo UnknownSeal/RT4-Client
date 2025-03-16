@@ -15,13 +15,7 @@ public final class Static166 {
 	public static int anInt4049;
 
 	@OriginalMember(owner = "runetek4.client!nc", name = "e", descriptor = "Lclient!na;")
-	public static final JString aClass100_779 = Static28.parse("underlay");
-
-	@OriginalMember(owner = "runetek4.client!nc", name = "j", descriptor = "I")
-	public static int loadingPercent = 0;
-
-	@OriginalMember(owner = "runetek4.client!nc", name = "m", descriptor = "I")
-	public static int anInt4054 = 0;
+	public static final JString aClass100_779 = JString.parse("underlay");
 
 	@OriginalMember(owner = "runetek4.client!nc", name = "n", descriptor = "I")
 	public static int anInt4055 = 0;
@@ -41,10 +35,10 @@ public final class Static166 {
 				@Pc(42) int local42 = arg0.g1();
 				@Pc(46) int local46 = arg0.g1();
 				@Pc(53) int local53 = local42 * 64 - Static158.anInt3846;
-				@Pc(65) int local65 = Static2.anInt13 + Static181.anInt4296 - local46 * 64 - 1;
+				@Pc(65) int local65 = Static2.anInt13 + IdkTypeList.anInt4296 - local46 * 64 - 1;
 				@Pc(84) int local84;
 				@Pc(95) int local95;
-				if (local53 >= 0 && local65 - 63 >= 0 && Static48.anInt1449 > local53 + 63 && local65 < Static181.anInt4296) {
+				if (local53 >= 0 && local65 - 63 >= 0 && Static48.anInt1449 > local53 + 63 && local65 < IdkTypeList.anInt4296) {
 					local84 = local53 >> 6;
 					local95 = local65 >> 6;
 					@Pc(150) int local150 = 0;

@@ -56,7 +56,7 @@ public final class TextureOp29SubOp3 extends TextureOp29SubOp {
 		@Pc(45) int local45 = arg0 * this.anInt4845 >> 12;
 		@Pc(52) int local52 = this.anInt4853 * arg1 >> 12;
 		@Pc(65) int local65 = arg0 * this.anInt4842 >> 12;
-		Static181.method3340(local17, local52, local45, local65, local31, local6, local38, local24, this.anInt5229);
+		IdkTypeList.method3340(local17, local52, local45, local65, local31, local6, local38, local24, this.anInt5229);
 	}
 
 	@OriginalMember(owner = "runetek4.client!re", name = "c", descriptor = "(III)V")

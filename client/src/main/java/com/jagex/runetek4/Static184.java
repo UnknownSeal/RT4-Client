@@ -7,11 +7,8 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static184 {
 
-	@OriginalMember(owner = "runetek4.client!ol", name = "V", descriptor = "I")
-	public static int anInt4348 = 0;
-
 	@OriginalMember(owner = "runetek4.client!ol", name = "Y", descriptor = "Lclient!na;")
-	public static final JString aClass100_819 = Static28.parse("<col=00ff80>");
+	public static final JString aClass100_819 = JString.parse("<col=00ff80>");
 
 	@OriginalMember(owner = "runetek4.client!ol", name = "fb", descriptor = "I")
 	public static int anInt4355 = 500;

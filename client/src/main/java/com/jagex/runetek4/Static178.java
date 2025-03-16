@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IntWrapper;
-import com.jagex.runetek4.game.client.ClientInvCache;
+import com.jagex.runetek4.game.client.Inv;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -15,15 +15,9 @@ public final class Static178 {
 	@OriginalMember(owner = "runetek4.client!od", name = "g", descriptor = "S")
 	public static short aShort25 = 256;
 
-	@OriginalMember(owner = "runetek4.client!od", name = "i", descriptor = "I")
-	public static int sceneDelta = 0;
-
-	@OriginalMember(owner = "runetek4.client!od", name = "n", descriptor = "Z")
-	public static boolean aBoolean203 = false;
-
 	@OriginalMember(owner = "runetek4.client!od", name = "a", descriptor = "(IZII)I")
 	public static int method3319(@OriginalArg(1) boolean arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		@Pc(19) ClientInvCache local19 = (ClientInvCache) ClientInvCache.recentUse.getNode((long) arg1);
+		@Pc(19) Inv local19 = (Inv) Inv.recentUse.getNode((long) arg1);
 		if (local19 == null) {
 			return 0;
 		}

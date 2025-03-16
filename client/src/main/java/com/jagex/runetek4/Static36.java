@@ -29,7 +29,7 @@ public final class Static36 {
 			return null;
 		}
 		for (@Pc(10) int local10 = 0; local10 < local4; local10++) {
-			arg0 = Component.getComponent(arg0.layer);
+			arg0 = InterfaceList.getComponent(arg0.overlayer);
 			if (arg0 == null) {
 				return null;
 			}
@@ -39,7 +39,7 @@ public final class Static36 {
 
 	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "b", descriptor = "(Lclient!be;)Lclient!bf;")
 	public static ServerActiveProperties method940(@OriginalArg(0) Component arg0) {
-		@Pc(13) ServerActiveProperties local13 = (ServerActiveProperties) Static210.aClass133_21.getNode(((long) arg0.anInt507 << 32) + (long) arg0.componentId);
+		@Pc(13) ServerActiveProperties local13 = (ServerActiveProperties) Static210.aClass133_21.getNode(((long) arg0.anInt507 << 32) + (long) arg0.createdComponentId);
 		return local13 == null ? arg0.aClass3_Sub4_1 : local13;
 	}
 
@@ -47,7 +47,7 @@ public final class Static36 {
 	public static void method946(@OriginalArg(0) Component[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
 		for (@Pc(1) int local1 = 0; local1 < arg0.length; local1++) {
 			@Pc(9) Component local9 = arg0[local1];
-			if (local9 != null && local9.layer == arg1 && (!local9.aBoolean32 || local9.INVENTORY == 0 || local9.aBoolean25 || method940(local9).anInt546 != 0 || local9 == Static4.aClass13_1 || local9.contentType == 1338) && (!local9.aBoolean32 || !method947(local9))) {
+			if (local9 != null && local9.overlayer == arg1 && (!local9.aBoolean32 || local9.INVENTORY == 0 || local9.aBoolean25 || method940(local9).anInt546 != 0 || local9 == Static4.aClass13_1 || local9.contentType == 1338) && (!local9.aBoolean32 || !method947(local9))) {
 				@Pc(50) int local50 = local9.x + arg6;
 				@Pc(55) int local55 = local9.y + arg7;
 				@Pc(61) int local61;
@@ -71,7 +71,7 @@ public final class Static36 {
 					local65 = local73 < arg4 ? local73 : arg4;
 					local67 = local78 < arg5 ? local78 : arg5;
 				}
-				if (local9 == Static105.aClass13_14) {
+				if (local9 == ClientScriptRunner.aClass13_14) {
 					Static44.aBoolean83 = true;
 					Static124.anInt3075 = local50;
 					Static20.anInt660 = local55;
@@ -89,7 +89,7 @@ public final class Static36 {
 								}
 							}
 							if (Static213.anInt4851 == 0) {
-								Static105.aClass13_14 = null;
+								ClientScriptRunner.aClass13_14 = null;
 								Static4.aClass13_1 = null;
 							}
 							Static137.anInt3337 = 0;
@@ -118,7 +118,7 @@ public final class Static36 {
 									if (local9.anIntArray49 == null || client.loop >= local9.anIntArray49[local243]) {
 										@Pc(279) byte local279 = local9.aByteArray7[local243];
 										if (local279 == 0 || ((local279 & 0x2) == 0 || Static187.pressedKeys[86]) && ((local279 & 0x1) == 0 || Static187.pressedKeys[82]) && ((local279 & 0x4) == 0 || Static187.pressedKeys[81])) {
-											Static263.method4512(Static186.aClass100_827, -1, local243 + 1, local9.anInt507);
+											Static263.method4512(JString.EMPTY, -1, local243 + 1, local9.anInt507);
 											local322 = local9.anIntArray46[local243];
 											if (local9.anIntArray49 == null) {
 												local9.anIntArray49 = new int[local9.aByteArray8.length];
@@ -138,7 +138,7 @@ public final class Static36 {
 						if (local221) {
 							Static40.method1015(Static60.mouseClickY - local55, aClass6.mouseClickX - local50, local9);
 						}
-						if (Static105.aClass13_14 != null && Static105.aClass13_14 != local9 && local207 && method940(local9).method509()) {
+						if (ClientScriptRunner.aClass13_14 != null && ClientScriptRunner.aClass13_14 != local9 && local207 && method940(local9).method509()) {
 							Static56.aClass13_12 = local9;
 						}
 						if (local9 == Static4.aClass13_1) {
@@ -156,7 +156,7 @@ public final class Static36 {
 								local399.anObjectArray31 = local9.anObjectArray10;
 								Static185.aClass69_101.addTail(local399);
 							}
-							if (Static105.aClass13_14 != null || Static118.component != null || Static60.aBoolean108 || local9.contentType != 1400 && Static137.anInt3337 > 0) {
+							if (ClientScriptRunner.aClass13_14 != null || Static118.component != null || ClientScriptRunner.aBoolean108 || local9.contentType != 1400 && Static137.anInt3337 > 0) {
 								local221 = false;
 								local212 = false;
 								local207 = false;
@@ -184,7 +184,7 @@ public final class Static36 {
 											local322 = Static13.anInt435 + local243;
 											@Pc(516) int local516 = Static28.anInt919 + local508;
 											@Pc(520) int local520 = local322 + Static158.anInt3846;
-											@Pc(528) int local528 = Static181.anInt4296 + Static2.anInt13 - local516 - 1;
+											@Pc(528) int local528 = IdkTypeList.anInt4296 + Static2.anInt13 - local516 - 1;
 											Cheat.teleport(local520, local528, 0);
 											Static153.method2909();
 											continue;
@@ -252,7 +252,7 @@ public final class Static36 {
 									local399.anInt3102 = Static215.anInt4873 - local50;
 									local399.anInt3097 = Static223.anInt5032 - local55;
 									local399.anObjectArray31 = local9.anObjectArray18;
-									Static115.aClass69_70.addTail(local399);
+									InterfaceList.lowPriorityRequests.addTail(local399);
 								}
 							}
 							if (local212 && local9.anObjectArray9 != null) {
@@ -294,14 +294,14 @@ public final class Static36 {
 									local399.anInt3102 = Static215.anInt4873 - local50;
 									local399.anInt3097 = Static223.anInt5032 - local55;
 									local399.anObjectArray31 = local9.anObjectArray24;
-									Static115.aClass69_70.addTail(local399);
+									InterfaceList.lowPriorityRequests.addTail(local399);
 								}
 							}
 							if (local9.anObjectArray22 != null) {
 								local399 = new HookRequest();
 								local399.source = local9;
 								local399.anObjectArray31 = local9.anObjectArray22;
-								Static4.aClass69_2.addTail(local399);
+								InterfaceList.highPriorityRequests.addTail(local399);
 							}
 							@Pc(966) HookRequest local966;
 							if (local9.anObjectArray4 != null && Static4.updatedVarcsWriterIndex > local9.anInt511) {
@@ -446,11 +446,11 @@ public final class Static36 {
 							}
 							local9.anInt482 = InterfaceList.transmitTimer;
 							if (local9.anObjectArray14 != null) {
-								for (local243 = 0; local243 < Static182.keyQueueSize; local243++) {
+								for (local243 = 0; local243 < InterfaceList.keyQueueSize; local243++) {
 									@Pc(1430) HookRequest local1430 = new HookRequest();
 									local1430.source = local9;
 									local1430.anInt3100 = InterfaceList.keyCodes[local243];
-									local1430.anInt3099 = Static205.keyChars[local243];
+									local1430.anInt3099 = InterfaceList.keyChars[local243];
 									local1430.anObjectArray31 = local9.anObjectArray14;
 									Static185.aClass69_101.addTail(local1430);
 								}
@@ -463,7 +463,7 @@ public final class Static36 {
 							}
 						}
 					}
-					if (!local9.aBoolean32 && Static105.aClass13_14 == null && Static118.component == null && !Static60.aBoolean108) {
+					if (!local9.aBoolean32 && ClientScriptRunner.aClass13_14 == null && Static118.component == null && !ClientScriptRunner.aBoolean108) {
 						if ((local9.anInt470 >= 0 || local9.anInt480 != 0) && Static215.anInt4873 >= local61 && Static223.anInt5032 >= local63 && Static215.anInt4873 < local65 && Static223.anInt5032 < local67) {
 							if (local9.anInt470 >= 0) {
 								Static180.aClass13_22 = arg0[local9.anInt470];
@@ -483,9 +483,9 @@ public final class Static36 {
 						if (local9.createdComponents != null) {
 							method946(local9.createdComponents, local9.anInt507, local61, local63, local65, local67, local50 - local9.anInt489, local55 - local9.scrollY);
 						}
-						@Pc(1595) Class3_Sub31 local1595 = (Class3_Sub31) Static119.aClass133_9.getNode((long) local9.anInt507);
+						@Pc(1595) ComponentPointer local1595 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) local9.anInt507);
 						if (local1595 != null) {
-							Static57.method1320(local50, local63, local55, local65, local1595.anInt5878, local61, local67);
+							InterfaceList.method1320(local50, local63, local55, local65, local1595.anInt5878, local61, local67);
 						}
 					}
 				}

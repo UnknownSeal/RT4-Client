@@ -16,11 +16,6 @@ public final class Static114 {
 	@OriginalMember(owner = "runetek4.client!j", name = "O", descriptor = "[I")
 	public static final int[] anIntArray565 = new int[] { 1, -1, -1, 1 };
 
-	@OriginalMember(owner = "runetek4.client!j", name = "c", descriptor = "(I)V")
-	public static void method4625() {
-		Static204.aClass69_113 = new LinkedList();
-	}
-
 	@OriginalMember(owner = "runetek4.client!j", name = "a", descriptor = "([BI)Lclient!dd;")
 	public static SoftwareFont method4635(@OriginalArg(0) byte[] arg0) {
 		if (arg0 == null) {
@@ -32,12 +27,4 @@ public final class Static114 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!j", name = "g", descriptor = "(I)V")
-	public static void method4637() {
-		Static165.aClass3_Sub2_Sub1_8 = null;
-		Static39.aClass3_Sub2_Sub1_1 = null;
-		Static92.aClass3_Sub2_Sub1_6 = null;
-		Static181.aClass3_Sub2_Sub1_9 = null;
-		Static204.aClass3_Sub2_Sub1_10 = null;
-	}
 }

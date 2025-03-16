@@ -100,9 +100,9 @@ public final class Static63 {
 								while (true) {
 									local8 = (IntWrapper) aClass69_51.removeHead();
 									if (local8 == null) {
-										if (oncard_geometry + oncard_2d + oncard_texture > 100663296 && MonotonicTime.get() > aLong71 + 60000L) {
+										if (oncard_geometry + oncard_2d + oncard_texture > 100663296 && MonotonicTime.currentTimeMillis() > aLong71 + 60000L) {
 											System.gc();
-											aLong71 = MonotonicTime.get();
+											aLong71 = MonotonicTime.currentTimeMillis();
 										}
 										return;
 									}

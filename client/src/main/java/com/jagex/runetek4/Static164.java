@@ -14,20 +14,11 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static164 {
 
-	@OriginalMember(owner = "runetek4.client!na", name = "W", descriptor = "Z")
-	public static boolean newTab;
-
-	@OriginalMember(owner = "runetek4.client!na", name = "h", descriptor = "Z")
-	public static boolean aBoolean191 = false;
-
-	@OriginalMember(owner = "runetek4.client!na", name = "l", descriptor = "I")
-	public static int packetType = 0;
-
 	@OriginalMember(owner = "runetek4.client!na", name = "o", descriptor = "I")
 	public static int anInt3988 = 0;
 
 	@OriginalMember(owner = "runetek4.client!na", name = "cb", descriptor = "Lclient!na;")
-	public static final JString ALLYREQ = Static28.parse(":allyreq:");
+	public static final JString ALLYREQ = JString.parse(":allyreq:");
 
 	@OriginalMember(owner = "runetek4.client!na", name = "mb", descriptor = "[I")
 	public static final int[] anIntArray362 = new int[50];

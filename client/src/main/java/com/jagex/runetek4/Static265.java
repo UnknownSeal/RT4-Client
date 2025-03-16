@@ -7,11 +7,8 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static265 {
 
-	@OriginalMember(owner = "runetek4.client!vj", name = "j", descriptor = "Lclient!dd;")
-	public static SoftwareFont aClass3_Sub2_Sub9_Sub1_2;
-
 	@OriginalMember(owner = "runetek4.client!vj", name = "m", descriptor = "Lclient!na;")
-	public static final JString aClass100_1086 = Static28.parse("_labels");
+	public static final JString aClass100_1086 = JString.parse("_labels");
 
 	@OriginalMember(owner = "runetek4.client!vj", name = "a", descriptor = "(IIILclient!ve;)[Lclient!mm;")
 	public static ImageRGB[] method4523(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {

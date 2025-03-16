@@ -14,22 +14,22 @@ public final class Static18 {
 	public static boolean aBoolean40;
 
 	@OriginalMember(owner = "client!bh", name = "s", descriptor = "Lclient!na;")
-	public static final JString P11_FULL = Static28.parse("p11_full");
+	public static final JString P11_FULL = JString.parse("p11_full");
 
 	@OriginalMember(owner = "client!bh", name = "t", descriptor = "I")
 	public static int mouseInvInterfaceIndex = 0;
 
 	@OriginalMember(owner = "client!bh", name = "v", descriptor = "Lclient!na;")
-	public static final JString FLOORSHADOWS = Static28.parse("floorshadows");
+	public static final JString FLOORSHADOWS = JString.parse("floorshadows");
 
 	@OriginalMember(owner = "client!bh", name = "C", descriptor = "Lclient!na;")
-	public static final JString aClass100_108 = Static28.parse("<br>(X100(U(Y");
+	public static final JString aClass100_108 = JString.parse("<br>(X100(U(Y");
 
 	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(Lclient!fe;Z)V")
 	public static void method553(@OriginalArg(0) PathingEntity arg0) {
 		@Pc(8) int local8 = arg0.anInt3395 - client.loop;
-		@Pc(20) int local20 = arg0.anInt3380 * 128 + arg0.size() * 64;
-		@Pc(36) int local36 = arg0.anInt3428 * 128 + arg0.size() * 64;
+		@Pc(20) int local20 = arg0.anInt3380 * 128 + arg0.getSize() * 64;
+		@Pc(36) int local36 = arg0.anInt3428 * 128 + arg0.getSize() * 64;
 		if (arg0.anInt3431 == 0) {
 			arg0.dstYaw = 1024;
 		}

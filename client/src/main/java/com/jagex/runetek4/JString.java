@@ -17,6 +17,8 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("runetek4.client!na")
 public final class JString implements StringInterface {
 
+	@OriginalMember(owner = "runetek4.client!pa", name = "O", descriptor = "Lclient!na;")
+	public static final JString EMPTY = parse("");
 	@OriginalMember(owner = "runetek4.client!na", name = "T", descriptor = "[B")
 	public byte[] aByteArray52;
 
@@ -85,6 +87,42 @@ public final class JString implements StringInterface {
 	@OriginalMember(owner = "runetek4.client!jj", name = "b", descriptor = "(BI)Lclient!na;")
 	public static JString parseInt(@OriginalArg(1) int arg0) {
 		return Static198.method1025(false, arg0);
+	}
+
+    @OriginalMember(owner = "client!cd", name = "a", descriptor = "(Ljava/lang/String;B)Lclient!na;")
+    public static JString parse(@OriginalArg(0) String arg0) {
+        @Pc(6) byte[] local6 = arg0.getBytes();
+        @Pc(9) int local9 = local6.length;
+        @Pc(13) JString local13 = new JString();
+        @Pc(15) int local15 = 0;
+        local13.aByteArray52 = new byte[local9];
+        while (local9 > local15) {
+            @Pc(29) int local29 = local6[local15++] & 0xFF;
+            if (local29 <= 45 && local29 >= 40) {
+                if (local15 >= local9) {
+                    break;
+                }
+                @Pc(51) int local51 = local6[local15++] & 0xFF;
+                local13.aByteArray52[local13.anInt4030++] = (byte) (local51 + (local29 + -40) * 43 - 48);
+            } else if (local29 != 0) {
+                local13.aByteArray52[local13.anInt4030++] = (byte) local29;
+            }
+        }
+        local13.method3156();
+        return local13.method3151();
+    }
+
+	@OriginalMember(owner = "client!an", name = "a", descriptor = "([BIII)Lclient!na;")
+	public static JString decodeString(@OriginalArg(0) byte[] arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
+		@Pc(7) JString local7 = new JString();
+		local7.aByteArray52 = new byte[arg1];
+		local7.anInt4030 = 0;
+		for (@Pc(22) int local22 = arg2; local22 < arg1 + arg2; local22++) {
+			if (arg0[local22] != 0) {
+				local7.aByteArray52[local7.anInt4030++] = arg0[local22];
+			}
+		}
+		return local7;
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Z)Ljava/net/URL;")
@@ -842,12 +880,12 @@ public final class JString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(ILjava/applet/Applet;)Ljava/lang/Object;")
-	public final Object method3157(@OriginalArg(1) Applet arg0) throws Throwable {
+	public final Object browserControlCall(@OriginalArg(1) Applet arg0) throws Throwable {
 		@Pc(12) String local12 = new String(this.aByteArray52, 0, this.anInt4030);
 		@Pc(17) Object local17 = BrowserControl.call(local12, arg0);
 		if (local17 instanceof String) {
 			@Pc(24) byte[] local24 = ((String) local17).getBytes();
-			local17 = Static10.decodeString(local24, local24.length, 0);
+			local17 = decodeString(local24, local24.length, 0);
 		}
 		return local17;
 	}

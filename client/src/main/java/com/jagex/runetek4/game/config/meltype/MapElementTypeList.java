@@ -41,7 +41,7 @@ public final class MapElementTypeList {
 
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(ILclient!na;Lclient!ve;)Lclient!se;")
 	public static MapElementTypeList create(@OriginalArg(1) JString arg0, @OriginalArg(2) Js5 arg1) {
-		@Pc(10) int local10 = arg1.method4482(arg0);
+		@Pc(10) int local10 = arg1.getGroupId(arg0);
 		if (local10 == -1) {
 			return new MapElementTypeList(0);
 		}

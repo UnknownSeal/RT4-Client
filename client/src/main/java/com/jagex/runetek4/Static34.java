@@ -4,7 +4,6 @@ import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -18,46 +17,46 @@ public final class Static34 {
 	public static byte[][][] aByteArrayArrayArray3;
 
     @OriginalMember(owner = "runetek4.client!ck", name = "b", descriptor = "Lclient!na;")
-	private static final JString aClass100_195 = Static28.parse("Discard");
+	private static final JString aClass100_195 = JString.parse("Discard");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "d", descriptor = "[I")
 	public static final int[] WALL_DECORATION_ROTATION_FORWARD_X = new int[] { 1, 0, -1, 0 };
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "T", descriptor = "Lclient!na;")
-	private static final JString aClass100_207 = Static28.parse("Jan");
+	private static final JString aClass100_207 = JString.parse("Jan");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "hb", descriptor = "Lclient!na;")
-	private static final JString aClass100_212 = Static28.parse("Feb");
+	private static final JString aClass100_212 = JString.parse("Feb");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "gb", descriptor = "Lclient!na;")
-	private static final JString aClass100_211 = Static28.parse("Mar");
+	private static final JString aClass100_211 = JString.parse("Mar");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "db", descriptor = "Lclient!na;")
-	private static final JString aClass100_210 = Static28.parse("Apr");
+	private static final JString aClass100_210 = JString.parse("Apr");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "n", descriptor = "Lclient!na;")
-	private static final JString aClass100_199 = Static28.parse("May");
+	private static final JString aClass100_199 = JString.parse("May");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "L", descriptor = "Lclient!na;")
-	private static final JString aClass100_204 = Static28.parse("Jun");
+	private static final JString aClass100_204 = JString.parse("Jun");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "B", descriptor = "Lclient!na;")
-	private static final JString aClass100_202 = Static28.parse("Jul");
+	private static final JString aClass100_202 = JString.parse("Jul");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "l", descriptor = "Lclient!na;")
-	private static final JString aClass100_198 = Static28.parse("Aug");
+	private static final JString aClass100_198 = JString.parse("Aug");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "V", descriptor = "Lclient!na;")
-	private static final JString aClass100_208 = Static28.parse("Sep");
+	private static final JString aClass100_208 = JString.parse("Sep");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "S", descriptor = "Lclient!na;")
-	private static final JString aClass100_206 = Static28.parse("Oct");
+	private static final JString aClass100_206 = JString.parse("Oct");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "Y", descriptor = "Lclient!na;")
-	private static final JString aClass100_209 = Static28.parse("Nov");
+	private static final JString aClass100_209 = JString.parse("Nov");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "O", descriptor = "Lclient!na;")
-	private static final JString aClass100_205 = Static28.parse("Dec");
+	private static final JString aClass100_205 = JString.parse("Dec");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "f", descriptor = "[Lclient!na;")
 	public static final JString[] aClass100Array40 = new JString[] { aClass100_207, aClass100_212, aClass100_211, aClass100_210, aClass100_199, aClass100_204, aClass100_202, aClass100_198, aClass100_208, aClass100_206, aClass100_209, aClass100_205 };
@@ -66,7 +65,7 @@ public final class Static34 {
 	public static volatile int anInt1034 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "o", descriptor = "Lclient!na;")
-	private static final JString LOADED_WORLD_LIST_DATA = Static28.parse("Loaded world list data");
+	private static final JString LOADED_WORLD_LIST_DATA = JString.parse("Loaded world list data");
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "C", descriptor = "I")
 	public static int anInt1047 = 0;
@@ -79,15 +78,6 @@ public final class Static34 {
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "eb", descriptor = "Z")
 	public static boolean verifyIdChanged = false;
-
-	@OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "(ILclient!va;Lclient!ve;Lclient!ve;Lclient!ve;)Z")
-	public static boolean method876(@OriginalArg(1) MidiPcmStream arg0, @OriginalArg(2) Js5 arg1, @OriginalArg(3) Js5 arg2, @OriginalArg(4) Js5 arg3) {
-		Static210.aClass153_87 = arg1;
-		Static78.aClass153_32 = arg3;
-		Static252.aClass153_103 = arg2;
-		Static172.aClass3_Sub3_Sub4_2 = arg0;
-		return true;
-	}
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "(BI)Lclient!eg;")
 	public static SpotAnimDefinition method877(@OriginalArg(1) int arg0) {

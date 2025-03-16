@@ -2,19 +2,12 @@ package com.jagex.runetek4;
 
 import java.util.Calendar;
 
-import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
-import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.game.client.ClientInvCache;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static102 {
-
-	@OriginalMember(owner = "runetek4.client!hn", name = "Z", descriptor = "I")
-	public static int keyCode;
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "K", descriptor = "Ljava/util/Calendar;")
 	public static final Calendar aCalendar2 = Calendar.getInstance();
@@ -24,9 +17,6 @@ public final class Static102 {
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "W", descriptor = "Lclient!na;")
 	public static JString aClass100_545 = null;
-
-	@OriginalMember(owner = "runetek4.client!hn", name = "X", descriptor = "I")
-	public static int anInt2679 = 0;
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "Y", descriptor = "I")
 	public static int anInt2680 = 0;
@@ -54,31 +44,14 @@ public final class Static102 {
 		return local78;
 	}
 
-	@OriginalMember(owner = "runetek4.client!hn", name = "f", descriptor = "(B)V")
-	public static void method2073() {
-		ClientInvCache.recentUse = new HashTable(32);
-	}
-
-	@OriginalMember(owner = "runetek4.client!hn", name = "a", descriptor = "(Lclient!ve;ILclient!ve;)V")
-	public static void method2074(@OriginalArg(0) Js5 arg0, @OriginalArg(2) Js5 arg1) {
-		Static114.aClass3_Sub2_Sub9_42 = Static127.getFont(Static166.anInt4049, arg1, arg0);
-		if (GlRenderer.enabled) {
-			Static265.aClass3_Sub2_Sub9_Sub1_2 = Static122.method2412(Static166.anInt4049, arg0, arg1);
-		} else {
-			Static265.aClass3_Sub2_Sub9_Sub1_2 = (SoftwareFont) Static114.aClass3_Sub2_Sub9_42;
-		}
-		Static215.aClass3_Sub2_Sub9_32 = Static127.getFont(Static130.anInt3161, arg1, arg0);
-		Font.b12Full = Static127.getFont(Static73.anInt2077, arg1, arg0);
-	}
-
 	@OriginalMember(owner = "runetek4.client!hn", name = "a", descriptor = "(IIIZIIIIIIII)Z")
 	public static boolean tryMove(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) boolean arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8, @OriginalArg(10) int arg9, @OriginalArg(11) int arg10) {
-		if (PlayerList.self.size() == 2) {
+		if (PlayerList.self.getSize() == 2) {
 			return Static2.method8(arg6, arg7, arg4, arg0, arg9, arg3, arg2, arg1, arg5, arg8, arg10);
-		} else if (PlayerList.self.size() <= 2) {
+		} else if (PlayerList.self.getSize() <= 2) {
 			return Static45.method1171(arg5, arg4, arg10, arg9, arg8, arg2, arg1, arg3, arg7, arg0, arg6);
 		} else {
-			return Static96.method1955(arg9, arg6, arg8, arg1, PlayerList.self.size(), arg5, arg7, arg4, arg10, arg2, arg3, arg0);
+			return Static96.method1955(arg9, arg6, arg8, arg1, PlayerList.self.getSize(), arg5, arg7, arg4, arg10, arg2, arg3, arg0);
 		}
 	}
 }

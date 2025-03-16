@@ -19,9 +19,6 @@ public final class Static130 {
 	@OriginalMember(owner = "runetek4.client!kc", name = "t", descriptor = "I")
 	public static int anInt3161;
 
-	@OriginalMember(owner = "runetek4.client!kc", name = "w", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_47;
-
 	@OriginalMember(owner = "runetek4.client!kc", name = "C", descriptor = "Lclient!fd;")
 	public static WorldMapFont aClass41_2;
 

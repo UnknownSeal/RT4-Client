@@ -17,25 +17,19 @@ public final class Static230 {
 	@OriginalMember(owner = "runetek4.client!sj", name = "D", descriptor = "I")
 	public static int anInt5158;
 
-	@OriginalMember(owner = "runetek4.client!sj", name = "p", descriptor = "I")
-	public static int anInt5150 = 1;
-
-	@OriginalMember(owner = "runetek4.client!sj", name = "t", descriptor = "I")
-	public static int anInt5152 = 0;
-
 	@OriginalMember(owner = "runetek4.client!sj", name = "u", descriptor = "Z")
 	public static boolean aBoolean250 = false;
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "w", descriptor = "Lclient!na;")
-	public static final JString aClass100_978 = Static28.parse("<)4col>");
+	public static final JString aClass100_978 = JString.parse("<)4col>");
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "F", descriptor = "Lclient!rc;")
 	public static GameShell anApplet_Sub1_1 = null;
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "c", descriptor = "(I)V")
-	public static void method3947() {
-		Static250.aClass99_33.method3104();
-		Static139.aClass99_21.method3104();
+	public static void clear() {
+		Static250.aClass99_33.clear();
+		Static139.aClass99_21.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(Z)V")
@@ -95,7 +89,7 @@ public final class Static230 {
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(IIBIII)V")
 	public static void method3950(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		if (arg0 >= Static172.anInt4164 && arg3 <= Static224.anInt5063 && Static267.anInt5773 <= arg4 && Static106.anInt2869 >= arg2) {
+		if (arg0 >= Static172.anInt4164 && arg3 <= FluTypeList.anInt5063 && Static267.anInt5773 <= arg4 && Static106.anInt2869 >= arg2) {
 			Static176.method3308(arg2, arg3, arg4, arg0, arg1);
 		} else {
 			Static163.method3105(arg1, arg3, arg4, arg0, arg2);
@@ -148,7 +142,7 @@ public final class Static230 {
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(ILclient!na;)V")
 	public static void method3954(@OriginalArg(1) JString arg0) {
-		Static47.aClass100_991 = arg0;
+		client.settings = arg0;
 		if (GameShell.signLink.applet == null) {
 			return;
 		}
@@ -159,7 +153,7 @@ public final class Static230 {
 			if (arg0.length() == 0) {
 				local48 = JString.concatenate(new JString[] { local48, Static245.aClass100_1018 });
 			} else {
-				local48 = JString.concatenate(new JString[] { local48, Static263.aClass100_1082, Static33.method873(MonotonicTime.get() + 94608000000L), Static64.MAX_AGE, Static154.method2929(94608000L) });
+				local48 = JString.concatenate(new JString[] { local48, Static263.aClass100_1082, Static33.method873(MonotonicTime.currentTimeMillis() + 94608000000L), Static64.MAX_AGE, Static154.method2929(94608000L) });
 			}
 			JString.concatenate(new JString[] { BZip2State.aClass100_821, local48, Static223.aClass100_946 }).method3134(GameShell.signLink.applet);
 		} catch (@Pc(124) Throwable local124) {

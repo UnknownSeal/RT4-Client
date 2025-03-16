@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -9,12 +8,6 @@ public final class Static26 {
 
 	@OriginalMember(owner = "client!ca", name = "Y", descriptor = "[I")
 	public static int[] anIntArray66;
-
-	@OriginalMember(owner = "client!ca", name = "Z", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_16;
-
-	@OriginalMember(owner = "client!ca", name = "ab", descriptor = "Z")
-	public static boolean focus;
 
 	@OriginalMember(owner = "client!ca", name = "cb", descriptor = "Lclient!na;")
 	public static final JString aClass100_160 = Static165.method3165();
@@ -25,54 +18,8 @@ public final class Static26 {
 	@OriginalMember(owner = "client!ca", name = "fb", descriptor = "[I")
 	public static final int[] anIntArray68 = new int[50];
 
-	@OriginalMember(owner = "client!ca", name = "h", descriptor = "(I)V")
-	public static void method740() {
-		@Pc(10) int local10 = (Camera.renderX >> 10) + (Camera.originX >> 3);
-		@Pc(23) int local23 = (Camera.renderZ >> 10) + (Camera.originZ >> 3);
-		Static156.aByteArrayArray11 = new byte[18][];
-		Static35.anIntArray82 = new int[18];
-		Static191.aByteArrayArray15 = new byte[18][];
-		Static36.anIntArray84 = new int[18];
-		Static72.anIntArrayArray14 = new int[18][4];
-		Static186.aByteArrayArray14 = new byte[18][];
-		Static238.anIntArray470 = new int[18];
-		Static273.aByteArrayArray13 = new byte[18][];
-		Static175.anIntArray371 = new int[18];
-		Static99.anIntArray239 = new int[18];
-		Static172.anIntArray366 = new int[18];
-		Static19.aByteArrayArray4 = new byte[18][];
-		@Pc(74) int local74 = 0;
-		@Pc(80) int local80;
-		for (local80 = (local10 - 6) / 8; local80 <= (local10 + 6) / 8; local80++) {
-			for (@Pc(97) int local97 = (local23 - 6) / 8; local97 <= (local23 + 6) / 8; local97++) {
-				@Pc(115) int local115 = (local80 << 8) + local97;
-				Static238.anIntArray470[local74] = local115;
-				Static36.anIntArray84[local74] = aClass153_16.method4482(JString.concatenate(new JString[] { Static103.aClass100_558, JString.parseInt(local80), Static86.aClass100_488, JString.parseInt(local97) }));
-				Static172.anIntArray366[local74] = aClass153_16.method4482(JString.concatenate(new JString[] { Static270.aClass100_1090, JString.parseInt(local80), Static86.aClass100_488, JString.parseInt(local97) }));
-				Static175.anIntArray371[local74] = aClass153_16.method4482(JString.concatenate(new JString[] { Static179.aClass100_807, JString.parseInt(local80), Static86.aClass100_488, JString.parseInt(local97) }));
-				Static99.anIntArray239[local74] = aClass153_16.method4482(JString.concatenate(new JString[] { Static165.aClass100_772, JString.parseInt(local80), Static86.aClass100_488, JString.parseInt(local97) }));
-				Static35.anIntArray82[local74] = aClass153_16.method4482(JString.concatenate(new JString[] { Static278.aClass100_1103, JString.parseInt(local80), Static86.aClass100_488, JString.parseInt(local97) }));
-				if (Static175.anIntArray371[local74] == -1) {
-					Static36.anIntArray84[local74] = -1;
-					Static172.anIntArray366[local74] = -1;
-					Static99.anIntArray239[local74] = -1;
-					Static35.anIntArray82[local74] = -1;
-				}
-				local74++;
-			}
-		}
-		for (local80 = local74; local80 < Static175.anIntArray371.length; local80++) {
-			Static175.anIntArray371[local80] = -1;
-			Static36.anIntArray84[local80] = -1;
-			Static172.anIntArray366[local80] = -1;
-			Static99.anIntArray239[local80] = -1;
-			Static35.anIntArray82[local80] = -1;
-		}
-		Static127.method2463(0, local23, local10, 8, true, 8);
-	}
-
 	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(Z)V")
-	public static void method741() {
+	public static void removeSoft() {
 		Static79.aClass99_11.removeSoft();
 		aClass6.aClass99_5.removeSoft();
 	}
@@ -91,7 +38,7 @@ public final class Static26 {
 			if (local32 != null) {
 				@Pc(45) int local45 = (Static238.anIntArray470[local25] >> 8) * 64 - Camera.originX;
 				@Pc(56) int local56 = (Static238.anIntArray470[local25] & 0xFF) * 64 - Camera.originZ;
-				Static107.method2261();
+				client.audioLoop();
 				Static124.method2437(local45, arg0, local32, local56, PathFinder.collisionMaps);
 			}
 		}
@@ -99,14 +46,14 @@ public final class Static26 {
 
 	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(IIII)V")
 	public static void method744(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		if (Static125.anInt3104 == 0 || arg0 == 0 || Static189.anInt4451 >= 50 || arg1 == -1) {
+		if (Static125.anInt3104 == 0 || arg0 == 0 || SoundPlayer.size >= 50 || arg1 == -1) {
 			return;
 		}
-		Static200.anIntArray421[Static189.anInt4451] = arg1;
-		Static276.anIntArray563[Static189.anInt4451] = arg0;
-		Static164.anIntArray362[Static189.anInt4451] = arg2;
-		Static173.aClass138Array1[Static189.anInt4451] = null;
-		anIntArray68[Static189.anInt4451] = 0;
-		Static189.anInt4451++;
+		Static200.anIntArray421[SoundPlayer.size] = arg1;
+		Static276.anIntArray563[SoundPlayer.size] = arg0;
+		Static164.anIntArray362[SoundPlayer.size] = arg2;
+		Static173.aClass138Array1[SoundPlayer.size] = null;
+		anIntArray68[SoundPlayer.size] = 0;
+		SoundPlayer.size++;
 	}
 }

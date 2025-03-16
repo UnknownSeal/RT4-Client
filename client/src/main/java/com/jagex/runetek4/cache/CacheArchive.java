@@ -21,17 +21,8 @@ public final class CacheArchive {
 	@OriginalMember(owner = "client!al", name = "q", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_2;
 
-	@OriginalMember(owner = "client!al", name = "m", descriptor = "I")
-	public static int friendCount = 0;
-
-	@OriginalMember(owner = "client!al", name = "r", descriptor = "Lclient!na;")
-	public static final JString aClass100_35 = Static28.parse("showVideoAd");
 	@OriginalMember(owner = "runetek4.client!qg", name = "ab", descriptor = "Lclient!ve;")
 	public static Js5 gameInterfaceJs5;
-	@OriginalMember(owner = "runetek4.client!ol", name = "U", descriptor = "Lclient!ve;")
-	public static Js5 huffmanJs5;
-	@OriginalMember(owner = "runetek4.client!nd", name = "t", descriptor = "Lclient!ve;")
-	public static Js5 gameTextureJs5;
 	@OriginalMember(owner = "runetek4.client!nd", name = "v", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_64;
 	@OriginalMember(owner = "runetek4.client!nd", name = "n", descriptor = "Lclient!ve;")
@@ -88,24 +79,11 @@ public final class CacheArchive {
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(Z)V")
 	public static void method182() {
 		Static241.aClass13Array13 = null;
-		Static6.method86(Static154.topLevelInterace, 0, GameShell.canvasWidth, 0, -1, GameShell.canvasHeigth, 0, 0);
+		Static6.method86(InterfaceList.topLevelInterace, 0, GameShell.canvasWidth, 0, -1, GameShell.canvasHeigth, 0, 0);
 		if (Static241.aClass13Array13 != null) {
 			Static87.drawGame(0, Static127.anInt3126, Static80.anInt4696, Static241.aClass13Array13, GameShell.canvasWidth, -1412584499, 0, GameShell.canvasHeigth, Static4.aClass13_1.anInt517);
 			Static241.aClass13Array13 = null;
 		}
-	}
-
-	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ZZZIZ)Lclient!ve;")
-	public static Js5 loadArchive(@OriginalArg(0) boolean arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) int arg3) {
-		@Pc(7) Cache local7 = null;
-		if (client.cacheData != null) {
-			local7 = new Cache(arg3, client.cacheData, Static47.cacheIndexes[arg3], 1000000);
-		}
-		Static269.aClass14_Sub1Array3[arg3] = Static257.aClass9_2.method180(arg3, client.masterCache, local7);
-		if (arg1) {
-			Static269.aClass14_Sub1Array3[arg3].method528();
-		}
-		return new Js5(Static269.aClass14_Sub1Array3[arg3], arg0, arg2);
 	}
 
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ILclient!wa;)Lclient!ci;")
@@ -131,7 +109,7 @@ public final class CacheArchive {
 	public static void method186(@OriginalArg(0) boolean arg0) {
 		if (arg0 != Static240.aBoolean276) {
 			Static240.aBoolean276 = arg0;
-			Static176.method3302();
+			Static176.clear();
 		}
 	}
 

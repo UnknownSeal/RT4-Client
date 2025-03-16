@@ -15,10 +15,7 @@ public final class Static272 {
 	public static final int[] anIntArray451 = new int[] { 8, 11, 4, 6, 9, 7, 10, 0 };
 
 	@OriginalMember(owner = "runetek4.client!wd", name = "e", descriptor = "Lclient!na;")
-	public static final JString aClass100_989 = Static28.parse("cookieprefix");
-
-	@OriginalMember(owner = "runetek4.client!wd", name = "g", descriptor = "I")
-	public static int npcCount = 0;
+	public static final JString aClass100_989 = JString.parse("cookieprefix");
 
 	@OriginalMember(owner = "runetek4.client!wd", name = "a", descriptor = "(BII)V")
 	public static void method3995(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {

@@ -4,11 +4,21 @@ import java.awt.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
+import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!uc")
 public abstract class MouseWheel {
 
-	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(I)I")
+    @OriginalMember(owner = "runetek4.client!dh", name = "a", descriptor = "(B)Lclient!uc;")
+    public static MouseWheel create() {
+        try {
+            return (MouseWheel) Class.forName("com.jagex.runetek4.JavaMouseWheel").getDeclaredConstructor().newInstance();
+        } catch (@Pc(15) Throwable local15) {
+            return null;
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(I)I")
 	public abstract int method3287();
 
 	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(ZLjava/awt/runetek4.Component;)V")

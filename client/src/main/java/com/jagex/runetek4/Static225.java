@@ -17,7 +17,7 @@ public final class Static225 {
 	public static int anInt5073 = -1;
 
 	@OriginalMember(owner = "runetek4.client!se", name = "m", descriptor = "Lclient!na;")
-	public static final JString aClass100_961 = Static28.parse(" )2>");
+	public static final JString aClass100_961 = JString.parse(" )2>");
 
 	@OriginalMember(owner = "runetek4.client!se", name = "t", descriptor = "[I")
 	public static final int[] anIntArray445 = new int[] { 12543016, 15504954, 15914854, 16773818 };
@@ -25,42 +25,42 @@ public final class Static225 {
 	@OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "(I)V")
 	public static void getPlayerNewVis() {
 		while (true) {
-			if (Static57.in.bitsAvailable(Static223.packetSize) >= 11) {
-				@Pc(20) int index = Static57.in.gBit(11);
+			if (Protocol.inboundBuffer.bitsAvailable(Static223.packetSize) >= 11) {
+				@Pc(20) int index = Protocol.inboundBuffer.gBit(11);
 				if (index != 2047) {
 					@Pc(27) boolean local27 = false;
-					if (Static159.players[index] == null) {
-						Static159.players[index] = new Player();
+					if (PlayerList.players[index] == null) {
+						PlayerList.players[index] = new Player();
 						local27 = true;
-						if (Static115.PLAYER_APPEARANCE_PACKET[index] != null) {
-							Static159.players[index].read(Static115.PLAYER_APPEARANCE_PACKET[index]);
+						if (PlayerList.PLAYER_APPEARANCE_PACKET[index] != null) {
+							PlayerList.players[index].read(PlayerList.PLAYER_APPEARANCE_PACKET[index]);
 						}
 					}
-					Static105.playerIds[Static267.playerCount++] = index;
-					@Pc(65) Player player = Static159.players[index];
+					Static105.playerIds[PlayerList.playerCount++] = index;
+					@Pc(65) Player player = PlayerList.players[index];
 					player.cycle = client.loop;
-					@Pc(73) int local73 = Static57.in.gBit(1);
+					@Pc(73) int local73 = Protocol.inboundBuffer.gBit(1);
 					if (local73 == 1) {
 						Static44.entityUpdateIds[Static116.entityUpdateCount++] = index;
 					}
-					@Pc(92) int dx = Static57.in.gBit(5);
-					@Pc(99) int local99 = Static56.anIntArray141[Static57.in.gBit(3)];
+					@Pc(92) int dx = Protocol.inboundBuffer.gBit(5);
+					@Pc(99) int local99 = Static56.anIntArray141[Protocol.inboundBuffer.gBit(3)];
 					if (dx > 15) {
 						dx -= 32;
 					}
 					if (local27) {
 						player.dstYaw = player.anInt3381 = local99;
 					}
-					@Pc(116) int jump = Static57.in.gBit(1);
-					@Pc(121) int dz = Static57.in.gBit(5);
+					@Pc(116) int jump = Protocol.inboundBuffer.gBit(1);
+					@Pc(121) int dz = Protocol.inboundBuffer.gBit(5);
 					if (dz > 15) {
 						dz -= 32;
 					}
-					player.teleport(dx + PlayerList.self.pathTileX[0], jump == 1, PlayerList.self.pathTileZ[0] + dz);
+					player.teleport(dx + PlayerList.self.movementQueueX[0], jump == 1, PlayerList.self.movementQueueZ[0] + dz);
 					continue;
 				}
 			}
-			Static57.in.accessBytes();
+			Protocol.inboundBuffer.accessBytes();
 			return;
 		}
 	}
@@ -85,7 +85,7 @@ public final class Static225 {
 		Static186.password = arg1;
 		Static5.anInt39 = arg2;
 		Static186.username = arg0;
-		if (Static186.username.method3108(Static186.aClass100_827) || Static186.password.method3108(Static186.aClass100_827)) {
+		if (Static186.username.method3108(JString.EMPTY) || Static186.password.method3108(JString.EMPTY)) {
 			Static266.anInt5336 = 3;
 		} else if (Static125.worldId == -1) {
 			Static20.anInt673 = 0;
@@ -101,10 +101,10 @@ public final class Static225 {
 			local43.pjstr(Static186.password);
 			local43.p4((int) (Math.random() * 9.9999999E7D));
 			local43.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
-			Static6.outboundBuffer.offset = 0;
-			Static6.outboundBuffer.p1(210);
-			Static6.outboundBuffer.p1(local43.offset);
-			Static6.outboundBuffer.pdata(local43.data, local43.offset);
+			Protocol.outboundBuffer.offset = 0;
+			Protocol.outboundBuffer.p1(210);
+			Protocol.outboundBuffer.p1(local43.offset);
+			Protocol.outboundBuffer.pdata(local43.data, local43.offset);
 		} else {
 			Static49.method1208();
 		}

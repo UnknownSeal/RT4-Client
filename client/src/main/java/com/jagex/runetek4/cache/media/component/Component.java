@@ -9,7 +9,7 @@ import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
-import com.jagex.runetek4.game.world.entity.PlayerModel;
+import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -261,7 +261,7 @@ public final class Component {
 	public int anInt484 = -1;
 
 	@OriginalMember(owner = "client!be", name = "O", descriptor = "I")
-	public int componentId = -1;
+	public int createdComponentId = -1;
 
 	@OriginalMember(owner = "client!be", name = "J", descriptor = "Z")
 	public boolean aBoolean24 = false;
@@ -330,7 +330,7 @@ public final class Component {
 	private int anInt461 = -1;
 
 	@OriginalMember(owner = "client!be", name = "N", descriptor = "I")
-	public int layer = -1;
+	public int overlayer = -1;
 
 	@OriginalMember(owner = "client!be", name = "pb", descriptor = "I")
 	public int anInt473 = 1;
@@ -508,23 +508,6 @@ public final class Component {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!af", name = "a", descriptor = "(BI)Lclient!be;")
-	public static Component getComponent(@OriginalArg(1) int id) {
-		@Pc(7) int interfaceId = id >> 16;
-		@Pc(18) int componentId = id & 0xFFFF;
-		if (cachedComponents[interfaceId] == null || cachedComponents[interfaceId][componentId] == null) {
-			@Pc(33) boolean success = load(interfaceId);
-			if (!success) {
-				return null;
-			}
-			// todo: this should not be necessary, data/server-related?
-			if (cachedComponents.length <= interfaceId || cachedComponents[interfaceId].length <= componentId) {
-				return null;
-			}
-		}
-		return cachedComponents[interfaceId][componentId];
-	}
-
 	@OriginalMember(owner = "runetek4.client!tm", name = "b", descriptor = "(II)Z")
 	public static boolean load(@OriginalArg(0) int componentId) {
 		if (Static223.loadedComponents[componentId]) {
@@ -557,37 +540,6 @@ public final class Component {
 		} else {
 			return false;
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!ig", name = "a", descriptor = "(BI)V")
-	public static void resetComponent(@OriginalArg(1) int componentId) {
-		if (componentId == -1 || !Static223.loadedComponents[componentId]) {
-			return;
-		}
-		CacheArchive.gameInterfaceJs5.unloadFile(componentId);
-		if (cachedComponents[componentId] == null) {
-			return;
-		}
-		@Pc(27) boolean deleteFromCache = true;
-		for (@Pc(29) int i = 0; i < cachedComponents[componentId].length; i++) {
-			if (cachedComponents[componentId][i] != null) {
-				if (cachedComponents[componentId][i].INVENTORY == 2) {
-					deleteFromCache = false;
-				} else {
-					cachedComponents[componentId][i] = null;
-				}
-			}
-		}
-		if (deleteFromCache) {
-			cachedComponents[componentId] = null;
-		}
-		Static223.loadedComponents[componentId] = false;
-	}
-
-	@OriginalMember(owner = "runetek4.client!eb", name = "d", descriptor = "(I)V")
-	public static void createComponentMemoryBuffer() {
-		cachedComponents = new Component[CacheArchive.gameInterfaceJs5.capacity()][];
-		Static223.loadedComponents = new boolean[CacheArchive.gameInterfaceJs5.capacity()];
 	}
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(IIB)V")
@@ -669,11 +621,11 @@ public final class Component {
 		this.yMode = 0;
 		this.xMode = 0;
 		this.anInt476 = arg0.g1();
-		this.layer = arg0.g2();
-		if (this.layer == 65535) {
-			this.layer = -1;
+		this.overlayer = arg0.g2();
+		if (this.overlayer == 65535) {
+			this.overlayer = -1;
 		} else {
-			this.layer += this.anInt507 & 0xFFFF0000;
+			this.overlayer += this.anInt507 & 0xFFFF0000;
 		}
 		this.anInt470 = arg0.g2();
 		if (this.anInt470 == 65535) {
@@ -941,7 +893,7 @@ public final class Component {
 	}
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(ILclient!tk;IIIZLclient!hh;)Lclient!ak;")
-	public Model method488(@OriginalArg(0) int arg0, @OriginalArg(1) SeqType arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) boolean arg4, @OriginalArg(6) PlayerModel arg5) {
+	public Model method488(@OriginalArg(0) int arg0, @OriginalArg(1) SeqType arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) boolean arg4, @OriginalArg(6) PlayerAppearance arg5) {
 		Static211.aBoolean72 = false;
 		@Pc(10) int local10;
 		@Pc(13) int local13;
@@ -1102,11 +1054,11 @@ public final class Component {
 		this.aByte3 = arg0.g1s();
 		this.yMode = arg0.g1s();
 		this.xMode = arg0.g1s();
-		this.layer = arg0.g2();
-		if (this.layer == 65535) {
-			this.layer = -1;
+		this.overlayer = arg0.g2();
+		if (this.overlayer == 65535) {
+			this.overlayer = -1;
 		} else {
-			this.layer = (this.anInt507 & 0xFFFF0000) + this.layer;
+			this.overlayer = (this.anInt507 & 0xFFFF0000) + this.overlayer;
 		}
 		this.hidden = arg0.g1() == 1;
 		if (this.INVENTORY == 0) {

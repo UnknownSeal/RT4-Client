@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.graphics.ModelUnlit;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
@@ -16,9 +15,6 @@ public final class Static274 {
 
 	@OriginalMember(owner = "runetek4.client!wf", name = "f", descriptor = "I")
 	public static int anInt4999;
-
-	@OriginalMember(owner = "runetek4.client!wf", name = "g", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_90;
 
 	@OriginalMember(owner = "runetek4.client!wf", name = "j", descriptor = "Lclient!be;")
 	public static Component aClass13_24;

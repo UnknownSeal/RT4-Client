@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.ImageRGB;
-import com.jagex.runetek4.game.client.ClientInvCache;
+import com.jagex.runetek4.game.client.Inv;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -13,7 +13,7 @@ public final class Static14 {
 	public static Js5 aClass153_8;
 
 	@OriginalMember(owner = "client!bd", name = "b", descriptor = "Lclient!na;")
-	public static final JString aClass100_80 = Static28.parse("(U(Y");
+	public static final JString aClass100_80 = JString.parse("(U(Y");
 
 	@OriginalMember(owner = "client!bd", name = "i", descriptor = "I")
 	public static int anInt441 = 0;
@@ -36,7 +36,7 @@ public final class Static14 {
 
 	@OriginalMember(owner = "client!bd", name = "a", descriptor = "(BI)V")
 	public static void method475(@OriginalArg(1) int arg0) {
-		@Pc(8) ClientInvCache local8 = (ClientInvCache) ClientInvCache.recentUse.getNode(arg0);
+		@Pc(8) Inv local8 = (Inv) Inv.recentUse.getNode(arg0);
 		if (local8 != null) {
 			for (@Pc(24) int local24 = 0; local24 < local8.invSlotObjId.length; local24++) {
 				local8.invSlotObjId[local24] = -1;

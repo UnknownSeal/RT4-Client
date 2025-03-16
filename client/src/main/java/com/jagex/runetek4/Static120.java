@@ -8,9 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static120 {
 
-	@OriginalMember(owner = "runetek4.client!jf", name = "a", descriptor = "[Lclient!gi;")
-	public static Light[] aClass51Array1;
-
 	@OriginalMember(owner = "runetek4.client!jf", name = "c", descriptor = "[I")
 	private static int[] anIntArray283;
 
@@ -53,9 +50,6 @@ public final class Static120 {
 	@OriginalMember(owner = "runetek4.client!jf", name = "b", descriptor = "[F")
 	private static final float[] aFloatArray17 = new float[] { 0.0F, 0.0F, 0.0F, 1.0F };
 
-	@OriginalMember(owner = "runetek4.client!jf", name = "l", descriptor = "I")
-	public static int anInt3034 = 0;
-
 	@OriginalMember(owner = "runetek4.client!jf", name = "a", descriptor = "(IIIIIII)V")
 	public static void method2388(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
 		if (!Static178.highDetailLighting) {
@@ -82,10 +76,10 @@ public final class Static120 {
 
 	@OriginalMember(owner = "runetek4.client!jf", name = "a", descriptor = "(Lclient!gi;)V")
 	public static void method2389(@OriginalArg(0) Light arg0) {
-		if (anInt3034 >= 255) {
+		if (LightingManager.lightCount >= 255) {
 			System.out.println("Number of lights added exceeds maximum!");
 		} else {
-			aClass51Array1[anInt3034++] = arg0;
+			LightingManager.lights[LightingManager.lightCount++] = arg0;
 		}
 	}
 
@@ -154,7 +148,7 @@ public final class Static120 {
 				if (!aBooleanArray66[local40]) {
 					anIntArray284[local40] = anIntArray283[local35];
 					aBooleanArray66[local40] = true;
-					method2403(local40, aClass51Array1[anIntArray283[local35]], arg0, arg1, arg2);
+					method2403(local40, LightingManager.lights[anIntArray283[local35]], arg0, arg1, arg2);
 					break;
 				}
 			}
@@ -210,7 +204,7 @@ public final class Static120 {
 					if (!aBooleanArray66[local53]) {
 						anIntArray284[local53] = anIntArray283[local47];
 						aBooleanArray66[local53] = true;
-						method2403(local53, aClass51Array1[anIntArray283[local47]], arg0, arg1, arg2);
+						method2403(local53, LightingManager.lights[anIntArray283[local47]], arg0, arg1, arg2);
 						break;
 					}
 				}
@@ -232,8 +226,8 @@ public final class Static120 {
 
 	@OriginalMember(owner = "runetek4.client!jf", name = "a", descriptor = "(IZ)V")
 	public static void method2394(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1) {
-		for (@Pc(1) int local1 = 0; local1 < anInt3034; local1++) {
-			aClass51Array1[local1].method1765(arg1, arg0);
+		for (@Pc(1) int local1 = 0; local1 < LightingManager.lightCount; local1++) {
+			LightingManager.lights[local1].method1765(arg1, arg0);
 		}
 		anInt3031 = -1;
 		anInt3033 = -1;
@@ -244,8 +238,8 @@ public final class Static120 {
 
 	@OriginalMember(owner = "runetek4.client!jf", name = "b", descriptor = "()V")
 	public static void method2395() {
-		for (@Pc(1) int local1 = 0; local1 < anInt3034; local1++) {
-			@Pc(8) Light local8 = aClass51Array1[local1];
+		for (@Pc(1) int local1 = 0; local1 < LightingManager.lightCount; local1++) {
+			@Pc(8) Light local8 = LightingManager.lights[local1];
 			@Pc(11) int local11 = local8.anInt2241;
 			if (local8.aBoolean124) {
 				local11 = 0;
@@ -334,7 +328,7 @@ public final class Static120 {
 
 	@OriginalMember(owner = "runetek4.client!jf", name = "c", descriptor = "()V")
 	public static void method2398() {
-		aClass51Array1 = null;
+		LightingManager.lights = null;
 		anIntArray284 = null;
 		aBooleanArray65 = null;
 		anIntArray283 = null;
@@ -360,7 +354,7 @@ public final class Static120 {
 
 	@OriginalMember(owner = "runetek4.client!jf", name = "f", descriptor = "()V")
 	public static void method2401() {
-		aClass51Array1 = new Light[255];
+		LightingManager.lights = new Light[255];
 		anIntArray284 = new int[4];
 		aBooleanArray65 = new boolean[4];
 		anIntArray283 = new int[4];
@@ -384,8 +378,8 @@ public final class Static120 {
 		local4.glFogfv(GL2.GL_FOG_COLOR, new float[] { 0.0F, 0.0F, 0.0F, 0.0F }, 0);
 		local4.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_SRC0_RGB, GL2.GL_CONSTANT);
 		local4.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_OPERAND0_RGB, GL2.GL_SRC_ALPHA);
-		label71: for (@Pc(56) int local56 = 0; local56 < anInt3034; local56++) {
-			@Pc(63) Light local63 = aClass51Array1[local56];
+		label71: for (@Pc(56) int local56 = 0; local56 < LightingManager.lightCount; local56++) {
+			@Pc(63) Light local63 = LightingManager.lights[local56];
 			@Pc(66) int local66 = local63.anInt2241;
 			if (local63.aBoolean125) {
 				local66--;
@@ -453,7 +447,7 @@ public final class Static120 {
 
 	@OriginalMember(owner = "runetek4.client!jf", name = "g", descriptor = "()V")
 	public static void method2404() {
-		anInt3034 = 0;
+		LightingManager.lightCount = 0;
 		for (@Pc(3) int local3 = 0; local3 < anInt3032; local3++) {
 			for (@Pc(8) int local8 = 0; local8 < anInt3037; local8++) {
 				for (@Pc(13) int local13 = 0; local13 < anInt3036; local13++) {

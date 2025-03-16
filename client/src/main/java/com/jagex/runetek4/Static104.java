@@ -17,7 +17,7 @@ public final class Static104 {
 	public static void method2247(@OriginalArg(1) PathingEntity arg0) {
 		@Pc(9) BasType local9 = arg0.getBasType();
 		arg0.movementSeqId = local9.idleAnimationId;
-		if (arg0.pathLength == 0) {
+		if (arg0.movementQueueSize == 0) {
 			arg0.anInt3417 = 0;
 			return;
 		}
@@ -34,8 +34,8 @@ public final class Static104 {
 		}
 		@Pc(79) int local79 = arg0.xFine;
 		@Pc(82) int local82 = arg0.zFine;
-		@Pc(99) int local99 = arg0.pathTileX[arg0.pathLength - 1] * 128 + arg0.size() * 64;
-		@Pc(116) int local116 = arg0.pathTileZ[arg0.pathLength - 1] * 128 + arg0.size() * 64;
+		@Pc(99) int local99 = arg0.movementQueueX[arg0.movementQueueSize - 1] * 128 + arg0.getSize() * 64;
+		@Pc(116) int local116 = arg0.movementQueueZ[arg0.movementQueueSize - 1] * 128 + arg0.getSize() * 64;
 		if (local99 - local79 > 256 || local99 - local79 < -256 || local116 - local82 > 256 || local116 - local82 < -256) {
 			arg0.xFine = local99;
 			arg0.zFine = local116;
@@ -88,32 +88,32 @@ public final class Static104 {
 			if (arg0.anInt3381 != arg0.dstYaw && arg0.targetId == -1 && arg0.anInt3376 != 0) {
 				local273 = 2;
 			}
-			if (arg0.pathLength > 2) {
+			if (arg0.movementQueueSize > 2) {
 				local273 = 6;
 			}
-			if (arg0.pathLength > 3) {
+			if (arg0.movementQueueSize > 3) {
 				local273 = 8;
 			}
-			if (arg0.anInt3417 > 0 && arg0.pathLength > 1) {
+			if (arg0.anInt3417 > 0 && arg0.movementQueueSize > 1) {
 				local273 = 8;
 				arg0.anInt3417--;
 			}
 		} else {
-			if (arg0.pathLength > 1) {
+			if (arg0.movementQueueSize > 1) {
 				local273 = 6;
 			}
-			if (arg0.pathLength > 2) {
+			if (arg0.movementQueueSize > 2) {
 				local273 = 8;
 			}
-			if (arg0.anInt3417 > 0 && arg0.pathLength > 1) {
+			if (arg0.anInt3417 > 0 && arg0.movementQueueSize > 1) {
 				arg0.anInt3417--;
 				local273 = 8;
 			}
 		}
-		if (arg0.pathRunning[arg0.pathLength - 1] == 2) {
+		if (arg0.movementQueueSpeed[arg0.movementQueueSize - 1] == 2) {
 			local273 <<= 0x1;
 			local235 = 2;
-		} else if (arg0.pathRunning[arg0.pathLength - 1] == 0) {
+		} else if (arg0.movementQueueSpeed[arg0.movementQueueSize - 1] == 0) {
 			local235 = 0;
 			local273 >>= 0x1;
 		}
@@ -140,7 +140,7 @@ public final class Static104 {
 		}
 		if (local9.movementAcceleration != -1) {
 			local273 <<= 0x7;
-			if (arg0.pathLength == 1) {
+			if (arg0.movementQueueSize == 1) {
 				@Pc(594) int local594 = (local99 >= arg0.xFine ? local99 - arg0.xFine : -local99 + arg0.xFine) << 7;
 				@Pc(600) int local600 = arg0.anInt3358 * arg0.anInt3358;
 				@Pc(622) int local622 = (local116 < arg0.zFine ? arg0.zFine - local116 : -arg0.zFine + local116) << 7;
@@ -198,7 +198,7 @@ public final class Static104 {
 			}
 		}
 		if (arg0.xFine == local99 && local116 == arg0.zFine) {
-			arg0.pathLength--;
+			arg0.movementQueueSize--;
 			if (arg0.anInt3405 > 0) {
 				arg0.anInt3405--;
 			}
@@ -239,8 +239,4 @@ public final class Static104 {
 		return 0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ia", name = "a", descriptor = "(I)I")
-	public static int method2252() {
-		return 2;
-	}
 }

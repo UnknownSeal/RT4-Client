@@ -1,5 +1,6 @@
 package com.jagex.runetek4.media;
 
+import com.jagex.runetek4.GlTextureProvider;
 import com.jagex.runetek4.Pix3D;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -33,6 +34,8 @@ public final class Rasterizer {
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "h", descriptor = "I")
 	public static int viewportBottom = 0;
+	@OriginalMember(owner = "runetek4.client!hf", name = "e", descriptor = "Lclient!m;")
+	public static GlTextureProvider textureProvider;
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "()V")
 	public static void method2482() {
@@ -605,4 +608,9 @@ public final class Rasterizer {
 			local5 += destinationWidth;
 		}
 	}
+
+    @OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(Lclient!m;)V")
+    public static void unpackTextures(@OriginalArg(0) GlTextureProvider arg0) {
+        textureProvider = arg0;
+    }
 }

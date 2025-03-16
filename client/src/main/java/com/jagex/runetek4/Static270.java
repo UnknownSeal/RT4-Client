@@ -16,16 +16,13 @@ public final class Static270 {
 	public static WorldMapFont aClass41_9;
 
 	@OriginalMember(owner = "runetek4.client!wb", name = "a", descriptor = "Lclient!na;")
-	public static final JString aClass100_1089 = Static28.parse(")2");
+	public static final JString aClass100_1089 = JString.parse(")2");
 
 	@OriginalMember(owner = "runetek4.client!wb", name = "c", descriptor = "I")
 	public static int anInt5794 = -1;
 
-	@OriginalMember(owner = "runetek4.client!wb", name = "d", descriptor = "I")
-	public static int anInt5795 = 0;
-
 	@OriginalMember(owner = "runetek4.client!wb", name = "e", descriptor = "Lclient!na;")
-	public static final JString aClass100_1090 = Static28.parse("l");
+	public static final JString aClass100_1090 = JString.parse("l");
 
 	@OriginalMember(owner = "runetek4.client!wb", name = "f", descriptor = "Lclient!wa;")
 	public static final Packet CHAT_PACKET = new Packet(new byte[5000]);

@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -17,7 +15,7 @@ public final class Static8 {
 	public static int[] anIntArray8;
 
 	@OriginalMember(owner = "client!aj", name = "R", descriptor = "Lclient!na;")
-	public static final JString aClass100_32 = Static28.parse("<col=ff9040>");
+	public static final JString aClass100_32 = JString.parse("<col=ff9040>");
 
 	@OriginalMember(owner = "client!aj", name = "a", descriptor = "(BILclient!be;)I")
 	public static int method118(@OriginalArg(1) int arg0, @OriginalArg(2) Component arg1) {
@@ -120,15 +118,4 @@ public final class Static8 {
 		}
 	}
 
-	@OriginalMember(owner = "client!aj", name = "i", descriptor = "(I)V")
-	public static void resetVarBits() {
-		for (@Pc(3) int varpIndex = 0; varpIndex < VarPlayerDefinition.varPlayerDefinitionsSize; varpIndex++) {
-			@Pc(19) VarPlayerDefinition varPlayerDefinition = VarPlayerDefinition.getDefinition(varpIndex);
-			if (varPlayerDefinition != null && varPlayerDefinition.type == 0) {
-				varPlayerDefinition.varPlayerCache[varpIndex] = 0;
-				varPlayerDefinition.varPlayers[varpIndex] = 0;
-			}
-		}
-		Static199.aClass133_20 = new HashTable(16);
-	}
 }

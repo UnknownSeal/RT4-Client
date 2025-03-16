@@ -37,6 +37,8 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	public static int leftMargin = 0;
 	@OriginalMember(owner = "runetek4.client!od", name = "e", descriptor = "I")
 	public static int topMargin = 0;
+	@OriginalMember(owner = "client!ca", name = "ab", descriptor = "Z")
+	public static boolean focus;
 	@OriginalMember(owner = "client!rc", name = "b", descriptor = "Z")
 	private boolean aBoolean71 = false;
 
@@ -112,7 +114,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	}
 
 	@OriginalMember(owner = "client!rc", name = "b", descriptor = "(I)Z")
-	protected final boolean method925() {
+	protected final boolean isHostnameValid() {
 		return true;
 	}
 
@@ -145,16 +147,16 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		canvas.requestFocus();
 		ClientScriptRunner.focus_in = true;
 		Static69.fullredraw = true;
-		Static26.focus = true;
+		focus = true;
 		Static35.canvasReplaceRecommended = false;
-		Static243.lastCanvasReplace = MonotonicTime.get();
+		Static243.lastCanvasReplace = MonotonicTime.currentTimeMillis();
 	}
 
 	@OriginalMember(owner = "client!rc", name = "destroy", descriptor = "()V")
 	@Override
 	public final void destroy() {
 		if (Static230.anApplet_Sub1_1 == this && !Static58.shutdown) {
-			Static72.killtime = MonotonicTime.get();
+			Static72.killtime = MonotonicTime.currentTimeMillis();
 			ThreadUtils.sleep(5000L);
 			Static69.aClass213_4 = null;
 			this.shutdown(false);
@@ -184,7 +186,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	protected abstract void mainquit();
 
 	@OriginalMember(owner = "client!rc", name = "c", descriptor = "(I)V")
-	protected abstract void method929();
+	protected abstract void reset();
 
 	@OriginalMember(owner = "client!rc", name = "getDocumentBase", descriptor = "()Ljava/net/URL;")
 	@Override
@@ -203,7 +205,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			return;
 		}
 		Static69.fullredraw = true;
-		if (Static236.aBoolean256 && !GlRenderer.enabled && MonotonicTime.get() - Static243.lastCanvasReplace > 1000L) {
+		if (Static236.aBoolean256 && !GlRenderer.enabled && MonotonicTime.currentTimeMillis() - Static243.lastCanvasReplace > 1000L) {
 			@Pc(29) Rectangle local29 = arg0.getClipBounds();
 			if (local29 == null || local29.width >= frameWidth && frameHeight <= local29.height) {
 				Static35.canvasReplaceRecommended = true;
@@ -244,7 +246,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			} catch (@Pc(53) Exception local53) {
 			}
 		}
-		this.method929();
+		this.reset();
 		if (frame != null) {
 			try {
 				System.exit(0);
@@ -261,12 +263,12 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 
 	@OriginalMember(owner = "client!rc", name = "b", descriptor = "(Z)V")
 	private void mainloopwrapper() {
-		@Pc(6) long local6 = MonotonicTime.get();
+		@Pc(6) long local6 = MonotonicTime.currentTimeMillis();
 		@Pc(10) long local10 = Static228.aLongArray8[Static261.anInt5741];
 		Static228.aLongArray8[Static261.anInt5741] = local6;
 		Static261.anInt5741 = Static261.anInt5741 + 1 & 0x1F;
 		synchronized (this) {
-			Static26.focus = ClientScriptRunner.focus_in;
+			focus = ClientScriptRunner.focus_in;
 		}
 		this.mainloop();
 		if (local10 != 0L && local6 <= local10) {
@@ -275,7 +277,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 
 	@OriginalMember(owner = "client!rc", name = "e", descriptor = "(I)V")
 	private void mainredrawwrapper() {
-		@Pc(2) long local2 = MonotonicTime.get();
+		@Pc(2) long local2 = MonotonicTime.currentTimeMillis();
 		@Pc(6) long local6 = aClass6.aLongArray2[Static111.anInt2903];
 		aClass6.aLongArray2[Static111.anInt2903] = local2;
 		Static111.anInt2903 = Static111.anInt2903 + 1 & 0x1F;
@@ -354,12 +356,12 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 					}
 				}
 			}
-			Static224.method3888();
+			FluTypeList.method3888();
 			this.addCanvas();
-			Static260.frameBuffer = FrameBuffer.create(canvasHeigth, canvasWidth, canvas);
-			this.method935();
+			SoftwareRaster.frameBuffer = FrameBuffer.create(canvasHeigth, canvasWidth, canvas);
+			this.mainInit();
 			Static200.aClass93_1 = Static70.method1547();
-			while (Static72.killtime == 0L || Static72.killtime > MonotonicTime.get()) {
+			while (Static72.killtime == 0L || Static72.killtime > MonotonicTime.currentTimeMillis()) {
 				Static227.anInt5097 = Static200.aClass93_1.method3391(Static226.anInt5081, Static11.anInt386);
 				for (local76 = 0; local76 < Static227.anInt5097; local76++) {
 					this.mainloopwrapper();
@@ -385,13 +387,13 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	}
 
 	@OriginalMember(owner = "client!rc", name = "g", descriptor = "(I)V")
-	protected abstract void method935();
+	protected abstract void mainInit();
 
 	@OriginalMember(owner = "client!rc", name = "stop", descriptor = "()V")
 	@Override
 	public final void stop() {
 		if (Static230.anApplet_Sub1_1 == this && !Static58.shutdown) {
-			Static72.killtime = MonotonicTime.get() + 4000L;
+			Static72.killtime = MonotonicTime.currentTimeMillis() + 4000L;
 		}
 	}
 
@@ -399,7 +401,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	public abstract void init();
 
 	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(IIZILjava/lang/String;III)V")
-	protected final void method936(@OriginalArg(0) int arg0, @OriginalArg(4) String arg1) {
+	protected final void startApplication(@OriginalArg(0) int arg0, @OriginalArg(4) String arg1) {
 		try {
 			canvasHeigth = 768;
 			frameHeight = 768;
@@ -442,7 +444,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	}
 
 	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(BIIII)V")
-	protected final void method937(@OriginalArg(2) int arg0) {
+	protected final void startApplet(@OriginalArg(2) int arg0) {
 		try {
 			if (Static230.anApplet_Sub1_1 != null) {
 				Static70.anInt2014++;

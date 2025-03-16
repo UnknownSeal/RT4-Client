@@ -11,19 +11,16 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static278 {
 
 	@OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "Lclient!na;")
-	public static final JString aClass100_1101 = Static28.parse(" <col=ffff00>");
-
-	@OriginalMember(owner = "runetek4.client!wj", name = "e", descriptor = "Lclient!na;")
-	public static JString mainLoadPrimaryText = null;
+	public static final JString aClass100_1101 = JString.parse(" <col=ffff00>");
 
 	@OriginalMember(owner = "runetek4.client!wj", name = "f", descriptor = "Lclient!na;")
-	public static final JString aClass100_1103 = Static28.parse("ul");
+	public static final JString aClass100_1103 = JString.parse("ul");
 
 	@OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(I)V")
 	public static void method4645() {
 		while (true) {
-			if (Static57.in.bitsAvailable(Static223.packetSize) >= 27) {
-				@Pc(14) int local14 = Static57.in.gBit(15);
+			if (Protocol.inboundBuffer.bitsAvailable(Static223.packetSize) >= 27) {
+				@Pc(14) int local14 = Protocol.inboundBuffer.gBit(15);
 				if (local14 != 32767) {
 					@Pc(19) boolean local19 = false;
 					if (NpcList.npcs[local14] == null) {
@@ -31,26 +28,26 @@ public final class Static278 {
 						NpcList.npcs[local14] = new Npc();
 					}
 					@Pc(37) Npc local37 = NpcList.npcs[local14];
-					Static33.npcIds[Static272.npcCount++] = local14;
+					Static33.npcIds[NpcList.npcCount++] = local14;
 					local37.cycle = client.loop;
 					if (local37.type != null && local37.type.hasBackgroundSound()) {
 						AreaSoundManager.remove(local37);
 					}
-					@Pc(66) int local66 = Static57.in.gBit(1);
-					@Pc(73) int local73 = Static56.anIntArray141[Static57.in.gBit(3)];
+					@Pc(66) int local66 = Protocol.inboundBuffer.gBit(1);
+					@Pc(73) int local73 = Static56.anIntArray141[Protocol.inboundBuffer.gBit(3)];
 					if (local19) {
 						local37.dstYaw = local37.anInt3381 = local73;
 					}
-					@Pc(86) int local86 = Static57.in.gBit(1);
+					@Pc(86) int local86 = Protocol.inboundBuffer.gBit(1);
 					if (local86 == 1) {
 						Static44.entityUpdateIds[Static116.entityUpdateCount++] = local14;
 					}
-					@Pc(105) int local105 = Static57.in.gBit(5);
-					local37.method2698(NpcType.getDefinition(Static57.in.gBit(14)));
+					@Pc(105) int local105 = Protocol.inboundBuffer.gBit(5);
+					local37.method2698(NpcType.getDefinition(Protocol.inboundBuffer.gBit(14)));
 					if (local105 > 15) {
 						local105 -= 32;
 					}
-					@Pc(124) int local124 = Static57.in.gBit(5);
+					@Pc(124) int local124 = Protocol.inboundBuffer.gBit(5);
 					if (local124 > 15) {
 						local124 -= 32;
 					}
@@ -60,14 +57,14 @@ public final class Static278 {
 					if (local37.anInt3376 == 0) {
 						local37.anInt3381 = 0;
 					}
-					local37.teleport(local37.size(), PlayerList.self.pathTileX[0] + local124, local105 + PlayerList.self.pathTileZ[0], local66 == 1);
+					local37.teleport(local37.getSize(), PlayerList.self.movementQueueX[0] + local124, local105 + PlayerList.self.movementQueueZ[0], local66 == 1);
 					if (local37.type.hasBackgroundSound()) {
-						AreaSoundManager.add(local37.pathTileZ[0], null, 0, local37, local37.pathTileX[0], Player.plane, null);
+						AreaSoundManager.add(local37.movementQueueZ[0], null, 0, local37, local37.movementQueueX[0], Player.plane, null);
 					}
 					continue;
 				}
 			}
-			Static57.in.accessBytes();
+			Protocol.inboundBuffer.accessBytes();
 			return;
 		}
 	}
@@ -105,14 +102,14 @@ public final class Static278 {
 
 	@OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "(I)V")
 	public static void method4649() {
-		Static125.aClass99_18.method3104();
+		Static125.aClass99_18.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(IIB)V")
 	public static void method4650(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		if (Static12.anInt391 != 0 && arg1 != -1) {
-			Static122.method2410(Static214.aClass153_106, arg1, Static12.anInt391);
-			Static144.aBoolean173 = true;
+			Static122.method2410(client.js5Archive11, arg1, Static12.anInt391);
+			Static144.jingle = true;
 		}
 	}
 

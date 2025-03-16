@@ -5,8 +5,10 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.lang.reflect.Method;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -24,6 +26,8 @@ public final class Keyboard implements KeyListener, FocusListener {
 	public static final int KEY_RIGHT = 97;
 	public static final int KEY_UP = 98;
 	public static final int KEY_DOWN = 99;
+	@OriginalMember(owner = "runetek4.client!hn", name = "Z", descriptor = "I")
+	public static int keyCode;
 
 	@OriginalMember(owner = "client!ch", name = "a", descriptor = "(Ljava/awt/Component;I)V")
 	public static void stop(@OriginalArg(0) Component arg0) {
@@ -32,12 +36,78 @@ public final class Keyboard implements KeyListener, FocusListener {
 		Static114.anInt5844 = -1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(ILjava/awt/runetek4.Component;)V")
+	@OriginalMember(owner = "client!ag", name = "h", descriptor = "(I)V")
+    public static void quit() {
+        if (Static10.aClass149_1 != null) {
+            @Pc(4) Keyboard local4 = Static10.aClass149_1;
+            synchronized (Static10.aClass149_1) {
+                Static10.aClass149_1 = null;
+            }
+        }
+    }
+
+	@OriginalMember(owner = "runetek4.client!mf", name = "e", descriptor = "(I)V")
+	public static void init() {
+		if (SignLink.javaVendor.toLowerCase().indexOf("microsoft") != -1) {
+			Static196.anIntArray407[187] = 27;
+			Static196.anIntArray407[223] = 28;
+			Static196.anIntArray407[221] = 43;
+			Static196.anIntArray407[188] = 71;
+			Static196.anIntArray407[222] = 59;
+			Static196.anIntArray407[192] = 58;
+			Static196.anIntArray407[191] = 73;
+			Static196.anIntArray407[219] = 42;
+			Static196.anIntArray407[190] = 72;
+			Static196.anIntArray407[186] = 57;
+			Static196.anIntArray407[220] = 74;
+			Static196.anIntArray407[189] = 26;
+			return;
+		}
+		if (SignLink.setFocusTraversalKeysEnabled == null) {
+			Static196.anIntArray407[192] = 58;
+			Static196.anIntArray407[222] = 59;
+		} else {
+			Static196.anIntArray407[222] = 58;
+			Static196.anIntArray407[192] = 28;
+			Static196.anIntArray407[520] = 59;
+		}
+		Static196.anIntArray407[45] = 26;
+		Static196.anIntArray407[61] = 27;
+		Static196.anIntArray407[91] = 42;
+		Static196.anIntArray407[59] = 57;
+		Static196.anIntArray407[93] = 43;
+		Static196.anIntArray407[44] = 71;
+		Static196.anIntArray407[92] = 74;
+		Static196.anIntArray407[46] = 72;
+		Static196.anIntArray407[47] = 73;
+	}
+
+	@OriginalMember(owner = "client!bi", name = "a", descriptor = "(BLjava/awt/runetek4.Component;)V")
 	public static void start(@OriginalArg(1) Component arg0) {
-		arg0.removeMouseListener(Static93.aClass150_1);
-		arg0.removeMouseMotionListener(Static93.aClass150_1);
-		arg0.removeFocusListener(Static93.aClass150_1);
-		Static57.anInt1759 = 0;
+		@Pc(10) Method local10 = SignLink.setFocusTraversalKeysEnabled;
+		if (local10 != null) {
+			try {
+				local10.invoke(arg0, Boolean.FALSE);
+			} catch (@Pc(25) Throwable local25) {
+			}
+		}
+		arg0.addKeyListener(Static10.aClass149_1);
+		arg0.addFocusListener(Static10.aClass149_1);
+	}
+
+	@OriginalMember(owner = "client!c", name = "d", descriptor = "(I)Z")
+	public static boolean nextKey() {
+		@Pc(6) Keyboard local6 = Static10.aClass149_1;
+		synchronized (Static10.aClass149_1) {
+			if (Static228.anInt5105 == Static102.anInt2678) {
+				return false;
+			} else {
+				keyCode = BZip2State.anIntArray375[Static102.anInt2678];
+				Static193.keyChar = Static264.anIntArray413[Static102.anInt2678];
+				Static102.anInt2678 = Static102.anInt2678 + 1 & 0x7F;
+				return true;
+			}
+		}
 	}
 
 	@OriginalMember(owner = "client!uf", name = "keyPressed", descriptor = "(Ljava/awt/event/KeyEvent;)V")

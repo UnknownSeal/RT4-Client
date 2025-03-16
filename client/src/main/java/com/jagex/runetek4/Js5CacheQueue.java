@@ -46,7 +46,7 @@ public final class Js5CacheQueue implements Runnable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(I)V")
-	public final void method2466() {
+	public final void quit() {
 		this.aBoolean161 = true;
 		@Pc(6) NodeQueue local6 = this.aClass16_6;
 		synchronized (this.aClass16_6) {

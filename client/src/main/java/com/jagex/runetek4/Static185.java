@@ -25,8 +25,8 @@ public final class Static185 {
 
 	@OriginalMember(owner = "runetek4.client!p", name = "a", descriptor = "(I)V")
 	public static void method3395() {
-		if (Static184.anInt4348 == 5) {
-			Static184.anInt4348 = 6;
+		if (LoginManager.step == 5) {
+			LoginManager.step = 6;
 		}
 	}
 

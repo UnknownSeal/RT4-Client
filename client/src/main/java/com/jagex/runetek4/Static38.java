@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static38 {
 
-	@OriginalMember(owner = "runetek4.client!cn", name = "B", descriptor = "I")
-	public static int anInt1196 = 1;
-
 	@OriginalMember(owner = "runetek4.client!cn", name = "L", descriptor = "I")
 	public static int anInt1203 = 0;
 
@@ -18,7 +15,7 @@ public final class Static38 {
 		for (@Pc(11) int local11 = 0; local11 < Static203.aMapElementTypeList_1.anInt5074; local11++) {
 			if (Static203.aMapElementTypeList_1.method3890(local11)) {
 				@Pc(32) int local32 = Static203.aMapElementTypeList_1.aShortArray73[local11] - Static158.anInt3846;
-				@Pc(43) int local43 = Static2.anInt13 + Static181.anInt4296 - Static203.aMapElementTypeList_1.aShortArray72[local11] - 1;
+				@Pc(43) int local43 = Static2.anInt13 + IdkTypeList.anInt4296 - Static203.aMapElementTypeList_1.aShortArray72[local11] - 1;
 				@Pc(59) int local59 = arg0 + (arg3 - arg0) * (local32 - arg2) / (arg6 - arg2);
 				@Pc(64) int local64 = Static203.aMapElementTypeList_1.method3894(local11);
 				@Pc(80) int local80 = (arg7 - arg1) * (local43 - arg5) / (arg4 - arg5) + arg1;
@@ -140,7 +137,7 @@ public final class Static38 {
 
 	@OriginalMember(owner = "runetek4.client!cn", name = "a", descriptor = "(ZI)I")
 	public static int poll(@OriginalArg(0) boolean arg0) {
-		@Pc(4) long local4 = MonotonicTime.get();
+		@Pc(4) long local4 = MonotonicTime.currentTimeMillis();
 		for (@Pc(28) LongNode local28 = arg0 ? (LongNode) Static199.aClass133_20.head() : (LongNode) Static199.aClass133_20.prev(); local28 != null; local28 = (LongNode) Static199.aClass133_20.prev()) {
 			if ((local28.aLong55 & 0x3FFFFFFFFFFFFFFFL) < local4) {
 				if ((local28.aLong55 & 0x4000000000000000L) != 0L) {
@@ -172,8 +169,8 @@ public final class Static38 {
 			Static217.anInt4901 = -1;
 			Static28.anInt919 = 0;
 		}
-		if (Static181.anInt4296 < Static28.anInt919) {
-			Static28.anInt919 = Static181.anInt4296;
+		if (IdkTypeList.anInt4296 < Static28.anInt919) {
+			Static28.anInt919 = IdkTypeList.anInt4296;
 			Static217.anInt4901 = -1;
 			Static142.anInt3482 = -1;
 		}

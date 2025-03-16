@@ -101,7 +101,7 @@ public final class NpcType {
 	public int anInt3732 = -1;
 
 	@OriginalMember(owner = "client!me", name = "F", descriptor = "B")
-	public byte walkflags = 0;
+	public byte loginscreenproperties = 0;
 
 	@OriginalMember(owner = "client!me", name = "e", descriptor = "Z")
 	public boolean spotshadow = true;
@@ -305,7 +305,7 @@ public final class NpcType {
 			packet.g1();
 			packet.g1();
 		} else if (code == 119) {
-			this.walkflags = packet.g1s();
+			this.loginscreenproperties = packet.g1s();
 		} else if (code == 121) {
 			this.modeloffset = new int[this.models.length][];
 			int length = packet.g1();
@@ -546,7 +546,7 @@ public final class NpcType {
 					if (this.recol_d_palette == null || this.recol_d_palette.length <= local173) {
 						local593.recolor(this.recol_s[local173], this.recol_d[local173]);
 					} else {
-						local593.recolor(this.recol_s[local173], Static232.aShortArray74[this.recol_d_palette[local173] & 0xFF]);
+						local593.recolor(this.recol_s[local173], client.aShortArray74[this.recol_d_palette[local173] & 0xFF]);
 					}
 				}
 			}
@@ -744,7 +744,7 @@ public final class NpcType {
 						if (this.recol_d_palette == null || index >= this.recol_d_palette.length) {
 							local119.recolor(this.recol_s[index], this.recol_d[index]);
 						} else {
-							local119.recolor(this.recol_s[index], Static232.aShortArray74[this.recol_d_palette[index] & 0xFF]);
+							local119.recolor(this.recol_s[index], client.aShortArray74[this.recol_d_palette[index] & 0xFF]);
 						}
 					}
 				}

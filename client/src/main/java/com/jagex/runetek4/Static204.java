@@ -6,15 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static204 {
 
-	@OriginalMember(owner = "runetek4.client!qi", name = "z", descriptor = "Lclient!qf;")
-	public static Sprite aClass3_Sub2_Sub1_10;
-
-	@OriginalMember(owner = "runetek4.client!qi", name = "r", descriptor = "I")
-	public static int anInt4760 = 0;
-
-	@OriginalMember(owner = "runetek4.client!qi", name = "t", descriptor = "I")
-	public static int anInt4762 = 0;
-
 	@OriginalMember(owner = "runetek4.client!qi", name = "u", descriptor = "Lclient!ih;")
 	public static LinkedList aClass69_113 = new LinkedList();
 
@@ -25,13 +16,13 @@ public final class Static204 {
 	public static int anInt4765 = -1;
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "B", descriptor = "Lclient!na;")
-	public static final JString aClass100_896 = Static28.parse("<col=ffffff>");
+	public static final JString aClass100_896 = JString.parse("<col=ffffff>");
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "e", descriptor = "(B)V")
-	public static void method3673() {
-		Static93.aClass99_13.method3104();
-		Static125.aClass99_18.method3104();
-		Static262.aClass99_35.method3104();
+	public static void clear() {
+		Static93.aClass99_13.clear();
+		Static125.aClass99_18.clear();
+		Static262.aClass99_35.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "b", descriptor = "(II)I")

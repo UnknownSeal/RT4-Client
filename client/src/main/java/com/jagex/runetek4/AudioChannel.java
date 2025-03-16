@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.awt.Component;
 
 import com.jagex.runetek4.util.ArrayUtils;
+import com.jagex.runetek4.util.SignLink;
 import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -42,7 +43,7 @@ public class AudioChannel {
 	private final int anInt4621 = 32;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "f", descriptor = "J")
-	private long time = MonotonicTime.get();
+	private long time = MonotonicTime.currentTimeMillis();
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "w", descriptor = "[Lclient!qb;")
 	private final PcmStream[] aClass3_Sub3Array5 = new PcmStream[8];
@@ -70,6 +71,66 @@ public class AudioChannel {
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "C", descriptor = "I")
 	private int prevBufferSize = 0;
+
+    @OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(IIIZ)V")
+    public static void init(@OriginalArg(3) boolean stereo) {
+        threadPriority = 2;
+        AudioChannel.stereo = stereo;
+        sampleRate = 22050;
+    }
+
+	@OriginalMember(owner = "runetek4.client!id", name = "a", descriptor = "(ILsignlink!ll;Ljava/awt/runetek4.Component;II)Lclient!vh;")
+	public static AudioChannel create(@OriginalArg(0) int arg0, @OriginalArg(1) SignLink arg1, @OriginalArg(2) Component arg2, @OriginalArg(3) int arg3) {
+		if (sampleRate == 0) {
+			throw new IllegalStateException();
+		}
+		try {
+			@Pc(33) AudioChannel local33 = (AudioChannel) Class.forName("com.jagex.runetek4.JavaAudioChannel").getDeclaredConstructor().newInstance();
+			local33.sampleRate2 = arg0;
+			local33.samples = new int[(stereo ? 2 : 1) * 256];
+			local33.method3576(arg2);
+			local33.bufferCapacity = (arg0 & -1024) + 1024;
+			if (local33.bufferCapacity > 16384) {
+				local33.bufferCapacity = 16384;
+			}
+			local33.open(local33.bufferCapacity);
+			if (threadPriority > 0 && thread == null) {
+				thread = new AudioThread();
+				thread.signLink = arg1;
+				arg1.startThread(threadPriority, thread);
+			}
+			if (thread != null) {
+				if (thread.channels[arg3] != null) {
+					throw new IllegalArgumentException();
+				}
+				thread.channels[arg3] = local33;
+			}
+			return local33;
+		} catch (@Pc(109) Throwable local109) {
+			try {
+				@Pc(120) SignLinkAudioChannel local120 = new SignLinkAudioChannel(arg1, arg3);
+				local120.samples = new int[(stereo ? 2 : 1) * 256];
+				local120.sampleRate2 = arg0;
+				local120.method3576(arg2);
+				local120.bufferCapacity = 16384;
+				local120.open(local120.bufferCapacity);
+				if (threadPriority > 0 && thread == null) {
+					thread = new AudioThread();
+					thread.signLink = arg1;
+					arg1.startThread(threadPriority, thread);
+				}
+				if (thread != null) {
+					if (thread.channels[arg3] != null) {
+						throw new IllegalArgumentException();
+					}
+					thread.channels[arg3] = local120;
+				}
+				return local120;
+			} catch (@Pc(186) Throwable local186) {
+				return new AudioChannel();
+			}
+		}
+	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "()V")
 	protected void write() throws Exception {
@@ -177,7 +238,7 @@ public class AudioChannel {
 		if (this.stream != null) {
 			this.stream.method4408(arg0, 0, 256);
 		}
-		this.time = MonotonicTime.get();
+		this.time = MonotonicTime.currentTimeMillis();
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(B)V")
@@ -185,7 +246,7 @@ public class AudioChannel {
 		if (this.samples == null) {
 			return;
 		}
-		@Pc(14) long now = MonotonicTime.get();
+		@Pc(14) long now = MonotonicTime.currentTimeMillis();
 		try {
 			if (this.closeUntil != 0L) {
 				if (now < this.closeUntil) {
@@ -255,7 +316,7 @@ public class AudioChannel {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(ILclient!qb;)V")
-	public final synchronized void method3566(@OriginalArg(1) PcmStream arg0) {
+	public final synchronized void setStream(@OriginalArg(1) PcmStream arg0) {
 		this.stream = arg0;
 	}
 
@@ -284,7 +345,7 @@ public class AudioChannel {
 			this.close();
 		} catch (@Pc(10) Exception local10) {
 			this.flush();
-			this.closeUntil = MonotonicTime.get() + 2000L;
+			this.closeUntil = MonotonicTime.currentTimeMillis() + 2000L;
 		}
 	}
 

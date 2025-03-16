@@ -15,7 +15,7 @@ public final class Static144 {
 	public static int anInt3490 = 0;
 
 	@OriginalMember(owner = "runetek4.client!le", name = "k", descriptor = "Z")
-	public static boolean aBoolean173 = false;
+	public static boolean jingle = false;
 
 	@OriginalMember(owner = "runetek4.client!le", name = "a", descriptor = "(IIIIIIIIIII)V")
 	public static void method2735(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
@@ -24,7 +24,7 @@ public final class Static144 {
 		if (Static48.anInt1449 > arg3) {
 			local9++;
 		}
-		if (Static181.anInt4296 > arg1) {
+		if (IdkTypeList.anInt4296 > arg1) {
 			local14++;
 		}
 		@Pc(32) int local32;
@@ -264,16 +264,4 @@ public final class Static144 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!le", name = "a", descriptor = "(I)I")
-	public static int method2736() {
-		if (GameShell.fullScreenFrame != null) {
-			return 3;
-		} else if (GlRenderer.enabled && Static124.aBoolean156) {
-			return 2;
-		} else if (GlRenderer.enabled && !Static124.aBoolean156) {
-			return 1;
-		} else {
-			return 0;
-		}
-	}
 }

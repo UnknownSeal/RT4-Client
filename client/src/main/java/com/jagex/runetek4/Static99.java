@@ -10,12 +10,4 @@ public final class Static99 {
 	@OriginalMember(owner = "runetek4.client!hk", name = "bb", descriptor = "[I")
 	public static int[] anIntArray239;
 
-	@OriginalMember(owner = "runetek4.client!hk", name = "W", descriptor = "Lclient!ih;")
-	public static final LinkedList spotanims = new LinkedList();
-
-	@OriginalMember(owner = "runetek4.client!hk", name = "eb", descriptor = "Z")
-	public static boolean aBoolean143 = true;
-
-	@OriginalMember(owner = "runetek4.client!hk", name = "fb", descriptor = "[I")
-	public static final int[] skillLevel = new int[25];
 }

@@ -13,14 +13,8 @@ public final class Static242 {
 	@OriginalMember(owner = "runetek4.client!tj", name = "b", descriptor = "[[Lclient!wm;")
 	public static OpenGLRenderer[][] aOpenGLRendererArrayArray1;
 
-	@OriginalMember(owner = "runetek4.client!tj", name = "c", descriptor = "I")
-	private static int anInt5345;
-
 	@OriginalMember(owner = "runetek4.client!tj", name = "d", descriptor = "[Lclient!ek;")
 	public static SoftwareIndexedSprite[] aClass36_Sub1Array2;
-
-	@OriginalMember(owner = "runetek4.client!tj", name = "e", descriptor = "I")
-	private static int anInt5346;
 
 	@OriginalMember(owner = "runetek4.client!tj", name = "a", descriptor = "(Lclient!ek;Lclient!ek;II)V")
 	private static void method4194(@OriginalArg(0) SoftwareIndexedSprite arg0, @OriginalArg(1) SoftwareIndexedSprite arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
@@ -130,8 +124,8 @@ public final class Static242 {
 		GlRenderer.setLightingEnabled(false);
 		Static27.setMaterial(0, 0);
 		local1.glDepthMask(false);
-		for (@Pc(17) int local17 = 0; local17 < anInt5346; local17++) {
-			label52: for (@Pc(22) int local22 = 0; local22 < anInt5345; local22++) {
+		for (@Pc(17) int local17 = 0; local17 < ShadowManager.anInt5346; local17++) {
+			label52: for (@Pc(22) int local22 = 0; local22 < ShadowManager.anInt5345; local22++) {
 				for (@Pc(29) int local29 = local17 * 8; local29 < local17 * 8 + 8; local29++) {
 					if (local29 - arg0 >= -arg2 && local29 - arg0 <= arg2) {
 						for (@Pc(51) int local51 = local22 * 8; local51 < local22 * 8 + 8; local51++) {
@@ -224,19 +218,6 @@ public final class Static242 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!tj", name = "a", descriptor = "(II)V")
-	public static void method4201() {
-		anInt5346 = 13;
-		anInt5345 = 13;
-		aClass36_Sub1_4 = new SoftwareIndexedSprite(anInt5346 * 128 + 2, anInt5345 * 128 + 2, 0);
-		aOpenGLRendererArrayArray1 = new OpenGLRenderer[anInt5346][anInt5345];
-		for (@Pc(32) int local32 = 0; local32 < anInt5346; local32++) {
-			for (@Pc(37) int local37 = 0; local37 < anInt5345; local37++) {
-				aOpenGLRendererArrayArray1[local32][local37] = new OpenGLRenderer();
-			}
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!tj", name = "c", descriptor = "(Lclient!ek;Lclient!ek;II)V")
 	private static void method4202(@OriginalArg(0) SoftwareIndexedSprite arg0, @OriginalArg(1) SoftwareIndexedSprite arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
 		arg2 += arg0.anInt4280;
@@ -278,13 +259,6 @@ public final class Static242 {
 			method4195(arg1.aByteArray18, arg0.aByteArray18, local18, local16, local24, local21, local29, local31);
 			method4196(arg2, arg3, local24, local21);
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!tj", name = "a", descriptor = "()V")
-	public static void method4203() {
-		aClass36_Sub1_4 = null;
-		aClass36_Sub1Array2 = null;
-		aOpenGLRendererArrayArray1 = null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!tj", name = "b", descriptor = "([B[BIIIIII)V")

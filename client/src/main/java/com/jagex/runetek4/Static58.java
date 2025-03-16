@@ -20,7 +20,7 @@ public final class Static58 {
 	public static int wheelRotation = 0;
 
 	@OriginalMember(owner = "runetek4.client!eh", name = "a", descriptor = "(Lclient!ve;I)V")
-	public static void method1322(@OriginalArg(0) Js5 arg0) {
+	public static void init(@OriginalArg(0) Js5 arg0) {
 		Static23.aClass153_11 = arg0;
 	}
 

@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.frame.Minimap;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.dash3d.entity.Npc;
@@ -19,7 +20,7 @@ public final class Static103 {
 	public static int[] anIntArray254;
 
     @OriginalMember(owner = "runetek4.client!i", name = "ic", descriptor = "Lclient!na;")
-	public static final JString aClass100_558 = Static28.parse("m");
+	public static final JString aClass100_558 = JString.parse("m");
 
 	@OriginalMember(owner = "runetek4.client!i", name = "p", descriptor = "(II)V")
 	public static void method2232(@OriginalArg(1) int arg0) {
@@ -36,88 +37,88 @@ public final class Static103 {
 		@Pc(36) int a = (int) Static159.aLongArray5[arg0];
 		@Pc(43) Player local43;
 		if (local23 == 31) {
-			local43 = Static159.players[a];
+			local43 = PlayerList.players[a];
 			if (local43 != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
 				Static122.x = aClass6.mouseClickX;
 				Static25.y = Static60.mouseClickY;
-				Static6.outboundBuffer.pIsaac1(71);
-				Static6.outboundBuffer.p2_alt3(a);
+				Protocol.outboundBuffer.pIsaac1(71);
+				Protocol.outboundBuffer.p2_alt3(a);
 			}
 		}
 		if (local23 == 46) {
 			ClientScriptRunner.method4003(local31, local19, local15);
-			Static6.outboundBuffer.pIsaac1(247);
-			Static6.outboundBuffer.p2_alt1(Camera.originZ + local19);
-			Static6.outboundBuffer.p2_alt3(local15 + Camera.originX);
-			Static6.outboundBuffer.p2(Integer.MAX_VALUE & (int) (local31 >>> 32));
+			Protocol.outboundBuffer.pIsaac1(247);
+			Protocol.outboundBuffer.p2_alt1(Camera.originZ + local19);
+			Protocol.outboundBuffer.p2_alt3(local15 + Camera.originX);
+			Protocol.outboundBuffer.p2(Integer.MAX_VALUE & (int) (local31 >>> 32));
 		}
 		if (local23 == 40) {
-			Static6.outboundBuffer.pIsaac1(27);
-			Static6.outboundBuffer.p2(Static185.anInt4370);
-			Static6.outboundBuffer.p4_alt1(local19);
-			Static6.outboundBuffer.p2_alt1(local15);
-			Static6.outboundBuffer.p4_alt1(Static224.anInt5062);
-			Static6.outboundBuffer.p2_alt3(Static274.anInt4997);
-			Static6.outboundBuffer.p2_alt3(a);
+			Protocol.outboundBuffer.pIsaac1(27);
+			Protocol.outboundBuffer.p2(Static185.anInt4370);
+			Protocol.outboundBuffer.p4_alt1(local19);
+			Protocol.outboundBuffer.p2_alt1(local15);
+			Protocol.outboundBuffer.p4_alt1(FluTypeList.anInt5062);
+			Protocol.outboundBuffer.p2_alt3(Static274.anInt4997);
+			Protocol.outboundBuffer.p2_alt3(a);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Component.getComponent(local19);
+			Static257.aClass13_7 = InterfaceList.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		@Pc(192) Npc npc;
 		if (local23 == 19) {
 			npc = NpcList.npcs[a];
 			if (npc != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, npc.pathTileX[0], 1, 0, 2, npc.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static122.x = aClass6.mouseClickX;
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
 				Static25.y = Static60.mouseClickY;
-				Static6.outboundBuffer.pIsaac1(30);
-				Static6.outboundBuffer.p2(a);
+				Protocol.outboundBuffer.pIsaac1(30);
+				Protocol.outboundBuffer.p2(a);
 			}
 		}
 		if (local23 == 17) {
 			npc = NpcList.npcs[a];
 			if (npc != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, npc.pathTileX[0], 1, 0, 2, npc.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static122.x = aClass6.mouseClickX;
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
 				Static25.y = Static60.mouseClickY;
-				Static6.outboundBuffer.pIsaac1(78);
-				Static6.outboundBuffer.p2_alt1(a);
+				Protocol.outboundBuffer.pIsaac1(78);
+				Protocol.outboundBuffer.p2_alt1(a);
 			}
 		}
 		if (local23 == 44) {
-			local43 = Static159.players[a];
+			local43 = PlayerList.players[a];
 			if (local43 != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static122.x = aClass6.mouseClickX;
 				Static70.crossMode = 2;
 				Static25.y = Static60.mouseClickY;
 				Static17.crossCycle = 0;
-				Static6.outboundBuffer.pIsaac1(133);
-				Static6.outboundBuffer.p2_alt1(a);
+				Protocol.outboundBuffer.pIsaac1(133);
+				Protocol.outboundBuffer.p2_alt1(a);
 			}
 		}
 		if (local23 == 58) {
-			Static6.outboundBuffer.pIsaac1(135);
-			Static6.outboundBuffer.p2_alt2(a);
-			Static6.outboundBuffer.p2_alt2(local15);
-			Static6.outboundBuffer.p4_alt3(local19);
+			Protocol.outboundBuffer.pIsaac1(135);
+			Protocol.outboundBuffer.p2_alt2(a);
+			Protocol.outboundBuffer.p2_alt2(local15);
+			Protocol.outboundBuffer.p4_alt3(local19);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Component.getComponent(local19);
+			Static257.aClass13_7 = InterfaceList.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 42) {
 			ClientScriptRunner.method4003(local31, local19, local15);
-			Static6.outboundBuffer.pIsaac1(254);
-			Static6.outboundBuffer.p2_alt1(local15 + Camera.originX);
-			Static6.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
-			Static6.outboundBuffer.p2(local19 + Camera.originZ);
+			Protocol.outboundBuffer.pIsaac1(254);
+			Protocol.outboundBuffer.p2_alt1(local15 + Camera.originX);
+			Protocol.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
+			Protocol.outboundBuffer.p2(local19 + Camera.originZ);
 		}
 		if (local23 == 28) {
 			Static153.method2909();
@@ -125,62 +126,62 @@ public final class Static103 {
 		if (local23 == 45) {
 			npc = NpcList.npcs[a];
 			if (npc != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, npc.pathTileX[0], 1, 0, 2, npc.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static122.x = aClass6.mouseClickX;
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
 				Static25.y = Static60.mouseClickY;
-				Static6.outboundBuffer.pIsaac1(239);
-				Static6.outboundBuffer.p4_alt1(Static98.anInt2512);
-				Static6.outboundBuffer.p2_alt2(Static15.anInt506);
-				Static6.outboundBuffer.p2_alt3(a);
+				Protocol.outboundBuffer.pIsaac1(239);
+				Protocol.outboundBuffer.p4_alt1(Static98.anInt2512);
+				Protocol.outboundBuffer.p2_alt2(Static15.anInt506);
+				Protocol.outboundBuffer.p2_alt3(a);
 			}
 		}
 		@Pc(560) boolean local560;
 		if (local23 == 18) {
-			if (Static266.game == 1) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.pathTileX[0]);
+			if (client.game == 1) {
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 			} else {
-				local560 = Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.pathTileX[0]);
+				local560 = Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 				if (!local560) {
-					Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.pathTileX[0]);
+					Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 				}
 			}
 			Static122.x = aClass6.mouseClickX;
 			Static17.crossCycle = 0;
 			Static70.crossMode = 2;
 			Static25.y = Static60.mouseClickY;
-			Static6.outboundBuffer.pIsaac1(66);
-			Static6.outboundBuffer.p2_alt1(Camera.originX + local15);
-			Static6.outboundBuffer.p2(a);
-			Static6.outboundBuffer.p2_alt3(local19 + Camera.originZ);
+			Protocol.outboundBuffer.pIsaac1(66);
+			Protocol.outboundBuffer.p2_alt1(Camera.originX + local15);
+			Protocol.outboundBuffer.p2(a);
+			Protocol.outboundBuffer.p2_alt3(local19 + Camera.originZ);
 		}
 		if (local23 == 1001) {
 			ClientScriptRunner.method4003(local31, local19, local15);
-			Static6.outboundBuffer.pIsaac1(170);
-			Static6.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (local31 >>> 32));
-			Static6.outboundBuffer.p2_alt3(local15 + Camera.originX);
-			Static6.outboundBuffer.p2_alt3(local19 + Camera.originZ);
+			Protocol.outboundBuffer.pIsaac1(170);
+			Protocol.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (local31 >>> 32));
+			Protocol.outboundBuffer.p2_alt3(local15 + Camera.originX);
+			Protocol.outboundBuffer.p2_alt3(local19 + Camera.originZ);
 		}
 		if (local23 == 1002) {
 			Static70.crossMode = 2;
 			Static122.x = aClass6.mouseClickX;
 			Static25.y = Static60.mouseClickY;
 			Static17.crossCycle = 0;
-			Static6.outboundBuffer.pIsaac1(92);
-			Static6.outboundBuffer.p2_alt3(a);
+			Protocol.outboundBuffer.pIsaac1(92);
+			Protocol.outboundBuffer.p2_alt3(a);
 		}
 		@Pc(693) Component com;
 		if (local23 == 1006) {
-			com = Component.getComponent(local19);
+			com = InterfaceList.getComponent(local19);
 			if (com == null || com.invSlotObjCount[local15] < 100000) {
-				Static6.outboundBuffer.pIsaac1(92);
-				Static6.outboundBuffer.p2_alt3(a);
+				Protocol.outboundBuffer.pIsaac1(92);
+				Protocol.outboundBuffer.p2_alt3(a);
 			} else {
-				Chat.addMessage(Static186.aClass100_827, 0, JString.concatenate(new JString[] { JString.parseInt(com.invSlotObjCount[local15]), Static249.aClass100_1039, Static71.get(a).name}));
+				Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { JString.parseInt(com.invSlotObjCount[local15]), Static249.aClass100_1039, Static71.get(a).name}));
 			}
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Component.getComponent(local19);
+			Static257.aClass13_7 = InterfaceList.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 60) {
@@ -189,18 +190,18 @@ public final class Static103 {
 			} else if (a == 1) {
 				if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
 					Cheat.teleport(Camera.originX + local15, Camera.originZ + local19, Player.plane);
-				} else if (Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 0, true, 0, local15, 0, 0, 1, local19, PlayerList.self.pathTileX[0])) {
-					Static6.outboundBuffer.p1(Static1.anInt5);
-					Static6.outboundBuffer.p1(Static107.anInt2878);
-					Static6.outboundBuffer.p2(Camera.orbitCameraYaw);
-					Static6.outboundBuffer.p1(57);
-					Static6.outboundBuffer.p1(Static59.minimapAnticheatAngle);
-					Static6.outboundBuffer.p1(Static273.minimapZoom);
-					Static6.outboundBuffer.p1(89);
-					Static6.outboundBuffer.p2(PlayerList.self.xFine);
-					Static6.outboundBuffer.p2(PlayerList.self.zFine);
-					Static6.outboundBuffer.p1(BZip2State.tryMoveNearest);
-					Static6.outboundBuffer.p1(63);
+				} else if (Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, local15, 0, 0, 1, local19, PlayerList.self.movementQueueX[0])) {
+					Protocol.outboundBuffer.p1(Static1.anInt5);
+					Protocol.outboundBuffer.p1(Static107.anInt2878);
+					Protocol.outboundBuffer.p2(Camera.orbitCameraYaw);
+					Protocol.outboundBuffer.p1(57);
+					Protocol.outboundBuffer.p1(Minimap.minimapAnticheatAngle);
+					Protocol.outboundBuffer.p1(Minimap.minimapZoom);
+					Protocol.outboundBuffer.p1(89);
+					Protocol.outboundBuffer.p2(PlayerList.self.xFine);
+					Protocol.outboundBuffer.p2(PlayerList.self.zFine);
+					Protocol.outboundBuffer.p1(BZip2State.tryMoveNearest);
+					Protocol.outboundBuffer.p1(63);
 				}
 			}
 		}
@@ -216,125 +217,125 @@ public final class Static103 {
 					local884 = local884.getMultiNPC();
 				}
 				if (local884 != null) {
-					Static6.outboundBuffer.pIsaac1(72);
-					Static6.outboundBuffer.p2(local884.id);
+					Protocol.outboundBuffer.pIsaac1(72);
+					Protocol.outboundBuffer.p2(local884.id);
 				}
 			}
 		}
 		if (local23 == 47) {
-			Static6.outboundBuffer.pIsaac1(156);
-			Static6.outboundBuffer.p2_alt3(local15);
-			Static6.outboundBuffer.p2_alt2(a);
-			Static6.outboundBuffer.p4_alt1(local19);
+			Protocol.outboundBuffer.pIsaac1(156);
+			Protocol.outboundBuffer.p2_alt3(local15);
+			Protocol.outboundBuffer.p2_alt2(a);
+			Protocol.outboundBuffer.p4_alt1(local19);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Component.getComponent(local19);
+			Static257.aClass13_7 = InterfaceList.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 3) {
-			Static6.outboundBuffer.pIsaac1(253);
-			Static6.outboundBuffer.p4_alt1(Static98.anInt2512);
-			Static6.outboundBuffer.p2_alt3(local15);
-			Static6.outboundBuffer.p4_alt1(local19);
-			Static6.outboundBuffer.p2_alt2(a);
-			Static6.outboundBuffer.p2_alt1(Static15.anInt506);
+			Protocol.outboundBuffer.pIsaac1(253);
+			Protocol.outboundBuffer.p4_alt1(Static98.anInt2512);
+			Protocol.outboundBuffer.p2_alt3(local15);
+			Protocol.outboundBuffer.p4_alt1(local19);
+			Protocol.outboundBuffer.p2_alt2(a);
+			Protocol.outboundBuffer.p2_alt1(Static15.anInt506);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Component.getComponent(local19);
+			Static257.aClass13_7 = InterfaceList.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 10) {
-			local43 = Static159.players[a];
+			local43 = PlayerList.players[a];
 			if (local43 != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static70.crossMode = 2;
 				Static25.y = Static60.mouseClickY;
 				Static122.x = aClass6.mouseClickX;
 				Static17.crossCycle = 0;
-				Static6.outboundBuffer.pIsaac1(4);
-				Static6.outboundBuffer.p2_alt1(a);
+				Protocol.outboundBuffer.pIsaac1(4);
+				Protocol.outboundBuffer.p2_alt1(a);
 			}
 		}
-		if (local23 == 41 && Static39.aClass13_10 == null) {
+		if (local23 == 41 && ClientScriptRunner.aClass13_10 == null) {
 			Static2.method10(local15, local19);
-			Static39.aClass13_10 = Static201.method1418(local19, local15);
-			Static43.method1143(Static39.aClass13_10);
+			ClientScriptRunner.aClass13_10 = Static201.method1418(local19, local15);
+			Static43.method1143(ClientScriptRunner.aClass13_10);
 		}
 		if (local23 == 49) {
 			ClientScriptRunner.method4003(local31, local19, local15);
-			Static6.outboundBuffer.pIsaac1(84);
-			Static6.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (local31 >>> 32));
-			Static6.outboundBuffer.p2_alt3(Camera.originZ + local19);
-			Static6.outboundBuffer.p2_alt1(local15 + Camera.originX);
+			Protocol.outboundBuffer.pIsaac1(84);
+			Protocol.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (local31 >>> 32));
+			Protocol.outboundBuffer.p2_alt3(Camera.originZ + local19);
+			Protocol.outboundBuffer.p2_alt1(local15 + Camera.originX);
 		}
 		if (local23 == 23) {
-			Static6.outboundBuffer.pIsaac1(206);
-			Static6.outboundBuffer.p2_alt2(a);
-			Static6.outboundBuffer.p2_alt1(local15);
-			Static6.outboundBuffer.p4_alt1(local19);
+			Protocol.outboundBuffer.pIsaac1(206);
+			Protocol.outboundBuffer.p2_alt2(a);
+			Protocol.outboundBuffer.p2_alt1(local15);
+			Protocol.outboundBuffer.p4_alt1(local19);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Component.getComponent(local19);
+			Static257.aClass13_7 = InterfaceList.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 14 && ClientScriptRunner.method4003(local31, local19, local15)) {
-			Static6.outboundBuffer.pIsaac1(134);
-			Static6.outboundBuffer.p2_alt2(Camera.originX + local15);
-			Static6.outboundBuffer.p2(Static274.anInt4997);
-			Static6.outboundBuffer.p2_alt1(local19 + Camera.originZ);
-			Static6.outboundBuffer.p2(Static185.anInt4370);
-			Static6.outboundBuffer.p4_alt3(Static224.anInt5062);
-			Static6.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
+			Protocol.outboundBuffer.pIsaac1(134);
+			Protocol.outboundBuffer.p2_alt2(Camera.originX + local15);
+			Protocol.outboundBuffer.p2(Static274.anInt4997);
+			Protocol.outboundBuffer.p2_alt1(local19 + Camera.originZ);
+			Protocol.outboundBuffer.p2(Static185.anInt4370);
+			Protocol.outboundBuffer.p4_alt3(FluTypeList.anInt5062);
+			Protocol.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
 		}
 		if (local23 == 37) {
-			local43 = Static159.players[a];
+			local43 = PlayerList.players[a];
 			if (local43 != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
 				Static25.y = Static60.mouseClickY;
 				Static122.x = aClass6.mouseClickX;
-				Static6.outboundBuffer.pIsaac1(114);
-				Static6.outboundBuffer.p2_alt3(a);
+				Protocol.outboundBuffer.pIsaac1(114);
+				Protocol.outboundBuffer.p2_alt3(a);
 			}
 		}
 		if (local23 == 9 || local23 == 1003) {
 			Static263.method4512(ClientScriptRunner.aClass100Array160[arg0], local15, a, local19);
 		}
 		if (local23 == 5) {
-			Static6.outboundBuffer.pIsaac1(55);
-			Static6.outboundBuffer.p2_alt1(a);
-			Static6.outboundBuffer.p2_alt2(local15);
-			Static6.outboundBuffer.p4rme(local19);
+			Protocol.outboundBuffer.pIsaac1(55);
+			Protocol.outboundBuffer.p2_alt1(a);
+			Protocol.outboundBuffer.p2_alt2(local15);
+			Protocol.outboundBuffer.p4rme(local19);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Component.getComponent(local19);
+			Static257.aClass13_7 = InterfaceList.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 21) {
-			if (Static266.game == 1) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.pathTileX[0]);
+			if (client.game == 1) {
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 			} else {
-				local560 = Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.pathTileX[0]);
+				local560 = Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 				if (!local560) {
-					Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.pathTileX[0]);
+					Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 				}
 			}
 			Static70.crossMode = 2;
 			Static122.x = aClass6.mouseClickX;
 			Static17.crossCycle = 0;
 			Static25.y = Static60.mouseClickY;
-			Static6.outboundBuffer.pIsaac1(228);
-			Static6.outboundBuffer.p2(a);
-			Static6.outboundBuffer.p2_alt1(Camera.originX + local15);
-			Static6.outboundBuffer.p2_alt3(Camera.originZ + local19);
+			Protocol.outboundBuffer.pIsaac1(228);
+			Protocol.outboundBuffer.p2(a);
+			Protocol.outboundBuffer.p2_alt1(Camera.originX + local15);
+			Protocol.outboundBuffer.p2_alt3(Camera.originZ + local19);
 		}
 		if (local23 == 4) {
 			npc = NpcList.npcs[a];
 			if (npc != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, npc.pathTileX[0], 1, 0, 2, npc.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
 				Static25.y = Static60.mouseClickY;
 				Static122.x = aClass6.mouseClickX;
-				Static6.outboundBuffer.pIsaac1(148);
-				Static6.outboundBuffer.p2_alt2(a);
+				Protocol.outboundBuffer.pIsaac1(148);
+				Protocol.outboundBuffer.p2_alt2(a);
 			}
 		}
 		if (local23 == 32) {
@@ -343,7 +344,7 @@ public final class Static103 {
 				Static53.method1294();
 				@Pc(1493) ServerActiveProperties local1493 = Static36.method940(com);
 				Static247.method4246(local19, local15, local1493.method512(), local1493.anInt540, com.anInt499, com.anInt484);
-				Static260.anInt5014 = 0;
+				MiniMenu.anInt5014 = 0;
 				Static102.aClass100_545 = Static97.method1963(com);
 				if (Static102.aClass100_545 == null) {
 					Static102.aClass100_545 = Static250.aClass100_1042;
@@ -357,84 +358,84 @@ public final class Static103 {
 			return;
 		}
 		if (local23 == 29) {
-			local43 = Static159.players[a];
+			local43 = PlayerList.players[a];
 			if (local43 != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static25.y = Static60.mouseClickY;
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
 				Static122.x = aClass6.mouseClickX;
-				Static6.outboundBuffer.pIsaac1(180);
-				Static6.outboundBuffer.p2_alt3(a);
+				Protocol.outboundBuffer.pIsaac1(180);
+				Protocol.outboundBuffer.p2_alt3(a);
 			}
 		}
 		if (local23 == 35) {
-			Static6.outboundBuffer.pIsaac1(161);
-			Static6.outboundBuffer.p4_alt1(local19);
-			Static6.outboundBuffer.p2_alt3(a);
-			Static6.outboundBuffer.p2_alt3(local15);
+			Protocol.outboundBuffer.pIsaac1(161);
+			Protocol.outboundBuffer.p4_alt1(local19);
+			Protocol.outboundBuffer.p2_alt3(a);
+			Protocol.outboundBuffer.p2_alt3(local15);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Component.getComponent(local19);
+			Static257.aClass13_7 = InterfaceList.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 15) {
-			local43 = Static159.players[a];
+			local43 = PlayerList.players[a];
 			if (local43 != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
 				Static122.x = aClass6.mouseClickX;
 				Static25.y = Static60.mouseClickY;
-				Static6.outboundBuffer.pIsaac1(195);
-				Static6.outboundBuffer.p2_alt2(Static15.anInt506);
-				Static6.outboundBuffer.p4_alt1(Static98.anInt2512);
-				Static6.outboundBuffer.p2_alt3(a);
+				Protocol.outboundBuffer.pIsaac1(195);
+				Protocol.outboundBuffer.p2_alt2(Static15.anInt506);
+				Protocol.outboundBuffer.p4_alt1(Static98.anInt2512);
+				Protocol.outboundBuffer.p2_alt3(a);
 			}
 		}
 		if (local23 == 34) {
-			if (Static266.game == 1) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.pathTileX[0]);
+			if (client.game == 1) {
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 			} else {
-				local560 = Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.pathTileX[0]);
+				local560 = Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 				if (!local560) {
-					Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.pathTileX[0]);
+					Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 				}
 			}
 			Static122.x = aClass6.mouseClickX;
 			Static70.crossMode = 2;
 			Static25.y = Static60.mouseClickY;
 			Static17.crossCycle = 0;
-			Static6.outboundBuffer.pIsaac1(109);
-			Static6.outboundBuffer.p2_alt1(local19 + Camera.originZ);
-			Static6.outboundBuffer.p2(local15 + Camera.originX);
-			Static6.outboundBuffer.p2_alt3(a);
+			Protocol.outboundBuffer.pIsaac1(109);
+			Protocol.outboundBuffer.p2_alt1(local19 + Camera.originZ);
+			Protocol.outboundBuffer.p2(local15 + Camera.originX);
+			Protocol.outboundBuffer.p2_alt3(a);
 		}
 		if (local23 == 25) {
-			Static6.outboundBuffer.pIsaac1(81);
-			Static6.outboundBuffer.p2_alt2(local15);
-			Static6.outboundBuffer.p2(a);
-			Static6.outboundBuffer.p4rme(local19);
+			Protocol.outboundBuffer.pIsaac1(81);
+			Protocol.outboundBuffer.p2_alt2(local15);
+			Protocol.outboundBuffer.p2(a);
+			Protocol.outboundBuffer.p4rme(local19);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Component.getComponent(local19);
+			Static257.aClass13_7 = InterfaceList.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 2) {
 			npc = NpcList.npcs[a];
 			if (npc != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, npc.pathTileX[0], 1, 0, 2, npc.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static25.y = Static60.mouseClickY;
 				Static70.crossMode = 2;
 				Static122.x = aClass6.mouseClickX;
 				Static17.crossCycle = 0;
-				Static6.outboundBuffer.pIsaac1(218);
-				Static6.outboundBuffer.p2_alt1(a);
+				Protocol.outboundBuffer.pIsaac1(218);
+				Protocol.outboundBuffer.p2_alt1(a);
 			}
 		}
 		@Pc(1955) int varp;
 		if (local23 == 51) {
-			Static6.outboundBuffer.pIsaac1(10);
-			Static6.outboundBuffer.p4(local19);
-			com = Component.getComponent(local19);
+			Protocol.outboundBuffer.pIsaac1(10);
+			Protocol.outboundBuffer.p4(local19);
+			com = InterfaceList.getComponent(local19);
 			if (com.scripts != null && com.scripts[0][0] == 5) {
 				varp = com.scripts[0][1];
 				if (VarPlayerDefinition.varPlayers[varp] != com.scriptOperand[0]) {
@@ -446,22 +447,22 @@ public final class Static103 {
 		if (local23 == 26) {
 			npc = NpcList.npcs[a];
 			if (npc != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, npc.pathTileX[0], 1, 0, 2, npc.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static70.crossMode = 2;
 				Static17.crossCycle = 0;
 				Static25.y = Static60.mouseClickY;
 				Static122.x = aClass6.mouseClickX;
-				Static6.outboundBuffer.pIsaac1(115);
-				Static6.outboundBuffer.p4_alt3(Static224.anInt5062);
-				Static6.outboundBuffer.p2_alt1(Static185.anInt4370);
-				Static6.outboundBuffer.p2_alt1(a);
-				Static6.outboundBuffer.p2_alt3(Static274.anInt4997);
+				Protocol.outboundBuffer.pIsaac1(115);
+				Protocol.outboundBuffer.p4_alt3(FluTypeList.anInt5062);
+				Protocol.outboundBuffer.p2_alt1(Static185.anInt4370);
+				Protocol.outboundBuffer.p2_alt1(a);
+				Protocol.outboundBuffer.p2_alt3(Static274.anInt4997);
 			}
 		}
 		if (local23 == 59) {
-			Static6.outboundBuffer.pIsaac1(10);
-			Static6.outboundBuffer.p4(local19);
-			com = Component.getComponent(local19);
+			Protocol.outboundBuffer.pIsaac1(10);
+			Protocol.outboundBuffer.p4(local19);
+			com = InterfaceList.getComponent(local19);
 			if (com.scripts != null && com.scripts[0][0] == 5) {
 				varp = com.scripts[0][1];
 				VarPlayerDefinition.varPlayers[varp] = 1 - VarPlayerDefinition.varPlayers[varp];
@@ -469,130 +470,130 @@ public final class Static103 {
 			}
 		}
 		if (local23 == 33) {
-			local560 = Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.pathTileX[0]);
+			local560 = Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 			if (!local560) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 			}
 			Static122.x = aClass6.mouseClickX;
 			Static17.crossCycle = 0;
 			Static25.y = Static60.mouseClickY;
 			Static70.crossMode = 2;
-			Static6.outboundBuffer.pIsaac1(101);
-			Static6.outboundBuffer.p2_alt3(local15 + Camera.originX);
-			Static6.outboundBuffer.p2_alt1(Static185.anInt4370);
-			Static6.outboundBuffer.p2_alt1(Static274.anInt4997);
-			Static6.outboundBuffer.p2_alt1(a);
-			Static6.outboundBuffer.p2_alt3(Camera.originZ + local19);
-			Static6.outboundBuffer.p4_alt3(Static224.anInt5062);
+			Protocol.outboundBuffer.pIsaac1(101);
+			Protocol.outboundBuffer.p2_alt3(local15 + Camera.originX);
+			Protocol.outboundBuffer.p2_alt1(Static185.anInt4370);
+			Protocol.outboundBuffer.p2_alt1(Static274.anInt4997);
+			Protocol.outboundBuffer.p2_alt1(a);
+			Protocol.outboundBuffer.p2_alt3(Camera.originZ + local19);
+			Protocol.outboundBuffer.p4_alt3(FluTypeList.anInt5062);
 		}
 		if (local23 == 1004) {
 			Static17.crossCycle = 0;
 			Static122.x = aClass6.mouseClickX;
 			Static70.crossMode = 2;
 			Static25.y = Static60.mouseClickY;
-			Static6.outboundBuffer.pIsaac1(94);
-			Static6.outboundBuffer.p2_alt3(a);
+			Protocol.outboundBuffer.pIsaac1(94);
+			Protocol.outboundBuffer.p2_alt3(a);
 		}
 		if (local23 == 11) {
 			if (a == 0) {
 				Static125.anInt3096 = 1;
 				Static113.method3556(Player.plane, local15, local19);
 			} else if (a == 1) {
-				Static6.outboundBuffer.pIsaac1(131);
-				Static6.outboundBuffer.p4_alt3(Static98.anInt2512);
-				Static6.outboundBuffer.p2_alt2(Camera.originX + local15);
-				Static6.outboundBuffer.p2_alt3(Static15.anInt506);
-				Static6.outboundBuffer.p2_alt2(local19 + Camera.originZ);
+				Protocol.outboundBuffer.pIsaac1(131);
+				Protocol.outboundBuffer.p4_alt3(Static98.anInt2512);
+				Protocol.outboundBuffer.p2_alt2(Camera.originX + local15);
+				Protocol.outboundBuffer.p2_alt3(Static15.anInt506);
+				Protocol.outboundBuffer.p2_alt2(local19 + Camera.originZ);
 			}
 		}
 		if (local23 == 8) {
-			com = Component.getComponent(local19);
+			com = InterfaceList.getComponent(local19);
 			@Pc(2287) boolean local2287 = true;
 			if (com.contentType > 0) {
 				local2287 = Static249.method4265(com);
 			}
 			if (local2287) {
-				Static6.outboundBuffer.pIsaac1(10);
-				Static6.outboundBuffer.p4(local19);
+				Protocol.outboundBuffer.pIsaac1(10);
+				Protocol.outboundBuffer.p4(local19);
 			}
 		}
 		if (local23 == 1) {
-			local43 = Static159.players[a];
+			local43 = PlayerList.players[a];
 			if (local43 != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static17.crossCycle = 0;
 				Static25.y = Static60.mouseClickY;
 				Static70.crossMode = 2;
 				Static122.x = aClass6.mouseClickX;
-				Static6.outboundBuffer.pIsaac1(248);
-				Static6.outboundBuffer.p2_alt3(a);
-				Static6.outboundBuffer.p2(Static274.anInt4997);
-				Static6.outboundBuffer.p2(Static185.anInt4370);
-				Static6.outboundBuffer.p4_alt3(Static224.anInt5062);
+				Protocol.outboundBuffer.pIsaac1(248);
+				Protocol.outboundBuffer.p2_alt3(a);
+				Protocol.outboundBuffer.p2(Static274.anInt4997);
+				Protocol.outboundBuffer.p2(Static185.anInt4370);
+				Protocol.outboundBuffer.p4_alt3(FluTypeList.anInt5062);
 			}
 		}
 		if (local23 == 7) {
-			Static6.outboundBuffer.pIsaac1(85);
-			Static6.outboundBuffer.p4rme(local19);
-			Static6.outboundBuffer.p2(local15);
-			Static6.outboundBuffer.p2_alt2(a);
+			Protocol.outboundBuffer.pIsaac1(85);
+			Protocol.outboundBuffer.p4rme(local19);
+			Protocol.outboundBuffer.p2(local15);
+			Protocol.outboundBuffer.p2_alt2(a);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Component.getComponent(local19);
+			Static257.aClass13_7 = InterfaceList.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 24) {
-			if (Static266.game == 1) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.pathTileX[0]);
+			if (client.game == 1) {
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 			} else {
-				local560 = Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.pathTileX[0]);
+				local560 = Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 				if (!local560) {
-					Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.pathTileX[0]);
+					Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 				}
 			}
 			Static70.crossMode = 2;
 			Static25.y = Static60.mouseClickY;
 			Static122.x = aClass6.mouseClickX;
 			Static17.crossCycle = 0;
-			Static6.outboundBuffer.pIsaac1(48);
-			Static6.outboundBuffer.p2_alt2(local15 + Camera.originX);
-			Static6.outboundBuffer.p2_alt3(a);
-			Static6.outboundBuffer.p2_alt1(Camera.originZ + local19);
+			Protocol.outboundBuffer.pIsaac1(48);
+			Protocol.outboundBuffer.p2_alt2(local15 + Camera.originX);
+			Protocol.outboundBuffer.p2_alt3(a);
+			Protocol.outboundBuffer.p2_alt1(Camera.originZ + local19);
 		}
 		if (local23 == 38 && ClientScriptRunner.method4003(local31, local19, local15)) {
-			Static6.outboundBuffer.pIsaac1(233);
-			Static6.outboundBuffer.p2_alt3(local19 + Camera.originZ);
-			Static6.outboundBuffer.p2_alt2(Camera.originX + local15);
-			Static6.outboundBuffer.p2_alt3(Static15.anInt506);
-			Static6.outboundBuffer.p4rme(Static98.anInt2512);
-			Static6.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
+			Protocol.outboundBuffer.pIsaac1(233);
+			Protocol.outboundBuffer.p2_alt3(local19 + Camera.originZ);
+			Protocol.outboundBuffer.p2_alt2(Camera.originX + local15);
+			Protocol.outboundBuffer.p2_alt3(Static15.anInt506);
+			Protocol.outboundBuffer.p4rme(Static98.anInt2512);
+			Protocol.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
 		}
 		if (local23 == 13) {
-			Static6.outboundBuffer.pIsaac1(6);
-			Static6.outboundBuffer.p4(local19);
-			Static6.outboundBuffer.p2_alt2(local15);
-			Static6.outboundBuffer.p2_alt1(a);
+			Protocol.outboundBuffer.pIsaac1(6);
+			Protocol.outboundBuffer.p4(local19);
+			Protocol.outboundBuffer.p2_alt2(local15);
+			Protocol.outboundBuffer.p2_alt1(a);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Component.getComponent(local19);
+			Static257.aClass13_7 = InterfaceList.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 57) {
-			local43 = Static159.players[a];
+			local43 = PlayerList.players[a];
 			if (local43 != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static70.crossMode = 2;
 				Static25.y = Static60.mouseClickY;
 				Static122.x = aClass6.mouseClickX;
 				Static17.crossCycle = 0;
-				Static6.outboundBuffer.pIsaac1(175);
-				Static6.outboundBuffer.p2_alt2(a);
+				Protocol.outboundBuffer.pIsaac1(175);
+				Protocol.outboundBuffer.p2_alt2(a);
 			}
 		}
 		if (local23 == 22) {
 			Static53.method1294();
-			com = Component.getComponent(local19);
-			Static224.anInt5062 = local19;
+			com = InterfaceList.getComponent(local19);
+			FluTypeList.anInt5062 = local19;
 			Static185.anInt4370 = local15;
-			Static260.anInt5014 = 1;
+			MiniMenu.anInt5014 = 1;
 			Static274.anInt4997 = a;
 			Static43.method1143(com);
 			Static34.aClass100_203 = JString.concatenate(new JString[] { Static8.aClass100_32, Static71.get(a).name, Static204.aClass100_896 });
@@ -603,63 +604,63 @@ public final class Static103 {
 		}
 		if (local23 == 50) {
 			ClientScriptRunner.method4003(local31, local19, local15);
-			Static6.outboundBuffer.pIsaac1(194);
-			Static6.outboundBuffer.p2_alt3(local19 + Camera.originZ);
-			Static6.outboundBuffer.p2_alt1(Camera.originX + local15);
-			Static6.outboundBuffer.p2((int) (local31 >>> 32) & Integer.MAX_VALUE);
+			Protocol.outboundBuffer.pIsaac1(194);
+			Protocol.outboundBuffer.p2_alt3(local19 + Camera.originZ);
+			Protocol.outboundBuffer.p2_alt1(Camera.originX + local15);
+			Protocol.outboundBuffer.p2((int) (local31 >>> 32) & Integer.MAX_VALUE);
 		}
 		if (local23 == 48) {
-			Static6.outboundBuffer.pIsaac1(154);
-			Static6.outboundBuffer.p2_alt1(local15);
-			Static6.outboundBuffer.p4rme(local19);
-			Static6.outboundBuffer.p2_alt3(a);
+			Protocol.outboundBuffer.pIsaac1(154);
+			Protocol.outboundBuffer.p2_alt1(local15);
+			Protocol.outboundBuffer.p4rme(local19);
+			Protocol.outboundBuffer.p2_alt3(a);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Component.getComponent(local19);
+			Static257.aClass13_7 = InterfaceList.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 30) {
-			local43 = Static159.players[a];
+			local43 = PlayerList.players[a];
 			if (local43 != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static17.crossCycle = 0;
 				Static122.x = aClass6.mouseClickX;
 				Static25.y = Static60.mouseClickY;
 				Static70.crossMode = 2;
-				Static6.outboundBuffer.pIsaac1(68);
-				Static6.outboundBuffer.p2_alt3(a);
+				Protocol.outboundBuffer.pIsaac1(68);
+				Protocol.outboundBuffer.p2_alt3(a);
 			}
 		}
 		if (local23 == 43) {
-			Static6.outboundBuffer.pIsaac1(153);
-			Static6.outboundBuffer.p4_alt1(local19);
-			Static6.outboundBuffer.p2_alt1(local15);
-			Static6.outboundBuffer.p2_alt1(a);
+			Protocol.outboundBuffer.pIsaac1(153);
+			Protocol.outboundBuffer.p4_alt1(local19);
+			Protocol.outboundBuffer.p2_alt1(local15);
+			Protocol.outboundBuffer.p2_alt1(a);
 			Static72.anInt2043 = 0;
-			Static257.aClass13_7 = Component.getComponent(local19);
+			Static257.aClass13_7 = InterfaceList.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 39) {
-			local560 = Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.pathTileX[0]);
+			local560 = Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 			if (!local560) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 			}
 			Static25.y = Static60.mouseClickY;
 			Static122.x = aClass6.mouseClickX;
 			Static70.crossMode = 2;
 			Static17.crossCycle = 0;
-			Static6.outboundBuffer.pIsaac1(73);
-			Static6.outboundBuffer.p4rme(Static98.anInt2512);
-			Static6.outboundBuffer.p2(Camera.originZ + local19);
-			Static6.outboundBuffer.p2_alt3(a);
-			Static6.outboundBuffer.p2_alt3(local15 + Camera.originX);
-			Static6.outboundBuffer.p2_alt1(Static15.anInt506);
+			Protocol.outboundBuffer.pIsaac1(73);
+			Protocol.outboundBuffer.p4rme(Static98.anInt2512);
+			Protocol.outboundBuffer.p2(Camera.originZ + local19);
+			Protocol.outboundBuffer.p2_alt3(a);
+			Protocol.outboundBuffer.p2_alt3(local15 + Camera.originX);
+			Protocol.outboundBuffer.p2_alt1(Static15.anInt506);
 		}
 		if (local23 == 12) {
-			Static6.outboundBuffer.pIsaac1(82);
-			Static6.outboundBuffer.p2(Static15.anInt506);
-			Static6.outboundBuffer.p4rme(local19);
-			Static6.outboundBuffer.p4(Static98.anInt2512);
-			Static6.outboundBuffer.p2_alt3(local15);
+			Protocol.outboundBuffer.pIsaac1(82);
+			Protocol.outboundBuffer.p2(Static15.anInt506);
+			Protocol.outboundBuffer.p4rme(local19);
+			Protocol.outboundBuffer.p4(Static98.anInt2512);
+			Protocol.outboundBuffer.p2_alt3(local15);
 		}
 		if (local23 == 36) {
 			if (a == 0) {
@@ -668,58 +669,58 @@ public final class Static103 {
 			} else if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
 				Cheat.teleport(local15 + Camera.originX, Camera.originZ - -local19, Player.plane);
 			} else {
-				Static6.outboundBuffer.pIsaac1(179);
-				Static6.outboundBuffer.p2(local19 + Camera.originZ);
-				Static6.outboundBuffer.p2(local15 + Camera.originX);
+				Protocol.outboundBuffer.pIsaac1(179);
+				Protocol.outboundBuffer.p2(local19 + Camera.originZ);
+				Protocol.outboundBuffer.p2(local15 + Camera.originX);
 			}
 		}
 		if (local23 == 6) {
-			local43 = Static159.players[a];
+			local43 = PlayerList.players[a];
 			if (local43 != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local43.pathTileX[0], 1, 0, 2, local43.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static25.y = Static60.mouseClickY;
 				Static17.crossCycle = 0;
 				Static70.crossMode = 2;
 				Static122.x = aClass6.mouseClickX;
-				Static6.outboundBuffer.pIsaac1(106);
-				Static6.outboundBuffer.p2(a);
+				Protocol.outboundBuffer.pIsaac1(106);
+				Protocol.outboundBuffer.p2(a);
 			}
 		}
 		if (local23 == 20) {
-			if (Static266.game == 1) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.pathTileX[0]);
+			if (client.game == 1) {
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 			} else {
-				local560 = Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.pathTileX[0]);
+				local560 = Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 				if (!local560) {
-					Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.pathTileX[0]);
+					Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 				}
 			}
 			Static25.y = Static60.mouseClickY;
 			Static17.crossCycle = 0;
 			Static122.x = aClass6.mouseClickX;
 			Static70.crossMode = 2;
-			Static6.outboundBuffer.pIsaac1(33);
-			Static6.outboundBuffer.p2(a);
-			Static6.outboundBuffer.p2(Camera.originX + local15);
-			Static6.outboundBuffer.p2_alt1(Camera.originZ + local19);
+			Protocol.outboundBuffer.pIsaac1(33);
+			Protocol.outboundBuffer.p2(a);
+			Protocol.outboundBuffer.p2(Camera.originX + local15);
+			Protocol.outboundBuffer.p2_alt1(Camera.originZ + local19);
 		}
 		if (local23 == 16) {
 			npc = NpcList.npcs[a];
 			if (npc != null) {
-				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, npc.pathTileX[0], 1, 0, 2, npc.pathTileZ[0], PlayerList.self.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Static122.x = aClass6.mouseClickX;
 				Static17.crossCycle = 0;
 				Static25.y = Static60.mouseClickY;
 				Static70.crossMode = 2;
-				Static6.outboundBuffer.pIsaac1(3);
-				Static6.outboundBuffer.p2_alt3(a);
+				Protocol.outboundBuffer.pIsaac1(3);
+				Protocol.outboundBuffer.p2_alt3(a);
 			}
 		}
-		if (Static260.anInt5014 != 0) {
-			Static260.anInt5014 = 0;
-			Static43.method1143(Component.getComponent(Static224.anInt5062));
+		if (MiniMenu.anInt5014 != 0) {
+			MiniMenu.anInt5014 = 0;
+			Static43.method1143(InterfaceList.getComponent(FluTypeList.anInt5062));
 		}
-		if (Static241.aBoolean302) {
+		if (MiniMenu.aBoolean302) {
 			Static53.method1294();
 		}
 		if (Static257.aClass13_7 != null && Static72.anInt2043 == 0) {
@@ -787,7 +788,7 @@ public final class Static103 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!i", name = "r", descriptor = "(I)V")
-	public static void method2239() {
+	public static void removeSoft() {
 		Static27.aClass99_4.removeSoft();
 		Static244.aClass99_32.removeSoft();
 		Static118.aClass99_16.removeSoft();
@@ -795,7 +796,7 @@ public final class Static103 {
 
 	@OriginalMember(owner = "runetek4.client!i", name = "i", descriptor = "(Z)V")
 	public static void method2245() {
-		for (@Pc(6) Class3_Sub31 local6 = (Class3_Sub31) Static119.aClass133_9.head(); local6 != null; local6 = (Class3_Sub31) Static119.aClass133_9.prev()) {
+		for (@Pc(6) ComponentPointer local6 = (ComponentPointer) InterfaceList.openInterfaces.head(); local6 != null; local6 = (ComponentPointer) InterfaceList.openInterfaces.prev()) {
 			@Pc(14) int local14 = local6.anInt5878;
 			if (Component.load(local14)) {
 				@Pc(21) boolean local21 = true;
@@ -809,7 +810,7 @@ public final class Static103 {
 				}
 				if (!local21) {
 					local27 = (int) local6.nodeId;
-					@Pc(60) Component local60 = Component.getComponent(local27);
+					@Pc(60) Component local60 = InterfaceList.getComponent(local27);
 					if (local60 != null) {
 						Static43.method1143(local60);
 					}

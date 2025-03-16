@@ -14,7 +14,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!bg")
-public final class Js5NetResourceProvider extends Js5ResourceProvider {
+public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 
 	@OriginalMember(owner = "client!bg", name = "m", descriptor = "Lclient!ii;")
 	private Js5Index index;
@@ -74,7 +74,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private Js5Request currentRequest;
 
 	@OriginalMember(owner = "client!bg", name = "<init>", descriptor = "(ILclient!ge;Lclient!ge;Lclient!jb;Lclient!k;IIZ)V")
-	public Js5NetResourceProvider(@OriginalArg(0) int arg0, @OriginalArg(1) Cache arg1, @OriginalArg(2) Cache arg2, @OriginalArg(3) Js5NetQueue arg3, @OriginalArg(4) Js5CacheQueue arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7) {
+	public Js5CachedResourceProvider(@OriginalArg(0) int arg0, @OriginalArg(1) Cache arg1, @OriginalArg(2) Cache arg2, @OriginalArg(3) Js5NetQueue arg3, @OriginalArg(4) Js5CacheQueue arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7) {
 		this.anInt576 = arg0;
 		this.aClass49_2 = arg1;
 		if (this.aClass49_2 == null) {
@@ -174,7 +174,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	}
 
 	@OriginalMember(owner = "client!bg", name = "a", descriptor = "(Z)V")
-	public void method528() {
+	public void prefetchAll() {
 		if (this.aClass49_2 != null) {
 			this.aBoolean36 = true;
 			if (this.aClass69_17 == null) {
@@ -287,7 +287,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				this.aClass69_17 = null;
 			}
 		}
-		if (!this.aBoolean37 || this.aLong20 > MonotonicTime.get()) {
+		if (!this.aBoolean37 || this.aLong20 > MonotonicTime.currentTimeMillis()) {
 			return;
 		}
 		for (@Pc(331) Js5Request local331 = (Js5Request) this.requests.head(); local331 != null; local331 = (Js5Request) this.requests.prev()) {
@@ -302,7 +302,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				}
 			}
 		}
-		this.aLong20 = MonotonicTime.get() + 1000L;
+		this.aLong20 = MonotonicTime.currentTimeMillis() + 1000L;
 	}
 
 	@OriginalMember(owner = "client!bg", name = "b", descriptor = "(II)I")
@@ -456,7 +456,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	}
 
 	@OriginalMember(owner = "client!bg", name = "f", descriptor = "(I)I")
-	public int getPercentLoaded() {
+	public int getIndexPercentageComplete() {
 		if (this.fetchIndex() == null) {
 			return this.currentRequest == null ? 0 : this.currentRequest.getPercentageComplete();
 		} else {

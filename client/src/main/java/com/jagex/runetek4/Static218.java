@@ -7,52 +7,52 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static218 {
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "M", descriptor = "Lclient!na;")
-	public static final JString startShadow = Static28.parse("shad=");
+	public static final JString startShadow = JString.parse("shad=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "O", descriptor = "Lclient!na;")
-	public static final JString startTrans = Static28.parse("trans=");
+	public static final JString startTrans = JString.parse("trans=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "P", descriptor = "Lclient!na;")
-	public static final JString startUnderline = Static28.parse("u=");
+	public static final JString startUnderline = JString.parse("u=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "Q", descriptor = "Lclient!na;")
-	public static final JString startStrikethrough = Static28.parse("str=");
+	public static final JString startStrikethrough = JString.parse("str=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "T", descriptor = "Lclient!na;")
-	public static final JString endColor = Static28.parse(")4col");
+	public static final JString endColor = JString.parse(")4col");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "X", descriptor = "Lclient!na;")
-	public static final JString endShadow = Static28.parse(")4shad");
+	public static final JString endShadow = JString.parse(")4shad");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "Y", descriptor = "Lclient!na;")
-	public static final JString startColor = Static28.parse("col=");
+	public static final JString startColor = JString.parse("col=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "Z", descriptor = "Lclient!na;")
-	private static final JString aClass100_706 = Static28.parse("<gt>");
+	private static final JString aClass100_706 = JString.parse("<gt>");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "bb", descriptor = "Lclient!na;")
-	public static final JString startDefaultUnderline = Static28.parse("u");
+	public static final JString startDefaultUnderline = JString.parse("u");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "eb", descriptor = "Lclient!na;")
-	public static final JString endTrans = Static28.parse(")4trans");
+	public static final JString endTrans = JString.parse(")4trans");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "hb", descriptor = "Lclient!na;")
-	private static final JString aClass100_711 = Static28.parse("<lt>");
+	private static final JString aClass100_711 = JString.parse("<lt>");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "ib", descriptor = "Lclient!na;")
-	public static final JString endUnderline = Static28.parse(")4u");
+	public static final JString endUnderline = JString.parse(")4u");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "kb", descriptor = "Lclient!na;")
-	public static final JString lineBreak = Static28.parse("br");
+	public static final JString lineBreak = JString.parse("br");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "lb", descriptor = "Lclient!na;")
-	public static final JString startDefaultShadow = Static28.parse("shad");
+	public static final JString startDefaultShadow = JString.parse("shad");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "pb", descriptor = "Lclient!na;")
-	public static final JString endStrikeThrough = Static28.parse(")4str");
+	public static final JString endStrikeThrough = JString.parse(")4str");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "rb", descriptor = "Lclient!na;")
-	public static final JString startDefaultStrikeThrough = Static28.parse("str");
+	public static final JString startDefaultStrikeThrough = JString.parse("str");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "sb", descriptor = "Lclient!na;")
 	public static final JString aClass100_720 = Static87.method1804(100);

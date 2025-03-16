@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
@@ -15,6 +16,41 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 
 	@OriginalMember(owner = "runetek4.client!lk", name = "Z", descriptor = "I")
 	public static int clickButton = 0;
+    @OriginalMember(owner = "runetek4.client!ok", name = "f", descriptor = "J")
+    public static long prevClickTime = 0L;
+
+	@OriginalMember(owner = "runetek4.client!dl", name = "a", descriptor = "(II)V")
+	public static void setIdleLoops(@OriginalArg(1) int arg0) {
+		@Pc(10) Mouse local10 = Static93.aClass150_1;
+		synchronized (Static93.aClass150_1) {
+			Static93.anInt2467 = arg0;
+		}
+	}
+
+    @OriginalMember(owner = "runetek4.client!ug", name = "a", descriptor = "(I)V")
+    public static void quit() {
+        if (Static93.aClass150_1 != null) {
+            @Pc(5) Mouse local5 = Static93.aClass150_1;
+            synchronized (Static93.aClass150_1) {
+                Static93.aClass150_1 = null;
+            }
+        }
+    }
+
+	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(ILjava/awt/runetek4.Component;)V")
+	public static void stop(@OriginalArg(1) Component arg0) {
+		arg0.removeMouseListener(Static93.aClass150_1);
+		arg0.removeMouseMotionListener(Static93.aClass150_1);
+		arg0.removeFocusListener(Static93.aClass150_1);
+		Static57.anInt1759 = 0;
+	}
+
+	@OriginalMember(owner = "runetek4.client!h", name = "a", descriptor = "(Ljava/awt/runetek4.Component;Z)V")
+	public static void start(@OriginalArg(0) Component arg0) {
+		arg0.addMouseListener(Static93.aClass150_1);
+		arg0.addMouseMotionListener(Static93.aClass150_1);
+		arg0.addFocusListener(Static93.aClass150_1);
+	}
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "mouseMoved", descriptor = "(Ljava/awt/event/MouseEvent;)V")
 	@Override
@@ -83,7 +119,7 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 			Static93.anInt2467 = 0;
 			Static34.anInt1034 = arg0.getX();
 			Static222.anInt4973 = arg0.getY();
-			Static209.aLong161 = MonotonicTime.get();
+			Static209.aLong161 = MonotonicTime.currentTimeMillis();
 			if ((arg0.getModifiersEx() & MouseEvent.BUTTON3_DOWN_MASK) == 0) {
 				Static41.anInt1313 = 1;
 				Static57.anInt1759 = 1;

@@ -23,16 +23,13 @@ public final class Static266 {
 	public static int anInt5336 = -2;
 
 	@OriginalMember(owner = "runetek4.client!vk", name = "d", descriptor = "Lclient!na;")
-	public static final JString aClass100_1010 = Static28.parse("null");
+	public static final JString aClass100_1010 = JString.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!vk", name = "h", descriptor = "I")
 	public static final int anInt5338 = (int) (Math.random() * 33.0D) - 16;
 
-	@OriginalMember(owner = "runetek4.client!vk", name = "n", descriptor = "I")
-	public static int game = 0;
-
 	@OriginalMember(owner = "runetek4.client!vk", name = "a", descriptor = "(Lclient!ve;Lclient!ve;I)V")
-	public static void method4187(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
+	public static void init(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
 		Static93.modelArchive = arg0;
 		Static132.aClass153_48 = arg1;
 	}
@@ -41,7 +38,7 @@ public final class Static266 {
 	public static void method4190(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) Component[] arg4) {
 		for (@Pc(3) int local3 = 0; local3 < arg4.length; local3++) {
 			@Pc(19) Component local19 = arg4[local3];
-			if (local19 != null && local19.layer == arg0) {
+			if (local19 != null && local19.overlayer == arg0) {
 				Static150.method2801(arg3, arg2, local19, arg1);
 				Static111.method2291(local19, arg3, arg2);
 				if (local19.anInt486 - local19.anInt445 < local19.anInt489) {

@@ -10,8 +10,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.io.PacketBit;
 import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.frame.Minimap;
 import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -34,32 +37,39 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "runetek4.client!t", name = "v", descriptor = "[Lclient!na;")
 	public static final JString[] aClass100Array160 = new JString[500];
 
-	@OriginalMember(owner = "runetek4.client!t", name = "x", descriptor = "Z")
-	public static boolean aBoolean254 = false;
-
 	@OriginalMember(owner = "runetek4.client!t", name = "y", descriptor = "I")
 	public static int anInt5223 = 0;
 
 	@OriginalMember(owner = "runetek4.client!t", name = "C", descriptor = "Lclient!na;")
-	public static final JString aClass100_994 = Static28.parse(")3");
+	public static final JString aClass100_994 = JString.parse(")3");
 
 	@OriginalMember(owner = "runetek4.client!t", name = "E", descriptor = "[I")
 	public static final int[] updatedVarcstrs = new int[32];
 
-	@OriginalMember(owner = "runetek4.client!t", name = "F", descriptor = "I")
-	public static int js5PrevErrors = 0;
 	@OriginalMember(owner = "client!bb", name = "E", descriptor = "I")
 	public static int energy = 0;
+	@OriginalMember(owner = "runetek4.client!em", name = "z", descriptor = "Z")
+	public static boolean aBoolean108 = false;
+	@OriginalMember(owner = "runetek4.client!d", name = "R", descriptor = "Lclient!be;")
+	public static Component aClass13_10 = null;
+	@OriginalMember(owner = "client!bi", name = "jb", descriptor = "Z")
+	public static boolean aBoolean43 = true;
+	@OriginalMember(owner = "runetek4.client!k", name = "m", descriptor = "Z")
+	public static boolean neverRemoveRoofs = false;
+	@OriginalMember(owner = "runetek4.client!ib", name = "e", descriptor = "Lclient!be;")
+	public static Component aClass13_14 = null;
+	@OriginalMember(owner = "runetek4.client!nm", name = "W", descriptor = "Lclient!na;")
+	public static JString url;
 
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(I)V")
-	public static void method3999() {
-		Static67.aClass99_20.method3104();
+	public static void clear() {
+		Static67.aClass99_20.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(IIIZIII)V")
 	public static void method4000(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {
 		@Pc(3) int local3 = 0;
-		@Pc(5) Class102[] local5 = Static143.aClass102Array1;
+		@Pc(5) Class102[] local5 = Minimap.hintMapMarkers;
 		while (local5.length > local3) {
 			@Pc(17) Class102 local17 = local5[local3];
 			if (local17 != null && local17.headIconDrawType == 2) {
@@ -73,7 +83,7 @@ public final class ClientScriptRunner {
 	}
 
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(B)V")
-	public static void method4001() {
+	public static void removeSoft() {
 		Static93.aClass99_13.removeSoft();
 		Static125.aClass99_18.removeSoft();
 		Static262.aClass99_35.removeSoft();
@@ -91,7 +101,7 @@ public final class ClientScriptRunner {
 			local21 = Static156.aByteArrayArray11;
 		}
 		for (@Pc(29) int local29 = 0; local29 < local19; local29++) {
-			Static107.method2261();
+			client.audioLoop();
 			for (@Pc(36) int local36 = 0; local36 < 13; local36++) {
 				for (@Pc(43) int local43 = 0; local43 < 13; local43++) {
 					@Pc(56) int local56 = Static187.anIntArrayArrayArray18[local29][local36][local43];
@@ -135,9 +145,9 @@ public final class ClientScriptRunner {
 			if (local24 != 0) {
 				local73 = (local73 << local24 & 0xF) + (local73 >> 4 - local24);
 			}
-			Static102.tryMove(PlayerList.self.pathTileZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, PlayerList.self.pathTileX[0]);
+			Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, PlayerList.self.movementQueueX[0]);
 		} else {
-			Static102.tryMove(PlayerList.self.pathTileZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, PlayerList.self.pathTileX[0]);
+			Static102.tryMove(PlayerList.self.movementQueueZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, PlayerList.self.movementQueueX[0]);
 		}
 		Static25.y = Static60.mouseClickY;
 		Static17.crossCycle = 0;
@@ -261,5 +271,78 @@ public final class ClientScriptRunner {
 			buffer.p1len(buffer.offset - i);
 			clientScriptRunner.unlink();
 		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!ac", name = "b", descriptor = "(I)V")
+	public static void method28() {
+		Static43.method1143(aClass13_14);
+		Static213.anInt4851++;
+		if (Static44.aBoolean83 && Static146.aBoolean174) {
+			@Pc(30) int local30 = Static215.anInt4873;
+			local30 -= Static246.anInt5388;
+			if (com.jagex.runetek4.cache.def.ItemDefinition.anInt2225 > local30) {
+				local30 = com.jagex.runetek4.cache.def.ItemDefinition.anInt2225;
+			}
+			@Pc(41) int local41 = Static223.anInt5032;
+			if (com.jagex.runetek4.cache.def.ItemDefinition.anInt2225 + Static4.aClass13_1.anInt445 < local30 - -aClass13_14.anInt445) {
+				local30 = com.jagex.runetek4.cache.def.ItemDefinition.anInt2225 + Static4.aClass13_1.anInt445 - aClass13_14.anInt445;
+			}
+			local41 -= Static165.anInt4035;
+			if (local41 < Static228.anInt5103) {
+				local41 = Static228.anInt5103;
+			}
+			if (Static228.anInt5103 + Static4.aClass13_1.anInt459 < local41 - -aClass13_14.anInt459) {
+				local41 = Static228.anInt5103 + Static4.aClass13_1.anInt459 - aClass13_14.anInt459;
+			}
+			@Pc(109) int local109 = local41 - Static20.anInt660;
+			@Pc(114) int local114 = local30 - Static124.anInt3075;
+			@Pc(122) int local122 = local30 + Static4.aClass13_1.anInt489 - ItemDefinition.anInt2225;
+			@Pc(130) int local130 = Static4.aClass13_1.scrollY + local41 - Static228.anInt5103;
+			@Pc(133) int local133 = aClass13_14.anInt472;
+			if (Static213.anInt4851 > aClass13_14.anInt447 && (local133 < local114 || -local133 > local114 || local109 > local133 || local109 < -local133)) {
+				Static138.aBoolean172 = true;
+			}
+			@Pc(176) HookRequest local176;
+			if (aClass13_14.anObjectArray26 != null && Static138.aBoolean172) {
+				local176 = new HookRequest();
+				local176.source = aClass13_14;
+				local176.anObjectArray31 = aClass13_14.anObjectArray26;
+				local176.anInt3102 = local122;
+				local176.anInt3097 = local130;
+				run(local176);
+			}
+			if (Static22.activeInterfaceType == 0) {
+				if (Static138.aBoolean172) {
+					if (aClass13_14.anObjectArray16 != null) {
+						local176 = new HookRequest();
+						local176.anInt3097 = local130;
+						local176.aClass13_16 = Static56.aClass13_12;
+						local176.anInt3102 = local122;
+						local176.anObjectArray31 = aClass13_14.anObjectArray16;
+						local176.source = aClass13_14;
+						run(local176);
+					}
+					if (Static56.aClass13_12 != null && Static36.method938(aClass13_14) != null) {
+						Protocol.outboundBuffer.pIsaac1(79);
+						Protocol.outboundBuffer.p4_alt3(aClass13_14.anInt507);
+						Protocol.outboundBuffer.p2_alt1(Static56.aClass13_12.createdComponentId);
+						Protocol.outboundBuffer.p4(Static56.aClass13_12.anInt507);
+						Protocol.outboundBuffer.p2_alt1(aClass13_14.createdComponentId);
+					}
+				} else if ((Static116.oneMouseButton == 1 || Static277.menuHasAddFriend(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
+					Static226.determineMenuSize();
+				} else if (MiniMenu.menuActionRow > 0) {
+					Static59.processMenuActions();
+				}
+				aClass13_14 = null;
+			}
+		} else if (Static213.anInt4851 > 1) {
+			aClass13_14 = null;
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!gi", name = "a", descriptor = "(ILclient!jl;)V")
+	public static void run(@OriginalArg(1) HookRequest arg0) {
+		Static88.runClientScripts(200000, arg0);
 	}
 }

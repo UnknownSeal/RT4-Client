@@ -9,13 +9,13 @@ public final class Static12 {
 	public static int anInt406;
 
 	@OriginalMember(owner = "client!bb", name = "m", descriptor = "Lclient!na;")
-	public static final JString aClass100_73 = Static28.parse("runes");
+	public static final JString aClass100_73 = JString.parse("runes");
 
 	@OriginalMember(owner = "client!bb", name = "n", descriptor = "I")
 	public static int anInt391 = 255;
 
 	@OriginalMember(owner = "client!bb", name = "A", descriptor = "Lclient!na;")
-	public static final JString aClass100_74 = Static28.parse("::");
+	public static final JString aClass100_74 = JString.parse("::");
 
 	@OriginalMember(owner = "client!bb", name = "a", descriptor = "(I)V")
 	public static void method447() {

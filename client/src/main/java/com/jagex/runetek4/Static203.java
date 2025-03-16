@@ -41,7 +41,7 @@ public final class Static203 {
 			GameShell.frameHeight -= local35.bottom + local35.top;
 			GameShell.frameWidth -= local35.right + local35.left;
 		}
-		if (Static144.method2736() >= 2) {
+		if (DisplayMode.getWindowMode() >= 2) {
 			GameShell.canvasWidth = GameShell.frameWidth;
 			GameShell.leftMargin = 0;
 			GameShell.topMargin = 0;
@@ -62,7 +62,7 @@ public final class Static203 {
 		} else {
 			GameShell.canvas.setLocation(GameShell.leftMargin, GameShell.topMargin);
 		}
-		if (Static154.topLevelInterace != -1) {
+		if (InterfaceList.topLevelInterace != -1) {
 			Static210.method3712(true);
 		}
 		Static139.method2704();

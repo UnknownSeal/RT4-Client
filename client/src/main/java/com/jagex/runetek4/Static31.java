@@ -13,10 +13,7 @@ public final class Static31 {
 	public static int anInt987;
 
 	@OriginalMember(owner = "client!ch", name = "x", descriptor = "Lclient!na;")
-	public static final JString aClass100_193 = Static28.parse(":");
-
-	@OriginalMember(owner = "client!ch", name = "y", descriptor = "[Z")
-	public static final boolean[] aBooleanArray29 = new boolean[100];
+	public static final JString aClass100_193 = JString.parse(":");
 
 	@OriginalMember(owner = "client!ch", name = "z", descriptor = "[I")
 	public static final int[] cameraModifierCycle = new int[5];
@@ -27,9 +24,9 @@ public final class Static31 {
 	@OriginalMember(owner = "client!ch", name = "c", descriptor = "(I)V")
 	public static void method846() {
 		if (!Static138.allLevelsvisible() && Static41.anInt1316 != Player.plane) {
-			Static127.method2463(Player.plane, Static52.anInt1695, Static80.anInt4701, PlayerList.self.pathTileZ[0], false, PlayerList.self.pathTileX[0]);
-		} else if (Player.plane != Static107.anInt2875 && Static137.method2665(Player.plane)) {
-			Static107.anInt2875 = Player.plane;
+			Static127.method2463(Player.plane, Static52.anInt1695, Static80.anInt4701, PlayerList.self.movementQueueZ[0], false, PlayerList.self.movementQueueX[0]);
+		} else if (Player.plane != LightingManager.anInt2875 && Static137.method2665(Player.plane)) {
+			LightingManager.anInt2875 = Player.plane;
 			Static269.method2218();
 		}
 	}
@@ -53,14 +50,14 @@ public final class Static31 {
 				Static20.anInt673 = 0;
 				Static196.anInt4587++;
 				Static219.anInt4937 = 1;
-				if (Static208.worldListPort == client.worldListDefaultPort) {
-					Static208.worldListPort = client.worldListAlternatePort;
+				if (client.worldListPort == client.worldListDefaultPort) {
+					client.worldListPort = client.worldListAlternatePort;
 				} else {
-					Static208.worldListPort = client.worldListDefaultPort;
+					client.worldListPort = client.worldListDefaultPort;
 				}
 			}
 			if (Static219.anInt4937 == 1) {
-				Static72.aClass212_3 = GameShell.signLink.openSocket(client.worldListHostname, Static208.worldListPort);
+				Static72.aClass212_3 = GameShell.signLink.openSocket(client.worldListHostname, client.worldListPort);
 				Static219.anInt4937 = 2;
 			}
 			@Pc(126) int local126;
@@ -73,19 +70,19 @@ public final class Static31 {
 				}
 				Static124.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
 				Static72.aClass212_3 = null;
-				Static124.gameServerSocket.write(Static6.outboundBuffer.offset, Static6.outboundBuffer.data);
-				if (Static11.aClass62_1 != null) {
-					Static11.aClass62_1.method3571();
+				Static124.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
+				if (client.musicChannel != null) {
+					client.musicChannel.method3571();
 				}
-				if (Static147.aClass62_2 != null) {
-					Static147.aClass62_2.method3571();
+				if (client.soundChannel != null) {
+					client.soundChannel.method3571();
 				}
 				local126 = Static124.gameServerSocket.read();
-				if (Static11.aClass62_1 != null) {
-					Static11.aClass62_1.method3571();
+				if (client.musicChannel != null) {
+					client.musicChannel.method3571();
 				}
-				if (Static147.aClass62_2 != null) {
-					Static147.aClass62_2.method3571();
+				if (client.soundChannel != null) {
+					client.soundChannel.method3571();
 				}
 				if (local126 != 101) {
 					Static266.anInt5336 = local126;
@@ -120,10 +117,10 @@ public final class Static31 {
 				Static124.gameServerSocket = null;
 			}
 			if (Static196.anInt4587 < 1) {
-				if (Static208.worldListPort == client.worldListDefaultPort) {
-					Static208.worldListPort = client.worldListAlternatePort;
+				if (client.worldListPort == client.worldListDefaultPort) {
+					client.worldListPort = client.worldListAlternatePort;
 				} else {
-					Static208.worldListPort = client.worldListDefaultPort;
+					client.worldListPort = client.worldListDefaultPort;
 				}
 				Static219.anInt4937 = 1;
 				Static20.anInt673 = 0;

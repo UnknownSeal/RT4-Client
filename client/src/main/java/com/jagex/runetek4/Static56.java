@@ -16,13 +16,13 @@ public final class Static56 {
 	public static final int[] anIntArray142 = new int[500];
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "f", descriptor = "Lclient!na;")
-	public static final JString DUELSTAKE = Static28.parse(":duelstake:");
+	public static final JString DUELSTAKE = JString.parse(":duelstake:");
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "g", descriptor = "I")
 	public static int clickTileX = -1;
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "h", descriptor = "Lclient!na;")
-	public static final JString aClass100_380 = Static28.parse("unzap");
+	public static final JString aClass100_380 = JString.parse("unzap");
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "r", descriptor = "Lclient!be;")
 	public static Component aClass13_12 = null;

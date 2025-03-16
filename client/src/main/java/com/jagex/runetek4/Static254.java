@@ -20,11 +20,8 @@ public final class Static254 {
 	@OriginalMember(owner = "runetek4.client!uj", name = "H", descriptor = "I")
 	public static int anInt5559;
 
-	@OriginalMember(owner = "runetek4.client!uj", name = "J", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_105;
-
 	@OriginalMember(owner = "runetek4.client!uj", name = "s", descriptor = "Lclient!na;")
-	public static final JString aClass100_1061 = Static28.parse("null");
+	public static final JString aClass100_1061 = JString.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "t", descriptor = "[I")
 	public static final int[] scriptIntValues = new int[1000];
@@ -228,7 +225,7 @@ public final class Static254 {
 			}
 			@Pc(15) byte[] local15 = new byte[local7];
 			arg0.offset += Static62.aClass44_1.method1552(0, local7, local15, arg0.data, arg0.offset);
-			return Static10.decodeString(local15, local7, 0);
+			return JString.decodeString(local15, local7, 0);
 		} catch (@Pc(47) Exception local47) {
 			return Static267.CABBAGE;
 		}

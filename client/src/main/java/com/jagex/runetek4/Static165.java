@@ -9,14 +9,11 @@ public final class Static165 {
 	@OriginalMember(owner = "runetek4.client!nb", name = "h", descriptor = "I")
 	public static int anInt4038;
 
-	@OriginalMember(owner = "runetek4.client!nb", name = "i", descriptor = "Lclient!qf;")
-	public static Sprite aClass3_Sub2_Sub1_8;
-
 	@OriginalMember(owner = "runetek4.client!nb", name = "o", descriptor = "I")
 	public static int anInt4042;
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "a", descriptor = "Lclient!na;")
-	public static final JString aClass100_772 = Static28.parse("um");
+	public static final JString aClass100_772 = JString.parse("um");
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "d", descriptor = "I")
 	public static int anInt4035 = 0;
@@ -25,10 +22,7 @@ public final class Static165 {
 	public static volatile int anInt4039 = -1;
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "m", descriptor = "Lclient!na;")
-	public static final JString LOGO = Static28.parse("logo");
-
-	@OriginalMember(owner = "runetek4.client!nb", name = "n", descriptor = "Lclient!na;")
-	public static final JString DETAILS = Static28.parse("details");
+	public static final JString LOGO = JString.parse("logo");
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "a", descriptor = "(IIIIIIIIII)V")
 	public static void method3162(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8) {
@@ -71,7 +65,7 @@ public final class Static165 {
 	public static void method3163(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(5) int arg4) {
 		if (arg1 == arg4) {
 			Static82.method1760(arg4, arg2, arg0, arg3);
-		} else if (Static172.anInt4164 <= arg2 - arg4 && arg2 + arg4 <= Static224.anInt5063 && arg3 - arg1 >= Static267.anInt5773 && arg3 + arg1 <= Static106.anInt2869) {
+		} else if (Static172.anInt4164 <= arg2 - arg4 && arg2 + arg4 <= FluTypeList.anInt5063 && arg3 - arg1 >= Static267.anInt5773 && arg3 + arg1 <= Static106.anInt2869) {
 			Static72.method1568(arg3, arg2, arg4, arg1, arg0);
 		} else {
 			Static35.method898(arg0, arg1, arg4, arg2, arg3);

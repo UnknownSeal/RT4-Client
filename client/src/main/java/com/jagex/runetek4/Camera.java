@@ -332,7 +332,7 @@ public class Camera {
             cameraX += (playerX - cameraX) / 16;
         }
         if (Preferences.aBoolean63) {
-            for (@Pc(93) int local93 = 0; local93 < Static182.keyQueueSize; local93++) {
+            for (@Pc(93) int local93 = 0; local93 < InterfaceList.keyQueueSize; local93++) {
                 @Pc(104) int code = InterfaceList.keyCodes[local93];
                 if (code == 98) {
                     orbitCameraPitch = orbitCameraPitch + 47 & 0xFFFFFFF0;

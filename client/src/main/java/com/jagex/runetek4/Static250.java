@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static250 {
 
-	@OriginalMember(owner = "runetek4.client!uf", name = "m", descriptor = "I")
-	public static int anInt5441;
-
 	@OriginalMember(owner = "runetek4.client!uf", name = "p", descriptor = "I")
 	public static int anInt5443;
 
@@ -25,13 +22,13 @@ public final class Static250 {
 	public static final NodeCache aClass99_33 = new NodeCache(260);
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "o", descriptor = "Lclient!na;")
-	public static final JString SCROLLBAR = Static28.parse("scrollbar");
+	public static final JString SCROLLBAR = JString.parse("scrollbar");
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "q", descriptor = "Lclient!na;")
-	public static final JString aClass100_1042 = Static28.parse("Null");
+	public static final JString aClass100_1042 = JString.parse("Null");
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "s", descriptor = "Lclient!na;")
-	public static final JString aClass100_1043 = Static28.parse(" <col=00ff80>");
+	public static final JString aClass100_1043 = JString.parse(" <col=00ff80>");
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "t", descriptor = "I")
 	public static int anInt5444 = 0;

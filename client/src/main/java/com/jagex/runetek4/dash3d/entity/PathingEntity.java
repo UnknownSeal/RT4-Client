@@ -88,7 +88,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3431;
 
 	@OriginalMember(owner = "client!fe", name = "w", descriptor = "[I")
-	public final int[] pathTileZ = new int[10];
+	public final int[] movementQueueZ = new int[10];
 
 	@OriginalMember(owner = "client!fe", name = "z", descriptor = "I")
 	public int anInt3358 = 0;
@@ -100,7 +100,7 @@ public abstract class PathingEntity extends Entity {
 	public final int[] anIntArray319 = new int[4];
 
 	@OriginalMember(owner = "client!fe", name = "K", descriptor = "[I")
-	public final int[] pathTileX = new int[10];
+	public final int[] movementQueueX = new int[10];
 
 	@OriginalMember(owner = "client!fe", name = "B", descriptor = "I")
 	public int anInt3360 = 0;
@@ -136,7 +136,7 @@ public abstract class PathingEntity extends Entity {
 	public int attachmentSetAt = 0;
 
 	@OriginalMember(owner = "client!fe", name = "mb", descriptor = "[B")
-	public final byte[] pathRunning = new byte[10];
+	public final byte[] movementQueueSpeed = new byte[10];
 
 	@OriginalMember(owner = "client!fe", name = "W", descriptor = "I")
 	public int anInt3376 = 32;
@@ -172,7 +172,7 @@ public abstract class PathingEntity extends Entity {
 	protected int height = -32768;
 
 	@OriginalMember(owner = "client!fe", name = "Nb", descriptor = "I")
-	public int pathLength = 0;
+	public int movementQueueSize = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Zb", descriptor = "I")
 	public int anInt3420 = 0;
@@ -278,39 +278,39 @@ public abstract class PathingEntity extends Entity {
 			this.primarySeqId = -1;
 		}
 		if (!jump) {
-			@Pc(32) int dx = x - this.pathTileX[0];
-			@Pc(40) int dz = z - this.pathTileZ[0];
+			@Pc(32) int dx = x - this.movementQueueX[0];
+			@Pc(40) int dz = z - this.movementQueueZ[0];
 			if (dx >= -8 && dx <= 8 && dz >= -8 && dz <= 8) {
-				if (this.pathLength < 9) {
-					this.pathLength++;
+				if (this.movementQueueSize < 9) {
+					this.movementQueueSize++;
 				}
-				for (@Pc(72) int local72 = this.pathLength; local72 > 0; local72--) {
-					this.pathTileX[local72] = this.pathTileX[local72 - 1];
-					this.pathTileZ[local72] = this.pathTileZ[local72 - 1];
-					this.pathRunning[local72] = this.pathRunning[local72 - 1];
+				for (@Pc(72) int local72 = this.movementQueueSize; local72 > 0; local72--) {
+					this.movementQueueX[local72] = this.movementQueueX[local72 - 1];
+					this.movementQueueZ[local72] = this.movementQueueZ[local72 - 1];
+					this.movementQueueSpeed[local72] = this.movementQueueSpeed[local72 - 1];
 				}
-				this.pathRunning[0] = 1;
-				this.pathTileX[0] = x;
-				this.pathTileZ[0] = z;
+				this.movementQueueSpeed[0] = 1;
+				this.movementQueueX[0] = x;
+				this.movementQueueZ[0] = z;
 				return;
 			}
 		}
 		this.anInt3417 = 0;
-		this.pathTileX[0] = x;
-		this.pathTileZ[0] = z;
-		this.pathLength = 0;
+		this.movementQueueX[0] = x;
+		this.movementQueueZ[0] = z;
+		this.movementQueueSize = 0;
 		this.anInt3405 = 0;
-		this.zFine = arg0 * 64 + this.pathTileZ[0] * 128;
-		this.xFine = arg0 * 64 + this.pathTileX[0] * 128;
+		this.zFine = arg0 * 64 + this.movementQueueZ[0] * 128;
+		this.xFine = arg0 * 64 + this.movementQueueX[0] * 128;
 		if (GlRenderer.enabled && PlayerList.self == this) {
-			Static86.method1799();
+			FogManager.setInstantFade();
 		}
 	}
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(IBI)V")
 	public final void method2684(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(10) int local10 = this.pathTileX[0];
-		@Pc(15) int local15 = this.pathTileZ[0];
+		@Pc(10) int local10 = this.movementQueueX[0];
+		@Pc(15) int local15 = this.movementQueueZ[0];
 		if (arg1 == 0) {
 			local10--;
 			local15++;
@@ -318,18 +318,18 @@ public abstract class PathingEntity extends Entity {
 		if (this.primarySeqId != -1 && SeqType.getAnimationSequence(this.primarySeqId).anInt5349 == 1) {
 			this.primarySeqId = -1;
 		}
-		if (this.pathLength < 9) {
-			this.pathLength++;
+		if (this.movementQueueSize < 9) {
+			this.movementQueueSize++;
 		}
-		for (@Pc(50) int local50 = this.pathLength; local50 > 0; local50--) {
-			this.pathTileX[local50] = this.pathTileX[local50 - 1];
-			this.pathTileZ[local50] = this.pathTileZ[local50 - 1];
-			this.pathRunning[local50] = this.pathRunning[local50 - 1];
+		for (@Pc(50) int local50 = this.movementQueueSize; local50 > 0; local50--) {
+			this.movementQueueX[local50] = this.movementQueueX[local50 - 1];
+			this.movementQueueZ[local50] = this.movementQueueZ[local50 - 1];
+			this.movementQueueSpeed[local50] = this.movementQueueSpeed[local50 - 1];
 		}
 		if (arg1 == 1) {
 			local15++;
 		}
-		this.pathRunning[0] = (byte) arg0;
+		this.movementQueueSpeed[0] = (byte) arg0;
 		if (arg1 == 2) {
 			local15++;
 			local10++;
@@ -351,8 +351,8 @@ public abstract class PathingEntity extends Entity {
 			local15--;
 			local10++;
 		}
-		this.pathTileX[0] = local10;
-		this.pathTileZ[0] = local15;
+		this.movementQueueX[0] = local10;
+		this.movementQueueZ[0] = local15;
 	}
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(BLclient!ak;I)V")
@@ -628,7 +628,7 @@ public abstract class PathingEntity extends Entity {
 
 	@OriginalMember(owner = "client!fe", name = "c", descriptor = "(I)V")
 	public final void method2689() {
-		this.pathLength = 0;
+		this.movementQueueSize = 0;
 		this.anInt3405 = 0;
 	}
 
@@ -643,7 +643,7 @@ public abstract class PathingEntity extends Entity {
 	}
 
 	@OriginalMember(owner = "client!fe", name = "c", descriptor = "(B)I")
-	public int size() {
+	public int getSize() {
 		return this.size;
 	}
 }

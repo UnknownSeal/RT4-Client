@@ -22,9 +22,6 @@ public final class Static161 {
 	@OriginalMember(owner = "runetek4.client!mk", name = "b", descriptor = "I")
 	private static int anInt3919 = -1;
 
-	@OriginalMember(owner = "runetek4.client!mk", name = "e", descriptor = "I")
-	public static int anInt3922 = 13156520;
-
 	@OriginalMember(owner = "runetek4.client!mk", name = "f", descriptor = "F")
 	private static float aFloat19 = -1.0F;
 
@@ -148,7 +145,7 @@ public final class Static161 {
 	private static void method3067() {
 		method3060(16777215, 1.1523438F, 0.69921875F, 1.2F);
 		method3063(-50.0F, -60.0F, -50.0F);
-		method3062(anInt3922, 0);
+		method3062(FogManager.defaulFogColorRgb, 0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!mk", name = "g", descriptor = "()F")

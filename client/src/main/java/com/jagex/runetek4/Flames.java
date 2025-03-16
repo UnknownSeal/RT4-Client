@@ -9,4 +9,14 @@ public class Flames {
     public static boolean isReady(@OriginalArg(0) Js5 arg0) {
         return arg0.method4506(Static138.anInt3443);
     }
+
+    @OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(Z)V")
+    public static void update() {
+        Static250.anInt5434++;
+    }
+
+    @OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "(ILclient!ve;)V")
+    public static void init(@OriginalArg(1) Js5 arg0) {
+        Static138.anInt3443 = arg0.getGroupId(Static12.aClass100_73);
+    }
 }

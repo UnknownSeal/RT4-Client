@@ -8,7 +8,7 @@ public final class Static192 {
 	public static final Environment[][] aClass92ArrayArray1 = new Environment[13][13];
 
 	@OriginalMember(owner = "runetek4.client!ph", name = "b", descriptor = "(B)V")
-	public static void method3474() {
+	public static void removeSoft() {
 		Static250.aClass99_33.removeSoft();
 		Static139.aClass99_21.removeSoft();
 	}

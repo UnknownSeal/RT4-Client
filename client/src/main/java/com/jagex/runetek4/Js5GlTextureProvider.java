@@ -228,7 +228,7 @@ public final class Js5GlTextureProvider implements GlTextureProvider {
 	@OriginalMember(owner = "runetek4.client!nk", name = "b", descriptor = "(ZI)V")
 	public final void method3245(@OriginalArg(0) boolean arg0) {
 		this.aBoolean200 = arg0;
-		this.method3247();
+		this.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "c", descriptor = "(II)Z")
@@ -244,10 +244,10 @@ public final class Js5GlTextureProvider implements GlTextureProvider {
 	}
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "b", descriptor = "(I)V")
-	public final void method3247() {
-		this.aClass54_12.method1815();
+	public final void clear() {
+		this.aClass54_12.clear();
 		if (this.aClass54_11 != null) {
-			this.aClass54_11.method1815();
+			this.aClass54_11.clear();
 		}
 	}
 

@@ -27,7 +27,7 @@ public final class Static262 {
 	public static final NodeCache aClass99_36 = new NodeCache(50);
 
 	@OriginalMember(owner = "runetek4.client!vf", name = "m", descriptor = "I")
-	public static int anInt5754 = -1;
+	public static int bgId = -1;
 
 	@OriginalMember(owner = "runetek4.client!vf", name = "a", descriptor = "(IIIILclient!th;Lclient!th;IIJ)V")
 	public static void addWall(@OriginalArg(0) int level, @OriginalArg(1) int arg1, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) Entity modelA, @OriginalArg(5) Entity modelB, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8) {

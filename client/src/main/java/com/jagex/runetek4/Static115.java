@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -12,17 +10,8 @@ public final class Static115 {
 	@OriginalMember(owner = "runetek4.client!ja", name = "q", descriptor = "I")
 	public static int anInt2940;
 
-	@OriginalMember(owner = "runetek4.client!ja", name = "f", descriptor = "Lclient!ih;")
-	public static final LinkedList aClass69_70 = new LinkedList();
-
-	@OriginalMember(owner = "runetek4.client!ja", name = "l", descriptor = "[Lclient!wa;")
-	public static final Packet[] PLAYER_APPEARANCE_PACKET = new Packet[2048];
-
-	@OriginalMember(owner = "runetek4.client!ja", name = "n", descriptor = "I")
-	public static int anInt2939 = 0;
-
 	@OriginalMember(owner = "runetek4.client!ja", name = "s", descriptor = "Lclient!na;")
-	public static final JString aClass100_582 = Static28.parse("http:)4)4");
+	public static final JString aClass100_582 = JString.parse("http:)4)4");
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(IIII)I")
 	public static int method2309(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
@@ -51,7 +40,7 @@ public final class Static115 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(Lclient!ve;Lclient!ve;I)V")
-	public static void method2311(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
+	public static void init(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
 		Static87.aClass153_38 = arg1;
 		Static29.aClass153_19 = arg0;
 	}
@@ -120,26 +109,4 @@ public final class Static115 {
 		aClass6.anInt983 = arg3;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(Z)V")
-	public static void method2315() {
-		Static215.aClass3_Sub2_Sub9_32 = null;
-		Static213.aClass3_Sub2_Sub1Array8 = null;
-		Static240.crossSprites = null;
-		Static159.aClass36Array12 = null;
-		Static265.aClass3_Sub2_Sub9_Sub1_2 = null;
-		Static173.aClass3_Sub2_Sub1_Sub1Array9 = null;
-		Static67.aClass3_Sub2_Sub1Array4 = null;
-		Static149.aClass3_Sub2_Sub1Array7 = null;
-		Static138.aClass3_Sub2_Sub1Array5 = null;
-		Font.b12Full = null;
-		Static106.aClass3_Sub2_Sub1_7 = null;
-		Static139.aClass3_Sub2_Sub1Array6 = null;
-		Static114.aClass3_Sub2_Sub9_42 = null;
-		Static84.aClass3_Sub2_Sub1_4 = null;
-		Static116.aClass3_Sub2_Sub1Array3 = null;
-		Static277.aClass3_Sub2_Sub1Array12 = null;
-		Static276.aClass3_Sub2_Sub1Array11 = null;
-		Static219.aClass3_Sub2_Sub1Array9 = null;
-		Static241.aClass36Array16 = null;
-	}
 }

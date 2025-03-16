@@ -18,19 +18,19 @@ public class ClanChat {
     @OriginalMember(owner = "runetek4.client!rg", name = "y", descriptor = "I")
     public static int size;
     @OriginalMember(owner = "runetek4.client!qc", name = "bb", descriptor = "[Lclient!kl;")
-    public static Class3_Sub22[] members;
+    public static ClanMember[] members;
 
     @OriginalMember(owner = "runetek4.client!kh", name = "b", descriptor = "(I)V")
     public static void leave() {
-        Static6.outboundBuffer.pIsaac1(104);
-        Static6.outboundBuffer.p8(0L);
+        Protocol.outboundBuffer.pIsaac1(104);
+        Protocol.outboundBuffer.p8(0L);
     }
 
     @OriginalMember(owner = "runetek4.client!mf", name = "a", descriptor = "(JI)V")
     public static void join(@OriginalArg(0) long arg0) {
         if ((long) 0 != arg0) {
-            Static6.outboundBuffer.pIsaac1(104);
-            Static6.outboundBuffer.p8(arg0);
+            Protocol.outboundBuffer.pIsaac1(104);
+            Protocol.outboundBuffer.p8(arg0);
         }
     }
 
@@ -48,8 +48,8 @@ public class ClanChat {
             local24++;
         }
         if (local24 < members.length && members[local24] != null) {
-            Static6.outboundBuffer.pIsaac1(162);
-            Static6.outboundBuffer.p8(members[local24].nodeId);
+            Protocol.outboundBuffer.pIsaac1(162);
+            Protocol.outboundBuffer.p8(members[local24].nodeId);
         }
     }
 }

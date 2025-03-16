@@ -1,12 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static16 {
-
-	@OriginalMember(owner = "client!bf", name = "s", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_9;
 
 	@OriginalMember(owner = "client!bf", name = "B", descriptor = "I")
 	public static int anInt548 = -1;

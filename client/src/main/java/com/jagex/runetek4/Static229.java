@@ -19,17 +19,11 @@ public final class Static229 {
 	@OriginalMember(owner = "runetek4.client!si", name = "cb", descriptor = "[B")
 	public static byte[] aByteArray70;
 
-	@OriginalMember(owner = "runetek4.client!si", name = "X", descriptor = "[Lclient!sg;")
-	public static final StockMarketOffer[] aClass136Array1 = new StockMarketOffer[6];
-
 	@OriginalMember(owner = "runetek4.client!si", name = "Z", descriptor = "Lclient!na;")
-	public static final JString YELLOW = Static28.parse("<col=ffb000>");
+	public static final JString YELLOW = JString.parse("<col=ffb000>");
 
 	@OriginalMember(owner = "runetek4.client!si", name = "eb", descriptor = "I")
 	public static volatile int anInt5140 = 0;
-
-	@OriginalMember(owner = "runetek4.client!si", name = "gb", descriptor = "Lclient!na;")
-	public static final JString aClass100_974 = Static28.parse("<br>(X");
 
 	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(ZB)I")
 	public static int method3933(@OriginalArg(1) byte arg0) {
@@ -40,7 +34,7 @@ public final class Static229 {
 	public static void method3935(@OriginalArg(0) int arg0) {
 		Static161.method3060(16777215, ((float) arg0 * 0.1F + 0.7F) * 1.1523438F, 0.69921875F, 0.69921875F);
 		Static161.method3063(-50.0F, -60.0F, -50.0F);
-		Static161.method3062(Static161.anInt3922, 0);
+		Static161.method3062(FogManager.defaulFogColorRgb, 0);
 		Static161.method3058();
 	}
 

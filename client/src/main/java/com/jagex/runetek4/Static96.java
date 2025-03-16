@@ -15,7 +15,7 @@ public final class Static96 {
 	public static int[] anIntArray235;
 
 	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "Lclient!na;")
-	public static final JString aClass100_520 = Static28.parse("(U4");
+	public static final JString aClass100_520 = JString.parse("(U4");
 
 	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(II)V")
 	public static void method1949(@OriginalArg(1) int arg0) {
