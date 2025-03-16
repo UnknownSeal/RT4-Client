@@ -32,7 +32,7 @@ public final class Static91 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(Lclient!ve;I)V")
-	public static void method1878(@OriginalArg(0) Js5 arg0) {
+	public static void init(@OriginalArg(0) Js5 arg0) {
 		Static182.aClass153_77 = arg0;
 	}
 

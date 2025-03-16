@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.js5.Js5;
@@ -28,11 +27,11 @@ public final class Static145 {
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "a", descriptor = "(I)V")
 	public static void method2742() {
-		if (Static244.gamestate == 10 && GlRenderer.enabled) {
-			Game.processGameStatus(28);
+		if (client.gameState == 10 && GlRenderer.enabled) {
+			client.processGameStatus(28);
 		}
-		if (Static244.gamestate == 30) {
-			Game.processGameStatus(25);
+		if (client.gameState == 30) {
+			client.processGameStatus(25);
 		}
 	}
 
@@ -84,16 +83,16 @@ public final class Static145 {
 			Rasterizer.drawFilledRectangle(local11 + 1, local3 + 1, local9 - 2, 16, 0);
 			Rasterizer.drawUnfilledRectangle(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
 		}
-		Font.b12Full.drawString(LocalizedText.CHOOSE_OPTION, local11 + 3, local3 + 14, 6116423, -1);
+		Fonts.b12Full.drawString(LocalizedText.CHOOSE_OPTION, local11 + 3, local3 + 14, 6116423, -1);
 		@Pc(96) int local96 = Static223.anInt5032;
 		@Pc(98) int local98 = Static215.anInt4873;
-		for (@Pc(107) int local107 = 0; local107 < PreciseSleep.menuActionRow; local107++) {
-			@Pc(127) int local127 = (PreciseSleep.menuActionRow - local107 - 1) * 15 + local3 + 31;
+		for (@Pc(107) int local107 = 0; local107 < MiniMenu.menuActionRow; local107++) {
+			@Pc(127) int local127 = (MiniMenu.menuActionRow - local107 - 1) * 15 + local3 + 31;
 			@Pc(129) int local129 = 16777215;
 			if (local11 < local98 && local98 < local11 + local9 && local127 - 13 < local96 && local96 < local127 + 3) {
 				local129 = 16776960;
 			}
-			Font.b12Full.drawString(Static269.method2228(local107), local11 + 3, local127, local129, 0);
+			Fonts.b12Full.drawString(Static269.method2228(local107), local11 + 3, local127, local129, 0);
 		}
 		Static121.method2407(Static183.anInt4271, Static229.anInt5138, Static13.anInt436, Static24.anInt761);
 	}
@@ -109,6 +108,6 @@ public final class Static145 {
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "c", descriptor = "(I)I")
 	public static int method2746() {
-		return ((Static99.aBoolean143 ? 1 : 0) << 19) + (((Static71.aBoolean107 ? 1 : 0) << 16) + ((Static220.aBoolean244 ? 1 : 0) << 15) + ((Static178.highDetailLighting ? 1 : 0) << 13) + ((Static209.aBoolean240 ? 1 : 0) << 10) + ((Static159.aBoolean189 ? 1 : 0) << 9) + ((Static15.lowMemory ? 1 : 0) << 7) + ((Static53.aBoolean99 ? 1 : 0) << 6) + ((Static250.aBoolean283 ? 1 : 0) << 5) + (((Static162.aBoolean190 ? 1 : 0) << 3) + (Static113.anInt4609 & 0x7) - (-((Static80.aBoolean231 ? 1 : 0) << 4) + -((Static11.aBoolean15 ? 1 : 0) << 8)) - (-((Static139.anInt3451 & 0x3) << 11) + -((Static125.anInt3104 == 0 ? 0 : 1) << 20) - (((Static12.anInt391 == 0 ? 0 : 1) << 21) + ((Preferences.ambientSoundsVolume == 0 ? 0 : 1) << 22)))) + (Static76.method1644() << 23));
+		return ((Preferences.stereo ? 1 : 0) << 19) + (((Static71.aBoolean107 ? 1 : 0) << 16) + ((Static220.aBoolean244 ? 1 : 0) << 15) + ((Static178.highDetailLighting ? 1 : 0) << 13) + ((Static209.aBoolean240 ? 1 : 0) << 10) + ((Static159.aBoolean189 ? 1 : 0) << 9) + ((Static15.lowMemory ? 1 : 0) << 7) + ((Static53.aBoolean99 ? 1 : 0) << 6) + ((Static250.aBoolean283 ? 1 : 0) << 5) + (((Static162.aBoolean190 ? 1 : 0) << 3) + (Static113.brightness & 0x7) - (-((Static80.aBoolean231 ? 1 : 0) << 4) + -((Static11.aBoolean15 ? 1 : 0) << 8)) - (-((Static139.anInt3451 & 0x3) << 11) + -((Static125.anInt3104 == 0 ? 0 : 1) << 20) - (((Static12.anInt391 == 0 ? 0 : 1) << 21) + ((Preferences.ambientSoundsVolume == 0 ? 0 : 1) << 22)))) + (Preferences.getParticleSetting() << 23));
 	}
 }

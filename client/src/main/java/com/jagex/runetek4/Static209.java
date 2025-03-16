@@ -8,12 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static209 {
 
-	@OriginalMember(owner = "runetek4.client!ra", name = "s", descriptor = "I")
-	public static int port;
-
-	@OriginalMember(owner = "runetek4.client!ra", name = "K", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_86;
-
 	@OriginalMember(owner = "runetek4.client!ra", name = "J", descriptor = "I")
 	public static int miscTransmitAt = 0;
 

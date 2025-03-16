@@ -22,7 +22,7 @@ public final class Static93 {
 	public static Mouse aClass150_1 = new Mouse();
 
 	@OriginalMember(owner = "runetek4.client!he", name = "db", descriptor = "Lclient!na;")
-	public static final JString aClass100_517 = Static28.parse("");
+	public static final JString aClass100_517 = JString.parse("");
 
 	@OriginalMember(owner = "runetek4.client!he", name = "eb", descriptor = "[I")
 	public static final int[] anIntArray219 = new int[1000];
@@ -31,7 +31,7 @@ public final class Static93 {
 	public static final NodeCache aClass99_14 = new NodeCache(30);
 
 	@OriginalMember(owner = "runetek4.client!he", name = "gb", descriptor = "Lclient!na;")
-	public static final JString aClass100_518 = Static28.parse("www");
+	public static final JString aClass100_518 = JString.parse("www");
 
 	@OriginalMember(owner = "runetek4.client!he", name = "c", descriptor = "(II)V")
 	public static void method1906(@OriginalArg(1) int arg0) {

@@ -10,9 +10,6 @@ public final class Pix3D {
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "I")
 	public static int anInt2469;
 
-	@OriginalMember(owner = "runetek4.client!hf", name = "e", descriptor = "Lclient!m;")
-	public static GlTextureProvider anInterface1_2;
-
 	@OriginalMember(owner = "runetek4.client!hf", name = "k", descriptor = "I")
 	private static int anInt2470;
 
@@ -56,15 +53,15 @@ public final class Pix3D {
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(IIIIIIIIIIIIIIIIIII)V")
 	public static void textureTriangle(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12, @OriginalArg(13) int arg13, @OriginalArg(14) int arg14, @OriginalArg(15) int arg15, @OriginalArg(16) int arg16, @OriginalArg(17) int arg17, @OriginalArg(18) int arg18) {
-		@Pc(5) int[] local5 = anInterface1_2.method3232(arg18, aFloat11);
+		@Pc(5) int[] local5 = Rasterizer.textureProvider.method3232(arg18, aFloat11);
 		@Pc(12) int local12;
 		if (local5 == null) {
-			local12 = anInterface1_2.method3234(arg18);
+			local12 = Rasterizer.textureProvider.method3234(arg18);
 			method1928(arg0, arg1, arg2, arg3, arg4, arg5, method1910(local12, arg6), method1910(local12, arg7), method1910(local12, arg8));
 			return;
 		}
-		aBoolean137 = anInterface1_2.method3233(arg18);
-		aBoolean135 = anInterface1_2.method3226(arg18);
+		aBoolean137 = Rasterizer.textureProvider.method3233(arg18);
+		aBoolean135 = Rasterizer.textureProvider.method3226(arg18);
 		local12 = arg4 - arg3;
 		@Pc(47) int local47 = arg1 - arg0;
 		@Pc(51) int local51 = arg5 - arg3;
@@ -631,23 +628,23 @@ public final class Pix3D {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(F)V")
-	public static void method1911(@OriginalArg(0) float arg0) {
+	public static void setBrightness(@OriginalArg(0) float arg0) {
 		method1926(arg0);
 		method1924();
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "(IIIIIIIIIIIIIIIIIII)V")
 	public static void method1912(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12, @OriginalArg(13) int arg13, @OriginalArg(14) int arg14, @OriginalArg(15) int arg15, @OriginalArg(16) int arg16, @OriginalArg(17) int arg17, @OriginalArg(18) int arg18) {
-		@Pc(5) int[] local5 = anInterface1_2.method3232(arg18, aFloat11);
+		@Pc(5) int[] local5 = Rasterizer.textureProvider.method3232(arg18, aFloat11);
 		@Pc(15) int local15;
 		if (local5 == null || trans > 10) {
-			local15 = anInterface1_2.method3234(arg18);
+			local15 = Rasterizer.textureProvider.method3234(arg18);
 			aBoolean134 = true;
 			method1928(arg0, arg1, arg2, arg3, arg4, arg5, method1910(local15, arg6), method1910(local15, arg7), method1910(local15, arg8));
 			return;
 		}
-		aBoolean137 = anInterface1_2.method3233(arg18);
-		aBoolean135 = anInterface1_2.method3226(arg18);
+		aBoolean137 = Rasterizer.textureProvider.method3233(arg18);
+		aBoolean135 = Rasterizer.textureProvider.method3226(arg18);
 		local15 = arg4 - arg3;
 		@Pc(52) int local52 = arg1 - arg0;
 		@Pc(56) int local56 = arg5 - arg3;
@@ -1205,11 +1202,6 @@ public final class Pix3D {
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "()I")
 	public static int method1913() {
 		return anIntArray221[0] % Rasterizer.destinationWidth;
-	}
-
-	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(Lclient!m;)V")
-	public static void method1914(@OriginalArg(0) GlTextureProvider arg0) {
-		anInterface1_2 = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "c", descriptor = "()V")

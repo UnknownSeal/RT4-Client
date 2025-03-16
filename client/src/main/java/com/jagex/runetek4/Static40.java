@@ -17,7 +17,7 @@ public final class Static40 {
 	public static int anInt1275;
 
 	@OriginalMember(owner = "runetek4.client!da", name = "O", descriptor = "Lclient!na;")
-	public static final JString aClass100_253 = Static28.parse("(U0a )2 via: ");
+	public static final JString aClass100_253 = JString.parse("(U0a )2 via: ");
 
 	@OriginalMember(owner = "runetek4.client!da", name = "a", descriptor = "(ILclient!ve;Z)Lclient!ok;")
 	public static IndexedSprite method1010(@OriginalArg(0) int arg0, @OriginalArg(1) Js5 arg1) {
@@ -49,10 +49,10 @@ public final class Static40 {
 
 	@OriginalMember(owner = "runetek4.client!da", name = "a", descriptor = "(IIILclient!be;)V")
 	public static void method1015(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) Component arg2) {
-		if (Static105.aClass13_14 != null || Static60.aBoolean108 || (arg2 == null || Static89.method1836(arg2) == null)) {
+		if (ClientScriptRunner.aClass13_14 != null || ClientScriptRunner.aBoolean108 || (arg2 == null || Static89.method1836(arg2) == null)) {
 			return;
 		}
-		Static105.aClass13_14 = arg2;
+		ClientScriptRunner.aClass13_14 = arg2;
 		Static4.aClass13_1 = Static89.method1836(arg2);
 		Static246.anInt5388 = arg1;
 		Static138.aBoolean172 = false;
@@ -70,7 +70,7 @@ public final class Static40 {
 		local8.p4((int) (Math.random() * 9.9999999E7D));
 		local8.pjstr(password);
 		local8.p4((int) (Math.random() * 9.9999999E7D));
-		local8.p2(Static204.anInt4760);
+		local8.p2(client.affiliate);
 		local8.p1(arg0);
 		local8.p1(arg2);
 		local8.p4((int) (Math.random() * 9.9999999E7D));
@@ -78,18 +78,18 @@ public final class Static40 {
 		local8.p2(arg1);
 		local8.p4((int) (Math.random() * 9.9999999E7D));
 		local8.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
-		Static6.outboundBuffer.offset = 0;
-		Static6.outboundBuffer.p1(36);
-		Static6.outboundBuffer.p1(local8.offset);
-		Static6.outboundBuffer.pdata(local8.data, local8.offset);
+		Protocol.outboundBuffer.offset = 0;
+		Protocol.outboundBuffer.p1(36);
+		Protocol.outboundBuffer.p1(local8.offset);
+		Protocol.outboundBuffer.pdata(local8.data, local8.offset);
 		Static223.reply = -3;
-		Static179.step = 1;
+		CreateManager.step = 1;
 		Static226.loops = 0;
 		Static57.errors = 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!da", name = "h", descriptor = "(B)V")
-	public static void method1019() {
+	public static void removeSoft() {
 		Component.interfaceItemImageCache.removeSoft();
 		Static124.aClass99_17.removeSoft();
 		Component.interfaceTypefaceCache.removeSoft();

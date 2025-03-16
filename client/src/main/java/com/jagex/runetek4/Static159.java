@@ -1,8 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -19,16 +18,10 @@ public final class Static159 {
 	public static int anInt3893;
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "R", descriptor = "Lclient!na;")
-	public static final JString aClass100_760 = Static28.parse(")1");
-
-	@OriginalMember(owner = "runetek4.client!mi", name = "S", descriptor = "[Lclient!e;")
-	public static final Player[] players = new Player[2048];
+	public static final JString aClass100_760 = JString.parse(")1");
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "U", descriptor = "[J")
 	public static final long[] aLongArray5 = new long[500];
-
-	@OriginalMember(owner = "runetek4.client!mi", name = "Y", descriptor = "[[[Lclient!ih;")
-	public static final LinkedList[][][] levelObjStacks = new LinkedList[4][104][104];
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "ab", descriptor = "Z")
 	public static boolean aBoolean189 = true;
@@ -44,7 +37,7 @@ public final class Static159 {
 					if (local15 == -1) {
 						arg1.aClass147Array3[local25] = null;
 					} else {
-						@Pc(60) AnimationSequence local60 = AnimationSequence.getAnimationSequence(local15);
+						@Pc(60) SeqType local60 = SeqType.getAnimationSequence(local15);
 						@Pc(65) Class147 local65 = arg1.aClass147Array3[local25];
 						@Pc(68) int local68 = local60.anInt5347;
 						if (local65 != null) {
@@ -61,7 +54,7 @@ public final class Static159 {
 								} else if (local68 == 2) {
 									local65.anInt5400 = 0;
 								}
-							} else if (local60.priority >= AnimationSequence.getAnimationSequence(local65.anInt5396).priority) {
+							} else if (local60.priority >= SeqType.getAnimationSequence(local65.anInt5396).priority) {
 								local65 = arg1.aClass147Array3[local25] = null;
 							}
 						}

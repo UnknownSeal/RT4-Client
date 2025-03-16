@@ -12,16 +12,10 @@ public final class Static67 {
 	public static Sprite[] aClass3_Sub2_Sub1Array4;
 
 	@OriginalMember(owner = "runetek4.client!fe", name = "I", descriptor = "Lclient!na;")
-	public static final JString aClass100_639 = Static28.parse(" ");
-
-	@OriginalMember(owner = "runetek4.client!fe", name = "R", descriptor = "Z")
-	public static boolean prevFocus = true;
+	public static final JString aClass100_639 = JString.parse(" ");
 
 	@OriginalMember(owner = "runetek4.client!fe", name = "jb", descriptor = "Lclient!n;")
 	public static final NodeCache aClass99_20 = new NodeCache(64);
-
-	@OriginalMember(owner = "runetek4.client!fe", name = "lb", descriptor = "[I")
-	public static final int[] anIntArray320 = new int[100];
 
 	@OriginalMember(owner = "runetek4.client!fe", name = "nc", descriptor = "[Lclient!hj;")
 	public static final InvokedScript[] invokedScripts = new InvokedScript[50];

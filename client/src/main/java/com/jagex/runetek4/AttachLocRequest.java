@@ -70,7 +70,7 @@ public final class AttachLocRequest extends Node {
 				if (playerId == PlayerList.selfId) {
 					entity = PlayerList.self;
 				} else {
-					entity = Static159.players[playerId];
+					entity = PlayerList.players[playerId];
 				}
 			} else {
 				playerId = request.entityId - 1;

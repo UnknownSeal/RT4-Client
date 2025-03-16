@@ -1,8 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -18,53 +16,14 @@ public final class Static119 {
 	@OriginalMember(owner = "client!je", name = "R", descriptor = "Z")
 	public static boolean aBoolean153 = false;
 
-	@OriginalMember(owner = "client!je", name = "T", descriptor = "Lclient!sc;")
-	public static HashTable aClass133_9 = new HashTable(8);
-
 	@OriginalMember(owner = "client!je", name = "U", descriptor = "Lclient!na;")
-	public static final JString SHOWINGVIDEOAD = Static28.parse("showingVideoAd");
+	public static final JString SHOWINGVIDEOAD = JString.parse("showingVideoAd");
 
 	@OriginalMember(owner = "client!je", name = "db", descriptor = "Lclient!na;")
-	public static final JString aClass100_589 = Static28.parse(" <col=ffffff>");
-
-	@OriginalMember(owner = "client!je", name = "fb", descriptor = "I")
-	public static int transmitTimer = 1;
-
-	@OriginalMember(owner = "client!je", name = "h", descriptor = "(I)V")
-	public static void method2380() {
-		Static252.method4301();
-		Static224.method3885();
-		Static181.method3342();
-		Static179.method3323();
-		ClientScriptRunner.method4001();
-		Static103.method2239();
-		Static227.method3903();
-		Static71.method1441();
-		Static78.method1694();
-		Static3.method4657();
-		BasTypeList.removeSoft();
-		Static267.method4529();
-		Static92.method1882();
-		Static26.method741();
-		Static192.method3474();
-		Static40.method1019();
-		Static180.method3329();
-		Static251.method4276();
-		Static73.aClass99_10.removeSoft();
-		Static139.aClass99_22.removeSoft();
-	}
-
-	@OriginalMember(owner = "client!je", name = "f", descriptor = "(B)V")
-	public static void method2381() {
-		if (Static18.aBoolean40) {
-			Static243.aClass36_1 = null;
-			Static18.aBoolean40 = false;
-			Static78.aClass3_Sub2_Sub1_3 = null;
-		}
-	}
+	public static final JString aClass100_589 = JString.parse(" <col=ffffff>");
 
 	@OriginalMember(owner = "client!je", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method2384(@OriginalArg(1) Js5 arg0) {
+	public static void init(@OriginalArg(1) Js5 arg0) {
 		CacheArchive.aClass153_2 = arg0;
 	}
 
@@ -85,7 +44,7 @@ public final class Static119 {
 	@OriginalMember(owner = "client!je", name = "a", descriptor = "(IIIII)V")
 	public static void method2387(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		Static13.anInt435 = Static48.anInt1449 * arg2 / arg0;
-		Static28.anInt919 = Static181.anInt4296 * arg1 / arg3;
+		Static28.anInt919 = IdkTypeList.anInt4296 * arg1 / arg3;
 		Static142.anInt3482 = -1;
 		Static217.anInt4901 = -1;
 		Static38.method965();

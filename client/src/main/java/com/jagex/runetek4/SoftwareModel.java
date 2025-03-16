@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.graphics.VertexNormal;
+import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -165,7 +166,7 @@ public final class SoftwareModel extends Model {
 			this.aShortArray92 = new short[this.anInt5787];
 			for (local133 = 0; local133 < this.anInt5787; local133++) {
 				@Pc(142) short local142 = arg0.unmodifiedTriangleTexture[local133];
-				if (local142 != -1 && Pix3D.anInterface1_2.method3236(local142)) {
+				if (local142 != -1 && Rasterizer.textureProvider.method3236(local142)) {
 					this.aShortArray92[local133] = local142;
 				} else {
 					this.aShortArray92[local133] = -1;

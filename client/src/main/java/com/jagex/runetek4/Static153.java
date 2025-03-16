@@ -19,23 +19,20 @@ public final class Static153 {
 	@OriginalMember(owner = "runetek4.client!mc", name = "Z", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_57;
 
-	@OriginalMember(owner = "runetek4.client!mc", name = "Y", descriptor = "[Lclient!na;")
-	public static final JString[] aClass100Array112 = new JString[100];
-
 	@OriginalMember(owner = "runetek4.client!mc", name = "ab", descriptor = "[I")
 	public static final int[] anIntArray351 = new int[] { 7, 8, 9, 10, 11, 12, 13, 15 };
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "fb", descriptor = "Lclient!na;")
-	private static final JString aClass100_725 = Static28.parse("pt");
+	private static final JString aClass100_725 = JString.parse("pt");
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "mb", descriptor = "Lclient!na;")
-	private static final JString aClass100_726 = Static28.parse("en");
+	private static final JString aClass100_726 = JString.parse("en");
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "vb", descriptor = "Lclient!na;")
-	private static final JString aClass100_728 = Static28.parse("de");
+	private static final JString aClass100_728 = JString.parse("de");
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "pb", descriptor = "Lclient!na;")
-	private static final JString aClass100_727 = Static28.parse("fr");
+	private static final JString aClass100_727 = JString.parse("fr");
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "ob", descriptor = "[Lclient!na;")
 	public static final JString[] aClass100Array113 = new JString[] { aClass100_726, aClass100_728, aClass100_727, aClass100_725 };
@@ -73,15 +70,15 @@ public final class Static153 {
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "f", descriptor = "(B)V")
 	public static void method2909() {
-		Static6.outboundBuffer.pIsaac1(184);
-		for (@Pc(18) Class3_Sub31 local18 = (Class3_Sub31) Static119.aClass133_9.head(); local18 != null; local18 = (Class3_Sub31) Static119.aClass133_9.prev()) {
+		Protocol.outboundBuffer.pIsaac1(184);
+		for (@Pc(18) ComponentPointer local18 = (ComponentPointer) InterfaceList.openInterfaces.head(); local18 != null; local18 = (ComponentPointer) InterfaceList.openInterfaces.prev()) {
 			if (local18.anInt5879 == 0) {
-				Static132.method2605(true, local18);
+				InterfaceList.closeInterface(true, local18);
 			}
 		}
-		if (Static39.aClass13_10 != null) {
-			Static43.method1143(Static39.aClass13_10);
-			Static39.aClass13_10 = null;
+		if (ClientScriptRunner.aClass13_10 != null) {
+			Static43.method1143(ClientScriptRunner.aClass13_10);
+			ClientScriptRunner.aClass13_10 = null;
 		}
 	}
 

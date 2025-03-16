@@ -20,7 +20,7 @@ public final class Static111 {
 	public static int anInt2901 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "e", descriptor = "Lclient!na;")
-	public static final JString aClass100_570 = Static28.parse(")2");
+	public static final JString aClass100_570 = JString.parse(")2");
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "a", descriptor = "(Lclient!be;III)V")
 	public static void method2291(@OriginalArg(0) Component arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
@@ -50,7 +50,7 @@ public final class Static111 {
 		} else {
 			arg0.x = arg2 - (arg2 * arg0.baseX >> 14) - arg0.anInt445;
 		}
-		if (!Static121.aBoolean154 || Static36.method940(arg0).anInt546 == 0 && arg0.INVENTORY != 0) {
+		if (!Cheat.qaOpTest || Static36.method940(arg0).anInt546 == 0 && arg0.INVENTORY != 0) {
 			return;
 		}
 		if (arg0.y < 0) {

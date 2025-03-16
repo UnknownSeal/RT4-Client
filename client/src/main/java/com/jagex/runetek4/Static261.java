@@ -1,24 +1,17 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static261 {
 
-	@OriginalMember(owner = "runetek4.client!ve", name = "l", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_107;
-
 	@OriginalMember(owner = "runetek4.client!ve", name = "t", descriptor = "I")
 	public static int anInt5731;
 
 	@OriginalMember(owner = "runetek4.client!ve", name = "F", descriptor = "I")
 	public static int anInt5741;
-
-	@OriginalMember(owner = "runetek4.client!ve", name = "w", descriptor = "Z")
-	public static boolean aBoolean298 = false;
 
 	@OriginalMember(owner = "runetek4.client!ve", name = "a", descriptor = "(BIIII)V")
 	public static void method4505(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {

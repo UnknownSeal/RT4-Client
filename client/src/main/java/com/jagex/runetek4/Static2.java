@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -19,9 +20,6 @@ public final class Static2 {
 
 	@OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "I")
 	public static int anInt7 = 0;
-
-	@OriginalMember(owner = "runetek4.client!aa", name = "h", descriptor = "[S")
-	public static final short[] aShortArray1 = new short[] { 960, 957, -21568, -21571, 22464 };
 
 	@OriginalMember(owner = "runetek4.client!aa", name = "l", descriptor = "Z")
 	public static boolean membersWorld = false;
@@ -48,7 +46,7 @@ public final class Static2 {
 					if (local23.createdComponents != null) {
 						method7(local23.createdComponents, arg1);
 					}
-					@Pc(49) Class3_Sub31 local49 = (Class3_Sub31) Static119.aClass133_9.getNode((long) local23.anInt507);
+					@Pc(49) ComponentPointer local49 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) local23.anInt507);
 					if (local49 != null) {
 						Static54.method1304(arg1, local49.anInt5878);
 					}
@@ -58,19 +56,19 @@ public final class Static2 {
 					local72 = new HookRequest();
 					local72.anObjectArray31 = local23.anObjectArray12;
 					local72.source = local23;
-					Static82.method1767(local72);
+					ClientScriptRunner.run(local72);
 				}
 				if (arg1 == 1 && local23.anObjectArray8 != null) {
-					if (local23.componentId >= 0) {
-						@Pc(103) Component local103 = Component.getComponent(local23.anInt507);
-						if (local103 == null || local103.createdComponents == null || local23.componentId >= local103.createdComponents.length || local103.createdComponents[local23.componentId] != local23) {
+					if (local23.createdComponentId >= 0) {
+						@Pc(103) Component local103 = InterfaceList.getComponent(local23.anInt507);
+						if (local103 == null || local103.createdComponents == null || local23.createdComponentId >= local103.createdComponents.length || local103.createdComponents[local23.createdComponentId] != local23) {
 							continue;
 						}
 					}
 					local72 = new HookRequest();
 					local72.anObjectArray31 = local23.anObjectArray8;
 					local72.source = local23;
-					Static82.method1767(local72);
+					ClientScriptRunner.run(local72);
 				}
 			}
 		}
@@ -96,7 +94,7 @@ public final class Static2 {
 		@Pc(61) int local61 = 0;
 		@Pc(64) int local64 = local53 + 1;
 		Static84.anIntArray209[0] = arg3;
-		@Pc(71) int[][] local71 = Static148.levelCollisionMap[Player.plane].flags;
+		@Pc(71) int[][] local71 = PathFinder.collisionMaps[Player.plane].flags;
 		@Pc(193) int local193;
 		while (local61 != local64) {
 			local3 = Static259.anIntArray514[local61];
@@ -107,16 +105,16 @@ public final class Static2 {
 				break;
 			}
 			if (arg1 != 0) {
-				if ((arg1 < 5 || arg1 == 10) && Static148.levelCollisionMap[Player.plane].method3042(arg4, local3, local8, arg8, arg1 - 1, 2, arg7)) {
+				if ((arg1 < 5 || arg1 == 10) && PathFinder.collisionMaps[Player.plane].method3042(arg4, local3, local8, arg8, arg1 - 1, 2, arg7)) {
 					local59 = true;
 					break;
 				}
-				if (arg1 < 10 && Static148.levelCollisionMap[Player.plane].method3046(arg4, arg1 - 1, arg8, local8, 2, arg7, local3)) {
+				if (arg1 < 10 && PathFinder.collisionMaps[Player.plane].method3046(arg4, arg1 - 1, arg8, local8, 2, arg7, local3)) {
 					local59 = true;
 					break;
 				}
 			}
-			if (arg0 != 0 && arg6 != 0 && Static148.levelCollisionMap[Player.plane].method3052(arg8, local8, local3, 2, arg0, arg2, arg4, arg6)) {
+			if (arg0 != 0 && arg6 != 0 && PathFinder.collisionMaps[Player.plane].method3052(arg8, local8, local3, 2, arg0, arg2, arg4, arg6)) {
 				local59 = true;
 				break;
 			}
@@ -254,9 +252,9 @@ public final class Static2 {
 
 	@OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(IZI)V")
 	public static void method10(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		Static6.outboundBuffer.pIsaac1(132);
-		Static6.outboundBuffer.p4rme(arg1);
-		Static6.outboundBuffer.p2_alt1(arg0);
+		Protocol.outboundBuffer.pIsaac1(132);
+		Protocol.outboundBuffer.p4rme(arg1);
+		Protocol.outboundBuffer.p2_alt1(arg0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(BLclient!be;)V")
@@ -267,7 +265,7 @@ public final class Static2 {
 				Static158.anInt3851 = arg0.anInt477;
 				Static145.anInt3502 = arg0.anInt519;
 			}
-			if (Static134.A_PLAYER_MODEL___2.aBoolean141) {
+			if (PlayerAppearance.DEFAULT.aBoolean141) {
 				arg0.anInt477 = Static158.anInt3851;
 			} else {
 				arg0.anInt477 = Static145.anInt3502;
@@ -277,7 +275,7 @@ public final class Static2 {
 				Static145.anInt3502 = arg0.anInt519;
 				Static158.anInt3851 = arg0.anInt477;
 			}
-			if (Static134.A_PLAYER_MODEL___2.aBoolean141) {
+			if (PlayerAppearance.DEFAULT.aBoolean141) {
 				arg0.anInt477 = Static145.anInt3502;
 			} else {
 				arg0.anInt477 = Static158.anInt3851;

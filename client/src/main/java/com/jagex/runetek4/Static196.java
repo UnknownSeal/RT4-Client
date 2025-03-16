@@ -18,7 +18,7 @@ public final class Static196 {
 	public static final int[] anIntArray408 = new int[500];
 
 	@OriginalMember(owner = "runetek4.client!pl", name = "f", descriptor = "Lclient!na;")
-	public static final JString TRADEREQ = Static28.parse(":tradereq:");
+	public static final JString TRADEREQ = JString.parse(":tradereq:");
 
 	@OriginalMember(owner = "runetek4.client!pl", name = "i", descriptor = "I")
 	public static int anInt4587 = 0;

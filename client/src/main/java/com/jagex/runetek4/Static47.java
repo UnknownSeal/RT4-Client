@@ -1,18 +1,11 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.BufferedFile;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static47 {
-
-	@OriginalMember(owner = "runetek4.client!dk", name = "h", descriptor = "Lclient!na;")
-	public static JString aClass100_991 = null;
-
-	@OriginalMember(owner = "runetek4.client!dk", name = "j", descriptor = "[Lclient!en;")
-	public static final BufferedFile[] cacheIndexes = new BufferedFile[28];
 
 	@OriginalMember(owner = "runetek4.client!dk", name = "a", descriptor = "(Lclient!wa;Z)V")
 	public static void method3998(@OriginalArg(0) Packet arg0) {
@@ -28,11 +21,11 @@ public final class Static47 {
 				}
 				@Pc(46) int local46 = arg0.g1();
 				@Pc(50) int local50 = arg0.g1();
-				@Pc(62) int local62 = Static2.anInt13 + Static181.anInt4296 - local50 * 64 - 1;
+				@Pc(62) int local62 = Static2.anInt13 + IdkTypeList.anInt4296 - local50 * 64 - 1;
 				@Pc(69) int local69 = local46 * 64 - Static158.anInt3846;
 				@Pc(147) byte local147;
 				@Pc(91) int local91;
-				if (local69 >= 0 && local62 - 63 >= 0 && local69 + 63 < Static48.anInt1449 && local62 < Static181.anInt4296) {
+				if (local69 >= 0 && local62 - 63 >= 0 && local69 + 63 < Static48.anInt1449 && local62 < IdkTypeList.anInt4296) {
 					local91 = local69 >> 6;
 					@Pc(95) int local95 = local62 >> 6;
 					@Pc(97) int local97 = 0;

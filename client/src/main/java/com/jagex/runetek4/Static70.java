@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.utils.MillisTimer;
 import com.jagex.runetek4.core.utils.Timer;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -35,16 +36,16 @@ public final class Static70 {
 
 	@OriginalMember(owner = "runetek4.client!fi", name = "a", descriptor = "(BI)Lclient!na;")
 	public static JString method1548(@OriginalArg(1) int arg0) {
-		@Pc(9) JString local9 = Static123.method2423(arg0);
+		@Pc(9) JString local9 = JString.parseInt(arg0);
 		for (@Pc(21) int local21 = local9.length() - 3; local21 > 0; local21 -= 3) {
-			local9 = Static34.method882(new JString[] { local9.substring(local21, 0), Static159.aClass100_760, local9.substring(local21) });
+			local9 = JString.concatenate(new JString[] { local9.substring(local21, 0), Static159.aClass100_760, local9.substring(local21) });
 		}
 		if (local9.length() > 9) {
-			return Static34.method882(new JString[] { Static250.aClass100_1043, local9.substring(local9.length() - 8, 0), LocalizedText.MILLION_SHORT, Static123.aClass100_593, local9, Static116.aClass100_583 });
+			return JString.concatenate(new JString[] { Static250.aClass100_1043, local9.substring(local9.length() - 8, 0), LocalizedText.MILLION_SHORT, Static123.aClass100_593, local9, Static116.aClass100_583 });
 		} else if (local9.length() > 6) {
-			return Static34.method882(new JString[] { Static119.aClass100_589, local9.substring(local9.length() - 4, 0), LocalizedText.THOUSAND_SHORT, Static123.aClass100_593, local9, Static116.aClass100_583 });
+			return JString.concatenate(new JString[] { Static119.aClass100_589, local9.substring(local9.length() - 4, 0), LocalizedText.THOUSAND_SHORT, Static123.aClass100_593, local9, Static116.aClass100_583 });
 		} else {
-			return Static34.method882(new JString[] { Static278.aClass100_1101, local9, Static230.aClass100_978 });
+			return JString.concatenate(new JString[] { Static278.aClass100_1101, local9, Static230.aClass100_978 });
 		}
 	}
 
@@ -54,7 +55,7 @@ public final class Static70 {
 			@Pc(18) FloorOverlayType local18 = Static256.method4395(local11);
 			if (local18 != null) {
 				@Pc(24) int local24 = local18.material;
-				if (local24 >= 0 && !Pix3D.anInterface1_2.method3236(local24)) {
+				if (local24 >= 0 && !Rasterizer.textureProvider.method3236(local24)) {
 					local24 = -1;
 				}
 				@Pc(53) int local53;
@@ -72,7 +73,7 @@ public final class Static70 {
 					local95 = (local66 & 0x380) + (arg1 + local66 & 0xFC00) + local72;
 					local53 = Pix3D.anIntArray220[Static230.method3949(local95, 96)];
 				} else if (local24 >= 0) {
-					local53 = Pix3D.anIntArray220[Static230.method3949(Pix3D.anInterface1_2.method3234(local24), 96)];
+					local53 = Pix3D.anIntArray220[Static230.method3949(Rasterizer.textureProvider.method3234(local24), 96)];
 				} else if (local18.rgb == -1) {
 					local53 = -1;
 				} else {

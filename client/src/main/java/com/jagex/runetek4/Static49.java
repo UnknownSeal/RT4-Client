@@ -13,19 +13,10 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static49 {
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "j", descriptor = "Lclient!na;")
-	public static final JString aClass100_351 = Static28.parse(" ");
-
-	@OriginalMember(owner = "runetek4.client!dm", name = "m", descriptor = "I")
-	public static int anInt1459 = 0;
+	public static final JString aClass100_351 = JString.parse(" ");
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "n", descriptor = "Lclient!na;")
-	public static final JString aClass100_352 = Static28.parse("(U");
-
-	@OriginalMember(owner = "runetek4.client!dm", name = "q", descriptor = "I")
-	public static int anInt1462 = 0;
-
-	@OriginalMember(owner = "runetek4.client!dm", name = "u", descriptor = "I")
-	public static int anInt1464 = 0;
+	public static final JString aClass100_352 = JString.parse("(U");
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "a", descriptor = "(BII[B)Z")
 	public static boolean method1201(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) byte[] arg2) {
@@ -77,7 +68,7 @@ public final class Static49 {
 				local39 = true;
 				if (!local95.method3426()) {
 					local15 = false;
-					Static271.anInt5804++;
+					LoginManager.anInt5804++;
 				}
 			}
 		}
@@ -85,56 +76,56 @@ public final class Static49 {
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "a", descriptor = "(B)V")
 	public static void method1202() {
-		Static57.in.accessBits();
-		@Pc(13) int local13 = Static57.in.gBit(8);
+		Protocol.inboundBuffer.accessBits();
+		@Pc(13) int local13 = Protocol.inboundBuffer.gBit(8);
 		@Pc(22) int local22;
-		if (Static272.npcCount > local13) {
-			for (local22 = local13; local22 < Static272.npcCount; local22++) {
+		if (NpcList.npcCount > local13) {
+			for (local22 = local13; local22 < NpcList.npcCount; local22++) {
 				Static52.entityRemovalIds[Static240.entityRemovalCount++] = Static33.npcIds[local22];
 			}
 		}
-		if (Static272.npcCount < local13) {
+		if (NpcList.npcCount < local13) {
 			throw new RuntimeException("gnpov1");
 		}
-		Static272.npcCount = 0;
+		NpcList.npcCount = 0;
 		for (local22 = 0; local22 < local13; local22++) {
 			@Pc(61) int local61 = Static33.npcIds[local22];
 			@Pc(65) Npc local65 = NpcList.npcs[local61];
-			@Pc(70) int local70 = Static57.in.gBit(1);
+			@Pc(70) int local70 = Protocol.inboundBuffer.gBit(1);
 			if (local70 == 0) {
-				Static33.npcIds[Static272.npcCount++] = local61;
+				Static33.npcIds[NpcList.npcCount++] = local61;
 				local65.cycle = client.loop;
 			} else {
-				@Pc(92) int local92 = Static57.in.gBit(2);
+				@Pc(92) int local92 = Protocol.inboundBuffer.gBit(2);
 				if (local92 == 0) {
-					Static33.npcIds[Static272.npcCount++] = local61;
+					Static33.npcIds[NpcList.npcCount++] = local61;
 					local65.cycle = client.loop;
 					Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
 				} else {
 					@Pc(139) int local139;
 					@Pc(149) int local149;
 					if (local92 == 1) {
-						Static33.npcIds[Static272.npcCount++] = local61;
+						Static33.npcIds[NpcList.npcCount++] = local61;
 						local65.cycle = client.loop;
-						local139 = Static57.in.gBit(3);
+						local139 = Protocol.inboundBuffer.gBit(3);
 						local65.method2684(1, local139);
-						local149 = Static57.in.gBit(1);
+						local149 = Protocol.inboundBuffer.gBit(1);
 						if (local149 == 1) {
 							Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
 						}
 					} else if (local92 == 2) {
-						Static33.npcIds[Static272.npcCount++] = local61;
+						Static33.npcIds[NpcList.npcCount++] = local61;
 						local65.cycle = client.loop;
-						if (Static57.in.gBit(1) == 1) {
-							local139 = Static57.in.gBit(3);
+						if (Protocol.inboundBuffer.gBit(1) == 1) {
+							local139 = Protocol.inboundBuffer.gBit(3);
 							local65.method2684(2, local139);
-							local149 = Static57.in.gBit(3);
+							local149 = Protocol.inboundBuffer.gBit(3);
 							local65.method2684(2, local149);
 						} else {
-							local139 = Static57.in.gBit(3);
+							local139 = Protocol.inboundBuffer.gBit(3);
 							local65.method2684(0, local139);
 						}
-						local139 = Static57.in.gBit(1);
+						local139 = Protocol.inboundBuffer.gBit(1);
 						if (local139 == 1) {
 							Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
 						}
@@ -178,30 +169,30 @@ public final class Static49 {
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "a", descriptor = "(Lclient!be;III)V")
 	public static void method1207(@OriginalArg(0) Component arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		if (PreciseSleep.menuActionRow < 2 && Static260.anInt5014 == 0 && !Static241.aBoolean302) {
+		if (MiniMenu.menuActionRow < 2 && MiniMenu.anInt5014 == 0 && !MiniMenu.aBoolean302) {
 			return;
 		}
 		@Pc(24) JString local24 = Static13.method471();
 		if (arg0 == null) {
-			@Pc(40) int local40 = Font.b12Full.method2859(local24, arg2 + 4, arg1 - -15, Static39.aRandom1, Static60.anInt1895);
-			Static133.method4012(arg2 + 4, Font.b12Full.method2858(local24) + local40, arg1, 15);
+			@Pc(40) int local40 = Fonts.b12Full.method2859(local24, arg2 + 4, arg1 - -15, client.aRandom1, Static60.anInt1895);
+			Static133.method4012(arg2 + 4, Fonts.b12Full.method2858(local24) + local40, arg1, 15);
 			return;
 		}
 		@Pc(59) Font local59 = arg0.getFont(Static159.aClass36Array12);
 		if (local59 == null) {
-			local59 = Font.b12Full;
+			local59 = Fonts.b12Full;
 		}
-		local59.method2878(local24, arg2, arg1, arg0.anInt445, arg0.anInt459, arg0.anInt474, arg0.anInt513, arg0.anInt460, arg0.anInt478, Static39.aRandom1, Static60.anInt1895, Static50.anIntArray132);
+		local59.method2878(local24, arg2, arg1, arg0.anInt445, arg0.anInt459, arg0.anInt474, arg0.anInt513, arg0.anInt460, arg0.anInt478, client.aRandom1, Static60.anInt1895, Static50.anIntArray132);
 		Static133.method4012(Static50.anIntArray132[0], Static50.anIntArray132[2], Static50.anIntArray132[1], Static50.anIntArray132[3]);
 	}
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "d", descriptor = "(I)V")
 	public static void method1208() {
-		Static224.aBoolean247 = false;
+		FluTypeList.aBoolean247 = false;
 		PreciseSleep.anInt5202 = 0;
 		Static266.anInt5336 = -3;
 		Static92.anInt2430 = 0;
-		Static184.anInt4348 = 1;
+		LoginManager.step = 1;
 		Static276.anInt5816 = 0;
 		Static204.anInt4765 = -1;
 	}

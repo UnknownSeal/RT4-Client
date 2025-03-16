@@ -1,9 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.scene.tile.GenericTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -16,46 +15,6 @@ public final class Static132 {
 
 	@OriginalMember(owner = "runetek4.client!ke", name = "Y", descriptor = "[I")
 	public static final int[] anIntArray309 = new int[] { 1, 4 };
-
-	@OriginalMember(owner = "runetek4.client!ke", name = "a", descriptor = "(ZLclient!wk;Z)V")
-	public static void method2605(@OriginalArg(0) boolean arg0, @OriginalArg(1) Class3_Sub31 arg1) {
-		@Pc(9) int local9 = (int) arg1.nodeId;
-		@Pc(16) int local16 = arg1.anInt5878;
-		arg1.unlink();
-		if (arg0) {
-			Component.resetComponent(local16);
-		}
-		Static273.method3214(local16);
-		@Pc(32) Component local32 = Component.getComponent(local9);
-		if (local32 != null) {
-			Static43.method1143(local32);
-		}
-		@Pc(41) int local41 = PreciseSleep.menuActionRow;
-		@Pc(43) int local43;
-		for (local43 = 0; local43 < local41; local43++) {
-			if (Static2.method5(Static39.aShortArray6[local43])) {
-				Static200.method3628(local43);
-			}
-		}
-		if (PreciseSleep.menuActionRow == 1) {
-			Static60.aBoolean108 = false;
-			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
-		} else {
-			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
-			local43 = Font.b12Full.method2858(LocalizedText.CHOOSE_OPTION);
-			for (@Pc(75) int local75 = 0; local75 < PreciseSleep.menuActionRow; local75++) {
-				@Pc(88) int local88 = Font.b12Full.method2858(Static269.method2228(local75));
-				if (local43 < local88) {
-					local43 = local88;
-				}
-			}
-			Static13.anInt436 = PreciseSleep.menuActionRow * 15 + (Static261.aBoolean298 ? 26 : 22);
-			Static24.anInt761 = local43 + 8;
-		}
-		if (Static154.topLevelInterace != -1) {
-			Static54.method1304(1, Static154.topLevelInterace);
-		}
-	}
 
 	@OriginalMember(owner = "runetek4.client!ke", name = "c", descriptor = "(III)V")
 	public static void method2606(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
@@ -162,7 +121,7 @@ public final class Static132 {
 						Pix3D.method1928(local315, local331, local299, local307, local323, local291, arg0.anInt4865, arg0.anInt4864, arg0.anInt4867);
 					}
 				} else if (!Static159.aBoolean189) {
-					local475 = Pix3D.anInterface1_2.method3234(arg0.anInt4869);
+					local475 = Rasterizer.textureProvider.method3234(arg0.anInt4869);
 					Pix3D.method1928(local315, local331, local299, local307, local323, local291, Static216.method1640(local475, arg0.anInt4865), Static216.method1640(local475, arg0.anInt4864), Static216.method1640(local475, arg0.anInt4867));
 				} else if (arg0.aBoolean241) {
 					Pix3D.textureTriangle(local315, local331, local299, local307, local323, local291, arg0.anInt4865, arg0.anInt4864, arg0.anInt4867, local97, local21, local241, local119, local49, local85, local117, local165, local261, arg0.anInt4869);
@@ -192,7 +151,7 @@ public final class Static132 {
 		} else if (Static159.aBoolean189) {
 			Pix3D.textureTriangle(local283, local299, local331, local275, local291, local323, arg0.anInt4872, arg0.anInt4867, arg0.anInt4864, local97, local21, local241, local119, local49, local85, local117, local165, local261, arg0.anInt4869);
 		} else {
-			local475 = Pix3D.anInterface1_2.method3234(arg0.anInt4869);
+			local475 = Rasterizer.textureProvider.method3234(arg0.anInt4869);
 			Pix3D.method1928(local283, local299, local331, local275, local291, local323, Static216.method1640(local475, arg0.anInt4872), Static216.method1640(local475, arg0.anInt4867), Static216.method1640(local475, arg0.anInt4864));
 		}
 	}

@@ -31,14 +31,11 @@ public final class Static191 {
 	@OriginalMember(owner = "runetek4.client!pg", name = "Z", descriptor = "[I")
 	public static final int[] anIntArray387 = new int[anInt4506];
 
-	@OriginalMember(owner = "runetek4.client!pg", name = "ab", descriptor = "[I")
-	public static final int[] anIntArray388 = new int[8];
-
 	@OriginalMember(owner = "runetek4.client!pg", name = "cb", descriptor = "[I")
 	public static final int[] anIntArray389 = new int[anInt4506];
 
 	@OriginalMember(owner = "runetek4.client!pg", name = "db", descriptor = "Lclient!na;")
-	public static final JString ASSISTREQ = Static28.parse(":assistreq:");
+	public static final JString ASSISTREQ = JString.parse(":assistreq:");
 
 	@OriginalMember(owner = "runetek4.client!pg", name = "eb", descriptor = "[I")
 	public static final int[] anIntArray390 = new int[anInt4506];

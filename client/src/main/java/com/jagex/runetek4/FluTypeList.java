@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-public final class Static224 {
+public final class FluTypeList {
 
 	@OriginalMember(owner = "runetek4.client!sd", name = "I", descriptor = "I")
 	public static int anInt5057;
@@ -18,9 +18,6 @@ public final class Static224 {
 
 	@OriginalMember(owner = "runetek4.client!sd", name = "S", descriptor = "I")
 	public static int anInt5063 = 100;
-
-	@OriginalMember(owner = "runetek4.client!sd", name = "V", descriptor = "[I")
-	public static final int[] anIntArray443 = new int[100];
 
 	@OriginalMember(owner = "runetek4.client!sd", name = "X", descriptor = "Z")
 	public static boolean aBoolean247 = false;
@@ -48,7 +45,7 @@ public final class Static224 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!sd", name = "f", descriptor = "(B)V")
-	public static void method3885() {
+	public static void removeSoft() {
 		Static83.aClass99_3.removeSoft();
 	}
 

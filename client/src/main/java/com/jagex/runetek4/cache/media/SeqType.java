@@ -8,8 +8,10 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!tk")
-public final class AnimationSequence {
+public final class SeqType {
 
+	@OriginalMember(owner = "runetek4.client!qi", name = "v", descriptor = "Z")
+	public static boolean tween = false;
 	@OriginalMember(owner = "client!tk", name = "g", descriptor = "[I")
 	public int[] anIntArray473;
 
@@ -65,20 +67,20 @@ public final class AnimationSequence {
 	public boolean aBoolean280 = false;
 
 	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "a", descriptor = "(IB)Lclient!tk;")
-	public static AnimationSequence getAnimationSequence(@OriginalArg(0) int animationId) {
-		@Pc(17) AnimationSequence animationSequence = (AnimationSequence) Static142.animationSequenceCache.get((long) animationId);
-		if (animationSequence != null) {
-			return animationSequence;
+	public static SeqType getAnimationSequence(@OriginalArg(0) int animationId) {
+		@Pc(17) SeqType seqType = (SeqType) Static142.animationSequenceCache.get((long) animationId);
+		if (seqType != null) {
+			return seqType;
 		}
 		@Pc(32) byte[] is = Static243.aClass153_98.getfile(BZip2State.method3389(animationId), Static118.method2356(animationId));
-		animationSequence = new AnimationSequence();
-		animationSequence.anInt5361 = animationId;
+		seqType = new SeqType();
+		seqType.anInt5361 = animationId;
 		if (is != null) {
-			animationSequence.decode(new Packet(is));
+			seqType.decode(new Packet(is));
 		}
-		animationSequence.postDecode();
-		Static142.animationSequenceCache.put(animationSequence, (long) animationId);
-		return animationSequence;
+		seqType.postDecode();
+		Static142.animationSequenceCache.put(seqType, (long) animationId);
+		return seqType;
 	}
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "a", descriptor = "(IB)V")
@@ -200,7 +202,7 @@ public final class AnimationSequence {
 		}
 		@Pc(39) int local39 = arg3 & 0x3;
 		@Pc(41) AnimFrameset local41 = null;
-		if ((this.aBoolean277 || Static204.tween) && arg1 != -1 && this.anIntArray473.length > arg1) {
+		if ((this.aBoolean277 || tween) && arg1 != -1 && this.anIntArray473.length > arg1) {
 			@Pc(69) int local69 = this.anIntArray473[arg1];
 			local41 = Static72.method1566(local69 >> 16);
 			arg1 = local69 & 0xFFFF;
@@ -255,7 +257,7 @@ public final class AnimationSequence {
 			return arg0.method4572(true, true, true);
 		}
 		@Pc(34) AnimFrameset local34 = null;
-		if ((this.aBoolean277 || Static204.tween) && arg1 != -1 && arg1 < this.anIntArray473.length) {
+		if ((this.aBoolean277 || tween) && arg1 != -1 && arg1 < this.anIntArray473.length) {
 			@Pc(59) int local59 = this.anIntArray473[arg1];
 			local34 = Static72.method1566(local59 >> 16);
 			arg1 = local59 & 0xFFFF;
@@ -272,7 +274,7 @@ public final class AnimationSequence {
 					local83 &= 0xFFFF;
 				}
 			}
-			if ((this.aBoolean277 || Static204.tween) && arg1 != -1 && this.anIntArray475.length > arg1) {
+			if ((this.aBoolean277 || tween) && arg1 != -1 && this.anIntArray475.length > arg1) {
 				local85 = this.anIntArray475[arg1];
 				if (local85 != 65535) {
 					local81 = Static72.method1566(local85 >> 16);
@@ -313,7 +315,7 @@ public final class AnimationSequence {
 		}
 		@Pc(40) int local40 = arg3 & 0x3;
 		@Pc(42) AnimFrameset local42 = null;
-		if ((this.aBoolean277 || Static204.tween) && arg0 != -1 && arg0 < this.anIntArray473.length) {
+		if ((this.aBoolean277 || tween) && arg0 != -1 && arg0 < this.anIntArray473.length) {
 			@Pc(66) int local66 = this.anIntArray473[arg0];
 			local42 = Static72.method1566(local66 >> 16);
 			arg0 = local66 & 0xFFFF;
@@ -368,7 +370,7 @@ public final class AnimationSequence {
 			return arg3.method4560(true, true, true);
 		}
 		@Pc(42) AnimFrameset local42 = null;
-		if ((this.aBoolean277 || Static204.tween) && arg0 != -1 && this.anIntArray473.length > arg0) {
+		if ((this.aBoolean277 || tween) && arg0 != -1 && this.anIntArray473.length > arg0) {
 			@Pc(65) int local65 = this.anIntArray473[arg0];
 			local42 = Static72.method1566(local65 >> 16);
 			arg0 = local65 & 0xFFFF;

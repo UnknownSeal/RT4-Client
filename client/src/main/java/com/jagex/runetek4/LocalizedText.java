@@ -1,269 +1,270 @@
 package com.jagex.runetek4;
 
+import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public class LocalizedText {
     //region English Translations
     @OriginalMember(owner = "runetek4.client!ui", name = "ob", descriptor = "Lclient!na;")
-    private static final JString ENG_ATTACK = Static28.parse("Attack");
+    private static final JString ENG_ATTACK = JString.parse("Attack");
 
     @OriginalMember(owner = "runetek4.client!vf", name = "d", descriptor = "Lclient!na;")
-    private static final JString ENG_ATTEMPT_TO_REESTABLISH = Static28.parse("Please wait )2 attempting to reestablish)3");
+    private static final JString ENG_ATTEMPT_TO_REESTABLISH = JString.parse("Please wait )2 attempting to reestablish)3");
 
     @OriginalMember(owner = "runetek4.client!wb", name = "i", descriptor = "Lclient!na;")
-    private static final JString ENG_CANCEL = Static28.parse("Cancel");
+    private static final JString ENG_CANCEL = JString.parse("Cancel");
 
     @OriginalMember(owner = "runetek4.client!bk", name = "I", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATCOL0 = Static28.parse("yellow:");
+    private static final JString ENG_CHATCOL0 = JString.parse("yellow:");
 
     @OriginalMember(owner = "runetek4.client!lb", name = "x", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATCOL1 = Static28.parse("red:");
+    private static final JString ENG_CHATCOL1 = JString.parse("red:");
 
     @OriginalMember(owner = "runetek4.client!h", name = "Bb", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATCOL2 = Static28.parse("green:");
+    private static final JString ENG_CHATCOL2 = JString.parse("green:");
 
     @OriginalMember(owner = "runetek4.client!runetek4.client", name = "eb", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATCOL3 = Static28.parse("cyan:");
+    private static final JString ENG_CHATCOL3 = JString.parse("cyan:");
 
     @OriginalMember(owner = "runetek4.client!hd", name = "h", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATCOL4 = Static28.parse("purple:");
+    private static final JString ENG_CHATCOL4 = JString.parse("purple:");
 
     @OriginalMember(owner = "runetek4.client!bf", name = "y", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATCOL5 = Static28.parse("white:");
+    private static final JString ENG_CHATCOL5 = JString.parse("white:");
 
     @OriginalMember(owner = "runetek4.client!mg", name = "U", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATCOL6 = Static28.parse("flash1:");
+    private static final JString ENG_CHATCOL6 = JString.parse("flash1:");
 
     @OriginalMember(owner = "runetek4.client!tm", name = "n", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATCOL7 = Static28.parse("flash2:");
+    private static final JString ENG_CHATCOL7 = JString.parse("flash2:");
 
     @OriginalMember(owner = "runetek4.client!km", name = "Cc", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATCOL8 = Static28.parse("flash3:");
+    private static final JString ENG_CHATCOL8 = JString.parse("flash3:");
 
     @OriginalMember(owner = "runetek4.client!aa", name = "r", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATCOL9 = Static28.parse("glow1:");
+    private static final JString ENG_CHATCOL9 = JString.parse("glow1:");
 
     @OriginalMember(owner = "runetek4.client!vf", name = "j", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATCOL10 = Static28.parse("glow2:");
+    private static final JString ENG_CHATCOL10 = JString.parse("glow2:");
 
     @OriginalMember(owner = "runetek4.client!ah", name = "m", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATCOL11 = Static28.parse("glow3:");
+    private static final JString ENG_CHATCOL11 = JString.parse("glow3:");
 
     @OriginalMember(owner = "runetek4.client!dc", name = "E", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATEFFECT1 = Static28.parse("wave:");
+    private static final JString ENG_CHATEFFECT1 = JString.parse("wave:");
 
     @OriginalMember(owner = "runetek4.client!pg", name = "ib", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATEFFECT2 = Static28.parse("wave2:");
+    private static final JString ENG_CHATEFFECT2 = JString.parse("wave2:");
 
     @OriginalMember(owner = "runetek4.client!rm", name = "h", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATEFFECT3 = Static28.parse("shake:");
+    private static final JString ENG_CHATEFFECT3 = JString.parse("shake:");
 
     @OriginalMember(owner = "runetek4.client!ef", name = "m", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATEFFECT4 = Static28.parse("scroll:");
+    private static final JString ENG_CHATEFFECT4 = JString.parse("scroll:");
 
     @OriginalMember(owner = "runetek4.client!eg", name = "B", descriptor = "Lclient!na;")
-    private static final JString ENG_CHATEFFECT5 = Static28.parse("slide:");
+    private static final JString ENG_CHATEFFECT5 = JString.parse("slide:");
 
     @OriginalMember(owner = "runetek4.client!bm", name = "d", descriptor = "Lclient!na;")
-    private static final JString ENG_CHECKING_FOR_UPDATES = Static28.parse("Checking for updates )2 ");
+    private static final JString ENG_CHECKING_FOR_UPDATES = JString.parse("Checking for updates )2 ");
 
     @OriginalMember(owner = "runetek4.client!ta", name = "q", descriptor = "Lclient!na;")
-    private static final JString ENG_CHOOSE_OPTION = Static28.parse("Choose Option");
+    private static final JString ENG_CHOOSE_OPTION = JString.parse("Choose Option");
 
     @OriginalMember(owner = "runetek4.client!d", name = "fb", descriptor = "Lclient!na;")
-    private static final JString ENG_CLOSE = Static28.parse("Close");
+    private static final JString ENG_CLOSE = JString.parse("Close");
 
     @OriginalMember(owner = "runetek4.client!sm", name = "f", descriptor = "Lclient!na;")
-    private static final JString ENG_CONLOST = Static28.parse("Connection lost)3");
+    private static final JString ENG_CONLOST = JString.parse("Connection lost)3");
 
     @OriginalMember(owner = "runetek4.client!ig", name = "c", descriptor = "Lclient!na;")
-    private static final JString ENG_CONTINUE = Static28.parse("Continue");
+    private static final JString ENG_CONTINUE = JString.parse("Continue");
 
     @OriginalMember(owner = "runetek4.client!dc", name = "R", descriptor = "Lclient!na;")
-    private static final JString ENG_DROP = Static28.parse("Drop");
+    private static final JString ENG_DROP = JString.parse("Drop");
 
     @OriginalMember(owner = "runetek4.client!li", name = "u", descriptor = "Lclient!na;")
-    private static final JString ENG_EXAMINE = Static28.parse("Examine");
+    private static final JString ENG_EXAMINE = JString.parse("Examine");
 
     @OriginalMember(owner = "runetek4.client!sd", name = "M", descriptor = "Lclient!na;")
-    private static final JString ENG_FACEHERE = Static28.parse("Face here");
+    private static final JString ENG_FACEHERE = JString.parse("Face here");
 
     @OriginalMember(owner = "runetek4.client!ii", name = "g", descriptor = "Lclient!na;")
-    private static final JString ENG_FRIENDCANTADDSELF = Static28.parse("You can(Wt add yourself to your own friend list)3");
+    private static final JString ENG_FRIENDCANTADDSELF = JString.parse("You can(Wt add yourself to your own friend list)3");
 
     @OriginalMember(owner = "runetek4.client!lk", name = "S", descriptor = "Lclient!na;")
-    private static final JString ENG_FRIENDLISTDUPE = Static28.parse(" is already on your friend list)3");
+    private static final JString ENG_FRIENDLISTDUPE = JString.parse(" is already on your friend list)3");
 
     @OriginalMember(owner = "runetek4.client!t", name = "B", descriptor = "Lclient!na;")
-    private static final JString ENG_FRIENDLISTFULL = Static28.parse("Your friend list is full)3 Max of 100 for free users)1 and 200 for members)3");
+    private static final JString ENG_FRIENDLISTFULL = JString.parse("Your friend list is full)3 Max of 100 for free users)1 and 200 for members)3");
 
     @OriginalMember(owner = "runetek4.client!c", name = "W", descriptor = "Lclient!na;")
-    private static final JString ENG_FRIENDLOGIN = Static28.parse(" has logged in)3");
+    private static final JString ENG_FRIENDLOGIN = JString.parse(" has logged in)3");
 
     @OriginalMember(owner = "runetek4.client!hd", name = "o", descriptor = "Lclient!na;")
-    private static final JString ENG_FRIENDLOGOUT = Static28.parse(" has logged out)3");
+    private static final JString ENG_FRIENDLOGOUT = JString.parse(" has logged out)3");
 
     @OriginalMember(owner = "runetek4.client!ec", name = "r", descriptor = "Lclient!na;")
-    private static final JString ENG_GAME0_LOADING = Static28.parse("RuneScape is loading )2 please wait)3)3)3");
+    private static final JString ENG_GAME0_LOADING = JString.parse("RuneScape is loading )2 please wait)3)3)3");
 
     @OriginalMember(owner = "runetek4.client!an", name = "Z", descriptor = "Lclient!na;")
-    private static final JString ENG_HIDDEN = Static28.parse("Hidden");
+    private static final JString ENG_HIDDEN = JString.parse("Hidden");
 
     @OriginalMember(owner = "runetek4.client!nb", name = "b", descriptor = "Lclient!na;")
-    private static final JString ENG_IGNORECANTADDSELF = Static28.parse("You can(Wt add yourself to your own ignore list)3");
+    private static final JString ENG_IGNORECANTADDSELF = JString.parse("You can(Wt add yourself to your own ignore list)3");
 
     @OriginalMember(owner = "runetek4.client!ol", name = "X", descriptor = "Lclient!na;")
-    private static final JString ENG_IGNORELISTDUPE = Static28.parse(" is already on your ignore list)3");
+    private static final JString ENG_IGNORELISTDUPE = JString.parse(" is already on your ignore list)3");
 
     @OriginalMember(owner = "runetek4.client!u", name = "l", descriptor = "Lclient!na;")
-    private static final JString ENG_IGNORELISTFULL = Static28.parse("Your ignore list is full)3 Max of 100 users)3");
+    private static final JString ENG_IGNORELISTFULL = JString.parse("Your ignore list is full)3 Max of 100 users)3");
 
     @OriginalMember(owner = "runetek4.client!ck", name = "b", descriptor = "Lclient!na;")
-    private static final JString ENG_LENT_ITEM_RETURN = Static28.parse("Discard");
+    private static final JString ENG_LENT_ITEM_RETURN = JString.parse("Discard");
 
     @OriginalMember(owner = "runetek4.client!ef", name = "s", descriptor = "Lclient!na;")
-    private static final JString ENG_LEVEL = Static28.parse("level: ");
+    private static final JString ENG_LEVEL = JString.parse("level: ");
 
     @OriginalMember(owner = "runetek4.client!nh", name = "bb", descriptor = "Lclient!na;")
-    private static final JString ENG_LOADING = Static28.parse("Loading )2 please wait)3");
+    private static final JString ENG_LOADING = JString.parse("Loading )2 please wait)3");
 
     @OriginalMember(owner = "runetek4.client!dm", name = "B", descriptor = "Lclient!na;")
-    private static final JString ENG_LOADINGDOTDOTDOT = Static28.parse("Loading)3)3)3");
+    private static final JString ENG_LOADINGDOTDOTDOT = JString.parse("Loading)3)3)3");
 
     @OriginalMember(owner = "runetek4.client!kd", name = "kb", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD0 = Static28.parse("Allocating memory");
+    private static final JString ENG_MAINLOAD0 = JString.parse("Allocating memory");
 
     @OriginalMember(owner = "runetek4.client!na", name = "ob", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD0B = Static28.parse("Allocated memory");
+    private static final JString ENG_MAINLOAD0B = JString.parse("Allocated memory");
 
     @OriginalMember(owner = "runetek4.client!il", name = "J", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD10B = Static28.parse("Created gameworld");
+    private static final JString ENG_MAINLOAD10B = JString.parse("Created gameworld");
 
     @OriginalMember(owner = "runetek4.client!vj", name = "h", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD30 = Static28.parse("Connecting to update server");
+    private static final JString ENG_MAINLOAD30 = JString.parse("Connecting to update server");
 
     @OriginalMember(owner = "runetek4.client!od", name = "b", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD30B = Static28.parse("Connected to update server");
+    private static final JString ENG_MAINLOAD30B = JString.parse("Connected to update server");
 
     @OriginalMember(owner = "runetek4.client!ba", name = "s", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD40B = Static28.parse("Loaded update list");
+    private static final JString ENG_MAINLOAD40B = JString.parse("Loaded update list");
 
     @OriginalMember(owner = "runetek4.client!se", name = "b", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD45B = Static28.parse("Prepared sound engine");
+    private static final JString ENG_MAINLOAD45B = JString.parse("Prepared sound engine");
 
     @OriginalMember(owner = "runetek4.client!lk", name = "P", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD50 = Static28.parse("Loading fonts )2 ");
+    private static final JString ENG_MAINLOAD50 = JString.parse("Loading fonts )2 ");
 
     @OriginalMember(owner = "runetek4.client!tl", name = "e", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD50B = Static28.parse("Loaded fonts");
+    private static final JString ENG_MAINLOAD50B = JString.parse("Loaded fonts");
 
     @OriginalMember(owner = "runetek4.client!dm", name = "v", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD60 = Static28.parse("Loading title screen )2 ");
+    private static final JString ENG_MAINLOAD60 = JString.parse("Loading title screen )2 ");
 
     @OriginalMember(owner = "runetek4.client!cb", name = "gb", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD60B = Static28.parse("Loaded title screen");
+    private static final JString ENG_MAINLOAD60B = JString.parse("Loaded title screen");
 
     @OriginalMember(owner = "runetek4.client!dl", name = "j", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD65B = Static28.parse("Opened title screen");
+    private static final JString ENG_MAINLOAD65B = JString.parse("Opened title screen");
 
     @OriginalMember(owner = "runetek4.client!bk", name = "K", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD70 = Static28.parse("Loading config )2 ");
+    private static final JString ENG_MAINLOAD70 = JString.parse("Loading config )2 ");
 
     @OriginalMember(owner = "runetek4.client!fn", name = "P", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD70B = Static28.parse("Loaded config");
+    private static final JString ENG_MAINLOAD70B = JString.parse("Loaded config");
 
     @OriginalMember(owner = "runetek4.client!vc", name = "X", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD80 = Static28.parse("Loading sprites )2 ");
+    private static final JString ENG_MAINLOAD80 = JString.parse("Loading sprites )2 ");
 
     @OriginalMember(owner = "runetek4.client!sc", name = "w", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD80B = Static28.parse("Loaded sprites");
+    private static final JString ENG_MAINLOAD80B = JString.parse("Loaded sprites");
 
     @OriginalMember(owner = "runetek4.client!ub", name = "n", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD90 = Static28.parse("Loading textures )2 ");
+    private static final JString ENG_MAINLOAD90 = JString.parse("Loading textures )2 ");
 
     @OriginalMember(owner = "runetek4.client!gm", name = "fb", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD90B = Static28.parse("Loaded textures");
+    private static final JString ENG_MAINLOAD90B = JString.parse("Loaded textures");
 
     @OriginalMember(owner = "runetek4.client!ni", name = "p", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD110B = Static28.parse("Loaded input handler");
+    private static final JString ENG_MAINLOAD110B = JString.parse("Loaded input handler");
 
     @OriginalMember(owner = "runetek4.client!li", name = "b", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD120 = Static28.parse("Loading wordpack )2 ");
+    private static final JString ENG_MAINLOAD120 = JString.parse("Loading wordpack )2 ");
 
     @OriginalMember(owner = "runetek4.client!pl", name = "b", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD120B = Static28.parse("Loaded wordpack");
+    private static final JString ENG_MAINLOAD120B = JString.parse("Loaded wordpack");
 
     @OriginalMember(owner = "runetek4.client!bg", name = "O", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD130 = Static28.parse("Loading interfaces )2 ");
+    private static final JString ENG_MAINLOAD130 = JString.parse("Loading interfaces )2 ");
 
     @OriginalMember(owner = "runetek4.client!wa", name = "D", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD130B = Static28.parse("Loaded interfaces");
+    private static final JString ENG_MAINLOAD130B = JString.parse("Loaded interfaces");
 
     @OriginalMember(owner = "runetek4.client!r", name = "c", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD135 = Static28.parse("Loading world list data");
+    private static final JString ENG_MAINLOAD135 = JString.parse("Loading world list data");
 
     @OriginalMember(owner = "runetek4.client!ck", name = "o", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD135B = Static28.parse("Loaded world list data");
+    private static final JString ENG_MAINLOAD135B = JString.parse("Loaded world list data");
 
     @OriginalMember(owner = "runetek4.client!cn", name = "J", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD140 = Static28.parse("Starting 3d Library");
+    private static final JString ENG_MAINLOAD140 = JString.parse("Starting 3d Library");
 
     @OriginalMember(owner = "runetek4.client!rg", name = "u", descriptor = "Lclient!na;")
-    private static final JString ENG_MAINLOAD150B = Static28.parse("Started 3d Library");
+    private static final JString ENG_MAINLOAD150B = JString.parse("Started 3d Library");
 
     @OriginalMember(owner = "runetek4.client!qc", name = "Z", descriptor = "Lclient!na;")
-    private static final JString ENG_MEMBERS_OBJECT = Static28.parse("Members object");
+    private static final JString ENG_MEMBERS_OBJECT = JString.parse("Members object");
 
     @OriginalMember(owner = "runetek4.client!fh", name = "W", descriptor = "Lclient!na;")
-    private static final JString ENG_MILLION_SUFFIX = Static28.parse("M");
+    private static final JString ENG_MILLION_SUFFIX = JString.parse("M");
 
     @OriginalMember(owner = "runetek4.client!qk", name = "l", descriptor = "Lclient!na;")
-    private static final JString ENG_MINISEPARATOR = Static28.parse(" ");
+    private static final JString ENG_MINISEPARATOR = JString.parse(" ");
 
     @OriginalMember(owner = "runetek4.client!ui", name = "ab", descriptor = "Lclient!na;")
-    private static final JString ENG_MOREOPTIONS = Static28.parse(" more options");
+    private static final JString ENG_MOREOPTIONS = JString.parse(" more options");
 
     @OriginalMember(owner = "runetek4.client!ph", name = "c", descriptor = "Lclient!na;")
-    private static final JString ENG_OK = Static28.parse("Ok");
+    private static final JString ENG_OK = JString.parse("Ok");
 
     @OriginalMember(owner = "runetek4.client!bj", name = "z", descriptor = "Lclient!na;")
-    private static final JString ENG_PLEASEWAIT = Static28.parse("Please wait)3)3)3");
+    private static final JString ENG_PLEASEWAIT = JString.parse("Please wait)3)3)3");
 
     @OriginalMember(owner = "runetek4.client!mf", name = "T", descriptor = "Lclient!na;")
-    private static final JString ENG_RATING = Static28.parse("rating: ");
+    private static final JString ENG_RATING = JString.parse("rating: ");
 
     @OriginalMember(owner = "runetek4.client!pm", name = "gb", descriptor = "Lclient!na;")
-    private static final JString ENG_REMOVEFRIEND = Static28.parse(" from your friend list first)3");
+    private static final JString ENG_REMOVEFRIEND = JString.parse(" from your friend list first)3");
 
     @OriginalMember(owner = "runetek4.client!rc", name = "v", descriptor = "Lclient!na;")
-    private static final JString ENG_REMOVEIGNORE = Static28.parse(" from your ignore list first)3");
+    private static final JString ENG_REMOVEIGNORE = JString.parse(" from your ignore list first)3");
 
     @OriginalMember(owner = "runetek4.client!fk", name = "b", descriptor = "Lclient!na;")
-    private static final JString ENG_REMOVESOCIAL = Static28.parse("Please remove ");
+    private static final JString ENG_REMOVESOCIAL = JString.parse("Please remove ");
 
     @OriginalMember(owner = "runetek4.client!se", name = "o", descriptor = "Lclient!na;")
-    private static final JString ENG_SELECT = Static28.parse("Select");
+    private static final JString ENG_SELECT = JString.parse("Select");
 
     @OriginalMember(owner = "runetek4.client!ef", name = "k", descriptor = "Lclient!na;")
-    private static final JString ENG_SKILL = Static28.parse("skill: ");
+    private static final JString ENG_SKILL = JString.parse("skill: ");
 
     @OriginalMember(owner = "runetek4.client!si", name = "hb", descriptor = "Lclient!na;")
-    private static final JString ENG_TAKE = Static28.parse("Take");
+    private static final JString ENG_TAKE = JString.parse("Take");
 
     @OriginalMember(owner = "runetek4.client!cl", name = "N", descriptor = "Lclient!na;")
-    private static final JString ENG_THOUSAND_SUFFIX = Static28.parse("K");
+    private static final JString ENG_THOUSAND_SUFFIX = JString.parse("K");
 
     @OriginalMember(owner = "runetek4.client!ea", name = "q", descriptor = "Lclient!na;")
-    private static final JString ENG_TRADEREQ = Static28.parse("wishes to trade with you)3");
+    private static final JString ENG_TRADEREQ = JString.parse("wishes to trade with you)3");
 
     @OriginalMember(owner = "runetek4.client!gi", name = "f", descriptor = "Lclient!na;")
-    private static final JString ENG_UNABLETOFIND = Static28.parse("Unable to find ");
+    private static final JString ENG_UNABLETOFIND = JString.parse("Unable to find ");
 
     @OriginalMember(owner = "runetek4.client!sa", name = "U", descriptor = "Lclient!na;")
-    private static final JString ENG_USE = Static28.parse("Use");
+    private static final JString ENG_USE = JString.parse("Use");
 
     @OriginalMember(owner = "runetek4.client!ib", name = "m", descriptor = "Lclient!na;")
-    private static final JString ENG_WALKHERE = Static28.parse("Walk here");
+    private static final JString ENG_WALKHERE = JString.parse("Walk here");
     //endregion
 
     //region Stable Translations (chat effects/colors)
@@ -595,265 +596,265 @@ public class LocalizedText {
     // TODO: unsorted
     //region German Translations
     @OriginalMember(owner = "runetek4.client!vk", name = "l", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD135 = Static28.parse("Lade Liste der Welten");
+    public static final JString GER_MAINLOAD135 = JString.parse("Lade Liste der Welten");
 
     @OriginalMember(owner = "runetek4.client!eg", name = "A", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD80B = Static28.parse("Sprites geladen)3");
+    public static final JString GER_MAINLOAD80B = JString.parse("Sprites geladen)3");
 
     @OriginalMember(owner = "runetek4.client!eh", name = "h", descriptor = "Lclient!na;")
-    public static final JString GER_TRADEREQ = Static28.parse("m-Ochte mit Ihnen handeln)3");
+    public static final JString GER_TRADEREQ = JString.parse("m-Ochte mit Ihnen handeln)3");
 
     @OriginalMember(owner = "runetek4.client!eh", name = "i", descriptor = "Lclient!na;")
-    public static final JString GER_REMOVEFRIEND = Static28.parse(" zuerst von Ihrer Freunde)2Liste(Q");
+    public static final JString GER_REMOVEFRIEND = JString.parse(" zuerst von Ihrer Freunde)2Liste(Q");
 
     @OriginalMember(owner = "runetek4.client!ed", name = "r", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD120B = Static28.parse("Wordpack geladen)3");
+    public static final JString GER_MAINLOAD120B = JString.parse("Wordpack geladen)3");
 
     @OriginalMember(owner = "runetek4.client!dk", name = "i", descriptor = "Lclient!na;")
-    public static final JString GER_CHATCOL6 = Static28.parse("blinken1:");
+    public static final JString GER_CHATCOL6 = JString.parse("blinken1:");
 
     @OriginalMember(owner = "runetek4.client!dm", name = "h", descriptor = "Lclient!na;")
-    public static final JString GER_REMOVESOCIAL = Static28.parse("Bitte entfernen Sie ");
+    public static final JString GER_REMOVESOCIAL = JString.parse("Bitte entfernen Sie ");
 
     @OriginalMember(owner = "runetek4.client!ck", name = "c", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD70 = Static28.parse("Lade Konfiguration )2 ");
+    public static final JString GER_MAINLOAD70 = JString.parse("Lade Konfiguration )2 ");
 
     @OriginalMember(owner = "runetek4.client!cm", name = "h", descriptor = "Lclient!na;")
-    public static final JString GER_CONLOST = Static28.parse("Verbindung abgebrochen)3");
+    public static final JString GER_CONLOST = JString.parse("Verbindung abgebrochen)3");
 
     @OriginalMember(owner = "runetek4.client!cn", name = "s", descriptor = "Lclient!na;")
-    public static final JString GER_CHATCOL4 = Static28.parse("lila:");
+    public static final JString GER_CHATCOL4 = JString.parse("lila:");
 
     @OriginalMember(owner = "runetek4.client!cn", name = "C", descriptor = "Lclient!na;")
-    public static final JString GER_CHATCOL1 = Static28.parse("rot:");
+    public static final JString GER_CHATCOL1 = JString.parse("rot:");
 
     @OriginalMember(owner = "runetek4.client!cd", name = "y", descriptor = "Lclient!na;")
-    public static final JString GER_CHECKING_FOR_UPDATES = Static28.parse("Suche nach Updates )2 ");
+    public static final JString GER_CHECKING_FOR_UPDATES = JString.parse("Suche nach Updates )2 ");
 
     @OriginalMember(owner = "runetek4.client!cd", name = "D", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD120 = Static28.parse("Lade Wordpack )2 ");
+    public static final JString GER_MAINLOAD120 = JString.parse("Lade Wordpack )2 ");
 
     @OriginalMember(owner = "runetek4.client!ce", name = "m", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD90 = Static28.parse("Lade Texturen )2 ");
+    public static final JString GER_MAINLOAD90 = JString.parse("Lade Texturen )2 ");
 
     @OriginalMember(owner = "runetek4.client!cg", name = "d", descriptor = "Lclient!na;")
-    public static final JString GER_LENT_ITEM_RETURN = Static28.parse("Ablegen");
+    public static final JString GER_LENT_ITEM_RETURN = JString.parse("Ablegen");
 
     @OriginalMember(owner = "runetek4.client!bj", name = "p", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD70B = Static28.parse("Konfig geladen)3");
+    public static final JString GER_MAINLOAD70B = JString.parse("Konfig geladen)3");
 
     @OriginalMember(owner = "runetek4.client!bj", name = "U", descriptor = "Lclient!na;")
-    public static final JString GER_CHATEFFECT2 = Static28.parse("welle2:");
+    public static final JString GER_CHATEFFECT2 = JString.parse("welle2:");
 
     @OriginalMember(owner = "runetek4.client!bk", name = "P", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD0 = Static28.parse("Speicher wird zugewiesen)3");
+    public static final JString GER_MAINLOAD0 = JString.parse("Speicher wird zugewiesen)3");
 
     @OriginalMember(owner = "runetek4.client!bd", name = "d", descriptor = "Lclient!na;")
-    public static final JString GER_SELECT = Static28.parse("Ausw-=hlen");
+    public static final JString GER_SELECT = JString.parse("Ausw-=hlen");
 
     @OriginalMember(owner = "runetek4.client!bb", name = "N", descriptor = "Lclient!na;")
-    public static final JString GER_CHATCOL0 = Static28.parse("gelb:");
+    public static final JString GER_CHATCOL0 = JString.parse("gelb:");
 
     @OriginalMember(owner = "runetek4.client!an", name = "eb", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD50 = Static28.parse("Lade Schrifts-=tze )2 ");
+    public static final JString GER_MAINLOAD50 = JString.parse("Lade Schrifts-=tze )2 ");
 
     @OriginalMember(owner = "runetek4.client!ba", name = "E", descriptor = "Lclient!na;")
-    public static final JString GER_LEVEL = Static28.parse("Stufe: ");
+    public static final JString GER_LEVEL = JString.parse("Stufe: ");
 
     @OriginalMember(owner = "runetek4.client!af", name = "f", descriptor = "Lclient!na;")
-    public static final JString GER_MEMBERS_OBJECT = Static28.parse("Gegenstand f-Ur Mitglieder");
+    public static final JString GER_MEMBERS_OBJECT = JString.parse("Gegenstand f-Ur Mitglieder");
 
     @OriginalMember(owner = "runetek4.client!be", name = "Zc", descriptor = "Lclient!na;")
-    public static final JString GER_TAKE = Static28.parse("Nehmen");
+    public static final JString GER_TAKE = JString.parse("Nehmen");
 
     @OriginalMember(owner = "runetek4.client!se", name = "s", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD110B = Static28.parse("Eingabeprozedur geladen)3");
+    public static final JString GER_MAINLOAD110B = JString.parse("Eingabeprozedur geladen)3");
 
     @OriginalMember(owner = "runetek4.client!gm", name = "eb", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD80 = Static28.parse("Lade Sprites )2 ");
+    public static final JString GER_MAINLOAD80 = JString.parse("Lade Sprites )2 ");
 
     @OriginalMember(owner = "runetek4.client!qj", name = "h", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD90B = Static28.parse("Texturen geladen)3");
+    public static final JString GER_MAINLOAD90B = JString.parse("Texturen geladen)3");
 
     @OriginalMember(owner = "runetek4.client!rb", name = "e", descriptor = "Lclient!na;")
-    public static final JString GER_HIDDEN = Static28.parse("Versteckt");
+    public static final JString GER_HIDDEN = JString.parse("Versteckt");
 
     @OriginalMember(owner = "runetek4.client!tk", name = "x", descriptor = "Lclient!na;")
-    public static final JString GER_FRIENDLISTDUPE = Static28.parse(" steht bereits auf Ihrer Freunde)2Liste(Q");
+    public static final JString GER_FRIENDLISTDUPE = JString.parse(" steht bereits auf Ihrer Freunde)2Liste(Q");
 
     @OriginalMember(owner = "runetek4.client!nk", name = "o", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD65B = Static28.parse("Titelbild ge-Offnet)3");
+    public static final JString GER_MAINLOAD65B = JString.parse("Titelbild ge-Offnet)3");
 
     @OriginalMember(owner = "runetek4.client!nm", name = "R", descriptor = "Lclient!na;")
-    public static final JString GER_CLOSE = Static28.parse("Schlie-8en");
+    public static final JString GER_CLOSE = JString.parse("Schlie-8en");
 
     @OriginalMember(owner = "runetek4.client!s", name = "j", descriptor = "Lclient!na;")
-    public static final JString GER_FRIENDCANTADDSELF = Static28.parse("Sie k-Onnen sich selbst nicht auf Ihre Freunde)2Liste setzen(Q");
+    public static final JString GER_FRIENDCANTADDSELF = JString.parse("Sie k-Onnen sich selbst nicht auf Ihre Freunde)2Liste setzen(Q");
 
     @OriginalMember(owner = "runetek4.client!oe", name = "k", descriptor = "Lclient!na;")
-    public static final JString GER_CHATCOL11 = Static28.parse("leuchten3:");
+    public static final JString GER_CHATCOL11 = JString.parse("leuchten3:");
 
     @OriginalMember(owner = "runetek4.client!pg", name = "W", descriptor = "Lclient!na;")
-    public static final JString GER_FRIENDLOGIN = Static28.parse(" loggt sich ein)3");
+    public static final JString GER_FRIENDLOGIN = JString.parse(" loggt sich ein)3");
 
     @OriginalMember(owner = "runetek4.client!pg", name = "Y", descriptor = "Lclient!na;")
-    public static final JString GER_CHATCOL9 = Static28.parse("leuchten1:");
+    public static final JString GER_CHATCOL9 = JString.parse("leuchten1:");
 
     @OriginalMember(owner = "runetek4.client!g", name = "b", descriptor = "Lclient!na;")
-    public static final JString GER_FRIENDLISTFULL = Static28.parse("Ihre Freunde)2Liste ist voll(Q Maximale Eintr-=ge: Mitglieder 200)4freie Spieler 100");
+    public static final JString GER_FRIENDLISTFULL = JString.parse("Ihre Freunde)2Liste ist voll(Q Maximale Eintr-=ge: Mitglieder 200)4freie Spieler 100");
 
     @OriginalMember(owner = "runetek4.client!ui", name = "hb", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD50B = Static28.parse("Schrifts-=tze geladen)3");
+    public static final JString GER_MAINLOAD50B = JString.parse("Schrifts-=tze geladen)3");
 
     @OriginalMember(owner = "runetek4.client!na", name = "p", descriptor = "Lclient!na;")
-    public static final JString GER_ATTEMPT_TO_REESTABLISH = Static28.parse("Bitte warten Sie )2 es wird versucht)1 die Verbindung wiederherzustellen)3");
+    public static final JString GER_ATTEMPT_TO_REESTABLISH = JString.parse("Bitte warten Sie )2 es wird versucht)1 die Verbindung wiederherzustellen)3");
 
     @OriginalMember(owner = "runetek4.client!fc", name = "d", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD130 = Static28.parse("Lade Benutzeroberfl-=che )2 ");
+    public static final JString GER_MAINLOAD130 = JString.parse("Lade Benutzeroberfl-=che )2 ");
 
     @OriginalMember(owner = "runetek4.client!em", name = "A", descriptor = "Lclient!na;")
-    public static final JString GER_CHATCOL8 = Static28.parse("blinken3:");
+    public static final JString GER_CHATCOL8 = JString.parse("blinken3:");
 
     @OriginalMember(owner = "runetek4.client!q", name = "b", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD30B = Static28.parse("Verbindung zum Update)2Server hergestellt)3");
+    public static final JString GER_MAINLOAD30B = JString.parse("Verbindung zum Update)2Server hergestellt)3");
 
     @OriginalMember(owner = "runetek4.client!gi", name = "l", descriptor = "Lclient!na;")
-    public static final JString GER_CHATCOL3 = Static28.parse("blaugr-Un:");
+    public static final JString GER_CHATCOL3 = JString.parse("blaugr-Un:");
 
     @OriginalMember(owner = "runetek4.client!jm", name = "w", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD150B = Static28.parse("3D)2Softwarebibliothek gestartet)3");
+    public static final JString GER_MAINLOAD150B = JString.parse("3D)2Softwarebibliothek gestartet)3");
 
     @OriginalMember(owner = "runetek4.client!ig", name = "e", descriptor = "Lclient!na;")
-    public static final JString GER_LOADING = Static28.parse("Ladevorgang )2 bitte warten Sie)3");
+    public static final JString GER_LOADING = JString.parse("Ladevorgang )2 bitte warten Sie)3");
 
     @OriginalMember(owner = "runetek4.client!ta", name = "m", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD0B = Static28.parse("Zugewiesener Speicher)3");
+    public static final JString GER_MAINLOAD0B = JString.parse("Zugewiesener Speicher)3");
 
     @OriginalMember(owner = "runetek4.client!sc", name = "k", descriptor = "Lclient!na;")
-    public static final JString GER_FACEHERE = Static28.parse("Hierhin drehen");
+    public static final JString GER_FACEHERE = JString.parse("Hierhin drehen");
 
     @OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "Lclient!na;")
-    public static final JString GER_CHATCOL7 = Static28.parse("blinken2:");
+    public static final JString GER_CHATCOL7 = JString.parse("blinken2:");
 
     @OriginalMember(owner = "runetek4.client!h", name = "yb", descriptor = "Lclient!na;")
-    public static final JString GER_REMOVEIGNORE = Static28.parse(" zuerst von Ihrer Ignorieren)2Liste(Q");
+    public static final JString GER_REMOVEIGNORE = JString.parse(" zuerst von Ihrer Ignorieren)2Liste(Q");
 
     @OriginalMember(owner = "runetek4.client!nh", name = "S", descriptor = "Lclient!na;")
-    public static final JString GER_LOADINGDOTDOTDOT = Static28.parse("Lade)3)3)3");
+    public static final JString GER_LOADINGDOTDOTDOT = JString.parse("Lade)3)3)3");
 
     @OriginalMember(owner = "runetek4.client!nh", name = "V", descriptor = "Lclient!na;")
-    public static final JString GER_CHATEFFECT3 = Static28.parse("sch-Utteln:");
+    public static final JString GER_CHATEFFECT3 = JString.parse("sch-Utteln:");
 
     @OriginalMember(owner = "runetek4.client!pi", name = "bb", descriptor = "Lclient!na;")
-    public static final JString GER_IGNORECANTADDSELF = Static28.parse("Sie k-Onnen sich selbst nicht selbst auf Ihre Ignorieren)2Liste setzen(Q");
+    public static final JString GER_IGNORECANTADDSELF = JString.parse("Sie k-Onnen sich selbst nicht selbst auf Ihre Ignorieren)2Liste setzen(Q");
 
     @OriginalMember(owner = "runetek4.client!ug", name = "f", descriptor = "Lclient!na;")
-    public static final JString GER_CHATCOL5 = Static28.parse("weiss:");
+    public static final JString GER_CHATCOL5 = JString.parse("weiss:");
 
     @OriginalMember(owner = "runetek4.client!nc", name = "d", descriptor = "Lclient!na;")
-    public static final JString GER_RATING = Static28.parse("Kampfstufe: ");
+    public static final JString GER_RATING = JString.parse("Kampfstufe: ");
 
     @OriginalMember(owner = "runetek4.client!pk", name = "eb", descriptor = "Lclient!na;")
-    public static final JString GER_ATTACK = Static28.parse("Angreifen");
+    public static final JString GER_ATTACK = JString.parse("Angreifen");
 
     @OriginalMember(owner = "runetek4.client!pf", name = "l", descriptor = "Lclient!na;")
-    public static final JString GER_MOREOPTIONS = Static28.parse(" weitere Optionen");
+    public static final JString GER_MOREOPTIONS = JString.parse(" weitere Optionen");
 
     @OriginalMember(owner = "runetek4.client!la", name = "g", descriptor = "Lclient!na;")
-    public static final JString GER_IGNORELISTDUPE = Static28.parse(" steht bereits auf Ihrer Ignorieren)2Liste(Q");
+    public static final JString GER_IGNORELISTDUPE = JString.parse(" steht bereits auf Ihrer Ignorieren)2Liste(Q");
 
     @OriginalMember(owner = "runetek4.client!jg", name = "k", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD60B = Static28.parse("Titelbild geladen)3");
+    public static final JString GER_MAINLOAD60B = JString.parse("Titelbild geladen)3");
 
     @OriginalMember(owner = "runetek4.client!lg", name = "j", descriptor = "Lclient!na;")
-    public static final JString GER_CHATCOL2 = Static28.parse("gr-Un:");
+    public static final JString GER_CHATCOL2 = JString.parse("gr-Un:");
 
     @OriginalMember(owner = "runetek4.client!nd", name = "u", descriptor = "Lclient!na;")
-    public static final JString GER_CANCEL = Static28.parse("Abbrechen");
+    public static final JString GER_CANCEL = JString.parse("Abbrechen");
 
     @OriginalMember(owner = "runetek4.client!uh", name = "fb", descriptor = "Lclient!na;")
-    public static final JString GER_GAME0_LOADING = Static28.parse("RuneScape wird geladen )2 bitte warten)3)3)3");
+    public static final JString GER_GAME0_LOADING = JString.parse("RuneScape wird geladen )2 bitte warten)3)3)3");
 
     @OriginalMember(owner = "runetek4.client!hb", name = "p", descriptor = "Lclient!na;")
-    public static final JString GER_MILLION_SUFFIX = Static28.parse("M");
+    public static final JString GER_MILLION_SUFFIX = JString.parse("M");
 
     @OriginalMember(owner = "runetek4.client!hb", name = "x", descriptor = "Lclient!na;")
-    public static final JString GER_PLEASEWAIT = Static28.parse("Bitte warten Sie)3)3)3");
+    public static final JString GER_PLEASEWAIT = JString.parse("Bitte warten Sie)3)3)3");
 
     @OriginalMember(owner = "runetek4.client!lj", name = "q", descriptor = "Lclient!na;")
-    public static final JString GER_DROP = Static28.parse("Fallen lassen");
+    public static final JString GER_DROP = JString.parse("Fallen lassen");
 
     @OriginalMember(owner = "runetek4.client!uh", name = "O", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD130B = Static28.parse("Benutzeroberfl-=che geladen)3");
+    public static final JString GER_MAINLOAD130B = JString.parse("Benutzeroberfl-=che geladen)3");
 
     @OriginalMember(owner = "runetek4.client!pe", name = "q", descriptor = "Lclient!na;")
-    public static final JString GER_MINISEPARATOR = Static28.parse(": ");
+    public static final JString GER_MINISEPARATOR = JString.parse(": ");
 
     @OriginalMember(owner = "runetek4.client!pe", name = "d", descriptor = "Lclient!na;")
-    public static final JString GER_CHATEFFECT1 = Static28.parse("welle:");
+    public static final JString GER_CHATEFFECT1 = JString.parse("welle:");
 
     @OriginalMember(owner = "runetek4.client!si", name = "ib", descriptor = "Lclient!na;")
-    public static final JString GER_CONTINUE = Static28.parse("Weiter");
+    public static final JString GER_CONTINUE = JString.parse("Weiter");
 
     @OriginalMember(owner = "runetek4.client!ic", name = "i", descriptor = "Lclient!na;")
-    public static final JString GER_IGNORELISTFULL = Static28.parse("Ihre Ignorieren)2Liste ist voll)1 Sie k-Onnen nur 100 Spieler darauf eintragen)3");
+    public static final JString GER_IGNORELISTFULL = JString.parse("Ihre Ignorieren)2Liste ist voll)1 Sie k-Onnen nur 100 Spieler darauf eintragen)3");
 
     @OriginalMember(owner = "runetek4.client!mf", name = "S", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD140 = Static28.parse("Starte 3D)2Softwarebibliothek)3");
+    public static final JString GER_MAINLOAD140 = JString.parse("Starte 3D)2Softwarebibliothek)3");
 
     @OriginalMember(owner = "runetek4.client!lh", name = "x", descriptor = "Lclient!na;")
-    public static final JString GER_CHATEFFECT4 = Static28.parse("scrollen:");
+    public static final JString GER_CHATEFFECT4 = JString.parse("scrollen:");
 
     @OriginalMember(owner = "runetek4.client!sk", name = "cb", descriptor = "Lclient!na;")
-    public static final JString GER_EXAMINE = Static28.parse("Untersuchen");
+    public static final JString GER_EXAMINE = JString.parse("Untersuchen");
 
     @OriginalMember(owner = "runetek4.client!sk", name = "eb", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD45B = Static28.parse("Musik)2Engine vorbereitet)3");
+    public static final JString GER_MAINLOAD45B = JString.parse("Musik)2Engine vorbereitet)3");
 
     @OriginalMember(owner = "runetek4.client!sd", name = "P", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD135B = Static28.parse("Liste der Welten geladen");
+    public static final JString GER_MAINLOAD135B = JString.parse("Liste der Welten geladen");
 
     @OriginalMember(owner = "runetek4.client!vh", name = "i", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD30 = Static28.parse("Verbindung mit Update)2Server)3)3)3");
+    public static final JString GER_MAINLOAD30 = JString.parse("Verbindung mit Update)2Server)3)3)3");
 
     @OriginalMember(owner = "runetek4.client!re", name = "r", descriptor = "Lclient!na;")
-    public static final JString GER_WALKHERE = Static28.parse("Hierhin gehen");
+    public static final JString GER_WALKHERE = JString.parse("Hierhin gehen");
 
     @OriginalMember(owner = "runetek4.client!qf", name = "U", descriptor = "Lclient!na;")
-    public static final JString GER_CHOOSE_OPTION = Static28.parse("W-=hlen Sie eine Option");
+    public static final JString GER_CHOOSE_OPTION = JString.parse("W-=hlen Sie eine Option");
 
     @OriginalMember(owner = "runetek4.client!hj", name = "i", descriptor = "Lclient!na;")
-    public static final JString GER_USE = Static28.parse("Benutzen");
+    public static final JString GER_USE = JString.parse("Benutzen");
 
     @OriginalMember(owner = "runetek4.client!ql", name = "k", descriptor = "Lclient!na;")
-    public static final JString GER_CHATEFFECT5 = Static28.parse("gleiten:");
+    public static final JString GER_CHATEFFECT5 = JString.parse("gleiten:");
 
     @OriginalMember(owner = "runetek4.client!ok", name = "g", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD60 = Static28.parse("Lade Titelbild )2 ");
+    public static final JString GER_MAINLOAD60 = JString.parse("Lade Titelbild )2 ");
 
     @OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "Lclient!na;")
-    public static final JString GER_CHATCOL10 = Static28.parse("leuchten2:");
+    public static final JString GER_CHATCOL10 = JString.parse("leuchten2:");
 
     @OriginalMember(owner = "runetek4.client!wd", name = "c", descriptor = "Lclient!na;")
-    public static final JString GER_UNABLETOFIND = Static28.parse("Spieler kann nicht gefunden werden: ");
+    public static final JString GER_UNABLETOFIND = JString.parse("Spieler kann nicht gefunden werden: ");
 
     @OriginalMember(owner = "runetek4.client!og", name = "h", descriptor = "Lclient!na;")
-    public static final JString GER_FRIENDLOGOUT = Static28.parse(" loggt sich aus)3");
+    public static final JString GER_FRIENDLOGOUT = JString.parse(" loggt sich aus)3");
 
     @OriginalMember(owner = "runetek4.client!ml", name = "S", descriptor = "Lclient!na;")
-    public static final JString GER_THOUSAND_SUFFIX = Static28.parse("T");
+    public static final JString GER_THOUSAND_SUFFIX = JString.parse("T");
 
     @OriginalMember(owner = "runetek4.client!va", name = "v", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD10B = Static28.parse("Spielwelt erstellt)3");
+    public static final JString GER_MAINLOAD10B = JString.parse("Spielwelt erstellt)3");
 
     @OriginalMember(owner = "runetek4.client!mf", name = "q", descriptor = "Lclient!na;")
-    public static final JString GER_OK = Static28.parse("Okay");
+    public static final JString GER_OK = JString.parse("Okay");
 
     @OriginalMember(owner = "runetek4.client!ob", name = "c", descriptor = "Lclient!na;")
-    public static final JString GER_SKILL = Static28.parse("Fertigkeit: ");
+    public static final JString GER_SKILL = JString.parse("Fertigkeit: ");
 
     @OriginalMember(owner = "runetek4.client!wf", name = "h", descriptor = "Lclient!na;")
-    public static final JString GER_MAINLOAD40B = Static28.parse("Update)2Liste geladen)3");
+    public static final JString GER_MAINLOAD40B = JString.parse("Update)2Liste geladen)3");
 
     @OriginalMember(owner = "runetek4.client!lk", name = "a", descriptor = "(Z)V")
     public static void switchToGerman() {
@@ -953,265 +954,265 @@ public class LocalizedText {
     // TODO: unsorted
     //region French Translations
     @OriginalMember(owner = "runetek4.client!kc", name = "r", descriptor = "Lclient!na;")
-    public static final JString FR_THOUSAND_SUFFIX = Static28.parse("K");
+    public static final JString FR_THOUSAND_SUFFIX = JString.parse("K");
 
     @OriginalMember(owner = "runetek4.client!qj", name = "g", descriptor = "Lclient!na;")
-    public static final JString FR_CHATCOL1 = Static28.parse("rouge:");
+    public static final JString FR_CHATCOL1 = JString.parse("rouge:");
 
     @OriginalMember(owner = "runetek4.client!oe", name = "m", descriptor = "Lclient!na;")
-    public static final JString FR_GAME0_LOADING = Static28.parse("Chargement de RuneScape en cours )2 veuillez patienter)3)3)3");
+    public static final JString FR_GAME0_LOADING = JString.parse("Chargement de RuneScape en cours )2 veuillez patienter)3)3)3");
 
     @OriginalMember(owner = "runetek4.client!ii", name = "j", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD130B = Static28.parse("Interfaces charg-Bes");
+    public static final JString FR_MAINLOAD130B = JString.parse("Interfaces charg-Bes");
 
     @OriginalMember(owner = "runetek4.client!pl", name = "d", descriptor = "Lclient!na;")
-    public static final JString FR_RATING = Static28.parse("classement ");
+    public static final JString FR_RATING = JString.parse("classement ");
 
     @OriginalMember(owner = "runetek4.client!ol", name = "S", descriptor = "Lclient!na;")
-    public static final JString FR_CONLOST = Static28.parse("Connexion perdue)3");
+    public static final JString FR_CONLOST = JString.parse("Connexion perdue)3");
 
     @OriginalMember(owner = "runetek4.client!ui", name = "nb", descriptor = "Lclient!na;")
-    public static final JString FR_CHATCOL0 = Static28.parse("jaune:");
+    public static final JString FR_CHATCOL0 = JString.parse("jaune:");
 
     @OriginalMember(owner = "runetek4.client!fm", name = "T", descriptor = "Lclient!na;")
-    public static final JString FR_MINISEPARATOR = Static28.parse(" ");
+    public static final JString FR_MINISEPARATOR = JString.parse(" ");
 
     @OriginalMember(owner = "runetek4.client!fk", name = "c", descriptor = "Lclient!na;")
-    public static final JString FR_CHECKING_FOR_UPDATES = Static28.parse("V-Brification des mises -9 jour )2 ");
+    public static final JString FR_CHECKING_FOR_UPDATES = JString.parse("V-Brification des mises -9 jour )2 ");
 
     @OriginalMember(owner = "runetek4.client!fk", name = "p", descriptor = "Lclient!na;")
-    public static final JString FR_CHATEFFECT2 = Static28.parse("ondulation2:");
+    public static final JString FR_CHATEFFECT2 = JString.parse("ondulation2:");
 
     @OriginalMember(owner = "runetek4.client!fh", name = "V", descriptor = "Lclient!na;")
-    public static final JString FR_CHATCOL2 = Static28.parse("vert:");
+    public static final JString FR_CHATCOL2 = JString.parse("vert:");
 
     @OriginalMember(owner = "runetek4.client!fc", name = "g", descriptor = "Lclient!na;")
-    public static final JString FR_USE = Static28.parse("Utiliser");
+    public static final JString FR_USE = JString.parse("Utiliser");
 
     @OriginalMember(owner = "runetek4.client!ab", name = "m", descriptor = "Lclient!na;")
-    public static final JString FR_MEMBERS_OBJECT = Static28.parse("Objet d(Wabonn-Bs");
+    public static final JString FR_MEMBERS_OBJECT = JString.parse("Objet d(Wabonn-Bs");
 
     @OriginalMember(owner = "runetek4.client!ah", name = "u", descriptor = "Lclient!na;")
-    public static final JString FR_REMOVESOCIAL = Static28.parse("Veuillez commencer par supprimer ");
+    public static final JString FR_REMOVESOCIAL = JString.parse("Veuillez commencer par supprimer ");
 
     @OriginalMember(owner = "runetek4.client!bf", name = "A", descriptor = "Lclient!na;")
-    public static final JString FR_CHATCOL10 = Static28.parse("brillant2:");
+    public static final JString FR_CHATCOL10 = JString.parse("brillant2:");
 
     @OriginalMember(owner = "runetek4.client!bg", name = "n", descriptor = "Lclient!na;")
-    public static final JString FR_FRIENDLISTFULL = Static28.parse("Votre liste d(Wamis est pleine (X100 noms maximum pour la version gratuite et 200 pour les abonn-Bs(Y)3");
+    public static final JString FR_FRIENDLISTFULL = JString.parse("Votre liste d(Wamis est pleine (X100 noms maximum pour la version gratuite et 200 pour les abonn-Bs(Y)3");
 
     @OriginalMember(owner = "runetek4.client!bm", name = "h", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD60B = Static28.parse(",Mcran)2titre charg-B");
+    public static final JString FR_MAINLOAD60B = JString.parse(",Mcran)2titre charg-B");
 
     @OriginalMember(owner = "runetek4.client!ca", name = "bb", descriptor = "Lclient!na;")
-    public static final JString FR_EXAMINE = Static28.parse("Examiner");
+    public static final JString FR_EXAMINE = JString.parse("Examiner");
 
     @OriginalMember(owner = "runetek4.client!cd", name = "v", descriptor = "Lclient!na;")
-    public static final JString FR_WALKHERE = Static28.parse("Atteindre");
+    public static final JString FR_WALKHERE = JString.parse("Atteindre");
 
     @OriginalMember(owner = "runetek4.client!cj", name = "b", descriptor = "Lclient!na;")
-    public static final JString FR_CHATCOL5 = Static28.parse("blanc:");
+    public static final JString FR_CHATCOL5 = JString.parse("blanc:");
 
     @OriginalMember(owner = "runetek4.client!cl", name = "P", descriptor = "Lclient!na;")
-    public static final JString FR_CHATCOL11 = Static28.parse("brillant3:");
+    public static final JString FR_CHATCOL11 = JString.parse("brillant3:");
 
     @OriginalMember(owner = "runetek4.client!cl", name = "R", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD65B = Static28.parse(",Mcran)2titre ouvert");
+    public static final JString FR_MAINLOAD65B = JString.parse(",Mcran)2titre ouvert");
 
     @OriginalMember(owner = "runetek4.client!cm", name = "e", descriptor = "Lclient!na;")
-    public static final JString FR_FRIENDCANTADDSELF = Static28.parse("Vous ne pouvez pas ajouter votre nom -9 votre liste d(Wamis)3");
+    public static final JString FR_FRIENDCANTADDSELF = JString.parse("Vous ne pouvez pas ajouter votre nom -9 votre liste d(Wamis)3");
 
     @OriginalMember(owner = "runetek4.client!cm", name = "i", descriptor = "Lclient!na;")
-    public static final JString FR_SKILL = Static28.parse("comp-Btence ");
+    public static final JString FR_SKILL = JString.parse("comp-Btence ");
 
     @OriginalMember(owner = "runetek4.client!cn", name = "x", descriptor = "Lclient!na;")
-    public static final JString FR_IGNORECANTADDSELF = Static28.parse("Vous ne pouvez pas ajouter votre nom -9 votre liste noire)3");
+    public static final JString FR_IGNORECANTADDSELF = JString.parse("Vous ne pouvez pas ajouter votre nom -9 votre liste noire)3");
 
     @OriginalMember(owner = "runetek4.client!e", name = "vc", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD110B = Static28.parse("Gestionnaire de saisie charg-B");
+    public static final JString FR_MAINLOAD110B = JString.parse("Gestionnaire de saisie charg-B");
 
     @OriginalMember(owner = "runetek4.client!ef", name = "l", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD130 = Static28.parse("Chargement des interfaces )2 ");
+    public static final JString FR_MAINLOAD130 = JString.parse("Chargement des interfaces )2 ");
 
     @OriginalMember(owner = "runetek4.client!eg", name = "y", descriptor = "Lclient!na;")
-    public static final JString FR_LENT_ITEM_RETURN = Static28.parse("Jeter");
+    public static final JString FR_LENT_ITEM_RETURN = JString.parse("Jeter");
 
     @OriginalMember(owner = "runetek4.client!ej", name = "cb", descriptor = "Lclient!na;")
-    public static final JString FR_CHATCOL7 = Static28.parse("clignotant2:");
+    public static final JString FR_CHATCOL7 = JString.parse("clignotant2:");
 
     @OriginalMember(owner = "runetek4.client!fb", name = "k", descriptor = "Lclient!na;")
-    public static final JString FR_MILLION_SUFFIX = Static28.parse("M");
+    public static final JString FR_MILLION_SUFFIX = JString.parse("M");
 
     @OriginalMember(owner = "runetek4.client!rc", name = "D", descriptor = "Lclient!na;")
-    public static final JString FR_FRIENDLOGOUT = Static28.parse(" s(West d-Bconnect-B)3");
+    public static final JString FR_FRIENDLOGOUT = JString.parse(" s(West d-Bconnect-B)3");
 
     @OriginalMember(owner = "runetek4.client!tm", name = "o", descriptor = "Lclient!na;")
-    public static final JString FR_CANCEL = Static28.parse("Annuler");
+    public static final JString FR_CANCEL = JString.parse("Annuler");
 
     @OriginalMember(owner = "runetek4.client!wa", name = "tb", descriptor = "Lclient!na;")
-    public static final JString FR_CHATEFFECT4 = Static28.parse("d-Broulement:");
+    public static final JString FR_CHATEFFECT4 = JString.parse("d-Broulement:");
 
     @OriginalMember(owner = "runetek4.client!wa", name = "H", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD50B = Static28.parse("Polices charg-Bes");
+    public static final JString FR_MAINLOAD50B = JString.parse("Polices charg-Bes");
 
     @OriginalMember(owner = "runetek4.client!il", name = "Q", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD90B = Static28.parse("Textures charg-Bes");
+    public static final JString FR_MAINLOAD90B = JString.parse("Textures charg-Bes");
 
     @OriginalMember(owner = "runetek4.client!il", name = "R", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD135B = Static28.parse("Liste des serveurs charg-Be");
+    public static final JString FR_MAINLOAD135B = JString.parse("Liste des serveurs charg-Be");
 
     @OriginalMember(owner = "runetek4.client!u", name = "d", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD150B = Static28.parse("Librairie 3D d-Bmarr-Be");
+    public static final JString FR_MAINLOAD150B = JString.parse("Librairie 3D d-Bmarr-Be");
 
     @OriginalMember(owner = "runetek4.client!kd", name = "tb", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD30B = Static28.parse("Connect-B au serveur de mise -9 jour");
+    public static final JString FR_MAINLOAD30B = JString.parse("Connect-B au serveur de mise -9 jour");
 
     @OriginalMember(owner = "runetek4.client!mg", name = "Y", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD0B = Static28.parse("M-Bmoire attribu-Be");
+    public static final JString FR_MAINLOAD0B = JString.parse("M-Bmoire attribu-Be");
 
     @OriginalMember(owner = "runetek4.client!km", name = "Ic", descriptor = "Lclient!na;")
-    public static final JString FR_CHATEFFECT1 = Static28.parse("ondulation:");
+    public static final JString FR_CHATEFFECT1 = JString.parse("ondulation:");
 
     @OriginalMember(owner = "runetek4.client!tl", name = "g", descriptor = "Lclient!na;")
-    public static final JString FR_CHATEFFECT3 = Static28.parse("tremblement:");
+    public static final JString FR_CHATEFFECT3 = JString.parse("tremblement:");
 
     @OriginalMember(owner = "runetek4.client!gm", name = "hb", descriptor = "Lclient!na;")
-    public static final JString FR_FACEHERE = Static28.parse("Regarder dans cette direction");
+    public static final JString FR_FACEHERE = JString.parse("Regarder dans cette direction");
 
     @OriginalMember(owner = "runetek4.client!li", name = "e", descriptor = "Lclient!na;")
-    public static final JString FR_PLEASEWAIT = Static28.parse("Veuillez patienter)3)3)3");
+    public static final JString FR_PLEASEWAIT = JString.parse("Veuillez patienter)3)3)3");
 
     @OriginalMember(owner = "runetek4.client!gi", name = "o", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD135 = Static28.parse("Chargement de la liste des serveurs");
+    public static final JString FR_MAINLOAD135 = JString.parse("Chargement de la liste des serveurs");
 
     @OriginalMember(owner = "runetek4.client!jm", name = "t", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD120B = Static28.parse("Module texte charg-B");
+    public static final JString FR_MAINLOAD120B = JString.parse("Module texte charg-B");
 
     @OriginalMember(owner = "runetek4.client!pb", name = "J", descriptor = "Lclient!na;")
-    public static final JString FR_CHOOSE_OPTION = Static28.parse("Choisir une option");
+    public static final JString FR_CHOOSE_OPTION = JString.parse("Choisir une option");
 
     @OriginalMember(owner = "runetek4.client!pb", name = "K", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD90 = Static28.parse("Chargement des textures )2 ");
+    public static final JString FR_MAINLOAD90 = JString.parse("Chargement des textures )2 ");
 
     @OriginalMember(owner = "runetek4.client!pb", name = "cb", descriptor = "Lclient!na;")
-    public static final JString FR_LOADING = Static28.parse("Chargement en cours)3 Veuillez patienter)3");
+    public static final JString FR_LOADING = JString.parse("Chargement en cours)3 Veuillez patienter)3");
 
     @OriginalMember(owner = "runetek4.client!gi", name = "k", descriptor = "Lclient!na;")
-    public static final JString FR_CHATCOL8 = Static28.parse("clignotant3:");
+    public static final JString FR_CHATCOL8 = JString.parse("clignotant3:");
 
     @OriginalMember(owner = "runetek4.client!q", name = "f", descriptor = "Lclient!na;")
-    public static final JString FR_HIDDEN = Static28.parse("Cach-B");
+    public static final JString FR_HIDDEN = JString.parse("Cach-B");
 
     @OriginalMember(owner = "runetek4.client!q", name = "g", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD50 = Static28.parse("Chargement des polices )2 ");
+    public static final JString FR_MAINLOAD50 = JString.parse("Chargement des polices )2 ");
 
     @OriginalMember(owner = "runetek4.client!gl", name = "c", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD10B = Static28.parse("Monde de jeu cr-B-B");
+    public static final JString FR_MAINLOAD10B = JString.parse("Monde de jeu cr-B-B");
 
     @OriginalMember(owner = "runetek4.client!me", name = "T", descriptor = "Lclient!na;")
-    public static final JString FR_CHATCOL4 = Static28.parse("violet:");
+    public static final JString FR_CHATCOL4 = JString.parse("violet:");
 
     @OriginalMember(owner = "runetek4.client!me", name = "kb", descriptor = "Lclient!na;")
-    public static final JString FR_IGNORELISTFULL = Static28.parse("Votre liste noire est pleine (X100 noms maximum(Y)3");
+    public static final JString FR_IGNORELISTFULL = JString.parse("Votre liste noire est pleine (X100 noms maximum(Y)3");
 
     @OriginalMember(owner = "runetek4.client!ud", name = "I", descriptor = "Lclient!na;")
-    public static final JString FR_LOADINGDOTDOTDOT = Static28.parse("Chargement en cours)3)3)3");
+    public static final JString FR_LOADINGDOTDOTDOT = JString.parse("Chargement en cours)3)3)3");
 
     @OriginalMember(owner = "runetek4.client!ud", name = "L", descriptor = "Lclient!na;")
-    public static final JString FR_CHATCOL6 = Static28.parse("clignotant1:");
+    public static final JString FR_CHATCOL6 = JString.parse("clignotant1:");
 
     @OriginalMember(owner = "runetek4.client!ja", name = "o", descriptor = "Lclient!na;")
-    public static final JString FR_TRADEREQ = Static28.parse("voudrait faire un -Bchange avec vous)3");
+    public static final JString FR_TRADEREQ = JString.parse("voudrait faire un -Bchange avec vous)3");
 
     @OriginalMember(owner = "runetek4.client!ja", name = "p", descriptor = "Lclient!na;")
-    public static final JString FR_FRIENDSLISTDUPE = Static28.parse(" est d-Bj-9 dans votre liste d(Wamis)3");
+    public static final JString FR_FRIENDSLISTDUPE = JString.parse(" est d-Bj-9 dans votre liste d(Wamis)3");
 
     @OriginalMember(owner = "runetek4.client!ja", name = "b", descriptor = "Lclient!na;")
-    public static final JString FR_SELECT = Static28.parse("S-Blectionner");
+    public static final JString FR_SELECT = JString.parse("S-Blectionner");
 
     @OriginalMember(owner = "runetek4.client!ja", name = "d", descriptor = "Lclient!na;")
-    public static final JString FR_LEVEL = Static28.parse("niveau ");
+    public static final JString FR_LEVEL = JString.parse("niveau ");
 
     @OriginalMember(owner = "runetek4.client!md", name = "X", descriptor = "Lclient!na;")
-    public static final JString FR_UNABLETOFIND = Static28.parse("Impossible de trouver ");
+    public static final JString FR_UNABLETOFIND = JString.parse("Impossible de trouver ");
 
     @OriginalMember(owner = "runetek4.client!md", name = "J", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD140 = Static28.parse("D-Bmarrage de la librairie 3D");
+    public static final JString FR_MAINLOAD140 = JString.parse("D-Bmarrage de la librairie 3D");
 
     @OriginalMember(owner = "runetek4.client!md", name = "O", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD70B = Static28.parse("Fichiers config charg-Bs");
+    public static final JString FR_MAINLOAD70B = JString.parse("Fichiers config charg-Bs");
 
     @OriginalMember(owner = "runetek4.client!md", name = "P", descriptor = "Lclient!na;")
-    public static final JString FR_CLOSE = Static28.parse("Fermer");
+    public static final JString FR_CLOSE = JString.parse("Fermer");
 
     @OriginalMember(owner = "runetek4.client!vj", name = "l", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD70 = Static28.parse("Chargement des fichiers config )2 ");
+    public static final JString FR_MAINLOAD70 = JString.parse("Chargement des fichiers config )2 ");
 
     @OriginalMember(owner = "runetek4.client!sd", name = "J", descriptor = "Lclient!na;")
-    public static final JString FR_ATTEMPT_TO_REESTABLISH = Static28.parse("Veuillez patienter )2 tentative de r-Btablissement)3");
+    public static final JString FR_ATTEMPT_TO_REESTABLISH = JString.parse("Veuillez patienter )2 tentative de r-Btablissement)3");
 
     @OriginalMember(owner = "runetek4.client!k", name = "n", descriptor = "Lclient!na;")
-    public static final JString FR_CHATCOL9 = Static28.parse("brillant1:");
+    public static final JString FR_CHATCOL9 = JString.parse("brillant1:");
 
     @OriginalMember(owner = "runetek4.client!k", name = "u", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD80 = Static28.parse("Chargement des sprites )2 ");
+    public static final JString FR_MAINLOAD80 = JString.parse("Chargement des sprites )2 ");
 
     @OriginalMember(owner = "runetek4.client!ij", name = "n", descriptor = "Lclient!na;")
-    public static final JString FR_REMOVEIGNORE = Static28.parse(" de votre liste noire)3");
+    public static final JString FR_REMOVEIGNORE = JString.parse(" de votre liste noire)3");
 
     @OriginalMember(owner = "runetek4.client!ic", name = "d", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD40B = Static28.parse("Liste des mises -9 jour charg-Be");
+    public static final JString FR_MAINLOAD40B = JString.parse("Liste des mises -9 jour charg-Be");
 
     @OriginalMember(owner = "runetek4.client!ic", name = "m", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD80B = Static28.parse("Sprites charg-Bs");
+    public static final JString FR_MAINLOAD80B = JString.parse("Sprites charg-Bs");
 
     @OriginalMember(owner = "runetek4.client!mf", name = "K", descriptor = "Lclient!na;")
-    public static final JString FR_DROP = Static28.parse("Poser");
+    public static final JString FR_DROP = JString.parse("Poser");
 
     @OriginalMember(owner = "runetek4.client!rh", name = "q", descriptor = "Lclient!na;")
-    public static final JString FR_OK = Static28.parse("OK");
+    public static final JString FR_OK = JString.parse("OK");
 
     @OriginalMember(owner = "runetek4.client!pk", name = "Q", descriptor = "Lclient!na;")
-    public static final JString FR_CHATEFFECT5 = Static28.parse("glissement:");
+    public static final JString FR_CHATEFFECT5 = JString.parse("glissement:");
 
     @OriginalMember(owner = "runetek4.client!kh", name = "a", descriptor = "Lclient!na;")
-    public static final JString FR_ATTACK = Static28.parse("Attaquer");
+    public static final JString FR_ATTACK = JString.parse("Attaquer");
 
     @OriginalMember(owner = "runetek4.client!tc", name = "b", descriptor = "Lclient!na;")
-    public static final JString FR_TAKE = Static28.parse("Prendre");
+    public static final JString FR_TAKE = JString.parse("Prendre");
 
     @OriginalMember(owner = "runetek4.client!tc", name = "c", descriptor = "Lclient!na;")
-    public static final JString FR_REMOVEFRIEND = Static28.parse(" de votre liste d(Wamis)3");
+    public static final JString FR_REMOVEFRIEND = JString.parse(" de votre liste d(Wamis)3");
 
     @OriginalMember(owner = "runetek4.client!hm", name = "lb", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD45B = Static28.parse("Moteur son pr-Bpar-B");
+    public static final JString FR_MAINLOAD45B = JString.parse("Moteur son pr-Bpar-B");
 
     @OriginalMember(owner = "runetek4.client!kk", name = "a", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD0 = Static28.parse("M-Bmoire en cours d(Wattribution");
+    public static final JString FR_MAINLOAD0 = JString.parse("M-Bmoire en cours d(Wattribution");
 
     @OriginalMember(owner = "runetek4.client!wj", name = "k", descriptor = "Lclient!na;")
-    public static final JString FR_CONTINUE = Static28.parse("Continuer");
+    public static final JString FR_CONTINUE = JString.parse("Continuer");
 
     @OriginalMember(owner = "runetek4.client!oi", name = "k", descriptor = "Lclient!na;")
-    public static final JString FR_CHATCOL3 = Static28.parse("cyan:");
+    public static final JString FR_CHATCOL3 = JString.parse("cyan:");
 
     @OriginalMember(owner = "runetek4.client!sj", name = "x", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD30 = Static28.parse("Connexion au serveur de mise -9 jour en cours");
+    public static final JString FR_MAINLOAD30 = JString.parse("Connexion au serveur de mise -9 jour en cours");
 
     @OriginalMember(owner = "runetek4.client!la", name = "k", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOLAD120 = Static28.parse("Chargement du module texte )2 ");
+    public static final JString FR_MAINLOLAD120 = JString.parse("Chargement du module texte )2 ");
 
     @OriginalMember(owner = "runetek4.client!hi", name = "h", descriptor = "Lclient!na;")
-    public static final JString FR_MAINLOAD60 = Static28.parse("Chargement de l(W-Bcran)2titre )2 ");
+    public static final JString FR_MAINLOAD60 = JString.parse("Chargement de l(W-Bcran)2titre )2 ");
 
     @OriginalMember(owner = "runetek4.client!gg", name = "jb", descriptor = "Lclient!na;")
-    public static final JString FR_IGNORELISTDUPE = Static28.parse(" est d-Bj-9 dans votre liste noire)3");
+    public static final JString FR_IGNORELISTDUPE = JString.parse(" est d-Bj-9 dans votre liste noire)3");
 
     @OriginalMember(owner = "runetek4.client!uf", name = "d", descriptor = "Lclient!na;")
-    public static final JString FR_MOREOPTIONS = Static28.parse(" autres options");
+    public static final JString FR_MOREOPTIONS = JString.parse(" autres options");
 
     @OriginalMember(owner = "runetek4.client!gg", name = "Q", descriptor = "Lclient!na;")
-    public static final JString FR_FRIENDLOGIN = Static28.parse(" s(West connect-B)3");
+    public static final JString FR_FRIENDLOGIN = JString.parse(" s(West connect-B)3");
 
     @OriginalMember(owner = "runetek4.client!bb", name = "a", descriptor = "(B)V")
     public static void switchToFrench() {
@@ -1305,6 +1306,20 @@ public class LocalizedText {
         USE = FR_USE;
         CHATEFFECT4 = FR_CHATEFFECT4;
         MAINLOAD135 = FR_MAINLOAD135;
+    }
+
+    @OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "(II)V")
+    public static void setLanguage(@OriginalArg(1) int arg0) {
+        if (arg0 == 0) {
+            return;
+        }
+        if (arg0 == 1) {
+            switchToGerman();
+        } else if (arg0 == 2) {
+            switchToFrench();
+        } else {
+            throw new RuntimeException();
+        }
     }
     //endregion
 }

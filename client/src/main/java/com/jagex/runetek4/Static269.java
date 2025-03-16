@@ -1,11 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.config.lighttype.LightType;
-import com.jagex.runetek4.js5.network.Js5NetResourceProvider;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -23,19 +21,11 @@ public final class Static269 {
 	public static JString[] aClass100Array87 = null;
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "pb", descriptor = "Lclient!na;")
-	public static final JString aClass100_556 = Static28.parse("<br>");
-
-	@OriginalMember(owner = "runetek4.client!wa", name = "Eb", descriptor = "[Lclient!bg;")
-	public static final Js5NetResourceProvider[] aClass14_Sub1Array3 = new Js5NetResourceProvider[28];
-
-	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(Z)V")
-	public static void method2170() {
-		Static250.anInt5434++;
-	}
+	public static final JString aClass100_556 = JString.parse("<br>");
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "e", descriptor = "(B)V")
 	public static void method2172() {
-		Static118.aClass99_16.method3104();
+		Static118.aClass99_16.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "([Lclient!mj;ZIIIII[B)V")
@@ -275,7 +265,7 @@ public final class Static269 {
 				Rasterizer.drawFilledRectangle(local50 - 150, local61 + 2, Static41.anInt1309 * 3, 30, 9179409);
 				Rasterizer.drawFilledRectangle(Static41.anInt1309 * 3 + local50 - 150, local61 - -2, 300 - Static41.anInt1309 * 3, 30, 0);
 			}
-			Font.b12Full.method2875(LocalizedText.LOADINGDOTDOTDOT, local50, local61 + 20, 16777215, -1);
+			Fonts.b12Full.method2875(LocalizedText.LOADINGDOTDOTDOT, local50, local61 + 20, 16777215, -1);
 			return;
 		}
 		Static37.anInt1176 = (int) ((float) (arg2 * 2) / Static83.aFloat3);
@@ -309,12 +299,12 @@ public final class Static269 {
 				Static201.anInt1864--;
 			}
 		}
-		if (!Static43.displayFps) {
+		if (!Cheat.displayFps) {
 			return;
 		}
 		@Pc(405) int local405 = arg1 + arg2 - 8;
 		@Pc(412) int local412 = arg0 + arg3 - 5;
-		Static215.aClass3_Sub2_Sub9_32.method2864(Static34.method882(new JString[] { Static115.FPS, Static123.method2423(Static243.fps) }), local412, local405, 16776960, -1);
+		Static215.aClass3_Sub2_Sub9_32.method2864(JString.concatenate(new JString[] { Cheat.DEBUG_FPS, JString.parseInt(Static243.fps) }), local412, local405, 16776960, -1);
 		@Pc(434) Runtime local434 = Runtime.getRuntime();
 		@Pc(443) int local443 = (int) ((local434.totalMemory() - local434.freeMemory()) / 1024L);
 		@Pc(445) int local445 = 16776960;
@@ -322,12 +312,12 @@ public final class Static269 {
 		if (local443 > 65536) {
 			local445 = 16711680;
 		}
-		Static215.aClass3_Sub2_Sub9_32.method2864(Static34.method882(new JString[] { Static203.MEM, Static123.method2423(local443), Static19.aClass100_112 }), local412, local446, local445, -1);
+		Static215.aClass3_Sub2_Sub9_32.method2864(JString.concatenate(new JString[] { Cheat.MEM, JString.parseInt(local443), Cheat.DEBUG_MEMORY_UNIT}), local412, local446, local445, -1);
 		local405 = local446 - 15;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(IZ)Lclient!na;")
 	public static JString method2228(@OriginalArg(0) int arg0) {
-		return ClientScriptRunner.aClass100Array160[arg0].length() > 0 ? Static34.method882(new JString[] { Static254.aClass100Array168[arg0], LocalizedText.MINISEPARATOR, ClientScriptRunner.aClass100Array160[arg0] }) : Static254.aClass100Array168[arg0];
+		return ClientScriptRunner.aClass100Array160[arg0].length() > 0 ? JString.concatenate(new JString[] { Static254.aClass100Array168[arg0], LocalizedText.MINISEPARATOR, ClientScriptRunner.aClass100Array160[arg0] }) : Static254.aClass100Array168[arg0];
 	}
 }

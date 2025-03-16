@@ -19,9 +19,6 @@ public final class Static37 {
 	@OriginalMember(owner = "runetek4.client!cm", name = "c", descriptor = "I")
 	public static int anInt1176;
 
-	@OriginalMember(owner = "runetek4.client!cm", name = "f", descriptor = "Lsignlink!im;")
-	public static PrivilegedRequest js5SocketRequest;
-
 	@OriginalMember(owner = "runetek4.client!cm", name = "a", descriptor = "(ILclient!fe;)V")
 	public static void method949(@OriginalArg(1) PathingEntity e) {
 		if (e.anInt3376 == 0) {
@@ -47,7 +44,7 @@ public final class Static37 {
 			if (index == PlayerList.selfId) {
 				index = 2047;
 			}
-			@Pc(83) Player player = Static159.players[index];
+			@Pc(83) Player player = PlayerList.players[index];
 			if (player != null) {
 				local94 = e.zFine - player.zFine;
 				dstZ = e.xFine - player.xFine;
@@ -56,7 +53,7 @@ public final class Static37 {
 				}
 			}
 		}
-		if ((e.anInt3382 != 0 || e.anInt3363 != 0) && (e.pathLength == 0 || e.anInt3417 > 0)) {
+		if ((e.anInt3382 != 0 || e.anInt3363 != 0) && (e.movementQueueSize == 0 || e.anInt3417 > 0)) {
 			index = e.xFine - (e.anInt3382 - Camera.originX - Camera.originX) * 64;
 			dstX = e.zFine - (e.anInt3363 - Camera.originZ - Camera.originZ) * 64;
 			if (index != 0 || dstX != 0) {

@@ -21,14 +21,14 @@ public class LoadingBar {
         if (GlRenderer.enabled) {
             Static46.method1179(GameShell.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
             Static46.method1179(GameShell.canvasWidth / 2 - 151, local9 - -1, 302, 32, 0);
-            Static46.method1186(GameShell.canvasWidth / 2 - 150, local9 + 2, Static199.mainLoadPercentage * 3, 30, 9179409);
-            Static46.method1186(GameShell.canvasWidth / 2 + Static199.mainLoadPercentage * 3 - 150, local9 + 2, 300 - Static199.mainLoadPercentage * 3, 30, 0);
+            Static46.method1186(GameShell.canvasWidth / 2 - 150, local9 + 2, client.mainLoadPercentage * 3, 30, 9179409);
+            Static46.method1186(GameShell.canvasWidth / 2 + client.mainLoadPercentage * 3 - 150, local9 + 2, 300 - client.mainLoadPercentage * 3, 30, 0);
         } else {
             Rasterizer.drawUnfilledRectangle(GameShell.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
             Rasterizer.drawUnfilledRectangle(GameShell.canvasWidth / 2 - 151, local9 + 1, 302, 32, 0);
-            Rasterizer.drawFilledRectangle(GameShell.canvasWidth / 2 - 150, local9 + 2, Static199.mainLoadPercentage * 3, 30, 9179409);
-            Rasterizer.drawFilledRectangle(Static199.mainLoadPercentage * 3 + GameShell.canvasWidth / 2 - 150, local9 + 2, 300 - Static199.mainLoadPercentage * 3, 30, 0);
+            Rasterizer.drawFilledRectangle(GameShell.canvasWidth / 2 - 150, local9 + 2, client.mainLoadPercentage * 3, 30, 9179409);
+            Rasterizer.drawFilledRectangle(client.mainLoadPercentage * 3 + GameShell.canvasWidth / 2 - 150, local9 + 2, 300 - client.mainLoadPercentage * 3, 30, 0);
         }
-        arg1.method2875(Static126.mainLoadSecondaryText, GameShell.canvasWidth / 2, GameShell.canvasHeigth / 2 + 4, 16777215, -1);
+        arg1.method2875(client.mainLoadSecondaryText, GameShell.canvasWidth / 2, GameShell.canvasHeigth / 2 + 4, 16777215, -1);
     }
 }

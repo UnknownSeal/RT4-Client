@@ -1,11 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -16,24 +13,18 @@ public final class Static217 {
 	@OriginalMember(owner = "runetek4.client!rj", name = "R", descriptor = "I")
 	public static int eyeZ;
 
-	@OriginalMember(owner = "runetek4.client!rj", name = "Y", descriptor = "J")
-	public static long js5ConnectTime;
-
 	@OriginalMember(owner = "runetek4.client!rj", name = "P", descriptor = "I")
 	public static int anInt4901 = -1;
-
-	@OriginalMember(owner = "runetek4.client!rj", name = "U", descriptor = "Lclient!ih;")
-	public static final LinkedList projectiles = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "Z", descriptor = "[I")
 	public static final int[] anIntArray434 = new int[64];
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "ab", descriptor = "Lclient!na;")
-	public static final JString CLANREQ = Static28.parse(":clanreq:");
+	public static final JString CLANREQ = JString.parse(":clanreq:");
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "a", descriptor = "(IIILclient!e;I)V")
 	public static void method3767(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Player arg2, @OriginalArg(4) int arg3) {
-		if (PlayerList.self == arg2 || PreciseSleep.menuActionRow >= 400) {
+		if (PlayerList.self == arg2 || MiniMenu.menuActionRow >= 400) {
 			return;
 		}
 		@Pc(158) JString local158;
@@ -51,23 +42,23 @@ public final class Static217 {
 					local22 = false;
 				}
 			}
-			@Pc(95) JString local95 = Static266.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
+			@Pc(95) JString local95 = client.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
 			if (arg2.combatLevel < arg2.anInt1656) {
-				local158 = Static34.method882(new JString[] { arg2.getUsername(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, PlayerList.self.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static78.aClass100_465, Static123.method2423(arg2.anInt1656 - arg2.combatLevel), Static72.aClass100_448 });
+				local158 = JString.concatenate(new JString[] { arg2.getUsername(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, PlayerList.self.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, JString.parseInt(arg2.combatLevel), Static78.aClass100_465, JString.parseInt(arg2.anInt1656 - arg2.combatLevel), Static72.aClass100_448 });
 			} else {
-				local158 = Static34.method882(new JString[] { arg2.getUsername(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, PlayerList.self.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static72.aClass100_448 });
+				local158 = JString.concatenate(new JString[] { arg2.getUsername(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, PlayerList.self.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, JString.parseInt(arg2.combatLevel), Static72.aClass100_448 });
 			}
 		} else {
-			local158 = Static34.method882(new JString[] { arg2.getUsername(), Static123.aClass100_593, LocalizedText.SKILL, Static123.method2423(arg2.anInt1671), Static72.aClass100_448 });
+			local158 = JString.concatenate(new JString[] { arg2.getUsername(), Static123.aClass100_593, LocalizedText.SKILL, JString.parseInt(arg2.anInt1671), Static72.aClass100_448 });
 		}
 		@Pc(275) int local275;
-		if (Static260.anInt5014 == 1) {
-			Static98.addActionRow(Static169.anInt4075, (long) arg0, Static34.method882(new JString[] { Static34.aClass100_203, Static105.aClass100_561, local158 }), arg3, (short) 1, LocalizedText.USE, arg1);
-		} else if (!Static241.aBoolean302) {
+		if (MiniMenu.anInt5014 == 1) {
+			Static98.addActionRow(Static169.anInt4075, (long) arg0, JString.concatenate(new JString[] { Static34.aClass100_203, Static105.aClass100_561, local158 }), arg3, (short) 1, LocalizedText.USE, arg1);
+		} else if (!MiniMenu.aBoolean302) {
 			for (local275 = 7; local275 >= 0; local275--) {
-				if (Static160.aClass100Array121[local275] != null) {
+				if (Player.options[local275] != null) {
 					@Pc(291) short local291 = 0;
-					if (Static266.game == 0 && Static160.aClass100Array121[local275].equalsIgnoreCase(LocalizedText.ATTACK)) {
+					if (client.game == 0 && Player.options[local275].equalsIgnoreCase(LocalizedText.ATTACK)) {
 						if (arg2.combatLevel > PlayerList.self.combatLevel) {
 							local291 = 2000;
 						}
@@ -78,68 +69,23 @@ public final class Static217 {
 								local291 = 0;
 							}
 						}
-					} else if (Static1.aBooleanArray1[local275]) {
+					} else if (Player.secondaryOptions[local275]) {
 						local291 = 2000;
 					}
 					@Pc(353) short local353 = Static5.aShortArray2[local275];
 					@Pc(358) short local358 = (short) (local353 + local291);
-					Static98.addActionRow(Static191.anIntArray388[local275], (long) arg0, Static34.method882(new JString[] { Static204.aClass100_896, local158 }), arg3, local358, Static160.aClass100Array121[local275], arg1);
+					Static98.addActionRow(Player.cursors[local275], (long) arg0, JString.concatenate(new JString[] { Static204.aClass100_896, local158 }), arg3, local358, Player.options[local275], arg1);
 				}
 			}
 		} else if ((Static274.anInt4999 & 0x8) != 0) {
-			Static98.addActionRow(Static246.anInt5393, (long) arg0, Static34.method882(new JString[] { Static78.aClass100_466, Static105.aClass100_561, local158 }), arg3, (short) 15, Static102.aClass100_545, arg1);
+			Static98.addActionRow(Static246.anInt5393, (long) arg0, JString.concatenate(new JString[] { Static78.aClass100_466, Static105.aClass100_561, local158 }), arg3, (short) 15, Static102.aClass100_545, arg1);
 		}
-		for (local275 = 0; local275 < PreciseSleep.menuActionRow; local275++) {
+		for (local275 = 0; local275 < MiniMenu.menuActionRow; local275++) {
 			if (Static39.aShortArray6[local275] == 60) {
-				ClientScriptRunner.aClass100Array160[local275] = Static34.method882(new JString[] { Static204.aClass100_896, local158 });
+				ClientScriptRunner.aClass100Array160[local275] = JString.concatenate(new JString[] { Static204.aClass100_896, local158 });
 				break;
 			}
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!rj", name = "f", descriptor = "(B)V")
-	public static void method3768() {
-		Static276.method4612();
-		Static54.method1308();
-		ClientScriptRunner.method3999();
-		Static90.method1854();
-		Static204.method3673();
-		Static176.method3302();
-		Static10.method350();
-		Static247.method4249();
-		Static53.method1295();
-		Static249.method4266();
-		BasTypeList.clear();
-		Class6.method3653();
-		Static78.method1695();
-		Static10.method351();
-		Static230.method3947();
-		Static147.method2764();
-		if (ItemDefinition.modeWhat != 0) {
-			for (@Pc(54) int local54 = 0; local54 < Static51.aByteArrayArray8.length; local54++) {
-				Static51.aByteArrayArray8[local54] = null;
-			}
-			Static105.anInt2863 = 0;
-		}
-		Static181.method3347();
-		Static90.method1857();
-		Static139.aClass99_22.method3104();
-		if (!GlRenderer.enabled) {
-			((Js5GlTextureProvider) Pix3D.anInterface1_2).method3247();
-		}
-		Static105.clientScriptCache.method1815();
-		Static213.aClass153_88.method4499();
-		Static249.aClass153_100.method4499();
-		Static41.aClass153_25.method4499();
-		client.js5Archive4.method4499();
-		Static26.aClass153_16.method4499();
-		Static130.aClass153_47.method4499();
-		Static267.aClass153_109.method4499();
-		Static209.aClass153_86.method4499();
-		CacheArchive.huffmanJs5.method4499();
-		Static214.aClass153_106.method4499();
-		Static16.aClass153_9.method4499();
-		Static73.aClass99_10.method3104();
 	}
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "a", descriptor = "([Lclient!mj;I[BIIIIZIIB)V")

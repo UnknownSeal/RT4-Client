@@ -46,7 +46,7 @@ public final class Static79 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ge", name = "a", descriptor = "(BLclient!ve;)V")
-	public static void method1703(@OriginalArg(1) Js5 arg0) {
+	public static void init(@OriginalArg(1) Js5 arg0) {
 		BasTypeList.archive = arg0;
 	}
 }

@@ -46,11 +46,11 @@ public final class ClientScript extends CachedNode {
 
 	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(IB)Lclient!qc;")
 	public static ClientScript decodeClientScript(@OriginalArg(0) int scriptId) {
-		@Pc(12) ClientScript clientScript = (ClientScript) Static105.clientScriptCache.get((long) scriptId);
+		@Pc(12) ClientScript clientScript = (ClientScript) Static105.scripts.get((long) scriptId);
 		if (clientScript != null) {
 			return clientScript;
 		}
-		@Pc(22) byte[] local22 = Static16.aClass153_9.getfile(scriptId, 0);
+		@Pc(22) byte[] local22 = client.js5Archive12.getfile(scriptId, 0);
 		if (local22 == null) {
 			return null;
 		}
@@ -98,7 +98,7 @@ public final class ClientScript extends CachedNode {
 			}
 			clientScript.opcodes[local107++] = opcode;
 		}
-		Static105.clientScriptCache.put(clientScript, (long) scriptId);
+		Static105.scripts.put(clientScript, (long) scriptId);
 		return clientScript;
 	}
 
@@ -126,16 +126,16 @@ public final class ClientScript extends CachedNode {
 					nextOperator = 2;
 				}
 				if (opcode == 1) { // load_skill_level {skill}
-					register1 = Static99.skillLevel[script[pc++]];
+					register1 = PlayerSkillXpTable.skillLevel[script[pc++]];
 				}
 				if (opcode == 17) {
 					nextOperator = 3;
 				}
 				if (opcode == 2) { // load_skill_base_level {skill}
-					register1 = Static141.skillBaseLevel[script[pc++]];
+					register1 = PlayerSkillXpTable.skillBaseLevel[script[pc++]];
 				}
 				if (opcode == 3) { // load_skill_exp {skill}
-					register1 = Static227.skillExperience[script[pc++]];
+					register1 = PlayerSkillXpTable.skillExperience[script[pc++]];
 				}
 				@Pc(124) int i;
 				@Pc(135) Component com;
@@ -144,7 +144,7 @@ public final class ClientScript extends CachedNode {
 				if (opcode == 4) { // load_inv_count {interface id} {obj id}
 					i = script[pc++] << 16;
 					@Pc(131) int local131 = i + script[pc++];
-					com = Component.getComponent(local131);
+					com = InterfaceList.getComponent(local131);
 					local140 = script[pc++];
 					if (local140 != -1 && (!Static71.get(local140).members || Static2.membersWorld)) {
 						for (j = 0; j < com.invSlotObjId.length; j++) {
@@ -158,7 +158,7 @@ public final class ClientScript extends CachedNode {
 					register1 = VarPlayerDefinition.varPlayers[script[pc++]];
 				}
 				if (opcode == 6) {  // load_next_level_xp {skill}
-					register1 = ItemDefinition.levelExperience[Static141.skillBaseLevel[script[pc++]] - 1];
+					register1 = ItemDefinition.levelExperience[PlayerSkillXpTable.skillBaseLevel[script[pc++]] - 1];
 				}
 				if (opcode == 7) {
 					register1 = VarPlayerDefinition.varPlayers[script[pc++]] * 100 / 46875;
@@ -169,14 +169,14 @@ public final class ClientScript extends CachedNode {
 				if (opcode == 9) { // load_total_level
 					for (i = 0; i < 25; i++) {
 						if (Static182.aBooleanArray97[i]) {
-							register1 += Static141.skillBaseLevel[i];
+							register1 += PlayerSkillXpTable.skillBaseLevel[i];
 						}
 					}
 				}
 				if (opcode == 10) { // load_inv_contains {interface id} {obj id}
 					i = script[pc++] << 16;
 					i += script[pc++];
-					com = Component.getComponent(i);
+					com = InterfaceList.getComponent(i);
 					local140 = script[pc++];
 					if (local140 != -1 && (!Static71.get(local140).members || Static2.membersWorld)) {
 						for (j = 0; j < com.invSlotObjId.length; j++) {

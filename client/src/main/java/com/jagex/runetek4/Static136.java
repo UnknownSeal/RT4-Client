@@ -14,13 +14,13 @@ public final class Static136 {
 	public static int anInt3324;
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "g", descriptor = "I")
-	public static int anInt3322 = -1;
+	public static int logoId = -1;
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "j", descriptor = "I")
 	public static int anInt3325 = 0;
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "m", descriptor = "Lclient!na;")
-	public static final JString aClass100_633 = Static28.parse("Clientscript error )2 check log for details");
+	public static final JString aClass100_633 = JString.parse("Clientscript error )2 check log for details");
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "a", descriptor = "(IIB)V")
 	public static void method2649(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
@@ -80,11 +80,11 @@ public final class Static136 {
 		if (arg0.data.length - arg0.offset < local34) {
 			return;
 		}
-		Static113.anInt4609 = arg0.g1();
-		if (Static113.anInt4609 < 1) {
-			Static113.anInt4609 = 1;
-		} else if (Static113.anInt4609 > 4) {
-			Static113.anInt4609 = 4;
+		Static113.brightness = arg0.g1();
+		if (Static113.brightness < 1) {
+			Static113.brightness = 1;
+		} else if (Static113.brightness > 4) {
+			Static113.brightness = 4;
 		}
 		Static53.method1293(arg0.g1() == 1);
 		Static80.aBoolean231 = arg0.g1() == 1;
@@ -106,12 +106,12 @@ public final class Static136 {
 		}
 		Static220.aBoolean244 = arg0.g1() == 1;
 		Static71.aBoolean107 = arg0.g1() == 1;
-		Static102.anInt2679 = arg0.g1();
-		if (Static102.anInt2679 > 2) {
-			Static102.anInt2679 = 2;
+		Preferences.windowMode = arg0.g1();
+		if (Preferences.windowMode > 2) {
+			Preferences.windowMode = 2;
 		}
-		Static186.antialiasingMode = Static102.anInt2679;
-		Static99.aBoolean143 = arg0.g1() == 1;
+		Preferences.antiAliasingMode = Preferences.windowMode;
+		Preferences.stereo = arg0.g1() == 1;
 		Static125.anInt3104 = arg0.g1();
 		if (Static125.anInt3104 > 127) {
 			Static125.anInt3104 = 127;
@@ -133,7 +133,7 @@ public final class Static136 {
 			if (Static238.anInt5316 < 96) {
 				local386 = 0;
 			}
-			Static76.method1645(local386);
+			Preferences.setParticles(local386);
 		}
 		if (local21 >= 5) {
 			Static164.anInt3988 = arg0.g4();
@@ -142,13 +142,13 @@ public final class Static136 {
 			Preferences.favoriteWorlds = arg0.g1();
 		}
 		if (local21 >= 7) {
-			Static164.aBoolean191 = arg0.g1() == 1;
+			Preferences.safeMode = arg0.g1() == 1;
 		}
 		if (local21 >= 8) {
 			Preferences.aBoolean63 = arg0.g1() == 1;
 		}
 		if (local21 >= 9) {
-			Static141.anInt3474 = arg0.g1();
+			Preferences.buildArea = arg0.g1();
 		}
 		if (local21 >= 10) {
 			Static127.aBoolean159 = arg0.g1() != 0;

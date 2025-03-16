@@ -16,13 +16,10 @@ public final class Static211 {
 	public static boolean aBoolean72 = false;
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "G", descriptor = "Lclient!na;")
-	public static final JString aClass100_230 = Static28.parse("");
+	public static final JString aClass100_230 = JString.parse("");
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "I", descriptor = "Lclient!na;")
-	public static final JString aClass100_231 = Static28.parse(")3)3)3");
-
-	@OriginalMember(owner = "runetek4.client!rc", name = "K", descriptor = "Lclient!na;")
-	public static final JString RECT_DEBUG = Static28.parse("::rect_debug");
+	public static final JString aClass100_231 = JString.parse(")3)3)3");
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "M", descriptor = "Z")
 	public static boolean aBoolean73 = false;
@@ -35,21 +32,7 @@ public final class Static211 {
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(Z)V")
 	public static void method924() {
-		Static244.aClass99_32.method3104();
+		Static244.aClass99_32.clear();
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "d", descriptor = "(I)V")
-	public static void method930() {
-		if (Static11.aClass62_1 != null) {
-			Static11.aClass62_1.quit();
-		}
-		if (Static147.aClass62_2 != null) {
-			Static147.aClass62_2.quit();
-		}
-		Static41.init(Static99.aBoolean143);
-		Static11.aClass62_1 = Static107.method2262(22050, GameShell.signLink, GameShell.canvas, 0);
-		Static11.aClass62_1.method3566(Static148.aClass3_Sub3_Sub4_1);
-		Static147.aClass62_2 = Static107.method2262(2048, GameShell.signLink, GameShell.canvas, 1);
-		Static147.aClass62_2.method3566(client.soundStream);
-	}
 }

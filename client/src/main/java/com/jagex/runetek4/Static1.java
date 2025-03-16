@@ -18,22 +18,11 @@ public final class Static1 {
 	@OriginalMember(owner = "runetek4.client!a", name = "h", descriptor = "I")
 	public static int anInt5;
 
-	@OriginalMember(owner = "runetek4.client!a", name = "e", descriptor = "Lclient!na;")
-	public static final JString aClass100_1 = Static28.parse("scape main");
-
-	@OriginalMember(owner = "runetek4.client!a", name = "f", descriptor = "[Z")
-	public static final boolean[] aBooleanArray1 = new boolean[8];
-
 	@OriginalMember(owner = "runetek4.client!a", name = "i", descriptor = "I")
 	public static int anInt6 = 0;
 
 	@OriginalMember(owner = "runetek4.client!a", name = "j", descriptor = "Lclient!na;")
-	public static final JString aClass100_2 = Static28.parse("<col=ffffff> )4 ");
-
-	@OriginalMember(owner = "runetek4.client!a", name = "a", descriptor = "(Lclient!fi;I)V")
-	public static void method1(@OriginalArg(0) HuffmanEncoding arg0) {
-		Static62.aClass44_1 = arg0;
-	}
+	public static final JString aClass100_2 = JString.parse("<col=ffffff> )4 ");
 
 	@OriginalMember(owner = "runetek4.client!a", name = "a", descriptor = "([[F[[F[[II[[F[[B[[II[[B[[B[[B[[[B)[Lclient!hg;")
 	public static Class3_Sub14[] method2(@OriginalArg(0) float[][] arg0, @OriginalArg(1) float[][] arg1, @OriginalArg(2) int[][] arg2, @OriginalArg(3) int arg3, @OriginalArg(4) float[][] arg4, @OriginalArg(5) byte[][] arg5, @OriginalArg(6) int[][] arg6, @OriginalArg(8) byte[][] arg7, @OriginalArg(9) byte[][] arg8, @OriginalArg(10) byte[][] arg9, @OriginalArg(11) byte[][][] arg10) {
@@ -556,7 +545,7 @@ public final class Static1 {
 		if (Static70.aClass3_Sub2_Sub1_2 == null || arg2 != Static70.aClass3_Sub2_Sub1_2.anInt1867 || Static70.aClass3_Sub2_Sub1_2.anInt1859 != arg1) {
 			@Pc(63) ImageRGB local63 = new ImageRGB(arg2, arg1);
 			Rasterizer.prepare(local63.pixels, arg2, arg1);
-			Static214.method4364(arg2, 0, Static48.anInt1449, 0, 0, Static181.anInt4296, arg1, 0);
+			Static214.method4364(arg2, 0, Static48.anInt1449, 0, 0, IdkTypeList.anInt4296, arg1, 0);
 			if (GlRenderer.enabled) {
 				Static70.aClass3_Sub2_Sub1_2 = new GlSprite(local63);
 			} else {
@@ -565,16 +554,16 @@ public final class Static1 {
 			if (GlRenderer.enabled) {
 				Rasterizer.destinationPixels = null;
 			} else {
-				Static260.frameBuffer.makeTarget();
+				SoftwareRaster.frameBuffer.makeTarget();
 			}
 		}
 		Static70.aClass3_Sub2_Sub1_2.method1415(arg0, arg3);
-		@Pc(147) int local147 = arg1 * Static109.anInt2884 / Static181.anInt4296 + arg3;
-		@Pc(153) int local153 = Static37.anInt1176 * arg1 / Static181.anInt4296;
+		@Pc(147) int local147 = arg1 * Static109.anInt2884 / IdkTypeList.anInt4296 + arg3;
+		@Pc(153) int local153 = Static37.anInt1176 * arg1 / IdkTypeList.anInt4296;
 		@Pc(161) int local161 = arg0 + arg2 * Static109.anInt2882 / Static48.anInt1449;
 		@Pc(167) int local167 = arg2 * Static89.anInt2387 / Static48.anInt1449;
 		@Pc(169) int local169 = 16711680;
-		if (Static266.game == 1) {
+		if (client.game == 1) {
 			local169 = 16777215;
 		}
 		if (GlRenderer.enabled) {
@@ -595,7 +584,7 @@ public final class Static1 {
 		}
 		for (@Pc(238) Class3_Sub26 local238 = (Class3_Sub26) Static145.aClass69_84.head(); local238 != null; local238 = (Class3_Sub26) Static145.aClass69_84.next()) {
 			if (local238.anInt4308 == CacheArchive.anInt172) {
-				@Pc(258) int local258 = arg3 + local238.anInt4314 * arg1 / Static181.anInt4296;
+				@Pc(258) int local258 = arg3 + local238.anInt4314 * arg1 / IdkTypeList.anInt4296;
 				@Pc(267) int local267 = arg2 * local238.anInt4307 / Static48.anInt1449 + arg0;
 				if (GlRenderer.enabled) {
 					Static46.method1182(local267 - 2, local258 + -2, 4, 4, 16776960, local225);

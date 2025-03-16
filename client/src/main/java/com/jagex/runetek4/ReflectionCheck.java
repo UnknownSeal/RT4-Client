@@ -30,4 +30,9 @@ public final class ReflectionCheck extends Node {
 
 	@OriginalMember(owner = "runetek4.client!ed", name = "F", descriptor = "I")
 	public int scriptId;
+
+    @OriginalMember(owner = "runetek4.client!j", name = "c", descriptor = "(I)V")
+    public static void clear() {
+        Static204.aClass69_113 = new LinkedList();
+    }
 }

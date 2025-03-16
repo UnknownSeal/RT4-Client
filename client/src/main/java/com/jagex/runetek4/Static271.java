@@ -8,12 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static271 {
 
-	@OriginalMember(owner = "runetek4.client!wc", name = "c", descriptor = "I")
-	public static int defaultPort;
-
-	@OriginalMember(owner = "runetek4.client!wc", name = "g", descriptor = "I")
-	public static int anInt5804 = 0;
-
 	@OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(Lclient!wa;I)V")
 	public static void method4598(@OriginalArg(0) Packet arg0) {
 		if (client.uid != null) {

@@ -1,7 +1,7 @@
 package com.jagex.runetek4.cache.def;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.graphics.ModelUnlit;
@@ -101,7 +101,7 @@ public final class NpcType {
 	public int anInt3732 = -1;
 
 	@OriginalMember(owner = "client!me", name = "F", descriptor = "B")
-	public byte walkflags = 0;
+	public byte loginscreenproperties = 0;
 
 	@OriginalMember(owner = "client!me", name = "e", descriptor = "Z")
 	public boolean spotshadow = true;
@@ -305,7 +305,7 @@ public final class NpcType {
 			packet.g1();
 			packet.g1();
 		} else if (code == 119) {
-			this.walkflags = packet.g1s();
+			this.loginscreenproperties = packet.g1s();
 		} else if (code == 121) {
 			this.modeloffset = new int[this.models.length][];
 			int length = packet.g1();
@@ -440,7 +440,7 @@ public final class NpcType {
 	}
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "([Lclient!ub;IBIIIILclient!tk;ILclient!tk;)Lclient!ak;")
-	public Model method2937(@OriginalArg(0) Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) AnimationSequence arg6, @OriginalArg(8) int arg7, @OriginalArg(9) AnimationSequence arg8) {
+	public Model method2937(@OriginalArg(0) Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) SeqType arg6, @OriginalArg(8) int arg7, @OriginalArg(9) SeqType arg8) {
 		if (this.multiNpcs != null) {
 			@Pc(13) NpcType local13 = this.getMultiNPC();
 			return local13 == null ? null : local13.method2937(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
@@ -546,7 +546,7 @@ public final class NpcType {
 					if (this.recol_d_palette == null || this.recol_d_palette.length <= local173) {
 						local593.recolor(this.recol_s[local173], this.recol_d[local173]);
 					} else {
-						local593.recolor(this.recol_s[local173], Static232.aShortArray74[this.recol_d_palette[local173] & 0xFF]);
+						local593.recolor(this.recol_s[local173], client.aShortArray74[this.recol_d_palette[local173] & 0xFF]);
 					}
 				}
 			}
@@ -568,7 +568,7 @@ public final class NpcType {
 		local173 = arg0 == null ? 0 : arg0.length;
 		for (local235 = 0; local235 < local173; local235++) {
 			if (arg0[local235] != null) {
-				@Pc(753) AnimationSequence local753 = AnimationSequence.getAnimationSequence(arg0[local235].anInt5396);
+				@Pc(753) SeqType local753 = SeqType.getAnimationSequence(arg0[local235].anInt5396);
 				if (local753.anIntArray473 != null) {
 					Static146.aClass144Array1[local235] = local753;
 					local207 = arg0[local235].anInt5398;
@@ -583,7 +583,7 @@ public final class NpcType {
 						local721 |= Static6.aClass3_Sub2_Sub7Array1[local235].isAlphaTransformed(local214);
 						local725 |= local753.aBoolean278;
 					}
-					if ((local753.aBoolean277 || Static204.tween) && local207 != -1 && local753.anIntArray473.length > local207) {
+					if ((local753.aBoolean277 || SeqType.tween) && local207 != -1 && local753.anIntArray473.length > local207) {
 						Static71.anIntArray147[local235] = local753.frames[local200];
 						Static214.anIntArray492[local235] = arg0[local235].anInt5404;
 						local228 = local753.anIntArray473[local207];
@@ -626,7 +626,7 @@ public final class NpcType {
 				local721 |= local962.isAlphaTransformed(local235);
 				local725 |= arg8.aBoolean278;
 			}
-			if ((arg8.aBoolean277 || Static204.tween) && arg3 != -1 && arg8.anIntArray473.length > arg3) {
+			if ((arg8.aBoolean277 || SeqType.tween) && arg3 != -1 && arg8.anIntArray473.length > arg3) {
 				local200 = arg8.frames[arg5];
 				local221 = arg8.anIntArray473[arg3];
 				local1040 = local221 >>> 16;
@@ -657,7 +657,7 @@ public final class NpcType {
 				local721 |= local1088.isAlphaTransformed(local228);
 				local725 |= arg6.aBoolean278;
 			}
-			if ((arg6.aBoolean277 || Static204.tween) && arg1 != -1 && arg1 < arg6.anIntArray473.length) {
+			if ((arg6.aBoolean277 || SeqType.tween) && arg1 != -1 && arg1 < arg6.anIntArray473.length) {
 				local300 = arg6.frames[arg2];
 				local1040 = arg6.anIntArray473[arg1];
 				local318 = local1040 >>> 16;
@@ -710,7 +710,7 @@ public final class NpcType {
 	}
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(Lclient!tk;IIII)Lclient!ak;")
-	public Model getHeadModel(@OriginalArg(0) AnimationSequence arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
+	public Model getHeadModel(@OriginalArg(0) SeqType arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
 		if (this.multiNpcs != null) {
 			@Pc(13) NpcType local13 = this.getMultiNPC();
 			return local13 == null ? null : local13.getHeadModel(arg0, arg1, arg2, arg3);
@@ -744,7 +744,7 @@ public final class NpcType {
 						if (this.recol_d_palette == null || index >= this.recol_d_palette.length) {
 							local119.recolor(this.recol_s[index], this.recol_d[index]);
 						} else {
-							local119.recolor(this.recol_s[index], Static232.aShortArray74[this.recol_d_palette[index] & 0xFF]);
+							local119.recolor(this.recol_s[index], client.aShortArray74[this.recol_d_palette[index] & 0xFF]);
 						}
 					}
 				}

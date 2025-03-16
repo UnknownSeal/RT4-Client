@@ -5,19 +5,16 @@ import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-public final class Static252 {
+public final class FloTypeList {
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "P", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_103;
-
-	@OriginalMember(owner = "runetek4.client!uh", name = "Y", descriptor = "Lclient!na;")
-	public static final JString aClass100_1049 = Static28.parse("huffman");
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "ab", descriptor = "Lclient!q;")
 	public static final ReferenceNodeFactory aClass22_1 = Static44.method1147();
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "e", descriptor = "(I)V")
-	public static void method4301() {
+	public static void removeSoft() {
 		ClientScriptRunner.aClass99_31.removeSoft();
 	}
 

@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.nio.ByteBuffer;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.graphics.VertexNormal;
@@ -146,7 +147,7 @@ public final class GlModel extends Model {
 		@Pc(23) int[] local23 = new int[arg0.faceCount];
 		this.anIntArray462 = new int[arg0.vertexCount + 1];
 		for (@Pc(32) int local32 = 0; local32 < arg0.faceCount; local32++) {
-			if ((arg0.aByteArray30 == null || arg0.aByteArray30[local32] != 2) && (arg0.unmodifiedTriangleTexture == null || arg0.unmodifiedTriangleTexture[local32] == -1 || !Pix3D.anInterface1_2.method3231(arg0.unmodifiedTriangleTexture[local32] & 0xFFFF))) {
+			if ((arg0.aByteArray30 == null || arg0.aByteArray30[local32] != 2) && (arg0.unmodifiedTriangleTexture == null || arg0.unmodifiedTriangleTexture[local32] == -1 || !Rasterizer.textureProvider.method3231(arg0.unmodifiedTriangleTexture[local32] & 0xFFFF))) {
 				local23[this.anInt5297++] = local32;
 				this.anIntArray462[arg0.anIntArray197[local32]]++;
 				this.anIntArray462[arg0.anIntArray200[local32]]++;
@@ -168,11 +169,11 @@ public final class GlModel extends Model {
 			if (arg0.unmodifiedTriangleTexture != null) {
 				local135 = arg0.unmodifiedTriangleTexture[local125];
 				if (local135 != -1) {
-					local131 = Pix3D.anInterface1_2.method3237(local135 & 0xFFFF);
-					local133 = Pix3D.anInterface1_2.method3228(local135 & 0xFFFF);
+					local131 = Rasterizer.textureProvider.method3237(local135 & 0xFFFF);
+					local133 = Rasterizer.textureProvider.method3228(local135 & 0xFFFF);
 				}
 			}
-			@Pc(182) boolean local182 = arg0.aByteArray26 != null && arg0.aByteArray26[local125] != 0 || local135 != -1 && !Pix3D.anInterface1_2.method3226(local135 & 0xFFFF);
+			@Pc(182) boolean local182 = arg0.aByteArray26 != null && arg0.aByteArray26[local125] != 0 || local135 != -1 && !Rasterizer.textureProvider.method3226(local135 & 0xFFFF);
 			if ((arg3 || local182) && arg0.facePriorities != null) {
 				local127 += arg0.facePriorities[local125] << 17;
 			}
@@ -622,6 +623,16 @@ public final class GlModel extends Model {
 		this.aShortArray86 = ArrayUtils.copyOf(this.aShortArray86, this.anInt5296);
 		this.aFloatArray25 = ArrayUtils.copyOf(this.aFloatArray25, this.anInt5296);
 		this.aFloatArray26 = ArrayUtils.copyOf(this.aFloatArray26, this.anInt5296);
+	}
+
+	@OriginalMember(owner = "runetek4.client!td", name = "v", descriptor = "()V")
+	public static void method4120() {
+		Static237.aClass8_Sub1_Sub1_1 = new GlModel();
+		Static237.aClass8_Sub1_Sub1_2 = new GlModel();
+		Static237.aClass8_Sub1_Sub1_3 = new GlModel();
+		Static237.aClass8_Sub1_Sub1_4 = new GlModel();
+		Static237.aClass8_Sub1_Sub1_5 = new GlModel();
+		Static237.aClass8_Sub1_Sub1_6 = new GlModel();
 	}
 
 	@OriginalMember(owner = "runetek4.client!td", name = "a", descriptor = "(ZZZ)Lclient!ak;")
@@ -1751,14 +1762,14 @@ public final class GlModel extends Model {
 		local1 = 0;
 		@Pc(22) int local22 = 0;
 		if (arg0 != -1) {
-			local1 = Pix3D.anInterface1_2.method3238(arg0 & 0xFFFF);
-			local22 = Pix3D.anInterface1_2.method3229(arg0 & 0xFFFF);
+			local1 = Rasterizer.textureProvider.method3238(arg0 & 0xFFFF);
+			local22 = Rasterizer.textureProvider.method3229(arg0 & 0xFFFF);
 		}
 		@Pc(41) int local41 = 0;
 		@Pc(43) int local43 = 0;
 		if (arg1 != -1) {
-			local41 = Pix3D.anInterface1_2.method3238(arg1 & 0xFFFF);
-			local43 = Pix3D.anInterface1_2.method3229(arg1 & 0xFFFF);
+			local41 = Rasterizer.textureProvider.method3238(arg1 & 0xFFFF);
+			local43 = Rasterizer.textureProvider.method3229(arg1 & 0xFFFF);
 		}
 		if (local1 != local41 || local22 != local43) {
 			this.aClass127_1.valid = false;
@@ -3078,7 +3089,7 @@ public final class GlModel extends Model {
 				GlRenderer.setTextureId(-1);
 				Static27.setMaterial(0, 0);
 			} else {
-				Pix3D.anInterface1_2.method3227(local439 & 0xFFFF);
+				Rasterizer.textureProvider.method3227(local439 & 0xFFFF);
 			}
 			if (this.aClass127_5.aClass155_4 == null) {
 				this.aClass127_5.aByteBuffer8.position(local427 * 12);

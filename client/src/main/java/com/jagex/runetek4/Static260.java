@@ -7,20 +7,11 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static260 {
 
-	@OriginalMember(owner = "runetek4.client!vd", name = "w", descriptor = "Lclient!vk;")
-	public static FrameBuffer frameBuffer;
-
 	@OriginalMember(owner = "runetek4.client!vd", name = "v", descriptor = "Lclient!na;")
-	public static final JString HITBAR_DEFAULT = Static28.parse("hitbar_default");
-
-	@OriginalMember(owner = "runetek4.client!vd", name = "B", descriptor = "[S")
-	public static final short[] aShortArray71 = new short[] { 6798, 8741, 25238, 4626, 4550 };
-
-	@OriginalMember(owner = "runetek4.client!vd", name = "C", descriptor = "I")
-	public static int anInt5014 = 0;
+	public static final JString HITBAR_DEFAULT = JString.parse("hitbar_default");
 
 	@OriginalMember(owner = "runetek4.client!vd", name = "F", descriptor = "Lclient!na;")
-	public static final JString aClass100_945 = Static28.parse("0");
+	public static final JString aClass100_945 = JString.parse("0");
 
 	@OriginalMember(owner = "runetek4.client!vd", name = "b", descriptor = "(IIII)Z")
 	public static boolean wallVisible(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {

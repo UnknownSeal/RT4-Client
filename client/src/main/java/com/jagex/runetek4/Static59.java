@@ -13,29 +13,23 @@ public final class Static59 {
 	@OriginalMember(owner = "runetek4.client!ej", name = "bb", descriptor = "F")
 	public static float aFloat6;
 
-	@OriginalMember(owner = "runetek4.client!ej", name = "U", descriptor = "I")
-	public static int anInt1812 = 0;
-
-	@OriginalMember(owner = "runetek4.client!ej", name = "W", descriptor = "I")
-	public static int minimapAnticheatAngle = 0;
-
 	@OriginalMember(owner = "runetek4.client!ej", name = "h", descriptor = "(I)V")
 	public static void processMenuActions() {
 		if (Static162.anInt3953 == 2) {
 			if (Static155.anInt3751 == Static277.anInt5850 && Static60.anInt1892 == Static280.anInt5895) {
 				Static162.anInt3953 = 0;
-				if (Static172.shiftClick && Static187.pressedKeys[81] && PreciseSleep.menuActionRow > 2) {
-					Static103.method2232(PreciseSleep.menuActionRow - 2);
+				if (Cheat.shiftClick && Static187.pressedKeys[81] && MiniMenu.menuActionRow > 2) {
+					Static103.method2232(MiniMenu.menuActionRow - 2);
 				} else {
-					Static103.method2232(PreciseSleep.menuActionRow - 1);
+					Static103.method2232(MiniMenu.menuActionRow - 1);
 				}
 			}
 		} else if (Static155.anInt3751 == aClass6.mouseClickX && Static60.anInt1892 == Static60.mouseClickY) {
 			Static162.anInt3953 = 0;
-			if (Static172.shiftClick && Static187.pressedKeys[81] && PreciseSleep.menuActionRow > 2) {
-				Static103.method2232(PreciseSleep.menuActionRow - 2);
+			if (Cheat.shiftClick && Static187.pressedKeys[81] && MiniMenu.menuActionRow > 2) {
+				Static103.method2232(MiniMenu.menuActionRow - 2);
 			} else {
-				Static103.method2232(PreciseSleep.menuActionRow - 1);
+				Static103.method2232(MiniMenu.menuActionRow - 1);
 			}
 		} else {
 			Static280.anInt5895 = Static60.mouseClickY;
@@ -44,17 +38,8 @@ public final class Static59 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ej", name = "i", descriptor = "(I)V")
-	public static void method1373() {
-		Static6.outboundBuffer.pIsaac1(243);
-		Static6.outboundBuffer.p1(Static144.method2736());
-		Static6.outboundBuffer.p2(GameShell.canvasWidth);
-		Static6.outboundBuffer.p2(GameShell.canvasHeigth);
-		Static6.outboundBuffer.p1(Static186.antialiasingMode);
-	}
-
 	@OriginalMember(owner = "runetek4.client!ej", name = "a", descriptor = "(Lclient!ve;ILclient!ve;Lclient!of;)V")
-	public static void method1374(@OriginalArg(0) Js5 arg0, @OriginalArg(2) Js5 arg1, @OriginalArg(3) QuickChatCommandDecoder arg2) {
+	public static void init(@OriginalArg(0) Js5 arg0, @OriginalArg(2) Js5 arg1, @OriginalArg(3) QuickChatCommandDecoder arg2) {
 		Static262.configClientLarge = arg0;
 		Static107.anInterface3_1 = arg2;
 		Static238.configClientSmall = arg1;

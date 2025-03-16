@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.js5.index.Js5MasterIndex;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -13,17 +12,11 @@ public final class Static257 {
 	@OriginalMember(owner = "runetek4.client!v", name = "b", descriptor = "Lclient!be;")
 	public static Component aClass13_7;
 
-	@OriginalMember(owner = "runetek4.client!v", name = "f", descriptor = "Lclient!al;")
-	public static Js5MasterIndex aClass9_2;
-
 	@OriginalMember(owner = "runetek4.client!v", name = "a", descriptor = "Lclient!na;")
-	public static final JString aClass100_98 = Static28.parse(")4a=");
+	public static final JString aClass100_98 = JString.parse(")4a=");
 
 	@OriginalMember(owner = "runetek4.client!v", name = "c", descriptor = "[F")
 	public static final float[] aFloatArray2 = new float[] { 0.073F, 0.169F, 0.24F, 1.0F };
-
-	@OriginalMember(owner = "runetek4.client!v", name = "d", descriptor = "Lclient!na;")
-	public static final JString CLIENTDROP = Static28.parse("::clientdrop");
 
 	@OriginalMember(owner = "runetek4.client!v", name = "a", descriptor = "(IIIJ)Z")
 	public static boolean method523(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) long arg3) {

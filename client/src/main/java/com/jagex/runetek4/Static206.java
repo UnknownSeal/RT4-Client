@@ -9,15 +9,6 @@ public final class Static206 {
 	@OriginalMember(owner = "runetek4.client!qk", name = "c", descriptor = "[I")
 	public static int[] anIntArray427;
 
-	@OriginalMember(owner = "runetek4.client!qk", name = "g", descriptor = "Lclient!ma;")
-	public static BufferedSocket js5Socket;
-
-	@OriginalMember(owner = "runetek4.client!qk", name = "a", descriptor = "Lclient!na;")
-	public static final JString aClass100_899 = Static28.parse("0(U");
-
-	@OriginalMember(owner = "runetek4.client!qk", name = "b", descriptor = "Lclient!na;")
-	public static final JString aClass100_900 = Static28.parse("tbrefresh");
-
 	@OriginalMember(owner = "runetek4.client!qk", name = "f", descriptor = "I")
 	public static int anInt4773 = 0;
 

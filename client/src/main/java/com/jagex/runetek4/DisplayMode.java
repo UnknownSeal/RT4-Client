@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ArrayUtils;
@@ -190,13 +189,13 @@ public final class DisplayMode {
 		}
 		if (arg0) {
 			Keyboard.stop(GameShell.canvas);
-			Keyboard.start(GameShell.canvas);
+			Mouse.stop(GameShell.canvas);
 			if (client.mouseWheel != null) {
 				client.mouseWheel.stop(GameShell.canvas);
 			}
 			client.instance.addCanvas();
-			Static19.start(GameShell.canvas);
-			Static88.start(GameShell.canvas);
+			Keyboard.start(GameShell.canvas);
+			Mouse.start(GameShell.canvas);
 			if (client.mouseWheel != null) {
 				client.mouseWheel.start(GameShell.canvas);
 			}
@@ -219,24 +218,24 @@ public final class DisplayMode {
 			GameShell.canvas.setIgnoreRepaint(true);
 			if (!Static211.aBoolean73) {
 				SceneGraph.clear();
-				Static260.frameBuffer = null;
-				Static260.frameBuffer = FrameBuffer.create(GameShell.canvasHeigth, GameShell.canvasWidth, GameShell.canvas);
+				SoftwareRaster.frameBuffer = null;
+				SoftwareRaster.frameBuffer = FrameBuffer.create(GameShell.canvasHeigth, GameShell.canvasWidth, GameShell.canvas);
 				Rasterizer.clear();
-				if (Static244.gamestate == 5) {
-					LoadingBar.render(true, Font.b12Full);
+				if (client.gameState == 5) {
+					LoadingBar.render(true, Fonts.b12Full);
 				} else {
-					Font.drawTextOnScreen(false, LocalizedText.LOADING);
+					Fonts.drawTextOnScreen(false, LocalizedText.LOADING);
 				}
 				try {
 					@Pc(269) Graphics local269 = GameShell.canvas.getGraphics();
-					Static260.frameBuffer.draw(local269);
+					SoftwareRaster.frameBuffer.draw(local269);
 				} catch (@Pc(277) Exception local277) {
 				}
 				Static139.method2704();
 				if (mode == 0) {
-					Static260.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
+					SoftwareRaster.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
 				} else {
-					Static260.frameBuffer = null;
+					SoftwareRaster.frameBuffer = null;
 				}
 				@Pc(300) PrivilegedRequest local300 = GameShell.signLink.loadGlNatives(client.instance.getClass());
 				while (local300.status == 0) {
@@ -247,7 +246,7 @@ public final class DisplayMode {
 				}
 			}
 			if (Static211.aBoolean73) {
-				GlRenderer.init(GameShell.canvas, Static186.antialiasingMode * 2);
+				GlRenderer.init(GameShell.canvas, Preferences.antiAliasingMode * 2);
 			}
 		}
 		if (!GlRenderer.enabled && arg1 > 0) {
@@ -256,54 +255,84 @@ public final class DisplayMode {
 		}
 		if (arg1 > 0 && mode == 0) {
 			Static37.aThread1.setPriority(5);
-			Static260.frameBuffer = null;
+			SoftwareRaster.frameBuffer = null;
 			Static268.method4580();
-			((Js5GlTextureProvider) Pix3D.anInterface1_2).method3248(200);
+			((Js5GlTextureProvider) Rasterizer.textureProvider).method3248(200);
 			if (Static178.highDetailLighting) {
-				Pix3D.method1911(0.7F);
+				Pix3D.setBrightness(0.7F);
 			}
-			Static114.method4637();
+			LoginManager.method4637();
 		} else if (arg1 == 0 && mode > 0) {
 			Static37.aThread1.setPriority(1);
-			Static260.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
+			SoftwareRaster.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
 			Static268.method4583();
 			Static76.method1643();
-			((Js5GlTextureProvider) Pix3D.anInterface1_2).method3248(20);
+			((Js5GlTextureProvider) Rasterizer.textureProvider).method3248(20);
 			if (Static178.highDetailLighting) {
-				if (Static113.anInt4609 == 1) {
-					Pix3D.method1911(0.9F);
+				if (Static113.brightness == 1) {
+					Pix3D.setBrightness(0.9F);
 				}
-				if (Static113.anInt4609 == 2) {
-					Pix3D.method1911(0.8F);
+				if (Static113.brightness == 2) {
+					Pix3D.setBrightness(0.8F);
 				}
-				if (Static113.anInt4609 == 3) {
-					Pix3D.method1911(0.7F);
+				if (Static113.brightness == 3) {
+					Pix3D.setBrightness(0.7F);
 				}
-				if (Static113.anInt4609 == 4) {
-					Pix3D.method1911(0.6F);
+				if (Static113.brightness == 4) {
+					Pix3D.setBrightness(0.6F);
 				}
 			}
 			Static95.method1939();
-			Static114.method4637();
+			LoginManager.method4637();
 		}
 		Static87.aBoolean130 = !Static138.allLevelsvisible();
 		if (arg2) {
-			Static141.method2721();
+			client.method2721();
 		}
 		if (arg1 >= 2) {
 			Static124.aBoolean156 = true;
 		} else {
 			Static124.aBoolean156 = false;
 		}
-		if (Static154.topLevelInterace != -1) {
+		if (InterfaceList.topLevelInterace != -1) {
 			Static210.method3712(true);
 		}
-		if (Static124.gameServerSocket != null && (Static244.gamestate == 30 || Static244.gamestate == 25)) {
-			Static59.method1373();
+		if (Static124.gameServerSocket != null && (client.gameState == 30 || client.gameState == 25)) {
+			ClientProt.sendWindowDetails();
 		}
 		for (@Pc(466) int local466 = 0; local466 < 100; local466++) {
-			Static186.aBooleanArray100[local466] = true;
+			InterfaceList.aBooleanArray100[local466] = true;
 		}
 		Static69.fullredraw = true;
+	}
+
+	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(ZIIII)V")
+	public static void setWindowMode(@OriginalArg(0) boolean arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+		Static97.aLong89 = 0L;
+		@Pc(4) int local4 = getWindowMode();
+		if (arg1 == 3 || local4 == 3) {
+			arg0 = true;
+		}
+		@Pc(44) boolean local44 = false;
+		if (local4 > 0 != arg1 > 0) {
+			local44 = true;
+		}
+		if (arg0 && arg1 > 0) {
+			local44 = true;
+		}
+		setWindowMode(arg0, arg1, local44, local4, arg2, arg3);
+	}
+
+	@OriginalMember(owner = "runetek4.client!le", name = "a", descriptor = "(I)I")
+	public static int getWindowMode() {
+		if (GameShell.fullScreenFrame != null) {
+			return 3;
+		} else if (GlRenderer.enabled && Static124.aBoolean156) {
+			return 2;
+		} else if (GlRenderer.enabled && !Static124.aBoolean156) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 }

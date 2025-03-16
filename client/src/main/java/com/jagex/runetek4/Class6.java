@@ -16,18 +16,15 @@ public final class Class6 {
 	public static int anInt4741;
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "U", descriptor = "Lclient!na;")
-	public static final JString aClass100_891 = Static28.parse("");
+	public static final JString aClass100_891 = JString.parse("");
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "W", descriptor = "Z")
 	public static boolean members = false;
 
-	@OriginalMember(owner = "runetek4.client!qg", name = "Z", descriptor = "Lclient!na;")
-	public static final JString aClass100_892 = Static28.parse("mem=");
-
 	@OriginalMember(owner = "runetek4.client!qg", name = "h", descriptor = "(I)V")
-	public static void method3653() {
-		PreciseSleep.aClass99_29.method3104();
-		Static219.aClass99_27.method3104();
+	public static void clear() {
+		PreciseSleep.aClass99_29.clear();
+		Static219.aClass99_27.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(Lsignlink!ll;Lclient!wa;IB)V")

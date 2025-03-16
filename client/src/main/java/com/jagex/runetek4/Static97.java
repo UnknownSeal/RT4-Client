@@ -42,11 +42,11 @@ public final class Static97 {
 			return;
 		}
 		local30 -= 10;
-		@Pc(58) int local58 = Static59.minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
+		@Pc(58) int local58 = Minimap.minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
 		@Pc(62) int local62 = MathUtils.cos[local58];
 		@Pc(66) int local66 = MathUtils.sin[local58];
-		@Pc(74) int local74 = local66 * 256 / (Static273.minimapZoom + 256);
-		@Pc(82) int local82 = local62 * 256 / (Static273.minimapZoom + 256);
+		@Pc(74) int local74 = local66 * 256 / (Minimap.minimapZoom + 256);
+		@Pc(82) int local82 = local62 * 256 / (Minimap.minimapZoom + 256);
 		@Pc(93) int local93 = mapY * local74 + local82 * mapX >> 16;
 		@Pc(104) int local104 = mapY * local82 - local74 * mapX >> 16;
 		@Pc(110) double angle = Math.atan2((double) local93, (double) local104);
@@ -126,7 +126,7 @@ public final class Static97 {
 			local85.hostname = packet.gjstr2();
 		}
 		Static80.anInt4702 = packet.g4();
-		Static61.aBoolean109 = true;
+		WorldList.loaded = true;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(Lclient!be;B)Lclient!na;")
@@ -134,7 +134,7 @@ public final class Static97 {
 		if (Static36.method940(arg0).method512() == 0) {
 			return null;
 		} else if (arg0.aClass100_86 == null || arg0.aClass100_86.trim().length() == 0) {
-			return Static121.aBoolean154 ? Static143.HIDDEN_USE : null;
+			return Cheat.qaOpTest ? Static143.HIDDEN_USE : null;
 		} else {
 			return arg0.aClass100_86;
 		}

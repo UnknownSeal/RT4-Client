@@ -10,9 +10,6 @@ public final class Static20 {
 	@OriginalMember(owner = "client!bj", name = "s", descriptor = "I")
 	public static int anInt660 = -1;
 
-	@OriginalMember(owner = "client!bj", name = "t", descriptor = "[S")
-	public static final short[] aShortArray5 = new short[] { -4160, -4163, -8256, -8259, 22461 };
-
 	@OriginalMember(owner = "client!bj", name = "V", descriptor = "I")
 	public static final int anInt671 = 3353893;
 
@@ -20,7 +17,7 @@ public final class Static20 {
 	public static int anInt673 = 0;
 
 	@OriginalMember(owner = "client!bj", name = "d", descriptor = "(B)V")
-	public static void method601() {
+	public static void clear() {
 		Static36.aClass133_3.removeAll();
 		Static140.aClass16_7.method802();
 		Static215.aClass16_9.method802();

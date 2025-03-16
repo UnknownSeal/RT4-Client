@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -35,7 +35,7 @@ public final class Static118 {
 	public static void method2354(@OriginalArg(1) int arg0, @OriginalArg(2) Component[] arg1) {
 		for (@Pc(7) int local7 = 0; local7 < arg1.length; local7++) {
 			@Pc(15) Component local15 = arg1[local7];
-			if (local15 != null && local15.layer == arg0 && (!local15.aBoolean32 || !Static36.method947(local15))) {
+			if (local15 != null && local15.overlayer == arg0 && (!local15.aBoolean32 || !Static36.method947(local15))) {
 				if (local15.INVENTORY == 0) {
 					if (!local15.aBoolean32 && Static36.method947(local15) && local15 != Static180.aClass13_22) {
 						continue;
@@ -44,7 +44,7 @@ public final class Static118 {
 					if (local15.createdComponents != null) {
 						method2354(local15.anInt507, local15.createdComponents);
 					}
-					@Pc(73) Class3_Sub31 local73 = (Class3_Sub31) Static119.aClass133_9.getNode((long) local15.anInt507);
+					@Pc(73) ComponentPointer local73 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) local15.anInt507);
 					if (local73 != null) {
 						Static96.method1949(local73.anInt5878);
 					}
@@ -59,9 +59,9 @@ public final class Static118 {
 							local105 = local15.anInt522;
 						}
 						if (local105 != -1) {
-							@Pc(118) AnimationSequence local118 = AnimationSequence.getAnimationSequence(local105);
+							@Pc(118) SeqType local118 = SeqType.getAnimationSequence(local105);
 							if (local118 != null) {
-								local15.anInt500 += Static178.sceneDelta;
+								local15.anInt500 += Protocol.sceneDelta;
 								while (local15.anInt500 > local118.frames[local15.anInt510]) {
 									local15.anInt500 -= local118.frames[local15.anInt510];
 									local15.anInt510++;
@@ -85,10 +85,10 @@ public final class Static118 {
 					}
 					if (local15.modelRotationSpeed != 0 && !local15.aBoolean32) {
 						@Pc(239) int local239 = local15.modelRotationSpeed >> 16;
-						@Pc(243) int local243 = local239 * Static178.sceneDelta;
+						@Pc(243) int local243 = local239 * Protocol.sceneDelta;
 						local105 = local15.modelRotationSpeed << 16 >> 16;
 						local15.modelXAngle = local243 + local15.modelXAngle & 0x7FF;
-						local105 *= Static178.sceneDelta;
+						local105 *= Protocol.sceneDelta;
 						local15.modelYAngle = local15.modelYAngle + local105 & 0x7FF;
 						Static43.method1143(local15);
 					}

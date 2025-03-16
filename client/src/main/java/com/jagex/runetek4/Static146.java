@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -17,7 +17,7 @@ public final class Static146 {
 	public static boolean aBoolean174 = false;
 
 	@OriginalMember(owner = "runetek4.client!lg", name = "c", descriptor = "[Lclient!tk;")
-	public static final AnimationSequence[] aClass144Array1 = new AnimationSequence[14];
+	public static final SeqType[] aClass144Array1 = new SeqType[14];
 
 	@OriginalMember(owner = "runetek4.client!lg", name = "k", descriptor = "I")
 	public static int firstvisibleLevel = 99;

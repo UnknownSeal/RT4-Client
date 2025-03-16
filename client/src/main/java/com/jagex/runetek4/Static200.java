@@ -18,16 +18,16 @@ public final class Static200 {
 
 	@OriginalMember(owner = "runetek4.client!qe", name = "b", descriptor = "(II)V")
 	public static void method3628(@OriginalArg(1) int arg0) {
-		PreciseSleep.menuActionRow--;
-		if (PreciseSleep.menuActionRow == arg0) {
+		MiniMenu.menuActionRow--;
+		if (MiniMenu.menuActionRow == arg0) {
 			return;
 		}
-		ArrayUtils.copy(Static254.aClass100Array168, arg0 + 1, Static254.aClass100Array168, arg0, PreciseSleep.menuActionRow - arg0);
-		ArrayUtils.copy(ClientScriptRunner.aClass100Array160, arg0 + 1, ClientScriptRunner.aClass100Array160, arg0, PreciseSleep.menuActionRow - arg0);
-		ArrayUtils.copy(Static190.anIntArray382, arg0 + 1, Static190.anIntArray382, arg0, PreciseSleep.menuActionRow - arg0);
-		ArrayUtils.copy(Static39.aShortArray6, arg0 + 1, Static39.aShortArray6, arg0, PreciseSleep.menuActionRow - arg0);
-		ArrayUtils.copy(Static159.aLongArray5, arg0 + 1, Static159.aLongArray5, arg0, PreciseSleep.menuActionRow - arg0);
-		ArrayUtils.copy(Static196.anIntArray408, arg0 + 1, Static196.anIntArray408, arg0, PreciseSleep.menuActionRow - arg0);
-		ArrayUtils.copy(Static56.anIntArray142, arg0 + 1, Static56.anIntArray142, arg0, PreciseSleep.menuActionRow - arg0);
+		ArrayUtils.copy(Static254.aClass100Array168, arg0 + 1, Static254.aClass100Array168, arg0, MiniMenu.menuActionRow - arg0);
+		ArrayUtils.copy(ClientScriptRunner.aClass100Array160, arg0 + 1, ClientScriptRunner.aClass100Array160, arg0, MiniMenu.menuActionRow - arg0);
+		ArrayUtils.copy(Static190.anIntArray382, arg0 + 1, Static190.anIntArray382, arg0, MiniMenu.menuActionRow - arg0);
+		ArrayUtils.copy(Static39.aShortArray6, arg0 + 1, Static39.aShortArray6, arg0, MiniMenu.menuActionRow - arg0);
+		ArrayUtils.copy(Static159.aLongArray5, arg0 + 1, Static159.aLongArray5, arg0, MiniMenu.menuActionRow - arg0);
+		ArrayUtils.copy(Static196.anIntArray408, arg0 + 1, Static196.anIntArray408, arg0, MiniMenu.menuActionRow - arg0);
+		ArrayUtils.copy(Static56.anIntArray142, arg0 + 1, Static56.anIntArray142, arg0, MiniMenu.menuActionRow - arg0);
 	}
 }

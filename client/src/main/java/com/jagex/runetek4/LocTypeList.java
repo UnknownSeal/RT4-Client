@@ -30,4 +30,12 @@ public class LocTypeList {
         Static179.aClass99_25.put(locType, (long) id);
         return locType;
     }
+
+    @OriginalMember(owner = "runetek4.client!oe", name = "b", descriptor = "(I)V")
+    public static void removeSoft() {
+        Static179.aClass99_25.removeSoft();
+        Static169.modelCacheStatic.removeSoft();
+        Static93.aClass99_14.removeSoft();
+        Static262.aClass99_36.removeSoft();
+    }
 }

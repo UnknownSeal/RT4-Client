@@ -61,7 +61,7 @@ public final class Js5NetQueue {
 	public boolean loop() {
 		@Pc(19) int available;
 		if (this.updateServerSocket != null) {
-			@Pc(12) long now = MonotonicTime.get();
+			@Pc(12) long now = MonotonicTime.currentTimeMillis();
 			int duration = (int) (now - this.aLong104);
 			this.aLong104 = now;
 			if (duration > 200) {
@@ -260,7 +260,7 @@ public final class Js5NetQueue {
 	}
 
 	@OriginalMember(owner = "client!jb", name = "a", descriptor = "(ZLclient!ma;I)V")
-	public void loggedOut(@OriginalArg(0) boolean isLoggedIn, @OriginalArg(1) BufferedSocket socket) {
+	public void start(@OriginalArg(0) boolean isLoggedIn, @OriginalArg(1) BufferedSocket socket) {
 		if (this.updateServerSocket != null) {
 			try {
 				this.updateServerSocket.closeGracefully();
@@ -297,7 +297,7 @@ public final class Js5NetQueue {
 							}
 						}
 						this.latency = 0;
-						this.aLong104 = MonotonicTime.get();
+						this.aLong104 = MonotonicTime.currentTimeMillis();
 						return;
 					}
 					this.prefetch.pushBack(local44);

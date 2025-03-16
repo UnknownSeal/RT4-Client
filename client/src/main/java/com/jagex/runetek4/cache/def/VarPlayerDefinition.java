@@ -12,9 +12,6 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("client!eh")
 public final class VarPlayerDefinition {
 
-	@OriginalMember(owner = "runetek4.client!me", name = "P", descriptor = "[I")
-	public static final int[] varcs = new int[2000];
-
 	@OriginalMember(owner = "client!ah", name = "j", descriptor = "[I")
 	public static final int[] varPlayers = new int[2500];
 

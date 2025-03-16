@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.frame.Minimap;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -13,30 +14,21 @@ public final class Static160 {
 	@OriginalMember(owner = "runetek4.client!mj", name = "n", descriptor = "Lclient!fd;")
 	public static WorldMapFont aClass41_4;
 
-	@OriginalMember(owner = "runetek4.client!mj", name = "u", descriptor = "B")
-	public static byte aByte14;
-
 	@OriginalMember(owner = "runetek4.client!mj", name = "C", descriptor = "[S")
 	public static short[] aShortArray41;
 
-	@OriginalMember(owner = "runetek4.client!mj", name = "d", descriptor = "[Lclient!na;")
-	public static final JString[] aClass100Array121 = new JString[8];
-
 	@OriginalMember(owner = "runetek4.client!mj", name = "g", descriptor = "Lclient!na;")
-	public static final JString aClass100_761 = Static28.parse("(U3");
+	public static final JString aClass100_761 = JString.parse("(U3");
 
 	@OriginalMember(owner = "runetek4.client!mj", name = "i", descriptor = "I")
 	public static int anInt3902 = 0;
-
-	@OriginalMember(owner = "runetek4.client!mj", name = "A", descriptor = "J")
-	public static long aLong134 = 0L;
 
 	@OriginalMember(owner = "runetek4.client!mj", name = "a", descriptor = "(IILclient!be;IB)V")
 	public static void method3047(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) Component arg2, @OriginalArg(3) int arg3) {
 		if (GlRenderer.enabled) {
 			Static46.method1187(arg0, arg1, arg2.anInt445 + arg0, arg2.anInt459 + arg1);
 		}
-		if (Static270.anInt5795 >= 3) {
+		if (Minimap.state >= 3) {
 			if (GlRenderer.enabled) {
 				@Pc(44) Sprite local44 = arg2.method489(false);
 				if (local44 != null) {
@@ -50,7 +42,7 @@ public final class Static160 {
 		} else {
 			((ImageRGB) Static106.aClass3_Sub2_Sub1_7).method313(arg0, arg1, arg2.anInt445, arg2.anInt459, Static106.aClass3_Sub2_Sub1_7.anInt1867 / 2, Static106.aClass3_Sub2_Sub1_7.anInt1859 / 2, Camera.orbitCameraYaw, arg2.anIntArray37, arg2.anIntArray45);
 		}
-		Static31.aBooleanArray29[arg3] = true;
+		InterfaceList.rectangleRedraw[arg3] = true;
 	}
 
 	@OriginalMember(owner = "runetek4.client!mj", name = "a", descriptor = "(IIIII)Z")

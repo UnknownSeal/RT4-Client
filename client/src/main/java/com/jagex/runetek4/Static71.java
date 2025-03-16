@@ -52,7 +52,7 @@ public final class Static71 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "a", descriptor = "(B)V")
-	public static void method1441() {
+	public static void removeSoft() {
 		Static279.aClass99_38.removeSoft();
 		SpotAnimDefinition.modelCache.removeSoft();
 	}
@@ -64,23 +64,23 @@ public final class Static71 {
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "b", descriptor = "(I)V")
 	public static void updatePlayers() {
-		for (@Pc(7) int currentPlayerIndex = -1; currentPlayerIndex < Static267.playerCount; currentPlayerIndex++) {
+		for (@Pc(7) int currentPlayerIndex = -1; currentPlayerIndex < PlayerList.playerCount; currentPlayerIndex++) {
 			@Pc(21) int actualIndex;
 			if (currentPlayerIndex == -1) {
 				actualIndex = 2047;
 			} else {
 				actualIndex = Static105.playerIds[currentPlayerIndex];
 			}
-			@Pc(31) Player player = Static159.players[actualIndex];
+			@Pc(31) Player player = PlayerList.players[actualIndex];
 			if (player != null) {
-				Static263.updateEntity(player.size(), player);
+				Static263.updateEntity(player.getSize(), player);
 			}
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "c", descriptor = "(I)V")
 	public static void transmitVerifyId() {
-		Static6.outboundBuffer.pIsaac1(177);
-		Static6.outboundBuffer.p2(Static189.anInt4443);
+		Protocol.outboundBuffer.pIsaac1(177);
+		Protocol.outboundBuffer.p2(Protocol.verifyId);
 	}
 }

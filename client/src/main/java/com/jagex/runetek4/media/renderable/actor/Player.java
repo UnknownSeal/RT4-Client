@@ -2,14 +2,15 @@ package com.jagex.runetek4.media.renderable.actor;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.def.NpcType;
-import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
+import com.jagex.runetek4.frame.Minimap;
 import com.jagex.runetek4.game.config.bastype.BasType;
-import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.game.world.entity.PlayerModel;
+import com.jagex.runetek4.cache.media.SeqType;
+import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.scene.Scene;
+import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -19,12 +20,22 @@ import com.jagex.runetek4.core.io.Packet;
 @OriginalClass("client!e")
 public final class Player extends PathingEntity {
 
+	@OriginalMember(owner = "runetek4.client!mj", name = "d", descriptor = "[Lclient!na;")
+	public static final JString[] options = new JString[8];
+	@OriginalMember(owner = "runetek4.client!a", name = "f", descriptor = "[Z")
+	public static final boolean[] secondaryOptions = new boolean[8];
+	@OriginalMember(owner = "runetek4.client!pg", name = "ab", descriptor = "[I")
+	public static final int[] cursors = new int[8];
 	@OriginalMember(owner = "runetek4.client!ba", name = "w", descriptor = "I")
     public static int overrideChat = 0;
 	@OriginalMember(owner = "runetek4.client!ee", name = "b", descriptor = "I")
 	public static int plane;
+    @OriginalMember(owner = "runetek4.client!ea", name = "r", descriptor = "[[B")
+    public static byte[][] aByteArrayArray8;
+	@OriginalMember(owner = "runetek4.client!ib", name = "l", descriptor = "I")
+	public static int anInt2863 = 0;
 	@OriginalMember(owner = "client!e", name = "Bc", descriptor = "Lclient!hh;")
-	public PlayerModel model;
+	public PlayerAppearance model;
 
 	@OriginalMember(owner = "client!e", name = "Mc", descriptor = "Lclient!na;")
 	public JString username;
@@ -85,10 +96,84 @@ public final class Player extends PathingEntity {
         return local14;
     }
 
-    @OriginalMember(owner = "client!e", name = "c", descriptor = "(B)I")
+	@OriginalMember(owner = "client!bf", name = "c", descriptor = "(I)V")
+	public static void method501() {
+		if (!GlRenderer.enabled || PreciseSleep.aBoolean252) {
+			return;
+		}
+		@Pc(14) SceneTile[][][] local14 = Static130.levelTiles;
+		for (@Pc(22) int local22 = 0; local22 < local14.length; local22++) {
+			@Pc(30) SceneTile[][] local30 = local14[local22];
+			for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {
+				for (@Pc(42) int local42 = 0; local42 < local30[local32].length; local42++) {
+					@Pc(54) SceneTile local54 = local30[local32][local42];
+					if (local54 != null) {
+						@Pc(71) GlModel local71;
+						if (local54.groundDecor != null && local54.groundDecor.entity instanceof GlModel) {
+							local71 = (GlModel) local54.groundDecor.entity;
+							if ((local54.groundDecor.key & Long.MIN_VALUE) == 0L) {
+								local71.method4111(false, true, true, false, true, true);
+							} else {
+								local71.method4111(true, true, true, true, true, true);
+							}
+						}
+						if (local54.wallDecor != null) {
+							if (local54.wallDecor.primary instanceof GlModel) {
+								local71 = (GlModel) local54.wallDecor.primary;
+								if ((local54.wallDecor.key & Long.MIN_VALUE) == 0L) {
+									local71.method4111(false, true, true, false, true, true);
+								} else {
+									local71.method4111(true, true, true, true, true, true);
+								}
+							}
+							if (local54.wallDecor.secondary instanceof GlModel) {
+								local71 = (GlModel) local54.wallDecor.secondary;
+								if ((Long.MIN_VALUE & local54.wallDecor.key) == 0L) {
+									local71.method4111(false, true, true, false, true, true);
+								} else {
+									local71.method4111(true, true, true, true, true, true);
+								}
+							}
+						}
+						if (local54.wall != null) {
+							if (local54.wall.primary instanceof GlModel) {
+								local71 = (GlModel) local54.wall.primary;
+								if ((local54.wall.aLong107 & Long.MIN_VALUE) == 0L) {
+									local71.method4111(false, true, true, false, true, true);
+								} else {
+									local71.method4111(true, true, true, true, true, true);
+								}
+							}
+							if (local54.wall.modelB instanceof GlModel) {
+								local71 = (GlModel) local54.wall.modelB;
+								if ((Long.MIN_VALUE & local54.wall.aLong107) == 0L) {
+									local71.method4111(false, true, true, false, true, true);
+								} else {
+									local71.method4111(true, true, true, true, true, true);
+								}
+							}
+						}
+						for (@Pc(270) int local270 = 0; local270 < local54.entityCount; local270++) {
+							if (local54.sceneries[local270].entity instanceof GlModel) {
+								@Pc(293) GlModel local293 = (GlModel) local54.sceneries[local270].entity;
+								if ((Long.MIN_VALUE & local54.sceneries[local270].hash) == 0L) {
+									local293.method4111(false, true, true, false, true, true);
+								} else {
+									local293.method4111(true, true, true, true, true, true);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		PreciseSleep.aBoolean252 = true;
+	}
+
+	@OriginalMember(owner = "client!e", name = "c", descriptor = "(B)I")
 	@Override
-	public int size() {
-		return this.model == null || this.model.transformationNpcId == -1 ? super.size() : NpcType.getDefinition(this.model.transformationNpcId).size;
+	public int getSize() {
+		return this.model == null || this.model.transformationNpcId == -1 ? super.getSize() : NpcType.getDefinition(this.model.transformationNpcId).size;
 	}
 
 	@OriginalMember(owner = "client!e", name = "b", descriptor = "(I)I")
@@ -104,12 +189,12 @@ public final class Player extends PathingEntity {
 		@Pc(22) int local22 = -1;
 		@Pc(26) int local26 = local20 & 0x1;
 		@Pc(37) boolean local37 = (local20 & 0x4) != 0;
-		@Pc(41) int local41 = super.size();
+		@Pc(41) int local41 = super.getSize();
 		@Pc(44) int[] local44 = new int[12];
 		this.setSize((local20 >> 3 & 0x7) + 1);
 		this.anInt1651 = local20 >> 6 & 0x3;
-		this.xFine += (this.size() - local41) * 64;
-		this.zFine += (this.size() - local41) * 64;
+		this.xFine += (this.getSize() - local41) * 64;
+		this.zFine += (this.getSize() - local41) * 64;
 		this.anInt1669 = arg0.g1s();
 		this.anInt1649 = arg0.g1s();
 		this.teamId = 0;
@@ -144,7 +229,7 @@ public final class Player extends PathingEntity {
 		@Pc(197) int[] local197 = new int[5];
 		for (local111 = 0; local111 < 5; local111++) {
 			local127 = arg0.g1();
-			if (local127 < 0 || local127 >= Static33.aShortArrayArray2[local111].length) {
+			if (local127 < 0 || local127 >= PlayerAppearance.destinationBodyColors[local111].length) {
 				local127 = 0;
 			}
 			local197[local111] = local127;
@@ -183,13 +268,13 @@ public final class Player extends PathingEntity {
 			}
 		}
 		if (this.model == null) {
-			this.model = new PlayerModel();
+			this.model = new PlayerAppearance();
 		}
 		local175 = this.model.transformationNpcId;
-		this.model.method1950(local197, local22, local26 == 1, local44, this.anInt3365);
+		this.model.set(local197, local22, local26 == 1, local44, this.anInt3365);
 		if (local175 != local22) {
-			this.xFine = this.pathTileX[0] * 128 + this.size() * 64;
-			this.zFine = this.pathTileZ[0] * 128 + this.size() * 64;
+			this.xFine = this.movementQueueX[0] * 128 + this.getSize() * 64;
+			this.zFine = this.movementQueueZ[0] * 128 + this.getSize() * 64;
 		}
 		if (this.aClass47_Sub1_5 != null) {
 			this.aClass47_Sub1_5.method1646();
@@ -202,23 +287,23 @@ public final class Player extends PathingEntity {
 		if (this.model == null) {
 			return;
 		}
-		@Pc(25) AnimationSequence local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? AnimationSequence.getAnimationSequence(this.primarySeqId) : null;
-		@Pc(54) AnimationSequence local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().idleAnimationId && local25 != null ? null : AnimationSequence.getAnimationSequence(this.movementSeqId);
+		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? SeqType.getAnimationSequence(this.primarySeqId) : null;
+		@Pc(54) SeqType local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().idleAnimationId && local25 != null ? null : SeqType.getAnimationSequence(this.movementSeqId);
 		@Pc(76) Model local76 = this.model.method1954(this.aClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
 		@Pc(79) int local79 = Static198.method1029();
 		if (GlRenderer.enabled && Static238.anInt5316 < 96 && local79 > 50) {
-			Static16.method501();
+			method501();
 		}
 		@Pc(102) int local102;
-		if (ItemDefinition.modeWhat != 0 && local79 < 50) {
+		if (client.modeWhat != 0 && local79 < 50) {
 			local102 = 50 - local79;
-			while (Static105.anInt2863 < local102) {
-				Static51.aByteArrayArray8[Static105.anInt2863] = new byte[102400];
-				Static105.anInt2863++;
+			while (anInt2863 < local102) {
+				aByteArrayArray8[anInt2863] = new byte[102400];
+				anInt2863++;
 			}
-			while (Static105.anInt2863 > local102) {
-				Static105.anInt2863--;
-				Static51.aByteArrayArray8[Static105.anInt2863] = null;
+			while (anInt2863 > local102) {
+				anInt2863--;
+				aByteArrayArray8[anInt2863] = null;
 			}
 		}
 		if (local76 == null) {
@@ -241,8 +326,8 @@ public final class Player extends PathingEntity {
 			}
 		}
 		if (PlayerList.self == this) {
-			for (local102 = Static143.aClass102Array1.length - 1; local102 >= 0; local102--) {
-				@Pc(245) Class102 local245 = Static143.aClass102Array1[local102];
+			for (local102 = Minimap.hintMapMarkers.length - 1; local102 >= 0; local102--) {
+				@Pc(245) Class102 local245 = Minimap.hintMapMarkers[local102];
 				if (local245 != null && local245.anInt4052 != -1) {
 					@Pc(291) int anchorX;
 					@Pc(302) int anchorY;
@@ -259,8 +344,8 @@ public final class Player extends PathingEntity {
 						anchorX = (local245.anInt4046 - Camera.originZ) * 4 + 2 - PlayerList.self.zFine / 32;
 						this.drawOnMinimap(null, anchorX, local76, local340, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
 					}
-					if (local245.headIconDrawType == 10 && local245.hintIconNpcTarget >= 0 && Static159.players.length > local245.hintIconNpcTarget) {
-						@Pc(395) Player player = Static159.players[local245.hintIconNpcTarget];
+					if (local245.headIconDrawType == 10 && local245.hintIconNpcTarget >= 0 && PlayerList.players.length > local245.hintIconNpcTarget) {
+						@Pc(395) Player player = PlayerList.players[local245.hintIconNpcTarget];
 						if (player != null) {
 							anchorX = player.xFine / 32 - PlayerList.self.xFine / 32;
 							anchorY = player.zFine / 32 - PlayerList.self.zFine / 32;
@@ -376,10 +461,10 @@ public final class Player extends PathingEntity {
 	public JString getUsername() {
 		@Pc(2) JString local2 = this.username;
 		if (Static103.aClass100Array88 != null) {
-			local2 = Static34.method882(new JString[] { Static103.aClass100Array88[this.anInt1651], local2 });
+			local2 = JString.concatenate(new JString[] { Static103.aClass100Array88[this.anInt1651], local2 });
 		}
 		if (Static263.aClass100Array174 != null) {
-			local2 = Static34.method882(new JString[] { local2, Static263.aClass100Array174[this.anInt1651] });
+			local2 = JString.concatenate(new JString[] { local2, Static263.aClass100Array174[this.anInt1651] });
 		}
 		return local2;
 	}
@@ -391,7 +476,7 @@ public final class Player extends PathingEntity {
 
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(BIZI)V")
 	public void teleport(@OriginalArg(1) int arg0, @OriginalArg(2) boolean arg1, @OriginalArg(3) int arg2) {
-		super.teleport(this.size(), arg0, arg2, arg1);
+		super.teleport(this.getSize(), arg0, arg2, arg1);
 	}
 
 	@OriginalMember(owner = "client!e", name = "finalize", descriptor = "()V")

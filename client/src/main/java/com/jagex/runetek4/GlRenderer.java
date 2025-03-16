@@ -126,7 +126,7 @@ public final class GlRenderer {
 	private static boolean fogEnabled = true;
 
 	@OriginalMember(owner = "client!tf", name = "I", descriptor = "Lclient!na;")
-	private static final JString RADEON = Static28.parse("radeon");
+	private static final JString RADEON = JString.parse("radeon");
 
 	private static JAWTWindow window;
 
@@ -138,7 +138,7 @@ public final class GlRenderer {
 		} catch (@Pc(5) UnsupportedEncodingException local5) {
 			local3 = arg0.getBytes();
 		}
-		return Static10.decodeString(local3, local3.length, 0);
+		return JString.decodeString(local3, local3.length, 0);
 	}
 
 	@OriginalMember(owner = "client!tf", name = "a", descriptor = "(IIII)V")
@@ -203,7 +203,7 @@ public final class GlRenderer {
 	}
 
 	@OriginalMember(owner = "client!tf", name = "d", descriptor = "()V")
-	public static void method4153() {
+	public static void swapBuffers() {
 		try {
 			drawable.swapBuffers();
 		} catch (@Pc(3) Exception local3) {
@@ -453,7 +453,7 @@ public final class GlRenderer {
 			for (@Pc(195) int i = 0; i < rendererParts.length; i++) {
 				@Pc(203) JString part = rendererParts[i];
 				if (part.length() >= 4 && part.substring(4, 0).method3123()) {
-					v = part.substring(4, 0).method3132();
+					v = part.substring(4, 0).parseInt();
 					break;
 				}
 			}

@@ -27,18 +27,18 @@ public final class Static173 {
 		if (Static172.anInt4164 > arg1) {
 			local24 = false;
 			arg1 = Static172.anInt4164;
-		} else if (Static224.anInt5063 >= arg1) {
+		} else if (FluTypeList.anInt5063 >= arg1) {
 			local24 = true;
 		} else {
 			local24 = false;
-			arg1 = Static224.anInt5063;
+			arg1 = FluTypeList.anInt5063;
 		}
 		@Pc(43) boolean local43;
 		if (arg3 < Static172.anInt4164) {
 			arg3 = Static172.anInt4164;
 			local43 = false;
-		} else if (arg3 > Static224.anInt5063) {
-			arg3 = Static224.anInt5063;
+		} else if (arg3 > FluTypeList.anInt5063) {
+			arg3 = FluTypeList.anInt5063;
 			local43 = false;
 		} else {
 			local43 = true;

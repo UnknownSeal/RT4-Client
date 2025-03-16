@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.config.FloType;
@@ -21,7 +20,7 @@ public final class Static193 {
 	public static long aLong147 = 0L;
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "Q", descriptor = "Lclient!na;")
-	public static final JString aClass100_853 = Static28.parse("null");
+	public static final JString aClass100_853 = JString.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "V", descriptor = "[Lclient!na;")
 	public static final JString[] ignoreName = new JString[100];
@@ -38,10 +37,10 @@ public final class Static193 {
 		if (username == 0L) {
 			return;
 		}
-		for (@Pc(13) int local13 = 0; local13 < CacheArchive.friendCount; local13++) {
+		for (@Pc(13) int local13 = 0; local13 < FriendList.friendCount; local13++) {
 			if (Static92.friendName37[local13] == username) {
-				CacheArchive.friendCount--;
-				for (@Pc(41) int i = local13; i < CacheArchive.friendCount; i++) {
+				FriendList.friendCount--;
+				for (@Pc(41) int i = local13; i < FriendList.friendCount; i++) {
 					Static122.friendName[i] = Static122.friendName[i + 1];
 					Static104.friendWorld[i] = Static104.friendWorld[i + 1];
 					Static214.aClass100Array170[i] = Static214.aClass100Array170[i + 1];
@@ -49,9 +48,9 @@ public final class Static193 {
 					Static106.anIntArray258[i] = Static106.anIntArray258[i + 1];
 					Static3.aBooleanArray135[i] = Static3.aBooleanArray135[i + 1];
 				}
-				Static185.anInt4369 = Static119.transmitTimer;
-				Static6.outboundBuffer.pIsaac1(57);
-				Static6.outboundBuffer.p8(username);
+				Static185.anInt4369 = InterfaceList.transmitTimer;
+				Protocol.outboundBuffer.pIsaac1(57);
+				Protocol.outboundBuffer.p8(username);
 				break;
 			}
 		}
@@ -291,31 +290,31 @@ public final class Static193 {
 		@Pc(23) int local23 = Static259.anIntArray514[arg0];
 		@Pc(27) int local27 = Static84.anIntArray209[arg0];
 		if (arg1 == 0) {
-			Static6.outboundBuffer.pIsaac1(215);
-			Static6.outboundBuffer.p1(local13 + local13 + 3);
+			Protocol.outboundBuffer.pIsaac1(215);
+			Protocol.outboundBuffer.p1(local13 + local13 + 3);
 			System.out.println("Steps: " + (local13 + local13 + 3));
 		}
 		if (arg1 == 1) {
-			Static6.outboundBuffer.pIsaac1(39);
-			Static6.outboundBuffer.p1(local13 + local13 + 3 + 14);
+			Protocol.outboundBuffer.pIsaac1(39);
+			Protocol.outboundBuffer.p1(local13 + local13 + 3 + 14);
 		}
 		if (arg1 == 2) {
-			Static6.outboundBuffer.pIsaac1(77);
-			Static6.outboundBuffer.p1(local13 + local13 + 3);
+			Protocol.outboundBuffer.pIsaac1(77);
+			Protocol.outboundBuffer.p1(local13 + local13 + 3);
 		}
-		Static6.outboundBuffer.p1b_alt1(Static187.pressedKeys[82] ? 1 : 0);
+		Protocol.outboundBuffer.p1b_alt1(Static187.pressedKeys[82] ? 1 : 0);
 		System.out.println("InvertRun: " + (Static187.pressedKeys[82] ? 1 : 0) );
-		Static6.outboundBuffer.p2((Camera.originX + local23));
+		Protocol.outboundBuffer.p2((Camera.originX + local23));
 		System.out.println("StartX: " + (Camera.originX + local23));
-		Static6.outboundBuffer.p2_alt2(Camera.originZ + local27);
+		Protocol.outboundBuffer.p2_alt2(Camera.originZ + local27);
 		System.out.println("StartZ: " + (Camera.originZ + local27));
-		Static84.anInt2255 = Static84.anIntArray209[0];
-		Static115.anInt2939 = Static259.anIntArray514[0];
+		LoginManager.mapFlagZ = Static84.anIntArray209[0];
+		LoginManager.mapFlagX = Static259.anIntArray514[0];
 		for (@Pc(126) int local126 = 1; local126 < local13; local126++) {
 			arg0--;
-			Static6.outboundBuffer.p1b_alt1(Static259.anIntArray514[arg0] - local23);
+			Protocol.outboundBuffer.p1b_alt1(Static259.anIntArray514[arg0] - local23);
 			System.out.println(Static259.anIntArray514[arg0] - local23);
-			Static6.outboundBuffer.p1_alt3(Static84.anIntArray209[arg0] - local27);
+			Protocol.outboundBuffer.p1_alt3(Static84.anIntArray209[arg0] - local27);
 			System.out.println(Static84.anIntArray209[arg0] - local27);
 		}
 	}

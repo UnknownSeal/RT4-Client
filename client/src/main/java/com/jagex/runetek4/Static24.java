@@ -14,9 +14,6 @@ public final class Static24 {
 	@OriginalMember(owner = "client!bn", name = "O", descriptor = "I")
 	public static int anInt761;
 
-	@OriginalMember(owner = "client!bn", name = "V", descriptor = "I")
-	public static int anInt766 = 0;
-
 	@OriginalMember(owner = "client!bn", name = "eb", descriptor = "I")
 	public static int anInt773 = 0;
 
@@ -74,8 +71,4 @@ public final class Static24 {
 		return local76 / 8 + local47 / 16 + local81 / 4;
 	}
 
-	@OriginalMember(owner = "client!bn", name = "d", descriptor = "(II)Z")
-	public static boolean method671(@OriginalArg(1) int arg0) {
-		return arg0 >= 48 && arg0 <= 57;
-	}
 }

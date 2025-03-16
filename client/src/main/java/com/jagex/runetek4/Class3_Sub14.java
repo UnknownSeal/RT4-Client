@@ -5,6 +5,7 @@ import java.nio.ByteOrder;
 
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.datastruct.HashTable;
+import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.scene.tile.SceneTile;
@@ -288,7 +289,7 @@ public final class Class3_Sub14 extends Node {
 			GlRenderer.setTextureId(-1);
 			Static27.setMaterial(0, 0);
 		} else {
-			Pix3D.anInterface1_2.method3227(this.anInt2485);
+			Rasterizer.textureProvider.method3227(this.anInt2485);
 		}
 		@Pc(282) int local282 = this.aBoolean139 ? 40 : 36;
 		if (this.aClass155_3 == null) {

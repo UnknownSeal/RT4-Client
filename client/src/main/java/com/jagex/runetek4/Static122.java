@@ -9,14 +9,11 @@ public final class Static122 {
 	@OriginalMember(owner = "runetek4.client!jh", name = "n", descriptor = "Lclient!bd;")
 	public static QuickChatPhrase aQuickChatPhrase_1;
 
-	@OriginalMember(owner = "runetek4.client!jh", name = "p", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_46;
-
 	@OriginalMember(owner = "runetek4.client!jh", name = "b", descriptor = "[Lclient!na;")
 	public static final JString[] friendName = new JString[200];
 
     @OriginalMember(owner = "runetek4.client!jh", name = "g", descriptor = "Lclient!na;")
-	public static final JString aClass100_591 = Static28.parse("(Udns");
+	public static final JString aClass100_591 = JString.parse("(Udns");
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "j", descriptor = "I")
 	public static int x = 0;

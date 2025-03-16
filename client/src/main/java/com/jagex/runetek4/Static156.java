@@ -3,9 +3,8 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.GZip;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.MathUtils;
-import com.jagex.runetek4.util.SignLink;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -15,9 +14,6 @@ public final class Static156 {
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "O", descriptor = "[[B")
 	public static byte[][] aByteArrayArray11;
-
-	@OriginalMember(owner = "runetek4.client!mf", name = "W", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_59;
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "X", descriptor = "I")
 	public static int anInt3783;
@@ -115,50 +111,6 @@ public final class Static156 {
 		Static248.method3292(arg0, arg1, arg2, arg5, arg11, arg12, arg13, arg14);
 	}
 
-	@OriginalMember(owner = "runetek4.client!mf", name = "a", descriptor = "(JI)V")
-	public static void method2956(@OriginalArg(0) long arg0) {
-		if ((long) 0 != arg0) {
-			Static6.outboundBuffer.pIsaac1(104);
-			Static6.outboundBuffer.p8(arg0);
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!mf", name = "e", descriptor = "(I)V")
-	public static void init() {
-		if (SignLink.javaVendor.toLowerCase().indexOf("microsoft") != -1) {
-			Static196.anIntArray407[187] = 27;
-			Static196.anIntArray407[223] = 28;
-			Static196.anIntArray407[221] = 43;
-			Static196.anIntArray407[188] = 71;
-			Static196.anIntArray407[222] = 59;
-			Static196.anIntArray407[192] = 58;
-			Static196.anIntArray407[191] = 73;
-			Static196.anIntArray407[219] = 42;
-			Static196.anIntArray407[190] = 72;
-			Static196.anIntArray407[186] = 57;
-			Static196.anIntArray407[220] = 74;
-			Static196.anIntArray407[189] = 26;
-			return;
-		}
-		if (SignLink.setFocusTraversalKeysEnabled == null) {
-			Static196.anIntArray407[192] = 58;
-			Static196.anIntArray407[222] = 59;
-		} else {
-			Static196.anIntArray407[222] = 58;
-			Static196.anIntArray407[192] = 28;
-			Static196.anIntArray407[520] = 59;
-		}
-		Static196.anIntArray407[45] = 26;
-		Static196.anIntArray407[61] = 27;
-		Static196.anIntArray407[91] = 42;
-		Static196.anIntArray407[59] = 57;
-		Static196.anIntArray407[93] = 43;
-		Static196.anIntArray407[44] = 71;
-		Static196.anIntArray407[92] = 74;
-		Static196.anIntArray407[46] = 72;
-		Static196.anIntArray407[47] = 73;
-	}
-
 	@OriginalMember(owner = "runetek4.client!mf", name = "a", descriptor = "()V")
 	public static void method2959() {
 		@Pc(1) GL2 local1 = GlRenderer.gl;
@@ -170,7 +122,7 @@ public final class Static156 {
 		GlRenderer.disableDepthMask();
 		for (@Pc(19) int local19 = 0; local19 < Static36.aClass3_Sub14ArrayArray1[0].length; local19++) {
 			@Pc(31) Class3_Sub14 local31 = Static36.aClass3_Sub14ArrayArray1[0][local19];
-			if (local31.anInt2485 >= 0 && Pix3D.anInterface1_2.method3237(local31.anInt2485) == 4) {
+			if (local31.anInt2485 >= 0 && Rasterizer.textureProvider.method3237(local31.anInt2485) == 4) {
 				local1.glColor4fv(Static190.method3441(local31.anInt2486), 0);
 				@Pc(57) float local57 = 201.5F - (local31.aBoolean140 ? 1.0F : 0.5F);
 				local31.method1944(Static130.levelTiles, local57, true);

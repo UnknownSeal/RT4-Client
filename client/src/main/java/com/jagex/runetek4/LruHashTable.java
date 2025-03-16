@@ -76,7 +76,7 @@ public final class LruHashTable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "c", descriptor = "(I)V")
-	public final void method1815() {
+	public final void clear() {
 		this.aClass16_1.method802();
 		this.aClass133_5.removeAll();
 		this.aClass3_Sub2_37 = new CachedNode();

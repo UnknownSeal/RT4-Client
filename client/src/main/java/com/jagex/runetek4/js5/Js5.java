@@ -98,7 +98,7 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(IZZ)V")
-	public void method4477(@OriginalArg(1) boolean arg0) {
+	public void discardNames(@OriginalArg(1) boolean arg0) {
 		if (!this.isIndexReady()) {
 			return;
 		}
@@ -142,7 +142,7 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(Lclient!na;B)I")
-	public int method4482(@OriginalArg(0) JString arg0) {
+	public int getGroupId(@OriginalArg(0) JString arg0) {
 		if (this.isIndexReady()) {
 			@Pc(16) JString local16 = arg0.toLowerCase();
 			@Pc(27) int local27 = this.index.nameHashCollection.method2405(local16.method3154());
@@ -171,7 +171,7 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(ILclient!na;Lclient!na;)[B")
-	public byte[] method4485(@OriginalArg(1) JString arg0, @OriginalArg(2) JString arg1) {
+	public byte[] fetchFile(@OriginalArg(1) JString arg0, @OriginalArg(2) JString arg1) {
 		if (!this.isIndexReady()) {
 			return null;
 		}
@@ -196,7 +196,7 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(Lclient!na;BLclient!na;)Z")
-	public boolean method4487(@OriginalArg(0) JString arg0, @OriginalArg(2) JString arg1) {
+	public boolean isFileReady(@OriginalArg(0) JString arg0, @OriginalArg(2) JString arg1) {
 		if (!this.isIndexReady()) {
 			return false;
 		}
@@ -449,7 +449,7 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "d", descriptor = "(B)V")
-	public void method4499() {
+	public void discardUnpacked() {
 		if (this.unpacked != null) {
 			for (@Pc(17) int local17 = 0; local17 < this.unpacked.length; local17++) {
 				this.unpacked[local17] = null;

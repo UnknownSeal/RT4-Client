@@ -1,8 +1,5 @@
 package com.jagex.runetek4;
 
-import java.util.Random;
-
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -12,15 +9,6 @@ public final class Static39 {
 
 	@OriginalMember(owner = "runetek4.client!d", name = "hb", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_23;
-
-	@OriginalMember(owner = "runetek4.client!d", name = "ib", descriptor = "Lclient!qf;")
-	public static Sprite aClass3_Sub2_Sub1_1;
-
-	@OriginalMember(owner = "runetek4.client!d", name = "R", descriptor = "Lclient!be;")
-	public static Component aClass13_10 = null;
-
-	@OriginalMember(owner = "runetek4.client!d", name = "S", descriptor = "Ljava/util/Random;")
-	public static final Random aRandom1 = new Random();
 
 	@OriginalMember(owner = "runetek4.client!d", name = "db", descriptor = "Z")
 	public static boolean aBoolean77 = false;

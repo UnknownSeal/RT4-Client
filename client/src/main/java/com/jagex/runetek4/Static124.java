@@ -27,9 +27,6 @@ public final class Static124 {
 	@OriginalMember(owner = "runetek4.client!jk", name = "z", descriptor = "Lclient!n;")
 	public static final NodeCache aClass99_17 = new NodeCache(50);
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "F", descriptor = "Lclient!na;")
-	public static final JString TWEEN = Static28.parse("::tween");
-
 	@OriginalMember(owner = "runetek4.client!jk", name = "G", descriptor = "Z")
 	public static boolean aBoolean157 = false;
 

@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static245 {
 
 	@OriginalMember(owner = "runetek4.client!tm", name = "d", descriptor = "Lclient!na;")
-	public static final JString aClass100_1018 = Static28.parse("; Expires=Thu)1 01)2Jan)21970 00:00:00 GMT; Max)2Age=0");
+	public static final JString aClass100_1018 = JString.parse("; Expires=Thu)1 01)2Jan)21970 00:00:00 GMT; Max)2Age=0");
 
 	@OriginalMember(owner = "runetek4.client!tm", name = "e", descriptor = "Z")
 	public static boolean enabled = false;
@@ -30,10 +30,10 @@ public final class Static245 {
 	public static void getPlayerExtended() {
 		for (@Pc(7) int i = 0; i < Static116.entityUpdateCount; i++) {
 			@Pc(31) int index = Static44.entityUpdateIds[i];
-			@Pc(35) Player player = Static159.players[index];
-			@Pc(39) int mask = Static57.in.g1();
+			@Pc(35) Player player = PlayerList.players[index];
+			@Pc(39) int mask = Protocol.inboundBuffer.g1();
 			if ((mask & 0x10) != 0) {
-				mask += Static57.in.g1() << 8;
+				mask += Protocol.inboundBuffer.g1() << 8;
 			}
 			Static84.getPlayerExtended(mask, index, player);
 		}

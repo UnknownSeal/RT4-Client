@@ -4,7 +4,7 @@ import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.frame.Minimap;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -13,14 +13,11 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static137 {
 
-	@OriginalMember(owner = "runetek4.client!kl", name = "r", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_49;
-
 	@OriginalMember(owner = "runetek4.client!kl", name = "s", descriptor = "I")
 	public static int anInt3337 = 0;
 
 	@OriginalMember(owner = "runetek4.client!kl", name = "u", descriptor = "Lclient!na;")
-	public static final JString aClass100_637 = Static28.parse("<col=ffffff>");
+	public static final JString aClass100_637 = JString.parse("<col=ffffff>");
 
 	@OriginalMember(owner = "runetek4.client!kl", name = "a", descriptor = "(Lclient!wa;B)Lclient!kc;")
 	public static TextureOp29SubOp2 method2664(@OriginalArg(0) Packet arg0) {
@@ -34,10 +31,10 @@ public final class Static137 {
 		@Pc(76) int local76;
 		@Pc(80) int local80;
 		if (Static56.aClass3_Sub2_Sub1_Sub1_1 == null) {
-			if (GlRenderer.enabled || Static89.aClass3_Sub2_Sub1_5 == null) {
+			if (GlRenderer.enabled || Minimap.sprite == null) {
 				Static56.aClass3_Sub2_Sub1_Sub1_1 = new ImageRGB(512, 512);
 			} else {
-				Static56.aClass3_Sub2_Sub1_Sub1_1 = (ImageRGB) Static89.aClass3_Sub2_Sub1_5;
+				Static56.aClass3_Sub2_Sub1_Sub1_1 = (ImageRGB) Minimap.sprite;
 			}
 			@Pc(32) int[] local32 = Static56.aClass3_Sub2_Sub1_Sub1_1.pixels;
 			local35 = local32.length;
@@ -79,7 +76,7 @@ public final class Static137 {
 							@Pc(237) int local237 = local76;
 							local194 = local37;
 							if (local187 != 22 && local187 != 29 && local187 != 34 && local187 != 36 && local187 != 46 && local187 != 47 && local187 != 48) {
-								@Pc(269) int[][] local269 = Static148.levelCollisionMap[Player.plane].flags;
+								@Pc(269) int[][] local269 = PathFinder.collisionMaps[Player.plane].flags;
 								for (@Pc(271) int local271 = 0; local271 < 10; local271++) {
 									@Pc(281) int local281 = (int) (Math.random() * 4.0D);
 									if (local281 == 0 && local194 > 0 && local37 - 3 < local194 && (local269[local194 - 1][local237] & 0x12C0108) == 0) {
@@ -114,7 +111,7 @@ public final class Static137 {
 					if (GlRenderer.enabled) {
 						Rasterizer.destinationPixels = null;
 					} else {
-						Static260.frameBuffer.makeTarget();
+						SoftwareRaster.frameBuffer.makeTarget();
 					}
 					return false;
 				}
@@ -122,7 +119,7 @@ public final class Static137 {
 					if (GlRenderer.enabled) {
 						Rasterizer.destinationPixels = null;
 					} else {
-						Static260.frameBuffer.makeTarget();
+						SoftwareRaster.frameBuffer.makeTarget();
 					}
 					return false;
 				}
@@ -136,14 +133,14 @@ public final class Static137 {
 					local576[local80] = 1;
 				}
 			}
-			Static89.aClass3_Sub2_Sub1_5 = new GlSprite(Static56.aClass3_Sub2_Sub1_Sub1_1);
+			Minimap.sprite = new GlSprite(Static56.aClass3_Sub2_Sub1_Sub1_1);
 		} else {
-			Static89.aClass3_Sub2_Sub1_5 = Static56.aClass3_Sub2_Sub1_Sub1_1;
+			Minimap.sprite = Static56.aClass3_Sub2_Sub1_Sub1_1;
 		}
 		if (GlRenderer.enabled) {
 			Rasterizer.destinationPixels = null;
 		} else {
-			Static260.frameBuffer.makeTarget();
+			SoftwareRaster.frameBuffer.makeTarget();
 		}
 		Static56.aClass3_Sub2_Sub1_Sub1_1 = null;
 		return true;

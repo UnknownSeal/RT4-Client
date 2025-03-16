@@ -15,16 +15,13 @@ public final class Static5 {
 	public static int anInt39 = -1;
 
 	@OriginalMember(owner = "runetek4.client!af", name = "g", descriptor = "Lclient!na;")
-	public static final JString HINT_MAPEDGE = Static28.parse("hint_mapedge");
-
-	@OriginalMember(owner = "runetek4.client!af", name = "k", descriptor = "I")
-	public static int anInt45 = 0;
+	public static final JString HINT_MAPEDGE = JString.parse("hint_mapedge");
 
 	@OriginalMember(owner = "runetek4.client!af", name = "l", descriptor = "[S")
 	public static final short[] aShortArray2 = new short[] { 30, 6, 31, 29, 10, 44, 37, 57 };
 
 	@OriginalMember(owner = "runetek4.client!af", name = "m", descriptor = "Lclient!na;")
-	public static final JString aClass100_10 = Static28.parse("<br>");
+	public static final JString aClass100_10 = JString.parse("<br>");
 
 	@OriginalMember(owner = "runetek4.client!af", name = "a", descriptor = "(ILjava/lang/String;)V")
 	public static void method31(@OriginalArg(1) String arg0) {
@@ -33,9 +30,9 @@ public final class Static5 {
 
 	@OriginalMember(owner = "runetek4.client!af", name = "b", descriptor = "(B)V")
 	public static void method34() {
-		Static116.method2325(false);
+		WorldMap.clear(false);
 		System.gc();
-		Game.processGameStatus(25);
+		client.processGameStatus(25);
 	}
 
 	@OriginalMember(owner = "runetek4.client!af", name = "a", descriptor = "(IIIIIILclient!th;IJ)Z")

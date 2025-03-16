@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.nio.ByteBuffer;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -122,7 +123,7 @@ public final class Static237 {
 	public static int method4096(@OriginalArg(0) int arg0, @OriginalArg(1) short arg1, @OriginalArg(2) int arg2, @OriginalArg(3) byte arg3) {
 		@Pc(5) int local5 = Pix3D.anIntArray220[Static268.method4585(arg0, arg2)];
 		if (arg1 != -1) {
-			@Pc(15) int local15 = Pix3D.anInterface1_2.method3238(arg1 & 0xFFFF);
+			@Pc(15) int local15 = Rasterizer.textureProvider.method3238(arg1 & 0xFFFF);
 			@Pc(21) int local21;
 			@Pc(44) int local44;
 			if (local15 != 0) {
@@ -140,7 +141,7 @@ public final class Static237 {
 					local5 = ((local21 & 0xFF00FF) * local15 + (local5 & 0xFF00FF) * local44 & 0xFF00FF00) + ((local21 & 0xFF00) * local15 + (local5 & 0xFF00) * local44 & 0xFF0000) >> 8;
 				}
 			}
-			local21 = Pix3D.anInterface1_2.method3229(arg1 & 0xFFFF);
+			local21 = Rasterizer.textureProvider.method3229(arg1 & 0xFFFF);
 			if (local21 != 0) {
 				local21 += 256;
 				@Pc(92) int local92 = (local5 >> 16 & 0xFF) * local21;
@@ -295,13 +296,4 @@ public final class Static237 {
 		aFloat24 = local89;
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "v", descriptor = "()V")
-	public static void method4120() {
-		aClass8_Sub1_Sub1_1 = new GlModel();
-		aClass8_Sub1_Sub1_2 = new GlModel();
-		aClass8_Sub1_Sub1_3 = new GlModel();
-		aClass8_Sub1_Sub1_4 = new GlModel();
-		aClass8_Sub1_Sub1_5 = new GlModel();
-		aClass8_Sub1_Sub1_6 = new GlModel();
-	}
 }

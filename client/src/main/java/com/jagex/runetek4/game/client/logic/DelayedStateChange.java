@@ -32,7 +32,7 @@ public final class DelayedStateChange extends CachedNode {
 
 	@OriginalMember(owner = "client!da", name = "a", descriptor = "(Z)V")
 	public final void method1007() {
-		this.secondaryNodeId = MonotonicTime.get() + 500L | Long.MIN_VALUE & this.secondaryNodeId;
+		this.secondaryNodeId = MonotonicTime.currentTimeMillis() + 500L | Long.MIN_VALUE & this.secondaryNodeId;
 		Static140.aClass16_7.pushBack(this);
 	}
 

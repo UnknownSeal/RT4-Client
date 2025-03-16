@@ -20,21 +20,16 @@ public final class Static86 {
 	public static int anInt2293 = (int) (Math.random() * 17.0D) - 8;
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "W", descriptor = "Lclient!na;")
-	public static final JString aClass100_488 = Static28.parse("_");
+	public static final JString aClass100_488 = JString.parse("_");
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "bb", descriptor = "Z")
 	public static boolean aBoolean129 = false;
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "db", descriptor = "Lclient!na;")
-	public static final JString CROSS = Static28.parse("cross");
+	public static final JString CROSS = JString.parse("cross");
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "gb", descriptor = "[I")
 	public static final int[] WALL_CORNER_TYPE_64_BLOCK_LOC_SPANS = new int[] { 0, 4, 4, 8, 0, 0, 8, 0, 0 };
-
-	@OriginalMember(owner = "runetek4.client!gm", name = "f", descriptor = "(B)V")
-	public static void method1799() {
-		Static222.aBoolean246 = true;
-	}
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "h", descriptor = "(I)V")
 	public static void method1800() {
@@ -54,12 +49,12 @@ public final class Static86 {
 				NpcList.npcs[local30] = null;
 			}
 		}
-		if (Static223.packetSize != Static57.in.offset) {
-			throw new RuntimeException("gnp1 pos:" + Static57.in.offset + " psize:" + Static223.packetSize);
+		if (Static223.packetSize != Protocol.inboundBuffer.offset) {
+			throw new RuntimeException("gnp1 pos:" + Protocol.inboundBuffer.offset + " psize:" + Static223.packetSize);
 		}
-		for (i = 0; i < Static272.npcCount; i++) {
+		for (i = 0; i < NpcList.npcCount; i++) {
 			if (NpcList.npcs[Static33.npcIds[i]] == null) {
-				throw new RuntimeException("gnp2 pos:" + i + " size:" + Static272.npcCount);
+				throw new RuntimeException("gnp2 pos:" + i + " size:" + NpcList.npcCount);
 			}
 		}
 	}

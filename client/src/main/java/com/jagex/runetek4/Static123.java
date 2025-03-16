@@ -8,19 +8,19 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static123 {
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "d", descriptor = "Lclient!na;")
-	public static final JString HEADICONS_PK = Static28.parse("headicons_pk");
+	public static final JString HEADICONS_PK = JString.parse("headicons_pk");
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "e", descriptor = "I")
 	public static int anInt3058 = 0;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "g", descriptor = "Lclient!na;")
-	public static final JString aClass100_593 = Static28.parse(" (X");
+	public static final JString aClass100_593 = JString.parse(" (X");
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "j", descriptor = "Z")
 	public static boolean lastItemDragged = false;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "m", descriptor = "Lclient!na;")
-	public static final JString aClass100_594 = Static28.parse("<)4col>");
+	public static final JString aClass100_594 = JString.parse("<)4col>");
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(BI)Lclient!lk;")
 	public static StructType method2417(@OriginalArg(1) int arg0) {
@@ -35,16 +35,6 @@ public final class Static123 {
 		}
 		PreciseSleep.aClass54_13.put(local10, (long) arg0);
 		return local10;
-	}
-
-	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(Z)V")
-	public static void method2418() {
-		if (!Static249.aBoolean282 && client.modeWhere != 2) {
-			try {
-				Static206.aClass100_900.method3157(client.instance);
-			} catch (@Pc(26) Throwable local26) {
-			}
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "()V")
@@ -216,8 +206,4 @@ public final class Static123 {
 		return Static251.aFloatArray28;
 	}
 
-	@OriginalMember(owner = "runetek4.client!jj", name = "b", descriptor = "(BI)Lclient!na;")
-	public static JString method2423(@OriginalArg(1) int arg0) {
-		return Static198.method1025(false, arg0);
-	}
 }

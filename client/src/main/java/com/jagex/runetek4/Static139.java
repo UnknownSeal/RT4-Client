@@ -21,10 +21,10 @@ public final class Static139 {
 	public static final NodeCache aClass99_21 = new NodeCache(5);
 
 	@OriginalMember(owner = "runetek4.client!l", name = "d", descriptor = "Lclient!na;")
-	public static final JString aClass100_659 = Static28.parse(")4j");
+	public static final JString aClass100_659 = JString.parse(")4j");
 
 	@OriginalMember(owner = "runetek4.client!l", name = "f", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_22 = new NodeCache(4);
+	public static final NodeCache fontMetrics = new NodeCache(4);
 
 	@OriginalMember(owner = "runetek4.client!l", name = "k", descriptor = "I")
 	public static int anInt3451 = 2;

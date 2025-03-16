@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.tile.GroundDecor;
 import com.jagex.runetek4.scene.tile.SceneTile;
@@ -17,7 +18,7 @@ public final class Static248 {
 
 	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(IB)Z")
 	public static boolean method3288(@OriginalArg(0) int arg0) {
-		Static189.anInt4443 = arg0 + 1 & 0xFFFF;
+		Protocol.verifyId = arg0 + 1 & 0xFFFF;
 		Static34.verifyIdChanged = true;
 		return true;
 	}
@@ -126,7 +127,7 @@ public final class Static248 {
 					for (local37 = 0; local37 < Static182.aClass3_Sub14ArrayArray2[local32].length; local37++) {
 						@Pc(336) Class3_Sub14 local336 = Static182.aClass3_Sub14ArrayArray2[local32][local37];
 						@Pc(350) float local350 = 201.5F - (float) local32 * 50.0F - (local336.aBoolean140 ? 1.0F : 0.5F);
-						if (local336.anInt2485 != -1 && Pix3D.anInterface1_2.method3237(local336.anInt2485) == 4 && Static220.aBoolean244) {
+						if (local336.anInt2485 != -1 && Rasterizer.textureProvider.method3237(local336.anInt2485) == 4 && Static220.aBoolean244) {
 							Static21.method619(local336.anInt2486);
 						}
 						local336.method1944(Static130.levelTiles, local350, false);

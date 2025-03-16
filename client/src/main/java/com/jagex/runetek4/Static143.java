@@ -8,14 +8,11 @@ public final class Static143 {
     @OriginalMember(owner = "runetek4.client!ld", name = "a", descriptor = "[I")
 	public static final int[] anIntArray329 = new int[] { 2, 2, 4, 0, 1, 8, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0 };
 
-	@OriginalMember(owner = "runetek4.client!ld", name = "b", descriptor = "[Lclient!nc;")
-	public static final Class102[] aClass102Array1 = new Class102[4];
-
 	@OriginalMember(owner = "runetek4.client!ld", name = "c", descriptor = "I")
 	public static int anInt3484 = -1;
 
 	@OriginalMember(owner = "runetek4.client!ld", name = "d", descriptor = "Lclient!na;")
-	public static final JString HIDDEN_USE = Static28.parse("Hidden)2use");
+	public static final JString HIDDEN_USE = JString.parse("Hidden)2use");
 
 	@OriginalMember(owner = "runetek4.client!ld", name = "g", descriptor = "[Lclient!na;")
 	public static JString[] aClass100Array104 = null;
@@ -32,21 +29,4 @@ public final class Static143 {
 		Static199.anInt4675 = arg2;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ld", name = "a", descriptor = "(B)I")
-	public static int method2732() {
-		return 6;
-	}
-
-	@OriginalMember(owner = "runetek4.client!ld", name = "a", descriptor = "(IB)I")
-	public static int method2733(@OriginalArg(0) int arg0) {
-		if (arg0 >= 97 && arg0 <= 122 || arg0 >= 224 && arg0 <= 254 && arg0 != 247) {
-			return arg0 - 32;
-		} else if (arg0 == 255) {
-			return 159;
-		} else if (arg0 == 156) {
-			return 140;
-		} else {
-			return arg0;
-		}
-	}
 }

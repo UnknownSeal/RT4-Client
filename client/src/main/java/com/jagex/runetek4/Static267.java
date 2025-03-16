@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.scene.tile.GroundDecor;
 import com.jagex.runetek4.scene.tile.SceneTile;
@@ -10,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static267 {
 
-	@OriginalMember(owner = "runetek4.client!vl", name = "g", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_109;
-
 	@OriginalMember(owner = "runetek4.client!vl", name = "a", descriptor = "Lclient!n;")
 	public static final NodeCache skeletonCache = new NodeCache(100);
 
@@ -20,16 +16,13 @@ public final class Static267 {
 	public static final int[] ROTATION_WALL_TYPE = new int[] { 1, 2, 4, 8 };
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "f", descriptor = "Lclient!na;")
-	public static final JString CABBAGE = Static28.parse("Cabbage");
+	public static final JString CABBAGE = JString.parse("Cabbage");
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "h", descriptor = "I")
 	public static int anInt5773 = 0;
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "i", descriptor = "[I")
 	public static int[] anIntArray518 = new int[2];
-
-	@OriginalMember(owner = "runetek4.client!vl", name = "j", descriptor = "I")
-	public static int playerCount = 0;
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "l", descriptor = "I")
 	public static int anInt5776 = 0;
@@ -48,9 +41,9 @@ public final class Static267 {
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "a", descriptor = "(I)Z")
 	public static boolean method4527() {
-		if (Static150.aBoolean175) {
+		if (client.objectTag) {
 			try {
-				return !((Boolean) Static119.SHOWINGVIDEOAD.method3157(GameShell.signLink.applet));
+				return !((Boolean) Static119.SHOWINGVIDEOAD.browserControlCall(GameShell.signLink.applet));
 			} catch (@Pc(21) Throwable local21) {
 			}
 		}
@@ -149,7 +142,7 @@ public final class Static267 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "b", descriptor = "(I)V")
-	public static void method4529() {
+	public static void removeSoft() {
 		PreciseSleep.aClass99_29.removeSoft();
 		Static219.aClass99_27.removeSoft();
 	}

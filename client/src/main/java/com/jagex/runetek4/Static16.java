@@ -1,14 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public final class Static16 {
-
-	@OriginalMember(owner = "client!bf", name = "s", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_9;
 
 	@OriginalMember(owner = "client!bf", name = "B", descriptor = "I")
 	public static int anInt548 = -1;
@@ -22,77 +16,4 @@ public final class Static16 {
 	@OriginalMember(owner = "client!bf", name = "I", descriptor = "[I")
 	public static final int[] CHAT_COLORS = new int[] { 16776960, 16711680, 65280, 65535, 16711935, 16777215 };
 
-	@OriginalMember(owner = "client!bf", name = "c", descriptor = "(I)V")
-	public static void method501() {
-		if (!GlRenderer.enabled || PreciseSleep.aBoolean252) {
-			return;
-		}
-		@Pc(14) SceneTile[][][] local14 = Static130.levelTiles;
-		for (@Pc(22) int local22 = 0; local22 < local14.length; local22++) {
-			@Pc(30) SceneTile[][] local30 = local14[local22];
-			for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {
-				for (@Pc(42) int local42 = 0; local42 < local30[local32].length; local42++) {
-					@Pc(54) SceneTile local54 = local30[local32][local42];
-					if (local54 != null) {
-						@Pc(71) GlModel local71;
-						if (local54.groundDecor != null && local54.groundDecor.entity instanceof GlModel) {
-							local71 = (GlModel) local54.groundDecor.entity;
-							if ((local54.groundDecor.key & Long.MIN_VALUE) == 0L) {
-								local71.method4111(false, true, true, false, true, true);
-							} else {
-								local71.method4111(true, true, true, true, true, true);
-							}
-						}
-						if (local54.wallDecor != null) {
-							if (local54.wallDecor.primary instanceof GlModel) {
-								local71 = (GlModel) local54.wallDecor.primary;
-								if ((local54.wallDecor.key & Long.MIN_VALUE) == 0L) {
-									local71.method4111(false, true, true, false, true, true);
-								} else {
-									local71.method4111(true, true, true, true, true, true);
-								}
-							}
-							if (local54.wallDecor.secondary instanceof GlModel) {
-								local71 = (GlModel) local54.wallDecor.secondary;
-								if ((Long.MIN_VALUE & local54.wallDecor.key) == 0L) {
-									local71.method4111(false, true, true, false, true, true);
-								} else {
-									local71.method4111(true, true, true, true, true, true);
-								}
-							}
-						}
-						if (local54.wall != null) {
-							if (local54.wall.primary instanceof GlModel) {
-								local71 = (GlModel) local54.wall.primary;
-								if ((local54.wall.aLong107 & Long.MIN_VALUE) == 0L) {
-									local71.method4111(false, true, true, false, true, true);
-								} else {
-									local71.method4111(true, true, true, true, true, true);
-								}
-							}
-							if (local54.wall.modelB instanceof GlModel) {
-								local71 = (GlModel) local54.wall.modelB;
-								if ((Long.MIN_VALUE & local54.wall.aLong107) == 0L) {
-									local71.method4111(false, true, true, false, true, true);
-								} else {
-									local71.method4111(true, true, true, true, true, true);
-								}
-							}
-						}
-						for (@Pc(270) int local270 = 0; local270 < local54.entityCount; local270++) {
-							if (local54.sceneries[local270].entity instanceof GlModel) {
-								@Pc(293) GlModel local293 = (GlModel) local54.sceneries[local270].entity;
-								if ((Long.MIN_VALUE & local54.sceneries[local270].hash) == 0L) {
-									local293.method4111(false, true, true, false, true, true);
-								} else {
-									local293.method4111(true, true, true, true, true, true);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		PreciseSleep.aBoolean252 = true;
-	}
 }

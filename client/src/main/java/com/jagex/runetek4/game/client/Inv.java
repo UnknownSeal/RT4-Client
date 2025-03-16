@@ -9,7 +9,7 @@ import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.node.Node;
 
 @OriginalClass("client!qe")
-public final class ClientInvCache extends Node {
+public final class Inv extends Node {
 
 	@OriginalMember(owner = "client!bj", name = "v", descriptor = "Lclient!sc;")
 	public static HashTable recentUse = new HashTable(32);
@@ -21,9 +21,9 @@ public final class ClientInvCache extends Node {
 
 	@OriginalMember(owner = "client!wl", name = "a", descriptor = "(IIIIB)V")
 	public static void update(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		@Pc(12) ClientInvCache local12 = (ClientInvCache) recentUse.getNode((long) arg3);
+		@Pc(12) Inv local12 = (Inv) recentUse.getNode((long) arg3);
 		if (local12 == null) {
-			local12 = new ClientInvCache();
+			local12 = new Inv();
 			recentUse.put(local12, (long) arg3);
 		}
 		if (local12.invSlotObjId.length <= arg1) {
@@ -46,16 +46,16 @@ public final class ClientInvCache extends Node {
 
 	@OriginalMember(owner = "client!wj", name = "a", descriptor = "(BII)I")
 	public static int total(@OriginalArg(1) int arg0, @OriginalArg(2) int slot) {
-		@Pc(8) ClientInvCache clientInvCache = (ClientInvCache) recentUse.getNode(arg0);
-		if (clientInvCache == null) {
+		@Pc(8) Inv inv = (Inv) recentUse.getNode(arg0);
+		if (inv == null) {
 			return 0;
 		} else if (slot == -1) {
 			return 0;
 		} else {
 			@Pc(25) int total = 0;
-			for (@Pc(27) int index = 0; index < clientInvCache.invSlotObjCount.length; index++) {
-				if (slot == clientInvCache.invSlotObjId[index]) {
-					total += clientInvCache.invSlotObjCount[index];
+			for (@Pc(27) int index = 0; index < inv.invSlotObjCount.length; index++) {
+				if (slot == inv.invSlotObjId[index]) {
+					total += inv.invSlotObjCount[index];
 				}
 			}
 			return total;
@@ -67,16 +67,21 @@ public final class ClientInvCache extends Node {
 		if (arg0 < 0) {
 			return 0;
 		}
-		@Pc(17) ClientInvCache clientInvCache = (ClientInvCache) recentUse.getNode((long) arg0);
-		if (clientInvCache == null) {
+		@Pc(17) Inv inv = (Inv) recentUse.getNode((long) arg0);
+		if (inv == null) {
 			return Static246.get(arg0).size;
 		}
 		@Pc(31) int total = 0;
-		for (@Pc(33) int local33 = 0; local33 < clientInvCache.invSlotObjId.length; local33++) {
-			if (clientInvCache.invSlotObjId[local33] == -1) {
+		for (@Pc(33) int local33 = 0; local33 < inv.invSlotObjId.length; local33++) {
+			if (inv.invSlotObjId[local33] == -1) {
 				total++;
 			}
 		}
-		return total + Static246.get(arg0).size - clientInvCache.invSlotObjId.length;
+		return total + Static246.get(arg0).size - inv.invSlotObjId.length;
+	}
+
+	@OriginalMember(owner = "runetek4.client!hn", name = "f", descriptor = "(B)V")
+	public static void clear() {
+		recentUse = new HashTable(32);
 	}
 }

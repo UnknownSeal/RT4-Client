@@ -12,12 +12,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static33 {
 
-	@OriginalMember(owner = "runetek4.client!cj", name = "e", descriptor = "[[S")
-	public static short[][] aShortArrayArray2;
-
-	@OriginalMember(owner = "runetek4.client!cj", name = "n", descriptor = "Lsignlink!im;")
-	public static PrivilegedRequest openUrlRequest;
-
 	@OriginalMember(owner = "runetek4.client!cj", name = "i", descriptor = "[I")
 	public static final int[] npcIds = new int[32768];
 
@@ -61,7 +55,7 @@ public final class Static33 {
 	public static void method868(@OriginalArg(1) Packet arg0) {
 		@Pc(13) int local13 = Static266.anInt5338 >> 1;
 		@Pc(19) int local19 = Static131.anInt3254 >> 2 << 10;
-		@Pc(23) byte[][] local23 = new byte[Static48.anInt1449][Static181.anInt4296];
+		@Pc(23) byte[][] local23 = new byte[Static48.anInt1449][IdkTypeList.anInt4296];
 		@Pc(33) int local33;
 		@Pc(102) int local102;
 		@Pc(114) int local114;
@@ -77,8 +71,8 @@ public final class Static33 {
 			@Pc(57) int local57 = arg0.g1();
 			@Pc(61) int local61 = arg0.g1();
 			@Pc(68) int local68 = local57 * 64 - Static158.anInt3846;
-			@Pc(78) int local78 = Static181.anInt4296 + Static2.anInt13 - local61 * 64 - 1;
-			if (local68 >= 0 && local78 - 63 >= 0 && Static48.anInt1449 > local68 + 63 && Static181.anInt4296 > local78) {
+			@Pc(78) int local78 = IdkTypeList.anInt4296 + Static2.anInt13 - local61 * 64 - 1;
+			if (local68 >= 0 && local78 - 63 >= 0 && Static48.anInt1449 > local68 + 63 && IdkTypeList.anInt4296 > local78) {
 				for (local102 = 0; local102 < 64; local102++) {
 					@Pc(112) byte[] local112 = local23[local68 + local102];
 					for (local114 = 0; local114 < 64; local114++) {
@@ -94,7 +88,7 @@ public final class Static33 {
 			}
 		}
 		@Pc(175) int local175 = Static48.anInt1449;
-		local33 = Static181.anInt4296;
+		local33 = IdkTypeList.anInt4296;
 		@Pc(180) int[] local180 = new int[local33];
 		@Pc(183) int[] local183 = new int[local33];
 		@Pc(186) int[] local186 = new int[local33];
@@ -193,7 +187,7 @@ public final class Static33 {
 		@Pc(36) int local36 = Static35.aCalendar1.get(11);
 		@Pc(40) int local40 = Static35.aCalendar1.get(12);
 		@Pc(44) int local44 = Static35.aCalendar1.get(13);
-		return Static34.method882(new JString[] { Static219.aClass100Array149[local13 - 1], Static74.aClass100_461, Static123.method2423(local17 / 10), Static123.method2423(local17 % 10), Static270.aClass100_1089, Static138.MONTHS[local21], Static270.aClass100_1089, Static123.method2423(local32), Static49.aClass100_351, Static123.method2423(local36 / 10), Static123.method2423(local36 % 10), Static264.aClass100_875, Static123.method2423(local40 / 10), Static123.method2423(local40 % 10), Static264.aClass100_875, Static123.method2423(local44 / 10), Static123.method2423(local44 % 10), Static55.aClass100_376 });
+		return JString.concatenate(new JString[] { Static219.aClass100Array149[local13 - 1], Static74.aClass100_461, JString.parseInt(local17 / 10), JString.parseInt(local17 % 10), Static270.aClass100_1089, Static138.MONTHS[local21], Static270.aClass100_1089, JString.parseInt(local32), Static49.aClass100_351, JString.parseInt(local36 / 10), JString.parseInt(local36 % 10), Static264.aClass100_875, JString.parseInt(local40 / 10), JString.parseInt(local40 % 10), Static264.aClass100_875, JString.parseInt(local44 / 10), JString.parseInt(local44 % 10), Static55.aClass100_376 });
 	}
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(ZIIIIIIFB)[[I")

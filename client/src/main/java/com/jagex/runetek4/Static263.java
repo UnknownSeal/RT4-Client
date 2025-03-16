@@ -24,10 +24,10 @@ public final class Static263 {
 	public static int minimapAngleModifier = 2;
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "f", descriptor = "Lclient!na;")
-	public static final JString GREEN3 = Static28.parse("<col=80ff00>");
+	public static final JString GREEN3 = JString.parse("<col=80ff00>");
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "h", descriptor = "Lclient!na;")
-	public static final JString aClass100_1082 = Static28.parse("; Expires=");
+	public static final JString aClass100_1082 = JString.parse("; Expires=");
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(Lclient!na;IIBI)V")
 	public static void method4512(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
@@ -41,7 +41,7 @@ public final class Static263 {
 			local19.source = local8;
 			local19.aClass100_598 = arg0;
 			local19.anInt3101 = arg2;
-			Static82.method1767(local19);
+			ClientScriptRunner.run(local19);
 		}
 		@Pc(37) boolean local37 = true;
 		if (local8.contentType > 0) {
@@ -51,54 +51,54 @@ public final class Static263 {
 			return;
 		}
 		if (arg2 == 1) {
-			Static6.outboundBuffer.pIsaac1(155);
-			Static6.outboundBuffer.p4(arg3);
-			Static6.outboundBuffer.p2(arg1);
+			Protocol.outboundBuffer.pIsaac1(155);
+			Protocol.outboundBuffer.p4(arg3);
+			Protocol.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 2) {
-			Static6.outboundBuffer.pIsaac1(196);
-			Static6.outboundBuffer.p4(arg3);
-			Static6.outboundBuffer.p2(arg1);
+			Protocol.outboundBuffer.pIsaac1(196);
+			Protocol.outboundBuffer.p4(arg3);
+			Protocol.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 3) {
-			Static6.outboundBuffer.pIsaac1(124);
-			Static6.outboundBuffer.p4(arg3);
-			Static6.outboundBuffer.p2(arg1);
+			Protocol.outboundBuffer.pIsaac1(124);
+			Protocol.outboundBuffer.p4(arg3);
+			Protocol.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 4) {
-			Static6.outboundBuffer.pIsaac1(199);
-			Static6.outboundBuffer.p4(arg3);
-			Static6.outboundBuffer.p2(arg1);
+			Protocol.outboundBuffer.pIsaac1(199);
+			Protocol.outboundBuffer.p4(arg3);
+			Protocol.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 5) {
-			Static6.outboundBuffer.pIsaac1(234);
-			Static6.outboundBuffer.p4(arg3);
-			Static6.outboundBuffer.p2(arg1);
+			Protocol.outboundBuffer.pIsaac1(234);
+			Protocol.outboundBuffer.p4(arg3);
+			Protocol.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 6) {
-			Static6.outboundBuffer.pIsaac1(168);
-			Static6.outboundBuffer.p4(arg3);
-			Static6.outboundBuffer.p2(arg1);
+			Protocol.outboundBuffer.pIsaac1(168);
+			Protocol.outboundBuffer.p4(arg3);
+			Protocol.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 7) {
-			Static6.outboundBuffer.pIsaac1(166);
-			Static6.outboundBuffer.p4(arg3);
-			Static6.outboundBuffer.p2(arg1);
+			Protocol.outboundBuffer.pIsaac1(166);
+			Protocol.outboundBuffer.p4(arg3);
+			Protocol.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 8) {
-			Static6.outboundBuffer.pIsaac1(64);
-			Static6.outboundBuffer.p4(arg3);
-			Static6.outboundBuffer.p2(arg1);
+			Protocol.outboundBuffer.pIsaac1(64);
+			Protocol.outboundBuffer.p4(arg3);
+			Protocol.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 9) {
-			Static6.outboundBuffer.pIsaac1(53);
-			Static6.outboundBuffer.p4(arg3);
-			Static6.outboundBuffer.p2(arg1);
+			Protocol.outboundBuffer.pIsaac1(53);
+			Protocol.outboundBuffer.p4(arg3);
+			Protocol.outboundBuffer.p2(arg1);
 		}
 		if (arg2 == 10) {
-			Static6.outboundBuffer.pIsaac1(9);
-			Static6.outboundBuffer.p4(arg3);
-			Static6.outboundBuffer.p2(arg1);
+			Protocol.outboundBuffer.pIsaac1(9);
+			Protocol.outboundBuffer.p4(arg3);
+			Protocol.outboundBuffer.p2(arg1);
 		}
 	}
 
@@ -116,8 +116,8 @@ public final class Static263 {
 			entity.spotanimFrame = -1;
 			entity.anInt3395 = 0;
 			entity.anInt3386 = 0;
-			entity.xFine = entity.pathTileX[0] * 128 + entity.size() * 64;
-			entity.zFine = entity.pathTileZ[0] * 128 + entity.size() * 64;
+			entity.xFine = entity.movementQueueX[0] * 128 + entity.getSize() * 64;
+			entity.zFine = entity.movementQueueZ[0] * 128 + entity.getSize() * 64;
 			entity.method2689();
 		}
 		if (entity == PlayerList.self && (entity.xFine < 1536 || entity.zFine < 1536 || entity.xFine >= 11776 || entity.zFine >= 11776)) {
@@ -125,8 +125,8 @@ public final class Static263 {
 			entity.anInt3395 = 0;
 			entity.anInt3386 = 0;
 			entity.primarySeqId = -1;
-			entity.xFine = entity.pathTileX[0] * 128 + entity.size() * 64;
-			entity.zFine = entity.pathTileZ[0] * 128 + entity.size() * 64;
+			entity.xFine = entity.movementQueueX[0] * 128 + entity.getSize() * 64;
+			entity.zFine = entity.movementQueueZ[0] * 128 + entity.getSize() * 64;
 			entity.method2689();
 		}
 		Static37.method949(entity);

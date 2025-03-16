@@ -14,7 +14,7 @@ public final class MonotonicTime {
 	private static long previous;
 
 	@OriginalMember(owner = "signlink!ad", name = "a", descriptor = "(B)J")
-	public static synchronized long get() {
+	public static synchronized long currentTimeMillis() {
 		@Pc(1) long now = System.currentTimeMillis();
 		if (previous > now) {
 			leapMillis += previous - now;

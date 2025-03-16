@@ -13,16 +13,16 @@ public final class Static90 {
 
 	@OriginalMember(owner = "runetek4.client!hb", name = "b", descriptor = "(Lclient!na;I)V")
 	public static void method1853(@OriginalArg(0) JString arg0) {
-		Static116.method2325(false);
+		WorldMap.clear(false);
 		Static133.method4011(arg0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hb", name = "c", descriptor = "(I)V")
-	public static void method1854() {
-		Static179.aClass99_25.method3104();
-		Static169.modelCacheStatic.method3104();
-		Static93.aClass99_14.method3104();
-		Static262.aClass99_36.method3104();
+	public static void clear() {
+		Static179.aClass99_25.clear();
+		Static169.modelCacheStatic.clear();
+		Static93.aClass99_14.clear();
+		Static262.aClass99_36.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!hb", name = "b", descriptor = "(II)Z")
@@ -32,6 +32,6 @@ public final class Static90 {
 
 	@OriginalMember(owner = "runetek4.client!hb", name = "a", descriptor = "(Z)V")
 	public static void method1857() {
-		Static45.aClass99_6.method3104();
+		Static45.aClass99_6.clear();
 	}
 }

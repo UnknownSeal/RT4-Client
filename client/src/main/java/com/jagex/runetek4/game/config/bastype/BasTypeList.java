@@ -31,7 +31,7 @@ public class BasTypeList {
 
     @OriginalMember(owner = "runetek4.client!jk", name = "e", descriptor = "(B)V")
     public static void clear() {
-        types.method3104();
+        types.clear();
     }
 
     @OriginalMember(owner = "client!bi", name = "c", descriptor = "(II)V")

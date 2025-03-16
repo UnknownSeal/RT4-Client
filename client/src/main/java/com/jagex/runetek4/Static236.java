@@ -12,7 +12,7 @@ public final class Static236 {
 
 	@OriginalMember(owner = "runetek4.client!tc", name = "a", descriptor = "(B)I")
 	public static int method4047() {
-		if (Static127.aBoolean160) {
+		if (ClientScriptRunner.neverRemoveRoofs) {
 			return 0;
 		} else if (Static138.allLevelsvisible()) {
 			return Static80.aBoolean231 ? 2 : 1;
