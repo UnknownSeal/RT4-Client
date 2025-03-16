@@ -1,9 +1,11 @@
-package com.jagex.runetek4.dash3d.entity;
+package com.jagex.runetek4.media.renderable.actor;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
+import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.game.world.entity.PlayerModel;
@@ -14,9 +16,11 @@ import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!e")
-public final class PlayerEntity extends PathingEntity {
+public final class Player extends PathingEntity {
 
-    @OriginalMember(owner = "runetek4.client!ba", name = "w", descriptor = "I")
+	@OriginalMember(owner = "client!ch", name = "v", descriptor = "[B")
+	public static final byte[] aByteArray12 = new byte[] { 95, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57 };
+	@OriginalMember(owner = "runetek4.client!ba", name = "w", descriptor = "I")
     public static int overrideChat = 0;
     @OriginalMember(owner = "client!e", name = "Bc", descriptor = "Lclient!hh;")
 	public PlayerModel model;
@@ -31,7 +35,7 @@ public final class PlayerEntity extends PathingEntity {
 	private int anInt1651 = 0;
 
 	@OriginalMember(owner = "client!e", name = "uc", descriptor = "I")
-	public int anInt1650 = 0;
+	public int teamId = 0;
 
 	@OriginalMember(owner = "client!e", name = "yc", descriptor = "I")
 	public int combatLevel = 0;
@@ -67,7 +71,7 @@ public final class PlayerEntity extends PathingEntity {
 	public int anInt1670 = -1;
 
     @OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(ILclient!e;)I")
-    public static int getSound(@OriginalArg(1) PlayerEntity arg0) {
+    public static int getSound(@OriginalArg(1) Player arg0) {
         @Pc(14) int local14 = arg0.anInt1654;
         @Pc(18) BASType local18 = arg0.method2681();
         if (local18.anInt1037 == arg0.secondarySeqId) {
@@ -107,7 +111,7 @@ public final class PlayerEntity extends PathingEntity {
 		this.z += (this.size() - local41) * 64;
 		this.anInt1669 = arg0.g1s();
 		this.anInt1649 = arg0.g1s();
-		this.anInt1650 = 0;
+		this.teamId = 0;
 		@Pc(111) int local111;
 		@Pc(127) int local127;
 		@Pc(134) int local134;
@@ -121,7 +125,7 @@ public final class PlayerEntity extends PathingEntity {
 				local134 = (local111 << 8) + local127;
 				if (local102 == 0 && local134 == 65535) {
 					local22 = arg0.g2();
-					this.anInt1650 = arg0.g1();
+					this.teamId = arg0.g1();
 					break;
 				}
 				if (local134 >= 32768) {
@@ -129,7 +133,7 @@ public final class PlayerEntity extends PathingEntity {
 					local44[local102] = local134 | 0x40000000;
 					local175 = Static71.get(local134).team;
 					if (local175 != 0) {
-						this.anInt1650 = local175;
+						this.teamId = local175;
 					}
 				} else {
 					local44[local102] = local134 - 256 | Integer.MIN_VALUE;
@@ -241,21 +245,21 @@ public final class PlayerEntity extends PathingEntity {
 				if (local245 != null && local245.anInt4052 != -1) {
 					@Pc(291) int anchorX;
 					@Pc(302) int anchorY;
-					if (local245.anInt4058 == 1 && local245.anInt4057 >= 0 && Static175.npcs.length > local245.anInt4057) {
-						@Pc(278) NPCEntity npc = Static175.npcs[local245.anInt4057];
+					if (local245.headIconDrawType == 1 && local245.hintIconNpcTarget >= 0 && Static175.npcs.length > local245.hintIconNpcTarget) {
+						@Pc(278) NPCEntity npc = Static175.npcs[local245.hintIconNpcTarget];
 						if (npc != null) {
 							anchorX = npc.x / 32 - Static173.localPlayer.x / 32;
 							anchorY = npc.z / 32 - Static173.localPlayer.z / 32;
 							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
 						}
 					}
-					if (local245.anInt4058 == 2) {
+					if (local245.headIconDrawType == 2) {
 						@Pc(340) int local340 = (local245.anInt4053 - Static225.originX) * 4 + 2 - Static173.localPlayer.x / 32;
 						anchorX = (local245.anInt4046 - Static142.originZ) * 4 + 2 - Static173.localPlayer.z / 32;
 						this.drawOnMinimap(null, anchorX, local76, local340, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
 					}
-					if (local245.anInt4058 == 10 && local245.anInt4057 >= 0 && Static159.players.length > local245.anInt4057) {
-						@Pc(395) PlayerEntity player = Static159.players[local245.anInt4057];
+					if (local245.headIconDrawType == 10 && local245.hintIconNpcTarget >= 0 && Static159.players.length > local245.hintIconNpcTarget) {
+						@Pc(395) Player player = Static159.players[local245.hintIconNpcTarget];
 						if (player != null) {
 							anchorX = player.x / 32 - Static173.localPlayer.x / 32;
 							anchorY = player.z / 32 - Static173.localPlayer.z / 32;

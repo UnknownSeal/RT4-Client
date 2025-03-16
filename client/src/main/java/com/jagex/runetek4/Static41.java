@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -189,7 +189,7 @@ public final class Static41 {
 
 		for (int index = 0; index < local6; index++) {
 			@Pc(75) int local75 = Static105.playerIds[index];
-			@Pc(79) PlayerEntity local79 = Static159.players[local75];
+			@Pc(79) Player local79 = Static159.players[local75];
 			@Pc(84) int local84 = Static57.in.gBit(1);
 			if (local84 == 0) {
 				Static105.playerIds[Static267.playerCount++] = local75;

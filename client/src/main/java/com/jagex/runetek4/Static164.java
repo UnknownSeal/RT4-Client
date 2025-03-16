@@ -249,7 +249,7 @@ public final class Static164 {
 			rendered = local71;
 		}
 		if (arg3 && (definition.stackable == 1 || arg5 != 1) && arg5 != -1) {
-			Static256.aClass3_Sub2_Sub9_Sub1_1.method2857(Component.getShortenedAmountText(arg5), 0, 9, 16776960, 1);
+			Static256.aClass3_Sub2_Sub9_Sub1_1.drawString(Component.getShortenedAmountText(arg5), 0, 9, 16776960, 1);
 		}
 		Rasterizer.prepare(pixels, local120, local122);
 		Rasterizer.setViewportDimensions(local125);

@@ -5,7 +5,7 @@ import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -698,7 +698,7 @@ public final class Static87 {
 													if (local514 == Static16.localPid) {
 														local514 = 2047;
 													}
-													@Pc(2751) PlayerEntity local2751 = Static159.players[local514];
+													@Pc(2751) Player local2751 = Static159.players[local514];
 													@Pc(2760) AnimationSequence local2760 = local276 == -1 ? null : AnimationSequence.getAnimationSequence(local276);
 													if (local2751 != null && (int) local2751.name.toBase37() << 11 == (local30.modelId & 0xFFFFF800)) {
 														local2589 = local2751.model.method1954(null, -1, null, local2760, 0, -1, 0, local30.anInt510, 0);
@@ -796,7 +796,7 @@ public final class Static87 {
 															local556 = local123 + local503 * (local30.anInt512 + 115);
 															local545 = (local30.anInt516 + 12) * local468 + local114;
 															if (local30.anInt460 == 0) {
-																local1921.method2857(local3159, local556, local545, local30.anInt474, local30.aBoolean28 ? 0 : -1);
+																local1921.drawString(local3159, local556, local545, local30.anInt474, local30.aBoolean28 ? 0 : -1);
 															} else if (local30.anInt460 == 1) {
 																local1921.method2875(local3159, local556 + 57, local545, local30.anInt474, local30.aBoolean28 ? 0 : -1);
 															} else {
@@ -824,7 +824,7 @@ public final class Static87 {
 														local3297 = local3297.substring(local518 + 4);
 													}
 													local556 = local3299.method2858(local3325);
-													local276 += local3299.anInt3626 + 1;
+													local276 += local3299.characterDefaultHeight + 1;
 													if (local270 < local556) {
 														local270 = local556;
 													}
@@ -850,7 +850,7 @@ public final class Static87 {
 													Rasterizer.drawUnfilledRectangle(local518, local556, local270, local276, 0);
 												}
 												local3297 = local30.aClass100_84;
-												local545 = local556 + local3299.anInt3626 + 2;
+												local545 = local556 + local3299.characterDefaultHeight + 2;
 												local3297 = Static127.method2465(local30, local3297);
 												while (local3297.length() > 0) {
 													local563 = local3297.indexOf(Static269.aClass100_556);
@@ -861,8 +861,8 @@ public final class Static87 {
 														local3325 = local3297.substring(local563, 0);
 														local3297 = local3297.substring(local563 + 4);
 													}
-													local3299.method2857(local3325, local518 + 3, local545, 0, -1);
-													local545 += local3299.anInt3626 + 1;
+													local3299.drawString(local3325, local518 + 3, local545, 0, -1);
+													local545 += local3299.characterDefaultHeight + 1;
 												}
 											}
 											if (local30.INVENTORY == 9) {

@@ -921,7 +921,7 @@ public class ImageRGB extends Sprite {
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "a", descriptor = "(II[I[I)V")
-	public final void method312(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int[] arg2, @OriginalArg(3) int[] arg3) {
+	public final void drawImage(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int[] arg2, @OriginalArg(3) int[] arg3) {
 		if (Rasterizer.viewportBottom - Rasterizer.viewportTop != arg2.length) {
 			throw new IllegalStateException();
 		}

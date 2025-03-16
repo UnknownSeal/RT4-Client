@@ -86,7 +86,7 @@ public final class Static145 {
 			Rasterizer.drawFilledRectangle(local11 + 1, local3 + 1, local9 - 2, 16, 0);
 			Rasterizer.drawUnfilledRectangle(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
 		}
-		Static280.aClass3_Sub2_Sub9_43.method2857(LocalizedText.CHOOSE_OPTION, local11 + 3, local3 + 14, 6116423, -1);
+		Static280.aClass3_Sub2_Sub9_43.drawString(LocalizedText.CHOOSE_OPTION, local11 + 3, local3 + 14, 6116423, -1);
 		@Pc(96) int local96 = Static223.anInt5032;
 		@Pc(98) int local98 = Static215.anInt4873;
 		for (@Pc(107) int local107 = 0; local107 < PreciseSleep.menuActionRow; local107++) {
@@ -95,7 +95,7 @@ public final class Static145 {
 			if (local11 < local98 && local98 < local11 + local9 && local127 - 13 < local96 && local96 < local127 + 3) {
 				local129 = 16776960;
 			}
-			Static280.aClass3_Sub2_Sub9_43.method2857(Static269.method2228(local107), local11 + 3, local127, local129, 0);
+			Static280.aClass3_Sub2_Sub9_43.drawString(Static269.method2228(local107), local11 + 3, local127, local129, 0);
 		}
 		Static121.method2407(Static183.anInt4271, Static229.anInt5138, Static13.anInt436, Static24.anInt761);
 	}

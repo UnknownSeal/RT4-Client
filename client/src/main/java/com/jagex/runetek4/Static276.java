@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -56,7 +56,7 @@ public final class Static276 {
 		@Pc(7) JString local7 = arg1.method3159().method3125();
 		@Pc(13) boolean local13 = false;
 		for (@Pc(15) int local15 = 0; local15 < Static267.playerCount; local15++) {
-			@Pc(28) PlayerEntity local28 = Static159.players[Static105.playerIds[local15]];
+			@Pc(28) Player local28 = Static159.players[Static105.playerIds[local15]];
 			if (local28 != null && local28.name != null && local28.name.equalsIgnoreCase(local7)) {
 				local13 = true;
 				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local28.pathTileX[0], 1, 0, 2, local28.pathTileZ[0], Static173.localPlayer.pathTileX[0]);

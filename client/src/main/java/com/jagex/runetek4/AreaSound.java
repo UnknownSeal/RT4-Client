@@ -4,7 +4,7 @@ import com.jagex.runetek4.core.datastruct.Node;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -49,7 +49,7 @@ public final class AreaSound extends Node {
 	public int anInt2041;
 
 	@OriginalMember(owner = "client!fl", name = "M", descriptor = "Lclient!e;")
-	public PlayerEntity player;
+	public Player player;
 
 	@OriginalMember(owner = "client!fl", name = "N", descriptor = "I")
 	public int radius;
@@ -99,7 +99,7 @@ public final class AreaSound extends Node {
 				}
 			}
 		} else if (this.player != null) {
-			this.sound = PlayerEntity.getSound(this.player);
+			this.sound = Player.getSound(this.player);
 			this.radius = this.player.anInt1664 * 128;
 		}
 		if (this.sound != sound && this.primaryStream != null) {

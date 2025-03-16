@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -50,7 +50,7 @@ public final class Static73 {
 		}
 		Static35.anInt1092 = -1;
 		client.method1750(Static270.anInt5794);
-		Static173.localPlayer = new PlayerEntity();
+		Static173.localPlayer = new Player();
 		Static173.localPlayer.z = 3000;
 		Static173.localPlayer.x = 3000;
 		if (!GlRenderer.enabled) {

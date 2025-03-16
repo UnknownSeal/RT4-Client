@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.audio.SynthSound;
 import com.jagex.runetek4.audio.vorbis.VorbisSound;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.js5.CacheArchive;

@@ -1,5 +1,8 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.input;
 
+import com.jagex.runetek4.PreciseSleep;
+import com.jagex.runetek4.Static215;
+import com.jagex.runetek4.Static223;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

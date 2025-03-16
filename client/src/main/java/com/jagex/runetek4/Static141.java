@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.dash3d.entity.LocEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -49,7 +49,7 @@ public final class Static141 {
 		Static116.method2325(false);
 		Static119.method2381();
 		for (@Pc(39) int local39 = 0; local39 < 2048; local39++) {
-			@Pc(46) PlayerEntity local46 = Static159.players[local39];
+			@Pc(46) Player local46 = Static159.players[local39];
 			if (local46 != null) {
 				local46.locModel = null;
 			}

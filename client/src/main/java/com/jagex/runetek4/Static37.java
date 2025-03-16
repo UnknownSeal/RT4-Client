@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -47,7 +47,7 @@ public final class Static37 {
 			if (index == Static16.localPid) {
 				index = 2047;
 			}
-			@Pc(83) PlayerEntity player = Static159.players[index];
+			@Pc(83) Player player = Static159.players[index];
 			if (player != null) {
 				local94 = e.z - player.z;
 				dstZ = e.x - player.x;

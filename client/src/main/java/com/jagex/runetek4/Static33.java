@@ -47,7 +47,7 @@ public final class Static33 {
 			local49 = arg1.length;
 			local52 = arg1.width;
 		}
-		@Pc(66) int local66 = local42.anInt4279;
+		@Pc(66) int local66 = local42.maxWidth;
 		@Pc(69) int local69 = local42.anInt4276;
 		if (local10.aBoolean2) {
 			local69 = local52 * 4;

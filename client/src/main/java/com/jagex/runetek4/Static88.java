@@ -906,7 +906,7 @@ public final class Static88 {
 									@Pc(12937) int[] local12937 = null;
 									local26--;
 									chatTypedLowercase = Static3.scriptStringValues[local26];
-									if (chatTypedLowercase.length() > 0 && chatTypedLowercase.method3149(chatTypedLowercase.length() - 1) == 89) {
+									if (chatTypedLowercase.length() > 0 && chatTypedLowercase.charAt(chatTypedLowercase.length() - 1) == 89) {
 										intValueIndex--;
 										local652 = Static254.scriptIntValues[intValueIndex];
 										if (local652 > 0) {
@@ -920,7 +920,7 @@ public final class Static88 {
 									}
 									@Pc(13000) Object[] local13000 = new Object[chatTypedLowercase.length() + 1];
 									for (start = local13000.length - 1; start >= 1; start--) {
-										if (chatTypedLowercase.method3149(start - 1) == 115) {
+										if (chatTypedLowercase.charAt(start - 1) == 115) {
 											local26--;
 											local13000[start] = Static3.scriptStringValues[local26];
 										} else {
@@ -4082,7 +4082,7 @@ public final class Static88 {
 										chatTypedLowercase = Static87.method1804(chatTyped.length());
 										@Pc(12220) boolean local12220 = false;
 										for (local652 = 0; local652 < chatTyped.length(); local652++) {
-											start = chatTyped.method3149(local652);
+											start = chatTyped.charAt(local652);
 											if (start == 60) {
 												local12220 = true;
 											} else if (start == 62) {

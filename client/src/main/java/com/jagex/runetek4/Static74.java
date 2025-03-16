@@ -25,8 +25,8 @@ public final class Static74 {
 
 	@OriginalMember(owner = "runetek4.client!fn", name = "a", descriptor = "(BIIIII)V")
 	public static void method1624(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		Static241.aClass36Array16[0].method3336(arg2, arg3);
-		Static241.aClass36Array16[1].method3336(arg2, arg4 + arg3 - 16);
+		Static241.aClass36Array16[0].drawImage(arg2, arg3);
+		Static241.aClass36Array16[1].drawImage(arg2, arg4 + arg3 - 16);
 		@Pc(35) int local35 = arg4 * (arg4 - 32) / arg1;
 		if (local35 < 8) {
 			local35 = 8;

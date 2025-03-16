@@ -693,7 +693,7 @@ public final class JString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "c", descriptor = "(IB)I")
-	public final int method3149(@OriginalArg(0) int arg0) {
+	public final int charAt(@OriginalArg(0) int arg0) {
 		return this.aByteArray52[arg0] & 0xFF;
 	}
 

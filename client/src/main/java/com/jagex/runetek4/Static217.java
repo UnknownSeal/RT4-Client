@@ -5,7 +5,7 @@ import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -31,7 +31,7 @@ public final class Static217 {
 	public static final JString CLANREQ = Static28.parse(":clanreq:");
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "a", descriptor = "(IIILclient!e;I)V")
-	public static void method3767(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) PlayerEntity arg2, @OriginalArg(4) int arg3) {
+	public static void method3767(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Player arg2, @OriginalArg(4) int arg3) {
 		if (Static173.localPlayer == arg2 || PreciseSleep.menuActionRow >= 400) {
 			return;
 		}
@@ -70,8 +70,8 @@ public final class Static217 {
 						if (arg2.combatLevel > Static173.localPlayer.combatLevel) {
 							local291 = 2000;
 						}
-						if (Static173.localPlayer.anInt1650 != 0 && arg2.anInt1650 != 0) {
-							if (Static173.localPlayer.anInt1650 == arg2.anInt1650) {
+						if (Static173.localPlayer.teamId != 0 && arg2.teamId != 0) {
+							if (Static173.localPlayer.teamId == arg2.teamId) {
 								local291 = 2000;
 							} else {
 								local291 = 0;

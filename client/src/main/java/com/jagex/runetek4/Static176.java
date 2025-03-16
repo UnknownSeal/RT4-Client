@@ -5,7 +5,7 @@ import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -162,7 +162,7 @@ public final class Static176 {
 				@Pc(479) int local479;
 				@Pc(493) int local493;
 				@Pc(502) NPCEntity local502;
-				@Pc(597) PlayerEntity local597;
+				@Pc(597) Player local597;
 				if (local133 == 1) {
 					@Pc(421) NPCEntity local421 = Static175.npcs[local140];
 					if ((local421.type.size & 0x1) == 0 && (local421.x & 0x7F) == 0 && (local421.z & 0x7F) == 0 || (local421.type.size & 0x1) == 1 && (local421.x & 0x7F) == 64 && (local421.z & 0x7F) == 64) {
@@ -188,7 +188,7 @@ public final class Static176 {
 					Static246.method4240(local421.type, local47, local140, local147);
 				}
 				if (local133 == 0) {
-					@Pc(688) PlayerEntity local688 = Static159.players[local140];
+					@Pc(688) Player local688 = Static159.players[local140];
 					if ((local688.x & 0x7F) == 64 && (local688.z & 0x7F) == 64) {
 						local479 = local688.x - (local688.size() - 1) * 64;
 						local240 = local688.z + 64 - local688.size() * 64;

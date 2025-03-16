@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -92,7 +92,7 @@ public final class Static110 {
 				local37 = 3;
 			}
 			if (local6.anInt2038 != local37) {
-				local141 = PlayerEntity.getSound(local6.player);
+				local141 = Player.getSound(local6.player);
 				if (local6.sound != local141) {
 					if (local6.primaryStream != null) {
 						Static204.soundStream.removeSubStream(local6.primaryStream);

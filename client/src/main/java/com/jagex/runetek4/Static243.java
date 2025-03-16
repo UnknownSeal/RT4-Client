@@ -5,7 +5,7 @@ import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.datastruct.IterableMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -94,7 +94,7 @@ public final class Static243 {
 		for (i = 0; i < 32768; i++) {
 			Static175.npcs[i] = null;
 		}
-		Static173.localPlayer = Static159.players[2047] = new PlayerEntity();
+		Static173.localPlayer = Static159.players[2047] = new Player();
 		Static217.projectiles.clear();
 		Static99.spotanims.clear();
 		if (Static159.levelObjStacks != null) {

@@ -18,10 +18,10 @@ public final class ShapedTile {
 	public final int anInt1967;
 
 	@OriginalMember(owner = "runetek4.client!fg", name = "p", descriptor = "I")
-	public final int anInt1969;
+	public final int underlayRGB;
 
 	@OriginalMember(owner = "runetek4.client!fg", name = "k", descriptor = "I")
-	public final int anInt1968;
+	public final int overlayRGB;
 
 	@OriginalMember(owner = "runetek4.client!fg", name = "q", descriptor = "[I")
 	public final int[] anIntArray168;
@@ -60,8 +60,8 @@ public final class ShapedTile {
 		}
 		this.anInt1966 = arg0;
 		this.anInt1967 = arg1;
-		this.anInt1969 = arg17;
-		this.anInt1968 = arg18;
+		this.underlayRGB = arg17;
+		this.overlayRGB = arg18;
 		@Pc(30) short local30 = 128;
 		@Pc(34) int local34 = local30 / 2;
 		@Pc(38) int local38 = local30 / 4;

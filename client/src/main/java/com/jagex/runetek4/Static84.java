@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.datastruct.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -36,7 +36,7 @@ public final class Static84 {
 	public static int anInt2256 = 0;
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "(IIBLclient!e;)V")
-	public static void getPlayerExtended(@OriginalArg(0) int flags, @OriginalArg(1) int arg1, @OriginalArg(3) PlayerEntity player) {
+	public static void getPlayerExtended(@OriginalArg(0) int flags, @OriginalArg(1) int arg1, @OriginalArg(3) Player player) {
 		@Pc(13) int chatFlags;
 		@Pc(17) int staffModLevel;
 		@Pc(24) int local24;
@@ -64,7 +64,7 @@ public final class Static84 {
 						}
 					}
 				}
-				if (!ignored && PlayerEntity.overrideChat == 0) {
+				if (!ignored && Player.overrideChat == 0) {
 					Static270.chatBuffer.position = 0;
 					Static57.in.gBytesRev(Static270.chatBuffer.data, len);
 					Static270.chatBuffer.position = 0;
@@ -137,7 +137,7 @@ public final class Static84 {
 		}
 		if ((flags & 0x20) != 0) {
 			player.chatMessage = Static57.in.gjstr();
-			if (player.chatMessage.method3149(0) == 126) {
+			if (player.chatMessage.charAt(0) == 126) {
 				player.chatMessage = player.chatMessage.substring(1);
 				Static103.addMessage(player.getName(), 2, player.chatMessage);
 			} else if (player == Static173.localPlayer) {

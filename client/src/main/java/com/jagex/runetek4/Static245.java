@@ -4,7 +4,7 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.lighttype.LightType;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -33,7 +33,7 @@ public final class Static245 {
 	public static void getPlayerExtended() {
 		for (@Pc(7) int i = 0; i < Static116.entityUpdateCount; i++) {
 			@Pc(31) int index = Static44.entityUpdateIds[i];
-			@Pc(35) PlayerEntity player = Static159.players[index];
+			@Pc(35) Player player = Static159.players[index];
 			@Pc(39) int mask = Static57.in.g1();
 			if ((mask & 0x10) != 0) {
 				mask += Static57.in.g1() << 8;

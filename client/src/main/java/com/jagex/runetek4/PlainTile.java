@@ -20,7 +20,7 @@ public final class PlainTile {
 	public final int anInt4872;
 
 	@OriginalMember(owner = "client!rh", name = "l", descriptor = "I")
-	public final int anInt4871;
+	public final int rgbColor;
 
 	@OriginalMember(owner = "client!rh", name = "b", descriptor = "I")
 	public final int anInt4864;
@@ -33,7 +33,7 @@ public final class PlainTile {
 		this.anInt4867 = arg1;
 		this.anInt4865 = arg2;
 		this.anInt4872 = arg0;
-		this.anInt4871 = arg5;
+		this.rgbColor = arg5;
 		this.aBoolean241 = arg6;
 		this.anInt4864 = arg3;
 		this.anInt4869 = arg4;

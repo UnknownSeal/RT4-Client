@@ -47,10 +47,10 @@ public final class Static137 {
 				local76 = 4 * 512 * (103 - local37) + 24628;
 				for (local80 = 1; local80 < 103; local80++) {
 					if ((Static12.aByteArrayArrayArray2[arg0][local80][local37] & 0x18) == 0) {
-						Static152.method2835(local32, local76, arg0, local80, local37);
+						Static152.drawMinimapTile(local32, local76, arg0, local80, local37);
 					}
 					if (arg0 < 3 && (Static12.aByteArrayArrayArray2[arg0 + 1][local80][local37] & 0x8) != 0) {
-						Static152.method2835(local32, local76, arg0 + 1, local80, local37);
+						Static152.drawMinimapTile(local32, local76, arg0 + 1, local80, local37);
 					}
 					local76 += 4;
 				}

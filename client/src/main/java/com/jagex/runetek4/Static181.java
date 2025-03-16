@@ -55,7 +55,7 @@ public final class Static181 {
 		@Pc(26) int local26 = local20 * 956 / 503;
 		Static78.aClass3_Sub2_Sub1_3.method1419((Static48.canvasWidth - local26) / 2, 0, local26, local20);
 		Static243.aClass36_1 = Static40.method1010(Static136.anInt3322, arg0);
-		Static243.aClass36_1.method3336(Static48.canvasWidth / 2 - Static243.aClass36_1.anInt4270 / 2, 18);
+		Static243.aClass36_1.drawImage(Static48.canvasWidth / 2 - Static243.aClass36_1.anInt4270 / 2, 18);
 		Static18.aBoolean40 = true;
 	}
 

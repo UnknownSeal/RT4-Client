@@ -75,7 +75,7 @@ public class AudioChannel {
 		if (Static164.aBoolean192) {
 			local1 = 512;
 		}
-		Static289.method2618(arg0, 0, local1);
+		Static289.resetOutput(arg0, 0, local1);
 		this.anInt4638 -= 256;
 		if (this.aClass3_Sub3_6 != null && this.anInt4638 <= 0) {
 			this.anInt4638 += Static44.anInt1404 >> 4;

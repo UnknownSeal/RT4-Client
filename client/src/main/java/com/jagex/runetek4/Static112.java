@@ -48,7 +48,7 @@ public final class Static112 {
 			Static181.aClass3_Sub2_Sub1_9.drawSprite(local3, local9);
 			Static181.aClass3_Sub2_Sub1_9.method1421(local3 + local13 - Static181.aClass3_Sub2_Sub1_9.anInt1867, local9);
 		}
-		Static280.aClass3_Sub2_Sub9_43.method2857(LocalizedText.CHOOSE_OPTION, local3 + 3, local9 + 14, Static195.anInt4581, -1);
+		Static280.aClass3_Sub2_Sub9_43.drawString(LocalizedText.CHOOSE_OPTION, local3 + 3, local9 + 14, Static195.anInt4581, -1);
 		if (GlRenderer.enabled) {
 			Static46.method1182(local3, local9 + 20, local13, local11 - 20, Static40.anInt1275, 256 - Static111.anInt2910);
 		} else {
@@ -110,7 +110,7 @@ public final class Static112 {
 			if (local3 < local112 && local13 + local3 > local112 && local219 - 13 < local114 && local114 < local219 + 3) {
 				local418 = Static262.anInt5752;
 			}
-			Static280.aClass3_Sub2_Sub9_43.method2857(Static269.method2228(local203), local3 + 3, local219, local418, 0);
+			Static280.aClass3_Sub2_Sub9_43.drawString(Static269.method2228(local203), local3 + 3, local219, local418, 0);
 		}
 		Static121.method2407(Static183.anInt4271, Static229.anInt5138, Static13.anInt436, Static24.anInt761);
 	}

@@ -18,7 +18,7 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "<init>", descriptor = "(IIIIII[B[I)V")
 	public SoftwareIndexedSprite(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) byte[] arg6, @OriginalArg(7) int[] arg7) {
-		this.anInt4279 = arg0;
+		this.maxWidth = arg0;
 		this.anInt4276 = arg1;
 		this.anInt4280 = arg2;
 		this.anInt4273 = arg3;
@@ -30,7 +30,7 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "<init>", descriptor = "(III)V")
 	public SoftwareIndexedSprite(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		this.anInt4279 = this.anInt4270 = arg0;
+		this.maxWidth = this.anInt4270 = arg0;
 		this.anInt4276 = this.anInt4278 = arg1;
 		this.anInt4280 = this.anInt4273 = 0;
 		this.aByteArray18 = new byte[arg0 * arg1];
@@ -71,7 +71,7 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		@Pc(5) int local5 = this.anInt4278;
 		@Pc(7) int local7 = 0;
 		@Pc(9) int local9 = 0;
-		@Pc(12) int local12 = this.anInt4279;
+		@Pc(12) int local12 = this.maxWidth;
 		@Pc(15) int local15 = this.anInt4276;
 		@Pc(21) int local21 = (local12 << 16) / arg2;
 		@Pc(27) int local27 = (local15 << 16) / arg3;
@@ -157,13 +157,13 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		this.anInt4278 = this.anInt4270;
 		this.anInt4270 = local10;
 		local10 = this.anInt4276;
-		this.anInt4276 = this.anInt4279;
-		this.anInt4279 = local10;
+		this.anInt4276 = this.maxWidth;
+		this.maxWidth = local10;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "(III)V")
 	@Override
-	public final void method3335(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public final void drawImageAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		arg0 += this.anInt4280;
 		arg1 += this.anInt4273;
 		@Pc(15) int local15 = arg0 + arg1 * Rasterizer.destinationWidth;
@@ -205,18 +205,18 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "c", descriptor = "()V")
 	public final void method1396() {
-		if (this.anInt4270 == this.anInt4279 && this.anInt4278 == this.anInt4276) {
+		if (this.anInt4270 == this.maxWidth && this.anInt4278 == this.anInt4276) {
 			return;
 		}
-		@Pc(17) byte[] local17 = new byte[this.anInt4279 * this.anInt4276];
+		@Pc(17) byte[] local17 = new byte[this.maxWidth * this.anInt4276];
 		@Pc(19) int local19 = 0;
 		for (@Pc(21) int local21 = 0; local21 < this.anInt4278; local21++) {
 			for (@Pc(27) int local27 = 0; local27 < this.anInt4270; local27++) {
-				local17[local27 + this.anInt4280 + (local21 + this.anInt4273) * this.anInt4279] = this.aByteArray18[local19++];
+				local17[local27 + this.anInt4280 + (local21 + this.anInt4273) * this.maxWidth] = this.aByteArray18[local19++];
 			}
 		}
 		this.aByteArray18 = local17;
-		this.anInt4270 = this.anInt4279;
+		this.anInt4270 = this.maxWidth;
 		this.anInt4278 = this.anInt4276;
 		this.anInt4280 = 0;
 		this.anInt4273 = 0;
@@ -228,7 +228,7 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		@Pc(5) int local5 = this.anInt4278;
 		@Pc(7) int local7 = 0;
 		@Pc(9) int local9 = 0;
-		@Pc(12) int local12 = this.anInt4279;
+		@Pc(12) int local12 = this.maxWidth;
 		@Pc(15) int local15 = this.anInt4276;
 		@Pc(21) int local21 = (local12 << 16) / arg2;
 		@Pc(27) int local27 = (local15 << 16) / arg3;
@@ -278,7 +278,7 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "(II)V")
 	@Override
-	public final void method3336(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public final void drawImage(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.anInt4280;
 		arg1 += this.anInt4273;
 		@Pc(15) int local15 = arg0 + arg1 * Rasterizer.destinationWidth;

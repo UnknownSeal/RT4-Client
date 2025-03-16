@@ -9,7 +9,7 @@ import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -101,7 +101,7 @@ public final class Static127 {
 			}
 		}
 		for (i = 0; i < 2048; i++) {
-			@Pc(265) PlayerEntity player = Static159.players[i];
+			@Pc(265) Player player = Static159.players[i];
 			if (player != null) {
 				for (j = 0; j < 10; j++) {
 					player.pathTileX[j] -= dx;

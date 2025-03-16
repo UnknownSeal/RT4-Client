@@ -6,113 +6,80 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static218 {
 
-	@OriginalMember(owner = "runetek4.client!rk", name = "K", descriptor = "Lclient!na;")
-	public static final JString aClass100_695 = Static28.parse("gt");
-
-	@OriginalMember(owner = "runetek4.client!rk", name = "L", descriptor = "Lclient!na;")
-	public static final JString aClass100_696 = Static28.parse("lt");
-
 	@OriginalMember(owner = "runetek4.client!rk", name = "M", descriptor = "Lclient!na;")
-	public static final JString aClass100_697 = Static28.parse("shad=");
-
-	@OriginalMember(owner = "runetek4.client!rk", name = "N", descriptor = "Lclient!na;")
-	public static final JString aClass100_698 = Static28.parse("shy");
+	public static final JString startShadow = Static28.parse("shad=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "O", descriptor = "Lclient!na;")
-	public static final JString aClass100_699 = Static28.parse("trans=");
+	public static final JString startTrans = Static28.parse("trans=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "P", descriptor = "Lclient!na;")
-	public static final JString aClass100_700 = Static28.parse("u=");
+	public static final JString startUnderline = Static28.parse("u=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "Q", descriptor = "Lclient!na;")
-	public static final JString aClass100_701 = Static28.parse("str=");
-
-	@OriginalMember(owner = "runetek4.client!rk", name = "R", descriptor = "Lclient!na;")
-	public static final JString aClass100_702 = Static28.parse("euro");
+	public static final JString startStrikethrough = Static28.parse("str=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "T", descriptor = "Lclient!na;")
-	public static final JString aClass100_703 = Static28.parse(")4col");
+	public static final JString endColor = Static28.parse(")4col");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "X", descriptor = "Lclient!na;")
-	public static final JString aClass100_704 = Static28.parse(")4shad");
+	public static final JString endShadow = Static28.parse(")4shad");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "Y", descriptor = "Lclient!na;")
-	public static final JString aClass100_705 = Static28.parse("col=");
+	public static final JString startColor = Static28.parse("col=");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "Z", descriptor = "Lclient!na;")
 	private static final JString aClass100_706 = Static28.parse("<gt>");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "bb", descriptor = "Lclient!na;")
-	public static final JString aClass100_707 = Static28.parse("u");
-
-	@OriginalMember(owner = "runetek4.client!rk", name = "cb", descriptor = "Lclient!na;")
-	public static final JString aClass100_708 = Static28.parse("times");
+	public static final JString startDefaultUnderline = Static28.parse("u");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "eb", descriptor = "Lclient!na;")
-	public static final JString aClass100_709 = Static28.parse(")4trans");
-
-	@OriginalMember(owner = "runetek4.client!rk", name = "fb", descriptor = "Lclient!na;")
-	public static final JString aClass100_710 = Static28.parse("nbsp");
+	public static final JString endTrans = Static28.parse(")4trans");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "hb", descriptor = "Lclient!na;")
 	private static final JString aClass100_711 = Static28.parse("<lt>");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "ib", descriptor = "Lclient!na;")
-	public static final JString aClass100_712 = Static28.parse(")4u");
+	public static final JString endUnderline = Static28.parse(")4u");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "kb", descriptor = "Lclient!na;")
-	public static final JString aClass100_713 = Static28.parse("br");
+	public static final JString lineBreak = Static28.parse("br");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "lb", descriptor = "Lclient!na;")
-	public static final JString aClass100_714 = Static28.parse("shad");
-
-	@OriginalMember(owner = "runetek4.client!rk", name = "mb", descriptor = "Lclient!na;")
-	public static final JString aClass100_715 = Static28.parse("img=");
-
-	@OriginalMember(owner = "runetek4.client!rk", name = "ob", descriptor = "Lclient!na;")
-	public static final JString aClass100_716 = Static28.parse("copy");
+	public static final JString startDefaultShadow = Static28.parse("shad");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "pb", descriptor = "Lclient!na;")
-	public static final JString aClass100_717 = Static28.parse(")4str");
-
-	@OriginalMember(owner = "runetek4.client!rk", name = "qb", descriptor = "Lclient!na;")
-	public static final JString aClass100_718 = Static28.parse("reg");
+	public static final JString endStrikeThrough = Static28.parse(")4str");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "rb", descriptor = "Lclient!na;")
-	public static final JString aClass100_719 = Static28.parse("str");
+	public static final JString startDefaultStrikeThrough = Static28.parse("str");
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "sb", descriptor = "Lclient!na;")
 	public static final JString aClass100_720 = Static87.method1804(100);
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "tb", descriptor = "I")
-	public static int anInt3627 = -1;
+	public static int strikethroughColor = -1;
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "ub", descriptor = "I")
-	public static int anInt3628 = -1;
+	public static int underlineColor = -1;
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "vb", descriptor = "I")
 	public static int anInt3629 = 0;
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "wb", descriptor = "I")
-	public static int anInt3630 = 0;
-
-	@OriginalMember(owner = "runetek4.client!rk", name = "xb", descriptor = "I")
-	public static int anInt3631 = 256;
+	public static int defaultTextColor = 0;
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "yb", descriptor = "I")
-	public static int anInt3632 = 256;
+	public static int defaultOpacity = 256;
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "zb", descriptor = "I")
-	public static int anInt3633 = -1;
+	public static int defaultShadowColor = -1;
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "Ab", descriptor = "[Lclient!na;")
 	public static final JString[] aClass100Array110 = new JString[100];
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "Bb", descriptor = "I")
-	public static int anInt3634 = -1;
-
-	@OriginalMember(owner = "runetek4.client!rk", name = "Cb", descriptor = "I")
-	public static int anInt3635 = 0;
+	public static int shadowColor = -1;
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "Db", descriptor = "I")
 	public static int anInt3636 = 0;
@@ -123,14 +90,14 @@ public final class Static218 {
 		@Pc(5) int local5 = 0;
 		@Pc(15) int local15;
 		for (@Pc(7) int local7 = 0; local7 < local3; local7++) {
-			local15 = arg0.method3149(local7);
+			local15 = arg0.charAt(local7);
 			if (local15 == 60 || local15 == 62) {
 				local5 += 3;
 			}
 		}
 		@Pc(30) JString local30 = Static87.method1804(local3 + local5);
 		for (local15 = 0; local15 < local3; local15++) {
-			@Pc(40) int local40 = arg0.method3149(local15);
+			@Pc(40) int local40 = arg0.charAt(local15);
 			if (local40 == 60) {
 				local30.method3113(aClass100_711);
 			} else if (local40 == 62) {

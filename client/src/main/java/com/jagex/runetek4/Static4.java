@@ -14,7 +14,7 @@ import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -138,7 +138,7 @@ public final class Static4 {
 			message2 = Static57.in.gjstr();
 			@Pc(163) Object[] local163 = new Object[message2.length() + 1];
 			for (slot = message2.length() - 1; slot >= 0; slot--) {
-				if (message2.method3149(slot) == 115) {
+				if (message2.charAt(slot) == 115) {
 					local163[slot + 1] = Static57.in.gjstr();
 				} else {
 					local163[slot + 1] = Integer.valueOf(Static57.in.g4());
@@ -169,7 +169,7 @@ public final class Static4 {
 						break;
 					}
 				}
-				if (!ignored && PlayerEntity.overrideChat == 0) {
+				if (!ignored && Player.overrideChat == 0) {
 					Static103.addMessage(message2, 4, LocalizedText.TRADEREQ);
 				}
 			} else if (message.endsWith(Static61.CHALREQ)) {
@@ -182,7 +182,7 @@ public final class Static4 {
 						break;
 					}
 				}
-				if (!ignored && PlayerEntity.overrideChat == 0) {
+				if (!ignored && Player.overrideChat == 0) {
 					local506 = message.substring(message.length() - 9, message.indexOf(Static264.aClass100_875) + 1);
 					Static103.addMessage(message2, 8, local506);
 				}
@@ -196,7 +196,7 @@ public final class Static4 {
 						break;
 					}
 				}
-				if (!ignored && PlayerEntity.overrideChat == 0) {
+				if (!ignored && Player.overrideChat == 0) {
 					Static103.addMessage(message2, 10, Static186.aClass100_827);
 				}
 			} else if (message.endsWith(Static141.CLAN)) {
@@ -204,12 +204,12 @@ public final class Static4 {
 				Static103.addMessage(Static186.aClass100_827, 11, message2);
 			} else if (message.endsWith(Static138.TRADE)) {
 				message2 = message.substring(message.indexOf(Static138.TRADE), 0);
-				if (PlayerEntity.overrideChat == 0) {
+				if (Player.overrideChat == 0) {
 					Static103.addMessage(Static186.aClass100_827, 12, message2);
 				}
 			} else if (message.endsWith(Static244.ASSIST)) {
 				message2 = message.substring(message.indexOf(Static244.ASSIST), 0);
-				if (PlayerEntity.overrideChat == 0) {
+				if (Player.overrideChat == 0) {
 					Static103.addMessage(Static186.aClass100_827, 13, message2);
 				}
 			} else if (message.endsWith(Static56.DUELSTAKE)) {
@@ -222,7 +222,7 @@ public final class Static4 {
 						break;
 					}
 				}
-				if (!ignored && PlayerEntity.overrideChat == 0) {
+				if (!ignored && Player.overrideChat == 0) {
 					Static103.addMessage(message2, 14, Static186.aClass100_827);
 				}
 			} else if (message.endsWith(Static112.DUELFRIEND)) {
@@ -235,7 +235,7 @@ public final class Static4 {
 						break;
 					}
 				}
-				if (!ignored && PlayerEntity.overrideChat == 0) {
+				if (!ignored && Player.overrideChat == 0) {
 					Static103.addMessage(message2, 15, Static186.aClass100_827);
 				}
 			} else if (message.endsWith(Static217.CLANREQ)) {
@@ -248,7 +248,7 @@ public final class Static4 {
 						break;
 					}
 				}
-				if (!ignored && PlayerEntity.overrideChat == 0) {
+				if (!ignored && Player.overrideChat == 0) {
 					Static103.addMessage(message2, 16, Static186.aClass100_827);
 				}
 			} else if (message.endsWith(Static164.ALLYREQ)) {
@@ -261,7 +261,7 @@ public final class Static4 {
 						break;
 					}
 				}
-				if (!ignored && PlayerEntity.overrideChat == 0) {
+				if (!ignored && Player.overrideChat == 0) {
 					local506 = message.substring(message.length() - 9, message.indexOf(Static264.aClass100_875) + 1);
 					Static103.addMessage(message2, 21, local506);
 				}
@@ -342,7 +342,7 @@ public final class Static4 {
 					}
 					break;
 				}
-				if (!local910 && PlayerEntity.overrideChat == 0) {
+				if (!local910 && Player.overrideChat == 0) {
 					ClientScriptRunner.aLongArray9[Static251.anInt5447] = local922;
 					Static251.anInt5447 = (Static251.anInt5447 + 1) % 100;
 					@Pc(999) JString local999 = Static230.list(local916).method770(Static57.in);
@@ -612,7 +612,7 @@ public final class Static4 {
 								}
 							} else if (world >> 28 != 0) {
 								count = world & 0xFFFF;
-								@Pc(2033) PlayerEntity local2033;
+								@Pc(2033) Player local2033;
 								if (Static16.localPid == count) {
 									local2033 = Static173.localPlayer;
 								} else {
@@ -925,7 +925,7 @@ public final class Static4 {
 								}
 								break;
 							}
-							if (!local3263 && PlayerEntity.overrideChat == 0) {
+							if (!local3263 && Player.overrideChat == 0) {
 								ClientScriptRunner.aLongArray9[Static251.anInt5447] = local3270;
 								Static251.anInt5447 = (Static251.anInt5447 + 1) % 100;
 								local3020 = Static230.list(j).method770(Static57.in);
@@ -1120,34 +1120,34 @@ public final class Static4 {
 								ii = Static57.in.g1();
 								@Pc(4084) Class102 local4084 = new Class102();
 								xp = ii >> 6;
-								local4084.anInt4058 = ii & 0x3F;
+								local4084.headIconDrawType = ii & 0x3F;
 								local4084.anInt4048 = Static57.in.g1();
 								if (local4084.anInt4048 >= 0 && local4084.anInt4048 < Static276.aClass3_Sub2_Sub1Array11.length) {
-									if (local4084.anInt4058 == 1 || local4084.anInt4058 == 10) {
-										local4084.anInt4057 = Static57.in.g2();
+									if (local4084.headIconDrawType == 1 || local4084.headIconDrawType == 10) {
+										local4084.hintIconNpcTarget = Static57.in.g2();
 										Static57.in.position += 3;
-									} else if (local4084.anInt4058 >= 2 && local4084.anInt4058 <= 6) {
-										if (local4084.anInt4058 == 2) {
+									} else if (local4084.headIconDrawType >= 2 && local4084.headIconDrawType <= 6) {
+										if (local4084.headIconDrawType == 2) {
 											local4084.anInt4045 = 64;
 											local4084.anInt4047 = 64;
 										}
-										if (local4084.anInt4058 == 3) {
+										if (local4084.headIconDrawType == 3) {
 											local4084.anInt4045 = 0;
 											local4084.anInt4047 = 64;
 										}
-										if (local4084.anInt4058 == 4) {
+										if (local4084.headIconDrawType == 4) {
 											local4084.anInt4045 = 128;
 											local4084.anInt4047 = 64;
 										}
-										if (local4084.anInt4058 == 5) {
+										if (local4084.headIconDrawType == 5) {
 											local4084.anInt4045 = 64;
 											local4084.anInt4047 = 0;
 										}
-										if (local4084.anInt4058 == 6) {
+										if (local4084.headIconDrawType == 6) {
 											local4084.anInt4045 = 64;
 											local4084.anInt4047 = 128;
 										}
-										local4084.anInt4058 = 2;
+										local4084.headIconDrawType = 2;
 										local4084.anInt4053 = Static57.in.g2();
 										local4084.anInt4046 = Static57.in.g2();
 										local4084.anInt4050 = Static57.in.g1();
@@ -1232,7 +1232,7 @@ public final class Static4 {
 									}
 									local3002++;
 								}
-								if (!local4425 && PlayerEntity.overrideChat == 0) {
+								if (!local4425 && Player.overrideChat == 0) {
 									ClientScriptRunner.aLongArray9[Static251.anInt5447] = local4431;
 									Static251.anInt5447 = (Static251.anInt5447 + 1) % 100;
 									@Pc(4518) JString local4518 = Static218.method2862(Static65.method1497(Static57.in).method3116());
@@ -1278,7 +1278,7 @@ public final class Static4 {
 									}
 									local4634++;
 								}
-								if (!local4632 && PlayerEntity.overrideChat == 0) {
+								if (!local4632 && Player.overrideChat == 0) {
 									ClientScriptRunner.aLongArray9[Static251.anInt5447] = local4626;
 									Static251.anInt5447 = (Static251.anInt5447 + 1) % 100;
 									local3038 = Static218.method2862(Static65.method1497(Static57.in).method3116());

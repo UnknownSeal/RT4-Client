@@ -4,7 +4,7 @@ import java.awt.Component;
 import java.lang.reflect.Method;
 
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -59,7 +59,7 @@ public final class Static19 {
 			} else {
 				local22 = Static105.playerIds[local11];
 			}
-			@Pc(30) PlayerEntity local30 = Static159.players[local22];
+			@Pc(30) Player local30 = Static159.players[local22];
 			if (local30 != null && local30.chatLoops > 0) {
 				local30.chatLoops--;
 				if (local30.chatLoops == 0) {

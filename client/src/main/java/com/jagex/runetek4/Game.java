@@ -4,7 +4,8 @@ import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.input.MouseCapturer;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
@@ -779,7 +780,7 @@ public class Game {
             local3 = 1;
         }
         @Pc(28) int i;
-        @Pc(39) PlayerEntity player;
+        @Pc(39) Player player;
         @Pc(82) int stz;
         @Pc(182) int local182;
         @Pc(200) int local200;
@@ -1164,7 +1165,7 @@ public class Game {
                 }
                 if (projAnim.target < 0) {
                     @Pc(102) int index = -projAnim.target - 1;
-                    @Pc(107) PlayerEntity player;
+                    @Pc(107) Player player;
                     if (Static16.localPid == index) {
                         player = Static173.localPlayer;
                     } else {

@@ -73,7 +73,7 @@ public final class ClientScriptRunner {
 		@Pc(5) Class102[] local5 = Static143.aClass102Array1;
 		while (local5.length > local3) {
 			@Pc(17) Class102 local17 = local5[local3];
-			if (local17 != null && local17.anInt4058 == 2) {
+			if (local17 != null && local17.headIconDrawType == 2) {
 				Static198.method1026(arg0 >> 1, arg4, (local17.anInt4046 - Static142.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.anInt4053 - Static225.originX << 7), arg3);
 				if (Static65.anInt1951 > -1 && Static83.loopCycle % 20 < 10) {
 					Static276.aClass3_Sub2_Sub1Array11[local17.anInt4048].drawSprite(arg1 + Static65.anInt1951 - 12, arg5 + -28 - -Static16.anInt548);

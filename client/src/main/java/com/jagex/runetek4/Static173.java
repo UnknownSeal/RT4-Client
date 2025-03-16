@@ -1,7 +1,8 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.audio.SynthSound;
 import com.jagex.runetek4.cache.media.ImageRGB;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -15,7 +16,7 @@ public final class Static173 {
 	public static ImageRGB[] aClass3_Sub2_Sub1_Sub1Array9;
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "O", descriptor = "Lclient!e;")
-	public static PlayerEntity localPlayer;
+	public static Player localPlayer;
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "n", descriptor = "[Lclient!sl;")
 	public static final SynthSound[] aClass138Array1 = new SynthSound[50];

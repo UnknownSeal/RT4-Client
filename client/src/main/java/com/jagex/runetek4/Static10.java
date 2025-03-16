@@ -1,6 +1,8 @@
 package com.jagex.runetek4;
 
 import java.io.IOException;
+
+import com.jagex.runetek4.input.Keyboard;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

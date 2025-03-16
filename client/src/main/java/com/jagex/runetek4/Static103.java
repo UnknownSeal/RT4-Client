@@ -5,7 +5,7 @@ import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -39,7 +39,7 @@ public final class Static103 {
 		}
 		@Pc(31) long local31 = Static159.aLongArray5[arg0];
 		@Pc(36) int a = (int) Static159.aLongArray5[arg0];
-		@Pc(43) PlayerEntity local43;
+		@Pc(43) Player local43;
 		if (local23 == 31) {
 			local43 = Static159.players[a];
 			if (local43 != null) {

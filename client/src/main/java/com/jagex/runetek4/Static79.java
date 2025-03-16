@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -89,7 +90,7 @@ public final class Static79 {
 				@Pc(65) long local65 = arg0;
 				arg0 /= 37L;
 				local32--;
-				local48[local32] = Static31.aByteArray12[(int) (local65 - arg0 * 37L)];
+				local48[local32] = Player.aByteArray12[(int) (local65 - arg0 * 37L)];
 			}
 			@Pc(88) JString local88 = new JString();
 			local88.aByteArray52 = local48;

@@ -9,6 +9,7 @@ import java.io.StringWriter;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.frame.Minimap;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCLocation;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -29,14 +30,14 @@ public final class Static97 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(IIIIILclient!be;Z)V")
-	public static void method1960(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) Component arg5) {
-		@Pc(13) int local13 = arg3 * arg3 + arg4 * arg4;
-		if (local13 > 360000) {
+	public static void drawMinimapMark(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int mapX, @OriginalArg(4) int mapY, @OriginalArg(5) Component arg5) {
+		@Pc(13) int len = mapX * mapX + mapY * mapY;
+		if (len > 360000) {
 			return;
 		}
 		@Pc(30) int local30 = Math.min(arg5.anInt445 / 2, arg5.anInt459 / 2);
-		if (local30 * local30 >= local13) {
-			Static60.method1446(arg5, Static149.aClass3_Sub2_Sub1Array7[arg0], arg4, arg3, arg1, arg2);
+		if (local30 * local30 >= len) {
+			Minimap.drawOnMinimap(arg5, Static149.aClass3_Sub2_Sub1Array7[arg0], mapY, mapX, arg1, arg2);
 			return;
 		}
 		local30 -= 10;
@@ -45,15 +46,15 @@ public final class Static97 {
 		@Pc(66) int local66 = MathUtils.anIntArray223[local58];
 		@Pc(74) int local74 = local66 * 256 / (Static273.minimapZoom + 256);
 		@Pc(82) int local82 = local62 * 256 / (Static273.minimapZoom + 256);
-		@Pc(93) int local93 = arg4 * local74 + local82 * arg3 >> 16;
-		@Pc(104) int local104 = arg4 * local82 - local74 * arg3 >> 16;
-		@Pc(110) double local110 = Math.atan2((double) local93, (double) local104);
-		@Pc(117) int local117 = (int) (Math.sin(local110) * (double) local30);
-		@Pc(124) int local124 = (int) (Math.cos(local110) * (double) local30);
+		@Pc(93) int local93 = mapY * local74 + local82 * mapX >> 16;
+		@Pc(104) int local104 = mapY * local82 - local74 * mapX >> 16;
+		@Pc(110) double angle = Math.atan2((double) local93, (double) local104);
+		@Pc(117) int sine = (int) (Math.sin(angle) * (double) local30);
+		@Pc(124) int cosine = (int) (Math.cos(angle) * (double) local30);
 		if (GlRenderer.enabled) {
-			((GlSprite) Static277.aClass3_Sub2_Sub1Array12[arg0]).method1428((arg5.anInt445 / 2 + arg2 + local117) * 16, (arg5.anInt459 / 2 + arg1 - local124) * 16, (int) (local110 * 10430.378D));
+			((GlSprite) Static277.aClass3_Sub2_Sub1Array12[arg0]).method1428((arg5.anInt445 / 2 + arg2 + sine) * 16, (arg5.anInt459 / 2 + arg1 - cosine) * 16, (int) (angle * 10430.378D));
 		} else {
-			((ImageRGB) Static277.aClass3_Sub2_Sub1Array12[arg0]).method306(local117 + arg5.anInt445 / 2 + arg2 - 10, arg5.anInt459 / 2 + -10 + arg1 + -local124, local110);
+			((ImageRGB) Static277.aClass3_Sub2_Sub1Array12[arg0]).method306(sine + arg5.anInt445 / 2 + arg2 - 10, arg5.anInt459 / 2 + -10 + arg1 + -cosine, angle);
 		}
 	}
 

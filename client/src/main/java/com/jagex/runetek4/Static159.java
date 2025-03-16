@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -22,7 +22,7 @@ public final class Static159 {
 	public static final JString aClass100_760 = Static28.parse(")1");
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "S", descriptor = "[Lclient!e;")
-	public static final PlayerEntity[] players = new PlayerEntity[2048];
+	public static final Player[] players = new Player[2048];
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "U", descriptor = "[J")
 	public static final long[] aLongArray5 = new long[500];

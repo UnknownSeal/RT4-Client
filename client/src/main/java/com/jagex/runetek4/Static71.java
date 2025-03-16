@@ -4,7 +4,7 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.def.ItemDefinition;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -77,7 +77,7 @@ public final class Static71 {
 			} else {
 				actualIndex = Static105.playerIds[currentPlayerIndex];
 			}
-			@Pc(31) PlayerEntity player = Static159.players[actualIndex];
+			@Pc(31) Player player = Static159.players[actualIndex];
 			if (player != null) {
 				Static263.updateEntity(player.size(), player);
 			}

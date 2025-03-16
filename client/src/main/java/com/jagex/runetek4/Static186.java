@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -169,7 +169,7 @@ public final class Static186 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!pa", name = "a", descriptor = "(IIILclient!e;)V")
-	public static void method3415(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) PlayerEntity arg2) {
+	public static void method3415(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Player arg2) {
 		if (arg1 == arg2.primarySeqId && arg1 != -1) {
 			@Pc(89) AnimationSequence local89 = AnimationSequence.getAnimationSequence(arg1);
 			@Pc(92) int local92 = local89.anInt5347;

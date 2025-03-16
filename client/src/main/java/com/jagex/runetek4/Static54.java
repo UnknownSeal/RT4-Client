@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.audio.SynthSound;
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
@@ -7,8 +8,9 @@ import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.frame.Minimap;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -46,35 +48,35 @@ public final class Static54 {
 			} else {
 				((ImageRGB) Static89.aClass3_Sub2_Sub1_5).method310(arg2, arg1, arg3.anInt445, arg3.anInt459, anchorX, anchorY, angle, Static273.minimapZoom + 256, arg3.anIntArray37, arg3.anIntArray45);
 			}
-			@Pc(146) int local146;
-			@Pc(181) int local181;
+			@Pc(146) int flagX;
+			@Pc(181) int flagZ;
 			@Pc(150) int local150;
 			@Pc(154) int local154;
-			@Pc(231) int local231;
-			@Pc(200) int local200;
+			@Pc(231) int npcX;
+			@Pc(200) int npcZ;
 			@Pc(239) int local239;
 			@Pc(271) int local271;
 			if (Static235.aMapElementTypeList_2 != null) {
 				for (@Pc(117) int local117 = 0; local117 < Static235.aMapElementTypeList_2.anInt5074; local117++) {
 					if (Static235.aMapElementTypeList_2.method3892(local117)) {
-						local146 = (Static235.aMapElementTypeList_2.aShortArray73[local117] - Static225.originX) * 4 + 2 - Static173.localPlayer.x / 32;
+						flagX = (Static235.aMapElementTypeList_2.aShortArray73[local117] - Static225.originX) * 4 + 2 - Static173.localPlayer.x / 32;
 						local150 = MathUtils.anIntArray223[angle];
 						local154 = MathUtils.anIntArray225[angle];
 						@Pc(156) Font local156 = Static114.aClass3_Sub2_Sub9_42;
 						@Pc(164) int local164 = local150 * 256 / (Static273.minimapZoom + 256);
-						local181 = (Static235.aMapElementTypeList_2.aShortArray72[local117] - Static142.originZ) * 4 + 2 - Static173.localPlayer.z / 32;
+						flagZ = (Static235.aMapElementTypeList_2.aShortArray72[local117] - Static142.originZ) * 4 + 2 - Static173.localPlayer.z / 32;
 						@Pc(189) int local189 = local154 * 256 / (Static273.minimapZoom + 256);
-						local200 = local181 * local189 - local146 * local164 >> 16;
+						npcZ = flagZ * local189 - flagX * local164 >> 16;
 						if (Static235.aMapElementTypeList_2.method3894(local117) == 1) {
 							local156 = Static215.aClass3_Sub2_Sub9_32;
 						}
 						if (Static235.aMapElementTypeList_2.method3894(local117) == 2) {
 							local156 = Static280.aClass3_Sub2_Sub9_43;
 						}
-						local231 = local164 * local181 + local189 * local146 >> 16;
+						npcX = local164 * flagZ + local189 * flagX >> 16;
 						local239 = local156.method2856(Static235.aMapElementTypeList_2.aClass100Array153[local117], 100);
-						@Pc(245) int local245 = local231 - local239 / 2;
-						if (local245 >= -arg3.anInt445 && local245 <= arg3.anInt445 && local200 >= -arg3.anInt459 && local200 <= arg3.anInt459) {
+						@Pc(245) int local245 = npcX - local239 / 2;
+						if (local245 >= -arg3.anInt445 && local245 <= arg3.anInt445 && npcZ >= -arg3.anInt459 && npcZ <= arg3.anInt459) {
 							local271 = 16777215;
 							if (Static235.aMapElementTypeList_2.anIntArray444[local117] != -1) {
 								local271 = Static235.aMapElementTypeList_2.anIntArray444[local117];
@@ -84,7 +86,7 @@ public final class Static54 {
 							} else {
 								Rasterizer.method2486(arg3.anIntArray37, arg3.anIntArray45);
 							}
-							local156.method2869(Static235.aMapElementTypeList_2.aClass100Array153[local117], arg2 + local245 + arg3.anInt445 / 2, arg1 + arg3.anInt459 / 2 + -local200, local239, 50, local271, 0, 1, 0, 0);
+							local156.method2869(Static235.aMapElementTypeList_2.aClass100Array153[local117], arg2 + local245 + arg3.anInt445 / 2, arg1 + arg3.anInt459 / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
 							if (GlRenderer.enabled) {
 								Static46.method1173();
 							} else {
@@ -94,30 +96,30 @@ public final class Static54 {
 					}
 				}
 			}
-			for (local146 = 0; local146 < Static251.anInt5454; local146++) {
-				local181 = Static145.anIntArray331[local146] * 4 + 2 - Static173.localPlayer.x / 32;
-				local150 = Static93.anIntArray219[local146] * 4 + 2 - Static173.localPlayer.z / 32;
-				@Pc(382) LocMergeEntity local382 = Static271.get(Static199.anIntArray417[local146]);
+			for (flagX = 0; flagX < Static251.anInt5454; flagX++) {
+				flagZ = Static145.anIntArray331[flagX] * 4 + 2 - Static173.localPlayer.x / 32;
+				local150 = Static93.anIntArray219[flagX] * 4 + 2 - Static173.localPlayer.z / 32;
+				@Pc(382) LocMergeEntity local382 = Static271.get(Static199.anIntArray417[flagX]);
 				if (local382.multiloc != null) {
 					local382 = local382.getVisible();
 					if (local382 == null || local382.mapfunction == -1) {
 						continue;
 					}
 				}
-				Static60.method1446(arg3, Static67.aClass3_Sub2_Sub1Array4[local382.mapfunction], local150, local181, arg1, arg2);
+				Minimap.drawOnMinimap(arg3, Static67.aClass3_Sub2_Sub1Array4[local382.mapfunction], local150, flagZ, arg1, arg2);
 			}
-			for (local146 = 0; local146 < 104; local146++) {
-				for (local181 = 0; local181 < 104; local181++) {
-					@Pc(439) LinkList local439 = Static159.levelObjStacks[Static55.currentLevel][local146][local181];
+			for (flagX = 0; flagX < 104; flagX++) {
+				for (flagZ = 0; flagZ < 104; flagZ++) {
+					@Pc(439) LinkList local439 = Static159.levelObjStacks[Static55.currentLevel][flagX][flagZ];
 					if (local439 != null) {
-						local154 = local146 * 4 + 2 - Static173.localPlayer.x / 32;
-						local231 = local181 * 4 + 2 - Static173.localPlayer.z / 32;
-						Static60.method1446(arg3, Static139.aClass3_Sub2_Sub1Array6[0], local231, local154, arg1, arg2);
+						local154 = flagX * 4 + 2 - Static173.localPlayer.x / 32;
+						npcX = flagZ * 4 + 2 - Static173.localPlayer.z / 32;
+						Minimap.drawOnMinimap(arg3, Static139.aClass3_Sub2_Sub1Array6[0], npcX, local154, arg1, arg2);
 					}
 				}
 			}
-			for (local146 = 0; local146 < Static272.npcCount; local146++) {
-				@Pc(498) NPCEntity local498 = Static175.npcs[Static33.npcIds[local146]];
+			for (flagX = 0; flagX < Static272.npcCount; flagX++) {
+				@Pc(498) NPCEntity local498 = Static175.npcs[Static33.npcIds[flagX]];
 				if (local498 != null && local498.isVisible()) {
 					@Pc(507) ActorDefinition local507 = local498.type;
 					if (local507 != null && local507.multinpc != null) {
@@ -125,81 +127,81 @@ public final class Static54 {
 					}
 					if (local507 != null && local507.minimap && local507.active) {
 						local154 = local498.x / 32 - Static173.localPlayer.x / 32;
-						local231 = local498.z / 32 - Static173.localPlayer.z / 32;
+						npcX = local498.z / 32 - Static173.localPlayer.z / 32;
 						if (local507.anInt3739 == -1) {
-							Static60.method1446(arg3, Static139.aClass3_Sub2_Sub1Array6[1], local231, local154, arg1, arg2);
+							Minimap.drawOnMinimap(arg3, Static139.aClass3_Sub2_Sub1Array6[1], npcX, local154, arg1, arg2);
 						} else {
-							Static60.method1446(arg3, Static67.aClass3_Sub2_Sub1Array4[local507.anInt3739], local231, local154, arg1, arg2);
+							Minimap.drawOnMinimap(arg3, Static67.aClass3_Sub2_Sub1Array4[local507.anInt3739], npcX, local154, arg1, arg2);
 						}
 					}
 				}
 			}
-			for (local146 = 0; local146 < Static267.playerCount; local146++) {
-				@Pc(591) PlayerEntity local591 = Static159.players[Static105.playerIds[local146]];
+			for (flagX = 0; flagX < Static267.playerCount; flagX++) {
+				@Pc(591) Player local591 = Static159.players[Static105.playerIds[flagX]];
 				if (local591 != null && local591.isVisible()) {
 					local154 = local591.z / 32 - Static173.localPlayer.z / 32;
 					local150 = local591.x / 32 - Static173.localPlayer.x / 32;
-					@Pc(624) long local624 = local591.name.toBase37();
-					@Pc(626) boolean local626 = false;
+					@Pc(624) long name = local591.name.toBase37();
+					@Pc(626) boolean isFriend = false;
 					for (local239 = 0; local239 < CacheArchive.friendCount; local239++) {
-						if (local624 == Static92.friendName37[local239] && Static104.friendWorld[local239] != 0) {
-							local626 = true;
+						if (name == Static92.friendName37[local239] && Static104.friendWorld[local239] != 0) {
+							isFriend = true;
 							break;
 						}
 					}
 					@Pc(660) boolean local660 = false;
 					for (local271 = 0; local271 < Static214.anInt5577; local271++) {
-						if (local624 == Static199.aClass3_Sub22Array1[local271].nodeId) {
+						if (name == Static199.aClass3_Sub22Array1[local271].nodeId) {
 							local660 = true;
 							break;
 						}
 					}
-					@Pc(682) boolean local682 = false;
-					if (Static173.localPlayer.anInt1650 != 0 && local591.anInt1650 != 0 && local591.anInt1650 == Static173.localPlayer.anInt1650) {
-						local682 = true;
+					@Pc(682) boolean isTeammate = false;
+					if (Static173.localPlayer.teamId != 0 && local591.teamId != 0 && local591.teamId == Static173.localPlayer.teamId) {
+						isTeammate = true;
 					}
-					if (local626) {
-						Static60.method1446(arg3, Static139.aClass3_Sub2_Sub1Array6[3], local154, local150, arg1, arg2);
+					if (isFriend) {
+						Minimap.drawOnMinimap(arg3, Static139.aClass3_Sub2_Sub1Array6[3], local154, local150, arg1, arg2);
 					} else if (local660) {
-						Static60.method1446(arg3, Static139.aClass3_Sub2_Sub1Array6[5], local154, local150, arg1, arg2);
-					} else if (local682) {
-						Static60.method1446(arg3, Static139.aClass3_Sub2_Sub1Array6[4], local154, local150, arg1, arg2);
+						Minimap.drawOnMinimap(arg3, Static139.aClass3_Sub2_Sub1Array6[5], local154, local150, arg1, arg2);
+					} else if (isTeammate) {
+						Minimap.drawOnMinimap(arg3, Static139.aClass3_Sub2_Sub1Array6[4], local154, local150, arg1, arg2);
 					} else {
-						Static60.method1446(arg3, Static139.aClass3_Sub2_Sub1Array6[2], local154, local150, arg1, arg2);
+						Minimap.drawOnMinimap(arg3, Static139.aClass3_Sub2_Sub1Array6[2], local154, local150, arg1, arg2);
 					}
 				}
 			}
 			@Pc(756) Class102[] local756 = Static143.aClass102Array1;
-			for (local181 = 0; local181 < local756.length; local181++) {
-				@Pc(770) Class102 local770 = local756[local181];
-				if (local770 != null && local770.anInt4058 != 0 && Static83.loopCycle % 20 < 10) {
-					if (local770.anInt4058 == 1 && local770.anInt4057 >= 0 && local770.anInt4057 < Static175.npcs.length) {
-						@Pc(804) NPCEntity local804 = Static175.npcs[local770.anInt4057];
-						if (local804 != null) {
-							local231 = local804.x / 32 - Static173.localPlayer.x / 32;
-							local200 = local804.z / 32 - Static173.localPlayer.z / 32;
-							Static97.method1960(local770.anInt4048, arg1, arg2, local231, local200, arg3);
+			for (flagZ = 0; flagZ < local756.length; flagZ++) {
+				@Pc(770) Class102 local770 = local756[flagZ];
+				if (local770 != null && local770.headIconDrawType != 0 && Static83.loopCycle % 20 < 10) {
+					if (local770.headIconDrawType == 1 && local770.hintIconNpcTarget >= 0 && local770.hintIconNpcTarget < Static175.npcs.length) {
+						@Pc(804) NPCEntity npc = Static175.npcs[local770.hintIconNpcTarget];
+						if (npc != null) {
+							npcX = npc.x / 32 - Static173.localPlayer.x / 32;
+							npcZ = npc.z / 32 - Static173.localPlayer.z / 32;
+							Static97.drawMinimapMark(local770.anInt4048, arg1, arg2, npcX, npcZ, arg3);
 						}
 					}
-					if (local770.anInt4058 == 2) {
+					if (local770.headIconDrawType == 2) {
 						local154 = (local770.anInt4053 - Static225.originX) * 4 + 2 - Static173.localPlayer.x / 32;
-						local231 = (-Static142.originZ + local770.anInt4046) * 4 + 2 - Static173.localPlayer.z / 32;
-						Static97.method1960(local770.anInt4048, arg1, arg2, local154, local231, arg3);
+						npcX = (-Static142.originZ + local770.anInt4046) * 4 + 2 - Static173.localPlayer.z / 32;
+						Static97.drawMinimapMark(local770.anInt4048, arg1, arg2, local154, npcX, arg3);
 					}
-					if (local770.anInt4058 == 10 && local770.anInt4057 >= 0 && Static159.players.length > local770.anInt4057) {
-						@Pc(905) PlayerEntity local905 = Static159.players[local770.anInt4057];
-						if (local905 != null) {
-							local200 = local905.z / 32 - Static173.localPlayer.z / 32;
-							local231 = local905.x / 32 - Static173.localPlayer.x / 32;
-							Static97.method1960(local770.anInt4048, arg1, arg2, local231, local200, arg3);
+					if (local770.headIconDrawType == 10 && local770.hintIconNpcTarget >= 0 && Static159.players.length > local770.hintIconNpcTarget) {
+						@Pc(905) Player player = Static159.players[local770.hintIconNpcTarget];
+						if (player != null) {
+							npcZ = player.z / 32 - Static173.localPlayer.z / 32;
+							npcX = player.x / 32 - Static173.localPlayer.x / 32;
+							Static97.drawMinimapMark(local770.anInt4048, arg1, arg2, npcX, npcZ, arg3);
 						}
 					}
 				}
 			}
 			if (Static115.anInt2939 != 0) {
-				local146 = Static115.anInt2939 * 4 + 2 - Static173.localPlayer.x / 32;
-				local181 = Static84.anInt2255 * 4 + 2 - Static173.localPlayer.z / 32;
-				Static60.method1446(arg3, Static84.aClass3_Sub2_Sub1_4, local181, local146, arg1, arg2);
+				flagX = Static115.anInt2939 * 4 + 2 - Static173.localPlayer.x / 32;
+				flagZ = Static84.anInt2255 * 4 + 2 - Static173.localPlayer.z / 32;
+				Minimap.drawOnMinimap(arg3, Static84.aClass3_Sub2_Sub1_4, flagZ, flagX, arg1, arg2);
 			}
 			if (GlRenderer.enabled) {
 				Static46.method1186(arg2 + arg3.anInt445 / 2 - 1, arg1 + -1 - -(arg3.anInt459 / 2), 3, 3, 16777215);
@@ -292,7 +294,7 @@ public final class Static54 {
 					if (local79 == null) {
 						continue;
 					}
-					Static164.anIntArray362[local5] += local79.method3990();
+					Static164.anIntArray362[local5] += local79.delay();
 					Static173.aClass138Array1[local5] = local79;
 				}
 				if (Static164.anIntArray362[local5] < 0) {
