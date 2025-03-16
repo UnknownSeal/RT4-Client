@@ -2,7 +2,8 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -16,7 +17,7 @@ public final class Static153 {
 	public static ImageRGB aClass3_Sub2_Sub1_Sub1_2;
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "Z", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_57;
+	public static Js5 aClass153_57;
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "Y", descriptor = "[Lclient!na;")
 	public static final JString[] aClass100Array112 = new JString[100];
@@ -55,25 +56,25 @@ public final class Static153 {
 		@Pc(13) int local13 = arg4 + arg6;
 		@Pc(15) int local15;
 		for (local15 = arg1; local15 < local9; local15++) {
-			Static131.method2576(ObjTypeList.anIntArrayArray10[local15], arg6, arg5, arg0);
+			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local15], arg6, arg5, arg0);
 		}
 		@Pc(34) int local34 = arg2 - arg4;
 		@Pc(39) int local39 = arg5 - arg4;
 		for (local15 = arg2; local15 > local34; local15--) {
-			Static131.method2576(ObjTypeList.anIntArrayArray10[local15], arg6, arg5, arg0);
+			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local15], arg6, arg5, arg0);
 		}
 		for (local15 = local9; local15 <= local34; local15++) {
 			@Pc(72) int[] local72 = ObjTypeList.anIntArrayArray10[local15];
-			Static131.method2576(local72, arg6, local13, arg0);
-			Static131.method2576(local72, local13, local39, arg3);
-			Static131.method2576(local72, local39, arg5, arg0);
+			ArrayUtils.fillRange(local72, arg6, local13, arg0);
+			ArrayUtils.fillRange(local72, local13, local39, arg3);
+			ArrayUtils.fillRange(local72, local39, arg5, arg0);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "f", descriptor = "(B)V")
 	public static void method2909() {
 		Static6.outboundBuffer.pIsaac1(184);
-		for (@Pc(18) Class3_Sub31 local18 = (Class3_Sub31) Static119.aClass133_9.peekFront(); local18 != null; local18 = (Class3_Sub31) Static119.aClass133_9.prev()) {
+		for (@Pc(18) Class3_Sub31 local18 = (Class3_Sub31) Static119.aClass133_9.head(); local18 != null; local18 = (Class3_Sub31) Static119.aClass133_9.prev()) {
 			if (local18.anInt5879 == 0) {
 				Static132.method2605(true, local18);
 			}

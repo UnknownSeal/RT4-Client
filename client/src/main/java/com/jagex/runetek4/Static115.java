@@ -1,7 +1,8 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,33 +13,19 @@ public final class Static115 {
 	public static int anInt2940;
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "f", descriptor = "Lclient!ih;")
-	public static final LinkList aClass69_70 = new LinkList();
-
-	@OriginalMember(owner = "runetek4.client!ja", name = "j", descriptor = "I")
-	public static int anInt2937 = 0;
+	public static final LinkedList aClass69_70 = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "k", descriptor = "Lclient!na;")
 	public static final JString FPS = Static28.parse("Fps:");
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "l", descriptor = "[Lclient!wa;")
-	public static final Packet[] playerAppearanceBuffer = new Packet[2048];
+	public static final Packet[] PLAYER_APPEARANCE_PACKET = new Packet[2048];
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "n", descriptor = "I")
 	public static int anInt2939 = 0;
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "s", descriptor = "Lclient!na;")
 	public static final JString aClass100_582 = Static28.parse("http:)4)4");
-
-	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "([II)[I")
-	public static int[] method2308(@OriginalArg(0) int[] arg0) {
-		if (arg0 == null) {
-			return null;
-		} else {
-			@Pc(18) int[] local18 = new int[arg0.length];
-			Static289.method2613(arg0, 0, local18, 0, arg0.length);
-			return local18;
-		}
-	}
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(IIII)I")
 	public static int method2309(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
@@ -67,7 +54,7 @@ public final class Static115 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(Lclient!ve;Lclient!ve;I)V")
-	public static void method2311(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) CacheArchive arg1) {
+	public static void method2311(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
 		Static87.aClass153_38 = arg1;
 		Static29.aClass153_19 = arg0;
 	}
@@ -152,7 +139,7 @@ public final class Static115 {
 		Static67.aClass3_Sub2_Sub1Array4 = null;
 		Static149.aClass3_Sub2_Sub1Array7 = null;
 		Static138.aClass3_Sub2_Sub1Array5 = null;
-		Static280.aClass3_Sub2_Sub9_43 = null;
+		Font.b12Full = null;
 		Static106.aClass3_Sub2_Sub1_7 = null;
 		Static139.aClass3_Sub2_Sub1Array6 = null;
 		Static114.aClass3_Sub2_Sub9_42 = null;

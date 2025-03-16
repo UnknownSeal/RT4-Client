@@ -3,8 +3,8 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.dash3d.entity.Actor;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -81,7 +81,7 @@ public final class Static34 {
 	public static boolean verifyIdChanged = false;
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "(ILclient!va;Lclient!ve;Lclient!ve;Lclient!ve;)Z")
-	public static boolean method876(@OriginalArg(1) MidiPcmStream arg0, @OriginalArg(2) CacheArchive arg1, @OriginalArg(3) CacheArchive arg2, @OriginalArg(4) CacheArchive arg3) {
+	public static boolean method876(@OriginalArg(1) MidiPcmStream arg0, @OriginalArg(2) Js5 arg1, @OriginalArg(3) Js5 arg2, @OriginalArg(4) Js5 arg3) {
 		Static210.aClass153_87 = arg1;
 		Static78.aClass153_32 = arg3;
 		Static252.aClass153_103 = arg2;
@@ -106,25 +106,25 @@ public final class Static34 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "(Lclient!fe;I)V")
-	public static void method879(@OriginalArg(0) Actor arg0) {
+	public static void method879(@OriginalArg(0) PathingEntity arg0) {
 		arg0.seqStretches = false;
 		@Pc(18) AnimationSequence seq;
-		if (arg0.secondarySeqId != -1) {
-			seq = AnimationSequence.getAnimationSequence(arg0.secondarySeqId);
+		if (arg0.movementSeqId != -1) {
+			seq = AnimationSequence.getAnimationSequence(arg0.movementSeqId);
 			if (seq == null || seq.anIntArray473 == null) {
-				arg0.secondarySeqId = -1;
+				arg0.movementSeqId = -1;
 			} else {
 				arg0.anInt3396++;
 				if (seq.anIntArray473.length > arg0.anInt3407 && arg0.anInt3396 > seq.frames[arg0.anInt3407]) {
 					arg0.anInt3396 = 1;
 					arg0.anInt3407++;
 					arg0.anInt3388++;
-					Static152.method2836(arg0.z, seq, arg0.x, arg0 == Static173.localPlayer, arg0.anInt3407);
+					Static152.method2836(arg0.zFine, seq, arg0.xFine, arg0 == PlayerList.self, arg0.anInt3407);
 				}
 				if (arg0.anInt3407 >= seq.anIntArray473.length) {
 					arg0.anInt3407 = 0;
 					arg0.anInt3396 = 0;
-					Static152.method2836(arg0.z, seq, arg0.x, Static173.localPlayer == arg0, arg0.anInt3407);
+					Static152.method2836(arg0.zFine, seq, arg0.xFine, PlayerList.self == arg0, arg0.anInt3407);
 				}
 				arg0.anInt3388 = arg0.anInt3407 + 1;
 				if (arg0.anInt3388 >= seq.anIntArray473.length) {
@@ -133,7 +133,7 @@ public final class Static34 {
 			}
 		}
 		@Pc(156) int local156;
-		if (arg0.spotanimFrame != -1 && Static83.loopCycle >= arg0.spotanimLastCycle) {
+		if (arg0.spotanimFrame != -1 && client.loop >= arg0.spotanimLastCycle) {
 			local156 = method877(arg0.spotanimFrame).animationId;
 			if (local156 == -1) {
 				arg0.spotanimFrame = -1;
@@ -144,13 +144,13 @@ public final class Static34 {
 				} else {
 					if (arg0.spotanimId < 0) {
 						arg0.spotanimId = 0;
-						Static152.method2836(arg0.z, local165, arg0.x, Static173.localPlayer == arg0, 0);
+						Static152.method2836(arg0.zFine, local165, arg0.xFine, PlayerList.self == arg0, 0);
 					}
 					arg0.anInt3361++;
 					if (arg0.spotanimId < local165.anIntArray473.length && local165.frames[arg0.spotanimId] < arg0.anInt3361) {
 						arg0.spotanimId++;
 						arg0.anInt3361 = 1;
-						Static152.method2836(arg0.z, local165, arg0.x, Static173.localPlayer == arg0, arg0.spotanimId);
+						Static152.method2836(arg0.zFine, local165, arg0.xFine, PlayerList.self == arg0, arg0.spotanimId);
 					}
 					if (arg0.spotanimId >= local165.anIntArray473.length) {
 						arg0.spotanimFrame = -1;
@@ -164,7 +164,7 @@ public final class Static34 {
 		}
 		if (arg0.primarySeqId != -1 && arg0.anInt3420 <= 1) {
 			seq = AnimationSequence.getAnimationSequence(arg0.primarySeqId);
-			if (seq.anInt5363 == 1 && arg0.anInt3405 > 0 && Static83.loopCycle >= arg0.anInt3395 && Static83.loopCycle > arg0.anInt3386) {
+			if (seq.anInt5363 == 1 && arg0.anInt3405 > 0 && client.loop >= arg0.anInt3395 && client.loop > arg0.anInt3386) {
 				arg0.anInt3420 = 1;
 				return;
 			}
@@ -178,7 +178,7 @@ public final class Static34 {
 				if (arg0.anInt3425 < seq.anIntArray473.length && arg0.anInt3360 > seq.frames[arg0.anInt3425]) {
 					arg0.anInt3360 = 1;
 					arg0.anInt3425++;
-					Static152.method2836(arg0.z, seq, arg0.x, arg0 == Static173.localPlayer, arg0.anInt3425);
+					Static152.method2836(arg0.zFine, seq, arg0.xFine, arg0 == PlayerList.self, arg0.anInt3425);
 				}
 				if (seq.anIntArray473.length <= arg0.anInt3425) {
 					arg0.anInt3425 -= seq.replayoff;
@@ -186,7 +186,7 @@ public final class Static34 {
 					if (arg0.anInt3371 >= seq.replaycount) {
 						arg0.primarySeqId = -1;
 					} else if (arg0.anInt3425 >= 0 && seq.anIntArray473.length > arg0.anInt3425) {
-						Static152.method2836(arg0.z, seq, arg0.x, Static173.localPlayer == arg0, arg0.anInt3425);
+						Static152.method2836(arg0.zFine, seq, arg0.xFine, PlayerList.self == arg0, arg0.anInt3425);
 					} else {
 						arg0.primarySeqId = -1;
 					}
@@ -220,7 +220,7 @@ public final class Static34 {
 						if (local545.anInt5399 < local570.anIntArray473.length && local545.anInt5404 > local570.frames[local545.anInt5399]) {
 							local545.anInt5399++;
 							local545.anInt5404 = 1;
-							Static152.method2836(arg0.z, local570, arg0.x, arg0 == Static173.localPlayer, local545.anInt5399);
+							Static152.method2836(arg0.zFine, local570, arg0.xFine, arg0 == PlayerList.self, local545.anInt5399);
 						}
 						if (local570.anIntArray473.length <= local545.anInt5399) {
 							local545.anInt5400++;
@@ -228,7 +228,7 @@ public final class Static34 {
 							if (local570.replaycount <= local545.anInt5400) {
 								arg0.aClass147Array3[local156] = null;
 							} else if (local545.anInt5399 >= 0 && local545.anInt5399 < local570.anIntArray473.length) {
-								Static152.method2836(arg0.z, local570, arg0.x, Static173.localPlayer == arg0, local545.anInt5399);
+								Static152.method2836(arg0.zFine, local570, arg0.xFine, PlayerList.self == arg0, local545.anInt5399);
 							} else {
 								arg0.aClass147Array3[local156] = null;
 							}

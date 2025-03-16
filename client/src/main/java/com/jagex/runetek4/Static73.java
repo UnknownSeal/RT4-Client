@@ -38,7 +38,7 @@ public final class Static73 {
 			if (Static154.topLevelInterace != -1) {
 				Component.resetComponent(Static154.topLevelInterace);
 			}
-			for (@Pc(18) Class3_Sub31 local18 = (Class3_Sub31) Static119.aClass133_9.peekFront(); local18 != null; local18 = (Class3_Sub31) Static119.aClass133_9.prev()) {
+			for (@Pc(18) Class3_Sub31 local18 = (Class3_Sub31) Static119.aClass133_9.head(); local18 != null; local18 = (Class3_Sub31) Static119.aClass133_9.prev()) {
 				Static132.method2605(true, local18);
 			}
 			Static154.topLevelInterace = -1;
@@ -51,19 +51,19 @@ public final class Static73 {
 		}
 		Static35.anInt1092 = -1;
 		client.method1750(Static270.anInt5794);
-		Static173.localPlayer = new Player();
-		Static173.localPlayer.z = 3000;
-		Static173.localPlayer.x = 3000;
+		PlayerList.self = new Player();
+		PlayerList.self.zFine = 3000;
+		PlayerList.self.xFine = 3000;
 		if (!GlRenderer.enabled) {
 			Static145.method2743(Static209.aClass153_86);
 			Game.processGameStatus(10);
 			return;
 		}
-		if (Static227.anInt5096 == 2) {
-			Static138.cameraX = Static245.anInt5375 << 7;
-			Static134.cameraZ = Static248.anInt4232 << 7;
+		if (Camera.cameraType == 2) {
+			Camera.renderX = Camera.anInt5375 << 7;
+			Camera.renderZ = Camera.anInt4232 << 7;
 		} else {
-			Static40.method1008();
+			Camera.updateLoginScreenCamera();
 		}
 		Static86.method1799();
 		Static26.method740();
@@ -97,7 +97,7 @@ public final class Static73 {
 			}
 			local16 = (arg1 << 7) + 1;
 			local20 = (arg3 << 7) + 2;
-			@Pc(156) int local156 = Static83.levelHeightMap[arg0][arg1][arg3] + arg5;
+			@Pc(156) int local156 = SceneGraph.tileHeights[arg0][arg1][arg3] + arg5;
 			if (!Static256.method4394(local16, local156, local20)) {
 				return false;
 			}
@@ -116,7 +116,7 @@ public final class Static73 {
 		} else if (CacheArchive.method187(arg0, arg1, arg3)) {
 			local16 = arg1 << 7;
 			local20 = arg3 << 7;
-			return Static256.method4394(local16 + 1, Static83.levelHeightMap[arg0][arg1][arg3] + arg5, local20 + 1) && Static256.method4394(local16 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg3] + arg5, local20 + 1) && Static256.method4394(local16 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg3 + 1] + arg5, local20 + 128 - 1) && Static256.method4394(local16 + 1, Static83.levelHeightMap[arg0][arg1][arg3 + 1] + arg5, local20 + 128 - 1);
+			return Static256.method4394(local16 + 1, SceneGraph.tileHeights[arg0][arg1][arg3] + arg5, local20 + 1) && Static256.method4394(local16 + 128 - 1, SceneGraph.tileHeights[arg0][arg1 + 1][arg3] + arg5, local20 + 1) && Static256.method4394(local16 + 128 - 1, SceneGraph.tileHeights[arg0][arg1 + 1][arg3 + 1] + arg5, local20 + 128 - 1) && Static256.method4394(local16 + 1, SceneGraph.tileHeights[arg0][arg1][arg3 + 1] + arg5, local20 + 128 - 1);
 		} else {
 			return false;
 		}

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.ImageRGB;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -14,7 +14,7 @@ public final class Static213 {
 	public static int anInt4851;
 
 	@OriginalMember(owner = "runetek4.client!re", name = "B", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_88;
+	public static Js5 aClass153_88;
 
 	@OriginalMember(owner = "runetek4.client!re", name = "b", descriptor = "(I)[Lclient!qf;")
 	public static Sprite[] method3730() {

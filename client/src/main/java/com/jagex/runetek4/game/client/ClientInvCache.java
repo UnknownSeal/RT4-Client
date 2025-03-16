@@ -24,7 +24,7 @@ public final class ClientInvCache extends Node {
 		@Pc(12) ClientInvCache local12 = (ClientInvCache) recentUse.getNode((long) arg3);
 		if (local12 == null) {
 			local12 = new ClientInvCache();
-			recentUse.pushNode(local12, (long) arg3);
+			recentUse.put(local12, (long) arg3);
 		}
 		if (local12.invSlotObjId.length <= arg1) {
 			@Pc(39) int[] local39 = new int[arg1 + 1];

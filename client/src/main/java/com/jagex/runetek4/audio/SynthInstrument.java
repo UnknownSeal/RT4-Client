@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -98,7 +99,7 @@ public final class SynthInstrument {
 
 	@OriginalMember(owner = "runetek4.client!pj", name = "a", descriptor = "(II)[I")
 	public final int[] synthesize(@OriginalArg(0) int arg0, @OriginalArg(1) int dt) {
-		Static289.resetOutput(Static194.output, 0, arg0);
+		ArrayUtils.clear(Static194.output, 0, arg0);
 		if (dt < 10) {
 			return Static194.output;
 		}
@@ -276,7 +277,7 @@ public final class SynthInstrument {
 		this.vol_env.decode(packet);
 		@Pc(21) int option = packet.g1();
 		if (option != 0) {
-			packet.position--;
+			packet.offset--;
 			this.pitch_mod_env = new SynthEnvelope();
 			this.pitch_mod_env.decode(packet);
 			this.pitch_mod_amp_env = new SynthEnvelope();
@@ -284,7 +285,7 @@ public final class SynthInstrument {
 		}
 		option = packet.g1();
 		if (option != 0) {
-			packet.position--;
+			packet.offset--;
 			this.vol_mod_env = new SynthEnvelope();
 			this.vol_mod_env.decode(packet);
 			this.vol_mod_amp_env = new SynthEnvelope();
@@ -292,7 +293,7 @@ public final class SynthInstrument {
 		}
 		option = packet.g1();
 		if (option != 0) {
-			packet.position--;
+			packet.offset--;
 			this.gating_release_env = new SynthEnvelope();
 			this.gating_release_env.decode(packet);
 			this.gating_attack_env = new SynthEnvelope();

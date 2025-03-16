@@ -2,7 +2,7 @@ package com.jagex.runetek4.js5.index;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.cache.CacheIndex;
+import com.jagex.runetek4.cache.Cache;
 import com.jagex.runetek4.js5.network.Js5NetRequest;
 import com.jagex.runetek4.js5.network.Js5NetResourceProvider;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -76,17 +76,17 @@ public final class Js5MasterIndex {
 	}
 
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(IILclient!ge;Lclient!ge;)Lclient!bg;")
-	public Js5NetResourceProvider method180(@OriginalArg(1) int arg0, @OriginalArg(2) CacheIndex arg1, @OriginalArg(3) CacheIndex arg2) {
+	public Js5NetResourceProvider method180(@OriginalArg(1) int arg0, @OriginalArg(2) Cache arg1, @OriginalArg(3) Cache arg2) {
 		return this.method188(arg2, arg0, arg1);
 	}
 
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(Lclient!ge;IIZLclient!ge;)Lclient!bg;")
-	private Js5NetResourceProvider method188(@OriginalArg(0) CacheIndex arg0, @OriginalArg(2) int arg1, @OriginalArg(4) CacheIndex arg2) {
+	private Js5NetResourceProvider method188(@OriginalArg(0) Cache arg0, @OriginalArg(2) int arg1, @OriginalArg(4) Cache arg2) {
 		if (this.aClass3_Sub15_1 == null) {
 			throw new RuntimeException();
 		}
-		this.aClass3_Sub15_1.position = arg1 * 8 + 5;
-		if (this.aClass3_Sub15_1.data.length <= this.aClass3_Sub15_1.position) {
+		this.aClass3_Sub15_1.offset = arg1 * 8 + 5;
+		if (this.aClass3_Sub15_1.data.length <= this.aClass3_Sub15_1.offset) {
 			throw new RuntimeException();
 		} else if (this.aClass14_Sub1Array1[arg1] == null) {
 			@Pc(56) int local56 = this.aClass3_Sub15_1.g4();

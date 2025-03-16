@@ -5,6 +5,7 @@ import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -257,7 +258,7 @@ public final class Static1 {
 			}
 		}
 		@Pc(1161) Class3_Sub14 local1161;
-		for (local1161 = (Class3_Sub14) local10.peekFront(); local1161 != null; local1161 = (Class3_Sub14) local10.prev()) {
+		for (local1161 = (Class3_Sub14) local10.head(); local1161 != null; local1161 = (Class3_Sub14) local10.prev()) {
 			local1161.method1940();
 		}
 		for (local12 = 1; local12 <= 102; local12++) {
@@ -522,7 +523,7 @@ public final class Static1 {
 				}
 			}
 		}
-		for (local1161 = (Class3_Sub14) local10.peekFront(); local1161 != null; local1161 = (Class3_Sub14) local10.prev()) {
+		for (local1161 = (Class3_Sub14) local10.head(); local1161 != null; local1161 = (Class3_Sub14) local10.prev()) {
 			if (local1161.anInt2483 == 0) {
 				local1161.unlink();
 			} else {
@@ -536,7 +537,7 @@ public final class Static1 {
 		for (local38 = 0; local38 < local12; local38++) {
 			local2826[local38] = local2823[local38].nodeId;
 		}
-		Static4.method23(local2826, local2823);
+		ArrayUtils.sort(local2826, local2823);
 		return local2823;
 	}
 
@@ -564,7 +565,7 @@ public final class Static1 {
 			if (GlRenderer.enabled) {
 				Rasterizer.destinationPixels = null;
 			} else {
-				Static260.aClass27_2.method4189();
+				Static260.frameBuffer.makeTarget();
 			}
 		}
 		Static70.aClass3_Sub2_Sub1_2.method1415(arg0, arg3);

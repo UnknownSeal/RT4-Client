@@ -113,7 +113,7 @@ public final class Class45 {
 		this.anIntArray178[this.anInt2017] = arg1;
 		this.anIntArray180[this.anInt2017] = arg2;
 		this.anIntArray179[this.anInt2017] = arg3;
-		this.aClass133_4.pushNode(new IntWrapper(this.anInt2017), local1);
+		this.aClass133_4.put(new IntWrapper(this.anInt2017), local1);
 		return this.anInt2017++;
 	}
 
@@ -157,10 +157,10 @@ public final class Class45 {
 			@Pc(186) ByteBuffer local186 = ByteBuffer.wrap(local7.data);
 			this.aClass155_2.method4517(local186);
 		} else {
-			this.aByteBuffer1 = ByteBuffer.allocateDirect(local15.position);
+			this.aByteBuffer1 = ByteBuffer.allocateDirect(local15.offset);
 			this.aByteBuffer1.put(local15.data);
 			this.aByteBuffer1.flip();
-			this.aByteBuffer2 = ByteBuffer.allocateDirect(local7.position);
+			this.aByteBuffer2 = ByteBuffer.allocateDirect(local7.offset);
 			this.aByteBuffer2.put(local7.data);
 			this.aByteBuffer2.flip();
 		}

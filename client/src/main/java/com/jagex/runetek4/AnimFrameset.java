@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.node.CachedNode;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -14,39 +14,65 @@ public final class AnimFrameset extends CachedNode {
 	public final AnimFrame[] frames;
 
 	@OriginalMember(owner = "client!cl", name = "<init>", descriptor = "(Lclient!ve;Lclient!ve;IZ)V")
-	public AnimFrameset(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) CacheArchive arg1, @OriginalArg(2) int arg2, @OriginalArg(3) boolean arg3) {
-		@Pc(5) LinkList local5 = new LinkList();
-		@Pc(10) int local10 = arg0.fileLength(arg2);
-		this.frames = new AnimFrame[local10];
-		@Pc(19) int[] local19 = arg0.method4503(arg2);
-		for (@Pc(21) int local21 = 0; local21 < local19.length; local21++) {
-			@Pc(37) byte[] local37 = arg0.getfile(arg2, local19[local21]);
-			@Pc(51) int local51 = local37[1] & 0xFF | (local37[0] & 0xFF) << 8;
-			@Pc(56) AnimBase local56 = (AnimBase) local5.head();
-			@Pc(58) AnimBase local58 = null;
-			while (local56 != null) {
-				if (local56.anInt3113 == local51) {
-					local58 = local56;
+	public AnimFrameset(@OriginalArg(0) Js5 animsArchive, @OriginalArg(1) Js5 basesArchive, @OriginalArg(2) int id, @OriginalArg(3) boolean bool) {
+		@Pc(5) LinkedList bases = new LinkedList();
+		@Pc(10) int capacity = animsArchive.getGroupCapacity(id);
+		this.frames = new AnimFrame[capacity];
+		@Pc(19) int[] fileIds = animsArchive.getFileIds(id);
+		for (@Pc(21) int i = 0; i < fileIds.length; i++) {
+			@Pc(37) byte[] bytes = animsArchive.getfile(id, fileIds[i]);
+			@Pc(51) int baseId = bytes[1] & 0xFF | (bytes[0] & 0xFF) << 8;
+			@Pc(56) AnimBase b = (AnimBase) bases.head();
+			@Pc(58) AnimBase base = null;
+			while (b != null) {
+				if (b.id == baseId) {
+					base = b;
 					break;
 				}
-				local56 = (AnimBase) local5.next();
+				b = (AnimBase) bases.next();
 			}
-			if (local58 == null) {
-				@Pc(85) byte[] local85 = arg1.method4502(0, local51);
-				local58 = new AnimBase(local51, local85);
-				local5.addTail(local58);
+			if (base == null) {
+				@Pc(85) byte[] baseBytes = basesArchive.fetchFileNoDiscard(0, baseId);
+				base = new AnimBase(baseId, baseBytes);
+				bases.addTail(base);
 			}
-			this.frames[local19[local21]] = new AnimFrame(local37, local58);
+			this.frames[fileIds[i]] = new AnimFrame(bytes, base);
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(Lclient!ve;ZLclient!ve;BI)Lclient!cl;")
+	public static AnimFrameset create(@OriginalArg(0) Js5 animsArchive, @OriginalArg(2) Js5 basesArchive, @OriginalArg(4) int id) {
+		@Pc(5) boolean ready = true;
+		@Pc(16) int[] fileIds = animsArchive.getFileIds(id);
+		for (@Pc(18) int i = 0; i < fileIds.length; i++) {
+			@Pc(30) byte[] bytes = animsArchive.fetchFileNoDiscard(fileIds[i], id);
+			if (bytes == null) {
+				ready = false;
+			} else {
+				@Pc(49) int baseId = (bytes[0] & 0xFF) << 8 | bytes[1] & 0xFF;
+				@Pc(57) byte[] baseBytes = basesArchive.fetchFileNoDiscard(0, baseId);
+				if (baseBytes == null) {
+					ready = false;
+				}
+			}
+		}
+		if (!ready) {
+			return null;
+		}
+		try {
+			return new AnimFrameset(animsArchive, basesArchive, id, false);
+		} catch (@Pc(84) Exception exception) {
+			return null;
 		}
 	}
 
 	@OriginalMember(owner = "client!cl", name = "c", descriptor = "(II)Z")
-	public boolean method901(@OriginalArg(1) int arg0) {
-		return this.frames[arg0].aBoolean197;
+	public boolean isAlphaTransformed(@OriginalArg(1) int frame) {
+		return this.frames[frame].transformsAlpha;
 	}
 
 	@OriginalMember(owner = "client!cl", name = "a", descriptor = "(IB)Z")
-	public boolean method903(@OriginalArg(0) int arg0) {
-		return this.frames[arg0].aBoolean196;
+	public boolean isColorTransformed(@OriginalArg(0) int frame) {
+		return this.frames[frame].transformsColor;
 	}
 }

@@ -14,9 +14,6 @@ public final class Static71 {
 	@OriginalMember(owner = "runetek4.client!fk", name = "e", descriptor = "I")
 	public static int anInt1885;
 
-	@OriginalMember(owner = "runetek4.client!fk", name = "q", descriptor = "Lclient!uc;")
-	public static MouseWheel mouseWheel;
-
 	@OriginalMember(owner = "runetek4.client!fk", name = "g", descriptor = "Z")
 	public static boolean aBoolean107 = true;
 
@@ -56,8 +53,8 @@ public final class Static71 {
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "a", descriptor = "(B)V")
 	public static void method1441() {
-		Static279.aClass99_38.method3103();
-		SpotAnimDefinition.modelCache.method3103();
+		Static279.aClass99_38.removeSoft();
+		SpotAnimDefinition.modelCache.removeSoft();
 	}
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "b", descriptor = "(IB)V")

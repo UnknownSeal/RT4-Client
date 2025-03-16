@@ -3,7 +3,8 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Npc;
+import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
@@ -58,8 +59,8 @@ public class Game {
                 Static6.outboundBuffer.pIsaac1(123);
                 samples = 0;
                 Static6.outboundBuffer.p1(0);
-                offset = Static6.outboundBuffer.position;
-                for (i = 0; mouseCapturer.coord > i && Static6.outboundBuffer.position - offset < 240; i++) {
+                offset = Static6.outboundBuffer.offset;
+                for (i = 0; mouseCapturer.coord > i && Static6.outboundBuffer.offset - offset < 240; i++) {
                     samples++;
                     y = mouseCapturer.y[i];
                     x = mouseCapturer.x[i];
@@ -116,7 +117,7 @@ public class Game {
                         Static204.anInt4762++;
                     }
                 }
-                Static6.outboundBuffer.p1len(Static6.outboundBuffer.position - offset);
+                Static6.outboundBuffer.p1len(Static6.outboundBuffer.offset - offset);
                 if (mouseCapturer.coord > samples) {
                     mouseCapturer.coord -= samples;
                     for (i = 0; i < mouseCapturer.coord; i++) {
@@ -158,9 +159,9 @@ public class Game {
         if (Static16.anInt551 > 0) {
             Static16.anInt551--;
         }
-        if (Static33.aBoolean63) {
+        if (Preferences.aBoolean63) {
             for (i = 0; i < Static182.keyQueueSize; i++) {
-                offset = Static227.keyCodes[i];
+                offset = InterfaceList.keyCodes[i];
                 if (offset == 98 || offset == 99 || offset == 96 || offset == 97) {
                     Static197.aBoolean228 = true;
                     break;
@@ -173,8 +174,8 @@ public class Game {
             Static16.anInt551 = 20;
             Static197.aBoolean228 = false;
             Static6.outboundBuffer.pIsaac1(21);
-            Static6.outboundBuffer.p2_alt2(Static72.orbitCameraPitch);
-            Static6.outboundBuffer.p2_alt1(Static57.orbitCameraYaw);
+            Static6.outboundBuffer.p2_alt2(Camera.orbitCameraPitch);
+            Static6.outboundBuffer.p2_alt1(Camera.orbitCameraYaw);
         }
         if (Static26.focus && !Static67.prevFocus) {
             Static67.prevFocus = true;
@@ -195,8 +196,8 @@ public class Game {
         if (Static244.gamestate != 30) {
             return;
         }
-        Static251.loop(); // ChangeLocRequest
-        Static192.loop(); // AttachLocRequest
+        ChangeLocRequest.loop(); // ChangeLocRequest
+        AttachLocRequest.loop(); // AttachLocRequest
         Static54.loop(); // SoundPlayer
         Static201.idleNetCycles++;
         if (Static201.idleNetCycles > 750) {
@@ -412,14 +413,14 @@ public class Game {
         @Pc(1508) Component local1508 = Static43.aClass13_11;
         Static43.aClass13_11 = null;
         while (Static25.nextKey() && Static182.keyQueueSize < 128) {
-            Static227.keyCodes[Static182.keyQueueSize] = Static102.keyCode;
+            InterfaceList.keyCodes[Static182.keyQueueSize] = Static102.keyCode;
             Static205.keyChars[Static182.keyQueueSize] = Static193.keyChar;
             Static182.keyQueueSize++;
         }
         // WorldMap.component
         Static24.component = null;
         if (Static154.topLevelInterace != -1) {
-            Static57.method1320(0, 0, 0, Static48.canvasWidth, Static154.topLevelInterace, 0, Static254.canvasHeigth);
+            Static57.method1320(0, 0, 0, GameShell.canvasWidth, Static154.topLevelInterace, 0, GameShell.canvasHeigth);
         }
         Static119.transmitTimer++;
         while (true) {
@@ -428,15 +429,15 @@ public class Game {
             @Pc(1560) Component highPrioritySource;
             @Pc(1555) HookRequest highPriorityRequest;
             do {
-                highPriorityRequest = (HookRequest) Static4.aClass69_2.method2287();
+                highPriorityRequest = (HookRequest) Static4.aClass69_2.removeHead();
                 if (highPriorityRequest == null) {
                     while (true) {
                         do {
-                            highPriorityRequest = (HookRequest) Static115.aClass69_70.method2287();
+                            highPriorityRequest = (HookRequest) Static115.aClass69_70.removeHead();
                             if (highPriorityRequest == null) {
                                 while (true) {
                                     do {
-                                        highPriorityRequest = (HookRequest) Static185.aClass69_101.method2287();
+                                        highPriorityRequest = (HookRequest) Static185.aClass69_101.removeHead();
                                         if (highPriorityRequest == null) {
                                             if (Static24.component == null) {
                                                 Static137.anInt3337 = 0;
@@ -445,18 +446,18 @@ public class Game {
                                                 Static4.method28();
                                             }
                                             if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81] && Static58.wheelRotation != 0) {
-                                                y = Static55.currentLevel - Static58.wheelRotation;
+                                                y = Player.plane - Static58.wheelRotation;
                                                 if (y < 0) {
                                                     y = 0;
                                                 } else if (y > 3) {
                                                     y = 3;
                                                 }
                                                 // Cheat
-                                                Static61.teleport(Static173.localPlayer.pathTileX[0] + Static225.originX, Static173.localPlayer.pathTileZ[0] + Static142.originZ, y);
+                                                Static61.teleport(PlayerList.self.pathTileX[0] + Camera.originX, PlayerList.self.pathTileZ[0] + Camera.originZ, y);
                                             }
                                             if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
                                                 if (Static56.clickTileX != -1) {
-                                                    Static61.teleport(Static225.originX + Static56.clickTileX, Static142.originZ - -Static116.anInt2954, Static55.currentLevel);
+                                                    Static61.teleport(Camera.originX + Static56.clickTileX, Camera.originZ - -Static116.anInt2954, Player.plane);
                                                 }
                                                 Static187.anInt4422 = 0;
                                                 Static125.anInt3096 = 0;
@@ -464,9 +465,9 @@ public class Game {
                                                 if (Static56.clickTileX != -1) {
                                                     Static6.outboundBuffer.pIsaac1(131);
                                                     Static6.outboundBuffer.p4_alt3(Static98.anInt2512);
-                                                    Static6.outboundBuffer.p2_alt2(Static225.originX + Static56.clickTileX);
+                                                    Static6.outboundBuffer.p2_alt2(Camera.originX + Static56.clickTileX);
                                                     Static6.outboundBuffer.p2_alt3(Static15.anInt506);
-                                                    Static6.outboundBuffer.p2_alt2(Static116.anInt2954 + Static142.originZ);
+                                                    Static6.outboundBuffer.p2_alt2(Static116.anInt2954 + Camera.originZ);
                                                     Static70.crossMode = 1;
                                                     Static17.crossCycle = 0;
                                                     Static25.y = Static60.mouseClickY;
@@ -476,8 +477,8 @@ public class Game {
                                             } else if (Static187.anInt4422 == 2) {
                                                 if (Static56.clickTileX != -1) {
                                                     Static6.outboundBuffer.pIsaac1(179);
-                                                    Static6.outboundBuffer.p2(Static142.originZ + Static116.anInt2954);
-                                                    Static6.outboundBuffer.p2(Static56.clickTileX + Static225.originX);
+                                                    Static6.outboundBuffer.p2(Camera.originZ + Static116.anInt2954);
+                                                    Static6.outboundBuffer.p2(Static56.clickTileX + Camera.originX);
                                                     Static17.crossCycle = 0;
                                                     Static70.crossMode = 1;
                                                     Static122.x = aClass6.mouseClickX;
@@ -485,7 +486,7 @@ public class Game {
                                                 }
                                                 Static187.anInt4422 = 0;
                                             } else if (Static56.clickTileX != -1 && Static125.anInt3096 == 0 && Static187.anInt4422 == 0) {
-                                                @Pc(1871) boolean success = Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, Static173.localPlayer.pathTileX[0]);
+                                                @Pc(1871) boolean success = Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, PlayerList.self.pathTileX[0]);
                                                 if (success) {
                                                     Static25.y = Static60.mouseClickY;
                                                     Static17.crossCycle = 0;
@@ -521,12 +522,12 @@ public class Game {
                                                     Static43.method1143(Static43.aClass13_11);
                                                 }
                                             }
-                                            if (Static227.anInt5096 == 1) {
-                                                Static250.method4273();
-                                            } else if (Static227.anInt5096 == 2) {
-                                                Static125.method2450();
+                                            if (Camera.cameraType == 1) {
+                                                Camera.method4273();
+                                            } else if (Camera.cameraType == 2) {
+                                                Camera.updateLockedCamera();
                                             } else {
-                                                Static40.method1008();
+                                                Camera.updateLoginScreenCamera();
                                             }
                                             for (y = 0; y < 5; y++) {
                                                 @Pc(2001) int local2001 = Static31.cameraModifierCycle[y]++;
@@ -553,13 +554,13 @@ public class Game {
                                                 Static143.cameraOffsetCycle = 0;
                                                 rand = (int) (Math.random() * 8.0D);
                                                 if ((rand & 0x4) == 4) {
-                                                    Static230.cameraAnticheatAngle += Static220.cameraOffsetYawModifier;
+                                                    Camera.cameraAnticheatAngle += Static220.cameraOffsetYawModifier;
                                                 }
                                                 if ((rand & 0x2) == 2) {
-                                                    Static206.cameraAnticheatOffsetZ += Static20.cameraOffsetZModifier;
+                                                    Camera.cameraAnticheatOffsetZ += Static20.cameraOffsetZModifier;
                                                 }
                                                 if ((rand & 0x1) == 1) {
-                                                    Static132.cameraAnticheatOffsetX += Static248.cameraOffsetXModifier;
+                                                    Camera.cameraAnticheatOffsetX += Camera.cameraOffsetXModifier;
                                                 }
                                             }
                                             if (Static82.minimapOffsetCycle > 500) {
@@ -572,8 +573,8 @@ public class Game {
                                                     Static273.minimapZoom += Static179.minimapZoomModifier;
                                                 }
                                             }
-                                            if (Static132.cameraAnticheatOffsetX < -50) {
-                                                Static248.cameraOffsetXModifier = 2;
+                                            if (Camera.cameraAnticheatOffsetX < -50) {
+                                                Camera.cameraOffsetXModifier = 2;
                                             }
                                             if (Static59.minimapAnticheatAngle < -60) {
                                                 Static263.minimapAngleModifier = 2;
@@ -581,19 +582,19 @@ public class Game {
                                             if (Static273.minimapZoom < -20) {
                                                 Static179.minimapZoomModifier = 1;
                                             }
-                                            if (Static206.cameraAnticheatOffsetZ < -55) {
+                                            if (Camera.cameraAnticheatOffsetZ < -55) {
                                                 Static20.cameraOffsetZModifier = 2;
                                             }
-                                            if (Static206.cameraAnticheatOffsetZ > 55) {
+                                            if (Camera.cameraAnticheatOffsetZ > 55) {
                                                 Static20.cameraOffsetZModifier = -2;
                                             }
-                                            if (Static230.cameraAnticheatAngle < -40) {
+                                            if (Camera.cameraAnticheatAngle < -40) {
                                                 Static220.cameraOffsetYawModifier = 1;
                                             }
-                                            if (Static132.cameraAnticheatOffsetX > 50) {
-                                                Static248.cameraOffsetXModifier = -2;
+                                            if (Camera.cameraAnticheatOffsetX > 50) {
+                                                Camera.cameraOffsetXModifier = -2;
                                             }
-                                            if (Static230.cameraAnticheatAngle > 40) {
+                                            if (Camera.cameraAnticheatAngle > 40) {
                                                 Static220.cameraOffsetYawModifier = -1;
                                             }
                                             if (Static273.minimapZoom > 10) {
@@ -610,10 +611,10 @@ public class Game {
                                                 Static34.verifyIdChanged = false;
                                             }
                                             try {
-                                                if (Static124.gameServerSocket != null && Static6.outboundBuffer.position > 0) {
-                                                    Static124.gameServerSocket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
+                                                if (Static124.gameServerSocket != null && Static6.outboundBuffer.offset > 0) {
+                                                    Static124.gameServerSocket.write(Static6.outboundBuffer.offset, Static6.outboundBuffer.data);
                                                     Static131.anInt3251 = 0;
-                                                    Static6.outboundBuffer.position = 0;
+                                                    Static6.outboundBuffer.offset = 0;
                                                 }
                                             } catch (@Pc(2266) IOException local2266) {
                                                 tryReconnect();
@@ -658,7 +659,7 @@ public class Game {
     @OriginalMember(owner = "runetek4.client!nk", name = "c", descriptor = "(IZ)V")
     public static void pushNpcs(@OriginalArg(1) boolean arg0) {
         @Pc(7) int i;
-        @Pc(16) NPCRenderable npc;
+        @Pc(16) Npc npc;
         @Pc(107) int npcSize;
         @Pc(113) int x;
         @Pc(133) int z;
@@ -666,21 +667,21 @@ public class Game {
         @Pc(158) int local158;
         @Pc(171) int local171;
         for (i = 0; i < Static272.npcCount; i++) {
-            npc = Static175.npcs[Static33.npcIds[i]];
+            npc = NpcList.npcs[Static33.npcIds[i]];
             if (npc != null && npc.isVisible() && npc.type.drawabove == arg0 && npc.type.method2933()) {
                 @Pc(42) int npcSize2 = npc.size();
                 @Pc(97) int local97;
                 if (npcSize2 == 1) {
-                    if ((npc.x & 0x7F) == 64 && (npc.z & 0x7F) == 64) {
-                        local97 = npc.x >> 7;
-                        npcSize = npc.z >> 7;
+                    if ((npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
+                        local97 = npc.xFine >> 7;
+                        npcSize = npc.zFine >> 7;
                         if (local97 >= 0 && local97 < 104 && npcSize >= 0 && npcSize < 104) {
                             local171 = Static31.anIntArrayArray6[local97][npcSize]++;
                         }
                     }
-                } else if (((npcSize2 & 0x1) != 0 || (npc.x & 0x7F) == 0 && (npc.z & 0x7F) == 0) && ((npcSize2 & 0x1) != 1 || (npc.x & 0x7F) == 64 && (npc.z & 0x7F) == 64)) {
-                    local97 = npc.x - npcSize2 * 64 >> 7;
-                    npcSize = npc.z - npcSize2 * 64 >> 7;
+                } else if (((npcSize2 & 0x1) != 0 || (npc.xFine & 0x7F) == 0 && (npc.zFine & 0x7F) == 0) && ((npcSize2 & 0x1) != 1 || (npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64)) {
+                    local97 = npc.xFine - npcSize2 * 64 >> 7;
+                    npcSize = npc.zFine - npcSize2 * 64 >> 7;
                     x = npc.size() + local97;
                     if (local97 < 0) {
                         local97 = 0;
@@ -704,14 +705,14 @@ public class Game {
             }
         }
         label200: for (i = 0; i < Static272.npcCount; i++) {
-            npc = Static175.npcs[Static33.npcIds[i]];
+            npc = NpcList.npcs[Static33.npcIds[i]];
             @Pc(262) long bitset = (long) Static33.npcIds[i] << 32 | 0x20000000L;
             if (npc != null && npc.isVisible() && npc.type.drawabove == arg0 && npc.type.method2933()) {
                 npcSize = npc.size();
                 if (npcSize == 1) {
-                    if ((npc.x & 0x7F) == 64 && (npc.z & 0x7F) == 64) {
-                        x = npc.x >> 7;
-                        z = npc.z >> 7;
+                    if ((npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
+                        x = npc.xFine >> 7;
+                        z = npc.zFine >> 7;
                         if (x < 0 || x >= 104 || z < 0 || z >= 104) {
                             continue;
                         }
@@ -720,9 +721,9 @@ public class Game {
                             continue;
                         }
                     }
-                } else if ((npcSize & 0x1) == 0 && (npc.x & 0x7F) == 0 && (npc.z & 0x7F) == 0 || (npcSize & 0x1) == 1 && (npc.x & 0x7F) == 64 && (npc.z & 0x7F) == 64) {
-                    x = npc.x - npcSize * 64 >> 7;
-                    z = npc.z - npcSize * 64 >> 7;
+                } else if ((npcSize & 0x1) == 0 && (npc.xFine & 0x7F) == 0 && (npc.zFine & 0x7F) == 0 || (npcSize & 0x1) == 1 && (npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
+                    x = npc.xFine - npcSize * 64 >> 7;
+                    z = npc.zFine - npcSize * 64 >> 7;
                     local158 = z + npcSize;
                     if (z < 0) {
                         z = 0;
@@ -764,8 +765,8 @@ public class Game {
                 if (!npc.type.active) {
                     bitset |= Long.MIN_VALUE;
                 }
-                npc.y = Static207.getHeightmapY(Static55.currentLevel, npc.x, npc.z);
-                Static43.addTemporary(Static55.currentLevel, npc.x, npc.z, npc.y, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.seqStretches);
+                npc.y = SceneGraph.getTileHeight(Player.plane, npc.xFine, npc.zFine);
+                Static43.addTemporary(Player.plane, npc.xFine, npc.zFine, npc.y, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.seqStretches);
             }
         }
     }
@@ -773,7 +774,7 @@ public class Game {
     @OriginalMember(owner = "runetek4.client!cn", name = "b", descriptor = "(ZI)V")
     public static void pushPlayers(@OriginalArg(0) boolean arg0) {
         @Pc(3) int local3 = Static267.playerCount;
-        if (Static115.anInt2939 == Static173.localPlayer.x >> 7 && Static173.localPlayer.z >> 7 == Static84.anInt2255) {
+        if (Static115.anInt2939 == PlayerList.self.xFine >> 7 && PlayerList.self.zFine >> 7 == Static84.anInt2255) {
             Static115.anInt2939 = 0;
         }
         if (arg0) {
@@ -789,7 +790,7 @@ public class Game {
         @Pc(106) int local106;
         for (i = 0; i < local3; i++) {
             if (arg0) {
-                player = Static173.localPlayer;
+                player = PlayerList.self;
             } else {
                 player = Static159.players[Static105.playerIds[i]];
             }
@@ -797,16 +798,16 @@ public class Game {
                 @Pc(55) int local55 = player.size();
                 @Pc(77) int stx;
                 if (local55 == 1) {
-                    if ((player.x & 0x7F) == 64 && (player.z & 0x7F) == 64) {
-                        stx = player.x >> 7;
-                        stz = player.z >> 7;
+                    if ((player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 64) {
+                        stx = player.xFine >> 7;
+                        stz = player.zFine >> 7;
                         if (stx >= 0 && stx < 104 && stz >= 0 && stz < 104) {
                             local106 = Static31.anIntArrayArray6[stx][stz]++;
                         }
                     }
-                } else if (((local55 & 0x1) != 0 || (player.x & 0x7F) == 0 && (player.z & 0x7F) == 0) && ((local55 & 0x1) != 1 || (player.x & 0x7F) == 64 && (player.z & 0x7F) == 64)) {
-                    stx = player.x - local55 * 64 >> 7;
-                    stz = player.z - local55 * 64 >> 7;
+                } else if (((local55 & 0x1) != 0 || (player.xFine & 0x7F) == 0 && (player.zFine & 0x7F) == 0) && ((local55 & 0x1) != 1 || (player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 64)) {
+                    stx = player.xFine - local55 * 64 >> 7;
+                    stz = player.zFine - local55 * 64 >> 7;
                     local182 = player.size() + stx;
                     if (local182 > 104) {
                         local182 = 104;
@@ -832,7 +833,7 @@ public class Game {
         label220: for (i = 0; i < local3; i++) {
             @Pc(272) long id;
             if (arg0) {
-                player = Static173.localPlayer;
+                player = PlayerList.self;
                 id = 8791798054912L;
             } else {
                 player = Static159.players[Static105.playerIds[i]];
@@ -840,14 +841,14 @@ public class Game {
             }
             if (player != null && player.isVisible()) {
                 player.lowMemory = false;
-                if ((Static15.lowMemory && Static267.playerCount > 200 || Static267.playerCount > 50) && !arg0 && player.secondarySeqId == player.method2681().anInt1037) {
+                if ((Static15.lowMemory && Static267.playerCount > 200 || Static267.playerCount > 50) && !arg0 && player.movementSeqId == player.getBasType().idleAnimationId) {
                     player.lowMemory = true;
                 }
                 stz = player.size();
                 if (stz == 1) {
-                    if ((player.x & 0x7F) == 64 && (player.z & 0x7F) == 64) {
-                        local182 = player.x >> 7;
-                        local200 = player.z >> 7;
+                    if ((player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 64) {
+                        local182 = player.xFine >> 7;
+                        local200 = player.zFine >> 7;
                         if (local182 < 0 || local182 >= 104 || local200 < 0 || local200 >= 104) {
                             continue;
                         }
@@ -856,10 +857,10 @@ public class Game {
                             continue;
                         }
                     }
-                } else if ((stz & 0x1) == 0 && (player.x & 0x7F) == 0 && (player.z & 0x7F) == 0 || (stz & 0x1) == 1 && (player.x & 0x7F) == 64 && (player.z & 0x7F) == 0) {
-                    local182 = player.x - stz * 64 >> 7;
+                } else if ((stz & 0x1) == 0 && (player.xFine & 0x7F) == 0 && (player.zFine & 0x7F) == 0 || (stz & 0x1) == 1 && (player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 0) {
+                    local182 = player.xFine - stz * 64 >> 7;
                     local214 = stz + local182;
-                    local200 = player.z - stz * 64 >> 7;
+                    local200 = player.zFine - stz * 64 >> 7;
                     if (local214 > 104) {
                         local214 = 104;
                     }
@@ -897,13 +898,13 @@ public class Game {
                         }
                     }
                 }
-                if (player.locModel == null || Static83.loopCycle < player.locStartCycle || player.locStopCycle <= Static83.loopCycle) {
-                    player.y = Static207.getHeightmapY(Static55.currentLevel, player.x, player.z);
-                    Static43.addTemporary(Static55.currentLevel, player.x, player.z, player.y, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
+                if (player.attachment == null || client.loop < player.attachmentSetAt || player.attachmentResetAt <= client.loop) {
+                    player.y = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
+                    Static43.addTemporary(Player.plane, player.xFine, player.zFine, player.y, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
                 } else {
                     player.lowMemory = false;
-                    player.y = Static207.getHeightmapY(Static55.currentLevel, player.x, player.z);
-                    Static184.addTemporary(Static55.currentLevel, player.x, player.z, player.y, player, player.anInt3381, id, player.anInt3384, player.anInt3374, player.anInt3411, player.anInt3410);
+                    player.y = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
+                    Static184.addTemporary(Player.plane, player.xFine, player.zFine, player.y, player, player.anInt3381, id, player.atachmentX0, player.attachmentZ0, player.attachmentX1, player.attachmentZ1);
                 }
             }
         }
@@ -916,7 +917,7 @@ public class Game {
             Static124.gameServerSocket = null;
         }
         Static217.method3768();
-        Static65.method1500();
+        SceneGraph.clear();
         @Pc(19) int local19;
         for (local19 = 0; local19 < 4; local19++) {
             Static148.levelCollisionMap[local19].reset();
@@ -928,10 +929,10 @@ public class Game {
         BZip2State.anInt4363 = -1;
         AreaSoundManager.clear(true);
         Static230.aBoolean250 = false;
-        Static142.originZ = 0;
+        Camera.originZ = 0;
         Static80.anInt4701 = 0;
         Static52.anInt1695 = 0;
-        Static225.originX = 0;
+        Camera.originX = 0;
         for (local19 = 0; local19 < Static143.aClass102Array1.length; local19++) {
             Static143.aClass102Array1[local19] = null;
         }
@@ -939,10 +940,10 @@ public class Game {
         Static272.npcCount = 0;
         for (local19 = 0; local19 < 2048; local19++) {
             Static159.players[local19] = null;
-            Static115.playerAppearanceBuffer[local19] = null;
+            Static115.PLAYER_APPEARANCE_PACKET[local19] = null;
         }
         for (local19 = 0; local19 < 32768; local19++) {
-            Static175.npcs[local19] = null;
+            NpcList.npcs[local19] = null;
         }
         for (local19 = 0; local19 < 4; local19++) {
             for (@Pc(115) int local115 = 0; local115 < 104; local115++) {
@@ -951,7 +952,7 @@ public class Game {
                 }
             }
         }
-        Static35.method902();
+        Camera.resetCameraEffects();
         Static189.anInt4443 = 0;
         Static8.resetVarBits();
         Static73.method1596(true);
@@ -1007,7 +1008,7 @@ public class Game {
                 }
                 Static124.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
                 Static72.aClass212_3 = null;
-                Static124.gameServerSocket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
+                Static124.gameServerSocket.write(Static6.outboundBuffer.offset, Static6.outboundBuffer.data);
                 if (Static11.aClass62_1 != null) {
                     Static11.aClass62_1.method3571();
                 }
@@ -1041,10 +1042,10 @@ public class Game {
                 if (Static124.gameServerSocket.available() < Static229.aClass100Array156.length * 8) {
                     return;
                 }
-                Static57.in.position = 0;
+                Static57.in.offset = 0;
                 Static124.gameServerSocket.read(0, Static229.aClass100Array156.length * 8, Static57.in.data);
                 for (local120 = 0; local120 < Static229.aClass100Array156.length; local120++) {
-                    Static229.aClass100Array156[local120] = Static79.decode37(Static57.in.g8());
+                    Static229.aClass100Array156[local120] = Base37.decode37(Static57.in.g8());
                 }
                 Static223.reply = 21;
                 Static179.step = 0;
@@ -1138,7 +1139,7 @@ public class Game {
         Static137.method2666();
         Static269.method2221();
         VarPlayerDefinition.clearVarPlayerDefinitionCache();
-        Static19.method586();
+        BasTypeList.clean();
         Static276.method4615();
         Static25.method715();
         Static25.method716();
@@ -1154,29 +1155,29 @@ public class Game {
     public static void pushProjectiles() {
         for (@Pc(16) ProjectileEntity proj = (ProjectileEntity) Static217.projectiles.head(); proj != null; proj = (ProjectileEntity) Static217.projectiles.next()) {
             @Pc(21) ProjectileAnimation projAnim = proj.aClass8_Sub6_1;
-            if (Static55.currentLevel != projAnim.level || projAnim.lastCycle < Static83.loopCycle) {
+            if (Player.plane != projAnim.level || projAnim.lastCycle < client.loop) {
                 proj.unlink();
-            } else if (Static83.loopCycle >= projAnim.startCycle) {
+            } else if (client.loop >= projAnim.startCycle) {
                 if (projAnim.target > 0) {
-                    @Pc(54) NPCRenderable npc = Static175.npcs[projAnim.target - 1];
-                    if (npc != null && npc.x >= 0 && npc.x < 13312 && npc.z >= 0 && npc.z < 13312) {
-                        projAnim.updateVelocity(npc.z, Static83.loopCycle, Static207.getHeightmapY(projAnim.level, npc.x, npc.z) - projAnim.anInt4805, npc.x);
+                    @Pc(54) Npc npc = NpcList.npcs[projAnim.target - 1];
+                    if (npc != null && npc.xFine >= 0 && npc.xFine < 13312 && npc.zFine >= 0 && npc.zFine < 13312) {
+                        projAnim.updateVelocity(npc.zFine, client.loop, SceneGraph.getTileHeight(projAnim.level, npc.xFine, npc.zFine) - projAnim.anInt4805, npc.xFine);
                     }
                 }
                 if (projAnim.target < 0) {
                     @Pc(102) int index = -projAnim.target - 1;
                     @Pc(107) Player player;
-                    if (Static16.localPid == index) {
-                        player = Static173.localPlayer;
+                    if (PlayerList.selfId == index) {
+                        player = PlayerList.self;
                     } else {
                         player = Static159.players[index];
                     }
-                    if (player != null && player.x >= 0 && player.x < 13312 && player.z >= 0 && player.z < 13312) {
-                        projAnim.updateVelocity(player.z, Static83.loopCycle, Static207.getHeightmapY(projAnim.level, player.x, player.z) - projAnim.anInt4805, player.x);
+                    if (player != null && player.xFine >= 0 && player.xFine < 13312 && player.zFine >= 0 && player.zFine < 13312) {
+                        projAnim.updateVelocity(player.zFine, client.loop, SceneGraph.getTileHeight(projAnim.level, player.xFine, player.zFine) - projAnim.anInt4805, player.xFine);
                     }
                 }
                 projAnim.update(Static178.sceneDelta);
-                Static43.addTemporary(Static55.currentLevel, (int) projAnim.x, (int) projAnim.y, (int) projAnim.z, 60, projAnim, projAnim.yaw, -1L, false);
+                Static43.addTemporary(Player.plane, (int) projAnim.x, (int) projAnim.y, (int) projAnim.z, 60, projAnim, projAnim.yaw, -1L, false);
             }
         }
     }
@@ -1185,9 +1186,9 @@ public class Game {
     public static void pushSpotanims() {
         for (@Pc(9) SpotAnimEntity entity = (SpotAnimEntity) Static99.spotanims.head(); entity != null; entity = (SpotAnimEntity) Static99.spotanims.next()) {
             @Pc(15) SpotAnim spotAnim = entity.aClass8_Sub2_1;
-            if (spotAnim.level != Static55.currentLevel || spotAnim.seqComplete) {
+            if (spotAnim.level != Player.plane || spotAnim.seqComplete) {
                 entity.unlink();
-            } else if (spotAnim.startCycle <= Static83.loopCycle) {
+            } else if (spotAnim.startCycle <= client.loop) {
                 spotAnim.update(Static178.sceneDelta);
                 if (spotAnim.seqComplete) {
                     entity.unlink();

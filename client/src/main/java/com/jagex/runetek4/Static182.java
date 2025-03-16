@@ -1,8 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.js5.CacheArchive;
-import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -13,7 +11,7 @@ public final class Static182 {
 	public static int[] anIntArray372;
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "x", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_77;
+	public static Js5 aClass153_77;
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "E", descriptor = "[[Lclient!hg;")
 	public static Class3_Sub14[][] aClass3_Sub14ArrayArray2;
@@ -29,31 +27,6 @@ public final class Static182 {
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "z", descriptor = "[Z")
 	public static final boolean[] aBooleanArray97 = new boolean[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false };
-
-	@OriginalMember(owner = "runetek4.client!oj", name = "a", descriptor = "(BZLclient!rk;)V")
-	public static void method3359(@OriginalArg(1) boolean arg0, @OriginalArg(2) Font arg1) {
-		@Pc(9) int local9;
-		if (GlRenderer.enabled || arg0) {
-			local9 = Static254.canvasHeigth;
-			@Pc(15) int local15 = local9 * 956 / 503;
-			Static78.aClass3_Sub2_Sub1_3.method1419((Static48.canvasWidth - local15) / 2, 0, local15, local9);
-			Static243.aClass36_1.drawImage(Static48.canvasWidth / 2 - Static243.aClass36_1.anInt4270 / 2, 18);
-		}
-		arg1.method2875(LocalizedText.GAME0_LOADING, Static48.canvasWidth / 2, Static254.canvasHeigth / 2 - 26, 16777215, -1);
-		local9 = Static254.canvasHeigth / 2 - 18;
-		if (GlRenderer.enabled) {
-			Static46.method1179(Static48.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
-			Static46.method1179(Static48.canvasWidth / 2 - 151, local9 - -1, 302, 32, 0);
-			Static46.method1186(Static48.canvasWidth / 2 - 150, local9 + 2, Static199.mainLoadPercentage * 3, 30, 9179409);
-			Static46.method1186(Static48.canvasWidth / 2 + Static199.mainLoadPercentage * 3 - 150, local9 + 2, 300 - Static199.mainLoadPercentage * 3, 30, 0);
-		} else {
-			Rasterizer.drawUnfilledRectangle(Static48.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
-			Rasterizer.drawUnfilledRectangle(Static48.canvasWidth / 2 - 151, local9 + 1, 302, 32, 0);
-			Rasterizer.drawFilledRectangle(Static48.canvasWidth / 2 - 150, local9 + 2, Static199.mainLoadPercentage * 3, 30, 9179409);
-			Rasterizer.drawFilledRectangle(Static199.mainLoadPercentage * 3 + Static48.canvasWidth / 2 - 150, local9 + 2, 300 - Static199.mainLoadPercentage * 3, 30, 0);
-		}
-		arg1.method2875(Static126.mainLoadSecondaryText, Static48.canvasWidth / 2, Static254.canvasHeigth / 2 + 4, 16777215, -1);
-	}
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "a", descriptor = "(IZIJI)Lclient!na;")
 	public static JString method3360(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(3) long arg3) {

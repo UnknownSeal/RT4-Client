@@ -21,9 +21,6 @@ public final class Static276 {
 	@OriginalMember(owner = "runetek4.client!wh", name = "j", descriptor = "[Lclient!cl;")
 	public static final AnimFrameset[] aClass3_Sub2_Sub7Array8 = new AnimFrameset[14];
 
-	@OriginalMember(owner = "runetek4.client!wh", name = "m", descriptor = "[I")
-	public static final int[] cameraModifierWobbleScale = new int[5];
-
 	@OriginalMember(owner = "runetek4.client!wh", name = "n", descriptor = "Lclient!na;")
 	public static final JString aClass100_1095 = Static28.parse("; version=1; path=)4; domain=");
 
@@ -41,7 +38,7 @@ public final class Static276 {
 		if (CacheArchive.method187(arg0, arg1, arg2)) {
 			@Pc(10) int local10 = arg1 << 7;
 			@Pc(14) int local14 = arg2 << 7;
-			return Static256.method4394(local10 + 1, Static83.levelHeightMap[arg0][arg1][arg2] + arg3, local14 + 1) && Static256.method4394(local10 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg2] + arg3, local14 + 1) && Static256.method4394(local10 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg2 + 1] + arg3, local14 + 128 - 1) && Static256.method4394(local10 + 1, Static83.levelHeightMap[arg0][arg1][arg2 + 1] + arg3, local14 + 128 - 1);
+			return Static256.method4394(local10 + 1, SceneGraph.tileHeights[arg0][arg1][arg2] + arg3, local14 + 1) && Static256.method4394(local10 + 128 - 1, SceneGraph.tileHeights[arg0][arg1 + 1][arg2] + arg3, local14 + 1) && Static256.method4394(local10 + 128 - 1, SceneGraph.tileHeights[arg0][arg1 + 1][arg2 + 1] + arg3, local14 + 128 - 1) && Static256.method4394(local10 + 1, SceneGraph.tileHeights[arg0][arg1][arg2 + 1] + arg3, local14 + 128 - 1);
 		} else {
 			return false;
 		}
@@ -58,9 +55,9 @@ public final class Static276 {
 		@Pc(13) boolean local13 = false;
 		for (@Pc(15) int local15 = 0; local15 < Static267.playerCount; local15++) {
 			@Pc(28) Player local28 = Static159.players[Static105.playerIds[local15]];
-			if (local28 != null && local28.name != null && local28.name.equalsIgnoreCase(local7)) {
+			if (local28 != null && local28.username != null && local28.username.equalsIgnoreCase(local7)) {
 				local13 = true;
-				Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 1, false, 0, local28.pathTileX[0], 1, 0, 2, local28.pathTileZ[0], Static173.localPlayer.pathTileX[0]);
+				Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 1, false, 0, local28.pathTileX[0], 1, 0, 2, local28.pathTileZ[0], PlayerList.self.pathTileX[0]);
 				if (arg0 == 1) {
 					Static6.outboundBuffer.pIsaac1(68);
 					Static6.outboundBuffer.p2_alt3(Static105.playerIds[local15]);

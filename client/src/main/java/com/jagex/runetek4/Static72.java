@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,12 +15,6 @@ public final class Static72 {
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "D", descriptor = "[[I")
 	public static int[][] anIntArrayArray14;
-
-	@OriginalMember(owner = "runetek4.client!fl", name = "U", descriptor = "I")
-	public static int frameWid;
-
-	@OriginalMember(owner = "runetek4.client!fl", name = "s", descriptor = "I")
-	public static int orbitCameraPitch = 128;
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "w", descriptor = "J")
 	public static long killtime = 0L;
@@ -45,7 +40,7 @@ public final class Static72 {
 		if (local19 != null) {
 			return local19;
 		}
-		local19 = Static87.method1803(Static225.aClass153_92, Static5.aClass153_1, arg0);
+		local19 = AnimFrameset.create(Static225.aClass153_92, Static5.aClass153_1, arg0);
 		if (local19 != null) {
 			Static267.skeletonCache.put(local19, (long) arg0);
 		}
@@ -54,7 +49,7 @@ public final class Static72 {
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "a", descriptor = "(IIIIII)V")
 	public static void method1568(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		Static131.method2576(ObjTypeList.anIntArrayArray10[arg0], arg1 - arg2, arg2 + arg1, arg4);
+		ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[arg0], arg1 - arg2, arg2 + arg1, arg4);
 		@Pc(17) int local17 = 0;
 		@Pc(21) int local21 = arg2 * arg2;
 		@Pc(25) int local25 = arg3 * arg3;
@@ -96,8 +91,8 @@ public final class Static72 {
 			local48 += -local98;
 			@Pc(179) int local179 = arg1 - local17;
 			local98 -= local60;
-			Static131.method2576(ObjTypeList.anIntArrayArray10[local109], local179, local160, arg4);
-			Static131.method2576(ObjTypeList.anIntArrayArray10[local105], local179, local160, arg4);
+			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local109], local179, local160, arg4);
+			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local105], local179, local160, arg4);
 		}
 	}
 

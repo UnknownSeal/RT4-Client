@@ -41,15 +41,15 @@ public final class Static211 {
 	@OriginalMember(owner = "runetek4.client!rc", name = "d", descriptor = "(I)V")
 	public static void method930() {
 		if (Static11.aClass62_1 != null) {
-			Static11.aClass62_1.method3575();
+			Static11.aClass62_1.quit();
 		}
 		if (Static147.aClass62_2 != null) {
-			Static147.aClass62_2.method3575();
+			Static147.aClass62_2.quit();
 		}
-		Static41.method1045(Static99.aBoolean143);
-		Static11.aClass62_1 = Static107.method2262(22050, GameShell.signLink, Static154.canvas, 0);
+		Static41.init(Static99.aBoolean143);
+		Static11.aClass62_1 = Static107.method2262(22050, GameShell.signLink, GameShell.canvas, 0);
 		Static11.aClass62_1.method3566(Static148.aClass3_Sub3_Sub4_1);
-		Static147.aClass62_2 = Static107.method2262(2048, GameShell.signLink, Static154.canvas, 1);
-		Static147.aClass62_2.method3566(Static204.soundStream);
+		Static147.aClass62_2 = Static107.method2262(2048, GameShell.signLink, GameShell.canvas, 1);
+		Static147.aClass62_2.method3566(client.soundStream);
 	}
 }

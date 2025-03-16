@@ -41,7 +41,7 @@ public final class Static123 {
 	public static void method2418() {
 		if (!Static249.aBoolean282 && client.modeWhere != 2) {
 			try {
-				Static206.aClass100_900.method3157(Static215.aClient1);
+				Static206.aClass100_900.method3157(client.instance);
 			} catch (@Pc(26) Throwable local26) {
 			}
 		}

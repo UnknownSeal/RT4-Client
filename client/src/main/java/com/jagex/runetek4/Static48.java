@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static48 {
 
-	@OriginalMember(owner = "runetek4.client!dl", name = "d", descriptor = "I")
-	public static int canvasWidth;
-
 	@OriginalMember(owner = "runetek4.client!dl", name = "e", descriptor = "I")
 	public static int anInt1449;
 
@@ -49,14 +46,14 @@ public final class Static48 {
 		local4.p1(Static99.aBoolean143 ? 1 : 0);
 		local4.p1(Static125.anInt3104);
 		local4.p1(Static12.anInt391);
-		local4.p1(Static30.anInt978);
-		local4.p2(Static114.anInt5831);
-		local4.p2(Static22.anInt729);
+		local4.p1(Preferences.ambientSoundsVolume);
+		local4.p2(Preferences.fullScreenWidth);
+		local4.p2(Preferences.fullScreenHeight);
 		local4.p1(Static76.method1644());
 		local4.p4(Static164.anInt3988);
-		local4.p1(Static214.anInt5581);
+		local4.p1(Preferences.favoriteWorlds);
 		local4.p1(Static164.aBoolean191 ? 1 : 0);
-		local4.p1(Static33.aBoolean63 ? 1 : 0);
+		local4.p1(Preferences.aBoolean63 ? 1 : 0);
 		local4.p1(Static141.anInt3474);
 		local4.p1(Static127.aBoolean159 ? 1 : 0);
 		local4.p1(Static64.aBoolean111 ? 1 : 0);

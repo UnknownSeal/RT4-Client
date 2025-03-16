@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.Actor;
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -28,17 +28,6 @@ public final class Static263 {
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "h", descriptor = "Lclient!na;")
 	public static final JString aClass100_1082 = Static28.parse("; Expires=");
-
-	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(I[S)[S")
-	public static short[] method4511(@OriginalArg(1) short[] arg0) {
-		if (arg0 == null) {
-			return null;
-		} else {
-			@Pc(19) short[] local19 = new short[arg0.length];
-			Static289.method2616(arg0, 0, local19, 0, arg0.length);
-			return local19;
-		}
-	}
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(Lclient!na;IIBI)V")
 	public static void method4512(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
@@ -114,30 +103,30 @@ public final class Static263 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(IILclient!fe;)V")
-	public static void updateEntity(@OriginalArg(0) int arg0, @OriginalArg(2) Actor entity) {
-		if (Static83.loopCycle < entity.anInt3395) {
+	public static void updateEntity(@OriginalArg(0) int arg0, @OriginalArg(2) PathingEntity entity) {
+		if (client.loop < entity.anInt3395) {
 			Static18.method553(entity);
-		} else if (entity.anInt3386 >= Static83.loopCycle) {
+		} else if (entity.anInt3386 >= client.loop) {
 			Static280.method4665(entity);
 		} else {
 			Static104.method2247(entity);
 		}
-		if (entity.x < 128 || entity.z < 128 || entity.x >= 13184 || entity.z >= 13184) {
+		if (entity.xFine < 128 || entity.zFine < 128 || entity.xFine >= 13184 || entity.zFine >= 13184) {
 			entity.primarySeqId = -1;
 			entity.spotanimFrame = -1;
 			entity.anInt3395 = 0;
 			entity.anInt3386 = 0;
-			entity.x = entity.pathTileX[0] * 128 + entity.size() * 64;
-			entity.z = entity.pathTileZ[0] * 128 + entity.size() * 64;
+			entity.xFine = entity.pathTileX[0] * 128 + entity.size() * 64;
+			entity.zFine = entity.pathTileZ[0] * 128 + entity.size() * 64;
 			entity.method2689();
 		}
-		if (entity == Static173.localPlayer && (entity.x < 1536 || entity.z < 1536 || entity.x >= 11776 || entity.z >= 11776)) {
+		if (entity == PlayerList.self && (entity.xFine < 1536 || entity.zFine < 1536 || entity.xFine >= 11776 || entity.zFine >= 11776)) {
 			entity.spotanimFrame = -1;
 			entity.anInt3395 = 0;
 			entity.anInt3386 = 0;
 			entity.primarySeqId = -1;
-			entity.x = entity.pathTileX[0] * 128 + entity.size() * 64;
-			entity.z = entity.pathTileZ[0] * 128 + entity.size() * 64;
+			entity.xFine = entity.pathTileX[0] * 128 + entity.size() * 64;
+			entity.zFine = entity.pathTileZ[0] * 128 + entity.size() * 64;
 			entity.method2689();
 		}
 		Static37.method949(entity);

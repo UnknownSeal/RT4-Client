@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static58 {
 
 	@OriginalMember(owner = "runetek4.client!eh", name = "f", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_28;
+	public static Js5 aClass153_28;
 
 	@OriginalMember(owner = "runetek4.client!eh", name = "g", descriptor = "[[[I")
 	public static int[][][] anIntArrayArrayArray5;
@@ -20,7 +20,7 @@ public final class Static58 {
 	public static int wheelRotation = 0;
 
 	@OriginalMember(owner = "runetek4.client!eh", name = "a", descriptor = "(Lclient!ve;I)V")
-	public static void method1322(@OriginalArg(0) CacheArchive arg0) {
+	public static void method1322(@OriginalArg(0) Js5 arg0) {
 		Static23.aClass153_11 = arg0;
 	}
 

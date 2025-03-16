@@ -1,7 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheIndex;
+import com.jagex.runetek4.cache.Cache;
 import com.jagex.runetek4.node.NodeQueue;
+import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -24,9 +25,9 @@ public final class Js5CacheQueue implements Runnable {
 
 	@OriginalMember(owner = "runetek4.client!k", name = "<init>", descriptor = "()V")
 	public Js5CacheQueue() {
-		@Pc(20) PrivilegedRequest local20 = GameShell.signLink.putThreadNode(5, this);
+		@Pc(20) PrivilegedRequest local20 = GameShell.signLink.startThread(5, this);
 		while (local20.status == 0) {
-			PreciseSleep.sleep(10L);
+			ThreadUtils.sleep(10L);
 		}
 		if (local20.status == 2) {
 			throw new RuntimeException();
@@ -59,7 +60,7 @@ public final class Js5CacheQueue implements Runnable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!ge;I[BI)Lclient!c;")
-	public final Js5CacheRequest method2467(@OriginalArg(0) CacheIndex arg0, @OriginalArg(2) byte[] arg1, @OriginalArg(3) int arg2) {
+	public final Js5CacheRequest method2467(@OriginalArg(0) Cache arg0, @OriginalArg(2) byte[] arg1, @OriginalArg(3) int arg2) {
 		@Pc(7) Js5CacheRequest local7 = new Js5CacheRequest();
 		local7.bytes = arg1;
 		local7.urgent = false;
@@ -71,7 +72,7 @@ public final class Js5CacheQueue implements Runnable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(IILclient!ge;)Lclient!c;")
-	public final Js5CacheRequest method2469(@OriginalArg(0) int arg0, @OriginalArg(2) CacheIndex arg1) {
+	public final Js5CacheRequest method2469(@OriginalArg(0) int arg0, @OriginalArg(2) Cache arg1) {
 		@Pc(7) Js5CacheRequest local7 = new Js5CacheRequest();
 		local7.aClass49_3 = arg1;
 		local7.anInt824 = 3;
@@ -82,7 +83,7 @@ public final class Js5CacheQueue implements Runnable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!ge;BI)Lclient!c;")
-	public final Js5CacheRequest method2471(@OriginalArg(0) CacheIndex arg0, @OriginalArg(2) int arg1) {
+	public final Js5CacheRequest method2471(@OriginalArg(0) Cache arg0, @OriginalArg(2) int arg1) {
 		@Pc(9) Js5CacheRequest local9 = new Js5CacheRequest();
 		local9.anInt824 = 1;
 		@Pc(16) NodeQueue local16 = this.aClass16_6;
@@ -130,7 +131,7 @@ public final class Js5CacheQueue implements Runnable {
 					local19.bytes = local19.aClass49_3.get((int) local19.secondaryNodeId);
 				}
 			} catch (@Pc(83) Exception local83) {
-				Static89.report(null, local83);
+				TracingException.report(null, local83);
 			}
 			local19.awaitingResponse = false;
 		}

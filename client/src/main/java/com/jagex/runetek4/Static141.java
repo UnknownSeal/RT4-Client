@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -34,7 +34,7 @@ public final class Static141 {
 
 	@OriginalMember(owner = "runetek4.client!lb", name = "a", descriptor = "(Z)V")
 	public static void method2721() {
-		Static65.method1500();
+		SceneGraph.clear();
 		Static89.aClass3_Sub2_Sub1_5 = null;
 		Static107.anInt2875 = -1;
 		Static217.method3768();
@@ -51,7 +51,7 @@ public final class Static141 {
 		for (@Pc(39) int local39 = 0; local39 < 2048; local39++) {
 			@Pc(46) Player local46 = Static159.players[local39];
 			if (local46 != null) {
-				local46.locModel = null;
+				local46.attachment = null;
 			}
 		}
 		if (GlRenderer.enabled) {
@@ -76,23 +76,8 @@ public final class Static141 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!lb", name = "a", descriptor = "(ZIIIBII)V")
-	public static void method2722(@OriginalArg(0) boolean arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {
-		Static113.anInt4612 = arg3;
-		PreciseSleep.anInt5203 = arg2;
-		Static245.anInt5375 = arg5;
-		ClientScriptRunner.anInt5225 = arg1;
-		Static248.anInt4232 = arg4;
-		if (arg0 && Static113.anInt4612 >= 100) {
-			Static138.cameraX = Static245.anInt5375 * 128 + 64;
-			Static134.cameraZ = Static248.anInt4232 * 128 + 64;
-			Static5.cameraY = Static207.getHeightmapY(Static55.currentLevel, Static138.cameraX, Static134.cameraZ) - PreciseSleep.anInt5203;
-		}
-		Static227.anInt5096 = 2;
-	}
-
 	@OriginalMember(owner = "runetek4.client!lb", name = "a", descriptor = "(Lclient!ve;Lclient!ve;ILclient!ve;)V")
-	public static void method2724(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) CacheArchive arg1, @OriginalArg(3) CacheArchive arg2) {
+	public static void method2724(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1, @OriginalArg(3) Js5 arg2) {
 		Static243.aClass153_98 = arg1;
 		Static5.aClass153_1 = arg0;
 		Static225.aClass153_92 = arg2;

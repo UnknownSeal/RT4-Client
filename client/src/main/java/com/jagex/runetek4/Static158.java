@@ -1,8 +1,8 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.cache.def.ActorDefinition;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.cache.def.NpcType;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -46,20 +46,20 @@ public final class Static158 {
 				}
 				@Pc(67) int local67 = 0;
 				@Pc(74) Packet local74 = new Packet(Static191.aByteArrayArray15[local16]);
-				while (local74.position < Static191.aByteArrayArray15[local16].length && local67 < 511) {
+				while (local74.offset < Static191.aByteArrayArray15[local16].length && local67 < 511) {
 					@Pc(97) int local97 = local67++ << 6 | local25;
 					@Pc(103) int local103 = local74.g2();
 					@Pc(107) int local107 = local103 >> 14;
 					@Pc(113) int local113 = local103 >> 7 & 0x3F;
-					@Pc(125) int local125 = local113 + (Static238.anIntArray470[local16] >> 8) * 64 - Static225.originX;
+					@Pc(125) int local125 = local113 + (Static238.anIntArray470[local16] >> 8) * 64 - Camera.originX;
 					@Pc(129) int local129 = local103 & 0x3F;
-					@Pc(142) int local142 = local129 + (Static238.anIntArray470[local16] & 0xFF) * 64 - Static142.originZ;
-					@Pc(148) ActorDefinition local148 = ActorDefinition.getDefinition(local74.g2());
-					if (Static175.npcs[local97] == null && (local148.walkflags & 0x1) > 0 && local107 == Static41.anInt1316 && local125 >= 0 && local148.size + local125 < 104 && local142 >= 0 && local142 + local148.size < 104) {
-						Static175.npcs[local97] = new NPCRenderable();
-						@Pc(198) NPCRenderable local198 = Static175.npcs[local97];
+					@Pc(142) int local142 = local129 + (Static238.anIntArray470[local16] & 0xFF) * 64 - Camera.originZ;
+					@Pc(148) NpcType local148 = NpcType.getDefinition(local74.g2());
+					if (NpcList.npcs[local97] == null && (local148.walkflags & 0x1) > 0 && local107 == Static41.anInt1316 && local125 >= 0 && local148.size + local125 < 104 && local142 >= 0 && local142 + local148.size < 104) {
+						NpcList.npcs[local97] = new Npc();
+						@Pc(198) Npc local198 = NpcList.npcs[local97];
 						Static33.npcIds[Static272.npcCount++] = local97;
-						local198.cycle = Static83.loopCycle;
+						local198.cycle = client.loop;
 						local198.method2698(local148);
 						local198.setSize(local198.type.size);
 						local198.dstYaw = local198.anInt3381 = Static56.anIntArray141[local198.type.respawndir];

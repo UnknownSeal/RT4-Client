@@ -1,10 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public final class Static125 {
 
@@ -27,15 +26,15 @@ public final class Static125 {
 	public static int anInt3104 = 127;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "a", descriptor = "(ILclient!ve;Lclient!ve;)V")
-	public static void method2446(@OriginalArg(1) CacheArchive arg0, @OriginalArg(2) CacheArchive arg1) {
+	public static void method2446(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
 		Static14.aClass153_8 = arg0;
 		Static216.aClass153_31 = arg1;
-		Static53.anInt1716 = Static216.aClass153_31.fileLength(3);
+		Static53.anInt1716 = Static216.aClass153_31.getGroupCapacity(3);
 	}
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "a", descriptor = "(IIIII)V")
 	public static void method2448(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		Static6.outboundBuffer.position = 0;
+		Static6.outboundBuffer.offset = 0;
 		Static6.outboundBuffer.p1(147);
 		Static6.outboundBuffer.p1(arg2);
 		Static6.outboundBuffer.p1(arg3);
@@ -47,104 +46,4 @@ public final class Static125 {
 		Static223.reply = -3;
 	}
 
-	@OriginalMember(owner = "client!jl", name = "c", descriptor = "(I)V")
-	public static void method2450() {
-		@Pc(9) int local9 = Static248.anInt4232 * 128 + 64;
-		@Pc(15) int local15 = Static245.anInt5375 * 128 + 64;
-		@Pc(23) int local23 = Static207.getHeightmapY(Static55.currentLevel, local15, local9) - PreciseSleep.anInt5203;
-		if (Static113.anInt4612 >= 100) {
-			Static138.cameraX = Static245.anInt5375 * 128 + 64;
-			Static134.cameraZ = Static248.anInt4232 * 128 + 64;
-			Static5.cameraY = Static207.getHeightmapY(Static55.currentLevel, Static138.cameraX, Static134.cameraZ) - PreciseSleep.anInt5203;
-		} else {
-			if (Static138.cameraX < local15) {
-				Static138.cameraX += ClientScriptRunner.anInt5225 + Static113.anInt4612 * (local15 - Static138.cameraX) / 1000;
-				if (Static138.cameraX > local15) {
-					Static138.cameraX = local15;
-				}
-			}
-			if (Static5.cameraY < local23) {
-				Static5.cameraY += (local23 - Static5.cameraY) * Static113.anInt4612 / 1000 + ClientScriptRunner.anInt5225;
-				if (Static5.cameraY > local23) {
-					Static5.cameraY = local23;
-				}
-			}
-			if (Static138.cameraX > local15) {
-				Static138.cameraX -= ClientScriptRunner.anInt5225 + (Static138.cameraX - local15) * Static113.anInt4612 / 1000;
-				if (Static138.cameraX < local15) {
-					Static138.cameraX = local15;
-				}
-			}
-			if (Static134.cameraZ < local9) {
-				Static134.cameraZ += ClientScriptRunner.anInt5225 + Static113.anInt4612 * (local9 - Static134.cameraZ) / 1000;
-				if (local9 < Static134.cameraZ) {
-					Static134.cameraZ = local9;
-				}
-			}
-			if (local23 < Static5.cameraY) {
-				Static5.cameraY -= (Static5.cameraY - local23) * Static113.anInt4612 / 1000 + ClientScriptRunner.anInt5225;
-				if (local23 > Static5.cameraY) {
-					Static5.cameraY = local23;
-				}
-			}
-			if (Static134.cameraZ > local9) {
-				Static134.cameraZ -= ClientScriptRunner.anInt5225 + (Static134.cameraZ - local9) * Static113.anInt4612 / 1000;
-				if (local9 > Static134.cameraZ) {
-					Static134.cameraZ = local9;
-				}
-			}
-		}
-		local9 = Static265.anInt5765 * 128 + 64;
-		local15 = Static251.anInt5449 * 128 + 64;
-		local23 = Static207.getHeightmapY(Static55.currentLevel, local15, local9) - Static57.anInt1744;
-		@Pc(236) int local236 = local23 - Static5.cameraY;
-		@Pc(241) int local241 = local9 - Static134.cameraZ;
-		@Pc(246) int local246 = local15 - Static138.cameraX;
-		@Pc(257) int local257 = (int) Math.sqrt((double) (local246 * local246 + local241 * local241));
-		@Pc(268) int cameraPitch = (int) (Math.atan2((double) local236, (double) local257) * 325.949D) & 0x7FF;
-		if (cameraPitch < 128) {
-			cameraPitch = 128;
-		}
-		if (cameraPitch > 383) {
-			cameraPitch = 383;
-		}
-		@Pc(292) int local292 = (int) (-325.949D * Math.atan2((double) local246, (double) local241)) & 0x7FF;
-		if (Static240.cameraPitch < cameraPitch) {
-			Static240.cameraPitch += Static133.anInt5230 + ClientScriptRunner.anInt5217 * (cameraPitch - Static240.cameraPitch) / 1000;
-			if (Static240.cameraPitch > cameraPitch) {
-				Static240.cameraPitch = cameraPitch;
-			}
-		}
-		if (Static240.cameraPitch > cameraPitch) {
-			Static240.cameraPitch -= (Static240.cameraPitch - cameraPitch) * ClientScriptRunner.anInt5217 / 1000 + Static133.anInt5230;
-			if (Static240.cameraPitch < cameraPitch) {
-				Static240.cameraPitch = cameraPitch;
-			}
-		}
-		@Pc(350) int local350 = local292 - Static184.cameraYaw;
-		if (local350 > 1024) {
-			local350 -= 2048;
-		}
-		if (local350 < -1024) {
-			local350 += 2048;
-		}
-		if (local350 > 0) {
-			Static184.cameraYaw += local350 * ClientScriptRunner.anInt5217 / 1000 + Static133.anInt5230;
-			Static184.cameraYaw &= 0x7FF;
-		}
-		if (local350 < 0) {
-			Static184.cameraYaw -= ClientScriptRunner.anInt5217 * -local350 / 1000 + Static133.anInt5230;
-			Static184.cameraYaw &= 0x7FF;
-		}
-		@Pc(404) int local404 = local292 - Static184.cameraYaw;
-		if (local404 > 1024) {
-			local404 -= 2048;
-		}
-		if (local404 < -1024) {
-			local404 += 2048;
-		}
-		if (local404 < 0 && local350 > 0 || local404 > 0 && local350 < 0) {
-			Static184.cameraYaw = local292;
-		}
-	}
 }

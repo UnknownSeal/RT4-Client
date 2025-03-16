@@ -12,6 +12,7 @@ import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.frame.Minimap;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCLocation;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
+import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -41,9 +42,9 @@ public final class Static97 {
 			return;
 		}
 		local30 -= 10;
-		@Pc(58) int local58 = Static59.minimapAnticheatAngle + Static57.orbitCameraYaw & 0x7FF;
-		@Pc(62) int local62 = MathUtils.anIntArray225[local58];
-		@Pc(66) int local66 = MathUtils.anIntArray223[local58];
+		@Pc(58) int local58 = Static59.minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
+		@Pc(62) int local62 = MathUtils.cos[local58];
+		@Pc(66) int local66 = MathUtils.sin[local58];
 		@Pc(74) int local74 = local66 * 256 / (Static273.minimapZoom + 256);
 		@Pc(82) int local82 = local62 * 256 / (Static273.minimapZoom + 256);
 		@Pc(93) int local93 = mapY * local74 + local82 * mapX >> 16;

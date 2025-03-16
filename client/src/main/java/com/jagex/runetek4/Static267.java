@@ -1,8 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
-import com.jagex.runetek4.scene.tile.FloorDecoration;
+import com.jagex.runetek4.scene.tile.GroundDecor;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -11,7 +11,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static267 {
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "g", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_109;
+	public static Js5 aClass153_109;
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "a", descriptor = "Lclient!n;")
 	public static final NodeCache skeletonCache = new NodeCache(100);
@@ -35,13 +35,13 @@ public final class Static267 {
 	public static int anInt5776 = 0;
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "a", descriptor = "(III)Lclient!bm;")
-	public static FloorDecoration method4526(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public static GroundDecor method4526(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		@Pc(7) SceneTile floorDecoration = Static130.levelTiles[arg0][arg1][arg2];
 		if (floorDecoration == null) {
 			return null;
 		} else {
-			@Pc(14) FloorDecoration local14 = floorDecoration.floorDecoration;
-			floorDecoration.floorDecoration = null;
+			@Pc(14) GroundDecor local14 = floorDecoration.groundDecor;
+			floorDecoration.groundDecor = null;
 			return local14;
 		}
 	}
@@ -50,7 +50,7 @@ public final class Static267 {
 	public static boolean method4527() {
 		if (Static150.aBoolean175) {
 			try {
-				return !((Boolean) Static119.SHOWINGVIDEOAD.method3157(GameShell.signLink.anApplet2));
+				return !((Boolean) Static119.SHOWINGVIDEOAD.method3157(GameShell.signLink.applet));
 			} catch (@Pc(21) Throwable local21) {
 			}
 		}
@@ -105,7 +105,7 @@ public final class Static267 {
 			Static1.anInt6++;
 		}
 		Static226.anInt5084 += arg0;
-		local60 = (arg0 + (Static83.loopCycle & 0x1)) / 2;
+		local60 = (arg0 + (client.loop & 0x1)) / 2;
 		if (local60 <= 0) {
 			return;
 		}
@@ -150,7 +150,7 @@ public final class Static267 {
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "b", descriptor = "(I)V")
 	public static void method4529() {
-		PreciseSleep.aClass99_29.method3103();
-		Static219.aClass99_27.method3103();
+		PreciseSleep.aClass99_29.removeSoft();
+		Static219.aClass99_27.removeSoft();
 	}
 }

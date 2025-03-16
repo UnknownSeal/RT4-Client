@@ -158,7 +158,7 @@ public final class Rasterizer {
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "()V")
-	public static void method2492() {
+	public static void clear() {
 		@Pc(1) int local1 = 0;
 		@Pc(7) int local7 = destinationWidth * destinationHeight - 7;
 		while (local1 < local7) {

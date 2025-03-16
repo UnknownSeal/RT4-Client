@@ -1,7 +1,7 @@
 package com.jagex.runetek4.js5;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.bzip.BZip2;
+import com.jagex.runetek4.cache.bzip.Bzip2Decompressor;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.index.Js5Index;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -10,7 +10,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!ve")
-public final class CacheArchive {
+public final class Js5 {
 
 	@OriginalMember(owner = "client!sh", name = "k", descriptor = "Z")
 	public static final boolean RAISE_EXCEPTIONS = false;
@@ -37,7 +37,7 @@ public final class CacheArchive {
 	private final boolean discardUnpacked;
 
 	@OriginalMember(owner = "client!ve", name = "<init>", descriptor = "(Lclient!v;ZZ)V")
-	public CacheArchive(@OriginalArg(0) Js5ResourceProvider arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2) {
+	public Js5(@OriginalArg(0) Js5ResourceProvider arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2) {
 		this.provider = arg0;
 		this.aBoolean296 = arg1;
 		this.discardUnpacked = arg2;
@@ -61,7 +61,7 @@ public final class CacheArchive {
 			}
 			@Pc(85) byte[] bytes = new byte[unpackedLength];
 			if (type == 1) {
-				BZip2.read(bytes, unpackedLength, src, len);
+				Bzip2Decompressor.bunzip2(bytes, unpackedLength, src, len);
 			} else {
 				Static156.aClass56_1.method1842(bytes, packet);
 			}
@@ -226,7 +226,7 @@ public final class CacheArchive {
 				}
 			}
 		}
-		@Pc(64) byte[] bytes = Static138.method2696(this.unpacked[group][file], false);
+		@Pc(64) byte[] bytes = ByteArray.unwrap(this.unpacked[group][file], false);
 		if (this.discardUnpacked) {
 			this.unpacked[group][file] = null;
 			if (this.index.groupCapacities[group] == 1) {
@@ -319,9 +319,9 @@ public final class CacheArchive {
 			}
 			@Pc(114) byte[] local114;
 			if (key == null || key[0] == 0 && key[1] == 0 && key[2] == 0 && key[3] == 0) {
-				local114 = Static138.method2696(this.packed[group], false);
+				local114 = ByteArray.unwrap(this.packed[group], false);
 			} else {
-				local114 = Static138.method2696(this.packed[group], true);
+				local114 = ByteArray.unwrap(this.packed[group], true);
 				@Pc(128) Packet packet = new Packet(local114);
 				packet.decryptXtea(key, packet.data.length);
 			}
@@ -330,7 +330,7 @@ public final class CacheArchive {
 			try {
 				bytes = uncompress(local114);
 			} catch (@Pc(142) RuntimeException local142) {
-				System.out.println("T3 - " + (key != null) + "," + group + "," + local114.length + "," + Packet.getcrc(local114, local114.length) + "," + Packet.getcrc(local114, local114.length - 2) + "," + this.index.anIntArray268[group] + "," + this.index.crc);
+				System.out.println("T3 - " + (key != null) + "," + group + "," + local114.length + "," + Packet.crc32(local114, local114.length) + "," + Packet.crc32(local114, local114.length - 2) + "," + this.index.anIntArray268[group] + "," + this.index.crc);
 				bytes = new byte[] { 0 };
 			}
 			if (this.aBoolean296) {
@@ -343,7 +343,7 @@ public final class CacheArchive {
 				@Pc(220) int local220 = bytes[local216] & 0xFF;
 				@Pc(228) int local228 = local216 - local31 * local220 * 4;
 				@Pc(233) Packet local233 = new Packet(bytes);
-				local233.position = local228;
+				local233.offset = local228;
 				@Pc(239) int[] local239 = new int[local31];
 				@Pc(250) int local250;
 				@Pc(252) int local252;
@@ -361,14 +361,14 @@ public final class CacheArchive {
 					local282[local250] = new byte[local239[local250]];
 					local239[local250] = 0;
 				}
-				local233.position = local228;
+				local233.offset = local228;
 				local250 = 0;
 				@Pc(320) int local320;
 				for (local252 = 0; local252 < local220; local252++) {
 					local320 = 0;
 					for (@Pc(322) int local322 = 0; local322 < local31; local322++) {
 						local320 += local233.g4();
-						Static289.method2612(bytes, local250, local282[local322], local239[local322], local320);
+						JString.copy(bytes, local250, local282[local322], local239[local322], local320);
 						local250 += local320;
 						local239[local322] += local320;
 					}
@@ -382,7 +382,7 @@ public final class CacheArchive {
 					if (this.discardUnpacked) {
 						local53[local320] = local282[local252];
 					} else {
-						local53[local320] = Static33.method869(local282[local252]);
+						local53[local320] = ByteArray.wrap(local282[local252]);
 					}
 				}
 			} else {
@@ -394,7 +394,7 @@ public final class CacheArchive {
 				if (this.discardUnpacked) {
 					local53[local213] = bytes;
 				} else {
-					local53[local213] = Static33.method869(bytes);
+					local53[local213] = ByteArray.wrap(bytes);
 				}
 			}
 			return true;
@@ -411,7 +411,7 @@ public final class CacheArchive {
 		if (this.aBoolean296) {
 			this.packed[arg0] = this.provider.fetchgroup(arg0);
 		} else {
-			this.packed[arg0] = Static33.method869(this.provider.fetchgroup(arg0));
+			this.packed[arg0] = ByteArray.wrap(this.provider.fetchgroup(arg0));
 		}
 	}
 
@@ -486,7 +486,7 @@ public final class CacheArchive {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "b", descriptor = "(III)[B")
-	public byte[] method4502(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public byte[] fetchFileNoDiscard(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		if (!this.isGroupValid(arg1, arg0)) {
 			return null;
 		}
@@ -500,11 +500,11 @@ public final class CacheArchive {
 				}
 			}
 		}
-		return Static138.method2696(this.unpacked[arg1][arg0], false);
+		return ByteArray.unwrap(this.unpacked[arg1][arg0], false);
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(BI)[I")
-	public int[] method4503(@OriginalArg(1) int arg0) {
+	public int[] getFileIds(@OriginalArg(1) int arg0) {
 		if (!this.isGroupValid(arg0)) {
 			return null;
 		}
@@ -520,7 +520,7 @@ public final class CacheArchive {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(IB)I")
-	public int fileLength(@OriginalArg(0) int arg0) {
+	public int getGroupCapacity(@OriginalArg(0) int arg0) {
 		return this.isGroupValid(arg0) ? this.index.groupCapacities[arg0] : 0;
 	}
 

@@ -38,7 +38,7 @@ public final class VarbitDefinition {
 		if (varbitDefinition != null) {
 			return varbitDefinition;
 		}
-		@Pc(31) byte[] cacheData = Static172.gameDefinitionsCacheArchive.getfile(Static254.method4349(varbitId), Static274.method3845(varbitId));
+		@Pc(31) byte[] cacheData = Static172.gameDefinitionsJs5.getfile(Static254.method4349(varbitId), Static274.method3845(varbitId));
 		varbitDefinition = new VarbitDefinition();
 		if (cacheData != null) {
 			varbitDefinition.decode(new Packet(cacheData));

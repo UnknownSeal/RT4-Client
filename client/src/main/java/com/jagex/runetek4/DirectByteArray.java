@@ -14,7 +14,7 @@ public final class DirectByteArray extends ByteArray {
 
 	@OriginalMember(owner = "runetek4.client!ua", name = "a", descriptor = "(I[B)V")
 	@Override
-	public final void method4238(@OriginalArg(1) byte[] arg0) {
+	public final void set(@OriginalArg(1) byte[] arg0) {
 		this.aByteBuffer10 = ByteBuffer.allocateDirect(arg0.length);
 		this.aByteBuffer10.position(0);
 		this.aByteBuffer10.put(arg0);
@@ -22,7 +22,7 @@ public final class DirectByteArray extends ByteArray {
 
 	@OriginalMember(owner = "runetek4.client!ua", name = "a", descriptor = "(I)[B")
 	@Override
-	public final byte[] method4236() {
+	public final byte[] get() {
 		@Pc(4) byte[] local4 = new byte[this.aByteBuffer10.capacity()];
 		this.aByteBuffer10.position(0);
 		this.aByteBuffer10.get(local4);

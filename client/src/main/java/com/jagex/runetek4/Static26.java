@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,13 +11,10 @@ public final class Static26 {
 	public static int[] anIntArray66;
 
 	@OriginalMember(owner = "client!ca", name = "Z", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_16;
+	public static Js5 aClass153_16;
 
 	@OriginalMember(owner = "client!ca", name = "ab", descriptor = "Z")
 	public static boolean focus;
-
-	@OriginalMember(owner = "client!ca", name = "X", descriptor = "Lclient!ih;")
-	public static LinkList spawnedLocations = new LinkList();
 
 	@OriginalMember(owner = "client!ca", name = "cb", descriptor = "Lclient!na;")
 	public static final JString aClass100_160 = Static165.method3165();
@@ -33,8 +30,8 @@ public final class Static26 {
 
 	@OriginalMember(owner = "client!ca", name = "h", descriptor = "(I)V")
 	public static void method740() {
-		@Pc(10) int local10 = (Static138.cameraX >> 10) + (Static225.originX >> 3);
-		@Pc(23) int local23 = (Static134.cameraZ >> 10) + (Static142.originZ >> 3);
+		@Pc(10) int local10 = (Camera.renderX >> 10) + (Camera.originX >> 3);
+		@Pc(23) int local23 = (Camera.renderZ >> 10) + (Camera.originZ >> 3);
 		Static156.aByteArrayArray11 = new byte[18][];
 		Static35.anIntArray82 = new int[18];
 		Static191.aByteArrayArray15 = new byte[18][];
@@ -79,8 +76,8 @@ public final class Static26 {
 
 	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(Z)V")
 	public static void method741() {
-		Static79.aClass99_11.method3103();
-		aClass6.aClass99_5.method3103();
+		Static79.aClass99_11.removeSoft();
+		aClass6.aClass99_5.removeSoft();
 	}
 
 	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(ZI)V")
@@ -95,8 +92,8 @@ public final class Static26 {
 		for (@Pc(25) int local25 = 0; local25 < local13; local25++) {
 			@Pc(32) byte[] local32 = local19[local25];
 			if (local32 != null) {
-				@Pc(45) int local45 = (Static238.anIntArray470[local25] >> 8) * 64 - Static225.originX;
-				@Pc(56) int local56 = (Static238.anIntArray470[local25] & 0xFF) * 64 - Static142.originZ;
+				@Pc(45) int local45 = (Static238.anIntArray470[local25] >> 8) * 64 - Camera.originX;
+				@Pc(56) int local56 = (Static238.anIntArray470[local25] & 0xFF) * 64 - Camera.originZ;
 				Static107.method2261();
 				Static124.method2437(local45, arg0, local32, local56, Static148.levelCollisionMap);
 			}

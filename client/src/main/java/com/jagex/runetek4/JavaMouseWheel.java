@@ -16,7 +16,7 @@ public final class JavaMouseWheel extends MouseWheel implements MouseWheelListen
 
 	@OriginalMember(owner = "runetek4.client!o", name = "a", descriptor = "(ZLjava/awt/runetek4.Component;)V")
 	@Override
-	public final void method3291(@OriginalArg(1) Component arg0) {
+	public final void stop(@OriginalArg(1) Component arg0) {
 		arg0.removeMouseWheelListener(this);
 	}
 

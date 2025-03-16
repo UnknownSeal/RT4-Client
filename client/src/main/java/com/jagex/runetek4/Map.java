@@ -43,7 +43,7 @@ public final class Map extends CachedNode {
 	public final int anInt769;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "ab", descriptor = "Lclient!ih;")
-	public final LinkList aClass69_23;
+	public final LinkedList aClass69_23;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "<init>", descriptor = "(Lclient!na;Lclient!na;IIIZI)V")
 	public Map(@OriginalArg(0) JString arg0, @OriginalArg(1) JString arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5, @OriginalArg(6) int arg6) {
@@ -57,7 +57,7 @@ public final class Map extends CachedNode {
 		if (this.anInt772 == 255) {
 			this.anInt772 = 0;
 		}
-		this.aClass69_23 = new LinkList();
+		this.aClass69_23 = new LinkedList();
 	}
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "a", descriptor = "(IBI)Z")

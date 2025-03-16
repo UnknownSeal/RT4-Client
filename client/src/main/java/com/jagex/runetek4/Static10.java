@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.io.IOException;
 
 import com.jagex.runetek4.input.Keyboard;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -57,11 +58,11 @@ public final class Static10 {
 			Game.tryReconnect();
 			return true;
 		} catch (@Pc(19) Exception local19) {
-			@Pc(61) String local61 = "T2 - " + Static164.packetType + "," + Static5.anInt45 + "," + Static49.anInt1462 + " - " + Static223.packetSize + "," + (Static225.originX + Static173.localPlayer.pathTileX[0]) + "," + (Static173.localPlayer.pathTileZ[0] + Static142.originZ) + " - ";
+			@Pc(61) String local61 = "T2 - " + Static164.packetType + "," + Static5.anInt45 + "," + Static49.anInt1462 + " - " + Static223.packetSize + "," + (Camera.originX + PlayerList.self.pathTileX[0]) + "," + (PlayerList.self.pathTileZ[0] + Camera.originZ) + " - ";
 			for (@Pc(63) int local63 = 0; local63 < Static223.packetSize && local63 < 50; local63++) {
 				local61 = local61 + Static57.in.data[local63] + ",";
 			}
-			Static89.report(local61, local19);
+			TracingException.report(local61, local19);
 			Game.processLogout();
 			return true;
 		}
@@ -89,17 +90,17 @@ public final class Static10 {
 		@Pc(51) int local51 = Static78.method1690(Static106.anInt2869, arg0 - arg1, Static267.anInt5773);
 		@Pc(53) int local53;
 		for (local53 = local11; local53 < local42; local53++) {
-			Static131.method2576(ObjTypeList.anIntArrayArray10[local53], local23, local29, arg4);
+			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local53], local23, local29, arg4);
 		}
 		for (local53 = local17; local53 > local51; local53--) {
-			Static131.method2576(ObjTypeList.anIntArrayArray10[local53], local23, local29, arg4);
+			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local53], local23, local29, arg4);
 		}
 		@Pc(95) int local95 = Static78.method1690(Static224.anInt5063, arg1 + arg3, Static172.anInt4164);
 		@Pc(104) int local104 = Static78.method1690(Static224.anInt5063, arg2 - arg1, Static172.anInt4164);
 		for (local53 = local42; local53 <= local51; local53++) {
 			@Pc(117) int[] local117 = ObjTypeList.anIntArrayArray10[local53];
-			Static131.method2576(local117, local23, local95, arg4);
-			Static131.method2576(local117, local104, local29, arg4);
+			ArrayUtils.fillRange(local117, local23, local95, arg4);
+			ArrayUtils.fillRange(local117, local104, local29, arg4);
 		}
 	}
 }

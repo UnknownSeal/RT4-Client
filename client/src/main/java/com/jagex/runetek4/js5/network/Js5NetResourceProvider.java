@@ -4,7 +4,7 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.node.Node;
-import com.jagex.runetek4.cache.CacheIndex;
+import com.jagex.runetek4.cache.Cache;
 import com.jagex.runetek4.js5.Js5Request;
 import com.jagex.runetek4.js5.Js5ResourceProvider;
 import com.jagex.runetek4.js5.index.Js5Index;
@@ -35,7 +35,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private int anInt578 = 0;
 
 	@OriginalMember(owner = "client!bg", name = "R", descriptor = "Lclient!ih;")
-	private final LinkList aClass69_16 = new LinkList();
+	private final LinkedList aClass69_16 = new LinkedList();
 
 	@OriginalMember(owner = "client!bg", name = "V", descriptor = "J")
 	private long aLong20 = 0L;
@@ -44,13 +44,13 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private final int anInt576;
 
 	@OriginalMember(owner = "client!bg", name = "F", descriptor = "Lclient!ge;")
-	private final CacheIndex aClass49_2;
+	private final Cache aClass49_2;
 
 	@OriginalMember(owner = "client!bg", name = "Q", descriptor = "Z")
 	private boolean aBoolean35;
 
 	@OriginalMember(owner = "client!bg", name = "U", descriptor = "Lclient!ih;")
-	private LinkList aClass69_17;
+	private LinkedList aClass69_17;
 
 	@OriginalMember(owner = "client!bg", name = "J", descriptor = "Lclient!k;")
 	private final Js5CacheQueue aClass80_2;
@@ -62,7 +62,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private final boolean aBoolean37;
 
 	@OriginalMember(owner = "client!bg", name = "k", descriptor = "Lclient!ge;")
-	private final CacheIndex aClass49_1;
+	private final Cache aClass49_1;
 
 	@OriginalMember(owner = "client!bg", name = "D", descriptor = "Lclient!jb;")
 	private final Js5NetQueue tcpClient;
@@ -74,14 +74,14 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private Js5Request currentRequest;
 
 	@OriginalMember(owner = "client!bg", name = "<init>", descriptor = "(ILclient!ge;Lclient!ge;Lclient!jb;Lclient!k;IIZ)V")
-	public Js5NetResourceProvider(@OriginalArg(0) int arg0, @OriginalArg(1) CacheIndex arg1, @OriginalArg(2) CacheIndex arg2, @OriginalArg(3) Js5NetQueue arg3, @OriginalArg(4) Js5CacheQueue arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7) {
+	public Js5NetResourceProvider(@OriginalArg(0) int arg0, @OriginalArg(1) Cache arg1, @OriginalArg(2) Cache arg2, @OriginalArg(3) Js5NetQueue arg3, @OriginalArg(4) Js5CacheQueue arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7) {
 		this.anInt576 = arg0;
 		this.aClass49_2 = arg1;
 		if (this.aClass49_2 == null) {
 			this.aBoolean35 = false;
 		} else {
 			this.aBoolean35 = true;
-			this.aClass69_17 = new LinkList();
+			this.aClass69_17 = new LinkedList();
 		}
 		this.aClass80_2 = arg4;
 		this.anInt573 = arg5;
@@ -178,7 +178,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 		if (this.aClass49_2 != null) {
 			this.aBoolean36 = true;
 			if (this.aClass69_17 == null) {
-				this.aClass69_17 = new LinkList();
+				this.aClass69_17 = new LinkedList();
 			}
 		}
 	}
@@ -290,7 +290,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 		if (!this.aBoolean37 || this.aLong20 > MonotonicTime.get()) {
 			return;
 		}
-		for (@Pc(331) Js5Request local331 = (Js5Request) this.requests.peekFront(); local331 != null; local331 = (Js5Request) this.requests.prev()) {
+		for (@Pc(331) Js5Request local331 = (Js5Request) this.requests.head(); local331 != null; local331 = (Js5Request) this.requests.prev()) {
 			if (!local331.awaitingResponse) {
 				if (local331.aBoolean227) {
 					if (!local331.urgent) {
@@ -353,7 +353,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 			} else {
 				throw new RuntimeException();
 			}
-			this.requests.pushNode(request, group);
+			this.requests.put(request, group);
 		}
 		if (request.awaitingResponse) {
 			return null;
@@ -379,7 +379,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				request.unlink();
 				if (request.urgent && !this.tcpClient.isUrgentsFull()) {
 					local252 = this.tcpClient.method2330(this.anInt576, (byte) 2, group, true);
-					this.requests.pushNode(local252, group);
+					this.requests.put(local252, group);
 				}
 				return null;
 			}
@@ -426,7 +426,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 			request.unlink();
 			if (request.urgent && !this.tcpClient.isUrgentsFull()) {
 				local252 = this.tcpClient.method2330(this.anInt576, (byte) 2, group, true);
-				this.requests.pushNode(local252, group);
+				this.requests.put(local252, group);
 			}
 			return null;
 		}

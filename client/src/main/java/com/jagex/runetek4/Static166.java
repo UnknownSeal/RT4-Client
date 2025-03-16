@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.LocType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -29,7 +29,7 @@ public final class Static166 {
 	@OriginalMember(owner = "runetek4.client!nc", name = "a", descriptor = "(BLclient!wa;)V")
 	public static void method3166(@OriginalArg(1) Packet arg0) {
 		label123: while (true) {
-			if (arg0.data.length > arg0.position) {
+			if (arg0.data.length > arg0.offset) {
 				@Pc(17) boolean local17 = false;
 				@Pc(19) int local19 = 0;
 				@Pc(21) int local21 = 0;
@@ -77,9 +77,9 @@ public final class Static166 {
 											Static83.anIntArrayArrayArray3[local84][local95] = new int[4096];
 										}
 										local214--;
-										@Pc(312) LocMergeEntity local312 = Static271.get(local214);
+										@Pc(312) LocType local312 = LocTypeList.get(local214);
 										if (local312.multiloc != null) {
-											local312 = local312.getVisible();
+											local312 = local312.getMultiLoc();
 											if (local312 == null || local312.mapfunction == -1) {
 												continue;
 											}
@@ -105,13 +105,13 @@ public final class Static166 {
 					local95 = arg0.g1();
 					if (local95 != 0) {
 						if ((local95 & 0x1) == 1) {
-							arg0.position++;
+							arg0.offset++;
 						}
 						if ((local95 & 0x2) == 2) {
-							arg0.position += 2;
+							arg0.offset += 2;
 						}
 						if ((local95 & 0x4) == 4) {
-							arg0.position += 3;
+							arg0.offset += 3;
 						}
 					}
 					local84++;

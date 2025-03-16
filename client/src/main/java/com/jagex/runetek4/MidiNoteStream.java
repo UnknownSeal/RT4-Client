@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class MidiNoteStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!te", name = "w", descriptor = "Lclient!ih;")
-	public final LinkList aClass69_126 = new LinkList();
+	public final LinkedList aClass69_126 = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!te", name = "K", descriptor = "Lclient!ei;")
 	public final MixerPcmStream aClass3_Sub3_Sub2_2 = new MixerPcmStream();
@@ -51,7 +51,7 @@ public final class MidiNoteStream extends PcmStream {
 	@OriginalMember(owner = "runetek4.client!te", name = "a", descriptor = "(Lclient!mf;II)V")
 	private void method4141(@OriginalArg(0) MidiNote arg0, @OriginalArg(2) int arg1) {
 		if ((this.aClass3_Sub3_Sub4_3.anIntArray508[arg0.anInt3773] & 0x4) != 0 && arg0.anInt3767 < 0) {
-			@Pc(27) int local27 = this.aClass3_Sub3_Sub4_3.anIntArray503[arg0.anInt3773] / Static44.anInt1404;
+			@Pc(27) int local27 = this.aClass3_Sub3_Sub4_3.anIntArray503[arg0.anInt3773] / AudioChannel.sampleRate;
 			@Pc(37) int local37 = (local27 + 1048575 - arg0.anInt3775) / local27;
 			arg0.anInt3775 = local27 * arg1 + arg0.anInt3775 & 0xFFFFF;
 			if (arg1 >= local37) {
@@ -62,7 +62,7 @@ public final class MidiNoteStream extends PcmStream {
 					this.aClass3_Sub3_Sub4_3.method4442(arg0, arg0.aClass3_Sub18_1.aShortArray36[arg0.anInt3779] < 0);
 				}
 				if (arg0.aClass3_Sub18_1.aShortArray36[arg0.anInt3779] < 0) {
-					arg0.aClass3_Sub3_Sub1_3.method396(-1);
+					arg0.aClass3_Sub3_Sub1_3.setLoops(-1);
 				}
 				arg1 = arg0.anInt3775 / local27;
 			}
@@ -121,7 +121,7 @@ public final class MidiNoteStream extends PcmStream {
 	@OriginalMember(owner = "runetek4.client!te", name = "a", descriptor = "([ILclient!mf;IIIB)V")
 	private void method4146(@OriginalArg(0) int[] arg0, @OriginalArg(1) MidiNote arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		if ((this.aClass3_Sub3_Sub4_3.anIntArray508[arg1.anInt3773] & 0x4) != 0 && arg1.anInt3767 < 0) {
-			@Pc(26) int local26 = this.aClass3_Sub3_Sub4_3.anIntArray503[arg1.anInt3773] / Static44.anInt1404;
+			@Pc(26) int local26 = this.aClass3_Sub3_Sub4_3.anIntArray503[arg1.anInt3773] / AudioChannel.sampleRate;
 			while (true) {
 				@Pc(36) int local36 = (local26 + 1048575 - arg1.anInt3775) / local26;
 				if (arg3 < local36) {
@@ -130,7 +130,7 @@ public final class MidiNoteStream extends PcmStream {
 				}
 				arg3 -= local36;
 				arg1.aClass3_Sub3_Sub1_3.method4408(arg0, arg2, local36);
-				@Pc(55) int local55 = Static44.anInt1404 / 100;
+				@Pc(55) int local55 = AudioChannel.sampleRate / 100;
 				@Pc(58) SoundPcmStream local58 = arg1.aClass3_Sub3_Sub1_3;
 				@Pc(62) int local62 = 262144 / local26;
 				if (local62 < local55) {
@@ -145,13 +145,13 @@ public final class MidiNoteStream extends PcmStream {
 					arg1.aClass3_Sub3_Sub1_3.method398(local55, local58.method392());
 				}
 				if (arg1.aClass3_Sub18_1.aShortArray36[arg1.anInt3779] < 0) {
-					arg1.aClass3_Sub3_Sub1_3.method396(-1);
+					arg1.aClass3_Sub3_Sub1_3.setLoops(-1);
 				}
 				arg2 += local36;
 				local58.method384(local55);
 				local58.method4408(arg0, arg2, arg4 - arg2);
 				if (local58.method412()) {
-					this.aClass3_Sub3_Sub2_2.method1343(local58);
+					this.aClass3_Sub3_Sub2_2.addSubStream(local58);
 				}
 			}
 		}

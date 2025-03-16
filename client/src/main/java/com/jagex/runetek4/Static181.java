@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -37,25 +37,25 @@ public final class Static181 {
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(I)V")
 	public static void method3342() {
-		Static67.aClass99_20.method3103();
+		Static67.aClass99_20.removeSoft();
 	}
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(Lclient!ve;B)V")
-	public static void method3344(@OriginalArg(0) CacheArchive arg0) {
+	public static void method3344(@OriginalArg(0) Js5 arg0) {
 		if (Static18.aBoolean40) {
 			return;
 		}
 		if (GlRenderer.enabled) {
 			Static46.method1184();
 		} else {
-			Rasterizer.method2492();
+			Rasterizer.clear();
 		}
 		Static78.aClass3_Sub2_Sub1_3 = Static130.method2514(arg0, Static262.anInt5754);
-		@Pc(20) int local20 = Static254.canvasHeigth;
+		@Pc(20) int local20 = GameShell.canvasHeigth;
 		@Pc(26) int local26 = local20 * 956 / 503;
-		Static78.aClass3_Sub2_Sub1_3.method1419((Static48.canvasWidth - local26) / 2, 0, local26, local20);
+		Static78.aClass3_Sub2_Sub1_3.method1419((GameShell.canvasWidth - local26) / 2, 0, local26, local20);
 		Static243.aClass36_1 = Static40.method1010(Static136.anInt3322, arg0);
-		Static243.aClass36_1.drawImage(Static48.canvasWidth / 2 - Static243.aClass36_1.anInt4270 / 2, 18);
+		Static243.aClass36_1.drawImage(GameShell.canvasWidth / 2 - Static243.aClass36_1.anInt4270 / 2, 18);
 		Static18.aBoolean40 = true;
 	}
 
@@ -71,7 +71,7 @@ public final class Static181 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(ILclient!ve;Lclient!ve;Z)V")
-	public static void method3349(@OriginalArg(1) CacheArchive arg0, @OriginalArg(2) CacheArchive arg1) {
+	public static void method3349(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
 		Static30.aBoolean61 = true;
 		Static121.aClass153_45 = arg1;
 		Static146.aClass153_54 = arg0;

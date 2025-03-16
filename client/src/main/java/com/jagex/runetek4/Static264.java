@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -27,30 +27,30 @@ public final class Static264 {
 	public static final int[] anIntArray413 = new int[128];
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(Lclient!th;III)V")
-	public static void method3574(@OriginalArg(0) Renderable arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
+	public static void method3574(@OriginalArg(0) Entity arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
 		@Pc(12) SceneTile local12;
 		if (arg2 < Static152.anInt3594) {
 			local12 = Static130.levelTiles[arg1][arg2 + 1][arg3];
-			if (local12 != null && local12.floorDecoration != null && local12.floorDecoration.renderable.method4543()) {
-				arg0.method4544(local12.floorDecoration.renderable, 128, 0, 0, true);
+			if (local12 != null && local12.groundDecor != null && local12.groundDecor.entity.method4543()) {
+				arg0.method4544(local12.groundDecor.entity, 128, 0, 0, true);
 			}
 		}
 		if (arg3 < Static152.anInt3594) {
 			local12 = Static130.levelTiles[arg1][arg2][arg3 + 1];
-			if (local12 != null && local12.floorDecoration != null && local12.floorDecoration.renderable.method4543()) {
-				arg0.method4544(local12.floorDecoration.renderable, 0, 0, 128, true);
+			if (local12 != null && local12.groundDecor != null && local12.groundDecor.entity.method4543()) {
+				arg0.method4544(local12.groundDecor.entity, 0, 0, 128, true);
 			}
 		}
 		if (arg2 < Static152.anInt3594 && arg3 < Static99.anInt2550) {
 			local12 = Static130.levelTiles[arg1][arg2 + 1][arg3 + 1];
-			if (local12 != null && local12.floorDecoration != null && local12.floorDecoration.renderable.method4543()) {
-				arg0.method4544(local12.floorDecoration.renderable, 128, 0, 128, true);
+			if (local12 != null && local12.groundDecor != null && local12.groundDecor.entity.method4543()) {
+				arg0.method4544(local12.groundDecor.entity, 128, 0, 128, true);
 			}
 		}
 		if (arg2 < Static152.anInt3594 && arg3 > 0) {
 			local12 = Static130.levelTiles[arg1][arg2 + 1][arg3 - 1];
-			if (local12 != null && local12.floorDecoration != null && local12.floorDecoration.renderable.method4543()) {
-				arg0.method4544(local12.floorDecoration.renderable, 128, 0, -128, true);
+			if (local12 != null && local12.groundDecor != null && local12.groundDecor.entity.method4543()) {
+				arg0.method4544(local12.groundDecor.entity, 128, 0, -128, true);
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
-import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!ra")
-public final class ProjectileAnimation extends Renderable {
+public final class ProjectileAnimation extends Entity {
 
 	@OriginalMember(owner = "client!ra", name = "u", descriptor = "D")
 	private double velocityX;
@@ -200,17 +200,17 @@ public final class ProjectileAnimation extends Renderable {
 
 	@OriginalMember(owner = "client!ra", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public void draw(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
+	public void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
 		@Pc(3) Model local3 = this.method3703();
 		if (local3 != null) {
-			local3.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_6);
-			this.anInt4814 = local3.getHeight();
+			local3.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_6);
+			this.anInt4814 = local3.getMinY();
 		}
 	}
 
 	@OriginalMember(owner = "client!ra", name = "b", descriptor = "()I")
 	@Override
-	public int getHeight() {
+	public int getMinY() {
 		return this.anInt4814;
 	}
 }

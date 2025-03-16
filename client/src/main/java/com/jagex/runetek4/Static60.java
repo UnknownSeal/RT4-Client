@@ -14,9 +14,6 @@ public final class Static60 {
 	@OriginalMember(owner = "runetek4.client!em", name = "w", descriptor = "I")
 	public static int anInt1892;
 
-	@OriginalMember(owner = "runetek4.client!em", name = "x", descriptor = "Lclient!cj;")
-	public static AudioThread aClass19_1;
-
 	@OriginalMember(owner = "runetek4.client!em", name = "D", descriptor = "I")
 	public static int anInt1895;
 

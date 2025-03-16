@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.util.Random;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -249,11 +250,11 @@ public final class TextureOp22 extends TextureOp {
 						}
 					}
 					if (Texture.width >= local97 + local101) {
-						Static289.method2614(local112, local101, local97, local125);
+						ArrayUtils.fill(local112, local101, local97, local125);
 					} else {
 						local133 = Texture.width - local101;
-						Static289.method2614(local112, local101, local133, local125);
-						Static289.method2614(local112, 0, local97 - local133, local125);
+						ArrayUtils.fill(local112, local101, local133, local125);
+						ArrayUtils.fill(local112, 0, local97 - local133, local125);
 					}
 				} else {
 					local125 = arg4 - local103 - 1;
@@ -263,10 +264,10 @@ public final class TextureOp22 extends TextureOp {
 						}
 						if (local101 + local97 > Texture.width) {
 							local133 = Texture.width - local101;
-							Static289.method2614(local112, local101, local133, local26);
-							Static289.method2614(local112, 0, local97 - local133, local26);
+							ArrayUtils.fill(local112, local101, local133, local26);
+							ArrayUtils.fill(local112, 0, local97 - local133, local26);
 						} else {
-							Static289.method2614(local112, local101, local97, local26);
+							ArrayUtils.fill(local112, local101, local97, local26);
 						}
 					} else {
 						local133 = local125 * local26 / local90;
@@ -284,24 +285,24 @@ public final class TextureOp22 extends TextureOp {
 						}
 						if (local97 + local101 > Texture.width) {
 							local142 = Texture.width - local101;
-							Static289.method2614(local112, local101, local142, local133);
-							Static289.method2614(local112, 0, local97 - local142, local133);
+							ArrayUtils.fill(local112, local101, local142, local133);
+							ArrayUtils.fill(local112, 0, local97 - local142, local133);
 						} else {
-							Static289.method2614(local112, local101, local97, local133);
+							ArrayUtils.fill(local112, local101, local97, local133);
 						}
 					}
 				}
 			}
 		} else if (Texture.width >= arg2 + arg3) {
 			for (local68 = 0; local68 < arg4; local68++) {
-				Static289.method2614(arg5[arg0 + local68], arg2, arg3, local26);
+				ArrayUtils.fill(arg5[arg0 + local68], arg2, arg3, local26);
 			}
 		} else {
 			local68 = Texture.width - arg2;
 			for (local72 = 0; local72 < arg4; local72++) {
 				@Pc(522) int[] local522 = arg5[local72 + arg0];
-				Static289.method2614(local522, arg2, local68, local26);
-				Static289.method2614(local522, 0, arg3 - local68, local26);
+				ArrayUtils.fill(local522, arg2, local68, local26);
+				ArrayUtils.fill(local522, 0, arg3 - local68, local26);
 			}
 		}
 	}

@@ -37,7 +37,7 @@ public final class ImageProducerFrameBuffer extends FrameBuffer implements Image
 	@OriginalMember(owner = "runetek4.client!di", name = "a", descriptor = "(IIIBI)V")
 	private synchronized void method1168(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
 		if (this.anImageConsumer1 != null) {
-			this.anImageConsumer1.setPixels(arg2, arg3, arg0, arg1, this.aColorModel1, this.anIntArray472, arg3 * this.anInt5341 + arg2, this.anInt5341);
+			this.anImageConsumer1.setPixels(arg2, arg3, arg0, arg1, this.aColorModel1, this.pixels, arg3 * this.anInt5341 + arg2, this.anInt5341);
 			this.anImageConsumer1.imageComplete(2);
 		}
 	}
@@ -52,11 +52,11 @@ public final class ImageProducerFrameBuffer extends FrameBuffer implements Image
 
 	@OriginalMember(owner = "runetek4.client!di", name = "a", descriptor = "(IIIILjava/awt/Graphics;I)V")
 	@Override
-	public final void method4191(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) Graphics arg3, @OriginalArg(5) int arg4) {
+	public final void drawAt(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) Graphics arg3, @OriginalArg(5) int arg4) {
 		this.method1168(arg0, arg2, arg1, arg4);
 		@Pc(17) Shape local17 = arg3.getClip();
 		arg3.clipRect(arg1, arg4, arg0, arg2);
-		arg3.drawImage(this.anImage4, 0, 0, this);
+		arg3.drawImage(this.image, 0, 0, this);
 		arg3.setClip(local17);
 	}
 
@@ -69,7 +69,7 @@ public final class ImageProducerFrameBuffer extends FrameBuffer implements Image
 	@OriginalMember(owner = "runetek4.client!di", name = "c", descriptor = "(I)V")
 	private synchronized void method1170() {
 		if (this.anImageConsumer1 != null) {
-			this.anImageConsumer1.setPixels(0, 0, this.anInt5341, this.anInt5339, this.aColorModel1, this.anIntArray472, 0, this.anInt5341);
+			this.anImageConsumer1.setPixels(0, 0, this.anInt5341, this.anInt5339, this.aColorModel1, this.pixels, 0, this.anInt5341);
 			this.anImageConsumer1.imageComplete(2);
 		}
 	}
@@ -82,26 +82,26 @@ public final class ImageProducerFrameBuffer extends FrameBuffer implements Image
 
 	@OriginalMember(owner = "runetek4.client!di", name = "a", descriptor = "(IILjava/awt/Graphics;I)V")
 	@Override
-	public final void method4186(@OriginalArg(2) Graphics arg0) {
+	public final void draw(@OriginalArg(2) Graphics arg0) {
 		this.method1170();
-		arg0.drawImage(this.anImage4, 0, 0, this);
+		arg0.drawImage(this.image, 0, 0, this);
 	}
 
 	@OriginalMember(owner = "runetek4.client!di", name = "a", descriptor = "(IZILjava/awt/runetek4.Component;)V")
 	@Override
-	public final void method4192(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Component arg2) {
+	public final void init(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Component arg2) {
 		this.anInt5339 = arg0;
-		this.anIntArray472 = new int[arg1 * arg0 + 1];
+		this.pixels = new int[arg1 * arg0 + 1];
 		this.anInt5341 = arg1;
 		this.aColorModel1 = new DirectColorModel(32, 16711680, 65280, 255);
-		this.anImage4 = arg2.createImage(this);
+		this.image = arg2.createImage(this);
 		this.method1170();
-		arg2.prepareImage(this.anImage4, this);
+		arg2.prepareImage(this.image, this);
 		this.method1170();
-		arg2.prepareImage(this.anImage4, this);
+		arg2.prepareImage(this.image, this);
 		this.method1170();
-		arg2.prepareImage(this.anImage4, this);
-		this.method4189();
+		arg2.prepareImage(this.image, this);
+		this.makeTarget();
 	}
 
 	@OriginalMember(owner = "runetek4.client!di", name = "imageUpdate", descriptor = "(Ljava/awt/Image;IIIII)Z")

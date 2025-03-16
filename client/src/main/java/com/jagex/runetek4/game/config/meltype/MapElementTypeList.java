@@ -2,7 +2,7 @@ package com.jagex.runetek4.game.config.meltype;
 
 import com.jagex.runetek4.JString;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -40,12 +40,12 @@ public final class MapElementTypeList {
 	}
 
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(ILclient!na;Lclient!ve;)Lclient!se;")
-	public static MapElementTypeList create(@OriginalArg(1) JString arg0, @OriginalArg(2) CacheArchive arg1) {
+	public static MapElementTypeList create(@OriginalArg(1) JString arg0, @OriginalArg(2) Js5 arg1) {
 		@Pc(10) int local10 = arg1.method4482(arg0);
 		if (local10 == -1) {
 			return new MapElementTypeList(0);
 		}
-		@Pc(29) int[] local29 = arg1.method4503(local10);
+		@Pc(29) int[] local29 = arg1.getFileIds(local10);
 		@Pc(35) MapElementTypeList local35 = new MapElementTypeList(local29.length);
 		for (@Pc(37) int local37 = 0; local37 < local35.anInt5074; local37++) {
 			@Pc(56) Packet local56 = new Packet(arg1.getfile(local10, local29[local37]));

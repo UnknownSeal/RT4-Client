@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.audio.SynthSound;
 import com.jagex.runetek4.cache.media.ImageRGB;
-import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -15,16 +15,8 @@ public final class Static173 {
 	@OriginalMember(owner = "runetek4.client!nk", name = "L", descriptor = "[Lclient!mm;")
 	public static ImageRGB[] aClass3_Sub2_Sub1_Sub1Array9;
 
-	@OriginalMember(owner = "runetek4.client!nk", name = "O", descriptor = "Lclient!e;")
-	public static Player localPlayer;
-
 	@OriginalMember(owner = "runetek4.client!nk", name = "n", descriptor = "[Lclient!sl;")
 	public static final SynthSound[] aClass138Array1 = new SynthSound[50];
-
-	@OriginalMember(owner = "runetek4.client!nk", name = "a", descriptor = "(Z[J[I)V")
-	public static void method3243(@OriginalArg(1) long[] arg0, @OriginalArg(2) int[] arg1) {
-		Static83.method436(arg0, 0, arg0.length - 1, arg1);
-	}
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "a", descriptor = "(IIIIIB)V")
 	public static void method3246(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
@@ -54,10 +46,10 @@ public final class Static173 {
 		if (Static267.anInt5773 > arg4) {
 			arg4 = Static267.anInt5773;
 		} else {
-			Static131.method2576(ObjTypeList.anIntArrayArray10[arg4++], arg1, arg3, arg0);
+			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[arg4++], arg1, arg3, arg0);
 		}
 		if (arg2 <= Static106.anInt2869) {
-			Static131.method2576(ObjTypeList.anIntArrayArray10[arg2--], arg1, arg3, arg0);
+			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[arg2--], arg1, arg3, arg0);
 		} else {
 			arg2 = Static106.anInt2869;
 		}

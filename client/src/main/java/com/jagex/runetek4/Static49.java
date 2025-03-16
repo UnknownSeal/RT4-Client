@@ -3,8 +3,9 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.dash3d.entity.Npc;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -41,7 +42,7 @@ public final class Static49 {
 			@Pc(39) boolean local39 = false;
 			while (true) {
 				@Pc(78) int local78;
-				@Pc(95) LocMergeEntity local95;
+				@Pc(95) LocType local95;
 				do {
 					@Pc(72) int local72;
 					@Pc(68) int local68;
@@ -71,7 +72,7 @@ public final class Static49 {
 							} while (local68 <= 0);
 						} while (local72 >= 103);
 					} while (local68 >= 103);
-					local95 = Static271.get(local17);
+					local95 = LocTypeList.get(local17);
 				} while (local78 == 22 && !Static250.aBoolean283 && local95.active == 0 && local95.blockwalk != 1 && !local95.forcedecor);
 				local39 = true;
 				if (!local95.method3426()) {
@@ -98,23 +99,23 @@ public final class Static49 {
 		Static272.npcCount = 0;
 		for (local22 = 0; local22 < local13; local22++) {
 			@Pc(61) int local61 = Static33.npcIds[local22];
-			@Pc(65) NPCRenderable local65 = Static175.npcs[local61];
+			@Pc(65) Npc local65 = NpcList.npcs[local61];
 			@Pc(70) int local70 = Static57.in.gBit(1);
 			if (local70 == 0) {
 				Static33.npcIds[Static272.npcCount++] = local61;
-				local65.cycle = Static83.loopCycle;
+				local65.cycle = client.loop;
 			} else {
 				@Pc(92) int local92 = Static57.in.gBit(2);
 				if (local92 == 0) {
 					Static33.npcIds[Static272.npcCount++] = local61;
-					local65.cycle = Static83.loopCycle;
+					local65.cycle = client.loop;
 					Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
 				} else {
 					@Pc(139) int local139;
 					@Pc(149) int local149;
 					if (local92 == 1) {
 						Static33.npcIds[Static272.npcCount++] = local61;
-						local65.cycle = Static83.loopCycle;
+						local65.cycle = client.loop;
 						local139 = Static57.in.gBit(3);
 						local65.method2684(1, local139);
 						local149 = Static57.in.gBit(1);
@@ -123,7 +124,7 @@ public final class Static49 {
 						}
 					} else if (local92 == 2) {
 						Static33.npcIds[Static272.npcCount++] = local61;
-						local65.cycle = Static83.loopCycle;
+						local65.cycle = client.loop;
 						if (Static57.in.gBit(1) == 1) {
 							local139 = Static57.in.gBit(3);
 							local65.method2684(2, local139);
@@ -148,7 +149,7 @@ public final class Static49 {
 	@OriginalMember(owner = "runetek4.client!dm", name = "a", descriptor = "(IBIII)V")
 	public static void method1206(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		@Pc(15) int local15 = 0;
-		Static131.method2576(ObjTypeList.anIntArrayArray10[arg3], arg0 - arg1, arg0 - -arg1, arg2);
+		ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[arg3], arg0 - arg1, arg0 - -arg1, arg2);
 		@Pc(32) int local32 = -arg1;
 		@Pc(34) int local34 = arg1;
 		@Pc(36) int local36 = -1;
@@ -163,15 +164,15 @@ public final class Static49 {
 				@Pc(71) int[] local71 = ObjTypeList.anIntArrayArray10[arg3 - local34];
 				@Pc(76) int local76 = arg0 + local15;
 				@Pc(81) int local81 = arg0 - local15;
-				Static131.method2576(local65, local81, local76, arg2);
-				Static131.method2576(local71, local81, local76, arg2);
+				ArrayUtils.fillRange(local65, local81, local76, arg2);
+				ArrayUtils.fillRange(local71, local81, local76, arg2);
 			}
 			@Pc(97) int local97 = local34 + arg0;
 			@Pc(102) int local102 = arg0 - local34;
 			@Pc(109) int[] local109 = ObjTypeList.anIntArrayArray10[arg3 + local15];
 			@Pc(116) int[] local116 = ObjTypeList.anIntArrayArray10[arg3 - local15];
-			Static131.method2576(local109, local102, local97, arg2);
-			Static131.method2576(local116, local102, local97, arg2);
+			ArrayUtils.fillRange(local109, local102, local97, arg2);
+			ArrayUtils.fillRange(local116, local102, local97, arg2);
 		}
 	}
 
@@ -182,13 +183,13 @@ public final class Static49 {
 		}
 		@Pc(24) JString local24 = Static13.method471();
 		if (arg0 == null) {
-			@Pc(40) int local40 = Static280.aClass3_Sub2_Sub9_43.method2859(local24, arg2 + 4, arg1 - -15, Static39.aRandom1, Static60.anInt1895);
-			Static133.method4012(arg2 + 4, Static280.aClass3_Sub2_Sub9_43.method2858(local24) + local40, arg1, 15);
+			@Pc(40) int local40 = Font.b12Full.method2859(local24, arg2 + 4, arg1 - -15, Static39.aRandom1, Static60.anInt1895);
+			Static133.method4012(arg2 + 4, Font.b12Full.method2858(local24) + local40, arg1, 15);
 			return;
 		}
 		@Pc(59) Font local59 = arg0.getFont(Static159.aClass36Array12);
 		if (local59 == null) {
-			local59 = Static280.aClass3_Sub2_Sub9_43;
+			local59 = Font.b12Full;
 		}
 		local59.method2878(local24, arg2, arg1, arg0.anInt445, arg0.anInt459, arg0.anInt474, arg0.anInt513, arg0.anInt460, arg0.anInt478, Static39.aRandom1, Static60.anInt1895, Static50.anIntArray132);
 		Static133.method4012(Static50.anIntArray132[0], Static50.anIntArray132[2], Static50.anIntArray132[1], Static50.anIntArray132[3]);

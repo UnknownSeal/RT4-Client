@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static216 {
 
 	@OriginalMember(owner = "runetek4.client!ri", name = "c", descriptor = "Lclient!ve;")
-	public static com.jagex.runetek4.js5.CacheArchive aClass153_31;
+	public static Js5 aClass153_31;
 
 	@OriginalMember(owner = "runetek4.client!ri", name = "d", descriptor = "[I")
 	public static int[] anIntArray188;
@@ -57,8 +58,8 @@ public final class Static216 {
 				}
 				Static124.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
 				Static72.aClass212_3 = null;
-				@Pc(106) long local106 = Static101.aLong98 = Static186.username.toBase37();
-				Static6.outboundBuffer.position = 0;
+				@Pc(106) long local106 = Static101.aLong98 = Static186.username.encode37();
+				Static6.outboundBuffer.offset = 0;
 				Static6.outboundBuffer.p1(14);
 				@Pc(120) int local120 = (int) (local106 >> 16 & 0x1FL);
 				Static6.outboundBuffer.p1(local120);
@@ -90,10 +91,10 @@ public final class Static216 {
 					return;
 				}
 				Static124.gameServerSocket.read(0, 8, Static57.in.data);
-				Static57.in.position = 0;
+				Static57.in.offset = 0;
 				Static193.aLong147 = Static57.in.g8();
 				@Pc(210) int[] seed = new int[4];
-				Static6.outboundBuffer.position = 0;
+				Static6.outboundBuffer.offset = 0;
 				seed[2] = (int) (Static193.aLong147 >> 32);
 				seed[3] = (int) Static193.aLong147;
 				seed[1] = (int) (Math.random() * 9.9999999E7D);
@@ -103,24 +104,24 @@ public final class Static216 {
 				Static6.outboundBuffer.p4(seed[1]);
 				Static6.outboundBuffer.p4(seed[2]);
 				Static6.outboundBuffer.p4(seed[3]);
-				Static6.outboundBuffer.p8(Static186.username.toBase37());
+				Static6.outboundBuffer.p8(Static186.username.encode37());
 				Static6.outboundBuffer.pjstr(Static186.password);
 				Static6.outboundBuffer.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
-				Static17.aClass3_Sub15_Sub1_2.position = 0;
+				Static17.aClass3_Sub15_Sub1_2.offset = 0;
 				if (Static244.gamestate == 40) {
 					Static17.aClass3_Sub15_Sub1_2.p1(18);
 				} else {
 					Static17.aClass3_Sub15_Sub1_2.p1(16);
 				}
 
-				Static17.aClass3_Sub15_Sub1_2.p2(Static6.outboundBuffer.position + Static229.method3937(Static47.aClass100_991) + 159);
+				Static17.aClass3_Sub15_Sub1_2.p2(Static6.outboundBuffer.offset + Static229.method3937(Static47.aClass100_991) + 159);
 				Static17.aClass3_Sub15_Sub1_2.p4(530);
 				Static17.aClass3_Sub15_Sub1_2.p1(Static5.anInt39);
 				Static17.aClass3_Sub15_Sub1_2.p1(Static249.aBoolean282 ? 1 : 0);
 				Static17.aClass3_Sub15_Sub1_2.p1(1);
 				Static17.aClass3_Sub15_Sub1_2.p1(Static144.method2736());
-				Static17.aClass3_Sub15_Sub1_2.p2(Static48.canvasWidth);
-				Static17.aClass3_Sub15_Sub1_2.p2(Static254.canvasHeigth);
+				Static17.aClass3_Sub15_Sub1_2.p2(GameShell.canvasWidth);
+				Static17.aClass3_Sub15_Sub1_2.p2(GameShell.canvasHeigth);
 				Static17.aClass3_Sub15_Sub1_2.p1(Static186.antialiasingMode);
 				Static140.method2705(Static17.aClass3_Sub15_Sub1_2);
 				Static17.aClass3_Sub15_Sub1_2.pjstr(Static47.aClass100_991);
@@ -132,13 +133,13 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.p4(Static249.aClass153_100.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static274.aClass153_90.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static41.aClass153_25.getChecksum());
-				Static17.aClass3_Sub15_Sub1_2.p4(Static248.aClass153_75.getChecksum());
+				Static17.aClass3_Sub15_Sub1_2.p4(client.js5Archive4.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static26.aClass153_16.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static130.aClass153_47.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static267.aClass153_109.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static209.aClass153_86.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static195.aClass153_80.getChecksum());
-				Static17.aClass3_Sub15_Sub1_2.p4(CacheArchive.huffmanCacheArchive.getChecksum());
+				Static17.aClass3_Sub15_Sub1_2.p4(CacheArchive.huffmanJs5.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static214.aClass153_106.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static16.aClass153_9.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static261.aClass153_107.getChecksum());
@@ -154,10 +155,10 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.p4(Static227.aClass153_94.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static254.aClass153_105.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static28.aClass153_18.getChecksum());
-				Static17.aClass3_Sub15_Sub1_2.p4(CacheArchive.gameTextureCacheArchive.getChecksum());
+				Static17.aClass3_Sub15_Sub1_2.p4(CacheArchive.gameTextureJs5.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static226.aClass153_93.getChecksum());
-				Static17.aClass3_Sub15_Sub1_2.pdata(Static6.outboundBuffer.data, Static6.outboundBuffer.position);
-				Static124.gameServerSocket.write(Static17.aClass3_Sub15_Sub1_2.position, Static17.aClass3_Sub15_Sub1_2.data);
+				Static17.aClass3_Sub15_Sub1_2.pdata(Static6.outboundBuffer.data, Static6.outboundBuffer.offset);
+				Static124.gameServerSocket.write(Static17.aClass3_Sub15_Sub1_2.offset, Static17.aClass3_Sub15_Sub1_2.data);
 				Static6.outboundBuffer.Isaac(seed);
 				for (@Pc(583) int i = 0; i < 4; i++) {
 					seed[i] += 50;
@@ -200,9 +201,9 @@ public final class Static216 {
 				}
 			}
 			if (Static184.anInt4348 == 6) {
-				Static6.outboundBuffer.position = 0;
+				Static6.outboundBuffer.offset = 0;
 				Static6.outboundBuffer.pIsaac1(17);
-				Static124.gameServerSocket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
+				Static124.gameServerSocket.write(Static6.outboundBuffer.offset, Static6.outboundBuffer.data);
 				Static184.anInt4348 = 4;
 				return;
 			}
@@ -233,7 +234,7 @@ public final class Static216 {
 					return;
 				}
 				Static124.gameServerSocket.read(0, 14, Static57.in.data);
-				Static57.in.position = 0;
+				Static57.in.offset = 0;
 				Static191.staffModLevel = Static57.in.g1();
 				Static249.anInt5431 = Static57.in.g1();
 				Static124.aBoolean157 = Static57.in.g1() == 1;
@@ -241,7 +242,7 @@ public final class Static216 {
 				Static25.aBoolean57 = Static57.in.g1() == 1;
 				Static86.aBoolean129 = Static57.in.g1() == 1;
 				Static245.enabled = Static57.in.g1() == 1;
-				Static16.localPid = Static57.in.g2();
+				PlayerList.selfId = Static57.in.g2();
 				Class6.members = Static57.in.g1() == 1;
 				Static2.membersWorld = Static57.in.g1() == 1;
 				Static189.method3438(Static2.membersWorld);
@@ -249,12 +250,12 @@ public final class Static216 {
 				if (!Static249.aBoolean282) {
 					if (Static124.aBoolean157 && !Static25.aBoolean57 || Class6.members) {
 						try {
-							Static167.aClass100_781.method3157(GameShell.signLink.anApplet2);
+							Static167.aClass100_781.method3157(GameShell.signLink.applet);
 						} catch (@Pc(910) Throwable local910) {
 						}
 					} else {
 						try {
-							Static56.aClass100_380.method3157(GameShell.signLink.anApplet2);
+							Static56.aClass100_380.method3157(GameShell.signLink.applet);
 						} catch (@Pc(920) Throwable local920) {
 						}
 					}
@@ -267,7 +268,7 @@ public final class Static216 {
 				if (Static124.gameServerSocket.available() < Static223.packetSize) {
 					return;
 				}
-				Static57.in.position = 0;
+				Static57.in.offset = 0;
 				Static124.gameServerSocket.read(0, Static223.packetSize, Static57.in.data);
 				Static266.anInt5336 = 2;
 				Static184.anInt4348 = 0;

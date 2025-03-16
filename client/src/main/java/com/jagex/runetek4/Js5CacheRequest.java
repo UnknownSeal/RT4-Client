@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheIndex;
+import com.jagex.runetek4.cache.Cache;
 import com.jagex.runetek4.js5.Js5Request;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -12,7 +12,7 @@ public final class Js5CacheRequest extends Js5Request {
 	public int anInt824;
 
 	@OriginalMember(owner = "runetek4.client!c", name = "X", descriptor = "Lclient!ge;")
-	public CacheIndex aClass49_3;
+	public Cache aClass49_3;
 
 	@OriginalMember(owner = "runetek4.client!c", name = "ab", descriptor = "[B")
 	public byte[] bytes;

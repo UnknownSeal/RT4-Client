@@ -2,14 +2,14 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.dash3d.CollisionMap;
-import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.Scene;
-import com.jagex.runetek4.scene.tile.FloorDecoration;
+import com.jagex.runetek4.scene.tile.GroundDecor;
 import com.jagex.runetek4.scene.tile.Wall;
-import com.jagex.runetek4.scene.tile.WallDecoration;
+import com.jagex.runetek4.scene.tile.WallDecor;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -32,7 +32,7 @@ public final class Static43 {
 	public static boolean displayFps = false;
 
 	@OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(IIIIILclient!th;IJZ)Z")
-	public static boolean addTemporary(@OriginalArg(0) int arg0, @OriginalArg(1) int x, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) int padding, @OriginalArg(5) Renderable arg5, @OriginalArg(6) int yaw, @OriginalArg(7) long arg7, @OriginalArg(8) boolean arg8) {
+	public static boolean addTemporary(@OriginalArg(0) int arg0, @OriginalArg(1) int x, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) int padding, @OriginalArg(5) Entity arg5, @OriginalArg(6) int yaw, @OriginalArg(7) long arg7, @OriginalArg(8) boolean arg8) {
 		if (arg5 == null) {
 			return true;
 		}
@@ -72,17 +72,17 @@ public final class Static43 {
 	public static void method1144(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) CollisionMap arg5) {
 		@Pc(9) long local9 = 0L;
 		if (arg3 == 0) {
-			local9 = Static265.method4521(arg2, arg1, arg0);
+			local9 = SceneGraph.getWallKey(arg2, arg1, arg0);
 		} else if (arg3 == 1) {
-			local9 = Static139.method2703(arg2, arg1, arg0);
+			local9 = SceneGraph.getWallDecorKey(arg2, arg1, arg0);
 		} else if (arg3 == 2) {
-			local9 = Static35.method899(arg2, arg1, arg0);
+			local9 = SceneGraph.getSceneryKey(arg2, arg1, arg0);
 		} else if (arg3 == 3) {
-			local9 = Static20.method602(arg2, arg1, arg0);
+			local9 = SceneGraph.getGroundDecorKey(arg2, arg1, arg0);
 		}
 		@Pc(57) int local57 = (int) local9 >> 14 & 0x1F;
 		@Pc(70) int local70 = (int) (local9 >>> 32) & Integer.MAX_VALUE;
-		@Pc(74) LocMergeEntity local74 = Static271.get(local70);
+		@Pc(74) LocType local74 = LocTypeList.get(local70);
 		if (local74.hasBackgroundSound()) {
 			AreaSoundManager.remove(arg1, local74, arg0, arg2);
 		}
@@ -90,35 +90,35 @@ public final class Static43 {
 		if (local9 == 0L) {
 			return;
 		}
-		@Pc(100) Renderable local100 = null;
-		@Pc(102) Renderable local102 = null;
+		@Pc(100) Entity local100 = null;
+		@Pc(102) Entity local102 = null;
 		if (arg3 == 0) {
 			@Pc(110) Wall local110 = Static110.method2276(arg2, arg1, arg0);
 			if (local110 != null) {
-				local100 = local110.modelA;
+				local100 = local110.primary;
 				local102 = local110.modelB;
 			}
 			if (local74.blockwalk != 0) {
 				arg5.method3039(local92, local74.blockrange, arg0, local57, arg1);
 			}
 		} else if (arg3 == 1) {
-			@Pc(233) WallDecoration local233 = Static75.method1633(arg2, arg1, arg0);
+			@Pc(233) WallDecor local233 = Static75.method1633(arg2, arg1, arg0);
 			if (local233 != null) {
-				local100 = local233.model;
-				local102 = local233.aClass8_2;
+				local100 = local233.primary;
+				local102 = local233.secondary;
 			}
 		} else if (arg3 == 2) {
-			@Pc(148) InteractiveObject local148 = Scene.getObject(arg2, arg1, arg0);
+			@Pc(148) Scenery local148 = Scene.getObject(arg2, arg1, arg0);
 			if (local148 != null) {
-				local100 = local148.aClass8_4;
+				local100 = local148.entity;
 			}
 			if (local74.blockwalk != 0 && local74.width + arg1 < 104 && local74.width + arg0 < 104 && arg1 + local74.length < 104 && arg0 + local74.length < 104) {
 				arg5.method3056(arg1, local74.width, local74.blockrange, local92, local74.length, arg0);
 			}
 		} else if (arg3 == 3) {
-			@Pc(211) FloorDecoration local211 = Static267.method4526(arg2, arg1, arg0);
+			@Pc(211) GroundDecor local211 = Static267.method4526(arg2, arg1, arg0);
 			if (local211 != null) {
-				local100 = local211.renderable;
+				local100 = local211.entity;
 			}
 			if (local74.blockwalk == 1) {
 				arg5.method3053(arg0, arg1);

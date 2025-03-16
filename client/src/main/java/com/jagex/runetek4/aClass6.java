@@ -27,7 +27,7 @@ public final class aClass6 {
 	public static int anInt983 = 0;
 
 	@OriginalMember(owner = "client!ah", name = "p", descriptor = "Lclient!ih;")
-	public static final LinkList drawTileQueue = new LinkList();
+	public static final LinkedList drawTileQueue = new LinkedList();
 
 	@OriginalMember(owner = "client!ah", name = "s", descriptor = "I")
 	public static int mouseClickX = 0;
@@ -46,8 +46,8 @@ public final class aClass6 {
 		if (!Static224.aBoolean247 && Static124.gameServerSocket != null) {
 			Static6.outboundBuffer.pIsaac1(93);
 			try {
-				Static124.gameServerSocket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
-				Static6.outboundBuffer.position = 0;
+				Static124.gameServerSocket.write(Static6.outboundBuffer.offset, Static6.outboundBuffer.data);
+				Static6.outboundBuffer.offset = 0;
 			} catch (@Pc(53) IOException local53) {
 				Static224.aBoolean247 = true;
 			}

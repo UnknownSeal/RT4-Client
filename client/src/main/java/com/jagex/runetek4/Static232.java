@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -11,9 +11,6 @@ public final class Static232 {
 
 	@OriginalMember(owner = "runetek4.client!sm", name = "b", descriptor = "I")
 	public static int anInt5208;
-
-	@OriginalMember(owner = "runetek4.client!sm", name = "e", descriptor = "[[[B")
-	public static byte[][][] aByteArrayArrayArray13;
 
 	@OriginalMember(owner = "runetek4.client!sm", name = "k", descriptor = "Lsignlink!im;")
 	public static PrivilegedRequest aClass212_5;
@@ -58,7 +55,7 @@ public final class Static232 {
 								@Pc(203) int local203 = (local50 + arg4 & 0x3F) + ((arg6 + local119 & 0x3F) << 6);
 								@Pc(209) int local209 = local116[local163][local203];
 								if (local209 != 0) {
-									@Pc(222) LocMergeEntity local222 = Static271.get(local209 - 1);
+									@Pc(222) LocType local222 = LocTypeList.get(local209 - 1);
 									if (!Static258.aBooleanArray130[local222.mapfunction]) {
 										if (local11 != -1 && local222.mapfunction == CacheArchive.anInt172) {
 											@Pc(243) Class3_Sub26 local243 = new Class3_Sub26();

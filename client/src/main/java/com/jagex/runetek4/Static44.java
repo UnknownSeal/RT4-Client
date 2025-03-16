@@ -1,15 +1,13 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static44 {
-
-	@OriginalMember(owner = "runetek4.client!dh", name = "h", descriptor = "I")
-	public static int anInt1404;
 
 	@OriginalMember(owner = "runetek4.client!dh", name = "a", descriptor = "Z")
 	public static boolean aBoolean83 = false;
@@ -25,7 +23,7 @@ public final class Static44 {
 
 	@OriginalMember(owner = "runetek4.client!dh", name = "a", descriptor = "(Z)V")
 	public static void method1146() {
-		Static6.outboundBuffer.position = 0;
+		Static6.outboundBuffer.offset = 0;
 		Static5.anInt45 = -1;
 		Static60.aBoolean108 = false;
 		Static223.packetSize = 0;
@@ -35,7 +33,7 @@ public final class Static44 {
 		Static270.anInt5795 = 0;
 		Static60.systemUpdateTimer = 0;
 		Static49.anInt1462 = -1;
-		Static57.in.position = 0;
+		Static57.in.offset = 0;
 		Static201.idleNetCycles = 0;
 		Static164.packetType = -1;
 		@Pc(35) int local35;
@@ -44,13 +42,13 @@ public final class Static44 {
 				Static159.players[local35].targetId = -1;
 			}
 		}
-		for (local35 = 0; local35 < Static175.npcs.length; local35++) {
-			if (Static175.npcs[local35] != null) {
-				Static175.npcs[local35].targetId = -1;
+		for (local35 = 0; local35 < NpcList.npcs.length; local35++) {
+			if (NpcList.npcs[local35] != null) {
+				NpcList.npcs[local35].targetId = -1;
 			}
 		}
 		Static102.method2073();
-		Static227.anInt5096 = 1;
+		Camera.cameraType = 1;
 		Game.processGameStatus(30);
 		for (local35 = 0; local35 < 100; local35++) {
 			Static186.aBooleanArray100[local35] = true;
@@ -72,7 +70,7 @@ public final class Static44 {
 		@Pc(9) Class3_Sub31 local9 = new Class3_Sub31();
 		local9.anInt5879 = arg2;
 		local9.anInt5878 = arg0;
-		Static119.aClass133_9.pushNode(local9, (long) arg1);
+		Static119.aClass133_9.put(local9, (long) arg1);
 		ItemDefinition.method1753(arg0);
 		@Pc(28) Component local28 = Component.getComponent(arg1);
 		if (local28 != null) {
@@ -94,9 +92,9 @@ public final class Static44 {
 			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
 		} else {
 			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
-			local53 = Static280.aClass3_Sub2_Sub9_43.method2858(LocalizedText.CHOOSE_OPTION);
+			local53 = Font.b12Full.method2858(LocalizedText.CHOOSE_OPTION);
 			for (@Pc(95) int local95 = 0; local95 < PreciseSleep.menuActionRow; local95++) {
-				@Pc(104) int local104 = Static280.aClass3_Sub2_Sub9_43.method2858(Static269.method2228(local95));
+				@Pc(104) int local104 = Font.b12Full.method2858(Static269.method2228(local95));
 				if (local104 > local53) {
 					local53 = local104;
 				}

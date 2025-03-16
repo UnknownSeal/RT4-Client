@@ -11,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import com.jagex.runetek4.core.io.PacketBit;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -21,12 +21,6 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!t", name = "l", descriptor = "Lclient!ma;")
 	public static BufferedSocket aClass95_4;
-
-	@OriginalMember(owner = "runetek4.client!t", name = "o", descriptor = "I")
-	public static int anInt5217;
-
-	@OriginalMember(owner = "runetek4.client!t", name = "A", descriptor = "I")
-	public static int anInt5225;
 
 	@OriginalMember(owner = "runetek4.client!t", name = "G", descriptor = "[Lclient!ek;")
 	public static SoftwareIndexedSprite[] aClass36_Sub1Array1;
@@ -48,9 +42,6 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!t", name = "y", descriptor = "I")
 	public static int anInt5223 = 0;
-
-	@OriginalMember(owner = "runetek4.client!t", name = "z", descriptor = "I")
-	public static int anInt5224 = 0;
 
 	@OriginalMember(owner = "runetek4.client!t", name = "C", descriptor = "Lclient!na;")
 	public static final JString aClass100_994 = Static28.parse(")3");
@@ -75,8 +66,8 @@ public final class ClientScriptRunner {
 		while (local5.length > local3) {
 			@Pc(17) Class102 local17 = local5[local3];
 			if (local17 != null && local17.headIconDrawType == 2) {
-				Static198.method1026(arg0 >> 1, arg4, (local17.anInt4046 - Static142.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.anInt4053 - Static225.originX << 7), arg3);
-				if (Static65.anInt1951 > -1 && Static83.loopCycle % 20 < 10) {
+				Static198.method1026(arg0 >> 1, arg4, (local17.anInt4046 - Camera.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.anInt4053 - Camera.originX << 7), arg3);
+				if (Static65.anInt1951 > -1 && client.loop % 20 < 10) {
 					Static276.aClass3_Sub2_Sub1Array11[local17.anInt4048].drawSprite(arg1 + Static65.anInt1951 - 12, arg5 + -28 - -Static16.anInt548);
 				}
 			}
@@ -86,9 +77,9 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(B)V")
 	public static void method4001() {
-		Static93.aClass99_13.method3103();
-		Static125.aClass99_18.method3103();
-		Static262.aClass99_35.method3103();
+		Static93.aClass99_13.removeSoft();
+		Static125.aClass99_18.removeSoft();
+		Static262.aClass99_35.removeSoft();
 	}
 
 	@OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(ZB)V")
@@ -133,7 +124,7 @@ public final class ClientScriptRunner {
 		@Pc(24) int local24 = (int) arg0 >> 20 & 0x3;
 		@Pc(31) int local31 = (int) (arg0 >>> 32) & Integer.MAX_VALUE;
 		if (local12 == 10 || local12 == 11 || local12 == 22) {
-			@Pc(46) LocMergeEntity local46 = Static271.get(local31);
+			@Pc(46) LocType local46 = LocTypeList.get(local31);
 			@Pc(62) int local62;
 			@Pc(59) int local59;
 			if (local24 == 0 || local24 == 2) {
@@ -147,9 +138,9 @@ public final class ClientScriptRunner {
 			if (local24 != 0) {
 				local73 = (local73 << local24 & 0xF) + (local73 >> 4 - local24);
 			}
-			Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, Static173.localPlayer.pathTileX[0]);
+			Static102.tryMove(PlayerList.self.pathTileZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, PlayerList.self.pathTileX[0]);
 		} else {
-			Static102.tryMove(Static173.localPlayer.pathTileZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, Static173.localPlayer.pathTileX[0]);
+			Static102.tryMove(PlayerList.self.pathTileZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, PlayerList.self.pathTileX[0]);
 		}
 		Static25.y = Static60.mouseClickY;
 		Static17.crossCycle = 0;
@@ -190,7 +181,7 @@ public final class ClientScriptRunner {
 			}
 			buffer.pIsaac1(163);
 			buffer.p1(0);
-			i = buffer.position;
+			i = buffer.offset;
 			buffer.p4(clientScriptRunner.scriptId);
 			for (@Pc(121) int j = 0; j < clientScriptRunner.scriptCount; j++) {
 				if (clientScriptRunner.errorCodes[j] == 0) {
@@ -270,7 +261,7 @@ public final class ClientScriptRunner {
 				}
 			}
 			buffer.pCrc32(i);
-			buffer.p1len(buffer.position - i);
+			buffer.p1len(buffer.offset - i);
 			clientScriptRunner.unlink();
 		}
 	}

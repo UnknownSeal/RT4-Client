@@ -1,8 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.dash3d.entity.LocAddEntity;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -10,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static29 {
 
 	@OriginalMember(owner = "client!ce", name = "d", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_19;
+	public static Js5 aClass153_19;
 
 	@OriginalMember(owner = "client!ce", name = "a", descriptor = "(I[B)Lclient!rk;")
 	public static Font method799(@OriginalArg(1) byte[] arg0) {
@@ -25,31 +24,6 @@ public final class Static29 {
 		}
 		Static75.method1631();
 		return local27;
-	}
-
-	@OriginalMember(owner = "client!ce", name = "a", descriptor = "(IIIIIIIIII)V")
-	public static void method800(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8) {
-		@Pc(9) LocAddEntity local9 = null;
-		for (@Pc(14) LocAddEntity local14 = (LocAddEntity) Static26.spawnedLocations.head(); local14 != null; local14 = (LocAddEntity) Static26.spawnedLocations.next()) {
-			if (local14.anInt918 == arg0 && arg3 == local14.x && local14.z == arg1 && arg6 == local14.anInt927) {
-				local9 = local14;
-				break;
-			}
-		}
-		if (local9 == null) {
-			local9 = new LocAddEntity();
-			local9.x = arg3;
-			local9.z = arg1;
-			local9.anInt918 = arg0;
-			local9.anInt927 = arg6;
-			Static226.method3898(local9);
-			Static26.spawnedLocations.addTail(local9);
-		}
-		local9.anInt926 = arg7;
-		local9.anInt925 = arg8;
-		local9.anInt924 = arg4;
-		local9.anInt929 = arg5;
-		local9.anInt922 = arg2;
 	}
 
 	@OriginalMember(owner = "client!ce", name = "a", descriptor = "(II)V")

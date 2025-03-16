@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,13 +14,10 @@ public final class Static138 {
 	public static float aFloat14;
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Nc", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_50;
+	public static Js5 aClass153_50;
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Oc", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_51;
-
-	@OriginalMember(owner = "runetek4.client!km", name = "Pc", descriptor = "I")
-	public static int cameraX;
+	public static Js5 aClass153_51;
 
 	@OriginalMember(owner = "runetek4.client!km", name = "Yc", descriptor = "I")
 	public static int anInt3443;
@@ -88,21 +85,6 @@ public final class Static138 {
 		@Pc(20) int local20 = local14 ^ local14 << 13;
 		@Pc(34) int local34 = Integer.MAX_VALUE & (local20 * local20 * 15731 + 789221) * local20 + 1376312589;
 		return local34 >> 19 & 0xFF;
-	}
-
-	@OriginalMember(owner = "runetek4.client!km", name = "a", descriptor = "(ILjava/lang/Object;Z)[B")
-	public static byte[] method2696(@OriginalArg(1) Object arg0, @OriginalArg(2) boolean arg1) {
-		if (arg0 == null) {
-			return null;
-		} else if (arg0 instanceof byte[]) {
-			@Pc(14) byte[] local14 = (byte[]) arg0;
-			return arg1 ? Static23.method648(local14) : local14;
-		} else if (arg0 instanceof ByteArray) {
-			@Pc(34) ByteArray local34 = (ByteArray) arg0;
-			return local34.method4236();
-		} else {
-			throw new IllegalArgumentException();
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!km", name = "f", descriptor = "(I)Z")

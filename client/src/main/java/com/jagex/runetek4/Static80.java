@@ -5,8 +5,9 @@ import java.io.IOException;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.util.SignLink;
+import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -38,7 +39,7 @@ public final class Static80 {
 	public static final int[] anIntArray419 = new int[] { 0, 2, 2, 2, 1, 1, 2, 2, 1, 3, 1, 1 };
 
 	@OriginalMember(owner = "runetek4.client!gf", name = "a", descriptor = "(Lclient!ve;IIB)Lclient!mm;")
-	public static ImageRGB method3613(@OriginalArg(0) CacheArchive arg0, @OriginalArg(2) int arg1) {
+	public static ImageRGB method3613(@OriginalArg(0) Js5 arg0, @OriginalArg(2) int arg1) {
 		return Static234.method4016(arg0, 0, arg1) ? Static102.method2071() : null;
 	}
 
@@ -50,14 +51,14 @@ public final class Static80 {
 		Static99.aBoolean143 = true;
 		Static220.aBoolean244 = true;
 		Static102.anInt2679 = 0;
-		Static22.anInt729 = 0;
+		Preferences.fullScreenHeight = 0;
 		Static250.aBoolean283 = true;
 		Static11.aBoolean15 = true;
 		Static15.lowMemory = true;
-		Static30.anInt978 = 127;
+		Preferences.ambientSoundsVolume = 127;
 		Static71.aBoolean107 = true;
 		Static209.aBoolean240 = true;
-		Static114.anInt5831 = 0;
+		Preferences.fullScreenWidth = 0;
 		Static139.anInt3451 = 2;
 		Static159.aBoolean189 = true;
 		Static178.highDetailLighting = true;
@@ -73,22 +74,22 @@ public final class Static80 {
 		}
 		Static164.anInt3988 = 0;
 		Static141.anInt3474 = 0;
-		Static33.aBoolean63 = false;
+		Preferences.aBoolean63 = false;
 		Static64.aBoolean111 = true;
 		Static164.aBoolean191 = false;
 		Static127.aBoolean159 = false;
-		Static214.anInt5581 = 0;
+		Preferences.favoriteWorlds = 0;
 		try {
-			@Pc(78) PrivilegedRequest local78 = arg0.method5112("runescape");
+			@Pc(78) PrivilegedRequest local78 = arg0.openPreferences("runescape");
 			while (local78.status == 0) {
-				PreciseSleep.sleep(1L);
+				ThreadUtils.sleep(1L);
 			}
 			if (local78.status == 1) {
 				local48 = (FileOnDisk) local78.result;
-				@Pc(106) byte[] local106 = new byte[(int) local48.method5137()];
+				@Pc(106) byte[] local106 = new byte[(int) local48.length()];
 				@Pc(128) int local128;
 				for (@Pc(108) int local108 = 0; local108 < local106.length; local108 += local128) {
-					local128 = local48.method5135(local108, local106.length - local108, local106);
+					local128 = local48.read(local108, local106.length - local108, local106);
 					if (local128 == -1) {
 						throw new IOException("EOF");
 					}
@@ -99,7 +100,7 @@ public final class Static80 {
 		}
 		try {
 			if (local48 != null) {
-				local48.method5136();
+				local48.close();
 			}
 		} catch (@Pc(158) Exception local158) {
 		}

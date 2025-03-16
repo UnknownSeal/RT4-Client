@@ -6,7 +6,7 @@ import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.graphics.ModelUnlit;
-import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.media.renderable.Entity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -18,7 +18,7 @@ import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!pb")
-public final class LocMergeEntity {
+public final class LocType {
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "[S")
 	private short[] retex_s;
@@ -51,7 +51,7 @@ public final class LocMergeEntity {
 	public int anInt4426;
 
 	@OriginalMember(owner = "client!pb", name = "wb", descriptor = "[I")
-	public int[] bgsound_random;
+	public int[] bgsounds;
 
 	@OriginalMember(owner = "client!pb", name = "e", descriptor = "I")
 	public int width = 1;
@@ -78,7 +78,7 @@ public final class LocMergeEntity {
 	public int cursor1op = -1;
 
 	@OriginalMember(owner = "client!pb", name = "R", descriptor = "I")
-	public int bgsound_maxdelay = 0;
+	public int bgsoundmax = 0;
 
 	@OriginalMember(owner = "client!pb", name = "S", descriptor = "I")
 	public int mapsceneicon = -1;
@@ -96,7 +96,7 @@ public final class LocMergeEntity {
 	private int offsetx = 0;
 
 	@OriginalMember(owner = "client!pb", name = "W", descriptor = "I")
-	public int bgsound_mindelay = 0;
+	public int bgsoundmin = 0;
 
 	@OriginalMember(owner = "client!pb", name = "h", descriptor = "I")
 	public int mapfunction = -1;
@@ -165,7 +165,7 @@ public final class LocMergeEntity {
 	private int offsety = 0;
 
 	@OriginalMember(owner = "client!pb", name = "k", descriptor = "I")
-	public int bgsound_range = 0;
+	public int bgsoundrange = 0;
 
 	@OriginalMember(owner = "client!pb", name = "p", descriptor = "I")
 	private int contrast = 0;
@@ -177,7 +177,7 @@ public final class LocMergeEntity {
 	public boolean overrideSDFLO = false;
 
 	@OriginalMember(owner = "client!pb", name = "O", descriptor = "I")
-	public int bgsound_sound = -1;
+	public int bgsound = -1;
 
 	@OriginalMember(owner = "client!pb", name = "ub", descriptor = "I")
 	public int blockwalk = 2;
@@ -221,7 +221,7 @@ public final class LocMergeEntity {
 						this.models[i] = packet.g1();
 					}
 				} else {
-					packet.position += count * 3;
+					packet.offset += count * 3;
 				}
 			}
 		} else if (code == 2) {
@@ -236,7 +236,7 @@ public final class LocMergeEntity {
 						this.shapes[index] = packet.g2();
 					}
 				} else {
-					packet.position += length * 2;
+					packet.offset += length * 2;
 				}
 			}
 		} else if (code == 14) {
@@ -351,16 +351,16 @@ public final class LocMergeEntity {
 			}
 			this.multiloc[length + 1] = defaultId;
 		} else if (code == 78) {
-			this.bgsound_sound = packet.g2();
-			this.bgsound_range = packet.g1();
+			this.bgsound = packet.g2();
+			this.bgsoundrange = packet.g1();
 		} else if (code == 79) {
-			this.bgsound_mindelay = packet.g2();
-			this.bgsound_maxdelay = packet.g2();
-			this.bgsound_range = packet.g1();
+			this.bgsoundmin = packet.g2();
+			this.bgsoundmax = packet.g2();
+			this.bgsoundrange = packet.g1();
 			int length = packet.g1();
-			this.bgsound_random = new int[length];
+			this.bgsounds = new int[length];
 			for (int index = 0; index < length; index++) {
-				this.bgsound_random[index] = packet.g2();
+				this.bgsounds[index] = packet.g2();
 			}
 		} else if (code == 81) {
 			this.hillskew_mode = 2;
@@ -413,7 +413,7 @@ public final class LocMergeEntity {
 				} else {
 					node = new IntWrapper(packet.g4());
 				}
-				this.params.pushNode(node, key);
+				this.params.put(node, key);
 			}
 		} else {
 			System.out.println("Error unrecognised loc config code: " + code);
@@ -440,7 +440,7 @@ public final class LocMergeEntity {
 	}
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "(II)Z")
-	public boolean method3416(@OriginalArg(1) int arg0) {
+	public boolean isReady(@OriginalArg(1) int arg0) {
 		if (this.models != null) {
 			for (@Pc(18) int local18 = 0; local18 < this.models.length; local18++) {
 				if (arg0 == this.models[local18]) {
@@ -462,7 +462,7 @@ public final class LocMergeEntity {
 	}
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "(I)Lclient!pb;")
-	public LocMergeEntity getVisible() {
+	public LocType getMultiLoc() {
 		@Pc(26) int i = -1;
 		if (this.multivarbit != -1) {
 			i = VarbitDefinition.getVarbitValue(this.multivarbit);
@@ -471,9 +471,9 @@ public final class LocMergeEntity {
 		}
 		if (i < 0 || i >= this.multiloc.length - 1 || this.multiloc[i] == -1) {
 			@Pc(84) int local84 = this.multiloc[this.multiloc.length - 1];
-			return local84 == -1 ? null : Static271.get(local84);
+			return local84 == -1 ? null : LocTypeList.get(local84);
 		} else {
-			return Static271.get(this.multiloc[i]);
+			return LocTypeList.get(this.multiloc[i]);
 		}
 	}
 
@@ -590,12 +590,12 @@ public final class LocMergeEntity {
 	@OriginalMember(owner = "client!pb", name = "d", descriptor = "(I)Z")
 	public boolean hasBackgroundSound() {
 		if (this.multiloc == null) {
-			return this.bgsound_sound != -1 || this.bgsound_random != null;
+			return this.bgsound != -1 || this.bgsounds != null;
 		}
 		for (@Pc(44) int index = 0; index < this.multiloc.length; index++) {
 			if (this.multiloc[index] != -1) {
-				@Pc(70) LocMergeEntity locType = Static271.get(this.multiloc[index]);
-				if (locType.bgsound_sound != -1 || locType.bgsound_random != null) {
+				@Pc(70) LocType locType = LocTypeList.get(this.multiloc[index]);
+				if (locType.bgsound != -1 || locType.bgsounds != null) {
 					return true;
 				}
 			}
@@ -799,7 +799,7 @@ public final class LocMergeEntity {
 		} else {
 			local50 = false;
 		}
-		@Pc(60) Renderable local60 = (Renderable) Static93.aClass99_14.get(local29);
+		@Pc(60) Entity local60 = (Entity) Static93.aClass99_14.get(local29);
 		if (local60 == null) {
 			@Pc(69) ModelUnlit local69 = this.method3418(arg0, arg3);
 			if (local69 == null) {

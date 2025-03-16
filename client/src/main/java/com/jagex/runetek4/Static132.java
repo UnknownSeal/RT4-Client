@@ -1,8 +1,9 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.GenericTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -11,10 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static132 {
 
 	@OriginalMember(owner = "runetek4.client!ke", name = "R", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_48;
-
-	@OriginalMember(owner = "runetek4.client!ke", name = "U", descriptor = "I")
-	public static int cameraAnticheatOffsetX = 0;
+	public static Js5 aClass153_48;
 
 	@OriginalMember(owner = "runetek4.client!ke", name = "Y", descriptor = "[I")
 	public static final int[] anIntArray309 = new int[] { 1, 4 };
@@ -44,9 +42,9 @@ public final class Static132 {
 			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
 		} else {
 			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
-			local43 = Static280.aClass3_Sub2_Sub9_43.method2858(LocalizedText.CHOOSE_OPTION);
+			local43 = Font.b12Full.method2858(LocalizedText.CHOOSE_OPTION);
 			for (@Pc(75) int local75 = 0; local75 < PreciseSleep.menuActionRow; local75++) {
-				@Pc(88) int local88 = Static280.aClass3_Sub2_Sub9_43.method2858(Static269.method2228(local75));
+				@Pc(88) int local88 = Font.b12Full.method2858(Static269.method2228(local75));
 				if (local43 < local88) {
 					local43 = local88;
 				}
@@ -100,10 +98,10 @@ public final class Static132 {
 		@Pc(21) int local21 = local20 = local7 + 128;
 		@Pc(26) int local26;
 		@Pc(27) int local27 = local26 = local15 + 128;
-		@Pc(37) int local37 = Static83.levelHeightMap[arg1][arg6][arg7] - Static162.eyeY;
-		@Pc(49) int local49 = Static83.levelHeightMap[arg1][arg6 + 1][arg7] - Static162.eyeY;
-		@Pc(63) int local63 = Static83.levelHeightMap[arg1][arg6 + 1][arg7 + 1] - Static162.eyeY;
-		@Pc(75) int local75 = Static83.levelHeightMap[arg1][arg6][arg7 + 1] - Static162.eyeY;
+		@Pc(37) int local37 = SceneGraph.tileHeights[arg1][arg6][arg7] - Static162.eyeY;
+		@Pc(49) int local49 = SceneGraph.tileHeights[arg1][arg6 + 1][arg7] - Static162.eyeY;
+		@Pc(63) int local63 = SceneGraph.tileHeights[arg1][arg6 + 1][arg7 + 1] - Static162.eyeY;
+		@Pc(75) int local75 = SceneGraph.tileHeights[arg1][arg6][arg7 + 1] - Static162.eyeY;
 		@Pc(85) int local85 = local15 * arg4 + local7 * arg5 >> 16;
 		@Pc(95) int local95 = local15 * arg5 - local7 * arg4 >> 16;
 		@Pc(97) int local97 = local85;

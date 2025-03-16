@@ -21,9 +21,6 @@ public final class Static206 {
 	@OriginalMember(owner = "runetek4.client!qk", name = "f", descriptor = "I")
 	public static int anInt4773 = 0;
 
-	@OriginalMember(owner = "runetek4.client!qk", name = "h", descriptor = "I")
-	public static int cameraAnticheatOffsetZ = 0;
-
 	@OriginalMember(owner = "runetek4.client!qk", name = "a", descriptor = "(ZIIIIFII)[I")
 	public static int[] method3679(@OriginalArg(5) float arg0) {
 		@Pc(11) int[] local11 = new int[2048];

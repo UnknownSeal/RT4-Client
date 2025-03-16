@@ -1,8 +1,10 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -13,7 +15,7 @@ public final class Static78 {
 	public static int anInt2147;
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "m", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_32;
+	public static Js5 aClass153_32;
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "n", descriptor = "Lclient!qf;")
 	public static Sprite aClass3_Sub2_Sub1_3;
@@ -40,7 +42,7 @@ public final class Static78 {
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(JI)V")
 	public static void method1691(@OriginalArg(0) long name) {
-		Static6.outboundBuffer.position = 0;
+		Static6.outboundBuffer.offset = 0;
 		Static6.outboundBuffer.p1(186);
 		Static6.outboundBuffer.p8(name);
 		Static179.step = 1;
@@ -50,13 +52,13 @@ public final class Static78 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(ILclient!ve;II)Lclient!mm;")
-	public static ImageRGB method1693(@OriginalArg(0) int arg0, @OriginalArg(1) CacheArchive arg1, @OriginalArg(3) int arg2) {
+	public static ImageRGB method1693(@OriginalArg(0) int arg0, @OriginalArg(1) Js5 arg1, @OriginalArg(3) int arg2) {
 		return Static234.method4016(arg1, arg0, arg2) ? Static196.method3537() : null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(I)V")
 	public static void method1694() {
-		Static125.varbitDefinitionCache.method3103();
+		Static125.varbitDefinitionCache.removeSoft();
 	}
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "b", descriptor = "(I)V")
@@ -130,8 +132,8 @@ public final class Static78 {
 		for (local14 = 0; local14 < Static273.aByteArrayArray13.length; local14++) {
 			@Pc(294) byte[] local294 = Static156.aByteArrayArray11[local14];
 			if (local294 != null) {
-				local309 = (Static238.anIntArray470[local14] & 0xFF) * 64 - Static142.originZ;
-				local320 = (Static238.anIntArray470[local14] >> 8) * 64 - Static225.originX;
+				local309 = (Static238.anIntArray470[local14] & 0xFF) * 64 - Camera.originZ;
+				local320 = (Static238.anIntArray470[local14] >> 8) * 64 - Camera.originX;
 				if (Static230.aBoolean250) {
 					local309 = 10;
 					local320 = 10;
@@ -141,8 +143,8 @@ public final class Static78 {
 			if (GlRenderer.enabled) {
 				local294 = Static19.aByteArrayArray4[local14];
 				if (local294 != null) {
-					local320 = (Static238.anIntArray470[local14] >> 8) * 64 - Static225.originX;
-					local309 = (Static238.anIntArray470[local14] & 0xFF) * 64 - Static142.originZ;
+					local320 = (Static238.anIntArray470[local14] >> 8) * 64 - Camera.originX;
+					local309 = (Static238.anIntArray470[local14] & 0xFF) * 64 - Camera.originZ;
 					if (Static230.aBoolean250) {
 						local309 = 10;
 						local320 = 10;
@@ -156,7 +158,7 @@ public final class Static78 {
 			return;
 		}
 		if (ClientScriptRunner.anInt5223 != 0) {
-			Static114.method4636(true, Static34.method882(new JString[] { LocalizedText.LOADING, Static18.aClass100_108 }));
+			Font.drawTextOnScreen(true, Static34.method882(new JString[] { LocalizedText.LOADING, Static18.aClass100_108 }));
 		}
 		Static107.method2261();
 		Static217.method3768();
@@ -177,7 +179,7 @@ public final class Static78 {
 		for (local427 = 0; local427 < 4; local427++) {
 			for (local320 = 0; local320 < 104; local320++) {
 				for (local309 = 0; local309 < 104; local309++) {
-					Static12.aByteArrayArrayArray2[local427][local320][local309] = 0;
+					SceneGraph.renderFlags[local427][local320][local309] = 0;
 				}
 			}
 		}
@@ -204,8 +206,8 @@ public final class Static78 {
 			Static87.method1805(false);
 			aClass6.method842(true);
 			if (GlRenderer.enabled) {
-				local427 = Static173.localPlayer.pathTileX[0] >> 3;
-				local320 = Static173.localPlayer.pathTileZ[0] >> 3;
+				local427 = PlayerList.self.pathTileX[0] >> 3;
+				local320 = PlayerList.self.pathTileZ[0] >> 3;
 				Static73.method1597(local320, local427);
 			}
 			Static26.method743(false);
@@ -217,8 +219,8 @@ public final class Static78 {
 			Static89.method1835(false);
 			aClass6.method842(true);
 			if (GlRenderer.enabled) {
-				local427 = Static173.localPlayer.pathTileX[0] >> 3;
-				local320 = Static173.localPlayer.pathTileZ[0] >> 3;
+				local427 = PlayerList.self.pathTileX[0] >> 3;
+				local320 = PlayerList.self.pathTileZ[0] >> 3;
 				Static73.method1597(local320, local427);
 			}
 			ClientScriptRunner.method4002(false);
@@ -231,10 +233,10 @@ public final class Static78 {
 		}
 		aClass6.method842(true);
 		local427 = Static146.firstvisibleLevel;
-		if (local427 > Static55.currentLevel) {
-			local427 = Static55.currentLevel;
+		if (local427 > Player.plane) {
+			local427 = Player.plane;
 		}
-		if (local427 < Static55.currentLevel - 1) {
+		if (local427 < Player.plane - 1) {
 		}
 		if (Static138.allLevelsvisible()) {
 			Static146.method2750(0);
@@ -265,7 +267,7 @@ public final class Static78 {
 		if (GlRenderer.enabled) {
 			for (local320 = 0; local320 < 13; local320++) {
 				for (local309 = 0; local309 < 13; local309++) {
-					Static242.aOpenGLRendererArrayArray1[local320][local309].method4676(Static83.levelHeightMap[0], local320 * 8, local309 * 8);
+					Static242.aOpenGLRendererArrayArray1[local320][local309].method4676(SceneGraph.tileHeights[0], local320 * 8, local309 * 8);
 				}
 			}
 		}
@@ -276,10 +278,10 @@ public final class Static78 {
 		}
 		Static269.method2218();
 		Static107.method2261();
-		Static219.method3796();
+		ChangeLocRequest.method3796();
 		Static217.method3768();
 		PreciseSleep.aBoolean252 = false;
-		if (Static39.frame != null && Static124.gameServerSocket != null && Static244.gamestate == 25) {
+		if (GameShell.frame != null && Static124.gameServerSocket != null && Static244.gamestate == 25) {
 			Static6.outboundBuffer.pIsaac1(20);
 			Static6.outboundBuffer.p4(1057001181);
 		}

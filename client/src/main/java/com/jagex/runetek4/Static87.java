@@ -4,8 +4,10 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -13,7 +15,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static87 {
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "t", descriptor = "Lclient!ve;")
-	public static com.jagex.runetek4.js5.CacheArchive aClass153_38;
+	public static Js5 aClass153_38;
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "d", descriptor = "Z")
 	public static boolean aBoolean130 = false;
@@ -25,38 +27,12 @@ public final class Static87 {
 	public static boolean method1802() {
 		if (Static150.aBoolean175) {
 			try {
-				CacheArchive.aClass100_35.method3157(GameShell.signLink.anApplet2);
+				CacheArchive.aClass100_35.method3157(GameShell.signLink.applet);
 				return true;
 			} catch (@Pc(14) Throwable local14) {
 			}
 		}
 		return false;
-	}
-
-	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(Lclient!ve;ZLclient!ve;BI)Lclient!cl;")
-	public static AnimFrameset method1803(@OriginalArg(0) com.jagex.runetek4.js5.CacheArchive arg0, @OriginalArg(2) com.jagex.runetek4.js5.CacheArchive arg1, @OriginalArg(4) int arg2) {
-		@Pc(5) boolean local5 = true;
-		@Pc(16) int[] local16 = arg0.method4503(arg2);
-		for (@Pc(18) int local18 = 0; local18 < local16.length; local18++) {
-			@Pc(30) byte[] local30 = arg0.method4502(local16[local18], arg2);
-			if (local30 == null) {
-				local5 = false;
-			} else {
-				@Pc(49) int local49 = (local30[0] & 0xFF) << 8 | local30[1] & 0xFF;
-				@Pc(57) byte[] local57 = arg1.method4502(0, local49);
-				if (local57 == null) {
-					local5 = false;
-				}
-			}
-		}
-		if (!local5) {
-			return null;
-		}
-		try {
-			return new AnimFrameset(arg0, arg1, arg2, false);
-		} catch (@Pc(84) Exception local84) {
-			return null;
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(BI)Lclient!na;")
@@ -84,8 +60,8 @@ public final class Static87 {
 		@Pc(49) int local49;
 		@Pc(53) byte[] local53;
 		for (local20 = 0; local20 < local18; local20++) {
-			local38 = (Static238.anIntArray470[local20] >> 8) * 64 - Static225.originX;
-			local49 = (Static238.anIntArray470[local20] & 0xFF) * 64 - Static142.originZ;
+			local38 = (Static238.anIntArray470[local20] >> 8) * 64 - Camera.originX;
+			local49 = (Static238.anIntArray470[local20] & 0xFF) * 64 - Camera.originZ;
 			local53 = local9[local20];
 			if (local53 != null) {
 				Static107.method2261();
@@ -93,8 +69,8 @@ public final class Static87 {
 			}
 		}
 		for (local20 = 0; local20 < local18; local20++) {
-			local38 = (Static238.anIntArray470[local20] >> 8) * 64 - Static225.originX;
-			local49 = (Static238.anIntArray470[local20] & 0xFF) * 64 - Static142.originZ;
+			local38 = (Static238.anIntArray470[local20] >> 8) * 64 - Camera.originX;
+			local49 = (Static238.anIntArray470[local20] & 0xFF) * 64 - Camera.originZ;
 			local53 = local9[local20];
 			if (local53 == null && Static52.anInt1695 < 800) {
 				Static107.method2261();
@@ -133,7 +109,7 @@ public final class Static87 {
 				} else {
 					local57 = arg8;
 				}
-				local30.anInt465 = Static83.loopCycle;
+				local30.anInt465 = client.loop;
 				local30.anInt517 = local57;
 				if (!local30.aBoolean32 || !Static36.method947(local30)) {
 					if (local30.contentType > 0) {
@@ -241,16 +217,16 @@ public final class Static87 {
 									continue;
 								}
 								local276 -= local30.anInt459 / 2;
-								local503 = Static57.orbitCameraYaw + Static59.minimapAnticheatAngle & 0x7FF;
+								local503 = Camera.orbitCameraYaw + Static59.minimapAnticheatAngle & 0x7FF;
 								local270 -= local30.anInt445 / 2;
-								local514 = MathUtils.anIntArray223[local503];
-								local518 = MathUtils.anIntArray225[local503];
+								local514 = MathUtils.sin[local503];
+								local518 = MathUtils.cos[local503];
 								local514 = (Static273.minimapZoom + 256) * local514 >> 8;
 								local518 = (Static273.minimapZoom + 256) * local518 >> 8;
 								local545 = local518 * local276 - local514 * local270 >> 11;
 								local556 = local276 * local514 + local270 * local518 >> 11;
-								local563 = Static173.localPlayer.x + local556 >> 7;
-								local571 = Static173.localPlayer.z - local545 >> 7;
+								local563 = PlayerList.self.xFine + local556 >> 7;
+								local571 = PlayerList.self.zFine - local545 >> 7;
 								if (Static241.aBoolean302 && (Static274.anInt4999 & 0x40) != 0) {
 									@Pc(583) Component local583 = Static201.method1418(Static98.anInt2512, Static15.anInt506);
 									if (local583 == null) {
@@ -686,7 +662,7 @@ public final class Static87 {
 													if (local2589 == null) {
 														Static43.method1143(local30);
 													} else {
-														local503 = -local2589.getHeight() / 2;
+														local503 = -local2589.getMinY() / 2;
 													}
 												}
 											} else if (local30.modelType == 5) {
@@ -694,23 +670,23 @@ public final class Static87 {
 													local2589 = Static134.A_PLAYER_MODEL___2.method1954(null, -1, null, null, 0, -1, 0, -1, -1);
 												} else {
 													local514 = local30.modelId & 0x7FF;
-													if (local514 == Static16.localPid) {
+													if (local514 == PlayerList.selfId) {
 														local514 = 2047;
 													}
 													@Pc(2751) Player local2751 = Static159.players[local514];
 													@Pc(2760) AnimationSequence local2760 = local276 == -1 ? null : AnimationSequence.getAnimationSequence(local276);
-													if (local2751 != null && (int) local2751.name.toBase37() << 11 == (local30.modelId & 0xFFFFF800)) {
+													if (local2751 != null && (int) local2751.username.encode37() << 11 == (local30.modelId & 0xFFFFF800)) {
 														local2589 = local2751.model.method1954(null, -1, null, local2760, 0, -1, 0, local30.anInt510, 0);
 													}
 												}
 											} else if (local276 == -1) {
-												local2589 = local30.method488(-1, null, -1, 0, local2587, Static173.localPlayer.model);
+												local2589 = local30.method488(-1, null, -1, 0, local2587, PlayerList.self.model);
 												if (local2589 == null && Static211.aBoolean72) {
 													Static43.method1143(local30);
 												}
 											} else {
 												@Pc(2689) AnimationSequence local2689 = AnimationSequence.getAnimationSequence(local276);
-												local2589 = local30.method488(local30.anInt496, local2689, local30.anInt510, local30.anInt500, local2587, Static173.localPlayer.model);
+												local2589 = local30.method488(local30.anInt496, local2689, local30.anInt510, local30.anInt500, local2587, PlayerList.self.model);
 												if (local2589 == null && Static211.aBoolean72) {
 													Static43.method1143(local30);
 												}
@@ -748,8 +724,8 @@ public final class Static87 {
 													if (local30.aBoolean34) {
 														GlRenderer.disableDepthMask();
 													}
-													local563 = MathUtils.anIntArray223[local30.modelXAngle] * local30.modelZoom >> 16;
-													local571 = local30.modelZoom * MathUtils.anIntArray225[local30.modelXAngle] >> 16;
+													local563 = MathUtils.sin[local30.modelXAngle] * local30.modelZoom >> 16;
+													local571 = local30.modelZoom * MathUtils.cos[local30.modelXAngle] >> 16;
 													if (local30.aBoolean32) {
 														local2589.drawModel(local30.modelYAngle, local30.modelYOffset, local30.modelXAngle, local30.modelXOffset, local30.modelZOffset + local563 + local503, local30.modelZOffset + local571, -1L);
 													} else {
@@ -760,8 +736,8 @@ public final class Static87 {
 													}
 												} else {
 													Pix3D.method1919(local556, local545);
-													local563 = MathUtils.anIntArray223[local30.modelXAngle] * local30.modelZoom >> 16;
-													local571 = local30.modelZoom * MathUtils.anIntArray225[local30.modelXAngle] >> 16;
+													local563 = MathUtils.sin[local30.modelXAngle] * local30.modelZoom >> 16;
+													local571 = local30.modelZoom * MathUtils.cos[local30.modelXAngle] >> 16;
 													if (!local30.aBoolean32) {
 														local2589.drawModel(local30.modelYAngle, 0, local30.modelXAngle, 0, local563, local571, -1L);
 													} else if (local30.aBoolean22) {

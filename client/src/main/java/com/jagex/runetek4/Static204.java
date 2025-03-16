@@ -9,9 +9,6 @@ public final class Static204 {
 	@OriginalMember(owner = "runetek4.client!qi", name = "z", descriptor = "Lclient!qf;")
 	public static Sprite aClass3_Sub2_Sub1_10;
 
-	@OriginalMember(owner = "runetek4.client!qi", name = "C", descriptor = "Lclient!ei;")
-	public static MixerPcmStream soundStream;
-
 	@OriginalMember(owner = "runetek4.client!qi", name = "r", descriptor = "I")
 	public static int anInt4760 = 0;
 
@@ -19,7 +16,7 @@ public final class Static204 {
 	public static int anInt4762 = 0;
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "u", descriptor = "Lclient!ih;")
-	public static LinkList aClass69_113 = new LinkList();
+	public static LinkedList aClass69_113 = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "v", descriptor = "Z")
 	public static boolean tween = false;

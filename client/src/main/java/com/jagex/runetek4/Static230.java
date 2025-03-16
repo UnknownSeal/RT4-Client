@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static230 {
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "r", descriptor = "Lclient!ve;")
-	public static CacheArchive modelArchive;
+	public static Js5 modelArchive;
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "D", descriptor = "I")
 	public static int anInt5158;
@@ -34,9 +34,6 @@ public final class Static230 {
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "F", descriptor = "Lclient!rc;")
 	public static GameShell anApplet_Sub1_1 = null;
-
-	@OriginalMember(owner = "runetek4.client!sj", name = "H", descriptor = "I")
-	public static int cameraAnticheatAngle = 0;
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "c", descriptor = "(I)V")
 	public static void method3947() {
@@ -155,19 +152,19 @@ public final class Static230 {
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(ILclient!na;)V")
 	public static void method3954(@OriginalArg(1) JString arg0) {
 		Static47.aClass100_991 = arg0;
-		if (GameShell.signLink.anApplet2 == null) {
+		if (GameShell.signLink.applet == null) {
 			return;
 		}
 		try {
-			@Pc(17) JString local17 = Static272.aClass100_989.method3153(GameShell.signLink.anApplet2);
-			@Pc(23) JString local23 = Static246.aClass100_1029.method3153(GameShell.signLink.anApplet2);
+			@Pc(17) JString local17 = Static272.aClass100_989.method3153(GameShell.signLink.applet);
+			@Pc(23) JString local23 = Static246.aClass100_1029.method3153(GameShell.signLink.applet);
 			@Pc(48) JString local48 = Static34.method882(new JString[] { local17, Static142.aClass100_667, arg0, Static276.aClass100_1095, local23 });
 			if (arg0.length() == 0) {
 				local48 = Static34.method882(new JString[] { local48, Static245.aClass100_1018 });
 			} else {
 				local48 = Static34.method882(new JString[] { local48, Static263.aClass100_1082, Static33.method873(MonotonicTime.get() + 94608000000L), Static64.MAX_AGE, Static154.method2929(94608000L) });
 			}
-			Static34.method882(new JString[] { BZip2State.aClass100_821, local48, Static223.aClass100_946 }).method3134(GameShell.signLink.anApplet2);
+			Static34.method882(new JString[] { BZip2State.aClass100_821, local48, Static223.aClass100_946 }).method3134(GameShell.signLink.applet);
 		} catch (@Pc(124) Throwable local124) {
 		}
 	}

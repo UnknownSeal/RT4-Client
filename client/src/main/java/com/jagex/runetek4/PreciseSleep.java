@@ -1,16 +1,14 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class PreciseSleep {
-
-	@OriginalMember(owner = "runetek4.client!sk", name = "jb", descriptor = "I")
-	public static int anInt5203;
 
 	@OriginalMember(owner = "runetek4.client!sk", name = "mb", descriptor = "I")
 	public static int anInt5205;
@@ -37,7 +35,7 @@ public final class PreciseSleep {
 	@OriginalMember(owner = "runetek4.client!sk", name = "a", descriptor = "(ILclient!wa;)V")
 	public static void method3980(@OriginalArg(1) Packet arg0) {
 		label83: while (true) {
-			if (arg0.position < arg0.data.length) {
+			if (arg0.offset < arg0.data.length) {
 				@Pc(23) int local23 = 0;
 				@Pc(25) boolean local25 = false;
 				@Pc(27) int local27 = 0;
@@ -86,7 +84,7 @@ public final class PreciseSleep {
 					}
 					local146 = arg0.g1s();
 					if (local146 != 0) {
-						arg0.position++;
+						arg0.offset++;
 					}
 					local96++;
 				}
@@ -138,9 +136,9 @@ public final class PreciseSleep {
 			local183 = Static78.method1690(Static224.anInt5063, arg5 + arg0, Static172.anInt4164);
 			local192 = Static78.method1690(Static224.anInt5063, arg5 - local12, Static172.anInt4164);
 			local201 = Static78.method1690(Static224.anInt5063, arg5 + local12, Static172.anInt4164);
-			Static131.method2576(local166, local174, local192, arg2);
-			Static131.method2576(local166, local192, local201, arg1);
-			Static131.method2576(local166, local201, local183, arg2);
+			ArrayUtils.fillRange(local166, local174, local192, arg2);
+			ArrayUtils.fillRange(local166, local192, local201, arg1);
+			ArrayUtils.fillRange(local166, local201, local183, arg2);
 		}
 		while (local16 > 0) {
 			if (local70 < 0) {
@@ -198,22 +196,22 @@ public final class PreciseSleep {
 					@Pc(420) int[] local420;
 					if (Static267.anInt5773 <= local174) {
 						local420 = ObjTypeList.anIntArrayArray10[local174];
-						Static131.method2576(local420, local201, local412, arg2);
-						Static131.method2576(local420, local412, local404, arg1);
-						Static131.method2576(local420, local404, local192, arg2);
+						ArrayUtils.fillRange(local420, local201, local412, arg2);
+						ArrayUtils.fillRange(local420, local412, local404, arg1);
+						ArrayUtils.fillRange(local420, local404, local192, arg2);
 					}
 					if (local183 <= Static106.anInt2869) {
 						local420 = ObjTypeList.anIntArrayArray10[local183];
-						Static131.method2576(local420, local201, local412, arg2);
-						Static131.method2576(local420, local412, local404, arg1);
-						Static131.method2576(local420, local404, local192, arg2);
+						ArrayUtils.fillRange(local420, local201, local412, arg2);
+						ArrayUtils.fillRange(local420, local412, local404, arg1);
+						ArrayUtils.fillRange(local420, local404, local192, arg2);
 					}
 				} else {
 					if (Static267.anInt5773 <= local174) {
-						Static131.method2576(ObjTypeList.anIntArrayArray10[local174], local201, local192, arg2);
+						ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local174], local201, local192, arg2);
 					}
 					if (Static106.anInt2869 >= local183) {
-						Static131.method2576(ObjTypeList.anIntArrayArray10[local183], local201, local192, arg2);
+						ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local183], local201, local192, arg2);
 					}
 				}
 			}
@@ -275,19 +273,6 @@ public final class PreciseSleep {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!sk", name = "a", descriptor = "(JI)V")
-	public static void sleep(@OriginalArg(0) long arg0) {
-		if (arg0 <= 0L) {
-			return;
-		}
-		if (arg0 % 10L == 0L) {
-			Static220.sleep0(arg0 - 1L);
-			Static220.sleep0(1L);
-		} else {
-			Static220.sleep0(arg0);
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!sk", name = "c", descriptor = "(II)I")
 	public static int method3984(@OriginalArg(1) int arg0) {
 		if (arg0 >= 65 && arg0 <= 90 || arg0 >= 192 && arg0 <= 222 && arg0 != 215) {
@@ -302,7 +287,7 @@ public final class PreciseSleep {
 	}
 
 	@OriginalMember(owner = "runetek4.client!sk", name = "a", descriptor = "(Lclient!ve;I)Z")
-	public static boolean method3986(@OriginalArg(0) CacheArchive arg0) {
+	public static boolean method3986(@OriginalArg(0) Js5 arg0) {
 		return arg0.method4506(Static138.anInt3443);
 	}
 }

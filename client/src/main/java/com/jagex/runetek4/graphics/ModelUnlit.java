@@ -2,15 +2,16 @@ package com.jagex.runetek4.graphics;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.media.renderable.Renderable;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.media.renderable.Entity;
+import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!gb")
-public final class ModelUnlit extends Renderable {
+public final class ModelUnlit extends Entity {
 
 	@OriginalMember(owner = "client!gb", name = "s", descriptor = "[B")
 	public byte[] aByteArray26;
@@ -401,7 +402,7 @@ public final class ModelUnlit extends Renderable {
 	}
 
 	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(Lclient!ve;II)Lclient!gb;")
-	public static ModelUnlit get(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) int arg1) {
+	public static ModelUnlit get(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
 		@Pc(5) byte[] local5 = arg0.getfile(arg1, 0);
 		return local5 == null ? null : new ModelUnlit(local5);
 	}
@@ -492,7 +493,7 @@ public final class ModelUnlit extends Renderable {
 
 	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(III)Lclient!th;")
 	@Override
-	public Renderable method4539() {
+	public Entity createModel() {
 		return this.applyLightning(this.aShort19, this.aShort18, -50, -10, -50);
 	}
 
@@ -559,7 +560,7 @@ public final class ModelUnlit extends Renderable {
 
 	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public void draw(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
+	public void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
 	}
 
 	@OriginalMember(owner = "client!gb", name = "g", descriptor = "()V")
@@ -704,9 +705,9 @@ public final class ModelUnlit extends Renderable {
 		local147.aClass126Array1 = this.aClass126Array1;
 		local147.aVertexNormalArray2 = this.aVertexNormalArray2;
 		if (arg0 == 3) {
-			local147.anIntArray202 = Static115.method2308(this.anIntArray202);
-			local147.anIntArray201 = Static115.method2308(this.anIntArray201);
-			local147.anIntArray203 = Static115.method2308(this.anIntArray203);
+			local147.anIntArray202 = ArrayUtils.copyOfNullable(this.anIntArray202);
+			local147.anIntArray201 = ArrayUtils.copyOfNullable(this.anIntArray201);
+			local147.anIntArray203 = ArrayUtils.copyOfNullable(this.anIntArray203);
 		} else {
 			local147.anIntArray202 = this.anIntArray202;
 			local147.anIntArray201 = new int[local147.vertexCount];
@@ -846,7 +847,7 @@ public final class ModelUnlit extends Renderable {
 		@Pc(24) Packet local24 = new Packet(arg0);
 		@Pc(29) Packet local29 = new Packet(arg0);
 		@Pc(34) Packet local34 = new Packet(arg0);
-		local4.position = arg0.length - 23;
+		local4.offset = arg0.length - 23;
 		@Pc(44) int local44 = local4.g2();
 		@Pc(48) int local48 = local4.g2();
 		@Pc(52) int local52 = local4.g1();
@@ -869,7 +870,7 @@ public final class ModelUnlit extends Renderable {
 		@Pc(131) int local131;
 		if (local52 > 0) {
 			this.aByteArray29 = new byte[local52];
-			local4.position = 0;
+			local4.offset = 0;
 			for (local131 = 0; local131 < local52; local131++) {
 				@Pc(143) byte local143 = this.aByteArray29[local131] = local4.g1s();
 				if (local143 == 0) {
@@ -984,11 +985,11 @@ public final class ModelUnlit extends Renderable {
 				this.textureTriangleTranslationV = new byte[local120];
 			}
 		}
-		local4.position = local52;
-		local9.position = local250;
-		local14.position = local256;
-		local19.position = local262;
-		local24.position = local201;
+		local4.offset = local52;
+		local9.offset = local250;
+		local14.offset = local256;
+		local19.offset = local262;
+		local24.offset = local201;
 		@Pc(473) int local473 = 0;
 		@Pc(475) int local475 = 0;
 		@Pc(477) int local477 = 0;
@@ -1021,13 +1022,13 @@ public final class ModelUnlit extends Renderable {
 				this.anIntArray193[local479] = local24.g1();
 			}
 		}
-		local4.position = local242;
-		local9.position = local169;
-		local14.position = local183;
-		local19.position = local210;
-		local24.position = local192;
-		local29.position = local225;
-		local34.position = local236;
+		local4.offset = local242;
+		local9.offset = local169;
+		local14.offset = local183;
+		local19.offset = local210;
+		local24.offset = local192;
+		local29.offset = local225;
+		local34.offset = local236;
 		for (local479 = 0; local479 < local48; local479++) {
 			this.unmodifiedTriangleColour[local479] = (short) local4.g2();
 			if (local65) {
@@ -1053,8 +1054,8 @@ public final class ModelUnlit extends Renderable {
 				}
 			}
 		}
-		local4.position = local219;
-		local9.position = local177;
+		local4.offset = local219;
+		local9.offset = local177;
 		local479 = 0;
 		local486 = 0;
 		local488 = 0;
@@ -1098,12 +1099,12 @@ public final class ModelUnlit extends Renderable {
 				this.anIntArray196[local508] = local488;
 			}
 		}
-		local4.position = local268;
-		local9.position = local276;
-		local14.position = local284;
-		local19.position = local292;
-		local24.position = local298;
-		local29.position = local304;
+		local4.offset = local268;
+		local9.offset = local276;
+		local14.offset = local284;
+		local19.offset = local292;
+		local24.offset = local298;
+		local29.offset = local304;
 		for (local508 = 0; local508 < local52; local508++) {
 			local700 = this.aByteArray29[local508] & 0xFF;
 			if (local700 == 0) {
@@ -1150,14 +1151,14 @@ public final class ModelUnlit extends Renderable {
 		if (!local74) {
 			return;
 		}
-		local4.position = local131;
+		local4.offset = local131;
 		local508 = local4.g1();
 		if (local508 > 0) {
-			local4.position += local508 * 4;
+			local4.offset += local508 * 4;
 		}
 		local700 = local4.g1();
 		if (local700 > 0) {
-			local4.position += local700 * 4;
+			local4.offset += local700 * 4;
 		}
 	}
 
@@ -1252,7 +1253,7 @@ public final class ModelUnlit extends Renderable {
 
 	@OriginalMember(owner = "client!gb", name = "b", descriptor = "()I")
 	@Override
-	public int getHeight() {
+	public int getMinY() {
 		if (!this.aBoolean121) {
 			this.method1664();
 		}
@@ -1269,7 +1270,7 @@ public final class ModelUnlit extends Renderable {
 
 	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(Lclient!th;IIIZ)V")
 	@Override
-	public void method4544(@OriginalArg(0) Renderable arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
+	public void method4544(@OriginalArg(0) Entity arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
 		@Pc(2) ModelUnlit local2 = (ModelUnlit) arg0;
 		local2.method1664();
 		local2.method1668();
@@ -1476,7 +1477,7 @@ public final class ModelUnlit extends Renderable {
 		@Pc(18) Packet local18 = new Packet(arg0);
 		@Pc(23) Packet local23 = new Packet(arg0);
 		@Pc(28) Packet local28 = new Packet(arg0);
-		local8.position = arg0.length - 18;
+		local8.offset = arg0.length - 18;
 		@Pc(38) int local38 = local8.g2();
 		@Pc(42) int local42 = local8.g2();
 		@Pc(46) int local46 = local8.g1();
@@ -1557,11 +1558,11 @@ public final class ModelUnlit extends Renderable {
 			this.anIntArray192 = new int[local42];
 		}
 		this.unmodifiedTriangleColour = new short[local42];
-		local8.position = 0;
-		local13.position = local165;
-		local18.position = local171;
-		local23.position = local90;
-		local28.position = local125;
+		local8.offset = 0;
+		local13.offset = local165;
+		local18.offset = local171;
+		local23.offset = local90;
+		local28.offset = local125;
 		@Pc(301) int local301 = 0;
 		@Pc(303) int local303 = 0;
 		@Pc(305) int local305 = 0;
@@ -1594,11 +1595,11 @@ public final class ModelUnlit extends Renderable {
 				this.anIntArray193[local307] = local28.g1();
 			}
 		}
-		local8.position = local149;
-		local13.position = local116;
-		local18.position = local98;
-		local23.position = local134;
-		local28.position = local107;
+		local8.offset = local149;
+		local13.offset = local116;
+		local18.offset = local98;
+		local23.offset = local134;
+		local28.offset = local107;
 		for (local307 = 0; local307 < local42; local307++) {
 			this.unmodifiedTriangleColour[local307] = (short) local8.g2();
 			if (local50 == 1) {
@@ -1631,8 +1632,8 @@ public final class ModelUnlit extends Renderable {
 				this.anIntArray192[local307] = local28.g1();
 			}
 		}
-		local8.position = local143;
-		local13.position = local92;
+		local8.offset = local143;
+		local13.offset = local92;
 		local307 = 0;
 		local314 = 0;
 		local316 = 0;
@@ -1677,7 +1678,7 @@ public final class ModelUnlit extends Renderable {
 				this.anIntArray196[local336] = local316;
 			}
 		}
-		local8.position = local157;
+		local8.offset = local157;
 		for (local336 = 0; local336 < local46; local336++) {
 			this.aByteArray29[local336] = 0;
 			this.textureTriangleVertex1[local336] = (short) local8.g2();

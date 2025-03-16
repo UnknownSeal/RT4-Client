@@ -55,7 +55,7 @@ public final class HashTable {
 	}
 
 	@OriginalMember(owner = "client!sc", name = "c", descriptor = "(I)Lclient!ab;")
-	public Node peekFront() {
+	public Node head() {
 		this.currentNodeIndex = 0;
 		return this.prev();
 	}
@@ -79,7 +79,7 @@ public final class HashTable {
 	}
 
 	@OriginalMember(owner = "client!sc", name = "a", descriptor = "(ILclient!ab;J)V")
-	public void pushNode(@OriginalArg(1) Node node, @OriginalArg(2) long id) {
+	public void put(@OriginalArg(1) Node node, @OriginalArg(2) long id) {
 		if (node.next != null) {
 			node.unlink();
 		}

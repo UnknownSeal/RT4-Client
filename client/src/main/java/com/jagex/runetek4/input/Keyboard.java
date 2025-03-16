@@ -1,5 +1,6 @@
 package com.jagex.runetek4.input;
 
+import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -13,6 +14,31 @@ import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!uf")
 public final class Keyboard implements KeyListener, FocusListener {
+
+	public static final int KEY_SHIFT = 81;
+	public static final int KEY_CTRL = 82;
+	public static final int KEY_ENTER = 84;
+	public static final int KEY_BACK_SPACE = 85;
+	public static final int KEY_ALT = 86;
+	public static final int KEY_LEFT = 96;
+	public static final int KEY_RIGHT = 97;
+	public static final int KEY_UP = 98;
+	public static final int KEY_DOWN = 99;
+
+	@OriginalMember(owner = "client!ch", name = "a", descriptor = "(Ljava/awt/Component;I)V")
+	public static void stop(@OriginalArg(0) Component arg0) {
+		arg0.removeKeyListener(Static10.aClass149_1);
+		arg0.removeFocusListener(Static10.aClass149_1);
+		Static114.anInt5844 = -1;
+	}
+
+	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(ILjava/awt/runetek4.Component;)V")
+	public static void start(@OriginalArg(1) Component arg0) {
+		arg0.removeMouseListener(Static93.aClass150_1);
+		arg0.removeMouseMotionListener(Static93.aClass150_1);
+		arg0.removeFocusListener(Static93.aClass150_1);
+		Static57.anInt1759 = 0;
+	}
 
 	@OriginalMember(owner = "client!uf", name = "keyPressed", descriptor = "(Ljava/awt/event/KeyEvent;)V")
 	@Override

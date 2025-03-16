@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.util.SignLink;
+import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -9,36 +10,37 @@ import org.openrs2.deob.annotation.Pc;
 public final class AudioThread implements Runnable {
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "m", descriptor = "Lsignlink!ll;")
-	public SignLink canvas;
+	public SignLink signLink;
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "p", descriptor = "[Lclient!vh;")
-	public final AudioChannel[] aClass62Array1 = new AudioChannel[2];
+	public final AudioChannel[] channels = new AudioChannel[2];
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "g", descriptor = "Z")
-	public volatile boolean aBoolean62 = false;
+	public volatile boolean stop = false;
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "t", descriptor = "Z")
-	public volatile boolean aBoolean64 = false;
+	public volatile boolean running = false;
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "run", descriptor = "()V")
 	@Override
 	public final void run() {
-		this.aBoolean64 = true;
+		this.running = true;
 		try {
-			while (!this.aBoolean62) {
-				for (@Pc(9) int local9 = 0; local9 < 2; local9++) {
-					@Pc(19) AudioChannel local19 = this.aClass62Array1[local9];
+			while (!this.stop) {
+				for (@Pc(9) int i = 0; i < 2; i++) {
+					@Pc(19) AudioChannel local19 = this.channels[i];
 					if (local19 != null) {
-						local19.method3565();
+						local19.loop();
 					}
 				}
-				PreciseSleep.sleep(10L);
-				GameShell.method2708(this.canvas, null);
+				ThreadUtils.sleep(10L);
+				GameShell.flush(this.signLink, null);
 			}
-		} catch (@Pc(43) Exception local43) {
-			Static89.report(null, local43);
+		} catch (@Pc(43) Exception exception) {
+			exception.printStackTrace();
+			TracingException.report(null, exception);
 		} finally {
-			this.aBoolean64 = false;
+			this.running = false;
 		}
 	}
 }

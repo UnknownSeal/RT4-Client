@@ -2,15 +2,12 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.media.Rasterizer;
-import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.scene.Scenery;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class BZip2State {
-
-	@OriginalMember(owner = "runetek4.client!s", name = "a", descriptor = "[I")
-	public static int[] tt;
 
 	@OriginalMember(owner = "runetek4.client!s", name = "i", descriptor = "[I")
 	public static int[] anIntArray376;
@@ -151,7 +148,7 @@ public final class BZip2State {
 								local135 = true;
 							}
 						}
-						@Pc(275) InteractiveObject local275 = Static133.method4008(arg4, local114, local72);
+						@Pc(275) Scenery local275 = SceneGraph.getScenery(arg4, local114, local72);
 						if (local275 != null) {
 							@Pc(287) int local287 = (int) (local275.hash >> 14) & 0x3F;
 							if (local287 == 9) {
@@ -271,7 +268,7 @@ public final class BZip2State {
 								local791 = true;
 							}
 						}
-						@Pc(899) InteractiveObject local899 = Static133.method4008(arg4, local114, local72);
+						@Pc(899) Scenery local899 = SceneGraph.getScenery(arg4, local114, local72);
 						if (local899 != null) {
 							@Pc(911) int local911 = (int) (local899.hash >> 14) & 0x3F;
 							if (local911 == 9) {

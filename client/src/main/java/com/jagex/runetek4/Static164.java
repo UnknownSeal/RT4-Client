@@ -2,19 +2,17 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static164 {
-
-	@OriginalMember(owner = "runetek4.client!na", name = "w", descriptor = "Z")
-	public static boolean aBoolean192;
 
 	@OriginalMember(owner = "runetek4.client!na", name = "W", descriptor = "Z")
 	public static boolean newTab;
@@ -36,11 +34,11 @@ public final class Static164 {
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IIIIIIIZ)Z")
 	public static boolean method3109(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(6) int arg4) {
-		@Pc(14) long local14 = Static265.method4521(arg4, arg0 + 0, arg2);
+		@Pc(14) long local14 = SceneGraph.getWallKey(arg4, arg0 + 0, arg2);
 		@Pc(28) int local28;
 		@Pc(35) int local35;
 		@Pc(42) int local42;
-		@Pc(46) LocMergeEntity local46;
+		@Pc(46) LocType local46;
 		@Pc(65) int local65;
 		@Pc(75) int[] local75;
 		@Pc(90) int local90;
@@ -48,7 +46,7 @@ public final class Static164 {
 			local28 = (int) local14 >> 20 & 0x3;
 			local35 = (int) local14 >> 14 & 0x1F;
 			local42 = Integer.MAX_VALUE & (int) (local14 >>> 32);
-			local46 = Static271.get(local42);
+			local46 = LocTypeList.get(local42);
 			if (local46.mapsceneicon == -1) {
 				local65 = arg1;
 				if (local14 > 0L) {
@@ -117,12 +115,12 @@ public final class Static164 {
 				return false;
 			}
 		}
-		local14 = Static35.method899(arg4, arg0 + 0, arg2);
+		local14 = SceneGraph.getSceneryKey(arg4, arg0 + 0, arg2);
 		if (local14 != 0L) {
 			local28 = (int) local14 >> 20 & 0x3;
 			local35 = (int) local14 >> 14 & 0x1F;
 			local42 = (int) (local14 >>> 32) & Integer.MAX_VALUE;
-			local46 = Static271.get(local42);
+			local46 = LocTypeList.get(local42);
 			if (local46.mapsceneicon == -1) {
 				if (local35 == 9) {
 					local65 = 15658734;
@@ -147,11 +145,11 @@ public final class Static164 {
 				return false;
 			}
 		}
-		local14 = Static20.method602(arg4, arg0 + 0, arg2);
+		local14 = SceneGraph.getGroundDecorKey(arg4, arg0 + 0, arg2);
 		if (local14 != 0L) {
 			local28 = (int) local14 >> 20 & 0x3;
 			local35 = (int) (local14 >>> 32) & Integer.MAX_VALUE;
-			@Pc(586) LocMergeEntity local586 = Static271.get(local35);
+			@Pc(586) LocType local586 = LocTypeList.get(local35);
 			if (local586.mapsceneicon != -1 && !Static33.method867(arg0, local586, arg2, local28)) {
 				return false;
 			}
@@ -173,12 +171,12 @@ public final class Static164 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Lclient!ve;IZ)Lclient!mm;")
-	public static ImageRGB method3117(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) int arg1) {
+	public static ImageRGB method3117(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
 		return Static254.method4346(arg0, arg1) ? Static196.method3537() : null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IZILclient!ve;)Lclient!ek;")
-	public static SoftwareIndexedSprite method3119(@OriginalArg(2) int arg0, @OriginalArg(3) CacheArchive arg1) {
+	public static SoftwareIndexedSprite method3119(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {
 		return Static234.method4016(arg1, 0, arg0) ? Static134.method2619() : null;
 	}
 
@@ -228,9 +226,9 @@ public final class Static164 {
 		} else if (arg4 == 2) {
 			local145 = (int) ((double) local145 * 1.04D);
 		}
-		@Pc(176) int local176 = MathUtils.anIntArray225[definition.xan2d] * local145 >> 16;
-		@Pc(185) int local185 = MathUtils.anIntArray223[definition.xan2d] * local145 >> 16;
-		local60.drawModel(definition.yan2d, definition.zan2d, definition.xan2d, definition.xof2d, local185 + definition.yof2d - local60.getHeight() / 2, definition.yof2d + local176, -1L);
+		@Pc(176) int local176 = MathUtils.cos[definition.xan2d] * local145 >> 16;
+		@Pc(185) int local185 = MathUtils.sin[definition.xan2d] * local145 >> 16;
+		local60.drawModel(definition.yan2d, definition.zan2d, definition.xan2d, definition.xof2d, local185 + definition.yof2d - local60.getMinY() / 2, definition.yof2d + local176, -1L);
 		if (arg4 >= 1) {
 			rendered.method303(1);
 			if (arg4 >= 2) {

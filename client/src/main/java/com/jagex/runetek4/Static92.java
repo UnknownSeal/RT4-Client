@@ -1,9 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.scene.InteractiveObject;
-import com.jagex.runetek4.scene.tile.FloorDecoration;
+import com.jagex.runetek4.scene.Scenery;
+import com.jagex.runetek4.scene.tile.GroundDecor;
 import com.jagex.runetek4.scene.tile.Wall;
-import com.jagex.runetek4.scene.tile.WallDecoration;
+import com.jagex.runetek4.scene.tile.WallDecor;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -32,30 +32,30 @@ public final class Static92 {
 		}
 		@Pc(38) int local38;
 		if (arg4 == 0) {
-			@Pc(28) Wall local28 = Static262.method4509(arg0, arg5, arg3);
+			@Pc(28) Wall local28 = SceneGraph.getWall(arg0, arg5, arg3);
 			if (local28 != null) {
 				local38 = Integer.MAX_VALUE & (int) (local28.aLong107 >>> 32);
 				if (arg2 == 2) {
-					local28.modelA = new Loc(local38, 2, arg1 + 4, arg0, arg5, arg3, arg6, false, local28.modelA);
+					local28.primary = new Loc(local38, 2, arg1 + 4, arg0, arg5, arg3, arg6, false, local28.primary);
 					local28.modelB = new Loc(local38, 2, arg1 + 1 & 0x3, arg0, arg5, arg3, arg6, false, local28.modelB);
 				} else {
-					local28.modelA = new Loc(local38, arg2, arg1, arg0, arg5, arg3, arg6, false, local28.modelA);
+					local28.primary = new Loc(local38, arg2, arg1, arg0, arg5, arg3, arg6, false, local28.primary);
 				}
 			}
 		}
 		if (arg4 == 1) {
-			@Pc(106) WallDecoration local106 = Static83.method435(arg0, arg5, arg3);
+			@Pc(106) WallDecor local106 = Static83.method435(arg0, arg5, arg3);
 			if (local106 != null) {
-				local38 = (int) (local106.aLong52 >>> 32) & Integer.MAX_VALUE;
+				local38 = (int) (local106.key >>> 32) & Integer.MAX_VALUE;
 				if (arg2 == 4 || arg2 == 5) {
-					local106.model = new Loc(local38, 4, arg1, arg0, arg5, arg3, arg6, false, local106.model);
+					local106.primary = new Loc(local38, 4, arg1, arg0, arg5, arg3, arg6, false, local106.primary);
 				} else if (arg2 == 6) {
-					local106.model = new Loc(local38, 4, arg1 + 4, arg0, arg5, arg3, arg6, false, local106.model);
+					local106.primary = new Loc(local38, 4, arg1 + 4, arg0, arg5, arg3, arg6, false, local106.primary);
 				} else if (arg2 == 7) {
-					local106.model = new Loc(local38, 4, (arg1 + 2 & 0x3) + 4, arg0, arg5, arg3, arg6, false, local106.model);
+					local106.primary = new Loc(local38, 4, (arg1 + 2 & 0x3) + 4, arg0, arg5, arg3, arg6, false, local106.primary);
 				} else if (arg2 == 8) {
-					local106.model = new Loc(local38, 4, arg1 + 4, arg0, arg5, arg3, arg6, false, local106.model);
-					local106.aClass8_2 = new Loc(local38, 4, (arg1 + 2 & 0x3) + 4, arg0, arg5, arg3, arg6, false, local106.aClass8_2);
+					local106.primary = new Loc(local38, 4, arg1 + 4, arg0, arg5, arg3, arg6, false, local106.primary);
+					local106.secondary = new Loc(local38, 4, (arg1 + 2 & 0x3) + 4, arg0, arg5, arg3, arg6, false, local106.secondary);
 				}
 			}
 		}
@@ -63,21 +63,21 @@ public final class Static92 {
 			if (arg2 == 11) {
 				arg2 = 10;
 			}
-			@Pc(255) InteractiveObject local255 = Static133.method4008(arg0, arg5, arg3);
+			@Pc(255) Scenery local255 = SceneGraph.getScenery(arg0, arg5, arg3);
 			if (local255 != null) {
-				local255.aClass8_4 = new Loc((int) (local255.hash >>> 32) & Integer.MAX_VALUE, arg2, arg1, arg0, arg5, arg3, arg6, false, local255.aClass8_4);
+				local255.entity = new Loc((int) (local255.hash >>> 32) & Integer.MAX_VALUE, arg2, arg1, arg0, arg5, arg3, arg6, false, local255.entity);
 			}
 		}
 		if (arg4 == 3) {
-			@Pc(290) FloorDecoration local290 = Static269.method2210(arg0, arg5, arg3);
+			@Pc(290) GroundDecor local290 = SceneGraph.getGroundDecor(arg0, arg5, arg3);
 			if (local290 != null) {
-				local290.renderable = new Loc(Integer.MAX_VALUE & (int) (local290.key >>> 32), 22, arg1, arg0, arg5, arg3, arg6, false, local290.renderable);
+				local290.entity = new Loc(Integer.MAX_VALUE & (int) (local290.key >>> 32), 22, arg1, arg0, arg5, arg3, arg6, false, local290.entity);
 			}
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!hd", name = "a", descriptor = "(I)V")
 	public static void method1882() {
-		Static220.aClass99_28.method3103();
+		Static220.aClass99_28.removeSoft();
 	}
 }

@@ -2,13 +2,15 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.datastruct.HashTable;
+import com.jagex.runetek4.game.config.bastype.BasTypeList;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static119 {
 
 	@OriginalMember(owner = "client!je", name = "W", descriptor = "Lclient!ve;")
-	public static com.jagex.runetek4.js5.CacheArchive aClass153_44;
+	public static Js5 aClass153_44;
 
 	@OriginalMember(owner = "client!je", name = "eb", descriptor = "[I")
 	public static int[] anIntArray282;
@@ -40,7 +42,7 @@ public final class Static119 {
 		Static71.method1441();
 		Static78.method1694();
 		Static3.method4657();
-		Static45.method1172();
+		BasTypeList.removeSoft();
 		Static267.method4529();
 		Static92.method1882();
 		Static26.method741();
@@ -48,8 +50,8 @@ public final class Static119 {
 		Static40.method1019();
 		Static180.method3329();
 		Static251.method4276();
-		Static73.aClass99_10.method3103();
-		Static139.aClass99_22.method3103();
+		Static73.aClass99_10.removeSoft();
+		Static139.aClass99_22.removeSoft();
 	}
 
 	@OriginalMember(owner = "client!je", name = "f", descriptor = "(B)V")
@@ -62,7 +64,7 @@ public final class Static119 {
 	}
 
 	@OriginalMember(owner = "client!je", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method2384(@OriginalArg(1) com.jagex.runetek4.js5.CacheArchive arg0) {
+	public static void method2384(@OriginalArg(1) Js5 arg0) {
 		CacheArchive.aClass153_2 = arg0;
 	}
 

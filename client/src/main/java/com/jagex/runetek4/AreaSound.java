@@ -1,9 +1,9 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.node.Node;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.cache.def.ActorDefinition;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.cache.def.NpcType;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -13,10 +13,10 @@ import org.openrs2.deob.annotation.Pc;
 public final class AreaSound extends Node {
 
 	@OriginalMember(owner = "client!fl", name = "p", descriptor = "I")
-	public int anInt2028;
+	public int maxZFine;
 
 	@OriginalMember(owner = "client!fl", name = "q", descriptor = "I")
-	public int anInt2029;
+	public int minZFine;
 
 	@OriginalMember(owner = "client!fl", name = "t", descriptor = "I")
 	public int minInterval;
@@ -34,19 +34,19 @@ public final class AreaSound extends Node {
 	public int remainingLoops;
 
 	@OriginalMember(owner = "client!fl", name = "E", descriptor = "Lclient!pb;")
-	public LocMergeEntity loc;
+	public LocType locType;
 
 	@OriginalMember(owner = "client!fl", name = "F", descriptor = "I")
-	public int anInt2037;
+	public int maxXFine;
 
 	@OriginalMember(owner = "client!fl", name = "I", descriptor = "Lclient!km;")
-	public NPCRenderable npc;
+	public Npc npc;
 
 	@OriginalMember(owner = "client!fl", name = "K", descriptor = "I")
 	public int maxInterval;
 
 	@OriginalMember(owner = "client!fl", name = "L", descriptor = "I")
-	public int anInt2041;
+	public int minXFine;
 
 	@OriginalMember(owner = "client!fl", name = "M", descriptor = "Lclient!e;")
 	public Player player;
@@ -64,13 +64,13 @@ public final class AreaSound extends Node {
 	public int[] sounds;
 
 	@OriginalMember(owner = "client!fl", name = "G", descriptor = "I")
-	public int anInt2038 = 0;
+	public int movementSpeed = 0;
 
 	@OriginalMember(owner = "client!fl", name = "c", descriptor = "(I)V")
 	public void update() {
-		@Pc(8) int sound = this.sound;
-		if (this.loc != null) {
-			@Pc(17) LocMergeEntity locType = this.loc.getVisible();
+		@Pc(8) int prevSound = this.sound;
+		if (this.locType != null) {
+			@Pc(17) LocType locType = this.locType.getMultiLoc();
 			if (locType == null) {
 				this.sound = -1;
 				this.sounds = null;
@@ -78,32 +78,32 @@ public final class AreaSound extends Node {
 				this.radius = 0;
 				this.minInterval = 0;
 			} else {
-				this.maxInterval = locType.bgsound_maxdelay;
-				this.sound = locType.bgsound_sound;
-				this.minInterval = locType.bgsound_mindelay;
-				this.radius = locType.bgsound_range * 128;
-				this.sounds = locType.bgsound_random;
+				this.maxInterval = locType.bgsoundmax;
+				this.sound = locType.bgsound;
+				this.minInterval = locType.bgsoundmin;
+				this.radius = locType.bgsoundrange * 128;
+				this.sounds = locType.bgsounds;
 			}
 		} else if (this.npc != null) {
-			@Pc(92) int npcSound = NPCRenderable.getSound(this.npc);
-			if (sound != npcSound) {
-				@Pc(100) ActorDefinition actorDefinition = this.npc.type;
-				this.sound = npcSound;
-				if (actorDefinition.multinpc != null) {
-					actorDefinition = actorDefinition.getMultiNPC();
+			@Pc(92) int sound = Npc.getSound(this.npc);
+			if (prevSound != sound) {
+				@Pc(100) NpcType npcType = this.npc.type;
+				this.sound = sound;
+				if (npcType.multiNpcs != null) {
+					npcType = npcType.getMultiNPC();
 				}
-				if (actorDefinition == null) {
+				if (npcType == null) {
 					this.radius = 0;
 				} else {
-					this.radius = actorDefinition.bgsound_range * 128;
+					this.radius = npcType.soundRadius * 128;
 				}
 			}
 		} else if (this.player != null) {
 			this.sound = Player.getSound(this.player);
-			this.radius = this.player.anInt1664 * 128;
+			this.radius = this.player.soundRadius * 128;
 		}
-		if (this.sound != sound && this.primaryStream != null) {
-			Static204.soundStream.removeSubStream(this.primaryStream);
+		if (this.sound != prevSound && this.primaryStream != null) {
+			client.soundStream.removeSubStream(this.primaryStream);
 			this.primaryStream = null;
 		}
 	}

@@ -1,6 +1,6 @@
 package com.jagex.runetek4.scene.tile;
 
-import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -29,13 +29,13 @@ public final class SceneTile extends Node {
 	public int blockLocSpans;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "G", descriptor = "Lclient!bm;")
-	public FloorDecoration floorDecoration;
+	public GroundDecor groundDecor;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "I", descriptor = "I")
 	public int inverseBlockLocSpans;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "J", descriptor = "Lclient!df;")
-	public WallDecoration wallDecoration;
+	public WallDecor wallDecor;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "K", descriptor = "Lclient!jh;")
 	public Wall wall;
@@ -59,7 +59,7 @@ public final class SceneTile extends Node {
 	public int locSpans = 0;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "w", descriptor = "[Lclient!ec;")
-	public final InteractiveObject[] interactiveObjects = new InteractiveObject[5];
+	public final Scenery[] sceneries = new Scenery[5];
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "P", descriptor = "[I")
 	public final int[] anIntArray59 = new int[5];

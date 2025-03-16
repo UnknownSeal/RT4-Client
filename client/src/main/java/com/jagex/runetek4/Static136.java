@@ -44,7 +44,7 @@ public final class Static136 {
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "b", descriptor = "(Lclient!wa;I)V")
 	public static void method2654(@OriginalArg(0) Packet arg0) {
-		if (arg0.data.length - arg0.position < 1) {
+		if (arg0.data.length - arg0.offset < 1) {
 			return;
 		}
 		@Pc(21) int local21 = arg0.g1();
@@ -77,7 +77,7 @@ public final class Static136 {
 		} else {
 			local34 = 19;
 		}
-		if (arg0.data.length - arg0.position < local34) {
+		if (arg0.data.length - arg0.offset < local34) {
 			return;
 		}
 		Static113.anInt4609 = arg0.g1();
@@ -117,13 +117,13 @@ public final class Static136 {
 			Static125.anInt3104 = 127;
 		}
 		Static12.anInt391 = arg0.g1();
-		Static30.anInt978 = arg0.g1();
-		if (Static30.anInt978 > 127) {
-			Static30.anInt978 = 127;
+		Preferences.ambientSoundsVolume = arg0.g1();
+		if (Preferences.ambientSoundsVolume > 127) {
+			Preferences.ambientSoundsVolume = 127;
 		}
 		if (local21 >= 1) {
-			Static114.anInt5831 = arg0.g2();
-			Static22.anInt729 = arg0.g2();
+			Preferences.fullScreenWidth = arg0.g2();
+			Preferences.fullScreenHeight = arg0.g2();
 		}
 		if (local21 >= 3 && local21 < 6) {
 			arg0.g1();
@@ -139,13 +139,13 @@ public final class Static136 {
 			Static164.anInt3988 = arg0.g4();
 		}
 		if (local21 >= 6) {
-			Static214.anInt5581 = arg0.g1();
+			Preferences.favoriteWorlds = arg0.g1();
 		}
 		if (local21 >= 7) {
 			Static164.aBoolean191 = arg0.g1() == 1;
 		}
 		if (local21 >= 8) {
-			Static33.aBoolean63 = arg0.g1() == 1;
+			Preferences.aBoolean63 = arg0.g1() == 1;
 		}
 		if (local21 >= 9) {
 			Static141.anInt3474 = arg0.g1();

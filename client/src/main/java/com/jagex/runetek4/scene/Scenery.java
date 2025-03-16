@@ -1,17 +1,17 @@
 package com.jagex.runetek4.scene;
 
-import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.media.renderable.Entity;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!ec")
-public final class InteractiveObject {
+public final class Scenery {
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "I")
 	public int anInt1696;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "c", descriptor = "Lclient!th;")
-	public Renderable aClass8_4;
+	public Entity entity;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "e", descriptor = "I")
 	public int anInt1698;

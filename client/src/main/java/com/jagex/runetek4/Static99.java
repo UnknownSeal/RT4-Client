@@ -11,7 +11,7 @@ public final class Static99 {
 	public static int[] anIntArray239;
 
 	@OriginalMember(owner = "runetek4.client!hk", name = "W", descriptor = "Lclient!ih;")
-	public static final LinkList spotanims = new LinkList();
+	public static final LinkedList spotanims = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!hk", name = "db", descriptor = "Lclient!na;")
 	public static final JString WM3 = Static28.parse("::wm3");

@@ -4,7 +4,8 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -22,7 +23,7 @@ public final class Static217 {
 	public static int anInt4901 = -1;
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "U", descriptor = "Lclient!ih;")
-	public static final LinkList projectiles = new LinkList();
+	public static final LinkedList projectiles = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "Z", descriptor = "[I")
 	public static final int[] anIntArray434 = new int[64];
@@ -32,17 +33,17 @@ public final class Static217 {
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "a", descriptor = "(IIILclient!e;I)V")
 	public static void method3767(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Player arg2, @OriginalArg(4) int arg3) {
-		if (Static173.localPlayer == arg2 || PreciseSleep.menuActionRow >= 400) {
+		if (PlayerList.self == arg2 || PreciseSleep.menuActionRow >= 400) {
 			return;
 		}
 		@Pc(158) JString local158;
 		if (arg2.anInt1671 == 0) {
 			@Pc(22) boolean local22 = true;
-			if (Static173.localPlayer.anInt1667 != -1 && arg2.anInt1667 != -1) {
-				@Pc(43) int local43 = arg2.combatLevel < Static173.localPlayer.combatLevel ? Static173.localPlayer.combatLevel : arg2.combatLevel;
-				@Pc(58) int local58 = Static173.localPlayer.anInt1667 < arg2.anInt1667 ? Static173.localPlayer.anInt1667 : arg2.anInt1667;
+			if (PlayerList.self.anInt1667 != -1 && arg2.anInt1667 != -1) {
+				@Pc(43) int local43 = arg2.combatLevel < PlayerList.self.combatLevel ? PlayerList.self.combatLevel : arg2.combatLevel;
+				@Pc(58) int local58 = PlayerList.self.anInt1667 < arg2.anInt1667 ? PlayerList.self.anInt1667 : arg2.anInt1667;
 				@Pc(69) int local69 = local43 * 10 / 100 + local58 + 5;
-				@Pc(76) int local76 = Static173.localPlayer.combatLevel - arg2.combatLevel;
+				@Pc(76) int local76 = PlayerList.self.combatLevel - arg2.combatLevel;
 				if (local76 < 0) {
 					local76 = -local76;
 				}
@@ -52,12 +53,12 @@ public final class Static217 {
 			}
 			@Pc(95) JString local95 = Static266.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
 			if (arg2.combatLevel < arg2.anInt1656) {
-				local158 = Static34.method882(new JString[] { arg2.getName(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, Static173.localPlayer.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static78.aClass100_465, Static123.method2423(arg2.anInt1656 - arg2.combatLevel), Static72.aClass100_448 });
+				local158 = Static34.method882(new JString[] { arg2.getUsername(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, PlayerList.self.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static78.aClass100_465, Static123.method2423(arg2.anInt1656 - arg2.combatLevel), Static72.aClass100_448 });
 			} else {
-				local158 = Static34.method882(new JString[] { arg2.getName(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, Static173.localPlayer.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static72.aClass100_448 });
+				local158 = Static34.method882(new JString[] { arg2.getUsername(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, PlayerList.self.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static72.aClass100_448 });
 			}
 		} else {
-			local158 = Static34.method882(new JString[] { arg2.getName(), Static123.aClass100_593, LocalizedText.SKILL, Static123.method2423(arg2.anInt1671), Static72.aClass100_448 });
+			local158 = Static34.method882(new JString[] { arg2.getUsername(), Static123.aClass100_593, LocalizedText.SKILL, Static123.method2423(arg2.anInt1671), Static72.aClass100_448 });
 		}
 		@Pc(275) int local275;
 		if (Static260.anInt5014 == 1) {
@@ -67,11 +68,11 @@ public final class Static217 {
 				if (Static160.aClass100Array121[local275] != null) {
 					@Pc(291) short local291 = 0;
 					if (Static266.game == 0 && Static160.aClass100Array121[local275].equalsIgnoreCase(LocalizedText.ATTACK)) {
-						if (arg2.combatLevel > Static173.localPlayer.combatLevel) {
+						if (arg2.combatLevel > PlayerList.self.combatLevel) {
 							local291 = 2000;
 						}
-						if (Static173.localPlayer.teamId != 0 && arg2.teamId != 0) {
-							if (Static173.localPlayer.teamId == arg2.teamId) {
+						if (PlayerList.self.teamId != 0 && arg2.teamId != 0) {
+							if (PlayerList.self.teamId == arg2.teamId) {
 								local291 = 2000;
 							} else {
 								local291 = 0;
@@ -108,7 +109,7 @@ public final class Static217 {
 		Static247.method4249();
 		Static53.method1295();
 		Static249.method4266();
-		Static124.method2433();
+		BasTypeList.clear();
 		Class6.method3653();
 		Static78.method1695();
 		Static10.method351();
@@ -130,12 +131,12 @@ public final class Static217 {
 		Static213.aClass153_88.method4499();
 		Static249.aClass153_100.method4499();
 		Static41.aClass153_25.method4499();
-		Static248.aClass153_75.method4499();
+		client.js5Archive4.method4499();
 		Static26.aClass153_16.method4499();
 		Static130.aClass153_47.method4499();
 		Static267.aClass153_109.method4499();
 		Static209.aClass153_86.method4499();
-		CacheArchive.huffmanCacheArchive.method4499();
+		CacheArchive.huffmanJs5.method4499();
 		Static214.aClass153_106.method4499();
 		Static16.aClass153_9.method4499();
 		Static73.aClass99_10.method3104();
@@ -165,14 +166,14 @@ public final class Static217 {
 				@Pc(68) int local68 = local64 >> 2;
 				@Pc(72) int local72 = local64 & 0x3;
 				if (arg3 == local60 && local56 >= arg8 && local56 < arg8 + 8 && arg9 <= local50 && arg9 + 8 > local50) {
-					@Pc(103) LocMergeEntity local103 = Static271.get(local7);
+					@Pc(103) LocType local103 = LocTypeList.get(local7);
 					@Pc(120) int local120 = Static52.method1286(local50 & 0x7, arg4, local72, local103.length, local103.width, local56 & 0x7) + arg5;
 					@Pc(137) int local137 = Static241.method4541(local103.width, arg4, local103.length, local56 & 0x7, local72, local50 & 0x7) + arg6;
 					if (local120 > 0 && local137 > 0 && local120 < 103 && local137 < 103) {
 						@Pc(154) CollisionMap local154 = null;
 						if (!arg7) {
 							@Pc(159) int local159 = arg1;
-							if ((Static12.aByteArrayArrayArray2[1][local120][local137] & 0x2) == 2) {
+							if ((SceneGraph.renderFlags[1][local120][local137] & 0x2) == 2) {
 								local159 = arg1 - 1;
 							}
 							if (local159 >= 0) {

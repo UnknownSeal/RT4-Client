@@ -45,7 +45,7 @@ public final class StructType extends CachedNode {
 			} else {
 				local58 = new IntWrapper(arg0.g4());
 			}
-			this.aClass133_14.pushNode(local58, (long) local49);
+			this.aClass133_14.put(local58, (long) local49);
 		}
 	}
 

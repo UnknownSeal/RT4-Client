@@ -1,13 +1,12 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.config.lighttype.LightType;
 import com.jagex.runetek4.js5.network.Js5NetResourceProvider;
 import com.jagex.runetek4.media.Rasterizer;
-import com.jagex.runetek4.scene.tile.FloorDecoration;
-import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -74,10 +73,10 @@ public final class Static269 {
 		@Pc(188) int local188;
 		@Pc(190) int local190;
 		@Pc(194) int local194;
-		while (local95.position < local95.data.length) {
+		while (local95.offset < local95.data.length) {
 			local21 = local95.g1();
 			if (local21 != 129) {
-				local95.position--;
+				local95.offset--;
 				break;
 			}
 			for (local117 = 0; local117 < 4; local117++) {
@@ -109,7 +108,7 @@ public final class Static269 {
 					}
 					while (local243 < local188) {
 						while (local190 < local194) {
-							Static232.aByteArrayArrayArray13[local117][local243][local190] = 0;
+							SceneGraph.aByteArrayArrayArray13[local117][local243][local190] = 0;
 							local190++;
 						}
 						local243++;
@@ -121,7 +120,7 @@ public final class Static269 {
 							for (local194 = local243 + arg4; local194 < arg4 + local243 + 4; local194++) {
 								for (@Pc(320) int local320 = arg3 + local188; local320 < arg3 + local188 + 4; local320++) {
 									if (local194 >= 0 && local194 < 104 && local320 >= 0 && local320 < 104) {
-										Static232.aByteArrayArrayArray13[local117][local194][local320] = local305;
+										SceneGraph.aByteArrayArrayArray13[local117][local194][local320] = local305;
 									}
 								}
 							}
@@ -154,7 +153,7 @@ public final class Static269 {
 					}
 					while (local188 > local243) {
 						while (local190 < local194) {
-							Static232.aByteArrayArrayArray13[local117][local243][local190] = Static232.aByteArrayArrayArray13[local117 - 1][local243][local190];
+							SceneGraph.aByteArrayArrayArray13[local117][local243][local190] = SceneGraph.aByteArrayArrayArray13[local117 - 1][local243][local190];
 							local190++;
 						}
 						local243++;
@@ -168,7 +167,7 @@ public final class Static269 {
 			@Pc(490) Environment local490 = null;
 			label270: while (true) {
 				label263: do {
-					while (local95.position < local95.data.length) {
+					while (local95.offset < local95.data.length) {
 						local117 = local95.g1();
 						if (local117 != 0) {
 							if (local117 != 1) {
@@ -204,8 +203,8 @@ public final class Static269 {
 					local194 = local529.anInt2245 >> 7;
 					local190 = local529.anInt2240 >> 7;
 					if (local190 >= 0 && local194 >= 0 && local190 < 104 && local194 < 104) {
-						local529.aBoolean125 = (Static12.aByteArrayArrayArray2[1][local190][local194] & 0x2) != 0;
-						local529.anInt2235 = Static83.levelHeightMap[local529.anInt2241][local190][local194] - local529.anInt2235;
+						local529.aBoolean125 = (SceneGraph.renderFlags[1][local190][local194] & 0x2) != 0;
+						local529.anInt2235 = SceneGraph.tileHeights[local529.anInt2241][local190][local194] - local529.anInt2235;
 						Static120.method2389(local529);
 					}
 				}
@@ -220,17 +219,11 @@ public final class Static269 {
 					local243 = (arg4 >> 2) + local117;
 					local188 = local515 + (arg3 >> 2);
 					if (local243 >= 0 && local243 < 26 && local188 >= 0 && local188 < 26) {
-						Static232.aByteArrayArrayArray13[local21][local243][local188] = 0;
+						SceneGraph.aByteArrayArrayArray13[local21][local243][local188] = 0;
 					}
 				}
 			}
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(III)Lclient!bm;")
-	public static FloorDecoration method2210(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
-		return local7 == null || local7.floorDecoration == null ? null : local7.floorDecoration;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "o", descriptor = "(I)V")
@@ -257,7 +250,7 @@ public final class Static269 {
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(IIIII)V")
 	public static void method2225(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		if (Static41.anInt1309 < 100) {
-			Static186.method3413();
+			Preferences.method3413();
 		}
 		if (GlRenderer.enabled) {
 			Static46.method1187(arg0, arg1, arg0 + arg3, arg2 + arg1);
@@ -282,7 +275,7 @@ public final class Static269 {
 				Rasterizer.drawFilledRectangle(local50 - 150, local61 + 2, Static41.anInt1309 * 3, 30, 9179409);
 				Rasterizer.drawFilledRectangle(Static41.anInt1309 * 3 + local50 - 150, local61 - -2, 300 - Static41.anInt1309 * 3, 30, 0);
 			}
-			Static280.aClass3_Sub2_Sub9_43.method2875(LocalizedText.LOADINGDOTDOTDOT, local50, local61 + 20, 16777215, -1);
+			Font.b12Full.method2875(LocalizedText.LOADINGDOTDOTDOT, local50, local61 + 20, 16777215, -1);
 			return;
 		}
 		Static37.anInt1176 = (int) ((float) (arg2 * 2) / Static83.aFloat3);

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -63,8 +63,8 @@ public final class Static74 {
 		@Pc(19) int local19;
 		@Pc(17) int local17;
 		if (local7 == null) {
-			local17 = Static254.canvasHeigth;
-			local19 = Static48.canvasWidth;
+			local17 = GameShell.canvasHeigth;
+			local19 = GameShell.canvasWidth;
 		} else {
 			local17 = local7.anInt459;
 			local19 = local7.anInt445;
@@ -91,7 +91,7 @@ public final class Static74 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!fn", name = "a", descriptor = "(Lclient!ve;Lclient!ve;Z)I")
-	public static int method1628(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) CacheArchive arg1) {
+	public static int method1628(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
 		@Pc(5) int local5 = 0;
 		if (arg0.method4506(Static166.anInt4049)) {
 			local5++;

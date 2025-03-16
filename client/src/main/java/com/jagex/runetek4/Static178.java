@@ -12,9 +12,6 @@ public final class Static178 {
 	@OriginalMember(owner = "runetek4.client!od", name = "c", descriptor = "Z")
 	public static boolean highDetailLighting = true;
 
-	@OriginalMember(owner = "runetek4.client!od", name = "e", descriptor = "I")
-	public static int topMargin = 0;
-
 	@OriginalMember(owner = "runetek4.client!od", name = "g", descriptor = "S")
 	public static short aShort25 = 256;
 
@@ -29,7 +26,7 @@ public final class Static178 {
 		if (Static199.aClass3_Sub22Array1 == null) {
 			return;
 		}
-		@Pc(22) long local22 = arg0.toBase37();
+		@Pc(22) long local22 = arg0.encode37();
 		@Pc(24) int local24 = 0;
 		if (local22 == 0L) {
 			return;

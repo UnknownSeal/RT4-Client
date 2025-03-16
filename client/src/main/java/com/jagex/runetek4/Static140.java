@@ -23,8 +23,8 @@ public final class Static140 {
 		@Pc(15) byte[] local15 = new byte[24];
 		if (client.uid != null) {
 			try {
-				client.uid.setReadIndex(0L);
-				client.uid.method1457(local15);
+				client.uid.seek(0L);
+				client.uid.read(local15);
 				@Pc(28) int local28;
 				for (local28 = 0; local28 < 24 && local15[local28] == 0; local28++) {
 				}
@@ -49,7 +49,7 @@ public final class Static140 {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.IGNORELISTFULL);
 			return;
 		}
-		@Pc(34) JString displayName = Static79.decode37(username).method3125();
+		@Pc(34) JString displayName = Base37.decode37(username).method3125();
 		@Pc(36) int i;
 		for (i = 0; i < Static35.ignoreCount; i++) {
 			if (Static190.ignoreName37[i] == username) {
@@ -63,12 +63,12 @@ public final class Static140 {
 				return;
 			}
 		}
-		if (displayName.method3108(Static173.localPlayer.name)) {
+		if (displayName.method3108(PlayerList.self.username)) {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.IGNORECANTADDSELF);
 			return;
 		}
 		Static190.ignoreName37[Static35.ignoreCount] = username;
-		Static193.ignoreName[Static35.ignoreCount++] = Static79.decode37(username);
+		Static193.ignoreName[Static35.ignoreCount++] = Base37.decode37(username);
 		Static185.anInt4369 = Static119.transmitTimer;
 		Static6.outboundBuffer.pIsaac1(34);
 		Static6.outboundBuffer.p8(username);

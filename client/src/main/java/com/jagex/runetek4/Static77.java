@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -10,13 +11,13 @@ public final class Static77 {
 	public static final int[] anIntArray194 = new int[10000];
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "N", descriptor = "[I")
-	public static final int[] anIntArray195 = MathUtils.anIntArray225;
+	public static final int[] anIntArray195 = MathUtils.cos;
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "S", descriptor = "I")
 	public static int anInt2138 = 0;
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "V", descriptor = "[I")
-	public static final int[] anIntArray198 = MathUtils.anIntArray223;
+	public static final int[] anIntArray198 = MathUtils.sin;
 
 	@OriginalMember(owner = "runetek4.client!gb", name = "Z", descriptor = "[I")
 	public static final int[] anIntArray199 = new int[10000];

@@ -5,7 +5,7 @@ import java.util.Date;
 
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.cs.ClientScript;
-import com.jagex.runetek4.cache.def.ActorDefinition;
+import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
@@ -17,6 +17,8 @@ import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCLocation;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
+import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.NodeQueue;
 import com.jagex.runetek4.scene.SceneCamera;
 import com.jagex.runetek4.util.SignLink;
@@ -27,7 +29,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static88 {
 
 	@OriginalMember(owner = "runetek4.client!h", name = "a", descriptor = "(Lclient!ve;Lclient!ve;Z)V")
-	public static void method1817(@OriginalArg(0) com.jagex.runetek4.js5.CacheArchive arg0, @OriginalArg(1) com.jagex.runetek4.js5.CacheArchive arg1) {
+	public static void method1817(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
 		Static86.aClass153_37 = arg0;
 		Static58.aClass153_28 = arg1;
 	}
@@ -480,7 +482,7 @@ public final class Static88 {
 							interfaceData = Static254.scriptIntValues[intValueIndex];
 							for (childCount = 0; childCount < Static204.anIntArray425.length; childCount++) {
 								if (interfaceData == Static204.anIntArray425[childCount]) {
-									Static173.localPlayer.model.method1953(childCount, interfaceType);
+									PlayerList.self.model.method1953(childCount, interfaceType);
 									continue label4266;
 								}
 							}
@@ -490,7 +492,7 @@ public final class Static88 {
 									continue label4266;
 								}
 								if (interfaceData == Static153.anIntArray351[childCount]) {
-									Static173.localPlayer.model.method1953(childCount, interfaceType);
+									PlayerList.self.model.method1953(childCount, interfaceType);
 									continue label4266;
 								}
 								childCount++;
@@ -500,13 +502,13 @@ public final class Static88 {
 							intValueIndex -= 2;
 							interfaceData = Static254.scriptIntValues[intValueIndex];
 							interfaceType = Static254.scriptIntValues[intValueIndex + 1];
-							Static173.localPlayer.model.method1951(interfaceData, interfaceType);
+							PlayerList.self.model.method1951(interfaceData, interfaceType);
 							continue;
 						}
 						if (scriptOpcode == 410) {
 							intValueIndex--;
 							local12388 = Static254.scriptIntValues[intValueIndex] != 0;
-							Static173.localPlayer.model.method1948(local12388);
+							PlayerList.self.model.method1948(local12388);
 							continue;
 						}
 					} else {
@@ -795,7 +797,7 @@ public final class Static88 {
 								if (scriptOpcode == 1202) {
 									// setplayerhead_self
 									local1182.modelType = 3;
-									local1182.modelId = Static173.localPlayer.model.getHeadModelId();
+									local1182.modelId = PlayerList.self.model.getHeadModelId();
 									if (local1182.componentId == -1) {
 										Static271.method4600(local1182.anInt507);
 									}
@@ -1320,7 +1322,7 @@ public final class Static88 {
 									if (scriptOpcode == 3101) {
 										// anim
 										intValueIndex -= 2;
-										Static186.method3415(Static254.scriptIntValues[intValueIndex + 1], Static254.scriptIntValues[intValueIndex], Static173.localPlayer);
+										Static186.method3415(Static254.scriptIntValues[intValueIndex + 1], Static254.scriptIntValues[intValueIndex], PlayerList.self);
 										continue;
 									}
 									if (scriptOpcode == 3103) {
@@ -1342,7 +1344,7 @@ public final class Static88 {
 										local26--;
 										chatTyped = Static3.scriptStringValues[local26];
 										Static6.outboundBuffer.pIsaac1(244);
-										Static6.outboundBuffer.p8(chatTyped.toBase37());
+										Static6.outboundBuffer.p8(chatTyped.encode37());
 										continue;
 									}
 									if (scriptOpcode == 3106) {
@@ -1407,7 +1409,7 @@ public final class Static88 {
 								} else if (scriptOpcode < 3400) {
 									if (scriptOpcode == 3300) {
 										// clientclock
-										Static254.scriptIntValues[intValueIndex++] = Static83.loopCycle;
+										Static254.scriptIntValues[intValueIndex++] = client.loop;
 										continue;
 									}
 									if (scriptOpcode == 3301) {
@@ -1456,9 +1458,9 @@ public final class Static88 {
 										continue;
 									}
 									if (scriptOpcode == 3308) {
-										interfaceData = Static55.currentLevel;
-										interfaceType = Static225.originX + (Static173.localPlayer.x >> 7);
-										childCount = (Static173.localPlayer.z >> 7) + Static142.originZ;
+										interfaceData = Player.plane;
+										interfaceType = Camera.originX + (PlayerList.self.xFine >> 7);
+										childCount = (PlayerList.self.zFine >> 7) + Camera.originZ;
 										Static254.scriptIntValues[intValueIndex++] = (interfaceData << 28) - (-(interfaceType << 14) - childCount);
 										continue;
 									}
@@ -1550,11 +1552,11 @@ public final class Static88 {
 										continue;
 									}
 									if (scriptOpcode == 3326) {
-										Static254.scriptIntValues[intValueIndex++] = Static173.localPlayer.combatLevel;
+										Static254.scriptIntValues[intValueIndex++] = PlayerList.self.combatLevel;
 										continue;
 									}
 									if (scriptOpcode == 3327) {
-										Static254.scriptIntValues[intValueIndex++] = Static173.localPlayer.model.aBoolean141 ? 1 : 0;
+										Static254.scriptIntValues[intValueIndex++] = PlayerList.self.model.aBoolean141 ? 1 : 0;
 										continue;
 									}
 									if (scriptOpcode == 3328) {
@@ -1727,25 +1729,25 @@ public final class Static88 {
 									if (scriptOpcode == 3605) {
 										local26--;
 										chatTyped = Static3.scriptStringValues[local26];
-										Static64.addFriend(chatTyped.toBase37());
+										Static64.addFriend(chatTyped.encode37());
 										continue;
 									}
 									if (scriptOpcode == 3606) {
 										local26--;
 										chatTyped = Static3.scriptStringValues[local26];
-										Static193.removeFriend(chatTyped.toBase37());
+										Static193.removeFriend(chatTyped.encode37());
 										continue;
 									}
 									if (scriptOpcode == 3607) {
 										local26--;
 										chatTyped = Static3.scriptStringValues[local26];
-										Static140.addIgnore(chatTyped.toBase37());
+										Static140.addIgnore(chatTyped.encode37());
 										continue;
 									}
 									if (scriptOpcode == 3608) {
 										local26--;
 										chatTyped = Static3.scriptStringValues[local26];
-										Static69.method1542(chatTyped.toBase37());
+										Static69.method1542(chatTyped.encode37());
 										continue;
 									}
 									if (scriptOpcode == 3609) {
@@ -1830,7 +1832,7 @@ public final class Static88 {
 									if (scriptOpcode == 3619) {
 										local26--;
 										chatTyped = Static3.scriptStringValues[local26];
-										Static156.method2956(chatTyped.toBase37());
+										Static156.method2956(chatTyped.encode37());
 										continue;
 									}
 									if (scriptOpcode == 3620) {
@@ -1849,7 +1851,7 @@ public final class Static88 {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
 										if (Static166.anInt4054 != 0 && Static35.ignoreCount > interfaceData) {
-											Static3.scriptStringValues[local26++] = Static79.decode37(Static190.ignoreName37[interfaceData]).method3125();
+											Static3.scriptStringValues[local26++] = Base37.decode37(Static190.ignoreName37[interfaceData]).method3125();
 											continue;
 										}
 										Static3.scriptStringValues[local26++] = Static72.aClass100_447;
@@ -1867,7 +1869,7 @@ public final class Static88 {
 									if (scriptOpcode == 3624) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										if (Static199.aClass3_Sub22Array1 != null && Static214.anInt5577 > interfaceData && Static199.aClass3_Sub22Array1[interfaceData].aClass100_636.equalsIgnoreCase(Static173.localPlayer.name)) {
+										if (Static199.aClass3_Sub22Array1 != null && Static214.anInt5577 > interfaceData && Static199.aClass3_Sub22Array1[interfaceData].aClass100_636.equalsIgnoreCase(PlayerList.self.username)) {
 											Static254.scriptIntValues[intValueIndex++] = 1;
 											continue;
 										}
@@ -2257,9 +2259,9 @@ public final class Static88 {
 											interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 											local5294 = Static110.method2277(interfaceType);
 											if (local5294.method2078()) {
-												Static3.scriptStringValues[local26++] = ActorDefinition.getDefinition(interfaceData).getParam(interfaceType, local5294.aClass100_544);
+												Static3.scriptStringValues[local26++] = NpcType.getDefinition(interfaceData).getParam(interfaceType, local5294.aClass100_544);
 											} else {
-												Static254.scriptIntValues[intValueIndex++] = ActorDefinition.getDefinition(interfaceData).getParam(interfaceType, local5294.anInt2667);
+												Static254.scriptIntValues[intValueIndex++] = NpcType.getDefinition(interfaceData).getParam(interfaceType, local5294.anInt2667);
 											}
 											continue;
 										}
@@ -2288,7 +2290,7 @@ public final class Static88 {
 													interfaceType = Static254.scriptIntValues[intValueIndex];
 													childCount = Static254.scriptIntValues[intValueIndex + 1];
 													Static6.outboundBuffer.pIsaac1(99);
-													Static6.outboundBuffer.p8(chatTyped.toBase37());
+													Static6.outboundBuffer.p8(chatTyped.encode37());
 													Static6.outboundBuffer.p1(interfaceType - 1);
 													Static6.outboundBuffer.p1(childCount);
 													continue;
@@ -2441,11 +2443,11 @@ public final class Static88 {
 														}
 														Static6.outboundBuffer.pIsaac1(237);
 														Static6.outboundBuffer.p1(0);
-														start = Static6.outboundBuffer.position;
+														start = Static6.outboundBuffer.offset;
 														Static6.outboundBuffer.p1(color);
 														Static6.outboundBuffer.p1(effect);
 														Static146.method2748(Static6.outboundBuffer, chatTyped);
-														Static6.outboundBuffer.p1len(Static6.outboundBuffer.position - start);
+														Static6.outboundBuffer.p1len(Static6.outboundBuffer.offset - start);
 														continue;
 													}
 													Static127.method2470(chatTyped);
@@ -2458,10 +2460,10 @@ public final class Static88 {
 													if (Static191.staffModLevel != 0 || (!Static124.aBoolean157 || Static207.parentalChatConsent) && !Static86.aBoolean129) {
 														Static6.outboundBuffer.pIsaac1(201);
 														Static6.outboundBuffer.p1(0);
-														childCount = Static6.outboundBuffer.position;
-														Static6.outboundBuffer.p8(chatTyped.toBase37());
+														childCount = Static6.outboundBuffer.offset;
+														Static6.outboundBuffer.p8(chatTyped.encode37());
 														Static146.method2748(Static6.outboundBuffer, chatTypedLowercase);
-														Static6.outboundBuffer.p1len(Static6.outboundBuffer.position - childCount);
+														Static6.outboundBuffer.p1len(Static6.outboundBuffer.offset - childCount);
 													}
 													continue;
 												}
@@ -2502,10 +2504,10 @@ public final class Static88 {
 													continue;
 												}
 												if (scriptOpcode == 5015) {
-													if (Static173.localPlayer == null || Static173.localPlayer.name == null) {
+													if (PlayerList.self == null || PlayerList.self.username == null) {
 														chatTyped = Static186.username;
 													} else {
-														chatTyped = Static173.localPlayer.getName();
+														chatTyped = PlayerList.self.getUsername();
 													}
 													Static3.scriptStringValues[local26++] = chatTyped;
 													continue;
@@ -2598,11 +2600,11 @@ public final class Static88 {
 												if (scriptOpcode == 5059) {
 													Static6.outboundBuffer.pIsaac1(167);
 													Static6.outboundBuffer.p1(0);
-													interfaceData = Static6.outboundBuffer.position;
+													interfaceData = Static6.outboundBuffer.offset;
 													Static6.outboundBuffer.p1(0);
 													Static6.outboundBuffer.p2(Static122.aQuickChatPhrase_1.anInt439);
 													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aQuickChatPhrase_1.anIntArray33);
-													Static6.outboundBuffer.p1len(Static6.outboundBuffer.position - interfaceData);
+													Static6.outboundBuffer.p1len(Static6.outboundBuffer.offset - interfaceData);
 													continue;
 												}
 												if (scriptOpcode == 5060) {
@@ -2610,21 +2612,21 @@ public final class Static88 {
 													chatTyped = Static3.scriptStringValues[local26];
 													Static6.outboundBuffer.pIsaac1(178);
 													Static6.outboundBuffer.p1(0);
-													interfaceType = Static6.outboundBuffer.position;
-													Static6.outboundBuffer.p8(chatTyped.toBase37());
+													interfaceType = Static6.outboundBuffer.offset;
+													Static6.outboundBuffer.p8(chatTyped.encode37());
 													Static6.outboundBuffer.p2(Static122.aQuickChatPhrase_1.anInt439);
 													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aQuickChatPhrase_1.anIntArray33);
-													Static6.outboundBuffer.p1len(Static6.outboundBuffer.position - interfaceType);
+													Static6.outboundBuffer.p1len(Static6.outboundBuffer.offset - interfaceType);
 													continue;
 												}
 												if (scriptOpcode == 5061) {
 													Static6.outboundBuffer.pIsaac1(167);
 													Static6.outboundBuffer.p1(0);
-													interfaceData = Static6.outboundBuffer.position;
+													interfaceData = Static6.outboundBuffer.offset;
 													Static6.outboundBuffer.p1(1);
 													Static6.outboundBuffer.p2(Static122.aQuickChatPhrase_1.anInt439);
 													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.putDynamics(Static6.outboundBuffer, Static122.aQuickChatPhrase_1.anIntArray33);
-													Static6.outboundBuffer.p1len(Static6.outboundBuffer.position - interfaceData);
+													Static6.outboundBuffer.p1len(Static6.outboundBuffer.offset - interfaceData);
 													continue;
 												}
 												if (scriptOpcode == 5062) {
@@ -2928,12 +2930,12 @@ public final class Static88 {
 														interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 														interfaceData = Static254.scriptIntValues[intValueIndex];
 														Static241.method4540(false, 3, interfaceData, interfaceType);
-														Static254.scriptIntValues[intValueIndex++] = Static69.aFrame2 == null ? 0 : 1;
+														Static254.scriptIntValues[intValueIndex++] = GameShell.fullScreenFrame == null ? 0 : 1;
 														continue;
 													}
 													if (scriptOpcode == 5301) {
-														if (Static69.aFrame2 != null) {
-															Static241.method4540(false, Static214.anInt5581, -1, -1);
+														if (GameShell.fullScreenFrame != null) {
+															Static241.method4540(false, Preferences.favoriteWorlds, -1, -1);
 														}
 														continue;
 													}
@@ -2951,8 +2953,8 @@ public final class Static88 {
 														continue;
 													}
 													if (scriptOpcode == 5305) {
-														interfaceType = Static22.anInt729;
-														interfaceData = Static114.anInt5831;
+														interfaceType = Preferences.fullScreenHeight;
+														interfaceData = Preferences.fullScreenWidth;
 														childCount = -1;
 														@Pc(7833) DisplayMode[] local7833 = DisplayMode.getModes();
 														for (start = 0; start < local7833.length; start++) {
@@ -2979,7 +2981,7 @@ public final class Static88 {
 														continue;
 													}
 													if (scriptOpcode == 5308) {
-														Static254.scriptIntValues[intValueIndex++] = Static214.anInt5581;
+														Static254.scriptIntValues[intValueIndex++] = Preferences.favoriteWorlds;
 														continue;
 													}
 													if (scriptOpcode == 5309) {
@@ -2988,8 +2990,8 @@ public final class Static88 {
 														if (interfaceData < 0 || interfaceData > 2) {
 															interfaceData = 0;
 														}
-														Static214.anInt5581 = interfaceData;
-														Static203.method3663(GameShell.signLink);
+														Preferences.favoriteWorlds = interfaceData;
+														Preferences.write(GameShell.signLink);
 														continue;
 													}
 												} else if (scriptOpcode < 5500) {
@@ -3021,7 +3023,7 @@ public final class Static88 {
 														interfaceData = Static254.scriptIntValues[intValueIndex];
 														interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 														if (interfaceData >= 0 && interfaceData < 2) {
-															Static107.anIntArrayArrayArray9[interfaceData] = new int[interfaceType << 1][4];
+															Camera.anIntArrayArrayArray9[interfaceData] = new int[interfaceType << 1][4];
 														}
 														continue;
 													}
@@ -3034,23 +3036,23 @@ public final class Static88 {
 														start = Static254.scriptIntValues[intValueIndex + 4];
 														@Pc(8108) int local8108 = Static254.scriptIntValues[intValueIndex + 6];
 														childId = Static254.scriptIntValues[intValueIndex + 5];
-														if (interfaceData >= 0 && interfaceData < 2 && Static107.anIntArrayArrayArray9[interfaceData] != null && interfaceType >= 0 && Static107.anIntArrayArrayArray9[interfaceData].length > interfaceType) {
-															Static107.anIntArrayArrayArray9[interfaceData][interfaceType] = new int[] { (childCount >> 14 & 0x3FFF) * 128, local652, (childCount & 0x3FFF) * 128, local8108 };
-															Static107.anIntArrayArrayArray9[interfaceData][interfaceType + 1] = new int[] { (start >> 14 & 0x3FFF) * 128, childId, (start & 0x3FFF) * 128 };
+														if (interfaceData >= 0 && interfaceData < 2 && Camera.anIntArrayArrayArray9[interfaceData] != null && interfaceType >= 0 && Camera.anIntArrayArrayArray9[interfaceData].length > interfaceType) {
+															Camera.anIntArrayArrayArray9[interfaceData][interfaceType] = new int[] { (childCount >> 14 & 0x3FFF) * 128, local652, (childCount & 0x3FFF) * 128, local8108 };
+															Camera.anIntArrayArrayArray9[interfaceData][interfaceType + 1] = new int[] { (start >> 14 & 0x3FFF) * 128, childId, (start & 0x3FFF) * 128 };
 														}
 														continue;
 													}
 													if (scriptOpcode == 5407) {
 														intValueIndex--;
-														interfaceData = Static107.anIntArrayArrayArray9[Static254.scriptIntValues[intValueIndex]].length >> 1;
+														interfaceData = Camera.anIntArrayArrayArray9[Static254.scriptIntValues[intValueIndex]].length >> 1;
 														Static254.scriptIntValues[intValueIndex++] = interfaceData;
 														continue;
 													}
 													if (scriptOpcode == 5411) {
-														if (Static69.aFrame2 != null) {
-															Static241.method4540(false, Static214.anInt5581, -1, -1);
+														if (GameShell.fullScreenFrame != null) {
+															Static241.method4540(false, Preferences.favoriteWorlds, -1, -1);
 														}
-														if (Static39.frame == null) {
+														if (GameShell.frame == null) {
 															Static169.openUrl(Static15.method479(), false);
 														} else {
 															System.exit(0);
@@ -3077,18 +3079,18 @@ public final class Static88 {
 														continue;
 													}
 													if (scriptOpcode == 5421) {
-														if (Static69.aFrame2 != null) {
-															Static241.method4540(false, Static214.anInt5581, -1, -1);
+														if (GameShell.fullScreenFrame != null) {
+															Static241.method4540(false, Preferences.favoriteWorlds, -1, -1);
 														}
 														intValueIndex--;
 														local1552 = Static254.scriptIntValues[intValueIndex] == 1;
 														local26--;
 														chatTyped = Static3.scriptStringValues[local26];
 														@Pc(8356) JString local8356 = Static34.method882(new JString[] { Static15.method479(), chatTyped });
-														if (Static39.frame != null || local1552 && SignLink.anInt5928 != 3 && SignLink.osName.startsWith("win") && !Static178.aBoolean203) {
+														if (GameShell.frame != null || local1552 && SignLink.anInt5928 != 3 && SignLink.osName.startsWith("win") && !Static178.aBoolean203) {
 															Static164.newTab = local1552;
 															Static175.url = local8356;
-															Static33.openUrlRequest = GameShell.signLink.method5131(new String(local8356.method3148(), "ISO-8859-1"));
+															Static33.openUrlRequest = GameShell.signLink.openUrl(new String(local8356.method3148(), "ISO-8859-1"));
 															continue;
 														}
 														Static169.openUrl(local8356, local1552);
@@ -3163,7 +3165,7 @@ public final class Static88 {
 														local652 = Static254.scriptIntValues[intValueIndex + 3];
 														childCount = Static254.scriptIntValues[intValueIndex + 2];
 														interfaceType = Static254.scriptIntValues[intValueIndex + 1];
-														Static141.method2722(false, childCount, interfaceType, local652, (interfaceData & 0x3FFF) - Static142.originZ, (interfaceData >> 14 & 0x3FFF) - Static225.originX);
+														Camera.method2722(false, childCount, interfaceType, local652, (interfaceData & 0x3FFF) - Camera.originZ, (interfaceData >> 14 & 0x3FFF) - Camera.originX);
 														continue;
 													}
 													if (scriptOpcode == 5501) {
@@ -3172,7 +3174,7 @@ public final class Static88 {
 														interfaceData = Static254.scriptIntValues[intValueIndex];
 														local652 = Static254.scriptIntValues[intValueIndex + 3];
 														childCount = Static254.scriptIntValues[intValueIndex + 2];
-														Static260.method3849(interfaceType, (interfaceData & 0x3FFF) - Static142.originZ, childCount, (interfaceData >> 14 & 0x3FFF) - Static225.originX, local652);
+														Camera.method3849(interfaceType, (interfaceData & 0x3FFF) - Camera.originZ, childCount, (interfaceData >> 14 & 0x3FFF) - Camera.originX, local652);
 														continue;
 													}
 													if (scriptOpcode == 5502) {
@@ -3181,49 +3183,49 @@ public final class Static88 {
 														if (interfaceData >= 2) {
 															throw new RuntimeException();
 														}
-														Static155.anInt3718 = interfaceData;
+														Camera.anInt3718 = interfaceData;
 														interfaceType = Static254.scriptIntValues[intValueIndex + 1];
-														if (Static107.anIntArrayArrayArray9[Static155.anInt3718].length >> 1 <= interfaceType + 1) {
+														if (Camera.anIntArrayArrayArray9[Camera.anInt3718].length >> 1 <= interfaceType + 1) {
 															throw new RuntimeException();
 														}
-														Static127.anInt3125 = interfaceType;
-														ClientScriptRunner.anInt5224 = 0;
-														Static228.anInt5101 = Static254.scriptIntValues[intValueIndex + 2];
-														Static114.anInt5843 = Static254.scriptIntValues[intValueIndex + 3];
+														Camera.anInt3125 = interfaceType;
+														Camera.anInt5224 = 0;
+														Camera.anInt5101 = Static254.scriptIntValues[intValueIndex + 2];
+														Camera.anInt5843 = Static254.scriptIntValues[intValueIndex + 3];
 														childCount = Static254.scriptIntValues[intValueIndex + 4];
 														if (childCount >= 2) {
 															throw new RuntimeException();
 														}
-														Static52.anInt1694 = childCount;
+														Camera.anInt1694 = childCount;
 														local652 = Static254.scriptIntValues[intValueIndex + 5];
-														if (Static107.anIntArrayArrayArray9[Static52.anInt1694].length >> 1 <= local652 + 1) {
+														if (Camera.anIntArrayArrayArray9[Camera.anInt1694].length >> 1 <= local652 + 1) {
 															throw new RuntimeException();
 														}
-														Static75.anInt2119 = local652;
-														Static227.anInt5096 = 3;
+														Camera.anInt2119 = local652;
+														Camera.cameraType = 3;
 														continue;
 													}
 													if (scriptOpcode == 5503) {
-														Static35.method902();
+														Camera.resetCameraEffects();
 														continue;
 													}
 													if (scriptOpcode == 5504) {
 														intValueIndex -= 2;
-														Static72.orbitCameraPitch = Static254.scriptIntValues[intValueIndex];
-														Static57.orbitCameraYaw = Static254.scriptIntValues[intValueIndex + 1];
-														if (Static227.anInt5096 == 2) {
-															Static184.cameraYaw = Static57.orbitCameraYaw;
-															Static240.cameraPitch = Static72.orbitCameraPitch;
+														Camera.orbitCameraPitch = Static254.scriptIntValues[intValueIndex];
+														Camera.orbitCameraYaw = Static254.scriptIntValues[intValueIndex + 1];
+														if (Camera.cameraType == 2) {
+															Camera.cameraYaw = Camera.orbitCameraYaw;
+															Camera.cameraPitch = Camera.orbitCameraPitch;
 														}
-														SceneCamera.setMaxSurroundingTerrainHeight();
+														SceneCamera.clampCameraAngle();
 														continue;
 													}
 													if (scriptOpcode == 5505) {
-														Static254.scriptIntValues[intValueIndex++] = Static72.orbitCameraPitch;
+														Static254.scriptIntValues[intValueIndex++] = Camera.orbitCameraPitch;
 														continue;
 													}
 													if (scriptOpcode == 5506) {
-														Static254.scriptIntValues[intValueIndex++] = Static57.orbitCameraYaw;
+														Static254.scriptIntValues[intValueIndex++] = Camera.orbitCameraYaw;
 														continue;
 													}
 												} else if (scriptOpcode < 5700) {
@@ -3258,7 +3260,7 @@ public final class Static88 {
 													if (scriptOpcode == 5604) {
 														local26--;
 														if (Static244.gamestate == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
-															Static78.method1691(Static3.scriptStringValues[local26].toBase37());
+															Static78.method1691(Static3.scriptStringValues[local26].encode37());
 														}
 														continue;
 													}
@@ -3266,7 +3268,7 @@ public final class Static88 {
 														intValueIndex -= 4;
 														local26 -= 2;
 														if (Static244.gamestate == 10 && Static219.anInt4937 == 0 && Static184.anInt4348 == 0 && Static179.step == 0 && Static82.anInt2231 == 0) {
-															Static40.method1016(Static254.scriptIntValues[intValueIndex], Static254.scriptIntValues[intValueIndex + 3], Static254.scriptIntValues[intValueIndex + 1], Static3.scriptStringValues[local26 + 1], Static3.scriptStringValues[local26].toBase37(), Static254.scriptIntValues[intValueIndex + 2]);
+															Static40.method1016(Static254.scriptIntValues[intValueIndex], Static254.scriptIntValues[intValueIndex + 3], Static254.scriptIntValues[intValueIndex + 1], Static3.scriptStringValues[local26 + 1], Static3.scriptStringValues[local26].encode37(), Static254.scriptIntValues[intValueIndex + 2]);
 														}
 														continue;
 													}
@@ -3331,7 +3333,7 @@ public final class Static88 {
 															}
 														}
 														Static269.method2172();
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3341,7 +3343,7 @@ public final class Static88 {
 														Static90.method1854();
 														Static145.method2742();
 														Static269.method2218();
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3349,7 +3351,7 @@ public final class Static88 {
 														intValueIndex--;
 														Static80.aBoolean231 = Static254.scriptIntValues[intValueIndex] == 1;
 														Static269.method2218();
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3357,7 +3359,7 @@ public final class Static88 {
 														intValueIndex--;
 														Static250.aBoolean283 = Static254.scriptIntValues[intValueIndex] == 1;
 														Static145.method2742();
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3365,35 +3367,35 @@ public final class Static88 {
 														intValueIndex--;
 														Static53.aBoolean99 = Static254.scriptIntValues[intValueIndex] == 1;
 														((Js5GlTextureProvider) Pix3D.anInterface1_2).method3245(!Static53.aBoolean99);
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
 													if (scriptOpcode == 6007) {
 														intValueIndex--;
 														Static15.lowMemory = Static254.scriptIntValues[intValueIndex] == 1;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
 													if (scriptOpcode == 6008) {
 														intValueIndex--;
 														Static11.aBoolean15 = Static254.scriptIntValues[intValueIndex] == 1;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
 													if (scriptOpcode == 6009) {
 														intValueIndex--;
 														Static159.aBoolean189 = Static254.scriptIntValues[intValueIndex] == 1;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
 													if (scriptOpcode == 6010) {
 														intValueIndex--;
 														Static209.aBoolean240 = Static254.scriptIntValues[intValueIndex] == 1;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3404,7 +3406,7 @@ public final class Static88 {
 															interfaceData = 0;
 														}
 														Static139.anInt3451 = interfaceData;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3431,7 +3433,7 @@ public final class Static88 {
 															}
 														}
 														Static145.method2742();
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3441,7 +3443,7 @@ public final class Static88 {
 														if (GlRenderer.enabled) {
 															Static145.method2742();
 														}
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3451,7 +3453,7 @@ public final class Static88 {
 														if (GlRenderer.enabled) {
 															Static86.method1799();
 														}
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3471,7 +3473,7 @@ public final class Static88 {
 														intValueIndex--;
 														Static99.aBoolean143 = Static254.scriptIntValues[intValueIndex] == 1;
 														Static211.method930();
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3485,7 +3487,7 @@ public final class Static88 {
 															interfaceData = 127;
 														}
 														Static125.anInt3104 = interfaceData;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3510,7 +3512,7 @@ public final class Static88 {
 															}
 															Static12.anInt391 = interfaceData;
 														}
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3523,8 +3525,8 @@ public final class Static88 {
 														if (interfaceData > 127) {
 															interfaceData = 127;
 														}
-														Static30.anInt978 = interfaceData;
-														Static203.method3663(GameShell.signLink);
+														Preferences.ambientSoundsVolume = interfaceData;
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														continue;
 													}
@@ -3549,7 +3551,7 @@ public final class Static88 {
 															interfaceData = 0;
 														}
 														Static76.method1645(interfaceData);
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														Static18.sentToServer = false;
 														Static254.scriptIntValues[intValueIndex++] = local1552 ? 0 : 1;
 														continue;
@@ -3561,13 +3563,13 @@ public final class Static88 {
 															interfaceData = 0;
 														}
 														Static102.anInt2679 = interfaceData;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														continue;
 													}
 													if (scriptOpcode == 6028) {
 														intValueIndex--;
 														Static64.aBoolean111 = Static254.scriptIntValues[intValueIndex] != 0;
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														continue;
 													}
 												} else if (scriptOpcode < 6200) {
@@ -3640,7 +3642,7 @@ public final class Static88 {
 														continue;
 													}
 													if (scriptOpcode == 6120) {
-														Static254.scriptIntValues[intValueIndex++] = Static30.anInt978;
+														Static254.scriptIntValues[intValueIndex++] = Preferences.ambientSoundsVolume;
 														continue;
 													}
 													if (scriptOpcode == 6121) {
@@ -3845,7 +3847,7 @@ public final class Static88 {
 													if (scriptOpcode == 6504) {
 														intValueIndex--;
 														Static164.anInt3988 = Static254.scriptIntValues[intValueIndex];
-														Static203.method3663(GameShell.signLink);
+														Preferences.write(GameShell.signLink);
 														continue;
 													}
 													if (scriptOpcode == 6505) {
@@ -3884,12 +3886,12 @@ public final class Static88 {
 												} else if (scriptOpcode < 6700) {
 													if (scriptOpcode == 6600) {
 														intValueIndex--;
-														Static33.aBoolean63 = Static254.scriptIntValues[intValueIndex] == 1;
-														Static203.method3663(GameShell.signLink);
+														Preferences.aBoolean63 = Static254.scriptIntValues[intValueIndex] == 1;
+														Preferences.write(GameShell.signLink);
 														continue;
 													}
 													if (scriptOpcode == 6601) {
-														Static254.scriptIntValues[intValueIndex++] = Static33.aBoolean63 ? 1 : 0;
+														Static254.scriptIntValues[intValueIndex++] = Preferences.aBoolean63 ? 1 : 0;
 														continue;
 													}
 												}
@@ -3912,9 +3914,9 @@ public final class Static88 {
 										interfaceData = Static254.scriptIntValues[intValueIndex];
 										local5294 = Static110.method2277(interfaceType);
 										if (local5294.method2078()) {
-											Static3.scriptStringValues[local26++] = Static271.get(interfaceData).getParam(local5294.aClass100_544, interfaceType);
+											Static3.scriptStringValues[local26++] = LocTypeList.get(interfaceData).getParam(local5294.aClass100_544, interfaceType);
 										} else {
-											Static254.scriptIntValues[intValueIndex++] = Static271.get(interfaceData).getParam(local5294.anInt2667, interfaceType);
+											Static254.scriptIntValues[intValueIndex++] = LocTypeList.get(interfaceData).getParam(local5294.anInt2667, interfaceType);
 										}
 										continue;
 									}
@@ -3969,7 +3971,7 @@ public final class Static88 {
 										local26 -= 2;
 										chatTypedLowercase = Static3.scriptStringValues[local26 + 1];
 										chatTyped = Static3.scriptStringValues[local26];
-										if (Static173.localPlayer.model != null && Static173.localPlayer.model.aBoolean141) {
+										if (PlayerList.self.model != null && PlayerList.self.model.aBoolean141) {
 											Static3.scriptStringValues[local26++] = chatTypedLowercase;
 											continue;
 										}
@@ -4240,7 +4242,7 @@ public final class Static88 {
 				if (client.modeWhere != 0) {
 					Static103.addMessage(Static72.aClass100_447, 0, Static136.aClass100_633);
 				}
-				Static89.report("CS2 - scr:" + clientScript.nodeId + " op:" + local44, local14378);
+				TracingException.report("CS2 - scr:" + clientScript.nodeId + " op:" + local44, local14378);
 			} else {
 				@Pc(14385) JString local14385 = Static87.method1804(30);
 				local14385.method3113(Static219.aClass100_928).method3113(clientScript.aClass100_880);
@@ -4254,7 +4256,7 @@ public final class Static88 {
 				if (client.modeWhere != 0) {
 					Static103.addMessage(Static72.aClass100_447, 0, Static34.method882(new JString[] { Static167.aClass100_780, clientScript.aClass100_880 }));
 				}
-				Static89.report("CS2 - scr:" + clientScript.nodeId + " op:" + local44 + new String(local14385.method3148()), local14378);
+				TracingException.report("CS2 - scr:" + clientScript.nodeId + " op:" + local44 + new String(local14385.method3148()), local14378);
 			}
 		}
 	}

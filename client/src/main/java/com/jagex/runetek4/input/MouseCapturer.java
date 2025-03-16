@@ -1,8 +1,8 @@
 package com.jagex.runetek4.input;
 
-import com.jagex.runetek4.PreciseSleep;
 import com.jagex.runetek4.Static215;
 import com.jagex.runetek4.Static223;
+import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -37,7 +37,7 @@ public final class MouseCapturer implements Runnable {
 					this.coord++;
 				}
 			}
-			PreciseSleep.sleep(50L);
+			ThreadUtils.sleep(50L);
 		}
 	}
 }

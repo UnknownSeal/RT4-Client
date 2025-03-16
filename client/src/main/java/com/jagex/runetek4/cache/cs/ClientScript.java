@@ -56,10 +56,10 @@ public final class ClientScript extends CachedNode {
 		}
 		clientScript = new ClientScript();
 		@Pc(42) Packet local42 = new Packet(local22);
-		local42.position = local42.data.length - 2;
+		local42.offset = local42.data.length - 2;
 		@Pc(53) int local53 = local42.g2();
 		@Pc(63) int local63 = local42.data.length - local53 - 12 - 2;
-		local42.position = local63;
+		local42.offset = local63;
 		@Pc(70) int opcodeCount = local42.g4();
 		clientScript.localIntCount = local42.g2();
 		clientScript.localStringCount = local42.g2();
@@ -77,17 +77,17 @@ public final class ClientScript extends CachedNode {
 				while (opcode-- > 0) {
 					@Pc(136) int local136 = local42.g4();
 					@Pc(140) int local140 = local42.g4();
-					local121.pushNode(new IntWrapper(local140), (long) local136);
+					local121.put(new IntWrapper(local140), (long) local136);
 				}
 			}
 		}
-		local42.position = 0;
+		local42.offset = 0;
 		clientScript.aClass100_880 = local42.gjstrFast();
 		clientScript.opcodes = new int[opcodeCount];
 		clientScript.stringOperands = new JString[opcodeCount];
 		local107 = 0;
 		clientScript.intOperands = new int[opcodeCount];
-		while (local63 > local42.position) {
+		while (local63 > local42.offset) {
 			opcode = local42.g2();
 			if (opcode == 3) {
 				clientScript.stringOperands[local107] = local42.gjstr();
@@ -164,7 +164,7 @@ public final class ClientScript extends CachedNode {
 					register1 = VarPlayerDefinition.varPlayers[script[pc++]] * 100 / 46875;
 				}
 				if (opcode == 8) { // load_combat_level
-					register1 = Static173.localPlayer.combatLevel;
+					register1 = PlayerList.self.combatLevel;
 				}
 				if (opcode == 9) { // load_total_level
 					for (i = 0; i < 25; i++) {
@@ -203,10 +203,10 @@ public final class ClientScript extends CachedNode {
 					register1 = VarbitDefinition.getVarbitValue(i);
 				}
 				if (opcode == 18) {
-					register1 = (Static173.localPlayer.x >> 7) + Static225.originX;
+					register1 = (PlayerList.self.xFine >> 7) + Camera.originX;
 				}
 				if (opcode == 19) {
-					register1 = (Static173.localPlayer.z >> 7) + Static142.originZ;
+					register1 = (PlayerList.self.zFine >> 7) + Camera.originZ;
 				}
 				if (opcode == 20) {
 					register1 = script[pc++];

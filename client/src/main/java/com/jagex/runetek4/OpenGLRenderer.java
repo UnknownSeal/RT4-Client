@@ -73,12 +73,12 @@ public final class OpenGLRenderer {
 			}
 		}
 		if (GlRenderer.arbVboSupported) {
-			@Pc(112) ByteBuffer local112 = ByteBuffer.wrap(local4.data, 0, local4.position);
+			@Pc(112) ByteBuffer local112 = ByteBuffer.wrap(local4.data, 0, local4.offset);
 			this.aClass155_7 = new GlVertexBufferObject();
 			this.aClass155_7.method4519(local112);
 		} else {
-			this.aByteBuffer12 = ByteBuffer.allocateDirect(local4.position).order(ByteOrder.nativeOrder());
-			this.aByteBuffer12.put(local4.data, 0, local4.position);
+			this.aByteBuffer12 = ByteBuffer.allocateDirect(local4.offset).order(ByteOrder.nativeOrder());
+			this.aByteBuffer12.put(local4.data, 0, local4.offset);
 			this.aByteBuffer12.flip();
 		}
 		@Pc(147) Packet local147 = new Packet(1536);
@@ -102,12 +102,12 @@ public final class OpenGLRenderer {
 			}
 		}
 		if (GlRenderer.arbVboSupported) {
-			@Pc(293) ByteBuffer local293 = ByteBuffer.wrap(local147.data, 0, local147.position);
+			@Pc(293) ByteBuffer local293 = ByteBuffer.wrap(local147.data, 0, local147.offset);
 			this.aClass155_6 = new GlVertexBufferObject();
 			this.aClass155_6.method4517(local293);
 		} else {
-			this.aByteBuffer11 = ByteBuffer.allocateDirect(local147.position).order(ByteOrder.nativeOrder());
-			this.aByteBuffer11.put(local147.data, 0, local147.position);
+			this.aByteBuffer11 = ByteBuffer.allocateDirect(local147.offset).order(ByteOrder.nativeOrder());
+			this.aByteBuffer11.put(local147.data, 0, local147.offset);
 			this.aByteBuffer11.flip();
 		}
 	}

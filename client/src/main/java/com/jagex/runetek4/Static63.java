@@ -12,7 +12,7 @@ public final class Static63 {
 	public static int oncard_texture = 0;
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "b", descriptor = "Lclient!ih;")
-	private static final LinkList aClass69_48 = new LinkList();
+	private static final LinkedList aClass69_48 = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "c", descriptor = "I")
 	public static int anInt1943 = 0;
@@ -27,13 +27,13 @@ public final class Static63 {
 	public static int oncard_geometry = 0;
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "g", descriptor = "Lclient!ih;")
-	private static final LinkList aClass69_49 = new LinkList();
+	private static final LinkedList aClass69_49 = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "h", descriptor = "Lclient!ih;")
-	private static final LinkList aClass69_50 = new LinkList();
+	private static final LinkedList aClass69_50 = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "i", descriptor = "Lclient!ih;")
-	private static final LinkList aClass69_51 = new LinkList();
+	private static final LinkedList aClass69_51 = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!fa", name = "j", descriptor = "[I")
 	private static final int[] anIntArray151 = new int[1000];
@@ -82,23 +82,23 @@ public final class Static63 {
 		@Pc(1) GL2 local1 = GlRenderer.gl;
 		@Pc(3) int local3 = 0;
 		while (true) {
-			@Pc(8) IntWrapper local8 = (IntWrapper) aClass69_48.method2287();
+			@Pc(8) IntWrapper local8 = (IntWrapper) aClass69_48.removeHead();
 			if (local8 == null) {
 				if (local3 > 0) {
 					local1.glDeleteBuffers(local3, anIntArray151, 0);
 					local3 = 0;
 				}
 				while (true) {
-					local8 = (IntWrapper) aClass69_49.method2287();
+					local8 = (IntWrapper) aClass69_49.removeHead();
 					if (local8 == null) {
 						while (true) {
-							local8 = (IntWrapper) aClass69_50.method2287();
+							local8 = (IntWrapper) aClass69_50.removeHead();
 							if (local8 == null) {
 								if (local3 > 0) {
 									local1.glDeleteTextures(local3, anIntArray151, 0);
 								}
 								while (true) {
-									local8 = (IntWrapper) aClass69_51.method2287();
+									local8 = (IntWrapper) aClass69_51.removeHead();
 									if (local8 == null) {
 										if (oncard_geometry + oncard_2d + oncard_texture > 100663296 && MonotonicTime.get() > aLong71 + 60000L) {
 											System.gc();

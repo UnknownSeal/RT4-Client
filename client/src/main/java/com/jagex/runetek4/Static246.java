@@ -3,7 +3,8 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.invtype.InvType;
-import com.jagex.runetek4.cache.def.ActorDefinition;
+import com.jagex.runetek4.cache.def.NpcType;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -20,17 +21,17 @@ public final class Static246 {
 	public static final JString aClass100_1029 = Static28.parse("cookiehost");
 
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(BLclient!ve;Lclient!ve;)V")
-	public static void method4237(@OriginalArg(1) com.jagex.runetek4.js5.CacheArchive arg0, @OriginalArg(2) com.jagex.runetek4.js5.CacheArchive arg1) {
+	public static void method4237(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
 		Static153.aClass153_57 = arg0;
 		Static243.aClass153_97 = arg1;
 	}
 
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(Lclient!me;IIII)V")
-	public static void method4240(@OriginalArg(0) ActorDefinition npc, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+	public static void method4240(@OriginalArg(0) NpcType npc, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		if (PreciseSleep.menuActionRow >= 400) {
 			return;
 		}
-		if (npc.multinpc != null) {
+		if (npc.multiNpcs != null) {
 			npc = npc.getMultiNPC();
 		}
 		if (npc == null || !npc.active) {
@@ -39,7 +40,7 @@ public final class Static246 {
 		@Pc(35) JString tooltip = npc.name;
 		if (npc.vislevel != 0) {
 			@Pc(47) JString string = Static266.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
-			tooltip = Static34.method882(new JString[] { tooltip, Static123.getCombatLevelColorTag(npc.vislevel, Static173.localPlayer.combatLevel), Static123.aClass100_593, string, Static123.method2423(npc.vislevel), Static72.aClass100_448 });
+			tooltip = Static34.method882(new JString[] { tooltip, Static123.getCombatLevelColorTag(npc.vislevel, PlayerList.self.combatLevel), Static123.aClass100_593, string, Static123.method2423(npc.vislevel), Static72.aClass100_448 });
 		}
 		if (Static260.anInt5014 == 1) {
 			Static98.addActionRow(Static169.anInt4075, (long) arg2, Static34.method882(new JString[] { Static34.aClass100_203, Static201.aClass100_407, tooltip }), arg1, (short) 26, LocalizedText.USE, arg3);
@@ -88,7 +89,7 @@ public final class Static246 {
 				for (op = 4; op >= 0; op--) {
 					if (spellSelected[op] != null && spellSelected[op].equalsIgnoreCase(LocalizedText.ATTACK)) {
 						@Pc(271) short action = 0;
-						if (npc.vislevel > Static173.localPlayer.combatLevel) {
+						if (npc.vislevel > PlayerList.self.combatLevel) {
 							action = 2000;
 						}
 						@Pc(281) short menuOption = 0;

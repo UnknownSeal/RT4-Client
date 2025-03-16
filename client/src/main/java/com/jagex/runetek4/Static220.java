@@ -2,9 +2,10 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.NodeCache;
-import com.jagex.runetek4.scene.InteractiveObject;
-import com.jagex.runetek4.scene.tile.FloorDecoration;
+import com.jagex.runetek4.scene.Scenery;
+import com.jagex.runetek4.scene.tile.GroundDecor;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import com.jagex.runetek4.scene.tile.Wall;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -27,9 +28,9 @@ public final class Static220 {
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(IBI)V")
 	public static void method3797(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(9) LinkList local9 = Static159.levelObjStacks[Static55.currentLevel][arg1][arg0];
+		@Pc(9) LinkedList local9 = Static159.levelObjStacks[Player.plane][arg1][arg0];
 		if (local9 == null) {
-			Static187.method3420(Static55.currentLevel, arg1, arg0);
+			Static187.method3420(Player.plane, arg1, arg0);
 			return;
 		}
 		@Pc(28) int local28 = -99999999;
@@ -47,10 +48,10 @@ public final class Static220 {
 			}
 		}
 		if (local30 == null) {
-			Static187.method3420(Static55.currentLevel, arg1, arg0);
+			Static187.method3420(Player.plane, arg1, arg0);
 			return;
 		}
-		local9.method2283(local30);
+		local9.addHead(local30);
 		@Pc(89) ObjStack local89 = null;
 		@Pc(91) ObjStack local91 = null;
 		for (local35 = (ObjStackNode) local9.head(); local35 != null; local35 = (ObjStackNode) local9.next()) {
@@ -65,7 +66,7 @@ public final class Static220 {
 			}
 		}
 		@Pc(152) long local152 = (long) ((arg0 << 7) + arg1 + 1610612736);
-		Static69.method1543(Static55.currentLevel, arg1, arg0, Static207.getHeightmapY(Static55.currentLevel, arg1 * 128 + 64, arg0 * 128 + 64), local30.aClass8_Sub7_1, local152, local89, local91);
+		Static69.method1543(Player.plane, arg1, arg0, SceneGraph.getTileHeight(Player.plane, arg1 * 128 + 64, arg0 * 128 + 64), local30.aClass8_Sub7_1, local152, local89, local91);
 	}
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(JB)V")
@@ -99,18 +100,18 @@ public final class Static220 {
 		@Pc(94) int local94;
 		if (GlRenderer.enabled) {
 			@Pc(68) GlModel local68 = (GlModel) local10;
-			if (arg5 != Static207.getHeightmapY(Static55.currentLevel, arg3 + local42, arg1 + local48) || arg5 != Static207.getHeightmapY(Static55.currentLevel, arg3 + local45, local51 + arg1)) {
+			if (arg5 != SceneGraph.getTileHeight(Player.plane, arg3 + local42, arg1 + local48) || arg5 != SceneGraph.getTileHeight(Player.plane, arg3 + local45, local51 + arg1)) {
 				for (local94 = 0; local94 < local68.anInt5295; local94++) {
-					local68.vertexY[local94] += Static207.getHeightmapY(Static55.currentLevel, local68.vertexX[local94] + arg3, local68.vertexZ[local94] + arg1) - arg5;
+					local68.vertexY[local94] += SceneGraph.getTileHeight(Player.plane, local68.vertexX[local94] + arg3, local68.vertexZ[local94] + arg1) - arg5;
 				}
 				local68.vertexBuffer.valid = false;
 				local68.bounds.valid = false;
 			}
 		} else {
 			@Pc(142) SoftwareModel local142 = (SoftwareModel) local10;
-			if (arg5 != Static207.getHeightmapY(Static55.currentLevel, local42 + arg3, local48 + arg1) || arg5 != Static207.getHeightmapY(Static55.currentLevel, arg3 + local45, local51 + arg1)) {
+			if (arg5 != SceneGraph.getTileHeight(Player.plane, local42 + arg3, local48 + arg1) || arg5 != SceneGraph.getTileHeight(Player.plane, arg3 + local45, local51 + arg1)) {
 				for (local94 = 0; local94 < local142.anInt5788; local94++) {
-					local142.anIntArray527[local94] += Static207.getHeightmapY(Static55.currentLevel, arg3 + local142.anIntArray528[local94], local142.anIntArray531[local94] + arg1) - arg5;
+					local142.anIntArray527[local94] += SceneGraph.getTileHeight(Player.plane, arg3 + local142.anIntArray528[local94], local142.anIntArray531[local94] + arg1) - arg5;
 				}
 				local142.aBoolean305 = false;
 			}
@@ -126,26 +127,26 @@ public final class Static220 {
 					@Pc(22) SceneTile local22 = Static130.levelTiles[local1][local6][local11];
 					if (local22 != null) {
 						@Pc(27) Wall local27 = local22.wall;
-						if (local27 != null && local27.modelA.method4543()) {
-							Static69.method1544(local27.modelA, local1, local6, local11, 1, 1);
+						if (local27 != null && local27.primary.method4543()) {
+							Static69.method1544(local27.primary, local1, local6, local11, 1, 1);
 							if (local27.modelB != null && local27.modelB.method4543()) {
 								Static69.method1544(local27.modelB, local1, local6, local11, 1, 1);
-								local27.modelA.method4544(local27.modelB, 0, 0, 0, false);
-								local27.modelB = local27.modelB.method4539();
+								local27.primary.method4544(local27.modelB, 0, 0, 0, false);
+								local27.modelB = local27.modelB.createModel();
 							}
-							local27.modelA = local27.modelA.method4539();
+							local27.primary = local27.primary.createModel();
 						}
 						for (@Pc(83) int local83 = 0; local83 < local22.entityCount; local83++) {
-							@Pc(92) InteractiveObject local92 = local22.interactiveObjects[local83];
-							if (local92 != null && local92.aClass8_4.method4543()) {
-								Static69.method1544(local92.aClass8_4, local1, local6, local11, local92.anInt1713 + 1 - local92.anInt1701, local92.anInt1698 - local92.anInt1696 + 1);
-								local92.aClass8_4 = local92.aClass8_4.method4539();
+							@Pc(92) Scenery local92 = local22.sceneries[local83];
+							if (local92 != null && local92.entity.method4543()) {
+								Static69.method1544(local92.entity, local1, local6, local11, local92.anInt1713 + 1 - local92.anInt1701, local92.anInt1698 - local92.anInt1696 + 1);
+								local92.entity = local92.entity.createModel();
 							}
 						}
-						@Pc(131) FloorDecoration local131 = local22.floorDecoration;
-						if (local131 != null && local131.renderable.method4543()) {
-							Static264.method3574(local131.renderable, local1, local6, local11);
-							local131.renderable = local131.renderable.method4539();
+						@Pc(131) GroundDecor local131 = local22.groundDecor;
+						if (local131 != null && local131.entity.method4543()) {
+							Static264.method3574(local131.entity, local1, local6, local11);
+							local131.entity = local131.entity.createModel();
 						}
 					}
 				}

@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -7,10 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static228 {
 
 	@OriginalMember(owner = "client!sh", name = "a", descriptor = "Lclient!ih;")
-	public static final LinkList aClass69_120 = new LinkList();
-
-	@OriginalMember(owner = "client!sh", name = "c", descriptor = "I")
-	public static int anInt5101 = 0;
+	public static final LinkedList aClass69_120 = new LinkedList();
 
 	@OriginalMember(owner = "client!sh", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_967 = Static28.parse("");
@@ -33,17 +31,17 @@ public final class Static228 {
 	@OriginalMember(owner = "client!sh", name = "a", descriptor = "(II)[B")
 	public static synchronized byte[] alloc(@OriginalArg(1) int arg0) {
 		@Pc(22) byte[] local22;
-		if (arg0 == 100 && Static115.anInt2937 > 0) {
-			local22 = Static277.aByteArrayArray16[--Static115.anInt2937];
-			Static277.aByteArrayArray16[Static115.anInt2937] = null;
+		if (arg0 == 100 && Packet.allocatedMinCount > 0) {
+			local22 = Packet.allocatedMin[--Packet.allocatedMinCount];
+			Packet.allocatedMin[Packet.allocatedMinCount] = null;
 			return local22;
-		} else if (arg0 == 5000 && Static251.anInt5459 > 0) {
-			local22 = Static12.aByteArrayArray2[--Static251.anInt5459];
-			Static12.aByteArrayArray2[Static251.anInt5459] = null;
+		} else if (arg0 == 5000 && Packet.allocatedMidCount > 0) {
+			local22 = Packet.allocatedMid[--Packet.allocatedMidCount];
+			Packet.allocatedMid[Packet.allocatedMidCount] = null;
 			return local22;
-		} else if (arg0 == 30000 && Static224.anInt5064 > 0) {
-			local22 = Static41.aByteArrayArray6[--Static224.anInt5064];
-			Static41.aByteArrayArray6[Static224.anInt5064] = null;
+		} else if (arg0 == 30000 && Packet.allocatedMaxCount > 0) {
+			local22 = Packet.allocatedMax[--Packet.allocatedMaxCount];
+			Packet.allocatedMax[Packet.allocatedMaxCount] = null;
 			return local22;
 		} else {
 			return new byte[arg0];
@@ -55,34 +53,4 @@ public final class Static228 {
 		Static79.method1697(arg0, arg2, Static101.aClass10_Sub1Array1.length - 1, arg3, 0, arg1);
 	}
 
-	@OriginalMember(owner = "client!sh", name = "a", descriptor = "(I[JII[Ljava/lang/Object;)V")
-	public static void method3909(@OriginalArg(0) int arg0, @OriginalArg(1) long[] arg1, @OriginalArg(3) int arg2, @OriginalArg(4) Object[] arg3) {
-		if (arg2 >= arg0) {
-			return;
-		}
-		@Pc(16) int local16 = arg2;
-		@Pc(23) int local23 = (arg2 + arg0) / 2;
-		@Pc(27) long local27 = arg1[local23];
-		arg1[local23] = arg1[arg0];
-		arg1[arg0] = local27;
-		@Pc(41) Object local41 = arg3[local23];
-		arg3[local23] = arg3[arg0];
-		arg3[arg0] = local41;
-		for (@Pc(53) int local53 = arg2; local53 < arg0; local53++) {
-			if (local27 + (long) (local53 & 0x1) > arg1[local53]) {
-				@Pc(72) long local72 = arg1[local53];
-				arg1[local53] = arg1[local16];
-				arg1[local16] = local72;
-				@Pc(86) Object local86 = arg3[local53];
-				arg3[local53] = arg3[local16];
-				arg3[local16++] = local86;
-			}
-		}
-		arg1[arg0] = arg1[local16];
-		arg1[local16] = local27;
-		arg3[arg0] = arg3[local16];
-		arg3[local16] = local41;
-		method3909(local16 - 1, arg1, arg2, arg3);
-		method3909(arg0, arg1, local16 + 1, arg3);
-	}
 }

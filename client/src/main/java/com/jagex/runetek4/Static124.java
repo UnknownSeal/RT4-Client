@@ -33,11 +33,6 @@ public final class Static124 {
 	@OriginalMember(owner = "runetek4.client!jk", name = "G", descriptor = "Z")
 	public static boolean aBoolean157 = false;
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "e", descriptor = "(B)V")
-	public static void method2433() {
-		Static262.aClass99_34.method3104();
-	}
-
 	@OriginalMember(owner = "runetek4.client!jk", name = "a", descriptor = "(ILclient!na;)Lclient!bn;")
 	public static Map method2434(@OriginalArg(1) JString arg0) {
 		for (@Pc(15) Map local15 = (Map) Static228.aClass69_120.head(); local15 != null; local15 = (Map) Static228.aClass69_120.next()) {
@@ -77,7 +72,7 @@ public final class Static124 {
 					@Pc(90) CollisionMap local90 = null;
 					if (!arg1) {
 						@Pc(95) int local95 = local50;
-						if ((Static12.aByteArrayArrayArray2[1][local72][local76] & 0x2) == 2) {
+						if ((SceneGraph.renderFlags[1][local72][local76] & 0x2) == 2) {
 							local95 = local50 - 1;
 						}
 						if (local95 >= 0) {

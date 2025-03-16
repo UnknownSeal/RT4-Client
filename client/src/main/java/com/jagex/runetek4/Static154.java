@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import java.awt.Canvas;
-
 import com.jagex.runetek4.cache.cs.ClientScript;
 import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -9,9 +7,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static154 {
-
-	@OriginalMember(owner = "runetek4.client!md", name = "L", descriptor = "Ljava/awt/Canvas;")
-	public static Canvas canvas;
 
 	@OriginalMember(owner = "runetek4.client!md", name = "S", descriptor = "I")
 	public static int anInt3709;

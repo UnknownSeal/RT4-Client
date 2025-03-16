@@ -26,6 +26,54 @@ public final class JString implements StringInterface {
 	@OriginalMember(owner = "runetek4.client!na", name = "N", descriptor = "Z")
 	private boolean aBoolean193 = true;
 
+	@OriginalMember(owner = "runetek4.client!kg", name = "a", descriptor = "([BI[BII)V")
+	public static void copy(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) byte[] arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+		@Pc(15) int local15;
+		if (arg0 == arg2) {
+			if (arg1 == arg3) {
+				return;
+			}
+			if (arg3 > arg1 && arg3 < arg1 + arg4) {
+				local15 = arg4 - 1;
+				@Pc(19) int local19 = arg1 + local15;
+				@Pc(23) int local23 = arg3 + local15;
+				local15 = local19 - local15;
+				local15 += 7;
+				while (local19 >= local15) {
+					arg2[local23--] = arg0[local19--];
+					arg2[local23--] = arg0[local19--];
+					arg2[local23--] = arg0[local19--];
+					arg2[local23--] = arg0[local19--];
+					arg2[local23--] = arg0[local19--];
+					arg2[local23--] = arg0[local19--];
+					arg2[local23--] = arg0[local19--];
+					arg2[local23--] = arg0[local19--];
+				}
+				local15 -= 7;
+				while (local19 >= local15) {
+					arg2[local23--] = arg0[local19--];
+				}
+				return;
+			}
+		}
+		local15 = arg4 + arg1;
+		@Pc(115) int local115 = local15 - 7;
+		while (arg1 < local115) {
+			arg2[arg3++] = arg0[arg1++];
+			arg2[arg3++] = arg0[arg1++];
+			arg2[arg3++] = arg0[arg1++];
+			arg2[arg3++] = arg0[arg1++];
+			arg2[arg3++] = arg0[arg1++];
+			arg2[arg3++] = arg0[arg1++];
+			arg2[arg3++] = arg0[arg1++];
+			arg2[arg3++] = arg0[arg1++];
+		}
+		local15 = local115 + 7;
+		while (arg1 < local15) {
+			arg2[arg3++] = arg0[arg1++];
+		}
+	}
+
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Z)Ljava/net/URL;")
 	public final URL method3107() throws MalformedURLException {
 		return new URL(new String(this.aByteArray52, 0, this.anInt4030));
@@ -140,10 +188,10 @@ public final class JString implements StringInterface {
 			for (local31 = 1; local31 < arg0.anInt4030 + this.anInt4030; local31 += local31) {
 			}
 			@Pc(51) byte[] local51 = new byte[local31];
-			Static289.method2612(this.aByteArray52, 0, local51, 0, this.anInt4030);
+			copy(this.aByteArray52, 0, local51, 0, this.anInt4030);
 			this.aByteArray52 = local51;
 		}
-		Static289.method2612(arg0.aByteArray52, 0, this.aByteArray52, this.anInt4030, arg0.anInt4030);
+		copy(arg0.aByteArray52, 0, this.aByteArray52, this.anInt4030, arg0.anInt4030);
 		this.anInt4030 += arg0.anInt4030;
 		return this;
 	}
@@ -217,10 +265,10 @@ public final class JString implements StringInterface {
 				for (local43 = 1; local43 < this.anInt4030 + arg0.anInt4030; local43 += local43) {
 				}
 				@Pc(63) byte[] local63 = new byte[local43];
-				Static289.method2612(this.aByteArray52, 0, local63, 0, this.anInt4030);
+				copy(this.aByteArray52, 0, local63, 0, this.anInt4030);
 				this.aByteArray52 = local63;
 			}
-			Static289.method2612(arg0.aByteArray52, arg1, this.aByteArray52, this.anInt4030, arg2 - arg1);
+			copy(arg0.aByteArray52, arg1, this.aByteArray52, this.anInt4030, arg2 - arg1);
 			this.anInt4030 += arg2 - arg1;
 			return this;
 		} else {
@@ -334,7 +382,7 @@ public final class JString implements StringInterface {
 		@Pc(23) JString local23 = new JString();
 		local23.aByteArray52 = new byte[this.anInt4030 + 1];
 		local23.anInt4030 = this.anInt4030 + 1;
-		Static289.method2612(this.aByteArray52, 0, local23.aByteArray52, 0, this.anInt4030);
+		copy(this.aByteArray52, 0, local23.aByteArray52, 0, this.anInt4030);
 		local23.aByteArray52[this.anInt4030] = (byte) arg0;
 		return local23;
 	}
@@ -386,7 +434,7 @@ public final class JString implements StringInterface {
 				for (local30 = 1; local30 < arg0; local30 += local30) {
 				}
 				@Pc(45) byte[] local45 = new byte[local30];
-				Static289.method2612(this.aByteArray52, 0, local45, 0, this.anInt4030);
+				copy(this.aByteArray52, 0, local45, 0, this.anInt4030);
 				this.aByteArray52 = local45;
 			}
 			for (local30 = this.anInt4030; local30 < arg0; local30++) {
@@ -405,7 +453,7 @@ public final class JString implements StringInterface {
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(ZLjava/applet/Applet;)V")
 	public final void method3134(@OriginalArg(1) Applet arg0) throws Throwable {
 		@Pc(16) String local16 = new String(this.aByteArray52, 0, this.anInt4030);
-		BrowserControl.method1759(arg0, local16);
+		BrowserControl.eval(arg0, local16);
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(III)I")
@@ -429,7 +477,7 @@ public final class JString implements StringInterface {
 		@Pc(7) JString local7 = new JString();
 		local7.anInt4030 = arg0 - arg1;
 		local7.aByteArray52 = new byte[arg0 - arg1];
-		Static289.method2612(this.aByteArray52, arg1, local7.aByteArray52, 0, local7.anInt4030);
+		copy(this.aByteArray52, arg1, local7.aByteArray52, 0, local7.anInt4030);
 		return local7;
 	}
 
@@ -688,7 +736,7 @@ public final class JString implements StringInterface {
 	@OriginalMember(owner = "runetek4.client!na", name = "i", descriptor = "(I)[B")
 	public final byte[] method3148() {
 		@Pc(7) byte[] local7 = new byte[this.anInt4030];
-		Static289.method2612(this.aByteArray52, 0, local7, 0, this.anInt4030);
+		copy(this.aByteArray52, 0, local7, 0, this.anInt4030);
 		return local7;
 	}
 
@@ -715,7 +763,7 @@ public final class JString implements StringInterface {
 			local30 = new JagStringWrapper();
 			local30.value = this;
 			this.aBoolean193 = false;
-			Static148.aClass133_13.pushNode(local30, local9);
+			Static148.aClass133_13.put(local30, local9);
 			return this;
 		}
 	}
@@ -730,7 +778,7 @@ public final class JString implements StringInterface {
 				for (local44 = 1; local44 <= this.anInt4030; local44 += local44) {
 				}
 				@Pc(61) byte[] local61 = new byte[local44];
-				Static289.method2612(this.aByteArray52, 0, local61, 0, this.anInt4030);
+				copy(this.aByteArray52, 0, local61, 0, this.anInt4030);
 				this.aByteArray52 = local61;
 			}
 			this.aByteArray52[this.anInt4030++] = (byte) arg0;
@@ -774,7 +822,7 @@ public final class JString implements StringInterface {
 		}
 		if (this.aByteArray52.length != this.anInt4030) {
 			@Pc(26) byte[] local26 = new byte[this.anInt4030];
-			Static289.method2612(this.aByteArray52, 0, local26, 0, this.anInt4030);
+			copy(this.aByteArray52, 0, local26, 0, this.anInt4030);
 			this.aByteArray52 = local26;
 		}
 		return this;
@@ -783,7 +831,7 @@ public final class JString implements StringInterface {
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(ILjava/applet/Applet;)Ljava/lang/Object;")
 	public final Object method3157(@OriginalArg(1) Applet arg0) throws Throwable {
 		@Pc(12) String local12 = new String(this.aByteArray52, 0, this.anInt4030);
-		@Pc(17) Object local17 = BrowserControl.method1757(local12, arg0);
+		@Pc(17) Object local17 = BrowserControl.call(local12, arg0);
 		if (local17 instanceof String) {
 			@Pc(24) byte[] local24 = ((String) local17).getBytes();
 			local17 = Static10.decodeString(local24, local24.length, 0);
@@ -792,7 +840,7 @@ public final class JString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "j", descriptor = "(I)J")
-	public final long toBase37() {
+	public final long encode37() {
 		@Pc(7) long local7 = 0L;
 		for (@Pc(14) int local14 = 0; this.anInt4030 > local14 && local14 < 12; local14++) {
 			@Pc(32) byte local32 = this.aByteArray52[local14];
@@ -813,13 +861,13 @@ public final class JString implements StringInterface {
 
 	@OriginalMember(owner = "runetek4.client!na", name = "k", descriptor = "(I)Lclient!na;")
 	public final JString method3159() {
-		@Pc(9) JString local9 = Static79.decode37(this.toBase37());
+		@Pc(9) JString local9 = Base37.decode37(this.encode37());
 		return local9 == null ? Static228.aClass100_967 : local9;
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Z[BIII)I")
 	public final int encodeString(@OriginalArg(1) byte[] arg0, @OriginalArg(2) int arg1, @OriginalArg(4) int arg2) {
-		Static289.method2612(this.aByteArray52, 0, arg0, arg1, arg2);
+		copy(this.aByteArray52, 0, arg0, arg1, arg2);
 		return arg2;
 	}
 }

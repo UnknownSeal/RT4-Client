@@ -1,7 +1,8 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,19 +15,16 @@ public final class Static30 {
 	@OriginalMember(owner = "client!cg", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_184 = Static28.parse("1");
 
-	@OriginalMember(owner = "client!cg", name = "f", descriptor = "I")
-	public static int anInt978 = 127;
-
 	@OriginalMember(owner = "client!cg", name = "h", descriptor = "Lclient!na;")
 	public static final JString aClass100_185 = Static28.parse(")3");
 
 	@OriginalMember(owner = "client!cg", name = "a", descriptor = "(ZILclient!ve;I)[Lclient!ek;")
-	private static SoftwareIndexedSprite[] method837(@OriginalArg(1) int arg0, @OriginalArg(2) CacheArchive arg1) {
+	private static SoftwareIndexedSprite[] method837(@OriginalArg(1) int arg0, @OriginalArg(2) Js5 arg1) {
 		return Static234.method4016(arg1, 0, arg0) ? Static121.method2406() : null;
 	}
 
 	@OriginalMember(owner = "client!cg", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method839(@OriginalArg(1) CacheArchive arg0) {
+	public static void method839(@OriginalArg(1) Js5 arg0) {
 		Static173.aClass3_Sub2_Sub1_Sub1Array9 = Static265.method4523(Static280.anInt5900, arg0);
 		Static213.aClass3_Sub2_Sub1Array8 = Static209.method3708(Static131.anInt3261, arg0);
 		Static116.aClass3_Sub2_Sub1Array3 = Static209.method3708(Static36.anInt1165, arg0);
@@ -41,7 +39,7 @@ public final class Static30 {
 		Static159.aClass36Array12 = Static146.method2749(arg0, Static224.anInt5057);
 		Static114.aClass3_Sub2_Sub9_42.method2873(Static159.aClass36Array12, null);
 		Static215.aClass3_Sub2_Sub9_32.method2873(Static159.aClass36Array12, null);
-		Static280.aClass3_Sub2_Sub9_43.method2873(Static159.aClass36Array12, null);
+		Font.b12Full.method2873(Static159.aClass36Array12, null);
 		if (GlRenderer.enabled) {
 			Static242.aClass36_Sub1Array2 = method837(Static84.anInt2257, arg0);
 			for (@Pc(101) int local101 = 0; local101 < Static242.aClass36_Sub1Array2.length; local101++) {

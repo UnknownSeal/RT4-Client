@@ -3,18 +3,15 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static225 {
 
-	@OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "I")
-	public static int originX;
-
 	@OriginalMember(owner = "runetek4.client!se", name = "l", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_92;
+	public static Js5 aClass153_92;
 
 	@OriginalMember(owner = "runetek4.client!se", name = "h", descriptor = "I")
 	public static int anInt5073 = -1;
@@ -35,13 +32,13 @@ public final class Static225 {
 					if (Static159.players[index] == null) {
 						Static159.players[index] = new Player();
 						local27 = true;
-						if (Static115.playerAppearanceBuffer[index] != null) {
-							Static159.players[index].read(Static115.playerAppearanceBuffer[index]);
+						if (Static115.PLAYER_APPEARANCE_PACKET[index] != null) {
+							Static159.players[index].read(Static115.PLAYER_APPEARANCE_PACKET[index]);
 						}
 					}
 					Static105.playerIds[Static267.playerCount++] = index;
 					@Pc(65) Player player = Static159.players[index];
-					player.cycle = Static83.loopCycle;
+					player.cycle = client.loop;
 					@Pc(73) int local73 = Static57.in.gBit(1);
 					if (local73 == 1) {
 						Static44.entityUpdateIds[Static116.entityUpdateCount++] = index;
@@ -59,7 +56,7 @@ public final class Static225 {
 					if (dz > 15) {
 						dz -= 32;
 					}
-					player.teleport(dx + Static173.localPlayer.pathTileX[0], jump == 1, Static173.localPlayer.pathTileZ[0] + dz);
+					player.teleport(dx + PlayerList.self.pathTileX[0], jump == 1, PlayerList.self.pathTileZ[0] + dz);
 					continue;
 				}
 			}
@@ -99,15 +96,15 @@ public final class Static225 {
 			local43.p1(10);
 			local43.p2((int) (Math.random() * 99999.0D));
 			local43.p2(530);
-			local43.p8(Static186.username.toBase37());
+			local43.p8(Static186.username.encode37());
 			local43.p4((int) (Math.random() * 9.9999999E7D));
 			local43.pjstr(Static186.password);
 			local43.p4((int) (Math.random() * 9.9999999E7D));
 			local43.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
-			Static6.outboundBuffer.position = 0;
+			Static6.outboundBuffer.offset = 0;
 			Static6.outboundBuffer.p1(210);
-			Static6.outboundBuffer.p1(local43.position);
-			Static6.outboundBuffer.pdata(local43.data, local43.position);
+			Static6.outboundBuffer.p1(local43.offset);
+			Static6.outboundBuffer.pdata(local43.data, local43.offset);
 		} else {
 			Static49.method1208();
 		}

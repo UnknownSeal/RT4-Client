@@ -4,9 +4,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static55 {
 
-	@OriginalMember(owner = "runetek4.client!ee", name = "b", descriptor = "I")
-	public static int currentLevel;
-
 	@OriginalMember(owner = "runetek4.client!ee", name = "c", descriptor = "I")
 	public static int anInt1736;
 

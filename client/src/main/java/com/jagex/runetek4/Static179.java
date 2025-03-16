@@ -34,9 +34,9 @@ public final class Static179 {
 
 	@OriginalMember(owner = "runetek4.client!oe", name = "b", descriptor = "(I)V")
 	public static void method3323() {
-		aClass99_25.method3103();
-		Static169.modelCacheStatic.method3103();
-		Static93.aClass99_14.method3103();
-		Static262.aClass99_36.method3103();
+		aClass99_25.removeSoft();
+		Static169.modelCacheStatic.removeSoft();
+		Static93.aClass99_14.removeSoft();
+		Static262.aClass99_36.removeSoft();
 	}
 }

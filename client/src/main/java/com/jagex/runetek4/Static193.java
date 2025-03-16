@@ -4,6 +4,7 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.config.FloType;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -110,7 +111,7 @@ public final class Static193 {
 					@Pc(233) Class3_Sub14 local233 = (Class3_Sub14) local103.getNode(local227);
 					if (local233 == null) {
 						local233 = new Class3_Sub14((local161 >> 16) - 1, (float) (local161 & 0xFFFF), false, arg13 != null, local155);
-						local103.pushNode(local233, local227);
+						local103.put(local233, local227);
 					}
 					local233.anInt2484++;
 					local233.anInt2482 += local219;
@@ -118,7 +119,7 @@ public final class Static193 {
 						local233 = (Class3_Sub14) local103.getNode(local188);
 						if (local233 == null) {
 							local233 = new Class3_Sub14((local169 >> 16) - 1, (float) (local169 & 0xFFFF), false, arg13 != null, local155);
-							local103.pushNode(local233, local188);
+							local103.put(local233, local188);
 						}
 						local233.anInt2484++;
 						local233.anInt2482 += local219;
@@ -128,7 +129,7 @@ public final class Static193 {
 						local233 = (Class3_Sub14) local103.getNode(local340);
 						if (local233 == null) {
 							local233 = new Class3_Sub14((local206 >> 16) - 1, (float) (local206 & 0xFFFF), false, arg13 != null, local155);
-							local103.pushNode(local233, local340);
+							local103.put(local233, local340);
 						}
 						local233.anInt2482 += local219;
 						local233.anInt2484++;
@@ -137,7 +138,7 @@ public final class Static193 {
 						local233 = (Class3_Sub14) local103.getNode(local214);
 						if (local233 == null) {
 							local233 = new Class3_Sub14((local196 >> 16) - 1, (float) (local196 & 0xFFFF), false, arg13 != null, local155);
-							local103.pushNode(local233, local214);
+							local103.put(local233, local214);
 						}
 						local233.anInt2484++;
 						local233.anInt2482 += local219;
@@ -146,7 +147,7 @@ public final class Static193 {
 			}
 		}
 		@Pc(493) Class3_Sub14 local493;
-		for (local493 = (Class3_Sub14) local103.peekFront(); local493 != null; local493 = (Class3_Sub14) local103.prev()) {
+		for (local493 = (Class3_Sub14) local103.head(); local493 != null; local493 = (Class3_Sub14) local103.prev()) {
 			local493.method1940();
 		}
 		for (local16 = 1; local16 <= 102; local16++) {
@@ -262,7 +263,7 @@ public final class Static193 {
 				}
 			}
 		}
-		for (local493 = (Class3_Sub14) local103.peekFront(); local493 != null; local493 = (Class3_Sub14) local103.prev()) {
+		for (local493 = (Class3_Sub14) local103.head(); local493 != null; local493 = (Class3_Sub14) local103.prev()) {
 			if (local493.anInt2483 == 0) {
 				local493.unlink();
 			} else {
@@ -276,7 +277,7 @@ public final class Static193 {
 		for (local155 = 0; local155 < local16; local155++) {
 			local1358[local155] = local1348[local155].nodeId;
 		}
-		Static4.method23(local1358, local1348);
+		ArrayUtils.sort(local1358, local1348);
 		return local1348;
 	}
 
@@ -304,10 +305,10 @@ public final class Static193 {
 		}
 		Static6.outboundBuffer.p1b_alt1(Static187.pressedKeys[82] ? 1 : 0);
 		System.out.println("InvertRun: " + (Static187.pressedKeys[82] ? 1 : 0) );
-		Static6.outboundBuffer.p2((Static225.originX + local23));
-		System.out.println("StartX: " + (Static225.originX + local23));
-		Static6.outboundBuffer.p2_alt2(Static142.originZ + local27);
-		System.out.println("StartZ: " + (Static142.originZ + local27));
+		Static6.outboundBuffer.p2((Camera.originX + local23));
+		System.out.println("StartX: " + (Camera.originX + local23));
+		Static6.outboundBuffer.p2_alt2(Camera.originZ + local27);
+		System.out.println("StartZ: " + (Camera.originZ + local27));
 		Static84.anInt2255 = Static84.anIntArray209[0];
 		Static115.anInt2939 = Static259.anIntArray514[0];
 		for (@Pc(126) int local126 = 1; local126 < local13; local126++) {

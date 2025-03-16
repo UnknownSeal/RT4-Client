@@ -1,14 +1,14 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.input.Keyboard;
-import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.scene.Scenery;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static25 {
 
 	@OriginalMember(owner = "client!c", name = "bb", descriptor = "[Lclient!ec;")
-	public static InteractiveObject[] aClass31Array2;
+	public static Scenery[] aClass31Array2;
 
 	@OriginalMember(owner = "client!c", name = "Y", descriptor = "Lclient!na;")
 	public static final JString aClass100_154 = Static28.parse("Mem:");

@@ -5,12 +5,11 @@ import java.io.UnsupportedEncodingException;
 import com.jagex.runetek4.cache.cs.ClientScript;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -26,9 +25,6 @@ public final class Static127 {
 	@OriginalMember(owner = "runetek4.client!k", name = "c", descriptor = "Z")
 	public static boolean aBoolean159 = false;
 
-	@OriginalMember(owner = "runetek4.client!k", name = "i", descriptor = "I")
-	public static int anInt3125 = 0;
-
 	@OriginalMember(owner = "runetek4.client!k", name = "m", descriptor = "Z")
 	public static boolean aBoolean160 = false;
 
@@ -36,7 +32,7 @@ public final class Static127 {
 	public static int anInt3132 = 0;
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(IIBLclient!ve;Lclient!ve;)Lclient!rk;")
-	public static Font getFont(@OriginalArg(1) int arg0, @OriginalArg(3) CacheArchive arg1, @OriginalArg(4) CacheArchive arg2) {
+	public static Font getFont(@OriginalArg(1) int arg0, @OriginalArg(3) Js5 arg1, @OriginalArg(4) Js5 arg2) {
 		return Static234.method4016(arg1, 0, arg0) ? Static29.method799(arg2.getfile(arg0, 0)) : null;
 	}
 
@@ -56,47 +52,47 @@ public final class Static127 {
 		} else {
 			Game.processGameStatus(25);
 		}
-		Static114.method4636(true, LocalizedText.LOADING);
-		@Pc(53) int local53 = Static142.originZ;
-		@Pc(55) int local55 = Static225.originX;
-		Static142.originZ = arg1 * 8 - 48;
-		Static225.originX = (arg2 - 6) * 8;
+		Font.drawTextOnScreen(true, LocalizedText.LOADING);
+		@Pc(53) int local53 = Camera.originZ;
+		@Pc(55) int local55 = Camera.originX;
+		Camera.originZ = arg1 * 8 - 48;
+		Camera.originX = (arg2 - 6) * 8;
 		Static158.aClass3_Sub2_Sub4_3 = Static29.method803(Static80.anInt4701 * 8, Static52.anInt1695 * 8);
-		@Pc(81) int dz = Static142.originZ - local53;
-		@Pc(86) int dx = Static225.originX - local55;
+		@Pc(81) int dz = Camera.originZ - local53;
+		@Pc(86) int dx = Camera.originX - local55;
 		Static235.aMapElementTypeList_2 = null;
 		@Pc(96) int i;
-		@Pc(103) NPCRenderable local103;
+		@Pc(103) Npc local103;
 		@Pc(109) int j;
 		if (arg4) {
 			Static272.npcCount = 0;
 			for (i = 0; i < 32768; i++) {
-				local103 = Static175.npcs[i];
+				local103 = NpcList.npcs[i];
 				if (local103 != null) {
-					local103.x -= dx * 128;
-					local103.z -= dz * 128;
-					if (local103.x >= 0 && local103.x <= 13184 && local103.z >= 0 && local103.z <= 13184) {
+					local103.xFine -= dx * 128;
+					local103.zFine -= dz * 128;
+					if (local103.xFine >= 0 && local103.xFine <= 13184 && local103.zFine >= 0 && local103.zFine <= 13184) {
 						for (j = 0; j < 10; j++) {
 							local103.pathTileX[j] -= dx;
 							local103.pathTileZ[j] -= dz;
 						}
 						Static33.npcIds[Static272.npcCount++] = i;
 					} else {
-						Static175.npcs[i].method2698(null);
-						Static175.npcs[i] = null;
+						NpcList.npcs[i].method2698(null);
+						NpcList.npcs[i] = null;
 					}
 				}
 			}
 		} else {
 			for (i = 0; i < 32768; i++) {
-				local103 = Static175.npcs[i];
+				local103 = NpcList.npcs[i];
 				if (local103 != null) {
 					for (j = 0; j < 10; j++) {
 						local103.pathTileX[j] -= dx;
 						local103.pathTileZ[j] -= dz;
 					}
-					local103.x -= dx * 128;
-					local103.z -= dz * 128;
+					local103.xFine -= dx * 128;
+					local103.zFine -= dz * 128;
 				}
 			}
 		}
@@ -107,12 +103,12 @@ public final class Static127 {
 					player.pathTileX[j] -= dx;
 					player.pathTileZ[j] -= dz;
 				}
-				player.x -= dx * 128;
-				player.z -= dz * 128;
+				player.xFine -= dx * 128;
+				player.zFine -= dz * 128;
 			}
 		}
-		Static55.currentLevel = arg0;
-		Static173.localPlayer.teleport(arg5, false, arg3);
+		Player.plane = arg0;
+		PlayerList.self.teleport(arg5, false, arg3);
 		@Pc(322) byte endTileX = 104;
 		@Pc(324) byte startTileX = 0;
 		@Pc(326) byte startTileZ = 0;
@@ -142,7 +138,7 @@ public final class Static127 {
 				}
 			}
 		}
-		for (@Pc(451) LocAddEntity loc = (LocAddEntity) Static26.spawnedLocations.head(); loc != null; loc = (LocAddEntity) Static26.spawnedLocations.next()) {
+		for (@Pc(451) ChangeLocRequest loc = (ChangeLocRequest) ChangeLocRequest.queue.head(); loc != null; loc = (ChangeLocRequest) ChangeLocRequest.queue.next()) {
 			loc.z -= dz;
 			loc.x -= dx;
 			if (loc.x < 0 || loc.z < 0 || loc.x >= 104 || loc.z >= 104) {
@@ -150,14 +146,14 @@ public final class Static127 {
 			}
 		}
 		if (arg4) {
-			Static138.cameraX -= dx * 128;
-			Static134.cameraZ -= dz * 128;
-			Static248.anInt4232 -= dz;
-			Static251.anInt5449 -= dx;
-			Static265.anInt5765 -= dz;
-			Static245.anInt5375 -= dx;
+			Camera.renderX -= dx * 128;
+			Camera.renderZ -= dz * 128;
+			Camera.anInt4232 -= dz;
+			Camera.anInt5449 -= dx;
+			Camera.anInt5765 -= dz;
+			Camera.anInt5375 -= dx;
 		} else {
-			Static227.anInt5096 = 1;
+			Camera.cameraType = 1;
 		}
 		Static189.anInt4451 = 0;
 		if (Static115.anInt2939 != 0) {
@@ -299,8 +295,8 @@ public final class Static127 {
 				client.js5NetQueue.serverDrop();
 			}
 			if (chatTyped.equalsIgnoreCase(Static165.BREAKCON)) {
-				GameShell.signLink.method5110();
-				Static124.gameServerSocket.method2833();
+				GameShell.signLink.breakConnection();
+				Static124.gameServerSocket.breakConnection();
 				client.js5NetQueue.method2323();
 			}
 			if (chatTyped.equalsIgnoreCase(Static114.REPLACECANVAS)) {
@@ -338,7 +334,7 @@ public final class Static127 {
 			}
 			if (chatTyped.startsWith(Static241.SETPARTICLES)) {
 				Static76.method1645(chatTyped.substring(15).method3132());
-				Static203.method3663(GameShell.signLink);
+				Preferences.write(GameShell.signLink);
 				Static18.sentToServer = false;
 			}
 			if (chatTyped.startsWith(ObjTypeList.FPS) && client.modeWhere != 0) {

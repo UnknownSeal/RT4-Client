@@ -30,21 +30,21 @@ public final class Static64 {
 		Static116.entityUpdateCount = 0;
 		Static240.entityRemovalCount = 0;
 		Static17.method527();
-		Static41.readPlayerInfo();
+		Protocol.readPlayerInfo();
 		Static225.getPlayerNewVis();
 		Static245.getPlayerExtended();
 		@Pc(23) int i;
 		for (i = 0; i < Static240.entityRemovalCount; i++) {
 			@Pc(30) int index = Static52.entityRemovalIds[i];
-			if (Static83.loopCycle != Static159.players[index].cycle) {
-				if (Static159.players[index].anInt1664 > 0) {
-					Static271.method4597(Static159.players[index]);
+			if (client.loop != Static159.players[index].cycle) {
+				if (Static159.players[index].soundRadius > 0) {
+					AreaSoundManager.remove(Static159.players[index]);
 				}
 				Static159.players[index] = null;
 			}
 		}
-		if (Static223.packetSize != Static57.in.position) {
-			throw new RuntimeException("gpp1 pos:" + Static57.in.position + " psize:" + Static223.packetSize);
+		if (Static223.packetSize != Static57.in.offset) {
+			throw new RuntimeException("gpp1 pos:" + Static57.in.offset + " psize:" + Static223.packetSize);
 		}
 		for (i = 0; i < Static267.playerCount; i++) {
 			if (Static159.players[Static105.playerIds[i]] == null) {
@@ -62,7 +62,7 @@ public final class Static64 {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDLISTFULL);
 			return;
 		}
-		@Pc(35) JString displayName = Static79.decode37(username).method3125();
+		@Pc(35) JString displayName = Base37.decode37(username).method3125();
 		@Pc(42) int i;
 		for (i = 0; i < CacheArchive.friendCount; i++) {
 			if (Static92.friendName37[i] == username) {
@@ -76,7 +76,7 @@ public final class Static64 {
 				return;
 			}
 		}
-		if (displayName.method3108(Static173.localPlayer.name)) {
+		if (displayName.method3108(PlayerList.self.username)) {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDCANTADDSELF);
 			return;
 		}
