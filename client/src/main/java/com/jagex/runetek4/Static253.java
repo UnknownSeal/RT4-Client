@@ -62,7 +62,7 @@ public final class Static253 {
 			if (Camera.cameraModifierEnabled[4] && Camera.cameraAmplitude[4] + 128 > pitch) {
 				pitch = Camera.cameraAmplitude[4] + 128;
 			}
-			Static18.orbitCamera(Camera.cameraX, arg0, SceneGraph.getTileHeight(Player.plane, PlayerList.self.xFine, PlayerList.self.zFine) - 50, 600 - -(pitch * 3), local57, Camera.cameraZ, pitch);
+			Camera.orbitCamera(Camera.cameraX, arg0, SceneGraph.getTileHeight(Player.plane, PlayerList.self.xFine, PlayerList.self.zFine) - 50, 600 - -(pitch * 3), local57, Camera.cameraZ, pitch);
 		}
 		local57 = Camera.cameraY;
 		pitch = Camera.renderX;

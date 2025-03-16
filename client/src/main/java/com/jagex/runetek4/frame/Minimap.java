@@ -3,6 +3,7 @@ package com.jagex.runetek4.frame;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -24,9 +25,9 @@ public class Minimap {
         if (local39 * local39 < local21) {
             return;
         }
-        @Pc(50) int local50 = MathUtils.anIntArray223[local27];
+        @Pc(50) int local50 = MathUtils.sin[local27];
         @Pc(58) int local58 = local50 * 256 / (Static273.minimapZoom + 256);
-        @Pc(62) int local62 = MathUtils.anIntArray225[local27];
+        @Pc(62) int local62 = MathUtils.cos[local27];
         @Pc(70) int local70 = local62 * 256 / (Static273.minimapZoom + 256);
         @Pc(81) int local81 = local58 * arg2 + arg3 * local70 >> 16;
         @Pc(92) int local92 = local70 * arg2 - arg3 * local58 >> 16;

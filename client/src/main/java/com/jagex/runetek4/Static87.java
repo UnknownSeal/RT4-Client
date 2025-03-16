@@ -7,6 +7,7 @@ import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -218,8 +219,8 @@ public final class Static87 {
 								local276 -= local30.anInt459 / 2;
 								local503 = Camera.orbitCameraYaw + Static59.minimapAnticheatAngle & 0x7FF;
 								local270 -= local30.anInt445 / 2;
-								local514 = MathUtils.anIntArray223[local503];
-								local518 = MathUtils.anIntArray225[local503];
+								local514 = MathUtils.sin[local503];
+								local518 = MathUtils.cos[local503];
 								local514 = (Static273.minimapZoom + 256) * local514 >> 8;
 								local518 = (Static273.minimapZoom + 256) * local518 >> 8;
 								local545 = local518 * local276 - local514 * local270 >> 11;
@@ -723,8 +724,8 @@ public final class Static87 {
 													if (local30.aBoolean34) {
 														GlRenderer.disableDepthMask();
 													}
-													local563 = MathUtils.anIntArray223[local30.modelXAngle] * local30.modelZoom >> 16;
-													local571 = local30.modelZoom * MathUtils.anIntArray225[local30.modelXAngle] >> 16;
+													local563 = MathUtils.sin[local30.modelXAngle] * local30.modelZoom >> 16;
+													local571 = local30.modelZoom * MathUtils.cos[local30.modelXAngle] >> 16;
 													if (local30.aBoolean32) {
 														local2589.drawModel(local30.modelYAngle, local30.modelYOffset, local30.modelXAngle, local30.modelXOffset, local30.modelZOffset + local563 + local503, local30.modelZOffset + local571, -1L);
 													} else {
@@ -735,8 +736,8 @@ public final class Static87 {
 													}
 												} else {
 													Pix3D.method1919(local556, local545);
-													local563 = MathUtils.anIntArray223[local30.modelXAngle] * local30.modelZoom >> 16;
-													local571 = local30.modelZoom * MathUtils.anIntArray225[local30.modelXAngle] >> 16;
+													local563 = MathUtils.sin[local30.modelXAngle] * local30.modelZoom >> 16;
+													local571 = local30.modelZoom * MathUtils.cos[local30.modelXAngle] >> 16;
 													if (!local30.aBoolean32) {
 														local2589.drawModel(local30.modelYAngle, 0, local30.modelXAngle, 0, local563, local571, -1L);
 													} else if (local30.aBoolean22) {

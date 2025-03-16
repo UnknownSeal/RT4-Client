@@ -55,46 +55,6 @@ public final class Static18 {
 		return arg0 >>> 8;
 	}
 
-	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(IIIIIIII)V")
-	public static void orbitCamera(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {
-		@Pc(5) int local5;
-		@Pc(29) int local29;
-		if (GlRenderer.enabled) {
-			local5 = arg1 - 334;
-			if (local5 < 0) {
-				local5 = 0;
-			} else if (local5 > 100) {
-				local5 = 100;
-			}
-			local29 = local5 * (Static187.aShort27 - Static263.aShort30) / 100 + Static263.aShort30;
-			arg3 = local29 * arg3 >> 8;
-		}
-		local5 = 2048 - arg6 & 0x7FF;
-		local29 = 2048 - arg4 & 0x7FF;
-		@Pc(55) int local55 = 0;
-		@Pc(57) int local57 = arg3;
-		@Pc(59) int local59 = 0;
-		@Pc(72) int local72;
-		@Pc(68) int local68;
-		if (local5 != 0) {
-			local68 = MathUtils.anIntArray225[local5];
-			local72 = MathUtils.anIntArray223[local5];
-			local59 = local72 * -arg3 >> 16;
-			local57 = local68 * arg3 >> 16;
-		}
-		if (local29 != 0) {
-			local72 = MathUtils.anIntArray223[local29];
-			local68 = MathUtils.anIntArray225[local29];
-			local55 = local72 * local57 >> 16;
-			local57 = local57 * local68 >> 16;
-		}
-		Camera.cameraPitch = arg6;
-		Camera.cameraYaw = arg4;
-		Camera.renderZ = arg5 - local57;
-		Camera.renderX = arg0 - local55;
-		Camera.cameraY = arg2 - local59;
-	}
-
 	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(B)Lclient!ba;")
 	public static GWCWorld method556() {
 		Static51.anInt1682 = 0;

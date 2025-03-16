@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -62,10 +63,10 @@ public final class Static198 {
 		@Pc(42) int local42 = arg2 - Camera.renderZ;
 		@Pc(46) int local46 = local38 - Camera.cameraY;
 		@Pc(50) int local50 = arg5 - Camera.renderX;
-		@Pc(54) int local54 = MathUtils.anIntArray223[Camera.cameraPitch];
-		@Pc(58) int local58 = MathUtils.anIntArray225[Camera.cameraPitch];
-		@Pc(62) int local62 = MathUtils.anIntArray223[Camera.cameraYaw];
-		@Pc(66) int local66 = MathUtils.anIntArray225[Camera.cameraYaw];
+		@Pc(54) int local54 = MathUtils.sin[Camera.cameraPitch];
+		@Pc(58) int local58 = MathUtils.cos[Camera.cameraPitch];
+		@Pc(62) int local62 = MathUtils.sin[Camera.cameraYaw];
+		@Pc(66) int local66 = MathUtils.cos[Camera.cameraYaw];
 		@Pc(76) int local76 = local50 * local66 + local62 * local42 >> 16;
 		@Pc(87) int local87 = local42 * local66 - local62 * local50 >> 16;
 		@Pc(89) int local89 = local76;

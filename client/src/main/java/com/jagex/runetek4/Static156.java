@@ -4,6 +4,7 @@ import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.GZip;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.util.MathUtils;
 import com.jagex.runetek4.util.SignLink;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -36,10 +37,10 @@ public final class Static156 {
 		} else if (arg2 >= Static99.anInt2550 * 128) {
 			arg2 = Static99.anInt2550 * 128 - 1;
 		}
-		Static109.anInt2886 = MathUtils.anIntArray223[arg3];
-		Static121.anInt3038 = MathUtils.anIntArray225[arg3];
-		PreciseSleep.anInt5205 = MathUtils.anIntArray223[arg4];
-		ItemDefinition.anInt2222 = MathUtils.anIntArray225[arg4];
+		Static109.anInt2886 = MathUtils.sin[arg3];
+		Static121.anInt3038 = MathUtils.cos[arg3];
+		PreciseSleep.anInt5205 = MathUtils.sin[arg4];
+		ItemDefinition.anInt2222 = MathUtils.cos[arg4];
 		Static149.eyeX = arg0;
 		Static162.eyeY = arg1;
 		Static217.eyeZ = arg2;

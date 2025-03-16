@@ -6,6 +6,7 @@ import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -365,8 +366,8 @@ public abstract class PathingEntity extends Entity {
 		if (local24 == 0 || local27 == 0) {
 			return;
 		}
-		@Pc(39) int local39 = MathUtils.anIntArray223[arg1];
-		@Pc(43) int local43 = MathUtils.anIntArray225[arg1];
+		@Pc(39) int local39 = MathUtils.sin[arg1];
+		@Pc(43) int local43 = MathUtils.cos[arg1];
 		@Pc(48) int local48 = -local24 / 2;
 		@Pc(53) int local53 = -local27 / 2;
 		@Pc(64) int local64 = local53 * local43 - local48 * local39 >> 16;

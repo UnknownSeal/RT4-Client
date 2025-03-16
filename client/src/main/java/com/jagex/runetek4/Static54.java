@@ -12,6 +12,7 @@ import com.jagex.runetek4.frame.Minimap;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -60,8 +61,8 @@ public final class Static54 {
 				for (@Pc(117) int local117 = 0; local117 < Static235.aMapElementTypeList_2.anInt5074; local117++) {
 					if (Static235.aMapElementTypeList_2.method3892(local117)) {
 						flagX = (Static235.aMapElementTypeList_2.aShortArray73[local117] - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
-						local150 = MathUtils.anIntArray223[angle];
-						local154 = MathUtils.anIntArray225[angle];
+						local150 = MathUtils.sin[angle];
+						local154 = MathUtils.cos[angle];
 						@Pc(156) Font local156 = Static114.aClass3_Sub2_Sub9_42;
 						@Pc(164) int local164 = local150 * 256 / (Static273.minimapZoom + 256);
 						flagZ = (Static235.aMapElementTypeList_2.aShortArray72[local117] - Camera.originZ) * 4 + 2 - PlayerList.self.zFine / 32;

@@ -7,6 +7,7 @@ import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -225,8 +226,8 @@ public final class Static164 {
 		} else if (arg4 == 2) {
 			local145 = (int) ((double) local145 * 1.04D);
 		}
-		@Pc(176) int local176 = MathUtils.anIntArray225[definition.xan2d] * local145 >> 16;
-		@Pc(185) int local185 = MathUtils.anIntArray223[definition.xan2d] * local145 >> 16;
+		@Pc(176) int local176 = MathUtils.cos[definition.xan2d] * local145 >> 16;
+		@Pc(185) int local185 = MathUtils.sin[definition.xan2d] * local145 >> 16;
 		local60.drawModel(definition.yan2d, definition.zan2d, definition.xan2d, definition.xof2d, local185 + definition.yof2d - local60.getMinY() / 2, definition.yof2d + local176, -1L);
 		if (arg4 >= 1) {
 			rendered.method303(1);

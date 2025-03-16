@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.graphics.VertexNormal;
 import com.jagex.runetek4.util.ArrayUtils;
+import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -585,8 +586,8 @@ public final class SoftwareModel extends Model {
 	@OriginalMember(owner = "runetek4.client!w", name = "d", descriptor = "(I)V")
 	@Override
 	public final void method4574(@OriginalArg(0) int arg0) {
-		@Pc(3) int local3 = MathUtils.anIntArray223[arg0];
-		@Pc(7) int local7 = MathUtils.anIntArray225[arg0];
+		@Pc(3) int local3 = MathUtils.sin[arg0];
+		@Pc(7) int local7 = MathUtils.cos[arg0];
 		for (@Pc(9) int local9 = 0; local9 < this.anInt5788; local9++) {
 			@Pc(29) int local29 = this.anIntArray527[local9] * local7 - this.anIntArray531[local9] * local3 >> 16;
 			this.anIntArray531[local9] = this.anIntArray527[local9] * local3 + this.anIntArray531[local9] * local7 >> 16;
@@ -611,8 +612,8 @@ public final class SoftwareModel extends Model {
 	@OriginalMember(owner = "runetek4.client!w", name = "c", descriptor = "(I)V")
 	@Override
 	public final void method4564(@OriginalArg(0) int arg0) {
-		@Pc(3) int local3 = MathUtils.anIntArray223[arg0];
-		@Pc(7) int local7 = MathUtils.anIntArray225[arg0];
+		@Pc(3) int local3 = MathUtils.sin[arg0];
+		@Pc(7) int local7 = MathUtils.cos[arg0];
 		for (@Pc(9) int local9 = 0; local9 < this.anInt5788; local9++) {
 			@Pc(29) int local29 = this.anIntArray527[local9] * local3 + this.anIntArray528[local9] * local7 >> 16;
 			this.anIntArray527[local9] = this.anIntArray527[local9] * local7 - this.anIntArray528[local9] * local3 >> 16;
@@ -660,8 +661,8 @@ public final class SoftwareModel extends Model {
 		@Pc(176) int local176 = 0;
 		@Pc(178) int local178 = 0;
 		if (arg0 != 0) {
-			local176 = MathUtils.anIntArray223[arg0];
-			local178 = MathUtils.anIntArray225[arg0];
+			local176 = MathUtils.sin[arg0];
+			local178 = MathUtils.cos[arg0];
 		}
 		@Pc(190) boolean local190 = false;
 		@Pc(204) int local204;
@@ -944,14 +945,14 @@ public final class SoftwareModel extends Model {
 			}
 			@Pc(6) int local6 = Pix3D.anInt2471;
 			@Pc(8) int local8 = Pix3D.anInt2469;
-			@Pc(12) int local12 = MathUtils.anIntArray223[0];
-			@Pc(16) int local16 = MathUtils.anIntArray225[0];
-			@Pc(20) int local20 = MathUtils.anIntArray223[arg0];
-			@Pc(24) int local24 = MathUtils.anIntArray225[arg0];
-			@Pc(28) int local28 = MathUtils.anIntArray223[arg1];
-			@Pc(32) int local32 = MathUtils.anIntArray225[arg1];
-			@Pc(36) int local36 = MathUtils.anIntArray223[arg2];
-			@Pc(40) int local40 = MathUtils.anIntArray225[arg2];
+			@Pc(12) int local12 = MathUtils.sin[0];
+			@Pc(16) int local16 = MathUtils.cos[0];
+			@Pc(20) int local20 = MathUtils.sin[arg0];
+			@Pc(24) int local24 = MathUtils.cos[arg0];
+			@Pc(28) int local28 = MathUtils.sin[arg1];
+			@Pc(32) int local32 = MathUtils.cos[arg1];
+			@Pc(36) int local36 = MathUtils.sin[arg2];
+			@Pc(40) int local40 = MathUtils.cos[arg2];
 			@Pc(50) int local50 = arg4 * local36 + arg5 * local40 >> 16;
 			for (@Pc(52) int local52 = 0; local52 < this.anInt5788; local52++) {
 				@Pc(61) int local61 = this.anIntArray528[local52];
@@ -1215,8 +1216,8 @@ public final class SoftwareModel extends Model {
 	@OriginalMember(owner = "runetek4.client!w", name = "b", descriptor = "(I)V")
 	@Override
 	public final void method4554(@OriginalArg(0) int arg0) {
-		@Pc(3) int local3 = MathUtils.anIntArray223[arg0];
-		@Pc(7) int local7 = MathUtils.anIntArray225[arg0];
+		@Pc(3) int local3 = MathUtils.sin[arg0];
+		@Pc(7) int local7 = MathUtils.cos[arg0];
 		for (@Pc(9) int local9 = 0; local9 < this.anInt5788; local9++) {
 			@Pc(29) int local29 = this.anIntArray531[local9] * local3 + this.anIntArray528[local9] * local7 >> 16;
 			this.anIntArray531[local9] = this.anIntArray531[local9] * local7 - this.anIntArray528[local9] * local3 >> 16;
@@ -1292,22 +1293,22 @@ public final class SoftwareModel extends Model {
 						this.anIntArray527[local33] -= Static268.anInt5791;
 						this.anIntArray531[local33] -= Static268.anInt5792;
 						if (arg4 != 0) {
-							local41 = MathUtils.anIntArray223[arg4];
-							local222 = MathUtils.anIntArray225[arg4];
+							local41 = MathUtils.sin[arg4];
+							local222 = MathUtils.cos[arg4];
 							local240 = this.anIntArray527[local33] * local41 + this.anIntArray528[local33] * local222 + 32767 >> 16;
 							this.anIntArray527[local33] = this.anIntArray527[local33] * local222 + 32767 - this.anIntArray528[local33] * local41 >> 16;
 							this.anIntArray528[local33] = local240;
 						}
 						if (arg2 != 0) {
-							local41 = MathUtils.anIntArray223[arg2];
-							local222 = MathUtils.anIntArray225[arg2];
+							local41 = MathUtils.sin[arg2];
+							local222 = MathUtils.cos[arg2];
 							local240 = this.anIntArray527[local33] * local222 + 32767 - this.anIntArray531[local33] * local41 >> 16;
 							this.anIntArray531[local33] = this.anIntArray527[local33] * local41 + this.anIntArray531[local33] * local222 + 32767 >> 16;
 							this.anIntArray527[local33] = local240;
 						}
 						if (arg3 != 0) {
-							local41 = MathUtils.anIntArray223[arg3];
-							local222 = MathUtils.anIntArray225[arg3];
+							local41 = MathUtils.sin[arg3];
+							local222 = MathUtils.cos[arg3];
 							local240 = this.anIntArray531[local33] * local41 + this.anIntArray528[local33] * local222 + 32767 >> 16;
 							this.anIntArray531[local33] = this.anIntArray531[local33] * local222 + 32767 - this.anIntArray528[local33] * local41 >> 16;
 							this.anIntArray528[local33] = local240;
@@ -1746,14 +1747,14 @@ public final class SoftwareModel extends Model {
 			}
 			@Pc(6) int local6 = Pix3D.anInt2471;
 			@Pc(8) int local8 = Pix3D.anInt2469;
-			@Pc(12) int local12 = MathUtils.anIntArray223[0];
-			@Pc(16) int local16 = MathUtils.anIntArray225[0];
-			@Pc(20) int local20 = MathUtils.anIntArray223[arg0];
-			@Pc(24) int local24 = MathUtils.anIntArray225[arg0];
-			@Pc(28) int local28 = MathUtils.anIntArray223[arg1];
-			@Pc(32) int local32 = MathUtils.anIntArray225[arg1];
-			@Pc(36) int local36 = MathUtils.anIntArray223[arg2];
-			@Pc(40) int local40 = MathUtils.anIntArray225[arg2];
+			@Pc(12) int local12 = MathUtils.sin[0];
+			@Pc(16) int local16 = MathUtils.cos[0];
+			@Pc(20) int local20 = MathUtils.sin[arg0];
+			@Pc(24) int local24 = MathUtils.cos[arg0];
+			@Pc(28) int local28 = MathUtils.sin[arg1];
+			@Pc(32) int local32 = MathUtils.cos[arg1];
+			@Pc(36) int local36 = MathUtils.sin[arg2];
+			@Pc(40) int local40 = MathUtils.cos[arg2];
 			@Pc(50) int local50 = arg4 * local36 + arg5 * local40 >> 16;
 			for (@Pc(52) int local52 = 0; local52 < this.anInt5788; local52++) {
 				@Pc(61) int local61 = this.anIntArray528[local52];
@@ -1953,22 +1954,22 @@ public final class SoftwareModel extends Model {
 								this.anIntArray527[local33] -= Static268.anInt5791;
 								this.anIntArray531[local33] -= Static268.anInt5792;
 								if (arg4 != 0) {
-									local41 = MathUtils.anIntArray223[arg4];
-									local307 = MathUtils.anIntArray225[arg4];
+									local41 = MathUtils.sin[arg4];
+									local307 = MathUtils.cos[arg4];
 									local329 = this.anIntArray527[local33] * local41 + this.anIntArray528[local33] * local307 + 32767 >> 16;
 									this.anIntArray527[local33] = this.anIntArray527[local33] * local307 + 32767 - this.anIntArray528[local33] * local41 >> 16;
 									this.anIntArray528[local33] = local329;
 								}
 								if (arg2 != 0) {
-									local41 = MathUtils.anIntArray223[arg2];
-									local307 = MathUtils.anIntArray225[arg2];
+									local41 = MathUtils.sin[arg2];
+									local307 = MathUtils.cos[arg2];
 									local329 = this.anIntArray527[local33] * local307 + 32767 - this.anIntArray531[local33] * local41 >> 16;
 									this.anIntArray531[local33] = this.anIntArray527[local33] * local41 + this.anIntArray531[local33] * local307 + 32767 >> 16;
 									this.anIntArray527[local33] = local329;
 								}
 								if (arg3 != 0) {
-									local41 = MathUtils.anIntArray223[arg3];
-									local307 = MathUtils.anIntArray225[arg3];
+									local41 = MathUtils.sin[arg3];
+									local307 = MathUtils.cos[arg3];
 									local329 = this.anIntArray531[local33] * local41 + this.anIntArray528[local33] * local307 + 32767 >> 16;
 									this.anIntArray531[local33] = this.anIntArray531[local33] * local307 + 32767 - this.anIntArray528[local33] * local41 >> 16;
 									this.anIntArray528[local33] = local329;
@@ -2000,12 +2001,12 @@ public final class SoftwareModel extends Model {
 					Static268.aBoolean306 = false;
 				}
 				@Pc(374) int[] local374 = new int[9];
-				local329 = MathUtils.anIntArray225[arg2] >> 1;
-				local351 = MathUtils.anIntArray223[arg2] >> 1;
-				local392 = MathUtils.anIntArray225[arg3] >> 1;
-				local398 = MathUtils.anIntArray223[arg3] >> 1;
-				local404 = MathUtils.anIntArray225[arg4] >> 1;
-				local410 = MathUtils.anIntArray223[arg4] >> 1;
+				local329 = MathUtils.cos[arg2] >> 1;
+				local351 = MathUtils.sin[arg2] >> 1;
+				local392 = MathUtils.cos[arg3] >> 1;
+				local398 = MathUtils.sin[arg3] >> 1;
+				local404 = MathUtils.cos[arg4] >> 1;
+				local410 = MathUtils.sin[arg4] >> 1;
 				local418 = local351 * local404 + 16384 >> 15;
 				local426 = local351 * local410 + 16384 >> 15;
 				local374[0] = local392 * local404 + local398 * local426 + 16384 >> 15;
@@ -2266,22 +2267,22 @@ public final class SoftwareModel extends Model {
 					this.anIntArray527[local3] -= Static268.anInt5791;
 					this.anIntArray531[local3] -= Static268.anInt5792;
 					if (arg3 != 0) {
-						local11 = MathUtils.anIntArray223[arg3];
-						local146 = MathUtils.anIntArray225[arg3];
+						local11 = MathUtils.sin[arg3];
+						local146 = MathUtils.cos[arg3];
 						local164 = this.anIntArray527[local3] * local11 + this.anIntArray528[local3] * local146 + 32767 >> 16;
 						this.anIntArray527[local3] = this.anIntArray527[local3] * local146 + 32767 - this.anIntArray528[local3] * local11 >> 16;
 						this.anIntArray528[local3] = local164;
 					}
 					if (arg1 != 0) {
-						local11 = MathUtils.anIntArray223[arg1];
-						local146 = MathUtils.anIntArray225[arg1];
+						local11 = MathUtils.sin[arg1];
+						local146 = MathUtils.cos[arg1];
 						local164 = this.anIntArray527[local3] * local146 + 32767 - this.anIntArray531[local3] * local11 >> 16;
 						this.anIntArray531[local3] = this.anIntArray527[local3] * local11 + this.anIntArray531[local3] * local146 + 32767 >> 16;
 						this.anIntArray527[local3] = local164;
 					}
 					if (arg2 != 0) {
-						local11 = MathUtils.anIntArray223[arg2];
-						local146 = MathUtils.anIntArray225[arg2];
+						local11 = MathUtils.sin[arg2];
+						local146 = MathUtils.cos[arg2];
 						local164 = this.anIntArray531[local3] * local11 + this.anIntArray528[local3] * local146 + 32767 >> 16;
 						this.anIntArray531[local3] = this.anIntArray531[local3] * local146 + 32767 - this.anIntArray528[local3] * local11 >> 16;
 						this.anIntArray528[local3] = local164;

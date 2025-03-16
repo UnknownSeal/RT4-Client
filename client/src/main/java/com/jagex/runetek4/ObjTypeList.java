@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -24,7 +25,7 @@ public final class ObjTypeList {
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(IIIII)I")
 	public static int method2569(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
-		@Pc(22) int local22 = 65536 - MathUtils.anIntArray225[arg2 * 1024 / arg3] >> 1;
+		@Pc(22) int local22 = 65536 - MathUtils.cos[arg2 * 1024 / arg3] >> 1;
 		return (arg0 * (65536 - local22) >> 16) + (arg1 * local22 >> 16);
 	}
 

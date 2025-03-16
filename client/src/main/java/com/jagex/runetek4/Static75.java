@@ -8,6 +8,7 @@ import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import com.jagex.runetek4.scene.tile.WallDecor;
+import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -424,8 +425,8 @@ public final class Static75 {
 									local1188 = local1232.modelRotateTranslate[local1194][0];
 									local224 -= local1232.modelRotateTranslate[local1194][1];
 									@Pc(1264) int local1264 = local1232.modelRotateTranslate[local1194][2];
-									@Pc(1269) int local1269 = MathUtils.anIntArray223[local1198.anInt3381];
-									@Pc(1274) int local1274 = MathUtils.anIntArray225[local1198.anInt3381];
+									@Pc(1269) int local1269 = MathUtils.sin[local1198.anInt3381];
+									@Pc(1274) int local1274 = MathUtils.cos[local1198.anInt3381];
 									@Pc(1284) int local1284 = local1188 * local1274 + local1264 * local1269 >> 16;
 									@Pc(1295) int local1295 = local1274 * local1264 - local1188 * local1269 >> 16;
 									local19 += local1295;
