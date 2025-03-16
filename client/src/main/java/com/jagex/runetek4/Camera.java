@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.SceneCamera;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -331,14 +332,14 @@ public class Camera {
         }
         if (Preferences.aBoolean63) {
             for (@Pc(93) int local93 = 0; local93 < Static182.keyQueueSize; local93++) {
-                @Pc(104) int local104 = InterfaceList.keyCodes[local93];
-                if (local104 == 98) {
+                @Pc(104) int code = InterfaceList.keyCodes[local93];
+                if (code == 98) {
                     orbitCameraPitch = orbitCameraPitch + 47 & 0xFFFFFFF0;
-                } else if (local104 == 99) {
+                } else if (code == Keyboard.KEY_UP) {
                     orbitCameraPitch = orbitCameraPitch - 17 & 0xFFFFFFF0;
-                } else if (local104 == 96) {
+                } else if (code == Keyboard.KEY_DOWN) {
                     orbitCameraYaw = orbitCameraYaw - 65 & 0xFFFFFF80;
-                } else if (local104 == 97) {
+                } else if (code == Keyboard.KEY_RIGHT) {
                     orbitCameraYaw = orbitCameraYaw + 191 & 0xFFFFFF80;
                 }
             }
