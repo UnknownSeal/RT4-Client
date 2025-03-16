@@ -242,7 +242,7 @@ public final class Static216 {
 				Static25.aBoolean57 = Static57.in.g1() == 1;
 				Static86.aBoolean129 = Static57.in.g1() == 1;
 				Static245.enabled = Static57.in.g1() == 1;
-				Static16.localPid = Static57.in.g2();
+				PlayerList.selfId = Static57.in.g2();
 				Class6.members = Static57.in.g1() == 1;
 				Static2.membersWorld = Static57.in.g1() == 1;
 				Static189.method3438(Static2.membersWorld);

@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -51,11 +52,11 @@ public final class Static125 {
 	public static void method2450() {
 		@Pc(9) int local9 = Static248.anInt4232 * 128 + 64;
 		@Pc(15) int local15 = Static245.anInt5375 * 128 + 64;
-		@Pc(23) int local23 = Static207.getHeightmapY(Static55.currentLevel, local15, local9) - PreciseSleep.anInt5203;
+		@Pc(23) int local23 = Static207.getHeightmapY(Player.plane, local15, local9) - PreciseSleep.anInt5203;
 		if (Static113.anInt4612 >= 100) {
 			Static138.cameraX = Static245.anInt5375 * 128 + 64;
 			Static134.cameraZ = Static248.anInt4232 * 128 + 64;
-			Static5.cameraY = Static207.getHeightmapY(Static55.currentLevel, Static138.cameraX, Static134.cameraZ) - PreciseSleep.anInt5203;
+			Static5.cameraY = Static207.getHeightmapY(Player.plane, Static138.cameraX, Static134.cameraZ) - PreciseSleep.anInt5203;
 		} else {
 			if (Static138.cameraX < local15) {
 				Static138.cameraX += ClientScriptRunner.anInt5225 + Static113.anInt4612 * (local15 - Static138.cameraX) / 1000;
@@ -96,7 +97,7 @@ public final class Static125 {
 		}
 		local9 = Static265.anInt5765 * 128 + 64;
 		local15 = Static251.anInt5449 * 128 + 64;
-		local23 = Static207.getHeightmapY(Static55.currentLevel, local15, local9) - Static57.anInt1744;
+		local23 = Static207.getHeightmapY(Player.plane, local15, local9) - Static57.anInt1744;
 		@Pc(236) int local236 = local23 - Static5.cameraY;
 		@Pc(241) int local241 = local9 - Static134.cameraZ;
 		@Pc(246) int local246 = local15 - Static138.cameraX;

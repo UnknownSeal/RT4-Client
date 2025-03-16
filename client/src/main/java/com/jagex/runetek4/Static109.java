@@ -22,7 +22,7 @@ public final class Static109 {
 	public static void updateNpcs() {
 		for (@Pc(7) int i = 0; i < Static272.npcCount; i++) {
 			@Pc(18) int id = Static33.npcIds[i];
-			@Pc(22) Npc npc = Static175.npcs[id];
+			@Pc(22) Npc npc = NpcList.npcs[id];
 			if (npc != null) {
 				Static263.updateEntity(npc.type.size, npc);
 			}

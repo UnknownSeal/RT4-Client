@@ -4,6 +4,7 @@ import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
 import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -205,8 +206,8 @@ public final class Static78 {
 			Static87.method1805(false);
 			aClass6.method842(true);
 			if (GlRenderer.enabled) {
-				local427 = Static173.localPlayer.pathTileX[0] >> 3;
-				local320 = Static173.localPlayer.pathTileZ[0] >> 3;
+				local427 = PlayerList.self.pathTileX[0] >> 3;
+				local320 = PlayerList.self.pathTileZ[0] >> 3;
 				Static73.method1597(local320, local427);
 			}
 			Static26.method743(false);
@@ -218,8 +219,8 @@ public final class Static78 {
 			Static89.method1835(false);
 			aClass6.method842(true);
 			if (GlRenderer.enabled) {
-				local427 = Static173.localPlayer.pathTileX[0] >> 3;
-				local320 = Static173.localPlayer.pathTileZ[0] >> 3;
+				local427 = PlayerList.self.pathTileX[0] >> 3;
+				local320 = PlayerList.self.pathTileZ[0] >> 3;
 				Static73.method1597(local320, local427);
 			}
 			ClientScriptRunner.method4002(false);
@@ -232,10 +233,10 @@ public final class Static78 {
 		}
 		aClass6.method842(true);
 		local427 = Static146.firstvisibleLevel;
-		if (local427 > Static55.currentLevel) {
-			local427 = Static55.currentLevel;
+		if (local427 > Player.plane) {
+			local427 = Player.plane;
 		}
-		if (local427 < Static55.currentLevel - 1) {
+		if (local427 < Player.plane - 1) {
 		}
 		if (Static138.allLevelsvisible()) {
 			Static146.method2750(0);
@@ -266,7 +267,7 @@ public final class Static78 {
 		if (GlRenderer.enabled) {
 			for (local320 = 0; local320 < 13; local320++) {
 				for (local309 = 0; local309 < 13; local309++) {
-					Static242.aOpenGLRendererArrayArray1[local320][local309].method4676(Static83.levelHeightMap[0], local320 * 8, local309 * 8);
+					Static242.aOpenGLRendererArrayArray1[local320][local309].method4676(SceneGraph.tileHeights[0], local320 * 8, local309 * 8);
 				}
 			}
 		}

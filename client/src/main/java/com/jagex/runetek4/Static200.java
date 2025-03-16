@@ -24,10 +24,10 @@ public final class Static200 {
 		}
 		ArrayUtils.copy(Static254.aClass100Array168, arg0 + 1, Static254.aClass100Array168, arg0, PreciseSleep.menuActionRow - arg0);
 		ArrayUtils.copy(ClientScriptRunner.aClass100Array160, arg0 + 1, ClientScriptRunner.aClass100Array160, arg0, PreciseSleep.menuActionRow - arg0);
-		Static289.method2613(Static190.anIntArray382, arg0 + 1, Static190.anIntArray382, arg0, PreciseSleep.menuActionRow - arg0);
-		Static289.method2616(Static39.aShortArray6, arg0 + 1, Static39.aShortArray6, arg0, PreciseSleep.menuActionRow - arg0);
-		Static289.method2611(Static159.aLongArray5, arg0 + 1, Static159.aLongArray5, arg0, PreciseSleep.menuActionRow - arg0);
-		Static289.method2613(Static196.anIntArray408, arg0 + 1, Static196.anIntArray408, arg0, PreciseSleep.menuActionRow - arg0);
-		Static289.method2613(Static56.anIntArray142, arg0 + 1, Static56.anIntArray142, arg0, PreciseSleep.menuActionRow - arg0);
+		ArrayUtils.copy(Static190.anIntArray382, arg0 + 1, Static190.anIntArray382, arg0, PreciseSleep.menuActionRow - arg0);
+		ArrayUtils.copy(Static39.aShortArray6, arg0 + 1, Static39.aShortArray6, arg0, PreciseSleep.menuActionRow - arg0);
+		ArrayUtils.copy(Static159.aLongArray5, arg0 + 1, Static159.aLongArray5, arg0, PreciseSleep.menuActionRow - arg0);
+		ArrayUtils.copy(Static196.anIntArray408, arg0 + 1, Static196.anIntArray408, arg0, PreciseSleep.menuActionRow - arg0);
+		ArrayUtils.copy(Static56.anIntArray142, arg0 + 1, Static56.anIntArray142, arg0, PreciseSleep.menuActionRow - arg0);
 	}
 }

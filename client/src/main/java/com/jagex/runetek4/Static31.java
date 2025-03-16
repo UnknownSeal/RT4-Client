@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.io.IOException;
 import java.net.Socket;
 
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -25,10 +26,10 @@ public final class Static31 {
 
 	@OriginalMember(owner = "client!ch", name = "c", descriptor = "(I)V")
 	public static void method846() {
-		if (!Static138.allLevelsvisible() && Static41.anInt1316 != Static55.currentLevel) {
-			Static127.method2463(Static55.currentLevel, Static52.anInt1695, Static80.anInt4701, Static173.localPlayer.pathTileZ[0], false, Static173.localPlayer.pathTileX[0]);
-		} else if (Static55.currentLevel != Static107.anInt2875 && Static137.method2665(Static55.currentLevel)) {
-			Static107.anInt2875 = Static55.currentLevel;
+		if (!Static138.allLevelsvisible() && Static41.anInt1316 != Player.plane) {
+			Static127.method2463(Player.plane, Static52.anInt1695, Static80.anInt4701, PlayerList.self.pathTileZ[0], false, PlayerList.self.pathTileX[0]);
+		} else if (Player.plane != Static107.anInt2875 && Static137.method2665(Player.plane)) {
+			Static107.anInt2875 = Player.plane;
 			Static269.method2218();
 		}
 	}

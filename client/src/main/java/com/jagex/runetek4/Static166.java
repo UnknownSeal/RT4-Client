@@ -77,7 +77,7 @@ public final class Static166 {
 											Static83.anIntArrayArrayArray3[local84][local95] = new int[4096];
 										}
 										local214--;
-										@Pc(312) LocType local312 = Static271.get(local214);
+										@Pc(312) LocType local312 = LocTypeList.get(local214);
 										if (local312.multiloc != null) {
 											local312 = local312.getMultiLoc();
 											if (local312 == null || local312.mapfunction == -1) {

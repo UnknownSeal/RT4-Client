@@ -1,6 +1,9 @@
 package com.jagex.runetek4;
 
 import java.awt.Component;
+
+import com.jagex.runetek4.util.ArrayUtils;
+import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -9,78 +12,89 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("runetek4.client!vh")
 public class AudioChannel {
 
+	@OriginalMember(owner = "runetek4.client!va", name = "O", descriptor = "I")
+	public static int threadPriority;
+
+	@OriginalMember(owner = "runetek4.client!em", name = "x", descriptor = "Lclient!cj;")
+	public static AudioThread thread;
+
+	@OriginalMember(owner = "runetek4.client!dh", name = "h", descriptor = "I")
+	public static int sampleRate;
+	@OriginalMember(owner = "runetek4.client!na", name = "w", descriptor = "Z")
+	public static boolean stereo;
+
 	@OriginalMember(owner = "runetek4.client!vh", name = "h", descriptor = "Lclient!qb;")
-	private PcmStream aClass3_Sub3_6;
+	private PcmStream stream;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "n", descriptor = "[I")
-	public int[] anIntArray411;
+	public int[] samples;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "D", descriptor = "I")
 	private int anInt4637;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "H", descriptor = "I")
-	public int anInt4641;
+	public int sampleRate2;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "K", descriptor = "I")
-	public int anInt4644;
+	public int bufferCapacity;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "I")
 	private final int anInt4621 = 32;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "f", descriptor = "J")
-	private long aLong151 = MonotonicTime.get();
+	private long time = MonotonicTime.get();
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "w", descriptor = "[Lclient!qb;")
 	private final PcmStream[] aClass3_Sub3Array5 = new PcmStream[8];
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "x", descriptor = "I")
-	private int anInt4634 = 0;
+	private int consumedSamples = 0;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "v", descriptor = "J")
-	private long aLong152 = 0L;
+	private long calculateConsumptionAt = 0L;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "E", descriptor = "I")
 	private int anInt4638 = 0;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "A", descriptor = "Z")
-	private boolean aBoolean229 = true;
+	private boolean skipConsumptionCheck = true;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "z", descriptor = "[Lclient!qb;")
 	private final PcmStream[] aClass3_Sub3Array6 = new PcmStream[8];
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "y", descriptor = "J")
-	private long aLong153 = 0L;
+	private long closeUntil = 0L;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "G", descriptor = "I")
-	private int anInt4640 = 0;
+	private int prevConsumedSamples = 0;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "C", descriptor = "I")
-	private int anInt4636 = 0;
+	private int prevBufferSize = 0;
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "()V")
-	protected void method3561() throws Exception {
+	protected void write() throws Exception {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(I)V")
-	public void method3562(@OriginalArg(0) int arg0) throws Exception {
+	public void open(@OriginalArg(0) int arg0) throws Exception {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "b", descriptor = "()V")
-	protected void method3563() throws Exception {
+	protected void close() throws Exception {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "([II)V")
-	private void method3564(@OriginalArg(0) int[] arg0) {
+	private void read(@OriginalArg(0) int[] arg0) {
 		@Pc(1) short local1 = 256;
-		if (Static164.aBoolean192) {
+		if (stereo) {
 			local1 = 512;
 		}
-		Static289.resetOutput(arg0, 0, local1);
+		ArrayUtils.clear(arg0, 0, local1);
 		this.anInt4638 -= 256;
-		if (this.aClass3_Sub3_6 != null && this.anInt4638 <= 0) {
-			this.anInt4638 += Static44.anInt1404 >> 4;
-			Static167.method3170(this.aClass3_Sub3_6);
-			this.method3567(this.aClass3_Sub3_6, this.aClass3_Sub3_6.method4407());
+		if (this.stream != null && this.anInt4638 <= 0) {
+			this.anInt4638 += sampleRate >> 4;
+			Static167.method3170(this.stream);
+			this.method3567(this.stream, this.stream.method4407());
 			@Pc(45) int local45 = 0;
 			@Pc(47) int local47 = 255;
 			@Pc(49) int local49 = 7;
@@ -160,89 +174,89 @@ public class AudioChannel {
 		if (this.anInt4638 < 0) {
 			this.anInt4638 = 0;
 		}
-		if (this.aClass3_Sub3_6 != null) {
-			this.aClass3_Sub3_6.method4408(arg0, 0, 256);
+		if (this.stream != null) {
+			this.stream.method4408(arg0, 0, 256);
 		}
-		this.aLong151 = MonotonicTime.get();
+		this.time = MonotonicTime.get();
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(B)V")
-	public final synchronized void method3565() {
-		if (this.anIntArray411 == null) {
+	public final synchronized void loop() {
+		if (this.samples == null) {
 			return;
 		}
-		@Pc(14) long local14 = MonotonicTime.get();
+		@Pc(14) long now = MonotonicTime.get();
 		try {
-			if (this.aLong153 != 0L) {
-				if (local14 < this.aLong153) {
+			if (this.closeUntil != 0L) {
+				if (now < this.closeUntil) {
 					return;
 				}
-				this.method3562(this.anInt4644);
-				this.aBoolean229 = true;
-				this.aLong153 = 0L;
+				this.open(this.bufferCapacity);
+				this.skipConsumptionCheck = true;
+				this.closeUntil = 0L;
 			}
-			@Pc(38) int local38 = this.method3569();
-			if (this.anInt4634 < this.anInt4636 - local38) {
-				this.anInt4634 = this.anInt4636 - local38;
+			@Pc(38) int local38 = this.getBufferSize();
+			if (this.consumedSamples < this.prevBufferSize - local38) {
+				this.consumedSamples = this.prevBufferSize - local38;
 			}
-			@Pc(65) int local65 = this.anInt4641 + this.anInt4637;
+			@Pc(65) int local65 = this.sampleRate2 + this.anInt4637;
 			if (local65 + 256 > 16384) {
 				local65 = 16128;
 			}
-			if (this.anInt4644 < local65 + 256) {
-				this.anInt4644 += 1024;
-				if (this.anInt4644 > 16384) {
-					this.anInt4644 = 16384;
+			if (this.bufferCapacity < local65 + 256) {
+				this.bufferCapacity += 1024;
+				if (this.bufferCapacity > 16384) {
+					this.bufferCapacity = 16384;
 				}
-				this.method3572();
+				this.flush();
 				local38 = 0;
-				this.method3562(this.anInt4644);
-				if (this.anInt4644 < local65 + 256) {
-					local65 = this.anInt4644 - 256;
-					this.anInt4637 = local65 - this.anInt4641;
+				this.open(this.bufferCapacity);
+				if (this.bufferCapacity < local65 + 256) {
+					local65 = this.bufferCapacity - 256;
+					this.anInt4637 = local65 - this.sampleRate2;
 				}
-				this.aBoolean229 = true;
+				this.skipConsumptionCheck = true;
 			}
 			while (local65 > local38) {
 				local38 += 256;
-				this.method3564(this.anIntArray411);
-				this.method3561();
+				this.read(this.samples);
+				this.write();
 			}
-			if (local14 > this.aLong152) {
-				if (this.aBoolean229) {
-					this.aBoolean229 = false;
-				} else if (this.anInt4634 == 0 && this.anInt4640 == 0) {
-					this.method3572();
-					this.aLong153 = local14 + 2000L;
+			if (now > this.calculateConsumptionAt) {
+				if (this.skipConsumptionCheck) {
+					this.skipConsumptionCheck = false;
+				} else if (this.consumedSamples == 0 && this.prevConsumedSamples == 0) {
+					this.flush();
+					this.closeUntil = now + 2000L;
 					return;
 				} else {
-					this.anInt4637 = Math.min(this.anInt4640, this.anInt4634);
-					this.anInt4640 = this.anInt4634;
+					this.anInt4637 = Math.min(this.prevConsumedSamples, this.consumedSamples);
+					this.prevConsumedSamples = this.consumedSamples;
 				}
-				this.aLong152 = local14 + 2000L;
-				this.anInt4634 = 0;
+				this.calculateConsumptionAt = now + 2000L;
+				this.consumedSamples = 0;
 			}
-			this.anInt4636 = local38;
+			this.prevBufferSize = local38;
 		} catch (@Pc(202) Exception local202) {
-			this.method3572();
-			this.aLong153 = local14 + 2000L;
+			this.flush();
+			this.closeUntil = now + 2000L;
 		}
 		try {
-			if (local14 > this.aLong151 + 500000L) {
-				local14 = this.aLong151;
+			if (now > this.time + 500000L) {
+				now = this.time;
 			}
-			while (local14 > this.aLong151 + 5000L) {
-				this.method3573();
-				this.aLong151 += 256000 / Static44.anInt1404;
+			while (now > this.time + 5000L) {
+				this.skip();
+				this.time += 256000 / sampleRate;
 			}
 		} catch (@Pc(247) Exception local247) {
-			this.aLong151 = local14;
+			this.time = now;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(ILclient!qb;)V")
 	public final synchronized void method3566(@OriginalArg(1) PcmStream arg0) {
-		this.aClass3_Sub3_6 = arg0;
+		this.stream = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(Lclient!qb;IB)V")
@@ -259,63 +273,63 @@ public class AudioChannel {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "c", descriptor = "()I")
-	protected int method3569() throws Exception {
-		return this.anInt4644;
+	protected int getBufferSize() throws Exception {
+		return this.bufferCapacity;
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "b", descriptor = "(B)V")
 	public final synchronized void method3570() {
-		this.aBoolean229 = true;
+		this.skipConsumptionCheck = true;
 		try {
-			this.method3563();
+			this.close();
 		} catch (@Pc(10) Exception local10) {
-			this.method3572();
-			this.aLong153 = MonotonicTime.get() + 2000L;
+			this.flush();
+			this.closeUntil = MonotonicTime.get() + 2000L;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "b", descriptor = "(I)V")
 	public final void method3571() {
-		this.aBoolean229 = true;
+		this.skipConsumptionCheck = true;
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "d", descriptor = "()V")
-	protected void method3572() {
+	protected void flush() {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(II)V")
-	private void method3573() {
+	private void skip() {
 		this.anInt4638 -= 256;
 		if (this.anInt4638 < 0) {
 			this.anInt4638 = 0;
 		}
-		if (this.aClass3_Sub3_6 != null) {
-			this.aClass3_Sub3_6.method4410(256);
+		if (this.stream != null) {
+			this.stream.method4410(256);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(Z)V")
-	public final synchronized void method3575() {
-		if (Static60.aClass19_1 != null) {
+	public final synchronized void quit() {
+		if (thread != null) {
 			@Pc(6) boolean local6 = true;
 			for (@Pc(8) int local8 = 0; local8 < 2; local8++) {
-				if (Static60.aClass19_1.aClass62Array1[local8] == this) {
-					Static60.aClass19_1.aClass62Array1[local8] = null;
+				if (thread.channels[local8] == this) {
+					thread.channels[local8] = null;
 				}
-				if (Static60.aClass19_1.aClass62Array1[local8] != null) {
+				if (thread.channels[local8] != null) {
 					local6 = false;
 				}
 			}
 			if (local6) {
-				Static60.aClass19_1.aBoolean62 = true;
-				while (Static60.aClass19_1.aBoolean64) {
-					PreciseSleep.sleep(50L);
+				thread.stop = true;
+				while (thread.running) {
+					ThreadUtils.sleep(50L);
 				}
-				Static60.aClass19_1 = null;
+				thread = null;
 			}
 		}
-		this.method3572();
-		this.anIntArray411 = null;
+		this.flush();
+		this.samples = null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(Ljava/awt/runetek4.Component;)V")

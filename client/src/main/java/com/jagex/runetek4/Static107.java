@@ -37,58 +37,58 @@ public final class Static107 {
 	@OriginalMember(owner = "runetek4.client!id", name = "b", descriptor = "(I)V")
 	public static void method2261() {
 		if (Static147.aClass62_2 != null) {
-			Static147.aClass62_2.method3565();
+			Static147.aClass62_2.loop();
 		}
 		if (Static11.aClass62_1 != null) {
-			Static11.aClass62_1.method3565();
+			Static11.aClass62_1.loop();
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!id", name = "a", descriptor = "(ILsignlink!ll;Ljava/awt/runetek4.Component;II)Lclient!vh;")
 	public static AudioChannel method2262(@OriginalArg(0) int arg0, @OriginalArg(1) SignLink arg1, @OriginalArg(2) Component arg2, @OriginalArg(3) int arg3) {
-		if (Static44.anInt1404 == 0) {
+		if (AudioChannel.sampleRate == 0) {
 			throw new IllegalStateException();
 		}
 		try {
 			@Pc(33) AudioChannel local33 = (AudioChannel) Class.forName("com.jagex.runetek4.JavaAudioChannel").getDeclaredConstructor().newInstance();
-			local33.anInt4641 = arg0;
-			local33.anIntArray411 = new int[(Static164.aBoolean192 ? 2 : 1) * 256];
+			local33.sampleRate2 = arg0;
+			local33.samples = new int[(AudioChannel.stereo ? 2 : 1) * 256];
 			local33.method3576(arg2);
-			local33.anInt4644 = (arg0 & -1024) + 1024;
-			if (local33.anInt4644 > 16384) {
-				local33.anInt4644 = 16384;
+			local33.bufferCapacity = (arg0 & -1024) + 1024;
+			if (local33.bufferCapacity > 16384) {
+				local33.bufferCapacity = 16384;
 			}
-			local33.method3562(local33.anInt4644);
-			if (Static258.anInt5637 > 0 && Static60.aClass19_1 == null) {
-				Static60.aClass19_1 = new AudioThread();
-				Static60.aClass19_1.canvas = arg1;
-				arg1.startThread(Static258.anInt5637, Static60.aClass19_1);
+			local33.open(local33.bufferCapacity);
+			if (AudioChannel.threadPriority > 0 && AudioChannel.thread == null) {
+				AudioChannel.thread = new AudioThread();
+				AudioChannel.thread.signLink = arg1;
+				arg1.startThread(AudioChannel.threadPriority, AudioChannel.thread);
 			}
-			if (Static60.aClass19_1 != null) {
-				if (Static60.aClass19_1.aClass62Array1[arg3] != null) {
+			if (AudioChannel.thread != null) {
+				if (AudioChannel.thread.channels[arg3] != null) {
 					throw new IllegalArgumentException();
 				}
-				Static60.aClass19_1.aClass62Array1[arg3] = local33;
+				AudioChannel.thread.channels[arg3] = local33;
 			}
 			return local33;
 		} catch (@Pc(109) Throwable local109) {
 			try {
 				@Pc(120) SignLinkAudioChannel local120 = new SignLinkAudioChannel(arg1, arg3);
-				local120.anIntArray411 = new int[(Static164.aBoolean192 ? 2 : 1) * 256];
-				local120.anInt4641 = arg0;
+				local120.samples = new int[(AudioChannel.stereo ? 2 : 1) * 256];
+				local120.sampleRate2 = arg0;
 				local120.method3576(arg2);
-				local120.anInt4644 = 16384;
-				local120.method3562(local120.anInt4644);
-				if (Static258.anInt5637 > 0 && Static60.aClass19_1 == null) {
-					Static60.aClass19_1 = new AudioThread();
-					Static60.aClass19_1.canvas = arg1;
-					arg1.startThread(Static258.anInt5637, Static60.aClass19_1);
+				local120.bufferCapacity = 16384;
+				local120.open(local120.bufferCapacity);
+				if (AudioChannel.threadPriority > 0 && AudioChannel.thread == null) {
+					AudioChannel.thread = new AudioThread();
+					AudioChannel.thread.signLink = arg1;
+					arg1.startThread(AudioChannel.threadPriority, AudioChannel.thread);
 				}
-				if (Static60.aClass19_1 != null) {
-					if (Static60.aClass19_1.aClass62Array1[arg3] != null) {
+				if (AudioChannel.thread != null) {
+					if (AudioChannel.thread.channels[arg3] != null) {
 						throw new IllegalArgumentException();
 					}
-					Static60.aClass19_1.aClass62Array1[arg3] = local120;
+					AudioChannel.thread.channels[arg3] = local120;
 				}
 				return local120;
 			} catch (@Pc(186) Throwable local186) {

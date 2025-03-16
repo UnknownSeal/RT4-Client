@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.scene.tile.SceneTile;
@@ -33,7 +33,7 @@ public final class Static262 {
 	public static int anInt5754 = -1;
 
 	@OriginalMember(owner = "runetek4.client!vf", name = "a", descriptor = "(IIIILclient!th;Lclient!th;IIJ)V")
-	public static void addWall(@OriginalArg(0) int level, @OriginalArg(1) int arg1, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) Renderable modelA, @OriginalArg(5) Renderable modelB, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8) {
+	public static void addWall(@OriginalArg(0) int level, @OriginalArg(1) int arg1, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) Entity modelA, @OriginalArg(5) Entity modelB, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8) {
 		if (modelA == null && modelB == null) {
 			return;
 		}
@@ -42,7 +42,7 @@ public final class Static262 {
 		wall.anInt3048 = arg1 * 128 + 64;
 		wall.anInt3044 = z * 128 + 64;
 		wall.anInt3051 = arg3;
-		wall.modelA = modelA;
+		wall.primary = modelA;
 		wall.modelB = modelB;
 		wall.typeA = arg6;
 		wall.typeB = arg7;
@@ -52,12 +52,6 @@ public final class Static262 {
 			}
 		}
 		Static130.levelTiles[level][arg1][z].wall = wall;
-	}
-
-	@OriginalMember(owner = "runetek4.client!vf", name = "a", descriptor = "(III)Lclient!jh;")
-	public static Wall method4509(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
-		return local7 == null ? null : local7.wall;
 	}
 
 	@OriginalMember(owner = "runetek4.client!vf", name = "a", descriptor = "(IB)Lclient!na;")

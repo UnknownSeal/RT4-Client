@@ -196,7 +196,7 @@ public class Game {
             return;
         }
         Static251.loop(); // ChangeLocRequest
-        Static192.loop(); // AttachLocRequest
+        AttachLocRequest.loop(); // AttachLocRequest
         Static54.loop(); // SoundPlayer
         Static201.idleNetCycles++;
         if (Static201.idleNetCycles > 750) {
@@ -445,18 +445,18 @@ public class Game {
                                                 Static4.method28();
                                             }
                                             if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81] && Static58.wheelRotation != 0) {
-                                                y = Static55.currentLevel - Static58.wheelRotation;
+                                                y = Player.plane - Static58.wheelRotation;
                                                 if (y < 0) {
                                                     y = 0;
                                                 } else if (y > 3) {
                                                     y = 3;
                                                 }
                                                 // Cheat
-                                                Static61.teleport(Static173.localPlayer.pathTileX[0] + Static225.originX, Static173.localPlayer.pathTileZ[0] + Static142.originZ, y);
+                                                Static61.teleport(PlayerList.self.pathTileX[0] + Static225.originX, PlayerList.self.pathTileZ[0] + Static142.originZ, y);
                                             }
                                             if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
                                                 if (Static56.clickTileX != -1) {
-                                                    Static61.teleport(Static225.originX + Static56.clickTileX, Static142.originZ - -Static116.anInt2954, Static55.currentLevel);
+                                                    Static61.teleport(Static225.originX + Static56.clickTileX, Static142.originZ - -Static116.anInt2954, Player.plane);
                                                 }
                                                 Static187.anInt4422 = 0;
                                                 Static125.anInt3096 = 0;
@@ -485,7 +485,7 @@ public class Game {
                                                 }
                                                 Static187.anInt4422 = 0;
                                             } else if (Static56.clickTileX != -1 && Static125.anInt3096 == 0 && Static187.anInt4422 == 0) {
-                                                @Pc(1871) boolean success = Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, Static173.localPlayer.pathTileX[0]);
+                                                @Pc(1871) boolean success = Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, PlayerList.self.pathTileX[0]);
                                                 if (success) {
                                                     Static25.y = Static60.mouseClickY;
                                                     Static17.crossCycle = 0;
@@ -666,7 +666,7 @@ public class Game {
         @Pc(158) int local158;
         @Pc(171) int local171;
         for (i = 0; i < Static272.npcCount; i++) {
-            npc = Static175.npcs[Static33.npcIds[i]];
+            npc = NpcList.npcs[Static33.npcIds[i]];
             if (npc != null && npc.isVisible() && npc.type.drawabove == arg0 && npc.type.method2933()) {
                 @Pc(42) int npcSize2 = npc.size();
                 @Pc(97) int local97;
@@ -704,7 +704,7 @@ public class Game {
             }
         }
         label200: for (i = 0; i < Static272.npcCount; i++) {
-            npc = Static175.npcs[Static33.npcIds[i]];
+            npc = NpcList.npcs[Static33.npcIds[i]];
             @Pc(262) long bitset = (long) Static33.npcIds[i] << 32 | 0x20000000L;
             if (npc != null && npc.isVisible() && npc.type.drawabove == arg0 && npc.type.method2933()) {
                 npcSize = npc.size();
@@ -764,8 +764,8 @@ public class Game {
                 if (!npc.type.active) {
                     bitset |= Long.MIN_VALUE;
                 }
-                npc.y = Static207.getHeightmapY(Static55.currentLevel, npc.xFine, npc.zFine);
-                Static43.addTemporary(Static55.currentLevel, npc.xFine, npc.zFine, npc.y, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.seqStretches);
+                npc.y = Static207.getHeightmapY(Player.plane, npc.xFine, npc.zFine);
+                Static43.addTemporary(Player.plane, npc.xFine, npc.zFine, npc.y, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.seqStretches);
             }
         }
     }
@@ -773,7 +773,7 @@ public class Game {
     @OriginalMember(owner = "runetek4.client!cn", name = "b", descriptor = "(ZI)V")
     public static void pushPlayers(@OriginalArg(0) boolean arg0) {
         @Pc(3) int local3 = Static267.playerCount;
-        if (Static115.anInt2939 == Static173.localPlayer.xFine >> 7 && Static173.localPlayer.zFine >> 7 == Static84.anInt2255) {
+        if (Static115.anInt2939 == PlayerList.self.xFine >> 7 && PlayerList.self.zFine >> 7 == Static84.anInt2255) {
             Static115.anInt2939 = 0;
         }
         if (arg0) {
@@ -789,7 +789,7 @@ public class Game {
         @Pc(106) int local106;
         for (i = 0; i < local3; i++) {
             if (arg0) {
-                player = Static173.localPlayer;
+                player = PlayerList.self;
             } else {
                 player = Static159.players[Static105.playerIds[i]];
             }
@@ -832,7 +832,7 @@ public class Game {
         label220: for (i = 0; i < local3; i++) {
             @Pc(272) long id;
             if (arg0) {
-                player = Static173.localPlayer;
+                player = PlayerList.self;
                 id = 8791798054912L;
             } else {
                 player = Static159.players[Static105.playerIds[i]];
@@ -897,13 +897,13 @@ public class Game {
                         }
                     }
                 }
-                if (player.locModel == null || Static83.loopCycle < player.locStartCycle || player.locStopCycle <= Static83.loopCycle) {
-                    player.y = Static207.getHeightmapY(Static55.currentLevel, player.xFine, player.zFine);
-                    Static43.addTemporary(Static55.currentLevel, player.xFine, player.zFine, player.y, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
+                if (player.attachment == null || client.loop < player.attachmentSetAt || player.attachmentResetAt <= client.loop) {
+                    player.y = Static207.getHeightmapY(Player.plane, player.xFine, player.zFine);
+                    Static43.addTemporary(Player.plane, player.xFine, player.zFine, player.y, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
                 } else {
                     player.lowMemory = false;
-                    player.y = Static207.getHeightmapY(Static55.currentLevel, player.xFine, player.zFine);
-                    Static184.addTemporary(Static55.currentLevel, player.xFine, player.zFine, player.y, player, player.anInt3381, id, player.anInt3384, player.anInt3374, player.anInt3411, player.anInt3410);
+                    player.y = Static207.getHeightmapY(Player.plane, player.xFine, player.zFine);
+                    Static184.addTemporary(Player.plane, player.xFine, player.zFine, player.y, player, player.anInt3381, id, player.atachmentX0, player.attachmentZ0, player.attachmentX1, player.attachmentZ1);
                 }
             }
         }
@@ -942,7 +942,7 @@ public class Game {
             Static115.playerAppearanceBuffer[local19] = null;
         }
         for (local19 = 0; local19 < 32768; local19++) {
-            Static175.npcs[local19] = null;
+            NpcList.npcs[local19] = null;
         }
         for (local19 = 0; local19 < 4; local19++) {
             for (@Pc(115) int local115 = 0; local115 < 104; local115++) {
@@ -1154,29 +1154,29 @@ public class Game {
     public static void pushProjectiles() {
         for (@Pc(16) ProjectileEntity proj = (ProjectileEntity) Static217.projectiles.head(); proj != null; proj = (ProjectileEntity) Static217.projectiles.next()) {
             @Pc(21) ProjectileAnimation projAnim = proj.aClass8_Sub6_1;
-            if (Static55.currentLevel != projAnim.level || projAnim.lastCycle < Static83.loopCycle) {
+            if (Player.plane != projAnim.level || projAnim.lastCycle < client.loop) {
                 proj.unlink();
-            } else if (Static83.loopCycle >= projAnim.startCycle) {
+            } else if (client.loop >= projAnim.startCycle) {
                 if (projAnim.target > 0) {
-                    @Pc(54) Npc npc = Static175.npcs[projAnim.target - 1];
+                    @Pc(54) Npc npc = NpcList.npcs[projAnim.target - 1];
                     if (npc != null && npc.xFine >= 0 && npc.xFine < 13312 && npc.zFine >= 0 && npc.zFine < 13312) {
-                        projAnim.updateVelocity(npc.zFine, Static83.loopCycle, Static207.getHeightmapY(projAnim.level, npc.xFine, npc.zFine) - projAnim.anInt4805, npc.xFine);
+                        projAnim.updateVelocity(npc.zFine, client.loop, Static207.getHeightmapY(projAnim.level, npc.xFine, npc.zFine) - projAnim.anInt4805, npc.xFine);
                     }
                 }
                 if (projAnim.target < 0) {
                     @Pc(102) int index = -projAnim.target - 1;
                     @Pc(107) Player player;
-                    if (Static16.localPid == index) {
-                        player = Static173.localPlayer;
+                    if (PlayerList.selfId == index) {
+                        player = PlayerList.self;
                     } else {
                         player = Static159.players[index];
                     }
                     if (player != null && player.xFine >= 0 && player.xFine < 13312 && player.zFine >= 0 && player.zFine < 13312) {
-                        projAnim.updateVelocity(player.zFine, Static83.loopCycle, Static207.getHeightmapY(projAnim.level, player.xFine, player.zFine) - projAnim.anInt4805, player.xFine);
+                        projAnim.updateVelocity(player.zFine, client.loop, Static207.getHeightmapY(projAnim.level, player.xFine, player.zFine) - projAnim.anInt4805, player.xFine);
                     }
                 }
                 projAnim.update(Static178.sceneDelta);
-                Static43.addTemporary(Static55.currentLevel, (int) projAnim.x, (int) projAnim.y, (int) projAnim.z, 60, projAnim, projAnim.yaw, -1L, false);
+                Static43.addTemporary(Player.plane, (int) projAnim.x, (int) projAnim.y, (int) projAnim.z, 60, projAnim, projAnim.yaw, -1L, false);
             }
         }
     }
@@ -1185,9 +1185,9 @@ public class Game {
     public static void pushSpotanims() {
         for (@Pc(9) SpotAnimEntity entity = (SpotAnimEntity) Static99.spotanims.head(); entity != null; entity = (SpotAnimEntity) Static99.spotanims.next()) {
             @Pc(15) SpotAnim spotAnim = entity.aClass8_Sub2_1;
-            if (spotAnim.level != Static55.currentLevel || spotAnim.seqComplete) {
+            if (spotAnim.level != Player.plane || spotAnim.seqComplete) {
                 entity.unlink();
-            } else if (spotAnim.startCycle <= Static83.loopCycle) {
+            } else if (spotAnim.startCycle <= client.loop) {
                 spotAnim.update(Static178.sceneDelta);
                 if (spotAnim.seqComplete) {
                     entity.unlink();

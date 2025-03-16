@@ -5,6 +5,7 @@ import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -536,7 +537,7 @@ public final class Static1 {
 		for (local38 = 0; local38 < local12; local38++) {
 			local2826[local38] = local2823[local38].nodeId;
 		}
-		Static4.method23(local2826, local2823);
+		ArrayUtils.sort(local2826, local2823);
 		return local2823;
 	}
 

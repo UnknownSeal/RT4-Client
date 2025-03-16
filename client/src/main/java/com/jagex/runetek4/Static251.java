@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -34,7 +33,7 @@ public final class Static251 {
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "a", descriptor = "(B)V")
 	public static void loop() {
-		for (@Pc(10) LocAddEntity local10 = (LocAddEntity) Static26.spawnedLocations.head(); local10 != null; local10 = (LocAddEntity) Static26.spawnedLocations.next()) {
+		for (@Pc(10) ChangeLocRequest local10 = (ChangeLocRequest) Static26.spawnedLocations.head(); local10 != null; local10 = (ChangeLocRequest) Static26.spawnedLocations.next()) {
 			if (local10.anInt924 > 0) {
 				local10.anInt924--;
 			}

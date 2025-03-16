@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheIndex;
 import com.jagex.runetek4.node.NodeQueue;
+import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -26,7 +27,7 @@ public final class Js5CacheQueue implements Runnable {
 	public Js5CacheQueue() {
 		@Pc(20) PrivilegedRequest local20 = GameShell.signLink.startThread(5, this);
 		while (local20.status == 0) {
-			PreciseSleep.sleep(10L);
+			ThreadUtils.sleep(10L);
 		}
 		if (local20.status == 2) {
 			throw new RuntimeException();
@@ -130,7 +131,7 @@ public final class Js5CacheQueue implements Runnable {
 					local19.bytes = local19.aClass49_3.get((int) local19.secondaryNodeId);
 				}
 			} catch (@Pc(83) Exception local83) {
-				Static89.report(null, local83);
+				TracingException.report(null, local83);
 			}
 			local19.awaitingResponse = false;
 		}

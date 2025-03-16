@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 
+import com.jagex.runetek4.util.ThreadUtils;
 import com.jogamp.nativewindow.awt.AWTGraphicsConfiguration;
 import com.jogamp.nativewindow.awt.JAWTWindow;
 import com.jogamp.opengl.*;
@@ -696,7 +697,7 @@ public final class GlRenderer {
 				if (swapBuffersAttempts++ > 5) {
 					return -2;
 				}
-				PreciseSleep.sleep(1000L);
+				ThreadUtils.sleep(1000L);
 			}
 			if (window.getLock().isLocked()) {
 				window.unlockSurface();
@@ -724,7 +725,7 @@ public final class GlRenderer {
 						quit();
 						return -3;
 					}
-					PreciseSleep.sleep(100L);
+					ThreadUtils.sleep(100L);
 				}
 			}
 			gl.glClear(GL2.GL_COLOR_BUFFER_BIT);

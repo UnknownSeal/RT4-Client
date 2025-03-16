@@ -9,6 +9,7 @@ import java.net.Socket;
 import com.jagex.runetek4.core.io.BrokenInputStream;
 import com.jagex.runetek4.core.io.BrokenOutputStream;
 import com.jagex.runetek4.util.SignLink;
+import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -117,7 +118,7 @@ public final class BufferedSocket implements Runnable {
 				}
 			}
 		} catch (@Pc(124) Exception local124) {
-			Static89.report(null, local124);
+			TracingException.report(null, local124);
 		}
 	}
 
@@ -206,7 +207,7 @@ public final class BufferedSocket implements Runnable {
 		}
 		if (this.aClass212_4 != null) {
 			while (this.aClass212_4.status == 0) {
-				PreciseSleep.sleep(1L);
+				ThreadUtils.sleep(1L);
 			}
 			if (this.aClass212_4.status == 1) {
 				try {

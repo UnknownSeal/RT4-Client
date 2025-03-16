@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -64,20 +64,20 @@ public final class Static266 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vk", name = "a", descriptor = "(Lclient!ec;)V")
-	public static void method4193(@OriginalArg(0) InteractiveObject arg0) {
+	public static void method4193(@OriginalArg(0) Scenery arg0) {
 		for (@Pc(2) int local2 = arg0.anInt1701; local2 <= arg0.anInt1713; local2++) {
 			for (@Pc(9) int local9 = arg0.anInt1696; local9 <= arg0.anInt1698; local9++) {
 				@Pc(22) SceneTile local22 = Static130.levelTiles[arg0.anInt1709][local2][local9];
 				if (local22 != null) {
 					@Pc(26) int local26;
 					for (local26 = 0; local26 < local22.entityCount; local26++) {
-						if (local22.interactiveObjects[local26] == arg0) {
+						if (local22.sceneries[local26] == arg0) {
 							local22.entityCount--;
 							for (@Pc(44) int local44 = local26; local44 < local22.entityCount; local44++) {
-								local22.interactiveObjects[local44] = local22.interactiveObjects[local44 + 1];
+								local22.sceneries[local44] = local22.sceneries[local44 + 1];
 								local22.anIntArray59[local44] = local22.anIntArray59[local44 + 1];
 							}
-							local22.interactiveObjects[local22.entityCount] = null;
+							local22.sceneries[local22.entityCount] = null;
 							break;
 						}
 					}

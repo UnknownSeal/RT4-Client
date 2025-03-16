@@ -13,9 +13,6 @@ public final class Static258 {
 	@OriginalMember(owner = "runetek4.client!va", name = "G", descriptor = "[Z")
 	public static boolean[] aBooleanArray130;
 
-	@OriginalMember(owner = "runetek4.client!va", name = "O", descriptor = "I")
-	public static int anInt5637;
-
 	@OriginalMember(owner = "runetek4.client!va", name = "b", descriptor = "(II)V")
 	public static void method4415() {
 		Static179.aClass99_25.clear(5);

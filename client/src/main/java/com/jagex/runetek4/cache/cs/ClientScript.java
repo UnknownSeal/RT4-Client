@@ -164,7 +164,7 @@ public final class ClientScript extends CachedNode {
 					register1 = VarPlayerDefinition.varPlayers[script[pc++]] * 100 / 46875;
 				}
 				if (opcode == 8) { // load_combat_level
-					register1 = Static173.localPlayer.combatLevel;
+					register1 = PlayerList.self.combatLevel;
 				}
 				if (opcode == 9) { // load_total_level
 					for (i = 0; i < 25; i++) {
@@ -203,10 +203,10 @@ public final class ClientScript extends CachedNode {
 					register1 = VarbitDefinition.getVarbitValue(i);
 				}
 				if (opcode == 18) {
-					register1 = (Static173.localPlayer.xFine >> 7) + Static225.originX;
+					register1 = (PlayerList.self.xFine >> 7) + Static225.originX;
 				}
 				if (opcode == 19) {
-					register1 = (Static173.localPlayer.zFine >> 7) + Static142.originZ;
+					register1 = (PlayerList.self.zFine >> 7) + Static142.originZ;
 				}
 				if (opcode == 20) {
 					register1 = script[pc++];

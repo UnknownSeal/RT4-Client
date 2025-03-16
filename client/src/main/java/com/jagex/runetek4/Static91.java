@@ -1,9 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.SceneTile;
-import com.jagex.runetek4.scene.tile.WallDecoration;
+import com.jagex.runetek4.scene.tile.WallDecor;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -50,26 +50,26 @@ public final class Static91 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(IIIILclient!th;Lclient!th;IIIIJ)V")
-	public static void addWallDecoration(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Renderable arg4, @OriginalArg(5) Renderable arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) long arg10) {
+	public static void addWallDecoration(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Entity arg4, @OriginalArg(5) Entity arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) long arg10) {
 		if (arg4 == null) {
 			return;
 		}
-		@Pc(6) WallDecoration wallDecoration = new WallDecoration();
-		wallDecoration.aLong52 = arg10;
-		wallDecoration.x = arg1 * 128 + 64;
-		wallDecoration.z = arg2 * 128 + 64;
-		wallDecoration.y = arg3;
-		wallDecoration.model = arg4;
-		wallDecoration.aClass8_2 = arg5;
-		wallDecoration.type = arg6;
-		wallDecoration.angle = arg7;
-		wallDecoration.anInt1394 = arg8;
-		wallDecoration.anInt1392 = arg9;
+		@Pc(6) WallDecor wallDecor = new WallDecor();
+		wallDecor.key = arg10;
+		wallDecor.xFine = arg1 * 128 + 64;
+		wallDecor.zFine = arg2 * 128 + 64;
+		wallDecor.anInt1391 = arg3;
+		wallDecor.primary = arg4;
+		wallDecor.secondary = arg5;
+		wallDecor.type = arg6;
+		wallDecor.anInt1388 = arg7;
+		wallDecor.xOffset = arg8;
+		wallDecor.zOffset = arg9;
 		for (@Pc(46) int local46 = arg0; local46 >= 0; local46--) {
 			if (Static130.levelTiles[local46][arg1][arg2] == null) {
 				Static130.levelTiles[local46][arg1][arg2] = new SceneTile(local46, arg1, arg2);
 			}
 		}
-		Static130.levelTiles[arg0][arg1][arg2].wallDecoration = wallDecoration;
+		Static130.levelTiles[arg0][arg1][arg2].wallDecor = wallDecor;
 	}
 }

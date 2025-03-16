@@ -4,6 +4,7 @@ import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.config.FloType;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -91,8 +92,8 @@ public final class Static45 {
 				x0 = z0 * 768 >> 8;
 				for (z = 1; z < 103; z++) {
 					for (underlayId = 1; underlayId < 103; underlayId++) {
-						dz = Static83.levelHeightMap[level][underlayId][z + 1] - Static83.levelHeightMap[level][underlayId][z - 1];
-						dx = Static83.levelHeightMap[level][underlayId + 1][z] - Static83.levelHeightMap[level][underlayId - 1][z];
+						dz = SceneGraph.tileHeights[level][underlayId][z + 1] - SceneGraph.tileHeights[level][underlayId][z - 1];
+						dx = SceneGraph.tileHeights[level][underlayId + 1][z] - SceneGraph.tileHeights[level][underlayId - 1][z];
 						len = (int) Math.sqrt((double) (dx * dx + dz * dz + 65536));
 						normalZ = (dz << 8) / len;
 						normalY = -65536 / len;
@@ -117,8 +118,8 @@ public final class Static45 {
 				local200 = underlayId * 1024 >> 8;
 				for (dx = 1; dx < 103; dx++) {
 					for (dz = 1; dz < 103; dz++) {
-						normalX = Static83.levelHeightMap[level][dz + 1][dx] - Static83.levelHeightMap[level][dz - 1][dx];
-						normalY = Static83.levelHeightMap[level][dz][dx + 1] - Static83.levelHeightMap[level][dz][dx - 1];
+						normalX = SceneGraph.tileHeights[level][dz + 1][dx] - SceneGraph.tileHeights[level][dz - 1][dx];
+						normalY = SceneGraph.tileHeights[level][dz][dx + 1] - SceneGraph.tileHeights[level][dz][dx - 1];
 						normalZ = (int) Math.sqrt((double) (normalX * normalX + normalY * normalY + 65536));
 						local273 = (normalX << 8) / normalZ;
 						local322 = (local159[dz][dx + 1] >> 3) + (local159[dz][dx - 1] >> 2) + (local159[dz - 1][dx] >> 2) + (local159[dz + 1][dx] >> 3) + (local159[dz][dx] >> 1);
@@ -202,10 +203,10 @@ public final class Static45 {
 						z = Static253.levelTileUnderlayIds[level][z0][x0] & 0xFF;
 						underlayId = Static240.aByteArrayArrayArray14[level][z0][x0] & 0xFF;
 						if (z > 0 || underlayId > 0) {
-							dx = Static83.levelHeightMap[level][z0 + 1][x0];
-							local200 = Static83.levelHeightMap[level][z0][x0];
-							len = Static83.levelHeightMap[level][z0][x0 + 1];
-							dz = Static83.levelHeightMap[level][z0 + 1][x0 + 1];
+							dx = SceneGraph.tileHeights[level][z0 + 1][x0];
+							local200 = SceneGraph.tileHeights[level][z0][x0];
+							len = SceneGraph.tileHeights[level][z0][x0 + 1];
+							dz = SceneGraph.tileHeights[level][z0 + 1][x0 + 1];
 							if (level > 0) {
 								@Pc(1067) boolean local1067 = true;
 								if (z == 0 && Static163.aByteArrayArrayArray11[level][z0][x0] != 0) {
@@ -239,7 +240,7 @@ public final class Static45 {
 							if (underlayId == 0) {
 								Static176.method3305(level, z0, x0, 0, 0, -1, local200, dx, dz, len, Static87.method1814(normalZ, normalX), Static87.method1814(local273, normalX), Static87.method1814(local326, normalX), Static87.method1814(local332, normalX), 0, 0, 0, 0, normalY, 0);
 								if (GlRenderer.enabled && level > 0 && normalX != -1 && Static199.method3593(z - 1).occlude) {
-									Static242.method4197(0, 0, true, false, z0, x0, local200 - Static83.levelHeightMap[0][z0][x0], -Static83.levelHeightMap[0][z0 + 1][x0] + dx, dz - Static83.levelHeightMap[0][z0 + 1][x0 + 1], len - Static83.levelHeightMap[0][z0][x0 + 1]);
+									Static242.method4197(0, 0, true, false, z0, x0, local200 - SceneGraph.tileHeights[0][z0][x0], -SceneGraph.tileHeights[0][z0 + 1][x0] + dx, dz - SceneGraph.tileHeights[0][z0 + 1][x0 + 1], len - SceneGraph.tileHeights[0][z0][x0 + 1]);
 								}
 								if (GlRenderer.enabled && !arg1 && Static62.anIntArrayArray11 != null && level == 0) {
 									for (local322 = z0 - 1; local322 <= z0 + 1; local322++) {
@@ -320,7 +321,7 @@ public final class Static45 {
 								}
 								Static176.method3305(level, z0, x0, local322, local1242, local1288, local200, dx, dz, len, Static87.method1814(normalZ, normalX), Static87.method1814(local273, normalX), Static87.method1814(local326, normalX), Static87.method1814(local332, normalX), Static230.method3949(local1301, normalZ), Static230.method3949(local1301, local273), Static230.method3949(local1301, local326), Static230.method3949(local1301, local332), normalY, local1353);
 								if (GlRenderer.enabled && level > 0) {
-									Static242.method4197(local322, local1242, local1301 == -2 || !local1248.hardshadow, normalX == -1 || !Static199.method3593(z - 1).occlude, z0, x0, local200 - Static83.levelHeightMap[0][z0][x0], dx - Static83.levelHeightMap[0][z0 + 1][x0], dz - Static83.levelHeightMap[0][z0 + 1][x0 + 1], -Static83.levelHeightMap[0][z0][x0 + 1] + len);
+									Static242.method4197(local322, local1242, local1301 == -2 || !local1248.hardshadow, normalX == -1 || !Static199.method3593(z - 1).occlude, z0, x0, local200 - SceneGraph.tileHeights[0][z0][x0], dx - SceneGraph.tileHeights[0][z0 + 1][x0], dz - SceneGraph.tileHeights[0][z0 + 1][x0 + 1], -SceneGraph.tileHeights[0][z0][x0 + 1] + len);
 								}
 							}
 						}
@@ -329,7 +330,7 @@ public final class Static45 {
 			}
 			if (GlRenderer.enabled) {
 				@Pc(1888) float[][] local1888 = new float[105][105];
-				@Pc(1892) int[][] local1892 = Static83.levelHeightMap[level];
+				@Pc(1892) int[][] local1892 = SceneGraph.tileHeights[level];
 				@Pc(1896) float[][] local1896 = new float[105][105];
 				@Pc(1900) float[][] local1900 = new float[105][105];
 				local200 = 1;
@@ -337,12 +338,12 @@ public final class Static45 {
 					if (local200 > 103) {
 						@Pc(2025) Class3_Sub14[] local2025;
 						if (arg1) {
-							local2025 = Static193.method3501(Static12.aByteArrayArrayArray2, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], levelLightMap, local1896, Static62.anIntArrayArray11, Static240.aByteArrayArrayArray14[level], Static4.aByteArrayArrayArray1[level], local1888, level, local1900, local142, Static83.levelHeightMap[level], Static107.anIntArrayArrayArray10[0]);
+							local2025 = Static193.method3501(Static12.aByteArrayArrayArray2, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], levelLightMap, local1896, Static62.anIntArrayArray11, Static240.aByteArrayArrayArray14[level], Static4.aByteArrayArrayArray1[level], local1888, level, local1900, local142, SceneGraph.tileHeights[level], Static107.anIntArrayArrayArray10[0]);
 							Static110.method2280(level, local2025);
 							break;
 						}
-						local2025 = Static193.method3501(Static12.aByteArrayArrayArray2, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], levelLightMap, local1896, null, Static240.aByteArrayArrayArray14[level], Static4.aByteArrayArrayArray1[level], local1888, level, local1900, local142, Static83.levelHeightMap[level], null);
-						@Pc(2049) Class3_Sub14[] local2049 = Static1.method2(local1896, local1888, Static83.levelHeightMap[level], level, local1900, Static4.aByteArrayArrayArray1[level], levelLightMap, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], Static240.aByteArrayArrayArray14[level], Static12.aByteArrayArrayArray2);
+						local2025 = Static193.method3501(Static12.aByteArrayArrayArray2, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], levelLightMap, local1896, null, Static240.aByteArrayArrayArray14[level], Static4.aByteArrayArrayArray1[level], local1888, level, local1900, local142, SceneGraph.tileHeights[level], null);
+						@Pc(2049) Class3_Sub14[] local2049 = Static1.method2(local1896, local1888, SceneGraph.tileHeights[level], level, local1900, Static4.aByteArrayArrayArray1[level], levelLightMap, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], Static240.aByteArrayArrayArray14[level], Static12.aByteArrayArrayArray2);
 						@Pc(2057) Class3_Sub14[] local2057 = new Class3_Sub14[local2025.length + local2049.length];
 						for (len = 0; len < local2025.length; len++) {
 							local2057[len] = local2025[len];
@@ -351,7 +352,7 @@ public final class Static45 {
 							local2057[local2025.length + len] = local2049[len];
 						}
 						Static110.method2280(level, local2057);
-						BZip2State.method3393(local1900, Static253.levelTileUnderlayIds[level], Static4.aByteArrayArrayArray1[level], Static120.aClass51Array1, level, Static120.anInt3034, local1896, Static163.aByteArrayArrayArray11[level], Static240.aByteArrayArrayArray14[level], Static83.levelHeightMap[level], local1888);
+						BZip2State.method3393(local1900, Static253.levelTileUnderlayIds[level], Static4.aByteArrayArrayArray1[level], Static120.aClass51Array1, level, Static120.anInt3034, local1896, Static163.aByteArrayArrayArray11[level], Static240.aByteArrayArrayArray14[level], SceneGraph.tileHeights[level], local1888);
 						break;
 					}
 					for (dx = 1; dx <= 103; dx++) {
@@ -411,8 +412,8 @@ public final class Static45 {
 						}
 						dx = (local200 + 1 - underlayId) * (-x0 + (z - -1));
 						if (dx >= 8) {
-							len = Static83.levelHeightMap[local200][z0][x0] - 240;
-							normalX = Static83.levelHeightMap[underlayId][z0][x0];
+							len = SceneGraph.tileHeights[local200][z0][x0] - 240;
+							normalX = SceneGraph.tileHeights[underlayId][z0][x0];
 							Static278.method4647(1, z0 * 128, z0 * 128, x0 * 128, z * 128 + 128, len, normalX);
 							for (normalY = underlayId; normalY <= local200; normalY++) {
 								for (normalZ = x0; normalZ <= z; normalZ++) {
@@ -446,8 +447,8 @@ public final class Static45 {
 						}
 						dx = (z + 1 - x0) * (-underlayId + local200 - -1);
 						if (dx >= 8) {
-							len = Static83.levelHeightMap[local200][x0][local2204] - 240;
-							normalX = Static83.levelHeightMap[underlayId][x0][local2204];
+							len = SceneGraph.tileHeights[local200][x0][local2204] - 240;
+							normalX = SceneGraph.tileHeights[underlayId][x0][local2204];
 							Static278.method4647(2, x0 * 128, z * 128 + 128, local2204 * 128, local2204 * 128, len, normalX);
 							for (normalY = underlayId; normalY <= local200; normalY++) {
 								for (normalZ = x0; normalZ <= z; normalZ++) {
@@ -480,7 +481,7 @@ public final class Static45 {
 							z++;
 						}
 						if ((z + 1 - x0) * (local200 - (underlayId - 1)) >= 4) {
-							dx = Static83.levelHeightMap[level][x0][underlayId];
+							dx = SceneGraph.tileHeights[level][x0][underlayId];
 							Static278.method4647(4, x0 * 128, z * 128 + 128, underlayId * 128, local200 * 128 + 128, dx, dx);
 							for (dz = x0; dz <= z; dz++) {
 								for (len = underlayId; len <= local200; len++) {
@@ -514,7 +515,7 @@ public final class Static45 {
 		Static259.anIntArray514[0] = arg2;
 		@Pc(71) int local71 = local51 + 1;
 		Static84.anIntArray209[0] = arg9;
-		@Pc(78) int[][] local78 = Static148.levelCollisionMap[Static55.currentLevel].flags;
+		@Pc(78) int[][] local78 = Static148.levelCollisionMap[Player.plane].flags;
 		@Pc(198) int local198;
 		while (local71 != local64) {
 			local10 = Static84.anIntArray209[local64];
@@ -525,16 +526,16 @@ public final class Static45 {
 				break;
 			}
 			if (arg8 != 0) {
-				if ((arg8 < 5 || arg8 == 10) && Static148.levelCollisionMap[Static55.currentLevel].method3042(arg3, local3, local10, arg0, arg8 - 1, 1, arg6)) {
+				if ((arg8 < 5 || arg8 == 10) && Static148.levelCollisionMap[Player.plane].method3042(arg3, local3, local10, arg0, arg8 - 1, 1, arg6)) {
 					local53 = true;
 					break;
 				}
-				if (arg8 < 10 && Static148.levelCollisionMap[Static55.currentLevel].method3046(arg3, arg8 - 1, arg0, local10, 1, arg6, local3)) {
+				if (arg8 < 10 && Static148.levelCollisionMap[Player.plane].method3046(arg3, arg8 - 1, arg0, local10, 1, arg6, local3)) {
 					local53 = true;
 					break;
 				}
 			}
-			if (arg10 != 0 && arg5 != 0 && Static148.levelCollisionMap[Static55.currentLevel].method3052(arg0, local10, local3, 1, arg10, arg1, arg3, arg5)) {
+			if (arg10 != 0 && arg5 != 0 && Static148.levelCollisionMap[Player.plane].method3052(arg0, local10, local3, 1, arg10, arg1, arg3, arg5)) {
 				local53 = true;
 				break;
 			}

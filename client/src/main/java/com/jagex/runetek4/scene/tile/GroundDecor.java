@@ -1,14 +1,14 @@
 package com.jagex.runetek4.scene.tile;
 
-import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.media.renderable.Entity;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("client!bm")
-public final class FloorDecoration {
+public final class GroundDecor {
 
 	@OriginalMember(owner = "client!bm", name = "c", descriptor = "Lclient!th;")
-	public Renderable renderable;
+	public Entity entity;
 
 	@OriginalMember(owner = "client!bm", name = "g", descriptor = "I")
 	public int xFine;

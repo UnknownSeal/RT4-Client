@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -69,9 +70,9 @@ public final class Static270 {
 		@Pc(144) int local144 = (local25 - 1) * local106;
 		@Pc(162) int local162 = (arg5 - 1) * local93;
 		@Pc(166) int[] local166 = ObjTypeList.anIntArrayArray10[arg2];
-		Static131.method2576(local166, arg1 - arg4, -local16 + arg1, arg3);
-		Static131.method2576(local166, arg1 - local16, arg1 - -local16, arg0);
-		Static131.method2576(local166, arg1 + local16, arg4 + arg1, arg3);
+		ArrayUtils.fillRange(local166, arg1 - arg4, -local16 + arg1, arg3);
+		ArrayUtils.fillRange(local166, arg1 - local16, arg1 - -local16, arg0);
+		ArrayUtils.fillRange(local166, arg1 + local16, arg4 + arg1, arg3);
 		while (local9 > 0) {
 			if (local89 < 0) {
 				while (local89 < 0) {
@@ -124,15 +125,15 @@ public final class Static270 {
 			if (local258) {
 				@Pc(371) int local371 = arg1 + local11;
 				@Pc(376) int local376 = arg1 - local11;
-				Static131.method2576(ObjTypeList.anIntArrayArray10[local348], local365, local376, arg3);
-				Static131.method2576(ObjTypeList.anIntArrayArray10[local348], local376, local371, arg0);
-				Static131.method2576(ObjTypeList.anIntArrayArray10[local348], local371, local352, arg3);
-				Static131.method2576(ObjTypeList.anIntArrayArray10[local360], local365, local376, arg3);
-				Static131.method2576(ObjTypeList.anIntArrayArray10[local360], local376, local371, arg0);
-				Static131.method2576(ObjTypeList.anIntArrayArray10[local360], local371, local352, arg3);
+				ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local348], local365, local376, arg3);
+				ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local348], local376, local371, arg0);
+				ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local348], local371, local352, arg3);
+				ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local360], local365, local376, arg3);
+				ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local360], local376, local371, arg0);
+				ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local360], local371, local352, arg3);
 			} else {
-				Static131.method2576(ObjTypeList.anIntArrayArray10[local348], local365, local352, arg3);
-				Static131.method2576(ObjTypeList.anIntArrayArray10[local360], local365, local352, arg3);
+				ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local348], local365, local352, arg3);
+				ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local360], local365, local352, arg3);
 			}
 		}
 	}

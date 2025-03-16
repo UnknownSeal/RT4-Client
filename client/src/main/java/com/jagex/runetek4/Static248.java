@@ -1,10 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.scene.InteractiveObject;
-import com.jagex.runetek4.scene.tile.FloorDecoration;
+import com.jagex.runetek4.scene.Scenery;
+import com.jagex.runetek4.scene.tile.GroundDecor;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import com.jagex.runetek4.scene.tile.Wall;
-import com.jagex.runetek4.scene.tile.WallDecoration;
+import com.jagex.runetek4.scene.tile.WallDecor;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -71,26 +71,26 @@ public final class Static248 {
 							if (local32 >= local9 && local32 <= local13 && local37 >= local17 && local37 <= local21) {
 								if (local46.wall != null) {
 									@Pc(103) Wall local103 = local46.wall;
-									local103.modelA.method4545(0, local23, local103.anInt3051, local103.anInt3048, local103.anInt3044);
+									local103.primary.method4545(0, local23, local103.anInt3051, local103.anInt3048, local103.anInt3044);
 									if (local103.modelB != null) {
 										local103.modelB.method4545(0, local23, local103.anInt3051, local103.anInt3048, local103.anInt3044);
 									}
 								}
-								if (local46.wallDecoration != null) {
-									@Pc(134) WallDecoration local134 = local46.wallDecoration;
-									local134.model.method4545(local134.angle, local23, local134.y, local134.x, local134.z);
-									if (local134.aClass8_2 != null) {
-										local134.aClass8_2.method4545(local134.angle, local23, local134.y, local134.x, local134.z);
+								if (local46.wallDecor != null) {
+									@Pc(134) WallDecor local134 = local46.wallDecor;
+									local134.primary.method4545(local134.anInt1388, local23, local134.anInt1391, local134.xFine, local134.zFine);
+									if (local134.secondary != null) {
+										local134.secondary.method4545(local134.anInt1388, local23, local134.anInt1391, local134.xFine, local134.zFine);
 									}
 								}
-								if (local46.floorDecoration != null) {
-									@Pc(167) FloorDecoration local167 = local46.floorDecoration;
-									local167.renderable.method4545(0, local23, local167.anInt733, local167.xFine, local167.zFine);
+								if (local46.groundDecor != null) {
+									@Pc(167) GroundDecor local167 = local46.groundDecor;
+									local167.entity.method4545(0, local23, local167.anInt733, local167.xFine, local167.zFine);
 								}
-								if (local46.interactiveObjects != null) {
+								if (local46.sceneries != null) {
 									for (local183 = 0; local183 < local46.entityCount; local183++) {
-										@Pc(192) InteractiveObject local192 = local46.interactiveObjects[local183];
-										local192.aClass8_4.method4545(local192.anInt1714, local23, local192.anInt1706, local192.anInt1699, local192.anInt1703);
+										@Pc(192) Scenery local192 = local46.sceneries[local183];
+										local192.entity.method4545(local192.anInt1714, local23, local192.anInt1706, local192.anInt1699, local192.anInt1703);
 									}
 								}
 							}
@@ -99,7 +99,7 @@ public final class Static248 {
 				}
 			}
 		}
-		@Pc(240) boolean local240 = Static83.levelHeightMap == Static80.anIntArrayArrayArray19;
+		@Pc(240) boolean local240 = SceneGraph.tileHeights == Static80.anIntArrayArrayArray19;
 		if (GlRenderer.enabled) {
 			@Pc(244) GL2 local244 = GlRenderer.gl;
 			local244.glPushMatrix();
@@ -139,7 +139,7 @@ public final class Static248 {
 					}
 					if (local32 == 0 && Static139.anInt3451 > 0) {
 						GlRenderer.method4159(101.5F);
-						Static242.method4198(Static167.eyeTileX, Static193.anInt4539, Static277.anInt5855, arg1, Static48.aBooleanArrayArray1, Static83.levelHeightMap[0]);
+						Static242.method4198(Static167.eyeTileX, Static193.anInt4539, Static277.anInt5855, arg1, Static48.aBooleanArrayArray1, SceneGraph.tileHeights[0]);
 					}
 					local32++;
 				}

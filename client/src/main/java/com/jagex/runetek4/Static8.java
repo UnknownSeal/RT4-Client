@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -51,9 +52,9 @@ public final class Static8 {
 		@Pc(39) int local39 = arg5 + local8;
 		@Pc(41) int local41 = -1;
 		@Pc(46) int local46 = arg5 - local8;
-		Static131.method2576(local34, arg5 - arg4, local46, arg0);
-		Static131.method2576(local34, local46, local39, arg3);
-		Static131.method2576(local34, local39, arg5 + arg4, arg0);
+		ArrayUtils.fillRange(local34, arg5 - arg4, local46, arg0);
+		ArrayUtils.fillRange(local34, local46, local39, arg3);
+		ArrayUtils.fillRange(local34, local39, arg5 + arg4, arg0);
 		while (local10 < local23) {
 			local30 += 2;
 			local28 += local30;
@@ -83,19 +84,19 @@ public final class Static8 {
 					local162 = Static241.anIntArray522[local23];
 					local167 = arg5 - local162;
 					local171 = local162 + arg5;
-					Static131.method2576(local142, local154, local167, arg0);
-					Static131.method2576(local142, local167, local171, arg3);
-					Static131.method2576(local142, local171, local158, arg0);
-					Static131.method2576(local149, local154, local167, arg0);
-					Static131.method2576(local149, local167, local171, arg3);
-					Static131.method2576(local149, local171, local158, arg0);
+					ArrayUtils.fillRange(local142, local154, local167, arg0);
+					ArrayUtils.fillRange(local142, local167, local171, arg3);
+					ArrayUtils.fillRange(local142, local171, local158, arg0);
+					ArrayUtils.fillRange(local149, local154, local167, arg0);
+					ArrayUtils.fillRange(local149, local167, local171, arg3);
+					ArrayUtils.fillRange(local149, local171, local158, arg0);
 				} else {
 					local142 = ObjTypeList.anIntArrayArray10[arg2 + local23];
 					local149 = ObjTypeList.anIntArrayArray10[arg2 - local23];
 					local162 = local10 + arg5;
 					local158 = arg5 - local10;
-					Static131.method2576(local142, local158, local162, arg0);
-					Static131.method2576(local149, local158, local162, arg0);
+					ArrayUtils.fillRange(local142, local158, local162, arg0);
+					ArrayUtils.fillRange(local149, local158, local162, arg0);
 				}
 			}
 			local142 = ObjTypeList.anIntArrayArray10[arg2 + local10];
@@ -103,18 +104,18 @@ public final class Static8 {
 			local162 = local23 + arg5;
 			local158 = arg5 - local23;
 			if (local8 <= local10) {
-				Static131.method2576(local142, local158, local162, arg0);
-				Static131.method2576(local149, local158, local162, arg0);
+				ArrayUtils.fillRange(local142, local158, local162, arg0);
+				ArrayUtils.fillRange(local149, local158, local162, arg0);
 			} else {
 				local154 = local10 <= local25 ? local25 : Static241.anIntArray522[local10];
 				local171 = local154 + arg5;
 				local167 = arg5 - local154;
-				Static131.method2576(local142, local158, local167, arg0);
-				Static131.method2576(local142, local167, local171, arg3);
-				Static131.method2576(local142, local171, local162, arg0);
-				Static131.method2576(local149, local158, local167, arg0);
-				Static131.method2576(local149, local167, local171, arg3);
-				Static131.method2576(local149, local171, local162, arg0);
+				ArrayUtils.fillRange(local142, local158, local167, arg0);
+				ArrayUtils.fillRange(local142, local167, local171, arg3);
+				ArrayUtils.fillRange(local142, local171, local162, arg0);
+				ArrayUtils.fillRange(local149, local158, local167, arg0);
+				ArrayUtils.fillRange(local149, local167, local171, arg3);
+				ArrayUtils.fillRange(local149, local171, local162, arg0);
 			}
 		}
 	}

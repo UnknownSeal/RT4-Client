@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.Npc;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -28,13 +29,13 @@ public final class Static278 {
 				@Pc(14) int local14 = Static57.in.gBit(15);
 				if (local14 != 32767) {
 					@Pc(19) boolean local19 = false;
-					if (Static175.npcs[local14] == null) {
+					if (NpcList.npcs[local14] == null) {
 						local19 = true;
-						Static175.npcs[local14] = new Npc();
+						NpcList.npcs[local14] = new Npc();
 					}
-					@Pc(37) Npc local37 = Static175.npcs[local14];
+					@Pc(37) Npc local37 = NpcList.npcs[local14];
 					Static33.npcIds[Static272.npcCount++] = local14;
-					local37.cycle = Static83.loopCycle;
+					local37.cycle = client.loop;
 					if (local37.type != null && local37.type.hasBackgroundSound()) {
 						AreaSoundManager.remove(local37);
 					}
@@ -62,9 +63,9 @@ public final class Static278 {
 					if (local37.anInt3376 == 0) {
 						local37.anInt3381 = 0;
 					}
-					local37.teleport(local37.size(), Static173.localPlayer.pathTileX[0] + local124, local105 + Static173.localPlayer.pathTileZ[0], local66 == 1);
+					local37.teleport(local37.size(), PlayerList.self.pathTileX[0] + local124, local105 + PlayerList.self.pathTileZ[0], local66 == 1);
 					if (local37.type.hasBackgroundSound()) {
-						AreaSoundManager.add(local37.pathTileZ[0], null, 0, local37, local37.pathTileX[0], Static55.currentLevel, null);
+						AreaSoundManager.add(local37.pathTileZ[0], null, 0, local37, local37.pathTileX[0], Player.plane, null);
 					}
 					continue;
 				}
@@ -95,11 +96,11 @@ public final class Static278 {
 	public static void method4648(@OriginalArg(0) boolean arg0) {
 		if (arg0) {
 			Static130.levelTiles = Static276.aClass3_Sub5ArrayArrayArray3;
-			Static83.levelHeightMap = Static80.anIntArrayArrayArray19;
+			SceneGraph.tileHeights = Static80.anIntArrayArrayArray19;
 			Static182.aClass3_Sub14ArrayArray2 = Static195.aClass3_Sub14ArrayArray3;
 		} else {
 			Static130.levelTiles = Static197.aClass3_Sub5ArrayArrayArray2;
-			Static83.levelHeightMap = Static107.anIntArrayArrayArray10;
+			SceneGraph.tileHeights = Static107.anIntArrayArrayArray10;
 			Static182.aClass3_Sub14ArrayArray2 = Static36.aClass3_Sub14ArrayArray1;
 		}
 		Static126.anInt3114 = Static130.levelTiles.length;
@@ -144,26 +145,26 @@ public final class Static278 {
 			local32 = arg3.g1();
 			if (local32 == 0) {
 				if (arg2) {
-					Static83.levelHeightMap[0][arg5][arg4] = Static107.anIntArrayArrayArray10[0][arg5][arg4];
+					SceneGraph.tileHeights[0][arg5][arg4] = Static107.anIntArrayArrayArray10[0][arg5][arg4];
 				} else if (arg7 == 0) {
-					Static83.levelHeightMap[0][arg5][arg4] = -Static65.method1498(arg4 + arg1 + 556238, arg0 + arg5 + 932731) * 8;
+					SceneGraph.tileHeights[0][arg5][arg4] = -Static65.method1498(arg4 + arg1 + 556238, arg0 + arg5 + 932731) * 8;
 				} else {
-					Static83.levelHeightMap[arg7][arg5][arg4] = Static83.levelHeightMap[arg7 - 1][arg5][arg4] - 240;
+					SceneGraph.tileHeights[arg7][arg5][arg4] = SceneGraph.tileHeights[arg7 - 1][arg5][arg4] - 240;
 				}
 				break;
 			}
 			if (local32 == 1) {
 				@Pc(111) int local111 = arg3.g1();
 				if (arg2) {
-					Static83.levelHeightMap[0][arg5][arg4] = Static107.anIntArrayArrayArray10[0][arg5][arg4] + local111 * 8;
+					SceneGraph.tileHeights[0][arg5][arg4] = Static107.anIntArrayArrayArray10[0][arg5][arg4] + local111 * 8;
 				} else {
 					if (local111 == 1) {
 						local111 = 0;
 					}
 					if (arg7 == 0) {
-						Static83.levelHeightMap[0][arg5][arg4] = -local111 * 8;
+						SceneGraph.tileHeights[0][arg5][arg4] = -local111 * 8;
 					} else {
-						Static83.levelHeightMap[arg7][arg5][arg4] = Static83.levelHeightMap[arg7 - 1][arg5][arg4] - local111 * 8;
+						SceneGraph.tileHeights[arg7][arg5][arg4] = SceneGraph.tileHeights[arg7 - 1][arg5][arg4] - local111 * 8;
 					}
 				}
 				break;

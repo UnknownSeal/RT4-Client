@@ -7,6 +7,7 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.util.SignLink;
+import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -81,7 +82,7 @@ public final class Static80 {
 		try {
 			@Pc(78) PrivilegedRequest local78 = arg0.openPreferences("runescape");
 			while (local78.status == 0) {
-				PreciseSleep.sleep(1L);
+				ThreadUtils.sleep(1L);
 			}
 			if (local78.status == 1) {
 				local48 = (FileOnDisk) local78.result;

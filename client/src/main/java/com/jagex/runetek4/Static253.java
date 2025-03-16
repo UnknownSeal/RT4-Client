@@ -6,6 +6,7 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.enumtype.EnumType;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -62,7 +63,7 @@ public final class Static253 {
 			if (Static176.cameraModifierEnabled[4] && Static276.cameraModifierWobbleScale[4] + 128 > pitch) {
 				pitch = Static276.cameraModifierWobbleScale[4] + 128;
 			}
-			Static18.orbitCamera(ItemDefinition.anInt2223, arg0, Static207.getHeightmapY(Static55.currentLevel, Static173.localPlayer.xFine, Static173.localPlayer.zFine) - 50, 600 - -(pitch * 3), local57, Static111.anInt2900, pitch);
+			Static18.orbitCamera(ItemDefinition.anInt2223, arg0, Static207.getHeightmapY(Player.plane, PlayerList.self.xFine, PlayerList.self.zFine) - 50, 600 - -(pitch * 3), local57, Static111.anInt2900, pitch);
 		}
 		local57 = Static5.cameraY;
 		pitch = Static138.cameraX;
@@ -133,13 +134,13 @@ public final class Static253 {
 			if (Static244.gamestate == 10) {
 				jitter = Static103.method2235(Static178.sceneDelta, Static134.cameraZ >> 10, Static113.anInt4609, Static138.cameraX >> 10);
 			} else {
-				jitter = Static103.method2235(Static178.sceneDelta, Static173.localPlayer.pathTileZ[0] >> 3, Static113.anInt4609, Static173.localPlayer.pathTileX[0] >> 3);
+				jitter = Static103.method2235(Static178.sceneDelta, PlayerList.self.pathTileZ[0] >> 3, Static113.anInt4609, PlayerList.self.pathTileX[0] >> 3);
 			}
-			Static120.method2394(Static83.loopCycle, !Static11.aBoolean15);
+			Static120.method2394(client.loop, !Static11.aBoolean15);
 			GlRenderer.clearColorAndDepthBuffers(jitter);
 			Static143.method2731(Static240.cameraPitch, Static134.cameraZ, Static5.cameraY, Static138.cameraX, Static184.cameraYaw);
-			GlRenderer.anInt5323 = Static83.loopCycle;
-			Static156.method2954(Static138.cameraX, Static5.cameraY, Static134.cameraZ, Static240.cameraPitch, Static184.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Static55.currentLevel + 1, local387, Static173.localPlayer.xFine >> 7, Static173.localPlayer.zFine >> 7);
+			GlRenderer.anInt5323 = client.loop;
+			Static156.method2954(Static138.cameraX, Static5.cameraY, Static134.cameraZ, Static240.cameraPitch, Static184.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
 			Static263.aBoolean299 = true;
 			Static120.method2390();
 			Static143.method2731(0, 0, 0, 0, 0);
@@ -149,7 +150,7 @@ public final class Static253 {
 			ClientScriptRunner.method4000(arg3, arg2, arg0, Static223.anInt5029, Static223.anInt5029, arg4);
 		} else {
 			Rasterizer.drawFilledRectangle(arg2, arg4, arg3, arg0, 0);
-			Static156.method2954(Static138.cameraX, Static5.cameraY, Static134.cameraZ, Static240.cameraPitch, Static184.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Static55.currentLevel + 1, local387, Static173.localPlayer.xFine >> 7, Static173.localPlayer.zFine >> 7);
+			Static156.method2954(Static138.cameraX, Static5.cameraY, Static134.cameraZ, Static240.cameraPitch, Static184.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
 			Static107.method2261();
 			Static223.method3858();
 			Static142.method2726(arg4, arg3, arg2, 256, arg0, 256);

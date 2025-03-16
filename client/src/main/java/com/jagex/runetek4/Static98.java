@@ -38,7 +38,7 @@ public final class Static98 {
 				return true;
 			}
 		}
-		if (username.equalsIgnoreCase(Static173.localPlayer.username)) {
+		if (username.equalsIgnoreCase(PlayerList.self.username)) {
 			return true;
 		} else {
 			return false;

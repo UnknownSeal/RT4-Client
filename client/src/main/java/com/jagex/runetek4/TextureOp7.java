@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -73,7 +74,7 @@ public final class TextureOp7 extends TextureOp {
 					local15[local51] = local38[Texture.widthMask - local51];
 				}
 			} else {
-				Static289.method2613(local38, 0, local15, 0, Texture.width);
+				ArrayUtils.copy(local38, 0, local15, 0, Texture.width);
 			}
 		}
 		return local15;

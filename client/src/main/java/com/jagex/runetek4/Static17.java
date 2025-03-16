@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.PacketBit;
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -39,7 +40,7 @@ public final class Static17 {
 		@Pc(64) int local64;
 		if (local23 == 1) {
 			local54 = Static57.in.gBit(3);
-			Static173.localPlayer.method2684(1, local54);
+			PlayerList.self.method2684(1, local54);
 			local64 = Static57.in.gBit(1);
 			if (local64 == 1) {
 				Static44.entityUpdateIds[Static116.entityUpdateCount++] = 2047;
@@ -47,12 +48,12 @@ public final class Static17 {
 		} else if (local23 == 2) {
 			if (Static57.in.gBit(1) == 1) {
 				local54 = Static57.in.gBit(3);
-				Static173.localPlayer.method2684(2, local54);
+				PlayerList.self.method2684(2, local54);
 				local64 = Static57.in.gBit(3);
-				Static173.localPlayer.method2684(2, local64);
+				PlayerList.self.method2684(2, local64);
 			} else {
 				local54 = Static57.in.gBit(3);
-				Static173.localPlayer.method2684(0, local54);
+				PlayerList.self.method2684(0, local54);
 			}
 			local54 = Static57.in.gBit(1);
 			if (local54 == 1) {
@@ -61,13 +62,13 @@ public final class Static17 {
 		} else if (local23 == 3) {
 			local54 = Static57.in.gBit(7);
 			local64 = Static57.in.gBit(1);
-			Static55.currentLevel = Static57.in.gBit(2);
+			Player.plane = Static57.in.gBit(2);
 			@Pc(163) int local163 = Static57.in.gBit(1);
 			if (local163 == 1) {
 				Static44.entityUpdateIds[Static116.entityUpdateCount++] = 2047;
 			}
 			@Pc(181) int local181 = Static57.in.gBit(7);
-			Static173.localPlayer.teleport(local181, local64 == 1, local54);
+			PlayerList.self.teleport(local181, local64 == 1, local54);
 		}
 	}
 

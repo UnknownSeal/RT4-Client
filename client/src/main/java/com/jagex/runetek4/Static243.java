@@ -7,7 +7,7 @@ import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.scene.Scenery;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -24,7 +24,7 @@ public final class Static243 {
 	public static Js5 aClass153_98;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "D", descriptor = "[Lclient!ec;")
-	public static InteractiveObject[] aClass31Array3;
+	public static Scenery[] aClass31Array3;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "c", descriptor = "J")
 	public static volatile long lastCanvasReplace = 0L;
@@ -94,9 +94,9 @@ public final class Static243 {
 			Static115.playerAppearanceBuffer[i] = null;
 		}
 		for (i = 0; i < 32768; i++) {
-			Static175.npcs[i] = null;
+			NpcList.npcs[i] = null;
 		}
-		Static173.localPlayer = Static159.players[2047] = new Player();
+		PlayerList.self = Static159.players[2047] = new Player();
 		Static217.projectiles.clear();
 		Static99.spotanims.clear();
 		if (Static159.levelObjStacks != null) {

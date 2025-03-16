@@ -41,7 +41,7 @@ public final class Static225 {
 					}
 					Static105.playerIds[Static267.playerCount++] = index;
 					@Pc(65) Player player = Static159.players[index];
-					player.cycle = Static83.loopCycle;
+					player.cycle = client.loop;
 					@Pc(73) int local73 = Static57.in.gBit(1);
 					if (local73 == 1) {
 						Static44.entityUpdateIds[Static116.entityUpdateCount++] = index;
@@ -59,7 +59,7 @@ public final class Static225 {
 					if (dz > 15) {
 						dz -= 32;
 					}
-					player.teleport(dx + Static173.localPlayer.pathTileX[0], jump == 1, Static173.localPlayer.pathTileZ[0] + dz);
+					player.teleport(dx + PlayerList.self.pathTileX[0], jump == 1, PlayerList.self.pathTileZ[0] + dz);
 					continue;
 				}
 			}

@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import java.lang.reflect.Method;
 
-import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -36,7 +36,7 @@ public final class Static224 {
 			if (local30 != null) {
 				local30.anInt672--;
 				for (@Pc(40) int local40 = 0; local40 < local30.entityCount; local40++) {
-					@Pc(49) InteractiveObject local49 = local30.interactiveObjects[local40];
+					@Pc(49) Scenery local49 = local30.sceneries[local40];
 					if ((local49.hash >> 29 & 0x3L) == 2L && local49.anInt1701 == arg0 && local49.anInt1696 == arg1) {
 						local49.anInt1709--;
 					}

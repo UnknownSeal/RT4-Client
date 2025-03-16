@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.dash3d.entity.Actor;
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.node.NodeCache;
@@ -36,13 +36,13 @@ public final class Static142 {
 		@Pc(359) int local359;
 		@Pc(639) int local639;
 		for (local5 = -1; local5 < Static267.playerCount + Static272.npcCount; local5++) {
-			@Pc(17) Actor local17;
+			@Pc(17) PathingEntity local17;
 			if (local5 == -1) {
-				local17 = Static173.localPlayer;
+				local17 = PlayerList.self;
 			} else if (Static267.playerCount > local5) {
 				local17 = Static159.players[Static105.playerIds[local5]];
 			} else {
-				local17 = Static175.npcs[Static33.npcIds[local5 - Static267.playerCount]];
+				local17 = NpcList.npcs[Static33.npcIds[local5 - Static267.playerCount]];
 			}
 			if (local17 != null && local17.isVisible()) {
 				@Pc(58) NpcType local58;
@@ -75,7 +75,7 @@ public final class Static142 {
 					@Pc(308) Class102[] local308 = Static143.aClass102Array1;
 					for (local310 = 0; local310 < local308.length; local310++) {
 						@Pc(322) Class102 local322 = local308[local310];
-						if (local322 != null && local322.headIconDrawType == 1 && local322.hintIconNpcTarget == Static33.npcIds[local5 - Static267.playerCount] && Static83.loopCycle % 20 < 10) {
+						if (local322 != null && local322.headIconDrawType == 1 && local322.hintIconNpcTarget == Static33.npcIds[local5 - Static267.playerCount] && client.loop % 20 < 10) {
 							if (local58.overlayheight == -1) {
 								local359 = local17.height() + 15;
 							} else {
@@ -130,7 +130,7 @@ public final class Static142 {
 						Static277.anInt5854++;
 					}
 				}
-				if (local17.anInt3378 > Static83.loopCycle) {
+				if (local17.anInt3378 > client.loop) {
 					@Pc(508) Sprite local508 = Static116.aClass3_Sub2_Sub1Array3[0];
 					@Pc(512) Sprite local512 = Static116.aClass3_Sub2_Sub1Array3[1];
 					if (local17 instanceof Npc) {
@@ -176,7 +176,7 @@ public final class Static142 {
 					}
 				}
 				for (local74 = 0; local74 < 4; local74++) {
-					if (local17.anIntArray319[local74] > Static83.loopCycle) {
+					if (local17.anIntArray319[local74] > client.loop) {
 						if (local17 instanceof Npc) {
 							@Pc(725) Npc local725 = (Npc) local17;
 							@Pc(728) NpcType local728 = local725.type;

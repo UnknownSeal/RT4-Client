@@ -1,39 +1,39 @@
 package com.jagex.runetek4.scene.tile;
 
-import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.media.renderable.Entity;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!df")
-public final class WallDecoration {
+public final class WallDecor {
 
 	@OriginalMember(owner = "runetek4.client!df", name = "a", descriptor = "I")
-	public int angle;
+	public int anInt1388;
 
 	@OriginalMember(owner = "runetek4.client!df", name = "d", descriptor = "Lclient!th;")
-	public Renderable aClass8_2;
+	public Entity secondary;
 
 	@OriginalMember(owner = "runetek4.client!df", name = "e", descriptor = "I")
-	public int x;
+	public int xFine;
 
 	@OriginalMember(owner = "runetek4.client!df", name = "f", descriptor = "I")
-	public int y;
+	public int anInt1391;
 
 	@OriginalMember(owner = "runetek4.client!df", name = "g", descriptor = "I")
-	public int anInt1392;
+	public int zOffset;
 
 	@OriginalMember(owner = "runetek4.client!df", name = "h", descriptor = "I")
-	public int z;
+	public int zFine;
 
 	@OriginalMember(owner = "runetek4.client!df", name = "j", descriptor = "Lclient!th;")
-	public Renderable model;
+	public Entity primary;
 
 	@OriginalMember(owner = "runetek4.client!df", name = "k", descriptor = "I")
-	public int anInt1394;
+	public int xOffset;
 
 	@OriginalMember(owner = "runetek4.client!df", name = "m", descriptor = "I")
 	public int type;
 
 	@OriginalMember(owner = "runetek4.client!df", name = "i", descriptor = "J")
-	public long aLong52 = 0L;
+	public long key = 0L;
 }

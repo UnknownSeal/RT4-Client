@@ -40,7 +40,7 @@ public final class Static246 {
 		@Pc(35) JString tooltip = npc.name;
 		if (npc.vislevel != 0) {
 			@Pc(47) JString string = Static266.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
-			tooltip = Static34.method882(new JString[] { tooltip, Static123.getCombatLevelColorTag(npc.vislevel, Static173.localPlayer.combatLevel), Static123.aClass100_593, string, Static123.method2423(npc.vislevel), Static72.aClass100_448 });
+			tooltip = Static34.method882(new JString[] { tooltip, Static123.getCombatLevelColorTag(npc.vislevel, PlayerList.self.combatLevel), Static123.aClass100_593, string, Static123.method2423(npc.vislevel), Static72.aClass100_448 });
 		}
 		if (Static260.anInt5014 == 1) {
 			Static98.addActionRow(Static169.anInt4075, (long) arg2, Static34.method882(new JString[] { Static34.aClass100_203, Static201.aClass100_407, tooltip }), arg1, (short) 26, LocalizedText.USE, arg3);
@@ -89,7 +89,7 @@ public final class Static246 {
 				for (op = 4; op >= 0; op--) {
 					if (spellSelected[op] != null && spellSelected[op].equalsIgnoreCase(LocalizedText.ATTACK)) {
 						@Pc(271) short action = 0;
-						if (npc.vislevel > Static173.localPlayer.combatLevel) {
+						if (npc.vislevel > PlayerList.self.combatLevel) {
 							action = 2000;
 						}
 						@Pc(281) short menuOption = 0;

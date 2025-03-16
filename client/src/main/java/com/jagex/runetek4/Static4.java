@@ -5,7 +5,6 @@ import java.io.IOException;
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.client.ClientInvCache;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
@@ -57,11 +56,6 @@ public final class Static4 {
 		} else {
 			return 0;
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!ac", name = "a", descriptor = "([J[Ljava/lang/Object;I)V")
-	public static void method23(@OriginalArg(0) long[] arg0, @OriginalArg(1) Object[] arg1) {
-		Static228.method3909(arg0.length - 1, arg0, 0, arg1);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "a", descriptor = "(BI)V")
@@ -582,7 +576,7 @@ public final class Static4 {
 							@Pc(1994) AnimationSequence local1994;
 							if (world >> 29 != 0) {
 								count = world & 0xFFFF;
-								@Pc(1894) Npc local1894 = Static175.npcs[count];
+								@Pc(1894) Npc local1894 = NpcList.npcs[count];
 								if (local1894 != null) {
 									if (slot == 65535) {
 										slot = -1;
@@ -594,14 +588,14 @@ public final class Static4 {
 									if (local1245) {
 										local1894.anInt3361 = 0;
 										local1894.spotanimFrame = slot;
-										local1894.spotanimLastCycle = Static83.loopCycle + ii;
+										local1894.spotanimLastCycle = client.loop + ii;
 										local1894.spotanimId = 0;
-										if (local1894.spotanimLastCycle > Static83.loopCycle) {
+										if (local1894.spotanimLastCycle > client.loop) {
 											local1894.spotanimId = -1;
 										}
 										local1894.spotanimOffset = xp;
 										local1894.anInt3418 = 1;
-										if (local1894.spotanimFrame != -1 && Static83.loopCycle == local1894.spotanimLastCycle) {
+										if (local1894.spotanimFrame != -1 && client.loop == local1894.spotanimLastCycle) {
 											j = Static34.method877(local1894.spotanimFrame).animationId;
 											if (j != -1) {
 												local1994 = AnimationSequence.getAnimationSequence(j);
@@ -615,8 +609,8 @@ public final class Static4 {
 							} else if (world >> 28 != 0) {
 								count = world & 0xFFFF;
 								@Pc(2033) Player local2033;
-								if (Static16.localPid == count) {
-									local2033 = Static173.localPlayer;
+								if (PlayerList.selfId == count) {
+									local2033 = PlayerList.self;
 								} else {
 									local2033 = Static159.players[count];
 								}
@@ -629,7 +623,7 @@ public final class Static4 {
 										local1245 = false;
 									}
 									if (local1245) {
-										local2033.spotanimLastCycle = ii + Static83.loopCycle;
+										local2033.spotanimLastCycle = ii + client.loop;
 										local2033.spotanimOffset = xp;
 										local2033.spotanimFrame = slot;
 										if (local2033.spotanimFrame == 65535) {
@@ -638,15 +632,15 @@ public final class Static4 {
 										local2033.anInt3418 = 1;
 										local2033.anInt3361 = 0;
 										local2033.spotanimId = 0;
-										if (local2033.spotanimLastCycle > Static83.loopCycle) {
+										if (local2033.spotanimLastCycle > client.loop) {
 											local2033.spotanimId = -1;
 										}
-										if (local2033.spotanimFrame != -1 && local2033.spotanimLastCycle == Static83.loopCycle) {
+										if (local2033.spotanimFrame != -1 && local2033.spotanimLastCycle == client.loop) {
 											j = Static34.method877(local2033.spotanimFrame).animationId;
 											if (j != -1) {
 												local1994 = AnimationSequence.getAnimationSequence(j);
 												if (local1994 != null && local1994.anIntArray473 != null) {
-													Static152.method2836(local2033.zFine, local1994, local2033.xFine, local2033 == Static173.localPlayer, 0);
+													Static152.method2836(local2033.zFine, local1994, local2033.xFine, local2033 == PlayerList.self, 0);
 												}
 											}
 										}
@@ -660,7 +654,7 @@ public final class Static4 {
 							if (i >= 0 && local1160 >= 0 && i < 104 && local1160 < 104) {
 								local1160 = local1160 * 128 + 64;
 								i = i * 128 + 64;
-								@Pc(2241) SpotAnim local2241 = new SpotAnim(slot, count, i, local1160, Static207.getHeightmapY(count, i, local1160) - xp, ii, Static83.loopCycle);
+								@Pc(2241) SpotAnim local2241 = new SpotAnim(slot, count, i, local1160, Static207.getHeightmapY(count, i, local1160) - xp, ii, client.loop);
 								Static99.spotanims.addTail(new SpotAnimEntity(local2241));
 							}
 						}
@@ -743,14 +737,14 @@ public final class Static4 {
 						Static180.anInt4264 = Static57.in.p1neg();
 						for (ii = Static115.anInt2940; ii < Static115.anInt2940 + 8; ii++) {
 							for (xp = Static180.anInt4264; xp < Static180.anInt4264 + 8; xp++) {
-								if (Static159.levelObjStacks[Static55.currentLevel][ii][xp] != null) {
-									Static159.levelObjStacks[Static55.currentLevel][ii][xp] = null;
+								if (Static159.levelObjStacks[Player.plane][ii][xp] != null) {
+									Static159.levelObjStacks[Player.plane][ii][xp] = null;
 									Static220.method3797(xp, ii);
 								}
 							}
 						}
-						for (@Pc(2604) LocAddEntity local2604 = (LocAddEntity) Static26.spawnedLocations.head(); local2604 != null; local2604 = (LocAddEntity) Static26.spawnedLocations.next()) {
-							if (local2604.x >= Static115.anInt2940 && Static115.anInt2940 + 8 > local2604.x && local2604.z >= Static180.anInt4264 && local2604.z < Static180.anInt4264 + 8 && local2604.anInt918 == Static55.currentLevel) {
+						for (@Pc(2604) ChangeLocRequest local2604 = (ChangeLocRequest) Static26.spawnedLocations.head(); local2604 != null; local2604 = (ChangeLocRequest) Static26.spawnedLocations.next()) {
+							if (local2604.x >= Static115.anInt2940 && Static115.anInt2940 + 8 > local2604.x && local2604.z >= Static180.anInt4264 && local2604.z < Static180.anInt4264 + 8 && local2604.anInt918 == Player.plane) {
 								local2604.anInt924 = 0;
 							}
 						}
@@ -786,8 +780,8 @@ public final class Static4 {
 						ii = Static57.in.g1_alt3();
 						xp = Static57.in.g1add();
 						world = Static57.in.g1();
-						Static55.currentLevel = xp >> 1;
-						Static173.localPlayer.teleport(ii, (xp & 0x1) == 1, world);
+						Player.plane = xp >> 1;
+						PlayerList.self.teleport(ii, (xp & 0x1) == 1, world);
 						Static164.packetType = -1;
 						return true;
 					} else {
@@ -1038,7 +1032,7 @@ public final class Static4 {
 								ii = Static57.in.g2le();
 								xp = Static57.in.g1_alt3();
 								world = Static57.in.g2();
-								@Pc(3766) Npc local3766 = Static175.npcs[ii];
+								@Pc(3766) Npc local3766 = NpcList.npcs[ii];
 								if (local3766 != null) {
 									Static223.method3855(xp, world, local3766);
 								}
@@ -1111,9 +1105,9 @@ public final class Static4 {
 										Static159.players[ii].primarySeqId = -1;
 									}
 								}
-								for (ii = 0; ii < Static175.npcs.length; ii++) {
-									if (Static175.npcs[ii] != null) {
-										Static175.npcs[ii].primarySeqId = -1;
+								for (ii = 0; ii < NpcList.npcs.length; ii++) {
+									if (NpcList.npcs[ii] != null) {
+										NpcList.npcs[ii].primarySeqId = -1;
 									}
 								}
 								Static164.packetType = -1;
@@ -1190,7 +1184,7 @@ public final class Static4 {
 								ii = Static57.in.g1_alt3();
 								xp = ii >> 2;
 								world = ii & 0x3;
-								slot = client.locShapeToLayer[xp];
+								slot = Loc.LAYERS[xp];
 								count = Static57.in.g2();
 								i = Static57.in.g4();
 								if (count == 65535) {
@@ -1313,8 +1307,8 @@ public final class Static4 {
 								xp = Static57.in.g4rme();
 								if (Static248.method3288(ii)) {
 									world = 0;
-									if (Static173.localPlayer.model != null) {
-										world = Static173.localPlayer.model.getHeadModelId();
+									if (PlayerList.self.model != null) {
+										world = PlayerList.self.model.getHeadModelId();
 									}
 									Static132.method2607(-1, 3, xp, world);
 								}
@@ -1608,7 +1602,7 @@ public final class Static4 {
 									Static164.packetType = -1;
 									return true;
 								} else {
-									Static89.report("T1 - " + Static164.packetType + "," + Static5.anInt45 + "," + Static49.anInt1462 + " - " + Static223.packetSize, null);
+									TracingException.report("T1 - " + Static164.packetType + "," + Static5.anInt45 + "," + Static49.anInt1462 + " - " + Static223.packetSize, null);
 									Game.processLogout();
 									return true;
 								}

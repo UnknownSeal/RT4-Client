@@ -1,14 +1,13 @@
 package com.jagex.runetek4;
 
-import java.io.DataInputStream;
-import java.net.URL;
 import java.util.Random;
 
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.media.Rasterizer;
-import com.jagex.runetek4.util.SignLink;
+import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -117,40 +116,6 @@ public final class Static89 {
 		return Static154.method2929(arg1);
 	}
 
-	@OriginalMember(owner = "client!ha", name = "a", descriptor = "(Ljava/lang/String;Ljava/lang/Throwable;B)V")
-	public static void report(@OriginalArg(0) String arg0, @OriginalArg(1) Throwable arg1) {
-		try {
-			@Pc(13) String local13 = "";
-			if (arg1 != null) {
-				local13 = Static97.method1961(arg1);
-			}
-			if (arg0 != null) {
-				if (arg1 != null) {
-					local13 = local13 + " | ";
-				}
-				local13 = local13 + arg0;
-			}
-			Static5.method31(local13);
-			local13 = Static40.method1014(":", "%3a", local13);
-			local13 = Static40.method1014("@", "%40", local13);
-			local13 = Static40.method1014("&", "%26", local13);
-			local13 = Static40.method1014("#", "%23", local13);
-			if (Static69.aClass213_4.applet == null) {
-				return;
-			}
-			@Pc(109) PrivilegedRequest local109 = Static69.aClass213_4.openUrlStream(new URL(Static69.aClass213_4.applet.getCodeBase(), "clienterror.ws?c=" + Static131.anInt3252 + "&u=" + Static101.aLong98 + "&v1=" + SignLink.javaVendor + "&v2=" + SignLink.javaVersion + "&e=" + local13));
-			while (local109.status == 0) {
-				PreciseSleep.sleep(1L);
-			}
-			if (local109.status == 1) {
-				@Pc(128) DataInputStream local128 = (DataInputStream) local109.result;
-				local128.read();
-				local128.close();
-			}
-		} catch (@Pc(135) Exception local135) {
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!ha", name = "b", descriptor = "(II)V")
 	public static void method1840(@OriginalArg(1) int arg0) {
 		@Pc(8) DelayedStateChange local8 = Static238.method4143(2, arg0);
@@ -194,7 +159,7 @@ public final class Static89 {
 		if (GlRenderer.enabled) {
 			Static263.aBoolean299 = true;
 		}
-		Static182.anInt4311 = Static83.loopCycle;
+		Static182.anInt4311 = client.loop;
 		if (Static154.topLevelInterace != -1) {
 			Static24.anInt766 = 0;
 			CacheArchive.method182();
@@ -244,7 +209,7 @@ public final class Static89 {
 				}
 			}
 		}
-		AreaSoundManager.redraw(Static178.sceneDelta, Static173.localPlayer.xFine, Static173.localPlayer.zFine, Static55.currentLevel);
+		AreaSoundManager.redraw(Static178.sceneDelta, PlayerList.self.xFine, PlayerList.self.zFine, Player.plane);
 		Static178.sceneDelta = 0;
 	}
 
@@ -256,7 +221,7 @@ public final class Static89 {
 		@Pc(14) int local14 = -1;
 		@Pc(22) int local22 = Static78.method1690(Static224.anInt5063, arg2 + arg3, Static172.anInt4164);
 		@Pc(30) int local30 = Static78.method1690(Static224.anInt5063, arg3 - arg2, Static172.anInt4164);
-		Static131.method2576(ObjTypeList.anIntArrayArray10[arg1], local30, local22, arg0);
+		ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[arg1], local30, local22, arg0);
 		while (local7 < local9) {
 			local14 += 2;
 			local12 += local14;
@@ -273,10 +238,10 @@ public final class Static89 {
 					local84 = Static78.method1690(Static224.anInt5063, arg3 + local7, Static172.anInt4164);
 					local93 = Static78.method1690(Static224.anInt5063, arg3 - local7, Static172.anInt4164);
 					if (Static106.anInt2869 >= local68) {
-						Static131.method2576(ObjTypeList.anIntArrayArray10[local68], local93, local84, arg0);
+						ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local68], local93, local84, arg0);
 					}
 					if (Static267.anInt5773 <= local58) {
-						Static131.method2576(ObjTypeList.anIntArrayArray10[local58], local93, local84, arg0);
+						ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local58], local93, local84, arg0);
 					}
 				}
 			}
@@ -287,10 +252,10 @@ public final class Static89 {
 				local84 = Static78.method1690(Static224.anInt5063, arg3 + local9, Static172.anInt4164);
 				local93 = Static78.method1690(Static224.anInt5063, arg3 - local9, Static172.anInt4164);
 				if (local68 <= Static106.anInt2869) {
-					Static131.method2576(ObjTypeList.anIntArrayArray10[local68], local93, local84, arg0);
+					ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local68], local93, local84, arg0);
 				}
 				if (local58 >= Static267.anInt5773) {
-					Static131.method2576(ObjTypeList.anIntArrayArray10[local58], local93, local84, arg0);
+					ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local58], local93, local84, arg0);
 				}
 			}
 		}

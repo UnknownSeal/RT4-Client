@@ -13,9 +13,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static164 {
 
-	@OriginalMember(owner = "runetek4.client!na", name = "w", descriptor = "Z")
-	public static boolean aBoolean192;
-
 	@OriginalMember(owner = "runetek4.client!na", name = "W", descriptor = "Z")
 	public static boolean newTab;
 
@@ -48,7 +45,7 @@ public final class Static164 {
 			local28 = (int) local14 >> 20 & 0x3;
 			local35 = (int) local14 >> 14 & 0x1F;
 			local42 = Integer.MAX_VALUE & (int) (local14 >>> 32);
-			local46 = Static271.get(local42);
+			local46 = LocTypeList.get(local42);
 			if (local46.mapsceneicon == -1) {
 				local65 = arg1;
 				if (local14 > 0L) {
@@ -122,7 +119,7 @@ public final class Static164 {
 			local28 = (int) local14 >> 20 & 0x3;
 			local35 = (int) local14 >> 14 & 0x1F;
 			local42 = (int) (local14 >>> 32) & Integer.MAX_VALUE;
-			local46 = Static271.get(local42);
+			local46 = LocTypeList.get(local42);
 			if (local46.mapsceneicon == -1) {
 				if (local35 == 9) {
 					local65 = 15658734;
@@ -151,7 +148,7 @@ public final class Static164 {
 		if (local14 != 0L) {
 			local28 = (int) local14 >> 20 & 0x3;
 			local35 = (int) (local14 >>> 32) & Integer.MAX_VALUE;
-			@Pc(586) LocType local586 = Static271.get(local35);
+			@Pc(586) LocType local586 = LocTypeList.get(local35);
 			if (local586.mapsceneicon != -1 && !Static33.method867(arg0, local586, arg2, local28)) {
 				return false;
 			}
@@ -230,7 +227,7 @@ public final class Static164 {
 		}
 		@Pc(176) int local176 = MathUtils.anIntArray225[definition.xan2d] * local145 >> 16;
 		@Pc(185) int local185 = MathUtils.anIntArray223[definition.xan2d] * local145 >> 16;
-		local60.drawModel(definition.yan2d, definition.zan2d, definition.xan2d, definition.xof2d, local185 + definition.yof2d - local60.getHeight() / 2, definition.yof2d + local176, -1L);
+		local60.drawModel(definition.yan2d, definition.zan2d, definition.xan2d, definition.xof2d, local185 + definition.yof2d - local60.getMinY() / 2, definition.yof2d + local176, -1L);
 		if (arg4 >= 1) {
 			rendered.method303(1);
 			if (arg4 >= 2) {

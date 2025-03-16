@@ -3,8 +3,9 @@ package com.jagex.runetek4.scene;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.graphics.ModelUnlit;
-import com.jagex.runetek4.media.renderable.Renderable;
-import com.jagex.runetek4.scene.tile.FloorDecoration;
+import com.jagex.runetek4.media.renderable.Entity;
+import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.scene.tile.GroundDecor;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -120,18 +121,18 @@ public class Scene {
         }
         if (GlRenderer.enabled) {
             @Pc(650) GlModel local650 = (GlModel) local33;
-            if (Static207.getHeightmapY(Static55.currentLevel, arg3 + local384, local126 + arg5) != arg11 || Static207.getHeightmapY(Static55.currentLevel, local115 + arg3, arg5 - -local130) != arg11) {
+            if (Static207.getHeightmapY(Player.plane, arg3 + local384, local126 + arg5) != arg11 || Static207.getHeightmapY(Player.plane, local115 + arg3, arg5 - -local130) != arg11) {
                 for (local162 = 0; local162 < local650.anInt5295; local162++) {
-                    local650.vertexY[local162] += Static207.getHeightmapY(Static55.currentLevel, local650.vertexX[local162] + arg3, arg5 + local650.vertexZ[local162]) - arg11;
+                    local650.vertexY[local162] += Static207.getHeightmapY(Player.plane, local650.vertexX[local162] + arg3, arg5 + local650.vertexZ[local162]) - arg11;
                 }
                 local650.bounds.valid = false;
                 local650.vertexBuffer.valid = false;
             }
         } else {
             @Pc(574) SoftwareModel local574 = (SoftwareModel) local33;
-            if (Static207.getHeightmapY(Static55.currentLevel, arg3 + local384, arg5 - -local126) != arg11 || arg11 != Static207.getHeightmapY(Static55.currentLevel, arg3 + local115, arg5 - -local130)) {
+            if (Static207.getHeightmapY(Player.plane, arg3 + local384, arg5 - -local126) != arg11 || arg11 != Static207.getHeightmapY(Player.plane, arg3 + local115, arg5 - -local130)) {
                 for (local162 = 0; local162 < local574.anInt5788; local162++) {
-                    local574.anIntArray527[local162] += Static207.getHeightmapY(Static55.currentLevel, arg3 + local574.anIntArray528[local162], arg5 + local574.anIntArray531[local162]) - arg11;
+                    local574.anIntArray527[local162] += Static207.getHeightmapY(Player.plane, arg3 + local574.anIntArray528[local162], arg5 + local574.anIntArray531[local162]) - arg11;
                 }
                 local574.aBoolean305 = false;
             }
@@ -140,36 +141,36 @@ public class Scene {
     }
 
     @OriginalMember(owner = "runetek4.client!dk", name = "a", descriptor = "(III)Lclient!ec;")
-    public static InteractiveObject getObject(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+    public static Scenery getObject(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
         @Pc(7) SceneTile sceneTile = Static130.levelTiles[arg0][arg1][arg2];
         if (sceneTile == null) {
             return null;
         }
         for (@Pc(13) int i = 0; i < sceneTile.entityCount; i++) {
-            @Pc(22) InteractiveObject interactiveObject = sceneTile.interactiveObjects[i];
-            if ((interactiveObject.hash >> 29 & 0x3L) == 2L && interactiveObject.anInt1701 == arg1 && interactiveObject.anInt1696 == arg2) {
-                Static266.method4193(interactiveObject);
-                return interactiveObject;
+            @Pc(22) Scenery scenery = sceneTile.sceneries[i];
+            if ((scenery.hash >> 29 & 0x3L) == 2L && scenery.anInt1701 == arg1 && scenery.anInt1696 == arg2) {
+                Static266.method4193(scenery);
+                return scenery;
             }
         }
         return null;
     }
 
     @OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(IIIILclient!th;JZ)V")
-    public static void addGroundDecoration(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Renderable renderable, @OriginalArg(5) long arg5, @OriginalArg(6) boolean arg6) {
-        if (renderable == null) {
+    public static void addGroundDecoration(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Entity entity, @OriginalArg(5) long arg5, @OriginalArg(6) boolean arg6) {
+        if (entity == null) {
             return;
         }
-        @Pc(6) FloorDecoration floorDecoration = new FloorDecoration();
-        floorDecoration.renderable = renderable;
-        floorDecoration.xFine = arg1 * 128 + 64;
-        floorDecoration.zFine = arg2 * 128 + 64;
-        floorDecoration.anInt733 = arg3;
-        floorDecoration.key = arg5;
-        floorDecoration.aBoolean49 = arg6;
+        @Pc(6) GroundDecor groundDecor = new GroundDecor();
+        groundDecor.entity = entity;
+        groundDecor.xFine = arg1 * 128 + 64;
+        groundDecor.zFine = arg2 * 128 + 64;
+        groundDecor.anInt733 = arg3;
+        groundDecor.key = arg5;
+        groundDecor.aBoolean49 = arg6;
         if (Static130.levelTiles[arg0][arg1][arg2] == null) {
             Static130.levelTiles[arg0][arg1][arg2] = new SceneTile(arg0, arg1, arg2);
         }
-        Static130.levelTiles[arg0][arg1][arg2].floorDecoration = floorDecoration;
+        Static130.levelTiles[arg0][arg1][arg2].groundDecor = groundDecor;
     }
 }

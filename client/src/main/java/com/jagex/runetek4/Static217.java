@@ -32,17 +32,17 @@ public final class Static217 {
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "a", descriptor = "(IIILclient!e;I)V")
 	public static void method3767(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Player arg2, @OriginalArg(4) int arg3) {
-		if (Static173.localPlayer == arg2 || PreciseSleep.menuActionRow >= 400) {
+		if (PlayerList.self == arg2 || PreciseSleep.menuActionRow >= 400) {
 			return;
 		}
 		@Pc(158) JString local158;
 		if (arg2.anInt1671 == 0) {
 			@Pc(22) boolean local22 = true;
-			if (Static173.localPlayer.anInt1667 != -1 && arg2.anInt1667 != -1) {
-				@Pc(43) int local43 = arg2.combatLevel < Static173.localPlayer.combatLevel ? Static173.localPlayer.combatLevel : arg2.combatLevel;
-				@Pc(58) int local58 = Static173.localPlayer.anInt1667 < arg2.anInt1667 ? Static173.localPlayer.anInt1667 : arg2.anInt1667;
+			if (PlayerList.self.anInt1667 != -1 && arg2.anInt1667 != -1) {
+				@Pc(43) int local43 = arg2.combatLevel < PlayerList.self.combatLevel ? PlayerList.self.combatLevel : arg2.combatLevel;
+				@Pc(58) int local58 = PlayerList.self.anInt1667 < arg2.anInt1667 ? PlayerList.self.anInt1667 : arg2.anInt1667;
 				@Pc(69) int local69 = local43 * 10 / 100 + local58 + 5;
-				@Pc(76) int local76 = Static173.localPlayer.combatLevel - arg2.combatLevel;
+				@Pc(76) int local76 = PlayerList.self.combatLevel - arg2.combatLevel;
 				if (local76 < 0) {
 					local76 = -local76;
 				}
@@ -52,9 +52,9 @@ public final class Static217 {
 			}
 			@Pc(95) JString local95 = Static266.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
 			if (arg2.combatLevel < arg2.anInt1656) {
-				local158 = Static34.method882(new JString[] { arg2.getUsername(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, Static173.localPlayer.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static78.aClass100_465, Static123.method2423(arg2.anInt1656 - arg2.combatLevel), Static72.aClass100_448 });
+				local158 = Static34.method882(new JString[] { arg2.getUsername(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, PlayerList.self.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static78.aClass100_465, Static123.method2423(arg2.anInt1656 - arg2.combatLevel), Static72.aClass100_448 });
 			} else {
-				local158 = Static34.method882(new JString[] { arg2.getUsername(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, Static173.localPlayer.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static72.aClass100_448 });
+				local158 = Static34.method882(new JString[] { arg2.getUsername(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, PlayerList.self.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static72.aClass100_448 });
 			}
 		} else {
 			local158 = Static34.method882(new JString[] { arg2.getUsername(), Static123.aClass100_593, LocalizedText.SKILL, Static123.method2423(arg2.anInt1671), Static72.aClass100_448 });
@@ -67,11 +67,11 @@ public final class Static217 {
 				if (Static160.aClass100Array121[local275] != null) {
 					@Pc(291) short local291 = 0;
 					if (Static266.game == 0 && Static160.aClass100Array121[local275].equalsIgnoreCase(LocalizedText.ATTACK)) {
-						if (arg2.combatLevel > Static173.localPlayer.combatLevel) {
+						if (arg2.combatLevel > PlayerList.self.combatLevel) {
 							local291 = 2000;
 						}
-						if (Static173.localPlayer.teamId != 0 && arg2.teamId != 0) {
-							if (Static173.localPlayer.teamId == arg2.teamId) {
+						if (PlayerList.self.teamId != 0 && arg2.teamId != 0) {
+							if (PlayerList.self.teamId == arg2.teamId) {
 								local291 = 2000;
 							} else {
 								local291 = 0;
@@ -165,7 +165,7 @@ public final class Static217 {
 				@Pc(68) int local68 = local64 >> 2;
 				@Pc(72) int local72 = local64 & 0x3;
 				if (arg3 == local60 && local56 >= arg8 && local56 < arg8 + 8 && arg9 <= local50 && arg9 + 8 > local50) {
-					@Pc(103) LocType local103 = Static271.get(local7);
+					@Pc(103) LocType local103 = LocTypeList.get(local7);
 					@Pc(120) int local120 = Static52.method1286(local50 & 0x7, arg4, local72, local103.length, local103.width, local56 & 0x7) + arg5;
 					@Pc(137) int local137 = Static241.method4541(local103.width, arg4, local103.length, local56 & 0x7, local72, local50 & 0x7) + arg6;
 					if (local120 > 0 && local137 > 0 && local120 < 103 && local137 < 103) {

@@ -51,9 +51,9 @@ public final class Static73 {
 		}
 		Static35.anInt1092 = -1;
 		client.method1750(Static270.anInt5794);
-		Static173.localPlayer = new Player();
-		Static173.localPlayer.zFine = 3000;
-		Static173.localPlayer.xFine = 3000;
+		PlayerList.self = new Player();
+		PlayerList.self.zFine = 3000;
+		PlayerList.self.xFine = 3000;
 		if (!GlRenderer.enabled) {
 			Static145.method2743(Static209.aClass153_86);
 			Game.processGameStatus(10);
@@ -97,7 +97,7 @@ public final class Static73 {
 			}
 			local16 = (arg1 << 7) + 1;
 			local20 = (arg3 << 7) + 2;
-			@Pc(156) int local156 = Static83.levelHeightMap[arg0][arg1][arg3] + arg5;
+			@Pc(156) int local156 = SceneGraph.tileHeights[arg0][arg1][arg3] + arg5;
 			if (!Static256.method4394(local16, local156, local20)) {
 				return false;
 			}
@@ -116,7 +116,7 @@ public final class Static73 {
 		} else if (CacheArchive.method187(arg0, arg1, arg3)) {
 			local16 = arg1 << 7;
 			local20 = arg3 << 7;
-			return Static256.method4394(local16 + 1, Static83.levelHeightMap[arg0][arg1][arg3] + arg5, local20 + 1) && Static256.method4394(local16 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg3] + arg5, local20 + 1) && Static256.method4394(local16 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg3 + 1] + arg5, local20 + 128 - 1) && Static256.method4394(local16 + 1, Static83.levelHeightMap[arg0][arg1][arg3 + 1] + arg5, local20 + 128 - 1);
+			return Static256.method4394(local16 + 1, SceneGraph.tileHeights[arg0][arg1][arg3] + arg5, local20 + 1) && Static256.method4394(local16 + 128 - 1, SceneGraph.tileHeights[arg0][arg1 + 1][arg3] + arg5, local20 + 1) && Static256.method4394(local16 + 128 - 1, SceneGraph.tileHeights[arg0][arg1 + 1][arg3 + 1] + arg5, local20 + 128 - 1) && Static256.method4394(local16 + 1, SceneGraph.tileHeights[arg0][arg1][arg3 + 1] + arg5, local20 + 128 - 1);
 		} else {
 			return false;
 		}

@@ -51,7 +51,7 @@ public final class Static141 {
 		for (@Pc(39) int local39 = 0; local39 < 2048; local39++) {
 			@Pc(46) Player local46 = Static159.players[local39];
 			if (local46 != null) {
-				local46.locModel = null;
+				local46.attachment = null;
 			}
 		}
 		if (GlRenderer.enabled) {
@@ -86,7 +86,7 @@ public final class Static141 {
 		if (arg0 && Static113.anInt4612 >= 100) {
 			Static138.cameraX = Static245.anInt5375 * 128 + 64;
 			Static134.cameraZ = Static248.anInt4232 * 128 + 64;
-			Static5.cameraY = Static207.getHeightmapY(Static55.currentLevel, Static138.cameraX, Static134.cameraZ) - PreciseSleep.anInt5203;
+			Static5.cameraY = Static207.getHeightmapY(Player.plane, Static138.cameraX, Static134.cameraZ) - PreciseSleep.anInt5203;
 		}
 		Static227.anInt5096 = 2;
 	}

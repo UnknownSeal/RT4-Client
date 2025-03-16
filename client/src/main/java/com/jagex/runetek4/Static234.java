@@ -7,6 +7,7 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -26,7 +27,7 @@ public final class Static234 {
 	public static void method4014() {
 		for (@Pc(3) int local3 = 0; local3 < Static116.entityUpdateCount; local3++) {
 			@Pc(10) int local10 = Static44.entityUpdateIds[local3];
-			@Pc(14) Npc local14 = Static175.npcs[local10];
+			@Pc(14) Npc local14 = NpcList.npcs[local10];
 			@Pc(18) int local18 = Static57.in.g1();
 			if ((local18 & 0x8) != 0) {
 				local18 += Static57.in.g1() << 8;
@@ -36,14 +37,14 @@ public final class Static234 {
 			if ((local18 & 0x40) != 0) {
 				local43 = Static57.in.g1();
 				info = Static57.in.p1neg();
-				local14.method2686(info, Static83.loopCycle, local43);
-				local14.anInt3378 = Static83.loopCycle + 300;
+				local14.method2686(info, client.loop, local43);
+				local14.anInt3378 = client.loop + 300;
 				local14.anInt3372 = Static57.in.g1_alt3();
 			}
 			if ((local18 & 0x2) != 0) {
 				local43 = Static57.in.p1neg();
 				info = Static57.in.g1_alt3();
-				local14.method2686(info, Static83.loopCycle, local43);
+				local14.method2686(info, client.loop, local43);
 			}
 			if ((local18 & 0x10) != 0) {
 				local43 = Static57.in.g2();
@@ -71,15 +72,15 @@ public final class Static234 {
 				}
 				if (local147) {
 					local14.spotanimFrame = local43;
-					local14.spotanimLastCycle = (info & 0xFFFF) + Static83.loopCycle;
+					local14.spotanimLastCycle = (info & 0xFFFF) + client.loop;
 					local14.anInt3361 = 0;
 					local14.spotanimId = 0;
 					local14.spotanimOffset = info >> 16;
 					local14.anInt3418 = 1;
-					if (local14.spotanimLastCycle > Static83.loopCycle) {
+					if (local14.spotanimLastCycle > client.loop) {
 						local14.spotanimId = -1;
 					}
-					if (local14.spotanimFrame != -1 && local14.spotanimLastCycle == Static83.loopCycle) {
+					if (local14.spotanimFrame != -1 && local14.spotanimLastCycle == client.loop) {
 						@Pc(227) int local227 = Static34.method877(local14.spotanimFrame).animationId;
 						if (local227 != -1) {
 							@Pc(236) AnimationSequence local236 = AnimationSequence.getAnimationSequence(local227);
@@ -98,7 +99,7 @@ public final class Static234 {
 				local14.setSize(local14.type.size);
 				local14.anInt3365 = local14.type.bas;
 				if (local14.type.hasBackgroundSound()) {
-					AreaSoundManager.add(local14.pathTileZ[0], null, 0, local14, local14.pathTileX[0], Static55.currentLevel, null);
+					AreaSoundManager.add(local14.pathTileZ[0], null, 0, local14, local14.pathTileX[0], Player.plane, null);
 				}
 			}
 			if ((local18 & 0x20) != 0) {

@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -57,7 +58,7 @@ public final class Static198 {
 			Static65.anInt1951 = -1;
 			return;
 		}
-		@Pc(38) int local38 = Static207.getHeightmapY(Static55.currentLevel, arg5, arg2) - arg3;
+		@Pc(38) int local38 = Static207.getHeightmapY(Player.plane, arg5, arg2) - arg3;
 		@Pc(42) int local42 = arg2 - Static134.cameraZ;
 		@Pc(46) int local46 = local38 - Static5.cameraY;
 		@Pc(50) int local50 = arg5 - Static138.cameraX;

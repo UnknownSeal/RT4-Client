@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -34,7 +35,7 @@ public final class Static252 {
 				Static266.aByteArrayArrayArray15[local33][local31][local40] = local27;
 			}
 		}
-		if (Static55.currentLevel == 3) {
+		if (Player.plane == 3) {
 			return;
 		}
 		for (local33 = 0; local33 < 2; local33++) {
@@ -45,19 +46,19 @@ public final class Static252 {
 			Static50.anIntArray134[local33] = 0;
 		}
 		if (Static227.anInt5096 != 1) {
-			local33 = Static207.getHeightmapY(Static55.currentLevel, Static138.cameraX, Static134.cameraZ);
-			if (local33 - Static5.cameraY < 800 && (Static12.aByteArrayArrayArray2[Static55.currentLevel][Static138.cameraX >> 7][Static134.cameraZ >> 7] & 0x4) != 0) {
+			local33 = Static207.getHeightmapY(Player.plane, Static138.cameraX, Static134.cameraZ);
+			if (local33 - Static5.cameraY < 800 && (Static12.aByteArrayArrayArray2[Player.plane][Static138.cameraX >> 7][Static134.cameraZ >> 7] & 0x4) != 0) {
 				Static254.method4348(false, Static138.cameraX >> 7, Static134.cameraZ >> 7, Static130.levelTiles, 1);
 			}
 			return;
 		}
-		if ((Static12.aByteArrayArrayArray2[Static55.currentLevel][Static173.localPlayer.xFine >> 7][Static173.localPlayer.zFine >> 7] & 0x4) != 0) {
-			Static254.method4348(false, Static173.localPlayer.xFine >> 7, Static173.localPlayer.zFine >> 7, Static130.levelTiles, 0);
+		if ((Static12.aByteArrayArrayArray2[Player.plane][PlayerList.self.xFine >> 7][PlayerList.self.zFine >> 7] & 0x4) != 0) {
+			Static254.method4348(false, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7, Static130.levelTiles, 0);
 		}
 		if (Static240.cameraPitch >= 310) {
 			return;
 		}
-		@Pc(135) int local135 = Static173.localPlayer.zFine >> 7;
+		@Pc(135) int local135 = PlayerList.self.zFine >> 7;
 		local40 = Static134.cameraZ >> 7;
 		@Pc(146) int local146;
 		if (local40 < local135) {
@@ -66,7 +67,7 @@ public final class Static252 {
 			local146 = local40 - local135;
 		}
 		local33 = Static138.cameraX >> 7;
-		@Pc(162) int local162 = Static173.localPlayer.xFine >> 7;
+		@Pc(162) int local162 = PlayerList.self.xFine >> 7;
 		@Pc(174) int local174;
 		if (local162 > local33) {
 			local174 = local162 - local33;
@@ -84,7 +85,7 @@ public final class Static252 {
 				} else if (local40 > local135) {
 					local40--;
 				}
-				if ((Static12.aByteArrayArrayArray2[Static55.currentLevel][local33][local40] & 0x4) != 0) {
+				if ((Static12.aByteArrayArrayArray2[Player.plane][local33][local40] & 0x4) != 0) {
 					Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
 					break;
 				}
@@ -96,7 +97,7 @@ public final class Static252 {
 						local33--;
 					}
 					local186 -= 65536;
-					if ((Static12.aByteArrayArrayArray2[Static55.currentLevel][local33][local40] & 0x4) != 0) {
+					if ((Static12.aByteArrayArrayArray2[Player.plane][local33][local40] & 0x4) != 0) {
 						Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
 						break;
 					}
@@ -112,7 +113,7 @@ public final class Static252 {
 			} else if (local33 > local162) {
 				local33--;
 			}
-			if ((Static12.aByteArrayArrayArray2[Static55.currentLevel][local33][local40] & 0x4) != 0) {
+			if ((Static12.aByteArrayArrayArray2[Player.plane][local33][local40] & 0x4) != 0) {
 				Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
 				break;
 			}
@@ -124,7 +125,7 @@ public final class Static252 {
 					local40--;
 				}
 				local186 -= 65536;
-				if ((Static12.aByteArrayArrayArray2[Static55.currentLevel][local33][local40] & 0x4) != 0) {
+				if ((Static12.aByteArrayArrayArray2[Player.plane][local33][local40] & 0x4) != 0) {
 					Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
 					break;
 				}

@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.scene.InteractiveObject;
-import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -19,21 +17,6 @@ public final class Static133 {
 
 	@OriginalMember(owner = "runetek4.client!kf", name = "l", descriptor = "I")
 	public static int anInt5235 = 0;
-
-	@OriginalMember(owner = "runetek4.client!kf", name = "b", descriptor = "(III)Lclient!ec;")
-	public static InteractiveObject method4008(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
-		if (local7 == null) {
-			return null;
-		}
-		for (@Pc(13) int local13 = 0; local13 < local7.entityCount; local13++) {
-			@Pc(22) InteractiveObject local22 = local7.interactiveObjects[local13];
-			if ((local22.hash >> 29 & 0x3L) == 2L && local22.anInt1701 == arg1 && local22.anInt1696 == arg2) {
-				return local22;
-			}
-		}
-		return null;
-	}
 
 	@OriginalMember(owner = "runetek4.client!kf", name = "a", descriptor = "(II)I")
 	public static int method4010(@OriginalArg(0) int arg0) {

@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static44 {
 
-	@OriginalMember(owner = "runetek4.client!dh", name = "h", descriptor = "I")
-	public static int anInt1404;
-
 	@OriginalMember(owner = "runetek4.client!dh", name = "a", descriptor = "Z")
 	public static boolean aBoolean83 = false;
 
@@ -45,9 +42,9 @@ public final class Static44 {
 				Static159.players[local35].targetId = -1;
 			}
 		}
-		for (local35 = 0; local35 < Static175.npcs.length; local35++) {
-			if (Static175.npcs[local35] != null) {
-				Static175.npcs[local35].targetId = -1;
+		for (local35 = 0; local35 < NpcList.npcs.length; local35++) {
+			if (NpcList.npcs[local35] != null) {
+				NpcList.npcs[local35].targetId = -1;
 			}
 		}
 		Static102.method2073();

@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
 import com.jagex.runetek4.util.SignLink;
+import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -54,9 +55,9 @@ public class Preferences {
                 Static83.aFloat3 = 8.0F;
                 Static138.aFloat14 = 8.0F;
             }
-            @Pc(144) int local144 = (Static173.localPlayer.xFine >> 7) + Static225.originX - Static158.anInt3846;
+            @Pc(144) int local144 = (PlayerList.self.xFine >> 7) + Static225.originX - Static158.anInt3846;
             @Pc(153) int local153 = local144 + (int) (Math.random() * 10.0D) - 5;
-            @Pc(168) int local168 = Static2.anInt13 + Static181.anInt4296 - Static142.originZ - (Static173.localPlayer.zFine >> 7) - 1;
+            @Pc(168) int local168 = Static2.anInt13 + Static181.anInt4296 - Static142.originZ - (PlayerList.self.zFine >> 7) - 1;
             @Pc(177) int local177 = local168 + (int) (Math.random() * 10.0D) - 5;
             if (local153 >= 0 && Static48.anInt1449 > local153 && local177 >= 0 && local177 < Static181.anInt4296) {
                 Static13.anInt435 = local153;
@@ -160,7 +161,7 @@ public class Preferences {
         try {
             @Pc(16) PrivilegedRequest local16 = arg0.openPreferences("runescape");
             while (local16.status == 0) {
-                PreciseSleep.sleep(1L);
+                ThreadUtils.sleep(1L);
             }
             if (local16.status == 1) {
                 local11 = (FileOnDisk) local16.result;

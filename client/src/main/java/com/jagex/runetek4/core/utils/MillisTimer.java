@@ -1,7 +1,7 @@
 package com.jagex.runetek4.core.utils;
 
 import com.jagex.runetek4.MonotonicTime;
-import com.jagex.runetek4.PreciseSleep;
+import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -80,7 +80,7 @@ public final class MillisTimer extends Timer {
 		if (arg0 > this.anInt3552) {
 			this.anInt3552 = arg0;
 		}
-		PreciseSleep.sleep((long) this.anInt3552);
+		ThreadUtils.sleep((long) this.anInt3552);
 		local139 = 0;
 		while (this.anInt3553 < 256) {
 			this.anInt3553 += this.anInt3550;

@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
-import com.jagex.runetek4.scene.tile.FloorDecoration;
+import com.jagex.runetek4.scene.tile.GroundDecor;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -35,13 +35,13 @@ public final class Static267 {
 	public static int anInt5776 = 0;
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "a", descriptor = "(III)Lclient!bm;")
-	public static FloorDecoration method4526(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public static GroundDecor method4526(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		@Pc(7) SceneTile floorDecoration = Static130.levelTiles[arg0][arg1][arg2];
 		if (floorDecoration == null) {
 			return null;
 		} else {
-			@Pc(14) FloorDecoration local14 = floorDecoration.floorDecoration;
-			floorDecoration.floorDecoration = null;
+			@Pc(14) GroundDecor local14 = floorDecoration.groundDecor;
+			floorDecoration.groundDecor = null;
 			return local14;
 		}
 	}
@@ -105,7 +105,7 @@ public final class Static267 {
 			Static1.anInt6++;
 		}
 		Static226.anInt5084 += arg0;
-		local60 = (arg0 + (Static83.loopCycle & 0x1)) / 2;
+		local60 = (arg0 + (client.loop & 0x1)) / 2;
 		if (local60 <= 0) {
 			return;
 		}

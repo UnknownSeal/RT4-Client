@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -138,9 +139,9 @@ public final class PreciseSleep {
 			local183 = Static78.method1690(Static224.anInt5063, arg5 + arg0, Static172.anInt4164);
 			local192 = Static78.method1690(Static224.anInt5063, arg5 - local12, Static172.anInt4164);
 			local201 = Static78.method1690(Static224.anInt5063, arg5 + local12, Static172.anInt4164);
-			Static131.method2576(local166, local174, local192, arg2);
-			Static131.method2576(local166, local192, local201, arg1);
-			Static131.method2576(local166, local201, local183, arg2);
+			ArrayUtils.fillRange(local166, local174, local192, arg2);
+			ArrayUtils.fillRange(local166, local192, local201, arg1);
+			ArrayUtils.fillRange(local166, local201, local183, arg2);
 		}
 		while (local16 > 0) {
 			if (local70 < 0) {
@@ -198,22 +199,22 @@ public final class PreciseSleep {
 					@Pc(420) int[] local420;
 					if (Static267.anInt5773 <= local174) {
 						local420 = ObjTypeList.anIntArrayArray10[local174];
-						Static131.method2576(local420, local201, local412, arg2);
-						Static131.method2576(local420, local412, local404, arg1);
-						Static131.method2576(local420, local404, local192, arg2);
+						ArrayUtils.fillRange(local420, local201, local412, arg2);
+						ArrayUtils.fillRange(local420, local412, local404, arg1);
+						ArrayUtils.fillRange(local420, local404, local192, arg2);
 					}
 					if (local183 <= Static106.anInt2869) {
 						local420 = ObjTypeList.anIntArrayArray10[local183];
-						Static131.method2576(local420, local201, local412, arg2);
-						Static131.method2576(local420, local412, local404, arg1);
-						Static131.method2576(local420, local404, local192, arg2);
+						ArrayUtils.fillRange(local420, local201, local412, arg2);
+						ArrayUtils.fillRange(local420, local412, local404, arg1);
+						ArrayUtils.fillRange(local420, local404, local192, arg2);
 					}
 				} else {
 					if (Static267.anInt5773 <= local174) {
-						Static131.method2576(ObjTypeList.anIntArrayArray10[local174], local201, local192, arg2);
+						ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local174], local201, local192, arg2);
 					}
 					if (Static106.anInt2869 >= local183) {
-						Static131.method2576(ObjTypeList.anIntArrayArray10[local183], local201, local192, arg2);
+						ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local183], local201, local192, arg2);
 					}
 				}
 			}
@@ -272,19 +273,6 @@ public final class PreciseSleep {
 				local68 = (Static106.anInt2869 - local59 << 12) / local50;
 			}
 			Static241.method4547(arg0, local118, local76, local109, local68);
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!sk", name = "a", descriptor = "(JI)V")
-	public static void sleep(@OriginalArg(0) long arg0) {
-		if (arg0 <= 0L) {
-			return;
-		}
-		if (arg0 % 10L == 0L) {
-			Static220.sleep0(arg0 - 1L);
-			Static220.sleep0(1L);
-		} else {
-			Static220.sleep0(arg0);
 		}
 	}
 

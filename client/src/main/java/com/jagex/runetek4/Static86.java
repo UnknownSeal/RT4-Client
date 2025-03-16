@@ -46,19 +46,19 @@ public final class Static86 {
 		@Pc(19) int i;
 		for (i = 0; i < Static240.entityRemovalCount; i++) {
 			@Pc(30) int local30 = Static52.entityRemovalIds[i];
-			if (Static175.npcs[local30].cycle != Static83.loopCycle) {
-				if (Static175.npcs[local30].type.hasBackgroundSound()) {
-					AreaSoundManager.remove(Static175.npcs[local30]);
+			if (NpcList.npcs[local30].cycle != client.loop) {
+				if (NpcList.npcs[local30].type.hasBackgroundSound()) {
+					AreaSoundManager.remove(NpcList.npcs[local30]);
 				}
-				Static175.npcs[local30].method2698(null);
-				Static175.npcs[local30] = null;
+				NpcList.npcs[local30].method2698(null);
+				NpcList.npcs[local30] = null;
 			}
 		}
 		if (Static223.packetSize != Static57.in.position) {
 			throw new RuntimeException("gnp1 pos:" + Static57.in.position + " psize:" + Static223.packetSize);
 		}
 		for (i = 0; i < Static272.npcCount; i++) {
-			if (Static175.npcs[Static33.npcIds[i]] == null) {
+			if (NpcList.npcs[Static33.npcIds[i]] == null) {
 				throw new RuntimeException("gnp2 pos:" + i + " size:" + Static272.npcCount);
 			}
 		}

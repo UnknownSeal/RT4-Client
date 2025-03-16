@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -32,7 +33,7 @@ public final class Static260 {
 		if (ClientScriptRunner.anInt5217 >= 100) {
 			@Pc(30) int local30 = Static251.anInt5449 * 128 + 64;
 			@Pc(36) int local36 = Static265.anInt5765 * 128 + 64;
-			@Pc(44) int local44 = Static207.getHeightmapY(Static55.currentLevel, local30, local36) - Static57.anInt1744;
+			@Pc(44) int local44 = Static207.getHeightmapY(Player.plane, local30, local36) - Static57.anInt1744;
 			@Pc(49) int local49 = local44 - Static5.cameraY;
 			@Pc(54) int local54 = local30 - Static138.cameraX;
 			@Pc(59) int local59 = local36 - Static134.cameraZ;
@@ -56,7 +57,7 @@ public final class Static260 {
 		}
 		@Pc(10) int local10 = arg1 << 7;
 		@Pc(14) int local14 = arg2 << 7;
-		@Pc(24) int local24 = Static83.levelHeightMap[arg0][arg1][arg2] - 1;
+		@Pc(24) int local24 = SceneGraph.tileHeights[arg0][arg1][arg2] - 1;
 		@Pc(28) int local28 = local24 - 120;
 		@Pc(32) int local32 = local24 - 230;
 		@Pc(36) int local36 = local24 - 238;

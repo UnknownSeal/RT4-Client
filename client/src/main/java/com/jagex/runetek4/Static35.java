@@ -4,8 +4,9 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -57,7 +58,7 @@ public final class Static35 {
 		if (arg4 >= Static267.anInt5773 && Static106.anInt2869 >= arg4) {
 			local95 = Static78.method1690(Static224.anInt5063, arg2 + arg3, Static172.anInt4164);
 			local104 = Static78.method1690(Static224.anInt5063, arg3 - arg2, Static172.anInt4164);
-			Static131.method2576(ObjTypeList.anIntArrayArray10[arg4], local104, local95, arg0);
+			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[arg4], local104, local95, arg0);
 		}
 		@Pc(118) int local118 = local67 * (arg1 - 1);
 		while (local17 > 0) {
@@ -87,10 +88,10 @@ public final class Static35 {
 				@Pc(213) int local213 = Static78.method1690(Static224.anInt5063, local15 + arg3, Static172.anInt4164);
 				@Pc(222) int local222 = Static78.method1690(Static224.anInt5063, arg3 - local15, Static172.anInt4164);
 				if (local95 >= Static267.anInt5773) {
-					Static131.method2576(ObjTypeList.anIntArrayArray10[local95], local222, local213, arg0);
+					ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local95], local222, local213, arg0);
 				}
 				if (Static106.anInt2869 >= local104) {
-					Static131.method2576(ObjTypeList.anIntArrayArray10[local104], local222, local213, arg0);
+					ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local104], local222, local213, arg0);
 				}
 			}
 			local118 -= local67;
@@ -104,7 +105,7 @@ public final class Static35 {
 			return 0L;
 		}
 		for (@Pc(13) int local13 = 0; local13 < local7.entityCount; local13++) {
-			@Pc(22) InteractiveObject local22 = local7.interactiveObjects[local13];
+			@Pc(22) Scenery local22 = local7.sceneries[local13];
 			if ((local22.hash >> 29 & 0x3L) == 2L && local22.anInt1701 == arg1 && local22.anInt1696 == arg2) {
 				return local22.hash;
 			}

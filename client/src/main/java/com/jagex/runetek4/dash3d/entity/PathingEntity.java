@@ -3,14 +3,15 @@ package com.jagex.runetek4.dash3d.entity;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.game.config.bastype.BASType;
-import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.media.renderable.Entity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!fe")
-public abstract class Actor extends Renderable {
+public abstract class PathingEntity extends Entity {
 
 	@OriginalMember(owner = "client!fe", name = "A", descriptor = "I")
 	public int spotanimLastCycle;
@@ -19,10 +20,10 @@ public abstract class Actor extends Renderable {
 	public int anInt3372;
 
 	@OriginalMember(owner = "client!fe", name = "U", descriptor = "I")
-	public int anInt3374;
+	public int attachmentZ0;
 
 	@OriginalMember(owner = "client!fe", name = "Z", descriptor = "I")
-	public int locOffsetX;
+	public int attachmentXFine;
 
 	@OriginalMember(owner = "client!fe", name = "bb", descriptor = "I")
 	public int anInt3380;
@@ -31,13 +32,13 @@ public abstract class Actor extends Renderable {
 	public int anInt3381;
 
 	@OriginalMember(owner = "client!fe", name = "fb", descriptor = "I")
-	public int anInt3384;
+	public int atachmentX0;
 
 	@OriginalMember(owner = "client!fe", name = "hb", descriptor = "I")
 	public int anInt3386;
 
 	@OriginalMember(owner = "client!fe", name = "nb", descriptor = "Ljava/lang/Object;")
-	public Object locModel;
+	public Object attachment;
 
 	@OriginalMember(owner = "client!fe", name = "rb", descriptor = "I")
 	public int anInt3392;
@@ -55,13 +56,13 @@ public abstract class Actor extends Renderable {
 	public int dstYaw;
 
 	@OriginalMember(owner = "client!fe", name = "Jb", descriptor = "I")
-	public int locOffsetY;
+	public int attachmentY;
 
 	@OriginalMember(owner = "client!fe", name = "Ob", descriptor = "I")
-	public int anInt3410;
+	public int attachmentZ1;
 
 	@OriginalMember(owner = "client!fe", name = "Pb", descriptor = "I")
-	public int anInt3411;
+	public int attachmentX1;
 
 	@OriginalMember(owner = "client!fe", name = "Qb", descriptor = "I")
 	public int xFine;
@@ -76,7 +77,7 @@ public abstract class Actor extends Renderable {
 	public int y;
 
 	@OriginalMember(owner = "client!fe", name = "fc", descriptor = "I")
-	public int locOffsetZ;
+	public int attachmentZFine;
 
 	@OriginalMember(owner = "client!fe", name = "hc", descriptor = "I")
 	public int anInt3428;
@@ -130,7 +131,7 @@ public abstract class Actor extends Renderable {
 	public int anInt3385 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "pb", descriptor = "I")
-	public int locStartCycle = 0;
+	public int attachmentSetAt = 0;
 
 	@OriginalMember(owner = "client!fe", name = "mb", descriptor = "[B")
 	public final byte[] pathRunning = new byte[10];
@@ -160,7 +161,7 @@ public abstract class Actor extends Renderable {
 	public int chatLoops = 100;
 
 	@OriginalMember(owner = "client!fe", name = "V", descriptor = "I")
-	public int locStopCycle = 0;
+	public int attachmentResetAt = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Y", descriptor = "I")
 	public int anInt3378 = -1000;
@@ -299,7 +300,7 @@ public abstract class Actor extends Renderable {
 		this.anInt3405 = 0;
 		this.zFine = arg0 * 64 + this.pathTileZ[0] * 128;
 		this.xFine = arg0 * 64 + this.pathTileX[0] * 128;
-		if (GlRenderer.enabled && Static173.localPlayer == this) {
+		if (GlRenderer.enabled && PlayerList.self == this) {
 			Static86.method1799();
 		}
 	}
@@ -369,13 +370,13 @@ public abstract class Actor extends Renderable {
 		@Pc(53) int local53 = -local27 / 2;
 		@Pc(64) int local64 = local53 * local43 - local48 * local39 >> 16;
 		@Pc(75) int local75 = local39 * local53 + local43 * local48 >> 16;
-		@Pc(87) int local87 = Static207.getHeightmapY(Static55.currentLevel, local75 + this.xFine, this.zFine + local64);
+		@Pc(87) int local87 = Static207.getHeightmapY(Player.plane, local75 + this.xFine, this.zFine + local64);
 		@Pc(91) int local91 = local24 / 2;
 		@Pc(96) int local96 = -local27 / 2;
 		@Pc(106) int local106 = local91 * local43 + local96 * local39 >> 16;
 		@Pc(110) int local110 = local27 / 2;
 		@Pc(121) int local121 = local96 * local43 - local91 * local39 >> 16;
-		@Pc(134) int local134 = Static207.getHeightmapY(Static55.currentLevel, local106 + this.xFine, this.zFine - -local121);
+		@Pc(134) int local134 = Static207.getHeightmapY(Player.plane, local106 + this.xFine, this.zFine - -local121);
 		@Pc(139) int local139 = -local24 / 2;
 		@Pc(150) int local150 = local110 * local43 - local39 * local139 >> 16;
 		@Pc(154) int local154 = local27 / 2;
@@ -383,9 +384,9 @@ public abstract class Actor extends Renderable {
 		@Pc(169) int local169 = local39 * local110 + local43 * local139 >> 16;
 		@Pc(179) int local179 = local154 * local43 - local39 * local158 >> 16;
 		@Pc(189) int local189 = local39 * local154 + local43 * local158 >> 16;
-		@Pc(201) int local201 = Static207.getHeightmapY(Static55.currentLevel, this.xFine + local169, local150 + this.zFine);
+		@Pc(201) int local201 = Static207.getHeightmapY(Player.plane, this.xFine + local169, local150 + this.zFine);
 		@Pc(212) int local212 = local134 > local87 ? local87 : local134;
-		@Pc(224) int local224 = Static207.getHeightmapY(Static55.currentLevel, local189 + this.xFine, local179 + this.zFine);
+		@Pc(224) int local224 = Static207.getHeightmapY(Player.plane, local189 + this.xFine, local179 + this.zFine);
 		@Pc(231) int local231 = local224 > local201 ? local201 : local224;
 		@Pc(238) int local238 = local224 > local134 ? local134 : local224;
 		@Pc(245) int local245 = local201 <= local87 ? local201 : local87;
@@ -523,7 +524,7 @@ public abstract class Actor extends Renderable {
 		this.anInt3383 += this.anInt3355;
 		if (this.anInt3383 != 0) {
 			local101 = this.anInt3383 >> 5 & 0x7FF;
-			local106 = arg0.getHeight() / 2;
+			local106 = arg0.getMinY() / 2;
 			arg0.translate(0, -local106, 0);
 			arg0.method4564(local101);
 			arg0.translate(0, local106, 0);
@@ -614,7 +615,7 @@ public abstract class Actor extends Renderable {
 			return;
 		}
 		local101 = this.anInt3427 >> 5 & 0x7FF;
-		local106 = arg0.getHeight() / 2;
+		local106 = arg0.getMinY() / 2;
 		arg0.translate(0, -local106, 0);
 		arg0.method4574(local101);
 		arg0.translate(0, local106, 0);

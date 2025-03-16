@@ -5,7 +5,7 @@ import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.dash3d.entity.Actor;
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.game.world.entity.PlayerModel;
@@ -17,13 +17,15 @@ import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!e")
-public final class Player extends Actor {
+public final class Player extends PathingEntity {
 
 	@OriginalMember(owner = "client!ch", name = "v", descriptor = "[B")
 	public static final byte[] aByteArray12 = new byte[] { 95, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57 };
 	@OriginalMember(owner = "runetek4.client!ba", name = "w", descriptor = "I")
     public static int overrideChat = 0;
-    @OriginalMember(owner = "client!e", name = "Bc", descriptor = "Lclient!hh;")
+	@OriginalMember(owner = "runetek4.client!ee", name = "b", descriptor = "I")
+	public static int plane;
+	@OriginalMember(owner = "client!e", name = "Bc", descriptor = "Lclient!hh;")
 	public PlayerModel model;
 
 	@OriginalMember(owner = "client!e", name = "Mc", descriptor = "Lclient!na;")
@@ -198,7 +200,7 @@ public final class Player extends Actor {
 
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public void draw(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
+	public void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
 		if (this.model == null) {
 			return;
 		}
@@ -224,7 +226,7 @@ public final class Player extends Actor {
 		if (local76 == null) {
 			return;
 		}
-		this.height = local76.getHeight();
+		this.height = local76.getMinY();
 		@Pc(184) Model model;
 		if (Static209.aBoolean240 && (this.model.transformationNpcId == -1 || NpcType.getDefinition(this.model.transformationNpcId).spotshadow)) {
 			model = Scene.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.xFine, 0, this.zFine, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.y, 240);
@@ -233,37 +235,37 @@ public final class Player extends Actor {
 				@Pc(190) float local190 = GlRenderer.method4166();
 				GlRenderer.disableDepthMask();
 				GlRenderer.method4152(local188, local190 - 150.0F);
-				model.draw(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, null);
+				model.render(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, null);
 				GlRenderer.enableDepthMask();
 				GlRenderer.method4152(local188, local190);
 			} else {
-				model.draw(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, null);
+				model.render(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, null);
 			}
 		}
-		if (Static173.localPlayer == this) {
+		if (PlayerList.self == this) {
 			for (local102 = Static143.aClass102Array1.length - 1; local102 >= 0; local102--) {
 				@Pc(245) Class102 local245 = Static143.aClass102Array1[local102];
 				if (local245 != null && local245.anInt4052 != -1) {
 					@Pc(291) int anchorX;
 					@Pc(302) int anchorY;
-					if (local245.headIconDrawType == 1 && local245.hintIconNpcTarget >= 0 && Static175.npcs.length > local245.hintIconNpcTarget) {
-						@Pc(278) Npc npc = Static175.npcs[local245.hintIconNpcTarget];
+					if (local245.headIconDrawType == 1 && local245.hintIconNpcTarget >= 0 && NpcList.npcs.length > local245.hintIconNpcTarget) {
+						@Pc(278) Npc npc = NpcList.npcs[local245.hintIconNpcTarget];
 						if (npc != null) {
-							anchorX = npc.xFine / 32 - Static173.localPlayer.xFine / 32;
-							anchorY = npc.zFine / 32 - Static173.localPlayer.zFine / 32;
+							anchorX = npc.xFine / 32 - PlayerList.self.xFine / 32;
+							anchorY = npc.zFine / 32 - PlayerList.self.zFine / 32;
 							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
 						}
 					}
 					if (local245.headIconDrawType == 2) {
-						@Pc(340) int local340 = (local245.anInt4053 - Static225.originX) * 4 + 2 - Static173.localPlayer.xFine / 32;
-						anchorX = (local245.anInt4046 - Static142.originZ) * 4 + 2 - Static173.localPlayer.zFine / 32;
+						@Pc(340) int local340 = (local245.anInt4053 - Static225.originX) * 4 + 2 - PlayerList.self.xFine / 32;
+						anchorX = (local245.anInt4046 - Static142.originZ) * 4 + 2 - PlayerList.self.zFine / 32;
 						this.drawOnMinimap(null, anchorX, local76, local340, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
 					}
 					if (local245.headIconDrawType == 10 && local245.hintIconNpcTarget >= 0 && Static159.players.length > local245.hintIconNpcTarget) {
 						@Pc(395) Player player = Static159.players[local245.hintIconNpcTarget];
 						if (player != null) {
-							anchorX = player.xFine / 32 - Static173.localPlayer.xFine / 32;
-							anchorY = player.zFine / 32 - Static173.localPlayer.zFine / 32;
+							anchorX = player.xFine / 32 - PlayerList.self.xFine / 32;
+							anchorY = player.zFine / 32 - PlayerList.self.zFine / 32;
 							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
 						}
 					}
@@ -292,17 +294,17 @@ public final class Player extends Actor {
 			}
 		}
 		@Pc(515) Model loc = null;
-		if (!this.lowMemory && this.locModel != null) {
-			if (Static83.loopCycle >= this.locStopCycle) {
-				this.locModel = null;
+		if (!this.lowMemory && this.attachment != null) {
+			if (client.loop >= this.attachmentResetAt) {
+				this.attachment = null;
 			}
-			if (this.locStartCycle <= Static83.loopCycle && this.locStopCycle > Static83.loopCycle) {
-				if (this.locModel instanceof Loc) {
-					loc = (Model) ((Loc) this.locModel).method1049();
+			if (this.attachmentSetAt <= client.loop && this.attachmentResetAt > client.loop) {
+				if (this.attachment instanceof Loc) {
+					loc = (Model) ((Loc) this.attachment).method1049();
 				} else {
-					loc = (Model) this.locModel;
+					loc = (Model) this.attachment;
 				}
-				loc.translate(this.locOffsetX - this.xFine, this.locOffsetY + -this.y, this.locOffsetZ - this.zFine);
+				loc.translate(this.attachmentXFine - this.xFine, this.attachmentY + -this.y, this.attachmentZFine - this.zFine);
 				if (this.dstYaw == 512) {
 					loc.method4578();
 				} else if (this.dstYaw == 1024) {
@@ -314,10 +316,10 @@ public final class Player extends Actor {
 		}
 		if (GlRenderer.enabled) {
 			local76.pickable = true;
-			local76.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+			local76.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 			if (model != null) {
 				model.pickable = true;
-				model.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+				model.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 			}
 		} else {
 			if (model != null) {
@@ -327,7 +329,7 @@ public final class Player extends Actor {
 				local76 = ((SoftwareModel) local76).method4588(loc);
 			}
 			local76.pickable = true;
-			local76.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+			local76.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 		}
 		if (loc == null) {
 			return;
@@ -339,7 +341,7 @@ public final class Player extends Actor {
 		} else if (this.dstYaw == 1536) {
 			loc.method4578();
 		}
-		loc.translate(this.xFine - this.locOffsetX, -this.locOffsetY + this.y, this.zFine - this.locOffsetZ);
+		loc.translate(this.xFine - this.attachmentXFine, -this.attachmentY + this.y, this.zFine - this.attachmentZFine);
 	}
 
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(Lclient!ga;ILclient!ak;IIIIIIIIIIII)V")
@@ -354,14 +356,14 @@ public final class Player extends Actor {
 			return;
 		}
 		if (!GlRenderer.enabled) {
-			local46.draw(0, arg10, arg12, arg9, arg8, arg4, arg13, arg7, -1L, arg5, arg0);
+			local46.render(0, arg10, arg12, arg9, arg8, arg4, arg13, arg7, -1L, arg5, arg0);
 			return;
 		}
 		@Pc(52) float local52 = GlRenderer.method4179();
 		@Pc(54) float local54 = GlRenderer.method4166();
 		GlRenderer.disableDepthMask();
 		GlRenderer.method4152(local52, local54 - 150.0F);
-		local46.draw(0, arg10, arg12, arg9, arg8, arg4, arg13, arg7, -1L, arg5, arg0);
+		local46.render(0, arg10, arg12, arg9, arg8, arg4, arg13, arg7, -1L, arg5, arg0);
 		GlRenderer.enableDepthMask();
 		GlRenderer.method4152(local52, local54);
 	}
@@ -401,7 +403,7 @@ public final class Player extends Actor {
 
 	@OriginalMember(owner = "client!e", name = "b", descriptor = "()I")
 	@Override
-	public int getHeight() {
+	public int getMinY() {
 		return this.height;
 	}
 }

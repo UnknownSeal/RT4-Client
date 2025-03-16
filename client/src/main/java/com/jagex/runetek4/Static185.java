@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.dash3d.CollisionMap;
-import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.scene.Scene;
@@ -46,7 +46,7 @@ public final class Static185 {
 		if (level < Static146.firstvisibleLevel) {
 			Static146.firstvisibleLevel = level;
 		}
-		@Pc(62) LocType locType = Static271.get(arg5);
+		@Pc(62) LocType locType = LocTypeList.get(arg5);
 		if (GlRenderer.enabled && locType.istexture) {
 			return;
 		}
@@ -77,14 +77,14 @@ public final class Static185 {
 			local129 = (local81 >> 1) + z;
 			local133 = z + (local81 + 1 >> 1);
 		}
-		@Pc(153) int[][] local153 = Static83.levelHeightMap[arg0];
+		@Pc(153) int[][] local153 = SceneGraph.tileHeights[arg0];
 		@Pc(165) int local165 = (local84 << 6) + (arg7 << 7);
 		@Pc(173) int local173 = (local81 << 6) + (z << 7);
 		@Pc(199) int local199 = local153[local103][local133] + local153[local112][local129] + local153[local103][local129] + local153[local112][local133] >> 2;
 		@Pc(201) int local201 = 0;
 		@Pc(213) int[][] local213;
 		if (GlRenderer.enabled && arg0 != 0) {
-			local213 = Static83.levelHeightMap[0];
+			local213 = SceneGraph.tileHeights[0];
 			local201 = local199 - (local213[local112][local133] + local213[local112][local129] + local213[local103][local129] + local213[local103][local133] >> 2);
 		}
 		local213 = null;
@@ -92,7 +92,7 @@ public final class Static185 {
 		if (arg3) {
 			local213 = Static107.anIntArrayArrayArray10[0];
 		} else if (arg0 < 3) {
-			local213 = Static83.levelHeightMap[arg0 + 1];
+			local213 = SceneGraph.tileHeights[arg0 + 1];
 		}
 		if (locType.active == 0 || arg3) {
 			local261 |= Long.MIN_VALUE;
@@ -108,7 +108,7 @@ public final class Static185 {
 		}
 		@Pc(330) boolean local330 = locType.hardshadow & !arg3;
 		local261 |= (long) arg5 << 32;
-		@Pc(387) Renderable local387;
+		@Pc(387) Entity local387;
 		@Pc(403) LocEntity local403;
 		if (shape == 22) {
 			if (Static250.aBoolean283 || locType.active != 0 || locType.blockwalk == 1 || locType.forcedecor) {
@@ -256,8 +256,8 @@ public final class Static185 {
 			@Pc(1226) int local1226;
 			if (shape == 2) {
 				local1226 = rotation + 1 & 0x3;
-				@Pc(1269) Renderable local1269;
-				@Pc(1254) Renderable local1254;
+				@Pc(1269) Entity local1269;
+				@Pc(1254) Entity local1254;
 				if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
 					@Pc(1287) LocEntity local1287 = locType.method3428(rotation + 4, local165, local153, 2, local199, local213, lowmem, null, local330, local173);
 					if (GlRenderer.enabled && local330) {
@@ -350,13 +350,13 @@ public final class Static185 {
 				Static91.addWallDecoration(level, arg7, z, local199, local387, null, Static267.ROTATION_WALL_TYPE[rotation], 0, 0, 0, local261);
 			} else {
 				@Pc(1889) long local1889;
-				@Pc(1934) Renderable local1934;
+				@Pc(1934) Entity local1934;
 				@Pc(1950) LocEntity local1950;
 				if (shape == 5) {
 					local1226 = 16;
 					local1889 = Static265.method4521(level, arg7, z);
 					if (local1889 != 0L) {
-						local1226 = Static271.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).wallwidth;
+						local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).wallwidth;
 					}
 					if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
 						local1950 = locType.method3428(rotation, local165, local153, 4, local199, local213, lowmem, null, local330, local173);
@@ -372,7 +372,7 @@ public final class Static185 {
 					local1226 = 8;
 					local1889 = Static265.method4521(level, arg7, z);
 					if (local1889 != 0L) {
-						local1226 = Static271.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).wallwidth / 2;
+						local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).wallwidth / 2;
 					}
 					if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
 						local1950 = locType.method3428(rotation + 4, local165, local153, 4, local199, local213, lowmem, null, local330, local173);
@@ -400,10 +400,10 @@ public final class Static185 {
 					local1226 = 8;
 					local1889 = Static265.method4521(level, arg7, z);
 					if (local1889 != 0L) {
-						local1226 = Static271.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).wallwidth / 2;
+						local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).wallwidth / 2;
 					}
 					@Pc(2244) int local2244 = rotation + 2 & 0x3;
-					@Pc(2289) Renderable local2289;
+					@Pc(2289) Entity local2289;
 					if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
 						@Pc(2297) int local2297 = Static64.anIntArray154[rotation] * 8;
 						@Pc(2303) int local2303 = Static114.anIntArray565[rotation] * 8;

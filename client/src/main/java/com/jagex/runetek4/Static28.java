@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -121,9 +121,9 @@ public final class Static28 {
 		Static247.aClass120Array2 = new Class120[500];
 		Static215.anInt4870 = 0;
 		Static140.anIntArrayArrayArray12 = new int[4][Static152.anInt3594 + 1][Static99.anInt2550 + 1];
-		Static243.aClass31Array3 = new InteractiveObject[5000];
+		Static243.aClass31Array3 = new Scenery[5000];
 		Static22.anInt726 = 0;
-		Static25.aClass31Array2 = new InteractiveObject[100];
+		Static25.aClass31Array2 = new Scenery[100];
 		Static48.aBooleanArrayArray1 = new boolean[Static277.anInt5855 + Static277.anInt5855 + 1][Static277.anInt5855 + Static277.anInt5855 + 1];
 		Static89.aBooleanArrayArray3 = new boolean[Static277.anInt5855 + Static277.anInt5855 + 2][Static277.anInt5855 + Static277.anInt5855 + 2];
 		Static232.aByteArrayArrayArray13 = new byte[4][Static152.anInt3594][Static99.anInt2550];

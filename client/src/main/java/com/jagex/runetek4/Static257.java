@@ -32,13 +32,13 @@ public final class Static257 {
 			return false;
 		} else if (local7.wall != null && local7.wall.aLong107 == arg3) {
 			return true;
-		} else if (local7.wallDecoration != null && local7.wallDecoration.aLong52 == arg3) {
+		} else if (local7.wallDecor != null && local7.wallDecor.key == arg3) {
 			return true;
-		} else if (local7.floorDecoration != null && local7.floorDecoration.key == arg3) {
+		} else if (local7.groundDecor != null && local7.groundDecor.key == arg3) {
 			return true;
 		} else {
 			for (@Pc(46) int local46 = 0; local46 < local7.entityCount; local46++) {
-				if (local7.interactiveObjects[local46].hash == arg3) {
+				if (local7.sceneries[local46].hash == arg3) {
 					return true;
 				}
 			}

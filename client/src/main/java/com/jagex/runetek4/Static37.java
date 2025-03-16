@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.dash3d.entity.Actor;
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -23,7 +23,7 @@ public final class Static37 {
 	public static PrivilegedRequest js5SocketRequest;
 
 	@OriginalMember(owner = "runetek4.client!cm", name = "a", descriptor = "(ILclient!fe;)V")
-	public static void method949(@OriginalArg(1) Actor e) {
+	public static void method949(@OriginalArg(1) PathingEntity e) {
 		if (e.anInt3376 == 0) {
 			return;
 		}
@@ -31,7 +31,7 @@ public final class Static37 {
 		@Pc(43) int dstX;
 		@Pc(36) int dstZ;
 		if (e.targetId != -1 && e.targetId < 32768) {
-			@Pc(26) Npc npc = Static175.npcs[e.targetId];
+			@Pc(26) Npc npc = NpcList.npcs[e.targetId];
 			if (npc != null) {
 				dstZ = e.zFine - npc.zFine;
 				dstX = e.xFine - npc.xFine;
@@ -44,7 +44,7 @@ public final class Static37 {
 		@Pc(70) int index;
 		if (e.targetId >= 32768) {
 			index = e.targetId - 32768;
-			if (index == Static16.localPid) {
+			if (index == PlayerList.selfId) {
 				index = 2047;
 			}
 			@Pc(83) Player player = Static159.players[index];

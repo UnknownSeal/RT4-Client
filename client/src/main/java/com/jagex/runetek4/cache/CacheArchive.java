@@ -71,17 +71,17 @@ public final class CacheArchive {
 			local96 = arg5 + (local28 >> 1);
 			local100 = (local28 + 1 >> 1) + arg5;
 		}
-		@Pc(120) int[][] local120 = Static83.levelHeightMap[arg7];
+		@Pc(120) int[][] local120 = SceneGraph.tileHeights[arg7];
 		@Pc(122) int local122 = 0;
 		@Pc(148) int local148 = local120[local96][local51] + local120[local96][local53] + local120[local100][local53] + local120[local100][local51] >> 2;
 		@Pc(158) int[][] local158;
 		if (arg7 != 0) {
-			local158 = Static83.levelHeightMap[0];
+			local158 = SceneGraph.tileHeights[0];
 			local122 = local148 - (local158[local96][local51] + local158[local100][local53] + local158[local96][local53] + local158[local100][local51] >> 2);
 		}
 		local158 = null;
 		if (arg7 < 3) {
-			local158 = Static83.levelHeightMap[arg7 + 1];
+			local158 = SceneGraph.tileHeights[arg7 + 1];
 		}
 		@Pc(215) LocEntity local215 = arg0.method3428(arg2, local80, local120, arg4, local148, local158, false, null, true, local88);
 		Static242.method4207(local215.sprite, local80 - arg3, local122, local88 - arg1);
@@ -147,7 +147,7 @@ public final class CacheArchive {
 		} else {
 			@Pc(22) int local22 = arg1 << 7;
 			@Pc(26) int local26 = arg2 << 7;
-			if (Static256.method4394(local22 + 1, Static83.levelHeightMap[arg0][arg1][arg2], local26 + 1) && Static256.method4394(local22 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg2], local26 + 1) && Static256.method4394(local22 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg2 + 1], local26 + 128 - 1) && Static256.method4394(local22 + 1, Static83.levelHeightMap[arg0][arg1][arg2 + 1], local26 + 128 - 1)) {
+			if (Static256.method4394(local22 + 1, SceneGraph.tileHeights[arg0][arg1][arg2], local26 + 1) && Static256.method4394(local22 + 128 - 1, SceneGraph.tileHeights[arg0][arg1 + 1][arg2], local26 + 1) && Static256.method4394(local22 + 128 - 1, SceneGraph.tileHeights[arg0][arg1 + 1][arg2 + 1], local26 + 128 - 1) && Static256.method4394(local22 + 1, SceneGraph.tileHeights[arg0][arg1][arg2 + 1], local26 + 128 - 1)) {
 				Static140.anIntArrayArrayArray12[arg0][arg1][arg2] = Static13.anInt437;
 				return true;
 			} else {

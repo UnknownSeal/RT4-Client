@@ -10,6 +10,7 @@ import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.ComplexTile;
 import com.jagex.runetek4.scene.tile.GenericTile;
 import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -108,8 +109,8 @@ public final class Static176 {
 			if (local121 != local112) {
 				local112 = local121;
 				@Pc(240) int local240;
-				if (local133 == 2 && Static257.method523(Static55.currentLevel, local47, local147, local121)) {
-					@Pc(172) LocType local172 = Static271.get(local140);
+				if (local133 == 2 && Static257.method523(Player.plane, local47, local147, local121)) {
+					@Pc(172) LocType local172 = LocTypeList.get(local140);
 					if (local172.multiloc != null) {
 						local172 = local172.getMultiLoc();
 					}
@@ -168,12 +169,12 @@ public final class Static176 {
 				@Pc(502) Npc local502;
 				@Pc(597) Player local597;
 				if (local133 == 1) {
-					@Pc(421) Npc local421 = Static175.npcs[local140];
+					@Pc(421) Npc local421 = NpcList.npcs[local140];
 					if ((local421.type.size & 0x1) == 0 && (local421.xFine & 0x7F) == 0 && (local421.zFine & 0x7F) == 0 || (local421.type.size & 0x1) == 1 && (local421.xFine & 0x7F) == 64 && (local421.zFine & 0x7F) == 64) {
 						local479 = local421.xFine + 64 - local421.type.size * 64;
 						local240 = local421.zFine - (local421.type.size - 1) * 64;
 						for (local493 = 0; local493 < Static272.npcCount; local493++) {
-							local502 = Static175.npcs[Static33.npcIds[local493]];
+							local502 = NpcList.npcs[Static33.npcIds[local493]];
 							local514 = local502.xFine + 64 - local502.type.size * 64;
 							local526 = local502.zFine + 64 - local502.type.size * 64;
 							if (local502 != null && local421 != local502 && local514 >= local479 && local421.type.size - (local514 - local479 >> 7) >= local502.type.size && local240 <= local526 && local502.type.size <= local421.type.size - (local526 - local240 >> 7)) {
@@ -197,7 +198,7 @@ public final class Static176 {
 						local479 = local688.xFine - (local688.size() - 1) * 64;
 						local240 = local688.zFine + 64 - local688.size() * 64;
 						for (local493 = 0; local493 < Static272.npcCount; local493++) {
-							local502 = Static175.npcs[Static33.npcIds[local493]];
+							local502 = NpcList.npcs[Static33.npcIds[local493]];
 							local514 = local502.xFine + 64 - local502.type.size * 64;
 							local526 = local502.zFine + 64 - local502.type.size * 64;
 							if (local502 != null && local514 >= local479 && local502.type.size <= local688.size() - (local514 - local479 >> 7) && local526 >= local240 && local502.type.size <= local688.size() - (local526 - local240 >> 7)) {
@@ -216,7 +217,7 @@ public final class Static176 {
 					Static217.method3767(local140, local147, local688, local47);
 				}
 				if (local133 == 3) {
-					@Pc(931) LinkedList local931 = Static159.levelObjStacks[Static55.currentLevel][local47][local147];
+					@Pc(931) LinkedList local931 = Static159.levelObjStacks[Player.plane][local47][local147];
 					if (local931 != null) {
 						for (@Pc(940) ObjStackNode local940 = (ObjStackNode) local931.method2279(); local940 != null; local940 = (ObjStackNode) local931.prev()) {
 							local240 = local940.aClass8_Sub7_1.anInt5555;
@@ -304,7 +305,7 @@ public final class Static176 {
 	@OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(IIIIII)V")
 	public static void method3308(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		for (@Pc(8) int local8 = arg2; local8 <= arg0; local8++) {
-			Static131.method2576(ObjTypeList.anIntArrayArray10[local8], arg3, arg1, arg4);
+			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local8], arg3, arg1, arg4);
 		}
 	}
 }

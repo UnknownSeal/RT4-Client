@@ -5,6 +5,7 @@ import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.SignLink;
+import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -71,7 +72,7 @@ public final class DisplayMode {
 		}
 		@Pc(17) PrivilegedRequest request = signLink.getDisplayModes();
 		while (request.status == 0) {
-			PreciseSleep.sleep(10L);
+			ThreadUtils.sleep(10L);
 		}
 		if (request.status == 2) {
 			return new DisplayMode[0];
@@ -110,7 +111,7 @@ public final class DisplayMode {
 		}
 		@Pc(90) PrivilegedRequest request = signLink.enterFullScreen(bitDepth, height, width);
 		while (request.status == 0) {
-			PreciseSleep.sleep(10L);
+			ThreadUtils.sleep(10L);
 		}
 		@Pc(103) Frame frame = (Frame) request.result;
 		if (frame == null) {
@@ -128,14 +129,14 @@ public final class DisplayMode {
 		while (true) {
 			@Pc(16) PrivilegedRequest request = signLink.exitFullScreen(frame);
 			while (request.status == 0) {
-				PreciseSleep.sleep(10L);
+				ThreadUtils.sleep(10L);
 			}
 			if (request.status == 1) {
 				frame.setVisible(false);
 				frame.dispose();
 				return;
 			}
-			PreciseSleep.sleep(100L);
+			ThreadUtils.sleep(100L);
 		}
 	}
 
@@ -239,7 +240,7 @@ public final class DisplayMode {
 				}
 				@Pc(300) PrivilegedRequest local300 = GameShell.signLink.loadGlNatives(client.instance.getClass());
 				while (local300.status == 0) {
-					PreciseSleep.sleep(100L);
+					ThreadUtils.sleep(100L);
 				}
 				if (local300.status == 1) {
 					Static211.aBoolean73 = true;

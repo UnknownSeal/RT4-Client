@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.graphics.VertexNormal;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -508,7 +509,7 @@ public final class SoftwareModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!w", name = "b", descriptor = "()I")
 	@Override
-	public final int getHeight() {
+	public final int getMinY() {
 		if (!this.aBoolean305) {
 			this.method4592();
 		}
@@ -622,7 +623,7 @@ public final class SoftwareModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!w", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public final void draw(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
+	public final void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
 		if (!this.aBoolean305) {
 			this.method4592();
 		}
@@ -827,9 +828,9 @@ public final class SoftwareModel extends Model {
 			local150.aShortArray90 = this.aShortArray90;
 			local150.pickable = this.pickable;
 			if (arg0 == 3) {
-				local150.anIntArray528 = Static115.method2308(this.anIntArray528);
-				local150.anIntArray527 = Static115.method2308(this.anIntArray527);
-				local150.anIntArray531 = Static115.method2308(this.anIntArray531);
+				local150.anIntArray528 = ArrayUtils.copyOfNullable(this.anIntArray528);
+				local150.anIntArray527 = ArrayUtils.copyOfNullable(this.anIntArray527);
+				local150.anIntArray531 = ArrayUtils.copyOfNullable(this.anIntArray531);
 			} else {
 				local150.anIntArray528 = this.anIntArray528;
 				local150.anIntArray527 = new int[local150.anInt5788];
@@ -1526,7 +1527,7 @@ public final class SoftwareModel extends Model {
 			}
 		}
 		if (Static268.aBoolean307) {
-			Static172.method3223(0, local5 - 1, Static268.anIntArray550, Static268.anIntArray549);
+			ArrayUtils.sort(0, local5 - 1, Static268.anIntArray550, Static268.anIntArray549);
 			if (this.aByteArray73 == null) {
 				for (local11 = 0; local11 < local5; local11++) {
 					this.method4579(Static268.anIntArray549[local11]);

@@ -192,7 +192,7 @@ public final class Static207 {
 
 	@OriginalMember(owner = "runetek4.client!ql", name = "a", descriptor = "(IIII)I")
 	public static int getHeightmapY(@OriginalArg(0) int arg0, @OriginalArg(2) int sceneX, @OriginalArg(3) int sceneZ) {
-		if (Static83.levelHeightMap == null) {
+		if (SceneGraph.tileHeights == null) {
 			return 0;
 		}
 		@Pc(12) int tileX = sceneX >> 7;
@@ -206,8 +206,8 @@ public final class Static207 {
 		if (arg0 < 3 && (Static12.aByteArrayArrayArray2[1][tileX][tileZ] & 0x2) == 2) {
 			realLevel = arg0 + 1;
 		}
-		@Pc(91) int y11 = tileLocalX * Static83.levelHeightMap[realLevel][tileX + 1][tileZ + 1] + Static83.levelHeightMap[realLevel][tileX][tileZ + 1] * (128 - tileLocalX) >> 7;
-		@Pc(118) int y00 = tileLocalX * Static83.levelHeightMap[realLevel][tileX + 1][tileZ] + (128 - tileLocalX) * Static83.levelHeightMap[realLevel][tileX][tileZ] >> 7;
+		@Pc(91) int y11 = tileLocalX * SceneGraph.tileHeights[realLevel][tileX + 1][tileZ + 1] + SceneGraph.tileHeights[realLevel][tileX][tileZ + 1] * (128 - tileLocalX) >> 7;
+		@Pc(118) int y00 = tileLocalX * SceneGraph.tileHeights[realLevel][tileX + 1][tileZ] + (128 - tileLocalX) * SceneGraph.tileHeights[realLevel][tileX][tileZ] >> 7;
 		return tileLocalZ * y11 + (128 - tileLocalZ) * y00 >> 7;
 	}
 }

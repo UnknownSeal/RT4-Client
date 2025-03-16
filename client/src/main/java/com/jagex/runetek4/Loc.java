@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.cache.media.AnimationSequence;
@@ -11,8 +11,10 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!dc")
-public final class Loc extends Renderable {
+public final class Loc extends Entity {
 
+	@OriginalMember(owner = "client!kf", name = "h", descriptor = "[I")
+	public static final int[] LAYERS = new int[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3 };
 	@OriginalMember(owner = "runetek4.client!dc", name = "U", descriptor = "Lclient!ga;")
 	private ParticleSystem aClass47_Sub1_2;
 
@@ -77,7 +79,7 @@ public final class Loc extends Renderable {
 	private int anInt1320;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "<init>", descriptor = "(IIIIIIIZLclient!th;)V")
-	public Loc(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7, @OriginalArg(8) Renderable arg8) {
+	public Loc(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7, @OriginalArg(8) Entity arg8) {
 		this.anInt1303 = arg3;
 		this.anInt1295 = arg2;
 		this.anInt1308 = arg4;
@@ -89,7 +91,7 @@ public final class Loc extends Renderable {
 			if (arg8 instanceof Loc) {
 				((Loc) arg8).method1046();
 			} else {
-				local67 = Static271.get(this.anInt1299);
+				local67 = LocTypeList.get(this.anInt1299);
 				if (local67.multiloc != null) {
 					local67 = local67.getMultiLoc();
 				}
@@ -107,7 +109,7 @@ public final class Loc extends Renderable {
 				this.anInt1304 = 1;
 			}
 			this.anInt1317 = 1;
-			this.anInt1320 = Static83.loopCycle - 1;
+			this.anInt1320 = client.loop - 1;
 			if (this.aClass144_2.anInt5347 == 0 && arg8 != null && arg8 instanceof Loc) {
 				@Pc(142) Loc local142 = (Loc) arg8;
 				if (this.aClass144_2 == local142.aClass144_2) {
@@ -128,14 +130,14 @@ public final class Loc extends Renderable {
 					}
 				}
 				this.anInt1317 = (int) (Math.random() * (double) this.aClass144_2.frames[this.anInt1297]) + 1;
-				this.anInt1320 = Static83.loopCycle - this.anInt1317;
+				this.anInt1320 = client.loop - this.anInt1317;
 			}
 		}
 		if (GlRenderer.enabled && arg8 != null) {
 			this.method1048(true);
 		}
 		if (arg8 == null) {
-			local67 = Static271.get(this.anInt1299);
+			local67 = LocTypeList.get(this.anInt1299);
 			if (local67.multiloc != null) {
 				this.aBoolean80 = true;
 			}
@@ -154,10 +156,10 @@ public final class Loc extends Renderable {
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public final void draw(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
-		@Pc(3) Renderable local3 = this.method1049();
+	public final void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
+		@Pc(3) Entity local3 = this.method1049();
 		if (local3 != null) {
-			local3.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_2);
+			local3.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_2);
 		}
 	}
 
@@ -181,7 +183,7 @@ public final class Loc extends Renderable {
 		if (this.aClass144_2 == null) {
 			return;
 		}
-		@Pc(10) int local10 = Static83.loopCycle - this.anInt1320;
+		@Pc(10) int local10 = client.loop - this.anInt1320;
 		if (local10 > 100 && this.aClass144_2.replayoff > 0) {
 			@Pc(29) int local29 = this.aClass144_2.anIntArray473.length - this.aClass144_2.replayoff;
 			while (this.anInt1297 < local29 && this.aClass144_2.frames[this.anInt1297] < local10) {
@@ -223,13 +225,13 @@ public final class Loc extends Renderable {
 			}
 		}
 		this.anInt1317 = local10;
-		this.anInt1320 = Static83.loopCycle - local10;
+		this.anInt1320 = client.loop - local10;
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(ZI)Lclient!th;")
-	private Renderable method1048(@OriginalArg(0) boolean arg0) {
-		@Pc(12) boolean local12 = Static107.anIntArrayArrayArray10 != Static83.levelHeightMap;
-		@Pc(19) LocType local19 = Static271.get(this.anInt1299);
+	private Entity method1048(@OriginalArg(0) boolean arg0) {
+		@Pc(12) boolean local12 = Static107.anIntArrayArrayArray10 != SceneGraph.tileHeights;
+		@Pc(19) LocType local19 = LocTypeList.get(this.anInt1299);
 		@Pc(22) int local22 = local19.anim;
 		if (local19.multiloc != null) {
 			local19 = local19.getMultiLoc();
@@ -257,7 +259,7 @@ public final class Loc extends Renderable {
 					this.anInt1320 -= (int) (Math.random() * (double) this.aClass144_2.frames[this.anInt1297]);
 				} else {
 					this.anInt1297 = 0;
-					this.anInt1320 = Static83.loopCycle - 1;
+					this.anInt1320 = client.loop - 1;
 				}
 			}
 		}
@@ -280,7 +282,7 @@ public final class Loc extends Renderable {
 		if (arg0 && !local256) {
 			return null;
 		}
-		@Pc(267) int[][] local267 = Static83.levelHeightMap[this.anInt1303];
+		@Pc(267) int[][] local267 = SceneGraph.tileHeights[this.anInt1303];
 		@Pc(293) int local293 = local267[local178][local201] + local267[local185][local201] + local267[local185][local192] + local267[local178][local192] >> 2;
 		@Pc(302) int local302 = (local160 << 6) + (this.anInt1308 << 7);
 		@Pc(311) int local311 = (local157 << 6) + (this.anInt1300 << 7);
@@ -288,7 +290,7 @@ public final class Loc extends Renderable {
 		if (local12) {
 			local314 = Static107.anIntArrayArrayArray10[0];
 		} else if (this.anInt1303 < 3) {
-			local314 = Static83.levelHeightMap[this.anInt1303 + 1];
+			local314 = SceneGraph.tileHeights[this.anInt1303 + 1];
 		}
 		if (GlRenderer.enabled && local256) {
 			Static242.method4207(this.aClass36_Sub1_2, this.anInt1296, this.anInt1294, this.anInt1319);
@@ -309,7 +311,7 @@ public final class Loc extends Renderable {
 			}
 			@Pc(429) int local429 = 0;
 			if (this.anInt1303 != 0) {
-				@Pc(439) int[][] local439 = Static83.levelHeightMap[0];
+				@Pc(439) int[][] local439 = SceneGraph.tileHeights[0];
 				local429 = local293 - (local439[local178][local192] + local439[local185][local192] + local439[local185][local201] + local439[local178][local201] >> 2);
 			}
 			@Pc(471) SoftwareIndexedSprite local471 = local389.sprite;
@@ -333,13 +335,13 @@ public final class Loc extends Renderable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "d", descriptor = "(I)Lclient!th;")
-	public final Renderable method1049() {
+	public final Entity method1049() {
 		return this.method1048(false);
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "b", descriptor = "()I")
 	@Override
-	public final int getHeight() {
+	public final int getMinY() {
 		return this.anInt1311;
 	}
 }

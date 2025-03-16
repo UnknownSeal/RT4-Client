@@ -1,9 +1,17 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.scene.Scenery;
+import com.jagex.runetek4.scene.tile.GroundDecor;
+import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Wall;
+import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class SceneGraph {
+    @OriginalMember(owner = "runetek4.client!gj", name = "m", descriptor = "[[[I")
+    public static int[][][] tileHeights;
+
     @OriginalMember(owner = "client!fc", name = "a", descriptor = "()V")
     public static void clear() {
         @Pc(3) int local3;
@@ -46,5 +54,32 @@ public class SceneGraph {
                 Static25.aClass31Array2[local3] = null;
             }
         }
+    }
+
+    @OriginalMember(owner = "runetek4.client!vf", name = "a", descriptor = "(III)Lclient!jh;")
+    public static Wall getWall(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+        @Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
+        return local7 == null ? null : local7.wall;
+    }
+
+    @OriginalMember(owner = "runetek4.client!kf", name = "b", descriptor = "(III)Lclient!ec;")
+    public static Scenery getScenery(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+        @Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
+        if (local7 == null) {
+            return null;
+        }
+        for (@Pc(13) int local13 = 0; local13 < local7.entityCount; local13++) {
+            @Pc(22) Scenery local22 = local7.sceneries[local13];
+            if ((local22.hash >> 29 & 0x3L) == 2L && local22.anInt1701 == arg1 && local22.anInt1696 == arg2) {
+                return local22;
+            }
+        }
+        return null;
+    }
+
+    @OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(III)Lclient!bm;")
+    public static GroundDecor getGroundDecor(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+        @Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
+        return local7 == null || local7.groundDecor == null ? null : local7.groundDecor;
     }
 }

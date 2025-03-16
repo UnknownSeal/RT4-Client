@@ -184,7 +184,7 @@ public final class Static245 {
 						local255 = local517.anInt2245 >> 7;
 						if (local417 >= 0 && local255 >= 0 && local417 < 104 && local255 < 104) {
 							local517.aBoolean125 = (Static12.aByteArrayArrayArray2[1][local417][local255] & 0x2) != 0;
-							local517.anInt2235 = Static83.levelHeightMap[local517.anInt2241][local417][local255] - local517.anInt2235;
+							local517.anInt2235 = SceneGraph.tileHeights[local517.anInt2241][local417][local255] - local517.anInt2235;
 							Static120.method2389(local517);
 						}
 					}

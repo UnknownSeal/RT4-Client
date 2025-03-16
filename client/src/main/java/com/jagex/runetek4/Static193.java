@@ -4,6 +4,7 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.config.FloType;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -276,7 +277,7 @@ public final class Static193 {
 		for (local155 = 0; local155 < local16; local155++) {
 			local1358[local155] = local1348[local155].nodeId;
 		}
-		Static4.method23(local1358, local1348);
+		ArrayUtils.sort(local1358, local1348);
 		return local1348;
 	}
 

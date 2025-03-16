@@ -98,8 +98,8 @@ public final class Static84 {
 		if ((flags & 0x1) != 0) {
 			chatFlags = Static57.in.gSmart1or2();
 			staffModLevel = Static57.in.g1add();
-			player.method2686(staffModLevel, Static83.loopCycle, chatFlags);
-			player.anInt3378 = Static83.loopCycle + 300;
+			player.method2686(staffModLevel, client.loop, chatFlags);
+			player.anInt3378 = client.loop + 300;
 			player.anInt3372 = Static57.in.g1_alt3();
 		}
 		if ((flags & 0x8) != 0) {
@@ -129,8 +129,8 @@ public final class Static84 {
 			player.anInt3428 = Static57.in.g1();
 			player.anInt3416 = Static57.in.g1add();
 			player.anInt3392 = Static57.in.g1();
-			player.anInt3395 = Static57.in.g2le() + Static83.loopCycle;
-			player.anInt3386 = Static57.in.g2le() + Static83.loopCycle;
+			player.anInt3395 = Static57.in.g2le() + client.loop;
+			player.anInt3386 = Static57.in.g2le() + client.loop;
 			player.anInt3431 = Static57.in.p1neg();
 			player.pathLength = 1;
 			player.anInt3405 = 0;
@@ -140,7 +140,7 @@ public final class Static84 {
 			if (player.chatMessage.charAt(0) == 126) {
 				player.chatMessage = player.chatMessage.substring(1);
 				Static103.addMessage(player.getUsername(), 2, player.chatMessage);
-			} else if (player == Static173.localPlayer) {
+			} else if (player == PlayerList.self) {
 				Static103.addMessage(player.getUsername(), 2, player.chatMessage);
 			}
 			player.chatEffect = 0;
@@ -150,7 +150,7 @@ public final class Static84 {
 		if ((flags & 0x200) != 0) {
 			chatFlags = Static57.in.gSmart1or2();
 			staffModLevel = Static57.in.g1_alt3();
-			player.method2686(staffModLevel, Static83.loopCycle, chatFlags);
+			player.method2686(staffModLevel, client.loop, chatFlags);
 		}
 		if ((flags & 0x800) != 0) {
 			chatFlags = Static57.in.p1neg();
@@ -179,21 +179,21 @@ public final class Static84 {
 				local573 = false;
 			}
 			if (local573) {
-				player.spotanimLastCycle = (staffModLevel & 0xFFFF) + Static83.loopCycle;
+				player.spotanimLastCycle = (staffModLevel & 0xFFFF) + client.loop;
 				player.anInt3361 = 0;
 				player.spotanimId = 0;
 				player.spotanimFrame = chatFlags;
-				if (player.spotanimLastCycle > Static83.loopCycle) {
+				if (player.spotanimLastCycle > client.loop) {
 					player.spotanimId = -1;
 				}
 				player.spotanimOffset = staffModLevel >> 16;
 				player.anInt3418 = 1;
-				if (player.spotanimFrame != -1 && Static83.loopCycle == player.spotanimLastCycle) {
+				if (player.spotanimFrame != -1 && client.loop == player.spotanimLastCycle) {
 					local24 = Static34.method877(player.spotanimFrame).animationId;
 					if (local24 != -1) {
 						@Pc(663) AnimationSequence local663 = AnimationSequence.getAnimationSequence(local24);
 						if (local663 != null && local663.anIntArray473 != null) {
-							Static152.method2836(player.zFine, local663, player.xFine, player == Static173.localPlayer, 0);
+							Static152.method2836(player.zFine, local663, player.xFine, player == PlayerList.self, 0);
 						}
 					}
 				}

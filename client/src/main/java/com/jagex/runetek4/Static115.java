@@ -30,17 +30,6 @@ public final class Static115 {
 	@OriginalMember(owner = "runetek4.client!ja", name = "s", descriptor = "Lclient!na;")
 	public static final JString aClass100_582 = Static28.parse("http:)4)4");
 
-	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "([II)[I")
-	public static int[] method2308(@OriginalArg(0) int[] arg0) {
-		if (arg0 == null) {
-			return null;
-		} else {
-			@Pc(18) int[] local18 = new int[arg0.length];
-			Static289.method2613(arg0, 0, local18, 0, arg0.length);
-			return local18;
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(IIII)I")
 	public static int method2309(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		@Pc(7) int local7 = arg1 / arg0;

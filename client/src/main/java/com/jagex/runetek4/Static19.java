@@ -70,7 +70,7 @@ public final class Static19 {
 		}
 		for (local11 = 0; local11 < Static272.npcCount; local11++) {
 			@Pc(68) int local68 = Static33.npcIds[local11];
-			@Pc(72) Npc local72 = Static175.npcs[local68];
+			@Pc(72) Npc local72 = NpcList.npcs[local68];
 			if (local72 != null && local72.chatLoops > 0) {
 				local72.chatLoops--;
 				if (local72.chatLoops == 0) {

@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!km")
-public final class Npc extends Actor {
+public final class Npc extends PathingEntity {
 
 	@OriginalMember(owner = "client!km", name = "rc", descriptor = "Lclient!me;")
 	public NpcType type;
@@ -45,13 +45,13 @@ public final class Npc extends Actor {
 
 	@OriginalMember(owner = "client!km", name = "b", descriptor = "()I")
 	@Override
-	public int getHeight() {
+	public int getMinY() {
 		return this.height;
 	}
 
 	@OriginalMember(owner = "client!km", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public void draw(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
+	public void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
 		if (this.type == null) {
 			return;
 		}
@@ -61,7 +61,7 @@ public final class Npc extends Actor {
 		if (tmp == null) {
 			return;
 		}
-		this.height = tmp.getHeight();
+		this.height = tmp.getMinY();
 		@Pc(84) NpcType local84 = this.type;
 		if (local84.multiNpcs != null) {
 			local84 = local84.getMultiNPC();
@@ -74,11 +74,11 @@ public final class Npc extends Actor {
 				@Pc(146) float local146 = GlRenderer.method4166();
 				GlRenderer.disableDepthMask();
 				GlRenderer.method4152(local144, local146 - 150.0F);
-				local140.draw(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, this.aClass47_Sub1_5);
+				local140.render(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, this.aClass47_Sub1_5);
 				GlRenderer.enableDepthMask();
 				GlRenderer.method4152(local144, local146);
 			} else {
-				local140.draw(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, this.aClass47_Sub1_5);
+				local140.render(0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, -1L, arg9, this.aClass47_Sub1_5);
 			}
 		}
 		this.method2687(tmp);
@@ -109,18 +109,18 @@ public final class Npc extends Actor {
 			if (this.type.size == 1) {
 				tmp.pickable = true;
 			}
-			tmp.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+			tmp.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 			return;
 		}
 		if (this.type.size == 1) {
 			tmp.pickable = true;
 		}
-		tmp.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+		tmp.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 		if (local140 != null) {
 			if (this.type.size == 1) {
 				local140.pickable = true;
 			}
-			local140.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+			local140.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
 		}
 	}
 

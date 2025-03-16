@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -98,7 +99,7 @@ public final class SynthInstrument {
 
 	@OriginalMember(owner = "runetek4.client!pj", name = "a", descriptor = "(II)[I")
 	public final int[] synthesize(@OriginalArg(0) int arg0, @OriginalArg(1) int dt) {
-		Static289.resetOutput(Static194.output, 0, arg0);
+		ArrayUtils.clear(Static194.output, 0, arg0);
 		if (dt < 10) {
 			return Static194.output;
 		}

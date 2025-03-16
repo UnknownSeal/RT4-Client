@@ -21,6 +21,7 @@ import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.js5.index.Js5MasterIndex;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -30,8 +31,6 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("client!client")
 public final class client extends GameShell {
 
-	@OriginalMember(owner = "client!kf", name = "h", descriptor = "[I")
-	public static final int[] locShapeToLayer = new int[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3 };
 	@OriginalMember(owner = "client!ja", name = "r", descriptor = "I")
 	public static int currentCursor = -1;
 	@OriginalMember(owner = "client!gm", name = "T", descriptor = "Lclient!k;")
@@ -66,6 +65,8 @@ public final class client extends GameShell {
 	public static Js5 js5Archive4;
 	@OriginalMember(owner = "runetek4.client!ef", name = "p", descriptor = "Lclient!vj;")
 	public static Resampler resampler;
+	@OriginalMember(owner = "runetek4.client!gj", name = "d", descriptor = "I")
+	public static int loop = 0;
 
 	@OriginalMember(owner = "client!client", name = "main", descriptor = "([Ljava/lang/String;)V")
 	public static void main(@OriginalArg(0) String[] arg0) {
@@ -124,7 +125,7 @@ public final class client extends GameShell {
 			local146.method936(com.jagex.runetek4.cache.def.ItemDefinition.modeWhat + 32, "runescape");
 			GameShell.frame.setLocation(40, 40);
 		} catch (@Pc(167) Exception local167) {
-			Static89.report(null, local167);
+			TracingException.report(null, local167);
 		}
 	}
 
@@ -303,10 +304,10 @@ public final class client extends GameShell {
 		Static251.method4277();
 		mouseWheel = null;
 		if (Static11.aClass62_1 != null) {
-			Static11.aClass62_1.method3575();
+			Static11.aClass62_1.quit();
 		}
 		if (Static147.aClass62_2 != null) {
-			Static147.aClass62_2.method3575();
+			Static147.aClass62_2.quit();
 		}
 		js5NetQueue.clientDrop();
 		js5CacheQueue.method2466();
@@ -514,7 +515,7 @@ public final class client extends GameShell {
 		Static119.transmitTimer++;
 		if (GlRenderer.enabled) {
 			label191: for (@Pc(57) int local57 = 0; local57 < 32768; local57++) {
-				@Pc(66) Npc npcEntity = Static175.npcs[local57];
+				@Pc(66) Npc npcEntity = NpcList.npcs[local57];
 				if (npcEntity != null) {
 					@Pc(73) byte walkflags = npcEntity.type.walkflags;
 					if ((walkflags & 0x2) > 0 && npcEntity.pathLength == 0 && Math.random() * 1000.0D < 10.0D) {
@@ -524,12 +525,12 @@ public final class client extends GameShell {
 							npcEntity.pathRunning[0] = 1;
 							npcEntity.pathTileX[0] = local98 + (npcEntity.xFine >> 7);
 							npcEntity.pathTileZ[0] = local106 + (npcEntity.zFine >> 7);
-							Static148.levelCollisionMap[Static55.currentLevel].method3056(npcEntity.xFine >> 7, npcEntity.size(), false, 0, npcEntity.size(), npcEntity.zFine >> 7);
-							if (npcEntity.pathTileX[0] >= 0 && npcEntity.pathTileX[0] <= 104 - npcEntity.size() && npcEntity.pathTileZ[0] >= 0 && npcEntity.pathTileZ[0] <= 104 - npcEntity.size() && Static148.levelCollisionMap[Static55.currentLevel].method3054(npcEntity.zFine >> 7, npcEntity.pathTileZ[0], npcEntity.pathTileX[0], npcEntity.xFine >> 7)) {
+							Static148.levelCollisionMap[Player.plane].method3056(npcEntity.xFine >> 7, npcEntity.size(), false, 0, npcEntity.size(), npcEntity.zFine >> 7);
+							if (npcEntity.pathTileX[0] >= 0 && npcEntity.pathTileX[0] <= 104 - npcEntity.size() && npcEntity.pathTileZ[0] >= 0 && npcEntity.pathTileZ[0] <= 104 - npcEntity.size() && Static148.levelCollisionMap[Player.plane].method3054(npcEntity.zFine >> 7, npcEntity.pathTileZ[0], npcEntity.pathTileX[0], npcEntity.xFine >> 7)) {
 								if (npcEntity.size() > 1) {
 									for (@Pc(226) int local226 = npcEntity.pathTileX[0]; npcEntity.pathTileX[0] + npcEntity.size() > local226; local226++) {
 										for (@Pc(246) int local246 = npcEntity.pathTileZ[0]; npcEntity.pathTileZ[0] + npcEntity.size() > local246; local246++) {
-											if ((Static148.levelCollisionMap[Static55.currentLevel].flags[local226][local246] & 0x12401FF) != 0) {
+											if ((Static148.levelCollisionMap[Player.plane].flags[local226][local246] & 0x12401FF) != 0) {
 												continue label191;
 											}
 										}
@@ -542,7 +543,7 @@ public final class client extends GameShell {
 					Static104.method2247(npcEntity);
 					Static37.method949(npcEntity);
 					Static34.method879(npcEntity);
-					Static148.levelCollisionMap[Static55.currentLevel].method3043(npcEntity.xFine >> 7, false, npcEntity.zFine >> 7, npcEntity.size(), npcEntity.size());
+					Static148.levelCollisionMap[Player.plane].method3043(npcEntity.xFine >> 7, false, npcEntity.zFine >> 7, npcEntity.size(), npcEntity.size());
 				}
 			}
 		}
@@ -584,7 +585,7 @@ public final class client extends GameShell {
 												Static175.url = null;
 												Static33.openUrlRequest = null;
 											}
-											if (Static83.loopCycle % 1500 == 0) {
+											if (loop % 1500 == 0) {
 												Static123.method2418();
 											}
 											return;
@@ -814,7 +815,7 @@ public final class client extends GameShell {
 				Static199.mainLoadPercentage = 20;
 			}
 		} else if (Static166.loadingPercent == 45) {
-			Static41.method1045(Static99.aBoolean143);
+			Static41.init(Static99.aBoolean143);
 			Static148.aClass3_Sub3_Sub4_1 = new MidiPcmStream();
 			Static148.aClass3_Sub3_Sub4_1.method4420();
 			Static11.aClass62_1 = Static107.method2262(22050, GameShell.signLink, GameShell.canvas, 0);
@@ -823,7 +824,7 @@ public final class client extends GameShell {
 			Static147.aClass62_2 = Static107.method2262(2048, GameShell.signLink, GameShell.canvas, 1);
 			soundStream = new MixerPcmStream();
 			Static147.aClass62_2.method3566(soundStream);
-			resampler = new Resampler(22050, Static44.anInt1404);
+			resampler = new Resampler(22050, AudioChannel.sampleRate);
 			Static250.anInt5441 = Static130.aClass153_47.method4482(Static1.aClass100_1);
 			Static199.mainLoadPercentage = 30;
 			Static166.loadingPercent = 50;
@@ -1037,8 +1038,8 @@ public final class client extends GameShell {
 		if (Static244.gamestate == 1000) {
 			return;
 		}
-		Static83.loopCycle++;
-		if (Static83.loopCycle % 1000 == 1) {
+		loop++;
+		if (loop % 1000 == 1) {
 			@Pc(24) GregorianCalendar local24 = new GregorianCalendar();
 			Static60.anInt1895 = local24.get(11) * 600 + local24.get(12) * 10 + local24.get(13) / 6;
 			Static39.aRandom1.setSeed((long) Static60.anInt1895);

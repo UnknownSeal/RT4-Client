@@ -108,7 +108,7 @@ public final class Static87 {
 				} else {
 					local57 = arg8;
 				}
-				local30.anInt465 = Static83.loopCycle;
+				local30.anInt465 = client.loop;
 				local30.anInt517 = local57;
 				if (!local30.aBoolean32 || !Static36.method947(local30)) {
 					if (local30.contentType > 0) {
@@ -224,8 +224,8 @@ public final class Static87 {
 								local518 = (Static273.minimapZoom + 256) * local518 >> 8;
 								local545 = local518 * local276 - local514 * local270 >> 11;
 								local556 = local276 * local514 + local270 * local518 >> 11;
-								local563 = Static173.localPlayer.xFine + local556 >> 7;
-								local571 = Static173.localPlayer.zFine - local545 >> 7;
+								local563 = PlayerList.self.xFine + local556 >> 7;
+								local571 = PlayerList.self.zFine - local545 >> 7;
 								if (Static241.aBoolean302 && (Static274.anInt4999 & 0x40) != 0) {
 									@Pc(583) Component local583 = Static201.method1418(Static98.anInt2512, Static15.anInt506);
 									if (local583 == null) {
@@ -661,7 +661,7 @@ public final class Static87 {
 													if (local2589 == null) {
 														Static43.method1143(local30);
 													} else {
-														local503 = -local2589.getHeight() / 2;
+														local503 = -local2589.getMinY() / 2;
 													}
 												}
 											} else if (local30.modelType == 5) {
@@ -669,7 +669,7 @@ public final class Static87 {
 													local2589 = Static134.A_PLAYER_MODEL___2.method1954(null, -1, null, null, 0, -1, 0, -1, -1);
 												} else {
 													local514 = local30.modelId & 0x7FF;
-													if (local514 == Static16.localPid) {
+													if (local514 == PlayerList.selfId) {
 														local514 = 2047;
 													}
 													@Pc(2751) Player local2751 = Static159.players[local514];
@@ -679,13 +679,13 @@ public final class Static87 {
 													}
 												}
 											} else if (local276 == -1) {
-												local2589 = local30.method488(-1, null, -1, 0, local2587, Static173.localPlayer.model);
+												local2589 = local30.method488(-1, null, -1, 0, local2587, PlayerList.self.model);
 												if (local2589 == null && Static211.aBoolean72) {
 													Static43.method1143(local30);
 												}
 											} else {
 												@Pc(2689) AnimationSequence local2689 = AnimationSequence.getAnimationSequence(local276);
-												local2589 = local30.method488(local30.anInt496, local2689, local30.anInt510, local30.anInt500, local2587, Static173.localPlayer.model);
+												local2589 = local30.method488(local30.anInt496, local2689, local30.anInt510, local30.anInt500, local2587, PlayerList.self.model);
 												if (local2589 == null && Static211.aBoolean72) {
 													Static43.method1143(local30);
 												}

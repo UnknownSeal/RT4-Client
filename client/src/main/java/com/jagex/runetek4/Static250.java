@@ -41,8 +41,8 @@ public final class Static250 {
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "a", descriptor = "(B)V")
 	public static void method4273() {
-		@Pc(14) int local14 = Static173.localPlayer.xFine + Static132.cameraAnticheatOffsetX;
-		@Pc(20) int local20 = Static173.localPlayer.zFine + Static206.cameraAnticheatOffsetZ;
+		@Pc(14) int local14 = PlayerList.self.xFine + Static132.cameraAnticheatOffsetX;
+		@Pc(20) int local20 = PlayerList.self.zFine + Static206.cameraAnticheatOffsetZ;
 		if (com.jagex.runetek4.cache.def.ItemDefinition.anInt2223 - local14 < -500 || com.jagex.runetek4.cache.def.ItemDefinition.anInt2223 - local14 > 500 || Static111.anInt2900 - local20 < -500 || Static111.anInt2900 - local20 > 500) {
 			com.jagex.runetek4.cache.def.ItemDefinition.anInt2223 = local14;
 			Static111.anInt2900 = local20;

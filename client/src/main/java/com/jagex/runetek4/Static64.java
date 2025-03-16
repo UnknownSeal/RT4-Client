@@ -30,13 +30,13 @@ public final class Static64 {
 		Static116.entityUpdateCount = 0;
 		Static240.entityRemovalCount = 0;
 		Static17.method527();
-		Static41.readPlayerInfo();
+		Protocol.readPlayerInfo();
 		Static225.getPlayerNewVis();
 		Static245.getPlayerExtended();
 		@Pc(23) int i;
 		for (i = 0; i < Static240.entityRemovalCount; i++) {
 			@Pc(30) int index = Static52.entityRemovalIds[i];
-			if (Static83.loopCycle != Static159.players[index].cycle) {
+			if (client.loop != Static159.players[index].cycle) {
 				if (Static159.players[index].soundRadius > 0) {
 					AreaSoundManager.remove(Static159.players[index]);
 				}
@@ -76,7 +76,7 @@ public final class Static64 {
 				return;
 			}
 		}
-		if (displayName.method3108(Static173.localPlayer.username)) {
+		if (displayName.method3108(PlayerList.self.username)) {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDCANTADDSELF);
 			return;
 		}

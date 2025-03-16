@@ -6,7 +6,7 @@ import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.graphics.ModelUnlit;
-import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.media.renderable.Entity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -471,9 +471,9 @@ public final class LocType {
 		}
 		if (i < 0 || i >= this.multiloc.length - 1 || this.multiloc[i] == -1) {
 			@Pc(84) int local84 = this.multiloc[this.multiloc.length - 1];
-			return local84 == -1 ? null : Static271.get(local84);
+			return local84 == -1 ? null : LocTypeList.get(local84);
 		} else {
-			return Static271.get(this.multiloc[i]);
+			return LocTypeList.get(this.multiloc[i]);
 		}
 	}
 
@@ -594,7 +594,7 @@ public final class LocType {
 		}
 		for (@Pc(44) int index = 0; index < this.multiloc.length; index++) {
 			if (this.multiloc[index] != -1) {
-				@Pc(70) LocType locType = Static271.get(this.multiloc[index]);
+				@Pc(70) LocType locType = LocTypeList.get(this.multiloc[index]);
 				if (locType.bgsound != -1 || locType.bgsounds != null) {
 					return true;
 				}
@@ -799,7 +799,7 @@ public final class LocType {
 		} else {
 			local50 = false;
 		}
-		@Pc(60) Renderable local60 = (Renderable) Static93.aClass99_14.get(local29);
+		@Pc(60) Entity local60 = (Entity) Static93.aClass99_14.get(local29);
 		if (local60 == null) {
 			@Pc(69) ModelUnlit local69 = this.method3418(arg0, arg3);
 			if (local69 == null) {

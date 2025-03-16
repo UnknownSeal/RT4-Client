@@ -1,13 +1,13 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.media.renderable.Entity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!ak")
-public abstract class Model extends Renderable {
+public abstract class Model extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "s", descriptor = "Z")
 	public boolean pickable = false;
@@ -16,7 +16,7 @@ public abstract class Model extends Renderable {
 	public abstract int method4550();
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "b", descriptor = "()I")
-	public abstract int getHeight();
+	public abstract int getMinY();
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "d", descriptor = "()Z")
 	protected abstract boolean method4551();
@@ -361,7 +361,7 @@ public abstract class Model extends Renderable {
 	public abstract int method4576();
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
-	public abstract void draw(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10);
+	public abstract void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10);
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "a", descriptor = "(I[IIIIZI[I)V")
 	protected abstract void method4577(@OriginalArg(0) int arg0, @OriginalArg(1) int[] arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int[] arg7);

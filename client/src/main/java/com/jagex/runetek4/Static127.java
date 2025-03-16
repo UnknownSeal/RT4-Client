@@ -5,7 +5,6 @@ import java.io.UnsupportedEncodingException;
 import com.jagex.runetek4.cache.cs.ClientScript;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.Npc;
@@ -71,7 +70,7 @@ public final class Static127 {
 		if (arg4) {
 			Static272.npcCount = 0;
 			for (i = 0; i < 32768; i++) {
-				local103 = Static175.npcs[i];
+				local103 = NpcList.npcs[i];
 				if (local103 != null) {
 					local103.xFine -= dx * 128;
 					local103.zFine -= dz * 128;
@@ -82,14 +81,14 @@ public final class Static127 {
 						}
 						Static33.npcIds[Static272.npcCount++] = i;
 					} else {
-						Static175.npcs[i].method2698(null);
-						Static175.npcs[i] = null;
+						NpcList.npcs[i].method2698(null);
+						NpcList.npcs[i] = null;
 					}
 				}
 			}
 		} else {
 			for (i = 0; i < 32768; i++) {
-				local103 = Static175.npcs[i];
+				local103 = NpcList.npcs[i];
 				if (local103 != null) {
 					for (j = 0; j < 10; j++) {
 						local103.pathTileX[j] -= dx;
@@ -111,8 +110,8 @@ public final class Static127 {
 				player.zFine -= dz * 128;
 			}
 		}
-		Static55.currentLevel = arg0;
-		Static173.localPlayer.teleport(arg5, false, arg3);
+		Player.plane = arg0;
+		PlayerList.self.teleport(arg5, false, arg3);
 		@Pc(322) byte endTileX = 104;
 		@Pc(324) byte startTileX = 0;
 		@Pc(326) byte startTileZ = 0;
@@ -142,7 +141,7 @@ public final class Static127 {
 				}
 			}
 		}
-		for (@Pc(451) LocAddEntity loc = (LocAddEntity) Static26.spawnedLocations.head(); loc != null; loc = (LocAddEntity) Static26.spawnedLocations.next()) {
+		for (@Pc(451) ChangeLocRequest loc = (ChangeLocRequest) Static26.spawnedLocations.head(); loc != null; loc = (ChangeLocRequest) Static26.spawnedLocations.next()) {
 			loc.z -= dz;
 			loc.x -= dx;
 			if (loc.x < 0 || loc.z < 0 || loc.x >= 104 || loc.z >= 104) {

@@ -76,7 +76,7 @@ public final class ClientScriptRunner {
 			@Pc(17) Class102 local17 = local5[local3];
 			if (local17 != null && local17.headIconDrawType == 2) {
 				Static198.method1026(arg0 >> 1, arg4, (local17.anInt4046 - Static142.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.anInt4053 - Static225.originX << 7), arg3);
-				if (Static65.anInt1951 > -1 && Static83.loopCycle % 20 < 10) {
+				if (Static65.anInt1951 > -1 && client.loop % 20 < 10) {
 					Static276.aClass3_Sub2_Sub1Array11[local17.anInt4048].drawSprite(arg1 + Static65.anInt1951 - 12, arg5 + -28 - -Static16.anInt548);
 				}
 			}
@@ -133,7 +133,7 @@ public final class ClientScriptRunner {
 		@Pc(24) int local24 = (int) arg0 >> 20 & 0x3;
 		@Pc(31) int local31 = (int) (arg0 >>> 32) & Integer.MAX_VALUE;
 		if (local12 == 10 || local12 == 11 || local12 == 22) {
-			@Pc(46) LocType local46 = Static271.get(local31);
+			@Pc(46) LocType local46 = LocTypeList.get(local31);
 			@Pc(62) int local62;
 			@Pc(59) int local59;
 			if (local24 == 0 || local24 == 2) {
@@ -147,9 +147,9 @@ public final class ClientScriptRunner {
 			if (local24 != 0) {
 				local73 = (local73 << local24 & 0xF) + (local73 >> 4 - local24);
 			}
-			Static102.tryMove(Static173.localPlayer.pathTileZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, Static173.localPlayer.pathTileX[0]);
+			Static102.tryMove(PlayerList.self.pathTileZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, PlayerList.self.pathTileX[0]);
 		} else {
-			Static102.tryMove(Static173.localPlayer.pathTileZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, Static173.localPlayer.pathTileX[0]);
+			Static102.tryMove(PlayerList.self.pathTileZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, PlayerList.self.pathTileX[0]);
 		}
 		Static25.y = Static60.mouseClickY;
 		Static17.crossCycle = 0;

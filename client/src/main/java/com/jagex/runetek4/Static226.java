@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -34,7 +33,7 @@ public final class Static226 {
 	public static int anInt5084 = 0;
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "a", descriptor = "(ILclient!cd;)V")
-	public static void method3898(@OriginalArg(1) LocAddEntity arg0) {
+	public static void method3898(@OriginalArg(1) ChangeLocRequest arg0) {
 		@Pc(5) long local5 = 0L;
 		@Pc(7) int local7 = -1;
 		@Pc(14) int local14 = 0;
