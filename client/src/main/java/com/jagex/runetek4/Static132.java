@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.GenericTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static132 {
 
 	@OriginalMember(owner = "runetek4.client!ke", name = "R", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_48;
+	public static Js5 aClass153_48;
 
 	@OriginalMember(owner = "runetek4.client!ke", name = "U", descriptor = "I")
 	public static int cameraAnticheatOffsetX = 0;

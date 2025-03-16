@@ -40,7 +40,7 @@ public final class Static186 {
 				arg2.anInt3373 = 1;
 				arg2.anInt3425 = 0;
 				arg2.anInt3371 = 0;
-				Static152.method2836(arg2.z, local89, arg2.x, Static173.localPlayer == arg2, arg2.anInt3425);
+				Static152.method2836(arg2.zFine, local89, arg2.xFine, Static173.localPlayer == arg2, arg2.anInt3425);
 			}
 			if (local92 == 2) {
 				arg2.anInt3371 = 0;
@@ -54,7 +54,7 @@ public final class Static186 {
 			arg2.anInt3360 = 0;
 			arg2.primarySeqId = arg1;
 			if (arg2.primarySeqId != -1) {
-				Static152.method2836(arg2.z, AnimationSequence.getAnimationSequence(arg2.primarySeqId), arg2.x, arg2 == Static173.localPlayer, arg2.anInt3425);
+				Static152.method2836(arg2.zFine, AnimationSequence.getAnimationSequence(arg2.primarySeqId), arg2.xFine, arg2 == Static173.localPlayer, arg2.anInt3425);
 			}
 		}
 	}

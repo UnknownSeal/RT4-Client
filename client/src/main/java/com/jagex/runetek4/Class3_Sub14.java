@@ -157,7 +157,7 @@ public final class Class3_Sub14 extends Node {
 		this.aFloatArray5[this.anInt2483] = arg5;
 		this.anIntArray226[this.anInt2483] = arg6;
 		if (local1 != 0L) {
-			this.aClass133_8.pushNode(new IntWrapper(this.anInt2483), local1);
+			this.aClass133_8.put(new IntWrapper(this.anInt2483), local1);
 		}
 		return this.anInt2483++;
 	}

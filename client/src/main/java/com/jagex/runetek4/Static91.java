@@ -1,8 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.media.renderable.Renderable;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import com.jagex.runetek4.scene.tile.WallDecoration;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -32,22 +31,8 @@ public final class Static91 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(Lclient!km;Z)V")
-	public static void method1877(@OriginalArg(0) NPCRenderable arg0) {
-		for (@Pc(13) AreaSound local13 = (AreaSound) AreaSoundManager.npcSounds.head(); local13 != null; local13 = (AreaSound) AreaSoundManager.npcSounds.next()) {
-			if (arg0 == local13.npc) {
-				if (local13.primaryStream != null) {
-					Static204.soundStream.removeSubStream(local13.primaryStream);
-					local13.primaryStream = null;
-				}
-				local13.unlink();
-				return;
-			}
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(Lclient!ve;I)V")
-	public static void method1878(@OriginalArg(0) CacheArchive arg0) {
+	public static void method1878(@OriginalArg(0) Js5 arg0) {
 		Static182.aClass153_77 = arg0;
 	}
 

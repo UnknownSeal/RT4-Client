@@ -3,8 +3,8 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -41,7 +41,7 @@ public final class Static49 {
 			@Pc(39) boolean local39 = false;
 			while (true) {
 				@Pc(78) int local78;
-				@Pc(95) LocMergeEntity local95;
+				@Pc(95) LocType local95;
 				do {
 					@Pc(72) int local72;
 					@Pc(68) int local68;
@@ -98,7 +98,7 @@ public final class Static49 {
 		Static272.npcCount = 0;
 		for (local22 = 0; local22 < local13; local22++) {
 			@Pc(61) int local61 = Static33.npcIds[local22];
-			@Pc(65) NPCRenderable local65 = Static175.npcs[local61];
+			@Pc(65) Npc local65 = Static175.npcs[local61];
 			@Pc(70) int local70 = Static57.in.gBit(1);
 			if (local70 == 0) {
 				Static33.npcIds[Static272.npcCount++] = local61;

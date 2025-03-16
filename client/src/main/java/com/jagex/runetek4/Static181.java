@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -41,7 +41,7 @@ public final class Static181 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(Lclient!ve;B)V")
-	public static void method3344(@OriginalArg(0) CacheArchive arg0) {
+	public static void method3344(@OriginalArg(0) Js5 arg0) {
 		if (Static18.aBoolean40) {
 			return;
 		}
@@ -71,7 +71,7 @@ public final class Static181 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(ILclient!ve;Lclient!ve;Z)V")
-	public static void method3349(@OriginalArg(1) CacheArchive arg0, @OriginalArg(2) CacheArchive arg1) {
+	public static void method3349(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
 		Static30.aBoolean61 = true;
 		Static121.aClass153_45 = arg1;
 		Static146.aClass153_54 = arg0;

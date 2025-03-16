@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ItemDefinition;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.scene.SceneCamera;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -16,7 +16,7 @@ public final class Static250 {
 	public static int anInt5443;
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "r", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_101;
+	public static Js5 aClass153_101;
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "b", descriptor = "Z")
 	public static boolean aBoolean283 = true;
@@ -41,8 +41,8 @@ public final class Static250 {
 
 	@OriginalMember(owner = "runetek4.client!uf", name = "a", descriptor = "(B)V")
 	public static void method4273() {
-		@Pc(14) int local14 = Static173.localPlayer.x + Static132.cameraAnticheatOffsetX;
-		@Pc(20) int local20 = Static173.localPlayer.z + Static206.cameraAnticheatOffsetZ;
+		@Pc(14) int local14 = Static173.localPlayer.xFine + Static132.cameraAnticheatOffsetX;
+		@Pc(20) int local20 = Static173.localPlayer.zFine + Static206.cameraAnticheatOffsetZ;
 		if (com.jagex.runetek4.cache.def.ItemDefinition.anInt2223 - local14 < -500 || com.jagex.runetek4.cache.def.ItemDefinition.anInt2223 - local14 > 500 || Static111.anInt2900 - local20 < -500 || Static111.anInt2900 - local20 > 500) {
 			com.jagex.runetek4.cache.def.ItemDefinition.anInt2223 = local14;
 			Static111.anInt2900 = local20;

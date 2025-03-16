@@ -64,13 +64,13 @@ public abstract class Actor extends Renderable {
 	public int anInt3411;
 
 	@OriginalMember(owner = "client!fe", name = "Qb", descriptor = "I")
-	public int x;
+	public int xFine;
 
 	@OriginalMember(owner = "client!fe", name = "Ub", descriptor = "I")
 	public int anInt3416;
 
 	@OriginalMember(owner = "client!fe", name = "ac", descriptor = "I")
-	public int z;
+	public int zFine;
 
 	@OriginalMember(owner = "client!fe", name = "dc", descriptor = "I")
 	public int y;
@@ -217,7 +217,7 @@ public abstract class Actor extends Renderable {
 	public int anInt3414 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "H", descriptor = "I")
-	public int secondarySeqId = -1;
+	public int movementSeqId = -1;
 
 	@OriginalMember(owner = "client!fe", name = "gc", descriptor = "I")
 	private int anInt3427 = 0;
@@ -259,7 +259,7 @@ public abstract class Actor extends Renderable {
 	public int anInt3418 = -1;
 
 	@OriginalMember(owner = "client!fe", name = "b", descriptor = "(Z)Lclient!ck;")
-	public final BASType method2681() {
+	public final BASType getBasType() {
 		@Pc(7) int local7 = this.method2688();
 		return local7 == -1 ? Static4.aClass20_1 : Static90.method1856(local7);
 	}
@@ -297,8 +297,8 @@ public abstract class Actor extends Renderable {
 		this.pathTileZ[0] = z;
 		this.pathLength = 0;
 		this.anInt3405 = 0;
-		this.z = arg0 * 64 + this.pathTileZ[0] * 128;
-		this.x = arg0 * 64 + this.pathTileX[0] * 128;
+		this.zFine = arg0 * 64 + this.pathTileZ[0] * 128;
+		this.xFine = arg0 * 64 + this.pathTileX[0] * 128;
 		if (GlRenderer.enabled && Static173.localPlayer == this) {
 			Static86.method1799();
 		}
@@ -357,7 +357,7 @@ public abstract class Actor extends Renderable {
 		Static102.anInt2680 = 0;
 		Static101.anInt2640 = 0;
 		Static62.anInt1938 = 0;
-		@Pc(21) BASType local21 = this.method2681();
+		@Pc(21) BASType local21 = this.getBasType();
 		@Pc(24) int local24 = local21.anInt1059;
 		@Pc(27) int local27 = local21.anInt1050;
 		if (local24 == 0 || local27 == 0) {
@@ -369,13 +369,13 @@ public abstract class Actor extends Renderable {
 		@Pc(53) int local53 = -local27 / 2;
 		@Pc(64) int local64 = local53 * local43 - local48 * local39 >> 16;
 		@Pc(75) int local75 = local39 * local53 + local43 * local48 >> 16;
-		@Pc(87) int local87 = Static207.getHeightmapY(Static55.currentLevel, local75 + this.x, this.z + local64);
+		@Pc(87) int local87 = Static207.getHeightmapY(Static55.currentLevel, local75 + this.xFine, this.zFine + local64);
 		@Pc(91) int local91 = local24 / 2;
 		@Pc(96) int local96 = -local27 / 2;
 		@Pc(106) int local106 = local91 * local43 + local96 * local39 >> 16;
 		@Pc(110) int local110 = local27 / 2;
 		@Pc(121) int local121 = local96 * local43 - local91 * local39 >> 16;
-		@Pc(134) int local134 = Static207.getHeightmapY(Static55.currentLevel, local106 + this.x, this.z - -local121);
+		@Pc(134) int local134 = Static207.getHeightmapY(Static55.currentLevel, local106 + this.xFine, this.zFine - -local121);
 		@Pc(139) int local139 = -local24 / 2;
 		@Pc(150) int local150 = local110 * local43 - local39 * local139 >> 16;
 		@Pc(154) int local154 = local27 / 2;
@@ -383,9 +383,9 @@ public abstract class Actor extends Renderable {
 		@Pc(169) int local169 = local39 * local110 + local43 * local139 >> 16;
 		@Pc(179) int local179 = local154 * local43 - local39 * local158 >> 16;
 		@Pc(189) int local189 = local39 * local154 + local43 * local158 >> 16;
-		@Pc(201) int local201 = Static207.getHeightmapY(Static55.currentLevel, this.x + local169, local150 + this.z);
+		@Pc(201) int local201 = Static207.getHeightmapY(Static55.currentLevel, this.xFine + local169, local150 + this.zFine);
 		@Pc(212) int local212 = local134 > local87 ? local87 : local134;
-		@Pc(224) int local224 = Static207.getHeightmapY(Static55.currentLevel, local189 + this.x, local179 + this.z);
+		@Pc(224) int local224 = Static207.getHeightmapY(Static55.currentLevel, local189 + this.xFine, local179 + this.zFine);
 		@Pc(231) int local231 = local224 > local201 ? local201 : local224;
 		@Pc(238) int local238 = local224 > local134 ? local134 : local224;
 		@Pc(245) int local245 = local201 <= local87 ? local201 : local87;
@@ -421,7 +421,7 @@ public abstract class Actor extends Renderable {
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(Lclient!ak;B)V")
 	protected final void method2687(@OriginalArg(0) Model arg0) {
-		@Pc(16) BASType local16 = this.method2681();
+		@Pc(16) BASType local16 = this.getBasType();
 		if (local16.anInt1064 == 0 && local16.anInt1041 == 0) {
 			return;
 		}

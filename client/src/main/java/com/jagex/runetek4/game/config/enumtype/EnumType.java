@@ -63,7 +63,7 @@ public final class EnumType extends CachedNode {
 				} else {
 					node = new IntWrapper(packet.g4());
 				}
-				this.values.pushNode(node, local58);
+				this.values.put(node, local58);
 			}
 		}
 	}
@@ -107,9 +107,9 @@ public final class EnumType extends CachedNode {
 	@OriginalMember(owner = "client!ml", name = "d", descriptor = "(I)V")
 	private void method3087() {
 		this.aClass133_17 = new HashTable(this.values.getSize());
-		for (@Pc(22) JagStringWrapper local22 = (JagStringWrapper) this.values.peekFront(); local22 != null; local22 = (JagStringWrapper) this.values.prev()) {
+		for (@Pc(22) JagStringWrapper local22 = (JagStringWrapper) this.values.head(); local22 != null; local22 = (JagStringWrapper) this.values.prev()) {
 			@Pc(36) Class3_Sub13 local36 = new Class3_Sub13(local22.value, (int) local22.nodeId);
-			this.aClass133_17.pushNode(local36, local22.value.method3118());
+			this.aClass133_17.put(local36, local22.value.method3118());
 		}
 	}
 
@@ -128,9 +128,9 @@ public final class EnumType extends CachedNode {
 	@OriginalMember(owner = "client!ml", name = "e", descriptor = "(I)V")
 	private void method3091() {
 		this.aClass133_17 = new HashTable(this.values.getSize());
-		for (@Pc(24) IntWrapper local24 = (IntWrapper) this.values.peekFront(); local24 != null; local24 = (IntWrapper) this.values.prev()) {
+		for (@Pc(24) IntWrapper local24 = (IntWrapper) this.values.head(); local24 != null; local24 = (IntWrapper) this.values.prev()) {
 			@Pc(34) IntWrapper local34 = new IntWrapper((int) local24.nodeId);
-			this.aClass133_17.pushNode(local34, local24.value);
+			this.aClass133_17.put(local34, local24.value);
 		}
 	}
 }

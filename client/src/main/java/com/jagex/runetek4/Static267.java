@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.scene.tile.FloorDecoration;
 import com.jagex.runetek4.scene.tile.SceneTile;
@@ -11,7 +11,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static267 {
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "g", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_109;
+	public static Js5 aClass153_109;
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "a", descriptor = "Lclient!n;")
 	public static final NodeCache skeletonCache = new NodeCache(100);

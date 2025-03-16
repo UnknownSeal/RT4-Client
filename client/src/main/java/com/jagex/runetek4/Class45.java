@@ -113,7 +113,7 @@ public final class Class45 {
 		this.anIntArray178[this.anInt2017] = arg1;
 		this.anIntArray180[this.anInt2017] = arg2;
 		this.anIntArray179[this.anInt2017] = arg3;
-		this.aClass133_4.pushNode(new IntWrapper(this.anInt2017), local1);
+		this.aClass133_4.put(new IntWrapper(this.anInt2017), local1);
 		return this.anInt2017++;
 	}
 

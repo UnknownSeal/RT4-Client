@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -14,7 +14,7 @@ public final class Static86 {
 	public static final BigInteger RSA_EXPONENT = new BigInteger("58778699976184461502525193738213253649000149147835990136706041084440742975821");
 
     @OriginalMember(owner = "runetek4.client!gm", name = "ib", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_37;
+	public static Js5 aClass153_37;
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "R", descriptor = "I")
 	public static int anInt2293 = (int) (Math.random() * 17.0D) - 8;
@@ -48,7 +48,7 @@ public final class Static86 {
 			@Pc(30) int local30 = Static52.entityRemovalIds[i];
 			if (Static175.npcs[local30].cycle != Static83.loopCycle) {
 				if (Static175.npcs[local30].type.hasBackgroundSound()) {
-					Static91.method1877(Static175.npcs[local30]);
+					AreaSoundManager.remove(Static175.npcs[local30]);
 				}
 				Static175.npcs[local30].method2698(null);
 				Static175.npcs[local30] = null;

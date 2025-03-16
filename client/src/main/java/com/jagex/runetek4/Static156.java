@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.GZip;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.util.SignLink;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -16,7 +16,7 @@ public final class Static156 {
 	public static byte[][] aByteArrayArray11;
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "W", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_59;
+	public static Js5 aClass153_59;
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "X", descriptor = "I")
 	public static int anInt3783;

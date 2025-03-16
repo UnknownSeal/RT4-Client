@@ -117,9 +117,9 @@ public final class Static136 {
 			Static125.anInt3104 = 127;
 		}
 		Static12.anInt391 = arg0.g1();
-		Static30.anInt978 = arg0.g1();
-		if (Static30.anInt978 > 127) {
-			Static30.anInt978 = 127;
+		Preferences.ambientSoundsVolume = arg0.g1();
+		if (Preferences.ambientSoundsVolume > 127) {
+			Preferences.ambientSoundsVolume = 127;
 		}
 		if (local21 >= 1) {
 			Preferences.fullScreenWidth = arg0.g2();

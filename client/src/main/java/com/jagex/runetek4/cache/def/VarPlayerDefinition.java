@@ -2,7 +2,7 @@ package com.jagex.runetek4.cache.def;
 
 import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -25,7 +25,7 @@ public final class VarPlayerDefinition {
 	public static final int[] varPlayerCache = new int[2500];
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "ab", descriptor = "Lclient!ve;")
-	public static CacheArchive gameDefinitionsCacheArchive;
+	public static Js5 gameDefinitionsJs5;
 
 	@OriginalMember(owner = "runetek4.client!nb", name = "p", descriptor = "I")
 	public static int varPlayerDefinitionsSize;
@@ -39,7 +39,7 @@ public final class VarPlayerDefinition {
 		if (definition != null) {
 			return definition;
 		}
-		@Pc(20) byte[] cacheData = gameDefinitionsCacheArchive.getfile(16, varPlayerIndex);
+		@Pc(20) byte[] cacheData = gameDefinitionsJs5.getfile(16, varPlayerIndex);
 		definition = new VarPlayerDefinition();
 		if (cacheData != null) {
 			definition.decode(new Packet(cacheData));
@@ -49,9 +49,9 @@ public final class VarPlayerDefinition {
 	}
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(Lclient!ve;B)V")
-	public static void initializeVarPlayerDefinitionCache(@OriginalArg(0) CacheArchive cacheArchive) {
-		gameDefinitionsCacheArchive = cacheArchive;
-		varPlayerDefinitionsSize = gameDefinitionsCacheArchive.fileLength(16);
+	public static void initializeVarPlayerDefinitionCache(@OriginalArg(0) Js5 js5) {
+		gameDefinitionsJs5 = js5;
+		varPlayerDefinitionsSize = gameDefinitionsJs5.getGroupCapacity(16);
 	}
 
 	@OriginalMember(owner = "client!bn", name = "c", descriptor = "(II)V")

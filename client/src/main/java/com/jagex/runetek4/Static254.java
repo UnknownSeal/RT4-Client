@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.InteractiveObject;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -20,7 +20,7 @@ public final class Static254 {
 	public static int anInt5559;
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "J", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_105;
+	public static Js5 aClass153_105;
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "s", descriptor = "Lclient!na;")
 	public static final JString aClass100_1061 = Static28.parse("null");
@@ -35,7 +35,7 @@ public final class Static254 {
 	public static final JString[] aClass100Array168 = new JString[500];
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "a", descriptor = "(BLclient!ve;I)Z")
-	public static boolean method4346(@OriginalArg(1) CacheArchive arg0, @OriginalArg(2) int arg1) {
+	public static boolean method4346(@OriginalArg(1) Js5 arg0, @OriginalArg(2) int arg1) {
 		@Pc(13) byte[] local13 = arg0.method4500(arg1);
 		if (local13 == null) {
 			return false;

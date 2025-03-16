@@ -2,7 +2,7 @@ package com.jagex.runetek4.cache.media.component;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.cache.def.ActorDefinition;
+import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.media.ImageRGB;
@@ -529,8 +529,8 @@ public final class Component {
 	public static boolean load(@OriginalArg(0) int componentId) {
 		if (Static223.loadedComponents[componentId]) {
 			return true;
-		} else if (CacheArchive.gameInterfaceCacheArchive.method4479(componentId)) {
-			@Pc(25) int gameInterfaceCount = CacheArchive.gameInterfaceCacheArchive.fileLength(componentId);
+		} else if (CacheArchive.gameInterfaceJs5.method4479(componentId)) {
+			@Pc(25) int gameInterfaceCount = CacheArchive.gameInterfaceJs5.getGroupCapacity(componentId);
 			if (gameInterfaceCount == 0) {
 				Static223.loadedComponents[componentId] = true;
 				return true;
@@ -540,7 +540,7 @@ public final class Component {
 			}
 			for (@Pc(46) int i = 0; i < gameInterfaceCount; i++) {
 				if (cachedComponents[componentId][i] == null) {
-					@Pc(62) byte[] interfaceFileData = CacheArchive.gameInterfaceCacheArchive.getfile(componentId, i);
+					@Pc(62) byte[] interfaceFileData = CacheArchive.gameInterfaceJs5.getfile(componentId, i);
 					if (interfaceFileData != null) {
 						@Pc(74) Component local74 = cachedComponents[componentId][i] = new Component();
 						local74.anInt507 = i + (componentId << 16);
@@ -564,7 +564,7 @@ public final class Component {
 		if (componentId == -1 || !Static223.loadedComponents[componentId]) {
 			return;
 		}
-		CacheArchive.gameInterfaceCacheArchive.unloadFile(componentId);
+		CacheArchive.gameInterfaceJs5.unloadFile(componentId);
 		if (cachedComponents[componentId] == null) {
 			return;
 		}
@@ -586,8 +586,8 @@ public final class Component {
 
 	@OriginalMember(owner = "runetek4.client!eb", name = "d", descriptor = "(I)V")
 	public static void createComponentMemoryBuffer() {
-		cachedComponents = new Component[CacheArchive.gameInterfaceCacheArchive.capacity()][];
-		Static223.loadedComponents = new boolean[CacheArchive.gameInterfaceCacheArchive.capacity()];
+		cachedComponents = new Component[CacheArchive.gameInterfaceJs5.capacity()][];
+		Static223.loadedComponents = new boolean[CacheArchive.gameInterfaceJs5.capacity()];
 	}
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(IIB)V")
@@ -613,7 +613,7 @@ public final class Component {
 		if (this.anIntArray37 != null) {
 			return true;
 		}
-		@Pc(18) SoftwareIndexedSprite local18 = Static164.method3119(this.anInt477, Static23.gameImageCacheArchive);
+		@Pc(18) SoftwareIndexedSprite local18 = Static164.method3119(this.anInt477, Static23.gameImageJs5);
 		if (local18 == null) {
 			return false;
 		}
@@ -889,7 +889,7 @@ public final class Component {
 		if (local43 != null) {
 			return local43;
 		}
-		local43 = Static150.method2800(local29, Static23.gameImageCacheArchive);
+		local43 = Static150.method2800(local29, Static23.gameImageJs5);
 		if (local43 == null) {
 			Static211.aBoolean72 = true;
 		} else {
@@ -974,7 +974,7 @@ public final class Component {
 				}
 				return local61;
 			} else if (local10 == 2) {
-				local61 = ActorDefinition.getDefinition(local13).getHeadModel(arg1, arg3, arg0, arg2);
+				local61 = NpcType.getDefinition(local13).getHeadModel(arg1, arg3, arg0, arg2);
 				if (local61 == null) {
 					Static211.aBoolean72 = true;
 					return null;
@@ -1002,7 +1002,7 @@ public final class Component {
 					return local173;
 				}
 			} else if (local10 == 6) {
-				local61 = ActorDefinition.getDefinition(local13).method2937(null, 0, 0, arg0, arg3, arg2, null, 0, arg1);
+				local61 = NpcType.getDefinition(local13).method2937(null, 0, 0, arg0, arg3, arg2, null, 0, arg1);
 				if (local61 == null) {
 					Static211.aBoolean72 = true;
 					return null;
@@ -1047,9 +1047,9 @@ public final class Component {
 		}
 		@Pc(85) ImageRGB local85;
 		if (this.aBoolean18) {
-			local85 = Static80.method3613(Static23.gameImageCacheArchive, local12);
+			local85 = Static80.method3613(Static23.gameImageJs5, local12);
 		} else {
-			local85 = Static78.method1693(0, Static23.gameImageCacheArchive, local12);
+			local85 = Static78.method1693(0, Static23.gameImageJs5, local12);
 		}
 		if (local85 == null) {
 			Static211.aBoolean72 = true;
@@ -1277,7 +1277,7 @@ public final class Component {
 		if (font != null) {
 			return font;
 		}
-		font = Static127.getFont(this.fontId, Static23.gameImageCacheArchive, CacheArchive.aClass153_64);
+		font = Static127.getFont(this.fontId, Static23.gameImageJs5, CacheArchive.aClass153_64);
 		if (font == null) {
 			Static211.aBoolean72 = true;
 		} else {

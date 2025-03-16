@@ -77,7 +77,7 @@ public final class ClientScript extends CachedNode {
 				while (opcode-- > 0) {
 					@Pc(136) int local136 = local42.g4();
 					@Pc(140) int local140 = local42.g4();
-					local121.pushNode(new IntWrapper(local140), (long) local136);
+					local121.put(new IntWrapper(local140), (long) local136);
 				}
 			}
 		}
@@ -203,10 +203,10 @@ public final class ClientScript extends CachedNode {
 					register1 = VarbitDefinition.getVarbitValue(i);
 				}
 				if (opcode == 18) {
-					register1 = (Static173.localPlayer.x >> 7) + Static225.originX;
+					register1 = (Static173.localPlayer.xFine >> 7) + Static225.originX;
 				}
 				if (opcode == 19) {
-					register1 = (Static173.localPlayer.z >> 7) + Static142.originZ;
+					register1 = (Static173.localPlayer.zFine >> 7) + Static142.originZ;
 				}
 				if (opcode == 20) {
 					register1 = script[pc++];

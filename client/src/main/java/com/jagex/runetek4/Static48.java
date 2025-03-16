@@ -46,7 +46,7 @@ public final class Static48 {
 		local4.p1(Static99.aBoolean143 ? 1 : 0);
 		local4.p1(Static125.anInt3104);
 		local4.p1(Static12.anInt391);
-		local4.p1(Static30.anInt978);
+		local4.p1(Preferences.ambientSoundsVolume);
 		local4.p2(Preferences.fullScreenWidth);
 		local4.p2(Preferences.fullScreenHeight);
 		local4.p1(Static76.method1644());

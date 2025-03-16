@@ -42,7 +42,7 @@ public final class Static72 {
 		if (local19 != null) {
 			return local19;
 		}
-		local19 = Static87.method1803(Static225.aClass153_92, Static5.aClass153_1, arg0);
+		local19 = AnimFrameset.create(Static225.aClass153_92, Static5.aClass153_1, arg0);
 		if (local19 != null) {
 			Static267.skeletonCache.put(local19, (long) arg0);
 		}

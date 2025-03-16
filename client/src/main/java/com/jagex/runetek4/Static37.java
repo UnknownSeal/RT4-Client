@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.bastype.BASType;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.Actor;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -27,14 +27,14 @@ public final class Static37 {
 		if (e.anInt3376 == 0) {
 			return;
 		}
-		@Pc(13) BASType local13 = e.method2681();
+		@Pc(13) BASType local13 = e.getBasType();
 		@Pc(43) int dstX;
 		@Pc(36) int dstZ;
 		if (e.targetId != -1 && e.targetId < 32768) {
-			@Pc(26) NPCRenderable npc = Static175.npcs[e.targetId];
+			@Pc(26) Npc npc = Static175.npcs[e.targetId];
 			if (npc != null) {
-				dstZ = e.z - npc.z;
-				dstX = e.x - npc.x;
+				dstZ = e.zFine - npc.zFine;
+				dstX = e.xFine - npc.xFine;
 				if (dstX != 0 || dstZ != 0) {
 					e.dstYaw = (int) (Math.atan2((double) dstX, (double) dstZ) * 325.949D) & 0x7FF;
 				}
@@ -49,16 +49,16 @@ public final class Static37 {
 			}
 			@Pc(83) Player player = Static159.players[index];
 			if (player != null) {
-				local94 = e.z - player.z;
-				dstZ = e.x - player.x;
+				local94 = e.zFine - player.zFine;
+				dstZ = e.xFine - player.xFine;
 				if (dstZ != 0 || local94 != 0) {
 					e.dstYaw = (int) (Math.atan2((double) dstZ, (double) local94) * 325.949D) & 0x7FF;
 				}
 			}
 		}
 		if ((e.anInt3382 != 0 || e.anInt3363 != 0) && (e.pathLength == 0 || e.anInt3417 > 0)) {
-			index = e.x - (e.anInt3382 - Static225.originX - Static225.originX) * 64;
-			dstX = e.z - (e.anInt3363 - Static142.originZ - Static142.originZ) * 64;
+			index = e.xFine - (e.anInt3382 - Static225.originX - Static225.originX) * 64;
+			dstX = e.zFine - (e.anInt3363 - Static142.originZ - Static142.originZ) * 64;
 			if (index != 0 || dstX != 0) {
 				e.dstYaw = (int) (Math.atan2((double) index, (double) dstX) * 325.949D) & 0x7FF;
 			}
@@ -79,11 +79,11 @@ public final class Static37 {
 					e.anInt3381 = e.dstYaw;
 					local226 = false;
 				}
-				if (local13.anInt1037 == e.secondarySeqId && (e.anInt3385 > 25 || local226)) {
+				if (local13.idleAnimationId == e.movementSeqId && (e.anInt3385 > 25 || local226)) {
 					if (local13.anInt1036 == -1) {
-						e.secondarySeqId = local13.anInt1051;
+						e.movementSeqId = local13.anInt1051;
 					} else {
-						e.secondarySeqId = local13.anInt1036;
+						e.movementSeqId = local13.anInt1036;
 					}
 				}
 			} else {
@@ -93,21 +93,21 @@ public final class Static37 {
 					local226 = false;
 					e.anInt3381 = e.dstYaw;
 				}
-				if (local13.anInt1037 == e.secondarySeqId && (e.anInt3385 > 25 || local226)) {
+				if (local13.idleAnimationId == e.movementSeqId && (e.anInt3385 > 25 || local226)) {
 					if (local13.anInt1067 == -1) {
-						e.secondarySeqId = local13.anInt1051;
+						e.movementSeqId = local13.anInt1051;
 					} else {
-						e.secondarySeqId = local13.anInt1067;
+						e.movementSeqId = local13.anInt1067;
 					}
 				}
 			}
 			e.anInt3381 &= 0x7FF;
 		} else {
-			if (local13.anInt1037 == e.secondarySeqId && e.anInt3385 > 25) {
+			if (local13.idleAnimationId == e.movementSeqId && e.anInt3385 > 25) {
 				if (local13.anInt1067 == -1) {
-					e.secondarySeqId = local13.anInt1051;
+					e.movementSeqId = local13.anInt1051;
 				} else {
-					e.secondarySeqId = local13.anInt1067;
+					e.movementSeqId = local13.anInt1067;
 				}
 			}
 			dstX = e.dstYaw << 5;

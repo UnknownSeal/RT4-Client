@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,7 +14,7 @@ public final class Static78 {
 	public static int anInt2147;
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "m", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_32;
+	public static Js5 aClass153_32;
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "n", descriptor = "Lclient!qf;")
 	public static Sprite aClass3_Sub2_Sub1_3;
@@ -51,7 +51,7 @@ public final class Static78 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(ILclient!ve;II)Lclient!mm;")
-	public static ImageRGB method1693(@OriginalArg(0) int arg0, @OriginalArg(1) CacheArchive arg1, @OriginalArg(3) int arg2) {
+	public static ImageRGB method1693(@OriginalArg(0) int arg0, @OriginalArg(1) Js5 arg1, @OriginalArg(3) int arg2) {
 		return Static234.method4016(arg1, arg0, arg2) ? Static196.method3537() : null;
 	}
 

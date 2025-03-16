@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -92,7 +92,7 @@ public final class Static141 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!lb", name = "a", descriptor = "(Lclient!ve;Lclient!ve;ILclient!ve;)V")
-	public static void method2724(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) CacheArchive arg1, @OriginalArg(3) CacheArchive arg2) {
+	public static void method2724(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1, @OriginalArg(3) Js5 arg2) {
 		Static243.aClass153_98 = arg1;
 		Static5.aClass153_1 = arg0;
 		Static225.aClass153_92 = arg2;

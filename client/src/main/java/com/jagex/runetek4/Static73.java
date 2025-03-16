@@ -38,7 +38,7 @@ public final class Static73 {
 			if (Static154.topLevelInterace != -1) {
 				Component.resetComponent(Static154.topLevelInterace);
 			}
-			for (@Pc(18) Class3_Sub31 local18 = (Class3_Sub31) Static119.aClass133_9.peekFront(); local18 != null; local18 = (Class3_Sub31) Static119.aClass133_9.prev()) {
+			for (@Pc(18) Class3_Sub31 local18 = (Class3_Sub31) Static119.aClass133_9.head(); local18 != null; local18 = (Class3_Sub31) Static119.aClass133_9.prev()) {
 				Static132.method2605(true, local18);
 			}
 			Static154.topLevelInterace = -1;
@@ -52,8 +52,8 @@ public final class Static73 {
 		Static35.anInt1092 = -1;
 		client.method1750(Static270.anInt5794);
 		Static173.localPlayer = new Player();
-		Static173.localPlayer.z = 3000;
-		Static173.localPlayer.x = 3000;
+		Static173.localPlayer.zFine = 3000;
+		Static173.localPlayer.xFine = 3000;
 		if (!GlRenderer.enabled) {
 			Static145.method2743(Static209.aClass153_86);
 			Game.processGameStatus(10);

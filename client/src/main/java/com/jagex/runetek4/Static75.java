@@ -4,7 +4,7 @@ import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.dash3d.entity.Actor;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import com.jagex.runetek4.scene.tile.WallDecoration;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -216,7 +216,7 @@ public final class Static75 {
 				local122.anInt5550 = local31;
 				local122.anInt5555 = local15;
 				if (Static159.levelObjStacks[Static55.currentLevel][local19][local27] == null) {
-					Static159.levelObjStacks[Static55.currentLevel][local19][local27] = new LinkList();
+					Static159.levelObjStacks[Static55.currentLevel][local19][local27] = new LinkedList();
 				}
 				Static159.levelObjStacks[Static55.currentLevel][local19][local27].addTail(new ObjStackNode(local122));
 				Static220.method3797(local27, local19);
@@ -322,7 +322,7 @@ public final class Static75 {
 					local31 = Static57.in.g2();
 					local39 = Static57.in.g2();
 					if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104) {
-						@Pc(710) LinkList local710 = Static159.levelObjStacks[Static55.currentLevel][local23][local19];
+						@Pc(710) LinkedList local710 = Static159.levelObjStacks[Static55.currentLevel][local23][local19];
 						if (local710 != null) {
 							for (@Pc(718) ObjStackNode local718 = (ObjStackNode) local710.head(); local718 != null; local718 = (ObjStackNode) local710.next()) {
 								@Pc(723) ObjStack local723 = local718.aClass8_Sub7_1;
@@ -346,7 +346,7 @@ public final class Static75 {
 						local812.anInt5550 = local31;
 						local812.anInt5555 = local39;
 						if (Static159.levelObjStacks[Static55.currentLevel][local19][local27] == null) {
-							Static159.levelObjStacks[Static55.currentLevel][local19][local27] = new LinkList();
+							Static159.levelObjStacks[Static55.currentLevel][local19][local27] = new LinkedList();
 						}
 						Static159.levelObjStacks[Static55.currentLevel][local19][local27].addTail(new ObjStackNode(local812));
 						Static220.method3797(local27, local19);
@@ -421,7 +421,7 @@ public final class Static75 {
 								}
 							}
 							if (local1198 != null) {
-								@Pc(1232) BASType local1232 = local1198.method2681();
+								@Pc(1232) BASType local1232 = local1198.getBasType();
 								if (local1232.anIntArrayArray7 != null && local1232.anIntArrayArray7[local1194] != null) {
 									local1188 = local1232.anIntArrayArray7[local1194][0];
 									local224 -= local1232.anIntArrayArray7[local1194][1];
@@ -453,7 +453,7 @@ public final class Static75 {
 					local45 = local31 & 0x7;
 					if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104) {
 						local224 = local39 + 1;
-						if (Static173.localPlayer.pathTileX[0] >= local23 - local224 && local224 + local23 >= Static173.localPlayer.pathTileX[0] && Static173.localPlayer.pathTileZ[0] >= local19 - local224 && Static173.localPlayer.pathTileZ[0] <= local224 + local19 && Static30.anInt978 != 0 && local45 > 0 && Static189.anInt4451 < 50 && local27 != -1) {
+						if (Static173.localPlayer.pathTileX[0] >= local23 - local224 && local224 + local23 >= Static173.localPlayer.pathTileX[0] && Static173.localPlayer.pathTileZ[0] >= local19 - local224 && Static173.localPlayer.pathTileZ[0] <= local224 + local19 && Preferences.ambientSoundsVolume != 0 && local45 > 0 && Static189.anInt4451 < 50 && local27 != -1) {
 							Static200.anIntArray421[Static189.anInt4451] = local27;
 							Static276.anIntArray563[Static189.anInt4451] = local45;
 							Static164.anIntArray362[Static189.anInt4451] = local218;
@@ -468,7 +468,7 @@ public final class Static75 {
 					local23 = (local15 >> 4 & 0x7) + Static115.anInt2940;
 					local27 = Static57.in.g2();
 					if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104) {
-						@Pc(1565) LinkList local1565 = Static159.levelObjStacks[Static55.currentLevel][local23][local19];
+						@Pc(1565) LinkedList local1565 = Static159.levelObjStacks[Static55.currentLevel][local23][local19];
 						if (local1565 != null) {
 							for (@Pc(1572) ObjStackNode local1572 = (ObjStackNode) local1565.head(); local1572 != null; local1572 = (ObjStackNode) local1565.next()) {
 								if (local1572.aClass8_Sub7_1.anInt5555 == (local27 & 0x7FFF)) {
@@ -488,7 +488,7 @@ public final class Static75 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!g", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method1635(@OriginalArg(1) CacheArchive arg0) {
+	public static void method1635(@OriginalArg(1) Js5 arg0) {
 		Static166.anInt4049 = arg0.method4482(Static18.P11_FULL);
 		Static130.anInt3161 = arg0.method4482(Static55.P12_FULL);
 		Static73.anInt2077 = arg0.method4482(Static73.B12_FULL);

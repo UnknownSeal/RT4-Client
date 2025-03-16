@@ -18,7 +18,7 @@ public final class MonochromeImageCache {
 	private int anInt4066 = 0;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "g", descriptor = "Lclient!ih;")
-	private LinkList aClass69_96 = new LinkList();
+	private LinkedList aClass69_96 = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "w", descriptor = "Z")
 	public boolean aBoolean195 = false;
@@ -104,7 +104,7 @@ public final class MonochromeImageCache {
 			} else {
 				this.aBoolean195 = false;
 			}
-			this.aClass69_96.method2283(local44);
+			this.aClass69_96.addHead(local44);
 			return this.anIntArrayArrayArray13[local44.anInt3468];
 		}
 	}

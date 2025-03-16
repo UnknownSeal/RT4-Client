@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.InteractiveObject;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -32,7 +32,7 @@ public final class Static266 {
 	public static int game = 0;
 
 	@OriginalMember(owner = "runetek4.client!vk", name = "a", descriptor = "(Lclient!ve;Lclient!ve;I)V")
-	public static void method4187(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) CacheArchive arg1) {
+	public static void method4187(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
 		Static93.modelArchive = arg0;
 		Static132.aClass153_48 = arg1;
 	}

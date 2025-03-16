@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.js5.index.Js5MasterIndex;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -47,7 +47,7 @@ public final class Static257 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!v", name = "a", descriptor = "(ZIILclient!ve;ZII)V")
-	public static void method526(@OriginalArg(1) int arg0, @OriginalArg(3) CacheArchive arg1, @OriginalArg(5) int arg2) {
+	public static void method526(@OriginalArg(1) int arg0, @OriginalArg(3) Js5 arg1, @OriginalArg(5) int arg2) {
 		Static172.aClass153_70 = arg1;
 		Static226.anInt5085 = 0;
 		Static277.anInt5853 = arg0;

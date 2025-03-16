@@ -4,7 +4,7 @@ import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.enumtype.EnumType;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -22,7 +22,7 @@ public final class Static253 {
 	public static float aFloat36;
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "cb", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_104;
+	public static Js5 aClass153_104;
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "eb", descriptor = "[[[B")
 	public static byte[][][] levelTileUnderlayIds;
@@ -62,7 +62,7 @@ public final class Static253 {
 			if (Static176.cameraModifierEnabled[4] && Static276.cameraModifierWobbleScale[4] + 128 > pitch) {
 				pitch = Static276.cameraModifierWobbleScale[4] + 128;
 			}
-			Static18.orbitCamera(ItemDefinition.anInt2223, arg0, Static207.getHeightmapY(Static55.currentLevel, Static173.localPlayer.x, Static173.localPlayer.z) - 50, 600 - -(pitch * 3), local57, Static111.anInt2900, pitch);
+			Static18.orbitCamera(ItemDefinition.anInt2223, arg0, Static207.getHeightmapY(Static55.currentLevel, Static173.localPlayer.xFine, Static173.localPlayer.zFine) - 50, 600 - -(pitch * 3), local57, Static111.anInt2900, pitch);
 		}
 		local57 = Static5.cameraY;
 		pitch = Static138.cameraX;
@@ -139,7 +139,7 @@ public final class Static253 {
 			GlRenderer.clearColorAndDepthBuffers(jitter);
 			Static143.method2731(Static240.cameraPitch, Static134.cameraZ, Static5.cameraY, Static138.cameraX, Static184.cameraYaw);
 			GlRenderer.anInt5323 = Static83.loopCycle;
-			Static156.method2954(Static138.cameraX, Static5.cameraY, Static134.cameraZ, Static240.cameraPitch, Static184.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Static55.currentLevel + 1, local387, Static173.localPlayer.x >> 7, Static173.localPlayer.z >> 7);
+			Static156.method2954(Static138.cameraX, Static5.cameraY, Static134.cameraZ, Static240.cameraPitch, Static184.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Static55.currentLevel + 1, local387, Static173.localPlayer.xFine >> 7, Static173.localPlayer.zFine >> 7);
 			Static263.aBoolean299 = true;
 			Static120.method2390();
 			Static143.method2731(0, 0, 0, 0, 0);
@@ -149,7 +149,7 @@ public final class Static253 {
 			ClientScriptRunner.method4000(arg3, arg2, arg0, Static223.anInt5029, Static223.anInt5029, arg4);
 		} else {
 			Rasterizer.drawFilledRectangle(arg2, arg4, arg3, arg0, 0);
-			Static156.method2954(Static138.cameraX, Static5.cameraY, Static134.cameraZ, Static240.cameraPitch, Static184.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Static55.currentLevel + 1, local387, Static173.localPlayer.x >> 7, Static173.localPlayer.z >> 7);
+			Static156.method2954(Static138.cameraX, Static5.cameraY, Static134.cameraZ, Static240.cameraPitch, Static184.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Static55.currentLevel + 1, local387, Static173.localPlayer.xFine >> 7, Static173.localPlayer.zFine >> 7);
 			Static107.method2261();
 			Static223.method3858();
 			Static142.method2726(arg4, arg3, arg2, 256, arg0, 256);

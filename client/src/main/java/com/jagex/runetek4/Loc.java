@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.media.renderable.Renderable;
 import com.jagex.runetek4.dash3d.entity.LocEntity;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -84,14 +84,14 @@ public final class Loc extends Renderable {
 		this.anInt1307 = arg1;
 		this.anInt1299 = arg0;
 		this.anInt1300 = arg5;
-		@Pc(67) LocMergeEntity local67;
+		@Pc(67) LocType local67;
 		if (GlRenderer.enabled && arg8 != null) {
 			if (arg8 instanceof Loc) {
 				((Loc) arg8).method1046();
 			} else {
 				local67 = Static271.get(this.anInt1299);
 				if (local67.multiloc != null) {
-					local67 = local67.getVisible();
+					local67 = local67.getMultiLoc();
 				}
 				if (local67 != null) {
 					CacheArchive.method181(local67, 0, this.anInt1295, 0, this.anInt1307, this.anInt1308, this.anInt1300, this.anInt1303);
@@ -229,10 +229,10 @@ public final class Loc extends Renderable {
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(ZI)Lclient!th;")
 	private Renderable method1048(@OriginalArg(0) boolean arg0) {
 		@Pc(12) boolean local12 = Static107.anIntArrayArrayArray10 != Static83.levelHeightMap;
-		@Pc(19) LocMergeEntity local19 = Static271.get(this.anInt1299);
+		@Pc(19) LocType local19 = Static271.get(this.anInt1299);
 		@Pc(22) int local22 = local19.anim;
 		if (local19.multiloc != null) {
-			local19 = local19.getVisible();
+			local19 = local19.getMultiLoc();
 		}
 		if (local19 == null) {
 			if (GlRenderer.enabled && !local12) {

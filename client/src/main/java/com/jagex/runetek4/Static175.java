@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static175 {
@@ -12,7 +12,7 @@ public final class Static175 {
 	public static JString url;
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "S", descriptor = "[Lclient!km;")
-	public static final NPCRenderable[] npcs = new NPCRenderable[32768];
+	public static final Npc[] npcs = new Npc[32768];
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "U", descriptor = "I")
 	public static int anInt4220 = 0;

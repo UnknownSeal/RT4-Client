@@ -5,7 +5,7 @@ import java.util.Date;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.FloType;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.game.config.msitype.MSIType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -26,7 +26,7 @@ public final class Static33 {
 	public static final int[] npcIds = new int[32768];
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(ILclient!pb;ZIIII)Z")
-	public static boolean method867(@OriginalArg(0) int arg0, @OriginalArg(1) LocMergeEntity arg1, @OriginalArg(5) int arg2, @OriginalArg(6) int arg3) {
+	public static boolean method867(@OriginalArg(0) int arg0, @OriginalArg(1) LocType arg1, @OriginalArg(5) int arg2, @OriginalArg(6) int arg3) {
 		@Pc(10) MSIType local10 = Static40.get(arg1.mapsceneicon);
 		if (local10.spriteId == -1) {
 			return true;

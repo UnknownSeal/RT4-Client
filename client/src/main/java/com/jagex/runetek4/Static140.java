@@ -63,7 +63,7 @@ public final class Static140 {
 				return;
 			}
 		}
-		if (displayName.method3108(Static173.localPlayer.name)) {
+		if (displayName.method3108(Static173.localPlayer.username)) {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.IGNORECANTADDSELF);
 			return;
 		}

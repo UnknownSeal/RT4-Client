@@ -3,8 +3,8 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
-import com.jagex.runetek4.cache.def.ActorDefinition;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.cache.def.NpcType;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -71,7 +71,7 @@ public final class Static103 {
 			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
-		@Pc(192) NPCRenderable npc;
+		@Pc(192) Npc npc;
 		if (local23 == 19) {
 			npc = Static175.npcs[a];
 			if (npc != null) {
@@ -202,8 +202,8 @@ public final class Static103 {
 					Static6.outboundBuffer.p1(Static59.minimapAnticheatAngle);
 					Static6.outboundBuffer.p1(Static273.minimapZoom);
 					Static6.outboundBuffer.p1(89);
-					Static6.outboundBuffer.p2(Static173.localPlayer.x);
-					Static6.outboundBuffer.p2(Static173.localPlayer.z);
+					Static6.outboundBuffer.p2(Static173.localPlayer.xFine);
+					Static6.outboundBuffer.p2(Static173.localPlayer.zFine);
 					Static6.outboundBuffer.p1(BZip2State.tryMoveNearest);
 					Static6.outboundBuffer.p1(63);
 				}
@@ -216,8 +216,8 @@ public final class Static103 {
 			Static122.x = aClass6.mouseClickX;
 			npc = Static175.npcs[a];
 			if (npc != null) {
-				@Pc(884) ActorDefinition local884 = npc.type;
-				if (local884.multinpc != null) {
+				@Pc(884) NpcType local884 = npc.type;
+				if (local884.multiNpcs != null) {
 					local884 = local884.getMultiNPC();
 				}
 				if (local884 != null) {
@@ -800,7 +800,7 @@ public final class Static103 {
 
 	@OriginalMember(owner = "runetek4.client!i", name = "i", descriptor = "(Z)V")
 	public static void method2245() {
-		for (@Pc(6) Class3_Sub31 local6 = (Class3_Sub31) Static119.aClass133_9.peekFront(); local6 != null; local6 = (Class3_Sub31) Static119.aClass133_9.prev()) {
+		for (@Pc(6) Class3_Sub31 local6 = (Class3_Sub31) Static119.aClass133_9.head(); local6 != null; local6 = (Class3_Sub31) Static119.aClass133_9.prev()) {
 			@Pc(14) int local14 = local6.anInt5878;
 			if (Component.load(local14)) {
 				@Pc(21) boolean local21 = true;

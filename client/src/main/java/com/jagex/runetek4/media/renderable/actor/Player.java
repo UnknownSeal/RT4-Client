@@ -1,10 +1,10 @@
 package com.jagex.runetek4.media.renderable.actor;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.def.ActorDefinition;
+import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.Actor;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.cache.media.AnimationSequence;
@@ -27,7 +27,7 @@ public final class Player extends Actor {
 	public PlayerModel model;
 
 	@OriginalMember(owner = "client!e", name = "Mc", descriptor = "Lclient!na;")
-	public JString name;
+	public JString username;
 
 	@OriginalMember(owner = "client!e", name = "tc", descriptor = "I")
 	public int anInt1649 = -1;
@@ -51,7 +51,7 @@ public final class Player extends Actor {
 	public int anInt1648 = -1;
 
 	@OriginalMember(owner = "client!e", name = "Pc", descriptor = "I")
-	public int anInt1664 = 0;
+	public int soundRadius = 0;
 
 	@OriginalMember(owner = "client!e", name = "Hc", descriptor = "I")
 	public int anInt1658 = -1;
@@ -74,12 +74,12 @@ public final class Player extends Actor {
     @OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(ILclient!e;)I")
     public static int getSound(@OriginalArg(1) Player arg0) {
         @Pc(14) int local14 = arg0.anInt1654;
-        @Pc(18) BASType local18 = arg0.method2681();
-        if (local18.anInt1037 == arg0.secondarySeqId) {
+        @Pc(18) BASType local18 = arg0.getBasType();
+        if (local18.idleAnimationId == arg0.movementSeqId) {
             local14 = arg0.anInt1648;
-        } else if (local18.anInt1058 == arg0.secondarySeqId || arg0.secondarySeqId == local18.anInt1054 || arg0.secondarySeqId == local18.anInt1045 || local18.anInt1043 == arg0.secondarySeqId) {
+        } else if (local18.runAnimationId == arg0.movementSeqId || arg0.movementSeqId == local18.runFullTurnAnimationId || arg0.movementSeqId == local18.runCWTurnAnimationId || local18.runCCWTurnAnimationId == arg0.movementSeqId) {
             local14 = arg0.anInt1670;
-        } else if (arg0.secondarySeqId == local18.anInt1062 || arg0.secondarySeqId == local18.anInt1042 || arg0.secondarySeqId == local18.anInt1048 || arg0.secondarySeqId == local18.anInt1066) {
+        } else if (arg0.movementSeqId == local18.slowWalkAnimationId || arg0.movementSeqId == local18.slowWalkFullTurnAnimationId || arg0.movementSeqId == local18.slowWalkCWTurnAnimationId || arg0.movementSeqId == local18.slowWalkCCWTurnAnimationId) {
             local14 = arg0.anInt1658;
         }
         return local14;
@@ -88,7 +88,7 @@ public final class Player extends Actor {
     @OriginalMember(owner = "client!e", name = "c", descriptor = "(B)I")
 	@Override
 	public int size() {
-		return this.model == null || this.model.transformationNpcId == -1 ? super.size() : ActorDefinition.getDefinition(this.model.transformationNpcId).size;
+		return this.model == null || this.model.transformationNpcId == -1 ? super.size() : NpcType.getDefinition(this.model.transformationNpcId).size;
 	}
 
 	@OriginalMember(owner = "client!e", name = "b", descriptor = "(I)I")
@@ -108,8 +108,8 @@ public final class Player extends Actor {
 		@Pc(44) int[] local44 = new int[12];
 		this.setSize((local20 >> 3 & 0x7) + 1);
 		this.anInt1651 = local20 >> 6 & 0x3;
-		this.x += (this.size() - local41) * 64;
-		this.z += (this.size() - local41) * 64;
+		this.xFine += (this.size() - local41) * 64;
+		this.zFine += (this.size() - local41) * 64;
 		this.anInt1669 = arg0.g1s();
 		this.anInt1649 = arg0.g1s();
 		this.teamId = 0;
@@ -151,7 +151,7 @@ public final class Player extends Actor {
 		}
 		this.anInt3365 = arg0.g2();
 		@Pc(236) long local236 = arg0.g8();
-		this.name = Static79.decode37(local236).method3125();
+		this.username = Static79.decode37(local236).method3125();
 		this.combatLevel = arg0.g1();
 		if (local37) {
 			this.anInt1671 = arg0.g2();
@@ -165,10 +165,10 @@ public final class Player extends Actor {
 				this.anInt1667 = -1;
 			}
 		}
-		local134 = this.anInt1664;
-		this.anInt1664 = arg0.g1();
-		if (this.anInt1664 == 0) {
-			Static271.method4597(this);
+		local134 = this.soundRadius;
+		this.soundRadius = arg0.g1();
+		if (this.soundRadius == 0) {
+			AreaSoundManager.remove(this);
 		} else {
 			@Pc(309) int local309 = this.anInt1658;
 			@Pc(312) int local312 = this.anInt1654;
@@ -178,7 +178,7 @@ public final class Player extends Actor {
 			this.anInt1658 = arg0.g2();
 			this.anInt1654 = arg0.g2();
 			this.anInt1670 = arg0.g2();
-			if (this.anInt1664 != local134 || this.anInt1648 != local175 || this.anInt1658 != local309 || local312 != this.anInt1654 || this.anInt1670 != local315) {
+			if (this.soundRadius != local134 || this.anInt1648 != local175 || this.anInt1658 != local309 || local312 != this.anInt1654 || this.anInt1670 != local315) {
 				Static214.method4359(this);
 			}
 		}
@@ -188,8 +188,8 @@ public final class Player extends Actor {
 		local175 = this.model.transformationNpcId;
 		this.model.method1950(local197, local22, local26 == 1, local44, this.anInt3365);
 		if (local175 != local22) {
-			this.x = this.pathTileX[0] * 128 + this.size() * 64;
-			this.z = this.pathTileZ[0] * 128 + this.size() * 64;
+			this.xFine = this.pathTileX[0] * 128 + this.size() * 64;
+			this.zFine = this.pathTileZ[0] * 128 + this.size() * 64;
 		}
 		if (this.aClass47_Sub1_5 != null) {
 			this.aClass47_Sub1_5.method1646();
@@ -203,7 +203,7 @@ public final class Player extends Actor {
 			return;
 		}
 		@Pc(25) AnimationSequence local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? AnimationSequence.getAnimationSequence(this.primarySeqId) : null;
-		@Pc(54) AnimationSequence local54 = this.secondarySeqId == -1 || this.lowMemory || this.secondarySeqId == this.method2681().anInt1037 && local25 != null ? null : AnimationSequence.getAnimationSequence(this.secondarySeqId);
+		@Pc(54) AnimationSequence local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().idleAnimationId && local25 != null ? null : AnimationSequence.getAnimationSequence(this.movementSeqId);
 		@Pc(76) Model local76 = this.model.method1954(this.aClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
 		@Pc(79) int local79 = Static198.method1029();
 		if (GlRenderer.enabled && Static238.anInt5316 < 96 && local79 > 50) {
@@ -226,8 +226,8 @@ public final class Player extends Actor {
 		}
 		this.height = local76.getHeight();
 		@Pc(184) Model model;
-		if (Static209.aBoolean240 && (this.model.transformationNpcId == -1 || ActorDefinition.getDefinition(this.model.transformationNpcId).spotshadow)) {
-			model = Scene.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.x, 0, this.z, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.y, 240);
+		if (Static209.aBoolean240 && (this.model.transformationNpcId == -1 || NpcType.getDefinition(this.model.transformationNpcId).spotshadow)) {
+			model = Scene.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.xFine, 0, this.zFine, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.y, 240);
 			if (GlRenderer.enabled) {
 				@Pc(188) float local188 = GlRenderer.method4179();
 				@Pc(190) float local190 = GlRenderer.method4166();
@@ -247,23 +247,23 @@ public final class Player extends Actor {
 					@Pc(291) int anchorX;
 					@Pc(302) int anchorY;
 					if (local245.headIconDrawType == 1 && local245.hintIconNpcTarget >= 0 && Static175.npcs.length > local245.hintIconNpcTarget) {
-						@Pc(278) NPCRenderable npc = Static175.npcs[local245.hintIconNpcTarget];
+						@Pc(278) Npc npc = Static175.npcs[local245.hintIconNpcTarget];
 						if (npc != null) {
-							anchorX = npc.x / 32 - Static173.localPlayer.x / 32;
-							anchorY = npc.z / 32 - Static173.localPlayer.z / 32;
+							anchorX = npc.xFine / 32 - Static173.localPlayer.xFine / 32;
+							anchorY = npc.zFine / 32 - Static173.localPlayer.zFine / 32;
 							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
 						}
 					}
 					if (local245.headIconDrawType == 2) {
-						@Pc(340) int local340 = (local245.anInt4053 - Static225.originX) * 4 + 2 - Static173.localPlayer.x / 32;
-						anchorX = (local245.anInt4046 - Static142.originZ) * 4 + 2 - Static173.localPlayer.z / 32;
+						@Pc(340) int local340 = (local245.anInt4053 - Static225.originX) * 4 + 2 - Static173.localPlayer.xFine / 32;
+						anchorX = (local245.anInt4046 - Static142.originZ) * 4 + 2 - Static173.localPlayer.zFine / 32;
 						this.drawOnMinimap(null, anchorX, local76, local340, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
 					}
 					if (local245.headIconDrawType == 10 && local245.hintIconNpcTarget >= 0 && Static159.players.length > local245.hintIconNpcTarget) {
 						@Pc(395) Player player = Static159.players[local245.hintIconNpcTarget];
 						if (player != null) {
-							anchorX = player.x / 32 - Static173.localPlayer.x / 32;
-							anchorY = player.z / 32 - Static173.localPlayer.z / 32;
+							anchorX = player.xFine / 32 - Static173.localPlayer.xFine / 32;
+							anchorY = player.zFine / 32 - Static173.localPlayer.zFine / 32;
 							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
 						}
 					}
@@ -302,7 +302,7 @@ public final class Player extends Actor {
 				} else {
 					loc = (Model) this.locModel;
 				}
-				loc.translate(this.locOffsetX - this.x, this.locOffsetY + -this.y, this.locOffsetZ - this.z);
+				loc.translate(this.locOffsetX - this.xFine, this.locOffsetY + -this.y, this.locOffsetZ - this.zFine);
 				if (this.dstYaw == 512) {
 					loc.method4578();
 				} else if (this.dstYaw == 1024) {
@@ -339,7 +339,7 @@ public final class Player extends Actor {
 		} else if (this.dstYaw == 1536) {
 			loc.method4578();
 		}
-		loc.translate(this.x - this.locOffsetX, -this.locOffsetY + this.y, this.z - this.locOffsetZ);
+		loc.translate(this.xFine - this.locOffsetX, -this.locOffsetY + this.y, this.zFine - this.locOffsetZ);
 	}
 
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(Lclient!ga;ILclient!ak;IIIIIIIIIIII)V")
@@ -349,7 +349,7 @@ public final class Player extends Actor {
 			return;
 		}
 		@Pc(34) int local34 = (int) (Math.atan2(arg3, arg1) * 325.949D) & 0x7FF;
-		@Pc(46) Model local46 = Static220.method3800(local34, this.z, arg11, this.x, arg2, this.y);
+		@Pc(46) Model local46 = Static220.method3800(local34, this.zFine, arg11, this.xFine, arg2, this.y);
 		if (local46 == null) {
 			return;
 		}
@@ -373,8 +373,8 @@ public final class Player extends Actor {
 	}
 
 	@OriginalMember(owner = "client!e", name = "e", descriptor = "(I)Lclient!na;")
-	public JString getName() {
-		@Pc(2) JString local2 = this.name;
+	public JString getUsername() {
+		@Pc(2) JString local2 = this.username;
 		if (Static103.aClass100Array88 != null) {
 			local2 = Static34.method882(new JString[] { Static103.aClass100Array88[this.anInt1651], local2 });
 		}

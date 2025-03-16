@@ -1,13 +1,13 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static252 {
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "P", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_103;
+	public static Js5 aClass153_103;
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "Y", descriptor = "Lclient!na;")
 	public static final JString aClass100_1049 = Static28.parse("huffman");
@@ -51,13 +51,13 @@ public final class Static252 {
 			}
 			return;
 		}
-		if ((Static12.aByteArrayArrayArray2[Static55.currentLevel][Static173.localPlayer.x >> 7][Static173.localPlayer.z >> 7] & 0x4) != 0) {
-			Static254.method4348(false, Static173.localPlayer.x >> 7, Static173.localPlayer.z >> 7, Static130.levelTiles, 0);
+		if ((Static12.aByteArrayArrayArray2[Static55.currentLevel][Static173.localPlayer.xFine >> 7][Static173.localPlayer.zFine >> 7] & 0x4) != 0) {
+			Static254.method4348(false, Static173.localPlayer.xFine >> 7, Static173.localPlayer.zFine >> 7, Static130.levelTiles, 0);
 		}
 		if (Static240.cameraPitch >= 310) {
 			return;
 		}
-		@Pc(135) int local135 = Static173.localPlayer.z >> 7;
+		@Pc(135) int local135 = Static173.localPlayer.zFine >> 7;
 		local40 = Static134.cameraZ >> 7;
 		@Pc(146) int local146;
 		if (local40 < local135) {
@@ -66,7 +66,7 @@ public final class Static252 {
 			local146 = local40 - local135;
 		}
 		local33 = Static138.cameraX >> 7;
-		@Pc(162) int local162 = Static173.localPlayer.x >> 7;
+		@Pc(162) int local162 = Static173.localPlayer.xFine >> 7;
 		@Pc(174) int local174;
 		if (local162 > local33) {
 			local174 = local162 - local33;

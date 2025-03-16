@@ -37,8 +37,8 @@ public final class Static64 {
 		for (i = 0; i < Static240.entityRemovalCount; i++) {
 			@Pc(30) int index = Static52.entityRemovalIds[i];
 			if (Static83.loopCycle != Static159.players[index].cycle) {
-				if (Static159.players[index].anInt1664 > 0) {
-					Static271.method4597(Static159.players[index]);
+				if (Static159.players[index].soundRadius > 0) {
+					AreaSoundManager.remove(Static159.players[index]);
 				}
 				Static159.players[index] = null;
 			}
@@ -76,7 +76,7 @@ public final class Static64 {
 				return;
 			}
 		}
-		if (displayName.method3108(Static173.localPlayer.name)) {
+		if (displayName.method3108(Static173.localPlayer.username)) {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDCANTADDSELF);
 			return;
 		}

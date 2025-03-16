@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static16 {
 
 	@OriginalMember(owner = "client!bf", name = "s", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_9;
+	public static Js5 aClass153_9;
 
 	@OriginalMember(owner = "client!bf", name = "B", descriptor = "I")
 	public static int anInt548 = -1;

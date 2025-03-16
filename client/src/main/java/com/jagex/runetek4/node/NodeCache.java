@@ -46,7 +46,7 @@ public final class NodeCache {
 			this.remaining--;
 		}
 		@Pc(44) HardReferenceNode local44 = new HardReferenceNode(arg0);
-		this.hashTable.pushNode(local44, arg1);
+		this.hashTable.put(local44, arg1);
 		this.nodeQueue.pushBack(local44);
 		local44.secondaryNodeId = 0L;
 	}
@@ -86,7 +86,7 @@ public final class NodeCache {
 				}
 			} else if (++cachedNode.secondaryNodeId > (long) arg0) {
 				@Pc(33) ReferenceNode local33 = Static252.aClass22_1.method1027(cachedNode);
-				this.hashTable.pushNode(local33, cachedNode.nodeId);
+				this.hashTable.put(local33, cachedNode.nodeId);
 				Static84.method1772(cachedNode, local33);
 				cachedNode.unlink();
 				cachedNode.clear();
@@ -127,7 +127,7 @@ public final class NodeCache {
 		}
 		if (local12.method3619()) {
 			@Pc(53) HardReferenceNode local53 = new HardReferenceNode(local27);
-			this.hashTable.pushNode(local53, local12.nodeId);
+			this.hashTable.put(local53, local12.nodeId);
 			this.nodeQueue.pushBack(local53);
 			local53.secondaryNodeId = 0L;
 			local12.unlink();

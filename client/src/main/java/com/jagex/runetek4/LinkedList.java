@@ -7,7 +7,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!ih")
-public final class LinkList {
+public final class LinkedList {
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "p", descriptor = "Lclient!ab;")
 	private Node aClass3_110;
@@ -16,7 +16,7 @@ public final class LinkList {
 	public final Node aClass3_109 = new Node();
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "<init>", descriptor = "()V")
-	public LinkList() {
+	public LinkedList() {
 		this.aClass3_109.next = this.aClass3_109;
 		this.aClass3_109.prev = this.aClass3_109;
 	}
@@ -57,7 +57,7 @@ public final class LinkList {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "a", descriptor = "(ILclient!ab;)V")
-	public final void method2283(@OriginalArg(1) Node arg0) {
+	public final void addHead(@OriginalArg(1) Node arg0) {
 		if (arg0.next != null) {
 			arg0.unlink();
 		}
@@ -68,7 +68,7 @@ public final class LinkList {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "d", descriptor = "(I)Lclient!ab;")
-	public final Node method2286() {
+	public final Node prev() {
 		@Pc(13) Node local13 = this.aClass3_110;
 		if (this.aClass3_109 == local13) {
 			this.aClass3_110 = null;
@@ -80,7 +80,7 @@ public final class LinkList {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "a", descriptor = "(B)Lclient!ab;")
-	public final Node method2287() {
+	public final Node removeHead() {
 		@Pc(3) Node local3 = this.aClass3_109.prev;
 		if (this.aClass3_109 == local3) {
 			return null;

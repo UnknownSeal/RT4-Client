@@ -16,9 +16,10 @@ import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.cache.CacheIndex;
 import com.jagex.runetek4.game.config.cursortype.CursorType;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.js5.index.Js5MasterIndex;
 import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -59,6 +60,12 @@ public final class client extends GameShell {
 	public static MouseWheel mouseWheel;
 	@OriginalMember(owner = "runetek4.client!rh", name = "j", descriptor = "Lclient!runetek4.client;")
 	public static client instance;
+	@OriginalMember(owner = "runetek4.client!qi", name = "C", descriptor = "Lclient!ei;")
+	public static MixerPcmStream soundStream;
+	@OriginalMember(owner = "runetek4.client!uc", name = "c", descriptor = "Lclient!ve;")
+	public static Js5 js5Archive4;
+	@OriginalMember(owner = "runetek4.client!ef", name = "p", descriptor = "Lclient!vj;")
+	public static Resampler resampler;
 
 	@OriginalMember(owner = "client!client", name = "main", descriptor = "([Ljava/lang/String;)V")
 	public static void main(@OriginalArg(0) String[] arg0) {
@@ -507,7 +514,7 @@ public final class client extends GameShell {
 		Static119.transmitTimer++;
 		if (GlRenderer.enabled) {
 			label191: for (@Pc(57) int local57 = 0; local57 < 32768; local57++) {
-				@Pc(66) NPCRenderable npcEntity = Static175.npcs[local57];
+				@Pc(66) Npc npcEntity = Static175.npcs[local57];
 				if (npcEntity != null) {
 					@Pc(73) byte walkflags = npcEntity.type.walkflags;
 					if ((walkflags & 0x2) > 0 && npcEntity.pathLength == 0 && Math.random() * 1000.0D < 10.0D) {
@@ -515,10 +522,10 @@ public final class client extends GameShell {
 						@Pc(106) int local106 = (int) Math.round(Math.random() * 2.0D - 1.0D);
 						if (local98 != 0 || local106 != 0) {
 							npcEntity.pathRunning[0] = 1;
-							npcEntity.pathTileX[0] = local98 + (npcEntity.x >> 7);
-							npcEntity.pathTileZ[0] = local106 + (npcEntity.z >> 7);
-							Static148.levelCollisionMap[Static55.currentLevel].method3056(npcEntity.x >> 7, npcEntity.size(), false, 0, npcEntity.size(), npcEntity.z >> 7);
-							if (npcEntity.pathTileX[0] >= 0 && npcEntity.pathTileX[0] <= 104 - npcEntity.size() && npcEntity.pathTileZ[0] >= 0 && npcEntity.pathTileZ[0] <= 104 - npcEntity.size() && Static148.levelCollisionMap[Static55.currentLevel].method3054(npcEntity.z >> 7, npcEntity.pathTileZ[0], npcEntity.pathTileX[0], npcEntity.x >> 7)) {
+							npcEntity.pathTileX[0] = local98 + (npcEntity.xFine >> 7);
+							npcEntity.pathTileZ[0] = local106 + (npcEntity.zFine >> 7);
+							Static148.levelCollisionMap[Static55.currentLevel].method3056(npcEntity.xFine >> 7, npcEntity.size(), false, 0, npcEntity.size(), npcEntity.zFine >> 7);
+							if (npcEntity.pathTileX[0] >= 0 && npcEntity.pathTileX[0] <= 104 - npcEntity.size() && npcEntity.pathTileZ[0] >= 0 && npcEntity.pathTileZ[0] <= 104 - npcEntity.size() && Static148.levelCollisionMap[Static55.currentLevel].method3054(npcEntity.zFine >> 7, npcEntity.pathTileZ[0], npcEntity.pathTileX[0], npcEntity.xFine >> 7)) {
 								if (npcEntity.size() > 1) {
 									for (@Pc(226) int local226 = npcEntity.pathTileX[0]; npcEntity.pathTileX[0] + npcEntity.size() > local226; local226++) {
 										for (@Pc(246) int local246 = npcEntity.pathTileZ[0]; npcEntity.pathTileZ[0] + npcEntity.size() > local246; local246++) {
@@ -535,7 +542,7 @@ public final class client extends GameShell {
 					Static104.method2247(npcEntity);
 					Static37.method949(npcEntity);
 					Static34.method879(npcEntity);
-					Static148.levelCollisionMap[Static55.currentLevel].method3043(npcEntity.x >> 7, false, npcEntity.z >> 7, npcEntity.size(), npcEntity.size());
+					Static148.levelCollisionMap[Static55.currentLevel].method3043(npcEntity.xFine >> 7, false, npcEntity.zFine >> 7, npcEntity.size(), npcEntity.size());
 				}
 			}
 		}
@@ -556,15 +563,15 @@ public final class client extends GameShell {
 			@Pc(379) Component local379;
 			@Pc(387) Component local387;
 			do {
-				local374 = (HookRequest) Static4.aClass69_2.method2287();
+				local374 = (HookRequest) Static4.aClass69_2.removeHead();
 				if (local374 == null) {
 					while (true) {
 						do {
-							local374 = (HookRequest) Static115.aClass69_70.method2287();
+							local374 = (HookRequest) Static115.aClass69_70.removeHead();
 							if (local374 == null) {
 								while (true) {
 									do {
-										local374 = (HookRequest) Static185.aClass69_101.method2287();
+										local374 = (HookRequest) Static185.aClass69_101.removeHead();
 										if (local374 == null) {
 											if (Static105.aClass13_14 != null) {
 												Static4.method28();
@@ -757,13 +764,13 @@ public final class client extends GameShell {
 				Static249.aClass153_100 = CacheArchive.loadArchive(false, true, true, 1);
 				Static274.aClass153_90 = CacheArchive.loadArchive(true, true, false, 2);
 				Static41.aClass153_25 = CacheArchive.loadArchive(false, true, true, 3);
-				Static248.aClass153_75 = CacheArchive.loadArchive(false, true, true, 4);
+				js5Archive4 = CacheArchive.loadArchive(false, true, true, 4);
 				Static26.aClass153_16 = CacheArchive.loadArchive(true, true, true, 5);
 				Static130.aClass153_47 = CacheArchive.loadArchive(true, false, true, 6);
 				Static267.aClass153_109 = CacheArchive.loadArchive(false, true, true, 7);
 				Static209.aClass153_86 = CacheArchive.loadArchive(false, true, true, 8);
 				Static195.aClass153_80 = CacheArchive.loadArchive(false, true, true, 9);
-				CacheArchive.huffmanCacheArchive = CacheArchive.loadArchive(false, true, true, 10);
+				CacheArchive.huffmanJs5 = CacheArchive.loadArchive(false, true, true, 10);
 				Static214.aClass153_106 = CacheArchive.loadArchive(false, true, true, 11);
 				Static16.aClass153_9 = CacheArchive.loadArchive(false, true, true, 12);
 				Static261.aClass153_107 = CacheArchive.loadArchive(false, true, true, 13);
@@ -779,7 +786,7 @@ public final class client extends GameShell {
 				Static227.aClass153_94 = CacheArchive.loadArchive(true, true, true, 23);
 				Static254.aClass153_105 = CacheArchive.loadArchive(false, true, true, 24);
 				Static28.aClass153_18 = CacheArchive.loadArchive(false, true, true, 25);
-				CacheArchive.gameTextureCacheArchive = CacheArchive.loadArchive(true, true, true, 26);
+				CacheArchive.gameTextureJs5 = CacheArchive.loadArchive(true, true, true, 26);
 				Static226.aClass153_93 = CacheArchive.loadArchive(false, true, true, 27);
 				Static199.mainLoadPercentage = 15;
 				Static126.mainLoadSecondaryText = LocalizedText.MAINLOAD30B;
@@ -812,11 +819,11 @@ public final class client extends GameShell {
 			Static148.aClass3_Sub3_Sub4_1.method4420();
 			Static11.aClass62_1 = Static107.method2262(22050, GameShell.signLink, GameShell.canvas, 0);
 			Static11.aClass62_1.method3566(Static148.aClass3_Sub3_Sub4_1);
-			Static34.method876(Static148.aClass3_Sub3_Sub4_1, Static138.aClass153_51, Static137.aClass153_49, Static248.aClass153_75);
+			Static34.method876(Static148.aClass3_Sub3_Sub4_1, Static138.aClass153_51, Static137.aClass153_49, js5Archive4);
 			Static147.aClass62_2 = Static107.method2262(2048, GameShell.signLink, GameShell.canvas, 1);
-			Static204.soundStream = new MixerPcmStream();
-			Static147.aClass62_2.method3566(Static204.soundStream);
-			Static56.aClass156_1 = new Resampler(22050, Static44.anInt1404);
+			soundStream = new MixerPcmStream();
+			Static147.aClass62_2.method3566(soundStream);
+			resampler = new Resampler(22050, Static44.anInt1404);
 			Static250.anInt5441 = Static130.aClass153_47.method4482(Static1.aClass100_1);
 			Static199.mainLoadPercentage = 30;
 			Static166.loadingPercent = 50;
@@ -915,8 +922,8 @@ public final class client extends GameShell {
 				Static126.mainLoadSecondaryText = LocalizedText.MAINLOAD80B;
 			}
 		} else if (Static166.loadingPercent == 90) {
-			if (CacheArchive.gameTextureCacheArchive.fetchAll()) {
-				@Pc(951) Js5GlTextureProvider local951 = new Js5GlTextureProvider(Static195.aClass153_80, CacheArchive.gameTextureCacheArchive, Static209.aClass153_86, 20, !Static53.aBoolean99);
+			if (CacheArchive.gameTextureJs5.fetchAll()) {
+				@Pc(951) Js5GlTextureProvider local951 = new Js5GlTextureProvider(Static195.aClass153_80, CacheArchive.gameTextureJs5, Static209.aClass153_86, 20, !Static53.aBoolean99);
 				Pix3D.method1914(local951);
 				if (Static113.anInt4609 == 1) {
 					Pix3D.method1911(0.9F);
@@ -934,7 +941,7 @@ public final class client extends GameShell {
 				Static166.loadingPercent = 100;
 				Static199.mainLoadPercentage = 70;
 			} else {
-				Static126.mainLoadSecondaryText = Static34.method882(new JString[] { LocalizedText.MAINLOAD90, Static123.method2423(CacheArchive.gameTextureCacheArchive.getPercentageComplete()), Static49.aClass100_352 });
+				Static126.mainLoadSecondaryText = Static34.method882(new JString[] { LocalizedText.MAINLOAD90, Static123.method2423(CacheArchive.gameTextureJs5.getPercentageComplete()), Static49.aClass100_352 });
 				Static199.mainLoadPercentage = 70;
 			}
 		} else if (Static166.loadingPercent == 100) {
@@ -948,8 +955,8 @@ public final class client extends GameShell {
 			Static199.mainLoadPercentage = 75;
 			Static166.loadingPercent = 120;
 		} else if (Static166.loadingPercent == 120) {
-			if (CacheArchive.huffmanCacheArchive.method4487(Static186.aClass100_827, Static252.aClass100_1049)) {
-				@Pc(1060) HuffmanEncoding huffmanEncoding = new HuffmanEncoding(CacheArchive.huffmanCacheArchive.method4485(Static186.aClass100_827, Static252.aClass100_1049));
+			if (CacheArchive.huffmanJs5.method4487(Static186.aClass100_827, Static252.aClass100_1049)) {
+				@Pc(1060) HuffmanEncoding huffmanEncoding = new HuffmanEncoding(CacheArchive.huffmanJs5.method4485(Static186.aClass100_827, Static252.aClass100_1049));
 				Static1.method1(huffmanEncoding);
 				Static126.mainLoadSecondaryText = LocalizedText.MAINLOAD120B;
 				Static166.loadingPercent = 130;
@@ -999,7 +1006,7 @@ public final class client extends GameShell {
 			Static130.aClass153_47.method4477(true);
 			Static209.aClass153_86.method4477(true);
 			Static261.aClass153_107.method4477(true);
-			CacheArchive.huffmanCacheArchive.method4477(true);
+			CacheArchive.huffmanJs5.method4477(true);
 			Static41.aClass153_25.method4477(true);
 			Static199.mainLoadPercentage = 97;
 			Static126.mainLoadSecondaryText = LocalizedText.MAINLOAD140;

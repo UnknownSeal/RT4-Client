@@ -8,9 +8,9 @@ import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -36,7 +36,7 @@ public final class Static127 {
 	public static int anInt3132 = 0;
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(IIBLclient!ve;Lclient!ve;)Lclient!rk;")
-	public static Font getFont(@OriginalArg(1) int arg0, @OriginalArg(3) CacheArchive arg1, @OriginalArg(4) CacheArchive arg2) {
+	public static Font getFont(@OriginalArg(1) int arg0, @OriginalArg(3) Js5 arg1, @OriginalArg(4) Js5 arg2) {
 		return Static234.method4016(arg1, 0, arg0) ? Static29.method799(arg2.getfile(arg0, 0)) : null;
 	}
 
@@ -66,16 +66,16 @@ public final class Static127 {
 		@Pc(86) int dx = Static225.originX - local55;
 		Static235.aMapElementTypeList_2 = null;
 		@Pc(96) int i;
-		@Pc(103) NPCRenderable local103;
+		@Pc(103) Npc local103;
 		@Pc(109) int j;
 		if (arg4) {
 			Static272.npcCount = 0;
 			for (i = 0; i < 32768; i++) {
 				local103 = Static175.npcs[i];
 				if (local103 != null) {
-					local103.x -= dx * 128;
-					local103.z -= dz * 128;
-					if (local103.x >= 0 && local103.x <= 13184 && local103.z >= 0 && local103.z <= 13184) {
+					local103.xFine -= dx * 128;
+					local103.zFine -= dz * 128;
+					if (local103.xFine >= 0 && local103.xFine <= 13184 && local103.zFine >= 0 && local103.zFine <= 13184) {
 						for (j = 0; j < 10; j++) {
 							local103.pathTileX[j] -= dx;
 							local103.pathTileZ[j] -= dz;
@@ -95,8 +95,8 @@ public final class Static127 {
 						local103.pathTileX[j] -= dx;
 						local103.pathTileZ[j] -= dz;
 					}
-					local103.x -= dx * 128;
-					local103.z -= dz * 128;
+					local103.xFine -= dx * 128;
+					local103.zFine -= dz * 128;
 				}
 			}
 		}
@@ -107,8 +107,8 @@ public final class Static127 {
 					player.pathTileX[j] -= dx;
 					player.pathTileZ[j] -= dz;
 				}
-				player.x -= dx * 128;
-				player.z -= dz * 128;
+				player.xFine -= dx * 128;
+				player.zFine -= dz * 128;
 			}
 		}
 		Static55.currentLevel = arg0;

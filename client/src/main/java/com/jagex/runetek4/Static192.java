@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.media.renderable.Renderable;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.dash3d.entity.Actor;
 import com.jagex.runetek4.scene.InteractiveObject;
 import com.jagex.runetek4.scene.tile.FloorDecoration;
@@ -18,7 +18,7 @@ public final class Static192 {
 	@OriginalMember(owner = "runetek4.client!ph", name = "a", descriptor = "(B)V")
 	public static void loop() {
 		while (true) {
-			@Pc(17) Class3_Sub8 local17 = (Class3_Sub8) Static128.aClass69_77.method2287();
+			@Pc(17) Class3_Sub8 local17 = (Class3_Sub8) Static128.aClass69_77.removeHead();
 			if (local17 == null) {
 				return;
 			}
@@ -36,7 +36,7 @@ public final class Static192 {
 				actor = Static175.npcs[pid];
 			}
 			if (actor != null) {
-				@Pc(63) LocMergeEntity loc = Static271.get(local17.anInt1189);
+				@Pc(63) LocType loc = Static271.get(local17.anInt1189);
 				if (Static55.currentLevel < 3) {
 				}
 				@Pc(86) int local86;

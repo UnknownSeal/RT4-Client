@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,7 +12,7 @@ public final class Static209 {
 	public static int port;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "K", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_86;
+	public static Js5 aClass153_86;
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "J", descriptor = "I")
 	public static int miscTransmitAt = 0;
@@ -44,7 +44,7 @@ public final class Static209 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "a", descriptor = "(IBILclient!ve;)[Lclient!qf;")
-	public static Sprite[] method3708(@OriginalArg(2) int arg0, @OriginalArg(3) CacheArchive arg1) {
+	public static Sprite[] method3708(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {
 		return Static234.method4016(arg1, 0, arg0) ? Static213.method3730() : null;
 	}
 

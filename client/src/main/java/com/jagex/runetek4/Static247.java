@@ -71,7 +71,7 @@ public final class Static247 {
 										@Pc(1179) SceneTile adjacent;
 										while (true) {
 											do {
-												tile = (SceneTile) aClass6.drawTileQueue.method2287();
+												tile = (SceneTile) aClass6.drawTileQueue.removeHead();
 												if (tile == null) {
 													return;
 												}

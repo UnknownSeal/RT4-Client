@@ -18,7 +18,7 @@ import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!pb")
-public final class LocMergeEntity {
+public final class LocType {
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "[S")
 	private short[] retex_s;
@@ -51,7 +51,7 @@ public final class LocMergeEntity {
 	public int anInt4426;
 
 	@OriginalMember(owner = "client!pb", name = "wb", descriptor = "[I")
-	public int[] bgsound_random;
+	public int[] bgsounds;
 
 	@OriginalMember(owner = "client!pb", name = "e", descriptor = "I")
 	public int width = 1;
@@ -78,7 +78,7 @@ public final class LocMergeEntity {
 	public int cursor1op = -1;
 
 	@OriginalMember(owner = "client!pb", name = "R", descriptor = "I")
-	public int bgsound_maxdelay = 0;
+	public int bgsoundmax = 0;
 
 	@OriginalMember(owner = "client!pb", name = "S", descriptor = "I")
 	public int mapsceneicon = -1;
@@ -96,7 +96,7 @@ public final class LocMergeEntity {
 	private int offsetx = 0;
 
 	@OriginalMember(owner = "client!pb", name = "W", descriptor = "I")
-	public int bgsound_mindelay = 0;
+	public int bgsoundmin = 0;
 
 	@OriginalMember(owner = "client!pb", name = "h", descriptor = "I")
 	public int mapfunction = -1;
@@ -165,7 +165,7 @@ public final class LocMergeEntity {
 	private int offsety = 0;
 
 	@OriginalMember(owner = "client!pb", name = "k", descriptor = "I")
-	public int bgsound_range = 0;
+	public int bgsoundrange = 0;
 
 	@OriginalMember(owner = "client!pb", name = "p", descriptor = "I")
 	private int contrast = 0;
@@ -177,7 +177,7 @@ public final class LocMergeEntity {
 	public boolean overrideSDFLO = false;
 
 	@OriginalMember(owner = "client!pb", name = "O", descriptor = "I")
-	public int bgsound_sound = -1;
+	public int bgsound = -1;
 
 	@OriginalMember(owner = "client!pb", name = "ub", descriptor = "I")
 	public int blockwalk = 2;
@@ -351,16 +351,16 @@ public final class LocMergeEntity {
 			}
 			this.multiloc[length + 1] = defaultId;
 		} else if (code == 78) {
-			this.bgsound_sound = packet.g2();
-			this.bgsound_range = packet.g1();
+			this.bgsound = packet.g2();
+			this.bgsoundrange = packet.g1();
 		} else if (code == 79) {
-			this.bgsound_mindelay = packet.g2();
-			this.bgsound_maxdelay = packet.g2();
-			this.bgsound_range = packet.g1();
+			this.bgsoundmin = packet.g2();
+			this.bgsoundmax = packet.g2();
+			this.bgsoundrange = packet.g1();
 			int length = packet.g1();
-			this.bgsound_random = new int[length];
+			this.bgsounds = new int[length];
 			for (int index = 0; index < length; index++) {
-				this.bgsound_random[index] = packet.g2();
+				this.bgsounds[index] = packet.g2();
 			}
 		} else if (code == 81) {
 			this.hillskew_mode = 2;
@@ -413,7 +413,7 @@ public final class LocMergeEntity {
 				} else {
 					node = new IntWrapper(packet.g4());
 				}
-				this.params.pushNode(node, key);
+				this.params.put(node, key);
 			}
 		} else {
 			System.out.println("Error unrecognised loc config code: " + code);
@@ -462,7 +462,7 @@ public final class LocMergeEntity {
 	}
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "(I)Lclient!pb;")
-	public LocMergeEntity getVisible() {
+	public LocType getMultiLoc() {
 		@Pc(26) int i = -1;
 		if (this.multivarbit != -1) {
 			i = VarbitDefinition.getVarbitValue(this.multivarbit);
@@ -590,12 +590,12 @@ public final class LocMergeEntity {
 	@OriginalMember(owner = "client!pb", name = "d", descriptor = "(I)Z")
 	public boolean hasBackgroundSound() {
 		if (this.multiloc == null) {
-			return this.bgsound_sound != -1 || this.bgsound_random != null;
+			return this.bgsound != -1 || this.bgsounds != null;
 		}
 		for (@Pc(44) int index = 0; index < this.multiloc.length; index++) {
 			if (this.multiloc[index] != -1) {
-				@Pc(70) LocMergeEntity locType = Static271.get(this.multiloc[index]);
-				if (locType.bgsound_sound != -1 || locType.bgsound_random != null) {
+				@Pc(70) LocType locType = Static271.get(this.multiloc[index]);
+				if (locType.bgsound != -1 || locType.bgsounds != null) {
 					return true;
 				}
 			}

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static227 {
@@ -13,7 +13,7 @@ public final class Static227 {
 	public static Component aClass13_25;
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "k", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_94;
+	public static Js5 aClass153_94;
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "o", descriptor = "I")
 	public static int anInt5096;

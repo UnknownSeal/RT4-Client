@@ -4,6 +4,7 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -13,7 +14,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static87 {
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "t", descriptor = "Lclient!ve;")
-	public static com.jagex.runetek4.js5.CacheArchive aClass153_38;
+	public static Js5 aClass153_38;
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "d", descriptor = "Z")
 	public static boolean aBoolean130 = false;
@@ -31,32 +32,6 @@ public final class Static87 {
 			}
 		}
 		return false;
-	}
-
-	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(Lclient!ve;ZLclient!ve;BI)Lclient!cl;")
-	public static AnimFrameset method1803(@OriginalArg(0) com.jagex.runetek4.js5.CacheArchive arg0, @OriginalArg(2) com.jagex.runetek4.js5.CacheArchive arg1, @OriginalArg(4) int arg2) {
-		@Pc(5) boolean local5 = true;
-		@Pc(16) int[] local16 = arg0.method4503(arg2);
-		for (@Pc(18) int local18 = 0; local18 < local16.length; local18++) {
-			@Pc(30) byte[] local30 = arg0.method4502(local16[local18], arg2);
-			if (local30 == null) {
-				local5 = false;
-			} else {
-				@Pc(49) int local49 = (local30[0] & 0xFF) << 8 | local30[1] & 0xFF;
-				@Pc(57) byte[] local57 = arg1.method4502(0, local49);
-				if (local57 == null) {
-					local5 = false;
-				}
-			}
-		}
-		if (!local5) {
-			return null;
-		}
-		try {
-			return new AnimFrameset(arg0, arg1, arg2, false);
-		} catch (@Pc(84) Exception local84) {
-			return null;
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(BI)Lclient!na;")
@@ -249,8 +224,8 @@ public final class Static87 {
 								local518 = (Static273.minimapZoom + 256) * local518 >> 8;
 								local545 = local518 * local276 - local514 * local270 >> 11;
 								local556 = local276 * local514 + local270 * local518 >> 11;
-								local563 = Static173.localPlayer.x + local556 >> 7;
-								local571 = Static173.localPlayer.z - local545 >> 7;
+								local563 = Static173.localPlayer.xFine + local556 >> 7;
+								local571 = Static173.localPlayer.zFine - local545 >> 7;
 								if (Static241.aBoolean302 && (Static274.anInt4999 & 0x40) != 0) {
 									@Pc(583) Component local583 = Static201.method1418(Static98.anInt2512, Static15.anInt506);
 									if (local583 == null) {
@@ -699,7 +674,7 @@ public final class Static87 {
 													}
 													@Pc(2751) Player local2751 = Static159.players[local514];
 													@Pc(2760) AnimationSequence local2760 = local276 == -1 ? null : AnimationSequence.getAnimationSequence(local276);
-													if (local2751 != null && (int) local2751.name.toBase37() << 11 == (local30.modelId & 0xFFFFF800)) {
+													if (local2751 != null && (int) local2751.username.encode37() << 11 == (local30.modelId & 0xFFFFF800)) {
 														local2589 = local2751.model.method1954(null, -1, null, local2760, 0, -1, 0, local30.anInt510, 0);
 													}
 												}

@@ -715,7 +715,7 @@ public final class JString implements StringInterface {
 			local30 = new JagStringWrapper();
 			local30.value = this;
 			this.aBoolean193 = false;
-			Static148.aClass133_13.pushNode(local30, local9);
+			Static148.aClass133_13.put(local30, local9);
 			return this;
 		}
 	}
@@ -792,7 +792,7 @@ public final class JString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "j", descriptor = "(I)J")
-	public final long toBase37() {
+	public final long encode37() {
 		@Pc(7) long local7 = 0L;
 		for (@Pc(14) int local14 = 0; this.anInt4030 > local14 && local14 < 12; local14++) {
 			@Pc(32) byte local32 = this.aByteArray52[local14];
@@ -813,7 +813,7 @@ public final class JString implements StringInterface {
 
 	@OriginalMember(owner = "runetek4.client!na", name = "k", descriptor = "(I)Lclient!na;")
 	public final JString method3159() {
-		@Pc(9) JString local9 = Static79.decode37(this.toBase37());
+		@Pc(9) JString local9 = Static79.decode37(this.encode37());
 		return local9 == null ? Static228.aClass100_967 : local9;
 	}
 

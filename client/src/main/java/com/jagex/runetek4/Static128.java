@@ -13,7 +13,7 @@ public final class Static128 {
 	public static int anInt3143;
 
 	@OriginalMember(owner = "runetek4.client!ka", name = "q", descriptor = "Lclient!ih;")
-	public static final LinkList aClass69_77 = new LinkList();
+	public static final LinkedList aClass69_77 = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!ka", name = "t", descriptor = "[I")
 	public static final int[] WALL_CORNER_TYPE_16_BLOCK_LOC_SPANS = new int[] { 0, 0, 2, 0, 0, 2, 1, 1, 0 };

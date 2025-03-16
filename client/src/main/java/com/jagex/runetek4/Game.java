@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
@@ -428,15 +428,15 @@ public class Game {
             @Pc(1560) Component highPrioritySource;
             @Pc(1555) HookRequest highPriorityRequest;
             do {
-                highPriorityRequest = (HookRequest) Static4.aClass69_2.method2287();
+                highPriorityRequest = (HookRequest) Static4.aClass69_2.removeHead();
                 if (highPriorityRequest == null) {
                     while (true) {
                         do {
-                            highPriorityRequest = (HookRequest) Static115.aClass69_70.method2287();
+                            highPriorityRequest = (HookRequest) Static115.aClass69_70.removeHead();
                             if (highPriorityRequest == null) {
                                 while (true) {
                                     do {
-                                        highPriorityRequest = (HookRequest) Static185.aClass69_101.method2287();
+                                        highPriorityRequest = (HookRequest) Static185.aClass69_101.removeHead();
                                         if (highPriorityRequest == null) {
                                             if (Static24.component == null) {
                                                 Static137.anInt3337 = 0;
@@ -658,7 +658,7 @@ public class Game {
     @OriginalMember(owner = "runetek4.client!nk", name = "c", descriptor = "(IZ)V")
     public static void pushNpcs(@OriginalArg(1) boolean arg0) {
         @Pc(7) int i;
-        @Pc(16) NPCRenderable npc;
+        @Pc(16) Npc npc;
         @Pc(107) int npcSize;
         @Pc(113) int x;
         @Pc(133) int z;
@@ -671,16 +671,16 @@ public class Game {
                 @Pc(42) int npcSize2 = npc.size();
                 @Pc(97) int local97;
                 if (npcSize2 == 1) {
-                    if ((npc.x & 0x7F) == 64 && (npc.z & 0x7F) == 64) {
-                        local97 = npc.x >> 7;
-                        npcSize = npc.z >> 7;
+                    if ((npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
+                        local97 = npc.xFine >> 7;
+                        npcSize = npc.zFine >> 7;
                         if (local97 >= 0 && local97 < 104 && npcSize >= 0 && npcSize < 104) {
                             local171 = Static31.anIntArrayArray6[local97][npcSize]++;
                         }
                     }
-                } else if (((npcSize2 & 0x1) != 0 || (npc.x & 0x7F) == 0 && (npc.z & 0x7F) == 0) && ((npcSize2 & 0x1) != 1 || (npc.x & 0x7F) == 64 && (npc.z & 0x7F) == 64)) {
-                    local97 = npc.x - npcSize2 * 64 >> 7;
-                    npcSize = npc.z - npcSize2 * 64 >> 7;
+                } else if (((npcSize2 & 0x1) != 0 || (npc.xFine & 0x7F) == 0 && (npc.zFine & 0x7F) == 0) && ((npcSize2 & 0x1) != 1 || (npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64)) {
+                    local97 = npc.xFine - npcSize2 * 64 >> 7;
+                    npcSize = npc.zFine - npcSize2 * 64 >> 7;
                     x = npc.size() + local97;
                     if (local97 < 0) {
                         local97 = 0;
@@ -709,9 +709,9 @@ public class Game {
             if (npc != null && npc.isVisible() && npc.type.drawabove == arg0 && npc.type.method2933()) {
                 npcSize = npc.size();
                 if (npcSize == 1) {
-                    if ((npc.x & 0x7F) == 64 && (npc.z & 0x7F) == 64) {
-                        x = npc.x >> 7;
-                        z = npc.z >> 7;
+                    if ((npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
+                        x = npc.xFine >> 7;
+                        z = npc.zFine >> 7;
                         if (x < 0 || x >= 104 || z < 0 || z >= 104) {
                             continue;
                         }
@@ -720,9 +720,9 @@ public class Game {
                             continue;
                         }
                     }
-                } else if ((npcSize & 0x1) == 0 && (npc.x & 0x7F) == 0 && (npc.z & 0x7F) == 0 || (npcSize & 0x1) == 1 && (npc.x & 0x7F) == 64 && (npc.z & 0x7F) == 64) {
-                    x = npc.x - npcSize * 64 >> 7;
-                    z = npc.z - npcSize * 64 >> 7;
+                } else if ((npcSize & 0x1) == 0 && (npc.xFine & 0x7F) == 0 && (npc.zFine & 0x7F) == 0 || (npcSize & 0x1) == 1 && (npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
+                    x = npc.xFine - npcSize * 64 >> 7;
+                    z = npc.zFine - npcSize * 64 >> 7;
                     local158 = z + npcSize;
                     if (z < 0) {
                         z = 0;
@@ -764,8 +764,8 @@ public class Game {
                 if (!npc.type.active) {
                     bitset |= Long.MIN_VALUE;
                 }
-                npc.y = Static207.getHeightmapY(Static55.currentLevel, npc.x, npc.z);
-                Static43.addTemporary(Static55.currentLevel, npc.x, npc.z, npc.y, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.seqStretches);
+                npc.y = Static207.getHeightmapY(Static55.currentLevel, npc.xFine, npc.zFine);
+                Static43.addTemporary(Static55.currentLevel, npc.xFine, npc.zFine, npc.y, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.seqStretches);
             }
         }
     }
@@ -773,7 +773,7 @@ public class Game {
     @OriginalMember(owner = "runetek4.client!cn", name = "b", descriptor = "(ZI)V")
     public static void pushPlayers(@OriginalArg(0) boolean arg0) {
         @Pc(3) int local3 = Static267.playerCount;
-        if (Static115.anInt2939 == Static173.localPlayer.x >> 7 && Static173.localPlayer.z >> 7 == Static84.anInt2255) {
+        if (Static115.anInt2939 == Static173.localPlayer.xFine >> 7 && Static173.localPlayer.zFine >> 7 == Static84.anInt2255) {
             Static115.anInt2939 = 0;
         }
         if (arg0) {
@@ -797,16 +797,16 @@ public class Game {
                 @Pc(55) int local55 = player.size();
                 @Pc(77) int stx;
                 if (local55 == 1) {
-                    if ((player.x & 0x7F) == 64 && (player.z & 0x7F) == 64) {
-                        stx = player.x >> 7;
-                        stz = player.z >> 7;
+                    if ((player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 64) {
+                        stx = player.xFine >> 7;
+                        stz = player.zFine >> 7;
                         if (stx >= 0 && stx < 104 && stz >= 0 && stz < 104) {
                             local106 = Static31.anIntArrayArray6[stx][stz]++;
                         }
                     }
-                } else if (((local55 & 0x1) != 0 || (player.x & 0x7F) == 0 && (player.z & 0x7F) == 0) && ((local55 & 0x1) != 1 || (player.x & 0x7F) == 64 && (player.z & 0x7F) == 64)) {
-                    stx = player.x - local55 * 64 >> 7;
-                    stz = player.z - local55 * 64 >> 7;
+                } else if (((local55 & 0x1) != 0 || (player.xFine & 0x7F) == 0 && (player.zFine & 0x7F) == 0) && ((local55 & 0x1) != 1 || (player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 64)) {
+                    stx = player.xFine - local55 * 64 >> 7;
+                    stz = player.zFine - local55 * 64 >> 7;
                     local182 = player.size() + stx;
                     if (local182 > 104) {
                         local182 = 104;
@@ -840,14 +840,14 @@ public class Game {
             }
             if (player != null && player.isVisible()) {
                 player.lowMemory = false;
-                if ((Static15.lowMemory && Static267.playerCount > 200 || Static267.playerCount > 50) && !arg0 && player.secondarySeqId == player.method2681().anInt1037) {
+                if ((Static15.lowMemory && Static267.playerCount > 200 || Static267.playerCount > 50) && !arg0 && player.movementSeqId == player.getBasType().idleAnimationId) {
                     player.lowMemory = true;
                 }
                 stz = player.size();
                 if (stz == 1) {
-                    if ((player.x & 0x7F) == 64 && (player.z & 0x7F) == 64) {
-                        local182 = player.x >> 7;
-                        local200 = player.z >> 7;
+                    if ((player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 64) {
+                        local182 = player.xFine >> 7;
+                        local200 = player.zFine >> 7;
                         if (local182 < 0 || local182 >= 104 || local200 < 0 || local200 >= 104) {
                             continue;
                         }
@@ -856,10 +856,10 @@ public class Game {
                             continue;
                         }
                     }
-                } else if ((stz & 0x1) == 0 && (player.x & 0x7F) == 0 && (player.z & 0x7F) == 0 || (stz & 0x1) == 1 && (player.x & 0x7F) == 64 && (player.z & 0x7F) == 0) {
-                    local182 = player.x - stz * 64 >> 7;
+                } else if ((stz & 0x1) == 0 && (player.xFine & 0x7F) == 0 && (player.zFine & 0x7F) == 0 || (stz & 0x1) == 1 && (player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 0) {
+                    local182 = player.xFine - stz * 64 >> 7;
                     local214 = stz + local182;
-                    local200 = player.z - stz * 64 >> 7;
+                    local200 = player.zFine - stz * 64 >> 7;
                     if (local214 > 104) {
                         local214 = 104;
                     }
@@ -898,12 +898,12 @@ public class Game {
                     }
                 }
                 if (player.locModel == null || Static83.loopCycle < player.locStartCycle || player.locStopCycle <= Static83.loopCycle) {
-                    player.y = Static207.getHeightmapY(Static55.currentLevel, player.x, player.z);
-                    Static43.addTemporary(Static55.currentLevel, player.x, player.z, player.y, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
+                    player.y = Static207.getHeightmapY(Static55.currentLevel, player.xFine, player.zFine);
+                    Static43.addTemporary(Static55.currentLevel, player.xFine, player.zFine, player.y, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
                 } else {
                     player.lowMemory = false;
-                    player.y = Static207.getHeightmapY(Static55.currentLevel, player.x, player.z);
-                    Static184.addTemporary(Static55.currentLevel, player.x, player.z, player.y, player, player.anInt3381, id, player.anInt3384, player.anInt3374, player.anInt3411, player.anInt3410);
+                    player.y = Static207.getHeightmapY(Static55.currentLevel, player.xFine, player.zFine);
+                    Static184.addTemporary(Static55.currentLevel, player.xFine, player.zFine, player.y, player, player.anInt3381, id, player.anInt3384, player.anInt3374, player.anInt3411, player.anInt3410);
                 }
             }
         }
@@ -1158,9 +1158,9 @@ public class Game {
                 proj.unlink();
             } else if (Static83.loopCycle >= projAnim.startCycle) {
                 if (projAnim.target > 0) {
-                    @Pc(54) NPCRenderable npc = Static175.npcs[projAnim.target - 1];
-                    if (npc != null && npc.x >= 0 && npc.x < 13312 && npc.z >= 0 && npc.z < 13312) {
-                        projAnim.updateVelocity(npc.z, Static83.loopCycle, Static207.getHeightmapY(projAnim.level, npc.x, npc.z) - projAnim.anInt4805, npc.x);
+                    @Pc(54) Npc npc = Static175.npcs[projAnim.target - 1];
+                    if (npc != null && npc.xFine >= 0 && npc.xFine < 13312 && npc.zFine >= 0 && npc.zFine < 13312) {
+                        projAnim.updateVelocity(npc.zFine, Static83.loopCycle, Static207.getHeightmapY(projAnim.level, npc.xFine, npc.zFine) - projAnim.anInt4805, npc.xFine);
                     }
                 }
                 if (projAnim.target < 0) {
@@ -1171,8 +1171,8 @@ public class Game {
                     } else {
                         player = Static159.players[index];
                     }
-                    if (player != null && player.x >= 0 && player.x < 13312 && player.z >= 0 && player.z < 13312) {
-                        projAnim.updateVelocity(player.z, Static83.loopCycle, Static207.getHeightmapY(projAnim.level, player.x, player.z) - projAnim.anInt4805, player.x);
+                    if (player != null && player.xFine >= 0 && player.xFine < 13312 && player.zFine >= 0 && player.zFine < 13312) {
+                        projAnim.updateVelocity(player.zFine, Static83.loopCycle, Static207.getHeightmapY(projAnim.level, player.xFine, player.zFine) - projAnim.anInt4805, player.xFine);
                     }
                 }
                 projAnim.update(Static178.sceneDelta);

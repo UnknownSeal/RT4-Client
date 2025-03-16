@@ -2,6 +2,7 @@ package com.jagex.runetek4.audio;
 
 import com.jagex.runetek4.PcmSound;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -31,6 +32,12 @@ public final class SynthSound {
 		}
 		this.loop_begin = packet.g2();
 		this.loop_end = packet.g2();
+	}
+
+	@OriginalMember(owner = "runetek4.client!sl", name = "a", descriptor = "(Lclient!ve;II)Lclient!sl;")
+	public static SynthSound create(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+		@Pc(5) byte[] local5 = arg0.getfile(arg1, arg2);
+		return local5 == null ? null : new SynthSound(new Packet(local5));
 	}
 
 	@OriginalMember(owner = "runetek4.client!sl", name = "a", descriptor = "()[B")
@@ -65,7 +72,7 @@ public final class SynthSound {
 	}
 
 	@OriginalMember(owner = "runetek4.client!sl", name = "b", descriptor = "()Lclient!kj;")
-	public final PcmSound method3989() {
+	public final PcmSound toPcmSound() {
 		@Pc(2) byte[] local2 = this.method3987();
 		return new PcmSound(22050, local2, this.loop_begin * 22050 / 1000, this.loop_end * 22050 / 1000);
 	}

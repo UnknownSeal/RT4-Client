@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.FloType;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -49,8 +49,8 @@ public final class Static199 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "a", descriptor = "(ZLclient!ve;)V")
-	public static void method3595(@OriginalArg(1) CacheArchive arg0) {
+	public static void method3595(@OriginalArg(1) Js5 arg0) {
 		Static35.aClass153_22 = arg0;
-		Static98.anInt2510 = Static35.aClass153_22.fileLength(4);
+		Static98.anInt2510 = Static35.aClass153_22.getGroupCapacity(4);
 	}
 }

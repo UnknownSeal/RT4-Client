@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.LocType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -77,9 +77,9 @@ public final class Static166 {
 											Static83.anIntArrayArrayArray3[local84][local95] = new int[4096];
 										}
 										local214--;
-										@Pc(312) LocMergeEntity local312 = Static271.get(local214);
+										@Pc(312) LocType local312 = Static271.get(local214);
 										if (local312.multiloc != null) {
-											local312 = local312.getVisible();
+											local312 = local312.getMultiLoc();
 											if (local312 == null || local312.mapfunction == -1) {
 												continue;
 											}

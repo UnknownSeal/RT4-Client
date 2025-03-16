@@ -110,7 +110,7 @@ public final class Static193 {
 					@Pc(233) Class3_Sub14 local233 = (Class3_Sub14) local103.getNode(local227);
 					if (local233 == null) {
 						local233 = new Class3_Sub14((local161 >> 16) - 1, (float) (local161 & 0xFFFF), false, arg13 != null, local155);
-						local103.pushNode(local233, local227);
+						local103.put(local233, local227);
 					}
 					local233.anInt2484++;
 					local233.anInt2482 += local219;
@@ -118,7 +118,7 @@ public final class Static193 {
 						local233 = (Class3_Sub14) local103.getNode(local188);
 						if (local233 == null) {
 							local233 = new Class3_Sub14((local169 >> 16) - 1, (float) (local169 & 0xFFFF), false, arg13 != null, local155);
-							local103.pushNode(local233, local188);
+							local103.put(local233, local188);
 						}
 						local233.anInt2484++;
 						local233.anInt2482 += local219;
@@ -128,7 +128,7 @@ public final class Static193 {
 						local233 = (Class3_Sub14) local103.getNode(local340);
 						if (local233 == null) {
 							local233 = new Class3_Sub14((local206 >> 16) - 1, (float) (local206 & 0xFFFF), false, arg13 != null, local155);
-							local103.pushNode(local233, local340);
+							local103.put(local233, local340);
 						}
 						local233.anInt2482 += local219;
 						local233.anInt2484++;
@@ -137,7 +137,7 @@ public final class Static193 {
 						local233 = (Class3_Sub14) local103.getNode(local214);
 						if (local233 == null) {
 							local233 = new Class3_Sub14((local196 >> 16) - 1, (float) (local196 & 0xFFFF), false, arg13 != null, local155);
-							local103.pushNode(local233, local214);
+							local103.put(local233, local214);
 						}
 						local233.anInt2484++;
 						local233.anInt2482 += local219;
@@ -146,7 +146,7 @@ public final class Static193 {
 			}
 		}
 		@Pc(493) Class3_Sub14 local493;
-		for (local493 = (Class3_Sub14) local103.peekFront(); local493 != null; local493 = (Class3_Sub14) local103.prev()) {
+		for (local493 = (Class3_Sub14) local103.head(); local493 != null; local493 = (Class3_Sub14) local103.prev()) {
 			local493.method1940();
 		}
 		for (local16 = 1; local16 <= 102; local16++) {
@@ -262,7 +262,7 @@ public final class Static193 {
 				}
 			}
 		}
-		for (local493 = (Class3_Sub14) local103.peekFront(); local493 != null; local493 = (Class3_Sub14) local103.prev()) {
+		for (local493 = (Class3_Sub14) local103.head(); local493 != null; local493 = (Class3_Sub14) local103.prev()) {
 			if (local493.anInt2483 == 0) {
 				local493.unlink();
 			} else {

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.ImageRGB;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -25,7 +25,7 @@ public final class Static265 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vj", name = "a", descriptor = "(IIILclient!ve;)[Lclient!mm;")
-	public static ImageRGB[] method4523(@OriginalArg(2) int arg0, @OriginalArg(3) CacheArchive arg1) {
+	public static ImageRGB[] method4523(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {
 		return Static234.method4016(arg1, 0, arg0) ? Static14.method474() : null;
 	}
 }

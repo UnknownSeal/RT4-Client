@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.audio.SynthSound;
 import com.jagex.runetek4.audio.vorbis.VorbisSound;
 import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -19,13 +19,13 @@ public final class SoundBank {
 	private final HashTable aClass133_12 = new HashTable(256);
 
 	@OriginalMember(owner = "runetek4.client!le", name = "b", descriptor = "Lclient!ve;")
-	private final CacheArchive aClass153_52;
+	private final Js5 aClass153_52;
 
 	@OriginalMember(owner = "runetek4.client!le", name = "i", descriptor = "Lclient!ve;")
-	private final CacheArchive aClass153_53;
+	private final Js5 aClass153_53;
 
 	@OriginalMember(owner = "runetek4.client!le", name = "<init>", descriptor = "(Lclient!ve;Lclient!ve;)V")
-	public SoundBank(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) CacheArchive arg1) {
+	public SoundBank(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
 		this.aClass153_52 = arg0;
 		this.aClass153_53 = arg1;
 	}
@@ -39,12 +39,12 @@ public final class SoundBank {
 		if (local37 != null) {
 			return local37;
 		} else if (arg0 == null || arg0[0] > 0) {
-			@Pc(59) SynthSound local59 = Static292.method3988(this.aClass153_52, arg1, arg2);
+			@Pc(59) SynthSound local59 = SynthSound.create(this.aClass153_52, arg1, arg2);
 			if (local59 == null) {
 				return null;
 			}
-			local37 = local59.method3989();
-			this.aClass133_12.pushNode(local37, local30);
+			local37 = local59.toPcmSound();
+			this.aClass133_12.put(local37, local30);
 			if (arg0 != null) {
 				arg0[0] -= local37.aByteArray47.length;
 			}
@@ -58,7 +58,7 @@ public final class SoundBank {
 	public final PcmSound method2738(@OriginalArg(0) int arg0, @OriginalArg(2) int[] arg1) {
 		if (this.aClass153_52.capacity() == 1) {
 			return this.method2737(arg1, 0, arg0);
-		} else if (this.aClass153_52.fileLength(arg0) == 1) {
+		} else if (this.aClass153_52.getGroupCapacity(arg0) == 1) {
 			return this.method2737(arg1, arg0, 0);
 		} else {
 			throw new RuntimeException();
@@ -80,14 +80,14 @@ public final class SoundBank {
 				if (local53 == null) {
 					return null;
 				}
-				this.aClass133_11.pushNode(local53, local26);
+				this.aClass133_11.put(local53, local26);
 			}
 			local33 = local53.method2341(arg1);
 			if (local33 == null) {
 				return null;
 			} else {
 				local53.unlink();
-				this.aClass133_12.pushNode(local33, local26);
+				this.aClass133_12.put(local33, local26);
 				return local33;
 			}
 		} else {
@@ -99,7 +99,7 @@ public final class SoundBank {
 	public final PcmSound method2741(@OriginalArg(1) int arg0, @OriginalArg(2) int[] arg1) {
 		if (this.aClass153_53.capacity() == 1) {
 			return this.method2740(0, arg1, arg0);
-		} else if (this.aClass153_53.fileLength(arg0) == 1) {
+		} else if (this.aClass153_53.getGroupCapacity(arg0) == 1) {
 			return this.method2740(arg0, arg1, 0);
 		} else {
 			throw new RuntimeException();

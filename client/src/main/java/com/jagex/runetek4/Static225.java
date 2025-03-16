@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,7 +14,7 @@ public final class Static225 {
 	public static int originX;
 
 	@OriginalMember(owner = "runetek4.client!se", name = "l", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_92;
+	public static Js5 aClass153_92;
 
 	@OriginalMember(owner = "runetek4.client!se", name = "h", descriptor = "I")
 	public static int anInt5073 = -1;
@@ -99,7 +99,7 @@ public final class Static225 {
 			local43.p1(10);
 			local43.p2((int) (Math.random() * 99999.0D));
 			local43.p2(530);
-			local43.p8(Static186.username.toBase37());
+			local43.p8(Static186.username.encode37());
 			local43.p4((int) (Math.random() * 9.9999999E7D));
 			local43.pjstr(Static186.password);
 			local43.p4((int) (Math.random() * 9.9999999E7D));

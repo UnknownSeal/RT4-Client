@@ -287,16 +287,16 @@ public final class Static2 {
 			arg0.modelType = 5;
 			arg0.modelId = -1;
 		} else if (local16 == 328) {
-			if (Static173.localPlayer.name == null) {
+			if (Static173.localPlayer.username == null) {
 				arg0.modelId = 0;
 			} else {
 				arg0.modelXAngle = 150;
 				arg0.modelYAngle = (int) (Math.sin((double) Static83.loopCycle / 40.0D) * 256.0D) & 0x7FF;
 				arg0.modelType = 5;
-				arg0.modelId = ((int) Static173.localPlayer.name.toBase37() << 11) + 2047;
+				arg0.modelId = ((int) Static173.localPlayer.username.encode37() << 11) + 2047;
 				arg0.anInt496 = Static173.localPlayer.anInt3388;
 				arg0.anInt500 = 0;
-				arg0.anInt522 = Static173.localPlayer.secondarySeqId;
+				arg0.anInt522 = Static173.localPlayer.movementSeqId;
 				arg0.anInt510 = Static173.localPlayer.anInt3407;
 			}
 		}

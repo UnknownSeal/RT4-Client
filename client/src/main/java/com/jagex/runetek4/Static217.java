@@ -4,7 +4,7 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -22,7 +22,7 @@ public final class Static217 {
 	public static int anInt4901 = -1;
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "U", descriptor = "Lclient!ih;")
-	public static final LinkList projectiles = new LinkList();
+	public static final LinkedList projectiles = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "Z", descriptor = "[I")
 	public static final int[] anIntArray434 = new int[64];
@@ -52,12 +52,12 @@ public final class Static217 {
 			}
 			@Pc(95) JString local95 = Static266.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
 			if (arg2.combatLevel < arg2.anInt1656) {
-				local158 = Static34.method882(new JString[] { arg2.getName(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, Static173.localPlayer.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static78.aClass100_465, Static123.method2423(arg2.anInt1656 - arg2.combatLevel), Static72.aClass100_448 });
+				local158 = Static34.method882(new JString[] { arg2.getUsername(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, Static173.localPlayer.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static78.aClass100_465, Static123.method2423(arg2.anInt1656 - arg2.combatLevel), Static72.aClass100_448 });
 			} else {
-				local158 = Static34.method882(new JString[] { arg2.getName(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, Static173.localPlayer.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static72.aClass100_448 });
+				local158 = Static34.method882(new JString[] { arg2.getUsername(), local22 ? Static123.getCombatLevelColorTag(arg2.combatLevel, Static173.localPlayer.combatLevel) : Static204.aClass100_896, Static123.aClass100_593, local95, Static123.method2423(arg2.combatLevel), Static72.aClass100_448 });
 			}
 		} else {
-			local158 = Static34.method882(new JString[] { arg2.getName(), Static123.aClass100_593, LocalizedText.SKILL, Static123.method2423(arg2.anInt1671), Static72.aClass100_448 });
+			local158 = Static34.method882(new JString[] { arg2.getUsername(), Static123.aClass100_593, LocalizedText.SKILL, Static123.method2423(arg2.anInt1671), Static72.aClass100_448 });
 		}
 		@Pc(275) int local275;
 		if (Static260.anInt5014 == 1) {
@@ -130,12 +130,12 @@ public final class Static217 {
 		Static213.aClass153_88.method4499();
 		Static249.aClass153_100.method4499();
 		Static41.aClass153_25.method4499();
-		Static248.aClass153_75.method4499();
+		client.js5Archive4.method4499();
 		Static26.aClass153_16.method4499();
 		Static130.aClass153_47.method4499();
 		Static267.aClass153_109.method4499();
 		Static209.aClass153_86.method4499();
-		CacheArchive.huffmanCacheArchive.method4499();
+		CacheArchive.huffmanJs5.method4499();
 		Static214.aClass153_106.method4499();
 		Static16.aClass153_9.method4499();
 		Static73.aClass99_10.method3104();
@@ -165,7 +165,7 @@ public final class Static217 {
 				@Pc(68) int local68 = local64 >> 2;
 				@Pc(72) int local72 = local64 & 0x3;
 				if (arg3 == local60 && local56 >= arg8 && local56 < arg8 + 8 && arg9 <= local50 && arg9 + 8 > local50) {
-					@Pc(103) LocMergeEntity local103 = Static271.get(local7);
+					@Pc(103) LocType local103 = Static271.get(local7);
 					@Pc(120) int local120 = Static52.method1286(local50 & 0x7, arg4, local72, local103.length, local103.width, local56 & 0x7) + arg5;
 					@Pc(137) int local137 = Static241.method4541(local103.width, arg4, local103.length, local56 & 0x7, local72, local50 & 0x7) + arg6;
 					if (local120 > 0 && local137 > 0 && local120 < 103 && local137 < 103) {

@@ -27,7 +27,7 @@ public final class Static220 {
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(IBI)V")
 	public static void method3797(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(9) LinkList local9 = Static159.levelObjStacks[Static55.currentLevel][arg1][arg0];
+		@Pc(9) LinkedList local9 = Static159.levelObjStacks[Static55.currentLevel][arg1][arg0];
 		if (local9 == null) {
 			Static187.method3420(Static55.currentLevel, arg1, arg0);
 			return;
@@ -50,7 +50,7 @@ public final class Static220 {
 			Static187.method3420(Static55.currentLevel, arg1, arg0);
 			return;
 		}
-		local9.method2283(local30);
+		local9.addHead(local30);
 		@Pc(89) ObjStack local89 = null;
 		@Pc(91) ObjStack local91 = null;
 		for (local35 = (ObjStackNode) local9.head(); local35 != null; local35 = (ObjStackNode) local9.next()) {

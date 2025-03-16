@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.media.renderable.Renderable;
 import com.jagex.runetek4.dash3d.entity.LocEntity;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.scene.Scene;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -18,7 +18,7 @@ public final class Static185 {
 	public static float aFloat23;
 
 	@OriginalMember(owner = "runetek4.client!p", name = "c", descriptor = "Lclient!ih;")
-	public static final LinkList aClass69_101 = new LinkList();
+	public static final LinkedList aClass69_101 = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!p", name = "d", descriptor = "I")
 	public static int anInt4369 = 0;
@@ -46,7 +46,7 @@ public final class Static185 {
 		if (level < Static146.firstvisibleLevel) {
 			Static146.firstvisibleLevel = level;
 		}
-		@Pc(62) LocMergeEntity locType = Static271.get(arg5);
+		@Pc(62) LocType locType = Static271.get(arg5);
 		if (GlRenderer.enabled && locType.istexture) {
 			return;
 		}

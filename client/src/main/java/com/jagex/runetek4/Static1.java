@@ -257,7 +257,7 @@ public final class Static1 {
 			}
 		}
 		@Pc(1161) Class3_Sub14 local1161;
-		for (local1161 = (Class3_Sub14) local10.peekFront(); local1161 != null; local1161 = (Class3_Sub14) local10.prev()) {
+		for (local1161 = (Class3_Sub14) local10.head(); local1161 != null; local1161 = (Class3_Sub14) local10.prev()) {
 			local1161.method1940();
 		}
 		for (local12 = 1; local12 <= 102; local12++) {
@@ -522,7 +522,7 @@ public final class Static1 {
 				}
 			}
 		}
-		for (local1161 = (Class3_Sub14) local10.peekFront(); local1161 != null; local1161 = (Class3_Sub14) local10.prev()) {
+		for (local1161 = (Class3_Sub14) local10.head(); local1161 != null; local1161 = (Class3_Sub14) local10.prev()) {
 			if (local1161.anInt2483 == 0) {
 				local1161.unlink();
 			} else {

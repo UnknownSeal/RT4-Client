@@ -36,8 +36,8 @@ public final class Static18 {
 		if (arg0.anInt3431 == 0) {
 			arg0.dstYaw = 1024;
 		}
-		arg0.x += (local20 - arg0.x) / local8;
-		arg0.z += (local36 - arg0.z) / local8;
+		arg0.xFine += (local20 - arg0.xFine) / local8;
+		arg0.zFine += (local36 - arg0.zFine) / local8;
 		if (arg0.anInt3431 == 1) {
 			arg0.dstYaw = 1536;
 		}

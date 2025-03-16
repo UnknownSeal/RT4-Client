@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import java.awt.Component;
 import java.lang.reflect.Method;
 
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -70,7 +70,7 @@ public final class Static19 {
 		}
 		for (local11 = 0; local11 < Static272.npcCount; local11++) {
 			@Pc(68) int local68 = Static33.npcIds[local11];
-			@Pc(72) NPCRenderable local72 = Static175.npcs[local68];
+			@Pc(72) Npc local72 = Static175.npcs[local68];
 			if (local72 != null && local72.chatLoops > 0) {
 				local72.chatLoops--;
 				if (local72.chatLoops == 0) {

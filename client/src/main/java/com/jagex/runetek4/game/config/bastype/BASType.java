@@ -16,16 +16,16 @@ public final class BASType {
 	public int anInt1036 = -1;
 
 	@OriginalMember(owner = "client!ck", name = "q", descriptor = "I")
-	public int anInt1037 = -1;
+	public int idleAnimationId = -1;
 
 	@OriginalMember(owner = "client!ck", name = "w", descriptor = "I")
-	public int anInt1043 = -1;
+	public int runCCWTurnAnimationId = -1;
 
 	@OriginalMember(owner = "client!ck", name = "u", descriptor = "I")
 	public int anInt1041 = 0;
 
 	@OriginalMember(owner = "client!ck", name = "v", descriptor = "I")
-	public int anInt1042 = -1;
+	public int slowWalkFullTurnAnimationId = -1;
 
 	@OriginalMember(owner = "client!ck", name = "e", descriptor = "I")
 	public int anInt1031 = 0;
@@ -34,10 +34,10 @@ public final class BASType {
 	public int anInt1050 = 0;
 
 	@OriginalMember(owner = "client!ck", name = "E", descriptor = "I")
-	public int anInt1048 = -1;
+	public int slowWalkCWTurnAnimationId = -1;
 
 	@OriginalMember(owner = "client!ck", name = "M", descriptor = "I")
-	public int anInt1054 = -1;
+	public int runFullTurnAnimationId = -1;
 
 	@OriginalMember(owner = "client!ck", name = "N", descriptor = "I")
 	public int anInt1055 = 0;
@@ -58,7 +58,7 @@ public final class BASType {
 	public int anInt1059 = 0;
 
 	@OriginalMember(owner = "client!ck", name = "z", descriptor = "I")
-	public int anInt1045 = -1;
+	public int runCWTurnAnimationId = -1;
 
 	@OriginalMember(owner = "client!ck", name = "r", descriptor = "I")
 	public int anInt1038 = 0;
@@ -67,16 +67,16 @@ public final class BASType {
 	public int anInt1065 = 0;
 
 	@OriginalMember(owner = "client!ck", name = "ab", descriptor = "I")
-	public int anInt1062 = -1;
+	public int slowWalkAnimationId = -1;
 
 	@OriginalMember(owner = "client!ck", name = "t", descriptor = "I")
 	public int anInt1040 = 0;
 
 	@OriginalMember(owner = "client!ck", name = "U", descriptor = "I")
-	public int anInt1058 = -1;
+	public int runAnimationId = -1;
 
 	@OriginalMember(owner = "client!ck", name = "ib", descriptor = "I")
-	public int anInt1066 = -1;
+	public int slowWalkCCWTurnAnimationId = -1;
 
 	@OriginalMember(owner = "client!ck", name = "bb", descriptor = "I")
 	public int anInt1063 = 0;
@@ -104,30 +104,30 @@ public final class BASType {
 	@OriginalMember(owner = "client!ck", name = "a", descriptor = "(IBLclient!wa;)V")
 	private void decode(@OriginalArg(2) Packet packet, @OriginalArg(0) int code) {
 		if (code == 1) {
-			this.anInt1037 = packet.g2();
+			this.idleAnimationId = packet.g2();
 			this.anInt1051 = packet.g2();
 			if (this.anInt1051 == 65535) {
 				this.anInt1051 = -1;
 			}
-			if (this.anInt1037 == 65535) {
-				this.anInt1037 = -1;
+			if (this.idleAnimationId == 65535) {
+				this.idleAnimationId = -1;
 			}
 		} else if (code == 2) {
-			this.anInt1062 = packet.g2();
+			this.slowWalkAnimationId = packet.g2();
 		} else if (code == 3) {
-			this.anInt1042 = packet.g2();
+			this.slowWalkFullTurnAnimationId = packet.g2();
 		} else if (code == 4) {
-			this.anInt1066 = packet.g2();
+			this.slowWalkCCWTurnAnimationId = packet.g2();
 		} else if (code == 5) {
-			this.anInt1048 = packet.g2();
+			this.slowWalkCWTurnAnimationId = packet.g2();
 		} else if (code == 6) {
-			this.anInt1058 = packet.g2();
+			this.runAnimationId = packet.g2();
 		} else if (code == 7) {
-			this.anInt1054 = packet.g2();
+			this.runFullTurnAnimationId = packet.g2();
 		} else if (code == 8) {
-			this.anInt1043 = packet.g2();
+			this.runCCWTurnAnimationId = packet.g2();
 		} else if (code == 9) {
-			this.anInt1045 = packet.g2();
+			this.runCWTurnAnimationId = packet.g2();
 		} else if (code == 26) {
 			this.anInt1059 = (short) (packet.g1() * 4);
 			this.anInt1050 = (short) (packet.g1() * 4);

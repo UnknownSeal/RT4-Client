@@ -15,7 +15,7 @@ public final class ColorImageCache {
 	private int anInt4471 = -1;
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "p", descriptor = "Lclient!ih;")
-	private LinkList aClass69_103 = new LinkList();
+	private LinkedList aClass69_103 = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "t", descriptor = "Z")
 	public boolean aBoolean221 = false;
@@ -78,7 +78,7 @@ public final class ColorImageCache {
 			} else {
 				this.aBoolean221 = false;
 			}
-			this.aClass69_103.method2283(local29);
+			this.aClass69_103.addHead(local29);
 			return this.anIntArrayArray34[local29.anInt4761];
 		}
 	}

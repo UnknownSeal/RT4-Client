@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.media.renderable.Renderable;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import com.jagex.runetek4.scene.tile.Wall;
@@ -15,7 +15,7 @@ public final class Static262 {
 	public static int anInt5752;
 
 	@OriginalMember(owner = "runetek4.client!vf", name = "n", descriptor = "Lclient!ve;")
-	public static CacheArchive configClientLarge;
+	public static Js5 configClientLarge;
 
 	@OriginalMember(owner = "runetek4.client!vf", name = "a", descriptor = "Lclient!n;")
 	public static final NodeCache aClass99_34 = new NodeCache(64);

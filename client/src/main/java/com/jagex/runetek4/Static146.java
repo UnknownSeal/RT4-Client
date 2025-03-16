@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -14,7 +14,7 @@ public final class Static146 {
 	public static float aFloat15;
 
 	@OriginalMember(owner = "runetek4.client!lg", name = "g", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_54;
+	public static Js5 aClass153_54;
 
 	@OriginalMember(owner = "runetek4.client!lg", name = "b", descriptor = "Z")
 	public static boolean aBoolean174 = false;
@@ -35,7 +35,7 @@ public final class Static146 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!lg", name = "a", descriptor = "(Lclient!ve;BII)[Lclient!ok;")
-	public static IndexedSprite[] method2749(@OriginalArg(0) CacheArchive arg0, @OriginalArg(3) int arg1) {
+	public static IndexedSprite[] method2749(@OriginalArg(0) Js5 arg0, @OriginalArg(3) int arg1) {
 		return Static234.method4016(arg0, 0, arg1) ? Static253.method4331() : null;
 	}
 

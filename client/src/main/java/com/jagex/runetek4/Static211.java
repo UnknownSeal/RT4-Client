@@ -50,6 +50,6 @@ public final class Static211 {
 		Static11.aClass62_1 = Static107.method2262(22050, GameShell.signLink, GameShell.canvas, 0);
 		Static11.aClass62_1.method3566(Static148.aClass3_Sub3_Sub4_1);
 		Static147.aClass62_2 = Static107.method2262(2048, GameShell.signLink, GameShell.canvas, 1);
-		Static147.aClass62_2.method3566(Static204.soundStream);
+		Static147.aClass62_2.method3566(client.soundStream);
 	}
 }

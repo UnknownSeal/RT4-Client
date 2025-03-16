@@ -49,7 +49,7 @@ public final class LruHashTable {
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(I)Lclient!ab;")
 	public final Node method1808() {
-		return this.aClass133_5.peekFront();
+		return this.aClass133_5.head();
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(Lclient!rg;JB)V")
@@ -66,7 +66,7 @@ public final class LruHashTable {
 		} else {
 			this.anInt2314--;
 		}
-		this.aClass133_5.pushNode(arg0, arg1);
+		this.aClass133_5.put(arg0, arg1);
 		this.aClass16_1.pushBack(arg0);
 	}
 

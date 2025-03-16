@@ -4,7 +4,7 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.media.renderable.Renderable;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.scene.InteractiveObject;
 import com.jagex.runetek4.scene.Scene;
 import com.jagex.runetek4.scene.tile.FloorDecoration;
@@ -82,7 +82,7 @@ public final class Static43 {
 		}
 		@Pc(57) int local57 = (int) local9 >> 14 & 0x1F;
 		@Pc(70) int local70 = (int) (local9 >>> 32) & Integer.MAX_VALUE;
-		@Pc(74) LocMergeEntity local74 = Static271.get(local70);
+		@Pc(74) LocType local74 = Static271.get(local70);
 		if (local74.hasBackgroundSound()) {
 			AreaSoundManager.remove(arg1, local74, arg0, arg2);
 		}

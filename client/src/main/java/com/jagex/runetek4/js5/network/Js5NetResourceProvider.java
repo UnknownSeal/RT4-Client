@@ -35,7 +35,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private int anInt578 = 0;
 
 	@OriginalMember(owner = "client!bg", name = "R", descriptor = "Lclient!ih;")
-	private final LinkList aClass69_16 = new LinkList();
+	private final LinkedList aClass69_16 = new LinkedList();
 
 	@OriginalMember(owner = "client!bg", name = "V", descriptor = "J")
 	private long aLong20 = 0L;
@@ -50,7 +50,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private boolean aBoolean35;
 
 	@OriginalMember(owner = "client!bg", name = "U", descriptor = "Lclient!ih;")
-	private LinkList aClass69_17;
+	private LinkedList aClass69_17;
 
 	@OriginalMember(owner = "client!bg", name = "J", descriptor = "Lclient!k;")
 	private final Js5CacheQueue aClass80_2;
@@ -81,7 +81,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 			this.aBoolean35 = false;
 		} else {
 			this.aBoolean35 = true;
-			this.aClass69_17 = new LinkList();
+			this.aClass69_17 = new LinkedList();
 		}
 		this.aClass80_2 = arg4;
 		this.anInt573 = arg5;
@@ -178,7 +178,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 		if (this.aClass49_2 != null) {
 			this.aBoolean36 = true;
 			if (this.aClass69_17 == null) {
-				this.aClass69_17 = new LinkList();
+				this.aClass69_17 = new LinkedList();
 			}
 		}
 	}
@@ -290,7 +290,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 		if (!this.aBoolean37 || this.aLong20 > MonotonicTime.get()) {
 			return;
 		}
-		for (@Pc(331) Js5Request local331 = (Js5Request) this.requests.peekFront(); local331 != null; local331 = (Js5Request) this.requests.prev()) {
+		for (@Pc(331) Js5Request local331 = (Js5Request) this.requests.head(); local331 != null; local331 = (Js5Request) this.requests.prev()) {
 			if (!local331.awaitingResponse) {
 				if (local331.aBoolean227) {
 					if (!local331.urgent) {
@@ -353,7 +353,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 			} else {
 				throw new RuntimeException();
 			}
-			this.requests.pushNode(request, group);
+			this.requests.put(request, group);
 		}
 		if (request.awaitingResponse) {
 			return null;
@@ -379,7 +379,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				request.unlink();
 				if (request.urgent && !this.tcpClient.isUrgentsFull()) {
 					local252 = this.tcpClient.method2330(this.anInt576, (byte) 2, group, true);
-					this.requests.pushNode(local252, group);
+					this.requests.put(local252, group);
 				}
 				return null;
 			}
@@ -426,7 +426,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 			request.unlink();
 			if (request.urgent && !this.tcpClient.isUrgentsFull()) {
 				local252 = this.tcpClient.method2330(this.anInt576, (byte) 2, group, true);
-				this.requests.pushNode(local252, group);
+				this.requests.put(local252, group);
 			}
 			return null;
 		}

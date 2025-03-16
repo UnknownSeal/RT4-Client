@@ -2,8 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.dash3d.entity.LocType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -15,19 +14,6 @@ public final class Static271 {
 
 	@OriginalMember(owner = "runetek4.client!wc", name = "g", descriptor = "I")
 	public static int anInt5804 = 0;
-
-	@OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(Lclient!e;I)V")
-	public static void method4597(@OriginalArg(0) Player arg0) {
-		@Pc(10) AreaSound local10 = (AreaSound) AreaSoundManager.playerSounds.getNode(arg0.name.toBase37());
-		if (local10 == null) {
-			return;
-		}
-		if (local10.primaryStream != null) {
-			Static204.soundStream.removeSubStream(local10.primaryStream);
-			local10.primaryStream = null;
-		}
-		local10.unlink();
-	}
 
 	@OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(Lclient!wa;I)V")
 	public static void method4598(@OriginalArg(0) Packet arg0) {
@@ -48,13 +34,13 @@ public final class Static271 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(II)Lclient!pb;")
-	public static LocMergeEntity get(@OriginalArg(1) int id) {
-		@Pc(15) LocMergeEntity locType = (LocMergeEntity) Static179.aClass99_25.get((long) id);
+	public static LocType get(@OriginalArg(1) int id) {
+		@Pc(15) LocType locType = (LocType) Static179.aClass99_25.get((long) id);
 		if (locType != null) {
 			return locType;
 		}
 		@Pc(30) byte[] bytes = Static146.aClass153_54.getfile(Static253.method4328(id), Static33.method872(id));
-		locType = new LocMergeEntity();
+		locType = new LocType();
 		locType.anInt4426 = id;
 		if (bytes != null) {
 			locType.decode(new Packet(bytes));

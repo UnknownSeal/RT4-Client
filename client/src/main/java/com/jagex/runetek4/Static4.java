@@ -13,7 +13,7 @@ import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.SceneCamera;
 import com.jagex.runetek4.util.SignLink;
@@ -30,7 +30,7 @@ public final class Static4 {
 	public static int js5ConnectState = 0;
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "i", descriptor = "Lclient!ih;")
-	public static final LinkList aClass69_2 = new LinkList();
+	public static final LinkedList aClass69_2 = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "k", descriptor = "S")
 	public static short aShort1 = 32767;
@@ -163,7 +163,7 @@ public final class Static4 {
 			@Pc(245) JString message = Static57.in.gjstr();
 			if (message.endsWith(Static196.TRADEREQ)) {
 				message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
-				username = message2.toBase37();
+				username = message2.encode37();
 				ignored = false;
 				for (i = 0; i < Static35.ignoreCount; i++) {
 					if (Static190.ignoreName37[i] == username) {
@@ -176,7 +176,7 @@ public final class Static4 {
 				}
 			} else if (message.endsWith(Static61.CHALREQ)) {
 				message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
-				username = message2.toBase37();
+				username = message2.encode37();
 				ignored = false;
 				for (i = 0; i < Static35.ignoreCount; i++) {
 					if (Static190.ignoreName37[i] == username) {
@@ -191,7 +191,7 @@ public final class Static4 {
 			} else if (message.endsWith(Static191.ASSISTREQ)) {
 				ignored = false;
 				message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
-				username = message2.toBase37();
+				username = message2.encode37();
 				for (i = 0; i < Static35.ignoreCount; i++) {
 					if (username == Static190.ignoreName37[i]) {
 						ignored = true;
@@ -217,7 +217,7 @@ public final class Static4 {
 			} else if (message.endsWith(Static56.DUELSTAKE)) {
 				ignored = false;
 				message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
-				username = message2.toBase37();
+				username = message2.encode37();
 				for (i = 0; i < Static35.ignoreCount; i++) {
 					if (username == Static190.ignoreName37[i]) {
 						ignored = true;
@@ -230,7 +230,7 @@ public final class Static4 {
 			} else if (message.endsWith(Static112.DUELFRIEND)) {
 				message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
 				ignored = false;
-				username = message2.toBase37();
+				username = message2.encode37();
 				for (i = 0; i < Static35.ignoreCount; i++) {
 					if (Static190.ignoreName37[i] == username) {
 						ignored = true;
@@ -242,7 +242,7 @@ public final class Static4 {
 				}
 			} else if (message.endsWith(Static217.CLANREQ)) {
 				message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
-				username = message2.toBase37();
+				username = message2.encode37();
 				ignored = false;
 				for (i = 0; i < Static35.ignoreCount; i++) {
 					if (username == Static190.ignoreName37[i]) {
@@ -256,7 +256,7 @@ public final class Static4 {
 			} else if (message.endsWith(Static164.ALLYREQ)) {
 				message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
 				ignored = false;
-				username = message2.toBase37();
+				username = message2.encode37();
 				for (i = 0; i < Static35.ignoreCount; i++) {
 					if (Static190.ignoreName37[i] == username) {
 						ignored = true;
@@ -566,7 +566,7 @@ public final class Static4 {
 								} else {
 									local1814 = new ServerActiveProperties(0, ii);
 								}
-								Static210.aClass133_21.pushNode(local1814, local904);
+								Static210.aClass133_21.put(local1814, local904);
 							}
 						}
 						Static164.packetType = -1;
@@ -582,7 +582,7 @@ public final class Static4 {
 							@Pc(1994) AnimationSequence local1994;
 							if (world >> 29 != 0) {
 								count = world & 0xFFFF;
-								@Pc(1894) NPCRenderable local1894 = Static175.npcs[count];
+								@Pc(1894) Npc local1894 = Static175.npcs[count];
 								if (local1894 != null) {
 									if (slot == 65535) {
 										slot = -1;
@@ -606,7 +606,7 @@ public final class Static4 {
 											if (j != -1) {
 												local1994 = AnimationSequence.getAnimationSequence(j);
 												if (local1994 != null && local1994.anIntArray473 != null) {
-													Static152.method2836(local1894.z, local1994, local1894.x, false, 0);
+													Static152.method2836(local1894.zFine, local1994, local1894.xFine, false, 0);
 												}
 											}
 										}
@@ -646,7 +646,7 @@ public final class Static4 {
 											if (j != -1) {
 												local1994 = AnimationSequence.getAnimationSequence(j);
 												if (local1994 != null && local1994.anIntArray473 != null) {
-													Static152.method2836(local2033.z, local1994, local2033.x, local2033 == Static173.localPlayer, 0);
+													Static152.method2836(local2033.zFine, local1994, local2033.xFine, local2033 == Static173.localPlayer, 0);
 												}
 											}
 										}
@@ -955,7 +955,7 @@ public final class Static4 {
 									}
 									if (local3449 != null) {
 										local3449.unlink();
-										Static119.aClass133_9.pushNode(local3449, (long) world);
+										Static119.aClass133_9.put(local3449, (long) world);
 									}
 									@Pc(3490) Component local3490 = Component.getComponent(ii);
 									if (local3490 != null) {
@@ -1038,7 +1038,7 @@ public final class Static4 {
 								ii = Static57.in.g2le();
 								xp = Static57.in.g1_alt3();
 								world = Static57.in.g2();
-								@Pc(3766) NPCRenderable local3766 = Static175.npcs[ii];
+								@Pc(3766) Npc local3766 = Static175.npcs[ii];
 								if (local3766 != null) {
 									Static223.method3855(xp, world, local3766);
 								}
@@ -1433,7 +1433,7 @@ public final class Static4 {
 											} else {
 												local1814 = new ServerActiveProperties(count, -1);
 											}
-											Static210.aClass133_21.pushNode(local1814, local904);
+											Static210.aClass133_21.put(local1814, local904);
 										}
 									}
 									Static164.packetType = -1;

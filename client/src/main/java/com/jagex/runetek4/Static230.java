@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static230 {
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "r", descriptor = "Lclient!ve;")
-	public static CacheArchive modelArchive;
+	public static Js5 modelArchive;
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "D", descriptor = "I")
 	public static int anInt5158;

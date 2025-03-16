@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static216 {
 
 	@OriginalMember(owner = "runetek4.client!ri", name = "c", descriptor = "Lclient!ve;")
-	public static com.jagex.runetek4.js5.CacheArchive aClass153_31;
+	public static Js5 aClass153_31;
 
 	@OriginalMember(owner = "runetek4.client!ri", name = "d", descriptor = "[I")
 	public static int[] anIntArray188;
@@ -57,7 +58,7 @@ public final class Static216 {
 				}
 				Static124.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
 				Static72.aClass212_3 = null;
-				@Pc(106) long local106 = Static101.aLong98 = Static186.username.toBase37();
+				@Pc(106) long local106 = Static101.aLong98 = Static186.username.encode37();
 				Static6.outboundBuffer.position = 0;
 				Static6.outboundBuffer.p1(14);
 				@Pc(120) int local120 = (int) (local106 >> 16 & 0x1FL);
@@ -103,7 +104,7 @@ public final class Static216 {
 				Static6.outboundBuffer.p4(seed[1]);
 				Static6.outboundBuffer.p4(seed[2]);
 				Static6.outboundBuffer.p4(seed[3]);
-				Static6.outboundBuffer.p8(Static186.username.toBase37());
+				Static6.outboundBuffer.p8(Static186.username.encode37());
 				Static6.outboundBuffer.pjstr(Static186.password);
 				Static6.outboundBuffer.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
 				Static17.aClass3_Sub15_Sub1_2.position = 0;
@@ -132,13 +133,13 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.p4(Static249.aClass153_100.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static274.aClass153_90.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static41.aClass153_25.getChecksum());
-				Static17.aClass3_Sub15_Sub1_2.p4(Static248.aClass153_75.getChecksum());
+				Static17.aClass3_Sub15_Sub1_2.p4(client.js5Archive4.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static26.aClass153_16.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static130.aClass153_47.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static267.aClass153_109.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static209.aClass153_86.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static195.aClass153_80.getChecksum());
-				Static17.aClass3_Sub15_Sub1_2.p4(CacheArchive.huffmanCacheArchive.getChecksum());
+				Static17.aClass3_Sub15_Sub1_2.p4(CacheArchive.huffmanJs5.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static214.aClass153_106.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static16.aClass153_9.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static261.aClass153_107.getChecksum());
@@ -154,7 +155,7 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.p4(Static227.aClass153_94.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static254.aClass153_105.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static28.aClass153_18.getChecksum());
-				Static17.aClass3_Sub15_Sub1_2.p4(CacheArchive.gameTextureCacheArchive.getChecksum());
+				Static17.aClass3_Sub15_Sub1_2.p4(CacheArchive.gameTextureJs5.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static226.aClass153_93.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.pdata(Static6.outboundBuffer.data, Static6.outboundBuffer.position);
 				Static124.gameServerSocket.write(Static17.aClass3_Sub15_Sub1_2.position, Static17.aClass3_Sub15_Sub1_2.data);

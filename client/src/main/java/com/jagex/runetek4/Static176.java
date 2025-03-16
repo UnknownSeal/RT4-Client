@@ -1,12 +1,12 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.cache.def.ItemDefinition;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.ComplexTile;
 import com.jagex.runetek4.scene.tile.GenericTile;
 import com.jagex.runetek4.scene.tile.SceneTile;
@@ -18,7 +18,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static176 {
 
 	@OriginalMember(owner = "runetek4.client!ob", name = "f", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_76;
+	public static Js5 aClass153_76;
 
 	@OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "[Z")
 	public static final boolean[] cameraModifierEnabled = new boolean[5];
@@ -109,9 +109,9 @@ public final class Static176 {
 				local112 = local121;
 				@Pc(240) int local240;
 				if (local133 == 2 && Static257.method523(Static55.currentLevel, local47, local147, local121)) {
-					@Pc(172) LocMergeEntity local172 = Static271.get(local140);
+					@Pc(172) LocType local172 = Static271.get(local140);
 					if (local172.multiloc != null) {
-						local172 = local172.getVisible();
+						local172 = local172.getMultiLoc();
 					}
 					if (local172 == null) {
 						continue;
@@ -165,25 +165,25 @@ public final class Static176 {
 				@Pc(526) int local526;
 				@Pc(479) int local479;
 				@Pc(493) int local493;
-				@Pc(502) NPCRenderable local502;
+				@Pc(502) Npc local502;
 				@Pc(597) Player local597;
 				if (local133 == 1) {
-					@Pc(421) NPCRenderable local421 = Static175.npcs[local140];
-					if ((local421.type.size & 0x1) == 0 && (local421.x & 0x7F) == 0 && (local421.z & 0x7F) == 0 || (local421.type.size & 0x1) == 1 && (local421.x & 0x7F) == 64 && (local421.z & 0x7F) == 64) {
-						local479 = local421.x + 64 - local421.type.size * 64;
-						local240 = local421.z - (local421.type.size - 1) * 64;
+					@Pc(421) Npc local421 = Static175.npcs[local140];
+					if ((local421.type.size & 0x1) == 0 && (local421.xFine & 0x7F) == 0 && (local421.zFine & 0x7F) == 0 || (local421.type.size & 0x1) == 1 && (local421.xFine & 0x7F) == 64 && (local421.zFine & 0x7F) == 64) {
+						local479 = local421.xFine + 64 - local421.type.size * 64;
+						local240 = local421.zFine - (local421.type.size - 1) * 64;
 						for (local493 = 0; local493 < Static272.npcCount; local493++) {
 							local502 = Static175.npcs[Static33.npcIds[local493]];
-							local514 = local502.x + 64 - local502.type.size * 64;
-							local526 = local502.z + 64 - local502.type.size * 64;
+							local514 = local502.xFine + 64 - local502.type.size * 64;
+							local526 = local502.zFine + 64 - local502.type.size * 64;
 							if (local502 != null && local421 != local502 && local514 >= local479 && local421.type.size - (local514 - local479 >> 7) >= local502.type.size && local240 <= local526 && local502.type.size <= local421.type.size - (local526 - local240 >> 7)) {
 								Static246.method4240(local502.type, local47, Static33.npcIds[local493], local147);
 							}
 						}
 						for (local493 = 0; local493 < Static267.playerCount; local493++) {
 							local597 = Static159.players[Static105.playerIds[local493]];
-							local514 = local597.x + 64 - local597.size() * 64;
-							local526 = local597.z + 64 - local597.size() * 64;
+							local514 = local597.xFine + 64 - local597.size() * 64;
+							local526 = local597.zFine + 64 - local597.size() * 64;
 							if (local597 != null && local514 >= local479 && local597.size() <= local421.type.size - (local514 - local479 >> 7) && local526 >= local240 && local597.size() <= local421.type.size - (local526 - local240 >> 7)) {
 								Static217.method3767(Static105.playerIds[local493], local147, local597, local47);
 							}
@@ -193,21 +193,21 @@ public final class Static176 {
 				}
 				if (local133 == 0) {
 					@Pc(688) Player local688 = Static159.players[local140];
-					if ((local688.x & 0x7F) == 64 && (local688.z & 0x7F) == 64) {
-						local479 = local688.x - (local688.size() - 1) * 64;
-						local240 = local688.z + 64 - local688.size() * 64;
+					if ((local688.xFine & 0x7F) == 64 && (local688.zFine & 0x7F) == 64) {
+						local479 = local688.xFine - (local688.size() - 1) * 64;
+						local240 = local688.zFine + 64 - local688.size() * 64;
 						for (local493 = 0; local493 < Static272.npcCount; local493++) {
 							local502 = Static175.npcs[Static33.npcIds[local493]];
-							local514 = local502.x + 64 - local502.type.size * 64;
-							local526 = local502.z + 64 - local502.type.size * 64;
+							local514 = local502.xFine + 64 - local502.type.size * 64;
+							local526 = local502.zFine + 64 - local502.type.size * 64;
 							if (local502 != null && local514 >= local479 && local502.type.size <= local688.size() - (local514 - local479 >> 7) && local526 >= local240 && local502.type.size <= local688.size() - (local526 - local240 >> 7)) {
 								Static246.method4240(local502.type, local47, Static33.npcIds[local493], local147);
 							}
 						}
 						for (local493 = 0; local493 < Static267.playerCount; local493++) {
 							local597 = Static159.players[Static105.playerIds[local493]];
-							local514 = local597.x - (local597.size() - 1) * 64;
-							local526 = local597.z + 64 - local597.size() * 64;
+							local514 = local597.xFine - (local597.size() - 1) * 64;
+							local526 = local597.zFine + 64 - local597.size() * 64;
 							if (local597 != null && local597 != local688 && local479 <= local514 && local597.size() <= local688.size() - (local514 - local479 >> 7) && local526 >= local240 && local597.size() <= local688.size() - (local526 - local240 >> 7)) {
 								Static217.method3767(Static105.playerIds[local493], local147, local597, local47);
 							}
@@ -216,9 +216,9 @@ public final class Static176 {
 					Static217.method3767(local140, local147, local688, local47);
 				}
 				if (local133 == 3) {
-					@Pc(931) LinkList local931 = Static159.levelObjStacks[Static55.currentLevel][local47][local147];
+					@Pc(931) LinkedList local931 = Static159.levelObjStacks[Static55.currentLevel][local47][local147];
 					if (local931 != null) {
-						for (@Pc(940) ObjStackNode local940 = (ObjStackNode) local931.method2279(); local940 != null; local940 = (ObjStackNode) local931.method2286()) {
+						for (@Pc(940) ObjStackNode local940 = (ObjStackNode) local931.method2279(); local940 != null; local940 = (ObjStackNode) local931.prev()) {
 							local240 = local940.aClass8_Sub7_1.anInt5555;
 							@Pc(951) ItemDefinition local951 = Static71.get(local240);
 							if (Static260.anInt5014 == 1) {

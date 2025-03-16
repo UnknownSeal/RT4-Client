@@ -3,7 +3,7 @@ package com.jagex.runetek4.graphics;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.media.renderable.Renderable;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -401,7 +401,7 @@ public final class ModelUnlit extends Renderable {
 	}
 
 	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(Lclient!ve;II)Lclient!gb;")
-	public static ModelUnlit get(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) int arg1) {
+	public static ModelUnlit get(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
 		@Pc(5) byte[] local5 = arg0.getfile(arg1, 0);
 		return local5 == null ? null : new ModelUnlit(local5);
 	}

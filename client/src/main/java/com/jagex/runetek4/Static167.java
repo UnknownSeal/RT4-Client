@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.ImageRGB;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -38,7 +38,7 @@ public final class Static167 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method3172(@OriginalArg(1) CacheArchive arg0) {
+	public static void method3172(@OriginalArg(1) Js5 arg0) {
 		Static262.anInt5754 = arg0.method4482(Static27.aClass100_165);
 		Static136.anInt3322 = arg0.method4482(Static165.LOGO);
 	}

@@ -2,13 +2,14 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.datastruct.HashTable;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static119 {
 
 	@OriginalMember(owner = "client!je", name = "W", descriptor = "Lclient!ve;")
-	public static com.jagex.runetek4.js5.CacheArchive aClass153_44;
+	public static Js5 aClass153_44;
 
 	@OriginalMember(owner = "client!je", name = "eb", descriptor = "[I")
 	public static int[] anIntArray282;
@@ -62,7 +63,7 @@ public final class Static119 {
 	}
 
 	@OriginalMember(owner = "client!je", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method2384(@OriginalArg(1) com.jagex.runetek4.js5.CacheArchive arg0) {
+	public static void method2384(@OriginalArg(1) Js5 arg0) {
 		CacheArchive.aClass153_2 = arg0;
 	}
 

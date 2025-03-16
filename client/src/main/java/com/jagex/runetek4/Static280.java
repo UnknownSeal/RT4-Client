@@ -4,7 +4,7 @@ import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.Actor;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -13,7 +13,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static280 {
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "s", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_110;
+	public static Js5 aClass153_110;
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "A", descriptor = "I")
 	public static int anInt5900;
@@ -36,8 +36,8 @@ public final class Static280 {
 			@Pc(64) int local64 = arg0.anInt3428 * 128 + arg0.size() * 64;
 			@Pc(75) int local75 = arg0.anInt3416 * 128 + arg0.size() * 64;
 			@Pc(86) int local86 = arg0.anInt3392 * 128 + arg0.size() * 64;
-			arg0.x = (local41 * local75 + local52 * (local35 - local41)) / local35;
-			arg0.z = (local86 * local41 + local64 * (local35 - local41)) / local35;
+			arg0.xFine = (local41 * local75 + local52 * (local35 - local41)) / local35;
+			arg0.zFine = (local86 * local41 + local64 * (local35 - local41)) / local35;
 		}
 		arg0.anInt3417 = 0;
 		if (arg0.anInt3431 == 0) {

@@ -2,10 +2,10 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -40,7 +40,7 @@ public final class Static164 {
 		@Pc(28) int local28;
 		@Pc(35) int local35;
 		@Pc(42) int local42;
-		@Pc(46) LocMergeEntity local46;
+		@Pc(46) LocType local46;
 		@Pc(65) int local65;
 		@Pc(75) int[] local75;
 		@Pc(90) int local90;
@@ -151,7 +151,7 @@ public final class Static164 {
 		if (local14 != 0L) {
 			local28 = (int) local14 >> 20 & 0x3;
 			local35 = (int) (local14 >>> 32) & Integer.MAX_VALUE;
-			@Pc(586) LocMergeEntity local586 = Static271.get(local35);
+			@Pc(586) LocType local586 = Static271.get(local35);
 			if (local586.mapsceneicon != -1 && !Static33.method867(arg0, local586, arg2, local28)) {
 				return false;
 			}
@@ -173,12 +173,12 @@ public final class Static164 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Lclient!ve;IZ)Lclient!mm;")
-	public static ImageRGB method3117(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) int arg1) {
+	public static ImageRGB method3117(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
 		return Static254.method4346(arg0, arg1) ? Static196.method3537() : null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IZILclient!ve;)Lclient!ek;")
-	public static SoftwareIndexedSprite method3119(@OriginalArg(2) int arg0, @OriginalArg(3) CacheArchive arg1) {
+	public static SoftwareIndexedSprite method3119(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {
 		return Static234.method4016(arg1, 0, arg0) ? Static134.method2619() : null;
 	}
 

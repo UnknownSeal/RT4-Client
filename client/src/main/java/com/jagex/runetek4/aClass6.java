@@ -27,7 +27,7 @@ public final class aClass6 {
 	public static int anInt983 = 0;
 
 	@OriginalMember(owner = "client!ah", name = "p", descriptor = "Lclient!ih;")
-	public static final LinkList drawTileQueue = new LinkList();
+	public static final LinkedList drawTileQueue = new LinkedList();
 
 	@OriginalMember(owner = "client!ah", name = "s", descriptor = "I")
 	public static int mouseClickX = 0;

@@ -15,7 +15,7 @@ import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!me")
-public final class ActorDefinition {
+public final class NpcType {
 
 	@OriginalMember(owner = "client!me", name = "b", descriptor = "[S")
 	private short[] retex_d;
@@ -51,7 +51,7 @@ public final class ActorDefinition {
 	private int[] models;
 
 	@OriginalMember(owner = "client!me", name = "hb", descriptor = "[I")
-	public int[] multinpc;
+	public int[] multiNpcs;
 
 	@OriginalMember(owner = "client!me", name = "A", descriptor = "I")
 	public int bgsound = -1;
@@ -141,7 +141,7 @@ public final class ActorDefinition {
 	public int anInt3750 = -1;
 
 	@OriginalMember(owner = "client!me", name = "gb", descriptor = "I")
-	public int bgsound_range = 0;
+	public int soundRadius = 0;
 
 	@OriginalMember(owner = "client!me", name = "E", descriptor = "I")
 	private int resizev = 128;
@@ -165,20 +165,20 @@ public final class ActorDefinition {
 	public int cursorattack = -1;
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "b", descriptor = "(II)Lclient!me;")
-	public static ActorDefinition getDefinition(@OriginalArg(0) int id) {
-		@Pc(10) ActorDefinition actorDefinition = (ActorDefinition) Static93.aClass99_13.get((long) id);
-		if (actorDefinition != null) {
-			return actorDefinition;
+	public static NpcType getDefinition(@OriginalArg(0) int id) {
+		@Pc(10) NpcType npcType = (NpcType) Static93.aClass99_13.get((long) id);
+		if (npcType != null) {
+			return npcType;
 		}
 		@Pc(26) byte[] bytes = Static58.aClass153_28.getfile(Static60.method1447(id), Static179.method3322(id));
-		actorDefinition = new ActorDefinition();
-		actorDefinition.id = id;
+		npcType = new NpcType();
+		npcType.id = id;
 		if (bytes != null) {
-			actorDefinition.decode(new Packet(bytes));
+			npcType.decode(new Packet(bytes));
 		}
-		actorDefinition.postDecode();
-		Static93.aClass99_13.put(actorDefinition, (long) id);
-		return actorDefinition;
+		npcType.postDecode();
+		Static93.aClass99_13.put(npcType, (long) id);
+		return npcType;
 	}
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(Lclient!wa;I)V")
@@ -279,14 +279,14 @@ public final class ActorDefinition {
 				}
 			}
 			int length = packet.g1();
-			this.multinpc = new int[length + 2];
+			this.multiNpcs = new int[length + 2];
 			for (int index = 0; index <= length; index++) {
-				this.multinpc[index] = packet.g2();
-				if (this.multinpc[index] == 65535) {
-					this.multinpc[index] = -1;
+				this.multiNpcs[index] = packet.g2();
+				if (this.multiNpcs[index] == 65535) {
+					this.multiNpcs[index] = -1;
 				}
 			}
-			this.multinpc[length + 1] = defaultId;
+			this.multiNpcs[length + 1] = defaultId;
 		} else if (code == 107) {
 			this.active = false;
 		} else if (code == 109) {
@@ -343,7 +343,7 @@ public final class ActorDefinition {
 			if (this.bgsound_run == 65535) {
 				this.bgsound_run = -1;
 			}
-			this.bgsound_range = packet.g1();
+			this.soundRadius = packet.g1();
 		} else if (code == 135) {
 			this.anInt3750 = packet.g1();
 			this.anInt3719 = packet.g2();
@@ -367,7 +367,7 @@ public final class ActorDefinition {
 				} else {
 					node = new IntWrapper(packet.g4());
 				}
-				this.params.pushNode(node, local596);
+				this.params.put(node, local596);
 			}
 		}
 	}
@@ -377,24 +377,24 @@ public final class ActorDefinition {
 	}
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(B)Lclient!me;")
-	public ActorDefinition getMultiNPC() {
+	public NpcType getMultiNPC() {
 		@Pc(5) int i = -1;
 		if (this.multivarbit != -1) {
 			i = VarbitDefinition.getVarbitValue(this.multivarbit);
 		} else if (this.multivarp != -1) {
 			i = VarPlayerDefinition.varPlayers[this.multivarp];
 		}
-		if (i < 0 || i >= this.multinpc.length - 1 || this.multinpc[i] == -1) {
-			@Pc(55) int local55 = this.multinpc[this.multinpc.length - 1];
+		if (i < 0 || i >= this.multiNpcs.length - 1 || this.multiNpcs[i] == -1) {
+			@Pc(55) int local55 = this.multiNpcs[this.multiNpcs.length - 1];
 			return local55 == -1 ? null : getDefinition(local55);
 		} else {
-			return getDefinition(this.multinpc[i]);
+			return getDefinition(this.multiNpcs[i]);
 		}
 	}
 
 	@OriginalMember(owner = "client!me", name = "b", descriptor = "(B)Z")
 	public boolean method2933() {
-		if (this.multinpc == null) {
+		if (this.multiNpcs == null) {
 			return true;
 		}
 		@Pc(16) int local16 = -1;
@@ -403,8 +403,8 @@ public final class ActorDefinition {
 		} else if (this.multivarp != -1) {
 			local16 = VarPlayerDefinition.varPlayers[this.multivarp];
 		}
-		if (local16 < 0 || local16 >= this.multinpc.length - 1 || this.multinpc[local16] == -1) {
-			@Pc(62) int local62 = this.multinpc[this.multinpc.length - 1];
+		if (local16 < 0 || local16 >= this.multiNpcs.length - 1 || this.multiNpcs[local16] == -1) {
+			@Pc(62) int local62 = this.multiNpcs[this.multiNpcs.length - 1];
 			return local62 != -1;
 		} else {
 			return true;
@@ -413,13 +413,13 @@ public final class ActorDefinition {
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(I)Z")
 	public boolean hasBackgroundSound() {
-		if (this.multinpc == null) {
+		if (this.multiNpcs == null) {
 			return this.bgsound != -1 || this.bgsound_walk != -1 || this.bgsound_run != -1;
 		}
-		for (@Pc(35) int index = 0; index < this.multinpc.length; index++) {
-			if (this.multinpc[index] != -1) {
-				@Pc(60) ActorDefinition actorDefinition = getDefinition(this.multinpc[index]);
-				if (actorDefinition.bgsound != -1 || actorDefinition.bgsound_walk != -1 || actorDefinition.bgsound_run != -1) {
+		for (@Pc(35) int index = 0; index < this.multiNpcs.length; index++) {
+			if (this.multiNpcs[index] != -1) {
+				@Pc(60) NpcType npcType = getDefinition(this.multiNpcs[index]);
+				if (npcType.bgsound != -1 || npcType.bgsound_walk != -1 || npcType.bgsound_run != -1) {
 					return true;
 				}
 			}
@@ -439,8 +439,8 @@ public final class ActorDefinition {
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "([Lclient!ub;IBIIIILclient!tk;ILclient!tk;)Lclient!ak;")
 	public Model method2937(@OriginalArg(0) Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) AnimationSequence arg6, @OriginalArg(8) int arg7, @OriginalArg(9) AnimationSequence arg8) {
-		if (this.multinpc != null) {
-			@Pc(13) ActorDefinition local13 = this.getMultiNPC();
+		if (this.multiNpcs != null) {
+			@Pc(13) NpcType local13 = this.getMultiNPC();
 			return local13 == null ? null : local13.method2937(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
 		}
 		@Pc(40) Model local40 = (Model) Static125.aClass99_18.get(this.id);
@@ -577,8 +577,8 @@ public final class ActorDefinition {
 					local214 &= 0xFFFF;
 					Static107.anIntArray259[local235] = local214;
 					if (Static6.aClass3_Sub2_Sub7Array1[local235] != null) {
-						local723 |= Static6.aClass3_Sub2_Sub7Array1[local235].method903(local214);
-						local721 |= Static6.aClass3_Sub2_Sub7Array1[local235].method901(local214);
+						local723 |= Static6.aClass3_Sub2_Sub7Array1[local235].isColorTransformed(local214);
+						local721 |= Static6.aClass3_Sub2_Sub7Array1[local235].isAlphaTransformed(local214);
 						local725 |= local753.aBoolean278;
 					}
 					if ((local753.aBoolean277 || Static204.tween) && local207 != -1 && local753.anIntArray473.length > local207) {
@@ -589,8 +589,8 @@ public final class ActorDefinition {
 						local228 &= 0xFFFF;
 						Static61.anIntArray148[local235] = local228;
 						if (Static131.aClass3_Sub2_Sub7Array5[local235] != null) {
-							local723 |= Static131.aClass3_Sub2_Sub7Array5[local235].method903(local228);
-							local721 |= Static131.aClass3_Sub2_Sub7Array5[local235].method901(local228);
+							local723 |= Static131.aClass3_Sub2_Sub7Array5[local235].isColorTransformed(local228);
+							local721 |= Static131.aClass3_Sub2_Sub7Array5[local235].isAlphaTransformed(local228);
 						}
 					} else {
 						Static71.anIntArray147[local235] = 0;
@@ -620,8 +620,8 @@ public final class ActorDefinition {
 			local235 &= 0xFFFF;
 			local962 = Static72.method1566(local228);
 			if (local962 != null) {
-				local723 |= local962.method903(local235);
-				local721 |= local962.method901(local235);
+				local723 |= local962.isColorTransformed(local235);
+				local721 |= local962.isAlphaTransformed(local235);
 				local725 |= arg8.aBoolean278;
 			}
 			if ((arg8.aBoolean277 || Static204.tween) && arg3 != -1 && arg8.anIntArray473.length > arg3) {
@@ -635,8 +635,8 @@ public final class ActorDefinition {
 					local964 = Static72.method1566(local221 >>> 16);
 				}
 				if (local964 != null) {
-					local723 |= local964.method903(local221);
-					local721 |= local964.method901(local221);
+					local723 |= local964.isColorTransformed(local221);
+					local721 |= local964.isAlphaTransformed(local221);
 				}
 			}
 		}
@@ -651,8 +651,8 @@ public final class ActorDefinition {
 			local228 &= 0xFFFF;
 			local1088 = Static72.method1566(local324);
 			if (local1088 != null) {
-				local723 |= local1088.method903(local228);
-				local721 |= local1088.method901(local228);
+				local723 |= local1088.isColorTransformed(local228);
+				local721 |= local1088.isAlphaTransformed(local228);
 				local725 |= arg6.aBoolean278;
 			}
 			if ((arg6.aBoolean277 || Static204.tween) && arg1 != -1 && arg1 < arg6.anIntArray473.length) {
@@ -666,8 +666,8 @@ public final class ActorDefinition {
 					local1092 = Static72.method1566(local1040 >>> 16);
 				}
 				if (local1092 != null) {
-					local723 |= local1092.method903(local1040);
-					local721 |= local1092.method901(local1040);
+					local723 |= local1092.isColorTransformed(local1040);
+					local721 |= local1092.isAlphaTransformed(local1040);
 				}
 			}
 		}
@@ -709,8 +709,8 @@ public final class ActorDefinition {
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(Lclient!tk;IIII)Lclient!ak;")
 	public Model getHeadModel(@OriginalArg(0) AnimationSequence arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
-		if (this.multinpc != null) {
-			@Pc(13) ActorDefinition local13 = this.getMultiNPC();
+		if (this.multiNpcs != null) {
+			@Pc(13) NpcType local13 = this.getMultiNPC();
 			return local13 == null ? null : local13.getHeadModel(arg0, arg1, arg2, arg3);
 		} else if (this.heads == null) {
 			return null;

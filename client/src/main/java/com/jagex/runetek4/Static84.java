@@ -4,7 +4,7 @@ import com.jagex.runetek4.node.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -15,7 +15,7 @@ public final class Static84 {
 	public static float aFloat10;
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "e", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_35;
+	public static Js5 aClass153_35;
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "j", descriptor = "I")
 	public static int anInt2257;
@@ -49,8 +49,8 @@ public final class Static84 {
 
 			@Pc(35) boolean quickChat = (chatFlags & 0x8000) != 0;
 
-			if (player.name != null && player.model != null) {
-				@Pc(48) long encodedUsername = player.name.toBase37();
+			if (player.username != null && player.model != null) {
+				@Pc(48) long encodedUsername = player.username.encode37();
 				@Pc(50) boolean ignored = false;
 				if (staffModLevel <= 1) {
 					if (!quickChat && (Static124.aBoolean157 && !Static207.parentalChatConsent || Static86.aBoolean129)) {
@@ -85,11 +85,11 @@ public final class Static84 {
 					player.chatLoops = 150;
 					player.chatColor = chatFlags >> 8;
 					if (staffModLevel == 2) {
-						Static154.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JString[] { Static44.aClass100_336, player.getName() }));
+						Static154.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JString[] { Static44.aClass100_336, player.getUsername() }));
 					} else if (staffModLevel == 1) {
-						Static154.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JString[] { Static65.aClass100_435, player.getName() }));
+						Static154.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JString[] { Static65.aClass100_435, player.getUsername() }));
 					} else {
-						Static154.add(phraseId, quickChat ? 17 : 2, message, null, player.getName());
+						Static154.add(phraseId, quickChat ? 17 : 2, message, null, player.getUsername());
 					}
 				}
 			}
@@ -139,9 +139,9 @@ public final class Static84 {
 			player.chatMessage = Static57.in.gjstr();
 			if (player.chatMessage.charAt(0) == 126) {
 				player.chatMessage = player.chatMessage.substring(1);
-				Static103.addMessage(player.getName(), 2, player.chatMessage);
+				Static103.addMessage(player.getUsername(), 2, player.chatMessage);
 			} else if (player == Static173.localPlayer) {
-				Static103.addMessage(player.getName(), 2, player.chatMessage);
+				Static103.addMessage(player.getUsername(), 2, player.chatMessage);
 			}
 			player.chatEffect = 0;
 			player.chatColor = 0;
@@ -193,7 +193,7 @@ public final class Static84 {
 					if (local24 != -1) {
 						@Pc(663) AnimationSequence local663 = AnimationSequence.getAnimationSequence(local24);
 						if (local663 != null && local663.anIntArray473 != null) {
-							Static152.method2836(player.z, local663, player.x, player == Static173.localPlayer, 0);
+							Static152.method2836(player.zFine, local663, player.xFine, player == Static173.localPlayer, 0);
 						}
 					}
 				}

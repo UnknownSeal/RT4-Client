@@ -28,24 +28,24 @@ public abstract class Model extends Renderable {
 	private void method4553(@OriginalArg(0) AnimBase arg0, @OriginalArg(1) AnimFrame arg1, @OriginalArg(2) AnimFrame arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean[] arg5, @OriginalArg(6) boolean arg6, @OriginalArg(7) boolean arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int[] arg9) {
 		@Pc(5) int local5;
 		if (arg2 == null || arg3 == 0) {
-			for (local5 = 0; local5 < arg1.anInt4070; local5++) {
-				@Pc(14) short local14 = arg1.aShortArray42[local5];
+			for (local5 = 0; local5 < arg1.length; local5++) {
+				@Pc(14) short local14 = arg1.indices[local5];
 				if (arg5 == null || arg5[local14] == arg6 || arg0.types[local14] == 0) {
-					@Pc(32) short local32 = arg1.aShortArray43[local5];
+					@Pc(32) short local32 = arg1.prevOriginIndices[local5];
 					@Pc(42) int local42;
 					if (local32 != -1) {
-						local42 = arg8 & arg0.anIntArray290[local32];
+						local42 = arg8 & arg0.parts[local32];
 						if (local42 == 65535) {
-							this.method4569(0, arg0.anIntArrayArray23[local32], 0, 0, 0, arg7);
+							this.method4569(0, arg0.bones[local32], 0, 0, 0, arg7);
 						} else {
-							this.method4577(0, arg0.anIntArrayArray23[local32], 0, 0, 0, arg7, local42, arg9);
+							this.method4577(0, arg0.bones[local32], 0, 0, 0, arg7, local42, arg9);
 						}
 					}
-					local42 = arg8 & arg0.anIntArray290[local14];
+					local42 = arg8 & arg0.parts[local14];
 					if (local42 == 65535) {
-						this.method4569(arg0.types[local14], arg0.anIntArrayArray23[local14], arg1.aShortArray44[local5], arg1.aShortArray50[local5], arg1.aShortArray49[local5], arg7);
+						this.method4569(arg0.types[local14], arg0.bones[local14], arg1.x[local5], arg1.y[local5], arg1.z[local5], arg7);
 					} else {
-						this.method4577(arg0.types[local14], arg0.anIntArrayArray23[local14], arg1.aShortArray44[local5], arg1.aShortArray50[local5], arg1.aShortArray49[local5], arg7, local42, arg9);
+						this.method4577(arg0.types[local14], arg0.bones[local14], arg1.x[local5], arg1.y[local5], arg1.z[local5], arg7, local42, arg9);
 					}
 				}
 			}
@@ -53,13 +53,13 @@ public abstract class Model extends Renderable {
 		}
 		local5 = 0;
 		@Pc(136) int local136 = 0;
-		for (@Pc(138) int local138 = 0; local138 < arg0.anInt3116; local138++) {
+		for (@Pc(138) int local138 = 0; local138 < arg0.transforms; local138++) {
 			@Pc(144) boolean local144 = false;
-			if (local5 < arg1.anInt4070 && arg1.aShortArray42[local5] == local138) {
+			if (local5 < arg1.length && arg1.indices[local5] == local138) {
 				local144 = true;
 			}
 			@Pc(158) boolean local158 = false;
-			if (local136 < arg2.anInt4070 && arg2.aShortArray42[local136] == local138) {
+			if (local136 < arg2.length && arg2.indices[local136] == local138) {
 				local158 = true;
 			}
 			if (local144 || local158) {
@@ -75,11 +75,11 @@ public abstract class Model extends Renderable {
 					@Pc(228) short local228;
 					@Pc(233) byte local233;
 					if (local144) {
-						local213 = arg1.aShortArray44[local5];
-						local218 = arg1.aShortArray50[local5];
-						local223 = arg1.aShortArray49[local5];
-						local228 = arg1.aShortArray43[local5];
-						local233 = arg1.aByteArray55[local5];
+						local213 = arg1.x[local5];
+						local218 = arg1.y[local5];
+						local223 = arg1.z[local5];
+						local228 = arg1.prevOriginIndices[local5];
+						local233 = arg1.flags[local5];
 						local5++;
 					} else {
 						local213 = local196;
@@ -94,11 +94,11 @@ public abstract class Model extends Renderable {
 					@Pc(267) short local267;
 					@Pc(272) byte local272;
 					if (local158) {
-						local252 = arg2.aShortArray44[local136];
-						local257 = arg2.aShortArray50[local136];
-						local262 = arg2.aShortArray49[local136];
-						local267 = arg2.aShortArray43[local136];
-						local272 = arg2.aByteArray55[local136];
+						local252 = arg2.x[local136];
+						local257 = arg2.y[local136];
+						local262 = arg2.z[local136];
+						local267 = arg2.prevOriginIndices[local136];
+						local272 = arg2.flags[local136];
 						local136++;
 					} else {
 						local252 = local196;
@@ -145,25 +145,25 @@ public abstract class Model extends Renderable {
 						local298 = local223 + (local262 - local223) * arg3 / arg4;
 					}
 					if (local228 != -1) {
-						local308 = arg8 & arg0.anIntArray290[local228];
+						local308 = arg8 & arg0.parts[local228];
 						if (local308 == 65535) {
-							this.method4569(0, arg0.anIntArrayArray23[local228], 0, 0, 0, arg7);
+							this.method4569(0, arg0.bones[local228], 0, 0, 0, arg7);
 						} else {
-							this.method4577(0, arg0.anIntArrayArray23[local228], 0, 0, 0, arg7, local308, arg9);
+							this.method4577(0, arg0.bones[local228], 0, 0, 0, arg7, local308, arg9);
 						}
 					} else if (local267 != -1) {
-						local308 = arg8 & arg0.anIntArray290[local267];
+						local308 = arg8 & arg0.parts[local267];
 						if (local308 == 65535) {
-							this.method4569(0, arg0.anIntArrayArray23[local267], 0, 0, 0, arg7);
+							this.method4569(0, arg0.bones[local267], 0, 0, 0, arg7);
 						} else {
-							this.method4577(0, arg0.anIntArrayArray23[local267], 0, 0, 0, arg7, local308, arg9);
+							this.method4577(0, arg0.bones[local267], 0, 0, 0, arg7, local308, arg9);
 						}
 					}
-					local308 = arg8 & arg0.anIntArray290[local138];
+					local308 = arg8 & arg0.parts[local138];
 					if (local308 == 65535) {
-						this.method4569(local201, arg0.anIntArrayArray23[local138], local294, local296, local298, arg7);
+						this.method4569(local201, arg0.bones[local138], local294, local296, local298, arg7);
 					} else {
-						this.method4577(local201, arg0.anIntArrayArray23[local138], local294, local296, local298, arg7, local308, arg9);
+						this.method4577(local201, arg0.bones[local138], local294, local296, local298, arg7, local308, arg9);
 					}
 				} else {
 					if (local144) {
@@ -187,13 +187,13 @@ public abstract class Model extends Renderable {
 		}
 		@Pc(12) AnimFrame local12 = arg0.frames[arg1];
 		@Pc(15) AnimBase local15 = local12.animBase;
-		for (@Pc(17) int local17 = 0; local17 < local12.anInt4070; local17++) {
-			@Pc(26) short local26 = local12.aShortArray42[local17];
-			if (local15.aBooleanArray70[local26]) {
-				if (local12.aShortArray43[local17] != -1) {
+		for (@Pc(17) int local17 = 0; local17 < local12.length; local17++) {
+			@Pc(26) short local26 = local12.indices[local17];
+			if (local15.shadow[local26]) {
+				if (local12.prevOriginIndices[local17] != -1) {
 					this.method4567(0, 0, 0, 0);
 				}
-				this.method4567(local15.types[local26], local12.aShortArray44[local17], local12.aShortArray50[local17], local12.aShortArray49[local17]);
+				this.method4567(local15.types[local26], local12.x[local17], local12.y[local17], local12.z[local17]);
 			}
 		}
 		this.method4557();

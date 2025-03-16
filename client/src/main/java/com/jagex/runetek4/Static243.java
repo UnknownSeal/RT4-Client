@@ -5,6 +5,7 @@ import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.InteractiveObject;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -14,13 +15,13 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static243 {
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "j", descriptor = "Lclient!ve;")
-	public static com.jagex.runetek4.js5.CacheArchive aClass153_97;
+	public static Js5 aClass153_97;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "o", descriptor = "Lclient!ok;")
 	public static IndexedSprite aClass36_1;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "s", descriptor = "Lclient!ve;")
-	public static com.jagex.runetek4.js5.CacheArchive aClass153_98;
+	public static Js5 aClass153_98;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "D", descriptor = "[Lclient!ec;")
 	public static InteractiveObject[] aClass31Array3;
@@ -40,7 +41,7 @@ public final class Static243 {
 		@Pc(38) Class3_Sub14 local38 = (Class3_Sub14) arg0.getNode(local23);
 		if (local38 == null) {
 			local38 = new Class3_Sub14(arg1.material, (float) arg1.materialscale, true, false, arg1.waterfogcolour);
-			arg0.pushNode(local38, local23);
+			arg0.put(local38, local23);
 		}
 		return local38;
 	}
@@ -107,7 +108,7 @@ public final class Static243 {
 				}
 			}
 		}
-		Static26.spawnedLocations = new LinkList();
+		Static26.spawnedLocations = new LinkedList();
 		Static166.anInt4054 = 0;
 		CacheArchive.friendCount = 0;
 		Static8.resetVarBits();
@@ -128,7 +129,7 @@ public final class Static243 {
 		if (Static154.topLevelInterace != -1) {
 			Component.resetComponent(Static154.topLevelInterace);
 		}
-		for (@Pc(3755) Class3_Sub31 local3755 = (Class3_Sub31) Static119.aClass133_9.peekFront(); local3755 != null; local3755 = (Class3_Sub31) Static119.aClass133_9.prev()) {
+		for (@Pc(3755) Class3_Sub31 local3755 = (Class3_Sub31) Static119.aClass133_9.head(); local3755 != null; local3755 = (Class3_Sub31) Static119.aClass133_9.prev()) {
 			Static132.method2605(true, local3755);
 		}
 		Static154.topLevelInterace = -1;

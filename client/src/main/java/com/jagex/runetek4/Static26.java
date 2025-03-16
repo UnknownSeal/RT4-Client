@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,13 +11,13 @@ public final class Static26 {
 	public static int[] anIntArray66;
 
 	@OriginalMember(owner = "client!ca", name = "Z", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_16;
+	public static Js5 aClass153_16;
 
 	@OriginalMember(owner = "client!ca", name = "ab", descriptor = "Z")
 	public static boolean focus;
 
 	@OriginalMember(owner = "client!ca", name = "X", descriptor = "Lclient!ih;")
-	public static LinkList spawnedLocations = new LinkList();
+	public static LinkedList spawnedLocations = new LinkedList();
 
 	@OriginalMember(owner = "client!ca", name = "cb", descriptor = "Lclient!na;")
 	public static final JString aClass100_160 = Static165.method3165();

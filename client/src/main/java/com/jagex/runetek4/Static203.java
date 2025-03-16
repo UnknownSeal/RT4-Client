@@ -5,7 +5,7 @@ import java.awt.Insets;
 
 import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCLocation;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -21,7 +21,7 @@ public final class Static203 {
 	public static GWCLocation[] aGWCLocationArray1;
 
 	@OriginalMember(owner = "runetek4.client!qh", name = "g", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_85;
+	public static Js5 aClass153_85;
 
 	@OriginalMember(owner = "runetek4.client!qh", name = "c", descriptor = "Lclient!na;")
 	public static final JString aClass100_893 = Static28.parse("Memory before cleanup=");

@@ -554,7 +554,7 @@ public final class SoundPcmStream extends PcmStream {
 	}
 
 	@OriginalMember(owner = "runetek4.client!b", name = "f", descriptor = "(I)V")
-	public final synchronized void method396(@OriginalArg(0) int arg0) {
+	public final synchronized void setLoops(@OriginalArg(0) int arg0) {
 		this.anInt350 = arg0;
 	}
 

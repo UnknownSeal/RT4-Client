@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static41 {
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "z", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_25;
+	public static Js5 aClass153_25;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "v", descriptor = "Lclient!na;")
 	public static final JString GREEN3 = Static28.parse("<col=c0ff00>");

@@ -37,7 +37,7 @@ public final class Static273 {
 
 	@OriginalMember(owner = "runetek4.client!we", name = "b", descriptor = "(BI)V")
 	public static void method3214(@OriginalArg(1) int arg0) {
-		for (@Pc(11) Node local11 = Static210.aClass133_21.peekFront(); local11 != null; local11 = Static210.aClass133_21.prev()) {
+		for (@Pc(11) Node local11 = Static210.aClass133_21.head(); local11 != null; local11 = Static210.aClass133_21.prev()) {
 			if ((local11.nodeId >> 48 & 0xFFFFL) == (long) arg0) {
 				local11.unlink();
 			}

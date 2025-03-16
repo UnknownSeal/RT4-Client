@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -13,7 +13,7 @@ public final class Static115 {
 	public static int anInt2940;
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "f", descriptor = "Lclient!ih;")
-	public static final LinkList aClass69_70 = new LinkList();
+	public static final LinkedList aClass69_70 = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "j", descriptor = "I")
 	public static int anInt2937 = 0;
@@ -68,7 +68,7 @@ public final class Static115 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(Lclient!ve;Lclient!ve;I)V")
-	public static void method2311(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) CacheArchive arg1) {
+	public static void method2311(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
 		Static87.aClass153_38 = arg1;
 		Static29.aClass153_19 = arg0;
 	}

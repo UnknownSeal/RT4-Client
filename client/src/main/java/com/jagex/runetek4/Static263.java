@@ -122,22 +122,22 @@ public final class Static263 {
 		} else {
 			Static104.method2247(entity);
 		}
-		if (entity.x < 128 || entity.z < 128 || entity.x >= 13184 || entity.z >= 13184) {
+		if (entity.xFine < 128 || entity.zFine < 128 || entity.xFine >= 13184 || entity.zFine >= 13184) {
 			entity.primarySeqId = -1;
 			entity.spotanimFrame = -1;
 			entity.anInt3395 = 0;
 			entity.anInt3386 = 0;
-			entity.x = entity.pathTileX[0] * 128 + entity.size() * 64;
-			entity.z = entity.pathTileZ[0] * 128 + entity.size() * 64;
+			entity.xFine = entity.pathTileX[0] * 128 + entity.size() * 64;
+			entity.zFine = entity.pathTileZ[0] * 128 + entity.size() * 64;
 			entity.method2689();
 		}
-		if (entity == Static173.localPlayer && (entity.x < 1536 || entity.z < 1536 || entity.x >= 11776 || entity.z >= 11776)) {
+		if (entity == Static173.localPlayer && (entity.xFine < 1536 || entity.zFine < 1536 || entity.xFine >= 11776 || entity.zFine >= 11776)) {
 			entity.spotanimFrame = -1;
 			entity.anInt3395 = 0;
 			entity.anInt3386 = 0;
 			entity.primarySeqId = -1;
-			entity.x = entity.pathTileX[0] * 128 + entity.size() * 64;
-			entity.z = entity.pathTileZ[0] * 128 + entity.size() * 64;
+			entity.xFine = entity.pathTileX[0] * 128 + entity.size() * 64;
+			entity.zFine = entity.pathTileZ[0] * 128 + entity.size() * 64;
 			entity.method2689();
 		}
 		Static37.method949(entity);

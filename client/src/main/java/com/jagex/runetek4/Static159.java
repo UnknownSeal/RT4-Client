@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -28,13 +28,13 @@ public final class Static159 {
 	public static final long[] aLongArray5 = new long[500];
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "Y", descriptor = "[[[Lclient!ih;")
-	public static final LinkList[][][] levelObjStacks = new LinkList[4][104][104];
+	public static final LinkedList[][][] levelObjStacks = new LinkedList[4][104][104];
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "ab", descriptor = "Z")
 	public static boolean aBoolean189 = true;
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "a", descriptor = "([IBLclient!km;[I[I)V")
-	public static void method3037(@OriginalArg(0) int[] arg0, @OriginalArg(2) NPCRenderable arg1, @OriginalArg(3) int[] arg2, @OriginalArg(4) int[] arg3) {
+	public static void method3037(@OriginalArg(0) int[] arg0, @OriginalArg(2) Npc arg1, @OriginalArg(3) int[] arg2, @OriginalArg(4) int[] arg3) {
 		for (@Pc(3) int local3 = 0; local3 < arg3.length; local3++) {
 			@Pc(15) int local15 = arg3[local3];
 			@Pc(19) int local19 = arg0[local3];
@@ -57,7 +57,7 @@ public final class Static159 {
 									local65.anInt5398 = 1;
 									local65.anInt5404 = 0;
 									local65.anInt5408 = local23;
-									Static152.method2836(arg1.z, local60, arg1.x, false, 0);
+									Static152.method2836(arg1.zFine, local60, arg1.xFine, false, 0);
 								} else if (local68 == 2) {
 									local65.anInt5400 = 0;
 								}
@@ -73,7 +73,7 @@ public final class Static159 {
 							local65.anInt5396 = local15;
 							local65.anInt5400 = 0;
 							local65.anInt5399 = 0;
-							Static152.method2836(arg1.z, local60, arg1.x, false, 0);
+							Static152.method2836(arg1.zFine, local60, arg1.xFine, false, 0);
 						}
 					}
 				}

@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.msitype.MSIType;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -84,7 +84,7 @@ public final class Static40 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!da", name = "a", descriptor = "(ILclient!ve;Z)Lclient!ok;")
-	public static IndexedSprite method1010(@OriginalArg(0) int arg0, @OriginalArg(1) CacheArchive arg1) {
+	public static IndexedSprite method1010(@OriginalArg(0) int arg0, @OriginalArg(1) Js5 arg1) {
 		return Static254.method4346(arg1, arg0) ? Static276.method4614() : null;
 	}
 

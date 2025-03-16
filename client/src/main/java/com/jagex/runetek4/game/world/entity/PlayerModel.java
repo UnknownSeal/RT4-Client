@@ -1,7 +1,7 @@
 package com.jagex.runetek4.game.world.entity;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.def.ActorDefinition;
+import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.bastype.BASType;
@@ -143,7 +143,7 @@ public final class PlayerModel {
 
 	@OriginalMember(owner = "client!hh", name = "b", descriptor = "(I)I")
 	public final int getHeadModelId() {
-		return this.transformationNpcId == -1 ? (this.appearance[8] << 10) + ((this.anIntArray236[0] << 25) + (this.anIntArray236[4] << 20)) + (this.appearance[0] << 15) + (this.appearance[11] << 5) + this.appearance[1] : ActorDefinition.getDefinition(this.transformationNpcId).id + 305419896;
+		return this.transformationNpcId == -1 ? (this.appearance[8] << 10) + ((this.anIntArray236[0] << 25) + (this.anIntArray236[4] << 20)) + (this.appearance[0] << 15) + (this.appearance[11] << 5) + this.appearance[1] : NpcType.getDefinition(this.transformationNpcId).id + 305419896;
 	}
 
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(III)V")
@@ -158,7 +158,7 @@ public final class PlayerModel {
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "([Lclient!ub;ILclient!tk;Lclient!tk;IIIIZII)Lclient!ak;")
 	public final Model method1954(@OriginalArg(0) Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) AnimationSequence arg2, @OriginalArg(3) AnimationSequence arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(7) int arg6, @OriginalArg(9) int arg7, @OriginalArg(10) int arg8) {
 		if (this.transformationNpcId != -1) {
-			return ActorDefinition.getDefinition(this.transformationNpcId).method2937(arg0, arg5, arg8, arg1, arg6, arg7, arg2, arg4, arg3);
+			return NpcType.getDefinition(this.transformationNpcId).method2937(arg0, arg5, arg8, arg1, arg6, arg7, arg2, arg4, arg3);
 		}
 		@Pc(38) int[] local38 = this.appearance;
 		@Pc(41) long local41 = this.aLong88;
@@ -332,8 +332,8 @@ public final class PlayerModel {
 					local381 &= 0xFFFF;
 					Static241.anIntArray520[local353] = local381;
 					if (Static276.aClass3_Sub2_Sub7Array8[local353] != null) {
-						local836 |= Static276.aClass3_Sub2_Sub7Array8[local353].method903(local381);
-						local827 |= Static276.aClass3_Sub2_Sub7Array8[local353].method901(local381);
+						local836 |= Static276.aClass3_Sub2_Sub7Array8[local353].isColorTransformed(local381);
+						local827 |= Static276.aClass3_Sub2_Sub7Array8[local353].isAlphaTransformed(local381);
 						local838 |= local858.aBoolean278;
 					}
 					if ((local858.aBoolean277 || Static204.tween) && local367 != -1 && local367 < local858.anIntArray473.length) {
@@ -344,8 +344,8 @@ public final class PlayerModel {
 						@Pc(991) int local991 = local979 & 0xFFFF;
 						Static216.anIntArray187[local353] = local991;
 						if (Static133.aClass3_Sub2_Sub7Array7[local353] != null) {
-							local836 |= Static133.aClass3_Sub2_Sub7Array7[local353].method903(local991);
-							local827 |= Static133.aClass3_Sub2_Sub7Array7[local353].method901(local991);
+							local836 |= Static133.aClass3_Sub2_Sub7Array7[local353].isColorTransformed(local991);
+							local827 |= Static133.aClass3_Sub2_Sub7Array7[local353].isAlphaTransformed(local991);
 						}
 					} else {
 						Static262.anIntArray515[local353] = 0;
@@ -370,8 +370,8 @@ public final class PlayerModel {
 			local1042 = Static72.method1566(local979);
 			local353 &= 0xFFFF;
 			if (local1042 != null) {
-				local836 |= local1042.method903(local353);
-				local827 |= local1042.method901(local353);
+				local836 |= local1042.isColorTransformed(local353);
+				local827 |= local1042.isAlphaTransformed(local353);
 				local838 |= arg3.aBoolean278;
 			}
 			if ((arg3.aBoolean277 || Static204.tween) && arg1 != -1 && arg3.anIntArray473.length > arg1) {
@@ -385,8 +385,8 @@ public final class PlayerModel {
 					local1040 = Static72.method1566(local360 >>> 16);
 				}
 				if (local1040 != null) {
-					local836 |= local1040.method903(local360);
-					local827 |= local1040.method901(local360);
+					local836 |= local1040.isColorTransformed(local360);
+					local827 |= local1040.isAlphaTransformed(local360);
 				}
 			}
 		}
@@ -401,8 +401,8 @@ public final class PlayerModel {
 			local979 &= 0xFFFF;
 			local1154 = Static72.method1566(local475);
 			if (local1154 != null) {
-				local836 |= local1154.method903(local979);
-				local827 |= local1154.method901(local979);
+				local836 |= local1154.isColorTransformed(local979);
+				local827 |= local1154.isAlphaTransformed(local979);
 				local838 |= arg2.aBoolean278;
 			}
 			if ((arg2.aBoolean277 || Static204.tween) && arg5 != -1 && arg2.anIntArray473.length > arg5) {
@@ -416,8 +416,8 @@ public final class PlayerModel {
 					local1156 = Static72.method1566(local451 >>> 16);
 				}
 				if (local1156 != null) {
-					local836 |= local1156.method903(local451);
-					local827 |= local1156.method901(local451);
+					local836 |= local1156.isColorTransformed(local451);
+					local827 |= local1156.isAlphaTransformed(local451);
 				}
 			}
 		}
@@ -449,7 +449,7 @@ public final class PlayerModel {
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(IBLclient!tk;II)Lclient!ak;")
 	public final Model getStaticModel(@OriginalArg(0) int arg0, @OriginalArg(2) AnimationSequence arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		if (this.transformationNpcId != -1) {
-			return ActorDefinition.getDefinition(this.transformationNpcId).getHeadModel(arg1, arg0, arg3, arg2);
+			return NpcType.getDefinition(this.transformationNpcId).getHeadModel(arg1, arg0, arg3, arg2);
 		}
 		@Pc(30) Model cachedModel = (Model) Static139.aClass99_21.get(this.aLong88);
 		if (cachedModel == null) {

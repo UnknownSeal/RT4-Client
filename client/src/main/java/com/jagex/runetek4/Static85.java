@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static85 {
 
 	@OriginalMember(owner = "runetek4.client!gl", name = "a", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_36;
+	public static Js5 aClass153_36;
 
 	@OriginalMember(owner = "runetek4.client!gl", name = "d", descriptor = "I")
 	public static int anInt2261;
@@ -21,7 +21,7 @@ public final class Static85 {
 	public static int anInt2263;
 
 	@OriginalMember(owner = "runetek4.client!gl", name = "a", descriptor = "(Lclient!ve;I)V")
-	public static void method1774(@OriginalArg(0) CacheArchive arg0) {
+	public static void method1774(@OriginalArg(0) Js5 arg0) {
 		Static84.aClass153_35 = arg0;
 	}
 

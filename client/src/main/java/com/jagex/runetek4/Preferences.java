@@ -14,6 +14,8 @@ public class Preferences {
     public static int fullScreenWidth = 0;
     @OriginalMember(owner = "runetek4.client!rg", name = "F", descriptor = "I")
     public static int favoriteWorlds = 0;
+    @OriginalMember(owner = "client!cg", name = "f", descriptor = "I")
+    public static int ambientSoundsVolume = 127;
 
     @OriginalMember(owner = "runetek4.client!pa", name = "d", descriptor = "(I)V")
     public static void method3413() {
@@ -52,9 +54,9 @@ public class Preferences {
                 Static83.aFloat3 = 8.0F;
                 Static138.aFloat14 = 8.0F;
             }
-            @Pc(144) int local144 = (Static173.localPlayer.x >> 7) + Static225.originX - Static158.anInt3846;
+            @Pc(144) int local144 = (Static173.localPlayer.xFine >> 7) + Static225.originX - Static158.anInt3846;
             @Pc(153) int local153 = local144 + (int) (Math.random() * 10.0D) - 5;
-            @Pc(168) int local168 = Static2.anInt13 + Static181.anInt4296 - Static142.originZ - (Static173.localPlayer.z >> 7) - 1;
+            @Pc(168) int local168 = Static2.anInt13 + Static181.anInt4296 - Static142.originZ - (Static173.localPlayer.zFine >> 7) - 1;
             @Pc(177) int local177 = local168 + (int) (Math.random() * 10.0D) - 5;
             if (local153 >= 0 && Static48.anInt1449 > local153 && local177 >= 0 && local177 < Static181.anInt4296) {
                 Static13.anInt435 = local153;

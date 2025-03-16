@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import java.awt.Component;
 
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -106,7 +106,7 @@ public final class Static107 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!id", name = "a", descriptor = "(Lclient!ve;B)V")
-	public static void method2264(@OriginalArg(0) CacheArchive arg0) {
+	public static void method2264(@OriginalArg(0) Js5 arg0) {
 		Static85.aClass153_36 = arg0;
 	}
 }

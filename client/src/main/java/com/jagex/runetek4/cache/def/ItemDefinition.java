@@ -5,7 +5,7 @@ import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.game.config.idktype.IDKType;
 import com.jagex.runetek4.graphics.ModelUnlit;
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -342,7 +342,7 @@ public final class ItemDefinition {
 					} else {
 						node = new IntWrapper(packet.g4());
 					}
-					this.params.pushNode(node, local514);
+					this.params.put(node, local514);
 				}
 			}
 		}
@@ -712,7 +712,7 @@ public final class ItemDefinition {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method1754(@OriginalArg(1) CacheArchive arg0) {
+	public static void method1754(@OriginalArg(1) Js5 arg0) {
 		Static138.anInt3443 = arg0.method4482(Static12.aClass100_73);
 	}
 }

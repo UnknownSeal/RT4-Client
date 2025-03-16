@@ -1,8 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.ActorDefinition;
+import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.Actor;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.media.Rasterizer;
@@ -45,10 +45,10 @@ public final class Static142 {
 				local17 = Static175.npcs[Static33.npcIds[local5 - Static267.playerCount]];
 			}
 			if (local17 != null && local17.isVisible()) {
-				@Pc(58) ActorDefinition local58;
-				if (local17 instanceof NPCRenderable) {
-					local58 = ((NPCRenderable) local17).type;
-					if (local58.multinpc != null) {
+				@Pc(58) NpcType local58;
+				if (local17 instanceof Npc) {
+					local58 = ((Npc) local17).type;
+					if (local58.multiNpcs != null) {
 						local58 = local58.getMultiNPC();
 					}
 					if (local58 == null) {
@@ -57,8 +57,8 @@ public final class Static142 {
 				}
 				@Pc(161) int local161;
 				if (local5 >= Static267.playerCount) {
-					local58 = ((NPCRenderable) local17).type;
-					if (local58.multinpc != null) {
+					local58 = ((Npc) local17).type;
+					if (local58.multiNpcs != null) {
 						local58 = local58.getMultiNPC();
 					}
 					if (local58.anInt3732 >= 0 && Static138.aClass3_Sub2_Sub1Array5.length > local58.anInt3732) {
@@ -116,7 +116,7 @@ public final class Static142 {
 						}
 					}
 				}
-				if (local17.chatMessage != null && (local5 >= Static267.playerCount || Static59.anInt1812 == 0 || Static59.anInt1812 == 3 || Static59.anInt1812 == 1 && Static98.method1965(((Player) local17).name))) {
+				if (local17.chatMessage != null && (local5 >= Static267.playerCount || Static59.anInt1812 == 0 || Static59.anInt1812 == 3 || Static59.anInt1812 == 1 && Static98.method1965(((Player) local17).username))) {
 					Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.height(), arg1 >> 1);
 					if (Static65.anInt1951 > -1 && Static277.anInt5854 < Static191.anInt4506) {
 						Static191.anIntArray389[Static277.anInt5854] = Font.b12Full.method2858(local17.chatMessage) / 2;
@@ -133,8 +133,8 @@ public final class Static142 {
 				if (local17.anInt3378 > Static83.loopCycle) {
 					@Pc(508) Sprite local508 = Static116.aClass3_Sub2_Sub1Array3[0];
 					@Pc(512) Sprite local512 = Static116.aClass3_Sub2_Sub1Array3[1];
-					if (local17 instanceof NPCRenderable) {
-						@Pc(518) NPCRenderable local518 = (NPCRenderable) local17;
+					if (local17 instanceof Npc) {
+						@Pc(518) Npc local518 = (Npc) local17;
 						@Pc(528) Sprite[] local528 = (Sprite[]) Static73.aClass99_10.get((long) local518.type.anInt3736);
 						if (local528 == null) {
 							local528 = Static209.method3708(local518.type.anInt3736, Static209.aClass153_86);
@@ -146,7 +146,7 @@ public final class Static142 {
 							local512 = local528[1];
 							local508 = local528[0];
 						}
-						@Pc(571) ActorDefinition local571 = local518.type;
+						@Pc(571) NpcType local571 = local518.type;
 						if (local571.overlayheight == -1) {
 							local310 = local17.height();
 						} else {
@@ -177,9 +177,9 @@ public final class Static142 {
 				}
 				for (local74 = 0; local74 < 4; local74++) {
 					if (local17.anIntArray319[local74] > Static83.loopCycle) {
-						if (local17 instanceof NPCRenderable) {
-							@Pc(725) NPCRenderable local725 = (NPCRenderable) local17;
-							@Pc(728) ActorDefinition local728 = local725.type;
+						if (local17 instanceof Npc) {
+							@Pc(725) Npc local725 = (Npc) local17;
+							@Pc(728) NpcType local728 = local725.type;
 							if (local728.overlayheight == -1) {
 								local265 = local17.height() / 2;
 							} else {

@@ -15,8 +15,8 @@ public final class Static256 {
 	@OriginalMember(owner = "runetek4.client!um", name = "a", descriptor = "(Z)V")
 	public static void method4392() {
 		Player.overrideChat = 0;
-		@Pc(17) int local17 = Static225.originX + (Static173.localPlayer.x >> 7);
-		@Pc(25) int local25 = (Static173.localPlayer.z >> 7) + Static142.originZ;
+		@Pc(17) int local17 = Static225.originX + (Static173.localPlayer.xFine >> 7);
+		@Pc(25) int local25 = (Static173.localPlayer.zFine >> 7) + Static142.originZ;
 		if (local17 >= 3053 && local17 <= 3156 && local25 >= 3056 && local25 <= 3136) {
 			Player.overrideChat = 1;
 		}

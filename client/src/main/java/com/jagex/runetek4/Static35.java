@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.InteractiveObject;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -13,7 +13,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static35 {
 
 	@OriginalMember(owner = "runetek4.client!cl", name = "J", descriptor = "Lclient!ve;")
-	public static CacheArchive aClass153_22;
+	public static Js5 aClass153_22;
 
 	@OriginalMember(owner = "runetek4.client!cl", name = "V", descriptor = "[I")
 	public static int[] anIntArray82;

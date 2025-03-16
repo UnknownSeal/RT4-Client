@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.scene.InteractiveObject;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -37,7 +37,7 @@ public final class Static223 {
 	public static final JString ORANGE = Static28.parse("<col=ff7000>");
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(IIILclient!km;)V")
-	public static void method3855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) NPCRenderable arg2) {
+	public static void method3855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) Npc arg2) {
 		if (arg2.primarySeqId == arg1 && arg1 != -1) {
 			@Pc(10) AnimationSequence local10 = AnimationSequence.getAnimationSequence(arg1);
 			@Pc(13) int local13 = local10.anInt5347;
@@ -47,7 +47,7 @@ public final class Static223 {
 				arg2.anInt3360 = 0;
 				arg2.anInt3371 = 0;
 				arg2.anInt3420 = arg0;
-				Static152.method2836(arg2.z, local10, arg2.x, false, arg2.anInt3425);
+				Static152.method2836(arg2.zFine, local10, arg2.xFine, false, arg2.anInt3425);
 			}
 			if (local13 == 2) {
 				arg2.anInt3371 = 0;
@@ -61,7 +61,7 @@ public final class Static223 {
 			arg2.anInt3405 = arg2.pathLength;
 			arg2.anInt3425 = 0;
 			if (arg2.primarySeqId != -1) {
-				Static152.method2836(arg2.z, AnimationSequence.getAnimationSequence(arg2.primarySeqId), arg2.x, false, arg2.anInt3425);
+				Static152.method2836(arg2.zFine, AnimationSequence.getAnimationSequence(arg2.primarySeqId), arg2.xFine, false, arg2.anInt3425);
 			}
 		}
 	}

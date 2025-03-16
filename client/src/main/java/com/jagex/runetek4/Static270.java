@@ -168,13 +168,13 @@ public final class Static270 {
 				return arg0.activity.method3126(arg2.activity);
 			}
 		} else if (arg1 == 4) {
-			return arg0.lootshare() ? (arg2.lootshare() ? 0 : 1) : arg2.lootshare() ? -1 : 0;
+			return arg0.isLootShare() ? (arg2.isLootShare() ? 0 : 1) : arg2.isLootShare() ? -1 : 0;
 		} else if (arg1 == 5) {
-			return arg0.quickchat() ? (arg2.quickchat() ? 0 : 1) : (arg2.quickchat() ? -1 : 0);
+			return arg0.isQuickChat() ? (arg2.isQuickChat() ? 0 : 1) : (arg2.isQuickChat() ? -1 : 0);
 		} else if (arg1 == 6) {
-			return arg0.pvp() ? (arg2.pvp() ? 0 : 1) : (arg2.pvp() ? -1 : 0);
+			return arg0.isPvp() ? (arg2.isPvp() ? 0 : 1) : (arg2.isPvp() ? -1 : 0);
 		} else if (arg1 == 7) {
-			return arg0.members() ? (arg2.members() ? 0 : 1) : (arg2.members() ? -1 : 0);
+			return arg0.isMembers() ? (arg2.isMembers() ? 0 : 1) : (arg2.isMembers() ? -1 : 0);
 		} else {
 			return arg0.id - arg2.id;
 		}
