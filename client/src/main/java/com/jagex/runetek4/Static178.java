@@ -51,7 +51,7 @@ public final class Static178 {
 		}
 		@Pc(27) int local27 = 0;
 		for (@Pc(29) int local29 = 0; local29 < local19.invSlotObjId.length; local29++) {
-			if (local19.invSlotObjId[local29] >= 0 && Static170.anInt3245 > local19.invSlotObjId[local29]) {
+			if (local19.invSlotObjId[local29] >= 0 && ObjTypeList.capacity > local19.invSlotObjId[local29]) {
 				@Pc(56) ItemDefinition local56 = Static71.get(local19.invSlotObjId[local29]);
 				if (local56.params != null) {
 					@Pc(68) IntWrapper local68 = (IntWrapper) local56.params.getNode((long) arg2);

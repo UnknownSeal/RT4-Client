@@ -265,7 +265,7 @@ public final class SignLink implements Runnable {
 	}
 
 	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "(Z)Z")
-	public final boolean method5111() {
+	public final boolean isFullScreenSupported() {
 		return this.aClass210_1 != null;
 	}
 
@@ -513,7 +513,7 @@ public final class SignLink implements Runnable {
 	}
 
 	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "(IIIII)Lsignlink!im;")
-	public final PrivilegedRequest method5129(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
+	public final PrivilegedRequest enterFullScreen(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
 		return this.method5114(6, arg0 << 16, null, (arg2 << 16) + arg1);
 	}
 
@@ -528,7 +528,7 @@ public final class SignLink implements Runnable {
 	}
 
 	@OriginalMember(owner = "signlink!ll", name = "a", descriptor = "(B)Lsignlink!im;")
-	public final PrivilegedRequest method5132() {
+	public final PrivilegedRequest getDisplayModes() {
 		return this.method5114(5, 0, null, 0);
 	}
 }

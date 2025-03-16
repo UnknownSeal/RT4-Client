@@ -341,7 +341,7 @@ public final class Static127 {
 				Static203.method3663(GameShell.signLink);
 				Static18.sentToServer = false;
 			}
-			if (chatTyped.startsWith(Static170.FPS) && client.modeWhere != 0) {
+			if (chatTyped.startsWith(ObjTypeList.FPS) && client.modeWhere != 0) {
 				Static115.method2312(chatTyped.substring(6).method3132());
 			}
 			if (chatTyped.equalsIgnoreCase(Static272.ERRORTEST)) {

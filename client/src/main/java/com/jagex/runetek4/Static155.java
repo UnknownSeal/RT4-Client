@@ -35,7 +35,7 @@ public final class Static155 {
 		@Pc(8) short[] local8 = new short[16];
 		@Pc(12) JString local12 = arg1.toLowerCase();
 		@Pc(14) int local14 = 0;
-		for (@Pc(16) int local16 = 0; local16 < Static170.anInt3245; local16++) {
+		for (@Pc(16) int local16 = 0; local16 < ObjTypeList.capacity; local16++) {
 			@Pc(27) ItemDefinition local27 = Static71.get(local16);
 			if ((!arg0 || local27.stockmarket) && local27.certtemplate == -1 && local27.lenttemplate == -1 && local27.dummyitem == 0 && local27.name.toLowerCase().indexOf(local12) != -1) {
 				if (local14 >= 250) {

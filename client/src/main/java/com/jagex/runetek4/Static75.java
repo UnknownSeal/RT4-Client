@@ -311,7 +311,7 @@ public final class Static75 {
 					local247 = Static57.in.g2();
 					local633 = Static57.in.g2lesadd();
 					if (!GlRenderer.enabled) {
-						Static170.method2574(local625, local247, local633, local232, local39, local613, local19, local605, local31, local23, local609, local228);
+						ObjTypeList.method2574(local625, local247, local633, local232, local39, local613, local19, local605, local31, local23, local609, local228);
 					}
 				}
 				if (Static164.packetType == 14) {

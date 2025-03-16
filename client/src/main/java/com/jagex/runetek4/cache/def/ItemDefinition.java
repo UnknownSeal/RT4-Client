@@ -677,7 +677,7 @@ public final class ItemDefinition {
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "([[IZ)V")
 	public static void method1751(@OriginalArg(0) int[][] arg0) {
-		Static71.anIntArrayArray10 = arg0;
+		ObjTypeList.anIntArrayArray10 = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "d", descriptor = "(II)Lclient!dm;")

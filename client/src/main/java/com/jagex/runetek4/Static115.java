@@ -50,9 +50,9 @@ public final class Static115 {
 		@Pc(35) int local35 = Static24.method670(local7 + 1, local11);
 		@Pc(42) int local42 = Static24.method670(local7, local11 + 1);
 		@Pc(56) int local56 = Static24.method670(local7 + 1, local11 + 1);
-		@Pc(63) int local63 = Static170.method2569(local28, local35, local23, arg0);
-		@Pc(70) int local70 = Static170.method2569(local42, local56, local23, arg0);
-		return Static170.method2569(local63, local70, local17, arg0);
+		@Pc(63) int local63 = ObjTypeList.method2569(local28, local35, local23, arg0);
+		@Pc(70) int local70 = ObjTypeList.method2569(local42, local56, local23, arg0);
+		return ObjTypeList.method2569(local63, local70, local17, arg0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(IIIIB)V")

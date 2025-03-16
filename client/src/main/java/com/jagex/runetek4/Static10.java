@@ -89,15 +89,15 @@ public final class Static10 {
 		@Pc(51) int local51 = Static78.method1690(Static106.anInt2869, arg0 - arg1, Static267.anInt5773);
 		@Pc(53) int local53;
 		for (local53 = local11; local53 < local42; local53++) {
-			Static131.method2576(Static71.anIntArrayArray10[local53], local23, local29, arg4);
+			Static131.method2576(ObjTypeList.anIntArrayArray10[local53], local23, local29, arg4);
 		}
 		for (local53 = local17; local53 > local51; local53--) {
-			Static131.method2576(Static71.anIntArrayArray10[local53], local23, local29, arg4);
+			Static131.method2576(ObjTypeList.anIntArrayArray10[local53], local23, local29, arg4);
 		}
 		@Pc(95) int local95 = Static78.method1690(Static224.anInt5063, arg1 + arg3, Static172.anInt4164);
 		@Pc(104) int local104 = Static78.method1690(Static224.anInt5063, arg2 - arg1, Static172.anInt4164);
 		for (local53 = local42; local53 <= local51; local53++) {
-			@Pc(117) int[] local117 = Static71.anIntArrayArray10[local53];
+			@Pc(117) int[] local117 = ObjTypeList.anIntArrayArray10[local53];
 			Static131.method2576(local117, local23, local95, arg4);
 			Static131.method2576(local117, local104, local29, arg4);
 		}

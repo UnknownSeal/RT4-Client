@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -19,23 +18,6 @@ public final class Static58 {
 
 	@OriginalMember(owner = "runetek4.client!eh", name = "j", descriptor = "I")
 	public static int wheelRotation = 0;
-
-	@OriginalMember(owner = "runetek4.client!eh", name = "a", descriptor = "(I)V")
-	public static void init() {
-		@Pc(8) int[] local8 = new int[Static170.anInt3245];
-		@Pc(10) int local10 = 0;
-		@Pc(12) int local12;
-		for (local12 = 0; local12 < Static170.anInt3245; local12++) {
-			@Pc(19) ItemDefinition local19 = Static71.get(local12);
-			if (local19.manwear >= 0 || local19.womanwear >= 0) {
-				local8[local10++] = local12;
-			}
-		}
-		Static234.anIntArray455 = new int[local10];
-		for (local12 = 0; local12 < local10; local12++) {
-			Static234.anIntArray455[local12] = local8[local12];
-		}
-	}
 
 	@OriginalMember(owner = "runetek4.client!eh", name = "a", descriptor = "(Lclient!ve;I)V")
 	public static void method1322(@OriginalArg(0) CacheArchive arg0) {

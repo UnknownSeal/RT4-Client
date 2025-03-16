@@ -6,7 +6,6 @@ import java.awt.Insets;
 
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.scene.tile.SceneTile;
-import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -25,42 +24,17 @@ public final class Static197 {
 	@OriginalMember(owner = "runetek4.client!pm", name = "ab", descriptor = "Z")
 	public static boolean aBoolean228 = true;
 
-	@OriginalMember(owner = "runetek4.client!pm", name = "a", descriptor = "(ILsignlink!ll;)[Lclient!od;")
-	public static Class114[] method3558(@OriginalArg(1) SignLink arg0) {
-		if (!arg0.method5111()) {
-			return new Class114[0];
-		}
-		@Pc(17) PrivilegedRequest local17 = arg0.method5132();
-		while (local17.status == 0) {
-			PreciseSleep.sleep(10L);
-		}
-		if (local17.status == 2) {
-			return new Class114[0];
-		}
-		@Pc(39) int[] local39 = (int[]) local17.result;
-		@Pc(45) Class114[] local45 = new Class114[local39.length >> 2];
-		for (@Pc(47) int local47 = 0; local47 < local45.length; local47++) {
-			@Pc(59) Class114 local59 = new Class114();
-			local45[local47] = local59;
-			local59.anInt4248 = local39[local47 << 2];
-			local59.anInt4250 = local39[(local47 << 2) + 1];
-			local59.anInt4251 = local39[(local47 << 2) + 2];
-			local59.anInt4249 = local39[(local47 << 2) + 3];
-		}
-		return local45;
-	}
-
 	@OriginalMember(owner = "runetek4.client!pm", name = "a", descriptor = "(ZIZIZII)V")
 	public static void method3560(@OriginalArg(0) boolean arg0, @OriginalArg(1) int arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {
 		if (arg2) {
 			GlRenderer.quit();
 		}
 		if (Static69.aFrame2 != null && (arg1 != 3 || arg4 != Static114.anInt5831 || arg5 != Static22.anInt729)) {
-			Static25.method714(Static69.aFrame2, GameShell.signLink);
+			DisplayMode.exitFullScreen(Static69.aFrame2, GameShell.signLink);
 			Static69.aFrame2 = null;
 		}
 		if (arg1 == 3 && Static69.aFrame2 == null) {
-			Static69.aFrame2 = Static169.method3176(0, arg5, arg4, GameShell.signLink);
+			Static69.aFrame2 = DisplayMode.enterFullScreen(0, arg5, arg4, GameShell.signLink);
 			if (Static69.aFrame2 != null) {
 				Static22.anInt729 = arg5;
 				Static114.anInt5831 = arg4;

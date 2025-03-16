@@ -65,11 +65,6 @@ public final class Static181 {
 		local8.method1007();
 	}
 
-	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(I[I[Ljava/lang/Object;)V")
-	public static void method3346(@OriginalArg(1) int[] arg0, @OriginalArg(2) Object[] arg1) {
-		Static53.method1292(arg1, arg0.length - 1, arg0, 0);
-	}
-
 	@OriginalMember(owner = "runetek4.client!oi", name = "b", descriptor = "(I)V")
 	public static void method3347() {
 		Static110.aClass99_15.method3104();

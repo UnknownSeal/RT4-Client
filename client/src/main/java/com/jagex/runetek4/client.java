@@ -267,7 +267,7 @@ public final class client extends GameShell {
 			GlRenderer.quit();
 		}
 		if (Static69.aFrame2 != null) {
-			Static25.method714(Static69.aFrame2, GameShell.signLink);
+			DisplayMode.exitFullScreen(Static69.aFrame2, GameShell.signLink);
 			Static69.aFrame2 = null;
 		}
 		if (GameShell.signLink != null) {
@@ -785,7 +785,7 @@ public final class client extends GameShell {
 		} else if (Static166.loadingPercent == 40) {
 			i = 0;
 			for (local43 = 0; local43 < 28; local43++) {
-				i += Static269.aClass14_Sub1Array3[local43].getPercentLoaded() * Static170.anIntArray306[local43] / 100;
+				i += Static269.aClass14_Sub1Array3[local43].getPercentLoaded() * ObjTypeList.anIntArray306[local43] / 100;
 			}
 			if (i == 100) {
 				Static199.mainLoadPercentage = 20;
@@ -890,7 +890,7 @@ public final class client extends GameShell {
 				Static180.method3324(Static274.aClass153_90, Static209.aClass153_86);
 				Static199.mainLoadPercentage = 50;
 				Static126.mainLoadSecondaryText = LocalizedText.MAINLOAD70B;
-				Static58.init();
+				Equipment.init();
 				Static166.loadingPercent = 80;
 			} else {
 				Static126.mainLoadSecondaryText = Static34.method882(new JString[] { LocalizedText.MAINLOAD70, Static123.method2423(i / 11), Static49.aClass100_352 });

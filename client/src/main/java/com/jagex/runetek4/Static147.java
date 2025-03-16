@@ -19,7 +19,7 @@ public final class Static147 {
 
 	@OriginalMember(owner = "runetek4.client!lh", name = "b", descriptor = "(II)V")
 	public static void method2761(@OriginalArg(0) int arg0) {
-		Static170.anInt3241 = arg0;
+		ObjTypeList.anInt3241 = arg0;
 		Static128.method2481(3);
 		Static128.method2481(4);
 	}

@@ -256,7 +256,7 @@ public final class Static89 {
 		@Pc(14) int local14 = -1;
 		@Pc(22) int local22 = Static78.method1690(Static224.anInt5063, arg2 + arg3, Static172.anInt4164);
 		@Pc(30) int local30 = Static78.method1690(Static224.anInt5063, arg3 - arg2, Static172.anInt4164);
-		Static131.method2576(Static71.anIntArrayArray10[arg1], local30, local22, arg0);
+		Static131.method2576(ObjTypeList.anIntArrayArray10[arg1], local30, local22, arg0);
 		while (local7 < local9) {
 			local14 += 2;
 			local12 += local14;
@@ -273,10 +273,10 @@ public final class Static89 {
 					local84 = Static78.method1690(Static224.anInt5063, arg3 + local7, Static172.anInt4164);
 					local93 = Static78.method1690(Static224.anInt5063, arg3 - local7, Static172.anInt4164);
 					if (Static106.anInt2869 >= local68) {
-						Static131.method2576(Static71.anIntArrayArray10[local68], local93, local84, arg0);
+						Static131.method2576(ObjTypeList.anIntArrayArray10[local68], local93, local84, arg0);
 					}
 					if (Static267.anInt5773 <= local58) {
-						Static131.method2576(Static71.anIntArrayArray10[local58], local93, local84, arg0);
+						Static131.method2576(ObjTypeList.anIntArrayArray10[local58], local93, local84, arg0);
 					}
 				}
 			}
@@ -287,10 +287,10 @@ public final class Static89 {
 				local84 = Static78.method1690(Static224.anInt5063, arg3 + local9, Static172.anInt4164);
 				local93 = Static78.method1690(Static224.anInt5063, arg3 - local9, Static172.anInt4164);
 				if (local68 <= Static106.anInt2869) {
-					Static131.method2576(Static71.anIntArrayArray10[local68], local93, local84, arg0);
+					Static131.method2576(ObjTypeList.anIntArrayArray10[local68], local93, local84, arg0);
 				}
 				if (local58 >= Static267.anInt5773) {
-					Static131.method2576(Static71.anIntArrayArray10[local58], local93, local84, arg0);
+					Static131.method2576(ObjTypeList.anIntArrayArray10[local58], local93, local84, arg0);
 				}
 			}
 		}

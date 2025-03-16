@@ -2938,26 +2938,26 @@ public final class Static88 {
 														continue;
 													}
 													if (scriptOpcode == 5302) {
-														@Pc(7780) Class114[] local7780 = Static3.method4660();
+														@Pc(7780) DisplayMode[] local7780 = DisplayMode.getModes();
 														Static254.scriptIntValues[intValueIndex++] = local7780.length;
 														continue;
 													}
 													if (scriptOpcode == 5303) {
 														intValueIndex--;
 														interfaceData = Static254.scriptIntValues[intValueIndex];
-														@Pc(7800) Class114[] local7800 = Static3.method4660();
-														Static254.scriptIntValues[intValueIndex++] = local7800[interfaceData].anInt4248;
-														Static254.scriptIntValues[intValueIndex++] = local7800[interfaceData].anInt4250;
+														@Pc(7800) DisplayMode[] local7800 = DisplayMode.getModes();
+														Static254.scriptIntValues[intValueIndex++] = local7800[interfaceData].width;
+														Static254.scriptIntValues[intValueIndex++] = local7800[interfaceData].height;
 														continue;
 													}
 													if (scriptOpcode == 5305) {
 														interfaceType = Static22.anInt729;
 														interfaceData = Static114.anInt5831;
 														childCount = -1;
-														@Pc(7833) Class114[] local7833 = Static3.method4660();
+														@Pc(7833) DisplayMode[] local7833 = DisplayMode.getModes();
 														for (start = 0; start < local7833.length; start++) {
-															@Pc(7843) Class114 local7843 = local7833[start];
-															if (interfaceData == local7843.anInt4248 && local7843.anInt4250 == interfaceType) {
+															@Pc(7843) DisplayMode local7843 = local7833[start];
+															if (interfaceData == local7843.width && local7843.height == interfaceType) {
 																childCount = start;
 																break;
 															}

@@ -129,7 +129,7 @@ public final class Static4 {
 		if (Static164.packetType == 60) {
 			ii = Static57.in.g2sub();
 			@Pc(137) byte local137 = Static57.in.g1neg();
-			Static170.method2575(local137, ii);
+			ObjTypeList.method2575(local137, ii);
 			Static164.packetType = -1;
 			return true;
 		}
@@ -462,7 +462,7 @@ public final class Static4 {
 				} else if (Static164.packetType == 226) {
 					ii = Static57.in.g4();
 					xp = Static57.in.g2sub();
-					Static170.method2575(ii, xp);
+					ObjTypeList.method2575(ii, xp);
 					Static164.packetType = -1;
 					return true;
 				} else if (Static164.packetType == 21) {

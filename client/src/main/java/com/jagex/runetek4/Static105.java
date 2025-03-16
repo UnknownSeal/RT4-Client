@@ -10,9 +10,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static105 {
 
-	@OriginalMember(owner = "runetek4.client!ib", name = "i", descriptor = "[Lclient!od;")
-	public static Class114[] aClass114Array1;
-
 	@OriginalMember(owner = "runetek4.client!ib", name = "c", descriptor = "Lclient!qi;")
 	public static final ColorImageCacheEntry aClass3_Sub28_1 = new ColorImageCacheEntry(0, 0);
 

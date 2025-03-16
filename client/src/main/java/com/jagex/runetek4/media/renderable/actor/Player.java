@@ -130,7 +130,7 @@ public final class Player extends Actor {
 					break;
 				}
 				if (local134 >= 32768) {
-					local134 = Static234.anIntArray455[local134 - 32768];
+					local134 = Equipment.objIds[local134 - 32768];
 					local44[local102] = local134 | 0x40000000;
 					local175 = Static71.get(local134).team;
 					if (local175 != 0) {

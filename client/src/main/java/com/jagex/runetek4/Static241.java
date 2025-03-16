@@ -75,7 +75,7 @@ public final class Static241 {
 		Static230.modelArchive = arg2;
 		com.jagex.runetek4.cache.CacheArchive.aClass153_61 = arg0;
 		@Pc(23) int local23 = com.jagex.runetek4.cache.CacheArchive.aClass153_61.capacity() - 1;
-		Static170.anInt3245 = com.jagex.runetek4.cache.CacheArchive.aClass153_61.fileLength(local23) + local23 * 256;
+		ObjTypeList.capacity = com.jagex.runetek4.cache.CacheArchive.aClass153_61.fileLength(local23) + local23 * 256;
 		Static143.aClass100Array104 = new JString[] { null, null, null, null, LocalizedText.DROP};
 		Static269.aClass100Array87 = new JString[] { null, null, LocalizedText.TAKE, null, null };
 		Static256.aClass3_Sub2_Sub9_Sub1_1 = arg1;
@@ -128,7 +128,7 @@ public final class Static241 {
 			@Pc(136) int local136;
 			if (local70) {
 				for (local136 = arg4; local136 <= arg3; local136++) {
-					Static71.anIntArrayArray10[local136][local74] = arg0;
+					ObjTypeList.anIntArrayArray10[local136][local74] = arg0;
 					local116 += local111;
 					if (local116 > 0) {
 						local74 += local123;
@@ -138,7 +138,7 @@ public final class Static241 {
 			} else {
 				for (local136 = arg4; local136 <= arg3; local136++) {
 					local116 += local111;
-					Static71.anIntArrayArray10[local74][local136] = arg0;
+					ObjTypeList.anIntArrayArray10[local74][local136] = arg0;
 					if (local116 > 0) {
 						local74 += local123;
 						local116 -= local78;

@@ -36,7 +36,7 @@ public final class Static163 {
 		@Pc(23) int local23 = Static78.method1690(Static224.anInt5063, arg3, Static172.anInt4164);
 		@Pc(35) int local35 = Static78.method1690(Static224.anInt5063, arg1, Static172.anInt4164);
 		for (@Pc(37) int local37 = local11; local37 <= local17; local37++) {
-			Static131.method2576(Static71.anIntArrayArray10[local37], local23, local35, arg0);
+			Static131.method2576(ObjTypeList.anIntArrayArray10[local37], local23, local35, arg0);
 		}
 	}
 }

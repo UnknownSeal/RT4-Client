@@ -14,10 +14,7 @@ public final class Static71 {
 	@OriginalMember(owner = "runetek4.client!fk", name = "e", descriptor = "I")
 	public static int anInt1885;
 
-	@OriginalMember(owner = "runetek4.client!fk", name = "j", descriptor = "[[I")
-	public static int[][] anIntArrayArray10;
-
-    @OriginalMember(owner = "runetek4.client!fk", name = "q", descriptor = "Lclient!uc;")
+	@OriginalMember(owner = "runetek4.client!fk", name = "q", descriptor = "Lclient!uc;")
 	public static MouseWheel mouseWheel;
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "g", descriptor = "Z")

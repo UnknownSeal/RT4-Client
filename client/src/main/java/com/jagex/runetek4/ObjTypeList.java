@@ -6,10 +6,10 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-public final class Static170 {
+public final class ObjTypeList {
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "eb", descriptor = "I")
-	public static int anInt3245;
+	public static int capacity;
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "Z", descriptor = "I")
 	public static int anInt3241 = 128;
@@ -19,6 +19,8 @@ public final class Static170 {
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "hb", descriptor = "Lclient!na;")
 	public static final JString FPS = Static28.parse("::fps ");
+	@OriginalMember(owner = "runetek4.client!fk", name = "j", descriptor = "[[I")
+	public static int[][] anIntArrayArray10;
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(IIIII)I")
 	public static int method2569(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {

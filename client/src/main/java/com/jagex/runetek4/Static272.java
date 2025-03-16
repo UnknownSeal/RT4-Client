@@ -34,6 +34,6 @@ public final class Static272 {
 			arg0 = 0;
 		}
 		local29 <<= local23;
-		Static170.method2575(arg0 << local23 & local29 | ~local29 & VarPlayerDefinition.varPlayerCache[local17], local17);
+		ObjTypeList.method2575(arg0 << local23 & local29 | ~local29 & VarPlayerDefinition.varPlayerCache[local17], local17);
 	}
 }

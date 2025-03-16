@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.utils.Timer;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
@@ -21,8 +22,8 @@ public final class Static200 {
 		if (PreciseSleep.menuActionRow == arg0) {
 			return;
 		}
-		Static289.method2617(Static254.aClass100Array168, arg0 + 1, Static254.aClass100Array168, arg0, PreciseSleep.menuActionRow - arg0);
-		Static289.method2617(ClientScriptRunner.aClass100Array160, arg0 + 1, ClientScriptRunner.aClass100Array160, arg0, PreciseSleep.menuActionRow - arg0);
+		ArrayUtils.copy(Static254.aClass100Array168, arg0 + 1, Static254.aClass100Array168, arg0, PreciseSleep.menuActionRow - arg0);
+		ArrayUtils.copy(ClientScriptRunner.aClass100Array160, arg0 + 1, ClientScriptRunner.aClass100Array160, arg0, PreciseSleep.menuActionRow - arg0);
 		Static289.method2613(Static190.anIntArray382, arg0 + 1, Static190.anIntArray382, arg0, PreciseSleep.menuActionRow - arg0);
 		Static289.method2616(Static39.aShortArray6, arg0 + 1, Static39.aShortArray6, arg0, PreciseSleep.menuActionRow - arg0);
 		Static289.method2611(Static159.aLongArray5, arg0 + 1, Static159.aLongArray5, arg0, PreciseSleep.menuActionRow - arg0);
