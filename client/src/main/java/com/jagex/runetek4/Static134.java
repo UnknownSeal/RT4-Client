@@ -35,9 +35,4 @@ public final class Static134 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!kh", name = "b", descriptor = "(I)V")
-	public static void method2623() {
-		Static6.outboundBuffer.pIsaac1(104);
-		Static6.outboundBuffer.p8(0L);
-	}
 }

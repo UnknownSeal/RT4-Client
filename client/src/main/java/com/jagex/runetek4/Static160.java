@@ -13,9 +13,6 @@ public final class Static160 {
 	@OriginalMember(owner = "runetek4.client!mj", name = "n", descriptor = "Lclient!fd;")
 	public static WorldMapFont aClass41_4;
 
-	@OriginalMember(owner = "runetek4.client!mj", name = "u", descriptor = "B")
-	public static byte aByte14;
-
 	@OriginalMember(owner = "runetek4.client!mj", name = "C", descriptor = "[S")
 	public static short[] aShortArray41;
 

@@ -426,7 +426,7 @@ public final class Static36 {
 								local399.anObjectArray31 = local9.anObjectArray1;
 								Static185.aClass69_101.addTail(local399);
 							}
-							if (Static278.anInt5867 > local9.anInt482 && local9.anObjectArray28 != null) {
+							if (ClanChat.transmitAt > local9.anInt482 && local9.anObjectArray28 != null) {
 								local399 = new HookRequest();
 								local399.source = local9;
 								local399.anObjectArray31 = local9.anObjectArray28;

@@ -115,14 +115,6 @@ public final class Static156 {
 		Static248.method3292(arg0, arg1, arg2, arg5, arg11, arg12, arg13, arg14);
 	}
 
-	@OriginalMember(owner = "runetek4.client!mf", name = "a", descriptor = "(JI)V")
-	public static void method2956(@OriginalArg(0) long arg0) {
-		if ((long) 0 != arg0) {
-			Static6.outboundBuffer.pIsaac1(104);
-			Static6.outboundBuffer.p8(arg0);
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!mf", name = "e", descriptor = "(I)V")
 	public static void init() {
 		if (SignLink.javaVendor.toLowerCase().indexOf("microsoft") != -1) {

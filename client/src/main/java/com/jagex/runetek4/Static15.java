@@ -16,9 +16,6 @@ public final class Static15 {
 	@OriginalMember(owner = "client!be", name = "Kb", descriptor = "Z")
 	public static boolean lowMemory = true;
 
-	@OriginalMember(owner = "client!be", name = "ac", descriptor = "Lclient!na;")
-	public static JString aClass100_87 = null;
-
 	@OriginalMember(owner = "client!be", name = "kc", descriptor = "J")
 	public static long aLong18 = 0L;
 

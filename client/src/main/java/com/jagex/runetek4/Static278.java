@@ -19,9 +19,6 @@ public final class Static278 {
 	@OriginalMember(owner = "runetek4.client!wj", name = "f", descriptor = "Lclient!na;")
 	public static final JString aClass100_1103 = Static28.parse("ul");
 
-	@OriginalMember(owner = "runetek4.client!wj", name = "l", descriptor = "I")
-	public static int anInt5867 = 0;
-
 	@OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(I)V")
 	public static void method4645() {
 		while (true) {

@@ -151,8 +151,8 @@ public final class Static54 {
 						}
 					}
 					@Pc(660) boolean local660 = false;
-					for (local271 = 0; local271 < Static214.anInt5577; local271++) {
-						if (name == Static199.aClass3_Sub22Array1[local271].nodeId) {
+					for (local271 = 0; local271 < ClanChat.size; local271++) {
+						if (name == ClanChat.members[local271].nodeId) {
 							local660 = true;
 							break;
 						}

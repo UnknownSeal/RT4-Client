@@ -353,28 +353,28 @@ public final class Static4 {
 			@Pc(1160) int local1160;
 			@Pc(1245) boolean local1245;
 			if (Static164.packetType == 55) {
-				Static278.anInt5867 = InterfaceList.transmitTimer;
+				ClanChat.transmitAt = InterfaceList.transmitTimer;
 				username2 = Static57.in.g8();
 				if (username2 == 0L) {
-					Static270.aClass100_1094 = null;
+					ClanChat.owner = null;
 					Static164.packetType = -1;
-					Static15.aClass100_87 = null;
-					Static199.aClass3_Sub22Array1 = null;
-					Static214.anInt5577 = 0;
+					ClanChat.name = null;
+					ClanChat.members = null;
+					ClanChat.size = 0;
 					return true;
 				}
 				username = Static57.in.g8();
-				Static15.aClass100_87 = Base37.decode37(username);
-				Static270.aClass100_1094 = Base37.decode37(username2);
-				Static50.aByte6 = Static57.in.g1s();
+				ClanChat.name = Base37.decode37(username);
+				ClanChat.owner = Base37.decode37(username2);
+				ClanChat.minKick = Static57.in.g1s();
 				count = Static57.in.g1();
 				if (count == 255) {
 					Static164.packetType = -1;
 					return true;
 				}
-				Static214.anInt5577 = count;
+				ClanChat.size = count;
 				@Pc(1158) Class3_Sub22[] local1158 = new Class3_Sub22[100];
-				for (local1160 = 0; local1160 < Static214.anInt5577; local1160++) {
+				for (local1160 = 0; local1160 < ClanChat.size; local1160++) {
 					local1158[local1160] = new Class3_Sub22();
 					local1158[local1160].nodeId = Static57.in.g8();
 					local1158[local1160].aClass100_636 = Base37.decode37(local1158[local1160].nodeId);
@@ -382,10 +382,10 @@ public final class Static4 {
 					local1158[local1160].aByte9 = Static57.in.g1s();
 					local1158[local1160].aClass100_635 = Static57.in.gjstr();
 					if (Static101.aLong98 == local1158[local1160].nodeId) {
-						Static160.aByte14 = local1158[local1160].aByte9;
+						ClanChat.rank = local1158[local1160].aByte9;
 					}
 				}
-				local908 = Static214.anInt5577;
+				local908 = ClanChat.size;
 				while (local908 > 0) {
 					local1245 = true;
 					local908--;
@@ -401,7 +401,7 @@ public final class Static4 {
 						break;
 					}
 				}
-				Static199.aClass3_Sub22Array1 = local1158;
+				ClanChat.members = local1158;
 				Static164.packetType = -1;
 				return true;
 			} else if (Static164.packetType == 164) {
@@ -1442,20 +1442,20 @@ public final class Static4 {
 										ignored = true;
 									}
 									if (ignored) {
-										if (Static214.anInt5577 == 0) {
+										if (ClanChat.size == 0) {
 											Static164.packetType = -1;
 											return true;
 										}
 										username2 &= Long.MAX_VALUE;
-										for (i = 0; Static214.anInt5577 > i && (username2 != Static199.aClass3_Sub22Array1[i].nodeId || world != Static199.aClass3_Sub22Array1[i].anInt3340); i++) {
+										for (i = 0; ClanChat.size > i && (username2 != ClanChat.members[i].nodeId || world != ClanChat.members[i].anInt3340); i++) {
 										}
-										if (i < Static214.anInt5577) {
-											while (Static214.anInt5577 - 1 > i) {
-												Static199.aClass3_Sub22Array1[i] = Static199.aClass3_Sub22Array1[i + 1];
+										if (i < ClanChat.size) {
+											while (ClanChat.size - 1 > i) {
+												ClanChat.members[i] = ClanChat.members[i + 1];
 												i++;
 											}
-											Static214.anInt5577--;
-											Static199.aClass3_Sub22Array1[Static214.anInt5577] = null;
+											ClanChat.size--;
+											ClanChat.members[ClanChat.size] = null;
 										}
 									} else {
 										local506 = Static57.in.gjstr();
@@ -1465,16 +1465,16 @@ public final class Static4 {
 										local5347.aByte9 = local5325;
 										local5347.aClass100_635 = local506;
 										local5347.anInt3340 = world;
-										for (j = Static214.anInt5577 - 1; j >= 0; j--) {
-											local908 = Static199.aClass3_Sub22Array1[j].aClass100_636.method3139(local5347.aClass100_636);
+										for (j = ClanChat.size - 1; j >= 0; j--) {
+											local908 = ClanChat.members[j].aClass100_636.method3139(local5347.aClass100_636);
 											if (local908 == 0) {
-												Static199.aClass3_Sub22Array1[j].anInt3340 = world;
-												Static199.aClass3_Sub22Array1[j].aByte9 = local5325;
-												Static199.aClass3_Sub22Array1[j].aClass100_635 = local506;
+												ClanChat.members[j].anInt3340 = world;
+												ClanChat.members[j].aByte9 = local5325;
+												ClanChat.members[j].aClass100_635 = local506;
 												if (username2 == Static101.aLong98) {
-													Static160.aByte14 = local5325;
+													ClanChat.rank = local5325;
 												}
-												Static278.anInt5867 = InterfaceList.transmitTimer;
+												ClanChat.transmitAt = InterfaceList.transmitTimer;
 												Static164.packetType = -1;
 												return true;
 											}
@@ -1482,24 +1482,24 @@ public final class Static4 {
 												break;
 											}
 										}
-										if (Static199.aClass3_Sub22Array1.length <= Static214.anInt5577) {
+										if (ClanChat.members.length <= ClanChat.size) {
 											Static164.packetType = -1;
 											return true;
 										}
-										for (local908 = Static214.anInt5577 - 1; local908 > j; local908--) {
-											Static199.aClass3_Sub22Array1[local908 + 1] = Static199.aClass3_Sub22Array1[local908];
+										for (local908 = ClanChat.size - 1; local908 > j; local908--) {
+											ClanChat.members[local908 + 1] = ClanChat.members[local908];
 										}
-										if (Static214.anInt5577 == 0) {
-											Static199.aClass3_Sub22Array1 = new Class3_Sub22[100];
+										if (ClanChat.size == 0) {
+											ClanChat.members = new Class3_Sub22[100];
 										}
-										Static199.aClass3_Sub22Array1[j + 1] = local5347;
+										ClanChat.members[j + 1] = local5347;
 										if (Static101.aLong98 == username2) {
-											Static160.aByte14 = local5325;
+											ClanChat.rank = local5325;
 										}
-										Static214.anInt5577++;
+										ClanChat.size++;
 									}
 									Static164.packetType = -1;
-									Static278.anInt5867 = InterfaceList.transmitTimer;
+									ClanChat.transmitAt = InterfaceList.transmitTimer;
 									return true;
 								} else if (Static164.packetType == 50) {
 									ii = Static57.in.g4();

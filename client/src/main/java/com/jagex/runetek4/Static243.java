@@ -149,9 +149,9 @@ public final class Static243 {
 		for (i = 0; i < 100; i++) {
 			Static186.aBooleanArray100[i] = true;
 		}
-		Static214.anInt5577 = 0;
-		Static199.aClass3_Sub22Array1 = null;
-		Static15.aClass100_87 = null;
+		ClanChat.size = 0;
+		ClanChat.members = null;
+		ClanChat.name = null;
 		for (i = 0; i < 6; i++) {
 			Static229.aClass136Array1[i] = new StockMarketOffer();
 		}
