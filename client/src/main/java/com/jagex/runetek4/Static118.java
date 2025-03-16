@@ -110,7 +110,7 @@ public final class Static118 {
 		@Pc(41) int local41 = 0;
 		for (@Pc(43) int local43 = 0; local43 < arg1; local43++) {
 			@Pc(52) JString local52 = arg2[local43 + arg0];
-			Static289.method2612(local52.aByteArray52, 0, local39, local41, local52.anInt4030);
+			JString.copy(local52.aByteArray52, 0, local39, local41, local52.anInt4030);
 			local41 += local52.anInt4030;
 		}
 		@Pc(71) JString local71 = new JString();

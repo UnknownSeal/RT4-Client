@@ -86,10 +86,10 @@ public final class Static80 {
 			}
 			if (local78.status == 1) {
 				local48 = (FileOnDisk) local78.result;
-				@Pc(106) byte[] local106 = new byte[(int) local48.method5137()];
+				@Pc(106) byte[] local106 = new byte[(int) local48.length()];
 				@Pc(128) int local128;
 				for (@Pc(108) int local108 = 0; local108 < local106.length; local108 += local128) {
-					local128 = local48.method5135(local108, local106.length - local108, local106);
+					local128 = local48.read(local108, local106.length - local108, local106);
 					if (local128 == -1) {
 						throw new IOException("EOF");
 					}

@@ -45,7 +45,7 @@ public final class FileOnDisk {
 	}
 
 	@OriginalMember(owner = "signlink!qm", name = "a", descriptor = "(BJ)V")
-	public final void method5133(@OriginalArg(1) long arg0) throws IOException {
+	public final void seek(@OriginalArg(1) long arg0) throws IOException {
 		this.aRandomAccessFile1.seek(arg0);
 		this.aLong1316 = arg0;
 	}
@@ -60,7 +60,7 @@ public final class FileOnDisk {
 	}
 
 	@OriginalMember(owner = "signlink!qm", name = "a", descriptor = "(I[BII)V")
-	public final void method5134(@OriginalArg(1) byte[] arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) throws IOException {
+	public final void write(@OriginalArg(1) byte[] arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) throws IOException {
 		if (this.aLong1316 + (long) arg1 > this.aLong1315) {
 			this.aRandomAccessFile1.seek(this.aLong1315 + 1L);
 			this.aRandomAccessFile1.write(1);
@@ -72,7 +72,7 @@ public final class FileOnDisk {
 	}
 
 	@OriginalMember(owner = "signlink!qm", name = "a", descriptor = "(III[B)I")
-	public final int method5135(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) byte[] arg2) throws IOException {
+	public final int read(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) byte[] arg2) throws IOException {
 		@Pc(6) int local6 = this.aRandomAccessFile1.read(arg2, arg0, arg1);
 		if (local6 > 0) {
 			this.aLong1316 += local6;
@@ -89,12 +89,12 @@ public final class FileOnDisk {
 	}
 
 	@OriginalMember(owner = "signlink!qm", name = "c", descriptor = "(I)J")
-	public final long method5137() throws IOException {
+	public final long length() throws IOException {
 		return this.aRandomAccessFile1.length();
 	}
 
 	@OriginalMember(owner = "signlink!qm", name = "a", descriptor = "(I)Ljava/io/File;")
-	public final File method5138() {
+	public final File getFile() {
 		return this.aFile1;
 	}
 }

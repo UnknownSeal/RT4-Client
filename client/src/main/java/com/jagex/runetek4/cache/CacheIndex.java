@@ -14,10 +14,10 @@ public final class CacheIndex {
 	@OriginalMember(owner = "runetek4.client!wc", name = "i", descriptor = "[B")
 	public static final byte[] buffer = new byte[520];
 	@OriginalMember(owner = "client!ge", name = "a", descriptor = "Lclient!en;")
-	private CacheFileChannel dataChannel = null;
+	private BufferedFile dataChannel = null;
 
 	@OriginalMember(owner = "client!ge", name = "f", descriptor = "Lclient!en;")
-	private CacheFileChannel metaChannel = null;
+	private BufferedFile metaChannel = null;
 
 	@OriginalMember(owner = "client!ge", name = "l", descriptor = "I")
 	private int maxLength = 65000;
@@ -26,7 +26,7 @@ public final class CacheIndex {
 	private final int id;
 
 	@OriginalMember(owner = "client!ge", name = "<init>", descriptor = "(ILclient!en;Lclient!en;I)V")
-	public CacheIndex(@OriginalArg(0) int id, @OriginalArg(1) CacheFileChannel dataChannel, @OriginalArg(2) CacheFileChannel metaChannel, @OriginalArg(3) int maxLength) {
+	public CacheIndex(@OriginalArg(0) int id, @OriginalArg(1) BufferedFile dataChannel, @OriginalArg(2) BufferedFile metaChannel, @OriginalArg(3) int maxLength) {
 		this.maxLength = maxLength;
 		this.metaChannel = metaChannel;
 		this.id = id;
@@ -41,7 +41,7 @@ public final class CacheIndex {
 
 	@OriginalMember(owner = "client!ge", name = "a", descriptor = "(II[BB)Z")
 	public boolean put(@OriginalArg(0) int arg0, @OriginalArg(1) int fileSize, @OriginalArg(2) byte[] arg2) {
-		@Pc(7) CacheFileChannel local7 = this.dataChannel;
+		@Pc(7) BufferedFile local7 = this.dataChannel;
 		synchronized (this.dataChannel) {
 			if (fileSize < 0 || fileSize > this.maxLength) {
 				throw new IllegalArgumentException();
@@ -56,22 +56,22 @@ public final class CacheIndex {
 
 	@OriginalMember(owner = "client!ge", name = "a", descriptor = "(IB)[B")
 	public byte[] get(@OriginalArg(0) int index) {
-		@Pc(9) CacheFileChannel local9 = this.dataChannel;
+		@Pc(9) BufferedFile local9 = this.dataChannel;
 		synchronized (this.dataChannel) {
 			try {
 				@Pc(27) Object local27;
-				if (this.metaChannel.getSize() < (long) (index * 6L + 6)) {
+				if (this.metaChannel.length() < (long) (index * 6L + 6)) {
 					local27 = null;
 					return (byte[]) local27;
 				}
-				this.metaChannel.setReadIndex(index * 6L);
-				this.metaChannel.method1453(0, buffer, 6);
+				this.metaChannel.seek(index * 6L);
+				this.metaChannel.read(0, buffer, 6);
 				@Pc(69) int fileBlock = ((buffer[3] & 0xFF) << 16) - (-((buffer[4] & 0xFF) << 8) - (buffer[5] & 0xFF));
 				@Pc(99) int fileSize = (buffer[2] & 0xFF) + ((buffer[1] & 0xFF) << 8) + ((buffer[0] & 0xFF) << 16);
 				if (fileSize < 0 || this.maxLength < fileSize) {
 					local27 = null;
 					return (byte[]) local27;
-				} else if (fileBlock <= 0 || (long) fileBlock > this.dataChannel.getSize() / 520L) {
+				} else if (fileBlock <= 0 || (long) fileBlock > this.dataChannel.length() / 520L) {
 					local27 = null;
 					return (byte[]) local27;
 				} else {
@@ -84,11 +84,11 @@ public final class CacheIndex {
 							return (byte[]) local27;
 						}
 						@Pc(157) int remaining = fileSize - read;
-						this.dataChannel.setReadIndex(fileBlock * 520L);
+						this.dataChannel.seek(fileBlock * 520L);
 						if (remaining > 512) {
 							remaining = 512;
 						}
-						this.dataChannel.method1453(0, buffer, remaining + 8);
+						this.dataChannel.read(0, buffer, remaining + 8);
 						@Pc(197) int local197 = ((buffer[0] & 0xFF) << 8) + (buffer[1] & 0xFF);
 						@Pc(211) int local211 = (buffer[3] & 0xFF) + ((buffer[2] & 0xFF) << 8);
 						@Pc(217) int local217 = buffer[7] & 0xFF;
@@ -97,7 +97,7 @@ public final class CacheIndex {
 							local27 = null;
 							return (byte[]) local27;
 						}
-						if (local239 < 0 || (long) local239 > this.dataChannel.getSize() / 520L) {
+						if (local239 < 0 || (long) local239 > this.dataChannel.length() / 520L) {
 							local27 = null;
 							return (byte[]) local27;
 						}
@@ -118,25 +118,25 @@ public final class CacheIndex {
 
 	@OriginalMember(owner = "client!ge", name = "a", descriptor = "(BII[BZ)Z")
 	private boolean put(@OriginalArg(1) int arg0, @OriginalArg(2) int index, @OriginalArg(3) byte[] arg2, @OriginalArg(4) boolean arg3) {
-		@Pc(9) CacheFileChannel local9 = this.dataChannel;
+		@Pc(9) BufferedFile local9 = this.dataChannel;
 		synchronized (this.dataChannel) {
 			try {
 				@Pc(67) int sector;
 				@Pc(27) boolean local27;
 				if (arg3) {
-					if (this.metaChannel.getSize() < (long) (index * 6L + 6)) {
+					if (this.metaChannel.length() < (long) (index * 6L + 6)) {
 						local27 = false;
 						return local27;
 					}
-					this.metaChannel.setReadIndex(index * 6L);
-					this.metaChannel.method1453(0, buffer, 6);
+					this.metaChannel.seek(index * 6L);
+					this.metaChannel.read(0, buffer, 6);
 					sector = ((buffer[3] & 0xFF) << 16) + (buffer[4] << 8 & 0xFF00) + (buffer[5] & 0xFF);
-					if (sector <= 0 || this.dataChannel.getSize() / 520L < (long) sector) {
+					if (sector <= 0 || this.dataChannel.length() / 520L < (long) sector) {
 						local27 = false;
 						return local27;
 					}
 				} else {
-					sector = (int) ((this.dataChannel.getSize() + 519L) / 520L);
+					sector = (int) ((this.dataChannel.length() + 519L) / 520L);
 					if (sector == 0) {
 						sector = 1;
 					}
@@ -149,17 +149,17 @@ public final class CacheIndex {
 				buffer[3] = (byte) (sector >> 16);
 				@Pc(156) int local156 = 0;
 				buffer[1] = (byte) (arg0 >> 8);
-				this.metaChannel.setReadIndex(index * 6L);
-				this.metaChannel.method1458(buffer, 0, 6);
+				this.metaChannel.seek(index * 6L);
+				this.metaChannel.write(buffer, 0, 6);
 				while (true) {
 					if (local125 < arg0) {
 						label134: {
 							@Pc(189) int local189 = 0;
 							@Pc(248) int local248;
 							if (arg3) {
-								this.dataChannel.setReadIndex(sector * 520L);
+								this.dataChannel.seek(sector * 520L);
 								try {
-									this.dataChannel.method1453(0, buffer, 8);
+									this.dataChannel.read(0, buffer, 8);
 								} catch (@Pc(209) EOFException local209) {
 									break label134;
 								}
@@ -171,7 +171,7 @@ public final class CacheIndex {
 									local27 = false;
 									return local27;
 								}
-								if (local189 < 0 || (long) local189 > this.dataChannel.getSize() / 520L) {
+								if (local189 < 0 || (long) local189 > this.dataChannel.length() / 520L) {
 									local27 = false;
 									return local27;
 								}
@@ -179,7 +179,7 @@ public final class CacheIndex {
 							local248 = arg0 - local125;
 							if (local189 == 0) {
 								arg3 = false;
-								local189 = (int) ((this.dataChannel.getSize() + 519L) / 520L);
+								local189 = (int) ((this.dataChannel.length() + 519L) / 520L);
 								if (local189 == 0) {
 									local189++;
 								}
@@ -202,10 +202,10 @@ public final class CacheIndex {
 							buffer[3] = (byte) local156;
 							local156++;
 							buffer[5] = (byte) (local189 >> 8);
-							this.dataChannel.setReadIndex(sector * 520L);
+							this.dataChannel.seek(sector * 520L);
 							sector = local189;
-							this.dataChannel.method1458(buffer, 0, 8);
-							this.dataChannel.method1458(arg2, local125, local248);
+							this.dataChannel.write(buffer, 0, 8);
+							this.dataChannel.write(arg2, local125, local248);
 							local125 += local248;
 							continue;
 						}

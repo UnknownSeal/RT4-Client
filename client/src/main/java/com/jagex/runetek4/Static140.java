@@ -23,8 +23,8 @@ public final class Static140 {
 		@Pc(15) byte[] local15 = new byte[24];
 		if (client.uid != null) {
 			try {
-				client.uid.setReadIndex(0L);
-				client.uid.method1457(local15);
+				client.uid.seek(0L);
+				client.uid.read(local15);
 				@Pc(28) int local28;
 				for (local28 = 0; local28 < 24 && local15[local28] == 0; local28++) {
 				}

@@ -368,7 +368,7 @@ public final class Js5 {
 					local320 = 0;
 					for (@Pc(322) int local322 = 0; local322 < local31; local322++) {
 						local320 += local233.g4();
-						Static289.method2612(bytes, local250, local282[local322], local239[local322], local320);
+						JString.copy(bytes, local250, local282[local322], local239[local322], local320);
 						local250 += local320;
 						local239[local322] += local320;
 					}

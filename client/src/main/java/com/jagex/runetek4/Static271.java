@@ -18,8 +18,8 @@ public final class Static271 {
 	public static void method4598(@OriginalArg(0) Packet arg0) {
 		if (client.uid != null) {
 			try {
-				client.uid.setReadIndex(0L);
-				client.uid.method1458(arg0.data, arg0.offset, 24);
+				client.uid.seek(0L);
+				client.uid.write(arg0.data, arg0.offset, 24);
 			} catch (@Pc(16) Exception local16) {
 			}
 		}

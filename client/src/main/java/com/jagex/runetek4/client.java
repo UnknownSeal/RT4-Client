@@ -8,7 +8,7 @@ import java.util.GregorianCalendar;
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.cache.CacheFileChannel;
+import com.jagex.runetek4.cache.BufferedFile;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
@@ -48,11 +48,11 @@ public final class client extends GameShell {
 	@OriginalMember(owner = "client!pb", name = "Q", descriptor = "I")
 	public static int worldListId = 1;
 	@OriginalMember(owner = "client!jg", name = "c", descriptor = "Lclient!en;")
-	public static CacheFileChannel uid;
+	public static BufferedFile uid;
 	@OriginalMember(owner = "client!nj", name = "f", descriptor = "Lclient!en;")
-	public static CacheFileChannel cacheData;
+	public static BufferedFile cacheData;
 	@OriginalMember(owner = "client!pf", name = "f", descriptor = "Lclient!en;")
-	public static CacheFileChannel cacheMasterIndex;
+	public static BufferedFile cacheMasterIndex;
 	@OriginalMember(owner = "client!li", name = "l", descriptor = "Lclient!ge;")
 	public static CacheIndex masterCacheIndex;
 	@OriginalMember(owner = "runetek4.client!fk", name = "q", descriptor = "Lclient!uc;")
@@ -464,13 +464,13 @@ public final class client extends GameShell {
 		aClass6.anInt986 = SignLink.anInt5928;
 		try {
 			if (GameShell.signLink.cacheData != null) {
-				cacheData = new CacheFileChannel(GameShell.signLink.cacheData, 5200, 0);
+				cacheData = new BufferedFile(GameShell.signLink.cacheData, 5200, 0);
 				for (@Pc(162) int i = 0; i < 28; i++) {
-					Static47.cacheIndexes[i] = new CacheFileChannel(GameShell.signLink.cacheIndexes[i], 6000, 0);
+					Static47.cacheIndexes[i] = new BufferedFile(GameShell.signLink.cacheIndexes[i], 6000, 0);
 				}
-				cacheMasterIndex = new CacheFileChannel(GameShell.signLink.cacheMasterIndex, 6000, 0);
+				cacheMasterIndex = new BufferedFile(GameShell.signLink.cacheMasterIndex, 6000, 0);
 				masterCacheIndex = new CacheIndex(255, cacheData, cacheMasterIndex, 500000);
-				uid = new CacheFileChannel(GameShell.signLink.uid, 24, 0);
+				uid = new BufferedFile(GameShell.signLink.uid, 24, 0);
 				GameShell.signLink.cacheIndexes = null;
 				GameShell.signLink.cacheMasterIndex = null;
 				GameShell.signLink.uid = null;
