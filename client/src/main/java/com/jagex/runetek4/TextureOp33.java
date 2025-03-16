@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import java.util.Random;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -34,7 +35,7 @@ public final class TextureOp33 extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!vc", name = "e", descriptor = "(I)V")
 	@Override
 	public final void postDecode() {
-		Static9.method185();
+		CacheArchive.method185();
 	}
 
 	@OriginalMember(owner = "runetek4.client!vc", name = "a", descriptor = "(ILclient!wa;Z)V")

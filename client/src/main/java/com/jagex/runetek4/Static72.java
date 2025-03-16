@@ -41,20 +41,20 @@ public final class Static72 {
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "b", descriptor = "(II)Lclient!cl;")
 	public static AnimFrameset method1566(@OriginalArg(0) int arg0) {
-		@Pc(19) AnimFrameset local19 = (AnimFrameset) Static267.aClass99_37.get((long) arg0);
+		@Pc(19) AnimFrameset local19 = (AnimFrameset) Static267.skeletonCache.get((long) arg0);
 		if (local19 != null) {
 			return local19;
 		}
 		local19 = Static87.method1803(Static225.aClass153_92, Static5.aClass153_1, arg0);
 		if (local19 != null) {
-			Static267.aClass99_37.put(local19, (long) arg0);
+			Static267.skeletonCache.put(local19, (long) arg0);
 		}
 		return local19;
 	}
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "a", descriptor = "(IIIIII)V")
 	public static void method1568(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		Static131.method2576(Static71.anIntArrayArray10[arg0], arg1 - arg2, arg2 + arg1, arg4);
+		Static131.method2576(ObjTypeList.anIntArrayArray10[arg0], arg1 - arg2, arg2 + arg1, arg4);
 		@Pc(17) int local17 = 0;
 		@Pc(21) int local21 = arg2 * arg2;
 		@Pc(25) int local25 = arg3 * arg3;
@@ -96,14 +96,9 @@ public final class Static72 {
 			local48 += -local98;
 			@Pc(179) int local179 = arg1 - local17;
 			local98 -= local60;
-			Static131.method2576(Static71.anIntArrayArray10[local109], local179, local160, arg4);
-			Static131.method2576(Static71.anIntArrayArray10[local105], local179, local160, arg4);
+			Static131.method2576(ObjTypeList.anIntArrayArray10[local109], local179, local160, arg4);
+			Static131.method2576(ObjTypeList.anIntArrayArray10[local105], local179, local160, arg4);
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "a", descriptor = "(IB)V")
-	public static void method1570() {
-		Static142.aClass99_23.clear(5);
-		Static267.aClass99_37.clear(5);
-	}
 }

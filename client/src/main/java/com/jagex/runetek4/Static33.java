@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import java.util.Date;
 
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.FloType;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
@@ -46,7 +47,7 @@ public final class Static33 {
 			local49 = arg1.length;
 			local52 = arg1.width;
 		}
-		@Pc(66) int local66 = local42.anInt4279;
+		@Pc(66) int local66 = local42.maxWidth;
 		@Pc(69) int local69 = local42.anInt4276;
 		if (local10.aBoolean2) {
 			local69 = local52 * 4;
@@ -211,7 +212,7 @@ public final class Static33 {
 			if (GlRenderer.enabled) {
 				local6[local15] = new GlSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local15], Static269.anIntArray252[local15], Static254.anIntArray488[local15], Static26.anIntArray66[local15], local37);
 			} else {
-				local6[local15] = new SoftwareSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local15], Static269.anIntArray252[local15], Static254.anIntArray488[local15], Static26.anIntArray66[local15], local37);
+				local6[local15] = new ImageRGB(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local15], Static269.anIntArray252[local15], Static254.anIntArray488[local15], Static26.anIntArray66[local15], local37);
 			}
 		}
 		Static75.method1631();

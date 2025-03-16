@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import java.util.Random;
 
 import com.jagex.runetek4.dash3d.entity.LocEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,7 +14,7 @@ public final class Static171 {
 	public static int anInt4153;
 
 	@OriginalMember(owner = "runetek4.client!ni", name = "k", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_68;
+	public static CacheArchive aClass153_68;
 
 	@OriginalMember(owner = "runetek4.client!ni", name = "q", descriptor = "I")
 	public static int anInt4157;

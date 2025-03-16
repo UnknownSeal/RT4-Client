@@ -1,5 +1,8 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.WallDecoration;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -36,9 +39,9 @@ public final class Static83 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gj", name = "a", descriptor = "(III)Lclient!df;")
-	public static Decor method435(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
-		return local7 == null ? null : local7.decor;
+	public static WallDecoration method435(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
+		return local7 == null ? null : local7.wallDecoration;
 	}
 
 	@OriginalMember(owner = "runetek4.client!gj", name = "a", descriptor = "([JII[II)V")

@@ -1,7 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -27,13 +30,13 @@ public final class Static1 {
 	public static final JString aClass100_2 = Static28.parse("<col=ffffff> )4 ");
 
 	@OriginalMember(owner = "runetek4.client!a", name = "a", descriptor = "(Lclient!fi;I)V")
-	public static void method1(@OriginalArg(0) HuffmanCodec arg0) {
+	public static void method1(@OriginalArg(0) HuffmanEncoding arg0) {
 		Static62.aClass44_1 = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!a", name = "a", descriptor = "([[F[[F[[II[[F[[B[[II[[B[[B[[B[[[B)[Lclient!hg;")
 	public static Class3_Sub14[] method2(@OriginalArg(0) float[][] arg0, @OriginalArg(1) float[][] arg1, @OriginalArg(2) int[][] arg2, @OriginalArg(3) int arg3, @OriginalArg(4) float[][] arg4, @OriginalArg(5) byte[][] arg5, @OriginalArg(6) int[][] arg6, @OriginalArg(8) byte[][] arg7, @OriginalArg(9) byte[][] arg8, @OriginalArg(10) byte[][] arg9, @OriginalArg(11) byte[][][] arg10) {
-		@Pc(10) IterableMap local10 = new IterableMap(128);
+		@Pc(10) HashTable local10 = new HashTable(128);
 		@Pc(12) int local12;
 		@Pc(17) int local17;
 		@Pc(30) int local30;
@@ -543,15 +546,15 @@ public final class Static1 {
 			Static46.method1187(arg0, arg3, arg2 + arg0, arg1 + arg3);
 			Static46.method1186(arg0, arg3, arg2, arg1, 0);
 		} else {
-			Static129.method2496(arg0, arg3, arg2 + arg0, arg3 + arg1);
-			Static129.method2495(arg0, arg3, arg2, arg1, 0);
+			Rasterizer.setBounds(arg0, arg3, arg2 + arg0, arg3 + arg1);
+			Rasterizer.drawFilledRectangle(arg0, arg3, arg2, arg1, 0);
 		}
 		if (Static41.anInt1309 < 100) {
 			return;
 		}
 		if (Static70.aClass3_Sub2_Sub1_2 == null || arg2 != Static70.aClass3_Sub2_Sub1_2.anInt1867 || Static70.aClass3_Sub2_Sub1_2.anInt1859 != arg1) {
-			@Pc(63) SoftwareSprite local63 = new SoftwareSprite(arg2, arg1);
-			Static129.method2491(local63.anIntArray20, arg2, arg1);
+			@Pc(63) ImageRGB local63 = new ImageRGB(arg2, arg1);
+			Rasterizer.prepare(local63.pixels, arg2, arg1);
 			Static214.method4364(arg2, 0, Static48.anInt1449, 0, 0, Static181.anInt4296, arg1, 0);
 			if (GlRenderer.enabled) {
 				Static70.aClass3_Sub2_Sub1_2 = new GlSprite(local63);
@@ -559,7 +562,7 @@ public final class Static1 {
 				Static70.aClass3_Sub2_Sub1_2 = local63;
 			}
 			if (GlRenderer.enabled) {
-				Static129.anIntArray297 = null;
+				Rasterizer.destinationPixels = null;
 			} else {
 				Static260.aClass27_2.method4189();
 			}
@@ -577,8 +580,8 @@ public final class Static1 {
 			Static46.method1182(local161, local147, local167, local153, local169, 128);
 			Static46.method1179(local161, local147, local167, local153, local169);
 		} else {
-			Static129.method2484(local161, local147, local167, local153, local169, 128);
-			Static129.method2483(local161, local147, local167, local153, local169);
+			Rasterizer.drawFilledRectangleAlpha(local161, local147, local167, local153, local169, 128);
+			Rasterizer.drawUnfilledRectangle(local161, local147, local167, local153, local169);
 		}
 		if (Static201.anInt1864 <= 0) {
 			return;
@@ -590,13 +593,13 @@ public final class Static1 {
 			local225 = Static91.anInt2428 * 25;
 		}
 		for (@Pc(238) Class3_Sub26 local238 = (Class3_Sub26) Static145.aClass69_84.head(); local238 != null; local238 = (Class3_Sub26) Static145.aClass69_84.next()) {
-			if (local238.anInt4308 == Static9.anInt172) {
+			if (local238.anInt4308 == CacheArchive.anInt172) {
 				@Pc(258) int local258 = arg3 + local238.anInt4314 * arg1 / Static181.anInt4296;
 				@Pc(267) int local267 = arg2 * local238.anInt4307 / Static48.anInt1449 + arg0;
 				if (GlRenderer.enabled) {
 					Static46.method1182(local267 - 2, local258 + -2, 4, 4, 16776960, local225);
 				} else {
-					Static129.method2484(local267 - 2, local258 + -2, 4, 4, 16776960, local225);
+					Rasterizer.drawFilledRectangleAlpha(local267 - 2, local258 + -2, 4, 4, 16776960, local225);
 				}
 			}
 		}

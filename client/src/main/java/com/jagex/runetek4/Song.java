@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.core.datastruct.HashTable;
+import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Song extends Node {
 
 	@OriginalMember(owner = "runetek4.client!rf", name = "p", descriptor = "Lclient!sc;")
-	public IterableMap aClass133_22;
+	public HashTable aClass133_22;
 
 	@OriginalMember(owner = "runetek4.client!rf", name = "q", descriptor = "[B")
 	public final byte[] aByteArray65;
@@ -312,7 +312,7 @@ public final class Song extends Node {
 		if (this.aClass133_22 != null) {
 			return;
 		}
-		this.aClass133_22 = new IterableMap(16);
+		this.aClass133_22 = new HashTable(16);
 		@Pc(12) int[] local12 = new int[16];
 		@Pc(15) int[] local15 = new int[16];
 		local12[9] = local15[9] = 128;

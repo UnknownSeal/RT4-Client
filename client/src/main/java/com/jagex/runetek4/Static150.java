@@ -1,7 +1,8 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.audio.SynthSound;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -18,7 +19,7 @@ public final class Static150 {
 	public static int anInt3582 = 0;
 
 	@OriginalMember(owner = "runetek4.client!lk", name = "a", descriptor = "(ILclient!ve;)I")
-	public static int method2797(@OriginalArg(1) Js5 arg0) {
+	public static int method2797(@OriginalArg(1) CacheArchive arg0) {
 		@Pc(1) int local1 = 0;
 		if (arg0.method4506(Static262.anInt5754)) {
 			local1++;
@@ -30,7 +31,7 @@ public final class Static150 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!lk", name = "a", descriptor = "(IIBLclient!ve;)Lclient!qf;")
-	public static Sprite method2800(@OriginalArg(1) int arg0, @OriginalArg(3) Js5 arg1) {
+	public static Sprite method2800(@OriginalArg(1) int arg0, @OriginalArg(3) CacheArchive arg1) {
 		return Static234.method4016(arg1, 0, arg0) ? Static82.method1764() : null;
 	}
 

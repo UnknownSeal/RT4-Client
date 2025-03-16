@@ -1,15 +1,15 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.SpotAnimType;
-import com.jagex.runetek4.dash3d.entity.Entity;
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.def.SpotAnimDefinition;
+import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!ra")
-public final class ProjectileAnimation extends Entity {
+public final class ProjectileAnimation extends Renderable {
 
 	@OriginalMember(owner = "client!ra", name = "u", descriptor = "D")
 	private double velocityX;
@@ -93,7 +93,7 @@ public final class ProjectileAnimation extends Entity {
 	private final int sourceZ;
 
 	@OriginalMember(owner = "client!ra", name = "gb", descriptor = "Lclient!tk;")
-	private final SeqType seqType;
+	private final AnimationSequence animationSequence;
 
 	@OriginalMember(owner = "client!ra", name = "<init>", descriptor = "(IIIIIIIIIII)V")
 	public ProjectileAnimation(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10) {
@@ -109,11 +109,11 @@ public final class ProjectileAnimation extends Entity {
 		this.arcScale = arg8;
 		this.startCycle = arg5;
 		this.sourceZ = arg4;
-		@Pc(58) int local58 = Static34.method877(this.anInt4816).anInt1754;
+		@Pc(58) int local58 = Static34.method877(this.anInt4816).animationId;
 		if (local58 == -1) {
-			this.seqType = null;
+			this.animationSequence = null;
 		} else {
-			this.seqType = Static36.method941(local58);
+			this.animationSequence = AnimationSequence.getAnimationSequence(local58);
 		}
 	}
 
@@ -124,7 +124,7 @@ public final class ProjectileAnimation extends Entity {
 
 	@OriginalMember(owner = "client!ra", name = "b", descriptor = "(I)Lclient!ak;")
 	private Model method3703() {
-		@Pc(14) SpotAnimType local14 = Static34.method877(this.anInt4816);
+		@Pc(14) SpotAnimDefinition local14 = Static34.method877(this.anInt4816);
 		@Pc(24) Model local24 = local14.getModel(this.anInt4798, this.seqFrame, this.frameCycle);
 		if (local24 == null) {
 			return null;
@@ -147,28 +147,28 @@ public final class ProjectileAnimation extends Entity {
 		}
 		this.yaw = (int) (Math.atan2(this.velocityX, this.valocityY) * 325.949D) + 1024 & 0x7FF;
 		this.pitch = (int) (Math.atan2(this.velocityZ, this.velocity) * 325.949D) & 0x7FF;
-		if (this.seqType == null) {
+		if (this.animationSequence == null) {
 			return;
 		}
 		this.frameCycle += arg0;
 		while (true) {
 			do {
 				do {
-					if (this.frameCycle <= this.seqType.frames[this.seqFrame]) {
+					if (this.frameCycle <= this.animationSequence.frames[this.seqFrame]) {
 						return;
 					}
-					this.frameCycle -= this.seqType.frames[this.seqFrame];
+					this.frameCycle -= this.animationSequence.frames[this.seqFrame];
 					this.seqFrame++;
-					if (this.seqFrame >= this.seqType.anIntArray473.length) {
-						this.seqFrame -= this.seqType.replayoff;
-						if (this.seqFrame < 0 || this.seqType.anIntArray473.length <= this.seqFrame) {
+					if (this.seqFrame >= this.animationSequence.anIntArray473.length) {
+						this.seqFrame -= this.animationSequence.replayoff;
+						if (this.seqFrame < 0 || this.animationSequence.anIntArray473.length <= this.seqFrame) {
 							this.seqFrame = 0;
 						}
 					}
 					this.anInt4798 = this.seqFrame + 1;
-				} while (this.seqType.anIntArray473.length > this.anInt4798);
-				this.anInt4798 -= this.seqType.replayoff;
-			} while (this.anInt4798 >= 0 && this.anInt4798 < this.seqType.anIntArray473.length);
+				} while (this.animationSequence.anIntArray473.length > this.anInt4798);
+				this.anInt4798 -= this.animationSequence.replayoff;
+			} while (this.anInt4798 >= 0 && this.anInt4798 < this.animationSequence.anIntArray473.length);
 			this.anInt4798 = -1;
 		}
 	}

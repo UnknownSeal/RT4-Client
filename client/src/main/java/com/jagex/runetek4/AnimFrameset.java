@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.CachedNode;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.node.CachedNode;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -14,7 +14,7 @@ public final class AnimFrameset extends CachedNode {
 	public final AnimFrame[] frames;
 
 	@OriginalMember(owner = "client!cl", name = "<init>", descriptor = "(Lclient!ve;Lclient!ve;IZ)V")
-	public AnimFrameset(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1, @OriginalArg(2) int arg2, @OriginalArg(3) boolean arg3) {
+	public AnimFrameset(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) CacheArchive arg1, @OriginalArg(2) int arg2, @OriginalArg(3) boolean arg3) {
 		@Pc(5) LinkList local5 = new LinkList();
 		@Pc(10) int local10 = arg0.fileLength(arg2);
 		this.frames = new AnimFrame[local10];

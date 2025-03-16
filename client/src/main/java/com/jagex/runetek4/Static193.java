@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.config.FloType;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -36,10 +37,10 @@ public final class Static193 {
 		if (username == 0L) {
 			return;
 		}
-		for (@Pc(13) int local13 = 0; local13 < Static9.friendCount; local13++) {
+		for (@Pc(13) int local13 = 0; local13 < CacheArchive.friendCount; local13++) {
 			if (Static92.friendName37[local13] == username) {
-				Static9.friendCount--;
-				for (@Pc(41) int i = local13; i < Static9.friendCount; i++) {
+				CacheArchive.friendCount--;
+				for (@Pc(41) int i = local13; i < CacheArchive.friendCount; i++) {
 					Static122.friendName[i] = Static122.friendName[i + 1];
 					Static104.friendWorld[i] = Static104.friendWorld[i + 1];
 					Static214.aClass100Array170[i] = Static214.aClass100Array170[i + 1];
@@ -77,7 +78,7 @@ public final class Static193 {
 				}
 			}
 		}
-		@Pc(103) IterableMap local103 = new IterableMap(128);
+		@Pc(103) HashTable local103 = new HashTable(128);
 		@Pc(155) int local155;
 		@Pc(161) int local161;
 		@Pc(169) int local169;

@@ -7,6 +7,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.PixelGrabber;
+
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -81,7 +83,7 @@ public final class WorldMapFont {
 			arg4 = false;
 		}
 		for (@Pc(8) int local8 = 0; local8 < arg0.length(); local8++) {
-			@Pc(20) int local20 = anIntArray155[arg0.method3149(local8)];
+			@Pc(20) int local20 = anIntArray155[arg0.charAt(local8)];
 			if (arg4) {
 				this.method1506(local20, arg1 + 1, arg2, 1, this.aByteArray21);
 				this.method1506(local20, arg1, arg2 + 1, 1, this.aByteArray21);
@@ -122,31 +124,31 @@ public final class WorldMapFont {
 		@Pc(21) int local21 = arg4[arg0 + 3];
 		@Pc(27) int local27 = arg4[arg0 + 4];
 		@Pc(47) int local47 = arg4[arg0] * 16384 + arg4[arg0 + 1] * 128 + arg4[arg0 + 2];
-		@Pc(53) int local53 = local7 + local15 * Static129.anInt3144;
-		@Pc(57) int local57 = Static129.anInt3144 - local21;
+		@Pc(53) int local53 = local7 + local15 * Rasterizer.destinationWidth;
+		@Pc(57) int local57 = Rasterizer.destinationWidth - local21;
 		@Pc(59) int local59 = 0;
 		@Pc(66) int local66;
-		if (local15 < Static129.anInt3147) {
-			local66 = Static129.anInt3147 - local15;
+		if (local15 < Rasterizer.viewportTop) {
+			local66 = Rasterizer.viewportTop - local15;
 			local27 -= local66;
-			local15 = Static129.anInt3147;
+			local15 = Rasterizer.viewportTop;
 			local47 += local66 * local21;
-			local53 += local66 * Static129.anInt3144;
+			local53 += local66 * Rasterizer.destinationWidth;
 		}
-		if (local15 + local27 >= Static129.anInt3149) {
-			local27 -= local15 + local27 + 1 - Static129.anInt3149;
+		if (local15 + local27 >= Rasterizer.viewportBottom) {
+			local27 -= local15 + local27 + 1 - Rasterizer.viewportBottom;
 		}
-		if (local7 < Static129.anInt3145) {
-			local66 = Static129.anInt3145 - local7;
+		if (local7 < Rasterizer.viewportLeft) {
+			local66 = Rasterizer.viewportLeft - local7;
 			local21 -= local66;
-			local7 = Static129.anInt3145;
+			local7 = Rasterizer.viewportLeft;
 			local47 += local66;
 			local53 += local66;
 			local59 = local66;
 			local57 += local66;
 		}
-		if (local7 + local21 >= Static129.anInt3148) {
-			local66 = local7 + local21 + 1 - Static129.anInt3148;
+		if (local7 + local21 >= Rasterizer.viewportRight) {
+			local66 = local7 + local21 + 1 - Rasterizer.viewportRight;
 			local21 -= local66;
 			local59 += local66;
 			local57 += local66;
@@ -155,9 +157,9 @@ public final class WorldMapFont {
 			return;
 		}
 		if (this.aBoolean112) {
-			this.method1505(Static129.anIntArray297, arg4, arg3, local47, local53, local21, local27, local57, local59);
+			this.method1505(Rasterizer.destinationPixels, arg4, arg3, local47, local53, local21, local27, local57, local59);
 		} else {
-			this.method1507(Static129.anIntArray297, arg4, arg3, local47, local53, local21, local27, local57, local59);
+			this.method1507(Rasterizer.destinationPixels, arg4, arg3, local47, local53, local21, local27, local57, local59);
 		}
 	}
 
@@ -205,7 +207,7 @@ public final class WorldMapFont {
 	public final void method1508(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
 		@Pc(5) int local5 = this.method1510(arg0) / 2;
 		@Pc(8) int local8 = this.method1511();
-		if (arg1 - local5 <= Static129.anInt3148 && (arg1 + local5 >= Static129.anInt3145 && (arg2 - local8 <= Static129.anInt3149 && arg2 >= 0))) {
+		if (arg1 - local5 <= Rasterizer.viewportRight && (arg1 + local5 >= Rasterizer.viewportLeft && (arg2 - local8 <= Rasterizer.viewportBottom && arg2 >= 0))) {
 			this.method1502(arg0, arg1 - local5, arg2, arg3, true);
 		}
 	}
@@ -312,12 +314,12 @@ public final class WorldMapFont {
 	private int method1510(@OriginalArg(0) JString arg0) {
 		@Pc(1) int local1 = 0;
 		for (@Pc(3) int local3 = 0; local3 < arg0.length(); local3++) {
-			if (arg0.method3149(local3) == 64 && local3 + 4 < arg0.length() && arg0.method3149(local3 + 4) == 64) {
+			if (arg0.charAt(local3) == 64 && local3 + 4 < arg0.length() && arg0.charAt(local3 + 4) == 64) {
 				local3 += 4;
-			} else if (arg0.method3149(local3) == 126 && local3 + 4 < arg0.length() && arg0.method3149(local3 + 4) == 126) {
+			} else if (arg0.charAt(local3) == 126 && local3 + 4 < arg0.length() && arg0.charAt(local3 + 4) == 126) {
 				local3 += 4;
 			} else {
-				local1 += this.aByteArray21[anIntArray155[arg0.method3149(local3)] + 7];
+				local1 += this.aByteArray21[anIntArray155[arg0.charAt(local3)] + 7];
 			}
 		}
 		return local1;

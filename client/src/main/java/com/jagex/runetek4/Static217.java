@@ -1,10 +1,11 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -30,7 +31,7 @@ public final class Static217 {
 	public static final JString CLANREQ = Static28.parse(":clanreq:");
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "a", descriptor = "(IIILclient!e;I)V")
-	public static void method3767(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) PlayerEntity arg2, @OriginalArg(4) int arg3) {
+	public static void method3767(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Player arg2, @OriginalArg(4) int arg3) {
 		if (Static173.localPlayer == arg2 || PreciseSleep.menuActionRow >= 400) {
 			return;
 		}
@@ -69,8 +70,8 @@ public final class Static217 {
 						if (arg2.combatLevel > Static173.localPlayer.combatLevel) {
 							local291 = 2000;
 						}
-						if (Static173.localPlayer.anInt1650 != 0 && arg2.anInt1650 != 0) {
-							if (Static173.localPlayer.anInt1650 == arg2.anInt1650) {
+						if (Static173.localPlayer.teamId != 0 && arg2.teamId != 0) {
+							if (Static173.localPlayer.teamId == arg2.teamId) {
 								local291 = 2000;
 							} else {
 								local291 = 0;
@@ -89,7 +90,7 @@ public final class Static217 {
 		}
 		for (local275 = 0; local275 < PreciseSleep.menuActionRow; local275++) {
 			if (Static39.aShortArray6[local275] == 60) {
-				Static233.aClass100Array160[local275] = Static34.method882(new JString[] { Static204.aClass100_896, local158 });
+				ClientScriptRunner.aClass100Array160[local275] = Static34.method882(new JString[] { Static204.aClass100_896, local158 });
 				break;
 			}
 		}
@@ -99,7 +100,7 @@ public final class Static217 {
 	public static void method3768() {
 		Static276.method4612();
 		Static54.method1308();
-		Static233.method3999();
+		ClientScriptRunner.method3999();
 		Static90.method1854();
 		Static204.method3673();
 		Static176.method3302();
@@ -108,12 +109,12 @@ public final class Static217 {
 		Static53.method1295();
 		Static249.method4266();
 		Static124.method2433();
-		CacheArchive.method3653();
+		Class6.method3653();
 		Static78.method1695();
 		Static10.method351();
 		Static230.method3947();
 		Static147.method2764();
-		if (Static81.modeWhat != 0) {
+		if (ItemDefinition.modeWhat != 0) {
 			for (@Pc(54) int local54 = 0; local54 < Static51.aByteArrayArray8.length; local54++) {
 				Static51.aByteArrayArray8[local54] = null;
 			}
@@ -134,7 +135,7 @@ public final class Static217 {
 		Static130.aClass153_47.method4499();
 		Static267.aClass153_109.method4499();
 		Static209.aClass153_86.method4499();
-		Static184.aClass153_78.method4499();
+		CacheArchive.huffmanCacheArchive.method4499();
 		Static214.aClass153_106.method4499();
 		Static16.aClass153_9.method4499();
 		Static73.aClass99_10.method3104();

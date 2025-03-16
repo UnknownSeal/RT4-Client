@@ -3,7 +3,9 @@ package com.jagex.runetek4;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,7 +13,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static35 {
 
 	@OriginalMember(owner = "runetek4.client!cl", name = "J", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_22;
+	public static CacheArchive aClass153_22;
 
 	@OriginalMember(owner = "runetek4.client!cl", name = "V", descriptor = "[I")
 	public static int[] anIntArray82;
@@ -55,7 +57,7 @@ public final class Static35 {
 		if (arg4 >= Static267.anInt5773 && Static106.anInt2869 >= arg4) {
 			local95 = Static78.method1690(Static224.anInt5063, arg2 + arg3, Static172.anInt4164);
 			local104 = Static78.method1690(Static224.anInt5063, arg3 - arg2, Static172.anInt4164);
-			Static131.method2576(Static71.anIntArrayArray10[arg4], local104, local95, arg0);
+			Static131.method2576(ObjTypeList.anIntArrayArray10[arg4], local104, local95, arg0);
 		}
 		@Pc(118) int local118 = local67 * (arg1 - 1);
 		while (local17 > 0) {
@@ -85,10 +87,10 @@ public final class Static35 {
 				@Pc(213) int local213 = Static78.method1690(Static224.anInt5063, local15 + arg3, Static172.anInt4164);
 				@Pc(222) int local222 = Static78.method1690(Static224.anInt5063, arg3 - local15, Static172.anInt4164);
 				if (local95 >= Static267.anInt5773) {
-					Static131.method2576(Static71.anIntArrayArray10[local95], local222, local213, arg0);
+					Static131.method2576(ObjTypeList.anIntArrayArray10[local95], local222, local213, arg0);
 				}
 				if (Static106.anInt2869 >= local104) {
-					Static131.method2576(Static71.anIntArrayArray10[local104], local222, local213, arg0);
+					Static131.method2576(ObjTypeList.anIntArrayArray10[local104], local222, local213, arg0);
 				}
 			}
 			local118 -= local67;
@@ -97,14 +99,14 @@ public final class Static35 {
 
 	@OriginalMember(owner = "runetek4.client!cl", name = "a", descriptor = "(III)J")
 	public static long method899(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
+		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return 0L;
 		}
-		for (@Pc(13) int local13 = 0; local13 < local7.anInt662; local13++) {
-			@Pc(22) Scenery local22 = local7.aClass31Array1[local13];
-			if ((local22.aLong56 >> 29 & 0x3L) == 2L && local22.anInt1701 == arg1 && local22.anInt1696 == arg2) {
-				return local22.aLong56;
+		for (@Pc(13) int local13 = 0; local13 < local7.entityCount; local13++) {
+			@Pc(22) InteractiveObject local22 = local7.interactiveObjects[local13];
+			if ((local22.hash >> 29 & 0x3L) == 2L && local22.anInt1701 == arg1 && local22.anInt1696 == arg2) {
+				return local22.hash;
 			}
 		}
 		return 0L;
@@ -116,7 +118,7 @@ public final class Static35 {
 			Static176.cameraModifierEnabled[local3] = false;
 		}
 		Static133.anInt5230 = 0;
-		Static233.anInt5217 = 0;
+		ClientScriptRunner.anInt5217 = 0;
 		Static155.anInt3718 = -1;
 		Static52.anInt1694 = -1;
 		Static227.anInt5096 = 1;

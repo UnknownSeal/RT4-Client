@@ -1,7 +1,8 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -31,7 +32,7 @@ public final class Static181 {
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(II)Lclient!na;")
 	public static JString method3341(@OriginalArg(0) int arg0) {
-		return Static34.method882(new JString[] { Static123.method2423(arg0 >> 24 & 0xFF), Static233.aClass100_994, Static123.method2423(arg0 >> 16 & 0xFF), Static233.aClass100_994, Static123.method2423(arg0 >> 8 & 0xFF), Static233.aClass100_994, Static123.method2423(arg0 & 0xFF) });
+		return Static34.method882(new JString[] { Static123.method2423(arg0 >> 24 & 0xFF), ClientScriptRunner.aClass100_994, Static123.method2423(arg0 >> 16 & 0xFF), ClientScriptRunner.aClass100_994, Static123.method2423(arg0 >> 8 & 0xFF), ClientScriptRunner.aClass100_994, Static123.method2423(arg0 & 0xFF) });
 	}
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(I)V")
@@ -40,21 +41,21 @@ public final class Static181 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(Lclient!ve;B)V")
-	public static void method3344(@OriginalArg(0) Js5 arg0) {
+	public static void method3344(@OriginalArg(0) CacheArchive arg0) {
 		if (Static18.aBoolean40) {
 			return;
 		}
 		if (GlRenderer.enabled) {
 			Static46.method1184();
 		} else {
-			Static129.method2492();
+			Rasterizer.method2492();
 		}
 		Static78.aClass3_Sub2_Sub1_3 = Static130.method2514(arg0, Static262.anInt5754);
 		@Pc(20) int local20 = Static254.canvasHeigth;
 		@Pc(26) int local26 = local20 * 956 / 503;
 		Static78.aClass3_Sub2_Sub1_3.method1419((Static48.canvasWidth - local26) / 2, 0, local26, local20);
 		Static243.aClass36_1 = Static40.method1010(Static136.anInt3322, arg0);
-		Static243.aClass36_1.method3336(Static48.canvasWidth / 2 - Static243.aClass36_1.anInt4270 / 2, 18);
+		Static243.aClass36_1.drawImage(Static48.canvasWidth / 2 - Static243.aClass36_1.anInt4270 / 2, 18);
 		Static18.aBoolean40 = true;
 	}
 
@@ -64,18 +65,13 @@ public final class Static181 {
 		local8.method1007();
 	}
 
-	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(I[I[Ljava/lang/Object;)V")
-	public static void method3346(@OriginalArg(1) int[] arg0, @OriginalArg(2) Object[] arg1) {
-		Static53.method1292(arg1, arg0.length - 1, arg0, 0);
-	}
-
 	@OriginalMember(owner = "runetek4.client!oi", name = "b", descriptor = "(I)V")
 	public static void method3347() {
 		Static110.aClass99_15.method3104();
 	}
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(ILclient!ve;Lclient!ve;Z)V")
-	public static void method3349(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
+	public static void method3349(@OriginalArg(1) CacheArchive arg0, @OriginalArg(2) CacheArchive arg1) {
 		Static30.aBoolean61 = true;
 		Static121.aClass153_45 = arg1;
 		Static146.aClass153_54 = arg0;

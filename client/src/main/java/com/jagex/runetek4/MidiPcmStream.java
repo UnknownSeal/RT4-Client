@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.core.datastruct.HashTable;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -101,7 +101,7 @@ public final class MidiPcmStream extends PcmStream {
 	private final MidiNoteStream aClass3_Sub3_Sub3_1 = new MidiNoteStream(this);
 
 	@OriginalMember(owner = "runetek4.client!va", name = "P", descriptor = "Lclient!sc;")
-	private final IterableMap aClass133_23 = new IterableMap(128);
+	private final HashTable aClass133_23 = new HashTable(128);
 
 	@OriginalMember(owner = "runetek4.client!va", name = "<init>", descriptor = "()V")
 	public MidiPcmStream() {
@@ -110,7 +110,7 @@ public final class MidiPcmStream extends PcmStream {
 	}
 
 	@OriginalMember(owner = "runetek4.client!va", name = "a", descriptor = "(Lclient!rf;ILclient!ve;Lclient!le;I)Z")
-	public final synchronized boolean method4411(@OriginalArg(0) Song arg0, @OriginalArg(2) Js5 arg1, @OriginalArg(3) SoundBank arg2) {
+	public final synchronized boolean method4411(@OriginalArg(0) Song arg0, @OriginalArg(2) CacheArchive arg1, @OriginalArg(3) SoundBank arg2) {
 		arg0.method3741();
 		@Pc(5) boolean local5 = true;
 		@Pc(20) int[] local20 = new int[] { 22050 };

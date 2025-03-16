@@ -2,8 +2,8 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,7 +14,7 @@ public final class Static225 {
 	public static int originX;
 
 	@OriginalMember(owner = "runetek4.client!se", name = "l", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_92;
+	public static CacheArchive aClass153_92;
 
 	@OriginalMember(owner = "runetek4.client!se", name = "h", descriptor = "I")
 	public static int anInt5073 = -1;
@@ -33,14 +33,14 @@ public final class Static225 {
 				if (index != 2047) {
 					@Pc(27) boolean local27 = false;
 					if (Static159.players[index] == null) {
-						Static159.players[index] = new PlayerEntity();
+						Static159.players[index] = new Player();
 						local27 = true;
 						if (Static115.playerAppearanceBuffer[index] != null) {
 							Static159.players[index].read(Static115.playerAppearanceBuffer[index]);
 						}
 					}
 					Static105.playerIds[Static267.playerCount++] = index;
-					@Pc(65) PlayerEntity player = Static159.players[index];
+					@Pc(65) Player player = Static159.players[index];
 					player.cycle = Static83.loopCycle;
 					@Pc(73) int local73 = Static57.in.gBit(1);
 					if (local73 == 1) {

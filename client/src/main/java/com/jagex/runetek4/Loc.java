@@ -1,16 +1,17 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.media.renderable.Renderable;
 import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!dc")
-public final class Loc extends Entity {
+public final class Loc extends Renderable {
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "U", descriptor = "Lclient!ga;")
 	private ParticleSystem aClass47_Sub1_2;
@@ -61,7 +62,7 @@ public final class Loc extends Entity {
 	private final int anInt1300;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "u", descriptor = "Lclient!tk;")
-	private SeqType aClass144_2;
+	private AnimationSequence aClass144_2;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "y", descriptor = "I")
 	private int anInt1297;
@@ -76,7 +77,7 @@ public final class Loc extends Entity {
 	private int anInt1320;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "<init>", descriptor = "(IIIIIIIZLclient!th;)V")
-	public Loc(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7, @OriginalArg(8) Entity arg8) {
+	public Loc(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7, @OriginalArg(8) Renderable arg8) {
 		this.anInt1303 = arg3;
 		this.anInt1295 = arg2;
 		this.anInt1308 = arg4;
@@ -93,12 +94,12 @@ public final class Loc extends Entity {
 					local67 = local67.getVisible();
 				}
 				if (local67 != null) {
-					Static9.method181(local67, 0, this.anInt1295, 0, this.anInt1307, this.anInt1308, this.anInt1300, this.anInt1303);
+					CacheArchive.method181(local67, 0, this.anInt1295, 0, this.anInt1307, this.anInt1308, this.anInt1300, this.anInt1303);
 				}
 			}
 		}
 		if (arg6 != -1) {
-			this.aClass144_2 = Static36.method941(arg6);
+			this.aClass144_2 = AnimationSequence.getAnimationSequence(arg6);
 			this.anInt1297 = 0;
 			if (this.aClass144_2.anIntArray473.length <= 1) {
 				this.anInt1304 = 0;
@@ -154,7 +155,7 @@ public final class Loc extends Entity {
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
 	public final void draw(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
-		@Pc(3) Entity local3 = this.method1049();
+		@Pc(3) Renderable local3 = this.method1049();
 		if (local3 != null) {
 			local3.draw(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_2);
 		}
@@ -226,7 +227,7 @@ public final class Loc extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(ZI)Lclient!th;")
-	private Entity method1048(@OriginalArg(0) boolean arg0) {
+	private Renderable method1048(@OriginalArg(0) boolean arg0) {
 		@Pc(12) boolean local12 = Static107.anIntArrayArrayArray10 != Static83.levelHeightMap;
 		@Pc(19) LocMergeEntity local19 = Static271.get(this.anInt1299);
 		@Pc(22) int local22 = local19.anim;
@@ -248,7 +249,7 @@ public final class Loc extends Entity {
 			if (local69 == -1) {
 				this.aClass144_2 = null;
 			} else {
-				this.aClass144_2 = Static36.method941(local69);
+				this.aClass144_2 = AnimationSequence.getAnimationSequence(local69);
 			}
 			if (this.aClass144_2 != null) {
 				if (local19.randomanimframe && this.aClass144_2.replayoff != -1) {
@@ -332,7 +333,7 @@ public final class Loc extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "d", descriptor = "(I)Lclient!th;")
-	public final Entity method1049() {
+	public final Renderable method1049() {
 		return this.method1048(false);
 	}
 

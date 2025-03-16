@@ -1,11 +1,12 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.config.bastype.BASType;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.dash3d.entity.Actor;
+import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.WallDecoration;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -173,13 +174,13 @@ public final class Static75 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!g", name = "a", descriptor = "(III)Lclient!df;")
-	public static Decor method1633(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
+	public static WallDecoration method1633(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return null;
 		} else {
-			@Pc(14) Decor local14 = local7.decor;
-			local7.decor = null;
+			@Pc(14) WallDecoration local14 = local7.wallDecoration;
+			local7.wallDecoration = null;
 			return local14;
 		}
 	}
@@ -310,7 +311,7 @@ public final class Static75 {
 					local247 = Static57.in.g2();
 					local633 = Static57.in.g2lesadd();
 					if (!GlRenderer.enabled) {
-						Static170.method2574(local625, local247, local633, local232, local39, local613, local19, local605, local31, local23, local609, local228);
+						ObjTypeList.method2574(local625, local247, local633, local232, local39, local613, local19, local605, local31, local23, local609, local228);
 					}
 				}
 				if (Static164.packetType == 14) {
@@ -401,7 +402,7 @@ public final class Static75 {
 						local19 *= 64;
 						if (local39 != 0) {
 							@Pc(1194) int local1194;
-							@Pc(1198) PathingEntity local1198;
+							@Pc(1198) Actor local1198;
 							@Pc(1184) int local1184;
 							@Pc(1188) int local1188;
 							if (local39 >= 0) {
@@ -487,7 +488,7 @@ public final class Static75 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!g", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method1635(@OriginalArg(1) Js5 arg0) {
+	public static void method1635(@OriginalArg(1) CacheArchive arg0) {
 		Static166.anInt4049 = arg0.method4482(Static18.P11_FULL);
 		Static130.anInt3161 = arg0.method4482(Static55.P12_FULL);
 		Static73.anInt2077 = arg0.method4482(Static73.B12_FULL);
@@ -496,7 +497,7 @@ public final class Static75 {
 		Static36.anInt1165 = arg0.method4482(Static260.HITBAR_DEFAULT);
 		Static214.anInt5579 = arg0.method4482(Static123.HEADICONS_PK);
 		Static34.anInt1049 = arg0.method4482(Static228.HEADICONS_PRAYER);
-		CacheArchive.anInt4741 = arg0.method4482(Static98.HINT_HEADICONS);
+		Class6.anInt4741 = arg0.method4482(Static98.HINT_HEADICONS);
 		Static149.anInt3551 = arg0.method4482(Static189.HINT_MAPMARKERS);
 		Static19.anInt647 = arg0.method4482(Static259.MAPFLAGS);
 		Static32.anInt1016 = arg0.method4482(Static86.CROSS);

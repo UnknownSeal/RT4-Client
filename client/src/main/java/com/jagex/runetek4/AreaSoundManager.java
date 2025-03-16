@@ -1,10 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.config.NPCType;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.cache.def.ActorDefinition;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.media.renderable.actor.Player;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -16,10 +16,10 @@ public class AreaSoundManager {
     @OriginalMember(owner = "client!ma", name = "x", descriptor = "Lclient!ih;")
     public static final LinkList npcSounds = new LinkList();
     @OriginalMember(owner = "runetek4.client!he", name = "ab", descriptor = "Lclient!sc;")
-    public static final IterableMap playerSounds = new IterableMap(16);
+    public static final HashTable playerSounds = new HashTable(16);
 
     @OriginalMember(owner = "client!jh", name = "a", descriptor = "(IZLclient!pb;ILclient!km;IILclient!e;)V")
-    public static void add(@OriginalArg(0) int arg0, @OriginalArg(2) LocMergeEntity arg1, @OriginalArg(3) int arg2, @OriginalArg(4) NPCEntity npcEntity, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) PlayerEntity player) {
+    public static void add(@OriginalArg(0) int arg0, @OriginalArg(2) LocMergeEntity arg1, @OriginalArg(3) int arg2, @OriginalArg(4) NPCRenderable npcEntity, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) Player player) {
         @Pc(13) AreaSound areaSound = new AreaSound();
         areaSound.level = arg5;
         areaSound.anInt2029 = arg0 * 128;
@@ -49,23 +49,23 @@ public class AreaSoundManager {
             locSounds.addTail(areaSound);
         } else if (npcEntity != null) {
             areaSound.npc = npcEntity;
-            @Pc(138) NPCType npcType = npcEntity.type;
-            if (npcType.multinpc != null) {
+            @Pc(138) ActorDefinition actorDefinition = npcEntity.type;
+            if (actorDefinition.multinpc != null) {
                 areaSound.multiLocOrNpc = true;
-                npcType = npcType.getMultiNPC();
+                actorDefinition = actorDefinition.getMultiNPC();
             }
-            if (npcType != null) {
-                areaSound.anInt2028 = (arg0 + npcType.size) * 128;
-                areaSound.anInt2037 = (arg4 + npcType.size) * 128;
-                areaSound.sound = NPCEntity.getSound(npcEntity);
-                areaSound.radius = npcType.bgsound_range * 128;
+            if (actorDefinition != null) {
+                areaSound.anInt2028 = (arg0 + actorDefinition.size) * 128;
+                areaSound.anInt2037 = (arg4 + actorDefinition.size) * 128;
+                areaSound.sound = NPCRenderable.getSound(npcEntity);
+                areaSound.radius = actorDefinition.bgsound_range * 128;
             }
             npcSounds.addTail(areaSound);
         } else if (player != null) {
             areaSound.player = player;
             areaSound.anInt2037 = (arg4 + player.size()) * 128;
             areaSound.anInt2028 = (arg0 + player.size()) * 128;
-            areaSound.sound = PlayerEntity.getSound(player);
+            areaSound.sound = Player.getSound(player);
             areaSound.radius = player.anInt1664 * 128;
             playerSounds.pushNode(areaSound, player.name.toBase37());
         }

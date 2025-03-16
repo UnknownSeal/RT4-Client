@@ -8,6 +8,7 @@ import java.net.Socket;
 
 import com.jagex.runetek4.core.io.BrokenInputStream;
 import com.jagex.runetek4.core.io.BrokenOutputStream;
+import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -161,7 +162,7 @@ public final class BufferedSocket implements Runnable {
 				}
 			}
 			if (this.aClass212_4 == null) {
-				this.aClass212_4 = this.aClass213_5.method5130(3, this);
+				this.aClass212_4 = this.aClass213_5.putThreadNode(3, this);
 			}
 			this.notifyAll();
 		}

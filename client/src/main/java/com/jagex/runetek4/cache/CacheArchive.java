@@ -1,153 +1,158 @@
 package com.jagex.runetek4.cache;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.def.VarbitDefinition;
-import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.cursortype.CursorType;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.dash3d.entity.LocEntity;
+import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
+import java.util.zip.CRC32;
+
 public final class CacheArchive {
 
-	@OriginalMember(owner = "runetek4.client!qg", name = "R", descriptor = "I")
-	public static int anInt4741;
+	@OriginalMember(owner = "runetek4.client!fn", name = "X", descriptor = "Ljava/util/zip/CRC32;")
+	public static final CRC32 crc32 = new CRC32();
+	@OriginalMember(owner = "client!al", name = "e", descriptor = "I")
+	public static int anInt172;
 
+	@OriginalMember(owner = "client!al", name = "q", descriptor = "Lclient!ve;")
+	public static com.jagex.runetek4.js5.CacheArchive aClass153_2;
+
+	@OriginalMember(owner = "client!al", name = "m", descriptor = "I")
+	public static int friendCount = 0;
+
+	@OriginalMember(owner = "client!al", name = "r", descriptor = "Lclient!na;")
+	public static final JString aClass100_35 = Static28.parse("showVideoAd");
 	@OriginalMember(owner = "runetek4.client!qg", name = "ab", descriptor = "Lclient!ve;")
-	public static Js5 gameInterfaceCacheArchive;
+	public static com.jagex.runetek4.js5.CacheArchive gameInterfaceCacheArchive;
+	@OriginalMember(owner = "runetek4.client!ol", name = "U", descriptor = "Lclient!ve;")
+	public static com.jagex.runetek4.js5.CacheArchive huffmanCacheArchive;
+	@OriginalMember(owner = "runetek4.client!nd", name = "t", descriptor = "Lclient!ve;")
+	public static com.jagex.runetek4.js5.CacheArchive gameTextureCacheArchive;
+	@OriginalMember(owner = "runetek4.client!nd", name = "v", descriptor = "Lclient!ve;")
+	public static com.jagex.runetek4.js5.CacheArchive aClass153_64;
+	@OriginalMember(owner = "runetek4.client!nd", name = "p", descriptor = "Lclient!ve;")
+	public static com.jagex.runetek4.js5.CacheArchive aClass153_62;
+	@OriginalMember(owner = "runetek4.client!nd", name = "n", descriptor = "Lclient!ve;")
+	public static com.jagex.runetek4.js5.CacheArchive aClass153_61;
 
-	@OriginalMember(owner = "runetek4.client!qg", name = "U", descriptor = "Lclient!na;")
-	public static final JString aClass100_891 = Static28.parse("");
-
-	@OriginalMember(owner = "runetek4.client!qg", name = "W", descriptor = "Z")
-	public static boolean members = false;
-
-	@OriginalMember(owner = "runetek4.client!qg", name = "Y", descriptor = "[I")
-	public static final int[] cameraModifierWobbleSpeed = new int[5];
-
-	@OriginalMember(owner = "runetek4.client!qg", name = "Z", descriptor = "Lclient!na;")
-	public static final JString aClass100_892 = Static28.parse("mem=");
-
-	@OriginalMember(owner = "runetek4.client!qg", name = "h", descriptor = "(I)V")
-	public static void method3653() {
-		PreciseSleep.aClass99_29.method3104();
-		Static219.aClass99_27.method3104();
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(Lclient!pb;BIIIIIII)V")
+	public static void method181(@OriginalArg(0) LocMergeEntity arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
+		@Pc(5) int local5 = arg2 & 0x3;
+		@Pc(28) int local28;
+		@Pc(31) int local31;
+		if (local5 == 1 || local5 == 3) {
+			local28 = arg0.length;
+			local31 = arg0.width;
+		} else {
+			local31 = arg0.length;
+			local28 = arg0.width;
+		}
+		@Pc(53) int local53;
+		@Pc(51) int local51;
+		if (arg6 + local31 > 104) {
+			local51 = arg6 + 1;
+			local53 = arg6;
+		} else {
+			local53 = arg6 + (local31 >> 1);
+			local51 = arg6 + (local31 + 1 >> 1);
+		}
+		@Pc(80) int local80 = (arg5 << 7) + (local28 << 6);
+		@Pc(88) int local88 = (arg6 << 7) + (local31 << 6);
+		@Pc(96) int local96;
+		@Pc(100) int local100;
+		if (arg5 + local28 > 104) {
+			local96 = arg5;
+			local100 = arg5 + 1;
+		} else {
+			local96 = arg5 + (local28 >> 1);
+			local100 = (local28 + 1 >> 1) + arg5;
+		}
+		@Pc(120) int[][] local120 = Static83.levelHeightMap[arg7];
+		@Pc(122) int local122 = 0;
+		@Pc(148) int local148 = local120[local96][local51] + local120[local96][local53] + local120[local100][local53] + local120[local100][local51] >> 2;
+		@Pc(158) int[][] local158;
+		if (arg7 != 0) {
+			local158 = Static83.levelHeightMap[0];
+			local122 = local148 - (local158[local96][local51] + local158[local100][local53] + local158[local96][local53] + local158[local100][local51] >> 2);
+		}
+		local158 = null;
+		if (arg7 < 3) {
+			local158 = Static83.levelHeightMap[arg7 + 1];
+		}
+		@Pc(215) LocEntity local215 = arg0.method3428(arg2, local80, local120, arg4, local148, local158, false, null, true, local88);
+		Static242.method4207(local215.sprite, local80 - arg3, local122, local88 - arg1);
 	}
 
-	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(Lsignlink!ll;Lclient!wa;IB)V")
-	public static void method3654(@OriginalArg(0) SignLink arg0, @OriginalArg(1) Packet arg1, @OriginalArg(2) int arg2) {
-		@Pc(17) ReflectionCheck local17 = new ReflectionCheck();
-		local17.anInt1725 = arg1.g1();
-		local17.anInt1732 = arg1.g4();
-		local17.aClass212Array1 = new PrivilegedRequest[local17.anInt1725];
-		local17.anIntArray138 = new int[local17.anInt1725];
-		local17.aByteArrayArrayArray6 = new byte[local17.anInt1725][][];
-		local17.aClass212Array2 = new PrivilegedRequest[local17.anInt1725];
-		local17.anIntArray139 = new int[local17.anInt1725];
-		local17.anIntArray137 = new int[local17.anInt1725];
-		for (@Pc(59) int local59 = 0; local59 < local17.anInt1725; local59++) {
-			try {
-				@Pc(71) int local71 = arg1.g1();
-				@Pc(93) String local93;
-				@Pc(104) String local104;
-				@Pc(95) int local95;
-				if (local71 == 0 || local71 == 1 || local71 == 2) {
-					local93 = new String(arg1.gjstr().method3148());
-					local95 = 0;
-					local104 = new String(arg1.gjstr().method3148());
-					if (local71 == 1) {
-						local95 = arg1.g4();
-					}
-					local17.anIntArray139[local59] = local71;
-					local17.anIntArray137[local59] = local95;
-					local17.aClass212Array2[local59] = arg0.method5126(local104, Static6.method85(local93));
-				} else if (local71 == 3 || local71 == 4) {
-					local93 = new String(arg1.gjstr().method3148());
-					local104 = new String(arg1.gjstr().method3148());
-					local95 = arg1.g1();
-					@Pc(171) String[] local171 = new String[local95];
-					for (@Pc(173) int local173 = 0; local173 < local95; local173++) {
-						local171[local173] = new String(arg1.gjstr().method3148());
-					}
-					@Pc(193) byte[][] local193 = new byte[local95][];
-					@Pc(210) int local210;
-					if (local71 == 3) {
-						for (@Pc(199) int local199 = 0; local199 < local95; local199++) {
-							local210 = arg1.g4();
-							local193[local199] = new byte[local210];
-							arg1.gdata(local210, local193[local199]);
-						}
-					}
-					local17.anIntArray139[local59] = local71;
-					@Pc(234) Class[] local234 = new Class[local95];
-					for (local210 = 0; local210 < local95; local210++) {
-						local234[local210] = Static6.method85(local171[local210]);
-					}
-					local17.aClass212Array1[local59] = arg0.method5122(Static6.method85(local93), local234, local104);
-					local17.aByteArrayArrayArray6[local59] = local193;
-				}
-			} catch (@Pc(269) ClassNotFoundException local269) {
-				local17.anIntArray138[local59] = -1;
-			} catch (@Pc(276) SecurityException local276) {
-				local17.anIntArray138[local59] = -2;
-			} catch (@Pc(283) NullPointerException local283) {
-				local17.anIntArray138[local59] = -3;
-			} catch (@Pc(290) Exception local290) {
-				local17.anIntArray138[local59] = -4;
-			} catch (@Pc(297) Throwable local297) {
-				local17.anIntArray138[local59] = -5;
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(Z)V")
+	public static void method182() {
+		Static241.aClass13Array13 = null;
+		Static6.method86(Static154.topLevelInterace, 0, Static48.canvasWidth, 0, -1, Static254.canvasHeigth, 0, 0);
+		if (Static241.aClass13Array13 != null) {
+			Static87.drawGame(0, Static127.anInt3126, Static80.anInt4696, Static241.aClass13Array13, Static48.canvasWidth, -1412584499, 0, Static254.canvasHeigth, Static4.aClass13_1.anInt517);
+			Static241.aClass13Array13 = null;
+		}
+	}
+
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ZZZIZ)Lclient!ve;")
+	public static com.jagex.runetek4.js5.CacheArchive loadArchive(@OriginalArg(0) boolean arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) int arg3) {
+		@Pc(7) CacheIndex local7 = null;
+		if (client.cacheData != null) {
+			local7 = new CacheIndex(arg3, client.cacheData, Static47.cacheIndexes[arg3], 1000000);
+		}
+		Static269.aClass14_Sub1Array3[arg3] = Static257.aClass9_2.method180(arg3, client.masterCacheIndex, local7);
+		if (arg1) {
+			Static269.aClass14_Sub1Array3[arg3].method528();
+		}
+		return new com.jagex.runetek4.js5.CacheArchive(Static269.aClass14_Sub1Array3[arg3], arg0, arg2);
+	}
+
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ILclient!wa;)Lclient!ci;")
+	public static TextureOp29SubOp1 method184(@OriginalArg(1) Packet arg0) {
+		return new TextureOp29SubOp1(arg0.g2s(), arg0.g2s(), arg0.g2s(), arg0.g2s(), arg0.g3(), arg0.g1());
+	}
+
+	@OriginalMember(owner = "client!al", name = "b", descriptor = "(B)V")
+	public static void method185() {
+		if (Static119.anIntArray282 != null && Static130.anIntArray299 != null) {
+			return;
+		}
+		Static119.anIntArray282 = new int[256];
+		Static130.anIntArray299 = new int[256];
+		for (@Pc(26) int local26 = 0; local26 < 256; local26++) {
+			@Pc(36) double local36 = (double) local26 / 255.0D * 6.283185307179586D;
+			Static119.anIntArray282[local26] = (int) (Math.sin(local36) * 4096.0D);
+			Static130.anIntArray299[local26] = (int) (Math.cos(local36) * 4096.0D);
+		}
+	}
+
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ZI)V")
+	public static void method186(@OriginalArg(0) boolean arg0) {
+		if (arg0 != Static240.aBoolean276) {
+			Static240.aBoolean276 = arg0;
+			Static176.method3302();
+		}
+	}
+
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(III)Z")
+	public static boolean method187(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+		@Pc(7) int local7 = Static140.anIntArrayArrayArray12[arg0][arg1][arg2];
+		if (local7 == -Static13.anInt437) {
+			return false;
+		} else if (local7 == Static13.anInt437) {
+			return true;
+		} else {
+			@Pc(22) int local22 = arg1 << 7;
+			@Pc(26) int local26 = arg2 << 7;
+			if (Static256.method4394(local22 + 1, Static83.levelHeightMap[arg0][arg1][arg2], local26 + 1) && Static256.method4394(local22 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg2], local26 + 1) && Static256.method4394(local22 + 128 - 1, Static83.levelHeightMap[arg0][arg1 + 1][arg2 + 1], local26 + 128 - 1) && Static256.method4394(local22 + 1, Static83.levelHeightMap[arg0][arg1][arg2 + 1], local26 + 128 - 1)) {
+				Static140.anIntArrayArrayArray12[arg0][arg1][arg2] = Static13.anInt437;
+				return true;
+			} else {
+				Static140.anIntArrayArrayArray12[arg0][arg1][arg2] = -Static13.anInt437;
+				return false;
 			}
 		}
-		Static204.aClass69_113.addTail(local17);
-	}
-
-	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(IZI)V")
-	public static void method3655(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(7) VarbitDefinition local7 = VarbitDefinition.getDefinition(arg0);
-		@Pc(10) int local10 = local7.anInt3323;
-		@Pc(16) int local16 = local7.anInt3318;
-		@Pc(19) int local19 = local7.index;
-		@Pc(25) int local25 = VarbitDefinition.varbitMasks[local10 - local16];
-		if (arg1 < 0 || arg1 > local25) {
-			arg1 = 0;
-		}
-		local25 <<= local16;
-		Static148.method2766(local19, local25 & arg1 << local16 | VarPlayerDefinition.varPlayers[local19] & ~local25);
-	}
-
-	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "([Lclient!na;[SI)V")
-	public static void method3656(@OriginalArg(0) JString[] arg0, @OriginalArg(1) short[] arg1) {
-		Static54.method1307(arg1, arg0.length - 1, arg0, 0);
-	}
-
-	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(IBII)I")
-	public static int method3659(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		@Pc(3) int local3 = arg0 & 0x3;
-		if (local3 == 0) {
-			return arg2;
-		} else if (local3 == 1) {
-			return 7 - arg1;
-		} else if (local3 == 2) {
-			return 7 - arg2;
-		} else {
-			return arg1;
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!qg", name = "d", descriptor = "(II)Lclient!ia;")
-	public static CursorType method3660(@OriginalArg(0) int arg0) {
-		@Pc(10) CursorType local10 = (CursorType) Static79.aClass99_11.get((long) arg0);
-		if (local10 != null) {
-			return local10;
-		}
-		@Pc(20) byte[] local20 = Static153.aClass153_57.getfile(33, arg0);
-		local10 = new CursorType();
-		if (local20 != null) {
-			local10.decode(new Packet(local20));
-		}
-		Static79.aClass99_11.put(local10, (long) arg0);
-		return local10;
 	}
 }

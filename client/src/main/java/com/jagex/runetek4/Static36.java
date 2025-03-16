@@ -1,10 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
-import com.jagex.runetek4.config.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -21,7 +20,7 @@ public final class Static36 {
 	public static int[] anIntArray84;
 
 	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "U", descriptor = "Lclient!sc;")
-	public static final IterableMap aClass133_3 = new IterableMap(16);
+	public static final HashTable aClass133_3 = new HashTable(16);
 
 	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "a", descriptor = "(Lclient!be;)Lclient!be;")
 	public static Component method938(@OriginalArg(0) Component arg0) {
@@ -42,23 +41,6 @@ public final class Static36 {
 	public static ServerActiveProperties method940(@OriginalArg(0) Component arg0) {
 		@Pc(13) ServerActiveProperties local13 = (ServerActiveProperties) Static210.aClass133_21.getNode(((long) arg0.anInt507 << 32) + (long) arg0.componentId);
 		return local13 == null ? arg0.aClass3_Sub4_1 : local13;
-	}
-
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "a", descriptor = "(IB)Lclient!tk;")
-	public static SeqType method941(@OriginalArg(0) int arg0) {
-		@Pc(17) SeqType local17 = (SeqType) Static142.aClass99_23.get((long) arg0);
-		if (local17 != null) {
-			return local17;
-		}
-		@Pc(32) byte[] local32 = Static243.aClass153_98.getfile(BZip2State.method3389(arg0), Static118.method2356(arg0));
-		local17 = new SeqType();
-		local17.anInt5361 = arg0;
-		if (local32 != null) {
-			local17.decode(new Packet(local32));
-		}
-		local17.postDecode();
-		Static142.aClass99_23.put(local17, (long) arg0);
-		return local17;
 	}
 
 	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "a", descriptor = "([Lclient!be;IIIIIII)V")
@@ -161,7 +143,7 @@ public final class Static36 {
 						}
 						if (local9 == Static4.aClass13_1) {
 							Static146.aBoolean174 = true;
-							Static81.anInt2225 = local50;
+							ItemDefinition.anInt2225 = local50;
 							Static228.anInt5103 = local55;
 						}
 						if (local9.aBoolean25 || local9.contentType != 0) {
@@ -352,7 +334,7 @@ public final class Static36 {
 									Static185.aClass69_101.addTail(local399);
 								} else {
 									label539: for (local243 = local9.anInt487; local243 < Static72.updatedVarcstrsWriterIndex; local243++) {
-										local508 = Static233.updatedVarcstrs[local243 & 0x1F];
+										local508 = ClientScriptRunner.updatedVarcstrs[local243 & 0x1F];
 										for (local322 = 0; local322 < local9.anIntArray35.length; local322++) {
 											if (local9.anIntArray35[local322] == local508) {
 												local966 = new HookRequest();

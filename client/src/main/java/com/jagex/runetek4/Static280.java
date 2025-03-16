@@ -1,9 +1,12 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.dash3d.entity.Actor;
+import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,7 +17,7 @@ public final class Static280 {
 	public static Font aClass3_Sub2_Sub9_43;
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "s", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_110;
+	public static CacheArchive aClass153_110;
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "A", descriptor = "I")
 	public static int anInt5900;
@@ -29,8 +32,8 @@ public final class Static280 {
 	public static int anInt5895 = 0;
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!fe;B)V")
-	public static void method4665(@OriginalArg(0) PathingEntity arg0) {
-		if (Static83.loopCycle == arg0.anInt3386 || arg0.primarySeqId == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > Static36.method941(arg0.primarySeqId).frames[arg0.anInt3425]) {
+	public static void method4665(@OriginalArg(0) Actor arg0) {
+		if (Static83.loopCycle == arg0.anInt3386 || arg0.primarySeqId == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > AnimationSequence.getAnimationSequence(arg0.primarySeqId).frames[arg0.anInt3425]) {
 			@Pc(35) int local35 = arg0.anInt3386 - arg0.anInt3395;
 			@Pc(41) int local41 = Static83.loopCycle - arg0.anInt3395;
 			@Pc(52) int local52 = arg0.anInt3380 * 128 + arg0.size() * 64;
@@ -67,40 +70,40 @@ public final class Static280 {
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "([IIIIIIIIIZB)V")
 	public static void method4667(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) boolean arg9) {
 		@Pc(7) int local7 = arg2;
-		if (Static129.anInt3148 <= arg2) {
+		if (Rasterizer.viewportRight <= arg2) {
 			return;
 		}
-		if (arg2 < Static129.anInt3145) {
-			local7 = Static129.anInt3145;
+		if (arg2 < Rasterizer.viewportLeft) {
+			local7 = Rasterizer.viewportLeft;
 		}
 		@Pc(30) int local30 = arg7 + arg2;
-		if (Static129.anInt3145 >= local30) {
+		if (Rasterizer.viewportLeft >= local30) {
 			return;
 		}
-		if (Static129.anInt3148 < local30) {
-			local30 = Static129.anInt3148;
+		if (Rasterizer.viewportRight < local30) {
+			local30 = Rasterizer.viewportRight;
 		}
 		@Pc(43) int local43 = arg8;
-		if (Static129.anInt3149 <= arg8) {
+		if (Rasterizer.viewportBottom <= arg8) {
 			return;
 		}
 		@Pc(56) int local56 = arg8 + arg6;
-		if (arg8 < Static129.anInt3147) {
-			local43 = Static129.anInt3147;
+		if (arg8 < Rasterizer.viewportTop) {
+			local43 = Rasterizer.viewportTop;
 		}
-		if (local56 <= Static129.anInt3147) {
+		if (local56 <= Rasterizer.viewportTop) {
 			return;
 		}
-		@Pc(79) int local79 = local7 + Static129.anInt3144 * local43;
+		@Pc(79) int local79 = local7 + Rasterizer.destinationWidth * local43;
 		if (arg5 == 9) {
 			arg3 = arg3 + 1 & 0x3;
 			arg5 = 1;
 		}
-		@Pc(99) int local99 = local7 + Static129.anInt3144 - local30;
+		@Pc(99) int local99 = local7 + Rasterizer.destinationWidth - local30;
 		local43 -= arg8;
 		@Pc(108) int local108 = arg6 - local43;
-		if (Static129.anInt3149 < local56) {
-			local56 = Static129.anInt3149;
+		if (Rasterizer.viewportBottom < local56) {
+			local56 = Rasterizer.viewportBottom;
 		}
 		if (arg5 == 10) {
 			arg3 = arg3 + 3 & 0x3;
@@ -581,7 +584,7 @@ public final class Static280 {
 		@Pc(78) int local78;
 		@Pc(87) int local87;
 		if (arg1 >= Static267.anInt5773 && Static106.anInt2869 >= arg1) {
-			@Pc(52) int[] local52 = Static71.anIntArrayArray10[arg1];
+			@Pc(52) int[] local52 = ObjTypeList.anIntArrayArray10[arg1];
 			local61 = Static78.method1690(Static224.anInt5063, arg5 - arg2, Static172.anInt4164);
 			local69 = Static78.method1690(Static224.anInt5063, arg2 + arg5, Static172.anInt4164);
 			local78 = Static78.method1690(Static224.anInt5063, arg5 - local18, Static172.anInt4164);
@@ -616,10 +619,10 @@ public final class Static280 {
 						local69 = Static78.method1690(Static224.anInt5063, local23 + arg5, Static172.anInt4164);
 						local78 = Static78.method1690(Static224.anInt5063, arg5 - local23, Static172.anInt4164);
 						if (Static106.anInt2869 >= local61) {
-							Static131.method2576(Static71.anIntArrayArray10[local61], local78, local69, arg3);
+							Static131.method2576(ObjTypeList.anIntArrayArray10[local61], local78, local69, arg3);
 						}
 						if (local161 >= Static267.anInt5773) {
-							Static131.method2576(Static71.anIntArrayArray10[local161], local78, local69, arg3);
+							Static131.method2576(ObjTypeList.anIntArrayArray10[local161], local78, local69, arg3);
 						}
 					} else {
 						local69 = Static241.anIntArray522[local32];
@@ -628,13 +631,13 @@ public final class Static280 {
 						local264 = Static78.method1690(Static224.anInt5063, arg5 + local69, Static172.anInt4164);
 						local273 = Static78.method1690(Static224.anInt5063, arg5 - local69, Static172.anInt4164);
 						if (Static106.anInt2869 >= local61) {
-							local280 = Static71.anIntArrayArray10[local61];
+							local280 = ObjTypeList.anIntArrayArray10[local61];
 							Static131.method2576(local280, local87, local273, arg3);
 							Static131.method2576(local280, local273, local264, arg0);
 							Static131.method2576(local280, local264, local78, arg3);
 						}
 						if (local161 >= Static267.anInt5773) {
-							local280 = Static71.anIntArrayArray10[local161];
+							local280 = ObjTypeList.anIntArrayArray10[local161];
 							Static131.method2576(local280, local87, local273, arg3);
 							Static131.method2576(local280, local273, local264, arg0);
 							Static131.method2576(local280, local264, local78, arg3);
@@ -655,23 +658,23 @@ public final class Static280 {
 						local264 = Static78.method1690(Static224.anInt5063, local87 + arg5, Static172.anInt4164);
 						local273 = Static78.method1690(Static224.anInt5063, arg5 - local87, Static172.anInt4164);
 						if (Static106.anInt2869 >= local61) {
-							local280 = Static71.anIntArrayArray10[local61];
+							local280 = ObjTypeList.anIntArrayArray10[local61];
 							Static131.method2576(local280, local78, local273, arg3);
 							Static131.method2576(local280, local273, local264, arg0);
 							Static131.method2576(local280, local264, local69, arg3);
 						}
 						if (local161 >= Static267.anInt5773) {
-							local280 = Static71.anIntArrayArray10[local161];
+							local280 = ObjTypeList.anIntArrayArray10[local161];
 							Static131.method2576(local280, local78, local273, arg3);
 							Static131.method2576(local280, local273, local264, arg0);
 							Static131.method2576(local280, local264, local69, arg3);
 						}
 					} else {
 						if (Static106.anInt2869 >= local61) {
-							Static131.method2576(Static71.anIntArrayArray10[local61], local78, local69, arg3);
+							Static131.method2576(ObjTypeList.anIntArrayArray10[local61], local78, local69, arg3);
 						}
 						if (local161 >= Static267.anInt5773) {
-							Static131.method2576(Static71.anIntArrayArray10[local161], local78, local69, arg3);
+							Static131.method2576(ObjTypeList.anIntArrayArray10[local161], local78, local69, arg3);
 						}
 					}
 				}
@@ -686,10 +689,10 @@ public final class Static280 {
 			local3 = true;
 			for (@Pc(13) int local13 = 0; local13 < PreciseSleep.menuActionRow - 1; local13++) {
 				if (Static39.aShortArray6[local13] < 1000 && Static39.aShortArray6[local13 + 1] > 1000) {
-					@Pc(41) JString local41 = Static233.aClass100Array160[local13];
+					@Pc(41) JString local41 = ClientScriptRunner.aClass100Array160[local13];
 					local3 = false;
-					Static233.aClass100Array160[local13] = Static233.aClass100Array160[local13 + 1];
-					Static233.aClass100Array160[local13 + 1] = local41;
+					ClientScriptRunner.aClass100Array160[local13] = ClientScriptRunner.aClass100Array160[local13 + 1];
+					ClientScriptRunner.aClass100Array160[local13 + 1] = local41;
 					@Pc(61) JString local61 = Static254.aClass100Array168[local13];
 					Static254.aClass100Array168[local13] = Static254.aClass100Array168[local13 + 1];
 					Static254.aClass100Array168[local13 + 1] = local61;

@@ -1,6 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.cache.media.Font;
+import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,7 +13,7 @@ public final class Static182 {
 	public static int[] anIntArray372;
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "x", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_77;
+	public static CacheArchive aClass153_77;
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "E", descriptor = "[[Lclient!hg;")
 	public static Class3_Sub14[][] aClass3_Sub14ArrayArray2;
@@ -35,7 +37,7 @@ public final class Static182 {
 			local9 = Static254.canvasHeigth;
 			@Pc(15) int local15 = local9 * 956 / 503;
 			Static78.aClass3_Sub2_Sub1_3.method1419((Static48.canvasWidth - local15) / 2, 0, local15, local9);
-			Static243.aClass36_1.method3336(Static48.canvasWidth / 2 - Static243.aClass36_1.anInt4270 / 2, 18);
+			Static243.aClass36_1.drawImage(Static48.canvasWidth / 2 - Static243.aClass36_1.anInt4270 / 2, 18);
 		}
 		arg1.method2875(LocalizedText.GAME0_LOADING, Static48.canvasWidth / 2, Static254.canvasHeigth / 2 - 26, 16777215, -1);
 		local9 = Static254.canvasHeigth / 2 - 18;
@@ -45,10 +47,10 @@ public final class Static182 {
 			Static46.method1186(Static48.canvasWidth / 2 - 150, local9 + 2, Static199.mainLoadPercentage * 3, 30, 9179409);
 			Static46.method1186(Static48.canvasWidth / 2 + Static199.mainLoadPercentage * 3 - 150, local9 + 2, 300 - Static199.mainLoadPercentage * 3, 30, 0);
 		} else {
-			Static129.method2483(Static48.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
-			Static129.method2483(Static48.canvasWidth / 2 - 151, local9 + 1, 302, 32, 0);
-			Static129.method2495(Static48.canvasWidth / 2 - 150, local9 + 2, Static199.mainLoadPercentage * 3, 30, 9179409);
-			Static129.method2495(Static199.mainLoadPercentage * 3 + Static48.canvasWidth / 2 - 150, local9 + 2, 300 - Static199.mainLoadPercentage * 3, 30, 0);
+			Rasterizer.drawUnfilledRectangle(Static48.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
+			Rasterizer.drawUnfilledRectangle(Static48.canvasWidth / 2 - 151, local9 + 1, 302, 32, 0);
+			Rasterizer.drawFilledRectangle(Static48.canvasWidth / 2 - 150, local9 + 2, Static199.mainLoadPercentage * 3, 30, 9179409);
+			Rasterizer.drawFilledRectangle(Static199.mainLoadPercentage * 3 + Static48.canvasWidth / 2 - 150, local9 + 2, 300 - Static199.mainLoadPercentage * 3, 30, 0);
 		}
 		arg1.method2875(Static126.mainLoadSecondaryText, Static48.canvasWidth / 2, Static254.canvasHeigth / 2 + 4, 16777215, -1);
 	}

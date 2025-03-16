@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.msitype.MSIType;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -24,11 +24,11 @@ public final class Static40 {
 		if (Static155.anInt3718 == -1 || Static52.anInt1694 == -1) {
 			return;
 		}
-		@Pc(27) int local27 = (Static233.anInt5224 * (Static114.anInt5843 - Static228.anInt5101) >> 16) + Static228.anInt5101;
+		@Pc(27) int local27 = (ClientScriptRunner.anInt5224 * (Static114.anInt5843 - Static228.anInt5101) >> 16) + Static228.anInt5101;
 		@Pc(30) float[] local30 = new float[3];
-		Static233.anInt5224 += local27;
-		if (Static233.anInt5224 >= 65535) {
-			Static233.anInt5224 = 65535;
+		ClientScriptRunner.anInt5224 += local27;
+		if (ClientScriptRunner.anInt5224 >= 65535) {
+			ClientScriptRunner.anInt5224 = 65535;
 			if (Static186.aBoolean205) {
 				Static13.aBoolean16 = false;
 			} else {
@@ -39,7 +39,7 @@ public final class Static40 {
 			Static186.aBoolean205 = false;
 			Static13.aBoolean16 = false;
 		}
-		@Pc(66) float local66 = (float) Static233.anInt5224 / 65535.0F;
+		@Pc(66) float local66 = (float) ClientScriptRunner.anInt5224 / 65535.0F;
 		@Pc(70) int local70 = Static127.anInt3125 * 2;
 		@Pc(141) int local141;
 		@Pc(131) int local131;
@@ -84,7 +84,7 @@ public final class Static40 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!da", name = "a", descriptor = "(ILclient!ve;Z)Lclient!ok;")
-	public static IndexedSprite method1010(@OriginalArg(0) int arg0, @OriginalArg(1) Js5 arg1) {
+	public static IndexedSprite method1010(@OriginalArg(0) int arg0, @OriginalArg(1) CacheArchive arg1) {
 		return Static254.method4346(arg1, arg0) ? Static276.method4614() : null;
 	}
 

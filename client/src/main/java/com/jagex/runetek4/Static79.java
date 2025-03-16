@@ -1,7 +1,9 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -89,7 +91,7 @@ public final class Static79 {
 				@Pc(65) long local65 = arg0;
 				arg0 /= 37L;
 				local32--;
-				local48[local32] = Static31.aByteArray12[(int) (local65 - arg0 * 37L)];
+				local48[local32] = Player.aByteArray12[(int) (local65 - arg0 * 37L)];
 			}
 			@Pc(88) JString local88 = new JString();
 			local88.aByteArray52 = local48;
@@ -99,7 +101,7 @@ public final class Static79 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ge", name = "a", descriptor = "(BLclient!ve;)V")
-	public static void method1703(@OriginalArg(1) Js5 arg0) {
-		Static167.aClass153_62 = arg0;
+	public static void method1703(@OriginalArg(1) CacheArchive arg0) {
+		com.jagex.runetek4.cache.CacheArchive.aClass153_62 = arg0;
 	}
 }

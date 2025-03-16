@@ -1,7 +1,8 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,7 +13,7 @@ public final class Static78 {
 	public static int anInt2147;
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "m", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_32;
+	public static CacheArchive aClass153_32;
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "n", descriptor = "Lclient!qf;")
 	public static Sprite aClass3_Sub2_Sub1_3;
@@ -49,7 +50,7 @@ public final class Static78 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(ILclient!ve;II)Lclient!mm;")
-	public static SoftwareSprite method1693(@OriginalArg(0) int arg0, @OriginalArg(1) Js5 arg1, @OriginalArg(3) int arg2) {
+	public static ImageRGB method1693(@OriginalArg(0) int arg0, @OriginalArg(1) CacheArchive arg1, @OriginalArg(3) int arg2) {
 		return Static234.method4016(arg1, arg0, arg2) ? Static196.method3537() : null;
 	}
 
@@ -119,7 +120,7 @@ public final class Static78 {
 			}
 		}
 		if (!local12) {
-			Static233.anInt5223 = 1;
+			ClientScriptRunner.anInt5223 = 1;
 			return;
 		}
 		Static271.anInt5804 = 0;
@@ -151,10 +152,10 @@ public final class Static78 {
 			}
 		}
 		if (!local12) {
-			Static233.anInt5223 = 2;
+			ClientScriptRunner.anInt5223 = 2;
 			return;
 		}
-		if (Static233.anInt5223 != 0) {
+		if (ClientScriptRunner.anInt5223 != 0) {
 			Static114.method4636(true, Static34.method882(new JString[] { LocalizedText.LOADING, Static18.aClass100_108 }));
 		}
 		Static107.method2261();
@@ -220,7 +221,7 @@ public final class Static78 {
 				local320 = Static173.localPlayer.pathTileZ[0] >> 3;
 				Static73.method1597(local320, local427);
 			}
-			Static233.method4002(false);
+			ClientScriptRunner.method4002(false);
 		}
 		Static217.method3768();
 		aClass6.method842(true);
@@ -252,7 +253,7 @@ public final class Static78 {
 			if (Static230.aBoolean250) {
 				Static89.method1835(true);
 				aClass6.method842(true);
-				Static233.method4002(true);
+				ClientScriptRunner.method4002(true);
 			}
 			Static217.method3768();
 			aClass6.method842(true);

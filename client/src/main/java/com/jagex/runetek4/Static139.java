@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.Insets;
+
+import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -30,8 +33,8 @@ public final class Static139 {
 
 	@OriginalMember(owner = "runetek4.client!l", name = "a", descriptor = "(III)J")
 	public static long method2703(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
-		return local7 == null || local7.decor == null ? 0L : local7.decor.aLong52;
+		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
+		return local7 == null || local7.wallDecoration == null ? 0L : local7.wallDecoration.aLong52;
 	}
 
 	@OriginalMember(owner = "runetek4.client!l", name = "b", descriptor = "(I)V")

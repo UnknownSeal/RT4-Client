@@ -1,9 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.config.NPCType;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,7 +12,7 @@ public final class Static214 {
 	public static int anInt5577;
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "z", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_106;
+	public static CacheArchive aClass153_106;
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "C", descriptor = "I")
 	public static int anInt5579;
@@ -32,7 +30,7 @@ public final class Static214 {
 	public static int anInt5581 = 0;
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(Lclient!e;I)V")
-	public static void method4359(@OriginalArg(0) PlayerEntity arg0) {
+	public static void method4359(@OriginalArg(0) Player arg0) {
 		@Pc(12) AreaSound local12 = (AreaSound) AreaSoundManager.playerSounds.getNode(arg0.name.toBase37());
 		if (local12 == null) {
 			AreaSoundManager.add(arg0.pathTileZ[0], null, 0, null, arg0.pathTileX[0], Static55.currentLevel, arg0);
@@ -58,23 +56,6 @@ public final class Static214 {
 	@OriginalMember(owner = "runetek4.client!rg", name = "d", descriptor = "(B)Lclient!bn;")
 	public static Map method4361() {
 		return Static269.aClass3_Sub2_Sub4_2;
-	}
-
-	@OriginalMember(owner = "runetek4.client!rg", name = "b", descriptor = "(II)Lclient!me;")
-	public static NPCType get(@OriginalArg(0) int id) {
-		@Pc(10) NPCType npcType = (NPCType) Static93.aClass99_13.get((long) id);
-		if (npcType != null) {
-			return npcType;
-		}
-		@Pc(26) byte[] bytes = Static58.aClass153_28.getfile(Static60.method1447(id), Static179.method3322(id));
-		npcType = new NPCType();
-		npcType.id = id;
-		if (bytes != null) {
-			npcType.decode(new Packet(bytes));
-		}
-		npcType.postDecode();
-		Static93.aClass99_13.put(npcType, (long) id);
-		return npcType;
 	}
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(IIIIIIIII)V")

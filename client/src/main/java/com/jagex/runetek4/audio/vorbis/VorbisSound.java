@@ -1,7 +1,7 @@
 package com.jagex.runetek4.audio.vorbis;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

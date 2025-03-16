@@ -1,13 +1,13 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static252 {
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "P", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_103;
+	public static CacheArchive aClass153_103;
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "Y", descriptor = "Lclient!na;")
 	public static final JString aClass100_1049 = Static28.parse("huffman");
@@ -17,7 +17,7 @@ public final class Static252 {
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "e", descriptor = "(I)V")
 	public static void method4301() {
-		Static233.aClass99_31.method3103();
+		ClientScriptRunner.aClass99_31.method3103();
 	}
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "f", descriptor = "(I)V")

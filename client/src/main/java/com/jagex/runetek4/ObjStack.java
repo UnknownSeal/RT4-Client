@@ -1,13 +1,13 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.media.renderable.Renderable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!uj")
-public final class ObjStack extends Entity {
+public final class ObjStack extends Renderable {
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "v", descriptor = "I")
 	public int anInt5550;

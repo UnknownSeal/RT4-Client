@@ -4,7 +4,7 @@ import java.awt.Frame;
 import java.util.Random;
 
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -15,7 +15,7 @@ public final class Static39 {
 	public static Frame frame;
 
 	@OriginalMember(owner = "runetek4.client!d", name = "hb", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_23;
+	public static CacheArchive aClass153_23;
 
 	@OriginalMember(owner = "runetek4.client!d", name = "ib", descriptor = "Lclient!qf;")
 	public static Sprite aClass3_Sub2_Sub1_1;

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.core.datastruct.HashTable;
+import com.jagex.runetek4.node.Node;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -17,10 +17,10 @@ public final class HashTableIterator {
 	private int anInt3447 = 0;
 
 	@OriginalMember(owner = "runetek4.client!l", name = "e", descriptor = "Lclient!sc;")
-	private final IterableMap aClass133_10;
+	private final HashTable aClass133_10;
 
 	@OriginalMember(owner = "runetek4.client!l", name = "<init>", descriptor = "(Lclient!sc;)V")
-	public HashTableIterator(@OriginalArg(0) IterableMap arg0) {
+	public HashTableIterator(@OriginalArg(0) HashTable arg0) {
 		this.aClass133_10 = arg0;
 	}
 

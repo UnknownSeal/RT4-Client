@@ -10,13 +10,13 @@ public final class Static174 {
 	public static float aFloat22;
 
 	@OriginalMember(owner = "runetek4.client!nl", name = "g", descriptor = "I")
-	public static int anInt4191;
+	public static int inv_unity;
 
 	@OriginalMember(owner = "runetek4.client!nl", name = "b", descriptor = "[[F")
 	public static final float[][] aFloatArrayArray2 = new float[2][8];
 
 	@OriginalMember(owner = "runetek4.client!nl", name = "f", descriptor = "[[I")
-	public static final int[][] anIntArrayArray32 = new int[2][8];
+	public static final int[][] coef = new int[2][8];
 
 	@OriginalMember(owner = "runetek4.client!nl", name = "a", descriptor = "(F)F")
 	public static float method3250(@OriginalArg(0) float arg0) {

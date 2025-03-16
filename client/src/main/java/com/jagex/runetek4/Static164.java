@@ -1,10 +1,12 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.config.ObjType;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -52,7 +54,7 @@ public final class Static164 {
 				if (local14 > 0L) {
 					local65 = arg3;
 				}
-				local75 = Static129.anIntArray297;
+				local75 = Rasterizer.destinationPixels;
 				local90 = (52736 - arg2 * 512) * 4 + arg0 * 4 + 24624;
 				if (local35 == 0 || local35 == 2) {
 					if (local28 == 0) {
@@ -128,7 +130,7 @@ public final class Static164 {
 						local65 = 15597568;
 					}
 					local90 = arg0 * 4 + (103 - arg2) * 2048 + 24624;
-					local75 = Static129.anIntArray297;
+					local75 = Rasterizer.destinationPixels;
 					if (local28 == 0 || local28 == 2) {
 						local75[local90 + 1536] = local65;
 						local75[local90 + 1025] = local65;
@@ -171,88 +173,88 @@ public final class Static164 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Lclient!ve;IZ)Lclient!mm;")
-	public static SoftwareSprite method3117(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
+	public static ImageRGB method3117(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) int arg1) {
 		return Static254.method4346(arg0, arg1) ? Static196.method3537() : null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IZILclient!ve;)Lclient!ek;")
-	public static SoftwareIndexedSprite method3119(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {
+	public static SoftwareIndexedSprite method3119(@OriginalArg(2) int arg0, @OriginalArg(3) CacheArchive arg1) {
 		return Static234.method4016(arg1, 0, arg0) ? Static134.method2619() : null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IBZIZIIZ)Lclient!qf;")
-	public static Sprite method3150(@OriginalArg(0) int arg0, @OriginalArg(2) boolean arg1, @OriginalArg(3) int arg2, @OriginalArg(4) boolean arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) boolean arg6) {
-		@Pc(5) ObjType local5 = Static71.get(arg2);
-		if (arg5 > 1 && local5.countobj != null) {
+	public static Sprite method3150(@OriginalArg(0) int arg0, @OriginalArg(2) boolean arg1, @OriginalArg(3) int arg2, @OriginalArg(4) boolean arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) boolean backColor) {
+		@Pc(5) ItemDefinition definition = Static71.get(arg2);
+		if (arg5 > 1 && definition.countobj != null) {
 			@Pc(15) int local15 = -1;
 			for (@Pc(17) int local17 = 0; local17 < 10; local17++) {
-				if (arg5 >= local5.countco[local17] && local5.countco[local17] != 0) {
-					local15 = local5.countobj[local17];
+				if (arg5 >= definition.countco[local17] && definition.countco[local17] != 0) {
+					local15 = definition.countobj[local17];
 				}
 			}
 			if (local15 != -1) {
-				local5 = Static71.get(local15);
+				definition = Static71.get(local15);
 			}
 		}
-		@Pc(60) SoftwareModel local60 = local5.method1834();
+		@Pc(60) SoftwareModel local60 = definition.method1834();
 		if (local60 == null) {
 			return null;
 		}
-		@Pc(71) SoftwareSprite local71 = null;
-		if (local5.certtemplate != -1) {
-			local71 = (SoftwareSprite) method3150(0, true, local5.certlink, false, 1, 10, true);
+		@Pc(71) ImageRGB local71 = null;
+		if (definition.certtemplate != -1) {
+			local71 = (ImageRGB) method3150(0, true, definition.certlink, false, 1, 10, true);
 			if (local71 == null) {
 				return null;
 			}
-		} else if (local5.lenttemplate != -1) {
-			local71 = (SoftwareSprite) method3150(arg0, true, local5.lentlink, false, arg4, arg5, false);
+		} else if (definition.lenttemplate != -1) {
+			local71 = (ImageRGB) method3150(arg0, true, definition.lentlink, false, arg4, arg5, false);
 			if (local71 == null) {
 				return null;
 			}
 		}
-		@Pc(118) int[] local118 = Static129.anIntArray297;
-		@Pc(120) int local120 = Static129.anInt3144;
-		@Pc(122) int local122 = Static129.anInt3146;
+		@Pc(118) int[] pixels = Rasterizer.destinationPixels;
+		@Pc(120) int local120 = Rasterizer.destinationWidth;
+		@Pc(122) int local122 = Rasterizer.destinationHeight;
 		@Pc(125) int[] local125 = new int[4];
-		Static129.method2497(local125);
-		@Pc(133) SoftwareSprite local133 = new SoftwareSprite(36, 32);
-		Static129.method2491(local133.anIntArray20, 36, 32);
+		Rasterizer.getViewportDimensions(local125);
+		@Pc(133) ImageRGB rendered = new ImageRGB(36, 32);
+		Rasterizer.prepare(rendered.pixels, 36, 32);
 		Pix3D.method1908();
 		Pix3D.method1919(16, 16);
-		@Pc(145) int local145 = local5.zoom2d;
+		@Pc(145) int local145 = definition.zoom2d;
 		Pix3D.aBoolean136 = false;
-		if (arg6) {
+		if (backColor) {
 			local145 = (int) ((double) local145 * 1.5D);
 		} else if (arg4 == 2) {
 			local145 = (int) ((double) local145 * 1.04D);
 		}
-		@Pc(176) int local176 = MathUtils.anIntArray225[local5.xan2d] * local145 >> 16;
-		@Pc(185) int local185 = MathUtils.anIntArray223[local5.xan2d] * local145 >> 16;
-		local60.method4571(local5.yan2d, local5.zan2d, local5.xan2d, local5.xof2d, local185 + local5.yof2d - local60.getHeight() / 2, local5.yof2d + local176, -1L);
+		@Pc(176) int local176 = MathUtils.anIntArray225[definition.xan2d] * local145 >> 16;
+		@Pc(185) int local185 = MathUtils.anIntArray223[definition.xan2d] * local145 >> 16;
+		local60.drawModel(definition.yan2d, definition.zan2d, definition.xan2d, definition.xof2d, local185 + definition.yof2d - local60.getHeight() / 2, definition.yof2d + local176, -1L);
 		if (arg4 >= 1) {
-			local133.method303(1);
+			rendered.method303(1);
 			if (arg4 >= 2) {
-				local133.method303(16777215);
+				rendered.method303(16777215);
 			}
-			Static129.method2491(local133.anIntArray20, 36, 32);
+			Rasterizer.prepare(rendered.pixels, 36, 32);
 		}
 		if (arg0 != 0) {
-			local133.method314(arg0);
+			rendered.method314(arg0);
 		}
-		if (local5.certtemplate != -1) {
+		if (definition.certtemplate != -1) {
 			local71.drawSprite(0, 0);
-		} else if (local5.lenttemplate != -1) {
-			Static129.method2491(local71.anIntArray20, 36, 32);
-			local133.drawSprite(0, 0);
-			local133 = local71;
+		} else if (definition.lenttemplate != -1) {
+			Rasterizer.prepare(local71.pixels, 36, 32);
+			rendered.drawSprite(0, 0);
+			rendered = local71;
 		}
-		if (arg3 && (local5.stackable == 1 || arg5 != 1) && arg5 != -1) {
-			Static256.aClass3_Sub2_Sub9_Sub1_1.method2857(Component.getShortenedAmountText(arg5), 0, 9, 16776960, 1);
+		if (arg3 && (definition.stackable == 1 || arg5 != 1) && arg5 != -1) {
+			Static256.aClass3_Sub2_Sub9_Sub1_1.drawString(Component.getShortenedAmountText(arg5), 0, 9, 16776960, 1);
 		}
-		Static129.method2491(local118, local120, local122);
-		Static129.method2488(local125);
+		Rasterizer.prepare(pixels, local120, local122);
+		Rasterizer.setViewportDimensions(local125);
 		Pix3D.method1908();
 		Pix3D.aBoolean136 = true;
-		return GlRenderer.enabled && !arg1 ? new GlSprite(local133) : local133;
+		return GlRenderer.enabled && !arg1 ? new GlSprite(rendered) : rendered;
 	}
 }

@@ -1,14 +1,14 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static119 {
 
 	@OriginalMember(owner = "client!je", name = "W", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_44;
+	public static com.jagex.runetek4.js5.CacheArchive aClass153_44;
 
 	@OriginalMember(owner = "client!je", name = "eb", descriptor = "[I")
 	public static int[] anIntArray282;
@@ -17,7 +17,7 @@ public final class Static119 {
 	public static boolean aBoolean153 = false;
 
 	@OriginalMember(owner = "client!je", name = "T", descriptor = "Lclient!sc;")
-	public static IterableMap aClass133_9 = new IterableMap(8);
+	public static HashTable aClass133_9 = new HashTable(8);
 
 	@OriginalMember(owner = "client!je", name = "U", descriptor = "Lclient!na;")
 	public static final JString SHOWINGVIDEOAD = Static28.parse("showingVideoAd");
@@ -34,7 +34,7 @@ public final class Static119 {
 		Static224.method3885();
 		Static181.method3342();
 		Static179.method3323();
-		Static233.method4001();
+		ClientScriptRunner.method4001();
 		Static103.method2239();
 		Static227.method3903();
 		Static71.method1441();
@@ -62,8 +62,8 @@ public final class Static119 {
 	}
 
 	@OriginalMember(owner = "client!je", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method2384(@OriginalArg(1) Js5 arg0) {
-		Static9.aClass153_2 = arg0;
+	public static void method2384(@OriginalArg(1) com.jagex.runetek4.js5.CacheArchive arg0) {
+		CacheArchive.aClass153_2 = arg0;
 	}
 
 	@OriginalMember(owner = "client!je", name = "j", descriptor = "(I)I")

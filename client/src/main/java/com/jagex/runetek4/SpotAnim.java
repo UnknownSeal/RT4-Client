@@ -1,15 +1,15 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.SpotAnimType;
-import com.jagex.runetek4.dash3d.entity.Entity;
-import com.jagex.runetek4.config.SeqType;
+import com.jagex.runetek4.cache.def.SpotAnimDefinition;
+import com.jagex.runetek4.media.renderable.Renderable;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!bh")
-public final class SpotAnim extends Entity {
+public final class SpotAnim extends Renderable {
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "y", descriptor = "Lclient!ga;")
 	private ParticleSystem aClass47_Sub1_1;
@@ -48,7 +48,7 @@ public final class SpotAnim extends Entity {
 	public final int anInt599;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "J", descriptor = "Lclient!tk;")
-	private SeqType aClass144_1;
+	private AnimationSequence aClass144_1;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "<init>", descriptor = "(IIIIIII)V")
 	public SpotAnim(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
@@ -58,18 +58,18 @@ public final class SpotAnim extends Entity {
 		this.startCycle = arg6 + arg5;
 		this.anInt596 = arg0;
 		this.anInt599 = arg4;
-		@Pc(42) int local42 = Static34.method877(this.anInt596).anInt1754;
+		@Pc(42) int local42 = Static34.method877(this.anInt596).animationId;
 		if (local42 == -1) {
 			this.seqComplete = true;
 		} else {
 			this.seqComplete = false;
-			this.aClass144_1 = Static36.method941(local42);
+			this.aClass144_1 = AnimationSequence.getAnimationSequence(local42);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "b", descriptor = "(Z)Lclient!ak;")
 	private Model method552() {
-		@Pc(8) SpotAnimType local8 = Static34.method877(this.anInt596);
+		@Pc(8) SpotAnimDefinition local8 = Static34.method877(this.anInt596);
 		@Pc(26) Model local26;
 		if (this.seqComplete) {
 			local26 = local8.getModel(-1, -1, 0);

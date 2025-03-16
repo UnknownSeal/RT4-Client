@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -64,7 +63,7 @@ public final class Static24 {
 		for (@Pc(115) int local115 = 0; local115 < Static111.anInt2905; local115++) {
 			local113[local115] = Static230.list(local22[local115]).method769();
 		}
-		CacheArchive.method3656(local113, Static169.aShortArray52);
+		Class6.method3656(local113, Static169.aShortArray52);
 	}
 
 	@OriginalMember(owner = "client!bn", name = "a", descriptor = "(IIB)I")

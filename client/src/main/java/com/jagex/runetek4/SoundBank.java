@@ -1,8 +1,9 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.audio.SynthSound;
 import com.jagex.runetek4.audio.vorbis.VorbisSound;
-import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.core.datastruct.HashTable;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -12,19 +13,19 @@ import org.openrs2.deob.annotation.Pc;
 public final class SoundBank {
 
 	@OriginalMember(owner = "runetek4.client!le", name = "d", descriptor = "Lclient!sc;")
-	private final IterableMap aClass133_11 = new IterableMap(256);
+	private final HashTable aClass133_11 = new HashTable(256);
 
 	@OriginalMember(owner = "runetek4.client!le", name = "l", descriptor = "Lclient!sc;")
-	private final IterableMap aClass133_12 = new IterableMap(256);
+	private final HashTable aClass133_12 = new HashTable(256);
 
 	@OriginalMember(owner = "runetek4.client!le", name = "b", descriptor = "Lclient!ve;")
-	private final Js5 aClass153_52;
+	private final CacheArchive aClass153_52;
 
 	@OriginalMember(owner = "runetek4.client!le", name = "i", descriptor = "Lclient!ve;")
-	private final Js5 aClass153_53;
+	private final CacheArchive aClass153_53;
 
 	@OriginalMember(owner = "runetek4.client!le", name = "<init>", descriptor = "(Lclient!ve;Lclient!ve;)V")
-	public SoundBank(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
+	public SoundBank(@OriginalArg(0) CacheArchive arg0, @OriginalArg(1) CacheArchive arg1) {
 		this.aClass153_52 = arg0;
 		this.aClass153_53 = arg1;
 	}

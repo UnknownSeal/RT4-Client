@@ -1,5 +1,7 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -38,12 +40,12 @@ public final class Static126 {
 		Static214.anInt5574 = -1;
 		if (Static154.topLevelInterace != -1) {
 			Static24.anInt766 = 0;
-			Static9.method182();
+			CacheArchive.method182();
 		}
 		if (GlRenderer.enabled) {
 			Static46.method1177();
 		} else {
-			Static129.method2503();
+			Rasterizer.resetBounds();
 		}
 		Static178.sceneDelta = 0;
 	}

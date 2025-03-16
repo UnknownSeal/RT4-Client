@@ -58,13 +58,13 @@ public final class Static64 {
 		if (username == 0L) {
 			return;
 		}
-		if (Static9.friendCount >= 100 && !CacheArchive.members || Static9.friendCount >= 200) {
+		if (CacheArchive.friendCount >= 100 && !Class6.members || CacheArchive.friendCount >= 200) {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDLISTFULL);
 			return;
 		}
 		@Pc(35) JString displayName = Static79.decode37(username).method3125();
 		@Pc(42) int i;
-		for (i = 0; i < Static9.friendCount; i++) {
+		for (i = 0; i < CacheArchive.friendCount; i++) {
 			if (Static92.friendName37[i] == username) {
 				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { displayName, LocalizedText.FRIENDLISTDUPE}));
 				return;
@@ -80,13 +80,13 @@ public final class Static64 {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDCANTADDSELF);
 			return;
 		}
-		Static122.friendName[Static9.friendCount] = displayName;
-		Static92.friendName37[Static9.friendCount] = username;
-		Static104.friendWorld[Static9.friendCount] = 0;
-		Static214.aClass100Array170[Static9.friendCount] = Static186.aClass100_827;
-		Static106.anIntArray258[Static9.friendCount] = 0;
-		Static3.aBooleanArray135[Static9.friendCount] = false;
-		Static9.friendCount++;
+		Static122.friendName[CacheArchive.friendCount] = displayName;
+		Static92.friendName37[CacheArchive.friendCount] = username;
+		Static104.friendWorld[CacheArchive.friendCount] = 0;
+		Static214.aClass100Array170[CacheArchive.friendCount] = Static186.aClass100_827;
+		Static106.anIntArray258[CacheArchive.friendCount] = 0;
+		Static3.aBooleanArray135[CacheArchive.friendCount] = false;
+		CacheArchive.friendCount++;
 		Static185.anInt4369 = Static119.transmitTimer;
 		Static6.outboundBuffer.pIsaac1(120);
 		Static6.outboundBuffer.p8(username);

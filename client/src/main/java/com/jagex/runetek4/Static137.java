@@ -1,8 +1,11 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.SpotAnimDefinition;
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -10,7 +13,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static137 {
 
 	@OriginalMember(owner = "runetek4.client!kl", name = "r", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_49;
+	public static CacheArchive aClass153_49;
 
 	@OriginalMember(owner = "runetek4.client!kl", name = "s", descriptor = "I")
 	public static int anInt3337 = 0;
@@ -31,11 +34,11 @@ public final class Static137 {
 		@Pc(80) int local80;
 		if (Static56.aClass3_Sub2_Sub1_Sub1_1 == null) {
 			if (GlRenderer.enabled || Static89.aClass3_Sub2_Sub1_5 == null) {
-				Static56.aClass3_Sub2_Sub1_Sub1_1 = new SoftwareSprite(512, 512);
+				Static56.aClass3_Sub2_Sub1_Sub1_1 = new ImageRGB(512, 512);
 			} else {
-				Static56.aClass3_Sub2_Sub1_Sub1_1 = (SoftwareSprite) Static89.aClass3_Sub2_Sub1_5;
+				Static56.aClass3_Sub2_Sub1_Sub1_1 = (ImageRGB) Static89.aClass3_Sub2_Sub1_5;
 			}
-			@Pc(32) int[] local32 = Static56.aClass3_Sub2_Sub1_Sub1_1.anIntArray20;
+			@Pc(32) int[] local32 = Static56.aClass3_Sub2_Sub1_Sub1_1.pixels;
 			local35 = local32.length;
 			for (local37 = 0; local37 < local35; local37++) {
 				local32[local37] = 1;
@@ -44,10 +47,10 @@ public final class Static137 {
 				local76 = 4 * 512 * (103 - local37) + 24628;
 				for (local80 = 1; local80 < 103; local80++) {
 					if ((Static12.aByteArrayArrayArray2[arg0][local80][local37] & 0x18) == 0) {
-						Static152.method2835(local32, local76, arg0, local80, local37);
+						Static152.drawMinimapTile(local32, local76, arg0, local80, local37);
 					}
 					if (arg0 < 3 && (Static12.aByteArrayArrayArray2[arg0 + 1][local80][local37] & 0x8) != 0) {
-						Static152.method2835(local32, local76, arg0 + 1, local80, local37);
+						Static152.drawMinimapTile(local32, local76, arg0 + 1, local80, local37);
 					}
 					local76 += 4;
 				}
@@ -108,7 +111,7 @@ public final class Static137 {
 			for (local76 = 1; local76 < 103; local76++) {
 				if ((Static12.aByteArrayArrayArray2[arg0][local76][local37] & 0x18) == 0 && !Static164.method3109(local76, local455, local37, local35, arg0)) {
 					if (GlRenderer.enabled) {
-						Static129.anIntArray297 = null;
+						Rasterizer.destinationPixels = null;
 					} else {
 						Static260.aClass27_2.method4189();
 					}
@@ -116,7 +119,7 @@ public final class Static137 {
 				}
 				if (arg0 < 3 && (Static12.aByteArrayArrayArray2[arg0 + 1][local76][local37] & 0x8) != 0 && !Static164.method3109(local76, local455, local37, local35, arg0 + 1)) {
 					if (GlRenderer.enabled) {
-						Static129.anIntArray297 = null;
+						Rasterizer.destinationPixels = null;
 					} else {
 						Static260.aClass27_2.method4189();
 					}
@@ -125,7 +128,7 @@ public final class Static137 {
 			}
 		}
 		if (GlRenderer.enabled) {
-			@Pc(576) int[] local576 = Static56.aClass3_Sub2_Sub1_Sub1_1.anIntArray20;
+			@Pc(576) int[] local576 = Static56.aClass3_Sub2_Sub1_Sub1_1.pixels;
 			local76 = local576.length;
 			for (local80 = 0; local80 < local76; local80++) {
 				if (local576[local80] == 0) {
@@ -137,7 +140,7 @@ public final class Static137 {
 			Static89.aClass3_Sub2_Sub1_5 = Static56.aClass3_Sub2_Sub1_Sub1_1;
 		}
 		if (GlRenderer.enabled) {
-			Static129.anIntArray297 = null;
+			Rasterizer.destinationPixels = null;
 		} else {
 			Static260.aClass27_2.method4189();
 		}
@@ -148,6 +151,6 @@ public final class Static137 {
 	@OriginalMember(owner = "runetek4.client!kl", name = "c", descriptor = "(II)V")
 	public static void method2666() {
 		Static279.aClass99_38.clear(5);
-		Static56.aClass99_9.clear(5);
+		SpotAnimDefinition.modelCache.clear(5);
 	}
 }

@@ -3,6 +3,8 @@ package com.jagex.runetek4;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
+
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -27,7 +29,7 @@ public abstract class FrameBuffer {
 
 	@OriginalMember(owner = "client!vk", name = "a", descriptor = "(I)V")
 	public final void method4189() {
-		Static129.method2491(this.anIntArray472, this.anInt5341, this.anInt5339);
+		Rasterizer.prepare(this.anIntArray472, this.anInt5341, this.anInt5339);
 	}
 
 	@OriginalMember(owner = "client!vk", name = "a", descriptor = "(IIIILjava/awt/Graphics;I)V")

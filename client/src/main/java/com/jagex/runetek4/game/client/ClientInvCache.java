@@ -5,14 +5,14 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.Static246;
-import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.core.datastruct.HashTable;
+import com.jagex.runetek4.node.Node;
 
 @OriginalClass("client!qe")
 public final class ClientInvCache extends Node {
 
 	@OriginalMember(owner = "client!bj", name = "v", descriptor = "Lclient!sc;")
-	public static IterableMap recentUse = new IterableMap(32);
+	public static HashTable recentUse = new HashTable(32);
 	@OriginalMember(owner = "client!qe", name = "p", descriptor = "[I")
 	public int[] invSlotObjId = new int[] { -1 };
 

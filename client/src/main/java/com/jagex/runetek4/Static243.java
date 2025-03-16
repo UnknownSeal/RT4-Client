@@ -1,11 +1,12 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.scene.InteractiveObject;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -13,16 +14,16 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static243 {
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "j", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_97;
+	public static com.jagex.runetek4.js5.CacheArchive aClass153_97;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "o", descriptor = "Lclient!ok;")
 	public static IndexedSprite aClass36_1;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "s", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_98;
+	public static com.jagex.runetek4.js5.CacheArchive aClass153_98;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "D", descriptor = "[Lclient!ec;")
-	public static Scenery[] aClass31Array3;
+	public static InteractiveObject[] aClass31Array3;
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "c", descriptor = "J")
 	public static volatile long lastCanvasReplace = 0L;
@@ -34,7 +35,7 @@ public final class Static243 {
 	public static int[] anIntArray476 = new int[2];
 
 	@OriginalMember(owner = "runetek4.client!tk", name = "a", descriptor = "(Lclient!sc;ZLclient!wl;)Lclient!hg;")
-	public static Class3_Sub14 method4212(@OriginalArg(0) IterableMap arg0, @OriginalArg(2) FloorOverlayType arg1) {
+	public static Class3_Sub14 method4212(@OriginalArg(0) HashTable arg0, @OriginalArg(2) FloorOverlayType arg1) {
 		@Pc(23) long local23 = (long) ((arg1.material + 1 << 16) + arg1.materialscale) + ((long) arg1.priority << 56) + ((long) arg1.waterfogcolour << 32);
 		@Pc(38) Class3_Sub14 local38 = (Class3_Sub14) arg0.getNode(local23);
 		if (local38 == null) {
@@ -49,7 +50,7 @@ public final class Static243 {
 		Static204.anInt4762 = 0;
 		Static67.prevFocus = true;
 		Static183.prevClickTime = 0L;
-		Static178.mouseCapturer.coord = 0;
+		Game.mouseCapturer.coord = 0;
 		Static26.focus = true;
 		Static114.method4625();
 		Static49.anInt1462 = -1;
@@ -94,7 +95,7 @@ public final class Static243 {
 		for (i = 0; i < 32768; i++) {
 			Static175.npcs[i] = null;
 		}
-		Static173.localPlayer = Static159.players[2047] = new PlayerEntity();
+		Static173.localPlayer = Static159.players[2047] = new Player();
 		Static217.projectiles.clear();
 		Static99.spotanims.clear();
 		if (Static159.levelObjStacks != null) {
@@ -108,11 +109,11 @@ public final class Static243 {
 		}
 		Static26.spawnedLocations = new LinkList();
 		Static166.anInt4054 = 0;
-		Static9.friendCount = 0;
+		CacheArchive.friendCount = 0;
 		Static8.resetVarBits();
 		Static20.method601();
 		Static133.anInt5230 = 0;
-		Static233.anInt5217 = 0;
+		ClientScriptRunner.anInt5217 = 0;
 		Static265.anInt5765 = 0;
 		PreciseSleep.anInt5203 = 0;
 		Static248.anInt4232 = 0;
@@ -120,7 +121,7 @@ public final class Static243 {
 		Static57.anInt1744 = 0;
 		Static251.anInt5449 = 0;
 		Static113.anInt4612 = 0;
-		Static233.anInt5225 = 0;
+		ClientScriptRunner.anInt5225 = 0;
 		for (i = 0; i < VarPlayerDefinition.varcs.length; i++) {
 			VarPlayerDefinition.varcs[i] = -1;
 		}
@@ -131,7 +132,7 @@ public final class Static243 {
 			Static132.method2605(true, local3755);
 		}
 		Static154.topLevelInterace = -1;
-		Static119.aClass133_9 = new IterableMap(8);
+		Static119.aClass133_9 = new HashTable(8);
 		Component.createComponentMemoryBuffer();
 		Static39.aClass13_10 = null;
 		Static60.aBoolean108 = false;

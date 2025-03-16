@@ -1,9 +1,11 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
+import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.input.MouseCapturer;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
@@ -17,6 +19,8 @@ import java.net.Socket;
 public class Game {
     @OriginalMember(owner = "runetek4.client!vl", name = "k", descriptor = "I")
     public static int idleTimeout = 0;
+    @OriginalMember(owner = "runetek4.client!od", name = "f", descriptor = "Lclient!jd;")
+    public static MouseCapturer mouseCapturer;
 
     @OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "(Z)V")
     public static void updateGame() {
@@ -38,8 +42,8 @@ public class Game {
         if (Static244.gamestate != 30) {
             return;
         }
-        Static233.loop(Static6.outboundBuffer); // runetek4.ReflectionCheck
-        @Pc(60) Object mouseRecorder = Static178.mouseCapturer.lock;
+        ClientScriptRunner.createClientScriptCheckPacket(Static6.outboundBuffer); // runetek4.ReflectionCheck
+        @Pc(60) Object mouseRecorder = mouseCapturer.lock;
         @Pc(86) int offset;
         @Pc(79) int samples;
         @Pc(88) int i;
@@ -49,16 +53,16 @@ public class Game {
         @Pc(189) int dy;
         synchronized (mouseRecorder) {
             if (!Static245.enabled) {
-                Static178.mouseCapturer.coord = 0;
-            } else if (Mouse.clickButton != 0 || Static178.mouseCapturer.coord >= 40) {
+                mouseCapturer.coord = 0;
+            } else if (Mouse.clickButton != 0 || mouseCapturer.coord >= 40) {
                 Static6.outboundBuffer.pIsaac1(123);
                 samples = 0;
                 Static6.outboundBuffer.p1(0);
                 offset = Static6.outboundBuffer.position;
-                for (i = 0; Static178.mouseCapturer.coord > i && Static6.outboundBuffer.position - offset < 240; i++) {
+                for (i = 0; mouseCapturer.coord > i && Static6.outboundBuffer.position - offset < 240; i++) {
                     samples++;
-                    y = Static178.mouseCapturer.y[i];
-                    x = Static178.mouseCapturer.x[i];
+                    y = mouseCapturer.y[i];
+                    x = mouseCapturer.x[i];
                     if (y < 0) {
                         y = 0;
                     } else if (y > 65534) {
@@ -70,7 +74,7 @@ public class Game {
                         x = 65534;
                     }
                     @Pc(142) boolean outsideWindow = false;
-                    if (Static178.mouseCapturer.y[i] == -1 && Static178.mouseCapturer.x[i] == -1) {
+                    if (mouseCapturer.y[i] == -1 && mouseCapturer.x[i] == -1) {
                         outsideWindow = true;
                         y = -1;
                         x = -1;
@@ -113,14 +117,14 @@ public class Game {
                     }
                 }
                 Static6.outboundBuffer.p1len(Static6.outboundBuffer.position - offset);
-                if (Static178.mouseCapturer.coord > samples) {
-                    Static178.mouseCapturer.coord -= samples;
-                    for (i = 0; i < Static178.mouseCapturer.coord; i++) {
-                        Static178.mouseCapturer.x[i] = Static178.mouseCapturer.x[samples + i];
-                        Static178.mouseCapturer.y[i] = Static178.mouseCapturer.y[samples + i];
+                if (mouseCapturer.coord > samples) {
+                    mouseCapturer.coord -= samples;
+                    for (i = 0; i < mouseCapturer.coord; i++) {
+                        mouseCapturer.x[i] = mouseCapturer.x[samples + i];
+                        mouseCapturer.y[i] = mouseCapturer.y[samples + i];
                     }
                 } else {
-                    Static178.mouseCapturer.coord = 0;
+                    mouseCapturer.coord = 0;
                 }
             }
         }
@@ -220,7 +224,7 @@ public class Game {
                 Static138.updatedVarcs[Static4.updatedVarcsWriterIndex++ & 0x1F] = i;
             } else if (samples == 2) {
                 Static226.varcstrs[i] = change.stringArg;
-                Static233.updatedVarcstrs[Static72.updatedVarcstrsWriterIndex++ & 0x1F] = i;
+                ClientScriptRunner.updatedVarcstrs[Static72.updatedVarcstrsWriterIndex++ & 0x1F] = i;
             } else {
                 @Pc(773) Component component;
                 if (samples == 3) {
@@ -654,7 +658,7 @@ public class Game {
     @OriginalMember(owner = "runetek4.client!nk", name = "c", descriptor = "(IZ)V")
     public static void pushNpcs(@OriginalArg(1) boolean arg0) {
         @Pc(7) int i;
-        @Pc(16) NPCEntity npc;
+        @Pc(16) NPCRenderable npc;
         @Pc(107) int npcSize;
         @Pc(113) int x;
         @Pc(133) int z;
@@ -776,7 +780,7 @@ public class Game {
             local3 = 1;
         }
         @Pc(28) int i;
-        @Pc(39) PlayerEntity player;
+        @Pc(39) Player player;
         @Pc(82) int stz;
         @Pc(182) int local182;
         @Pc(200) int local200;
@@ -958,7 +962,7 @@ public class Game {
         if (idleTimeout > 0) {
             processLogout();
         } else {
-            Static233.aClass95_4 = Static124.gameServerSocket;
+            ClientScriptRunner.aClass95_4 = Static124.gameServerSocket;
             Static124.gameServerSocket = null;
             processGameStatus(40);
         }
@@ -1081,14 +1085,14 @@ public class Game {
             Static49.method1208();
         }
         @Pc(37) boolean local37 = statusCode == 5 || statusCode == 10 || statusCode == 28;
-        if (statusCode != 40 && Static233.aClass95_4 != null) {
-            Static233.aClass95_4.closeGracefully();
-            Static233.aClass95_4 = null;
+        if (statusCode != 40 && ClientScriptRunner.aClass95_4 != null) {
+            ClientScriptRunner.aClass95_4.closeGracefully();
+            ClientScriptRunner.aClass95_4 = null;
         }
         if (statusCode == 25 || statusCode == 28) {
             Static271.anInt5804 = 0;
             Static230.anInt5150 = 1;
-            Static233.anInt5223 = 0;
+            ClientScriptRunner.anInt5223 = 0;
             Static38.anInt1196 = 1;
             Static175.anInt4220 = 0;
             Static116.method2325(true);
@@ -1130,7 +1134,7 @@ public class Game {
         Static258.method4415();
         Static209.method3706();
         Static190.method3447();
-        Static72.method1570();
+        AnimationSequence.clearAnimationCache();
         Static137.method2666();
         Static269.method2221();
         VarPlayerDefinition.clearVarPlayerDefinitionCache();
@@ -1154,14 +1158,14 @@ public class Game {
                 proj.unlink();
             } else if (Static83.loopCycle >= projAnim.startCycle) {
                 if (projAnim.target > 0) {
-                    @Pc(54) NPCEntity npc = Static175.npcs[projAnim.target - 1];
+                    @Pc(54) NPCRenderable npc = Static175.npcs[projAnim.target - 1];
                     if (npc != null && npc.x >= 0 && npc.x < 13312 && npc.z >= 0 && npc.z < 13312) {
                         projAnim.updateVelocity(npc.z, Static83.loopCycle, Static207.getHeightmapY(projAnim.level, npc.x, npc.z) - projAnim.anInt4805, npc.x);
                     }
                 }
                 if (projAnim.target < 0) {
                     @Pc(102) int index = -projAnim.target - 1;
-                    @Pc(107) PlayerEntity player;
+                    @Pc(107) Player player;
                     if (Static16.localPid == index) {
                         player = Static173.localPlayer;
                     } else {

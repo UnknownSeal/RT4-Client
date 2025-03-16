@@ -2,8 +2,10 @@ package com.jagex.runetek4;
 
 import java.io.IOException;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.lighttype.LightType;
+import com.jagex.runetek4.node.NodeQueue;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,14 +16,14 @@ public final class Static140 {
 	public static int[][][] anIntArrayArrayArray12;
 
 	@OriginalMember(owner = "runetek4.client!la", name = "f", descriptor = "Lclient!ce;")
-	public static final SecondaryLinkedList aClass16_7 = new SecondaryLinkedList();
+	public static final NodeQueue aClass16_7 = new NodeQueue();
 
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(Lclient!wa;Z)V")
 	public static void method2705(@OriginalArg(0) Packet arg0) {
 		@Pc(15) byte[] local15 = new byte[24];
 		if (client.uid != null) {
 			try {
-				client.uid.method1459(0L);
+				client.uid.setReadIndex(0L);
 				client.uid.method1457(local15);
 				@Pc(28) int local28;
 				for (local28 = 0; local28 < 24 && local15[local28] == 0; local28++) {
@@ -55,7 +57,7 @@ public final class Static140 {
 				return;
 			}
 		}
-		for (i = 0; i < Static9.friendCount; i++) {
+		for (i = 0; i < CacheArchive.friendCount; i++) {
 			if (Static92.friendName37[i] == username) {
 				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { LocalizedText.REMOVESOCIAL2, displayName, LocalizedText.REMOVEFRIEND}));
 				return;

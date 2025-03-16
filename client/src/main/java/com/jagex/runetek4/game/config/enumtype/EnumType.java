@@ -2,6 +2,8 @@ package com.jagex.runetek4.game.config.enumtype;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.datastruct.*;
+import com.jagex.runetek4.node.CachedNode;
+import com.jagex.runetek4.node.Node;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -18,10 +20,10 @@ public final class EnumType extends CachedNode {
 	public int inputtype;
 
 	@OriginalMember(owner = "client!ml", name = "X", descriptor = "Lclient!sc;")
-	public IterableMap values;
+	public HashTable values;
 
 	@OriginalMember(owner = "client!ml", name = "bb", descriptor = "Lclient!sc;")
-	private IterableMap aClass133_17;
+	private HashTable aClass133_17;
 
 	@OriginalMember(owner = "client!ml", name = "cb", descriptor = "I")
 	private int defaultInt;
@@ -52,7 +54,7 @@ public final class EnumType extends CachedNode {
 			this.defaultInt = packet.g4();
 		} else if (code == 5 || code == 6) {
 			@Pc(41) int valuesCount = packet.g2();
-			this.values = new IterableMap(Static165.bitceil(valuesCount));
+			this.values = new HashTable(Static165.bitceil(valuesCount));
 			for (@Pc(51) int index = 0; index < valuesCount; index++) {
 				@Pc(58) int local58 = packet.g4();
 				@Pc(70) Node node;
@@ -104,7 +106,7 @@ public final class EnumType extends CachedNode {
 
 	@OriginalMember(owner = "client!ml", name = "d", descriptor = "(I)V")
 	private void method3087() {
-		this.aClass133_17 = new IterableMap(this.values.getSize());
+		this.aClass133_17 = new HashTable(this.values.getSize());
 		for (@Pc(22) JagStringWrapper local22 = (JagStringWrapper) this.values.peekFront(); local22 != null; local22 = (JagStringWrapper) this.values.prev()) {
 			@Pc(36) Class3_Sub13 local36 = new Class3_Sub13(local22.value, (int) local22.nodeId);
 			this.aClass133_17.pushNode(local36, local22.value.method3118());
@@ -125,7 +127,7 @@ public final class EnumType extends CachedNode {
 
 	@OriginalMember(owner = "client!ml", name = "e", descriptor = "(I)V")
 	private void method3091() {
-		this.aClass133_17 = new IterableMap(this.values.getSize());
+		this.aClass133_17 = new HashTable(this.values.getSize());
 		for (@Pc(24) IntWrapper local24 = (IntWrapper) this.values.peekFront(); local24 != null; local24 = (IntWrapper) this.values.prev()) {
 			@Pc(34) IntWrapper local34 = new IntWrapper((int) local24.nodeId);
 			this.aClass133_17.pushNode(local34, local24.value);

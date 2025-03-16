@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -26,7 +26,7 @@ public final class Static116 {
 	public static int anInt2961 = 0;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "(ILclient!ve;I)Lclient!jk;")
-	public static MidiInstrument method2320(@OriginalArg(1) Js5 arg0, @OriginalArg(2) int arg1) {
+	public static MidiInstrument method2320(@OriginalArg(1) CacheArchive arg0, @OriginalArg(2) int arg1) {
 		@Pc(9) byte[] local9 = arg0.method4500(arg1);
 		return local9 == null ? null : new MidiInstrument(local9);
 	}

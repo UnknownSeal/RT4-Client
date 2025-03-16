@@ -1,7 +1,9 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -37,8 +39,8 @@ public final class Static145 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method2743(@OriginalArg(1) Js5 arg0) {
-		Static233.aClass36_Sub1Array1 = Static162.method3088(Static138.anInt3443, arg0);
+	public static void method2743(@OriginalArg(1) CacheArchive arg0) {
+		ClientScriptRunner.aClass36_Sub1Array1 = Static162.method3088(Static138.anInt3443, arg0);
 		Static96.anIntArray235 = new int[256];
 		@Pc(15) int local15;
 		for (local15 = 0; local15 < 3; local15++) {
@@ -66,7 +68,7 @@ public final class Static145 {
 		Static69.method1545(null);
 		Static103.anIntArray254 = new int[32768];
 		Static216.anIntArray188 = new int[32768];
-		Static167.aClass3_Sub2_Sub1_Sub1_3 = new SoftwareSprite(128, 254);
+		Static167.aClass3_Sub2_Sub1_Sub1_3 = new ImageRGB(128, 254);
 	}
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "b", descriptor = "(I)V")
@@ -80,11 +82,11 @@ public final class Static145 {
 			Static46.method1186(local11 + 1, local3 + 1, local9 - 2, 16, 0);
 			Static46.method1179(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
 		} else {
-			Static129.method2495(local11, local3, local9, local15, 6116423);
-			Static129.method2495(local11 + 1, local3 + 1, local9 - 2, 16, 0);
-			Static129.method2483(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
+			Rasterizer.drawFilledRectangle(local11, local3, local9, local15, 6116423);
+			Rasterizer.drawFilledRectangle(local11 + 1, local3 + 1, local9 - 2, 16, 0);
+			Rasterizer.drawUnfilledRectangle(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
 		}
-		Static280.aClass3_Sub2_Sub9_43.method2857(LocalizedText.CHOOSE_OPTION, local11 + 3, local3 + 14, 6116423, -1);
+		Static280.aClass3_Sub2_Sub9_43.drawString(LocalizedText.CHOOSE_OPTION, local11 + 3, local3 + 14, 6116423, -1);
 		@Pc(96) int local96 = Static223.anInt5032;
 		@Pc(98) int local98 = Static215.anInt4873;
 		for (@Pc(107) int local107 = 0; local107 < PreciseSleep.menuActionRow; local107++) {
@@ -93,7 +95,7 @@ public final class Static145 {
 			if (local11 < local98 && local98 < local11 + local9 && local127 - 13 < local96 && local96 < local127 + 3) {
 				local129 = 16776960;
 			}
-			Static280.aClass3_Sub2_Sub9_43.method2857(Static269.method2228(local107), local11 + 3, local127, local129, 0);
+			Static280.aClass3_Sub2_Sub9_43.drawString(Static269.method2228(local107), local11 + 3, local127, local129, 0);
 		}
 		Static121.method2407(Static183.anInt4271, Static229.anInt5138, Static13.anInt436, Static24.anInt761);
 	}

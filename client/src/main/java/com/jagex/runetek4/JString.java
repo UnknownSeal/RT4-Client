@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.JagStringWrapper;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -693,7 +693,7 @@ public final class JString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "c", descriptor = "(IB)I")
-	public final int method3149(@OriginalArg(0) int arg0) {
+	public final int charAt(@OriginalArg(0) int arg0) {
 		return this.aByteArray52[arg0] & 0xFF;
 	}
 
@@ -704,7 +704,7 @@ public final class JString implements StringInterface {
 		synchronized (local19) {
 			@Pc(30) JagStringWrapper local30;
 			if (Static148.aClass133_13 == null) {
-				Static148.aClass133_13 = new IterableMap(4096);
+				Static148.aClass133_13 = new HashTable(4096);
 			} else {
 				for (local30 = (JagStringWrapper) Static148.aClass133_13.getNode(local9); local30 != null; local30 = (JagStringWrapper) Static148.aClass133_13.next()) {
 					if (this.method3108(local30.value)) {

@@ -1,5 +1,9 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.scene.tile.FloorDecoration;
+import com.jagex.runetek4.scene.tile.Wall;
+import com.jagex.runetek4.scene.tile.WallDecoration;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -40,7 +44,7 @@ public final class Static92 {
 			}
 		}
 		if (arg4 == 1) {
-			@Pc(106) Decor local106 = Static83.method435(arg0, arg5, arg3);
+			@Pc(106) WallDecoration local106 = Static83.method435(arg0, arg5, arg3);
 			if (local106 != null) {
 				local38 = (int) (local106.aLong52 >>> 32) & Integer.MAX_VALUE;
 				if (arg2 == 4 || arg2 == 5) {
@@ -59,15 +63,15 @@ public final class Static92 {
 			if (arg2 == 11) {
 				arg2 = 10;
 			}
-			@Pc(255) Scenery local255 = Static133.method4008(arg0, arg5, arg3);
+			@Pc(255) InteractiveObject local255 = Static133.method4008(arg0, arg5, arg3);
 			if (local255 != null) {
-				local255.aClass8_4 = new Loc((int) (local255.aLong56 >>> 32) & Integer.MAX_VALUE, arg2, arg1, arg0, arg5, arg3, arg6, false, local255.aClass8_4);
+				local255.aClass8_4 = new Loc((int) (local255.hash >>> 32) & Integer.MAX_VALUE, arg2, arg1, arg0, arg5, arg3, arg6, false, local255.aClass8_4);
 			}
 		}
 		if (arg4 == 3) {
-			@Pc(290) GroundDecor local290 = Static269.method2210(arg0, arg5, arg3);
+			@Pc(290) FloorDecoration local290 = Static269.method2210(arg0, arg5, arg3);
 			if (local290 != null) {
-				local290.entity = new Loc(Integer.MAX_VALUE & (int) (local290.key >>> 32), 22, arg1, arg0, arg5, arg3, arg6, false, local290.entity);
+				local290.renderable = new Loc(Integer.MAX_VALUE & (int) (local290.key >>> 32), 22, arg1, arg0, arg5, arg3, arg6, false, local290.renderable);
 			}
 		}
 	}

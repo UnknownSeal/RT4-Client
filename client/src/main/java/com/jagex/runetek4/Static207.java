@@ -166,7 +166,7 @@ public final class Static207 {
 			Static141.anInt3469 += local82;
 			if (Static141.anInt3469 < Static116.anInt2961) {
 				return -1;
-			} else if (Static170.method2572(Static229.aByteArray70)) {
+			} else if (ObjTypeList.method2572(Static229.aByteArray70)) {
 				Static101.aClass10_Sub1Array1 = new GWCWorld[Static106.anInt2871];
 				local124 = 0;
 				for (@Pc(240) int local240 = Static19.anInt636; local240 <= Static171.anInt4157; local240++) {

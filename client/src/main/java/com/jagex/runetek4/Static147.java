@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.scene.tile.ComplexTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -18,13 +19,13 @@ public final class Static147 {
 
 	@OriginalMember(owner = "runetek4.client!lh", name = "b", descriptor = "(II)V")
 	public static void method2761(@OriginalArg(0) int arg0) {
-		Static170.anInt3241 = arg0;
+		ObjTypeList.anInt3241 = arg0;
 		Static128.method2481(3);
 		Static128.method2481(4);
 	}
 
 	@OriginalMember(owner = "runetek4.client!lh", name = "a", descriptor = "(Lclient!fg;IIIIIIZ)V")
-	public static void drawTileOverlay(@OriginalArg(0) ShapedTile overlay, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7) {
+	public static void drawTileOverlay(@OriginalArg(0) ComplexTile overlay, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7) {
 		@Pc(3) int vertexCount = overlay.anIntArray168.length;
 		@Pc(5) int i;
 		@Pc(15) int a;
@@ -51,11 +52,11 @@ public final class Static147 {
 			Static68.anIntArray164[i] = Pix3D.anInt2469 + (local61 << 9) / z;
 		}
 		Pix3D.trans = 0;
-		vertexCount = overlay.triangleVertexA.length;
+		vertexCount = overlay.triangleA.length;
 		for (i = 0; i < vertexCount; i++) {
-			a = overlay.triangleVertexA[i];
-			local22 = overlay.anIntArray162[i];
-			local29 = overlay.anIntArray158[i];
+			a = overlay.triangleA[i];
+			local22 = overlay.triangleB[i];
+			local29 = overlay.triangleC[i];
 			local39 = Static68.anIntArray165[a];
 			@Pc(148) int local148 = Static68.anIntArray165[local22];
 			@Pc(152) int local152 = Static68.anIntArray165[local29];
@@ -73,16 +74,16 @@ public final class Static147 {
 						Pix3D.aBoolean138 = true;
 					}
 					if (overlay.triangleTextureIds == null || overlay.triangleTextureIds[i] == -1) {
-						if (overlay.triangleColorA[i] != 12345678) {
-							Pix3D.method1928(local156, local160, local164, local39, local148, local152, overlay.triangleColorA[i], overlay.anIntArray172[i], overlay.anIntArray171[i]);
+						if (overlay.triangleHSLA[i] != 12345678) {
+							Pix3D.method1928(local156, local160, local164, local39, local148, local152, overlay.triangleHSLA[i], overlay.triangleHSLB[i], overlay.triangleHSLC[i]);
 						}
 					} else if (!Static159.aBoolean189) {
 						@Pc(373) int local373 = Pix3D.anInterface1_2.method3234(overlay.triangleTextureIds[i]);
-						Pix3D.method1928(local156, local160, local164, local39, local148, local152, Static216.method1640(local373, overlay.triangleColorA[i]), Static216.method1640(local373, overlay.anIntArray172[i]), Static216.method1640(local373, overlay.anIntArray171[i]));
+						Pix3D.method1928(local156, local160, local164, local39, local148, local152, Static216.method1640(local373, overlay.triangleHSLA[i]), Static216.method1640(local373, overlay.triangleHSLB[i]), Static216.method1640(local373, overlay.triangleHSLC[i]));
 					} else if (overlay.aBoolean113) {
-						Pix3D.textureTriangle(local156, local160, local164, local39, local148, local152, overlay.triangleColorA[i], overlay.anIntArray172[i], overlay.anIntArray171[i], Static68.anIntArray159[0], Static68.anIntArray159[1], Static68.anIntArray159[3], Static68.anIntArray170[0], Static68.anIntArray170[1], Static68.anIntArray170[3], Static68.tmpViewspaceZ[0], Static68.tmpViewspaceZ[1], Static68.tmpViewspaceZ[3], overlay.triangleTextureIds[i]);
+						Pix3D.textureTriangle(local156, local160, local164, local39, local148, local152, overlay.triangleHSLA[i], overlay.triangleHSLB[i], overlay.triangleHSLC[i], Static68.anIntArray159[0], Static68.anIntArray159[1], Static68.anIntArray159[3], Static68.anIntArray170[0], Static68.anIntArray170[1], Static68.anIntArray170[3], Static68.tmpViewspaceZ[0], Static68.tmpViewspaceZ[1], Static68.tmpViewspaceZ[3], overlay.triangleTextureIds[i]);
 					} else {
-						Pix3D.textureTriangle(local156, local160, local164, local39, local148, local152, overlay.triangleColorA[i], overlay.anIntArray172[i], overlay.anIntArray171[i], Static68.anIntArray159[a], Static68.anIntArray159[local22], Static68.anIntArray159[local29], Static68.anIntArray170[a], Static68.anIntArray170[local22], Static68.anIntArray170[local29], Static68.tmpViewspaceZ[a], Static68.tmpViewspaceZ[local22], Static68.tmpViewspaceZ[local29], overlay.triangleTextureIds[i]);
+						Pix3D.textureTriangle(local156, local160, local164, local39, local148, local152, overlay.triangleHSLA[i], overlay.triangleHSLB[i], overlay.triangleHSLC[i], Static68.anIntArray159[a], Static68.anIntArray159[local22], Static68.anIntArray159[local29], Static68.anIntArray170[a], Static68.anIntArray170[local22], Static68.anIntArray170[local29], Static68.tmpViewspaceZ[a], Static68.tmpViewspaceZ[local22], Static68.tmpViewspaceZ[local29], overlay.triangleTextureIds[i]);
 					}
 				}
 			}

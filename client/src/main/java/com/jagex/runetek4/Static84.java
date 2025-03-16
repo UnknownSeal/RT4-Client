@@ -1,10 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.CachedNode;
+import com.jagex.runetek4.node.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.config.SeqType;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -15,7 +15,7 @@ public final class Static84 {
 	public static float aFloat10;
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "e", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_35;
+	public static CacheArchive aClass153_35;
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "j", descriptor = "I")
 	public static int anInt2257;
@@ -36,7 +36,7 @@ public final class Static84 {
 	public static int anInt2256 = 0;
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "(IIBLclient!e;)V")
-	public static void getPlayerExtended(@OriginalArg(0) int flags, @OriginalArg(1) int arg1, @OriginalArg(3) PlayerEntity player) {
+	public static void getPlayerExtended(@OriginalArg(0) int flags, @OriginalArg(1) int arg1, @OriginalArg(3) Player player) {
 		@Pc(13) int chatFlags;
 		@Pc(17) int staffModLevel;
 		@Pc(24) int local24;
@@ -64,7 +64,7 @@ public final class Static84 {
 						}
 					}
 				}
-				if (!ignored && PlayerEntity.overrideChat == 0) {
+				if (!ignored && Player.overrideChat == 0) {
 					Static270.chatBuffer.position = 0;
 					Static57.in.gBytesRev(Static270.chatBuffer.data, len);
 					Static270.chatBuffer.position = 0;
@@ -137,7 +137,7 @@ public final class Static84 {
 		}
 		if ((flags & 0x20) != 0) {
 			player.chatMessage = Static57.in.gjstr();
-			if (player.chatMessage.method3149(0) == 126) {
+			if (player.chatMessage.charAt(0) == 126) {
 				player.chatMessage = player.chatMessage.substring(1);
 				Static103.addMessage(player.getName(), 2, player.chatMessage);
 			} else if (player == Static173.localPlayer) {
@@ -175,7 +175,7 @@ public final class Static84 {
 			}
 			staffModLevel = Static57.in.p4rme();
 			@Pc(573) boolean local573 = true;
-			if (chatFlags != -1 && player.spotanimFrame != -1 && Static36.method941(Static34.method877(chatFlags).anInt1754).priority < Static36.method941(Static34.method877(player.spotanimFrame).anInt1754).priority) {
+			if (chatFlags != -1 && player.spotanimFrame != -1 && AnimationSequence.getAnimationSequence(Static34.method877(chatFlags).animationId).priority < AnimationSequence.getAnimationSequence(Static34.method877(player.spotanimFrame).animationId).priority) {
 				local573 = false;
 			}
 			if (local573) {
@@ -189,9 +189,9 @@ public final class Static84 {
 				player.spotanimOffset = staffModLevel >> 16;
 				player.anInt3418 = 1;
 				if (player.spotanimFrame != -1 && Static83.loopCycle == player.spotanimLastCycle) {
-					local24 = Static34.method877(player.spotanimFrame).anInt1754;
+					local24 = Static34.method877(player.spotanimFrame).animationId;
 					if (local24 != -1) {
-						@Pc(663) SeqType local663 = Static36.method941(local24);
+						@Pc(663) AnimationSequence local663 = AnimationSequence.getAnimationSequence(local24);
 						if (local663 != null && local663.anIntArray473 != null) {
 							Static152.method2836(player.z, local663, player.x, player == Static173.localPlayer, 0);
 						}
@@ -301,12 +301,12 @@ public final class Static84 {
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "(Lclient!rg;Lclient!rg;B)V")
 	public static void method1772(@OriginalArg(0) CachedNode arg0, @OriginalArg(1) CachedNode arg1) {
-		if (arg1.secondaryNext != null) {
+		if (arg1.nextCachedNode != null) {
 			arg1.clear();
 		}
-		arg1.secondaryNext = arg0;
-		arg1.secondaryPrev = arg0.secondaryPrev;
-		arg1.secondaryNext.secondaryPrev = arg1;
-		arg1.secondaryPrev.secondaryNext = arg1;
+		arg1.nextCachedNode = arg0;
+		arg1.previousCachedNode = arg0.previousCachedNode;
+		arg1.nextCachedNode.previousCachedNode = arg1;
+		arg1.previousCachedNode.nextCachedNode = arg1;
 	}
 }

@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -54,7 +54,7 @@ public final class Static59 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ej", name = "a", descriptor = "(Lclient!ve;ILclient!ve;Lclient!of;)V")
-	public static void method1374(@OriginalArg(0) Js5 arg0, @OriginalArg(2) Js5 arg1, @OriginalArg(3) QuickChatCommandDecoder arg2) {
+	public static void method1374(@OriginalArg(0) CacheArchive arg0, @OriginalArg(2) CacheArchive arg1, @OriginalArg(3) QuickChatCommandDecoder arg2) {
 		Static262.configClientLarge = arg0;
 		Static107.anInterface3_1 = arg2;
 		Static238.configClientSmall = arg1;

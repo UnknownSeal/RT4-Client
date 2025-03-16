@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -55,7 +56,7 @@ public final class TextureOpCurve extends TextureOp {
 		if (this.anInt5852 == 2) {
 			this.method4642();
 		}
-		Static9.method185();
+		CacheArchive.method185();
 		this.method4639();
 	}
 

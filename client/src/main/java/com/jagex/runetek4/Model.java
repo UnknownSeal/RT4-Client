@@ -1,13 +1,13 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.media.renderable.Renderable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!ak")
-public abstract class Model extends Entity {
+public abstract class Model extends Renderable {
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "s", descriptor = "Z")
 	public boolean pickable = false;
@@ -301,7 +301,7 @@ public abstract class Model extends Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "a", descriptor = "(IIIIIIIJ)V")
-	public abstract void method4571(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) long arg6);
+	public abstract void drawModel(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) long arg6);
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "c", descriptor = "(ZZZ)Lclient!ak;")
 	public abstract Model method4572(@OriginalArg(0) boolean arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2);

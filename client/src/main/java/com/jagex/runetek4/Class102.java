@@ -26,10 +26,10 @@ public final class Class102 {
 	public int anInt4053;
 
 	@OriginalMember(owner = "runetek4.client!nc", name = "p", descriptor = "I")
-	public int anInt4057;
+	public int hintIconNpcTarget;
 
 	@OriginalMember(owner = "runetek4.client!nc", name = "q", descriptor = "I")
-	public int anInt4058;
+	public int headIconDrawType;
 
 	@OriginalMember(owner = "runetek4.client!nc", name = "k", descriptor = "I")
 	public int anInt4052 = -1;

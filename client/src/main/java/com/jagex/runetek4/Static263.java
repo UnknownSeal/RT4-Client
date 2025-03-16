@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
+import com.jagex.runetek4.dash3d.entity.Actor;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -114,7 +114,7 @@ public final class Static263 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(IILclient!fe;)V")
-	public static void updateEntity(@OriginalArg(0) int arg0, @OriginalArg(2) PathingEntity entity) {
+	public static void updateEntity(@OriginalArg(0) int arg0, @OriginalArg(2) Actor entity) {
 		if (Static83.loopCycle < entity.anInt3395) {
 			Static18.method553(entity);
 		} else if (entity.anInt3386 >= Static83.loopCycle) {

@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import java.nio.ByteBuffer;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.media.renderable.Renderable;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.graphics.VertexNormal;
 import com.jogamp.opengl.*;
@@ -915,7 +915,7 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!td", name = "a", descriptor = "(Lclient!th;IIIZ)V")
 	@Override
-	public final void method4544(@OriginalArg(0) Entity arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
+	public final void method4544(@OriginalArg(0) Renderable arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
 		@Pc(2) GlModel local2 = (GlModel) arg0;
 		if (this.anInt5297 == 0 || local2.anInt5297 == 0) {
 			return;
@@ -1063,7 +1063,7 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!td", name = "a", descriptor = "(IIIIIIIJ)V")
 	@Override
-	public final void method4571(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) long arg6) {
+	public final void drawModel(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) long arg6) {
 		if (this.anInt5296 == 0) {
 			return;
 		}
@@ -2463,7 +2463,7 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "client!td", name = "a", descriptor = "(III)Lclient!th;")
 	@Override
-	public final Entity method4539() {
+	public final Renderable method4539() {
 		this.aBoolean259 = false;
 		if (this.aClass23_1 != null) {
 			this.aShortArray76 = this.aClass23_1.aShortArray8;
@@ -3197,7 +3197,7 @@ public final class GlModel extends Model {
 			local151 = new SoftwareIndexedSprite(local134, local140, 0);
 		} else {
 			local151 = arg0;
-			arg0.anInt4279 = arg0.anInt4270 = local134;
+			arg0.maxWidth = arg0.anInt4270 = local134;
 			arg0.anInt4276 = arg0.anInt4278 = local140;
 			arg0.method1392();
 		}

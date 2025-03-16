@@ -1,11 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.lighttype.LightType;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -34,7 +33,7 @@ public final class Static245 {
 	public static void getPlayerExtended() {
 		for (@Pc(7) int i = 0; i < Static116.entityUpdateCount; i++) {
 			@Pc(31) int index = Static44.entityUpdateIds[i];
-			@Pc(35) PlayerEntity player = Static159.players[index];
+			@Pc(35) Player player = Static159.players[index];
 			@Pc(39) int mask = Static57.in.g1();
 			if ((mask & 0x10) != 0) {
 				mask += Static57.in.g1() << 8;
@@ -68,7 +67,7 @@ public final class Static245 {
 			for (local103 = 0; local103 < 64; local103++) {
 				for (local108 = 0; local108 < 64; local108++) {
 					if (arg6 == local17 && arg8 <= local103 && arg8 + 8 > local103 && arg7 <= local108 && local108 < arg7 + 8) {
-						Static278.method4651(0, 0, arg9, local96, CacheArchive.method3659(arg0, local103 & 0x7, local108 & 0x7) + arg4, Static214.method4360(arg0, local108 & 0x7, local103 & 0x7) + arg1, arg0, arg2);
+						Static278.method4651(0, 0, arg9, local96, Class6.method3659(arg0, local103 & 0x7, local108 & 0x7) + arg4, Static214.method4360(arg0, local108 & 0x7, local103 & 0x7) + arg1, arg0, arg2);
 					} else {
 						Static278.method4651(0, 0, arg9, local96, -1, -1, 0, 0);
 					}
@@ -132,7 +131,7 @@ public final class Static245 {
 									for (local266 = local237; local266 < local237 + 4; local266++) {
 										if (local255 >= arg8 && local255 < arg8 + 8 && local266 >= arg7 && arg7 + 8 > arg7) {
 											local316 = arg1 + Static214.method4360(arg0, local266 & 0x7, local255 & 0x7);
-											@Pc(328) int local328 = CacheArchive.method3659(arg0, local255 & 0x7, local266 & 0x7) + arg4;
+											@Pc(328) int local328 = Class6.method3659(arg0, local255 & 0x7, local266 & 0x7) + arg4;
 											if (local316 >= 0 && local316 < 104 && local328 >= 0 && local328 < 104) {
 												Static232.aByteArrayArrayArray13[arg2][local316][local328] = local246;
 											}

@@ -1,5 +1,7 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -20,20 +22,20 @@ public final class Static112 {
 				Static181.aClass3_Sub2_Sub1_9 = Static80.method3613(Static209.aClass153_86, Static169.anInt4073);
 				if (GlRenderer.enabled) {
 					if (Static39.aClass3_Sub2_Sub1_1 instanceof SoftwareAlphaSprite) {
-						Static39.aClass3_Sub2_Sub1_1 = new GlAlphaSprite((SoftwareSprite) Static39.aClass3_Sub2_Sub1_1);
+						Static39.aClass3_Sub2_Sub1_1 = new GlAlphaSprite((ImageRGB) Static39.aClass3_Sub2_Sub1_1);
 					} else {
-						Static39.aClass3_Sub2_Sub1_1 = new GlSprite((SoftwareSprite) Static39.aClass3_Sub2_Sub1_1);
+						Static39.aClass3_Sub2_Sub1_1 = new GlSprite((ImageRGB) Static39.aClass3_Sub2_Sub1_1);
 					}
 					if (Static181.aClass3_Sub2_Sub1_9 instanceof SoftwareAlphaSprite) {
-						Static181.aClass3_Sub2_Sub1_9 = new GlAlphaSprite((SoftwareSprite) Static181.aClass3_Sub2_Sub1_9);
+						Static181.aClass3_Sub2_Sub1_9 = new GlAlphaSprite((ImageRGB) Static181.aClass3_Sub2_Sub1_9);
 					} else {
-						Static181.aClass3_Sub2_Sub1_9 = new GlSprite((SoftwareSprite) Static181.aClass3_Sub2_Sub1_9);
+						Static181.aClass3_Sub2_Sub1_9 = new GlSprite((ImageRGB) Static181.aClass3_Sub2_Sub1_9);
 					}
 				}
 			} else if (GlRenderer.enabled) {
 				Static46.method1182(local3, local9, local13, 20, Static40.anInt1275, 256 - Static111.anInt2910);
 			} else {
-				Static129.method2484(local3, local9, local13, 20, Static40.anInt1275, 256 - Static111.anInt2910);
+				Rasterizer.drawFilledRectangleAlpha(local3, local9, local13, 20, Static40.anInt1275, 256 - Static111.anInt2910);
 			}
 		}
 		@Pc(112) int local112;
@@ -46,11 +48,11 @@ public final class Static112 {
 			Static181.aClass3_Sub2_Sub1_9.drawSprite(local3, local9);
 			Static181.aClass3_Sub2_Sub1_9.method1421(local3 + local13 - Static181.aClass3_Sub2_Sub1_9.anInt1867, local9);
 		}
-		Static280.aClass3_Sub2_Sub9_43.method2857(LocalizedText.CHOOSE_OPTION, local3 + 3, local9 + 14, Static195.anInt4581, -1);
+		Static280.aClass3_Sub2_Sub9_43.drawString(LocalizedText.CHOOSE_OPTION, local3 + 3, local9 + 14, Static195.anInt4581, -1);
 		if (GlRenderer.enabled) {
 			Static46.method1182(local3, local9 + 20, local13, local11 - 20, Static40.anInt1275, 256 - Static111.anInt2910);
 		} else {
-			Static129.method2484(local3, local9 + 20, local13, local11 - 20, Static40.anInt1275, 256 - Static111.anInt2910);
+			Rasterizer.drawFilledRectangleAlpha(local3, local9 + 20, local13, local11 - 20, Static40.anInt1275, 256 - Static111.anInt2910);
 		}
 		local114 = Static223.anInt5032;
 		local112 = Static215.anInt4873;
@@ -62,7 +64,7 @@ public final class Static112 {
 				if (GlRenderer.enabled) {
 					Static46.method1182(local3, local219 - 13, local13, 16, Static251.anInt5457, 256 - Static232.anInt5208);
 				} else {
-					Static129.method2484(local3, local219 - 13, local13, 16, Static251.anInt5457, 256 - Static232.anInt5208);
+					Rasterizer.drawFilledRectangleAlpha(local3, local219 - 13, local13, 16, Static251.anInt5457, 256 - Static232.anInt5208);
 				}
 			}
 		}
@@ -72,19 +74,19 @@ public final class Static112 {
 			Static204.aClass3_Sub2_Sub1_10 = Static80.method3613(Static209.aClass153_86, Static254.anInt5556);
 			if (GlRenderer.enabled) {
 				if (Static165.aClass3_Sub2_Sub1_8 instanceof SoftwareAlphaSprite) {
-					Static165.aClass3_Sub2_Sub1_8 = new GlAlphaSprite((SoftwareSprite) Static165.aClass3_Sub2_Sub1_8);
+					Static165.aClass3_Sub2_Sub1_8 = new GlAlphaSprite((ImageRGB) Static165.aClass3_Sub2_Sub1_8);
 				} else {
-					Static165.aClass3_Sub2_Sub1_8 = new GlSprite((SoftwareSprite) Static165.aClass3_Sub2_Sub1_8);
+					Static165.aClass3_Sub2_Sub1_8 = new GlSprite((ImageRGB) Static165.aClass3_Sub2_Sub1_8);
 				}
 				if (Static92.aClass3_Sub2_Sub1_6 instanceof SoftwareAlphaSprite) {
-					Static92.aClass3_Sub2_Sub1_6 = new GlAlphaSprite((SoftwareSprite) Static92.aClass3_Sub2_Sub1_6);
+					Static92.aClass3_Sub2_Sub1_6 = new GlAlphaSprite((ImageRGB) Static92.aClass3_Sub2_Sub1_6);
 				} else {
-					Static92.aClass3_Sub2_Sub1_6 = new GlSprite((SoftwareSprite) Static92.aClass3_Sub2_Sub1_6);
+					Static92.aClass3_Sub2_Sub1_6 = new GlSprite((ImageRGB) Static92.aClass3_Sub2_Sub1_6);
 				}
 				if (Static204.aClass3_Sub2_Sub1_10 instanceof SoftwareAlphaSprite) {
-					Static204.aClass3_Sub2_Sub1_10 = new GlAlphaSprite((SoftwareSprite) Static204.aClass3_Sub2_Sub1_10);
+					Static204.aClass3_Sub2_Sub1_10 = new GlAlphaSprite((ImageRGB) Static204.aClass3_Sub2_Sub1_10);
 				} else {
-					Static204.aClass3_Sub2_Sub1_10 = new GlSprite((SoftwareSprite) Static204.aClass3_Sub2_Sub1_10);
+					Static204.aClass3_Sub2_Sub1_10 = new GlSprite((ImageRGB) Static204.aClass3_Sub2_Sub1_10);
 				}
 			}
 		}
@@ -108,7 +110,7 @@ public final class Static112 {
 			if (local3 < local112 && local13 + local3 > local112 && local219 - 13 < local114 && local114 < local219 + 3) {
 				local418 = Static262.anInt5752;
 			}
-			Static280.aClass3_Sub2_Sub9_43.method2857(Static269.method2228(local203), local3 + 3, local219, local418, 0);
+			Static280.aClass3_Sub2_Sub9_43.drawString(Static269.method2228(local203), local3 + 3, local219, local418, 0);
 		}
 		Static121.method2407(Static183.anInt4271, Static229.anInt5138, Static13.anInt436, Static24.anInt761);
 	}

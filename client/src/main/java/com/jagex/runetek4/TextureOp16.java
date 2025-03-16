@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -77,6 +78,6 @@ public final class TextureOp16 extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!ke", name = "e", descriptor = "(I)V")
 	@Override
 	public final void postDecode() {
-		Static9.method185();
+		CacheArchive.method185();
 	}
 }

@@ -26,52 +26,6 @@ public final class Static286 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "([I[B[IIIIIIII)V")
-	public static void method1393(@OriginalArg(0) int[] arg0, @OriginalArg(1) byte[] arg1, @OriginalArg(2) int[] arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8) {
-		@Pc(4) int local4 = -(arg5 >> 2);
-		@Pc(9) int local9 = -(arg5 & 0x3);
-		for (@Pc(12) int local12 = -arg6; local12 < 0; local12++) {
-			@Pc(16) int local16;
-			@Pc(23) byte local23;
-			for (local16 = local4; local16 < 0; local16++) {
-				local23 = arg1[arg3++];
-				if (local23 == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2[local23 & 0xFF];
-				}
-				local23 = arg1[arg3++];
-				if (local23 == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2[local23 & 0xFF];
-				}
-				local23 = arg1[arg3++];
-				if (local23 == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2[local23 & 0xFF];
-				}
-				local23 = arg1[arg3++];
-				if (local23 == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2[local23 & 0xFF];
-				}
-			}
-			for (local16 = local9; local16 < 0; local16++) {
-				local23 = arg1[arg3++];
-				if (local23 == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2[local23 & 0xFF];
-				}
-			}
-			arg4 += arg7;
-			arg3 += arg8;
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "([I[B[IIIIIIIIIII)V")
 	public static void method1394(@OriginalArg(0) int[] arg0, @OriginalArg(1) byte[] arg1, @OriginalArg(2) int[] arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12) {
 		@Pc(1) int local1 = arg3;

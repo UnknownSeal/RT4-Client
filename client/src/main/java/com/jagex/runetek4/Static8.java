@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -31,7 +31,7 @@ public final class Static8 {
 
 	@OriginalMember(owner = "client!aj", name = "c", descriptor = "(II)V")
 	public static void method119() {
-		Static233.aClass99_31.clear(5);
+		ClientScriptRunner.aClass99_31.clear(5);
 	}
 
 	@OriginalMember(owner = "client!aj", name = "a", descriptor = "(IIIZIII)V")
@@ -47,7 +47,7 @@ public final class Static8 {
 		@Pc(25) int local25 = local8;
 		@Pc(28) int local28 = -local8;
 		@Pc(30) int local30 = -1;
-		@Pc(34) int[] local34 = Static71.anIntArrayArray10[arg2];
+		@Pc(34) int[] local34 = ObjTypeList.anIntArrayArray10[arg2];
 		@Pc(39) int local39 = arg5 + local8;
 		@Pc(41) int local41 = -1;
 		@Pc(46) int local46 = arg5 - local8;
@@ -76,8 +76,8 @@ public final class Static8 {
 				local23--;
 				local21 -= local23 << 1;
 				if (local8 > local23) {
-					local142 = Static71.anIntArrayArray10[local23 + arg2];
-					local149 = Static71.anIntArrayArray10[arg2 - local23];
+					local142 = ObjTypeList.anIntArrayArray10[local23 + arg2];
+					local149 = ObjTypeList.anIntArrayArray10[arg2 - local23];
 					local154 = arg5 - local10;
 					local158 = local10 + arg5;
 					local162 = Static241.anIntArray522[local23];
@@ -90,16 +90,16 @@ public final class Static8 {
 					Static131.method2576(local149, local167, local171, arg3);
 					Static131.method2576(local149, local171, local158, arg0);
 				} else {
-					local142 = Static71.anIntArrayArray10[arg2 + local23];
-					local149 = Static71.anIntArrayArray10[arg2 - local23];
+					local142 = ObjTypeList.anIntArrayArray10[arg2 + local23];
+					local149 = ObjTypeList.anIntArrayArray10[arg2 - local23];
 					local162 = local10 + arg5;
 					local158 = arg5 - local10;
 					Static131.method2576(local142, local158, local162, arg0);
 					Static131.method2576(local149, local158, local162, arg0);
 				}
 			}
-			local142 = Static71.anIntArrayArray10[arg2 + local10];
-			local149 = Static71.anIntArrayArray10[arg2 - local10];
+			local142 = ObjTypeList.anIntArrayArray10[arg2 + local10];
+			local149 = ObjTypeList.anIntArrayArray10[arg2 - local10];
 			local162 = local23 + arg5;
 			local158 = arg5 - local23;
 			if (local8 <= local10) {
@@ -128,6 +128,6 @@ public final class Static8 {
 				varPlayerDefinition.varPlayers[varpIndex] = 0;
 			}
 		}
-		Static199.aClass133_20 = new IterableMap(16);
+		Static199.aClass133_20 = new HashTable(16);
 	}
 }

@@ -1,9 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.enumtype.EnumType;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -20,7 +21,7 @@ public final class Static253 {
 	public static float aFloat36;
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "cb", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_104;
+	public static CacheArchive aClass153_104;
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "eb", descriptor = "[[[B")
 	public static byte[][][] levelTileUnderlayIds;
@@ -60,7 +61,7 @@ public final class Static253 {
 			if (Static176.cameraModifierEnabled[4] && Static276.cameraModifierWobbleScale[4] + 128 > pitch) {
 				pitch = Static276.cameraModifierWobbleScale[4] + 128;
 			}
-			Static18.orbitCamera(Static81.anInt2223, arg0, Static207.getHeightmapY(Static55.currentLevel, Static173.localPlayer.x, Static173.localPlayer.z) - 50, 600 - -(pitch * 3), local57, Static111.anInt2900, pitch);
+			Static18.orbitCamera(ItemDefinition.anInt2223, arg0, Static207.getHeightmapY(Static55.currentLevel, Static173.localPlayer.x, Static173.localPlayer.z) - 50, 600 - -(pitch * 3), local57, Static111.anInt2900, pitch);
 		}
 		local57 = Static5.cameraY;
 		pitch = Static138.cameraX;
@@ -71,7 +72,7 @@ public final class Static253 {
 		@Pc(171) int jitter;
 		for (type = 0; type < 5; type++) {
 			if (Static176.cameraModifierEnabled[type]) {
-				jitter = (int) ((double) -Static222.cameraModifierJitter[type] + (double) (Static222.cameraModifierJitter[type] * 2 + 1) * Math.random() + Math.sin((double) Static31.cameraModifierCycle[type] * ((double) CacheArchive.cameraModifierWobbleSpeed[type] / 100.0D)) * (double) Static276.cameraModifierWobbleScale[type]);
+				jitter = (int) ((double) -Static222.cameraModifierJitter[type] + (double) (Static222.cameraModifierJitter[type] * 2 + 1) * Math.random() + Math.sin((double) Static31.cameraModifierCycle[type] * ((double) Class6.cameraModifierWobbleSpeed[type] / 100.0D)) * (double) Static276.cameraModifierWobbleScale[type]);
 				if (type == 3) {
 					Static184.cameraYaw = jitter + Static184.cameraYaw & 0x7FF;
 				}
@@ -106,7 +107,7 @@ public final class Static253 {
 			}
 			GlRenderer.method4171(arg2, arg4, arg3, arg0, arg3 / 2 + arg2, arg4 - -(arg0 / 2), local248, local253, Static223.anInt5029, Static223.anInt5029);
 		} else {
-			Static129.method2496(arg2, arg4, arg3 + arg2, arg0 + arg4);
+			Rasterizer.setBounds(arg2, arg4, arg3 + arg2, arg0 + arg4);
 			Pix3D.method1908();
 		}
 		if (Static60.aBoolean108 || Static155.anInt3751 < arg2 || Static155.anInt3751 >= arg3 + arg2 || arg4 > Static60.anInt1892 || arg0 + arg4 <= Static60.anInt1892) {
@@ -144,14 +145,14 @@ public final class Static253 {
 			Static107.method2261();
 			Static223.method3858();
 			Static142.method2726(arg4, arg3, arg2, Static223.anInt5029, arg0, Static223.anInt5029);
-			Static233.method4000(arg3, arg2, arg0, Static223.anInt5029, Static223.anInt5029, arg4);
+			ClientScriptRunner.method4000(arg3, arg2, arg0, Static223.anInt5029, Static223.anInt5029, arg4);
 		} else {
-			Static129.method2495(arg2, arg4, arg3, arg0, 0);
+			Rasterizer.drawFilledRectangle(arg2, arg4, arg3, arg0, 0);
 			Static156.method2954(Static138.cameraX, Static5.cameraY, Static134.cameraZ, Static240.cameraPitch, Static184.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Static55.currentLevel + 1, local387, Static173.localPlayer.x >> 7, Static173.localPlayer.z >> 7);
 			Static107.method2261();
 			Static223.method3858();
 			Static142.method2726(arg4, arg3, arg2, 256, arg0, 256);
-			Static233.method4000(arg3, arg2, arg0, 256, 256, arg4);
+			ClientScriptRunner.method4000(arg3, arg2, arg0, 256, 256, arg4);
 		}
 		((Js5GlTextureProvider) Pix3D.anInterface1_2).method3239(Static178.sceneDelta);
 		Static115.method2310(arg3, arg4, arg0, arg2);
@@ -167,7 +168,7 @@ public final class Static253 {
 			if (GlRenderer.enabled) {
 				Static46.method1186(arg2, arg4, arg3, arg0, 0);
 			} else {
-				Static129.method2495(arg2, arg4, arg3, arg0, 0);
+				Rasterizer.drawFilledRectangle(arg2, arg4, arg3, arg0, 0);
 			}
 			Static114.method4636(false, LocalizedText.LOADING);
 		}

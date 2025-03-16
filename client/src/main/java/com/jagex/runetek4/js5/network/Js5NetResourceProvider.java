@@ -1,9 +1,10 @@
 package com.jagex.runetek4.js5.network;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.core.datastruct.Node;
-import com.jagex.runetek4.game.client.DiskStore;
+import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.core.datastruct.HashTable;
+import com.jagex.runetek4.node.Node;
+import com.jagex.runetek4.cache.CacheIndex;
 import com.jagex.runetek4.js5.Js5Request;
 import com.jagex.runetek4.js5.Js5ResourceProvider;
 import com.jagex.runetek4.js5.index.Js5Index;
@@ -28,7 +29,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private int anInt567 = 0;
 
 	@OriginalMember(owner = "client!bg", name = "p", descriptor = "Lclient!sc;")
-	private final IterableMap requests = new IterableMap(16);
+	private final HashTable requests = new HashTable(16);
 
 	@OriginalMember(owner = "client!bg", name = "S", descriptor = "I")
 	private int anInt578 = 0;
@@ -43,7 +44,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private final int anInt576;
 
 	@OriginalMember(owner = "client!bg", name = "F", descriptor = "Lclient!ge;")
-	private final DiskStore aClass49_2;
+	private final CacheIndex aClass49_2;
 
 	@OriginalMember(owner = "client!bg", name = "Q", descriptor = "Z")
 	private boolean aBoolean35;
@@ -61,7 +62,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private final boolean aBoolean37;
 
 	@OriginalMember(owner = "client!bg", name = "k", descriptor = "Lclient!ge;")
-	private final DiskStore aClass49_1;
+	private final CacheIndex aClass49_1;
 
 	@OriginalMember(owner = "client!bg", name = "D", descriptor = "Lclient!jb;")
 	private final Js5NetQueue tcpClient;
@@ -73,7 +74,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private Js5Request currentRequest;
 
 	@OriginalMember(owner = "client!bg", name = "<init>", descriptor = "(ILclient!ge;Lclient!ge;Lclient!jb;Lclient!k;IIZ)V")
-	public Js5NetResourceProvider(@OriginalArg(0) int arg0, @OriginalArg(1) DiskStore arg1, @OriginalArg(2) DiskStore arg2, @OriginalArg(3) Js5NetQueue arg3, @OriginalArg(4) Js5CacheQueue arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7) {
+	public Js5NetResourceProvider(@OriginalArg(0) int arg0, @OriginalArg(1) CacheIndex arg1, @OriginalArg(2) CacheIndex arg2, @OriginalArg(3) Js5NetQueue arg3, @OriginalArg(4) Js5CacheQueue arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7) {
 		this.anInt576 = arg0;
 		this.aClass49_2 = arg1;
 		if (this.aClass49_2 == null) {
@@ -365,9 +366,9 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 				if (local161 == null || local161.length <= 2) {
 					throw new RuntimeException();
 				}
-				Static74.aCRC32_1.reset();
-				Static74.aCRC32_1.update(local161, 0, local161.length - 2);
-				local199 = (int) Static74.aCRC32_1.getValue();
+				CacheArchive.crc32.reset();
+				CacheArchive.crc32.update(local161, 0, local161.length - 2);
+				local199 = (int) CacheArchive.crc32.getValue();
 				if (this.index.anIntArray268[group] != local199) {
 					throw new RuntimeException();
 				}
@@ -400,9 +401,9 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 			if (local161 == null || local161.length <= 2) {
 				throw new RuntimeException();
 			}
-			Static74.aCRC32_1.reset();
-			Static74.aCRC32_1.update(local161, 0, local161.length - 2);
-			local199 = (int) Static74.aCRC32_1.getValue();
+			CacheArchive.crc32.reset();
+			CacheArchive.crc32.update(local161, 0, local161.length - 2);
+			local199 = (int) CacheArchive.crc32.getValue();
 			if (this.index.anIntArray268[group] != local199) {
 				throw new RuntimeException();
 			}
@@ -455,7 +456,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	}
 
 	@OriginalMember(owner = "client!bg", name = "f", descriptor = "(I)I")
-	public int method538() {
+	public int getPercentLoaded() {
 		if (this.fetchIndex() == null) {
 			return this.currentRequest == null ? 0 : this.currentRequest.getPercentageComplete();
 		} else {

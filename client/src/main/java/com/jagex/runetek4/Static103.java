@@ -3,9 +3,9 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
-import com.jagex.runetek4.config.NPCType;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.cache.def.ActorDefinition;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -39,7 +39,7 @@ public final class Static103 {
 		}
 		@Pc(31) long local31 = Static159.aLongArray5[arg0];
 		@Pc(36) int a = (int) Static159.aLongArray5[arg0];
-		@Pc(43) PlayerEntity local43;
+		@Pc(43) Player local43;
 		if (local23 == 31) {
 			local43 = Static159.players[a];
 			if (local43 != null) {
@@ -53,7 +53,7 @@ public final class Static103 {
 			}
 		}
 		if (local23 == 46) {
-			Static233.method4003(local31, local19, local15);
+			ClientScriptRunner.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(247);
 			Static6.outboundBuffer.p2_alt1(Static142.originZ + local19);
 			Static6.outboundBuffer.p2_alt3(local15 + Static225.originX);
@@ -71,7 +71,7 @@ public final class Static103 {
 			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
-		@Pc(192) NPCEntity npc;
+		@Pc(192) NPCRenderable npc;
 		if (local23 == 19) {
 			npc = Static175.npcs[a];
 			if (npc != null) {
@@ -118,7 +118,7 @@ public final class Static103 {
 			Static250.anInt5444 = local15;
 		}
 		if (local23 == 42) {
-			Static233.method4003(local31, local19, local15);
+			ClientScriptRunner.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(254);
 			Static6.outboundBuffer.p2_alt1(local15 + Static225.originX);
 			Static6.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
@@ -161,7 +161,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p2_alt3(local19 + Static142.originZ);
 		}
 		if (local23 == 1001) {
-			Static233.method4003(local31, local19, local15);
+			ClientScriptRunner.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(170);
 			Static6.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (local31 >>> 32));
 			Static6.outboundBuffer.p2_alt3(local15 + Static225.originX);
@@ -216,7 +216,7 @@ public final class Static103 {
 			Static122.x = aClass6.mouseClickX;
 			npc = Static175.npcs[a];
 			if (npc != null) {
-				@Pc(884) NPCType local884 = npc.type;
+				@Pc(884) ActorDefinition local884 = npc.type;
 				if (local884.multinpc != null) {
 					local884 = local884.getMultiNPC();
 				}
@@ -264,7 +264,7 @@ public final class Static103 {
 			Static43.method1143(Static39.aClass13_10);
 		}
 		if (local23 == 49) {
-			Static233.method4003(local31, local19, local15);
+			ClientScriptRunner.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(84);
 			Static6.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (local31 >>> 32));
 			Static6.outboundBuffer.p2_alt3(Static142.originZ + local19);
@@ -279,7 +279,7 @@ public final class Static103 {
 			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
-		if (local23 == 14 && Static233.method4003(local31, local19, local15)) {
+		if (local23 == 14 && ClientScriptRunner.method4003(local31, local19, local15)) {
 			Static6.outboundBuffer.pIsaac1(134);
 			Static6.outboundBuffer.p2_alt2(Static225.originX + local15);
 			Static6.outboundBuffer.p2(Static274.anInt4997);
@@ -301,7 +301,7 @@ public final class Static103 {
 			}
 		}
 		if (local23 == 9 || local23 == 1003) {
-			Static263.method4512(Static233.aClass100Array160[arg0], local15, a, local19);
+			Static263.method4512(ClientScriptRunner.aClass100Array160[arg0], local15, a, local19);
 		}
 		if (local23 == 5) {
 			Static6.outboundBuffer.pIsaac1(55);
@@ -563,7 +563,7 @@ public final class Static103 {
 			Static6.outboundBuffer.p2_alt3(a);
 			Static6.outboundBuffer.p2_alt1(Static142.originZ + local19);
 		}
-		if (local23 == 38 && Static233.method4003(local31, local19, local15)) {
+		if (local23 == 38 && ClientScriptRunner.method4003(local31, local19, local15)) {
 			Static6.outboundBuffer.pIsaac1(233);
 			Static6.outboundBuffer.p2_alt3(local19 + Static142.originZ);
 			Static6.outboundBuffer.p2_alt2(Static225.originX + local15);
@@ -607,7 +607,7 @@ public final class Static103 {
 			return;
 		}
 		if (local23 == 50) {
-			Static233.method4003(local31, local19, local15);
+			ClientScriptRunner.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(194);
 			Static6.outboundBuffer.p2_alt3(local19 + Static142.originZ);
 			Static6.outboundBuffer.p2_alt1(Static225.originX + local15);

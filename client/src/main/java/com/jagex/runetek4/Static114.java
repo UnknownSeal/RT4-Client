@@ -1,6 +1,9 @@
 package com.jagex.runetek4;
 
 import java.awt.Graphics;
+
+import com.jagex.runetek4.cache.media.Font;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -52,8 +55,8 @@ public final class Static114 {
 			Static46.method1186(6, 6, local24 + 4 + 4, local31 + 8, 0);
 			Static46.method1179(6, 6, local24 + 4 + 4, local31 + 4 + 4, 16777215);
 		} else {
-			Static129.method2495(6, 6, local24 + 4 + 4, local31 + 8, 0);
-			Static129.method2483(6, 6, local24 + 8, 4 + 4 + local31, 16777215);
+			Rasterizer.drawFilledRectangle(6, 6, local24 + 4 + 4, local31 + 8, 0);
+			Rasterizer.drawUnfilledRectangle(6, 6, local24 + 8, 4 + 4 + local31, 16777215);
 		}
 		Static215.aClass3_Sub2_Sub9_32.method2852(arg1, 10, 10, local24, local31, 16777215, -1, 1, 1, 0);
 		Static133.method4012(6, local24 + 8, 6, local31 + 4 + 4);

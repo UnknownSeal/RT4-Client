@@ -1,5 +1,7 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
+import com.jagex.runetek4.node.NodeQueue;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static215 {
@@ -17,7 +19,7 @@ public final class Static215 {
 	public static client aClient1;
 
 	@OriginalMember(owner = "runetek4.client!rh", name = "e", descriptor = "Lclient!ce;")
-	public static final SecondaryLinkedList aClass16_9 = new SecondaryLinkedList();
+	public static final NodeQueue aClass16_9 = new NodeQueue();
 
 	@OriginalMember(owner = "runetek4.client!rh", name = "g", descriptor = "I")
 	public static final int anInt4868 = -1;

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.ClientInvCache;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,10 +12,10 @@ public final class Static23 {
 	public static float aFloat5;
 
 	@OriginalMember(owner = "client!bm", name = "e", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_11;
+	public static CacheArchive aClass153_11;
 
 	@OriginalMember(owner = "client!bm", name = "f", descriptor = "Lclient!ve;")
-	public static Js5 gameImageCacheArchive;
+	public static CacheArchive gameImageCacheArchive;
 
 	@OriginalMember(owner = "client!bm", name = "p", descriptor = "Lclient!na;")
 	public static final JString aClass100_133 = Static28.parse("(U1");

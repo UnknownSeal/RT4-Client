@@ -40,11 +40,11 @@ public final class Static101 {
 		@Pc(8) int local8;
 		if (arg0 <= arg2) {
 			for (local8 = arg0; local8 < arg2; local8++) {
-				Static71.anIntArrayArray10[local8][arg1] = arg3;
+				ObjTypeList.anIntArrayArray10[local8][arg1] = arg3;
 			}
 		} else {
 			for (local8 = arg2; local8 < arg0; local8++) {
-				Static71.anIntArrayArray10[local8][arg1] = arg3;
+				ObjTypeList.anIntArrayArray10[local8][arg1] = arg3;
 			}
 		}
 	}

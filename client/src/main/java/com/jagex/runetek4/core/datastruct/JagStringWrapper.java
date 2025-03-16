@@ -1,5 +1,6 @@
 package com.jagex.runetek4.core.datastruct;
 
+import com.jagex.runetek4.node.Node;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

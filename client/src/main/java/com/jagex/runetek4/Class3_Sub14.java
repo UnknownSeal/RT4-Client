@@ -4,9 +4,10 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 import com.jagex.runetek4.core.datastruct.IntWrapper;
-import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.core.datastruct.HashTable;
+import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.scene.tile.SceneTile;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -35,7 +36,7 @@ public final class Class3_Sub14 extends Node {
 	private int[] anIntArray229;
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "A", descriptor = "Lclient!sc;")
-	private IterableMap aClass133_8;
+	private HashTable aClass133_8;
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "B", descriptor = "[F")
 	private float[] aFloatArray5;
@@ -125,7 +126,7 @@ public final class Class3_Sub14 extends Node {
 		this.anIntArray227 = new int[this.anInt2484];
 		this.anIntArray231 = new int[this.anInt2484];
 		this.anIntArrayArray17 = new int[this.anInt2484][];
-		this.aClass133_8 = new IterableMap(Static165.bitceil(this.anInt2482));
+		this.aClass133_8 = new HashTable(Static165.bitceil(this.anInt2482));
 		if (this.aBoolean140) {
 			this.anIntArrayArray18 = new int[this.anInt2484][];
 			this.aBooleanArray54 = new boolean[this.anInt2484];
@@ -214,7 +215,7 @@ public final class Class3_Sub14 extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "a", descriptor = "([[[Lclient!bj;FZ)V")
-	public final void method1944(@OriginalArg(0) Ground[][][] arg0, @OriginalArg(1) float arg1, @OriginalArg(2) boolean arg2) {
+	public final void method1944(@OriginalArg(0) SceneTile[][][] arg0, @OriginalArg(1) float arg1, @OriginalArg(2) boolean arg2) {
 		if (Static95.aClass3_Sub15_3 == null || Static95.aClass3_Sub15_3.data.length < this.anInt2488 * 4) {
 			Static95.aClass3_Sub15_3 = new Packet(this.anInt2488 * 4);
 		} else {
@@ -226,7 +227,7 @@ public final class Class3_Sub14 extends Node {
 			Static95.aClass3_Sub15_2.position = 0;
 		}
 		@Pc(47) int local47;
-		@Pc(68) Ground local68;
+		@Pc(68) SceneTile local68;
 		@Pc(111) Packet local111;
 		@Pc(78) int[] local78;
 		@Pc(86) int[] local86;

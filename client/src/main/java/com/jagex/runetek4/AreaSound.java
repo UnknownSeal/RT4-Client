@@ -1,10 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.config.NPCType;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PlayerEntity;
+import com.jagex.runetek4.cache.def.ActorDefinition;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -40,7 +40,7 @@ public final class AreaSound extends Node {
 	public int anInt2037;
 
 	@OriginalMember(owner = "client!fl", name = "I", descriptor = "Lclient!km;")
-	public NPCEntity npc;
+	public NPCRenderable npc;
 
 	@OriginalMember(owner = "client!fl", name = "K", descriptor = "I")
 	public int maxInterval;
@@ -49,7 +49,7 @@ public final class AreaSound extends Node {
 	public int anInt2041;
 
 	@OriginalMember(owner = "client!fl", name = "M", descriptor = "Lclient!e;")
-	public PlayerEntity player;
+	public Player player;
 
 	@OriginalMember(owner = "client!fl", name = "N", descriptor = "I")
 	public int radius;
@@ -85,21 +85,21 @@ public final class AreaSound extends Node {
 				this.sounds = locType.bgsound_random;
 			}
 		} else if (this.npc != null) {
-			@Pc(92) int npcSound = NPCEntity.getSound(this.npc);
+			@Pc(92) int npcSound = NPCRenderable.getSound(this.npc);
 			if (sound != npcSound) {
-				@Pc(100) NPCType npcType = this.npc.type;
+				@Pc(100) ActorDefinition actorDefinition = this.npc.type;
 				this.sound = npcSound;
-				if (npcType.multinpc != null) {
-					npcType = npcType.getMultiNPC();
+				if (actorDefinition.multinpc != null) {
+					actorDefinition = actorDefinition.getMultiNPC();
 				}
-				if (npcType == null) {
+				if (actorDefinition == null) {
 					this.radius = 0;
 				} else {
-					this.radius = npcType.bgsound_range * 128;
+					this.radius = actorDefinition.bgsound_range * 128;
 				}
 			}
 		} else if (this.player != null) {
-			this.sound = PlayerEntity.getSound(this.player);
+			this.sound = Player.getSound(this.player);
 			this.radius = this.player.anInt1664 * 128;
 		}
 		if (this.sound != sound && this.primaryStream != null) {

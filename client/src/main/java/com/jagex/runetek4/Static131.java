@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import java.awt.Component;
 
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -148,7 +148,7 @@ public final class Static131 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!kd", name = "a", descriptor = "(IIILclient!ve;)[Lclient!qf;")
-	public static Sprite[] method2580(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {
+	public static Sprite[] method2580(@OriginalArg(2) int arg0, @OriginalArg(3) CacheArchive arg1) {
 		return Static234.method4016(arg1, 0, arg0) ? Static33.method870() : null;
 	}
 }

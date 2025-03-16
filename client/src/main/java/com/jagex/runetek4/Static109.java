@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -22,7 +22,7 @@ public final class Static109 {
 	public static void updateNpcs() {
 		for (@Pc(7) int i = 0; i < Static272.npcCount; i++) {
 			@Pc(18) int id = Static33.npcIds[i];
-			@Pc(22) NPCEntity npc = Static175.npcs[id];
+			@Pc(22) NPCRenderable npc = Static175.npcs[id];
 			if (npc != null) {
 				Static263.updateEntity(npc.type.size, npc);
 			}

@@ -10,6 +10,8 @@ import java.awt.Rectangle;
 import java.awt.event.*;
 import java.lang.reflect.Method;
 import java.net.URL;
+
+import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -45,7 +47,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "focusLost", descriptor = "(Ljava/awt/event/FocusEvent;)V")
 	@Override
 	public final void focusLost(@OriginalArg(0) FocusEvent arg0) {
-		Static233.focus_in = false;
+		ClientScriptRunner.focus_in = false;
 	}
 
 	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(B)V")
@@ -80,7 +82,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "focusGained", descriptor = "(Ljava/awt/event/FocusEvent;)V")
 	@Override
 	public final void focusGained(@OriginalArg(0) FocusEvent arg0) {
-		Static233.focus_in = true;
+		ClientScriptRunner.focus_in = true;
 		Static69.fullredraw = true;
 	}
 
@@ -121,7 +123,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 		Static154.canvas.addFocusListener(this);
 		Static154.canvas.requestFocus();
-		Static233.focus_in = true;
+		ClientScriptRunner.focus_in = true;
 		Static69.fullredraw = true;
 		Static26.focus = true;
 		Static35.canvasReplaceRecommended = false;
@@ -244,7 +246,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		Static228.aLongArray8[Static261.anInt5741] = local6;
 		Static261.anInt5741 = Static261.anInt5741 + 1 & 0x1F;
 		synchronized (this) {
-			Static26.focus = Static233.focus_in;
+			Static26.focus = ClientScriptRunner.focus_in;
 		}
 		this.mainloop();
 		if (local10 != 0L && local6 <= local10) {
@@ -396,7 +398,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			@Pc(44) Insets local44 = Static39.frame.getInsets();
 			Static39.frame.setSize(local44.left + Static72.frameWid + local44.right, local44.top + Static122.frameHei + local44.bottom);
 			Static69.aClass213_4 = signLink = new SignLink(null, arg0, arg1, 28);
-			@Pc(76) PrivilegedRequest local76 = signLink.method5130(1, this);
+			@Pc(76) PrivilegedRequest local76 = signLink.putThreadNode(1, this);
 			while (local76.status == 0) {
 				PreciseSleep.sleep(10L);
 			}
@@ -448,7 +450,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			if (signLink == null) {
 				Static69.aClass213_4 = signLink = new SignLink(this, arg0, null, 0);
 			}
-			@Pc(86) PrivilegedRequest local86 = signLink.method5130(1, this);
+			@Pc(86) PrivilegedRequest local86 = signLink.putThreadNode(1, this);
 			while (local86.status == 0) {
 				PreciseSleep.sleep(10L);
 			}

@@ -1,8 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.core.datastruct.Node;
-import com.jagex.runetek4.core.datastruct.CachedNode;
+import com.jagex.runetek4.core.datastruct.HashTable;
+import com.jagex.runetek4.node.Node;
+import com.jagex.runetek4.node.CachedNode;
+import com.jagex.runetek4.node.NodeQueue;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -15,7 +16,7 @@ public final class LruHashTable {
 	private CachedNode aClass3_Sub2_37 = new CachedNode();
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "s", descriptor = "Lclient!ce;")
-	private final SecondaryLinkedList aClass16_1 = new SecondaryLinkedList();
+	private final NodeQueue aClass16_1 = new NodeQueue();
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "u", descriptor = "I")
 	private int anInt2314;
@@ -24,7 +25,7 @@ public final class LruHashTable {
 	private final int anInt2313;
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "q", descriptor = "Lclient!sc;")
-	private final IterableMap aClass133_5;
+	private final HashTable aClass133_5;
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "<init>", descriptor = "(I)V")
 	public LruHashTable(@OriginalArg(0) int arg0) {
@@ -34,7 +35,7 @@ public final class LruHashTable {
 			local13 += local13;
 		}
 		this.anInt2313 = arg0;
-		this.aClass133_5 = new IterableMap(local13);
+		this.aClass133_5 = new HashTable(local13);
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(JI)Lclient!rg;")

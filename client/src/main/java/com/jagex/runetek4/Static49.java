@@ -1,9 +1,10 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -97,7 +98,7 @@ public final class Static49 {
 		Static272.npcCount = 0;
 		for (local22 = 0; local22 < local13; local22++) {
 			@Pc(61) int local61 = Static33.npcIds[local22];
-			@Pc(65) NPCEntity local65 = Static175.npcs[local61];
+			@Pc(65) NPCRenderable local65 = Static175.npcs[local61];
 			@Pc(70) int local70 = Static57.in.gBit(1);
 			if (local70 == 0) {
 				Static33.npcIds[Static272.npcCount++] = local61;
@@ -147,7 +148,7 @@ public final class Static49 {
 	@OriginalMember(owner = "runetek4.client!dm", name = "a", descriptor = "(IBIII)V")
 	public static void method1206(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		@Pc(15) int local15 = 0;
-		Static131.method2576(Static71.anIntArrayArray10[arg3], arg0 - arg1, arg0 - -arg1, arg2);
+		Static131.method2576(ObjTypeList.anIntArrayArray10[arg3], arg0 - arg1, arg0 - -arg1, arg2);
 		@Pc(32) int local32 = -arg1;
 		@Pc(34) int local34 = arg1;
 		@Pc(36) int local36 = -1;
@@ -158,8 +159,8 @@ public final class Static49 {
 			if (local32 >= 0) {
 				local34--;
 				local32 -= local34 << 1;
-				@Pc(65) int[] local65 = Static71.anIntArrayArray10[arg3 + local34];
-				@Pc(71) int[] local71 = Static71.anIntArrayArray10[arg3 - local34];
+				@Pc(65) int[] local65 = ObjTypeList.anIntArrayArray10[arg3 + local34];
+				@Pc(71) int[] local71 = ObjTypeList.anIntArrayArray10[arg3 - local34];
 				@Pc(76) int local76 = arg0 + local15;
 				@Pc(81) int local81 = arg0 - local15;
 				Static131.method2576(local65, local81, local76, arg2);
@@ -167,8 +168,8 @@ public final class Static49 {
 			}
 			@Pc(97) int local97 = local34 + arg0;
 			@Pc(102) int local102 = arg0 - local34;
-			@Pc(109) int[] local109 = Static71.anIntArrayArray10[arg3 + local15];
-			@Pc(116) int[] local116 = Static71.anIntArrayArray10[arg3 - local15];
+			@Pc(109) int[] local109 = ObjTypeList.anIntArrayArray10[arg3 + local15];
+			@Pc(116) int[] local116 = ObjTypeList.anIntArrayArray10[arg3 - local15];
 			Static131.method2576(local109, local102, local97, arg2);
 			Static131.method2576(local116, local102, local97, arg2);
 		}
