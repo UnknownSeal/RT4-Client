@@ -30,9 +30,6 @@ public final class Static41 {
 	@OriginalMember(owner = "runetek4.client!dc", name = "ab", descriptor = "I")
 	public static int anInt1316 = 0;
 
-	@OriginalMember(owner = "runetek4.client!dc", name = "db", descriptor = "[[B")
-	public static final byte[][] aByteArrayArray6 = new byte[50][];
-
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(IIIZ)V")
 	public static void init(@OriginalArg(3) boolean stereo) {
 		AudioChannel.threadPriority = 2;

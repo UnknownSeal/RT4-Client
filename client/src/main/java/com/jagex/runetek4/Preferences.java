@@ -166,7 +166,7 @@ public class Preferences {
             if (local16.status == 1) {
                 local11 = (FileOnDisk) local16.result;
                 @Pc(39) Packet local39 = Static48.method1196();
-                local11.method5134(local39.data, local39.position, 0);
+                local11.method5134(local39.data, local39.offset, 0);
             }
         } catch (@Pc(49) Exception local49) {
         }

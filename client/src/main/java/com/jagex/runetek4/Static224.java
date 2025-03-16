@@ -19,9 +19,6 @@ public final class Static224 {
 	@OriginalMember(owner = "runetek4.client!sd", name = "S", descriptor = "I")
 	public static int anInt5063 = 100;
 
-	@OriginalMember(owner = "runetek4.client!sd", name = "T", descriptor = "I")
-	public static int anInt5064 = 0;
-
 	@OriginalMember(owner = "runetek4.client!sd", name = "V", descriptor = "[I")
 	public static final int[] anIntArray443 = new int[100];
 

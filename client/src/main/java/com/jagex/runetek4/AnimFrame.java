@@ -62,12 +62,12 @@ public final class AnimFrame {
 		this.animBase = arg1;
 		@Pc(21) Packet local21 = new Packet(arg0);
 		@Pc(26) Packet local26 = new Packet(arg0);
-		local21.position = 2;
+		local21.offset = 2;
 		@Pc(33) int local33 = local21.g1();
 		@Pc(35) int local35 = 0;
 		@Pc(37) int local37 = -1;
 		@Pc(39) int local39 = -1;
-		local26.position = local21.position + local33;
+		local26.offset = local21.offset + local33;
 		@Pc(47) int local47;
 		for (local47 = 0; local47 < local33; local47++) {
 			@Pc(56) int local56 = this.animBase.types[local47];
@@ -119,7 +119,7 @@ public final class AnimFrame {
 				local35++;
 			}
 		}
-		if (local26.position != arg0.length) {
+		if (local26.offset != arg0.length) {
 			throw new RuntimeException();
 		}
 		this.length = local35;

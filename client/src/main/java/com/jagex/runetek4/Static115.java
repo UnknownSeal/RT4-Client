@@ -15,9 +15,6 @@ public final class Static115 {
 	@OriginalMember(owner = "runetek4.client!ja", name = "f", descriptor = "Lclient!ih;")
 	public static final LinkedList aClass69_70 = new LinkedList();
 
-	@OriginalMember(owner = "runetek4.client!ja", name = "j", descriptor = "I")
-	public static int anInt2937 = 0;
-
 	@OriginalMember(owner = "runetek4.client!ja", name = "k", descriptor = "Lclient!na;")
 	public static final JString FPS = Static28.parse("Fps:");
 

@@ -85,7 +85,7 @@ public final class Static4 {
 		if (Static164.packetType == -1) {
 			available--;
 			Static124.gameServerSocket.read(0, 1, Static57.in.data);
-			Static57.in.position = 0;
+			Static57.in.offset = 0;
 			Static164.packetType = Static57.in.gIssac1();
 			Static223.packetSize = Static234.anIntArray456[Static164.packetType];
 		}
@@ -103,13 +103,13 @@ public final class Static4 {
 			}
 			available -= 2;
 			Static124.gameServerSocket.read(0, 2, Static57.in.data);
-			Static57.in.position = 0;
+			Static57.in.offset = 0;
 			Static223.packetSize = Static57.in.g2();
 		}
 		if (Static223.packetSize > available) {
 			return false;
 		}
-		Static57.in.position = 0;
+		Static57.in.offset = 0;
 		Static124.gameServerSocket.read(0, Static223.packetSize, Static57.in.data);
 		Static49.anInt1462 = Static5.anInt45;
 		Static5.anInt45 = Static230.anInt5152;
@@ -277,7 +277,7 @@ public final class Static4 {
 		} else if (Static164.packetType == 230) {
 			Static180.anInt4264 = Static57.in.g1add();
 			Static115.anInt2940 = Static57.in.g1_alt3();
-			while (Static223.packetSize > Static57.in.position) {
+			while (Static223.packetSize > Static57.in.offset) {
 				Static164.packetType = Static57.in.g1();
 				Static75.method1634();
 			}
@@ -1117,7 +1117,7 @@ public final class Static4 {
 								if (local4084.anInt4048 >= 0 && local4084.anInt4048 < Static276.aClass3_Sub2_Sub1Array11.length) {
 									if (local4084.headIconDrawType == 1 || local4084.headIconDrawType == 10) {
 										local4084.hintIconNpcTarget = Static57.in.g2();
-										Static57.in.position += 3;
+										Static57.in.offset += 3;
 									} else if (local4084.headIconDrawType >= 2 && local4084.headIconDrawType <= 6) {
 										if (local4084.headIconDrawType == 2) {
 											local4084.anInt4045 = 64;
@@ -1338,7 +1338,7 @@ public final class Static4 {
 									} else {
 										local4956 = Component.getComponent(ii);
 									}
-									while (Static57.in.position < Static223.packetSize) {
+									while (Static57.in.offset < Static223.packetSize) {
 										slot = Static57.in.gSmart1or2();
 										count = Static57.in.g2();
 										i = 0;
@@ -1377,7 +1377,7 @@ public final class Static4 {
 									if (Static57.in.g1() == 0) {
 										Static229.aClass136Array1[ii] = new StockMarketOffer();
 									} else {
-										Static57.in.position--;
+										Static57.in.offset--;
 										Static229.aClass136Array1[ii] = new StockMarketOffer(Static57.in);
 									}
 									Static164.packetType = -1;

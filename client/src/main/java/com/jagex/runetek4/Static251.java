@@ -28,9 +28,6 @@ public final class Static251 {
 	@OriginalMember(owner = "runetek4.client!ug", name = "o", descriptor = "I")
 	public static int weightCarried = 0;
 
-	@OriginalMember(owner = "runetek4.client!ug", name = "r", descriptor = "I")
-	public static int anInt5459 = 0;
-
 	@OriginalMember(owner = "runetek4.client!ug", name = "a", descriptor = "(B)V")
 	public static void loop() {
 		for (@Pc(10) ChangeLocRequest local10 = (ChangeLocRequest) Static26.spawnedLocations.head(); local10 != null; local10 = (ChangeLocRequest) Static26.spawnedLocations.next()) {

@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -33,17 +34,17 @@ public final class Static228 {
 	@OriginalMember(owner = "client!sh", name = "a", descriptor = "(II)[B")
 	public static synchronized byte[] alloc(@OriginalArg(1) int arg0) {
 		@Pc(22) byte[] local22;
-		if (arg0 == 100 && Static115.anInt2937 > 0) {
-			local22 = Static277.aByteArrayArray16[--Static115.anInt2937];
-			Static277.aByteArrayArray16[Static115.anInt2937] = null;
+		if (arg0 == 100 && Packet.allocatedMinCount > 0) {
+			local22 = Packet.allocatedMin[--Packet.allocatedMinCount];
+			Packet.allocatedMin[Packet.allocatedMinCount] = null;
 			return local22;
-		} else if (arg0 == 5000 && Static251.anInt5459 > 0) {
-			local22 = Static12.aByteArrayArray2[--Static251.anInt5459];
-			Static12.aByteArrayArray2[Static251.anInt5459] = null;
+		} else if (arg0 == 5000 && Packet.allocatedMidCount > 0) {
+			local22 = Packet.allocatedMid[--Packet.allocatedMidCount];
+			Packet.allocatedMid[Packet.allocatedMidCount] = null;
 			return local22;
-		} else if (arg0 == 30000 && Static224.anInt5064 > 0) {
-			local22 = Static41.aByteArrayArray6[--Static224.anInt5064];
-			Static41.aByteArrayArray6[Static224.anInt5064] = null;
+		} else if (arg0 == 30000 && Packet.allocatedMaxCount > 0) {
+			local22 = Packet.allocatedMax[--Packet.allocatedMaxCount];
+			Packet.allocatedMax[Packet.allocatedMaxCount] = null;
 			return local22;
 		} else {
 			return new byte[arg0];

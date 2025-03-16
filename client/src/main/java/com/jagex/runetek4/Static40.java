@@ -142,10 +142,10 @@ public final class Static40 {
 		local8.p2(arg1);
 		local8.p4((int) (Math.random() * 9.9999999E7D));
 		local8.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
-		Static6.outboundBuffer.position = 0;
+		Static6.outboundBuffer.offset = 0;
 		Static6.outboundBuffer.p1(36);
-		Static6.outboundBuffer.p1(local8.position);
-		Static6.outboundBuffer.pdata(local8.data, local8.position);
+		Static6.outboundBuffer.p1(local8.offset);
+		Static6.outboundBuffer.pdata(local8.data, local8.offset);
 		Static223.reply = -3;
 		Static179.step = 1;
 		Static226.loops = 0;

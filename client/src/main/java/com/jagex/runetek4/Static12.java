@@ -17,9 +17,6 @@ public final class Static12 {
 	@OriginalMember(owner = "client!bb", name = "n", descriptor = "I")
 	public static int anInt391 = 255;
 
-	@OriginalMember(owner = "client!bb", name = "t", descriptor = "[[B")
-	public static final byte[][] aByteArrayArray2 = new byte[250][];
-
 	@OriginalMember(owner = "client!bb", name = "A", descriptor = "Lclient!na;")
 	public static final JString aClass100_74 = Static28.parse("::");
 

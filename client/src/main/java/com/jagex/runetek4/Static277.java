@@ -18,9 +18,6 @@ public final class Static277 {
 	@OriginalMember(owner = "runetek4.client!wi", name = "W", descriptor = "I")
 	public static int anInt5850 = 0;
 
-	@OriginalMember(owner = "runetek4.client!wi", name = "X", descriptor = "[[B")
-	public static final byte[][] aByteArrayArray16 = new byte[1000][];
-
 	@OriginalMember(owner = "runetek4.client!wi", name = "bb", descriptor = "I")
 	public static int anInt5854 = 0;
 

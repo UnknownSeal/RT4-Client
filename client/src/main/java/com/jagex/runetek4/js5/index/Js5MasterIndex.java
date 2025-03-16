@@ -85,8 +85,8 @@ public final class Js5MasterIndex {
 		if (this.aClass3_Sub15_1 == null) {
 			throw new RuntimeException();
 		}
-		this.aClass3_Sub15_1.position = arg1 * 8 + 5;
-		if (this.aClass3_Sub15_1.data.length <= this.aClass3_Sub15_1.position) {
+		this.aClass3_Sub15_1.offset = arg1 * 8 + 5;
+		if (this.aClass3_Sub15_1.data.length <= this.aClass3_Sub15_1.offset) {
 			throw new RuntimeException();
 		} else if (this.aClass14_Sub1Array1[arg1] == null) {
 			@Pc(56) int local56 = this.aClass3_Sub15_1.g4();

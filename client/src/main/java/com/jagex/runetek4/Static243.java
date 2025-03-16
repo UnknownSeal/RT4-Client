@@ -59,10 +59,10 @@ public final class Static243 {
 		Static164.packetType = -1;
 		Game.idleTimeout = 0;
 		Static60.systemUpdateTimer = 0;
-		Static6.outboundBuffer.position = 0;
+		Static6.outboundBuffer.offset = 0;
 		Static230.anInt5152 = -1;
 		Static201.idleNetCycles = 0;
-		Static57.in.position = 0;
+		Static57.in.offset = 0;
 		@Pc(3506) int i;
 		for (i = 0; i < Static143.aClass102Array1.length; i++) {
 			Static143.aClass102Array1[i] = null;

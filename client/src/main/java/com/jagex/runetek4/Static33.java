@@ -69,7 +69,7 @@ public final class Static33 {
 		@Pc(33) int local33;
 		@Pc(102) int local102;
 		@Pc(114) int local114;
-		while (arg0.position < arg0.data.length) {
+		while (arg0.offset < arg0.data.length) {
 			@Pc(31) int local31 = 0;
 			local33 = 0;
 			@Pc(35) boolean local35 = false;
@@ -92,9 +92,9 @@ public final class Static33 {
 					}
 				}
 			} else if (local35) {
-				arg0.position += 64;
+				arg0.offset += 64;
 			} else {
-				arg0.position += 4096;
+				arg0.offset += 4096;
 			}
 		}
 		@Pc(175) int local175 = Static48.anInt1449;

@@ -19,11 +19,11 @@ public final class Song extends Node {
 
 	@OriginalMember(owner = "runetek4.client!rf", name = "<init>", descriptor = "(Lclient!wa;)V")
 	public Song(@OriginalArg(0) Packet arg0) {
-		arg0.position = arg0.data.length - 3;
+		arg0.offset = arg0.data.length - 3;
 		@Pc(12) int local12 = arg0.g1();
 		@Pc(16) int local16 = arg0.g2();
 		@Pc(22) int local22 = local12 * 10 + 14;
-		arg0.position = 0;
+		arg0.offset = 0;
 		@Pc(27) int local27 = 0;
 		@Pc(29) int local29 = 0;
 		@Pc(31) int local31 = 0;
@@ -70,13 +70,13 @@ public final class Song extends Node {
 		local22 += local27 * 5;
 		local22 += (local31 + local33 + local29 + local35 + local39) * 2;
 		local22 += local37 + local41;
-		local43 = arg0.position;
+		local43 = arg0.offset;
 		local48 = local12 + local27 + local29 + local31 + local33 + local35 + local37 + local39 + local41;
 		for (local52 = 0; local52 < local48; local52++) {
 			arg0.gVarInt();
 		}
-		local22 += arg0.position - local43;
-		local52 = arg0.position;
+		local22 += arg0.offset - local43;
+		local52 = arg0.offset;
 		@Pc(179) int local179 = 0;
 		@Pc(181) int local181 = 0;
 		@Pc(183) int local183 = 0;
@@ -122,48 +122,48 @@ public final class Song extends Node {
 			}
 		}
 		local205 = 0;
-		@Pc(298) int local298 = arg0.position;
-		arg0.position += local199;
-		@Pc(307) int local307 = arg0.position;
-		arg0.position += local39;
-		@Pc(316) int local316 = arg0.position;
-		arg0.position += local37;
-		@Pc(325) int local325 = arg0.position;
-		arg0.position += local35;
-		@Pc(334) int local334 = arg0.position;
-		arg0.position += local179;
-		@Pc(343) int local343 = arg0.position;
-		arg0.position += local183;
-		@Pc(352) int local352 = arg0.position;
-		arg0.position += local187;
-		@Pc(361) int local361 = arg0.position;
-		arg0.position += local31 + local33 + local39;
-		@Pc(374) int local374 = arg0.position;
-		arg0.position += local31;
-		@Pc(383) int local383 = arg0.position;
-		arg0.position += local201;
-		@Pc(392) int local392 = arg0.position;
-		arg0.position += local33;
-		@Pc(401) int local401 = arg0.position;
-		arg0.position += local181;
-		@Pc(410) int local410 = arg0.position;
-		arg0.position += local185;
-		@Pc(419) int local419 = arg0.position;
-		arg0.position += local189;
-		@Pc(428) int local428 = arg0.position;
-		arg0.position += local41;
-		@Pc(437) int local437 = arg0.position;
-		arg0.position += local35;
-		@Pc(446) int local446 = arg0.position;
-		arg0.position += local191;
-		@Pc(455) int local455 = arg0.position;
-		arg0.position += local193;
-		@Pc(464) int local464 = arg0.position;
-		arg0.position += local195;
-		@Pc(473) int local473 = arg0.position;
-		arg0.position += local197;
-		@Pc(482) int local482 = arg0.position;
-		arg0.position += local27 * 3;
+		@Pc(298) int local298 = arg0.offset;
+		arg0.offset += local199;
+		@Pc(307) int local307 = arg0.offset;
+		arg0.offset += local39;
+		@Pc(316) int local316 = arg0.offset;
+		arg0.offset += local37;
+		@Pc(325) int local325 = arg0.offset;
+		arg0.offset += local35;
+		@Pc(334) int local334 = arg0.offset;
+		arg0.offset += local179;
+		@Pc(343) int local343 = arg0.offset;
+		arg0.offset += local183;
+		@Pc(352) int local352 = arg0.offset;
+		arg0.offset += local187;
+		@Pc(361) int local361 = arg0.offset;
+		arg0.offset += local31 + local33 + local39;
+		@Pc(374) int local374 = arg0.offset;
+		arg0.offset += local31;
+		@Pc(383) int local383 = arg0.offset;
+		arg0.offset += local201;
+		@Pc(392) int local392 = arg0.offset;
+		arg0.offset += local33;
+		@Pc(401) int local401 = arg0.offset;
+		arg0.offset += local181;
+		@Pc(410) int local410 = arg0.offset;
+		arg0.offset += local185;
+		@Pc(419) int local419 = arg0.offset;
+		arg0.offset += local189;
+		@Pc(428) int local428 = arg0.offset;
+		arg0.offset += local41;
+		@Pc(437) int local437 = arg0.offset;
+		arg0.offset += local35;
+		@Pc(446) int local446 = arg0.offset;
+		arg0.offset += local191;
+		@Pc(455) int local455 = arg0.offset;
+		arg0.offset += local193;
+		@Pc(464) int local464 = arg0.offset;
+		arg0.offset += local195;
+		@Pc(473) int local473 = arg0.offset;
+		arg0.offset += local197;
+		@Pc(482) int local482 = arg0.offset;
+		arg0.offset += local27 * 3;
 		this.aByteArray65 = new byte[local22];
 		@Pc(500) Packet local500 = new Packet(this.aByteArray65);
 		local500.p4(1297377380);
@@ -171,7 +171,7 @@ public final class Song extends Node {
 		local500.p2(local12 > 1 ? 1 : 0);
 		local500.p2(local12);
 		local500.p2(local16);
-		arg0.position = local43;
+		arg0.offset = local43;
 		@Pc(530) int local530 = 0;
 		@Pc(532) int local532 = 0;
 		@Pc(534) int local534 = 0;
@@ -183,8 +183,8 @@ public final class Song extends Node {
 		local203 = 0;
 		label221: for (@Pc(549) int local549 = 0; local549 < local12; local549++) {
 			local500.p4(1297379947);
-			local500.position += 4;
-			@Pc(565) int local565 = local500.position;
+			local500.offset += 4;
+			@Pc(565) int local565 = local500.offset;
 			@Pc(567) int local567 = -1;
 			while (true) {
 				while (true) {
@@ -199,7 +199,7 @@ public final class Song extends Node {
 						}
 						local500.p1(47);
 						local500.p1(0);
-						local500.p4len(local500.position - local565);
+						local500.p4len(local500.offset - local565);
 						continue label221;
 					}
 					if (local583 == 23) {

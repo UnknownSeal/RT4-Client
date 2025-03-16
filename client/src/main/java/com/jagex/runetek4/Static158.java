@@ -46,7 +46,7 @@ public final class Static158 {
 				}
 				@Pc(67) int local67 = 0;
 				@Pc(74) Packet local74 = new Packet(Static191.aByteArrayArray15[local16]);
-				while (local74.position < Static191.aByteArrayArray15[local16].length && local67 < 511) {
+				while (local74.offset < Static191.aByteArrayArray15[local16].length && local67 < 511) {
 					@Pc(97) int local97 = local67++ << 6 | local25;
 					@Pc(103) int local103 = local74.g2();
 					@Pc(107) int local107 = local103 >> 14;

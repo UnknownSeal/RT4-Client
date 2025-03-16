@@ -114,7 +114,7 @@ public final class Static207 {
 					return -1;
 				}
 				Static124.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
-				Static6.outboundBuffer.position = 0;
+				Static6.outboundBuffer.offset = 0;
 				Static72.aClass212_3 = null;
 				local82 = 0;
 				if (Static61.aBoolean109) {
@@ -122,7 +122,7 @@ public final class Static207 {
 				}
 				Static6.outboundBuffer.p1(255);
 				Static6.outboundBuffer.p4(local82);
-				Static124.gameServerSocket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
+				Static124.gameServerSocket.write(Static6.outboundBuffer.offset, Static6.outboundBuffer.data);
 				if (Static11.aClass62_1 != null) {
 					Static11.aClass62_1.method3571();
 				}

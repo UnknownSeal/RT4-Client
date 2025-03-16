@@ -221,7 +221,7 @@ public final class LocType {
 						this.models[i] = packet.g1();
 					}
 				} else {
-					packet.position += count * 3;
+					packet.offset += count * 3;
 				}
 			}
 		} else if (code == 2) {
@@ -236,7 +236,7 @@ public final class LocType {
 						this.shapes[index] = packet.g2();
 					}
 				} else {
-					packet.position += length * 2;
+					packet.offset += length * 2;
 				}
 			}
 		} else if (code == 14) {

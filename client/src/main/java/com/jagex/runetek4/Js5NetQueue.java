@@ -83,14 +83,14 @@ public final class Js5NetQueue {
 			this.updateServerSocket.checkError();
 			@Pc(75) Js5NetRequest local75;
 			for (local75 = (Js5NetRequest) this.urgent.head(); local75 != null; local75 = (Js5NetRequest) this.urgent.prev()) {
-				this.outPacket.position = 0;
+				this.outPacket.offset = 0;
 				this.outPacket.p1(1);
 				this.outPacket.p3((int) local75.secondaryNodeId);
 				this.updateServerSocket.write(4, this.outPacket.data);
 				this.inFlightUrgentRequests.pushBack(local75);
 			}
 			for (local75 = (Js5NetRequest) this.prefetch.head(); local75 != null; local75 = (Js5NetRequest) this.prefetch.prev()) {
-				this.outPacket.position = 0;
+				this.outPacket.offset = 0;
 				this.outPacket.p1(0);
 				this.outPacket.p3((int) local75.secondaryNodeId);
 				this.updateServerSocket.write(4, this.outPacket.data);
@@ -117,21 +117,21 @@ public final class Js5NetQueue {
 				if (needed <= 0) {
 					remaining = this.current.packet.data.length - this.current.offset;
 					archive = 512 - this.current.blockPosition;
-					if (archive > remaining - this.current.packet.position) {
-						archive = remaining - this.current.packet.position;
+					if (archive > remaining - this.current.packet.offset) {
+						archive = remaining - this.current.packet.offset;
 					}
 					if (archive > available) {
 						archive = available;
 					}
-					this.updateServerSocket.read(this.current.packet.position, archive, this.current.packet.data);
+					this.updateServerSocket.read(this.current.packet.offset, archive, this.current.packet.data);
 					if (this.encryptionKey != 0) {
 						for (group = 0; group < archive; group++) {
-							this.current.packet.data[this.current.packet.position + group] = (byte) (this.current.packet.data[this.current.packet.position + group] ^ this.encryptionKey);
+							this.current.packet.data[this.current.packet.offset + group] = (byte) (this.current.packet.data[this.current.packet.offset + group] ^ this.encryptionKey);
 						}
 					}
 					this.current.blockPosition += archive;
-					this.current.packet.position += archive;
-					if (this.current.packet.position == remaining) {
+					this.current.packet.offset += archive;
+					if (this.current.packet.offset == remaining) {
 						this.current.clear();
 						this.current.awaitingResponse = false;
 						this.current = null;
@@ -139,20 +139,20 @@ public final class Js5NetQueue {
 						this.current.blockPosition = 0;
 					}
 				} else {
-					remaining = needed - this.inPacket.position;
+					remaining = needed - this.inPacket.offset;
 					if (remaining > available) {
 						remaining = available;
 					}
-					this.updateServerSocket.read(this.inPacket.position, remaining, this.inPacket.data);
+					this.updateServerSocket.read(this.inPacket.offset, remaining, this.inPacket.data);
 					if (this.encryptionKey != 0) {
 						for (archive = 0; archive < remaining; archive++) {
-							this.inPacket.data[archive + this.inPacket.position] ^= this.encryptionKey;
+							this.inPacket.data[archive + this.inPacket.offset] ^= this.encryptionKey;
 						}
 					}
-					this.inPacket.position += remaining;
-					if (this.inPacket.position >= needed) {
+					this.inPacket.offset += remaining;
+					if (this.inPacket.offset >= needed) {
 						if (this.current == null) {
-							this.inPacket.position = 0;
+							this.inPacket.offset = 0;
 
 							archive = this.inPacket.g1();
 							group = this.inPacket.g2();
@@ -180,12 +180,12 @@ public final class Js5NetQueue {
 							this.current.packet.p1(compressionType);
 							this.current.packet.p4(length);
 							this.current.blockPosition = 8;
-							this.inPacket.position = 0;
+							this.inPacket.offset = 0;
 						} else if (this.current.blockPosition != 0) {
 							throw new IOException();
 						} else if (this.inPacket.data[0] == -1) {
 							this.current.blockPosition = 1;
-							this.inPacket.position = 0;
+							this.inPacket.offset = 0;
 						} else {
 							this.current = null;
 						}
@@ -211,7 +211,7 @@ public final class Js5NetQueue {
 			return;
 		}
 		try {
-			this.outPacket.position = 0;
+			this.outPacket.offset = 0;
 			this.outPacket.p1(7);
 			this.outPacket.p3(0);
 			this.updateServerSocket.write(4, this.outPacket.data);
@@ -237,7 +237,7 @@ public final class Js5NetQueue {
 			return;
 		}
 		try {
-			this.outPacket.position = 0;
+			this.outPacket.offset = 0;
 			this.outPacket.p1(loggedIn ? 2 : 3);
 			this.outPacket.p3(0);
 			this.updateServerSocket.write(4, this.outPacket.data);
@@ -271,7 +271,7 @@ public final class Js5NetQueue {
 		this.updateServerSocket = socket;
 		this.method2331();
 		this.writeLoggedIn(isLoggedIn);
-		this.inPacket.position = 0;
+		this.inPacket.offset = 0;
 		this.current = null;
 		while (true) {
 			@Pc(44) Js5NetRequest local44 = (Js5NetRequest) this.inFlightUrgentRequests.pollFront();
@@ -281,7 +281,7 @@ public final class Js5NetQueue {
 					if (local44 == null) {
 						if (this.encryptionKey != 0) {
 							try {
-								this.outPacket.position = 0;
+								this.outPacket.offset = 0;
 								this.outPacket.p1(4);
 								this.outPacket.p1(this.encryptionKey);
 								this.outPacket.p2(0);
@@ -362,7 +362,7 @@ public final class Js5NetQueue {
 			return;
 		}
 		try {
-			this.outPacket.position = 0;
+			this.outPacket.offset = 0;
 			this.outPacket.p1(6);
 			this.outPacket.p3(3);
 			this.updateServerSocket.write(4, this.outPacket.data);

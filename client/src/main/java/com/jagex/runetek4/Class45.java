@@ -157,10 +157,10 @@ public final class Class45 {
 			@Pc(186) ByteBuffer local186 = ByteBuffer.wrap(local7.data);
 			this.aClass155_2.method4517(local186);
 		} else {
-			this.aByteBuffer1 = ByteBuffer.allocateDirect(local15.position);
+			this.aByteBuffer1 = ByteBuffer.allocateDirect(local15.offset);
 			this.aByteBuffer1.put(local15.data);
 			this.aByteBuffer1.flip();
-			this.aByteBuffer2 = ByteBuffer.allocateDirect(local7.position);
+			this.aByteBuffer2 = ByteBuffer.allocateDirect(local7.offset);
 			this.aByteBuffer2.put(local7.data);
 			this.aByteBuffer2.flip();
 		}

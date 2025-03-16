@@ -55,7 +55,7 @@ public final class Js5Index {
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "<init>", descriptor = "([BI)V")
 	public Js5Index(@OriginalArg(0) byte[] bytes, @OriginalArg(1) int crc) {
-		this.crc = Packet.getcrc(bytes, bytes.length);
+		this.crc = Packet.crc32(bytes, bytes.length);
 		if (this.crc != crc) {
 			throw new RuntimeException("Invalid CRC - expected:" + crc + " got:" + this.crc);
 		}

@@ -1087,7 +1087,7 @@ public final class Component {
 	@OriginalMember(owner = "client!be", name = "c", descriptor = "(ILclient!wa;)V")
 	public void method490(@OriginalArg(1) Packet arg0) {
 		this.aBoolean32 = true;
-		arg0.position++;
+		arg0.offset++;
 		this.INVENTORY = arg0.g1();
 		if ((this.INVENTORY & 0x80) != 0) {
 			this.INVENTORY &= 0x7F;

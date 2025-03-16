@@ -23,7 +23,7 @@ public final class Static44 {
 
 	@OriginalMember(owner = "runetek4.client!dh", name = "a", descriptor = "(Z)V")
 	public static void method1146() {
-		Static6.outboundBuffer.position = 0;
+		Static6.outboundBuffer.offset = 0;
 		Static5.anInt45 = -1;
 		Static60.aBoolean108 = false;
 		Static223.packetSize = 0;
@@ -33,7 +33,7 @@ public final class Static44 {
 		Static270.anInt5795 = 0;
 		Static60.systemUpdateTimer = 0;
 		Static49.anInt1462 = -1;
-		Static57.in.position = 0;
+		Static57.in.offset = 0;
 		Static201.idleNetCycles = 0;
 		Static164.packetType = -1;
 		@Pc(35) int local35;

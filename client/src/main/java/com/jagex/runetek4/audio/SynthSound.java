@@ -25,7 +25,7 @@ public final class SynthSound {
 		for (@Pc(7) int local7 = 0; local7 < 10; local7++) {
 			@Pc(14) int local14 = packet.g1();
 			if (local14 != 0) {
-				packet.position--;
+				packet.offset--;
 				this.SynthInstruments[local7] = new SynthInstrument();
 				this.SynthInstruments[local7].decode(packet);
 			}

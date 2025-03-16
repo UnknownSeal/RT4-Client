@@ -79,10 +79,10 @@ public final class Static245 {
 		@Pc(255) int local255;
 		@Pc(266) int local266;
 		@Pc(316) int local316;
-		while (local96.data.length > local96.position) {
+		while (local96.data.length > local96.offset) {
 			local103 = local96.g1();
 			if (local103 != 129) {
-				local96.position--;
+				local96.offset--;
 				break;
 			}
 			for (local108 = 0; local108 < 4; local108++) {
@@ -150,7 +150,7 @@ public final class Static245 {
 			@Pc(472) Environment local472 = null;
 			label207: while (true) {
 				label200: do {
-					while (local96.data.length > local96.position) {
+					while (local96.data.length > local96.offset) {
 						local108 = local96.g1();
 						if (local108 != 0) {
 							if (local108 != 1) {

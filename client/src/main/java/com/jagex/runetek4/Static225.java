@@ -104,10 +104,10 @@ public final class Static225 {
 			local43.pjstr(Static186.password);
 			local43.p4((int) (Math.random() * 9.9999999E7D));
 			local43.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
-			Static6.outboundBuffer.position = 0;
+			Static6.outboundBuffer.offset = 0;
 			Static6.outboundBuffer.p1(210);
-			Static6.outboundBuffer.p1(local43.position);
-			Static6.outboundBuffer.pdata(local43.data, local43.position);
+			Static6.outboundBuffer.p1(local43.offset);
+			Static6.outboundBuffer.pdata(local43.data, local43.offset);
 		} else {
 			Static49.method1208();
 		}

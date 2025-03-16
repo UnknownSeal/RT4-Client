@@ -42,7 +42,7 @@ public final class Static78 {
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(JI)V")
 	public static void method1691(@OriginalArg(0) long name) {
-		Static6.outboundBuffer.position = 0;
+		Static6.outboundBuffer.offset = 0;
 		Static6.outboundBuffer.p1(186);
 		Static6.outboundBuffer.p8(name);
 		Static179.step = 1;

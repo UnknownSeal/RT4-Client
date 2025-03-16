@@ -190,7 +190,7 @@ public final class ClientScriptRunner {
 			}
 			buffer.pIsaac1(163);
 			buffer.p1(0);
-			i = buffer.position;
+			i = buffer.offset;
 			buffer.p4(clientScriptRunner.scriptId);
 			for (@Pc(121) int j = 0; j < clientScriptRunner.scriptCount; j++) {
 				if (clientScriptRunner.errorCodes[j] == 0) {
@@ -270,7 +270,7 @@ public final class ClientScriptRunner {
 				}
 			}
 			buffer.pCrc32(i);
-			buffer.p1len(buffer.position - i);
+			buffer.p1len(buffer.offset - i);
 			clientScriptRunner.unlink();
 		}
 	}

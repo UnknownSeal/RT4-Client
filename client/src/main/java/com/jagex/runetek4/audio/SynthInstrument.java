@@ -277,7 +277,7 @@ public final class SynthInstrument {
 		this.vol_env.decode(packet);
 		@Pc(21) int option = packet.g1();
 		if (option != 0) {
-			packet.position--;
+			packet.offset--;
 			this.pitch_mod_env = new SynthEnvelope();
 			this.pitch_mod_env.decode(packet);
 			this.pitch_mod_amp_env = new SynthEnvelope();
@@ -285,7 +285,7 @@ public final class SynthInstrument {
 		}
 		option = packet.g1();
 		if (option != 0) {
-			packet.position--;
+			packet.offset--;
 			this.vol_mod_env = new SynthEnvelope();
 			this.vol_mod_env.decode(packet);
 			this.vol_mod_amp_env = new SynthEnvelope();
@@ -293,7 +293,7 @@ public final class SynthInstrument {
 		}
 		option = packet.g1();
 		if (option != 0) {
-			packet.position--;
+			packet.offset--;
 			this.gating_release_env = new SynthEnvelope();
 			this.gating_release_env.decode(packet);
 			this.gating_attack_env = new SynthEnvelope();

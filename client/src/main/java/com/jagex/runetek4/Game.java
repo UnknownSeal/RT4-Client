@@ -59,8 +59,8 @@ public class Game {
                 Static6.outboundBuffer.pIsaac1(123);
                 samples = 0;
                 Static6.outboundBuffer.p1(0);
-                offset = Static6.outboundBuffer.position;
-                for (i = 0; mouseCapturer.coord > i && Static6.outboundBuffer.position - offset < 240; i++) {
+                offset = Static6.outboundBuffer.offset;
+                for (i = 0; mouseCapturer.coord > i && Static6.outboundBuffer.offset - offset < 240; i++) {
                     samples++;
                     y = mouseCapturer.y[i];
                     x = mouseCapturer.x[i];
@@ -117,7 +117,7 @@ public class Game {
                         Static204.anInt4762++;
                     }
                 }
-                Static6.outboundBuffer.p1len(Static6.outboundBuffer.position - offset);
+                Static6.outboundBuffer.p1len(Static6.outboundBuffer.offset - offset);
                 if (mouseCapturer.coord > samples) {
                     mouseCapturer.coord -= samples;
                     for (i = 0; i < mouseCapturer.coord; i++) {
@@ -611,10 +611,10 @@ public class Game {
                                                 Static34.verifyIdChanged = false;
                                             }
                                             try {
-                                                if (Static124.gameServerSocket != null && Static6.outboundBuffer.position > 0) {
-                                                    Static124.gameServerSocket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
+                                                if (Static124.gameServerSocket != null && Static6.outboundBuffer.offset > 0) {
+                                                    Static124.gameServerSocket.write(Static6.outboundBuffer.offset, Static6.outboundBuffer.data);
                                                     Static131.anInt3251 = 0;
-                                                    Static6.outboundBuffer.position = 0;
+                                                    Static6.outboundBuffer.offset = 0;
                                                 }
                                             } catch (@Pc(2266) IOException local2266) {
                                                 tryReconnect();
@@ -1008,7 +1008,7 @@ public class Game {
                 }
                 Static124.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
                 Static72.aClass212_3 = null;
-                Static124.gameServerSocket.write(Static6.outboundBuffer.position, Static6.outboundBuffer.data);
+                Static124.gameServerSocket.write(Static6.outboundBuffer.offset, Static6.outboundBuffer.data);
                 if (Static11.aClass62_1 != null) {
                     Static11.aClass62_1.method3571();
                 }
@@ -1042,7 +1042,7 @@ public class Game {
                 if (Static124.gameServerSocket.available() < Static229.aClass100Array156.length * 8) {
                     return;
                 }
-                Static57.in.position = 0;
+                Static57.in.offset = 0;
                 Static124.gameServerSocket.read(0, Static229.aClass100Array156.length * 8, Static57.in.data);
                 for (local120 = 0; local120 < Static229.aClass100Array156.length; local120++) {
                     Static229.aClass100Array156[local120] = Base37.decode37(Static57.in.g8());
