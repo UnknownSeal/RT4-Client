@@ -946,7 +946,7 @@ public final class client extends GameShell {
 				Static199.mainLoadPercentage = 70;
 			}
 		} else if (Static166.loadingPercent == 100) {
-			if (PreciseSleep.method3986(Static209.aClass153_86)) {
+			if (Flames.isReady(Static209.aClass153_86)) {
 				Static166.loadingPercent = 110;
 			}
 		} else if (Static166.loadingPercent == 110) {

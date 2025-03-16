@@ -37,16 +37,4 @@ public final class Static143 {
 		return 6;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ld", name = "a", descriptor = "(IB)I")
-	public static int method2733(@OriginalArg(0) int arg0) {
-		if (arg0 >= 97 && arg0 <= 122 || arg0 >= 224 && arg0 <= 254 && arg0 != 247) {
-			return arg0 - 32;
-		} else if (arg0 == 255) {
-			return 159;
-		} else if (arg0 == 156) {
-			return 140;
-		} else {
-			return arg0;
-		}
-	}
 }

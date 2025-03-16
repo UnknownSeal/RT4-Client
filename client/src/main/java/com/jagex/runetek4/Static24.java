@@ -74,8 +74,4 @@ public final class Static24 {
 		return local76 / 8 + local47 / 16 + local81 / 4;
 	}
 
-	@OriginalMember(owner = "client!bn", name = "d", descriptor = "(II)Z")
-	public static boolean method671(@OriginalArg(1) int arg0) {
-		return arg0 >= 48 && arg0 <= 57;
-	}
 }

@@ -24,17 +24,6 @@ public final class Static273 {
 		return depth * y >> 12;
 	}
 
-	@OriginalMember(owner = "runetek4.client!we", name = "b", descriptor = "(II)Z")
-	public static boolean method3213(@OriginalArg(1) int arg0) {
-		if (arg0 >= 32 && arg0 <= 126) {
-			return true;
-		} else if (arg0 >= 160 && arg0 <= 255) {
-			return true;
-		} else {
-			return arg0 == 128 || arg0 == 140 || arg0 == 151 || arg0 == 156 || arg0 == 159;
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!we", name = "b", descriptor = "(BI)V")
 	public static void method3214(@OriginalArg(1) int arg0) {
 		for (@Pc(11) Node local11 = Static210.aClass133_21.head(); local11 != null; local11 = Static210.aClass133_21.prev()) {

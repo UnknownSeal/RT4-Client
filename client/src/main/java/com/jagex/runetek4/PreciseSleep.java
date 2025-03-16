@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -273,21 +272,4 @@ public final class PreciseSleep {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!sk", name = "c", descriptor = "(II)I")
-	public static int method3984(@OriginalArg(1) int arg0) {
-		if (arg0 >= 65 && arg0 <= 90 || arg0 >= 192 && arg0 <= 222 && arg0 != 215) {
-			return arg0 + 32;
-		} else if (arg0 == 159) {
-			return 255;
-		} else if (arg0 == 140) {
-			return 156;
-		} else {
-			return arg0;
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!sk", name = "a", descriptor = "(Lclient!ve;I)Z")
-	public static boolean method3986(@OriginalArg(0) Js5 arg0) {
-		return arg0.method4506(Static138.anInt3443);
-	}
 }

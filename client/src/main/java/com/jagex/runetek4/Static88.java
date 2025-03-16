@@ -21,6 +21,7 @@ import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.NodeQueue;
 import com.jagex.runetek4.scene.SceneCamera;
+import com.jagex.runetek4.util.CharUtils;
 import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -4041,25 +4042,25 @@ public final class Static88 {
 									if (scriptOpcode == 4113) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										Static254.scriptIntValues[intValueIndex++] = Static273.method3213(interfaceData) ? 1 : 0;
+										Static254.scriptIntValues[intValueIndex++] = CharUtils.isValidChar(interfaceData) ? 1 : 0;
 										continue;
 									}
 									if (scriptOpcode == 4114) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										Static254.scriptIntValues[intValueIndex++] = Static83.method433(interfaceData) ? 1 : 0;
+										Static254.scriptIntValues[intValueIndex++] = CharUtils.method433(interfaceData) ? 1 : 0;
 										continue;
 									}
 									if (scriptOpcode == 4115) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										Static254.scriptIntValues[intValueIndex++] = Static258.method4428(interfaceData) ? 1 : 0;
+										Static254.scriptIntValues[intValueIndex++] = CharUtils.isLetter(interfaceData) ? 1 : 0;
 										continue;
 									}
 									if (scriptOpcode == 4116) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										Static254.scriptIntValues[intValueIndex++] = Static24.method671(interfaceData) ? 1 : 0;
+										Static254.scriptIntValues[intValueIndex++] = CharUtils.isDigit(interfaceData) ? 1 : 0;
 										continue;
 									}
 									if (scriptOpcode == 4117) {
@@ -4121,13 +4122,13 @@ public final class Static88 {
 									if (scriptOpcode == 4122) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										Static254.scriptIntValues[intValueIndex++] = PreciseSleep.method3984(interfaceData);
+										Static254.scriptIntValues[intValueIndex++] = CharUtils.toLowerCase(interfaceData);
 										continue;
 									}
 									if (scriptOpcode == 4123) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										Static254.scriptIntValues[intValueIndex++] = Static143.method2733(interfaceData);
+										Static254.scriptIntValues[intValueIndex++] = CharUtils.toUpperCase(interfaceData);
 										continue;
 									}
 									if (scriptOpcode == 4124) {
