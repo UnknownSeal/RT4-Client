@@ -74,20 +74,20 @@ public final class Static243 {
 			Static230.messageText[i] = null;
 		}
 		Static260.anInt5014 = 0;
-		Static132.cameraAnticheatOffsetX = (int) (Math.random() * 100.0D) - 50;
+		Camera.cameraAnticheatOffsetX = (int) (Math.random() * 100.0D) - 50;
 		Static84.anInt2255 = 0;
-		Static57.orbitCameraYaw = (int) (Math.random() * 20.0D) - 10 & 0x7FF;
+		Camera.orbitCameraYaw = (int) (Math.random() * 20.0D) - 10 & 0x7FF;
 		Static107.anInt2875 = -1;
 		Static267.playerCount = 0;
 		Static270.anInt5795 = 0;
-		Static206.cameraAnticheatOffsetZ = (int) (Math.random() * 110.0D) - 55;
+		Camera.cameraAnticheatOffsetZ = (int) (Math.random() * 110.0D) - 55;
 		Static241.aBoolean302 = false;
 		Static273.minimapZoom = (int) (Math.random() * 30.0D) - 20;
 		Static189.anInt4451 = 0;
 		Static115.anInt2939 = 0;
 		Static59.minimapAnticheatAngle = (int) (Math.random() * 120.0D) - 60;
 		Static62.anInt1941 = 0;
-		Static230.cameraAnticheatAngle = (int) (Math.random() * 80.0D) - 40;
+		Camera.cameraAnticheatAngle = (int) (Math.random() * 80.0D) - 40;
 		Static272.npcCount = 0;
 		for (i = 0; i < 2048; i++) {
 			Static159.players[i] = null;
@@ -113,16 +113,16 @@ public final class Static243 {
 		CacheArchive.friendCount = 0;
 		Static8.resetVarBits();
 		Static20.method601();
-		Static133.anInt5230 = 0;
-		ClientScriptRunner.anInt5217 = 0;
-		Static265.anInt5765 = 0;
-		PreciseSleep.anInt5203 = 0;
-		Static248.anInt4232 = 0;
-		Static245.anInt5375 = 0;
-		Static57.anInt1744 = 0;
-		Static251.anInt5449 = 0;
-		Static113.anInt4612 = 0;
-		ClientScriptRunner.anInt5225 = 0;
+		Camera.anInt5230 = 0;
+		Camera.anInt5217 = 0;
+		Camera.anInt5765 = 0;
+		Camera.anInt5203 = 0;
+		Camera.anInt4232 = 0;
+		Camera.anInt5375 = 0;
+		Camera.anInt1744 = 0;
+		Camera.anInt5449 = 0;
+		Camera.anInt4612 = 0;
+		Camera.anInt5225 = 0;
 		for (i = 0; i < VarPlayerDefinition.varcs.length; i++) {
 			VarPlayerDefinition.varcs[i] = -1;
 		}

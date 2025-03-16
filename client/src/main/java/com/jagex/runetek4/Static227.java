@@ -15,9 +15,6 @@ public final class Static227 {
 	@OriginalMember(owner = "runetek4.client!sg", name = "k", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_94;
 
-	@OriginalMember(owner = "runetek4.client!sg", name = "o", descriptor = "I")
-	public static int anInt5096;
-
 	@OriginalMember(owner = "runetek4.client!sg", name = "p", descriptor = "I")
 	public static int anInt5097;
 
@@ -29,9 +26,6 @@ public final class Static227 {
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_966 = Static28.parse("settings");
-
-	@OriginalMember(owner = "runetek4.client!sg", name = "q", descriptor = "[I")
-	public static final int[] keyCodes = new int[128];
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "a", descriptor = "(B)V")
 	public static void method3903() {

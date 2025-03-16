@@ -11,9 +11,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static245 {
 
-	@OriginalMember(owner = "runetek4.client!tm", name = "g", descriptor = "I")
-	public static int anInt5375;
-
 	@OriginalMember(owner = "runetek4.client!tm", name = "d", descriptor = "Lclient!na;")
 	public static final JString aClass100_1018 = Static28.parse("; Expires=Thu)1 01)2Jan)21970 00:00:00 GMT; Max)2Age=0");
 
@@ -116,7 +113,7 @@ public final class Static245 {
 						}
 						while (local237 > local232) {
 							while (local417 < local255) {
-								Static232.aByteArrayArrayArray13[arg2][local232][local417] = 0;
+								SceneGraph.aByteArrayArrayArray13[arg2][local232][local417] = 0;
 								local417++;
 							}
 							local232++;
@@ -133,7 +130,7 @@ public final class Static245 {
 											local316 = arg1 + Static214.method4360(arg0, local266 & 0x7, local255 & 0x7);
 											@Pc(328) int local328 = Class6.method3659(arg0, local255 & 0x7, local266 & 0x7) + arg4;
 											if (local316 >= 0 && local316 < 104 && local328 >= 0 && local328 < 104) {
-												Static232.aByteArrayArrayArray13[arg2][local316][local328] = local246;
+												SceneGraph.aByteArrayArrayArray13[arg2][local316][local328] = local246;
 											}
 										}
 									}
@@ -183,7 +180,7 @@ public final class Static245 {
 						local417 = local517.anInt2240 >> 7;
 						local255 = local517.anInt2245 >> 7;
 						if (local417 >= 0 && local255 >= 0 && local417 < 104 && local255 < 104) {
-							local517.aBoolean125 = (Static12.aByteArrayArrayArray2[1][local417][local255] & 0x2) != 0;
+							local517.aBoolean125 = (SceneGraph.renderFlags[1][local417][local255] & 0x2) != 0;
 							local517.anInt2235 = SceneGraph.tileHeights[local517.anInt2241][local417][local255] - local517.anInt2235;
 							Static120.method2389(local517);
 						}
@@ -195,7 +192,7 @@ public final class Static245 {
 		local108 = arg4 + 7;
 		for (local497 = arg1; local497 < local103; local497++) {
 			for (local232 = arg4; local232 < local108; local232++) {
-				Static232.aByteArrayArrayArray13[arg2][local497][local232] = 0;
+				SceneGraph.aByteArrayArrayArray13[arg2][local497][local232] = 0;
 			}
 		}
 	}

@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static184 {
 
-	@OriginalMember(owner = "runetek4.client!ol", name = "ib", descriptor = "I")
-	public static int cameraYaw;
-
 	@OriginalMember(owner = "runetek4.client!ol", name = "V", descriptor = "I")
 	public static int anInt4348 = 0;
 

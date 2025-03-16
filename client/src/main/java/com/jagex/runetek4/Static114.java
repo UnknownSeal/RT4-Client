@@ -13,9 +13,6 @@ public final class Static114 {
 	@OriginalMember(owner = "runetek4.client!j", name = "z", descriptor = "Lclient!na;")
 	public static final JString SHIFTCLICK = Static28.parse("::shiftclick");
 
-	@OriginalMember(owner = "runetek4.client!j", name = "K", descriptor = "I")
-	public static int anInt5843 = 0;
-
 	@OriginalMember(owner = "runetek4.client!j", name = "L", descriptor = "I")
 	public static int anInt5844 = 0;
 

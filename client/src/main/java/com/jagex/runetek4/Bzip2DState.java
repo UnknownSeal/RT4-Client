@@ -25,7 +25,7 @@ public final class Bzip2DState {
 	public int bsLive;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "x", descriptor = "I")
-	public int anInt396;
+	public int k0;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "z", descriptor = "I")
 	public int nblockused;

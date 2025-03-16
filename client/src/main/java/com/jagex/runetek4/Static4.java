@@ -47,8 +47,8 @@ public final class Static4 {
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "a", descriptor = "(IIII)I")
 	public static int getRenderLevel(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) {
-		if ((Static12.aByteArrayArrayArray2[arg2][arg1][arg0] & 0x8) == 0) {
-			return arg2 <= 0 || (Static12.aByteArrayArrayArray2[1][arg1][arg0] & 0x2) == 0 ? arg2 : arg2 - 1;
+		if ((SceneGraph.renderFlags[arg2][arg1][arg0] & 0x8) == 0) {
+			return arg2 <= 0 || (SceneGraph.renderFlags[1][arg1][arg0] & 0x2) == 0 ? arg2 : arg2 - 1;
 		} else {
 			return 0;
 		}
@@ -516,7 +516,7 @@ public final class Static4 {
 					count = Static57.in.g1();
 					i = Static57.in.g1();
 					if (Static248.method3288(ii)) {
-						Static260.method3849(slot, world, count, xp, i);
+						Camera.method3849(slot, world, count, xp, i);
 					}
 					Static164.packetType = -1;
 					return true;
@@ -645,12 +645,12 @@ public final class Static4 {
 							}
 						} else {
 							count = world >> 28 & 0x3;
-							i = (world >> 14 & 0x3FFF) - Static225.originX;
-							local1160 = (world & 0x3FFF) - Static142.originZ;
+							i = (world >> 14 & 0x3FFF) - Camera.originX;
+							local1160 = (world & 0x3FFF) - Camera.originZ;
 							if (i >= 0 && local1160 >= 0 && i < 104 && local1160 < 104) {
 								local1160 = local1160 * 128 + 64;
 								i = i * 128 + 64;
-								@Pc(2241) SpotAnim local2241 = new SpotAnim(slot, count, i, local1160, Static207.getHeightmapY(count, i, local1160) - xp, ii, client.loop);
+								@Pc(2241) SpotAnim local2241 = new SpotAnim(slot, count, i, local1160, SceneGraph.getTileHeight(count, i, local1160) - xp, ii, client.loop);
 								Static99.spotanims.addTail(new SpotAnimEntity(local2241));
 							}
 						}
@@ -707,13 +707,13 @@ public final class Static4 {
 						xp = Static57.in.g2();
 						world = Static57.in.g2();
 						if (Static248.method3288(xp)) {
-							Static57.orbitCameraYaw = ii;
-							Static72.orbitCameraPitch = world;
-							if (Static227.anInt5096 == 2) {
-								Static240.cameraPitch = Static72.orbitCameraPitch;
-								Static184.cameraYaw = Static57.orbitCameraYaw;
+							Camera.orbitCameraYaw = ii;
+							Camera.orbitCameraPitch = world;
+							if (Camera.cameraType == 2) {
+								Camera.cameraPitch = Camera.orbitCameraPitch;
+								Camera.cameraYaw = Camera.orbitCameraYaw;
 							}
-							SceneCamera.setMaxSurroundingTerrainHeight();
+							SceneCamera.clampCameraAngle();
 						}
 						Static164.packetType = -1;
 						return true;
@@ -885,7 +885,7 @@ public final class Static4 {
 							count = Static57.in.g1();
 							i = Static57.in.g1();
 							if (Static248.method3288(ii)) {
-								Static141.method2722(true, count, slot, i, world, xp);
+								Camera.method2722(true, count, slot, i, world, xp);
 							}
 							Static164.packetType = -1;
 							return true;
@@ -970,10 +970,10 @@ public final class Static4 {
 								count = Static57.in.g1();
 								i = Static57.in.g2();
 								if (Static248.method3288(ii)) {
-									Static176.cameraModifierEnabled[xp] = true;
-									Static222.cameraModifierJitter[xp] = world;
-									Static276.cameraModifierWobbleScale[xp] = slot;
-									Class6.cameraModifierWobbleSpeed[xp] = count;
+									Camera.cameraModifierEnabled[xp] = true;
+									Camera.cameraModifierJitter[xp] = world;
+									Camera.cameraAmplitude[xp] = slot;
+									Camera.cameraFrequency[xp] = count;
 									Static31.cameraModifierCycle[xp] = i;
 								}
 								Static164.packetType = -1;
@@ -1188,8 +1188,8 @@ public final class Static4 {
 								}
 								local908 = i & 0x3FFF;
 								j = i >> 14 & 0x3FFF;
-								j -= Static225.originX;
-								local908 -= Static142.originZ;
+								j -= Camera.originX;
+								local908 -= Camera.originZ;
 								local1160 = i >> 28 & 0x3;
 								Static92.method1881(local1160, world, xp, local908, slot, j, count);
 								Static164.packetType = -1;
@@ -1364,7 +1364,7 @@ public final class Static4 {
 								} else if (Static164.packetType == 24) {
 									ii = Static57.in.g2();
 									if (Static248.method3288(ii)) {
-										Static35.method902();
+										Camera.resetCameraEffects();
 									}
 									Static164.packetType = -1;
 									return true;

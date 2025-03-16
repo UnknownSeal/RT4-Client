@@ -20,9 +20,6 @@ public final class Static13 {
 	@OriginalMember(owner = "client!bc", name = "Z", descriptor = "I")
 	public static int anInt437;
 
-	@OriginalMember(owner = "client!bc", name = "I", descriptor = "Z")
-	public static boolean aBoolean16 = false;
-
 	@OriginalMember(owner = "client!bc", name = "N", descriptor = "Lclient!lb;")
 	public static final Class3_Sub23 aClass3_Sub23_1 = new Class3_Sub23(0, 0);
 

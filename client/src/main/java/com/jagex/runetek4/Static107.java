@@ -22,9 +22,6 @@ public final class Static107 {
 	@OriginalMember(owner = "runetek4.client!id", name = "c", descriptor = "Lclient!na;")
 	public static final JString FPSON = Static28.parse("::fpson");
 
-	@OriginalMember(owner = "runetek4.client!id", name = "d", descriptor = "[[[I")
-	public static final int[][][] anIntArrayArrayArray9 = new int[2][][];
-
 	@OriginalMember(owner = "runetek4.client!id", name = "e", descriptor = "[I")
 	public static final int[] anIntArray259 = new int[14];
 

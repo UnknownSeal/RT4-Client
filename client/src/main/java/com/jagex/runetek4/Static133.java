@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static133 {
 
-	@OriginalMember(owner = "runetek4.client!kf", name = "f", descriptor = "I")
-	public static int anInt5230;
-
 	@OriginalMember(owner = "runetek4.client!kf", name = "c", descriptor = "J")
 	public static long clickTime = 0L;
 

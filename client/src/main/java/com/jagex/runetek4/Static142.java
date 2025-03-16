@@ -13,9 +13,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static142 {
 
-	@OriginalMember(owner = "runetek4.client!lc", name = "n", descriptor = "I")
-	public static int originZ;
-
 	@OriginalMember(owner = "runetek4.client!lc", name = "e", descriptor = "Lclient!n;")
 	public static final NodeCache animationSequenceCache = new NodeCache(64);
 

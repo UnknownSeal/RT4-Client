@@ -45,28 +45,28 @@ public final class Static252 {
 			Static243.anIntArray476[local33] = 1000000;
 			Static50.anIntArray134[local33] = 0;
 		}
-		if (Static227.anInt5096 != 1) {
-			local33 = Static207.getHeightmapY(Player.plane, Static138.cameraX, Static134.cameraZ);
-			if (local33 - Static5.cameraY < 800 && (Static12.aByteArrayArrayArray2[Player.plane][Static138.cameraX >> 7][Static134.cameraZ >> 7] & 0x4) != 0) {
-				Static254.method4348(false, Static138.cameraX >> 7, Static134.cameraZ >> 7, Static130.levelTiles, 1);
+		if (Camera.cameraType != 1) {
+			local33 = SceneGraph.getTileHeight(Player.plane, Camera.renderX, Camera.renderZ);
+			if (local33 - Camera.cameraY < 800 && (SceneGraph.renderFlags[Player.plane][Camera.renderX >> 7][Camera.renderZ >> 7] & 0x4) != 0) {
+				Static254.method4348(false, Camera.renderX >> 7, Camera.renderZ >> 7, Static130.levelTiles, 1);
 			}
 			return;
 		}
-		if ((Static12.aByteArrayArrayArray2[Player.plane][PlayerList.self.xFine >> 7][PlayerList.self.zFine >> 7] & 0x4) != 0) {
+		if ((SceneGraph.renderFlags[Player.plane][PlayerList.self.xFine >> 7][PlayerList.self.zFine >> 7] & 0x4) != 0) {
 			Static254.method4348(false, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7, Static130.levelTiles, 0);
 		}
-		if (Static240.cameraPitch >= 310) {
+		if (Camera.cameraPitch >= 310) {
 			return;
 		}
 		@Pc(135) int local135 = PlayerList.self.zFine >> 7;
-		local40 = Static134.cameraZ >> 7;
+		local40 = Camera.renderZ >> 7;
 		@Pc(146) int local146;
 		if (local40 < local135) {
 			local146 = local135 - local40;
 		} else {
 			local146 = local40 - local135;
 		}
-		local33 = Static138.cameraX >> 7;
+		local33 = Camera.renderX >> 7;
 		@Pc(162) int local162 = PlayerList.self.xFine >> 7;
 		@Pc(174) int local174;
 		if (local162 > local33) {
@@ -85,7 +85,7 @@ public final class Static252 {
 				} else if (local40 > local135) {
 					local40--;
 				}
-				if ((Static12.aByteArrayArrayArray2[Player.plane][local33][local40] & 0x4) != 0) {
+				if ((SceneGraph.renderFlags[Player.plane][local33][local40] & 0x4) != 0) {
 					Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
 					break;
 				}
@@ -97,7 +97,7 @@ public final class Static252 {
 						local33--;
 					}
 					local186 -= 65536;
-					if ((Static12.aByteArrayArrayArray2[Player.plane][local33][local40] & 0x4) != 0) {
+					if ((SceneGraph.renderFlags[Player.plane][local33][local40] & 0x4) != 0) {
 						Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
 						break;
 					}
@@ -113,7 +113,7 @@ public final class Static252 {
 			} else if (local33 > local162) {
 				local33--;
 			}
-			if ((Static12.aByteArrayArrayArray2[Player.plane][local33][local40] & 0x4) != 0) {
+			if ((SceneGraph.renderFlags[Player.plane][local33][local40] & 0x4) != 0) {
 				Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
 				break;
 			}
@@ -125,7 +125,7 @@ public final class Static252 {
 					local40--;
 				}
 				local186 -= 65536;
-				if ((Static12.aByteArrayArrayArray2[Player.plane][local33][local40] & 0x4) != 0) {
+				if ((SceneGraph.renderFlags[Player.plane][local33][local40] & 0x4) != 0) {
 					Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
 					break;
 				}

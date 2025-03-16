@@ -15,6 +15,16 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("client!uf")
 public final class Keyboard implements KeyListener, FocusListener {
 
+	public static final int KEY_SHIFT = 81;
+	public static final int KEY_CTRL = 82;
+	public static final int KEY_ENTER = 84;
+	public static final int KEY_BACK_SPACE = 85;
+	public static final int KEY_ALT = 86;
+	public static final int KEY_LEFT = 96;
+	public static final int KEY_RIGHT = 97;
+	public static final int KEY_UP = 98;
+	public static final int KEY_DOWN = 99;
+
 	@OriginalMember(owner = "client!ch", name = "a", descriptor = "(Ljava/awt/Component;I)V")
 	public static void stop(@OriginalArg(0) Component arg0) {
 		arg0.removeKeyListener(Static10.aClass149_1);

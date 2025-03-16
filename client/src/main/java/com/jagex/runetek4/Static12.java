@@ -8,9 +8,6 @@ public final class Static12 {
 	@OriginalMember(owner = "client!bb", name = "M", descriptor = "I")
 	public static int anInt406;
 
-	@OriginalMember(owner = "client!bb", name = "g", descriptor = "[[[B")
-	public static final byte[][][] aByteArrayArrayArray2 = new byte[4][104][104];
-
 	@OriginalMember(owner = "client!bb", name = "m", descriptor = "Lclient!na;")
 	public static final JString aClass100_73 = Static28.parse("runes");
 

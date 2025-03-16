@@ -32,9 +32,9 @@ public final class Static45 {
 			for (local10 = 0; local10 < 4; local10++) {
 				for (local15 = 0; local15 < 104; local15++) {
 					for (@Pc(22) int local22 = 0; local22 < 104; local22++) {
-						if ((Static12.aByteArrayArrayArray2[local10][local15][local22] & 0x1) == 1) {
+						if ((SceneGraph.renderFlags[local10][local15][local22] & 0x1) == 1) {
 							@Pc(43) int local43 = local10;
-							if ((Static12.aByteArrayArrayArray2[1][local15][local22] & 0x2) == 2) {
+							if ((SceneGraph.renderFlags[1][local15][local22] & 0x2) == 2) {
 								local43 = local10 - 1;
 							}
 							if (local43 >= 0) {
@@ -196,7 +196,7 @@ public final class Static45 {
 			}
 			for (z0 = 1; z0 < 103; z0++) {
 				label771: for (x0 = 1; x0 < 103; x0++) {
-					if (arg1 || Static138.allLevelsvisible() || (Static12.aByteArrayArrayArray2[0][z0][x0] & 0x2) != 0 || (Static12.aByteArrayArrayArray2[level][z0][x0] & 0x10) == 0 && Static4.getRenderLevel(x0, z0, level) == Static41.anInt1316) {
+					if (arg1 || Static138.allLevelsvisible() || (SceneGraph.renderFlags[0][z0][x0] & 0x2) != 0 || (SceneGraph.renderFlags[level][z0][x0] & 0x10) == 0 && Static4.getRenderLevel(x0, z0, level) == Static41.anInt1316) {
 						if (Static146.firstvisibleLevel > level) {
 							Static146.firstvisibleLevel = level;
 						}
@@ -338,12 +338,12 @@ public final class Static45 {
 					if (local200 > 103) {
 						@Pc(2025) Class3_Sub14[] local2025;
 						if (arg1) {
-							local2025 = Static193.method3501(Static12.aByteArrayArrayArray2, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], levelLightMap, local1896, Static62.anIntArrayArray11, Static240.aByteArrayArrayArray14[level], Static4.aByteArrayArrayArray1[level], local1888, level, local1900, local142, SceneGraph.tileHeights[level], Static107.anIntArrayArrayArray10[0]);
+							local2025 = Static193.method3501(SceneGraph.renderFlags, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], levelLightMap, local1896, Static62.anIntArrayArray11, Static240.aByteArrayArrayArray14[level], Static4.aByteArrayArrayArray1[level], local1888, level, local1900, local142, SceneGraph.tileHeights[level], Static107.anIntArrayArrayArray10[0]);
 							Static110.method2280(level, local2025);
 							break;
 						}
-						local2025 = Static193.method3501(Static12.aByteArrayArrayArray2, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], levelLightMap, local1896, null, Static240.aByteArrayArrayArray14[level], Static4.aByteArrayArrayArray1[level], local1888, level, local1900, local142, SceneGraph.tileHeights[level], null);
-						@Pc(2049) Class3_Sub14[] local2049 = Static1.method2(local1896, local1888, SceneGraph.tileHeights[level], level, local1900, Static4.aByteArrayArrayArray1[level], levelLightMap, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], Static240.aByteArrayArrayArray14[level], Static12.aByteArrayArrayArray2);
+						local2025 = Static193.method3501(SceneGraph.renderFlags, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], levelLightMap, local1896, null, Static240.aByteArrayArrayArray14[level], Static4.aByteArrayArrayArray1[level], local1888, level, local1900, local142, SceneGraph.tileHeights[level], null);
+						@Pc(2049) Class3_Sub14[] local2049 = Static1.method2(local1896, local1888, SceneGraph.tileHeights[level], level, local1900, Static4.aByteArrayArrayArray1[level], levelLightMap, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], Static240.aByteArrayArrayArray14[level], SceneGraph.renderFlags);
 						@Pc(2057) Class3_Sub14[] local2057 = new Class3_Sub14[local2025.length + local2049.length];
 						for (len = 0; len < local2025.length; len++) {
 							local2057[len] = local2025[len];
@@ -379,7 +379,7 @@ public final class Static45 {
 		@Pc(2204) int local2204;
 		for (level = 0; level < 104; level++) {
 			for (local2204 = 0; local2204 < 104; local2204++) {
-				if ((Static12.aByteArrayArrayArray2[1][level][local2204] & 0x2) == 2) {
+				if ((SceneGraph.renderFlags[1][level][local2204] & 0x2) == 2) {
 					Static224.method3884(level, local2204);
 				}
 			}

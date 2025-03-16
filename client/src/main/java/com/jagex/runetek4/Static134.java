@@ -8,9 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static134 {
 
-	@OriginalMember(owner = "runetek4.client!kh", name = "f", descriptor = "I")
-	public static int cameraZ;
-
 	@OriginalMember(owner = "runetek4.client!kh", name = "g", descriptor = "Lclient!hh;")
 	public static final PlayerModel A_PLAYER_MODEL___2 = new PlayerModel();
 

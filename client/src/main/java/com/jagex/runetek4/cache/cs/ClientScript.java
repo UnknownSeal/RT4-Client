@@ -203,10 +203,10 @@ public final class ClientScript extends CachedNode {
 					register1 = VarbitDefinition.getVarbitValue(i);
 				}
 				if (opcode == 18) {
-					register1 = (PlayerList.self.xFine >> 7) + Static225.originX;
+					register1 = (PlayerList.self.xFine >> 7) + Camera.originX;
 				}
 				if (opcode == 19) {
-					register1 = (PlayerList.self.zFine >> 7) + Static142.originZ;
+					register1 = (PlayerList.self.zFine >> 7) + Camera.originZ;
 				}
 				if (opcode == 20) {
 					register1 = script[pc++];

@@ -121,18 +121,18 @@ public class Scene {
         }
         if (GlRenderer.enabled) {
             @Pc(650) GlModel local650 = (GlModel) local33;
-            if (Static207.getHeightmapY(Player.plane, arg3 + local384, local126 + arg5) != arg11 || Static207.getHeightmapY(Player.plane, local115 + arg3, arg5 - -local130) != arg11) {
+            if (SceneGraph.getTileHeight(Player.plane, arg3 + local384, local126 + arg5) != arg11 || SceneGraph.getTileHeight(Player.plane, local115 + arg3, arg5 - -local130) != arg11) {
                 for (local162 = 0; local162 < local650.anInt5295; local162++) {
-                    local650.vertexY[local162] += Static207.getHeightmapY(Player.plane, local650.vertexX[local162] + arg3, arg5 + local650.vertexZ[local162]) - arg11;
+                    local650.vertexY[local162] += SceneGraph.getTileHeight(Player.plane, local650.vertexX[local162] + arg3, arg5 + local650.vertexZ[local162]) - arg11;
                 }
                 local650.bounds.valid = false;
                 local650.vertexBuffer.valid = false;
             }
         } else {
             @Pc(574) SoftwareModel local574 = (SoftwareModel) local33;
-            if (Static207.getHeightmapY(Player.plane, arg3 + local384, arg5 - -local126) != arg11 || arg11 != Static207.getHeightmapY(Player.plane, arg3 + local115, arg5 - -local130)) {
+            if (SceneGraph.getTileHeight(Player.plane, arg3 + local384, arg5 - -local126) != arg11 || arg11 != SceneGraph.getTileHeight(Player.plane, arg3 + local115, arg5 - -local130)) {
                 for (local162 = 0; local162 < local574.anInt5788; local162++) {
-                    local574.anIntArray527[local162] += Static207.getHeightmapY(Player.plane, arg3 + local574.anIntArray528[local162], arg5 + local574.anIntArray531[local162]) - arg11;
+                    local574.anIntArray527[local162] += SceneGraph.getTileHeight(Player.plane, arg3 + local574.anIntArray528[local162], arg5 + local574.anIntArray531[local162]) - arg11;
                 }
                 local574.aBoolean305 = false;
             }

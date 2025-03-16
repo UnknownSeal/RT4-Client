@@ -32,7 +32,7 @@ public final class Bzip2Decompressor {
 		@Pc(2) byte local2 = arg0.stateOutCh;
 		@Pc(5) int local5 = arg0.stateOutLen;
 		@Pc(8) int local8 = arg0.nblockused;
-		@Pc(11) int local11 = arg0.anInt396;
+		@Pc(11) int local11 = arg0.k0;
 		@Pc(13) int[] local13 = tt;
 		@Pc(16) int local16 = arg0.tPos;
 		@Pc(19) byte[] local19 = arg0.strmNextOut;
@@ -135,7 +135,7 @@ public final class Bzip2Decompressor {
 		arg0.stateOutCh = local2;
 		arg0.stateOutLen = local5;
 		arg0.nblockused = local8;
-		arg0.anInt396 = local11;
+		arg0.k0 = local11;
 		tt = local13;
 		arg0.tPos = local16;
 		arg0.strmNextOut = local19;
@@ -466,7 +466,7 @@ public final class Bzip2Decompressor {
 					s.tPos = tt[s.origPtr] >> 8;
 					s.nblockused = 0;
 					s.tPos = tt[s.tPos];
-					s.anInt396 = (byte) (s.tPos & 0xFF);
+					s.k0 = (byte) (s.tPos & 0xFF);
 					s.tPos >>= 0x8;
 					s.nblockused++;
 					s.saveNblock = nblock;

@@ -35,9 +35,6 @@ public final class Static230 {
 	@OriginalMember(owner = "runetek4.client!sj", name = "F", descriptor = "Lclient!rc;")
 	public static GameShell anApplet_Sub1_1 = null;
 
-	@OriginalMember(owner = "runetek4.client!sj", name = "H", descriptor = "I")
-	public static int cameraAnticheatAngle = 0;
-
 	@OriginalMember(owner = "runetek4.client!sj", name = "c", descriptor = "(I)V")
 	public static void method3947() {
 		Static250.aClass99_33.method3104();

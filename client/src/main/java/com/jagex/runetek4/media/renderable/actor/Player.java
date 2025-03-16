@@ -255,8 +255,8 @@ public final class Player extends PathingEntity {
 						}
 					}
 					if (local245.headIconDrawType == 2) {
-						@Pc(340) int local340 = (local245.anInt4053 - Static225.originX) * 4 + 2 - PlayerList.self.xFine / 32;
-						anchorX = (local245.anInt4046 - Static142.originZ) * 4 + 2 - PlayerList.self.zFine / 32;
+						@Pc(340) int local340 = (local245.anInt4053 - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
+						anchorX = (local245.anInt4046 - Camera.originZ) * 4 + 2 - PlayerList.self.zFine / 32;
 						this.drawOnMinimap(null, anchorX, local76, local340, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
 					}
 					if (local245.headIconDrawType == 10 && local245.hintIconNpcTarget >= 0 && Static159.players.length > local245.hintIconNpcTarget) {

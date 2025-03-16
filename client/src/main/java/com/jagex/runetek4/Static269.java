@@ -108,7 +108,7 @@ public final class Static269 {
 					}
 					while (local243 < local188) {
 						while (local190 < local194) {
-							Static232.aByteArrayArrayArray13[local117][local243][local190] = 0;
+							SceneGraph.aByteArrayArrayArray13[local117][local243][local190] = 0;
 							local190++;
 						}
 						local243++;
@@ -120,7 +120,7 @@ public final class Static269 {
 							for (local194 = local243 + arg4; local194 < arg4 + local243 + 4; local194++) {
 								for (@Pc(320) int local320 = arg3 + local188; local320 < arg3 + local188 + 4; local320++) {
 									if (local194 >= 0 && local194 < 104 && local320 >= 0 && local320 < 104) {
-										Static232.aByteArrayArrayArray13[local117][local194][local320] = local305;
+										SceneGraph.aByteArrayArrayArray13[local117][local194][local320] = local305;
 									}
 								}
 							}
@@ -153,7 +153,7 @@ public final class Static269 {
 					}
 					while (local188 > local243) {
 						while (local190 < local194) {
-							Static232.aByteArrayArrayArray13[local117][local243][local190] = Static232.aByteArrayArrayArray13[local117 - 1][local243][local190];
+							SceneGraph.aByteArrayArrayArray13[local117][local243][local190] = SceneGraph.aByteArrayArrayArray13[local117 - 1][local243][local190];
 							local190++;
 						}
 						local243++;
@@ -203,7 +203,7 @@ public final class Static269 {
 					local194 = local529.anInt2245 >> 7;
 					local190 = local529.anInt2240 >> 7;
 					if (local190 >= 0 && local194 >= 0 && local190 < 104 && local194 < 104) {
-						local529.aBoolean125 = (Static12.aByteArrayArrayArray2[1][local190][local194] & 0x2) != 0;
+						local529.aBoolean125 = (SceneGraph.renderFlags[1][local190][local194] & 0x2) != 0;
 						local529.anInt2235 = SceneGraph.tileHeights[local529.anInt2241][local190][local194] - local529.anInt2235;
 						Static120.method2389(local529);
 					}
@@ -219,7 +219,7 @@ public final class Static269 {
 					local243 = (arg4 >> 2) + local117;
 					local188 = local515 + (arg3 >> 2);
 					if (local243 >= 0 && local243 < 26 && local188 >= 0 && local188 < 26) {
-						Static232.aByteArrayArrayArray13[local21][local243][local188] = 0;
+						SceneGraph.aByteArrayArrayArray13[local21][local243][local188] = 0;
 					}
 				}
 			}

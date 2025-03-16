@@ -24,9 +24,6 @@ public final class Static56 {
 	@OriginalMember(owner = "runetek4.client!ef", name = "h", descriptor = "Lclient!na;")
 	public static final JString aClass100_380 = Static28.parse("unzap");
 
-	@OriginalMember(owner = "runetek4.client!ef", name = "i", descriptor = "I")
-	public static int anInt1743 = 0;
-
 	@OriginalMember(owner = "runetek4.client!ef", name = "r", descriptor = "Lclient!be;")
 	public static Component aClass13_12 = null;
 

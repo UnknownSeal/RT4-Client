@@ -19,7 +19,7 @@ public class Minimap {
             return;
         }
         @Pc(21) int local21 = arg3 * arg3 + arg2 * arg2;
-        @Pc(27) int local27 = Static59.minimapAnticheatAngle + Static57.orbitCameraYaw & 0x7FF;
+        @Pc(27) int local27 = Static59.minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
         @Pc(39) int local39 = Math.max(arg0.anInt445 / 2, arg0.anInt459 / 2) + 10;
         if (local39 * local39 < local21) {
             return;

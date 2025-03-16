@@ -59,8 +59,8 @@ public final class Static87 {
 		@Pc(49) int local49;
 		@Pc(53) byte[] local53;
 		for (local20 = 0; local20 < local18; local20++) {
-			local38 = (Static238.anIntArray470[local20] >> 8) * 64 - Static225.originX;
-			local49 = (Static238.anIntArray470[local20] & 0xFF) * 64 - Static142.originZ;
+			local38 = (Static238.anIntArray470[local20] >> 8) * 64 - Camera.originX;
+			local49 = (Static238.anIntArray470[local20] & 0xFF) * 64 - Camera.originZ;
 			local53 = local9[local20];
 			if (local53 != null) {
 				Static107.method2261();
@@ -68,8 +68,8 @@ public final class Static87 {
 			}
 		}
 		for (local20 = 0; local20 < local18; local20++) {
-			local38 = (Static238.anIntArray470[local20] >> 8) * 64 - Static225.originX;
-			local49 = (Static238.anIntArray470[local20] & 0xFF) * 64 - Static142.originZ;
+			local38 = (Static238.anIntArray470[local20] >> 8) * 64 - Camera.originX;
+			local49 = (Static238.anIntArray470[local20] & 0xFF) * 64 - Camera.originZ;
 			local53 = local9[local20];
 			if (local53 == null && Static52.anInt1695 < 800) {
 				Static107.method2261();
@@ -216,7 +216,7 @@ public final class Static87 {
 									continue;
 								}
 								local276 -= local30.anInt459 / 2;
-								local503 = Static57.orbitCameraYaw + Static59.minimapAnticheatAngle & 0x7FF;
+								local503 = Camera.orbitCameraYaw + Static59.minimapAnticheatAngle & 0x7FF;
 								local270 -= local30.anInt445 / 2;
 								local514 = MathUtils.anIntArray223[local503];
 								local518 = MathUtils.anIntArray225[local503];

@@ -53,7 +53,7 @@ public final class Static48 {
 		local4.p4(Static164.anInt3988);
 		local4.p1(Preferences.favoriteWorlds);
 		local4.p1(Static164.aBoolean191 ? 1 : 0);
-		local4.p1(Static33.aBoolean63 ? 1 : 0);
+		local4.p1(Preferences.aBoolean63 ? 1 : 0);
 		local4.p1(Static141.anInt3474);
 		local4.p1(Static127.aBoolean159 ? 1 : 0);
 		local4.p1(Static64.aBoolean111 ? 1 : 0);

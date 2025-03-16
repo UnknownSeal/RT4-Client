@@ -51,9 +51,9 @@ public final class Static79 {
 			return;
 		}
 		@Pc(39) int local39;
-		if (!Static138.allLevelsvisible() && (Static12.aByteArrayArrayArray2[0][arg1][arg4] & 0x2) == 0) {
+		if (!Static138.allLevelsvisible() && (SceneGraph.renderFlags[0][arg1][arg4] & 0x2) == 0) {
 			local39 = arg2;
-			if ((Static12.aByteArrayArrayArray2[arg2][arg1][arg4] & 0x8) != 0) {
+			if ((SceneGraph.renderFlags[arg2][arg1][arg4] & 0x8) != 0) {
 				local39 = 0;
 			}
 			if (local39 != Static41.anInt1316) {
@@ -61,7 +61,7 @@ public final class Static79 {
 			}
 		}
 		local39 = arg2;
-		if (arg2 < 3 && (Static12.aByteArrayArrayArray2[1][arg1][arg4] & 0x2) == 2) {
+		if (arg2 < 3 && (SceneGraph.renderFlags[1][arg1][arg4] & 0x2) == 2) {
 			local39 = arg2 + 1;
 		}
 		Static43.method1144(arg4, arg1, arg2, arg6, local39, Static148.levelCollisionMap[arg2]);

@@ -59,11 +59,11 @@ public final class Static73 {
 			Game.processGameStatus(10);
 			return;
 		}
-		if (Static227.anInt5096 == 2) {
-			Static138.cameraX = Static245.anInt5375 << 7;
-			Static134.cameraZ = Static248.anInt4232 << 7;
+		if (Camera.cameraType == 2) {
+			Camera.renderX = Camera.anInt5375 << 7;
+			Camera.renderZ = Camera.anInt4232 << 7;
 		} else {
-			Static40.method1008();
+			Camera.updateLoginScreenCamera();
 		}
 		Static86.method1799();
 		Static26.method740();

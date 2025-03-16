@@ -21,9 +21,6 @@ public final class Static276 {
 	@OriginalMember(owner = "runetek4.client!wh", name = "j", descriptor = "[Lclient!cl;")
 	public static final AnimFrameset[] aClass3_Sub2_Sub7Array8 = new AnimFrameset[14];
 
-	@OriginalMember(owner = "runetek4.client!wh", name = "m", descriptor = "[I")
-	public static final int[] cameraModifierWobbleScale = new int[5];
-
 	@OriginalMember(owner = "runetek4.client!wh", name = "n", descriptor = "Lclient!na;")
 	public static final JString aClass100_1095 = Static28.parse("; version=1; path=)4; domain=");
 

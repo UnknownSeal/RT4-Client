@@ -66,7 +66,7 @@ public final class Static220 {
 			}
 		}
 		@Pc(152) long local152 = (long) ((arg0 << 7) + arg1 + 1610612736);
-		Static69.method1543(Player.plane, arg1, arg0, Static207.getHeightmapY(Player.plane, arg1 * 128 + 64, arg0 * 128 + 64), local30.aClass8_Sub7_1, local152, local89, local91);
+		Static69.method1543(Player.plane, arg1, arg0, SceneGraph.getTileHeight(Player.plane, arg1 * 128 + 64, arg0 * 128 + 64), local30.aClass8_Sub7_1, local152, local89, local91);
 	}
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(JB)V")
@@ -100,18 +100,18 @@ public final class Static220 {
 		@Pc(94) int local94;
 		if (GlRenderer.enabled) {
 			@Pc(68) GlModel local68 = (GlModel) local10;
-			if (arg5 != Static207.getHeightmapY(Player.plane, arg3 + local42, arg1 + local48) || arg5 != Static207.getHeightmapY(Player.plane, arg3 + local45, local51 + arg1)) {
+			if (arg5 != SceneGraph.getTileHeight(Player.plane, arg3 + local42, arg1 + local48) || arg5 != SceneGraph.getTileHeight(Player.plane, arg3 + local45, local51 + arg1)) {
 				for (local94 = 0; local94 < local68.anInt5295; local94++) {
-					local68.vertexY[local94] += Static207.getHeightmapY(Player.plane, local68.vertexX[local94] + arg3, local68.vertexZ[local94] + arg1) - arg5;
+					local68.vertexY[local94] += SceneGraph.getTileHeight(Player.plane, local68.vertexX[local94] + arg3, local68.vertexZ[local94] + arg1) - arg5;
 				}
 				local68.vertexBuffer.valid = false;
 				local68.bounds.valid = false;
 			}
 		} else {
 			@Pc(142) SoftwareModel local142 = (SoftwareModel) local10;
-			if (arg5 != Static207.getHeightmapY(Player.plane, local42 + arg3, local48 + arg1) || arg5 != Static207.getHeightmapY(Player.plane, arg3 + local45, local51 + arg1)) {
+			if (arg5 != SceneGraph.getTileHeight(Player.plane, local42 + arg3, local48 + arg1) || arg5 != SceneGraph.getTileHeight(Player.plane, arg3 + local45, local51 + arg1)) {
 				for (local94 = 0; local94 < local142.anInt5788; local94++) {
-					local142.anIntArray527[local94] += Static207.getHeightmapY(Player.plane, arg3 + local142.anIntArray528[local94], local142.anIntArray531[local94] + arg1) - arg5;
+					local142.anIntArray527[local94] += SceneGraph.getTileHeight(Player.plane, arg3 + local142.anIntArray528[local94], local142.anIntArray531[local94] + arg1) - arg5;
 				}
 				local142.aBoolean305 = false;
 			}

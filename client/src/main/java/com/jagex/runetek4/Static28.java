@@ -126,6 +126,6 @@ public final class Static28 {
 		Static25.aClass31Array2 = new Scenery[100];
 		Static48.aBooleanArrayArray1 = new boolean[Static277.anInt5855 + Static277.anInt5855 + 1][Static277.anInt5855 + Static277.anInt5855 + 1];
 		Static89.aBooleanArrayArray3 = new boolean[Static277.anInt5855 + Static277.anInt5855 + 2][Static277.anInt5855 + Static277.anInt5855 + 2];
-		Static232.aByteArrayArrayArray13 = new byte[4][Static152.anInt3594][Static99.anInt2550];
+		SceneGraph.aByteArrayArrayArray13 = new byte[4][Static152.anInt3594][Static99.anInt2550];
 	}
 }

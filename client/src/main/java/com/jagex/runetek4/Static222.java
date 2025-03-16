@@ -12,9 +12,6 @@ public final class Static222 {
 	@OriginalMember(owner = "runetek4.client!sa", name = "R", descriptor = "Ljava/awt/runetek4.Font;")
 	public static Font aFont1;
 
-	@OriginalMember(owner = "runetek4.client!sa", name = "Q", descriptor = "[I")
-	public static final int[] cameraModifierJitter = new int[5];
-
 	@OriginalMember(owner = "runetek4.client!sa", name = "W", descriptor = "Z")
 	public static boolean aBoolean246 = true;
 

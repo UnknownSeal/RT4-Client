@@ -15,9 +15,6 @@ public final class Static33 {
 	@OriginalMember(owner = "runetek4.client!cj", name = "e", descriptor = "[[S")
 	public static short[][] aShortArrayArray2;
 
-	@OriginalMember(owner = "runetek4.client!cj", name = "h", descriptor = "Z")
-	public static boolean aBoolean63;
-
 	@OriginalMember(owner = "runetek4.client!cj", name = "n", descriptor = "Lsignlink!im;")
 	public static PrivilegedRequest openUrlRequest;
 

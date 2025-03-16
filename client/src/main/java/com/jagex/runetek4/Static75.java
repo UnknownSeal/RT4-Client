@@ -14,9 +14,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static75 {
 
-	@OriginalMember(owner = "runetek4.client!g", name = "d", descriptor = "I")
-	public static int anInt2119 = 0;
-
 	@OriginalMember(owner = "runetek4.client!g", name = "a", descriptor = "(IZ)V")
 	public static void method1629(@OriginalArg(1) boolean arg0) {
 		Static230.aBoolean250 = arg0;
@@ -252,8 +249,8 @@ public final class Static75 {
 					local27 = local27 * 64;
 					local19 = local19 * 64;
 					local23 = local23 * 64;
-					local317 = new ProjectileAnimation(local45, Player.plane, local23, local19, Static207.getHeightmapY(Player.plane, local23, local19) - local218, client.loop + local228, local232 + client.loop, local236, local247, local39, local224);
-					local317.updateVelocity(local31, client.loop + local228, -local224 + Static207.getHeightmapY(Player.plane, local27, local31), local27);
+					local317 = new ProjectileAnimation(local45, Player.plane, local23, local19, SceneGraph.getTileHeight(Player.plane, local23, local19) - local218, client.loop + local228, local232 + client.loop, local236, local247, local39, local224);
+					local317.updateVelocity(local31, client.loop + local228, -local224 + SceneGraph.getTileHeight(Player.plane, local27, local31), local27);
 					Static217.projectiles.addTail(new ProjectileEntity(local317));
 				}
 			} else if (Static164.packetType == 17) {
@@ -266,7 +263,7 @@ public final class Static75 {
 				if (local23 >= 0 && local19 >= 0 && local23 < 104 && local19 < 104) {
 					local23 = local23 * 128 + 64;
 					local19 = local19 * 128 + 64;
-					@Pc(427) SpotAnim local427 = new SpotAnim(local27, Player.plane, local23, local19, Static207.getHeightmapY(Player.plane, local23, local19) - local31, local39, client.loop);
+					@Pc(427) SpotAnim local427 = new SpotAnim(local27, Player.plane, local23, local19, SceneGraph.getTileHeight(Player.plane, local23, local19) - local31, local39, client.loop);
 					Static99.spotanims.addTail(new SpotAnimEntity(local427));
 				}
 			} else if (Static164.packetType == 179) {
@@ -374,8 +371,8 @@ public final class Static75 {
 						local19 = local19 * 128 + 64;
 						local23 = local23 * 128 + 64;
 						local27 = local27 * 128 + 64;
-						local317 = new ProjectileAnimation(local45, Player.plane, local23, local19, Static207.getHeightmapY(Player.plane, local23, local19) - local218, local228 + client.loop, local232 + client.loop, local236, local247, local39, local224);
-						local317.updateVelocity(local31, client.loop + local228, Static207.getHeightmapY(Player.plane, local27, local31) - local224, local27);
+						local317 = new ProjectileAnimation(local45, Player.plane, local23, local19, SceneGraph.getTileHeight(Player.plane, local23, local19) - local218, local228 + client.loop, local232 + client.loop, local236, local247, local39, local224);
+						local317.updateVelocity(local31, client.loop + local228, SceneGraph.getTileHeight(Player.plane, local27, local31) - local224, local27);
 						Static217.projectiles.addTail(new ProjectileEntity(local317));
 					}
 				} else if (Static164.packetType == 104) {
@@ -436,8 +433,8 @@ public final class Static75 {
 								}
 							}
 						}
-						@Pc(1331) ProjectileAnimation local1331 = new ProjectileAnimation(local218, Player.plane, local23, local19, Static207.getHeightmapY(Player.plane, local23, local19) - local224, local232 + client.loop, local236 + client.loop, local247, local633, local45, local228);
-						local1331.updateVelocity(local31, local232 + client.loop, -local228 + Static207.getHeightmapY(Player.plane, local27, local31), local27);
+						@Pc(1331) ProjectileAnimation local1331 = new ProjectileAnimation(local218, Player.plane, local23, local19, SceneGraph.getTileHeight(Player.plane, local23, local19) - local224, local232 + client.loop, local236 + client.loop, local247, local633, local45, local228);
+						local1331.updateVelocity(local31, local232 + client.loop, -local228 + SceneGraph.getTileHeight(Player.plane, local27, local31), local27);
 						Static217.projectiles.addTail(new ProjectileEntity(local1331));
 					}
 				} else if (Static164.packetType == 97) {

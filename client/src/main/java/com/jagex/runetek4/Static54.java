@@ -40,7 +40,7 @@ public final class Static54 {
 			Rasterizer.setBounds(arg2, arg1, arg2 + arg3.anInt445, arg1 + arg3.anInt459);
 		}
 		if (Static270.anInt5795 != 2 && Static270.anInt5795 != 5 && Static89.aClass3_Sub2_Sub1_5 != null) {
-			@Pc(48) int angle = Static59.minimapAnticheatAngle + Static57.orbitCameraYaw & 0x7FF;
+			@Pc(48) int angle = Static59.minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
 			@Pc(57) int anchorX = PlayerList.self.xFine / 32 + 48;
 			@Pc(67) int anchorY = 464 - PlayerList.self.zFine / 32;
 			if (GlRenderer.enabled) {
@@ -59,12 +59,12 @@ public final class Static54 {
 			if (Static235.aMapElementTypeList_2 != null) {
 				for (@Pc(117) int local117 = 0; local117 < Static235.aMapElementTypeList_2.anInt5074; local117++) {
 					if (Static235.aMapElementTypeList_2.method3892(local117)) {
-						flagX = (Static235.aMapElementTypeList_2.aShortArray73[local117] - Static225.originX) * 4 + 2 - PlayerList.self.xFine / 32;
+						flagX = (Static235.aMapElementTypeList_2.aShortArray73[local117] - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
 						local150 = MathUtils.anIntArray223[angle];
 						local154 = MathUtils.anIntArray225[angle];
 						@Pc(156) Font local156 = Static114.aClass3_Sub2_Sub9_42;
 						@Pc(164) int local164 = local150 * 256 / (Static273.minimapZoom + 256);
-						flagZ = (Static235.aMapElementTypeList_2.aShortArray72[local117] - Static142.originZ) * 4 + 2 - PlayerList.self.zFine / 32;
+						flagZ = (Static235.aMapElementTypeList_2.aShortArray72[local117] - Camera.originZ) * 4 + 2 - PlayerList.self.zFine / 32;
 						@Pc(189) int local189 = local154 * 256 / (Static273.minimapZoom + 256);
 						npcZ = flagZ * local189 - flagX * local164 >> 16;
 						if (Static235.aMapElementTypeList_2.method3894(local117) == 1) {
@@ -184,8 +184,8 @@ public final class Static54 {
 						}
 					}
 					if (local770.headIconDrawType == 2) {
-						local154 = (local770.anInt4053 - Static225.originX) * 4 + 2 - PlayerList.self.xFine / 32;
-						npcX = (-Static142.originZ + local770.anInt4046) * 4 + 2 - PlayerList.self.zFine / 32;
+						local154 = (local770.anInt4053 - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
+						npcX = (-Camera.originZ + local770.anInt4046) * 4 + 2 - PlayerList.self.zFine / 32;
 						Static97.drawMinimapMark(local770.anInt4048, arg1, arg2, local154, npcX, arg3);
 					}
 					if (local770.headIconDrawType == 10 && local770.hintIconNpcTarget >= 0 && Static159.players.length > local770.hintIconNpcTarget) {

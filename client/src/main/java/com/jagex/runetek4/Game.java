@@ -159,9 +159,9 @@ public class Game {
         if (Static16.anInt551 > 0) {
             Static16.anInt551--;
         }
-        if (Static33.aBoolean63) {
+        if (Preferences.aBoolean63) {
             for (i = 0; i < Static182.keyQueueSize; i++) {
-                offset = Static227.keyCodes[i];
+                offset = InterfaceList.keyCodes[i];
                 if (offset == 98 || offset == 99 || offset == 96 || offset == 97) {
                     Static197.aBoolean228 = true;
                     break;
@@ -174,8 +174,8 @@ public class Game {
             Static16.anInt551 = 20;
             Static197.aBoolean228 = false;
             Static6.outboundBuffer.pIsaac1(21);
-            Static6.outboundBuffer.p2_alt2(Static72.orbitCameraPitch);
-            Static6.outboundBuffer.p2_alt1(Static57.orbitCameraYaw);
+            Static6.outboundBuffer.p2_alt2(Camera.orbitCameraPitch);
+            Static6.outboundBuffer.p2_alt1(Camera.orbitCameraYaw);
         }
         if (Static26.focus && !Static67.prevFocus) {
             Static67.prevFocus = true;
@@ -413,7 +413,7 @@ public class Game {
         @Pc(1508) Component local1508 = Static43.aClass13_11;
         Static43.aClass13_11 = null;
         while (Static25.nextKey() && Static182.keyQueueSize < 128) {
-            Static227.keyCodes[Static182.keyQueueSize] = Static102.keyCode;
+            InterfaceList.keyCodes[Static182.keyQueueSize] = Static102.keyCode;
             Static205.keyChars[Static182.keyQueueSize] = Static193.keyChar;
             Static182.keyQueueSize++;
         }
@@ -453,11 +453,11 @@ public class Game {
                                                     y = 3;
                                                 }
                                                 // Cheat
-                                                Static61.teleport(PlayerList.self.pathTileX[0] + Static225.originX, PlayerList.self.pathTileZ[0] + Static142.originZ, y);
+                                                Static61.teleport(PlayerList.self.pathTileX[0] + Camera.originX, PlayerList.self.pathTileZ[0] + Camera.originZ, y);
                                             }
                                             if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
                                                 if (Static56.clickTileX != -1) {
-                                                    Static61.teleport(Static225.originX + Static56.clickTileX, Static142.originZ - -Static116.anInt2954, Player.plane);
+                                                    Static61.teleport(Camera.originX + Static56.clickTileX, Camera.originZ - -Static116.anInt2954, Player.plane);
                                                 }
                                                 Static187.anInt4422 = 0;
                                                 Static125.anInt3096 = 0;
@@ -465,9 +465,9 @@ public class Game {
                                                 if (Static56.clickTileX != -1) {
                                                     Static6.outboundBuffer.pIsaac1(131);
                                                     Static6.outboundBuffer.p4_alt3(Static98.anInt2512);
-                                                    Static6.outboundBuffer.p2_alt2(Static225.originX + Static56.clickTileX);
+                                                    Static6.outboundBuffer.p2_alt2(Camera.originX + Static56.clickTileX);
                                                     Static6.outboundBuffer.p2_alt3(Static15.anInt506);
-                                                    Static6.outboundBuffer.p2_alt2(Static116.anInt2954 + Static142.originZ);
+                                                    Static6.outboundBuffer.p2_alt2(Static116.anInt2954 + Camera.originZ);
                                                     Static70.crossMode = 1;
                                                     Static17.crossCycle = 0;
                                                     Static25.y = Static60.mouseClickY;
@@ -477,8 +477,8 @@ public class Game {
                                             } else if (Static187.anInt4422 == 2) {
                                                 if (Static56.clickTileX != -1) {
                                                     Static6.outboundBuffer.pIsaac1(179);
-                                                    Static6.outboundBuffer.p2(Static142.originZ + Static116.anInt2954);
-                                                    Static6.outboundBuffer.p2(Static56.clickTileX + Static225.originX);
+                                                    Static6.outboundBuffer.p2(Camera.originZ + Static116.anInt2954);
+                                                    Static6.outboundBuffer.p2(Static56.clickTileX + Camera.originX);
                                                     Static17.crossCycle = 0;
                                                     Static70.crossMode = 1;
                                                     Static122.x = aClass6.mouseClickX;
@@ -522,12 +522,12 @@ public class Game {
                                                     Static43.method1143(Static43.aClass13_11);
                                                 }
                                             }
-                                            if (Static227.anInt5096 == 1) {
-                                                Static250.method4273();
-                                            } else if (Static227.anInt5096 == 2) {
-                                                Static125.method2450();
+                                            if (Camera.cameraType == 1) {
+                                                Camera.method4273();
+                                            } else if (Camera.cameraType == 2) {
+                                                Camera.updateLockedCamera();
                                             } else {
-                                                Static40.method1008();
+                                                Camera.updateLoginScreenCamera();
                                             }
                                             for (y = 0; y < 5; y++) {
                                                 @Pc(2001) int local2001 = Static31.cameraModifierCycle[y]++;
@@ -554,13 +554,13 @@ public class Game {
                                                 Static143.cameraOffsetCycle = 0;
                                                 rand = (int) (Math.random() * 8.0D);
                                                 if ((rand & 0x4) == 4) {
-                                                    Static230.cameraAnticheatAngle += Static220.cameraOffsetYawModifier;
+                                                    Camera.cameraAnticheatAngle += Static220.cameraOffsetYawModifier;
                                                 }
                                                 if ((rand & 0x2) == 2) {
-                                                    Static206.cameraAnticheatOffsetZ += Static20.cameraOffsetZModifier;
+                                                    Camera.cameraAnticheatOffsetZ += Static20.cameraOffsetZModifier;
                                                 }
                                                 if ((rand & 0x1) == 1) {
-                                                    Static132.cameraAnticheatOffsetX += Static248.cameraOffsetXModifier;
+                                                    Camera.cameraAnticheatOffsetX += Camera.cameraOffsetXModifier;
                                                 }
                                             }
                                             if (Static82.minimapOffsetCycle > 500) {
@@ -573,8 +573,8 @@ public class Game {
                                                     Static273.minimapZoom += Static179.minimapZoomModifier;
                                                 }
                                             }
-                                            if (Static132.cameraAnticheatOffsetX < -50) {
-                                                Static248.cameraOffsetXModifier = 2;
+                                            if (Camera.cameraAnticheatOffsetX < -50) {
+                                                Camera.cameraOffsetXModifier = 2;
                                             }
                                             if (Static59.minimapAnticheatAngle < -60) {
                                                 Static263.minimapAngleModifier = 2;
@@ -582,19 +582,19 @@ public class Game {
                                             if (Static273.minimapZoom < -20) {
                                                 Static179.minimapZoomModifier = 1;
                                             }
-                                            if (Static206.cameraAnticheatOffsetZ < -55) {
+                                            if (Camera.cameraAnticheatOffsetZ < -55) {
                                                 Static20.cameraOffsetZModifier = 2;
                                             }
-                                            if (Static206.cameraAnticheatOffsetZ > 55) {
+                                            if (Camera.cameraAnticheatOffsetZ > 55) {
                                                 Static20.cameraOffsetZModifier = -2;
                                             }
-                                            if (Static230.cameraAnticheatAngle < -40) {
+                                            if (Camera.cameraAnticheatAngle < -40) {
                                                 Static220.cameraOffsetYawModifier = 1;
                                             }
-                                            if (Static132.cameraAnticheatOffsetX > 50) {
-                                                Static248.cameraOffsetXModifier = -2;
+                                            if (Camera.cameraAnticheatOffsetX > 50) {
+                                                Camera.cameraOffsetXModifier = -2;
                                             }
-                                            if (Static230.cameraAnticheatAngle > 40) {
+                                            if (Camera.cameraAnticheatAngle > 40) {
                                                 Static220.cameraOffsetYawModifier = -1;
                                             }
                                             if (Static273.minimapZoom > 10) {
@@ -765,7 +765,7 @@ public class Game {
                 if (!npc.type.active) {
                     bitset |= Long.MIN_VALUE;
                 }
-                npc.y = Static207.getHeightmapY(Player.plane, npc.xFine, npc.zFine);
+                npc.y = SceneGraph.getTileHeight(Player.plane, npc.xFine, npc.zFine);
                 Static43.addTemporary(Player.plane, npc.xFine, npc.zFine, npc.y, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.seqStretches);
             }
         }
@@ -899,11 +899,11 @@ public class Game {
                     }
                 }
                 if (player.attachment == null || client.loop < player.attachmentSetAt || player.attachmentResetAt <= client.loop) {
-                    player.y = Static207.getHeightmapY(Player.plane, player.xFine, player.zFine);
+                    player.y = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
                     Static43.addTemporary(Player.plane, player.xFine, player.zFine, player.y, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
                 } else {
                     player.lowMemory = false;
-                    player.y = Static207.getHeightmapY(Player.plane, player.xFine, player.zFine);
+                    player.y = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
                     Static184.addTemporary(Player.plane, player.xFine, player.zFine, player.y, player, player.anInt3381, id, player.atachmentX0, player.attachmentZ0, player.attachmentX1, player.attachmentZ1);
                 }
             }
@@ -929,10 +929,10 @@ public class Game {
         BZip2State.anInt4363 = -1;
         AreaSoundManager.clear(true);
         Static230.aBoolean250 = false;
-        Static142.originZ = 0;
+        Camera.originZ = 0;
         Static80.anInt4701 = 0;
         Static52.anInt1695 = 0;
-        Static225.originX = 0;
+        Camera.originX = 0;
         for (local19 = 0; local19 < Static143.aClass102Array1.length; local19++) {
             Static143.aClass102Array1[local19] = null;
         }
@@ -952,7 +952,7 @@ public class Game {
                 }
             }
         }
-        Static35.method902();
+        Camera.resetCameraEffects();
         Static189.anInt4443 = 0;
         Static8.resetVarBits();
         Static73.method1596(true);
@@ -1161,7 +1161,7 @@ public class Game {
                 if (projAnim.target > 0) {
                     @Pc(54) Npc npc = NpcList.npcs[projAnim.target - 1];
                     if (npc != null && npc.xFine >= 0 && npc.xFine < 13312 && npc.zFine >= 0 && npc.zFine < 13312) {
-                        projAnim.updateVelocity(npc.zFine, client.loop, Static207.getHeightmapY(projAnim.level, npc.xFine, npc.zFine) - projAnim.anInt4805, npc.xFine);
+                        projAnim.updateVelocity(npc.zFine, client.loop, SceneGraph.getTileHeight(projAnim.level, npc.xFine, npc.zFine) - projAnim.anInt4805, npc.xFine);
                     }
                 }
                 if (projAnim.target < 0) {
@@ -1173,7 +1173,7 @@ public class Game {
                         player = Static159.players[index];
                     }
                     if (player != null && player.xFine >= 0 && player.xFine < 13312 && player.zFine >= 0 && player.zFine < 13312) {
-                        projAnim.updateVelocity(player.zFine, client.loop, Static207.getHeightmapY(projAnim.level, player.xFine, player.zFine) - projAnim.anInt4805, player.xFine);
+                        projAnim.updateVelocity(player.zFine, client.loop, SceneGraph.getTileHeight(projAnim.level, player.xFine, player.zFine) - projAnim.anInt4805, player.xFine);
                     }
                 }
                 projAnim.update(Static178.sceneDelta);

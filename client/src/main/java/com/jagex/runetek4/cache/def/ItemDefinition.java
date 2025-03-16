@@ -660,9 +660,6 @@ public final class ItemDefinition {
 	@OriginalMember(owner = "runetek4.client!gg", name = "Z", descriptor = "I")
 	public static int anInt2222;
 
-	@OriginalMember(owner = "runetek4.client!gg", name = "bb", descriptor = "I")
-	public static int anInt2223;
-
 	@OriginalMember(owner = "runetek4.client!gg", name = "U", descriptor = "I")
 	public static int modeWhat = 0;
 

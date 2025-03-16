@@ -21,9 +21,6 @@ public final class Static176 {
 	@OriginalMember(owner = "runetek4.client!ob", name = "f", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_76;
 
-	@OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "[Z")
-	public static final boolean[] cameraModifierEnabled = new boolean[5];
-
 	@OriginalMember(owner = "runetek4.client!ob", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_800 = Static28.parse("");
 

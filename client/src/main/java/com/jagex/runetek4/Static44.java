@@ -48,7 +48,7 @@ public final class Static44 {
 			}
 		}
 		Static102.method2073();
-		Static227.anInt5096 = 1;
+		Camera.cameraType = 1;
 		Game.processGameStatus(30);
 		for (local35 = 0; local35 < 100; local35++) {
 			Static186.aBooleanArray100[local35] = true;

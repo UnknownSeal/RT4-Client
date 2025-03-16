@@ -139,7 +139,7 @@ public final class Static278 {
 			return;
 		}
 		if (!arg2) {
-			Static12.aByteArrayArrayArray2[arg7][arg5][arg4] = 0;
+			SceneGraph.renderFlags[arg7][arg5][arg4] = 0;
 		}
 		while (true) {
 			local32 = arg3.g1();
@@ -176,7 +176,7 @@ public final class Static278 {
 			} else if (local32 > 81) {
 				Static253.levelTileUnderlayIds[arg7][arg5][arg4] = (byte) (local32 - 81);
 			} else if (!arg2) {
-				Static12.aByteArrayArrayArray2[arg7][arg5][arg4] = (byte) (local32 - 49);
+				SceneGraph.renderFlags[arg7][arg5][arg4] = (byte) (local32 - 49);
 			}
 		}
 	}

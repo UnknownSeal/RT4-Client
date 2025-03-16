@@ -7,14 +7,8 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static57 {
 
-	@OriginalMember(owner = "runetek4.client!eg", name = "a", descriptor = "I")
-	public static int anInt1744;
-
 	@OriginalMember(owner = "runetek4.client!eg", name = "t", descriptor = "I")
 	public static int anInt1757;
-
-	@OriginalMember(owner = "runetek4.client!eg", name = "d", descriptor = "I")
-	public static int orbitCameraYaw = 0;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "e", descriptor = "Lclient!i;")
 	public static final PacketBit in = new PacketBit(65536);

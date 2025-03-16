@@ -132,8 +132,8 @@ public final class Static78 {
 		for (local14 = 0; local14 < Static273.aByteArrayArray13.length; local14++) {
 			@Pc(294) byte[] local294 = Static156.aByteArrayArray11[local14];
 			if (local294 != null) {
-				local309 = (Static238.anIntArray470[local14] & 0xFF) * 64 - Static142.originZ;
-				local320 = (Static238.anIntArray470[local14] >> 8) * 64 - Static225.originX;
+				local309 = (Static238.anIntArray470[local14] & 0xFF) * 64 - Camera.originZ;
+				local320 = (Static238.anIntArray470[local14] >> 8) * 64 - Camera.originX;
 				if (Static230.aBoolean250) {
 					local309 = 10;
 					local320 = 10;
@@ -143,8 +143,8 @@ public final class Static78 {
 			if (GlRenderer.enabled) {
 				local294 = Static19.aByteArrayArray4[local14];
 				if (local294 != null) {
-					local320 = (Static238.anIntArray470[local14] >> 8) * 64 - Static225.originX;
-					local309 = (Static238.anIntArray470[local14] & 0xFF) * 64 - Static142.originZ;
+					local320 = (Static238.anIntArray470[local14] >> 8) * 64 - Camera.originX;
+					local309 = (Static238.anIntArray470[local14] & 0xFF) * 64 - Camera.originZ;
 					if (Static230.aBoolean250) {
 						local309 = 10;
 						local320 = 10;
@@ -179,7 +179,7 @@ public final class Static78 {
 		for (local427 = 0; local427 < 4; local427++) {
 			for (local320 = 0; local320 < 104; local320++) {
 				for (local309 = 0; local309 < 104; local309++) {
-					Static12.aByteArrayArrayArray2[local427][local320][local309] = 0;
+					SceneGraph.renderFlags[local427][local320][local309] = 0;
 				}
 			}
 		}

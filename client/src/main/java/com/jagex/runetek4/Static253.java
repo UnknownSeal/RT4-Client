@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.enumtype.EnumType;
@@ -54,58 +53,58 @@ public final class Static253 {
 		}
 		@Pc(59) int pitch;
 		@Pc(57) int local57;
-		if (Static227.anInt5096 == 1) {
-			local57 = Static230.cameraAnticheatAngle + Static57.orbitCameraYaw & 0x7FF;
-			pitch = Static72.orbitCameraPitch;
-			if (pitch < Static234.cameraPitchClamp / 256) {
-				pitch = Static234.cameraPitchClamp / 256;
+		if (Camera.cameraType == 1) {
+			local57 = Camera.cameraAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
+			pitch = Camera.orbitCameraPitch;
+			if (pitch < Camera.cameraPitchClamp / 256) {
+				pitch = Camera.cameraPitchClamp / 256;
 			}
-			if (Static176.cameraModifierEnabled[4] && Static276.cameraModifierWobbleScale[4] + 128 > pitch) {
-				pitch = Static276.cameraModifierWobbleScale[4] + 128;
+			if (Camera.cameraModifierEnabled[4] && Camera.cameraAmplitude[4] + 128 > pitch) {
+				pitch = Camera.cameraAmplitude[4] + 128;
 			}
-			Static18.orbitCamera(ItemDefinition.anInt2223, arg0, Static207.getHeightmapY(Player.plane, PlayerList.self.xFine, PlayerList.self.zFine) - 50, 600 - -(pitch * 3), local57, Static111.anInt2900, pitch);
+			Static18.orbitCamera(Camera.cameraX, arg0, SceneGraph.getTileHeight(Player.plane, PlayerList.self.xFine, PlayerList.self.zFine) - 50, 600 - -(pitch * 3), local57, Camera.cameraZ, pitch);
 		}
-		local57 = Static5.cameraY;
-		pitch = Static138.cameraX;
-		@Pc(121) int cameraZ = Static134.cameraZ;
-		@Pc(123) int cameraPitch = Static240.cameraPitch;
-		@Pc(125) int cameraYaw = Static184.cameraYaw;
+		local57 = Camera.cameraY;
+		pitch = Camera.renderX;
+		@Pc(121) int cameraZ = Camera.renderZ;
+		@Pc(123) int cameraPitch = Camera.cameraPitch;
+		@Pc(125) int cameraYaw = Camera.cameraYaw;
 		@Pc(127) int type;
 		@Pc(171) int jitter;
 		for (type = 0; type < 5; type++) {
-			if (Static176.cameraModifierEnabled[type]) {
-				jitter = (int) ((double) -Static222.cameraModifierJitter[type] + (double) (Static222.cameraModifierJitter[type] * 2 + 1) * Math.random() + Math.sin((double) Static31.cameraModifierCycle[type] * ((double) Class6.cameraModifierWobbleSpeed[type] / 100.0D)) * (double) Static276.cameraModifierWobbleScale[type]);
+			if (Camera.cameraModifierEnabled[type]) {
+				jitter = (int) ((double) -Camera.cameraModifierJitter[type] + (double) (Camera.cameraModifierJitter[type] * 2 + 1) * Math.random() + Math.sin((double) Static31.cameraModifierCycle[type] * ((double) Camera.cameraFrequency[type] / 100.0D)) * (double) Camera.cameraAmplitude[type]);
 				if (type == 3) {
-					Static184.cameraYaw = jitter + Static184.cameraYaw & 0x7FF;
+					Camera.cameraYaw = jitter + Camera.cameraYaw & 0x7FF;
 				}
 				if (type == 4) {
-					Static240.cameraPitch += jitter;
-					if (Static240.cameraPitch < 128) {
-						Static240.cameraPitch = 128;
+					Camera.cameraPitch += jitter;
+					if (Camera.cameraPitch < 128) {
+						Camera.cameraPitch = 128;
 					}
-					if (Static240.cameraPitch > 383) {
-						Static240.cameraPitch = 383;
+					if (Camera.cameraPitch > 383) {
+						Camera.cameraPitch = 383;
 					}
 				}
 				if (type == 2) {
-					Static134.cameraZ += jitter;
+					Camera.renderZ += jitter;
 				}
 				if (type == 1) {
-					Static5.cameraY += jitter;
+					Camera.cameraY += jitter;
 				}
 				if (type == 0) {
-					Static138.cameraX += jitter;
+					Camera.renderX += jitter;
 				}
 			}
 		}
 		Static252.method4302();
 		if (GlRenderer.enabled) {
 			Static46.method1187(arg2, arg4, arg2 + arg3, arg4 - -arg0);
-			@Pc(248) float local248 = (float) Static240.cameraPitch * 0.17578125F;
-			@Pc(253) float local253 = (float) Static184.cameraYaw * 0.17578125F;
-			if (Static227.anInt5096 == 3) {
-				local248 = Static146.aFloat15 * 360.0F / 6.2831855F;
-				local253 = Static84.aFloat10 * 360.0F / 6.2831855F;
+			@Pc(248) float local248 = (float) Camera.cameraPitch * 0.17578125F;
+			@Pc(253) float local253 = (float) Camera.cameraYaw * 0.17578125F;
+			if (Camera.cameraType == 3) {
+				local248 = Camera.aFloat15 * 360.0F / 6.2831855F;
+				local253 = Camera.aFloat10 * 360.0F / 6.2831855F;
 			}
 			GlRenderer.method4171(arg2, arg4, arg3, arg0, arg3 / 2 + arg2, arg4 - -(arg0 / 2), local248, local253, Static223.anInt5029, Static223.anInt5029);
 		} else {
@@ -132,15 +131,15 @@ public final class Static253 {
 			GlRenderer.setDepthTestEnabled(true);
 			GlRenderer.setFogEnabled(true);
 			if (Static244.gamestate == 10) {
-				jitter = Static103.method2235(Static178.sceneDelta, Static134.cameraZ >> 10, Static113.anInt4609, Static138.cameraX >> 10);
+				jitter = Static103.method2235(Static178.sceneDelta, Camera.renderZ >> 10, Static113.anInt4609, Camera.renderX >> 10);
 			} else {
 				jitter = Static103.method2235(Static178.sceneDelta, PlayerList.self.pathTileZ[0] >> 3, Static113.anInt4609, PlayerList.self.pathTileX[0] >> 3);
 			}
 			Static120.method2394(client.loop, !Static11.aBoolean15);
 			GlRenderer.clearColorAndDepthBuffers(jitter);
-			Static143.method2731(Static240.cameraPitch, Static134.cameraZ, Static5.cameraY, Static138.cameraX, Static184.cameraYaw);
+			Static143.method2731(Camera.cameraPitch, Camera.renderZ, Camera.cameraY, Camera.renderX, Camera.cameraYaw);
 			GlRenderer.anInt5323 = client.loop;
-			Static156.method2954(Static138.cameraX, Static5.cameraY, Static134.cameraZ, Static240.cameraPitch, Static184.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
+			Static156.method2954(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
 			Static263.aBoolean299 = true;
 			Static120.method2390();
 			Static143.method2731(0, 0, 0, 0, 0);
@@ -150,7 +149,7 @@ public final class Static253 {
 			ClientScriptRunner.method4000(arg3, arg2, arg0, Static223.anInt5029, Static223.anInt5029, arg4);
 		} else {
 			Rasterizer.drawFilledRectangle(arg2, arg4, arg3, arg0, 0);
-			Static156.method2954(Static138.cameraX, Static5.cameraY, Static134.cameraZ, Static240.cameraPitch, Static184.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
+			Static156.method2954(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
 			Static107.method2261();
 			Static223.method3858();
 			Static142.method2726(arg4, arg3, arg2, 256, arg0, 256);
@@ -158,11 +157,11 @@ public final class Static253 {
 		}
 		((Js5GlTextureProvider) Pix3D.anInterface1_2).method3239(Static178.sceneDelta);
 		Static115.method2310(arg3, arg4, arg0, arg2);
-		Static240.cameraPitch = cameraPitch;
-		Static134.cameraZ = cameraZ;
-		Static5.cameraY = local57;
-		Static138.cameraX = pitch;
-		Static184.cameraYaw = cameraYaw;
+		Camera.cameraPitch = cameraPitch;
+		Camera.renderZ = cameraZ;
+		Camera.cameraY = local57;
+		Camera.renderX = pitch;
+		Camera.cameraYaw = cameraYaw;
 		if (Static19.aBoolean43 && client.js5NetQueue.getUrgentRequestCount() == 0) {
 			Static19.aBoolean43 = false;
 		}

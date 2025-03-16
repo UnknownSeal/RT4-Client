@@ -15,12 +15,6 @@ public final class Static248 {
 	@OriginalMember(owner = "runetek4.client!uc", name = "d", descriptor = "[[[I")
 	public static int[][][] anIntArrayArrayArray17;
 
-	@OriginalMember(owner = "runetek4.client!uc", name = "f", descriptor = "I")
-	public static int anInt4232;
-
-	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "I")
-	public static int cameraOffsetXModifier = 2;
-
 	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(IB)Z")
 	public static boolean method3288(@OriginalArg(0) int arg0) {
 		Static189.anInt4443 = arg0 + 1 & 0xFFFF;

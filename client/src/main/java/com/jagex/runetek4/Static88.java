@@ -1459,8 +1459,8 @@ public final class Static88 {
 									}
 									if (scriptOpcode == 3308) {
 										interfaceData = Player.plane;
-										interfaceType = Static225.originX + (PlayerList.self.xFine >> 7);
-										childCount = (PlayerList.self.zFine >> 7) + Static142.originZ;
+										interfaceType = Camera.originX + (PlayerList.self.xFine >> 7);
+										childCount = (PlayerList.self.zFine >> 7) + Camera.originZ;
 										Static254.scriptIntValues[intValueIndex++] = (interfaceData << 28) - (-(interfaceType << 14) - childCount);
 										continue;
 									}
@@ -3023,7 +3023,7 @@ public final class Static88 {
 														interfaceData = Static254.scriptIntValues[intValueIndex];
 														interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 														if (interfaceData >= 0 && interfaceData < 2) {
-															Static107.anIntArrayArrayArray9[interfaceData] = new int[interfaceType << 1][4];
+															Camera.anIntArrayArrayArray9[interfaceData] = new int[interfaceType << 1][4];
 														}
 														continue;
 													}
@@ -3036,15 +3036,15 @@ public final class Static88 {
 														start = Static254.scriptIntValues[intValueIndex + 4];
 														@Pc(8108) int local8108 = Static254.scriptIntValues[intValueIndex + 6];
 														childId = Static254.scriptIntValues[intValueIndex + 5];
-														if (interfaceData >= 0 && interfaceData < 2 && Static107.anIntArrayArrayArray9[interfaceData] != null && interfaceType >= 0 && Static107.anIntArrayArrayArray9[interfaceData].length > interfaceType) {
-															Static107.anIntArrayArrayArray9[interfaceData][interfaceType] = new int[] { (childCount >> 14 & 0x3FFF) * 128, local652, (childCount & 0x3FFF) * 128, local8108 };
-															Static107.anIntArrayArrayArray9[interfaceData][interfaceType + 1] = new int[] { (start >> 14 & 0x3FFF) * 128, childId, (start & 0x3FFF) * 128 };
+														if (interfaceData >= 0 && interfaceData < 2 && Camera.anIntArrayArrayArray9[interfaceData] != null && interfaceType >= 0 && Camera.anIntArrayArrayArray9[interfaceData].length > interfaceType) {
+															Camera.anIntArrayArrayArray9[interfaceData][interfaceType] = new int[] { (childCount >> 14 & 0x3FFF) * 128, local652, (childCount & 0x3FFF) * 128, local8108 };
+															Camera.anIntArrayArrayArray9[interfaceData][interfaceType + 1] = new int[] { (start >> 14 & 0x3FFF) * 128, childId, (start & 0x3FFF) * 128 };
 														}
 														continue;
 													}
 													if (scriptOpcode == 5407) {
 														intValueIndex--;
-														interfaceData = Static107.anIntArrayArrayArray9[Static254.scriptIntValues[intValueIndex]].length >> 1;
+														interfaceData = Camera.anIntArrayArrayArray9[Static254.scriptIntValues[intValueIndex]].length >> 1;
 														Static254.scriptIntValues[intValueIndex++] = interfaceData;
 														continue;
 													}
@@ -3165,7 +3165,7 @@ public final class Static88 {
 														local652 = Static254.scriptIntValues[intValueIndex + 3];
 														childCount = Static254.scriptIntValues[intValueIndex + 2];
 														interfaceType = Static254.scriptIntValues[intValueIndex + 1];
-														Static141.method2722(false, childCount, interfaceType, local652, (interfaceData & 0x3FFF) - Static142.originZ, (interfaceData >> 14 & 0x3FFF) - Static225.originX);
+														Camera.method2722(false, childCount, interfaceType, local652, (interfaceData & 0x3FFF) - Camera.originZ, (interfaceData >> 14 & 0x3FFF) - Camera.originX);
 														continue;
 													}
 													if (scriptOpcode == 5501) {
@@ -3174,7 +3174,7 @@ public final class Static88 {
 														interfaceData = Static254.scriptIntValues[intValueIndex];
 														local652 = Static254.scriptIntValues[intValueIndex + 3];
 														childCount = Static254.scriptIntValues[intValueIndex + 2];
-														Static260.method3849(interfaceType, (interfaceData & 0x3FFF) - Static142.originZ, childCount, (interfaceData >> 14 & 0x3FFF) - Static225.originX, local652);
+														Camera.method3849(interfaceType, (interfaceData & 0x3FFF) - Camera.originZ, childCount, (interfaceData >> 14 & 0x3FFF) - Camera.originX, local652);
 														continue;
 													}
 													if (scriptOpcode == 5502) {
@@ -3183,49 +3183,49 @@ public final class Static88 {
 														if (interfaceData >= 2) {
 															throw new RuntimeException();
 														}
-														Static155.anInt3718 = interfaceData;
+														Camera.anInt3718 = interfaceData;
 														interfaceType = Static254.scriptIntValues[intValueIndex + 1];
-														if (Static107.anIntArrayArrayArray9[Static155.anInt3718].length >> 1 <= interfaceType + 1) {
+														if (Camera.anIntArrayArrayArray9[Camera.anInt3718].length >> 1 <= interfaceType + 1) {
 															throw new RuntimeException();
 														}
-														Static127.anInt3125 = interfaceType;
-														ClientScriptRunner.anInt5224 = 0;
-														Static228.anInt5101 = Static254.scriptIntValues[intValueIndex + 2];
-														Static114.anInt5843 = Static254.scriptIntValues[intValueIndex + 3];
+														Camera.anInt3125 = interfaceType;
+														Camera.anInt5224 = 0;
+														Camera.anInt5101 = Static254.scriptIntValues[intValueIndex + 2];
+														Camera.anInt5843 = Static254.scriptIntValues[intValueIndex + 3];
 														childCount = Static254.scriptIntValues[intValueIndex + 4];
 														if (childCount >= 2) {
 															throw new RuntimeException();
 														}
-														Static52.anInt1694 = childCount;
+														Camera.anInt1694 = childCount;
 														local652 = Static254.scriptIntValues[intValueIndex + 5];
-														if (Static107.anIntArrayArrayArray9[Static52.anInt1694].length >> 1 <= local652 + 1) {
+														if (Camera.anIntArrayArrayArray9[Camera.anInt1694].length >> 1 <= local652 + 1) {
 															throw new RuntimeException();
 														}
-														Static75.anInt2119 = local652;
-														Static227.anInt5096 = 3;
+														Camera.anInt2119 = local652;
+														Camera.cameraType = 3;
 														continue;
 													}
 													if (scriptOpcode == 5503) {
-														Static35.method902();
+														Camera.resetCameraEffects();
 														continue;
 													}
 													if (scriptOpcode == 5504) {
 														intValueIndex -= 2;
-														Static72.orbitCameraPitch = Static254.scriptIntValues[intValueIndex];
-														Static57.orbitCameraYaw = Static254.scriptIntValues[intValueIndex + 1];
-														if (Static227.anInt5096 == 2) {
-															Static184.cameraYaw = Static57.orbitCameraYaw;
-															Static240.cameraPitch = Static72.orbitCameraPitch;
+														Camera.orbitCameraPitch = Static254.scriptIntValues[intValueIndex];
+														Camera.orbitCameraYaw = Static254.scriptIntValues[intValueIndex + 1];
+														if (Camera.cameraType == 2) {
+															Camera.cameraYaw = Camera.orbitCameraYaw;
+															Camera.cameraPitch = Camera.orbitCameraPitch;
 														}
-														SceneCamera.setMaxSurroundingTerrainHeight();
+														SceneCamera.clampCameraAngle();
 														continue;
 													}
 													if (scriptOpcode == 5505) {
-														Static254.scriptIntValues[intValueIndex++] = Static72.orbitCameraPitch;
+														Static254.scriptIntValues[intValueIndex++] = Camera.orbitCameraPitch;
 														continue;
 													}
 													if (scriptOpcode == 5506) {
-														Static254.scriptIntValues[intValueIndex++] = Static57.orbitCameraYaw;
+														Static254.scriptIntValues[intValueIndex++] = Camera.orbitCameraYaw;
 														continue;
 													}
 												} else if (scriptOpcode < 5700) {
@@ -3886,12 +3886,12 @@ public final class Static88 {
 												} else if (scriptOpcode < 6700) {
 													if (scriptOpcode == 6600) {
 														intValueIndex--;
-														Static33.aBoolean63 = Static254.scriptIntValues[intValueIndex] == 1;
+														Preferences.aBoolean63 = Static254.scriptIntValues[intValueIndex] == 1;
 														Preferences.write(GameShell.signLink);
 														continue;
 													}
 													if (scriptOpcode == 6601) {
-														Static254.scriptIntValues[intValueIndex++] = Static33.aBoolean63 ? 1 : 0;
+														Static254.scriptIntValues[intValueIndex++] = Preferences.aBoolean63 ? 1 : 0;
 														continue;
 													}
 												}

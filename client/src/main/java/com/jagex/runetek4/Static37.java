@@ -57,8 +57,8 @@ public final class Static37 {
 			}
 		}
 		if ((e.anInt3382 != 0 || e.anInt3363 != 0) && (e.pathLength == 0 || e.anInt3417 > 0)) {
-			index = e.xFine - (e.anInt3382 - Static225.originX - Static225.originX) * 64;
-			dstX = e.zFine - (e.anInt3363 - Static142.originZ - Static142.originZ) * 64;
+			index = e.xFine - (e.anInt3382 - Camera.originX - Camera.originX) * 64;
+			dstX = e.zFine - (e.anInt3363 - Camera.originZ - Camera.originZ) * 64;
 			if (index != 0 || dstX != 0) {
 				e.dstYaw = (int) (Math.atan2((double) index, (double) dstX) * 325.949D) & 0x7FF;
 			}

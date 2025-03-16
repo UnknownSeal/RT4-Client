@@ -11,9 +11,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static84 {
 
-	@OriginalMember(owner = "runetek4.client!gk", name = "d", descriptor = "F")
-	public static float aFloat10;
-
 	@OriginalMember(owner = "runetek4.client!gk", name = "e", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_35;
 

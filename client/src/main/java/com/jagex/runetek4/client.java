@@ -13,7 +13,7 @@ import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
-import com.jagex.runetek4.cache.CacheIndex;
+import com.jagex.runetek4.cache.Cache;
 import com.jagex.runetek4.game.config.cursortype.CursorType;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.Npc;
@@ -54,7 +54,7 @@ public final class client extends GameShell {
 	@OriginalMember(owner = "client!pf", name = "f", descriptor = "Lclient!en;")
 	public static BufferedFile cacheMasterIndex;
 	@OriginalMember(owner = "client!li", name = "l", descriptor = "Lclient!ge;")
-	public static CacheIndex masterCacheIndex;
+	public static Cache masterCache;
 	@OriginalMember(owner = "runetek4.client!fk", name = "q", descriptor = "Lclient!uc;")
 	public static MouseWheel mouseWheel;
 	@OriginalMember(owner = "runetek4.client!rh", name = "j", descriptor = "Lclient!runetek4.client;")
@@ -469,7 +469,7 @@ public final class client extends GameShell {
 					Static47.cacheIndexes[i] = new BufferedFile(GameShell.signLink.cacheIndexes[i], 6000, 0);
 				}
 				cacheMasterIndex = new BufferedFile(GameShell.signLink.cacheMasterIndex, 6000, 0);
-				masterCacheIndex = new CacheIndex(255, cacheData, cacheMasterIndex, 500000);
+				masterCache = new Cache(255, cacheData, cacheMasterIndex, 500000);
 				uid = new BufferedFile(GameShell.signLink.uid, 24, 0);
 				GameShell.signLink.cacheIndexes = null;
 				GameShell.signLink.cacheMasterIndex = null;
@@ -480,7 +480,7 @@ public final class client extends GameShell {
 			uid = null;
 			cacheData = null;
 			cacheMasterIndex = null;
-			masterCacheIndex = null;
+			masterCache = null;
 		}
 		Static278.mainLoadPrimaryText = LocalizedText.GAME0_LOADING;
 		if (modeWhere != 0) {
@@ -505,7 +505,7 @@ public final class client extends GameShell {
 	@OriginalMember(owner = "client!client", name = "d", descriptor = "(B)V")
 	private void method943() {
 		for (Static182.keyQueueSize = 0; Static25.nextKey() && Static182.keyQueueSize < 128; Static182.keyQueueSize++) {
-			Static227.keyCodes[Static182.keyQueueSize] = Static102.keyCode;
+			InterfaceList.keyCodes[Static182.keyQueueSize] = Static102.keyCode;
 			Static205.keyChars[Static182.keyQueueSize] = Static193.keyChar;
 		}
 		Static178.sceneDelta++;
@@ -550,12 +550,12 @@ public final class client extends GameShell {
 		if (!GlRenderer.enabled) {
 			Static269.method2170();
 		} else if (Static184.anInt4348 == 0 && Static179.step == 0) {
-			if (Static227.anInt5096 == 2) {
-				Static125.method2450();
+			if (Camera.cameraType == 2) {
+				Camera.updateLockedCamera();
 			} else {
-				Static40.method1008();
+				Camera.updateLoginScreenCamera();
 			}
-			if (Static138.cameraX >> 7 < 14 || Static138.cameraX >> 7 >= 90 || Static134.cameraZ >> 7 < 14 || Static134.cameraZ >> 7 >= 90) {
+			if (Camera.renderX >> 7 < 14 || Camera.renderX >> 7 >= 90 || Camera.renderZ >> 7 < 14 || Camera.renderZ >> 7 >= 90) {
 				Static26.method740();
 			}
 		}

@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static265 {
 
-	@OriginalMember(owner = "runetek4.client!vj", name = "d", descriptor = "I")
-	public static int anInt5765;
-
 	@OriginalMember(owner = "runetek4.client!vj", name = "j", descriptor = "Lclient!dd;")
 	public static SoftwareFont aClass3_Sub2_Sub9_Sub1_2;
 

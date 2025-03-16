@@ -55,8 +55,8 @@ public final class Static103 {
 		if (local23 == 46) {
 			ClientScriptRunner.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(247);
-			Static6.outboundBuffer.p2_alt1(Static142.originZ + local19);
-			Static6.outboundBuffer.p2_alt3(local15 + Static225.originX);
+			Static6.outboundBuffer.p2_alt1(Camera.originZ + local19);
+			Static6.outboundBuffer.p2_alt3(local15 + Camera.originX);
 			Static6.outboundBuffer.p2(Integer.MAX_VALUE & (int) (local31 >>> 32));
 		}
 		if (local23 == 40) {
@@ -120,9 +120,9 @@ public final class Static103 {
 		if (local23 == 42) {
 			ClientScriptRunner.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(254);
-			Static6.outboundBuffer.p2_alt1(local15 + Static225.originX);
+			Static6.outboundBuffer.p2_alt1(local15 + Camera.originX);
 			Static6.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
-			Static6.outboundBuffer.p2(local19 + Static142.originZ);
+			Static6.outboundBuffer.p2(local19 + Camera.originZ);
 		}
 		if (local23 == 28) {
 			Static153.method2909();
@@ -156,16 +156,16 @@ public final class Static103 {
 			Static70.crossMode = 2;
 			Static25.y = Static60.mouseClickY;
 			Static6.outboundBuffer.pIsaac1(66);
-			Static6.outboundBuffer.p2_alt1(Static225.originX + local15);
+			Static6.outboundBuffer.p2_alt1(Camera.originX + local15);
 			Static6.outboundBuffer.p2(a);
-			Static6.outboundBuffer.p2_alt3(local19 + Static142.originZ);
+			Static6.outboundBuffer.p2_alt3(local19 + Camera.originZ);
 		}
 		if (local23 == 1001) {
 			ClientScriptRunner.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(170);
 			Static6.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (local31 >>> 32));
-			Static6.outboundBuffer.p2_alt3(local15 + Static225.originX);
-			Static6.outboundBuffer.p2_alt3(local19 + Static142.originZ);
+			Static6.outboundBuffer.p2_alt3(local15 + Camera.originX);
+			Static6.outboundBuffer.p2_alt3(local19 + Camera.originZ);
 		}
 		if (local23 == 1002) {
 			Static70.crossMode = 2;
@@ -193,11 +193,11 @@ public final class Static103 {
 				Static113.method3556(Player.plane, local15, local19);
 			} else if (a == 1) {
 				if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
-					Static61.teleport(Static225.originX + local15, Static142.originZ + local19, Player.plane);
+					Static61.teleport(Camera.originX + local15, Camera.originZ + local19, Player.plane);
 				} else if (Static102.tryMove(PlayerList.self.pathTileZ[0], 0, 0, true, 0, local15, 0, 0, 1, local19, PlayerList.self.pathTileX[0])) {
 					Static6.outboundBuffer.p1(Static1.anInt5);
 					Static6.outboundBuffer.p1(Static107.anInt2878);
-					Static6.outboundBuffer.p2(Static57.orbitCameraYaw);
+					Static6.outboundBuffer.p2(Camera.orbitCameraYaw);
 					Static6.outboundBuffer.p1(57);
 					Static6.outboundBuffer.p1(Static59.minimapAnticheatAngle);
 					Static6.outboundBuffer.p1(Static273.minimapZoom);
@@ -267,8 +267,8 @@ public final class Static103 {
 			ClientScriptRunner.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(84);
 			Static6.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (local31 >>> 32));
-			Static6.outboundBuffer.p2_alt3(Static142.originZ + local19);
-			Static6.outboundBuffer.p2_alt1(local15 + Static225.originX);
+			Static6.outboundBuffer.p2_alt3(Camera.originZ + local19);
+			Static6.outboundBuffer.p2_alt1(local15 + Camera.originX);
 		}
 		if (local23 == 23) {
 			Static6.outboundBuffer.pIsaac1(206);
@@ -281,9 +281,9 @@ public final class Static103 {
 		}
 		if (local23 == 14 && ClientScriptRunner.method4003(local31, local19, local15)) {
 			Static6.outboundBuffer.pIsaac1(134);
-			Static6.outboundBuffer.p2_alt2(Static225.originX + local15);
+			Static6.outboundBuffer.p2_alt2(Camera.originX + local15);
 			Static6.outboundBuffer.p2(Static274.anInt4997);
-			Static6.outboundBuffer.p2_alt1(local19 + Static142.originZ);
+			Static6.outboundBuffer.p2_alt1(local19 + Camera.originZ);
 			Static6.outboundBuffer.p2(Static185.anInt4370);
 			Static6.outboundBuffer.p4_alt3(Static224.anInt5062);
 			Static6.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
@@ -327,8 +327,8 @@ public final class Static103 {
 			Static25.y = Static60.mouseClickY;
 			Static6.outboundBuffer.pIsaac1(228);
 			Static6.outboundBuffer.p2(a);
-			Static6.outboundBuffer.p2_alt1(Static225.originX + local15);
-			Static6.outboundBuffer.p2_alt3(Static142.originZ + local19);
+			Static6.outboundBuffer.p2_alt1(Camera.originX + local15);
+			Static6.outboundBuffer.p2_alt3(Camera.originZ + local19);
 		}
 		if (local23 == 4) {
 			npc = NpcList.npcs[a];
@@ -410,8 +410,8 @@ public final class Static103 {
 			Static25.y = Static60.mouseClickY;
 			Static17.crossCycle = 0;
 			Static6.outboundBuffer.pIsaac1(109);
-			Static6.outboundBuffer.p2_alt1(local19 + Static142.originZ);
-			Static6.outboundBuffer.p2(local15 + Static225.originX);
+			Static6.outboundBuffer.p2_alt1(local19 + Camera.originZ);
+			Static6.outboundBuffer.p2(local15 + Camera.originX);
 			Static6.outboundBuffer.p2_alt3(a);
 		}
 		if (local23 == 25) {
@@ -483,11 +483,11 @@ public final class Static103 {
 			Static25.y = Static60.mouseClickY;
 			Static70.crossMode = 2;
 			Static6.outboundBuffer.pIsaac1(101);
-			Static6.outboundBuffer.p2_alt3(local15 + Static225.originX);
+			Static6.outboundBuffer.p2_alt3(local15 + Camera.originX);
 			Static6.outboundBuffer.p2_alt1(Static185.anInt4370);
 			Static6.outboundBuffer.p2_alt1(Static274.anInt4997);
 			Static6.outboundBuffer.p2_alt1(a);
-			Static6.outboundBuffer.p2_alt3(Static142.originZ + local19);
+			Static6.outboundBuffer.p2_alt3(Camera.originZ + local19);
 			Static6.outboundBuffer.p4_alt3(Static224.anInt5062);
 		}
 		if (local23 == 1004) {
@@ -505,9 +505,9 @@ public final class Static103 {
 			} else if (a == 1) {
 				Static6.outboundBuffer.pIsaac1(131);
 				Static6.outboundBuffer.p4_alt3(Static98.anInt2512);
-				Static6.outboundBuffer.p2_alt2(Static225.originX + local15);
+				Static6.outboundBuffer.p2_alt2(Camera.originX + local15);
 				Static6.outboundBuffer.p2_alt3(Static15.anInt506);
-				Static6.outboundBuffer.p2_alt2(local19 + Static142.originZ);
+				Static6.outboundBuffer.p2_alt2(local19 + Camera.originZ);
 			}
 		}
 		if (local23 == 8) {
@@ -559,14 +559,14 @@ public final class Static103 {
 			Static122.x = aClass6.mouseClickX;
 			Static17.crossCycle = 0;
 			Static6.outboundBuffer.pIsaac1(48);
-			Static6.outboundBuffer.p2_alt2(local15 + Static225.originX);
+			Static6.outboundBuffer.p2_alt2(local15 + Camera.originX);
 			Static6.outboundBuffer.p2_alt3(a);
-			Static6.outboundBuffer.p2_alt1(Static142.originZ + local19);
+			Static6.outboundBuffer.p2_alt1(Camera.originZ + local19);
 		}
 		if (local23 == 38 && ClientScriptRunner.method4003(local31, local19, local15)) {
 			Static6.outboundBuffer.pIsaac1(233);
-			Static6.outboundBuffer.p2_alt3(local19 + Static142.originZ);
-			Static6.outboundBuffer.p2_alt2(Static225.originX + local15);
+			Static6.outboundBuffer.p2_alt3(local19 + Camera.originZ);
+			Static6.outboundBuffer.p2_alt2(Camera.originX + local15);
 			Static6.outboundBuffer.p2_alt3(Static15.anInt506);
 			Static6.outboundBuffer.p4rme(Static98.anInt2512);
 			Static6.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
@@ -609,8 +609,8 @@ public final class Static103 {
 		if (local23 == 50) {
 			ClientScriptRunner.method4003(local31, local19, local15);
 			Static6.outboundBuffer.pIsaac1(194);
-			Static6.outboundBuffer.p2_alt3(local19 + Static142.originZ);
-			Static6.outboundBuffer.p2_alt1(Static225.originX + local15);
+			Static6.outboundBuffer.p2_alt3(local19 + Camera.originZ);
+			Static6.outboundBuffer.p2_alt1(Camera.originX + local15);
 			Static6.outboundBuffer.p2((int) (local31 >>> 32) & Integer.MAX_VALUE);
 		}
 		if (local23 == 48) {
@@ -654,9 +654,9 @@ public final class Static103 {
 			Static17.crossCycle = 0;
 			Static6.outboundBuffer.pIsaac1(73);
 			Static6.outboundBuffer.p4rme(Static98.anInt2512);
-			Static6.outboundBuffer.p2(Static142.originZ + local19);
+			Static6.outboundBuffer.p2(Camera.originZ + local19);
 			Static6.outboundBuffer.p2_alt3(a);
-			Static6.outboundBuffer.p2_alt3(local15 + Static225.originX);
+			Static6.outboundBuffer.p2_alt3(local15 + Camera.originX);
 			Static6.outboundBuffer.p2_alt1(Static15.anInt506);
 		}
 		if (local23 == 12) {
@@ -671,11 +671,11 @@ public final class Static103 {
 				Static187.anInt4422 = 1;
 				Static113.method3556(Player.plane, local15, local19);
 			} else if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
-				Static61.teleport(local15 + Static225.originX, Static142.originZ - -local19, Player.plane);
+				Static61.teleport(local15 + Camera.originX, Camera.originZ - -local19, Player.plane);
 			} else {
 				Static6.outboundBuffer.pIsaac1(179);
-				Static6.outboundBuffer.p2(local19 + Static142.originZ);
-				Static6.outboundBuffer.p2(local15 + Static225.originX);
+				Static6.outboundBuffer.p2(local19 + Camera.originZ);
+				Static6.outboundBuffer.p2(local15 + Camera.originX);
 			}
 		}
 		if (local23 == 6) {
@@ -705,8 +705,8 @@ public final class Static103 {
 			Static70.crossMode = 2;
 			Static6.outboundBuffer.pIsaac1(33);
 			Static6.outboundBuffer.p2(a);
-			Static6.outboundBuffer.p2(Static225.originX + local15);
-			Static6.outboundBuffer.p2_alt1(Static142.originZ + local19);
+			Static6.outboundBuffer.p2(Camera.originX + local15);
+			Static6.outboundBuffer.p2_alt1(Camera.originZ + local19);
 		}
 		if (local23 == 16) {
 			npc = NpcList.npcs[a];

@@ -449,13 +449,13 @@ public final class Static36 {
 								for (local243 = 0; local243 < Static182.keyQueueSize; local243++) {
 									@Pc(1430) HookRequest local1430 = new HookRequest();
 									local1430.source = local9;
-									local1430.anInt3100 = Static227.keyCodes[local243];
+									local1430.anInt3100 = InterfaceList.keyCodes[local243];
 									local1430.anInt3099 = Static205.keyChars[local243];
 									local1430.anObjectArray31 = local9.anObjectArray14;
 									Static185.aClass69_101.addTail(local1430);
 								}
 							}
-							if (Static13.aBoolean16 && local9.anObjectArray13 != null) {
+							if (Camera.aBoolean16 && local9.anObjectArray13 != null) {
 								local399 = new HookRequest();
 								local399.source = local9;
 								local399.anObjectArray31 = local9.anObjectArray13;

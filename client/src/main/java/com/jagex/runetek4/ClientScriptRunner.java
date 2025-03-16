@@ -22,12 +22,6 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "runetek4.client!t", name = "l", descriptor = "Lclient!ma;")
 	public static BufferedSocket aClass95_4;
 
-	@OriginalMember(owner = "runetek4.client!t", name = "o", descriptor = "I")
-	public static int anInt5217;
-
-	@OriginalMember(owner = "runetek4.client!t", name = "A", descriptor = "I")
-	public static int anInt5225;
-
 	@OriginalMember(owner = "runetek4.client!t", name = "G", descriptor = "[Lclient!ek;")
 	public static SoftwareIndexedSprite[] aClass36_Sub1Array1;
 
@@ -48,9 +42,6 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!t", name = "y", descriptor = "I")
 	public static int anInt5223 = 0;
-
-	@OriginalMember(owner = "runetek4.client!t", name = "z", descriptor = "I")
-	public static int anInt5224 = 0;
 
 	@OriginalMember(owner = "runetek4.client!t", name = "C", descriptor = "Lclient!na;")
 	public static final JString aClass100_994 = Static28.parse(")3");
@@ -75,7 +66,7 @@ public final class ClientScriptRunner {
 		while (local5.length > local3) {
 			@Pc(17) Class102 local17 = local5[local3];
 			if (local17 != null && local17.headIconDrawType == 2) {
-				Static198.method1026(arg0 >> 1, arg4, (local17.anInt4046 - Static142.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.anInt4053 - Static225.originX << 7), arg3);
+				Static198.method1026(arg0 >> 1, arg4, (local17.anInt4046 - Camera.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.anInt4053 - Camera.originX << 7), arg3);
 				if (Static65.anInt1951 > -1 && client.loop % 20 < 10) {
 					Static276.aClass3_Sub2_Sub1Array11[local17.anInt4048].drawSprite(arg1 + Static65.anInt1951 - 12, arg5 + -28 - -Static16.anInt548);
 				}

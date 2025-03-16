@@ -74,7 +74,7 @@ public final class Static80 {
 		}
 		Static164.anInt3988 = 0;
 		Static141.anInt3474 = 0;
-		Static33.aBoolean63 = false;
+		Preferences.aBoolean63 = false;
 		Static64.aBoolean111 = true;
 		Static164.aBoolean191 = false;
 		Static127.aBoolean159 = false;

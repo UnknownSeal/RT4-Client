@@ -25,9 +25,6 @@ public final class Static127 {
 	@OriginalMember(owner = "runetek4.client!k", name = "c", descriptor = "Z")
 	public static boolean aBoolean159 = false;
 
-	@OriginalMember(owner = "runetek4.client!k", name = "i", descriptor = "I")
-	public static int anInt3125 = 0;
-
 	@OriginalMember(owner = "runetek4.client!k", name = "m", descriptor = "Z")
 	public static boolean aBoolean160 = false;
 
@@ -56,13 +53,13 @@ public final class Static127 {
 			Game.processGameStatus(25);
 		}
 		Font.drawTextOnScreen(true, LocalizedText.LOADING);
-		@Pc(53) int local53 = Static142.originZ;
-		@Pc(55) int local55 = Static225.originX;
-		Static142.originZ = arg1 * 8 - 48;
-		Static225.originX = (arg2 - 6) * 8;
+		@Pc(53) int local53 = Camera.originZ;
+		@Pc(55) int local55 = Camera.originX;
+		Camera.originZ = arg1 * 8 - 48;
+		Camera.originX = (arg2 - 6) * 8;
 		Static158.aClass3_Sub2_Sub4_3 = Static29.method803(Static80.anInt4701 * 8, Static52.anInt1695 * 8);
-		@Pc(81) int dz = Static142.originZ - local53;
-		@Pc(86) int dx = Static225.originX - local55;
+		@Pc(81) int dz = Camera.originZ - local53;
+		@Pc(86) int dx = Camera.originX - local55;
 		Static235.aMapElementTypeList_2 = null;
 		@Pc(96) int i;
 		@Pc(103) Npc local103;
@@ -149,14 +146,14 @@ public final class Static127 {
 			}
 		}
 		if (arg4) {
-			Static138.cameraX -= dx * 128;
-			Static134.cameraZ -= dz * 128;
-			Static248.anInt4232 -= dz;
-			Static251.anInt5449 -= dx;
-			Static265.anInt5765 -= dz;
-			Static245.anInt5375 -= dx;
+			Camera.renderX -= dx * 128;
+			Camera.renderZ -= dz * 128;
+			Camera.anInt4232 -= dz;
+			Camera.anInt5449 -= dx;
+			Camera.anInt5765 -= dz;
+			Camera.anInt5375 -= dx;
 		} else {
-			Static227.anInt5096 = 1;
+			Camera.cameraType = 1;
 		}
 		Static189.anInt4451 = 0;
 		if (Static115.anInt2939 != 0) {

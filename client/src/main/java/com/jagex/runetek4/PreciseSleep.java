@@ -10,9 +10,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class PreciseSleep {
 
-	@OriginalMember(owner = "runetek4.client!sk", name = "jb", descriptor = "I")
-	public static int anInt5203;
-
 	@OriginalMember(owner = "runetek4.client!sk", name = "mb", descriptor = "I")
 	public static int anInt5205;
 

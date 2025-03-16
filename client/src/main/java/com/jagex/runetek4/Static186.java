@@ -11,9 +11,6 @@ public final class Static186 {
 	@OriginalMember(owner = "runetek4.client!pa", name = "L", descriptor = "[[B")
 	public static byte[][] aByteArrayArray14;
 
-	@OriginalMember(owner = "runetek4.client!pa", name = "K", descriptor = "Z")
-	public static boolean aBoolean205 = false;
-
 	@OriginalMember(owner = "runetek4.client!pa", name = "N", descriptor = "I")
 	public static int antialiasingMode = 0;
 

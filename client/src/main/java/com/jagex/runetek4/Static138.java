@@ -19,9 +19,6 @@ public final class Static138 {
 	@OriginalMember(owner = "runetek4.client!km", name = "Oc", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_51;
 
-	@OriginalMember(owner = "runetek4.client!km", name = "Pc", descriptor = "I")
-	public static int cameraX;
-
 	@OriginalMember(owner = "runetek4.client!km", name = "Yc", descriptor = "I")
 	public static int anInt3443;
 

@@ -305,10 +305,10 @@ public final class Static193 {
 		}
 		Static6.outboundBuffer.p1b_alt1(Static187.pressedKeys[82] ? 1 : 0);
 		System.out.println("InvertRun: " + (Static187.pressedKeys[82] ? 1 : 0) );
-		Static6.outboundBuffer.p2((Static225.originX + local23));
-		System.out.println("StartX: " + (Static225.originX + local23));
-		Static6.outboundBuffer.p2_alt2(Static142.originZ + local27);
-		System.out.println("StartZ: " + (Static142.originZ + local27));
+		Static6.outboundBuffer.p2((Camera.originX + local23));
+		System.out.println("StartX: " + (Camera.originX + local23));
+		Static6.outboundBuffer.p2_alt2(Camera.originZ + local27);
+		System.out.println("StartZ: " + (Camera.originZ + local27));
 		Static84.anInt2255 = Static84.anIntArray209[0];
 		Static115.anInt2939 = Static259.anIntArray514[0];
 		for (@Pc(126) int local126 = 1; local126 < local13; local126++) {

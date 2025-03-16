@@ -21,9 +21,6 @@ public final class Class6 {
 	@OriginalMember(owner = "runetek4.client!qg", name = "W", descriptor = "Z")
 	public static boolean members = false;
 
-	@OriginalMember(owner = "runetek4.client!qg", name = "Y", descriptor = "[I")
-	public static final int[] cameraModifierWobbleSpeed = new int[5];
-
 	@OriginalMember(owner = "runetek4.client!qg", name = "Z", descriptor = "Lclient!na;")
 	public static final JString aClass100_892 = Static28.parse("mem=");
 

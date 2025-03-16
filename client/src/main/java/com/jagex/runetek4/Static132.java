@@ -14,9 +14,6 @@ public final class Static132 {
 	@OriginalMember(owner = "runetek4.client!ke", name = "R", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_48;
 
-	@OriginalMember(owner = "runetek4.client!ke", name = "U", descriptor = "I")
-	public static int cameraAnticheatOffsetX = 0;
-
 	@OriginalMember(owner = "runetek4.client!ke", name = "Y", descriptor = "[I")
 	public static final int[] anIntArray309 = new int[] { 1, 4 };
 
