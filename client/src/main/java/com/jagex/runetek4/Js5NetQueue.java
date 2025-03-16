@@ -255,7 +255,7 @@ public final class Js5NetQueue {
 	@OriginalMember(owner = "client!jb", name = "c", descriptor = "(I)V")
 	public void method2323() {
 		if (this.updateServerSocket != null) {
-			this.updateServerSocket.method2833();
+			this.updateServerSocket.breakConnection();
 		}
 	}
 

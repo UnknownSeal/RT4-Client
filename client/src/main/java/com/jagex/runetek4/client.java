@@ -246,7 +246,7 @@ public final class client extends GameShell {
 					local388 = GameShell.canvas.getGraphics();
 					for (local84 = 0; local84 < Static24.anInt766; local84++) {
 						if (Static31.aBooleanArray29[local84]) {
-							Static260.frameBuffer.method4191(Static224.anIntArray443[local84], Static264.anIntArray410[local84], Static67.anIntArray320[local84], local388, Static50.anIntArray133[local84]);
+							Static260.frameBuffer.drawAt(Static224.anIntArray443[local84], Static264.anIntArray410[local84], Static67.anIntArray320[local84], local388, Static50.anIntArray133[local84]);
 							Static31.aBooleanArray29[local84] = false;
 						}
 					}

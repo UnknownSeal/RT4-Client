@@ -14,10 +14,10 @@ import org.openrs2.deob.annotation.Pc;
 public abstract class FrameBuffer {
 
 	@OriginalMember(owner = "client!vk", name = "e", descriptor = "[I")
-	protected int[] anIntArray472;
+	protected int[] pixels;
 
 	@OriginalMember(owner = "client!vk", name = "g", descriptor = "Ljava/awt/Image;")
-	protected Image anImage4;
+	protected Image image;
 
 	@OriginalMember(owner = "client!vk", name = "i", descriptor = "I")
 	protected int anInt5339;
@@ -30,11 +30,11 @@ public abstract class FrameBuffer {
 		try {
 			@Pc(12) Class local12 = Class.forName("com.jagex.runetek4.BufferedImageFrameBuffer");
 			@Pc(16) FrameBuffer local16 = (FrameBuffer) local12.getDeclaredConstructor().newInstance();
-			local16.method4192(arg0, arg1, arg2);
+			local16.init(arg0, arg1, arg2);
 			return local16;
 		} catch (@Pc(25) Throwable local25) {
 			@Pc(29) ImageProducerFrameBuffer local29 = new ImageProducerFrameBuffer();
-			local29.method4192(arg0, arg1, arg2);
+			local29.init(arg0, arg1, arg2);
 			return local29;
 		}
 	}
@@ -43,13 +43,13 @@ public abstract class FrameBuffer {
 	public abstract void draw(@OriginalArg(2) Graphics arg0);
 
 	@OriginalMember(owner = "client!vk", name = "a", descriptor = "(I)V")
-	public final void method4189() {
-		Rasterizer.prepare(this.anIntArray472, this.anInt5341, this.anInt5339);
+	public final void makeTarget() {
+		Rasterizer.prepare(this.pixels, this.anInt5341, this.anInt5339);
 	}
 
 	@OriginalMember(owner = "client!vk", name = "a", descriptor = "(IIIILjava/awt/Graphics;I)V")
-	public abstract void method4191(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) Graphics arg3, @OriginalArg(5) int arg4);
+	public abstract void drawAt(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) Graphics arg3, @OriginalArg(5) int arg4);
 
 	@OriginalMember(owner = "client!vk", name = "a", descriptor = "(IZILjava/awt/runetek4.Component;)V")
-	public abstract void method4192(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Component arg2);
+	public abstract void init(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Component arg2);
 }
