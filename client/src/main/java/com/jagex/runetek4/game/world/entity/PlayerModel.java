@@ -5,6 +5,7 @@ import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.bastype.BasType;
+import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.game.config.idktype.IDKType;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.graphics.ModelUnlit;
@@ -240,7 +241,7 @@ public final class PlayerModel {
 				}
 				@Pc(303) BasType local303 = null;
 				if (this.anInt2497 != -1) {
-					local303 = Static90.method1856(this.anInt2497);
+					local303 = BasTypeList.get(this.anInt2497);
 				}
 				if (local303 != null && local303.modelRotateTranslate != null) {
 					for (local250 = 0; local250 < local303.modelRotateTranslate.length; local250++) {

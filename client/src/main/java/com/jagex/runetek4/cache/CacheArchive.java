@@ -34,8 +34,6 @@ public final class CacheArchive {
 	public static Js5 gameTextureJs5;
 	@OriginalMember(owner = "runetek4.client!nd", name = "v", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_64;
-	@OriginalMember(owner = "runetek4.client!nd", name = "p", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_62;
 	@OriginalMember(owner = "runetek4.client!nd", name = "n", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_61;
 

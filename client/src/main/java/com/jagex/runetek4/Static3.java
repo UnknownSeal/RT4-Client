@@ -28,7 +28,7 @@ public final class Static3 {
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "b", descriptor = "(B)V")
 	public static void method4657() {
-		VarPlayerDefinition.varPlayerDefinitionCache.method3103();
+		VarPlayerDefinition.varPlayerDefinitionCache.removeSoft();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "(II)V")

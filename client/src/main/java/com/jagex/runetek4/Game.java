@@ -4,6 +4,7 @@ import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.Npc;
+import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
@@ -1138,7 +1139,7 @@ public class Game {
         Static137.method2666();
         Static269.method2221();
         VarPlayerDefinition.clearVarPlayerDefinitionCache();
-        Static19.method586();
+        BasTypeList.clean();
         Static276.method4615();
         Static25.method715();
         Static25.method716();

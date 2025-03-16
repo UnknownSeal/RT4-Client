@@ -59,7 +59,7 @@ public final class Static251 {
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "b", descriptor = "(B)V")
 	public static void method4276() {
-		Static45.aClass99_6.method3103();
+		Static45.aClass99_6.removeSoft();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ug", name = "a", descriptor = "(I)V")

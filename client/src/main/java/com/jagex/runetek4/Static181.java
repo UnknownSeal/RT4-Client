@@ -37,7 +37,7 @@ public final class Static181 {
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(I)V")
 	public static void method3342() {
-		Static67.aClass99_20.method3103();
+		Static67.aClass99_20.removeSoft();
 	}
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(Lclient!ve;B)V")

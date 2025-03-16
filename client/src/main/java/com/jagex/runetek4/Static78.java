@@ -58,7 +58,7 @@ public final class Static78 {
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(I)V")
 	public static void method1694() {
-		Static125.varbitDefinitionCache.method3103();
+		Static125.varbitDefinitionCache.removeSoft();
 	}
 
 	@OriginalMember(owner = "runetek4.client!gd", name = "b", descriptor = "(I)V")

@@ -3,6 +3,7 @@ package com.jagex.runetek4.cache.def;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.game.config.bastype.BasType;
+import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -477,7 +478,7 @@ public final class NpcType {
 			}
 			@Pc(156) BasType local156 = null;
 			if (this.bas != -1) {
-				local156 = Static90.method1856(this.bas);
+				local156 = BasTypeList.get(this.bas);
 			}
 			if (local156 != null && local156.modelRotateTranslate != null) {
 				for (local173 = 0; local173 < local156.modelRotateTranslate.length; local173++) {

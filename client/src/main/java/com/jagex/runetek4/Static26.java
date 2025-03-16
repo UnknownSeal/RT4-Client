@@ -79,8 +79,8 @@ public final class Static26 {
 
 	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(Z)V")
 	public static void method741() {
-		Static79.aClass99_11.method3103();
-		aClass6.aClass99_5.method3103();
+		Static79.aClass99_11.removeSoft();
+		aClass6.aClass99_5.removeSoft();
 	}
 
 	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(ZI)V")

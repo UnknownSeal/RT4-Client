@@ -95,7 +95,7 @@ public final class NodeCache {
 	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "b", descriptor = "(B)V")
-	public final void method3103() {
+	public final void removeSoft() {
 		for (@Pc(7) ReferenceNode local7 = (ReferenceNode) this.nodeQueue.head(); local7 != null; local7 = (ReferenceNode) this.nodeQueue.prev()) {
 			if (local7.method3619()) {
 				local7.unlink();

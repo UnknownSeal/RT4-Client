@@ -3,6 +3,7 @@ package com.jagex.runetek4.dash3d.entity;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.game.config.bastype.BasType;
+import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -262,7 +263,7 @@ public abstract class PathingEntity extends Entity {
 	@OriginalMember(owner = "client!fe", name = "b", descriptor = "(Z)Lclient!ck;")
 	public final BasType getBasType() {
 		@Pc(7) int local7 = this.method2688();
-		return local7 == -1 ? BasType.DEFAULT : Static90.method1856(local7);
+		return local7 == -1 ? BasType.DEFAULT : BasTypeList.get(local7);
 	}
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(B)Z")

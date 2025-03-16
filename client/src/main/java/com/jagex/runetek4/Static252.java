@@ -18,7 +18,7 @@ public final class Static252 {
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "e", descriptor = "(I)V")
 	public static void method4301() {
-		ClientScriptRunner.aClass99_31.method3103();
+		ClientScriptRunner.aClass99_31.removeSoft();
 	}
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "f", descriptor = "(I)V")

@@ -671,8 +671,4 @@ public final class Static45 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!di", name = "d", descriptor = "(I)V")
-	public static void method1172() {
-		Static262.aClass99_34.method3103();
-	}
 }

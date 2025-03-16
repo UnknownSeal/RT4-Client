@@ -35,7 +35,7 @@ public final class Static227 {
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "a", descriptor = "(B)V")
 	public static void method3903() {
-		Static142.animationSequenceCache.method3103();
-		Static267.skeletonCache.method3103();
+		Static142.animationSequenceCache.removeSoft();
+		Static267.skeletonCache.removeSoft();
 	}
 }

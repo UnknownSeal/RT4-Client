@@ -45,11 +45,6 @@ public final class Static19 {
 		}
 	}
 
-	@OriginalMember(owner = "client!bi", name = "c", descriptor = "(II)V")
-	public static void method586() {
-		Static262.aClass99_34.clear(5);
-	}
-
 	@OriginalMember(owner = "client!bi", name = "f", descriptor = "(B)V")
 	public static void tickChatTimers() {
 		@Pc(11) int local11;

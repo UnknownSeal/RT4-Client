@@ -5,6 +5,7 @@ import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -108,7 +109,7 @@ public final class Static217 {
 		Static247.method4249();
 		Static53.method1295();
 		Static249.method4266();
-		Static124.method2433();
+		BasTypeList.clear();
 		Class6.method3653();
 		Static78.method1695();
 		Static10.method351();

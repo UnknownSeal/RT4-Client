@@ -154,8 +154,8 @@ public final class Static40 {
 
 	@OriginalMember(owner = "runetek4.client!da", name = "h", descriptor = "(B)V")
 	public static void method1019() {
-		Component.interfaceItemImageCache.method3103();
-		Static124.aClass99_17.method3103();
-		Component.interfaceTypefaceCache.method3103();
+		Component.interfaceItemImageCache.removeSoft();
+		Static124.aClass99_17.removeSoft();
+		Component.interfaceTypefaceCache.removeSoft();
 	}
 }

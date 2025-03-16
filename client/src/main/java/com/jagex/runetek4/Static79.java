@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
@@ -74,6 +75,6 @@ public final class Static79 {
 
 	@OriginalMember(owner = "runetek4.client!ge", name = "a", descriptor = "(BLclient!ve;)V")
 	public static void method1703(@OriginalArg(1) Js5 arg0) {
-		com.jagex.runetek4.cache.CacheArchive.aClass153_62 = arg0;
+		BasTypeList.archive = arg0;
 	}
 }

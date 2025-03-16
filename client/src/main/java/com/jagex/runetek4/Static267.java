@@ -150,7 +150,7 @@ public final class Static267 {
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "b", descriptor = "(I)V")
 	public static void method4529() {
-		PreciseSleep.aClass99_29.method3103();
-		Static219.aClass99_27.method3103();
+		PreciseSleep.aClass99_29.removeSoft();
+		Static219.aClass99_27.removeSoft();
 	}
 }

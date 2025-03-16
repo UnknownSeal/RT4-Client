@@ -33,11 +33,6 @@ public final class Static124 {
 	@OriginalMember(owner = "runetek4.client!jk", name = "G", descriptor = "Z")
 	public static boolean aBoolean157 = false;
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "e", descriptor = "(B)V")
-	public static void method2433() {
-		Static262.aClass99_34.method3104();
-	}
-
 	@OriginalMember(owner = "runetek4.client!jk", name = "a", descriptor = "(ILclient!na;)Lclient!bn;")
 	public static Map method2434(@OriginalArg(1) JString arg0) {
 		for (@Pc(15) Map local15 = (Map) Static228.aClass69_120.head(); local15 != null; local15 = (Map) Static228.aClass69_120.next()) {

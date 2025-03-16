@@ -86,9 +86,9 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(B)V")
 	public static void method4001() {
-		Static93.aClass99_13.method3103();
-		Static125.aClass99_18.method3103();
-		Static262.aClass99_35.method3103();
+		Static93.aClass99_13.removeSoft();
+		Static125.aClass99_18.removeSoft();
+		Static262.aClass99_35.removeSoft();
 	}
 
 	@OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(ZB)V")

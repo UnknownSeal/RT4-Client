@@ -78,6 +78,6 @@ public final class Static92 {
 
 	@OriginalMember(owner = "runetek4.client!hd", name = "a", descriptor = "(I)V")
 	public static void method1882() {
-		Static220.aClass99_28.method3103();
+		Static220.aClass99_28.removeSoft();
 	}
 }

@@ -793,9 +793,9 @@ public final class Static103 {
 
 	@OriginalMember(owner = "runetek4.client!i", name = "r", descriptor = "(I)V")
 	public static void method2239() {
-		Static27.aClass99_4.method3103();
-		Static244.aClass99_32.method3103();
-		Static118.aClass99_16.method3103();
+		Static27.aClass99_4.removeSoft();
+		Static244.aClass99_32.removeSoft();
+		Static118.aClass99_16.removeSoft();
 	}
 
 	@OriginalMember(owner = "runetek4.client!i", name = "i", descriptor = "(Z)V")
