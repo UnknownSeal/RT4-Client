@@ -25,32 +25,6 @@ public final class Static251 {
 	@OriginalMember(owner = "runetek4.client!ug", name = "o", descriptor = "I")
 	public static int weightCarried = 0;
 
-	@OriginalMember(owner = "runetek4.client!ug", name = "a", descriptor = "(B)V")
-	public static void loop() {
-		for (@Pc(10) ChangeLocRequest local10 = (ChangeLocRequest) Static26.spawnedLocations.head(); local10 != null; local10 = (ChangeLocRequest) Static26.spawnedLocations.next()) {
-			if (local10.anInt924 > 0) {
-				local10.anInt924--;
-			}
-			if (local10.anInt924 != 0) {
-				if (local10.anInt925 > 0) {
-					local10.anInt925--;
-				}
-				if (local10.anInt925 == 0 && local10.x >= 1 && local10.z >= 1 && local10.x <= 102 && local10.z <= 102 && (local10.anInt929 < 0 || Static113.method3557(local10.anInt929, local10.anInt926))) {
-					Static79.method1698(local10.anInt929, local10.x, local10.anInt918, local10.anInt922, local10.z, local10.anInt926, local10.anInt927);
-					local10.anInt925 = -1;
-					if (local10.anInt921 == local10.anInt929 && local10.anInt921 == -1) {
-						local10.unlink();
-					} else if (local10.anInt929 == local10.anInt921 && local10.anInt922 == local10.anInt923 && local10.anInt920 == local10.anInt926) {
-						local10.unlink();
-					}
-				}
-			} else if (local10.anInt921 < 0 || Static113.method3557(local10.anInt921, local10.anInt920)) {
-				Static79.method1698(local10.anInt921, local10.x, local10.anInt918, local10.anInt923, local10.z, local10.anInt920, local10.anInt927);
-				local10.unlink();
-			}
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!ug", name = "b", descriptor = "(B)V")
 	public static void method4276() {
 		Static45.aClass99_6.removeSoft();

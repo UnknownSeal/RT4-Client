@@ -1,9 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.dash3d.entity.LocType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public final class Static113 {
 
@@ -20,15 +18,4 @@ public final class Static113 {
 		Static116.anInt2954 = -1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!il", name = "a", descriptor = "(BII)Z")
-	public static boolean method3557(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		if (arg1 == 11) {
-			arg1 = 10;
-		}
-		if (arg1 >= 5 && arg1 <= 8) {
-			arg1 = 4;
-		}
-		@Pc(30) LocType local30 = LocTypeList.get(arg0);
-		return local30.method3416(arg1);
-	}
 }

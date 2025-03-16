@@ -354,7 +354,7 @@ public final class Static185 {
 				@Pc(1950) LocEntity local1950;
 				if (shape == 5) {
 					local1226 = 16;
-					local1889 = Static265.method4521(level, arg7, z);
+					local1889 = SceneGraph.getWallKey(level, arg7, z);
 					if (local1889 != 0L) {
 						local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).wallwidth;
 					}
@@ -370,7 +370,7 @@ public final class Static185 {
 					Static91.addWallDecoration(level, arg7, z, local199, local1934, null, Static267.ROTATION_WALL_TYPE[rotation], 0, local1226 * Static34.WALL_DECORATION_ROTATION_FORWARD_X[rotation], Static238.WALL_DECORATION_ROTATION_FORWARD_Z[rotation] * local1226, local261);
 				} else if (shape == 6) {
 					local1226 = 8;
-					local1889 = Static265.method4521(level, arg7, z);
+					local1889 = SceneGraph.getWallKey(level, arg7, z);
 					if (local1889 != 0L) {
 						local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).wallwidth / 2;
 					}
@@ -398,7 +398,7 @@ public final class Static185 {
 					Static91.addWallDecoration(level, arg7, z, local199, local387, null, 256, local2137, 0, 0, local261);
 				} else if (shape == 8) {
 					local1226 = 8;
-					local1889 = Static265.method4521(level, arg7, z);
+					local1889 = SceneGraph.getWallKey(level, arg7, z);
 					if (local1889 != 0L) {
 						local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).wallwidth / 2;
 					}

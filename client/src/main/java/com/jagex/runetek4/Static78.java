@@ -278,7 +278,7 @@ public final class Static78 {
 		}
 		Static269.method2218();
 		Static107.method2261();
-		Static219.method3796();
+		ChangeLocRequest.method3796();
 		Static217.method3768();
 		PreciseSleep.aBoolean252 = false;
 		if (GameShell.frame != null && Static124.gameServerSocket != null && Static244.gamestate == 25) {

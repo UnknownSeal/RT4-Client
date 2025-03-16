@@ -32,34 +32,6 @@ public final class Static226 {
 	@OriginalMember(owner = "runetek4.client!sf", name = "i", descriptor = "I")
 	public static int anInt5084 = 0;
 
-	@OriginalMember(owner = "runetek4.client!sf", name = "a", descriptor = "(ILclient!cd;)V")
-	public static void method3898(@OriginalArg(1) ChangeLocRequest arg0) {
-		@Pc(5) long local5 = 0L;
-		@Pc(7) int local7 = -1;
-		@Pc(14) int local14 = 0;
-		if (arg0.anInt927 == 0) {
-			local5 = Static265.method4521(arg0.anInt918, arg0.x, arg0.z);
-		}
-		@Pc(31) int local31 = 0;
-		if (arg0.anInt927 == 1) {
-			local5 = Static139.method2703(arg0.anInt918, arg0.x, arg0.z);
-		}
-		if (arg0.anInt927 == 2) {
-			local5 = Static35.method899(arg0.anInt918, arg0.x, arg0.z);
-		}
-		if (arg0.anInt927 == 3) {
-			local5 = Static20.method602(arg0.anInt918, arg0.x, arg0.z);
-		}
-		if (local5 != 0L) {
-			local7 = Integer.MAX_VALUE & (int) (local5 >>> 32);
-			local31 = (int) local5 >> 20 & 0x3;
-			local14 = (int) local5 >> 14 & 0x1F;
-		}
-		arg0.anInt921 = local7;
-		arg0.anInt920 = local14;
-		arg0.anInt923 = local31;
-	}
-
 	@OriginalMember(owner = "runetek4.client!sf", name = "a", descriptor = "(BLclient!ve;)V")
 	public static void method3899(@OriginalArg(1) Js5 arg0) {
 		Static39.aClass153_23 = arg0;

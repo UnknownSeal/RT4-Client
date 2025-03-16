@@ -138,7 +138,7 @@ public final class Static127 {
 				}
 			}
 		}
-		for (@Pc(451) ChangeLocRequest loc = (ChangeLocRequest) Static26.spawnedLocations.head(); loc != null; loc = (ChangeLocRequest) Static26.spawnedLocations.next()) {
+		for (@Pc(451) ChangeLocRequest loc = (ChangeLocRequest) ChangeLocRequest.queue.head(); loc != null; loc = (ChangeLocRequest) ChangeLocRequest.queue.next()) {
 			loc.z -= dz;
 			loc.x -= dx;
 			if (loc.x < 0 || loc.z < 0 || loc.x >= 104 || loc.z >= 104) {

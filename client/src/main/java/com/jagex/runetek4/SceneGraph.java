@@ -107,4 +107,65 @@ public class SceneGraph {
         @Pc(118) int y00 = tileLocalX * tileHeights[realLevel][tileX + 1][tileZ] + (128 - tileLocalX) * tileHeights[realLevel][tileX][tileZ] >> 7;
         return tileLocalZ * y11 + (128 - tileLocalZ) * y00 >> 7;
     }
+
+    @OriginalMember(owner = "runetek4.client!ge", name = "a", descriptor = "(IIIIIIII)V")
+    public static void method1698(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {
+        if (arg1 < 1 || arg4 < 1 || arg1 > 102 || arg4 > 102) {
+            return;
+        }
+        @Pc(39) int local39;
+        if (!Static138.allLevelsvisible() && (renderFlags[0][arg1][arg4] & 0x2) == 0) {
+            local39 = arg2;
+            if ((renderFlags[arg2][arg1][arg4] & 0x8) != 0) {
+                local39 = 0;
+            }
+            if (local39 != Static41.anInt1316) {
+                return;
+            }
+        }
+        local39 = arg2;
+        if (arg2 < 3 && (renderFlags[1][arg1][arg4] & 0x2) == 2) {
+            local39 = arg2 + 1;
+        }
+        Static43.method1144(arg4, arg1, arg2, arg6, local39, Static148.levelCollisionMap[arg2]);
+        if (arg0 >= 0) {
+            @Pc(92) boolean local92 = Static250.aBoolean283;
+            Static250.aBoolean283 = true;
+            Static185.method3397(local39, false, arg2, false, Static148.levelCollisionMap[arg2], arg0, arg5, arg1, arg4, arg3);
+            Static250.aBoolean283 = local92;
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!vj", name = "a", descriptor = "(III)J")
+    public static long getWallKey(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+        @Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
+        return local7 == null || local7.wall == null ? 0L : local7.wall.aLong107;
+    }
+
+    @OriginalMember(owner = "runetek4.client!l", name = "a", descriptor = "(III)J")
+    public static long getWallDecorKey(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+        @Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
+        return local7 == null || local7.wallDecor == null ? 0L : local7.wallDecor.key;
+    }
+
+    @OriginalMember(owner = "runetek4.client!cl", name = "a", descriptor = "(III)J")
+    public static long getSceneryKey(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+        @Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
+        if (local7 == null) {
+            return 0L;
+        }
+        for (@Pc(13) int local13 = 0; local13 < local7.entityCount; local13++) {
+            @Pc(22) Scenery local22 = local7.sceneries[local13];
+            if ((local22.hash >> 29 & 0x3L) == 2L && local22.anInt1701 == arg1 && local22.anInt1696 == arg2) {
+                return local22.hash;
+            }
+        }
+        return 0L;
+    }
+
+    @OriginalMember(owner = "client!bj", name = "a", descriptor = "(III)J")
+    public static long getGroundDecorKey(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+        @Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
+        return local7 == null || local7.groundDecor == null ? 0L : local7.groundDecor.key;
+    }
 }

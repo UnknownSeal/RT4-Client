@@ -59,7 +59,7 @@ public final class Static137 {
 			Static251.anInt5454 = 0;
 			for (local37 = 0; local37 < 104; local37++) {
 				for (local76 = 0; local76 < 104; local76++) {
-					@Pc(169) long local169 = Static20.method602(Player.plane, local37 + 0, local76);
+					@Pc(169) long local169 = SceneGraph.getGroundDecorKey(Player.plane, local37 + 0, local76);
 					if (local169 != 0L) {
 						@Pc(184) LocType local184 = LocTypeList.get((int) (local169 >>> 32) & Integer.MAX_VALUE);
 						@Pc(187) int local187 = local184.mapfunction;

@@ -440,7 +440,7 @@ public final class LocType {
 	}
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "(II)Z")
-	public boolean method3416(@OriginalArg(1) int arg0) {
+	public boolean isReady(@OriginalArg(1) int arg0) {
 		if (this.models != null) {
 			for (@Pc(18) int local18 = 0; local18 < this.models.length; local18++) {
 				if (arg0 == this.models[local18]) {

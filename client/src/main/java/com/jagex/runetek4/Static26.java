@@ -16,9 +16,6 @@ public final class Static26 {
 	@OriginalMember(owner = "client!ca", name = "ab", descriptor = "Z")
 	public static boolean focus;
 
-	@OriginalMember(owner = "client!ca", name = "X", descriptor = "Lclient!ih;")
-	public static LinkedList spawnedLocations = new LinkedList();
-
 	@OriginalMember(owner = "client!ca", name = "cb", descriptor = "Lclient!na;")
 	public static final JString aClass100_160 = Static165.method3165();
 

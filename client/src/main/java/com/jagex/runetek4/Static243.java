@@ -108,7 +108,7 @@ public final class Static243 {
 				}
 			}
 		}
-		Static26.spawnedLocations = new LinkedList();
+		ChangeLocRequest.queue = new LinkedList();
 		Static166.anInt4054 = 0;
 		CacheArchive.friendCount = 0;
 		Static8.resetVarBits();

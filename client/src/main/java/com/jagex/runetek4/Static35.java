@@ -4,8 +4,6 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.scene.Scenery;
-import com.jagex.runetek4.scene.tile.SceneTile;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -96,21 +94,6 @@ public final class Static35 {
 			}
 			local118 -= local67;
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!cl", name = "a", descriptor = "(III)J")
-	public static long method899(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
-		if (local7 == null) {
-			return 0L;
-		}
-		for (@Pc(13) int local13 = 0; local13 < local7.entityCount; local13++) {
-			@Pc(22) Scenery local22 = local7.sceneries[local13];
-			if ((local22.hash >> 29 & 0x3L) == 2L && local22.anInt1701 == arg1 && local22.anInt1696 == arg2) {
-				return local22.hash;
-			}
-		}
-		return 0L;
 	}
 
 }

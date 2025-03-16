@@ -196,7 +196,7 @@ public class Game {
         if (Static244.gamestate != 30) {
             return;
         }
-        Static251.loop(); // ChangeLocRequest
+        ChangeLocRequest.loop(); // ChangeLocRequest
         AttachLocRequest.loop(); // AttachLocRequest
         Static54.loop(); // SoundPlayer
         Static201.idleNetCycles++;

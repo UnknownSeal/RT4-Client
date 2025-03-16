@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public final class Static219 {
 
@@ -48,15 +47,4 @@ public final class Static219 {
 	@OriginalMember(owner = "runetek4.client!rl", name = "eb", descriptor = "Lclient!na;")
 	public static final JString aClass100_928 = Static28.parse("(U0a )2 in: ");
 
-	@OriginalMember(owner = "runetek4.client!rl", name = "i", descriptor = "(I)V")
-	public static void method3796() {
-		for (@Pc(10) ChangeLocRequest local10 = (ChangeLocRequest) Static26.spawnedLocations.head(); local10 != null; local10 = (ChangeLocRequest) Static26.spawnedLocations.next()) {
-			if (local10.anInt924 == -1) {
-				local10.anInt925 = 0;
-				Static226.method3898(local10);
-			} else {
-				local10.unlink();
-			}
-		}
-	}
 }

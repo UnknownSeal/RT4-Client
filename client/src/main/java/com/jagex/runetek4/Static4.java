@@ -739,9 +739,9 @@ public final class Static4 {
 								}
 							}
 						}
-						for (@Pc(2604) ChangeLocRequest local2604 = (ChangeLocRequest) Static26.spawnedLocations.head(); local2604 != null; local2604 = (ChangeLocRequest) Static26.spawnedLocations.next()) {
-							if (local2604.x >= Static115.anInt2940 && Static115.anInt2940 + 8 > local2604.x && local2604.z >= Static180.anInt4264 && local2604.z < Static180.anInt4264 + 8 && local2604.anInt918 == Player.plane) {
-								local2604.anInt924 = 0;
+						for (@Pc(2604) ChangeLocRequest local2604 = (ChangeLocRequest) ChangeLocRequest.queue.head(); local2604 != null; local2604 = (ChangeLocRequest) ChangeLocRequest.queue.next()) {
+							if (local2604.x >= Static115.anInt2940 && Static115.anInt2940 + 8 > local2604.x && local2604.z >= Static180.anInt4264 && local2604.z < Static180.anInt4264 + 8 && local2604.level == Player.plane) {
+								local2604.resetLoops = 0;
 							}
 						}
 						Static164.packetType = -1;
