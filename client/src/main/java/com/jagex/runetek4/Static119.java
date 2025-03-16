@@ -27,9 +27,6 @@ public final class Static119 {
 	@OriginalMember(owner = "client!je", name = "db", descriptor = "Lclient!na;")
 	public static final JString aClass100_589 = Static28.parse(" <col=ffffff>");
 
-	@OriginalMember(owner = "client!je", name = "fb", descriptor = "I")
-	public static int transmitTimer = 1;
-
 	@OriginalMember(owner = "client!je", name = "h", descriptor = "(I)V")
 	public static void method2380() {
 		Static252.method4301();

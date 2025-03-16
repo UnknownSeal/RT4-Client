@@ -78,11 +78,6 @@ public final class Static73 {
 		Static161.method3063((float) Static85.anInt2263, (float) Static159.anInt3893, (float) Static148.anInt3534);
 	}
 
-	@OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(ILclient!na;Lclient!na;Lclient!na;I)V")
-	public static void method1598(@OriginalArg(1) JString arg0, @OriginalArg(2) JString arg1, @OriginalArg(3) JString arg2) {
-		Static154.add(-1, 9, arg0, arg2, arg1);
-	}
-
 	@OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(IIIIII)Z")
 	public static boolean method1599(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
 		@Pc(16) int local16;

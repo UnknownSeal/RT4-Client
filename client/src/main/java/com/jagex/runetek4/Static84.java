@@ -26,9 +26,6 @@ public final class Static84 {
 	@OriginalMember(owner = "runetek4.client!gk", name = "h", descriptor = "I")
 	public static int anInt2255 = 0;
 
-	@OriginalMember(owner = "runetek4.client!gk", name = "i", descriptor = "I")
-	public static int anInt2256 = 0;
-
 	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "(IIBLclient!e;)V")
 	public static void getPlayerExtended(@OriginalArg(0) int flags, @OriginalArg(1) int arg1, @OriginalArg(3) Player player) {
 		@Pc(13) int chatFlags;
@@ -79,11 +76,11 @@ public final class Static84 {
 					player.chatLoops = 150;
 					player.chatColor = chatFlags >> 8;
 					if (staffModLevel == 2) {
-						Static154.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JString[] { Static44.aClass100_336, player.getUsername() }));
+						Chat.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JString[] { Static44.aClass100_336, player.getUsername() }));
 					} else if (staffModLevel == 1) {
-						Static154.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JString[] { Static65.aClass100_435, player.getUsername() }));
+						Chat.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JString[] { Static65.aClass100_435, player.getUsername() }));
 					} else {
-						Static154.add(phraseId, quickChat ? 17 : 2, message, null, player.getUsername());
+						Chat.add(phraseId, quickChat ? 17 : 2, message, null, player.getUsername());
 					}
 				}
 			}
@@ -133,9 +130,9 @@ public final class Static84 {
 			player.chatMessage = Static57.in.gjstr();
 			if (player.chatMessage.charAt(0) == 126) {
 				player.chatMessage = player.chatMessage.substring(1);
-				Static103.addMessage(player.getUsername(), 2, player.chatMessage);
+				Chat.addMessage(player.getUsername(), 2, player.chatMessage);
 			} else if (player == PlayerList.self) {
-				Static103.addMessage(player.getUsername(), 2, player.chatMessage);
+				Chat.addMessage(player.getUsername(), 2, player.chatMessage);
 			}
 			player.chatEffect = 0;
 			player.chatColor = 0;

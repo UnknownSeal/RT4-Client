@@ -78,7 +78,7 @@ public final class Static276 {
 			}
 		}
 		if (!local13) {
-			Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { LocalizedText.UNABLETOFIND, local7 }));
+			Chat.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { LocalizedText.UNABLETOFIND, local7 }));
 		}
 	}
 

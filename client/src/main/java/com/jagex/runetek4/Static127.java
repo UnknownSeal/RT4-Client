@@ -258,7 +258,7 @@ public final class Static127 {
 				}
 				local29 = Runtime.getRuntime();
 				x = (int) ((local29.totalMemory() - local29.freeMemory()) / 1024L);
-				Static103.addMessage(null, 0, Static34.method882(new JString[] { Class6.aClass100_892, Static123.method2423(x), Static17.aClass100_101 }));
+				Chat.addMessage(null, 0, Static34.method882(new JString[] { Class6.aClass100_892, Static123.method2423(x), Static17.aClass100_101 }));
 			}
 			@Pc(117) int z;
 			if (chatTyped.equalsIgnoreCase(Static154.MM)) {
@@ -268,17 +268,17 @@ public final class Static127 {
 				}
 				local29 = Runtime.getRuntime();
 				x = (int) ((local29.totalMemory() - local29.freeMemory()) / 1024L);
-				Static103.addMessage(null, 0, Static34.method882(new JString[] { Static203.aClass100_893, Static123.method2423(x), Static17.aClass100_101 }));
+				Chat.addMessage(null, 0, Static34.method882(new JString[] { Static203.aClass100_893, Static123.method2423(x), Static17.aClass100_101 }));
 				Static16.method501();
 				Static119.method2380();
 				for (z = 0; z < 10; z++) {
 					System.gc();
 				}
 				x = (int) ((local29.totalMemory() - local29.freeMemory()) / 1024L);
-				Static103.addMessage(null, 0, Static34.method882(new JString[] { Static270.aClass100_1093, Static123.method2423(x), Static17.aClass100_101 }));
+				Chat.addMessage(null, 0, Static34.method882(new JString[] { Static270.aClass100_1093, Static123.method2423(x), Static17.aClass100_101 }));
 			}
 			if (chatTyped.equalsIgnoreCase(Static240.PCACHESIZE)) {
-				Static103.addMessage(null, 0, Static34.method882(new JString[] { Static44.aClass100_335, Static123.method2423(Static198.method1029()) }));
+				Chat.addMessage(null, 0, Static34.method882(new JString[] { Static44.aClass100_335, Static123.method2423(Static198.method1029()) }));
 			}
 			if (GlRenderer.enabled && chatTyped.equalsIgnoreCase(Static201.CARDMEM)) {
 				System.out.println("oncard_geometry:" + Static63.oncard_geometry);
@@ -345,7 +345,7 @@ public final class Static127 {
 			}
 			if (chatTyped.startsWith(Static211.RECT_DEBUG)) {
 				Static199.anInt4672 = chatTyped.substring(12).trim().method3132();
-				Static103.addMessage(null, 0, Static34.method882(new JString[] { Static276.aClass100_1096, Static123.method2423(Static199.anInt4672) }));
+				Chat.addMessage(null, 0, Static34.method882(new JString[] { Static276.aClass100_1096, Static123.method2423(Static199.anInt4672) }));
 			}
 			if (chatTyped.equalsIgnoreCase(Static181.QA_OP_TEST)) {
 				Static121.aBoolean154 = true;
@@ -353,10 +353,10 @@ public final class Static127 {
 			if (chatTyped.equalsIgnoreCase(Static124.TWEEN)) {
 				if (Static204.tween) {
 					Static204.tween = false;
-					Static103.addMessage(null, 0, Static274.FORCED_TWEENING_DISABLED);
+					Chat.addMessage(null, 0, Static274.FORCED_TWEENING_DISABLED);
 				} else {
 					Static204.tween = true;
-					Static103.addMessage(null, 0, Static50.FORCED_TWEENING_ENABLED);
+					Chat.addMessage(null, 0, Static50.FORCED_TWEENING_ENABLED);
 				}
 			}
 			if (chatTyped.equalsIgnoreCase(Static114.SHIFTCLICK)) {

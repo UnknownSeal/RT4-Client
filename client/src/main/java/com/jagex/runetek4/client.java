@@ -512,7 +512,7 @@ public final class client extends GameShell {
 		if (Static154.topLevelInterace != -1) {
 			Static57.method1320(0, 0, 0, GameShell.canvasWidth, Static154.topLevelInterace, 0, GameShell.canvasHeigth);
 		}
-		Static119.transmitTimer++;
+		InterfaceList.transmitTimer++;
 		if (GlRenderer.enabled) {
 			label191: for (@Pc(57) int local57 = 0; local57 < 32768; local57++) {
 				@Pc(66) Npc npcEntity = NpcList.npcs[local57];

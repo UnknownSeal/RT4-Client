@@ -49,7 +49,7 @@ public final class Static69 {
 					Static190.ignoreName37[local36] = Static190.ignoreName37[local36 + 1];
 					Static193.ignoreName[local36] = Static193.ignoreName[local36 + 1];
 				}
-				Static185.anInt4369 = Static119.transmitTimer;
+				Static185.anInt4369 = InterfaceList.transmitTimer;
 				Static6.outboundBuffer.pIsaac1(213);
 				Static6.outboundBuffer.p8(arg0);
 				break;

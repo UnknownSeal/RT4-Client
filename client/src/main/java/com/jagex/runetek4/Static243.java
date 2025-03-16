@@ -71,7 +71,7 @@ public final class Static243 {
 		Static60.aBoolean108 = false;
 		Static48.setIdleLoops(0);
 		for (i = 0; i < 100; i++) {
-			Static230.messageText[i] = null;
+			Chat.messages[i] = null;
 		}
 		Static260.anInt5014 = 0;
 		Camera.cameraAnticheatOffsetX = (int) (Math.random() * 100.0D) - 50;
@@ -86,7 +86,7 @@ public final class Static243 {
 		Static189.anInt4451 = 0;
 		Static115.anInt2939 = 0;
 		Static59.minimapAnticheatAngle = (int) (Math.random() * 120.0D) - 60;
-		Static62.anInt1941 = 0;
+		Chat.size = 0;
 		Camera.cameraAnticheatAngle = (int) (Math.random() * 80.0D) - 40;
 		Static272.npcCount = 0;
 		for (i = 0; i < 2048; i++) {

@@ -13,9 +13,6 @@ public final class Static59 {
 	@OriginalMember(owner = "runetek4.client!ej", name = "bb", descriptor = "F")
 	public static float aFloat6;
 
-	@OriginalMember(owner = "runetek4.client!ej", name = "U", descriptor = "I")
-	public static int anInt1812 = 0;
-
 	@OriginalMember(owner = "runetek4.client!ej", name = "W", descriptor = "I")
 	public static int minimapAnticheatAngle = 0;
 

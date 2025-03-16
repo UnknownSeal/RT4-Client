@@ -15,17 +15,11 @@ public final class Static49 {
 	@OriginalMember(owner = "runetek4.client!dm", name = "j", descriptor = "Lclient!na;")
 	public static final JString aClass100_351 = Static28.parse(" ");
 
-	@OriginalMember(owner = "runetek4.client!dm", name = "m", descriptor = "I")
-	public static int anInt1459 = 0;
-
 	@OriginalMember(owner = "runetek4.client!dm", name = "n", descriptor = "Lclient!na;")
 	public static final JString aClass100_352 = Static28.parse("(U");
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "q", descriptor = "I")
 	public static int anInt1462 = 0;
-
-	@OriginalMember(owner = "runetek4.client!dm", name = "u", descriptor = "I")
-	public static int anInt1464 = 0;
 
 	@OriginalMember(owner = "runetek4.client!dm", name = "a", descriptor = "(BII[B)Z")
 	public static boolean method1201(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) byte[] arg2) {

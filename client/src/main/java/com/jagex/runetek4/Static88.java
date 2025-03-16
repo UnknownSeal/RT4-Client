@@ -1317,7 +1317,7 @@ public final class Static88 {
 										// mes
 										local26--;
 										chatTyped = Static3.scriptStringValues[local26];
-										Static103.addMessage(Static72.aClass100_447, 0, chatTyped);
+										Chat.addMessage(Static72.aClass100_447, 0, chatTyped);
 										continue;
 									}
 									if (scriptOpcode == 3101) {
@@ -2270,18 +2270,18 @@ public final class Static88 {
 										if (scriptOpcode >= 4600) {
 											if (scriptOpcode < 5100) {
 												if (scriptOpcode == 5000) {
-													Static254.scriptIntValues[intValueIndex++] = Static59.anInt1812;
+													Static254.scriptIntValues[intValueIndex++] = Chat.publicFilter;
 													continue;
 												}
 												if (scriptOpcode == 5001) {
 													intValueIndex -= 3;
-													Static59.anInt1812 = Static254.scriptIntValues[intValueIndex];
-													Static49.anInt1459 = Static254.scriptIntValues[intValueIndex + 1];
-													Static84.anInt2256 = Static254.scriptIntValues[intValueIndex + 2];
+													Chat.publicFilter = Static254.scriptIntValues[intValueIndex];
+													Chat.privateFilter = Static254.scriptIntValues[intValueIndex + 1];
+													Chat.tradeFilter = Static254.scriptIntValues[intValueIndex + 2];
 													Static6.outboundBuffer.pIsaac1(157);
-													Static6.outboundBuffer.p1(Static59.anInt1812);
-													Static6.outboundBuffer.p1(Static49.anInt1459);
-													Static6.outboundBuffer.p1(Static84.anInt2256);
+													Static6.outboundBuffer.p1(Chat.publicFilter);
+													Static6.outboundBuffer.p1(Chat.privateFilter);
+													Static6.outboundBuffer.p1(Chat.tradeFilter);
 													continue;
 												}
 												if (scriptOpcode == 5002) {
@@ -2301,7 +2301,7 @@ public final class Static88 {
 													intValueIndex--;
 													interfaceData = Static254.scriptIntValues[intValueIndex];
 													if (interfaceData < 100) {
-														chatTypedLowercase = Static230.messageText[interfaceData];
+														chatTypedLowercase = Chat.messages[interfaceData];
 													}
 													if (chatTypedLowercase == null) {
 														chatTypedLowercase = Static72.aClass100_447;
@@ -2313,14 +2313,14 @@ public final class Static88 {
 													intValueIndex--;
 													interfaceData = Static254.scriptIntValues[intValueIndex];
 													interfaceType = -1;
-													if (interfaceData < 100 && Static230.messageText[interfaceData] != null) {
-														interfaceType = Static26.anIntArray67[interfaceData];
+													if (interfaceData < 100 && Chat.messages[interfaceData] != null) {
+														interfaceType = Chat.types[interfaceData];
 													}
 													Static254.scriptIntValues[intValueIndex++] = interfaceType;
 													continue;
 												}
 												if (scriptOpcode == 5005) {
-													Static254.scriptIntValues[intValueIndex++] = Static49.anInt1459;
+													Static254.scriptIntValues[intValueIndex++] = Chat.privateFilter;
 													continue;
 												}
 												if (scriptOpcode == 5008) {
@@ -2473,7 +2473,7 @@ public final class Static88 {
 													interfaceData = Static254.scriptIntValues[intValueIndex];
 													chatTypedLowercase = null;
 													if (interfaceData < 100) {
-														chatTypedLowercase = Static153.aClass100Array112[interfaceData];
+														chatTypedLowercase = Chat.names[interfaceData];
 													}
 													if (chatTypedLowercase == null) {
 														chatTypedLowercase = Static72.aClass100_447;
@@ -2486,7 +2486,7 @@ public final class Static88 {
 													interfaceData = Static254.scriptIntValues[intValueIndex];
 													chatTypedLowercase = null;
 													if (interfaceData < 100) {
-														chatTypedLowercase = Static64.aClass100Array62[interfaceData];
+														chatTypedLowercase = Chat.clans[interfaceData];
 													}
 													if (chatTypedLowercase == null) {
 														chatTypedLowercase = Static72.aClass100_447;
@@ -2499,7 +2499,7 @@ public final class Static88 {
 													interfaceData = Static254.scriptIntValues[intValueIndex];
 													interfaceType = -1;
 													if (interfaceData < 100) {
-														interfaceType = Static241.anIntArray521[interfaceData];
+														interfaceType = Chat.phraseIds[interfaceData];
 													}
 													Static254.scriptIntValues[intValueIndex++] = interfaceType;
 													continue;
@@ -2514,11 +2514,11 @@ public final class Static88 {
 													continue;
 												}
 												if (scriptOpcode == 5016) {
-													Static254.scriptIntValues[intValueIndex++] = Static84.anInt2256;
+													Static254.scriptIntValues[intValueIndex++] = Chat.tradeFilter;
 													continue;
 												}
 												if (scriptOpcode == 5017) {
-													Static254.scriptIntValues[intValueIndex++] = Static62.anInt1941;
+													Static254.scriptIntValues[intValueIndex++] = Chat.size;
 													continue;
 												}
 												if (scriptOpcode == 5050) {
@@ -4241,7 +4241,7 @@ public final class Static88 {
 		} catch (@Pc(14378) Exception local14378) {
 			if (clientScript.aClass100_880 == null) {
 				if (client.modeWhere != 0) {
-					Static103.addMessage(Static72.aClass100_447, 0, Static136.aClass100_633);
+					Chat.addMessage(Static72.aClass100_447, 0, Static136.aClass100_633);
 				}
 				TracingException.report("CS2 - scr:" + clientScript.nodeId + " op:" + local44, local14378);
 			} else {
@@ -4255,7 +4255,7 @@ public final class Static88 {
 					local14385.method3113(Static176.aClass100_802).method3113(Static123.method2423(listenersIndex));
 				}
 				if (client.modeWhere != 0) {
-					Static103.addMessage(Static72.aClass100_447, 0, Static34.method882(new JString[] { Static167.aClass100_780, clientScript.aClass100_880 }));
+					Chat.addMessage(Static72.aClass100_447, 0, Static34.method882(new JString[] { Static167.aClass100_780, clientScript.aClass100_880 }));
 				}
 				TracingException.report("CS2 - scr:" + clientScript.nodeId + " op:" + local44 + new String(local14385.method3148()), local14378);
 			}

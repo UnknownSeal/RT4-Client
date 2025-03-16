@@ -20,9 +20,6 @@ public final class Static230 {
 	@OriginalMember(owner = "runetek4.client!sj", name = "p", descriptor = "I")
 	public static int anInt5150 = 1;
 
-	@OriginalMember(owner = "runetek4.client!sj", name = "q", descriptor = "[Lclient!na;")
-	public static final JString[] messageText = new JString[100];
-
 	@OriginalMember(owner = "runetek4.client!sj", name = "t", descriptor = "I")
 	public static int anInt5152 = 0;
 

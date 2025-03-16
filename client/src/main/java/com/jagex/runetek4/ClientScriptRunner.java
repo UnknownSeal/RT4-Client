@@ -34,9 +34,6 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "runetek4.client!t", name = "v", descriptor = "[Lclient!na;")
 	public static final JString[] aClass100Array160 = new JString[500];
 
-	@OriginalMember(owner = "runetek4.client!t", name = "w", descriptor = "[J")
-	public static final long[] aLongArray9 = new long[100];
-
 	@OriginalMember(owner = "runetek4.client!t", name = "x", descriptor = "Z")
 	public static boolean aBoolean254 = false;
 

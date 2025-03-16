@@ -21,11 +21,6 @@ public final class Static103 {
     @OriginalMember(owner = "runetek4.client!i", name = "ic", descriptor = "Lclient!na;")
 	public static final JString aClass100_558 = Static28.parse("m");
 
-	@OriginalMember(owner = "runetek4.client!i", name = "a", descriptor = "(Lclient!na;ILclient!na;I)V")
-	public static void addMessage(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JString arg2) {
-		Static154.add(-1, arg1, arg2, null, arg0);
-	}
-
 	@OriginalMember(owner = "runetek4.client!i", name = "p", descriptor = "(II)V")
 	public static void method2232(@OriginalArg(1) int arg0) {
 		if (arg0 < 0) {
@@ -182,7 +177,7 @@ public final class Static103 {
 				Static6.outboundBuffer.pIsaac1(92);
 				Static6.outboundBuffer.p2_alt3(a);
 			} else {
-				addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { Static123.method2423(com.invSlotObjCount[local15]), Static249.aClass100_1039, Static71.get(a).name}));
+				Chat.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { Static123.method2423(com.invSlotObjCount[local15]), Static249.aClass100_1039, Static71.get(a).name}));
 			}
 			Static72.anInt2043 = 0;
 			Static257.aClass13_7 = Component.getComponent(local19);

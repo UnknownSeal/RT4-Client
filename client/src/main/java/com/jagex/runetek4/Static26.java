@@ -22,9 +22,6 @@ public final class Static26 {
 	@OriginalMember(owner = "client!ca", name = "db", descriptor = "I")
 	public static int anInt865 = 0;
 
-	@OriginalMember(owner = "client!ca", name = "eb", descriptor = "[I")
-	public static final int[] anIntArray67 = new int[100];
-
 	@OriginalMember(owner = "client!ca", name = "fb", descriptor = "[I")
 	public static final int[] anIntArray68 = new int[50];
 

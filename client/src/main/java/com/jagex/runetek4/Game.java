@@ -31,7 +31,7 @@ public class Game {
         }
         if (Static60.systemUpdateTimer > 1) {
             Static60.systemUpdateTimer--;
-            Static209.miscTransmitAt = Static119.transmitTimer;
+            Static209.miscTransmitAt = InterfaceList.transmitTimer;
         }
         if (Static224.aBoolean247) {
             Static224.aBoolean247 = false;
@@ -422,7 +422,7 @@ public class Game {
         if (Static154.topLevelInterace != -1) {
             Static57.method1320(0, 0, 0, GameShell.canvasWidth, Static154.topLevelInterace, 0, GameShell.canvasHeigth);
         }
-        Static119.transmitTimer++;
+        InterfaceList.transmitTimer++;
         while (true) {
             // todo: this is actually split up into low/medium/high
             @Pc(1569) Component highPriorityComponent;

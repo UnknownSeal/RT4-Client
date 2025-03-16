@@ -414,7 +414,7 @@ public final class Static36 {
 								}
 								local9.anInt525 = Static89.anInt2385;
 							}
-							if (Static49.anInt1464 > local9.anInt482 && local9.anObjectArray20 != null) {
+							if (Chat.transmitAt > local9.anInt482 && local9.anObjectArray20 != null) {
 								local399 = new HookRequest();
 								local399.source = local9;
 								local399.anObjectArray31 = local9.anObjectArray20;
@@ -444,7 +444,7 @@ public final class Static36 {
 								local399.anObjectArray31 = local9.anObjectArray30;
 								Static185.aClass69_101.addTail(local399);
 							}
-							local9.anInt482 = Static119.transmitTimer;
+							local9.anInt482 = InterfaceList.transmitTimer;
 							if (local9.anObjectArray14 != null) {
 								for (local243 = 0; local243 < Static182.keyQueueSize; local243++) {
 									@Pc(1430) HookRequest local1430 = new HookRequest();

@@ -49,7 +49,7 @@ public final class Static193 {
 					Static106.anIntArray258[i] = Static106.anIntArray258[i + 1];
 					Static3.aBooleanArray135[i] = Static3.aBooleanArray135[i + 1];
 				}
-				Static185.anInt4369 = Static119.transmitTimer;
+				Static185.anInt4369 = InterfaceList.transmitTimer;
 				Static6.outboundBuffer.pIsaac1(57);
 				Static6.outboundBuffer.p8(username);
 				break;

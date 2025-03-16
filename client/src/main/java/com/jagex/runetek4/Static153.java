@@ -19,9 +19,6 @@ public final class Static153 {
 	@OriginalMember(owner = "runetek4.client!mc", name = "Z", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_57;
 
-	@OriginalMember(owner = "runetek4.client!mc", name = "Y", descriptor = "[Lclient!na;")
-	public static final JString[] aClass100Array112 = new JString[100];
-
 	@OriginalMember(owner = "runetek4.client!mc", name = "ab", descriptor = "[I")
 	public static final int[] anIntArray351 = new int[] { 7, 8, 9, 10, 11, 12, 13, 15 };
 

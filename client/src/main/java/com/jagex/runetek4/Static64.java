@@ -13,9 +13,6 @@ public final class Static64 {
 	@OriginalMember(owner = "runetek4.client!fb", name = "i", descriptor = "Lclient!na;")
 	public static final JString MAX_AGE = Static28.parse("; Max)2Age=");
 
-	@OriginalMember(owner = "runetek4.client!fb", name = "l", descriptor = "[Lclient!na;")
-	public static final JString[] aClass100Array62 = new JString[100];
-
 	@OriginalMember(owner = "runetek4.client!fb", name = "m", descriptor = "Z")
 	public static boolean aBoolean111 = true;
 
@@ -59,25 +56,25 @@ public final class Static64 {
 			return;
 		}
 		if (CacheArchive.friendCount >= 100 && !Class6.members || CacheArchive.friendCount >= 200) {
-			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDLISTFULL);
+			Chat.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDLISTFULL);
 			return;
 		}
 		@Pc(35) JString displayName = Base37.decode37(username).method3125();
 		@Pc(42) int i;
 		for (i = 0; i < CacheArchive.friendCount; i++) {
 			if (Static92.friendName37[i] == username) {
-				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { displayName, LocalizedText.FRIENDLISTDUPE}));
+				Chat.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { displayName, LocalizedText.FRIENDLISTDUPE}));
 				return;
 			}
 		}
 		for (i = 0; i < Static35.ignoreCount; i++) {
 			if (username == Static190.ignoreName37[i]) {
-				Static103.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { LocalizedText.REMOVESOCIAL1, displayName, LocalizedText.REMOVEIGNORE}));
+				Chat.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { LocalizedText.REMOVESOCIAL1, displayName, LocalizedText.REMOVEIGNORE}));
 				return;
 			}
 		}
 		if (displayName.method3108(PlayerList.self.username)) {
-			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDCANTADDSELF);
+			Chat.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDCANTADDSELF);
 			return;
 		}
 		Static122.friendName[CacheArchive.friendCount] = displayName;
@@ -87,7 +84,7 @@ public final class Static64 {
 		Static106.anIntArray258[CacheArchive.friendCount] = 0;
 		Static3.aBooleanArray135[CacheArchive.friendCount] = false;
 		CacheArchive.friendCount++;
-		Static185.anInt4369 = Static119.transmitTimer;
+		Static185.anInt4369 = InterfaceList.transmitTimer;
 		Static6.outboundBuffer.pIsaac1(120);
 		Static6.outboundBuffer.p8(username);
 	}
