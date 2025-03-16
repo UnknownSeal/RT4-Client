@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.scene.tile.SceneTile;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -368,7 +369,7 @@ public final class Static120 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!jf", name = "a", descriptor = "(II[[[Lclient!bj;)V")
-	public static void method2402(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) Ground[][][] arg2) {
+	public static void method2402(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) SceneTile[][][] arg2) {
 		if (!Static178.highDetailLighting) {
 			return;
 		}
@@ -411,7 +412,7 @@ public final class Static120 {
 						local141 = Static2.anInt15 - 1;
 					}
 					for (@Pc(155) int local155 = local133; local155 <= local141; local155++) {
-						@Pc(160) Ground local160 = null;
+						@Pc(160) SceneTile local160 = null;
 						if (local66 >= 0) {
 							local160 = arg2[local66][local155][local112];
 						}

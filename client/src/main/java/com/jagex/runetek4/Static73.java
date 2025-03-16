@@ -2,8 +2,9 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -41,7 +42,7 @@ public final class Static73 {
 				Static132.method2605(true, local18);
 			}
 			Static154.topLevelInterace = -1;
-			Static119.aClass133_9 = new IterableMap(8);
+			Static119.aClass133_9 = new HashTable(8);
 			Component.createComponentMemoryBuffer();
 			Static154.topLevelInterace = Static156.anInt3783;
 			Static210.method3712(false);

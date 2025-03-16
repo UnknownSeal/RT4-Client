@@ -1,4 +1,4 @@
-package com.jagex.runetek4.dash3d.entity;
+package com.jagex.runetek4.media.renderable;
 
 import com.jagex.runetek4.ParticleSystem;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -6,10 +6,10 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!th")
-public abstract class Entity {
+public abstract class Renderable {
 
 	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(III)Lclient!th;")
-	public Entity method4539() {
+	public Renderable method4539() {
 		return this;
 	}
 
@@ -19,7 +19,7 @@ public abstract class Entity {
 	}
 
 	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(Lclient!th;IIIZ)V")
-	public void method4544(@OriginalArg(0) Entity arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
+	public void method4544(@OriginalArg(0) Renderable arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
 	}
 
 	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(IIIII)V")

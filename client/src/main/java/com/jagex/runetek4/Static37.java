@@ -1,8 +1,8 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.bastype.BASType;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Actor;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -23,7 +23,7 @@ public final class Static37 {
 	public static PrivilegedRequest js5SocketRequest;
 
 	@OriginalMember(owner = "runetek4.client!cm", name = "a", descriptor = "(ILclient!fe;)V")
-	public static void method949(@OriginalArg(1) PathingEntity e) {
+	public static void method949(@OriginalArg(1) Actor e) {
 		if (e.anInt3376 == 0) {
 			return;
 		}
@@ -31,7 +31,7 @@ public final class Static37 {
 		@Pc(43) int dstX;
 		@Pc(36) int dstZ;
 		if (e.targetId != -1 && e.targetId < 32768) {
-			@Pc(26) NPCEntity npc = Static175.npcs[e.targetId];
+			@Pc(26) NPCRenderable npc = Static175.npcs[e.targetId];
 			if (npc != null) {
 				dstZ = e.z - npc.z;
 				dstX = e.x - npc.x;

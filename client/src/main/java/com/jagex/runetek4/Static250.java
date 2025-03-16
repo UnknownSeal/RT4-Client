@@ -2,6 +2,8 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.scene.SceneCamera;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -82,6 +84,6 @@ public final class Static250 {
 			Static72.orbitCameraPitch += Static56.anInt1743 / 2;
 			Static57.orbitCameraYaw += Static38.anInt1203 / 2;
 		}
-		Static87.method1812();
+		SceneCamera.setMaxSurroundingTerrainHeight();
 	}
 }

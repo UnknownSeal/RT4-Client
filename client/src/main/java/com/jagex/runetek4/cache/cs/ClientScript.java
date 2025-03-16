@@ -6,8 +6,8 @@ import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
-import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.core.datastruct.CachedNode;
+import com.jagex.runetek4.core.datastruct.HashTable;
+import com.jagex.runetek4.node.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -30,7 +30,7 @@ public final class ClientScript extends CachedNode {
 	public int[] opcodes;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "Q", descriptor = "[Lclient!sc;")
-	public IterableMap[] aClass133Array1;
+	public HashTable[] aClass133Array1;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "R", descriptor = "Lclient!na;")
 	public JString aClass100_880;
@@ -69,10 +69,10 @@ public final class ClientScript extends CachedNode {
 		@Pc(107) int local107;
 		@Pc(114) int opcode;
 		if (local98 > 0) {
-			clientScript.aClass133Array1 = new IterableMap[local98];
+			clientScript.aClass133Array1 = new HashTable[local98];
 			for (local107 = 0; local107 < local98; local107++) {
 				opcode = local42.g2();
-				@Pc(121) IterableMap local121 = new IterableMap(Static165.bitceil(opcode));
+				@Pc(121) HashTable local121 = new HashTable(Static165.bitceil(opcode));
 				clientScript.aClass133Array1[local107] = local121;
 				while (opcode-- > 0) {
 					@Pc(136) int local136 = local42.g4();

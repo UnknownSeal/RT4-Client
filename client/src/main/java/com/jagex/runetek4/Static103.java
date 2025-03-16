@@ -4,7 +4,7 @@ import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.cache.def.ActorDefinition;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -71,7 +71,7 @@ public final class Static103 {
 			Static257.aClass13_7 = Component.getComponent(local19);
 			Static250.anInt5444 = local15;
 		}
-		@Pc(192) NPCEntity npc;
+		@Pc(192) NPCRenderable npc;
 		if (local23 == 19) {
 			npc = Static175.npcs[a];
 			if (npc != null) {

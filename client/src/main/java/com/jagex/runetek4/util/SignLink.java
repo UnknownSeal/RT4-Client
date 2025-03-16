@@ -1,4 +1,4 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.util;
 
 import java.applet.Applet;
 import java.awt.Component;
@@ -16,6 +16,7 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.Hashtable;
 
+import com.jagex.runetek4.*;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

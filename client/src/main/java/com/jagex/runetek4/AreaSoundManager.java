@@ -1,9 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.cache.def.ActorDefinition;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import com.jagex.runetek4.media.renderable.actor.Player;
 
 import org.openrs2.deob.annotation.OriginalArg;
@@ -16,10 +16,10 @@ public class AreaSoundManager {
     @OriginalMember(owner = "client!ma", name = "x", descriptor = "Lclient!ih;")
     public static final LinkList npcSounds = new LinkList();
     @OriginalMember(owner = "runetek4.client!he", name = "ab", descriptor = "Lclient!sc;")
-    public static final IterableMap playerSounds = new IterableMap(16);
+    public static final HashTable playerSounds = new HashTable(16);
 
     @OriginalMember(owner = "client!jh", name = "a", descriptor = "(IZLclient!pb;ILclient!km;IILclient!e;)V")
-    public static void add(@OriginalArg(0) int arg0, @OriginalArg(2) LocMergeEntity arg1, @OriginalArg(3) int arg2, @OriginalArg(4) NPCEntity npcEntity, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) Player player) {
+    public static void add(@OriginalArg(0) int arg0, @OriginalArg(2) LocMergeEntity arg1, @OriginalArg(3) int arg2, @OriginalArg(4) NPCRenderable npcEntity, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) Player player) {
         @Pc(13) AreaSound areaSound = new AreaSound();
         areaSound.level = arg5;
         areaSound.anInt2029 = arg0 * 128;
@@ -57,7 +57,7 @@ public class AreaSoundManager {
             if (actorDefinition != null) {
                 areaSound.anInt2028 = (arg0 + actorDefinition.size) * 128;
                 areaSound.anInt2037 = (arg4 + actorDefinition.size) * 128;
-                areaSound.sound = NPCEntity.getSound(npcEntity);
+                areaSound.sound = NPCRenderable.getSound(npcEntity);
                 areaSound.radius = actorDefinition.bgsound_range * 128;
             }
             npcSounds.addTail(areaSound);

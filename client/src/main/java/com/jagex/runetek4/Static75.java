@@ -3,8 +3,10 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.config.bastype.BASType;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
+import com.jagex.runetek4.dash3d.entity.Actor;
 import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.WallDecoration;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -172,13 +174,13 @@ public final class Static75 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!g", name = "a", descriptor = "(III)Lclient!df;")
-	public static Decor method1633(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
+	public static WallDecoration method1633(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return null;
 		} else {
-			@Pc(14) Decor local14 = local7.decor;
-			local7.decor = null;
+			@Pc(14) WallDecoration local14 = local7.wallDecoration;
+			local7.wallDecoration = null;
 			return local14;
 		}
 	}
@@ -400,7 +402,7 @@ public final class Static75 {
 						local19 *= 64;
 						if (local39 != 0) {
 							@Pc(1194) int local1194;
-							@Pc(1198) PathingEntity local1198;
+							@Pc(1198) Actor local1198;
 							@Pc(1184) int local1184;
 							@Pc(1188) int local1188;
 							if (local39 >= 0) {

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
-import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.media.renderable.Renderable;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!ra")
-public final class ProjectileAnimation extends Entity {
+public final class ProjectileAnimation extends Renderable {
 
 	@OriginalMember(owner = "client!ra", name = "u", descriptor = "D")
 	private double velocityX;

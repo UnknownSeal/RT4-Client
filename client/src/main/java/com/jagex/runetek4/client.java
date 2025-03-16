@@ -15,9 +15,10 @@ import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.cache.CacheIndex;
 import com.jagex.runetek4.game.config.cursortype.CursorType;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.js5.index.Js5MasterIndex;
+import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -500,7 +501,7 @@ public final class client extends GameShell {
 		Static119.transmitTimer++;
 		if (GlRenderer.enabled) {
 			label191: for (@Pc(57) int local57 = 0; local57 < 32768; local57++) {
-				@Pc(66) NPCEntity npcEntity = Static175.npcs[local57];
+				@Pc(66) NPCRenderable npcEntity = Static175.npcs[local57];
 				if (npcEntity != null) {
 					@Pc(73) byte walkflags = npcEntity.type.walkflags;
 					if ((walkflags & 0x2) > 0 && npcEntity.pathLength == 0 && Math.random() * 1000.0D < 10.0D) {

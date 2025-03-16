@@ -2,8 +2,8 @@ package com.jagex.runetek4.js5.network;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.core.datastruct.IterableMap;
-import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.core.datastruct.HashTable;
+import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.cache.CacheIndex;
 import com.jagex.runetek4.js5.Js5Request;
 import com.jagex.runetek4.js5.Js5ResourceProvider;
@@ -29,7 +29,7 @@ public final class Js5NetResourceProvider extends Js5ResourceProvider {
 	private int anInt567 = 0;
 
 	@OriginalMember(owner = "client!bg", name = "p", descriptor = "Lclient!sc;")
-	private final IterableMap requests = new IterableMap(16);
+	private final HashTable requests = new HashTable(16);
 
 	@OriginalMember(owner = "client!bg", name = "S", descriptor = "I")
 	private int anInt578 = 0;

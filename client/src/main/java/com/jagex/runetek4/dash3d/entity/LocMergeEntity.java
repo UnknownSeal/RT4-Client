@@ -6,14 +6,15 @@ import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.media.renderable.Renderable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.JagStringWrapper;
-import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!pb")
@@ -32,7 +33,7 @@ public final class LocMergeEntity {
 	private short[] retex_d;
 
 	@OriginalMember(owner = "client!pb", name = "B", descriptor = "Lclient!sc;")
-	private IterableMap params;
+	private HashTable params;
 
 	@OriginalMember(owner = "client!pb", name = "H", descriptor = "[S")
 	private short[] recol_d;
@@ -401,7 +402,7 @@ public final class LocMergeEntity {
 			int length = packet.g1();
 			if (this.params == null) {
 				int len = Static165.bitceil(length);
-				this.params = new IterableMap(len);
+				this.params = new HashTable(len);
 			}
 			for (int index = 0; index < length; index++) {
 				@Pc(576) boolean isString = packet.g1() == 1;
@@ -798,7 +799,7 @@ public final class LocMergeEntity {
 		} else {
 			local50 = false;
 		}
-		@Pc(60) Entity local60 = (Entity) Static93.aClass99_14.get(local29);
+		@Pc(60) Renderable local60 = (Renderable) Static93.aClass99_14.get(local29);
 		if (local60 == null) {
 			@Pc(69) ModelUnlit local69 = this.method3418(arg0, arg3);
 			if (local69 == null) {

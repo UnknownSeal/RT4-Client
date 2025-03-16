@@ -2,8 +2,8 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Actor;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,7 +14,7 @@ public final class Static104 {
 	public static final int[] friendWorld = new int[200];
 
 	@OriginalMember(owner = "runetek4.client!ia", name = "a", descriptor = "(BLclient!fe;)V")
-	public static void method2247(@OriginalArg(1) PathingEntity arg0) {
+	public static void method2247(@OriginalArg(1) Actor arg0) {
 		@Pc(9) BASType local9 = arg0.method2681();
 		arg0.secondarySeqId = local9.anInt1037;
 		if (arg0.pathLength == 0) {
@@ -81,8 +81,8 @@ public final class Static104 {
 			local227 = local9.anInt1051;
 		}
 		arg0.secondarySeqId = local227;
-		if (arg0 instanceof NPCEntity) {
-			local233 = ((NPCEntity) arg0).type.walksmoothing;
+		if (arg0 instanceof NPCRenderable) {
+			local233 = ((NPCRenderable) arg0).type.walksmoothing;
 		}
 		if (local233) {
 			if (arg0.anInt3381 != arg0.dstYaw && arg0.targetId == -1 && arg0.anInt3376 != 0) {

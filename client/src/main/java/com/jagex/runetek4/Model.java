@@ -1,13 +1,13 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.media.renderable.Renderable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!ak")
-public abstract class Model extends Entity {
+public abstract class Model extends Renderable {
 
 	@OriginalMember(owner = "runetek4.client!ak", name = "s", descriptor = "Z")
 	public boolean pickable = false;

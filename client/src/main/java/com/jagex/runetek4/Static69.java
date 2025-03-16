@@ -3,8 +3,12 @@ package com.jagex.runetek4;
 import java.awt.Frame;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.media.renderable.Renderable;
 import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
+import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Wall;
+import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -59,7 +63,7 @@ public final class Static69 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!fh", name = "a", descriptor = "(IIIILclient!th;JLclient!th;Lclient!th;)V")
-	public static void method1543(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Entity arg4, @OriginalArg(5) long arg5, @OriginalArg(6) Entity arg6, @OriginalArg(7) Entity arg7) {
+	public static void method1543(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Renderable arg4, @OriginalArg(5) long arg5, @OriginalArg(6) Renderable arg6, @OriginalArg(7) Renderable arg7) {
 		@Pc(3) ObjStackEntity local3 = new ObjStackEntity();
 		local3.aClass8_9 = arg4;
 		local3.anInt3064 = arg1 * 128 + 64;
@@ -69,11 +73,11 @@ public final class Static69 {
 		local3.aClass8_7 = arg6;
 		local3.aClass8_8 = arg7;
 		@Pc(34) int local34 = 0;
-		@Pc(42) Ground local42 = Static130.levelTiles[arg0][arg1][arg2];
+		@Pc(42) SceneTile local42 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local42 != null) {
-			for (@Pc(46) int local46 = 0; local46 < local42.anInt662; local46++) {
-				@Pc(55) Scenery local55 = local42.aClass31Array1[local46];
-				if ((local55.aLong56 & 0x400000L) == 4194304L) {
+			for (@Pc(46) int local46 = 0; local46 < local42.entityCount; local46++) {
+				@Pc(55) InteractiveObject local55 = local42.interactiveObjects[local46];
+				if ((local55.hash & 0x400000L) == 4194304L) {
 					@Pc(66) int local66 = local55.aClass8_4.getHeight();
 					if (local66 != -32768 && local66 < local34) {
 						local34 = local66;
@@ -83,13 +87,13 @@ public final class Static69 {
 		}
 		local3.offset = -local34;
 		if (Static130.levelTiles[arg0][arg1][arg2] == null) {
-			Static130.levelTiles[arg0][arg1][arg2] = new Ground(arg0, arg1, arg2);
+			Static130.levelTiles[arg0][arg1][arg2] = new SceneTile(arg0, arg1, arg2);
 		}
 		Static130.levelTiles[arg0][arg1][arg2].aClass79_1 = local3;
 	}
 
 	@OriginalMember(owner = "runetek4.client!fh", name = "a", descriptor = "(Lclient!th;IIIII)V")
-	public static void method1544(@OriginalArg(0) Entity arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
+	public static void method1544(@OriginalArg(0) Renderable arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
 		@Pc(1) boolean local1 = true;
 		@Pc(3) int local3 = arg2;
 		@Pc(7) int local7 = arg2 + arg4;
@@ -101,7 +105,7 @@ public final class Static69 {
 					if (local28 >= 0 && local28 < Static152.anInt3594) {
 						for (@Pc(39) int local39 = local11; local39 <= local15; local39++) {
 							if (local39 >= 0 && local39 < Static99.anInt2550 && (!local1 || local28 >= local7 || local39 >= local15 || local39 < arg3 && local28 != arg2)) {
-								@Pc(71) Ground local71 = Static130.levelTiles[local17][local28][local39];
+								@Pc(71) SceneTile local71 = Static130.levelTiles[local17][local28][local39];
 								if (local71 != null) {
 									@Pc(158) int local158 = (Static83.levelHeightMap[local17][local28][local39] + Static83.levelHeightMap[local17][local28 + 1][local39] + Static83.levelHeightMap[local17][local28][local39 + 1] + Static83.levelHeightMap[local17][local28 + 1][local39 + 1]) / 4 - (Static83.levelHeightMap[arg1][arg2][arg3] + Static83.levelHeightMap[arg1][arg2 + 1][arg3] + Static83.levelHeightMap[arg1][arg2][arg3 + 1] + Static83.levelHeightMap[arg1][arg2 + 1][arg3 + 1]) / 4;
 									@Pc(161) Wall local161 = local71.wall;
@@ -113,8 +117,8 @@ public final class Static69 {
 											arg0.method4544(local161.modelB, (local28 - arg2) * 128 + (1 - arg4) * 64, local158, (local39 - arg3) * 128 + (1 - arg5) * 64, local1);
 										}
 									}
-									for (@Pc(232) int local232 = 0; local232 < local71.anInt662; local232++) {
-										@Pc(241) Scenery local241 = local71.aClass31Array1[local232];
+									for (@Pc(232) int local232 = 0; local232 < local71.entityCount; local232++) {
+										@Pc(241) InteractiveObject local241 = local71.interactiveObjects[local232];
 										if (local241 != null && local241.aClass8_4.method4543() && (local28 == local241.anInt1701 || local28 == local3) && (local39 == local241.anInt1696 || local39 == local11)) {
 											@Pc(270) int local270 = local241.anInt1713 + 1 - local241.anInt1701;
 											@Pc(278) int local278 = local241.anInt1698 + 1 - local241.anInt1696;

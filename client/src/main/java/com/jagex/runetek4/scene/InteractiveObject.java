@@ -1,17 +1,17 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.scene;
 
-import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.media.renderable.Renderable;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!ec")
-public final class Scenery {
+public final class InteractiveObject {
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "I")
 	public int anInt1696;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "c", descriptor = "Lclient!th;")
-	public Entity aClass8_4;
+	public Renderable aClass8_4;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "e", descriptor = "I")
 	public int anInt1698;
@@ -44,5 +44,5 @@ public final class Scenery {
 	public int anInt1714;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "A", descriptor = "J")
-	public long aLong56 = 0L;
+	public long hash = 0L;
 }

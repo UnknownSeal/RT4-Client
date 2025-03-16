@@ -1,6 +1,6 @@
-package com.jagex.runetek4;
+package com.jagex.runetek4.scene.tile;
 
-import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.media.renderable.Renderable;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
@@ -11,10 +11,10 @@ public final class Wall {
 	public int anInt3044;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "e", descriptor = "Lclient!th;")
-	public Entity modelA;
+	public Renderable modelA;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "h", descriptor = "Lclient!th;")
-	public Entity modelB;
+	public Renderable modelB;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "k", descriptor = "I")
 	public int anInt3048;

@@ -1,6 +1,7 @@
 package com.jagex.runetek4.dash3d.entity;
 
 import com.jagex.runetek4.SoftwareIndexedSprite;
+import com.jagex.runetek4.media.renderable.Renderable;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
@@ -11,5 +12,5 @@ public final class LocEntity {
 	public SoftwareIndexedSprite sprite;
 
 	@OriginalMember(owner = "client!sm", name = "j", descriptor = "Lclient!th;")
-	public Entity model;
+	public Renderable model;
 }

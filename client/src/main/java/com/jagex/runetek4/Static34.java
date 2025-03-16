@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
+import com.jagex.runetek4.dash3d.entity.Actor;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -106,7 +106,7 @@ public final class Static34 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "(Lclient!fe;I)V")
-	public static void method879(@OriginalArg(0) PathingEntity arg0) {
+	public static void method879(@OriginalArg(0) Actor arg0) {
 		arg0.seqStretches = false;
 		@Pc(18) AnimationSequence seq;
 		if (arg0.secondarySeqId != -1) {

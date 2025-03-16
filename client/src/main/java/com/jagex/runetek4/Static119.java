@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
@@ -17,7 +17,7 @@ public final class Static119 {
 	public static boolean aBoolean153 = false;
 
 	@OriginalMember(owner = "client!je", name = "T", descriptor = "Lclient!sc;")
-	public static IterableMap aClass133_9 = new IterableMap(8);
+	public static HashTable aClass133_9 = new HashTable(8);
 
 	@OriginalMember(owner = "client!je", name = "U", descriptor = "Lclient!na;")
 	public static final JString SHOWINGVIDEOAD = Static28.parse("showingVideoAd");

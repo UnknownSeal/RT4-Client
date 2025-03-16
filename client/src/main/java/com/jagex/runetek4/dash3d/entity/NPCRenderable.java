@@ -5,19 +5,20 @@ import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.scene.Scene;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!km")
-public final class NPCEntity extends PathingEntity {
+public final class NPCRenderable extends Actor {
 
 	@OriginalMember(owner = "client!km", name = "rc", descriptor = "Lclient!me;")
 	public ActorDefinition type;
 
     @OriginalMember(owner = "client!ij", name = "a", descriptor = "(Lclient!km;I)I")
-    public static int getSound(@OriginalArg(0) NPCEntity arg0) {
+    public static int getSound(@OriginalArg(0) NPCRenderable arg0) {
         @Pc(13) ActorDefinition local13 = arg0.type;
         if (local13.multinpc != null) {
             local13 = local13.getMultiNPC();
@@ -67,7 +68,7 @@ public final class NPCEntity extends PathingEntity {
 		}
 		@Pc(140) Model local140;
 		if (Static209.aBoolean240 && local84.spotshadow) {
-			local140 = Static41.method1043(this.type.spotshadowtrans_1, this.seqStretches, local53 == null ? local29 : local53, this.x, this.type.spotshadowcolour_2, this.z, this.type.spotshadowcolour_1, this.type.size, tmp, arg0, local53 == null ? this.anInt3425 : this.anInt3407, this.y, this.type.spotshadowtrans_2);
+			local140 = Scene.method1043(this.type.spotshadowtrans_1, this.seqStretches, local53 == null ? local29 : local53, this.x, this.type.spotshadowcolour_2, this.z, this.type.spotshadowcolour_1, this.type.size, tmp, arg0, local53 == null ? this.anInt3425 : this.anInt3407, this.y, this.type.spotshadowtrans_2);
 			if (GlRenderer.enabled) {
 				@Pc(144) float local144 = GlRenderer.method4179();
 				@Pc(146) float local146 = GlRenderer.method4166();

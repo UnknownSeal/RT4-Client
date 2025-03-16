@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.audio.SynthSound;
 import com.jagex.runetek4.audio.vorbis.VorbisSound;
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -13,10 +13,10 @@ import org.openrs2.deob.annotation.Pc;
 public final class SoundBank {
 
 	@OriginalMember(owner = "runetek4.client!le", name = "d", descriptor = "Lclient!sc;")
-	private final IterableMap aClass133_11 = new IterableMap(256);
+	private final HashTable aClass133_11 = new HashTable(256);
 
 	@OriginalMember(owner = "runetek4.client!le", name = "l", descriptor = "Lclient!sc;")
-	private final IterableMap aClass133_12 = new IterableMap(256);
+	private final HashTable aClass133_12 = new HashTable(256);
 
 	@OriginalMember(owner = "runetek4.client!le", name = "b", descriptor = "Lclient!ve;")
 	private final CacheArchive aClass153_52;

@@ -3,6 +3,8 @@ package com.jagex.runetek4;
 import java.awt.Frame;
 
 import com.jagex.runetek4.input.Keyboard;
+import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -10,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static25 {
 
 	@OriginalMember(owner = "client!c", name = "bb", descriptor = "[Lclient!ec;")
-	public static Scenery[] aClass31Array2;
+	public static InteractiveObject[] aClass31Array2;
 
 	@OriginalMember(owner = "client!c", name = "Y", descriptor = "Lclient!na;")
 	public static final JString aClass100_154 = Static28.parse("Mem:");

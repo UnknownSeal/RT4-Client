@@ -1,4 +1,4 @@
-package com.jagex.runetek4.core.datastruct;
+package com.jagex.runetek4.node;
 
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -10,18 +10,18 @@ public class CachedNode extends Node {
 	public long secondaryNodeId;
 
 	@OriginalMember(owner = "client!rg", name = "w", descriptor = "Lclient!rg;")
-	public CachedNode secondaryNext;
+	public CachedNode nextCachedNode;
 
 	@OriginalMember(owner = "client!rg", name = "G", descriptor = "Lclient!rg;")
-	public CachedNode secondaryPrev;
+	public CachedNode previousCachedNode;
 
 	@OriginalMember(owner = "client!rg", name = "e", descriptor = "(B)V")
 	public final void clear() {
-		if (this.secondaryNext != null) {
-			this.secondaryNext.secondaryPrev = this.secondaryPrev;
-			this.secondaryPrev.secondaryNext = this.secondaryNext;
-			this.secondaryPrev = null;
-			this.secondaryNext = null;
+		if (this.nextCachedNode != null) {
+			this.nextCachedNode.previousCachedNode = this.previousCachedNode;
+			this.previousCachedNode.nextCachedNode = this.nextCachedNode;
+			this.previousCachedNode = null;
+			this.nextCachedNode = null;
 		}
 	}
 }

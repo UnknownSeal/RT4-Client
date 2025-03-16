@@ -7,7 +7,7 @@ import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.cache.def.ActorDefinition;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import com.jagex.runetek4.frame.Minimap;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.media.renderable.actor.Player;
@@ -119,7 +119,7 @@ public final class Static54 {
 				}
 			}
 			for (flagX = 0; flagX < Static272.npcCount; flagX++) {
-				@Pc(498) NPCEntity local498 = Static175.npcs[Static33.npcIds[flagX]];
+				@Pc(498) NPCRenderable local498 = Static175.npcs[Static33.npcIds[flagX]];
 				if (local498 != null && local498.isVisible()) {
 					@Pc(507) ActorDefinition local507 = local498.type;
 					if (local507 != null && local507.multinpc != null) {
@@ -176,7 +176,7 @@ public final class Static54 {
 				@Pc(770) Class102 local770 = local756[flagZ];
 				if (local770 != null && local770.headIconDrawType != 0 && Static83.loopCycle % 20 < 10) {
 					if (local770.headIconDrawType == 1 && local770.hintIconNpcTarget >= 0 && local770.hintIconNpcTarget < Static175.npcs.length) {
-						@Pc(804) NPCEntity npc = Static175.npcs[local770.hintIconNpcTarget];
+						@Pc(804) NPCRenderable npc = Static175.npcs[local770.hintIconNpcTarget];
 						if (npc != null) {
 							npcX = npc.x / 32 - Static173.localPlayer.x / 32;
 							npcZ = npc.z / 32 - Static173.localPlayer.z / 32;

@@ -2,6 +2,8 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -47,7 +49,7 @@ public final class Static254 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "a", descriptor = "(BZII[[[Lclient!bj;I)Z")
-	public static boolean method4348(@OriginalArg(1) boolean arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) Ground[][][] arg3, @OriginalArg(5) int arg4) {
+	public static boolean method4348(@OriginalArg(1) boolean arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) SceneTile[][][] arg3, @OriginalArg(5) int arg4) {
 		@Pc(14) byte local14 = arg0 ? 1 : (byte) (Static136.anInt3325 & 0xFF);
 		if (local14 == Static266.aByteArrayArrayArray15[Static55.currentLevel][arg1][arg2]) {
 			return false;
@@ -97,13 +99,13 @@ public final class Static254 {
 									}
 								}
 							}
-							if (arg3[local150][local108][local122].aClass31Array1 != null) {
-								for (local191 = 0; local191 < arg3[local150][local108][local122].anInt662; local191++) {
-									local227 = (int) (arg3[local150][local108][local122].aClass31Array1[local191].aLong56 >> 14 & 0x3FL);
+							if (arg3[local150][local108][local122].interactiveObjects != null) {
+								for (local191 = 0; local191 < arg3[local150][local108][local122].entityCount; local191++) {
+									local227 = (int) (arg3[local150][local108][local122].interactiveObjects[local191].hash >> 14 & 0x3FL);
 									if (local227 == 21) {
 										local227 = 19;
 									}
-									@Pc(352) int local352 = (int) (arg3[local150][local108][local122].aClass31Array1[local191].aLong56 >> 20 & 0x3L);
+									@Pc(352) int local352 = (int) (arg3[local150][local108][local122].interactiveObjects[local191].hash >> 20 & 0x3L);
 									local358 = local227 | local352 << 6;
 									if (local358 == local94 || local102 != 0 && local358 == local102 || local116 != 0 && local116 == local358) {
 										continue label238;
@@ -112,10 +114,10 @@ public final class Static254 {
 							}
 						}
 						local132 = true;
-						@Pc(395) Ground local395 = arg3[local150][local108][local122];
-						if (local395 != null && local395.anInt662 > 0) {
-							for (local227 = 0; local227 < local395.anInt662; local227++) {
-								@Pc(418) Scenery local418 = local395.aClass31Array1[local227];
+						@Pc(395) SceneTile local395 = arg3[local150][local108][local122];
+						if (local395 != null && local395.entityCount > 0) {
+							for (local227 = 0; local227 < local395.entityCount; local227++) {
+								@Pc(418) InteractiveObject local418 = local395.interactiveObjects[local227];
 								if (local418.anInt1713 != local418.anInt1701 || local418.anInt1698 != local418.anInt1696) {
 									for (local358 = local418.anInt1701; local358 <= local418.anInt1713; local358++) {
 										for (@Pc(450) int local450 = local418.anInt1696; local450 <= local418.anInt1698; local450++) {

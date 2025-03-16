@@ -1,10 +1,11 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ActorDefinition;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Actor;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -34,7 +35,7 @@ public final class Static142 {
 		@Pc(359) int local359;
 		@Pc(639) int local639;
 		for (local5 = -1; local5 < Static267.playerCount + Static272.npcCount; local5++) {
-			@Pc(17) PathingEntity local17;
+			@Pc(17) Actor local17;
 			if (local5 == -1) {
 				local17 = Static173.localPlayer;
 			} else if (Static267.playerCount > local5) {
@@ -44,8 +45,8 @@ public final class Static142 {
 			}
 			if (local17 != null && local17.isVisible()) {
 				@Pc(58) ActorDefinition local58;
-				if (local17 instanceof NPCEntity) {
-					local58 = ((NPCEntity) local17).type;
+				if (local17 instanceof NPCRenderable) {
+					local58 = ((NPCRenderable) local17).type;
 					if (local58.multinpc != null) {
 						local58 = local58.getMultiNPC();
 					}
@@ -55,7 +56,7 @@ public final class Static142 {
 				}
 				@Pc(161) int local161;
 				if (local5 >= Static267.playerCount) {
-					local58 = ((NPCEntity) local17).type;
+					local58 = ((NPCRenderable) local17).type;
 					if (local58.multinpc != null) {
 						local58 = local58.getMultiNPC();
 					}
@@ -131,8 +132,8 @@ public final class Static142 {
 				if (local17.anInt3378 > Static83.loopCycle) {
 					@Pc(508) Sprite local508 = Static116.aClass3_Sub2_Sub1Array3[0];
 					@Pc(512) Sprite local512 = Static116.aClass3_Sub2_Sub1Array3[1];
-					if (local17 instanceof NPCEntity) {
-						@Pc(518) NPCEntity local518 = (NPCEntity) local17;
+					if (local17 instanceof NPCRenderable) {
+						@Pc(518) NPCRenderable local518 = (NPCRenderable) local17;
 						@Pc(528) Sprite[] local528 = (Sprite[]) Static73.aClass99_10.get((long) local518.type.anInt3736);
 						if (local528 == null) {
 							local528 = Static209.method3708(local518.type.anInt3736, Static209.aClass153_86);
@@ -175,8 +176,8 @@ public final class Static142 {
 				}
 				for (local74 = 0; local74 < 4; local74++) {
 					if (local17.anIntArray319[local74] > Static83.loopCycle) {
-						if (local17 instanceof NPCEntity) {
-							@Pc(725) NPCEntity local725 = (NPCEntity) local17;
+						if (local17 instanceof NPCRenderable) {
+							@Pc(725) NPCRenderable local725 = (NPCRenderable) local17;
 							@Pc(728) ActorDefinition local728 = local725.type;
 							if (local728.overlayheight == -1) {
 								local265 = local17.height() / 2;

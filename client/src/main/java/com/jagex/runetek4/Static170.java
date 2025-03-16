@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.dash3d.entity.Entity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -25,24 +24,6 @@ public final class Static170 {
 	public static int method2569(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
 		@Pc(22) int local22 = 65536 - MathUtils.anIntArray225[arg2 * 1024 / arg3] >> 1;
 		return (arg0 * (65536 - local22) >> 16) + (arg1 * local22 >> 16);
-	}
-
-	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(IIIILclient!th;JZ)V")
-	public static void method2570(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Entity arg4, @OriginalArg(5) long arg5, @OriginalArg(6) boolean arg6) {
-		if (arg4 == null) {
-			return;
-		}
-		@Pc(6) GroundDecor local6 = new GroundDecor();
-		local6.entity = arg4;
-		local6.xFine = arg1 * 128 + 64;
-		local6.zFine = arg2 * 128 + 64;
-		local6.anInt733 = arg3;
-		local6.key = arg5;
-		local6.aBoolean49 = arg6;
-		if (Static130.levelTiles[arg0][arg1][arg2] == null) {
-			Static130.levelTiles[arg0][arg1][arg2] = new Ground(arg0, arg1, arg2);
-		}
-		Static130.levelTiles[arg0][arg1][arg2].groundDecor = local6;
 	}
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(I[B)Z")

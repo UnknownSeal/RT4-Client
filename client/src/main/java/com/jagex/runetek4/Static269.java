@@ -6,6 +6,8 @@ import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.config.lighttype.LightType;
 import com.jagex.runetek4.js5.network.Js5NetResourceProvider;
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.scene.tile.FloorDecoration;
+import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -226,9 +228,9 @@ public final class Static269 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(III)Lclient!bm;")
-	public static GroundDecor method2210(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
-		return local7 == null || local7.groundDecor == null ? null : local7.groundDecor;
+	public static FloorDecoration method2210(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
+		return local7 == null || local7.floorDecoration == null ? null : local7.floorDecoration;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "o", descriptor = "(I)V")

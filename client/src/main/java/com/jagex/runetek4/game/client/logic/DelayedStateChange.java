@@ -4,7 +4,7 @@ import com.jagex.runetek4.JString;
 import com.jagex.runetek4.MonotonicTime;
 import com.jagex.runetek4.Static140;
 import com.jagex.runetek4.Static215;
-import com.jagex.runetek4.core.datastruct.CachedNode;
+import com.jagex.runetek4.node.CachedNode;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

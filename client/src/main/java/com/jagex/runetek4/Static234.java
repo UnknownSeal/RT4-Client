@@ -5,7 +5,7 @@ import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -29,7 +29,7 @@ public final class Static234 {
 	public static void method4014() {
 		for (@Pc(3) int local3 = 0; local3 < Static116.entityUpdateCount; local3++) {
 			@Pc(10) int local10 = Static44.entityUpdateIds[local3];
-			@Pc(14) NPCEntity local14 = Static175.npcs[local10];
+			@Pc(14) NPCRenderable local14 = Static175.npcs[local10];
 			@Pc(18) int local18 = Static57.in.g1();
 			if ((local18 & 0x8) != 0) {
 				local18 += Static57.in.g1() << 8;

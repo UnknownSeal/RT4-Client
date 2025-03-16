@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import java.nio.ByteBuffer;
 
-import com.jagex.runetek4.core.datastruct.CachedNode;
+import com.jagex.runetek4.node.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.CacheArchive;
 import com.jogamp.opengl.*;

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -16,7 +16,7 @@ public final class Static148 {
 	public static MidiPcmStream aClass3_Sub3_Sub4_1;
 
 	@OriginalMember(owner = "runetek4.client!li", name = "w", descriptor = "Lclient!sc;")
-	public static IterableMap aClass133_13;
+	public static HashTable aClass133_13;
 
 	@OriginalMember(owner = "runetek4.client!li", name = "x", descriptor = "I")
 	public static int anInt3535;

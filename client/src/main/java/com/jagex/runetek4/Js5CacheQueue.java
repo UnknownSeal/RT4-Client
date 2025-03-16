@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheIndex;
+import com.jagex.runetek4.node.NodeQueue;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -10,7 +11,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Js5CacheQueue implements Runnable {
 
 	@OriginalMember(owner = "runetek4.client!k", name = "q", descriptor = "Lclient!ce;")
-	private final SecondaryLinkedList aClass16_6 = new SecondaryLinkedList();
+	private final NodeQueue aClass16_6 = new NodeQueue();
 
 	@OriginalMember(owner = "runetek4.client!k", name = "s", descriptor = "I")
 	public int anInt3131 = 0;
@@ -35,7 +36,7 @@ public final class Js5CacheQueue implements Runnable {
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!c;I)V")
 	private void method2461(@OriginalArg(0) Js5CacheRequest arg0) {
-		@Pc(7) SecondaryLinkedList local7 = this.aClass16_6;
+		@Pc(7) NodeQueue local7 = this.aClass16_6;
 		synchronized (this.aClass16_6) {
 			this.aClass16_6.pushBack(arg0);
 			this.anInt3131++;
@@ -46,7 +47,7 @@ public final class Js5CacheQueue implements Runnable {
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(I)V")
 	public final void method2466() {
 		this.aBoolean161 = true;
-		@Pc(6) SecondaryLinkedList local6 = this.aClass16_6;
+		@Pc(6) NodeQueue local6 = this.aClass16_6;
 		synchronized (this.aClass16_6) {
 			this.aClass16_6.notifyAll();
 		}
@@ -84,7 +85,7 @@ public final class Js5CacheQueue implements Runnable {
 	public final Js5CacheRequest method2471(@OriginalArg(0) CacheIndex arg0, @OriginalArg(2) int arg1) {
 		@Pc(9) Js5CacheRequest local9 = new Js5CacheRequest();
 		local9.anInt824 = 1;
-		@Pc(16) SecondaryLinkedList local16 = this.aClass16_6;
+		@Pc(16) NodeQueue local16 = this.aClass16_6;
 		synchronized (this.aClass16_6) {
 			@Pc(31) Js5CacheRequest local31 = (Js5CacheRequest) this.aClass16_6.head();
 			while (true) {
@@ -109,7 +110,7 @@ public final class Js5CacheQueue implements Runnable {
 	@Override
 	public final void run() {
 		while (!this.aBoolean161) {
-			@Pc(12) SecondaryLinkedList local12 = this.aClass16_6;
+			@Pc(12) NodeQueue local12 = this.aClass16_6;
 			@Pc(19) Js5CacheRequest local19;
 			synchronized (this.aClass16_6) {
 				local19 = (Js5CacheRequest) this.aClass16_6.pollFront();

@@ -100,7 +100,7 @@ public final class PlayerModel {
 		}
 		this.aLong88 = local13[(int) (((long) (this.aBoolean141 ? 1 : 0) ^ this.aLong88) & 0xFFL)] ^ this.aLong88 >>> 8;
 		if (local8 != 0L && this.aLong88 != local8) {
-			Static250.aClass99_33.method3098(local8);
+			Static250.aClass99_33.remove(local8);
 		}
 	}
 

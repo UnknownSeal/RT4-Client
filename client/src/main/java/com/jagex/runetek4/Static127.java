@@ -8,7 +8,7 @@ import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -66,7 +66,7 @@ public final class Static127 {
 		@Pc(86) int dx = Static225.originX - local55;
 		Static235.aMapElementTypeList_2 = null;
 		@Pc(96) int i;
-		@Pc(103) NPCEntity local103;
+		@Pc(103) NPCRenderable local103;
 		@Pc(109) int j;
 		if (arg4) {
 			Static272.npcCount = 0;

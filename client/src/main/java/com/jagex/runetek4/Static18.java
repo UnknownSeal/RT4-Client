@@ -1,7 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
+import com.jagex.runetek4.dash3d.entity.Actor;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
+import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.WallDecoration;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -27,7 +29,7 @@ public final class Static18 {
 	public static final JString aClass100_108 = Static28.parse("<br>(X100(U(Y");
 
 	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(Lclient!fe;Z)V")
-	public static void method553(@OriginalArg(0) PathingEntity arg0) {
+	public static void method553(@OriginalArg(0) Actor arg0) {
 		@Pc(8) int local8 = arg0.anInt3395 - Static83.loopCycle;
 		@Pc(20) int local20 = arg0.anInt3380 * 128 + arg0.size() * 64;
 		@Pc(36) int local36 = arg0.anInt3428 * 128 + arg0.size() * 64;
@@ -101,11 +103,11 @@ public final class Static18 {
 
 	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(IIII)V")
 	public static void method559(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
+		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return;
 		}
-		@Pc(13) Decor local13 = local7.decor;
+		@Pc(13) WallDecoration local13 = local7.wallDecoration;
 		if (local13 != null) {
 			local13.anInt1394 = local13.anInt1394 * arg3 / 16;
 			local13.anInt1392 = local13.anInt1392 * arg3 / 16;

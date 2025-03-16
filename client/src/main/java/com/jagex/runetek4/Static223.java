@@ -3,7 +3,8 @@ package com.jagex.runetek4;
 import java.awt.Component;
 
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.scene.InteractiveObject;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -38,7 +39,7 @@ public final class Static223 {
 	public static final JString ORANGE = Static28.parse("<col=ff7000>");
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(IIILclient!km;)V")
-	public static void method3855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) NPCEntity arg2) {
+	public static void method3855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) NPCRenderable arg2) {
 		if (arg2.primarySeqId == arg1 && arg1 != -1) {
 			@Pc(10) AnimationSequence local10 = AnimationSequence.getAnimationSequence(arg1);
 			@Pc(13) int local13 = local10.anInt5347;
@@ -70,7 +71,7 @@ public final class Static223 {
 	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "()V")
 	public static void method3858() {
 		for (@Pc(1) int local1 = 0; local1 < Static22.anInt726; local1++) {
-			@Pc(8) Scenery local8 = Static243.aClass31Array3[local1];
+			@Pc(8) InteractiveObject local8 = Static243.aClass31Array3[local1];
 			Static266.method4193(local8);
 			Static243.aClass31Array3[local1] = null;
 		}

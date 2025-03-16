@@ -9,7 +9,7 @@ import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.client.ClientInvCache;
 import com.jagex.runetek4.game.config.enumtype.EnumType;
 import com.jagex.runetek4.cache.media.component.Component;
@@ -17,6 +17,9 @@ import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCLocation;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
+import com.jagex.runetek4.node.NodeQueue;
+import com.jagex.runetek4.scene.SceneCamera;
+import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -354,7 +357,7 @@ public final class Static88 {
 						continue;
 					}
 					if (scriptOpcode == 51) {
-						@Pc(992) IterableMap local992 = clientScript.aClass133Array1[local33[scriptIndex]];
+						@Pc(992) HashTable local992 = clientScript.aClass133Array1[local33[scriptIndex]];
 						intValueIndex--;
 						@Pc(1002) IntWrapper local1002 = (IntWrapper) local992.getNode((long) Static254.scriptIntValues[intValueIndex]);
 						if (local1002 != null) {
@@ -2871,7 +2874,7 @@ public final class Static88 {
 														local26--;
 														chatTypedLowercase = Static3.scriptStringValues[local26];
 														local7566 = false;
-														@Pc(7577) SecondaryLinkedList local7577 = Static183.method3333(interfaceData >> 14 & 0x3FFF, interfaceData & 0x3FFF);
+														@Pc(7577) NodeQueue local7577 = Static183.method3333(interfaceData >> 14 & 0x3FFF, interfaceData & 0x3FFF);
 														for (@Pc(7582) Map local7582 = (Map) local7577.head(); local7582 != null; local7582 = (Map) local7577.prev()) {
 															if (local7582.aClass100_138.equalsIgnoreCase(chatTypedLowercase)) {
 																local7566 = true;
@@ -3212,7 +3215,7 @@ public final class Static88 {
 															Static184.cameraYaw = Static57.orbitCameraYaw;
 															Static240.cameraPitch = Static72.orbitCameraPitch;
 														}
-														Static87.method1812();
+														SceneCamera.setMaxSurroundingTerrainHeight();
 														continue;
 													}
 													if (scriptOpcode == 5505) {

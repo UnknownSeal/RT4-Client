@@ -3,10 +3,14 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.cache.def.ItemDefinition;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.scene.tile.ComplexTile;
+import com.jagex.runetek4.scene.tile.GenericTile;
+import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -161,10 +165,10 @@ public final class Static176 {
 				@Pc(526) int local526;
 				@Pc(479) int local479;
 				@Pc(493) int local493;
-				@Pc(502) NPCEntity local502;
+				@Pc(502) NPCRenderable local502;
 				@Pc(597) Player local597;
 				if (local133 == 1) {
-					@Pc(421) NPCEntity local421 = Static175.npcs[local140];
+					@Pc(421) NPCRenderable local421 = Static175.npcs[local140];
 					if ((local421.type.size & 0x1) == 0 && (local421.x & 0x7F) == 0 && (local421.z & 0x7F) == 0 || (local421.type.size & 0x1) == 1 && (local421.x & 0x7F) == 64 && (local421.z & 0x7F) == 64) {
 						local479 = local421.x + 64 - local421.type.size * 64;
 						local240 = local421.z - (local421.type.size - 1) * 64;
@@ -268,32 +272,32 @@ public final class Static176 {
 
 	@OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(IIIIIIIIIIIIIIIIIIII)V")
 	public static void method3305(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12, @OriginalArg(13) int arg13, @OriginalArg(14) int arg14, @OriginalArg(15) int arg15, @OriginalArg(16) int arg16, @OriginalArg(17) int arg17, @OriginalArg(18) int arg18, @OriginalArg(19) int arg19) {
-		@Pc(12) PlainTile local12;
+		@Pc(12) GenericTile local12;
 		@Pc(14) int local14;
 		if (arg3 == 0) {
-			local12 = new PlainTile(arg10, arg11, arg12, arg13, -1, arg18, false);
+			local12 = new GenericTile(arg10, arg11, arg12, arg13, -1, arg18, false);
 			for (local14 = arg0; local14 >= 0; local14--) {
 				if (Static130.levelTiles[local14][arg1][arg2] == null) {
-					Static130.levelTiles[local14][arg1][arg2] = new Ground(local14, arg1, arg2);
+					Static130.levelTiles[local14][arg1][arg2] = new SceneTile(local14, arg1, arg2);
 				}
 			}
-			Static130.levelTiles[arg0][arg1][arg2].underlay = local12;
+			Static130.levelTiles[arg0][arg1][arg2].plainTile = local12;
 		} else if (arg3 == 1) {
-			local12 = new PlainTile(arg14, arg15, arg16, arg17, arg5, arg19, arg6 == arg7 && arg6 == arg8 && arg6 == arg9);
+			local12 = new GenericTile(arg14, arg15, arg16, arg17, arg5, arg19, arg6 == arg7 && arg6 == arg8 && arg6 == arg9);
 			for (local14 = arg0; local14 >= 0; local14--) {
 				if (Static130.levelTiles[local14][arg1][arg2] == null) {
-					Static130.levelTiles[local14][arg1][arg2] = new Ground(local14, arg1, arg2);
+					Static130.levelTiles[local14][arg1][arg2] = new SceneTile(local14, arg1, arg2);
 				}
 			}
-			Static130.levelTiles[arg0][arg1][arg2].underlay = local12;
+			Static130.levelTiles[arg0][arg1][arg2].plainTile = local12;
 		} else {
-			@Pc(134) ShapedTile local134 = new ShapedTile(arg3, arg4, arg5, arg1, arg2, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17, arg18, arg19);
+			@Pc(134) ComplexTile local134 = new ComplexTile(arg3, arg4, arg5, arg1, arg2, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17, arg18, arg19);
 			for (local14 = arg0; local14 >= 0; local14--) {
 				if (Static130.levelTiles[local14][arg1][arg2] == null) {
-					Static130.levelTiles[local14][arg1][arg2] = new Ground(local14, arg1, arg2);
+					Static130.levelTiles[local14][arg1][arg2] = new SceneTile(local14, arg1, arg2);
 				}
 			}
-			Static130.levelTiles[arg0][arg1][arg2].overlay = local134;
+			Static130.levelTiles[arg0][arg1][arg2].shapedTile = local134;
 		}
 	}
 

@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import java.util.Calendar;
 
 import com.jagex.runetek4.cache.media.ImageRGB;
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.client.ClientInvCache;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -55,7 +55,7 @@ public final class Static102 {
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "f", descriptor = "(B)V")
 	public static void method2073() {
-		ClientInvCache.recentUse = new IterableMap(32);
+		ClientInvCache.recentUse = new HashTable(32);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "a", descriptor = "(Lclient!ve;ILclient!ve;)V")

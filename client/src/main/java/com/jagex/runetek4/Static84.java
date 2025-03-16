@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.CachedNode;
+import com.jagex.runetek4.node.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.media.renderable.actor.Player;
@@ -301,12 +301,12 @@ public final class Static84 {
 
 	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "(Lclient!rg;Lclient!rg;B)V")
 	public static void method1772(@OriginalArg(0) CachedNode arg0, @OriginalArg(1) CachedNode arg1) {
-		if (arg1.secondaryNext != null) {
+		if (arg1.nextCachedNode != null) {
 			arg1.clear();
 		}
-		arg1.secondaryNext = arg0;
-		arg1.secondaryPrev = arg0.secondaryPrev;
-		arg1.secondaryNext.secondaryPrev = arg1;
-		arg1.secondaryPrev.secondaryNext = arg1;
+		arg1.nextCachedNode = arg0;
+		arg1.previousCachedNode = arg0.previousCachedNode;
+		arg1.nextCachedNode.previousCachedNode = arg1;
+		arg1.previousCachedNode.nextCachedNode = arg1;
 	}
 }

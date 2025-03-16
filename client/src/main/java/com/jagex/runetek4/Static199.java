@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.FloType;
 import com.jagex.runetek4.js5.CacheArchive;
@@ -17,7 +17,7 @@ public final class Static199 {
 	public static int anInt4675;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "K", descriptor = "Lclient!sc;")
-	public static IterableMap aClass133_20 = new IterableMap(16);
+	public static HashTable aClass133_20 = new HashTable(16);
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "P", descriptor = "I")
 	public static int mainLoadPercentage = 10;

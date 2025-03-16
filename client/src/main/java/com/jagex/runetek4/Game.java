@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
@@ -658,7 +658,7 @@ public class Game {
     @OriginalMember(owner = "runetek4.client!nk", name = "c", descriptor = "(IZ)V")
     public static void pushNpcs(@OriginalArg(1) boolean arg0) {
         @Pc(7) int i;
-        @Pc(16) NPCEntity npc;
+        @Pc(16) NPCRenderable npc;
         @Pc(107) int npcSize;
         @Pc(113) int x;
         @Pc(133) int z;
@@ -1158,7 +1158,7 @@ public class Game {
                 proj.unlink();
             } else if (Static83.loopCycle >= projAnim.startCycle) {
                 if (projAnim.target > 0) {
-                    @Pc(54) NPCEntity npc = Static175.npcs[projAnim.target - 1];
+                    @Pc(54) NPCRenderable npc = Static175.npcs[projAnim.target - 1];
                     if (npc != null && npc.x >= 0 && npc.x < 13312 && npc.z >= 0 && npc.z < 13312) {
                         projAnim.updateVelocity(npc.z, Static83.loopCycle, Static207.getHeightmapY(projAnim.level, npc.x, npc.z) - projAnim.anInt4805, npc.x);
                     }

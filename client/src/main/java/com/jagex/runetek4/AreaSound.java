@@ -1,9 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
 import com.jagex.runetek4.cache.def.ActorDefinition;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -40,7 +40,7 @@ public final class AreaSound extends Node {
 	public int anInt2037;
 
 	@OriginalMember(owner = "client!fl", name = "I", descriptor = "Lclient!km;")
-	public NPCEntity npc;
+	public NPCRenderable npc;
 
 	@OriginalMember(owner = "client!fl", name = "K", descriptor = "I")
 	public int maxInterval;
@@ -85,7 +85,7 @@ public final class AreaSound extends Node {
 				this.sounds = locType.bgsound_random;
 			}
 		} else if (this.npc != null) {
-			@Pc(92) int npcSound = NPCEntity.getSound(this.npc);
+			@Pc(92) int npcSound = NPCRenderable.getSound(this.npc);
 			if (sound != npcSound) {
 				@Pc(100) ActorDefinition actorDefinition = this.npc.type;
 				this.sound = npcSound;

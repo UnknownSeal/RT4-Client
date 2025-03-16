@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.awt.Component;
 
 import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

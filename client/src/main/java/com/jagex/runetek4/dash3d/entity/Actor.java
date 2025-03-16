@@ -3,13 +3,14 @@ package com.jagex.runetek4.dash3d.entity;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.game.config.bastype.BASType;
+import com.jagex.runetek4.media.renderable.Renderable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!fe")
-public abstract class PathingEntity extends Entity {
+public abstract class Actor extends Renderable {
 
 	@OriginalMember(owner = "client!fe", name = "A", descriptor = "I")
 	public int spotanimLastCycle;

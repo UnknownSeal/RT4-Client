@@ -4,7 +4,7 @@ import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
+import com.jagex.runetek4.dash3d.entity.Actor;
 import com.jagex.runetek4.js5.CacheArchive;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -32,7 +32,7 @@ public final class Static280 {
 	public static int anInt5895 = 0;
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!fe;B)V")
-	public static void method4665(@OriginalArg(0) PathingEntity arg0) {
+	public static void method4665(@OriginalArg(0) Actor arg0) {
 		if (Static83.loopCycle == arg0.anInt3386 || arg0.primarySeqId == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > AnimationSequence.getAnimationSequence(arg0.primarySeqId).frames[arg0.anInt3425]) {
 			@Pc(35) int local35 = arg0.anInt3386 - arg0.anInt3395;
 			@Pc(41) int local41 = Static83.loopCycle - arg0.anInt3395;

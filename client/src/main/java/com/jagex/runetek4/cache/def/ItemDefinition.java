@@ -11,9 +11,9 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.JagStringWrapper;
-import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!h")
@@ -47,7 +47,7 @@ public final class ItemDefinition {
 	public int anInt2354;
 
 	@OriginalMember(owner = "client!h", name = "nb", descriptor = "Lclient!sc;")
-	public IterableMap params;
+	public HashTable params;
 
 	@OriginalMember(owner = "client!h", name = "tb", descriptor = "[I")
 	public int[] countobj;
@@ -331,7 +331,7 @@ public final class ItemDefinition {
 				int length = packet.g1();
 				if (this.params == null) {
 					local179 = Static165.bitceil(length);
-					this.params = new IterableMap(local179);
+					this.params = new HashTable(local179);
 				}
 				for (int index = 0; index < length; index++) {
 					@Pc(510) boolean isString = packet.g1() == 1;

@@ -4,11 +4,12 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
+import com.jagex.runetek4.dash3d.entity.Actor;
 import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.game.world.entity.PlayerModel;
+import com.jagex.runetek4.scene.Scene;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -16,7 +17,7 @@ import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!e")
-public final class Player extends PathingEntity {
+public final class Player extends Actor {
 
 	@OriginalMember(owner = "client!ch", name = "v", descriptor = "[B")
 	public static final byte[] aByteArray12 = new byte[] { 95, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57 };
@@ -226,7 +227,7 @@ public final class Player extends PathingEntity {
 		this.height = local76.getHeight();
 		@Pc(184) Model model;
 		if (Static209.aBoolean240 && (this.model.transformationNpcId == -1 || ActorDefinition.getDefinition(this.model.transformationNpcId).spotshadow)) {
-			model = Static41.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.x, 0, this.z, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.y, 240);
+			model = Scene.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.x, 0, this.z, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.y, 240);
 			if (GlRenderer.enabled) {
 				@Pc(188) float local188 = GlRenderer.method4179();
 				@Pc(190) float local190 = GlRenderer.method4166();
@@ -246,7 +247,7 @@ public final class Player extends PathingEntity {
 					@Pc(291) int anchorX;
 					@Pc(302) int anchorY;
 					if (local245.headIconDrawType == 1 && local245.hintIconNpcTarget >= 0 && Static175.npcs.length > local245.hintIconNpcTarget) {
-						@Pc(278) NPCEntity npc = Static175.npcs[local245.hintIconNpcTarget];
+						@Pc(278) NPCRenderable npc = Static175.npcs[local245.hintIconNpcTarget];
 						if (npc != null) {
 							anchorX = npc.x / 32 - Static173.localPlayer.x / 32;
 							anchorY = npc.z / 32 - Static173.localPlayer.z / 32;

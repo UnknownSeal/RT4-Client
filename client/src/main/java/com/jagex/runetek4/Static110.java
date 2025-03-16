@@ -2,8 +2,11 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.bastype.BASType;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Wall;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -15,7 +18,7 @@ public final class Static110 {
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "a", descriptor = "(III)Lclient!jh;")
 	public static Wall method2276(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
+		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return null;
 		} else {
@@ -65,7 +68,7 @@ public final class Static110 {
 				local37 = 3;
 			}
 			if (local6.anInt2038 != local37) {
-				local141 = NPCEntity.getSound(local6.npc);
+				local141 = NPCRenderable.getSound(local6.npc);
 				if (local141 != local6.sound) {
 					if (local6.primaryStream != null) {
 						Static204.soundStream.removeSubStream(local6.primaryStream);

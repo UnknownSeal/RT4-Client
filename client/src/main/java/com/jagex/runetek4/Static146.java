@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -44,7 +45,7 @@ public final class Static146 {
 		for (@Pc(3) int local3 = 0; local3 < Static152.anInt3594; local3++) {
 			for (@Pc(8) int local8 = 0; local8 < Static99.anInt2550; local8++) {
 				if (Static130.levelTiles[arg0][local3][local8] == null) {
-					Static130.levelTiles[arg0][local3][local8] = new Ground(arg0, local3, local8);
+					Static130.levelTiles[arg0][local3][local8] = new SceneTile(arg0, local3, local8);
 				}
 			}
 		}

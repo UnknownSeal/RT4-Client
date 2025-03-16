@@ -2,6 +2,11 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.scene.tile.FloorDecoration;
+import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Wall;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -118,7 +123,7 @@ public final class Static220 {
 		for (@Pc(1) int local1 = 0; local1 < Static126.anInt3114; local1++) {
 			for (@Pc(6) int local6 = 0; local6 < Static152.anInt3594; local6++) {
 				for (@Pc(11) int local11 = 0; local11 < Static99.anInt2550; local11++) {
-					@Pc(22) Ground local22 = Static130.levelTiles[local1][local6][local11];
+					@Pc(22) SceneTile local22 = Static130.levelTiles[local1][local6][local11];
 					if (local22 != null) {
 						@Pc(27) Wall local27 = local22.wall;
 						if (local27 != null && local27.modelA.method4543()) {
@@ -130,17 +135,17 @@ public final class Static220 {
 							}
 							local27.modelA = local27.modelA.method4539();
 						}
-						for (@Pc(83) int local83 = 0; local83 < local22.anInt662; local83++) {
-							@Pc(92) Scenery local92 = local22.aClass31Array1[local83];
+						for (@Pc(83) int local83 = 0; local83 < local22.entityCount; local83++) {
+							@Pc(92) InteractiveObject local92 = local22.interactiveObjects[local83];
 							if (local92 != null && local92.aClass8_4.method4543()) {
 								Static69.method1544(local92.aClass8_4, local1, local6, local11, local92.anInt1713 + 1 - local92.anInt1701, local92.anInt1698 - local92.anInt1696 + 1);
 								local92.aClass8_4 = local92.aClass8_4.method4539();
 							}
 						}
-						@Pc(131) GroundDecor local131 = local22.groundDecor;
-						if (local131 != null && local131.entity.method4543()) {
-							Static264.method3574(local131.entity, local1, local6, local11);
-							local131.entity = local131.entity.method4539();
+						@Pc(131) FloorDecoration local131 = local22.floorDecoration;
+						if (local131 != null && local131.renderable.method4543()) {
+							Static264.method3574(local131.renderable, local1, local6, local11);
+							local131.renderable = local131.renderable.method4539();
 						}
 					}
 				}

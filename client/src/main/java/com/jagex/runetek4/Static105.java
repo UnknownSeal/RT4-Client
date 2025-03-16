@@ -1,7 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.media.renderable.Renderable;
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.scene.InteractiveObject;
+import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -111,7 +113,7 @@ public final class Static105 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "a", descriptor = "(IIIIIIIILclient!th;IZJ)Z")
-	public static boolean addLoc(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) Entity arg8, @OriginalArg(9) int arg9, @OriginalArg(10) boolean arg10, @OriginalArg(11) long arg11) {
+	public static boolean addLoc(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) Renderable arg8, @OriginalArg(9) int arg9, @OriginalArg(10) boolean arg10, @OriginalArg(11) long arg11) {
 		@Pc(6) boolean local6 = Static83.levelHeightMap == Static80.anIntArrayArrayArray19;
 		@Pc(8) int local8 = 0;
 		@Pc(17) int local17;
@@ -120,14 +122,14 @@ public final class Static105 {
 				if (local10 < 0 || local17 < 0 || local10 >= Static152.anInt3594 || local17 >= Static99.anInt2550) {
 					return false;
 				}
-				@Pc(42) Ground local42 = Static130.levelTiles[arg0][local10][local17];
-				if (local42 != null && local42.anInt662 >= 5) {
+				@Pc(42) SceneTile local42 = Static130.levelTiles[arg0][local10][local17];
+				if (local42 != null && local42.entityCount >= 5) {
 					return false;
 				}
 			}
 		}
-		@Pc(58) Scenery local58 = new Scenery();
-		local58.aLong56 = arg11;
+		@Pc(58) InteractiveObject local58 = new InteractiveObject();
+		local58.hash = arg11;
 		local58.anInt1709 = arg0;
 		local58.anInt1699 = arg5;
 		local58.anInt1703 = arg6;
@@ -156,14 +158,14 @@ public final class Static105 {
 				}
 				for (@Pc(141) int local141 = arg0; local141 >= 0; local141--) {
 					if (Static130.levelTiles[local141][local17][local108] == null) {
-						Static130.levelTiles[local141][local17][local108] = new Ground(local141, local17, local108);
+						Static130.levelTiles[local141][local17][local108] = new SceneTile(local141, local17, local108);
 					}
 				}
-				@Pc(174) Ground local174 = Static130.levelTiles[arg0][local17][local108];
-				local174.aClass31Array1[local174.anInt662] = local58;
-				local174.anIntArray59[local174.anInt662] = local115;
+				@Pc(174) SceneTile local174 = Static130.levelTiles[arg0][local17][local108];
+				local174.interactiveObjects[local174.entityCount] = local58;
+				local174.anIntArray59[local174.entityCount] = local115;
 				local174.locSpans |= local115;
-				local174.anInt662++;
+				local174.entityCount++;
 				if (local6 && Static62.anIntArrayArray11[local17][local108] != 0) {
 					local8 = Static62.anIntArrayArray11[local17][local108];
 				}

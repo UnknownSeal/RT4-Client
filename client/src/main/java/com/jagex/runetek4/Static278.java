@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ActorDefinition;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -30,9 +30,9 @@ public final class Static278 {
 					@Pc(19) boolean local19 = false;
 					if (Static175.npcs[local14] == null) {
 						local19 = true;
-						Static175.npcs[local14] = new NPCEntity();
+						Static175.npcs[local14] = new NPCRenderable();
 					}
-					@Pc(37) NPCEntity local37 = Static175.npcs[local14];
+					@Pc(37) NPCRenderable local37 = Static175.npcs[local14];
 					Static33.npcIds[Static272.npcCount++] = local14;
 					local37.cycle = Static83.loopCycle;
 					if (local37.type != null && local37.type.hasBackgroundSound()) {

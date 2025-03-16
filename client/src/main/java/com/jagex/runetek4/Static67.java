@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static67 {

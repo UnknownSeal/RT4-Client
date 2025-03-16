@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -128,6 +128,6 @@ public final class Static8 {
 				varPlayerDefinition.varPlayers[varpIndex] = 0;
 			}
 		}
-		Static199.aClass133_20 = new IterableMap(16);
+		Static199.aClass133_20 = new HashTable(16);
 	}
 }

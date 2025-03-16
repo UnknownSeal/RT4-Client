@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.node.Node;
+import com.jagex.runetek4.node.NodeQueue;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -28,8 +29,8 @@ public final class Static183 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "a", descriptor = "(IIB)Lclient!ce;")
-	public static SecondaryLinkedList method3333(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		@Pc(9) SecondaryLinkedList local9 = new SecondaryLinkedList();
+	public static NodeQueue method3333(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+		@Pc(9) NodeQueue local9 = new NodeQueue();
 		for (@Pc(14) Map local14 = (Map) Static228.aClass69_120.head(); local14 != null; local14 = (Map) Static228.aClass69_120.next()) {
 			if (local14.aBoolean50 && local14.method664(arg1, arg0)) {
 				local9.pushBack(local14);

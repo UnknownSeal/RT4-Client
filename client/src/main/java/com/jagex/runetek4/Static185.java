@@ -1,9 +1,10 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.dash3d.CollisionMap;
-import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.media.renderable.Renderable;
 import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.dash3d.entity.LocMergeEntity;
+import com.jagex.runetek4.scene.Scene;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -107,7 +108,7 @@ public final class Static185 {
 		}
 		@Pc(330) boolean local330 = locType.hardshadow & !arg3;
 		local261 |= (long) arg5 << 32;
-		@Pc(387) Entity local387;
+		@Pc(387) Renderable local387;
 		@Pc(403) LocEntity local403;
 		if (shape == 22) {
 			if (Static250.aBoolean283 || locType.active != 0 || locType.blockwalk == 1 || locType.forcedecor) {
@@ -120,7 +121,7 @@ public final class Static185 {
 				} else {
 					local387 = new Loc(arg5, 22, rotation, arg0, arg7, z, locType.anim, locType.randomanimframe, null);
 				}
-				Static170.method2570(level, arg7, z, local199, local387, local261, locType.renderUnderFeet);
+				Scene.addGroundDecoration(level, arg7, z, local199, local387, local261, locType.renderUnderFeet);
 				if (locType.blockwalk == 1 && collsion != null) {
 					collsion.method3057(arg7, z);
 				}
@@ -255,8 +256,8 @@ public final class Static185 {
 			@Pc(1226) int local1226;
 			if (shape == 2) {
 				local1226 = rotation + 1 & 0x3;
-				@Pc(1269) Entity local1269;
-				@Pc(1254) Entity local1254;
+				@Pc(1269) Renderable local1269;
+				@Pc(1254) Renderable local1254;
 				if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
 					@Pc(1287) LocEntity local1287 = locType.method3428(rotation + 4, local165, local153, 2, local199, local213, lowmem, null, local330, local173);
 					if (GlRenderer.enabled && local330) {
@@ -346,10 +347,10 @@ public final class Static185 {
 				} else {
 					local387 = new Loc(arg5, 4, rotation, arg0, arg7, z, locType.anim, locType.randomanimframe, null);
 				}
-				Static91.method1880(level, arg7, z, local199, local387, null, Static267.ROTATION_WALL_TYPE[rotation], 0, 0, 0, local261);
+				Static91.addWallDecoration(level, arg7, z, local199, local387, null, Static267.ROTATION_WALL_TYPE[rotation], 0, 0, 0, local261);
 			} else {
 				@Pc(1889) long local1889;
-				@Pc(1934) Entity local1934;
+				@Pc(1934) Renderable local1934;
 				@Pc(1950) LocEntity local1950;
 				if (shape == 5) {
 					local1226 = 16;
@@ -366,7 +367,7 @@ public final class Static185 {
 					} else {
 						local1934 = new Loc(arg5, 4, rotation, arg0, arg7, z, locType.anim, locType.randomanimframe, null);
 					}
-					Static91.method1880(level, arg7, z, local199, local1934, null, Static267.ROTATION_WALL_TYPE[rotation], 0, local1226 * Static34.WALL_DECORATION_ROTATION_FORWARD_X[rotation], Static238.WALL_DECORATION_ROTATION_FORWARD_Z[rotation] * local1226, local261);
+					Static91.addWallDecoration(level, arg7, z, local199, local1934, null, Static267.ROTATION_WALL_TYPE[rotation], 0, local1226 * Static34.WALL_DECORATION_ROTATION_FORWARD_X[rotation], Static238.WALL_DECORATION_ROTATION_FORWARD_Z[rotation] * local1226, local261);
 				} else if (shape == 6) {
 					local1226 = 8;
 					local1889 = Static265.method4521(level, arg7, z);
@@ -382,7 +383,7 @@ public final class Static185 {
 					} else {
 						local1934 = new Loc(arg5, 4, rotation + 4, arg0, arg7, z, locType.anim, locType.randomanimframe, null);
 					}
-					Static91.method1880(level, arg7, z, local199, local1934, null, 256, rotation, local1226 * Static114.anIntArray565[rotation], local1226 * Static64.anIntArray154[rotation], local261);
+					Static91.addWallDecoration(level, arg7, z, local199, local1934, null, 256, rotation, local1226 * Static114.anIntArray565[rotation], local1226 * Static64.anIntArray154[rotation], local261);
 				} else if (shape == 7) {
 					@Pc(2137) int local2137 = rotation + 2 & 0x3;
 					if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
@@ -394,7 +395,7 @@ public final class Static185 {
 					} else {
 						local387 = new Loc(arg5, 4, local2137 + 4, arg0, arg7, z, locType.anim, locType.randomanimframe, null);
 					}
-					Static91.method1880(level, arg7, z, local199, local387, null, 256, local2137, 0, 0, local261);
+					Static91.addWallDecoration(level, arg7, z, local199, local387, null, 256, local2137, 0, 0, local261);
 				} else if (shape == 8) {
 					local1226 = 8;
 					local1889 = Static265.method4521(level, arg7, z);
@@ -402,7 +403,7 @@ public final class Static185 {
 						local1226 = Static271.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).wallwidth / 2;
 					}
 					@Pc(2244) int local2244 = rotation + 2 & 0x3;
-					@Pc(2289) Entity local2289;
+					@Pc(2289) Renderable local2289;
 					if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
 						@Pc(2297) int local2297 = Static64.anIntArray154[rotation] * 8;
 						@Pc(2303) int local2303 = Static114.anIntArray565[rotation] * 8;
@@ -420,7 +421,7 @@ public final class Static185 {
 						local1934 = new Loc(arg5, 4, rotation + 4, arg0, arg7, z, locType.anim, locType.randomanimframe, null);
 						local2289 = new Loc(arg5, 4, local2244 + 4, arg0, arg7, z, locType.anim, locType.randomanimframe, null);
 					}
-					Static91.method1880(level, arg7, z, local199, local1934, local2289, 256, rotation, local1226 * Static114.anIntArray565[rotation], Static64.anIntArray154[rotation] * local1226, local261);
+					Static91.addWallDecoration(level, arg7, z, local199, local1934, local2289, 256, rotation, local1226 * Static114.anIntArray565[rotation], Static64.anIntArray154[rotation] * local1226, local261);
 				}
 			}
 		}

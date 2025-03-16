@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.js5.CacheArchive;
+import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
@@ -10,7 +11,7 @@ public final class Static130 {
 	public static WorldMapFont aClass41_1;
 
 	@OriginalMember(owner = "runetek4.client!kc", name = "o", descriptor = "[[[Lclient!bj;")
-	public static Ground[][][] levelTiles;
+	public static SceneTile[][][] levelTiles;
 
 	@OriginalMember(owner = "runetek4.client!kc", name = "p", descriptor = "[I")
 	public static int[] anIntArray299;

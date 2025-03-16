@@ -2,7 +2,7 @@ package com.jagex.runetek4.graphics;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.dash3d.entity.Entity;
+import com.jagex.runetek4.media.renderable.Renderable;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -10,7 +10,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!gb")
-public final class ModelUnlit extends Entity {
+public final class ModelUnlit extends Renderable {
 
 	@OriginalMember(owner = "client!gb", name = "s", descriptor = "[B")
 	public byte[] aByteArray26;
@@ -492,7 +492,7 @@ public final class ModelUnlit extends Entity {
 
 	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(III)Lclient!th;")
 	@Override
-	public Entity method4539() {
+	public Renderable method4539() {
 		return this.applyLightning(this.aShort19, this.aShort18, -50, -10, -50);
 	}
 
@@ -1269,7 +1269,7 @@ public final class ModelUnlit extends Entity {
 
 	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(Lclient!th;IIIZ)V")
 	@Override
-	public void method4544(@OriginalArg(0) Entity arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
+	public void method4544(@OriginalArg(0) Renderable arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
 		@Pc(2) ModelUnlit local2 = (ModelUnlit) arg0;
 		local2.method1664();
 		local2.method1668();

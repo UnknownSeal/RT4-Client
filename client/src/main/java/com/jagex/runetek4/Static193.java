@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.config.FloType;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -78,7 +78,7 @@ public final class Static193 {
 				}
 			}
 		}
-		@Pc(103) IterableMap local103 = new IterableMap(128);
+		@Pc(103) HashTable local103 = new HashTable(128);
 		@Pc(155) int local155;
 		@Pc(161) int local161;
 		@Pc(169) int local169;

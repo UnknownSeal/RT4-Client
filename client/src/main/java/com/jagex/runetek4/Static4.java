@@ -13,8 +13,10 @@ import com.jagex.runetek4.game.config.bastype.BASType;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.dash3d.entity.NPCEntity;
+import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.scene.SceneCamera;
+import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -580,7 +582,7 @@ public final class Static4 {
 							@Pc(1994) AnimationSequence local1994;
 							if (world >> 29 != 0) {
 								count = world & 0xFFFF;
-								@Pc(1894) NPCEntity local1894 = Static175.npcs[count];
+								@Pc(1894) NPCRenderable local1894 = Static175.npcs[count];
 								if (local1894 != null) {
 									if (slot == 65535) {
 										slot = -1;
@@ -721,7 +723,7 @@ public final class Static4 {
 								Static240.cameraPitch = Static72.orbitCameraPitch;
 								Static184.cameraYaw = Static57.orbitCameraYaw;
 							}
-							Static87.method1812();
+							SceneCamera.setMaxSurroundingTerrainHeight();
 						}
 						Static164.packetType = -1;
 						return true;
@@ -1036,7 +1038,7 @@ public final class Static4 {
 								ii = Static57.in.g2le();
 								xp = Static57.in.g1_alt3();
 								world = Static57.in.g2();
-								@Pc(3766) NPCEntity local3766 = Static175.npcs[ii];
+								@Pc(3766) NPCRenderable local3766 = Static175.npcs[ii];
 								if (local3766 != null) {
 									Static223.method3855(xp, world, local3766);
 								}

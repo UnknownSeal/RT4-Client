@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.network.Js5NetRequest;
+import com.jagex.runetek4.node.NodeQueue;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -25,16 +26,16 @@ public final class Js5NetQueue {
 	private Js5NetRequest current;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "Lclient!ce;")
-	private final SecondaryLinkedList urgent = new SecondaryLinkedList();
+	private final NodeQueue urgent = new NodeQueue();
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "q", descriptor = "Lclient!ce;")
-	private final SecondaryLinkedList inFlightUrgentRequests = new SecondaryLinkedList();
+	private final NodeQueue inFlightUrgentRequests = new NodeQueue();
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "v", descriptor = "Lclient!ce;")
-	private final SecondaryLinkedList prefetch = new SecondaryLinkedList();
+	private final NodeQueue prefetch = new NodeQueue();
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "z", descriptor = "Lclient!ce;")
-	private final SecondaryLinkedList inFlightPrefetchRequests = new SecondaryLinkedList();
+	private final NodeQueue inFlightPrefetchRequests = new NodeQueue();
 
 	@OriginalMember(owner = "client!jb", name = "E", descriptor = "Lclient!wa;")
 	private final Packet outBuffer = new Packet(4);

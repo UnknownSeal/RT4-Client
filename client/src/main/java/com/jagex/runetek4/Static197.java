@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Insets;
 
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,7 +14,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static197 {
 
 	@OriginalMember(owner = "runetek4.client!pm", name = "cb", descriptor = "[[[Lclient!bj;")
-	public static Ground[][][] aClass3_Sub5ArrayArrayArray2;
+	public static SceneTile[][][] aClass3_Sub5ArrayArrayArray2;
 
 	@OriginalMember(owner = "runetek4.client!pm", name = "hb", descriptor = "I")
 	public static int anInt4620;

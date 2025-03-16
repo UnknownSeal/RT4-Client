@@ -9,9 +9,9 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
-import com.jagex.runetek4.core.datastruct.IterableMap;
+import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.JagStringWrapper;
-import com.jagex.runetek4.core.datastruct.Node;
+import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!me")
@@ -42,7 +42,7 @@ public final class ActorDefinition {
 	private short[] retex_s;
 
 	@OriginalMember(owner = "client!me", name = "K", descriptor = "Lclient!sc;")
-	private IterableMap params;
+	private HashTable params;
 
 	@OriginalMember(owner = "client!me", name = "X", descriptor = "I")
 	public int id;
@@ -356,7 +356,7 @@ public final class ActorDefinition {
 			int length = packet.g1();
 			if (this.params == null) {
 				local18 = Static165.bitceil(length);
-				this.params = new IterableMap(local18);
+				this.params = new HashTable(local18);
 			}
 			for (int index = 0; index < length; index++) {
 				@Pc(592) boolean local592 = packet.g1() == 1;

@@ -1,5 +1,6 @@
 package com.jagex.runetek4.dash3d.entity;
 
+import com.jagex.runetek4.media.renderable.Renderable;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
@@ -7,16 +8,16 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class ObjStackEntity {
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "Lclient!th;")
-	public Entity aClass8_7;
+	public Renderable aClass8_7;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "b", descriptor = "I")
 	public int anInt3057;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "c", descriptor = "Lclient!th;")
-	public Entity aClass8_8;
+	public Renderable aClass8_8;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "h", descriptor = "Lclient!th;")
-	public Entity aClass8_9;
+	public Renderable aClass8_9;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "k", descriptor = "I")
 	public int anInt3061;

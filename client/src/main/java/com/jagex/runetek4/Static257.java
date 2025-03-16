@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.CacheArchive;
 import com.jagex.runetek4.js5.index.Js5MasterIndex;
+import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -26,18 +27,18 @@ public final class Static257 {
 
 	@OriginalMember(owner = "runetek4.client!v", name = "a", descriptor = "(IIIJ)Z")
 	public static boolean method523(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) long arg3) {
-		@Pc(7) Ground local7 = Static130.levelTiles[arg0][arg1][arg2];
+		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return false;
 		} else if (local7.wall != null && local7.wall.aLong107 == arg3) {
 			return true;
-		} else if (local7.decor != null && local7.decor.aLong52 == arg3) {
+		} else if (local7.wallDecoration != null && local7.wallDecoration.aLong52 == arg3) {
 			return true;
-		} else if (local7.groundDecor != null && local7.groundDecor.key == arg3) {
+		} else if (local7.floorDecoration != null && local7.floorDecoration.key == arg3) {
 			return true;
 		} else {
-			for (@Pc(46) int local46 = 0; local46 < local7.anInt662; local46++) {
-				if (local7.aClass31Array1[local46].aLong56 == arg3) {
+			for (@Pc(46) int local46 = 0; local46 < local7.entityCount; local46++) {
+				if (local7.interactiveObjects[local46].hash == arg3) {
 					return true;
 				}
 			}

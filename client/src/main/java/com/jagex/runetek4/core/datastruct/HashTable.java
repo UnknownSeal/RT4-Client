@@ -1,12 +1,13 @@
 package com.jagex.runetek4.core.datastruct;
 
+import com.jagex.runetek4.node.Node;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!sc")
-public final class IterableMap {
+public final class HashTable {
 
 	@OriginalMember(owner = "client!sc", name = "q", descriptor = "Lclient!ab;")
 	private Node next;
@@ -27,7 +28,7 @@ public final class IterableMap {
 	public final int size;
 
 	@OriginalMember(owner = "client!sc", name = "<init>", descriptor = "(I)V")
-	public IterableMap(@OriginalArg(0) int size) {
+	public HashTable(@OriginalArg(0) int size) {
 		this.size = size;
 		this.nodes = new Node[size];
 		for (@Pc(13) int index = 0; index < size; index++) {
