@@ -234,7 +234,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 		if (signLink != null) {
 			try {
-				signLink.method5124();
+				signLink.stop();
 			} catch (@Pc(53) Exception local53) {
 			}
 		}
@@ -340,7 +340,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 				}
 			}
 			if (signLink.applet != null) {
-				@Pc(125) Method local125 = SignLink.aMethod5;
+				@Pc(125) Method local125 = SignLink.setFocusCycleRoot;
 				if (local125 != null) {
 					try {
 						local125.invoke(signLink.applet, Boolean.TRUE);
@@ -412,7 +412,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			@Pc(44) Insets local44 = frame.getInsets();
 			frame.setSize(local44.left + frameWidth + local44.right, local44.top + frameHeight + local44.bottom);
 			Static69.aClass213_4 = signLink = new SignLink(null, arg0, arg1, 28);
-			@Pc(76) PrivilegedRequest local76 = signLink.putThreadNode(1, this);
+			@Pc(76) PrivilegedRequest local76 = signLink.startThread(1, this);
 			while (local76.status == 0) {
 				PreciseSleep.sleep(10L);
 			}
@@ -464,7 +464,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			if (signLink == null) {
 				Static69.aClass213_4 = signLink = new SignLink(this, arg0, null, 0);
 			}
-			@Pc(86) PrivilegedRequest local86 = signLink.putThreadNode(1, this);
+			@Pc(86) PrivilegedRequest local86 = signLink.startThread(1, this);
 			while (local86.status == 0) {
 				PreciseSleep.sleep(10L);
 			}

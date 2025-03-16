@@ -193,7 +193,7 @@ public final class CacheFileChannel {
 	@OriginalMember(owner = "client!en", name = "b", descriptor = "(Z)V")
 	public void method1455() throws IOException {
 		this.method1450();
-		this.aClass214_1.method5136();
+		this.aClass214_1.close();
 	}
 
 	@OriginalMember(owner = "client!en", name = "c", descriptor = "(I)V")

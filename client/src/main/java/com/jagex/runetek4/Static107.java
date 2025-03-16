@@ -62,7 +62,7 @@ public final class Static107 {
 			if (Static258.anInt5637 > 0 && Static60.aClass19_1 == null) {
 				Static60.aClass19_1 = new AudioThread();
 				Static60.aClass19_1.canvas = arg1;
-				arg1.putThreadNode(Static258.anInt5637, Static60.aClass19_1);
+				arg1.startThread(Static258.anInt5637, Static60.aClass19_1);
 			}
 			if (Static60.aClass19_1 != null) {
 				if (Static60.aClass19_1.aClass62Array1[arg3] != null) {
@@ -82,7 +82,7 @@ public final class Static107 {
 				if (Static258.anInt5637 > 0 && Static60.aClass19_1 == null) {
 					Static60.aClass19_1 = new AudioThread();
 					Static60.aClass19_1.canvas = arg1;
-					arg1.putThreadNode(Static258.anInt5637, Static60.aClass19_1);
+					arg1.startThread(Static258.anInt5637, Static60.aClass19_1);
 				}
 				if (Static60.aClass19_1 != null) {
 					if (Static60.aClass19_1.aClass62Array1[arg3] != null) {

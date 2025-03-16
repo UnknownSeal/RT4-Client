@@ -15,7 +15,7 @@ public final class SignLinkAudioChannel extends AudioChannel {
 
 	@OriginalMember(owner = "runetek4.client!hl", name = "<init>", descriptor = "(Lsignlink!ll;I)V")
 	public SignLinkAudioChannel(@OriginalArg(0) SignLink arg0, @OriginalArg(1) int arg1) {
-		Static100.anInterface10_1 = arg0.method5125();
+		Static100.anInterface10_1 = arg0.getAudioSource();
 		this.anInt2606 = arg1;
 	}
 

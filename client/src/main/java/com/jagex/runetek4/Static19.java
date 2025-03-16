@@ -125,7 +125,7 @@ public final class Static19 {
 
 	@OriginalMember(owner = "client!bi", name = "a", descriptor = "(BLjava/awt/runetek4.Component;)V")
 	public static void start(@OriginalArg(1) Component arg0) {
-		@Pc(10) Method local10 = SignLink.aMethod6;
+		@Pc(10) Method local10 = SignLink.setFocusTraversalKeysEnabled;
 		if (local10 != null) {
 			try {
 				local10.invoke(arg0, Boolean.FALSE);

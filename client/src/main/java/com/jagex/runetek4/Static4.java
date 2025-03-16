@@ -416,7 +416,7 @@ public final class Static4 {
 				return true;
 			} else if (Static164.packetType == 164) {
 				ii = Static57.in.g4rme();
-				Static232.aClass212_5 = GameShell.signLink.method5128(ii);
+				Static232.aClass212_5 = GameShell.signLink.getReverseDns(ii);
 				Static164.packetType = -1;
 				return true;
 			} else if (Static164.packetType == 225) {
@@ -1069,7 +1069,7 @@ public final class Static4 {
 								} else {
 									Static175.url = message2;
 									Static164.newTab = true;
-									Static33.openUrlRequest = GameShell.signLink.method5131(new String(message2.method3148(), "ISO-8859-1"));
+									Static33.openUrlRequest = GameShell.signLink.openUrl(new String(message2.method3148(), "ISO-8859-1"));
 								}
 								Static164.packetType = -1;
 								return true;

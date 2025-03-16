@@ -79,7 +79,7 @@ public final class Static80 {
 		Static127.aBoolean159 = false;
 		Preferences.favoriteWorlds = 0;
 		try {
-			@Pc(78) PrivilegedRequest local78 = arg0.method5112("runescape");
+			@Pc(78) PrivilegedRequest local78 = arg0.openPreferences("runescape");
 			while (local78.status == 0) {
 				PreciseSleep.sleep(1L);
 			}
@@ -99,7 +99,7 @@ public final class Static80 {
 		}
 		try {
 			if (local48 != null) {
-				local48.method5136();
+				local48.close();
 			}
 		} catch (@Pc(158) Exception local158) {
 		}

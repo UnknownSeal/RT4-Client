@@ -299,7 +299,7 @@ public final class Static127 {
 				client.js5NetQueue.serverDrop();
 			}
 			if (chatTyped.equalsIgnoreCase(Static165.BREAKCON)) {
-				GameShell.signLink.method5110();
+				GameShell.signLink.breakConnection();
 				Static124.gameServerSocket.method2833();
 				client.js5NetQueue.method2323();
 			}

@@ -156,7 +156,7 @@ public class Preferences {
     public static void write(@OriginalArg(0) SignLink arg0) {
         @Pc(11) FileOnDisk local11 = null;
         try {
-            @Pc(16) PrivilegedRequest local16 = arg0.method5112("runescape");
+            @Pc(16) PrivilegedRequest local16 = arg0.openPreferences("runescape");
             while (local16.status == 0) {
                 PreciseSleep.sleep(1L);
             }
@@ -169,7 +169,7 @@ public class Preferences {
         }
         try {
             if (local11 != null) {
-                local11.method5136();
+                local11.close();
             }
         } catch (@Pc(56) Exception local56) {
         }

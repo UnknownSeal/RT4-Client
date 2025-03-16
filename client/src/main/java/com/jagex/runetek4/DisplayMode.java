@@ -126,7 +126,7 @@ public final class DisplayMode {
 	@OriginalMember(owner = "client!c", name = "a", descriptor = "(Ljava/awt/Frame;ZLsignlink!ll;)V")
 	public static void exitFullScreen(@OriginalArg(0) Frame frame, @OriginalArg(2) SignLink signLink) {
 		while (true) {
-			@Pc(16) PrivilegedRequest request = signLink.method5115(frame);
+			@Pc(16) PrivilegedRequest request = signLink.exitFullScreen(frame);
 			while (request.status == 0) {
 				PreciseSleep.sleep(10L);
 			}

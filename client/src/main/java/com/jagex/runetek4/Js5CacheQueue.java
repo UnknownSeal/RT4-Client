@@ -24,7 +24,7 @@ public final class Js5CacheQueue implements Runnable {
 
 	@OriginalMember(owner = "runetek4.client!k", name = "<init>", descriptor = "()V")
 	public Js5CacheQueue() {
-		@Pc(20) PrivilegedRequest local20 = GameShell.signLink.putThreadNode(5, this);
+		@Pc(20) PrivilegedRequest local20 = GameShell.signLink.startThread(5, this);
 		while (local20.status == 0) {
 			PreciseSleep.sleep(10L);
 		}

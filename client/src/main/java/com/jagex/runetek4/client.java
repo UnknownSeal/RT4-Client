@@ -137,12 +137,12 @@ public final class client extends GameShell {
 			if (local28 == null) {
 				arg0 = -1;
 			} else {
-				GameShell.signLink.method5113(local28.method301(), local28.anInt1860, GameShell.canvas, new Point(cursorType.hotspotx, cursorType.hotspoty), local28.anInt1866);
+				GameShell.signLink.setCursor(local28.method301(), local28.anInt1860, GameShell.canvas, new Point(cursorType.hotspotx, cursorType.hotspoty), local28.anInt1866);
 				currentCursor = arg0;
 			}
 		}
 		if (arg0 == -1 && currentCursor != -1) {
-			GameShell.signLink.method5113(null, -1, GameShell.canvas, new Point(), -1);
+			GameShell.signLink.setCursor(null, -1, GameShell.canvas, new Point(), -1);
 			currentCursor = -1;
 		}
 	}
@@ -277,7 +277,7 @@ public final class client extends GameShell {
 			GameShell.fullScreenFrame = null;
 		}
 		if (GameShell.signLink != null) {
-			GameShell.signLink.method5121(this.getClass());
+			GameShell.signLink.unloadGlNatives(this.getClass());
 		}
 		if (Game.mouseCapturer != null) {
 			Game.mouseCapturer.aBoolean151 = false;
@@ -943,7 +943,7 @@ public final class client extends GameShell {
 			}
 		} else if (Static166.loadingPercent == 110) {
 			Game.mouseCapturer = new MouseCapturer();
-			GameShell.signLink.putThreadNode(10, Game.mouseCapturer);
+			GameShell.signLink.startThread(10, Game.mouseCapturer);
 			Static126.mainLoadSecondaryText = LocalizedText.MAINLOAD110B;
 			Static199.mainLoadPercentage = 75;
 			Static166.loadingPercent = 120;

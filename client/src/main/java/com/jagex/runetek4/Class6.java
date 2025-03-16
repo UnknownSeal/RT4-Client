@@ -58,7 +58,7 @@ public final class Class6 {
 					}
 					local17.anIntArray139[local59] = local71;
 					local17.anIntArray137[local59] = local95;
-					local17.valueNodes[local59] = arg0.method5126(local104, Static6.method85(local93));
+					local17.valueNodes[local59] = arg0.getDeclaredField(local104, Static6.method85(local93));
 				} else if (local71 == 3 || local71 == 4) {
 					local93 = new String(arg1.gjstr().method3148());
 					local104 = new String(arg1.gjstr().method3148());
@@ -81,7 +81,7 @@ public final class Class6 {
 					for (local210 = 0; local210 < local95; local210++) {
 						local234[local210] = Static6.method85(local171[local210]);
 					}
-					local17.functionNodes[local59] = arg0.method5122(Static6.method85(local93), local234, local104);
+					local17.functionNodes[local59] = arg0.getDeclaredMethod(Static6.method85(local93), local234, local104);
 					local17.argumentValues[local59] = local193;
 				}
 			} catch (@Pc(269) ClassNotFoundException local269) {
