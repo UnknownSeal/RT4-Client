@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.AnimationSequence;
-import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.Actor;
@@ -12,9 +11,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static280 {
-
-	@OriginalMember(owner = "runetek4.client!wl", name = "q", descriptor = "Lclient!rk;")
-	public static Font aClass3_Sub2_Sub9_43;
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "s", descriptor = "Lclient!ve;")
 	public static CacheArchive aClass153_110;

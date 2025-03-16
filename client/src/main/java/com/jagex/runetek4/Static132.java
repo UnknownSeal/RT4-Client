@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.CacheArchive;
@@ -44,9 +45,9 @@ public final class Static132 {
 			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
 		} else {
 			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
-			local43 = Static280.aClass3_Sub2_Sub9_43.method2858(LocalizedText.CHOOSE_OPTION);
+			local43 = Font.b12Full.method2858(LocalizedText.CHOOSE_OPTION);
 			for (@Pc(75) int local75 = 0; local75 < PreciseSleep.menuActionRow; local75++) {
-				@Pc(88) int local88 = Static280.aClass3_Sub2_Sub9_43.method2858(Static269.method2228(local75));
+				@Pc(88) int local88 = Font.b12Full.method2858(Static269.method2228(local75));
 				if (local43 < local88) {
 					local43 = local88;
 				}

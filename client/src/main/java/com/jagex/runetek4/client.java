@@ -202,7 +202,7 @@ public final class client extends GameShell {
 		if (Static244.gamestate == 0) {
 			Static13.method473(null, local158, Static126.mainLoadSecondaryText, Static199.mainLoadPercentage);
 		} else if (Static244.gamestate == 5) {
-			Static182.render(false, Static280.aClass3_Sub2_Sub9_43);
+			LoadingBar.render(false, Font.b12Full);
 		} else if (Static244.gamestate == 10) {
 			Static126.method2460();
 		} else if (Static244.gamestate == 25 || Static244.gamestate == 28) {

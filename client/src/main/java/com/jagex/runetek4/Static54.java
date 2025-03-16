@@ -71,7 +71,7 @@ public final class Static54 {
 							local156 = Static215.aClass3_Sub2_Sub9_32;
 						}
 						if (Static235.aMapElementTypeList_2.method3894(local117) == 2) {
-							local156 = Static280.aClass3_Sub2_Sub9_43;
+							local156 = Font.b12Full;
 						}
 						npcX = local164 * flagZ + local189 * flagX >> 16;
 						local239 = local156.method2856(Static235.aMapElementTypeList_2.aClass100Array153[local117], 100);

@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -41,7 +42,7 @@ public final class Static30 {
 		Static159.aClass36Array12 = Static146.method2749(arg0, Static224.anInt5057);
 		Static114.aClass3_Sub2_Sub9_42.method2873(Static159.aClass36Array12, null);
 		Static215.aClass3_Sub2_Sub9_32.method2873(Static159.aClass36Array12, null);
-		Static280.aClass3_Sub2_Sub9_43.method2873(Static159.aClass36Array12, null);
+		Font.b12Full.method2873(Static159.aClass36Array12, null);
 		if (GlRenderer.enabled) {
 			Static242.aClass36_Sub1Array2 = method837(Static84.anInt2257, arg0);
 			for (@Pc(101) int local101 = 0; local101 < Static242.aClass36_Sub1Array2.length; local101++) {

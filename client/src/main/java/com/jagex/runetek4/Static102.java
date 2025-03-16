@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import java.util.Calendar;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.client.ClientInvCache;
@@ -67,7 +68,7 @@ public final class Static102 {
 			Static265.aClass3_Sub2_Sub9_Sub1_2 = (SoftwareFont) Static114.aClass3_Sub2_Sub9_42;
 		}
 		Static215.aClass3_Sub2_Sub9_32 = Static127.getFont(Static130.anInt3161, arg1, arg0);
-		Static280.aClass3_Sub2_Sub9_43 = Static127.getFont(Static73.anInt2077, arg1, arg0);
+		Font.b12Full = Static127.getFont(Static73.anInt2077, arg1, arg0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "a", descriptor = "(IIIZIIIIIIII)Z")

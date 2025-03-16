@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ActorDefinition;
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.dash3d.entity.NPCRenderable;
 import com.jagex.runetek4.dash3d.entity.Actor;
 import com.jagex.runetek4.media.renderable.actor.Player;
@@ -118,8 +119,8 @@ public final class Static142 {
 				if (local17.chatMessage != null && (local5 >= Static267.playerCount || Static59.anInt1812 == 0 || Static59.anInt1812 == 3 || Static59.anInt1812 == 1 && Static98.method1965(((Player) local17).name))) {
 					Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.height(), arg1 >> 1);
 					if (Static65.anInt1951 > -1 && Static277.anInt5854 < Static191.anInt4506) {
-						Static191.anIntArray389[Static277.anInt5854] = Static280.aClass3_Sub2_Sub9_43.method2858(local17.chatMessage) / 2;
-						Static191.anIntArray387[Static277.anInt5854] = Static280.aClass3_Sub2_Sub9_43.characterDefaultHeight;
+						Static191.anIntArray389[Static277.anInt5854] = Font.b12Full.method2858(local17.chatMessage) / 2;
+						Static191.anIntArray387[Static277.anInt5854] = Font.b12Full.characterDefaultHeight;
 						Static191.anIntArray385[Static277.anInt5854] = Static65.anInt1951;
 						Static191.anIntArray392[Static277.anInt5854] = Static16.anInt548;
 						Static191.anIntArray390[Static277.anInt5854] = local17.chatColor;
@@ -270,25 +271,25 @@ public final class Static142 {
 					}
 				}
 				if (Static191.anIntArray391[local5] == 0) {
-					Static280.aClass3_Sub2_Sub9_43.method2875(local962, Static65.anInt1951 + arg2, arg0 + Static16.anInt548, local639, 0);
+					Font.b12Full.method2875(local962, Static65.anInt1951 + arg2, arg0 + Static16.anInt548, local639, 0);
 				}
 				if (Static191.anIntArray391[local5] == 1) {
-					Static280.aClass3_Sub2_Sub9_43.method2872(local962, arg2 + Static65.anInt1951, Static16.anInt548 + arg0, local639, Static136.anInt3325);
+					Font.b12Full.method2872(local962, arg2 + Static65.anInt1951, Static16.anInt548 + arg0, local639, Static136.anInt3325);
 				}
 				if (Static191.anIntArray391[local5] == 2) {
-					Static280.aClass3_Sub2_Sub9_43.method2871(local962, arg2 + Static65.anInt1951, arg0 - -Static16.anInt548, local639, Static136.anInt3325);
+					Font.b12Full.method2871(local962, arg2 + Static65.anInt1951, arg0 - -Static16.anInt548, local639, Static136.anInt3325);
 				}
 				if (Static191.anIntArray391[local5] == 3) {
-					Static280.aClass3_Sub2_Sub9_43.method2868(local962, arg2 + Static65.anInt1951, Static16.anInt548 + arg0, local639, Static136.anInt3325, 150 - Static191.anIntArray384[local5]);
+					Font.b12Full.method2868(local962, arg2 + Static65.anInt1951, Static16.anInt548 + arg0, local639, Static136.anInt3325, 150 - Static191.anIntArray384[local5]);
 				}
 				if (Static191.anIntArray391[local5] == 4) {
-					local642 = (150 - Static191.anIntArray384[local5]) * (Static280.aClass3_Sub2_Sub9_43.method2858(local962) + 100) / 150;
+					local642 = (150 - Static191.anIntArray384[local5]) * (Font.b12Full.method2858(local962) + 100) / 150;
 					if (GlRenderer.enabled) {
 						Static46.method1183(Static65.anInt1951 + arg2 - 50, arg0, Static65.anInt1951 + arg2 + 50, arg4 + arg0);
 					} else {
 						Rasterizer.method2498(arg2 + Static65.anInt1951 - 50, arg0, Static65.anInt1951 + arg2 + 50, arg4 + arg0);
 					}
-					Static280.aClass3_Sub2_Sub9_43.drawString(local962, arg2 + Static65.anInt1951 + 50 - local642, arg0 + Static16.anInt548, local639, 0);
+					Font.b12Full.drawString(local962, arg2 + Static65.anInt1951 + 50 - local642, arg0 + Static16.anInt548, local639, 0);
 					if (GlRenderer.enabled) {
 						Static46.method1187(arg2, arg0, arg1 + arg2, arg4 + arg0);
 					} else {
@@ -299,16 +300,16 @@ public final class Static142 {
 					@Pc(1372) int local1372 = 0;
 					local642 = 150 - Static191.anIntArray384[local5];
 					if (GlRenderer.enabled) {
-						Static46.method1183(arg2, Static16.anInt548 + arg0 - Static280.aClass3_Sub2_Sub9_43.characterDefaultHeight - 1, arg1 + arg2, arg0 + Static16.anInt548 + 5);
+						Static46.method1183(arg2, Static16.anInt548 + arg0 - Font.b12Full.characterDefaultHeight - 1, arg1 + arg2, arg0 + Static16.anInt548 + 5);
 					} else {
-						Rasterizer.method2498(arg2, Static16.anInt548 + arg0 - Static280.aClass3_Sub2_Sub9_43.characterDefaultHeight - 1, arg2 + arg1, Static16.anInt548 + arg0 + 5);
+						Rasterizer.method2498(arg2, Static16.anInt548 + arg0 - Font.b12Full.characterDefaultHeight - 1, arg2 + arg1, Static16.anInt548 + arg0 + 5);
 					}
 					if (local642 < 25) {
 						local1372 = local642 - 25;
 					} else if (local642 > 125) {
 						local1372 = local642 - 125;
 					}
-					Static280.aClass3_Sub2_Sub9_43.method2875(local962, Static65.anInt1951 + arg2, local1372 + arg0 + Static16.anInt548, local639, 0);
+					Font.b12Full.method2875(local962, Static65.anInt1951 + arg2, local1372 + arg0 + Static16.anInt548, local639, 0);
 					if (GlRenderer.enabled) {
 						Static46.method1187(arg2, arg0, arg2 + arg1, arg0 + arg4);
 					} else {
@@ -316,7 +317,7 @@ public final class Static142 {
 					}
 				}
 			} else {
-				Static280.aClass3_Sub2_Sub9_43.method2875(local962, arg2 + Static65.anInt1951, arg0 + Static16.anInt548, 16776960, 0);
+				Font.b12Full.method2875(local962, arg2 + Static65.anInt1951, arg0 + Static16.anInt548, 16776960, 0);
 			}
 		}
 	}

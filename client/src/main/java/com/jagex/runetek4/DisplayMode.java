@@ -222,7 +222,7 @@ public final class DisplayMode {
 				Static260.frameBuffer = FrameBuffer.create(GameShell.canvasHeigth, GameShell.canvasWidth, GameShell.canvas);
 				Rasterizer.clear();
 				if (Static244.gamestate == 5) {
-					Static182.render(true, Static280.aClass3_Sub2_Sub9_43);
+					LoadingBar.render(true, Font.b12Full);
 				} else {
 					Font.drawTextOnScreen(false, LocalizedText.LOADING);
 				}

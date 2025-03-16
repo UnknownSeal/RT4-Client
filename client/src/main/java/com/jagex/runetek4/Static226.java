@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.dash3d.entity.LocAddEntity;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -67,11 +68,11 @@ public final class Static226 {
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "b", descriptor = "(B)V")
 	public static void determineMenuSize() {
-		@Pc(16) int local16 = Static280.aClass3_Sub2_Sub9_43.method2858(LocalizedText.CHOOSE_OPTION);
+		@Pc(16) int local16 = Font.b12Full.method2858(LocalizedText.CHOOSE_OPTION);
 		@Pc(18) int local18;
 		@Pc(27) int local27;
 		for (local18 = 0; local18 < PreciseSleep.menuActionRow; local18++) {
-			local27 = Static280.aClass3_Sub2_Sub9_43.method2858(Static269.method2228(local18));
+			local27 = Font.b12Full.method2858(Static269.method2228(local18));
 			if (local27 > local16) {
 				local16 = local27;
 			}

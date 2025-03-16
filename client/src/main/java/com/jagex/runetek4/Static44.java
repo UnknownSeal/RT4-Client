@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -94,9 +95,9 @@ public final class Static44 {
 			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
 		} else {
 			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
-			local53 = Static280.aClass3_Sub2_Sub9_43.method2858(LocalizedText.CHOOSE_OPTION);
+			local53 = Font.b12Full.method2858(LocalizedText.CHOOSE_OPTION);
 			for (@Pc(95) int local95 = 0; local95 < PreciseSleep.menuActionRow; local95++) {
-				@Pc(104) int local104 = Static280.aClass3_Sub2_Sub9_43.method2858(Static269.method2228(local95));
+				@Pc(104) int local104 = Font.b12Full.method2858(Static269.method2228(local95));
 				if (local104 > local53) {
 					local53 = local104;
 				}

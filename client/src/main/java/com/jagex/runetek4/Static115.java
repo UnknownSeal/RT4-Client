@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.CacheArchive;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -152,7 +153,7 @@ public final class Static115 {
 		Static67.aClass3_Sub2_Sub1Array4 = null;
 		Static149.aClass3_Sub2_Sub1Array7 = null;
 		Static138.aClass3_Sub2_Sub1Array5 = null;
-		Static280.aClass3_Sub2_Sub9_43 = null;
+		Font.b12Full = null;
 		Static106.aClass3_Sub2_Sub1_7 = null;
 		Static139.aClass3_Sub2_Sub1Array6 = null;
 		Static114.aClass3_Sub2_Sub9_42 = null;

@@ -36,7 +36,9 @@ public abstract class Font extends CachedNode {
 	public static int opacity = 256;
 	@OriginalMember(owner = "runetek4.client!rk", name = "Cb", descriptor = "I")
 	public static int textColor = 0;
-	@OriginalMember(owner = "client!rk", name = "W", descriptor = "[I")
+    @OriginalMember(owner = "runetek4.client!wl", name = "q", descriptor = "Lclient!rk;")
+    public static Font b12Full;
+    @OriginalMember(owner = "client!rk", name = "W", descriptor = "[I")
 	private int[] moderatorIcon;
 
 	@OriginalMember(owner = "client!rk", name = "gb", descriptor = "[B")

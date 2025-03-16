@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
@@ -282,7 +283,7 @@ public final class Static269 {
 				Rasterizer.drawFilledRectangle(local50 - 150, local61 + 2, Static41.anInt1309 * 3, 30, 9179409);
 				Rasterizer.drawFilledRectangle(Static41.anInt1309 * 3 + local50 - 150, local61 - -2, 300 - Static41.anInt1309 * 3, 30, 0);
 			}
-			Static280.aClass3_Sub2_Sub9_43.method2875(LocalizedText.LOADINGDOTDOTDOT, local50, local61 + 20, 16777215, -1);
+			Font.b12Full.method2875(LocalizedText.LOADINGDOTDOTDOT, local50, local61 + 20, 16777215, -1);
 			return;
 		}
 		Static37.anInt1176 = (int) ((float) (arg2 * 2) / Static83.aFloat3);
