@@ -84,11 +84,4 @@ public final class Static23 {
 		}
 	}
 
-	@OriginalMember(owner = "client!bm", name = "a", descriptor = "(B[B)[B")
-	public static byte[] method648(@OriginalArg(1) byte[] arg0) {
-		@Pc(6) int local6 = arg0.length;
-		@Pc(9) byte[] local9 = new byte[local6];
-		JString.copy(arg0, 0, local9, 0, local6);
-		return local9;
-	}
 }

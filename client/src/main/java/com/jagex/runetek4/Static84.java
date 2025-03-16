@@ -26,9 +26,6 @@ public final class Static84 {
 	@OriginalMember(owner = "runetek4.client!gk", name = "c", descriptor = "[I")
 	public static final int[] anIntArray209 = new int[4096];
 
-	@OriginalMember(owner = "runetek4.client!gk", name = "g", descriptor = "Z")
-	public static boolean aBoolean127 = false;
-
 	@OriginalMember(owner = "runetek4.client!gk", name = "h", descriptor = "I")
 	public static int anInt2255 = 0;
 

@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class BZip2State {
 
-	@OriginalMember(owner = "runetek4.client!s", name = "a", descriptor = "[I")
-	public static int[] tt;
-
 	@OriginalMember(owner = "runetek4.client!s", name = "i", descriptor = "[I")
 	public static int[] anIntArray376;
 

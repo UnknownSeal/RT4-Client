@@ -104,6 +104,6 @@ public final class Static131 {
 
 	@OriginalMember(owner = "runetek4.client!kd", name = "a", descriptor = "(IIILclient!ve;)[Lclient!qf;")
 	public static Sprite[] method2580(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {
-		return Static234.method4016(arg1, 0, arg0) ? Static33.method870() : null;
+		return Static234.method4016(arg1, 0, arg0) ? Class6.method870() : null;
 	}
 }

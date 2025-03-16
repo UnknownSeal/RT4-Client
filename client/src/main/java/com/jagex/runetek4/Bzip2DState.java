@@ -7,28 +7,28 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class Bzip2DState {
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "e", descriptor = "B")
-	public byte aByte1;
+	public byte stateOutCh;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "k", descriptor = "[B")
-	public byte[] aByteArray3;
+	public byte[] strmNextOut;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "o", descriptor = "I")
-	public int save_nblock;
+	public int saveNblock;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "u", descriptor = "I")
-	public int avail_out;
+	public int strmAvailOut;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "v", descriptor = "[B")
-	public byte[] aByteArray4;
+	public byte[] strmNextIn;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "w", descriptor = "I")
-	public int anInt395;
+	public int bsLive;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "x", descriptor = "I")
 	public int anInt396;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "z", descriptor = "I")
-	public int c_nblock_used;
+	public int nblockused;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "B", descriptor = "I")
 	public int tPos;
@@ -40,19 +40,19 @@ public final class Bzip2DState {
 	public int nInUse;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "I", descriptor = "I")
-	public int anInt402;
+	public int bsBuff;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "J", descriptor = "I")
-	public int anInt403;
+	public int strmTotalOutLo32;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "K", descriptor = "I")
 	public int blockSize100k;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "L", descriptor = "I")
-	public int state_out_len;
+	public int stateOutLen;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "P", descriptor = "I")
-	public int anInt407;
+	public int strmTotalInLo32;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "b", descriptor = "[B")
 	public final byte[] mtfa = new byte[4096];
@@ -70,13 +70,13 @@ public final class Bzip2DState {
 	public final int[][] base = new int[6][258];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "l", descriptor = "I")
-	public int anInt390 = 0;
+	public int strmNextOutPtr = 0;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "i", descriptor = "[[I")
 	public final int[][] limit = new int[6][258];
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "j", descriptor = "I")
-	public int anInt389 = 0;
+	public int strmNextInPtr = 0;
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "C", descriptor = "[I")
 	public final int[] unzftab = new int[256];

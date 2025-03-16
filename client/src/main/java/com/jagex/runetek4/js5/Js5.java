@@ -1,7 +1,7 @@
 package com.jagex.runetek4.js5;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.bzip.BZip2;
+import com.jagex.runetek4.cache.bzip.Bzip2Decompressor;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.index.Js5Index;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -61,7 +61,7 @@ public final class Js5 {
 			}
 			@Pc(85) byte[] bytes = new byte[unpackedLength];
 			if (type == 1) {
-				BZip2.read(bytes, unpackedLength, src, len);
+				Bzip2Decompressor.bunzip2(bytes, unpackedLength, src, len);
 			} else {
 				Static156.aClass56_1.method1842(bytes, packet);
 			}
@@ -226,7 +226,7 @@ public final class Js5 {
 				}
 			}
 		}
-		@Pc(64) byte[] bytes = Static138.method2696(this.unpacked[group][file], false);
+		@Pc(64) byte[] bytes = ByteArray.unwrap(this.unpacked[group][file], false);
 		if (this.discardUnpacked) {
 			this.unpacked[group][file] = null;
 			if (this.index.groupCapacities[group] == 1) {
@@ -319,9 +319,9 @@ public final class Js5 {
 			}
 			@Pc(114) byte[] local114;
 			if (key == null || key[0] == 0 && key[1] == 0 && key[2] == 0 && key[3] == 0) {
-				local114 = Static138.method2696(this.packed[group], false);
+				local114 = ByteArray.unwrap(this.packed[group], false);
 			} else {
-				local114 = Static138.method2696(this.packed[group], true);
+				local114 = ByteArray.unwrap(this.packed[group], true);
 				@Pc(128) Packet packet = new Packet(local114);
 				packet.decryptXtea(key, packet.data.length);
 			}
@@ -382,7 +382,7 @@ public final class Js5 {
 					if (this.discardUnpacked) {
 						local53[local320] = local282[local252];
 					} else {
-						local53[local320] = Static33.method869(local282[local252]);
+						local53[local320] = ByteArray.wrap(local282[local252]);
 					}
 				}
 			} else {
@@ -394,7 +394,7 @@ public final class Js5 {
 				if (this.discardUnpacked) {
 					local53[local213] = bytes;
 				} else {
-					local53[local213] = Static33.method869(bytes);
+					local53[local213] = ByteArray.wrap(bytes);
 				}
 			}
 			return true;
@@ -411,7 +411,7 @@ public final class Js5 {
 		if (this.aBoolean296) {
 			this.packed[arg0] = this.provider.fetchgroup(arg0);
 		} else {
-			this.packed[arg0] = Static33.method869(this.provider.fetchgroup(arg0));
+			this.packed[arg0] = ByteArray.wrap(this.provider.fetchgroup(arg0));
 		}
 	}
 
@@ -500,7 +500,7 @@ public final class Js5 {
 				}
 			}
 		}
-		return Static138.method2696(this.unpacked[arg1][arg0], false);
+		return ByteArray.unwrap(this.unpacked[arg1][arg0], false);
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(BI)[I")

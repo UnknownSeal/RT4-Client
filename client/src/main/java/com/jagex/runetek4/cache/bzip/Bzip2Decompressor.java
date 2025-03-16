@@ -1,54 +1,55 @@
 package com.jagex.runetek4.cache.bzip;
 
-import com.jagex.runetek4.BZip2State;
 import com.jagex.runetek4.Bzip2DState;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-public final class BZip2 {
+public final class Bzip2Decompressor {
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "a", descriptor = "Lclient!bb;")
 	private static final Bzip2DState state = new Bzip2DState();
+	@OriginalMember(owner = "runetek4.client!s", name = "a", descriptor = "[I")
+	public static int[] tt;
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "a", descriptor = "(ILclient!bb;)I")
 	private static int getBits(@OriginalArg(0) int arg0, @OriginalArg(1) Bzip2DState arg1) {
-		while (arg1.anInt395 < arg0) {
-			arg1.anInt402 = arg1.anInt402 << 8 | arg1.aByteArray4[arg1.anInt389] & 0xFF;
-			arg1.anInt395 += 8;
-			arg1.anInt389++;
-			arg1.anInt407++;
-			if (arg1.anInt407 == 0) {
+		while (arg1.bsLive < arg0) {
+			arg1.bsBuff = arg1.bsBuff << 8 | arg1.strmNextIn[arg1.strmNextInPtr] & 0xFF;
+			arg1.bsLive += 8;
+			arg1.strmNextInPtr++;
+			arg1.strmTotalInLo32++;
+			if (arg1.strmTotalInLo32 == 0) {
 			}
 		}
-		@Pc(17) int local17 = arg1.anInt402 >> arg1.anInt395 - arg0 & (0x1 << arg0) - 1;
-		arg1.anInt395 -= arg0;
+		@Pc(17) int local17 = arg1.bsBuff >> arg1.bsLive - arg0 & (0x1 << arg0) - 1;
+		arg1.bsLive -= arg0;
 		return local17;
 	}
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "a", descriptor = "(Lclient!bb;)V")
-	private static void finish(@OriginalArg(0) Bzip2DState arg0) {
-		@Pc(2) byte local2 = arg0.aByte1;
-		@Pc(5) int local5 = arg0.state_out_len;
-		@Pc(8) int local8 = arg0.c_nblock_used;
+	private static void unRleObufToOutputFast(@OriginalArg(0) Bzip2DState arg0) {
+		@Pc(2) byte local2 = arg0.stateOutCh;
+		@Pc(5) int local5 = arg0.stateOutLen;
+		@Pc(8) int local8 = arg0.nblockused;
 		@Pc(11) int local11 = arg0.anInt396;
-		@Pc(13) int[] local13 = BZip2State.tt;
+		@Pc(13) int[] local13 = tt;
 		@Pc(16) int local16 = arg0.tPos;
-		@Pc(19) byte[] local19 = arg0.aByteArray3;
-		@Pc(22) int local22 = arg0.anInt390;
-		@Pc(25) int local25 = arg0.avail_out;
+		@Pc(19) byte[] local19 = arg0.strmNextOut;
+		@Pc(22) int local22 = arg0.strmNextOutPtr;
+		@Pc(25) int local25 = arg0.strmAvailOut;
 		@Pc(27) int local27 = local25;
-		@Pc(32) int local32 = arg0.save_nblock + 1;
-		label67: while (true) {
+		@Pc(32) int local32 = arg0.saveNblock + 1;
+		returnNotr: while (true) {
 			if (local5 > 0) {
 				while (true) {
 					if (local25 == 0) {
-						break label67;
+						break returnNotr;
 					}
 					if (local5 == 1) {
 						if (local25 == 0) {
 							local5 = 1;
-							break label67;
+							break returnNotr;
 						}
 						local19[local22] = local2;
 						local22++;
@@ -67,7 +68,7 @@ public final class BZip2 {
 				local62 = false;
 				if (local8 == local32) {
 					local5 = 0;
-					break label67;
+					break returnNotr;
 				}
 				local2 = (byte) local11;
 				local16 = local13[local16];
@@ -78,7 +79,7 @@ public final class BZip2 {
 					local11 = local84;
 					if (local25 == 0) {
 						local5 = 1;
-						break label67;
+						break returnNotr;
 					}
 					local19[local22] = local2;
 					local22++;
@@ -87,7 +88,7 @@ public final class BZip2 {
 				} else if (local8 == local32) {
 					if (local25 == 0) {
 						local5 = 1;
-						break label67;
+						break returnNotr;
 					}
 					local19[local22] = local2;
 					local22++;
@@ -127,23 +128,23 @@ public final class BZip2 {
 				}
 			}
 		}
-		@Pc(215) int local215 = arg0.anInt403;
-		arg0.anInt403 += local27 - local25;
-		if (arg0.anInt403 < local215) {
+		@Pc(215) int local215 = arg0.strmTotalOutLo32;
+		arg0.strmTotalOutLo32 += local27 - local25;
+		if (arg0.strmTotalOutLo32 < local215) {
 		}
-		arg0.aByte1 = local2;
-		arg0.state_out_len = local5;
-		arg0.c_nblock_used = local8;
+		arg0.stateOutCh = local2;
+		arg0.stateOutLen = local5;
+		arg0.nblockused = local8;
 		arg0.anInt396 = local11;
-		BZip2State.tt = local13;
+		tt = local13;
 		arg0.tPos = local16;
-		arg0.aByteArray3 = local19;
-		arg0.anInt390 = local22;
-		arg0.avail_out = local25;
+		arg0.strmNextOut = local19;
+		arg0.strmNextOutPtr = local22;
+		arg0.strmAvailOut = local25;
 	}
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "a", descriptor = "([I[I[I[BIII)V")
-	private static void createDecodeTables(@OriginalArg(0) int[] limit, @OriginalArg(1) int[] base, @OriginalArg(2) int[] arg2, @OriginalArg(3) byte[] arg3, @OriginalArg(4) int minLen, @OriginalArg(5) int maxLen, @OriginalArg(6) int arg6) {
+	private static void hbCreateDecodeTables(@OriginalArg(0) int[] limit, @OriginalArg(1) int[] base, @OriginalArg(2) int[] arg2, @OriginalArg(3) byte[] arg3, @OriginalArg(4) int minLen, @OriginalArg(5) int maxLen, @OriginalArg(6) int arg6) {
 		@Pc(1) int pp = 0;
 		@Pc(3) int i;
 		for (i = minLen; i <= maxLen; i++) {
@@ -178,7 +179,7 @@ public final class BZip2 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "b", descriptor = "(Lclient!bb;)V")
-	private static void makeMaps(@OriginalArg(0) Bzip2DState arg0) {
+	private static void makeMapsD(@OriginalArg(0) Bzip2DState arg0) {
 		arg0.nInUse = 0;
 		for (@Pc(4) int local4 = 0; local4 < 256; local4++) {
 			if (arg0.inUse[local4]) {
@@ -189,41 +190,41 @@ public final class BZip2 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "c", descriptor = "(Lclient!bb;)B")
-	private static byte getUnsignedChars(@OriginalArg(0) Bzip2DState arg0) {
+	private static byte getUchar(@OriginalArg(0) Bzip2DState arg0) {
 		return (byte) getBits(8, arg0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "d", descriptor = "(Lclient!bb;)V")
 	private static void decompress(@OriginalArg(0) Bzip2DState s) {
 		s.blockSize100k = 1;
-		if (BZip2State.tt == null) {
-			BZip2State.tt = new int[s.blockSize100k * 100000];
+		if (tt == null) {
+			tt = new int[s.blockSize100k * 100000];
 		}
 		@Pc(56) boolean reading = true;
 		while (true) {
 			while (reading) {
-				@Pc(61) byte uc = getUnsignedChars(s);
+				@Pc(61) byte uc = getUchar(s);
 				if (uc == 23) {
 					return;
 				}
-				uc = getUnsignedChars(s);
-				uc = getUnsignedChars(s);
-				uc = getUnsignedChars(s);
-				uc = getUnsignedChars(s);
-				uc = getUnsignedChars(s);
-				uc = getUnsignedChars(s);
-				uc = getUnsignedChars(s);
-				uc = getUnsignedChars(s);
-				uc = getUnsignedChars(s);
+				uc = getUchar(s);
+				uc = getUchar(s);
+				uc = getUchar(s);
+				uc = getUchar(s);
+				uc = getUchar(s);
+				uc = getUchar(s);
+				uc = getUchar(s);
+				uc = getUchar(s);
+				uc = getUchar(s);
 				uc = getBit(s);
 				if (uc != 0) {
 				}
 				s.origPtr = 0;
-				uc = getUnsignedChars(s);
+				uc = getUchar(s);
 				s.origPtr = s.origPtr << 8 | uc & 0xFF;
-				uc = getUnsignedChars(s);
+				uc = getUchar(s);
 				s.origPtr = s.origPtr << 8 | uc & 0xFF;
-				uc = getUnsignedChars(s);
+				uc = getUchar(s);
 				s.origPtr = s.origPtr << 8 | uc & 0xFF;
 				@Pc(141) int i;
 				for (i = 0; i < 16; i++) {
@@ -248,7 +249,7 @@ public final class BZip2 {
 						}
 					}
 				}
-				makeMaps(s);
+				makeMapsD(s);
 				@Pc(216) int alphaSize = s.nInUse + 2;
 				@Pc(220) int nGroups = getBits(3, s);
 				@Pc(224) int nSelectors = getBits(15, s);
@@ -308,7 +309,7 @@ public final class BZip2 {
 							minLen = s.len[t][i];
 						}
 					}
-					createDecodeTables(s.limit[t], s.base[t], s.perm[t], s.len[t], minLen, maxLen, alphaSize);
+					hbCreateDecodeTables(s.limit[t], s.base[t], s.perm[t], s.len[t], minLen, maxLen, alphaSize);
 					s.minLens[t] = minLen;
 				}
 				@Pc(425) int EOB = s.nInUse + 1;
@@ -376,7 +377,7 @@ public final class BZip2 {
 							uc = s.seqToUnseq[s.mtfa[s.mtfbase[0]] & 0xFF];
 							s.unzftab[uc & 0xFF] += es;
 							while (es > 0) {
-								BZip2State.tt[nblock] = uc & 0xFF;
+								tt[nblock] = uc & 0xFF;
 								nblock++;
 								es--;
 							}
@@ -428,7 +429,7 @@ public final class BZip2 {
 								}
 							}
 							s.unzftab[s.seqToUnseq[uc & 0xFF] & 0xFF]++;
-							BZip2State.tt[nblock] = s.seqToUnseq[uc & 0xFF] & 0xFF;
+							tt[nblock] = s.seqToUnseq[uc & 0xFF] & 0xFF;
 							nblock++;
 							if (gPos == 0) {
 								groupNo1++;
@@ -448,8 +449,8 @@ public final class BZip2 {
 							nextSym = gPerm[zvec - gBase[zn]];
 						}
 					}
-					s.state_out_len = 0;
-					s.aByte1 = 0;
+					s.stateOutLen = 0;
+					s.stateOutCh = 0;
 					s.cftab[0] = 0;
 					for (i = 1; i <= 256; i++) {
 						s.cftab[i] = s.unzftab[i - 1];
@@ -458,19 +459,19 @@ public final class BZip2 {
 						s.cftab[i] += s.cftab[i - 1];
 					}
 					for (i = 0; i < nblock; i++) {
-						uc = (byte) (BZip2State.tt[i] & 0xFF);
-						BZip2State.tt[s.cftab[uc & 0xFF]] |= i << 8;
+						uc = (byte) (tt[i] & 0xFF);
+						tt[s.cftab[uc & 0xFF]] |= i << 8;
 						s.cftab[uc & 0xFF]++;
 					}
-					s.tPos = BZip2State.tt[s.origPtr] >> 8;
-					s.c_nblock_used = 0;
-					s.tPos = BZip2State.tt[s.tPos];
+					s.tPos = tt[s.origPtr] >> 8;
+					s.nblockused = 0;
+					s.tPos = tt[s.tPos];
 					s.anInt396 = (byte) (s.tPos & 0xFF);
 					s.tPos >>= 0x8;
-					s.c_nblock_used++;
-					s.save_nblock = nblock;
-					finish(s);
-					if (s.c_nblock_used == s.save_nblock + 1 && s.state_out_len == 0) {
+					s.nblockused++;
+					s.saveNblock = nblock;
+					unRleObufToOutputFast(s);
+					if (s.nblockused == s.saveNblock + 1 && s.stateOutLen == 0) {
 						reading = true;
 						break;
 					}
@@ -488,22 +489,22 @@ public final class BZip2 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "a", descriptor = "([BI[BII)I")
-	public static int read(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int length, @OriginalArg(2) byte[] arg2, @OriginalArg(3) int arg3) {
+	public static int bunzip2(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int length, @OriginalArg(2) byte[] arg2, @OriginalArg(3) int arg3) {
 		@Pc(2) Bzip2DState local2 = state;
 		synchronized (state) {
-			state.aByteArray4 = arg2;
-			state.anInt389 = 9;
-			state.aByteArray3 = arg0;
-			state.anInt390 = 0;
-			state.avail_out = length;
-			state.anInt395 = 0;
-			state.anInt402 = 0;
-			state.anInt407 = 0;
-			state.anInt403 = 0;
+			state.strmNextIn = arg2;
+			state.strmNextInPtr = 9;
+			state.strmNextOut = arg0;
+			state.strmNextOutPtr = 0;
+			state.strmAvailOut = length;
+			state.bsLive = 0;
+			state.bsBuff = 0;
+			state.strmTotalInLo32 = 0;
+			state.strmTotalOutLo32 = 0;
 			decompress(state);
-			@Pc(37) int i = length - state.avail_out;
-			state.aByteArray4 = null;
-			state.aByteArray3 = null;
+			@Pc(37) int i = length - state.strmAvailOut;
+			state.strmNextIn = null;
+			state.strmNextOut = null;
 			return i;
 		}
 	}
