@@ -38,7 +38,7 @@ public final class Js5NetQueue {
 	private final NodeQueue inFlightPrefetchRequests = new NodeQueue();
 
 	@OriginalMember(owner = "client!jb", name = "E", descriptor = "Lclient!wa;")
-	private final Packet outBuffer = new Packet(4);
+	private final Packet outPacket = new Packet(4);
 
 	@OriginalMember(owner = "client!jb", name = "G", descriptor = "B")
 	private byte encryptionKey = 0;
@@ -50,7 +50,7 @@ public final class Js5NetQueue {
 	public volatile int response = 0;
 
 	@OriginalMember(owner = "client!jb", name = "F", descriptor = "Lclient!wa;")
-	private final Packet inBuffer = new Packet(8);
+	private final Packet inPacket = new Packet(8);
 
 	@OriginalMember(owner = "client!jb", name = "a", descriptor = "(I)Z")
 	public boolean isPrefetchRequestQueueFull() {
@@ -83,17 +83,17 @@ public final class Js5NetQueue {
 			this.updateServerSocket.checkError();
 			@Pc(75) Js5NetRequest local75;
 			for (local75 = (Js5NetRequest) this.urgent.head(); local75 != null; local75 = (Js5NetRequest) this.urgent.prev()) {
-				this.outBuffer.position = 0;
-				this.outBuffer.p1(1);
-				this.outBuffer.p3((int) local75.secondaryNodeId);
-				this.updateServerSocket.write(4, this.outBuffer.data);
+				this.outPacket.position = 0;
+				this.outPacket.p1(1);
+				this.outPacket.p3((int) local75.secondaryNodeId);
+				this.updateServerSocket.write(4, this.outPacket.data);
 				this.inFlightUrgentRequests.pushBack(local75);
 			}
 			for (local75 = (Js5NetRequest) this.prefetch.head(); local75 != null; local75 = (Js5NetRequest) this.prefetch.prev()) {
-				this.outBuffer.position = 0;
-				this.outBuffer.p1(0);
-				this.outBuffer.p3((int) local75.secondaryNodeId);
-				this.updateServerSocket.write(4, this.outBuffer.data);
+				this.outPacket.position = 0;
+				this.outPacket.p1(0);
+				this.outPacket.p3((int) local75.secondaryNodeId);
+				this.updateServerSocket.write(4, this.outPacket.data);
 				this.inFlightPrefetchRequests.pushBack(local75);
 			}
 			for (@Pc(172) int i = 0; i < 100; i++) {
@@ -139,27 +139,27 @@ public final class Js5NetQueue {
 						this.current.blockPosition = 0;
 					}
 				} else {
-					remaining = needed - this.inBuffer.position;
+					remaining = needed - this.inPacket.position;
 					if (remaining > available) {
 						remaining = available;
 					}
-					this.updateServerSocket.read(this.inBuffer.position, remaining, this.inBuffer.data);
+					this.updateServerSocket.read(this.inPacket.position, remaining, this.inPacket.data);
 					if (this.encryptionKey != 0) {
 						for (archive = 0; archive < remaining; archive++) {
-							this.inBuffer.data[archive + this.inBuffer.position] ^= this.encryptionKey;
+							this.inPacket.data[archive + this.inPacket.position] ^= this.encryptionKey;
 						}
 					}
-					this.inBuffer.position += remaining;
-					if (this.inBuffer.position >= needed) {
+					this.inPacket.position += remaining;
+					if (this.inPacket.position >= needed) {
 						if (this.current == null) {
-							this.inBuffer.position = 0;
+							this.inPacket.position = 0;
 
-							archive = this.inBuffer.g1();
-							group = this.inBuffer.g2();
-							@Pc(471) int flags = this.inBuffer.g1();
+							archive = this.inPacket.g1();
+							group = this.inPacket.g2();
+							@Pc(471) int flags = this.inPacket.g1();
 							@Pc(480) int compressionType = flags & 0x7F;
 							@Pc(491) boolean prefect = (flags & 0x80) != 0;
-							@Pc(476) int length = this.inBuffer.g4();
+							@Pc(476) int length = this.inPacket.g4();
 							@Pc(501) long key = (archive << 16) + group;
 							@Pc(568) int headerLength = compressionType == 0 ? 5 : 9;
 							@Pc(509) Js5NetRequest request;
@@ -180,12 +180,12 @@ public final class Js5NetQueue {
 							this.current.packet.p1(compressionType);
 							this.current.packet.p4(length);
 							this.current.blockPosition = 8;
-							this.inBuffer.position = 0;
+							this.inPacket.position = 0;
 						} else if (this.current.blockPosition != 0) {
 							throw new IOException();
-						} else if (this.inBuffer.data[0] == -1) {
+						} else if (this.inPacket.data[0] == -1) {
 							this.current.blockPosition = 1;
-							this.inBuffer.position = 0;
+							this.inPacket.position = 0;
 						} else {
 							this.current = null;
 						}
@@ -211,10 +211,10 @@ public final class Js5NetQueue {
 			return;
 		}
 		try {
-			this.outBuffer.position = 0;
-			this.outBuffer.p1(7);
-			this.outBuffer.p3(0);
-			this.updateServerSocket.write(4, this.outBuffer.data);
+			this.outPacket.position = 0;
+			this.outPacket.p1(7);
+			this.outPacket.p3(0);
+			this.updateServerSocket.write(4, this.outPacket.data);
 		} catch (@Pc(39) IOException local39) {
 			try {
 				this.updateServerSocket.closeGracefully();
@@ -237,10 +237,10 @@ public final class Js5NetQueue {
 			return;
 		}
 		try {
-			this.outBuffer.position = 0;
-			this.outBuffer.p1(loggedIn ? 2 : 3);
-			this.outBuffer.p3(0);
-			this.updateServerSocket.write(4, this.outBuffer.data);
+			this.outPacket.position = 0;
+			this.outPacket.p1(loggedIn ? 2 : 3);
+			this.outPacket.p3(0);
+			this.updateServerSocket.write(4, this.outPacket.data);
 		} catch (@Pc(42) IOException local42) {
 			try {
 				this.updateServerSocket.closeGracefully();
@@ -271,7 +271,7 @@ public final class Js5NetQueue {
 		this.updateServerSocket = socket;
 		this.method2331();
 		this.writeLoggedIn(isLoggedIn);
-		this.inBuffer.position = 0;
+		this.inPacket.position = 0;
 		this.current = null;
 		while (true) {
 			@Pc(44) Js5NetRequest local44 = (Js5NetRequest) this.inFlightUrgentRequests.pollFront();
@@ -281,11 +281,11 @@ public final class Js5NetQueue {
 					if (local44 == null) {
 						if (this.encryptionKey != 0) {
 							try {
-								this.outBuffer.position = 0;
-								this.outBuffer.p1(4);
-								this.outBuffer.p1(this.encryptionKey);
-								this.outBuffer.p2(0);
-								this.updateServerSocket.write(4, this.outBuffer.data);
+								this.outPacket.position = 0;
+								this.outPacket.p1(4);
+								this.outPacket.p1(this.encryptionKey);
+								this.outPacket.p2(0);
+								this.updateServerSocket.write(4, this.outPacket.data);
 							} catch (@Pc(107) IOException local107) {
 								try {
 									this.updateServerSocket.closeGracefully();
@@ -362,10 +362,10 @@ public final class Js5NetQueue {
 			return;
 		}
 		try {
-			this.outBuffer.position = 0;
-			this.outBuffer.p1(6);
-			this.outBuffer.p3(3);
-			this.updateServerSocket.write(4, this.outBuffer.data);
+			this.outPacket.position = 0;
+			this.outPacket.p1(6);
+			this.outPacket.p3(3);
+			this.updateServerSocket.write(4, this.outPacket.data);
 		} catch (@Pc(37) IOException local37) {
 			try {
 				this.updateServerSocket.closeGracefully();

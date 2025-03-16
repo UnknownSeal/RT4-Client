@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -70,33 +69,6 @@ public final class Static79 {
 			Static250.aBoolean283 = true;
 			Static185.method3397(local39, false, arg2, false, Static148.levelCollisionMap[arg2], arg0, arg5, arg1, arg4, arg3);
 			Static250.aBoolean283 = local92;
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!ge", name = "a", descriptor = "(IJ)Lclient!na;")
-	public static JString decode37(@OriginalArg(1) long arg0) {
-		if (arg0 <= 0L || arg0 >= 6582952005840035281L) {
-			return null;
-		} else if (arg0 % 37L == 0L) {
-			return null;
-		} else {
-			@Pc(32) int local32 = 0;
-			@Pc(34) long local34 = arg0;
-			while (local34 != 0L) {
-				local34 /= 37L;
-				local32++;
-			}
-			@Pc(48) byte[] local48 = new byte[local32];
-			while (arg0 != 0L) {
-				@Pc(65) long local65 = arg0;
-				arg0 /= 37L;
-				local32--;
-				local48[local32] = Player.aByteArray12[(int) (local65 - arg0 * 37L)];
-			}
-			@Pc(88) JString local88 = new JString();
-			local88.aByteArray52 = local48;
-			local88.anInt4030 = local48.length;
-			return local88;
 		}
 	}
 

@@ -23,7 +23,7 @@ public final class AnimFrame {
 
 	@OriginalMember(owner = "runetek4.client!ne", name = "h", descriptor = "[B")
 	public static final byte[] tempFlags = new byte[500];
-	
+
 	@OriginalMember(owner = "runetek4.client!ne", name = "k", descriptor = "[S")
 	public static final short[] tempPrevOriginIndices = new short[500];
 

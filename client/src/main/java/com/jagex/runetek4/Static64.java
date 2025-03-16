@@ -62,7 +62,7 @@ public final class Static64 {
 			Static103.addMessage(Static186.aClass100_827, 0, LocalizedText.FRIENDLISTFULL);
 			return;
 		}
-		@Pc(35) JString displayName = Static79.decode37(username).method3125();
+		@Pc(35) JString displayName = Base37.decode37(username).method3125();
 		@Pc(42) int i;
 		for (i = 0; i < CacheArchive.friendCount; i++) {
 			if (Static92.friendName37[i] == username) {

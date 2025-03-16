@@ -939,7 +939,7 @@ public class Game {
         Static272.npcCount = 0;
         for (local19 = 0; local19 < 2048; local19++) {
             Static159.players[local19] = null;
-            Static115.playerAppearanceBuffer[local19] = null;
+            Static115.PLAYER_APPEARANCE_PACKET[local19] = null;
         }
         for (local19 = 0; local19 < 32768; local19++) {
             NpcList.npcs[local19] = null;
@@ -1044,7 +1044,7 @@ public class Game {
                 Static57.in.position = 0;
                 Static124.gameServerSocket.read(0, Static229.aClass100Array156.length * 8, Static57.in.data);
                 for (local120 = 0; local120 < Static229.aClass100Array156.length; local120++) {
-                    Static229.aClass100Array156[local120] = Static79.decode37(Static57.in.g8());
+                    Static229.aClass100Array156[local120] = Base37.decode37(Static57.in.g8());
                 }
                 Static223.reply = 21;
                 Static179.step = 0;

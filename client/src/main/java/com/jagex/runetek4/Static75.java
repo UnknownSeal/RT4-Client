@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
-import com.jagex.runetek4.game.config.bastype.BASType;
+import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.renderable.actor.Player;
@@ -422,11 +422,11 @@ public final class Static75 {
 								}
 							}
 							if (local1198 != null) {
-								@Pc(1232) BASType local1232 = local1198.getBasType();
-								if (local1232.anIntArrayArray7 != null && local1232.anIntArrayArray7[local1194] != null) {
-									local1188 = local1232.anIntArrayArray7[local1194][0];
-									local224 -= local1232.anIntArrayArray7[local1194][1];
-									@Pc(1264) int local1264 = local1232.anIntArrayArray7[local1194][2];
+								@Pc(1232) BasType local1232 = local1198.getBasType();
+								if (local1232.modelRotateTranslate != null && local1232.modelRotateTranslate[local1194] != null) {
+									local1188 = local1232.modelRotateTranslate[local1194][0];
+									local224 -= local1232.modelRotateTranslate[local1194][1];
+									@Pc(1264) int local1264 = local1232.modelRotateTranslate[local1194][2];
 									@Pc(1269) int local1269 = MathUtils.anIntArray223[local1198.anInt3381];
 									@Pc(1274) int local1274 = MathUtils.anIntArray225[local1198.anInt3381];
 									@Pc(1284) int local1284 = local1188 * local1274 + local1264 * local1269 >> 16;

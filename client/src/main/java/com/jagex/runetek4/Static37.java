@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.bastype.BASType;
+import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.media.renderable.actor.Player;
@@ -27,7 +27,7 @@ public final class Static37 {
 		if (e.anInt3376 == 0) {
 			return;
 		}
-		@Pc(13) BASType local13 = e.getBasType();
+		@Pc(13) BasType local13 = e.getBasType();
 		@Pc(43) int dstX;
 		@Pc(36) int dstZ;
 		if (e.targetId != -1 && e.targetId < 32768) {
@@ -69,7 +69,7 @@ public final class Static37 {
 		if (index == 0) {
 			e.anInt3385 = 0;
 			e.anInt3414 = 0;
-		} else if (local13.anInt1038 == 0) {
+		} else if (local13.yawAcceleration == 0) {
 			e.anInt3385++;
 			@Pc(226) boolean local226;
 			if (index > 1024) {
@@ -80,10 +80,10 @@ public final class Static37 {
 					local226 = false;
 				}
 				if (local13.idleAnimationId == e.movementSeqId && (e.anInt3385 > 25 || local226)) {
-					if (local13.anInt1036 == -1) {
-						e.movementSeqId = local13.anInt1051;
+					if (local13.standingCCWTurn == -1) {
+						e.movementSeqId = local13.walkAnimation;
 					} else {
-						e.movementSeqId = local13.anInt1036;
+						e.movementSeqId = local13.standingCCWTurn;
 					}
 				}
 			} else {
@@ -94,20 +94,20 @@ public final class Static37 {
 					e.anInt3381 = e.dstYaw;
 				}
 				if (local13.idleAnimationId == e.movementSeqId && (e.anInt3385 > 25 || local226)) {
-					if (local13.anInt1067 == -1) {
-						e.movementSeqId = local13.anInt1051;
+					if (local13.standingCWTurn == -1) {
+						e.movementSeqId = local13.walkAnimation;
 					} else {
-						e.movementSeqId = local13.anInt1067;
+						e.movementSeqId = local13.standingCWTurn;
 					}
 				}
 			}
 			e.anInt3381 &= 0x7FF;
 		} else {
 			if (local13.idleAnimationId == e.movementSeqId && e.anInt3385 > 25) {
-				if (local13.anInt1067 == -1) {
-					e.movementSeqId = local13.anInt1051;
+				if (local13.standingCWTurn == -1) {
+					e.movementSeqId = local13.walkAnimation;
 				} else {
-					e.movementSeqId = local13.anInt1067;
+					e.movementSeqId = local13.standingCWTurn;
 				}
 			}
 			dstX = e.dstYaw << 5;
@@ -115,12 +115,12 @@ public final class Static37 {
 				e.anInt3387 = 0;
 				e.anInt3402 = dstX;
 				dstZ = dstX - e.anInt3377 & 0xFFFF;
-				local94 = e.anInt3414 * e.anInt3414 / (local13.anInt1038 * 2);
+				local94 = e.anInt3414 * e.anInt3414 / (local13.yawAcceleration * 2);
 				@Pc(471) int local471;
 				if (e.anInt3414 > 0 && dstZ >= local94 && dstZ - local94 < 32768) {
 					e.anInt3397 = dstZ / 2;
 					e.aBoolean167 = true;
-					local471 = local13.anInt1031 * local13.anInt1031 / (local13.anInt1038 * 2);
+					local471 = local13.yawMaxSpeed * local13.yawMaxSpeed / (local13.yawAcceleration * 2);
 					if (local471 > 32767) {
 						local471 = 32767;
 					}
@@ -130,7 +130,7 @@ public final class Static37 {
 				} else if (e.anInt3414 < 0 && local94 <= 65536 - dstZ && 65536 - dstZ - local94 < 32768) {
 					e.anInt3397 = (65536 - dstZ) / 2;
 					e.aBoolean167 = true;
-					local471 = local13.anInt1031 * local13.anInt1031 / (local13.anInt1038 * 2);
+					local471 = local13.yawMaxSpeed * local13.yawMaxSpeed / (local13.yawAcceleration * 2);
 					if (local471 > 32767) {
 						local471 = 32767;
 					}
@@ -143,23 +143,23 @@ public final class Static37 {
 			}
 			if (e.anInt3414 == 0) {
 				dstZ = e.anInt3402 - e.anInt3377 & 0xFFFF;
-				if (dstZ < local13.anInt1038) {
+				if (dstZ < local13.yawAcceleration) {
 					e.anInt3377 = e.anInt3402;
 				} else {
 					e.anInt3387 = 0;
-					local94 = local13.anInt1031 * local13.anInt1031 / (local13.anInt1038 * 2);
+					local94 = local13.yawMaxSpeed * local13.yawMaxSpeed / (local13.yawAcceleration * 2);
 					e.aBoolean167 = true;
 					if (local94 > 32767) {
 						local94 = 32767;
 					}
 					if (dstZ >= 32768) {
-						e.anInt3414 = -local13.anInt1038;
+						e.anInt3414 = -local13.yawAcceleration;
 						e.anInt3397 = (65536 - dstZ) / 2;
 						if (local94 < e.anInt3397) {
 							e.anInt3397 = 65536 - dstZ - local94;
 						}
 					} else {
-						e.anInt3414 = local13.anInt1038;
+						e.anInt3414 = local13.yawAcceleration;
 						e.anInt3397 = dstZ / 2;
 						if (local94 < e.anInt3397) {
 							e.anInt3397 = dstZ - local94;
@@ -171,24 +171,24 @@ public final class Static37 {
 					e.aBoolean167 = false;
 				}
 				if (!e.aBoolean167) {
-					e.anInt3414 += local13.anInt1038;
+					e.anInt3414 += local13.yawAcceleration;
 					if (e.anInt3414 > 0) {
 						e.anInt3414 = 0;
 					}
-				} else if (-local13.anInt1031 < e.anInt3414) {
-					e.anInt3414 -= local13.anInt1038;
+				} else if (-local13.yawMaxSpeed < e.anInt3414) {
+					e.anInt3414 -= local13.yawAcceleration;
 				}
 			} else {
 				if (e.anInt3397 <= e.anInt3387) {
 					e.aBoolean167 = false;
 				}
 				if (!e.aBoolean167) {
-					e.anInt3414 -= local13.anInt1038;
+					e.anInt3414 -= local13.yawAcceleration;
 					if (e.anInt3414 < 0) {
 						e.anInt3414 = 0;
 					}
-				} else if (e.anInt3414 < local13.anInt1031) {
-					e.anInt3414 += local13.anInt1038;
+				} else if (e.anInt3414 < local13.yawMaxSpeed) {
+					e.anInt3414 += local13.yawAcceleration;
 				}
 			}
 			e.anInt3377 += e.anInt3414;

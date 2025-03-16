@@ -1851,7 +1851,7 @@ public final class Static88 {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
 										if (Static166.anInt4054 != 0 && Static35.ignoreCount > interfaceData) {
-											Static3.scriptStringValues[local26++] = Static79.decode37(Static190.ignoreName37[interfaceData]).method3125();
+											Static3.scriptStringValues[local26++] = Base37.decode37(Static190.ignoreName37[interfaceData]).method3125();
 											continue;
 										}
 										Static3.scriptStringValues[local26++] = Static72.aClass100_447;

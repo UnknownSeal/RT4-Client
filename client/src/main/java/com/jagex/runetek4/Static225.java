@@ -35,8 +35,8 @@ public final class Static225 {
 					if (Static159.players[index] == null) {
 						Static159.players[index] = new Player();
 						local27 = true;
-						if (Static115.playerAppearanceBuffer[index] != null) {
-							Static159.players[index].read(Static115.playerAppearanceBuffer[index]);
+						if (Static115.PLAYER_APPEARANCE_PACKET[index] != null) {
+							Static159.players[index].read(Static115.PLAYER_APPEARANCE_PACKET[index]);
 						}
 					}
 					Static105.playerIds[Static267.playerCount++] = index;

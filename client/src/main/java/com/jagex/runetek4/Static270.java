@@ -28,7 +28,7 @@ public final class Static270 {
 	public static final JString aClass100_1090 = Static28.parse("l");
 
 	@OriginalMember(owner = "runetek4.client!wb", name = "f", descriptor = "Lclient!wa;")
-	public static final Packet chatBuffer = new Packet(new byte[5000]);
+	public static final Packet CHAT_PACKET = new Packet(new byte[5000]);
 
 	@OriginalMember(owner = "runetek4.client!wb", name = "j", descriptor = "Lclient!na;")
 	public static final JString aClass100_1093 = Static28.parse("Memory after cleanup=");

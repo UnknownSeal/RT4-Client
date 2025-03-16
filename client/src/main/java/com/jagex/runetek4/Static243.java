@@ -91,7 +91,7 @@ public final class Static243 {
 		Static272.npcCount = 0;
 		for (i = 0; i < 2048; i++) {
 			Static159.players[i] = null;
-			Static115.playerAppearanceBuffer[i] = null;
+			Static115.PLAYER_APPEARANCE_PACKET[i] = null;
 		}
 		for (i = 0; i < 32768; i++) {
 			NpcList.npcs[i] = null;

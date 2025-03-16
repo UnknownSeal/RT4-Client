@@ -2,7 +2,7 @@ package com.jagex.runetek4.dash3d.entity;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
-import com.jagex.runetek4.game.config.bastype.BASType;
+import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.scene.Scene;
@@ -27,7 +27,7 @@ public final class Npc extends PathingEntity {
             }
         }
         @Pc(29) int local29 = local13.bgsound_walk;
-        @Pc(33) BASType local33 = arg0.getBasType();
+        @Pc(33) BasType local33 = arg0.getBasType();
         if (local33.idleAnimationId == arg0.movementSeqId) {
             local29 = local13.bgsound;
         } else if (arg0.movementSeqId == local33.runAnimationId || local33.runFullTurnAnimationId == arg0.movementSeqId || arg0.movementSeqId == local33.runCWTurnAnimationId || arg0.movementSeqId == local33.runCCWTurnAnimationId) {

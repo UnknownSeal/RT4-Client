@@ -22,7 +22,7 @@ public final class Static115 {
 	public static final JString FPS = Static28.parse("Fps:");
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "l", descriptor = "[Lclient!wa;")
-	public static final Packet[] playerAppearanceBuffer = new Packet[2048];
+	public static final Packet[] PLAYER_APPEARANCE_PACKET = new Packet[2048];
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "n", descriptor = "I")
 	public static int anInt2939 = 0;

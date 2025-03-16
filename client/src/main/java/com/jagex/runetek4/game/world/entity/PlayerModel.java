@@ -4,7 +4,7 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.bastype.BASType;
+import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.game.config.idktype.IDKType;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.graphics.ModelUnlit;
@@ -238,21 +238,21 @@ public final class PlayerModel {
 						}
 					}
 				}
-				@Pc(303) BASType local303 = null;
+				@Pc(303) BasType local303 = null;
 				if (this.anInt2497 != -1) {
 					local303 = Static90.method1856(this.anInt2497);
 				}
-				if (local303 != null && local303.anIntArrayArray7 != null) {
-					for (local250 = 0; local250 < local303.anIntArrayArray7.length; local250++) {
-						if (local303.anIntArrayArray7[local250] != null && local239[local250] != null) {
-							local346 = local303.anIntArrayArray7[local250][0];
-							local353 = local303.anIntArrayArray7[local250][1];
-							local360 = local303.anIntArrayArray7[local250][2];
-							local367 = local303.anIntArrayArray7[local250][4];
-							local374 = local303.anIntArrayArray7[local250][3];
-							local381 = local303.anIntArrayArray7[local250][5];
+				if (local303 != null && local303.modelRotateTranslate != null) {
+					for (local250 = 0; local250 < local303.modelRotateTranslate.length; local250++) {
+						if (local303.modelRotateTranslate[local250] != null && local239[local250] != null) {
+							local346 = local303.modelRotateTranslate[local250][0];
+							local353 = local303.modelRotateTranslate[local250][1];
+							local360 = local303.modelRotateTranslate[local250][2];
+							local367 = local303.modelRotateTranslate[local250][4];
+							local374 = local303.modelRotateTranslate[local250][3];
+							local381 = local303.modelRotateTranslate[local250][5];
 							if (this.anIntArrayArray19 == null) {
-								this.anIntArrayArray19 = new int[local303.anIntArrayArray7.length][];
+								this.anIntArrayArray19 = new int[local303.modelRotateTranslate.length][];
 							}
 							if (this.anIntArrayArray19[local250] == null) {
 								@Pc(404) int[] local404 = this.anIntArrayArray19[local250] = new int[15];

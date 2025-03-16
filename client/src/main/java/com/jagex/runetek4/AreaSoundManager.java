@@ -5,7 +5,7 @@ import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.game.config.bastype.BASType;
+import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.media.renderable.actor.Player;
 
 import org.openrs2.deob.annotation.OriginalArg;
@@ -175,7 +175,7 @@ public class AreaSoundManager {
             redraw(arg1, areaSound, arg3, arg0, arg2);
         }
         @Pc(37) byte movementSpeed;
-        @Pc(42) BASType basType;
+        @Pc(42) BasType basType;
         @Pc(141) int sound;
         for (areaSound = (AreaSound) npcSounds.head(); areaSound != null; areaSound = (AreaSound) npcSounds.next()) {
             movementSpeed = 1;

@@ -55,52 +55,52 @@ public final class SpotAnimDefinition {
 	private int rotation = 0;
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "a", descriptor = "(Lclient!wa;B)V")
-	public final void readValues(@OriginalArg(0) Packet buffer) {
+	public final void readValues(@OriginalArg(0) Packet packet) {
 		while (true) {
-			@Pc(17) int opcode = buffer.g1();
+			@Pc(17) int opcode = packet.g1();
 			if (opcode == 0) {
 				return;
 			}
-			this.readValue(buffer, opcode);
+			this.readValue(packet, opcode);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "a", descriptor = "(Lclient!wa;II)V")
-	private void readValue(@OriginalArg(0) Packet buffer, @OriginalArg(1) int opcode) {
+	private void readValue(@OriginalArg(0) Packet packet, @OriginalArg(1) int opcode) {
 		if (opcode == 1) {
-			this.modelId = buffer.g2();
+			this.modelId = packet.g2();
 		} else if (opcode == 2) {
-			this.animationId = buffer.g2();
+			this.animationId = packet.g2();
 		} else if (opcode == 4) {
-			this.resizeX = buffer.g2();
+			this.resizeX = packet.g2();
 		} else if (opcode == 5) {
-			this.resizeY = buffer.g2();
+			this.resizeY = packet.g2();
 		} else if (opcode == 6) {
-			this.rotation = buffer.g2();
+			this.rotation = packet.g2();
 		} else if (opcode == 7) {
-			this.ambient = buffer.g1();
+			this.ambient = packet.g1();
 		} else if (opcode == 8) {
-			this.contrast = buffer.g1();
+			this.contrast = packet.g1();
 		} else if (opcode == 9) {
 			this.aBoolean100 = true;
 		} else {
 			@Pc(78) int local78;
 			@Pc(88) int local88;
 			if (opcode == 40) {
-				local78 = buffer.g1();
+				local78 = packet.g1();
 				this.aShortArray15 = new short[local78];
 				this.aShortArray18 = new short[local78];
 				for (local88 = 0; local88 < local78; local88++) {
-					this.aShortArray15[local88] = (short) buffer.g2();
-					this.aShortArray18[local88] = (short) buffer.g2();
+					this.aShortArray15[local88] = (short) packet.g2();
+					this.aShortArray18[local88] = (short) packet.g2();
 				}
 			} else if (opcode == 41) {
-				local78 = buffer.g1();
+				local78 = packet.g1();
 				this.aShortArray16 = new short[local78];
 				this.aShortArray17 = new short[local78];
 				for (local88 = 0; local88 < local78; local88++) {
-					this.aShortArray16[local88] = (short) buffer.g2();
-					this.aShortArray17[local88] = (short) buffer.g2();
+					this.aShortArray16[local88] = (short) packet.g2();
+					this.aShortArray17[local88] = (short) packet.g2();
 				}
 			}
 		}

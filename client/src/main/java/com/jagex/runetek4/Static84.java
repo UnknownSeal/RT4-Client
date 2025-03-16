@@ -65,20 +65,20 @@ public final class Static84 {
 					}
 				}
 				if (!ignored && Player.overrideChat == 0) {
-					Static270.chatBuffer.position = 0;
-					Static57.in.gBytesRev(Static270.chatBuffer.data, len);
-					Static270.chatBuffer.position = 0;
+					Static270.CHAT_PACKET.position = 0;
+					Static57.in.gBytesRev(Static270.CHAT_PACKET.data, len);
+					Static270.CHAT_PACKET.position = 0;
 
 					@Pc(106) int phraseId = -1;
 
 					@Pc(127) JString message;
 					if (quickChat) {
-						@Pc(112) QuickChatPhrase quickChatPhrase = QuickChatPhrase.decode(Static270.chatBuffer);
+						@Pc(112) QuickChatPhrase quickChatPhrase = QuickChatPhrase.decode(Static270.CHAT_PACKET);
 						chatFlags &= 0x7FFF;
 						phraseId = quickChatPhrase.anInt439;
-						message = quickChatPhrase.aQuickChatPhraseType_1.method770(Static270.chatBuffer);
+						message = quickChatPhrase.aQuickChatPhraseType_1.method770(Static270.CHAT_PACKET);
 					} else {
-						message = Static218.method2862(Static65.method1497(Static270.chatBuffer).method3116());
+						message = Static218.method2862(Static65.method1497(Static270.CHAT_PACKET).method3116());
 					}
 					player.chatMessage = message.trim();
 					player.chatEffect = chatFlags & 0xFF;
@@ -115,7 +115,7 @@ public final class Static84 {
 			@Pc(309) byte[] local309 = new byte[chatFlags];
 			@Pc(314) Packet local314 = new Packet(local309);
 			Static57.in.gdata(chatFlags, local309);
-			Static115.playerAppearanceBuffer[arg1] = local314;
+			Static115.PLAYER_APPEARANCE_PACKET[arg1] = local314;
 			player.read(local314);
 		}
 		if ((flags & 0x2) != 0) {

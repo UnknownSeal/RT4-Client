@@ -6,7 +6,7 @@ import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
-import com.jagex.runetek4.game.config.bastype.BASType;
+import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.cache.media.AnimationSequence;
 import com.jagex.runetek4.game.world.entity.PlayerModel;
 import com.jagex.runetek4.scene.Scene;
@@ -19,8 +19,6 @@ import com.jagex.runetek4.core.io.Packet;
 @OriginalClass("client!e")
 public final class Player extends PathingEntity {
 
-	@OriginalMember(owner = "client!ch", name = "v", descriptor = "[B")
-	public static final byte[] aByteArray12 = new byte[] { 95, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57 };
 	@OriginalMember(owner = "runetek4.client!ba", name = "w", descriptor = "I")
     public static int overrideChat = 0;
 	@OriginalMember(owner = "runetek4.client!ee", name = "b", descriptor = "I")
@@ -76,7 +74,7 @@ public final class Player extends PathingEntity {
     @OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(ILclient!e;)I")
     public static int getSound(@OriginalArg(1) Player arg0) {
         @Pc(14) int local14 = arg0.anInt1654;
-        @Pc(18) BASType local18 = arg0.getBasType();
+        @Pc(18) BasType local18 = arg0.getBasType();
         if (local18.idleAnimationId == arg0.movementSeqId) {
             local14 = arg0.anInt1648;
         } else if (local18.runAnimationId == arg0.movementSeqId || arg0.movementSeqId == local18.runFullTurnAnimationId || arg0.movementSeqId == local18.runCWTurnAnimationId || local18.runCCWTurnAnimationId == arg0.movementSeqId) {
@@ -153,7 +151,7 @@ public final class Player extends PathingEntity {
 		}
 		this.anInt3365 = arg0.g2();
 		@Pc(236) long local236 = arg0.g8();
-		this.username = Static79.decode37(local236).method3125();
+		this.username = Base37.decode37(local236).method3125();
 		this.combatLevel = arg0.g1();
 		if (local37) {
 			this.anInt1671 = arg0.g2();
