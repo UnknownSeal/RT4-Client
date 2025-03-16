@@ -127,11 +127,11 @@ public class SceneGraph {
         if (arg2 < 3 && (renderFlags[1][arg1][arg4] & 0x2) == 2) {
             local39 = arg2 + 1;
         }
-        Static43.method1144(arg4, arg1, arg2, arg6, local39, Static148.levelCollisionMap[arg2]);
+        Static43.method1144(arg4, arg1, arg2, arg6, local39, PathFinder.collisionMaps[arg2]);
         if (arg0 >= 0) {
             @Pc(92) boolean local92 = Static250.aBoolean283;
             Static250.aBoolean283 = true;
-            Static185.method3397(local39, false, arg2, false, Static148.levelCollisionMap[arg2], arg0, arg5, arg1, arg4, arg3);
+            Static185.method3397(local39, false, arg2, false, PathFinder.collisionMaps[arg2], arg0, arg5, arg1, arg4, arg3);
             Static250.aBoolean283 = local92;
         }
     }

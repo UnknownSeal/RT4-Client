@@ -216,8 +216,4 @@ public final class Static123 {
 		return Static251.aFloatArray28;
 	}
 
-	@OriginalMember(owner = "runetek4.client!jj", name = "b", descriptor = "(BI)Lclient!na;")
-	public static JString method2423(@OriginalArg(1) int arg0) {
-		return Static198.method1025(false, arg0);
-	}
 }

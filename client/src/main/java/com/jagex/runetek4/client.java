@@ -14,6 +14,7 @@ import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.cache.Cache;
+import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.game.config.cursortype.CursorType;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.Npc;
@@ -155,6 +156,30 @@ public final class client extends GameShell {
 		}
 	}
 
+	@OriginalMember(owner = "client!je", name = "h", descriptor = "(I)V")
+	public static void unloadSoft() {
+		Static252.method4301();
+		Static224.method3885();
+		Static181.method3342();
+		Static179.method3323();
+		ClientScriptRunner.method4001();
+		Static103.method2239();
+		Static227.method3903();
+		Static71.method1441();
+		Static78.method1694();
+		Static3.method4657();
+		BasTypeList.removeSoft();
+		Static267.method4529();
+		Static92.method1882();
+		Static26.method741();
+		Static192.method3474();
+		Static40.method1019();
+		Static180.method3329();
+		Static251.method4276();
+		Static73.aClass99_10.removeSoft();
+		Static139.aClass99_22.removeSoft();
+	}
+
 	@OriginalMember(owner = "client!client", name = "f", descriptor = "(I)V")
 	@Override
 	protected final void mainredraw() {
@@ -166,7 +191,7 @@ public final class client extends GameShell {
 			Static11.aClass62_1.method3570();
 		}
 		if ((Static244.gamestate == 30 || Static244.gamestate == 10) && (Static35.canvasReplaceRecommended || Static97.aLong89 != 0L && Static97.aLong89 < MonotonicTime.get())) {
-			Static241.method4540(Static35.canvasReplaceRecommended, Static144.method2736(), Preferences.fullScreenWidth, Preferences.fullScreenHeight);
+			DisplayMode.setWindowMode(Static35.canvasReplaceRecommended, Static144.method2736(), Preferences.fullScreenWidth, Preferences.fullScreenHeight);
 		}
 		@Pc(80) int local80;
 		@Pc(84) int local84;
@@ -192,7 +217,7 @@ public final class client extends GameShell {
 			}
 		}
 		if (GameShell.fullScreenFrame != null && !Static26.focus && (Static244.gamestate == 30 || Static244.gamestate == 10)) {
-			Static241.method4540(false, Preferences.favoriteWorlds, -1, -1);
+			DisplayMode.setWindowMode(false, Preferences.favoriteWorlds, -1, -1);
 		}
 		@Pc(158) boolean local158 = false;
 		if (Static69.fullredraw) {
@@ -219,20 +244,20 @@ public final class client extends GameShell {
 					Static230.anInt5150 = Static175.anInt4220;
 				}
 				local80 = (Static230.anInt5150 - Static175.anInt4220) * 50 / Static230.anInt5150;
-				Font.drawTextOnScreen(false, Static34.method882(new JString[] { LocalizedText.LOADING, Static229.aClass100_974, Static123.method2423(local80), Static14.aClass100_80 }));
+				Font.drawTextOnScreen(false, JString.concatenate(new JString[] { LocalizedText.LOADING, Static229.aClass100_974, JString.parseInt(local80), Static14.aClass100_80 }));
 			} else if (ClientScriptRunner.anInt5223 == 2) {
 				if (Static38.anInt1196 < Static271.anInt5804) {
 					Static38.anInt1196 = Static271.anInt5804;
 				}
 				local80 = (Static38.anInt1196 - Static271.anInt5804) * 50 / Static38.anInt1196 + 50;
-				Font.drawTextOnScreen(false, Static34.method882(new JString[] { LocalizedText.LOADING, Static229.aClass100_974, Static123.method2423(local80), Static14.aClass100_80 }));
+				Font.drawTextOnScreen(false, JString.concatenate(new JString[] { LocalizedText.LOADING, Static229.aClass100_974, JString.parseInt(local80), Static14.aClass100_80 }));
 			} else {
 				Font.drawTextOnScreen(false, LocalizedText.LOADING);
 			}
 		} else if (Static244.gamestate == 30) {
 			Static89.method1841();
 		} else if (Static244.gamestate == 40) {
-			Font.drawTextOnScreen(false, Static34.method882(new JString[] { LocalizedText.CONLOST, Static269.aClass100_556, LocalizedText.ATTEMPT_TO_REESTABLISH}));
+			Font.drawTextOnScreen(false, JString.concatenate(new JString[] { LocalizedText.CONLOST, Static269.aClass100_556, LocalizedText.ATTEMPT_TO_REESTABLISH}));
 		}
 		if (GlRenderer.enabled && Static244.gamestate != 0) {
 			GlRenderer.method4153();
@@ -241,7 +266,7 @@ public final class client extends GameShell {
 			}
 		} else {
 			@Pc(388) Graphics local388;
-			if ((Static244.gamestate == 30 || Static244.gamestate == 10) && Static199.anInt4672 == 0 && !local158) {
+			if ((Static244.gamestate == 30 || Static244.gamestate == 10) && Cheat.rectDebug == 0 && !local158) {
 				try {
 					local388 = GameShell.canvas.getGraphics();
 					for (local84 = 0; local84 < Static24.anInt766; local84++) {
@@ -431,7 +456,7 @@ public final class client extends GameShell {
 			worldListDefaultPort = worldListId + 40000;
 		}
 		if (Static266.game == 1) {
-			Static172.shiftClick = true;
+			Cheat.shiftClick = true;
 			Static161.anInt3922 = 0;
 			Static33.aShortArrayArray2 = Static198.aShortArrayArray4;
 			Static172.aShortArrayArray7 = Static32.aShortArrayArray1;
@@ -484,7 +509,7 @@ public final class client extends GameShell {
 		}
 		Static278.mainLoadPrimaryText = LocalizedText.GAME0_LOADING;
 		if (modeWhere != 0) {
-			Static43.displayFps = true;
+			Cheat.displayFps = true;
 		}
 	}
 
@@ -525,12 +550,12 @@ public final class client extends GameShell {
 							npcEntity.pathRunning[0] = 1;
 							npcEntity.pathTileX[0] = local98 + (npcEntity.xFine >> 7);
 							npcEntity.pathTileZ[0] = local106 + (npcEntity.zFine >> 7);
-							Static148.levelCollisionMap[Player.plane].method3056(npcEntity.xFine >> 7, npcEntity.size(), false, 0, npcEntity.size(), npcEntity.zFine >> 7);
-							if (npcEntity.pathTileX[0] >= 0 && npcEntity.pathTileX[0] <= 104 - npcEntity.size() && npcEntity.pathTileZ[0] >= 0 && npcEntity.pathTileZ[0] <= 104 - npcEntity.size() && Static148.levelCollisionMap[Player.plane].method3054(npcEntity.zFine >> 7, npcEntity.pathTileZ[0], npcEntity.pathTileX[0], npcEntity.xFine >> 7)) {
+							PathFinder.collisionMaps[Player.plane].method3056(npcEntity.xFine >> 7, npcEntity.size(), false, 0, npcEntity.size(), npcEntity.zFine >> 7);
+							if (npcEntity.pathTileX[0] >= 0 && npcEntity.pathTileX[0] <= 104 - npcEntity.size() && npcEntity.pathTileZ[0] >= 0 && npcEntity.pathTileZ[0] <= 104 - npcEntity.size() && PathFinder.collisionMaps[Player.plane].method3054(npcEntity.zFine >> 7, npcEntity.pathTileZ[0], npcEntity.pathTileX[0], npcEntity.xFine >> 7)) {
 								if (npcEntity.size() > 1) {
 									for (@Pc(226) int local226 = npcEntity.pathTileX[0]; npcEntity.pathTileX[0] + npcEntity.size() > local226; local226++) {
 										for (@Pc(246) int local246 = npcEntity.pathTileZ[0]; npcEntity.pathTileZ[0] + npcEntity.size() > local246; local246++) {
-											if ((Static148.levelCollisionMap[Player.plane].flags[local226][local246] & 0x12401FF) != 0) {
+											if ((PathFinder.collisionMaps[Player.plane].flags[local226][local246] & 0x12401FF) != 0) {
 												continue label191;
 											}
 										}
@@ -543,7 +568,7 @@ public final class client extends GameShell {
 					Static104.method2247(npcEntity);
 					Static37.method949(npcEntity);
 					Static34.method879(npcEntity);
-					Static148.levelCollisionMap[Player.plane].method3043(npcEntity.xFine >> 7, false, npcEntity.zFine >> 7, npcEntity.size(), npcEntity.size());
+					PathFinder.collisionMaps[Player.plane].method3043(npcEntity.xFine >> 7, false, npcEntity.zFine >> 7, npcEntity.size(), npcEntity.size());
 				}
 			}
 		}
@@ -751,7 +776,7 @@ public final class client extends GameShell {
 		if (Static166.loadingPercent == 10) {
 			Static120.method2392();
 			for (i = 0; i < 4; i++) {
-				Static148.levelCollisionMap[i] = new CollisionMap(104, 104);
+				PathFinder.collisionMaps[i] = new CollisionMap(104, 104);
 			}
 			Static199.mainLoadPercentage = 10;
 			Static166.loadingPercent = 30;
@@ -810,7 +835,7 @@ public final class client extends GameShell {
 				Static166.loadingPercent = 45;
 			} else {
 				if (i != 0) {
-					Static126.mainLoadSecondaryText = Static34.method882(new JString[] { LocalizedText.CHECKING_FOR_UPDATES, Static123.method2423(i), Static49.aClass100_352 });
+					Static126.mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.CHECKING_FOR_UPDATES, JString.parseInt(i), Static49.aClass100_352 });
 				}
 				Static199.mainLoadPercentage = 20;
 			}
@@ -837,7 +862,7 @@ public final class client extends GameShell {
 				Static199.mainLoadPercentage = 35;
 				Static166.loadingPercent = 60;
 			} else {
-				Static126.mainLoadSecondaryText = Static34.method882(new JString[] { LocalizedText.MAINLOAD50, Static123.method2423(i * 100 / local43), Static49.aClass100_352 });
+				Static126.mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD50, JString.parseInt(i * 100 / local43), Static49.aClass100_352 });
 				Static199.mainLoadPercentage = 35;
 			}
 		} else if (Static166.loadingPercent == 60) {
@@ -848,7 +873,7 @@ public final class client extends GameShell {
 				Static166.loadingPercent = 65;
 				Static199.mainLoadPercentage = 40;
 			} else {
-				Static126.mainLoadSecondaryText = Static34.method882(new JString[] { LocalizedText.MAINLOAD60, Static123.method2423(i * 100 / local43), Static49.aClass100_352 });
+				Static126.mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD60, JString.parseInt(i * 100 / local43), Static49.aClass100_352 });
 				Static199.mainLoadPercentage = 40;
 			}
 		} else if (Static166.loadingPercent == 65) {
@@ -907,14 +932,14 @@ public final class client extends GameShell {
 				Equipment.init();
 				Static166.loadingPercent = 80;
 			} else {
-				Static126.mainLoadSecondaryText = Static34.method882(new JString[] { LocalizedText.MAINLOAD70, Static123.method2423(i / 11), Static49.aClass100_352 });
+				Static126.mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD70, JString.parseInt(i / 11), Static49.aClass100_352 });
 				Static199.mainLoadPercentage = 50;
 			}
 		} else if (Static166.loadingPercent == 80) {
 			i = Static28.method789(Static209.aClass153_86);
 			local43 = Static62.method1483();
 			if (local43 > i) {
-				Static126.mainLoadSecondaryText = Static34.method882(new JString[] { LocalizedText.MAINLOAD80, Static123.method2423(i * 100 / local43), Static49.aClass100_352 });
+				Static126.mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD80, JString.parseInt(i * 100 / local43), Static49.aClass100_352 });
 				Static199.mainLoadPercentage = 60;
 			} else {
 				Static30.method839(Static209.aClass153_86);
@@ -942,7 +967,7 @@ public final class client extends GameShell {
 				Static166.loadingPercent = 100;
 				Static199.mainLoadPercentage = 70;
 			} else {
-				Static126.mainLoadSecondaryText = Static34.method882(new JString[] { LocalizedText.MAINLOAD90, Static123.method2423(CacheArchive.gameTextureJs5.getPercentageComplete()), Static49.aClass100_352 });
+				Static126.mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD90, JString.parseInt(CacheArchive.gameTextureJs5.getPercentageComplete()), Static49.aClass100_352 });
 				Static199.mainLoadPercentage = 70;
 			}
 		} else if (Static166.loadingPercent == 100) {
@@ -963,18 +988,18 @@ public final class client extends GameShell {
 				Static166.loadingPercent = 130;
 				Static199.mainLoadPercentage = 80;
 			} else {
-				Static126.mainLoadSecondaryText = Static34.method882(new JString[] { LocalizedText.MAINLOAD120, Static206.aClass100_899 });
+				Static126.mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD120, Static206.aClass100_899 });
 				Static199.mainLoadPercentage = 80;
 			}
 		} else if (Static166.loadingPercent == 130) {
 			if (!Static41.aClass153_25.fetchAll()) {
-				Static126.mainLoadSecondaryText = Static34.method882(new JString[] { LocalizedText.MAINLOAD130, Static123.method2423(Static41.aClass153_25.getPercentageComplete() * 3 / 4), Static49.aClass100_352 });
+				Static126.mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(Static41.aClass153_25.getPercentageComplete() * 3 / 4), Static49.aClass100_352 });
 				Static199.mainLoadPercentage = 85;
 			} else if (!Static16.aClass153_9.fetchAll()) {
-				Static126.mainLoadSecondaryText = Static34.method882(new JString[] { LocalizedText.MAINLOAD130, Static123.method2423(Static16.aClass153_9.getPercentageComplete() / 10 + 75), Static49.aClass100_352 });
+				Static126.mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(Static16.aClass153_9.getPercentageComplete() / 10 + 75), Static49.aClass100_352 });
 				Static199.mainLoadPercentage = 85;
 			} else if (!Static261.aClass153_107.fetchAll()) {
-				Static126.mainLoadSecondaryText = Static34.method882(new JString[] { LocalizedText.MAINLOAD130, Static123.method2423(Static261.aClass153_107.getPercentageComplete() / 20 + 85), Static49.aClass100_352 });
+				Static126.mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(Static261.aClass153_107.getPercentageComplete() / 20 + 85), Static49.aClass100_352 });
 				Static199.mainLoadPercentage = 85;
 			} else if (Static227.aClass153_94.method4489(Static165.DETAILS)) {
 				Static234.method4018(Static173.aClass3_Sub2_Sub1_Sub1Array9, Static227.aClass153_94);
@@ -982,7 +1007,7 @@ public final class client extends GameShell {
 				Static126.mainLoadSecondaryText = LocalizedText.MAINLOAD130B;
 				Static166.loadingPercent = 135;
 			} else {
-				Static126.mainLoadSecondaryText = Static34.method882(new JString[] { LocalizedText.MAINLOAD130, Static123.method2423(Static227.aClass153_94.method4478(Static165.DETAILS) / 10 + 90), Static49.aClass100_352 });
+				Static126.mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(Static227.aClass153_94.method4478(Static165.DETAILS) / 10 + 90), Static49.aClass100_352 });
 				Static199.mainLoadPercentage = 85;
 			}
 		} else if (Static166.loadingPercent == 135) {
@@ -1023,7 +1048,7 @@ public final class client extends GameShell {
 			}
 			Static164.aBoolean191 = true;
 			Preferences.write(GameShell.signLink);
-			Static241.method4540(false, Preferences.favoriteWorlds, -1, -1);
+			DisplayMode.setWindowMode(false, Preferences.favoriteWorlds, -1, -1);
 			Static199.mainLoadPercentage = 100;
 			Static166.loadingPercent = 160;
 			Static126.mainLoadSecondaryText = LocalizedText.MAINLOAD150B;

@@ -13,9 +13,6 @@ public final class Static201 {
 	@OriginalMember(owner = "runetek4.client!qf", name = "M", descriptor = "I")
 	public static int idleNetCycles = 0;
 
-	@OriginalMember(owner = "runetek4.client!qf", name = "N", descriptor = "Lclient!na;")
-	public static final JString CARDMEM = Static28.parse("::cardmem");
-
 	@OriginalMember(owner = "runetek4.client!qf", name = "Q", descriptor = "Lclient!na;")
 	public static final JString aClass100_407 = Static28.parse(" )2> <col=ffff00>");
 

@@ -23,9 +23,6 @@ public final class Static185 {
 	@OriginalMember(owner = "runetek4.client!p", name = "d", descriptor = "I")
 	public static int anInt4369 = 0;
 
-	@OriginalMember(owner = "runetek4.client!p", name = "f", descriptor = "Lclient!na;")
-	public static final JString SERVERJS5DROP = Static28.parse("::serverjs5drop");
-
 	@OriginalMember(owner = "runetek4.client!p", name = "a", descriptor = "(I)V")
 	public static void method3395() {
 		if (Static184.anInt4348 == 5) {

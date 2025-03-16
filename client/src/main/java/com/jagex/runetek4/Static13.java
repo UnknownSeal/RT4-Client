@@ -27,16 +27,16 @@ public final class Static13 {
 	public static JString method471() {
 		@Pc(32) JString local32;
 		if (Static260.anInt5014 == 1 && PreciseSleep.menuActionRow < 2) {
-			local32 = Static34.method882(new JString[] { LocalizedText.USE, LocalizedText.MINISEPARATOR, Static34.aClass100_203, Static225.aClass100_961 });
+			local32 = JString.concatenate(new JString[] { LocalizedText.USE, LocalizedText.MINISEPARATOR, Static34.aClass100_203, Static225.aClass100_961 });
 		} else if (Static241.aBoolean302 && PreciseSleep.menuActionRow < 2) {
-			local32 = Static34.method882(new JString[] { Static102.aClass100_545, LocalizedText.MINISEPARATOR, Static78.aClass100_466, Static225.aClass100_961 });
-		} else if (Static172.shiftClick && Static187.pressedKeys[81] && PreciseSleep.menuActionRow > 2) {
+			local32 = JString.concatenate(new JString[] { Static102.aClass100_545, LocalizedText.MINISEPARATOR, Static78.aClass100_466, Static225.aClass100_961 });
+		} else if (Cheat.shiftClick && Static187.pressedKeys[81] && PreciseSleep.menuActionRow > 2) {
 			local32 = Static269.method2228(PreciseSleep.menuActionRow - 2);
 		} else {
 			local32 = Static269.method2228(PreciseSleep.menuActionRow - 1);
 		}
 		if (PreciseSleep.menuActionRow > 2) {
-			local32 = Static34.method882(new JString[] { local32, Static1.aClass100_2, Static123.method2423(PreciseSleep.menuActionRow - 2), LocalizedText.MOREOPTIONS});
+			local32 = JString.concatenate(new JString[] { local32, Static1.aClass100_2, JString.parseInt(PreciseSleep.menuActionRow - 2), LocalizedText.MOREOPTIONS});
 		}
 		return local32;
 	}

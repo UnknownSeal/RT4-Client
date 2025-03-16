@@ -22,9 +22,6 @@ public final class Static199 {
 	@OriginalMember(owner = "runetek4.client!qc", name = "P", descriptor = "I")
 	public static int mainLoadPercentage = 10;
 
-	@OriginalMember(owner = "runetek4.client!qc", name = "U", descriptor = "I")
-	public static int anInt4672 = 0;
-
 	@OriginalMember(owner = "runetek4.client!qc", name = "ab", descriptor = "[I")
 	public static final int[] anIntArray417 = new int[1000];
 

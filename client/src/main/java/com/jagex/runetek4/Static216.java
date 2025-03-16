@@ -127,7 +127,7 @@ public final class Static216 {
 				Static17.aClass3_Sub15_Sub1_2.pjstr(Static47.aClass100_991);
 				Static17.aClass3_Sub15_Sub1_2.p4(Static204.anInt4760);
 				Static17.aClass3_Sub15_Sub1_2.p4(Static145.method2746());
-				Static18.sentToServer = true;
+				Preferences.sentToServer = true;
 				Static17.aClass3_Sub15_Sub1_2.p2(Static189.anInt4443);
 				Static17.aClass3_Sub15_Sub1_2.p4(Static213.aClass153_88.getChecksum());
 				Static17.aClass3_Sub15_Sub1_2.p4(Static249.aClass153_100.getChecksum());

@@ -63,13 +63,13 @@ public final class Static64 {
 		@Pc(42) int i;
 		for (i = 0; i < CacheArchive.friendCount; i++) {
 			if (Static92.friendName37[i] == username) {
-				Chat.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { displayName, LocalizedText.FRIENDLISTDUPE}));
+				Chat.addMessage(Static186.aClass100_827, 0, JString.concatenate(new JString[] { displayName, LocalizedText.FRIENDLISTDUPE}));
 				return;
 			}
 		}
 		for (i = 0; i < Static35.ignoreCount; i++) {
 			if (username == Static190.ignoreName37[i]) {
-				Chat.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { LocalizedText.REMOVESOCIAL1, displayName, LocalizedText.REMOVEIGNORE}));
+				Chat.addMessage(Static186.aClass100_827, 0, JString.concatenate(new JString[] { LocalizedText.REMOVESOCIAL1, displayName, LocalizedText.REMOVEIGNORE}));
 				return;
 			}
 		}

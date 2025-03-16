@@ -74,6 +74,19 @@ public final class JString implements StringInterface {
 		}
 	}
 
+    @OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "([Lclient!na;B)Lclient!na;")
+    public static JString concatenate(@OriginalArg(0) JString[] string) {
+        if (string.length < 2) {
+            throw new IllegalArgumentException();
+        }
+        return Static118.method2355(0, string.length, string);
+    }
+
+	@OriginalMember(owner = "runetek4.client!jj", name = "b", descriptor = "(BI)Lclient!na;")
+	public static JString parseInt(@OriginalArg(1) int arg0) {
+		return Static198.method1025(false, arg0);
+	}
+
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Z)Ljava/net/URL;")
 	public final URL method3107() throws MalformedURLException {
 		return new URL(new String(this.aByteArray52, 0, this.anInt4030));
@@ -418,7 +431,7 @@ public final class JString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "b", descriptor = "(B)I")
-	public final int method3132() {
+	public final int parseInt() {
 		return this.method3110(10);
 	}
 

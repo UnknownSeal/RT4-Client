@@ -16,9 +16,6 @@ public final class Static101 {
 	@OriginalMember(owner = "runetek4.client!hm", name = "T", descriptor = "Lclient!na;")
 	public static final JString aClass100_538 = Static28.parse(" ");
 
-	@OriginalMember(owner = "runetek4.client!hm", name = "Y", descriptor = "Lclient!na;")
-	public static final JString aClass100_539 = Static28.parse("Fps:");
-
 	@OriginalMember(owner = "runetek4.client!hm", name = "ab", descriptor = "I")
 	public static int anInt2640 = 0;
 

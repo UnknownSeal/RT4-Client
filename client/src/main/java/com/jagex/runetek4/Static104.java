@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.bastype.BasType;
-import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -22,7 +22,7 @@ public final class Static104 {
 			return;
 		}
 		if (arg0.primarySeqId != -1 && arg0.anInt3420 == 0) {
-			@Pc(40) AnimationSequence local40 = AnimationSequence.getAnimationSequence(arg0.primarySeqId);
+			@Pc(40) SeqType local40 = SeqType.getAnimationSequence(arg0.primarySeqId);
 			if (arg0.anInt3405 > 0 && local40.anInt5363 == 0) {
 				arg0.anInt3417++;
 				return;

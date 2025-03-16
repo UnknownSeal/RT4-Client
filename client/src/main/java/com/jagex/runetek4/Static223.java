@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.scene.Scenery;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -39,7 +39,7 @@ public final class Static223 {
 	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(IIILclient!km;)V")
 	public static void method3855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) Npc arg2) {
 		if (arg2.primarySeqId == arg1 && arg1 != -1) {
-			@Pc(10) AnimationSequence local10 = AnimationSequence.getAnimationSequence(arg1);
+			@Pc(10) SeqType local10 = SeqType.getAnimationSequence(arg1);
 			@Pc(13) int local13 = local10.anInt5347;
 			if (local13 == 1) {
 				arg2.anInt3373 = 1;
@@ -52,7 +52,7 @@ public final class Static223 {
 			if (local13 == 2) {
 				arg2.anInt3371 = 0;
 			}
-		} else if (arg1 == -1 || arg2.primarySeqId == -1 || AnimationSequence.getAnimationSequence(arg1).priority >= AnimationSequence.getAnimationSequence(arg2.primarySeqId).priority) {
+		} else if (arg1 == -1 || arg2.primarySeqId == -1 || SeqType.getAnimationSequence(arg1).priority >= SeqType.getAnimationSequence(arg2.primarySeqId).priority) {
 			arg2.anInt3360 = 0;
 			arg2.primarySeqId = arg1;
 			arg2.anInt3373 = 1;
@@ -61,7 +61,7 @@ public final class Static223 {
 			arg2.anInt3405 = arg2.pathLength;
 			arg2.anInt3425 = 0;
 			if (arg2.primarySeqId != -1) {
-				Static152.method2836(arg2.zFine, AnimationSequence.getAnimationSequence(arg2.primarySeqId), arg2.xFine, false, arg2.anInt3425);
+				Static152.method2836(arg2.zFine, SeqType.getAnimationSequence(arg2.primarySeqId), arg2.xFine, false, arg2.anInt3425);
 			}
 		}
 	}

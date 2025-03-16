@@ -14,7 +14,7 @@ public final class Static205 {
 		if (!Static36.method940(arg0).method503(arg1) && arg0.anObjectArray29 == null) {
 			return null;
 		} else if (arg0.aClass100Array18 == null || arg0.aClass100Array18.length <= arg1 || arg0.aClass100Array18[arg1] == null || arg0.aClass100Array18[arg1].trim().length() == 0) {
-			return Static121.aBoolean154 ? Static34.method882(new JString[] { Static207.aClass100_903, Static123.method2423(arg1) }) : null;
+			return Cheat.qaOpTest ? JString.concatenate(new JString[] { Static207.aClass100_903, JString.parseInt(arg1) }) : null;
 		} else {
 			return arg0.aClass100Array18[arg1];
 		}

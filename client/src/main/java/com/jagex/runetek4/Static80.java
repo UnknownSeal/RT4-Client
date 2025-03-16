@@ -68,9 +68,9 @@ public final class Static80 {
 		@Pc(48) FileOnDisk local48 = null;
 		Static125.anInt3104 = 127;
 		if (Static238.anInt5316 >= 96) {
-			Static76.method1645(2);
+			Preferences.setParticles(2);
 		} else {
-			Static76.method1645(0);
+			Preferences.setParticles(0);
 		}
 		Static164.anInt3988 = 0;
 		Static141.anInt3474 = 0;

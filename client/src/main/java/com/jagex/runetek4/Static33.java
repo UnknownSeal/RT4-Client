@@ -193,7 +193,7 @@ public final class Static33 {
 		@Pc(36) int local36 = Static35.aCalendar1.get(11);
 		@Pc(40) int local40 = Static35.aCalendar1.get(12);
 		@Pc(44) int local44 = Static35.aCalendar1.get(13);
-		return Static34.method882(new JString[] { Static219.aClass100Array149[local13 - 1], Static74.aClass100_461, Static123.method2423(local17 / 10), Static123.method2423(local17 % 10), Static270.aClass100_1089, Static138.MONTHS[local21], Static270.aClass100_1089, Static123.method2423(local32), Static49.aClass100_351, Static123.method2423(local36 / 10), Static123.method2423(local36 % 10), Static264.aClass100_875, Static123.method2423(local40 / 10), Static123.method2423(local40 % 10), Static264.aClass100_875, Static123.method2423(local44 / 10), Static123.method2423(local44 % 10), Static55.aClass100_376 });
+		return JString.concatenate(new JString[] { Static219.aClass100Array149[local13 - 1], Static74.aClass100_461, JString.parseInt(local17 / 10), JString.parseInt(local17 % 10), Static270.aClass100_1089, Static138.MONTHS[local21], Static270.aClass100_1089, JString.parseInt(local32), Static49.aClass100_351, JString.parseInt(local36 / 10), JString.parseInt(local36 % 10), Static264.aClass100_875, JString.parseInt(local40 / 10), JString.parseInt(local40 % 10), Static264.aClass100_875, JString.parseInt(local44 / 10), JString.parseInt(local44 % 10), Static55.aClass100_376 });
 	}
 
 	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(ZIIIIIIFB)[[I")

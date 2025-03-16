@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.game.config.bastype.BasTypeList;
@@ -187,10 +187,10 @@ public class Game {
             Static6.outboundBuffer.pIsaac1(22);
             Static6.outboundBuffer.p1(0);
         }
-        if (!Static18.sentToServer) {
+        if (!Preferences.sentToServer) {
             Static6.outboundBuffer.pIsaac1(98);
             Static6.outboundBuffer.p4(Static145.method2746());
-            Static18.sentToServer = true;
+            Preferences.sentToServer = true;
         }
         Static31.method846();
         if (Static244.gamestate != 30) {
@@ -453,11 +453,11 @@ public class Game {
                                                     y = 3;
                                                 }
                                                 // Cheat
-                                                Static61.teleport(PlayerList.self.pathTileX[0] + Camera.originX, PlayerList.self.pathTileZ[0] + Camera.originZ, y);
+                                                Cheat.teleport(PlayerList.self.pathTileX[0] + Camera.originX, PlayerList.self.pathTileZ[0] + Camera.originZ, y);
                                             }
                                             if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
                                                 if (Static56.clickTileX != -1) {
-                                                    Static61.teleport(Camera.originX + Static56.clickTileX, Camera.originZ - -Static116.anInt2954, Player.plane);
+                                                    Cheat.teleport(Camera.originX + Static56.clickTileX, Camera.originZ - -Static116.anInt2954, Player.plane);
                                                 }
                                                 Static187.anInt4422 = 0;
                                                 Static125.anInt3096 = 0;
@@ -920,7 +920,7 @@ public class Game {
         SceneGraph.clear();
         @Pc(19) int local19;
         for (local19 = 0; local19 < 4; local19++) {
-            Static148.levelCollisionMap[local19].reset();
+            PathFinder.collisionMaps[local19].reset();
         }
         Static116.method2325(false);
         System.gc();
@@ -1135,7 +1135,7 @@ public class Game {
         Static258.method4415();
         Static209.method3706();
         Static190.method3447();
-        AnimationSequence.clearAnimationCache();
+        SeqType.clearAnimationCache();
         Static137.method2666();
         Static269.method2221();
         VarPlayerDefinition.clearVarPlayerDefinitionCache();

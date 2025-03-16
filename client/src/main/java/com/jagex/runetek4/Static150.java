@@ -70,7 +70,7 @@ public final class Static150 {
 		if (arg2.aByte3 == 4) {
 			arg2.anInt459 = arg2.anInt442 * arg2.anInt445 / arg2.anInt473;
 		}
-		if (Static121.aBoolean154 && (Static36.method940(arg2).anInt546 != 0 || arg2.INVENTORY == 0)) {
+		if (Cheat.qaOpTest && (Static36.method940(arg2).anInt546 != 0 || arg2.INVENTORY == 0)) {
 			if (arg2.anInt459 < 5 && arg2.anInt445 < 5) {
 				arg2.anInt459 = 5;
 				arg2.anInt445 = 5;

@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.node.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -76,9 +76,9 @@ public final class Static84 {
 					player.chatLoops = 150;
 					player.chatColor = chatFlags >> 8;
 					if (staffModLevel == 2) {
-						Chat.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JString[] { Static44.aClass100_336, player.getUsername() }));
+						Chat.add(phraseId, quickChat ? 17 : 1, message, null, JString.concatenate(new JString[] { Static44.aClass100_336, player.getUsername() }));
 					} else if (staffModLevel == 1) {
-						Chat.add(phraseId, quickChat ? 17 : 1, message, null, Static34.method882(new JString[] { Static65.aClass100_435, player.getUsername() }));
+						Chat.add(phraseId, quickChat ? 17 : 1, message, null, JString.concatenate(new JString[] { Static65.aClass100_435, player.getUsername() }));
 					} else {
 						Chat.add(phraseId, quickChat ? 17 : 2, message, null, player.getUsername());
 					}
@@ -166,7 +166,7 @@ public final class Static84 {
 			}
 			staffModLevel = Static57.in.p4rme();
 			@Pc(573) boolean local573 = true;
-			if (chatFlags != -1 && player.spotanimFrame != -1 && AnimationSequence.getAnimationSequence(Static34.method877(chatFlags).animationId).priority < AnimationSequence.getAnimationSequence(Static34.method877(player.spotanimFrame).animationId).priority) {
+			if (chatFlags != -1 && player.spotanimFrame != -1 && SeqType.getAnimationSequence(Static34.method877(chatFlags).animationId).priority < SeqType.getAnimationSequence(Static34.method877(player.spotanimFrame).animationId).priority) {
 				local573 = false;
 			}
 			if (local573) {
@@ -182,7 +182,7 @@ public final class Static84 {
 				if (player.spotanimFrame != -1 && client.loop == player.spotanimLastCycle) {
 					local24 = Static34.method877(player.spotanimFrame).animationId;
 					if (local24 != -1) {
-						@Pc(663) AnimationSequence local663 = AnimationSequence.getAnimationSequence(local24);
+						@Pc(663) SeqType local663 = SeqType.getAnimationSequence(local24);
 						if (local663 != null && local663.anIntArray473 != null) {
 							Static152.method2836(player.zFine, local663, player.xFine, player == PlayerList.self, 0);
 						}

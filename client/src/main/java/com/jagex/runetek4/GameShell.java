@@ -59,7 +59,12 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
-	@OriginalMember(owner = "client!rc", name = "focusLost", descriptor = "(Ljava/awt/event/FocusEvent;)V")
+    @OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(II)V")
+    public static void setFpsTarget(@OriginalArg(0) int arg0) {
+        Static11.anInt386 = 1000 / arg0;
+    }
+
+    @OriginalMember(owner = "client!rc", name = "focusLost", descriptor = "(Ljava/awt/event/FocusEvent;)V")
 	@Override
 	public final void focusLost(@OriginalArg(0) FocusEvent arg0) {
 		ClientScriptRunner.focus_in = false;

@@ -58,7 +58,7 @@ public final class Static89 {
 							@Pc(98) int local98 = (local88 / 8 << 8) + local76 / 8;
 							for (@Pc(100) int local100 = 0; local100 < Static238.anIntArray470.length; local100++) {
 								if (Static238.anIntArray470[local100] == local98 && local13[local100] != null) {
-									Static245.method4228(local82, local32 * 8, local21, Static148.levelCollisionMap, local39 * 8, local13[local100], local65, (local76 & 0x7) * 8, (local88 & 0x7) * 8, arg0);
+									Static245.method4228(local82, local32 * 8, local21, PathFinder.collisionMaps, local39 * 8, local13[local100], local65, (local76 & 0x7) * 8, (local88 & 0x7) * 8, arg0);
 									local54 = true;
 									break;
 								}
@@ -192,7 +192,7 @@ public final class Static89 {
 		if (Static187.anInt4422 == 1) {
 			Static187.anInt4422 = 2;
 		}
-		if (Static199.anInt4672 == 3) {
+		if (Cheat.rectDebug == 3) {
 			for (@Pc(189) int local189 = 0; local189 < Static24.anInt766; local189++) {
 				if (Static223.aBooleanArray116[local189]) {
 					if (GlRenderer.enabled) {

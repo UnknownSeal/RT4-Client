@@ -306,4 +306,21 @@ public final class DisplayMode {
 		}
 		Static69.fullredraw = true;
 	}
+
+	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(ZIIII)V")
+	public static void setWindowMode(@OriginalArg(0) boolean arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+		Static97.aLong89 = 0L;
+		@Pc(4) int local4 = Static144.method2736();
+		if (arg1 == 3 || local4 == 3) {
+			arg0 = true;
+		}
+		@Pc(44) boolean local44 = false;
+		if (local4 > 0 != arg1 > 0) {
+			local44 = true;
+		}
+		if (arg0 && arg1 > 0) {
+			local44 = true;
+		}
+		setWindowMode(arg0, arg1, local44, local4, arg2, arg3);
+	}
 }

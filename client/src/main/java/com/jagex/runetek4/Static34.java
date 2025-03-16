@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -108,9 +108,9 @@ public final class Static34 {
 	@OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "(Lclient!fe;I)V")
 	public static void method879(@OriginalArg(0) PathingEntity arg0) {
 		arg0.seqStretches = false;
-		@Pc(18) AnimationSequence seq;
+		@Pc(18) SeqType seq;
 		if (arg0.movementSeqId != -1) {
-			seq = AnimationSequence.getAnimationSequence(arg0.movementSeqId);
+			seq = SeqType.getAnimationSequence(arg0.movementSeqId);
 			if (seq == null || seq.anIntArray473 == null) {
 				arg0.movementSeqId = -1;
 			} else {
@@ -138,7 +138,7 @@ public final class Static34 {
 			if (local156 == -1) {
 				arg0.spotanimFrame = -1;
 			} else {
-				@Pc(165) AnimationSequence local165 = AnimationSequence.getAnimationSequence(local156);
+				@Pc(165) SeqType local165 = SeqType.getAnimationSequence(local156);
 				if (local165 == null || local165.anIntArray473 == null) {
 					arg0.spotanimFrame = -1;
 				} else {
@@ -163,14 +163,14 @@ public final class Static34 {
 			}
 		}
 		if (arg0.primarySeqId != -1 && arg0.anInt3420 <= 1) {
-			seq = AnimationSequence.getAnimationSequence(arg0.primarySeqId);
+			seq = SeqType.getAnimationSequence(arg0.primarySeqId);
 			if (seq.anInt5363 == 1 && arg0.anInt3405 > 0 && client.loop >= arg0.anInt3395 && client.loop > arg0.anInt3386) {
 				arg0.anInt3420 = 1;
 				return;
 			}
 		}
 		if (arg0.primarySeqId != -1 && arg0.anInt3420 == 0) {
-			seq = AnimationSequence.getAnimationSequence(arg0.primarySeqId);
+			seq = SeqType.getAnimationSequence(arg0.primarySeqId);
 			if (seq == null || seq.anIntArray473 == null) {
 				arg0.primarySeqId = -1;
 			} else {
@@ -212,7 +212,7 @@ public final class Static34 {
 				if (local545.anInt5408 > 0) {
 					local545.anInt5408--;
 				} else {
-					@Pc(570) AnimationSequence local570 = AnimationSequence.getAnimationSequence(local545.anInt5396);
+					@Pc(570) SeqType local570 = SeqType.getAnimationSequence(local545.anInt5396);
 					if (local570 == null || local570.anIntArray473 == null) {
 						arg0.aClass147Array3[local156] = null;
 					} else {
@@ -248,11 +248,4 @@ public final class Static34 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "([Lclient!na;B)Lclient!na;")
-	public static JString method882(@OriginalArg(0) JString[] string) {
-		if (string.length < 2) {
-			throw new IllegalArgumentException();
-		}
-		return Static118.method2355(0, string.length, string);
-	}
 }

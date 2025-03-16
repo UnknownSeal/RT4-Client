@@ -17,9 +17,6 @@ public final class Static272 {
 	@OriginalMember(owner = "runetek4.client!wd", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_989 = Static28.parse("cookieprefix");
 
-	@OriginalMember(owner = "runetek4.client!wd", name = "f", descriptor = "Lclient!na;")
-	public static final JString ERRORTEST = Static28.parse("::errortest");
-
 	@OriginalMember(owner = "runetek4.client!wd", name = "g", descriptor = "I")
 	public static int npcCount = 0;
 

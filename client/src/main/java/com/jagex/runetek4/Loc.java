@@ -4,7 +4,7 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.cache.media.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -64,7 +64,7 @@ public final class Loc extends Entity {
 	private final int anInt1300;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "u", descriptor = "Lclient!tk;")
-	private AnimationSequence aClass144_2;
+	private SeqType aClass144_2;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "y", descriptor = "I")
 	private int anInt1297;
@@ -101,7 +101,7 @@ public final class Loc extends Entity {
 			}
 		}
 		if (arg6 != -1) {
-			this.aClass144_2 = AnimationSequence.getAnimationSequence(arg6);
+			this.aClass144_2 = SeqType.getAnimationSequence(arg6);
 			this.anInt1297 = 0;
 			if (this.aClass144_2.anIntArray473.length <= 1) {
 				this.anInt1304 = 0;
@@ -251,7 +251,7 @@ public final class Loc extends Entity {
 			if (local69 == -1) {
 				this.aClass144_2 = null;
 			} else {
-				this.aClass144_2 = AnimationSequence.getAnimationSequence(local69);
+				this.aClass144_2 = SeqType.getAnimationSequence(local69);
 			}
 			if (this.aClass144_2 != null) {
 				if (local19.randomanimframe && this.aClass144_2.replayoff != -1) {
@@ -278,7 +278,7 @@ public final class Loc extends Entity {
 		@Pc(192) int local192 = (local157 >> 1) + this.anInt1300;
 		@Pc(201) int local201 = (local157 + 1 >> 1) + this.anInt1300;
 		this.method1047(local192 * 128, local185 * 128);
-		@Pc(256) boolean local256 = !local12 && local19.hardshadow && (local19.anInt4426 != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || Static204.tween) && this.anInt1297 != this.anInt1304) && Static139.anInt3451 >= 2);
+		@Pc(256) boolean local256 = !local12 && local19.hardshadow && (local19.anInt4426 != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || SeqType.tween) && this.anInt1297 != this.anInt1304) && Static139.anInt3451 >= 2);
 		if (arg0 && !local256) {
 			return null;
 		}

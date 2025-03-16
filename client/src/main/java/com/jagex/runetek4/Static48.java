@@ -49,7 +49,7 @@ public final class Static48 {
 		local4.p1(Preferences.ambientSoundsVolume);
 		local4.p2(Preferences.fullScreenWidth);
 		local4.p2(Preferences.fullScreenHeight);
-		local4.p1(Static76.method1644());
+		local4.p1(Preferences.getParticleSetting());
 		local4.p4(Static164.anInt3988);
 		local4.p1(Preferences.favoriteWorlds);
 		local4.p1(Static164.aBoolean191 ? 1 : 0);

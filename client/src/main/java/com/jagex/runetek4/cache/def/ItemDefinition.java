@@ -2,7 +2,7 @@ package com.jagex.runetek4.cache.def;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.game.config.idktype.IDKType;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.js5.Js5;
@@ -473,7 +473,7 @@ public final class ItemDefinition {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(IIILclient!tk;II)Lclient!ak;")
-	public Model method1824(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) AnimationSequence arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
+	public Model method1824(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) SeqType arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		if (this.countobj != null && arg3 > 1) {
 			@Pc(22) int local22 = -1;
 			for (@Pc(24) int local24 = 0; local24 < 10; local24++) {
@@ -665,9 +665,6 @@ public final class ItemDefinition {
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "W", descriptor = "Lclient!na;")
 	public static final JString NULL = Static28.parse("null");
-
-	@OriginalMember(owner = "runetek4.client!gg", name = "Y", descriptor = "Lclient!na;")
-	public static final JString GC = Static28.parse("::gc");
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "db", descriptor = "I")
 	public static int anInt2225 = -1;

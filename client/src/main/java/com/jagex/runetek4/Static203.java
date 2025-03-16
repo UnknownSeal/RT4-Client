@@ -23,12 +23,6 @@ public final class Static203 {
 	@OriginalMember(owner = "runetek4.client!qh", name = "g", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_85;
 
-	@OriginalMember(owner = "runetek4.client!qh", name = "c", descriptor = "Lclient!na;")
-	public static final JString aClass100_893 = Static28.parse("Memory before cleanup=");
-
-	@OriginalMember(owner = "runetek4.client!qh", name = "i", descriptor = "Lclient!na;")
-	public static final JString MEM = Static28.parse("Mem:");
-
 	@OriginalMember(owner = "runetek4.client!qh", name = "a", descriptor = "(Z)V")
 	public static void method3662() {
 		@Pc(8) Container local8;

@@ -52,7 +52,7 @@ public final class Static182 {
 		@Pc(59) JString local59 = Static87.method1804(0);
 		@Pc(61) int local61;
 		for (local61 = 0; local61 < arg2; local61++) {
-			local59.method3113(Static123.method2423((int) (arg3 % 10L)));
+			local59.method3113(JString.parseInt((int) (arg3 % 10L)));
 			arg3 /= 10L;
 		}
 		local61 = 0;
@@ -65,7 +65,7 @@ public final class Static182 {
 				if (arg1 && local61 != 0 && local61 % 3 == 0) {
 					local95.method3113(local26);
 				}
-				local95.method3113(Static123.method2423((int) (arg3 % 10L)));
+				local95.method3113(JString.parseInt((int) (arg3 % 10L)));
 				local61++;
 				arg3 /= 10L;
 			}
@@ -74,7 +74,7 @@ public final class Static182 {
 		if (local59.length() > 0) {
 			local59.method3113(local28);
 		}
-		return Static34.method882(new JString[] { local9, local137.method3124(), local59.method3124() });
+		return JString.concatenate(new JString[] { local9, local137.method3124(), local59.method3124() });
 	}
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "a", descriptor = "(IBI[[III)I")

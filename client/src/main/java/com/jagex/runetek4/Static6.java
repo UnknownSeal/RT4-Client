@@ -35,7 +35,7 @@ public final class Static6 {
 	public static void method84() {
 		SceneGraph.clear();
 		for (@Pc(9) int local9 = 0; local9 < 4; local9++) {
-			Static148.levelCollisionMap[local9].reset();
+			PathFinder.collisionMaps[local9].reset();
 		}
 		System.gc();
 	}

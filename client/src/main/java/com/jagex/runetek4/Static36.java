@@ -185,7 +185,7 @@ public final class Static36 {
 											@Pc(516) int local516 = Static28.anInt919 + local508;
 											@Pc(520) int local520 = local322 + Static158.anInt3846;
 											@Pc(528) int local528 = Static181.anInt4296 + Static2.anInt13 - local516 - 1;
-											Static61.teleport(local520, local528, 0);
+											Cheat.teleport(local520, local528, 0);
 											Static153.method2909();
 											continue;
 										}
@@ -495,7 +495,7 @@ public final class Static36 {
 
 	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "c", descriptor = "(Lclient!be;)Z")
 	public static boolean method947(@OriginalArg(0) Component arg0) {
-		if (Static121.aBoolean154) {
+		if (Cheat.qaOpTest) {
 			if (method940(arg0).anInt546 != 0) {
 				return false;
 			}

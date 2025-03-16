@@ -33,9 +33,9 @@ public final class Static15 {
 			local8 = Static50.aClass100_365;
 		}
 		if (Static47.aClass100_991 != null) {
-			local10 = Static34.method882(new JString[] { Static150.aClass100_687, Static47.aClass100_991 });
+			local10 = JString.concatenate(new JString[] { Static150.aClass100_687, Static47.aClass100_991 });
 		}
-		return Static34.method882(new JString[] { Static61.aClass100_424, local8, Static80.aClass100_886, Static123.method2423(Static141.anInt3470), Static257.aClass100_98, Static123.method2423(Static204.anInt4760), local10, Static41.aClass100_268 });
+		return JString.concatenate(new JString[] { Static61.aClass100_424, local8, Static80.aClass100_886, JString.parseInt(Static141.anInt3470), Static257.aClass100_98, JString.parseInt(Static204.anInt4760), local10, Static41.aClass100_268 });
 	}
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(III)I")

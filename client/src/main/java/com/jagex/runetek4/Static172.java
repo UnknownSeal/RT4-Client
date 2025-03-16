@@ -23,9 +23,6 @@ public final class Static172 {
 	@OriginalMember(owner = "runetek4.client!nj", name = "m", descriptor = "[[S")
 	public static short[][] aShortArrayArray7;
 
-	@OriginalMember(owner = "runetek4.client!nj", name = "a", descriptor = "Z")
-	public static boolean shiftClick = false;
-
 	@OriginalMember(owner = "runetek4.client!nj", name = "h", descriptor = "Lclient!ih;")
 	public static final LinkedList aClass69_97 = new LinkedList();
 

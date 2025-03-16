@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.dash3d.CollisionMap;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -20,12 +19,6 @@ public final class Static148 {
 
 	@OriginalMember(owner = "runetek4.client!li", name = "x", descriptor = "I")
 	public static int anInt3535;
-
-	@OriginalMember(owner = "runetek4.client!li", name = "h", descriptor = "[Lclient!mj;")
-	public static final CollisionMap[] levelCollisionMap = new CollisionMap[4];
-
-	@OriginalMember(owner = "runetek4.client!li", name = "p", descriptor = "Lclient!na;")
-	public static final JString REBUILD = Static28.parse("::rebuild");
 
 	@OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(ZI)V")
 	public static void method2765(@OriginalArg(1) int arg0) {

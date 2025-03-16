@@ -19,9 +19,6 @@ public final class Static121 {
 	@OriginalMember(owner = "runetek4.client!jg", name = "j", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_45;
 
-	@OriginalMember(owner = "runetek4.client!jg", name = "e", descriptor = "Z")
-	public static boolean aBoolean154 = false;
-
 	@OriginalMember(owner = "runetek4.client!jg", name = "a", descriptor = "(I)[Lclient!ek;")
 	public static SoftwareIndexedSprite[] method2406() {
 		@Pc(2) SoftwareIndexedSprite[] local2 = new SoftwareIndexedSprite[Static165.anInt4038];

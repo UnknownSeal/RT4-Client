@@ -134,7 +134,7 @@ public final class Static97 {
 		if (Static36.method940(arg0).method512() == 0) {
 			return null;
 		} else if (arg0.aClass100_86 == null || arg0.aClass100_86.trim().length() == 0) {
-			return Static121.aBoolean154 ? Static143.HIDDEN_USE : null;
+			return Cheat.qaOpTest ? Static143.HIDDEN_USE : null;
 		} else {
 			return arg0.aClass100_86;
 		}

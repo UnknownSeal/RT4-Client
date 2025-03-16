@@ -7,7 +7,7 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.game.config.idktype.IDKType;
-import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -43,7 +43,7 @@ public final class PlayerModel {
 	public boolean aBoolean141;
 
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(IIIILclient!tk;III)Lclient!ak;")
-	public final Model method1946(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) AnimationSequence arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
+	public final Model method1946(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) SeqType arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
 		@Pc(24) long local24 = (long) arg2 | (long) (arg6 << 16) | (long) arg1 << 32;
 		@Pc(30) Model local30 = (Model) Static139.aClass99_21.get(local24);
 		if (local30 == null) {
@@ -158,7 +158,7 @@ public final class PlayerModel {
 	}
 
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "([Lclient!ub;ILclient!tk;Lclient!tk;IIIIZII)Lclient!ak;")
-	public final Model method1954(@OriginalArg(0) Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) AnimationSequence arg2, @OriginalArg(3) AnimationSequence arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(7) int arg6, @OriginalArg(9) int arg7, @OriginalArg(10) int arg8) {
+	public final Model method1954(@OriginalArg(0) Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) SeqType arg2, @OriginalArg(3) SeqType arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(7) int arg6, @OriginalArg(9) int arg7, @OriginalArg(10) int arg8) {
 		if (this.transformationNpcId != -1) {
 			return NpcType.getDefinition(this.transformationNpcId).method2937(arg0, arg5, arg8, arg1, arg6, arg7, arg2, arg4, arg3);
 		}
@@ -323,7 +323,7 @@ public final class PlayerModel {
 		@Pc(979) int local979;
 		for (local353 = 0; local353 < local346; local353++) {
 			if (arg0[local353] != null) {
-				@Pc(858) AnimationSequence local858 = AnimationSequence.getAnimationSequence(arg0[local353].anInt5396);
+				@Pc(858) SeqType local858 = SeqType.getAnimationSequence(arg0[local353].anInt5396);
 				if (local858.anIntArray473 != null) {
 					local158 = true;
 					Static208.aClass144Array2[local353] = local858;
@@ -338,7 +338,7 @@ public final class PlayerModel {
 						local827 |= Static276.aClass3_Sub2_Sub7Array8[local353].isAlphaTransformed(local381);
 						local838 |= local858.aBoolean278;
 					}
-					if ((local858.aBoolean277 || Static204.tween) && local367 != -1 && local367 < local858.anIntArray473.length) {
+					if ((local858.aBoolean277 || SeqType.tween) && local367 != -1 && local367 < local858.anIntArray473.length) {
 						Static262.anIntArray515[local353] = local858.frames[local374];
 						Static73.anIntArray183[local353] = arg0[local353].anInt5404;
 						local979 = local858.anIntArray473[local367];
@@ -376,7 +376,7 @@ public final class PlayerModel {
 				local827 |= local1042.isAlphaTransformed(local353);
 				local838 |= arg3.aBoolean278;
 			}
-			if ((arg3.aBoolean277 || Static204.tween) && arg1 != -1 && arg3.anIntArray473.length > arg1) {
+			if ((arg3.aBoolean277 || SeqType.tween) && arg1 != -1 && arg3.anIntArray473.length > arg1) {
 				local360 = arg3.anIntArray473[arg1];
 				local451 = local360 >>> 16;
 				local360 &= 0xFFFF;
@@ -407,7 +407,7 @@ public final class PlayerModel {
 				local827 |= local1154.isAlphaTransformed(local979);
 				local838 |= arg2.aBoolean278;
 			}
-			if ((arg2.aBoolean277 || Static204.tween) && arg5 != -1 && arg2.anIntArray473.length > arg5) {
+			if ((arg2.aBoolean277 || SeqType.tween) && arg5 != -1 && arg2.anIntArray473.length > arg5) {
 				local457 = arg2.frames[arg8];
 				local451 = arg2.anIntArray473[arg5];
 				local481 = local451 >>> 16;
@@ -449,7 +449,7 @@ public final class PlayerModel {
 	}
 
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(IBLclient!tk;II)Lclient!ak;")
-	public final Model getStaticModel(@OriginalArg(0) int arg0, @OriginalArg(2) AnimationSequence arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+	public final Model getStaticModel(@OriginalArg(0) int arg0, @OriginalArg(2) SeqType arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		if (this.transformationNpcId != -1) {
 			return NpcType.getDefinition(this.transformationNpcId).getHeadModel(arg1, arg0, arg3, arg2);
 		}

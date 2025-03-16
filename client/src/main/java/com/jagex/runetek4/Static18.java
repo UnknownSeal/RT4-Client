@@ -22,9 +22,6 @@ public final class Static18 {
 	@OriginalMember(owner = "client!bh", name = "v", descriptor = "Lclient!na;")
 	public static final JString FLOORSHADOWS = Static28.parse("floorshadows");
 
-	@OriginalMember(owner = "client!bh", name = "z", descriptor = "Z")
-	public static boolean sentToServer = true;
-
 	@OriginalMember(owner = "client!bh", name = "C", descriptor = "Lclient!na;")
 	public static final JString aClass100_108 = Static28.parse("<br>(X100(U(Y");
 

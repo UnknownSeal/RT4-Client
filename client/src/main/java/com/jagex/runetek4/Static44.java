@@ -15,9 +15,6 @@ public final class Static44 {
 	@OriginalMember(owner = "runetek4.client!dh", name = "d", descriptor = "[I")
 	public static final int[] entityUpdateIds = new int[2048];
 
-	@OriginalMember(owner = "runetek4.client!dh", name = "e", descriptor = "Lclient!na;")
-	public static final JString aClass100_335 = Static28.parse("Number of player models in cache:");
-
 	@OriginalMember(owner = "runetek4.client!dh", name = "i", descriptor = "Lclient!na;")
 	public static final JString aClass100_336 = Static28.parse("<img=1>");
 

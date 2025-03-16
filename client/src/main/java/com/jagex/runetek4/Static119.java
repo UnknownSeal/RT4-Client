@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -26,30 +25,6 @@ public final class Static119 {
 
 	@OriginalMember(owner = "client!je", name = "db", descriptor = "Lclient!na;")
 	public static final JString aClass100_589 = Static28.parse(" <col=ffffff>");
-
-	@OriginalMember(owner = "client!je", name = "h", descriptor = "(I)V")
-	public static void method2380() {
-		Static252.method4301();
-		Static224.method3885();
-		Static181.method3342();
-		Static179.method3323();
-		ClientScriptRunner.method4001();
-		Static103.method2239();
-		Static227.method3903();
-		Static71.method1441();
-		Static78.method1694();
-		Static3.method4657();
-		BasTypeList.removeSoft();
-		Static267.method4529();
-		Static92.method1882();
-		Static26.method741();
-		Static192.method3474();
-		Static40.method1019();
-		Static180.method3329();
-		Static251.method4276();
-		Static73.aClass99_10.removeSoft();
-		Static139.aClass99_22.removeSoft();
-	}
 
 	@OriginalMember(owner = "client!je", name = "f", descriptor = "(B)V")
 	public static void method2381() {

@@ -24,9 +24,6 @@ public final class Static276 {
 	@OriginalMember(owner = "runetek4.client!wh", name = "n", descriptor = "Lclient!na;")
 	public static final JString aClass100_1095 = Static28.parse("; version=1; path=)4; domain=");
 
-	@OriginalMember(owner = "runetek4.client!wh", name = "o", descriptor = "Lclient!na;")
-	public static final JString aClass100_1096 = Static28.parse("rect_debug=");
-
 	@OriginalMember(owner = "runetek4.client!wh", name = "s", descriptor = "I")
 	public static int anInt5816 = 0;
 
@@ -78,7 +75,7 @@ public final class Static276 {
 			}
 		}
 		if (!local13) {
-			Chat.addMessage(Static186.aClass100_827, 0, Static34.method882(new JString[] { LocalizedText.UNABLETOFIND, local7 }));
+			Chat.addMessage(Static186.aClass100_827, 0, JString.concatenate(new JString[] { LocalizedText.UNABLETOFIND, local7 }));
 		}
 	}
 

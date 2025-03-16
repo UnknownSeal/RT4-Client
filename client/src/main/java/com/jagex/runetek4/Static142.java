@@ -199,7 +199,7 @@ public final class Static142 {
 								Static65.anInt1951 += 15;
 							}
 							Static213.aClass3_Sub2_Sub1Array8[local17.anIntArray321[local74]].drawSprite(arg2 + Static65.anInt1951 - 12, arg0 + Static16.anInt548 - 12);
-							Static114.aClass3_Sub2_Sub9_42.method2875(Static123.method2423(local17.anIntArray322[local74]), Static65.anInt1951 + arg2 - 1, Static16.anInt548 + 3 + arg0, 16777215, 0);
+							Static114.aClass3_Sub2_Sub9_42.method2875(JString.parseInt(local17.anIntArray322[local74]), Static65.anInt1951 + arg2 - 1, Static16.anInt548 + 3 + arg0, 16777215, 0);
 						}
 					}
 				}

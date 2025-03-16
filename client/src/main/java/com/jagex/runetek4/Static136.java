@@ -133,7 +133,7 @@ public final class Static136 {
 			if (Static238.anInt5316 < 96) {
 				local386 = 0;
 			}
-			Static76.method1645(local386);
+			Preferences.setParticles(local386);
 		}
 		if (local21 >= 5) {
 			Static164.anInt3988 = arg0.g4();

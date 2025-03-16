@@ -26,6 +26,4 @@ public final class Static240 {
 	@OriginalMember(owner = "runetek4.client!tg", name = "h", descriptor = "I")
 	public static int entityRemovalCount = 0;
 
-	@OriginalMember(owner = "runetek4.client!tg", name = "i", descriptor = "Lclient!na;")
-	public static final JString PCACHESIZE = Static28.parse("::pcachesize");
 }

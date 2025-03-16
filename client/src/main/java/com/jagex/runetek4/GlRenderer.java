@@ -453,7 +453,7 @@ public final class GlRenderer {
 			for (@Pc(195) int i = 0; i < rendererParts.length; i++) {
 				@Pc(203) JString part = rendererParts[i];
 				if (part.length() >= 4 && part.substring(4, 0).method3123()) {
-					v = part.substring(4, 0).method3132();
+					v = part.substring(4, 0).parseInt();
 					break;
 				}
 			}

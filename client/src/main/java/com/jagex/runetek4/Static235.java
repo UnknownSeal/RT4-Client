@@ -19,7 +19,7 @@ public final class Static235 {
 
 	@OriginalMember(owner = "runetek4.client!tb", name = "h", descriptor = "(I)I")
 	public static int method4044() {
-		return Static172.shiftClick && Static187.pressedKeys[81] && PreciseSleep.menuActionRow > 2 ? Static190.anIntArray382[PreciseSleep.menuActionRow - 2] : Static190.anIntArray382[PreciseSleep.menuActionRow - 1];
+		return Cheat.shiftClick && Static187.pressedKeys[81] && PreciseSleep.menuActionRow > 2 ? Static190.anIntArray382[PreciseSleep.menuActionRow - 2] : Static190.anIntArray382[PreciseSleep.menuActionRow - 1];
 	}
 
 	@OriginalMember(owner = "runetek4.client!tb", name = "b", descriptor = "(IB)Lclient!bc;")

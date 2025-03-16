@@ -155,13 +155,13 @@ public final class Static230 {
 		try {
 			@Pc(17) JString local17 = Static272.aClass100_989.method3153(GameShell.signLink.applet);
 			@Pc(23) JString local23 = Static246.aClass100_1029.method3153(GameShell.signLink.applet);
-			@Pc(48) JString local48 = Static34.method882(new JString[] { local17, Static142.aClass100_667, arg0, Static276.aClass100_1095, local23 });
+			@Pc(48) JString local48 = JString.concatenate(new JString[] { local17, Static142.aClass100_667, arg0, Static276.aClass100_1095, local23 });
 			if (arg0.length() == 0) {
-				local48 = Static34.method882(new JString[] { local48, Static245.aClass100_1018 });
+				local48 = JString.concatenate(new JString[] { local48, Static245.aClass100_1018 });
 			} else {
-				local48 = Static34.method882(new JString[] { local48, Static263.aClass100_1082, Static33.method873(MonotonicTime.get() + 94608000000L), Static64.MAX_AGE, Static154.method2929(94608000L) });
+				local48 = JString.concatenate(new JString[] { local48, Static263.aClass100_1082, Static33.method873(MonotonicTime.get() + 94608000000L), Static64.MAX_AGE, Static154.method2929(94608000L) });
 			}
-			Static34.method882(new JString[] { BZip2State.aClass100_821, local48, Static223.aClass100_946 }).method3134(GameShell.signLink.applet);
+			JString.concatenate(new JString[] { BZip2State.aClass100_821, local48, Static223.aClass100_946 }).method3134(GameShell.signLink.applet);
 		} catch (@Pc(124) Throwable local124) {
 		}
 	}

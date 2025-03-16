@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.media.renderable.Entity;
-import com.jagex.runetek4.cache.media.AnimationSequence;
+import com.jagex.runetek4.cache.media.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -93,7 +93,7 @@ public final class ProjectileAnimation extends Entity {
 	private final int sourceZ;
 
 	@OriginalMember(owner = "client!ra", name = "gb", descriptor = "Lclient!tk;")
-	private final AnimationSequence animationSequence;
+	private final SeqType seqType;
 
 	@OriginalMember(owner = "client!ra", name = "<init>", descriptor = "(IIIIIIIIIII)V")
 	public ProjectileAnimation(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10) {
@@ -111,9 +111,9 @@ public final class ProjectileAnimation extends Entity {
 		this.sourceZ = arg4;
 		@Pc(58) int local58 = Static34.method877(this.anInt4816).animationId;
 		if (local58 == -1) {
-			this.animationSequence = null;
+			this.seqType = null;
 		} else {
-			this.animationSequence = AnimationSequence.getAnimationSequence(local58);
+			this.seqType = SeqType.getAnimationSequence(local58);
 		}
 	}
 
@@ -147,28 +147,28 @@ public final class ProjectileAnimation extends Entity {
 		}
 		this.yaw = (int) (Math.atan2(this.velocityX, this.valocityY) * 325.949D) + 1024 & 0x7FF;
 		this.pitch = (int) (Math.atan2(this.velocityZ, this.velocity) * 325.949D) & 0x7FF;
-		if (this.animationSequence == null) {
+		if (this.seqType == null) {
 			return;
 		}
 		this.frameCycle += arg0;
 		while (true) {
 			do {
 				do {
-					if (this.frameCycle <= this.animationSequence.frames[this.seqFrame]) {
+					if (this.frameCycle <= this.seqType.frames[this.seqFrame]) {
 						return;
 					}
-					this.frameCycle -= this.animationSequence.frames[this.seqFrame];
+					this.frameCycle -= this.seqType.frames[this.seqFrame];
 					this.seqFrame++;
-					if (this.seqFrame >= this.animationSequence.anIntArray473.length) {
-						this.seqFrame -= this.animationSequence.replayoff;
-						if (this.seqFrame < 0 || this.animationSequence.anIntArray473.length <= this.seqFrame) {
+					if (this.seqFrame >= this.seqType.anIntArray473.length) {
+						this.seqFrame -= this.seqType.replayoff;
+						if (this.seqFrame < 0 || this.seqType.anIntArray473.length <= this.seqFrame) {
 							this.seqFrame = 0;
 						}
 					}
 					this.anInt4798 = this.seqFrame + 1;
-				} while (this.animationSequence.anIntArray473.length > this.anInt4798);
-				this.anInt4798 -= this.animationSequence.replayoff;
-			} while (this.anInt4798 >= 0 && this.anInt4798 < this.animationSequence.anIntArray473.length);
+				} while (this.seqType.anIntArray473.length > this.anInt4798);
+				this.anInt4798 -= this.seqType.replayoff;
+			} while (this.anInt4798 >= 0 && this.anInt4798 < this.seqType.anIntArray473.length);
 			this.anInt4798 = -1;
 		}
 	}

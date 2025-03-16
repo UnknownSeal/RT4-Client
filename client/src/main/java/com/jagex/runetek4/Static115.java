@@ -15,9 +15,6 @@ public final class Static115 {
 	@OriginalMember(owner = "runetek4.client!ja", name = "f", descriptor = "Lclient!ih;")
 	public static final LinkedList aClass69_70 = new LinkedList();
 
-	@OriginalMember(owner = "runetek4.client!ja", name = "k", descriptor = "Lclient!na;")
-	public static final JString FPS = Static28.parse("Fps:");
-
 	@OriginalMember(owner = "runetek4.client!ja", name = "l", descriptor = "[Lclient!wa;")
 	public static final Packet[] PLAYER_APPEARANCE_PACKET = new Packet[2048];
 
@@ -57,11 +54,6 @@ public final class Static115 {
 	public static void method2311(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
 		Static87.aClass153_38 = arg1;
 		Static29.aClass153_19 = arg0;
-	}
-
-	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(II)V")
-	public static void method2312(@OriginalArg(0) int arg0) {
-		Static11.anInt386 = 1000 / arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(IIIIIZ)V")

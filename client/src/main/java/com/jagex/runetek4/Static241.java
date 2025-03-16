@@ -21,31 +21,11 @@ public final class Static241 {
 	@OriginalMember(owner = "runetek4.client!th", name = "p", descriptor = "[Lclient!mm;")
 	public static ImageRGB[] aClass3_Sub2_Sub1_Sub1Array13;
 
-	@OriginalMember(owner = "runetek4.client!th", name = "h", descriptor = "Lclient!na;")
-	public static final JString SETPARTICLES = Static28.parse("::setparticles");
-
 	@OriginalMember(owner = "runetek4.client!th", name = "i", descriptor = "[I")
 	public static final int[] anIntArray520 = new int[14];
 
 	@OriginalMember(owner = "runetek4.client!th", name = "n", descriptor = "Z")
 	public static boolean aBoolean302 = false;
-
-	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(ZIIII)V")
-	public static void method4540(@OriginalArg(0) boolean arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		Static97.aLong89 = 0L;
-		@Pc(4) int local4 = Static144.method2736();
-		if (arg1 == 3 || local4 == 3) {
-			arg0 = true;
-		}
-		@Pc(44) boolean local44 = false;
-		if (local4 > 0 != arg1 > 0) {
-			local44 = true;
-		}
-		if (arg0 && arg1 > 0) {
-			local44 = true;
-		}
-		DisplayMode.setWindowMode(arg0, arg1, local44, local4, arg2, arg3);
-	}
 
 	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(IIBIIII)I")
 	public static int method4541(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {

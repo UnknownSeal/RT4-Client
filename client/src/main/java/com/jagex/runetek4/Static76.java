@@ -2,14 +2,10 @@ package com.jagex.runetek4;
 
 import java.nio.FloatBuffer;
 import com.jogamp.opengl.*;
-import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static76 {
-
-	@OriginalMember(owner = "runetek4.client!ga", name = "e", descriptor = "I")
-	private static int anInt2126 = 2;
 
 	@OriginalMember(owner = "runetek4.client!ga", name = "a", descriptor = "()V")
 	public static void method1642() {
@@ -34,13 +30,4 @@ public final class Static76 {
 	public static void method1643() {
 	}
 
-	@OriginalMember(owner = "runetek4.client!ga", name = "c", descriptor = "()I")
-	public static int method1644() {
-		return anInt2126;
-	}
-
-	@OriginalMember(owner = "runetek4.client!ga", name = "b", descriptor = "(I)V")
-	public static void method1645(@OriginalArg(0) int arg0) {
-		anInt2126 = arg0;
-	}
 }

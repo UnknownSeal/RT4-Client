@@ -3,7 +3,6 @@ package com.jagex.runetek4;
 import java.io.UnsupportedEncodingException;
 
 import com.jagex.runetek4.cache.cs.ClientScript;
-import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
@@ -226,151 +225,23 @@ public final class Static127 {
 														} catch (@Pc(274) UnsupportedEncodingException local274) {
 														}
 													}
-													arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), local246, arg1.substring(local14 + 4) });
+													arg1 = JString.concatenate(new JString[] { arg1.substring(local14, 0), local246, arg1.substring(local14 + 4) });
 												}
 											}
-											arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(4, arg0)), arg1.substring(local14 + 2) });
+											arg1 = JString.concatenate(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(4, arg0)), arg1.substring(local14 + 2) });
 										}
 									}
-									arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(3, arg0)), arg1.substring(local14 + 2) });
+									arg1 = JString.concatenate(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(3, arg0)), arg1.substring(local14 + 2) });
 								}
 							}
-							arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(2, arg0)), arg1.substring(local14 + 2) });
+							arg1 = JString.concatenate(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(2, arg0)), arg1.substring(local14 + 2) });
 						}
 					}
-					arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(1, arg0)), arg1.substring(local14 + 2) });
+					arg1 = JString.concatenate(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(1, arg0)), arg1.substring(local14 + 2) });
 				}
 			}
-			arg1 = Static34.method882(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(0, arg0)), arg1.substring(local14 + 2) });
+			arg1 = JString.concatenate(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(0, arg0)), arg1.substring(local14 + 2) });
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!na;Z)V")
-	public static void method2470(@OriginalArg(0) JString chatTyped) {
-		if (Static191.staffModLevel >= 2) {
-			@Pc(18) int level;
-			@Pc(38) int x;
-			@Pc(29) Runtime local29;
-			if (chatTyped.equalsIgnoreCase(ItemDefinition.GC)) {
-				Static119.method2380();
-				for (level = 0; level < 10; level++) {
-					System.gc();
-				}
-				local29 = Runtime.getRuntime();
-				x = (int) ((local29.totalMemory() - local29.freeMemory()) / 1024L);
-				Chat.addMessage(null, 0, Static34.method882(new JString[] { Class6.aClass100_892, Static123.method2423(x), Static17.aClass100_101 }));
-			}
-			@Pc(117) int z;
-			if (chatTyped.equalsIgnoreCase(Static154.MM)) {
-				Static119.method2380();
-				for (level = 0; level < 10; level++) {
-					System.gc();
-				}
-				local29 = Runtime.getRuntime();
-				x = (int) ((local29.totalMemory() - local29.freeMemory()) / 1024L);
-				Chat.addMessage(null, 0, Static34.method882(new JString[] { Static203.aClass100_893, Static123.method2423(x), Static17.aClass100_101 }));
-				Static16.method501();
-				Static119.method2380();
-				for (z = 0; z < 10; z++) {
-					System.gc();
-				}
-				x = (int) ((local29.totalMemory() - local29.freeMemory()) / 1024L);
-				Chat.addMessage(null, 0, Static34.method882(new JString[] { Static270.aClass100_1093, Static123.method2423(x), Static17.aClass100_101 }));
-			}
-			if (chatTyped.equalsIgnoreCase(Static240.PCACHESIZE)) {
-				Chat.addMessage(null, 0, Static34.method882(new JString[] { Static44.aClass100_335, Static123.method2423(Static198.method1029()) }));
-			}
-			if (GlRenderer.enabled && chatTyped.equalsIgnoreCase(Static201.CARDMEM)) {
-				System.out.println("oncard_geometry:" + Static63.oncard_geometry);
-				System.out.println("oncard_2d:" + Static63.oncard_2d);
-				System.out.println("oncard_texture:" + Static63.oncard_texture);
-			}
-			if (chatTyped.equalsIgnoreCase(Static257.CLIENTDROP)) {
-				Game.tryReconnect();
-			}
-			if (chatTyped.equalsIgnoreCase(Static279.CLIENTJS5DROP)) {
-				client.js5NetQueue.clientDrop();
-			}
-			if (chatTyped.equalsIgnoreCase(Static185.SERVERJS5DROP)) {
-				client.js5NetQueue.serverDrop();
-			}
-			if (chatTyped.equalsIgnoreCase(Static165.BREAKCON)) {
-				GameShell.signLink.breakConnection();
-				Static124.gameServerSocket.breakConnection();
-				client.js5NetQueue.method2323();
-			}
-			if (chatTyped.equalsIgnoreCase(Static114.REPLACECANVAS)) {
-				Static35.canvasReplaceRecommended = true;
-			}
-			if (chatTyped.equalsIgnoreCase(Static148.REBUILD)) {
-				Game.processGameStatus(25);
-			}
-			if (chatTyped.equalsIgnoreCase(Static107.FPSON)) {
-				Static43.displayFps = true;
-			}
-			if (chatTyped.equalsIgnoreCase(Static61.FPSOFF)) {
-				Static43.displayFps = false;
-			}
-			if (chatTyped.equalsIgnoreCase(Static96.WM0)) {
-				Static241.method4540(false, 0, -1, -1);
-			}
-			if (chatTyped.equalsIgnoreCase(Static181.WM1)) {
-				Static241.method4540(false, 1, -1, -1);
-			}
-			if (chatTyped.equalsIgnoreCase(Static207.WM2)) {
-				Static241.method4540(false, 2, -1, -1);
-			}
-			if (chatTyped.equalsIgnoreCase(Static99.WM3)) {
-				Static241.method4540(false, 3, 1024, 768);
-			}
-			if (chatTyped.equalsIgnoreCase(Static69.NOCLIP)) {
-				for (level = 0; level < 4; level++) {
-					for (x = 1; x < 103; x++) {
-						for (z = 1; z < 103; z++) {
-							Static148.levelCollisionMap[level].flags[x][z] = 0;
-						}
-					}
-				}
-			}
-			if (chatTyped.startsWith(Static241.SETPARTICLES)) {
-				Static76.method1645(chatTyped.substring(15).method3132());
-				Preferences.write(GameShell.signLink);
-				Static18.sentToServer = false;
-			}
-			if (chatTyped.startsWith(ObjTypeList.FPS) && client.modeWhere != 0) {
-				Static115.method2312(chatTyped.substring(6).method3132());
-			}
-			if (chatTyped.equalsIgnoreCase(Static272.ERRORTEST)) {
-				throw new RuntimeException();
-			}
-			if (chatTyped.startsWith(Static211.RECT_DEBUG)) {
-				Static199.anInt4672 = chatTyped.substring(12).trim().method3132();
-				Chat.addMessage(null, 0, Static34.method882(new JString[] { Static276.aClass100_1096, Static123.method2423(Static199.anInt4672) }));
-			}
-			if (chatTyped.equalsIgnoreCase(Static181.QA_OP_TEST)) {
-				Static121.aBoolean154 = true;
-			}
-			if (chatTyped.equalsIgnoreCase(Static124.TWEEN)) {
-				if (Static204.tween) {
-					Static204.tween = false;
-					Chat.addMessage(null, 0, Static274.FORCED_TWEENING_DISABLED);
-				} else {
-					Static204.tween = true;
-					Chat.addMessage(null, 0, Static50.FORCED_TWEENING_ENABLED);
-				}
-			}
-			if (chatTyped.equalsIgnoreCase(Static114.SHIFTCLICK)) {
-				if (Static172.shiftClick) {
-					Static154.SHIFTCLICK_DISABLED.printToConsole();
-					Static172.shiftClick = false;
-				} else {
-					Static43.SHIFTCLICK_ENABLED.printToConsole();
-					Static172.shiftClick = true;
-				}
-			}
-		}
-		Static6.outboundBuffer.pIsaac1(44);
-		Static6.outboundBuffer.p1(chatTyped.length() - 1);
-		Static6.outboundBuffer.pjstr(chatTyped.substring(2));
-	}
 }

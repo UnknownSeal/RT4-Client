@@ -162,7 +162,7 @@ public abstract class Font extends CachedNode {
 						if (!effectString.method3108(registeredTrademark)) {
 							if (effectString.startsWith(image)) {
 								try {
-									icon = effectString.substring(4).method3132();
+									icon = effectString.substring(4).parseInt();
 									@Pc(125) IndexedSprite nameIcon = this.aClass36Array11[icon];
 									@Pc(136) int imageHeight = this.moderatorIcon == null ? nameIcon.anInt4276 : this.moderatorIcon[icon];
 									if (opacity == 256) {
@@ -289,7 +289,7 @@ public abstract class Font extends CachedNode {
 						if (!local43.method3108(registeredTrademark)) {
 							if (local43.startsWith(image)) {
 								try {
-									@Pc(121) int local121 = local43.substring(4).method3132();
+									@Pc(121) int local121 = local43.substring(4).parseInt();
 									local9 += this.aClass36Array11[local121].maxWidth;
 									local7 = 0;
 								} catch (@Pc(133) Exception local133) {
@@ -345,7 +345,7 @@ public abstract class Font extends CachedNode {
 			} else if (string.method3108(Static218.endColor)) {
 				textColor = Static218.defaultTextColor;
 			} else if (string.startsWith(Static218.startTrans)) {
-				opacity = string.substring(6).method3132();
+				opacity = string.substring(6).parseInt();
 			} else if (string.method3108(Static218.endTrans)) {
 				opacity = Static218.defaultOpacity;
 			} else if (string.startsWith(Static218.startStrikethrough)) {
@@ -494,7 +494,7 @@ public abstract class Font extends CachedNode {
 						local21 = 174;
 					} else if (local57.startsWith(image)) {
 						try {
-							@Pc(377) int local377 = local57.substring(4).method3132();
+							@Pc(377) int local377 = local57.substring(4).parseInt();
 							local9 += this.aClass36Array11[local377].maxWidth;
 							local21 = 0;
 						} catch (@Pc(389) Exception local389) {
@@ -843,7 +843,7 @@ public abstract class Font extends CachedNode {
 										local130 = arg4[local10];
 									}
 									local10++;
-									local141 = local44.substring(4).method3132();
+									local141 = local44.substring(4).parseInt();
 									@Pc(146) IndexedSprite local146 = this.aClass36Array11[local141];
 									@Pc(157) int local157 = this.moderatorIcon == null ? local146.anInt4276 : this.moderatorIcon[local141];
 									if (opacity == 256) {

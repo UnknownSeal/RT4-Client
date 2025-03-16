@@ -19,6 +19,10 @@ public class Preferences {
     public static int ambientSoundsVolume = 127;
     @OriginalMember(owner = "runetek4.client!cj", name = "h", descriptor = "Z")
     public static boolean aBoolean63;
+    @OriginalMember(owner = "client!bh", name = "z", descriptor = "Z")
+    public static boolean sentToServer = true;
+    @OriginalMember(owner = "runetek4.client!ga", name = "e", descriptor = "I")
+    private static int particles = 2;
 
     @OriginalMember(owner = "runetek4.client!pa", name = "d", descriptor = "(I)V")
     public static void method3413() {
@@ -103,11 +107,11 @@ public class Preferences {
             aClass6.method842(true);
             Static234.method4020();
         } else if (Static41.anInt1309 == 60) {
-            if (Static119.aClass153_44.method4497(Static34.method882(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
-                if (!Static119.aClass153_44.method4489(Static34.method882(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
+            if (Static119.aClass153_44.method4497(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
+                if (!Static119.aClass153_44.method4489(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
                     return;
                 }
-                Static203.aMapElementTypeList_1 = MapElementTypeList.create(Static34.method882(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}), Static119.aClass153_44);
+                Static203.aMapElementTypeList_1 = MapElementTypeList.create(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}), Static119.aClass153_44);
             } else {
                 Static203.aMapElementTypeList_1 = new MapElementTypeList(0);
             }
@@ -178,5 +182,15 @@ public class Preferences {
             }
         } catch (@Pc(56) Exception local56) {
         }
+    }
+
+    @OriginalMember(owner = "runetek4.client!ga", name = "c", descriptor = "()I")
+    public static int getParticleSetting() {
+        return particles;
+    }
+
+    @OriginalMember(owner = "runetek4.client!ga", name = "b", descriptor = "(I)V")
+    public static void setParticles(@OriginalArg(0) int arg0) {
+        particles = arg0;
     }
 }

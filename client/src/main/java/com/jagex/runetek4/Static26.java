@@ -47,11 +47,11 @@ public final class Static26 {
 			for (@Pc(97) int local97 = (local23 - 6) / 8; local97 <= (local23 + 6) / 8; local97++) {
 				@Pc(115) int local115 = (local80 << 8) + local97;
 				Static238.anIntArray470[local74] = local115;
-				Static36.anIntArray84[local74] = aClass153_16.method4482(Static34.method882(new JString[] { Static103.aClass100_558, Static123.method2423(local80), Static86.aClass100_488, Static123.method2423(local97) }));
-				Static172.anIntArray366[local74] = aClass153_16.method4482(Static34.method882(new JString[] { Static270.aClass100_1090, Static123.method2423(local80), Static86.aClass100_488, Static123.method2423(local97) }));
-				Static175.anIntArray371[local74] = aClass153_16.method4482(Static34.method882(new JString[] { Static179.aClass100_807, Static123.method2423(local80), Static86.aClass100_488, Static123.method2423(local97) }));
-				Static99.anIntArray239[local74] = aClass153_16.method4482(Static34.method882(new JString[] { Static165.aClass100_772, Static123.method2423(local80), Static86.aClass100_488, Static123.method2423(local97) }));
-				Static35.anIntArray82[local74] = aClass153_16.method4482(Static34.method882(new JString[] { Static278.aClass100_1103, Static123.method2423(local80), Static86.aClass100_488, Static123.method2423(local97) }));
+				Static36.anIntArray84[local74] = aClass153_16.method4482(JString.concatenate(new JString[] { Static103.aClass100_558, JString.parseInt(local80), Static86.aClass100_488, JString.parseInt(local97) }));
+				Static172.anIntArray366[local74] = aClass153_16.method4482(JString.concatenate(new JString[] { Static270.aClass100_1090, JString.parseInt(local80), Static86.aClass100_488, JString.parseInt(local97) }));
+				Static175.anIntArray371[local74] = aClass153_16.method4482(JString.concatenate(new JString[] { Static179.aClass100_807, JString.parseInt(local80), Static86.aClass100_488, JString.parseInt(local97) }));
+				Static99.anIntArray239[local74] = aClass153_16.method4482(JString.concatenate(new JString[] { Static165.aClass100_772, JString.parseInt(local80), Static86.aClass100_488, JString.parseInt(local97) }));
+				Static35.anIntArray82[local74] = aClass153_16.method4482(JString.concatenate(new JString[] { Static278.aClass100_1103, JString.parseInt(local80), Static86.aClass100_488, JString.parseInt(local97) }));
 				if (Static175.anIntArray371[local74] == -1) {
 					Static36.anIntArray84[local74] = -1;
 					Static172.anIntArray366[local74] = -1;
@@ -92,7 +92,7 @@ public final class Static26 {
 				@Pc(45) int local45 = (Static238.anIntArray470[local25] >> 8) * 64 - Camera.originX;
 				@Pc(56) int local56 = (Static238.anIntArray470[local25] & 0xFF) * 64 - Camera.originZ;
 				Static107.method2261();
-				Static124.method2437(local45, arg0, local32, local56, Static148.levelCollisionMap);
+				Static124.method2437(local45, arg0, local32, local56, PathFinder.collisionMaps);
 			}
 		}
 	}
