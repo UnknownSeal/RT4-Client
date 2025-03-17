@@ -19,9 +19,6 @@ public final class FluTypeList {
 	@OriginalMember(owner = "runetek4.client!sd", name = "S", descriptor = "I")
 	public static int anInt5063 = 100;
 
-	@OriginalMember(owner = "runetek4.client!sd", name = "X", descriptor = "Z")
-	public static boolean aBoolean247 = false;
-
 	@OriginalMember(owner = "runetek4.client!sd", name = "c", descriptor = "(II)V")
 	public static void method3884(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		@Pc(7) SceneTile local7 = Static130.levelTiles[0][arg0][arg1];

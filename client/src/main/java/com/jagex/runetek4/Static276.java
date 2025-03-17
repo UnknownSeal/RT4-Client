@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -44,39 +43,6 @@ public final class Static276 {
 	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(I)V")
 	public static void clear() {
 		ClientScriptRunner.aClass99_31.clear();
-	}
-
-	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(IILclient!na;)V")
-	public static void method4613(@OriginalArg(0) int arg0, @OriginalArg(2) JString arg1) {
-		@Pc(7) JString local7 = arg1.method3159().method3125();
-		@Pc(13) boolean local13 = false;
-		for (@Pc(15) int local15 = 0; local15 < PlayerList.playerCount; local15++) {
-			@Pc(28) Player local28 = PlayerList.players[PlayerList.playerIds[local15]];
-			if (local28 != null && local28.username != null && local28.username.equalsIgnoreCase(local7)) {
-				local13 = true;
-				Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local28.movementQueueX[0], 1, 0, 2, local28.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-				if (arg0 == 1) {
-					Protocol.outboundBuffer.pIsaac1(68);
-					Protocol.outboundBuffer.p2_alt3(PlayerList.playerIds[local15]);
-				} else if (arg0 == 4) {
-					Protocol.outboundBuffer.pIsaac1(180);
-					Protocol.outboundBuffer.p2_alt3(PlayerList.playerIds[local15]);
-				} else if (arg0 == 5) {
-					Protocol.outboundBuffer.pIsaac1(4);
-					Protocol.outboundBuffer.p2_alt1(PlayerList.playerIds[local15]);
-				} else if (arg0 == 6) {
-					Protocol.outboundBuffer.pIsaac1(133);
-					Protocol.outboundBuffer.p2_alt1(PlayerList.playerIds[local15]);
-				} else if (arg0 == 7) {
-					Protocol.outboundBuffer.pIsaac1(114);
-					Protocol.outboundBuffer.p2_alt3(PlayerList.playerIds[local15]);
-				}
-				break;
-			}
-		}
-		if (!local13) {
-			Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { LocalizedText.UNABLETOFIND, local7 }));
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "b", descriptor = "(B)Lclient!ok;")

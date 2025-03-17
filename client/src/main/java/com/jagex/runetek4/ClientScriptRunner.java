@@ -145,9 +145,9 @@ public final class ClientScriptRunner {
 			if (local24 != 0) {
 				local73 = (local73 << local24 & 0xF) + (local73 >> 4 - local24);
 			}
-			Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, PlayerList.self.movementQueueX[0]);
+			PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, local59, true, local73, arg2, local62, 0, 2, arg1, PlayerList.self.movementQueueX[0]);
 		} else {
-			Static102.tryMove(PlayerList.self.movementQueueZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, PlayerList.self.movementQueueX[0]);
+			PathFinder.tryMove(PlayerList.self.movementQueueZ[0], local24, 0, true, 0, arg2, 0, local12 + 1, 2, arg1, PlayerList.self.movementQueueX[0]);
 		}
 		Static25.y = Static60.mouseClickY;
 		Static17.crossCycle = 0;
@@ -275,7 +275,7 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "b", descriptor = "(I)V")
 	public static void method28() {
-		Static43.method1143(aClass13_14);
+		InterfaceList.redraw(aClass13_14);
 		Static213.anInt4851++;
 		if (Static44.aBoolean83 && Static146.aBoolean174) {
 			@Pc(30) int local30 = Static215.anInt4873;
@@ -306,7 +306,7 @@ public final class ClientScriptRunner {
 			if (aClass13_14.anObjectArray26 != null && Static138.aBoolean172) {
 				local176 = new HookRequest();
 				local176.source = aClass13_14;
-				local176.anObjectArray31 = aClass13_14.anObjectArray26;
+				local176.arguments = aClass13_14.anObjectArray26;
 				local176.anInt3102 = local122;
 				local176.anInt3097 = local130;
 				run(local176);
@@ -318,7 +318,7 @@ public final class ClientScriptRunner {
 						local176.anInt3097 = local130;
 						local176.aClass13_16 = Static56.aClass13_12;
 						local176.anInt3102 = local122;
-						local176.anObjectArray31 = aClass13_14.anObjectArray16;
+						local176.arguments = aClass13_14.anObjectArray16;
 						local176.source = aClass13_14;
 						run(local176);
 					}

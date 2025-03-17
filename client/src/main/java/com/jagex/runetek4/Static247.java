@@ -676,7 +676,7 @@ public final class Static247 {
 		if (local8 != null && local8.anObjectArray11 != null) {
 			@Pc(19) HookRequest local19 = new HookRequest();
 			local19.source = local8;
-			local19.anObjectArray31 = local8.anObjectArray11;
+			local19.arguments = local8.anObjectArray11;
 			ClientScriptRunner.run(local19);
 		}
 		Static15.anInt506 = arg1;
@@ -686,7 +686,7 @@ public final class Static247 {
 		MiniMenu.aBoolean302 = true;
 		Static246.anInt5393 = arg4;
 		Static35.anInt1092 = arg5;
-		Static43.method1143(local8);
+		InterfaceList.redraw(local8);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(IB)I")

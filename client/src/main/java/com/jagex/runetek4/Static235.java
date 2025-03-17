@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
+import com.jagex.runetek4.input.Keyboard;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -19,7 +20,7 @@ public final class Static235 {
 
 	@OriginalMember(owner = "runetek4.client!tb", name = "h", descriptor = "(I)I")
 	public static int method4044() {
-		return Cheat.shiftClick && Static187.pressedKeys[81] && MiniMenu.menuActionRow > 2 ? Static190.anIntArray382[MiniMenu.menuActionRow - 2] : Static190.anIntArray382[MiniMenu.menuActionRow - 1];
+		return Cheat.shiftClick && Keyboard.pressedKeys[81] && MiniMenu.menuActionRow > 2 ? Static190.anIntArray382[MiniMenu.menuActionRow - 2] : Static190.anIntArray382[MiniMenu.menuActionRow - 1];
 	}
 
 	@OriginalMember(owner = "runetek4.client!tb", name = "b", descriptor = "(IB)Lclient!bc;")

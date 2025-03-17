@@ -131,7 +131,7 @@ public final class Static97 {
 
 	@OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(Lclient!be;B)Lclient!na;")
 	public static JString method1963(@OriginalArg(0) Component arg0) {
-		if (Static36.method940(arg0).method512() == 0) {
+		if (InterfaceList.getServerActiveProperties(arg0).method512() == 0) {
 			return null;
 		} else if (arg0.aClass100_86 == null || arg0.aClass100_86.trim().length() == 0) {
 			return Cheat.qaOpTest ? Static143.HIDDEN_USE : null;

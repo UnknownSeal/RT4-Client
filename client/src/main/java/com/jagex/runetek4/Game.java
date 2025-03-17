@@ -30,8 +30,8 @@ public class Game {
             Static60.systemUpdateTimer--;
             Static209.miscTransmitAt = InterfaceList.transmitTimer;
         }
-        if (FluTypeList.aBoolean247) {
-            FluTypeList.aBoolean247 = false;
+        if (LoginManager.aBoolean247) {
+            LoginManager.aBoolean247 = false;
             tryReconnect();
             return;
         }
@@ -164,7 +164,7 @@ public class Game {
                     break;
                 }
             }
-        } else if (Static187.pressedKeys[96] || Static187.pressedKeys[97] || Static187.pressedKeys[98] || Static187.pressedKeys[99]) {
+        } else if (Keyboard.pressedKeys[96] || Keyboard.pressedKeys[97] || Keyboard.pressedKeys[98] || Keyboard.pressedKeys[99]) {
             Protocol.aBoolean228 = true;
         }
         if (Protocol.aBoolean228 && Static16.anInt551 <= 0) {
@@ -229,7 +229,7 @@ public class Game {
                     component = InterfaceList.getComponent(i);
                     if (!change.stringArg.method3108(component.aClass100_84)) {
                         component.aClass100_84 = change.stringArg;
-                        Static43.method1143(component);
+                        InterfaceList.redraw(component);
                     }
                 } else if (samples == 4) {
                     component = InterfaceList.getComponent(i);
@@ -240,7 +240,7 @@ public class Game {
                         component.modelId = rand;
                         component.anInt498 = dx;
                         component.modelType = x;
-                        Static43.method1143(component);
+                        InterfaceList.redraw(component);
                     }
                 } else if (samples == 5) {
                     component = InterfaceList.getComponent(i);
@@ -249,7 +249,7 @@ public class Game {
                         component.anInt500 = 0;
                         component.anInt522 = change.intArg1;
                         component.anInt510 = 0;
-                        Static43.method1143(component);
+                        InterfaceList.redraw(component);
                     }
                 } else if (samples == 6) {
                     y = change.intArg1;
@@ -260,7 +260,7 @@ public class Game {
                     dy = (dx << 3) + (rand << 11) + (x << 19);
                     if (dy != local1189.anInt474) {
                         local1189.anInt474 = dy;
-                        Static43.method1143(local1189);
+                        InterfaceList.redraw(local1189);
                     }
                 } else if (samples == 7) {
                     component = InterfaceList.getComponent(i);
@@ -269,7 +269,7 @@ public class Game {
                         @Pc(1145) boolean hidden = change.intArg1 == 1;
                         if (hidden != component.hidden) {
                             component.hidden = hidden;
-                            Static43.method1143(component);
+                            InterfaceList.redraw(component);
                         }
                     }
                 } else if (samples == 8) {
@@ -285,14 +285,14 @@ public class Game {
                                 component.modelZoom = component.modelZoom * 32 / component.baseWidth;
                             }
                         }
-                        Static43.method1143(component);
+                        InterfaceList.redraw(component);
                     }
                 } else if (samples == 9) {
                     component = InterfaceList.getComponent(i);
                     if (change.intArg1 != component.objId || component.objCount != change.intArg3) {
                         component.objId = change.intArg1;
                         component.objCount = change.intArg3;
-                        Static43.method1143(component);
+                        InterfaceList.redraw(component);
                     }
                 } else if (samples == 10) {
                     component = InterfaceList.getComponent(i);
@@ -300,7 +300,7 @@ public class Game {
                         component.modelZOffset = change.intArg3;
                         component.modelYOffset = change.intArg2;
                         component.modelXOffset = change.intArg1;
-                        Static43.method1143(component);
+                        InterfaceList.redraw(component);
                     }
                 } else if (samples == 11) {
                     component = InterfaceList.getComponent(i);
@@ -308,7 +308,7 @@ public class Game {
                     component.yMode = 0;
                     component.xMode = 0;
                     component.y = component.baseY = change.intArg3;
-                    Static43.method1143(component);
+                    InterfaceList.redraw(component);
                 } else if (samples == 12) {
                     component = InterfaceList.getComponent(i);
                     x = change.intArg1;
@@ -321,7 +321,7 @@ public class Game {
                         }
                         if (x != component.scrollY) {
                             component.scrollY = x;
-                            Static43.method1143(component);
+                            InterfaceList.redraw(component);
                         }
                     }
                 } else if (samples == 13) {
@@ -341,13 +341,13 @@ public class Game {
         if (Static257.aClass13_7 != null) {
             Static72.anInt2043++;
             if (Static72.anInt2043 >= 15) {
-                Static43.method1143(Static257.aClass13_7);
+                InterfaceList.redraw(Static257.aClass13_7);
                 Static257.aClass13_7 = null;
             }
         }
         @Pc(1361) Component component;
         if (Static118.component != null) {
-            Static43.method1143(Static118.component);
+            InterfaceList.redraw(Static118.component);
             if (Static149.anInt3554 + 5 < Static215.anInt4873 || Static215.anInt4873 < Static149.anInt3554 - 5 || Static206.anInt4773 + 5 < Static223.anInt5032 || Static206.anInt4773 - 5 > Static223.anInt5032) {
                 Static123.lastItemDragged = true;
             }
@@ -363,7 +363,7 @@ public class Game {
                         if (component.invSlotObjId[Static18.mouseInvInterfaceIndex] <= 0) {
                             moveItemInsertionMode = 0;
                         }
-                        if (Static36.method940(component).method504()) {
+                        if (InterfaceList.getServerActiveProperties(component).method504()) {
                             y = Static4.selectedInventorySlot;
                             x = Static18.mouseInvInterfaceIndex;
                             component.invSlotObjId[x] = component.invSlotObjId[y];
@@ -442,8 +442,8 @@ public class Game {
                                             if (ClientScriptRunner.aClass13_14 != null) {
                                                 ClientScriptRunner.method28();
                                             }
-                                            if (LoginManager.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81] && Static58.wheelRotation != 0) {
-                                                y = Player.plane - Static58.wheelRotation;
+                                            if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81] && MouseWheel.wheelRotation != 0) {
+                                                y = Player.plane - MouseWheel.wheelRotation;
                                                 if (y < 0) {
                                                     y = 0;
                                                 } else if (y > 3) {
@@ -452,7 +452,7 @@ public class Game {
                                                 // Cheat
                                                 Cheat.teleport(PlayerList.self.movementQueueX[0] + Camera.originX, PlayerList.self.movementQueueZ[0] + Camera.originZ, y);
                                             }
-                                            if (LoginManager.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
+                                            if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
                                                 if (Static56.clickTileX != -1) {
                                                     Cheat.teleport(Camera.originX + Static56.clickTileX, Camera.originZ + Static116.anInt2954, Player.plane);
                                                 }
@@ -483,7 +483,7 @@ public class Game {
                                                 }
                                                 Static187.anInt4422 = 0;
                                             } else if (Static56.clickTileX != -1 && Static125.anInt3096 == 0 && Static187.anInt4422 == 0) {
-                                                @Pc(1871) boolean success = Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, PlayerList.self.movementQueueX[0]);
+                                                @Pc(1871) boolean success = PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, PlayerList.self.movementQueueX[0]);
                                                 if (success) {
                                                     Static25.y = Static60.mouseClickY;
                                                     Static17.crossCycle = 0;
@@ -495,18 +495,18 @@ public class Game {
                                             aClass6.method843();
                                             if (Static180.aClass13_22 != component) {
                                                 if (component != null) {
-                                                    Static43.method1143(component);
+                                                    InterfaceList.redraw(component);
                                                 }
                                                 if (Static180.aClass13_22 != null) {
-                                                    Static43.method1143(Static180.aClass13_22);
+                                                    InterfaceList.redraw(Static180.aClass13_22);
                                                 }
                                             }
                                             if (local1508 != Static43.aClass13_11 && Static191.anInt4504 == Static133.anInt5235) {
                                                 if (local1508 != null) {
-                                                    Static43.method1143(local1508);
+                                                    InterfaceList.redraw(local1508);
                                                 }
                                                 if (Static43.aClass13_11 != null) {
-                                                    Static43.method1143(Static43.aClass13_11);
+                                                    InterfaceList.redraw(Static43.aClass13_11);
                                                 }
                                             }
                                             if (Static43.aClass13_11 == null) {
@@ -516,7 +516,7 @@ public class Game {
                                             } else if (Static133.anInt5235 < Static191.anInt4504) {
                                                 Static133.anInt5235++;
                                                 if (Static191.anInt4504 == Static133.anInt5235) {
-                                                    Static43.method1143(Static43.aClass13_11);
+                                                    InterfaceList.redraw(Static43.aClass13_11);
                                                 }
                                             }
                                             if (Camera.cameraType == 1) {
@@ -544,7 +544,7 @@ public class Game {
                                                 Protocol.openUrlRequest = null;
                                                 Protocol.newTab = false;
                                             }
-                                            Static131.anInt3251++;
+                                            Protocol.anInt3251++;
                                             Static82.minimapOffsetCycle++;
                                             Static143.cameraOffsetCycle++;
                                             if (Static143.cameraOffsetCycle > 500) {
@@ -600,7 +600,7 @@ public class Game {
                                             if (Minimap.minimapAnticheatAngle > 60) {
                                                 Static263.minimapAngleModifier = -2;
                                             }
-                                            if (Static131.anInt3251 > 50) {
+                                            if (Protocol.anInt3251 > 50) {
                                                 Protocol.outboundBuffer.pIsaac1(93);
                                             }
                                             if (Protocol.verifyIdChanged) {
@@ -608,9 +608,9 @@ public class Game {
                                                 Protocol.verifyIdChanged = false;
                                             }
                                             try {
-                                                if (Static124.gameServerSocket != null && Protocol.outboundBuffer.offset > 0) {
-                                                    Static124.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
-                                                    Static131.anInt3251 = 0;
+                                                if (Protocol.gameServerSocket != null && Protocol.outboundBuffer.offset > 0) {
+                                                    Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
+                                                    Protocol.anInt3251 = 0;
                                                     Protocol.outboundBuffer.offset = 0;
                                                 }
                                             } catch (@Pc(2266) IOException local2266) {
@@ -909,9 +909,9 @@ public class Game {
 
     @OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "(B)V")
     public static void processLogout() {
-        if (Static124.gameServerSocket != null) {
-            Static124.gameServerSocket.closeGracefully();
-            Static124.gameServerSocket = null;
+        if (Protocol.gameServerSocket != null) {
+            Protocol.gameServerSocket.closeGracefully();
+            Protocol.gameServerSocket = null;
         }
         client.unload();
         SceneGraph.clear();
@@ -960,8 +960,8 @@ public class Game {
         if (idleTimeout > 0) {
             processLogout();
         } else {
-            ClientScriptRunner.aClass95_4 = Static124.gameServerSocket;
-            Static124.gameServerSocket = null;
+            ClientScriptRunner.aClass95_4 = Protocol.gameServerSocket;
+            Protocol.gameServerSocket = null;
             client.processGameStatus(40);
         }
     }
@@ -973,9 +973,9 @@ public class Game {
         }
         try {
             if (++Static226.loops > 2000) {
-                if (Static124.gameServerSocket != null) {
-                    Static124.gameServerSocket.closeGracefully();
-                    Static124.gameServerSocket = null;
+                if (Protocol.gameServerSocket != null) {
+                    Protocol.gameServerSocket.closeGracefully();
+                    Protocol.gameServerSocket = null;
                 }
                 if (Static57.errors >= 1) {
                     CreateManager.reply = -5;
@@ -1003,16 +1003,16 @@ public class Game {
                 if (Static72.aClass212_3.status != 1) {
                     return;
                 }
-                Static124.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
+                Protocol.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
                 Static72.aClass212_3 = null;
-                Static124.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
+                Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
                 if (client.musicChannel != null) {
                     client.musicChannel.method3571();
                 }
                 if (client.soundChannel != null) {
                     client.soundChannel.method3571();
                 }
-                local120 = Static124.gameServerSocket.read();
+                local120 = Protocol.gameServerSocket.read();
                 if (client.musicChannel != null) {
                     client.musicChannel.method3571();
                 }
@@ -1022,38 +1022,38 @@ public class Game {
                 if (local120 != 21) {
                     CreateManager.reply = local120;
                     CreateManager.step = 0;
-                    Static124.gameServerSocket.closeGracefully();
-                    Static124.gameServerSocket = null;
+                    Protocol.gameServerSocket.closeGracefully();
+                    Protocol.gameServerSocket = null;
                     return;
                 }
                 CreateManager.step = 3;
             }
             if (CreateManager.step == 3) {
-                if (Static124.gameServerSocket.available() < 1) {
+                if (Protocol.gameServerSocket.available() < 1) {
                     return;
                 }
-                CreateManager.suggestedNames = new JString[Static124.gameServerSocket.read()];
+                CreateManager.suggestedNames = new JString[Protocol.gameServerSocket.read()];
                 CreateManager.step = 4;
             }
             if (CreateManager.step == 4) {
-                if (Static124.gameServerSocket.available() < CreateManager.suggestedNames.length * 8) {
+                if (Protocol.gameServerSocket.available() < CreateManager.suggestedNames.length * 8) {
                     return;
                 }
                 Protocol.inboundBuffer.offset = 0;
-                Static124.gameServerSocket.read(0, CreateManager.suggestedNames.length * 8, Protocol.inboundBuffer.data);
+                Protocol.gameServerSocket.read(0, CreateManager.suggestedNames.length * 8, Protocol.inboundBuffer.data);
                 for (local120 = 0; local120 < CreateManager.suggestedNames.length; local120++) {
                     CreateManager.suggestedNames[local120] = Base37.decode37(Protocol.inboundBuffer.g8());
                 }
                 CreateManager.reply = 21;
                 CreateManager.step = 0;
-                Static124.gameServerSocket.closeGracefully();
-                Static124.gameServerSocket = null;
+                Protocol.gameServerSocket.closeGracefully();
+                Protocol.gameServerSocket = null;
                 return;
             }
         } catch (@Pc(238) IOException ioException) {
-            if (Static124.gameServerSocket != null) {
-                Static124.gameServerSocket.closeGracefully();
-                Static124.gameServerSocket = null;
+            if (Protocol.gameServerSocket != null) {
+                Protocol.gameServerSocket.closeGracefully();
+                Protocol.gameServerSocket = null;
             }
             if (Static57.errors < 1) {
                 Static57.errors++;

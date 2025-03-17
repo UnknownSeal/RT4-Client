@@ -47,6 +47,10 @@ public class Protocol {
     public static boolean newTab;
     @OriginalMember(owner = "client!ck", name = "eb", descriptor = "Z")
     public static boolean verifyIdChanged = false;
+    @OriginalMember(owner = "runetek4.client!kd", name = "ob", descriptor = "I")
+    public static int anInt3251 = 0;
+    @OriginalMember(owner = "runetek4.client!jk", name = "B", descriptor = "Lclient!ma;")
+    public static BufferedSocket gameServerSocket;
 
     @OriginalMember(owner = "runetek4.client!dc", name = "b", descriptor = "(Z)V")
     public static void readPlayerInfo() {
@@ -132,16 +136,16 @@ public class Protocol {
 
     @OriginalMember(owner = "client!ac", name = "a", descriptor = "(B)Z")
     public static boolean readPacketInternal() throws IOException {
-        if (Static124.gameServerSocket == null) {
+        if (gameServerSocket == null) {
             return false;
         }
-        @Pc(14) int available = Static124.gameServerSocket.available();
+        @Pc(14) int available = gameServerSocket.available();
         if (available == 0) {
             return false;
         }
         if (opcode == -1) {
             available--;
-            Static124.gameServerSocket.read(0, 1, inboundBuffer.data);
+            gameServerSocket.read(0, 1, inboundBuffer.data);
             inboundBuffer.offset = 0;
             opcode = inboundBuffer.gIssac1();
             Static223.packetSize = Static234.anIntArray456[opcode];
@@ -150,7 +154,7 @@ public class Protocol {
             if (available <= 0) {
                 return false;
             }
-            Static124.gameServerSocket.read(0, 1, inboundBuffer.data);
+            gameServerSocket.read(0, 1, inboundBuffer.data);
             available--;
             Static223.packetSize = inboundBuffer.data[0] & 0xFF;
         }
@@ -159,7 +163,7 @@ public class Protocol {
                 return false;
             }
             available -= 2;
-            Static124.gameServerSocket.read(0, 2, inboundBuffer.data);
+            gameServerSocket.read(0, 2, inboundBuffer.data);
             inboundBuffer.offset = 0;
             Static223.packetSize = inboundBuffer.g2();
         }
@@ -167,7 +171,7 @@ public class Protocol {
             return false;
         }
         inboundBuffer.offset = 0;
-        Static124.gameServerSocket.read(0, Static223.packetSize, inboundBuffer.data);
+        gameServerSocket.read(0, Static223.packetSize, inboundBuffer.data);
         opcode4 = opcode3;
         opcode3 = opcode2;
         opcode2 = opcode;
@@ -196,7 +200,7 @@ public class Protocol {
             local163[0] = Integer.valueOf(inboundBuffer.g4());
             if (setVerifyID(ii)) {
                 @Pc(226) HookRequest local226 = new HookRequest();
-                local226.anObjectArray31 = local163;
+                local226.arguments = local163;
                 ClientScriptRunner.run(local226);
             }
             opcode = -1;
@@ -753,7 +757,7 @@ public class Protocol {
                                 InterfaceList.closeInterface(true, local2441);
                             }
                             if (ClientScriptRunner.aClass13_10 != null) {
-                                Static43.method1143(ClientScriptRunner.aClass13_10);
+                                InterfaceList.redraw(ClientScriptRunner.aClass13_10);
                                 ClientScriptRunner.aClass13_10 = null;
                             }
                         }
@@ -810,7 +814,7 @@ public class Protocol {
                             local2666.invSlotObjId[world] = -1;
                             local2666.invSlotObjId[world] = 0;
                         }
-                        Static43.method1143(local2666);
+                        InterfaceList.redraw(local2666);
                         opcode = -1;
                         return true;
                     } else if (opcode == 130) {
@@ -1006,11 +1010,11 @@ public class Protocol {
                                     }
                                     @Pc(3490) Component local3490 = InterfaceList.getComponent(ii);
                                     if (local3490 != null) {
-                                        Static43.method1143(local3490);
+                                        InterfaceList.redraw(local3490);
                                     }
                                     local3490 = InterfaceList.getComponent(world);
                                     if (local3490 != null) {
-                                        Static43.method1143(local3490);
+                                        InterfaceList.redraw(local3490);
                                         Static17.method531(local3490, true);
                                     }
                                     if (InterfaceList.topLevelInterace != -1) {
@@ -1412,7 +1416,7 @@ public class Protocol {
                                         Inv.update(count - 1, slot, i, xp);
                                     }
                                     if (local4956 != null) {
-                                        Static43.method1143(local4956);
+                                        InterfaceList.redraw(local4956);
                                     }
                                     Static103.method2245();
                                     Static27.anIntArray70[Static111.anInt2901++ & 0x1F] = xp & 0x7FFF;
@@ -1585,7 +1589,7 @@ public class Protocol {
                                             com.modelType = 4;
                                             com.modelId = world;
                                             com.modelYAngle = obj.yan2d;
-                                            Static43.method1143(com);
+                                            InterfaceList.redraw(com);
                                         }
                                     }
                                     opcode = -1;
@@ -1622,7 +1626,7 @@ public class Protocol {
                                         Inv.update(local1160 - 1, count, i, xp);
                                     }
                                     if (local4956 != null) {
-                                        Static43.method1143(local4956);
+                                        InterfaceList.redraw(local4956);
                                     }
                                     Static103.method2245();
                                     Static27.anIntArray70[Static111.anInt2901++ & 0x1F] = xp & 0x7FFF;

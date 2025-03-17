@@ -49,4 +49,37 @@ public class MidiPlayer {
         Static172.aClass3_Sub3_Sub4_2 = arg0;
         return true;
     }
+
+    @OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(Z)V")
+    public static void loop() {
+        try {
+            if (Static14.anInt441 == 1) {
+                @Pc(16) int local16 = Static172.aClass3_Sub3_Sub4_2.method4440();
+                if (local16 > 0 && Static172.aClass3_Sub3_Sub4_2.method4414()) {
+                    local16 -= Static57.anInt1757;
+                    if (local16 < 0) {
+                        local16 = 0;
+                    }
+                    Static172.aClass3_Sub3_Sub4_2.method4447(local16);
+                    return;
+                }
+                Static172.aClass3_Sub3_Sub4_2.method4446();
+                Static172.aClass3_Sub3_Sub4_2.method4426();
+                Static144.aClass3_Sub29_1 = null;
+                Static27.aClass89_1 = null;
+                if (Static172.aClass153_70 == null) {
+                    Static14.anInt441 = 0;
+                } else {
+                    Static14.anInt441 = 2;
+                }
+            }
+        } catch (@Pc(62) Exception local62) {
+            local62.printStackTrace();
+            Static172.aClass3_Sub3_Sub4_2.method4446();
+            Static172.aClass153_70 = null;
+            Static144.aClass3_Sub29_1 = null;
+            Static14.anInt441 = 0;
+            Static27.aClass89_1 = null;
+        }
+    }
 }

@@ -22,7 +22,7 @@ public final class ServerActiveProperties extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "a", descriptor = "(IB)Z")
-	public boolean method503(@OriginalArg(0) int arg0) {
+	public boolean isButtonEnabled(@OriginalArg(0) int arg0) {
 		return (this.anInt546 >> arg0 + 1 & 0x1) != 0;
 	}
 

@@ -842,9 +842,9 @@ public final class client extends GameShell {
 			MouseCapturer.instance.running = false;
 		}
 		MouseCapturer.instance = null;
-		if (Static124.gameServerSocket != null) {
-			Static124.gameServerSocket.closeGracefully();
-			Static124.gameServerSocket = null;
+		if (Protocol.gameServerSocket != null) {
+			Protocol.gameServerSocket.closeGracefully();
+			Protocol.gameServerSocket = null;
 		}
 		Keyboard.stop(GameShell.canvas);
 		Mouse.stop(GameShell.canvas);
@@ -1591,46 +1591,46 @@ public final class client extends GameShell {
 		}
 		loop++;
 		if (loop % 1000 == 1) {
-			@Pc(24) GregorianCalendar local24 = new GregorianCalendar();
-			Static60.anInt1895 = local24.get(11) * 600 + local24.get(12) * 10 + local24.get(13) / 6;
-			aRandom1.setSeed((long) Static60.anInt1895);
+			@Pc(24) GregorianCalendar gregorianCalendar = new GregorianCalendar();
+			MiniMenu.gregorianDateSeed = gregorianCalendar.get(11) * 600 + gregorianCalendar.get(12) * 10 + gregorianCalendar.get(13) / 6;
+			aRandom1.setSeed((long) MiniMenu.gregorianDateSeed);
 		}
 		this.js5NetworkLoop();
 		if (js5MasterIndex != null) {
 			js5MasterIndex.method179();
 		}
-		Static230.method3948();
+		MidiPlayer.loop();
 		audioLoop();
-		Static65.method1501();
-		Static111.method2292();
+		Keyboard.loop();
+		Mouse.loop();
 		if (GlRenderer.enabled) {
-			Static63.method1490();
+			GlCleaner.process();
 		}
 		if (mouseWheel != null) {
-			@Pc(75) int local75 = mouseWheel.method3287();
-			Static58.wheelRotation = local75;
+			@Pc(75) int wheelRotation = mouseWheel.getRotation();
+			MouseWheel.wheelRotation = wheelRotation;
 		}
 		if (gameState == 0) {
 			this.mainLoad();
-			Static234.method4020();
+			GameShell.resetTimer();
 		} else if (gameState == 5) {
 			this.mainLoad();
-			Static234.method4020();
+			GameShell.resetTimer();
 		} else if (gameState == 25 || gameState == 28) {
-			Static78.method1696();
+			LoginManager.rebuildMap();
 		}
 		if (gameState == 10) {
 			this.mainUpdate();
 			Game.handleLoginScreenActions();
-			Static31.method848();
-			Static216.method1639();
+			LoginManager.loopAuto();
+			LoginManager.loop();
 		} else if (gameState == 30) {
 			Game.updateGame();
 		} else if (gameState == 40) {
-			Static216.method1639();
+			LoginManager.loop();
 			if (LoginManager.reply != -3) {
 				if (LoginManager.reply == 15) {
-					Static44.method1146();
+					LoginManager.reconnect();
 				} else if (LoginManager.reply != 2) {
 					Game.processLogout();
 				}

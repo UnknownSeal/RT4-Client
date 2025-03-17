@@ -49,13 +49,6 @@ public final class Static43 {
 		return Static105.addLoc(arg0, x0, z0, x1 + 1 - x0, z1 - z0 + 1, x, z, arg3, arg5, yaw, true, arg7);
 	}
 
-	@OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(ILclient!be;)V")
-	public static void method1143(@OriginalArg(1) Component arg0) {
-		if (Static182.anInt4311 == arg0.anInt465) {
-			InterfaceList.aBooleanArray100[arg0.anInt517] = true;
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(IIIIIILclient!mj;)V")
 	public static void method1144(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) CollisionMap arg5) {
 		@Pc(9) long local9 = 0L;

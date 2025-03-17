@@ -5,6 +5,7 @@ import com.jagex.runetek4.cache.media.ImageRGB;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.config.cursortype.CursorType;
+import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -147,7 +148,7 @@ public class InterfaceList {
         Static273.method3214(local16);
         @Pc(32) Component local32 = getComponent(local9);
         if (local32 != null) {
-            Static43.method1143(local32);
+            redraw(local32);
         }
         @Pc(41) int local41 = MiniMenu.menuActionRow;
         @Pc(43) int local43;
@@ -235,5 +236,18 @@ public class InterfaceList {
             }
         }
         return Component.cachedComponents[interfaceId][componentId];
+    }
+
+    @OriginalMember(owner = "runetek4.client!runetek4.client", name = "b", descriptor = "(Lclient!be;)Lclient!bf;")
+    public static ServerActiveProperties getServerActiveProperties(@OriginalArg(0) Component arg0) {
+        @Pc(13) ServerActiveProperties local13 = (ServerActiveProperties) Static210.aClass133_21.getNode(((long) arg0.anInt507 << 32) + (long) arg0.createdComponentId);
+        return local13 == null ? arg0.aClass3_Sub4_1 : local13;
+    }
+
+    @OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(ILclient!be;)V")
+    public static void redraw(@OriginalArg(1) Component arg0) {
+        if (Static182.anInt4311 == arg0.anInt465) {
+            aBooleanArray100[arg0.anInt517] = true;
+        }
     }
 }

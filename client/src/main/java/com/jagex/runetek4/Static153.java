@@ -68,20 +68,6 @@ public final class Static153 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!mc", name = "f", descriptor = "(B)V")
-	public static void method2909() {
-		Protocol.outboundBuffer.pIsaac1(184);
-		for (@Pc(18) ComponentPointer local18 = (ComponentPointer) InterfaceList.openInterfaces.head(); local18 != null; local18 = (ComponentPointer) InterfaceList.openInterfaces.prev()) {
-			if (local18.anInt5879 == 0) {
-				InterfaceList.closeInterface(true, local18);
-			}
-		}
-		if (ClientScriptRunner.aClass13_10 != null) {
-			Static43.method1143(ClientScriptRunner.aClass13_10);
-			ClientScriptRunner.aClass13_10 = null;
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!mc", name = "a", descriptor = "(BI)V")
 	public static void method2910(@OriginalArg(1) int arg0) {
 		@Pc(4) DelayedStateChange local4 = Static238.method4143(8, arg0);

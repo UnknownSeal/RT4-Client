@@ -39,17 +39,17 @@ public final class Static96 {
 		Static145.anIntArrayArray25[arg8][arg11] = 99;
 		Static167.anIntArrayArray31[arg8][arg11] = 0;
 		@Pc(53) byte local53 = 0;
-		Static259.anIntArray514[0] = arg8;
+		PathFinder.queueX[0] = arg8;
 		@Pc(65) int local65 = local53 + 1;
-		Static84.anIntArray209[0] = arg11;
+		PathFinder.queueZ[0] = arg11;
 		@Pc(69) int local69 = 0;
 		@Pc(71) boolean local71 = false;
 		@Pc(76) int[][] local76 = PathFinder.collisionMaps[Player.plane].flags;
 		@Pc(201) int local201;
 		@Pc(242) int local242;
 		label397: while (local69 != local65) {
-			local3 = Static259.anIntArray514[local69];
-			local10 = Static84.anIntArray209[local69];
+			local3 = PathFinder.queueX[local69];
+			local10 = PathFinder.queueZ[local69];
 			local69 = local69 + 1 & 0xFFF;
 			if (arg5 == local3 && local10 == arg0) {
 				local71 = true;
@@ -74,8 +74,8 @@ public final class Static96 {
 				local242 = 1;
 				while (true) {
 					if (arg4 - 1 <= local242) {
-						Static259.anIntArray514[local65] = local3 - 1;
-						Static84.anIntArray209[local65] = local10;
+						PathFinder.queueX[local65] = local3 - 1;
+						PathFinder.queueZ[local65] = local10;
 						Static145.anIntArrayArray25[local3 - 1][local10] = 2;
 						local65 = local65 + 1 & 0xFFF;
 						Static167.anIntArrayArray31[local3 - 1][local10] = local201;
@@ -91,8 +91,8 @@ public final class Static96 {
 				local242 = 1;
 				while (true) {
 					if (local242 >= arg4 - 1) {
-						Static259.anIntArray514[local65] = local3 + 1;
-						Static84.anIntArray209[local65] = local10;
+						PathFinder.queueX[local65] = local3 + 1;
+						PathFinder.queueZ[local65] = local10;
 						Static145.anIntArrayArray25[local3 + 1][local10] = 8;
 						Static167.anIntArrayArray31[local3 + 1][local10] = local201;
 						local65 = local65 + 1 & 0xFFF;
@@ -108,8 +108,8 @@ public final class Static96 {
 				local242 = 1;
 				while (true) {
 					if (arg4 - 1 <= local242) {
-						Static259.anIntArray514[local65] = local3;
-						Static84.anIntArray209[local65] = local10 - 1;
+						PathFinder.queueX[local65] = local3;
+						PathFinder.queueZ[local65] = local10 - 1;
 						Static145.anIntArrayArray25[local3][local10 - 1] = 1;
 						local65 = local65 + 1 & 0xFFF;
 						Static167.anIntArrayArray31[local3][local10 - 1] = local201;
@@ -125,8 +125,8 @@ public final class Static96 {
 				local242 = 1;
 				while (true) {
 					if (local242 >= arg4 - 1) {
-						Static259.anIntArray514[local65] = local3;
-						Static84.anIntArray209[local65] = local10 + 1;
+						PathFinder.queueX[local65] = local3;
+						PathFinder.queueZ[local65] = local10 + 1;
 						Static145.anIntArrayArray25[local3][local10 + 1] = 4;
 						Static167.anIntArrayArray31[local3][local10 + 1] = local201;
 						local65 = local65 + 1 & 0xFFF;
@@ -142,8 +142,8 @@ public final class Static96 {
 				local242 = 1;
 				while (true) {
 					if (arg4 - 1 <= local242) {
-						Static259.anIntArray514[local65] = local3 - 1;
-						Static84.anIntArray209[local65] = local10 - 1;
+						PathFinder.queueX[local65] = local3 - 1;
+						PathFinder.queueZ[local65] = local10 - 1;
 						local65 = local65 + 1 & 0xFFF;
 						Static145.anIntArrayArray25[local3 - 1][local10 - 1] = 3;
 						Static167.anIntArrayArray31[local3 - 1][local10 - 1] = local201;
@@ -159,8 +159,8 @@ public final class Static96 {
 				local242 = 1;
 				while (true) {
 					if (local242 >= arg4 - 1) {
-						Static259.anIntArray514[local65] = local3 + 1;
-						Static84.anIntArray209[local65] = local10 - 1;
+						PathFinder.queueX[local65] = local3 + 1;
+						PathFinder.queueZ[local65] = local10 - 1;
 						local65 = local65 + 1 & 0xFFF;
 						Static145.anIntArrayArray25[local3 + 1][local10 - 1] = 9;
 						Static167.anIntArrayArray31[local3 + 1][local10 - 1] = local201;
@@ -176,8 +176,8 @@ public final class Static96 {
 				local242 = 1;
 				while (true) {
 					if (arg4 - 1 <= local242) {
-						Static259.anIntArray514[local65] = local3 - 1;
-						Static84.anIntArray209[local65] = local10 + 1;
+						PathFinder.queueX[local65] = local3 - 1;
+						PathFinder.queueZ[local65] = local10 + 1;
 						local65 = local65 + 1 & 0xFFF;
 						Static145.anIntArrayArray25[local3 - 1][local10 + 1] = 6;
 						Static167.anIntArrayArray31[local3 - 1][local10 + 1] = local201;
@@ -195,8 +195,8 @@ public final class Static96 {
 						continue label397;
 					}
 				}
-				Static259.anIntArray514[local65] = local3 + 1;
-				Static84.anIntArray209[local65] = local10 + 1;
+				PathFinder.queueX[local65] = local3 + 1;
+				PathFinder.queueZ[local65] = local10 + 1;
 				Static145.anIntArrayArray25[local3 + 1][local10 + 1] = 12;
 				Static167.anIntArrayArray31[local3 + 1][local10 + 1] = local201;
 				local65 = local65 + 1 & 0xFFF;
@@ -243,15 +243,15 @@ public final class Static96 {
 			BZip2State.tryMoveNearest = 1;
 		}
 		@Pc(1438) byte local1438 = 0;
-		Static259.anIntArray514[0] = local3;
+		PathFinder.queueX[0] = local3;
 		local69 = local1438 + 1;
-		Static84.anIntArray209[0] = local10;
+		PathFinder.queueZ[0] = local10;
 		local201 = local242 = Static145.anIntArrayArray25[local3][local10];
 		while (local3 != arg8 || arg11 != local10) {
 			if (local242 != local201) {
-				Static259.anIntArray514[local69] = local3;
+				PathFinder.queueX[local69] = local3;
 				local242 = local201;
-				Static84.anIntArray209[local69++] = local10;
+				PathFinder.queueZ[local69++] = local10;
 			}
 			if ((local201 & 0x2) != 0) {
 				local3++;
@@ -266,7 +266,7 @@ public final class Static96 {
 			local201 = Static145.anIntArrayArray25[local3][local10];
 		}
 		if (local69 > 0) {
-			Static193.method3502(local69, arg2);
+			ClientProt.method3502(local69, arg2);
 			return true;
 		} else if (arg2 == 1) {
 			return false;

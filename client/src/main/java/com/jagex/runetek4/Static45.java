@@ -513,14 +513,14 @@ public final class Static45 {
 		@Pc(51) byte local51 = 0;
 		@Pc(53) boolean local53 = false;
 		@Pc(64) int local64 = 0;
-		Static259.anIntArray514[0] = arg2;
+		PathFinder.queueX[0] = arg2;
 		@Pc(71) int local71 = local51 + 1;
-		Static84.anIntArray209[0] = arg9;
+		PathFinder.queueZ[0] = arg9;
 		@Pc(78) int[][] local78 = PathFinder.collisionMaps[Player.plane].flags;
 		@Pc(198) int local198;
 		while (local71 != local64) {
-			local10 = Static84.anIntArray209[local64];
-			local3 = Static259.anIntArray514[local64];
+			local10 = PathFinder.queueZ[local64];
+			local3 = PathFinder.queueX[local64];
 			local64 = local64 + 1 & 0xFFF;
 			if (local3 == arg0 && local10 == arg3) {
 				local53 = true;
@@ -542,57 +542,57 @@ public final class Static45 {
 			}
 			local198 = Static167.anIntArrayArray31[local3][local10] + 1;
 			if (local3 > 0 && Static145.anIntArrayArray25[local3 - 1][local10] == 0 && (local78[local3 - 1][local10] & 0x12C0108) == 0) {
-				Static259.anIntArray514[local71] = local3 - 1;
-				Static84.anIntArray209[local71] = local10;
+				PathFinder.queueX[local71] = local3 - 1;
+				PathFinder.queueZ[local71] = local10;
 				local71 = local71 + 1 & 0xFFF;
 				Static145.anIntArrayArray25[local3 - 1][local10] = 2;
 				Static167.anIntArrayArray31[local3 - 1][local10] = local198;
 			}
 			if (local3 < 103 && Static145.anIntArrayArray25[local3 + 1][local10] == 0 && (local78[local3 + 1][local10] & 0x12C0180) == 0) {
-				Static259.anIntArray514[local71] = local3 + 1;
-				Static84.anIntArray209[local71] = local10;
+				PathFinder.queueX[local71] = local3 + 1;
+				PathFinder.queueZ[local71] = local10;
 				local71 = local71 + 1 & 0xFFF;
 				Static145.anIntArrayArray25[local3 + 1][local10] = 8;
 				Static167.anIntArrayArray31[local3 + 1][local10] = local198;
 			}
 			if (local10 > 0 && Static145.anIntArrayArray25[local3][local10 - 1] == 0 && (local78[local3][local10 - 1] & 0x12C0102) == 0) {
-				Static259.anIntArray514[local71] = local3;
-				Static84.anIntArray209[local71] = local10 - 1;
+				PathFinder.queueX[local71] = local3;
+				PathFinder.queueZ[local71] = local10 - 1;
 				Static145.anIntArrayArray25[local3][local10 - 1] = 1;
 				local71 = local71 + 1 & 0xFFF;
 				Static167.anIntArrayArray31[local3][local10 - 1] = local198;
 			}
 			if (local10 < 103 && Static145.anIntArrayArray25[local3][local10 + 1] == 0 && (local78[local3][local10 + 1] & 0x12C0120) == 0) {
-				Static259.anIntArray514[local71] = local3;
-				Static84.anIntArray209[local71] = local10 + 1;
+				PathFinder.queueX[local71] = local3;
+				PathFinder.queueZ[local71] = local10 + 1;
 				local71 = local71 + 1 & 0xFFF;
 				Static145.anIntArrayArray25[local3][local10 + 1] = 4;
 				Static167.anIntArrayArray31[local3][local10 + 1] = local198;
 			}
 			if (local3 > 0 && local10 > 0 && Static145.anIntArrayArray25[local3 - 1][local10 - 1] == 0 && (local78[local3 - 1][local10 - 1] & 0x12C010E) == 0 && (local78[local3 - 1][local10] & 0x12C0108) == 0 && (local78[local3][local10 - 1] & 0x12C0102) == 0) {
-				Static259.anIntArray514[local71] = local3 - 1;
-				Static84.anIntArray209[local71] = local10 - 1;
+				PathFinder.queueX[local71] = local3 - 1;
+				PathFinder.queueZ[local71] = local10 - 1;
 				local71 = local71 + 1 & 0xFFF;
 				Static145.anIntArrayArray25[local3 - 1][local10 - 1] = 3;
 				Static167.anIntArrayArray31[local3 - 1][local10 - 1] = local198;
 			}
 			if (local3 < 103 && local10 > 0 && Static145.anIntArrayArray25[local3 + 1][local10 - 1] == 0 && (local78[local3 + 1][local10 - 1] & 0x12C0183) == 0 && (local78[local3 + 1][local10] & 0x12C0180) == 0 && (local78[local3][local10 - 1] & 0x12C0102) == 0) {
-				Static259.anIntArray514[local71] = local3 + 1;
-				Static84.anIntArray209[local71] = local10 - 1;
+				PathFinder.queueX[local71] = local3 + 1;
+				PathFinder.queueZ[local71] = local10 - 1;
 				local71 = local71 + 1 & 0xFFF;
 				Static145.anIntArrayArray25[local3 + 1][local10 - 1] = 9;
 				Static167.anIntArrayArray31[local3 + 1][local10 - 1] = local198;
 			}
 			if (local3 > 0 && local10 < 103 && Static145.anIntArrayArray25[local3 - 1][local10 + 1] == 0 && (local78[local3 - 1][local10 + 1] & 0x12C0138) == 0 && (local78[local3 - 1][local10] & 0x12C0108) == 0 && (local78[local3][local10 + 1] & 0x12C0120) == 0) {
-				Static259.anIntArray514[local71] = local3 - 1;
-				Static84.anIntArray209[local71] = local10 + 1;
+				PathFinder.queueX[local71] = local3 - 1;
+				PathFinder.queueZ[local71] = local10 + 1;
 				Static145.anIntArrayArray25[local3 - 1][local10 + 1] = 6;
 				local71 = local71 + 1 & 0xFFF;
 				Static167.anIntArrayArray31[local3 - 1][local10 + 1] = local198;
 			}
 			if (local3 < 103 && local10 < 103 && Static145.anIntArrayArray25[local3 + 1][local10 + 1] == 0 && (local78[local3 + 1][local10 + 1] & 0x12C01E0) == 0 && (local78[local3 + 1][local10] & 0x12C0180) == 0 && (local78[local3][local10 + 1] & 0x12C0120) == 0) {
-				Static259.anIntArray514[local71] = local3 + 1;
-				Static84.anIntArray209[local71] = local10 + 1;
+				PathFinder.queueX[local71] = local3 + 1;
+				PathFinder.queueZ[local71] = local10 + 1;
 				Static145.anIntArrayArray25[local3 + 1][local10 + 1] = 12;
 				local71 = local71 + 1 & 0xFFF;
 				Static167.anIntArrayArray31[local3 + 1][local10 + 1] = local198;
@@ -640,15 +640,15 @@ public final class Static45 {
 			BZip2State.tryMoveNearest = 1;
 		}
 		@Pc(1032) byte local1032 = 0;
-		Static259.anIntArray514[0] = local3;
+		PathFinder.queueX[0] = local3;
 		local64 = local1032 + 1;
-		Static84.anIntArray209[0] = local10;
+		PathFinder.queueZ[0] = local10;
 		local198 = local839 = Static145.anIntArrayArray25[local3][local10];
 		while (arg2 != local3 || local10 != arg9) {
 			if (local839 != local198) {
 				local839 = local198;
-				Static259.anIntArray514[local64] = local3;
-				Static84.anIntArray209[local64++] = local10;
+				PathFinder.queueX[local64] = local3;
+				PathFinder.queueZ[local64++] = local10;
 			}
 			if ((local198 & 0x2) != 0) {
 				local3++;
@@ -663,7 +663,7 @@ public final class Static45 {
 			local198 = Static145.anIntArrayArray25[local3][local10];
 		}
 		if (local64 > 0) {
-			Static193.method3502(local64, arg4);
+			ClientProt.method3502(local64, arg4);
 			return true;
 		} else if (arg4 == 1) {
 			return false;

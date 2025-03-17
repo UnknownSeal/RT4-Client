@@ -8,9 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static187 {
 
-	@OriginalMember(owner = "runetek4.client!pb", name = "q", descriptor = "[Z")
-	public static final boolean[] pressedKeys = new boolean[112];
-
 	@OriginalMember(owner = "runetek4.client!pb", name = "x", descriptor = "[[[I")
 	public static final int[][][] anIntArrayArrayArray18 = new int[4][13][13];
 

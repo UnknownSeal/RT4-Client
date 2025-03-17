@@ -297,7 +297,7 @@ public final class DisplayMode {
 		if (InterfaceList.topLevelInterace != -1) {
 			Static210.method3712(true);
 		}
-		if (Static124.gameServerSocket != null && (client.gameState == 30 || client.gameState == 25)) {
+		if (Protocol.gameServerSocket != null && (client.gameState == 30 || client.gameState == 25)) {
 			ClientProt.sendWindowDetails();
 		}
 		for (@Pc(466) int local466 = 0; local466 < 100; local466++) {

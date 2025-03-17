@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.Inv;
+import com.jagex.runetek4.input.Keyboard;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -26,7 +27,7 @@ public final class Static13 {
 			local32 = JString.concatenate(new JString[] { LocalizedText.USE, LocalizedText.MINISEPARATOR, Static34.aClass100_203, Static225.aClass100_961 });
 		} else if (MiniMenu.aBoolean302 && MiniMenu.menuActionRow < 2) {
 			local32 = JString.concatenate(new JString[] { Static102.aClass100_545, LocalizedText.MINISEPARATOR, Static78.aClass100_466, Static225.aClass100_961 });
-		} else if (Cheat.shiftClick && Static187.pressedKeys[81] && MiniMenu.menuActionRow > 2) {
+		} else if (Cheat.shiftClick && Keyboard.pressedKeys[81] && MiniMenu.menuActionRow > 2) {
 			local32 = Static269.method2228(MiniMenu.menuActionRow - 2);
 		} else {
 			local32 = Static269.method2228(MiniMenu.menuActionRow - 1);

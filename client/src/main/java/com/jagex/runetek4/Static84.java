@@ -20,9 +20,6 @@ public final class Static84 {
 	@OriginalMember(owner = "runetek4.client!gk", name = "l", descriptor = "Lclient!qf;")
 	public static Sprite aClass3_Sub2_Sub1_4;
 
-	@OriginalMember(owner = "runetek4.client!gk", name = "c", descriptor = "[I")
-	public static final int[] anIntArray209 = new int[4096];
-
 	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "(IIBLclient!e;)V")
 	public static void getPlayerExtended(@OriginalArg(0) int flags, @OriginalArg(1) int arg1, @OriginalArg(3) Player player) {
 		@Pc(13) int chatFlags;

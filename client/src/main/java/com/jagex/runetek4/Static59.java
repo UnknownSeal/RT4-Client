@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -18,7 +19,7 @@ public final class Static59 {
 		if (Static162.anInt3953 == 2) {
 			if (Static155.anInt3751 == Static277.anInt5850 && Static60.anInt1892 == Static280.anInt5895) {
 				Static162.anInt3953 = 0;
-				if (Cheat.shiftClick && Static187.pressedKeys[81] && MiniMenu.menuActionRow > 2) {
+				if (Cheat.shiftClick && Keyboard.pressedKeys[81] && MiniMenu.menuActionRow > 2) {
 					Static103.method2232(MiniMenu.menuActionRow - 2);
 				} else {
 					Static103.method2232(MiniMenu.menuActionRow - 1);
@@ -26,7 +27,7 @@ public final class Static59 {
 			}
 		} else if (Static155.anInt3751 == aClass6.mouseClickX && Static60.anInt1892 == Static60.mouseClickY) {
 			Static162.anInt3953 = 0;
-			if (Cheat.shiftClick && Static187.pressedKeys[81] && MiniMenu.menuActionRow > 2) {
+			if (Cheat.shiftClick && Keyboard.pressedKeys[81] && MiniMenu.menuActionRow > 2) {
 				Static103.method2232(MiniMenu.menuActionRow - 2);
 			} else {
 				Static103.method2232(MiniMenu.menuActionRow - 1);

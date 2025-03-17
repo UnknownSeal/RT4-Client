@@ -16,9 +16,6 @@ public final class Static58 {
 	@OriginalMember(owner = "runetek4.client!eh", name = "a", descriptor = "Z")
 	public static boolean shutdown = false;
 
-	@OriginalMember(owner = "runetek4.client!eh", name = "j", descriptor = "I")
-	public static int wheelRotation = 0;
-
 	@OriginalMember(owner = "runetek4.client!eh", name = "a", descriptor = "(Lclient!ve;I)V")
 	public static void init(@OriginalArg(0) Js5 arg0) {
 		Static23.aClass153_11 = arg0;

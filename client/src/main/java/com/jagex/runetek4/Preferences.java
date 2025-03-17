@@ -109,21 +109,21 @@ public class Preferences {
         } else if (WorldMap.loadPercentage == 20) {
             Static33.method868(new Packet(Static119.aClass153_44.fetchFile(Static166.aClass100_779, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
             WorldMap.loadPercentage = 30;
-            aClass6.method842(true);
-            Static234.method4020();
+            ClientProt.ping(true);
+            GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 30) {
             Static47.method3998(new Packet(Static119.aClass153_44.fetchFile(Static4.aClass100_7, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
             WorldMap.loadPercentage = 40;
-            Static234.method4020();
+            GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 40) {
             PreciseSleep.method3980(new Packet(Static119.aClass153_44.fetchFile(Static73.OVERLAY2, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
             WorldMap.loadPercentage = 50;
-            Static234.method4020();
+            GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 50) {
             Static166.method3166(new Packet(Static119.aClass153_44.fetchFile(Static42.aClass100_331, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
             WorldMap.loadPercentage = 60;
-            aClass6.method842(true);
-            Static234.method4020();
+            ClientProt.ping(true);
+            GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 60) {
             if (Static119.aClass153_44.method4497(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
                 if (!Static119.aClass153_44.method4489(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
@@ -134,47 +134,47 @@ public class Preferences {
                 Static203.aMapElementTypeList_1 = new MapElementTypeList(0);
             }
             WorldMap.loadPercentage = 70;
-            Static234.method4020();
+            GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 70) {
             Static273.aClass41_7 = new WorldMapFont(11, true, GameShell.canvas);
             WorldMap.loadPercentage = 73;
-            aClass6.method842(true);
-            Static234.method4020();
+            ClientProt.ping(true);
+            GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 73) {
             Static152.aClass41_3 = new WorldMapFont(12, true, GameShell.canvas);
             WorldMap.loadPercentage = 76;
-            aClass6.method842(true);
-            Static234.method4020();
+            ClientProt.ping(true);
+            GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 76) {
             Static169.aClass41_5 = new WorldMapFont(14, true, GameShell.canvas);
             WorldMap.loadPercentage = 79;
-            aClass6.method842(true);
-            Static234.method4020();
+            ClientProt.ping(true);
+            GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 79) {
             Static130.aClass41_1 = new WorldMapFont(17, true, GameShell.canvas);
             WorldMap.loadPercentage = 82;
-            aClass6.method842(true);
-            Static234.method4020();
+            ClientProt.ping(true);
+            GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 82) {
             Static203.aClass41_8 = new WorldMapFont(19, true, GameShell.canvas);
             WorldMap.loadPercentage = 85;
-            aClass6.method842(true);
-            Static234.method4020();
+            ClientProt.ping(true);
+            GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 85) {
             Static130.aClass41_2 = new WorldMapFont(22, true, GameShell.canvas);
             WorldMap.loadPercentage = 88;
-            aClass6.method842(true);
-            Static234.method4020();
+            ClientProt.ping(true);
+            GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 88) {
             Static270.aClass41_9 = new WorldMapFont(26, true, GameShell.canvas);
             WorldMap.loadPercentage = 91;
-            aClass6.method842(true);
-            Static234.method4020();
+            ClientProt.ping(true);
+            GameShell.resetTimer();
         } else {
             Static160.aClass41_4 = new WorldMapFont(30, true, GameShell.canvas);
             WorldMap.loadPercentage = 100;
-            aClass6.method842(true);
-            Static234.method4020();
+            ClientProt.ping(true);
+            GameShell.resetTimer();
             System.gc();
         }
     }

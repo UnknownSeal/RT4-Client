@@ -54,7 +54,7 @@ public final class Static2 {
 				@Pc(72) HookRequest local72;
 				if (arg1 == 0 && local23.anObjectArray12 != null) {
 					local72 = new HookRequest();
-					local72.anObjectArray31 = local23.anObjectArray12;
+					local72.arguments = local23.anObjectArray12;
 					local72.source = local23;
 					ClientScriptRunner.run(local72);
 				}
@@ -66,7 +66,7 @@ public final class Static2 {
 						}
 					}
 					local72 = new HookRequest();
-					local72.anObjectArray31 = local23.anObjectArray8;
+					local72.arguments = local23.anObjectArray8;
 					local72.source = local23;
 					ClientScriptRunner.run(local72);
 				}
@@ -89,16 +89,16 @@ public final class Static2 {
 		local8 = arg3;
 		local3 = arg10;
 		@Pc(53) byte local53 = 0;
-		Static259.anIntArray514[0] = arg10;
+		PathFinder.queueX[0] = arg10;
 		@Pc(59) boolean local59 = false;
 		@Pc(61) int local61 = 0;
 		@Pc(64) int local64 = local53 + 1;
-		Static84.anIntArray209[0] = arg3;
+		PathFinder.queueZ[0] = arg3;
 		@Pc(71) int[][] local71 = PathFinder.collisionMaps[Player.plane].flags;
 		@Pc(193) int local193;
 		while (local61 != local64) {
-			local3 = Static259.anIntArray514[local61];
-			local8 = Static84.anIntArray209[local61];
+			local3 = PathFinder.queueX[local61];
+			local8 = PathFinder.queueZ[local61];
 			local61 = local61 + 1 & 0xFFF;
 			if (arg8 == local3 && arg4 == local8) {
 				local59 = true;
@@ -120,57 +120,57 @@ public final class Static2 {
 			}
 			local193 = Static167.anIntArrayArray31[local3][local8] + 1;
 			if (local3 > 0 && Static145.anIntArrayArray25[local3 - 1][local8] == 0 && (local71[local3 - 1][local8] & 0x12C010E) == 0 && (local71[local3 - 1][local8 + 1] & 0x12C0138) == 0) {
-				Static259.anIntArray514[local64] = local3 - 1;
-				Static84.anIntArray209[local64] = local8;
+				PathFinder.queueX[local64] = local3 - 1;
+				PathFinder.queueZ[local64] = local8;
 				local64 = local64 + 1 & 0xFFF;
 				Static145.anIntArrayArray25[local3 - 1][local8] = 2;
 				Static167.anIntArrayArray31[local3 - 1][local8] = local193;
 			}
 			if (local3 < 102 && Static145.anIntArrayArray25[local3 + 1][local8] == 0 && (local71[local3 + 2][local8] & 0x12C0183) == 0 && (local71[local3 + 2][local8 + 1] & 0x12C01E0) == 0) {
-				Static259.anIntArray514[local64] = local3 + 1;
-				Static84.anIntArray209[local64] = local8;
+				PathFinder.queueX[local64] = local3 + 1;
+				PathFinder.queueZ[local64] = local8;
 				local64 = local64 + 1 & 0xFFF;
 				Static145.anIntArrayArray25[local3 + 1][local8] = 8;
 				Static167.anIntArrayArray31[local3 + 1][local8] = local193;
 			}
 			if (local8 > 0 && Static145.anIntArrayArray25[local3][local8 - 1] == 0 && (local71[local3][local8 - 1] & 0x12C010E) == 0 && (local71[local3 + 1][local8 - 1] & 0x12C0183) == 0) {
-				Static259.anIntArray514[local64] = local3;
-				Static84.anIntArray209[local64] = local8 - 1;
+				PathFinder.queueX[local64] = local3;
+				PathFinder.queueZ[local64] = local8 - 1;
 				Static145.anIntArrayArray25[local3][local8 - 1] = 1;
 				Static167.anIntArrayArray31[local3][local8 - 1] = local193;
 				local64 = local64 + 1 & 0xFFF;
 			}
 			if (local8 < 102 && Static145.anIntArrayArray25[local3][local8 + 1] == 0 && (local71[local3][local8 + 2] & 0x12C0138) == 0 && (local71[local3 + 1][local8 + 2] & 0x12C01E0) == 0) {
-				Static259.anIntArray514[local64] = local3;
-				Static84.anIntArray209[local64] = local8 + 1;
+				PathFinder.queueX[local64] = local3;
+				PathFinder.queueZ[local64] = local8 + 1;
 				Static145.anIntArrayArray25[local3][local8 + 1] = 4;
 				local64 = local64 + 1 & 0xFFF;
 				Static167.anIntArrayArray31[local3][local8 + 1] = local193;
 			}
 			if (local3 > 0 && local8 > 0 && Static145.anIntArrayArray25[local3 - 1][local8 - 1] == 0 && (local71[local3 - 1][local8] & 0x12C0138) == 0 && (local71[local3 - 1][local8 - 1] & 0x12C010E) == 0 && (local71[local3][local8 - 1] & 0x12C0183) == 0) {
-				Static259.anIntArray514[local64] = local3 - 1;
-				Static84.anIntArray209[local64] = local8 - 1;
+				PathFinder.queueX[local64] = local3 - 1;
+				PathFinder.queueZ[local64] = local8 - 1;
 				Static145.anIntArrayArray25[local3 - 1][local8 - 1] = 3;
 				Static167.anIntArrayArray31[local3 - 1][local8 - 1] = local193;
 				local64 = local64 + 1 & 0xFFF;
 			}
 			if (local3 < 102 && local8 > 0 && Static145.anIntArrayArray25[local3 + 1][local8 - 1] == 0 && (local71[local3 + 1][local8 - 1] & 0x12C010E) == 0 && (local71[local3 + 2][local8 - 1] & 0x12C0183) == 0 && (local71[local3 + 2][local8] & 0x12C01E0) == 0) {
-				Static259.anIntArray514[local64] = local3 + 1;
-				Static84.anIntArray209[local64] = local8 - 1;
+				PathFinder.queueX[local64] = local3 + 1;
+				PathFinder.queueZ[local64] = local8 - 1;
 				local64 = local64 + 1 & 0xFFF;
 				Static145.anIntArrayArray25[local3 + 1][local8 - 1] = 9;
 				Static167.anIntArrayArray31[local3 + 1][local8 - 1] = local193;
 			}
 			if (local3 > 0 && local8 < 102 && Static145.anIntArrayArray25[local3 - 1][local8 + 1] == 0 && (local71[local3 - 1][local8 + 1] & 0x12C010E) == 0 && (local71[local3 - 1][local8 + 2] & 0x12C0138) == 0 && (local71[local3][local8 + 2] & 0x12C01E0) == 0) {
-				Static259.anIntArray514[local64] = local3 - 1;
-				Static84.anIntArray209[local64] = local8 + 1;
+				PathFinder.queueX[local64] = local3 - 1;
+				PathFinder.queueZ[local64] = local8 + 1;
 				Static145.anIntArrayArray25[local3 - 1][local8 + 1] = 6;
 				Static167.anIntArrayArray31[local3 - 1][local8 + 1] = local193;
 				local64 = local64 + 1 & 0xFFF;
 			}
 			if (local3 < 102 && local8 < 102 && Static145.anIntArrayArray25[local3 + 1][local8 + 1] == 0 && (local71[local3 + 1][local8 + 2] & 0x12C0138) == 0 && (local71[local3 + 2][local8 + 2] & 0x12C01E0) == 0 && (local71[local3 + 2][local8 + 1] & 0x12C0183) == 0) {
-				Static259.anIntArray514[local64] = local3 + 1;
-				Static84.anIntArray209[local64] = local8 + 1;
+				PathFinder.queueX[local64] = local3 + 1;
+				PathFinder.queueZ[local64] = local8 + 1;
 				local64 = local64 + 1 & 0xFFF;
 				Static145.anIntArrayArray25[local3 + 1][local8 + 1] = 12;
 				Static167.anIntArrayArray31[local3 + 1][local8 + 1] = local193;
@@ -218,14 +218,14 @@ public final class Static2 {
 			BZip2State.tryMoveNearest = 1;
 		}
 		@Pc(1121) byte local1121 = 0;
-		Static259.anIntArray514[0] = local3;
+		PathFinder.queueX[0] = local3;
 		local61 = local1121 + 1;
-		Static84.anIntArray209[0] = local8;
+		PathFinder.queueZ[0] = local8;
 		local193 = local921 = Static145.anIntArrayArray25[local3][local8];
 		while (arg10 != local3 || arg3 != local8) {
 			if (local921 != local193) {
-				Static259.anIntArray514[local61] = local3;
-				Static84.anIntArray209[local61++] = local8;
+				PathFinder.queueX[local61] = local3;
+				PathFinder.queueZ[local61++] = local8;
 				local921 = local193;
 			}
 			if ((local193 & 0x2) != 0) {
@@ -241,7 +241,7 @@ public final class Static2 {
 			local193 = Static145.anIntArrayArray25[local3][local8];
 		}
 		if (local61 > 0) {
-			Static193.method3502(local61, arg9);
+			ClientProt.method3502(local61, arg9);
 			return true;
 		} else if (arg9 == 1) {
 			return false;

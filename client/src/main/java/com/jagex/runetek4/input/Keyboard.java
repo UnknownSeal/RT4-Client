@@ -26,6 +26,8 @@ public final class Keyboard implements KeyListener, FocusListener {
 	public static final int KEY_RIGHT = 97;
 	public static final int KEY_UP = 98;
 	public static final int KEY_DOWN = 99;
+	@OriginalMember(owner = "runetek4.client!pb", name = "q", descriptor = "[Z")
+	public static final boolean[] pressedKeys = new boolean[112];
 	@OriginalMember(owner = "runetek4.client!hn", name = "Z", descriptor = "I")
 	public static int keyCode;
 
@@ -110,7 +112,34 @@ public final class Keyboard implements KeyListener, FocusListener {
 		}
 	}
 
-	@OriginalMember(owner = "client!uf", name = "keyPressed", descriptor = "(Ljava/awt/event/KeyEvent;)V")
+    @OriginalMember(owner = "client!fc", name = "b", descriptor = "(I)V")
+    public static void loop() {
+        @Pc(12) Keyboard local12 = Static10.aClass149_1;
+        synchronized (Static10.aClass149_1) {
+            Static102.anInt2678 = Static228.anInt5105;
+            Static229.anInt5140++;
+            @Pc(23) int local23;
+            if (Static114.anInt5844 < 0) {
+                for (local23 = 0; local23 < 112; local23++) {
+                    pressedKeys[local23] = false;
+                }
+                Static114.anInt5844 = Static227.anInt5087;
+            } else {
+                while (Static114.anInt5844 != Static227.anInt5087) {
+                    local23 = Static17.anIntArray53[Static227.anInt5087];
+                    Static227.anInt5087 = Static227.anInt5087 + 1 & 0x7F;
+                    if (local23 >= 0) {
+                        pressedKeys[local23] = true;
+                    } else {
+                        pressedKeys[~local23] = false;
+                    }
+                }
+            }
+            Static228.anInt5105 = Static53.anInt1708;
+        }
+    }
+
+    @OriginalMember(owner = "client!uf", name = "keyPressed", descriptor = "(Ljava/awt/event/KeyEvent;)V")
 	@Override
 	public synchronized void keyPressed(@OriginalArg(0) KeyEvent arg0) {
 		if (Static10.aClass149_1 == null) {

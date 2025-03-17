@@ -78,7 +78,7 @@ public final class Static118 {
 											local15.anInt496 = -1;
 										}
 									}
-									Static43.method1143(local15);
+									InterfaceList.redraw(local15);
 								}
 							}
 						}
@@ -90,7 +90,7 @@ public final class Static118 {
 						local15.modelXAngle = local243 + local15.modelXAngle & 0x7FF;
 						local105 *= Protocol.sceneDelta;
 						local15.modelYAngle = local15.modelYAngle + local105 & 0x7FF;
-						Static43.method1143(local15);
+						InterfaceList.redraw(local15);
 					}
 				}
 			}

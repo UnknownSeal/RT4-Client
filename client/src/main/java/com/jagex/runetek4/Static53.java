@@ -53,13 +53,13 @@ public final class Static53 {
 		@Pc(19) Component local19 = Static201.method1418(Static98.anInt2512, Static15.anInt506);
 		if (local19 != null && local19.anObjectArray27 != null) {
 			@Pc(29) HookRequest local29 = new HookRequest();
-			local29.anObjectArray31 = local19.anObjectArray27;
+			local29.arguments = local19.anObjectArray27;
 			local29.source = local19;
 			ClientScriptRunner.run(local29);
 		}
 		MiniMenu.aBoolean302 = false;
 		Static35.anInt1092 = -1;
-		Static43.method1143(local19);
+		InterfaceList.redraw(local19);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "b", descriptor = "(I)V")

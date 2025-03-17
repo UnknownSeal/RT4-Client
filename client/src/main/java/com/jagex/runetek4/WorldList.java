@@ -34,7 +34,7 @@ public class WorldList {
                 if (Static72.aClass212_3.status != 1) {
                     return -1;
                 }
-                Static124.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
+                Protocol.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
                 Protocol.outboundBuffer.offset = 0;
                 Static72.aClass212_3 = null;
                 local82 = 0;
@@ -43,14 +43,14 @@ public class WorldList {
                 }
                 Protocol.outboundBuffer.p1(255);
                 Protocol.outboundBuffer.p4(local82);
-                Static124.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
+                Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
                 if (client.musicChannel != null) {
                     client.musicChannel.method3571();
                 }
                 if (client.soundChannel != null) {
                     client.soundChannel.method3571();
                 }
-                local124 = Static124.gameServerSocket.read();
+                local124 = Protocol.gameServerSocket.read();
                 if (client.musicChannel != null) {
                     client.musicChannel.method3571();
                 }
@@ -63,12 +63,12 @@ public class WorldList {
                 Static82.anInt2231 = 2;
             }
             if (Static82.anInt2231 == 2) {
-                if (Static124.gameServerSocket.available() < 2) {
+                if (Protocol.gameServerSocket.available() < 2) {
                     return -1;
                 }
-                Static116.anInt2961 = Static124.gameServerSocket.read();
+                Static116.anInt2961 = Protocol.gameServerSocket.read();
                 Static116.anInt2961 <<= 0x8;
-                Static116.anInt2961 += Static124.gameServerSocket.read();
+                Static116.anInt2961 += Protocol.gameServerSocket.read();
                 Static82.anInt2231 = 3;
                 Static141.anInt3469 = 0;
                 Static229.aByteArray70 = new byte[Static116.anInt2961];
@@ -76,14 +76,14 @@ public class WorldList {
             if (Static82.anInt2231 != 3) {
                 return -1;
             }
-            local82 = Static124.gameServerSocket.available();
+            local82 = Protocol.gameServerSocket.available();
             if (local82 < 1) {
                 return -1;
             }
             if (local82 > Static116.anInt2961 - Static141.anInt3469) {
                 local82 = Static116.anInt2961 - Static141.anInt3469;
             }
-            Static124.gameServerSocket.read(Static141.anInt3469, local82, Static229.aByteArray70);
+            Protocol.gameServerSocket.read(Static141.anInt3469, local82, Static229.aByteArray70);
             Static141.anInt3469 += local82;
             if (Static141.anInt3469 < Static116.anInt2961) {
                 return -1;
@@ -96,8 +96,8 @@ public class WorldList {
                         Static101.aClass10_Sub1Array1[local124++] = local247;
                     }
                 }
-                Static124.gameServerSocket.closeGracefully();
-                Static124.gameServerSocket = null;
+                Protocol.gameServerSocket.closeGracefully();
+                Protocol.gameServerSocket = null;
                 Static127.anInt3132 = 0;
                 Static82.anInt2231 = 0;
                 Static229.aByteArray70 = null;

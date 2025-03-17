@@ -189,7 +189,7 @@ public final class Component {
 	public Object[] anObjectArray28;
 
 	@OriginalMember(owner = "client!be", name = "rd", descriptor = "[Ljava/lang/Object;")
-	public Object[] anObjectArray29;
+	public Object[] onOptionClick;
 
 	@OriginalMember(owner = "client!be", name = "sd", descriptor = "[Ljava/lang/Object;")
 	public Object[] anObjectArray30;
@@ -1201,7 +1201,7 @@ public final class Component {
 		this.anObjectArray7 = this.method485(arg0);
 		this.anObjectArray2 = this.method485(arg0);
 		this.anObjectArray22 = this.method485(arg0);
-		this.anObjectArray29 = this.method485(arg0);
+		this.onOptionClick = this.method485(arg0);
 		this.anObjectArray23 = this.method485(arg0);
 		this.anObjectArray5 = this.method485(arg0);
 		this.anObjectArray6 = this.method485(arg0);

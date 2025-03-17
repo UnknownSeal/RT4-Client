@@ -16,9 +16,9 @@ public final class Static10 {
 
 	@OriginalMember(owner = "client!an", name = "a", descriptor = "(BI)I")
 	public static int method347(@OriginalArg(1) int arg0) {
-		if (Static124.gameServerSocket != null) {
-			Static124.gameServerSocket.closeGracefully();
-			Static124.gameServerSocket = null;
+		if (Protocol.gameServerSocket != null) {
+			Protocol.gameServerSocket.closeGracefully();
+			Protocol.gameServerSocket = null;
 		}
 		Static127.anInt3132++;
 		if (Static127.anInt3132 > 4) {

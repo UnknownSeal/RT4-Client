@@ -2,8 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.frame.Minimap;
-import com.jagex.runetek4.game.client.Inv;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -18,41 +16,6 @@ public final class Static44 {
 
 	@OriginalMember(owner = "runetek4.client!dh", name = "i", descriptor = "Lclient!na;")
 	public static final JString aClass100_336 = JString.parse("<img=1>");
-
-	@OriginalMember(owner = "runetek4.client!dh", name = "a", descriptor = "(Z)V")
-	public static void method1146() {
-		Protocol.outboundBuffer.offset = 0;
-		Protocol.opcode3 = -1;
-		ClientScriptRunner.aBoolean108 = false;
-		Static223.packetSize = 0;
-		LoginManager.mapFlagX = 0;
-		MiniMenu.menuActionRow = 0;
-		Protocol.opcode2 = -1;
-		Minimap.state = 0;
-		Static60.systemUpdateTimer = 0;
-		Protocol.opcode4 = -1;
-		Protocol.inboundBuffer.offset = 0;
-		LoginManager.idleNetCycles = 0;
-		Protocol.opcode = -1;
-		@Pc(35) int local35;
-		for (local35 = 0; local35 < PlayerList.players.length; local35++) {
-			if (PlayerList.players[local35] != null) {
-				PlayerList.players[local35].targetId = -1;
-			}
-		}
-		for (local35 = 0; local35 < NpcList.npcs.length; local35++) {
-			if (NpcList.npcs[local35] != null) {
-				NpcList.npcs[local35].targetId = -1;
-			}
-		}
-		Inv.clear();
-		Camera.cameraType = 1;
-		client.processGameStatus(30);
-		for (local35 = 0; local35 < 100; local35++) {
-			InterfaceList.aBooleanArray100[local35] = true;
-		}
-		ClientProt.sendWindowDetails();
-	}
 
 	@OriginalMember(owner = "runetek4.client!dh", name = "b", descriptor = "(I)Lclient!q;")
 	public static ReferenceNodeFactory method1147() {
@@ -72,10 +35,10 @@ public final class Static44 {
 		ItemDefinition.method1753(arg0);
 		@Pc(28) Component local28 = InterfaceList.getComponent(arg1);
 		if (local28 != null) {
-			Static43.method1143(local28);
+			InterfaceList.redraw(local28);
 		}
 		if (ClientScriptRunner.aClass13_10 != null) {
-			Static43.method1143(ClientScriptRunner.aClass13_10);
+			InterfaceList.redraw(ClientScriptRunner.aClass13_10);
 			ClientScriptRunner.aClass13_10 = null;
 		}
 		@Pc(45) int local45 = MiniMenu.menuActionRow;

@@ -61,7 +61,7 @@ public final class Static258 {
 						Static169.aClass13_18 = arg2;
 						Static18.mouseInvInterfaceIndex = local171;
 						if (arg2.invSlotObjId[local171] > 0) {
-							@Pc(267) ServerActiveProperties local267 = Static36.method940(arg2);
+							@Pc(267) ServerActiveProperties local267 = InterfaceList.getServerActiveProperties(arg2);
 							@Pc(276) ItemDefinition local276 = Static71.get(arg2.invSlotObjId[local171] - 1);
 							if (MiniMenu.anInt5014 == 1 && local267.method510()) {
 								if (FluTypeList.anInt5062 != arg2.anInt507 || Static185.anInt4370 != local171) {
@@ -166,10 +166,10 @@ public final class Static258 {
 					Static98.addActionRow(Static8.method118(local173, arg2), (long) (local173 + 1), arg2.aClass100_88, arg2.createdComponentId, (short) 9, local828, arg2.anInt507);
 				}
 			}
-			if (Static36.method940(arg2).method506()) {
+			if (InterfaceList.getServerActiveProperties(arg2).method506()) {
 				Static98.addActionRow(-1, 0L, JString.EMPTY, arg2.createdComponentId, (short) 41, LocalizedText.CONTINUE, arg2.anInt507);
 			}
-		} else if (Static36.method940(arg2).method508() && (Static274.anInt4999 & 0x20) != 0) {
+		} else if (InterfaceList.getServerActiveProperties(arg2).method508() && (Static274.anInt4999 & 0x20) != 0) {
 			Static98.addActionRow(Static246.anInt5393, 0L, JString.concatenate(new JString[] { Static78.aClass100_466, Static201.aClass100_408, arg2.aClass100_88 }), arg2.createdComponentId, (short) 12, Static102.aClass100_545, arg2.anInt507);
 		}
 	}
