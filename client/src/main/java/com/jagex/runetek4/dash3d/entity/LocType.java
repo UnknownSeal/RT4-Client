@@ -7,6 +7,7 @@ import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.media.renderable.Entity;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -403,7 +404,7 @@ public final class LocType {
 		} else if (code == 249) {
 			int length = packet.g1();
 			if (this.params == null) {
-				int len = Static165.bitceil(length);
+				int len = IntUtils.bitceil(length);
 				this.params = new HashTable(len);
 			}
 			for (int index = 0; index < length; index++) {

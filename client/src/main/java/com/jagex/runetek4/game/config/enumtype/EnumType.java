@@ -4,6 +4,7 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.datastruct.*;
 import com.jagex.runetek4.node.CachedNode;
 import com.jagex.runetek4.node.Node;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -54,7 +55,7 @@ public final class EnumType extends CachedNode {
 			this.defaultInt = packet.g4();
 		} else if (code == 5 || code == 6) {
 			@Pc(41) int valuesCount = packet.g2();
-			this.values = new HashTable(Static165.bitceil(valuesCount));
+			this.values = new HashTable(IntUtils.bitceil(valuesCount));
 			for (@Pc(51) int index = 0; index < valuesCount; index++) {
 				@Pc(58) int local58 = packet.g4();
 				@Pc(70) Node node;

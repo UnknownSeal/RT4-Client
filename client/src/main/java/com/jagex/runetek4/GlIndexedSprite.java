@@ -1,6 +1,8 @@
 package com.jagex.runetek4;
 
 import java.nio.ByteBuffer;
+
+import com.jagex.runetek4.util.IntUtils;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -45,8 +47,8 @@ public final class GlIndexedSprite extends IndexedSprite {
 
 	@OriginalMember(owner = "client!oh", name = "a", descriptor = "([B[I)V")
 	private void method3337(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int[] arg1) {
-		this.anInt4287 = Static165.bitceil(this.anInt4270);
-		this.anInt4286 = Static165.bitceil(this.anInt4278);
+		this.anInt4287 = IntUtils.bitceil(this.anInt4270);
+		this.anInt4286 = IntUtils.bitceil(this.anInt4278);
 		@Pc(20) byte[] local20 = new byte[this.anInt4287 * this.anInt4286 * 4];
 		@Pc(22) int local22 = 0;
 		@Pc(24) int local24 = 0;

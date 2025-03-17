@@ -40,7 +40,7 @@ public final class Static88 {
 	public static void runClientScripts(@OriginalArg(1) int arg0, @OriginalArg(2) HookRequest arg1) {
 		@Pc(4) Object[] listeners = arg1.arguments;
 		@Pc(10) int local10 = (Integer) listeners[0];
-		@Pc(14) ClientScript clientScript = ClientScript.decodeClientScript(local10);
+		@Pc(14) ClientScript clientScript = ClientScriptList.decodeClientScript(local10);
 		if (clientScript == null) {
 			return;
 		}
@@ -262,17 +262,17 @@ public final class Static88 {
 					if (scriptOpcode == 40) {
 						// gosub_with_params
 						j = local33[scriptIndex];
-						@Pc(642) ClientScript invokeScript = ClientScript.decodeClientScript(j);
+						@Pc(642) ClientScript invokeScript = ClientScriptList.decodeClientScript(j);
 						@Pc(646) int[] local646 = new int[invokeScript.localIntCount];
 						@Pc(650) JString[] local650 = new JString[invokeScript.localStringCount];
-						for (local652 = 0; local652 < invokeScript.anInt4665; local652++) {
-							local646[local652] = Static254.scriptIntValues[local652 + intValueIndex - invokeScript.anInt4665];
+						for (local652 = 0; local652 < invokeScript.intArgs; local652++) {
+							local646[local652] = Static254.scriptIntValues[local652 + intValueIndex - invokeScript.intArgs];
 						}
-						for (local652 = 0; local652 < invokeScript.anInt4669; local652++) {
-							local650[local652] = Static3.scriptStringValues[local652 + local26 - invokeScript.anInt4669];
+						for (local652 = 0; local652 < invokeScript.stringArgs; local652++) {
+							local650[local652] = Static3.scriptStringValues[local652 + local26 - invokeScript.stringArgs];
 						}
-						intValueIndex -= invokeScript.anInt4665;
-						local26 -= invokeScript.anInt4669;
+						intValueIndex -= invokeScript.intArgs;
+						local26 -= invokeScript.stringArgs;
 						@Pc(705) InvokedScript invokedScript = new InvokedScript();
 						invokedScript.aClass100Array79 = Static180.localStrings;
 						invokedScript.localInts = Static215.localInts;
@@ -361,7 +361,7 @@ public final class Static88 {
 						continue;
 					}
 					if (scriptOpcode == 51) {
-						@Pc(992) HashTable local992 = clientScript.aClass133Array1[local33[scriptIndex]];
+						@Pc(992) HashTable local992 = clientScript.switchTables[local33[scriptIndex]];
 						intValueIndex--;
 						@Pc(1002) IntWrapper local1002 = (IntWrapper) local992.getNode((long) Static254.scriptIntValues[intValueIndex]);
 						if (local1002 != null) {
@@ -4240,23 +4240,23 @@ public final class Static88 {
 				throw new IllegalStateException();
 			}
 		} catch (@Pc(14378) Exception local14378) {
-			if (clientScript.aClass100_880 == null) {
+			if (clientScript.name == null) {
 				if (client.modeWhere != 0) {
 					Chat.addMessage(Static72.aClass100_447, 0, Static136.aClass100_633);
 				}
 				TracingException.report("CS2 - scr:" + clientScript.nodeId + " op:" + local44, local14378);
 			} else {
 				@Pc(14385) JString local14385 = Static87.method1804(30);
-				local14385.method3113(Static219.aClass100_928).method3113(clientScript.aClass100_880);
+				local14385.method3113(Static219.aClass100_928).method3113(clientScript.name);
 				for (listenersIndex = Static138.invokedScriptIndex - 1; listenersIndex >= 0; listenersIndex--) {
-					local14385.method3113(Static40.aClass100_253).method3113(Static67.invokedScripts[listenersIndex].script.aClass100_880);
+					local14385.method3113(Static40.aClass100_253).method3113(Static67.invokedScripts[listenersIndex].script.name);
 				}
 				if (local44 == 40) {
 					listenersIndex = local33[scriptIndex];
 					local14385.method3113(Static176.aClass100_802).method3113(JString.parseInt(listenersIndex));
 				}
 				if (client.modeWhere != 0) {
-					Chat.addMessage(Static72.aClass100_447, 0, JString.concatenate(new JString[] { Static167.aClass100_780, clientScript.aClass100_880 }));
+					Chat.addMessage(Static72.aClass100_447, 0, JString.concatenate(new JString[] { Static167.aClass100_780, clientScript.name}));
 				}
 				TracingException.report("CS2 - scr:" + clientScript.nodeId + " op:" + local44 + new String(local14385.method3148()), local14378);
 			}

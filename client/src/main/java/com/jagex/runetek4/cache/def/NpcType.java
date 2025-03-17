@@ -5,6 +5,7 @@ import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.util.IntUtils;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -357,7 +358,7 @@ public final class NpcType {
 		} else if (code == 249) {
 			int length = packet.g1();
 			if (this.params == null) {
-				local18 = Static165.bitceil(length);
+				local18 = IntUtils.bitceil(length);
 				this.params = new HashTable(local18);
 			}
 			for (int index = 0; index < length; index++) {

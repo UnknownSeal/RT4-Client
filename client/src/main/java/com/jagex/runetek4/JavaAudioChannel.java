@@ -6,6 +6,8 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.Mixer.Info;
 import javax.sound.sampled.SourceDataLine;
+
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -71,7 +73,7 @@ public final class JavaAudioChannel extends AudioChannel {
 				this.aSourceDataLine1 = null;
 				throw local36;
 			} else {
-				this.open(Static165.bitceil(arg0));
+				this.open(IntUtils.bitceil(arg0));
 			}
 		}
 	}

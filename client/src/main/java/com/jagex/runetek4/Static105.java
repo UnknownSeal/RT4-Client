@@ -12,9 +12,6 @@ public final class Static105 {
 	@OriginalMember(owner = "runetek4.client!ib", name = "c", descriptor = "Lclient!qi;")
 	public static final ColorImageCacheEntry aClass3_Sub28_1 = new ColorImageCacheEntry(0, 0);
 
-	@OriginalMember(owner = "runetek4.client!ib", name = "d", descriptor = "Lclient!gn;")
-	public static final LruHashTable scripts = new LruHashTable(128);
-
 	@OriginalMember(owner = "runetek4.client!ib", name = "g", descriptor = "Lclient!na;")
 	public static final JString aClass100_559 = JString.parse("<col=ffff00>");
 

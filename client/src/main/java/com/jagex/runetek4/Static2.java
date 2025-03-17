@@ -105,16 +105,16 @@ public final class Static2 {
 				break;
 			}
 			if (arg1 != 0) {
-				if ((arg1 < 5 || arg1 == 10) && PathFinder.collisionMaps[Player.plane].method3042(arg4, local3, local8, arg8, arg1 - 1, 2, arg7)) {
+				if ((arg1 < 5 || arg1 == 10) && PathFinder.collisionMaps[Player.plane].isAtWall(arg4, local3, local8, arg8, arg1 - 1, 2, arg7)) {
 					local59 = true;
 					break;
 				}
-				if (arg1 < 10 && PathFinder.collisionMaps[Player.plane].method3046(arg4, arg1 - 1, arg8, local8, 2, arg7, local3)) {
+				if (arg1 < 10 && PathFinder.collisionMaps[Player.plane].isAtWallDecor(arg4, arg1 - 1, arg8, local8, 2, arg7, local3)) {
 					local59 = true;
 					break;
 				}
 			}
-			if (arg0 != 0 && arg6 != 0 && PathFinder.collisionMaps[Player.plane].method3052(arg8, local8, local3, 2, arg0, arg2, arg4, arg6)) {
+			if (arg0 != 0 && arg6 != 0 && PathFinder.collisionMaps[Player.plane].isInsideOrOutsideRect(arg8, local8, local3, 2, arg0, arg2, arg4, arg6)) {
 				local59 = true;
 				break;
 			}

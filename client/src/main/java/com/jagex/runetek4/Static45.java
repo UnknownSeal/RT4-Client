@@ -39,7 +39,7 @@ public final class Static45 {
 								local43 = local10 - 1;
 							}
 							if (local43 >= 0) {
-								arg0[local43].method3051(local22, local15);
+								arg0[local43].flagTile(local22, local15);
 							}
 						}
 					}
@@ -527,16 +527,16 @@ public final class Static45 {
 				break;
 			}
 			if (arg8 != 0) {
-				if ((arg8 < 5 || arg8 == 10) && PathFinder.collisionMaps[Player.plane].method3042(arg3, local3, local10, arg0, arg8 - 1, 1, arg6)) {
+				if ((arg8 < 5 || arg8 == 10) && PathFinder.collisionMaps[Player.plane].isAtWall(arg3, local3, local10, arg0, arg8 - 1, 1, arg6)) {
 					local53 = true;
 					break;
 				}
-				if (arg8 < 10 && PathFinder.collisionMaps[Player.plane].method3046(arg3, arg8 - 1, arg0, local10, 1, arg6, local3)) {
+				if (arg8 < 10 && PathFinder.collisionMaps[Player.plane].isAtWallDecor(arg3, arg8 - 1, arg0, local10, 1, arg6, local3)) {
 					local53 = true;
 					break;
 				}
 			}
-			if (arg10 != 0 && arg5 != 0 && PathFinder.collisionMaps[Player.plane].method3052(arg0, local10, local3, 1, arg10, arg1, arg3, arg5)) {
+			if (arg10 != 0 && arg5 != 0 && PathFinder.collisionMaps[Player.plane].isInsideOrOutsideRect(arg0, local10, local3, 1, arg10, arg1, arg3, arg5)) {
 				local53 = true;
 				break;
 			}

@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -2978,7 +2979,7 @@ public final class Pix3D {
 		anInt2470 = arg3 - arg1;
 		method1915();
 		if (anIntArray221.length < anInt2470) {
-			anIntArray221 = new int[Static165.bitceil(anInt2470)];
+			anIntArray221 = new int[IntUtils.bitceil(anInt2470)];
 		}
 		@Pc(23) int local23 = arg1 * Rasterizer.destinationWidth + arg0;
 		for (@Pc(25) int local25 = 0; local25 < anInt2470; local25++) {

@@ -5,6 +5,7 @@ import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.game.config.idktype.IDKType;
 import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -326,7 +327,7 @@ public final class ItemDefinition {
 			} else if (opcode == 249) {
 				int length = packet.g1();
 				if (this.params == null) {
-					local179 = Static165.bitceil(length);
+					local179 = IntUtils.bitceil(length);
 					this.params = new HashTable(local179);
 				}
 				for (int index = 0; index < length; index++) {

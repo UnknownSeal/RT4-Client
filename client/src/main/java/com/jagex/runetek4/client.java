@@ -365,7 +365,7 @@ public final class client extends GameShell {
 		if (!GlRenderer.enabled) {
 			((Js5GlTextureProvider) Rasterizer.textureProvider).clear();
 		}
-		Static105.scripts.clear();
+		ClientScriptList.scripts.clear();
 		js5Archive0.discardUnpacked();
 		js5Archive1.discardUnpacked();
 		js5Archive3.discardUnpacked();
@@ -1094,7 +1094,7 @@ public final class client extends GameShell {
 					Static104.method2247(npcEntity);
 					Static37.method949(npcEntity);
 					Static34.method879(npcEntity);
-					PathFinder.collisionMaps[Player.plane].method3043(npcEntity.xFine >> 7, false, npcEntity.zFine >> 7, npcEntity.getSize(), npcEntity.getSize());
+					PathFinder.collisionMaps[Player.plane].flagScenery(npcEntity.xFine >> 7, false, npcEntity.zFine >> 7, npcEntity.getSize(), npcEntity.getSize());
 				}
 			}
 		}

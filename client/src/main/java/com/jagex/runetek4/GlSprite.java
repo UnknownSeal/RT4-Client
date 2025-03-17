@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.nio.ByteBuffer;
 
 import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.util.IntUtils;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -441,8 +442,8 @@ public class GlSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!cf", name = "a", descriptor = "([I)V")
 	protected void method1430(@OriginalArg(0) int[] arg0) {
-		this.anInt1870 = Static165.bitceil(this.width);
-		this.anInt1874 = Static165.bitceil(this.height);
+		this.anInt1870 = IntUtils.bitceil(this.width);
+		this.anInt1874 = IntUtils.bitceil(this.height);
 		@Pc(20) byte[] local20 = new byte[this.anInt1870 * this.anInt1874 * 4];
 		@Pc(22) int local22 = 0;
 		@Pc(24) int local24 = 0;

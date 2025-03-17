@@ -80,7 +80,7 @@ public final class Static43 {
 				local102 = local110.modelB;
 			}
 			if (local74.blockwalk != 0) {
-				arg5.method3039(local92, local74.blockrange, arg0, local57, arg1);
+				arg5.unflagWall(local92, local74.blockrange, arg0, local57, arg1);
 			}
 		} else if (arg3 == 1) {
 			@Pc(233) WallDecor local233 = Static75.method1633(arg2, arg1, arg0);
@@ -102,7 +102,7 @@ public final class Static43 {
 				local100 = local211.entity;
 			}
 			if (local74.blockwalk == 1) {
-				arg5.method3053(arg0, arg1);
+				arg5.unflagGroundDecor(arg0, arg1);
 			}
 		}
 		if (!GlRenderer.enabled || !local74.hardshadow) {

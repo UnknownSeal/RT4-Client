@@ -9,6 +9,7 @@ import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.util.IntUtils;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -127,7 +128,7 @@ public final class Class3_Sub14 extends Node {
 		this.anIntArray227 = new int[this.anInt2484];
 		this.anIntArray231 = new int[this.anInt2484];
 		this.anIntArrayArray17 = new int[this.anInt2484][];
-		this.aClass133_8 = new HashTable(Static165.bitceil(this.anInt2482));
+		this.aClass133_8 = new HashTable(IntUtils.bitceil(this.anInt2482));
 		if (this.aBoolean140) {
 			this.anIntArrayArray18 = new int[this.anInt2484][];
 			this.aBooleanArray54 = new boolean[this.anInt2484];

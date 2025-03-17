@@ -4,10 +4,8 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.node.CachedNode;
-import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -17,22 +15,22 @@ import org.openrs2.deob.annotation.Pc;
 public final class ClientScript extends CachedNode {
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "I", descriptor = "I")
-	public int anInt4665;
+	public int intArgs;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "L", descriptor = "I")
 	public int localIntCount;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "N", descriptor = "I")
-	public int anInt4669;
+	public int stringArgs;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "O", descriptor = "[I")
 	public int[] opcodes;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "Q", descriptor = "[Lclient!sc;")
-	public HashTable[] aClass133Array1;
+	public HashTable[] switchTables;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "R", descriptor = "Lclient!na;")
-	public JString aClass100_880;
+	public JString name;
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "S", descriptor = "I")
 	public int localStringCount;
@@ -42,64 +40,6 @@ public final class ClientScript extends CachedNode {
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "W", descriptor = "[I")
 	public int[] intOperands;
-
-	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(IB)Lclient!qc;")
-	public static ClientScript decodeClientScript(@OriginalArg(0) int scriptId) {
-		@Pc(12) ClientScript clientScript = (ClientScript) Static105.scripts.get((long) scriptId);
-		if (clientScript != null) {
-			return clientScript;
-		}
-		@Pc(22) byte[] local22 = client.js5Archive12.getfile(scriptId, 0);
-		if (local22 == null) {
-			return null;
-		}
-		clientScript = new ClientScript();
-		@Pc(42) Packet local42 = new Packet(local22);
-		local42.offset = local42.data.length - 2;
-		@Pc(53) int local53 = local42.g2();
-		@Pc(63) int local63 = local42.data.length - local53 - 12 - 2;
-		local42.offset = local63;
-		@Pc(70) int opcodeCount = local42.g4();
-		clientScript.localIntCount = local42.g2();
-		clientScript.localStringCount = local42.g2();
-		clientScript.anInt4665 = local42.g2();
-		clientScript.anInt4669 = local42.g2();
-		@Pc(98) int local98 = local42.g1();
-		@Pc(107) int local107;
-		@Pc(114) int opcode;
-		if (local98 > 0) {
-			clientScript.aClass133Array1 = new HashTable[local98];
-			for (local107 = 0; local107 < local98; local107++) {
-				opcode = local42.g2();
-				@Pc(121) HashTable local121 = new HashTable(Static165.bitceil(opcode));
-				clientScript.aClass133Array1[local107] = local121;
-				while (opcode-- > 0) {
-					@Pc(136) int local136 = local42.g4();
-					@Pc(140) int local140 = local42.g4();
-					local121.put(new IntWrapper(local140), (long) local136);
-				}
-			}
-		}
-		local42.offset = 0;
-		clientScript.aClass100_880 = local42.gjstrFast();
-		clientScript.opcodes = new int[opcodeCount];
-		clientScript.stringOperands = new JString[opcodeCount];
-		local107 = 0;
-		clientScript.intOperands = new int[opcodeCount];
-		while (local63 > local42.offset) {
-			opcode = local42.g2();
-			if (opcode == 3) {
-				clientScript.stringOperands[local107] = local42.gjstr();
-			} else if (opcode >= 100 || opcode == 21 || opcode == 38 || opcode == 39) {
-				clientScript.intOperands[local107] = local42.g1();
-			} else {
-				clientScript.intOperands[local107] = local42.g4();
-			}
-			clientScript.opcodes[local107++] = opcode;
-		}
-		Static105.scripts.put(clientScript, (long) scriptId);
-		return clientScript;
-	}
 
 	@OriginalMember(owner = "runetek4.client!we", name = "a", descriptor = "(BILclient!be;)I")
 	public static int executeClientscript(@OriginalArg(1) int scriptIndex, @OriginalArg(2) Component component) {
