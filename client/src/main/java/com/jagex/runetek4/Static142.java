@@ -37,7 +37,7 @@ public final class Static142 {
 			if (local5 == -1) {
 				local17 = PlayerList.self;
 			} else if (PlayerList.playerCount > local5) {
-				local17 = PlayerList.players[Static105.playerIds[local5]];
+				local17 = PlayerList.players[PlayerList.playerIds[local5]];
 			} else {
 				local17 = NpcList.npcs[Static33.npcIds[local5 - PlayerList.playerCount]];
 			}
@@ -104,7 +104,7 @@ public final class Static142 {
 						@Pc(159) Class102[] local159 = Minimap.hintMapMarkers;
 						for (local161 = 0; local161 < local159.length; local161++) {
 							@Pc(173) Class102 local173 = local159[local161];
-							if (local173 != null && local173.headIconDrawType == 10 && Static105.playerIds[local5] == local173.hintIconNpcTarget) {
+							if (local173 != null && local173.headIconDrawType == 10 && PlayerList.playerIds[local5] == local173.hintIconNpcTarget) {
 								Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.height() + 15, arg1 >> 1);
 								if (Static65.anInt1951 > -1) {
 									Static276.aClass3_Sub2_Sub1Array11[local173.anInt4048].drawSprite(arg2 + Static65.anInt1951 - 12, arg0 + (Static16.anInt548 - local74));
@@ -152,13 +152,13 @@ public final class Static142 {
 					} else {
 						local310 = local17.height();
 					}
-					Static180.method3326(arg4 >> 1, arg3, local17, arg5, local508.anInt1859 + local310 + 10, arg1 >> 1);
+					Static180.method3326(arg4 >> 1, arg3, local17, arg5, local508.height + local310 + 10, arg1 >> 1);
 					if (Static65.anInt1951 > -1) {
-						local161 = Static65.anInt1951 + arg2 - (local508.anInt1867 >> 1);
+						local161 = Static65.anInt1951 + arg2 - (local508.width >> 1);
 						local359 = Static16.anInt548 + arg0 - 3;
 						local508.drawSprite(local161, local359);
-						local639 = local508.anInt1867 * local17.anInt3372 / 255;
-						local642 = local508.anInt1859;
+						local639 = local508.width * local17.anInt3372 / 255;
+						local642 = local508.height;
 						if (GlRenderer.enabled) {
 							Static46.method1183(local161, local359, local161 + local639, local359 + local642);
 						} else {

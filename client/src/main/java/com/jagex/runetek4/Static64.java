@@ -43,7 +43,7 @@ public final class Static64 {
 			throw new RuntimeException("gpp1 pos:" + Protocol.inboundBuffer.offset + " psize:" + Static223.packetSize);
 		}
 		for (i = 0; i < PlayerList.playerCount; i++) {
-			if (PlayerList.players[Static105.playerIds[i]] == null) {
+			if (PlayerList.players[PlayerList.playerIds[i]] == null) {
 				throw new RuntimeException("gpp2 pos:" + i + " size:" + PlayerList.playerCount);
 			}
 		}

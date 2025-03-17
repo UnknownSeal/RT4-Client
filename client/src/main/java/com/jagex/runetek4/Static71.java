@@ -4,7 +4,6 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.def.ItemDefinition;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -60,22 +59,6 @@ public final class Static71 {
 	@OriginalMember(owner = "runetek4.client!fk", name = "b", descriptor = "(IB)V")
 	public static void method1443() {
 		Static83.aClass99_3.clear(5);
-	}
-
-	@OriginalMember(owner = "runetek4.client!fk", name = "b", descriptor = "(I)V")
-	public static void updatePlayers() {
-		for (@Pc(7) int currentPlayerIndex = -1; currentPlayerIndex < PlayerList.playerCount; currentPlayerIndex++) {
-			@Pc(21) int actualIndex;
-			if (currentPlayerIndex == -1) {
-				actualIndex = 2047;
-			} else {
-				actualIndex = Static105.playerIds[currentPlayerIndex];
-			}
-			@Pc(31) Player player = PlayerList.players[actualIndex];
-			if (player != null) {
-				Static263.updateEntity(player.getSize(), player);
-			}
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "c", descriptor = "(I)V")

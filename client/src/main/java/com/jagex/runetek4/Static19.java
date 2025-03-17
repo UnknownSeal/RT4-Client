@@ -44,7 +44,7 @@ public final class Static19 {
 			if (local11 == -1) {
 				local22 = 2047;
 			} else {
-				local22 = Static105.playerIds[local11];
+				local22 = PlayerList.playerIds[local11];
 			}
 			@Pc(30) Player local30 = PlayerList.players[local22];
 			if (local30 != null && local30.chatLoops > 0) {

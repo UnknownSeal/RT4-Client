@@ -201,7 +201,7 @@ public class Game {
             tryReconnect();
             return;
         }
-        Static71.updatePlayers();
+        PlayerList.updatePlayers();
         Static109.updateNpcs();
         Static19.tickChatTimers(); // OverheadChat
         if (Static24.component != null) {
@@ -789,7 +789,7 @@ public class Game {
             if (arg0) {
                 player = PlayerList.self;
             } else {
-                player = PlayerList.players[Static105.playerIds[i]];
+                player = PlayerList.players[PlayerList.playerIds[i]];
             }
             if (player != null && player.isVisible()) {
                 @Pc(55) int local55 = player.getSize();
@@ -833,8 +833,8 @@ public class Game {
                 player = PlayerList.self;
                 id = 8791798054912L;
             } else {
-                player = PlayerList.players[Static105.playerIds[i]];
-                id = (long) Static105.playerIds[i] << 32;
+                player = PlayerList.players[PlayerList.playerIds[i]];
+                id = (long) PlayerList.playerIds[i] << 32;
             }
             if (player != null && player.isVisible()) {
                 player.lowMemory = false;

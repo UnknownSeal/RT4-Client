@@ -4,7 +4,6 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.node.CachedNode;
@@ -158,7 +157,7 @@ public final class ClientScript extends CachedNode {
 					register1 = VarPlayerDefinition.varPlayers[script[pc++]];
 				}
 				if (opcode == 6) {  // load_next_level_xp {skill}
-					register1 = ItemDefinition.levelExperience[PlayerSkillXpTable.skillBaseLevel[script[pc++]] - 1];
+					register1 = PlayerSkillXpTable.levelExperience[PlayerSkillXpTable.skillBaseLevel[script[pc++]] - 1];
 				}
 				if (opcode == 7) {
 					register1 = VarPlayerDefinition.varPlayers[script[pc++]] * 100 / 46875;

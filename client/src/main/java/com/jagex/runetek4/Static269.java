@@ -239,7 +239,7 @@ public final class Static269 {
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(IIIII)V")
 	public static void method2225(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		if (Static41.anInt1309 < 100) {
+		if (WorldMap.loadPercentage < 100) {
 			Preferences.method3413();
 		}
 		if (GlRenderer.enabled) {
@@ -249,21 +249,21 @@ public final class Static269 {
 		}
 		@Pc(50) int local50;
 		@Pc(61) int local61;
-		if (Static41.anInt1309 < 100) {
+		if (WorldMap.loadPercentage < 100) {
 			local50 = arg0 + arg3 / 2;
 			local61 = arg2 / 2 + arg1 - 18 - 20;
 			if (GlRenderer.enabled) {
 				Static46.method1186(arg0, arg1, arg3, arg2, 0);
 				Static46.method1179(local50 - 152, local61, 304, 34, 9179409);
 				Static46.method1179(local50 - 151, local61 + 1, 302, 32, 0);
-				Static46.method1186(local50 - 150, local61 + 2, Static41.anInt1309 * 3, 30, 9179409);
-				Static46.method1186(local50 + Static41.anInt1309 * 3 - 150, local61 - -2, 300 - Static41.anInt1309 * 3, 30, 0);
+				Static46.method1186(local50 - 150, local61 + 2, WorldMap.loadPercentage * 3, 30, 9179409);
+				Static46.method1186(local50 + WorldMap.loadPercentage * 3 - 150, local61 - -2, 300 - WorldMap.loadPercentage * 3, 30, 0);
 			} else {
 				Rasterizer.drawFilledRectangle(arg0, arg1, arg3, arg2, 0);
 				Rasterizer.drawUnfilledRectangle(local50 - 152, local61, 304, 34, 9179409);
 				Rasterizer.drawUnfilledRectangle(local50 - 151, local61 + 1, 302, 32, 0);
-				Rasterizer.drawFilledRectangle(local50 - 150, local61 + 2, Static41.anInt1309 * 3, 30, 9179409);
-				Rasterizer.drawFilledRectangle(Static41.anInt1309 * 3 + local50 - 150, local61 - -2, 300 - Static41.anInt1309 * 3, 30, 0);
+				Rasterizer.drawFilledRectangle(local50 - 150, local61 + 2, WorldMap.loadPercentage * 3, 30, 9179409);
+				Rasterizer.drawFilledRectangle(WorldMap.loadPercentage * 3 + local50 - 150, local61 - -2, 300 - WorldMap.loadPercentage * 3, 30, 0);
 			}
 			Fonts.b12Full.method2875(LocalizedText.LOADINGDOTDOTDOT, local50, local61 + 20, 16777215, -1);
 			return;
@@ -277,7 +277,7 @@ public final class Static269 {
 		local61 = (int) ((float) arg3 / Static83.aFloat3) + Static13.anInt435;
 		Static89.anInt2387 = (int) ((float) (arg3 * 2) / Static83.aFloat3);
 		if (GlRenderer.enabled) {
-			if (Static153.aClass3_Sub2_Sub1_Sub1_2 == null || Static153.aClass3_Sub2_Sub1_Sub1_2.anInt1867 != arg3 || Static153.aClass3_Sub2_Sub1_Sub1_2.anInt1859 != arg2) {
+			if (Static153.aClass3_Sub2_Sub1_Sub1_2 == null || Static153.aClass3_Sub2_Sub1_Sub1_2.width != arg3 || Static153.aClass3_Sub2_Sub1_Sub1_2.height != arg2) {
 				Static153.aClass3_Sub2_Sub1_Sub1_2 = null;
 				Static153.aClass3_Sub2_Sub1_Sub1_2 = new ImageRGB(arg3, arg2);
 			}
@@ -292,11 +292,11 @@ public final class Static269 {
 			Static48.method1195(arg0 + arg3, arg0, local61, local236, arg2 + arg1, arg1, local211, local50);
 			Static38.method959(arg0, arg1, local211, arg0 + arg3, local236, local50, local61, arg2 + arg1);
 		}
-		if (Static201.anInt1864 > 0) {
-			Static91.anInt2428--;
-			if (Static91.anInt2428 == 0) {
-				Static91.anInt2428 = 20;
-				Static201.anInt1864--;
+		if (WorldMap.anInt1864 > 0) {
+			WorldMap.anInt2428--;
+			if (WorldMap.anInt2428 == 0) {
+				WorldMap.anInt2428 = 20;
+				WorldMap.anInt1864--;
 			}
 		}
 		if (!Cheat.displayFps) {

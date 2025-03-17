@@ -39,7 +39,7 @@ public class Protocol {
 
         if (PlayerList.playerCount > local6) {
             for (int inxed = local6; inxed < PlayerList.playerCount; inxed++) {
-                Static52.entityRemovalIds[Static240.entityRemovalCount++] = Static105.playerIds[inxed];
+                Static52.entityRemovalIds[Static240.entityRemovalCount++] = PlayerList.playerIds[inxed];
             }
         }
         if (local6 > PlayerList.playerCount) {
@@ -49,23 +49,23 @@ public class Protocol {
         PlayerList.playerCount = 0;
 
         for (int index = 0; index < local6; index++) {
-            @Pc(75) int local75 = Static105.playerIds[index];
+            @Pc(75) int local75 = PlayerList.playerIds[index];
             @Pc(79) Player local79 = PlayerList.players[local75];
             @Pc(84) int local84 = inboundBuffer.gBit(1);
             if (local84 == 0) {
-                Static105.playerIds[PlayerList.playerCount++] = local75;
+                PlayerList.playerIds[PlayerList.playerCount++] = local75;
                 local79.cycle = client.loop;
             } else {
                 @Pc(107) int local107 = inboundBuffer.gBit(2);
                 if (local107 == 0) {
-                    Static105.playerIds[PlayerList.playerCount++] = local75;
+                    PlayerList.playerIds[PlayerList.playerCount++] = local75;
                     local79.cycle = client.loop;
                     Static44.entityUpdateIds[Static116.entityUpdateCount++] = local75;
                 } else {
                     @Pc(153) int local153;
                     @Pc(163) int local163;
                     if (local107 == 1) {
-                        Static105.playerIds[PlayerList.playerCount++] = local75;
+                        PlayerList.playerIds[PlayerList.playerCount++] = local75;
                         local79.cycle = client.loop;
                         local153 = inboundBuffer.gBit(3);
                         local79.method2684(1, local153);
@@ -74,7 +74,7 @@ public class Protocol {
                             Static44.entityUpdateIds[Static116.entityUpdateCount++] = local75;
                         }
                     } else if (local107 == 2) {
-                        Static105.playerIds[PlayerList.playerCount++] = local75;
+                        PlayerList.playerIds[PlayerList.playerCount++] = local75;
                         local79.cycle = client.loop;
                         if (inboundBuffer.gBit(1) == 1) {
                             local153 = inboundBuffer.gBit(3);

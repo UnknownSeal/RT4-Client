@@ -669,7 +669,7 @@ public final class Static4 {
 						PlayerSkillXpTable.skillLevel[world] = ii;
 						PlayerSkillXpTable.skillBaseLevel[world] = 1;
 						for (slot = 0; slot < 98; slot++) {
-							if (com.jagex.runetek4.cache.def.ItemDefinition.levelExperience[slot] <= xp) {
+							if (PlayerSkillXpTable.levelExperience[slot] <= xp) {
 								PlayerSkillXpTable.skillBaseLevel[world] = slot + 2;
 							}
 						}

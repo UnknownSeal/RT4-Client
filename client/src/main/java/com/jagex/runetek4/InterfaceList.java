@@ -63,7 +63,7 @@ public class InterfaceList {
             if (local28 == null) {
                 arg0 = -1;
             } else {
-                GameShell.signLink.setCursor(local28.method301(), local28.anInt1860, GameShell.canvas, new Point(cursorType.hotspotx, cursorType.hotspoty), local28.anInt1866);
+                GameShell.signLink.setCursor(local28.method301(), local28.innerWidth, GameShell.canvas, new Point(cursorType.hotspotx, cursorType.hotspoty), local28.innerHeight);
                 client.currentCursor = arg0;
             }
         }

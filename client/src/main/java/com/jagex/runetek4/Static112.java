@@ -33,7 +33,7 @@ public final class Static112 {
 					}
 				}
 			} else if (GlRenderer.enabled) {
-				Static46.method1182(local3, local9, local13, 20, Static40.anInt1275, 256 - Static111.anInt2910);
+				Static46.drawFilledRectangleAlpha(local3, local9, local13, 20, Static40.anInt1275, 256 - Static111.anInt2910);
 			} else {
 				Rasterizer.drawFilledRectangleAlpha(local3, local9, local13, 20, Static40.anInt1275, 256 - Static111.anInt2910);
 			}
@@ -41,16 +41,16 @@ public final class Static112 {
 		@Pc(112) int local112;
 		@Pc(114) int local114;
 		if (LoginManager.aClass3_Sub2_Sub1_1 != null && LoginManager.aClass3_Sub2_Sub1_9 != null) {
-			local112 = local13 / LoginManager.aClass3_Sub2_Sub1_1.anInt1867;
+			local112 = local13 / LoginManager.aClass3_Sub2_Sub1_1.width;
 			for (local114 = 0; local114 < local112; local114++) {
-				LoginManager.aClass3_Sub2_Sub1_1.drawSprite(local114 * LoginManager.aClass3_Sub2_Sub1_1.anInt1867 + local3, local9);
+				LoginManager.aClass3_Sub2_Sub1_1.drawSprite(local114 * LoginManager.aClass3_Sub2_Sub1_1.width + local3, local9);
 			}
 			LoginManager.aClass3_Sub2_Sub1_9.drawSprite(local3, local9);
-			LoginManager.aClass3_Sub2_Sub1_9.method1421(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_9.anInt1867, local9);
+			LoginManager.aClass3_Sub2_Sub1_9.method1421(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_9.width, local9);
 		}
 		Fonts.b12Full.drawString(LocalizedText.CHOOSE_OPTION, local3 + 3, local9 + 14, Static195.anInt4581, -1);
 		if (GlRenderer.enabled) {
-			Static46.method1182(local3, local9 + 20, local13, local11 - 20, Static40.anInt1275, 256 - Static111.anInt2910);
+			Static46.drawFilledRectangleAlpha(local3, local9 + 20, local13, local11 - 20, Static40.anInt1275, 256 - Static111.anInt2910);
 		} else {
 			Rasterizer.drawFilledRectangleAlpha(local3, local9 + 20, local13, local11 - 20, Static40.anInt1275, 256 - Static111.anInt2910);
 		}
@@ -62,7 +62,7 @@ public final class Static112 {
 			local219 = (MiniMenu.menuActionRow - local203 - 1) * 15 + local9 + 35;
 			if (local3 < local112 && local112 < local3 + local13 && local114 > local219 - 13 && local114 < local219 + 3) {
 				if (GlRenderer.enabled) {
-					Static46.method1182(local3, local219 - 13, local13, 16, Static251.anInt5457, 256 - Static232.anInt5208);
+					Static46.drawFilledRectangleAlpha(local3, local219 - 13, local13, 16, Static251.anInt5457, 256 - Static232.anInt5208);
 				} else {
 					Rasterizer.drawFilledRectangleAlpha(local3, local219 - 13, local13, 16, Static251.anInt5457, 256 - Static232.anInt5208);
 				}
@@ -92,17 +92,17 @@ public final class Static112 {
 		}
 		@Pc(418) int local418;
 		if (LoginManager.aClass3_Sub2_Sub1_8 != null && LoginManager.aClass3_Sub2_Sub1_6 != null && LoginManager.aClass3_Sub2_Sub1_10 != null) {
-			local203 = local13 / LoginManager.aClass3_Sub2_Sub1_8.anInt1867;
+			local203 = local13 / LoginManager.aClass3_Sub2_Sub1_8.width;
 			for (local219 = 0; local219 < local203; local219++) {
-				LoginManager.aClass3_Sub2_Sub1_8.drawSprite(local3 + LoginManager.aClass3_Sub2_Sub1_8.anInt1867 * local219, local11 + local9 + -LoginManager.aClass3_Sub2_Sub1_8.anInt1859);
+				LoginManager.aClass3_Sub2_Sub1_8.drawSprite(local3 + LoginManager.aClass3_Sub2_Sub1_8.width * local219, local11 + local9 + -LoginManager.aClass3_Sub2_Sub1_8.height);
 			}
-			local219 = (local11 - 20) / LoginManager.aClass3_Sub2_Sub1_6.anInt1859;
+			local219 = (local11 - 20) / LoginManager.aClass3_Sub2_Sub1_6.height;
 			for (local418 = 0; local418 < local219; local418++) {
-				LoginManager.aClass3_Sub2_Sub1_6.drawSprite(local3, local9 + local418 * LoginManager.aClass3_Sub2_Sub1_6.anInt1859 + 20);
-				LoginManager.aClass3_Sub2_Sub1_6.method1421(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_6.anInt1867, local9 + 20 + local418 * LoginManager.aClass3_Sub2_Sub1_6.anInt1859);
+				LoginManager.aClass3_Sub2_Sub1_6.drawSprite(local3, local9 + local418 * LoginManager.aClass3_Sub2_Sub1_6.height + 20);
+				LoginManager.aClass3_Sub2_Sub1_6.method1421(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_6.width, local9 + 20 + local418 * LoginManager.aClass3_Sub2_Sub1_6.height);
 			}
-			LoginManager.aClass3_Sub2_Sub1_10.drawSprite(local3, local11 + local9 - LoginManager.aClass3_Sub2_Sub1_10.anInt1859);
-			LoginManager.aClass3_Sub2_Sub1_10.method1421(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_10.anInt1867, local9 - -local11 + -LoginManager.aClass3_Sub2_Sub1_10.anInt1859);
+			LoginManager.aClass3_Sub2_Sub1_10.drawSprite(local3, local11 + local9 - LoginManager.aClass3_Sub2_Sub1_10.height);
+			LoginManager.aClass3_Sub2_Sub1_10.method1421(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_10.width, local9 - -local11 + -LoginManager.aClass3_Sub2_Sub1_10.height);
 		}
 		for (local203 = 0; local203 < MiniMenu.menuActionRow; local203++) {
 			local219 = (MiniMenu.menuActionRow - local203 - 1) * 15 + local9 + 35;

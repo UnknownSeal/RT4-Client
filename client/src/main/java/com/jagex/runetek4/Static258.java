@@ -177,7 +177,7 @@ public final class Static258 {
 	@OriginalMember(owner = "runetek4.client!va", name = "c", descriptor = "(BI)V")
 	public static void method4444(@OriginalArg(1) int arg0) {
 		CacheArchive.anInt172 = arg0;
-		Static91.anInt2428 = 20;
-		Static201.anInt1864 = 3;
+		WorldMap.anInt2428 = 20;
+		WorldMap.anInt1864 = 3;
 	}
 }

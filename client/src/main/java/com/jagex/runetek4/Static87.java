@@ -254,7 +254,7 @@ public final class Static87 {
 								continue;
 							}
 							if (local30.contentType == 1401) {
-								Static1.method4(local123, local30.anInt459, local30.anInt445, local114);
+								WorldMap.method4(local123, local30.anInt459, local30.anInt445, local114);
 								InterfaceList.aBooleanArray100[local57] = true;
 								InterfaceList.rectangleRedraw[local57] = true;
 								if (GlRenderer.enabled) {
@@ -490,7 +490,7 @@ public final class Static87 {
 										}
 									} else if (local30.aBoolean30) {
 										if (GlRenderer.enabled) {
-											Static46.method1182(local123, local114, local30.anInt445, local30.anInt459, local270, 256 - (local117 & 0xFF));
+											Static46.drawFilledRectangleAlpha(local123, local114, local30.anInt445, local30.anInt459, local270, 256 - (local117 & 0xFF));
 										} else {
 											Rasterizer.drawFilledRectangleAlpha(local123, local114, local30.anInt445, local30.anInt459, local270, 256 - (local117 & 0xFF));
 										}
@@ -549,15 +549,15 @@ public final class Static87 {
 												local2094 = Static190.method3443(local30.anInt514, local30.objId, local30.aBoolean31, local30.objCount, local30.anInt513);
 											}
 											if (local2094 != null) {
-												local276 = local2094.anInt1860;
-												local468 = local2094.anInt1866;
+												local276 = local2094.innerWidth;
+												local468 = local2094.innerHeight;
 												if (local30.aBoolean23) {
 													local503 = (local276 + local30.anInt445 - 1) / local276;
 													local514 = (local30.anInt459 + local468 - 1) / local468;
 													if (GlRenderer.enabled) {
 														Static46.method1183(local123, local114, local30.anInt445 + local123, local30.anInt459 + local114);
-														@Pc(2274) boolean local2274 = Static209.method3702(local2094.anInt1867);
-														@Pc(2279) boolean local2279 = Static209.method3702(local2094.anInt1859);
+														@Pc(2274) boolean local2274 = Static209.method3702(local2094.width);
+														@Pc(2279) boolean local2279 = Static209.method3702(local2094.height);
 														@Pc(2282) GlSprite local2282 = (GlSprite) local2094;
 														if (local2274 && local2279) {
 															if (local117 == 0) {

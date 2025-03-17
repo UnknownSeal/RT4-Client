@@ -36,7 +36,7 @@ public final class Static225 {
 							PlayerList.players[index].read(PlayerList.PLAYER_APPEARANCE_PACKET[index]);
 						}
 					}
-					Static105.playerIds[PlayerList.playerCount++] = index;
+					PlayerList.playerIds[PlayerList.playerCount++] = index;
 					@Pc(65) Player player = PlayerList.players[index];
 					player.cycle = client.loop;
 					@Pc(73) int local73 = Protocol.inboundBuffer.gBit(1);

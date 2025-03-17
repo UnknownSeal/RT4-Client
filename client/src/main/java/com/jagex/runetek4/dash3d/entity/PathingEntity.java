@@ -261,7 +261,38 @@ public abstract class PathingEntity extends Entity {
 	@OriginalMember(owner = "client!fe", name = "Xb", descriptor = "I")
 	public int anInt3418 = -1;
 
-	@OriginalMember(owner = "client!fe", name = "b", descriptor = "(Z)Lclient!ck;")
+    @OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(IILclient!fe;)V")
+    public static void updateEntity(@OriginalArg(0) int arg0, @OriginalArg(2) PathingEntity entity) {
+        if (client.loop < entity.anInt3395) {
+            Static18.method553(entity);
+        } else if (entity.anInt3386 >= client.loop) {
+            Static280.method4665(entity);
+        } else {
+            Static104.method2247(entity);
+        }
+        if (entity.xFine < 128 || entity.zFine < 128 || entity.xFine >= 13184 || entity.zFine >= 13184) {
+            entity.primarySeqId = -1;
+            entity.spotanimFrame = -1;
+            entity.anInt3395 = 0;
+            entity.anInt3386 = 0;
+            entity.xFine = entity.movementQueueX[0] * 128 + entity.getSize() * 64;
+            entity.zFine = entity.movementQueueZ[0] * 128 + entity.getSize() * 64;
+            entity.method2689();
+        }
+        if (entity == PlayerList.self && (entity.xFine < 1536 || entity.zFine < 1536 || entity.xFine >= 11776 || entity.zFine >= 11776)) {
+            entity.spotanimFrame = -1;
+            entity.anInt3395 = 0;
+            entity.anInt3386 = 0;
+            entity.primarySeqId = -1;
+            entity.xFine = entity.movementQueueX[0] * 128 + entity.getSize() * 64;
+            entity.zFine = entity.movementQueueZ[0] * 128 + entity.getSize() * 64;
+            entity.method2689();
+        }
+        Static37.method949(entity);
+        Static34.method879(entity);
+    }
+
+    @OriginalMember(owner = "client!fe", name = "b", descriptor = "(Z)Lclient!ck;")
 	public final BasType getBasType() {
 		@Pc(7) int local7 = this.method2688();
 		return local7 == -1 ? BasType.DEFAULT : BasTypeList.get(local7);

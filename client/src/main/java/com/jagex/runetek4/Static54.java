@@ -137,7 +137,7 @@ public final class Static54 {
 				}
 			}
 			for (flagX = 0; flagX < PlayerList.playerCount; flagX++) {
-				@Pc(591) Player local591 = PlayerList.players[Static105.playerIds[flagX]];
+				@Pc(591) Player local591 = PlayerList.players[PlayerList.playerIds[flagX]];
 				if (local591 != null && local591.isVisible()) {
 					local154 = local591.zFine / 32 - PlayerList.self.zFine / 32;
 					local150 = local591.xFine / 32 - PlayerList.self.xFine / 32;

@@ -31,7 +31,7 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 				@Pc(72) int local72 = local45;
 				@Pc(74) int local74 = local57;
 				for (@Pc(77) int local77 = -20; local77 < 0; local77++) {
-					@Pc(93) int local93 = this.pixels[(local72 >> 16) + (local74 >> 16) * this.anInt1867];
+					@Pc(93) int local93 = this.pixels[(local72 >> 16) + (local74 >> 16) * this.width];
 					@Pc(97) int local97 = Rasterizer.destinationPixels[local70];
 					@Pc(101) int local101 = local93 >>> 24;
 					@Pc(105) int local105 = 256 - local101;
@@ -50,12 +50,12 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 	@OriginalMember(owner = "runetek4.client!am", name = "e", descriptor = "(II)V")
 	@Override
 	public final void drawSprite(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		arg0 += this.anInt1863;
-		arg1 += this.anInt1861;
+		arg0 += this.xOffset;
+		arg1 += this.yOffset;
 		@Pc(15) int local15 = arg0 + arg1 * Rasterizer.destinationWidth;
 		@Pc(17) int local17 = 0;
-		@Pc(20) int local20 = this.anInt1859;
-		@Pc(23) int local23 = this.anInt1867;
+		@Pc(20) int local20 = this.height;
+		@Pc(23) int local23 = this.width;
 		@Pc(27) int local27 = Rasterizer.destinationWidth - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
@@ -91,13 +91,13 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 
 	@OriginalMember(owner = "runetek4.client!am", name = "c", descriptor = "(II)V")
 	@Override
-	public final void method1415(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		arg0 += this.anInt1863;
-		arg1 += this.anInt1861;
+	public final void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+		arg0 += this.xOffset;
+		arg1 += this.yOffset;
 		@Pc(15) int local15 = arg0 + arg1 * Rasterizer.destinationWidth;
 		@Pc(17) int local17 = 0;
-		@Pc(20) int local20 = this.anInt1859;
-		@Pc(23) int local23 = this.anInt1867;
+		@Pc(20) int local20 = this.height;
+		@Pc(23) int local23 = this.width;
 		@Pc(27) int local27 = Rasterizer.destinationWidth - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
@@ -137,19 +137,19 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 		if (arg5 == 0) {
 			return;
 		}
-		@Pc(9) int local9 = arg0 - (this.anInt1863 << 4);
-		@Pc(16) int local16 = arg1 - (this.anInt1861 << 4);
+		@Pc(9) int local9 = arg0 - (this.xOffset << 4);
+		@Pc(16) int local16 = arg1 - (this.yOffset << 4);
 		@Pc(23) double local23 = (double) (arg4 & 0xFFFF) * 9.587379924285257E-5D;
 		@Pc(33) int local33 = (int) Math.floor(Math.sin(local23) * (double) arg5 + 0.5D);
 		@Pc(43) int local43 = (int) Math.floor(Math.cos(local23) * (double) arg5 + 0.5D);
 		@Pc(53) int local53 = -local9 * local43 + -local16 * local33;
 		@Pc(64) int local64 = --local9 * local33 + -local16 * local43;
-		@Pc(78) int local78 = ((this.anInt1867 << 4) - local9) * local43 + -local16 * local33;
-		@Pc(93) int local93 = -((this.anInt1867 << 4) - local9) * local33 + -local16 * local43;
-		@Pc(107) int local107 = -local9 * local43 + ((this.anInt1859 << 4) - local16) * local33;
-		@Pc(122) int local122 = --local9 * local33 + ((this.anInt1859 << 4) - local16) * local43;
-		@Pc(140) int local140 = ((this.anInt1867 << 4) - local9) * local43 + ((this.anInt1859 << 4) - local16) * local33;
-		@Pc(159) int local159 = -((this.anInt1867 << 4) - local9) * local33 + ((this.anInt1859 << 4) - local16) * local43;
+		@Pc(78) int local78 = ((this.width << 4) - local9) * local43 + -local16 * local33;
+		@Pc(93) int local93 = -((this.width << 4) - local9) * local33 + -local16 * local43;
+		@Pc(107) int local107 = -local9 * local43 + ((this.height << 4) - local16) * local33;
+		@Pc(122) int local122 = --local9 * local33 + ((this.height << 4) - local16) * local43;
+		@Pc(140) int local140 = ((this.width << 4) - local9) * local43 + ((this.height << 4) - local16) * local33;
+		@Pc(159) int local159 = -((this.width << 4) - local9) * local33 + ((this.height << 4) - local16) * local43;
 		@Pc(164) int local164;
 		@Pc(166) int local166;
 		if (local53 < local78) {
@@ -250,9 +250,9 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 						local388 = local319;
 						local802 = local368 + (local350 * local342 >> 4);
 						local394 = local166;
-						if (local378 >= 0 && local378 - (this.anInt1859 << 12) < 0) {
+						if (local378 >= 0 && local378 - (this.height << 12) < 0) {
 							@Pc(825) int local825;
-							if ((local825 = local802 - (this.anInt1867 << 12)) >= 0) {
+							if ((local825 = local802 - (this.width << 12)) >= 0) {
 								local532 = (local342 - local825) / local342;
 								local394 = local166 + local532;
 								local802 += local342 * local532;
@@ -263,7 +263,7 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 								local394 = local853;
 							}
 							while (local394 < 0) {
-								local432 = this.pixels[(local378 >> 12) * this.anInt1867 + (local802 >> 12)];
+								local432 = this.pixels[(local378 >> 12) * this.width + (local802 >> 12)];
 								local436 = Rasterizer.destinationPixels[local388];
 								local440 = local432 >>> 24;
 								local444 = 256 - local440;
@@ -284,7 +284,7 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 						local504 = local378 + (local350 * local333 >> 4);
 						local394 = local166;
 						@Pc(969) int local969;
-						if ((local969 = local802 - (this.anInt1867 << 12)) >= 0) {
+						if ((local969 = local802 - (this.width << 12)) >= 0) {
 							local532 = (local342 - local969) / local342;
 							local394 = local166 + local532;
 							local802 += local342 * local532;
@@ -296,7 +296,7 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 							local394 = local1003;
 						}
 						@Pc(1015) int local1015;
-						if ((local1015 = local504 - (this.anInt1859 << 12)) >= 0) {
+						if ((local1015 = local504 - (this.height << 12)) >= 0) {
 							local532 = (local333 - local1015) / local333;
 							local394 += local532;
 							local802 += local342 * local532;
@@ -308,7 +308,7 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 							local394 = local1049;
 						}
 						while (local394 < 0) {
-							local432 = this.pixels[(local504 >> 12) * this.anInt1867 + (local802 >> 12)];
+							local432 = this.pixels[(local504 >> 12) * this.width + (local802 >> 12)];
 							local436 = Rasterizer.destinationPixels[local388];
 							local440 = local432 >>> 24;
 							local444 = 256 - local440;
@@ -330,7 +330,7 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 						local504 = local378 + (local350 * local333 >> 4);
 						local394 = local166;
 						@Pc(1171) int local1171;
-						if ((local1171 = local802 - (this.anInt1867 << 12)) >= 0) {
+						if ((local1171 = local802 - (this.width << 12)) >= 0) {
 							local532 = (local342 - local1171) / local342;
 							local394 = local166 + local532;
 							local802 += local342 * local532;
@@ -349,11 +349,11 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 							local388 += local532;
 						}
 						@Pc(1253) int local1253;
-						if ((local1253 = (local504 + 1 - (this.anInt1859 << 12) - local333) / local333) > local394) {
+						if ((local1253 = (local504 + 1 - (this.height << 12) - local333) / local333) > local394) {
 							local394 = local1253;
 						}
 						while (local394 < 0) {
-							local432 = this.pixels[(local504 >> 12) * this.anInt1867 + (local802 >> 12)];
+							local432 = this.pixels[(local504 >> 12) * this.width + (local802 >> 12)];
 							local436 = Rasterizer.destinationPixels[local388];
 							local440 = local432 >>> 24;
 							local444 = 256 - local440;
@@ -374,7 +374,7 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 					local388 = local319;
 					local802 = local368 + (local350 * local342 >> 4);
 					local394 = local166;
-					if (local378 >= 0 && local378 - (this.anInt1859 << 12) < 0) {
+					if (local378 >= 0 && local378 - (this.height << 12) < 0) {
 						if (local802 < 0) {
 							local532 = (local342 - local802 - 1) / local342;
 							local394 = local166 + local532;
@@ -382,11 +382,11 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 							local388 = local319 + local532;
 						}
 						@Pc(1412) int local1412;
-						if ((local1412 = (local802 + 1 - (this.anInt1867 << 12) - local342) / local342) > local394) {
+						if ((local1412 = (local802 + 1 - (this.width << 12) - local342) / local342) > local394) {
 							local394 = local1412;
 						}
 						while (local394 < 0) {
-							local432 = this.pixels[(local378 >> 12) * this.anInt1867 + (local802 >> 12)];
+							local432 = this.pixels[(local378 >> 12) * this.width + (local802 >> 12)];
 							local436 = Rasterizer.destinationPixels[local388];
 							local440 = local432 >>> 24;
 							local444 = 256 - local440;
@@ -414,11 +414,11 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 						local388 = local319 + local532;
 					}
 					@Pc(1564) int local1564;
-					if ((local1564 = (local802 + 1 - (this.anInt1867 << 12) - local342) / local342) > local394) {
+					if ((local1564 = (local802 + 1 - (this.width << 12) - local342) / local342) > local394) {
 						local394 = local1564;
 					}
 					@Pc(1576) int local1576;
-					if ((local1576 = local504 - (this.anInt1859 << 12)) >= 0) {
+					if ((local1576 = local504 - (this.height << 12)) >= 0) {
 						local532 = (local333 - local1576) / local333;
 						local394 += local532;
 						local802 += local342 * local532;
@@ -430,7 +430,7 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 						local394 = local1610;
 					}
 					while (local394 < 0) {
-						local432 = this.pixels[(local504 >> 12) * this.anInt1867 + (local802 >> 12)];
+						local432 = this.pixels[(local504 >> 12) * this.width + (local802 >> 12)];
 						local436 = Rasterizer.destinationPixels[local388];
 						local440 = local432 >>> 24;
 						local444 = 256 - local440;
@@ -459,7 +459,7 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 						local388 = local319 + local532;
 					}
 					@Pc(1768) int local1768;
-					if ((local1768 = (local802 + 1 - (this.anInt1867 << 12) - local342) / local342) > local394) {
+					if ((local1768 = (local802 + 1 - (this.width << 12) - local342) / local342) > local394) {
 						local394 = local1768;
 					}
 					if (local504 < 0) {
@@ -470,11 +470,11 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 						local388 += local532;
 					}
 					@Pc(1816) int local1816;
-					if ((local1816 = (local504 + 1 - (this.anInt1859 << 12) - local333) / local333) > local394) {
+					if ((local1816 = (local504 + 1 - (this.height << 12) - local333) / local333) > local394) {
 						local394 = local1816;
 					}
 					while (local394 < 0) {
-						local432 = this.pixels[(local504 >> 12) * this.anInt1867 + (local802 >> 12)];
+						local432 = this.pixels[(local504 >> 12) * this.width + (local802 >> 12)];
 						local436 = Rasterizer.destinationPixels[local388];
 						local440 = local432 >>> 24;
 						local444 = 256 - local440;
@@ -494,9 +494,9 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 			while (local384 < 0) {
 				local388 = local319;
 				local394 = local166;
-				if (local368 >= 0 && local378 >= 0 && local368 - (this.anInt1867 << 12) < 0 && local378 - (this.anInt1859 << 12) < 0) {
+				if (local368 >= 0 && local378 >= 0 && local368 - (this.width << 12) < 0 && local378 - (this.height << 12) < 0) {
 					while (local394 < 0) {
-						local432 = this.pixels[(local378 >> 12) * this.anInt1867 + (local368 >> 12)];
+						local432 = this.pixels[(local378 >> 12) * this.width + (local368 >> 12)];
 						local436 = Rasterizer.destinationPixels[local388];
 						local440 = local432 >>> 24;
 						local444 = 256 - local440;
@@ -513,9 +513,9 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 				local388 = local319;
 				local504 = local378 + (local350 * local333 >> 4);
 				local394 = local166;
-				if (local368 >= 0 && local368 - (this.anInt1867 << 12) < 0) {
+				if (local368 >= 0 && local368 - (this.width << 12) < 0) {
 					@Pc(525) int local525;
-					if ((local525 = local504 - (this.anInt1859 << 12)) >= 0) {
+					if ((local525 = local504 - (this.height << 12)) >= 0) {
 						local532 = (local333 - local525) / local333;
 						local394 = local166 + local532;
 						local504 += local333 * local532;
@@ -526,7 +526,7 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 						local394 = local553;
 					}
 					while (local394 < 0) {
-						local432 = this.pixels[(local504 >> 12) * this.anInt1867 + (local368 >> 12)];
+						local432 = this.pixels[(local504 >> 12) * this.width + (local368 >> 12)];
 						local436 = Rasterizer.destinationPixels[local388];
 						local440 = local432 >>> 24;
 						local444 = 256 - local440;
@@ -545,7 +545,7 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 				local388 = local319;
 				local504 = local378 + (local350 * local333 >> 4);
 				local394 = local166;
-				if (local368 >= 0 && local368 - (this.anInt1867 << 12) < 0) {
+				if (local368 >= 0 && local368 - (this.width << 12) < 0) {
 					if (local504 < 0) {
 						local532 = (local333 - local504 - 1) / local333;
 						local394 = local166 + local532;
@@ -553,11 +553,11 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 						local388 = local319 + local532;
 					}
 					@Pc(702) int local702;
-					if ((local702 = (local504 + 1 - (this.anInt1859 << 12) - local333) / local333) > local394) {
+					if ((local702 = (local504 + 1 - (this.height << 12) - local333) / local333) > local394) {
 						local394 = local702;
 					}
 					while (local394 < 0) {
-						local432 = this.pixels[(local504 >> 12) * this.anInt1867 + (local368 >> 12)];
+						local432 = this.pixels[(local504 >> 12) * this.width + (local368 >> 12)];
 						local436 = Rasterizer.destinationPixels[local388];
 						local440 = local432 >>> 24;
 						local444 = 256 - local440;
@@ -592,7 +592,7 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 				@Pc(88) int local88 = local51 + local39 * local78;
 				@Pc(94) int local94 = local63 - local33 * local78;
 				for (@Pc(99) int local99 = -arg9[local71]; local99 < 0; local99++) {
-					@Pc(115) int local115 = this.pixels[(local88 >> 16) + (local94 >> 16) * this.anInt1867];
+					@Pc(115) int local115 = this.pixels[(local88 >> 16) + (local94 >> 16) * this.width];
 					@Pc(119) int local119 = Rasterizer.destinationPixels[local82];
 					@Pc(123) int local123 = local115 >>> 24;
 					@Pc(127) int local127 = 256 - local123;
@@ -627,7 +627,7 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 				@Pc(88) int local88 = local51 + local39 * local78;
 				@Pc(94) int local94 = local63 - local33 * local78;
 				for (@Pc(99) int local99 = -arg8[local71]; local99 < 0; local99++) {
-					@Pc(115) int local115 = this.pixels[(local88 >> 16) + (local94 >> 16) * this.anInt1867];
+					@Pc(115) int local115 = this.pixels[(local88 >> 16) + (local94 >> 16) * this.width];
 					@Pc(119) int local119 = Rasterizer.destinationPixels[local82];
 					@Pc(123) int local123 = local115 >>> 24;
 					@Pc(127) int local127 = 256 - local123;
@@ -649,24 +649,24 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 		if (arg2 <= 0 || arg3 <= 0) {
 			return;
 		}
-		@Pc(7) int local7 = this.anInt1867;
-		@Pc(10) int local10 = this.anInt1859;
+		@Pc(7) int local7 = this.width;
+		@Pc(10) int local10 = this.height;
 		@Pc(12) int local12 = 0;
 		@Pc(14) int local14 = 0;
-		@Pc(17) int local17 = this.anInt1860;
-		@Pc(20) int local20 = this.anInt1866;
+		@Pc(17) int local17 = this.innerWidth;
+		@Pc(20) int local20 = this.innerHeight;
 		@Pc(26) int local26 = (local17 << 16) / arg2;
 		@Pc(32) int local32 = (local20 << 16) / arg3;
 		@Pc(46) int local46;
-		if (this.anInt1863 > 0) {
-			local46 = ((this.anInt1863 << 16) + local26 - 1) / local26;
+		if (this.xOffset > 0) {
+			local46 = ((this.xOffset << 16) + local26 - 1) / local26;
 			arg0 += local46;
-			local12 = local46 * local26 - (this.anInt1863 << 16);
+			local12 = local46 * local26 - (this.xOffset << 16);
 		}
-		if (this.anInt1861 > 0) {
-			local46 = ((this.anInt1861 << 16) + local32 - 1) / local32;
+		if (this.yOffset > 0) {
+			local46 = ((this.yOffset << 16) + local32 - 1) / local32;
 			arg1 += local46;
-			local14 = local46 * local32 - (this.anInt1861 << 16);
+			local14 = local46 * local32 - (this.yOffset << 16);
 		}
 		if (local7 < local17) {
 			arg2 = ((local7 << 16) + local26 - local12 - 1) / local26;
@@ -707,24 +707,24 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 		if (arg2 <= 0 || arg3 <= 0) {
 			return;
 		}
-		@Pc(7) int local7 = this.anInt1867;
-		@Pc(10) int local10 = this.anInt1859;
+		@Pc(7) int local7 = this.width;
+		@Pc(10) int local10 = this.height;
 		@Pc(12) int local12 = 0;
 		@Pc(14) int local14 = 0;
-		@Pc(17) int local17 = this.anInt1860;
-		@Pc(20) int local20 = this.anInt1866;
+		@Pc(17) int local17 = this.innerWidth;
+		@Pc(20) int local20 = this.innerHeight;
 		@Pc(26) int local26 = (local17 << 16) / arg2;
 		@Pc(32) int local32 = (local20 << 16) / arg3;
 		@Pc(46) int local46;
-		if (this.anInt1863 > 0) {
-			local46 = ((this.anInt1863 << 16) + local26 - 1) / local26;
+		if (this.xOffset > 0) {
+			local46 = ((this.xOffset << 16) + local26 - 1) / local26;
 			arg0 += local46;
-			local12 = local46 * local26 - (this.anInt1863 << 16);
+			local12 = local46 * local26 - (this.xOffset << 16);
 		}
-		if (this.anInt1861 > 0) {
-			local46 = ((this.anInt1861 << 16) + local32 - 1) / local32;
+		if (this.yOffset > 0) {
+			local46 = ((this.yOffset << 16) + local32 - 1) / local32;
 			arg1 += local46;
-			local14 = local46 * local32 - (this.anInt1861 << 16);
+			local14 = local46 * local32 - (this.yOffset << 16);
 		}
 		if (local7 < local17) {
 			arg2 = ((local7 << 16) + local26 - local12 - 1) / local26;
@@ -762,12 +762,12 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 	@OriginalMember(owner = "runetek4.client!am", name = "d", descriptor = "(II)V")
 	@Override
 	public final void method1421(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		arg0 += this.anInt1860 - this.anInt1867 - this.anInt1863;
-		arg1 += this.anInt1861;
+		arg0 += this.innerWidth - this.width - this.xOffset;
+		arg1 += this.yOffset;
 		@Pc(21) int local21 = arg0 + arg1 * Rasterizer.destinationWidth;
-		@Pc(26) int local26 = this.anInt1867 - 1;
-		@Pc(29) int local29 = this.anInt1859;
-		@Pc(32) int local32 = this.anInt1867;
+		@Pc(26) int local26 = this.width - 1;
+		@Pc(29) int local29 = this.height;
+		@Pc(32) int local32 = this.width;
 		@Pc(36) int local36 = Rasterizer.destinationWidth - local32;
 		@Pc(40) int local40 = local32 + local32;
 		@Pc(47) int local47;
@@ -804,12 +804,12 @@ public final class SoftwareAlphaSprite extends ImageRGB {
 	@OriginalMember(owner = "runetek4.client!am", name = "a", descriptor = "(III)V")
 	@Override
 	public final void method1417(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		arg0 += this.anInt1863;
-		arg1 += this.anInt1861;
+		arg0 += this.xOffset;
+		arg1 += this.yOffset;
 		@Pc(15) int local15 = arg0 + arg1 * Rasterizer.destinationWidth;
 		@Pc(17) int local17 = 0;
-		@Pc(20) int local20 = this.anInt1859;
-		@Pc(23) int local23 = this.anInt1867;
+		@Pc(20) int local20 = this.height;
+		@Pc(23) int local23 = this.width;
 		@Pc(27) int local27 = Rasterizer.destinationWidth - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;

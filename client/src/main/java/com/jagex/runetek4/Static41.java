@@ -13,9 +13,6 @@ public final class Static41 {
 	@OriginalMember(owner = "runetek4.client!dc", name = "M", descriptor = "Lclient!na;")
 	public static final JString aClass100_268 = JString.parse(")4");
 
-	@OriginalMember(owner = "runetek4.client!dc", name = "O", descriptor = "I")
-	public static int anInt1309 = 0;
-
 	@OriginalMember(owner = "runetek4.client!dc", name = "R", descriptor = "Lclient!na;")
 	private static final JString aClass100_269 = JString.parse("Drop");
 

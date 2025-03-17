@@ -2922,7 +2922,7 @@ public final class Static88 {
 														continue;
 													}
 													if (scriptOpcode == 5220) {
-														Static254.scriptIntValues[intValueIndex++] = Static41.anInt1309 == 100 ? 1 : 0;
+														Static254.scriptIntValues[intValueIndex++] = WorldMap.loadPercentage == 100 ? 1 : 0;
 														continue;
 													}
 												} else if (scriptOpcode < 5400) {

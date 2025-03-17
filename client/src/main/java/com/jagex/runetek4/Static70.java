@@ -10,9 +10,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static70 {
 
-	@OriginalMember(owner = "runetek4.client!fi", name = "j", descriptor = "Lclient!qf;")
-	public static Sprite aClass3_Sub2_Sub1_2;
-
 	@OriginalMember(owner = "runetek4.client!fi", name = "m", descriptor = "[[[B")
 	public static byte[][][] aByteArrayArrayArray7;
 

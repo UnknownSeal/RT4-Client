@@ -166,15 +166,15 @@ public final class Static46 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!dj", name = "c", descriptor = "(IIIIII)V")
-	public static void method1182(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
+	public static void drawFilledRectangleAlpha(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int width, @OriginalArg(3) int height, @OriginalArg(4) int color, @OriginalArg(5) int alpha) {
 		GlRenderer.method4162();
-		@Pc(3) float local3 = (float) arg0;
-		@Pc(8) float local8 = local3 + (float) arg2;
-		@Pc(13) float local13 = (float) (GlRenderer.canvasHeight - arg1);
-		@Pc(18) float local18 = local13 - (float) arg3;
+		@Pc(3) float local3 = (float) x;
+		@Pc(8) float local8 = local3 + (float) width;
+		@Pc(13) float local13 = (float) (GlRenderer.canvasHeight - y);
+		@Pc(18) float local18 = local13 - (float) height;
 		@Pc(20) GL2 local20 = GlRenderer.gl;
 		local20.glBegin(GL2.GL_TRIANGLE_FAN);
-		local20.glColor4ub((byte) (arg4 >> 16), (byte) (arg4 >> 8), (byte) arg4, arg5 > 255 ? -1 : (byte) arg5);
+		local20.glColor4ub((byte) (color >> 16), (byte) (color >> 8), (byte) color, alpha > 255 ? -1 : (byte) alpha);
 		local20.glVertex2f(local3, local13);
 		local20.glVertex2f(local3, local18);
 		local20.glVertex2f(local8, local18);
@@ -273,7 +273,7 @@ public final class Static46 {
 
 	@OriginalMember(owner = "runetek4.client!dj", name = "a", descriptor = "(Lclient!cf;)V")
 	public static void method1188(@OriginalArg(0) GlSprite arg0) {
-		if (arg0.anInt1859 != anInt1441 - anInt1438) {
+		if (arg0.height != anInt1441 - anInt1438) {
 			throw new IllegalArgumentException();
 		}
 		aClass3_Sub2_Sub1_Sub2_1 = arg0;

@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -102,34 +101,4 @@ public final class Static263 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(IILclient!fe;)V")
-	public static void updateEntity(@OriginalArg(0) int arg0, @OriginalArg(2) PathingEntity entity) {
-		if (client.loop < entity.anInt3395) {
-			Static18.method553(entity);
-		} else if (entity.anInt3386 >= client.loop) {
-			Static280.method4665(entity);
-		} else {
-			Static104.method2247(entity);
-		}
-		if (entity.xFine < 128 || entity.zFine < 128 || entity.xFine >= 13184 || entity.zFine >= 13184) {
-			entity.primarySeqId = -1;
-			entity.spotanimFrame = -1;
-			entity.anInt3395 = 0;
-			entity.anInt3386 = 0;
-			entity.xFine = entity.movementQueueX[0] * 128 + entity.getSize() * 64;
-			entity.zFine = entity.movementQueueZ[0] * 128 + entity.getSize() * 64;
-			entity.method2689();
-		}
-		if (entity == PlayerList.self && (entity.xFine < 1536 || entity.zFine < 1536 || entity.xFine >= 11776 || entity.zFine >= 11776)) {
-			entity.spotanimFrame = -1;
-			entity.anInt3395 = 0;
-			entity.anInt3386 = 0;
-			entity.primarySeqId = -1;
-			entity.xFine = entity.movementQueueX[0] * 128 + entity.getSize() * 64;
-			entity.zFine = entity.movementQueueZ[0] * 128 + entity.getSize() * 64;
-			entity.method2689();
-		}
-		Static37.method949(entity);
-		Static34.method879(entity);
-	}
 }

@@ -36,8 +36,8 @@ public class TextureOpSprite extends TextureOp {
 		} else {
 			@Pc(43) ImageRGB local43 = Static215.anInt4868 < 0 ? Static164.method3117(Static176.aClass153_76, this.anInt3235) : Static78.method1693(this.anInt3235, Static176.aClass153_76, Static215.anInt4868);
 			local43.method311();
-			this.anInt3240 = local43.anInt1859;
-			this.anInt3239 = local43.anInt1867;
+			this.anInt3240 = local43.height;
+			this.anInt3239 = local43.width;
 			this.anIntArray305 = local43.pixels;
 			return true;
 		}

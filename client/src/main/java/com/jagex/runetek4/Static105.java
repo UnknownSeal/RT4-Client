@@ -15,9 +15,6 @@ public final class Static105 {
 	@OriginalMember(owner = "runetek4.client!ib", name = "d", descriptor = "Lclient!gn;")
 	public static final LruHashTable scripts = new LruHashTable(128);
 
-	@OriginalMember(owner = "runetek4.client!ib", name = "f", descriptor = "[I")
-	public static final int[] playerIds = new int[2048];
-
 	@OriginalMember(owner = "runetek4.client!ib", name = "g", descriptor = "Lclient!na;")
 	public static final JString aClass100_559 = JString.parse("<col=ffff00>");
 

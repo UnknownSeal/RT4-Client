@@ -13,10 +13,7 @@ public final class Static91 {
 	@OriginalMember(owner = "runetek4.client!hc", name = "O", descriptor = "[Lclient!pe;")
 	public static Class120[] aClass120Array1;
 
-	@OriginalMember(owner = "runetek4.client!hc", name = "P", descriptor = "I")
-	public static int anInt2428;
-
-	@OriginalMember(owner = "runetek4.client!hc", name = "d", descriptor = "(I)I")
+    @OriginalMember(owner = "runetek4.client!hc", name = "d", descriptor = "(I)I")
 	public static int getZoom() {
 		if ((double) Static138.aFloat14 == 3.0D) {
 			return 37;

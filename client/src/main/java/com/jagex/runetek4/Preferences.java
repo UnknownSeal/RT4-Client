@@ -41,15 +41,15 @@ public class Preferences {
         if (Static269.aClass3_Sub2_Sub4_2 == null) {
             return;
         }
-        if (Static41.anInt1309 < 10) {
+        if (WorldMap.loadPercentage < 10) {
             if (!Static119.aClass153_44.method4489(Static269.aClass3_Sub2_Sub4_2.aClass100_138)) {
-                Static41.anInt1309 = client.js5Archive23.method4478(Static269.aClass3_Sub2_Sub4_2.aClass100_138) / 10;
+                WorldMap.loadPercentage = client.js5Archive23.method4478(Static269.aClass3_Sub2_Sub4_2.aClass100_138) / 10;
                 return;
             }
             client.method84();
-            Static41.anInt1309 = 10;
+            WorldMap.loadPercentage = 10;
         }
-        if (Static41.anInt1309 == 10) {
+        if (WorldMap.loadPercentage == 10) {
             Static158.anInt3846 = Static269.aClass3_Sub2_Sub4_2.anInt763 >> 6 << 6;
             Static2.anInt13 = Static269.aClass3_Sub2_Sub4_2.anInt771 >> 6 << 6;
             IdkTypeList.anInt4296 = (Static269.aClass3_Sub2_Sub4_2.anInt758 >> 6 << 6) + 64 - Static2.anInt13;
@@ -99,26 +99,26 @@ public class Preferences {
             Static125.aByteArrayArrayArray10 = new byte[local239][local235][];
             Static58.anIntArrayArrayArray5 = new int[local239][local235][];
             Static70.method1549(local273, local249);
-            Static41.anInt1309 = 20;
-        } else if (Static41.anInt1309 == 20) {
+            WorldMap.loadPercentage = 20;
+        } else if (WorldMap.loadPercentage == 20) {
             Static33.method868(new Packet(Static119.aClass153_44.fetchFile(Static166.aClass100_779, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
-            Static41.anInt1309 = 30;
+            WorldMap.loadPercentage = 30;
             aClass6.method842(true);
             Static234.method4020();
-        } else if (Static41.anInt1309 == 30) {
+        } else if (WorldMap.loadPercentage == 30) {
             Static47.method3998(new Packet(Static119.aClass153_44.fetchFile(Static4.aClass100_7, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
-            Static41.anInt1309 = 40;
+            WorldMap.loadPercentage = 40;
             Static234.method4020();
-        } else if (Static41.anInt1309 == 40) {
+        } else if (WorldMap.loadPercentage == 40) {
             PreciseSleep.method3980(new Packet(Static119.aClass153_44.fetchFile(Static73.OVERLAY2, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
-            Static41.anInt1309 = 50;
+            WorldMap.loadPercentage = 50;
             Static234.method4020();
-        } else if (Static41.anInt1309 == 50) {
+        } else if (WorldMap.loadPercentage == 50) {
             Static166.method3166(new Packet(Static119.aClass153_44.fetchFile(Static42.aClass100_331, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
-            Static41.anInt1309 = 60;
+            WorldMap.loadPercentage = 60;
             aClass6.method842(true);
             Static234.method4020();
-        } else if (Static41.anInt1309 == 60) {
+        } else if (WorldMap.loadPercentage == 60) {
             if (Static119.aClass153_44.method4497(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
                 if (!Static119.aClass153_44.method4489(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
                     return;
@@ -127,46 +127,46 @@ public class Preferences {
             } else {
                 Static203.aMapElementTypeList_1 = new MapElementTypeList(0);
             }
-            Static41.anInt1309 = 70;
+            WorldMap.loadPercentage = 70;
             Static234.method4020();
-        } else if (Static41.anInt1309 == 70) {
+        } else if (WorldMap.loadPercentage == 70) {
             Static273.aClass41_7 = new WorldMapFont(11, true, GameShell.canvas);
-            Static41.anInt1309 = 73;
+            WorldMap.loadPercentage = 73;
             aClass6.method842(true);
             Static234.method4020();
-        } else if (Static41.anInt1309 == 73) {
+        } else if (WorldMap.loadPercentage == 73) {
             Static152.aClass41_3 = new WorldMapFont(12, true, GameShell.canvas);
-            Static41.anInt1309 = 76;
+            WorldMap.loadPercentage = 76;
             aClass6.method842(true);
             Static234.method4020();
-        } else if (Static41.anInt1309 == 76) {
+        } else if (WorldMap.loadPercentage == 76) {
             Static169.aClass41_5 = new WorldMapFont(14, true, GameShell.canvas);
-            Static41.anInt1309 = 79;
+            WorldMap.loadPercentage = 79;
             aClass6.method842(true);
             Static234.method4020();
-        } else if (Static41.anInt1309 == 79) {
+        } else if (WorldMap.loadPercentage == 79) {
             Static130.aClass41_1 = new WorldMapFont(17, true, GameShell.canvas);
-            Static41.anInt1309 = 82;
+            WorldMap.loadPercentage = 82;
             aClass6.method842(true);
             Static234.method4020();
-        } else if (Static41.anInt1309 == 82) {
+        } else if (WorldMap.loadPercentage == 82) {
             Static203.aClass41_8 = new WorldMapFont(19, true, GameShell.canvas);
-            Static41.anInt1309 = 85;
+            WorldMap.loadPercentage = 85;
             aClass6.method842(true);
             Static234.method4020();
-        } else if (Static41.anInt1309 == 85) {
+        } else if (WorldMap.loadPercentage == 85) {
             Static130.aClass41_2 = new WorldMapFont(22, true, GameShell.canvas);
-            Static41.anInt1309 = 88;
+            WorldMap.loadPercentage = 88;
             aClass6.method842(true);
             Static234.method4020();
-        } else if (Static41.anInt1309 == 88) {
+        } else if (WorldMap.loadPercentage == 88) {
             Static270.aClass41_9 = new WorldMapFont(26, true, GameShell.canvas);
-            Static41.anInt1309 = 91;
+            WorldMap.loadPercentage = 91;
             aClass6.method842(true);
             Static234.method4020();
         } else {
             Static160.aClass41_4 = new WorldMapFont(30, true, GameShell.canvas);
-            Static41.anInt1309 = 100;
+            WorldMap.loadPercentage = 100;
             aClass6.method842(true);
             Static234.method4020();
             System.gc();

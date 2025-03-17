@@ -179,11 +179,11 @@ public final class Static176 {
 							}
 						}
 						for (local493 = 0; local493 < PlayerList.playerCount; local493++) {
-							local597 = PlayerList.players[Static105.playerIds[local493]];
+							local597 = PlayerList.players[PlayerList.playerIds[local493]];
 							local514 = local597.xFine + 64 - local597.getSize() * 64;
 							local526 = local597.zFine + 64 - local597.getSize() * 64;
 							if (local597 != null && local514 >= local479 && local597.getSize() <= local421.type.size - (local514 - local479 >> 7) && local526 >= local240 && local597.getSize() <= local421.type.size - (local526 - local240 >> 7)) {
-								Static217.method3767(Static105.playerIds[local493], local147, local597, local47);
+								Static217.method3767(PlayerList.playerIds[local493], local147, local597, local47);
 							}
 						}
 					}
@@ -203,11 +203,11 @@ public final class Static176 {
 							}
 						}
 						for (local493 = 0; local493 < PlayerList.playerCount; local493++) {
-							local597 = PlayerList.players[Static105.playerIds[local493]];
+							local597 = PlayerList.players[PlayerList.playerIds[local493]];
 							local514 = local597.xFine - (local597.getSize() - 1) * 64;
 							local526 = local597.zFine + 64 - local597.getSize() * 64;
 							if (local597 != null && local597 != local688 && local479 <= local514 && local597.getSize() <= local688.getSize() - (local514 - local479 >> 7) && local526 >= local240 && local597.getSize() <= local688.getSize() - (local526 - local240 >> 7)) {
-								Static217.method3767(Static105.playerIds[local493], local147, local597, local47);
+								Static217.method3767(PlayerList.playerIds[local493], local147, local597, local47);
 							}
 						}
 					}

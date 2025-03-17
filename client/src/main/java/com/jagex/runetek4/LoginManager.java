@@ -113,13 +113,13 @@ public class LoginManager {
             for (@Pc(189) int local189 = 0; local189 < InterfaceList.rectangles; local189++) {
                 if (Static223.aBooleanArray116[local189]) {
                     if (GlRenderer.enabled) {
-                        Static46.method1182(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711935, 128);
+                        Static46.drawFilledRectangleAlpha(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711935, 128);
                     } else {
                         Rasterizer.drawFilledRectangleAlpha(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711935, 128);
                     }
                 } else if (InterfaceList.rectangleRedraw[local189]) {
                     if (GlRenderer.enabled) {
-                        Static46.method1182(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711680, 128);
+                        Static46.drawFilledRectangleAlpha(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711680, 128);
                     } else {
                         Rasterizer.drawFilledRectangleAlpha(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711680, 128);
                     }
