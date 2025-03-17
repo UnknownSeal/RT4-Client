@@ -11,9 +11,6 @@ public final class Static5 {
 	@OriginalMember(owner = "runetek4.client!af", name = "a", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_1;
 
-	@OriginalMember(owner = "runetek4.client!af", name = "c", descriptor = "I")
-	public static int anInt39 = -1;
-
 	@OriginalMember(owner = "runetek4.client!af", name = "g", descriptor = "Lclient!na;")
 	public static final JString HINT_MAPEDGE = JString.parse("hint_mapedge");
 

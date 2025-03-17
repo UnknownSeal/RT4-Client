@@ -12,9 +12,6 @@ public final class Static250 {
 	@OriginalMember(owner = "runetek4.client!uf", name = "r", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_101;
 
-	@OriginalMember(owner = "runetek4.client!uf", name = "b", descriptor = "Z")
-	public static boolean aBoolean283 = true;
-
 	@OriginalMember(owner = "runetek4.client!uf", name = "e", descriptor = "I")
 	public static int anInt5434 = 0;
 

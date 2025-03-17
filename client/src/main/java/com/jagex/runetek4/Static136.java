@@ -86,10 +86,10 @@ public final class Static136 {
 		} else if (Static113.brightness > 4) {
 			Static113.brightness = 4;
 		}
-		Static53.method1293(arg0.g1() == 1);
-		Static80.aBoolean231 = arg0.g1() == 1;
-		Static250.aBoolean283 = arg0.g1() == 1;
-		Static53.aBoolean99 = arg0.g1() == 1;
+		Preferences.setAllLevelsVisible(arg0.g1() == 1);
+		Preferences.roofsVisible = arg0.g1() == 1;
+		Preferences.groundDecoration = arg0.g1() == 1;
+		Preferences.highDetailTextures = arg0.g1() == 1;
 		Static15.lowMemory = arg0.g1() == 1;
 		Static11.aBoolean15 = arg0.g1() == 1;
 		Static159.aBoolean189 = arg0.g1() == 1;

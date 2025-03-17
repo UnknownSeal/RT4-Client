@@ -1589,7 +1589,7 @@ public final class Static88 {
 										continue;
 									}
 									if (scriptOpcode == 3333) {
-										Static254.scriptIntValues[intValueIndex++] = Static5.anInt39;
+										Static254.scriptIntValues[intValueIndex++] = LoginManager.anInt39;
 										continue;
 									}
 									if (scriptOpcode == 3335) {
@@ -2506,7 +2506,7 @@ public final class Static88 {
 												}
 												if (scriptOpcode == 5015) {
 													if (PlayerList.self == null || PlayerList.self.username == null) {
-														chatTyped = Static186.username;
+														chatTyped = LoginManager.username;
 													} else {
 														chatTyped = PlayerList.self.getUsername();
 													}
@@ -3236,51 +3236,51 @@ public final class Static88 {
 														chatTypedLowercase = Static3.scriptStringValues[local26 + 1];
 														intValueIndex--;
 														childCount = Static254.scriptIntValues[intValueIndex];
-														if (client.gameState == 10 && Static219.anInt4937 == 0 && LoginManager.step == 0 && CreateManager.step == 0 && Static82.anInt2231 == 0) {
-															Static225.method3896(chatTyped, chatTypedLowercase, childCount);
+														if (client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0 && Static82.anInt2231 == 0) {
+															LoginManager.login(chatTyped, chatTypedLowercase, childCount);
 														}
 														continue;
 													}
 													if (scriptOpcode == 5601) {
-														Static185.method3395();
+														LoginManager.method3395();
 														continue;
 													}
 													if (scriptOpcode == 5602) {
 														if (LoginManager.step == 0) {
-															Static266.anInt5336 = -2;
+															LoginManager.reply = -2;
 														}
 														continue;
 													}
 													if (scriptOpcode == 5603) {
 														intValueIndex -= 4;
-														if (client.gameState == 10 && Static219.anInt4937 == 0 && LoginManager.step == 0 && CreateManager.step == 0 && Static82.anInt2231 == 0) {
-															Static125.method2448(Static254.scriptIntValues[intValueIndex + 2], Static254.scriptIntValues[intValueIndex + 3], Static254.scriptIntValues[intValueIndex], Static254.scriptIntValues[intValueIndex + 1]);
+														if (client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0 && Static82.anInt2231 == 0) {
+															CreateManager.checkInfo(Static254.scriptIntValues[intValueIndex + 2], Static254.scriptIntValues[intValueIndex + 3], Static254.scriptIntValues[intValueIndex], Static254.scriptIntValues[intValueIndex + 1]);
 														}
 														continue;
 													}
 													if (scriptOpcode == 5604) {
 														local26--;
-														if (client.gameState == 10 && Static219.anInt4937 == 0 && LoginManager.step == 0 && CreateManager.step == 0 && Static82.anInt2231 == 0) {
-															Static78.method1691(Static3.scriptStringValues[local26].encode37());
+														if (client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0 && Static82.anInt2231 == 0) {
+															CreateManager.checkName(Static3.scriptStringValues[local26].encode37());
 														}
 														continue;
 													}
 													if (scriptOpcode == 5605) {
 														intValueIndex -= 4;
 														local26 -= 2;
-														if (client.gameState == 10 && Static219.anInt4937 == 0 && LoginManager.step == 0 && CreateManager.step == 0 && Static82.anInt2231 == 0) {
-															Static40.method1016(Static254.scriptIntValues[intValueIndex], Static254.scriptIntValues[intValueIndex + 3], Static254.scriptIntValues[intValueIndex + 1], Static3.scriptStringValues[local26 + 1], Static3.scriptStringValues[local26].encode37(), Static254.scriptIntValues[intValueIndex + 2]);
+														if (client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0 && Static82.anInt2231 == 0) {
+															CreateManager.createAccount(Static254.scriptIntValues[intValueIndex], Static254.scriptIntValues[intValueIndex + 3], Static254.scriptIntValues[intValueIndex + 1], Static3.scriptStringValues[local26 + 1], Static3.scriptStringValues[local26].encode37(), Static254.scriptIntValues[intValueIndex + 2]);
 														}
 														continue;
 													}
 													if (scriptOpcode == 5606) {
 														if (CreateManager.step == 0) {
-															Static223.reply = -2;
+															CreateManager.reply = -2;
 														}
 														continue;
 													}
 													if (scriptOpcode == 5607) {
-														Static254.scriptIntValues[intValueIndex++] = Static266.anInt5336;
+														Static254.scriptIntValues[intValueIndex++] = LoginManager.reply;
 														continue;
 													}
 													if (scriptOpcode == 5608) {
@@ -3288,31 +3288,31 @@ public final class Static88 {
 														continue;
 													}
 													if (scriptOpcode == 5609) {
-														Static254.scriptIntValues[intValueIndex++] = Static223.reply;
+														Static254.scriptIntValues[intValueIndex++] = CreateManager.reply;
 														continue;
 													}
 													if (scriptOpcode == 5610) {
 														for (interfaceData = 0; interfaceData < 5; interfaceData++) {
-															Static3.scriptStringValues[local26++] = Static229.aClass100Array156.length > interfaceData ? Static229.aClass100Array156[interfaceData].method3125() : Static72.aClass100_447;
+															Static3.scriptStringValues[local26++] = CreateManager.suggestedNames.length > interfaceData ? CreateManager.suggestedNames[interfaceData].method3125() : Static72.aClass100_447;
 														}
-														Static229.aClass100Array156 = null;
+														CreateManager.suggestedNames = null;
 														continue;
 													}
 													if (scriptOpcode == 5611) {
-														Static254.scriptIntValues[intValueIndex++] = Static204.anInt4765;
+														Static254.scriptIntValues[intValueIndex++] = LoginManager.disallowResult;
 														continue;
 													}
 												} else if (scriptOpcode < 6100) {
 													if (scriptOpcode == 6001) {
 														intValueIndex--;
-														interfaceData = Static254.scriptIntValues[intValueIndex];
-														if (interfaceData < 1) {
-															interfaceData = 1;
+														int brightness = Static254.scriptIntValues[intValueIndex];
+														if (brightness < 1) {
+															brightness = 1;
 														}
-														if (interfaceData > 4) {
-															interfaceData = 4;
+														if (brightness > 4) {
+															brightness = 4;
 														}
-														Static113.brightness = interfaceData;
+														Static113.brightness = brightness;
 														if (!GlRenderer.enabled || !Static178.highDetailLighting) {
 															if (Static113.brightness == 1) {
 																Pix3D.setBrightness(0.9F);
@@ -3340,8 +3340,8 @@ public final class Static88 {
 													}
 													if (scriptOpcode == 6002) {
 														intValueIndex--;
-														Static53.method1293(Static254.scriptIntValues[intValueIndex] == 1);
-														Static90.clear();
+														Preferences.setAllLevelsVisible(Static254.scriptIntValues[intValueIndex] == 1);
+														LocTypeList.clear();
 														Static145.method2742();
 														Static269.method2218();
 														Preferences.write(GameShell.signLink);
@@ -3350,7 +3350,7 @@ public final class Static88 {
 													}
 													if (scriptOpcode == 6003) {
 														intValueIndex--;
-														Static80.aBoolean231 = Static254.scriptIntValues[intValueIndex] == 1;
+														Preferences.roofsVisible = Static254.scriptIntValues[intValueIndex] == 1;
 														Static269.method2218();
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
@@ -3358,7 +3358,7 @@ public final class Static88 {
 													}
 													if (scriptOpcode == 6005) {
 														intValueIndex--;
-														Static250.aBoolean283 = Static254.scriptIntValues[intValueIndex] == 1;
+														Preferences.groundDecoration = Static254.scriptIntValues[intValueIndex] == 1;
 														Static145.method2742();
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
@@ -3366,8 +3366,8 @@ public final class Static88 {
 													}
 													if (scriptOpcode == 6006) {
 														intValueIndex--;
-														Static53.aBoolean99 = Static254.scriptIntValues[intValueIndex] == 1;
-														((Js5GlTextureProvider) Rasterizer.textureProvider).method3245(!Static53.aBoolean99);
+														Preferences.highDetailTextures = Static254.scriptIntValues[intValueIndex] == 1;
+														((Js5GlTextureProvider) Rasterizer.textureProvider).method3245(!Preferences.highDetailTextures);
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
@@ -3583,15 +3583,15 @@ public final class Static88 {
 														continue;
 													}
 													if (scriptOpcode == 6103) {
-														Static254.scriptIntValues[intValueIndex++] = Static80.aBoolean231 ? 1 : 0;
+														Static254.scriptIntValues[intValueIndex++] = Preferences.roofsVisible ? 1 : 0;
 														continue;
 													}
 													if (scriptOpcode == 6105) {
-														Static254.scriptIntValues[intValueIndex++] = Static250.aBoolean283 ? 1 : 0;
+														Static254.scriptIntValues[intValueIndex++] = Preferences.groundDecoration ? 1 : 0;
 														continue;
 													}
 													if (scriptOpcode == 6106) {
-														Static254.scriptIntValues[intValueIndex++] = Static53.aBoolean99 ? 1 : 0;
+														Static254.scriptIntValues[intValueIndex++] = Preferences.highDetailTextures ? 1 : 0;
 														continue;
 													}
 													if (scriptOpcode == 6107) {
@@ -3786,7 +3786,7 @@ public final class Static88 {
 													}
 												} else if (scriptOpcode < 6600) {
 													if (scriptOpcode == 6500) {
-														if (client.gameState == 10 && Static219.anInt4937 == 0 && LoginManager.step == 0 && CreateManager.step == 0) {
+														if (client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0) {
 															Static254.scriptIntValues[intValueIndex++] = WorldList.fetch() == -1 ? 0 : 1;
 															continue;
 														}
@@ -3838,7 +3838,7 @@ public final class Static88 {
 													if (scriptOpcode == 6503) {
 														intValueIndex--;
 														interfaceData = Static254.scriptIntValues[intValueIndex];
-														if (client.gameState == 10 && Static219.anInt4937 == 0 && LoginManager.step == 0 && CreateManager.step == 0) {
+														if (client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0) {
 															Static254.scriptIntValues[intValueIndex++] = Static176.method3303(interfaceData) ? 1 : 0;
 															continue;
 														}

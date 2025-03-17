@@ -60,34 +60,6 @@ public final class Static40 {
 		Static165.anInt4035 = arg0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!da", name = "a", descriptor = "(IIIILclient!na;JI)V")
-	public static void method1016(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) JString password, @OriginalArg(5) long name, @OriginalArg(6) int arg5) {
-		@Pc(8) Packet local8 = new Packet(128);
-		local8.p1(10);
-		local8.p2((int) (Math.random() * 99999.0D));
-		local8.p2(530);
-		local8.p8(name);
-		local8.p4((int) (Math.random() * 9.9999999E7D));
-		local8.pjstr(password);
-		local8.p4((int) (Math.random() * 9.9999999E7D));
-		local8.p2(client.affiliate);
-		local8.p1(arg0);
-		local8.p1(arg2);
-		local8.p4((int) (Math.random() * 9.9999999E7D));
-		local8.p2(arg5);
-		local8.p2(arg1);
-		local8.p4((int) (Math.random() * 9.9999999E7D));
-		local8.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
-		Protocol.outboundBuffer.offset = 0;
-		Protocol.outboundBuffer.p1(36);
-		Protocol.outboundBuffer.p1(local8.offset);
-		Protocol.outboundBuffer.pdata(local8.data, local8.offset);
-		Static223.reply = -3;
-		CreateManager.step = 1;
-		Static226.loops = 0;
-		Static57.errors = 0;
-	}
-
 	@OriginalMember(owner = "runetek4.client!da", name = "h", descriptor = "(B)V")
 	public static void removeSoft() {
 		Component.interfaceItemImageCache.removeSoft();

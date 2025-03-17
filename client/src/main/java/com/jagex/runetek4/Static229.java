@@ -10,9 +10,6 @@ public final class Static229 {
 	@OriginalMember(owner = "runetek4.client!si", name = "R", descriptor = "[[[B")
 	public static byte[][][] aByteArrayArrayArray12;
 
-	@OriginalMember(owner = "runetek4.client!si", name = "S", descriptor = "[Lclient!na;")
-	public static JString[] aClass100Array156;
-
 	@OriginalMember(owner = "runetek4.client!si", name = "ab", descriptor = "I")
 	public static int anInt5138;
 

@@ -978,7 +978,7 @@ public class Game {
                     Static124.gameServerSocket = null;
                 }
                 if (Static57.errors >= 1) {
-                    Static223.reply = -5;
+                    CreateManager.reply = -5;
                     CreateManager.step = 0;
                     return;
                 }
@@ -1020,7 +1020,7 @@ public class Game {
                     client.soundChannel.method3571();
                 }
                 if (local120 != 21) {
-                    Static223.reply = local120;
+                    CreateManager.reply = local120;
                     CreateManager.step = 0;
                     Static124.gameServerSocket.closeGracefully();
                     Static124.gameServerSocket = null;
@@ -1032,19 +1032,19 @@ public class Game {
                 if (Static124.gameServerSocket.available() < 1) {
                     return;
                 }
-                Static229.aClass100Array156 = new JString[Static124.gameServerSocket.read()];
+                CreateManager.suggestedNames = new JString[Static124.gameServerSocket.read()];
                 CreateManager.step = 4;
             }
             if (CreateManager.step == 4) {
-                if (Static124.gameServerSocket.available() < Static229.aClass100Array156.length * 8) {
+                if (Static124.gameServerSocket.available() < CreateManager.suggestedNames.length * 8) {
                     return;
                 }
                 Protocol.inboundBuffer.offset = 0;
-                Static124.gameServerSocket.read(0, Static229.aClass100Array156.length * 8, Protocol.inboundBuffer.data);
-                for (local120 = 0; local120 < Static229.aClass100Array156.length; local120++) {
-                    Static229.aClass100Array156[local120] = Base37.decode37(Protocol.inboundBuffer.g8());
+                Static124.gameServerSocket.read(0, CreateManager.suggestedNames.length * 8, Protocol.inboundBuffer.data);
+                for (local120 = 0; local120 < CreateManager.suggestedNames.length; local120++) {
+                    CreateManager.suggestedNames[local120] = Base37.decode37(Protocol.inboundBuffer.g8());
                 }
-                Static223.reply = 21;
+                CreateManager.reply = 21;
                 CreateManager.step = 0;
                 Static124.gameServerSocket.closeGracefully();
                 Static124.gameServerSocket = null;
@@ -1065,7 +1065,7 @@ public class Game {
                 Static226.loops = 0;
                 CreateManager.step = 1;
             } else {
-                Static223.reply = -4;
+                CreateManager.reply = -4;
                 CreateManager.step = 0;
             }
         }

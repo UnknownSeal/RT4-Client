@@ -12,10 +12,7 @@ public final class Static204 {
 	@OriginalMember(owner = "runetek4.client!qi", name = "x", descriptor = "[I")
 	public static final int[] anIntArray425 = new int[] { 0, 1, 2, 3, 4, 5, 6, 14 };
 
-	@OriginalMember(owner = "runetek4.client!qi", name = "A", descriptor = "I")
-	public static int anInt4765 = -1;
-
-	@OriginalMember(owner = "runetek4.client!qi", name = "B", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "runetek4.client!qi", name = "B", descriptor = "Lclient!na;")
 	public static final JString aClass100_896 = JString.parse("<col=ffffff>");
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "e", descriptor = "(B)V")

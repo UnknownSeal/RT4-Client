@@ -33,6 +33,12 @@ public class Preferences {
     public static int windowMode = 0;
     @OriginalMember(owner = "runetek4.client!lb", name = "A", descriptor = "I")
     public static int buildArea = 0;
+    @OriginalMember(owner = "runetek4.client!gf", name = "N", descriptor = "Z")
+    public static boolean roofsVisible = true;
+    @OriginalMember(owner = "runetek4.client!uf", name = "b", descriptor = "Z")
+    public static boolean groundDecoration = true;
+    @OriginalMember(owner = "runetek4.client!ec", name = "n", descriptor = "Z")
+    public static boolean highDetailTextures = true;
     @OriginalMember(owner = "runetek4.client!ga", name = "e", descriptor = "I")
     private static int particles = 2;
 
@@ -209,13 +215,13 @@ public class Preferences {
     @OriginalMember(owner = "runetek4.client!gf", name = "a", descriptor = "(Lsignlink!ll;I)V")
     public static void read(@OriginalArg(0) SignLink arg0) {
         Static113.brightness = 3;
-        Static53.method1293(true);
-        Static80.aBoolean231 = true;
+        setAllLevelsVisible(true);
+        roofsVisible = true;
         stereo = true;
         Static220.aBoolean244 = true;
         windowMode = 0;
         fullScreenHeight = 0;
-        Static250.aBoolean283 = true;
+        groundDecoration = true;
         Static11.aBoolean15 = true;
         Static15.lowMemory = true;
         ambientSoundsVolume = 127;
@@ -226,7 +232,7 @@ public class Preferences {
         Static159.aBoolean189 = true;
         Static178.highDetailLighting = true;
         Static12.anInt391 = 255;
-        Static53.aBoolean99 = true;
+        highDetailTextures = true;
         antiAliasingMode = 0;
         @Pc(48) FileOnDisk local48 = null;
         Static125.anInt3104 = 127;
@@ -267,5 +273,11 @@ public class Preferences {
             }
         } catch (@Pc(158) Exception local158) {
         }
+    }
+
+    @OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(IZ)V")
+    public static void setAllLevelsVisible(@OriginalArg(1) boolean arg0) {
+        Static162.aBoolean190 = arg0;
+        Static87.aBoolean130 = !Static138.allLevelsvisible();
     }
 }

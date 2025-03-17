@@ -15,7 +15,7 @@ public final class Static236 {
 		if (ClientScriptRunner.neverRemoveRoofs) {
 			return 0;
 		} else if (Static138.allLevelsvisible()) {
-			return Static80.aBoolean231 ? 2 : 1;
+			return Preferences.roofsVisible ? 2 : 1;
 		} else {
 			return 1;
 		}

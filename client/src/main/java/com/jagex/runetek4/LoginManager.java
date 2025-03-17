@@ -1,8 +1,10 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
+import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -29,6 +31,22 @@ public class LoginManager {
     public static int anInt5804 = 0;
     @OriginalMember(owner = "runetek4.client!ol", name = "V", descriptor = "I")
     public static int step = 0;
+    @OriginalMember(owner = "runetek4.client!vk", name = "b", descriptor = "I")
+    public static int reply = -2;
+    @OriginalMember(owner = "runetek4.client!pa", name = "P", descriptor = "Lclient!na;")
+    public static JString password = JString.EMPTY;
+    @OriginalMember(owner = "runetek4.client!af", name = "c", descriptor = "I")
+    public static int anInt39 = -1;
+    @OriginalMember(owner = "runetek4.client!pa", name = "S", descriptor = "Lclient!na;")
+	public static JString username = JString.EMPTY;
+    @OriginalMember(owner = "runetek4.client!rl", name = "X", descriptor = "I")
+    public static int autoStep = 0;
+    @OriginalMember(owner = "runetek4.client!pl", name = "i", descriptor = "I")
+    public static int anInt4587 = 0;
+    @OriginalMember(owner = "client!bj", name = "Y", descriptor = "I")
+    public static int anInt673 = 0;
+    @OriginalMember(owner = "runetek4.client!qi", name = "A", descriptor = "I")
+    public static int disallowResult = -1;
 
     @OriginalMember(owner = "runetek4.client!j", name = "g", descriptor = "(I)V")
     public static void method4637() {
@@ -174,5 +192,53 @@ public class LoginManager {
             Static35.anIntArray82[local80] = -1;
         }
         Static127.method2463(0, local23, local10, 8, true, 8);
+    }
+
+    @OriginalMember(owner = "client!se", name = "a", descriptor = "(Lclient!na;Lclient!na;IB)V")
+    public static void login(@OriginalArg(0) JString username, @OriginalArg(1) JString password, @OriginalArg(2) int arg2) {
+        LoginManager.password = password;
+        anInt39 = arg2;
+        LoginManager.username = username;
+        if (LoginManager.username.method3108(JString.EMPTY) || LoginManager.password.method3108(JString.EMPTY)) {
+            reply = 3;
+        } else if (Static125.worldId == -1) {
+            anInt673 = 0;
+            anInt4587 = 0;
+            reply = -3;
+            autoStep = 1;
+            @Pc(43) Packet login_packet = new Packet(128);
+            login_packet.p1(10);
+            login_packet.p2((int) (Math.random() * 99999.0D));
+            login_packet.p2(530);
+            login_packet.p8(LoginManager.username.encode37());
+            login_packet.p4((int) (Math.random() * 9.9999999E7D));
+            login_packet.pjstr(LoginManager.password);
+            login_packet.p4((int) (Math.random() * 9.9999999E7D));
+            login_packet.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
+            Protocol.outboundBuffer.offset = 0;
+            Protocol.outboundBuffer.p1(210);
+            Protocol.outboundBuffer.p1(login_packet.offset);
+            Protocol.outboundBuffer.pdata(login_packet.data, login_packet.offset);
+        } else {
+            method1208();
+        }
+    }
+
+    @OriginalMember(owner = "client!p", name = "a", descriptor = "(I)V")
+    public static void method3395() {
+        if (step == 5) {
+            step = 6;
+        }
+    }
+
+    @OriginalMember(owner = "client!dm", name = "d", descriptor = "(I)V")
+    public static void method1208() {
+        FluTypeList.aBoolean247 = false;
+        PreciseSleep.anInt5202 = 0;
+        reply = -3;
+        Static92.anInt2430 = 0;
+        step = 1;
+        Static276.anInt5816 = 0;
+        disallowResult = -1;
     }
 }

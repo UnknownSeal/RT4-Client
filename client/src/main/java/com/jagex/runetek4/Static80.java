@@ -27,9 +27,6 @@ public final class Static80 {
 	@OriginalMember(owner = "runetek4.client!gf", name = "I", descriptor = "Lclient!na;")
 	public static final JString aClass100_886 = JString.parse(")3runescape)3com)4l=");
 
-	@OriginalMember(owner = "runetek4.client!gf", name = "N", descriptor = "Z")
-	public static boolean aBoolean231 = true;
-
 	@OriginalMember(owner = "runetek4.client!gf", name = "S", descriptor = "[I")
 	public static final int[] anIntArray419 = new int[] { 0, 2, 2, 2, 1, 1, 2, 2, 1, 3, 1, 1 };
 

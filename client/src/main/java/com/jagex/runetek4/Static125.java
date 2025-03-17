@@ -32,18 +32,4 @@ public final class Static125 {
 		Static53.anInt1716 = Static216.aClass153_31.getGroupCapacity(3);
 	}
 
-	@OriginalMember(owner = "runetek4.client!jl", name = "a", descriptor = "(IIIII)V")
-	public static void method2448(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		Protocol.outboundBuffer.offset = 0;
-		Protocol.outboundBuffer.p1(147);
-		Protocol.outboundBuffer.p1(arg2);
-		Protocol.outboundBuffer.p1(arg3);
-		Protocol.outboundBuffer.p2(arg0);
-		Protocol.outboundBuffer.p2(arg1);
-		Static226.loops = 0;
-		Static57.errors = 0;
-		CreateManager.step = 1;
-		Static223.reply = -3;
-	}
-
 }

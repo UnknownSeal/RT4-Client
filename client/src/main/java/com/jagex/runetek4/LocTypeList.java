@@ -38,4 +38,12 @@ public class LocTypeList {
         Static93.aClass99_14.removeSoft();
         Static262.aClass99_36.removeSoft();
     }
+
+    @OriginalMember(owner = "runetek4.client!hb", name = "c", descriptor = "(I)V")
+    public static void clear() {
+        Static179.aClass99_25.clear();
+        Static169.modelCacheStatic.clear();
+        Static93.aClass99_14.clear();
+        Static262.aClass99_36.clear();
+    }
 }

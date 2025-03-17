@@ -31,9 +31,9 @@ public final class Static48 {
 		local4.p1(11);
 		local4.p1(Static113.brightness);
 		local4.p1(Static162.aBoolean190 ? 1 : 0);
-		local4.p1(Static80.aBoolean231 ? 1 : 0);
-		local4.p1(Static250.aBoolean283 ? 1 : 0);
-		local4.p1(Static53.aBoolean99 ? 1 : 0);
+		local4.p1(Preferences.roofsVisible ? 1 : 0);
+		local4.p1(Preferences.groundDecoration ? 1 : 0);
+		local4.p1(Preferences.highDetailTextures ? 1 : 0);
 		local4.p1(Static15.lowMemory ? 1 : 0);
 		local4.p1(Static11.aBoolean15 ? 1 : 0);
 		local4.p1(Static159.aBoolean189 ? 1 : 0);

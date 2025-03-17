@@ -32,7 +32,7 @@ public final class Static216 {
 					Static124.gameServerSocket = null;
 				}
 				if (Static276.anInt5816 >= 1) {
-					Static266.anInt5336 = -5;
+					LoginManager.reply = -5;
 					LoginManager.step = 0;
 					return;
 				}
@@ -58,7 +58,7 @@ public final class Static216 {
 				}
 				Static124.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
 				Static72.aClass212_3 = null;
-				@Pc(106) long local106 = Static101.aLong98 = Static186.username.encode37();
+				@Pc(106) long local106 = Static101.aLong98 = LoginManager.username.encode37();
 				Protocol.outboundBuffer.offset = 0;
 				Protocol.outboundBuffer.p1(14);
 				@Pc(120) int local120 = (int) (local106 >> 16 & 0x1FL);
@@ -78,7 +78,7 @@ public final class Static216 {
 					client.soundChannel.method3571();
 				}
 				if (local150 != 0) {
-					Static266.anInt5336 = local150;
+					LoginManager.reply = local150;
 					LoginManager.step = 0;
 					Static124.gameServerSocket.closeGracefully();
 					Static124.gameServerSocket = null;
@@ -104,8 +104,8 @@ public final class Static216 {
 				Protocol.outboundBuffer.p4(seed[1]);
 				Protocol.outboundBuffer.p4(seed[2]);
 				Protocol.outboundBuffer.p4(seed[3]);
-				Protocol.outboundBuffer.p8(Static186.username.encode37());
-				Protocol.outboundBuffer.pjstr(Static186.password);
+				Protocol.outboundBuffer.p8(LoginManager.username.encode37());
+				Protocol.outboundBuffer.pjstr(LoginManager.password);
 				Protocol.outboundBuffer.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
 				Static17.aClass3_Sub15_Sub1_2.offset = 0;
 				if (client.gameState == 40) {
@@ -116,7 +116,7 @@ public final class Static216 {
 
 				Static17.aClass3_Sub15_Sub1_2.p2(Protocol.outboundBuffer.offset + Static229.method3937(client.settings) + 159);
 				Static17.aClass3_Sub15_Sub1_2.p4(530);
-				Static17.aClass3_Sub15_Sub1_2.p1(Static5.anInt39);
+				Static17.aClass3_Sub15_Sub1_2.p1(LoginManager.anInt39);
 				Static17.aClass3_Sub15_Sub1_2.p1(client.advertSuppressed ? 1 : 0);
 				Static17.aClass3_Sub15_Sub1_2.p1(1);
 				Static17.aClass3_Sub15_Sub1_2.p1(DisplayMode.getWindowMode());
@@ -177,13 +177,13 @@ public final class Static216 {
 					LoginManager.step = 10;
 				} else if (local623 == 1) {
 					LoginManager.step = 5;
-					Static266.anInt5336 = local623;
+					LoginManager.reply = local623;
 					return;
 				} else if (local623 == 2) {
 					LoginManager.step = 8;
 				} else if (local623 == 15) {
 					LoginManager.step = 0;
-					Static266.anInt5336 = local623;
+					LoginManager.reply = local623;
 					return;
 				} else if (local623 == 23 && Static276.anInt5816 < 1) {
 					LoginManager.step = 1;
@@ -193,7 +193,7 @@ public final class Static216 {
 					Static124.gameServerSocket = null;
 					return;
 				} else {
-					Static266.anInt5336 = local623;
+					LoginManager.reply = local623;
 					LoginManager.step = 0;
 					Static124.gameServerSocket.closeGracefully();
 					Static124.gameServerSocket = null;
@@ -211,7 +211,7 @@ public final class Static216 {
 				if (Static124.gameServerSocket.available() >= 1) {
 					PreciseSleep.anInt5202 = (Static124.gameServerSocket.read() + 3) * 60;
 					LoginManager.step = 0;
-					Static266.anInt5336 = 21;
+					LoginManager.reply = 21;
 					Static124.gameServerSocket.closeGracefully();
 					Static124.gameServerSocket = null;
 					return;
@@ -220,9 +220,9 @@ public final class Static216 {
 			}
 			if (LoginManager.step == 10) {
 				if (Static124.gameServerSocket.available() >= 1) {
-					Static204.anInt4765 = Static124.gameServerSocket.read();
+					LoginManager.disallowResult = Static124.gameServerSocket.read();
 					LoginManager.step = 0;
-					Static266.anInt5336 = 29;
+					LoginManager.reply = 29;
 					Static124.gameServerSocket.closeGracefully();
 					Static124.gameServerSocket = null;
 					return;
@@ -270,7 +270,7 @@ public final class Static216 {
 				}
 				Protocol.inboundBuffer.offset = 0;
 				Static124.gameServerSocket.read(0, Static223.packetSize, Protocol.inboundBuffer.data);
-				Static266.anInt5336 = 2;
+				LoginManager.reply = 2;
 				LoginManager.step = 0;
 				client.method4221();
 				Static80.anInt4701 = -1;
@@ -285,7 +285,7 @@ public final class Static216 {
 			}
 			if (Static276.anInt5816 >= 1) {
 				LoginManager.step = 0;
-				Static266.anInt5336 = -4;
+				LoginManager.reply = -4;
 			} else {
 				LoginManager.step = 1;
 				Static92.anInt2430 = 0;

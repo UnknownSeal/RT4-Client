@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.js5.Js5;
@@ -80,33 +79,4 @@ public final class Static225 {
 		local14.intArg1 = arg1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "(Lclient!na;Lclient!na;IB)V")
-	public static void method3896(@OriginalArg(0) JString arg0, @OriginalArg(1) JString arg1, @OriginalArg(2) int arg2) {
-		Static186.password = arg1;
-		Static5.anInt39 = arg2;
-		Static186.username = arg0;
-		if (Static186.username.method3108(JString.EMPTY) || Static186.password.method3108(JString.EMPTY)) {
-			Static266.anInt5336 = 3;
-		} else if (Static125.worldId == -1) {
-			Static20.anInt673 = 0;
-			Static196.anInt4587 = 0;
-			Static266.anInt5336 = -3;
-			Static219.anInt4937 = 1;
-			@Pc(43) Packet local43 = new Packet(128);
-			local43.p1(10);
-			local43.p2((int) (Math.random() * 99999.0D));
-			local43.p2(530);
-			local43.p8(Static186.username.encode37());
-			local43.p4((int) (Math.random() * 9.9999999E7D));
-			local43.pjstr(Static186.password);
-			local43.p4((int) (Math.random() * 9.9999999E7D));
-			local43.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
-			Protocol.outboundBuffer.offset = 0;
-			Protocol.outboundBuffer.p1(210);
-			Protocol.outboundBuffer.p1(local43.offset);
-			Protocol.outboundBuffer.pdata(local43.data, local43.offset);
-		} else {
-			Static49.method1208();
-		}
-	}
 }

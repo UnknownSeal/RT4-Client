@@ -11,12 +11,6 @@ public final class Static186 {
 	@OriginalMember(owner = "runetek4.client!pa", name = "L", descriptor = "[[B")
 	public static byte[][] aByteArrayArray14;
 
-	@OriginalMember(owner = "runetek4.client!pa", name = "P", descriptor = "Lclient!na;")
-	public static JString password = JString.EMPTY;
-
-	@OriginalMember(owner = "runetek4.client!pa", name = "S", descriptor = "Lclient!na;")
-	public static JString username = JString.EMPTY;
-
 	@OriginalMember(owner = "runetek4.client!pa", name = "a", descriptor = "(IIILclient!e;)V")
 	public static void method3415(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Player arg2) {
 		if (arg1 == arg2.primarySeqId && arg1 != -1) {

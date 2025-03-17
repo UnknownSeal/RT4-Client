@@ -340,7 +340,7 @@ public final class client extends GameShell {
 		Static276.clear();
 		Static54.clear();
 		ClientScriptRunner.clear();
-		Static90.clear();
+		LocTypeList.clear();
 		Static204.clear();
 		Static176.clear();
 		Static10.clear();
@@ -662,7 +662,7 @@ public final class client extends GameShell {
 			Static163.disposeLoadingText();
 		}
 		if (statusCode == 40) {
-			Static49.method1208();
+			LoginManager.method1208();
 		}
 		@Pc(37) boolean local37 = statusCode == 5 || statusCode == 10 || statusCode == 28;
 		if (statusCode != 40 && ClientScriptRunner.aClass95_4 != null) {
@@ -1475,7 +1475,7 @@ public final class client extends GameShell {
 			}
 		} else if (mainLoadState == 90) {
 			if (js5Archive26.fetchAll()) {
-				@Pc(951) Js5GlTextureProvider textureProvider = new Js5GlTextureProvider(js5Archive9, js5Archive26, js5Archive8, 20, !Static53.aBoolean99);
+				@Pc(951) Js5GlTextureProvider textureProvider = new Js5GlTextureProvider(js5Archive9, js5Archive26, js5Archive8, 20, !Preferences.highDetailTextures);
 				Rasterizer.unpackTextures(textureProvider);
 				if (Static113.brightness == 1) {
 					Pix3D.setBrightness(0.9F);
@@ -1628,10 +1628,10 @@ public final class client extends GameShell {
 			Game.updateGame();
 		} else if (gameState == 40) {
 			Static216.method1639();
-			if (Static266.anInt5336 != -3) {
-				if (Static266.anInt5336 == 15) {
+			if (LoginManager.reply != -3) {
+				if (LoginManager.reply == 15) {
 					Static44.method1146();
-				} else if (Static266.anInt5336 != 2) {
+				} else if (LoginManager.reply != 2) {
 					Game.processLogout();
 				}
 			}

@@ -23,9 +23,6 @@ public final class Static219 {
 	@OriginalMember(owner = "runetek4.client!rl", name = "W", descriptor = "Lclient!na;")
 	private static final JString aClass100_923 = JString.parse("Fri");
 
-	@OriginalMember(owner = "runetek4.client!rl", name = "X", descriptor = "I")
-	public static int anInt4937 = 0;
-
 	@OriginalMember(owner = "runetek4.client!rl", name = "db", descriptor = "Lclient!na;")
 	private static final JString aClass100_927 = JString.parse("Sun");
 

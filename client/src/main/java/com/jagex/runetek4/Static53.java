@@ -16,9 +16,6 @@ public final class Static53 {
 	@OriginalMember(owner = "runetek4.client!ec", name = "l", descriptor = "I")
 	public static final int anInt1704 = 5063219;
 
-	@OriginalMember(owner = "runetek4.client!ec", name = "n", descriptor = "Z")
-	public static boolean aBoolean99 = true;
-
 	@OriginalMember(owner = "runetek4.client!ec", name = "q", descriptor = "I")
 	public static int anInt1708 = 0;
 
@@ -46,12 +43,6 @@ public final class Static53 {
 			local31[local53] = Static207.method3683(local41, (float) arg12, local11, local51, arg0, local80, arg7, arg17, local25, arg18, false, arg3, arg9, arg5, local67, arg11, local88);
 		}
 		arg3.method1945(arg6, arg7, arg5, local31, null, false);
-	}
-
-	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(IZ)V")
-	public static void method1293(@OriginalArg(1) boolean arg0) {
-		Static162.aBoolean190 = arg0;
-		Static87.aBoolean130 = !Static138.allLevelsvisible();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(B)V")

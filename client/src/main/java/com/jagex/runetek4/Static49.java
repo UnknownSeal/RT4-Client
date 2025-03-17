@@ -64,7 +64,7 @@ public final class Static49 {
 						} while (local72 >= 103);
 					} while (local68 >= 103);
 					local95 = LocTypeList.get(local17);
-				} while (local78 == 22 && !Static250.aBoolean283 && local95.active == 0 && local95.blockwalk != 1 && !local95.forcedecor);
+				} while (local78 == 22 && !Preferences.groundDecoration && local95.active == 0 && local95.blockwalk != 1 && !local95.forcedecor);
 				local39 = true;
 				if (!local95.method3426()) {
 					local15 = false;
@@ -186,14 +186,4 @@ public final class Static49 {
 		Static133.method4012(Static50.anIntArray132[0], Static50.anIntArray132[2], Static50.anIntArray132[1], Static50.anIntArray132[3]);
 	}
 
-	@OriginalMember(owner = "runetek4.client!dm", name = "d", descriptor = "(I)V")
-	public static void method1208() {
-		FluTypeList.aBoolean247 = false;
-		PreciseSleep.anInt5202 = 0;
-		Static266.anInt5336 = -3;
-		Static92.anInt2430 = 0;
-		LoginManager.step = 1;
-		Static276.anInt5816 = 0;
-		Static204.anInt4765 = -1;
-	}
 }

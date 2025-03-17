@@ -39,17 +39,6 @@ public final class Static78 {
 		return arg2 > arg1 ? arg2 : arg1 > arg0 ? arg0 : arg1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(JI)V")
-	public static void method1691(@OriginalArg(0) long name) {
-		Protocol.outboundBuffer.offset = 0;
-		Protocol.outboundBuffer.p1(186);
-		Protocol.outboundBuffer.p8(name);
-		CreateManager.step = 1;
-		Static226.loops = 0;
-		Static57.errors = 0;
-		Static223.reply = -3;
-	}
-
 	@OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(ILclient!ve;II)Lclient!mm;")
 	public static ImageRGB method1693(@OriginalArg(0) int arg0, @OriginalArg(1) Js5 arg1, @OriginalArg(3) int arg2) {
 		return Static234.method4016(arg1, arg0, arg2) ? Static196.method3537() : null;

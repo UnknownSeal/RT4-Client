@@ -20,10 +20,7 @@ public final class Static196 {
 	@OriginalMember(owner = "runetek4.client!pl", name = "f", descriptor = "Lclient!na;")
 	public static final JString TRADEREQ = JString.parse(":tradereq:");
 
-	@OriginalMember(owner = "runetek4.client!pl", name = "i", descriptor = "I")
-	public static int anInt4587 = 0;
-
-	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(ZI)V")
+    @OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(ZI)V")
 	public static void method3535(@OriginalArg(0) boolean arg0) {
 		BZip2State.anIntArray376 = new int[104];
 		Static139.anIntArray325 = new int[104];

@@ -23,14 +23,7 @@ public final class Static185 {
 	@OriginalMember(owner = "runetek4.client!p", name = "d", descriptor = "I")
 	public static int anInt4369 = 0;
 
-	@OriginalMember(owner = "runetek4.client!p", name = "a", descriptor = "(I)V")
-	public static void method3395() {
-		if (LoginManager.step == 5) {
-			LoginManager.step = 6;
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!p", name = "a", descriptor = "(IZIZLclient!mj;IIIBII)V")
+    @OriginalMember(owner = "runetek4.client!p", name = "a", descriptor = "(IZIZLclient!mj;IIIBII)V")
 	public static void method3397(@OriginalArg(0) int arg0, @OriginalArg(1) boolean lowmem, @OriginalArg(2) int level, @OriginalArg(3) boolean arg3, @OriginalArg(4) CollisionMap collsion, @OriginalArg(5) int arg5, @OriginalArg(6) int shape, @OriginalArg(7) int arg7, @OriginalArg(9) int z, @OriginalArg(10) int rotation) {
 		if (lowmem && !Static138.allLevelsvisible() && (SceneGraph.renderFlags[0][arg7][z] & 0x2) == 0) {
 			if ((SceneGraph.renderFlags[level][arg7][z] & 0x10) != 0) {
@@ -108,7 +101,7 @@ public final class Static185 {
 		@Pc(387) Entity local387;
 		@Pc(403) LocEntity local403;
 		if (shape == 22) {
-			if (Static250.aBoolean283 || locType.active != 0 || locType.blockwalk == 1 || locType.forcedecor) {
+			if (Preferences.groundDecoration || locType.active != 0 || locType.blockwalk == 1 || locType.forcedecor) {
 				if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
 					local403 = locType.method3428(rotation, local165, local153, 22, local199, local213, lowmem, null, local330, local173);
 					if (GlRenderer.enabled && local330) {

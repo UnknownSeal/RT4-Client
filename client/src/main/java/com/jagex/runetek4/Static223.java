@@ -27,10 +27,7 @@ public final class Static223 {
 	@OriginalMember(owner = "runetek4.client!sc", name = "v", descriptor = "I")
 	public static int anInt5032 = 0;
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "y", descriptor = "I")
-	public static int reply = -2;
-
-	@OriginalMember(owner = "runetek4.client!sc", name = "z", descriptor = "[Z")
+    @OriginalMember(owner = "runetek4.client!sc", name = "z", descriptor = "[Z")
 	public static final boolean[] aBooleanArray116 = new boolean[100];
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "D", descriptor = "Lclient!na;")

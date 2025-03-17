@@ -13,10 +13,7 @@ public final class Static20 {
 	@OriginalMember(owner = "client!bj", name = "V", descriptor = "I")
 	public static final int anInt671 = 3353893;
 
-	@OriginalMember(owner = "client!bj", name = "Y", descriptor = "I")
-	public static int anInt673 = 0;
-
-	@OriginalMember(owner = "client!bj", name = "d", descriptor = "(B)V")
+    @OriginalMember(owner = "client!bj", name = "d", descriptor = "(B)V")
 	public static void clear() {
 		Static36.aClass133_3.removeAll();
 		Static140.aClass16_7.method802();
