@@ -63,7 +63,7 @@ public final class SpotAnim extends Entity {
 			this.seqComplete = true;
 		} else {
 			this.seqComplete = false;
-			this.aClass144_1 = SeqType.getAnimationSequence(local42);
+			this.aClass144_1 = SeqTypeList.getAnimationSequence(local42);
 		}
 	}
 

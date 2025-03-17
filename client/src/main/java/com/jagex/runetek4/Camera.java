@@ -345,16 +345,16 @@ public class Camera {
                 }
             }
         } else {
-            if (Static187.pressedKeys[98]) {
+            if (Keyboard.pressedKeys[98]) {
                 pitchAccel += (12 - pitchAccel) / 2;
-            } else if (Static187.pressedKeys[99]) {
+            } else if (Keyboard.pressedKeys[99]) {
                 pitchAccel += (-pitchAccel - 12) / 2;
             } else {
                 pitchAccel /= 2;
             }
-            if (Static187.pressedKeys[96]) {
+            if (Keyboard.pressedKeys[96]) {
                 Static38.anInt1203 += (-Static38.anInt1203 - 24) / 2;
-            } else if (Static187.pressedKeys[97]) {
+            } else if (Keyboard.pressedKeys[97]) {
                 Static38.anInt1203 += (24 - Static38.anInt1203) / 2;
             } else {
                 Static38.anInt1203 /= 2;

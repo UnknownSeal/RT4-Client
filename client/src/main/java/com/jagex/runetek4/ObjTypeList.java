@@ -1,5 +1,7 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.util.MathUtils;
@@ -50,4 +52,35 @@ public final class ObjTypeList {
 			local20.aLong55 = MonotonicTime.currentTimeMillis() + 500L | 0x4000000000000000L;
 		}
 	}
+
+    @OriginalMember(owner = "client!fk", name = "a", descriptor = "(IB)Lclient!h;")
+    public static ObjType get(@OriginalArg(0) int id) {
+        @Pc(6) ObjType objType = (ObjType) Static27.aClass99_4.get((long) id);
+        if (objType != null) {
+            return objType;
+        }
+        @Pc(25) byte[] bytes = CacheArchive.aClass153_61.getfile(Static18.method554(id), Static247.method4247(id));
+        objType = new ObjType();
+        objType.anInt2354 = id;
+        if (bytes != null) {
+            objType.readValues(new Packet(bytes));
+        }
+        objType.postDecode();
+
+        if (objType.certtemplate != -1) {
+            objType.genCert(get(objType.certtemplate), get(objType.certlink));
+        }
+        if (objType.lenttemplate != -1) {
+            objType.genLent(get(objType.lenttemplate), get(objType.lentlink));
+        }
+        if (!Static240.aBoolean276 && objType.members) {
+            objType.name = LocalizedText.MEMBERS_OBJECT;
+            objType.team = 0;
+            objType.interfaceOptions = Static143.aClass100Array104;
+            objType.stockmarket = false;
+            objType.groundOptions = Static269.aClass100Array87;
+        }
+        Static27.aClass99_4.put(objType, (long) id);
+        return objType;
+    }
 }

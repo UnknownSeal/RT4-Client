@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.util.ArrayUtils;
@@ -14,7 +14,7 @@ public final class Static153 {
 	public static JString aClass100_724;
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "S", descriptor = "Lclient!mm;")
-	public static ImageRGB aClass3_Sub2_Sub1_Sub1_2;
+	public static SoftwareSprite aClass3_Sub2_Sub1_Sub1_2;
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "Z", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_57;
@@ -65,20 +65,6 @@ public final class Static153 {
 			ArrayUtils.fillRange(local72, arg6, local13, arg0);
 			ArrayUtils.fillRange(local72, local13, local39, arg3);
 			ArrayUtils.fillRange(local72, local39, arg5, arg0);
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!mc", name = "f", descriptor = "(B)V")
-	public static void method2909() {
-		Protocol.outboundBuffer.pIsaac1(184);
-		for (@Pc(18) ComponentPointer local18 = (ComponentPointer) InterfaceList.openInterfaces.head(); local18 != null; local18 = (ComponentPointer) InterfaceList.openInterfaces.prev()) {
-			if (local18.anInt5879 == 0) {
-				InterfaceList.closeInterface(true, local18);
-			}
-		}
-		if (ClientScriptRunner.aClass13_10 != null) {
-			Static43.method1143(ClientScriptRunner.aClass13_10);
-			ClientScriptRunner.aClass13_10 = null;
 		}
 	}
 

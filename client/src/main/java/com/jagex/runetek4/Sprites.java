@@ -1,18 +1,21 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class Sprites {
+    @OriginalMember(owner = "runetek4.client!mi", name = "T", descriptor = "[Lclient!ok;")
+    public static IndexedSprite[] nameIcons;
+
     @OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(Z)V")
     public static void clear() {
-        Static215.aClass3_Sub2_Sub9_32 = null;
+        Fonts.p12Full = null;
         Static213.aClass3_Sub2_Sub1Array8 = null;
         Static240.crossSprites = null;
-        Static159.aClass36Array12 = null;
+        nameIcons = null;
         Fonts.p11FullSoftware = null;
         Static173.aClass3_Sub2_Sub1_Sub1Array9 = null;
         Static67.aClass3_Sub2_Sub1Array4 = null;
@@ -21,7 +24,7 @@ public class Sprites {
         Fonts.b12Full = null;
         Static106.aClass3_Sub2_Sub1_7 = null;
         Static139.aClass3_Sub2_Sub1Array6 = null;
-        Static114.aClass3_Sub2_Sub9_42 = null;
+        Fonts.p11Full = null;
         Static84.aClass3_Sub2_Sub1_4 = null;
         Static116.aClass3_Sub2_Sub1Array3 = null;
         Static277.aClass3_Sub2_Sub1Array12 = null;
@@ -44,28 +47,28 @@ public class Sprites {
         Static138.aClass3_Sub2_Sub1Array5 = Static209.method3708(Static34.anInt1049, arg0);
         Static276.aClass3_Sub2_Sub1Array11 = Static209.method3708(Class6.anInt4741, arg0);
         Static149.aClass3_Sub2_Sub1Array7 = Static209.method3708(Static149.anInt3551, arg0);
-        Static84.aClass3_Sub2_Sub1_4 = Static150.method2800(Static19.anInt647, arg0);
+        Static84.aClass3_Sub2_Sub1_4 = SpriteLoader.loadSprites(Static19.anInt647, arg0);
         Static240.crossSprites = Static131.method2580(Static32.anInt1016, arg0);
         Static139.aClass3_Sub2_Sub1Array6 = Static131.method2580(Static78.anInt2147, arg0);
         Static241.aClass36Array16 = Static146.method2749(arg0, Static124.anInt3083);
-        Static159.aClass36Array12 = Static146.method2749(arg0, FluTypeList.anInt5057);
-        Static114.aClass3_Sub2_Sub9_42.method2873(Static159.aClass36Array12, null);
-        Static215.aClass3_Sub2_Sub9_32.method2873(Static159.aClass36Array12, null);
-        Fonts.b12Full.method2873(Static159.aClass36Array12, null);
+        nameIcons = Static146.method2749(arg0, FluTypeList.anInt5057);
+        Fonts.p11Full.setNameIcons(nameIcons, null);
+        Fonts.p12Full.setNameIcons(nameIcons, null);
+        Fonts.b12Full.setNameIcons(nameIcons, null);
         if (GlRenderer.enabled) {
             Static242.aClass36_Sub1Array2 = method837(Static84.anInt2257, arg0);
             for (@Pc(101) int local101 = 0; local101 < Static242.aClass36_Sub1Array2.length; local101++) {
                 Static242.aClass36_Sub1Array2[local101].method1396();
             }
         }
-        @Pc(124) ImageRGB local124 = Static78.method1693(0, arg0, Static163.anInt3962);
+        @Pc(124) SoftwareSprite local124 = SpriteLoader.loadSoftwareSprite(0, arg0, Static163.anInt3962);
         local124.method311();
         if (GlRenderer.enabled) {
             Static106.aClass3_Sub2_Sub1_7 = new GlSprite(local124);
         } else {
             Static106.aClass3_Sub2_Sub1_7 = local124;
         }
-        @Pc(143) ImageRGB[] local143 = Static265.method4523(Static128.anInt3143, arg0);
+        @Pc(143) SoftwareSprite[] local143 = Static265.method4523(Static128.anInt3143, arg0);
         @Pc(145) int local145;
         for (local145 = 0; local145 < local143.length; local145++) {
             local143[local145].method311();

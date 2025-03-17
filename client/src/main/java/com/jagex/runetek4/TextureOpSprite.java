@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -34,7 +34,7 @@ public class TextureOpSprite extends TextureOp {
 		} else if (this.anInt3235 < 0) {
 			return false;
 		} else {
-			@Pc(43) ImageRGB local43 = Static215.anInt4868 < 0 ? Static164.method3117(Static176.aClass153_76, this.anInt3235) : Static78.method1693(this.anInt3235, Static176.aClass153_76, Static215.anInt4868);
+			@Pc(43) SoftwareSprite local43 = Static215.anInt4868 < 0 ? Static164.method3117(Static176.aClass153_76, this.anInt3235) : SpriteLoader.loadSoftwareSprite(this.anInt3235, Static176.aClass153_76, Static215.anInt4868);
 			local43.method311();
 			this.anInt3240 = local43.height;
 			this.anInt3239 = local43.width;

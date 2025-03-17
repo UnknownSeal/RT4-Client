@@ -1,11 +1,8 @@
 package com.jagex.runetek4;
 
-import java.io.IOException;
-
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.node.NodeCache;
-import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -29,29 +26,6 @@ public final class aClass6 {
 	@OriginalMember(owner = "client!ah", name = "s", descriptor = "I")
 	public static int mouseClickX = 0;
 
-	@OriginalMember(owner = "client!ah", name = "a", descriptor = "(BZ)V")
-	public static void method842(@OriginalArg(1) boolean arg0) {
-		client.audioLoop();
-		if (client.gameState != 30 && client.gameState != 25) {
-			return;
-		}
-		Static131.anInt3251++;
-		if (Static131.anInt3251 < 50 && !arg0) {
-			return;
-		}
-		Static131.anInt3251 = 0;
-		if (!FluTypeList.aBoolean247 && Static124.gameServerSocket != null) {
-			Protocol.outboundBuffer.pIsaac1(93);
-			try {
-				Static124.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
-				Protocol.outboundBuffer.offset = 0;
-			} catch (@Pc(53) IOException local53) {
-				FluTypeList.aBoolean247 = true;
-			}
-		}
-		client.audioLoop();
-	}
-
 	@OriginalMember(owner = "client!ah", name = "b", descriptor = "(I)V")
 	public static void method843() {
 		if (Static118.component != null || ClientScriptRunner.aClass13_14 != null) {
@@ -62,23 +36,23 @@ public final class aClass6 {
 		@Pc(99) int local99;
 		if (!ClientScriptRunner.aBoolean108) {
 			if (local20 == 1 && MiniMenu.menuActionRow > 0) {
-				@Pc(37) short local37 = Static39.aShortArray6[MiniMenu.menuActionRow - 1];
+				@Pc(37) short local37 = MiniMenu.actions[MiniMenu.menuActionRow - 1];
 				if (local37 == 25 || local37 == 23 || local37 == 48 || local37 == 7 || local37 == 13 || local37 == 47 || local37 == 5 || local37 == 43 || local37 == 35 || local37 == 58 || local37 == 22 || local37 == 1006) {
 					local93 = Static196.anIntArray408[MiniMenu.menuActionRow - 1];
 					local99 = Static56.anIntArray142[MiniMenu.menuActionRow - 1];
 					@Pc(103) Component local103 = InterfaceList.getComponent(local99);
-					@Pc(106) ServerActiveProperties local106 = Static36.method940(local103);
+					@Pc(106) ServerActiveProperties local106 = InterfaceList.getServerActiveProperties(local103);
 					if (local106.method511() || local106.method504()) {
-						Static78.lastItemDragTime = 0;
+						InterfaceList.lastItemDragTime = 0;
 						Static123.lastItemDragged = false;
 						if (Static118.component != null) {
-							Static43.method1143(Static118.component);
+							InterfaceList.redraw(Static118.component);
 						}
 						Static118.component = InterfaceList.getComponent(local99);
 						Static149.anInt3554 = mouseClickX;
-						Static206.anInt4773 = Static60.mouseClickY;
+						InterfaceList.clickedInventoryComponentY = Static60.mouseClickY;
 						Static4.selectedInventorySlot = local93;
-						Static43.method1143(Static118.component);
+						InterfaceList.redraw(Static118.component);
 						return;
 					}
 				}
@@ -96,8 +70,8 @@ public final class aClass6 {
 		}
 		@Pc(204) int local204;
 		if (local20 != 1) {
-			local93 = Static223.anInt5032;
-			local204 = Static215.anInt4873;
+			local93 = Mouse.lastMouseY;
+			local204 = Mouse.lastMouseX;
 			if (local204 < Static183.anInt4271 - 10 || local204 > Static24.anInt761 + Static183.anInt4271 + 10 || Static229.anInt5138 - 10 > local93 || local93 > Static13.anInt436 + Static229.anInt5138 + 10) {
 				ClientScriptRunner.aBoolean108 = false;
 				Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);

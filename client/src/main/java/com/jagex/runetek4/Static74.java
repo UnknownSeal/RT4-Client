@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -23,40 +22,6 @@ public final class Static74 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fn", name = "a", descriptor = "(BIIIII)V")
-	public static void method1624(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		Static241.aClass36Array16[0].drawImage(arg2, arg3);
-		Static241.aClass36Array16[1].drawImage(arg2, arg4 + arg3 - 16);
-		@Pc(35) int local35 = arg4 * (arg4 - 32) / arg1;
-		if (local35 < 8) {
-			local35 = 8;
-		}
-		@Pc(54) int local54 = arg0 * (arg4 - local35 - 32) / (arg1 - arg4);
-		if (!GlRenderer.enabled) {
-			Rasterizer.drawFilledRectangle(arg2, arg3 + 16, 16, arg4 - 32, Static182.anInt4306);
-			Rasterizer.drawFilledRectangle(arg2, local54 + arg3 + 16, 16, local35, Static53.anInt1704);
-			Rasterizer.drawVerticalLine(arg2, local54 + arg3 + 16, local35, Static219.anInt4938);
-			Rasterizer.drawVerticalLine(arg2 + 1, local54 + 16 + arg3, local35, Static219.anInt4938);
-			Rasterizer.drawHorizontalLine(arg2, arg3 + local54 + 16, 16, Static219.anInt4938);
-			Rasterizer.drawHorizontalLine(arg2, arg3 + local54 + 17, 16, Static219.anInt4938);
-			Rasterizer.drawVerticalLine(arg2 + 15, local54 + 16 + arg3, local35, Static20.anInt671);
-			Rasterizer.drawVerticalLine(arg2 + 14, arg3 - -17 - -local54, local35 - 1, Static20.anInt671);
-			Rasterizer.drawHorizontalLine(arg2, local35 + arg3 + local54 + 15, 16, Static20.anInt671);
-			Rasterizer.drawHorizontalLine(arg2 + 1, local35 + arg3 - (-local54 + -14), 15, Static20.anInt671);
-			return;
-		}
-		Static46.method1186(arg2, arg3 + 16, 16, arg4 - 32, Static182.anInt4306);
-		Static46.method1186(arg2, arg3 + local54 + 16, 16, local35, Static53.anInt1704);
-		Static46.method1176(arg2, local54 + arg3 + 16, local35, Static219.anInt4938);
-		Static46.method1176(arg2 + 1, local54 + 16 + arg3, local35, Static219.anInt4938);
-		Static46.method1174(arg2, local54 + arg3 + 16, 16, Static219.anInt4938);
-		Static46.method1174(arg2, local54 + arg3 + 17, 16, Static219.anInt4938);
-		Static46.method1176(arg2 + 15, arg3 + (16 - -local54), local35, Static20.anInt671);
-		Static46.method1176(arg2 + 14, arg3 - -local54 + 17, local35 - 1, Static20.anInt671);
-		Static46.method1174(arg2, local35 + arg3 + local54 + 15, 16, Static20.anInt671);
-		Static46.method1174(arg2 + 1, arg3 + 14 - -local54 + local35, 15, Static20.anInt671);
-	}
-
 	@OriginalMember(owner = "runetek4.client!fn", name = "a", descriptor = "(ILclient!be;)V")
 	public static void method1625(@OriginalArg(1) Component arg0) {
 		@Pc(7) Component local7 = Static280.method4668(arg0);
@@ -66,8 +31,8 @@ public final class Static74 {
 			local17 = GameShell.canvasHeigth;
 			local19 = GameShell.canvasWidth;
 		} else {
-			local17 = local7.anInt459;
-			local19 = local7.anInt445;
+			local17 = local7.height;
+			local19 = local7.width;
 		}
 		Static150.method2801(local17, local19, arg0, false);
 		Static111.method2291(arg0, local17, local19);
@@ -83,7 +48,7 @@ public final class Static74 {
 			@Pc(41) Component local41 = local31[local33];
 			if (local41.anObjectArray3 != null) {
 				@Pc(50) HookRequest local50 = new HookRequest();
-				local50.anObjectArray31 = local41.anObjectArray3;
+				local50.arguments = local41.anObjectArray3;
 				local50.source = local41;
 				Static88.runClientScripts(2000000, local50);
 			}

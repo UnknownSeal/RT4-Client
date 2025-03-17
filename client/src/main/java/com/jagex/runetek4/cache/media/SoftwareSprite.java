@@ -1,7 +1,10 @@
 package com.jagex.runetek4.cache.media;
 
 import com.jagex.runetek4.Sprite;
+import com.jagex.runetek4.Static102;
+import com.jagex.runetek4.Static234;
 import com.jagex.runetek4.Static290;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -9,13 +12,13 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!mm")
-public class ImageRGB extends Sprite {
+public class SoftwareSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "L", descriptor = "[I")
 	public int[] pixels;
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "<init>", descriptor = "(IIIIII[I)V")
-	public ImageRGB(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int[] arg6) {
+	public SoftwareSprite(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int[] arg6) {
 		this.innerWidth = arg0;
 		this.innerHeight = arg1;
 		this.xOffset = arg2;
@@ -26,7 +29,7 @@ public class ImageRGB extends Sprite {
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "<init>", descriptor = "(II)V")
-	public ImageRGB(@OriginalArg(0) int width, @OriginalArg(1) int height) {
+	public SoftwareSprite(@OriginalArg(0) int width, @OriginalArg(1) int height) {
 		this.pixels = new int[width * height];
 		this.width = this.innerWidth = width;
 		this.height = this.innerHeight = height;
@@ -117,6 +120,11 @@ public class ImageRGB extends Sprite {
 			arg4 += arg7;
 			arg3 += arg8;
 		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!gf", name = "a", descriptor = "(Lclient!ve;IIB)Lclient!mm;")
+	public static SoftwareSprite loadSoftwareAlphaSprite(@OriginalArg(0) Js5 arg0, @OriginalArg(2) int arg1) {
+		return Static234.method4016(arg0, 0, arg1) ? Static102.method2071() : null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "d", descriptor = "(I)V")
@@ -673,7 +681,7 @@ public class ImageRGB extends Sprite {
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "e", descriptor = "(I)V")
-	public final void method303(@OriginalArg(0) int arg0) {
+	public final void drawOutline(@OriginalArg(0) int arg0) {
 		@Pc(6) int[] local6 = new int[this.width * this.height];
 		@Pc(8) int local8 = 0;
 		for (@Pc(10) int local10 = 0; local10 < this.height; local10++) {
@@ -777,7 +785,7 @@ public class ImageRGB extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "a", descriptor = "(III)V")
 	@Override
-	public void method1417(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public void renderAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		arg0 += this.xOffset;
 		arg1 += this.yOffset;
 		@Pc(15) int local15 = arg0 + arg1 * Rasterizer.destinationWidth;
@@ -1043,7 +1051,7 @@ public class ImageRGB extends Sprite {
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "f", descriptor = "(I)V")
-	public final void method314(@OriginalArg(0) int arg0) {
+	public final void drawShadow(@OriginalArg(0) int arg0) {
 		for (@Pc(4) int local4 = this.height - 1; local4 > 0; local4--) {
 			@Pc(11) int local11 = local4 * this.width;
 			for (@Pc(16) int local16 = this.width - 1; local16 > 0; local16--) {
@@ -1145,7 +1153,7 @@ public class ImageRGB extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "a", descriptor = "(IIII)V")
 	@Override
-	public void method1419(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
+	public void renderResized(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
 		if (arg2 <= 0 || arg3 <= 0) {
 			return;
 		}

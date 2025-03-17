@@ -1,9 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -21,9 +20,6 @@ public final class Static145 {
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "d", descriptor = "[I")
 	public static final int[] anIntArray331 = new int[1000];
-
-	@OriginalMember(owner = "runetek4.client!lf", name = "k", descriptor = "I")
-	public static int anInt3502 = -1;
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "a", descriptor = "(I)V")
 	public static void method2742() {
@@ -65,7 +61,7 @@ public final class Static145 {
 		Static69.method1545(null);
 		Static103.anIntArray254 = new int[32768];
 		Static216.anIntArray188 = new int[32768];
-		Static167.aClass3_Sub2_Sub1_Sub1_3 = new ImageRGB(128, 254);
+		Static167.aClass3_Sub2_Sub1_Sub1_3 = new SoftwareSprite(128, 254);
 	}
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "b", descriptor = "(I)V")
@@ -75,24 +71,24 @@ public final class Static145 {
 		@Pc(11) int local11 = Static183.anInt4271;
 		@Pc(15) int local15 = Static13.anInt436;
 		if (GlRenderer.enabled) {
-			Static46.method1186(local11, local3, local9, local15, 6116423);
-			Static46.method1186(local11 + 1, local3 + 1, local9 - 2, 16, 0);
-			Static46.method1179(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
+			GlRaster.fillRect(local11, local3, local9, local15, 6116423);
+			GlRaster.fillRect(local11 + 1, local3 + 1, local9 - 2, 16, 0);
+			GlRaster.drawRect(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
 		} else {
-			Rasterizer.drawFilledRectangle(local11, local3, local9, local15, 6116423);
-			Rasterizer.drawFilledRectangle(local11 + 1, local3 + 1, local9 - 2, 16, 0);
-			Rasterizer.drawUnfilledRectangle(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
+			SoftwareRaster.fillRect(local11, local3, local9, local15, 6116423);
+			SoftwareRaster.fillRect(local11 + 1, local3 + 1, local9 - 2, 16, 0);
+			SoftwareRaster.drawRect(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
 		}
-		Fonts.b12Full.drawString(LocalizedText.CHOOSE_OPTION, local11 + 3, local3 + 14, 6116423, -1);
-		@Pc(96) int local96 = Static223.anInt5032;
-		@Pc(98) int local98 = Static215.anInt4873;
+		Fonts.b12Full.renderLeft(LocalizedText.CHOOSE_OPTION, local11 + 3, local3 + 14, 6116423, -1);
+		@Pc(96) int local96 = Mouse.lastMouseY;
+		@Pc(98) int local98 = Mouse.lastMouseX;
 		for (@Pc(107) int local107 = 0; local107 < MiniMenu.menuActionRow; local107++) {
 			@Pc(127) int local127 = (MiniMenu.menuActionRow - local107 - 1) * 15 + local3 + 31;
 			@Pc(129) int local129 = 16777215;
 			if (local11 < local98 && local98 < local11 + local9 && local127 - 13 < local96 && local96 < local127 + 3) {
 				local129 = 16776960;
 			}
-			Fonts.b12Full.drawString(Static269.method2228(local107), local11 + 3, local127, local129, 0);
+			Fonts.b12Full.renderLeft(Static269.method2228(local107), local11 + 3, local127, local129, 0);
 		}
 		Static121.method2407(Static183.anInt4271, Static229.anInt5138, Static13.anInt436, Static24.anInt761);
 	}
@@ -108,6 +104,6 @@ public final class Static145 {
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "c", descriptor = "(I)I")
 	public static int method2746() {
-		return ((Preferences.stereo ? 1 : 0) << 19) + (((Static71.aBoolean107 ? 1 : 0) << 16) + ((Static220.aBoolean244 ? 1 : 0) << 15) + ((Static178.highDetailLighting ? 1 : 0) << 13) + ((Static209.aBoolean240 ? 1 : 0) << 10) + ((Static159.aBoolean189 ? 1 : 0) << 9) + ((Static15.lowMemory ? 1 : 0) << 7) + ((Preferences.highDetailTextures ? 1 : 0) << 6) + ((Preferences.groundDecoration ? 1 : 0) << 5) + (((Static162.aBoolean190 ? 1 : 0) << 3) + (Static113.brightness & 0x7) - (-((Preferences.roofsVisible ? 1 : 0) << 4) + -((Static11.aBoolean15 ? 1 : 0) << 8)) - (-((Static139.anInt3451 & 0x3) << 11) + -((Static125.anInt3104 == 0 ? 0 : 1) << 20) - (((Static12.anInt391 == 0 ? 0 : 1) << 21) + ((Preferences.ambientSoundsVolume == 0 ? 0 : 1) << 22)))) + (Preferences.getParticleSetting() << 23));
+		return ((Preferences.stereo ? 1 : 0) << 19) + (((Static71.aBoolean107 ? 1 : 0) << 16) + ((Static220.aBoolean244 ? 1 : 0) << 15) + ((Static178.highDetailLighting ? 1 : 0) << 13) + ((Static209.aBoolean240 ? 1 : 0) << 10) + ((Static159.aBoolean189 ? 1 : 0) << 9) + ((Static15.lowMemory ? 1 : 0) << 7) + ((Preferences.highDetailTextures ? 1 : 0) << 6) + ((Preferences.groundDecoration ? 1 : 0) << 5) + (((Static162.aBoolean190 ? 1 : 0) << 3) + (Preferences.brightness & 0x7) - (-((Preferences.roofsVisible ? 1 : 0) << 4) + -((Static11.aBoolean15 ? 1 : 0) << 8)) - (-((Static139.anInt3451 & 0x3) << 11) + -((Static125.anInt3104 == 0 ? 0 : 1) << 20) - (((Static12.anInt391 == 0 ? 0 : 1) << 21) + ((Preferences.ambientSoundsVolume == 0 ? 0 : 1) << 22)))) + (Preferences.getParticleSetting() << 23));
 	}
 }

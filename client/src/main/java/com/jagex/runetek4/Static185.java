@@ -11,9 +11,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static185 {
 
-	@OriginalMember(owner = "runetek4.client!p", name = "e", descriptor = "I")
-	public static int anInt4370;
-
 	@OriginalMember(owner = "runetek4.client!p", name = "g", descriptor = "F")
 	public static float aFloat23;
 
@@ -146,7 +143,7 @@ public final class Static185 {
 				}
 			}
 			if (locType.blockwalk != 0 && collsion != null) {
-				collsion.method3043(arg7, locType.blockrange, z, local84, local81);
+				collsion.flagScenery(arg7, locType.blockrange, z, local84, local81);
 			}
 		} else if (shape >= 12) {
 			if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
@@ -163,7 +160,7 @@ public final class Static185 {
 				Static60.anIntArrayArrayArray6[level][arg7][z] |= 0x4;
 			}
 			if (locType.blockwalk != 0 && collsion != null) {
-				collsion.method3043(arg7, locType.blockrange, z, local84, local81);
+				collsion.flagScenery(arg7, locType.blockrange, z, local84, local81);
 			}
 		} else if (shape == 0) {
 			if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
@@ -322,7 +319,7 @@ public final class Static185 {
 				}
 				Static5.method35(level, arg7, z, local199, 1, 1, local387, local261);
 				if (locType.blockwalk != 0 && collsion != null) {
-					collsion.method3043(arg7, locType.blockrange, z, local84, local81);
+					collsion.flagScenery(arg7, locType.blockrange, z, local84, local81);
 				}
 				if (locType.wallwidth != 16) {
 					Static18.method559(level, arg7, z, locType.wallwidth);

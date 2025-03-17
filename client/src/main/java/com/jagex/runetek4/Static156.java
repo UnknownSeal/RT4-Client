@@ -1,9 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.core.io.GZip;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.util.ColorUtils;
 import com.jagex.runetek4.util.MathUtils;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -36,7 +37,7 @@ public final class Static156 {
 		Static109.anInt2886 = MathUtils.sin[arg3];
 		Static121.anInt3038 = MathUtils.cos[arg3];
 		PreciseSleep.anInt5205 = MathUtils.sin[arg4];
-		ItemDefinition.anInt2222 = MathUtils.cos[arg4];
+		ObjType.anInt2222 = MathUtils.cos[arg4];
 		Static149.eyeX = arg0;
 		Static162.eyeY = arg1;
 		Static217.eyeZ = arg2;
@@ -123,13 +124,13 @@ public final class Static156 {
 		for (@Pc(19) int local19 = 0; local19 < Static36.aClass3_Sub14ArrayArray1[0].length; local19++) {
 			@Pc(31) Class3_Sub14 local31 = Static36.aClass3_Sub14ArrayArray1[0][local19];
 			if (local31.anInt2485 >= 0 && Rasterizer.textureProvider.method3237(local31.anInt2485) == 4) {
-				local1.glColor4fv(Static190.method3441(local31.anInt2486), 0);
+				local1.glColor4fv(ColorUtils.getRgbFloat(local31.anInt2486), 0);
 				@Pc(57) float local57 = 201.5F - (local31.aBoolean140 ? 1.0F : 0.5F);
 				local31.method1944(Static130.levelTiles, local57, true);
 			}
 		}
 		local1.glEnableClientState(GL2.GL_COLOR_ARRAY);
-		GlRenderer.method4173();
+		GlRenderer.restoreLighting();
 		local1.glEnable(GL2.GL_DEPTH_TEST);
 		local1.glPopAttrib();
 		GlRenderer.enableDepthMask();

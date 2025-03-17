@@ -12,7 +12,7 @@ public final class HookRequest extends Node {
 	public Component aClass13_16;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "r", descriptor = "Lclient!na;")
-	public JString aClass100_598;
+	public JString opBase;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "w", descriptor = "I")
 	public int anInt3097;
@@ -24,7 +24,7 @@ public final class HookRequest extends Node {
 	public int anInt3100;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "B", descriptor = "I")
-	public int anInt3101;
+	public int op;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "C", descriptor = "Z")
 	public boolean aBoolean158;
@@ -33,7 +33,7 @@ public final class HookRequest extends Node {
 	public int anInt3102;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "E", descriptor = "[Ljava/lang/Object;")
-	public Object[] anObjectArray31;
+	public Object[] arguments;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "F", descriptor = "Lclient!be;")
 	public Component source;

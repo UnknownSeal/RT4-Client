@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -22,8 +22,8 @@ public final class TextureOp29 extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(IB)[I")
 	@Override
 	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(13) int[] local13 = this.aClass121_41.method3445(arg0);
-		if (this.aClass121_41.aBoolean221) {
+		@Pc(13) int[] local13 = this.aClass121_41.get(arg0);
+		if (this.aClass121_41.invalid) {
 			this.method3934(this.aClass121_41.method3446());
 		}
 		return local13;
@@ -33,7 +33,7 @@ public final class TextureOp29 extends TextureOp {
 	private void method3934(@OriginalArg(1) int[][] arg0) {
 		@Pc(7) int local7 = Texture.height;
 		@Pc(9) int local9 = Texture.width;
-		ItemDefinition.method1751(arg0);
+		ObjType.method1751(arg0);
 		Static107.method2263(Texture.heightMask, Texture.widthMask);
 		if (this.aClass18Array1 == null) {
 			return;

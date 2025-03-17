@@ -9,6 +9,9 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("runetek4.client!uc")
 public abstract class MouseWheel {
 
+    @OriginalMember(owner = "runetek4.client!eh", name = "j", descriptor = "I")
+    public static int wheelRotation = 0;
+
     @OriginalMember(owner = "runetek4.client!dh", name = "a", descriptor = "(B)Lclient!uc;")
     public static MouseWheel create() {
         try {
@@ -19,7 +22,7 @@ public abstract class MouseWheel {
     }
 
     @OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(I)I")
-	public abstract int method3287();
+	public abstract int getRotation();
 
 	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(ZLjava/awt/runetek4.Component;)V")
 	public abstract void stop(@OriginalArg(1) Component arg0);

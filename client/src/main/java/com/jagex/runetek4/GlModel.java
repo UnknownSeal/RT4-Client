@@ -1076,7 +1076,7 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!td", name = "a", descriptor = "(IIIIIIIJ)V")
 	@Override
-	public final void drawModel(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) long arg6) {
+	public final void setCamera(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) long arg6) {
 		if (this.anInt5296 == 0) {
 			return;
 		}

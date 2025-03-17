@@ -1,14 +1,11 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static155 {
-
-	@OriginalMember(owner = "runetek4.client!me", name = "nb", descriptor = "I")
-	public static int anInt3751;
 
 	@OriginalMember(owner = "runetek4.client!me", name = "a", descriptor = "(IB)V")
 	public static void method2940(@OriginalArg(0) int arg0) {
@@ -33,7 +30,7 @@ public final class Static155 {
 		@Pc(12) JString local12 = arg1.toLowerCase();
 		@Pc(14) int local14 = 0;
 		for (@Pc(16) int local16 = 0; local16 < ObjTypeList.capacity; local16++) {
-			@Pc(27) ItemDefinition local27 = Static71.get(local16);
+			@Pc(27) ObjType local27 = ObjTypeList.get(local16);
 			if ((!arg0 || local27.stockmarket) && local27.certtemplate == -1 && local27.lenttemplate == -1 && local27.dummyitem == 0 && local27.name.toLowerCase().indexOf(local12) != -1) {
 				if (local14 >= 250) {
 					Static169.aShortArray52 = null;
@@ -55,7 +52,7 @@ public final class Static155 {
 		Static111.anInt2905 = local14;
 		@Pc(117) JString[] local117 = new JString[Static111.anInt2905];
 		for (@Pc(119) int local119 = 0; local119 < Static111.anInt2905; local119++) {
-			local117[local119] = Static71.get(local8[local119]).name;
+			local117[local119] = ObjTypeList.get(local8[local119]).name;
 		}
 		Class6.method3656(local117, Static169.aShortArray52);
 	}

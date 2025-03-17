@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.media.renderable.actor.Player;
@@ -20,9 +20,6 @@ public final class Static176 {
 
 	@OriginalMember(owner = "runetek4.client!ob", name = "f", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_76;
-
-	@OriginalMember(owner = "runetek4.client!ob", name = "e", descriptor = "Lclient!na;")
-	public static final JString aClass100_800 = JString.parse("");
 
 	@OriginalMember(owner = "runetek4.client!ob", name = "o", descriptor = "Lclient!na;")
 	private static final JString aClass100_801 = JString.parse(")4a=");
@@ -83,17 +80,17 @@ public final class Static176 {
 			@Pc(33) int local33 = (arg5 - arg3) * (local17 - local19) / arg1 + local19;
 			local47 = local15 + (local13 - local15) * (arg4 - arg0) / arg2;
 			if (MiniMenu.aBoolean302 && (Static274.anInt4999 & 0x40) != 0) {
-				@Pc(61) Component local61 = Static201.method1418(Static98.anInt2512, Static15.anInt506);
+				@Pc(61) Component local61 = InterfaceList.method1418(MiniMenu.anInt2512, MiniMenu.anInt506);
 				if (local61 == null) {
-					Static53.method1294();
+					MiniMenu.method1294();
 				} else {
-					Static98.addActionRow(Static246.anInt5393, 0L, Static225.aClass100_961, local33, (short) 11, Static102.aClass100_545, local47);
+					MiniMenu.addActionRow(MiniMenu.anInt5393, 0L, MiniMenu.aClass100_961, local33, (short) 11, MiniMenu.aClass100_545, local47);
 				}
 			} else {
 				if (client.game == 1) {
-					Static98.addActionRow(-1, 0L, JString.EMPTY, local33, (short) 36, LocalizedText.FACEHERE, local47);
+					MiniMenu.addActionRow(-1, 0L, JString.EMPTY, local33, (short) 36, LocalizedText.FACEHERE, local47);
 				}
-				Static98.addActionRow(-1, 0L, JString.EMPTY, local33, (short) 60, MiniMenu.walkText, local47);
+				MiniMenu.addActionRow(-1, 0L, JString.EMPTY, local33, (short) 60, MiniMenu.walkText, local47);
 			}
 		}
 		@Pc(112) long local112 = -1L;
@@ -115,11 +112,11 @@ public final class Static176 {
 						continue;
 					}
 					if (MiniMenu.anInt5014 == 1) {
-						Static98.addActionRow(Static169.anInt4075, local121, JString.concatenate(new JString[] { Static34.aClass100_203, Static27.aClass100_164, local172.name}), local47, (short) 14, LocalizedText.USE, local147);
+						MiniMenu.addActionRow(Static169.anInt4075, local121, JString.concatenate(new JString[] { Static34.aClass100_203, Static27.aClass100_164, local172.name}), local47, (short) 14, LocalizedText.USE, local147);
 					} else if (MiniMenu.aBoolean302) {
 						@Pc(363) Class3_Sub2_Sub12 local363 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
 						if ((Static274.anInt4999 & 0x4) != 0 && (local363 == null || local172.getParam(local363.anInt2667, Static121.anInt3039) != local363.anInt2667)) {
-							Static98.addActionRow(Static246.anInt5393, local121, JString.concatenate(new JString[] { Static78.aClass100_466, Static27.aClass100_164, local172.name}), local47, (short) 38, Static102.aClass100_545, local147);
+							MiniMenu.addActionRow(MiniMenu.anInt5393, local121, JString.concatenate(new JString[] { Static78.aClass100_466, Static27.aClass100_164, local172.name}), local47, (short) 38, MiniMenu.aClass100_545, local147);
 						}
 					} else {
 						@Pc(228) JString[] local228 = local172.op;
@@ -152,11 +149,11 @@ public final class Static176 {
 									if (local240 == 4) {
 										local254 = 1001;
 									}
-									Static98.addActionRow(local268, local121, JString.concatenate(new JString[] { Static240.aClass100_1008, local172.name}), local47, local254, local228[local240], local147);
+									MiniMenu.addActionRow(local268, local121, JString.concatenate(new JString[] { Static240.aClass100_1008, local172.name}), local47, local254, local228[local240], local147);
 								}
 							}
 						}
-						Static98.addActionRow(Static225.anInt5073, (long) local172.anInt4426, JString.concatenate(new JString[] { Static240.aClass100_1008, local172.name}), local47, (short) 1004, LocalizedText.EXAMINE, local147);
+						MiniMenu.addActionRow(Static225.anInt5073, (long) local172.anInt4426, JString.concatenate(new JString[] { Static240.aClass100_1008, local172.name}), local47, (short) 1004, LocalizedText.EXAMINE, local147);
 					}
 				}
 				@Pc(514) int local514;
@@ -216,15 +213,15 @@ public final class Static176 {
 				if (local133 == 3) {
 					@Pc(931) LinkedList local931 = SceneGraph.objStacks[Player.plane][local47][local147];
 					if (local931 != null) {
-						for (@Pc(940) ObjStackNode local940 = (ObjStackNode) local931.method2279(); local940 != null; local940 = (ObjStackNode) local931.prev()) {
+						for (@Pc(940) ObjStackNode local940 = (ObjStackNode) local931.tail(); local940 != null; local940 = (ObjStackNode) local931.prev()) {
 							local240 = local940.aClass8_Sub7_1.anInt5555;
-							@Pc(951) ItemDefinition local951 = Static71.get(local240);
+							@Pc(951) ObjType local951 = ObjTypeList.get(local240);
 							if (MiniMenu.anInt5014 == 1) {
-								Static98.addActionRow(Static169.anInt4075, (long) local240, JString.concatenate(new JString[] { Static34.aClass100_203, Static223.aClass100_947, local951.name}), local47, (short) 33, LocalizedText.USE, local147);
+								MiniMenu.addActionRow(Static169.anInt4075, (long) local240, JString.concatenate(new JString[] { Static34.aClass100_203, Static223.aClass100_947, local951.name}), local47, (short) 33, LocalizedText.USE, local147);
 							} else if (MiniMenu.aBoolean302) {
 								@Pc(1142) Class3_Sub2_Sub12 local1142 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
 								if ((Static274.anInt4999 & 0x1) != 0 && (local1142 == null || local951.getParam(local1142.anInt2667, Static121.anInt3039) != local1142.anInt2667)) {
-									Static98.addActionRow(Static246.anInt5393, (long) local240, JString.concatenate(new JString[] { Static78.aClass100_466, Static223.aClass100_947, local951.name}), local47, (short) 39, Static102.aClass100_545, local147);
+									MiniMenu.addActionRow(MiniMenu.anInt5393, (long) local240, JString.concatenate(new JString[] { Static78.aClass100_466, Static223.aClass100_947, local951.name}), local47, (short) 39, MiniMenu.aClass100_545, local147);
 								}
 							} else {
 								@Pc(997) JString[] local997 = local951.groundOptions;
@@ -256,10 +253,10 @@ public final class Static176 {
 										if (local514 == 4) {
 											local1025 = 24;
 										}
-										Static98.addActionRow(local1041, (long) local240, JString.concatenate(new JString[] { Static8.aClass100_32, local951.name}), local47, local1025, local997[local514], local147);
+										MiniMenu.addActionRow(local1041, (long) local240, JString.concatenate(new JString[] { MiniMenu.aClass100_32, local951.name}), local47, local1025, local997[local514], local147);
 									}
 								}
-								Static98.addActionRow(Static225.anInt5073, (long) local240, JString.concatenate(new JString[] { Static8.aClass100_32, local951.name}), local47, (short) 1002, LocalizedText.EXAMINE, local147);
+								MiniMenu.addActionRow(Static225.anInt5073, (long) local240, JString.concatenate(new JString[] { MiniMenu.aClass100_32, local951.name}), local47, (short) 1002, LocalizedText.EXAMINE, local147);
 							}
 						}
 					}

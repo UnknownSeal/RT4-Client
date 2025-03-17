@@ -6,6 +6,7 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.FloType;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.game.config.msitype.MSIType;
+import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -150,7 +151,7 @@ public final class Static33 {
 					}
 					if (local367 >= 0 && local363 > 0) {
 						@Pc(462) int[] local462 = local355[local367 >> 6];
-						@Pc(480) int local480 = local361 == 0 ? 0 : Static54.method1309(local293 / local363, local225 / local363, local114 * 256 / local361);
+						@Pc(480) int local480 = local361 == 0 ? 0 : ColorUtils.method1309(local293 / local363, local225 / local363, local114 * 256 / local361);
 						if (local23[local102][local367] != 0) {
 							if (local462 == null) {
 								local462 = local355[local367 >> 6] = new int[4096];
@@ -162,7 +163,7 @@ public final class Static33 {
 								local519 = 127;
 							}
 							@Pc(541) int local541 = local519 + (local480 & 0x380) + (local480 + local19 & 0xFC00);
-							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = Pix3D.anIntArray220[Static87.method1814(96, local541)];
+							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = Pix3D.anIntArray220[ColorUtils.multiplyLightnessSafe(96, local541)];
 						} else if (local462 != null) {
 							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = 0;
 						}

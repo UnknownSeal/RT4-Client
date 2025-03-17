@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -314,7 +314,7 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 			local27 += local36;
 		}
 		if (local23 > 0 && local20 > 0) {
-			ImageRGB.blockCopyTrans(Rasterizer.destinationPixels, this.aByteArray18, this.anIntArray144, local17, local15, local23, local20, local27, local29);
+			SoftwareSprite.blockCopyTrans(Rasterizer.destinationPixels, this.aByteArray18, this.anIntArray144, local17, local15, local23, local20, local27, local29);
 		}
 	}
 }

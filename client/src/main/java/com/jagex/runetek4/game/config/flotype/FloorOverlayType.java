@@ -1,6 +1,6 @@
 package com.jagex.runetek4.game.config.flotype;
 
-import com.jagex.runetek4.Static105;
+import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -86,6 +86,6 @@ public final class FloorOverlayType {
 
 	@OriginalMember(owner = "runetek4.client!be", name = "a", descriptor = "(II)I")
 	public static int convertColour(@OriginalArg(1) int colour) {
-		return colour == 16711935 ? -1 : Static105.hslToRgb(colour);
+		return colour == 16711935 ? -1 : ColorUtils.rgbToHsl(colour);
 	}
 }

@@ -4,6 +4,7 @@ import com.jagex.runetek4.core.datastruct.*;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.node.CachedNode;
 import com.jagex.runetek4.node.Node;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -33,7 +34,7 @@ public final class StructType extends CachedNode {
 		@Pc(17) int local17 = arg0.g1();
 		@Pc(25) int local25;
 		if (this.aClass133_14 == null) {
-			local25 = Static165.bitceil(local17);
+			local25 = IntUtils.bitceil(local17);
 			this.aClass133_14 = new HashTable(local25);
 		}
 		for (local25 = 0; local25 < local17; local25++) {

@@ -34,7 +34,7 @@ public final class LinkedList {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ih", name = "b", descriptor = "(I)Lclient!ab;")
-	public final Node method2279() {
+	public final Node tail() {
 		@Pc(7) Node local7 = this.aClass3_109.next;
 		if (this.aClass3_109 == local7) {
 			this.aClass3_110 = null;

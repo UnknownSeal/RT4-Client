@@ -32,61 +32,6 @@ public final class Static230 {
 		Static139.aClass99_21.clear();
 	}
 
-	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(Z)V")
-	public static void method3948() {
-		try {
-			if (Static14.anInt441 == 1) {
-				@Pc(16) int local16 = Static172.aClass3_Sub3_Sub4_2.method4440();
-				if (local16 > 0 && Static172.aClass3_Sub3_Sub4_2.method4414()) {
-					local16 -= Static57.anInt1757;
-					if (local16 < 0) {
-						local16 = 0;
-					}
-					Static172.aClass3_Sub3_Sub4_2.method4447(local16);
-					return;
-				}
-				Static172.aClass3_Sub3_Sub4_2.method4446();
-				Static172.aClass3_Sub3_Sub4_2.method4426();
-				Static144.aClass3_Sub29_1 = null;
-				Static27.aClass89_1 = null;
-				if (Static172.aClass153_70 == null) {
-					Static14.anInt441 = 0;
-				} else {
-					Static14.anInt441 = 2;
-				}
-			}
-		} catch (@Pc(62) Exception local62) {
-			local62.printStackTrace();
-			Static172.aClass3_Sub3_Sub4_2.method4446();
-			Static172.aClass153_70 = null;
-			Static144.aClass3_Sub29_1 = null;
-			Static14.anInt441 = 0;
-			Static27.aClass89_1 = null;
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(BII)I")
-	public static int method3949(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		if (arg0 == -2) {
-			return 12345678;
-		} else if (arg0 == -1) {
-			if (arg1 < 2) {
-				arg1 = 2;
-			} else if (arg1 > 126) {
-				arg1 = 126;
-			}
-			return arg1;
-		} else {
-			arg1 = (arg0 & 0x7F) * arg1 >> 7;
-			if (arg1 < 2) {
-				arg1 = 2;
-			} else if (arg1 > 126) {
-				arg1 = 126;
-			}
-			return (arg0 & 0xFF80) + arg1;
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(IIBIII)V")
 	public static void method3950(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		if (arg0 >= Static172.anInt4164 && arg3 <= FluTypeList.anInt5063 && Static267.anInt5773 <= arg4 && Static106.anInt2869 >= arg2) {

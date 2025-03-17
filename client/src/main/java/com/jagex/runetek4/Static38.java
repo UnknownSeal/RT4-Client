@@ -68,7 +68,7 @@ public final class Static38 {
 					local82 = Static203.aMapElementTypeList_1.anIntArray444[local11];
 				}
 				if (local84 != null) {
-					@Pc(211) int local211 = Static114.aClass3_Sub2_Sub9_42.method2867(Static203.aMapElementTypeList_1.aClass100Array153[local11], null, Static45.aClass100Array53);
+					@Pc(211) int local211 = Fonts.p11Full.method2867(Static203.aMapElementTypeList_1.aClass100Array153[local11], null, Static45.aClass100Array53);
 					local80 -= local84.method1503() * (local211 - 1) / 2;
 					local80 += local84.method1511() / 2;
 					for (@Pc(231) int local231 = 0; local231 < local211; local231++) {

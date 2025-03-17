@@ -1,11 +1,7 @@
 package com.jagex.runetek4;
 
-import java.io.UnsupportedEncodingException;
-
-import com.jagex.runetek4.cache.cs.ClientScript;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.js5.Js5;
@@ -14,9 +10,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static127 {
-
-	@OriginalMember(owner = "runetek4.client!k", name = "j", descriptor = "I")
-	public static int anInt3126;
 
 	@OriginalMember(owner = "runetek4.client!k", name = "l", descriptor = "[I")
 	public static int[] anIntArray292;
@@ -184,61 +177,6 @@ public final class Static127 {
 			local10.clear();
 		} while ((Long.MIN_VALUE & local10.secondaryNodeId) == 0L);
 		return local10;
-	}
-
-	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!be;Lclient!na;I)Lclient!na;")
-	public static JString method2465(@OriginalArg(0) Component arg0, @OriginalArg(1) JString arg1) {
-		if (arg1.indexOf(Static49.aClass100_352) == -1) {
-			return arg1;
-		}
-		while (true) {
-			@Pc(14) int local14 = arg1.indexOf(Static23.aClass100_133);
-			if (local14 == -1) {
-				while (true) {
-					local14 = arg1.indexOf(Static276.aClass100_1097);
-					if (local14 == -1) {
-						while (true) {
-							local14 = arg1.indexOf(Static160.aClass100_761);
-							if (local14 == -1) {
-								while (true) {
-									local14 = arg1.indexOf(Static96.aClass100_520);
-									if (local14 == -1) {
-										while (true) {
-											local14 = arg1.indexOf(Static235.aClass100_1002);
-											if (local14 == -1) {
-												while (true) {
-													local14 = arg1.indexOf(Static122.aClass100_591);
-													if (local14 == -1) {
-														return arg1;
-													}
-													@Pc(246) JString local246 = JString.EMPTY;
-													if (Static232.aClass212_5 != null) {
-														local246 = IdkTypeList.method3341(Static232.aClass212_5.intArg2);
-														try {
-															if (Static232.aClass212_5.result != null) {
-																@Pc(265) byte[] local265 = ((String) Static232.aClass212_5.result).getBytes("ISO-8859-1");
-																local246 = JString.decodeString(local265, local265.length, 0);
-															}
-														} catch (@Pc(274) UnsupportedEncodingException local274) {
-														}
-													}
-													arg1 = JString.concatenate(new JString[] { arg1.substring(local14, 0), local246, arg1.substring(local14 + 4) });
-												}
-											}
-											arg1 = JString.concatenate(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(4, arg0)), arg1.substring(local14 + 2) });
-										}
-									}
-									arg1 = JString.concatenate(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(3, arg0)), arg1.substring(local14 + 2) });
-								}
-							}
-							arg1 = JString.concatenate(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(2, arg0)), arg1.substring(local14 + 2) });
-						}
-					}
-					arg1 = JString.concatenate(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(1, arg0)), arg1.substring(local14 + 2) });
-				}
-			}
-			arg1 = JString.concatenate(new JString[] { arg1.substring(local14, 0), Static262.method4510(ClientScript.executeClientscript(0, arg0)), arg1.substring(local14 + 2) });
-		}
 	}
 
 }

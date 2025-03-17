@@ -55,8 +55,8 @@ public final class Npc extends PathingEntity {
 		if (this.type == null) {
 			return;
 		}
-		@Pc(29) SeqType local29 = this.primarySeqId != -1 && this.anInt3420 == 0 ? SeqType.getAnimationSequence(this.primarySeqId) : null;
-		@Pc(53) SeqType local53 = this.movementSeqId == -1 || this.movementSeqId == this.getBasType().idleAnimationId && local29 != null ? null : SeqType.getAnimationSequence(this.movementSeqId);
+		@Pc(29) SeqType local29 = this.primarySeqId != -1 && this.anInt3420 == 0 ? SeqTypeList.getAnimationSequence(this.primarySeqId) : null;
+		@Pc(53) SeqType local53 = this.movementSeqId == -1 || this.movementSeqId == this.getBasType().idleAnimationId && local29 != null ? null : SeqTypeList.getAnimationSequence(this.movementSeqId);
 		@Pc(74) Model tmp = this.type.method2937(this.aClass147Array3, this.anInt3388, this.anInt3407, this.anInt3373, this.anInt3360, this.anInt3425, local53, this.anInt3396, local29);
 		if (tmp == null) {
 			return;

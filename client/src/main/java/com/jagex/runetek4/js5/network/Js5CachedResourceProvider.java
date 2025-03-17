@@ -184,12 +184,12 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 	}
 
 	@OriginalMember(owner = "client!bg", name = "c", descriptor = "(I)I")
-	public int method529() {
+	public int getVerifiedGroups() {
 		return this.anInt567;
 	}
 
 	@OriginalMember(owner = "client!bg", name = "d", descriptor = "(I)I")
-	public int method533() {
+	public int getTotalVerifiedGroups() {
 		if (this.index == null) {
 			return 0;
 		} else if (this.aBoolean35) {
@@ -313,7 +313,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 	}
 
 	@OriginalMember(owner = "client!bg", name = "b", descriptor = "(B)I")
-	public int method535() {
+	public int getIndexSize() {
 		return this.index == null ? 0 : this.index.length;
 	}
 

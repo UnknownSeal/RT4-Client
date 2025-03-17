@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -8,9 +8,6 @@ public final class Static213 {
 
 	@OriginalMember(owner = "runetek4.client!re", name = "w", descriptor = "[Lclient!qf;")
 	public static Sprite[] aClass3_Sub2_Sub1Array8;
-
-	@OriginalMember(owner = "runetek4.client!re", name = "y", descriptor = "I")
-	public static int anInt4851;
 
 	@OriginalMember(owner = "runetek4.client!re", name = "b", descriptor = "(I)[Lclient!qf;")
 	public static Sprite[] method3730() {
@@ -37,7 +34,7 @@ public final class Static213 {
 				if (GlRenderer.enabled) {
 					local14[local16] = new GlSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local16], Static269.anIntArray252[local16], Static254.anIntArray488[local16], Static26.anIntArray66[local16], local119);
 				} else {
-					local14[local16] = new ImageRGB(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local16], Static269.anIntArray252[local16], Static254.anIntArray488[local16], Static26.anIntArray66[local16], local119);
+					local14[local16] = new SoftwareSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local16], Static269.anIntArray252[local16], Static254.anIntArray488[local16], Static26.anIntArray66[local16], local119);
 				}
 			}
 		}

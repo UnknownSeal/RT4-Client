@@ -1,12 +1,13 @@
 package com.jagex.runetek4.dash3d.entity;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.media.renderable.Entity;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -71,7 +72,7 @@ public final class LocType {
 	private int ambient = 0;
 
 	@OriginalMember(owner = "client!pb", name = "E", descriptor = "Lclient!na;")
-	public JString name = ItemDefinition.NULL;
+	public JString name = ObjType.NULL;
 
 	@OriginalMember(owner = "client!pb", name = "D", descriptor = "Z")
 	public boolean hardshadow = true;
@@ -403,7 +404,7 @@ public final class LocType {
 		} else if (code == 249) {
 			int length = packet.g1();
 			if (this.params == null) {
-				int len = Static165.bitceil(length);
+				int len = IntUtils.bitceil(length);
 				this.params = new HashTable(len);
 			}
 			for (int index = 0; index < length; index++) {

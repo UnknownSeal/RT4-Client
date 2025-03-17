@@ -1,10 +1,12 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.config.cursortype.CursorType;
+import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -46,6 +48,22 @@ public class InterfaceList {
     public static int rectangles = 0;
     @OriginalMember(owner = "runetek4.client!oj", name = "y", descriptor = "I")
     public static int keyQueueSize = 0;
+    @OriginalMember(owner = "client!bm", name = "f", descriptor = "Lclient!ve;")
+    public static Js5 gameImageJs5;
+    @OriginalMember(owner = "runetek4.client!lg", name = "b", descriptor = "Z")
+    public static boolean aBoolean174 = false;
+    @OriginalMember(owner = "client!sh", name = "f", descriptor = "I")
+    public static int anInt5103 = -1;
+    @OriginalMember(owner = "runetek4.client!wl", name = "h", descriptor = "Lclient!be;")
+    public static Component aClass13_26 = null;
+    @OriginalMember(owner = "runetek4.client!rg", name = "s", descriptor = "I")
+    public static int anInt5574 = -1;
+    @OriginalMember(owner = "runetek4.client!og", name = "e", descriptor = "Lclient!be;")
+    public static Component aClass13_22;
+    @OriginalMember(owner = "runetek4.client!gd", name = "j", descriptor = "I")
+    public static int lastItemDragTime = 0;
+    @OriginalMember(owner = "runetek4.client!qk", name = "f", descriptor = "I")
+    public static int clickedInventoryComponentY = 0;
 
     @OriginalMember(owner = "client!gg", name = "c", descriptor = "(II)V")
     public static void method1750(@OriginalArg(0) int arg0) {
@@ -59,7 +77,7 @@ public class InterfaceList {
 
         if (arg0 != -1) {
             @Pc(24) CursorType cursorType = Class6.method3660(arg0);
-            @Pc(28) ImageRGB local28 = cursorType.getSprite();
+            @Pc(28) SoftwareSprite local28 = cursorType.getSprite();
             if (local28 == null) {
                 arg0 = -1;
             } else {
@@ -123,7 +141,7 @@ public class InterfaceList {
         @Pc(27) boolean deleteFromCache = true;
         for (@Pc(29) int i = 0; i < Component.cachedComponents[componentId].length; i++) {
             if (Component.cachedComponents[componentId][i] != null) {
-                if (Component.cachedComponents[componentId][i].INVENTORY == 2) {
+                if (Component.cachedComponents[componentId][i].type == 2) {
                     deleteFromCache = false;
                 } else {
                     Component.cachedComponents[componentId][i] = null;
@@ -139,7 +157,7 @@ public class InterfaceList {
     @OriginalMember(owner = "runetek4.client!ke", name = "a", descriptor = "(ZLclient!wk;Z)V")
     public static void closeInterface(@OriginalArg(0) boolean arg0, @OriginalArg(1) ComponentPointer arg1) {
         @Pc(9) int local9 = (int) arg1.nodeId;
-        @Pc(16) int local16 = arg1.anInt5878;
+        @Pc(16) int local16 = arg1.interfaceId;
         arg1.unlink();
         if (arg0) {
             resetComponent(local16);
@@ -147,12 +165,12 @@ public class InterfaceList {
         Static273.method3214(local16);
         @Pc(32) Component local32 = getComponent(local9);
         if (local32 != null) {
-            Static43.method1143(local32);
+            redraw(local32);
         }
         @Pc(41) int local41 = MiniMenu.menuActionRow;
         @Pc(43) int local43;
         for (local43 = 0; local43 < local41; local43++) {
-            if (Static2.method5(Static39.aShortArray6[local43])) {
+            if (Static2.method5(MiniMenu.actions[local43])) {
                 Static200.method3628(local43);
             }
         }
@@ -161,9 +179,9 @@ public class InterfaceList {
             Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
         } else {
             Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
-            local43 = Fonts.b12Full.method2858(LocalizedText.CHOOSE_OPTION);
+            local43 = Fonts.b12Full.getStringWidth(LocalizedText.CHOOSE_OPTION);
             for (@Pc(75) int local75 = 0; local75 < MiniMenu.menuActionRow; local75++) {
-                @Pc(88) int local88 = Fonts.b12Full.method2858(Static269.method2228(local75));
+                @Pc(88) int local88 = Fonts.b12Full.getStringWidth(Static269.method2228(local75));
                 if (local43 < local88) {
                     local43 = local88;
                 }
@@ -194,19 +212,19 @@ public class InterfaceList {
             Static223.aBooleanArray116[local15] = aBooleanArray100[local15];
             aBooleanArray100[local15] = false;
         }
-        Static97.anInt2503 = -1;
+        ClientScriptRunner.anInt2503 = -1;
         Static169.aClass13_18 = null;
         Static182.anInt4311 = client.loop;
         if (GlRenderer.enabled) {
-            Static263.aBoolean299 = true;
+            ClientScriptRunner.aBoolean299 = true;
         }
-        Static214.anInt5574 = -1;
+        anInt5574 = -1;
         if (topLevelInterace != -1) {
             rectangles = 0;
             CacheArchive.method182();
         }
         if (GlRenderer.enabled) {
-            Static46.method1177();
+            GlRaster.method1177();
         } else {
             Rasterizer.resetBounds();
         }
@@ -235,5 +253,43 @@ public class InterfaceList {
             }
         }
         return Component.cachedComponents[interfaceId][componentId];
+    }
+
+    @OriginalMember(owner = "runetek4.client!runetek4.client", name = "b", descriptor = "(Lclient!be;)Lclient!bf;")
+    public static ServerActiveProperties getServerActiveProperties(@OriginalArg(0) Component arg0) {
+        @Pc(13) ServerActiveProperties local13 = (ServerActiveProperties) Static210.aClass133_21.getNode(((long) arg0.id << 32) + (long) arg0.createdComponentId);
+        return local13 == null ? arg0.properties : local13;
+    }
+
+    @OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(ILclient!be;)V")
+    public static void redraw(@OriginalArg(1) Component arg0) {
+        if (Static182.anInt4311 == arg0.rectangleLoop) {
+            aBooleanArray100[arg0.rectangle] = true;
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!runetek4.client", name = "c", descriptor = "(Lclient!be;)Z")
+    public static boolean method947(@OriginalArg(0) Component arg0) {
+        if (Cheat.qaOpTest) {
+            if (getServerActiveProperties(arg0).anInt546 != 0) {
+                return false;
+            }
+            if (arg0.type == 0) {
+                return false;
+            }
+        }
+        return arg0.hidden;
+    }
+
+    @OriginalMember(owner = "runetek4.client!qf", name = "a", descriptor = "(BII)Lclient!be;")
+    public static Component method1418(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
+        @Pc(7) Component local7 = getComponent(arg0);
+        if (arg1 == -1) {
+            return local7;
+        } else if (local7 == null || local7.createdComponents == null || local7.createdComponents.length <= arg1) {
+            return null;
+        } else {
+            return local7.createdComponents[arg1];
+        }
     }
 }

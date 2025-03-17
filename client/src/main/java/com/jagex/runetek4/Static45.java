@@ -3,10 +3,10 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.config.FloType;
-import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -15,9 +15,6 @@ public final class Static45 {
 
 	@OriginalMember(owner = "runetek4.client!di", name = "q", descriptor = "[Lclient!na;")
 	public static final JString[] aClass100Array53 = new JString[5];
-
-	@OriginalMember(owner = "runetek4.client!di", name = "F", descriptor = "Lclient!bf;")
-	public static final ServerActiveProperties aClass3_Sub4_2 = new ServerActiveProperties(0, -1);
 
 	@OriginalMember(owner = "runetek4.client!di", name = "H", descriptor = "Z")
 	public static boolean aBoolean84 = false;
@@ -39,7 +36,7 @@ public final class Static45 {
 								local43 = local10 - 1;
 							}
 							if (local43 >= 0) {
-								arg0[local43].method3051(local22, local15);
+								arg0[local43].flagTile(local22, local15);
 							}
 						}
 					}
@@ -190,7 +187,7 @@ public final class Static45 {
 							underlayId -= Static279.anIntArray568[normalX];
 						}
 						if (dz >= 0 && dx > 0) {
-							local142[z0][dz] = Static54.method1309(underlayId / dx, z / dx, x0 * 256 / local200);
+							local142[z0][dz] = ColorUtils.method1309(underlayId / dx, z / dx, x0 * 256 / local200);
 						}
 					}
 				}
@@ -232,14 +229,14 @@ public final class Static45 {
 									normalZ = 127;
 								}
 								local273 = (normalX & 0x380) + (normalX + local10 & 0xFC00) + normalZ;
-								normalY = Pix3D.anIntArray220[Static87.method1814(96, local273)];
+								normalY = Pix3D.anIntArray220[ColorUtils.multiplyLightnessSafe(96, local273)];
 							}
 							normalZ = levelLightMap[z0][x0];
 							local332 = levelLightMap[z0][x0 + 1];
 							local273 = levelLightMap[z0 + 1][x0];
 							local326 = levelLightMap[z0 + 1][x0 + 1];
 							if (underlayId == 0) {
-								Static176.method3305(level, z0, x0, 0, 0, -1, local200, dx, dz, len, Static87.method1814(normalZ, normalX), Static87.method1814(local273, normalX), Static87.method1814(local326, normalX), Static87.method1814(local332, normalX), 0, 0, 0, 0, normalY, 0);
+								Static176.method3305(level, z0, x0, 0, 0, -1, local200, dx, dz, len, ColorUtils.multiplyLightnessSafe(normalZ, normalX), ColorUtils.multiplyLightnessSafe(local273, normalX), ColorUtils.multiplyLightnessSafe(local326, normalX), ColorUtils.multiplyLightnessSafe(local332, normalX), 0, 0, 0, 0, normalY, 0);
 								if (GlRenderer.enabled && level > 0 && normalX != -1 && Static199.method3593(z - 1).occlude) {
 									Static242.method4197(0, 0, true, false, z0, x0, local200 - SceneGraph.tileHeights[0][z0][x0], -SceneGraph.tileHeights[0][z0 + 1][x0] + dx, dz - SceneGraph.tileHeights[0][z0 + 1][x0 + 1], len - SceneGraph.tileHeights[0][z0][x0 + 1]);
 								}
@@ -294,7 +291,7 @@ public final class Static45 {
 								@Pc(1429) int local1429;
 								if (local1288 >= 0) {
 									local1301 = -1;
-									local1353 = Pix3D.anIntArray220[Static230.method3949(Rasterizer.textureProvider.method3234(local1288), 96)];
+									local1353 = Pix3D.anIntArray220[ColorUtils.multiplyLightnessGrayscale(Rasterizer.textureProvider.method3234(local1288), 96)];
 								} else if (local1248.rgb == -1) {
 									local1301 = -2;
 									local1353 = 0;
@@ -307,7 +304,7 @@ public final class Static45 {
 										local1429 = 127;
 									}
 									local1458 = (local1301 & 0x380) + ((local1301 + local10 & 0xFC00) + local1429);
-									local1353 = Pix3D.anIntArray220[Static230.method3949(local1458, 96)];
+									local1353 = Pix3D.anIntArray220[ColorUtils.multiplyLightnessGrayscale(local1458, 96)];
 								}
 								if (local1248.averagecolour >= 0) {
 									local1429 = local1248.averagecolour;
@@ -318,9 +315,9 @@ public final class Static45 {
 										local1458 = 127;
 									}
 									@Pc(1529) int local1529 = (local1429 & 0x380) + ((local1429 + local10 & 0xFC00) + local1458);
-									local1353 = Pix3D.anIntArray220[Static230.method3949(local1529, 96)];
+									local1353 = Pix3D.anIntArray220[ColorUtils.multiplyLightnessGrayscale(local1529, 96)];
 								}
-								Static176.method3305(level, z0, x0, local322, local1242, local1288, local200, dx, dz, len, Static87.method1814(normalZ, normalX), Static87.method1814(local273, normalX), Static87.method1814(local326, normalX), Static87.method1814(local332, normalX), Static230.method3949(local1301, normalZ), Static230.method3949(local1301, local273), Static230.method3949(local1301, local326), Static230.method3949(local1301, local332), normalY, local1353);
+								Static176.method3305(level, z0, x0, local322, local1242, local1288, local200, dx, dz, len, ColorUtils.multiplyLightnessSafe(normalZ, normalX), ColorUtils.multiplyLightnessSafe(local273, normalX), ColorUtils.multiplyLightnessSafe(local326, normalX), ColorUtils.multiplyLightnessSafe(local332, normalX), ColorUtils.multiplyLightnessGrayscale(local1301, normalZ), ColorUtils.multiplyLightnessGrayscale(local1301, local273), ColorUtils.multiplyLightnessGrayscale(local1301, local326), ColorUtils.multiplyLightnessGrayscale(local1301, local332), normalY, local1353);
 								if (GlRenderer.enabled && level > 0) {
 									Static242.method4197(local322, local1242, local1301 == -2 || !local1248.hardshadow, normalX == -1 || !Static199.method3593(z - 1).occlude, z0, x0, local200 - SceneGraph.tileHeights[0][z0][x0], dx - SceneGraph.tileHeights[0][z0 + 1][x0], dz - SceneGraph.tileHeights[0][z0 + 1][x0 + 1], -SceneGraph.tileHeights[0][z0][x0 + 1] + len);
 								}
@@ -513,86 +510,86 @@ public final class Static45 {
 		@Pc(51) byte local51 = 0;
 		@Pc(53) boolean local53 = false;
 		@Pc(64) int local64 = 0;
-		Static259.anIntArray514[0] = arg2;
+		PathFinder.queueX[0] = arg2;
 		@Pc(71) int local71 = local51 + 1;
-		Static84.anIntArray209[0] = arg9;
+		PathFinder.queueZ[0] = arg9;
 		@Pc(78) int[][] local78 = PathFinder.collisionMaps[Player.plane].flags;
 		@Pc(198) int local198;
 		while (local71 != local64) {
-			local10 = Static84.anIntArray209[local64];
-			local3 = Static259.anIntArray514[local64];
+			local10 = PathFinder.queueZ[local64];
+			local3 = PathFinder.queueX[local64];
 			local64 = local64 + 1 & 0xFFF;
 			if (local3 == arg0 && local10 == arg3) {
 				local53 = true;
 				break;
 			}
 			if (arg8 != 0) {
-				if ((arg8 < 5 || arg8 == 10) && PathFinder.collisionMaps[Player.plane].method3042(arg3, local3, local10, arg0, arg8 - 1, 1, arg6)) {
+				if ((arg8 < 5 || arg8 == 10) && PathFinder.collisionMaps[Player.plane].isAtWall(arg3, local3, local10, arg0, arg8 - 1, 1, arg6)) {
 					local53 = true;
 					break;
 				}
-				if (arg8 < 10 && PathFinder.collisionMaps[Player.plane].method3046(arg3, arg8 - 1, arg0, local10, 1, arg6, local3)) {
+				if (arg8 < 10 && PathFinder.collisionMaps[Player.plane].isAtWallDecor(arg3, arg8 - 1, arg0, local10, 1, arg6, local3)) {
 					local53 = true;
 					break;
 				}
 			}
-			if (arg10 != 0 && arg5 != 0 && PathFinder.collisionMaps[Player.plane].method3052(arg0, local10, local3, 1, arg10, arg1, arg3, arg5)) {
+			if (arg10 != 0 && arg5 != 0 && PathFinder.collisionMaps[Player.plane].isInsideOrOutsideRect(arg0, local10, local3, 1, arg10, arg1, arg3, arg5)) {
 				local53 = true;
 				break;
 			}
 			local198 = Static167.anIntArrayArray31[local3][local10] + 1;
 			if (local3 > 0 && Static145.anIntArrayArray25[local3 - 1][local10] == 0 && (local78[local3 - 1][local10] & 0x12C0108) == 0) {
-				Static259.anIntArray514[local71] = local3 - 1;
-				Static84.anIntArray209[local71] = local10;
+				PathFinder.queueX[local71] = local3 - 1;
+				PathFinder.queueZ[local71] = local10;
 				local71 = local71 + 1 & 0xFFF;
 				Static145.anIntArrayArray25[local3 - 1][local10] = 2;
 				Static167.anIntArrayArray31[local3 - 1][local10] = local198;
 			}
 			if (local3 < 103 && Static145.anIntArrayArray25[local3 + 1][local10] == 0 && (local78[local3 + 1][local10] & 0x12C0180) == 0) {
-				Static259.anIntArray514[local71] = local3 + 1;
-				Static84.anIntArray209[local71] = local10;
+				PathFinder.queueX[local71] = local3 + 1;
+				PathFinder.queueZ[local71] = local10;
 				local71 = local71 + 1 & 0xFFF;
 				Static145.anIntArrayArray25[local3 + 1][local10] = 8;
 				Static167.anIntArrayArray31[local3 + 1][local10] = local198;
 			}
 			if (local10 > 0 && Static145.anIntArrayArray25[local3][local10 - 1] == 0 && (local78[local3][local10 - 1] & 0x12C0102) == 0) {
-				Static259.anIntArray514[local71] = local3;
-				Static84.anIntArray209[local71] = local10 - 1;
+				PathFinder.queueX[local71] = local3;
+				PathFinder.queueZ[local71] = local10 - 1;
 				Static145.anIntArrayArray25[local3][local10 - 1] = 1;
 				local71 = local71 + 1 & 0xFFF;
 				Static167.anIntArrayArray31[local3][local10 - 1] = local198;
 			}
 			if (local10 < 103 && Static145.anIntArrayArray25[local3][local10 + 1] == 0 && (local78[local3][local10 + 1] & 0x12C0120) == 0) {
-				Static259.anIntArray514[local71] = local3;
-				Static84.anIntArray209[local71] = local10 + 1;
+				PathFinder.queueX[local71] = local3;
+				PathFinder.queueZ[local71] = local10 + 1;
 				local71 = local71 + 1 & 0xFFF;
 				Static145.anIntArrayArray25[local3][local10 + 1] = 4;
 				Static167.anIntArrayArray31[local3][local10 + 1] = local198;
 			}
 			if (local3 > 0 && local10 > 0 && Static145.anIntArrayArray25[local3 - 1][local10 - 1] == 0 && (local78[local3 - 1][local10 - 1] & 0x12C010E) == 0 && (local78[local3 - 1][local10] & 0x12C0108) == 0 && (local78[local3][local10 - 1] & 0x12C0102) == 0) {
-				Static259.anIntArray514[local71] = local3 - 1;
-				Static84.anIntArray209[local71] = local10 - 1;
+				PathFinder.queueX[local71] = local3 - 1;
+				PathFinder.queueZ[local71] = local10 - 1;
 				local71 = local71 + 1 & 0xFFF;
 				Static145.anIntArrayArray25[local3 - 1][local10 - 1] = 3;
 				Static167.anIntArrayArray31[local3 - 1][local10 - 1] = local198;
 			}
 			if (local3 < 103 && local10 > 0 && Static145.anIntArrayArray25[local3 + 1][local10 - 1] == 0 && (local78[local3 + 1][local10 - 1] & 0x12C0183) == 0 && (local78[local3 + 1][local10] & 0x12C0180) == 0 && (local78[local3][local10 - 1] & 0x12C0102) == 0) {
-				Static259.anIntArray514[local71] = local3 + 1;
-				Static84.anIntArray209[local71] = local10 - 1;
+				PathFinder.queueX[local71] = local3 + 1;
+				PathFinder.queueZ[local71] = local10 - 1;
 				local71 = local71 + 1 & 0xFFF;
 				Static145.anIntArrayArray25[local3 + 1][local10 - 1] = 9;
 				Static167.anIntArrayArray31[local3 + 1][local10 - 1] = local198;
 			}
 			if (local3 > 0 && local10 < 103 && Static145.anIntArrayArray25[local3 - 1][local10 + 1] == 0 && (local78[local3 - 1][local10 + 1] & 0x12C0138) == 0 && (local78[local3 - 1][local10] & 0x12C0108) == 0 && (local78[local3][local10 + 1] & 0x12C0120) == 0) {
-				Static259.anIntArray514[local71] = local3 - 1;
-				Static84.anIntArray209[local71] = local10 + 1;
+				PathFinder.queueX[local71] = local3 - 1;
+				PathFinder.queueZ[local71] = local10 + 1;
 				Static145.anIntArrayArray25[local3 - 1][local10 + 1] = 6;
 				local71 = local71 + 1 & 0xFFF;
 				Static167.anIntArrayArray31[local3 - 1][local10 + 1] = local198;
 			}
 			if (local3 < 103 && local10 < 103 && Static145.anIntArrayArray25[local3 + 1][local10 + 1] == 0 && (local78[local3 + 1][local10 + 1] & 0x12C01E0) == 0 && (local78[local3 + 1][local10] & 0x12C0180) == 0 && (local78[local3][local10 + 1] & 0x12C0120) == 0) {
-				Static259.anIntArray514[local71] = local3 + 1;
-				Static84.anIntArray209[local71] = local10 + 1;
+				PathFinder.queueX[local71] = local3 + 1;
+				PathFinder.queueZ[local71] = local10 + 1;
 				Static145.anIntArrayArray25[local3 + 1][local10 + 1] = 12;
 				local71 = local71 + 1 & 0xFFF;
 				Static167.anIntArrayArray31[local3 + 1][local10 + 1] = local198;
@@ -640,15 +637,15 @@ public final class Static45 {
 			BZip2State.tryMoveNearest = 1;
 		}
 		@Pc(1032) byte local1032 = 0;
-		Static259.anIntArray514[0] = local3;
+		PathFinder.queueX[0] = local3;
 		local64 = local1032 + 1;
-		Static84.anIntArray209[0] = local10;
+		PathFinder.queueZ[0] = local10;
 		local198 = local839 = Static145.anIntArrayArray25[local3][local10];
 		while (arg2 != local3 || local10 != arg9) {
 			if (local839 != local198) {
 				local839 = local198;
-				Static259.anIntArray514[local64] = local3;
-				Static84.anIntArray209[local64++] = local10;
+				PathFinder.queueX[local64] = local3;
+				PathFinder.queueZ[local64++] = local10;
 			}
 			if ((local198 & 0x2) != 0) {
 				local3++;
@@ -663,7 +660,7 @@ public final class Static45 {
 			local198 = Static145.anIntArrayArray25[local3][local10];
 		}
 		if (local64 > 0) {
-			Static193.method3502(local64, arg4);
+			ClientProt.method3502(local64, arg4);
 			return true;
 		} else if (arg4 == 1) {
 			return false;

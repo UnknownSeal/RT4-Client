@@ -3,7 +3,6 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.media.renderable.Entity;
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.Scene;
@@ -15,9 +14,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static43 {
-
-	@OriginalMember(owner = "runetek4.client!dg", name = "h", descriptor = "Lclient!be;")
-	public static Component aClass13_11;
 
 	@OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(IIIIILclient!th;IJZ)Z")
 	public static boolean addTemporary(@OriginalArg(0) int arg0, @OriginalArg(1) int x, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) int padding, @OriginalArg(5) Entity arg5, @OriginalArg(6) int yaw, @OriginalArg(7) long arg7, @OriginalArg(8) boolean arg8) {
@@ -47,13 +43,6 @@ public final class Static43 {
 		x1 /= 128;
 		z1 /= 128;
 		return Static105.addLoc(arg0, x0, z0, x1 + 1 - x0, z1 - z0 + 1, x, z, arg3, arg5, yaw, true, arg7);
-	}
-
-	@OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(ILclient!be;)V")
-	public static void method1143(@OriginalArg(1) Component arg0) {
-		if (Static182.anInt4311 == arg0.anInt465) {
-			InterfaceList.aBooleanArray100[arg0.anInt517] = true;
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(IIIIIILclient!mj;)V")
@@ -87,7 +76,7 @@ public final class Static43 {
 				local102 = local110.modelB;
 			}
 			if (local74.blockwalk != 0) {
-				arg5.method3039(local92, local74.blockrange, arg0, local57, arg1);
+				arg5.unflagWall(local92, local74.blockrange, arg0, local57, arg1);
 			}
 		} else if (arg3 == 1) {
 			@Pc(233) WallDecor local233 = Static75.method1633(arg2, arg1, arg0);
@@ -109,7 +98,7 @@ public final class Static43 {
 				local100 = local211.entity;
 			}
 			if (local74.blockwalk == 1) {
-				arg5.method3053(arg0, arg1);
+				arg5.unflagGroundDecor(arg0, arg1);
 			}
 		}
 		if (!GlRenderer.enabled || !local74.hardshadow) {

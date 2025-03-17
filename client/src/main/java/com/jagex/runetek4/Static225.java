@@ -15,9 +15,6 @@ public final class Static225 {
 	@OriginalMember(owner = "runetek4.client!se", name = "h", descriptor = "I")
 	public static int anInt5073 = -1;
 
-	@OriginalMember(owner = "runetek4.client!se", name = "m", descriptor = "Lclient!na;")
-	public static final JString aClass100_961 = JString.parse(" )2>");
-
 	@OriginalMember(owner = "runetek4.client!se", name = "t", descriptor = "[I")
 	public static final int[] anIntArray445 = new int[] { 12543016, 15504954, 15914854, 16773818 };
 

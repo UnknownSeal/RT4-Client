@@ -66,6 +66,19 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
         Static11.anInt386 = 1000 / arg0;
     }
 
+    @OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "(Z)V")
+    public static void resetTimer() {
+        Static200.aClass93_1.method3394();
+        @Pc(10) int local10;
+        for (local10 = 0; local10 < 32; local10++) {
+            aClass6.aLongArray2[local10] = 0L;
+        }
+        for (local10 = 0; local10 < 32; local10++) {
+            Static228.aLongArray8[local10] = 0L;
+        }
+        Static227.anInt5097 = 0;
+    }
+
     @OriginalMember(owner = "client!rc", name = "focusLost", descriptor = "(Ljava/awt/event/FocusEvent;)V")
 	@Override
 	public final void focusLost(@OriginalArg(0) FocusEvent arg0) {

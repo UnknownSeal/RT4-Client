@@ -11,12 +11,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static246 {
 
-	@OriginalMember(owner = "runetek4.client!u", name = "i", descriptor = "I")
-	public static int anInt5393;
-
-	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "I")
-	public static int anInt5388 = 0;
-
 	@OriginalMember(owner = "runetek4.client!u", name = "g", descriptor = "Lclient!na;")
 	public static final JString aClass100_1029 = JString.parse("cookiehost");
 
@@ -43,11 +37,11 @@ public final class Static246 {
 			tooltip = JString.concatenate(new JString[] { tooltip, Static123.getCombatLevelColorTag(npc.vislevel, PlayerList.self.combatLevel), Static123.aClass100_593, string, JString.parseInt(npc.vislevel), Static72.aClass100_448 });
 		}
 		if (MiniMenu.anInt5014 == 1) {
-			Static98.addActionRow(Static169.anInt4075, (long) arg2, JString.concatenate(new JString[] { Static34.aClass100_203, Static201.aClass100_407, tooltip }), arg1, (short) 26, LocalizedText.USE, arg3);
+			MiniMenu.addActionRow(Static169.anInt4075, (long) arg2, JString.concatenate(new JString[] { Static34.aClass100_203, Static201.aClass100_407, tooltip }), arg1, (short) 26, LocalizedText.USE, arg3);
 		} else if (MiniMenu.aBoolean302) {
 			@Pc(378) Class3_Sub2_Sub12 local378 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
 			if ((Static274.anInt4999 & 0x2) != 0 && (local378 == null || npc.getParam(Static121.anInt3039, local378.anInt2667) != local378.anInt2667)) {
-				Static98.addActionRow(anInt5393, (long) arg2, JString.concatenate(new JString[] { Static78.aClass100_466, Static201.aClass100_407, tooltip }), arg1, (short) 45, Static102.aClass100_545, arg3);
+				MiniMenu.addActionRow(MiniMenu.anInt5393, (long) arg2, JString.concatenate(new JString[] { Static78.aClass100_466, Static201.aClass100_407, tooltip }), arg1, (short) 45, MiniMenu.aClass100_545, arg3);
 			}
 		} else {
 			@Pc(129) JString[] spellSelected = npc.ops;
@@ -81,7 +75,7 @@ public final class Static246 {
 						if (op == 4) {
 							local161 = 2;
 						}
-						Static98.addActionRow(local176, (long) arg2, JString.concatenate(new JString[] { Static226.YELLOW2, tooltip }), arg1, local161, spellSelected[op], arg3);
+						MiniMenu.addActionRow(local176, (long) arg2, JString.concatenate(new JString[] { Static226.YELLOW2, tooltip }), arg1, local161, spellSelected[op], arg3);
 					}
 				}
 			}
@@ -111,11 +105,11 @@ public final class Static246 {
 						if (menuOption != 0) {
 							menuOption += action;
 						}
-						Static98.addActionRow(npc.cursorattack, (long) arg2, JString.concatenate(new JString[] { Static226.YELLOW2, tooltip }), arg1, menuOption, spellSelected[op], arg3);
+						MiniMenu.addActionRow(npc.cursorattack, (long) arg2, JString.concatenate(new JString[] { Static226.YELLOW2, tooltip }), arg1, menuOption, spellSelected[op], arg3);
 					}
 				}
 			}
-			Static98.addActionRow(Static225.anInt5073, (long) arg2, JString.concatenate(new JString[] { Static226.YELLOW2, tooltip }), arg1, (short) 1007, LocalizedText.EXAMINE, arg3);
+			MiniMenu.addActionRow(Static225.anInt5073, (long) arg2, JString.concatenate(new JString[] { Static226.YELLOW2, tooltip }), arg1, (short) 1007, LocalizedText.EXAMINE, arg3);
 		}
 	}
 

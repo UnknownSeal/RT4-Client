@@ -1,14 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.Font;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static114 {
-
-	@OriginalMember(owner = "runetek4.client!j", name = "x", descriptor = "Lclient!rk;")
-	public static Font aClass3_Sub2_Sub9_42;
 
 	@OriginalMember(owner = "runetek4.client!j", name = "L", descriptor = "I")
 	public static int anInt5844 = 0;

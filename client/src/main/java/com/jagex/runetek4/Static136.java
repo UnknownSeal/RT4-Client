@@ -80,11 +80,11 @@ public final class Static136 {
 		if (arg0.data.length - arg0.offset < local34) {
 			return;
 		}
-		Static113.brightness = arg0.g1();
-		if (Static113.brightness < 1) {
-			Static113.brightness = 1;
-		} else if (Static113.brightness > 4) {
-			Static113.brightness = 4;
+		Preferences.brightness = arg0.g1();
+		if (Preferences.brightness < 1) {
+			Preferences.brightness = 1;
+		} else if (Preferences.brightness > 4) {
+			Preferences.brightness = 4;
 		}
 		Preferences.setAllLevelsVisible(arg0.g1() == 1);
 		Preferences.roofsVisible = arg0.g1() == 1;

@@ -13,9 +13,6 @@ public final class Static228 {
 	@OriginalMember(owner = "client!sh", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_967 = JString.parse("");
 
-	@OriginalMember(owner = "client!sh", name = "f", descriptor = "I")
-	public static int anInt5103 = -1;
-
 	@OriginalMember(owner = "client!sh", name = "h", descriptor = "I")
 	public static int anInt5105 = 0;
 

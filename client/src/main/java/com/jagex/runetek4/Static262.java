@@ -51,8 +51,4 @@ public final class Static262 {
 		Static130.levelTiles[level][arg1][z].wall = wall;
 	}
 
-	@OriginalMember(owner = "runetek4.client!vf", name = "a", descriptor = "(IB)Lclient!na;")
-	public static JString method4510(@OriginalArg(0) int arg0) {
-		return arg0 >= 999999999 ? Static220.aClass100_930 : JString.parseInt(arg0);
-	}
 }

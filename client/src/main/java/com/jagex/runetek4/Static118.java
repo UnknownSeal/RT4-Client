@@ -35,31 +35,31 @@ public final class Static118 {
 	public static void method2354(@OriginalArg(1) int arg0, @OriginalArg(2) Component[] arg1) {
 		for (@Pc(7) int local7 = 0; local7 < arg1.length; local7++) {
 			@Pc(15) Component local15 = arg1[local7];
-			if (local15 != null && local15.overlayer == arg0 && (!local15.aBoolean32 || !Static36.method947(local15))) {
-				if (local15.INVENTORY == 0) {
-					if (!local15.aBoolean32 && Static36.method947(local15) && local15 != Static180.aClass13_22) {
+			if (local15 != null && local15.overlayer == arg0 && (!local15.if3 || !InterfaceList.method947(local15))) {
+				if (local15.type == 0) {
+					if (!local15.if3 && InterfaceList.method947(local15) && local15 != InterfaceList.aClass13_22) {
 						continue;
 					}
-					method2354(local15.anInt507, arg1);
+					method2354(local15.id, arg1);
 					if (local15.createdComponents != null) {
-						method2354(local15.anInt507, local15.createdComponents);
+						method2354(local15.id, local15.createdComponents);
 					}
-					@Pc(73) ComponentPointer local73 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) local15.anInt507);
+					@Pc(73) ComponentPointer local73 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) local15.id);
 					if (local73 != null) {
-						Static96.method1949(local73.anInt5878);
+						Static96.method1949(local73.interfaceId);
 					}
 				}
-				if (local15.INVENTORY == 6) {
+				if (local15.type == 6) {
 					@Pc(105) int local105;
-					if (local15.anInt522 != -1 || local15.anInt462 != -1) {
-						@Pc(100) boolean local100 = Static154.method2926(local15);
+					if (local15.modelSeqId != -1 || local15.activeModelSeqId != -1) {
+						@Pc(100) boolean local100 = ClientScriptRunner.isTrue(local15);
 						if (local100) {
-							local105 = local15.anInt462;
+							local105 = local15.activeModelSeqId;
 						} else {
-							local105 = local15.anInt522;
+							local105 = local15.modelSeqId;
 						}
 						if (local105 != -1) {
-							@Pc(118) SeqType local118 = SeqType.getAnimationSequence(local105);
+							@Pc(118) SeqType local118 = SeqTypeList.getAnimationSequence(local105);
 							if (local118 != null) {
 								local15.anInt500 += Protocol.sceneDelta;
 								while (local15.anInt500 > local118.frames[local15.anInt510]) {
@@ -78,19 +78,19 @@ public final class Static118 {
 											local15.anInt496 = -1;
 										}
 									}
-									Static43.method1143(local15);
+									InterfaceList.redraw(local15);
 								}
 							}
 						}
 					}
-					if (local15.modelRotationSpeed != 0 && !local15.aBoolean32) {
+					if (local15.modelRotationSpeed != 0 && !local15.if3) {
 						@Pc(239) int local239 = local15.modelRotationSpeed >> 16;
 						@Pc(243) int local243 = local239 * Protocol.sceneDelta;
 						local105 = local15.modelRotationSpeed << 16 >> 16;
 						local15.modelXAngle = local243 + local15.modelXAngle & 0x7FF;
 						local105 *= Protocol.sceneDelta;
 						local15.modelYAngle = local15.modelYAngle + local105 & 0x7FF;
-						Static43.method1143(local15);
+						InterfaceList.redraw(local15);
 					}
 				}
 			}

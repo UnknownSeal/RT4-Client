@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.NpcType;
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.SeqType;
@@ -64,7 +64,7 @@ public final class Static234 {
 				}
 				info = Protocol.inboundBuffer.g4me();
 				@Pc(147) boolean local147 = true;
-				if (local43 != -1 && local14.spotanimFrame != -1 && SeqType.getAnimationSequence(Static34.method877(local43).animationId).priority < SeqType.getAnimationSequence(Static34.method877(local14.spotanimFrame).animationId).priority) {
+				if (local43 != -1 && local14.spotanimFrame != -1 && SeqTypeList.getAnimationSequence(Static34.method877(local43).animationId).priority < SeqTypeList.getAnimationSequence(Static34.method877(local14.spotanimFrame).animationId).priority) {
 					local147 = false;
 				}
 				if (local147) {
@@ -80,7 +80,7 @@ public final class Static234 {
 					if (local14.spotanimFrame != -1 && local14.spotanimLastCycle == client.loop) {
 						@Pc(227) int local227 = Static34.method877(local14.spotanimFrame).animationId;
 						if (local227 != -1) {
-							@Pc(236) SeqType local236 = SeqType.getAnimationSequence(local227);
+							@Pc(236) SeqType local236 = SeqTypeList.getAnimationSequence(local227);
 							if (local236 != null && local236.anIntArray473 != null) {
 								Static152.method2836(local14.zFine, local236, local14.xFine, false, 0);
 							}
@@ -145,7 +145,7 @@ public final class Static234 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "([Lclient!mm;ILclient!ve;)V")
-	public static void method4018(@OriginalArg(0) ImageRGB[] arg0, @OriginalArg(2) Js5 arg1) {
+	public static void method4018(@OriginalArg(0) SoftwareSprite[] arg0, @OriginalArg(2) Js5 arg1) {
 		Static119.aClass153_44 = arg1;
 		Static241.aClass3_Sub2_Sub1_Sub1Array13 = arg0;
 		Static258.aBooleanArray130 = new boolean[Static241.aClass3_Sub2_Sub1_Sub1Array13.length];
@@ -166,16 +166,4 @@ public final class Static234 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "(Z)V")
-	public static void method4020() {
-		Static200.aClass93_1.method3394();
-		@Pc(10) int local10;
-		for (local10 = 0; local10 < 32; local10++) {
-			aClass6.aLongArray2[local10] = 0L;
-		}
-		for (local10 = 0; local10 < 32; local10++) {
-			Static228.aLongArray8[local10] = 0L;
-		}
-		Static227.anInt5097 = 0;
-	}
 }

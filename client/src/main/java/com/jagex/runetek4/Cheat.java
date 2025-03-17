@@ -158,7 +158,7 @@ public class Cheat {
             }
             if (chatTyped.equalsIgnoreCase(BREAKCON)) {
                 GameShell.signLink.breakConnection();
-                Static124.gameServerSocket.breakConnection();
+                Protocol.gameServerSocket.breakConnection();
                 client.js5NetQueue.breakConnection();
             }
             if (chatTyped.equalsIgnoreCase(REPLACECANVAS)) {

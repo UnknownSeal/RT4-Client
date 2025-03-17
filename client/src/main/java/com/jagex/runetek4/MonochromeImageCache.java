@@ -95,7 +95,7 @@ public final class MonochromeImageCache {
 					local44 = new Class3_Sub23(arg0, this.anInt4066);
 					this.anInt4066++;
 				} else {
-					@Pc(80) Class3_Sub23 local80 = (Class3_Sub23) this.aClass69_96.method2279();
+					@Pc(80) Class3_Sub23 local80 = (Class3_Sub23) this.aClass69_96.tail();
 					local44 = new Class3_Sub23(arg0, local80.anInt3468);
 					this.aClass3_Sub23Array1[local80.anInt3476] = null;
 					local80.unlink();

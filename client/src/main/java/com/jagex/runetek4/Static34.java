@@ -97,7 +97,7 @@ public final class Static34 {
 		arg0.seqStretches = false;
 		@Pc(18) SeqType seq;
 		if (arg0.movementSeqId != -1) {
-			seq = SeqType.getAnimationSequence(arg0.movementSeqId);
+			seq = SeqTypeList.getAnimationSequence(arg0.movementSeqId);
 			if (seq == null || seq.anIntArray473 == null) {
 				arg0.movementSeqId = -1;
 			} else {
@@ -125,7 +125,7 @@ public final class Static34 {
 			if (local156 == -1) {
 				arg0.spotanimFrame = -1;
 			} else {
-				@Pc(165) SeqType local165 = SeqType.getAnimationSequence(local156);
+				@Pc(165) SeqType local165 = SeqTypeList.getAnimationSequence(local156);
 				if (local165 == null || local165.anIntArray473 == null) {
 					arg0.spotanimFrame = -1;
 				} else {
@@ -150,14 +150,14 @@ public final class Static34 {
 			}
 		}
 		if (arg0.primarySeqId != -1 && arg0.anInt3420 <= 1) {
-			seq = SeqType.getAnimationSequence(arg0.primarySeqId);
+			seq = SeqTypeList.getAnimationSequence(arg0.primarySeqId);
 			if (seq.anInt5363 == 1 && arg0.anInt3405 > 0 && client.loop >= arg0.anInt3395 && client.loop > arg0.anInt3386) {
 				arg0.anInt3420 = 1;
 				return;
 			}
 		}
 		if (arg0.primarySeqId != -1 && arg0.anInt3420 == 0) {
-			seq = SeqType.getAnimationSequence(arg0.primarySeqId);
+			seq = SeqTypeList.getAnimationSequence(arg0.primarySeqId);
 			if (seq == null || seq.anIntArray473 == null) {
 				arg0.primarySeqId = -1;
 			} else {
@@ -199,7 +199,7 @@ public final class Static34 {
 				if (local545.anInt5408 > 0) {
 					local545.anInt5408--;
 				} else {
-					@Pc(570) SeqType local570 = SeqType.getAnimationSequence(local545.anInt5396);
+					@Pc(570) SeqType local570 = SeqTypeList.getAnimationSequence(local545.anInt5396);
 					if (local570 == null || local570.anIntArray473 == null) {
 						arg0.aClass147Array3[local156] = null;
 					} else {

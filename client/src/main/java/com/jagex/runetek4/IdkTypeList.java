@@ -20,11 +20,6 @@ public final class IdkTypeList {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(II)Lclient!na;")
-	public static JString method3341(@OriginalArg(0) int arg0) {
-		return JString.concatenate(new JString[] { JString.parseInt(arg0 >> 24 & 0xFF), ClientScriptRunner.aClass100_994, JString.parseInt(arg0 >> 16 & 0xFF), ClientScriptRunner.aClass100_994, JString.parseInt(arg0 >> 8 & 0xFF), ClientScriptRunner.aClass100_994, JString.parseInt(arg0 & 0xFF) });
-	}
-
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(I)V")
 	public static void removeSoft() {
 		Static67.aClass99_20.removeSoft();

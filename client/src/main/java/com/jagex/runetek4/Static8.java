@@ -14,12 +14,9 @@ public final class Static8 {
 	@OriginalMember(owner = "client!aj", name = "Z", descriptor = "[I")
 	public static int[] anIntArray8;
 
-	@OriginalMember(owner = "client!aj", name = "R", descriptor = "Lclient!na;")
-	public static final JString aClass100_32 = JString.parse("<col=ff9040>");
-
 	@OriginalMember(owner = "client!aj", name = "a", descriptor = "(BILclient!be;)I")
 	public static int method118(@OriginalArg(1) int arg0, @OriginalArg(2) Component arg1) {
-		if (!Static36.method940(arg1).method503(arg0) && arg1.anObjectArray29 == null) {
+		if (!InterfaceList.getServerActiveProperties(arg1).isButtonEnabled(arg0) && arg1.onOptionClick == null) {
 			return -1;
 		} else if (arg1.anIntArray39 == null || arg0 >= arg1.anIntArray39.length) {
 			return -1;

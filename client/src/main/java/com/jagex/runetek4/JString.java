@@ -19,6 +19,10 @@ public final class JString implements StringInterface {
 
 	@OriginalMember(owner = "runetek4.client!pa", name = "O", descriptor = "Lclient!na;")
 	public static final JString EMPTY = parse("");
+	@OriginalMember(owner = "runetek4.client!ed", name = "H", descriptor = "Lclient!na;")
+	public static final JString aClass100_375 = parse("<)4col> x");
+	@OriginalMember(owner = "runetek4.client!wa", name = "pb", descriptor = "Lclient!na;")
+	public static final JString aClass100_556 = parse("<br>");
 	@OriginalMember(owner = "runetek4.client!na", name = "T", descriptor = "[B")
 	public byte[] aByteArray52;
 
@@ -123,6 +127,11 @@ public final class JString implements StringInterface {
 			}
 		}
 		return local7;
+	}
+
+	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(II)Lclient!na;")
+	public static JString formatIp(@OriginalArg(0) int arg0) {
+		return concatenate(new JString[] { parseInt(arg0 >> 24 & 0xFF), ClientScriptRunner.aClass100_994, parseInt(arg0 >> 16 & 0xFF), ClientScriptRunner.aClass100_994, parseInt(arg0 >> 8 & 0xFF), ClientScriptRunner.aClass100_994, parseInt(arg0 & 0xFF) });
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Z)Ljava/net/URL;")

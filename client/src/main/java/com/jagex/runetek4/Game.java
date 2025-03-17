@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.frame.Minimap;
+import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.media.renderable.actor.Player;
@@ -14,7 +14,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 import java.io.IOException;
-import java.net.Socket;
 
 public class Game {
     @OriginalMember(owner = "client!vl", name = "k", descriptor = "I")
@@ -30,8 +29,8 @@ public class Game {
             Static60.systemUpdateTimer--;
             Static209.miscTransmitAt = InterfaceList.transmitTimer;
         }
-        if (FluTypeList.aBoolean247) {
-            FluTypeList.aBoolean247 = false;
+        if (LoginManager.aBoolean247) {
+            LoginManager.aBoolean247 = false;
             tryReconnect();
             return;
         }
@@ -164,7 +163,7 @@ public class Game {
                     break;
                 }
             }
-        } else if (Static187.pressedKeys[96] || Static187.pressedKeys[97] || Static187.pressedKeys[98] || Static187.pressedKeys[99]) {
+        } else if (Keyboard.pressedKeys[96] || Keyboard.pressedKeys[97] || Keyboard.pressedKeys[98] || Keyboard.pressedKeys[99]) {
             Protocol.aBoolean228 = true;
         }
         if (Protocol.aBoolean228 && Static16.anInt551 <= 0) {
@@ -227,9 +226,9 @@ public class Game {
                 @Pc(773) Component component;
                 if (samples == 3) {
                     component = InterfaceList.getComponent(i);
-                    if (!change.stringArg.method3108(component.aClass100_84)) {
-                        component.aClass100_84 = change.stringArg;
-                        Static43.method1143(component);
+                    if (!change.stringArg.method3108(component.text)) {
+                        component.text = change.stringArg;
+                        InterfaceList.redraw(component);
                     }
                 } else if (samples == 4) {
                     component = InterfaceList.getComponent(i);
@@ -240,16 +239,16 @@ public class Game {
                         component.modelId = rand;
                         component.anInt498 = dx;
                         component.modelType = x;
-                        Static43.method1143(component);
+                        InterfaceList.redraw(component);
                     }
                 } else if (samples == 5) {
                     component = InterfaceList.getComponent(i);
-                    if (component.anInt522 != change.intArg1 || change.intArg1 == -1) {
+                    if (component.modelSeqId != change.intArg1 || change.intArg1 == -1) {
                         component.anInt496 = 1;
                         component.anInt500 = 0;
-                        component.anInt522 = change.intArg1;
+                        component.modelSeqId = change.intArg1;
                         component.anInt510 = 0;
-                        Static43.method1143(component);
+                        InterfaceList.redraw(component);
                     }
                 } else if (samples == 6) {
                     y = change.intArg1;
@@ -258,9 +257,9 @@ public class Game {
                     rand = y >> 5 & 0x1F;
                     @Pc(1189) Component local1189 = InterfaceList.getComponent(i);
                     dy = (dx << 3) + (rand << 11) + (x << 19);
-                    if (dy != local1189.anInt474) {
-                        local1189.anInt474 = dy;
-                        Static43.method1143(local1189);
+                    if (dy != local1189.color) {
+                        local1189.color = dy;
+                        InterfaceList.redraw(local1189);
                     }
                 } else if (samples == 7) {
                     component = InterfaceList.getComponent(i);
@@ -269,7 +268,7 @@ public class Game {
                         @Pc(1145) boolean hidden = change.intArg1 == 1;
                         if (hidden != component.hidden) {
                             component.hidden = hidden;
-                            Static43.method1143(component);
+                            InterfaceList.redraw(component);
                         }
                     }
                 } else if (samples == 8) {
@@ -285,14 +284,14 @@ public class Game {
                                 component.modelZoom = component.modelZoom * 32 / component.baseWidth;
                             }
                         }
-                        Static43.method1143(component);
+                        InterfaceList.redraw(component);
                     }
                 } else if (samples == 9) {
                     component = InterfaceList.getComponent(i);
                     if (change.intArg1 != component.objId || component.objCount != change.intArg3) {
                         component.objId = change.intArg1;
                         component.objCount = change.intArg3;
-                        Static43.method1143(component);
+                        InterfaceList.redraw(component);
                     }
                 } else if (samples == 10) {
                     component = InterfaceList.getComponent(i);
@@ -300,7 +299,7 @@ public class Game {
                         component.modelZOffset = change.intArg3;
                         component.modelYOffset = change.intArg2;
                         component.modelXOffset = change.intArg1;
-                        Static43.method1143(component);
+                        InterfaceList.redraw(component);
                     }
                 } else if (samples == 11) {
                     component = InterfaceList.getComponent(i);
@@ -308,20 +307,20 @@ public class Game {
                     component.yMode = 0;
                     component.xMode = 0;
                     component.y = component.baseY = change.intArg3;
-                    Static43.method1143(component);
+                    InterfaceList.redraw(component);
                 } else if (samples == 12) {
                     component = InterfaceList.getComponent(i);
                     x = change.intArg1;
-                    if (component != null && component.INVENTORY == 0) {
-                        if (x > component.anInt491 - component.anInt459) {
-                            x = component.anInt491 - component.anInt459;
+                    if (component != null && component.type == 0) {
+                        if (x > component.scrollMaxV - component.height) {
+                            x = component.scrollMaxV - component.height;
                         }
                         if (x < 0) {
                             x = 0;
                         }
                         if (x != component.scrollY) {
                             component.scrollY = x;
-                            Static43.method1143(component);
+                            InterfaceList.redraw(component);
                         }
                     }
                 } else if (samples == 13) {
@@ -331,29 +330,29 @@ public class Game {
             }
         }
         // Cross
-        if (Static70.crossMode != 0) {
-            Static17.crossCycle += 20;
-            if (Static17.crossCycle >= 400) {
-                Static70.crossMode = 0;
+        if (Cross.crossMode != 0) {
+            Cross.crossCycle += 20;
+            if (Cross.crossCycle >= 400) {
+                Cross.crossMode = 0;
             }
         }
         Protocol.sceneDelta++;
-        if (Static257.aClass13_7 != null) {
+        if (MiniMenu.pressedInventoryComponent != null) {
             Static72.anInt2043++;
             if (Static72.anInt2043 >= 15) {
-                Static43.method1143(Static257.aClass13_7);
-                Static257.aClass13_7 = null;
+                InterfaceList.redraw(MiniMenu.pressedInventoryComponent);
+                MiniMenu.pressedInventoryComponent = null;
             }
         }
         @Pc(1361) Component component;
         if (Static118.component != null) {
-            Static43.method1143(Static118.component);
-            if (Static149.anInt3554 + 5 < Static215.anInt4873 || Static215.anInt4873 < Static149.anInt3554 - 5 || Static206.anInt4773 + 5 < Static223.anInt5032 || Static206.anInt4773 - 5 > Static223.anInt5032) {
+            InterfaceList.redraw(Static118.component);
+            if (Static149.anInt3554 + 5 < Mouse.lastMouseX || Mouse.lastMouseX < Static149.anInt3554 - 5 || InterfaceList.clickedInventoryComponentY + 5 < Mouse.lastMouseY || InterfaceList.clickedInventoryComponentY - 5 > Mouse.lastMouseY) {
                 Static123.lastItemDragged = true;
             }
-            Static78.lastItemDragTime++;
+            InterfaceList.lastItemDragTime++;
             if (Static22.activeInterfaceType == 0) {
-                if (Static123.lastItemDragged && Static78.lastItemDragTime >= 5) {
+                if (Static123.lastItemDragged && InterfaceList.lastItemDragTime >= 5) {
                     if (Static118.component == Static169.aClass13_18 && Static4.selectedInventorySlot != Static18.mouseInvInterfaceIndex) {
                         component = Static118.component;
                         @Pc(1363) byte moveItemInsertionMode = 0;
@@ -363,7 +362,7 @@ public class Game {
                         if (component.invSlotObjId[Static18.mouseInvInterfaceIndex] <= 0) {
                             moveItemInsertionMode = 0;
                         }
-                        if (Static36.method940(component).method504()) {
+                        if (InterfaceList.getServerActiveProperties(component).method504()) {
                             y = Static4.selectedInventorySlot;
                             x = Static18.mouseInvInterfaceIndex;
                             component.invSlotObjId[x] = component.invSlotObjId[y];
@@ -387,7 +386,7 @@ public class Game {
                         }
                         Protocol.outboundBuffer.pIsaac1(231);
                         Protocol.outboundBuffer.p2(Static4.selectedInventorySlot);
-                        Protocol.outboundBuffer.p4_alt1(Static118.component.anInt507);
+                        Protocol.outboundBuffer.p4_alt1(Static118.component.id);
                         Protocol.outboundBuffer.p2_alt2(Static18.mouseInvInterfaceIndex);
                         Protocol.outboundBuffer.p1_alt3(moveItemInsertionMode);
                     }
@@ -401,14 +400,14 @@ public class Game {
                 Static118.component = null;
             }
         }
-        Static146.aBoolean174 = false;
+        InterfaceList.aBoolean174 = false;
         Static56.aClass13_12 = null;
         Static44.aBoolean83 = false;
         InterfaceList.keyQueueSize = 0;
-        component = Static180.aClass13_22;
-        Static180.aClass13_22 = null;
-        @Pc(1508) Component local1508 = Static43.aClass13_11;
-        Static43.aClass13_11 = null;
+        component = InterfaceList.aClass13_22;
+        InterfaceList.aClass13_22 = null;
+        @Pc(1508) Component local1508 = Protocol.aClass13_11;
+        Protocol.aClass13_11 = null;
         while (Keyboard.nextKey() && InterfaceList.keyQueueSize < 128) {
             InterfaceList.keyCodes[InterfaceList.keyQueueSize] = Keyboard.keyCode;
             InterfaceList.keyChars[InterfaceList.keyQueueSize] = Static193.keyChar;
@@ -442,8 +441,8 @@ public class Game {
                                             if (ClientScriptRunner.aClass13_14 != null) {
                                                 ClientScriptRunner.method28();
                                             }
-                                            if (LoginManager.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81] && Static58.wheelRotation != 0) {
-                                                y = Player.plane - Static58.wheelRotation;
+                                            if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81] && MouseWheel.wheelRotation != 0) {
+                                                y = Player.plane - MouseWheel.wheelRotation;
                                                 if (y < 0) {
                                                     y = 0;
                                                 } else if (y > 3) {
@@ -452,7 +451,7 @@ public class Game {
                                                 // Cheat
                                                 Cheat.teleport(PlayerList.self.movementQueueX[0] + Camera.originX, PlayerList.self.movementQueueZ[0] + Camera.originZ, y);
                                             }
-                                            if (LoginManager.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
+                                            if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
                                                 if (Static56.clickTileX != -1) {
                                                     Cheat.teleport(Camera.originX + Static56.clickTileX, Camera.originZ + Static116.anInt2954, Player.plane);
                                                 }
@@ -461,14 +460,14 @@ public class Game {
                                             } else if (Static125.anInt3096 == 2) {
                                                 if (Static56.clickTileX != -1) {
                                                     Protocol.outboundBuffer.pIsaac1(131);
-                                                    Protocol.outboundBuffer.p4_alt3(Static98.anInt2512);
+                                                    Protocol.outboundBuffer.p4_alt3(MiniMenu.anInt2512);
                                                     Protocol.outboundBuffer.p2_alt2(Camera.originX + Static56.clickTileX);
-                                                    Protocol.outboundBuffer.p2_alt3(Static15.anInt506);
+                                                    Protocol.outboundBuffer.p2_alt3(MiniMenu.anInt506);
                                                     Protocol.outboundBuffer.p2_alt2(Static116.anInt2954 + Camera.originZ);
-                                                    Static70.crossMode = 1;
-                                                    Static17.crossCycle = 0;
-                                                    Static25.y = Static60.mouseClickY;
-                                                    Static122.x = aClass6.mouseClickX;
+                                                    Cross.crossMode = 1;
+                                                    Cross.crossCycle = 0;
+                                                    Cross.y = Static60.mouseClickY;
+                                                    Cross.x = aClass6.mouseClickX;
                                                 }
                                                 Static125.anInt3096 = 0;
                                             } else if (Static187.anInt4422 == 2) {
@@ -476,47 +475,47 @@ public class Game {
                                                     Protocol.outboundBuffer.pIsaac1(179);
                                                     Protocol.outboundBuffer.p2(Camera.originZ + Static116.anInt2954);
                                                     Protocol.outboundBuffer.p2(Static56.clickTileX + Camera.originX);
-                                                    Static17.crossCycle = 0;
-                                                    Static70.crossMode = 1;
-                                                    Static122.x = aClass6.mouseClickX;
-                                                    Static25.y = Static60.mouseClickY;
+                                                    Cross.crossCycle = 0;
+                                                    Cross.crossMode = 1;
+                                                    Cross.x = aClass6.mouseClickX;
+                                                    Cross.y = Static60.mouseClickY;
                                                 }
                                                 Static187.anInt4422 = 0;
                                             } else if (Static56.clickTileX != -1 && Static125.anInt3096 == 0 && Static187.anInt4422 == 0) {
-                                                @Pc(1871) boolean success = Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, PlayerList.self.movementQueueX[0]);
+                                                @Pc(1871) boolean success = PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, PlayerList.self.movementQueueX[0]);
                                                 if (success) {
-                                                    Static25.y = Static60.mouseClickY;
-                                                    Static17.crossCycle = 0;
-                                                    Static122.x = aClass6.mouseClickX;
-                                                    Static70.crossMode = 1;
+                                                    Cross.y = Static60.mouseClickY;
+                                                    Cross.crossCycle = 0;
+                                                    Cross.x = aClass6.mouseClickX;
+                                                    Cross.crossMode = 1;
                                                 }
                                             }
                                             Static56.clickTileX = -1;
                                             aClass6.method843();
-                                            if (Static180.aClass13_22 != component) {
+                                            if (InterfaceList.aClass13_22 != component) {
                                                 if (component != null) {
-                                                    Static43.method1143(component);
+                                                    InterfaceList.redraw(component);
                                                 }
-                                                if (Static180.aClass13_22 != null) {
-                                                    Static43.method1143(Static180.aClass13_22);
+                                                if (InterfaceList.aClass13_22 != null) {
+                                                    InterfaceList.redraw(InterfaceList.aClass13_22);
                                                 }
                                             }
-                                            if (local1508 != Static43.aClass13_11 && Static191.anInt4504 == Static133.anInt5235) {
+                                            if (local1508 != Protocol.aClass13_11 && ClientScriptRunner.anInt4504 == Protocol.anInt5235) {
                                                 if (local1508 != null) {
-                                                    Static43.method1143(local1508);
+                                                    InterfaceList.redraw(local1508);
                                                 }
-                                                if (Static43.aClass13_11 != null) {
-                                                    Static43.method1143(Static43.aClass13_11);
+                                                if (Protocol.aClass13_11 != null) {
+                                                    InterfaceList.redraw(Protocol.aClass13_11);
                                                 }
                                             }
-                                            if (Static43.aClass13_11 == null) {
-                                                if (Static133.anInt5235 > 0) {
-                                                    Static133.anInt5235--;
+                                            if (Protocol.aClass13_11 == null) {
+                                                if (Protocol.anInt5235 > 0) {
+                                                    Protocol.anInt5235--;
                                                 }
-                                            } else if (Static133.anInt5235 < Static191.anInt4504) {
-                                                Static133.anInt5235++;
-                                                if (Static191.anInt4504 == Static133.anInt5235) {
-                                                    Static43.method1143(Static43.aClass13_11);
+                                            } else if (Protocol.anInt5235 < ClientScriptRunner.anInt4504) {
+                                                Protocol.anInt5235++;
+                                                if (ClientScriptRunner.anInt4504 == Protocol.anInt5235) {
+                                                    InterfaceList.redraw(Protocol.aClass13_11);
                                                 }
                                             }
                                             if (Camera.cameraType == 1) {
@@ -544,7 +543,7 @@ public class Game {
                                                 Protocol.openUrlRequest = null;
                                                 Protocol.newTab = false;
                                             }
-                                            Static131.anInt3251++;
+                                            Protocol.anInt3251++;
                                             Static82.minimapOffsetCycle++;
                                             Static143.cameraOffsetCycle++;
                                             if (Static143.cameraOffsetCycle > 500) {
@@ -564,19 +563,19 @@ public class Game {
                                                 Static82.minimapOffsetCycle = 0;
                                                 rand = (int) (Math.random() * 8.0D);
                                                 if ((rand & 0x1) == 1) {
-                                                    Minimap.minimapAnticheatAngle += Static263.minimapAngleModifier;
+                                                    MiniMap.minimapAnticheatAngle += Static263.minimapAngleModifier;
                                                 }
                                                 if ((rand & 0x2) == 2) {
-                                                    Minimap.minimapZoom += Static179.minimapZoomModifier;
+                                                    MiniMap.minimapZoom += Static179.minimapZoomModifier;
                                                 }
                                             }
                                             if (Camera.cameraAnticheatOffsetX < -50) {
                                                 Camera.cameraOffsetXModifier = 2;
                                             }
-                                            if (Minimap.minimapAnticheatAngle < -60) {
+                                            if (MiniMap.minimapAnticheatAngle < -60) {
                                                 Static263.minimapAngleModifier = 2;
                                             }
-                                            if (Minimap.minimapZoom < -20) {
+                                            if (MiniMap.minimapZoom < -20) {
                                                 Static179.minimapZoomModifier = 1;
                                             }
                                             if (Camera.cameraAnticheatOffsetZ < -55) {
@@ -594,13 +593,13 @@ public class Game {
                                             if (Camera.cameraAnticheatAngle > 40) {
                                                 Static220.cameraOffsetYawModifier = -1;
                                             }
-                                            if (Minimap.minimapZoom > 10) {
+                                            if (MiniMap.minimapZoom > 10) {
                                                 Static179.minimapZoomModifier = -1;
                                             }
-                                            if (Minimap.minimapAnticheatAngle > 60) {
+                                            if (MiniMap.minimapAnticheatAngle > 60) {
                                                 Static263.minimapAngleModifier = -2;
                                             }
-                                            if (Static131.anInt3251 > 50) {
+                                            if (Protocol.anInt3251 > 50) {
                                                 Protocol.outboundBuffer.pIsaac1(93);
                                             }
                                             if (Protocol.verifyIdChanged) {
@@ -608,9 +607,9 @@ public class Game {
                                                 Protocol.verifyIdChanged = false;
                                             }
                                             try {
-                                                if (Static124.gameServerSocket != null && Protocol.outboundBuffer.offset > 0) {
-                                                    Static124.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
-                                                    Static131.anInt3251 = 0;
+                                                if (Protocol.gameServerSocket != null && Protocol.outboundBuffer.offset > 0) {
+                                                    Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
+                                                    Protocol.anInt3251 = 0;
                                                     Protocol.outboundBuffer.offset = 0;
                                                 }
                                             } catch (@Pc(2266) IOException local2266) {
@@ -909,9 +908,9 @@ public class Game {
 
     @OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "(B)V")
     public static void processLogout() {
-        if (Static124.gameServerSocket != null) {
-            Static124.gameServerSocket.closeGracefully();
-            Static124.gameServerSocket = null;
+        if (Protocol.gameServerSocket != null) {
+            Protocol.gameServerSocket.closeGracefully();
+            Protocol.gameServerSocket = null;
         }
         client.unload();
         SceneGraph.clear();
@@ -930,8 +929,8 @@ public class Game {
         Static80.anInt4701 = 0;
         Static52.anInt1695 = 0;
         Camera.originX = 0;
-        for (local19 = 0; local19 < Minimap.hintMapMarkers.length; local19++) {
-            Minimap.hintMapMarkers[local19] = null;
+        for (local19 = 0; local19 < MiniMap.hintMapMarkers.length; local19++) {
+            MiniMap.hintMapMarkers[local19] = null;
         }
         PlayerList.playerCount = 0;
         NpcList.npcCount = 0;
@@ -960,114 +959,9 @@ public class Game {
         if (idleTimeout > 0) {
             processLogout();
         } else {
-            ClientScriptRunner.aClass95_4 = Static124.gameServerSocket;
-            Static124.gameServerSocket = null;
+            ClientScriptRunner.aClass95_4 = Protocol.gameServerSocket;
+            Protocol.gameServerSocket = null;
             client.processGameStatus(40);
-        }
-    }
-
-    @OriginalMember(owner = "runetek4.client!mh", name = "f", descriptor = "(B)V")
-    public static void handleLoginScreenActions() {
-        if (CreateManager.step == 0) {
-            return;
-        }
-        try {
-            if (++Static226.loops > 2000) {
-                if (Static124.gameServerSocket != null) {
-                    Static124.gameServerSocket.closeGracefully();
-                    Static124.gameServerSocket = null;
-                }
-                if (Static57.errors >= 1) {
-                    CreateManager.reply = -5;
-                    CreateManager.step = 0;
-                    return;
-                }
-                CreateManager.step = 1;
-                Static226.loops = 0;
-                Static57.errors++;
-                if (client.defaultPort == client.port) {
-                    client.port = client.alternatePort;
-                } else {
-                    client.port = client.defaultPort;
-                }
-            }
-            if (CreateManager.step == 1) {
-                Static72.aClass212_3 = GameShell.signLink.openSocket(client.hostname, client.port);
-                CreateManager.step = 2;
-            }
-            @Pc(120) int local120;
-            if (CreateManager.step == 2) {
-                if (Static72.aClass212_3.status == 2) {
-                    throw new IOException();
-                }
-                if (Static72.aClass212_3.status != 1) {
-                    return;
-                }
-                Static124.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
-                Static72.aClass212_3 = null;
-                Static124.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
-                if (client.musicChannel != null) {
-                    client.musicChannel.method3571();
-                }
-                if (client.soundChannel != null) {
-                    client.soundChannel.method3571();
-                }
-                local120 = Static124.gameServerSocket.read();
-                if (client.musicChannel != null) {
-                    client.musicChannel.method3571();
-                }
-                if (client.soundChannel != null) {
-                    client.soundChannel.method3571();
-                }
-                if (local120 != 21) {
-                    CreateManager.reply = local120;
-                    CreateManager.step = 0;
-                    Static124.gameServerSocket.closeGracefully();
-                    Static124.gameServerSocket = null;
-                    return;
-                }
-                CreateManager.step = 3;
-            }
-            if (CreateManager.step == 3) {
-                if (Static124.gameServerSocket.available() < 1) {
-                    return;
-                }
-                CreateManager.suggestedNames = new JString[Static124.gameServerSocket.read()];
-                CreateManager.step = 4;
-            }
-            if (CreateManager.step == 4) {
-                if (Static124.gameServerSocket.available() < CreateManager.suggestedNames.length * 8) {
-                    return;
-                }
-                Protocol.inboundBuffer.offset = 0;
-                Static124.gameServerSocket.read(0, CreateManager.suggestedNames.length * 8, Protocol.inboundBuffer.data);
-                for (local120 = 0; local120 < CreateManager.suggestedNames.length; local120++) {
-                    CreateManager.suggestedNames[local120] = Base37.decode37(Protocol.inboundBuffer.g8());
-                }
-                CreateManager.reply = 21;
-                CreateManager.step = 0;
-                Static124.gameServerSocket.closeGracefully();
-                Static124.gameServerSocket = null;
-                return;
-            }
-        } catch (@Pc(238) IOException ioException) {
-            if (Static124.gameServerSocket != null) {
-                Static124.gameServerSocket.closeGracefully();
-                Static124.gameServerSocket = null;
-            }
-            if (Static57.errors < 1) {
-                Static57.errors++;
-                if (client.defaultPort == client.port) {
-                    client.port = client.alternatePort;
-                } else {
-                    client.port = client.defaultPort;
-                }
-                Static226.loops = 0;
-                CreateManager.step = 1;
-            } else {
-                CreateManager.reply = -4;
-                CreateManager.step = 0;
-            }
         }
     }
 

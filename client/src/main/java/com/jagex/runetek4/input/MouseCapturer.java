@@ -1,7 +1,6 @@
 package com.jagex.runetek4.input;
 
-import com.jagex.runetek4.Static215;
-import com.jagex.runetek4.Static223;
+import com.jagex.runetek4.Mouse;
 import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -35,8 +34,8 @@ public final class MouseCapturer implements Runnable {
 			@Pc(12) Object local12 = this.lock;
 			synchronized (this.lock) {
 				if (this.samples < 500) {
-					this.x[this.samples] = Static215.anInt4873;
-					this.y[this.samples] = Static223.anInt5032;
+					this.x[this.samples] = Mouse.lastMouseX;
+					this.y[this.samples] = Mouse.lastMouseY;
 					this.samples++;
 				}
 			}

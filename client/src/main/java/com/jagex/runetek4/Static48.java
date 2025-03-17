@@ -29,7 +29,7 @@ public final class Static48 {
 	public static Packet method1196() {
 		@Pc(4) Packet local4 = new Packet(34);
 		local4.p1(11);
-		local4.p1(Static113.brightness);
+		local4.p1(Preferences.brightness);
 		local4.p1(Static162.aBoolean190 ? 1 : 0);
 		local4.p1(Preferences.roofsVisible ? 1 : 0);
 		local4.p1(Preferences.groundDecoration ? 1 : 0);

@@ -13,6 +13,4 @@ public final class Static259 {
 	@OriginalMember(owner = "runetek4.client!vc", name = "ab", descriptor = "Lclient!na;")
 	public static final JString MAPFLAGS = JString.parse("mapflag");
 
-	@OriginalMember(owner = "runetek4.client!vc", name = "eb", descriptor = "[I")
-	public static final int[] anIntArray514 = new int[4096];
 }

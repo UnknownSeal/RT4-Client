@@ -148,7 +148,7 @@ public final class Static242 {
 		}
 		local1.glEnableClientState(GL2.GL_COLOR_ARRAY);
 		local1.glDepthMask(true);
-		GlRenderer.method4173();
+		GlRenderer.restoreLighting();
 	}
 
 	@OriginalMember(owner = "runetek4.client!tj", name = "a", descriptor = "([BIIIII)Z")

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
 import com.jagex.runetek4.cache.media.component.Component;
@@ -151,15 +151,15 @@ public final class Static247 {
 												if (local153.plainTile == null) {
 													if (local153.shapedTile != null) {
 														if (CacheArchive.method187(0, tileX, tileZ)) {
-															Static147.drawTileOverlay(local153.shapedTile, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, true);
+															Static147.drawTileOverlay(local153.shapedTile, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, tileX, tileZ, true);
 														} else {
-															Static147.drawTileOverlay(local153.shapedTile, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, false);
+															Static147.drawTileOverlay(local153.shapedTile, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, tileX, tileZ, false);
 														}
 													}
 												} else if (CacheArchive.method187(0, tileX, tileZ)) {
-													Static132.method2610(local153.plainTile, 0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, true);
+													Static132.method2610(local153.plainTile, 0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, tileX, tileZ, true);
 												} else {
-													Static132.method2610(local153.plainTile, 0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, false);
+													Static132.method2610(local153.plainTile, 0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, tileX, tileZ, false);
 												}
 												var22 = local153.wall;
 												if (var22 != null) {
@@ -170,7 +170,7 @@ public final class Static247 {
 															Static120.method2388(var22.typeA, Static149.eyeX, Static162.eyeY, Static217.eyeZ, occludeLevel, tileX, tileZ);
 														}
 													}
-													var22.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, var22.anInt3048 - Static149.eyeX, var22.anInt3051 - Static162.eyeY, var22.anInt3044 - Static217.eyeZ, var22.aLong107, local24, null);
+													var22.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, var22.anInt3048 - Static149.eyeX, var22.anInt3051 - Static162.eyeY, var22.anInt3044 - Static217.eyeZ, var22.aLong107, local24, null);
 												}
 												for (frontWallTypes = 0; frontWallTypes < local153.entityCount; frontWallTypes++) {
 													var25 = local153.sceneries[frontWallTypes];
@@ -178,7 +178,7 @@ public final class Static247 {
 														if (GlRenderer.enabled) {
 															Static120.method2393(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, tileX, tileZ);
 														}
-														var25.entity.render(var25.anInt1714, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, var25.anInt1699 - Static149.eyeX, var25.anInt1706 - Static162.eyeY, var25.anInt1703 - Static217.eyeZ, var25.hash, local24, null);
+														var25.entity.render(var25.anInt1714, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, var25.anInt1699 - Static149.eyeX, var25.anInt1706 - Static162.eyeY, var25.anInt1703 - Static217.eyeZ, var25.hash, local24, null);
 													}
 												}
 												if (GlRenderer.enabled) {
@@ -189,18 +189,18 @@ public final class Static247 {
 											if (tile.plainTile == null) {
 												if (tile.shapedTile != null) {
 													if (CacheArchive.method187(occludeLevel, tileX, tileZ)) {
-														Static147.drawTileOverlay(tile.shapedTile, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, true);
+														Static147.drawTileOverlay(tile.shapedTile, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, tileX, tileZ, true);
 													} else {
 														tileDrawn = true;
-														Static147.drawTileOverlay(tile.shapedTile, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, false);
+														Static147.drawTileOverlay(tile.shapedTile, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, tileX, tileZ, false);
 													}
 												}
 											} else if (CacheArchive.method187(occludeLevel, tileX, tileZ)) {
-												Static132.method2610(tile.plainTile, occludeLevel, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, true);
+												Static132.method2610(tile.plainTile, occludeLevel, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, tileX, tileZ, true);
 											} else {
 												tileDrawn = true;
 												if (tile.plainTile.anInt4865 != 12345678 || Static158.aBoolean187 && local24 <= Static160.anInt3902) {
-													Static132.method2610(tile.plainTile, occludeLevel, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, tileX, tileZ, false);
+													Static132.method2610(tile.plainTile, occludeLevel, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, tileX, tileZ, false);
 												}
 											}
 											if (tileDrawn) {
@@ -212,7 +212,7 @@ public final class Static247 {
 													if (GlRenderer.enabled) {
 														Static120.method2393(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, tileX, tileZ);
 													}
-													local549.entity.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, local549.xFine - Static149.eyeX, local549.anInt733 - Static162.eyeY, local549.zFine - Static217.eyeZ, local549.key, local24, null);
+													local549.entity.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, local549.xFine - Static149.eyeX, local549.anInt733 - Static162.eyeY, local549.zFine - Static217.eyeZ, local549.key, local24, null);
 													if (GlRenderer.enabled && local549.aBoolean49) {
 														GlRenderer.method4159(local33);
 													}
@@ -260,13 +260,13 @@ public final class Static247 {
 													if (GlRenderer.enabled) {
 														Static120.method2393(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, tileX, tileZ);
 													}
-													wall.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, wall.anInt3048 - Static149.eyeX, wall.anInt3051 - Static162.eyeY, wall.anInt3044 - Static217.eyeZ, wall.aLong107, local24, null);
+													wall.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, wall.anInt3048 - Static149.eyeX, wall.anInt3051 - Static162.eyeY, wall.anInt3044 - Static217.eyeZ, wall.aLong107, local24, null);
 												}
 												if ((wall.typeB & frontWallTypes) != 0 && !Static260.wallVisible(occludeLevel, tileX, tileZ, wall.typeB)) {
 													if (GlRenderer.enabled) {
 														Static120.method2393(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, tileX, tileZ);
 													}
-													wall.modelB.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, wall.anInt3048 - Static149.eyeX, wall.anInt3051 - Static162.eyeY, wall.anInt3044 - Static217.eyeZ, wall.aLong107, local24, null);
+													wall.modelB.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, wall.anInt3048 - Static149.eyeX, wall.anInt3051 - Static162.eyeY, wall.anInt3044 - Static217.eyeZ, wall.aLong107, local24, null);
 												}
 											}
 											if (wallDecor != null && !Static276.visible(occludeLevel, tileX, tileZ, wallDecor.primary.getMinY())) {
@@ -277,7 +277,7 @@ public final class Static247 {
 													if (GlRenderer.enabled) {
 														Static120.method2393(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, tileX, tileZ);
 													}
-													wallDecor.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, wallDecor.xFine + wallDecor.xOffset - Static149.eyeX, wallDecor.anInt1391 - Static162.eyeY, wallDecor.zFine + wallDecor.zOffset - Static217.eyeZ, wallDecor.key, local24, null);
+													wallDecor.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, wallDecor.xFine + wallDecor.xOffset - Static149.eyeX, wallDecor.anInt1391 - Static162.eyeY, wallDecor.zFine + wallDecor.zOffset - Static217.eyeZ, wallDecor.key, local24, null);
 												} else if (wallDecor.type == 256) {
 													x = wallDecor.xFine - Static149.eyeX;
 													y = wallDecor.anInt1391 - Static162.eyeY;
@@ -298,12 +298,12 @@ public final class Static247 {
 														if (GlRenderer.enabled) {
 															Static120.method2393(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, tileX, tileZ);
 														}
-														wallDecor.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, x + wallDecor.xOffset, y, z + wallDecor.zOffset, wallDecor.key, local24, null);
+														wallDecor.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, x + wallDecor.xOffset, y, z + wallDecor.zOffset, wallDecor.key, local24, null);
 													} else if (wallDecor.secondary != null) {
 														if (GlRenderer.enabled) {
 															Static120.method2393(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, tileX, tileZ);
 														}
-														wallDecor.secondary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, x, y, z, wallDecor.key, local24, null);
+														wallDecor.secondary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, x, y, z, wallDecor.key, local24, null);
 													}
 												}
 												if (GlRenderer.enabled) {
@@ -319,7 +319,7 @@ public final class Static247 {
 													if (GlRenderer.enabled) {
 														Static120.method2393(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, tileX, tileZ);
 													}
-													groundDecor.entity.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, groundDecor.xFine - Static149.eyeX, groundDecor.anInt733 - Static162.eyeY, groundDecor.zFine - Static217.eyeZ, groundDecor.key, local24, null);
+													groundDecor.entity.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, groundDecor.xFine - Static149.eyeX, groundDecor.anInt733 - Static162.eyeY, groundDecor.zFine - Static217.eyeZ, groundDecor.key, local24, null);
 													if (GlRenderer.enabled && groundDecor.aBoolean49) {
 														GlRenderer.method4159(local33);
 													}
@@ -330,13 +330,13 @@ public final class Static247 {
 														Static120.method2393(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, tileX, tileZ);
 													}
 													if (objs.aClass8_7 != null) {
-														objs.aClass8_7.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, objs.anInt3064 - Static149.eyeX, objs.anInt3057 - Static162.eyeY, objs.anInt3061 - Static217.eyeZ, objs.aLong108, local24, null);
+														objs.aClass8_7.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, objs.anInt3064 - Static149.eyeX, objs.anInt3057 - Static162.eyeY, objs.anInt3061 - Static217.eyeZ, objs.aLong108, local24, null);
 													}
 													if (objs.aClass8_8 != null) {
-														objs.aClass8_8.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, objs.anInt3064 - Static149.eyeX, objs.anInt3057 - Static162.eyeY, objs.anInt3061 - Static217.eyeZ, objs.aLong108, local24, null);
+														objs.aClass8_8.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, objs.anInt3064 - Static149.eyeX, objs.anInt3057 - Static162.eyeY, objs.anInt3061 - Static217.eyeZ, objs.aLong108, local24, null);
 													}
 													if (objs.aClass8_9 != null) {
-														objs.aClass8_9.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, objs.anInt3064 - Static149.eyeX, objs.anInt3057 - Static162.eyeY, objs.anInt3061 - Static217.eyeZ, objs.aLong108, local24, null);
+														objs.aClass8_9.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, objs.anInt3064 - Static149.eyeX, objs.anInt3057 - Static162.eyeY, objs.anInt3061 - Static217.eyeZ, objs.aLong108, local24, null);
 													}
 												}
 											}
@@ -419,7 +419,7 @@ public final class Static247 {
 															Static120.method2393(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, tileX, tileZ);
 														}
 													}
-													var22.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, var22.anInt3048 - Static149.eyeX, var22.anInt3051 - Static162.eyeY, var22.anInt3044 - Static217.eyeZ, var22.aLong107, local24, null);
+													var22.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, var22.anInt3048 - Static149.eyeX, var22.anInt3051 - Static162.eyeY, var22.anInt3044 - Static217.eyeZ, var22.aLong107, local24, null);
 												}
 												tile.checkLocSpans = 0;
 											}
@@ -524,7 +524,7 @@ public final class Static247 {
 															Static120.method2391(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, local1697.anInt1701, local1697.anInt1696, local1697.anInt1713, local1697.anInt1698);
 														}
 													}
-													local1697.entity.render(local1697.anInt1714, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, local1697.anInt1699 - Static149.eyeX, local1697.anInt1706 - Static162.eyeY, local1697.anInt1703 - Static217.eyeZ, local1697.hash, local24, null);
+													local1697.entity.render(local1697.anInt1714, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, local1697.anInt1699 - Static149.eyeX, local1697.anInt1706 - Static162.eyeY, local1697.anInt1703 - Static217.eyeZ, local1697.hash, local24, null);
 												}
 												for (x = local1697.anInt1701; x <= local1697.anInt1713; x++) {
 													for (y = local1697.anInt1696; y <= local1697.anInt1698; y++) {
@@ -575,13 +575,13 @@ public final class Static247 {
 					Static120.method2393(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, tileX, tileZ);
 				}
 				if (local1999.aClass8_7 != null) {
-					local1999.aClass8_7.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, local1999.anInt3064 - Static149.eyeX, local1999.anInt3057 - Static162.eyeY - local1999.offset, local1999.anInt3061 - Static217.eyeZ, local1999.aLong108, local24, null);
+					local1999.aClass8_7.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, local1999.anInt3064 - Static149.eyeX, local1999.anInt3057 - Static162.eyeY - local1999.offset, local1999.anInt3061 - Static217.eyeZ, local1999.aLong108, local24, null);
 				}
 				if (local1999.aClass8_8 != null) {
-					local1999.aClass8_8.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, local1999.anInt3064 - Static149.eyeX, local1999.anInt3057 - Static162.eyeY - local1999.offset, local1999.anInt3061 - Static217.eyeZ, local1999.aLong108, local24, null);
+					local1999.aClass8_8.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, local1999.anInt3064 - Static149.eyeX, local1999.anInt3057 - Static162.eyeY - local1999.offset, local1999.anInt3061 - Static217.eyeZ, local1999.aLong108, local24, null);
 				}
 				if (local1999.aClass8_9 != null) {
-					local1999.aClass8_9.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, local1999.anInt3064 - Static149.eyeX, local1999.anInt3057 - Static162.eyeY - local1999.offset, local1999.anInt3061 - Static217.eyeZ, local1999.aLong108, local24, null);
+					local1999.aClass8_9.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, local1999.anInt3064 - Static149.eyeX, local1999.anInt3057 - Static162.eyeY - local1999.offset, local1999.anInt3061 - Static217.eyeZ, local1999.aLong108, local24, null);
 				}
 			}
 			if (tile.backWallTypes != 0) {
@@ -591,7 +591,7 @@ public final class Static247 {
 						if (GlRenderer.enabled) {
 							Static120.method2393(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, tileX, tileZ);
 						}
-						local2109.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, local2109.xFine + local2109.xOffset - Static149.eyeX, local2109.anInt1391 - Static162.eyeY, local2109.zFine + local2109.zOffset - Static217.eyeZ, local2109.key, local24, null);
+						local2109.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, local2109.xFine + local2109.xOffset - Static149.eyeX, local2109.anInt1391 - Static162.eyeY, local2109.zFine + local2109.zOffset - Static217.eyeZ, local2109.key, local24, null);
 					} else if (local2109.type == 256) {
 						frontWallTypes = local2109.xFine - Static149.eyeX;
 						farthestIndex = local2109.anInt1391 - Static162.eyeY;
@@ -611,12 +611,12 @@ public final class Static247 {
 							if (GlRenderer.enabled) {
 								Static120.method2393(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, tileX, tileZ);
 							}
-							local2109.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, frontWallTypes + local2109.xOffset, farthestIndex, local1332 + local2109.zOffset, local2109.key, local24, null);
+							local2109.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, frontWallTypes + local2109.xOffset, farthestIndex, local1332 + local2109.zOffset, local2109.key, local24, null);
 						} else if (local2109.secondary != null) {
 							if (GlRenderer.enabled) {
 								Static120.method2393(Static149.eyeX, Static162.eyeY, Static217.eyeZ, local24, tileX, tileZ);
 							}
-							local2109.secondary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, frontWallTypes, farthestIndex, local1332, local2109.key, local24, null);
+							local2109.secondary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, frontWallTypes, farthestIndex, local1332, local2109.key, local24, null);
 						}
 					}
 				}
@@ -626,13 +626,13 @@ public final class Static247 {
 						if (GlRenderer.enabled) {
 							Static120.method2388(local2275.typeB, Static149.eyeX, Static162.eyeY, Static217.eyeZ, occludeLevel, tileX, tileZ);
 						}
-						local2275.modelB.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, com.jagex.runetek4.cache.def.ItemDefinition.anInt2222, local2275.anInt3048 - Static149.eyeX, local2275.anInt3051 - Static162.eyeY, local2275.anInt3044 - Static217.eyeZ, local2275.aLong107, local24, null);
+						local2275.modelB.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, local2275.anInt3048 - Static149.eyeX, local2275.anInt3051 - Static162.eyeY, local2275.anInt3044 - Static217.eyeZ, local2275.aLong107, local24, null);
 					}
 					if ((local2275.typeA & tile.backWallTypes) != 0 && !Static260.wallVisible(occludeLevel, tileX, tileZ, local2275.typeA)) {
 						if (GlRenderer.enabled) {
 							Static120.method2388(local2275.typeA, Static149.eyeX, Static162.eyeY, Static217.eyeZ, occludeLevel, tileX, tileZ);
 						}
-						local2275.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ItemDefinition.anInt2222, local2275.anInt3048 - Static149.eyeX, local2275.anInt3051 - Static162.eyeY, local2275.anInt3044 - Static217.eyeZ, local2275.aLong107, local24, null);
+						local2275.primary.render(0, Static109.anInt2886, Static121.anInt3038, PreciseSleep.anInt5205, ObjType.anInt2222, local2275.anInt3048 - Static149.eyeX, local2275.anInt3051 - Static162.eyeY, local2275.anInt3044 - Static217.eyeZ, local2275.aLong107, local24, null);
 					}
 				}
 			}
@@ -672,21 +672,21 @@ public final class Static247 {
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "b", descriptor = "(IIIIIII)V")
 	public static void method4246(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5) {
-		@Pc(8) Component local8 = Static201.method1418(arg0, arg1);
-		if (local8 != null && local8.anObjectArray11 != null) {
+		@Pc(8) Component local8 = InterfaceList.method1418(arg0, arg1);
+		if (local8 != null && local8.onUse != null) {
 			@Pc(19) HookRequest local19 = new HookRequest();
 			local19.source = local8;
-			local19.anObjectArray31 = local8.anObjectArray11;
+			local19.arguments = local8.onUse;
 			ClientScriptRunner.run(local19);
 		}
-		Static15.anInt506 = arg1;
+		MiniMenu.anInt506 = arg1;
 		Static121.anInt3039 = arg3;
-		Static98.anInt2512 = arg0;
+		MiniMenu.anInt2512 = arg0;
 		Static274.anInt4999 = arg2;
 		MiniMenu.aBoolean302 = true;
-		Static246.anInt5393 = arg4;
+		MiniMenu.anInt5393 = arg4;
 		Static35.anInt1092 = arg5;
-		Static43.method1143(local8);
+		InterfaceList.redraw(local8);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(IB)I")

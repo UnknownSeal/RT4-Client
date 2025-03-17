@@ -12,9 +12,6 @@ public final class Static232 {
 	@OriginalMember(owner = "runetek4.client!sm", name = "b", descriptor = "I")
 	public static int anInt5208;
 
-	@OriginalMember(owner = "runetek4.client!sm", name = "k", descriptor = "Lsignlink!im;")
-	public static PrivilegedRequest aClass212_5;
-
 	@OriginalMember(owner = "runetek4.client!sm", name = "m", descriptor = "I")
 	public static int anInt5212;
 
@@ -23,10 +20,10 @@ public final class Static232 {
 		@Pc(9) int local9 = arg2 - arg4;
 		@Pc(11) int local11 = -1;
 		if (WorldMap.anInt1864 > 0) {
-			if (WorldMap.anInt2428 <= 10) {
-				local11 = WorldMap.anInt2428 * 5;
+			if (ClientScriptRunner.anInt2428 <= 10) {
+				local11 = ClientScriptRunner.anInt2428 * 5;
 			} else {
-				local11 = 50 - (WorldMap.anInt2428 - 10) * 5;
+				local11 = 50 - (ClientScriptRunner.anInt2428 - 10) * 5;
 			}
 		}
 		@Pc(39) int local39 = arg1 - arg6;

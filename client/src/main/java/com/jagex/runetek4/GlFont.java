@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.nio.ByteBuffer;
 
 import com.jagex.runetek4.cache.media.Font;
+import com.jagex.runetek4.util.IntUtils;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -81,9 +82,9 @@ public final class GlFont extends Font {
 		local4.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_RGB, GL2.GL_REPLACE);
 		local4.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_SRC0_RGB, GL2.GL_PREVIOUS);
 		@Pc(98) float local98 = (float) (arg1 - Static46.anInt1439) / (float) local68.anInt1870;
-		@Pc(107) float local107 = (float) (arg2 - Static46.anInt1438) / (float) local68.anInt1874;
+		@Pc(107) float local107 = (float) (arg2 - GlRaster.clipTop) / (float) local68.anInt1874;
 		@Pc(118) float local118 = (float) (arg1 + arg3 - Static46.anInt1439) / (float) local68.anInt1870;
-		@Pc(129) float local129 = (float) (arg2 + arg4 - Static46.anInt1438) / (float) local68.anInt1874;
+		@Pc(129) float local129 = (float) (arg2 + arg4 - GlRaster.clipTop) / (float) local68.anInt1874;
 		local4.glBegin(GL2.GL_TRIANGLE_FAN);
 		local4.glMultiTexCoord2f(GL2.GL_TEXTURE1, local118, local107);
 		local4.glTexCoord2f(local51, local39);
@@ -162,7 +163,7 @@ public final class GlFont extends Font {
 			}
 		}
 		this.anInt3640 *= 16;
-		this.anInt3640 = Static165.bitceil(this.anInt3640);
+		this.anInt3640 = IntUtils.bitceil(this.anInt3640);
 		local9 = this.anInt3640 / 16;
 		@Pc(66) byte[] local66 = new byte[this.anInt3640 * this.anInt3640 * 2];
 		for (@Pc(68) int local68 = 0; local68 < 256; local68++) {

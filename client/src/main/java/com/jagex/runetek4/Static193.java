@@ -280,42 +280,4 @@ public final class Static193 {
 		return local1348;
 	}
 
-	@OriginalMember(owner = "runetek4.client!pi", name = "c", descriptor = "(III)V")
-	public static void method3502(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(13) int local13 = arg0;
-		if (arg0 > 25) {
-			local13 = 25;
-		}
-		arg0--;
-		@Pc(23) int local23 = Static259.anIntArray514[arg0];
-		@Pc(27) int local27 = Static84.anIntArray209[arg0];
-		if (arg1 == 0) {
-			Protocol.outboundBuffer.pIsaac1(215);
-			Protocol.outboundBuffer.p1(local13 + local13 + 3);
-			System.out.println("Steps: " + (local13 + local13 + 3));
-		}
-		if (arg1 == 1) {
-			Protocol.outboundBuffer.pIsaac1(39);
-			Protocol.outboundBuffer.p1(local13 + local13 + 3 + 14);
-		}
-		if (arg1 == 2) {
-			Protocol.outboundBuffer.pIsaac1(77);
-			Protocol.outboundBuffer.p1(local13 + local13 + 3);
-		}
-		Protocol.outboundBuffer.p1b_alt1(Static187.pressedKeys[82] ? 1 : 0);
-		System.out.println("InvertRun: " + (Static187.pressedKeys[82] ? 1 : 0) );
-		Protocol.outboundBuffer.p2((Camera.originX + local23));
-		System.out.println("StartX: " + (Camera.originX + local23));
-		Protocol.outboundBuffer.p2_alt2(Camera.originZ + local27);
-		System.out.println("StartZ: " + (Camera.originZ + local27));
-		LoginManager.mapFlagZ = Static84.anIntArray209[0];
-		LoginManager.mapFlagX = Static259.anIntArray514[0];
-		for (@Pc(126) int local126 = 1; local126 < local13; local126++) {
-			arg0--;
-			Protocol.outboundBuffer.p1b_alt1(Static259.anIntArray514[arg0] - local23);
-			System.out.println(Static259.anIntArray514[arg0] - local23);
-			Protocol.outboundBuffer.p1_alt3(Static84.anIntArray209[arg0] - local27);
-			System.out.println(Static84.anIntArray209[arg0] - local27);
-		}
-	}
 }

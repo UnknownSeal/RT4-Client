@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
-import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,9 +11,6 @@ public final class Static124 {
 	@OriginalMember(owner = "runetek4.client!jk", name = "x", descriptor = "I")
 	public static int anInt3080;
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "B", descriptor = "Lclient!ma;")
-	public static BufferedSocket gameServerSocket;
-
 	@OriginalMember(owner = "runetek4.client!jk", name = "J", descriptor = "I")
 	public static int anInt3083;
 
@@ -23,9 +19,6 @@ public final class Static124 {
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "y", descriptor = "Z")
 	public static boolean aBoolean156 = false;
-
-	@OriginalMember(owner = "runetek4.client!jk", name = "z", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_17 = new NodeCache(50);
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "G", descriptor = "Z")
 	public static boolean aBoolean157 = false;

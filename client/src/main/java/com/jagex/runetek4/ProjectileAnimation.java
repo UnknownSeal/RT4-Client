@@ -113,7 +113,7 @@ public final class ProjectileAnimation extends Entity {
 		if (local58 == -1) {
 			this.seqType = null;
 		} else {
-			this.seqType = SeqType.getAnimationSequence(local58);
+			this.seqType = SeqTypeList.getAnimationSequence(local58);
 		}
 	}
 
