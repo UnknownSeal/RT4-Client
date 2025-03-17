@@ -18,7 +18,6 @@ public class WorldList {
                 if (MonotonicTime.currentTimeMillis() - 5000L < PreciseSleep.aLong174) {
                     return 0;
                 }
-                System.out.println(client.worldListPort);
                 Static72.aClass212_3 = GameShell.signLink.openSocket(client.worldListHostname, client.worldListPort);
                 Static15.aLong18 = MonotonicTime.currentTimeMillis();
                 Static82.anInt2231 = 1;
