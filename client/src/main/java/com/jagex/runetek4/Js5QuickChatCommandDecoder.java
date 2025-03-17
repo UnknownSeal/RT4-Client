@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.enumtype.EnumType;
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -17,7 +17,7 @@ public final class Js5QuickChatCommandDecoder implements QuickChatCommandDecoder
 			@Pc(12) EnumType local12 = Static253.get(arg1[0]);
 			return local12.getValueString((int) arg2);
 		} else if (arg0 == 1 || arg0 == 10) {
-			@Pc(31) ItemDefinition local31 = Static71.get((int) arg2);
+			@Pc(31) ObjType local31 = ObjTypeList.get((int) arg2);
 			return local31.name;
 		} else if (arg0 == 6 || arg0 == 7 || arg0 == 11) {
 			return Static253.get(arg1[0]).getValueString((int) arg2);

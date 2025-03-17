@@ -14,9 +14,6 @@ public final class Static158 {
 	@OriginalMember(owner = "runetek4.client!mh", name = "hb", descriptor = "Lclient!bn;")
 	public static Map aClass3_Sub2_Sub4_3;
 
-	@OriginalMember(owner = "runetek4.client!mh", name = "X", descriptor = "I")
-	public static int anInt3851 = -1;
-
 	@OriginalMember(owner = "runetek4.client!mh", name = "Y", descriptor = "Z")
 	public static boolean aBoolean187 = false;
 

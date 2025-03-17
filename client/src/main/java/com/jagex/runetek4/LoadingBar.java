@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -13,22 +12,22 @@ public class LoadingBar {
         if (GlRenderer.enabled || arg0) {
             local9 = GameShell.canvasHeigth;
             @Pc(15) int local15 = local9 * 956 / 503;
-            Static78.aClass3_Sub2_Sub1_3.method1419((GameShell.canvasWidth - local15) / 2, 0, local15, local9);
+            Static78.aClass3_Sub2_Sub1_3.renderResized((GameShell.canvasWidth - local15) / 2, 0, local15, local9);
             Static243.aClass36_1.drawImage(GameShell.canvasWidth / 2 - Static243.aClass36_1.anInt4270 / 2, 18);
         }
-        arg1.method2875(LocalizedText.GAME0_LOADING, GameShell.canvasWidth / 2, GameShell.canvasHeigth / 2 - 26, 16777215, -1);
+        arg1.renderCenter(LocalizedText.GAME0_LOADING, GameShell.canvasWidth / 2, GameShell.canvasHeigth / 2 - 26, 16777215, -1);
         local9 = GameShell.canvasHeigth / 2 - 18;
         if (GlRenderer.enabled) {
-            Static46.method1179(GameShell.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
-            Static46.method1179(GameShell.canvasWidth / 2 - 151, local9 - -1, 302, 32, 0);
-            Static46.method1186(GameShell.canvasWidth / 2 - 150, local9 + 2, client.mainLoadPercentage * 3, 30, 9179409);
-            Static46.method1186(GameShell.canvasWidth / 2 + client.mainLoadPercentage * 3 - 150, local9 + 2, 300 - client.mainLoadPercentage * 3, 30, 0);
+            GlRaster.drawRect(GameShell.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
+            GlRaster.drawRect(GameShell.canvasWidth / 2 - 151, local9 - -1, 302, 32, 0);
+            GlRaster.fillRect(GameShell.canvasWidth / 2 - 150, local9 + 2, client.mainLoadPercentage * 3, 30, 9179409);
+            GlRaster.fillRect(GameShell.canvasWidth / 2 + client.mainLoadPercentage * 3 - 150, local9 + 2, 300 - client.mainLoadPercentage * 3, 30, 0);
         } else {
-            Rasterizer.drawUnfilledRectangle(GameShell.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
-            Rasterizer.drawUnfilledRectangle(GameShell.canvasWidth / 2 - 151, local9 + 1, 302, 32, 0);
-            Rasterizer.drawFilledRectangle(GameShell.canvasWidth / 2 - 150, local9 + 2, client.mainLoadPercentage * 3, 30, 9179409);
-            Rasterizer.drawFilledRectangle(client.mainLoadPercentage * 3 + GameShell.canvasWidth / 2 - 150, local9 + 2, 300 - client.mainLoadPercentage * 3, 30, 0);
+            SoftwareRaster.drawRect(GameShell.canvasWidth / 2 - 152, local9, 304, 34, 9179409);
+            SoftwareRaster.drawRect(GameShell.canvasWidth / 2 - 151, local9 + 1, 302, 32, 0);
+            SoftwareRaster.fillRect(GameShell.canvasWidth / 2 - 150, local9 + 2, client.mainLoadPercentage * 3, 30, 9179409);
+            SoftwareRaster.fillRect(client.mainLoadPercentage * 3 + GameShell.canvasWidth / 2 - 150, local9 + 2, 300 - client.mainLoadPercentage * 3, 30, 0);
         }
-        arg1.method2875(client.mainLoadSecondaryText, GameShell.canvasWidth / 2, GameShell.canvasHeigth / 2 + 4, 16777215, -1);
+        arg1.renderCenter(client.mainLoadSecondaryText, GameShell.canvasWidth / 2, GameShell.canvasHeigth / 2 + 4, 16777215, -1);
     }
 }

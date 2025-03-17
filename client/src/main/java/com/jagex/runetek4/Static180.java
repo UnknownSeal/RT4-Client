@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -12,9 +11,6 @@ public final class Static180 {
 
 	@OriginalMember(owner = "runetek4.client!og", name = "b", descriptor = "I")
 	public static int anInt4264;
-
-	@OriginalMember(owner = "runetek4.client!og", name = "e", descriptor = "Lclient!be;")
-	public static Component aClass13_22;
 
 	@OriginalMember(owner = "runetek4.client!og", name = "g", descriptor = "[Lclient!na;")
 	public static JString[] localStrings;

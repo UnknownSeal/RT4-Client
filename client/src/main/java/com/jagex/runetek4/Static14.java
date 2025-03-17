@@ -12,9 +12,6 @@ public final class Static14 {
 	@OriginalMember(owner = "client!bd", name = "g", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_8;
 
-	@OriginalMember(owner = "client!bd", name = "b", descriptor = "Lclient!na;")
-	public static final JString aClass100_80 = JString.parse("(U(Y");
-
 	@OriginalMember(owner = "client!bd", name = "i", descriptor = "I")
 	public static int anInt441 = 0;
 

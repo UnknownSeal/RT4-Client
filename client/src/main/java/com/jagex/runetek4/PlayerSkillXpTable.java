@@ -12,6 +12,8 @@ public class PlayerSkillXpTable {
     public static final int[] skillExperience = new int[25];
     @OriginalMember(owner = "client!h", name = "S", descriptor = "[I")
     public static final int[] levelExperience = new int[99];
+    @OriginalMember(owner = "runetek4.client!oj", name = "z", descriptor = "[Z")
+    public static final boolean[] ENABLED_SKILLS = new boolean[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false };
 
     static {
         @Pc(4) int experience = 0;

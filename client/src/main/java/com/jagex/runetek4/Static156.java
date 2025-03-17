@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.core.io.GZip;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.media.Rasterizer;
@@ -37,7 +37,7 @@ public final class Static156 {
 		Static109.anInt2886 = MathUtils.sin[arg3];
 		Static121.anInt3038 = MathUtils.cos[arg3];
 		PreciseSleep.anInt5205 = MathUtils.sin[arg4];
-		ItemDefinition.anInt2222 = MathUtils.cos[arg4];
+		ObjType.anInt2222 = MathUtils.cos[arg4];
 		Static149.eyeX = arg0;
 		Static162.eyeY = arg1;
 		Static217.eyeZ = arg2;
@@ -130,7 +130,7 @@ public final class Static156 {
 			}
 		}
 		local1.glEnableClientState(GL2.GL_COLOR_ARRAY);
-		GlRenderer.method4173();
+		GlRenderer.restoreLighting();
 		local1.glEnable(GL2.GL_DEPTH_TEST);
 		local1.glPopAttrib();
 		GlRenderer.enableDepthMask();

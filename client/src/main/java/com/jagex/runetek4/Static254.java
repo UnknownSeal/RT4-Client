@@ -29,9 +29,6 @@ public final class Static254 {
 	@OriginalMember(owner = "runetek4.client!uj", name = "A", descriptor = "[I")
 	public static final int[] WALL_CORNER_TYPE_32_BLOCK_LOC_SPANS = new int[] { 2, 0, 0, 2, 0, 0, 0, 4, 4 };
 
-	@OriginalMember(owner = "runetek4.client!uj", name = "C", descriptor = "[Lclient!na;")
-	public static final JString[] aClass100Array168 = new JString[500];
-
 	@OriginalMember(owner = "runetek4.client!uj", name = "a", descriptor = "(BLclient!ve;I)Z")
 	public static boolean method4346(@OriginalArg(1) Js5 arg0, @OriginalArg(2) int arg1) {
 		@Pc(13) byte[] local13 = arg0.method4500(arg1);

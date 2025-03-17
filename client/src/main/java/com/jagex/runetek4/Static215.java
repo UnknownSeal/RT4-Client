@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.node.NodeQueue;
 import org.openrs2.deob.annotation.OriginalMember;
 
@@ -12,9 +11,6 @@ public final class Static215 {
 	@OriginalMember(owner = "runetek4.client!rh", name = "d", descriptor = "I")
 	public static int anInt4866;
 
-	@OriginalMember(owner = "runetek4.client!rh", name = "h", descriptor = "Lclient!rk;")
-	public static Font aClass3_Sub2_Sub9_32;
-
 	@OriginalMember(owner = "runetek4.client!rh", name = "e", descriptor = "Lclient!ce;")
 	public static final NodeQueue aClass16_9 = new NodeQueue();
 
@@ -23,8 +19,5 @@ public final class Static215 {
 
 	@OriginalMember(owner = "runetek4.client!rh", name = "k", descriptor = "I")
 	public static int anInt4870 = 0;
-
-	@OriginalMember(owner = "runetek4.client!rh", name = "o", descriptor = "I")
-	public static int anInt4873 = 0;
 
 }

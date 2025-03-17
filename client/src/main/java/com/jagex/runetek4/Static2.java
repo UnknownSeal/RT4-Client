@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -48,7 +47,7 @@ public final class Static2 {
 					}
 					@Pc(49) ComponentPointer local49 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) local23.id);
 					if (local49 != null) {
-						Static54.method1304(arg1, local49.anInt5878);
+						Static54.method1304(arg1, local49.interfaceId);
 					}
 				}
 				@Pc(72) HookRequest local72;
@@ -257,47 +256,4 @@ public final class Static2 {
 		Protocol.outboundBuffer.p2_alt1(arg0);
 	}
 
-	@OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(BLclient!be;)V")
-	public static void method13(@OriginalArg(1) Component arg0) {
-		@Pc(16) int local16 = arg0.contentType;
-		if (local16 == 324) {
-			if (Static158.anInt3851 == -1) {
-				Static158.anInt3851 = arg0.spriteId;
-				Static145.anInt3502 = arg0.activeSpriteId;
-			}
-			if (PlayerAppearance.DEFAULT.aBoolean141) {
-				arg0.spriteId = Static158.anInt3851;
-			} else {
-				arg0.spriteId = Static145.anInt3502;
-			}
-		} else if (local16 == 325) {
-			if (Static158.anInt3851 == -1) {
-				Static145.anInt3502 = arg0.activeSpriteId;
-				Static158.anInt3851 = arg0.spriteId;
-			}
-			if (PlayerAppearance.DEFAULT.aBoolean141) {
-				arg0.spriteId = Static145.anInt3502;
-			} else {
-				arg0.spriteId = Static158.anInt3851;
-			}
-		} else if (local16 == 327) {
-			arg0.modelXAngle = 150;
-			arg0.modelYAngle = (int) (Math.sin((double) client.loop / 40.0D) * 256.0D) & 0x7FF;
-			arg0.modelType = 5;
-			arg0.modelId = -1;
-		} else if (local16 == 328) {
-			if (PlayerList.self.username == null) {
-				arg0.modelId = 0;
-			} else {
-				arg0.modelXAngle = 150;
-				arg0.modelYAngle = (int) (Math.sin((double) client.loop / 40.0D) * 256.0D) & 0x7FF;
-				arg0.modelType = 5;
-				arg0.modelId = ((int) PlayerList.self.username.encode37() << 11) + 2047;
-				arg0.anInt496 = PlayerList.self.anInt3388;
-				arg0.anInt500 = 0;
-				arg0.modelSeqId = PlayerList.self.movementSeqId;
-				arg0.anInt510 = PlayerList.self.anInt3407;
-			}
-		}
-	}
 }

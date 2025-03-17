@@ -14,9 +14,6 @@ public final class Static23 {
 	@OriginalMember(owner = "client!bm", name = "e", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_11;
 
-	@OriginalMember(owner = "client!bm", name = "p", descriptor = "Lclient!na;")
-	public static final JString aClass100_133 = JString.parse("(U1");
-
 	@OriginalMember(owner = "client!bm", name = "a", descriptor = "(IBIIII)V")
 	public static void method645(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		@Pc(3) int local3;

@@ -78,11 +78,11 @@ public final class CacheArchive {
 
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(Z)V")
 	public static void method182() {
-		Static241.aClass13Array13 = null;
+		ClientScriptRunner.aClass13Array13 = null;
 		Static6.method86(InterfaceList.topLevelInterace, 0, GameShell.canvasWidth, 0, -1, GameShell.canvasHeigth, 0, 0);
-		if (Static241.aClass13Array13 != null) {
-			Static87.drawGame(0, Static127.anInt3126, Static80.anInt4696, Static241.aClass13Array13, GameShell.canvasWidth, -1412584499, 0, GameShell.canvasHeigth, Static4.aClass13_1.rectangle);
-			Static241.aClass13Array13 = null;
+		if (ClientScriptRunner.aClass13Array13 != null) {
+			ClientScriptRunner.renderComponent(0, ClientScriptRunner.anInt3126, ClientScriptRunner.anInt4696, ClientScriptRunner.aClass13Array13, GameShell.canvasWidth, -1412584499, 0, GameShell.canvasHeigth, ClientScriptRunner.aClass13_1.rectangle);
+			ClientScriptRunner.aClass13Array13 = null;
 		}
 	}
 

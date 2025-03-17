@@ -63,7 +63,7 @@ public final class Static150 {
 			}
 		}
 		if (arg2.contentType == 1337) {
-			Static280.aClass13_26 = arg2;
+			InterfaceList.aClass13_26 = arg2;
 		}
 		if (arg3 && arg2.onResize != null && (local4 != arg2.width || arg2.height != local7)) {
 			@Pc(305) HookRequest local305 = new HookRequest();

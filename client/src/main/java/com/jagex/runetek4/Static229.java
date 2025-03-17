@@ -28,7 +28,7 @@ public final class Static229 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(IZ)V")
-	public static void method3935(@OriginalArg(0) int arg0) {
+	public static void init(@OriginalArg(0) int arg0) {
 		Static161.method3060(16777215, ((float) arg0 * 0.1F + 0.7F) * 1.1523438F, 0.69921875F, 0.69921875F);
 		Static161.method3063(-50.0F, -60.0F, -50.0F);
 		Static161.method3062(FogManager.defaulFogColorRgb, 0);

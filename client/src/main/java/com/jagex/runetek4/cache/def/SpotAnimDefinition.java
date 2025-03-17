@@ -1,7 +1,6 @@
 package com.jagex.runetek4.cache.def;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.node.NodeCache;
@@ -132,7 +131,7 @@ public final class SpotAnimDefinition {
 		if (this.animationId == -1 || arg1 == -1) {
 			local118 = model.method4560(true, true, true);
 		} else {
-			local118 = SeqType.getAnimationSequence(this.animationId).method4219(arg0, arg2, arg1, model);
+			local118 = SeqTypeList.getAnimationSequence(this.animationId).method4219(arg0, arg2, arg1, model);
 		}
 		if (this.resizeX != 128 || this.resizeY != 128) {
 			local118.resize(this.resizeX, this.resizeY, this.resizeX);

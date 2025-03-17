@@ -4,7 +4,7 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.core.io.Packet;
@@ -981,8 +981,8 @@ public final class Component {
 					return local61;
 				}
 			} else if (local10 == 4) {
-				@Pc(164) ItemDefinition local164 = Static71.get(local13);
-				@Pc(173) Model local173 = local164.method1824(arg0, arg3, arg1, 10, arg2);
+				@Pc(164) ObjType local164 = ObjTypeList.get(local13);
+				@Pc(173) Model local173 = local164.getModel(arg0, arg3, arg1, 10, arg2);
 				if (local173 == null) {
 					aBoolean72 = true;
 					return null;

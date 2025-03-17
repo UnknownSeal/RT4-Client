@@ -19,9 +19,6 @@ public final class Static15 {
 	@OriginalMember(owner = "client!be", name = "kc", descriptor = "J")
 	public static long aLong18 = 0L;
 
-	@OriginalMember(owner = "client!be", name = "Ec", descriptor = "I")
-	public static int anInt506 = -1;
-
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(Z)Lclient!na;")
 	public static JString method479() {
 		@Pc(8) JString local8 = Static93.aClass100_518;

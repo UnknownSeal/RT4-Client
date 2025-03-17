@@ -34,7 +34,7 @@ public final class Static84 {
 
 			@Pc(35) boolean quickChat = (chatFlags & 0x8000) != 0;
 
-			if (player.username != null && player.model != null) {
+			if (player.username != null && player.appearance != null) {
 				@Pc(48) long encodedUsername = player.username.encode37();
 				@Pc(50) boolean ignored = false;
 				if (staffModLevel <= 1) {
@@ -160,7 +160,7 @@ public final class Static84 {
 			}
 			staffModLevel = Protocol.inboundBuffer.p4rme();
 			@Pc(573) boolean local573 = true;
-			if (chatFlags != -1 && player.spotanimFrame != -1 && SeqType.getAnimationSequence(Static34.method877(chatFlags).animationId).priority < SeqType.getAnimationSequence(Static34.method877(player.spotanimFrame).animationId).priority) {
+			if (chatFlags != -1 && player.spotanimFrame != -1 && SeqTypeList.getAnimationSequence(Static34.method877(chatFlags).animationId).priority < SeqTypeList.getAnimationSequence(Static34.method877(player.spotanimFrame).animationId).priority) {
 				local573 = false;
 			}
 			if (local573) {
@@ -176,7 +176,7 @@ public final class Static84 {
 				if (player.spotanimFrame != -1 && client.loop == player.spotanimLastCycle) {
 					local24 = Static34.method877(player.spotanimFrame).animationId;
 					if (local24 != -1) {
-						@Pc(663) SeqType local663 = SeqType.getAnimationSequence(local24);
+						@Pc(663) SeqType local663 = SeqTypeList.getAnimationSequence(local24);
 						if (local663 != null && local663.anIntArray473 != null) {
 							Static152.method2836(player.zFine, local663, player.xFine, player == PlayerList.self, 0);
 						}

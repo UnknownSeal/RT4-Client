@@ -82,9 +82,9 @@ public final class GlFont extends Font {
 		local4.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_RGB, GL2.GL_REPLACE);
 		local4.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_SRC0_RGB, GL2.GL_PREVIOUS);
 		@Pc(98) float local98 = (float) (arg1 - Static46.anInt1439) / (float) local68.anInt1870;
-		@Pc(107) float local107 = (float) (arg2 - Static46.anInt1438) / (float) local68.anInt1874;
+		@Pc(107) float local107 = (float) (arg2 - GlRaster.clipTop) / (float) local68.anInt1874;
 		@Pc(118) float local118 = (float) (arg1 + arg3 - Static46.anInt1439) / (float) local68.anInt1870;
-		@Pc(129) float local129 = (float) (arg2 + arg4 - Static46.anInt1438) / (float) local68.anInt1874;
+		@Pc(129) float local129 = (float) (arg2 + arg4 - GlRaster.clipTop) / (float) local68.anInt1874;
 		local4.glBegin(GL2.GL_TRIANGLE_FAN);
 		local4.glMultiTexCoord2f(GL2.GL_TEXTURE1, local118, local107);
 		local4.glTexCoord2f(local51, local39);

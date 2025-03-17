@@ -38,9 +38,6 @@ public final class Static219 {
 	@OriginalMember(owner = "runetek4.client!rl", name = "Y", descriptor = "[Lclient!na;")
 	public static final JString[] aClass100Array149 = new JString[] { aClass100_927, aClass100_922, aClass100_926, aClass100_924, aClass100_925, aClass100_923, aClass100_921 };
 
-	@OriginalMember(owner = "runetek4.client!rl", name = "Z", descriptor = "I")
-	public static final int anInt4938 = 7759444;
-
 	@OriginalMember(owner = "runetek4.client!rl", name = "eb", descriptor = "Lclient!na;")
 	public static final JString aClass100_928 = JString.parse("(U0a )2 in: ");
 

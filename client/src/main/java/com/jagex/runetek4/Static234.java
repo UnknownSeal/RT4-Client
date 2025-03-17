@@ -64,7 +64,7 @@ public final class Static234 {
 				}
 				info = Protocol.inboundBuffer.g4me();
 				@Pc(147) boolean local147 = true;
-				if (local43 != -1 && local14.spotanimFrame != -1 && SeqType.getAnimationSequence(Static34.method877(local43).animationId).priority < SeqType.getAnimationSequence(Static34.method877(local14.spotanimFrame).animationId).priority) {
+				if (local43 != -1 && local14.spotanimFrame != -1 && SeqTypeList.getAnimationSequence(Static34.method877(local43).animationId).priority < SeqTypeList.getAnimationSequence(Static34.method877(local14.spotanimFrame).animationId).priority) {
 					local147 = false;
 				}
 				if (local147) {
@@ -80,7 +80,7 @@ public final class Static234 {
 					if (local14.spotanimFrame != -1 && local14.spotanimLastCycle == client.loop) {
 						@Pc(227) int local227 = Static34.method877(local14.spotanimFrame).animationId;
 						if (local227 != -1) {
-							@Pc(236) SeqType local236 = SeqType.getAnimationSequence(local227);
+							@Pc(236) SeqType local236 = SeqTypeList.getAnimationSequence(local227);
 							if (local236 != null && local236.anIntArray473 != null) {
 								Static152.method2836(local14.zFine, local236, local14.xFine, false, 0);
 							}

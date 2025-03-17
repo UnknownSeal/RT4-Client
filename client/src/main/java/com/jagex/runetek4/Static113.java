@@ -5,9 +5,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static113 {
 
-	@OriginalMember(owner = "runetek4.client!il", name = "I", descriptor = "I")
-	public static int brightness = 3;
-
 	@OriginalMember(owner = "runetek4.client!il", name = "a", descriptor = "(III)V")
 	public static void method3556(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		Static158.aBoolean187 = true;

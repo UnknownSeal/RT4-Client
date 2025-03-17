@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -14,7 +14,7 @@ public class Equipment {
         @Pc(10) int local10 = 0;
         @Pc(12) int local12;
         for (local12 = 0; local12 < ObjTypeList.capacity; local12++) {
-            @Pc(19) ItemDefinition def = Static71.get(local12);
+            @Pc(19) ObjType def = ObjTypeList.get(local12);
             if (def.manwear >= 0 || def.womanwear >= 0) {
                 ids[local10++] = local12;
             }

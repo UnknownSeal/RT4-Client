@@ -13,9 +13,6 @@ public final class Static146 {
 	@OriginalMember(owner = "runetek4.client!lg", name = "g", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_54;
 
-	@OriginalMember(owner = "runetek4.client!lg", name = "b", descriptor = "Z")
-	public static boolean aBoolean174 = false;
-
 	@OriginalMember(owner = "runetek4.client!lg", name = "c", descriptor = "[Lclient!tk;")
 	public static final SeqType[] aClass144Array1 = new SeqType[14];
 

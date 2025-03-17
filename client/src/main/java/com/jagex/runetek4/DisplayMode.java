@@ -269,16 +269,16 @@ public final class DisplayMode {
 			Static76.method1643();
 			((Js5GlTextureProvider) Rasterizer.textureProvider).method3248(20);
 			if (Static178.highDetailLighting) {
-				if (Static113.brightness == 1) {
+				if (Preferences.brightness == 1) {
 					Pix3D.setBrightness(0.9F);
 				}
-				if (Static113.brightness == 2) {
+				if (Preferences.brightness == 2) {
 					Pix3D.setBrightness(0.8F);
 				}
-				if (Static113.brightness == 3) {
+				if (Preferences.brightness == 3) {
 					Pix3D.setBrightness(0.7F);
 				}
-				if (Static113.brightness == 4) {
+				if (Preferences.brightness == 4) {
 					Pix3D.setBrightness(0.6F);
 				}
 			}

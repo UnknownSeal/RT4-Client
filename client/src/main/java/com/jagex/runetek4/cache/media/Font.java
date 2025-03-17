@@ -95,7 +95,7 @@ public abstract class Font extends CachedNode {
 	}
 
 	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;IIIIIIIII)I")
-	public final int method2852(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9) {
+	public final int drawInterfaceText(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9) {
 		return this.method2869(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
 	}
 
@@ -208,7 +208,7 @@ public abstract class Font extends CachedNode {
 		@Pc(10) int local10 = this.method2867(arg0, new int[] { arg1 }, Static218.aClass100Array110);
 		@Pc(12) int local12 = 0;
 		for (@Pc(14) int local14 = 0; local14 < local10; local14++) {
-			@Pc(23) int local23 = this.method2858(Static218.aClass100Array110[local14]);
+			@Pc(23) int local23 = this.getStringWidth(Static218.aClass100Array110[local14]);
 			if (local23 > local12) {
 				local12 = local23;
 			}
@@ -217,7 +217,7 @@ public abstract class Font extends CachedNode {
 	}
 
 	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;IIII)V")
-	public final void drawString(@OriginalArg(0) JString string, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int color, @OriginalArg(4) int shadow) {
+	public final void renderLeft(@OriginalArg(0) JString string, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int color, @OriginalArg(4) int shadow) {
 		if (string != null) {
 			this.setEffects(color, shadow);
 			this.drawBasicString(string, x, y);
@@ -225,7 +225,7 @@ public abstract class Font extends CachedNode {
 	}
 
 	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;)I")
-	public final int method2858(@OriginalArg(0) JString arg0) {
+	public final int getStringWidth(@OriginalArg(0) JString arg0) {
 		if (arg0 == null) {
 			return 0;
 		}
@@ -349,10 +349,10 @@ public abstract class Font extends CachedNode {
 	}
 
 	@OriginalMember(owner = "client!rk", name = "b", descriptor = "(Lclient!na;IIII)V")
-	public final void method2864(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	public final void renderRight(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		if (arg0 != null) {
 			this.setEffects(arg3, arg4);
-			this.drawBasicString(arg0, arg1 - this.method2858(arg0), arg2);
+			this.drawBasicString(arg0, arg1 - this.getStringWidth(arg0), arg2);
 		}
 	}
 
@@ -372,7 +372,7 @@ public abstract class Font extends CachedNode {
 			}
 		}
 		if (local1 > 0) {
-			Static218.anInt3636 = (arg1 - this.method2858(arg0) << 8) / local1;
+			Static218.anInt3636 = (arg1 - this.getStringWidth(arg0) << 8) / local1;
 		}
 	}
 
@@ -534,7 +534,7 @@ public abstract class Font extends CachedNode {
 		for (@Pc(28) int local28 = 0; local28 < local23; local28++) {
 			local26[local28] = (int) (Math.sin((double) local28 / 1.5D + (double) arg4 / 1.0D) * local13);
 		}
-		this.method2879(arg0, arg1 - this.method2858(arg0) / 2, arg2, null, local26);
+		this.method2879(arg0, arg1 - this.getStringWidth(arg0) / 2, arg2, null, local26);
 	}
 
 	@OriginalMember(owner = "client!rk", name = "a", descriptor = "(Lclient!na;IIIIIIIIII)I")
@@ -574,9 +574,9 @@ public abstract class Font extends CachedNode {
 			if (arg7 == 0) {
 				this.drawBasicString(Static218.aClass100Array110[local118], arg1, local57);
 			} else if (arg7 == 1) {
-				this.drawBasicString(Static218.aClass100Array110[local118], arg1 + (arg3 - this.method2858(Static218.aClass100Array110[local118])) / 2, local57);
+				this.drawBasicString(Static218.aClass100Array110[local118], arg1 + (arg3 - this.getStringWidth(Static218.aClass100Array110[local118])) / 2, local57);
 			} else if (arg7 == 2) {
-				this.drawBasicString(Static218.aClass100Array110[local118], arg1 + arg3 - this.method2858(Static218.aClass100Array110[local118]), local57);
+				this.drawBasicString(Static218.aClass100Array110[local118], arg1 + arg3 - this.getStringWidth(Static218.aClass100Array110[local118]), local57);
 			} else if (local118 == local42 - 1) {
 				this.drawBasicString(Static218.aClass100Array110[local118], arg1, local57);
 			} else {
@@ -602,7 +602,7 @@ public abstract class Font extends CachedNode {
 			local13[local18] = (int) (Math.sin((double) local18 / 5.0D + (double) arg4 / 5.0D) * 5.0D);
 			local16[local18] = (int) (Math.sin((double) local18 / 3.0D + (double) arg4 / 5.0D) * 5.0D);
 		}
-		this.method2879(arg0, arg1 - this.method2858(arg0) / 2, arg2, local13, local16);
+		this.method2879(arg0, arg1 - this.getStringWidth(arg0) / 2, arg2, local13, local16);
 	}
 
 	@OriginalMember(owner = "client!rk", name = "b", descriptor = "(Lclient!na;IIIII)V")
@@ -616,7 +616,7 @@ public abstract class Font extends CachedNode {
 		for (@Pc(15) int local15 = 0; local15 < local10; local15++) {
 			local13[local15] = (int) (Math.sin((double) local15 / 2.0D + (double) arg4 / 5.0D) * 5.0D);
 		}
-		this.method2879(arg0, arg1 - this.method2858(arg0) / 2, arg2, null, local13);
+		this.method2879(arg0, arg1 - this.getStringWidth(arg0) / 2, arg2, null, local13);
 	}
 
 	@OriginalMember(owner = "client!rk", name = "a", descriptor = "([Lclient!ok;[I)V")
@@ -643,10 +643,10 @@ public abstract class Font extends CachedNode {
 	}
 
 	@OriginalMember(owner = "client!rk", name = "c", descriptor = "(Lclient!na;IIII)V")
-	public final void method2875(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	public final void renderCenter(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		if (arg0 != null) {
 			this.setEffects(arg3, arg4);
-			this.drawBasicString(arg0, arg1 - this.method2858(arg0) / 2, arg2);
+			this.drawBasicString(arg0, arg1 - this.getStringWidth(arg0) / 2, arg2);
 		}
 	}
 
@@ -747,16 +747,16 @@ public abstract class Font extends CachedNode {
 			local50 = arg2 + arg4 - this.anInt3624;
 		}
 		if (arg7 == 1) {
-			local52 = this.method2858(arg0) + local26;
+			local52 = this.getStringWidth(arg0) + local26;
 			local28 = arg1 + (arg3 - local52) / 2;
 		} else if (arg7 == 2) {
-			local52 = this.method2858(arg0) + local26;
+			local52 = this.getStringWidth(arg0) + local26;
 			local28 = arg1 + arg3 - local52;
 		}
 		this.method2879(arg0, local28, local50, local24, null);
 		if (arg11 != null) {
 			if (local52 == -1) {
-				local52 = this.method2858(arg0) + local26;
+				local52 = this.getStringWidth(arg0) + local26;
 			}
 			arg11[0] = local28;
 			arg11[1] = local50 - this.anInt3625;

@@ -27,9 +27,6 @@ public final class Static78 {
 	@OriginalMember(owner = "runetek4.client!gd", name = "i", descriptor = "Lclient!na;")
 	public static JString aClass100_466 = null;
 
-	@OriginalMember(owner = "runetek4.client!gd", name = "j", descriptor = "I")
-	public static int lastItemDragTime = 0;
-
 	@OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(IIBI)I")
 	public static int method1690(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) {
 		return arg2 > arg1 ? arg2 : arg1 > arg0 ? arg0 : arg1;

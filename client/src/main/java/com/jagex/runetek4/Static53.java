@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,9 +11,6 @@ public final class Static53 {
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "d", descriptor = "Lclient!gn;")
 	public static final LruHashTable aClass54_5 = new LruHashTable(16);
-
-	@OriginalMember(owner = "runetek4.client!ec", name = "l", descriptor = "I")
-	public static final int anInt1704 = 5063219;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "q", descriptor = "I")
 	public static int anInt1708 = 0;
@@ -36,23 +32,6 @@ public final class Static53 {
 			local31[local53] = Static207.method3683(local41, (float) arg12, local11, local51, arg0, local80, arg7, arg17, local25, arg18, false, arg3, arg9, arg5, local67, arg11, local88);
 		}
 		arg3.method1945(arg6, arg7, arg5, local31, null, false);
-	}
-
-	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(B)V")
-	public static void method1294() {
-		if (!MiniMenu.aBoolean302) {
-			return;
-		}
-		@Pc(19) Component local19 = Static201.method1418(Static98.anInt2512, Static15.anInt506);
-		if (local19 != null && local19.onUseWith != null) {
-			@Pc(29) HookRequest local29 = new HookRequest();
-			local29.arguments = local19.onUseWith;
-			local29.source = local19;
-			ClientScriptRunner.run(local29);
-		}
-		MiniMenu.aBoolean302 = false;
-		Static35.anInt1092 = -1;
-		InterfaceList.redraw(local19);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "b", descriptor = "(I)V")

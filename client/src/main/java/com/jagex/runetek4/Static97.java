@@ -9,7 +9,7 @@ import java.io.StringWriter;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.frame.Minimap;
+import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCLocation;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.util.MathUtils;
@@ -18,9 +18,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static97 {
-
-    @OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "I")
-	public static int anInt2503 = -1;
 
 	@OriginalMember(owner = "runetek4.client!hi", name = "f", descriptor = "J")
 	public static long aLong89 = 0L;
@@ -38,15 +35,15 @@ public final class Static97 {
 		}
 		@Pc(30) int local30 = Math.min(arg5.width / 2, arg5.height / 2);
 		if (local30 * local30 >= len) {
-			Minimap.drawOnMinimap(arg5, Static149.aClass3_Sub2_Sub1Array7[arg0], mapY, mapX, arg1, arg2);
+			MiniMap.drawOnMinimap(arg5, Static149.aClass3_Sub2_Sub1Array7[arg0], mapY, mapX, arg1, arg2);
 			return;
 		}
 		local30 -= 10;
-		@Pc(58) int local58 = Minimap.minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
+		@Pc(58) int local58 = MiniMap.minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
 		@Pc(62) int local62 = MathUtils.cos[local58];
 		@Pc(66) int local66 = MathUtils.sin[local58];
-		@Pc(74) int local74 = local66 * 256 / (Minimap.minimapZoom + 256);
-		@Pc(82) int local82 = local62 * 256 / (Minimap.minimapZoom + 256);
+		@Pc(74) int local74 = local66 * 256 / (MiniMap.minimapZoom + 256);
+		@Pc(82) int local82 = local62 * 256 / (MiniMap.minimapZoom + 256);
 		@Pc(93) int local93 = mapY * local74 + local82 * mapX >> 16;
 		@Pc(104) int local104 = mapY * local82 - local74 * mapX >> 16;
 		@Pc(110) double angle = Math.atan2((double) local93, (double) local104);

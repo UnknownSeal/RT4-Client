@@ -1,12 +1,13 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.io.PacketBit;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
-import com.jagex.runetek4.frame.Minimap;
+import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.client.Inv;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.media.renderable.actor.Player;
@@ -51,6 +52,10 @@ public class Protocol {
     public static int anInt3251 = 0;
     @OriginalMember(owner = "runetek4.client!jk", name = "B", descriptor = "Lclient!ma;")
     public static BufferedSocket gameServerSocket;
+    @OriginalMember(owner = "runetek4.client!dg", name = "h", descriptor = "Lclient!be;")
+    public static Component aClass13_11;
+    @OriginalMember(owner = "runetek4.client!kf", name = "l", descriptor = "I")
+    public static int anInt5235 = 0;
 
     @OriginalMember(owner = "runetek4.client!dc", name = "b", descriptor = "(Z)V")
     public static void readPlayerInfo() {
@@ -467,7 +472,7 @@ public class Protocol {
                 return true;
             } else if (opcode == 164) {
                 ii = inboundBuffer.g4rme();
-                Static232.aClass212_5 = GameShell.signLink.getReverseDns(ii);
+                Player.lastLogAddress = GameShell.signLink.getReverseDns(ii);
                 opcode = -1;
                 return true;
             } else if (opcode == 225) {
@@ -501,7 +506,7 @@ public class Protocol {
                     world = inboundBuffer.g1();
                     local1409 = inboundBuffer.gjstr();
                     if (world >= 1 && world <= 8) {
-                        if (local1409.equalsIgnoreCase(Static92.aClass100_510)) {
+                        if (local1409.equalsIgnoreCase(MiniMenu.NULL)) {
                             local1409 = null;
                         }
                         Player.options[world - 1] = local1409;
@@ -534,7 +539,7 @@ public class Protocol {
                             Static5.method34();
                         }
                         InterfaceList.topLevelInterace = ii;
-                        com.jagex.runetek4.cache.def.ItemDefinition.method1753(ii);
+                        ObjType.method1753(ii);
                         Static210.method3712(false);
                         Static74.method1626(InterfaceList.topLevelInterace);
                         for (slot = 0; slot < 100; slot++) {
@@ -639,7 +644,7 @@ public class Protocol {
                                         slot = -1;
                                     }
                                     local1245 = true;
-                                    if (slot != -1 && local1894.spotanimFrame != -1 && SeqType.getAnimationSequence(Static34.method877(slot).animationId).priority < SeqType.getAnimationSequence(Static34.method877(local1894.spotanimFrame).animationId).priority) {
+                                    if (slot != -1 && local1894.spotanimFrame != -1 && SeqTypeList.getAnimationSequence(Static34.method877(slot).animationId).priority < SeqTypeList.getAnimationSequence(Static34.method877(local1894.spotanimFrame).animationId).priority) {
                                         local1245 = false;
                                     }
                                     if (local1245) {
@@ -655,7 +660,7 @@ public class Protocol {
                                         if (local1894.spotanimFrame != -1 && client.loop == local1894.spotanimLastCycle) {
                                             j = Static34.method877(local1894.spotanimFrame).animationId;
                                             if (j != -1) {
-                                                local1994 = SeqType.getAnimationSequence(j);
+                                                local1994 = SeqTypeList.getAnimationSequence(j);
                                                 if (local1994 != null && local1994.anIntArray473 != null) {
                                                     Static152.method2836(local1894.zFine, local1994, local1894.xFine, false, 0);
                                                 }
@@ -676,7 +681,7 @@ public class Protocol {
                                         slot = -1;
                                     }
                                     local1245 = true;
-                                    if (slot != -1 && local2033.spotanimFrame != -1 && SeqType.getAnimationSequence(Static34.method877(slot).animationId).priority < SeqType.getAnimationSequence(Static34.method877(local2033.spotanimFrame).animationId).priority) {
+                                    if (slot != -1 && local2033.spotanimFrame != -1 && SeqTypeList.getAnimationSequence(Static34.method877(slot).animationId).priority < SeqTypeList.getAnimationSequence(Static34.method877(local2033.spotanimFrame).animationId).priority) {
                                         local1245 = false;
                                     }
                                     if (local1245) {
@@ -695,7 +700,7 @@ public class Protocol {
                                         if (local2033.spotanimFrame != -1 && local2033.spotanimLastCycle == client.loop) {
                                             j = Static34.method877(local2033.spotanimFrame).animationId;
                                             if (j != -1) {
-                                                local1994 = SeqType.getAnimationSequence(j);
+                                                local1994 = SeqTypeList.getAnimationSequence(j);
                                                 if (local1994 != null && local1994.anIntArray473 != null) {
                                                     Static152.method2836(local2033.zFine, local1994, local2033.xFine, local2033 == PlayerList.self, 0);
                                                 }
@@ -830,7 +835,7 @@ public class Protocol {
                         opcode = -1;
                         return true;
                     } else if (opcode == 192) {
-                        Minimap.state = inboundBuffer.g1();
+                        MiniMap.state = inboundBuffer.g1();
                         opcode = -1;
                         return true;
                     } else if (opcode == 13) {
@@ -1002,7 +1007,7 @@ public class Protocol {
                                     @Pc(3449) ComponentPointer local3449 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) ii);
                                     local3456 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) world);
                                     if (local3456 != null) {
-                                        InterfaceList.closeInterface(local3449 == null || local3456.anInt5878 != local3449.anInt5878, local3456);
+                                        InterfaceList.closeInterface(local3449 == null || local3456.interfaceId != local3449.interfaceId, local3456);
                                     }
                                     if (local3449 != null) {
                                         local3449.unlink();
@@ -1069,7 +1074,7 @@ public class Protocol {
                             } else if (opcode == 234) {
                                 // UPDATE_RUNENERGY
                                 Static103.method2245();
-                                ClientScriptRunner.energy = inboundBuffer.g1();
+                                Player.energy = inboundBuffer.g1();
                                 Static209.miscTransmitAt = InterfaceList.transmitTimer;
                                 opcode = -1;
                                 return true;
@@ -1098,7 +1103,7 @@ public class Protocol {
                             } else if (opcode == 159) {
                                 // UPDATE_RUNWEIGHT
                                 Static103.method2245();
-                                Static251.weightCarried = inboundBuffer.g2s();
+                                Player.weightCarried = inboundBuffer.g2s();
                                 Static209.miscTransmitAt = InterfaceList.transmitTimer;
                                 opcode = -1;
                                 return true;
@@ -1149,7 +1154,7 @@ public class Protocol {
                                 if (setVerifyID(world)) {
                                     local3456 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) xp);
                                     if (local3456 != null) {
-                                        InterfaceList.closeInterface(local3456.anInt5878 != slot, local3456);
+                                        InterfaceList.closeInterface(local3456.interfaceId != slot, local3456);
                                     }
                                     Static44.method1148(slot, xp, ii);
                                 }
@@ -1209,7 +1214,7 @@ public class Protocol {
                                     if (local4084.anInt4052 == 65535) {
                                         local4084.anInt4052 = -1;
                                     }
-                                    Minimap.hintMapMarkers[xp] = local4084;
+                                    MiniMap.hintMapMarkers[xp] = local4084;
                                 }
                                 opcode = -1;
                                 return true;
@@ -1364,8 +1369,8 @@ public class Protocol {
                                 xp = inboundBuffer.g4rme();
                                 if (setVerifyID(ii)) {
                                     world = 0;
-                                    if (PlayerList.self.model != null) {
-                                        world = PlayerList.self.model.getHeadModelId();
+                                    if (PlayerList.self.appearance != null) {
+                                        world = PlayerList.self.appearance.getHeadModelId();
                                     }
                                     Static132.method2607(-1, 3, xp, world);
                                 }
@@ -1572,10 +1577,10 @@ public class Protocol {
                                     slot = inboundBuffer.g2le();
                                     if (setVerifyID(slot)) {
                                         @Pc(5603) Component com = InterfaceList.getComponent(xp);
-                                        @Pc(5615) com.jagex.runetek4.cache.def.ItemDefinition obj;
+                                        @Pc(5615) ObjType obj;
                                         if (com.if3) {
                                             Static209.method3707(xp, ii, world);
-                                            obj = Static71.get(world);
+                                            obj = ObjTypeList.get(world);
                                             Static261.method4505(obj.zoom2d, xp, obj.yan2d, obj.xan2d);
                                             Static145.method2745(xp, obj.zan2d, obj.yof2d, obj.xof2d);
                                         } else if (world == -1) {
@@ -1583,7 +1588,7 @@ public class Protocol {
                                             opcode = -1;
                                             return true;
                                         } else {
-                                            obj = Static71.get(world);
+                                            obj = ObjTypeList.get(world);
                                             com.modelXAngle = obj.xan2d;
                                             com.modelZoom = obj.zoom2d * 100 / ii;
                                             com.modelType = 4;

@@ -24,9 +24,9 @@ public final class Static13 {
 	public static JString method471() {
 		@Pc(32) JString local32;
 		if (MiniMenu.anInt5014 == 1 && MiniMenu.menuActionRow < 2) {
-			local32 = JString.concatenate(new JString[] { LocalizedText.USE, LocalizedText.MINISEPARATOR, Static34.aClass100_203, Static225.aClass100_961 });
+			local32 = JString.concatenate(new JString[] { LocalizedText.USE, LocalizedText.MINISEPARATOR, Static34.aClass100_203, MiniMenu.aClass100_961 });
 		} else if (MiniMenu.aBoolean302 && MiniMenu.menuActionRow < 2) {
-			local32 = JString.concatenate(new JString[] { Static102.aClass100_545, LocalizedText.MINISEPARATOR, Static78.aClass100_466, Static225.aClass100_961 });
+			local32 = JString.concatenate(new JString[] { MiniMenu.aClass100_545, LocalizedText.MINISEPARATOR, Static78.aClass100_466, MiniMenu.aClass100_961 });
 		} else if (Cheat.shiftClick && Keyboard.pressedKeys[81] && MiniMenu.menuActionRow > 2) {
 			local32 = Static269.method2228(MiniMenu.menuActionRow - 2);
 		} else {

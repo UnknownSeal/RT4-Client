@@ -2,7 +2,7 @@ package com.jagex.runetek4.game.world.entity;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.def.NpcType;
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.game.config.bastype.BasTypeList;
@@ -71,19 +71,19 @@ public final class PlayerAppearance {
 		if (local30 == null) {
 			@Pc(36) ModelUnlit[] local36 = new ModelUnlit[3];
 			@Pc(38) int local38 = 0;
-			if (!com.jagex.runetek4.cache.def.ItemDefinition.get(arg2).hasReadyHeads() || !com.jagex.runetek4.cache.def.ItemDefinition.get(arg6).hasReadyHeads() || !com.jagex.runetek4.cache.def.ItemDefinition.get(arg1).hasReadyHeads()) {
+			if (!ObjType.get(arg2).hasReadyHeads() || !ObjType.get(arg6).hasReadyHeads() || !ObjType.get(arg1).hasReadyHeads()) {
 				return null;
 			}
-			@Pc(66) ModelUnlit local66 = com.jagex.runetek4.cache.def.ItemDefinition.get(arg2).getHeadModel();
+			@Pc(66) ModelUnlit local66 = ObjType.get(arg2).getHeadModel();
 			if (local66 != null) {
 				local38++;
 				local36[0] = local66;
 			}
-			local66 = com.jagex.runetek4.cache.def.ItemDefinition.get(arg6).getHeadModel();
+			local66 = ObjType.get(arg6).getHeadModel();
 			if (local66 != null) {
 				local36[local38++] = local66;
 			}
-			local66 = com.jagex.runetek4.cache.def.ItemDefinition.get(arg1).getHeadModel();
+			local66 = ObjType.get(arg1).getHeadModel();
 			if (local66 != null) {
 				local36[local38++] = local66;
 			}
@@ -144,7 +144,7 @@ public final class PlayerAppearance {
 			arg3 = new int[12];
 			for (@Pc(24) int local24 = 0; local24 < 8; local24++) {
 				for (@Pc(31) int local31 = 0; local31 < Static53.anInt1716; local31++) {
-					@Pc(38) IDKType local38 = com.jagex.runetek4.cache.def.ItemDefinition.get(local31);
+					@Pc(38) IDKType local38 = ObjType.get(local31);
 					if (local38 != null && !local38.disable && local38.type == (arg2 ? Static153.anIntArray351[local24] : Static204.anIntArray425[local24])) {
 						arg3[Static272.anIntArray451[local24]] = Integer.MIN_VALUE | local31;
 						break;
@@ -173,7 +173,7 @@ public final class PlayerAppearance {
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(III)V")
 	public final void method1953(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		@Pc(7) int local7 = Static272.anIntArray451[arg0];
-		if (0 != this.appearance[local7] && com.jagex.runetek4.cache.def.ItemDefinition.get(arg1) != null) {
+		if (0 != this.appearance[local7] && ObjType.get(arg1) != null) {
 			this.appearance[local7] = arg1 | Integer.MIN_VALUE;
 			this.method1947();
 		}
@@ -229,10 +229,10 @@ public final class PlayerAppearance {
 			for (@Pc(160) int local160 = 0; local160 < 12; local160++) {
 				local169 = local38[local160];
 				if ((local169 & 0x40000000) == 0) {
-					if ((local169 & Integer.MIN_VALUE) != 0 && !com.jagex.runetek4.cache.def.ItemDefinition.get(local169 & 0x3FFFFFFF).hasReadyModels()) {
+					if ((local169 & Integer.MIN_VALUE) != 0 && !ObjType.get(local169 & 0x3FFFFFFF).hasReadyModels()) {
 						local158 = true;
 					}
-				} else if (!Static71.get(local169 & 0x3FFFFFFF).method1822(this.aBoolean141)) {
+				} else if (!ObjTypeList.get(local169 & 0x3FFFFFFF).method1822(this.aBoolean141)) {
 					local158 = true;
 				}
 			}
@@ -251,12 +251,12 @@ public final class PlayerAppearance {
 					local250 = local38[local169];
 					@Pc(272) ModelUnlit local272;
 					if ((local250 & 0x40000000) != 0) {
-						local272 = Static71.get(local250 & 0x3FFFFFFF).method1831(this.aBoolean141);
+						local272 = ObjTypeList.get(local250 & 0x3FFFFFFF).method1831(this.aBoolean141);
 						if (local272 != null) {
 							local239[local169] = local272;
 						}
 					} else if ((Integer.MIN_VALUE & local250) != 0) {
-						local272 = com.jagex.runetek4.cache.def.ItemDefinition.get(local250 & 0x3FFFFFFF).getModel();
+						local272 = ObjType.get(local250 & 0x3FFFFFFF).getModel();
 						if (local272 != null) {
 							local239[local169] = local272;
 						}
@@ -345,7 +345,7 @@ public final class PlayerAppearance {
 		@Pc(979) int local979;
 		for (local353 = 0; local353 < local346; local353++) {
 			if (arg0[local353] != null) {
-				@Pc(858) SeqType local858 = SeqType.getAnimationSequence(arg0[local353].anInt5396);
+				@Pc(858) SeqType local858 = SeqTypeList.getAnimationSequence(arg0[local353].anInt5396);
 				if (local858.anIntArray473 != null) {
 					local158 = true;
 					Static208.aClass144Array2[local353] = local858;
@@ -482,10 +482,10 @@ public final class PlayerAppearance {
 			for (@Pc(44) int local44 = 0; local44 < 12; local44++) {
 				i = this.appearance[local44];
 				if ((i & 0x40000000) == 0) {
-					if ((i & Integer.MIN_VALUE) != 0 && !ItemDefinition.get(i & 0x3FFFFFFF).hasReadyHeads()) {
+					if ((i & Integer.MIN_VALUE) != 0 && !ObjType.get(i & 0x3FFFFFFF).hasReadyHeads()) {
 						bool = true;
 					}
-				} else if (!Static71.get(i & 0x3FFFFFFF).headPieceReady(this.aBoolean141)) {
+				} else if (!ObjTypeList.get(i & 0x3FFFFFFF).headPieceReady(this.aBoolean141)) {
 					bool = true;
 				}
 			}
@@ -499,12 +499,12 @@ public final class PlayerAppearance {
 				j = this.appearance[equipmentSlot];
 				@Pc(134) ModelUnlit local134;
 				if ((j & 0x40000000) != 0) {
-					local134 = Static71.get(j & 0x3FFFFFFF).method1830(this.aBoolean141);
+					local134 = ObjTypeList.get(j & 0x3FFFFFFF).method1830(this.aBoolean141);
 					if (local134 != null) {
 						models[i++] = local134;
 					}
 				} else if ((Integer.MIN_VALUE & j) != 0) {
-					local134 = ItemDefinition.get(j & 0x3FFFFFFF).getHeadModel();
+					local134 = ObjType.get(j & 0x3FFFFFFF).getHeadModel();
 					if (local134 != null) {
 						models[i++] = local134;
 					}

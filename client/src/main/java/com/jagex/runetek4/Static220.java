@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.NodeCache;
@@ -37,7 +37,7 @@ public final class Static220 {
 		@Pc(30) ObjStackNode local30 = null;
 		@Pc(35) ObjStackNode local35;
 		for (local35 = (ObjStackNode) local9.head(); local35 != null; local35 = (ObjStackNode) local9.next()) {
-			@Pc(44) ItemDefinition local44 = Static71.get(local35.aClass8_Sub7_1.anInt5555);
+			@Pc(44) ObjType local44 = ObjTypeList.get(local35.aClass8_Sub7_1.anInt5555);
 			@Pc(47) int local47 = local44.cost;
 			if (local44.stackable == 1) {
 				local47 *= local35.aClass8_Sub7_1.anInt5550 + 1;

@@ -91,9 +91,9 @@ public class GlSprite extends Sprite {
 		local11.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_RGB, GL2.GL_REPLACE);
 		local11.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_SRC0_RGB, GL2.GL_PREVIOUS);
 		@Pc(47) float local47 = (float) (arg0 - Static46.anInt1439) / (float) arg2.anInt1870;
-		@Pc(56) float local56 = (float) (arg1 - Static46.anInt1438) / (float) arg2.anInt1874;
+		@Pc(56) float local56 = (float) (arg1 - GlRaster.clipTop) / (float) arg2.anInt1874;
 		@Pc(68) float local68 = (float) (arg0 + this.width - Static46.anInt1439) / (float) arg2.anInt1870;
-		@Pc(80) float local80 = (float) (arg1 + this.height - Static46.anInt1438) / (float) arg2.anInt1874;
+		@Pc(80) float local80 = (float) (arg1 + this.height - GlRaster.clipTop) / (float) arg2.anInt1874;
 		@Pc(85) int local85 = arg0 + this.xOffset;
 		@Pc(90) int local90 = arg1 + this.yOffset;
 		local11.glBegin(GL2.GL_TRIANGLE_FAN);
@@ -260,7 +260,7 @@ public class GlSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!cf", name = "a", descriptor = "(IIII)V")
 	@Override
-	public final void method1419(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
+	public final void renderResized(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
 		if (arg2 <= 0 || arg3 <= 0) {
 			return;
 		}
@@ -478,7 +478,7 @@ public class GlSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!cf", name = "a", descriptor = "(III)V")
 	@Override
-	public final void method1417(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public final void renderAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		GlRenderer.method4155();
 		@Pc(5) int local5 = arg0 + this.xOffset;
 		@Pc(10) int local10 = arg1 + this.yOffset;

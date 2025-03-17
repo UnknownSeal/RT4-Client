@@ -1,0 +1,211 @@
+package com.jagex.runetek4;
+
+import com.jogamp.opengl.GL2;
+import org.openrs2.deob.annotation.OriginalArg;
+import org.openrs2.deob.annotation.OriginalMember;
+import org.openrs2.deob.annotation.Pc;
+
+public class GlRaster {
+    @OriginalMember(owner = "runetek4.client!dj", name = "e", descriptor = "I")
+    public static int clipBottom = 0;
+    @OriginalMember(owner = "runetek4.client!dj", name = "b", descriptor = "I")
+    public static int clipTop = 0;
+    @OriginalMember(owner = "runetek4.client!dj", name = "d", descriptor = "I")
+    static int anInt1440 = 0;
+
+    @OriginalMember(owner = "runetek4.client!dj", name = "d", descriptor = "(IIII)V")
+    public static void setClip(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
+        if (arg0 < 0) {
+            arg0 = 0;
+        }
+        if (arg1 < 0) {
+            arg1 = 0;
+        }
+        if (arg2 > GlRenderer.canvasWidth) {
+            arg2 = GlRenderer.canvasWidth;
+        }
+        if (arg3 > GlRenderer.canvasHeight) {
+            arg3 = GlRenderer.canvasHeight;
+        }
+        Static46.anInt1439 = arg0;
+        clipTop = arg1;
+        anInt1440 = arg2;
+        clipBottom = arg3;
+        @Pc(27) GL2 local27 = GlRenderer.gl;
+        local27.glEnable(GL2.GL_SCISSOR_TEST);
+        if (Static46.anInt1439 <= anInt1440 && clipTop <= clipBottom) {
+            local27.glScissor(Static46.anInt1439, GlRenderer.canvasHeight - clipBottom, anInt1440 - Static46.anInt1439, clipBottom - clipTop);
+        } else {
+            local27.glScissor(0, 0, 0, 0);
+        }
+        Static46.method1173();
+    }
+
+    @OriginalMember(owner = "runetek4.client!dj", name = "c", descriptor = "(IIIII)V")
+    public static void fillRect(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+        GlRenderer.method4162();
+        @Pc(3) float local3 = (float) arg0;
+        @Pc(8) float local8 = local3 + (float) arg2;
+        @Pc(13) float local13 = (float) (GlRenderer.canvasHeight - arg1);
+        @Pc(18) float local18 = local13 - (float) arg3;
+        @Pc(20) GL2 local20 = GlRenderer.gl;
+        local20.glBegin(GL2.GL_TRIANGLE_FAN);
+        local20.glColor3ub((byte) (arg4 >> 16), (byte) (arg4 >> 8), (byte) arg4);
+        local20.glVertex2f(local3, local13);
+        local20.glVertex2f(local3, local18);
+        local20.glVertex2f(local8, local18);
+        local20.glVertex2f(local8, local13);
+        local20.glEnd();
+    }
+
+    @OriginalMember(owner = "runetek4.client!dj", name = "a", descriptor = "(IIIII)V")
+    public static void drawRect(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+        GlRenderer.method4162();
+        @Pc(5) float local5 = (float) arg0 + 0.3F;
+        @Pc(12) float local12 = local5 + (float) (arg2 - 1);
+        @Pc(20) float local20 = (float) GlRenderer.canvasHeight - (float) arg1 - 0.3F;
+        @Pc(27) float local27 = local20 - (float) (arg3 - 1);
+        @Pc(29) GL2 local29 = GlRenderer.gl;
+        local29.glBegin(GL2.GL_LINE_LOOP);
+        local29.glColor3ub((byte) (arg4 >> 16), (byte) (arg4 >> 8), (byte) arg4);
+        local29.glVertex2f(local5, local20);
+        local29.glVertex2f(local5, local27);
+        local29.glVertex2f(local12, local27);
+        local29.glVertex2f(local12, local20);
+        local29.glEnd();
+    }
+
+    @OriginalMember(owner = "runetek4.client!dj", name = "c", descriptor = "(IIIIII)V")
+    public static void fillRectAlpha(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int width, @OriginalArg(3) int height, @OriginalArg(4) int color, @OriginalArg(5) int alpha) {
+        GlRenderer.method4162();
+        @Pc(3) float local3 = (float) x;
+        @Pc(8) float local8 = local3 + (float) width;
+        @Pc(13) float local13 = (float) (GlRenderer.canvasHeight - y);
+        @Pc(18) float local18 = local13 - (float) height;
+        @Pc(20) GL2 local20 = GlRenderer.gl;
+        local20.glBegin(GL2.GL_TRIANGLE_FAN);
+        local20.glColor4ub((byte) (color >> 16), (byte) (color >> 8), (byte) color, alpha > 255 ? -1 : (byte) alpha);
+        local20.glVertex2f(local3, local13);
+        local20.glVertex2f(local3, local18);
+        local20.glVertex2f(local8, local18);
+        local20.glVertex2f(local8, local13);
+        local20.glEnd();
+    }
+
+    @OriginalMember(owner = "runetek4.client!dj", name = "a", descriptor = "(IIIIII)V")
+    public static void drawRectAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
+        GlRenderer.method4162();
+        @Pc(5) float local5 = (float) arg0 + 0.3F;
+        @Pc(12) float local12 = local5 + (float) (arg2 - 1);
+        @Pc(20) float local20 = (float) GlRenderer.canvasHeight - (float) arg1 - 0.3F;
+        @Pc(27) float local27 = local20 - (float) (arg3 - 1);
+        @Pc(29) GL2 local29 = GlRenderer.gl;
+        local29.glBegin(GL2.GL_LINE_LOOP);
+        local29.glColor4ub((byte) (arg4 >> 16), (byte) (arg4 >> 8), (byte) arg4, arg5 > 255 ? -1 : (byte) arg5);
+        local29.glVertex2f(local5, local20);
+        local29.glVertex2f(local5, local27);
+        local29.glVertex2f(local12, local27);
+        local29.glVertex2f(local12, local20);
+        local29.glEnd();
+    }
+
+    @OriginalMember(owner = "runetek4.client!dj", name = "c", descriptor = "(IIII)V")
+    public static void method1183(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
+        if (Static46.anInt1439 < arg0) {
+            Static46.anInt1439 = arg0;
+        }
+        if (clipTop < arg1) {
+            clipTop = arg1;
+        }
+        if (anInt1440 > arg2) {
+            anInt1440 = arg2;
+        }
+        if (clipBottom > arg3) {
+            clipBottom = arg3;
+        }
+        @Pc(21) GL2 local21 = GlRenderer.gl;
+        local21.glEnable(GL2.GL_SCISSOR_TEST);
+        if (Static46.anInt1439 <= anInt1440 && clipTop <= clipBottom) {
+            local21.glScissor(Static46.anInt1439, GlRenderer.canvasHeight - clipBottom, anInt1440 - Static46.anInt1439, clipBottom - clipTop);
+        } else {
+            local21.glScissor(0, 0, 0, 0);
+        }
+        Static46.method1173();
+    }
+
+    @OriginalMember(owner = "runetek4.client!dj", name = "c", descriptor = "()V")
+    public static void method1177() {
+        Static46.anInt1439 = 0;
+        clipTop = 0;
+        anInt1440 = GlRenderer.canvasWidth;
+        clipBottom = GlRenderer.canvasHeight;
+        @Pc(9) GL2 local9 = GlRenderer.gl;
+        local9.glDisable(GL2.GL_SCISSOR_TEST);
+        Static46.method1173();
+    }
+
+    @OriginalMember(owner = "runetek4.client!dj", name = "b", descriptor = "(IIIII)V")
+    public static void drawDiagonalLine(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+        GlRenderer.method4162();
+        @Pc(5) float local5 = (float) arg0 + 0.3F;
+        @Pc(10) float local10 = (float) arg2 + 0.3F;
+        @Pc(18) float local18 = (float) GlRenderer.canvasHeight - (float) arg1 - 0.3F;
+        @Pc(26) float local26 = (float) GlRenderer.canvasHeight - (float) arg3 - 0.3F;
+        @Pc(28) GL2 local28 = GlRenderer.gl;
+        local28.glBegin(GL2.GL_LINE_LOOP);
+        local28.glColor3ub((byte) (arg4 >> 16), (byte) (arg4 >> 8), (byte) arg4);
+        local28.glVertex2f(local5, local18);
+        local28.glVertex2f(local10, local26);
+        local28.glEnd();
+    }
+
+    @OriginalMember(owner = "runetek4.client!dj", name = "b", descriptor = "(IIIIII)V")
+    public static void method1181(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
+        @Pc(3) int local3 = arg2 - arg0;
+        @Pc(7) int local7 = arg3 - arg1;
+        @Pc(14) int local14 = local3 >= 0 ? local3 : -local3;
+        @Pc(21) int local21 = local7 >= 0 ? local7 : -local7;
+        @Pc(23) int local23 = local14;
+        if (local14 < local21) {
+            local23 = local21;
+        }
+        if (local23 == 0) {
+            return;
+        }
+        @Pc(37) int local37 = (local3 << 16) / local23;
+        @Pc(43) int local43 = (local7 << 16) / local23;
+        if (local43 <= local37) {
+            local37 = -local37;
+        } else {
+            local43 = -local43;
+        }
+        @Pc(59) int local59 = arg5 * local43 >> 17;
+        @Pc(67) int local67 = arg5 * local43 + 1 >> 17;
+        @Pc(73) int local73 = arg5 * local37 >> 17;
+        @Pc(81) int local81 = arg5 * local37 + 1 >> 17;
+        @Pc(85) int local85 = arg0 + local59;
+        @Pc(89) int local89 = arg0 - local67;
+        @Pc(95) int local95 = arg0 + local3 - local67;
+        @Pc(101) int local101 = arg0 + local3 + local59;
+        @Pc(105) int local105 = arg1 + local73;
+        @Pc(109) int local109 = arg1 - local81;
+        @Pc(115) int local115 = arg1 + local7 - local81;
+        @Pc(121) int local121 = arg1 + local7 + local73;
+        GlRenderer.method4162();
+        @Pc(124) GL2 local124 = GlRenderer.gl;
+        local124.glColor3ub((byte) (arg4 >> 16), (byte) (arg4 >> 8), (byte) arg4);
+        local124.glBegin(GL2.GL_TRIANGLE_FAN);
+        if (local43 <= local37) {
+            local124.glVertex2f((float) local101, (float) (GlRenderer.canvasHeight - local121));
+            local124.glVertex2f((float) local95, (float) (GlRenderer.canvasHeight - local115));
+            local124.glVertex2f((float) local89, (float) (GlRenderer.canvasHeight - local109));
+            local124.glVertex2f((float) local85, (float) (GlRenderer.canvasHeight - local105));
+        } else {
+            local124.glVertex2f((float) local85, (float) (GlRenderer.canvasHeight - local105));
+            local124.glVertex2f((float) local89, (float) (GlRenderer.canvasHeight - local109));
+            local124.glVertex2f((float) local95, (float) (GlRenderer.canvasHeight - local115));
+            local124.glVertex2f((float) local101, (float) (GlRenderer.canvasHeight - local121));
+        }
+        local124.glEnd();
+    }
+}

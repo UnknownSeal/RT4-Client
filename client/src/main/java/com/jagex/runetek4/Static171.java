@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import java.util.Random;
 
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -31,7 +32,7 @@ public final class Static171 {
 	public static int method3219(@OriginalArg(1) int arg0, @OriginalArg(2) Random arg1) {
 		if (arg0 <= 0) {
 			throw new IllegalArgumentException();
-		} else if (Static209.method3702(arg0)) {
+		} else if (IntUtils.isPowerOfTwo(arg0)) {
 			return (int) (((long) arg1.nextInt() & 0xFFFFFFFFL) * (long) arg0 >> 32);
 		} else {
 			@Pc(38) int local38 = Integer.MIN_VALUE - (int) (4294967296L % (long) arg0);

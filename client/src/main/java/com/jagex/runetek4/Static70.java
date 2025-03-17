@@ -14,9 +14,6 @@ public final class Static70 {
 	@OriginalMember(owner = "runetek4.client!fi", name = "m", descriptor = "[[[B")
 	public static byte[][][] aByteArrayArrayArray7;
 
-	@OriginalMember(owner = "runetek4.client!fi", name = "k", descriptor = "I")
-	public static int crossMode = 0;
-
 	@OriginalMember(owner = "runetek4.client!fi", name = "l", descriptor = "I")
 	public static int anInt2014 = 0;
 
@@ -29,21 +26,6 @@ public final class Static70 {
 			return (Timer) Class.forName("com.jagex.runetek4.core.utils.NanoTimer").getDeclaredConstructor().newInstance();
 		} catch (@Pc(15) Throwable local15) {
 			return new MillisTimer();
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!fi", name = "a", descriptor = "(BI)Lclient!na;")
-	public static JString method1548(@OriginalArg(1) int arg0) {
-		@Pc(9) JString local9 = JString.parseInt(arg0);
-		for (@Pc(21) int local21 = local9.length() - 3; local21 > 0; local21 -= 3) {
-			local9 = JString.concatenate(new JString[] { local9.substring(local21, 0), Static159.aClass100_760, local9.substring(local21) });
-		}
-		if (local9.length() > 9) {
-			return JString.concatenate(new JString[] { Static250.aClass100_1043, local9.substring(local9.length() - 8, 0), LocalizedText.MILLION_SHORT, Static123.aClass100_593, local9, Static116.aClass100_583 });
-		} else if (local9.length() > 6) {
-			return JString.concatenate(new JString[] { Static119.aClass100_589, local9.substring(local9.length() - 4, 0), LocalizedText.THOUSAND_SHORT, Static123.aClass100_593, local9, Static116.aClass100_583 });
-		} else {
-			return JString.concatenate(new JString[] { Static278.aClass100_1101, local9, Static230.aClass100_978 });
 		}
 	}
 

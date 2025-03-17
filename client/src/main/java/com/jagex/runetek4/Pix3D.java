@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ColorUtils;
-import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,9 +11,6 @@ public final class Pix3D {
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "I")
 	public static int anInt2469;
 
-	@OriginalMember(owner = "runetek4.client!hf", name = "k", descriptor = "I")
-	private static int anInt2470;
-
 	@OriginalMember(owner = "runetek4.client!hf", name = "m", descriptor = "I")
 	public static int anInt2471;
 
@@ -23,12 +19,6 @@ public final class Pix3D {
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "[I")
 	public static final int[] anIntArray220 = new int[65536];
-
-	@OriginalMember(owner = "runetek4.client!hf", name = "c", descriptor = "[I")
-	private static int[] anIntArray221 = new int[1024];
-
-	@OriginalMember(owner = "runetek4.client!hf", name = "d", descriptor = "Z")
-	public static boolean aBoolean134 = false;
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "i", descriptor = "Z")
 	private static boolean aBoolean135 = false;
@@ -47,11 +37,6 @@ public final class Pix3D {
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "q", descriptor = "I")
 	public static int trans = 0;
-
-	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "()V")
-	public static void method1908() {
-		method1925(Rasterizer.viewportLeft, Rasterizer.viewportTop, Rasterizer.viewportRight, Rasterizer.viewportBottom);
-	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(IIIIIIIIIIIIIIIIIII)V")
 	public static void textureTriangle(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12, @OriginalArg(13) int arg13, @OriginalArg(14) int arg14, @OriginalArg(15) int arg15, @OriginalArg(16) int arg16, @OriginalArg(17) int arg17, @OriginalArg(18) int arg18) {
@@ -105,12 +90,12 @@ public final class Pix3D {
 		@Pc(257) int local257 = local147 * local167 - local155 * local159 << 5;
 		@Pc(336) int local336;
 		if (arg0 <= arg1 && arg0 <= arg2) {
-			if (arg0 < anInt2470) {
-				if (arg1 > anInt2470) {
-					arg1 = anInt2470;
+			if (arg0 < Rasterizer.anInt2470) {
+				if (arg1 > Rasterizer.anInt2470) {
+					arg1 = Rasterizer.anInt2470;
 				}
-				if (arg2 > anInt2470) {
-					arg2 = anInt2470;
+				if (arg2 > Rasterizer.anInt2470) {
+					arg2 = Rasterizer.anInt2470;
 				}
 				arg6 = (arg6 << 9) + local131 - local131 * arg3;
 				if (arg1 < arg2) {
@@ -133,7 +118,7 @@ public final class Pix3D {
 					if (arg0 != arg1 && local95 < local65 || arg0 == arg1 && local95 > local80) {
 						arg2 -= arg1;
 						arg1 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg1--;
 							if (arg1 < 0) {
@@ -164,7 +149,7 @@ public final class Pix3D {
 					} else {
 						arg2 -= arg1;
 						arg1 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg1--;
 							if (arg1 < 0) {
@@ -213,7 +198,7 @@ public final class Pix3D {
 					if ((arg0 == arg2 || local95 >= local65) && (arg0 != arg2 || local80 <= local65)) {
 						arg1 -= arg2;
 						arg2 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -244,7 +229,7 @@ public final class Pix3D {
 					} else {
 						arg1 -= arg2;
 						arg2 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -276,12 +261,12 @@ public final class Pix3D {
 				}
 			}
 		} else if (arg1 <= arg2) {
-			if (arg1 < anInt2470) {
-				if (arg2 > anInt2470) {
-					arg2 = anInt2470;
+			if (arg1 < Rasterizer.anInt2470) {
+				if (arg2 > Rasterizer.anInt2470) {
+					arg2 = Rasterizer.anInt2470;
 				}
-				if (arg0 > anInt2470) {
-					arg0 = anInt2470;
+				if (arg0 > Rasterizer.anInt2470) {
+					arg0 = Rasterizer.anInt2470;
 				}
 				arg7 = (arg7 << 9) + local131 - local131 * arg4;
 				if (arg2 < arg0) {
@@ -304,7 +289,7 @@ public final class Pix3D {
 					if (arg1 != arg2 && local65 < local80 || arg1 == arg2 && local65 > local95) {
 						arg0 -= arg2;
 						arg2 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -335,7 +320,7 @@ public final class Pix3D {
 					} else {
 						arg0 -= arg2;
 						arg2 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -384,7 +369,7 @@ public final class Pix3D {
 					if (local65 < local80) {
 						arg2 -= arg0;
 						arg0 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg0--;
 							if (arg0 < 0) {
@@ -415,7 +400,7 @@ public final class Pix3D {
 					} else {
 						arg2 -= arg0;
 						arg0 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg0--;
 							if (arg0 < 0) {
@@ -446,12 +431,12 @@ public final class Pix3D {
 					}
 				}
 			}
-		} else if (arg2 < anInt2470) {
-			if (arg0 > anInt2470) {
-				arg0 = anInt2470;
+		} else if (arg2 < Rasterizer.anInt2470) {
+			if (arg0 > Rasterizer.anInt2470) {
+				arg0 = Rasterizer.anInt2470;
 			}
-			if (arg1 > anInt2470) {
-				arg1 = anInt2470;
+			if (arg1 > Rasterizer.anInt2470) {
+				arg1 = Rasterizer.anInt2470;
 			}
 			arg8 = (arg8 << 9) + local131 - local131 * arg5;
 			if (arg0 < arg1) {
@@ -474,7 +459,7 @@ public final class Pix3D {
 				if (local80 < local95) {
 					arg1 -= arg0;
 					arg0 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg0--;
 						if (arg0 < 0) {
@@ -505,7 +490,7 @@ public final class Pix3D {
 				} else {
 					arg1 -= arg0;
 					arg0 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg0--;
 						if (arg0 < 0) {
@@ -554,7 +539,7 @@ public final class Pix3D {
 				if (local80 < local95) {
 					arg0 -= arg1;
 					arg1 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg1--;
 						if (arg1 < 0) {
@@ -585,7 +570,7 @@ public final class Pix3D {
 				} else {
 					arg0 -= arg1;
 					arg1 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg1--;
 						if (arg1 < 0) {
@@ -630,7 +615,7 @@ public final class Pix3D {
 		@Pc(15) int local15;
 		if (local5 == null || trans > 10) {
 			local15 = Rasterizer.textureProvider.method3234(arg18);
-			aBoolean134 = true;
+			Rasterizer.textureHasTransparency = true;
 			method1928(arg0, arg1, arg2, arg3, arg4, arg5, ColorUtils.multiplyLightness(local15, arg6), ColorUtils.multiplyLightness(local15, arg7), ColorUtils.multiplyLightness(local15, arg8));
 			return;
 		}
@@ -677,12 +662,12 @@ public final class Pix3D {
 		@Pc(262) int local262 = local152 * local172 - local160 * local164 << 5;
 		@Pc(341) int local341;
 		if (arg0 <= arg1 && arg0 <= arg2) {
-			if (arg0 < anInt2470) {
-				if (arg1 > anInt2470) {
-					arg1 = anInt2470;
+			if (arg0 < Rasterizer.anInt2470) {
+				if (arg1 > Rasterizer.anInt2470) {
+					arg1 = Rasterizer.anInt2470;
 				}
-				if (arg2 > anInt2470) {
-					arg2 = anInt2470;
+				if (arg2 > Rasterizer.anInt2470) {
+					arg2 = Rasterizer.anInt2470;
 				}
 				arg6 = (arg6 << 9) + local136 - local136 * arg3;
 				if (arg1 < arg2) {
@@ -705,7 +690,7 @@ public final class Pix3D {
 					if (arg0 != arg1 && local100 < local70 || arg0 == arg1 && local100 > local85) {
 						arg2 -= arg1;
 						arg1 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg1--;
 							if (arg1 < 0) {
@@ -736,7 +721,7 @@ public final class Pix3D {
 					} else {
 						arg2 -= arg1;
 						arg1 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg1--;
 							if (arg1 < 0) {
@@ -785,7 +770,7 @@ public final class Pix3D {
 					if ((arg0 == arg2 || local100 >= local70) && (arg0 != arg2 || local85 <= local70)) {
 						arg1 -= arg2;
 						arg2 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -816,7 +801,7 @@ public final class Pix3D {
 					} else {
 						arg1 -= arg2;
 						arg2 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -848,12 +833,12 @@ public final class Pix3D {
 				}
 			}
 		} else if (arg1 <= arg2) {
-			if (arg1 < anInt2470) {
-				if (arg2 > anInt2470) {
-					arg2 = anInt2470;
+			if (arg1 < Rasterizer.anInt2470) {
+				if (arg2 > Rasterizer.anInt2470) {
+					arg2 = Rasterizer.anInt2470;
 				}
-				if (arg0 > anInt2470) {
-					arg0 = anInt2470;
+				if (arg0 > Rasterizer.anInt2470) {
+					arg0 = Rasterizer.anInt2470;
 				}
 				arg7 = (arg7 << 9) + local136 - local136 * arg4;
 				if (arg2 < arg0) {
@@ -876,7 +861,7 @@ public final class Pix3D {
 					if (arg1 != arg2 && local70 < local85 || arg1 == arg2 && local70 > local100) {
 						arg0 -= arg2;
 						arg2 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -907,7 +892,7 @@ public final class Pix3D {
 					} else {
 						arg0 -= arg2;
 						arg2 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -956,7 +941,7 @@ public final class Pix3D {
 					if (local70 < local85) {
 						arg2 -= arg0;
 						arg0 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg0--;
 							if (arg0 < 0) {
@@ -987,7 +972,7 @@ public final class Pix3D {
 					} else {
 						arg2 -= arg0;
 						arg0 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg0--;
 							if (arg0 < 0) {
@@ -1018,12 +1003,12 @@ public final class Pix3D {
 					}
 				}
 			}
-		} else if (arg2 < anInt2470) {
-			if (arg0 > anInt2470) {
-				arg0 = anInt2470;
+		} else if (arg2 < Rasterizer.anInt2470) {
+			if (arg0 > Rasterizer.anInt2470) {
+				arg0 = Rasterizer.anInt2470;
 			}
-			if (arg1 > anInt2470) {
-				arg1 = anInt2470;
+			if (arg1 > Rasterizer.anInt2470) {
+				arg1 = Rasterizer.anInt2470;
 			}
 			arg8 = (arg8 << 9) + local136 - local136 * arg5;
 			if (arg0 < arg1) {
@@ -1046,7 +1031,7 @@ public final class Pix3D {
 				if (local85 < local100) {
 					arg1 -= arg0;
 					arg0 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg0--;
 						if (arg0 < 0) {
@@ -1077,7 +1062,7 @@ public final class Pix3D {
 				} else {
 					arg1 -= arg0;
 					arg0 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg0--;
 						if (arg0 < 0) {
@@ -1126,7 +1111,7 @@ public final class Pix3D {
 				if (local85 < local100) {
 					arg0 -= arg1;
 					arg1 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg1--;
 						if (arg1 < 0) {
@@ -1157,7 +1142,7 @@ public final class Pix3D {
 				} else {
 					arg0 -= arg1;
 					arg1 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg1--;
 						if (arg1 < 0) {
@@ -1192,17 +1177,7 @@ public final class Pix3D {
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "()I")
 	public static int method1913() {
-		return anIntArray221[0] % Rasterizer.destinationWidth;
-	}
-
-	@OriginalMember(owner = "runetek4.client!hf", name = "c", descriptor = "()V")
-	public static void method1915() {
-		anInt2471 = anInt2472 / 2;
-		anInt2469 = anInt2470 / 2;
-		Static240.anInt5334 = -anInt2471;
-		Static247.anInt5405 = anInt2472 - anInt2471;
-		Static1.anInt4 = -anInt2469;
-		Static148.anInt3535 = anInt2470 - anInt2469;
+		return Rasterizer.anIntArray221[0] % Rasterizer.destinationWidth;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "([I[IIIIIIIIIIIIII)V")
@@ -1922,12 +1897,12 @@ public final class Pix3D {
 			local31 = (arg3 - arg5 << 16) / (arg0 - arg2);
 		}
 		if (arg0 <= arg1 && arg0 <= arg2) {
-			if (arg0 < anInt2470) {
-				if (arg1 > anInt2470) {
-					arg1 = anInt2470;
+			if (arg0 < Rasterizer.anInt2470) {
+				if (arg1 > Rasterizer.anInt2470) {
+					arg1 = Rasterizer.anInt2470;
 				}
-				if (arg2 > anInt2470) {
-					arg2 = anInt2470;
+				if (arg2 > Rasterizer.anInt2470) {
+					arg2 = Rasterizer.anInt2470;
 				}
 				if (arg1 < arg2) {
 					arg5 = arg3 <<= 0x10;
@@ -1944,7 +1919,7 @@ public final class Pix3D {
 					if (arg0 != arg1 && local31 < local1 || arg0 == arg1 && local31 > local16) {
 						arg2 -= arg1;
 						arg1 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg1--;
 							if (arg1 < 0) {
@@ -1967,7 +1942,7 @@ public final class Pix3D {
 					} else {
 						arg2 -= arg1;
 						arg1 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg1--;
 							if (arg1 < 0) {
@@ -2003,7 +1978,7 @@ public final class Pix3D {
 					if (arg0 != arg2 && local31 < local1 || arg0 == arg2 && local16 > local1) {
 						arg1 -= arg2;
 						arg2 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -2026,7 +2001,7 @@ public final class Pix3D {
 					} else {
 						arg1 -= arg2;
 						arg2 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -2050,12 +2025,12 @@ public final class Pix3D {
 				}
 			}
 		} else if (arg1 <= arg2) {
-			if (arg1 < anInt2470) {
-				if (arg2 > anInt2470) {
-					arg2 = anInt2470;
+			if (arg1 < Rasterizer.anInt2470) {
+				if (arg2 > Rasterizer.anInt2470) {
+					arg2 = Rasterizer.anInt2470;
 				}
-				if (arg0 > anInt2470) {
-					arg0 = anInt2470;
+				if (arg0 > Rasterizer.anInt2470) {
+					arg0 = Rasterizer.anInt2470;
 				}
 				if (arg2 < arg0) {
 					arg3 = arg4 <<= 0x10;
@@ -2072,7 +2047,7 @@ public final class Pix3D {
 					if (arg1 != arg2 && local1 < local16 || arg1 == arg2 && local1 > local31) {
 						arg0 -= arg2;
 						arg2 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -2095,7 +2070,7 @@ public final class Pix3D {
 					} else {
 						arg0 -= arg2;
 						arg2 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -2131,7 +2106,7 @@ public final class Pix3D {
 					if (local1 < local16) {
 						arg2 -= arg0;
 						arg0 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg0--;
 							if (arg0 < 0) {
@@ -2154,7 +2129,7 @@ public final class Pix3D {
 					} else {
 						arg2 -= arg0;
 						arg0 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg0--;
 							if (arg0 < 0) {
@@ -2177,12 +2152,12 @@ public final class Pix3D {
 					}
 				}
 			}
-		} else if (arg2 < anInt2470) {
-			if (arg0 > anInt2470) {
-				arg0 = anInt2470;
+		} else if (arg2 < Rasterizer.anInt2470) {
+			if (arg0 > Rasterizer.anInt2470) {
+				arg0 = Rasterizer.anInt2470;
 			}
-			if (arg1 > anInt2470) {
-				arg1 = anInt2470;
+			if (arg1 > Rasterizer.anInt2470) {
+				arg1 = Rasterizer.anInt2470;
 			}
 			if (arg0 < arg1) {
 				arg4 = arg5 <<= 0x10;
@@ -2199,7 +2174,7 @@ public final class Pix3D {
 				if (local16 < local31) {
 					arg1 -= arg0;
 					arg0 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg0--;
 						if (arg0 < 0) {
@@ -2222,7 +2197,7 @@ public final class Pix3D {
 				} else {
 					arg1 -= arg0;
 					arg0 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg0--;
 						if (arg0 < 0) {
@@ -2258,7 +2233,7 @@ public final class Pix3D {
 				if (local16 < local31) {
 					arg0 -= arg1;
 					arg1 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg1--;
 						if (arg1 < 0) {
@@ -2281,7 +2256,7 @@ public final class Pix3D {
 				} else {
 					arg0 -= arg1;
 					arg1 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg1--;
 						if (arg1 < 0) {
@@ -2304,19 +2279,6 @@ public final class Pix3D {
 				}
 			}
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "(II)V")
-	public static void method1919(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		@Pc(3) int local3 = anIntArray221[0];
-		@Pc(7) int local7 = local3 / Rasterizer.destinationWidth;
-		@Pc(13) int local13 = local3 - local7 * Rasterizer.destinationWidth;
-		anInt2471 = arg0 - local13;
-		anInt2469 = arg1 - local7;
-		Static240.anInt5334 = -anInt2471;
-		Static247.anInt5405 = anInt2472 - anInt2471;
-		Static1.anInt4 = -anInt2469;
-		Static148.anInt3535 = anInt2470 - anInt2469;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "([IIIIIIII)V")
@@ -2963,21 +2925,6 @@ public final class Pix3D {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(IIII)V")
-	private static void method1925(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		anInt2472 = arg2 - arg0;
-		anInt2470 = arg3 - arg1;
-		method1915();
-		if (anIntArray221.length < anInt2470) {
-			anIntArray221 = new int[IntUtils.bitceil(anInt2470)];
-		}
-		@Pc(23) int local23 = arg1 * Rasterizer.destinationWidth + arg0;
-		for (@Pc(25) int local25 = 0; local25 < anInt2470; local25++) {
-			anIntArray221[local25] = local23;
-			local23 += Rasterizer.destinationWidth;
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "(F)V")
 	private static void method1926(@OriginalArg(0) float arg0) {
 		aFloat11 = arg0;
@@ -2986,7 +2933,7 @@ public final class Pix3D {
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "d", descriptor = "()I")
 	public static int method1927() {
-		return anIntArray221[0] / Rasterizer.destinationWidth;
+		return Rasterizer.anIntArray221[0] / Rasterizer.destinationWidth;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(IIIIIIIII)V")
@@ -3022,12 +2969,12 @@ public final class Pix3D {
 		@Pc(86) int local86 = (local19 * local15 - local23 * local7 << 8) / local71;
 		@Pc(98) int local98 = (local23 * local3 - local19 * local11 << 8) / local71;
 		if (arg0 <= arg1 && arg0 <= arg2) {
-			if (arg0 < anInt2470) {
-				if (arg1 > anInt2470) {
-					arg1 = anInt2470;
+			if (arg0 < Rasterizer.anInt2470) {
+				if (arg1 > Rasterizer.anInt2470) {
+					arg1 = Rasterizer.anInt2470;
 				}
-				if (arg2 > anInt2470) {
-					arg2 = anInt2470;
+				if (arg2 > Rasterizer.anInt2470) {
+					arg2 = Rasterizer.anInt2470;
 				}
 				arg6 = (arg6 << 8) + local86 - local86 * arg3;
 				if (arg1 < arg2) {
@@ -3046,7 +2993,7 @@ public final class Pix3D {
 					if ((arg0 == arg1 || local60 >= local48) && (arg0 != arg1 || local60 <= local36)) {
 						arg2 -= arg1;
 						arg1 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg1--;
 							if (arg1 < 0) {
@@ -3071,7 +3018,7 @@ public final class Pix3D {
 					} else {
 						arg2 -= arg1;
 						arg1 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg1--;
 							if (arg1 < 0) {
@@ -3110,7 +3057,7 @@ public final class Pix3D {
 					if (arg0 != arg2 && local60 < local48 || arg0 == arg2 && local36 > local48) {
 						arg1 -= arg2;
 						arg2 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -3135,7 +3082,7 @@ public final class Pix3D {
 					} else {
 						arg1 -= arg2;
 						arg2 -= arg0;
-						arg0 = anIntArray221[arg0];
+						arg0 = Rasterizer.anIntArray221[arg0];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -3161,12 +3108,12 @@ public final class Pix3D {
 				}
 			}
 		} else if (arg1 <= arg2) {
-			if (arg1 < anInt2470) {
-				if (arg2 > anInt2470) {
-					arg2 = anInt2470;
+			if (arg1 < Rasterizer.anInt2470) {
+				if (arg2 > Rasterizer.anInt2470) {
+					arg2 = Rasterizer.anInt2470;
 				}
-				if (arg0 > anInt2470) {
-					arg0 = anInt2470;
+				if (arg0 > Rasterizer.anInt2470) {
+					arg0 = Rasterizer.anInt2470;
 				}
 				arg7 = (arg7 << 8) + local86 - local86 * arg4;
 				if (arg2 < arg0) {
@@ -3185,7 +3132,7 @@ public final class Pix3D {
 					if ((arg1 == arg2 || local48 >= local36) && (arg1 != arg2 || local48 <= local60)) {
 						arg0 -= arg2;
 						arg2 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -3210,7 +3157,7 @@ public final class Pix3D {
 					} else {
 						arg0 -= arg2;
 						arg2 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg2--;
 							if (arg2 < 0) {
@@ -3249,7 +3196,7 @@ public final class Pix3D {
 					if (local48 < local36) {
 						arg2 -= arg0;
 						arg0 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg0--;
 							if (arg0 < 0) {
@@ -3274,7 +3221,7 @@ public final class Pix3D {
 					} else {
 						arg2 -= arg0;
 						arg0 -= arg1;
-						arg1 = anIntArray221[arg1];
+						arg1 = Rasterizer.anIntArray221[arg1];
 						while (true) {
 							arg0--;
 							if (arg0 < 0) {
@@ -3299,12 +3246,12 @@ public final class Pix3D {
 					}
 				}
 			}
-		} else if (arg2 < anInt2470) {
-			if (arg0 > anInt2470) {
-				arg0 = anInt2470;
+		} else if (arg2 < Rasterizer.anInt2470) {
+			if (arg0 > Rasterizer.anInt2470) {
+				arg0 = Rasterizer.anInt2470;
 			}
-			if (arg1 > anInt2470) {
-				arg1 = anInt2470;
+			if (arg1 > Rasterizer.anInt2470) {
+				arg1 = Rasterizer.anInt2470;
 			}
 			arg8 = (arg8 << 8) + local86 - local86 * arg5;
 			if (arg0 < arg1) {
@@ -3323,7 +3270,7 @@ public final class Pix3D {
 				if (local36 < local60) {
 					arg1 -= arg0;
 					arg0 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg0--;
 						if (arg0 < 0) {
@@ -3348,7 +3295,7 @@ public final class Pix3D {
 				} else {
 					arg1 -= arg0;
 					arg0 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg0--;
 						if (arg0 < 0) {
@@ -3387,7 +3334,7 @@ public final class Pix3D {
 				if (local36 < local60) {
 					arg0 -= arg1;
 					arg1 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg1--;
 						if (arg1 < 0) {
@@ -3412,7 +3359,7 @@ public final class Pix3D {
 				} else {
 					arg0 -= arg1;
 					arg1 -= arg2;
-					arg2 = anIntArray221[arg2];
+					arg2 = Rasterizer.anIntArray221[arg2];
 					while (true) {
 						arg1--;
 						if (arg1 < 0) {

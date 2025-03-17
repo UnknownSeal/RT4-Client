@@ -1,7 +1,7 @@
 package com.jagex.runetek4.dash3d.entity;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.SeqType;
@@ -72,7 +72,7 @@ public final class LocType {
 	private int ambient = 0;
 
 	@OriginalMember(owner = "client!pb", name = "E", descriptor = "Lclient!na;")
-	public JString name = ItemDefinition.NULL;
+	public JString name = ObjType.NULL;
 
 	@OriginalMember(owner = "client!pb", name = "D", descriptor = "Z")
 	public boolean hardshadow = true;

@@ -47,7 +47,7 @@ public final class Static148 {
 		}
 		@Pc(26) byte[] local26 = client.js5Archive13.getfile(arg0, 0);
 		local16 = new SoftwareFont(local26);
-		local16.setNameIcons(Static159.aClass36Array12, null);
+		local16.setNameIcons(Sprites.nameIcons, null);
 		Static139.fontMetrics.put(local16, (long) arg0);
 		return local16;
 	}

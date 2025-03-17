@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -8,9 +7,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static257 {
-
-	@OriginalMember(owner = "runetek4.client!v", name = "b", descriptor = "Lclient!be;")
-	public static Component aClass13_7;
 
 	@OriginalMember(owner = "runetek4.client!v", name = "a", descriptor = "Lclient!na;")
 	public static final JString aClass100_98 = JString.parse(")4a=");

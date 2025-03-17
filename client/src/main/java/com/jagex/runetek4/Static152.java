@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.SeqType;
-import com.jagex.runetek4.frame.Minimap;
+import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.scene.tile.ComplexTile;
 import com.jagex.runetek4.scene.tile.GenericTile;
 import com.jagex.runetek4.scene.tile.SceneTile;
@@ -58,8 +58,8 @@ public final class Static152 {
 		@Pc(67) int rotation = local58.anInt1967;
 		@Pc(70) int underlayColor = local58.underlayRGB;
 		@Pc(73) int overlayColor = local58.overlayRGB;
-		@Pc(77) int[] local77 = Minimap.anIntArrayArray24[local23];
-		@Pc(81) int[] local81 = Minimap.anIntArrayArray46[rotation];
+		@Pc(77) int[] local77 = MiniMap.anIntArrayArray24[local23];
+		@Pc(81) int[] local81 = MiniMap.anIntArrayArray46[rotation];
 		@Pc(83) int pointer = 0;
 		@Pc(87) int i;
 		if (underlayColor != 0) {

@@ -83,7 +83,7 @@ public final class Static144 {
 									if (local312 == 0) {
 										local312 = 1;
 									}
-									Rasterizer.drawFilledRectangle(local47, local222, local62, local238, local312);
+									SoftwareRaster.fillRect(local47, local222, local62, local238, local312);
 									continue;
 								}
 							} else {
@@ -96,7 +96,7 @@ public final class Static144 {
 							@Pc(395) int local395 = local209[local254] == null ? 0 : Static145.anIntArray330[local209[local254][local276] & 0xFF];
 							@Pc(437) int local437;
 							if (local372 == 0 && local395 == 0) {
-								Rasterizer.drawFilledRectangle(local47, local222, local62, local238, local312);
+								SoftwareRaster.fillRect(local47, local222, local62, local238, local312);
 							} else {
 								@Pc(433) byte local433;
 								if (local372 != 0) {
@@ -106,7 +106,7 @@ public final class Static144 {
 									local433 = local193[local254] == null ? 0 : local193[local254][local276];
 									local437 = local433 & 0xFC;
 									if (local437 == 0 || local62 <= 1 || local238 <= 1) {
-										Rasterizer.drawFilledRectangle(local47, local222, local62, local238, local372);
+										SoftwareRaster.fillRect(local47, local222, local62, local238, local372);
 									} else {
 										Static280.method4667(Rasterizer.destinationPixels, local372, local47, local433 & 0x3, local312, local437 >> 2, local238, local62, local222, true);
 									}
@@ -118,7 +118,7 @@ public final class Static144 {
 									local433 = local201[local254][local276];
 									local437 = local433 & 0xFC;
 									if (local437 == 0 || local62 <= 1 || local238 <= 1) {
-										Rasterizer.drawFilledRectangle(local47, local222, local62, local238, local395);
+										SoftwareRaster.fillRect(local47, local222, local62, local238, local395);
 									}
 									Static280.method4667(Rasterizer.destinationPixels, local395, local47, local433 & 0x3, 0, local437 >> 2, local238, local62, local222, local372 == 0);
 								}
@@ -202,7 +202,7 @@ public final class Static144 {
 						local145 = (arg6 * local90 >> 16) + arg0;
 						local157 = arg0 + ((local90 + 1) * arg6 >> 16);
 						local162 = local157 - local145;
-						Rasterizer.drawFilledRectangle(local47, local145, local62, local162, local104);
+						SoftwareRaster.fillRect(local47, local145, local62, local162, local104);
 					}
 				}
 			}

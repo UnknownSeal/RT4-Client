@@ -1,10 +1,11 @@
 package com.jagex.runetek4.game.client;
 
+import com.jagex.runetek4.*;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
-import com.jagex.runetek4.Static246;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.node.Node;
 
@@ -84,4 +85,20 @@ public final class Inv extends Node {
 	public static void clear() {
 		recentUse = new HashTable(32);
 	}
+
+    @OriginalMember(owner = "runetek4.client!pf", name = "a", descriptor = "(IIZIII)Lclient!qf;")
+    public static Sprite getObjectSprite(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+        @Pc(27) int local27 = (arg2 ? 65536 : 0) + arg1 + (arg0 << 17) + (arg4 << 19);
+        @Pc(37) long local37 = (long) local27 * 3849834839L + (long) arg3 * 3147483667L;
+        @Pc(43) Sprite local43 = (Sprite) Static118.aClass99_16.get(local37);
+        if (local43 != null) {
+            return local43;
+        }
+        Rasterizer.textureHasTransparency = false;
+        local43 = Static164.method3150(arg4, false, arg1, arg2, arg0, arg3, false);
+        if (local43 != null && !Rasterizer.textureHasTransparency) {
+            Static118.aClass99_16.put(local43, local37);
+        }
+        return local43;
+    }
 }

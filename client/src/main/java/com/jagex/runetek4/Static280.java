@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
@@ -18,15 +17,12 @@ public final class Static280 {
 	@OriginalMember(owner = "runetek4.client!wl", name = "d", descriptor = "Lclient!na;")
 	public static final JString COMPASS = JString.parse("compass");
 
-	@OriginalMember(owner = "runetek4.client!wl", name = "h", descriptor = "Lclient!be;")
-	public static Component aClass13_26 = null;
-
 	@OriginalMember(owner = "runetek4.client!wl", name = "u", descriptor = "I")
 	public static int anInt5895 = 0;
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!fe;B)V")
 	public static void method4665(@OriginalArg(0) PathingEntity arg0) {
-		if (client.loop == arg0.anInt3386 || arg0.primarySeqId == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > SeqType.getAnimationSequence(arg0.primarySeqId).frames[arg0.anInt3425]) {
+		if (client.loop == arg0.anInt3386 || arg0.primarySeqId == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > SeqTypeList.getAnimationSequence(arg0.primarySeqId).frames[arg0.anInt3425]) {
 			@Pc(35) int local35 = arg0.anInt3386 - arg0.anInt3395;
 			@Pc(41) int local41 = client.loop - arg0.anInt3395;
 			@Pc(52) int local52 = arg0.anInt3380 * 128 + arg0.getSize() * 64;
@@ -552,7 +548,7 @@ public final class Static280 {
 		@Pc(28) int local28 = arg0.id >>> 16;
 		@Pc(33) HashTableIterator local33 = new HashTableIterator(InterfaceList.openInterfaces);
 		for (@Pc(38) ComponentPointer local38 = (ComponentPointer) local33.method2701(); local38 != null; local38 = (ComponentPointer) local33.method2700()) {
-			if (local28 == local38.anInt5878) {
+			if (local28 == local38.interfaceId) {
 				return InterfaceList.getComponent((int) local38.nodeId);
 			}
 		}
@@ -681,26 +677,26 @@ public final class Static280 {
 		while (!local3) {
 			local3 = true;
 			for (@Pc(13) int local13 = 0; local13 < MiniMenu.menuActionRow - 1; local13++) {
-				if (Static39.aShortArray6[local13] < 1000 && Static39.aShortArray6[local13 + 1] > 1000) {
-					@Pc(41) JString local41 = ClientScriptRunner.aClass100Array160[local13];
+				if (MiniMenu.actions[local13] < 1000 && MiniMenu.actions[local13 + 1] > 1000) {
+					@Pc(41) JString local41 = MiniMenu.opBases[local13];
 					local3 = false;
-					ClientScriptRunner.aClass100Array160[local13] = ClientScriptRunner.aClass100Array160[local13 + 1];
-					ClientScriptRunner.aClass100Array160[local13 + 1] = local41;
-					@Pc(61) JString local61 = Static254.aClass100Array168[local13];
-					Static254.aClass100Array168[local13] = Static254.aClass100Array168[local13 + 1];
-					Static254.aClass100Array168[local13 + 1] = local61;
+					MiniMenu.opBases[local13] = MiniMenu.opBases[local13 + 1];
+					MiniMenu.opBases[local13 + 1] = local41;
+					@Pc(61) JString local61 = MiniMenu.ops[local13];
+					MiniMenu.ops[local13] = MiniMenu.ops[local13 + 1];
+					MiniMenu.ops[local13 + 1] = local61;
 					@Pc(79) int local79 = Static196.anIntArray408[local13];
 					Static196.anIntArray408[local13] = Static196.anIntArray408[local13 + 1];
 					Static196.anIntArray408[local13 + 1] = local79;
 					@Pc(97) int local97 = Static56.anIntArray142[local13];
 					Static56.anIntArray142[local13] = Static56.anIntArray142[local13 + 1];
 					Static56.anIntArray142[local13 + 1] = local97;
-					@Pc(115) int local115 = Static190.anIntArray382[local13];
-					Static190.anIntArray382[local13] = Static190.anIntArray382[local13 + 1];
-					Static190.anIntArray382[local13 + 1] = local115;
-					@Pc(133) short local133 = Static39.aShortArray6[local13];
-					Static39.aShortArray6[local13] = Static39.aShortArray6[local13 + 1];
-					Static39.aShortArray6[local13 + 1] = local133;
+					@Pc(115) int local115 = MiniMenu.cursors[local13];
+					MiniMenu.cursors[local13] = MiniMenu.cursors[local13 + 1];
+					MiniMenu.cursors[local13 + 1] = local115;
+					@Pc(133) short local133 = MiniMenu.actions[local13];
+					MiniMenu.actions[local13] = MiniMenu.actions[local13 + 1];
+					MiniMenu.actions[local13 + 1] = local133;
 					@Pc(151) long local151 = Static159.aLongArray5[local13];
 					Static159.aLongArray5[local13] = Static159.aLongArray5[local13 + 1];
 					Static159.aLongArray5[local13 + 1] = local151;

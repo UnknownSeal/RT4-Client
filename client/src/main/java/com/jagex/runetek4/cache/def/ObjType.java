@@ -17,7 +17,7 @@ import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!h")
-public final class ItemDefinition {
+public final class ObjType {
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "[S")
 	private short[] retex_d;
@@ -378,7 +378,7 @@ public final class ItemDefinition {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(II)Lclient!h;")
-	public ItemDefinition getMeshAddress(@OriginalArg(0) int n) {
+	public ObjType getMeshAddress(@OriginalArg(0) int n) {
 		if (this.countobj != null && n > 1) {
 			@Pc(23) int id = -1;
 			for (@Pc(25) int index = 0; index < 10; index++) {
@@ -387,7 +387,7 @@ public final class ItemDefinition {
 				}
 			}
 			if (id != -1) {
-				return Static71.get(id);
+				return ObjTypeList.get(id);
 			}
 		}
 		return this;
@@ -417,7 +417,7 @@ public final class ItemDefinition {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BLclient!h;Lclient!h;)V")
-	public void genLent(@OriginalArg(2) ItemDefinition from, @OriginalArg(1) ItemDefinition to) {
+	public void genLent(@OriginalArg(2) ObjType from, @OriginalArg(1) ObjType to) {
 		this.recol_d_palette = to.recol_d_palette;
 		this.manwearyoff = to.manwearyoff;
 		this.params = to.params;
@@ -460,7 +460,7 @@ public final class ItemDefinition {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(IIILclient!tk;II)Lclient!ak;")
-	public Model method1824(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) SeqType arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
+	public Model getModel(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) SeqType arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		if (this.countobj != null && arg3 > 1) {
 			@Pc(22) int local22 = -1;
 			for (@Pc(24) int local24 = 0; local24 < 10; local24++) {
@@ -469,7 +469,7 @@ public final class ItemDefinition {
 				}
 			}
 			if (local22 != -1) {
-				return Static71.get(local22).method1824(arg0, arg1, arg2, 1, arg4);
+				return ObjTypeList.get(local22).getModel(arg0, arg1, arg2, 1, arg4);
 			}
 		}
 		@Pc(76) Model local76 = (Model) Static244.aClass99_32.get(this.anInt2354);
@@ -596,7 +596,7 @@ public final class ItemDefinition {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(Lclient!h;Lclient!h;Z)V")
-	public void genCert(@OriginalArg(1) ItemDefinition from, @OriginalArg(0) ItemDefinition to) {
+	public void genCert(@OriginalArg(1) ObjType from, @OriginalArg(0) ObjType to) {
 		this.name = to.name;
 		this.zoom2d = from.zoom2d;
 		this.recol_s = from.recol_s;
@@ -649,9 +649,6 @@ public final class ItemDefinition {
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "W", descriptor = "Lclient!na;")
 	public static final JString NULL = JString.parse("null");
-
-	@OriginalMember(owner = "runetek4.client!gg", name = "db", descriptor = "I")
-	public static int anInt2225 = -1;
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "([[IZ)V")
 	public static void method1751(@OriginalArg(0) int[][] arg0) {

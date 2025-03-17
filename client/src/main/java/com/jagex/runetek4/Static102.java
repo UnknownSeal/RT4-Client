@@ -14,9 +14,6 @@ public final class Static102 {
 	@OriginalMember(owner = "runetek4.client!hn", name = "V", descriptor = "I")
 	public static int anInt2678 = 0;
 
-	@OriginalMember(owner = "runetek4.client!hn", name = "W", descriptor = "Lclient!na;")
-	public static JString aClass100_545 = null;
-
 	@OriginalMember(owner = "runetek4.client!hn", name = "Y", descriptor = "I")
 	public static int anInt2680 = 0;
 

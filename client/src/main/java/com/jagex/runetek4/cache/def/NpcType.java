@@ -569,7 +569,7 @@ public final class NpcType {
 		local173 = arg0 == null ? 0 : arg0.length;
 		for (local235 = 0; local235 < local173; local235++) {
 			if (arg0[local235] != null) {
-				@Pc(753) SeqType local753 = SeqType.getAnimationSequence(arg0[local235].anInt5396);
+				@Pc(753) SeqType local753 = SeqTypeList.getAnimationSequence(arg0[local235].anInt5396);
 				if (local753.anIntArray473 != null) {
 					Static146.aClass144Array1[local235] = local753;
 					local207 = arg0[local235].anInt5398;

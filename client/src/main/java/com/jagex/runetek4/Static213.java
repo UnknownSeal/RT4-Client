@@ -9,9 +9,6 @@ public final class Static213 {
 	@OriginalMember(owner = "runetek4.client!re", name = "w", descriptor = "[Lclient!qf;")
 	public static Sprite[] aClass3_Sub2_Sub1Array8;
 
-	@OriginalMember(owner = "runetek4.client!re", name = "y", descriptor = "I")
-	public static int anInt4851;
-
 	@OriginalMember(owner = "runetek4.client!re", name = "b", descriptor = "(I)[Lclient!qf;")
 	public static Sprite[] method3730() {
 		@Pc(14) Sprite[] local14 = new Sprite[Static165.anInt4038];

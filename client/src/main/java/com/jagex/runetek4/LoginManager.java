@@ -1,8 +1,9 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.frame.Minimap;
+import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.client.Inv;
 import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
 import com.jagex.runetek4.media.Rasterizer;
@@ -57,6 +58,8 @@ public class LoginManager {
     public static int staffModLevel = 0;
     @OriginalMember(owner = "runetek4.client!sd", name = "X", descriptor = "Z")
     public static boolean aBoolean247 = false;
+    @OriginalMember(owner = "runetek4.client!qf", name = "X", descriptor = "Lclient!be;")
+    public static Component aClass13_13 = null;
 
     @OriginalMember(owner = "runetek4.client!j", name = "g", descriptor = "(I)V")
     public static void method4637() {
@@ -71,20 +74,20 @@ public class LoginManager {
     public static void method1841() {
         if (!ClientScriptRunner.aBoolean108) {
             if (Static162.anInt3953 != 0) {
-                Static155.anInt3751 = Static277.anInt5850;
-                Static60.anInt1892 = Static280.anInt5895;
+                ClientScriptRunner.anInt3751 = Static277.anInt5850;
+                ClientScriptRunner.anInt1892 = Static280.anInt5895;
             } else if (Mouse.clickButton == 0) {
-                Static155.anInt3751 = Static215.anInt4873;
-                Static60.anInt1892 = Static223.anInt5032;
+                ClientScriptRunner.anInt3751 = Mouse.lastMouseX;
+                ClientScriptRunner.anInt1892 = Mouse.lastMouseY;
             } else {
-                Static155.anInt3751 = aClass6.mouseClickX;
-                Static60.anInt1892 = Static60.mouseClickY;
+                ClientScriptRunner.anInt3751 = aClass6.mouseClickX;
+                ClientScriptRunner.anInt1892 = Static60.mouseClickY;
             }
             MiniMenu.menuActionRow = 1;
-            Static254.aClass100Array168[0] = LocalizedText.CANCEL;
-            ClientScriptRunner.aClass100Array160[0] = JString.EMPTY;
-            Static39.aShortArray6[0] = 1005;
-            Static190.anIntArray382[0] = Static35.anInt1092;
+            MiniMenu.ops[0] = LocalizedText.CANCEL;
+            MiniMenu.opBases[0] = JString.EMPTY;
+            MiniMenu.actions[0] = 1005;
+            MiniMenu.cursors[0] = Static35.anInt1092;
         }
         if (InterfaceList.topLevelInterace != -1) {
             Static96.method1949(InterfaceList.topLevelInterace);
@@ -97,12 +100,12 @@ public class LoginManager {
             Static223.aBooleanArray116[local60] = InterfaceList.aBooleanArray100[local60];
             InterfaceList.aBooleanArray100[local60] = false;
         }
-        Static201.aClass13_13 = null;
-        Static97.anInt2503 = -1;
-        Static214.anInt5574 = -1;
+        aClass13_13 = null;
+        ClientScriptRunner.anInt2503 = -1;
+        InterfaceList.anInt5574 = -1;
         Static169.aClass13_18 = null;
         if (GlRenderer.enabled) {
-            Static263.aBoolean299 = true;
+            ClientScriptRunner.aBoolean299 = true;
         }
         Static182.anInt4311 = client.loop;
         if (InterfaceList.topLevelInterace != -1) {
@@ -110,7 +113,7 @@ public class LoginManager {
             CacheArchive.method182();
         }
         if (GlRenderer.enabled) {
-            Static46.method1177();
+            GlRaster.method1177();
         } else {
             Rasterizer.resetBounds();
         }
@@ -121,10 +124,10 @@ public class LoginManager {
             } else {
                 Static145.method2744();
             }
-        } else if (Static201.aClass13_13 != null) {
-            Static49.method1207(Static201.aClass13_13, Static143.anInt3484, Static131.anInt3260);
-        } else if (Static97.anInt2503 != -1) {
-            Static49.method1207(null, Static214.anInt5574, Static97.anInt2503);
+        } else if (aClass13_13 != null) {
+            Static49.method1207(aClass13_13, ClientScriptRunner.anInt3484, ClientScriptRunner.anInt3260);
+        } else if (ClientScriptRunner.anInt2503 != -1) {
+            Static49.method1207(null, InterfaceList.anInt5574, ClientScriptRunner.anInt2503);
         }
         local60 = ClientScriptRunner.aBoolean108 ? -1 : Static235.method4044();
         if (local60 == -1) {
@@ -141,15 +144,15 @@ public class LoginManager {
             for (@Pc(189) int local189 = 0; local189 < InterfaceList.rectangles; local189++) {
                 if (Static223.aBooleanArray116[local189]) {
                     if (GlRenderer.enabled) {
-                        Static46.drawFilledRectangleAlpha(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711935, 128);
+                        GlRaster.fillRectAlpha(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711935, 128);
                     } else {
-                        Rasterizer.drawFilledRectangleAlpha(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711935, 128);
+                        SoftwareRaster.fillRectAlpha(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711935, 128);
                     }
                 } else if (InterfaceList.rectangleRedraw[local189]) {
                     if (GlRenderer.enabled) {
-                        Static46.drawFilledRectangleAlpha(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711680, 128);
+                        GlRaster.fillRectAlpha(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711680, 128);
                     } else {
-                        Rasterizer.drawFilledRectangleAlpha(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711680, 128);
+                        SoftwareRaster.fillRectAlpha(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711680, 128);
                     }
                 }
             }
@@ -887,7 +890,7 @@ public class LoginManager {
         mapFlagX = 0;
         MiniMenu.menuActionRow = 0;
         Protocol.opcode2 = -1;
-        Minimap.state = 0;
+        MiniMap.state = 0;
         Static60.systemUpdateTimer = 0;
         Protocol.opcode4 = -1;
         Protocol.inboundBuffer.offset = 0;

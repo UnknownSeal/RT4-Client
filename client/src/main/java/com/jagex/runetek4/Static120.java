@@ -426,7 +426,7 @@ public final class Static120 {
 		local4.glDepthMask(true);
 		local4.glFogfv(GL2.GL_FOG_COLOR, Static161.aFloatArray19, 0);
 		local4.glEnableClientState(GL2.GL_TEXTURE_COORD_ARRAY);
-		GlRenderer.method4173();
+		GlRenderer.restoreLighting();
 	}
 
 	@OriginalMember(owner = "runetek4.client!jf", name = "a", descriptor = "(ILclient!gi;III)V")

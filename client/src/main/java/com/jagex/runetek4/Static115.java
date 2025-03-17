@@ -30,11 +30,11 @@ public final class Static115 {
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(IIIIB)V")
 	public static void method2310(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		if (Static70.crossMode == 1) {
-			Static240.crossSprites[Static17.crossCycle / 100].drawSprite(Static122.x - 8, Static25.y + -8);
+		if (Cross.crossMode == 1) {
+			Static240.crossSprites[Cross.crossCycle / 100].drawSprite(Cross.x - 8, Cross.y + -8);
 		}
-		if (Static70.crossMode == 2) {
-			Static240.crossSprites[Static17.crossCycle / 100 + 4].drawSprite(Static122.x - 8, Static25.y + -8);
+		if (Cross.crossMode == 2) {
+			Static240.crossSprites[Cross.crossCycle / 100 + 4].drawSprite(Cross.x - 8, Cross.y + -8);
 		}
 		Static256.method4392();
 	}
@@ -78,9 +78,9 @@ public final class Static115 {
 					local115 = arg2 * 512 * local51 / (local86 * 334);
 					local122 = (arg0 - local115) / 2;
 					if (arg4) {
-						Static46.method1177();
-						Static46.method1186(arg3, arg1, local122, arg2, 0);
-						Static46.method1186(arg0 + arg3 - local122, arg1, local122, arg2, 0);
+						GlRaster.method1177();
+						GlRaster.fillRect(arg3, arg1, local122, arg2, 0);
+						GlRaster.fillRect(arg0 + arg3 - local122, arg1, local122, arg2, 0);
 					}
 					arg3 += local122;
 					arg0 -= local122 * 2;
@@ -93,9 +93,9 @@ public final class Static115 {
 					local115 = local86 * arg0 * 334 / (local51 * 512);
 					local122 = (arg2 - local115) / 2;
 					if (arg4) {
-						Static46.method1177();
-						Static46.method1186(arg3, arg1, arg0, local122, 0);
-						Static46.method1186(arg3, arg1 + arg2 - local122, arg0, local122, 0);
+						GlRaster.method1177();
+						GlRaster.fillRect(arg3, arg1, arg0, local122, 0);
+						GlRaster.fillRect(arg3, arg1 + arg2 - local122, arg0, local122, 0);
 					}
 					arg2 -= local122 * 2;
 					arg1 += local122;

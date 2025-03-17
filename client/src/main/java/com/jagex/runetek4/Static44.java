@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -30,9 +30,9 @@ public final class Static44 {
 	public static ComponentPointer method1148(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
 		@Pc(9) ComponentPointer local9 = new ComponentPointer();
 		local9.anInt5879 = arg2;
-		local9.anInt5878 = arg0;
+		local9.interfaceId = arg0;
 		InterfaceList.openInterfaces.put(local9, (long) arg1);
-		ItemDefinition.method1753(arg0);
+		ObjType.method1753(arg0);
 		@Pc(28) Component local28 = InterfaceList.getComponent(arg1);
 		if (local28 != null) {
 			InterfaceList.redraw(local28);
@@ -44,7 +44,7 @@ public final class Static44 {
 		@Pc(45) int local45 = MiniMenu.menuActionRow;
 		@Pc(53) int local53;
 		for (local53 = 0; local53 < local45; local53++) {
-			if (Static2.method5(Static39.aShortArray6[local53])) {
+			if (Static2.method5(MiniMenu.actions[local53])) {
 				Static200.method3628(local53);
 			}
 		}
@@ -53,9 +53,9 @@ public final class Static44 {
 			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
 		} else {
 			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
-			local53 = Fonts.b12Full.method2858(LocalizedText.CHOOSE_OPTION);
+			local53 = Fonts.b12Full.getStringWidth(LocalizedText.CHOOSE_OPTION);
 			for (@Pc(95) int local95 = 0; local95 < MiniMenu.menuActionRow; local95++) {
-				@Pc(104) int local104 = Fonts.b12Full.method2858(Static269.method2228(local95));
+				@Pc(104) int local104 = Fonts.b12Full.getStringWidth(Static269.method2228(local95));
 				if (local104 > local53) {
 					local53 = local104;
 				}

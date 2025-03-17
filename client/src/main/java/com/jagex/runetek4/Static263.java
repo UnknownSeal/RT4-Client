@@ -13,9 +13,6 @@ public final class Static263 {
 	@OriginalMember(owner = "runetek4.client!vg", name = "b", descriptor = "S")
 	public static short aShort30 = 256;
 
-	@OriginalMember(owner = "runetek4.client!vg", name = "c", descriptor = "Z")
-	public static boolean aBoolean299 = false;
-
 	@OriginalMember(owner = "runetek4.client!vg", name = "d", descriptor = "I")
 	public static int minimapAngleModifier = 2;
 

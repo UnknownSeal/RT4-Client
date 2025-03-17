@@ -15,9 +15,6 @@ public final class Static138 {
 	@OriginalMember(owner = "runetek4.client!km", name = "Yc", descriptor = "I")
 	public static int anInt3443;
 
-	@OriginalMember(owner = "runetek4.client!km", name = "pc", descriptor = "Z")
-	public static boolean aBoolean172 = false;
-
 	@OriginalMember(owner = "runetek4.client!km", name = "tc", descriptor = "Lclient!na;")
 	private static final JString DEC = JString.parse("Dec");
 

@@ -18,6 +18,10 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 	public static int clickButton = 0;
     @OriginalMember(owner = "runetek4.client!ok", name = "f", descriptor = "J")
     public static long prevClickTime = 0L;
+	@OriginalMember(owner = "runetek4.client!sc", name = "v", descriptor = "I")
+	public static int lastMouseY = 0;
+	@OriginalMember(owner = "runetek4.client!rh", name = "o", descriptor = "I")
+	public static int lastMouseX = 0;
 
 	@OriginalMember(owner = "runetek4.client!dl", name = "a", descriptor = "(II)V")
 	public static void setIdleLoops(@OriginalArg(1) int arg0) {
@@ -57,8 +61,8 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
         @Pc(2) Mouse local2 = Static93.aClass150_1;
         synchronized (Static93.aClass150_1) {
             Static22.activeInterfaceType = Static57.anInt1759;
-            Static215.anInt4873 = Static147.anInt3521;
-            Static223.anInt5032 = Static165.anInt4039;
+            lastMouseX = Static147.anInt3521;
+            lastMouseY = Static165.anInt4039;
             clickButton = Static41.anInt1313;
             aClass6.mouseClickX = Static34.anInt1034;
             Static93.anInt2467++;

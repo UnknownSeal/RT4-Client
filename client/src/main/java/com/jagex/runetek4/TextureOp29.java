@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.cache.def.ItemDefinition;
+import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -33,7 +33,7 @@ public final class TextureOp29 extends TextureOp {
 	private void method3934(@OriginalArg(1) int[][] arg0) {
 		@Pc(7) int local7 = Texture.height;
 		@Pc(9) int local9 = Texture.width;
-		ItemDefinition.method1751(arg0);
+		ObjType.method1751(arg0);
 		Static107.method2263(Texture.heightMask, Texture.widthMask);
 		if (this.aClass18Array1 == null) {
 			return;

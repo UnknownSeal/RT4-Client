@@ -15,9 +15,6 @@ public final class Static17 {
 	@OriginalMember(owner = "client!bg", name = "A", descriptor = "[I")
 	public static final int[] anIntArray53 = new int[128];
 
-	@OriginalMember(owner = "client!bg", name = "M", descriptor = "I")
-	public static int crossCycle = 0;
-
 	@OriginalMember(owner = "client!bg", name = "N", descriptor = "Lclient!na;")
 	public static final JString MAPFUNCTION = JString.parse("mapfunction");
 
@@ -84,7 +81,7 @@ public final class Static17 {
 		}
 		@Pc(66) ComponentPointer local66 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) arg0.id);
 		if (local66 != null) {
-			Static234.method4017(local32, arg1, local66.anInt5878, local20);
+			Static234.method4017(local32, arg1, local66.interfaceId, local20);
 		}
 	}
 }

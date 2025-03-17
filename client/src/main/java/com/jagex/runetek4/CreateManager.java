@@ -5,40 +5,51 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
+import java.io.IOException;
+import java.net.Socket;
+
 public class CreateManager {
     @OriginalMember(owner = "runetek4.client!oe", name = "l", descriptor = "I")
     public static int step = 0;
+
     @OriginalMember(owner = "runetek4.client!sc", name = "y", descriptor = "I")
     public static int reply = -2;
+
     @OriginalMember(owner = "runetek4.client!si", name = "S", descriptor = "[Lclient!na;")
     public static JString[] suggestedNames;
 
+    @OriginalMember(owner = "runetek4.client!sf", name = "a", descriptor = "I")
+    public static int loops = 0;
+
+    @OriginalMember(owner = "runetek4.client!eg", name = "v", descriptor = "I")
+    public static int errors = 0;
+
     @OriginalMember(owner = "runetek4.client!da", name = "a", descriptor = "(IIIILclient!na;JI)V")
     public static void createAccount(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) JString password, @OriginalArg(5) long name, @OriginalArg(6) int arg5) {
-        @Pc(8) Packet local8 = new Packet(128);
-        local8.p1(10);
-        local8.p2((int) (Math.random() * 99999.0D));
-        local8.p2(530);
-        local8.p8(name);
-        local8.p4((int) (Math.random() * 9.9999999E7D));
-        local8.pjstr(password);
-        local8.p4((int) (Math.random() * 9.9999999E7D));
-        local8.p2(client.affiliate);
-        local8.p1(arg0);
-        local8.p1(arg2);
-        local8.p4((int) (Math.random() * 9.9999999E7D));
-        local8.p2(arg5);
-        local8.p2(arg1);
-        local8.p4((int) (Math.random() * 9.9999999E7D));
-        local8.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
+        @Pc(8) Packet packet = new Packet(128);
+        packet.p1(10);
+        packet.p2((int) (Math.random() * 99999.0D));
+        packet.p2(530);
+        packet.p8(name);
+        packet.p4((int) (Math.random() * 9.9999999E7D));
+        packet.pjstr(password);
+        packet.p4((int) (Math.random() * 9.9999999E7D));
+        packet.p2(client.affiliate);
+        packet.p1(arg0);
+        packet.p1(arg2);
+        packet.p4((int) (Math.random() * 9.9999999E7D));
+        packet.p2(arg5);
+        packet.p2(arg1);
+        packet.p4((int) (Math.random() * 9.9999999E7D));
+        packet.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
         Protocol.outboundBuffer.offset = 0;
         Protocol.outboundBuffer.p1(36);
-        Protocol.outboundBuffer.p1(local8.offset);
-        Protocol.outboundBuffer.pdata(local8.data, local8.offset);
+        Protocol.outboundBuffer.p1(packet.offset);
+        Protocol.outboundBuffer.pdata(packet.data, packet.offset);
         reply = -3;
         step = 1;
-        Static226.loops = 0;
-        Static57.errors = 0;
+        loops = 0;
+        errors = 0;
     }
 
     @OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(JI)V")
@@ -47,8 +58,8 @@ public class CreateManager {
         Protocol.outboundBuffer.p1(186);
         Protocol.outboundBuffer.p8(name);
         step = 1;
-        Static226.loops = 0;
-        Static57.errors = 0;
+        loops = 0;
+        errors = 0;
         reply = -3;
     }
 
@@ -60,9 +71,114 @@ public class CreateManager {
         Protocol.outboundBuffer.p1(arg3);
         Protocol.outboundBuffer.p2(arg0);
         Protocol.outboundBuffer.p2(arg1);
-        Static226.loops = 0;
-        Static57.errors = 0;
+        loops = 0;
+        errors = 0;
         step = 1;
         reply = -3;
+    }
+
+    @OriginalMember(owner = "runetek4.client!mh", name = "f", descriptor = "(B)V")
+    public static void handleLoginScreenActions() {
+        if (step == 0) {
+            return;
+        }
+        try {
+            if (++loops > 2000) {
+                if (Protocol.gameServerSocket != null) {
+                    Protocol.gameServerSocket.closeGracefully();
+                    Protocol.gameServerSocket = null;
+                }
+                if (errors >= 1) {
+                    reply = -5;
+                    step = 0;
+                    return;
+                }
+                step = 1;
+                loops = 0;
+                errors++;
+                if (client.defaultPort == client.port) {
+                    client.port = client.alternatePort;
+                } else {
+                    client.port = client.defaultPort;
+                }
+            }
+            if (step == 1) {
+                Static72.aClass212_3 = GameShell.signLink.openSocket(client.hostname, client.port);
+                step = 2;
+            }
+            @Pc(120) int local120;
+            if (step == 2) {
+                if (Static72.aClass212_3.status == 2) {
+                    throw new IOException();
+                }
+                if (Static72.aClass212_3.status != 1) {
+                    return;
+                }
+                Protocol.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
+                Static72.aClass212_3 = null;
+                Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
+                if (client.musicChannel != null) {
+                    client.musicChannel.method3571();
+                }
+                if (client.soundChannel != null) {
+                    client.soundChannel.method3571();
+                }
+                local120 = Protocol.gameServerSocket.read();
+                if (client.musicChannel != null) {
+                    client.musicChannel.method3571();
+                }
+                if (client.soundChannel != null) {
+                    client.soundChannel.method3571();
+                }
+                if (local120 != 21) {
+                    reply = local120;
+                    step = 0;
+                    Protocol.gameServerSocket.closeGracefully();
+                    Protocol.gameServerSocket = null;
+                    return;
+                }
+                step = 3;
+            }
+            if (step == 3) {
+                if (Protocol.gameServerSocket.available() < 1) {
+                    return;
+                }
+                suggestedNames = new JString[Protocol.gameServerSocket.read()];
+                step = 4;
+            }
+            if (step == 4) {
+                if (Protocol.gameServerSocket.available() < suggestedNames.length * 8) {
+                    return;
+                }
+                Protocol.inboundBuffer.offset = 0;
+                Protocol.gameServerSocket.read(0, suggestedNames.length * 8, Protocol.inboundBuffer.data);
+                for (local120 = 0; local120 < suggestedNames.length; local120++) {
+                    suggestedNames[local120] = Base37.decode37(Protocol.inboundBuffer.g8());
+                }
+                reply = 21;
+                step = 0;
+                Protocol.gameServerSocket.closeGracefully();
+                Protocol.gameServerSocket = null;
+                return;
+            }
+        } catch (@Pc(238) IOException ioException) {
+            if (Protocol.gameServerSocket != null) {
+                Protocol.gameServerSocket.closeGracefully();
+                Protocol.gameServerSocket = null;
+            }
+            if (errors < 1) {
+                errors++;
+                if (client.defaultPort == client.port) {
+                    client.port = client.alternatePort;
+                } else {
+                    client.port = client.defaultPort;
+                }
+                loops = 0;
+                step = 1;
+            } else {
+                reply = -4;
+                step = 0;
+            }
+        }
     }
 }

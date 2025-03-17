@@ -53,7 +53,7 @@ public final class Static217 {
 		}
 		@Pc(275) int local275;
 		if (MiniMenu.anInt5014 == 1) {
-			Static98.addActionRow(Static169.anInt4075, (long) arg0, JString.concatenate(new JString[] { Static34.aClass100_203, Static105.aClass100_561, local158 }), arg3, (short) 1, LocalizedText.USE, arg1);
+			MiniMenu.addActionRow(Static169.anInt4075, (long) arg0, JString.concatenate(new JString[] { Static34.aClass100_203, Static105.aClass100_561, local158 }), arg3, (short) 1, LocalizedText.USE, arg1);
 		} else if (!MiniMenu.aBoolean302) {
 			for (local275 = 7; local275 >= 0; local275--) {
 				if (Player.options[local275] != null) {
@@ -74,15 +74,15 @@ public final class Static217 {
 					}
 					@Pc(353) short local353 = Static5.aShortArray2[local275];
 					@Pc(358) short local358 = (short) (local353 + local291);
-					Static98.addActionRow(Player.cursors[local275], (long) arg0, JString.concatenate(new JString[] { Static204.aClass100_896, local158 }), arg3, local358, Player.options[local275], arg1);
+					MiniMenu.addActionRow(Player.cursors[local275], (long) arg0, JString.concatenate(new JString[] { Static204.aClass100_896, local158 }), arg3, local358, Player.options[local275], arg1);
 				}
 			}
 		} else if ((Static274.anInt4999 & 0x8) != 0) {
-			Static98.addActionRow(Static246.anInt5393, (long) arg0, JString.concatenate(new JString[] { Static78.aClass100_466, Static105.aClass100_561, local158 }), arg3, (short) 15, Static102.aClass100_545, arg1);
+			MiniMenu.addActionRow(MiniMenu.anInt5393, (long) arg0, JString.concatenate(new JString[] { Static78.aClass100_466, Static105.aClass100_561, local158 }), arg3, (short) 15, MiniMenu.aClass100_545, arg1);
 		}
 		for (local275 = 0; local275 < MiniMenu.menuActionRow; local275++) {
-			if (Static39.aShortArray6[local275] == 60) {
-				ClientScriptRunner.aClass100Array160[local275] = JString.concatenate(new JString[] { Static204.aClass100_896, local158 });
+			if (MiniMenu.actions[local275] == 60) {
+				MiniMenu.opBases[local275] = JString.concatenate(new JString[] { Static204.aClass100_896, local158 });
 				break;
 			}
 		}

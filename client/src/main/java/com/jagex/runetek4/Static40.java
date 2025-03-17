@@ -53,11 +53,11 @@ public final class Static40 {
 			return;
 		}
 		ClientScriptRunner.aClass13_14 = arg2;
-		Static4.aClass13_1 = Static89.method1836(arg2);
-		Static246.anInt5388 = arg1;
-		Static138.aBoolean172 = false;
-		Static213.anInt4851 = 0;
-		Static165.anInt4035 = arg0;
+		ClientScriptRunner.aClass13_1 = Static89.method1836(arg2);
+		ClientScriptRunner.anInt5388 = arg1;
+		ClientScriptRunner.aBoolean172 = false;
+		ClientScriptRunner.anInt4851 = 0;
+		ClientScriptRunner.anInt4035 = arg0;
 	}
 
 }

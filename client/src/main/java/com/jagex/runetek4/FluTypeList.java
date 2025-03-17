@@ -13,9 +13,6 @@ public final class FluTypeList {
 	@OriginalMember(owner = "runetek4.client!sd", name = "I", descriptor = "I")
 	public static int anInt5057;
 
-	@OriginalMember(owner = "runetek4.client!sd", name = "R", descriptor = "I")
-	public static int anInt5062;
-
 	@OriginalMember(owner = "runetek4.client!sd", name = "S", descriptor = "I")
 	public static int anInt5063 = 100;
 

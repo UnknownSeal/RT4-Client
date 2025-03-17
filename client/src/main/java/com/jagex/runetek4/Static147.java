@@ -12,9 +12,6 @@ public final class Static147 {
 	@OriginalMember(owner = "runetek4.client!lh", name = "u", descriptor = "I")
 	public static volatile int anInt3521 = -1;
 
-	@OriginalMember(owner = "runetek4.client!lh", name = "z", descriptor = "Lclient!na;")
-	public static final JString aClass100_672 = JString.parse("(U (X");
-
 	@OriginalMember(owner = "runetek4.client!lh", name = "b", descriptor = "(II)V")
 	public static void method2761(@OriginalArg(0) int arg0) {
 		ObjTypeList.anInt3241 = arg0;

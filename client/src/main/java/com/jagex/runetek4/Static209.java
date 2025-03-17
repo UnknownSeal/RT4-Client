@@ -17,11 +17,6 @@ public final class Static209 {
 	@OriginalMember(owner = "runetek4.client!ra", name = "jb", descriptor = "J")
 	public static volatile long aLong161 = 0L;
 
-	@OriginalMember(owner = "runetek4.client!ra", name = "a", descriptor = "(BI)Z")
-	public static boolean method3702(@OriginalArg(1) int arg0) {
-		return arg0 == (-arg0 & arg0);
-	}
-
 	@OriginalMember(owner = "runetek4.client!ra", name = "c", descriptor = "(BI)V")
 	public static void method3706() {
 		Static93.aClass99_13.clear(5);

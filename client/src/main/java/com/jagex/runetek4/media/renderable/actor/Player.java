@@ -5,7 +5,7 @@ import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
-import com.jagex.runetek4.frame.Minimap;
+import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
@@ -34,8 +34,14 @@ public final class Player extends PathingEntity {
     public static byte[][] aByteArrayArray8;
 	@OriginalMember(owner = "runetek4.client!ib", name = "l", descriptor = "I")
 	public static int anInt2863 = 0;
+	@OriginalMember(owner = "client!bb", name = "E", descriptor = "I")
+	public static int energy = 0;
+	@OriginalMember(owner = "runetek4.client!ug", name = "o", descriptor = "I")
+	public static int weightCarried = 0;
+	@OriginalMember(owner = "runetek4.client!sm", name = "k", descriptor = "Lsignlink!im;")
+	public static PrivilegedRequest lastLogAddress;
 	@OriginalMember(owner = "client!e", name = "Bc", descriptor = "Lclient!hh;")
-	public PlayerAppearance model;
+	public PlayerAppearance appearance;
 
 	@OriginalMember(owner = "client!e", name = "Mc", descriptor = "Lclient!na;")
 	public JString username;
@@ -173,7 +179,7 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "client!e", name = "c", descriptor = "(B)I")
 	@Override
 	public int getSize() {
-		return this.model == null || this.model.transformationNpcId == -1 ? super.getSize() : NpcType.getDefinition(this.model.transformationNpcId).size;
+		return this.appearance == null || this.appearance.transformationNpcId == -1 ? super.getSize() : NpcType.getDefinition(this.appearance.transformationNpcId).size;
 	}
 
 	@OriginalMember(owner = "client!e", name = "b", descriptor = "(I)I")
@@ -217,7 +223,7 @@ public final class Player extends PathingEntity {
 				if (local134 >= 32768) {
 					local134 = Equipment.objIds[local134 - 32768];
 					local44[local102] = local134 | 0x40000000;
-					local175 = Static71.get(local134).team;
+					local175 = ObjTypeList.get(local134).team;
 					if (local175 != 0) {
 						this.teamId = local175;
 					}
@@ -267,11 +273,11 @@ public final class Player extends PathingEntity {
 				Static214.method4359(this);
 			}
 		}
-		if (this.model == null) {
-			this.model = new PlayerAppearance();
+		if (this.appearance == null) {
+			this.appearance = new PlayerAppearance();
 		}
-		local175 = this.model.transformationNpcId;
-		this.model.set(local197, local22, local26 == 1, local44, this.anInt3365);
+		local175 = this.appearance.transformationNpcId;
+		this.appearance.set(local197, local22, local26 == 1, local44, this.anInt3365);
 		if (local175 != local22) {
 			this.xFine = this.movementQueueX[0] * 128 + this.getSize() * 64;
 			this.zFine = this.movementQueueZ[0] * 128 + this.getSize() * 64;
@@ -284,12 +290,12 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
 	public void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
-		if (this.model == null) {
+		if (this.appearance == null) {
 			return;
 		}
-		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? SeqType.getAnimationSequence(this.primarySeqId) : null;
-		@Pc(54) SeqType local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().idleAnimationId && local25 != null ? null : SeqType.getAnimationSequence(this.movementSeqId);
-		@Pc(76) Model local76 = this.model.method1954(this.aClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
+		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? SeqTypeList.getAnimationSequence(this.primarySeqId) : null;
+		@Pc(54) SeqType local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().idleAnimationId && local25 != null ? null : SeqTypeList.getAnimationSequence(this.movementSeqId);
+		@Pc(76) Model local76 = this.appearance.method1954(this.aClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
 		@Pc(79) int local79 = Static198.method1029();
 		if (GlRenderer.enabled && Static238.anInt5316 < 96 && local79 > 50) {
 			method501();
@@ -311,7 +317,7 @@ public final class Player extends PathingEntity {
 		}
 		this.height = local76.getMinY();
 		@Pc(184) Model model;
-		if (Static209.aBoolean240 && (this.model.transformationNpcId == -1 || NpcType.getDefinition(this.model.transformationNpcId).spotshadow)) {
+		if (Static209.aBoolean240 && (this.appearance.transformationNpcId == -1 || NpcType.getDefinition(this.appearance.transformationNpcId).spotshadow)) {
 			model = Scene.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.xFine, 0, this.zFine, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.y, 240);
 			if (GlRenderer.enabled) {
 				@Pc(188) float local188 = GlRenderer.method4179();
@@ -326,8 +332,8 @@ public final class Player extends PathingEntity {
 			}
 		}
 		if (PlayerList.self == this) {
-			for (local102 = Minimap.hintMapMarkers.length - 1; local102 >= 0; local102--) {
-				@Pc(245) Class102 local245 = Minimap.hintMapMarkers[local102];
+			for (local102 = MiniMap.hintMapMarkers.length - 1; local102 >= 0; local102--) {
+				@Pc(245) Class102 local245 = MiniMap.hintMapMarkers[local102];
 				if (local245 != null && local245.anInt4052 != -1) {
 					@Pc(291) int anchorX;
 					@Pc(302) int anchorY;
@@ -454,7 +460,7 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "client!e", name = "a", descriptor = "(B)Z")
 	@Override
 	public boolean isVisible() {
-		return this.model != null;
+		return this.appearance != null;
 	}
 
 	@OriginalMember(owner = "client!e", name = "e", descriptor = "(I)Lclient!na;")

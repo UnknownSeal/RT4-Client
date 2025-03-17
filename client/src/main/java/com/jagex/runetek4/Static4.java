@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -22,9 +21,6 @@ public final class Static4 {
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "o", descriptor = "I")
 	public static int updatedVarcsWriterIndex = 0;
-
-	@OriginalMember(owner = "runetek4.client!ac", name = "p", descriptor = "Lclient!be;")
-	public static Component aClass13_1 = null;
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "a", descriptor = "(IIII)I")
 	public static int getRenderLevel(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) {

@@ -7,12 +7,15 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class Sprites {
+    @OriginalMember(owner = "runetek4.client!mi", name = "T", descriptor = "[Lclient!ok;")
+    public static IndexedSprite[] nameIcons;
+
     @OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(Z)V")
     public static void clear() {
-        Static215.aClass3_Sub2_Sub9_32 = null;
+        Fonts.p12Full = null;
         Static213.aClass3_Sub2_Sub1Array8 = null;
         Static240.crossSprites = null;
-        Static159.aClass36Array12 = null;
+        nameIcons = null;
         Fonts.p11FullSoftware = null;
         Static173.aClass3_Sub2_Sub1_Sub1Array9 = null;
         Static67.aClass3_Sub2_Sub1Array4 = null;
@@ -21,7 +24,7 @@ public class Sprites {
         Fonts.b12Full = null;
         Static106.aClass3_Sub2_Sub1_7 = null;
         Static139.aClass3_Sub2_Sub1Array6 = null;
-        Static114.aClass3_Sub2_Sub9_42 = null;
+        Fonts.p11Full = null;
         Static84.aClass3_Sub2_Sub1_4 = null;
         Static116.aClass3_Sub2_Sub1Array3 = null;
         Static277.aClass3_Sub2_Sub1Array12 = null;
@@ -48,10 +51,10 @@ public class Sprites {
         Static240.crossSprites = Static131.method2580(Static32.anInt1016, arg0);
         Static139.aClass3_Sub2_Sub1Array6 = Static131.method2580(Static78.anInt2147, arg0);
         Static241.aClass36Array16 = Static146.method2749(arg0, Static124.anInt3083);
-        Static159.aClass36Array12 = Static146.method2749(arg0, FluTypeList.anInt5057);
-        Static114.aClass3_Sub2_Sub9_42.setNameIcons(Static159.aClass36Array12, null);
-        Static215.aClass3_Sub2_Sub9_32.setNameIcons(Static159.aClass36Array12, null);
-        Fonts.b12Full.setNameIcons(Static159.aClass36Array12, null);
+        nameIcons = Static146.method2749(arg0, FluTypeList.anInt5057);
+        Fonts.p11Full.setNameIcons(nameIcons, null);
+        Fonts.p12Full.setNameIcons(nameIcons, null);
+        Fonts.b12Full.setNameIcons(nameIcons, null);
         if (GlRenderer.enabled) {
             Static242.aClass36_Sub1Array2 = method837(Static84.anInt2257, arg0);
             for (@Pc(101) int local101 = 0; local101 < Static242.aClass36_Sub1Array2.length; local101++) {

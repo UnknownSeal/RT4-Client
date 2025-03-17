@@ -12,15 +12,12 @@ public final class Static235 {
 	@OriginalMember(owner = "runetek4.client!tb", name = "X", descriptor = "Lclient!se;")
 	public static MapElementTypeList aMapElementTypeList_2;
 
-	@OriginalMember(owner = "runetek4.client!tb", name = "P", descriptor = "Lclient!na;")
-	public static final JString aClass100_1002 = JString.parse("(U5");
-
 	@OriginalMember(owner = "runetek4.client!tb", name = "Q", descriptor = "I")
 	public static int anInt5276 = 0;
 
 	@OriginalMember(owner = "runetek4.client!tb", name = "h", descriptor = "(I)I")
 	public static int method4044() {
-		return Cheat.shiftClick && Keyboard.pressedKeys[81] && MiniMenu.menuActionRow > 2 ? Static190.anIntArray382[MiniMenu.menuActionRow - 2] : Static190.anIntArray382[MiniMenu.menuActionRow - 1];
+		return Cheat.shiftClick && Keyboard.pressedKeys[81] && MiniMenu.menuActionRow > 2 ? MiniMenu.cursors[MiniMenu.menuActionRow - 2] : MiniMenu.cursors[MiniMenu.menuActionRow - 1];
 	}
 
 	@OriginalMember(owner = "runetek4.client!tb", name = "b", descriptor = "(IB)Lclient!bc;")

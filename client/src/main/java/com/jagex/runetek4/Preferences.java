@@ -39,6 +39,8 @@ public class Preferences {
     public static boolean groundDecoration = true;
     @OriginalMember(owner = "runetek4.client!ec", name = "n", descriptor = "Z")
     public static boolean highDetailTextures = true;
+    @OriginalMember(owner = "runetek4.client!il", name = "I", descriptor = "I")
+    public static int brightness = 3;
     @OriginalMember(owner = "runetek4.client!ga", name = "e", descriptor = "I")
     private static int particles = 2;
 
@@ -214,7 +216,7 @@ public class Preferences {
 
     @OriginalMember(owner = "runetek4.client!gf", name = "a", descriptor = "(Lsignlink!ll;I)V")
     public static void read(@OriginalArg(0) SignLink arg0) {
-        Static113.brightness = 3;
+        brightness = 3;
         setAllLevelsVisible(true);
         roofsVisible = true;
         stereo = true;

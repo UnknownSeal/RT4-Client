@@ -66,23 +66,6 @@ public final class SeqType {
 	@OriginalMember(owner = "client!tk", name = "L", descriptor = "Z")
 	public boolean aBoolean280 = false;
 
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "a", descriptor = "(IB)Lclient!tk;")
-	public static SeqType getAnimationSequence(@OriginalArg(0) int animationId) {
-		@Pc(17) SeqType seqType = (SeqType) Static142.animationSequenceCache.get((long) animationId);
-		if (seqType != null) {
-			return seqType;
-		}
-		@Pc(32) byte[] is = Static243.aClass153_98.getfile(BZip2State.method3389(animationId), Static118.method2356(animationId));
-		seqType = new SeqType();
-		seqType.anInt5361 = animationId;
-		if (is != null) {
-			seqType.decode(new Packet(is));
-		}
-		seqType.postDecode();
-		Static142.animationSequenceCache.put(seqType, (long) animationId);
-		return seqType;
-	}
-
 	@OriginalMember(owner = "runetek4.client!fl", name = "a", descriptor = "(IB)V")
 	public static void clearAnimationCache() {
 		Static142.animationSequenceCache.clear(5);

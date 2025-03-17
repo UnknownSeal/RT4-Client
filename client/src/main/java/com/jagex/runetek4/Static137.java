@@ -4,7 +4,7 @@ import com.jagex.runetek4.cache.def.SpotAnimDefinition;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.frame.Minimap;
+import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -31,10 +31,10 @@ public final class Static137 {
 		@Pc(76) int local76;
 		@Pc(80) int local80;
 		if (Static56.aClass3_Sub2_Sub1_Sub1_1 == null) {
-			if (GlRenderer.enabled || Minimap.sprite == null) {
+			if (GlRenderer.enabled || MiniMap.sprite == null) {
 				Static56.aClass3_Sub2_Sub1_Sub1_1 = new SoftwareSprite(512, 512);
 			} else {
-				Static56.aClass3_Sub2_Sub1_Sub1_1 = (SoftwareSprite) Minimap.sprite;
+				Static56.aClass3_Sub2_Sub1_Sub1_1 = (SoftwareSprite) MiniMap.sprite;
 			}
 			@Pc(32) int[] local32 = Static56.aClass3_Sub2_Sub1_Sub1_1.pixels;
 			local35 = local32.length;
@@ -133,9 +133,9 @@ public final class Static137 {
 					local576[local80] = 1;
 				}
 			}
-			Minimap.sprite = new GlSprite(Static56.aClass3_Sub2_Sub1_Sub1_1);
+			MiniMap.sprite = new GlSprite(Static56.aClass3_Sub2_Sub1_Sub1_1);
 		} else {
-			Minimap.sprite = Static56.aClass3_Sub2_Sub1_Sub1_1;
+			MiniMap.sprite = Static56.aClass3_Sub2_Sub1_Sub1_1;
 		}
 		if (GlRenderer.enabled) {
 			Rasterizer.destinationPixels = null;

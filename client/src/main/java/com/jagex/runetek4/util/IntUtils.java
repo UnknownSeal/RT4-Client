@@ -15,4 +15,9 @@ public class IntUtils {
         @Pc(40) int local40 = local34 | local34 >>> 16;
         return local40 + 1;
     }
+
+    @OriginalMember(owner = "runetek4.client!ra", name = "a", descriptor = "(BI)Z")
+    public static boolean isPowerOfTwo(@OriginalArg(1) int arg0) {
+        return arg0 == (-arg0 & arg0);
+    }
 }
