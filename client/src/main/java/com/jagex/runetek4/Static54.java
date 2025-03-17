@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.audio.SynthSound;
 import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.cache.def.NpcType;
@@ -35,18 +35,18 @@ public final class Static54 {
 	public static void method1305(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) Component arg3) {
 		client.audioLoop();
 		if (GlRenderer.enabled) {
-			Static46.method1187(arg2, arg1, arg2 + arg3.anInt445, arg1 + arg3.anInt459);
+			Static46.method1187(arg2, arg1, arg2 + arg3.width, arg1 + arg3.height);
 		} else {
-			Rasterizer.setBounds(arg2, arg1, arg2 + arg3.anInt445, arg1 + arg3.anInt459);
+			Rasterizer.setBounds(arg2, arg1, arg2 + arg3.width, arg1 + arg3.height);
 		}
 		if (Minimap.state != 2 && Minimap.state != 5 && Minimap.sprite != null) {
 			@Pc(48) int angle = Minimap.minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
 			@Pc(57) int anchorX = PlayerList.self.xFine / 32 + 48;
 			@Pc(67) int anchorY = 464 - PlayerList.self.zFine / 32;
 			if (GlRenderer.enabled) {
-				((GlSprite) Minimap.sprite).method1427(arg2, arg1, arg3.anInt445, arg3.anInt459, anchorX, anchorY, angle, Minimap.minimapZoom + 256, (GlSprite) arg3.method489(false));
+				((GlSprite) Minimap.sprite).method1427(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, Minimap.minimapZoom + 256, (GlSprite) arg3.method489(false));
 			} else {
-				((ImageRGB) Minimap.sprite).method310(arg2, arg1, arg3.anInt445, arg3.anInt459, anchorX, anchorY, angle, Minimap.minimapZoom + 256, arg3.anIntArray37, arg3.anIntArray45);
+				((SoftwareSprite) Minimap.sprite).method310(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, Minimap.minimapZoom + 256, arg3.anIntArray37, arg3.anIntArray45);
 			}
 			@Pc(146) int flagX;
 			@Pc(181) int flagZ;
@@ -76,7 +76,7 @@ public final class Static54 {
 						npcX = local164 * flagZ + local189 * flagX >> 16;
 						local239 = local156.method2856(Static235.aMapElementTypeList_2.aClass100Array153[local117], 100);
 						@Pc(245) int local245 = npcX - local239 / 2;
-						if (local245 >= -arg3.anInt445 && local245 <= arg3.anInt445 && npcZ >= -arg3.anInt459 && npcZ <= arg3.anInt459) {
+						if (local245 >= -arg3.width && local245 <= arg3.width && npcZ >= -arg3.height && npcZ <= arg3.height) {
 							local271 = 16777215;
 							if (Static235.aMapElementTypeList_2.anIntArray444[local117] != -1) {
 								local271 = Static235.aMapElementTypeList_2.anIntArray444[local117];
@@ -86,7 +86,7 @@ public final class Static54 {
 							} else {
 								Rasterizer.method2486(arg3.anIntArray37, arg3.anIntArray45);
 							}
-							local156.method2869(Static235.aMapElementTypeList_2.aClass100Array153[local117], arg2 + local245 + arg3.anInt445 / 2, arg1 + arg3.anInt459 / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
+							local156.method2869(Static235.aMapElementTypeList_2.aClass100Array153[local117], arg2 + local245 + arg3.width / 2, arg1 + arg3.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
 							if (GlRenderer.enabled) {
 								Static46.method1173();
 							} else {
@@ -204,9 +204,9 @@ public final class Static54 {
 				Minimap.drawOnMinimap(arg3, Static84.aClass3_Sub2_Sub1_4, flagZ, flagX, arg1, arg2);
 			}
 			if (GlRenderer.enabled) {
-				Static46.method1186(arg2 + arg3.anInt445 / 2 - 1, arg1 + -1 - -(arg3.anInt459 / 2), 3, 3, 16777215);
+				Static46.method1186(arg2 + arg3.width / 2 - 1, arg1 + -1 - -(arg3.height / 2), 3, 3, 16777215);
 			} else {
-				Rasterizer.drawFilledRectangle(arg3.anInt445 / 2 + arg2 - 1, arg3.anInt459 / 2 + -1 + arg1, 3, 3, 16777215);
+				Rasterizer.drawFilledRectangle(arg3.width / 2 + arg2 - 1, arg3.height / 2 + -1 + arg1, 3, 3, 16777215);
 			}
 		} else if (GlRenderer.enabled) {
 			@Pc(1041) Sprite local1041 = arg3.method489(false);
@@ -262,20 +262,6 @@ public final class Static54 {
 	@OriginalMember(owner = "runetek4.client!ed", name = "c", descriptor = "(I)V")
 	public static void clear() {
 		Static83.aClass99_3.clear();
-	}
-
-	@OriginalMember(owner = "runetek4.client!ed", name = "a", descriptor = "(IIII)I")
-	public static int method1309(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		if (arg0 > 243) {
-			arg1 >>= 0x4;
-		} else if (arg0 > 217) {
-			arg1 >>= 0x3;
-		} else if (arg0 > 192) {
-			arg1 >>= 0x2;
-		} else if (arg0 > 179) {
-			arg1 >>= 0x1;
-		}
-		return (arg0 >> 1) + (arg1 >> 5 << 7) + (arg2 >> 2 << 10);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ed", name = "b", descriptor = "(II)Lclient!ba;")

@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
@@ -65,7 +65,7 @@ public final class Static145 {
 		Static69.method1545(null);
 		Static103.anIntArray254 = new int[32768];
 		Static216.anIntArray188 = new int[32768];
-		Static167.aClass3_Sub2_Sub1_Sub1_3 = new ImageRGB(128, 254);
+		Static167.aClass3_Sub2_Sub1_Sub1_3 = new SoftwareSprite(128, 254);
 	}
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "b", descriptor = "(I)V")

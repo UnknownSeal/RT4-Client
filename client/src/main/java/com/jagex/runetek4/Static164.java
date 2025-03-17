@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.cache.def.ItemDefinition;
@@ -162,7 +162,7 @@ public final class Static164 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Lclient!ve;IZ)Lclient!mm;")
-	public static ImageRGB method3117(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
+	public static SoftwareSprite method3117(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
 		return Static254.method4346(arg0, arg1) ? Static196.method3537() : null;
 	}
 
@@ -189,14 +189,14 @@ public final class Static164 {
 		if (local60 == null) {
 			return null;
 		}
-		@Pc(71) ImageRGB local71 = null;
+		@Pc(71) SoftwareSprite local71 = null;
 		if (definition.certtemplate != -1) {
-			local71 = (ImageRGB) method3150(0, true, definition.certlink, false, 1, 10, true);
+			local71 = (SoftwareSprite) method3150(0, true, definition.certlink, false, 1, 10, true);
 			if (local71 == null) {
 				return null;
 			}
 		} else if (definition.lenttemplate != -1) {
-			local71 = (ImageRGB) method3150(arg0, true, definition.lentlink, false, arg4, arg5, false);
+			local71 = (SoftwareSprite) method3150(arg0, true, definition.lentlink, false, arg4, arg5, false);
 			if (local71 == null) {
 				return null;
 			}
@@ -206,7 +206,7 @@ public final class Static164 {
 		@Pc(122) int local122 = Rasterizer.destinationHeight;
 		@Pc(125) int[] local125 = new int[4];
 		Rasterizer.getViewportDimensions(local125);
-		@Pc(133) ImageRGB rendered = new ImageRGB(36, 32);
+		@Pc(133) SoftwareSprite rendered = new SoftwareSprite(36, 32);
 		Rasterizer.prepare(rendered.pixels, 36, 32);
 		Pix3D.method1908();
 		Pix3D.method1919(16, 16);
@@ -221,14 +221,14 @@ public final class Static164 {
 		@Pc(185) int local185 = MathUtils.sin[definition.xan2d] * local145 >> 16;
 		local60.drawModel(definition.yan2d, definition.zan2d, definition.xan2d, definition.xof2d, local185 + definition.yof2d - local60.getMinY() / 2, definition.yof2d + local176, -1L);
 		if (arg4 >= 1) {
-			rendered.method303(1);
+			rendered.drawOutline(1);
 			if (arg4 >= 2) {
-				rendered.method303(16777215);
+				rendered.drawOutline(16777215);
 			}
 			Rasterizer.prepare(rendered.pixels, 36, 32);
 		}
 		if (arg0 != 0) {
-			rendered.method314(arg0);
+			rendered.drawShadow(arg0);
 		}
 		if (definition.certtemplate != -1) {
 			local71.drawSprite(0, 0);

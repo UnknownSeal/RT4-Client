@@ -13,9 +13,6 @@ public final class Static251 {
 	@OriginalMember(owner = "runetek4.client!ug", name = "p", descriptor = "I")
 	public static int anInt5457;
 
-	@OriginalMember(owner = "runetek4.client!ug", name = "b", descriptor = "[F")
-	public static final float[] aFloatArray28 = new float[4];
-
 	@OriginalMember(owner = "runetek4.client!ug", name = "m", descriptor = "I")
 	public static int anInt5454 = 0;
 

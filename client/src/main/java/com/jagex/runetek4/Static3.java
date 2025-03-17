@@ -33,7 +33,7 @@ public final class Static3 {
 
 	@OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "(ZLclient!ve;Lclient!ve;Lclient!ve;Lclient!ve;)V")
 	public static void init(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1, @OriginalArg(3) Js5 arg2, @OriginalArg(4) Js5 arg3) {
-		Static23.gameImageJs5 = arg1;
+		InterfaceList.gameImageJs5 = arg1;
 		com.jagex.runetek4.cache.CacheArchive.aClass153_64 = arg0;
 		com.jagex.runetek4.cache.CacheArchive.gameInterfaceJs5 = arg2;
 		Static203.aClass153_85 = arg3;

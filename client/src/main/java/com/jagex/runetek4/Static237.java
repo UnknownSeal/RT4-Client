@@ -4,6 +4,7 @@ import java.nio.ByteBuffer;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -121,7 +122,7 @@ public final class Static237 {
 
 	@OriginalMember(owner = "runetek4.client!td", name = "a", descriptor = "(ISIB)I")
 	public static int method4096(@OriginalArg(0) int arg0, @OriginalArg(1) short arg1, @OriginalArg(2) int arg2, @OriginalArg(3) byte arg3) {
-		@Pc(5) int local5 = Pix3D.anIntArray220[Static268.method4585(arg0, arg2)];
+		@Pc(5) int local5 = Pix3D.anIntArray220[ColorUtils.multiplyLightness2(arg0, arg2)];
 		if (arg1 != -1) {
 			@Pc(15) int local15 = Rasterizer.textureProvider.method3238(arg1 & 0xFFFF);
 			@Pc(21) int local21;

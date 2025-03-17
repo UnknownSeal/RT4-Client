@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static268 {
@@ -157,16 +156,6 @@ public final class Static268 {
 		anIntArrayArray43 = null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!w", name = "f", descriptor = "(I)I")
-	public static int method4582(@OriginalArg(0) int arg0) {
-		if (arg0 < 2) {
-			arg0 = 2;
-		} else if (arg0 > 126) {
-			arg0 = 126;
-		}
-		return arg0;
-	}
-
 	@OriginalMember(owner = "runetek4.client!w", name = "o", descriptor = "()V")
 	public static void method4583() {
 		aBoolean307 = false;
@@ -178,14 +167,4 @@ public final class Static268 {
 		anIntArrayArray43 = new int[32][512];
 	}
 
-	@OriginalMember(owner = "runetek4.client!w", name = "a", descriptor = "(II)I")
-	public static int method4585(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		arg1 = arg1 * (arg0 & 0x7F) >> 7;
-		if (arg1 < 2) {
-			arg1 = 2;
-		} else if (arg1 > 126) {
-			arg1 = 126;
-		}
-		return (arg0 & 0xFF80) + arg1;
-	}
 }

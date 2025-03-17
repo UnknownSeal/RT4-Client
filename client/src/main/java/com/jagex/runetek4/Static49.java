@@ -182,7 +182,7 @@ public final class Static49 {
 		if (local59 == null) {
 			local59 = Fonts.b12Full;
 		}
-		local59.method2878(local24, arg2, arg1, arg0.anInt445, arg0.anInt459, arg0.anInt474, arg0.anInt513, arg0.anInt460, arg0.anInt478, client.aRandom1, MiniMenu.gregorianDateSeed, Static50.anIntArray132);
+		local59.method2878(local24, arg2, arg1, arg0.width, arg0.height, arg0.color, arg0.shadowColor, arg0.halign, arg0.valign, client.aRandom1, MiniMenu.gregorianDateSeed, Static50.anIntArray132);
 		Static133.method4012(Static50.anIntArray132[0], Static50.anIntArray132[2], Static50.anIntArray132[1], Static50.anIntArray132[3]);
 	}
 

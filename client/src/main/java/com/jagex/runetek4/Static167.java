@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,7 +11,7 @@ public final class Static167 {
 	public static int eyeTileX;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "y", descriptor = "Lclient!mm;")
-	public static ImageRGB aClass3_Sub2_Sub1_Sub1_3;
+	public static SoftwareSprite aClass3_Sub2_Sub1_Sub1_3;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "b", descriptor = "Lclient!na;")
 	public static final JString aClass100_780 = JString.parse("Clientscript error in: ");

@@ -20,8 +20,8 @@ public final class TextureOp28 extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!sa", name = "a", descriptor = "(IB)[I")
 	@Override
 	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(19) int[] local19 = this.aClass121_41.method3445(arg0);
-		if (this.aClass121_41.aBoolean221) {
+		@Pc(19) int[] local19 = this.aClass121_41.get(arg0);
+		if (this.aClass121_41.invalid) {
 			@Pc(28) int local28 = Texture.heightFractions[arg0];
 			for (@Pc(30) int local30 = 0; local30 < Texture.width; local30++) {
 				@Pc(41) int local41 = Texture.widthFractions[local30];

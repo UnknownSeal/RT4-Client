@@ -549,7 +549,7 @@ public final class Static280 {
 		if (arg0.overlayer != -1) {
 			return InterfaceList.getComponent(arg0.overlayer);
 		}
-		@Pc(28) int local28 = arg0.anInt507 >>> 16;
+		@Pc(28) int local28 = arg0.id >>> 16;
 		@Pc(33) HashTableIterator local33 = new HashTableIterator(InterfaceList.openInterfaces);
 		for (@Pc(38) ComponentPointer local38 = (ComponentPointer) local33.method2701(); local38 != null; local38 = (ComponentPointer) local33.method2700()) {
 			if (local28 == local38.anInt5878) {

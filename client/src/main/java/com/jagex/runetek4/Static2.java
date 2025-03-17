@@ -42,31 +42,31 @@ public final class Static2 {
 		for (@Pc(11) int local11 = 0; local11 < arg0.length; local11++) {
 			@Pc(23) Component local23 = arg0[local11];
 			if (local23 != null) {
-				if (local23.INVENTORY == 0) {
+				if (local23.type == 0) {
 					if (local23.createdComponents != null) {
 						method7(local23.createdComponents, arg1);
 					}
-					@Pc(49) ComponentPointer local49 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) local23.anInt507);
+					@Pc(49) ComponentPointer local49 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) local23.id);
 					if (local49 != null) {
 						Static54.method1304(arg1, local49.anInt5878);
 					}
 				}
 				@Pc(72) HookRequest local72;
-				if (arg1 == 0 && local23.anObjectArray12 != null) {
+				if (arg1 == 0 && local23.onDialogAbort != null) {
 					local72 = new HookRequest();
-					local72.arguments = local23.anObjectArray12;
+					local72.arguments = local23.onDialogAbort;
 					local72.source = local23;
 					ClientScriptRunner.run(local72);
 				}
-				if (arg1 == 1 && local23.anObjectArray8 != null) {
+				if (arg1 == 1 && local23.onWidgetsOpenClose != null) {
 					if (local23.createdComponentId >= 0) {
-						@Pc(103) Component local103 = InterfaceList.getComponent(local23.anInt507);
+						@Pc(103) Component local103 = InterfaceList.getComponent(local23.id);
 						if (local103 == null || local103.createdComponents == null || local23.createdComponentId >= local103.createdComponents.length || local103.createdComponents[local23.createdComponentId] != local23) {
 							continue;
 						}
 					}
 					local72 = new HookRequest();
-					local72.arguments = local23.anObjectArray8;
+					local72.arguments = local23.onWidgetsOpenClose;
 					local72.source = local23;
 					ClientScriptRunner.run(local72);
 				}
@@ -262,23 +262,23 @@ public final class Static2 {
 		@Pc(16) int local16 = arg0.contentType;
 		if (local16 == 324) {
 			if (Static158.anInt3851 == -1) {
-				Static158.anInt3851 = arg0.anInt477;
-				Static145.anInt3502 = arg0.anInt519;
+				Static158.anInt3851 = arg0.spriteId;
+				Static145.anInt3502 = arg0.activeSpriteId;
 			}
 			if (PlayerAppearance.DEFAULT.aBoolean141) {
-				arg0.anInt477 = Static158.anInt3851;
+				arg0.spriteId = Static158.anInt3851;
 			} else {
-				arg0.anInt477 = Static145.anInt3502;
+				arg0.spriteId = Static145.anInt3502;
 			}
 		} else if (local16 == 325) {
 			if (Static158.anInt3851 == -1) {
-				Static145.anInt3502 = arg0.anInt519;
-				Static158.anInt3851 = arg0.anInt477;
+				Static145.anInt3502 = arg0.activeSpriteId;
+				Static158.anInt3851 = arg0.spriteId;
 			}
 			if (PlayerAppearance.DEFAULT.aBoolean141) {
-				arg0.anInt477 = Static145.anInt3502;
+				arg0.spriteId = Static145.anInt3502;
 			} else {
-				arg0.anInt477 = Static158.anInt3851;
+				arg0.spriteId = Static158.anInt3851;
 			}
 		} else if (local16 == 327) {
 			arg0.modelXAngle = 150;
@@ -295,7 +295,7 @@ public final class Static2 {
 				arg0.modelId = ((int) PlayerList.self.username.encode37() << 11) + 2047;
 				arg0.anInt496 = PlayerList.self.anInt3388;
 				arg0.anInt500 = 0;
-				arg0.anInt522 = PlayerList.self.movementSeqId;
+				arg0.modelSeqId = PlayerList.self.movementSeqId;
 				arg0.anInt510 = PlayerList.self.anInt3407;
 			}
 		}

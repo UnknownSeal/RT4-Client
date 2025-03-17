@@ -1,7 +1,7 @@
 package com.jagex.runetek4.frame;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -31,7 +31,7 @@ public class Minimap {
         }
         @Pc(21) int local21 = arg3 * arg3 + arg2 * arg2;
         @Pc(27) int local27 = minimapAnticheatAngle + Camera.orbitCameraYaw & 0x7FF;
-        @Pc(39) int local39 = Math.max(arg0.anInt445 / 2, arg0.anInt459 / 2) + 10;
+        @Pc(39) int local39 = Math.max(arg0.width / 2, arg0.height / 2) + 10;
         if (local39 * local39 < local21) {
             return;
         }
@@ -42,9 +42,9 @@ public class Minimap {
         @Pc(81) int local81 = local58 * arg2 + arg3 * local70 >> 16;
         @Pc(92) int local92 = local70 * arg2 - arg3 * local58 >> 16;
         if (GlRenderer.enabled) {
-            ((GlSprite) sprite).method1425(arg0.anInt445 / 2 + arg5 + local81 - sprite.innerWidth / 2, arg0.anInt459 / 2 + arg4 - (local92 + sprite.innerHeight / 2), (GlSprite) arg0.method489(false));
+            ((GlSprite) sprite).method1425(arg0.width / 2 + arg5 + local81 - sprite.innerWidth / 2, arg0.height / 2 + arg4 - (local92 + sprite.innerHeight / 2), (GlSprite) arg0.method489(false));
         } else {
-            ((ImageRGB) sprite).drawImage(arg0.anInt445 / 2 + arg5 + local81 - sprite.innerWidth / 2, -(sprite.innerHeight / 2) + arg0.anInt459 / 2 + arg4 + -local92, arg0.anIntArray37, arg0.anIntArray45);
+            ((SoftwareSprite) sprite).drawImage(arg0.width / 2 + arg5 + local81 - sprite.innerWidth / 2, -(sprite.innerHeight / 2) + arg0.height / 2 + arg4 + -local92, arg0.anIntArray37, arg0.anIntArray45);
         }
     }
 }

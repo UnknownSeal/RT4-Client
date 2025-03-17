@@ -350,10 +350,10 @@ public final class Static103 {
 				if (Static102.aClass100_545 == null) {
 					Static102.aClass100_545 = Static250.aClass100_1042;
 				}
-				if (com.aBoolean32) {
-					Static78.aClass100_466 = JString.concatenate(new JString[] { com.aClass100_88, Static204.aClass100_896 });
+				if (com.if3) {
+					Static78.aClass100_466 = JString.concatenate(new JString[] { com.optionBase, Static204.aClass100_896 });
 				} else {
-					Static78.aClass100_466 = JString.concatenate(new JString[] { Static42.GREEN, com.aClass100_85, Static204.aClass100_896 });
+					Static78.aClass100_466 = JString.concatenate(new JString[] { Static42.GREEN, com.optionSuffix, Static204.aClass100_896 });
 				}
 			}
 			return;
@@ -805,7 +805,7 @@ public final class Static103 {
 				@Pc(27) int local27;
 				for (local27 = 0; local27 < local25.length; local27++) {
 					if (local25[local27] != null) {
-						local21 = local25[local27].aBoolean32;
+						local21 = local25[local27].if3;
 						break;
 					}
 				}

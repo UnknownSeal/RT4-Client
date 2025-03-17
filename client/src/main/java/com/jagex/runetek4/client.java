@@ -315,7 +315,7 @@ public final class client extends GameShell {
 		Static92.removeSoft();
 		Static26.removeSoft();
 		Static192.removeSoft();
-		Static40.removeSoft();
+		Component.removeSoft();
 		Static180.removeSoft();
 		Static251.removeSoft();
 		Static73.hitBars.removeSoft();
@@ -352,7 +352,7 @@ public final class client extends GameShell {
 		Static78.clear();
 		Static10.method351();
 		Static230.clear();
-		Static147.clear();
+		Component.clear();
 		if (modeWhat != 0) {
 			for (@Pc(54) int i = 0; i < Player.aByteArrayArray8.length; i++) {
 				Player.aByteArrayArray8[i] = null;
@@ -646,7 +646,7 @@ public final class client extends GameShell {
 		Static25.method715();
 		Static25.method716();
 		Static279.method4662();
-		Static53.method1289();
+		Component.clean();
 		Static158.method3010();
 		Static134.method2621();
 		Static73.hitBars.clear(5);

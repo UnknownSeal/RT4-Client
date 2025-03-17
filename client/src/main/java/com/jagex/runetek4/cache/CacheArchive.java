@@ -81,7 +81,7 @@ public final class CacheArchive {
 		Static241.aClass13Array13 = null;
 		Static6.method86(InterfaceList.topLevelInterace, 0, GameShell.canvasWidth, 0, -1, GameShell.canvasHeigth, 0, 0);
 		if (Static241.aClass13Array13 != null) {
-			Static87.drawGame(0, Static127.anInt3126, Static80.anInt4696, Static241.aClass13Array13, GameShell.canvasWidth, -1412584499, 0, GameShell.canvasHeigth, Static4.aClass13_1.anInt517);
+			Static87.drawGame(0, Static127.anInt3126, Static80.anInt4696, Static241.aClass13Array13, GameShell.canvasWidth, -1412584499, 0, GameShell.canvasHeigth, Static4.aClass13_1.rectangle);
 			Static241.aClass13Array13 = null;
 		}
 	}

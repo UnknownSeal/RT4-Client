@@ -4,6 +4,7 @@ import com.jagex.runetek4.core.utils.MillisTimer;
 import com.jagex.runetek4.core.utils.Timer;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -68,9 +69,9 @@ public final class Static70 {
 						local72 = 127;
 					}
 					local95 = (local66 & 0x380) + (arg1 + local66 & 0xFC00) + local72;
-					local53 = Pix3D.anIntArray220[Static230.method3949(local95, 96)];
+					local53 = Pix3D.anIntArray220[ColorUtils.multiplyLightnessGrayscale(local95, 96)];
 				} else if (local24 >= 0) {
-					local53 = Pix3D.anIntArray220[Static230.method3949(Rasterizer.textureProvider.method3234(local24), 96)];
+					local53 = Pix3D.anIntArray220[ColorUtils.multiplyLightnessGrayscale(Rasterizer.textureProvider.method3234(local24), 96)];
 				} else if (local18.rgb == -1) {
 					local53 = -1;
 				} else {
@@ -82,7 +83,7 @@ public final class Static70 {
 						local72 = 127;
 					}
 					local95 = local72 + (local66 & 0x380) + (local66 + arg1 & 0xFC00);
-					local53 = Pix3D.anIntArray220[Static230.method3949(local95, 96)];
+					local53 = Pix3D.anIntArray220[ColorUtils.multiplyLightnessGrayscale(local95, 96)];
 				}
 				Static145.anIntArray330[local11 + 1] = local53;
 			}

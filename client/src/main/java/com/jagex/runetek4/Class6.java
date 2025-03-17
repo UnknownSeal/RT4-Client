@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.cursortype.CursorType;
 import com.jagex.runetek4.util.SignLink;
@@ -155,7 +155,7 @@ public final class Class6 {
             if (GlRenderer.enabled) {
                 local6[local15] = new GlSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local15], Static269.anIntArray252[local15], Static254.anIntArray488[local15], Static26.anIntArray66[local15], local37);
             } else {
-                local6[local15] = new ImageRGB(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local15], Static269.anIntArray252[local15], Static254.anIntArray488[local15], Static26.anIntArray66[local15], local37);
+                local6[local15] = new SoftwareSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local15], Static269.anIntArray252[local15], Static254.anIntArray488[local15], Static26.anIntArray66[local15], local37);
             }
         }
         Static75.method1631();

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -67,7 +67,7 @@ public class WorldMap {
         }
 
         if (aClass3_Sub2_Sub1_2 == null || arg2 != aClass3_Sub2_Sub1_2.width || aClass3_Sub2_Sub1_2.height != arg1) {
-            @Pc(63) ImageRGB local63 = new ImageRGB(arg2, arg1);
+            @Pc(63) SoftwareSprite local63 = new SoftwareSprite(arg2, arg1);
             Rasterizer.prepare(local63.pixels, arg2, arg1);
             Static214.method4364(arg2, 0, Static48.anInt1449, 0, 0, IdkTypeList.anInt4296, arg1, 0);
             if (GlRenderer.enabled) {

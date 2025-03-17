@@ -21,9 +21,6 @@ public final class Static176 {
 	@OriginalMember(owner = "runetek4.client!ob", name = "f", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_76;
 
-	@OriginalMember(owner = "runetek4.client!ob", name = "e", descriptor = "Lclient!na;")
-	public static final JString aClass100_800 = JString.parse("");
-
 	@OriginalMember(owner = "runetek4.client!ob", name = "o", descriptor = "Lclient!na;")
 	private static final JString aClass100_801 = JString.parse(")4a=");
 
@@ -216,7 +213,7 @@ public final class Static176 {
 				if (local133 == 3) {
 					@Pc(931) LinkedList local931 = SceneGraph.objStacks[Player.plane][local47][local147];
 					if (local931 != null) {
-						for (@Pc(940) ObjStackNode local940 = (ObjStackNode) local931.method2279(); local940 != null; local940 = (ObjStackNode) local931.prev()) {
+						for (@Pc(940) ObjStackNode local940 = (ObjStackNode) local931.tail(); local940 != null; local940 = (ObjStackNode) local931.prev()) {
 							local240 = local940.aClass8_Sub7_1.anInt5555;
 							@Pc(951) ItemDefinition local951 = Static71.get(local240);
 							if (MiniMenu.anInt5014 == 1) {

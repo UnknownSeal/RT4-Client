@@ -227,8 +227,8 @@ public class Game {
                 @Pc(773) Component component;
                 if (samples == 3) {
                     component = InterfaceList.getComponent(i);
-                    if (!change.stringArg.method3108(component.aClass100_84)) {
-                        component.aClass100_84 = change.stringArg;
+                    if (!change.stringArg.method3108(component.text)) {
+                        component.text = change.stringArg;
                         InterfaceList.redraw(component);
                     }
                 } else if (samples == 4) {
@@ -244,10 +244,10 @@ public class Game {
                     }
                 } else if (samples == 5) {
                     component = InterfaceList.getComponent(i);
-                    if (component.anInt522 != change.intArg1 || change.intArg1 == -1) {
+                    if (component.modelSeqId != change.intArg1 || change.intArg1 == -1) {
                         component.anInt496 = 1;
                         component.anInt500 = 0;
-                        component.anInt522 = change.intArg1;
+                        component.modelSeqId = change.intArg1;
                         component.anInt510 = 0;
                         InterfaceList.redraw(component);
                     }
@@ -258,8 +258,8 @@ public class Game {
                     rand = y >> 5 & 0x1F;
                     @Pc(1189) Component local1189 = InterfaceList.getComponent(i);
                     dy = (dx << 3) + (rand << 11) + (x << 19);
-                    if (dy != local1189.anInt474) {
-                        local1189.anInt474 = dy;
+                    if (dy != local1189.color) {
+                        local1189.color = dy;
                         InterfaceList.redraw(local1189);
                     }
                 } else if (samples == 7) {
@@ -312,9 +312,9 @@ public class Game {
                 } else if (samples == 12) {
                     component = InterfaceList.getComponent(i);
                     x = change.intArg1;
-                    if (component != null && component.INVENTORY == 0) {
-                        if (x > component.anInt491 - component.anInt459) {
-                            x = component.anInt491 - component.anInt459;
+                    if (component != null && component.type == 0) {
+                        if (x > component.scrollMaxV - component.height) {
+                            x = component.scrollMaxV - component.height;
                         }
                         if (x < 0) {
                             x = 0;
@@ -387,7 +387,7 @@ public class Game {
                         }
                         Protocol.outboundBuffer.pIsaac1(231);
                         Protocol.outboundBuffer.p2(Static4.selectedInventorySlot);
-                        Protocol.outboundBuffer.p4_alt1(Static118.component.anInt507);
+                        Protocol.outboundBuffer.p4_alt1(Static118.component.id);
                         Protocol.outboundBuffer.p2_alt2(Static18.mouseInvInterfaceIndex);
                         Protocol.outboundBuffer.p1_alt3(moveItemInsertionMode);
                     }

@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.util.ArrayUtils;
@@ -14,7 +14,7 @@ public final class Static153 {
 	public static JString aClass100_724;
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "S", descriptor = "Lclient!mm;")
-	public static ImageRGB aClass3_Sub2_Sub1_Sub1_2;
+	public static SoftwareSprite aClass3_Sub2_Sub1_Sub1_2;
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "Z", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_57;

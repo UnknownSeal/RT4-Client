@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.frame.Minimap;
@@ -36,7 +36,7 @@ public final class Static97 {
 		if (len > 360000) {
 			return;
 		}
-		@Pc(30) int local30 = Math.min(arg5.anInt445 / 2, arg5.anInt459 / 2);
+		@Pc(30) int local30 = Math.min(arg5.width / 2, arg5.height / 2);
 		if (local30 * local30 >= len) {
 			Minimap.drawOnMinimap(arg5, Static149.aClass3_Sub2_Sub1Array7[arg0], mapY, mapX, arg1, arg2);
 			return;
@@ -53,9 +53,9 @@ public final class Static97 {
 		@Pc(117) int sine = (int) (Math.sin(angle) * (double) local30);
 		@Pc(124) int cosine = (int) (Math.cos(angle) * (double) local30);
 		if (GlRenderer.enabled) {
-			((GlSprite) Static277.aClass3_Sub2_Sub1Array12[arg0]).method1428((arg5.anInt445 / 2 + arg2 + sine) * 16, (arg5.anInt459 / 2 + arg1 - cosine) * 16, (int) (angle * 10430.378D));
+			((GlSprite) Static277.aClass3_Sub2_Sub1Array12[arg0]).method1428((arg5.width / 2 + arg2 + sine) * 16, (arg5.height / 2 + arg1 - cosine) * 16, (int) (angle * 10430.378D));
 		} else {
-			((ImageRGB) Static277.aClass3_Sub2_Sub1Array12[arg0]).method306(sine + arg5.anInt445 / 2 + arg2 - 10, arg5.anInt459 / 2 + -10 + arg1 + -cosine, angle);
+			((SoftwareSprite) Static277.aClass3_Sub2_Sub1Array12[arg0]).method306(sine + arg5.width / 2 + arg2 - 10, arg5.height / 2 + -10 + arg1 + -cosine, angle);
 		}
 	}
 
@@ -133,10 +133,10 @@ public final class Static97 {
 	public static JString method1963(@OriginalArg(0) Component arg0) {
 		if (InterfaceList.getServerActiveProperties(arg0).method512() == 0) {
 			return null;
-		} else if (arg0.aClass100_86 == null || arg0.aClass100_86.trim().length() == 0) {
+		} else if (arg0.optionCircumfix == null || arg0.optionCircumfix.trim().length() == 0) {
 			return Cheat.qaOpTest ? Static143.HIDDEN_USE : null;
 		} else {
-			return arg0.aClass100_86;
+			return arg0.optionCircumfix;
 		}
 	}
 }

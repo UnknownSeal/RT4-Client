@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -100,7 +100,7 @@ public final class SoftwareFont extends Font {
 			return;
 		}
 		if (Rasterizer.anIntArray295 == null) {
-			ImageRGB.blockCopyMask(Rasterizer.destinationPixels, this.aByteArrayArray7[arg0], arg5, local13, local5, arg3, arg4, local9, local11);
+			SoftwareSprite.blockCopyMask(Rasterizer.destinationPixels, this.aByteArrayArray7[arg0], arg5, local13, local5, arg3, arg4, local9, local11);
 		} else {
 			Static285.method1138(Rasterizer.destinationPixels, this.aByteArrayArray7[arg0], arg1, arg2, arg3, arg4, arg5, local13, local5, local9, local11, Rasterizer.anIntArray295, Rasterizer.anIntArray296);
 		}

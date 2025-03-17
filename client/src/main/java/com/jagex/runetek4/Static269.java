@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.config.lighttype.LightType;
@@ -279,7 +279,7 @@ public final class Static269 {
 		if (GlRenderer.enabled) {
 			if (Static153.aClass3_Sub2_Sub1_Sub1_2 == null || Static153.aClass3_Sub2_Sub1_Sub1_2.width != arg3 || Static153.aClass3_Sub2_Sub1_Sub1_2.height != arg2) {
 				Static153.aClass3_Sub2_Sub1_Sub1_2 = null;
-				Static153.aClass3_Sub2_Sub1_Sub1_2 = new ImageRGB(arg3, arg2);
+				Static153.aClass3_Sub2_Sub1_Sub1_2 = new SoftwareSprite(arg3, arg2);
 			}
 			Rasterizer.prepare(Static153.aClass3_Sub2_Sub1_Sub1_2.pixels, arg3, arg2);
 			Static214.method4364(arg3, 0, local61, local50, 0, local236, arg2, local211);

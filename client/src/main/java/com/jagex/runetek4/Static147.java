@@ -1,8 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.scene.tile.ComplexTile;
+import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -77,7 +77,7 @@ public final class Static147 {
 						}
 					} else if (!Static159.aBoolean189) {
 						@Pc(373) int local373 = Rasterizer.textureProvider.method3234(overlay.triangleTextureIds[i]);
-						Pix3D.method1928(local156, local160, local164, local39, local148, local152, Static216.method1640(local373, overlay.triangleHSLA[i]), Static216.method1640(local373, overlay.triangleHSLB[i]), Static216.method1640(local373, overlay.triangleHSLC[i]));
+						Pix3D.method1928(local156, local160, local164, local39, local148, local152, ColorUtils.multiplyLightness3(local373, overlay.triangleHSLA[i]), ColorUtils.multiplyLightness3(local373, overlay.triangleHSLB[i]), ColorUtils.multiplyLightness3(local373, overlay.triangleHSLC[i]));
 					} else if (overlay.aBoolean113) {
 						Pix3D.textureTriangle(local156, local160, local164, local39, local148, local152, overlay.triangleHSLA[i], overlay.triangleHSLB[i], overlay.triangleHSLC[i], Static68.anIntArray159[0], Static68.anIntArray159[1], Static68.anIntArray159[3], Static68.anIntArray170[0], Static68.anIntArray170[1], Static68.anIntArray170[3], Static68.tmpViewspaceZ[0], Static68.tmpViewspaceZ[1], Static68.tmpViewspaceZ[3], overlay.triangleTextureIds[i]);
 					} else {
@@ -88,10 +88,4 @@ public final class Static147 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!lh", name = "d", descriptor = "(B)V")
-	public static void clear() {
-		Component.interfaceItemImageCache.clear();
-		Static124.aClass99_17.clear();
-		Component.interfaceTypefaceCache.clear();
-	}
 }

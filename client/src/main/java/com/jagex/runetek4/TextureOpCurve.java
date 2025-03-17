@@ -142,8 +142,8 @@ public final class TextureOpCurve extends TextureOp {
 	@OriginalMember(owner = "client!wi", name = "a", descriptor = "(IB)[I")
 	@Override
 	public int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(19) int[] local19 = this.aClass121_41.method3445(arg0);
-		if (this.aClass121_41.aBoolean221) {
+		@Pc(19) int[] local19 = this.aClass121_41.get(arg0);
+		if (this.aClass121_41.invalid) {
 			@Pc(29) int[] local29 = this.method4624(0, arg0);
 			for (@Pc(31) int local31 = 0; local31 < Texture.width; local31++) {
 				@Pc(44) int local44 = local29[local31] >> 4;

@@ -4,6 +4,7 @@ import com.jagex.runetek4.cache.def.ItemDefinition;
 import com.jagex.runetek4.core.io.GZip;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.util.ColorUtils;
 import com.jagex.runetek4.util.MathUtils;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -123,7 +124,7 @@ public final class Static156 {
 		for (@Pc(19) int local19 = 0; local19 < Static36.aClass3_Sub14ArrayArray1[0].length; local19++) {
 			@Pc(31) Class3_Sub14 local31 = Static36.aClass3_Sub14ArrayArray1[0][local19];
 			if (local31.anInt2485 >= 0 && Rasterizer.textureProvider.method3237(local31.anInt2485) == 4) {
-				local1.glColor4fv(Static190.method3441(local31.anInt2486), 0);
+				local1.glColor4fv(ColorUtils.getRgbFloat(local31.anInt2486), 0);
 				@Pc(57) float local57 = 201.5F - (local31.aBoolean140 ? 1.0F : 0.5F);
 				local31.method1944(Static130.levelTiles, local57, true);
 			}

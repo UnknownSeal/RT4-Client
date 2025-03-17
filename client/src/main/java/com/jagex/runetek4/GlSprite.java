@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import java.nio.ByteBuffer;
 
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.util.IntUtils;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -47,7 +47,7 @@ public class GlSprite extends Sprite {
 	}
 
 	@OriginalMember(owner = "runetek4.client!cf", name = "<init>", descriptor = "(Lclient!mm;)V")
-	public GlSprite(@OriginalArg(0) ImageRGB arg0) {
+	public GlSprite(@OriginalArg(0) SoftwareSprite arg0) {
 		this.innerWidth = arg0.innerWidth;
 		this.innerHeight = arg0.innerHeight;
 		this.xOffset = arg0.xOffset;

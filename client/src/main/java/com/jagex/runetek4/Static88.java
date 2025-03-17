@@ -23,6 +23,7 @@ import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.NodeQueue;
 import com.jagex.runetek4.scene.SceneCamera;
 import com.jagex.runetek4.util.CharUtils;
+import com.jagex.runetek4.util.ColorUtils;
 import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -69,7 +70,7 @@ public final class Static88 {
 						j = arg1.anInt3097;
 					}
 					if (j == -2147483645) { // 2
-						j = arg1.source == null ? -1 : arg1.source.anInt507;
+						j = arg1.source == null ? -1 : arg1.source.id;
 					}
 					if (j == -2147483644) { // 3
 						j = arg1.op;
@@ -78,7 +79,7 @@ public final class Static88 {
 						j = arg1.source == null ? -1 : arg1.source.createdComponentId;
 					}
 					if (j == -2147483642) {
-						j = arg1.aClass13_16 == null ? -1 : arg1.aClass13_16.anInt507;
+						j = arg1.aClass13_16 == null ? -1 : arg1.aClass13_16.id;
 					}
 					if (j == -2147483641) {
 						j = arg1.aClass13_16 == null ? -1 : arg1.aClass13_16.createdComponentId;
@@ -404,10 +405,10 @@ public final class Static88 {
 								throw new RuntimeException("Gap at:" + (childCount - 1));
 							}
 							@Pc(1137) Component local1137 = new Component();
-							local1137.aBoolean32 = true;
+							local1137.if3 = true;
 							local1137.createdComponentId = childCount;
-							local1137.overlayer = local1137.anInt507 = component.anInt507;
-							local1137.INVENTORY = interfaceType;
+							local1137.overlayer = local1137.id = component.id;
+							local1137.type = interfaceType;
 							component.createdComponents[childCount] = local1137;
 							if (local1020) {
 								Static274.aClass13_24 = local1137;
@@ -429,7 +430,7 @@ public final class Static88 {
 							}
 							throw new RuntimeException("Tried to .cc_delete static .active-component!");
 						}
-						local1204 = InterfaceList.getComponent(local1182.anInt507);
+						local1204 = InterfaceList.getComponent(local1182.id);
 						local1204.createdComponents[local1182.createdComponentId] = null;
 						InterfaceList.redraw(local1204);
 						continue;
@@ -528,74 +529,74 @@ public final class Static88 {
 								if (scriptOpcode == 1100) {
 									// setscrollpos
 									intValueIndex -= 2;
-									local1182.anInt489 = Static254.scriptIntValues[intValueIndex];
-									if (local1182.anInt489 > local1182.anInt486 - local1182.anInt445) {
-										local1182.anInt489 = local1182.anInt486 - local1182.anInt445;
+									local1182.scrollX = Static254.scriptIntValues[intValueIndex];
+									if (local1182.scrollX > local1182.scrollMaxH - local1182.width) {
+										local1182.scrollX = local1182.scrollMaxH - local1182.width;
 									}
-									if (local1182.anInt489 < 0) {
-										local1182.anInt489 = 0;
+									if (local1182.scrollX < 0) {
+										local1182.scrollX = 0;
 									}
 									local1182.scrollY = Static254.scriptIntValues[intValueIndex + 1];
-									if (local1182.scrollY > local1182.anInt491 - local1182.anInt459) {
-										local1182.scrollY = local1182.anInt491 - local1182.anInt459;
+									if (local1182.scrollY > local1182.scrollMaxV - local1182.height) {
+										local1182.scrollY = local1182.scrollMaxV - local1182.height;
 									}
 									if (local1182.scrollY < 0) {
 										local1182.scrollY = 0;
 									}
 									InterfaceList.redraw(local1182);
 									if (local1182.createdComponentId == -1) {
-										Static118.method2353(local1182.anInt507);
+										Static118.method2353(local1182.id);
 									}
 									continue;
 								}
 								if (scriptOpcode == 1101) {
 									// setcolor
 									intValueIndex--;
-									local1182.anInt474 = Static254.scriptIntValues[intValueIndex];
+									local1182.color = Static254.scriptIntValues[intValueIndex];
 									InterfaceList.redraw(local1182);
 									if (local1182.createdComponentId == -1) {
-										Static245.method4224(local1182.anInt507);
+										Static245.method4224(local1182.id);
 									}
 									continue;
 								}
 								if (scriptOpcode == 1102) {
 									// setfill
 									intValueIndex--;
-									local1182.aBoolean30 = Static254.scriptIntValues[intValueIndex] == 1;
+									local1182.filled = Static254.scriptIntValues[intValueIndex] == 1;
 									InterfaceList.redraw(local1182);
 									continue;
 								}
 								if (scriptOpcode == 1103) {
 									// settrans
 									intValueIndex--;
-									local1182.anInt476 = Static254.scriptIntValues[intValueIndex];
+									local1182.alpha = Static254.scriptIntValues[intValueIndex];
 									InterfaceList.redraw(local1182);
 									continue;
 								}
 								if (scriptOpcode == 1104) {
 									// setlinewid
 									intValueIndex--;
-									local1182.anInt490 = Static254.scriptIntValues[intValueIndex];
+									local1182.lineWidth = Static254.scriptIntValues[intValueIndex];
 									InterfaceList.redraw(local1182);
 									continue;
 								}
 								if (scriptOpcode == 1105) {
 									// setgraphic
 									intValueIndex--;
-									local1182.anInt477 = Static254.scriptIntValues[intValueIndex];
+									local1182.spriteId = Static254.scriptIntValues[intValueIndex];
 									InterfaceList.redraw(local1182);
 									continue;
 								}
 								if (scriptOpcode == 1106) {
 									intValueIndex--;
-									local1182.anInt521 = Static254.scriptIntValues[intValueIndex];
+									local1182.angle2d = Static254.scriptIntValues[intValueIndex];
 									InterfaceList.redraw(local1182);
 									continue;
 								}
 								if (scriptOpcode == 1107) {
 									// settiling
 									intValueIndex--;
-									local1182.aBoolean23 = Static254.scriptIntValues[intValueIndex] == 1;
+									local1182.spriteTiling = Static254.scriptIntValues[intValueIndex] == 1;
 									InterfaceList.redraw(local1182);
 									continue;
 								}
@@ -606,7 +607,7 @@ public final class Static88 {
 									local1182.modelId = Static254.scriptIntValues[intValueIndex];
 									InterfaceList.redraw(local1182);
 									if (local1182.createdComponentId == -1) {
-										Static271.method4600(local1182.anInt507);
+										Static271.method4600(local1182.id);
 									}
 									continue;
 								}
@@ -621,8 +622,8 @@ public final class Static88 {
 									local1182.modelZoom = Static254.scriptIntValues[intValueIndex + 5];
 									InterfaceList.redraw(local1182);
 									if (local1182.createdComponentId == -1) {
-										Static153.method2910(local1182.anInt507);
-										Static180.method3328(local1182.anInt507);
+										Static153.method2910(local1182.id);
+										Static180.method3328(local1182.id);
 									}
 									continue;
 								}
@@ -630,22 +631,22 @@ public final class Static88 {
 									// setmodelanim
 									intValueIndex--;
 									interfaceType = Static254.scriptIntValues[intValueIndex];
-									if (local1182.anInt522 != interfaceType) {
-										local1182.anInt522 = interfaceType;
+									if (local1182.modelSeqId != interfaceType) {
+										local1182.modelSeqId = interfaceType;
 										local1182.anInt510 = 0;
 										local1182.anInt500 = 0;
 										local1182.anInt496 = 1;
 										InterfaceList.redraw(local1182);
 									}
 									if (local1182.createdComponentId == -1) {
-										IdkTypeList.method3345(local1182.anInt507);
+										IdkTypeList.method3345(local1182.id);
 									}
 									continue;
 								}
 								if (scriptOpcode == 1111) {
 									// setmodelorthog
 									intValueIndex--;
-									local1182.aBoolean22 = Static254.scriptIntValues[intValueIndex] == 1;
+									local1182.modelOrtho = Static254.scriptIntValues[intValueIndex] == 1;
 									InterfaceList.redraw(local1182);
 									continue;
 								}
@@ -653,12 +654,12 @@ public final class Static88 {
 									// settext
 									local26--;
 									chatTypedLowercase = Static3.scriptStringValues[local26];
-									if (!chatTypedLowercase.method3108(local1182.aClass100_84)) {
-										local1182.aClass100_84 = chatTypedLowercase;
+									if (!chatTypedLowercase.method3108(local1182.text)) {
+										local1182.text = chatTypedLowercase;
 										InterfaceList.redraw(local1182);
 									}
 									if (local1182.createdComponentId == -1) {
-										Static163.method3096(local1182.anInt507);
+										Static163.method3096(local1182.id);
 									}
 									continue;
 								}
@@ -672,49 +673,49 @@ public final class Static88 {
 								if (scriptOpcode == 1114) {
 									// settextalign
 									intValueIndex -= 3;
-									local1182.anInt460 = Static254.scriptIntValues[intValueIndex];
-									local1182.anInt478 = Static254.scriptIntValues[intValueIndex + 1];
-									local1182.anInt467 = Static254.scriptIntValues[intValueIndex + 2];
+									local1182.halign = Static254.scriptIntValues[intValueIndex];
+									local1182.valign = Static254.scriptIntValues[intValueIndex + 1];
+									local1182.vpadding = Static254.scriptIntValues[intValueIndex + 2];
 									InterfaceList.redraw(local1182);
 									continue;
 								}
 								if (scriptOpcode == 1115) {
 									// settextshadow
 									intValueIndex--;
-									local1182.aBoolean28 = Static254.scriptIntValues[intValueIndex] == 1;
+									local1182.shadowed = Static254.scriptIntValues[intValueIndex] == 1;
 									InterfaceList.redraw(local1182);
 									continue;
 								}
 								if (scriptOpcode == 1116) {
 									intValueIndex--;
-									local1182.anInt514 = Static254.scriptIntValues[intValueIndex];
+									local1182.outlineThickness = Static254.scriptIntValues[intValueIndex];
 									InterfaceList.redraw(local1182);
 									continue;
 								}
 								if (scriptOpcode == 1117) {
 									intValueIndex--;
-									local1182.anInt513 = Static254.scriptIntValues[intValueIndex];
+									local1182.shadowColor = Static254.scriptIntValues[intValueIndex];
 									InterfaceList.redraw(local1182);
 									continue;
 								}
 								if (scriptOpcode == 1118) {
 									intValueIndex--;
-									local1182.aBoolean21 = Static254.scriptIntValues[intValueIndex] == 1;
+									local1182.vFlip = Static254.scriptIntValues[intValueIndex] == 1;
 									InterfaceList.redraw(local1182);
 									continue;
 								}
 								if (scriptOpcode == 1119) {
 									intValueIndex--;
-									local1182.aBoolean26 = Static254.scriptIntValues[intValueIndex] == 1;
+									local1182.hFlip = Static254.scriptIntValues[intValueIndex] == 1;
 									InterfaceList.redraw(local1182);
 									continue;
 								}
 								if (scriptOpcode == 1120) {
 									intValueIndex -= 2;
-									local1182.anInt486 = Static254.scriptIntValues[intValueIndex];
-									local1182.anInt491 = Static254.scriptIntValues[intValueIndex + 1];
+									local1182.scrollMaxH = Static254.scriptIntValues[intValueIndex];
+									local1182.scrollMaxV = Static254.scriptIntValues[intValueIndex + 1];
 									InterfaceList.redraw(local1182);
-									if (local1182.INVENTORY == 0) {
+									if (local1182.type == 0) {
 										Static17.method531(local1182, false);
 									}
 									continue;
@@ -728,7 +729,7 @@ public final class Static88 {
 								}
 								if (scriptOpcode == 1122) {
 									intValueIndex--;
-									local1182.aBoolean18 = Static254.scriptIntValues[intValueIndex] == 1;
+									local1182.hasAlpha = Static254.scriptIntValues[intValueIndex] == 1;
 									InterfaceList.redraw(local1182);
 									continue;
 								}
@@ -737,7 +738,7 @@ public final class Static88 {
 									local1182.modelZoom = Static254.scriptIntValues[intValueIndex];
 									InterfaceList.redraw(local1182);
 									if (local1182.createdComponentId == -1) {
-										Static153.method2910(local1182.anInt507);
+										Static153.method2910(local1182.id);
 									}
 									continue;
 								}
@@ -755,9 +756,9 @@ public final class Static88 {
 									childCount = Static254.scriptIntValues[intValueIndex + 1];
 									interfaceType = Static254.scriptIntValues[intValueIndex];
 									if (local1182.createdComponentId == -1) {
-										Static251.method4279(local1182.anInt507);
-										Static153.method2910(local1182.anInt507);
-										Static180.method3328(local1182.anInt507);
+										Static251.method4279(local1182.id);
+										Static153.method2910(local1182.id);
+										Static180.method3328(local1182.id);
 									}
 									if (interfaceType == -1) {
 										local1182.modelId = -1;
@@ -779,9 +780,9 @@ public final class Static88 {
 											local1182.modelZoom = local1182.modelZoom * 32 / local1182.baseWidth;
 										}
 										if (scriptOpcode == 1205) {
-											local1182.aBoolean31 = false;
+											local1182.objDrawText = false;
 										} else {
-											local1182.aBoolean31 = true;
+											local1182.objDrawText = true;
 										}
 									}
 									continue;
@@ -792,7 +793,7 @@ public final class Static88 {
 									intValueIndex--;
 									local1182.modelId = Static254.scriptIntValues[intValueIndex];
 									if (local1182.createdComponentId == -1) {
-										Static271.method4600(local1182.anInt507);
+										Static271.method4600(local1182.id);
 									}
 									continue;
 								}
@@ -801,7 +802,7 @@ public final class Static88 {
 									local1182.modelType = 3;
 									local1182.modelId = PlayerList.self.model.getHeadModelId();
 									if (local1182.createdComponentId == -1) {
-										Static271.method4600(local1182.anInt507);
+										Static271.method4600(local1182.id);
 									}
 									continue;
 								}
@@ -811,7 +812,7 @@ public final class Static88 {
 									intValueIndex--;
 									local1182.modelId = Static254.scriptIntValues[intValueIndex];
 									if (local1182.createdComponentId == -1) {
-										Static271.method4600(local1182.anInt507);
+										Static271.method4600(local1182.id);
 									}
 									continue;
 								}
@@ -820,7 +821,7 @@ public final class Static88 {
 									intValueIndex--;
 									local1182.modelId = Static254.scriptIntValues[intValueIndex];
 									if (local1182.createdComponentId == -1) {
-										Static271.method4600(local1182.anInt507);
+										Static271.method4600(local1182.id);
 									}
 									continue;
 								}
@@ -854,31 +855,31 @@ public final class Static88 {
 								}
 								if (scriptOpcode == 1302) {
 									intValueIndex--;
-									local1182.aBoolean27 = Static254.scriptIntValues[intValueIndex] == 1;
+									local1182.dragRenderBehavior = Static254.scriptIntValues[intValueIndex] == 1;
 									continue;
 								}
 								if (scriptOpcode == 1303) {
 									intValueIndex--;
-									local1182.anInt472 = Static254.scriptIntValues[intValueIndex];
+									local1182.dragDeadzone = Static254.scriptIntValues[intValueIndex];
 									continue;
 								}
 								if (scriptOpcode == 1304) {
 									intValueIndex--;
-									local1182.anInt447 = Static254.scriptIntValues[intValueIndex];
+									local1182.dragDeadtime = Static254.scriptIntValues[intValueIndex];
 									continue;
 								}
 								if (scriptOpcode == 1305) {
 									local26--;
-									local1182.aClass100_88 = Static3.scriptStringValues[local26];
+									local1182.optionBase = Static3.scriptStringValues[local26];
 									continue;
 								}
 								if (scriptOpcode == 1306) {
 									local26--;
-									local1182.aClass100_86 = Static3.scriptStringValues[local26];
+									local1182.optionCircumfix = Static3.scriptStringValues[local26];
 									continue;
 								}
 								if (scriptOpcode == 1307) {
-									local1182.aClass100Array18 = null;
+									local1182.ops = null;
 									continue;
 								}
 								if (scriptOpcode == 1308) {
@@ -944,68 +945,68 @@ public final class Static88 {
 									}
 									local1182.aBoolean25 = true;
 									if (scriptOpcode == 1400) {
-										local1182.anObjectArray5 = local13000;
+										local1182.onClickRepeat = local13000;
 									} else if (scriptOpcode == 1401) {
-										local1182.anObjectArray9 = local13000;
+										local1182.onHold = local13000;
 									} else if (scriptOpcode == 1402) {
-										local1182.anObjectArray18 = local13000;
+										local1182.onRelease = local13000;
 									} else if (scriptOpcode == 1403) {
-										local1182.anObjectArray19 = local13000;
+										local1182.onMouseOver = local13000;
 									} else if (scriptOpcode == 1404) {
-										local1182.anObjectArray24 = local13000;
+										local1182.onMouseLeave = local13000;
 									} else if (scriptOpcode == 1405) {
-										local1182.anObjectArray26 = local13000;
+										local1182.onDragStart = local13000;
 									} else if (scriptOpcode == 1406) {
-										local1182.anObjectArray27 = local13000;
+										local1182.onUseWith = local13000;
 									} else if (scriptOpcode == 1407) {
-										local1182.anIntArray44 = local12937;
-										local1182.anObjectArray25 = local13000;
+										local1182.varpTriggers = local12937;
+										local1182.onVarpTransmit = local13000;
 									} else if (scriptOpcode == 1408) {
-										local1182.anObjectArray22 = local13000;
+										local1182.onTimer = local13000;
 									} else if (scriptOpcode == 1409) {
 										local1182.onOptionClick = local13000;
 									} else if (scriptOpcode == 1410) {
-										local1182.anObjectArray16 = local13000;
+										local1182.onDragRelease = local13000;
 									} else if (scriptOpcode == 1411) {
-										local1182.anObjectArray6 = local13000;
+										local1182.onDrag = local13000;
 									} else if (scriptOpcode == 1412) {
-										local1182.anObjectArray23 = local13000;
+										local1182.onMouseRepeat = local13000;
 									} else if (scriptOpcode == 1414) {
-										local1182.anIntArray34 = local12937;
-										local1182.anObjectArray7 = local13000;
+										local1182.inventoryTriggers = local12937;
+										local1182.onInvTransmit = local13000;
 									} else if (scriptOpcode == 1415) {
-										local1182.anIntArray42 = local12937;
-										local1182.anObjectArray2 = local13000;
+										local1182.statTriggers = local12937;
+										local1182.onStatTransmit = local13000;
 									} else if (scriptOpcode == 1416) {
-										local1182.anObjectArray11 = local13000;
+										local1182.onUse = local13000;
 									} else if (scriptOpcode == 1417) {
-										local1182.anObjectArray10 = local13000;
+										local1182.onScroll = local13000;
 									} else if (scriptOpcode == 1418) {
-										local1182.anObjectArray20 = local13000;
+										local1182.onMsg = local13000;
 									} else if (scriptOpcode == 1419) {
-										local1182.anObjectArray14 = local13000;
+										local1182.onKey = local13000;
 									} else if (scriptOpcode == 1420) {
-										local1182.anObjectArray1 = local13000;
+										local1182.onFriendTransmit = local13000;
 									} else if (scriptOpcode == 1421) {
-										local1182.anObjectArray28 = local13000;
+										local1182.onClanTransmit = local13000;
 									} else if (scriptOpcode == 1422) {
-										local1182.anObjectArray30 = local13000;
+										local1182.onMiscTransmit = local13000;
 									} else if (scriptOpcode == 1423) {
-										local1182.anObjectArray12 = local13000;
+										local1182.onDialogAbort = local13000;
 									} else if (scriptOpcode == 1424) {
-										local1182.anObjectArray8 = local13000;
+										local1182.onWidgetsOpenClose = local13000;
 									} else if (scriptOpcode == 1425) {
-										local1182.anObjectArray21 = local13000;
+										local1182.onStockTransmit = local13000;
 									} else if (scriptOpcode == 1426) {
-										local1182.anObjectArray13 = local13000;
+										local1182.onMinimapUnlock = local13000;
 									} else if (scriptOpcode == 1427) {
-										local1182.anObjectArray17 = local13000;
+										local1182.onResize = local13000;
 									} else if (scriptOpcode == 1428) {
-										local1182.anObjectArray4 = local13000;
-										local1182.anIntArray38 = local12937;
+										local1182.onVarcTransmit = local13000;
+										local1182.varcTriggers = local12937;
 									} else if (scriptOpcode == 1429) {
-										local1182.anIntArray35 = local12937;
-										local1182.anObjectArray15 = local13000;
+										local1182.varcstrTriggers = local12937;
+										local1182.onVarcstrTransmit = local13000;
 									}
 									continue;
 								}
@@ -1023,12 +1024,12 @@ public final class Static88 {
 									}
 									if (scriptOpcode == 1502) {
 										// cc_getwidth
-										Static254.scriptIntValues[intValueIndex++] = local1182.anInt445;
+										Static254.scriptIntValues[intValueIndex++] = local1182.width;
 										continue;
 									}
 									if (scriptOpcode == 1503) {
 										// cc_getheight
-										Static254.scriptIntValues[intValueIndex++] = local1182.anInt459;
+										Static254.scriptIntValues[intValueIndex++] = local1182.height;
 										continue;
 									}
 									if (scriptOpcode == 1504) {
@@ -1045,7 +1046,7 @@ public final class Static88 {
 									local1182 = local1020 ? Static274.aClass13_24 : Static227.aClass13_25;
 									if (scriptOpcode == 1600) {
 										// cc_getscrollx
-										Static254.scriptIntValues[intValueIndex++] = local1182.anInt489;
+										Static254.scriptIntValues[intValueIndex++] = local1182.scrollX;
 										continue;
 									}
 									if (scriptOpcode == 1601) {
@@ -1054,15 +1055,15 @@ public final class Static88 {
 										continue;
 									}
 									if (scriptOpcode == 1602) {
-										Static3.scriptStringValues[local26++] = local1182.aClass100_84;
+										Static3.scriptStringValues[local26++] = local1182.text;
 										continue;
 									}
 									if (scriptOpcode == 1603) {
-										Static254.scriptIntValues[intValueIndex++] = local1182.anInt486;
+										Static254.scriptIntValues[intValueIndex++] = local1182.scrollMaxH;
 										continue;
 									}
 									if (scriptOpcode == 1604) {
-										Static254.scriptIntValues[intValueIndex++] = local1182.anInt491;
+										Static254.scriptIntValues[intValueIndex++] = local1182.scrollMaxV;
 										continue;
 									}
 									if (scriptOpcode == 1605) {
@@ -1082,7 +1083,7 @@ public final class Static88 {
 										continue;
 									}
 									if (scriptOpcode == 1609) {
-										Static254.scriptIntValues[intValueIndex++] = local1182.anInt476;
+										Static254.scriptIntValues[intValueIndex++] = local1182.alpha;
 										continue;
 									}
 									if (scriptOpcode == 1610) {
@@ -1094,7 +1095,7 @@ public final class Static88 {
 										continue;
 									}
 									if (scriptOpcode == 1612) {
-										Static254.scriptIntValues[intValueIndex++] = local1182.anInt477;
+										Static254.scriptIntValues[intValueIndex++] = local1182.spriteId;
 										continue;
 									}
 								} else if (scriptOpcode < 1800) {
@@ -1125,18 +1126,18 @@ public final class Static88 {
 										intValueIndex--;
 										interfaceType = Static254.scriptIntValues[intValueIndex];
 										interfaceType--;
-										if (local1182.aClass100Array18 != null && interfaceType < local1182.aClass100Array18.length && local1182.aClass100Array18[interfaceType] != null) {
-											Static3.scriptStringValues[local26++] = local1182.aClass100Array18[interfaceType];
+										if (local1182.ops != null && interfaceType < local1182.ops.length && local1182.ops[interfaceType] != null) {
+											Static3.scriptStringValues[local26++] = local1182.ops[interfaceType];
 											continue;
 										}
 										Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										continue;
 									}
 									if (scriptOpcode == 1802) {
-										if (local1182.aClass100_88 == null) {
+										if (local1182.optionBase == null) {
 											Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										} else {
-											Static3.scriptStringValues[local26++] = local1182.aClass100_88;
+											Static3.scriptStringValues[local26++] = local1182.optionBase;
 										}
 										continue;
 									}
@@ -1155,12 +1156,12 @@ public final class Static88 {
 									}
 									if (scriptOpcode == 2502) {
 										// if_getwidth
-										Static254.scriptIntValues[intValueIndex++] = local1182.anInt445;
+										Static254.scriptIntValues[intValueIndex++] = local1182.width;
 										continue;
 									}
 									if (scriptOpcode == 2503) {
 										// if_getheight
-										Static254.scriptIntValues[intValueIndex++] = local1182.anInt459;
+										Static254.scriptIntValues[intValueIndex++] = local1182.height;
 										continue;
 									}
 									if (scriptOpcode == 2504) {
@@ -1178,7 +1179,7 @@ public final class Static88 {
 									local1182 = InterfaceList.getComponent(Static254.scriptIntValues[intValueIndex]);
 									if (scriptOpcode == 2600) {
 										// if_getscrollx
-										Static254.scriptIntValues[intValueIndex++] = local1182.anInt489;
+										Static254.scriptIntValues[intValueIndex++] = local1182.scrollX;
 										continue;
 									}
 									if (scriptOpcode == 2601) {
@@ -1187,15 +1188,15 @@ public final class Static88 {
 										continue;
 									}
 									if (scriptOpcode == 2602) {
-										Static3.scriptStringValues[local26++] = local1182.aClass100_84;
+										Static3.scriptStringValues[local26++] = local1182.text;
 										continue;
 									}
 									if (scriptOpcode == 2603) {
-										Static254.scriptIntValues[intValueIndex++] = local1182.anInt486;
+										Static254.scriptIntValues[intValueIndex++] = local1182.scrollMaxH;
 										continue;
 									}
 									if (scriptOpcode == 2604) {
-										Static254.scriptIntValues[intValueIndex++] = local1182.anInt491;
+										Static254.scriptIntValues[intValueIndex++] = local1182.scrollMaxV;
 										continue;
 									}
 									if (scriptOpcode == 2605) {
@@ -1215,7 +1216,7 @@ public final class Static88 {
 										continue;
 									}
 									if (scriptOpcode == 2609) {
-										Static254.scriptIntValues[intValueIndex++] = local1182.anInt476;
+										Static254.scriptIntValues[intValueIndex++] = local1182.alpha;
 										continue;
 									}
 									if (scriptOpcode == 2610) {
@@ -1227,7 +1228,7 @@ public final class Static88 {
 										continue;
 									}
 									if (scriptOpcode == 2612) {
-										Static254.scriptIntValues[intValueIndex++] = local1182.anInt477;
+										Static254.scriptIntValues[intValueIndex++] = local1182.spriteId;
 										continue;
 									}
 								} else if (scriptOpcode < 2800) {
@@ -1298,18 +1299,18 @@ public final class Static88 {
 										intValueIndex--;
 										interfaceType = Static254.scriptIntValues[intValueIndex];
 										interfaceType--;
-										if (local1182.aClass100Array18 != null && local1182.aClass100Array18.length > interfaceType && local1182.aClass100Array18[interfaceType] != null) {
-											Static3.scriptStringValues[local26++] = local1182.aClass100Array18[interfaceType];
+										if (local1182.ops != null && local1182.ops.length > interfaceType && local1182.ops[interfaceType] != null) {
+											Static3.scriptStringValues[local26++] = local1182.ops[interfaceType];
 											continue;
 										}
 										Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										continue;
 									}
 									if (scriptOpcode == 2802) {
-										if (local1182.aClass100_88 == null) {
+										if (local1182.optionBase == null) {
 											Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										} else {
-											Static3.scriptStringValues[local26++] = local1182.aClass100_88;
+											Static3.scriptStringValues[local26++] = local1182.optionBase;
 										}
 										continue;
 									}
@@ -3012,7 +3013,7 @@ public final class Static88 {
 													}
 													if (scriptOpcode == 5401) {
 														intValueIndex -= 2;
-														client.aShortArray88[Static254.scriptIntValues[intValueIndex]] = (short) Static105.hslToRgb(Static254.scriptIntValues[intValueIndex + 1]);
+														client.aShortArray88[Static254.scriptIntValues[intValueIndex]] = (short) ColorUtils.rgbToHsl(Static254.scriptIntValues[intValueIndex + 1]);
 														Static211.method924();
 														Static269.method2172();
 														Static278.method4649();
@@ -3717,7 +3718,7 @@ public final class Static88 {
 														continue;
 													}
 													if (scriptOpcode == 6203) {
-														Static115.method2314(Static280.aClass13_26.anInt445, 0, Static280.aClass13_26.anInt459, 0, false);
+														Static115.method2314(Static280.aClass13_26.width, 0, Static280.aClass13_26.height, 0, false);
 														Static254.scriptIntValues[intValueIndex++] = Static166.anInt4055;
 														Static254.scriptIntValues[intValueIndex++] = Static245.anInt5377;
 														continue;
@@ -4172,7 +4173,7 @@ public final class Static88 {
 								InterfaceList.redraw(local1182);
 								Static74.method1625(local1182);
 								if (local1182.createdComponentId == -1) {
-									Static280.method4675(local1182.anInt507);
+									Static280.method4675(local1182.id);
 								}
 								continue;
 							}
@@ -4180,7 +4181,7 @@ public final class Static88 {
 								// setsize
 								intValueIndex -= 4;
 								local1182.baseWidth = Static254.scriptIntValues[intValueIndex];
-								local1182.anInt488 = Static254.scriptIntValues[intValueIndex + 1];
+								local1182.baseHeight = Static254.scriptIntValues[intValueIndex + 1];
 								local1182.anInt451 = 0;
 								local1182.anInt526 = 0;
 								interfaceType = Static254.scriptIntValues[intValueIndex + 2];
@@ -4190,16 +4191,16 @@ public final class Static88 {
 								} else if (childCount > 4) {
 									childCount = 4;
 								}
-								local1182.aByte3 = (byte) childCount;
+								local1182.dynamicHeightValue = (byte) childCount;
 								if (interfaceType < 0) {
 									interfaceType = 0;
 								} else if (interfaceType > 4) {
 									interfaceType = 4;
 								}
-								local1182.aByte5 = (byte) interfaceType;
+								local1182.dynamicWidthValue = (byte) interfaceType;
 								InterfaceList.redraw(local1182);
 								Static74.method1625(local1182);
-								if (local1182.INVENTORY == 0) {
+								if (local1182.type == 0) {
 									Static17.method531(local1182, false);
 								}
 								continue;
@@ -4213,25 +4214,25 @@ public final class Static88 {
 									InterfaceList.redraw(local1182);
 								}
 								if (local1182.createdComponentId == -1) {
-									Static93.method1906(local1182.anInt507);
+									Static93.method1906(local1182.id);
 								}
 								continue;
 							}
 							if (scriptOpcode == 1004) {
 								// setaspect
 								intValueIndex -= 2;
-								local1182.anInt473 = Static254.scriptIntValues[intValueIndex];
-								local1182.anInt442 = Static254.scriptIntValues[intValueIndex + 1];
+								local1182.aspectWidth = Static254.scriptIntValues[intValueIndex];
+								local1182.aspectHeight = Static254.scriptIntValues[intValueIndex + 1];
 								InterfaceList.redraw(local1182);
 								Static74.method1625(local1182);
-								if (local1182.INVENTORY == 0) {
+								if (local1182.type == 0) {
 									Static17.method531(local1182, false);
 								}
 								continue;
 							}
 							if (scriptOpcode == 1005) {
 								intValueIndex--;
-								local1182.aBoolean29 = Static254.scriptIntValues[intValueIndex] == 1;
+								local1182.noClickThrough = Static254.scriptIntValues[intValueIndex] == 1;
 								continue;
 							}
 						}

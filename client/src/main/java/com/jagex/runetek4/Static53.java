@@ -22,13 +22,6 @@ public final class Static53 {
 	@OriginalMember(owner = "runetek4.client!ec", name = "B", descriptor = "[[I")
 	public static final int[][] anIntArrayArray8 = new int[][] { new int[0], { 128, 0, 128, 128, 0, 128 }, { 0, 0, 128, 0, 128, 128, 64, 128 }, { 0, 128, 0, 0, 128, 0, 64, 128 }, { 0, 0, 64, 128, 0, 128 }, { 128, 128, 64, 128, 128, 0 }, { 64, 0, 128, 0, 128, 128, 64, 128 }, { 128, 0, 128, 128, 0, 128, 0, 64, 64, 0 }, { 0, 0, 64, 0, 0, 64 }, { 0, 0, 128, 0, 128, 128, 64, 96, 32, 64 }, { 0, 128, 0, 0, 32, 64, 64, 96, 128, 128 }, { 0, 128, 0, 0, 32, 32, 96, 32, 128, 0, 128, 128 } };
 
-	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(II)V")
-	public static void method1289() {
-		Component.interfaceItemImageCache.clear(50);
-		Static124.aClass99_17.clear(50);
-		Component.interfaceTypefaceCache.clear(50);
-	}
-
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "([[IZILclient!hg;[IIIIZ[[FZI[[FIIIZ[[I[[FBI[Z)V")
 	public static void method1291(@OriginalArg(0) int[][] arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(3) Class3_Sub14 arg3, @OriginalArg(4) int[] arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) boolean arg8, @OriginalArg(9) float[][] arg9, @OriginalArg(10) boolean arg10, @OriginalArg(12) float[][] arg11, @OriginalArg(13) int arg12, @OriginalArg(14) int arg13, @OriginalArg(15) int arg14, @OriginalArg(16) boolean arg15, @OriginalArg(17) int[][] arg16, @OriginalArg(18) float[][] arg17, @OriginalArg(19) byte arg18, @OriginalArg(20) int arg19, @OriginalArg(21) boolean[] arg20) {
 		@Pc(11) int local11 = (arg2 << 8) + (arg1 ? 255 : 0);
@@ -51,9 +44,9 @@ public final class Static53 {
 			return;
 		}
 		@Pc(19) Component local19 = Static201.method1418(Static98.anInt2512, Static15.anInt506);
-		if (local19 != null && local19.anObjectArray27 != null) {
+		if (local19 != null && local19.onUseWith != null) {
 			@Pc(29) HookRequest local29 = new HookRequest();
-			local29.arguments = local19.anObjectArray27;
+			local29.arguments = local19.onUseWith;
 			local29.source = local19;
 			ClientScriptRunner.run(local29);
 		}

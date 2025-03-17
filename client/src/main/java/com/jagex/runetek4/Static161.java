@@ -13,17 +13,8 @@ public final class Static161 {
 	@OriginalMember(owner = "runetek4.client!mk", name = "d", descriptor = "I")
 	public static int anInt3921;
 
-	@OriginalMember(owner = "runetek4.client!mk", name = "i", descriptor = "F")
-	private static float aFloat21;
-
 	@OriginalMember(owner = "runetek4.client!mk", name = "a", descriptor = "[F")
 	public static final float[] aFloatArray18 = new float[4];
-
-	@OriginalMember(owner = "runetek4.client!mk", name = "b", descriptor = "I")
-	private static int anInt3919 = -1;
-
-	@OriginalMember(owner = "runetek4.client!mk", name = "f", descriptor = "F")
-	private static float aFloat19 = -1.0F;
 
 	@OriginalMember(owner = "runetek4.client!mk", name = "g", descriptor = "F")
 	private static float aFloat20 = -1.0F;
@@ -47,19 +38,14 @@ public final class Static161 {
 		local1.glLightfv(GL2.GL_LIGHT1, GL2.GL_POSITION, aFloatArray20, 0);
 	}
 
-	@OriginalMember(owner = "runetek4.client!mk", name = "b", descriptor = "()F")
-	public static float method3059() {
-		return aFloat19;
-	}
-
 	@OriginalMember(owner = "runetek4.client!mk", name = "a", descriptor = "(IFFF)V")
 	public static void method3060(@OriginalArg(0) int arg0, @OriginalArg(1) float arg1, @OriginalArg(2) float arg2, @OriginalArg(3) float arg3) {
-		if (anInt3919 == arg0 && aFloat21 == arg1 && aFloat19 == arg2 && aFloat20 == arg3) {
+		if (FogManager.anInt3919 == arg0 && FogManager.aFloat21 == arg1 && FogManager.aFloat19 == arg2 && aFloat20 == arg3) {
 			return;
 		}
-		anInt3919 = arg0;
-		aFloat21 = arg1;
-		aFloat19 = arg2;
+		FogManager.anInt3919 = arg0;
+		FogManager.aFloat21 = arg1;
+		FogManager.aFloat19 = arg2;
 		aFloat20 = arg3;
 		@Pc(25) GL2 local25 = GlRenderer.gl;
 		@Pc(34) float local34 = (float) (arg0 >> 16 & 0xFF) / 255.0F;
@@ -111,11 +97,6 @@ public final class Static161 {
 		anInt3921 = (int) (arg2 * 256.0F / arg1);
 	}
 
-	@OriginalMember(owner = "runetek4.client!mk", name = "d", descriptor = "()I")
-	public static int method3064() {
-		return anInt3919;
-	}
-
 	@OriginalMember(owner = "runetek4.client!mk", name = "e", descriptor = "()V")
 	public static void method3065() {
 		@Pc(1) GL2 local1 = GlRenderer.gl;
@@ -127,7 +108,7 @@ public final class Static161 {
 		@Pc(55) float[] local55 = new float[] { 0.0F, 0.0F, 0.0F, 1.0F };
 		local1.glLightfv(GL2.GL_LIGHT1, GL2.GL_AMBIENT, local55, 0);
 		local1.glEnable(GL2.GL_LIGHT1);
-		anInt3919 = -1;
+		FogManager.anInt3919 = -1;
 		anInt3925 = -1;
 		method3067();
 	}
@@ -148,8 +129,4 @@ public final class Static161 {
 		method3062(FogManager.defaulFogColorRgb, 0);
 	}
 
-	@OriginalMember(owner = "runetek4.client!mk", name = "g", descriptor = "()F")
-	public static float method3068() {
-		return aFloat21;
-	}
 }

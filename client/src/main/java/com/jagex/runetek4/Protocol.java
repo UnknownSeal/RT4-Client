@@ -613,7 +613,7 @@ public class Protocol {
                                     local1814 = new ServerActiveProperties(local1804.anInt546, ii);
                                     local1804.unlink();
                                 } else if (i == -1) {
-                                    local1814 = new ServerActiveProperties(InterfaceList.getComponent(xp).aClass3_Sub4_1.anInt546, ii);
+                                    local1814 = new ServerActiveProperties(InterfaceList.getComponent(xp).properties.anInt546, ii);
                                 } else {
                                     local1814 = new ServerActiveProperties(0, ii);
                                 }
@@ -1480,7 +1480,7 @@ public class Protocol {
                                                 local1814 = new ServerActiveProperties(count, local1804.anInt540);
                                                 local1804.unlink();
                                             } else if (i == -1) {
-                                                local1814 = new ServerActiveProperties(count, InterfaceList.getComponent(world).aClass3_Sub4_1.anInt540);
+                                                local1814 = new ServerActiveProperties(count, InterfaceList.getComponent(world).properties.anInt540);
                                             } else {
                                                 local1814 = new ServerActiveProperties(count, -1);
                                             }
@@ -1573,7 +1573,7 @@ public class Protocol {
                                     if (setVerifyID(slot)) {
                                         @Pc(5603) Component com = InterfaceList.getComponent(xp);
                                         @Pc(5615) com.jagex.runetek4.cache.def.ItemDefinition obj;
-                                        if (com.aBoolean32) {
+                                        if (com.if3) {
                                             Static209.method3707(xp, ii, world);
                                             obj = Static71.get(world);
                                             Static261.method4505(obj.zoom2d, xp, obj.yan2d, obj.xan2d);

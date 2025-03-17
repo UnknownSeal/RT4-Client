@@ -59,8 +59,8 @@ public final class TextureOp15 extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!je", name = "a", descriptor = "(IB)[I")
 	@Override
 	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(19) int[] local19 = this.aClass121_41.method3445(arg0);
-		if (this.aClass121_41.aBoolean221) {
+		@Pc(19) int[] local19 = this.aClass121_41.get(arg0);
+		if (this.aClass121_41.invalid) {
 			for (@Pc(26) int local26 = 0; local26 < Texture.width; local26++) {
 				this.method2382(arg0, local26);
 				@Pc(40) int[] local40 = this.method4624(0, Static92.anInt2433);

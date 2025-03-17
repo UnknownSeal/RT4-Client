@@ -4,6 +4,7 @@ import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.graphics.VertexNormal;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ArrayUtils;
+import com.jagex.runetek4.util.ColorUtils;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -251,25 +252,25 @@ public final class SoftwareModel extends Model {
 						local435 = arg0.aVertexNormalArray2[this.anIntArray534[local133]];
 					}
 					local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude) << 17;
-					this.anIntArray533[local133] = local468 | Static268.method4585(local416, local468 >> 17);
+					this.anIntArray533[local133] = local468 | ColorUtils.multiplyLightness2(local416, local468 >> 17);
 					if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray524[local133]] == null) {
 						local435 = arg0.aVertexNormalArray1[this.anIntArray524[local133]];
 					} else {
 						local435 = arg0.aVertexNormalArray2[this.anIntArray524[local133]];
 					}
 					local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude) << 17;
-					this.anIntArray523[local133] = local468 | Static268.method4585(local416, local468 >> 17);
+					this.anIntArray523[local133] = local468 | ColorUtils.multiplyLightness2(local416, local468 >> 17);
 					if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray529[local133]] == null) {
 						local435 = arg0.aVertexNormalArray1[this.anIntArray529[local133]];
 					} else {
 						local435 = arg0.aVertexNormalArray2[this.anIntArray529[local133]];
 					}
 					local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude) << 17;
-					this.anIntArray532[local133] = local468 | Static268.method4585(local416, local468 >> 17);
+					this.anIntArray532[local133] = local468 | ColorUtils.multiplyLightness2(local416, local468 >> 17);
 				} else if (local366 == 1) {
 					local614 = arg0.aClass126Array1[local133];
 					local468 = arg1 + (arg3 * local614.anInt4769 + arg4 * local614.anInt4770 + arg5 * local614.anInt4767) / (local108 + local108 / 2) << 17;
-					this.anIntArray533[local133] = local468 | Static268.method4585(arg0.unmodifiedTriangleColour[local133] & 0xFFFF, local468 >> 17);
+					this.anIntArray533[local133] = local468 | ColorUtils.multiplyLightness2(arg0.unmodifiedTriangleColour[local133] & 0xFFFF, local468 >> 17);
 					this.anIntArray532[local133] = -1;
 				} else if (local366 == 3) {
 					this.anIntArray533[local133] = 128;
@@ -284,25 +285,25 @@ public final class SoftwareModel extends Model {
 					local435 = arg0.aVertexNormalArray2[this.anIntArray534[local133]];
 				}
 				local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude);
-				this.anIntArray533[local133] = Static268.method4582(local468);
+				this.anIntArray533[local133] = ColorUtils.method4582(local468);
 				if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray524[local133]] == null) {
 					local435 = arg0.aVertexNormalArray1[this.anIntArray524[local133]];
 				} else {
 					local435 = arg0.aVertexNormalArray2[this.anIntArray524[local133]];
 				}
 				local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude);
-				this.anIntArray523[local133] = Static268.method4582(local468);
+				this.anIntArray523[local133] = ColorUtils.method4582(local468);
 				if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray529[local133]] == null) {
 					local435 = arg0.aVertexNormalArray1[this.anIntArray529[local133]];
 				} else {
 					local435 = arg0.aVertexNormalArray2[this.anIntArray529[local133]];
 				}
 				local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude);
-				this.anIntArray532[local133] = Static268.method4582(local468);
+				this.anIntArray532[local133] = ColorUtils.method4582(local468);
 			} else if (local366 == 1) {
 				local614 = arg0.aClass126Array1[local133];
 				local468 = arg1 + (arg3 * local614.anInt4769 + arg4 * local614.anInt4770 + arg5 * local614.anInt4767) / (local108 + local108 / 2);
-				this.anIntArray533[local133] = Static268.method4582(local468);
+				this.anIntArray533[local133] = ColorUtils.method4582(local468);
 				this.anIntArray532[local133] = -1;
 			} else {
 				this.anIntArray532[local133] = -2;
@@ -487,14 +488,14 @@ public final class SoftwareModel extends Model {
 				@Pc(38) int local38;
 				if (this.anIntArray532[local1] == -1) {
 					local38 = this.anIntArray533[local1] & 0xFFFE0000;
-					this.anIntArray533[local1] = local38 | Static268.method4585(local25, local38 >> 17);
+					this.anIntArray533[local1] = local38 | ColorUtils.multiplyLightness2(local25, local38 >> 17);
 				} else if (this.anIntArray532[local1] != -2) {
 					local38 = this.anIntArray533[local1] & 0xFFFE0000;
-					this.anIntArray533[local1] = local38 | Static268.method4585(local25, local38 >> 17);
+					this.anIntArray533[local1] = local38 | ColorUtils.multiplyLightness2(local25, local38 >> 17);
 					local38 = this.anIntArray523[local1] & 0xFFFE0000;
-					this.anIntArray523[local1] = local38 | Static268.method4585(local25, local38 >> 17);
+					this.anIntArray523[local1] = local38 | ColorUtils.multiplyLightness2(local25, local38 >> 17);
 					local38 = this.anIntArray532[local1] & 0xFFFE0000;
-					this.anIntArray532[local1] = local38 | Static268.method4585(local25, local38 >> 17);
+					this.anIntArray532[local1] = local38 | ColorUtils.multiplyLightness2(local25, local38 >> 17);
 				}
 			}
 		}

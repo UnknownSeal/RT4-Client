@@ -52,7 +52,7 @@ public final class Static236 {
 		if (MouseWheel.wheelRotation == 0) {
 			return;
 		}
-		local139 = arg2.anInt445;
+		local139 = arg2.width;
 		if (arg4 - local139 <= arg3 && arg5 <= arg0 && arg3 < arg4 + 16 && arg1 + arg5 >= arg0) {
 			arg2.scrollY += MouseWheel.wheelRotation * 45;
 			InterfaceList.redraw(arg2);

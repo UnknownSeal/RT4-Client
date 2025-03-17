@@ -60,10 +60,4 @@ public final class Static40 {
 		Static165.anInt4035 = arg0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!da", name = "h", descriptor = "(B)V")
-	public static void removeSoft() {
-		Component.interfaceItemImageCache.removeSoft();
-		Static124.aClass99_17.removeSoft();
-		Component.interfaceTypefaceCache.removeSoft();
-	}
 }

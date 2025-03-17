@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.NpcType;
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.SeqType;
@@ -145,7 +145,7 @@ public final class Static234 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "([Lclient!mm;ILclient!ve;)V")
-	public static void method4018(@OriginalArg(0) ImageRGB[] arg0, @OriginalArg(2) Js5 arg1) {
+	public static void method4018(@OriginalArg(0) SoftwareSprite[] arg0, @OriginalArg(2) Js5 arg1) {
 		Static119.aClass153_44 = arg1;
 		Static241.aClass3_Sub2_Sub1_Sub1Array13 = arg0;
 		Static258.aBooleanArray130 = new boolean[Static241.aClass3_Sub2_Sub1_Sub1Array13.length];

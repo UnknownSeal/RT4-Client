@@ -1,11 +1,12 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.config.cursortype.CursorType;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -47,6 +48,8 @@ public class InterfaceList {
     public static int rectangles = 0;
     @OriginalMember(owner = "runetek4.client!oj", name = "y", descriptor = "I")
     public static int keyQueueSize = 0;
+    @OriginalMember(owner = "client!bm", name = "f", descriptor = "Lclient!ve;")
+    public static Js5 gameImageJs5;
 
     @OriginalMember(owner = "client!gg", name = "c", descriptor = "(II)V")
     public static void method1750(@OriginalArg(0) int arg0) {
@@ -60,7 +63,7 @@ public class InterfaceList {
 
         if (arg0 != -1) {
             @Pc(24) CursorType cursorType = Class6.method3660(arg0);
-            @Pc(28) ImageRGB local28 = cursorType.getSprite();
+            @Pc(28) SoftwareSprite local28 = cursorType.getSprite();
             if (local28 == null) {
                 arg0 = -1;
             } else {
@@ -124,7 +127,7 @@ public class InterfaceList {
         @Pc(27) boolean deleteFromCache = true;
         for (@Pc(29) int i = 0; i < Component.cachedComponents[componentId].length; i++) {
             if (Component.cachedComponents[componentId][i] != null) {
-                if (Component.cachedComponents[componentId][i].INVENTORY == 2) {
+                if (Component.cachedComponents[componentId][i].type == 2) {
                     deleteFromCache = false;
                 } else {
                     Component.cachedComponents[componentId][i] = null;
@@ -240,14 +243,14 @@ public class InterfaceList {
 
     @OriginalMember(owner = "runetek4.client!runetek4.client", name = "b", descriptor = "(Lclient!be;)Lclient!bf;")
     public static ServerActiveProperties getServerActiveProperties(@OriginalArg(0) Component arg0) {
-        @Pc(13) ServerActiveProperties local13 = (ServerActiveProperties) Static210.aClass133_21.getNode(((long) arg0.anInt507 << 32) + (long) arg0.createdComponentId);
-        return local13 == null ? arg0.aClass3_Sub4_1 : local13;
+        @Pc(13) ServerActiveProperties local13 = (ServerActiveProperties) Static210.aClass133_21.getNode(((long) arg0.id << 32) + (long) arg0.createdComponentId);
+        return local13 == null ? arg0.properties : local13;
     }
 
     @OriginalMember(owner = "runetek4.client!dg", name = "a", descriptor = "(ILclient!be;)V")
     public static void redraw(@OriginalArg(1) Component arg0) {
-        if (Static182.anInt4311 == arg0.anInt465) {
-            aBooleanArray100[arg0.anInt517] = true;
+        if (Static182.anInt4311 == arg0.rectangleLoop) {
+            aBooleanArray100[arg0.rectangle] = true;
         }
     }
 }

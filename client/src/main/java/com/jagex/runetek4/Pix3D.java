@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.util.ColorUtils;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -58,7 +59,7 @@ public final class Pix3D {
 		@Pc(12) int local12;
 		if (local5 == null) {
 			local12 = Rasterizer.textureProvider.method3234(arg18);
-			method1928(arg0, arg1, arg2, arg3, arg4, arg5, method1910(local12, arg6), method1910(local12, arg7), method1910(local12, arg8));
+			method1928(arg0, arg1, arg2, arg3, arg4, arg5, ColorUtils.multiplyLightness(local12, arg6), ColorUtils.multiplyLightness(local12, arg7), ColorUtils.multiplyLightness(local12, arg8));
 			return;
 		}
 		aBoolean137 = Rasterizer.textureProvider.method3233(arg18);
@@ -617,17 +618,6 @@ public final class Pix3D {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(II)I")
-	private static int method1910(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		arg1 = arg1 * (arg0 & 0x7F) >> 7;
-		if (arg1 < 2) {
-			arg1 = 2;
-		} else if (arg1 > 126) {
-			arg1 = 126;
-		}
-		return (arg0 & 0xFF80) + arg1;
-	}
-
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(F)V")
 	public static void setBrightness(@OriginalArg(0) float arg0) {
 		method1926(arg0);
@@ -641,7 +631,7 @@ public final class Pix3D {
 		if (local5 == null || trans > 10) {
 			local15 = Rasterizer.textureProvider.method3234(arg18);
 			aBoolean134 = true;
-			method1928(arg0, arg1, arg2, arg3, arg4, arg5, method1910(local15, arg6), method1910(local15, arg7), method1910(local15, arg8));
+			method1928(arg0, arg1, arg2, arg3, arg4, arg5, ColorUtils.multiplyLightness(local15, arg6), ColorUtils.multiplyLightness(local15, arg7), ColorUtils.multiplyLightness(local15, arg8));
 			return;
 		}
 		aBoolean137 = Rasterizer.textureProvider.method3233(arg18);

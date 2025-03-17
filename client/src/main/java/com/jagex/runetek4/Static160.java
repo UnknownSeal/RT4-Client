@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ItemDefinition;
-import com.jagex.runetek4.cache.media.ImageRGB;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.frame.Minimap;
 import com.jagex.runetek4.media.Rasterizer;
@@ -26,7 +26,7 @@ public final class Static160 {
 	@OriginalMember(owner = "runetek4.client!mj", name = "a", descriptor = "(IILclient!be;IB)V")
 	public static void method3047(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) Component arg2, @OriginalArg(3) int arg3) {
 		if (GlRenderer.enabled) {
-			Static46.method1187(arg0, arg1, arg2.anInt445 + arg0, arg2.anInt459 + arg1);
+			Static46.method1187(arg0, arg1, arg2.width + arg0, arg2.height + arg1);
 		}
 		if (Minimap.state >= 3) {
 			if (GlRenderer.enabled) {
@@ -38,9 +38,9 @@ public final class Static160 {
 				Rasterizer.method2504(arg0, arg1, arg2.anIntArray37, arg2.anIntArray45);
 			}
 		} else if (GlRenderer.enabled) {
-			((GlSprite) Static106.aClass3_Sub2_Sub1_7).method1427(arg0, arg1, arg2.anInt445, arg2.anInt459, Static106.aClass3_Sub2_Sub1_7.width / 2, Static106.aClass3_Sub2_Sub1_7.height / 2, Camera.orbitCameraYaw, 256, (GlSprite) arg2.method489(false));
+			((GlSprite) Static106.aClass3_Sub2_Sub1_7).method1427(arg0, arg1, arg2.width, arg2.height, Static106.aClass3_Sub2_Sub1_7.width / 2, Static106.aClass3_Sub2_Sub1_7.height / 2, Camera.orbitCameraYaw, 256, (GlSprite) arg2.method489(false));
 		} else {
-			((ImageRGB) Static106.aClass3_Sub2_Sub1_7).method313(arg0, arg1, arg2.anInt445, arg2.anInt459, Static106.aClass3_Sub2_Sub1_7.width / 2, Static106.aClass3_Sub2_Sub1_7.height / 2, Camera.orbitCameraYaw, arg2.anIntArray37, arg2.anIntArray45);
+			((SoftwareSprite) Static106.aClass3_Sub2_Sub1_7).method313(arg0, arg1, arg2.width, arg2.height, Static106.aClass3_Sub2_Sub1_7.width / 2, Static106.aClass3_Sub2_Sub1_7.height / 2, Camera.orbitCameraYaw, arg2.anIntArray37, arg2.anIntArray45);
 		}
 		InterfaceList.rectangleRedraw[arg3] = true;
 	}

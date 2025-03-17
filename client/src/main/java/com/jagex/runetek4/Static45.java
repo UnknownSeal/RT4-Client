@@ -3,10 +3,10 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.config.FloType;
-import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -15,9 +15,6 @@ public final class Static45 {
 
 	@OriginalMember(owner = "runetek4.client!di", name = "q", descriptor = "[Lclient!na;")
 	public static final JString[] aClass100Array53 = new JString[5];
-
-	@OriginalMember(owner = "runetek4.client!di", name = "F", descriptor = "Lclient!bf;")
-	public static final ServerActiveProperties aClass3_Sub4_2 = new ServerActiveProperties(0, -1);
 
 	@OriginalMember(owner = "runetek4.client!di", name = "H", descriptor = "Z")
 	public static boolean aBoolean84 = false;
@@ -190,7 +187,7 @@ public final class Static45 {
 							underlayId -= Static279.anIntArray568[normalX];
 						}
 						if (dz >= 0 && dx > 0) {
-							local142[z0][dz] = Static54.method1309(underlayId / dx, z / dx, x0 * 256 / local200);
+							local142[z0][dz] = ColorUtils.method1309(underlayId / dx, z / dx, x0 * 256 / local200);
 						}
 					}
 				}
@@ -232,14 +229,14 @@ public final class Static45 {
 									normalZ = 127;
 								}
 								local273 = (normalX & 0x380) + (normalX + local10 & 0xFC00) + normalZ;
-								normalY = Pix3D.anIntArray220[Static87.method1814(96, local273)];
+								normalY = Pix3D.anIntArray220[ColorUtils.multiplyLightnessSafe(96, local273)];
 							}
 							normalZ = levelLightMap[z0][x0];
 							local332 = levelLightMap[z0][x0 + 1];
 							local273 = levelLightMap[z0 + 1][x0];
 							local326 = levelLightMap[z0 + 1][x0 + 1];
 							if (underlayId == 0) {
-								Static176.method3305(level, z0, x0, 0, 0, -1, local200, dx, dz, len, Static87.method1814(normalZ, normalX), Static87.method1814(local273, normalX), Static87.method1814(local326, normalX), Static87.method1814(local332, normalX), 0, 0, 0, 0, normalY, 0);
+								Static176.method3305(level, z0, x0, 0, 0, -1, local200, dx, dz, len, ColorUtils.multiplyLightnessSafe(normalZ, normalX), ColorUtils.multiplyLightnessSafe(local273, normalX), ColorUtils.multiplyLightnessSafe(local326, normalX), ColorUtils.multiplyLightnessSafe(local332, normalX), 0, 0, 0, 0, normalY, 0);
 								if (GlRenderer.enabled && level > 0 && normalX != -1 && Static199.method3593(z - 1).occlude) {
 									Static242.method4197(0, 0, true, false, z0, x0, local200 - SceneGraph.tileHeights[0][z0][x0], -SceneGraph.tileHeights[0][z0 + 1][x0] + dx, dz - SceneGraph.tileHeights[0][z0 + 1][x0 + 1], len - SceneGraph.tileHeights[0][z0][x0 + 1]);
 								}
@@ -294,7 +291,7 @@ public final class Static45 {
 								@Pc(1429) int local1429;
 								if (local1288 >= 0) {
 									local1301 = -1;
-									local1353 = Pix3D.anIntArray220[Static230.method3949(Rasterizer.textureProvider.method3234(local1288), 96)];
+									local1353 = Pix3D.anIntArray220[ColorUtils.multiplyLightnessGrayscale(Rasterizer.textureProvider.method3234(local1288), 96)];
 								} else if (local1248.rgb == -1) {
 									local1301 = -2;
 									local1353 = 0;
@@ -307,7 +304,7 @@ public final class Static45 {
 										local1429 = 127;
 									}
 									local1458 = (local1301 & 0x380) + ((local1301 + local10 & 0xFC00) + local1429);
-									local1353 = Pix3D.anIntArray220[Static230.method3949(local1458, 96)];
+									local1353 = Pix3D.anIntArray220[ColorUtils.multiplyLightnessGrayscale(local1458, 96)];
 								}
 								if (local1248.averagecolour >= 0) {
 									local1429 = local1248.averagecolour;
@@ -318,9 +315,9 @@ public final class Static45 {
 										local1458 = 127;
 									}
 									@Pc(1529) int local1529 = (local1429 & 0x380) + ((local1429 + local10 & 0xFC00) + local1458);
-									local1353 = Pix3D.anIntArray220[Static230.method3949(local1529, 96)];
+									local1353 = Pix3D.anIntArray220[ColorUtils.multiplyLightnessGrayscale(local1529, 96)];
 								}
-								Static176.method3305(level, z0, x0, local322, local1242, local1288, local200, dx, dz, len, Static87.method1814(normalZ, normalX), Static87.method1814(local273, normalX), Static87.method1814(local326, normalX), Static87.method1814(local332, normalX), Static230.method3949(local1301, normalZ), Static230.method3949(local1301, local273), Static230.method3949(local1301, local326), Static230.method3949(local1301, local332), normalY, local1353);
+								Static176.method3305(level, z0, x0, local322, local1242, local1288, local200, dx, dz, len, ColorUtils.multiplyLightnessSafe(normalZ, normalX), ColorUtils.multiplyLightnessSafe(local273, normalX), ColorUtils.multiplyLightnessSafe(local326, normalX), ColorUtils.multiplyLightnessSafe(local332, normalX), ColorUtils.multiplyLightnessGrayscale(local1301, normalZ), ColorUtils.multiplyLightnessGrayscale(local1301, local273), ColorUtils.multiplyLightnessGrayscale(local1301, local326), ColorUtils.multiplyLightnessGrayscale(local1301, local332), normalY, local1353);
 								if (GlRenderer.enabled && level > 0) {
 									Static242.method4197(local322, local1242, local1301 == -2 || !local1248.hardshadow, normalX == -1 || !Static199.method3593(z - 1).occlude, z0, x0, local200 - SceneGraph.tileHeights[0][z0][x0], dx - SceneGraph.tileHeights[0][z0 + 1][x0], dz - SceneGraph.tileHeights[0][z0 + 1][x0 + 1], -SceneGraph.tileHeights[0][z0][x0 + 1] + len);
 								}

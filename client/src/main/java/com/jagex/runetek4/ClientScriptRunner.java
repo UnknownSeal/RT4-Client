@@ -284,49 +284,49 @@ public final class ClientScriptRunner {
 				local30 = com.jagex.runetek4.cache.def.ItemDefinition.anInt2225;
 			}
 			@Pc(41) int local41 = Static223.anInt5032;
-			if (com.jagex.runetek4.cache.def.ItemDefinition.anInt2225 + Static4.aClass13_1.anInt445 < local30 - -aClass13_14.anInt445) {
-				local30 = com.jagex.runetek4.cache.def.ItemDefinition.anInt2225 + Static4.aClass13_1.anInt445 - aClass13_14.anInt445;
+			if (com.jagex.runetek4.cache.def.ItemDefinition.anInt2225 + Static4.aClass13_1.width < local30 - -aClass13_14.width) {
+				local30 = com.jagex.runetek4.cache.def.ItemDefinition.anInt2225 + Static4.aClass13_1.width - aClass13_14.width;
 			}
 			local41 -= Static165.anInt4035;
 			if (local41 < Static228.anInt5103) {
 				local41 = Static228.anInt5103;
 			}
-			if (Static228.anInt5103 + Static4.aClass13_1.anInt459 < local41 - -aClass13_14.anInt459) {
-				local41 = Static228.anInt5103 + Static4.aClass13_1.anInt459 - aClass13_14.anInt459;
+			if (Static228.anInt5103 + Static4.aClass13_1.height < local41 - -aClass13_14.height) {
+				local41 = Static228.anInt5103 + Static4.aClass13_1.height - aClass13_14.height;
 			}
 			@Pc(109) int local109 = local41 - Static20.anInt660;
 			@Pc(114) int local114 = local30 - Static124.anInt3075;
-			@Pc(122) int local122 = local30 + Static4.aClass13_1.anInt489 - ItemDefinition.anInt2225;
+			@Pc(122) int local122 = local30 + Static4.aClass13_1.scrollX - ItemDefinition.anInt2225;
 			@Pc(130) int local130 = Static4.aClass13_1.scrollY + local41 - Static228.anInt5103;
-			@Pc(133) int local133 = aClass13_14.anInt472;
-			if (Static213.anInt4851 > aClass13_14.anInt447 && (local133 < local114 || -local133 > local114 || local109 > local133 || local109 < -local133)) {
+			@Pc(133) int local133 = aClass13_14.dragDeadzone;
+			if (Static213.anInt4851 > aClass13_14.dragDeadtime && (local133 < local114 || -local133 > local114 || local109 > local133 || local109 < -local133)) {
 				Static138.aBoolean172 = true;
 			}
 			@Pc(176) HookRequest local176;
-			if (aClass13_14.anObjectArray26 != null && Static138.aBoolean172) {
+			if (aClass13_14.onDragStart != null && Static138.aBoolean172) {
 				local176 = new HookRequest();
 				local176.source = aClass13_14;
-				local176.arguments = aClass13_14.anObjectArray26;
+				local176.arguments = aClass13_14.onDragStart;
 				local176.anInt3102 = local122;
 				local176.anInt3097 = local130;
 				run(local176);
 			}
 			if (Static22.activeInterfaceType == 0) {
 				if (Static138.aBoolean172) {
-					if (aClass13_14.anObjectArray16 != null) {
+					if (aClass13_14.onDragRelease != null) {
 						local176 = new HookRequest();
 						local176.anInt3097 = local130;
 						local176.aClass13_16 = Static56.aClass13_12;
 						local176.anInt3102 = local122;
-						local176.arguments = aClass13_14.anObjectArray16;
+						local176.arguments = aClass13_14.onDragRelease;
 						local176.source = aClass13_14;
 						run(local176);
 					}
 					if (Static56.aClass13_12 != null && Static36.method938(aClass13_14) != null) {
 						Protocol.outboundBuffer.pIsaac1(79);
-						Protocol.outboundBuffer.p4_alt3(aClass13_14.anInt507);
+						Protocol.outboundBuffer.p4_alt3(aClass13_14.id);
 						Protocol.outboundBuffer.p2_alt1(Static56.aClass13_12.createdComponentId);
-						Protocol.outboundBuffer.p4(Static56.aClass13_12.anInt507);
+						Protocol.outboundBuffer.p4(Static56.aClass13_12.id);
 						Protocol.outboundBuffer.p2_alt1(aClass13_14.createdComponentId);
 					}
 				} else if ((Static116.oneMouseButton == 1 || Static277.menuHasAddFriend(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {

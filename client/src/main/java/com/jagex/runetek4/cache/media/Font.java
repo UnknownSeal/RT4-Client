@@ -620,7 +620,7 @@ public abstract class Font extends CachedNode {
 	}
 
 	@OriginalMember(owner = "client!rk", name = "a", descriptor = "([Lclient!ok;[I)V")
-	public final void method2873(@OriginalArg(0) IndexedSprite[] arg0, @OriginalArg(1) int[] arg1) {
+	public final void setNameIcons(@OriginalArg(0) IndexedSprite[] arg0, @OriginalArg(1) int[] arg1) {
 		if (arg1 != null && arg1.length != arg0.length) {
 			throw new IllegalArgumentException();
 		}
