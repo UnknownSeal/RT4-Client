@@ -178,7 +178,7 @@ public final class Static36 {
 								if (local9.contentType == 1400) {
 									Static24.component = local9;
 									if (local221) {
-										if (Static187.pressedKeys[82] && Static191.staffModLevel > 0) {
+										if (Static187.pressedKeys[82] && LoginManager.staffModLevel > 0) {
 											local243 = (int) ((double) (aClass6.mouseClickX - local50 - local9.anInt445 / 2) * 2.0D / (double) Static83.aFloat3);
 											local508 = (int) ((double) (Static60.mouseClickY - local55 - local9.anInt459 / 2) * 2.0D / (double) Static83.aFloat3);
 											local322 = Static13.anInt435 + local243;

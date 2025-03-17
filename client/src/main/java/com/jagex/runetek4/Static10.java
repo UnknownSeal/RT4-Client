@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import java.io.IOException;
-
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -35,24 +33,6 @@ public final class Static10 {
 			client.worldListPort = client.worldListDefaultPort;
 		}
 		return -1;
-	}
-
-	@OriginalMember(owner = "client!an", name = "h", descriptor = "(I)Z")
-	public static boolean readPacket() {
-		try {
-			return Static4.method26();
-		} catch (@Pc(14) IOException local14) {
-			Game.tryReconnect();
-			return true;
-		} catch (@Pc(19) Exception local19) {
-			@Pc(61) String local61 = "T2 - " + Protocol.opcode + "," + Protocol.opcode3 + "," + Protocol.opcode4 + " - " + Static223.packetSize + "," + (Camera.originX + PlayerList.self.movementQueueX[0]) + "," + (PlayerList.self.movementQueueZ[0] + Camera.originZ) + " - ";
-			for (@Pc(63) int local63 = 0; local63 < Static223.packetSize && local63 < 50; local63++) {
-				local61 = local61 + Protocol.inboundBuffer.data[local63] + ",";
-			}
-			TracingException.report(local61, local19);
-			Game.processLogout();
-			return true;
-		}
 	}
 
 	@OriginalMember(owner = "client!an", name = "a", descriptor = "(Z)V")

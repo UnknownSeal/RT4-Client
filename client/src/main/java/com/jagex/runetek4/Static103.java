@@ -188,7 +188,7 @@ public final class Static103 {
 			if (a == 0) {
 				Static113.method3556(Player.plane, local15, local19);
 			} else if (a == 1) {
-				if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
+				if (LoginManager.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
 					Cheat.teleport(Camera.originX + local15, Camera.originZ + local19, Player.plane);
 				} else if (Static102.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, local15, 0, 0, 1, local19, PlayerList.self.movementQueueX[0])) {
 					Protocol.outboundBuffer.p1(Static1.anInt5);
@@ -666,7 +666,7 @@ public final class Static103 {
 			if (a == 0) {
 				Static187.anInt4422 = 1;
 				Static113.method3556(Player.plane, local15, local19);
-			} else if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
+			} else if (LoginManager.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
 				Cheat.teleport(local15 + Camera.originX, Camera.originZ - -local19, Player.plane);
 			} else {
 				Protocol.outboundBuffer.pIsaac1(179);

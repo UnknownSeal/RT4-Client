@@ -27,89 +27,89 @@ public class Cheat {
     public static final JString SETPARTICLES = JString.parse("::setparticles");
     @OriginalMember(owner = "runetek4.client!rc", name = "K", descriptor = "Lclient!na;")
     public static final JString RECT_DEBUG = JString.parse("::rect_debug");
-    @OriginalMember(owner = "runetek4.client!hh", name = "b", descriptor = "Lclient!na;")
-    public static final JString aClass100_521 = JString.parse("::tele ");
-    @OriginalMember(owner = "runetek4.client!hh", name = "k", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!hh", name = "b", descriptor = "Lclient!na;")
+    public static final JString TELE = JString.parse("::tele ");
+    @OriginalMember(owner = "client!hh", name = "k", descriptor = "Lclient!na;")
     public static final JString WM0 = JString.parse("::wm0");
-    @OriginalMember(owner = "runetek4.client!tg", name = "i", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!tg", name = "i", descriptor = "Lclient!na;")
     public static final JString PCACHESIZE = JString.parse("::pcachesize");
-    @OriginalMember(owner = "runetek4.client!fh", name = "ab", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!fh", name = "ab", descriptor = "Lclient!na;")
     public static final JString NOCLIP = JString.parse("::noclip");
-    @OriginalMember(owner = "runetek4.client!en", name = "e", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!en", name = "e", descriptor = "Lclient!na;")
     public static final JString FPSOFF = JString.parse("::fpsoff");
-    @OriginalMember(owner = "runetek4.client!ja", name = "k", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!ja", name = "k", descriptor = "Lclient!na;")
     public static final JString DEBUG_FPS = JString.parse("Fps:");
-    @OriginalMember(owner = "runetek4.client!qh", name = "i", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!qh", name = "i", descriptor = "Lclient!na;")
     public static final JString MEM = JString.parse("Mem:");
     @OriginalMember(owner = "client!bi", name = "W", descriptor = "Lclient!na;")
     public static final JString DEBUG_MEMORY_UNIT = JString.parse("k");
-    @OriginalMember(owner = "runetek4.client!dg", name = "d", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!dg", name = "d", descriptor = "Lclient!na;")
     public static final JString DEBUG_CACHE = JString.parse("Cache:");
-    @OriginalMember(owner = "runetek4.client!hm", name = "Y", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!hm", name = "Y", descriptor = "Lclient!na;")
     public static final JString DEBUG_FPS2 = JString.parse("Fps:");
     @OriginalMember(owner = "client!c", name = "Y", descriptor = "Lclient!na;")
     public static final JString DEBUG_MEM = JString.parse("Mem:");
     @OriginalMember(owner = "client!bg", name = "z", descriptor = "Lclient!na;")
     public static final JString DEBUG_MEM_UNIT = JString.parse("k");
-    @OriginalMember(owner = "runetek4.client!q", name = "h", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!q", name = "h", descriptor = "Lclient!na;")
     public static final JString DEBUG_CARD = JString.parse("Card:");
-    @OriginalMember(owner = "runetek4.client!oi", name = "b", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!oi", name = "b", descriptor = "Lclient!na;")
     public static final JString QA_OP_TEST = JString.parse("::qa_op_test");
-    @OriginalMember(owner = "runetek4.client!jk", name = "F", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!jk", name = "F", descriptor = "Lclient!na;")
     public static final JString TWEEN = JString.parse("::tween");
-    @OriginalMember(owner = "runetek4.client!j", name = "z", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!j", name = "z", descriptor = "Lclient!na;")
     public static final JString SHIFTCLICK = JString.parse("::shiftclick");
-    @OriginalMember(owner = "runetek4.client!qf", name = "N", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!qf", name = "N", descriptor = "Lclient!na;")
     public static final JString CARDMEM = JString.parse("::cardmem");
-    @OriginalMember(owner = "runetek4.client!e", name = "Ac", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!e", name = "Ac", descriptor = "Lclient!na;")
     public static final JString FORCED_TWEENING_ENABLED = JString.parse("Forced tweening ENABLED(Q");
-    @OriginalMember(owner = "runetek4.client!md", name = "T", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!md", name = "T", descriptor = "Lclient!na;")
     public static final JString SHIFTCLICK_DISABLED = JString.parse("Shift)2click disabled)3");
-    @OriginalMember(owner = "runetek4.client!wh", name = "o", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!wh", name = "o", descriptor = "Lclient!na;")
     public static final JString RECT_DEBUG_EQUALS = JString.parse("rect_debug=");
-    @OriginalMember(owner = "runetek4.client!dh", name = "e", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!dh", name = "e", descriptor = "Lclient!na;")
     public static final JString aClass100_335 = JString.parse("Number of player models in cache:");
-    @OriginalMember(owner = "runetek4.client!qh", name = "c", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!qh", name = "c", descriptor = "Lclient!na;")
     public static final JString aClass100_893 = JString.parse("Memory before cleanup=");
-    @OriginalMember(owner = "runetek4.client!qg", name = "Z", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!qg", name = "Z", descriptor = "Lclient!na;")
     public static final JString aClass100_892 = JString.parse("mem=");
-    @OriginalMember(owner = "runetek4.client!gg", name = "Y", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!gg", name = "Y", descriptor = "Lclient!na;")
     public static final JString GC = JString.parse("::gc");
-    @OriginalMember(owner = "runetek4.client!wk", name = "u", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!wk", name = "u", descriptor = "Lclient!na;")
     public static final JString CLIENTJS5DROP = JString.parse("::clientjs5drop");
-    @OriginalMember(owner = "runetek4.client!id", name = "c", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!id", name = "c", descriptor = "Lclient!na;")
     public static final JString FPSON = JString.parse("::fpson");
-    @OriginalMember(owner = "runetek4.client!md", name = "Q", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!md", name = "Q", descriptor = "Lclient!na;")
     public static final JString MM = JString.parse("::mm");
-    @OriginalMember(owner = "runetek4.client!j", name = "M", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!j", name = "M", descriptor = "Lclient!na;")
     public static final JString REPLACECANVAS = JString.parse("::replacecanvas");
-    @OriginalMember(owner = "runetek4.client!li", name = "p", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!li", name = "p", descriptor = "Lclient!na;")
     public static final JString REBUILD = JString.parse("::rebuild");
-    @OriginalMember(owner = "runetek4.client!oi", name = "j", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!oi", name = "j", descriptor = "Lclient!na;")
     public static final JString WM1 = JString.parse("::wm1");
-    @OriginalMember(owner = "runetek4.client!ql", name = "i", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!ql", name = "i", descriptor = "Lclient!na;")
     public static final JString WM2 = JString.parse("::wm2");
-    @OriginalMember(owner = "runetek4.client!hk", name = "db", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!hk", name = "db", descriptor = "Lclient!na;")
     public static final JString WM3 = JString.parse("::wm3");
-    @OriginalMember(owner = "runetek4.client!dg", name = "f", descriptor = "Z")
+    @OriginalMember(owner = "client!dg", name = "f", descriptor = "Z")
     public static boolean displayFps = false;
-    @OriginalMember(owner = "runetek4.client!nj", name = "a", descriptor = "Z")
+    @OriginalMember(owner = "client!nj", name = "a", descriptor = "Z")
     public static boolean shiftClick = false;
-    @OriginalMember(owner = "runetek4.client!qc", name = "U", descriptor = "I")
+    @OriginalMember(owner = "client!qc", name = "U", descriptor = "I")
     public static int rectDebug = 0;
-    @OriginalMember(owner = "runetek4.client!jg", name = "e", descriptor = "Z")
+    @OriginalMember(owner = "client!jg", name = "e", descriptor = "Z")
     public static boolean qaOpTest = false;
 
-    @OriginalMember(owner = "runetek4.client!en", name = "a", descriptor = "(IIIB)V")
+    @OriginalMember(owner = "client!en", name = "a", descriptor = "(IIIB)V")
     public static void teleport(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        @Pc(66) JString local66 = JString.concatenate(new JString[] {aClass100_521, JString.parseInt(arg2), Static159.aClass100_760, JString.parseInt(arg0 >> 6), Static159.aClass100_760, JString.parseInt(arg1 >> 6), Static159.aClass100_760, JString.parseInt(arg0 & 0x3F), Static159.aClass100_760, JString.parseInt(arg1 & 0x3F) });
-        local66.printToConsole();
-        execute(local66);
+        @Pc(66) JString command = JString.concatenate(new JString[] {TELE, JString.parseInt(arg2), Static159.aClass100_760, JString.parseInt(arg0 >> 6), Static159.aClass100_760, JString.parseInt(arg1 >> 6), Static159.aClass100_760, JString.parseInt(arg0 & 0x3F), Static159.aClass100_760, JString.parseInt(arg1 & 0x3F) });
+        command.printToConsole();
+        execute(command);
     }
 
-    @OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!na;Z)V")
+    @OriginalMember(owner = "client!k", name = "a", descriptor = "(Lclient!na;Z)V")
     public static void execute(@OriginalArg(0) JString chatTyped) {
-        if (Static191.staffModLevel >= 2) {
+        if (LoginManager.staffModLevel >= 2) {
             @Pc(18) int local18;
             @Pc(38) int local38;
             @Pc(29) Runtime local29;
@@ -159,7 +159,7 @@ public class Cheat {
             if (chatTyped.equalsIgnoreCase(BREAKCON)) {
                 GameShell.signLink.breakConnection();
                 Static124.gameServerSocket.breakConnection();
-                client.js5NetQueue.method2323();
+                client.js5NetQueue.breakConnection();
             }
             if (chatTyped.equalsIgnoreCase(REPLACECANVAS)) {
                 Static35.canvasReplaceRecommended = true;

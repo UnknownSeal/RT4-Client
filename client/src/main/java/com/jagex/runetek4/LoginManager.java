@@ -47,6 +47,8 @@ public class LoginManager {
     public static int anInt673 = 0;
     @OriginalMember(owner = "runetek4.client!qi", name = "A", descriptor = "I")
     public static int disallowResult = -1;
+    @OriginalMember(owner = "runetek4.client!pg", name = "S", descriptor = "I")
+    public static int staffModLevel = 0;
 
     @OriginalMember(owner = "runetek4.client!j", name = "g", descriptor = "(I)V")
     public static void method4637() {

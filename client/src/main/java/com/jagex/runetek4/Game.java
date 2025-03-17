@@ -17,10 +17,10 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class Game {
-    @OriginalMember(owner = "runetek4.client!vl", name = "k", descriptor = "I")
+    @OriginalMember(owner = "client!vl", name = "k", descriptor = "I")
     public static int idleTimeout = 0;
 
-    @OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "(Z)V")
+    @OriginalMember(owner = "client!gg", name = "a", descriptor = "(Z)V")
     public static void updateGame() {
         // todo: consolidate/rename static classes
         if (idleTimeout > 0) {
@@ -35,7 +35,7 @@ public class Game {
             tryReconnect();
             return;
         }
-        for (@Pc(34) int i = 0; i < 100 && Static10.readPacket(); i++) {
+        for (@Pc(34) int i = 0; i < 100 && Protocol.readPacket(); i++) {
         }
         if (client.gameState != 30) {
             return;
@@ -193,8 +193,8 @@ public class Game {
         if (client.gameState != 30) {
             return;
         }
-        ChangeLocRequest.loop(); // ChangeLocRequest
-        AttachLocRequest.loop(); // AttachLocRequest
+        ChangeLocRequest.loop();
+        AttachLocRequest.loop();
         Static54.loop(); // SoundPlayer
         LoginManager.idleNetCycles++;
         if (LoginManager.idleNetCycles > 750) {
@@ -213,7 +213,7 @@ public class Game {
             Static83.updatedVarps[Static70.updatedVarpsWriterIndex++ & 0x1F] = i;
         }
         @Pc(782) int rand;
-        // runetek4.DelayedStateChange
+
         for (@Pc(709) DelayedStateChange change = Static127.poll(); change != null; change = Static127.poll()) {
             samples = change.method1011();
             i = change.method1012();
@@ -442,7 +442,7 @@ public class Game {
                                             if (ClientScriptRunner.aClass13_14 != null) {
                                                 ClientScriptRunner.method28();
                                             }
-                                            if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81] && Static58.wheelRotation != 0) {
+                                            if (LoginManager.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81] && Static58.wheelRotation != 0) {
                                                 y = Player.plane - Static58.wheelRotation;
                                                 if (y < 0) {
                                                     y = 0;
@@ -452,9 +452,9 @@ public class Game {
                                                 // Cheat
                                                 Cheat.teleport(PlayerList.self.movementQueueX[0] + Camera.originX, PlayerList.self.movementQueueZ[0] + Camera.originZ, y);
                                             }
-                                            if (Static191.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
+                                            if (LoginManager.staffModLevel > 0 && Static187.pressedKeys[82] && Static187.pressedKeys[81]) {
                                                 if (Static56.clickTileX != -1) {
-                                                    Cheat.teleport(Camera.originX + Static56.clickTileX, Camera.originZ - -Static116.anInt2954, Player.plane);
+                                                    Cheat.teleport(Camera.originX + Static56.clickTileX, Camera.originZ + Static116.anInt2954, Player.plane);
                                                 }
                                                 Static187.anInt4422 = 0;
                                                 Static125.anInt3096 = 0;
@@ -603,9 +603,9 @@ public class Game {
                                             if (Static131.anInt3251 > 50) {
                                                 Protocol.outboundBuffer.pIsaac1(93);
                                             }
-                                            if (Static34.verifyIdChanged) {
+                                            if (Protocol.verifyIdChanged) {
                                                 Static71.transmitVerifyId();
-                                                Static34.verifyIdChanged = false;
+                                                Protocol.verifyIdChanged = false;
                                             }
                                             try {
                                                 if (Static124.gameServerSocket != null && Protocol.outboundBuffer.offset > 0) {

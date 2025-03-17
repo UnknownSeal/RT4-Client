@@ -439,7 +439,7 @@ public final class JString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "c", descriptor = "(Z)V")
-	public final void printToConsole() {
+	public void printToConsole() {
 		@Pc(16) String local16;
 		try {
 			local16 = new String(this.aByteArray52, 0, this.anInt4030, "ISO-8859-1");

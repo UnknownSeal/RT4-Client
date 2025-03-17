@@ -16,13 +16,6 @@ public final class Static248 {
 	@OriginalMember(owner = "runetek4.client!uc", name = "d", descriptor = "[[[I")
 	public static int[][][] anIntArrayArrayArray17;
 
-	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(IB)Z")
-	public static boolean method3288(@OriginalArg(0) int arg0) {
-		Protocol.verifyId = arg0 + 1 & 0xFFFF;
-		Static34.verifyIdChanged = true;
-		return true;
-	}
-
 	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(II)I")
 	public static int method3289(@OriginalArg(0) int arg0) {
 		@Pc(9) int local9 = (arg0 >>> 1 & 0xD5555555) + (arg0 & 0x55555555);

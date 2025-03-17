@@ -1509,10 +1509,10 @@ public final class Static88 {
 										continue;
 									}
 									if (scriptOpcode == 3316) {
-										if (Static191.staffModLevel < 2) {
+										if (LoginManager.staffModLevel < 2) {
 											Static254.scriptIntValues[intValueIndex++] = 0;
 										} else {
-											Static254.scriptIntValues[intValueIndex++] = Static191.staffModLevel;
+											Static254.scriptIntValues[intValueIndex++] = LoginManager.staffModLevel;
 										}
 										continue;
 									}
@@ -2327,7 +2327,7 @@ public final class Static88 {
 													local26--;
 													chatTyped = Static3.scriptStringValues[local26];
 													if (!chatTyped.startsWith(Static12.aClass100_74)) {
-														if (Static191.staffModLevel == 0 && (Static124.aBoolean157 && !Static207.parentalChatConsent || Static86.aBoolean129)) {
+														if (LoginManager.staffModLevel == 0 && (Static124.aBoolean157 && !Static207.parentalChatConsent || Static86.aBoolean129)) {
 															continue;
 														}
 														chatTypedLowercase = chatTyped.toLowerCase();
@@ -2458,7 +2458,7 @@ public final class Static88 {
 													local26 -= 2;
 													chatTypedLowercase = Static3.scriptStringValues[local26 + 1];
 													chatTyped = Static3.scriptStringValues[local26];
-													if (Static191.staffModLevel != 0 || (!Static124.aBoolean157 || Static207.parentalChatConsent) && !Static86.aBoolean129) {
+													if (LoginManager.staffModLevel != 0 || (!Static124.aBoolean157 || Static207.parentalChatConsent) && !Static86.aBoolean129) {
 														Protocol.outboundBuffer.pIsaac1(201);
 														Protocol.outboundBuffer.p1(0);
 														childCount = Protocol.outboundBuffer.offset;

@@ -76,10 +76,7 @@ public final class Static34 {
 	@OriginalMember(owner = "runetek4.client!ck", name = "K", descriptor = "I")
 	public static int anInt1053 = 0;
 
-	@OriginalMember(owner = "runetek4.client!ck", name = "eb", descriptor = "Z")
-	public static boolean verifyIdChanged = false;
-
-	@OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "(BI)Lclient!eg;")
+    @OriginalMember(owner = "runetek4.client!ck", name = "a", descriptor = "(BI)Lclient!eg;")
 	public static SpotAnimDefinition method877(@OriginalArg(1) int arg0) {
 		@Pc(10) SpotAnimDefinition local10 = (SpotAnimDefinition) Static279.aClass99_38.get((long) arg0);
 		if (local10 != null) {

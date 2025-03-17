@@ -235,7 +235,7 @@ public final class Static216 {
 				}
 				Static124.gameServerSocket.read(0, 14, Protocol.inboundBuffer.data);
 				Protocol.inboundBuffer.offset = 0;
-				Static191.staffModLevel = Protocol.inboundBuffer.g1();
+				LoginManager.staffModLevel = Protocol.inboundBuffer.g1();
 				Static249.anInt5431 = Protocol.inboundBuffer.g1();
 				Static124.aBoolean157 = Protocol.inboundBuffer.g1() == 1;
 				Static207.parentalChatConsent = Protocol.inboundBuffer.g1() == 1;
