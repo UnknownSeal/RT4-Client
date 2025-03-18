@@ -113,7 +113,7 @@ public class MiniMap {
                             }
                             local156.renderParagraphAlpha(Static235.aMapElementTypeList_2.aClass100Array153[local117], arg2 + local245 + arg3.width / 2, arg1 + arg3.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
                             if (GlRenderer.enabled) {
-                                Static46.method1173();
+                                GlFont.method1173();
                             } else {
                                 Rasterizer.method2482();
                             }

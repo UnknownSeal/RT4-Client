@@ -36,7 +36,7 @@ public final class GlVertexBufferObject {
 		local9.glGenBuffers(1, local12, 0);
 		this.aBoolean300 = arg0;
 		this.anInt5760 = local12[0];
-		this.anInt5761 = Static63.anInt1943;
+		this.anInt5761 = GlCleaner.contextId;
 	}
 
 	@OriginalMember(owner = "runetek4.client!vi", name = "a", descriptor = "(Ljava/nio/ByteBuffer;)V")
@@ -54,7 +54,7 @@ public final class GlVertexBufferObject {
 	@Override
 	public final void finalize() throws Throwable {
 		if (this.anInt5760 != -1) {
-			Static63.method1489(this.anInt5760, this.anInt5762, this.anInt5761);
+			GlCleaner.deleteBuffer(this.anInt5760, this.anInt5762, this.anInt5761);
 			this.anInt5760 = -1;
 			this.anInt5762 = 0;
 		}
@@ -72,7 +72,7 @@ public final class GlVertexBufferObject {
 		@Pc(1) GL2 local1 = GlRenderer.gl;
 		local1.glBindBuffer(GL2.GL_ELEMENT_ARRAY_BUFFER, this.anInt5760);
 		local1.glBufferData(GL2.GL_ELEMENT_ARRAY_BUFFER, arg0.limit(), arg0, this.aBoolean300 ? GL2.GL_STREAM_DRAW : GL2.GL_STATIC_DRAW);
-		Static63.oncard_geometry += arg0.limit() - this.anInt5762;
+		GlCleaner.oncard_geometry += arg0.limit() - this.anInt5762;
 		this.anInt5762 = arg0.limit();
 	}
 
@@ -87,7 +87,7 @@ public final class GlVertexBufferObject {
 		@Pc(1) GL2 local1 = GlRenderer.gl;
 		local1.glBindBuffer(GL2.GL_ARRAY_BUFFER, this.anInt5760);
 		local1.glBufferData(GL2.GL_ARRAY_BUFFER, arg0.limit(), arg0, this.aBoolean300 ? GL2.GL_STREAM_DRAW : GL2.GL_STATIC_DRAW);
-		Static63.oncard_geometry += arg0.limit() - this.anInt5762;
+		GlCleaner.oncard_geometry += arg0.limit() - this.anInt5762;
 		this.anInt5762 = arg0.limit();
 	}
 }

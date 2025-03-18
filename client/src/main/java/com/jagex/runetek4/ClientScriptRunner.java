@@ -832,7 +832,7 @@ public final class ClientScriptRunner {
 								local276 += 15;
 								if (GlRenderer.enabled) {
 									color = 16776960;
-									cardMemory = (Static63.oncard_texture + Static63.oncard_geometry + Static63.oncard_2d) / 1024;
+									cardMemory = (Static63.oncard_texture + GlCleaner.oncard_geometry + GlCleaner.oncard_2d) / 1024;
 									if (cardMemory > 65536) {
 										color = 16711680;
 									}

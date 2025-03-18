@@ -73,11 +73,11 @@ public final class GlIndexedSprite extends IndexedSprite {
 			@Pc(102) int[] local102 = new int[1];
 			local95.glGenTextures(1, local102, 0);
 			this.anInt4281 = local102[0];
-			this.anInt4285 = Static63.anInt1943;
+			this.anInt4285 = GlCleaner.contextId;
 		}
 		GlRenderer.setTextureId(this.anInt4281);
 		local95.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, this.anInt4287, this.anInt4286, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, local93);
-		Static63.oncard_2d += local93.limit() - this.anInt4284;
+		GlCleaner.oncard_2d += local93.limit() - this.anInt4284;
 		this.anInt4284 = local93.limit();
 	}
 
@@ -124,12 +124,12 @@ public final class GlIndexedSprite extends IndexedSprite {
 	@Override
 	public void finalize() throws Throwable {
 		if (this.anInt4281 != -1) {
-			Static63.method1491(this.anInt4281, this.anInt4284, this.anInt4285);
+			GlCleaner.deleteTexture2d(this.anInt4281, this.anInt4284, this.anInt4285);
 			this.anInt4281 = -1;
 			this.anInt4284 = 0;
 		}
 		if (this.anInt4282 != -1) {
-			Static63.method1486(this.anInt4282, this.anInt4285);
+			GlCleaner.deleteList(this.anInt4282, this.anInt4285);
 			this.anInt4282 = -1;
 		}
 		super.finalize();
@@ -142,7 +142,7 @@ public final class GlIndexedSprite extends IndexedSprite {
 		@Pc(17) GL2 local17 = GlRenderer.gl;
 		if (this.anInt4282 == -1) {
 			this.anInt4282 = local17.glGenLists(1);
-			this.anInt4285 = Static63.anInt1943;
+			this.anInt4285 = GlCleaner.contextId;
 		}
 		local17.glNewList(this.anInt4282, GL2.GL_COMPILE);
 		local17.glBegin(GL2.GL_TRIANGLE_FAN);

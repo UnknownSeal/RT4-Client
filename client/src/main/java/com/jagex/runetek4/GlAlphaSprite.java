@@ -26,12 +26,12 @@ public final class GlAlphaSprite extends GlSprite {
 	@OriginalMember(owner = "client!el", name = "a", descriptor = "([I)V")
 	@Override
 	protected final void method1430(@OriginalArg(0) int[] arg0) {
-		this.anInt1870 = IntUtils.bitceil(this.width);
-		this.anInt1874 = IntUtils.bitceil(this.height);
-		@Pc(20) byte[] local20 = new byte[this.anInt1870 * this.anInt1874 * 4];
+		this.powerOfTwoWidth = IntUtils.bitceil(this.width);
+		this.powerOfTwoHeight = IntUtils.bitceil(this.height);
+		@Pc(20) byte[] local20 = new byte[this.powerOfTwoWidth * this.powerOfTwoHeight * 4];
 		@Pc(22) int local22 = 0;
 		@Pc(24) int local24 = 0;
-		@Pc(32) int local32 = (this.anInt1870 - this.width) * 4;
+		@Pc(32) int local32 = (this.powerOfTwoWidth - this.width) * 4;
 		for (@Pc(34) int local34 = 0; local34 < this.height; local34++) {
 			for (@Pc(40) int local40 = 0; local40 < this.width; local40++) {
 				@Pc(49) int local49 = arg0[local24++];
@@ -48,14 +48,14 @@ public final class GlAlphaSprite extends GlSprite {
 		}
 		@Pc(94) ByteBuffer local94 = ByteBuffer.wrap(local20);
 		@Pc(96) GL2 local96 = GlRenderer.gl;
-		if (this.anInt1872 == -1) {
+		if (this.textureId == -1) {
 			@Pc(103) int[] local103 = new int[1];
 			local96.glGenTextures(1, local103, 0);
-			this.anInt1872 = local103[0];
+			this.textureId = local103[0];
 		}
-		GlRenderer.setTextureId(this.anInt1872);
-		local96.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, this.anInt1870, this.anInt1874, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, local94);
-		Static63.oncard_2d += local94.limit() - this.anInt1869;
+		GlRenderer.setTextureId(this.textureId);
+		local96.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, this.powerOfTwoWidth, this.powerOfTwoHeight, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, local94);
+		GlCleaner.oncard_2d += local94.limit() - this.anInt1869;
 		this.anInt1869 = local94.limit();
 	}
 }

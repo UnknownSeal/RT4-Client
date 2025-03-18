@@ -40,7 +40,7 @@ public class GlRaster {
         } else {
             local27.glScissor(0, 0, 0, 0);
         }
-        Static46.method1173();
+        GlFont.method1173();
     }
 
     @OriginalMember(owner = "client!dj", name = "c", descriptor = "(IIIII)V")
@@ -132,7 +132,7 @@ public class GlRaster {
         } else {
             local21.glScissor(0, 0, 0, 0);
         }
-        Static46.method1173();
+        GlFont.method1173();
     }
 
     @OriginalMember(owner = "client!dj", name = "c", descriptor = "()V")
@@ -143,7 +143,7 @@ public class GlRaster {
         clipBottom = GlRenderer.canvasHeight;
         @Pc(9) GL2 local9 = GlRenderer.gl;
         local9.glDisable(GL2.GL_SCISSOR_TEST);
-        Static46.method1173();
+        GlFont.method1173();
     }
 
     @OriginalMember(owner = "client!dj", name = "b", descriptor = "(IIIII)V")

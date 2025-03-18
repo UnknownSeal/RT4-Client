@@ -496,7 +496,7 @@ public final class GlRenderer {
 			}
 
 			if (context != null) {
-				Static63.clear(); // GlCleaner
+				GlCleaner.clear(); // GlCleaner
 				try {
 					if (GLContext.getCurrent() == context) {
 						context.release();

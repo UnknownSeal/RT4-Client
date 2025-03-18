@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jogamp.opengl.GL2;
+import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -16,6 +17,12 @@ public class GlCleaner {
     static final LinkedList aClass69_51 = new LinkedList();
     @OriginalMember(owner = "client!fa", name = "j", descriptor = "[I")
     private static final int[] anIntArray151 = new int[1000];
+    @OriginalMember(owner = "client!fa", name = "e", descriptor = "I")
+    public static int oncard_2d = 0;
+    @OriginalMember(owner = "client!fa", name = "c", descriptor = "I")
+    public static int contextId = 0;
+    @OriginalMember(owner = "client!fa", name = "f", descriptor = "I")
+    public static int oncard_geometry = 0;
     @OriginalMember(owner = "client!fa", name = "d", descriptor = "J")
     private static long aLong71 = 0L;
 
@@ -42,7 +49,7 @@ public class GlCleaner {
                                 while (true) {
                                     local8 = (IntWrapper) aClass69_51.removeHead();
                                     if (local8 == null) {
-                                        if (Static63.oncard_geometry + Static63.oncard_2d + Static63.oncard_texture > 100663296 && MonotonicTime.currentTimeMillis() > aLong71 + 60000L) {
+                                        if (oncard_geometry + oncard_2d + Static63.oncard_texture > 100663296 && MonotonicTime.currentTimeMillis() > aLong71 + 60000L) {
                                             System.gc();
                                             aLong71 = MonotonicTime.currentTimeMillis();
                                         }
@@ -61,7 +68,7 @@ public class GlCleaner {
                         }
                     }
                     anIntArray151[local3++] = (int) local8.nodeId;
-                    Static63.oncard_2d -= local8.value;
+                    oncard_2d -= local8.value;
                     if (local3 == 1000) {
                         local1.glDeleteTextures(local3, anIntArray151, 0);
                         local3 = 0;
@@ -69,11 +76,59 @@ public class GlCleaner {
                 }
             }
             anIntArray151[local3++] = (int) local8.nodeId;
-            Static63.oncard_geometry -= local8.value;
+            oncard_geometry -= local8.value;
             if (local3 == 1000) {
                 local1.glDeleteBuffers(local3, anIntArray151, 0);
                 local3 = 0;
             }
+        }
+    }
+
+    @OriginalMember(owner = "client!fa", name = "a", descriptor = "(III)V")
+    public static synchronized void deleteTexture(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+        if (arg2 == contextId) {
+            @Pc(8) IntWrapper local8 = new IntWrapper(arg1);
+            local8.nodeId = arg0;
+            aClass69_50.addTail(local8);
+        }
+    }
+
+    @OriginalMember(owner = "client!fa", name = "a", descriptor = "(II)V")
+    public static synchronized void deleteList(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+        if (arg1 == contextId) {
+            @Pc(7) IntWrapper local7 = new IntWrapper();
+            local7.nodeId = arg0;
+            aClass69_51.addTail(local7);
+        }
+    }
+
+    @OriginalMember(owner = "client!fa", name = "b", descriptor = "()V")
+    public static synchronized void clear() {
+        contextId++;
+        aClass69_48.clear();
+        aClass69_49.clear();
+        aClass69_50.clear();
+        aClass69_51.clear();
+        oncard_geometry = 0;
+        oncard_2d = 0;
+        Static63.oncard_texture = 0;
+    }
+
+    @OriginalMember(owner = "client!fa", name = "b", descriptor = "(III)V")
+    public static synchronized void deleteBuffer(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+        if (arg2 == contextId) {
+            @Pc(8) IntWrapper local8 = new IntWrapper(arg1);
+            local8.nodeId = arg0;
+            aClass69_48.addTail(local8);
+        }
+    }
+
+    @OriginalMember(owner = "client!fa", name = "c", descriptor = "(III)V")
+    public static synchronized void deleteTexture2d(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+        if (arg2 == contextId) {
+            @Pc(8) IntWrapper local8 = new IntWrapper(arg1);
+            local8.nodeId = arg0;
+            aClass69_49.addTail(local8);
         }
     }
 }
