@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static3 {
 
-	@OriginalMember(owner = "runetek4.client!ab", name = "c", descriptor = "[Z")
-	public static final boolean[] aBooleanArray135 = new boolean[200];
-
 	@OriginalMember(owner = "runetek4.client!ab", name = "j", descriptor = "[Lclient!na;")
 	public static final JString[] scriptStringValues = new JString[1000];
 

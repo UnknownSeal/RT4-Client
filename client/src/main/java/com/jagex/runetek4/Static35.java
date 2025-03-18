@@ -16,9 +16,6 @@ public final class Static35 {
 	@OriginalMember(owner = "runetek4.client!cl", name = "Y", descriptor = "I")
 	public static int anInt1092 = -1;
 
-	@OriginalMember(owner = "runetek4.client!cl", name = "Z", descriptor = "I")
-	public static int ignoreCount = 0;
-
 	@OriginalMember(owner = "runetek4.client!cl", name = "bb", descriptor = "Z")
 	public static volatile boolean canvasReplaceRecommended = false;
 

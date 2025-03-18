@@ -368,7 +368,7 @@ public final class JString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(B)Lclient!na;")
-	public final JString method3125() {
+	public final JString toTitleCase() {
 		@Pc(9) JString local9 = new JString();
 		local9.anInt4030 = this.anInt4030;
 		local9.aByteArray52 = new byte[this.anInt4030];

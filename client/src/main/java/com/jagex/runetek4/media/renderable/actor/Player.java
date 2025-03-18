@@ -242,7 +242,7 @@ public final class Player extends PathingEntity {
 		}
 		this.anInt3365 = arg0.g2();
 		@Pc(236) long local236 = arg0.g8();
-		this.username = Base37.decode37(local236).method3125();
+		this.username = Base37.decode37(local236).toTitleCase();
 		this.combatLevel = arg0.g1();
 		if (local37) {
 			this.anInt1671 = arg0.g2();

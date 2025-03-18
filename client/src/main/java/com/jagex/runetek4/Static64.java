@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -46,42 +45,4 @@ public final class Static64 {
 		}
 	}
 
-	@OriginalMember(owner = "client!fb", name = "a", descriptor = "(JB)V")
-	public static void addFriend(@OriginalArg(0) long username) {
-		if (username == 0L) {
-			return;
-		}
-		if (FriendList.friendCount >= 100 && !Class6.members || FriendList.friendCount >= 200) {
-			Chat.addMessage(JString.EMPTY, 0, LocalizedText.FRIENDLISTFULL);
-			return;
-		}
-		@Pc(35) JString displayName = Base37.decode37(username).method3125();
-		@Pc(42) int i;
-		for (i = 0; i < FriendList.friendCount; i++) {
-			if (Static92.friendName37[i] == username) {
-				Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { displayName, LocalizedText.FRIENDLISTDUPE}));
-				return;
-			}
-		}
-		for (i = 0; i < Static35.ignoreCount; i++) {
-			if (username == Static190.ignoreName37[i]) {
-				Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { LocalizedText.REMOVESOCIAL1, displayName, LocalizedText.REMOVEIGNORE}));
-				return;
-			}
-		}
-		if (displayName.strEquals(PlayerList.self.username)) {
-			Chat.addMessage(JString.EMPTY, 0, LocalizedText.FRIENDCANTADDSELF);
-			return;
-		}
-		Static122.friendName[FriendList.friendCount] = displayName;
-		Static92.friendName37[FriendList.friendCount] = username;
-		Static104.friendWorld[FriendList.friendCount] = 0;
-		Static214.aClass100Array170[FriendList.friendCount] = JString.EMPTY;
-		Static106.anIntArray258[FriendList.friendCount] = 0;
-		Static3.aBooleanArray135[FriendList.friendCount] = false;
-		FriendList.friendCount++;
-		Static185.anInt4369 = InterfaceList.transmitTimer;
-		Protocol.outboundBuffer.pIsaac1(120);
-		Protocol.outboundBuffer.p8(username);
-	}
 }

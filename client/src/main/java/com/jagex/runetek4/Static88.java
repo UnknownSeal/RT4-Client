@@ -1553,7 +1553,7 @@ public final class Static88 {
 										continue;
 									}
 									if (scriptOpcode == 3325) {
-										Static254.scriptIntValues[intValueIndex++] = Class6.members ? 1 : 0;
+										Static254.scriptIntValues[intValueIndex++] = LoginManager.playerMember ? 1 : 0;
 										continue;
 									}
 									if (scriptOpcode == 3326) {
@@ -1697,7 +1697,7 @@ public final class Static88 {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
 										if (FriendList.state == 2 && interfaceData < FriendList.friendCount) {
-											Static3.scriptStringValues[local26++] = Static122.friendName[interfaceData];
+											Static3.scriptStringValues[local26++] = FriendList.friendUsernames[interfaceData];
 											continue;
 										}
 										Static3.scriptStringValues[local26++] = Static72.aClass100_447;
@@ -1707,7 +1707,7 @@ public final class Static88 {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
 										if (FriendList.state == 2 && FriendList.friendCount > interfaceData) {
-											Static254.scriptIntValues[intValueIndex++] = Static104.friendWorld[interfaceData];
+											Static254.scriptIntValues[intValueIndex++] = FriendList.friendWorlds[interfaceData];
 											continue;
 										}
 										Static254.scriptIntValues[intValueIndex++] = 0;
@@ -1717,7 +1717,7 @@ public final class Static88 {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
 										if (FriendList.state == 2 && FriendList.friendCount > interfaceData) {
-											Static254.scriptIntValues[intValueIndex++] = Static106.anIntArray258[interfaceData];
+											Static254.scriptIntValues[intValueIndex++] = FriendList.ranks[interfaceData];
 											continue;
 										}
 										Static254.scriptIntValues[intValueIndex++] = 0;
@@ -1728,19 +1728,19 @@ public final class Static88 {
 										interfaceType = Static254.scriptIntValues[intValueIndex];
 										local26--;
 										chatTyped = Static3.scriptStringValues[local26];
-										Static171.method3221(chatTyped, interfaceType);
+										FriendList.setRank(chatTyped, interfaceType);
 										continue;
 									}
 									if (scriptOpcode == 3605) {
 										local26--;
 										chatTyped = Static3.scriptStringValues[local26];
-										Static64.addFriend(chatTyped.encode37());
+										FriendList.addFriend(chatTyped.encode37());
 										continue;
 									}
 									if (scriptOpcode == 3606) {
 										local26--;
 										chatTyped = Static3.scriptStringValues[local26];
-										Static193.removeFriend(chatTyped.encode37());
+										FriendList.removeFriend(chatTyped.encode37());
 										continue;
 									}
 									if (scriptOpcode == 3607) {
@@ -1761,14 +1761,14 @@ public final class Static88 {
 										if (chatTyped.startsWith(Static72.aClass100_446) || chatTyped.startsWith(Static101.aClass100_537)) {
 											chatTyped = chatTyped.substring(7);
 										}
-										Static254.scriptIntValues[intValueIndex++] = Static98.method1965(chatTyped) ? 1 : 0;
+										Static254.scriptIntValues[intValueIndex++] = FriendList.contains(chatTyped) ? 1 : 0;
 										continue;
 									}
 									if (scriptOpcode == 3610) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
 										if (FriendList.state == 2 && FriendList.friendCount > interfaceData) {
-											Static3.scriptStringValues[local26++] = Static214.aClass100Array170[interfaceData];
+											Static3.scriptStringValues[local26++] = FriendList.worldNames[interfaceData];
 											continue;
 										}
 										Static3.scriptStringValues[local26++] = Static72.aClass100_447;
@@ -1778,7 +1778,7 @@ public final class Static88 {
 										if (ClanChat.name == null) {
 											Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										} else {
-											Static3.scriptStringValues[local26++] = ClanChat.name.method3125();
+											Static3.scriptStringValues[local26++] = ClanChat.name.toTitleCase();
 										}
 										continue;
 									}
@@ -1794,7 +1794,7 @@ public final class Static88 {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
 										if (ClanChat.name != null && ClanChat.size > interfaceData) {
-											Static3.scriptStringValues[local26++] = ClanChat.members[interfaceData].username.method3125();
+											Static3.scriptStringValues[local26++] = ClanChat.members[interfaceData].username.toTitleCase();
 											continue;
 										}
 										Static3.scriptStringValues[local26++] = Static72.aClass100_447;
@@ -1848,15 +1848,15 @@ public final class Static88 {
 										if (FriendList.state == 0) {
 											Static254.scriptIntValues[intValueIndex++] = -1;
 										} else {
-											Static254.scriptIntValues[intValueIndex++] = Static35.ignoreCount;
+											Static254.scriptIntValues[intValueIndex++] = IgnoreList.ignoreCount;
 										}
 										continue;
 									}
 									if (scriptOpcode == 3622) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										if (FriendList.state != 0 && Static35.ignoreCount > interfaceData) {
-											Static3.scriptStringValues[local26++] = Base37.decode37(Static190.ignoreName37[interfaceData]).method3125();
+										if (FriendList.state != 0 && IgnoreList.ignoreCount > interfaceData) {
+											Static3.scriptStringValues[local26++] = Base37.decode37(IgnoreList.encodedIgnores[interfaceData]).toTitleCase();
 											continue;
 										}
 										Static3.scriptStringValues[local26++] = Static72.aClass100_447;
@@ -1885,7 +1885,7 @@ public final class Static88 {
 										if (ClanChat.owner == null) {
 											Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 										} else {
-											Static3.scriptStringValues[local26++] = ClanChat.owner.method3125();
+											Static3.scriptStringValues[local26++] = ClanChat.owner.toTitleCase();
 										}
 										continue;
 									}
@@ -1903,7 +1903,7 @@ public final class Static88 {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
 										if (FriendList.state == 2 && interfaceData >= 0 && interfaceData < FriendList.friendCount) {
-											Static254.scriptIntValues[intValueIndex++] = Static3.aBooleanArray135[interfaceData] ? 1 : 0;
+											Static254.scriptIntValues[intValueIndex++] = FriendList.friendGame[interfaceData] ? 1 : 0;
 											continue;
 										}
 										Static254.scriptIntValues[intValueIndex++] = 0;
@@ -1915,7 +1915,7 @@ public final class Static88 {
 										if (chatTyped.startsWith(Static72.aClass100_446) || chatTyped.startsWith(Static101.aClass100_537)) {
 											chatTyped = chatTyped.substring(7);
 										}
-										Static254.scriptIntValues[intValueIndex++] = Static4.method25(chatTyped);
+										Static254.scriptIntValues[intValueIndex++] = FriendList.indexOf(chatTyped);
 										continue;
 									}
 									if (scriptOpcode == 3629) {
@@ -3297,7 +3297,7 @@ public final class Static88 {
 													}
 													if (scriptOpcode == 5610) {
 														for (interfaceData = 0; interfaceData < 5; interfaceData++) {
-															Static3.scriptStringValues[local26++] = CreateManager.suggestedNames.length > interfaceData ? CreateManager.suggestedNames[interfaceData].method3125() : Static72.aClass100_447;
+															Static3.scriptStringValues[local26++] = CreateManager.suggestedNames.length > interfaceData ? CreateManager.suggestedNames[interfaceData].toTitleCase() : Static72.aClass100_447;
 														}
 														CreateManager.suggestedNames = null;
 														continue;

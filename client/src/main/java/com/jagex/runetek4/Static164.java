@@ -207,8 +207,8 @@ public final class Static164 {
 		@Pc(125) int[] local125 = new int[4];
 		Rasterizer.getViewportDimensions(local125);
 		@Pc(133) SoftwareSprite rendered = new SoftwareSprite(36, 32);
-		Rasterizer.prepare(rendered.pixels, 36, 32);
-		Rasterizer.prepare();
+		SoftwareRaster.setSize(rendered.pixels, 36, 32);
+		Rasterizer.setSize();
 		Rasterizer.setBounds(16, 16);
 		@Pc(145) int local145 = definition.zoom2d;
 		Pix3D.aBoolean136 = false;
@@ -225,7 +225,7 @@ public final class Static164 {
 			if (arg4 >= 2) {
 				rendered.drawOutline(16777215);
 			}
-			Rasterizer.prepare(rendered.pixels, 36, 32);
+			SoftwareRaster.setSize(rendered.pixels, 36, 32);
 		}
 		if (arg0 != 0) {
 			rendered.drawShadow(arg0);
@@ -233,16 +233,16 @@ public final class Static164 {
 		if (definition.certtemplate != -1) {
 			local71.drawSprite(0, 0);
 		} else if (definition.lenttemplate != -1) {
-			Rasterizer.prepare(local71.pixels, 36, 32);
+			SoftwareRaster.setSize(local71.pixels, 36, 32);
 			rendered.drawSprite(0, 0);
 			rendered = local71;
 		}
 		if (arg3 && (definition.stackable == 1 || arg5 != 1) && arg5 != -1) {
 			Static256.aClass3_Sub2_Sub9_Sub1_1.renderLeft(Component.getShortenedAmountText(arg5), 0, 9, 16776960, 1);
 		}
-		Rasterizer.prepare(pixels, local120, local122);
+		SoftwareRaster.setSize(pixels, local120, local122);
 		Rasterizer.setViewportDimensions(local125);
-		Rasterizer.prepare();
+		Rasterizer.setSize();
 		Pix3D.aBoolean136 = true;
 		return GlRenderer.enabled && !arg1 ? new GlSprite(rendered) : rendered;
 	}

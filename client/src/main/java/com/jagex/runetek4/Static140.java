@@ -16,20 +16,20 @@ public final class Static140 {
 		if (username == 0L) {
 			return;
 		}
-		if (Static35.ignoreCount >= 100) {
+		if (IgnoreList.ignoreCount >= 100) {
 			Chat.addMessage(JString.EMPTY, 0, LocalizedText.IGNORELISTFULL);
 			return;
 		}
-		@Pc(34) JString displayName = Base37.decode37(username).method3125();
+		@Pc(34) JString displayName = Base37.decode37(username).toTitleCase();
 		@Pc(36) int i;
-		for (i = 0; i < Static35.ignoreCount; i++) {
-			if (Static190.ignoreName37[i] == username) {
+		for (i = 0; i < IgnoreList.ignoreCount; i++) {
+			if (IgnoreList.encodedIgnores[i] == username) {
 				Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { displayName, LocalizedText.IGNORELISTDUPE}));
 				return;
 			}
 		}
 		for (i = 0; i < FriendList.friendCount; i++) {
-			if (Static92.friendName37[i] == username) {
+			if (FriendList.encodedUsernames[i] == username) {
 				Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { LocalizedText.REMOVESOCIAL2, displayName, LocalizedText.REMOVEFRIEND}));
 				return;
 			}
@@ -38,9 +38,9 @@ public final class Static140 {
 			Chat.addMessage(JString.EMPTY, 0, LocalizedText.IGNORECANTADDSELF);
 			return;
 		}
-		Static190.ignoreName37[Static35.ignoreCount] = username;
-		Static193.ignoreName[Static35.ignoreCount++] = Base37.decode37(username);
-		Static185.anInt4369 = InterfaceList.transmitTimer;
+		IgnoreList.encodedIgnores[IgnoreList.ignoreCount] = username;
+		Static193.ignoreName[IgnoreList.ignoreCount++] = Base37.decode37(username);
+		FriendList.transmitAt = InterfaceList.transmitTimer;
 		Protocol.outboundBuffer.pIsaac1(34);
 		Protocol.outboundBuffer.p8(username);
 	}

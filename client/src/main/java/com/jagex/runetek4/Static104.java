@@ -10,9 +10,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static104 {
 
-	@OriginalMember(owner = "runetek4.client!ia", name = "d", descriptor = "[I")
-	public static final int[] friendWorld = new int[200];
-
 	@OriginalMember(owner = "runetek4.client!ia", name = "a", descriptor = "(BLclient!fe;)V")
 	public static void method2247(@OriginalArg(1) PathingEntity arg0) {
 		@Pc(9) BasType local9 = arg0.getBasType();

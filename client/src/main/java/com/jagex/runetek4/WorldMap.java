@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -94,7 +93,7 @@ public class WorldMap {
                 Static153.aClass3_Sub2_Sub1_Sub1_2 = null;
                 Static153.aClass3_Sub2_Sub1_Sub1_2 = new SoftwareSprite(arg3, arg2);
             }
-            Rasterizer.prepare(Static153.aClass3_Sub2_Sub1_Sub1_2.pixels, arg3, arg2);
+            SoftwareRaster.setSize(Static153.aClass3_Sub2_Sub1_Sub1_2.pixels, arg3, arg2);
             Static214.method4364(arg3, 0, local61, local50, 0, local236, arg2, local211);
             Static48.method1195(arg3, 0, local61, local236, arg2, 0, local211, local50);
             Static38.method959(0, 0, local211, arg3, local236, local50, local61, arg2);

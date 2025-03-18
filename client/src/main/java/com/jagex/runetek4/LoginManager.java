@@ -66,6 +66,8 @@ public class LoginManager {
     public static boolean aBoolean247 = false;
     @OriginalMember(owner = "runetek4.client!qf", name = "X", descriptor = "Lclient!be;")
     public static Component aClass13_13 = null;
+    @OriginalMember(owner = "runetek4.client!qg", name = "W", descriptor = "Z")
+    public static boolean playerMember = false;
 
     @OriginalMember(owner = "runetek4.client!j", name = "g", descriptor = "(I)V")
     public static void method4637() {
@@ -831,12 +833,12 @@ public class LoginManager {
                 Static86.aBoolean129 = Protocol.inboundBuffer.g1() == 1;
                 Static245.enabled = Protocol.inboundBuffer.g1() == 1;
                 PlayerList.selfId = Protocol.inboundBuffer.g2();
-                Class6.members = Protocol.inboundBuffer.g1() == 1;
+                playerMember = Protocol.inboundBuffer.g1() == 1;
                 Static2.membersWorld = Protocol.inboundBuffer.g1() == 1;
                 Static189.method3438(Static2.membersWorld);
                 CacheArchive.method186(Static2.membersWorld);
                 if (!client.advertSuppressed) {
-                    if (Static124.aBoolean157 && !Static25.aBoolean57 || Class6.members) {
+                    if (Static124.aBoolean157 && !Static25.aBoolean57 || playerMember) {
                         try {
                             Static167.aClass100_781.browserControlCall(GameShell.signLink.applet);
                         } catch (@Pc(910) Throwable local910) {

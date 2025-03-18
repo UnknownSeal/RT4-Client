@@ -17,9 +17,6 @@ public final class Class6 {
 	@OriginalMember(owner = "runetek4.client!qg", name = "U", descriptor = "Lclient!na;")
 	public static final JString aClass100_891 = JString.parse("");
 
-	@OriginalMember(owner = "runetek4.client!qg", name = "W", descriptor = "Z")
-	public static boolean members = false;
-
 	@OriginalMember(owner = "runetek4.client!qg", name = "h", descriptor = "(I)V")
 	public static void clear() {
 		PreciseSleep.aClass99_29.clean();

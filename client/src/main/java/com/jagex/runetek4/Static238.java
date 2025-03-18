@@ -29,7 +29,7 @@ public final class Static238 {
 		if (arg0 == null) {
 			return false;
 		}
-		for (@Pc(11) int local11 = 0; local11 < Static35.ignoreCount; local11++) {
+		for (@Pc(11) int local11 = 0; local11 < IgnoreList.ignoreCount; local11++) {
 			if (arg0.equalsIgnoreCase(Static193.ignoreName[local11])) {
 				return true;
 			}

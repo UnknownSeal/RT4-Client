@@ -39,14 +39,14 @@ public final class Static69 {
 		if (arg0 == 0L) {
 			return;
 		}
-		for (@Pc(12) int local12 = 0; local12 < Static35.ignoreCount; local12++) {
-			if (Static190.ignoreName37[local12] == arg0) {
-				Static35.ignoreCount--;
-				for (@Pc(36) int local36 = local12; local36 < Static35.ignoreCount; local36++) {
-					Static190.ignoreName37[local36] = Static190.ignoreName37[local36 + 1];
+		for (@Pc(12) int local12 = 0; local12 < IgnoreList.ignoreCount; local12++) {
+			if (IgnoreList.encodedIgnores[local12] == arg0) {
+				IgnoreList.ignoreCount--;
+				for (@Pc(36) int local36 = local12; local36 < IgnoreList.ignoreCount; local36++) {
+					IgnoreList.encodedIgnores[local36] = IgnoreList.encodedIgnores[local36 + 1];
 					Static193.ignoreName[local36] = Static193.ignoreName[local36 + 1];
 				}
-				Static185.anInt4369 = InterfaceList.transmitTimer;
+				FriendList.transmitAt = InterfaceList.transmitTimer;
 				Protocol.outboundBuffer.pIsaac1(213);
 				Protocol.outboundBuffer.p8(arg0);
 				break;

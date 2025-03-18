@@ -235,4 +235,12 @@ public class SoftwareRaster {
             destinationPixels[local32 + local34] = arg3;
         }
     }
+
+    @OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "([III)V")
+    public static void setSize(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+        destinationPixels = arg0;
+        destinationWidth = arg1;
+        Rasterizer.destinationHeight = arg2;
+        setClip(0, 0, arg1, arg2);
+    }
 }

@@ -169,7 +169,7 @@ public class MiniMap {
                     @Pc(624) long name = local591.username.encode37();
                     @Pc(626) boolean isFriend = false;
                     for (local239 = 0; local239 < FriendList.friendCount; local239++) {
-                        if (name == Static92.friendName37[local239] && Static104.friendWorld[local239] != 0) {
+                        if (name == FriendList.encodedUsernames[local239] && FriendList.friendWorlds[local239] != 0) {
                             isFriend = true;
                             break;
                         }

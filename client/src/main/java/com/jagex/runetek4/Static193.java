@@ -24,30 +24,6 @@ public final class Static193 {
 	@OriginalMember(owner = "runetek4.client!pi", name = "V", descriptor = "[Lclient!na;")
 	public static final JString[] ignoreName = new JString[100];
 
-	@OriginalMember(owner = "runetek4.client!pi", name = "a", descriptor = "(JI)V")
-	public static void removeFriend(@OriginalArg(0) long username) {
-		if (username == 0L) {
-			return;
-		}
-		for (@Pc(13) int local13 = 0; local13 < FriendList.friendCount; local13++) {
-			if (Static92.friendName37[local13] == username) {
-				FriendList.friendCount--;
-				for (@Pc(41) int i = local13; i < FriendList.friendCount; i++) {
-					Static122.friendName[i] = Static122.friendName[i + 1];
-					Static104.friendWorld[i] = Static104.friendWorld[i + 1];
-					Static214.aClass100Array170[i] = Static214.aClass100Array170[i + 1];
-					Static92.friendName37[i] = Static92.friendName37[i + 1];
-					Static106.anIntArray258[i] = Static106.anIntArray258[i + 1];
-					Static3.aBooleanArray135[i] = Static3.aBooleanArray135[i + 1];
-				}
-				Static185.anInt4369 = InterfaceList.transmitTimer;
-				Protocol.outboundBuffer.pIsaac1(57);
-				Protocol.outboundBuffer.p8(username);
-				break;
-			}
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!pi", name = "a", descriptor = "([[[B[[B[[B[[I[[F[[I[[B[[B[[FI[[F[[I[[I[[II)[Lclient!hg;")
 	public static Class3_Sub14[] method3501(@OriginalArg(0) byte[][][] arg0, @OriginalArg(1) byte[][] arg1, @OriginalArg(2) byte[][] arg2, @OriginalArg(3) int[][] arg3, @OriginalArg(4) float[][] arg4, @OriginalArg(5) int[][] arg5, @OriginalArg(6) byte[][] arg6, @OriginalArg(7) byte[][] arg7, @OriginalArg(8) float[][] arg8, @OriginalArg(9) int arg9, @OriginalArg(10) float[][] arg10, @OriginalArg(11) int[][] arg11, @OriginalArg(12) int[][] arg12, @OriginalArg(13) int[][] arg13) {
 		@Pc(9) int[][] local9 = new int[105][105];

@@ -133,7 +133,7 @@ public class ClientProt {
 
     @OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(IILclient!na;)V")
     public static void clickPlayerOption(@OriginalArg(0) int arg0, @OriginalArg(2) JString arg1) {
-        @Pc(7) JString local7 = arg1.method3159().method3125();
+        @Pc(7) JString local7 = arg1.method3159().toTitleCase();
         @Pc(13) boolean local13 = false;
         for (@Pc(15) int local15 = 0; local15 < PlayerList.playerCount; local15++) {
             @Pc(28) Player local28 = PlayerList.players[PlayerList.playerIds[local15]];

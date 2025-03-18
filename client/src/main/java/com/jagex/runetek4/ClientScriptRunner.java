@@ -628,7 +628,7 @@ public final class ClientScriptRunner {
 			GlRaster.setClip(arg0, arg6, arg4, arg7);
 		} else {
 			SoftwareRaster.setClip(arg0, arg6, arg4, arg7);
-			Rasterizer.prepare();
+			Rasterizer.setSize();
 		}
 		for (@Pc(18) int i = 0; i < components.length; i++) {
 			@Pc(30) Component component = components[i];
@@ -909,7 +909,7 @@ public final class ClientScriptRunner {
 								GlRaster.setClip(arg0, arg6, arg4, arg7);
 							} else {
 								SoftwareRaster.setClip(arg0, arg6, arg4, arg7);
-								Rasterizer.prepare();
+								Rasterizer.setSize();
 							}
 						}
 						if (Static223.aBooleanArray116[rectangle] || Cheat.rectDebug > 1) {
@@ -1532,7 +1532,7 @@ public final class ClientScriptRunner {
 			GlRenderer.method4171(arg2, arg4, arg3, arg0, arg3 / 2 + arg2, arg4 - -(arg0 / 2), local248, local253, Static223.anInt5029, Static223.anInt5029);
 		} else {
 			SoftwareRaster.setClip(arg2, arg4, arg3 + arg2, arg0 + arg4);
-			Rasterizer.prepare();
+			Rasterizer.setSize();
 		}
 		if (aBoolean108 || anInt3751 < arg2 || anInt3751 >= arg3 + arg2 || arg4 > anInt1892 || arg0 + arg4 <= anInt1892) {
 			Static39.aBoolean77 = false;
@@ -1639,7 +1639,7 @@ public final class ClientScriptRunner {
 
 		if (WorldMap.aClass3_Sub2_Sub1_2 == null || arg2 != WorldMap.aClass3_Sub2_Sub1_2.width || WorldMap.aClass3_Sub2_Sub1_2.height != arg1) {
 			@Pc(63) SoftwareSprite local63 = new SoftwareSprite(arg2, arg1);
-			Rasterizer.prepare(local63.pixels, arg2, arg1);
+			SoftwareRaster.setSize(local63.pixels, arg2, arg1);
 			Static214.method4364(arg2, 0, Static48.anInt1449, 0, 0, IdkTypeList.anInt4296, arg1, 0);
 			if (GlRenderer.enabled) {
 				WorldMap.aClass3_Sub2_Sub1_2 = new GlSprite(local63);

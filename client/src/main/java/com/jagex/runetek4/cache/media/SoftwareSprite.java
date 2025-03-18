@@ -703,7 +703,7 @@ public class SoftwareSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "c", descriptor = "()V")
 	public final void method304() {
-		Rasterizer.prepare(this.pixels, this.width, this.height);
+		SoftwareRaster.setSize(this.pixels, this.width, this.height);
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "a", descriptor = "(IIIIIIDI)V")

@@ -38,8 +38,8 @@ public final class Static84 {
 					if (!quickChat && (Static124.aBoolean157 && !Static207.parentalChatConsent || Static86.aBoolean129)) {
 						ignored = true;
 					} else {
-						for (@Pc(69) int i = 0; i < Static35.ignoreCount; i++) {
-							if (Static190.ignoreName37[i] == encodedUsername) {
+						for (@Pc(69) int i = 0; i < IgnoreList.ignoreCount; i++) {
+							if (IgnoreList.encodedIgnores[i] == encodedUsername) {
 								ignored = true;
 								break;
 							}

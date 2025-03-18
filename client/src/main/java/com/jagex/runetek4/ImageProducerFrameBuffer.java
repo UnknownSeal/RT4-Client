@@ -82,9 +82,9 @@ public final class ImageProducerFrameBuffer extends FrameBuffer implements Image
 
 	@OriginalMember(owner = "runetek4.client!di", name = "a", descriptor = "(IILjava/awt/Graphics;I)V")
 	@Override
-	public final void draw(@OriginalArg(2) Graphics arg0) {
+	public final void draw(@OriginalArg(2) Graphics graphics) {
 		this.method1170();
-		arg0.drawImage(this.image, 0, 0, this);
+		graphics.drawImage(this.image, 0, 0, this);
 	}
 
 	@OriginalMember(owner = "runetek4.client!di", name = "a", descriptor = "(IZILjava/awt/runetek4.Component;)V")

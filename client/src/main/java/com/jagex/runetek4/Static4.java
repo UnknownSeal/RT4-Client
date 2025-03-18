@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public final class Static4 {
 
@@ -30,16 +29,4 @@ public final class Static4 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ac", name = "a", descriptor = "(Lclient!na;I)I")
-	public static int method25(@OriginalArg(0) JString arg0) {
-		if (arg0 == null) {
-			return -1;
-		}
-		for (@Pc(20) int local20 = 0; local20 < FriendList.friendCount; local20++) {
-			if (arg0.equalsIgnoreCase(Static122.friendName[local20])) {
-				return local20;
-			}
-		}
-		return -1;
-	}
 }

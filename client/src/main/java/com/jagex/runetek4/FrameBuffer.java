@@ -4,7 +4,6 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
 
-import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -39,11 +38,11 @@ public abstract class FrameBuffer {
 	}
 
 	@OriginalMember(owner = "client!vk", name = "a", descriptor = "(IILjava/awt/Graphics;I)V")
-	public abstract void draw(@OriginalArg(2) Graphics arg0);
+	public abstract void draw(@OriginalArg(2) Graphics graphics);
 
 	@OriginalMember(owner = "client!vk", name = "a", descriptor = "(I)V")
 	public final void makeTarget() {
-		Rasterizer.prepare(this.pixels, this.width, this.height);
+		SoftwareRaster.setSize(this.pixels, this.width, this.height);
 	}
 
 	@OriginalMember(owner = "client!vk", name = "a", descriptor = "(IIIILjava/awt/Graphics;I)V")

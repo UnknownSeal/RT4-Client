@@ -112,7 +112,7 @@ public final class Static142 {
 						}
 					}
 				}
-				if (local17.chatMessage != null && (local5 >= PlayerList.playerCount || Chat.publicFilter == 0 || Chat.publicFilter == 3 || Chat.publicFilter == 1 && Static98.method1965(((Player) local17).username))) {
+				if (local17.chatMessage != null && (local5 >= PlayerList.playerCount || Chat.publicFilter == 0 || Chat.publicFilter == 3 || Chat.publicFilter == 1 && FriendList.contains(((Player) local17).username))) {
 					Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.height(), arg1 >> 1);
 					if (Static65.anInt1951 > -1 && Static277.anInt5854 < Static191.anInt4506) {
 						Static191.anIntArray389[Static277.anInt5854] = Fonts.b12Full.getStringWidth(local17.chatMessage) / 2;

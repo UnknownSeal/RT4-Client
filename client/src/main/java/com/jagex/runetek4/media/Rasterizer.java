@@ -86,14 +86,6 @@ public final class Rasterizer {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "([III)V")
-	public static void prepare(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		SoftwareRaster.destinationPixels = arg0;
-		SoftwareRaster.destinationWidth = arg1;
-		destinationHeight = arg2;
-		SoftwareRaster.setClip(0, 0, arg1, arg2);
-	}
-
 	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "()V")
 	public static void clear() {
 		@Pc(1) int local1 = 0;
@@ -392,7 +384,7 @@ public final class Rasterizer {
     }
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "()V")
-	public static void prepare() {
+	public static void setSize() {
 		method1925(viewportLeft, viewportTop, viewportRight, viewportBottom);
 	}
 

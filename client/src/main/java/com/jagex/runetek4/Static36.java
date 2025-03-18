@@ -409,7 +409,7 @@ public final class Static36 {
 								local399.arguments = local9.onMsg;
 								Static185.aClass69_101.addTail(local399);
 							}
-							if (Static185.anInt4369 > local9.lastTransmitTimer && local9.onFriendTransmit != null) {
+							if (FriendList.transmitAt > local9.lastTransmitTimer && local9.onFriendTransmit != null) {
 								local399 = new HookRequest();
 								local399.source = local9;
 								local399.arguments = local9.onFriendTransmit;
