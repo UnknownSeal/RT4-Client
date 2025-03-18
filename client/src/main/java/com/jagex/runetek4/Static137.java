@@ -148,7 +148,7 @@ public final class Static137 {
 
 	@OriginalMember(owner = "runetek4.client!kl", name = "c", descriptor = "(II)V")
 	public static void method2666() {
-		Static279.aClass99_38.clear(5);
-		SpotAnimDefinition.modelCache.clear(5);
+		Static279.aClass99_38.clean(5);
+		SpotAnimDefinition.modelCache.clean(5);
 	}
 }

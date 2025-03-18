@@ -224,7 +224,7 @@ public class Protocol {
         if (opcode == 70) {
             @Pc(245) JString message = inboundBuffer.gjstr();
             if (message.endsWith(Static196.TRADEREQ)) {
-                message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
+                message2 = message.substring(message.indexOf(JString.COLON_SIGN), 0);
                 username = message2.encode37();
                 ignored = false;
                 for (i = 0; i < Static35.ignoreCount; i++) {
@@ -237,7 +237,7 @@ public class Protocol {
                     Chat.addMessage(message2, 4, LocalizedText.TRADEREQ);
                 }
             } else if (message.endsWith(CHALREQ)) {
-                message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
+                message2 = message.substring(message.indexOf(JString.COLON_SIGN), 0);
                 username = message2.encode37();
                 ignored = false;
                 for (i = 0; i < Static35.ignoreCount; i++) {
@@ -247,12 +247,12 @@ public class Protocol {
                     }
                 }
                 if (!ignored && Player.overrideChat == 0) {
-                    local506 = message.substring(message.length() - 9, message.indexOf(Static264.aClass100_875) + 1);
+                    local506 = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
                     Chat.addMessage(message2, 8, local506);
                 }
             } else if (message.endsWith(Static191.ASSISTREQ)) {
                 ignored = false;
-                message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
+                message2 = message.substring(message.indexOf(JString.COLON_SIGN), 0);
                 username = message2.encode37();
                 for (i = 0; i < Static35.ignoreCount; i++) {
                     if (username == Static190.ignoreName37[i]) {
@@ -278,7 +278,7 @@ public class Protocol {
                 }
             } else if (message.endsWith(DUELSTAKE)) {
                 ignored = false;
-                message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
+                message2 = message.substring(message.indexOf(JString.COLON_SIGN), 0);
                 username = message2.encode37();
                 for (i = 0; i < Static35.ignoreCount; i++) {
                     if (username == Static190.ignoreName37[i]) {
@@ -290,7 +290,7 @@ public class Protocol {
                     Chat.addMessage(message2, 14, JString.EMPTY);
                 }
             } else if (message.endsWith(Static112.DUELFRIEND)) {
-                message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
+                message2 = message.substring(message.indexOf(JString.COLON_SIGN), 0);
                 ignored = false;
                 username = message2.encode37();
                 for (i = 0; i < Static35.ignoreCount; i++) {
@@ -303,7 +303,7 @@ public class Protocol {
                     Chat.addMessage(message2, 15, JString.EMPTY);
                 }
             } else if (message.endsWith(Static217.CLANREQ)) {
-                message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
+                message2 = message.substring(message.indexOf(JString.COLON_SIGN), 0);
                 username = message2.encode37();
                 ignored = false;
                 for (i = 0; i < Static35.ignoreCount; i++) {
@@ -316,7 +316,7 @@ public class Protocol {
                     Chat.addMessage(message2, 16, JString.EMPTY);
                 }
             } else if (message.endsWith(Static164.ALLYREQ)) {
-                message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
+                message2 = message.substring(message.indexOf(JString.COLON_SIGN), 0);
                 ignored = false;
                 username = message2.encode37();
                 for (i = 0; i < Static35.ignoreCount; i++) {
@@ -326,7 +326,7 @@ public class Protocol {
                     }
                 }
                 if (!ignored && Player.overrideChat == 0) {
-                    local506 = message.substring(message.length() - 9, message.indexOf(Static264.aClass100_875) + 1);
+                    local506 = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
                     Chat.addMessage(message2, 21, local506);
                 }
             } else {

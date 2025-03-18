@@ -13,12 +13,7 @@ public final class Static25 {
 
 	@OriginalMember(owner = "client!c", name = "c", descriptor = "(II)V")
 	public static void method715() {
-		Static220.aClass99_28.clear(5);
+		Static220.aClass99_28.clean(5);
 	}
 
-	@OriginalMember(owner = "client!c", name = "d", descriptor = "(II)V")
-	public static void method716() {
-		Static79.aClass99_11.clear(5);
-		aClass6.aClass99_5.clear(5);
-	}
 }

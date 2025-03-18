@@ -19,8 +19,8 @@ public final class Static190 {
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "c", descriptor = "(II)V")
 	public static void method3447() {
-		Static27.aClass99_4.clear(5);
-		Static244.aClass99_32.clear(5);
-		Static118.aClass99_16.clear(5);
+		Static27.aClass99_4.clean(5);
+		Static244.aClass99_32.clean(5);
+		Static118.aClass99_16.clean(5);
 	}
 }

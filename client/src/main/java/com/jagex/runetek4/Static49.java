@@ -11,9 +11,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static49 {
 
-	@OriginalMember(owner = "client!dm", name = "j", descriptor = "Lclient!na;")
-	public static final JString aClass100_351 = JString.parse(" ");
-
 	@OriginalMember(owner = "client!dm", name = "a", descriptor = "(BII[B)Z")
 	public static boolean method1201(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) byte[] arg2) {
 		@Pc(15) boolean local15 = true;

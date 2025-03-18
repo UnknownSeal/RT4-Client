@@ -12,45 +12,6 @@ public final class Static138 {
 	@OriginalMember(owner = "runetek4.client!km", name = "uc", descriptor = "F")
 	public static float aFloat14;
 
-    @OriginalMember(owner = "runetek4.client!km", name = "tc", descriptor = "Lclient!na;")
-	private static final JString DEC = JString.parse("Dec");
-
-	@OriginalMember(owner = "runetek4.client!km", name = "vc", descriptor = "Lclient!na;")
-	private static final JString JUL = JString.parse("Jul");
-
-	@OriginalMember(owner = "runetek4.client!km", name = "xc", descriptor = "Lclient!na;")
-	private static final JString MAY = JString.parse("May");
-
-	@OriginalMember(owner = "runetek4.client!km", name = "yc", descriptor = "Lclient!na;")
-	private static final JString NOV = JString.parse("Nov");
-
-	@OriginalMember(owner = "runetek4.client!km", name = "zc", descriptor = "Lclient!na;")
-	private static final JString MAR = JString.parse("Mar");
-
-	@OriginalMember(owner = "runetek4.client!km", name = "Gc", descriptor = "Lclient!na;")
-	private static final JString JAN = JString.parse("Jan");
-
-	@OriginalMember(owner = "runetek4.client!km", name = "Hc", descriptor = "Lclient!na;")
-	private static final JString FEB = JString.parse("Feb");
-
-	@OriginalMember(owner = "runetek4.client!km", name = "Tc", descriptor = "Lclient!na;")
-	private static final JString APR = JString.parse("Apr");
-
-	@OriginalMember(owner = "runetek4.client!km", name = "Wc", descriptor = "Lclient!na;")
-	private static final JString JUN = JString.parse("Jun");
-
-	@OriginalMember(owner = "runetek4.client!km", name = "Qc", descriptor = "Lclient!na;")
-	private static final JString AUG = JString.parse("Aug");
-
-	@OriginalMember(owner = "runetek4.client!km", name = "cd", descriptor = "Lclient!na;")
-	private static final JString SEP = JString.parse("Sep");
-
-	@OriginalMember(owner = "runetek4.client!km", name = "dd", descriptor = "Lclient!na;")
-	private static final JString OCT = JString.parse("Oct");
-
-	@OriginalMember(owner = "runetek4.client!km", name = "Ac", descriptor = "[Lclient!na;")
-	public static final JString[] MONTHS = new JString[] {JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC};
-
 	@OriginalMember(owner = "runetek4.client!km", name = "Bc", descriptor = "[I")
 	public static final int[] updatedVarcs = new int[32];
 

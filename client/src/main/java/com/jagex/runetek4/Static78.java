@@ -39,7 +39,7 @@ public final class Static78 {
 
 	@OriginalMember(owner = "client!gd", name = "b", descriptor = "(I)V")
 	public static void clear() {
-		Static220.aClass99_28.clear();
+		Static220.aClass99_28.clean();
 	}
 
 }

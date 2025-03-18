@@ -313,7 +313,7 @@ public final class client extends GameShell {
 		BasTypeList.removeSoft();
 		Static267.removeSoft();
 		Static92.removeSoft();
-		Static26.removeSoft();
+		CursorTypeList.removeSoft();
 		Static192.removeSoft();
 		Component.removeSoft();
 		Static180.removeSoft();
@@ -350,7 +350,7 @@ public final class client extends GameShell {
 		BasTypeList.clear();
 		Class6.clear();
 		Static78.clear();
-		Static10.method351();
+		CursorTypeList.clear();
 		Static230.clear();
 		Component.clear();
 		if (modeWhat != 0) {
@@ -361,7 +361,7 @@ public final class client extends GameShell {
 		}
 		IdkTypeList.clear();
 		Static90.method1857();
-		Static139.fontMetrics.clear();
+		Static139.fontMetrics.clean();
 		if (!GlRenderer.enabled) {
 			((Js5GlTextureProvider) Rasterizer.textureProvider).clear();
 		}
@@ -377,7 +377,7 @@ public final class client extends GameShell {
 		js5Archive10.discardUnpacked();
 		js5Archive11.discardUnpacked();
 		js5Archive12.discardUnpacked();
-		Static73.hitBars.clear();
+		Static73.hitBars.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!id", name = "b", descriptor = "(I)V")
@@ -644,13 +644,13 @@ public final class client extends GameShell {
 		BasTypeList.clean();
 		Static276.method4615();
 		Static25.method715();
-		Static25.method716();
+		CursorTypeList.clean();
 		Static279.method4662();
 		Component.clean();
 		Static158.method3010();
 		Static134.method2621();
-		Static73.hitBars.clear(5);
-		Static139.fontMetrics.clear(5);
+		Static73.hitBars.clean(5);
+		Static139.fontMetrics.clean(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(II)V")
@@ -1451,7 +1451,7 @@ public final class client extends GameShell {
 				Static59.init(js5Archive25, js5Archive24, new Js5QuickChatCommandDecoder());
 				Static115.init(js5Archive25, js5Archive24);
 				Static107.init(js5Archive2);
-				Static246.init(js5Archive2, js5Archive8);
+				CursorTypeList.init(js5Archive2, js5Archive8);
 				Static180.init(js5Archive2, js5Archive8);
 				mainLoadPercentage = 50;
 				mainLoadSecondaryText = LocalizedText.MAINLOAD70B;

@@ -10,9 +10,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static243 {
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "j", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_97;
-
 	@OriginalMember(owner = "runetek4.client!tk", name = "o", descriptor = "Lclient!ok;")
 	public static IndexedSprite aClass36_1;
 

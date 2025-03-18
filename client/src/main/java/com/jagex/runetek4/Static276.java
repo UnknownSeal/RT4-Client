@@ -39,7 +39,7 @@ public final class Static276 {
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(I)V")
 	public static void clear() {
-		ClientScriptRunner.aClass99_31.clear();
+		ClientScriptRunner.aClass99_31.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "b", descriptor = "(B)Lclient!ok;")
@@ -56,7 +56,7 @@ public final class Static276 {
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(II)V")
 	public static void method4615() {
-		PreciseSleep.aClass99_29.clear(5);
-		Static219.aClass99_27.clear(5);
+		PreciseSleep.aClass99_29.clean(5);
+		Static219.aClass99_27.clean(5);
 	}
 }

@@ -22,7 +22,7 @@ public final class Static71 {
 
 	@OriginalMember(owner = "client!fk", name = "b", descriptor = "(IB)V")
 	public static void method1443() {
-		Static83.aClass99_3.clear(5);
+		Static83.aClass99_3.clean(5);
 	}
 
 	@OriginalMember(owner = "client!fk", name = "c", descriptor = "(I)V")

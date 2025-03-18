@@ -103,7 +103,7 @@ public final class Static278 {
 
 	@OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "(I)V")
 	public static void method4649() {
-		Static125.aClass99_18.clear();
+		Static125.aClass99_18.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(IIB)V")

@@ -76,7 +76,7 @@ public class InterfaceList {
         }
 
         if (arg0 != -1) {
-            @Pc(24) CursorType cursorType = Class6.method3660(arg0);
+            @Pc(24) CursorType cursorType = CursorTypeList.get(arg0);
             @Pc(28) SoftwareSprite local28 = cursorType.getSprite();
             if (local28 == null) {
                 arg0 = -1;

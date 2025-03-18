@@ -20,7 +20,7 @@ public final class Static269 {
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "e", descriptor = "(B)V")
 	public static void method2172() {
-		Static118.aClass99_16.clear();
+		Static118.aClass99_16.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "([Lclient!mj;ZIIIII[B)V")
@@ -229,7 +229,7 @@ public final class Static269 {
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "d", descriptor = "(BI)V")
 	public static void method2221() {
-		Static125.varbitDefinitionCache.clear(5);
+		Static125.varbitDefinitionCache.clean(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(IZ)Lclient!na;")

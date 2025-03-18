@@ -41,9 +41,9 @@ public class LocTypeList {
 
     @OriginalMember(owner = "runetek4.client!hb", name = "c", descriptor = "(I)V")
     public static void clear() {
-        Static179.aClass99_25.clear();
-        Static169.modelCacheStatic.clear();
-        Static93.aClass99_14.clear();
-        Static262.aClass99_36.clear();
+        Static179.aClass99_25.clean();
+        Static169.modelCacheStatic.clean();
+        Static93.aClass99_14.clean();
+        Static262.aClass99_36.clean();
     }
 }

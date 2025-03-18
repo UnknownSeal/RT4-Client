@@ -3966,7 +3966,7 @@ public final class Static88 {
 										local652 = Static102.aCalendar2.get(5);
 										start = Static102.aCalendar2.get(2);
 										childId = Static102.aCalendar2.get(1);
-										Static3.scriptStringValues[local26++] = JString.concatenate(new JString[] { JString.parseInt(local652), Static163.aClass100_767, Static34.aClass100Array40[start], Static163.aClass100_767, JString.parseInt(childId) });
+										Static3.scriptStringValues[local26++] = JString.concatenate(new JString[] { JString.parseInt(local652), Static163.aClass100_767, DateUtil.aClass100Array40[start], Static163.aClass100_767, JString.parseInt(childId) });
 										continue;
 									}
 									if (scriptOpcode == 4105) {

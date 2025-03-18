@@ -129,7 +129,7 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(I)V")
 	public static void clear() {
-		Static67.aClass99_20.clear();
+		Static67.aClass99_20.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(IIIZIII)V")

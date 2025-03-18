@@ -4,7 +4,6 @@ import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.cursortype.CursorType;
 import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -23,8 +22,8 @@ public final class Class6 {
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "h", descriptor = "(I)V")
 	public static void clear() {
-		PreciseSleep.aClass99_29.clear();
-		Static219.aClass99_27.clear();
+		PreciseSleep.aClass99_29.clean();
+		Static219.aClass99_27.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(Lsignlink!ll;Lclient!wa;IB)V")
@@ -127,22 +126,7 @@ public final class Class6 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!qg", name = "d", descriptor = "(II)Lclient!ia;")
-	public static CursorType method3660(@OriginalArg(0) int arg0) {
-		@Pc(10) CursorType local10 = (CursorType) Static79.aClass99_11.get((long) arg0);
-		if (local10 != null) {
-			return local10;
-		}
-		@Pc(20) byte[] local20 = Static153.aClass153_57.getfile(33, arg0);
-		local10 = new CursorType();
-		if (local20 != null) {
-			local10.decode(new Packet(local20));
-		}
-		Static79.aClass99_11.put(local10, (long) arg0);
-		return local10;
-	}
-
-    @OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(I)[Lclient!qf;")
+	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(I)[Lclient!qf;")
     public static Sprite[] method870() {
         @Pc(6) Sprite[] local6 = new Sprite[Static165.anInt4038];
         for (@Pc(15) int local15 = 0; local15 < Static165.anInt4038; local15++) {

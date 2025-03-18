@@ -61,7 +61,7 @@ public final class Static54 {
 
 	@OriginalMember(owner = "client!ed", name = "c", descriptor = "(I)V")
 	public static void clear() {
-		Static83.aClass99_3.clear();
+		Static83.aClass99_3.clean();
 	}
 
 	@OriginalMember(owner = "client!ed", name = "b", descriptor = "(II)Lclient!ba;")

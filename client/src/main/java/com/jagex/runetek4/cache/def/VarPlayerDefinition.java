@@ -53,7 +53,7 @@ public final class VarPlayerDefinition {
 
 	@OriginalMember(owner = "client!bn", name = "c", descriptor = "(II)V")
 	public static void clearVarPlayerDefinitionCache() {
-		varPlayerDefinitionCache.clear(5);
+		varPlayerDefinitionCache.clean(5);
 	}
 
 	@OriginalMember(owner = "client!eh", name = "a", descriptor = "(ILclient!wa;)V")

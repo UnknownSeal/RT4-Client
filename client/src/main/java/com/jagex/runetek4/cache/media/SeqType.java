@@ -68,8 +68,8 @@ public final class SeqType {
 
 	@OriginalMember(owner = "runetek4.client!fl", name = "a", descriptor = "(IB)V")
 	public static void clearAnimationCache() {
-		Static142.animationSequenceCache.clear(5);
-		Static267.skeletonCache.clear(5);
+		Static142.animationSequenceCache.clean(5);
+		Static267.skeletonCache.clean(5);
 	}
 
 	@OriginalMember(owner = "client!tk", name = "a", descriptor = "(Lclient!wa;B)V")

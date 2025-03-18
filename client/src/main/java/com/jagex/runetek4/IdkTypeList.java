@@ -33,7 +33,7 @@ public final class IdkTypeList {
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "b", descriptor = "(I)V")
 	public static void clear() {
-		Static110.aClass99_15.clear();
+		Static110.aClass99_15.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(ILclient!ve;Lclient!ve;Z)V")

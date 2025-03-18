@@ -1,8 +1,5 @@
 package com.jagex.runetek4;
 
-import java.util.Calendar;
-import java.util.TimeZone;
-
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -19,9 +16,6 @@ public final class Static35 {
 
 	@OriginalMember(owner = "runetek4.client!cl", name = "X", descriptor = "I")
 	public static int anInt1091;
-
-	@OriginalMember(owner = "runetek4.client!cl", name = "K", descriptor = "Ljava/util/Calendar;")
-	public static final Calendar aCalendar1 = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 
 	@OriginalMember(owner = "runetek4.client!cl", name = "Y", descriptor = "I")
 	public static int anInt1092 = -1;

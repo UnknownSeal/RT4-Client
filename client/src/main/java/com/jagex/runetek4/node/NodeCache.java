@@ -73,7 +73,7 @@ public final class NodeCache {
 	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "c", descriptor = "(II)V")
-	public final void clear(@OriginalArg(1) int arg0) {
+	public final void clean(@OriginalArg(1) int arg0) {
 		if (FloTypeList.aClass22_1 == null) {
 			return;
 		}
@@ -106,7 +106,7 @@ public final class NodeCache {
 	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "c", descriptor = "(I)V")
-	public final void clear() {
+	public final void clean() {
 		this.nodeQueue.method802();
 		this.hashTable.removeAll();
 		this.remaining = this.size;

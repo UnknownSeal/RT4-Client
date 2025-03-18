@@ -18,12 +18,6 @@ public final class Static26 {
 	@OriginalMember(owner = "client!ca", name = "fb", descriptor = "[I")
 	public static final int[] anIntArray68 = new int[50];
 
-	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(Z)V")
-	public static void removeSoft() {
-		Static79.aClass99_11.removeSoft();
-		aClass6.aClass99_5.removeSoft();
-	}
-
 	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(ZI)V")
 	public static void method743(@OriginalArg(0) boolean arg0) {
 		@Pc(13) int local13 = Static273.aByteArrayArray13.length;

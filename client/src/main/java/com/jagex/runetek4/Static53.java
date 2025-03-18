@@ -36,6 +36,6 @@ public final class Static53 {
 
 	@OriginalMember(owner = "client!ec", name = "b", descriptor = "(I)V")
 	public static void clear() {
-		Static125.varbitDefinitionCache.clear();
+		Static125.varbitDefinitionCache.clean();
 	}
 }

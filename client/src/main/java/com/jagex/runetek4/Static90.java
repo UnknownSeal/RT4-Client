@@ -24,6 +24,6 @@ public final class Static90 {
 
 	@OriginalMember(owner = "runetek4.client!hb", name = "a", descriptor = "(Z)V")
 	public static void method1857() {
-		Static45.aClass99_6.clear();
+		Static45.aClass99_6.clean();
 	}
 }

@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import java.util.Date;
-
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.FloType;
 import com.jagex.runetek4.dash3d.entity.LocType;
@@ -173,19 +171,6 @@ public final class Static33 {
 	@OriginalMember(owner = "client!cj", name = "a", descriptor = "(IB)I")
 	public static int method872(@OriginalArg(0) int arg0) {
 		return arg0 & 0xFF;
-	}
-
-	@OriginalMember(owner = "client!cj", name = "a", descriptor = "(JB)Lclient!na;")
-	public static JString method873(@OriginalArg(0) long arg0) {
-		Static35.aCalendar1.setTime(new Date(arg0));
-		@Pc(13) int local13 = Static35.aCalendar1.get(7);
-		@Pc(17) int local17 = Static35.aCalendar1.get(5);
-		@Pc(21) int local21 = Static35.aCalendar1.get(2);
-		@Pc(32) int local32 = Static35.aCalendar1.get(1);
-		@Pc(36) int local36 = Static35.aCalendar1.get(11);
-		@Pc(40) int local40 = Static35.aCalendar1.get(12);
-		@Pc(44) int local44 = Static35.aCalendar1.get(13);
-		return JString.concatenate(new JString[] { Static219.aClass100Array149[local13 - 1], Static74.aClass100_461, JString.parseInt(local17 / 10), JString.parseInt(local17 % 10), Static270.aClass100_1089, Static138.MONTHS[local21], Static270.aClass100_1089, JString.parseInt(local32), Static49.aClass100_351, JString.parseInt(local36 / 10), JString.parseInt(local36 % 10), Static264.aClass100_875, JString.parseInt(local40 / 10), JString.parseInt(local40 % 10), Static264.aClass100_875, JString.parseInt(local44 / 10), JString.parseInt(local44 % 10), Static55.aClass100_376 });
 	}
 
 	@OriginalMember(owner = "client!cj", name = "a", descriptor = "(ZIIIIIIFB)[[I")

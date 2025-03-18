@@ -37,14 +37,8 @@ public final class Static10 {
 
 	@OriginalMember(owner = "client!an", name = "a", descriptor = "(Z)V")
 	public static void clear() {
-		Static142.animationSequenceCache.clear();
-		Static267.skeletonCache.clear();
-	}
-
-	@OriginalMember(owner = "client!an", name = "i", descriptor = "(I)V")
-	public static void method351() {
-		Static79.aClass99_11.clear();
-		aClass6.aClass99_5.clear();
+		Static142.animationSequenceCache.clean();
+		Static267.skeletonCache.clean();
 	}
 
 	@OriginalMember(owner = "client!an", name = "a", descriptor = "(IIIIIII)V")

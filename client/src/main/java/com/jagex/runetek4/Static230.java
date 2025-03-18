@@ -28,8 +28,8 @@ public final class Static230 {
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "c", descriptor = "(I)V")
 	public static void clear() {
-		Static250.aClass99_33.clear();
-		Static139.aClass99_21.clear();
+		Static250.aClass99_33.clean();
+		Static139.aClass99_21.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(IIBIII)V")
@@ -98,7 +98,7 @@ public final class Static230 {
 			if (arg0.length() == 0) {
 				local48 = JString.concatenate(new JString[] { local48, Static245.aClass100_1018 });
 			} else {
-				local48 = JString.concatenate(new JString[] { local48, Static263.aClass100_1082, Static33.method873(MonotonicTime.currentTimeMillis() + 94608000000L), Protocol.MAX_AGE, Static154.method2929(94608000L) });
+				local48 = JString.concatenate(new JString[] { local48, Static263.aClass100_1082, DateUtil.getDateString(MonotonicTime.currentTimeMillis() + 94608000000L), Protocol.MAX_AGE, Static154.method2929(94608000L) });
 			}
 			JString.concatenate(new JString[] { BZip2State.aClass100_821, local48, Static223.aClass100_946 }).method3134(GameShell.signLink.applet);
 		} catch (@Pc(124) Throwable local124) {

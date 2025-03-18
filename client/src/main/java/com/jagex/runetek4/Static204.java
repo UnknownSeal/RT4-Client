@@ -17,9 +17,9 @@ public final class Static204 {
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "e", descriptor = "(B)V")
 	public static void clear() {
-		Static93.aClass99_13.clear();
-		Static125.aClass99_18.clear();
-		Static262.aClass99_35.clear();
+		Static93.aClass99_13.clean();
+		Static125.aClass99_18.clean();
+		Static262.aClass99_35.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "b", descriptor = "(II)I")

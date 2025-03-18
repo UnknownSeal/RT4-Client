@@ -19,13 +19,26 @@ public final class JString implements StringInterface {
 
 	@OriginalMember(owner = "runetek4.client!pa", name = "O", descriptor = "Lclient!na;")
 	public static final JString EMPTY = parse("");
+
 	@OriginalMember(owner = "runetek4.client!ed", name = "H", descriptor = "Lclient!na;")
 	public static final JString aClass100_375 = parse("<)4col> x");
+
 	@OriginalMember(owner = "runetek4.client!wa", name = "pb", descriptor = "Lclient!na;")
 	public static final JString aClass100_556 = parse("<br>");
+
     @OriginalMember(owner = "client!dm", name = "n", descriptor = "Lclient!na;")
     public static final JString PERCENT_SIGN = parse("(U");
-    @OriginalMember(owner = "runetek4.client!na", name = "T", descriptor = "[B")
+	@OriginalMember(owner = "client!fn", name = "Z", descriptor = "Lclient!na;")
+	public static final JString COMMA_SIGN = parse(")1 ");
+	@OriginalMember(owner = "runetek4.client!wb", name = "a", descriptor = "Lclient!na;")
+	public static final JString HYPHEN_SIGN = parse(")2");
+	@OriginalMember(owner = "client!dm", name = "j", descriptor = "Lclient!na;")
+	public static final JString SPACE = parse(" ");
+	@OriginalMember(owner = "runetek4.client!vh", name = "c", descriptor = "Lclient!na;")
+	public static final JString COLON_SIGN = parse(":");
+	@OriginalMember(owner = "client!ee", name = "a", descriptor = "Lclient!na;")
+	public static final JString GMT = parse(" GMT");
+	@OriginalMember(owner = "runetek4.client!na", name = "T", descriptor = "[B")
 	public byte[] aByteArray52;
 
 	@OriginalMember(owner = "runetek4.client!na", name = "lb", descriptor = "I")

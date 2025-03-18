@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -15,9 +14,6 @@ public final class Static153 {
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "S", descriptor = "Lclient!mm;")
 	public static SoftwareSprite aClass3_Sub2_Sub1_Sub1_2;
-
-	@OriginalMember(owner = "runetek4.client!mc", name = "Z", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_57;
 
 	@OriginalMember(owner = "runetek4.client!mc", name = "ab", descriptor = "[I")
 	public static final int[] anIntArray351 = new int[] { 7, 8, 9, 10, 11, 12, 13, 15 };

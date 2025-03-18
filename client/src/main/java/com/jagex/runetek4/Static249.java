@@ -19,6 +19,6 @@ public final class Static249 {
 
 	@OriginalMember(owner = "runetek4.client!ud", name = "d", descriptor = "(I)V")
 	public static void clear() {
-		VarPlayerDefinition.varPlayerDefinitionCache.clear();
+		VarPlayerDefinition.varPlayerDefinitionCache.clean();
 	}
 }

@@ -559,16 +559,16 @@ public final class Component {
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(II)V")
 	public static void clean() {
-		sprites.clear(50);
-		interfaceModelCache.clear(50);
-		interfaceTypefaceCache.clear(50);
+		sprites.clean(50);
+		interfaceModelCache.clean(50);
+		interfaceTypefaceCache.clean(50);
 	}
 
 	@OriginalMember(owner = "runetek4.client!lh", name = "d", descriptor = "(B)V")
 	public static void clear() {
-		sprites.clear();
-		interfaceModelCache.clear();
-		interfaceTypefaceCache.clear();
+		sprites.clean();
+		interfaceModelCache.clean();
+		interfaceTypefaceCache.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!da", name = "h", descriptor = "(B)V")

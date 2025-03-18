@@ -1,8 +1,7 @@
 package com.jagex.runetek4.game.config.cursortype;
 
+import com.jagex.runetek4.CursorTypeList;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
-import com.jagex.runetek4.Static243;
-import com.jagex.runetek4.aClass6;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -19,7 +18,7 @@ public final class CursorType {
 	public int hotspotx;
 
 	@OriginalMember(owner = "client!ia", name = "i", descriptor = "I")
-	private int graphic;
+	private int spriteId;
 
 	@OriginalMember(owner = "client!ia", name = "a", descriptor = "(Lclient!wa;IB)V")
 	public void decode(@OriginalArg(0) Packet packet) {
@@ -35,7 +34,7 @@ public final class CursorType {
 	@OriginalMember(owner = "client!ia", name = "a", descriptor = "(IIILclient!wa;)V")
 	private void decode(@OriginalArg(3) Packet packet, @OriginalArg(2) int code) {
 		if (code == 1) {
-			this.graphic = packet.g2();
+			this.spriteId = packet.g2();
 		} else if (code == 2) {
 			this.hotspotx = packet.g1();
 			this.hotspoty = packet.g1();
@@ -44,13 +43,13 @@ public final class CursorType {
 
 	@OriginalMember(owner = "client!ia", name = "a", descriptor = "(B)Lclient!mm;")
 	public SoftwareSprite getSprite() {
-		@Pc(7) SoftwareSprite local7 = (SoftwareSprite) aClass6.aClass99_5.get(this.graphic);
+		@Pc(7) SoftwareSprite local7 = (SoftwareSprite) CursorTypeList.sprites.get(this.spriteId);
 		if (local7 != null) {
 			return local7;
 		}
-		local7 = SoftwareSprite.loadSoftwareAlphaSprite(Static243.aClass153_97, this.graphic);
+		local7 = SoftwareSprite.loadSoftwareAlphaSprite(CursorTypeList.spritesArchive, this.spriteId);
 		if (local7 != null) {
-			aClass6.aClass99_5.put(local7, this.graphic);
+			CursorTypeList.sprites.put(local7, this.spriteId);
 		}
 		return local7;
 	}
