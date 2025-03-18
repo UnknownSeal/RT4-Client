@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class aClass6 {
 
-	@OriginalMember(owner = "client!ah", name = "k", descriptor = "[J")
-	public static final long[] aLongArray2 = new long[32];
-
 	@OriginalMember(owner = "client!ah", name = "n", descriptor = "I")
 	public static int anInt983 = 0;
 

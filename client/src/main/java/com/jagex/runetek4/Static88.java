@@ -3466,7 +3466,7 @@ public final class Static88 {
 														intValueIndex--;
 														interfaceData = Static254.scriptIntValues[intValueIndex];
 														if (GlRenderer.enabled) {
-															Static35.canvasReplaceRecommended = true;
+															GameShell.canvasReplaceRecommended = true;
 														}
 														if (interfaceData < 0 || interfaceData > 2) {
 															interfaceData = 0;
@@ -3551,7 +3551,7 @@ public final class Static88 {
 															interfaceData = 2;
 														}
 														local1552 = false;
-														if (Static238.anInt5316 < 96) {
+														if (GameShell.maxMemory < 96) {
 															local1552 = true;
 															interfaceData = 0;
 														}

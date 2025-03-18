@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static236 {
 
-	@OriginalMember(owner = "runetek4.client!tc", name = "f", descriptor = "Z")
-	public static boolean aBoolean256 = false;
-
 	@OriginalMember(owner = "runetek4.client!tc", name = "a", descriptor = "(B)I")
 	public static int method4047() {
 		if (ClientScriptRunner.neverRemoveRoofs) {

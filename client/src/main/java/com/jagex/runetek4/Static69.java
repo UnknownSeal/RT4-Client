@@ -6,18 +6,11 @@ import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
 import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import com.jagex.runetek4.scene.tile.Wall;
-import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static69 {
-
-	@OriginalMember(owner = "client!fh", name = "cb", descriptor = "Lsignlink!ll;")
-	public static SignLink aClass213_4;
-
-	@OriginalMember(owner = "client!fh", name = "P", descriptor = "Z")
-	public static volatile boolean fullredraw = true;
 
 	@OriginalMember(owner = "client!fh", name = "U", descriptor = "[[Z")
 	public static final boolean[][] aBooleanArrayArray2 = new boolean[][] { new boolean[0], { true, false, true }, { true, false, false, true }, { false, false, true, true }, { true, true, false }, { false, true, true }, { true, false, false, true }, { false, false, false, true, true }, { false, true, true }, { true, false, true, true, true }, { false, true, true, true, true }, { false, true, true, true, true, false } };

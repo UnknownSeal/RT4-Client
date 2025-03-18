@@ -58,9 +58,6 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "runetek4.client!t", name = "l", descriptor = "Lclient!ma;")
 	public static BufferedSocket aClass95_4;
 
-	@OriginalMember(owner = "runetek4.client!t", name = "m", descriptor = "Z")
-	public static volatile boolean focus_in = true;
-
 	@OriginalMember(owner = "runetek4.client!t", name = "y", descriptor = "I")
 	public static int anInt5223 = 0;
 
@@ -823,7 +820,7 @@ public final class ClientScriptRunner {
 								}
 								local270 = component.width + local123;
 								local276 = local114 + 15;
-								Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.DEBUG_FPS2, JString.parseInt(Static243.fps) }), local270, local276, 16776960, -1);
+								Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.DEBUG_FPS2, JString.parseInt(GameShell.fps) }), local270, local276, 16776960, -1);
 								local276 += 15;
 								@Pc(795) Runtime runtime = Runtime.getRuntime();
 								memory = (int) ((runtime.totalMemory() - runtime.freeMemory()) / 1024L);

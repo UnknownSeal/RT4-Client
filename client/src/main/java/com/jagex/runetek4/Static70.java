@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.utils.MillisTimer;
-import com.jagex.runetek4.core.utils.Timer;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayTypeList;
 import com.jagex.runetek4.media.Rasterizer;
@@ -15,20 +13,8 @@ public final class Static70 {
 	@OriginalMember(owner = "client!fi", name = "m", descriptor = "[[[B")
 	public static byte[][][] aByteArrayArrayArray7;
 
-	@OriginalMember(owner = "client!fi", name = "l", descriptor = "I")
-	public static int anInt2014 = 0;
-
 	@OriginalMember(owner = "client!fi", name = "n", descriptor = "I")
 	public static int updatedVarpsWriterIndex = 0;
-
-	@OriginalMember(owner = "client!fi", name = "a", descriptor = "(B)Lclient!s;")
-	public static Timer method1547() {
-		try {
-			return (Timer) Class.forName("com.jagex.runetek4.core.utils.NanoTimer").getDeclaredConstructor().newInstance();
-		} catch (@Pc(15) Throwable local15) {
-			return new MillisTimer();
-		}
-	}
 
 	@OriginalMember(owner = "client!fi", name = "a", descriptor = "(III)V")
 	public static void method1549(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {

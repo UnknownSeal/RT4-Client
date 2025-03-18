@@ -21,9 +21,6 @@ public final class Static230 {
 	@OriginalMember(owner = "runetek4.client!sj", name = "w", descriptor = "Lclient!na;")
 	public static final JString aClass100_978 = JString.parse("<)4col>");
 
-	@OriginalMember(owner = "runetek4.client!sj", name = "F", descriptor = "Lclient!rc;")
-	public static GameShell anApplet_Sub1_1 = null;
-
 	@OriginalMember(owner = "runetek4.client!sj", name = "c", descriptor = "(I)V")
 	public static void clear() {
 		Static250.aClass99_33.clean();

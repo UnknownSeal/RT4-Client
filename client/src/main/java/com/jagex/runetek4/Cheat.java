@@ -162,7 +162,7 @@ public class Cheat {
                 client.js5NetQueue.breakConnection();
             }
             if (chatTyped.equalsIgnoreCase(REPLACECANVAS)) {
-                Static35.canvasReplaceRecommended = true;
+                GameShell.canvasReplaceRecommended = true;
             }
             if (chatTyped.equalsIgnoreCase(REBUILD)) {
                 client.processGameStatus(25);

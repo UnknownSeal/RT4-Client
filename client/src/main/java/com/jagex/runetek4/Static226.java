@@ -10,9 +10,6 @@ public final class Static226 {
 	@OriginalMember(owner = "runetek4.client!sf", name = "j", descriptor = "I")
 	public static int anInt5085;
 
-	@OriginalMember(owner = "runetek4.client!sf", name = "d", descriptor = "I")
-	public static int anInt5081 = 1;
-
 	@OriginalMember(owner = "runetek4.client!sf", name = "g", descriptor = "Lclient!na;")
 	public static final JString YELLOW2 = JString.parse("<col=ffff00>");
 

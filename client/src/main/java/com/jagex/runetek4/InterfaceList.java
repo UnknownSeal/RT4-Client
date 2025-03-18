@@ -104,7 +104,7 @@ public class InterfaceList {
             openInterfaces = new HashTable(8);
             createComponentMemoryBuffer();
             topLevelInterace = Static156.anInt3783;
-            Static210.method3712(false);
+            method3712(false);
             Static87.method1807();
             Static74.method1626(topLevelInterace);
         }
@@ -300,5 +300,10 @@ public class InterfaceList {
                 aBooleanArray100[local12] = true;
             }
         }
+    }
+
+    @OriginalMember(owner = "runetek4.client!rb", name = "a", descriptor = "(ZB)V")
+    public static void method3712(@OriginalArg(0) boolean arg0) {
+        Static234.method4017(GameShell.canvasHeigth, arg0, topLevelInterace, GameShell.canvasWidth);
     }
 }

@@ -241,7 +241,7 @@ public class Preferences {
         antiAliasingMode = 0;
         @Pc(48) FileOnDisk local48 = null;
         Static125.anInt3104 = 127;
-        if (Static238.anInt5316 >= 96) {
+        if (GameShell.maxMemory >= 96) {
             setParticles(2);
         } else {
             setParticles(0);

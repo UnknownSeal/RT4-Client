@@ -19,12 +19,6 @@ public final class Static243 {
 	@OriginalMember(owner = "runetek4.client!tk", name = "D", descriptor = "[Lclient!ec;")
 	public static Scenery[] aClass31Array3;
 
-	@OriginalMember(owner = "runetek4.client!tk", name = "c", descriptor = "J")
-	public static volatile long lastCanvasReplace = 0L;
-
-	@OriginalMember(owner = "runetek4.client!tk", name = "v", descriptor = "I")
-	public static int fps = 0;
-
 	@OriginalMember(owner = "runetek4.client!tk", name = "K", descriptor = "[I")
 	public static int[] anIntArray476 = new int[2];
 

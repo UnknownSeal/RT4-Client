@@ -116,7 +116,7 @@ public class WorldMap {
         }
         @Pc(405) int local405 = arg1 + arg2 - 8;
         @Pc(412) int local412 = arg0 + arg3 - 5;
-        Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.DEBUG_FPS, JString.parseInt(Static243.fps) }), local412, local405, 16776960, -1);
+        Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.DEBUG_FPS, JString.parseInt(GameShell.fps) }), local412, local405, 16776960, -1);
         @Pc(434) Runtime local434 = Runtime.getRuntime();
         @Pc(443) int local443 = (int) ((local434.totalMemory() - local434.freeMemory()) / 1024L);
         @Pc(445) int local445 = 16776960;

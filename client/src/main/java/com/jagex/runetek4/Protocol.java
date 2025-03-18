@@ -548,7 +548,7 @@ public class Protocol {
                         }
                         InterfaceList.topLevelInterace = ii;
                         ObjType.method1753(ii);
-                        Static210.method3712(false);
+                        InterfaceList.method3712(false);
                         Static74.method1626(InterfaceList.topLevelInterace);
                         for (slot = 0; slot < 100; slot++) {
                             InterfaceList.aBooleanArray100[slot] = true;

@@ -14,7 +14,7 @@ public final class NanoTimer extends Timer {
 
 	@OriginalMember(owner = "client!om", name = "b", descriptor = "(I)V")
 	@Override
-	public void method3394() {
+	public void reset() {
 		this.aLong142 = System.nanoTime();
 	}
 

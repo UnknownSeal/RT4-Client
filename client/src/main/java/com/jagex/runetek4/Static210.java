@@ -24,11 +24,6 @@ public final class Static210 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rb", name = "a", descriptor = "(ZB)V")
-	public static void method3712(@OriginalArg(0) boolean arg0) {
-		Static234.method4017(GameShell.canvasHeigth, arg0, InterfaceList.topLevelInterace, GameShell.canvasWidth);
-	}
-
 	@OriginalMember(owner = "runetek4.client!rb", name = "a", descriptor = "(Lclient!wa;Z)Lclient!bn;")
 	public static Map method3713(@OriginalArg(0) Packet arg0) {
 		@Pc(35) Map local35 = new Map(arg0.gjstr(), arg0.gjstr(), arg0.g2(), arg0.g2(), arg0.g4(), arg0.g1() == 1, arg0.g1());

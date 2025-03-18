@@ -710,7 +710,7 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "client!client", name = "f", descriptor = "(I)V")
 	@Override
-	protected final void mainredraw() {
+	protected final void mainRedraw() {
 		if (gameState == 1000) {
 			return;
 		}
@@ -718,8 +718,8 @@ public final class client extends GameShell {
 		if (local15 && Static144.jingle && musicChannel != null) {
 			musicChannel.method3570();
 		}
-		if ((gameState == 30 || gameState == 10) && (Static35.canvasReplaceRecommended || Static97.aLong89 != 0L && Static97.aLong89 < MonotonicTime.currentTimeMillis())) {
-			DisplayMode.setWindowMode(Static35.canvasReplaceRecommended, DisplayMode.getWindowMode(), Preferences.fullScreenWidth, Preferences.fullScreenHeight);
+		if ((gameState == 30 || gameState == 10) && (GameShell.canvasReplaceRecommended || Static97.aLong89 != 0L && Static97.aLong89 < MonotonicTime.currentTimeMillis())) {
+			DisplayMode.setWindowMode(GameShell.canvasReplaceRecommended, DisplayMode.getWindowMode(), Preferences.fullScreenWidth, Preferences.fullScreenHeight);
 		}
 		@Pc(80) int local80;
 		@Pc(84) int local84;
@@ -740,7 +740,7 @@ public final class client extends GameShell {
 				local84 -= local90.top + local90.bottom;
 			}
 			if (local80 != GameShell.frameWidth || local84 != GameShell.frameHeight) {
-				Static203.method3662();
+				GameShell.method3662();
 				Static97.aLong89 = MonotonicTime.currentTimeMillis() + 500L;
 			}
 		}
@@ -748,12 +748,12 @@ public final class client extends GameShell {
 			DisplayMode.setWindowMode(false, Preferences.favoriteWorlds, -1, -1);
 		}
 		@Pc(158) boolean local158 = false;
-		if (Static69.fullredraw) {
+		if (GameShell.fullredraw) {
 			local158 = true;
-			Static69.fullredraw = false;
+			GameShell.fullredraw = false;
 		}
 		if (local158) {
-			Static139.method2704();
+			GameShell.method2704();
 		}
 		if (GlRenderer.enabled) {
 			for (local80 = 0; local80 < 100; local80++) {
@@ -829,7 +829,7 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "client!client", name = "c", descriptor = "(B)V")
 	@Override
-	protected final void mainquit() {
+	protected final void mainQuit() {
 		if (GlRenderer.enabled) {
 			GlRenderer.quit();
 		}
@@ -960,7 +960,7 @@ public final class client extends GameShell {
 	@OriginalMember(owner = "client!client", name = "g", descriptor = "(I)V")
 	@Override
 	protected void mainInit() {
-		Static203.method3662();
+		GameShell.method3662();
 		js5CacheQueue = new Js5CacheQueue();
 		js5NetQueue = new Js5NetQueue();
 
