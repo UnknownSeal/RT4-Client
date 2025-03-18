@@ -65,7 +65,7 @@ public final class Static127 {
 							local103.movementQueueX[j] -= dx;
 							local103.movementQueueZ[j] -= dz;
 						}
-						Static33.npcIds[NpcList.npcCount++] = i;
+						NpcList.npcIds[NpcList.npcCount++] = i;
 					} else {
 						NpcList.npcs[i].method2698(null);
 						NpcList.npcs[i] = null;

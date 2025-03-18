@@ -12,7 +12,9 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("client!cb")
 public final class QuickChatPhraseType extends CachedNode {
 
-	@OriginalMember(owner = "client!cb", name = "L", descriptor = "[I")
+    @OriginalMember(owner = "client!bf", name = "C", descriptor = "[I")
+    public static final int[] anIntArray51 = new int[] { 2, 2, 4, 2, 1, 8, 4, 1, 4, 4, 2, 1, 1, 1, 4, 1 };
+    @OriginalMember(owner = "client!cb", name = "L", descriptor = "[I")
 	private int[] commands;
 
 	@OriginalMember(owner = "client!cb", name = "M", descriptor = "[I")
@@ -131,7 +133,7 @@ public final class QuickChatPhraseType extends CachedNode {
 		if (this.commands != null) {
 			for (@Pc(22) int index = 0; index < this.commands.length; index++) {
 				local17.method3113(this.aClass100Array35[index]);
-				local17.method3113(Static89.method1838(this.anIntArrayArray5[index], arg0.gVarLong(Static16.anIntArray51[this.commands[index]]), this.commands[index]));
+				local17.method3113(Static89.method1838(this.anIntArrayArray5[index], arg0.gVarLong(anIntArray51[this.commands[index]]), this.commands[index]));
 			}
 		}
 		local17.method3113(this.aClass100Array35[this.aClass100Array35.length - 1]);

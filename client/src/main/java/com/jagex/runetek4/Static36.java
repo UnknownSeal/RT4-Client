@@ -9,19 +9,19 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static36 {
 
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "W", descriptor = "I")
+	@OriginalMember(owner = "client!runetek4.client", name = "W", descriptor = "I")
 	public static int anInt1165;
 
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "kb", descriptor = "[[Lclient!hg;")
+	@OriginalMember(owner = "client!runetek4.client", name = "kb", descriptor = "[[Lclient!hg;")
 	public static Class3_Sub14[][] aClass3_Sub14ArrayArray1;
 
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "lb", descriptor = "[I")
+	@OriginalMember(owner = "client!runetek4.client", name = "lb", descriptor = "[I")
 	public static int[] anIntArray84;
 
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "U", descriptor = "Lclient!sc;")
+	@OriginalMember(owner = "client!runetek4.client", name = "U", descriptor = "Lclient!sc;")
 	public static final HashTable aClass133_3 = new HashTable(16);
 
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "a", descriptor = "(Lclient!be;)Lclient!be;")
+	@OriginalMember(owner = "client!runetek4.client", name = "a", descriptor = "(Lclient!be;)Lclient!be;")
 	public static Component method938(@OriginalArg(0) Component arg0) {
 		@Pc(4) int local4 = InterfaceList.getServerActiveProperties(arg0).method505();
 		if (local4 == 0) {
@@ -36,7 +36,7 @@ public final class Static36 {
 		return arg0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!runetek4.client", name = "a", descriptor = "([Lclient!be;IIIIIII)V")
+	@OriginalMember(owner = "client!runetek4.client", name = "a", descriptor = "([Lclient!be;IIIIIII)V")
 	public static void method946(@OriginalArg(0) Component[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
 		for (@Pc(1) int local1 = 0; local1 < arg0.length; local1++) {
 			@Pc(9) Component local9 = arg0[local1];

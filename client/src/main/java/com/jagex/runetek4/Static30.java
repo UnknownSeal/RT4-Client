@@ -4,7 +4,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static30 {
 
-	@OriginalMember(owner = "runetek4.client!cg", name = "c", descriptor = "Z")
+	@OriginalMember(owner = "client!cg", name = "c", descriptor = "Z")
 	public static boolean aBoolean61;
 
 	@OriginalMember(owner = "client!cg", name = "e", descriptor = "Lclient!na;")

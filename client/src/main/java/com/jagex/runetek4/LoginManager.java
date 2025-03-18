@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class LoginManager {
+    @OriginalMember(owner = "client!bh", name = "C", descriptor = "Lclient!na;")
+    public static final JString COMPLETE_PERCENT = JString.parse("<br>(X100(U(Y");
     @OriginalMember(owner = "runetek4.client!qi", name = "z", descriptor = "Lclient!qf;")
     public static Sprite aClass3_Sub2_Sub1_10;
     @OriginalMember(owner = "runetek4.client!d", name = "ib", descriptor = "Lclient!qf;")
@@ -347,7 +349,7 @@ public class LoginManager {
             return;
         }
         if (ClientScriptRunner.anInt5223 != 0) {
-            Fonts.drawTextOnScreen(true, JString.concatenate(new JString[] { LocalizedText.LOADING, Static18.aClass100_108 }));
+            Fonts.drawTextOnScreen(true, JString.concatenate(new JString[] { LocalizedText.LOADING, COMPLETE_PERCENT}));
         }
         client.audioLoop();
         client.unload();

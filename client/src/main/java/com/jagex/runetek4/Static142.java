@@ -38,7 +38,7 @@ public final class Static142 {
 			} else if (PlayerList.playerCount > local5) {
 				local17 = PlayerList.players[PlayerList.playerIds[local5]];
 			} else {
-				local17 = NpcList.npcs[Static33.npcIds[local5 - PlayerList.playerCount]];
+				local17 = NpcList.npcs[NpcList.npcIds[local5 - PlayerList.playerCount]];
 			}
 			if (local17 != null && local17.isVisible()) {
 				@Pc(58) NpcType local58;
@@ -71,7 +71,7 @@ public final class Static142 {
 					@Pc(308) Class102[] local308 = MiniMap.hintMapMarkers;
 					for (local310 = 0; local310 < local308.length; local310++) {
 						@Pc(322) Class102 local322 = local308[local310];
-						if (local322 != null && local322.headIconDrawType == 1 && local322.hintIconNpcTarget == Static33.npcIds[local5 - PlayerList.playerCount] && client.loop % 20 < 10) {
+						if (local322 != null && local322.headIconDrawType == 1 && local322.hintIconNpcTarget == NpcList.npcIds[local5 - PlayerList.playerCount] && client.loop % 20 < 10) {
 							if (local58.overlayheight == -1) {
 								local359 = local17.height() + 15;
 							} else {

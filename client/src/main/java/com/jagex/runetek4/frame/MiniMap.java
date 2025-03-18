@@ -144,7 +144,7 @@ public class MiniMap {
                 }
             }
             for (flagX = 0; flagX < NpcList.npcCount; flagX++) {
-                @Pc(498) Npc local498 = NpcList.npcs[Static33.npcIds[flagX]];
+                @Pc(498) Npc local498 = NpcList.npcs[NpcList.npcIds[flagX]];
                 if (local498 != null && local498.isVisible()) {
                     @Pc(507) NpcType local507 = local498.type;
                     if (local507 != null && local507.multiNpcs != null) {

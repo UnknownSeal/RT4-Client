@@ -81,7 +81,7 @@ public final class Static49 {
 		@Pc(22) int local22;
 		if (NpcList.npcCount > local13) {
 			for (local22 = local13; local22 < NpcList.npcCount; local22++) {
-				Static52.entityRemovalIds[Static240.entityRemovalCount++] = Static33.npcIds[local22];
+				Static52.entityRemovalIds[Static240.entityRemovalCount++] = NpcList.npcIds[local22];
 			}
 		}
 		if (NpcList.npcCount < local13) {
@@ -89,23 +89,23 @@ public final class Static49 {
 		}
 		NpcList.npcCount = 0;
 		for (local22 = 0; local22 < local13; local22++) {
-			@Pc(61) int local61 = Static33.npcIds[local22];
+			@Pc(61) int local61 = NpcList.npcIds[local22];
 			@Pc(65) Npc local65 = NpcList.npcs[local61];
 			@Pc(70) int local70 = Protocol.inboundBuffer.gBit(1);
 			if (local70 == 0) {
-				Static33.npcIds[NpcList.npcCount++] = local61;
+				NpcList.npcIds[NpcList.npcCount++] = local61;
 				local65.cycle = client.loop;
 			} else {
 				@Pc(92) int local92 = Protocol.inboundBuffer.gBit(2);
 				if (local92 == 0) {
-					Static33.npcIds[NpcList.npcCount++] = local61;
+					NpcList.npcIds[NpcList.npcCount++] = local61;
 					local65.cycle = client.loop;
 					Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
 				} else {
 					@Pc(139) int local139;
 					@Pc(149) int local149;
 					if (local92 == 1) {
-						Static33.npcIds[NpcList.npcCount++] = local61;
+						NpcList.npcIds[NpcList.npcCount++] = local61;
 						local65.cycle = client.loop;
 						local139 = Protocol.inboundBuffer.gBit(3);
 						local65.method2684(1, local139);
@@ -114,7 +114,7 @@ public final class Static49 {
 							Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
 						}
 					} else if (local92 == 2) {
-						Static33.npcIds[NpcList.npcCount++] = local61;
+						NpcList.npcIds[NpcList.npcCount++] = local61;
 						local65.cycle = client.loop;
 						if (Protocol.inboundBuffer.gBit(1) == 1) {
 							local139 = Protocol.inboundBuffer.gBit(3);

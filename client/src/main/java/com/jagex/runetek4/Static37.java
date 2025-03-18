@@ -10,16 +10,16 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static37 {
 
-	@OriginalMember(owner = "runetek4.client!cm", name = "a", descriptor = "Lclient!m;")
+	@OriginalMember(owner = "client!cm", name = "a", descriptor = "Lclient!m;")
 	public static GlTextureProvider anInterface1_1;
 
-	@OriginalMember(owner = "runetek4.client!cm", name = "b", descriptor = "Ljava/lang/Thread;")
+	@OriginalMember(owner = "client!cm", name = "b", descriptor = "Ljava/lang/Thread;")
 	public static Thread aThread1;
 
-	@OriginalMember(owner = "runetek4.client!cm", name = "c", descriptor = "I")
+	@OriginalMember(owner = "client!cm", name = "c", descriptor = "I")
 	public static int anInt1176;
 
-	@OriginalMember(owner = "runetek4.client!cm", name = "a", descriptor = "(ILclient!fe;)V")
+	@OriginalMember(owner = "client!cm", name = "a", descriptor = "(ILclient!fe;)V")
 	public static void method949(@OriginalArg(1) PathingEntity e) {
 		if (e.anInt3376 == 0) {
 			return;

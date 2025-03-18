@@ -663,7 +663,7 @@ public class Game {
         @Pc(158) int local158;
         @Pc(171) int local171;
         for (i = 0; i < NpcList.npcCount; i++) {
-            npc = NpcList.npcs[Static33.npcIds[i]];
+            npc = NpcList.npcs[NpcList.npcIds[i]];
             if (npc != null && npc.isVisible() && npc.type.drawabove == arg0 && npc.type.method2933()) {
                 @Pc(42) int npcSize2 = npc.getSize();
                 @Pc(97) int local97;
@@ -701,8 +701,8 @@ public class Game {
             }
         }
         label200: for (i = 0; i < NpcList.npcCount; i++) {
-            npc = NpcList.npcs[Static33.npcIds[i]];
-            @Pc(262) long bitset = (long) Static33.npcIds[i] << 32 | 0x20000000L;
+            npc = NpcList.npcs[NpcList.npcIds[i]];
+            @Pc(262) long bitset = (long) NpcList.npcIds[i] << 32 | 0x20000000L;
             if (npc != null && npc.isVisible() && npc.type.drawabove == arg0 && npc.type.method2933()) {
                 npcSize = npc.getSize();
                 if (npcSize == 1) {

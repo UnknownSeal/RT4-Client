@@ -16,7 +16,7 @@ public final class Static109 {
 	@OriginalMember(owner = "runetek4.client!ig", name = "a", descriptor = "(I)V")
 	public static void updateNpcs() {
 		for (@Pc(7) int i = 0; i < NpcList.npcCount; i++) {
-			@Pc(18) int id = Static33.npcIds[i];
+			@Pc(18) int id = NpcList.npcIds[i];
 			@Pc(22) Npc npc = NpcList.npcs[id];
 			if (npc != null) {
 				PathingEntity.updateEntity(npc.type.size, npc);

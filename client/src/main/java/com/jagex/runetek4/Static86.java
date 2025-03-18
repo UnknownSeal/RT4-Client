@@ -53,7 +53,7 @@ public final class Static86 {
 			throw new RuntimeException("gnp1 pos:" + Protocol.inboundBuffer.offset + " psize:" + Static223.packetSize);
 		}
 		for (i = 0; i < NpcList.npcCount; i++) {
-			if (NpcList.npcs[Static33.npcIds[i]] == null) {
+			if (NpcList.npcs[NpcList.npcIds[i]] == null) {
 				throw new RuntimeException("gnp2 pos:" + i + " size:" + NpcList.npcCount);
 			}
 		}

@@ -13,17 +13,8 @@ public final class Static18 {
 	@OriginalMember(owner = "client!bh", name = "M", descriptor = "Z")
 	public static boolean aBoolean40;
 
-	@OriginalMember(owner = "client!bh", name = "s", descriptor = "Lclient!na;")
-	public static final JString P11_FULL = JString.parse("p11_full");
-
 	@OriginalMember(owner = "client!bh", name = "t", descriptor = "I")
 	public static int mouseInvInterfaceIndex = 0;
-
-	@OriginalMember(owner = "client!bh", name = "v", descriptor = "Lclient!na;")
-	public static final JString FLOORSHADOWS = JString.parse("floorshadows");
-
-	@OriginalMember(owner = "client!bh", name = "C", descriptor = "Lclient!na;")
-	public static final JString aClass100_108 = JString.parse("<br>(X100(U(Y");
 
 	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(Lclient!fe;Z)V")
 	public static void method553(@OriginalArg(0) PathingEntity arg0) {

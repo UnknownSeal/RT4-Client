@@ -39,29 +39,29 @@ public final class Static19 {
 
 	@OriginalMember(owner = "client!bi", name = "f", descriptor = "(B)V")
 	public static void tickChatTimers() {
-		@Pc(11) int local11;
-		for (local11 = -1; local11 < PlayerList.playerCount; local11++) {
-			@Pc(22) int local22;
-			if (local11 == -1) {
-				local22 = 2047;
+		@Pc(11) int i;
+		for (i = -1; i < PlayerList.playerCount; i++) {
+			@Pc(22) int pid;
+			if (i == -1) {
+				pid = 2047;
 			} else {
-				local22 = PlayerList.playerIds[local11];
+				pid = PlayerList.playerIds[i];
 			}
-			@Pc(30) Player local30 = PlayerList.players[local22];
-			if (local30 != null && local30.chatLoops > 0) {
-				local30.chatLoops--;
-				if (local30.chatLoops == 0) {
-					local30.chatMessage = null;
+			@Pc(30) Player player = PlayerList.players[pid];
+			if (player != null && player.chatLoops > 0) {
+				player.chatLoops--;
+				if (player.chatLoops == 0) {
+					player.chatMessage = null;
 				}
 			}
 		}
-		for (local11 = 0; local11 < NpcList.npcCount; local11++) {
-			@Pc(68) int local68 = Static33.npcIds[local11];
-			@Pc(72) Npc local72 = NpcList.npcs[local68];
-			if (local72 != null && local72.chatLoops > 0) {
-				local72.chatLoops--;
-				if (local72.chatLoops == 0) {
-					local72.chatMessage = null;
+		for (i = 0; i < NpcList.npcCount; i++) {
+			@Pc(68) int nid = NpcList.npcIds[i];
+			@Pc(72) Npc npc = NpcList.npcs[nid];
+			if (npc != null && npc.chatLoops > 0) {
+				npc.chatLoops--;
+				if (npc.chatLoops == 0) {
+					npc.chatMessage = null;
 				}
 			}
 		}

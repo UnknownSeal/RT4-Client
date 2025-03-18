@@ -55,7 +55,7 @@ public final class Static158 {
 					if (NpcList.npcs[local97] == null && (local148.loginscreenproperties & 0x1) > 0 && local107 == Static41.anInt1316 && local125 >= 0 && local148.size + local125 < 104 && local142 >= 0 && local142 + local148.size < 104) {
 						NpcList.npcs[local97] = new Npc();
 						@Pc(198) Npc local198 = NpcList.npcs[local97];
-						Static33.npcIds[NpcList.npcCount++] = local97;
+						NpcList.npcIds[NpcList.npcCount++] = local97;
 						local198.cycle = client.loop;
 						local198.method2698(local148);
 						local198.setSize(local198.type.size);

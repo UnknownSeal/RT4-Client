@@ -7,6 +7,14 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class Sprites {
+    @OriginalMember(owner = "client!bg", name = "N", descriptor = "Lclient!na;")
+    public static final JString MAPFUNCTION = JString.parse("mapfunction");
+    @OriginalMember(owner = "client!bh", name = "s", descriptor = "Lclient!na;")
+    public static final JString P11_FULL = JString.parse("p11_full");
+    @OriginalMember(owner = "client!bh", name = "v", descriptor = "Lclient!na;")
+    public static final JString FLOORSHADOWS = JString.parse("floorshadows");
+    @OriginalMember(owner = "client!cb", name = "eb", descriptor = "Lclient!na;")
+    public static final JString NAME_ICONS = JString.parse("name_icons");
     @OriginalMember(owner = "runetek4.client!mi", name = "T", descriptor = "[Lclient!ok;")
     public static IndexedSprite[] nameIcons;
 
@@ -101,10 +109,10 @@ public class Sprites {
 
     @OriginalMember(owner = "runetek4.client!g", name = "a", descriptor = "(ILclient!ve;)V")
     public static void init(@OriginalArg(1) Js5 arg0) {
-        Static166.anInt4049 = arg0.getGroupId(Static18.P11_FULL);
+        Static166.anInt4049 = arg0.getGroupId(P11_FULL);
         Static130.anInt3161 = arg0.getGroupId(Static55.P12_FULL);
         Static73.anInt2077 = arg0.getGroupId(Static73.B12_FULL);
-        Static280.anInt5900 = arg0.getGroupId(Static17.MAPFUNCTION);
+        Static280.anInt5900 = arg0.getGroupId(MAPFUNCTION);
         Static131.anInt3261 = arg0.getGroupId(Static219.HITMARKS);
         Static36.anInt1165 = arg0.getGroupId(Static260.HITBAR_DEFAULT);
         Static214.anInt5579 = arg0.getGroupId(Static123.HEADICONS_PK);
@@ -115,8 +123,8 @@ public class Sprites {
         Static32.anInt1016 = arg0.getGroupId(Static86.CROSS);
         Static78.anInt2147 = arg0.getGroupId(Static189.MAPDOTS);
         Static124.anInt3083 = arg0.getGroupId(Static250.SCROLLBAR);
-        FluTypeList.anInt5057 = arg0.getGroupId(Static27.NAME_ICONS);
-        Static84.anInt2257 = arg0.getGroupId(Static18.FLOORSHADOWS);
+        FluTypeList.anInt5057 = arg0.getGroupId(NAME_ICONS);
+        Static84.anInt2257 = arg0.getGroupId(FLOORSHADOWS);
         Static163.anInt3962 = arg0.getGroupId(Static280.COMPASS);
         Static128.anInt3143 = arg0.getGroupId(Static5.HINT_MAPEDGE);
     }

@@ -13,10 +13,7 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static33 {
 
-	@OriginalMember(owner = "runetek4.client!cj", name = "i", descriptor = "[I")
-	public static final int[] npcIds = new int[32768];
-
-	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(ILclient!pb;ZIIII)Z")
+    @OriginalMember(owner = "client!cj", name = "a", descriptor = "(ILclient!pb;ZIIII)Z")
 	public static boolean method867(@OriginalArg(0) int arg0, @OriginalArg(1) LocType arg1, @OriginalArg(5) int arg2, @OriginalArg(6) int arg3) {
 		@Pc(10) MSIType local10 = Static40.get(arg1.mapsceneicon);
 		if (local10.spriteId == -1) {
@@ -52,7 +49,7 @@ public final class Static33 {
 		return true;
 	}
 
-	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(BLclient!wa;)V")
+	@OriginalMember(owner = "client!cj", name = "a", descriptor = "(BLclient!wa;)V")
 	public static void method868(@OriginalArg(1) Packet arg0) {
 		@Pc(13) int local13 = Static266.anInt5338 >> 1;
 		@Pc(19) int local19 = Static131.anInt3254 >> 2 << 10;
@@ -173,12 +170,12 @@ public final class Static33 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(IB)I")
+	@OriginalMember(owner = "client!cj", name = "a", descriptor = "(IB)I")
 	public static int method872(@OriginalArg(0) int arg0) {
 		return arg0 & 0xFF;
 	}
 
-	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(JB)Lclient!na;")
+	@OriginalMember(owner = "client!cj", name = "a", descriptor = "(JB)Lclient!na;")
 	public static JString method873(@OriginalArg(0) long arg0) {
 		Static35.aCalendar1.setTime(new Date(arg0));
 		@Pc(13) int local13 = Static35.aCalendar1.get(7);
@@ -191,7 +188,7 @@ public final class Static33 {
 		return JString.concatenate(new JString[] { Static219.aClass100Array149[local13 - 1], Static74.aClass100_461, JString.parseInt(local17 / 10), JString.parseInt(local17 % 10), Static270.aClass100_1089, Static138.MONTHS[local21], Static270.aClass100_1089, JString.parseInt(local32), Static49.aClass100_351, JString.parseInt(local36 / 10), JString.parseInt(local36 % 10), Static264.aClass100_875, JString.parseInt(local40 / 10), JString.parseInt(local40 % 10), Static264.aClass100_875, JString.parseInt(local44 / 10), JString.parseInt(local44 % 10), Static55.aClass100_376 });
 	}
 
-	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(ZIIIIIIFB)[[I")
+	@OriginalMember(owner = "client!cj", name = "a", descriptor = "(ZIIIIIIFB)[[I")
 	public static int[][] method874(@OriginalArg(7) float arg0) {
 		@Pc(15) int[][] local15 = new int[256][64];
 		@Pc(19) TextureOp4 local19 = new TextureOp4();

@@ -15,9 +15,6 @@ public final class Static17 {
 	@OriginalMember(owner = "client!bg", name = "A", descriptor = "[I")
 	public static final int[] anIntArray53 = new int[128];
 
-	@OriginalMember(owner = "client!bg", name = "N", descriptor = "Lclient!na;")
-	public static final JString MAPFUNCTION = JString.parse("mapfunction");
-
 	@OriginalMember(owner = "client!bg", name = "a", descriptor = "(B)V")
 	public static void method527() {
 		Protocol.inboundBuffer.accessBits();

@@ -19,12 +19,6 @@ public final class Static27 {
 	@OriginalMember(owner = "client!cb", name = "ab", descriptor = "Lclient!na;")
 	public static final JString aClass100_164 = JString.parse(" )2> <col=00ffff>");
 
-	@OriginalMember(owner = "client!cb", name = "cb", descriptor = "Lclient!na;")
-	public static final JString TITLEBG = JString.parse("titlebg");
-
-	@OriginalMember(owner = "client!cb", name = "eb", descriptor = "Lclient!na;")
-	public static final JString NAME_ICONS = JString.parse("name_icons");
-
 	@OriginalMember(owner = "client!cb", name = "fb", descriptor = "Lclient!na;")
 	public static final JString aClass100_168 = JString.parse(": ");
 

@@ -28,7 +28,7 @@ public final class Static278 {
 						NpcList.npcs[local14] = new Npc();
 					}
 					@Pc(37) Npc local37 = NpcList.npcs[local14];
-					Static33.npcIds[NpcList.npcCount++] = local14;
+					NpcList.npcIds[NpcList.npcCount++] = local14;
 					local37.cycle = client.loop;
 					if (local37.type != null && local37.type.hasBackgroundSound()) {
 						AreaSoundManager.remove(local37);

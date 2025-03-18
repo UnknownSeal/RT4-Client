@@ -7,10 +7,10 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static38 {
 
-	@OriginalMember(owner = "runetek4.client!cn", name = "L", descriptor = "I")
+	@OriginalMember(owner = "client!cn", name = "L", descriptor = "I")
 	public static int anInt1203 = 0;
 
-	@OriginalMember(owner = "runetek4.client!cn", name = "a", descriptor = "(BIIIIIIII)V")
+	@OriginalMember(owner = "client!cn", name = "a", descriptor = "(BIIIIIIII)V")
 	public static void method959(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
 		for (@Pc(11) int local11 = 0; local11 < Static203.aMapElementTypeList_1.anInt5074; local11++) {
 			if (Static203.aMapElementTypeList_1.method3890(local11)) {
@@ -84,7 +84,7 @@ public final class Static38 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!cn", name = "a", descriptor = "(BB)V")
+	@OriginalMember(owner = "client!cn", name = "a", descriptor = "(BB)V")
 	public static void method960(@OriginalArg(0) byte arg0) {
 		if (Static266.aByteArrayArrayArray15 == null) {
 			Static266.aByteArrayArrayArray15 = new byte[4][104][104];
@@ -98,7 +98,7 @@ public final class Static38 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!cn", name = "a", descriptor = "(IIIIIIIIII)V")
+	@OriginalMember(owner = "client!cn", name = "a", descriptor = "(IIIIIIIIII)V")
 	public static void method962(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8) {
 		if (arg8 == arg7 && arg2 == arg6 && arg4 == arg3 && arg0 == arg5) {
 			Static241.method4547(arg1, arg5, arg6, arg4, arg8);
@@ -135,7 +135,7 @@ public final class Static38 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!cn", name = "a", descriptor = "(ZI)I")
+	@OriginalMember(owner = "client!cn", name = "a", descriptor = "(ZI)I")
 	public static int poll(@OriginalArg(0) boolean arg0) {
 		@Pc(4) long local4 = MonotonicTime.currentTimeMillis();
 		for (@Pc(28) LongNode local28 = arg0 ? (LongNode) Static199.aClass133_20.head() : (LongNode) Static199.aClass133_20.prev(); local28 != null; local28 = (LongNode) Static199.aClass133_20.prev()) {
@@ -152,7 +152,7 @@ public final class Static38 {
 		return -1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!cn", name = "e", descriptor = "(B)V")
+	@OriginalMember(owner = "client!cn", name = "e", descriptor = "(B)V")
 	public static void method965() {
 		if (Static13.anInt435 < 0) {
 			Static217.anInt4901 = -1;

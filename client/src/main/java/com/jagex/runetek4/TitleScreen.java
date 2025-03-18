@@ -7,6 +7,9 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class TitleScreen {
+    @OriginalMember(owner = "client!cb", name = "cb", descriptor = "Lclient!na;")
+    public static final JString TITLEBG = JString.parse("titlebg");
+
     @OriginalMember(owner = "client!je", name = "f", descriptor = "(B)V")
     public static void clear() {
         if (Static18.aBoolean40) {
@@ -37,7 +40,7 @@ public class TitleScreen {
 
     @OriginalMember(owner = "runetek4.client!nd", name = "a", descriptor = "(ILclient!ve;)V")
     public static void init(@OriginalArg(1) Js5 archive) {
-        Static262.bgId = archive.getGroupId(Static27.TITLEBG);
+        Static262.bgId = archive.getGroupId(TITLEBG);
         Static136.logoId = archive.getGroupId(Static165.LOGO);
     }
 

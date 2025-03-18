@@ -168,11 +168,11 @@ public final class Static176 {
 						local479 = local421.xFine + 64 - local421.type.size * 64;
 						local240 = local421.zFine - (local421.type.size - 1) * 64;
 						for (local493 = 0; local493 < NpcList.npcCount; local493++) {
-							local502 = NpcList.npcs[Static33.npcIds[local493]];
+							local502 = NpcList.npcs[NpcList.npcIds[local493]];
 							local514 = local502.xFine + 64 - local502.type.size * 64;
 							local526 = local502.zFine + 64 - local502.type.size * 64;
 							if (local502 != null && local421 != local502 && local514 >= local479 && local421.type.size - (local514 - local479 >> 7) >= local502.type.size && local240 <= local526 && local502.type.size <= local421.type.size - (local526 - local240 >> 7)) {
-								Static246.method4240(local502.type, local47, Static33.npcIds[local493], local147);
+								Static246.method4240(local502.type, local47, NpcList.npcIds[local493], local147);
 							}
 						}
 						for (local493 = 0; local493 < PlayerList.playerCount; local493++) {
@@ -192,11 +192,11 @@ public final class Static176 {
 						local479 = local688.xFine - (local688.getSize() - 1) * 64;
 						local240 = local688.zFine + 64 - local688.getSize() * 64;
 						for (local493 = 0; local493 < NpcList.npcCount; local493++) {
-							local502 = NpcList.npcs[Static33.npcIds[local493]];
+							local502 = NpcList.npcs[NpcList.npcIds[local493]];
 							local514 = local502.xFine + 64 - local502.type.size * 64;
 							local526 = local502.zFine + 64 - local502.type.size * 64;
 							if (local502 != null && local514 >= local479 && local502.type.size <= local688.getSize() - (local514 - local479 >> 7) && local526 >= local240 && local502.type.size <= local688.getSize() - (local526 - local240 >> 7)) {
-								Static246.method4240(local502.type, local47, Static33.npcIds[local493], local147);
+								Static246.method4240(local502.type, local47, NpcList.npcIds[local493], local147);
 							}
 						}
 						for (local493 = 0; local493 < PlayerList.playerCount; local493++) {
