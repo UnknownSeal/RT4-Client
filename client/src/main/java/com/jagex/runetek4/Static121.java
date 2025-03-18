@@ -23,9 +23,9 @@ public final class Static121 {
 	public static SoftwareIndexedSprite[] method2406() {
 		@Pc(2) SoftwareIndexedSprite[] local2 = new SoftwareIndexedSprite[Static165.anInt4038];
 		for (@Pc(8) int local8 = 0; local8 < Static165.anInt4038; local8++) {
-			local2[local8] = new SoftwareIndexedSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[local8], Static269.anIntArray252[local8], Static254.anIntArray488[local8], Static26.anIntArray66[local8], aClass6.aByteArrayArray5[local8], Static259.anIntArray513);
+			local2[local8] = new SoftwareIndexedSprite(Static124.anInt3080, Static227.anInt5091, SpriteLoader.xOffsets[local8], SpriteLoader.yOffsets[local8], SpriteLoader.innerWidths[local8], SpriteLoader.innerHeights[local8], SpriteLoader.pixels[local8], Static259.anIntArray513);
 		}
-		Static75.method1631();
+		SpriteLoader.clear();
 		return local2;
 	}
 

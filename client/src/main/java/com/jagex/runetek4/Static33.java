@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.config.FloType;
+import com.jagex.runetek4.config.FluType;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.game.config.msitype.MSIType;
 import com.jagex.runetek4.util.ColorUtils;
@@ -99,10 +99,10 @@ public final class Static33 {
 				if (local175 > local114) {
 					local225 = local23[local114][local203] & 0xFF;
 					if (local225 > 0) {
-						@Pc(236) FloType local236 = Static199.method3593(local225 - 1);
-						local183[local203] += local236.anInt4154;
-						local180[local203] += local236.anInt4149;
-						local186[local203] += local236.anInt4158;
+						@Pc(236) FluType local236 = FloorUnderlayTypeList.get(local225 - 1);
+						local183[local203] += local236.weightedHue;
+						local180[local203] += local236.saturation;
+						local186[local203] += local236.lightness;
 						local189[local203] += local236.chroma;
 						local272 = local192[local203]++;
 					}
@@ -111,10 +111,10 @@ public final class Static33 {
 				if (local225 >= 0) {
 					local293 = local23[local225][local203] & 0xFF;
 					if (local293 > 0) {
-						@Pc(302) FloType local302 = Static199.method3593(local293 - 1);
-						local183[local203] -= local302.anInt4154;
-						local180[local203] -= local302.anInt4149;
-						local186[local203] -= local302.anInt4158;
+						@Pc(302) FluType local302 = FloorUnderlayTypeList.get(local293 - 1);
+						local183[local203] -= local302.weightedHue;
+						local180[local203] -= local302.saturation;
+						local186[local203] -= local302.lightness;
 						local189[local203] -= local302.chroma;
 						local272 = local192[local203]--;
 					}

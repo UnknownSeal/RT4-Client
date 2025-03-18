@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static226 {
 
-	@OriginalMember(owner = "runetek4.client!sf", name = "c", descriptor = "I")
-	public static int anInt5080;
-
 	@OriginalMember(owner = "runetek4.client!sf", name = "j", descriptor = "I")
 	public static int anInt5085;
 
@@ -21,9 +18,6 @@ public final class Static226 {
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "h", descriptor = "[Lclient!na;")
 	public static final JString[] varcstrs = new JString[1000];
-
-	@OriginalMember(owner = "runetek4.client!sf", name = "i", descriptor = "I")
-	public static int anInt5084 = 0;
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "a", descriptor = "(BLclient!ve;)V")
 	public static void init(@OriginalArg(1) Js5 arg0) {

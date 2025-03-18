@@ -49,7 +49,7 @@ public final class MSIType {
 		if (local17 != null) {
 			return local17;
 		}
-		Static250.aClass153_101.method4506(this.spriteId);
+		Static250.aClass153_101.isFileReady(this.spriteId);
 		local17 = Static164.method3119(this.spriteId, Static250.aClass153_101);
 		if (local17 != null) {
 			local17.method1389(Static173.anInt4183, Static85.anInt2262, Static266.anInt5344);

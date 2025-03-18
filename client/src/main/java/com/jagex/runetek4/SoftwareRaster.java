@@ -8,6 +8,10 @@ import org.openrs2.deob.annotation.Pc;
 public class SoftwareRaster {
     @OriginalMember(owner = "runetek4.client!vd", name = "w", descriptor = "Lclient!vk;")
     public static FrameBuffer frameBuffer;
+    @OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "I")
+    public static int destinationWidth;
+    @OriginalMember(owner = "runetek4.client!kb", name = "i", descriptor = "[I")
+    public static int[] destinationPixels;
 
     @OriginalMember(owner = "runetek4.client!kb", name = "c", descriptor = "(IIII)V")
     public static void setClip(@OriginalArg(0) int minX, @OriginalArg(1) int minY, @OriginalArg(2) int maxX, @OriginalArg(3) int maxY) {
@@ -17,8 +21,8 @@ public class SoftwareRaster {
         if (minY < 0) {
             minY = 0;
         }
-        if (maxX > Rasterizer.destinationWidth) {
-            maxX = Rasterizer.destinationWidth;
+        if (maxX > destinationWidth) {
+            maxX = destinationWidth;
         }
         if (maxY > Rasterizer.destinationHeight) {
             maxY = Rasterizer.destinationHeight;
@@ -46,11 +50,11 @@ public class SoftwareRaster {
         if (y + height > Rasterizer.viewportBottom) {
             height = Rasterizer.viewportBottom - y;
         }
-        @Pc(43) int pixelOffset = Rasterizer.destinationWidth - width;
-        @Pc(49) int pixel = x + y * Rasterizer.destinationWidth;
+        @Pc(43) int pixelOffset = destinationWidth - width;
+        @Pc(49) int pixel = x + y * destinationWidth;
         for (@Pc(52) int heightCounter = -height; heightCounter < 0; heightCounter++) {
             for (@Pc(57) int widthCounter = -width; widthCounter < 0; widthCounter++) {
-                Rasterizer.destinationPixels[pixel++] = color;
+                destinationPixels[pixel++] = color;
             }
             pixel += pixelOffset;
         }
@@ -58,8 +62,8 @@ public class SoftwareRaster {
 
     @OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(IIIII)V")
     public static void drawRect(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int width, @OriginalArg(3) int height, @OriginalArg(4) int color) {
-        Rasterizer.drawHorizontalLine(x, y, width, color);
-        Rasterizer.drawHorizontalLine(x, y + height - 1, width, color);
+        drawHorizontalLine(x, y, width, color);
+        drawHorizontalLine(x, y + height - 1, width, color);
         Rasterizer.drawVerticalLine(x, y, height, color);
         Rasterizer.drawVerticalLine(x + width - 1, y, height, color);
     }
@@ -82,13 +86,13 @@ public class SoftwareRaster {
         }
         @Pc(59) int rgba = ((arg4 & 0xFF00FF) * alpha >> 8 & 0xFF00FF) + ((arg4 & 0xFF00) * alpha >> 8 & 0xFF00);
         @Pc(63) int a = 256 - alpha;
-        @Pc(67) int widthOffset = Rasterizer.destinationWidth - width;
-        @Pc(73) int pixel = x + y * Rasterizer.destinationWidth;
+        @Pc(67) int widthOffset = destinationWidth - width;
+        @Pc(73) int pixel = x + y * destinationWidth;
         for (@Pc(75) int heightCounter = 0; heightCounter < height; heightCounter++) {
             for (@Pc(81) int widthCounter = -width; widthCounter < 0; widthCounter++) {
-                @Pc(87) int local87 = Rasterizer.destinationPixels[pixel];
+                @Pc(87) int local87 = destinationPixels[pixel];
                 @Pc(107) int local107 = ((local87 & 0xFF00FF) * a >> 8 & 0xFF00FF) + ((local87 & 0xFF00) * a >> 8 & 0xFF00);
-                Rasterizer.destinationPixels[pixel++] = rgba + local107;
+                destinationPixels[pixel++] = rgba + local107;
             }
             pixel += widthOffset;
         }
@@ -120,13 +124,13 @@ public class SoftwareRaster {
         @Pc(38) int r = (arg3 >> 16 & 0xFF) * arg4;
         @Pc(46) int g = (arg3 >> 8 & 0xFF) * arg4;
         @Pc(52) int b = (arg3 & 0xFF) * arg4;
-        @Pc(58) int pixelOffset = x + y * Rasterizer.destinationWidth;
+        @Pc(58) int pixelOffset = x + y * destinationWidth;
         for (@Pc(60) int lengthCounter = 0; lengthCounter < length; lengthCounter++) {
-            @Pc(73) int red = (Rasterizer.destinationPixels[pixelOffset] >> 16 & 0xFF) * a;
-            @Pc(83) int green = (Rasterizer.destinationPixels[pixelOffset] >> 8 & 0xFF) * a;
-            @Pc(91) int blue = (Rasterizer.destinationPixels[pixelOffset] & 0xFF) * a;
+            @Pc(73) int red = (destinationPixels[pixelOffset] >> 16 & 0xFF) * a;
+            @Pc(83) int green = (destinationPixels[pixelOffset] >> 8 & 0xFF) * a;
+            @Pc(91) int blue = (destinationPixels[pixelOffset] & 0xFF) * a;
             @Pc(113) int rgba = (r + red >> 8 << 16) + (g + green >> 8 << 8) + (b + blue >> 8);
-            Rasterizer.destinationPixels[pixelOffset++] = rgba;
+            destinationPixels[pixelOffset++] = rgba;
         }
     }
 
@@ -146,14 +150,14 @@ public class SoftwareRaster {
         @Pc(38) int r = (color >> 16 & 0xFF) * alpha;
         @Pc(46) int g = (color >> 8 & 0xFF) * alpha;
         @Pc(52) int b = (color & 0xFF) * alpha;
-        @Pc(58) int pixelOffset = x + y * Rasterizer.destinationWidth;
+        @Pc(58) int pixelOffset = x + y * destinationWidth;
         for (@Pc(60) int lengthCounter = 0; lengthCounter < length; lengthCounter++) {
-            @Pc(73) int red = (Rasterizer.destinationPixels[pixelOffset] >> 16 & 0xFF) * a;
-            @Pc(83) int green = (Rasterizer.destinationPixels[pixelOffset] >> 8 & 0xFF) * a;
-            @Pc(91) int blue = (Rasterizer.destinationPixels[pixelOffset] & 0xFF) * a;
+            @Pc(73) int red = (destinationPixels[pixelOffset] >> 16 & 0xFF) * a;
+            @Pc(83) int green = (destinationPixels[pixelOffset] >> 8 & 0xFF) * a;
+            @Pc(91) int blue = (destinationPixels[pixelOffset] & 0xFF) * a;
             @Pc(113) int rgba = (r + red >> 8 << 16) + (g + green >> 8 << 8) + (b + blue >> 8);
-            Rasterizer.destinationPixels[pixelOffset] = rgba;
-            pixelOffset += Rasterizer.destinationWidth;
+            destinationPixels[pixelOffset] = rgba;
+            pixelOffset += destinationWidth;
         }
     }
 
@@ -212,5 +216,23 @@ public class SoftwareRaster {
         Pix3D.method1918(local113, local117, local123, local93, local97, local103, arg4);
         Pix3D.method1922(local93, local103, local109);
         Pix3D.method1918(local113, local123, local129, local93, local103, local109, arg4);
+    }
+
+    @OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(IIII)V")
+    public static void drawHorizontalLine(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
+        if (arg1 < Rasterizer.viewportTop || arg1 >= Rasterizer.viewportBottom) {
+            return;
+        }
+        if (arg0 < Rasterizer.viewportLeft) {
+            arg2 -= Rasterizer.viewportLeft - arg0;
+            arg0 = Rasterizer.viewportLeft;
+        }
+        if (arg0 + arg2 > Rasterizer.viewportRight) {
+            arg2 = Rasterizer.viewportRight - arg0;
+        }
+        @Pc(32) int local32 = arg0 + arg1 * destinationWidth;
+        for (@Pc(34) int local34 = 0; local34 < arg2; local34++) {
+            destinationPixels[local32 + local34] = arg3;
+        }
     }
 }

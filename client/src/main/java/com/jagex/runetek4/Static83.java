@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.scene.tile.SceneTile;
 import com.jagex.runetek4.scene.tile.WallDecor;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -14,9 +13,6 @@ public final class Static83 {
 
 	@OriginalMember(owner = "client!gj", name = "r", descriptor = "F")
 	public static float aFloat3;
-
-	@OriginalMember(owner = "client!gj", name = "p", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_3 = new NodeCache(64);
 
 	@OriginalMember(owner = "client!gj", name = "q", descriptor = "[I")
 	public static final int[] updatedVarps = new int[32];

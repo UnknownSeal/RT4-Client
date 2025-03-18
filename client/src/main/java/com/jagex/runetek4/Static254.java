@@ -11,9 +11,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static254 {
 
-	@OriginalMember(owner = "runetek4.client!uj", name = "x", descriptor = "[I")
-	public static int[] anIntArray488;
-
 	@OriginalMember(owner = "runetek4.client!uj", name = "E", descriptor = "I")
 	public static int anInt5556;
 

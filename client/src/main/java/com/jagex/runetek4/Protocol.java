@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.io.PacketBit;
@@ -410,7 +411,7 @@ public class Protocol {
                 if (!local910 && Player.overrideChat == 0) {
                     Chat.recentMessages[Chat.messageCounter] = local922;
                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
-                    @Pc(999) JString local999 = Static230.list(local916).method770(inboundBuffer);
+                    @Pc(999) JString local999 = QuickChatPhraseTypeList.list(local916).method770(inboundBuffer);
                     if (local908 == 2 || local908 == 3) {
                         Chat.add(local916, 20, local999, Base37.decode37(username).method3125(), JString.concatenate(new JString[] { Static44.aClass100_336, Base37.decode37(username2).method3125() }));
                     } else if (local908 == 1) {
@@ -567,7 +568,7 @@ public class Protocol {
                 } else if (opcode == 141) {
                     username2 = inboundBuffer.g8();
                     world = inboundBuffer.g2();
-                    local1409 = Static230.list(world).method770(inboundBuffer);
+                    local1409 = QuickChatPhraseTypeList.list(world).method770(inboundBuffer);
                     Chat.add(world, 19, local1409, null, Base37.decode37(username2).method3125());
                     opcode = -1;
                     return true;
@@ -993,7 +994,7 @@ public class Protocol {
                             if (!local3263 && Player.overrideChat == 0) {
                                 Chat.recentMessages[Chat.messageCounter] = local3270;
                                 Chat.messageCounter = (Chat.messageCounter + 1) % 100;
-                                local3020 = Static230.list(j).method770(inboundBuffer);
+                                local3020 = QuickChatPhraseTypeList.list(j).method770(inboundBuffer);
                                 if (local1160 == 2) {
                                     Chat.add(j, 18, local3020, null, JString.concatenate(new JString[] { Static44.aClass100_336, Base37.decode37(username2).method3125() }));
                                 } else if (local1160 == 1) {
@@ -1116,7 +1117,7 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 71) {
                                 username2 = inboundBuffer.g8();
-                                local790 = Static218.method2862(Static65.method1497(inboundBuffer).method3116());
+                                local790 = Font.escape(Static65.method1497(inboundBuffer).method3116());
                                 Chat.addMessage(Base37.decode37(username2).method3125(), 6, local790);
                                 opcode = -1;
                                 return true;
@@ -1300,7 +1301,7 @@ public class Protocol {
                                 if (!local4425 && Player.overrideChat == 0) {
                                     Chat.recentMessages[Chat.messageCounter] = local4431;
                                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
-                                    @Pc(4518) JString local4518 = Static218.method2862(Static65.method1497(inboundBuffer).method3116());
+                                    @Pc(4518) JString local4518 = Font.escape(Static65.method1497(inboundBuffer).method3116());
                                     if (local1160 == 2 || local1160 == 3) {
                                         Chat.addMessage(JString.concatenate(new JString[] { Static44.aClass100_336, Base37.decode37(username2).method3125() }), 7, local4518);
                                     } else if (local1160 == 1) {
@@ -1346,7 +1347,7 @@ public class Protocol {
                                 if (!local4632 && Player.overrideChat == 0) {
                                     Chat.recentMessages[Chat.messageCounter] = local4626;
                                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
-                                    local3038 = Static218.method2862(Static65.method1497(inboundBuffer).method3116());
+                                    local3038 = Font.escape(Static65.method1497(inboundBuffer).method3116());
                                     if (local908 == 2 || local908 == 3) {
                                         Chat.method1598(local3038, JString.concatenate(new JString[] { Static44.aClass100_336, Base37.decode37(username2).method3125() }), Base37.decode37(username).method3125());
                                     } else if (local908 == 1) {

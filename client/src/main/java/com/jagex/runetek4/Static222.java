@@ -12,9 +12,6 @@ public final class Static222 {
 	@OriginalMember(owner = "runetek4.client!sa", name = "R", descriptor = "Ljava/awt/runetek4.Font;")
 	public static Font aFont1;
 
-	@OriginalMember(owner = "runetek4.client!sa", name = "W", descriptor = "Z")
-	public static boolean aBoolean246 = true;
-
 	@OriginalMember(owner = "runetek4.client!sa", name = "Y", descriptor = "I")
 	public static volatile int anInt4973 = 0;
 

@@ -1,18 +1,15 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.node.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static84 {
-
-	@OriginalMember(owner = "client!gk", name = "e", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_35;
 
 	@OriginalMember(owner = "client!gk", name = "j", descriptor = "I")
 	public static int anInt2257;
@@ -63,7 +60,7 @@ public final class Static84 {
 						phraseId = quickChatPhrase.anInt439;
 						message = quickChatPhrase.aQuickChatPhraseType_1.method770(Static270.CHAT_PACKET);
 					} else {
-						message = Static218.method2862(Static65.method1497(Static270.CHAT_PACKET).method3116());
+						message = Font.escape(Static65.method1497(Static270.CHAT_PACKET).method3116());
 					}
 					player.chatMessage = message.trim();
 					player.chatEffect = chatFlags & 0xFF;
@@ -195,29 +192,29 @@ public final class Static84 {
 		@Pc(4) Packet local4 = new Packet(arg0);
 		local4.offset = arg0.length - 2;
 		Static165.anInt4038 = local4.g2();
-		Static26.anIntArray66 = new int[Static165.anInt4038];
-		Static254.anIntArray488 = new int[Static165.anInt4038];
-		Static274.anIntArray440 = new int[Static165.anInt4038];
+		SpriteLoader.innerHeights = new int[Static165.anInt4038];
+		SpriteLoader.innerWidths = new int[Static165.anInt4038];
+		SpriteLoader.xOffsets = new int[Static165.anInt4038];
 		Static159.aBooleanArray87 = new boolean[Static165.anInt4038];
 		Static64.aByteArrayArray9 = new byte[Static165.anInt4038][];
-		Static269.anIntArray252 = new int[Static165.anInt4038];
-		aClass6.aByteArrayArray5 = new byte[Static165.anInt4038][];
+		SpriteLoader.yOffsets = new int[Static165.anInt4038];
+		SpriteLoader.pixels = new byte[Static165.anInt4038][];
 		local4.offset = arg0.length - Static165.anInt4038 * 8 - 7;
 		Static124.anInt3080 = local4.g2();
 		Static227.anInt5091 = local4.g2();
 		@Pc(66) int local66 = (local4.g1() & 0xFF) + 1;
 		@Pc(68) int local68;
 		for (local68 = 0; local68 < Static165.anInt4038; local68++) {
-			Static274.anIntArray440[local68] = local4.g2();
+			SpriteLoader.xOffsets[local68] = local4.g2();
 		}
 		for (local68 = 0; local68 < Static165.anInt4038; local68++) {
-			Static269.anIntArray252[local68] = local4.g2();
+			SpriteLoader.yOffsets[local68] = local4.g2();
 		}
 		for (local68 = 0; local68 < Static165.anInt4038; local68++) {
-			Static254.anIntArray488[local68] = local4.g2();
+			SpriteLoader.innerWidths[local68] = local4.g2();
 		}
 		for (local68 = 0; local68 < Static165.anInt4038; local68++) {
-			Static26.anIntArray66[local68] = local4.g2();
+			SpriteLoader.innerHeights[local68] = local4.g2();
 		}
 		local4.offset = arg0.length + 3 - Static165.anInt4038 * 8 - local66 * 3 - 7;
 		Static259.anIntArray513 = new int[local66];
@@ -229,12 +226,12 @@ public final class Static84 {
 		}
 		local4.offset = 0;
 		for (local68 = 0; local68 < Static165.anInt4038; local68++) {
-			@Pc(195) int local195 = Static254.anIntArray488[local68];
-			@Pc(199) int local199 = Static26.anIntArray66[local68];
+			@Pc(195) int local195 = SpriteLoader.innerWidths[local68];
+			@Pc(199) int local199 = SpriteLoader.innerHeights[local68];
 			@Pc(203) int local203 = local195 * local199;
 			@Pc(206) byte[] local206 = new byte[local203];
 			@Pc(208) boolean local208 = false;
-			aClass6.aByteArrayArray5[local68] = local206;
+			SpriteLoader.pixels[local68] = local206;
 			@Pc(215) byte[] local215 = new byte[local203];
 			Static64.aByteArrayArray9[local68] = local215;
 			@Pc(223) int local223 = local4.g1();

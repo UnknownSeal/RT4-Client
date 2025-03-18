@@ -45,7 +45,7 @@ public final class Static285 {
 				if (arg1[arg7++] == 0) {
 					arg8++;
 				} else {
-					Rasterizer.destinationPixels[arg8++] = arg6;
+					SoftwareRaster.destinationPixels[arg8++] = arg6;
 				}
 			}
 			arg7 += local31 + arg10;

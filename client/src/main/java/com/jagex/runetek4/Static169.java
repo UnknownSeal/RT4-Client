@@ -8,9 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static169 {
 
-	@OriginalMember(owner = "runetek4.client!nf", name = "c", descriptor = "[S")
-	public static short[] aShortArray52;
-
 	@OriginalMember(owner = "runetek4.client!nf", name = "d", descriptor = "Lclient!fd;")
 	public static WorldMapFont aClass41_5;
 

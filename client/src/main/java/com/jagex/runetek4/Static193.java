@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.config.FloType;
+import com.jagex.runetek4.config.FluType;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -65,8 +65,8 @@ public final class Static193 {
 					local25 = arg2[local11 - 1][local16 - 1];
 				}
 				if (local25 != 0) {
-					@Pc(77) FloType local77 = Static199.method3593((local25 & 0xFF) - 1);
-					local9[local11][local16] = (local77.material + 1 << 16) + local77.hardshadow;
+					@Pc(77) FluType local77 = FloorUnderlayTypeList.get((local25 & 0xFF) - 1);
+					local9[local11][local16] = (local77.material + 1 << 16) + local77.hardShadow;
 				}
 			}
 		}

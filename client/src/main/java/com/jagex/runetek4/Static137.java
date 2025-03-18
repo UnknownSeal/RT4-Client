@@ -5,7 +5,6 @@ import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.frame.MiniMap;
-import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -109,7 +108,7 @@ public final class Static137 {
 			for (local76 = 1; local76 < 103; local76++) {
 				if ((SceneGraph.renderFlags[arg0][local76][local37] & 0x18) == 0 && !Static164.method3109(local76, local455, local37, local35, arg0)) {
 					if (GlRenderer.enabled) {
-						Rasterizer.destinationPixels = null;
+						SoftwareRaster.destinationPixels = null;
 					} else {
 						SoftwareRaster.frameBuffer.makeTarget();
 					}
@@ -117,7 +116,7 @@ public final class Static137 {
 				}
 				if (arg0 < 3 && (SceneGraph.renderFlags[arg0 + 1][local76][local37] & 0x8) != 0 && !Static164.method3109(local76, local455, local37, local35, arg0 + 1)) {
 					if (GlRenderer.enabled) {
-						Rasterizer.destinationPixels = null;
+						SoftwareRaster.destinationPixels = null;
 					} else {
 						SoftwareRaster.frameBuffer.makeTarget();
 					}
@@ -138,7 +137,7 @@ public final class Static137 {
 			MiniMap.sprite = Static56.aClass3_Sub2_Sub1_Sub1_1;
 		}
 		if (GlRenderer.enabled) {
-			Rasterizer.destinationPixels = null;
+			SoftwareRaster.destinationPixels = null;
 		} else {
 			SoftwareRaster.frameBuffer.makeTarget();
 		}

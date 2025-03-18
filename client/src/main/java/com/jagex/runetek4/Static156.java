@@ -104,7 +104,7 @@ public final class Static156 {
 			if (GlRenderer.enabled) {
 				Static119.aBoolean153 = false;
 				Static27.setMaterial(0, 0);
-				Static161.method3066(null);
+				FogManager.setFogColor(null);
 				Static120.method2390();
 			}
 			Static278.method4648(false);

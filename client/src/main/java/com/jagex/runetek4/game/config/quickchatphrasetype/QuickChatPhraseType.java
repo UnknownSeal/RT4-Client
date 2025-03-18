@@ -114,7 +114,7 @@ public final class QuickChatPhraseType extends CachedNode {
 	}
 
 	@OriginalMember(owner = "client!cb", name = "f", descriptor = "(I)Lclient!na;")
-	public JString method769() {
+	public JString getText() {
 		@Pc(15) JString local15 = Static87.method1804(80);
 		if (this.aClass100Array35 == null) {
 			return Class6.aClass100_891;

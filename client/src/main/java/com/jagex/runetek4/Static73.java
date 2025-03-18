@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static73 {
 
 	@OriginalMember(owner = "client!fm", name = "V", descriptor = "I")
-	public static int anInt2077;
+	public static int b12FullId;
 
 	@OriginalMember(owner = "client!fm", name = "S", descriptor = "Lclient!n;")
 	public static final NodeCache hitBars = new NodeCache(4);
@@ -25,14 +25,6 @@ public final class Static73 {
 
 	@OriginalMember(owner = "client!fm", name = "gb", descriptor = "Lclient!na;")
 	public static final JString OVERLAY2 = JString.parse("overlay2");
-
-	@OriginalMember(owner = "client!fm", name = "a", descriptor = "(ZII)V")
-	public static void method1597(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		Static85.anInt2263 = Static192.aClass92ArrayArray1[arg1][arg0].anInt3530;
-		Static159.anInt3893 = Static192.aClass92ArrayArray1[arg1][arg0].anInt3528;
-		Static148.anInt3534 = Static192.aClass92ArrayArray1[arg1][arg0].anInt3527;
-		Static161.method3063((float) Static85.anInt2263, (float) Static159.anInt3893, (float) Static148.anInt3534);
-	}
 
 	@OriginalMember(owner = "client!fm", name = "a", descriptor = "(IIIIII)Z")
 	public static boolean method1599(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {

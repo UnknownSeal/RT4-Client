@@ -21,6 +21,7 @@ import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.Npc;
+import com.jagex.runetek4.game.config.flotype.FloorOverlayTypeList;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
@@ -301,8 +302,8 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "client!je", name = "h", descriptor = "(I)V")
 	public static void unloadSoft() {
-		FloTypeList.removeSoft();
-		FluTypeList.removeSoft();
+		FloorOverlayTypeList.removeSoft();
+		FloorUnderlayTypeList.removeSoft();
 		IdkTypeList.removeSoft();
 		LocTypeList.removeSoft();
 		ClientScriptRunner.removeSoft();
@@ -320,7 +321,7 @@ public final class client extends GameShell {
 		Static180.removeSoft();
 		Static251.removeSoft();
 		Static73.hitBars.removeSoft();
-		Static139.fontMetrics.removeSoft();
+		FontMetricsList.fontMetrics.removeSoft();
 	}
 
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ZZZIZ)Lclient!ve;")
@@ -338,7 +339,7 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "f", descriptor = "(B)V")
 	public static void unload() {
-		Static276.clear();
+		FloorOverlayTypeList.clear();
 		Static54.clear();
 		ClientScriptRunner.clear();
 		LocTypeList.clear();
@@ -362,7 +363,7 @@ public final class client extends GameShell {
 		}
 		IdkTypeList.clear();
 		Static90.method1857();
-		Static139.fontMetrics.clean();
+		FontMetricsList.fontMetrics.clean();
 		if (!GlRenderer.enabled) {
 			((Js5GlTextureProvider) Rasterizer.textureProvider).clear();
 		}
@@ -632,8 +633,8 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "runetek4.client!re", name = "a", descriptor = "(I)V")
 	public static void clean() {
-		Static8.method119();
-		Static71.method1443();
+		FloorOverlayTypeList.clean();
+		FloorUnderlayTypeList.clean();
 		Static238.method4142();
 		Static258.method4415();
 		Static209.method3706();
@@ -651,7 +652,7 @@ public final class client extends GameShell {
 		Static158.method3010();
 		Static134.method2621();
 		Static73.hitBars.clean(5);
-		Static139.fontMetrics.clean(5);
+		FontMetricsList.fontMetrics.clean(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(II)V")
@@ -1382,7 +1383,7 @@ public final class client extends GameShell {
 			mainLoadState = 50;
 			mainLoadSecondaryText = LocalizedText.MAINLOAD45B;
 		} else if (mainLoadState == 50) {
-			percentage = Static74.method1628(js5Archive8, js5Archive13);
+			percentage = Fonts.getReady(js5Archive8, js5Archive13);
 			i = Fonts.getTotal();
 			if (percentage >= i) {
 				mainLoadSecondaryText = LocalizedText.MAINLOAD50B;
@@ -1434,8 +1435,8 @@ public final class client extends GameShell {
 			percentage += js5Archive27.getPercentageComplete();
 			if (percentage >= 1100) {
 				Static226.init(js5Archive2);
-				Static199.init(js5Archive2);
-				Static91.init(js5Archive2);
+				FloorOverlayTypeList.init(js5Archive2);
+				FloorUnderlayTypeList.init(js5Archive2);
 				Static125.init(js5Archive7, js5Archive2);
 				IdkTypeList.init(js5Archive16, js5Archive7);
 				Static88.init(js5Archive7, js5Archive18);
@@ -1448,7 +1449,7 @@ public final class client extends GameShell {
 				VarPlayerDefinition.initializeVarPlayerDefinitionCache(js5Archive2);
 				Static3.init(js5Archive13, js5Archive8, js5Archive3, js5Archive7);
 				Static119.init(js5Archive2);
-				Static85.init(js5Archive17);
+				EnumTypeList.init(js5Archive17);
 				Static59.init(js5Archive25, js5Archive24, new Js5QuickChatCommandDecoder());
 				Static115.init(js5Archive25, js5Archive24);
 				Static107.init(js5Archive2);

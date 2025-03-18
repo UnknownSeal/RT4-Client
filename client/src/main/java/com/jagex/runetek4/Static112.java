@@ -16,7 +16,7 @@ public final class Static112 {
 		@Pc(11) int local11 = Static13.anInt436;
 		@Pc(13) int local13 = Static24.anInt761;
 		if (LoginManager.aClass3_Sub2_Sub1_1 == null || LoginManager.aClass3_Sub2_Sub1_9 == null) {
-			if (client.js5Archive8.method4506(Static55.anInt1736) && client.js5Archive8.method4506(Static169.anInt4073)) {
+			if (client.js5Archive8.isFileReady(Static55.anInt1736) && client.js5Archive8.isFileReady(Static169.anInt4073)) {
 				LoginManager.aClass3_Sub2_Sub1_1 = SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static55.anInt1736);
 				LoginManager.aClass3_Sub2_Sub1_9 = SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static169.anInt4073);
 				if (GlRenderer.enabled) {
@@ -67,7 +67,7 @@ public final class Static112 {
 				}
 			}
 		}
-		if ((LoginManager.aClass3_Sub2_Sub1_8 == null || LoginManager.aClass3_Sub2_Sub1_6 == null || LoginManager.aClass3_Sub2_Sub1_10 == null) && client.js5Archive8.method4506(Static85.anInt2261) && client.js5Archive8.method4506(Static136.anInt3324) && client.js5Archive8.method4506(Static254.anInt5556)) {
+		if ((LoginManager.aClass3_Sub2_Sub1_8 == null || LoginManager.aClass3_Sub2_Sub1_6 == null || LoginManager.aClass3_Sub2_Sub1_10 == null) && client.js5Archive8.isFileReady(Static85.anInt2261) && client.js5Archive8.isFileReady(Static136.anInt3324) && client.js5Archive8.isFileReady(Static254.anInt5556)) {
 			LoginManager.aClass3_Sub2_Sub1_8 = SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static85.anInt2261);
 			LoginManager.aClass3_Sub2_Sub1_6 = SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static136.anInt3324);
 			LoginManager.aClass3_Sub2_Sub1_10 = SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static254.anInt5556);

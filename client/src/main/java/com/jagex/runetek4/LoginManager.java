@@ -218,7 +218,7 @@ public class LoginManager {
         LoginManager.password = password;
         anInt39 = arg2;
         LoginManager.username = username;
-        if (LoginManager.username.method3108(JString.EMPTY) || LoginManager.password.method3108(JString.EMPTY)) {
+        if (LoginManager.username.strEquals(JString.EMPTY) || LoginManager.password.strEquals(JString.EMPTY)) {
             reply = 3;
         } else if (Static125.worldId == -1) {
             anInt673 = 0;
@@ -391,7 +391,7 @@ public class LoginManager {
             Static120.method2404();
         }
         if (GlRenderer.enabled) {
-            Static75.method1632();
+            FogManager.setDefaultChunksAtmosphere();
         }
         client.audioLoop();
         System.gc();
@@ -403,7 +403,7 @@ public class LoginManager {
             if (GlRenderer.enabled) {
                 local427 = PlayerList.self.movementQueueX[0] >> 3;
                 local320 = PlayerList.self.movementQueueZ[0] >> 3;
-                Static73.method1597(local320, local427);
+                FogManager.setLightPosition(local320, local427);
             }
             Static26.method743(false);
             if (Static191.aByteArrayArray15 != null) {
@@ -416,7 +416,7 @@ public class LoginManager {
             if (GlRenderer.enabled) {
                 local427 = PlayerList.self.movementQueueX[0] >> 3;
                 local320 = PlayerList.self.movementQueueZ[0] >> 3;
-                Static73.method1597(local320, local427);
+                FogManager.setLightPosition(local320, local427);
             }
             ClientScriptRunner.method4002(false);
         }

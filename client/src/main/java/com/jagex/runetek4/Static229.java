@@ -25,14 +25,6 @@ public final class Static229 {
 		return arg0 & 0xFF;
 	}
 
-	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(IZ)V")
-	public static void init(@OriginalArg(0) int arg0) {
-		Static161.method3060(16777215, ((float) arg0 * 0.1F + 0.7F) * 1.1523438F, 0.69921875F, 0.69921875F);
-		Static161.method3063(-50.0F, -60.0F, -50.0F);
-		Static161.method3062(FogManager.defaulFogColorRgb, 0);
-		Static161.method3058();
-	}
-
 	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(BLclient!na;)I")
 	public static int method3937(@OriginalArg(1) JString arg0) {
 		return arg0.length() + 1;

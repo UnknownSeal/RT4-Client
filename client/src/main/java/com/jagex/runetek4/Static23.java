@@ -8,9 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static23 {
 
-	@OriginalMember(owner = "client!bm", name = "a", descriptor = "F")
-	public static float aFloat5;
-
 	@OriginalMember(owner = "client!bm", name = "e", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_11;
 

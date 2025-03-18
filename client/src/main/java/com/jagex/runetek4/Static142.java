@@ -270,13 +270,13 @@ public final class Static142 {
 					Fonts.b12Full.renderCenter(local962, Static65.anInt1951 + arg2, arg0 + Static16.anInt548, local639, 0);
 				}
 				if (Static191.anIntArray391[local5] == 1) {
-					Fonts.b12Full.method2872(local962, arg2 + Static65.anInt1951, Static16.anInt548 + arg0, local639, Static136.anInt3325);
+					Fonts.b12Full.renderWave(local962, arg2 + Static65.anInt1951, Static16.anInt548 + arg0, local639, Static136.anInt3325);
 				}
 				if (Static191.anIntArray391[local5] == 2) {
-					Fonts.b12Full.method2871(local962, arg2 + Static65.anInt1951, arg0 - -Static16.anInt548, local639, Static136.anInt3325);
+					Fonts.b12Full.renderWave2(local962, arg2 + Static65.anInt1951, arg0 - -Static16.anInt548, local639, Static136.anInt3325);
 				}
 				if (Static191.anIntArray391[local5] == 3) {
-					Fonts.b12Full.method2868(local962, arg2 + Static65.anInt1951, Static16.anInt548 + arg0, local639, Static136.anInt3325, 150 - Static191.anIntArray384[local5]);
+					Fonts.b12Full.renderShake(local962, arg2 + Static65.anInt1951, Static16.anInt548 + arg0, local639, Static136.anInt3325, 150 - Static191.anIntArray384[local5]);
 				}
 				if (Static191.anIntArray391[local5] == 4) {
 					local642 = (150 - Static191.anIntArray384[local5]) * (Fonts.b12Full.getStringWidth(local962) + 100) / 150;

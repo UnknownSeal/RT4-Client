@@ -17,7 +17,7 @@ public final class Static130 {
 	public static int[] anIntArray299;
 
 	@OriginalMember(owner = "runetek4.client!kc", name = "t", descriptor = "I")
-	public static int anInt3161;
+	public static int p12FullId;
 
 	@OriginalMember(owner = "runetek4.client!kc", name = "C", descriptor = "Lclient!fd;")
 	public static WorldMapFont aClass41_2;

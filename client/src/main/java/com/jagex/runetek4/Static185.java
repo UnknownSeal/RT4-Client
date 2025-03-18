@@ -11,9 +11,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static185 {
 
-	@OriginalMember(owner = "runetek4.client!p", name = "g", descriptor = "F")
-	public static float aFloat23;
-
 	@OriginalMember(owner = "runetek4.client!p", name = "c", descriptor = "Lclient!ih;")
 	public static final LinkedList aClass69_101 = new LinkedList();
 

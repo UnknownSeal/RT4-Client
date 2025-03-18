@@ -18,6 +18,7 @@ public final class DisplayMode {
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "i", descriptor = "[Lclient!od;")
 	public static DisplayMode[] modes;
+
 	@OriginalMember(owner = "client!od", name = "j", descriptor = "I")
 	public int width;
 

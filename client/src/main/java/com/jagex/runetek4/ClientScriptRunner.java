@@ -20,7 +20,6 @@ import com.jagex.runetek4.game.client.Inv;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.util.IntUtils;
 import com.jagex.runetek4.util.MathUtils;
 import com.jagex.runetek4.util.StringUtils;
@@ -61,9 +60,6 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!t", name = "m", descriptor = "Z")
 	public static volatile boolean focus_in = true;
-
-	@OriginalMember(owner = "runetek4.client!t", name = "p", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_31 = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!t", name = "y", descriptor = "I")
 	public static int anInt5223 = 0;
@@ -1254,7 +1250,7 @@ public final class ClientScriptRunner {
 													GlRenderer.restoreLighting();
 													GlRenderer.setDepthTestEnabled(true);
 													GlRenderer.setFogEnabled(false);
-													Static229.init(Preferences.brightness);
+													FogManager.init(Preferences.brightness);
 													if (aBoolean299) {
 														GlRaster.method1177();
 														GlRenderer.clearDepthBuffer();
@@ -1558,9 +1554,9 @@ public final class ClientScriptRunner {
 			GlRenderer.setDepthTestEnabled(true);
 			GlRenderer.setFogEnabled(true);
 			if (client.gameState == 10) {
-				jitter = Static103.method2235(Protocol.sceneDelta, Camera.renderZ >> 10, Preferences.brightness, Camera.renderX >> 10);
+				jitter = FogManager.method2235(Protocol.sceneDelta, Camera.renderZ >> 10, Preferences.brightness, Camera.renderX >> 10);
 			} else {
-				jitter = Static103.method2235(Protocol.sceneDelta, PlayerList.self.movementQueueZ[0] >> 3, Preferences.brightness, PlayerList.self.movementQueueX[0] >> 3);
+				jitter = FogManager.method2235(Protocol.sceneDelta, PlayerList.self.movementQueueZ[0] >> 3, Preferences.brightness, PlayerList.self.movementQueueX[0] >> 3);
 			}
 			Static120.method2394(client.loop, !Static11.aBoolean15);
 			GlRenderer.clearColorAndDepthBuffers(jitter);
@@ -1651,7 +1647,7 @@ public final class ClientScriptRunner {
 				WorldMap.aClass3_Sub2_Sub1_2 = local63;
 			}
 			if (GlRenderer.enabled) {
-				Rasterizer.destinationPixels = null;
+				SoftwareRaster.destinationPixels = null;
 			} else {
 				SoftwareRaster.frameBuffer.makeTarget();
 			}
@@ -1708,12 +1704,12 @@ public final class ClientScriptRunner {
 			SoftwareRaster.fillRect(arg2, local54 + arg3 + 16, 16, local35, anInt1704);
 			Rasterizer.drawVerticalLine(arg2, local54 + arg3 + 16, local35, anInt4938);
 			Rasterizer.drawVerticalLine(arg2 + 1, local54 + 16 + arg3, local35, anInt4938);
-			Rasterizer.drawHorizontalLine(arg2, arg3 + local54 + 16, 16, anInt4938);
-			Rasterizer.drawHorizontalLine(arg2, arg3 + local54 + 17, 16, anInt4938);
+			SoftwareRaster.drawHorizontalLine(arg2, arg3 + local54 + 16, 16, anInt4938);
+			SoftwareRaster.drawHorizontalLine(arg2, arg3 + local54 + 17, 16, anInt4938);
 			Rasterizer.drawVerticalLine(arg2 + 15, local54 + 16 + arg3, local35, anInt671);
 			Rasterizer.drawVerticalLine(arg2 + 14, arg3 - -17 - -local54, local35 - 1, anInt671);
-			Rasterizer.drawHorizontalLine(arg2, local35 + arg3 + local54 + 15, 16, anInt671);
-			Rasterizer.drawHorizontalLine(arg2 + 1, local35 + arg3 - (-local54 + -14), 15, anInt671);
+			SoftwareRaster.drawHorizontalLine(arg2, local35 + arg3 + local54 + 15, 16, anInt671);
+			SoftwareRaster.drawHorizontalLine(arg2 + 1, local35 + arg3 - (-local54 + -14), 15, anInt671);
 			return;
 		}
 		GlRaster.fillRect(arg2, arg3 + 16, 16, arg4 - 32, anInt4306);

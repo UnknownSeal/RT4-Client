@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -97,18 +95,4 @@ public final class Static256 {
 		return false;
 	}
 
-	@OriginalMember(owner = "runetek4.client!um", name = "a", descriptor = "(BI)Lclient!wl;")
-	public static FloorOverlayType method4395(@OriginalArg(1) int arg0) {
-		@Pc(6) FloorOverlayType local6 = (FloorOverlayType) ClientScriptRunner.aClass99_31.get((long) arg0);
-		if (local6 != null) {
-			return local6;
-		}
-		@Pc(30) byte[] local30 = Static35.aClass153_22.getfile(4, arg0);
-		local6 = new FloorOverlayType();
-		if (local30 != null) {
-			local6.decode(new Packet(local30), arg0);
-		}
-		ClientScriptRunner.aClass99_31.put(local6, (long) arg0);
-		return local6;
-	}
 }

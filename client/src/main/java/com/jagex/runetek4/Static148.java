@@ -8,9 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static148 {
 
-    @OriginalMember(owner = "runetek4.client!li", name = "t", descriptor = "I")
-	public static int anInt3534;
-
 	@OriginalMember(owner = "runetek4.client!li", name = "w", descriptor = "Lclient!sc;")
 	public static HashTable aClass133_13;
 
@@ -39,16 +36,4 @@ public final class Static148 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(II)Lclient!dd;")
-	public static SoftwareFont method2768(@OriginalArg(1) int arg0) {
-		@Pc(16) SoftwareFont local16 = (SoftwareFont) Static139.fontMetrics.get((long) arg0);
-		if (local16 != null) {
-			return local16;
-		}
-		@Pc(26) byte[] local26 = client.js5Archive13.getfile(arg0, 0);
-		local16 = new SoftwareFont(local26);
-		local16.setNameIcons(Sprites.nameIcons, null);
-		Static139.fontMetrics.put(local16, (long) arg0);
-		return local16;
-	}
 }

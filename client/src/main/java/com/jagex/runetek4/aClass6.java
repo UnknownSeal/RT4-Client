@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class aClass6 {
 
-	@OriginalMember(owner = "client!ah", name = "l", descriptor = "[[B")
-	public static byte[][] aByteArrayArray5;
-
 	@OriginalMember(owner = "client!ah", name = "k", descriptor = "[J")
 	public static final long[] aLongArray2 = new long[32];
 
@@ -70,7 +67,7 @@ public final class aClass6 {
 			local204 = Mouse.lastMouseX;
 			if (local204 < Static183.anInt4271 - 10 || local204 > Static24.anInt761 + Static183.anInt4271 + 10 || Static229.anInt5138 - 10 > local93 || local93 > Static13.anInt436 + Static229.anInt5138 + 10) {
 				ClientScriptRunner.aBoolean108 = false;
-				Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
+				InterfaceList.redrawScreen(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
 			}
 		}
 		if (local20 != 1) {
@@ -97,7 +94,7 @@ public final class aClass6 {
 			Static103.method2232(local269);
 		}
 		ClientScriptRunner.aBoolean108 = false;
-		Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
+		InterfaceList.redrawScreen(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
 	}
 
 }

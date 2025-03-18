@@ -34,7 +34,7 @@ public final class Static140 {
 				return;
 			}
 		}
-		if (displayName.method3108(PlayerList.self.username)) {
+		if (displayName.strEquals(PlayerList.self.username)) {
 			Chat.addMessage(JString.EMPTY, 0, LocalizedText.IGNORECANTADDSELF);
 			return;
 		}

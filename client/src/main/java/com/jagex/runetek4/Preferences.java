@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.game.config.flotype.FloorOverlayTypeList;
 import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
 import com.jagex.runetek4.util.SignLink;
 import com.jagex.runetek4.util.ThreadUtils;
@@ -41,6 +42,8 @@ public class Preferences {
     public static boolean highDetailTextures = true;
     @OriginalMember(owner = "runetek4.client!il", name = "I", descriptor = "I")
     public static int brightness = 3;
+    @OriginalMember(owner = "client!fk", name = "g", descriptor = "Z")
+    public static boolean fogEnabled = true;
     @OriginalMember(owner = "runetek4.client!ga", name = "e", descriptor = "I")
     private static int particles = 2;
 
@@ -93,7 +96,7 @@ public class Preferences {
                 Static13.anInt435 = Static269.aClass3_Sub2_Sub4_2.anInt769 * 64 - Static158.anInt3846;
             }
             Static38.method965();
-            Static145.anIntArray330 = new int[Static98.anInt2510 + 1];
+            Static145.anIntArray330 = new int[FloorOverlayTypeList.capacity + 1];
             @Pc(235) int local235 = IdkTypeList.anInt4296 >> 6;
             @Pc(239) int local239 = Static48.anInt1449 >> 6;
             Static90.aByteArrayArrayArray8 = new byte[local239][local235][];
@@ -227,7 +230,7 @@ public class Preferences {
         Static11.aBoolean15 = true;
         Static15.lowMemory = true;
         ambientSoundsVolume = 127;
-        Static71.aBoolean107 = true;
+        fogEnabled = true;
         Static209.aBoolean240 = true;
         fullScreenWidth = 0;
         Static139.anInt3451 = 2;
@@ -299,7 +302,7 @@ public class Preferences {
         local4.p1(Static139.anInt3451);
         local4.p1(Static178.highDetailLighting ? 1 : 0);
         local4.p1(Static220.aBoolean244 ? 1 : 0);
-        local4.p1(Static71.aBoolean107 ? 1 : 0);
+        local4.p1(fogEnabled ? 1 : 0);
         local4.p1(windowMode);
         local4.p1(stereo ? 1 : 0);
         local4.p1(Static125.anInt3104);

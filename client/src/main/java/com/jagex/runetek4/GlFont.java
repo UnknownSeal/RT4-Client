@@ -62,7 +62,7 @@ public final class GlFont extends Font {
 
 	@OriginalMember(owner = "client!mb", name = "a", descriptor = "(IIIIIIZ)V")
 	@Override
-	protected void method2854(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
+	protected void renderGlyph(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
 		@Pc(4) GL2 local4;
 		if (Static46.aClass3_Sub2_Sub1_Sub2_1 == null) {
 			GlRenderer.method4151();
@@ -80,8 +80,8 @@ public final class GlFont extends Font {
 		local4.glTranslatef((float) arg1, (float) (GlRenderer.canvasHeight - arg2), 0.0F);
 		@Pc(32) float local32 = (float) (arg0 % 16) / 16.0F;
 		@Pc(39) float local39 = (float) (arg0 / 16) / 16.0F;
-		@Pc(51) float local51 = local32 + (float) this.anIntArray343[arg0] / (float) this.anInt3640;
-		@Pc(63) float local63 = local39 + (float) this.anIntArray345[arg0] / (float) this.anInt3640;
+		@Pc(51) float local51 = local32 + (float) this.spriteInnerWidths[arg0] / (float) this.anInt3640;
+		@Pc(63) float local63 = local39 + (float) this.spriteInnerHeights[arg0] / (float) this.anInt3640;
 		GlRenderer.setTextureId(this.anInt3638);
 		@Pc(68) GlSprite local68 = Static46.aClass3_Sub2_Sub1_Sub2_1;
 		local4.glActiveTexture(GL2.GL_TEXTURE1);
@@ -96,16 +96,16 @@ public final class GlFont extends Font {
 		local4.glBegin(GL2.GL_TRIANGLE_FAN);
 		local4.glMultiTexCoord2f(GL2.GL_TEXTURE1, local118, local107);
 		local4.glTexCoord2f(local51, local39);
-		local4.glVertex2f((float) this.anIntArray343[arg0], 0.0F);
+		local4.glVertex2f((float) this.spriteInnerWidths[arg0], 0.0F);
 		local4.glMultiTexCoord2f(GL2.GL_TEXTURE1, local98, local107);
 		local4.glTexCoord2f(local32, local39);
 		local4.glVertex2f(0.0F, 0.0F);
 		local4.glMultiTexCoord2f(GL2.GL_TEXTURE1, local98, local129);
 		local4.glTexCoord2f(local32, local63);
-		local4.glVertex2f(0.0F, (float) -this.anIntArray345[arg0]);
+		local4.glVertex2f(0.0F, (float) -this.spriteInnerHeights[arg0]);
 		local4.glMultiTexCoord2f(GL2.GL_TEXTURE1, local118, local129);
 		local4.glTexCoord2f(local51, local63);
-		local4.glVertex2f((float) this.anIntArray343[arg0], (float) -this.anIntArray345[arg0]);
+		local4.glVertex2f((float) this.spriteInnerWidths[arg0], (float) -this.spriteInnerHeights[arg0]);
 		local4.glEnd();
 		local4.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_RGB, GL2.GL_MODULATE);
 		local4.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_SRC0_RGB, GL2.GL_TEXTURE);
@@ -116,7 +116,7 @@ public final class GlFont extends Font {
 
 	@OriginalMember(owner = "client!mb", name = "a", descriptor = "(IIIIIIIZ)V")
 	@Override
-	protected void method2855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
+	protected void renderGlyphTransparent(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
 		GlRenderer.method4151();
 		@Pc(2) GL2 local2 = GlRenderer.gl;
 		GlRenderer.setTextureId(this.anInt3638);
@@ -136,19 +136,19 @@ public final class GlFont extends Font {
 		for (@Pc(11) int local11 = 0; local11 < 256; local11++) {
 			@Pc(21) float local21 = (float) (local11 % 16) / 16.0F;
 			@Pc(28) float local28 = (float) (local11 / 16) / 16.0F;
-			@Pc(40) float local40 = local21 + (float) this.anIntArray343[local11] / (float) this.anInt3640;
-			@Pc(52) float local52 = local28 + (float) this.anIntArray345[local11] / (float) this.anInt3640;
+			@Pc(40) float local40 = local21 + (float) this.spriteInnerWidths[local11] / (float) this.anInt3640;
+			@Pc(52) float local52 = local28 + (float) this.spriteInnerHeights[local11] / (float) this.anInt3640;
 			this.anIntArray349[local11] = local9.glGenLists(1);
 			local9.glNewList(this.anIntArray349[local11], GL2.GL_COMPILE);
 			local9.glBegin(GL2.GL_TRIANGLE_FAN);
 			local9.glTexCoord2f(local40, local28);
-			local9.glVertex2f((float) this.anIntArray343[local11], 0.0F);
+			local9.glVertex2f((float) this.spriteInnerWidths[local11], 0.0F);
 			local9.glTexCoord2f(local21, local28);
 			local9.glVertex2f(0.0F, 0.0F);
 			local9.glTexCoord2f(local21, local52);
-			local9.glVertex2f(0.0F, (float) -this.anIntArray345[local11]);
+			local9.glVertex2f(0.0F, (float) -this.spriteInnerHeights[local11]);
 			local9.glTexCoord2f(local40, local52);
-			local9.glVertex2f((float) this.anIntArray343[local11], (float) -this.anIntArray345[local11]);
+			local9.glVertex2f((float) this.spriteInnerWidths[local11], (float) -this.spriteInnerHeights[local11]);
 			local9.glEnd();
 			local9.glEndList();
 		}
@@ -163,11 +163,11 @@ public final class GlFont extends Font {
 		this.anInt3640 = 0;
 		@Pc(9) int local9;
 		for (local9 = 0; local9 < 256; local9++) {
-			if (this.anIntArray345[local9] > this.anInt3640) {
-				this.anInt3640 = this.anIntArray345[local9];
+			if (this.spriteInnerHeights[local9] > this.anInt3640) {
+				this.anInt3640 = this.spriteInnerHeights[local9];
 			}
-			if (this.anIntArray343[local9] > this.anInt3640) {
-				this.anInt3640 = this.anIntArray343[local9];
+			if (this.spriteInnerWidths[local9] > this.anInt3640) {
+				this.anInt3640 = this.spriteInnerWidths[local9];
 			}
 		}
 		this.anInt3640 *= 16;
@@ -179,8 +179,8 @@ public final class GlFont extends Font {
 			@Pc(83) int local83 = local68 / 16 * local9;
 			@Pc(92) int local92 = (local83 * this.anInt3640 + local77) * 2;
 			@Pc(94) int local94 = 0;
-			@Pc(99) int local99 = this.anIntArray345[local68];
-			@Pc(104) int local104 = this.anIntArray343[local68];
+			@Pc(99) int local99 = this.spriteInnerHeights[local68];
+			@Pc(104) int local104 = this.spriteInnerWidths[local68];
 			@Pc(108) byte[] local108 = arg0[local68];
 			for (@Pc(110) int local110 = 0; local110 < local99; local110++) {
 				for (@Pc(115) int local115 = 0; local115 < local104; local115++) {

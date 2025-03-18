@@ -1,8 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.SoftwareSprite;
-import com.jagex.runetek4.js5.Js5;
-import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -28,39 +25,6 @@ public final class Static145 {
 		if (client.gameState == 30) {
 			client.processGameStatus(25);
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!lf", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void method2743(@OriginalArg(1) Js5 arg0) {
-		Flames.runes = Static162.method3088(Flames.runesID, arg0);
-		Flames.flameGradient = new int[256];
-		@Pc(15) int local15;
-		for (local15 = 0; local15 < 3; local15++) {
-			@Pc(30) int local30 = Static225.anIntArray445[local15 + 1] >> 16 & 0xFF;
-			@Pc(39) float local39 = (float) (Static225.anIntArray445[local15] >> 16 & 0xFF);
-			@Pc(48) float local48 = (float) (Static225.anIntArray445[local15] >> 8 & 0xFF);
-			@Pc(55) float local55 = (float) (Static225.anIntArray445[local15] & 0xFF);
-			@Pc(62) float local62 = ((float) local30 - local39) / 64.0F;
-			@Pc(72) int local72 = Static225.anIntArray445[local15 + 1] >> 8 & 0xFF;
-			@Pc(80) float local80 = ((float) local72 - local48) / 64.0F;
-			@Pc(88) int local88 = Static225.anIntArray445[local15 + 1] & 0xFF;
-			@Pc(95) float local95 = ((float) local88 - local55) / 64.0F;
-			for (@Pc(97) int local97 = 0; local97 < 64; local97++) {
-				Flames.flameGradient[local97 + local15 * 64] = (int) local55 | (int) local48 << 8 | (int) local39 << 16;
-				local48 += local80;
-				local55 += local95;
-				local39 += local62;
-			}
-		}
-		for (local15 = 192; local15 < 255; local15++) {
-			Flames.flameGradient[local15] = Static225.anIntArray445[3];
-		}
-		Static270.anIntArray562 = new int[32768];
-		Static263.anIntArray516 = new int[32768];
-		Flames.setRune(null);
-		Static103.anIntArray254 = new int[32768];
-		Static216.anIntArray188 = new int[32768];
-		Flames.imageFlames = new SoftwareSprite(128, 254);
 	}
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "b", descriptor = "(I)V")
@@ -94,6 +58,6 @@ public final class Static145 {
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "c", descriptor = "(I)I")
 	public static int method2746() {
-		return ((Preferences.stereo ? 1 : 0) << 19) + (((Static71.aBoolean107 ? 1 : 0) << 16) + ((Static220.aBoolean244 ? 1 : 0) << 15) + ((Static178.highDetailLighting ? 1 : 0) << 13) + ((Static209.aBoolean240 ? 1 : 0) << 10) + ((Static159.aBoolean189 ? 1 : 0) << 9) + ((Static15.lowMemory ? 1 : 0) << 7) + ((Preferences.highDetailTextures ? 1 : 0) << 6) + ((Preferences.groundDecoration ? 1 : 0) << 5) + (((Static162.aBoolean190 ? 1 : 0) << 3) + (Preferences.brightness & 0x7) - (-((Preferences.roofsVisible ? 1 : 0) << 4) + -((Static11.aBoolean15 ? 1 : 0) << 8)) - (-((Static139.anInt3451 & 0x3) << 11) + -((Static125.anInt3104 == 0 ? 0 : 1) << 20) - (((Static12.anInt391 == 0 ? 0 : 1) << 21) + ((Preferences.ambientSoundsVolume == 0 ? 0 : 1) << 22)))) + (Preferences.getParticleSetting() << 23));
+		return ((Preferences.stereo ? 1 : 0) << 19) + (((Preferences.fogEnabled ? 1 : 0) << 16) + ((Static220.aBoolean244 ? 1 : 0) << 15) + ((Static178.highDetailLighting ? 1 : 0) << 13) + ((Static209.aBoolean240 ? 1 : 0) << 10) + ((Static159.aBoolean189 ? 1 : 0) << 9) + ((Static15.lowMemory ? 1 : 0) << 7) + ((Preferences.highDetailTextures ? 1 : 0) << 6) + ((Preferences.groundDecoration ? 1 : 0) << 5) + (((Static162.aBoolean190 ? 1 : 0) << 3) + (Preferences.brightness & 0x7) - (-((Preferences.roofsVisible ? 1 : 0) << 4) + -((Static11.aBoolean15 ? 1 : 0) << 8)) - (-((Static139.anInt3451 & 0x3) << 11) + -((Static125.anInt3104 == 0 ? 0 : 1) << 20) - (((Static12.anInt391 == 0 ? 0 : 1) << 21) + ((Preferences.ambientSoundsVolume == 0 ? 0 : 1) << 22)))) + (Preferences.getParticleSetting() << 23));
 	}
 }

@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static98 {
 
-	@OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "I")
-	public static int anInt2510;
-
 	@OriginalMember(owner = "runetek4.client!hj", name = "m", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_42;
 

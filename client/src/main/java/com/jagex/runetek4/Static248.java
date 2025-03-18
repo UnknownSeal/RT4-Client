@@ -105,7 +105,7 @@ public final class Static248 {
 					if (local285.anInt2486 != Static152.anInt3604) {
 						Static152.anInt3604 = local285.anInt2486;
 						Static21.method619(local285.anInt2486);
-						Static161.method3066(Static123.method2422());
+						FogManager.setFogColor(Static123.method2422());
 					}
 					local285.method1944(Static130.levelTiles, local294, false);
 				}

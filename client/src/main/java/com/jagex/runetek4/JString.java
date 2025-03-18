@@ -155,7 +155,7 @@ public final class JString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(BLclient!na;)Z")
-	public final boolean method3108(@OriginalArg(1) JString arg0) {
+	public final boolean strEquals(@OriginalArg(1) JString arg0) {
 		if (arg0 == null) {
 			return false;
 		} else if (arg0 == this) {
@@ -175,7 +175,7 @@ public final class JString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(BI)I")
-	public final int method3110(@OriginalArg(1) int arg0) {
+	public final int parseHexString(@OriginalArg(1) int arg0) {
 		@Pc(14) boolean local14 = false;
 		@Pc(20) boolean local20 = false;
 		@Pc(22) int local22 = 0;
@@ -317,7 +317,7 @@ public final class JString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "c", descriptor = "(I)J")
-	public final long method3118() {
+	public final long longHashCode() {
 		@Pc(1) long local1 = 0L;
 		for (@Pc(9) int local9 = 0; local9 < this.anInt4030; local9++) {
 			local1 = (long) (this.aByteArray52[local9] & 0xFF) + (local1 << 5) - local1;
@@ -494,7 +494,7 @@ public final class JString implements StringInterface {
 
 	@OriginalMember(owner = "runetek4.client!na", name = "b", descriptor = "(B)I")
 	public final int parseInt() {
-		return this.method3110(10);
+		return this.parseHexString(10);
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IZ)V")
@@ -575,7 +575,7 @@ public final class JString implements StringInterface {
 		if (!(arg0 instanceof JString)) {
 			throw new IllegalArgumentException();
 		}
-		return this.method3108((JString) arg0);
+		return this.strEquals((JString) arg0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "c", descriptor = "(Lclient!na;I)I")
@@ -617,12 +617,12 @@ public final class JString implements StringInterface {
 					@Pc(51) int local51 = this.method3146(arg1, local16);
 					if (local51 < 0) {
 						while (local16 < this.anInt4030) {
-							local45.method3152(this.aByteArray52[local16++] & 0xFF);
+							local45.append(this.aByteArray52[local16++] & 0xFF);
 						}
 						return local45;
 					}
 					while (local16 < local51) {
-						local45.method3152(this.aByteArray52[local16++] & 0xFF);
+						local45.append(this.aByteArray52[local16++] & 0xFF);
 					}
 					local45.method3113(arg0);
 					local16 += arg1.anInt4030;
@@ -702,7 +702,7 @@ public final class JString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "g", descriptor = "(I)Lclient!na;")
-	public final JString method3143() {
+	public final JString asString() {
 		return this;
 	}
 
@@ -822,7 +822,7 @@ public final class JString implements StringInterface {
 
 	@OriginalMember(owner = "runetek4.client!na", name = "c", descriptor = "(B)Lclient!na;")
 	public final JString method3151() {
-		@Pc(9) long local9 = this.method3118();
+		@Pc(9) long local9 = this.longHashCode();
 		@Pc(19) Class local19 = JString.class;
 		synchronized (local19) {
 			@Pc(30) JagStringWrapper local30;
@@ -830,7 +830,7 @@ public final class JString implements StringInterface {
 				Static148.aClass133_13 = new HashTable(4096);
 			} else {
 				for (local30 = (JagStringWrapper) Static148.aClass133_13.getNode(local9); local30 != null; local30 = (JagStringWrapper) Static148.aClass133_13.next()) {
-					if (this.method3108(local30.value)) {
+					if (this.strEquals(local30.value)) {
 						return local30.value;
 					}
 				}
@@ -844,7 +844,7 @@ public final class JString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "d", descriptor = "(IB)Lclient!na;")
-	public final JString method3152(@OriginalArg(0) int arg0) {
+	public final JString append(@OriginalArg(0) int arg0) {
 		if (arg0 <= 0 || arg0 > 255) {
 			throw new IllegalArgumentException("invalid char:" + arg0);
 		} else if (this.aBoolean193) {

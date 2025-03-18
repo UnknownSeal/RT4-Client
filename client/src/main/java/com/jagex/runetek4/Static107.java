@@ -20,7 +20,7 @@ public final class Static107 {
 
 	@OriginalMember(owner = "runetek4.client!id", name = "a", descriptor = "(IIBII)V")
 	public static void method2263(@OriginalArg(3) int arg0, @OriginalArg(4) int arg1) {
-		FluTypeList.anInt5063 = arg1;
+		FloorUnderlayTypeList.anInt5063 = arg1;
 		Static172.anInt4164 = 0;
 		Static267.anInt5773 = 0;
 		Static106.anInt2869 = arg0;

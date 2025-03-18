@@ -25,7 +25,7 @@ public final class Static209 {
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "a", descriptor = "(IBILclient!ve;)[Lclient!qf;")
 	public static Sprite[] method3708(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {
-		return Static234.method4016(arg1, 0, arg0) ? Static213.method3730() : null;
+		return SpriteLoader.decode(arg1, 0, arg0) ? Static213.method3730() : null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "b", descriptor = "(III)I")

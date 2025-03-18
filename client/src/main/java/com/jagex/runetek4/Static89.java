@@ -115,8 +115,8 @@ public final class Static89 {
 		@Pc(9) int local9 = arg2;
 		@Pc(12) int local12 = -arg2;
 		@Pc(14) int local14 = -1;
-		@Pc(22) int local22 = Static78.method1690(FluTypeList.anInt5063, arg2 + arg3, Static172.anInt4164);
-		@Pc(30) int local30 = Static78.method1690(FluTypeList.anInt5063, arg3 - arg2, Static172.anInt4164);
+		@Pc(22) int local22 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg2 + arg3, Static172.anInt4164);
+		@Pc(30) int local30 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg3 - arg2, Static172.anInt4164);
 		ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[arg1], local30, local22, arg0);
 		while (local7 < local9) {
 			local14 += 2;
@@ -131,8 +131,8 @@ public final class Static89 {
 				local12 -= local9 << 1;
 				local68 = arg1 + local9;
 				if (local68 >= Static267.anInt5773 && local58 <= Static106.anInt2869) {
-					local84 = Static78.method1690(FluTypeList.anInt5063, arg3 + local7, Static172.anInt4164);
-					local93 = Static78.method1690(FluTypeList.anInt5063, arg3 - local7, Static172.anInt4164);
+					local84 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg3 + local7, Static172.anInt4164);
+					local93 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg3 - local7, Static172.anInt4164);
 					if (Static106.anInt2869 >= local68) {
 						ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local68], local93, local84, arg0);
 					}
@@ -145,8 +145,8 @@ public final class Static89 {
 			local58 = arg1 - local7;
 			local68 = local7 + arg1;
 			if (local68 >= Static267.anInt5773 && Static106.anInt2869 >= local58) {
-				local84 = Static78.method1690(FluTypeList.anInt5063, arg3 + local9, Static172.anInt4164);
-				local93 = Static78.method1690(FluTypeList.anInt5063, arg3 - local9, Static172.anInt4164);
+				local84 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg3 + local9, Static172.anInt4164);
+				local93 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg3 - local9, Static172.anInt4164);
 				if (local68 <= Static106.anInt2869) {
 					ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local68], local93, local84, arg0);
 				}

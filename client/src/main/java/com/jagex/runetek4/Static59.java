@@ -11,9 +11,6 @@ public final class Static59 {
 	@OriginalMember(owner = "client!ej", name = "X", descriptor = "I")
 	public static int anInt1815;
 
-	@OriginalMember(owner = "client!ej", name = "bb", descriptor = "F")
-	public static float aFloat6;
-
 	@OriginalMember(owner = "client!ej", name = "h", descriptor = "(I)V")
 	public static void processMenuActions() {
 		if (Static162.anInt3953 == 2) {
@@ -45,10 +42,10 @@ public final class Static59 {
 		Static107.anInterface3_1 = arg2;
 		Static238.configClientSmall = arg1;
 		if (Static238.configClientSmall != null) {
-			Static144.anInt3490 = Static238.configClientSmall.getGroupCapacity(1);
+			QuickChatPhraseTypeList.anInt3490 = Static238.configClientSmall.getGroupCapacity(1);
 		}
 		if (Static262.configClientLarge != null) {
-			Static34.anInt1047 = Static262.configClientLarge.getGroupCapacity(1);
+			QuickChatPhraseTypeList.anInt1047 = Static262.configClientLarge.getGroupCapacity(1);
 		}
 	}
 

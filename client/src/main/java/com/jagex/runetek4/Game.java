@@ -226,7 +226,7 @@ public class Game {
                 @Pc(773) Component component;
                 if (samples == 3) {
                     component = InterfaceList.getComponent(i);
-                    if (!change.stringArg.method3108(component.text)) {
+                    if (!change.stringArg.strEquals(component.text)) {
                         component.text = change.stringArg;
                         InterfaceList.redraw(component);
                     }

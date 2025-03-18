@@ -43,7 +43,7 @@ public final class Static164 {
 				if (local14 > 0L) {
 					local65 = arg3;
 				}
-				local75 = Rasterizer.destinationPixels;
+				local75 = SoftwareRaster.destinationPixels;
 				local90 = (52736 - arg2 * 512) * 4 + arg0 * 4 + 24624;
 				if (local35 == 0 || local35 == 2) {
 					if (local28 == 0) {
@@ -119,7 +119,7 @@ public final class Static164 {
 						local65 = 15597568;
 					}
 					local90 = arg0 * 4 + (103 - arg2) * 2048 + 24624;
-					local75 = Rasterizer.destinationPixels;
+					local75 = SoftwareRaster.destinationPixels;
 					if (local28 == 0 || local28 == 2) {
 						local75[local90 + 1536] = local65;
 						local75[local90 + 1025] = local65;
@@ -168,7 +168,7 @@ public final class Static164 {
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IZILclient!ve;)Lclient!ek;")
 	public static SoftwareIndexedSprite method3119(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {
-		return Static234.method4016(arg1, 0, arg0) ? Static134.method2619() : null;
+		return SpriteLoader.decode(arg1, 0, arg0) ? Static134.method2619() : null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IBZIZIIZ)Lclient!qf;")
@@ -201,8 +201,8 @@ public final class Static164 {
 				return null;
 			}
 		}
-		@Pc(118) int[] pixels = Rasterizer.destinationPixels;
-		@Pc(120) int local120 = Rasterizer.destinationWidth;
+		@Pc(118) int[] pixels = SoftwareRaster.destinationPixels;
+		@Pc(120) int local120 = SoftwareRaster.destinationWidth;
 		@Pc(122) int local122 = Rasterizer.destinationHeight;
 		@Pc(125) int[] local125 = new int[4];
 		Rasterizer.getViewportDimensions(local125);

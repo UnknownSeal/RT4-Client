@@ -27,8 +27,8 @@ public final class Static163 {
 	public static void method3105(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		@Pc(11) int local11 = Static78.method1690(Static106.anInt2869, arg2, Static267.anInt5773);
 		@Pc(17) int local17 = Static78.method1690(Static106.anInt2869, arg4, Static267.anInt5773);
-		@Pc(23) int local23 = Static78.method1690(FluTypeList.anInt5063, arg3, Static172.anInt4164);
-		@Pc(35) int local35 = Static78.method1690(FluTypeList.anInt5063, arg1, Static172.anInt4164);
+		@Pc(23) int local23 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg3, Static172.anInt4164);
+		@Pc(35) int local35 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg1, Static172.anInt4164);
 		for (@Pc(37) int local37 = local11; local37 <= local17; local37++) {
 			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local37], local23, local35, arg0);
 		}

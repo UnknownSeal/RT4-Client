@@ -10,22 +10,22 @@ import org.openrs2.deob.annotation.Pc;
 public final class DirectByteArray extends ByteArray {
 
 	@OriginalMember(owner = "client!ua", name = "m", descriptor = "Ljava/nio/ByteBuffer;")
-	private ByteBuffer aByteBuffer10;
+	private ByteBuffer buffer;
 
 	@OriginalMember(owner = "client!ua", name = "a", descriptor = "(I[B)V")
 	@Override
-	public void set(@OriginalArg(1) byte[] arg0) {
-		this.aByteBuffer10 = ByteBuffer.allocateDirect(arg0.length);
-		this.aByteBuffer10.position(0);
-		this.aByteBuffer10.put(arg0);
+	public void set(@OriginalArg(1) byte[] bytes) {
+		this.buffer = ByteBuffer.allocateDirect(bytes.length);
+		this.buffer.position(0);
+		this.buffer.put(bytes);
 	}
 
 	@OriginalMember(owner = "client!ua", name = "a", descriptor = "(I)[B")
 	@Override
 	public byte[] get() {
-		@Pc(4) byte[] local4 = new byte[this.aByteBuffer10.capacity()];
-		this.aByteBuffer10.position(0);
-		this.aByteBuffer10.get(local4);
-		return local4;
+		@Pc(4) byte[] bytes = new byte[this.buffer.capacity()];
+		this.buffer.position(0);
+		this.buffer.get(bytes);
+		return bytes;
 	}
 }

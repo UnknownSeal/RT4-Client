@@ -525,7 +525,7 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "f", descriptor = "(II)Z")
-	public boolean method4506(@OriginalArg(1) int arg0) {
+	public boolean isFileReady(@OriginalArg(1) int arg0) {
 		if (!this.isIndexReady()) {
 			return false;
 		} else if (this.index.groupCapacities.length == 1) {

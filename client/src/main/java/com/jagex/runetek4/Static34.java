@@ -28,9 +28,6 @@ public final class Static34 {
 	@OriginalMember(owner = "client!ck", name = "o", descriptor = "Lclient!na;")
 	private static final JString LOADED_WORLD_LIST_DATA = JString.parse("Loaded world list data");
 
-	@OriginalMember(owner = "client!ck", name = "C", descriptor = "I")
-	public static int anInt1047 = 0;
-
 	@OriginalMember(owner = "client!ck", name = "D", descriptor = "Lclient!na;")
 	public static JString aClass100_203 = null;
 

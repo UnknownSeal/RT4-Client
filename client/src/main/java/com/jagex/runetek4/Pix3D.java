@@ -127,21 +127,21 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1917(Rasterizer.destinationPixels, local5, arg0, arg5 >> 16, arg4 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
+									method1917(SoftwareRaster.destinationPixels, local5, arg0, arg5 >> 16, arg4 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
 									arg5 += local95;
 									arg4 += local80;
 									arg6 += local143;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 									local177 += local197;
 									local207 += local227;
 									local237 += local257;
 								}
 							}
-							method1917(Rasterizer.destinationPixels, local5, arg0, arg5 >> 16, arg3 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
+							method1917(SoftwareRaster.destinationPixels, local5, arg0, arg5 >> 16, arg3 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
 							arg5 += local95;
 							arg3 += local65;
 							arg6 += local143;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 							local177 += local197;
 							local207 += local227;
 							local237 += local257;
@@ -158,21 +158,21 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1917(Rasterizer.destinationPixels, local5, arg0, arg4 >> 16, arg5 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
+									method1917(SoftwareRaster.destinationPixels, local5, arg0, arg4 >> 16, arg5 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
 									arg5 += local95;
 									arg4 += local80;
 									arg6 += local143;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 									local177 += local197;
 									local207 += local227;
 									local237 += local257;
 								}
 							}
-							method1917(Rasterizer.destinationPixels, local5, arg0, arg3 >> 16, arg5 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
+							method1917(SoftwareRaster.destinationPixels, local5, arg0, arg3 >> 16, arg5 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
 							arg5 += local95;
 							arg3 += local65;
 							arg6 += local143;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 							local177 += local197;
 							local207 += local227;
 							local237 += local257;
@@ -207,21 +207,21 @@ public final class Pix3D {
 									if (arg1 < 0) {
 										return;
 									}
-									method1917(Rasterizer.destinationPixels, local5, arg0, arg3 >> 16, arg5 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
+									method1917(SoftwareRaster.destinationPixels, local5, arg0, arg3 >> 16, arg5 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
 									arg5 += local80;
 									arg3 += local65;
 									arg6 += local143;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 									local177 += local197;
 									local207 += local227;
 									local237 += local257;
 								}
 							}
-							method1917(Rasterizer.destinationPixels, local5, arg0, arg3 >> 16, arg4 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
+							method1917(SoftwareRaster.destinationPixels, local5, arg0, arg3 >> 16, arg4 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
 							arg4 += local95;
 							arg3 += local65;
 							arg6 += local143;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 							local177 += local197;
 							local207 += local227;
 							local237 += local257;
@@ -238,21 +238,21 @@ public final class Pix3D {
 									if (arg1 < 0) {
 										return;
 									}
-									method1917(Rasterizer.destinationPixels, local5, arg0, arg5 >> 16, arg3 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
+									method1917(SoftwareRaster.destinationPixels, local5, arg0, arg5 >> 16, arg3 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
 									arg5 += local80;
 									arg3 += local65;
 									arg6 += local143;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 									local177 += local197;
 									local207 += local227;
 									local237 += local257;
 								}
 							}
-							method1917(Rasterizer.destinationPixels, local5, arg0, arg4 >> 16, arg3 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
+							method1917(SoftwareRaster.destinationPixels, local5, arg0, arg4 >> 16, arg3 >> 16, arg6, local131, local177, local207, local237, local187, local217, local247);
 							arg4 += local95;
 							arg3 += local65;
 							arg6 += local143;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 							local177 += local197;
 							local207 += local227;
 							local237 += local257;
@@ -298,21 +298,21 @@ public final class Pix3D {
 									if (arg0 < 0) {
 										return;
 									}
-									method1917(Rasterizer.destinationPixels, local5, arg1, arg3 >> 16, arg5 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
+									method1917(SoftwareRaster.destinationPixels, local5, arg1, arg3 >> 16, arg5 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
 									arg3 += local65;
 									arg5 += local95;
 									arg7 += local143;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 									local177 += local197;
 									local207 += local227;
 									local237 += local257;
 								}
 							}
-							method1917(Rasterizer.destinationPixels, local5, arg1, arg3 >> 16, arg4 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
+							method1917(SoftwareRaster.destinationPixels, local5, arg1, arg3 >> 16, arg4 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
 							arg3 += local65;
 							arg4 += local80;
 							arg7 += local143;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 							local177 += local197;
 							local207 += local227;
 							local237 += local257;
@@ -329,21 +329,21 @@ public final class Pix3D {
 									if (arg0 < 0) {
 										return;
 									}
-									method1917(Rasterizer.destinationPixels, local5, arg1, arg5 >> 16, arg3 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
+									method1917(SoftwareRaster.destinationPixels, local5, arg1, arg5 >> 16, arg3 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
 									arg3 += local65;
 									arg5 += local95;
 									arg7 += local143;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 									local177 += local197;
 									local207 += local227;
 									local237 += local257;
 								}
 							}
-							method1917(Rasterizer.destinationPixels, local5, arg1, arg4 >> 16, arg3 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
+							method1917(SoftwareRaster.destinationPixels, local5, arg1, arg4 >> 16, arg3 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
 							arg3 += local65;
 							arg4 += local80;
 							arg7 += local143;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 							local177 += local197;
 							local207 += local227;
 							local237 += local257;
@@ -378,21 +378,21 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1917(Rasterizer.destinationPixels, local5, arg1, arg3 >> 16, arg4 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
+									method1917(SoftwareRaster.destinationPixels, local5, arg1, arg3 >> 16, arg4 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
 									arg3 += local95;
 									arg4 += local80;
 									arg7 += local143;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 									local177 += local197;
 									local207 += local227;
 									local237 += local257;
 								}
 							}
-							method1917(Rasterizer.destinationPixels, local5, arg1, arg5 >> 16, arg4 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
+							method1917(SoftwareRaster.destinationPixels, local5, arg1, arg5 >> 16, arg4 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
 							arg5 += local65;
 							arg4 += local80;
 							arg7 += local143;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 							local177 += local197;
 							local207 += local227;
 							local237 += local257;
@@ -409,21 +409,21 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1917(Rasterizer.destinationPixels, local5, arg1, arg4 >> 16, arg3 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
+									method1917(SoftwareRaster.destinationPixels, local5, arg1, arg4 >> 16, arg3 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
 									arg3 += local95;
 									arg4 += local80;
 									arg7 += local143;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 									local177 += local197;
 									local207 += local227;
 									local237 += local257;
 								}
 							}
-							method1917(Rasterizer.destinationPixels, local5, arg1, arg4 >> 16, arg5 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
+							method1917(SoftwareRaster.destinationPixels, local5, arg1, arg4 >> 16, arg5 >> 16, arg7, local131, local177, local207, local237, local187, local217, local247);
 							arg5 += local65;
 							arg4 += local80;
 							arg7 += local143;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 							local177 += local197;
 							local207 += local227;
 							local237 += local257;
@@ -468,21 +468,21 @@ public final class Pix3D {
 								if (arg1 < 0) {
 									return;
 								}
-								method1917(Rasterizer.destinationPixels, local5, arg2, arg4 >> 16, arg3 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
+								method1917(SoftwareRaster.destinationPixels, local5, arg2, arg4 >> 16, arg3 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
 								arg4 += local80;
 								arg3 += local65;
 								arg8 += local143;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 								local177 += local197;
 								local207 += local227;
 								local237 += local257;
 							}
 						}
-						method1917(Rasterizer.destinationPixels, local5, arg2, arg4 >> 16, arg5 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
+						method1917(SoftwareRaster.destinationPixels, local5, arg2, arg4 >> 16, arg5 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
 						arg4 += local80;
 						arg5 += local95;
 						arg8 += local143;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 						local177 += local197;
 						local207 += local227;
 						local237 += local257;
@@ -499,21 +499,21 @@ public final class Pix3D {
 								if (arg1 < 0) {
 									return;
 								}
-								method1917(Rasterizer.destinationPixels, local5, arg2, arg3 >> 16, arg4 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
+								method1917(SoftwareRaster.destinationPixels, local5, arg2, arg3 >> 16, arg4 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
 								arg4 += local80;
 								arg3 += local65;
 								arg8 += local143;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 								local177 += local197;
 								local207 += local227;
 								local237 += local257;
 							}
 						}
-						method1917(Rasterizer.destinationPixels, local5, arg2, arg5 >> 16, arg4 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
+						method1917(SoftwareRaster.destinationPixels, local5, arg2, arg5 >> 16, arg4 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
 						arg4 += local80;
 						arg5 += local95;
 						arg8 += local143;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 						local177 += local197;
 						local207 += local227;
 						local237 += local257;
@@ -548,21 +548,21 @@ public final class Pix3D {
 								if (arg0 < 0) {
 									return;
 								}
-								method1917(Rasterizer.destinationPixels, local5, arg2, arg4 >> 16, arg5 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
+								method1917(SoftwareRaster.destinationPixels, local5, arg2, arg4 >> 16, arg5 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
 								arg4 += local65;
 								arg5 += local95;
 								arg8 += local143;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 								local177 += local197;
 								local207 += local227;
 								local237 += local257;
 							}
 						}
-						method1917(Rasterizer.destinationPixels, local5, arg2, arg3 >> 16, arg5 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
+						method1917(SoftwareRaster.destinationPixels, local5, arg2, arg3 >> 16, arg5 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
 						arg3 += local80;
 						arg5 += local95;
 						arg8 += local143;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 						local177 += local197;
 						local207 += local227;
 						local237 += local257;
@@ -579,21 +579,21 @@ public final class Pix3D {
 								if (arg0 < 0) {
 									return;
 								}
-								method1917(Rasterizer.destinationPixels, local5, arg2, arg5 >> 16, arg4 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
+								method1917(SoftwareRaster.destinationPixels, local5, arg2, arg5 >> 16, arg4 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
 								arg4 += local65;
 								arg5 += local95;
 								arg8 += local143;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 								local177 += local197;
 								local207 += local227;
 								local237 += local257;
 							}
 						}
-						method1917(Rasterizer.destinationPixels, local5, arg2, arg5 >> 16, arg3 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
+						method1917(SoftwareRaster.destinationPixels, local5, arg2, arg5 >> 16, arg3 >> 16, arg8, local131, local177, local207, local237, local187, local217, local247);
 						arg3 += local80;
 						arg5 += local95;
 						arg8 += local143;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 						local177 += local197;
 						local207 += local227;
 						local237 += local257;
@@ -699,21 +699,21 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1916(Rasterizer.destinationPixels, local5, arg0, arg5 >> 16, arg4 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
+									method1916(SoftwareRaster.destinationPixels, local5, arg0, arg5 >> 16, arg4 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
 									arg5 += local100;
 									arg4 += local85;
 									arg6 += local148;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 									local182 += local202;
 									local212 += local232;
 									local242 += local262;
 								}
 							}
-							method1916(Rasterizer.destinationPixels, local5, arg0, arg5 >> 16, arg3 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
+							method1916(SoftwareRaster.destinationPixels, local5, arg0, arg5 >> 16, arg3 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
 							arg5 += local100;
 							arg3 += local70;
 							arg6 += local148;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 							local182 += local202;
 							local212 += local232;
 							local242 += local262;
@@ -730,21 +730,21 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1916(Rasterizer.destinationPixels, local5, arg0, arg4 >> 16, arg5 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
+									method1916(SoftwareRaster.destinationPixels, local5, arg0, arg4 >> 16, arg5 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
 									arg5 += local100;
 									arg4 += local85;
 									arg6 += local148;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 									local182 += local202;
 									local212 += local232;
 									local242 += local262;
 								}
 							}
-							method1916(Rasterizer.destinationPixels, local5, arg0, arg3 >> 16, arg5 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
+							method1916(SoftwareRaster.destinationPixels, local5, arg0, arg3 >> 16, arg5 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
 							arg5 += local100;
 							arg3 += local70;
 							arg6 += local148;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 							local182 += local202;
 							local212 += local232;
 							local242 += local262;
@@ -779,21 +779,21 @@ public final class Pix3D {
 									if (arg1 < 0) {
 										return;
 									}
-									method1916(Rasterizer.destinationPixels, local5, arg0, arg3 >> 16, arg5 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
+									method1916(SoftwareRaster.destinationPixels, local5, arg0, arg3 >> 16, arg5 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
 									arg5 += local85;
 									arg3 += local70;
 									arg6 += local148;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 									local182 += local202;
 									local212 += local232;
 									local242 += local262;
 								}
 							}
-							method1916(Rasterizer.destinationPixels, local5, arg0, arg3 >> 16, arg4 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
+							method1916(SoftwareRaster.destinationPixels, local5, arg0, arg3 >> 16, arg4 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
 							arg4 += local100;
 							arg3 += local70;
 							arg6 += local148;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 							local182 += local202;
 							local212 += local232;
 							local242 += local262;
@@ -810,21 +810,21 @@ public final class Pix3D {
 									if (arg1 < 0) {
 										return;
 									}
-									method1916(Rasterizer.destinationPixels, local5, arg0, arg5 >> 16, arg3 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
+									method1916(SoftwareRaster.destinationPixels, local5, arg0, arg5 >> 16, arg3 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
 									arg5 += local85;
 									arg3 += local70;
 									arg6 += local148;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 									local182 += local202;
 									local212 += local232;
 									local242 += local262;
 								}
 							}
-							method1916(Rasterizer.destinationPixels, local5, arg0, arg4 >> 16, arg3 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
+							method1916(SoftwareRaster.destinationPixels, local5, arg0, arg4 >> 16, arg3 >> 16, arg6, local136, local182, local212, local242, local192, local222, local252);
 							arg4 += local100;
 							arg3 += local70;
 							arg6 += local148;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 							local182 += local202;
 							local212 += local232;
 							local242 += local262;
@@ -870,21 +870,21 @@ public final class Pix3D {
 									if (arg0 < 0) {
 										return;
 									}
-									method1916(Rasterizer.destinationPixels, local5, arg1, arg3 >> 16, arg5 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
+									method1916(SoftwareRaster.destinationPixels, local5, arg1, arg3 >> 16, arg5 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
 									arg3 += local70;
 									arg5 += local100;
 									arg7 += local148;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 									local182 += local202;
 									local212 += local232;
 									local242 += local262;
 								}
 							}
-							method1916(Rasterizer.destinationPixels, local5, arg1, arg3 >> 16, arg4 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
+							method1916(SoftwareRaster.destinationPixels, local5, arg1, arg3 >> 16, arg4 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
 							arg3 += local70;
 							arg4 += local85;
 							arg7 += local148;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 							local182 += local202;
 							local212 += local232;
 							local242 += local262;
@@ -901,21 +901,21 @@ public final class Pix3D {
 									if (arg0 < 0) {
 										return;
 									}
-									method1916(Rasterizer.destinationPixels, local5, arg1, arg5 >> 16, arg3 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
+									method1916(SoftwareRaster.destinationPixels, local5, arg1, arg5 >> 16, arg3 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
 									arg3 += local70;
 									arg5 += local100;
 									arg7 += local148;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 									local182 += local202;
 									local212 += local232;
 									local242 += local262;
 								}
 							}
-							method1916(Rasterizer.destinationPixels, local5, arg1, arg4 >> 16, arg3 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
+							method1916(SoftwareRaster.destinationPixels, local5, arg1, arg4 >> 16, arg3 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
 							arg3 += local70;
 							arg4 += local85;
 							arg7 += local148;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 							local182 += local202;
 							local212 += local232;
 							local242 += local262;
@@ -950,21 +950,21 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1916(Rasterizer.destinationPixels, local5, arg1, arg3 >> 16, arg4 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
+									method1916(SoftwareRaster.destinationPixels, local5, arg1, arg3 >> 16, arg4 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
 									arg3 += local100;
 									arg4 += local85;
 									arg7 += local148;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 									local182 += local202;
 									local212 += local232;
 									local242 += local262;
 								}
 							}
-							method1916(Rasterizer.destinationPixels, local5, arg1, arg5 >> 16, arg4 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
+							method1916(SoftwareRaster.destinationPixels, local5, arg1, arg5 >> 16, arg4 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
 							arg5 += local70;
 							arg4 += local85;
 							arg7 += local148;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 							local182 += local202;
 							local212 += local232;
 							local242 += local262;
@@ -981,21 +981,21 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1916(Rasterizer.destinationPixels, local5, arg1, arg4 >> 16, arg3 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
+									method1916(SoftwareRaster.destinationPixels, local5, arg1, arg4 >> 16, arg3 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
 									arg3 += local100;
 									arg4 += local85;
 									arg7 += local148;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 									local182 += local202;
 									local212 += local232;
 									local242 += local262;
 								}
 							}
-							method1916(Rasterizer.destinationPixels, local5, arg1, arg4 >> 16, arg5 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
+							method1916(SoftwareRaster.destinationPixels, local5, arg1, arg4 >> 16, arg5 >> 16, arg7, local136, local182, local212, local242, local192, local222, local252);
 							arg5 += local70;
 							arg4 += local85;
 							arg7 += local148;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 							local182 += local202;
 							local212 += local232;
 							local242 += local262;
@@ -1040,21 +1040,21 @@ public final class Pix3D {
 								if (arg1 < 0) {
 									return;
 								}
-								method1916(Rasterizer.destinationPixels, local5, arg2, arg4 >> 16, arg3 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
+								method1916(SoftwareRaster.destinationPixels, local5, arg2, arg4 >> 16, arg3 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
 								arg4 += local85;
 								arg3 += local70;
 								arg8 += local148;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 								local182 += local202;
 								local212 += local232;
 								local242 += local262;
 							}
 						}
-						method1916(Rasterizer.destinationPixels, local5, arg2, arg4 >> 16, arg5 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
+						method1916(SoftwareRaster.destinationPixels, local5, arg2, arg4 >> 16, arg5 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
 						arg4 += local85;
 						arg5 += local100;
 						arg8 += local148;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 						local182 += local202;
 						local212 += local232;
 						local242 += local262;
@@ -1071,21 +1071,21 @@ public final class Pix3D {
 								if (arg1 < 0) {
 									return;
 								}
-								method1916(Rasterizer.destinationPixels, local5, arg2, arg3 >> 16, arg4 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
+								method1916(SoftwareRaster.destinationPixels, local5, arg2, arg3 >> 16, arg4 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
 								arg4 += local85;
 								arg3 += local70;
 								arg8 += local148;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 								local182 += local202;
 								local212 += local232;
 								local242 += local262;
 							}
 						}
-						method1916(Rasterizer.destinationPixels, local5, arg2, arg5 >> 16, arg4 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
+						method1916(SoftwareRaster.destinationPixels, local5, arg2, arg5 >> 16, arg4 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
 						arg4 += local85;
 						arg5 += local100;
 						arg8 += local148;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 						local182 += local202;
 						local212 += local232;
 						local242 += local262;
@@ -1120,21 +1120,21 @@ public final class Pix3D {
 								if (arg0 < 0) {
 									return;
 								}
-								method1916(Rasterizer.destinationPixels, local5, arg2, arg4 >> 16, arg5 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
+								method1916(SoftwareRaster.destinationPixels, local5, arg2, arg4 >> 16, arg5 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
 								arg4 += local70;
 								arg5 += local100;
 								arg8 += local148;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 								local182 += local202;
 								local212 += local232;
 								local242 += local262;
 							}
 						}
-						method1916(Rasterizer.destinationPixels, local5, arg2, arg3 >> 16, arg5 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
+						method1916(SoftwareRaster.destinationPixels, local5, arg2, arg3 >> 16, arg5 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
 						arg3 += local85;
 						arg5 += local100;
 						arg8 += local148;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 						local182 += local202;
 						local212 += local232;
 						local242 += local262;
@@ -1151,21 +1151,21 @@ public final class Pix3D {
 								if (arg0 < 0) {
 									return;
 								}
-								method1916(Rasterizer.destinationPixels, local5, arg2, arg5 >> 16, arg4 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
+								method1916(SoftwareRaster.destinationPixels, local5, arg2, arg5 >> 16, arg4 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
 								arg4 += local70;
 								arg5 += local100;
 								arg8 += local148;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 								local182 += local202;
 								local212 += local232;
 								local242 += local262;
 							}
 						}
-						method1916(Rasterizer.destinationPixels, local5, arg2, arg5 >> 16, arg3 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
+						method1916(SoftwareRaster.destinationPixels, local5, arg2, arg5 >> 16, arg3 >> 16, arg8, local136, local182, local212, local242, local192, local222, local252);
 						arg3 += local85;
 						arg5 += local100;
 						arg8 += local148;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 						local182 += local202;
 						local212 += local232;
 						local242 += local262;
@@ -1177,7 +1177,7 @@ public final class Pix3D {
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "()I")
 	public static int method1913() {
-		return Rasterizer.anIntArray221[0] % Rasterizer.destinationWidth;
+		return Rasterizer.anIntArray221[0] % SoftwareRaster.destinationWidth;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "([I[IIIIIIIIIIIIII)V")
@@ -1928,16 +1928,16 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1923(Rasterizer.destinationPixels, arg0, arg6, arg5 >> 16, arg4 >> 16);
+									method1923(SoftwareRaster.destinationPixels, arg0, arg6, arg5 >> 16, arg4 >> 16);
 									arg5 += local31;
 									arg4 += local16;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1923(Rasterizer.destinationPixels, arg0, arg6, arg5 >> 16, arg3 >> 16);
+							method1923(SoftwareRaster.destinationPixels, arg0, arg6, arg5 >> 16, arg3 >> 16);
 							arg5 += local31;
 							arg3 += local1;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 						}
 					} else {
 						arg2 -= arg1;
@@ -1951,16 +1951,16 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1923(Rasterizer.destinationPixels, arg0, arg6, arg4 >> 16, arg5 >> 16);
+									method1923(SoftwareRaster.destinationPixels, arg0, arg6, arg4 >> 16, arg5 >> 16);
 									arg5 += local31;
 									arg4 += local16;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1923(Rasterizer.destinationPixels, arg0, arg6, arg3 >> 16, arg5 >> 16);
+							method1923(SoftwareRaster.destinationPixels, arg0, arg6, arg3 >> 16, arg5 >> 16);
 							arg5 += local31;
 							arg3 += local1;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 						}
 					}
 				} else {
@@ -1987,16 +1987,16 @@ public final class Pix3D {
 									if (arg1 < 0) {
 										return;
 									}
-									method1923(Rasterizer.destinationPixels, arg0, arg6, arg5 >> 16, arg3 >> 16);
+									method1923(SoftwareRaster.destinationPixels, arg0, arg6, arg5 >> 16, arg3 >> 16);
 									arg5 += local16;
 									arg3 += local1;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1923(Rasterizer.destinationPixels, arg0, arg6, arg4 >> 16, arg3 >> 16);
+							method1923(SoftwareRaster.destinationPixels, arg0, arg6, arg4 >> 16, arg3 >> 16);
 							arg4 += local31;
 							arg3 += local1;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 						}
 					} else {
 						arg1 -= arg2;
@@ -2010,16 +2010,16 @@ public final class Pix3D {
 									if (arg1 < 0) {
 										return;
 									}
-									method1923(Rasterizer.destinationPixels, arg0, arg6, arg3 >> 16, arg5 >> 16);
+									method1923(SoftwareRaster.destinationPixels, arg0, arg6, arg3 >> 16, arg5 >> 16);
 									arg5 += local16;
 									arg3 += local1;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1923(Rasterizer.destinationPixels, arg0, arg6, arg3 >> 16, arg4 >> 16);
+							method1923(SoftwareRaster.destinationPixels, arg0, arg6, arg3 >> 16, arg4 >> 16);
 							arg4 += local31;
 							arg3 += local1;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 						}
 					}
 				}
@@ -2056,16 +2056,16 @@ public final class Pix3D {
 									if (arg0 < 0) {
 										return;
 									}
-									method1923(Rasterizer.destinationPixels, arg1, arg6, arg3 >> 16, arg5 >> 16);
+									method1923(SoftwareRaster.destinationPixels, arg1, arg6, arg3 >> 16, arg5 >> 16);
 									arg3 += local1;
 									arg5 += local31;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1923(Rasterizer.destinationPixels, arg1, arg6, arg3 >> 16, arg4 >> 16);
+							method1923(SoftwareRaster.destinationPixels, arg1, arg6, arg3 >> 16, arg4 >> 16);
 							arg3 += local1;
 							arg4 += local16;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 						}
 					} else {
 						arg0 -= arg2;
@@ -2079,16 +2079,16 @@ public final class Pix3D {
 									if (arg0 < 0) {
 										return;
 									}
-									method1923(Rasterizer.destinationPixels, arg1, arg6, arg5 >> 16, arg3 >> 16);
+									method1923(SoftwareRaster.destinationPixels, arg1, arg6, arg5 >> 16, arg3 >> 16);
 									arg3 += local1;
 									arg5 += local31;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1923(Rasterizer.destinationPixels, arg1, arg6, arg4 >> 16, arg3 >> 16);
+							method1923(SoftwareRaster.destinationPixels, arg1, arg6, arg4 >> 16, arg3 >> 16);
 							arg3 += local1;
 							arg4 += local16;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 						}
 					}
 				} else {
@@ -2115,16 +2115,16 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1923(Rasterizer.destinationPixels, arg1, arg6, arg3 >> 16, arg4 >> 16);
+									method1923(SoftwareRaster.destinationPixels, arg1, arg6, arg3 >> 16, arg4 >> 16);
 									arg3 += local31;
 									arg4 += local16;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1923(Rasterizer.destinationPixels, arg1, arg6, arg5 >> 16, arg4 >> 16);
+							method1923(SoftwareRaster.destinationPixels, arg1, arg6, arg5 >> 16, arg4 >> 16);
 							arg5 += local1;
 							arg4 += local16;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 						}
 					} else {
 						arg2 -= arg0;
@@ -2138,16 +2138,16 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1923(Rasterizer.destinationPixels, arg1, arg6, arg4 >> 16, arg3 >> 16);
+									method1923(SoftwareRaster.destinationPixels, arg1, arg6, arg4 >> 16, arg3 >> 16);
 									arg3 += local31;
 									arg4 += local16;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1923(Rasterizer.destinationPixels, arg1, arg6, arg4 >> 16, arg5 >> 16);
+							method1923(SoftwareRaster.destinationPixels, arg1, arg6, arg4 >> 16, arg5 >> 16);
 							arg5 += local1;
 							arg4 += local16;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 						}
 					}
 				}
@@ -2183,16 +2183,16 @@ public final class Pix3D {
 								if (arg1 < 0) {
 									return;
 								}
-								method1923(Rasterizer.destinationPixels, arg2, arg6, arg4 >> 16, arg3 >> 16);
+								method1923(SoftwareRaster.destinationPixels, arg2, arg6, arg4 >> 16, arg3 >> 16);
 								arg4 += local16;
 								arg3 += local1;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 							}
 						}
-						method1923(Rasterizer.destinationPixels, arg2, arg6, arg4 >> 16, arg5 >> 16);
+						method1923(SoftwareRaster.destinationPixels, arg2, arg6, arg4 >> 16, arg5 >> 16);
 						arg4 += local16;
 						arg5 += local31;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 					}
 				} else {
 					arg1 -= arg0;
@@ -2206,16 +2206,16 @@ public final class Pix3D {
 								if (arg1 < 0) {
 									return;
 								}
-								method1923(Rasterizer.destinationPixels, arg2, arg6, arg3 >> 16, arg4 >> 16);
+								method1923(SoftwareRaster.destinationPixels, arg2, arg6, arg3 >> 16, arg4 >> 16);
 								arg4 += local16;
 								arg3 += local1;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 							}
 						}
-						method1923(Rasterizer.destinationPixels, arg2, arg6, arg5 >> 16, arg4 >> 16);
+						method1923(SoftwareRaster.destinationPixels, arg2, arg6, arg5 >> 16, arg4 >> 16);
 						arg4 += local16;
 						arg5 += local31;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 					}
 				}
 			} else {
@@ -2242,16 +2242,16 @@ public final class Pix3D {
 								if (arg0 < 0) {
 									return;
 								}
-								method1923(Rasterizer.destinationPixels, arg2, arg6, arg4 >> 16, arg5 >> 16);
+								method1923(SoftwareRaster.destinationPixels, arg2, arg6, arg4 >> 16, arg5 >> 16);
 								arg4 += local1;
 								arg5 += local31;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 							}
 						}
-						method1923(Rasterizer.destinationPixels, arg2, arg6, arg3 >> 16, arg5 >> 16);
+						method1923(SoftwareRaster.destinationPixels, arg2, arg6, arg3 >> 16, arg5 >> 16);
 						arg3 += local16;
 						arg5 += local31;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 					}
 				} else {
 					arg0 -= arg1;
@@ -2265,16 +2265,16 @@ public final class Pix3D {
 								if (arg0 < 0) {
 									return;
 								}
-								method1923(Rasterizer.destinationPixels, arg2, arg6, arg5 >> 16, arg4 >> 16);
+								method1923(SoftwareRaster.destinationPixels, arg2, arg6, arg5 >> 16, arg4 >> 16);
 								arg4 += local1;
 								arg5 += local31;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 							}
 						}
-						method1923(Rasterizer.destinationPixels, arg2, arg6, arg5 >> 16, arg3 >> 16);
+						method1923(SoftwareRaster.destinationPixels, arg2, arg6, arg5 >> 16, arg3 >> 16);
 						arg3 += local16;
 						arg5 += local31;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 					}
 				}
 			}
@@ -2933,7 +2933,7 @@ public final class Pix3D {
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "d", descriptor = "()I")
 	public static int method1927() {
-		return Rasterizer.anIntArray221[0] / Rasterizer.destinationWidth;
+		return Rasterizer.anIntArray221[0] / SoftwareRaster.destinationWidth;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(IIIIIIIII)V")
@@ -3002,18 +3002,18 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1920(Rasterizer.destinationPixels, arg0, arg4 >> 16, arg5 >> 16, arg6, local86);
+									method1920(SoftwareRaster.destinationPixels, arg0, arg4 >> 16, arg5 >> 16, arg6, local86);
 									arg5 += local60;
 									arg4 += local36;
 									arg6 += local98;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1920(Rasterizer.destinationPixels, arg0, arg3 >> 16, arg5 >> 16, arg6, local86);
+							method1920(SoftwareRaster.destinationPixels, arg0, arg3 >> 16, arg5 >> 16, arg6, local86);
 							arg5 += local60;
 							arg3 += local48;
 							arg6 += local98;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 						}
 					} else {
 						arg2 -= arg1;
@@ -3027,18 +3027,18 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1920(Rasterizer.destinationPixels, arg0, arg5 >> 16, arg4 >> 16, arg6, local86);
+									method1920(SoftwareRaster.destinationPixels, arg0, arg5 >> 16, arg4 >> 16, arg6, local86);
 									arg5 += local60;
 									arg4 += local36;
 									arg6 += local98;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1920(Rasterizer.destinationPixels, arg0, arg5 >> 16, arg3 >> 16, arg6, local86);
+							method1920(SoftwareRaster.destinationPixels, arg0, arg5 >> 16, arg3 >> 16, arg6, local86);
 							arg5 += local60;
 							arg3 += local48;
 							arg6 += local98;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 						}
 					}
 				} else {
@@ -3066,18 +3066,18 @@ public final class Pix3D {
 									if (arg1 < 0) {
 										return;
 									}
-									method1920(Rasterizer.destinationPixels, arg0, arg5 >> 16, arg3 >> 16, arg6, local86);
+									method1920(SoftwareRaster.destinationPixels, arg0, arg5 >> 16, arg3 >> 16, arg6, local86);
 									arg5 += local36;
 									arg3 += local48;
 									arg6 += local98;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1920(Rasterizer.destinationPixels, arg0, arg4 >> 16, arg3 >> 16, arg6, local86);
+							method1920(SoftwareRaster.destinationPixels, arg0, arg4 >> 16, arg3 >> 16, arg6, local86);
 							arg4 += local60;
 							arg3 += local48;
 							arg6 += local98;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 						}
 					} else {
 						arg1 -= arg2;
@@ -3091,18 +3091,18 @@ public final class Pix3D {
 									if (arg1 < 0) {
 										return;
 									}
-									method1920(Rasterizer.destinationPixels, arg0, arg3 >> 16, arg5 >> 16, arg6, local86);
+									method1920(SoftwareRaster.destinationPixels, arg0, arg3 >> 16, arg5 >> 16, arg6, local86);
 									arg5 += local36;
 									arg3 += local48;
 									arg6 += local98;
-									arg0 += Rasterizer.destinationWidth;
+									arg0 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1920(Rasterizer.destinationPixels, arg0, arg3 >> 16, arg4 >> 16, arg6, local86);
+							method1920(SoftwareRaster.destinationPixels, arg0, arg3 >> 16, arg4 >> 16, arg6, local86);
 							arg4 += local60;
 							arg3 += local48;
 							arg6 += local98;
-							arg0 += Rasterizer.destinationWidth;
+							arg0 += SoftwareRaster.destinationWidth;
 						}
 					}
 				}
@@ -3141,18 +3141,18 @@ public final class Pix3D {
 									if (arg0 < 0) {
 										return;
 									}
-									method1920(Rasterizer.destinationPixels, arg1, arg5 >> 16, arg3 >> 16, arg7, local86);
+									method1920(SoftwareRaster.destinationPixels, arg1, arg5 >> 16, arg3 >> 16, arg7, local86);
 									arg3 += local48;
 									arg5 += local60;
 									arg7 += local98;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1920(Rasterizer.destinationPixels, arg1, arg4 >> 16, arg3 >> 16, arg7, local86);
+							method1920(SoftwareRaster.destinationPixels, arg1, arg4 >> 16, arg3 >> 16, arg7, local86);
 							arg3 += local48;
 							arg4 += local36;
 							arg7 += local98;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 						}
 					} else {
 						arg0 -= arg2;
@@ -3166,18 +3166,18 @@ public final class Pix3D {
 									if (arg0 < 0) {
 										return;
 									}
-									method1920(Rasterizer.destinationPixels, arg1, arg3 >> 16, arg5 >> 16, arg7, local86);
+									method1920(SoftwareRaster.destinationPixels, arg1, arg3 >> 16, arg5 >> 16, arg7, local86);
 									arg3 += local48;
 									arg5 += local60;
 									arg7 += local98;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1920(Rasterizer.destinationPixels, arg1, arg3 >> 16, arg4 >> 16, arg7, local86);
+							method1920(SoftwareRaster.destinationPixels, arg1, arg3 >> 16, arg4 >> 16, arg7, local86);
 							arg3 += local48;
 							arg4 += local36;
 							arg7 += local98;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 						}
 					}
 				} else {
@@ -3205,18 +3205,18 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1920(Rasterizer.destinationPixels, arg1, arg3 >> 16, arg4 >> 16, arg7, local86);
+									method1920(SoftwareRaster.destinationPixels, arg1, arg3 >> 16, arg4 >> 16, arg7, local86);
 									arg3 += local60;
 									arg4 += local36;
 									arg7 += local98;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1920(Rasterizer.destinationPixels, arg1, arg5 >> 16, arg4 >> 16, arg7, local86);
+							method1920(SoftwareRaster.destinationPixels, arg1, arg5 >> 16, arg4 >> 16, arg7, local86);
 							arg5 += local48;
 							arg4 += local36;
 							arg7 += local98;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 						}
 					} else {
 						arg2 -= arg0;
@@ -3230,18 +3230,18 @@ public final class Pix3D {
 									if (arg2 < 0) {
 										return;
 									}
-									method1920(Rasterizer.destinationPixels, arg1, arg4 >> 16, arg3 >> 16, arg7, local86);
+									method1920(SoftwareRaster.destinationPixels, arg1, arg4 >> 16, arg3 >> 16, arg7, local86);
 									arg3 += local60;
 									arg4 += local36;
 									arg7 += local98;
-									arg1 += Rasterizer.destinationWidth;
+									arg1 += SoftwareRaster.destinationWidth;
 								}
 							}
-							method1920(Rasterizer.destinationPixels, arg1, arg4 >> 16, arg5 >> 16, arg7, local86);
+							method1920(SoftwareRaster.destinationPixels, arg1, arg4 >> 16, arg5 >> 16, arg7, local86);
 							arg5 += local48;
 							arg4 += local36;
 							arg7 += local98;
-							arg1 += Rasterizer.destinationWidth;
+							arg1 += SoftwareRaster.destinationWidth;
 						}
 					}
 				}
@@ -3279,18 +3279,18 @@ public final class Pix3D {
 								if (arg1 < 0) {
 									return;
 								}
-								method1920(Rasterizer.destinationPixels, arg2, arg4 >> 16, arg3 >> 16, arg8, local86);
+								method1920(SoftwareRaster.destinationPixels, arg2, arg4 >> 16, arg3 >> 16, arg8, local86);
 								arg4 += local36;
 								arg3 += local48;
 								arg8 += local98;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 							}
 						}
-						method1920(Rasterizer.destinationPixels, arg2, arg4 >> 16, arg5 >> 16, arg8, local86);
+						method1920(SoftwareRaster.destinationPixels, arg2, arg4 >> 16, arg5 >> 16, arg8, local86);
 						arg4 += local36;
 						arg5 += local60;
 						arg8 += local98;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 					}
 				} else {
 					arg1 -= arg0;
@@ -3304,18 +3304,18 @@ public final class Pix3D {
 								if (arg1 < 0) {
 									return;
 								}
-								method1920(Rasterizer.destinationPixels, arg2, arg3 >> 16, arg4 >> 16, arg8, local86);
+								method1920(SoftwareRaster.destinationPixels, arg2, arg3 >> 16, arg4 >> 16, arg8, local86);
 								arg4 += local36;
 								arg3 += local48;
 								arg8 += local98;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 							}
 						}
-						method1920(Rasterizer.destinationPixels, arg2, arg5 >> 16, arg4 >> 16, arg8, local86);
+						method1920(SoftwareRaster.destinationPixels, arg2, arg5 >> 16, arg4 >> 16, arg8, local86);
 						arg4 += local36;
 						arg5 += local60;
 						arg8 += local98;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 					}
 				}
 			} else {
@@ -3343,18 +3343,18 @@ public final class Pix3D {
 								if (arg0 < 0) {
 									return;
 								}
-								method1920(Rasterizer.destinationPixels, arg2, arg4 >> 16, arg5 >> 16, arg8, local86);
+								method1920(SoftwareRaster.destinationPixels, arg2, arg4 >> 16, arg5 >> 16, arg8, local86);
 								arg4 += local48;
 								arg5 += local60;
 								arg8 += local98;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 							}
 						}
-						method1920(Rasterizer.destinationPixels, arg2, arg3 >> 16, arg5 >> 16, arg8, local86);
+						method1920(SoftwareRaster.destinationPixels, arg2, arg3 >> 16, arg5 >> 16, arg8, local86);
 						arg3 += local36;
 						arg5 += local60;
 						arg8 += local98;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 					}
 				} else {
 					arg0 -= arg1;
@@ -3368,18 +3368,18 @@ public final class Pix3D {
 								if (arg0 < 0) {
 									return;
 								}
-								method1920(Rasterizer.destinationPixels, arg2, arg5 >> 16, arg4 >> 16, arg8, local86);
+								method1920(SoftwareRaster.destinationPixels, arg2, arg5 >> 16, arg4 >> 16, arg8, local86);
 								arg4 += local48;
 								arg5 += local60;
 								arg8 += local98;
-								arg2 += Rasterizer.destinationWidth;
+								arg2 += SoftwareRaster.destinationWidth;
 							}
 						}
-						method1920(Rasterizer.destinationPixels, arg2, arg5 >> 16, arg3 >> 16, arg8, local86);
+						method1920(SoftwareRaster.destinationPixels, arg2, arg5 >> 16, arg3 >> 16, arg8, local86);
 						arg3 += local36;
 						arg5 += local60;
 						arg8 += local98;
-						arg2 += Rasterizer.destinationWidth;
+						arg2 += SoftwareRaster.destinationWidth;
 					}
 				}
 			}

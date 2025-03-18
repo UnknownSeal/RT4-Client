@@ -50,9 +50,9 @@ public final class Static44 {
 		}
 		if (MiniMenu.menuActionRow == 1) {
 			ClientScriptRunner.aBoolean108 = false;
-			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
+			InterfaceList.redrawScreen(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
 		} else {
-			Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
+			InterfaceList.redrawScreen(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
 			local53 = Fonts.b12Full.getStringWidth(LocalizedText.CHOOSE_OPTION);
 			for (@Pc(95) int local95 = 0; local95 < MiniMenu.menuActionRow; local95++) {
 				@Pc(104) int local104 = Fonts.b12Full.getStringWidth(Static269.method2228(local95));

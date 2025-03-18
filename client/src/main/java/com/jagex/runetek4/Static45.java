@@ -2,7 +2,8 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
-import com.jagex.runetek4.config.FloType;
+import com.jagex.runetek4.config.FluType;
+import com.jagex.runetek4.game.config.flotype.FloorOverlayTypeList;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.util.ColorUtils;
@@ -108,9 +109,9 @@ public final class Static45 {
 					}
 				}
 			} else {
-				z0 = (int) Static161.aFloatArray18[0];
-				x0 = (int) Static161.aFloatArray18[1];
-				z = (int) Static161.aFloatArray18[2];
+				z0 = (int) FogManager.light0Position[0];
+				x0 = (int) FogManager.light0Position[1];
+				z = (int) FogManager.light0Position[2];
 				underlayId = (int) Math.sqrt((double) (x0 * x0 + z0 * z0 + z * z));
 				local200 = underlayId * 1024 >> 8;
 				for (dx = 1; dx < 103; dx++) {
@@ -141,10 +142,10 @@ public final class Static45 {
 					if (z < 104) {
 						underlayId = Static253.levelTileUnderlayIds[level][z][x0] & 0xFF;
 						if (underlayId > 0) {
-							@Pc(693) FloType flu = Static199.method3593(underlayId - 1);
-							BZip2State.anIntArray376[x0] += flu.anInt4154;
-							Static139.anIntArray325[x0] += flu.anInt4149;
-							Static279.anIntArray568[x0] += flu.anInt4158;
+							@Pc(693) FluType flu = FloorUnderlayTypeList.get(underlayId - 1);
+							BZip2State.anIntArray376[x0] += flu.weightedHue;
+							Static139.anIntArray325[x0] += flu.saturation;
+							Static279.anIntArray568[x0] += flu.lightness;
 							Static251.blendChroma[x0] += flu.chroma;
 							debugMag = Static128.blendMagnitude[x0]++;
 						}
@@ -153,10 +154,10 @@ public final class Static45 {
 					if (underlayId >= 0) {
 						local200 = Static253.levelTileUnderlayIds[level][underlayId][x0] & 0xFF;
 						if (local200 > 0) {
-							@Pc(758) FloType local758 = Static199.method3593(local200 - 1);
-							BZip2State.anIntArray376[x0] -= local758.anInt4154;
-							Static139.anIntArray325[x0] -= local758.anInt4149;
-							Static279.anIntArray568[x0] -= local758.anInt4158;
+							@Pc(758) FluType local758 = FloorUnderlayTypeList.get(local200 - 1);
+							BZip2State.anIntArray376[x0] -= local758.weightedHue;
+							Static139.anIntArray325[x0] -= local758.saturation;
+							Static279.anIntArray568[x0] -= local758.lightness;
 							Static251.blendChroma[x0] -= local758.chroma;
 							debugMag = Static128.blendMagnitude[x0]--;
 						}
@@ -209,7 +210,7 @@ public final class Static45 {
 								if (z == 0 && Static163.aByteArrayArrayArray11[level][z0][x0] != 0) {
 									local1067 = false;
 								}
-								if (underlayId > 0 && !Static256.method4395(underlayId - 1).occlude) {
+								if (underlayId > 0 && !FloorOverlayTypeList.method4395(underlayId - 1).occlude) {
 									local1067 = false;
 								}
 								if (local1067 && local200 == dx && local200 == dz && len == local200) {
@@ -236,7 +237,7 @@ public final class Static45 {
 							local326 = levelLightMap[z0 + 1][x0 + 1];
 							if (underlayId == 0) {
 								Static176.method3305(level, z0, x0, 0, 0, -1, local200, dx, dz, len, ColorUtils.multiplyLightnessSafe(normalZ, normalX), ColorUtils.multiplyLightnessSafe(local273, normalX), ColorUtils.multiplyLightnessSafe(local326, normalX), ColorUtils.multiplyLightnessSafe(local332, normalX), 0, 0, 0, 0, normalY, 0);
-								if (GlRenderer.enabled && level > 0 && normalX != -1 && Static199.method3593(z - 1).occlude) {
+								if (GlRenderer.enabled && level > 0 && normalX != -1 && FloorUnderlayTypeList.get(z - 1).blockShadow) {
 									Static242.method4197(0, 0, true, false, z0, x0, local200 - SceneGraph.tileHeights[0][z0][x0], -SceneGraph.tileHeights[0][z0 + 1][x0] + dx, dz - SceneGraph.tileHeights[0][z0 + 1][x0 + 1], len - SceneGraph.tileHeights[0][z0][x0 + 1]);
 								}
 								if (GlRenderer.enabled && !arg1 && Static62.anIntArrayArray11 != null && level == 0) {
@@ -245,9 +246,9 @@ public final class Static45 {
 											if ((local322 != z0 || x0 != local1794) && local322 >= 0 && local322 < 104 && local1794 >= 0 && local1794 < 104) {
 												@Pc(1834) int local1834 = Static240.aByteArrayArrayArray14[level][local322][local1794] & 0xFF;
 												if (local1834 != 0) {
-													@Pc(1842) FloorOverlayType local1842 = Static256.method4395(local1834 - 1);
+													@Pc(1842) FloorOverlayType local1842 = FloorOverlayTypeList.method4395(local1834 - 1);
 													if (local1842.material != -1 && Rasterizer.textureProvider.method3237(local1842.material) == 4) {
-														Static62.anIntArrayArray11[z0][x0] = local1842.waterfogcolour + (local1842.waterfogscale << 24);
+														Static62.anIntArrayArray11[z0][x0] = local1842.waterColor + (local1842.waterOpaity << 24);
 														continue label771;
 													}
 												}
@@ -258,22 +259,22 @@ public final class Static45 {
 							} else {
 								local322 = Static163.aByteArrayArrayArray11[level][z0][x0] + 1;
 								@Pc(1242) byte local1242 = Static4.aByteArrayArrayArray1[level][z0][x0];
-								@Pc(1248) FloorOverlayType local1248 = Static256.method4395(underlayId - 1);
+								@Pc(1248) FloorOverlayType local1248 = FloorOverlayTypeList.method4395(underlayId - 1);
 								@Pc(1301) int local1301;
 								@Pc(1353) int local1353;
 								@Pc(1288) int local1288;
 								if (GlRenderer.enabled && !arg1 && Static62.anIntArrayArray11 != null && level == 0) {
 									if (local1248.material != -1 && Rasterizer.textureProvider.method3237(local1248.material) == 4) {
-										Static62.anIntArrayArray11[z0][x0] = (local1248.waterfogscale << 24) + local1248.waterfogcolour;
+										Static62.anIntArrayArray11[z0][x0] = (local1248.waterOpaity << 24) + local1248.waterColor;
 									} else {
 										label737: for (local1288 = z0 - 1; local1288 <= z0 + 1; local1288++) {
 											for (local1301 = x0 - 1; local1301 <= x0 + 1; local1301++) {
 												if ((z0 != local1288 || local1301 != x0) && local1288 >= 0 && local1288 < 104 && local1301 >= 0 && local1301 < 104) {
 													local1353 = Static240.aByteArrayArrayArray14[level][local1288][local1301] & 0xFF;
 													if (local1353 != 0) {
-														@Pc(1366) FloorOverlayType local1366 = Static256.method4395(local1353 - 1);
+														@Pc(1366) FloorOverlayType local1366 = FloorOverlayTypeList.method4395(local1353 - 1);
 														if (local1366.material != -1 && Rasterizer.textureProvider.method3237(local1366.material) == 4) {
-															Static62.anIntArrayArray11[z0][x0] = local1366.waterfogcolour + (local1366.waterfogscale << 24);
+															Static62.anIntArrayArray11[z0][x0] = local1366.waterColor + (local1366.waterOpaity << 24);
 															break label737;
 														}
 													}
@@ -291,11 +292,11 @@ public final class Static45 {
 								if (local1288 >= 0) {
 									local1301 = -1;
 									local1353 = Pix3D.anIntArray220[ColorUtils.multiplyLightnessGrayscale(Rasterizer.textureProvider.method3234(local1288), 96)];
-								} else if (local1248.rgb == -1) {
+								} else if (local1248.baseColor == -1) {
 									local1301 = -2;
 									local1353 = 0;
 								} else {
-									local1301 = local1248.rgb;
+									local1301 = local1248.baseColor;
 									local1429 = local15 + (local1301 & 0x7F);
 									if (local1429 < 0) {
 										local1429 = 0;
@@ -305,8 +306,8 @@ public final class Static45 {
 									local1458 = (local1301 & 0x380) + ((local1301 + local10 & 0xFC00) + local1429);
 									local1353 = Pix3D.anIntArray220[ColorUtils.multiplyLightnessGrayscale(local1458, 96)];
 								}
-								if (local1248.averagecolour >= 0) {
-									local1429 = local1248.averagecolour;
+								if (local1248.secondaryColor >= 0) {
+									local1429 = local1248.secondaryColor;
 									local1458 = local15 + (local1429 & 0x7F);
 									if (local1458 < 0) {
 										local1458 = 0;
@@ -318,7 +319,7 @@ public final class Static45 {
 								}
 								Static176.method3305(level, z0, x0, local322, local1242, local1288, local200, dx, dz, len, ColorUtils.multiplyLightnessSafe(normalZ, normalX), ColorUtils.multiplyLightnessSafe(local273, normalX), ColorUtils.multiplyLightnessSafe(local326, normalX), ColorUtils.multiplyLightnessSafe(local332, normalX), ColorUtils.multiplyLightnessGrayscale(local1301, normalZ), ColorUtils.multiplyLightnessGrayscale(local1301, local273), ColorUtils.multiplyLightnessGrayscale(local1301, local326), ColorUtils.multiplyLightnessGrayscale(local1301, local332), normalY, local1353);
 								if (GlRenderer.enabled && level > 0) {
-									Static242.method4197(local322, local1242, local1301 == -2 || !local1248.hardshadow, normalX == -1 || !Static199.method3593(z - 1).occlude, z0, x0, local200 - SceneGraph.tileHeights[0][z0][x0], dx - SceneGraph.tileHeights[0][z0 + 1][x0], dz - SceneGraph.tileHeights[0][z0 + 1][x0 + 1], -SceneGraph.tileHeights[0][z0][x0 + 1] + len);
+									Static242.method4197(local322, local1242, local1301 == -2 || !local1248.hardShadow, normalX == -1 || !FloorUnderlayTypeList.get(z - 1).blockShadow, z0, x0, local200 - SceneGraph.tileHeights[0][z0][x0], dx - SceneGraph.tileHeights[0][z0 + 1][x0], dz - SceneGraph.tileHeights[0][z0 + 1][x0 + 1], -SceneGraph.tileHeights[0][z0][x0 + 1] + len);
 								}
 							}
 						}
@@ -377,7 +378,7 @@ public final class Static45 {
 		for (level = 0; level < 104; level++) {
 			for (local2204 = 0; local2204 < 104; local2204++) {
 				if ((SceneGraph.renderFlags[1][level][local2204] & 0x2) == 2) {
-					FluTypeList.method3884(level, local2204);
+					SceneGraph.method3884(level, local2204);
 				}
 			}
 		}

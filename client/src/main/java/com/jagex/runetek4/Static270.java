@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static270 {
 
-	@OriginalMember(owner = "runetek4.client!wb", name = "b", descriptor = "[I")
-	public static int[] anIntArray562;
-
 	@OriginalMember(owner = "runetek4.client!wb", name = "l", descriptor = "Lclient!fd;")
 	public static WorldMapFont aClass41_9;
 
@@ -143,15 +140,15 @@ public final class Static270 {
 		} else if (arg1 == 2) {
 			return arg0.getGWCLocation().name.method3126(arg2.getGWCLocation().name);
 		} else if (arg1 == 3) {
-			if (arg0.activity.method3108(Static111.aClass100_570)) {
-				if (arg2.activity.method3108(Static111.aClass100_570)) {
+			if (arg0.activity.strEquals(Static111.aClass100_570)) {
+				if (arg2.activity.strEquals(Static111.aClass100_570)) {
 					return 0;
 				} else if (arg3) {
 					return -1;
 				} else {
 					return 1;
 				}
-			} else if (arg2.activity.method3108(Static111.aClass100_570)) {
+			} else if (arg2.activity.strEquals(Static111.aClass100_570)) {
 				return arg3 ? 1 : -1;
 			} else {
 				return arg0.activity.method3126(arg2.activity);

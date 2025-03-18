@@ -8,9 +8,6 @@ public final class Static71 {
 	@OriginalMember(owner = "client!fk", name = "e", descriptor = "I")
 	public static int anInt1885;
 
-	@OriginalMember(owner = "client!fk", name = "g", descriptor = "Z")
-	public static boolean aBoolean107 = true;
-
 	@OriginalMember(owner = "client!fk", name = "k", descriptor = "[I")
 	public static final int[] anIntArray147 = new int[14];
 
@@ -18,11 +15,6 @@ public final class Static71 {
 	public static void removeSoft() {
 		Static279.aClass99_38.removeSoft();
 		SpotAnimDefinition.modelCache.removeSoft();
-	}
-
-	@OriginalMember(owner = "client!fk", name = "b", descriptor = "(IB)V")
-	public static void method1443() {
-		Static83.aClass99_3.clean(5);
 	}
 
 	@OriginalMember(owner = "client!fk", name = "c", descriptor = "(I)V")

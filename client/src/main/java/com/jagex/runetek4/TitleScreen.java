@@ -47,10 +47,10 @@ public class TitleScreen {
     @OriginalMember(owner = "runetek4.client!lk", name = "a", descriptor = "(ILclient!ve;)I")
     public static int getReady(@OriginalArg(1) Js5 arg0) {
         @Pc(1) int local1 = 0;
-        if (arg0.method4506(Static262.bgId)) {
+        if (arg0.isFileReady(Static262.bgId)) {
             local1++;
         }
-        if (arg0.method4506(Static136.logoId)) {
+        if (arg0.isFileReady(Static136.logoId)) {
             local1++;
         }
         return local1;

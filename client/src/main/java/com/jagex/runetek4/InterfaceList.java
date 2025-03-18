@@ -114,7 +114,7 @@ public class InterfaceList {
         PlayerList.self.zFine = 3000;
         PlayerList.self.xFine = 3000;
         if (!GlRenderer.enabled) {
-            Static145.method2743(client.js5Archive8);
+            Flames.load(client.js5Archive8);
             client.processGameStatus(10);
             return;
         }
@@ -176,9 +176,9 @@ public class InterfaceList {
         }
         if (MiniMenu.menuActionRow == 1) {
             ClientScriptRunner.aBoolean108 = false;
-            Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
+            redrawScreen(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
         } else {
-            Static133.method4012(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
+            redrawScreen(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
             local43 = Fonts.b12Full.getStringWidth(LocalizedText.CHOOSE_OPTION);
             for (@Pc(75) int local75 = 0; local75 < MiniMenu.menuActionRow; local75++) {
                 @Pc(88) int local88 = Fonts.b12Full.getStringWidth(Static269.method2228(local75));
@@ -290,6 +290,15 @@ public class InterfaceList {
             return null;
         } else {
             return local7.createdComponents[arg1];
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!kf", name = "a", descriptor = "(IIBII)V")
+    public static void redrawScreen(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+        for (@Pc(12) int local12 = 0; local12 < rectangles; local12++) {
+            if (rectangleWidth[local12] + rectangleX[local12] > arg0 && arg1 + arg0 > rectangleX[local12] && arg2 < rectangleHeight[local12] + rectangleY[local12] && rectangleY[local12] < arg2 + arg3) {
+                aBooleanArray100[local12] = true;
+            }
         }
     }
 }

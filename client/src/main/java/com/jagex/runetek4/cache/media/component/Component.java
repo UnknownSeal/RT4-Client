@@ -1265,7 +1265,7 @@ public final class Component {
 		if (font != null) {
 			return font;
 		}
-		font = Static127.getFont(this.fontId, InterfaceList.gameImageJs5, CacheArchive.aClass153_64);
+		font = Font.getFont(this.fontId, InterfaceList.gameImageJs5, CacheArchive.aClass153_64);
 		if (font == null) {
 			aBoolean72 = true;
 		} else {

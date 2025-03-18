@@ -6,14 +6,8 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static26 {
 
-	@OriginalMember(owner = "client!ca", name = "Y", descriptor = "[I")
-	public static int[] anIntArray66;
-
 	@OriginalMember(owner = "client!ca", name = "cb", descriptor = "Lclient!na;")
 	public static final JString aClass100_160 = Static165.method3165();
-
-	@OriginalMember(owner = "client!ca", name = "db", descriptor = "I")
-	public static int anInt865 = 0;
 
 	@OriginalMember(owner = "client!ca", name = "fb", descriptor = "[I")
 	public static final int[] anIntArray68 = new int[50];

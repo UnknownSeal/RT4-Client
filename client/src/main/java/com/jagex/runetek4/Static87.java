@@ -13,9 +13,6 @@ public final class Static87 {
 	@OriginalMember(owner = "client!gn", name = "d", descriptor = "Z")
 	public static boolean aBoolean130 = false;
 
-	@OriginalMember(owner = "client!gn", name = "v", descriptor = "Lclient!na;")
-	public static final JString aClass100_494 = JString.parse("null");
-
 	@OriginalMember(owner = "client!gn", name = "a", descriptor = "(BI)Lclient!na;")
 	public static JString method1804(@OriginalArg(1) int capacity) {
 		@Pc(13) JString local13 = new JString();

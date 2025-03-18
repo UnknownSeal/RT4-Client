@@ -23,9 +23,6 @@ public final class Static139 {
 	@OriginalMember(owner = "runetek4.client!l", name = "d", descriptor = "Lclient!na;")
 	public static final JString aClass100_659 = JString.parse(")4j");
 
-	@OriginalMember(owner = "runetek4.client!l", name = "f", descriptor = "Lclient!n;")
-	public static final NodeCache fontMetrics = new NodeCache(4);
-
 	@OriginalMember(owner = "runetek4.client!l", name = "k", descriptor = "I")
 	public static int anInt3451 = 2;
 

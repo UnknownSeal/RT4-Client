@@ -2,8 +2,6 @@ package com.jagex.runetek4;
 
 import java.io.UnsupportedEncodingException;
 
-import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -34,7 +32,7 @@ public final class Static230 {
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(IIBIII)V")
 	public static void method3950(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		if (arg0 >= Static172.anInt4164 && arg3 <= FluTypeList.anInt5063 && Static267.anInt5773 <= arg4 && Static106.anInt2869 >= arg2) {
+		if (arg0 >= Static172.anInt4164 && arg3 <= FloorUnderlayTypeList.anInt5063 && Static267.anInt5773 <= arg4 && Static106.anInt2869 >= arg2) {
 			Static176.method3308(arg2, arg3, arg4, arg0, arg1);
 		} else {
 			Static163.method3105(arg1, arg3, arg4, arg0, arg2);
@@ -58,31 +56,6 @@ public final class Static230 {
 			}
 		}
 		return local23;
-	}
-
-	@OriginalMember(owner = "runetek4.client!sj", name = "b", descriptor = "(II)Lclient!cb;")
-	public static QuickChatPhraseType list(@OriginalArg(1) int id) {
-		@Pc(10) QuickChatPhraseType cached = (QuickChatPhraseType) Static249.recentUse.get((long) id);
-		if (cached != null) {
-			return cached;
-		}
-
-		@Pc(27) byte[] bytes;
-		if (id >= 32768) {
-			bytes = Static262.configClientLarge.getfile(1, id & 0x7FFF);
-		} else {
-			bytes = Static238.configClientSmall.getfile(1, id);
-		}
-
-		QuickChatPhraseType quickChatPhraseType = new QuickChatPhraseType();
-		if (bytes != null) {
-			quickChatPhraseType.decode(new Packet(bytes));
-		}
-		if (id >= 32768) {
-			quickChatPhraseType.postDecode();
-		}
-		Static249.recentUse.put(quickChatPhraseType, (long) id);
-		return quickChatPhraseType;
 	}
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(ILclient!na;)V")
