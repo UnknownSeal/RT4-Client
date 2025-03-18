@@ -12,9 +12,6 @@ public final class Static250 {
 	@OriginalMember(owner = "runetek4.client!uf", name = "r", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_101;
 
-	@OriginalMember(owner = "runetek4.client!uf", name = "e", descriptor = "I")
-	public static int anInt5434 = 0;
-
 	@OriginalMember(owner = "runetek4.client!uf", name = "j", descriptor = "Lclient!n;")
 	public static final NodeCache aClass99_33 = new NodeCache(260);
 

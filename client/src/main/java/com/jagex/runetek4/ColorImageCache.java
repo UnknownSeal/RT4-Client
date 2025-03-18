@@ -8,34 +8,34 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("runetek4.client!pf")
 public final class ColorImageCache {
 
-	@OriginalMember(owner = "runetek4.client!ib", name = "c", descriptor = "Lclient!qi;")
+	@OriginalMember(owner = "client!ib", name = "c", descriptor = "Lclient!qi;")
 	public static final ColorImageCacheEntry VALID = new ColorImageCacheEntry(0, 0);
 
-	@OriginalMember(owner = "runetek4.client!pf", name = "d", descriptor = "I")
+	@OriginalMember(owner = "client!pf", name = "d", descriptor = "I")
 	private int size = 0;
 
-	@OriginalMember(owner = "runetek4.client!pf", name = "m", descriptor = "I")
+	@OriginalMember(owner = "client!pf", name = "m", descriptor = "I")
 	private int singleRow = -1;
 
-	@OriginalMember(owner = "runetek4.client!pf", name = "p", descriptor = "Lclient!ih;")
+	@OriginalMember(owner = "client!pf", name = "p", descriptor = "Lclient!ih;")
 	private LinkedList recentlyUsed = new LinkedList();
 
-	@OriginalMember(owner = "runetek4.client!pf", name = "t", descriptor = "Z")
+	@OriginalMember(owner = "client!pf", name = "t", descriptor = "Z")
 	public boolean invalid = false;
 
-	@OriginalMember(owner = "runetek4.client!pf", name = "a", descriptor = "I")
+	@OriginalMember(owner = "client!pf", name = "a", descriptor = "I")
 	private final int height;
 
-	@OriginalMember(owner = "runetek4.client!pf", name = "e", descriptor = "[Lclient!qi;")
+	@OriginalMember(owner = "client!pf", name = "e", descriptor = "[Lclient!qi;")
 	private ColorImageCacheEntry[] entries;
 
-	@OriginalMember(owner = "runetek4.client!pf", name = "s", descriptor = "I")
+	@OriginalMember(owner = "client!pf", name = "s", descriptor = "I")
 	private final int capacity;
 
-	@OriginalMember(owner = "runetek4.client!pf", name = "g", descriptor = "[[I")
+	@OriginalMember(owner = "client!pf", name = "g", descriptor = "[[I")
 	private int[][] pixels;
 
-	@OriginalMember(owner = "runetek4.client!pf", name = "<init>", descriptor = "(III)V")
+	@OriginalMember(owner = "client!pf", name = "<init>", descriptor = "(III)V")
 	public ColorImageCache(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		this.height = arg1;
 		this.entries = new ColorImageCacheEntry[this.height];
@@ -43,8 +43,8 @@ public final class ColorImageCache {
 		this.pixels = new int[this.capacity][arg2];
 	}
 
-	@OriginalMember(owner = "runetek4.client!pf", name = "b", descriptor = "(I)V")
-	public final void clear() {
+	@OriginalMember(owner = "client!pf", name = "b", descriptor = "(I)V")
+	public void clear() {
 		for (@Pc(3) int i = 0; i < this.capacity; i++) {
 			this.pixels[i] = null;
 		}
@@ -54,8 +54,8 @@ public final class ColorImageCache {
 		this.recentlyUsed = null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!pf", name = "b", descriptor = "(II)[I")
-	public final int[] get(@OriginalArg(1) int row) {
+	@OriginalMember(owner = "client!pf", name = "b", descriptor = "(II)[I")
+	public int[] get(@OriginalArg(1) int row) {
 		if (this.height == this.capacity) {
 			this.invalid = this.entries[row] == null;
 			this.entries[row] = VALID;
@@ -86,8 +86,8 @@ public final class ColorImageCache {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!pf", name = "a", descriptor = "(B)[[I")
-	public final int[][] method3446() {
+	@OriginalMember(owner = "client!pf", name = "a", descriptor = "(B)[[I")
+	public int[][] method3446() {
 		if (this.capacity != this.height) {
 			throw new RuntimeException("Can only retrieve a full image cache");
 		}

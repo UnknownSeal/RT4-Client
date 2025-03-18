@@ -11,9 +11,6 @@ public final class Static123 {
 	@OriginalMember(owner = "runetek4.client!jj", name = "d", descriptor = "Lclient!na;")
 	public static final JString HEADICONS_PK = JString.parse("headicons_pk");
 
-	@OriginalMember(owner = "runetek4.client!jj", name = "e", descriptor = "I")
-	public static int anInt3058 = 0;
-
 	@OriginalMember(owner = "runetek4.client!jj", name = "g", descriptor = "Lclient!na;")
 	public static final JString aClass100_593 = JString.parse(" (X");
 

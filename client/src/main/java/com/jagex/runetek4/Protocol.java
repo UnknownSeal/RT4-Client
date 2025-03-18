@@ -24,6 +24,12 @@ public class Protocol {
     public static final PacketBit outboundBuffer = new PacketBit(5000);
     @OriginalMember(owner = "runetek4.client!eg", name = "e", descriptor = "Lclient!i;")
     public static final PacketBit inboundBuffer = new PacketBit(65536);
+    @OriginalMember(owner = "runetek4.client!ef", name = "f", descriptor = "Lclient!na;")
+    public static final JString DUELSTAKE = JString.parse(":duelstake:");
+    @OriginalMember(owner = "client!en", name = "h", descriptor = "Lclient!na;")
+    public static final JString CHALREQ = JString.parse(":chalreq:");
+    @OriginalMember(owner = "client!fb", name = "i", descriptor = "Lclient!na;")
+    public static final JString MAX_AGE = JString.parse("; Max)2Age=");
     @OriginalMember(owner = "runetek4.client!qi", name = "t", descriptor = "I")
     public static int anInt4762 = 0;
     @OriginalMember(owner = "runetek4.client!fe", name = "R", descriptor = "Z")
@@ -230,7 +236,7 @@ public class Protocol {
                 if (!ignored && Player.overrideChat == 0) {
                     Chat.addMessage(message2, 4, LocalizedText.TRADEREQ);
                 }
-            } else if (message.endsWith(Static61.CHALREQ)) {
+            } else if (message.endsWith(CHALREQ)) {
                 message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
                 username = message2.encode37();
                 ignored = false;
@@ -270,7 +276,7 @@ public class Protocol {
                 if (Player.overrideChat == 0) {
                     Chat.addMessage(JString.EMPTY, 13, message2);
                 }
-            } else if (message.endsWith(Static56.DUELSTAKE)) {
+            } else if (message.endsWith(DUELSTAKE)) {
                 ignored = false;
                 message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
                 username = message2.encode37();
@@ -1229,7 +1235,7 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 32) {
-                                Static86.method1800();
+                                method1800();
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 119) {
@@ -1681,5 +1687,96 @@ public class Protocol {
         verifyId = verifyID + 1 & 0xFFFF;
         verifyIdChanged = true;
         return true;
+    }
+
+    @OriginalMember(owner = "client!dm", name = "a", descriptor = "(B)V")
+    public static void method1202() {
+        inboundBuffer.accessBits();
+        @Pc(13) int local13 = inboundBuffer.gBit(8);
+        @Pc(22) int local22;
+        if (NpcList.npcCount > local13) {
+            for (local22 = local13; local22 < NpcList.npcCount; local22++) {
+                Static52.entityRemovalIds[Static240.entityRemovalCount++] = NpcList.npcIds[local22];
+            }
+        }
+        if (NpcList.npcCount < local13) {
+            throw new RuntimeException("gnpov1");
+        }
+        NpcList.npcCount = 0;
+        for (local22 = 0; local22 < local13; local22++) {
+            @Pc(61) int local61 = NpcList.npcIds[local22];
+            @Pc(65) Npc local65 = NpcList.npcs[local61];
+            @Pc(70) int local70 = inboundBuffer.gBit(1);
+            if (local70 == 0) {
+                NpcList.npcIds[NpcList.npcCount++] = local61;
+                local65.cycle = client.loop;
+            } else {
+                @Pc(92) int local92 = inboundBuffer.gBit(2);
+                if (local92 == 0) {
+                    NpcList.npcIds[NpcList.npcCount++] = local61;
+                    local65.cycle = client.loop;
+                    Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
+                } else {
+                    @Pc(139) int local139;
+                    @Pc(149) int local149;
+                    if (local92 == 1) {
+                        NpcList.npcIds[NpcList.npcCount++] = local61;
+                        local65.cycle = client.loop;
+                        local139 = inboundBuffer.gBit(3);
+                        local65.method2684(1, local139);
+                        local149 = inboundBuffer.gBit(1);
+                        if (local149 == 1) {
+                            Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
+                        }
+                    } else if (local92 == 2) {
+                        NpcList.npcIds[NpcList.npcCount++] = local61;
+                        local65.cycle = client.loop;
+                        if (inboundBuffer.gBit(1) == 1) {
+                            local139 = inboundBuffer.gBit(3);
+                            local65.method2684(2, local139);
+                            local149 = inboundBuffer.gBit(3);
+                            local65.method2684(2, local149);
+                        } else {
+                            local139 = inboundBuffer.gBit(3);
+                            local65.method2684(0, local139);
+                        }
+                        local139 = inboundBuffer.gBit(1);
+                        if (local139 == 1) {
+                            Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
+                        }
+                    } else if (local92 == 3) {
+                        Static52.entityRemovalIds[Static240.entityRemovalCount++] = local61;
+                    }
+                }
+            }
+        }
+    }
+
+    @OriginalMember(owner = "client!gm", name = "h", descriptor = "(I)V")
+    public static void method1800() {
+        Static116.entityUpdateCount = 0;
+        Static240.entityRemovalCount = 0;
+        method1202();
+        Static278.method4645();
+        Static234.method4014();
+        @Pc(19) int i;
+        for (i = 0; i < Static240.entityRemovalCount; i++) {
+            @Pc(30) int local30 = Static52.entityRemovalIds[i];
+            if (NpcList.npcs[local30].cycle != client.loop) {
+                if (NpcList.npcs[local30].type.hasBackgroundSound()) {
+                    AreaSoundManager.remove(NpcList.npcs[local30]);
+                }
+                NpcList.npcs[local30].method2698(null);
+                NpcList.npcs[local30] = null;
+            }
+        }
+        if (Static223.packetSize != inboundBuffer.offset) {
+            throw new RuntimeException("gnp1 pos:" + inboundBuffer.offset + " psize:" + Static223.packetSize);
+        }
+        for (i = 0; i < NpcList.npcCount; i++) {
+            if (NpcList.npcs[NpcList.npcIds[i]] == null) {
+                throw new RuntimeException("gnp2 pos:" + i + " size:" + NpcList.npcCount);
+            }
+        }
     }
 }

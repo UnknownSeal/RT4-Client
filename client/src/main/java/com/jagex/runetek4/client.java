@@ -1361,7 +1361,7 @@ public final class client extends GameShell {
 				mainLoadState = 45;
 			} else {
 				if (percentage != 0) {
-					mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.CHECKING_FOR_UPDATES, JString.parseInt(percentage), Static49.PERCENT_SIGN});
+					mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.CHECKING_FOR_UPDATES, JString.parseInt(percentage), JString.PERCENT_SIGN});
 				}
 				mainLoadPercentage = 20;
 			}
@@ -1388,7 +1388,7 @@ public final class client extends GameShell {
 				mainLoadPercentage = 35;
 				mainLoadState = 60;
 			} else {
-				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD50, JString.parseInt(percentage * 100 / i), Static49.PERCENT_SIGN});
+				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD50, JString.parseInt(percentage * 100 / i), JString.PERCENT_SIGN});
 				mainLoadPercentage = 35;
 			}
 		} else if (mainLoadState == 60) {
@@ -1399,7 +1399,7 @@ public final class client extends GameShell {
 				mainLoadState = 65;
 				mainLoadPercentage = 40;
 			} else {
-				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD60, JString.parseInt(percentage * 100 / i), Static49.PERCENT_SIGN});
+				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD60, JString.parseInt(percentage * 100 / i), JString.PERCENT_SIGN});
 				mainLoadPercentage = 40;
 			}
 		} else if (mainLoadState == 65) {
@@ -1458,14 +1458,14 @@ public final class client extends GameShell {
 				Equipment.init();
 				mainLoadState = 80;
 			} else {
-				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD70, JString.parseInt(percentage / 11), Static49.PERCENT_SIGN});
+				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD70, JString.parseInt(percentage / 11), JString.PERCENT_SIGN});
 				mainLoadPercentage = 50;
 			}
 		} else if (mainLoadState == 80) {
 			percentage = Sprites.getReady(js5Archive8);
 			i = Sprites.total();
 			if (i > percentage) {
-				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD80, JString.parseInt(percentage * 100 / i), Static49.PERCENT_SIGN});
+				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD80, JString.parseInt(percentage * 100 / i), JString.PERCENT_SIGN});
 				mainLoadPercentage = 60;
 			} else {
 				Sprites.load(js5Archive8);
@@ -1493,7 +1493,7 @@ public final class client extends GameShell {
 				mainLoadState = 100;
 				mainLoadPercentage = 70;
 			} else {
-				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD90, JString.parseInt(js5Archive26.getPercentageComplete()), Static49.PERCENT_SIGN});
+				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD90, JString.parseInt(js5Archive26.getPercentageComplete()), JString.PERCENT_SIGN});
 				mainLoadPercentage = 70;
 			}
 		} else if (mainLoadState == 100) {
@@ -1519,13 +1519,13 @@ public final class client extends GameShell {
 			}
 		} else if (mainLoadState == 130) {
 			if (!js5Archive3.fetchAll()) {
-				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(js5Archive3.getPercentageComplete() * 3 / 4), Static49.PERCENT_SIGN});
+				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(js5Archive3.getPercentageComplete() * 3 / 4), JString.PERCENT_SIGN});
 				mainLoadPercentage = 85;
 			} else if (!js5Archive12.fetchAll()) {
-				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(js5Archive12.getPercentageComplete() / 10 + 75), Static49.PERCENT_SIGN});
+				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(js5Archive12.getPercentageComplete() / 10 + 75), JString.PERCENT_SIGN});
 				mainLoadPercentage = 85;
 			} else if (!js5Archive13.fetchAll()) {
-				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(js5Archive13.getPercentageComplete() / 20 + 85), Static49.PERCENT_SIGN});
+				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(js5Archive13.getPercentageComplete() / 20 + 85), JString.PERCENT_SIGN});
 				mainLoadPercentage = 85;
 			} else if (js5Archive23.method4489(DETAILS)) {
 				Static234.method4018(Static173.aClass3_Sub2_Sub1_Sub1Array9, js5Archive23);
@@ -1533,7 +1533,7 @@ public final class client extends GameShell {
 				mainLoadSecondaryText = LocalizedText.MAINLOAD130B;
 				mainLoadState = 135;
 			} else {
-				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(js5Archive23.method4478(DETAILS) / 10 + 90), Static49.PERCENT_SIGN});
+				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(js5Archive23.method4478(DETAILS) / 10 + 90), JString.PERCENT_SIGN});
 				mainLoadPercentage = 85;
 			}
 		} else if (mainLoadState == 135) {

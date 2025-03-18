@@ -7,19 +7,19 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static63 {
 
-	@OriginalMember(owner = "runetek4.client!fa", name = "a", descriptor = "I")
+	@OriginalMember(owner = "client!fa", name = "a", descriptor = "I")
 	public static int oncard_texture = 0;
 
-	@OriginalMember(owner = "runetek4.client!fa", name = "c", descriptor = "I")
+	@OriginalMember(owner = "client!fa", name = "c", descriptor = "I")
 	public static int anInt1943 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fa", name = "e", descriptor = "I")
+	@OriginalMember(owner = "client!fa", name = "e", descriptor = "I")
 	public static int oncard_2d = 0;
 
-	@OriginalMember(owner = "runetek4.client!fa", name = "f", descriptor = "I")
+	@OriginalMember(owner = "client!fa", name = "f", descriptor = "I")
 	public static int oncard_geometry = 0;
 
-	@OriginalMember(owner = "runetek4.client!fa", name = "a", descriptor = "(III)V")
+	@OriginalMember(owner = "client!fa", name = "a", descriptor = "(III)V")
 	public static synchronized void method1485(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		if (arg2 == anInt1943) {
 			@Pc(8) IntWrapper local8 = new IntWrapper(arg1);
@@ -28,7 +28,7 @@ public final class Static63 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fa", name = "a", descriptor = "(II)V")
+	@OriginalMember(owner = "client!fa", name = "a", descriptor = "(II)V")
 	public static synchronized void method1486(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		if (arg1 == anInt1943) {
 			@Pc(7) IntWrapper local7 = new IntWrapper();
@@ -37,7 +37,7 @@ public final class Static63 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fa", name = "b", descriptor = "()V")
+	@OriginalMember(owner = "client!fa", name = "b", descriptor = "()V")
 	public static synchronized void clear() {
 		anInt1943++;
 		GlCleaner.aClass69_48.clear();
@@ -49,7 +49,7 @@ public final class Static63 {
 		oncard_texture = 0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fa", name = "b", descriptor = "(III)V")
+	@OriginalMember(owner = "client!fa", name = "b", descriptor = "(III)V")
 	public static synchronized void method1489(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		if (arg2 == anInt1943) {
 			@Pc(8) IntWrapper local8 = new IntWrapper(arg1);
@@ -58,7 +58,7 @@ public final class Static63 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fa", name = "c", descriptor = "(III)V")
+	@OriginalMember(owner = "client!fa", name = "c", descriptor = "(III)V")
 	public static synchronized void method1491(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		if (arg2 == anInt1943) {
 			@Pc(8) IntWrapper local8 = new IntWrapper(arg1);

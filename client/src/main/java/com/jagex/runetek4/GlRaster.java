@@ -5,15 +5,17 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
+import java.nio.IntBuffer;
+
 public class GlRaster {
-    @OriginalMember(owner = "runetek4.client!dj", name = "e", descriptor = "I")
+    @OriginalMember(owner = "client!dj", name = "e", descriptor = "I")
     public static int clipBottom = 0;
-    @OriginalMember(owner = "runetek4.client!dj", name = "b", descriptor = "I")
+    @OriginalMember(owner = "client!dj", name = "b", descriptor = "I")
     public static int clipTop = 0;
-    @OriginalMember(owner = "runetek4.client!dj", name = "d", descriptor = "I")
+    @OriginalMember(owner = "client!dj", name = "d", descriptor = "I")
     static int anInt1440 = 0;
 
-    @OriginalMember(owner = "runetek4.client!dj", name = "d", descriptor = "(IIII)V")
+    @OriginalMember(owner = "client!dj", name = "d", descriptor = "(IIII)V")
     public static void setClip(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
         if (arg0 < 0) {
             arg0 = 0;
@@ -41,7 +43,7 @@ public class GlRaster {
         Static46.method1173();
     }
 
-    @OriginalMember(owner = "runetek4.client!dj", name = "c", descriptor = "(IIIII)V")
+    @OriginalMember(owner = "client!dj", name = "c", descriptor = "(IIIII)V")
     public static void fillRect(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
         GlRenderer.method4162();
         @Pc(3) float local3 = (float) arg0;
@@ -58,7 +60,7 @@ public class GlRaster {
         local20.glEnd();
     }
 
-    @OriginalMember(owner = "runetek4.client!dj", name = "a", descriptor = "(IIIII)V")
+    @OriginalMember(owner = "client!dj", name = "a", descriptor = "(IIIII)V")
     public static void drawRect(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
         GlRenderer.method4162();
         @Pc(5) float local5 = (float) arg0 + 0.3F;
@@ -75,7 +77,7 @@ public class GlRaster {
         local29.glEnd();
     }
 
-    @OriginalMember(owner = "runetek4.client!dj", name = "c", descriptor = "(IIIIII)V")
+    @OriginalMember(owner = "client!dj", name = "c", descriptor = "(IIIIII)V")
     public static void fillRectAlpha(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int width, @OriginalArg(3) int height, @OriginalArg(4) int color, @OriginalArg(5) int alpha) {
         GlRenderer.method4162();
         @Pc(3) float local3 = (float) x;
@@ -92,7 +94,7 @@ public class GlRaster {
         local20.glEnd();
     }
 
-    @OriginalMember(owner = "runetek4.client!dj", name = "a", descriptor = "(IIIIII)V")
+    @OriginalMember(owner = "client!dj", name = "a", descriptor = "(IIIIII)V")
     public static void drawRectAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
         GlRenderer.method4162();
         @Pc(5) float local5 = (float) arg0 + 0.3F;
@@ -109,7 +111,7 @@ public class GlRaster {
         local29.glEnd();
     }
 
-    @OriginalMember(owner = "runetek4.client!dj", name = "c", descriptor = "(IIII)V")
+    @OriginalMember(owner = "client!dj", name = "c", descriptor = "(IIII)V")
     public static void method1183(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
         if (Static46.anInt1439 < arg0) {
             Static46.anInt1439 = arg0;
@@ -133,7 +135,7 @@ public class GlRaster {
         Static46.method1173();
     }
 
-    @OriginalMember(owner = "runetek4.client!dj", name = "c", descriptor = "()V")
+    @OriginalMember(owner = "client!dj", name = "c", descriptor = "()V")
     public static void method1177() {
         Static46.anInt1439 = 0;
         clipTop = 0;
@@ -144,7 +146,7 @@ public class GlRaster {
         Static46.method1173();
     }
 
-    @OriginalMember(owner = "runetek4.client!dj", name = "b", descriptor = "(IIIII)V")
+    @OriginalMember(owner = "client!dj", name = "b", descriptor = "(IIIII)V")
     public static void drawDiagonalLine(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
         GlRenderer.method4162();
         @Pc(5) float local5 = (float) arg0 + 0.3F;
@@ -207,5 +209,52 @@ public class GlRaster {
             local124.glVertex2f((float) local101, (float) (GlRenderer.canvasHeight - local121));
         }
         local124.glEnd();
+    }
+
+    @OriginalMember(owner = "client!dj", name = "d", descriptor = "()V")
+    public static void clear() {
+        GlRenderer.gl.glClear(GL2.GL_DEPTH_BUFFER_BIT | GL2.GL_COLOR_BUFFER_BIT);
+    }
+
+    @OriginalMember(owner = "client!dj", name = "a", descriptor = "([IIIII)V")
+    public static void render(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+        GlRenderer.method4162();
+        @Pc(2) GL2 local2 = GlRenderer.gl;
+        local2.glRasterPos2i(arg1, GlRenderer.canvasHeight - arg2);
+        local2.glPixelZoom(1.0F, -1.0F);
+        local2.glDisable(GL2.GL_BLEND);
+        local2.glDisable(GL2.GL_ALPHA_TEST);
+        local2.glDrawPixels(arg3, arg4, GL2.GL_BGRA, GlRenderer.bigEndian ? GL2.GL_UNSIGNED_INT_8_8_8_8_REV : GL2.GL_UNSIGNED_BYTE, IntBuffer.wrap(arg0));
+        local2.glEnable(GL2.GL_ALPHA_TEST);
+        local2.glEnable(GL2.GL_BLEND);
+        local2.glPixelZoom(1.0F, 1.0F);
+    }
+
+    @OriginalMember(owner = "client!dj", name = "b", descriptor = "(IIII)V")
+    public static void method1176(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
+        GlRenderer.method4162();
+        @Pc(5) float local5 = (float) arg0 + 0.3F;
+        @Pc(13) float local13 = (float) GlRenderer.canvasHeight - (float) arg1 - 0.3F;
+        @Pc(18) float local18 = local13 - (float) arg2;
+        @Pc(20) GL2 local20 = GlRenderer.gl;
+        local20.glBegin(GL2.GL_LINES);
+        local20.glColor3ub((byte) (arg3 >> 16), (byte) (arg3 >> 8), (byte) arg3);
+        local20.glVertex2f(local5, local13);
+        local20.glVertex2f(local5, local18);
+        local20.glEnd();
+    }
+
+    @OriginalMember(owner = "runetek4.client!dj", name = "a", descriptor = "(IIII)V")
+    public static void method1174(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
+        GlRenderer.method4162();
+        @Pc(5) float local5 = (float) arg0 + 0.3F;
+        @Pc(10) float local10 = local5 + (float) arg2;
+        @Pc(18) float local18 = (float) GlRenderer.canvasHeight - (float) arg1 - 0.3F;
+        @Pc(20) GL2 local20 = GlRenderer.gl;
+        local20.glBegin(GL2.GL_LINES);
+        local20.glColor3ub((byte) (arg3 >> 16), (byte) (arg3 >> 8), (byte) arg3);
+        local20.glVertex2f(local5, local18);
+        local20.glVertex2f(local10, local18);
+        local20.glEnd();
     }
 }

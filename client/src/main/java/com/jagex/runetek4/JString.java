@@ -23,7 +23,9 @@ public final class JString implements StringInterface {
 	public static final JString aClass100_375 = parse("<)4col> x");
 	@OriginalMember(owner = "runetek4.client!wa", name = "pb", descriptor = "Lclient!na;")
 	public static final JString aClass100_556 = parse("<br>");
-	@OriginalMember(owner = "runetek4.client!na", name = "T", descriptor = "[B")
+    @OriginalMember(owner = "client!dm", name = "n", descriptor = "Lclient!na;")
+    public static final JString PERCENT_SIGN = parse("(U");
+    @OriginalMember(owner = "runetek4.client!na", name = "T", descriptor = "[B")
 	public byte[] aByteArray52;
 
 	@OriginalMember(owner = "runetek4.client!na", name = "lb", descriptor = "I")

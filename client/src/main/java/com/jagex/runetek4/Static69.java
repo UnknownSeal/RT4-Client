@@ -13,16 +13,16 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static69 {
 
-	@OriginalMember(owner = "runetek4.client!fh", name = "cb", descriptor = "Lsignlink!ll;")
+	@OriginalMember(owner = "client!fh", name = "cb", descriptor = "Lsignlink!ll;")
 	public static SignLink aClass213_4;
 
-	@OriginalMember(owner = "runetek4.client!fh", name = "P", descriptor = "Z")
+	@OriginalMember(owner = "client!fh", name = "P", descriptor = "Z")
 	public static volatile boolean fullredraw = true;
 
-	@OriginalMember(owner = "runetek4.client!fh", name = "U", descriptor = "[[Z")
+	@OriginalMember(owner = "client!fh", name = "U", descriptor = "[[Z")
 	public static final boolean[][] aBooleanArrayArray2 = new boolean[][] { new boolean[0], { true, false, true }, { true, false, false, true }, { false, false, true, true }, { true, true, false }, { false, true, true }, { true, false, false, true }, { false, false, false, true, true }, { false, true, true }, { true, false, true, true, true }, { false, true, true, true, true }, { false, true, true, true, true, false } };
 
-	@OriginalMember(owner = "runetek4.client!fh", name = "a", descriptor = "(IIII)I")
+	@OriginalMember(owner = "client!fh", name = "a", descriptor = "(IIII)I")
 	public static int method1540(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
 		if (arg1 == arg2) {
 			return arg1;
@@ -34,7 +34,7 @@ public final class Static69 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fh", name = "a", descriptor = "(JI)V")
+	@OriginalMember(owner = "client!fh", name = "a", descriptor = "(JI)V")
 	public static void method1542(@OriginalArg(0) long arg0) {
 		if (arg0 == 0L) {
 			return;
@@ -54,7 +54,7 @@ public final class Static69 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fh", name = "a", descriptor = "(IIIILclient!th;JLclient!th;Lclient!th;)V")
+	@OriginalMember(owner = "client!fh", name = "a", descriptor = "(IIIILclient!th;JLclient!th;Lclient!th;)V")
 	public static void method1543(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Entity arg4, @OriginalArg(5) long arg5, @OriginalArg(6) Entity arg6, @OriginalArg(7) Entity arg7) {
 		@Pc(3) ObjStackEntity local3 = new ObjStackEntity();
 		local3.aClass8_9 = arg4;
@@ -84,7 +84,7 @@ public final class Static69 {
 		Static130.levelTiles[arg0][arg1][arg2].aClass79_1 = local3;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fh", name = "a", descriptor = "(Lclient!th;IIIII)V")
+	@OriginalMember(owner = "client!fh", name = "a", descriptor = "(Lclient!th;IIIII)V")
 	public static void method1544(@OriginalArg(0) Entity arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
 		@Pc(1) boolean local1 = true;
 		@Pc(3) int local3 = arg2;
@@ -128,47 +128,7 @@ public final class Static69 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fh", name = "a", descriptor = "(BLclient!ek;)V")
-	public static void method1545(@OriginalArg(1) SoftwareIndexedSprite arg0) {
-		@Pc(5) int local5;
-		for (local5 = 0; local5 < Static270.anIntArray562.length; local5++) {
-			Static270.anIntArray562[local5] = 0;
-		}
-		@Pc(36) int local36;
-		for (local5 = 0; local5 < 5000; local5++) {
-			local36 = (int) ((double) 256 * Math.random() * 128.0D);
-			Static270.anIntArray562[local36] = (int) (Math.random() * 284.0D);
-		}
-		@Pc(66) int local66;
-		@Pc(76) int local76;
-		for (local5 = 0; local5 < 20; local5++) {
-			for (local36 = 1; local36 < 255; local36++) {
-				for (local66 = 1; local66 < 127; local66++) {
-					local76 = local66 + (local36 << 7);
-					Static263.anIntArray516[local76] = (Static270.anIntArray562[local76 + 128] + Static270.anIntArray562[local76 - 1] + Static270.anIntArray562[local76 + 1] + Static270.anIntArray562[local76 + -128]) / 4;
-				}
-			}
-			@Pc(113) int[] local113 = Static270.anIntArray562;
-			Static270.anIntArray562 = Static263.anIntArray516;
-			Static263.anIntArray516 = local113;
-		}
-		if (arg0 == null) {
-			return;
-		}
-		local5 = 0;
-		for (local36 = 0; local36 < arg0.anInt4278; local36++) {
-			for (local66 = 0; local66 < arg0.anInt4270; local66++) {
-				if (arg0.aByteArray18[local5++] != 0) {
-					local76 = arg0.anInt4280 + local66 + 16;
-					@Pc(162) int local162 = arg0.anInt4273 + local36 + 16;
-					@Pc(169) int local169 = local76 + (local162 << 7);
-					Static270.anIntArray562[local169] = 0;
-				}
-			}
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!fh", name = "a", descriptor = "(Lclient!wa;I)V")
+	@OriginalMember(owner = "client!fh", name = "a", descriptor = "(Lclient!wa;I)V")
 	public static void method1546(@OriginalArg(0) Packet arg0) {
 		for (@Pc(7) int local7 = 0; local7 < Static106.anInt2871; local7++) {
 			@Pc(18) int local18 = arg0.gSmart1or2();

@@ -25,7 +25,7 @@ public class TitleScreen {
             return;
         }
         if (GlRenderer.enabled) {
-            Static46.method1184();
+            GlRaster.clear();
         } else {
             Rasterizer.clear();
         }

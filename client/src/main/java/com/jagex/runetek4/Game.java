@@ -646,13 +646,13 @@ public class Game {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!kd", name = "a", descriptor = "(Ljava/lang/String;B)V")
+    @OriginalMember(owner = "client!kd", name = "a", descriptor = "(Ljava/lang/String;B)V")
     public static void printHelp(@OriginalArg(0) String arg0) {
         System.out.println("Bad " + arg0 + ", Usage: worldid, <live/rc/wip>, <english/german>, <game0/game1>");
         System.exit(1);
     }
 
-    @OriginalMember(owner = "runetek4.client!nk", name = "c", descriptor = "(IZ)V")
+    @OriginalMember(owner = "client!nk", name = "c", descriptor = "(IZ)V")
     public static void pushNpcs(@OriginalArg(1) boolean arg0) {
         @Pc(7) int i;
         @Pc(16) Npc npc;
@@ -767,7 +767,7 @@ public class Game {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!cn", name = "b", descriptor = "(ZI)V")
+    @OriginalMember(owner = "client!cn", name = "b", descriptor = "(ZI)V")
     public static void pushPlayers(@OriginalArg(0) boolean arg0) {
         @Pc(3) int local3 = PlayerList.playerCount;
         if (LoginManager.mapFlagX == PlayerList.self.xFine >> 7 && PlayerList.self.zFine >> 7 == LoginManager.mapFlagZ) {
@@ -906,7 +906,7 @@ public class Game {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "(B)V")
+    @OriginalMember(owner = "client!wj", name = "b", descriptor = "(B)V")
     public static void processLogout() {
         if (Protocol.gameServerSocket != null) {
             Protocol.gameServerSocket.closeGracefully();
@@ -954,7 +954,7 @@ public class Game {
         InterfaceList.method1596(true);
     }
 
-    @OriginalMember(owner = "runetek4.client!nm", name = "a", descriptor = "(Z)V")
+    @OriginalMember(owner = "client!nm", name = "a", descriptor = "(Z)V")
     public static void tryReconnect() {
         if (idleTimeout > 0) {
             processLogout();
@@ -965,7 +965,7 @@ public class Game {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!pk", name = "i", descriptor = "(I)V")
+    @OriginalMember(owner = "client!pk", name = "i", descriptor = "(I)V")
     public static void pushProjectiles() {
         for (@Pc(16) ProjectileEntity proj = (ProjectileEntity) SceneGraph.projectiles.head(); proj != null; proj = (ProjectileEntity) SceneGraph.projectiles.next()) {
             @Pc(21) ProjectileAnimation projAnim = proj.aClass8_Sub6_1;
@@ -996,7 +996,7 @@ public class Game {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(Z)V")
+    @OriginalMember(owner = "client!u", name = "a", descriptor = "(Z)V")
     public static void pushSpotanims() {
         for (@Pc(9) SpotAnimEntity entity = (SpotAnimEntity) SceneGraph.spotanims.head(); entity != null; entity = (SpotAnimEntity) SceneGraph.spotanims.next()) {
             @Pc(15) SpotAnim spotAnim = entity.aClass8_Sub2_1;

@@ -25,7 +25,7 @@ public abstract class FrameBuffer {
 	@OriginalMember(owner = "client!vk", name = "k", descriptor = "I")
 	protected int anInt5341;
 
-	@OriginalMember(owner = "runetek4.client!kd", name = "a", descriptor = "(IIZLjava/awt/runetek4.Component;)Lclient!vk;")
+	@OriginalMember(owner = "client!kd", name = "a", descriptor = "(IIZLjava/awt/runetek4.Component;)Lclient!vk;")
 	public static FrameBuffer create(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) Component arg2) {
 		try {
 			@Pc(12) Class local12 = Class.forName("com.jagex.runetek4.BufferedImageFrameBuffer");

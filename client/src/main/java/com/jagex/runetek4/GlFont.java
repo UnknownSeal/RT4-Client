@@ -35,9 +35,17 @@ public final class GlFont extends Font {
 		this.method2880();
 	}
 
-	@OriginalMember(owner = "client!mb", name = "finalize", descriptor = "()V")
+    @OriginalMember(owner = "client!dj", name = "a", descriptor = "(Lclient!cf;)V")
+    public static void method1188(@OriginalArg(0) GlSprite arg0) {
+        if (arg0.height != GlRaster.clipBottom - GlRaster.clipTop) {
+            throw new IllegalArgumentException();
+        }
+        Static46.aClass3_Sub2_Sub1_Sub2_1 = arg0;
+    }
+
+    @OriginalMember(owner = "client!mb", name = "finalize", descriptor = "()V")
 	@Override
-	public final void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 		if (this.anInt3638 != -1) {
 			Static63.method1491(this.anInt3638, this.anInt3637, this.anInt3639);
 			this.anInt3638 = -1;
@@ -54,7 +62,7 @@ public final class GlFont extends Font {
 
 	@OriginalMember(owner = "client!mb", name = "a", descriptor = "(IIIIIIZ)V")
 	@Override
-	protected final void method2854(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
+	protected void method2854(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
 		@Pc(4) GL2 local4;
 		if (Static46.aClass3_Sub2_Sub1_Sub2_1 == null) {
 			GlRenderer.method4151();
@@ -108,7 +116,7 @@ public final class GlFont extends Font {
 
 	@OriginalMember(owner = "client!mb", name = "a", descriptor = "(IIIIIIIZ)V")
 	@Override
-	protected final void method2855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
+	protected void method2855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
 		GlRenderer.method4151();
 		@Pc(2) GL2 local2 = GlRenderer.gl;
 		GlRenderer.setTextureId(this.anInt3638);

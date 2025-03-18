@@ -178,14 +178,14 @@ public abstract class Font extends CachedNode {
 					@Pc(323) int local323 = this.anIntArray348[c];
 					if (Static218.strikethroughColor != -1) {
 						if (GlRenderer.enabled) {
-							Static46.method1174(x, y + (int) ((double) this.characterDefaultHeight * 0.7D), local323, Static218.strikethroughColor);
+							GlRaster.method1174(x, y + (int) ((double) this.characterDefaultHeight * 0.7D), local323, Static218.strikethroughColor);
 						} else {
 							Rasterizer.drawHorizontalLine(x, y + (int) ((double) this.characterDefaultHeight * 0.7D), local323, Static218.strikethroughColor);
 						}
 					}
 					if (Static218.underlineColor != -1) {
 						if (GlRenderer.enabled) {
-							Static46.method1174(x, y + this.characterDefaultHeight + 1, local323, Static218.underlineColor);
+							GlRaster.method1174(x, y + this.characterDefaultHeight + 1, local323, Static218.underlineColor);
 						} else {
 							Rasterizer.drawHorizontalLine(x, y + this.characterDefaultHeight + 1, local323, Static218.underlineColor);
 						}
@@ -870,14 +870,14 @@ public abstract class Font extends CachedNode {
 					@Pc(387) int local387 = this.anIntArray348[local24];
 					if (Static218.strikethroughColor != -1) {
 						if (GlRenderer.enabled) {
-							Static46.method1174(arg1, local4 + (int) ((double) this.characterDefaultHeight * 0.7D), local387, Static218.strikethroughColor);
+							GlRaster.method1174(arg1, local4 + (int) ((double) this.characterDefaultHeight * 0.7D), local387, Static218.strikethroughColor);
 						} else {
 							Rasterizer.drawHorizontalLine(arg1, local4 + (int) ((double) this.characterDefaultHeight * 0.7D), local387, Static218.strikethroughColor);
 						}
 					}
 					if (Static218.underlineColor != -1) {
 						if (GlRenderer.enabled) {
-							Static46.method1174(arg1, local4 + this.characterDefaultHeight, local387, Static218.underlineColor);
+							GlRaster.method1174(arg1, local4 + this.characterDefaultHeight, local387, Static218.underlineColor);
 						} else {
 							Rasterizer.drawHorizontalLine(arg1, local4 + this.characterDefaultHeight, local387, Static218.underlineColor);
 						}

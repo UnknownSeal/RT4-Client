@@ -59,9 +59,6 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "runetek4.client!t", name = "l", descriptor = "Lclient!ma;")
 	public static BufferedSocket aClass95_4;
 
-	@OriginalMember(owner = "runetek4.client!t", name = "G", descriptor = "[Lclient!ek;")
-	public static SoftwareIndexedSprite[] aClass36_Sub1Array1;
-
 	@OriginalMember(owner = "runetek4.client!t", name = "m", descriptor = "Z")
 	public static volatile boolean focus_in = true;
 
@@ -417,7 +414,7 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!be;Lclient!na;I)Lclient!na;")
 	public static JString interpolate(@OriginalArg(0) Component arg0, @OriginalArg(1) JString string) {
-		if (string.indexOf(Static49.PERCENT_SIGN) == -1) {
+		if (string.indexOf(JString.PERCENT_SIGN) == -1) {
 			return string;
 		}
 		while (true) {
@@ -1721,14 +1718,14 @@ public final class ClientScriptRunner {
 		}
 		GlRaster.fillRect(arg2, arg3 + 16, 16, arg4 - 32, anInt4306);
 		GlRaster.fillRect(arg2, arg3 + local54 + 16, 16, local35, anInt1704);
-		Static46.method1176(arg2, local54 + arg3 + 16, local35, anInt4938);
-		Static46.method1176(arg2 + 1, local54 + 16 + arg3, local35, anInt4938);
-		Static46.method1174(arg2, local54 + arg3 + 16, 16, anInt4938);
-		Static46.method1174(arg2, local54 + arg3 + 17, 16, anInt4938);
-		Static46.method1176(arg2 + 15, arg3 + (16 - -local54), local35, anInt671);
-		Static46.method1176(arg2 + 14, arg3 - -local54 + 17, local35 - 1, anInt671);
-		Static46.method1174(arg2, local35 + arg3 + local54 + 15, 16, anInt671);
-		Static46.method1174(arg2 + 1, arg3 + 14 - -local54 + local35, 15, anInt671);
+		GlRaster.method1176(arg2, local54 + arg3 + 16, local35, anInt4938);
+		GlRaster.method1176(arg2 + 1, local54 + 16 + arg3, local35, anInt4938);
+		GlRaster.method1174(arg2, local54 + arg3 + 16, 16, anInt4938);
+		GlRaster.method1174(arg2, local54 + arg3 + 17, 16, anInt4938);
+		GlRaster.method1176(arg2 + 15, arg3 + (16 - -local54), local35, anInt671);
+		GlRaster.method1176(arg2 + 14, arg3 - -local54 + 17, local35 - 1, anInt671);
+		GlRaster.method1174(arg2, local35 + arg3 + local54 + 15, 16, anInt671);
+		GlRaster.method1174(arg2 + 1, arg3 + 14 - -local54 + local35, 15, anInt671);
 	}
 
 	@OriginalMember(owner = "runetek4.client!fi", name = "a", descriptor = "(BI)Lclient!na;")

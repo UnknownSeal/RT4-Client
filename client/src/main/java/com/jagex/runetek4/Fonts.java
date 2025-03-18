@@ -9,16 +9,16 @@ import org.openrs2.deob.annotation.Pc;
 import java.awt.*;
 
 public class Fonts {
-    @OriginalMember(owner = "runetek4.client!wl", name = "q", descriptor = "Lclient!rk;")
+    @OriginalMember(owner = "client!wl", name = "q", descriptor = "Lclient!rk;")
     public static Font b12Full;
-    @OriginalMember(owner = "runetek4.client!vj", name = "j", descriptor = "Lclient!dd;")
+    @OriginalMember(owner = "client!vj", name = "j", descriptor = "Lclient!dd;")
     public static SoftwareFont p11FullSoftware;
-    @OriginalMember(owner = "runetek4.client!rh", name = "h", descriptor = "Lclient!rk;")
+    @OriginalMember(owner = "client!rh", name = "h", descriptor = "Lclient!rk;")
     public static Font p12Full;
-    @OriginalMember(owner = "runetek4.client!j", name = "x", descriptor = "Lclient!rk;")
+    @OriginalMember(owner = "client!j", name = "x", descriptor = "Lclient!rk;")
     public static Font p11Full;
 
-    @OriginalMember(owner = "runetek4.client!hn", name = "a", descriptor = "(Lclient!ve;ILclient!ve;)V")
+    @OriginalMember(owner = "client!hn", name = "a", descriptor = "(Lclient!ve;ILclient!ve;)V")
     public static void load(@OriginalArg(0) Js5 arg0, @OriginalArg(2) Js5 arg1) {
         p11Full = Static127.getFont(Static166.anInt4049, arg1, arg0);
         if (GlRenderer.enabled) {
@@ -30,7 +30,7 @@ public class Fonts {
         b12Full = Static127.getFont(Static73.anInt2077, arg1, arg0);
     }
 
-    @OriginalMember(owner = "runetek4.client!j", name = "a", descriptor = "(BZLclient!na;)V")
+    @OriginalMember(owner = "client!j", name = "a", descriptor = "(BZLclient!na;)V")
     public static void drawTextOnScreen(@OriginalArg(1) boolean arg0, @OriginalArg(2) JString arg1) {
         @Pc(24) int local24 = p12Full.method2856(arg1, 250);
         @Pc(31) int local31 = p12Full.method2860(arg1, 250) * 13;

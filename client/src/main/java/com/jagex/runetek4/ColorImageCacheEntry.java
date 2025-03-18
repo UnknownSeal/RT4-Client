@@ -8,13 +8,13 @@ import org.openrs2.deob.annotation.OriginalMember;
 @OriginalClass("runetek4.client!qi")
 public final class ColorImageCacheEntry extends Node {
 
-	@OriginalMember(owner = "runetek4.client!qi", name = "s", descriptor = "I")
+	@OriginalMember(owner = "client!qi", name = "s", descriptor = "I")
 	public final int index;
 
-	@OriginalMember(owner = "runetek4.client!qi", name = "q", descriptor = "I")
+	@OriginalMember(owner = "client!qi", name = "q", descriptor = "I")
 	public final int row;
 
-	@OriginalMember(owner = "runetek4.client!qi", name = "<init>", descriptor = "(II)V")
+	@OriginalMember(owner = "client!qi", name = "<init>", descriptor = "(II)V")
 	public ColorImageCacheEntry(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		this.index = arg1;
 		this.row = arg0;

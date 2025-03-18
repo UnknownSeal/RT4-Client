@@ -83,7 +83,7 @@ public final class GlIndexedSprite extends IndexedSprite {
 
 	@OriginalMember(owner = "client!oh", name = "a", descriptor = "(III)V")
 	@Override
-	public final void drawImageAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public void drawImageAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		GlRenderer.method4155();
 		@Pc(5) int local5 = arg0 + this.anInt4280;
 		@Pc(10) int local10 = arg1 + this.anInt4273;
@@ -108,7 +108,7 @@ public final class GlIndexedSprite extends IndexedSprite {
 
 	@OriginalMember(owner = "client!oh", name = "a", descriptor = "(II)V")
 	@Override
-	public final void drawImage(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public void drawImage(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		GlRenderer.method4149();
 		@Pc(5) int local5 = arg0 + this.anInt4280;
 		@Pc(10) int local10 = arg1 + this.anInt4273;
@@ -122,7 +122,7 @@ public final class GlIndexedSprite extends IndexedSprite {
 
 	@OriginalMember(owner = "client!oh", name = "finalize", descriptor = "()V")
 	@Override
-	public final void finalize() throws Throwable {
+	public void finalize() throws Throwable {
 		if (this.anInt4281 != -1) {
 			Static63.method1491(this.anInt4281, this.anInt4284, this.anInt4285);
 			this.anInt4281 = -1;

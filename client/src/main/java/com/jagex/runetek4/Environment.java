@@ -6,37 +6,37 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!li")
+@OriginalClass("client!li")
 public final class Environment {
 
-	@OriginalMember(owner = "runetek4.client!li", name = "c", descriptor = "I")
+	@OriginalMember(owner = "client!li", name = "c", descriptor = "I")
 	public final int anInt3526;
 
-	@OriginalMember(owner = "runetek4.client!li", name = "q", descriptor = "F")
+	@OriginalMember(owner = "client!li", name = "q", descriptor = "F")
 	public final float aFloat17;
 
-	@OriginalMember(owner = "runetek4.client!li", name = "d", descriptor = "I")
+	@OriginalMember(owner = "client!li", name = "d", descriptor = "I")
 	public final int anInt3527;
 
-	@OriginalMember(owner = "runetek4.client!li", name = "n", descriptor = "F")
+	@OriginalMember(owner = "client!li", name = "n", descriptor = "F")
 	public final float aFloat16;
 
-	@OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "I")
+	@OriginalMember(owner = "client!li", name = "a", descriptor = "I")
 	public final int anInt3525;
 
-	@OriginalMember(owner = "runetek4.client!li", name = "g", descriptor = "I")
+	@OriginalMember(owner = "client!li", name = "g", descriptor = "I")
 	public final int anInt3528;
 
-	@OriginalMember(owner = "runetek4.client!li", name = "s", descriptor = "F")
+	@OriginalMember(owner = "client!li", name = "s", descriptor = "F")
 	public final float aFloat18;
 
-	@OriginalMember(owner = "runetek4.client!li", name = "j", descriptor = "I")
+	@OriginalMember(owner = "client!li", name = "j", descriptor = "I")
 	public final int anInt3529;
 
-	@OriginalMember(owner = "runetek4.client!li", name = "k", descriptor = "I")
+	@OriginalMember(owner = "client!li", name = "k", descriptor = "I")
 	public final int anInt3530;
 
-	@OriginalMember(owner = "runetek4.client!li", name = "<init>", descriptor = "()V")
+	@OriginalMember(owner = "client!li", name = "<init>", descriptor = "()V")
 	public Environment() {
 		this.anInt3526 = 16777215;
 		this.aFloat17 = 1.2F;
@@ -49,7 +49,7 @@ public final class Environment {
 		this.anInt3530 = -50;
 	}
 
-	@OriginalMember(owner = "runetek4.client!li", name = "<init>", descriptor = "(Lclient!wa;)V")
+	@OriginalMember(owner = "client!li", name = "<init>", descriptor = "(Lclient!wa;)V")
 	public Environment(@OriginalArg(0) Packet packet) {
 		@Pc(7) int local7 = packet.g1();
 		if ((local7 & 0x1) == 0) {

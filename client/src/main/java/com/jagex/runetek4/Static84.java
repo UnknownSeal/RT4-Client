@@ -11,16 +11,16 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static84 {
 
-	@OriginalMember(owner = "runetek4.client!gk", name = "e", descriptor = "Lclient!ve;")
+	@OriginalMember(owner = "client!gk", name = "e", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_35;
 
-	@OriginalMember(owner = "runetek4.client!gk", name = "j", descriptor = "I")
+	@OriginalMember(owner = "client!gk", name = "j", descriptor = "I")
 	public static int anInt2257;
 
-	@OriginalMember(owner = "runetek4.client!gk", name = "l", descriptor = "Lclient!qf;")
+	@OriginalMember(owner = "client!gk", name = "l", descriptor = "Lclient!qf;")
 	public static Sprite aClass3_Sub2_Sub1_4;
 
-	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "(IIBLclient!e;)V")
+	@OriginalMember(owner = "client!gk", name = "a", descriptor = "(IIBLclient!e;)V")
 	public static void getPlayerExtended(@OriginalArg(0) int flags, @OriginalArg(1) int arg1, @OriginalArg(3) Player player) {
 		@Pc(13) int chatFlags;
 		@Pc(17) int staffModLevel;
@@ -190,7 +190,7 @@ public final class Static84 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "([BI)V")
+	@OriginalMember(owner = "client!gk", name = "a", descriptor = "([BI)V")
 	public static void method1770(@OriginalArg(0) byte[] arg0) {
 		@Pc(4) Packet local4 = new Packet(arg0);
 		local4.offset = arg0.length - 2;
@@ -279,12 +279,7 @@ public final class Static84 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gk", name = "b", descriptor = "(B)V")
-	public static void method1771() {
-		Static62.anIntArray150 = Static206.method3679(0.4F);
-	}
-
-	@OriginalMember(owner = "runetek4.client!gk", name = "a", descriptor = "(Lclient!rg;Lclient!rg;B)V")
+	@OriginalMember(owner = "client!gk", name = "a", descriptor = "(Lclient!rg;Lclient!rg;B)V")
 	public static void method1772(@OriginalArg(0) CachedNode arg0, @OriginalArg(1) CachedNode arg1) {
 		if (arg1.nextCachedNode != null) {
 			arg1.clear();

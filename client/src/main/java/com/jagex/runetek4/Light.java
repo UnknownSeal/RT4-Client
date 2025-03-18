@@ -10,6 +10,8 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("runetek4.client!gi")
 public final class Light {
 
+	@OriginalMember(owner = "client!f", name = "P", descriptor = "[I")
+	public static int[] NOISE;
 	@OriginalMember(owner = "runetek4.client!gi", name = "a", descriptor = "Z")
 	public final boolean aBoolean124;
 
@@ -72,8 +74,8 @@ public final class Light {
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "<init>", descriptor = "(Lclient!wa;)V")
 	public Light(@OriginalArg(0) Packet arg0) {
-		if (Static62.anIntArray150 == null) {
-			Static84.method1771();
+		if (NOISE == null) {
+			method1771();
 		}
 		this.anInt2241 = arg0.g1();
 		this.aBoolean124 = (this.anInt2241 & 0x10) != 0;
@@ -98,6 +100,27 @@ public final class Light {
 		}
 	}
 
+	@OriginalMember(owner = "runetek4.client!qk", name = "a", descriptor = "(ZIIIIFII)[I")
+	public static int[] createNoise(@OriginalArg(5) float arg0) {
+		@Pc(11) int[] local11 = new int[2048];
+		@Pc(15) TextureOp4 local15 = new TextureOp4();
+		local15.anInt646 = 8;
+		local15.anInt642 = 4;
+		local15.anInt650 = 35;
+		local15.anInt641 = 8;
+		local15.anInt648 = (int) (arg0 * 4096.0F);
+		local15.aBoolean44 = true;
+		local15.postDecode();
+		Texture.setSize(1, 2048);
+		local15.method584(0, local11);
+		return local11;
+	}
+
+	@OriginalMember(owner = "client!gk", name = "b", descriptor = "(B)V")
+	public static void method1771() {
+		NOISE = createNoise(0.4F);
+	}
+
 	@OriginalMember(owner = "runetek4.client!gi", name = "a", descriptor = "(BIIII)V")
 	public final void method1762(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		this.anInt2233 = arg0;
@@ -120,7 +143,7 @@ public final class Light {
 		if (local29 == 1) {
 			local62 = (MathUtils.sin[local26] >> 6) + 1024;
 		} else if (local29 == 3) {
-			local62 = Static62.anIntArray150[local26] >> 1;
+			local62 = NOISE[local26] >> 1;
 		} else if (local29 == 4) {
 			local62 = local26 >> 10 << 11;
 		} else if (local29 == 2) {

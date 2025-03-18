@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.js5.Js5;
@@ -40,7 +41,7 @@ public final class Static225 {
 						Static44.entityUpdateIds[Static116.entityUpdateCount++] = index;
 					}
 					@Pc(92) int dx = Protocol.inboundBuffer.gBit(5);
-					@Pc(99) int local99 = Static56.anIntArray141[Protocol.inboundBuffer.gBit(3)];
+					@Pc(99) int local99 = PathingEntity.ANGLES[Protocol.inboundBuffer.gBit(3)];
 					if (dx > 15) {
 						dx -= 32;
 					}

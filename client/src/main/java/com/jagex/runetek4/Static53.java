@@ -6,16 +6,16 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static53 {
 
-	@OriginalMember(owner = "runetek4.client!ec", name = "z", descriptor = "I")
+	@OriginalMember(owner = "client!ec", name = "z", descriptor = "I")
 	public static int anInt1716;
 
-	@OriginalMember(owner = "runetek4.client!ec", name = "d", descriptor = "Lclient!gn;")
+	@OriginalMember(owner = "client!ec", name = "d", descriptor = "Lclient!gn;")
 	public static final LruHashTable aClass54_5 = new LruHashTable(16);
 
-	@OriginalMember(owner = "runetek4.client!ec", name = "q", descriptor = "I")
+	@OriginalMember(owner = "client!ec", name = "q", descriptor = "I")
 	public static int anInt1708 = 0;
 
-	@OriginalMember(owner = "runetek4.client!ec", name = "B", descriptor = "[[I")
+	@OriginalMember(owner = "client!ec", name = "B", descriptor = "[[I")
 	public static final int[][] anIntArrayArray8 = new int[][] { new int[0], { 128, 0, 128, 128, 0, 128 }, { 0, 0, 128, 0, 128, 128, 64, 128 }, { 0, 128, 0, 0, 128, 0, 64, 128 }, { 0, 0, 64, 128, 0, 128 }, { 128, 128, 64, 128, 128, 0 }, { 64, 0, 128, 0, 128, 128, 64, 128 }, { 128, 0, 128, 128, 0, 128, 0, 64, 64, 0 }, { 0, 0, 64, 0, 0, 64 }, { 0, 0, 128, 0, 128, 128, 64, 96, 32, 64 }, { 0, 128, 0, 0, 32, 64, 64, 96, 128, 128 }, { 0, 128, 0, 0, 32, 32, 96, 32, 128, 0, 128, 128 } };
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "([[IZILclient!hg;[IIIIZ[[FZI[[FIIIZ[[I[[FBI[Z)V")
@@ -34,7 +34,7 @@ public final class Static53 {
 		arg3.method1945(arg6, arg7, arg5, local31, null, false);
 	}
 
-	@OriginalMember(owner = "runetek4.client!ec", name = "b", descriptor = "(I)V")
+	@OriginalMember(owner = "client!ec", name = "b", descriptor = "(I)V")
 	public static void clear() {
 		Static125.varbitDefinitionCache.clear();
 	}

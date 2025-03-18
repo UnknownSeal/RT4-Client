@@ -33,8 +33,8 @@ public final class Static145 {
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "a", descriptor = "(ILclient!ve;)V")
 	public static void method2743(@OriginalArg(1) Js5 arg0) {
-		ClientScriptRunner.aClass36_Sub1Array1 = Static162.method3088(Static138.anInt3443, arg0);
-		Static96.anIntArray235 = new int[256];
+		Flames.runes = Static162.method3088(Flames.runesID, arg0);
+		Flames.flameGradient = new int[256];
 		@Pc(15) int local15;
 		for (local15 = 0; local15 < 3; local15++) {
 			@Pc(30) int local30 = Static225.anIntArray445[local15 + 1] >> 16 & 0xFF;
@@ -47,21 +47,21 @@ public final class Static145 {
 			@Pc(88) int local88 = Static225.anIntArray445[local15 + 1] & 0xFF;
 			@Pc(95) float local95 = ((float) local88 - local55) / 64.0F;
 			for (@Pc(97) int local97 = 0; local97 < 64; local97++) {
-				Static96.anIntArray235[local97 + local15 * 64] = (int) local55 | (int) local48 << 8 | (int) local39 << 16;
+				Flames.flameGradient[local97 + local15 * 64] = (int) local55 | (int) local48 << 8 | (int) local39 << 16;
 				local48 += local80;
 				local55 += local95;
 				local39 += local62;
 			}
 		}
 		for (local15 = 192; local15 < 255; local15++) {
-			Static96.anIntArray235[local15] = Static225.anIntArray445[3];
+			Flames.flameGradient[local15] = Static225.anIntArray445[3];
 		}
 		Static270.anIntArray562 = new int[32768];
 		Static263.anIntArray516 = new int[32768];
-		Static69.method1545(null);
+		Flames.setRune(null);
 		Static103.anIntArray254 = new int[32768];
 		Static216.anIntArray188 = new int[32768];
-		Static167.aClass3_Sub2_Sub1_Sub1_3 = new SoftwareSprite(128, 254);
+		Flames.imageFlames = new SoftwareSprite(128, 254);
 	}
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "b", descriptor = "(I)V")

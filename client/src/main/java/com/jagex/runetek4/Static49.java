@@ -4,7 +4,6 @@ import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -12,13 +11,10 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static49 {
 
-	@OriginalMember(owner = "runetek4.client!dm", name = "j", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!dm", name = "j", descriptor = "Lclient!na;")
 	public static final JString aClass100_351 = JString.parse(" ");
 
-	@OriginalMember(owner = "runetek4.client!dm", name = "n", descriptor = "Lclient!na;")
-	public static final JString PERCENT_SIGN = JString.parse("(U");
-
-	@OriginalMember(owner = "runetek4.client!dm", name = "a", descriptor = "(BII[B)Z")
+	@OriginalMember(owner = "client!dm", name = "a", descriptor = "(BII[B)Z")
 	public static boolean method1201(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) byte[] arg2) {
 		@Pc(15) boolean local15 = true;
 		@Pc(17) int local17 = -1;
@@ -74,70 +70,7 @@ public final class Static49 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!dm", name = "a", descriptor = "(B)V")
-	public static void method1202() {
-		Protocol.inboundBuffer.accessBits();
-		@Pc(13) int local13 = Protocol.inboundBuffer.gBit(8);
-		@Pc(22) int local22;
-		if (NpcList.npcCount > local13) {
-			for (local22 = local13; local22 < NpcList.npcCount; local22++) {
-				Static52.entityRemovalIds[Static240.entityRemovalCount++] = NpcList.npcIds[local22];
-			}
-		}
-		if (NpcList.npcCount < local13) {
-			throw new RuntimeException("gnpov1");
-		}
-		NpcList.npcCount = 0;
-		for (local22 = 0; local22 < local13; local22++) {
-			@Pc(61) int local61 = NpcList.npcIds[local22];
-			@Pc(65) Npc local65 = NpcList.npcs[local61];
-			@Pc(70) int local70 = Protocol.inboundBuffer.gBit(1);
-			if (local70 == 0) {
-				NpcList.npcIds[NpcList.npcCount++] = local61;
-				local65.cycle = client.loop;
-			} else {
-				@Pc(92) int local92 = Protocol.inboundBuffer.gBit(2);
-				if (local92 == 0) {
-					NpcList.npcIds[NpcList.npcCount++] = local61;
-					local65.cycle = client.loop;
-					Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
-				} else {
-					@Pc(139) int local139;
-					@Pc(149) int local149;
-					if (local92 == 1) {
-						NpcList.npcIds[NpcList.npcCount++] = local61;
-						local65.cycle = client.loop;
-						local139 = Protocol.inboundBuffer.gBit(3);
-						local65.method2684(1, local139);
-						local149 = Protocol.inboundBuffer.gBit(1);
-						if (local149 == 1) {
-							Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
-						}
-					} else if (local92 == 2) {
-						NpcList.npcIds[NpcList.npcCount++] = local61;
-						local65.cycle = client.loop;
-						if (Protocol.inboundBuffer.gBit(1) == 1) {
-							local139 = Protocol.inboundBuffer.gBit(3);
-							local65.method2684(2, local139);
-							local149 = Protocol.inboundBuffer.gBit(3);
-							local65.method2684(2, local149);
-						} else {
-							local139 = Protocol.inboundBuffer.gBit(3);
-							local65.method2684(0, local139);
-						}
-						local139 = Protocol.inboundBuffer.gBit(1);
-						if (local139 == 1) {
-							Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
-						}
-					} else if (local92 == 3) {
-						Static52.entityRemovalIds[Static240.entityRemovalCount++] = local61;
-					}
-				}
-			}
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!dm", name = "a", descriptor = "(IBIII)V")
+	@OriginalMember(owner = "client!dm", name = "a", descriptor = "(IBIII)V")
 	public static void method1206(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		@Pc(15) int local15 = 0;
 		ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[arg3], arg0 - arg1, arg0 - -arg1, arg2);
@@ -167,7 +100,7 @@ public final class Static49 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!dm", name = "a", descriptor = "(Lclient!be;III)V")
+	@OriginalMember(owner = "client!dm", name = "a", descriptor = "(Lclient!be;III)V")
 	public static void method1207(@OriginalArg(0) Component arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
 		if (MiniMenu.menuActionRow < 2 && MiniMenu.anInt5014 == 0 && !MiniMenu.aBoolean302) {
 			return;

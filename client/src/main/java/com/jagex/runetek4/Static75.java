@@ -14,7 +14,7 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static75 {
 
-	@OriginalMember(owner = "runetek4.client!g", name = "a", descriptor = "(IZ)V")
+	@OriginalMember(owner = "client!g", name = "a", descriptor = "(IZ)V")
 	public static void method1629(@OriginalArg(1) boolean arg0) {
 		Static230.aBoolean250 = arg0;
 		@Pc(13) int local13;
@@ -151,7 +151,7 @@ public final class Static75 {
 		Static127.method2463(local26, local64, local20, local31, false, local13);
 	}
 
-	@OriginalMember(owner = "runetek4.client!g", name = "a", descriptor = "(B)V")
+	@OriginalMember(owner = "client!g", name = "a", descriptor = "(B)V")
 	public static void method1631() {
 		Static254.anIntArray488 = null;
 		Static269.anIntArray252 = null;
@@ -161,7 +161,7 @@ public final class Static75 {
 		Static259.anIntArray513 = null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!g", name = "b", descriptor = "(I)V")
+	@OriginalMember(owner = "client!g", name = "b", descriptor = "(I)V")
 	public static void method1632() {
 		@Pc(9) Environment local9 = new Environment();
 		for (@Pc(18) int local18 = 0; local18 < 13; local18++) {
@@ -171,7 +171,7 @@ public final class Static75 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!g", name = "a", descriptor = "(III)Lclient!df;")
+	@OriginalMember(owner = "client!g", name = "a", descriptor = "(III)Lclient!df;")
 	public static WallDecor method1633(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local7 == null) {
@@ -183,7 +183,7 @@ public final class Static75 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!g", name = "b", descriptor = "(B)V")
+	@OriginalMember(owner = "client!g", name = "b", descriptor = "(B)V")
 	public static void method1634() {
 		@Pc(15) int local15;
 		@Pc(23) int local23;

@@ -9,17 +9,17 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static54 {
 
-	@OriginalMember(owner = "runetek4.client!ed", name = "D", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!ed", name = "D", descriptor = "Lclient!na;")
 	public static final JString DETAILS = JString.parse("details");
 
-	@OriginalMember(owner = "runetek4.client!ed", name = "a", descriptor = "(III)V")
+	@OriginalMember(owner = "client!ed", name = "a", descriptor = "(III)V")
 	public static void method1304(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
 		if (Component.load(arg1)) {
 			Static2.method7(Component.cachedComponents[arg1], arg0);
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ed", name = "a", descriptor = "(ZIIII)V")
+	@OriginalMember(owner = "client!ed", name = "a", descriptor = "(ZIIII)V")
 	public static void method1306(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		if (arg3 >= Static172.anInt4164 && arg3 <= FluTypeList.anInt5063) {
 			@Pc(22) int local22 = Static78.method1690(Static106.anInt2869, arg1, Static267.anInt5773);
@@ -28,7 +28,7 @@ public final class Static54 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ed", name = "a", descriptor = "([SI[Lclient!na;II)V")
+	@OriginalMember(owner = "client!ed", name = "a", descriptor = "([SI[Lclient!na;II)V")
 	public static void method1307(@OriginalArg(0) short[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JString[] arg2, @OriginalArg(4) int arg3) {
 		if (arg1 <= arg3) {
 			return;
@@ -59,17 +59,17 @@ public final class Static54 {
 		method1307(arg0, arg1, arg2, local14 + 1);
 	}
 
-	@OriginalMember(owner = "runetek4.client!ed", name = "c", descriptor = "(I)V")
+	@OriginalMember(owner = "client!ed", name = "c", descriptor = "(I)V")
 	public static void clear() {
 		Static83.aClass99_3.clear();
 	}
 
-	@OriginalMember(owner = "runetek4.client!ed", name = "b", descriptor = "(II)Lclient!ba;")
+	@OriginalMember(owner = "client!ed", name = "b", descriptor = "(II)Lclient!ba;")
 	public static GWCWorld method1310(@OriginalArg(1) int arg0) {
 		return WorldList.loaded && arg0 >= Static19.anInt636 && arg0 <= Static171.anInt4157 ? Static196.aClass10_Sub1Array2[arg0 - Static19.anInt636] : null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ed", name = "d", descriptor = "(B)V")
+	@OriginalMember(owner = "client!ed", name = "d", descriptor = "(B)V")
 	public static void loop() {
 		for (@Pc(5) int local5 = 0; local5 < SoundPlayer.size; local5++) {
 			@Pc(12) int local12 = Static164.anIntArray362[local5]--;

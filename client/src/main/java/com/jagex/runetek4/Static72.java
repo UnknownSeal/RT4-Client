@@ -7,47 +7,47 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static72 {
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "u", descriptor = "Z")
+	@OriginalMember(owner = "client!fl", name = "u", descriptor = "Z")
 	public static boolean aBoolean116;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "C", descriptor = "Lsignlink!im;")
+	@OriginalMember(owner = "client!fl", name = "C", descriptor = "Lsignlink!im;")
 	public static PrivilegedRequest aClass212_3;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "D", descriptor = "[[I")
+	@OriginalMember(owner = "client!fl", name = "D", descriptor = "[[I")
 	public static int[][] anIntArrayArray14;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "w", descriptor = "J")
+	@OriginalMember(owner = "client!fl", name = "w", descriptor = "J")
 	public static long killtime = 0L;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "B", descriptor = "I")
+	@OriginalMember(owner = "client!fl", name = "B", descriptor = "I")
 	public static int updatedVarcstrsWriterIndex = 0;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "H", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!fl", name = "H", descriptor = "Lclient!na;")
 	public static final JString aClass100_446 = JString.parse("<img=0>");
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "P", descriptor = "I")
+	@OriginalMember(owner = "client!fl", name = "P", descriptor = "I")
 	public static int anInt2043 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "Q", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!fl", name = "Q", descriptor = "Lclient!na;")
 	public static final JString aClass100_447 = JString.parse("");
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "V", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!fl", name = "V", descriptor = "Lclient!na;")
 	public static final JString aClass100_448 = JString.parse("(Y");
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "b", descriptor = "(II)Lclient!cl;")
+	@OriginalMember(owner = "client!fl", name = "b", descriptor = "(II)Lclient!cl;")
 	public static AnimFrameset method1566(@OriginalArg(0) int arg0) {
-		@Pc(19) AnimFrameset local19 = (AnimFrameset) Static267.skeletonCache.get((long) arg0);
+		@Pc(19) AnimFrameset local19 = (AnimFrameset) Static267.skeletonCache.get(arg0);
 		if (local19 != null) {
 			return local19;
 		}
 		local19 = AnimFrameset.create(Static225.aClass153_92, Static5.aClass153_1, arg0);
 		if (local19 != null) {
-			Static267.skeletonCache.put(local19, (long) arg0);
+			Static267.skeletonCache.put(local19, arg0);
 		}
 		return local19;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "a", descriptor = "(IIIIII)V")
+	@OriginalMember(owner = "client!fl", name = "a", descriptor = "(IIIIII)V")
 	public static void method1568(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[arg0], arg1 - arg2, arg2 + arg1, arg4);
 		@Pc(17) int local17 = 0;

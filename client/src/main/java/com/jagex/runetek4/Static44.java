@@ -8,16 +8,16 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static44 {
 
-	@OriginalMember(owner = "runetek4.client!dh", name = "a", descriptor = "Z")
+	@OriginalMember(owner = "client!dh", name = "a", descriptor = "Z")
 	public static boolean aBoolean83 = false;
 
-	@OriginalMember(owner = "runetek4.client!dh", name = "d", descriptor = "[I")
+	@OriginalMember(owner = "client!dh", name = "d", descriptor = "[I")
 	public static final int[] entityUpdateIds = new int[2048];
 
-	@OriginalMember(owner = "runetek4.client!dh", name = "i", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!dh", name = "i", descriptor = "Lclient!na;")
 	public static final JString aClass100_336 = JString.parse("<img=1>");
 
-	@OriginalMember(owner = "runetek4.client!dh", name = "b", descriptor = "(I)Lclient!q;")
+	@OriginalMember(owner = "client!dh", name = "b", descriptor = "(I)Lclient!q;")
 	public static ReferenceNodeFactory method1147() {
 		try {
 			return (ReferenceNodeFactory) Class.forName("com.jagex.runetek4.SoftReferenceNodeFactory").getDeclaredConstructor().newInstance();
@@ -26,12 +26,12 @@ public final class Static44 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!dh", name = "a", descriptor = "(IIII)Lclient!wk;")
+	@OriginalMember(owner = "client!dh", name = "a", descriptor = "(IIII)Lclient!wk;")
 	public static ComponentPointer method1148(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
 		@Pc(9) ComponentPointer local9 = new ComponentPointer();
 		local9.anInt5879 = arg2;
 		local9.interfaceId = arg0;
-		InterfaceList.openInterfaces.put(local9, (long) arg1);
+		InterfaceList.openInterfaces.put(local9, arg1);
 		ObjType.method1753(arg0);
 		@Pc(28) Component local28 = InterfaceList.getComponent(arg1);
 		if (local28 != null) {
@@ -73,7 +73,7 @@ public final class Static44 {
 		return local9;
 	}
 
-	@OriginalMember(owner = "runetek4.client!dh", name = "a", descriptor = "(Lclient!na;I)V")
+	@OriginalMember(owner = "client!dh", name = "a", descriptor = "(Lclient!na;I)V")
 	public static void method1149(@OriginalArg(0) JString arg0) {
 		@Pc(7) int local7 = Static91.method1879(arg0);
 		if (local7 != -1) {

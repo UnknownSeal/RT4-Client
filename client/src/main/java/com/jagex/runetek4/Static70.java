@@ -11,16 +11,16 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static70 {
 
-	@OriginalMember(owner = "runetek4.client!fi", name = "m", descriptor = "[[[B")
+	@OriginalMember(owner = "client!fi", name = "m", descriptor = "[[[B")
 	public static byte[][][] aByteArrayArrayArray7;
 
-	@OriginalMember(owner = "runetek4.client!fi", name = "l", descriptor = "I")
+	@OriginalMember(owner = "client!fi", name = "l", descriptor = "I")
 	public static int anInt2014 = 0;
 
-	@OriginalMember(owner = "runetek4.client!fi", name = "n", descriptor = "I")
+	@OriginalMember(owner = "client!fi", name = "n", descriptor = "I")
 	public static int updatedVarpsWriterIndex = 0;
 
-	@OriginalMember(owner = "runetek4.client!fi", name = "a", descriptor = "(B)Lclient!s;")
+	@OriginalMember(owner = "client!fi", name = "a", descriptor = "(B)Lclient!s;")
 	public static Timer method1547() {
 		try {
 			return (Timer) Class.forName("com.jagex.runetek4.core.utils.NanoTimer").getDeclaredConstructor().newInstance();
@@ -29,7 +29,7 @@ public final class Static70 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fi", name = "a", descriptor = "(III)V")
+	@OriginalMember(owner = "client!fi", name = "a", descriptor = "(III)V")
 	public static void method1549(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
 		for (@Pc(11) int local11 = 0; local11 < Static98.anInt2510; local11++) {
 			@Pc(18) FloorOverlayType local18 = Static256.method4395(local11);

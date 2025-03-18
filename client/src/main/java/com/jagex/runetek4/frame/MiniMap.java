@@ -107,7 +107,7 @@ public class MiniMap {
                                 local271 = Static235.aMapElementTypeList_2.anIntArray444[local117];
                             }
                             if (GlRenderer.enabled) {
-                                Static46.method1188((GlSprite) arg3.method489(false));
+                                GlFont.method1188((GlSprite) arg3.method489(false));
                             } else {
                                 Rasterizer.method2486(arg3.anIntArray37, arg3.anIntArray45);
                             }

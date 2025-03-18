@@ -6,22 +6,19 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static64 {
 
-	@OriginalMember(owner = "runetek4.client!fb", name = "n", descriptor = "[[B")
+	@OriginalMember(owner = "client!fb", name = "n", descriptor = "[[B")
 	public static byte[][] aByteArrayArray9;
 
-	@OriginalMember(owner = "runetek4.client!fb", name = "i", descriptor = "Lclient!na;")
-	public static final JString MAX_AGE = JString.parse("; Max)2Age=");
-
-	@OriginalMember(owner = "runetek4.client!fb", name = "m", descriptor = "Z")
+	@OriginalMember(owner = "client!fb", name = "m", descriptor = "Z")
 	public static boolean aBoolean111 = true;
 
-	@OriginalMember(owner = "runetek4.client!fb", name = "p", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!fb", name = "p", descriptor = "Lclient!na;")
 	public static final JString RED2 = JString.parse("<col=ff3000>");
 
-	@OriginalMember(owner = "runetek4.client!fb", name = "q", descriptor = "[I")
+	@OriginalMember(owner = "client!fb", name = "q", descriptor = "[I")
 	public static final int[] anIntArray154 = new int[] { -1, -1, 1, 1 };
 
-	@OriginalMember(owner = "runetek4.client!fb", name = "b", descriptor = "(B)V")
+	@OriginalMember(owner = "client!fb", name = "b", descriptor = "(B)V")
 	public static void getPlayer() {
 		Static116.entityUpdateCount = 0;
 		Static240.entityRemovalCount = 0;
@@ -49,7 +46,7 @@ public final class Static64 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fb", name = "a", descriptor = "(JB)V")
+	@OriginalMember(owner = "client!fb", name = "a", descriptor = "(JB)V")
 	public static void addFriend(@OriginalArg(0) long username) {
 		if (username == 0L) {
 			return;

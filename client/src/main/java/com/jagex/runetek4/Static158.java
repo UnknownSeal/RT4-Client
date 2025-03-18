@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.dash3d.entity.Npc;
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -59,7 +60,7 @@ public final class Static158 {
 						local198.cycle = client.loop;
 						local198.method2698(local148);
 						local198.setSize(local198.type.size);
-						local198.dstYaw = local198.anInt3381 = Static56.anIntArray141[local198.type.respawndir];
+						local198.dstYaw = local198.anInt3381 = PathingEntity.ANGLES[local198.type.respawndir];
 						local198.anInt3376 = local198.type.turnspeed;
 						if (local198.anInt3376 == 0) {
 							local198.anInt3381 = 0;

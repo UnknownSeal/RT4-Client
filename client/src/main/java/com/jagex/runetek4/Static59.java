@@ -8,13 +8,13 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static59 {
 
-	@OriginalMember(owner = "runetek4.client!ej", name = "X", descriptor = "I")
+	@OriginalMember(owner = "client!ej", name = "X", descriptor = "I")
 	public static int anInt1815;
 
-	@OriginalMember(owner = "runetek4.client!ej", name = "bb", descriptor = "F")
+	@OriginalMember(owner = "client!ej", name = "bb", descriptor = "F")
 	public static float aFloat6;
 
-	@OriginalMember(owner = "runetek4.client!ej", name = "h", descriptor = "(I)V")
+	@OriginalMember(owner = "client!ej", name = "h", descriptor = "(I)V")
 	public static void processMenuActions() {
 		if (Static162.anInt3953 == 2) {
 			if (ClientScriptRunner.anInt3751 == Static277.anInt5850 && ClientScriptRunner.anInt1892 == Static280.anInt5895) {
@@ -39,7 +39,7 @@ public final class Static59 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ej", name = "a", descriptor = "(Lclient!ve;ILclient!ve;Lclient!of;)V")
+	@OriginalMember(owner = "client!ej", name = "a", descriptor = "(Lclient!ve;ILclient!ve;Lclient!of;)V")
 	public static void init(@OriginalArg(0) Js5 arg0, @OriginalArg(2) Js5 arg1, @OriginalArg(3) QuickChatCommandDecoder arg2) {
 		Static262.configClientLarge = arg0;
 		Static107.anInterface3_1 = arg2;
@@ -52,7 +52,7 @@ public final class Static59 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ej", name = "a", descriptor = "(IZIJ)Lclient!na;")
+	@OriginalMember(owner = "client!ej", name = "a", descriptor = "(IZIJ)Lclient!na;")
 	public static JString method1376(@OriginalArg(3) long arg0) {
 		@Pc(35) long local35 = arg0 / (long) 10;
 		@Pc(37) int local37 = 1;

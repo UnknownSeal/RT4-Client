@@ -15,6 +15,12 @@ public class Sprites {
     public static final JString FLOORSHADOWS = JString.parse("floorshadows");
     @OriginalMember(owner = "client!cb", name = "eb", descriptor = "Lclient!na;")
     public static final JString NAME_ICONS = JString.parse("name_icons");
+    @OriginalMember(owner = "client!ee", name = "e", descriptor = "Lclient!na;")
+    public static final JString P12_FULL = JString.parse("p12_full");
+    @OriginalMember(owner = "client!fm", name = "eb", descriptor = "Lclient!na;")
+    public static final JString B12_FULL = JString.parse("b12_full");
+    @OriginalMember(owner = "client!gm", name = "db", descriptor = "Lclient!na;")
+    public static final JString CROSS = JString.parse("cross");
     @OriginalMember(owner = "runetek4.client!mi", name = "T", descriptor = "[Lclient!ok;")
     public static IndexedSprite[] nameIcons;
 
@@ -110,8 +116,8 @@ public class Sprites {
     @OriginalMember(owner = "runetek4.client!g", name = "a", descriptor = "(ILclient!ve;)V")
     public static void init(@OriginalArg(1) Js5 arg0) {
         Static166.anInt4049 = arg0.getGroupId(P11_FULL);
-        Static130.anInt3161 = arg0.getGroupId(Static55.P12_FULL);
-        Static73.anInt2077 = arg0.getGroupId(Static73.B12_FULL);
+        Static130.anInt3161 = arg0.getGroupId(P12_FULL);
+        Static73.anInt2077 = arg0.getGroupId(B12_FULL);
         Static280.anInt5900 = arg0.getGroupId(MAPFUNCTION);
         Static131.anInt3261 = arg0.getGroupId(Static219.HITMARKS);
         Static36.anInt1165 = arg0.getGroupId(Static260.HITBAR_DEFAULT);
@@ -120,7 +126,7 @@ public class Sprites {
         Class6.anInt4741 = arg0.getGroupId(Static98.HINT_HEADICONS);
         Static149.anInt3551 = arg0.getGroupId(Static189.HINT_MAPMARKERS);
         Static19.anInt647 = arg0.getGroupId(Static259.MAPFLAGS);
-        Static32.anInt1016 = arg0.getGroupId(Static86.CROSS);
+        Static32.anInt1016 = arg0.getGroupId(CROSS);
         Static78.anInt2147 = arg0.getGroupId(Static189.MAPDOTS);
         Static124.anInt3083 = arg0.getGroupId(Static250.SCROLLBAR);
         FluTypeList.anInt5057 = arg0.getGroupId(NAME_ICONS);

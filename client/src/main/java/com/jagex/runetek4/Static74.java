@@ -8,10 +8,10 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static74 {
 
-	@OriginalMember(owner = "runetek4.client!fn", name = "Z", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!fn", name = "Z", descriptor = "Lclient!na;")
 	public static final JString aClass100_461 = JString.parse(")1 ");
 
-	@OriginalMember(owner = "runetek4.client!fn", name = "a", descriptor = "(ZIIIIIII)V")
+	@OriginalMember(owner = "client!fn", name = "a", descriptor = "(ZIIIIIII)V")
 	public static void method1623(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {
 		if (arg3 == arg6) {
 			Static152.method2826(arg0, arg2, arg5, arg6, arg1, arg4);
@@ -22,7 +22,7 @@ public final class Static74 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fn", name = "a", descriptor = "(ILclient!be;)V")
+	@OriginalMember(owner = "client!fn", name = "a", descriptor = "(ILclient!be;)V")
 	public static void method1625(@OriginalArg(1) Component arg0) {
 		@Pc(7) Component local7 = Static280.method4668(arg0);
 		@Pc(19) int local19;
@@ -38,7 +38,7 @@ public final class Static74 {
 		Static111.method2291(arg0, local17, local19);
 	}
 
-	@OriginalMember(owner = "runetek4.client!fn", name = "c", descriptor = "(II)V")
+	@OriginalMember(owner = "client!fn", name = "c", descriptor = "(II)V")
 	public static void method1626(@OriginalArg(0) int arg0) {
 		if (arg0 == -1 || !Component.load(arg0)) {
 			return;
@@ -55,7 +55,7 @@ public final class Static74 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fn", name = "a", descriptor = "(Lclient!ve;Lclient!ve;Z)I")
+	@OriginalMember(owner = "client!fn", name = "a", descriptor = "(Lclient!ve;Lclient!ve;Z)I")
 	public static int method1628(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
 		@Pc(5) int local5 = 0;
 		if (arg0.method4506(Static166.anInt4049)) {

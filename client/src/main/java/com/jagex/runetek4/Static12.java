@@ -8,9 +8,6 @@ public final class Static12 {
 	@OriginalMember(owner = "client!bb", name = "M", descriptor = "I")
 	public static int anInt406;
 
-	@OriginalMember(owner = "client!bb", name = "m", descriptor = "Lclient!na;")
-	public static final JString aClass100_73 = JString.parse("runes");
-
 	@OriginalMember(owner = "client!bb", name = "n", descriptor = "I")
 	public static int anInt391 = 255;
 

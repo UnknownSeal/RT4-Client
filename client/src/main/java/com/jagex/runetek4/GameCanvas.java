@@ -20,13 +20,13 @@ public final class GameCanvas extends Canvas {
 
 	@OriginalMember(owner = "client!tm", name = "update", descriptor = "(Ljava/awt/Graphics;)V")
 	@Override
-	public final void update(@OriginalArg(0) Graphics arg0) {
+	public void update(@OriginalArg(0) Graphics arg0) {
 		this.aComponent2.update(arg0);
 	}
 
 	@OriginalMember(owner = "client!tm", name = "paint", descriptor = "(Ljava/awt/Graphics;)V")
 	@Override
-	public final void paint(@OriginalArg(0) Graphics arg0) {
+	public void paint(@OriginalArg(0) Graphics arg0) {
 		this.aComponent2.paint(arg0);
 	}
 }

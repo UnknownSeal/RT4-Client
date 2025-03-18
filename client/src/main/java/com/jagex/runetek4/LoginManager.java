@@ -18,6 +18,10 @@ import java.net.Socket;
 public class LoginManager {
     @OriginalMember(owner = "client!bh", name = "C", descriptor = "Lclient!na;")
     public static final JString COMPLETE_PERCENT = JString.parse("<br>(X100(U(Y");
+    @OriginalMember(owner = "runetek4.client!e", name = "Dc", descriptor = "Lclient!na;")
+    public static final JString aClass100_363 = JString.parse("_labels");
+    @OriginalMember(owner = "client!ef", name = "h", descriptor = "Lclient!na;")
+    public static final JString UNZAP = JString.parse("unzap");
     @OriginalMember(owner = "runetek4.client!qi", name = "z", descriptor = "Lclient!qf;")
     public static Sprite aClass3_Sub2_Sub1_10;
     @OriginalMember(owner = "runetek4.client!d", name = "ib", descriptor = "Lclient!qf;")
@@ -303,10 +307,10 @@ public class LoginManager {
             }
         }
         if (Static235.aMapElementTypeList_2 == null) {
-            if (Static158.aClass3_Sub2_Sub4_3 == null || !client.js5Archive23.method4497(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, Static50.aClass100_363 }))) {
+            if (Static158.aClass3_Sub2_Sub4_3 == null || !client.js5Archive23.method4497(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, aClass100_363 }))) {
                 Static235.aMapElementTypeList_2 = new MapElementTypeList(0);
-            } else if (client.js5Archive23.method4489(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, Static50.aClass100_363 }))) {
-                Static235.aMapElementTypeList_2 = MapElementTypeList.create(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, Static50.aClass100_363 }), client.js5Archive23);
+            } else if (client.js5Archive23.method4489(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, aClass100_363 }))) {
+                Static235.aMapElementTypeList_2 = MapElementTypeList.create(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, aClass100_363 }), client.js5Archive23);
             } else {
                 local12 = false;
                 mapFilesMissingCount++;
@@ -839,7 +843,7 @@ public class LoginManager {
                         }
                     } else {
                         try {
-                            Static56.aClass100_380.browserControlCall(GameShell.signLink.applet);
+                            UNZAP.browserControlCall(GameShell.signLink.applet);
                         } catch (@Pc(920) Throwable local920) {
                         }
                     }

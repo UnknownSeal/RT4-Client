@@ -17,28 +17,30 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("client!rc")
 public abstract class GameShell extends Applet implements Runnable, FocusListener, WindowListener {
 
-    @OriginalMember(owner = "runetek4.client!fk", name = "l", descriptor = "Lsignlink!ll;")
+    @OriginalMember(owner = "client!fk", name = "l", descriptor = "Lsignlink!ll;")
     public static SignLink signLink;
-    @OriginalMember(owner = "runetek4.client!md", name = "L", descriptor = "Ljava/awt/Canvas;")
+    @OriginalMember(owner = "client!md", name = "L", descriptor = "Ljava/awt/Canvas;")
     public static Canvas canvas;
-	@OriginalMember(owner = "runetek4.client!fh", name = "Y", descriptor = "Ljava/awt/Frame;")
+	@OriginalMember(owner = "client!fh", name = "Y", descriptor = "Ljava/awt/Frame;")
 	public static Frame fullScreenFrame;
-	@OriginalMember(owner = "runetek4.client!d", name = "Y", descriptor = "Ljava/awt/Frame;")
+	@OriginalMember(owner = "client!d", name = "Y", descriptor = "Ljava/awt/Frame;")
 	public static Frame frame;
-	@OriginalMember(owner = "runetek4.client!fl", name = "U", descriptor = "I")
+	@OriginalMember(owner = "client!fl", name = "U", descriptor = "I")
 	public static int frameWidth;
-	@OriginalMember(owner = "runetek4.client!jh", name = "c", descriptor = "I")
+	@OriginalMember(owner = "client!jh", name = "c", descriptor = "I")
 	public static int frameHeight;
-	@OriginalMember(owner = "runetek4.client!dl", name = "d", descriptor = "I")
+	@OriginalMember(owner = "client!dl", name = "d", descriptor = "I")
 	public static int canvasWidth;
-	@OriginalMember(owner = "runetek4.client!uj", name = "B", descriptor = "I")
+	@OriginalMember(owner = "client!uj", name = "B", descriptor = "I")
 	public static int canvasHeigth;
-	@OriginalMember(owner = "runetek4.client!lf", name = "f", descriptor = "I")
+	@OriginalMember(owner = "client!lf", name = "f", descriptor = "I")
 	public static int leftMargin = 0;
-	@OriginalMember(owner = "runetek4.client!od", name = "e", descriptor = "I")
+	@OriginalMember(owner = "client!od", name = "e", descriptor = "I")
 	public static int topMargin = 0;
 	@OriginalMember(owner = "client!ca", name = "ab", descriptor = "Z")
 	public static boolean focus;
+	@OriginalMember(owner = "client!eh", name = "a", descriptor = "Z")
+	public static boolean shutdown = false;
 	@OriginalMember(owner = "client!rc", name = "b", descriptor = "Z")
 	private boolean aBoolean71 = false;
 
@@ -61,12 +63,12 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
-    @OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(II)V")
+    @OriginalMember(owner = "client!ja", name = "a", descriptor = "(II)V")
     public static void setFpsTarget(@OriginalArg(0) int arg0) {
         Static11.anInt386 = 1000 / arg0;
     }
 
-    @OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "(Z)V")
+    @OriginalMember(owner = "client!ta", name = "a", descriptor = "(Z)V")
     public static void resetTimer() {
         Static200.aClass93_1.method3394();
         @Pc(10) int local10;
@@ -168,7 +170,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "destroy", descriptor = "()V")
 	@Override
 	public final void destroy() {
-		if (Static230.anApplet_Sub1_1 == this && !Static58.shutdown) {
+		if (Static230.anApplet_Sub1_1 == this && !shutdown) {
 			Static72.killtime = MonotonicTime.currentTimeMillis();
 			ThreadUtils.sleep(5000L);
 			Static69.aClass213_4 = null;
@@ -214,7 +216,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "paint", descriptor = "(Ljava/awt/Graphics;)V")
 	@Override
 	public final synchronized void paint(@OriginalArg(0) Graphics arg0) {
-		if (Static230.anApplet_Sub1_1 != this || Static58.shutdown) {
+		if (Static230.anApplet_Sub1_1 != this || shutdown) {
 			return;
 		}
 		Static69.fullredraw = true;
@@ -234,10 +236,10 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(IZ)V")
 	private void shutdown(@OriginalArg(1) boolean arg0) {
 		synchronized (this) {
-			if (Static58.shutdown) {
+			if (shutdown) {
 				return;
 			}
-			Static58.shutdown = true;
+			shutdown = true;
 		}
 		if (signLink.applet != null) {
 			signLink.applet.destroy();
@@ -405,7 +407,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "stop", descriptor = "()V")
 	@Override
 	public final void stop() {
-		if (Static230.anApplet_Sub1_1 == this && !Static58.shutdown) {
+		if (Static230.anApplet_Sub1_1 == this && !shutdown) {
 			Static72.killtime = MonotonicTime.currentTimeMillis() + 4000L;
 		}
 	}
@@ -451,7 +453,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "start", descriptor = "()V")
 	@Override
 	public final void start() {
-		if (Static230.anApplet_Sub1_1 == this && !Static58.shutdown) {
+		if (Static230.anApplet_Sub1_1 == this && !shutdown) {
 			Static72.killtime = 0L;
 		}
 	}

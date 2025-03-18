@@ -266,7 +266,7 @@ public final class DisplayMode {
 			Static37.aThread1.setPriority(1);
 			SoftwareRaster.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
 			Static268.method4583();
-			Static76.method1643();
+			method1643();
 			((Js5GlTextureProvider) Rasterizer.textureProvider).method3248(20);
 			if (Static178.highDetailLighting) {
 				if (Preferences.brightness == 1) {
@@ -334,5 +334,9 @@ public final class DisplayMode {
 		} else {
 			return 0;
 		}
+	}
+
+	@OriginalMember(owner = "client!ga", name = "b", descriptor = "()V")
+	public static void method1643() {
 	}
 }

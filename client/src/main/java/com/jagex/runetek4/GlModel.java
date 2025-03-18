@@ -15,134 +15,134 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!td")
+@OriginalClass("client!td")
 public final class GlModel extends Model {
 
-	@OriginalMember(owner = "runetek4.client!td", name = "t", descriptor = "[S")
+	@OriginalMember(owner = "client!td", name = "t", descriptor = "[S")
 	private short[] aShortArray75;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "v", descriptor = "[S")
+	@OriginalMember(owner = "client!td", name = "v", descriptor = "[S")
 	private short[] aShortArray76;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "w", descriptor = "[S")
+	@OriginalMember(owner = "client!td", name = "w", descriptor = "[S")
 	private short[] aShortArray77;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "x", descriptor = "Lclient!vi;")
+	@OriginalMember(owner = "client!td", name = "x", descriptor = "Lclient!vi;")
 	private GlVertexBufferObject aClass155_5;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "y", descriptor = "[S")
+	@OriginalMember(owner = "client!td", name = "y", descriptor = "[S")
 	private short[] aShortArray78;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "z", descriptor = "Lclient!ql;")
+	@OriginalMember(owner = "client!td", name = "z", descriptor = "Lclient!ql;")
 	private GlBuffer aClass127_1;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "A", descriptor = "Lclient!ql;")
+	@OriginalMember(owner = "client!td", name = "A", descriptor = "Lclient!ql;")
 	private GlBuffer aClass127_2;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "B", descriptor = "[B")
+	@OriginalMember(owner = "client!td", name = "B", descriptor = "[B")
 	private byte[] aByteArray71;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "C", descriptor = "Lclient!ql;")
+	@OriginalMember(owner = "client!td", name = "C", descriptor = "Lclient!ql;")
 	private GlBuffer aClass127_3;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "E", descriptor = "S")
+	@OriginalMember(owner = "client!td", name = "E", descriptor = "S")
 	private short aShort28;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "F", descriptor = "[B")
+	@OriginalMember(owner = "client!td", name = "F", descriptor = "[B")
 	private byte[] aByteArray72;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "H", descriptor = "[I")
+	@OriginalMember(owner = "client!td", name = "H", descriptor = "[I")
 	public int[] vertexX;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "J", descriptor = "[F")
+	@OriginalMember(owner = "client!td", name = "J", descriptor = "[F")
 	private float[] aFloatArray25;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "K", descriptor = "[[I")
+	@OriginalMember(owner = "client!td", name = "K", descriptor = "[[I")
 	private int[][] anIntArrayArray36;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "L", descriptor = "[S")
+	@OriginalMember(owner = "client!td", name = "L", descriptor = "[S")
 	private short[] aShortArray79;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "M", descriptor = "[S")
+	@OriginalMember(owner = "client!td", name = "M", descriptor = "[S")
 	private short[] aShortArray80;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "N", descriptor = "[S")
+	@OriginalMember(owner = "client!td", name = "N", descriptor = "[S")
 	private short[] aShortArray81;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "O", descriptor = "[[I")
+	@OriginalMember(owner = "client!td", name = "O", descriptor = "[[I")
 	private int[][] anIntArrayArray37;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "P", descriptor = "[S")
+	@OriginalMember(owner = "client!td", name = "P", descriptor = "[S")
 	private short[] aShortArray82;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "Q", descriptor = "[S")
+	@OriginalMember(owner = "client!td", name = "Q", descriptor = "[S")
 	private short[] aShortArray83;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "R", descriptor = "[S")
+	@OriginalMember(owner = "client!td", name = "R", descriptor = "[S")
 	private short[] aShortArray84;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "U", descriptor = "Lclient!ae;")
+	@OriginalMember(owner = "client!td", name = "U", descriptor = "Lclient!ae;")
 	public Class5 bounds;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "W", descriptor = "[S")
+	@OriginalMember(owner = "client!td", name = "W", descriptor = "[S")
 	private short[] aShortArray85;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "X", descriptor = "[I")
+	@OriginalMember(owner = "client!td", name = "X", descriptor = "[I")
 	private int[] anIntArray462;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "Y", descriptor = "Lclient!ql;")
+	@OriginalMember(owner = "client!td", name = "Y", descriptor = "Lclient!ql;")
 	public GlBuffer vertexBuffer;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "Z", descriptor = "[I")
+	@OriginalMember(owner = "client!td", name = "Z", descriptor = "[I")
 	private int[] anIntArray463;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "ab", descriptor = "[S")
+	@OriginalMember(owner = "client!td", name = "ab", descriptor = "[S")
 	private short[] aShortArray86;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "cb", descriptor = "Lclient!de;")
+	@OriginalMember(owner = "client!td", name = "cb", descriptor = "Lclient!de;")
 	private Class23 aClass23_1;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "db", descriptor = "[I")
+	@OriginalMember(owner = "client!td", name = "db", descriptor = "[I")
 	private int[] anIntArray464;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "eb", descriptor = "[I")
+	@OriginalMember(owner = "client!td", name = "eb", descriptor = "[I")
 	public int[] vertexY;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "fb", descriptor = "Lclient!ql;")
+	@OriginalMember(owner = "client!td", name = "fb", descriptor = "Lclient!ql;")
 	private GlBuffer aClass127_5;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "gb", descriptor = "[F")
+	@OriginalMember(owner = "client!td", name = "gb", descriptor = "[F")
 	private float[] aFloatArray26;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "hb", descriptor = "[I")
+	@OriginalMember(owner = "client!td", name = "hb", descriptor = "[I")
 	public int[] vertexZ;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "ib", descriptor = "S")
+	@OriginalMember(owner = "client!td", name = "ib", descriptor = "S")
 	private short aShort29;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "u", descriptor = "Z")
+	@OriginalMember(owner = "client!td", name = "u", descriptor = "Z")
 	public boolean aBoolean259 = false;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "I", descriptor = "I")
+	@OriginalMember(owner = "client!td", name = "I", descriptor = "I")
 	public int anInt5295 = 0;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "S", descriptor = "I")
+	@OriginalMember(owner = "client!td", name = "S", descriptor = "I")
 	private int anInt5296 = 0;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "V", descriptor = "B")
+	@OriginalMember(owner = "client!td", name = "V", descriptor = "B")
 	private byte aByte18 = 0;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "kb", descriptor = "B")
+	@OriginalMember(owner = "client!td", name = "kb", descriptor = "B")
 	private byte aByte19 = 0;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "lb", descriptor = "I")
+	@OriginalMember(owner = "client!td", name = "lb", descriptor = "I")
 	private int anInt5297 = 0;
 
-	@OriginalMember(owner = "runetek4.client!td", name = "<init>", descriptor = "()V")
+	@OriginalMember(owner = "client!td", name = "<init>", descriptor = "()V")
 	public GlModel() {
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "<init>", descriptor = "(Lclient!gb;IIZ)V")
+	@OriginalMember(owner = "client!td", name = "<init>", descriptor = "(Lclient!gb;IIZ)V")
 	public GlModel(@OriginalArg(0) ModelUnlit arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) boolean arg3) {
 		@Pc(23) int[] local23 = new int[arg0.faceCount];
 		this.anIntArray462 = new int[arg0.vertexCount + 1];
@@ -641,9 +641,9 @@ public final class GlModel extends Model {
 		return this.method4114(arg0, arg1, arg2, Static237.aClass8_Sub1_Sub1_4, Static237.aClass8_Sub1_Sub1_3);
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
+	@OriginalMember(owner = "client!td", name = "a", descriptor = "(IIIIIIIIJILclient!ga;)V")
 	@Override
-	public final void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
+	public void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
 		if (this.anInt5296 == 0) {
 			return;
 		}
@@ -832,8 +832,8 @@ public final class GlModel extends Model {
 		local744.glPopMatrix();
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "m", descriptor = "()V")
-	public final void method4093() {
+	@OriginalMember(owner = "client!td", name = "m", descriptor = "()V")
+	public void method4093() {
 		if (this.aShortArray76 == null) {
 			this.method4578();
 			return;
@@ -856,14 +856,14 @@ public final class GlModel extends Model {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "n", descriptor = "()I")
-	public final int method4094() {
+	@OriginalMember(owner = "client!td", name = "n", descriptor = "()I")
+	public int method4094() {
 		return this.aShort29;
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "c", descriptor = "(I)V")
+	@OriginalMember(owner = "client!td", name = "c", descriptor = "(I)V")
 	@Override
-	public final void method4564(@OriginalArg(0) int arg0) {
+	public void method4564(@OriginalArg(0) int arg0) {
 		@Pc(3) int local3 = MathUtils.sin[arg0];
 		@Pc(7) int local7 = MathUtils.cos[arg0];
 		for (@Pc(9) int local9 = 0; local9 < this.anInt5295; local9++) {
@@ -875,42 +875,42 @@ public final class GlModel extends Model {
 		this.vertexBuffer.valid = false;
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "g", descriptor = "()I")
+	@OriginalMember(owner = "client!td", name = "g", descriptor = "()I")
 	@Override
-	public final int method4561() {
+	public int method4561() {
 		if (!this.bounds.valid) {
 			this.method4108();
 		}
 		return this.bounds.aShort5;
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "c", descriptor = "()I")
+	@OriginalMember(owner = "client!td", name = "c", descriptor = "()I")
 	@Override
-	public final int method4550() {
+	public int method4550() {
 		if (!this.bounds.valid) {
 			this.method4108();
 		}
 		return this.bounds.aShort7;
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "a", descriptor = "()Z")
+	@OriginalMember(owner = "client!td", name = "a", descriptor = "()Z")
 	@Override
-	public final boolean method4543() {
+	public boolean method4543() {
 		return this.aBoolean259 && this.vertexX != null && this.aShortArray76 != null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "k", descriptor = "()I")
+	@OriginalMember(owner = "client!td", name = "k", descriptor = "()I")
 	@Override
-	public final int method4576() {
+	public int method4576() {
 		if (!this.bounds.valid) {
 			this.method4108();
 		}
 		return this.bounds.aShort8;
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "c", descriptor = "(III)V")
+	@OriginalMember(owner = "client!td", name = "c", descriptor = "(III)V")
 	@Override
-	public final void translate(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public void translate(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		for (@Pc(1) int local1 = 0; local1 < this.anInt5295; local1++) {
 			this.vertexX[local1] += arg0;
 			this.vertexY[local1] += arg1;
@@ -920,15 +920,15 @@ public final class GlModel extends Model {
 		this.vertexBuffer.valid = false;
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "b", descriptor = "(ZZZ)Lclient!ak;")
+	@OriginalMember(owner = "client!td", name = "b", descriptor = "(ZZZ)Lclient!ak;")
 	@Override
-	public final Model method4568(@OriginalArg(0) boolean arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2) {
+	public Model method4568(@OriginalArg(0) boolean arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2) {
 		return this.method4114(arg0, arg1, arg2, Static237.aClass8_Sub1_Sub1_6, Static237.aClass8_Sub1_Sub1_5);
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "a", descriptor = "(Lclient!th;IIIZ)V")
+	@OriginalMember(owner = "client!td", name = "a", descriptor = "(Lclient!th;IIIZ)V")
 	@Override
-	public final void method4544(@OriginalArg(0) Entity arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
+	public void method4544(@OriginalArg(0) Entity arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
 		@Pc(2) GlModel local2 = (GlModel) arg0;
 		if (this.anInt5297 == 0 || local2.anInt5297 == 0) {
 			return;
@@ -1074,9 +1074,9 @@ public final class GlModel extends Model {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "a", descriptor = "(IIIIIIIJ)V")
+	@OriginalMember(owner = "client!td", name = "a", descriptor = "(IIIIIIIJ)V")
 	@Override
-	public final void setCamera(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) long arg6) {
+	public void setCamera(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) long arg6) {
 		if (this.anInt5296 == 0) {
 			return;
 		}
@@ -1096,7 +1096,7 @@ public final class GlModel extends Model {
 		local5.glPopMatrix();
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "a", descriptor = "(Lclient!gb;IJIIIIFF)S")
+	@OriginalMember(owner = "client!td", name = "a", descriptor = "(Lclient!gb;IJIIIIFF)S")
 	private short method4098(@OriginalArg(0) ModelUnlit arg0, @OriginalArg(1) int arg1, @OriginalArg(2) long arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) float arg7, @OriginalArg(8) float arg8) {
 		@Pc(4) int local4 = this.anIntArray462[arg1];
 		@Pc(11) int local11 = this.anIntArray462[arg1 + 1];
@@ -1122,9 +1122,9 @@ public final class GlModel extends Model {
 		return (short) this.anInt5296++;
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "b", descriptor = "(I)V")
+	@OriginalMember(owner = "client!td", name = "b", descriptor = "(I)V")
 	@Override
-	public final void method4554(@OriginalArg(0) int arg0) {
+	public void method4554(@OriginalArg(0) int arg0) {
 		@Pc(3) int local3 = MathUtils.sin[arg0];
 		@Pc(7) int local7 = MathUtils.cos[arg0];
 		for (@Pc(9) int local9 = 0; local9 < this.anInt5295; local9++) {
@@ -1136,9 +1136,9 @@ public final class GlModel extends Model {
 		this.vertexBuffer.valid = false;
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "a", descriptor = "(I[IIIIZI[I)V")
+	@OriginalMember(owner = "client!td", name = "a", descriptor = "(I[IIIIZI[I)V")
 	@Override
-	protected final void method4577(@OriginalArg(0) int arg0, @OriginalArg(1) int[] arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int[] arg7) {
+	protected void method4577(@OriginalArg(0) int arg0, @OriginalArg(1) int[] arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int[] arg7) {
 		@Pc(2) int local2 = arg1.length;
 		@Pc(18) int local18;
 		@Pc(26) int local26;
@@ -1568,17 +1568,17 @@ public final class GlModel extends Model {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "b", descriptor = "()I")
+	@OriginalMember(owner = "client!td", name = "b", descriptor = "()I")
 	@Override
-	public final int getMinY() {
+	public int getMinY() {
 		if (!this.bounds.valid) {
 			this.method4108();
 		}
 		return this.bounds.aShort2;
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "o", descriptor = "()V")
-	public final void method4099() {
+	@OriginalMember(owner = "client!td", name = "o", descriptor = "()V")
+	public void method4099() {
 		@Pc(5) int[] local5;
 		@Pc(7) int local7;
 		@Pc(24) int local24;
@@ -1631,16 +1631,16 @@ public final class GlModel extends Model {
 		this.aByteArray72 = null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "e", descriptor = "(I)V")
-	public final void method4100(@OriginalArg(0) int arg0) {
+	@OriginalMember(owner = "client!td", name = "e", descriptor = "(I)V")
+	public void method4100(@OriginalArg(0) int arg0) {
 		this.aShort28 = (short) arg0;
 		if (this.aClass127_2 != null) {
 			this.aClass127_2.valid = false;
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!td", name = "p", descriptor = "()V")
-	public final void method4102() {
+	@OriginalMember(owner = "client!td", name = "p", descriptor = "()V")
+	public void method4102() {
 		if (this.aShortArray76 == null) {
 			this.method4552();
 			return;
@@ -1675,13 +1675,13 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "client!td", name = "c", descriptor = "(ZZZ)Lclient!ak;")
 	@Override
-	public final Model method4572(@OriginalArg(0) boolean arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2) {
+	public Model method4572(@OriginalArg(0) boolean arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2) {
 		return this.method4114(arg0, arg1, arg2, Static237.aClass8_Sub1_Sub1_2, Static237.aClass8_Sub1_Sub1_1);
 	}
 
 	@OriginalMember(owner = "client!td", name = "e", descriptor = "()V")
 	@Override
-	public final void method4552() {
+	public void method4552() {
 		for (@Pc(1) int local1 = 0; local1 < this.anInt5295; local1++) {
 			this.vertexX[local1] = -this.vertexX[local1];
 			this.vertexZ[local1] = -this.vertexZ[local1];
@@ -1729,14 +1729,14 @@ public final class GlModel extends Model {
 	}
 
 	@OriginalMember(owner = "client!td", name = "f", descriptor = "(I)V")
-	public final void method4105(@OriginalArg(0) int arg0) {
+	public void method4105(@OriginalArg(0) int arg0) {
 		this.aShort29 = (short) arg0;
 		this.aClass127_1.valid = false;
 	}
 
 	@OriginalMember(owner = "client!td", name = "d", descriptor = "()Z")
 	@Override
-	protected final boolean method4551() {
+	protected boolean method4551() {
 		if (this.anIntArrayArray36 == null) {
 			return false;
 		}
@@ -1752,7 +1752,7 @@ public final class GlModel extends Model {
 	}
 
 	@OriginalMember(owner = "client!td", name = "a", descriptor = "(SS)V")
-	public final void method4107(@OriginalArg(0) short arg0, @OriginalArg(1) short arg1) {
+	public void method4107(@OriginalArg(0) short arg0, @OriginalArg(1) short arg1) {
 		@Pc(1) int local1;
 		for (local1 = 0; local1 < this.anInt5297; local1++) {
 			if (this.aShortArray80[local1] == arg0) {
@@ -1829,7 +1829,7 @@ public final class GlModel extends Model {
 	}
 
 	@OriginalMember(owner = "client!td", name = "b", descriptor = "(SS)V")
-	public final void method4109(@OriginalArg(0) short arg0, @OriginalArg(1) short arg1) {
+	public void method4109(@OriginalArg(0) short arg0, @OriginalArg(1) short arg1) {
 		for (@Pc(1) int local1 = 0; local1 < this.anInt5297; local1++) {
 			if (this.aShortArray75[local1] == arg0) {
 				this.aShortArray75[local1] = arg1;
@@ -1839,7 +1839,7 @@ public final class GlModel extends Model {
 	}
 
 	@OriginalMember(owner = "client!td", name = "a", descriptor = "(IILclient!td;[[I[[IIII)V")
-	public final void method4110(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) GlModel arg2, @OriginalArg(3) int[][] arg3, @OriginalArg(4) int[][] arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
+	public void method4110(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) GlModel arg2, @OriginalArg(3) int[][] arg3, @OriginalArg(4) int[][] arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
 		if (!arg2.bounds.valid) {
 			arg2.method4108();
 		}

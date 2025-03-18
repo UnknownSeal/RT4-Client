@@ -7,25 +7,25 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static80 {
 
-	@OriginalMember(owner = "runetek4.client!gf", name = "M", descriptor = "I")
+	@OriginalMember(owner = "client!gf", name = "M", descriptor = "I")
 	public static int anInt4698;
 
-	@OriginalMember(owner = "runetek4.client!gf", name = "O", descriptor = "[[[I")
+	@OriginalMember(owner = "client!gf", name = "O", descriptor = "[[[I")
 	public static int[][][] anIntArrayArrayArray19;
 
-	@OriginalMember(owner = "runetek4.client!gf", name = "R", descriptor = "I")
+	@OriginalMember(owner = "client!gf", name = "R", descriptor = "I")
 	public static int anInt4701;
 
-	@OriginalMember(owner = "runetek4.client!gf", name = "T", descriptor = "I")
+	@OriginalMember(owner = "client!gf", name = "T", descriptor = "I")
 	public static int anInt4702;
 
-	@OriginalMember(owner = "runetek4.client!gf", name = "I", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "client!gf", name = "I", descriptor = "Lclient!na;")
 	public static final JString aClass100_886 = JString.parse(")3runescape)3com)4l=");
 
-	@OriginalMember(owner = "runetek4.client!gf", name = "S", descriptor = "[I")
+	@OriginalMember(owner = "client!gf", name = "S", descriptor = "[I")
 	public static final int[] anIntArray419 = new int[] { 0, 2, 2, 2, 1, 1, 2, 2, 1, 3, 1, 1 };
 
-	@OriginalMember(owner = "runetek4.client!gf", name = "a", descriptor = "(BII)V")
+	@OriginalMember(owner = "client!gf", name = "a", descriptor = "(BII)V")
 	public static void method3616(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
 		Static142.anInt3482 = arg0 - Static158.anInt3846;
 		@Pc(24) int local24 = Static142.anInt3482 - (int) ((float) Static24.component.width / Static83.aFloat3);
@@ -47,7 +47,7 @@ public final class Static80 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gf", name = "a", descriptor = "(Lclient!na;II)V")
+	@OriginalMember(owner = "client!gf", name = "a", descriptor = "(Lclient!na;II)V")
 	public static void method3617(@OriginalArg(0) JString arg0, @OriginalArg(2) int arg1) {
 		@Pc(6) DelayedStateChange local6 = Static238.method4143(3, arg1);
 		local6.method1017();

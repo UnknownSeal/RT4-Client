@@ -9,22 +9,22 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class CreateManager {
-    @OriginalMember(owner = "runetek4.client!oe", name = "l", descriptor = "I")
+    @OriginalMember(owner = "client!oe", name = "l", descriptor = "I")
     public static int step = 0;
 
-    @OriginalMember(owner = "runetek4.client!sc", name = "y", descriptor = "I")
+    @OriginalMember(owner = "client!sc", name = "y", descriptor = "I")
     public static int reply = -2;
 
-    @OriginalMember(owner = "runetek4.client!si", name = "S", descriptor = "[Lclient!na;")
+    @OriginalMember(owner = "client!si", name = "S", descriptor = "[Lclient!na;")
     public static JString[] suggestedNames;
 
-    @OriginalMember(owner = "runetek4.client!sf", name = "a", descriptor = "I")
+    @OriginalMember(owner = "client!sf", name = "a", descriptor = "I")
     public static int loops = 0;
 
-    @OriginalMember(owner = "runetek4.client!eg", name = "v", descriptor = "I")
+    @OriginalMember(owner = "client!eg", name = "v", descriptor = "I")
     public static int errors = 0;
 
-    @OriginalMember(owner = "runetek4.client!da", name = "a", descriptor = "(IIIILclient!na;JI)V")
+    @OriginalMember(owner = "client!da", name = "a", descriptor = "(IIIILclient!na;JI)V")
     public static void createAccount(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) JString password, @OriginalArg(5) long name, @OriginalArg(6) int arg5) {
         @Pc(8) Packet packet = new Packet(128);
         packet.p1(10);
@@ -52,7 +52,7 @@ public class CreateManager {
         errors = 0;
     }
 
-    @OriginalMember(owner = "runetek4.client!gd", name = "a", descriptor = "(JI)V")
+    @OriginalMember(owner = "client!gd", name = "a", descriptor = "(JI)V")
     public static void checkName(@OriginalArg(0) long name) {
         Protocol.outboundBuffer.offset = 0;
         Protocol.outboundBuffer.p1(186);
@@ -63,7 +63,7 @@ public class CreateManager {
         reply = -3;
     }
 
-    @OriginalMember(owner = "runetek4.client!jl", name = "a", descriptor = "(IIIII)V")
+    @OriginalMember(owner = "client!jl", name = "a", descriptor = "(IIIII)V")
     public static void checkInfo(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
         Protocol.outboundBuffer.offset = 0;
         Protocol.outboundBuffer.p1(147);
@@ -77,7 +77,7 @@ public class CreateManager {
         reply = -3;
     }
 
-    @OriginalMember(owner = "runetek4.client!mh", name = "f", descriptor = "(B)V")
+    @OriginalMember(owner = "client!mh", name = "f", descriptor = "(B)V")
     public static void handleLoginScreenActions() {
         if (step == 0) {
             return;
@@ -159,7 +159,6 @@ public class CreateManager {
                 step = 0;
                 Protocol.gameServerSocket.closeGracefully();
                 Protocol.gameServerSocket = null;
-                return;
             }
         } catch (@Pc(238) IOException ioException) {
             if (Protocol.gameServerSocket != null) {

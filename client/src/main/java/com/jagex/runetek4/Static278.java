@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.Npc;
+import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -34,7 +35,7 @@ public final class Static278 {
 						AreaSoundManager.remove(local37);
 					}
 					@Pc(66) int local66 = Protocol.inboundBuffer.gBit(1);
-					@Pc(73) int local73 = Static56.anIntArray141[Protocol.inboundBuffer.gBit(3)];
+					@Pc(73) int local73 = PathingEntity.ANGLES[Protocol.inboundBuffer.gBit(3)];
 					if (local19) {
 						local37.dstYaw = local37.anInt3381 = local73;
 					}

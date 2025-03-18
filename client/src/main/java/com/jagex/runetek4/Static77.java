@@ -7,22 +7,22 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static77 {
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "L", descriptor = "[I")
+	@OriginalMember(owner = "client!gb", name = "L", descriptor = "[I")
 	public static final int[] anIntArray194 = new int[10000];
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "N", descriptor = "[I")
+	@OriginalMember(owner = "client!gb", name = "N", descriptor = "[I")
 	public static final int[] anIntArray195 = MathUtils.cos;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "S", descriptor = "I")
+	@OriginalMember(owner = "client!gb", name = "S", descriptor = "I")
 	public static int anInt2138 = 0;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "V", descriptor = "[I")
+	@OriginalMember(owner = "client!gb", name = "V", descriptor = "[I")
 	public static final int[] anIntArray198 = MathUtils.sin;
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "Z", descriptor = "[I")
+	@OriginalMember(owner = "client!gb", name = "Z", descriptor = "[I")
 	public static final int[] anIntArray199 = new int[10000];
 
-	@OriginalMember(owner = "runetek4.client!gb", name = "a", descriptor = "([[III)I")
+	@OriginalMember(owner = "client!gb", name = "a", descriptor = "([[III)I")
 	public static int method1680(@OriginalArg(0) int[][] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		@Pc(3) int local3 = arg1 >> 7;
 		@Pc(7) int local7 = arg2 >> 7;

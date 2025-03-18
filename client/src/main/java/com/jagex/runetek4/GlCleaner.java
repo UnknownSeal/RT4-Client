@@ -6,20 +6,20 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class GlCleaner {
-    @OriginalMember(owner = "runetek4.client!fa", name = "b", descriptor = "Lclient!ih;")
+    @OriginalMember(owner = "client!fa", name = "b", descriptor = "Lclient!ih;")
     static final LinkedList aClass69_48 = new LinkedList();
-    @OriginalMember(owner = "runetek4.client!fa", name = "g", descriptor = "Lclient!ih;")
+    @OriginalMember(owner = "client!fa", name = "g", descriptor = "Lclient!ih;")
     static final LinkedList aClass69_49 = new LinkedList();
-    @OriginalMember(owner = "runetek4.client!fa", name = "h", descriptor = "Lclient!ih;")
+    @OriginalMember(owner = "client!fa", name = "h", descriptor = "Lclient!ih;")
     static final LinkedList aClass69_50 = new LinkedList();
-    @OriginalMember(owner = "runetek4.client!fa", name = "i", descriptor = "Lclient!ih;")
+    @OriginalMember(owner = "client!fa", name = "i", descriptor = "Lclient!ih;")
     static final LinkedList aClass69_51 = new LinkedList();
-    @OriginalMember(owner = "runetek4.client!fa", name = "j", descriptor = "[I")
+    @OriginalMember(owner = "client!fa", name = "j", descriptor = "[I")
     private static final int[] anIntArray151 = new int[1000];
-    @OriginalMember(owner = "runetek4.client!fa", name = "d", descriptor = "J")
+    @OriginalMember(owner = "client!fa", name = "d", descriptor = "J")
     private static long aLong71 = 0L;
 
-    @OriginalMember(owner = "runetek4.client!fa", name = "c", descriptor = "()V")
+    @OriginalMember(owner = "client!fa", name = "c", descriptor = "()V")
     public static synchronized void process() {
         @Pc(1) GL2 local1 = GlRenderer.gl;
         @Pc(3) int local3 = 0;

@@ -4,18 +4,18 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static68 {
 
-	@OriginalMember(owner = "runetek4.client!fg", name = "d", descriptor = "[I")
+	@OriginalMember(owner = "client!fg", name = "d", descriptor = "[I")
 	public static final int[] anIntArray159 = new int[6];
 
-	@OriginalMember(owner = "runetek4.client!fg", name = "l", descriptor = "[I")
+	@OriginalMember(owner = "client!fg", name = "l", descriptor = "[I")
 	public static final int[] anIntArray164 = new int[6];
 
-	@OriginalMember(owner = "runetek4.client!fg", name = "m", descriptor = "[I")
+	@OriginalMember(owner = "client!fg", name = "m", descriptor = "[I")
 	public static final int[] anIntArray165 = new int[6];
 
-	@OriginalMember(owner = "runetek4.client!fg", name = "r", descriptor = "[I")
+	@OriginalMember(owner = "client!fg", name = "r", descriptor = "[I")
 	public static final int[] tmpViewspaceZ = new int[6];
 
-	@OriginalMember(owner = "runetek4.client!fg", name = "t", descriptor = "[I")
+	@OriginalMember(owner = "client!fg", name = "t", descriptor = "[I")
 	public static final int[] anIntArray170 = new int[6];
 }

@@ -12,10 +12,7 @@ public final class Static138 {
 	@OriginalMember(owner = "runetek4.client!km", name = "uc", descriptor = "F")
 	public static float aFloat14;
 
-	@OriginalMember(owner = "runetek4.client!km", name = "Yc", descriptor = "I")
-	public static int anInt3443;
-
-	@OriginalMember(owner = "runetek4.client!km", name = "tc", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "runetek4.client!km", name = "tc", descriptor = "Lclient!na;")
 	private static final JString DEC = JString.parse("Dec");
 
 	@OriginalMember(owner = "runetek4.client!km", name = "vc", descriptor = "Lclient!na;")

@@ -10,19 +10,19 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static79 {
 
-	@OriginalMember(owner = "runetek4.client!ge", name = "q", descriptor = "I")
+	@OriginalMember(owner = "client!ge", name = "q", descriptor = "I")
 	public static int anInt2161;
 
-	@OriginalMember(owner = "runetek4.client!ge", name = "i", descriptor = "Lclient!n;")
+	@OriginalMember(owner = "client!ge", name = "i", descriptor = "Lclient!n;")
 	public static final NodeCache aClass99_11 = new NodeCache(64);
 
-	@OriginalMember(owner = "runetek4.client!ge", name = "k", descriptor = "[I")
+	@OriginalMember(owner = "client!ge", name = "k", descriptor = "[I")
 	public static int[] anIntArray205 = new int[2];
 
-	@OriginalMember(owner = "runetek4.client!ge", name = "m", descriptor = "I")
+	@OriginalMember(owner = "client!ge", name = "m", descriptor = "I")
 	public static int chatEffectsDisabled = 0;
 
-	@OriginalMember(owner = "runetek4.client!ge", name = "a", descriptor = "(IIIZIZZ)V")
+	@OriginalMember(owner = "client!ge", name = "a", descriptor = "(IIIZIZZ)V")
 	public static void method1697(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) boolean arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5) {
 		if (arg2 <= arg4) {
 			return;
@@ -45,7 +45,7 @@ public final class Static79 {
 		method1697(arg0, arg1, arg2, arg3, local15 + 1, arg5);
 	}
 
-	@OriginalMember(owner = "runetek4.client!ge", name = "a", descriptor = "(BLclient!ve;)V")
+	@OriginalMember(owner = "client!ge", name = "a", descriptor = "(BLclient!ve;)V")
 	public static void init(@OriginalArg(1) Js5 arg0) {
 		BasTypeList.archive = arg0;
 	}

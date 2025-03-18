@@ -114,7 +114,7 @@ public class Preferences {
             ClientProt.ping(true);
             GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 30) {
-            Static47.method3998(new Packet(Static119.aClass153_44.fetchFile(Static4.aClass100_7, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
+            WorldMap.method3998(new Packet(Static119.aClass153_44.fetchFile(Static4.aClass100_7, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
             WorldMap.loadPercentage = 40;
             GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 40) {
@@ -191,7 +191,7 @@ public class Preferences {
             }
             if (local16.status == 1) {
                 local11 = (FileOnDisk) local16.result;
-                @Pc(39) Packet local39 = Static48.method1196();
+                @Pc(39) Packet local39 = encode();
                 local11.write(local39.data, local39.offset, 0);
             }
         } catch (@Pc(49) Exception local49) {
@@ -281,5 +281,40 @@ public class Preferences {
     public static void setAllLevelsVisible(@OriginalArg(1) boolean arg0) {
         Static162.aBoolean190 = arg0;
         Static87.aBoolean130 = !Static138.allLevelsvisible();
+    }
+
+    @OriginalMember(owner = "client!dl", name = "a", descriptor = "(B)Lclient!wa;")
+    public static Packet encode() {
+        @Pc(4) Packet local4 = new Packet(34);
+        local4.p1(11);
+        local4.p1(brightness);
+        local4.p1(Static162.aBoolean190 ? 1 : 0);
+        local4.p1(roofsVisible ? 1 : 0);
+        local4.p1(groundDecoration ? 1 : 0);
+        local4.p1(highDetailTextures ? 1 : 0);
+        local4.p1(Static15.lowMemory ? 1 : 0);
+        local4.p1(Static11.aBoolean15 ? 1 : 0);
+        local4.p1(Static159.aBoolean189 ? 1 : 0);
+        local4.p1(Static209.aBoolean240 ? 1 : 0);
+        local4.p1(Static139.anInt3451);
+        local4.p1(Static178.highDetailLighting ? 1 : 0);
+        local4.p1(Static220.aBoolean244 ? 1 : 0);
+        local4.p1(Static71.aBoolean107 ? 1 : 0);
+        local4.p1(windowMode);
+        local4.p1(stereo ? 1 : 0);
+        local4.p1(Static125.anInt3104);
+        local4.p1(Static12.anInt391);
+        local4.p1(ambientSoundsVolume);
+        local4.p2(fullScreenWidth);
+        local4.p2(fullScreenHeight);
+        local4.p1(getParticleSetting());
+        local4.p4(Static164.anInt3988);
+        local4.p1(favoriteWorlds);
+        local4.p1(safeMode ? 1 : 0);
+        local4.p1(aBoolean63 ? 1 : 0);
+        local4.p1(buildArea);
+        local4.p1(Static127.aBoolean159 ? 1 : 0);
+        local4.p1(Static64.aBoolean111 ? 1 : 0);
+        return local4;
     }
 }

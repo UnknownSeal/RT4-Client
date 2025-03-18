@@ -7,18 +7,18 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class FloTypeList {
 
-	@OriginalMember(owner = "runetek4.client!uh", name = "P", descriptor = "Lclient!ve;")
+	@OriginalMember(owner = "client!uh", name = "P", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_103;
 
-	@OriginalMember(owner = "runetek4.client!uh", name = "ab", descriptor = "Lclient!q;")
+	@OriginalMember(owner = "client!uh", name = "ab", descriptor = "Lclient!q;")
 	public static final ReferenceNodeFactory aClass22_1 = Static44.method1147();
 
-	@OriginalMember(owner = "runetek4.client!uh", name = "e", descriptor = "(I)V")
+	@OriginalMember(owner = "client!uh", name = "e", descriptor = "(I)V")
 	public static void removeSoft() {
 		ClientScriptRunner.aClass99_31.removeSoft();
 	}
 
-	@OriginalMember(owner = "runetek4.client!uh", name = "f", descriptor = "(I)V")
+	@OriginalMember(owner = "client!uh", name = "f", descriptor = "(I)V")
 	public static void method4302() {
 		if (Static236.method4047() != 2) {
 			return;

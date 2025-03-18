@@ -31,13 +31,13 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static88 {
 
-	@OriginalMember(owner = "runetek4.client!h", name = "a", descriptor = "(Lclient!ve;Lclient!ve;Z)V")
+	@OriginalMember(owner = "client!h", name = "a", descriptor = "(Lclient!ve;Lclient!ve;Z)V")
 	public static void init(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
 		Static86.aClass153_37 = arg0;
 		Static58.aClass153_28 = arg1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!h", name = "a", descriptor = "(BILclient!jl;)V")
+	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BILclient!jl;)V")
 	public static void runClientScripts(@OriginalArg(1) int arg0, @OriginalArg(2) HookRequest arg1) {
 		@Pc(4) Object[] listeners = arg1.arguments;
 		@Pc(10) int local10 = (Integer) listeners[0];
@@ -4264,7 +4264,7 @@ public final class Static88 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!h", name = "a", descriptor = "(I)Lclient!ba;")
+	@OriginalMember(owner = "client!h", name = "a", descriptor = "(I)Lclient!ba;")
 	public static GWCWorld method1821() {
 		return Static101.aClass10_Sub1Array1.length > Static51.anInt1682 ? Static101.aClass10_Sub1Array1[Static51.anInt1682++] : null;
 	}

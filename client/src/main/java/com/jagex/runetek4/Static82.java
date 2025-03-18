@@ -7,13 +7,13 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static82 {
 
-	@OriginalMember(owner = "runetek4.client!gi", name = "c", descriptor = "I")
+	@OriginalMember(owner = "client!gi", name = "c", descriptor = "I")
 	public static int anInt2231 = 0;
 
-	@OriginalMember(owner = "runetek4.client!gi", name = "H", descriptor = "I")
+	@OriginalMember(owner = "client!gi", name = "H", descriptor = "I")
 	public static int minimapOffsetCycle = 0;
 
-	@OriginalMember(owner = "runetek4.client!gi", name = "a", descriptor = "(IIIIB)V")
+	@OriginalMember(owner = "client!gi", name = "a", descriptor = "(IIIIB)V")
 	public static void method1760(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
 		if (arg1 - arg0 >= Static172.anInt4164 && FluTypeList.anInt5063 >= arg0 + arg1 && arg3 - arg0 >= Static267.anInt5773 && Static106.anInt2869 >= arg0 + arg3) {
 			Static49.method1206(arg1, arg0, arg2, arg3);
@@ -22,7 +22,7 @@ public final class Static82 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!gi", name = "b", descriptor = "(I)Lclient!qf;")
+	@OriginalMember(owner = "client!gi", name = "b", descriptor = "(I)Lclient!qf;")
 	public static Sprite method1764() {
 		@Pc(9) byte[] local9 = aClass6.aByteArrayArray5[0];
 		@Pc(17) int local17 = Static254.anIntArray488[0] * Static26.anIntArray66[0];

@@ -13,17 +13,17 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass(".client!el")
 public final class GlAlphaSprite extends GlSprite {
 
-	@OriginalMember(owner = ".client!el", name = "<init>", descriptor = "(IIIIII[I)V")
+	@OriginalMember(owner = "client!el", name = "<init>", descriptor = "(IIIIII[I)V")
 	public GlAlphaSprite(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int[] arg6) {
 		super(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
 	}
 
-	@OriginalMember(owner = ".client!el", name = "<init>", descriptor = "(Lclient!mm;)V")
+	@OriginalMember(owner = "client!el", name = "<init>", descriptor = "(Lclient!mm;)V")
 	public GlAlphaSprite(@OriginalArg(0) SoftwareSprite arg0) {
 		super(arg0);
 	}
 
-	@OriginalMember(owner = ".client!el", name = "a", descriptor = "([I)V")
+	@OriginalMember(owner = "client!el", name = "a", descriptor = "([I)V")
 	@Override
 	protected final void method1430(@OriginalArg(0) int[] arg0) {
 		this.anInt1870 = IntUtils.bitceil(this.width);
