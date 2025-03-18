@@ -87,14 +87,14 @@ public final class Js5NetQueue {
 				this.outPacket.p1(1);
 				this.outPacket.p3((int) local75.secondaryNodeId);
 				this.updateServerSocket.write(4, this.outPacket.data);
-				this.inFlightUrgentRequests.pushBack(local75);
+				this.inFlightUrgentRequests.addTail(local75);
 			}
 			for (local75 = (Js5NetRequest) this.prefetch.head(); local75 != null; local75 = (Js5NetRequest) this.prefetch.prev()) {
 				this.outPacket.offset = 0;
 				this.outPacket.p1(0);
 				this.outPacket.p3((int) local75.secondaryNodeId);
 				this.updateServerSocket.write(4, this.outPacket.data);
-				this.inFlightPrefetchRequests.pushBack(local75);
+				this.inFlightPrefetchRequests.addTail(local75);
 			}
 			for (@Pc(172) int i = 0; i < 100; i++) {
 				available = this.updateServerSocket.available();
@@ -132,7 +132,7 @@ public final class Js5NetQueue {
 					this.current.blockPosition += archive;
 					this.current.packet.offset += archive;
 					if (this.current.packet.offset == remaining) {
-						this.current.clear();
+						this.current.unlinkCachedNode();
 						this.current.awaitingResponse = false;
 						this.current = null;
 					} else if (this.current.blockPosition == 512) {
@@ -300,10 +300,10 @@ public final class Js5NetQueue {
 						this.aLong104 = MonotonicTime.currentTimeMillis();
 						return;
 					}
-					this.prefetch.pushBack(local44);
+					this.prefetch.addTail(local44);
 				}
 			}
-			this.urgent.pushBack(local44);
+			this.urgent.addTail(local44);
 		}
 	}
 
@@ -347,9 +347,9 @@ public final class Js5NetQueue {
 			if (this.getUrgentRequestCount() >= 20) {
 				throw new RuntimeException();
 			}
-			this.urgent.pushBack(local7);
+			this.urgent.addTail(local7);
 		} else if (this.getPrefetchRequestCount() < 20) {
-			this.prefetch.pushBack(local7);
+			this.prefetch.addTail(local7);
 		} else {
 			throw new RuntimeException();
 		}

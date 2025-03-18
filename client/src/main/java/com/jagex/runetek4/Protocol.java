@@ -9,6 +9,7 @@ import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.client.Inv;
+import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.SceneCamera;
@@ -342,7 +343,7 @@ public class Protocol {
             xp = inboundBuffer.g2sub();
             local790 = inboundBuffer.gjstr();
             if (setVerifyID(xp)) {
-                Static193.method3498(local790, ii);
+                DelayedStateChange.method3498(local790, ii);
             }
             opcode = -1;
             return true;
@@ -366,7 +367,7 @@ public class Protocol {
                 xp = inboundBuffer.g2le();
                 world = inboundBuffer.g2();
                 if (setVerifyID(world)) {
-                    Static229.method3938(xp, ii);
+                    DelayedStateChange.method3938(xp, ii);
                 }
                 opcode = -1;
                 return true;
@@ -491,7 +492,7 @@ public class Protocol {
                 message2 = inboundBuffer.gjstr();
                 world = inboundBuffer.g2leadd();
                 if (setVerifyID(ii)) {
-                    Static193.method3498(message2, world);
+                    DelayedStateChange.method3498(message2, world);
                 }
                 opcode = -1;
                 return true;
@@ -532,7 +533,7 @@ public class Protocol {
                     xp = inboundBuffer.g2();
                     world = inboundBuffer.g4me();
                     if (setVerifyID(xp)) {
-                        Static153.method2905(world, ii);
+                        DelayedStateChange.method2905(world, ii);
                     }
                     opcode = -1;
                     return true;
@@ -559,7 +560,7 @@ public class Protocol {
                     xp = inboundBuffer.g4();
                     world = inboundBuffer.g2sub();
                     if (setVerifyID(ii)) {
-                        Static132.method2606(world, xp);
+                        DelayedStateChange.updateVarC(world, xp);
                     }
                     opcode = -1;
                     return true;
@@ -597,7 +598,7 @@ public class Protocol {
                     xp = inboundBuffer.g2les();
                     world = inboundBuffer.g2sub();
                     if (setVerifyID(world)) {
-                        Static225.method3893(ii, xp);
+                        DelayedStateChange.method3893(ii, xp);
                     }
                     opcode = -1;
                     return true;
@@ -734,7 +735,7 @@ public class Protocol {
                         world = inboundBuffer.g2();
                         slot = inboundBuffer.g2sub();
                         if (setVerifyID(xp)) {
-                            Static190.method3444(slot + (world << 16), ii);
+                            DelayedStateChange.setComponentModelRotationSpeedServer(slot + (world << 16), ii);
                         }
                         opcode = -1;
                         return true;
@@ -796,7 +797,7 @@ public class Protocol {
                         slot = inboundBuffer.g2leadd();
                         count = inboundBuffer.g4();
                         if (setVerifyID(xp)) {
-                            Static261.method4505(world, count, slot, ii);
+                            DelayedStateChange.updateView(world, count, slot, ii);
                         }
                         opcode = -1;
                         return true;
@@ -836,7 +837,7 @@ public class Protocol {
                             world = -1;
                         }
                         if (setVerifyID(xp)) {
-                            Static132.method2607(-1, 1, ii, world);
+                            DelayedStateChange.updateComponentModel(-1, 1, ii, world);
                         }
                         opcode = -1;
                         return true;
@@ -1055,7 +1056,7 @@ public class Protocol {
                                 xp = inboundBuffer.g2sub();
                                 world = inboundBuffer.g2leadd();
                                 if (setVerifyID(xp)) {
-                                    Static136.method2649(world, ii);
+                                    DelayedStateChange.setColor(world, ii);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1073,7 +1074,7 @@ public class Protocol {
                                 xp = inboundBuffer.p1neg();
                                 world = inboundBuffer.g2leadd();
                                 if (setVerifyID(ii)) {
-                                    Static132.method2606(world, xp);
+                                    DelayedStateChange.updateVarC(world, xp);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1142,7 +1143,7 @@ public class Protocol {
                                 slot = inboundBuffer.g2le();
                                 count = inboundBuffer.g2leadd();
                                 if (setVerifyID(ii)) {
-                                    Static132.method2607(world, 7, xp, slot << 16 | count);
+                                    DelayedStateChange.updateComponentModel(world, 7, xp, slot << 16 | count);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1244,7 +1245,7 @@ public class Protocol {
                                 world = inboundBuffer.g2s();
                                 slot = inboundBuffer.g2sadd();
                                 if (setVerifyID(ii)) {
-                                    Static280.method4666(world, xp, slot);
+                                    DelayedStateChange.method4666(world, xp, slot);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1378,7 +1379,7 @@ public class Protocol {
                                     if (PlayerList.self.appearance != null) {
                                         world = PlayerList.self.appearance.getHeadModelId();
                                     }
-                                    Static132.method2607(-1, 3, xp, world);
+                                    DelayedStateChange.updateComponentModel(-1, 3, xp, world);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1387,7 +1388,7 @@ public class Protocol {
                                 message2 = inboundBuffer.gjstr();
                                 world = inboundBuffer.g2sub();
                                 if (setVerifyID(world)) {
-                                    Static80.method3617(message2, ii);
+                                    DelayedStateChange.method3617(message2, ii);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1463,7 +1464,7 @@ public class Protocol {
                                     }
                                     world = inboundBuffer.g2le();
                                     if (setVerifyID(world)) {
-                                        Static132.method2607(-1, 2, xp, ii);
+                                        DelayedStateChange.updateComponentModel(-1, 2, xp, ii);
                                     }
                                     opcode = -1;
                                     return true;
@@ -1585,10 +1586,10 @@ public class Protocol {
                                         @Pc(5603) Component com = InterfaceList.getComponent(xp);
                                         @Pc(5615) ObjType obj;
                                         if (com.if3) {
-                                            Static209.method3707(xp, ii, world);
+                                            DelayedStateChange.method3707(xp, ii, world);
                                             obj = ObjTypeList.get(world);
-                                            Static261.method4505(obj.zoom2d, xp, obj.yan2d, obj.xan2d);
-                                            Static145.method2745(xp, obj.zan2d, obj.yof2d, obj.xof2d);
+                                            DelayedStateChange.updateView(obj.zoom2d, xp, obj.yan2d, obj.xan2d);
+                                            DelayedStateChange.method2745(xp, obj.zan2d, obj.yof2d, obj.xof2d);
                                         } else if (world == -1) {
                                             com.modelType = 0;
                                             opcode = -1;

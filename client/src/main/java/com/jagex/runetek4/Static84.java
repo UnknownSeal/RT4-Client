@@ -282,7 +282,7 @@ public final class Static84 {
 	@OriginalMember(owner = "client!gk", name = "a", descriptor = "(Lclient!rg;Lclient!rg;B)V")
 	public static void method1772(@OriginalArg(0) CachedNode arg0, @OriginalArg(1) CachedNode arg1) {
 		if (arg1.nextCachedNode != null) {
-			arg1.clear();
+			arg1.unlinkCachedNode();
 		}
 		arg1.nextCachedNode = arg0;
 		arg1.previousCachedNode = arg0.previousCachedNode;

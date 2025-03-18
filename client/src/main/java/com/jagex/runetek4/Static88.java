@@ -10,6 +10,7 @@ import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.game.client.Inv;
+import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.enumtype.EnumType;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.cache.def.ObjType;
@@ -301,7 +302,7 @@ public final class Static88 {
 						j = local33[scriptIndex];
 						intValueIndex--;
 						VarcDomain.varcs[j] = Static254.scriptIntValues[intValueIndex];
-						Static4.method24(j);
+						DelayedStateChange.method24(j);
 						continue;
 					}
 					if (scriptOpcode == 44) {
@@ -358,7 +359,7 @@ public final class Static88 {
 						j = local33[scriptIndex];
 						local26--;
 						Static226.varcstrs[j] = Static3.scriptStringValues[local26];
-						Static89.method1840(j);
+						DelayedStateChange.method1840(j);
 						continue;
 					}
 					if (scriptOpcode == 51) {
@@ -545,7 +546,7 @@ public final class Static88 {
 									}
 									InterfaceList.redraw(local1182);
 									if (local1182.createdComponentId == -1) {
-										Static118.method2353(local1182.id);
+										DelayedStateChange.method2353(local1182.id);
 									}
 									continue;
 								}
@@ -555,7 +556,7 @@ public final class Static88 {
 									local1182.color = Static254.scriptIntValues[intValueIndex];
 									InterfaceList.redraw(local1182);
 									if (local1182.createdComponentId == -1) {
-										Static245.method4224(local1182.id);
+										DelayedStateChange.method4224(local1182.id);
 									}
 									continue;
 								}
@@ -607,7 +608,7 @@ public final class Static88 {
 									local1182.modelId = Static254.scriptIntValues[intValueIndex];
 									InterfaceList.redraw(local1182);
 									if (local1182.createdComponentId == -1) {
-										Static271.method4600(local1182.id);
+										DelayedStateChange.method4600(local1182.id);
 									}
 									continue;
 								}
@@ -622,8 +623,8 @@ public final class Static88 {
 									local1182.modelZoom = Static254.scriptIntValues[intValueIndex + 5];
 									InterfaceList.redraw(local1182);
 									if (local1182.createdComponentId == -1) {
-										Static153.method2910(local1182.id);
-										Static180.method3328(local1182.id);
+										DelayedStateChange.setComponentModelAngleClient(local1182.id);
+										DelayedStateChange.setComponentModelOffsetClient(local1182.id);
 									}
 									continue;
 								}
@@ -639,7 +640,7 @@ public final class Static88 {
 										InterfaceList.redraw(local1182);
 									}
 									if (local1182.createdComponentId == -1) {
-										IdkTypeList.method3345(local1182.id);
+										DelayedStateChange.method3345(local1182.id);
 									}
 									continue;
 								}
@@ -659,7 +660,7 @@ public final class Static88 {
 										InterfaceList.redraw(local1182);
 									}
 									if (local1182.createdComponentId == -1) {
-										Static163.method3096(local1182.id);
+										DelayedStateChange.method3096(local1182.id);
 									}
 									continue;
 								}
@@ -738,7 +739,7 @@ public final class Static88 {
 									local1182.modelZoom = Static254.scriptIntValues[intValueIndex];
 									InterfaceList.redraw(local1182);
 									if (local1182.createdComponentId == -1) {
-										Static153.method2910(local1182.id);
+										DelayedStateChange.setComponentModelAngleClient(local1182.id);
 									}
 									continue;
 								}
@@ -756,9 +757,9 @@ public final class Static88 {
 									childCount = Static254.scriptIntValues[intValueIndex + 1];
 									interfaceType = Static254.scriptIntValues[intValueIndex];
 									if (local1182.createdComponentId == -1) {
-										Static251.method4279(local1182.id);
-										Static153.method2910(local1182.id);
-										Static180.method3328(local1182.id);
+										DelayedStateChange.setComponentObjClient(local1182.id);
+										DelayedStateChange.setComponentModelAngleClient(local1182.id);
+										DelayedStateChange.setComponentModelOffsetClient(local1182.id);
 									}
 									if (interfaceType == -1) {
 										local1182.modelId = -1;
@@ -793,7 +794,7 @@ public final class Static88 {
 									intValueIndex--;
 									local1182.modelId = Static254.scriptIntValues[intValueIndex];
 									if (local1182.createdComponentId == -1) {
-										Static271.method4600(local1182.id);
+										DelayedStateChange.method4600(local1182.id);
 									}
 									continue;
 								}
@@ -802,7 +803,7 @@ public final class Static88 {
 									local1182.modelType = 3;
 									local1182.modelId = PlayerList.self.appearance.getHeadModelId();
 									if (local1182.createdComponentId == -1) {
-										Static271.method4600(local1182.id);
+										DelayedStateChange.method4600(local1182.id);
 									}
 									continue;
 								}
@@ -812,7 +813,7 @@ public final class Static88 {
 									intValueIndex--;
 									local1182.modelId = Static254.scriptIntValues[intValueIndex];
 									if (local1182.createdComponentId == -1) {
-										Static271.method4600(local1182.id);
+										DelayedStateChange.method4600(local1182.id);
 									}
 									continue;
 								}
@@ -821,7 +822,7 @@ public final class Static88 {
 									intValueIndex--;
 									local1182.modelId = Static254.scriptIntValues[intValueIndex];
 									if (local1182.createdComponentId == -1) {
-										Static271.method4600(local1182.id);
+										DelayedStateChange.method4600(local1182.id);
 									}
 									continue;
 								}
@@ -4173,7 +4174,7 @@ public final class Static88 {
 								InterfaceList.redraw(local1182);
 								Static74.method1625(local1182);
 								if (local1182.createdComponentId == -1) {
-									Static280.method4675(local1182.id);
+									DelayedStateChange.method4675(local1182.id);
 								}
 								continue;
 							}
@@ -4214,7 +4215,7 @@ public final class Static88 {
 									InterfaceList.redraw(local1182);
 								}
 								if (local1182.createdComponentId == -1) {
-									Static93.method1906(local1182.id);
+									DelayedStateChange.method1906(local1182.id);
 								}
 								continue;
 							}

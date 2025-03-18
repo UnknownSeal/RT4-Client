@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.media.Rasterizer;
@@ -46,14 +45,6 @@ public final class Static280 {
 			arg0.dstYaw = 512;
 		}
 		arg0.anInt3381 = arg0.dstYaw;
-	}
-
-	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(IIII)V")
-	public static void method4666(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) {
-		@Pc(18) DelayedStateChange local18 = Static238.method4143(11, arg1);
-		local18.method1017();
-		local18.intArg3 = arg2;
-		local18.intArg1 = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "([IIIIIIIIIZB)V")
@@ -705,9 +696,4 @@ public final class Static280 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(II)V")
-	public static void method4675(@OriginalArg(1) int arg0) {
-		@Pc(17) DelayedStateChange local17 = Static238.method4143(11, arg0);
-		local17.method1007();
-	}
 }

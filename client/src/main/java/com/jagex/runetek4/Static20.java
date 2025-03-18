@@ -10,11 +10,4 @@ public final class Static20 {
 	@OriginalMember(owner = "client!bj", name = "s", descriptor = "I")
 	public static int anInt660 = -1;
 
-	@OriginalMember(owner = "client!bj", name = "d", descriptor = "(B)V")
-	public static void clear() {
-		Static36.aClass133_3.removeAll();
-		Static140.aClass16_7.method802();
-		Static215.aClass16_9.method802();
-	}
-
 }

@@ -41,13 +41,13 @@ public final class NodeCache {
 		if (this.remaining == 0) {
 			@Pc(26) ReferenceNode node = (ReferenceNode) this.nodeQueue.pollFront();
 			node.unlink();
-			node.clear();
+			node.unlinkCachedNode();
 		} else {
 			this.remaining--;
 		}
 		@Pc(44) HardReferenceNode local44 = new HardReferenceNode(arg0);
 		this.hashTable.put(local44, arg1);
-		this.nodeQueue.pushBack(local44);
+		this.nodeQueue.addTail(local44);
 		local44.secondaryNodeId = 0L;
 	}
 
@@ -56,7 +56,7 @@ public final class NodeCache {
 		@Pc(6) ReferenceNode node = (ReferenceNode) this.hashTable.getNode(arg0);
 		if (node != null) {
 			node.unlink();
-			node.clear();
+			node.unlinkCachedNode();
 			this.remaining++;
 		}
 	}
@@ -81,7 +81,7 @@ public final class NodeCache {
 			if (cachedNode.method3619()) {
 				if (cachedNode.method3618() == null) {
 					cachedNode.unlink();
-					cachedNode.clear();
+					cachedNode.unlinkCachedNode();
 					this.remaining++;
 				}
 			} else if (++cachedNode.secondaryNodeId > (long) arg0) {
@@ -89,7 +89,7 @@ public final class NodeCache {
 				this.hashTable.put(local33, cachedNode.nodeId);
 				Static84.method1772(cachedNode, local33);
 				cachedNode.unlink();
-				cachedNode.clear();
+				cachedNode.unlinkCachedNode();
 			}
 		}
 	}
@@ -99,7 +99,7 @@ public final class NodeCache {
 		for (@Pc(7) ReferenceNode local7 = (ReferenceNode) this.nodeQueue.head(); local7 != null; local7 = (ReferenceNode) this.nodeQueue.prev()) {
 			if (local7.method3619()) {
 				local7.unlink();
-				local7.clear();
+				local7.unlinkCachedNode();
 				this.remaining++;
 			}
 		}
@@ -107,8 +107,8 @@ public final class NodeCache {
 
 	@OriginalMember(owner = "runetek4.client!n", name = "c", descriptor = "(I)V")
 	public final void clean() {
-		this.nodeQueue.method802();
-		this.hashTable.removeAll();
+		this.nodeQueue.clear();
+		this.hashTable.clear();
 		this.remaining = this.size;
 	}
 
@@ -121,19 +121,19 @@ public final class NodeCache {
 		@Pc(27) Object local27 = local12.method3618();
 		if (local27 == null) {
 			local12.unlink();
-			local12.clear();
+			local12.unlinkCachedNode();
 			this.remaining++;
 			return null;
 		}
 		if (local12.method3619()) {
 			@Pc(53) HardReferenceNode local53 = new HardReferenceNode(local27);
 			this.hashTable.put(local53, local12.nodeId);
-			this.nodeQueue.pushBack(local53);
+			this.nodeQueue.addTail(local53);
 			local53.secondaryNodeId = 0L;
 			local12.unlink();
-			local12.clear();
+			local12.unlinkCachedNode();
 		} else {
-			this.nodeQueue.pushBack(local12);
+			this.nodeQueue.addTail(local12);
 			local12.secondaryNodeId = 0L;
 		}
 		return local27;

@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.config.FloType;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -24,13 +23,6 @@ public final class Static193 {
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "V", descriptor = "[Lclient!na;")
 	public static final JString[] ignoreName = new JString[100];
-
-	@OriginalMember(owner = "runetek4.client!pi", name = "a", descriptor = "(Lclient!na;BI)V")
-	public static void method3498(@OriginalArg(0) JString arg0, @OriginalArg(2) int arg1) {
-		@Pc(10) DelayedStateChange local10 = Static238.method4143(2, arg1);
-		local10.method1017();
-		local10.stringArg = arg0;
-	}
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "a", descriptor = "(JI)V")
 	public static void removeFriend(@OriginalArg(0) long username) {

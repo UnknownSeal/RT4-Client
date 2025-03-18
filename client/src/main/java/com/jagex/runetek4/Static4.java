@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -29,12 +28,6 @@ public final class Static4 {
 		} else {
 			return 0;
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!ac", name = "a", descriptor = "(BI)V")
-	public static void method24(@OriginalArg(1) int arg0) {
-		@Pc(16) DelayedStateChange local16 = Static238.method4143(1, arg0);
-		local16.method1007();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "a", descriptor = "(Lclient!na;I)I")

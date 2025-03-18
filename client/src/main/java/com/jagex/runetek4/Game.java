@@ -213,9 +213,9 @@ public class Game {
         }
         @Pc(782) int rand;
 
-        for (@Pc(709) DelayedStateChange change = Static127.poll(); change != null; change = Static127.poll()) {
-            samples = change.method1011();
-            i = change.method1012();
+        for (@Pc(709) DelayedStateChange change = DelayedStateChange.poll(); change != null; change = DelayedStateChange.poll()) {
+            samples = change.getType();
+            i = change.getId();
             if (samples == 1) {
                 VarcDomain.varcs[i] = change.intArg1;
                 Static138.updatedVarcs[Static4.updatedVarcsWriterIndex++ & 0x1F] = i;

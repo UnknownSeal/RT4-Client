@@ -16,7 +16,7 @@ public class CachedNode extends Node {
 	public CachedNode previousCachedNode;
 
 	@OriginalMember(owner = "client!rg", name = "e", descriptor = "(B)V")
-	public final void clear() {
+	public final void unlinkCachedNode() {
 		if (this.nextCachedNode != null) {
 			this.nextCachedNode.previousCachedNode = this.previousCachedNode;
 			this.previousCachedNode.nextCachedNode = this.nextCachedNode;

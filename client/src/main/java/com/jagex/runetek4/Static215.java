@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.node.NodeQueue;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static215 {
@@ -10,9 +9,6 @@ public final class Static215 {
 
 	@OriginalMember(owner = "runetek4.client!rh", name = "d", descriptor = "I")
 	public static int anInt4866;
-
-	@OriginalMember(owner = "runetek4.client!rh", name = "e", descriptor = "Lclient!ce;")
-	public static final NodeQueue aClass16_9 = new NodeQueue();
 
 	@OriginalMember(owner = "runetek4.client!rh", name = "g", descriptor = "I")
 	public static final int anInt4868 = -1;

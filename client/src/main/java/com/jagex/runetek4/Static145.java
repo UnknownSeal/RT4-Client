@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.SoftwareSprite;
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -91,15 +90,6 @@ public final class Static145 {
 			Fonts.b12Full.renderLeft(Static269.method2228(local107), local11 + 3, local127, local129, 0);
 		}
 		Static121.method2407(Static183.anInt4271, Static229.anInt5138, Static13.anInt436, Static24.anInt761);
-	}
-
-	@OriginalMember(owner = "runetek4.client!lf", name = "a", descriptor = "(IIIIB)V")
-	public static void method2745(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		@Pc(8) DelayedStateChange local8 = Static238.method4143(10, arg0);
-		local8.method1017();
-		local8.intArg3 = arg2;
-		local8.intArg1 = arg3;
-		local8.intArg2 = arg1;
 	}
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "c", descriptor = "(I)I")

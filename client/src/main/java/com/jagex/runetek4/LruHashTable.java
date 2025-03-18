@@ -42,7 +42,7 @@ public final class LruHashTable {
 	public final CachedNode get(@OriginalArg(0) long arg0) {
 		@Pc(16) CachedNode node = (CachedNode) this.aClass133_5.getNode(arg0);
 		if (node != null) {
-			this.aClass16_1.pushBack(node);
+			this.aClass16_1.addTail(node);
 		}
 		return node;
 	}
@@ -57,17 +57,17 @@ public final class LruHashTable {
 		if (this.anInt2314 == 0) {
 			@Pc(14) CachedNode local14 = this.aClass16_1.pollFront();
 			local14.unlink();
-			local14.clear();
+			local14.unlinkCachedNode();
 			if (this.aClass3_Sub2_37 == local14) {
 				local14 = this.aClass16_1.pollFront();
 				local14.unlink();
-				local14.clear();
+				local14.unlinkCachedNode();
 			}
 		} else {
 			this.anInt2314--;
 		}
 		this.aClass133_5.put(arg0, arg1);
-		this.aClass16_1.pushBack(arg0);
+		this.aClass16_1.addTail(arg0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "b", descriptor = "(I)Lclient!ab;")
@@ -77,8 +77,8 @@ public final class LruHashTable {
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "c", descriptor = "(I)V")
 	public final void clear() {
-		this.aClass16_1.method802();
-		this.aClass133_5.removeAll();
+		this.aClass16_1.clear();
+		this.aClass133_5.clear();
 		this.aClass3_Sub2_37 = new CachedNode();
 		this.anInt2314 = this.anInt2313;
 	}

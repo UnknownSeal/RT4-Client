@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.input.Keyboard;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -17,9 +16,6 @@ public final class Static36 {
 
 	@OriginalMember(owner = "client!runetek4.client", name = "lb", descriptor = "[I")
 	public static int[] anIntArray84;
-
-	@OriginalMember(owner = "client!runetek4.client", name = "U", descriptor = "Lclient!sc;")
-	public static final HashTable aClass133_3 = new HashTable(16);
 
 	@OriginalMember(owner = "client!runetek4.client", name = "a", descriptor = "(Lclient!be;)Lclient!be;")
 	public static Component method938(@OriginalArg(0) Component arg0) {

@@ -39,7 +39,7 @@ public final class Js5CacheQueue implements Runnable {
 	private void method2461(@OriginalArg(0) Js5CacheRequest arg0) {
 		@Pc(7) NodeQueue local7 = this.aClass16_6;
 		synchronized (this.aClass16_6) {
-			this.aClass16_6.pushBack(arg0);
+			this.aClass16_6.addTail(arg0);
 			this.anInt3131++;
 			this.aClass16_6.notifyAll();
 		}

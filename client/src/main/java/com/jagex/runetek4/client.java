@@ -17,6 +17,7 @@ import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.client.Inv;
+import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.Npc;
@@ -522,7 +523,7 @@ public final class client extends GameShell {
 		FriendList.state = 0;
 		FriendList.friendCount = 0;
 		VarpDomain.resetVarBits();
-		Static20.clear();
+		DelayedStateChange.clear();
 		Camera.anInt5230 = 0;
 		Camera.anInt5217 = 0;
 		Camera.anInt5765 = 0;

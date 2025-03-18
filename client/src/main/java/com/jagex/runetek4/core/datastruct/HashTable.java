@@ -39,7 +39,7 @@ public final class HashTable {
 	}
 
 	@OriginalMember(owner = "client!sc", name = "a", descriptor = "(I)V")
-	public void removeAll() {
+	public void clear() {
 		for (@Pc(5) int index = 0; index < this.size; index++) {
 			@Pc(14) Node node = this.nodes[index];
 			while (true) {

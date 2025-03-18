@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.lighttype.LightType;
-import com.jagex.runetek4.node.NodeQueue;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,9 +10,6 @@ public final class Static140 {
 
 	@OriginalMember(owner = "runetek4.client!la", name = "i", descriptor = "[[[I")
 	public static int[][][] anIntArrayArrayArray12;
-
-	@OriginalMember(owner = "runetek4.client!la", name = "f", descriptor = "Lclient!ce;")
-	public static final NodeQueue aClass16_7 = new NodeQueue();
 
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(IJ)V")
 	public static void addIgnore(@OriginalArg(1) long username) {

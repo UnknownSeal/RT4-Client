@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.node.NodeCache;
@@ -23,12 +22,6 @@ public final class Static118 {
 	public static int method2352() {
 		Static232.anInt5212 = 0;
 		return Static119.method2385();
-	}
-
-	@OriginalMember(owner = "runetek4.client!jd", name = "a", descriptor = "(IB)V")
-	public static void method2353(@OriginalArg(0) int arg0) {
-		@Pc(12) DelayedStateChange local12 = Static238.method4143(12, arg0);
-		local12.method1007();
 	}
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "a", descriptor = "(II[Lclient!be;)V")

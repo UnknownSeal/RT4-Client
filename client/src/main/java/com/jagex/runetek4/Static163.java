@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -16,12 +15,6 @@ public final class Static163 {
 
 	@OriginalMember(owner = "runetek4.client!n", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_767 = JString.parse(")2");
-
-	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(II)V")
-	public static void method3096(@OriginalArg(0) int arg0) {
-		@Pc(8) DelayedStateChange local8 = Static238.method4143(3, arg0);
-		local8.method1007();
-	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(B)V")
 	public static void disposeLoadingText() {

@@ -1,10 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public final class IdkTypeList {
 
@@ -23,12 +21,6 @@ public final class IdkTypeList {
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(I)V")
 	public static void removeSoft() {
 		Static67.aClass99_20.removeSoft();
-	}
-
-	@OriginalMember(owner = "runetek4.client!oi", name = "b", descriptor = "(II)V")
-	public static void method3345(@OriginalArg(0) int arg0) {
-		@Pc(8) DelayedStateChange local8 = Static238.method4143(5, arg0);
-		local8.method1007();
 	}
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "b", descriptor = "(I)V")
