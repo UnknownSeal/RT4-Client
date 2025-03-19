@@ -88,7 +88,7 @@ public class AudioChannel {
 			@Pc(33) AudioChannel local33 = (AudioChannel) Class.forName("com.jagex.runetek4.JavaAudioChannel").getDeclaredConstructor().newInstance();
 			local33.sampleRate2 = arg0;
 			local33.samples = new int[(stereo ? 2 : 1) * 256];
-			local33.method3576(arg2);
+			local33.init(arg2);
 			local33.bufferCapacity = (arg0 & -1024) + 1024;
 			if (local33.bufferCapacity > 16384) {
 				local33.bufferCapacity = 16384;
@@ -111,7 +111,7 @@ public class AudioChannel {
 				@Pc(120) SignLinkAudioChannel local120 = new SignLinkAudioChannel(arg1, arg3);
 				local120.samples = new int[(stereo ? 2 : 1) * 256];
 				local120.sampleRate2 = arg0;
-				local120.method3576(arg2);
+				local120.init(arg2);
 				local120.bufferCapacity = 16384;
 				local120.open(local120.bufferCapacity);
 				if (threadPriority > 0 && thread == null) {
@@ -394,6 +394,6 @@ public class AudioChannel {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(Ljava/awt/runetek4.Component;)V")
-	public void method3576(@OriginalArg(0) Component arg0) throws Exception {
+	public void init(@OriginalArg(0) Component arg0) throws Exception {
 	}
 }

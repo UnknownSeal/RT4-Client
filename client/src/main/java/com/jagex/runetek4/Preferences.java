@@ -57,7 +57,7 @@ public class Preferences {
             return;
         }
         if (WorldMap.loadPercentage < 10) {
-            if (!Static119.aClass153_44.method4489(Static269.aClass3_Sub2_Sub4_2.aClass100_138)) {
+            if (!Static119.aClass153_44.isGroupReady(Static269.aClass3_Sub2_Sub4_2.aClass100_138)) {
                 WorldMap.loadPercentage = client.js5Archive23.method4478(Static269.aClass3_Sub2_Sub4_2.aClass100_138) / 10;
                 return;
             }
@@ -134,8 +134,8 @@ public class Preferences {
             ClientProt.ping(true);
             GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 60) {
-            if (Static119.aClass153_44.method4497(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
-                if (!Static119.aClass153_44.method4489(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
+            if (Static119.aClass153_44.isGroupNameValid(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
+                if (!Static119.aClass153_44.isGroupReady(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
                     return;
                 }
                 Static203.aMapElementTypeList_1 = MapElementTypeList.create(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}), Static119.aClass153_44);

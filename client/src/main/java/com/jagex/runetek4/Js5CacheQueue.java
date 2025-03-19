@@ -83,7 +83,7 @@ public final class Js5CacheQueue implements Runnable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!ge;BI)Lclient!c;")
-	public final Js5CacheRequest method2471(@OriginalArg(0) Cache arg0, @OriginalArg(2) int arg1) {
+	public final Js5CacheRequest readSynchronous(@OriginalArg(0) Cache arg0, @OriginalArg(2) int arg1) {
 		@Pc(9) Js5CacheRequest local9 = new Js5CacheRequest();
 		local9.anInt824 = 1;
 		@Pc(16) NodeQueue local16 = this.aClass16_6;

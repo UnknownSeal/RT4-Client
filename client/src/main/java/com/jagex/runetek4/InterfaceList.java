@@ -200,7 +200,7 @@ public class InterfaceList {
         if (componentId == -1 || !loadedComponents[componentId]) {
             return;
         }
-        gameInterfaceJs5.unloadFile(componentId);
+        gameInterfaceJs5.discardUnpacked(componentId);
         if (cachedComponents[componentId] == null) {
             return;
         }

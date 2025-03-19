@@ -310,9 +310,9 @@ public class LoginManager {
             }
         }
         if (Static235.aMapElementTypeList_2 == null) {
-            if (Static158.aClass3_Sub2_Sub4_3 == null || !client.js5Archive23.method4497(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, aClass100_363 }))) {
+            if (Static158.aClass3_Sub2_Sub4_3 == null || !client.js5Archive23.isGroupNameValid(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, aClass100_363 }))) {
                 Static235.aMapElementTypeList_2 = new MapElementTypeList(0);
-            } else if (client.js5Archive23.method4489(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, aClass100_363 }))) {
+            } else if (client.js5Archive23.isGroupReady(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, aClass100_363 }))) {
                 Static235.aMapElementTypeList_2 = MapElementTypeList.create(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, aClass100_363 }), client.js5Archive23);
             } else {
                 local12 = false;
@@ -491,8 +491,8 @@ public class LoginManager {
             for (@Pc(837) int local837 = local320 - 1; local837 <= local309 + 1; local837++) {
                 for (@Pc(850) int local850 = local821 - 1; local850 <= local815 + 1; local850++) {
                     if (local837 < local320 || local837 > local309 || local850 < local821 || local850 > local815) {
-                        client.js5Archive5.method4486(JString.concatenate(new JString[] { Static103.aClass100_558, JString.parseInt(local837), Static86.aClass100_488, JString.parseInt(local850) }));
-                        client.js5Archive5.method4486(JString.concatenate(new JString[] { Static270.aClass100_1090, JString.parseInt(local837), Static86.aClass100_488, JString.parseInt(local850) }));
+                        client.js5Archive5.prefetchGroup(JString.concatenate(new JString[] { Static103.aClass100_558, JString.parseInt(local837), Static86.aClass100_488, JString.parseInt(local850) }));
+                        client.js5Archive5.prefetchGroup(JString.concatenate(new JString[] { Static270.aClass100_1090, JString.parseInt(local837), Static86.aClass100_488, JString.parseInt(local850) }));
                     }
                 }
             }

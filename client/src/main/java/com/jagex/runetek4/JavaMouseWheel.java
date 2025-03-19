@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class JavaMouseWheel extends MouseWheel implements MouseWheelListener {
 
 	@OriginalMember(owner = "runetek4.client!o", name = "g", descriptor = "I")
-	private int anInt4233 = 0;
+	private int currentRotation = 0;
 
 	@OriginalMember(owner = "runetek4.client!o", name = "a", descriptor = "(ZLjava/awt/runetek4.Component;)V")
 	@Override
@@ -23,15 +23,15 @@ public final class JavaMouseWheel extends MouseWheel implements MouseWheelListen
 	@OriginalMember(owner = "runetek4.client!o", name = "a", descriptor = "(I)I")
 	@Override
 	public final synchronized int getRotation() {
-		@Pc(2) int local2 = this.anInt4233;
-		this.anInt4233 = 0;
+		@Pc(2) int local2 = this.currentRotation;
+		this.currentRotation = 0;
 		return local2;
 	}
 
 	@OriginalMember(owner = "runetek4.client!o", name = "mouseWheelMoved", descriptor = "(Ljava/awt/event/MouseWheelEvent;)V")
 	@Override
 	public final synchronized void mouseWheelMoved(@OriginalArg(0) MouseWheelEvent arg0) {
-		this.anInt4233 += arg0.getWheelRotation();
+		this.currentRotation += arg0.getWheelRotation();
 	}
 
 	@OriginalMember(owner = "runetek4.client!o", name = "a", descriptor = "(Ljava/awt/runetek4.Component;I)V")

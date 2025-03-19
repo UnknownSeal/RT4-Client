@@ -22,5 +22,5 @@ public abstract class Js5ResourceProvider {
 	public abstract int getPercentageComplete(@OriginalArg(0) int group);
 
 	@OriginalMember(owner = "client!v", name = "a", descriptor = "(II)V")
-	public abstract void method522(@OriginalArg(0) int arg0);
+	public abstract void prefetchGroup(@OriginalArg(0) int arg0);
 }

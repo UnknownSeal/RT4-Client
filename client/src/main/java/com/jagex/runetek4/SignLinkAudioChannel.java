@@ -33,7 +33,7 @@ public final class SignLinkAudioChannel extends AudioChannel {
 
 	@OriginalMember(owner = "runetek4.client!hl", name = "a", descriptor = "(Ljava/awt/runetek4.Component;)V")
 	@Override
-	public final void method3576(@OriginalArg(0) Component arg0) throws Exception {
+	public final void init(@OriginalArg(0) Component arg0) throws Exception {
 		Static100.anInterface10_1.init(AudioChannel.sampleRate, arg0, AudioChannel.stereo);
 	}
 
