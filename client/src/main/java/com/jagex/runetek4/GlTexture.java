@@ -182,7 +182,7 @@ public final class GlTexture extends CachedNode {
 			return false;
 		}
 		@Pc(22) GL2 gl = GlRenderer.gl;
-		@Pc(28) int local28 = arg2 ? 64 : 128;
+		@Pc(28) int size = arg2 ? 64 : 128;
 		@Pc(31) int local31 = Static56.method1314();
 		if ((local31 & 0x1) == 0) {
 			if (this.textureId == -1) {
@@ -191,30 +191,41 @@ public final class GlTexture extends CachedNode {
 				this.anInt5492 = GlCleaner.contextId;
 				this.textureId = temp[0];
 				GlRenderer.setTextureId(this.textureId);
-				@Pc(82) ByteBuffer pixels = ByteBuffer.wrap(this.aClass88_1.method2728(local28, local28, this.aBoolean288, arg1, 0.7D, arg0));
+				@Pc(82) ByteBuffer pixels = ByteBuffer.wrap(this.aClass88_1.method2728(size, size, this.aBoolean288, arg1, 0.7D, arg0));
 				if (this.anInt5489 == 2) {
-					@Pc(201) GLUgl2es1 local201 = new GLUgl2es1();
-					local201.gluBuild2DMipmaps(3553, 6408, local28, local28, 6408, 5121, pixels);
-					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR_MIPMAP_LINEAR);
+					// Old GLU Code
+					//@Pc(201) GLUgl2es1 local201 = new GLUgl2es1();
+					//local28.gluBuild2DMipmaps(3553, 6408, local28, local28, 6408, 5121, pixels);
+					//gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR_MIPMAP_LINEAR);
+					//gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
+
+					// New Code OpenGL 4+ w/ texStorage
+					int num_mipmaps = 4;
+					gl.glTexStorage2D(GL2.GL_TEXTURE_2D, num_mipmaps, GL2.GL_RGBA8, size, size);
+					gl.glTexSubImage2D(GL2.GL_TEXTURE_2D, 0, 0, 0, size, size, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, pixels);
+					gl.glGenerateMipmap(GL2.GL_TEXTURE_2D);
+					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_WRAP_S, GL2.GL_REPEAT);
+					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_WRAP_T, GL2.GL_REPEAT);
 					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
+					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR_MIPMAP_LINEAR);
 					Static63.oncard_texture += pixels.limit() * 4 / 3 - this.textureSize;
 					this.textureSize = pixels.limit() * 4 / 3;
 				} else if (this.anInt5489 == 1) {
 					@Pc(129) int local129 = 0;
 					while (true) {
-						gl.glTexImage2D(GL2.GL_TEXTURE_2D, local129++, GL2.GL_RGBA, local28, local28, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, pixels);
-						local28 >>= 0x1;
-						if (local28 == 0) {
+						gl.glTexImage2D(GL2.GL_TEXTURE_2D, local129++, GL2.GL_RGBA, size, size, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, pixels);
+						size >>= 0x1;
+						if (size == 0) {
 							gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR_MIPMAP_LINEAR);
 							gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
 							Static63.oncard_texture += pixels.limit() * 4 / 3 - this.textureSize;
 							this.textureSize = pixels.limit() * 4 / 3;
 							break;
 						}
-						pixels = ByteBuffer.wrap(this.aClass88_1.method2728(local28, local28, this.aBoolean288, arg1, 0.7D, arg0));
+						pixels = ByteBuffer.wrap(this.aClass88_1.method2728(size, size, this.aBoolean288, arg1, 0.7D, arg0));
 					}
 				} else {
-					gl.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, local28, local28, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, pixels);
+					gl.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, size, size, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, pixels);
 					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR);
 					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
 					Static63.oncard_texture += pixels.limit() - this.textureSize;
@@ -236,8 +247,8 @@ public final class GlTexture extends CachedNode {
 			if (this.anInt5497 == 0 && this.anInt5485 == 0) {
 				GlRenderer.resetTextureMatrix();
 			} else {
-				@Pc(303) float local303 = (float) (this.anInt5497 * GlRenderer.anInt5323) / (float) local28;
-				@Pc(312) float local312 = (float) (this.anInt5485 * GlRenderer.anInt5323) / (float) local28;
+				@Pc(303) float local303 = (float) (this.anInt5497 * GlRenderer.anInt5323) / (float) size;
+				@Pc(312) float local312 = (float) (this.anInt5485 * GlRenderer.anInt5323) / (float) size;
 				GlRenderer.translateTextureMatrix(local312, local303, 0.0F);
 			}
 		}
