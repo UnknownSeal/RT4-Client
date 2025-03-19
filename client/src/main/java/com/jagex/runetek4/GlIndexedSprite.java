@@ -35,25 +35,25 @@ public final class GlIndexedSprite extends IndexedSprite {
 
 	@OriginalMember(owner = "client!oh", name = "<init>", descriptor = "(IIIIII[B[I)V")
 	public GlIndexedSprite(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) byte[] arg6, @OriginalArg(7) int[] arg7) {
-		this.maxWidth = arg0;
-		this.anInt4276 = arg1;
-		this.anInt4280 = arg2;
-		this.anInt4273 = arg3;
-		this.anInt4270 = arg4;
-		this.anInt4278 = arg5;
+		this.innerWidth = arg0;
+		this.innerHeight = arg1;
+		this.xOffset = arg2;
+		this.yOffset = arg3;
+		this.width = arg4;
+		this.height = arg5;
 		this.method3337(arg6, arg7);
 		this.method3339();
 	}
 
 	@OriginalMember(owner = "client!oh", name = "a", descriptor = "([B[I)V")
 	private void method3337(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int[] arg1) {
-		this.anInt4287 = IntUtils.bitceil(this.anInt4270);
-		this.anInt4286 = IntUtils.bitceil(this.anInt4278);
+		this.anInt4287 = IntUtils.bitceil(this.width);
+		this.anInt4286 = IntUtils.bitceil(this.height);
 		@Pc(20) byte[] local20 = new byte[this.anInt4287 * this.anInt4286 * 4];
 		@Pc(22) int local22 = 0;
 		@Pc(24) int local24 = 0;
-		for (@Pc(26) int local26 = 0; local26 < this.anInt4278; local26++) {
-			for (@Pc(32) int local32 = 0; local32 < this.anInt4270; local32++) {
+		for (@Pc(26) int local26 = 0; local26 < this.height; local26++) {
+			for (@Pc(32) int local32 = 0; local32 < this.width; local32++) {
 				@Pc(41) byte local41 = arg0[local24++];
 				if (local41 == 0) {
 					local22 += 4;
@@ -65,18 +65,18 @@ public final class GlIndexedSprite extends IndexedSprite {
 					local20[local22++] = -1;
 				}
 			}
-			local22 += (this.anInt4287 - this.anInt4270) * 4;
+			local22 += (this.anInt4287 - this.width) * 4;
 		}
 		@Pc(93) ByteBuffer local93 = ByteBuffer.wrap(local20);
-		@Pc(95) GL2 local95 = GlRenderer.gl;
+		@Pc(95) GL2 gl = GlRenderer.gl;
 		if (this.anInt4281 == -1) {
 			@Pc(102) int[] local102 = new int[1];
-			local95.glGenTextures(1, local102, 0);
+			gl.glGenTextures(1, local102, 0);
 			this.anInt4281 = local102[0];
 			this.anInt4285 = GlCleaner.contextId;
 		}
 		GlRenderer.setTextureId(this.anInt4281);
-		local95.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, this.anInt4287, this.anInt4286, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, local93);
+		gl.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, this.anInt4287, this.anInt4286, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, local93);
 		GlCleaner.oncard_2d += local93.limit() - this.anInt4284;
 		this.anInt4284 = local93.limit();
 	}
@@ -85,24 +85,24 @@ public final class GlIndexedSprite extends IndexedSprite {
 	@Override
 	public void drawImageAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		GlRenderer.method4155();
-		@Pc(5) int local5 = arg0 + this.anInt4280;
-		@Pc(10) int local10 = arg1 + this.anInt4273;
-		@Pc(12) GL2 local12 = GlRenderer.gl;
+		@Pc(5) int local5 = arg0 + this.xOffset;
+		@Pc(10) int local10 = arg1 + this.yOffset;
+		@Pc(12) GL2 gl = GlRenderer.gl;
 		GlRenderer.setTextureId(this.anInt4281);
 		this.method3338();
-		local12.glColor4f(1.0F, 1.0F, 1.0F, (float) arg2 / 256.0F);
-		local12.glTranslatef((float) local5, (float) (GlRenderer.canvasHeight - local10), 0.0F);
-		local12.glCallList(this.anInt4282);
-		local12.glLoadIdentity();
+		gl.glColor4f(1.0F, 1.0F, 1.0F, (float) arg2 / 256.0F);
+		gl.glTranslatef((float) local5, (float) (GlRenderer.canvasHeight - local10), 0.0F);
+		gl.glCallList(this.anInt4282);
+		gl.glLoadIdentity();
 	}
 
 	@OriginalMember(owner = "client!oh", name = "b", descriptor = "(I)V")
 	private void method3338() {
 		if (this.anInt4283 != 1) {
 			this.anInt4283 = 1;
-			@Pc(9) GL2 local9 = GlRenderer.gl;
-			local9.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_NEAREST);
-			local9.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_NEAREST);
+			@Pc(9) GL2 gl = GlRenderer.gl;
+			gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_NEAREST);
+			gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_NEAREST);
 		}
 	}
 
@@ -110,14 +110,14 @@ public final class GlIndexedSprite extends IndexedSprite {
 	@Override
 	public void drawImage(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		GlRenderer.method4149();
-		@Pc(5) int local5 = arg0 + this.anInt4280;
-		@Pc(10) int local10 = arg1 + this.anInt4273;
-		@Pc(12) GL2 local12 = GlRenderer.gl;
+		@Pc(5) int local5 = arg0 + this.xOffset;
+		@Pc(10) int local10 = arg1 + this.yOffset;
+		@Pc(12) GL2 gl = GlRenderer.gl;
 		GlRenderer.setTextureId(this.anInt4281);
 		this.method3338();
-		local12.glTranslatef((float) local5, (float) (GlRenderer.canvasHeight - local10), 0.0F);
-		local12.glCallList(this.anInt4282);
-		local12.glLoadIdentity();
+		gl.glTranslatef((float) local5, (float) (GlRenderer.canvasHeight - local10), 0.0F);
+		gl.glCallList(this.anInt4282);
+		gl.glLoadIdentity();
 	}
 
 	@OriginalMember(owner = "client!oh", name = "finalize", descriptor = "()V")
@@ -137,24 +137,24 @@ public final class GlIndexedSprite extends IndexedSprite {
 
 	@OriginalMember(owner = "client!oh", name = "a", descriptor = "()V")
 	private void method3339() {
-		@Pc(7) float local7 = (float) this.anInt4270 / (float) this.anInt4287;
-		@Pc(15) float local15 = (float) this.anInt4278 / (float) this.anInt4286;
-		@Pc(17) GL2 local17 = GlRenderer.gl;
+		@Pc(7) float local7 = (float) this.width / (float) this.anInt4287;
+		@Pc(15) float local15 = (float) this.height / (float) this.anInt4286;
+		@Pc(17) GL2 gl = GlRenderer.gl;
 		if (this.anInt4282 == -1) {
-			this.anInt4282 = local17.glGenLists(1);
+			this.anInt4282 = gl.glGenLists(1);
 			this.anInt4285 = GlCleaner.contextId;
 		}
-		local17.glNewList(this.anInt4282, GL2.GL_COMPILE);
-		local17.glBegin(GL2.GL_TRIANGLE_FAN);
-		local17.glTexCoord2f(local7, 0.0F);
-		local17.glVertex2f((float) this.anInt4270, 0.0F);
-		local17.glTexCoord2f(0.0F, 0.0F);
-		local17.glVertex2f(0.0F, 0.0F);
-		local17.glTexCoord2f(0.0F, local15);
-		local17.glVertex2f(0.0F, (float) -this.anInt4278);
-		local17.glTexCoord2f(local7, local15);
-		local17.glVertex2f((float) this.anInt4270, (float) -this.anInt4278);
-		local17.glEnd();
-		local17.glEndList();
+		gl.glNewList(this.anInt4282, GL2.GL_COMPILE);
+		gl.glBegin(GL2.GL_TRIANGLE_FAN);
+		gl.glTexCoord2f(local7, 0.0F);
+		gl.glVertex2f((float) this.width, 0.0F);
+		gl.glTexCoord2f(0.0F, 0.0F);
+		gl.glVertex2f(0.0F, 0.0F);
+		gl.glTexCoord2f(0.0F, local15);
+		gl.glVertex2f(0.0F, (float) -this.height);
+		gl.glTexCoord2f(local7, local15);
+		gl.glVertex2f((float) this.width, (float) -this.height);
+		gl.glEnd();
+		gl.glEndList();
 	}
 }

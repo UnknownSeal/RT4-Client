@@ -53,8 +53,8 @@ public final class MSIType {
 		local17 = Static164.method3119(this.spriteId, Static250.aClass153_101);
 		if (local17 != null) {
 			local17.method1389(Static173.anInt4183, Static85.anInt2262, Static266.anInt5344);
-			local17.maxWidth = local17.anInt4270;
-			local17.anInt4276 = local17.anInt4278;
+			local17.innerWidth = local17.width;
+			local17.innerHeight = local17.height;
 			for (@Pc(59) int local59 = 0; local59 < arg0; local59++) {
 				local17.method1395();
 			}

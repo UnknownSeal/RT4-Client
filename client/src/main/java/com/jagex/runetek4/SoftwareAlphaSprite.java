@@ -49,7 +49,7 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 
 	@OriginalMember(owner = "runetek4.client!am", name = "e", descriptor = "(II)V")
 	@Override
-	public final void drawSprite(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public final void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.xOffset;
 		arg1 += this.yOffset;
 		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.destinationWidth;
@@ -91,7 +91,7 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 
 	@OriginalMember(owner = "runetek4.client!am", name = "c", descriptor = "(II)V")
 	@Override
-	public final void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public final void drawPixels(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.xOffset;
 		arg1 += this.yOffset;
 		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.destinationWidth;
@@ -645,7 +645,7 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 
 	@OriginalMember(owner = "runetek4.client!am", name = "b", descriptor = "(IIIII)V")
 	@Override
-	public final void method1422(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	public final void renderAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		if (arg2 <= 0 || arg3 <= 0) {
 			return;
 		}
@@ -761,7 +761,7 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 
 	@OriginalMember(owner = "runetek4.client!am", name = "d", descriptor = "(II)V")
 	@Override
-	public final void method1421(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public final void renderHorizontalFlip(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.innerWidth - this.width - this.xOffset;
 		arg1 += this.yOffset;
 		@Pc(21) int local21 = arg0 + arg1 * SoftwareRaster.destinationWidth;

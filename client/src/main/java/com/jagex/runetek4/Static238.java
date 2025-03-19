@@ -34,15 +34,4 @@ public final class Static238 {
 		return false;
 	}
 
-	@OriginalMember(owner = "runetek4.client!te", name = "e", descriptor = "(I)V")
-	public static void method4145() {
-		Static151.method2809();
-		Static2.anInterface4Array1 = new MaterialRenderer[7];
-		Static2.anInterface4Array1[1] = new SpecularMaterialRenderer();
-		Static2.anInterface4Array1[2] = new LiquidMaterialRenderer();
-		Static2.anInterface4Array1[3] = new UnderwaterMaterialRenderer();
-		Static2.anInterface4Array1[4] = new WaterMaterialRenderer();
-		Static2.anInterface4Array1[5] = new WaterfallMaterialRenderer();
-		Static2.anInterface4Array1[6] = new UnlitMaterialRenderer();
-	}
 }

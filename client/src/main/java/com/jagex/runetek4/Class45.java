@@ -153,7 +153,7 @@ public final class Class45 {
 		if (GlRenderer.arbVboSupported) {
 			this.aClass155_1 = new GlVertexBufferObject();
 			@Pc(173) ByteBuffer local173 = ByteBuffer.wrap(local15.data);
-			this.aClass155_1.method4519(local173);
+			this.aClass155_1.setArrayBuffer(local173);
 			this.aClass155_2 = new GlVertexBufferObject();
 			@Pc(186) ByteBuffer local186 = ByteBuffer.wrap(local7.data);
 			this.aClass155_2.method4517(local186);

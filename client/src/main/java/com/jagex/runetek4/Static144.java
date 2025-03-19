@@ -231,8 +231,8 @@ public final class Static144 {
 										@Pc(998) MSIType local998 = Static40.get(local233 - 1);
 										@Pc(1003) SoftwareIndexedSprite local1003 = local998.method9(local254);
 										if (local1003 != null) {
-											local276 = local162 * local1003.anInt4278 / 4;
-											local270 = local62 * local1003.anInt4270 / 4;
+											local276 = local162 * local1003.height / 4;
+											local270 = local62 * local1003.width / 4;
 											if (local998.aBoolean2) {
 												local312 = local222 >> 16 & 0xF;
 												local372 = local222 >> 20 & 0xF;

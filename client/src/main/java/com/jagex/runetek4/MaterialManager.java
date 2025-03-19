@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -31,5 +32,49 @@ public class MaterialManager {
         aByteBuffer6.position(0);
         aByteBuffer6.put(local11);
         aByteBuffer6.flip();
+    }
+
+    @OriginalMember(owner = "client!cb", name = "b", descriptor = "(III)V")
+    public static void setMaterial(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
+        if (arg1 == 4 && !Static220.aBoolean244) {
+            arg1 = 2;
+            arg0 = 2;
+        }
+        if (Static48.anInt1447 != arg1) {
+            if (Static119.aBoolean153) {
+                return;
+            }
+            if (Static48.anInt1447 != 0) {
+                Static2.anInterface4Array1[Static48.anInt1447].method4602();
+            }
+            if (arg1 != 0) {
+                @Pc(61) MaterialRenderer local61 = Static2.anInterface4Array1[arg1];
+                local61.method4603();
+                local61.method4604(arg0);
+            }
+            Static48.anInt1447 = arg1;
+            Static158.anInt3857 = arg0;
+        } else if (arg1 != 0 && arg0 != Static158.anInt3857) {
+            Static2.anInterface4Array1[arg1].method4604(arg0);
+            Static158.anInt3857 = arg0;
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!nj", name = "a", descriptor = "(I)V")
+    public static void quit() {
+        Static2.anInterface4Array1 = null;
+        Static151.method2808();
+    }
+
+    @OriginalMember(owner = "runetek4.client!te", name = "e", descriptor = "(I)V")
+    public static void init() {
+        Static151.method2809();
+        Static2.anInterface4Array1 = new MaterialRenderer[7];
+        Static2.anInterface4Array1[1] = new SpecularMaterialRenderer();
+        Static2.anInterface4Array1[2] = new LiquidMaterialRenderer();
+        Static2.anInterface4Array1[3] = new UnderwaterMaterialRenderer();
+        Static2.anInterface4Array1[4] = new WaterMaterialRenderer();
+        Static2.anInterface4Array1[5] = new WaterfallMaterialRenderer();
+        Static2.anInterface4Array1[6] = new UnlitMaterialRenderer();
     }
 }

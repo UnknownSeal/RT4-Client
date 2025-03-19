@@ -426,11 +426,11 @@ public abstract class PathingEntity extends Entity {
 		@Pc(245) int local245 = local201 <= local87 ? local201 : local87;
 		Static101.anInt2640 = (int) (Math.atan2((double) (local212 - local231), (double) local27) * 325.95D) & 0x7FF;
 		if (Static101.anInt2640 != 0) {
-			arg0.method4574(Static101.anInt2640);
+			arg0.rotateX(Static101.anInt2640);
 		}
 		Static102.anInt2680 = (int) (Math.atan2((double) (local245 - local238), (double) local24) * 325.95D) & 0x7FF;
 		if (Static102.anInt2680 != 0) {
-			arg0.method4564(Static102.anInt2680);
+			arg0.rotateZ(Static102.anInt2680);
 		}
 		Static62.anInt1938 = local224 + local87;
 		if (local201 + local134 < Static62.anInt1938) {
@@ -560,7 +560,7 @@ public abstract class PathingEntity extends Entity {
 			local101 = this.anInt3383 >> 5 & 0x7FF;
 			local106 = arg0.getMinY() / 2;
 			arg0.translate(0, -local106, 0);
-			arg0.method4564(local101);
+			arg0.rotateZ(local101);
 			arg0.translate(0, local106, 0);
 		}
 		if (local28 != this.anInt3367) {
@@ -651,7 +651,7 @@ public abstract class PathingEntity extends Entity {
 		local101 = this.anInt3427 >> 5 & 0x7FF;
 		local106 = arg0.getMinY() / 2;
 		arg0.translate(0, -local106, 0);
-		arg0.method4574(local101);
+		arg0.rotateX(local101);
 		arg0.translate(0, local106, 0);
 	}
 

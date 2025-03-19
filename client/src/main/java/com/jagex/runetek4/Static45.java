@@ -101,7 +101,7 @@ public final class Static45 {
 						levelLightMap[underlayId][z] = local200 - local273;
 					}
 				}
-			} else if (Static178.highDetailLighting) {
+			} else if (Preferences.highDetailLighting) {
 				for (z0 = 1; z0 < 103; z0++) {
 					for (x0 = 1; x0 < 103; x0++) {
 						underlayId = (local159[x0 + 1][z0] >> 3) + (local159[x0 - 1][z0] >> 2) + (local159[x0][z0 + -1] >> 2) + (local159[x0][z0 + 1] >> 3) + (local159[x0][z0] >> 1);
@@ -229,7 +229,7 @@ public final class Static45 {
 									normalZ = 127;
 								}
 								local273 = (normalX & 0x380) + (normalX + local10 & 0xFC00) + normalZ;
-								normalY = Pix3D.anIntArray220[ColorUtils.multiplyLightnessSafe(96, local273)];
+								normalY = Rasterizer.palette[ColorUtils.multiplyLightnessSafe(96, local273)];
 							}
 							normalZ = levelLightMap[z0][x0];
 							local332 = levelLightMap[z0][x0 + 1];
@@ -247,7 +247,7 @@ public final class Static45 {
 												@Pc(1834) int local1834 = Static240.aByteArrayArrayArray14[level][local322][local1794] & 0xFF;
 												if (local1834 != 0) {
 													@Pc(1842) FloorOverlayType local1842 = FloorOverlayTypeList.method4395(local1834 - 1);
-													if (local1842.material != -1 && Rasterizer.textureProvider.method3237(local1842.material) == 4) {
+													if (local1842.material != -1 && Rasterizer.textureProvider.getMaterialType(local1842.material) == 4) {
 														Static62.anIntArrayArray11[z0][x0] = local1842.waterColor + (local1842.waterOpaity << 24);
 														continue label771;
 													}
@@ -264,7 +264,7 @@ public final class Static45 {
 								@Pc(1353) int local1353;
 								@Pc(1288) int local1288;
 								if (GlRenderer.enabled && !arg1 && Static62.anIntArrayArray11 != null && level == 0) {
-									if (local1248.material != -1 && Rasterizer.textureProvider.method3237(local1248.material) == 4) {
+									if (local1248.material != -1 && Rasterizer.textureProvider.getMaterialType(local1248.material) == 4) {
 										Static62.anIntArrayArray11[z0][x0] = (local1248.waterOpaity << 24) + local1248.waterColor;
 									} else {
 										label737: for (local1288 = z0 - 1; local1288 <= z0 + 1; local1288++) {
@@ -273,7 +273,7 @@ public final class Static45 {
 													local1353 = Static240.aByteArrayArrayArray14[level][local1288][local1301] & 0xFF;
 													if (local1353 != 0) {
 														@Pc(1366) FloorOverlayType local1366 = FloorOverlayTypeList.method4395(local1353 - 1);
-														if (local1366.material != -1 && Rasterizer.textureProvider.method3237(local1366.material) == 4) {
+														if (local1366.material != -1 && Rasterizer.textureProvider.getMaterialType(local1366.material) == 4) {
 															Static62.anIntArrayArray11[z0][x0] = local1366.waterColor + (local1366.waterOpaity << 24);
 															break label737;
 														}
@@ -291,7 +291,7 @@ public final class Static45 {
 								@Pc(1429) int local1429;
 								if (local1288 >= 0) {
 									local1301 = -1;
-									local1353 = Pix3D.anIntArray220[ColorUtils.multiplyLightnessGrayscale(Rasterizer.textureProvider.method3234(local1288), 96)];
+									local1353 = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(Rasterizer.textureProvider.method3234(local1288), 96)];
 								} else if (local1248.baseColor == -1) {
 									local1301 = -2;
 									local1353 = 0;
@@ -304,7 +304,7 @@ public final class Static45 {
 										local1429 = 127;
 									}
 									local1458 = (local1301 & 0x380) + ((local1301 + local10 & 0xFC00) + local1429);
-									local1353 = Pix3D.anIntArray220[ColorUtils.multiplyLightnessGrayscale(local1458, 96)];
+									local1353 = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(local1458, 96)];
 								}
 								if (local1248.secondaryColor >= 0) {
 									local1429 = local1248.secondaryColor;
@@ -315,7 +315,7 @@ public final class Static45 {
 										local1458 = 127;
 									}
 									@Pc(1529) int local1529 = (local1429 & 0x380) + ((local1429 + local10 & 0xFC00) + local1458);
-									local1353 = Pix3D.anIntArray220[ColorUtils.multiplyLightnessGrayscale(local1529, 96)];
+									local1353 = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(local1529, 96)];
 								}
 								Static176.method3305(level, z0, x0, local322, local1242, local1288, local200, dx, dz, len, ColorUtils.multiplyLightnessSafe(normalZ, normalX), ColorUtils.multiplyLightnessSafe(local273, normalX), ColorUtils.multiplyLightnessSafe(local326, normalX), ColorUtils.multiplyLightnessSafe(local332, normalX), ColorUtils.multiplyLightnessGrayscale(local1301, normalZ), ColorUtils.multiplyLightnessGrayscale(local1301, local273), ColorUtils.multiplyLightnessGrayscale(local1301, local326), ColorUtils.multiplyLightnessGrayscale(local1301, local332), normalY, local1353);
 								if (GlRenderer.enabled && level > 0) {

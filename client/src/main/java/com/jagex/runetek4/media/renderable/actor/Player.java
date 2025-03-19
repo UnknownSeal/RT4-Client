@@ -371,10 +371,10 @@ public final class Player extends PathingEntity {
 				model.translate(0, -this.spotanimOffset, 0);
 				if (spotanim.aBoolean100) {
 					if (Static101.anInt2640 != 0) {
-						model.method4574(Static101.anInt2640);
+						model.rotateX(Static101.anInt2640);
 					}
 					if (Static102.anInt2680 != 0) {
-						model.method4564(Static102.anInt2680);
+						model.rotateZ(Static102.anInt2680);
 					}
 					if (Static62.anInt1938 != 0) {
 						model.translate(0, Static62.anInt1938, 0);
@@ -399,7 +399,7 @@ public final class Player extends PathingEntity {
 				} else if (this.dstYaw == 1024) {
 					loc.method4552();
 				} else if (this.dstYaw == 1536) {
-					loc.method4563();
+					loc.rotateCounterClockwise();
 				}
 			}
 		}
@@ -424,7 +424,7 @@ public final class Player extends PathingEntity {
 			return;
 		}
 		if (this.dstYaw == 512) {
-			loc.method4563();
+			loc.rotateCounterClockwise();
 		} else if (this.dstYaw == 1024) {
 			loc.method4552();
 		} else if (this.dstYaw == 1536) {

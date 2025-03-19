@@ -11,9 +11,6 @@ public final class Static148 {
 	@OriginalMember(owner = "runetek4.client!li", name = "w", descriptor = "Lclient!sc;")
 	public static HashTable aClass133_13;
 
-	@OriginalMember(owner = "runetek4.client!li", name = "x", descriptor = "I")
-	public static int anInt3535;
-
 	@OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(ZI)V")
 	public static void method2765(@OriginalArg(1) int arg0) {
 		if (arg0 == -1 && !Static144.jingle) {

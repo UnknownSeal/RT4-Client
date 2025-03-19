@@ -91,10 +91,10 @@ public final class Static136 {
 			Static139.anInt3451 = 2;
 		}
 		if (local21 < 2) {
-			Static178.highDetailLighting = arg0.g1() == 1;
+			Preferences.highDetailLighting = arg0.g1() == 1;
 			arg0.g1();
 		} else {
-			Static178.highDetailLighting = arg0.g1() == 1;
+			Preferences.highDetailLighting = arg0.g1() == 1;
 		}
 		Static220.aBoolean244 = arg0.g1() == 1;
 		Preferences.fogEnabled = arg0.g1() == 1;

@@ -46,7 +46,7 @@ public final class GlVertexBufferObject {
 			local6.glBindBuffer(GL2.GL_ARRAY_BUFFER, this.anInt5760);
 			local6.glBufferSubData(GL2.GL_ARRAY_BUFFER, 0, arg0.limit(), arg0);
 		} else {
-			this.method4519(arg0);
+			this.setArrayBuffer(arg0);
 		}
 	}
 
@@ -83,7 +83,7 @@ public final class GlVertexBufferObject {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vi", name = "c", descriptor = "(Ljava/nio/ByteBuffer;)V")
-	public final void method4519(@OriginalArg(0) ByteBuffer arg0) {
+	public final void setArrayBuffer(@OriginalArg(0) ByteBuffer arg0) {
 		@Pc(1) GL2 local1 = GlRenderer.gl;
 		local1.glBindBuffer(GL2.GL_ARRAY_BUFFER, this.anInt5760);
 		local1.glBufferData(GL2.GL_ARRAY_BUFFER, arg0.limit(), arg0, this.aBoolean300 ? GL2.GL_STREAM_DRAW : GL2.GL_STATIC_DRAW);

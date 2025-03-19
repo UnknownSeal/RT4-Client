@@ -103,7 +103,7 @@ public final class Static156 {
 			Static248.method3292(arg0, arg1, arg2, null, 0, (byte) 0, arg13, arg14);
 			if (GlRenderer.enabled) {
 				Static119.aBoolean153 = false;
-				Static27.setMaterial(0, 0);
+				MaterialManager.setMaterial(0, 0);
 				FogManager.setFogColor(null);
 				Static120.method2390();
 			}
@@ -123,7 +123,7 @@ public final class Static156 {
 		GlRenderer.disableDepthMask();
 		for (@Pc(19) int local19 = 0; local19 < Static36.aClass3_Sub14ArrayArray1[0].length; local19++) {
 			@Pc(31) Class3_Sub14 local31 = Static36.aClass3_Sub14ArrayArray1[0][local19];
-			if (local31.anInt2485 >= 0 && Rasterizer.textureProvider.method3237(local31.anInt2485) == 4) {
+			if (local31.anInt2485 >= 0 && Rasterizer.textureProvider.getMaterialType(local31.anInt2485) == 4) {
 				local1.glColor4fv(ColorUtils.getRgbFloat(local31.anInt2486), 0);
 				@Pc(57) float local57 = 201.5F - (local31.aBoolean140 ? 1.0F : 0.5F);
 				local31.method1944(Static130.levelTiles, local57, true);

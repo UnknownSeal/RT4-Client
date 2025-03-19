@@ -3317,7 +3317,7 @@ public final class Static88 {
 															brightness = 4;
 														}
 														Preferences.brightness = brightness;
-														if (!GlRenderer.enabled || !Static178.highDetailLighting) {
+														if (!GlRenderer.enabled || !Preferences.highDetailLighting) {
 															if (Preferences.brightness == 1) {
 																Pix3D.setBrightness(0.9F);
 															}
@@ -3333,7 +3333,7 @@ public final class Static88 {
 														}
 														if (GlRenderer.enabled) {
 															FogManager.setInstantFade();
-															if (!Static178.highDetailLighting) {
+															if (!Preferences.highDetailLighting) {
 																Static145.method2742();
 															}
 														}
@@ -3417,11 +3417,11 @@ public final class Static88 {
 													}
 													if (scriptOpcode == 6012) {
 														if (GlRenderer.enabled) {
-															Static27.setMaterial(0, 0);
+															MaterialManager.setMaterial(0, 0);
 														}
 														intValueIndex--;
-														Static178.highDetailLighting = Static254.scriptIntValues[intValueIndex] == 1;
-														if (GlRenderer.enabled && Static178.highDetailLighting) {
+														Preferences.highDetailLighting = Static254.scriptIntValues[intValueIndex] == 1;
+														if (GlRenderer.enabled && Preferences.highDetailLighting) {
 															Pix3D.setBrightness(0.7F);
 														} else {
 															if (Preferences.brightness == 1) {
@@ -3619,7 +3619,7 @@ public final class Static88 {
 														continue;
 													}
 													if (scriptOpcode == 6112) {
-														Static254.scriptIntValues[intValueIndex++] = Static178.highDetailLighting ? 1 : 0;
+														Static254.scriptIntValues[intValueIndex++] = Preferences.highDetailLighting ? 1 : 0;
 														continue;
 													}
 													if (scriptOpcode == 6114) {

@@ -5,6 +5,7 @@ import java.io.UnsupportedEncodingException;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 
+import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ThreadUtils;
 import com.jogamp.nativewindow.awt.AWTGraphicsConfiguration;
 import com.jogamp.nativewindow.awt.JAWTWindow;
@@ -68,9 +69,6 @@ public final class GlRenderer {
 	@OriginalMember(owner = "client!tf", name = "E", descriptor = "Lgl!javax/media/opengl/GLDrawable;")
 	private static GLDrawable drawable;
 
-	@OriginalMember(owner = "client!tf", name = "G", descriptor = "Z")
-	public static boolean aBoolean273;
-
 	@OriginalMember(owner = "client!tf", name = "H", descriptor = "Z")
 	public static boolean arbVertexProgramSupported;
 
@@ -90,7 +88,7 @@ public final class GlRenderer {
 	private static int textureCombineAlphaMode = 0;
 
 	@OriginalMember(owner = "client!tf", name = "i", descriptor = "I")
-	private static int textureCombineeRgbMode = 0;
+	private static int textureCombineRgbMode = 0;
 
 	@OriginalMember(owner = "client!tf", name = "j", descriptor = "F")
 	private static float aFloat31 = 0.0F;
@@ -148,7 +146,7 @@ public final class GlRenderer {
 
 	@OriginalMember(owner = "client!tf", name = "a", descriptor = "()V")
 	public static void method4149() {
-		Static27.setMaterial(0, 0);
+		MaterialManager.setMaterial(0, 0);
 		method4163();
 		setTextureCombineRgbMode(1);
 		setTextureCombineAlphaMode(1);
@@ -170,7 +168,7 @@ public final class GlRenderer {
 
 	@OriginalMember(owner = "client!tf", name = "c", descriptor = "()V")
 	public static void method4151() {
-		Static27.setMaterial(0, 0); // MaterialManager
+		MaterialManager.setMaterial(0, 0); // MaterialManager
 		method4163();
 		setTextureCombineRgbMode(0);
 		setTextureCombineAlphaMode(0);
@@ -225,7 +223,7 @@ public final class GlRenderer {
 
 	@OriginalMember(owner = "client!tf", name = "e", descriptor = "()V")
 	public static void method4155() {
-		Static27.setMaterial(0, 0);
+		MaterialManager.setMaterial(0, 0);
 		method4163();
 		setTextureCombineRgbMode(0);
 		setTextureCombineAlphaMode(0);
@@ -242,7 +240,7 @@ public final class GlRenderer {
 		textureId = -1;
 		gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_MODE, GL2.GL_COMBINE);
 		gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_RGB, GL2.GL_MODULATE);
-		textureCombineeRgbMode = 0;
+		textureCombineRgbMode = 0;
 		gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_ALPHA, GL2.GL_MODULATE);
 		textureCombineAlphaMode = 0;
 		gl.glEnable(GL2.GL_LIGHTING);
@@ -251,7 +249,7 @@ public final class GlRenderer {
 		lightingEnabled = true;
 		depthTestEnabled = true;
 		fogEnabled = true;
-		Static83.method440();
+		resetMaterial();
 		gl.glActiveTexture(GL2.GL_TEXTURE1);
 		gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_MODE, GL2.GL_COMBINE);
 		gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_RGB, GL2.GL_MODULATE);
@@ -280,7 +278,7 @@ public final class GlRenderer {
 		gl.glMatrixMode(GL2.GL_MODELVIEW);
 		gl.glLoadIdentity();
 		FogManager.setup();
-		Static120.method2400(); // LightingManager
+		LightingManager.method2400(); // LightingManager
 	}
 
 	@OriginalMember(owner = "client!tf", name = "g", descriptor = "()V")
@@ -289,16 +287,16 @@ public final class GlRenderer {
 	}
 
 	@OriginalMember(owner = "client!tf", name = "b", descriptor = "(Z)V")
-	public static void setDepthTestEnabled(@OriginalArg(0) boolean arg0) {
-		if (arg0 == depthTestEnabled) {
+	public static void setDepthTestEnabled(@OriginalArg(0) boolean enabled) {
+		if (enabled == depthTestEnabled) {
 			return;
 		}
-		if (arg0) {
+		if (enabled) {
 			gl.glEnable(GL2.GL_DEPTH_TEST);
 		} else {
 			gl.glDisable(GL2.GL_DEPTH_TEST);
 		}
-		depthTestEnabled = arg0;
+		depthTestEnabled = enabled;
 	}
 
 	@OriginalMember(owner = "client!tf", name = "a", descriptor = "(F)V")
@@ -307,7 +305,7 @@ public final class GlRenderer {
 	}
 
 	@OriginalMember(owner = "client!tf", name = "h", descriptor = "()V")
-	public static void method4160() {
+	public static void draw() {
 		@Pc(2) int[] local2 = new int[2];
 		gl.glGetIntegerv(GL2.GL_DRAW_BUFFER, local2, 0);
 		gl.glGetIntegerv(GL2.GL_READ_BUFFER, local2, 1);
@@ -352,7 +350,7 @@ public final class GlRenderer {
 
 	@OriginalMember(owner = "client!tf", name = "i", descriptor = "()V")
 	public static void method4162() {
-		Static27.setMaterial(0, 0);
+		MaterialManager.setMaterial(0, 0);
 		method4163();
 		setTextureId(-1);
 		setLightingEnabled(false);
@@ -376,16 +374,16 @@ public final class GlRenderer {
 	}
 
 	@OriginalMember(owner = "client!tf", name = "c", descriptor = "(Z)V")
-	public static void setLightingEnabled(@OriginalArg(0) boolean arg0) {
-		if (arg0 == lightingEnabled) {
+	public static void setLightingEnabled(@OriginalArg(0) boolean enabled) {
+		if (enabled == lightingEnabled) {
 			return;
 		}
-		if (arg0) {
+		if (enabled) {
 			gl.glEnable(GL2.GL_LIGHTING);
 		} else {
 			gl.glDisable(GL2.GL_LIGHTING);
 		}
-		lightingEnabled = arg0;
+		lightingEnabled = enabled;
 	}
 
 	@OriginalMember(owner = "client!tf", name = "l", descriptor = "()F")
@@ -463,7 +461,7 @@ public final class GlRenderer {
 			if (v >= 7000 && v <= 9250) {
 				extTexture3dSupported = false;
 			}
-			aBoolean273 = arbVboSupported;
+			GlModel.arbVboSupported = arbVboSupported;
 		}
 		if (arbVboSupported) {
 			try {
@@ -485,7 +483,7 @@ public final class GlRenderer {
 	public static void quit() {
 		if (gl != null) {
 			try {
-				Static172.quit(); // MaterialManager
+				MaterialManager.quit(); // MaterialManager
 			} catch (@Pc(5) Throwable local5) {
 			}
 		}
@@ -520,7 +518,7 @@ public final class GlRenderer {
 		gl = null;
 		context = null;
 		drawable = null;
-		Static120.method2398(); // LightingManager
+		LightingManager.method2398(); // LightingManager
 		enabled = false;
 	}
 
@@ -555,10 +553,10 @@ public final class GlRenderer {
 			gl.glRotatef(arg7, 0.0F, 1.0F, 0.0F);
 		}
 		aBoolean266 = false;
-		Static240.anInt5334 = local7;
-		Static247.anInt5405 = local17;
-		Static1.anInt4 = local25;
-		Static148.anInt3535 = local35;
+		Rasterizer.screenLowerX = local7;
+		Rasterizer.screenUpperX = local17;
+		Rasterizer.screenLowerY = local25;
+		Rasterizer.screenUpperY = local35;
 	}
 
 	@OriginalMember(owner = "client!tf", name = "d", descriptor = "(Z)V")
@@ -576,7 +574,7 @@ public final class GlRenderer {
 
 	@OriginalMember(owner = "client!tf", name = "p", descriptor = "()V")
 	public static void restoreLighting() {
-		if (Static178.highDetailLighting) {
+		if (Preferences.highDetailLighting) {
 			setLightingEnabled(true);
 			setNormalArrayEnabled(true);
 		} else {
@@ -764,7 +762,7 @@ public final class GlRenderer {
 
 	@OriginalMember(owner = "client!tf", name = "d", descriptor = "(I)V")
 	public static void setTextureCombineRgbMode(@OriginalArg(0) int arg0) {
-		if (arg0 == textureCombineeRgbMode) {
+		if (arg0 == textureCombineRgbMode) {
 			return;
 		}
 		if (arg0 == 0) {
@@ -785,7 +783,7 @@ public final class GlRenderer {
 		if (arg0 == 5) {
 			gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_RGB, GL2.GL_INTERPOLATE);
 		}
-		textureCombineeRgbMode = arg0;
+		textureCombineRgbMode = arg0;
 	}
 
 	@OriginalMember(owner = "client!tf", name = "s", descriptor = "()V")
@@ -795,7 +793,12 @@ public final class GlRenderer {
 		anInt5328 = local2[0];
 		gl.glBindTexture(GL2.GL_TEXTURE_2D, anInt5328);
 		gl.glTexImage2D(GL2.GL_TEXTURE_2D, 0, 4, 1, 1, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, IntBuffer.wrap(new int[] { -1 }));
-		Static120.method2401();
-		Static238.method4145();
+		LightingManager.method2401();
+		MaterialManager.init();
+	}
+
+	@OriginalMember(owner = "client!gj", name = "b", descriptor = "(I)V")
+	public static void resetMaterial() {
+		MaterialManager.setMaterial(0, 0);
 	}
 }

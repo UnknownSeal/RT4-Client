@@ -2,7 +2,7 @@ package com.jagex.runetek4.cache.def;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -109,22 +109,22 @@ public final class SpotAnimDefinition {
 	public final Model getModel(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
 		@Pc(13) Model model = (Model) modelCache.get((long) this.anInt1751);
 		if (model == null) {
-			@Pc(28) ModelUnlit modelUnlit = ModelUnlit.get(Static93.modelArchive, this.modelId);
-			if (modelUnlit == null) {
+			@Pc(28) RawModel rawModel = RawModel.get(Static93.modelArchive, this.modelId);
+			if (rawModel == null) {
 				return null;
 			}
 			@Pc(40) int i;
 			if (this.aShortArray15 != null) {
 				for (i = 0; i < this.aShortArray15.length; i++) {
-					modelUnlit.recolor(this.aShortArray15[i], this.aShortArray18[i]);
+					rawModel.recolor(this.aShortArray15[i], this.aShortArray18[i]);
 				}
 			}
 			if (this.aShortArray16 != null) {
 				for (i = 0; i < this.aShortArray16.length; i++) {
-					modelUnlit.retexture(this.aShortArray16[i], this.aShortArray17[i]);
+					rawModel.retexture(this.aShortArray16[i], this.aShortArray17[i]);
 				}
 			}
-			model = modelUnlit.applyLightning(this.ambient + 64, this.contrast + 850, -30, -50, -30);
+			model = rawModel.applyLightning(this.ambient + 64, this.contrast + 850, -30, -50, -30);
 			modelCache.put(model, (long) this.anInt1751);
 		}
 		@Pc(118) Model local118;
@@ -138,7 +138,7 @@ public final class SpotAnimDefinition {
 		}
 		if (this.rotation != 0) {
 			if (this.rotation == 90) {
-				local118.method4563();
+				local118.rotateCounterClockwise();
 			}
 			if (this.rotation == 180) {
 				local118.method4552();

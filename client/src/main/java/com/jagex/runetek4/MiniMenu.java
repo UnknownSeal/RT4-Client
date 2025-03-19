@@ -47,6 +47,8 @@ public class MiniMenu {
     public static int anInt5444 = 0;
     @OriginalMember(owner = "runetek4.client!v", name = "b", descriptor = "Lclient!be;")
     public static Component pressedInventoryComponent;
+    @OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "I")
+    public static int anInt7 = 0;
 
     @OriginalMember(owner = "runetek4.client!ud", name = "a", descriptor = "(ILclient!be;)Z")
     public static boolean method4265(@OriginalArg(1) Component arg0) {

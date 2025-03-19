@@ -42,10 +42,10 @@ public final class Static112 {
 		if (LoginManager.aClass3_Sub2_Sub1_1 != null && LoginManager.aClass3_Sub2_Sub1_9 != null) {
 			local112 = local13 / LoginManager.aClass3_Sub2_Sub1_1.width;
 			for (local114 = 0; local114 < local112; local114++) {
-				LoginManager.aClass3_Sub2_Sub1_1.drawSprite(local114 * LoginManager.aClass3_Sub2_Sub1_1.width + local3, local9);
+				LoginManager.aClass3_Sub2_Sub1_1.render(local114 * LoginManager.aClass3_Sub2_Sub1_1.width + local3, local9);
 			}
-			LoginManager.aClass3_Sub2_Sub1_9.drawSprite(local3, local9);
-			LoginManager.aClass3_Sub2_Sub1_9.method1421(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_9.width, local9);
+			LoginManager.aClass3_Sub2_Sub1_9.render(local3, local9);
+			LoginManager.aClass3_Sub2_Sub1_9.renderHorizontalFlip(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_9.width, local9);
 		}
 		Fonts.b12Full.renderLeft(LocalizedText.CHOOSE_OPTION, local3 + 3, local9 + 14, Static195.anInt4581, -1);
 		if (GlRenderer.enabled) {
@@ -93,15 +93,15 @@ public final class Static112 {
 		if (LoginManager.aClass3_Sub2_Sub1_8 != null && LoginManager.aClass3_Sub2_Sub1_6 != null && LoginManager.aClass3_Sub2_Sub1_10 != null) {
 			local203 = local13 / LoginManager.aClass3_Sub2_Sub1_8.width;
 			for (local219 = 0; local219 < local203; local219++) {
-				LoginManager.aClass3_Sub2_Sub1_8.drawSprite(local3 + LoginManager.aClass3_Sub2_Sub1_8.width * local219, local11 + local9 + -LoginManager.aClass3_Sub2_Sub1_8.height);
+				LoginManager.aClass3_Sub2_Sub1_8.render(local3 + LoginManager.aClass3_Sub2_Sub1_8.width * local219, local11 + local9 + -LoginManager.aClass3_Sub2_Sub1_8.height);
 			}
 			local219 = (local11 - 20) / LoginManager.aClass3_Sub2_Sub1_6.height;
 			for (local418 = 0; local418 < local219; local418++) {
-				LoginManager.aClass3_Sub2_Sub1_6.drawSprite(local3, local9 + local418 * LoginManager.aClass3_Sub2_Sub1_6.height + 20);
-				LoginManager.aClass3_Sub2_Sub1_6.method1421(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_6.width, local9 + 20 + local418 * LoginManager.aClass3_Sub2_Sub1_6.height);
+				LoginManager.aClass3_Sub2_Sub1_6.render(local3, local9 + local418 * LoginManager.aClass3_Sub2_Sub1_6.height + 20);
+				LoginManager.aClass3_Sub2_Sub1_6.renderHorizontalFlip(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_6.width, local9 + 20 + local418 * LoginManager.aClass3_Sub2_Sub1_6.height);
 			}
-			LoginManager.aClass3_Sub2_Sub1_10.drawSprite(local3, local11 + local9 - LoginManager.aClass3_Sub2_Sub1_10.height);
-			LoginManager.aClass3_Sub2_Sub1_10.method1421(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_10.width, local9 - -local11 + -LoginManager.aClass3_Sub2_Sub1_10.height);
+			LoginManager.aClass3_Sub2_Sub1_10.render(local3, local11 + local9 - LoginManager.aClass3_Sub2_Sub1_10.height);
+			LoginManager.aClass3_Sub2_Sub1_10.renderHorizontalFlip(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_10.width, local9 - -local11 + -LoginManager.aClass3_Sub2_Sub1_10.height);
 		}
 		for (local203 = 0; local203 < MiniMenu.menuActionRow; local203++) {
 			local219 = (MiniMenu.menuActionRow - local203 - 1) * 15 + local9 + 35;

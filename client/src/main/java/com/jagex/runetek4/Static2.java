@@ -17,9 +17,6 @@ public final class Static2 {
 	@OriginalMember(owner = "runetek4.client!aa", name = "t", descriptor = "[Lclient!pc;")
 	public static MaterialRenderer[] anInterface4Array1;
 
-	@OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "I")
-	public static int anInt7 = 0;
-
 	@OriginalMember(owner = "runetek4.client!aa", name = "l", descriptor = "Z")
 	public static boolean membersWorld = false;
 

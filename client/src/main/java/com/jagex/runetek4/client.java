@@ -703,7 +703,7 @@ public final class client extends GameShell {
 			}
 		}
 		if (GlRenderer.enabled && (statusCode == 25 || statusCode == 28 || statusCode == 40)) {
-			GlRenderer.method4160();
+			GlRenderer.draw();
 		}
 		gameState = statusCode;
 	}

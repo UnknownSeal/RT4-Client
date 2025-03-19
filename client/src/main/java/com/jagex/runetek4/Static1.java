@@ -10,9 +10,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static1 {
 
-	@OriginalMember(owner = "runetek4.client!a", name = "g", descriptor = "I")
-	public static int anInt4;
-
 	@OriginalMember(owner = "runetek4.client!a", name = "h", descriptor = "I")
 	public static int anInt5;
 

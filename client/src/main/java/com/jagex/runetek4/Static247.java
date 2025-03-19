@@ -19,9 +19,6 @@ public final class Static247 {
 	@OriginalMember(owner = "runetek4.client!ub", name = "h", descriptor = "[Lclient!pe;")
 	public static Class120[] aClass120Array2;
 
-	@OriginalMember(owner = "runetek4.client!ub", name = "m", descriptor = "I")
-	public static int anInt5405;
-
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(IIIIIII)V")
 	public static void method4244(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
 		if (Static172.anInt4164 <= arg1 && FloorUnderlayTypeList.anInt5063 >= arg3 && Static267.anInt5773 <= arg2 && arg4 <= Static106.anInt2869) {
@@ -97,7 +94,7 @@ public final class Static247 {
 														Static147.method2761(frontWallTypes);
 													}
 													farthestIndex = Static107.anIntArrayArrayArray10[0][tileX][tileZ] + Static107.anIntArrayArrayArray10[0][tileX + 1][tileZ] + Static107.anIntArrayArrayArray10[0][tileX][tileZ + 1] + Static107.anIntArrayArrayArray10[0][tileX + 1][tileZ + 1] >> 2;
-													Static27.setMaterial(-farthestIndex, 3);
+													MaterialManager.setMaterial(-farthestIndex, 3);
 													local33 = 201.5F;
 													GlRenderer.method4159(local33);
 												} else {

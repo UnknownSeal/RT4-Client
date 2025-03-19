@@ -8,7 +8,7 @@ import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.game.config.idktype.IDKType;
 import com.jagex.runetek4.cache.media.SeqType;
-import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -69,12 +69,12 @@ public final class PlayerAppearance {
 		@Pc(24) long local24 = (long) arg2 | (long) (arg6 << 16) | (long) arg1 << 32;
 		@Pc(30) Model local30 = (Model) Static139.aClass99_21.get(local24);
 		if (local30 == null) {
-			@Pc(36) ModelUnlit[] local36 = new ModelUnlit[3];
+			@Pc(36) RawModel[] local36 = new RawModel[3];
 			@Pc(38) int local38 = 0;
 			if (!ObjType.get(arg2).hasReadyHeads() || !ObjType.get(arg6).hasReadyHeads() || !ObjType.get(arg1).hasReadyHeads()) {
 				return null;
 			}
-			@Pc(66) ModelUnlit local66 = ObjType.get(arg2).getHeadModel();
+			@Pc(66) RawModel local66 = ObjType.get(arg2).getHeadModel();
 			if (local66 != null) {
 				local38++;
 				local36[0] = local66;
@@ -87,7 +87,7 @@ public final class PlayerAppearance {
 			if (local66 != null) {
 				local36[local38++] = local66;
 			}
-			local66 = new ModelUnlit(local36, local38);
+			local66 = new RawModel(local36, local38);
 			for (@Pc(110) int local110 = 0; local110 < 5; local110++) {
 				if (this.anIntArray236[local110] < destinationBodyColors[local110].length) {
 					local66.recolor(Static200.aShortArray65[local110], destinationBodyColors[local110][this.anIntArray236[local110]]);
@@ -245,11 +245,11 @@ public final class PlayerAppearance {
 				}
 			}
 			if (local154 == null) {
-				@Pc(239) ModelUnlit[] local239 = new ModelUnlit[12];
+				@Pc(239) RawModel[] local239 = new RawModel[12];
 				@Pc(250) int local250;
 				for (local169 = 0; local169 < 12; local169++) {
 					local250 = local38[local169];
-					@Pc(272) ModelUnlit local272;
+					@Pc(272) RawModel local272;
 					if ((local250 & 0x40000000) != 0) {
 						local272 = ObjTypeList.get(local250 & 0x3FFFFFFF).method1831(this.aBoolean141);
 						if (local272 != null) {
@@ -320,7 +320,7 @@ public final class PlayerAppearance {
 						}
 					}
 				}
-				@Pc(740) ModelUnlit model = new ModelUnlit(local239, local239.length);
+				@Pc(740) RawModel model = new RawModel(local239, local239.length);
 				for (local346 = 0; local346 < 5; local346++) {
 					if (destinationBodyColors[local346].length > this.anIntArray236[local346]) {
 						model.recolor(Static200.aShortArray65[local346], destinationBodyColors[local346][this.anIntArray236[local346]]);
@@ -492,12 +492,12 @@ public final class PlayerAppearance {
 			if (bool) {
 				return null;
 			}
-			@Pc(100) ModelUnlit[] models = new ModelUnlit[12];
+			@Pc(100) RawModel[] models = new RawModel[12];
 			i = 0;
 			@Pc(114) int j;
 			for (@Pc(104) int equipmentSlot = 0; equipmentSlot < 12; equipmentSlot++) {
 				j = this.appearance[equipmentSlot];
-				@Pc(134) ModelUnlit local134;
+				@Pc(134) RawModel local134;
 				if ((j & 0x40000000) != 0) {
 					local134 = ObjTypeList.get(j & 0x3FFFFFFF).method1830(this.aBoolean141);
 					if (local134 != null) {
@@ -510,7 +510,7 @@ public final class PlayerAppearance {
 					}
 				}
 			}
-			@Pc(171) ModelUnlit local171 = new ModelUnlit(models, i);
+			@Pc(171) RawModel local171 = new RawModel(models, i);
 			for (j = 0; j < 5; j++) {
 				if (destinationBodyColors[j].length > this.anIntArray236[j]) {
 					local171.recolor(Static200.aShortArray65[j], destinationBodyColors[j][this.anIntArray236[j]]);

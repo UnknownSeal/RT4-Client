@@ -17,9 +17,6 @@ public final class Pix3D {
 	@OriginalMember(owner = "runetek4.client!hf", name = "n", descriptor = "I")
 	public static int anInt2472;
 
-	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "[I")
-	public static final int[] anIntArray220 = new int[65536];
-
 	@OriginalMember(owner = "runetek4.client!hf", name = "i", descriptor = "Z")
 	private static boolean aBoolean135 = false;
 
@@ -2305,7 +2302,7 @@ public final class Pix3D {
 			local32 = arg3 - arg2;
 			if (trans == 0) {
 				do {
-					arg0[arg1++] = anIntArray220[arg4 >> 8];
+					arg0[arg1++] = Rasterizer.palette[arg4 >> 8];
 					arg4 += arg5;
 					local32--;
 				} while (local32 > 0);
@@ -2313,7 +2310,7 @@ public final class Pix3D {
 				local98 = trans;
 				local102 = 256 - trans;
 				do {
-					local46 = anIntArray220[arg4 >> 8];
+					local46 = Rasterizer.palette[arg4 >> 8];
 					arg4 += arg5;
 					@Pc(379) int local379 = ((local46 & 0xFF00FF) * local102 >> 8 & 0xFF00FF) + ((local46 & 0xFF00) * local102 >> 8 & 0xFF00);
 					local138 = arg0[arg1];
@@ -2329,7 +2326,7 @@ public final class Pix3D {
 		if (trans == 0) {
 			if (local32 > 0) {
 				do {
-					local46 = anIntArray220[arg4 >> 8];
+					local46 = Rasterizer.palette[arg4 >> 8];
 					arg4 += local36;
 					local53 = arg1 + 1;
 					arg0[arg1] = local46;
@@ -2344,7 +2341,7 @@ public final class Pix3D {
 			}
 			local32 = arg3 - arg2 & 0x3;
 			if (local32 > 0) {
-				local46 = anIntArray220[arg4 >> 8];
+				local46 = Rasterizer.palette[arg4 >> 8];
 				do {
 					arg0[arg1++] = local46;
 					local32--;
@@ -2356,7 +2353,7 @@ public final class Pix3D {
 		local102 = 256 - trans;
 		if (local32 > 0) {
 			do {
-				local46 = anIntArray220[arg4 >> 8];
+				local46 = Rasterizer.palette[arg4 >> 8];
 				arg4 += local36;
 				local46 = ((local46 & 0xFF00FF) * local102 >> 8 & 0xFF00FF) + ((local46 & 0xFF00) * local102 >> 8 & 0xFF00);
 				local138 = arg0[arg1];
@@ -2376,388 +2373,13 @@ public final class Pix3D {
 		if (local32 <= 0) {
 			return;
 		}
-		local46 = anIntArray220[arg4 >> 8];
+		local46 = Rasterizer.palette[arg4 >> 8];
 		local46 = ((local46 & 0xFF00FF) * local102 >> 8 & 0xFF00FF) + ((local46 & 0xFF00) * local102 >> 8 & 0xFF00);
 		do {
 			local138 = arg0[arg1];
 			arg0[arg1++] = local46 + ((local138 & 0xFF00FF) * local98 >> 8 & 0xFF00FF) + ((local138 & 0xFF00) * local98 >> 8 & 0xFF00);
 			local32--;
 		} while (local32 > 0);
-	}
-
-	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "([BIIIIIII)V")
-	public static void method1921(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
-		@Pc(1) int local1 = 0;
-		if (arg2 != arg1) {
-			local1 = (arg5 - arg4 << 16) / (arg2 - arg1);
-		}
-		@Pc(16) int local16 = 0;
-		if (arg3 != arg2) {
-			local16 = (arg6 - arg5 << 16) / (arg3 - arg2);
-		}
-		@Pc(31) int local31 = 0;
-		if (arg3 != arg1) {
-			local31 = (arg4 - arg6 << 16) / (arg1 - arg3);
-		}
-		if (arg1 <= arg2 && arg1 <= arg3) {
-			if (arg2 < arg3) {
-				arg6 = arg4 <<= 0x10;
-				if (arg1 < 0) {
-					arg6 -= local31 * arg1;
-					arg4 -= local1 * arg1;
-					arg1 = 0;
-				}
-				arg5 <<= 0x10;
-				if (arg2 < 0) {
-					arg5 -= local16 * arg2;
-					arg2 = 0;
-				}
-				if ((arg1 == arg2 || local31 >= local1) && (arg1 != arg2 || local31 <= local16)) {
-					arg3 -= arg2;
-					arg2 -= arg1;
-					arg1 *= arg7;
-					while (true) {
-						arg2--;
-						if (arg2 < 0) {
-							while (true) {
-								arg3--;
-								if (arg3 < 0) {
-									return;
-								}
-								method1930(arg0, arg1, arg5 >> 16, arg6 >> 16);
-								arg6 += local31;
-								arg5 += local16;
-								arg1 += arg7;
-							}
-						}
-						method1930(arg0, arg1, arg4 >> 16, arg6 >> 16);
-						arg6 += local31;
-						arg4 += local1;
-						arg1 += arg7;
-					}
-				} else {
-					arg3 -= arg2;
-					arg2 -= arg1;
-					arg1 *= arg7;
-					while (true) {
-						arg2--;
-						if (arg2 < 0) {
-							while (true) {
-								arg3--;
-								if (arg3 < 0) {
-									return;
-								}
-								method1930(arg0, arg1, arg6 >> 16, arg5 >> 16);
-								arg6 += local31;
-								arg5 += local16;
-								arg1 += arg7;
-							}
-						}
-						method1930(arg0, arg1, arg6 >> 16, arg4 >> 16);
-						arg6 += local31;
-						arg4 += local1;
-						arg1 += arg7;
-					}
-				}
-			} else {
-				arg5 = arg4 <<= 0x10;
-				if (arg1 < 0) {
-					arg5 -= local31 * arg1;
-					arg4 -= local1 * arg1;
-					arg1 = 0;
-				}
-				arg6 <<= 0x10;
-				if (arg3 < 0) {
-					arg6 -= local16 * arg3;
-					arg3 = 0;
-				}
-				if ((arg1 == arg3 || local31 >= local1) && (arg1 != arg3 || local16 <= local1)) {
-					arg2 -= arg3;
-					arg3 -= arg1;
-					arg1 *= arg7;
-					while (true) {
-						arg3--;
-						if (arg3 < 0) {
-							while (true) {
-								arg2--;
-								if (arg2 < 0) {
-									return;
-								}
-								method1930(arg0, arg1, arg4 >> 16, arg6 >> 16);
-								arg6 += local16;
-								arg4 += local1;
-								arg1 += arg7;
-							}
-						}
-						method1930(arg0, arg1, arg4 >> 16, arg5 >> 16);
-						arg5 += local31;
-						arg4 += local1;
-						arg1 += arg7;
-					}
-				} else {
-					arg2 -= arg3;
-					arg3 -= arg1;
-					arg1 *= arg7;
-					while (true) {
-						arg3--;
-						if (arg3 < 0) {
-							while (true) {
-								arg2--;
-								if (arg2 < 0) {
-									return;
-								}
-								method1930(arg0, arg1, arg6 >> 16, arg4 >> 16);
-								arg6 += local16;
-								arg4 += local1;
-								arg1 += arg7;
-							}
-						}
-						method1930(arg0, arg1, arg5 >> 16, arg4 >> 16);
-						arg5 += local31;
-						arg4 += local1;
-						arg1 += arg7;
-					}
-				}
-			}
-		} else if (arg2 <= arg3) {
-			if (arg3 < arg1) {
-				arg4 = arg5 <<= 0x10;
-				if (arg2 < 0) {
-					arg4 -= local1 * arg2;
-					arg5 -= local16 * arg2;
-					arg2 = 0;
-				}
-				arg6 <<= 0x10;
-				if (arg3 < 0) {
-					arg6 -= local31 * arg3;
-					arg3 = 0;
-				}
-				if (arg2 != arg3 && local1 < local16 || arg2 == arg3 && local1 > local31) {
-					arg1 -= arg3;
-					arg3 -= arg2;
-					arg2 *= arg7;
-					while (true) {
-						arg3--;
-						if (arg3 < 0) {
-							while (true) {
-								arg1--;
-								if (arg1 < 0) {
-									return;
-								}
-								method1930(arg0, arg2, arg4 >> 16, arg6 >> 16);
-								arg4 += local1;
-								arg6 += local31;
-								arg2 += arg7;
-							}
-						}
-						method1930(arg0, arg2, arg4 >> 16, arg5 >> 16);
-						arg4 += local1;
-						arg5 += local16;
-						arg2 += arg7;
-					}
-				} else {
-					arg1 -= arg3;
-					arg3 -= arg2;
-					arg2 *= arg7;
-					while (true) {
-						arg3--;
-						if (arg3 < 0) {
-							while (true) {
-								arg1--;
-								if (arg1 < 0) {
-									return;
-								}
-								method1930(arg0, arg2, arg6 >> 16, arg4 >> 16);
-								arg4 += local1;
-								arg6 += local31;
-								arg2 += arg7;
-							}
-						}
-						method1930(arg0, arg2, arg5 >> 16, arg4 >> 16);
-						arg4 += local1;
-						arg5 += local16;
-						arg2 += arg7;
-					}
-				}
-			} else {
-				arg6 = arg5 <<= 0x10;
-				if (arg2 < 0) {
-					arg6 -= local1 * arg2;
-					arg5 -= local16 * arg2;
-					arg2 = 0;
-				}
-				arg4 <<= 0x10;
-				if (arg1 < 0) {
-					arg4 -= local31 * arg1;
-					arg1 = 0;
-				}
-				if (local1 < local16) {
-					arg3 -= arg1;
-					arg1 -= arg2;
-					arg2 *= arg7;
-					while (true) {
-						arg1--;
-						if (arg1 < 0) {
-							while (true) {
-								arg3--;
-								if (arg3 < 0) {
-									return;
-								}
-								method1930(arg0, arg2, arg4 >> 16, arg5 >> 16);
-								arg4 += local31;
-								arg5 += local16;
-								arg2 += arg7;
-							}
-						}
-						method1930(arg0, arg2, arg6 >> 16, arg5 >> 16);
-						arg6 += local1;
-						arg5 += local16;
-						arg2 += arg7;
-					}
-				} else {
-					arg3 -= arg1;
-					arg1 -= arg2;
-					arg2 *= arg7;
-					while (true) {
-						arg1--;
-						if (arg1 < 0) {
-							while (true) {
-								arg3--;
-								if (arg3 < 0) {
-									return;
-								}
-								method1930(arg0, arg2, arg5 >> 16, arg4 >> 16);
-								arg4 += local31;
-								arg5 += local16;
-								arg2 += arg7;
-							}
-						}
-						method1930(arg0, arg2, arg5 >> 16, arg6 >> 16);
-						arg6 += local1;
-						arg5 += local16;
-						arg2 += arg7;
-					}
-				}
-			}
-		} else if (arg1 < arg2) {
-			arg5 = arg6 <<= 0x10;
-			if (arg3 < 0) {
-				arg5 -= local16 * arg3;
-				arg6 -= local31 * arg3;
-				arg3 = 0;
-			}
-			arg4 <<= 0x10;
-			if (arg1 < 0) {
-				arg4 -= local1 * arg1;
-				arg1 = 0;
-			}
-			if (local16 < local31) {
-				arg2 -= arg1;
-				arg1 -= arg3;
-				arg3 *= arg7;
-				while (true) {
-					arg1--;
-					if (arg1 < 0) {
-						while (true) {
-							arg2--;
-							if (arg2 < 0) {
-								return;
-							}
-							method1930(arg0, arg3, arg5 >> 16, arg4 >> 16);
-							arg5 += local16;
-							arg4 += local1;
-							arg3 += arg7;
-						}
-					}
-					method1930(arg0, arg3, arg5 >> 16, arg6 >> 16);
-					arg5 += local16;
-					arg6 += local31;
-					arg3 += arg7;
-				}
-			} else {
-				arg2 -= arg1;
-				arg1 -= arg3;
-				arg3 *= arg7;
-				while (true) {
-					arg1--;
-					if (arg1 < 0) {
-						while (true) {
-							arg2--;
-							if (arg2 < 0) {
-								return;
-							}
-							method1930(arg0, arg3, arg4 >> 16, arg5 >> 16);
-							arg5 += local16;
-							arg4 += local1;
-							arg3 += arg7;
-						}
-					}
-					method1930(arg0, arg3, arg6 >> 16, arg5 >> 16);
-					arg5 += local16;
-					arg6 += local31;
-					arg3 += arg7;
-				}
-			}
-		} else {
-			arg4 = arg6 <<= 0x10;
-			if (arg3 < 0) {
-				arg4 -= local16 * arg3;
-				arg6 -= local31 * arg3;
-				arg3 = 0;
-			}
-			arg5 <<= 0x10;
-			if (arg2 < 0) {
-				arg5 -= local1 * arg2;
-				arg2 = 0;
-			}
-			if (local16 < local31) {
-				arg1 -= arg2;
-				arg2 -= arg3;
-				arg3 *= arg7;
-				while (true) {
-					arg2--;
-					if (arg2 < 0) {
-						while (true) {
-							arg1--;
-							if (arg1 < 0) {
-								return;
-							}
-							method1930(arg0, arg3, arg5 >> 16, arg6 >> 16);
-							arg5 += local1;
-							arg6 += local31;
-							arg3 += arg7;
-						}
-					}
-					method1930(arg0, arg3, arg4 >> 16, arg6 >> 16);
-					arg4 += local16;
-					arg6 += local31;
-					arg3 += arg7;
-				}
-			} else {
-				arg1 -= arg2;
-				arg2 -= arg3;
-				arg3 *= arg7;
-				while (true) {
-					arg2--;
-					if (arg2 < 0) {
-						while (true) {
-							arg1--;
-							if (arg1 < 0) {
-								return;
-							}
-							method1930(arg0, arg3, arg6 >> 16, arg5 >> 16);
-							arg5 += local1;
-							arg6 += local31;
-							arg3 += arg7;
-						}
-					}
-					method1930(arg0, arg3, arg6 >> 16, arg4 >> 16);
-					arg4 += local16;
-					arg6 += local31;
-					arg3 += arg7;
-				}
-			}
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(III)V")
@@ -2920,7 +2542,7 @@ public final class Pix3D {
 				if (local278 == 0) {
 					local278 = 1;
 				}
-				anIntArray220[local3++] = local278;
+				Rasterizer.palette[local3++] = local278;
 			}
 		}
 	}
@@ -3386,33 +3008,4 @@ public final class Pix3D {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "([BIIII)V")
-	private static void method1930(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		if (arg2 >= arg3) {
-			return;
-		}
-		arg1 += arg2;
-		@Pc(13) int local13 = arg3 - arg2 >> 2;
-		while (true) {
-			local13--;
-			if (local13 < 0) {
-				local13 = arg3 - arg2 & 0x3;
-				while (true) {
-					local13--;
-					if (local13 < 0) {
-						return;
-					}
-					arg0[arg1++] = 1;
-				}
-			}
-			@Pc(19) int local19 = arg1 + 1;
-			arg0[arg1] = 1;
-			@Pc(24) int local24 = local19 + 1;
-			arg0[local19] = 1;
-			@Pc(29) int local29 = local24 + 1;
-			arg0[local24] = 1;
-			arg1 = local29 + 1;
-			arg0[local29] = 1;
-		}
-	}
 }

@@ -90,9 +90,9 @@ public class GlSprite extends Sprite {
 		local11.glBindTexture(GL2.GL_TEXTURE_2D, arg2.textureId);
 		local11.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_RGB, GL2.GL_REPLACE);
 		local11.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_SRC0_RGB, GL2.GL_PREVIOUS);
-		@Pc(47) float local47 = (float) (arg0 - Static46.anInt1439) / (float) arg2.powerOfTwoWidth;
+		@Pc(47) float local47 = (float) (arg0 - GlRaster.clipLeft) / (float) arg2.powerOfTwoWidth;
 		@Pc(56) float local56 = (float) (arg1 - GlRaster.clipTop) / (float) arg2.powerOfTwoHeight;
-		@Pc(68) float local68 = (float) (arg0 + this.width - Static46.anInt1439) / (float) arg2.powerOfTwoWidth;
+		@Pc(68) float local68 = (float) (arg0 + this.width - GlRaster.clipLeft) / (float) arg2.powerOfTwoWidth;
 		@Pc(80) float local80 = (float) (arg1 + this.height - GlRaster.clipTop) / (float) arg2.powerOfTwoHeight;
 		@Pc(85) int local85 = arg0 + this.xOffset;
 		@Pc(90) int local90 = arg1 + this.yOffset;
@@ -148,7 +148,7 @@ public class GlSprite extends Sprite {
 	}
 
 	@OriginalMember(owner = "runetek4.client!cf", name = "a", descriptor = "(IIIIIIIILclient!cf;)V")
-	public final void method1427(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) GlSprite arg8) {
+	public final void renderRotatedTransparent(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) GlSprite arg8) {
 		if (arg8 == null) {
 			return;
 		}
@@ -206,7 +206,7 @@ public class GlSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!cf", name = "d", descriptor = "(II)V")
 	@Override
-	public final void method1421(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public final void renderHorizontalFlip(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		GlRenderer.method4149();
 		@Pc(5) int local5 = arg0 + this.xOffset;
 		@Pc(10) int local10 = arg1 + this.yOffset;
@@ -231,7 +231,7 @@ public class GlSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!cf", name = "e", descriptor = "(II)V")
 	@Override
-	public final void drawSprite(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public final void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		GlRenderer.method4149();
 		@Pc(5) int local5 = arg0 + this.xOffset;
 		@Pc(10) int local10 = arg1 + this.yOffset;
@@ -313,7 +313,7 @@ public class GlSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!cf", name = "c", descriptor = "(II)V")
 	@Override
-	public final void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public final void drawPixels(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		GlRenderer.method4149();
 		@Pc(5) int local5 = arg0 + this.xOffset;
 		@Pc(10) int local10 = arg1 + this.yOffset;
@@ -361,7 +361,7 @@ public class GlSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!cf", name = "b", descriptor = "(IIIII)V")
 	@Override
-	public final void method1422(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	public final void renderAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		if (arg2 <= 0 || arg3 <= 0) {
 			return;
 		}

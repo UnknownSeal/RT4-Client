@@ -15,6 +15,9 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("runetek4.client!uh")
 public final class GlTexture extends CachedNode {
 
+	@OriginalMember(owner = "runetek4.client!oj", name = "t", descriptor = "[I")
+	public static int[] anIntArray372;
+
 	@OriginalMember(owner = "runetek4.client!uh", name = "K", descriptor = "F")
 	private float aFloat35;
 
@@ -25,13 +28,13 @@ public final class GlTexture extends CachedNode {
 	private int[] anIntArray481;
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "bb", descriptor = "I")
-	private int anInt5493 = -1;
+	private int textureId = -1;
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "eb", descriptor = "Z")
 	public boolean aBoolean287 = false;
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "db", descriptor = "I")
-	private int anInt5495 = 0;
+	private int textureSize = 0;
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "W", descriptor = "Lclient!lc;")
 	private final Texture aClass88_1;
@@ -178,49 +181,49 @@ public final class GlTexture extends CachedNode {
 		if (!this.aClass88_1.method2729(arg1, arg0)) {
 			return false;
 		}
-		@Pc(22) GL2 local22 = GlRenderer.gl;
+		@Pc(22) GL2 gl = GlRenderer.gl;
 		@Pc(28) int local28 = arg2 ? 64 : 128;
 		@Pc(31) int local31 = Static56.method1314();
 		if ((local31 & 0x1) == 0) {
-			if (this.anInt5493 == -1) {
-				@Pc(53) int[] local53 = new int[1];
-				local22.glGenTextures(1, local53, 0);
+			if (this.textureId == -1) {
+				@Pc(53) int[] temp = new int[1];
+				gl.glGenTextures(1, temp, 0);
 				this.anInt5492 = GlCleaner.contextId;
-				this.anInt5493 = local53[0];
-				GlRenderer.setTextureId(this.anInt5493);
-				@Pc(82) ByteBuffer local82 = ByteBuffer.wrap(this.aClass88_1.method2728(local28, local28, this.aBoolean288, arg1, 0.7D, arg0));
+				this.textureId = temp[0];
+				GlRenderer.setTextureId(this.textureId);
+				@Pc(82) ByteBuffer pixels = ByteBuffer.wrap(this.aClass88_1.method2728(local28, local28, this.aBoolean288, arg1, 0.7D, arg0));
 				if (this.anInt5489 == 2) {
 					@Pc(201) GLUgl2es1 local201 = new GLUgl2es1();
-					local201.gluBuild2DMipmaps(3553, 6408, local28, local28, 6408, 5121, local82);
-					local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR_MIPMAP_LINEAR);
-					local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
-					Static63.oncard_texture += local82.limit() * 4 / 3 - this.anInt5495;
-					this.anInt5495 = local82.limit() * 4 / 3;
+					local201.gluBuild2DMipmaps(3553, 6408, local28, local28, 6408, 5121, pixels);
+					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR_MIPMAP_LINEAR);
+					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
+					Static63.oncard_texture += pixels.limit() * 4 / 3 - this.textureSize;
+					this.textureSize = pixels.limit() * 4 / 3;
 				} else if (this.anInt5489 == 1) {
 					@Pc(129) int local129 = 0;
 					while (true) {
-						local22.glTexImage2D(GL2.GL_TEXTURE_2D, local129++, GL2.GL_RGBA, local28, local28, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, local82);
+						gl.glTexImage2D(GL2.GL_TEXTURE_2D, local129++, GL2.GL_RGBA, local28, local28, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, pixels);
 						local28 >>= 0x1;
 						if (local28 == 0) {
-							local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR_MIPMAP_LINEAR);
-							local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
-							Static63.oncard_texture += local82.limit() * 4 / 3 - this.anInt5495;
-							this.anInt5495 = local82.limit() * 4 / 3;
+							gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR_MIPMAP_LINEAR);
+							gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
+							Static63.oncard_texture += pixels.limit() * 4 / 3 - this.textureSize;
+							this.textureSize = pixels.limit() * 4 / 3;
 							break;
 						}
-						local82 = ByteBuffer.wrap(this.aClass88_1.method2728(local28, local28, this.aBoolean288, arg1, 0.7D, arg0));
+						pixels = ByteBuffer.wrap(this.aClass88_1.method2728(local28, local28, this.aBoolean288, arg1, 0.7D, arg0));
 					}
 				} else {
-					local22.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, local28, local28, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, local82);
-					local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR);
-					local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
-					Static63.oncard_texture += local82.limit() - this.anInt5495;
-					this.anInt5495 = local82.limit();
+					gl.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, local28, local28, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, pixels);
+					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR);
+					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
+					Static63.oncard_texture += pixels.limit() - this.textureSize;
+					this.textureSize = pixels.limit();
 				}
-				local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_WRAP_S, this.aBoolean285 ? GL2.GL_REPEAT : GL2.GL_CLAMP_TO_EDGE);
-				local22.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_WRAP_T, this.aBoolean284 ? GL2.GL_REPEAT : GL2.GL_CLAMP_TO_EDGE);
+				gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_WRAP_S, this.aBoolean285 ? GL2.GL_REPEAT : GL2.GL_CLAMP_TO_EDGE);
+				gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_WRAP_T, this.aBoolean284 ? GL2.GL_REPEAT : GL2.GL_CLAMP_TO_EDGE);
 			} else {
-				GlRenderer.setTextureId(this.anInt5493);
+				GlRenderer.setTextureId(this.textureId);
 			}
 		}
 		if ((local31 & 0x2) == 0) {
@@ -261,8 +264,8 @@ public final class GlTexture extends CachedNode {
 		if (this.anIntArray481 == null || this.anInt5497 == 0 && this.anInt5485 == 0) {
 			return;
 		}
-		if (Static182.anIntArray372 == null || Static182.anIntArray372.length < this.anIntArray481.length) {
-			Static182.anIntArray372 = new int[this.anIntArray481.length];
+		if (anIntArray372 == null || anIntArray372.length < this.anIntArray481.length) {
+			anIntArray372 = new int[this.anIntArray481.length];
 		}
 		@Pc(47) int local47 = arg0 * this.anInt5485;
 		@Pc(58) int local58 = this.anIntArray481.length == 4096 ? 64 : 128;
@@ -275,21 +278,21 @@ public final class GlTexture extends CachedNode {
 			for (@Pc(90) int local90 = 0; local90 < local58; local90++) {
 				@Pc(102) int local102 = (local66 & local90 + local47) + local88;
 				@Pc(106) int local106 = local90 + local79;
-				Static182.anIntArray372[local106] = this.anIntArray481[local102];
+				anIntArray372[local106] = this.anIntArray481[local102];
 			}
 		}
 		@Pc(125) int[] local125 = this.anIntArray481;
-		this.anIntArray481 = Static182.anIntArray372;
-		Static182.anIntArray372 = local125;
+		this.anIntArray481 = anIntArray372;
+		anIntArray372 = local125;
 	}
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "finalize", descriptor = "()V")
 	@Override
 	public final void finalize() throws Throwable {
-		if (this.anInt5493 != -1) {
-			GlCleaner.deleteTexture(this.anInt5493, this.anInt5495, this.anInt5492);
-			this.anInt5495 = 0;
-			this.anInt5493 = -1;
+		if (this.textureId != -1) {
+			GlCleaner.deleteTexture(this.textureId, this.textureSize, this.anInt5492);
+			this.textureSize = 0;
+			this.textureId = -1;
 		}
 		super.finalize();
 	}

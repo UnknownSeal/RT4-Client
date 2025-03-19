@@ -1,6 +1,6 @@
 package com.jagex.runetek4.game.config.idktype;
 
-import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.Static14;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -93,15 +93,15 @@ public final class IDKType {
 	}
 
 	@OriginalMember(owner = "client!dm", name = "a", descriptor = "(Z)Lclient!gb;")
-	public ModelUnlit getHeadModel() {
+	public RawModel getHeadModel() {
 		@Pc(13) int length = 0;
-		@Pc(16) ModelUnlit[] heads = new ModelUnlit[5];
+		@Pc(16) RawModel[] heads = new RawModel[5];
 		for (@Pc(18) int index = 0; index < 5; index++) {
 			if (this.heads[index] != -1) {
-				heads[length++] = ModelUnlit.get(Static14.aClass153_8, this.heads[index]);
+				heads[length++] = RawModel.get(Static14.aClass153_8, this.heads[index]);
 			}
 		}
-		@Pc(52) ModelUnlit head = new ModelUnlit(heads, length);
+		@Pc(52) RawModel head = new RawModel(heads, length);
 
 		if (this.recol_s != null) {
 			for (int index = 0; index < this.recol_s.length; index++) {
@@ -131,19 +131,19 @@ public final class IDKType {
 	}
 
 	@OriginalMember(owner = "client!dm", name = "b", descriptor = "(B)Lclient!gb;")
-	public ModelUnlit getModel() {
+	public RawModel getModel() {
 		if (this.models == null) {
 			return null;
 		}
-		@Pc(16) ModelUnlit[] models = new ModelUnlit[this.models.length];
+		@Pc(16) RawModel[] models = new RawModel[this.models.length];
 		for (@Pc(18) int index = 0; index < this.models.length; index++) {
-			models[index] = ModelUnlit.get(Static14.aClass153_8, this.models[index]);
+			models[index] = RawModel.get(Static14.aClass153_8, this.models[index]);
 		}
-		@Pc(56) ModelUnlit body;
+		@Pc(56) RawModel body;
 		if (models.length == 1) {
 			body = models[0];
 		} else {
-			body = new ModelUnlit(models, models.length);
+			body = new RawModel(models, models.length);
 		}
 
 		if (this.recol_s != null) {

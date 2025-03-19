@@ -4,6 +4,7 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.FluType;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.game.config.msitype.MSIType;
+import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -33,8 +34,8 @@ public final class Static33 {
 			local49 = arg1.length;
 			local52 = arg1.width;
 		}
-		@Pc(66) int local66 = local42.maxWidth;
-		@Pc(69) int local69 = local42.anInt4276;
+		@Pc(66) int local66 = local42.innerWidth;
+		@Pc(69) int local69 = local42.innerHeight;
 		if (local10.aBoolean2) {
 			local69 = local52 * 4;
 			local66 = local49 * 4;
@@ -158,7 +159,7 @@ public final class Static33 {
 								local519 = 127;
 							}
 							@Pc(541) int local541 = local519 + (local480 & 0x380) + (local480 + local19 & 0xFC00);
-							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = Pix3D.anIntArray220[ColorUtils.multiplyLightnessSafe(96, local541)];
+							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = Rasterizer.palette[ColorUtils.multiplyLightnessSafe(96, local541)];
 						} else if (local462 != null) {
 							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = 0;
 						}

@@ -44,6 +44,8 @@ public class Preferences {
     public static int brightness = 3;
     @OriginalMember(owner = "client!fk", name = "g", descriptor = "Z")
     public static boolean fogEnabled = true;
+    @OriginalMember(owner = "runetek4.client!od", name = "c", descriptor = "Z")
+    public static boolean highDetailLighting = true;
     @OriginalMember(owner = "runetek4.client!ga", name = "e", descriptor = "I")
     private static int particles = 2;
 
@@ -235,7 +237,7 @@ public class Preferences {
         fullScreenWidth = 0;
         Static139.anInt3451 = 2;
         Static159.aBoolean189 = true;
-        Static178.highDetailLighting = true;
+        highDetailLighting = true;
         Static12.anInt391 = 255;
         highDetailTextures = true;
         antiAliasingMode = 0;
@@ -300,7 +302,7 @@ public class Preferences {
         local4.p1(Static159.aBoolean189 ? 1 : 0);
         local4.p1(Static209.aBoolean240 ? 1 : 0);
         local4.p1(Static139.anInt3451);
-        local4.p1(Static178.highDetailLighting ? 1 : 0);
+        local4.p1(highDetailLighting ? 1 : 0);
         local4.p1(Static220.aBoolean244 ? 1 : 0);
         local4.p1(fogEnabled ? 1 : 0);
         local4.p1(windowMode);

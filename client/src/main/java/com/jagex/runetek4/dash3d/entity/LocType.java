@@ -5,7 +5,7 @@ import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.SeqType;
-import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -481,8 +481,8 @@ public final class LocType {
 	}
 
 	@OriginalMember(owner = "client!pb", name = "a", descriptor = "(III)Lclient!gb;")
-	private ModelUnlit method3418(@OriginalArg(0) int rotation, @OriginalArg(1) int arg1) {
-		@Pc(7) ModelUnlit model = null;
+	private RawModel method3418(@OriginalArg(0) int rotation, @OriginalArg(1) int arg1) {
+		@Pc(7) RawModel model = null;
 		@Pc(10) boolean flipped = this.mirror;
 		if (arg1 == 2 && rotation > 3) {
 			flipped = !flipped;
@@ -502,9 +502,9 @@ public final class LocType {
 				if (flipped) {
 					local60 += 65536;
 				}
-				model = (ModelUnlit) Static169.modelCacheStatic.get(local60);
+				model = (RawModel) Static169.modelCacheStatic.get(local60);
 				if (model == null) {
-					model = ModelUnlit.get(Static121.aClass153_45, local60 & 0xFFFF);
+					model = RawModel.get(Static121.aClass153_45, local60 & 0xFFFF);
 					if (model == null) {
 						return null;
 					}
@@ -518,7 +518,7 @@ public final class LocType {
 				}
 			}
 			if (modelId > 1) {
-				model = new ModelUnlit(Static274.aClass8_Sub5Array5, modelId);
+				model = new RawModel(Static274.aClass8_Sub5Array5, modelId);
 			}
 		} else {
 			modelId = -1;
@@ -535,9 +535,9 @@ public final class LocType {
 			if (flipped) {
 				modelId2 += 65536;
 			}
-			model = (ModelUnlit) Static169.modelCacheStatic.get(modelId2);
+			model = (RawModel) Static169.modelCacheStatic.get(modelId2);
 			if (model == null) {
-				model = ModelUnlit.get(Static121.aClass153_45, modelId2 & 0xFFFF);
+				model = RawModel.get(Static121.aClass153_45, modelId2 & 0xFFFF);
 				if (model == null) {
 					return null;
 				}
@@ -553,7 +553,7 @@ public final class LocType {
 		@Pc(230) boolean translated;
 		translated = this.offsetx != 0 || this.offsety != 0 || this.offsetz != 0;
 
-		@Pc(265) ModelUnlit modified = new ModelUnlit(model, rotation == 0 && !scaled && !translated, this.recol_s == null, this.retex_s == null, true);
+		@Pc(265) RawModel modified = new RawModel(model, rotation == 0 && !scaled && !translated, this.recol_s == null, this.retex_s == null, true);
 		if (arg1 == 4 && rotation > 3) {
 			modified.method1682();
 			modified.translate(45, 0, -45);
@@ -655,9 +655,9 @@ public final class LocType {
 			}
 			local79 = (GlModel) Static169.modelCacheStatic.get(local135);
 			if (local79 == null) {
-				@Pc(175) ModelUnlit local175 = null;
+				@Pc(175) RawModel local175 = null;
 				for (local177 = 0; local177 < local24; local177++) {
-					local175 = ModelUnlit.get(Static121.aClass153_45, this.shapes[local177] & 0xFFFF);
+					local175 = RawModel.get(Static121.aClass153_45, this.shapes[local177] & 0xFFFF);
 					if (local175 == null) {
 						return null;
 					}
@@ -666,7 +666,7 @@ public final class LocType {
 					}
 				}
 				if (local24 > 1) {
-					local175 = new ModelUnlit(Static274.aClass8_Sub5Array5, local24);
+					local175 = new RawModel(Static274.aClass8_Sub5Array5, local24);
 				}
 				local79 = new GlModel(local175, local10, local17, arg1);
 				Static169.modelCacheStatic.put(local79, local135);
@@ -689,7 +689,7 @@ public final class LocType {
 			}
 			local79 = (GlModel) Static169.modelCacheStatic.get(local26);
 			if (local79 == null) {
-				@Pc(90) ModelUnlit local90 = ModelUnlit.get(Static121.aClass153_45, local26 & 0xFFFF);
+				@Pc(90) RawModel local90 = RawModel.get(Static121.aClass153_45, local26 & 0xFFFF);
 				if (local90 == null) {
 					return null;
 				}
@@ -764,7 +764,7 @@ public final class LocType {
 					return aLocEntity_1;
 				}
 				if (arg3 == 10 && arg0 > 3) {
-					local235.method4554(256);
+					local235.rotateY(256);
 				}
 				if (arg8) {
 					local265 = local235.method4124(arg7);
@@ -804,7 +804,7 @@ public final class LocType {
 		}
 		@Pc(60) Entity local60 = (Entity) Static93.aClass99_14.get(local29);
 		if (local60 == null) {
-			@Pc(69) ModelUnlit local69 = this.method3418(arg0, arg3);
+			@Pc(69) RawModel local69 = this.method3418(arg0, arg3);
 			if (local69 == null) {
 				aLocEntity_1.model = null;
 				return aLocEntity_1;
@@ -817,20 +817,20 @@ public final class LocType {
 				local69.aShort19 = (short) (this.ambient + 64);
 				local60 = local69;
 				local69.aShort18 = (short) (this.contrast * 5 + 768);
-				local69.method1668();
+				local69.calculateNormals();
 			} else {
 				local60 = new SoftwareModel(local69, this.ambient + 64, this.contrast * 5 + 768, -50, -10, -50);
 			}
 			Static93.aClass99_14.put(local60, local29);
 		}
 		if (local50) {
-			local60 = ((ModelUnlit) local60).method1675();
+			local60 = ((RawModel) local60).method1675();
 		}
 		if (this.hillskew_mode != 0) {
 			if (local60 instanceof SoftwareModel) {
 				local60 = ((SoftwareModel) local60).method4586(this.hillskew_mode, this.hillskew_value, arg2, arg5, arg1, arg4, arg9, true);
-			} else if (local60 instanceof ModelUnlit) {
-				local60 = ((ModelUnlit) local60).method1670(this.hillskew_mode, this.hillskew_value, arg2, arg5, arg1, arg4, arg9);
+			} else if (local60 instanceof RawModel) {
+				local60 = ((RawModel) local60).method1670(this.hillskew_mode, this.hillskew_value, arg2, arg5, arg1, arg4, arg9);
 			}
 		}
 		aLocEntity_1.model = local60;
@@ -848,7 +848,7 @@ public final class LocType {
 			}
 			@Pc(195) SoftwareModel local195 = (SoftwareModel) Static262.aClass99_36.get(local30);
 			if (local195 == null) {
-				@Pc(204) ModelUnlit local204 = this.method3418(arg5, arg11);
+				@Pc(204) RawModel local204 = this.method3418(arg5, arg11);
 				if (local204 == null) {
 					return null;
 				}
@@ -865,7 +865,7 @@ public final class LocType {
 					local234 = true;
 					local195 = (SoftwareModel) local195.method4568(true, true, true);
 				}
-				local195.method4554(256);
+				local195.rotateY(256);
 			}
 			if (this.hillskew_mode != 0) {
 				if (!local234) {
@@ -887,7 +887,7 @@ public final class LocType {
 			if (local46 == null) {
 				return null;
 			}
-			local46.method4099();
+			local46.createBones();
 			local46.method4111(false, false, false, false, false, true);
 			Static262.aClass99_36.put(local46, local30);
 		}
@@ -902,7 +902,7 @@ public final class LocType {
 				local82 = (GlModel) local82.method4568(true, true, true);
 				local80 = true;
 			}
-			local82.method4554(256);
+			local82.rotateY(256);
 		}
 		if (arg7) {
 			aLocEntity_1.sprite = local82.method4124(arg2);

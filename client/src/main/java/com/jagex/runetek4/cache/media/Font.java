@@ -267,13 +267,13 @@ public abstract class Font extends CachedNode {
 								try {
 									icon = effectString.substring(4).parseInt();
 									@Pc(125) IndexedSprite nameIcon = this.nameIcons[icon];
-									@Pc(136) int imageHeight = this.nameIconHeights == null ? nameIcon.anInt4276 : this.nameIconHeights[icon];
+									@Pc(136) int imageHeight = this.nameIconHeights == null ? nameIcon.innerHeight : this.nameIconHeights[icon];
 									if (opacity == 256) {
 										nameIcon.drawImage(x, y + this.characterDefaultHeight - imageHeight);
 									} else {
 										nameIcon.drawImageAlpha(x, y + this.characterDefaultHeight - imageHeight, opacity);
 									}
-									x += nameIcon.maxWidth;
+									x += nameIcon.innerWidth;
 									local8 = 0;
 								} catch (@Pc(168) Exception local168) {
 								}
@@ -393,7 +393,7 @@ public abstract class Font extends CachedNode {
 							if (local43.startsWith(image)) {
 								try {
 									@Pc(121) int local121 = local43.substring(4).parseInt();
-									local9 += this.nameIcons[local121].maxWidth;
+									local9 += this.nameIcons[local121].innerWidth;
 									local7 = 0;
 								} catch (@Pc(133) Exception local133) {
 								}
@@ -598,7 +598,7 @@ public abstract class Font extends CachedNode {
 					} else if (local57.startsWith(image)) {
 						try {
 							@Pc(377) int local377 = local57.substring(4).parseInt();
-							local9 += this.nameIcons[local377].maxWidth;
+							local9 += this.nameIcons[local377].innerWidth;
 							local21 = 0;
 						} catch (@Pc(389) Exception local389) {
 						}
@@ -948,13 +948,13 @@ public abstract class Font extends CachedNode {
 									local10++;
 									local141 = local44.substring(4).parseInt();
 									@Pc(146) IndexedSprite local146 = this.nameIcons[local141];
-									@Pc(157) int local157 = this.nameIconHeights == null ? local146.anInt4276 : this.nameIconHeights[local141];
+									@Pc(157) int local157 = this.nameIconHeights == null ? local146.innerHeight : this.nameIconHeights[local141];
 									if (opacity == 256) {
 										local146.drawImage(arg1 + local121, local4 + this.characterDefaultHeight - local157 + local130);
 									} else {
 										local146.drawImageAlpha(arg1 + local121, local4 + this.characterDefaultHeight - local157 + local130, opacity);
 									}
-									arg1 += local146.maxWidth;
+									arg1 += local146.innerWidth;
 									local8 = 0;
 								} catch (@Pc(197) Exception local197) {
 								}

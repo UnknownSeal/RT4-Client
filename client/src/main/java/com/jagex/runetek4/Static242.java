@@ -18,24 +18,24 @@ public final class Static242 {
 
 	@OriginalMember(owner = "runetek4.client!tj", name = "a", descriptor = "(Lclient!ek;Lclient!ek;II)V")
 	private static void method4194(@OriginalArg(0) SoftwareIndexedSprite arg0, @OriginalArg(1) SoftwareIndexedSprite arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		arg2 += arg0.anInt4280;
-		arg3 += arg0.anInt4273;
-		@Pc(16) int local16 = arg2 + arg3 * arg1.anInt4270;
+		arg2 += arg0.xOffset;
+		arg3 += arg0.yOffset;
+		@Pc(16) int local16 = arg2 + arg3 * arg1.width;
 		@Pc(18) int local18 = 0;
-		@Pc(21) int local21 = arg0.anInt4278;
-		@Pc(24) int local24 = arg0.anInt4270;
-		@Pc(29) int local29 = arg1.anInt4270 - local24;
+		@Pc(21) int local21 = arg0.height;
+		@Pc(24) int local24 = arg0.width;
+		@Pc(29) int local29 = arg1.width - local24;
 		@Pc(31) int local31 = 0;
 		@Pc(37) int local37;
 		if (arg3 <= 0) {
 			local37 = 1 - arg3;
 			local21 -= local37;
 			local18 = local37 * local24;
-			local16 += local37 * arg1.anInt4270;
+			local16 += local37 * arg1.width;
 			arg3 = 1;
 		}
-		if (arg3 + local21 >= arg1.anInt4278) {
-			local37 = arg3 + local21 + 1 - arg1.anInt4278;
+		if (arg3 + local21 >= arg1.height) {
+			local37 = arg3 + local21 + 1 - arg1.height;
 			local21 -= local37;
 		}
 		if (arg2 <= 0) {
@@ -47,8 +47,8 @@ public final class Static242 {
 			local29 += local37;
 			arg2 = 1;
 		}
-		if (arg2 + local24 >= arg1.anInt4270) {
-			local37 = arg2 + local24 + 1 - arg1.anInt4270;
+		if (arg2 + local24 >= arg1.width) {
+			local37 = arg2 + local24 + 1 - arg1.width;
 			local24 -= local37;
 			local31 += local37;
 			local29 += local37;
@@ -122,7 +122,7 @@ public final class Static242 {
 		GlRenderer.setTextureCombineAlphaMode(1);
 		GlRenderer.resetTextureMatrix();
 		GlRenderer.setLightingEnabled(false);
-		Static27.setMaterial(0, 0);
+		MaterialManager.setMaterial(0, 0);
 		local1.glDepthMask(false);
 		for (@Pc(17) int local17 = 0; local17 < ShadowManager.anInt5346; local17++) {
 			label52: for (@Pc(22) int local22 = 0; local22 < ShadowManager.anInt5345; local22++) {
@@ -180,21 +180,21 @@ public final class Static242 {
 
 	@OriginalMember(owner = "runetek4.client!tj", name = "b", descriptor = "(Lclient!ek;Lclient!ek;II)Z")
 	private static boolean method4200(@OriginalArg(0) SoftwareIndexedSprite arg0, @OriginalArg(1) SoftwareIndexedSprite arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		arg2 += arg0.anInt4280;
-		arg3 += arg0.anInt4273;
-		@Pc(16) int local16 = arg2 + arg3 * arg1.anInt4270;
-		@Pc(19) int local19 = arg0.anInt4278;
-		@Pc(22) int local22 = arg0.anInt4270;
-		@Pc(27) int local27 = arg1.anInt4270 - local22;
+		arg2 += arg0.xOffset;
+		arg3 += arg0.yOffset;
+		@Pc(16) int local16 = arg2 + arg3 * arg1.width;
+		@Pc(19) int local19 = arg0.height;
+		@Pc(22) int local22 = arg0.width;
+		@Pc(27) int local27 = arg1.width - local22;
 		@Pc(33) int local33;
 		if (arg3 <= 0) {
 			local33 = 1 - arg3;
 			local19 -= local33;
-			local16 += local33 * arg1.anInt4270;
+			local16 += local33 * arg1.width;
 			arg3 = 1;
 		}
-		if (arg3 + local19 >= arg1.anInt4278) {
-			local33 = arg3 + local19 + 1 - arg1.anInt4278;
+		if (arg3 + local19 >= arg1.height) {
+			local33 = arg3 + local19 + 1 - arg1.height;
 			local19 -= local33;
 		}
 		if (arg2 <= 0) {
@@ -204,13 +204,13 @@ public final class Static242 {
 			local27 += local33;
 			arg2 = 1;
 		}
-		if (arg2 + local22 >= arg1.anInt4270) {
-			local33 = arg2 + local22 + 1 - arg1.anInt4270;
+		if (arg2 + local22 >= arg1.width) {
+			local33 = arg2 + local22 + 1 - arg1.width;
 			local22 -= local33;
 			local27 += local33;
 		}
 		if (local22 > 0 && local19 > 0) {
-			local27 += arg1.anInt4270 * 7;
+			local27 += arg1.width * 7;
 			method4196(arg2, arg3, local22, local19);
 			return method4199(arg1.aByteArray18, local16, local22, local19, local27);
 		} else {
@@ -220,24 +220,24 @@ public final class Static242 {
 
 	@OriginalMember(owner = "runetek4.client!tj", name = "c", descriptor = "(Lclient!ek;Lclient!ek;II)V")
 	private static void method4202(@OriginalArg(0) SoftwareIndexedSprite arg0, @OriginalArg(1) SoftwareIndexedSprite arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		arg2 += arg0.anInt4280;
-		arg3 += arg0.anInt4273;
-		@Pc(16) int local16 = arg2 + arg3 * arg1.anInt4270;
+		arg2 += arg0.xOffset;
+		arg3 += arg0.yOffset;
+		@Pc(16) int local16 = arg2 + arg3 * arg1.width;
 		@Pc(18) int local18 = 0;
-		@Pc(21) int local21 = arg0.anInt4278;
-		@Pc(24) int local24 = arg0.anInt4270;
-		@Pc(29) int local29 = arg1.anInt4270 - local24;
+		@Pc(21) int local21 = arg0.height;
+		@Pc(24) int local24 = arg0.width;
+		@Pc(29) int local29 = arg1.width - local24;
 		@Pc(31) int local31 = 0;
 		@Pc(37) int local37;
 		if (arg3 <= 0) {
 			local37 = 1 - arg3;
 			local21 -= local37;
 			local18 = local37 * local24;
-			local16 += local37 * arg1.anInt4270;
+			local16 += local37 * arg1.width;
 			arg3 = 1;
 		}
-		if (arg3 + local21 >= arg1.anInt4278) {
-			local37 = arg3 + local21 + 1 - arg1.anInt4278;
+		if (arg3 + local21 >= arg1.height) {
+			local37 = arg3 + local21 + 1 - arg1.height;
 			local21 -= local37;
 		}
 		if (arg2 <= 0) {
@@ -249,8 +249,8 @@ public final class Static242 {
 			local29 += local37;
 			arg2 = 1;
 		}
-		if (arg2 + local24 >= arg1.anInt4270) {
-			local37 = arg2 + local24 + 1 - arg1.anInt4270;
+		if (arg2 + local24 >= arg1.width) {
+			local37 = arg2 + local24 + 1 - arg1.width;
 			local24 -= local37;
 			local31 += local37;
 			local29 += local37;
@@ -353,11 +353,11 @@ public final class Static242 {
 
 	@OriginalMember(owner = "runetek4.client!tj", name = "a", descriptor = "(Lclient!ek;Lclient!ek;IIIZ)V")
 	private static void method4210(@OriginalArg(0) SoftwareIndexedSprite arg0, @OriginalArg(1) SoftwareIndexedSprite arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5) {
-		if (arg2 <= 0 || arg3 <= 0 || arg2 + 16 >= arg1.anInt4270 || arg3 + 16 >= arg1.anInt4278) {
+		if (arg2 <= 0 || arg3 <= 0 || arg2 + 16 >= arg1.width || arg3 + 16 >= arg1.height) {
 			return;
 		}
-		@Pc(23) int local23 = arg2 + arg3 * arg1.anInt4270;
-		@Pc(28) int local28 = arg1.anInt4270 - 16;
+		@Pc(23) int local23 = arg2 + arg3 * arg1.width;
+		@Pc(28) int local28 = arg1.width - 16;
 		@Pc(32) short local32;
 		@Pc(34) byte local34;
 		@Pc(41) short local41;

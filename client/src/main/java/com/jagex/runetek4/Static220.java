@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ObjType;
-import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.scene.Scenery;
@@ -82,26 +82,26 @@ public final class Static220 {
 		@Pc(4) long local4 = (long) arg2;
 		@Pc(10) Model local10 = (Model) Static110.aClass99_15.get(local4);
 		if (local10 == null) {
-			@Pc(22) ModelUnlit local22 = ModelUnlit.get(client.js5Archive7, arg2);
+			@Pc(22) RawModel local22 = RawModel.get(client.js5Archive7, arg2);
 			if (local22 == null) {
 				return null;
 			}
 			local10 = local22.applyLightning(64, 768, -50, -10, -50);
 			Static110.aClass99_15.put(local10, local4);
 		}
-		@Pc(42) int local42 = arg4.method4562();
-		@Pc(45) int local45 = arg4.method4561();
-		@Pc(48) int local48 = arg4.method4576();
-		@Pc(51) int local51 = arg4.method4550();
+		@Pc(42) int local42 = arg4.getMinX();
+		@Pc(45) int local45 = arg4.getMaxX();
+		@Pc(48) int local48 = arg4.getMinZ();
+		@Pc(51) int local51 = arg4.getMaxZ();
 		local10 = local10.method4560(true, true, true);
 		if (arg0 != 0) {
-			local10.method4554(arg0);
+			local10.rotateY(arg0);
 		}
 		@Pc(94) int local94;
 		if (GlRenderer.enabled) {
 			@Pc(68) GlModel local68 = (GlModel) local10;
 			if (arg5 != SceneGraph.getTileHeight(Player.plane, arg3 + local42, arg1 + local48) || arg5 != SceneGraph.getTileHeight(Player.plane, arg3 + local45, local51 + arg1)) {
-				for (local94 = 0; local94 < local68.anInt5295; local94++) {
+				for (local94 = 0; local94 < local68.vertexCount; local94++) {
 					local68.vertexY[local94] += SceneGraph.getTileHeight(Player.plane, local68.vertexX[local94] + arg3, local68.vertexZ[local94] + arg1) - arg5;
 				}
 				local68.vertexBuffer.valid = false;

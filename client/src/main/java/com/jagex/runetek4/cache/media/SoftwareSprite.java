@@ -175,7 +175,7 @@ public class SoftwareSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "c", descriptor = "(II)V")
 	@Override
-	public void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public void drawPixels(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.xOffset;
 		arg1 += this.yOffset;
 		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.destinationWidth;
@@ -740,7 +740,7 @@ public class SoftwareSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "d", descriptor = "(II)V")
 	@Override
-	public void method1421(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public void renderHorizontalFlip(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.innerWidth - this.width - this.xOffset;
 		arg1 += this.yOffset;
 		@Pc(21) int local21 = arg0 + arg1 * SoftwareRaster.destinationWidth;
@@ -824,7 +824,7 @@ public class SoftwareSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "e", descriptor = "(II)V")
 	@Override
-	public void drawSprite(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.xOffset;
 		arg1 += this.yOffset;
 		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.destinationWidth;
@@ -1061,7 +1061,7 @@ public class SoftwareSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "b", descriptor = "(IIIII)V")
 	@Override
-	public void method1422(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	public void renderAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		if (arg2 <= 0 || arg3 <= 0) {
 			return;
 		}

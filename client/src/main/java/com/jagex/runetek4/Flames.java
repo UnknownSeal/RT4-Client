@@ -109,7 +109,7 @@ public class Flames {
         if (GlRenderer.enabled) {
             GlRaster.render(imageFlames.pixels, arg0, arg1, imageFlames.width, imageFlames.height);
         } else {
-            imageFlames.render(arg0, arg1);
+            imageFlames.drawPixels(arg0, arg1);
         }
     }
 
@@ -232,11 +232,11 @@ public class Flames {
             return;
         }
         local5 = 0;
-        for (local36 = 0; local36 < sprite.anInt4278; local36++) {
-            for (local66 = 0; local66 < sprite.anInt4270; local66++) {
+        for (local36 = 0; local36 < sprite.height; local36++) {
+            for (local66 = 0; local66 < sprite.width; local66++) {
                 if (sprite.aByteArray18[local5++] != 0) {
-                    local76 = sprite.anInt4280 + local66 + 16;
-                    @Pc(162) int local162 = sprite.anInt4273 + local36 + 16;
+                    local76 = sprite.xOffset + local66 + 16;
+                    @Pc(162) int local162 = sprite.yOffset + local36 + 16;
                     @Pc(169) int local169 = local76 + (local162 << 7);
                     flameBuffer1[local169] = 0;
                 }

@@ -199,7 +199,7 @@ public final class Class3_Sub14 extends Node {
 		if (GlRenderer.arbVboSupported) {
 			@Pc(200) ByteBuffer local200 = ByteBuffer.wrap(local12.data, 0, local12.offset);
 			this.aClass155_3 = new GlVertexBufferObject();
-			this.aClass155_3.method4519(local200);
+			this.aClass155_3.setArrayBuffer(local200);
 		} else {
 			this.aByteBuffer3 = ByteBuffer.allocateDirect(local12.offset).order(ByteOrder.nativeOrder());
 			this.aByteBuffer3.put(local12.data, 0, local12.offset);
@@ -288,7 +288,7 @@ public final class Class3_Sub14 extends Node {
 		@Pc(257) GL2 local257 = GlRenderer.gl;
 		if (this.anInt2485 == -1 || arg2) {
 			GlRenderer.setTextureId(-1);
-			Static27.setMaterial(0, 0);
+			MaterialManager.setMaterial(0, 0);
 		} else {
 			Rasterizer.textureProvider.method3227(this.anInt2485);
 		}
@@ -301,7 +301,7 @@ public final class Class3_Sub14 extends Node {
 			local257.glVertexPointer(3, GL2.GL_FLOAT, local282, this.aByteBuffer3);
 			this.aByteBuffer3.position(12);
 			local257.glColorPointer(4, GL2.GL_UNSIGNED_BYTE, local282, this.aByteBuffer3);
-			if (Static178.highDetailLighting) {
+			if (Preferences.highDetailLighting) {
 				this.aByteBuffer3.position(16);
 				local257.glNormalPointer(GL2.GL_FLOAT, local282, this.aByteBuffer3);
 			}
@@ -317,7 +317,7 @@ public final class Class3_Sub14 extends Node {
 			this.aClass155_3.method4516();
 			local257.glVertexPointer(3, GL2.GL_FLOAT, local282, 0L);
 			local257.glColorPointer(4, GL2.GL_UNSIGNED_BYTE, local282, 12L);
-			if (Static178.highDetailLighting) {
+			if (Preferences.highDetailLighting) {
 				local257.glNormalPointer(GL2.GL_FLOAT, local282, 16L);
 			}
 			local257.glTexCoordPointer(2, GL2.GL_FLOAT, local282, 28L);

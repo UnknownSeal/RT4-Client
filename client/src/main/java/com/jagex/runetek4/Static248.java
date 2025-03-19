@@ -94,7 +94,7 @@ public final class Static248 {
 			local244.glTranslatef((float) -arg0, (float) -arg1, (float) -arg2);
 			if (local240) {
 				Static156.method2959();
-				Static27.setMaterial(-1, 3);
+				MaterialManager.setMaterial(-1, 3);
 				Static119.aBoolean153 = true;
 				Static275.method4609();
 				Static152.anInt3604 = -1;
@@ -120,7 +120,7 @@ public final class Static248 {
 					for (local37 = 0; local37 < Static182.aClass3_Sub14ArrayArray2[local32].length; local37++) {
 						@Pc(336) Class3_Sub14 local336 = Static182.aClass3_Sub14ArrayArray2[local32][local37];
 						@Pc(350) float local350 = 201.5F - (float) local32 * 50.0F - (local336.aBoolean140 ? 1.0F : 0.5F);
-						if (local336.anInt2485 != -1 && Rasterizer.textureProvider.method3237(local336.anInt2485) == 4 && Static220.aBoolean244) {
+						if (local336.anInt2485 != -1 && Rasterizer.textureProvider.getMaterialType(local336.anInt2485) == 4 && Static220.aBoolean244) {
 							Static21.method619(local336.anInt2486);
 						}
 						local336.method1944(Static130.levelTiles, local350, false);

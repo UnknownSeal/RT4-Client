@@ -69,7 +69,7 @@ public class MiniMap {
             @Pc(57) int anchorX = PlayerList.self.xFine / 32 + 48;
             @Pc(67) int anchorY = 464 - PlayerList.self.zFine / 32;
             if (GlRenderer.enabled) {
-                ((GlSprite) sprite).method1427(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, minimapZoom + 256, (GlSprite) arg3.method489(false));
+                ((GlSprite) sprite).renderRotatedTransparent(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, minimapZoom + 256, (GlSprite) arg3.method489(false));
             } else {
                 ((SoftwareSprite) sprite).method310(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, minimapZoom + 256, arg3.anIntArray37, arg3.anIntArray45);
             }
@@ -236,7 +236,7 @@ public class MiniMap {
         } else if (GlRenderer.enabled) {
             @Pc(1041) Sprite local1041 = arg3.method489(false);
             if (local1041 != null) {
-                local1041.drawSprite(arg2, arg1);
+                local1041.render(arg2, arg1);
             }
         } else {
             Rasterizer.method2504(arg2, arg1, arg3.anIntArray37, arg3.anIntArray45);

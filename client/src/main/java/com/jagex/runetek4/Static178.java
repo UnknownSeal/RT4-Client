@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static178 {
 
-	@OriginalMember(owner = "runetek4.client!od", name = "c", descriptor = "Z")
-	public static boolean highDetailLighting = true;
-
 	@OriginalMember(owner = "runetek4.client!od", name = "g", descriptor = "S")
 	public static short aShort25 = 256;
 

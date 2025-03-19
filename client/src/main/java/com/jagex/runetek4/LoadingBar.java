@@ -13,7 +13,7 @@ public class LoadingBar {
             local9 = GameShell.canvasHeigth;
             @Pc(15) int local15 = local9 * 956 / 503;
             Static78.aClass3_Sub2_Sub1_3.renderResized((GameShell.canvasWidth - local15) / 2, 0, local15, local9);
-            Static243.aClass36_1.drawImage(GameShell.canvasWidth / 2 - Static243.aClass36_1.anInt4270 / 2, 18);
+            Static243.aClass36_1.drawImage(GameShell.canvasWidth / 2 - Static243.aClass36_1.width / 2, 18);
         }
         arg1.renderCenter(LocalizedText.GAME0_LOADING, GameShell.canvasWidth / 2, GameShell.canvasHeigth / 2 - 26, 16777215, -1);
         local9 = GameShell.canvasHeigth / 2 - 18;

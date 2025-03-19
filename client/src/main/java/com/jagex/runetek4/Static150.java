@@ -10,9 +10,6 @@ public final class Static150 {
 	@OriginalMember(owner = "runetek4.client!lk", name = "J", descriptor = "Lclient!na;")
 	public static final JString aClass100_687 = JString.parse(")4p=");
 
-	@OriginalMember(owner = "runetek4.client!lk", name = "V", descriptor = "I")
-	public static int anInt3582 = 0;
-
 	@OriginalMember(owner = "runetek4.client!lk", name = "a", descriptor = "(IIILclient!be;Z)V")
 	public static void method2801(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Component arg2, @OriginalArg(4) boolean arg3) {
 		@Pc(4) int local4 = arg2.width;

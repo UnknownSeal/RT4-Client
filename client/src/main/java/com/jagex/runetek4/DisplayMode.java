@@ -259,7 +259,7 @@ public final class DisplayMode {
 			SoftwareRaster.frameBuffer = null;
 			Static268.method4580();
 			((Js5GlTextureProvider) Rasterizer.textureProvider).method3248(200);
-			if (Static178.highDetailLighting) {
+			if (Preferences.highDetailLighting) {
 				Pix3D.setBrightness(0.7F);
 			}
 			LoginManager.method4637();
@@ -269,7 +269,7 @@ public final class DisplayMode {
 			Static268.method4583();
 			method1643();
 			((Js5GlTextureProvider) Rasterizer.textureProvider).method3248(20);
-			if (Static178.highDetailLighting) {
+			if (Preferences.highDetailLighting) {
 				if (Preferences.brightness == 1) {
 					Pix3D.setBrightness(0.9F);
 				}

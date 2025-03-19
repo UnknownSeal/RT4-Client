@@ -18,6 +18,7 @@ import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.client.Inv;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
+import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.util.IntUtils;
@@ -134,7 +135,7 @@ public final class ClientScriptRunner {
 			if (local17 != null && local17.headIconDrawType == 2) {
 				Static198.method1026(arg0 >> 1, arg4, (local17.anInt4046 - Camera.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.anInt4053 - Camera.originX << 7), arg3);
 				if (Static65.anInt1951 > -1 && client.loop % 20 < 10) {
-					Static276.aClass3_Sub2_Sub1Array11[local17.anInt4048].drawSprite(arg1 + Static65.anInt1951 - 12, arg5 + -28 - -Static16.anInt548);
+					Static276.aClass3_Sub2_Sub1Array11[local17.anInt4048].render(arg1 + Static65.anInt1951 - 12, arg5 + -28 - -Static16.anInt548);
 				}
 			}
 			local3++;
@@ -993,13 +994,13 @@ public final class ClientScriptRunner {
 													} else if (component == MiniMenu.pressedInventoryComponent && local270 == MiniMenu.anInt5444) {
 														sprite.renderAlpha(memory, color, 128);
 													} else {
-														sprite.drawSprite(memory, color);
+														sprite.render(memory, color);
 													}
 												}
 											} else if (component.invSprite != null && local270 < 20) {
 												@Pc(1381) Sprite local1381 = component.method482(local270);
 												if (local1381 != null) {
-													local1381.drawSprite(memory, color);
+													local1381.render(memory, color);
 												} else if (Component.aBoolean72) {
 													InterfaceList.redraw(component);
 												}
@@ -1128,7 +1129,7 @@ public final class ClientScriptRunner {
 															for (local563 = 0; local563 < memory; local563++) {
 																for (local571 = 0; local571 < color; local571++) {
 																	if (alpha == 0) {
-																		sprite.drawSprite(local123 + local276 * local563, local468 * local571 + local114);
+																		sprite.render(local123 + local276 * local563, local468 * local571 + local114);
 																	} else {
 																		sprite.renderAlpha(local563 * local276 + local123, local468 * local571 + local114, 256 - (alpha & 0xFF));
 																	}
@@ -1143,7 +1144,7 @@ public final class ClientScriptRunner {
 																if (component.angle2d != 0) {
 																	sprite.renderAngled(local114 + local468 * dragY + local468 / 2, component.angle2d, 4096, cardMemory * local276 + local123 + local276 / 2);
 																} else if (alpha == 0) {
-																	sprite.drawSprite(cardMemory * local276 + local123, local468 * dragY + local114);
+																	sprite.render(cardMemory * local276 + local123, local468 * dragY + local114);
 																} else {
 																	sprite.renderAlpha(cardMemory * local276 + local123, local114 + dragY * local468, 256 - (alpha & 0xFF));
 																}
@@ -1156,9 +1157,9 @@ public final class ClientScriptRunner {
 													if (component.angle2d != 0) {
 														sprite.renderAngled(local114 + component.height / 2, component.angle2d, memory, local123 + component.width / 2);
 													} else if (alpha != 0) {
-														sprite.method1422(local123, local114, component.width, component.height, 256 - (alpha & 0xFF));
+														sprite.renderAlpha(local123, local114, component.width, component.height, 256 - (alpha & 0xFF));
 													} else if (local276 == component.width && local468 == component.height) {
-														sprite.drawSprite(local123, local114);
+														sprite.render(local123, local114);
 													} else {
 														// render icons in a container i.e bank icons
 														sprite.renderResized(local123, local114, component.width, component.height);
@@ -1170,7 +1171,7 @@ public final class ClientScriptRunner {
 										} else {
 											sprite = component.method489(isTrue(component));
 											if (sprite != null) {
-												sprite.drawSprite(local123, local114);
+												sprite.render(local123, local114);
 											} else if (Component.aBoolean72) {
 												InterfaceList.redraw(component);
 											}
@@ -1532,17 +1533,17 @@ public final class ClientScriptRunner {
 			Rasterizer.setSize();
 		}
 		if (aBoolean108 || anInt3751 < arg2 || anInt3751 >= arg3 + arg2 || arg4 > anInt1892 || arg0 + arg4 <= anInt1892) {
-			Static39.aBoolean77 = false;
-			Static2.anInt7 = 0;
+			RawModel.allowInput = false;
+			MiniMenu.anInt7 = 0;
 		} else {
-			Static39.aBoolean77 = true;
-			Static2.anInt7 = 0;
-			jitter = Static247.anInt5405;
-			@Pc(344) int local344 = Static1.anInt4;
-			type = Static240.anInt5334;
-			Static150.anInt3582 = type + (jitter - type) * (-arg2 + anInt3751) / arg3;
-			@Pc(361) int local361 = Static148.anInt3535;
-			Static34.anInt1053 = (local361 - local344) * (anInt1892 - arg4) / arg0 + local344;
+			RawModel.allowInput = true;
+			MiniMenu.anInt7 = 0;
+			jitter = Rasterizer.screenUpperX;
+			@Pc(344) int local344 = Rasterizer.screenLowerY;
+			type = Rasterizer.screenLowerX;
+			GlModel.anInt3582 = type + (jitter - type) * (-arg2 + anInt3751) / arg3;
+			@Pc(361) int local361 = Rasterizer.screenUpperY;
+			RawModel.anInt1053 = (local361 - local344) * (anInt1892 - arg4) / arg0 + local344;
 		}
 		client.audioLoop();
 		@Pc(387) byte local387 = Static236.method4047() == 2 ? (byte) Static136.anInt3325 : 1;
@@ -1607,13 +1608,13 @@ public final class ClientScriptRunner {
 			if (GlRenderer.enabled) {
 				@Pc(44) Sprite local44 = arg2.method489(false);
 				if (local44 != null) {
-					local44.drawSprite(arg0, arg1);
+					local44.render(arg0, arg1);
 				}
 			} else {
 				Rasterizer.method2504(arg0, arg1, arg2.anIntArray37, arg2.anIntArray45);
 			}
 		} else if (GlRenderer.enabled) {
-			((GlSprite) Static106.aClass3_Sub2_Sub1_7).method1427(arg0, arg1, arg2.width, arg2.height, Static106.aClass3_Sub2_Sub1_7.width / 2, Static106.aClass3_Sub2_Sub1_7.height / 2, Camera.orbitCameraYaw, 256, (GlSprite) arg2.method489(false));
+			((GlSprite) Static106.aClass3_Sub2_Sub1_7).renderRotatedTransparent(arg0, arg1, arg2.width, arg2.height, Static106.aClass3_Sub2_Sub1_7.width / 2, Static106.aClass3_Sub2_Sub1_7.height / 2, Camera.orbitCameraYaw, 256, (GlSprite) arg2.method489(false));
 		} else {
 			((SoftwareSprite) Static106.aClass3_Sub2_Sub1_7).method313(arg0, arg1, arg2.width, arg2.height, Static106.aClass3_Sub2_Sub1_7.width / 2, Static106.aClass3_Sub2_Sub1_7.height / 2, Camera.orbitCameraYaw, arg2.anIntArray37, arg2.anIntArray45);
 		}
@@ -1649,7 +1650,7 @@ public final class ClientScriptRunner {
 				SoftwareRaster.frameBuffer.makeTarget();
 			}
 		}
-		WorldMap.aClass3_Sub2_Sub1_2.render(arg0, arg3);
+		WorldMap.aClass3_Sub2_Sub1_2.drawPixels(arg0, arg3);
 		@Pc(147) int local147 = arg1 * anInt2884 / IdkTypeList.anInt4296 + arg3;
 		@Pc(153) int local153 = Static37.anInt1176 * arg1 / IdkTypeList.anInt4296;
 		@Pc(161) int local161 = arg0 + arg2 * anInt2882 / Static48.anInt1449;

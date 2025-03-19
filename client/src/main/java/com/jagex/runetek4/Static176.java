@@ -5,6 +5,7 @@ import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
+import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.ComplexTile;
@@ -73,10 +74,10 @@ public final class Static176 {
 		@Pc(15) int local15;
 		@Pc(47) int local47;
 		if (MiniMenu.anInt5014 == 0) {
-			@Pc(13) int local13 = Static148.anInt3535;
-			local15 = Static1.anInt4;
-			@Pc(17) int local17 = Static247.anInt5405;
-			@Pc(19) int local19 = Static240.anInt5334;
+			@Pc(13) int local13 = Rasterizer.screenUpperY;
+			local15 = Rasterizer.screenLowerY;
+			@Pc(17) int local17 = Rasterizer.screenUpperX;
+			@Pc(19) int local19 = Rasterizer.screenLowerX;
 			@Pc(33) int local33 = (arg5 - arg3) * (local17 - local19) / arg1 + local19;
 			local47 = local15 + (local13 - local15) * (arg4 - arg0) / arg2;
 			if (MiniMenu.aBoolean302 && (Static274.anInt4999 & 0x40) != 0) {
@@ -94,7 +95,7 @@ public final class Static176 {
 			}
 		}
 		@Pc(112) long local112 = -1L;
-		for (local15 = 0; local15 < Static2.anInt7; local15++) {
+		for (local15 = 0; local15 < MiniMenu.anInt7; local15++) {
 			@Pc(121) long local121 = Static259.aLongArray11[local15];
 			local47 = (int) local121 & 0x7F;
 			@Pc(133) int local133 = (int) local121 >> 29 & 0x3;

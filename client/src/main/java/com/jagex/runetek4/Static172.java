@@ -23,9 +23,4 @@ public final class Static172 {
 	@OriginalMember(owner = "runetek4.client!nj", name = "i", descriptor = "I")
 	public static int anInt4164 = 0;
 
-	@OriginalMember(owner = "runetek4.client!nj", name = "a", descriptor = "(I)V")
-	public static void quit() {
-		Static2.anInterface4Array1 = null;
-		Static151.method2808();
-	}
 }

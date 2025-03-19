@@ -231,10 +231,10 @@ public final class Static164 {
 			rendered.drawShadow(arg0);
 		}
 		if (definition.certtemplate != -1) {
-			local71.drawSprite(0, 0);
+			local71.render(0, 0);
 		} else if (definition.lenttemplate != -1) {
 			SoftwareRaster.setSize(local71.pixels, 36, 32);
-			rendered.drawSprite(0, 0);
+			rendered.render(0, 0);
 			rendered = local71;
 		}
 		if (arg3 && (definition.stackable == 1 || arg5 != 1) && arg5 != -1) {

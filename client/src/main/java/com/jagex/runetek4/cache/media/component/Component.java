@@ -10,7 +10,7 @@ import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
-import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -606,20 +606,20 @@ public final class Component {
 			return false;
 		}
 		local18.method1396();
-		this.anIntArray37 = new int[local18.anInt4278];
-		this.anIntArray45 = new int[local18.anInt4278];
-		for (@Pc(37) int local37 = 0; local37 < local18.anInt4278; local37++) {
+		this.anIntArray37 = new int[local18.height];
+		this.anIntArray45 = new int[local18.height];
+		for (@Pc(37) int local37 = 0; local37 < local18.height; local37++) {
 			@Pc(47) int local47 = 0;
-			@Pc(50) int local50 = local18.anInt4270;
+			@Pc(50) int local50 = local18.width;
 			@Pc(52) int local52;
-			for (local52 = 0; local52 < local18.anInt4270; local52++) {
-				if (local18.aByteArray18[local18.anInt4270 * local37 + local52] != 0) {
+			for (local52 = 0; local52 < local18.width; local52++) {
+				if (local18.aByteArray18[local18.width * local37 + local52] != 0) {
 					local47 = local52;
 					break;
 				}
 			}
-			for (local52 = local47; local52 < local18.anInt4270; local52++) {
-				if (local18.aByteArray18[local37 * local18.anInt4270 + local52] == 0) {
+			for (local52 = local47; local52 < local18.width; local52++) {
+				if (local18.aByteArray18[local37 * local18.width + local52] == 0) {
 					local50 = local52;
 					break;
 				}
@@ -949,7 +949,7 @@ public final class Component {
 			if (local10 == 1) {
 				local61 = (Model) interfaceModelCache.get((local10 << 16) + local13);
 				if (local61 == null) {
-					@Pc(69) ModelUnlit local69 = ModelUnlit.get(Static203.aClass153_85, local13);
+					@Pc(69) RawModel local69 = RawModel.get(Static203.aClass153_85, local13);
 					if (local69 == null) {
 						aBoolean72 = true;
 						return null;

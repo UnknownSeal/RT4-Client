@@ -8,9 +8,6 @@ public final class Static240 {
 	@OriginalMember(owner = "runetek4.client!tg", name = "a", descriptor = "Ljava/awt/FontMetrics;")
 	public static FontMetrics aFontMetrics1;
 
-	@OriginalMember(owner = "runetek4.client!tg", name = "c", descriptor = "I")
-	public static int anInt5334;
-
 	@OriginalMember(owner = "runetek4.client!tg", name = "d", descriptor = "[Lclient!qf;")
 	public static Sprite[] crossSprites;
 
