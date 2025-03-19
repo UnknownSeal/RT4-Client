@@ -18,9 +18,6 @@ public final class CacheArchive {
 	@OriginalMember(owner = "client!al", name = "e", descriptor = "I")
 	public static int anInt172;
 
-	@OriginalMember(owner = "client!al", name = "q", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_2;
-
 	@OriginalMember(owner = "runetek4.client!nd", name = "n", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_61;
 

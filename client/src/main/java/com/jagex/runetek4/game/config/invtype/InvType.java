@@ -16,17 +16,17 @@ public final class InvType extends CachedNode {
 	@OriginalMember(owner = "client!md", name = "a", descriptor = "(Lclient!wa;I)V")
 	public void decode(@OriginalArg(0) Packet packet) {
 		while (true) {
-			@Pc(10) int code = packet.g1();
-			if (code == 0) {
+			@Pc(10) int opcode = packet.g1();
+			if (opcode == 0) {
 				return;
 			}
-			this.decode(packet, code);
+			this.decode(packet, opcode);
 		}
 	}
 
 	@OriginalMember(owner = "client!md", name = "a", descriptor = "(Lclient!wa;IZ)V")
-	private void decode(@OriginalArg(0) Packet packet, @OriginalArg(1) int code) {
-		if (code == 2) {
+	private void decode(@OriginalArg(0) Packet packet, @OriginalArg(1) int opcode) {
+		if (opcode == 2) {
 			this.size = packet.g2();
 		}
 	}

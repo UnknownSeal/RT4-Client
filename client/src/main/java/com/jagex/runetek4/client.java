@@ -933,7 +933,7 @@ public final class client extends GameShell {
 		} catch (@Pc(130) Exception local130) {
 			affiliate = 0;
 		}
-		settings = SETTINGS.method3153(this);
+		settings = SETTINGS.fromParameters(this);
 		if (settings == null) {
 			settings = JString.EMPTY;
 		}
@@ -1446,7 +1446,7 @@ public final class client extends GameShell {
 				Static180.init(js5Archive22);
 				VarPlayerDefinition.initializeVarPlayerDefinitionCache(js5Archive2);
 				InterfaceList.init(js5Archive13, js5Archive8, js5Archive3, js5Archive7);
-				Static119.init(js5Archive2);
+				InvTypeList.init(js5Archive2);
 				EnumTypeList.init(js5Archive17);
 				Static59.init(js5Archive25, js5Archive24, new Js5QuickChatCommandDecoder());
 				Static115.init(js5Archive25, js5Archive24);

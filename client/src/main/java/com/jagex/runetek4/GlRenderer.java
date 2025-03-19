@@ -447,10 +447,10 @@ public final class GlRenderer {
 		@Pc(176) JString renderer = method4147(GlRenderer.renderer).toLowerCase();
 		if (renderer.indexOf(RADEON) != -1) {
 			@Pc(184) int v = 0;
-			@Pc(193) JString[] rendererParts = renderer.method3145().method3147(32);
+			@Pc(193) JString[] rendererParts = renderer.replaceSlashWithSpace().split(32);
 			for (@Pc(195) int i = 0; i < rendererParts.length; i++) {
 				@Pc(203) JString part = rendererParts[i];
-				if (part.length() >= 4 && part.substring(4, 0).method3123()) {
+				if (part.length() >= 4 && part.substring(4, 0).isInt()) {
 					v = part.substring(4, 0).parseInt();
 					break;
 				}

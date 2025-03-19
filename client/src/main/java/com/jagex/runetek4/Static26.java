@@ -7,7 +7,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static26 {
 
 	@OriginalMember(owner = "client!ca", name = "cb", descriptor = "Lclient!na;")
-	public static final JString aClass100_160 = Static165.method3165();
+	public static final JString aClass100_160 = JString.getNbsp();
 
 	@OriginalMember(owner = "client!ca", name = "fb", descriptor = "[I")
 	public static final int[] anIntArray68 = new int[50];

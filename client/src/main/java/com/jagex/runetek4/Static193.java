@@ -18,9 +18,6 @@ public final class Static193 {
 	@OriginalMember(owner = "runetek4.client!pi", name = "P", descriptor = "J")
 	public static long aLong147 = 0L;
 
-	@OriginalMember(owner = "runetek4.client!pi", name = "Q", descriptor = "Lclient!na;")
-	public static final JString aClass100_853 = JString.parse("null");
-
 	@OriginalMember(owner = "runetek4.client!pi", name = "a", descriptor = "([[[B[[B[[B[[I[[F[[I[[B[[B[[FI[[F[[I[[I[[II)[Lclient!hg;")
 	public static GlTile[] method3501(@OriginalArg(0) byte[][][] arg0, @OriginalArg(1) byte[][] arg1, @OriginalArg(2) byte[][] arg2, @OriginalArg(3) int[][] arg3, @OriginalArg(4) float[][] arg4, @OriginalArg(5) int[][] arg5, @OriginalArg(6) byte[][] arg6, @OriginalArg(7) byte[][] arg7, @OriginalArg(8) float[][] arg8, @OriginalArg(9) int arg9, @OriginalArg(10) float[][] arg10, @OriginalArg(11) int[][] arg11, @OriginalArg(12) int[][] arg12, @OriginalArg(13) int[][] arg13) {
 		@Pc(9) int[][] local9 = new int[105][105];

@@ -62,7 +62,7 @@ public abstract class Font extends CachedNode {
 	@OriginalMember(owner = "runetek4.client!rk", name = "rb", descriptor = "Lclient!na;")
 	public static final JString startDefaultStrikeThrough = JString.parse("str");
 	@OriginalMember(owner = "runetek4.client!rk", name = "sb", descriptor = "Lclient!na;")
-	public static final JString buffer = Static87.method1804(100);
+	public static final JString buffer = JString.allocate(100);
 	@OriginalMember(owner = "runetek4.client!rk", name = "Ab", descriptor = "[Lclient!na;")
 	public static final JString[] lines = new JString[100];
 	@OriginalMember(owner = "runetek4.client!rk", name = "Z", descriptor = "Lclient!na;")
@@ -162,7 +162,7 @@ public abstract class Font extends CachedNode {
 				local5 += 3;
 			}
 		}
-		@Pc(30) JString local30 = Static87.method1804(local3 + local5);
+		@Pc(30) JString local30 = JString.allocate(local3 + local5);
 		for (local15 = 0; local15 < local3; local15++) {
 			@Pc(40) int local40 = arg0.charAt(local15);
 			if (local40 == 60) {

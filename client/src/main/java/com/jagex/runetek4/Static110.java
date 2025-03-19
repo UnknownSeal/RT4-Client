@@ -41,8 +41,4 @@ public final class Static110 {
 		Static182.aGlTileArrayArray2[arg0] = arg1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ih", name = "a", descriptor = "(ZII)Lclient!na;")
-	public static JString method2285(@OriginalArg(2) int arg0) {
-		return Static198.method1025(true, arg0);
-	}
 }

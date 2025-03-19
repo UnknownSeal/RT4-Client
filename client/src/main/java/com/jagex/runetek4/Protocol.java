@@ -1117,7 +1117,7 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 71) {
                                 username2 = inboundBuffer.g8();
-                                local790 = Font.escape(Static65.method1497(inboundBuffer).method3116());
+                                local790 = Font.escape(Static65.method1497(inboundBuffer).encodeMessage());
                                 Chat.addMessage(Base37.decode37(username2).toTitleCase(), 6, local790);
                                 opcode = -1;
                                 return true;
@@ -1301,7 +1301,7 @@ public class Protocol {
                                 if (!local4425 && Player.overrideChat == 0) {
                                     Chat.recentMessages[Chat.messageCounter] = local4431;
                                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
-                                    @Pc(4518) JString local4518 = Font.escape(Static65.method1497(inboundBuffer).method3116());
+                                    @Pc(4518) JString local4518 = Font.escape(Static65.method1497(inboundBuffer).encodeMessage());
                                     if (local1160 == 2 || local1160 == 3) {
                                         Chat.addMessage(JString.concatenate(new JString[] { Static44.aClass100_336, Base37.decode37(username2).toTitleCase() }), 7, local4518);
                                     } else if (local1160 == 1) {
@@ -1347,7 +1347,7 @@ public class Protocol {
                                 if (!local4632 && Player.overrideChat == 0) {
                                     Chat.recentMessages[Chat.messageCounter] = local4626;
                                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
-                                    local3038 = Font.escape(Static65.method1497(inboundBuffer).method3116());
+                                    local3038 = Font.escape(Static65.method1497(inboundBuffer).encodeMessage());
                                     if (local908 == 2 || local908 == 3) {
                                         Chat.method1598(local3038, JString.concatenate(new JString[] { Static44.aClass100_336, Base37.decode37(username2).toTitleCase() }), Base37.decode37(username).toTitleCase());
                                     } else if (local908 == 1) {

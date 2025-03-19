@@ -1,15 +1,11 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.core.datastruct.HashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static148 {
-
-	@OriginalMember(owner = "runetek4.client!li", name = "w", descriptor = "Lclient!sc;")
-	public static HashTable aClass133_13;
 
 	@OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(ZI)V")
 	public static void method2765(@OriginalArg(1) int arg0) {

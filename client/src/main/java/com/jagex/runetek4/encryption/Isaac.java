@@ -158,7 +158,7 @@ public final class Isaac {
 	}
 
 	@OriginalMember(owner = "client!ij", name = "a", descriptor = "(I)I")
-	public int takeNextValue() {
+	public int getNextKey() {
 		// TODO - Add proper support server side.
 		boolean useIsaac = false;
 

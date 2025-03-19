@@ -4,7 +4,6 @@ import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public final class Static59 {
 
@@ -49,36 +48,4 @@ public final class Static59 {
 		}
 	}
 
-	@OriginalMember(owner = "client!ej", name = "a", descriptor = "(IZIJ)Lclient!na;")
-	public static JString method1376(@OriginalArg(3) long arg0) {
-		@Pc(35) long local35 = arg0 / (long) 10;
-		@Pc(37) int local37 = 1;
-		while (local35 != 0L) {
-			local37++;
-			local35 /= 10;
-		}
-		@Pc(51) int local51 = local37;
-		if (arg0 < 0L) {
-			local51 = local37 + 1;
-		}
-		@Pc(61) byte[] local61 = new byte[local51];
-		if (arg0 < 0L) {
-			local61[0] = 45;
-		}
-		for (@Pc(79) int local79 = 0; local79 < local37; local79++) {
-			@Pc(92) int local92 = (int) (arg0 % (long) 10);
-			arg0 /= 10;
-			if (local92 < 0) {
-				local92 = -local92;
-			}
-			if (local92 > 9) {
-				local92 += 39;
-			}
-			local61[local51 - local79 - 1] = (byte) (local92 + 48);
-		}
-		@Pc(126) JString local126 = new JString();
-		local126.aByteArray52 = local61;
-		local126.anInt4030 = local51;
-		return local126;
-	}
 }

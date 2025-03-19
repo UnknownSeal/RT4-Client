@@ -73,9 +73,6 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "runetek4.client!t", name = "y", descriptor = "I")
 	public static int anInt5223 = 0;
 
-	@OriginalMember(owner = "runetek4.client!t", name = "C", descriptor = "Lclient!na;")
-	public static final JString aClass100_994 = JString.parse(")3");
-
 	@OriginalMember(owner = "runetek4.client!t", name = "E", descriptor = "[I")
 	public static final int[] updatedVarcstrs = new int[32];
 
@@ -1311,7 +1308,7 @@ public final class ClientScriptRunner {
 															local2611 = ObjTypeList.get(component.invSlotObjId[local276] - 1);
 															@Pc(3159) JString local3159;
 															if (local2611.stackable != 1 && component.invSlotObjCount[local276] == 1) {
-																local3159 = JString.concatenate(new JString[] { MiniMenu.aClass100_32, local2611.name, Static230.aClass100_978 });
+																local3159 = JString.concatenate(new JString[] { MiniMenu.aClass100_32, local2611.name, JString.aClass100_978 });
 															} else {
 																local3159 = JString.concatenate(new JString[] { MiniMenu.aClass100_32, local2611.name, JString.aClass100_375, method1548(component.invSlotObjCount[local276]) });
 															}
@@ -1739,14 +1736,14 @@ public final class ClientScriptRunner {
 	public static JString method1548(@OriginalArg(1) int arg0) {
 		@Pc(9) JString local9 = JString.parseInt(arg0);
 		for (@Pc(21) int local21 = local9.length() - 3; local21 > 0; local21 -= 3) {
-			local9 = JString.concatenate(new JString[] { local9.substring(local21, 0), Static159.aClass100_760, local9.substring(local21) });
+			local9 = JString.concatenate(new JString[] { local9.substring(local21, 0), JString.aClass100_760, local9.substring(local21) });
 		}
 		if (local9.length() > 9) {
-			return JString.concatenate(new JString[] { Static250.aClass100_1043, local9.substring(local9.length() - 8, 0), LocalizedText.MILLION_SHORT, Static123.aClass100_593, local9, Static116.aClass100_583 });
+			return JString.concatenate(new JString[] { JString.aClass100_1043, local9.substring(local9.length() - 8, 0), LocalizedText.MILLION_SHORT, Static123.aClass100_593, local9, JString.aClass100_583 });
 		} else if (local9.length() > 6) {
-			return JString.concatenate(new JString[] { Static119.aClass100_589, local9.substring(local9.length() - 4, 0), LocalizedText.THOUSAND_SHORT, Static123.aClass100_593, local9, Static116.aClass100_583 });
+			return JString.concatenate(new JString[] { JString.aClass100_589, local9.substring(local9.length() - 4, 0), LocalizedText.THOUSAND_SHORT, Static123.aClass100_593, local9, JString.aClass100_583 });
 		} else {
-			return JString.concatenate(new JString[] { Static278.aClass100_1101, local9, Static230.aClass100_978 });
+			return JString.concatenate(new JString[] { JString.aClass100_1101, local9, JString.aClass100_978 });
 		}
 	}
 
@@ -1959,7 +1956,7 @@ public final class ClientScriptRunner {
 						// join_string
 						j = local33[scriptIndex];
 						local26 -= j;
-						chatTyped = Static118.method2355(local26, j, Static3.scriptStringValues);
+						chatTyped = JString.method2355(local26, j, Static3.scriptStringValues);
 						Static3.scriptStringValues[local26++] = chatTyped;
 						continue;
 					}
@@ -3049,7 +3046,7 @@ public final class ClientScriptRunner {
 										local26--;
 										chatTyped = Static3.scriptStringValues[local26];
 										interfaceType = 0;
-										if (chatTyped.method3123()) {
+										if (chatTyped.isInt()) {
 											interfaceType = chatTyped.parseInt();
 										}
 										Protocol.outboundBuffer.pIsaac1(23);
@@ -5660,7 +5657,7 @@ public final class ClientScriptRunner {
 										chatTyped = Static3.scriptStringValues[local26];
 										intValueIndex--;
 										interfaceType = Static254.scriptIntValues[intValueIndex];
-										Static3.scriptStringValues[local26++] = JString.concatenate(new JString[] { chatTyped, Static110.method2285(interfaceType) });
+										Static3.scriptStringValues[local26++] = JString.concatenate(new JString[] { chatTyped, JString.parseIntTrue(interfaceType) });
 										continue;
 									}
 									if (scriptOpcode == 4103) {
@@ -5704,7 +5701,7 @@ public final class ClientScriptRunner {
 									if (scriptOpcode == 4107) {
 										// compare
 										local26 -= 2;
-										Static254.scriptIntValues[intValueIndex++] = Static3.scriptStringValues[local26].method3126(Static3.scriptStringValues[local26 + 1]);
+										Static254.scriptIntValues[intValueIndex++] = Static3.scriptStringValues[local26].compare(Static3.scriptStringValues[local26 + 1]);
 										continue;
 									}
 									if (scriptOpcode == 4108) {
@@ -5751,7 +5748,7 @@ public final class ClientScriptRunner {
 										if (interfaceType == -1) {
 											throw new RuntimeException("null char");
 										}
-										Static3.scriptStringValues[local26++] = chatTyped.method3128(interfaceType);
+										Static3.scriptStringValues[local26++] = chatTyped.concatChar(interfaceType);
 										continue;
 									}
 									if (scriptOpcode == 4113) {
@@ -5800,7 +5797,7 @@ public final class ClientScriptRunner {
 									if (scriptOpcode == 4119) {
 										local26--;
 										chatTyped = Static3.scriptStringValues[local26];
-										chatTypedLowercase = Static87.method1804(chatTyped.length());
+										chatTypedLowercase = JString.allocate(chatTyped.length());
 										@Pc(12220) boolean local12220 = false;
 										for (local652 = 0; local652 < chatTyped.length(); local652++) {
 											start = chatTyped.charAt(local652);
@@ -5822,7 +5819,7 @@ public final class ClientScriptRunner {
 										chatTyped = Static3.scriptStringValues[local26];
 										interfaceType = Static254.scriptIntValues[intValueIndex];
 										childCount = Static254.scriptIntValues[intValueIndex + 1];
-										Static254.scriptIntValues[intValueIndex++] = chatTyped.method3135(interfaceType, childCount);
+										Static254.scriptIntValues[intValueIndex++] = chatTyped.indexOf(interfaceType, childCount);
 										continue;
 									}
 									if (scriptOpcode == 4121) {
@@ -5831,7 +5828,7 @@ public final class ClientScriptRunner {
 										chatTypedLowercase = Static3.scriptStringValues[local26 + 1];
 										intValueIndex--;
 										childCount = Static254.scriptIntValues[intValueIndex];
-										Static254.scriptIntValues[intValueIndex++] = chatTyped.method3146(chatTypedLowercase, childCount);
+										Static254.scriptIntValues[intValueIndex++] = chatTyped.indexOf(chatTypedLowercase, childCount);
 										continue;
 									}
 									if (scriptOpcode == 4122) {
@@ -5960,7 +5957,7 @@ public final class ClientScriptRunner {
 				}
 				TracingException.report("CS2 - scr:" + clientScript.nodeId + " op:" + local44, local14378);
 			} else {
-				@Pc(14385) JString local14385 = Static87.method1804(30);
+				@Pc(14385) JString local14385 = JString.allocate(30);
 				local14385.method3113(Static219.aClass100_928).method3113(clientScript.name);
 				for (listenersIndex = Static138.invokedScriptIndex - 1; listenersIndex >= 0; listenersIndex--) {
 					local14385.method3113(Static40.aClass100_253).method3113(Static67.GO_SUB_FRAMES[listenersIndex].script.name);

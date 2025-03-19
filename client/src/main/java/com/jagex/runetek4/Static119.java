@@ -1,8 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.js5.Js5;
-import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static119 {
@@ -18,14 +16,6 @@ public final class Static119 {
 
 	@OriginalMember(owner = "client!je", name = "U", descriptor = "Lclient!na;")
 	public static final JString SHOWINGVIDEOAD = JString.parse("showingVideoAd");
-
-	@OriginalMember(owner = "client!je", name = "db", descriptor = "Lclient!na;")
-	public static final JString aClass100_589 = JString.parse(" <col=ffffff>");
-
-	@OriginalMember(owner = "client!je", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void init(@OriginalArg(1) Js5 arg0) {
-		CacheArchive.aClass153_2 = arg0;
-	}
 
 	@OriginalMember(owner = "client!je", name = "j", descriptor = "(I)I")
 	public static int method2385() {

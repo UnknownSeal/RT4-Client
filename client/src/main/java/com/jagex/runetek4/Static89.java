@@ -17,9 +17,6 @@ public final class Static89 {
 	@OriginalMember(owner = "runetek4.client!ha", name = "o", descriptor = "I")
 	public static int anInt2387;
 
-	@OriginalMember(owner = "runetek4.client!ha", name = "p", descriptor = "Lclient!gn;")
-	public static final LruHashTable aClass54_8 = new LruHashTable(64);
-
 	@OriginalMember(owner = "runetek4.client!ha", name = "q", descriptor = "I")
 	public static int anInt2388 = 0;
 
@@ -104,7 +101,7 @@ public final class Static89 {
 				return local17;
 			}
 		}
-		return Static154.method2929(arg1);
+		return JString.method2929(arg1);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(IIIII)V")

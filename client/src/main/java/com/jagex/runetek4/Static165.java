@@ -69,12 +69,4 @@ public final class Static165 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!nb", name = "a", descriptor = "(II)Lclient!na;")
-	public static JString method3165() {
-		@Pc(21) JString local21 = new JString();
-		local21.anInt4030 = 1;
-		local21.aByteArray52 = new byte[1];
-		local21.aByteArray52[0] = -96;
-		return local21;
-	}
 }

@@ -135,7 +135,7 @@ public final class Static270 {
 			}
 			return local11 - local14;
 		} else if (arg1 == 2) {
-			return arg0.getGWCLocation().name.method3126(arg2.getGWCLocation().name);
+			return arg0.getGWCLocation().name.compare(arg2.getGWCLocation().name);
 		} else if (arg1 == 3) {
 			if (arg0.activity.strEquals(Static111.aClass100_570)) {
 				if (arg2.activity.strEquals(Static111.aClass100_570)) {
@@ -148,7 +148,7 @@ public final class Static270 {
 			} else if (arg2.activity.strEquals(Static111.aClass100_570)) {
 				return arg3 ? 1 : -1;
 			} else {
-				return arg0.activity.method3126(arg2.activity);
+				return arg0.activity.compare(arg2.activity);
 			}
 		} else if (arg1 == 4) {
 			return arg0.isLootShare() ? (arg2.isLootShare() ? 0 : 1) : arg2.isLootShare() ? -1 : 0;

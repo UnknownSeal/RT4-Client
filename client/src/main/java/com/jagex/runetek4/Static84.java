@@ -60,7 +60,7 @@ public final class Static84 {
 						phraseId = quickChatPhrase.anInt439;
 						message = quickChatPhrase.aQuickChatPhraseType_1.method770(Static270.CHAT_PACKET);
 					} else {
-						message = Font.escape(Static65.method1497(Static270.CHAT_PACKET).method3116());
+						message = Font.escape(Static65.method1497(Static270.CHAT_PACKET).encodeMessage());
 					}
 					player.chatMessage = message.trim();
 					player.chatEffect = chatFlags & 0xFF;

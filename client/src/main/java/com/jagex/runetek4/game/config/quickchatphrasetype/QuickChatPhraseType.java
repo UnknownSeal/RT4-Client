@@ -43,7 +43,7 @@ public final class QuickChatPhraseType extends CachedNode {
 	@OriginalMember(owner = "client!cb", name = "a", descriptor = "(Lclient!wa;II)V")
 	private void decode(@OriginalArg(0) Packet packet, @OriginalArg(1) int code) {
 		if (code == 1) {
-			this.aClass100Array35 = packet.gjstr().method3147(60);
+			this.aClass100Array35 = packet.gjstr().split(60);
 			return;
 		}
 
@@ -115,7 +115,7 @@ public final class QuickChatPhraseType extends CachedNode {
 
 	@OriginalMember(owner = "client!cb", name = "f", descriptor = "(I)Lclient!na;")
 	public JString getText() {
-		@Pc(15) JString local15 = Static87.method1804(80);
+		@Pc(15) JString local15 = JString.allocate(80);
 		if (this.aClass100Array35 == null) {
 			return Class6.aClass100_891;
 		}
@@ -129,7 +129,7 @@ public final class QuickChatPhraseType extends CachedNode {
 
 	@OriginalMember(owner = "client!cb", name = "a", descriptor = "(ILclient!wa;)Lclient!na;")
 	public JString method770(@OriginalArg(1) Packet arg0) {
-		@Pc(17) JString local17 = Static87.method1804(80);
+		@Pc(17) JString local17 = JString.allocate(80);
 		if (this.commands != null) {
 			for (@Pc(22) int index = 0; index < this.commands.length; index++) {
 				local17.method3113(this.aClass100Array35[index]);
