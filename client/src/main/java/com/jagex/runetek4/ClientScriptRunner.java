@@ -639,7 +639,7 @@ public final class ClientScriptRunner {
 			GlRaster.setClip(arg0, arg6, arg4, arg7);
 		} else {
 			SoftwareRaster.setClip(arg0, arg6, arg4, arg7);
-			Rasterizer.setSize();
+			Rasterizer.prepare();
 		}
 		for (@Pc(18) int i = 0; i < components.length; i++) {
 			@Pc(30) Component component = components[i];
@@ -920,7 +920,7 @@ public final class ClientScriptRunner {
 								GlRaster.setClip(arg0, arg6, arg4, arg7);
 							} else {
 								SoftwareRaster.setClip(arg0, arg6, arg4, arg7);
-								Rasterizer.setSize();
+								Rasterizer.prepare();
 							}
 						}
 						if (InterfaceList.aBooleanArray116[rectangle] || Cheat.rectDebug > 1) {
@@ -1543,7 +1543,7 @@ public final class ClientScriptRunner {
 			GlRenderer.method4171(arg2, arg4, arg3, arg0, arg3 / 2 + arg2, arg4 - -(arg0 / 2), local248, local253, Static223.anInt5029, Static223.anInt5029);
 		} else {
 			SoftwareRaster.setClip(arg2, arg4, arg3 + arg2, arg0 + arg4);
-			Rasterizer.setSize();
+			Rasterizer.prepare();
 		}
 		if (aBoolean108 || anInt3751 < arg2 || anInt3751 >= arg3 + arg2 || arg4 > anInt1892 || arg0 + arg4 <= anInt1892) {
 			RawModel.allowInput = false;
@@ -3132,27 +3132,27 @@ public final class ClientScriptRunner {
 										intValueIndex -= 2;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
 										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
-										Static254.scriptIntValues[intValueIndex++] = Static15.method484(interfaceData, interfaceType);
+										Static254.scriptIntValues[intValueIndex++] = Inv.getItemType(interfaceData, interfaceType);
 										continue;
 									}
 									if (scriptOpcode == 3302) {
 										intValueIndex -= 2;
 										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										Static254.scriptIntValues[intValueIndex++] = Static23.method647(interfaceData, interfaceType);
+										Static254.scriptIntValues[intValueIndex++] = Inv.getItemCount(interfaceData, interfaceType);
 										continue;
 									}
 									if (scriptOpcode == 3303) {
 										intValueIndex -= 2;
 										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										Static254.scriptIntValues[intValueIndex++] = Inv.total(interfaceData, interfaceType);
+										Static254.scriptIntValues[intValueIndex++] = Inv.getSlotTotal(interfaceData, interfaceType);
 										continue;
 									}
 									if (scriptOpcode == 3304) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										Static254.scriptIntValues[intValueIndex++] = Static246.get(interfaceData).size;
+										Static254.scriptIntValues[intValueIndex++] = InvTypeList.get(interfaceData).size;
 										continue;
 									}
 									if (scriptOpcode == 3305) {
@@ -3206,21 +3206,21 @@ public final class ClientScriptRunner {
 										intValueIndex -= 2;
 										interfaceData = Static254.scriptIntValues[intValueIndex] + 32768;
 										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
-										Static254.scriptIntValues[intValueIndex++] = Static15.method484(interfaceData, interfaceType);
+										Static254.scriptIntValues[intValueIndex++] = Inv.getItemType(interfaceData, interfaceType);
 										continue;
 									}
 									if (scriptOpcode == 3314) {
 										intValueIndex -= 2;
 										interfaceData = Static254.scriptIntValues[intValueIndex] + 32768;
 										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
-										Static254.scriptIntValues[intValueIndex++] = Static23.method647(interfaceData, interfaceType);
+										Static254.scriptIntValues[intValueIndex++] = Inv.getItemCount(interfaceData, interfaceType);
 										continue;
 									}
 									if (scriptOpcode == 3315) {
 										intValueIndex -= 2;
 										interfaceData = Static254.scriptIntValues[intValueIndex] + 32768;
 										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
-										Static254.scriptIntValues[intValueIndex++] = Inv.total(interfaceData, interfaceType);
+										Static254.scriptIntValues[intValueIndex++] = Inv.getSlotTotal(interfaceData, interfaceType);
 										continue;
 									}
 									if (scriptOpcode == 3316) {
@@ -3286,21 +3286,21 @@ public final class ClientScriptRunner {
 									if (scriptOpcode == 3330) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										Static254.scriptIntValues[intValueIndex++] = Inv.method446(interfaceData);
+										Static254.scriptIntValues[intValueIndex++] = Inv.getFreeSpace(interfaceData);
 										continue;
 									}
 									if (scriptOpcode == 3331) {
 										intValueIndex -= 2;
 										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										Static254.scriptIntValues[intValueIndex++] = Static178.method3319(false, interfaceData, interfaceType);
+										Static254.scriptIntValues[intValueIndex++] = Static178.getTotalParam(false, interfaceData, interfaceType);
 										continue;
 									}
 									if (scriptOpcode == 3332) {
 										intValueIndex -= 2;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
 										interfaceType = Static254.scriptIntValues[intValueIndex + 1];
-										Static254.scriptIntValues[intValueIndex++] = Static178.method3319(true, interfaceData, interfaceType);
+										Static254.scriptIntValues[intValueIndex++] = Static178.getTotalParam(true, interfaceData, interfaceType);
 										continue;
 									}
 									if (scriptOpcode == 3333) {

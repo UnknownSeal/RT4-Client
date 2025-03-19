@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -9,9 +8,6 @@ public final class Static118 {
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "d", descriptor = "[[[B")
 	public static byte[][][] levelShademap;
-
-	@OriginalMember(owner = "runetek4.client!jd", name = "c", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_16 = new NodeCache(100);
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "a", descriptor = "(B)I")
 	public static int method2352() {

@@ -614,7 +614,7 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "d", descriptor = "(I)Lclient!w;")
-	public SoftwareModel method1834() {
+	public SoftwareModel getInvModel() {
 		@Pc(11) RawModel local11 = RawModel.get(Static230.modelArchive, this.mesh);
 		if (local11 == null) {
 			return null;

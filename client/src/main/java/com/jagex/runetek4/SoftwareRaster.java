@@ -252,4 +252,21 @@ public class SoftwareRaster {
         Rasterizer.viewportBottom = Rasterizer.destinationHeight;
         Rasterizer.method2482();
     }
+
+    @OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "([I)V")
+    public static void saveClip(@OriginalArg(0) int[] arg0) {
+        arg0[0] = Rasterizer.viewportLeft;
+        arg0[1] = Rasterizer.viewportTop;
+        arg0[2] = Rasterizer.viewportRight;
+        arg0[3] = Rasterizer.viewportBottom;
+    }
+
+    @OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "([I)V")
+    public static void restoreClip(@OriginalArg(0) int[] arg0) {
+        Rasterizer.viewportLeft = arg0[0];
+        Rasterizer.viewportTop = arg0[1];
+        Rasterizer.viewportRight = arg0[2];
+        Rasterizer.viewportBottom = arg0[3];
+        Rasterizer.method2482();
+    }
 }

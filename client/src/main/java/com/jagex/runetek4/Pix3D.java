@@ -20,9 +20,6 @@ public final class Pix3D {
 	@OriginalMember(owner = "runetek4.client!hf", name = "i", descriptor = "Z")
 	private static boolean aBoolean135 = false;
 
-	@OriginalMember(owner = "runetek4.client!hf", name = "j", descriptor = "Z")
-	public static boolean aBoolean136 = true;
-
 	@OriginalMember(owner = "runetek4.client!hf", name = "l", descriptor = "Z")
 	private static boolean aBoolean137 = false;
 
@@ -2298,7 +2295,7 @@ public final class Pix3D {
 		@Pc(138) int local138;
 		@Pc(32) int local32;
 		@Pc(46) int local46;
-		if (!aBoolean136) {
+		if (!Rasterizer.jagged) {
 			local32 = arg3 - arg2;
 			if (trans == 0) {
 				do {

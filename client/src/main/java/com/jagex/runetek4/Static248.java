@@ -16,16 +16,6 @@ public final class Static248 {
 	@OriginalMember(owner = "runetek4.client!uc", name = "d", descriptor = "[[[I")
 	public static int[][][] anIntArrayArrayArray17;
 
-	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(II)I")
-	public static int method3289(@OriginalArg(0) int arg0) {
-		@Pc(9) int local9 = (arg0 >>> 1 & 0xD5555555) + (arg0 & 0x55555555);
-		@Pc(19) int local19 = (local9 >>> 2 & 0x33333333) + (local9 & 0x33333333);
-		@Pc(31) int local31 = (local19 >>> 4) + local19 & 0xF0F0F0F;
-		@Pc(37) int local37 = local31 + (local31 >>> 8);
-		@Pc(43) int local43 = local37 + (local37 >>> 16);
-		return local43 & 0xFF;
-	}
-
 	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(III[[[BIBII)V")
 	public static void method3292(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) byte[][][] arg3, @OriginalArg(4) int arg4, @OriginalArg(5) byte arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
 		Static13.anInt437++;

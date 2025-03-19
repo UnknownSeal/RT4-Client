@@ -46,6 +46,8 @@ public final class Rasterizer {
 	public static int screenLowerY;
 	@OriginalMember(owner = "runetek4.client!li", name = "x", descriptor = "I")
 	public static int screenUpperY;
+	@OriginalMember(owner = "runetek4.client!hf", name = "j", descriptor = "Z")
+	public static boolean jagged = true;
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "()V")
 	public static void method2482() {
@@ -67,15 +69,6 @@ public final class Rasterizer {
 		}
 		anIntArray295 = arg0;
 		anIntArray296 = arg1;
-	}
-
-	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "([I)V")
-	public static void setViewportDimensions(@OriginalArg(0) int[] arg0) {
-		viewportLeft = arg0[0];
-		viewportTop = arg0[1];
-		viewportRight = arg0[2];
-		viewportBottom = arg0[3];
-		method2482();
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "(IIII)V")
@@ -114,14 +107,6 @@ public final class Rasterizer {
 		while (local1 < local7) {
 			SoftwareRaster.destinationPixels[local1++] = 0;
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "([I)V")
-	public static void getViewportDimensions(@OriginalArg(0) int[] arg0) {
-		arg0[0] = viewportLeft;
-		arg0[1] = viewportTop;
-		arg0[2] = viewportRight;
-		arg0[3] = viewportBottom;
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "e", descriptor = "(IIIII)V")
@@ -385,7 +370,7 @@ public final class Rasterizer {
     }
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "()V")
-	public static void setSize() {
+	public static void prepare() {
 		method1925(viewportLeft, viewportTop, viewportRight, viewportBottom);
 	}
 

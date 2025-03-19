@@ -508,17 +508,6 @@ public final class Component {
 	@OriginalMember(owner = "client!be", name = "xd", descriptor = "I")
 	public int buttonType = 0;
 
-	@OriginalMember(owner = "runetek4.client!eb", name = "b", descriptor = "(II)Lclient!na;")
-	public static JString getShortenedAmountText(@OriginalArg(1) int amount) {
-		if (amount < 100000) {
-			return JString.concatenate(new JString[] { Static105.aClass100_559, JString.parseInt(amount), Static123.aClass100_594 });
-		} else if (amount >= 10000000) {
-			return JString.concatenate(new JString[] { Static184.aClass100_819, JString.parseInt(amount / 1000000), LocalizedText.MILLION, Static123.aClass100_594 });
-		} else {
-			return JString.concatenate(new JString[] { Static137.aClass100_637, JString.parseInt(amount / 1000), LocalizedText.THOUSAND, Static123.aClass100_594 });
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(II)V")
 	public static void clean() {
 		sprites.clean(50);

@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.util.ArrayUtils;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -32,8 +33,8 @@ public final class Static35 {
 		@Pc(95) int local95;
 		@Pc(104) int local104;
 		if (arg4 >= Static267.anInt5773 && Static106.anInt2869 >= arg4) {
-			local95 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg2 + arg3, Static172.anInt4164);
-			local104 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg3 - arg2, Static172.anInt4164);
+			local95 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg2 + arg3, Static172.anInt4164);
+			local104 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg3 - arg2, Static172.anInt4164);
 			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[arg4], local104, local95, arg0);
 		}
 		@Pc(118) int local118 = local67 * (arg1 - 1);
@@ -61,8 +62,8 @@ public final class Static35 {
 			local42 += -local118;
 			local104 = local17 + arg4;
 			if (Static267.anInt5773 <= local104 && Static106.anInt2869 >= local95) {
-				@Pc(213) int local213 = Static78.method1690(FloorUnderlayTypeList.anInt5063, local15 + arg3, Static172.anInt4164);
-				@Pc(222) int local222 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg3 - local15, Static172.anInt4164);
+				@Pc(213) int local213 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, local15 + arg3, Static172.anInt4164);
+				@Pc(222) int local222 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg3 - local15, Static172.anInt4164);
 				if (local95 >= Static267.anInt5773) {
 					ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local95], local222, local213, arg0);
 				}

@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ArrayUtils;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -549,10 +550,10 @@ public final class Static280 {
 		@Pc(87) int local87;
 		if (arg1 >= Static267.anInt5773 && Static106.anInt2869 >= arg1) {
 			@Pc(52) int[] local52 = ObjTypeList.anIntArrayArray10[arg1];
-			local61 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 - arg2, Static172.anInt4164);
-			local69 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg2 + arg5, Static172.anInt4164);
-			local78 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 - local18, Static172.anInt4164);
-			local87 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 + local18, Static172.anInt4164);
+			local61 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - arg2, Static172.anInt4164);
+			local69 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg2 + arg5, Static172.anInt4164);
+			local78 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - local18, Static172.anInt4164);
+			local87 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 + local18, Static172.anInt4164);
 			ArrayUtils.fillRange(local52, local61, local78, arg3);
 			ArrayUtils.fillRange(local52, local78, local87, arg0);
 			ArrayUtils.fillRange(local52, local87, local69, arg3);
@@ -580,8 +581,8 @@ public final class Static280 {
 				local61 = arg1 + local32;
 				if (Static267.anInt5773 <= local61 && Static106.anInt2869 >= local161) {
 					if (local32 >= local18) {
-						local69 = Static78.method1690(FloorUnderlayTypeList.anInt5063, local23 + arg5, Static172.anInt4164);
-						local78 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 - local23, Static172.anInt4164);
+						local69 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, local23 + arg5, Static172.anInt4164);
+						local78 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - local23, Static172.anInt4164);
 						if (Static106.anInt2869 >= local61) {
 							ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local61], local78, local69, arg3);
 						}
@@ -590,10 +591,10 @@ public final class Static280 {
 						}
 					} else {
 						local69 = Static241.anIntArray522[local32];
-						local78 = Static78.method1690(FloorUnderlayTypeList.anInt5063, local23 + arg5, Static172.anInt4164);
-						local87 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 - local23, Static172.anInt4164);
-						local264 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 + local69, Static172.anInt4164);
-						local273 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 - local69, Static172.anInt4164);
+						local78 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, local23 + arg5, Static172.anInt4164);
+						local87 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - local23, Static172.anInt4164);
+						local264 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 + local69, Static172.anInt4164);
+						local273 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - local69, Static172.anInt4164);
 						if (Static106.anInt2869 >= local61) {
 							local280 = ObjTypeList.anIntArrayArray10[local61];
 							ArrayUtils.fillRange(local280, local87, local273, arg3);
@@ -615,12 +616,12 @@ public final class Static280 {
 				local69 = arg5 + local32;
 				local78 = arg5 - local32;
 				if (local69 >= Static172.anInt4164 && FloorUnderlayTypeList.anInt5063 >= local78) {
-					local69 = Static78.method1690(FloorUnderlayTypeList.anInt5063, local69, Static172.anInt4164);
-					local78 = Static78.method1690(FloorUnderlayTypeList.anInt5063, local78, Static172.anInt4164);
+					local69 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, local69, Static172.anInt4164);
+					local78 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, local78, Static172.anInt4164);
 					if (local23 < local18) {
 						local87 = local40 >= local23 ? local40 : Static241.anIntArray522[local23];
-						local264 = Static78.method1690(FloorUnderlayTypeList.anInt5063, local87 + arg5, Static172.anInt4164);
-						local273 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 - local87, Static172.anInt4164);
+						local264 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, local87 + arg5, Static172.anInt4164);
+						local273 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - local87, Static172.anInt4164);
 						if (Static106.anInt2869 >= local61) {
 							local280 = ObjTypeList.anIntArrayArray10[local61];
 							ArrayUtils.fillRange(local280, local78, local273, arg3);

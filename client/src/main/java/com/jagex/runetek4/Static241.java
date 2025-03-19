@@ -48,7 +48,7 @@ public final class Static241 {
 		ObjTypeList.capacity = com.jagex.runetek4.cache.CacheArchive.aClass153_61.getGroupCapacity(local23) + local23 * 256;
 		Static143.aClass100Array104 = new JString[] { null, null, null, null, LocalizedText.DROP};
 		Static269.aClass100Array87 = new JString[] { null, null, LocalizedText.TAKE, null, null };
-		Static256.aClass3_Sub2_Sub9_Sub1_1 = arg1;
+		ObjTypeList.font = arg1;
 	}
 
 	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(BIIIII)V")

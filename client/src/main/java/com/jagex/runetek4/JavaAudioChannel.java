@@ -69,7 +69,7 @@ public final class JavaAudioChannel extends AudioChannel {
 			this.aSourceDataLine1.start();
 			this.anInt4645 = arg0;
 		} catch (@Pc(36) LineUnavailableException local36) {
-			if (Static248.method3289(arg0) == 1) {
+			if (IntUtils.bitCountFast(arg0) == 1) {
 				this.aSourceDataLine1 = null;
 				throw local36;
 			} else {

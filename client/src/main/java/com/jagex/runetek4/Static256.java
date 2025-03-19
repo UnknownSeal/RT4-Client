@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static256 {
 
-	@OriginalMember(owner = "runetek4.client!um", name = "U", descriptor = "Lclient!dd;")
-	public static SoftwareFont aClass3_Sub2_Sub9_Sub1_1;
-
 	@OriginalMember(owner = "runetek4.client!um", name = "a", descriptor = "(Z)V")
 	public static void method4392() {
 		Player.overrideChat = 0;

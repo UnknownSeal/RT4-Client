@@ -8,6 +8,6 @@ public final class Static190 {
 	public static void method3447() {
 		Static27.aClass99_4.clean(5);
 		Static244.aClass99_32.clean(5);
-		Static118.aClass99_16.clean(5);
+		ObjTypeList.objectSpriteCache.clean(5);
 	}
 }

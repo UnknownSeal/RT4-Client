@@ -1,6 +1,6 @@
 package com.jagex.runetek4.js5.index;
 
-import com.jagex.runetek4.cache.NameHashCollection;
+import com.jagex.runetek4.cache.IntHashTable;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -21,7 +21,7 @@ public final class Js5Index {
 	public int length;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "h", descriptor = "Lclient!jg;")
-	public NameHashCollection nameHashCollection;
+	public IntHashTable intHashTable;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "m", descriptor = "[I")
 	public int[] groupIds;
@@ -48,7 +48,7 @@ public final class Js5Index {
 	public int indexversion;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "x", descriptor = "[Lclient!jg;")
-	public NameHashCollection[] aClass76Array1;
+	public IntHashTable[] aClass76Array1;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "z", descriptor = "I")
 	public final int crc;
@@ -104,7 +104,7 @@ public final class Js5Index {
 			for (int i = 0; i < this.length; i++) {
 				this.nameHashes[this.groupIds[i]] = packet.g4();
 			}
-			this.nameHashCollection = new NameHashCollection(this.nameHashes);
+			this.intHashTable = new IntHashTable(this.nameHashes);
 		}
 		for (int i = 0; i < this.length; i++) {
 			this.anIntArray268[this.groupIds[i]] = packet.g4();
@@ -139,7 +139,7 @@ public final class Js5Index {
 		if (info == 0) {
 			return;
 		}
-		this.aClass76Array1 = new NameHashCollection[local59 + 1];
+		this.aClass76Array1 = new IntHashTable[local59 + 1];
 		this.anIntArrayArray21 = new int[local59 + 1][];
 		for (int i = 0; i < this.length; i++) {
 			local273 = this.groupIds[i];
@@ -156,7 +156,7 @@ public final class Js5Index {
 				}
 				this.anIntArrayArray21[local273][local288] = packet.g4();
 			}
-			this.aClass76Array1[local273] = new NameHashCollection(this.anIntArrayArray21[local273]);
+			this.aClass76Array1[local273] = new IntHashTable(this.anIntArrayArray21[local273]);
 		}
 	}
 }

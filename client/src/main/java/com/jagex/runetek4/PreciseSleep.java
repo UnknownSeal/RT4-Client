@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.util.ArrayUtils;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -128,10 +129,10 @@ public final class PreciseSleep {
 		@Pc(201) int local201;
 		if (arg4 >= Static267.anInt5773 && Static106.anInt2869 >= arg4) {
 			@Pc(166) int[] local166 = ObjTypeList.anIntArrayArray10[arg4];
-			local174 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 - arg0, Static172.anInt4164);
-			local183 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 + arg0, Static172.anInt4164);
-			local192 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 - local12, Static172.anInt4164);
-			local201 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 + local12, Static172.anInt4164);
+			local174 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - arg0, Static172.anInt4164);
+			local183 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 + arg0, Static172.anInt4164);
+			local192 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - local12, Static172.anInt4164);
+			local201 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 + local12, Static172.anInt4164);
 			ArrayUtils.fillRange(local166, local174, local192, arg2);
 			ArrayUtils.fillRange(local166, local192, local201, arg1);
 			ArrayUtils.fillRange(local166, local201, local183, arg2);
@@ -184,11 +185,11 @@ public final class PreciseSleep {
 			local183 = arg4 + local16;
 			local174 = arg4 - local16;
 			if (Static267.anInt5773 <= local183 && Static106.anInt2869 >= local174) {
-				local192 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 + local7, Static172.anInt4164);
-				local201 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 - local7, Static172.anInt4164);
+				local192 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 + local7, Static172.anInt4164);
+				local201 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - local7, Static172.anInt4164);
 				if (local255) {
-					@Pc(404) int local404 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 + local14, Static172.anInt4164);
-					@Pc(412) int local412 = Static78.method1690(FloorUnderlayTypeList.anInt5063, arg5 - local14, Static172.anInt4164);
+					@Pc(404) int local404 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 + local14, Static172.anInt4164);
+					@Pc(412) int local412 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - local14, Static172.anInt4164);
 					@Pc(420) int[] local420;
 					if (Static267.anInt5773 <= local174) {
 						local420 = ObjTypeList.anIntArrayArray10[local174];

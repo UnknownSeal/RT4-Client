@@ -14,9 +14,6 @@ public final class Static123 {
 	@OriginalMember(owner = "runetek4.client!jj", name = "g", descriptor = "Lclient!na;")
 	public static final JString aClass100_593 = JString.parse(" (X");
 
-	@OriginalMember(owner = "runetek4.client!jj", name = "m", descriptor = "Lclient!na;")
-	public static final JString aClass100_594 = JString.parse("<)4col>");
-
 	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(BI)Lclient!lk;")
 	public static StructType method2417(@OriginalArg(1) int arg0) {
 		@Pc(10) StructType local10 = (StructType) PreciseSleep.aClass54_13.get((long) arg0);

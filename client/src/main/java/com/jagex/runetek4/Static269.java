@@ -17,7 +17,7 @@ public final class Static269 {
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "e", descriptor = "(B)V")
 	public static void method2172() {
-		Static118.aClass99_16.clean();
+		ObjTypeList.objectSpriteCache.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "([Lclient!mj;ZIIIII[B)V")

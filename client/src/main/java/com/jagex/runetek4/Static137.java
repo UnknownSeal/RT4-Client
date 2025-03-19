@@ -12,9 +12,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static137 {
 
-	@OriginalMember(owner = "runetek4.client!kl", name = "u", descriptor = "Lclient!na;")
-	public static final JString aClass100_637 = JString.parse("<col=ffffff>");
-
 	@OriginalMember(owner = "runetek4.client!kl", name = "a", descriptor = "(Lclient!wa;B)Lclient!kc;")
 	public static TextureOp29SubOp2 method2664(@OriginalArg(0) Packet arg0) {
 		return new TextureOp29SubOp2(arg0.g2s(), arg0.g2s(), arg0.g2s(), arg0.g2s(), arg0.g3(), arg0.g3(), arg0.g1());

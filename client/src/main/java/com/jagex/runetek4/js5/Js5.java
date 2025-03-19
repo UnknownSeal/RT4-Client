@@ -104,7 +104,7 @@ public final class Js5 {
 		}
 		if (arg0) {
 			this.index.nameHashes = null;
-			this.index.nameHashCollection = null;
+			this.index.intHashTable = null;
 		}
 		this.index.aClass76Array1 = null;
 		this.index.anIntArrayArray21 = null;
@@ -114,7 +114,7 @@ public final class Js5 {
 	public int method4478(@OriginalArg(1) JString arg0) {
 		if (this.isIndexReady()) {
 			@Pc(15) JString local15 = arg0.toLowerCase();
-			@Pc(29) int local29 = this.index.nameHashCollection.method2405(local15.method3154());
+			@Pc(29) int local29 = this.index.intHashTable.get(local15.method3154());
 			return this.getPercentageComplete(local29);
 		} else {
 			return 0;
@@ -145,7 +145,7 @@ public final class Js5 {
 	public int getGroupId(@OriginalArg(0) JString arg0) {
 		if (this.isIndexReady()) {
 			@Pc(16) JString local16 = arg0.toLowerCase();
-			@Pc(27) int local27 = this.index.nameHashCollection.method2405(local16.method3154());
+			@Pc(27) int local27 = this.index.intHashTable.get(local16.method3154());
 			return this.isGroupValid(local27) ? local27 : -1;
 		} else {
 			return -1;
@@ -177,9 +177,9 @@ public final class Js5 {
 		}
 		@Pc(15) JString local15 = arg1.toLowerCase();
 		@Pc(19) JString local19 = arg0.toLowerCase();
-		@Pc(28) int local28 = this.index.nameHashCollection.method2405(local15.method3154());
+		@Pc(28) int local28 = this.index.intHashTable.get(local15.method3154());
 		if (this.isGroupValid(local28)) {
-			@Pc(53) int local53 = this.index.aClass76Array1[local28].method2405(local19.method3154());
+			@Pc(53) int local53 = this.index.aClass76Array1[local28].get(local19.method3154());
 			return this.getfile(local28, local53);
 		} else {
 			return null;
@@ -190,7 +190,7 @@ public final class Js5 {
 	public void method4486(@OriginalArg(1) JString arg0) {
 		if (this.isIndexReady()) {
 			@Pc(13) JString local13 = arg0.toLowerCase();
-			@Pc(22) int local22 = this.index.nameHashCollection.method2405(local13.method3154());
+			@Pc(22) int local22 = this.index.intHashTable.get(local13.method3154());
 			this.method4493(local22);
 		}
 	}
@@ -202,9 +202,9 @@ public final class Js5 {
 		}
 		@Pc(17) JString local17 = arg1.toLowerCase();
 		@Pc(21) JString local21 = arg0.toLowerCase();
-		@Pc(30) int local30 = this.index.nameHashCollection.method2405(local17.method3154());
+		@Pc(30) int local30 = this.index.intHashTable.get(local17.method3154());
 		if (this.isGroupValid(local30)) {
-			@Pc(49) int local49 = this.index.aClass76Array1[local30].method2405(local21.method3154());
+			@Pc(49) int local49 = this.index.aClass76Array1[local30].get(local21.method3154());
 			return this.isFileReady(local30, local49);
 		} else {
 			return false;
@@ -240,7 +240,7 @@ public final class Js5 {
 	public boolean method4489(@OriginalArg(1) JString arg0) {
 		if (this.isIndexReady()) {
 			@Pc(14) JString local14 = arg0.toLowerCase();
-			@Pc(25) int local25 = this.index.nameHashCollection.method2405(local14.method3154());
+			@Pc(25) int local25 = this.index.intHashTable.get(local14.method3154());
 			return this.isGroupReady(local25);
 		} else {
 			return false;
@@ -419,7 +419,7 @@ public final class Js5 {
 	public boolean method4497(@OriginalArg(0) JString arg0) {
 		if (this.isIndexReady()) {
 			@Pc(19) JString local19 = arg0.toLowerCase();
-			@Pc(28) int local28 = this.index.nameHashCollection.method2405(local19.method3154());
+			@Pc(28) int local28 = this.index.intHashTable.get(local19.method3154());
 			return local28 >= 0;
 		} else {
 			return false;

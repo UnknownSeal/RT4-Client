@@ -1094,7 +1094,7 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 191) {
                                 ii = inboundBuffer.g2le();
-                                Static13.method472(ii);
+                                Inv.delete(ii);
                                 Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = ii & 0x7FFF;
                                 opcode = -1;
                                 return true;

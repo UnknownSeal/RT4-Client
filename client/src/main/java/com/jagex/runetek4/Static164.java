@@ -1,13 +1,9 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.SoftwareSprite;
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.media.Rasterizer;
-import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -171,79 +167,4 @@ public final class Static164 {
 		return SpriteLoader.decode(arg1, 0, arg0) ? Static134.method2619() : null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IBZIZIIZ)Lclient!qf;")
-	public static Sprite method3150(@OriginalArg(0) int arg0, @OriginalArg(2) boolean arg1, @OriginalArg(3) int arg2, @OriginalArg(4) boolean arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) boolean backColor) {
-		@Pc(5) ObjType definition = ObjTypeList.get(arg2);
-		if (arg5 > 1 && definition.countobj != null) {
-			@Pc(15) int local15 = -1;
-			for (@Pc(17) int local17 = 0; local17 < 10; local17++) {
-				if (arg5 >= definition.countco[local17] && definition.countco[local17] != 0) {
-					local15 = definition.countobj[local17];
-				}
-			}
-			if (local15 != -1) {
-				definition = ObjTypeList.get(local15);
-			}
-		}
-		@Pc(60) SoftwareModel local60 = definition.method1834();
-		if (local60 == null) {
-			return null;
-		}
-		@Pc(71) SoftwareSprite local71 = null;
-		if (definition.certtemplate != -1) {
-			local71 = (SoftwareSprite) method3150(0, true, definition.certlink, false, 1, 10, true);
-			if (local71 == null) {
-				return null;
-			}
-		} else if (definition.lenttemplate != -1) {
-			local71 = (SoftwareSprite) method3150(arg0, true, definition.lentlink, false, arg4, arg5, false);
-			if (local71 == null) {
-				return null;
-			}
-		}
-		@Pc(118) int[] pixels = SoftwareRaster.destinationPixels;
-		@Pc(120) int local120 = SoftwareRaster.destinationWidth;
-		@Pc(122) int local122 = Rasterizer.destinationHeight;
-		@Pc(125) int[] local125 = new int[4];
-		Rasterizer.getViewportDimensions(local125);
-		@Pc(133) SoftwareSprite rendered = new SoftwareSprite(36, 32);
-		SoftwareRaster.setSize(rendered.pixels, 36, 32);
-		Rasterizer.setSize();
-		Rasterizer.setBounds(16, 16);
-		@Pc(145) int local145 = definition.zoom2d;
-		Pix3D.aBoolean136 = false;
-		if (backColor) {
-			local145 = (int) ((double) local145 * 1.5D);
-		} else if (arg4 == 2) {
-			local145 = (int) ((double) local145 * 1.04D);
-		}
-		@Pc(176) int local176 = MathUtils.cos[definition.xan2d] * local145 >> 16;
-		@Pc(185) int local185 = MathUtils.sin[definition.xan2d] * local145 >> 16;
-		local60.setCamera(definition.yan2d, definition.zan2d, definition.xan2d, definition.xof2d, local185 + definition.yof2d - local60.getMinY() / 2, definition.yof2d + local176, -1L);
-		if (arg4 >= 1) {
-			rendered.drawOutline(1);
-			if (arg4 >= 2) {
-				rendered.drawOutline(16777215);
-			}
-			SoftwareRaster.setSize(rendered.pixels, 36, 32);
-		}
-		if (arg0 != 0) {
-			rendered.drawShadow(arg0);
-		}
-		if (definition.certtemplate != -1) {
-			local71.render(0, 0);
-		} else if (definition.lenttemplate != -1) {
-			SoftwareRaster.setSize(local71.pixels, 36, 32);
-			rendered.render(0, 0);
-			rendered = local71;
-		}
-		if (arg3 && (definition.stackable == 1 || arg5 != 1) && arg5 != -1) {
-			Static256.aClass3_Sub2_Sub9_Sub1_1.renderLeft(Component.getShortenedAmountText(arg5), 0, 9, 16776960, 1);
-		}
-		SoftwareRaster.setSize(pixels, local120, local122);
-		Rasterizer.setViewportDimensions(local125);
-		Rasterizer.setSize();
-		Pix3D.aBoolean136 = true;
-		return GlRenderer.enabled && !arg1 ? new GlSprite(rendered) : rendered;
-	}
 }

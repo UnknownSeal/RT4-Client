@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.js5.Js5;
-import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static78 {
@@ -26,11 +25,6 @@ public final class Static78 {
 
 	@OriginalMember(owner = "client!gd", name = "i", descriptor = "Lclient!na;")
 	public static JString aClass100_466 = null;
-
-	@OriginalMember(owner = "client!gd", name = "a", descriptor = "(IIBI)I")
-	public static int method1690(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) {
-		return arg2 > arg1 ? arg2 : arg1 > arg0 ? arg0 : arg1;
-	}
 
 	@OriginalMember(owner = "client!gd", name = "a", descriptor = "(I)V")
 	public static void removeSoft() {

@@ -730,7 +730,7 @@ public final class Static103 {
 	public static void removeSoft() {
 		Static27.aClass99_4.removeSoft();
 		Static244.aClass99_32.removeSoft();
-		Static118.aClass99_16.removeSoft();
+		ObjTypeList.objectSpriteCache.removeSoft();
 	}
 
 }
