@@ -462,7 +462,7 @@ public final class NpcType {
 		if (local40 == null) {
 			local46 = false;
 			for (@Pc(48) int local48 = 0; local48 < this.models.length; local48++) {
-				if (this.models[local48] != -1 && !Static86.aClass153_37.requestDownload(this.models[local48], 0)) {
+				if (this.models[local48] != -1 && !Static86.aClass153_37.isFileReady(this.models[local48], 0)) {
 					local46 = true;
 				}
 			}
@@ -722,7 +722,7 @@ public final class NpcType {
 			if (local41 == null) {
 				@Pc(46) boolean local46 = false;
 				for (@Pc(48) int local48 = 0; local48 < this.heads.length; local48++) {
-					if (!Static86.aClass153_37.requestDownload(this.heads[local48], 0)) {
+					if (!Static86.aClass153_37.isFileReady(this.heads[local48], 0)) {
 						local46 = true;
 					}
 				}

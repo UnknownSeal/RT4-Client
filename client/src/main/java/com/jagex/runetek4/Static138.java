@@ -12,9 +12,6 @@ public final class Static138 {
 	@OriginalMember(owner = "runetek4.client!km", name = "uc", descriptor = "F")
 	public static float aFloat14;
 
-	@OriginalMember(owner = "runetek4.client!km", name = "Bc", descriptor = "[I")
-	public static final int[] updatedVarcs = new int[32];
-
 	@OriginalMember(owner = "runetek4.client!km", name = "Rc", descriptor = "[I")
 	public static final int[] FRONT_WALL_TYPES = new int[] { 19, 55, 38, 155, 255, 110, 137, 205, 76 };
 

@@ -12,9 +12,13 @@ import com.jagex.runetek4.node.Node;
 @OriginalClass("client!qe")
 public final class Inv extends Node {
 
+	@OriginalMember(owner = "client!cb", name = "I", descriptor = "[I")
+	public static final int[] updatedInventories = new int[32];
 	@OriginalMember(owner = "client!bj", name = "v", descriptor = "Lclient!sc;")
 	public static HashTable recentUse = new HashTable(32);
-	@OriginalMember(owner = "client!qe", name = "p", descriptor = "[I")
+    @OriginalMember(owner = "runetek4.client!ii", name = "c", descriptor = "I")
+    public static int updatedInventoriesWriterIndex = 0;
+    @OriginalMember(owner = "client!qe", name = "p", descriptor = "[I")
 	public int[] invSlotObjId = new int[] { -1 };
 
 	@OriginalMember(owner = "client!qe", name = "u", descriptor = "[I")

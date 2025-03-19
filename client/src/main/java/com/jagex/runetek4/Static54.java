@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.audio.SynthSound;
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -11,13 +10,6 @@ public final class Static54 {
 
 	@OriginalMember(owner = "client!ed", name = "D", descriptor = "Lclient!na;")
 	public static final JString DETAILS = JString.parse("details");
-
-	@OriginalMember(owner = "client!ed", name = "a", descriptor = "(III)V")
-	public static void method1304(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		if (Component.load(arg1)) {
-			Static2.method7(Component.cachedComponents[arg1], arg0);
-		}
-	}
 
 	@OriginalMember(owner = "client!ed", name = "a", descriptor = "(ZIIII)V")
 	public static void method1306(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {

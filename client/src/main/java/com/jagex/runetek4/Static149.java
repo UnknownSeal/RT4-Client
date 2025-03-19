@@ -17,9 +17,6 @@ public final class Static149 {
 	@OriginalMember(owner = "runetek4.client!lj", name = "B", descriptor = "I")
 	public static int eyeX;
 
-	@OriginalMember(owner = "runetek4.client!lj", name = "w", descriptor = "I")
-	public static int anInt3554 = 0;
-
 	@OriginalMember(owner = "runetek4.client!lj", name = "z", descriptor = "[I")
 	public static int[] anIntArray338 = new int[2];
 }

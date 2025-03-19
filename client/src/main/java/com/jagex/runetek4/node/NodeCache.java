@@ -65,7 +65,7 @@ public final class NodeCache {
 	public final int method3100() {
 		@Pc(10) int local10 = 0;
 		for (@Pc(16) ReferenceNode local16 = (ReferenceNode) this.nodeQueue.head(); local16 != null; local16 = (ReferenceNode) this.nodeQueue.prev()) {
-			if (!local16.method3619()) {
+			if (!local16.isSoft()) {
 				local10++;
 			}
 		}
@@ -78,8 +78,8 @@ public final class NodeCache {
 			return;
 		}
 		for (@Pc(9) ReferenceNode cachedNode = (ReferenceNode) this.nodeQueue.head(); cachedNode != null; cachedNode = (ReferenceNode) this.nodeQueue.prev()) {
-			if (cachedNode.method3619()) {
-				if (cachedNode.method3618() == null) {
+			if (cachedNode.isSoft()) {
+				if (cachedNode.get() == null) {
 					cachedNode.unlink();
 					cachedNode.unlinkCachedNode();
 					this.remaining++;
@@ -97,7 +97,7 @@ public final class NodeCache {
 	@OriginalMember(owner = "runetek4.client!n", name = "b", descriptor = "(B)V")
 	public final void removeSoft() {
 		for (@Pc(7) ReferenceNode local7 = (ReferenceNode) this.nodeQueue.head(); local7 != null; local7 = (ReferenceNode) this.nodeQueue.prev()) {
-			if (local7.method3619()) {
+			if (local7.isSoft()) {
 				local7.unlink();
 				local7.unlinkCachedNode();
 				this.remaining++;
@@ -118,14 +118,14 @@ public final class NodeCache {
 		if (local12 == null) {
 			return null;
 		}
-		@Pc(27) Object local27 = local12.method3618();
+		@Pc(27) Object local27 = local12.get();
 		if (local27 == null) {
 			local12.unlink();
 			local12.unlinkCachedNode();
 			this.remaining++;
 			return null;
 		}
-		if (local12.method3619()) {
+		if (local12.isSoft()) {
 			@Pc(53) HardReferenceNode local53 = new HardReferenceNode(local27);
 			this.hashTable.put(local53, local12.nodeId);
 			this.nodeQueue.addTail(local53);

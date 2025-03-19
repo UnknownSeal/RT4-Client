@@ -7,10 +7,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static182 {
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "E", descriptor = "[[Lclient!hg;")
-	public static Class3_Sub14[][] aClass3_Sub14ArrayArray2;
-
-	@OriginalMember(owner = "runetek4.client!oj", name = "v", descriptor = "I")
-	public static int anInt4311 = -2;
+	public static GlTile[][] aGlTileArrayArray2;
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "a", descriptor = "(IZIJI)Lclient!na;")
 	public static JString method3360(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(3) long arg3) {

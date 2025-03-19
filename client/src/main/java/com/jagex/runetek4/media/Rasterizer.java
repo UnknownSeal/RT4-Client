@@ -367,15 +367,6 @@ public final class Rasterizer {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!kb", name = "c", descriptor = "()V")
-	public static void resetBounds() {
-		viewportLeft = 0;
-		viewportTop = 0;
-		viewportRight = SoftwareRaster.destinationWidth;
-		viewportBottom = destinationHeight;
-		method2482();
-	}
-
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(III[I[I)V")
 	public static void method2504(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int[] arg2, @OriginalArg(4) int[] arg3) {
 		@Pc(5) int local5 = arg0 + arg1 * SoftwareRaster.destinationWidth;

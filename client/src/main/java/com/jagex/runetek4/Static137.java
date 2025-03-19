@@ -12,9 +12,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static137 {
 
-	@OriginalMember(owner = "runetek4.client!kl", name = "s", descriptor = "I")
-	public static int anInt3337 = 0;
-
 	@OriginalMember(owner = "runetek4.client!kl", name = "u", descriptor = "Lclient!na;")
 	public static final JString aClass100_637 = JString.parse("<col=ffffff>");
 

@@ -4,7 +4,7 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
 import com.jagex.runetek4.scene.Scenery;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.scene.tile.Wall;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -27,26 +27,6 @@ public final class Static69 {
 		}
 	}
 
-	@OriginalMember(owner = "client!fh", name = "a", descriptor = "(JI)V")
-	public static void method1542(@OriginalArg(0) long arg0) {
-		if (arg0 == 0L) {
-			return;
-		}
-		for (@Pc(12) int local12 = 0; local12 < IgnoreList.ignoreCount; local12++) {
-			if (IgnoreList.encodedIgnores[local12] == arg0) {
-				IgnoreList.ignoreCount--;
-				for (@Pc(36) int local36 = local12; local36 < IgnoreList.ignoreCount; local36++) {
-					IgnoreList.encodedIgnores[local36] = IgnoreList.encodedIgnores[local36 + 1];
-					Static193.ignoreName[local36] = Static193.ignoreName[local36 + 1];
-				}
-				FriendList.transmitAt = InterfaceList.transmitTimer;
-				Protocol.outboundBuffer.pIsaac1(213);
-				Protocol.outboundBuffer.p8(arg0);
-				break;
-			}
-		}
-	}
-
 	@OriginalMember(owner = "client!fh", name = "a", descriptor = "(IIIILclient!th;JLclient!th;Lclient!th;)V")
 	public static void method1543(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Entity arg4, @OriginalArg(5) long arg5, @OriginalArg(6) Entity arg6, @OriginalArg(7) Entity arg7) {
 		@Pc(3) ObjStackEntity local3 = new ObjStackEntity();
@@ -58,7 +38,7 @@ public final class Static69 {
 		local3.aClass8_7 = arg6;
 		local3.aClass8_8 = arg7;
 		@Pc(34) int local34 = 0;
-		@Pc(42) SceneTile local42 = Static130.levelTiles[arg0][arg1][arg2];
+		@Pc(42) Tile local42 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local42 != null) {
 			for (@Pc(46) int local46 = 0; local46 < local42.entityCount; local46++) {
 				@Pc(55) Scenery local55 = local42.sceneries[local46];
@@ -72,7 +52,7 @@ public final class Static69 {
 		}
 		local3.offset = -local34;
 		if (Static130.levelTiles[arg0][arg1][arg2] == null) {
-			Static130.levelTiles[arg0][arg1][arg2] = new SceneTile(arg0, arg1, arg2);
+			Static130.levelTiles[arg0][arg1][arg2] = new Tile(arg0, arg1, arg2);
 		}
 		Static130.levelTiles[arg0][arg1][arg2].aClass79_1 = local3;
 	}
@@ -90,7 +70,7 @@ public final class Static69 {
 					if (local28 >= 0 && local28 < Static152.anInt3594) {
 						for (@Pc(39) int local39 = local11; local39 <= local15; local39++) {
 							if (local39 >= 0 && local39 < Static99.anInt2550 && (!local1 || local28 >= local7 || local39 >= local15 || local39 < arg3 && local28 != arg2)) {
-								@Pc(71) SceneTile local71 = Static130.levelTiles[local17][local28][local39];
+								@Pc(71) Tile local71 = Static130.levelTiles[local17][local28][local39];
 								if (local71 != null) {
 									@Pc(158) int local158 = (SceneGraph.tileHeights[local17][local28][local39] + SceneGraph.tileHeights[local17][local28 + 1][local39] + SceneGraph.tileHeights[local17][local28][local39 + 1] + SceneGraph.tileHeights[local17][local28 + 1][local39 + 1]) / 4 - (SceneGraph.tileHeights[arg1][arg2][arg3] + SceneGraph.tileHeights[arg1][arg2 + 1][arg3] + SceneGraph.tileHeights[arg1][arg2][arg3 + 1] + SceneGraph.tileHeights[arg1][arg2 + 1][arg3 + 1]) / 4;
 									@Pc(161) Wall local161 = local71.wall;

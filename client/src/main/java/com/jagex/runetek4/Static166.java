@@ -31,11 +31,11 @@ public final class Static166 {
 				}
 				@Pc(42) int local42 = arg0.g1();
 				@Pc(46) int local46 = arg0.g1();
-				@Pc(53) int local53 = local42 * 64 - Static158.anInt3846;
-				@Pc(65) int local65 = Static2.anInt13 + IdkTypeList.anInt4296 - local46 * 64 - 1;
+				@Pc(53) int local53 = local42 * 64 - WorldMap.originX;
+				@Pc(65) int local65 = WorldMap.originZ + WorldMap.length - local46 * 64 - 1;
 				@Pc(84) int local84;
 				@Pc(95) int local95;
-				if (local53 >= 0 && local65 - 63 >= 0 && Static48.anInt1449 > local53 + 63 && local65 < IdkTypeList.anInt4296) {
+				if (local53 >= 0 && local65 - 63 >= 0 && Static48.anInt1449 > local53 + 63 && local65 < WorldMap.length) {
 					local84 = local53 >> 6;
 					local95 = local65 >> 6;
 					@Pc(150) int local150 = 0;

@@ -146,7 +146,7 @@ public final class Static136 {
 			Static127.aBoolean159 = arg0.g1() != 0;
 		}
 		if (local21 >= 11) {
-			Static64.aBoolean111 = arg0.g1() != 0;
+			Preferences.cursorsEnabled = arg0.g1() != 0;
 		}
 	}
 

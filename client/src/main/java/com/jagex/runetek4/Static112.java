@@ -11,10 +11,10 @@ public final class Static112 {
 
 	@OriginalMember(owner = "runetek4.client!ij", name = "a", descriptor = "(B)V")
 	public static void method2297() {
-		@Pc(3) int local3 = Static183.anInt4271;
-		@Pc(9) int local9 = Static229.anInt5138;
-		@Pc(11) int local11 = Static13.anInt436;
-		@Pc(13) int local13 = Static24.anInt761;
+		@Pc(3) int local3 = InterfaceList.anInt4271;
+		@Pc(9) int local9 = InterfaceList.anInt5138;
+		@Pc(11) int local11 = InterfaceList.anInt436;
+		@Pc(13) int local13 = InterfaceList.anInt761;
 		if (LoginManager.aClass3_Sub2_Sub1_1 == null || LoginManager.aClass3_Sub2_Sub1_9 == null) {
 			if (client.js5Archive8.isFileReady(Static55.anInt1736) && client.js5Archive8.isFileReady(Static169.anInt4073)) {
 				LoginManager.aClass3_Sub2_Sub1_1 = SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static55.anInt1736);
@@ -111,7 +111,7 @@ public final class Static112 {
 			}
 			Fonts.b12Full.renderLeft(Static269.method2228(local203), local3 + 3, local219, local418, 0);
 		}
-		Static121.method2407(Static183.anInt4271, Static229.anInt5138, Static13.anInt436, Static24.anInt761);
+		InterfaceList.forceRedrawScreen(InterfaceList.anInt4271, InterfaceList.anInt5138, InterfaceList.anInt436, InterfaceList.anInt761);
 	}
 
 }

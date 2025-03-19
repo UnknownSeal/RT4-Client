@@ -4,7 +4,7 @@ import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.scene.tile.ComplexTile;
 import com.jagex.runetek4.scene.tile.GenericTile;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -31,11 +31,11 @@ public final class Static152 {
 
 	@OriginalMember(owner = "runetek4.client!ma", name = "a", descriptor = "([IIIIII)V")
 	public static void drawMinimapTile(@OriginalArg(0) int[] destPixels, @OriginalArg(1) int offset, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		@Pc(7) SceneTile sceneTile = Static130.levelTiles[arg2][arg3][arg4];
-		if (sceneTile == null) {
+		@Pc(7) Tile tile = Static130.levelTiles[arg2][arg3][arg4];
+		if (tile == null) {
 			return;
 		}
-		@Pc(13) GenericTile genericTile = sceneTile.plainTile;
+		@Pc(13) GenericTile genericTile = tile.plainTile;
 		@Pc(23) int local23;
 		if (genericTile != null) {
 			@Pc(18) int color = genericTile.rgbColor;
@@ -50,7 +50,7 @@ public final class Static152 {
 			}
 			return;
 		}
-		@Pc(58) ComplexTile local58 = sceneTile.shapedTile;
+		@Pc(58) ComplexTile local58 = tile.shapedTile;
 		if (local58 == null) {
 			return;
 		}

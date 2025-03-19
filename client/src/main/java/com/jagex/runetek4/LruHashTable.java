@@ -72,7 +72,7 @@ public final class LruHashTable {
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "b", descriptor = "(I)Lclient!ab;")
 	public final Node method1813() {
-		return this.aClass133_5.prev();
+		return this.aClass133_5.next();
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "c", descriptor = "(I)V")

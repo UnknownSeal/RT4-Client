@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -10,9 +9,6 @@ public final class Static73 {
 
 	@OriginalMember(owner = "client!fm", name = "V", descriptor = "I")
 	public static int b12FullId;
-
-	@OriginalMember(owner = "client!fm", name = "S", descriptor = "Lclient!n;")
-	public static final NodeCache hitBars = new NodeCache(4);
 
 	@OriginalMember(owner = "client!fm", name = "W", descriptor = "Lclient!na;")
 	public static final JString aClass100_453 = JString.parse(")2");

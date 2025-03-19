@@ -9,9 +9,6 @@ public final class Static107 {
 	@OriginalMember(owner = "runetek4.client!id", name = "i", descriptor = "[[[I")
 	public static int[][][] anIntArrayArrayArray10;
 
-	@OriginalMember(owner = "runetek4.client!id", name = "k", descriptor = "I")
-	public static int anInt2878;
-
 	@OriginalMember(owner = "runetek4.client!id", name = "e", descriptor = "[I")
 	public static final int[] anIntArray259 = new int[14];
 

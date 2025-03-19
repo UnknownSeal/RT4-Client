@@ -23,6 +23,8 @@ public class GlCleaner {
     public static int contextId = 0;
     @OriginalMember(owner = "client!fa", name = "f", descriptor = "I")
     public static int oncard_geometry = 0;
+    @OriginalMember(owner = "client!fa", name = "a", descriptor = "I")
+    public static int oncard_texture = 0;
     @OriginalMember(owner = "client!fa", name = "d", descriptor = "J")
     private static long aLong71 = 0L;
 
@@ -49,7 +51,7 @@ public class GlCleaner {
                                 while (true) {
                                     local8 = (IntWrapper) aClass69_51.removeHead();
                                     if (local8 == null) {
-                                        if (oncard_geometry + oncard_2d + Static63.oncard_texture > 100663296 && MonotonicTime.currentTimeMillis() > aLong71 + 60000L) {
+                                        if (oncard_geometry + oncard_2d + oncard_texture > 100663296 && MonotonicTime.currentTimeMillis() > aLong71 + 60000L) {
                                             System.gc();
                                             aLong71 = MonotonicTime.currentTimeMillis();
                                         }
@@ -60,7 +62,7 @@ public class GlCleaner {
                                 }
                             }
                             anIntArray151[local3++] = (int) local8.nodeId;
-                            Static63.oncard_texture -= local8.value;
+                            oncard_texture -= local8.value;
                             if (local3 == 1000) {
                                 local1.glDeleteTextures(local3, anIntArray151, 0);
                                 local3 = 0;
@@ -111,7 +113,7 @@ public class GlCleaner {
         aClass69_51.clear();
         oncard_geometry = 0;
         oncard_2d = 0;
-        Static63.oncard_texture = 0;
+        oncard_texture = 0;
     }
 
     @OriginalMember(owner = "client!fa", name = "b", descriptor = "(III)V")

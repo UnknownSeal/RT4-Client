@@ -4,6 +4,7 @@ import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
+import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -49,6 +50,10 @@ public class MiniMenu {
     public static Component pressedInventoryComponent;
     @OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "I")
     public static int anInt7 = 0;
+    @OriginalMember(owner = "runetek4.client!id", name = "k", descriptor = "I")
+    public static int anInt2878;
+    @OriginalMember(owner = "runetek4.client!cl", name = "Y", descriptor = "I")
+    public static int anInt1092 = -1;
 
     @OriginalMember(owner = "runetek4.client!ud", name = "a", descriptor = "(ILclient!be;)Z")
     public static boolean method4265(@OriginalArg(1) Component arg0) {
@@ -73,7 +78,7 @@ public class MiniMenu {
             ClientScriptRunner.run(local29);
         }
         aBoolean302 = false;
-        Static35.anInt1092 = -1;
+        anInt1092 = -1;
         InterfaceList.redraw(local19);
     }
 
@@ -84,7 +89,7 @@ public class MiniMenu {
         }
         ops[menuActionRow] = arg5;
         opBases[menuActionRow] = arg2;
-        cursors[menuActionRow] = arg0 == -1 ? Static35.anInt1092 : arg0;
+        cursors[menuActionRow] = arg0 == -1 ? anInt1092 : arg0;
         actions[menuActionRow] = arg4;
         Static159.aLongArray5[menuActionRow] = arg1;
         Static196.anIntArray408[menuActionRow] = arg3;
@@ -129,7 +134,7 @@ public class MiniMenu {
                         local195 += arg2.invOffsetX[local171];
                     }
                     if (arg1 >= local195 && local202 <= arg0 && local195 + 32 > arg1 && local202 + 32 > arg0) {
-                        Static169.aClass13_18 = arg2;
+                        InterfaceList.mouseOverInventoryInterface = arg2;
                         Static18.mouseInvInterfaceIndex = local171;
                         if (arg2.invSlotObjId[local171] > 0) {
                             @Pc(267) ServerActiveProperties local267 = InterfaceList.getServerActiveProperties(arg2);
@@ -222,7 +227,7 @@ public class MiniMenu {
         }
         if (!aBoolean302) {
             for (local171 = 9; local171 >= 5; local171--) {
-                @Pc(765) JString local765 = Static205.method3677(arg2, local171);
+                @Pc(765) JString local765 = InterfaceList.getOp(arg2, local171);
                 if (local765 != null) {
                     addActionRow(Static8.method118(local171, arg2), (long) (local171 + 1), arg2.optionBase, arg2.createdComponentId, (short) 1003, local765, arg2.id);
                 }
@@ -232,7 +237,7 @@ public class MiniMenu {
                 addActionRow(-1, 0L, arg2.optionBase, arg2.createdComponentId, (short) 32, local47, arg2.id);
             }
             for (local173 = 4; local173 >= 0; local173--) {
-                @Pc(828) JString local828 = Static205.method3677(arg2, local173);
+                @Pc(828) JString local828 = InterfaceList.getOp(arg2, local173);
                 if (local828 != null) {
                     addActionRow(Static8.method118(local173, arg2), (long) (local173 + 1), arg2.optionBase, arg2.createdComponentId, (short) 9, local828, arg2.id);
                 }
@@ -243,5 +248,20 @@ public class MiniMenu {
         } else if (InterfaceList.getServerActiveProperties(arg2).method508() && (Static274.anInt4999 & 0x20) != 0) {
             addActionRow(anInt5393, 0L, JString.concatenate(new JString[] { Static78.aClass100_466, Static201.aClass100_408, arg2.optionBase}), arg2.createdComponentId, (short) 12, aClass100_545, arg2.id);
         }
+    }
+
+    @OriginalMember(owner = "runetek4.client!qe", name = "b", descriptor = "(II)V")
+    public static void remove(@OriginalArg(1) int arg0) {
+        menuActionRow--;
+        if (menuActionRow == arg0) {
+            return;
+        }
+        ArrayUtils.copy(ops, arg0 + 1, ops, arg0, menuActionRow - arg0);
+        ArrayUtils.copy(opBases, arg0 + 1, opBases, arg0, menuActionRow - arg0);
+        ArrayUtils.copy(cursors, arg0 + 1, cursors, arg0, menuActionRow - arg0);
+        ArrayUtils.copy(actions, arg0 + 1, actions, arg0, menuActionRow - arg0);
+        ArrayUtils.copy(Static159.aLongArray5, arg0 + 1, Static159.aLongArray5, arg0, menuActionRow - arg0);
+        ArrayUtils.copy(Static196.anIntArray408, arg0 + 1, Static196.anIntArray408, arg0, menuActionRow - arg0);
+        ArrayUtils.copy(Static56.anIntArray142, arg0 + 1, Static56.anIntArray142, arg0, menuActionRow - arg0);
     }
 }

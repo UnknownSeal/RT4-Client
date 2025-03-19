@@ -16,9 +16,6 @@ public final class Static156 {
 	@OriginalMember(owner = "runetek4.client!mf", name = "O", descriptor = "[[B")
 	public static byte[][] aByteArrayArray11;
 
-	@OriginalMember(owner = "runetek4.client!mf", name = "X", descriptor = "I")
-	public static int anInt3783;
-
 	@OriginalMember(owner = "runetek4.client!mf", name = "x", descriptor = "Lclient!ha;")
 	public static final GZip aClass56_1 = new GZip();
 
@@ -121,11 +118,11 @@ public final class Static156 {
 		local1.glPushAttrib(GL2.GL_FOG_BIT);
 		local1.glFogf(GL2.GL_FOG_START, 3072.0F);
 		GlRenderer.disableDepthMask();
-		for (@Pc(19) int local19 = 0; local19 < Static36.aClass3_Sub14ArrayArray1[0].length; local19++) {
-			@Pc(31) Class3_Sub14 local31 = Static36.aClass3_Sub14ArrayArray1[0][local19];
-			if (local31.anInt2485 >= 0 && Rasterizer.textureProvider.getMaterialType(local31.anInt2485) == 4) {
-				local1.glColor4fv(ColorUtils.getRgbFloat(local31.anInt2486), 0);
-				@Pc(57) float local57 = 201.5F - (local31.aBoolean140 ? 1.0F : 0.5F);
+		for (@Pc(19) int local19 = 0; local19 < Static36.aGlTileArrayArray1[0].length; local19++) {
+			@Pc(31) GlTile local31 = Static36.aGlTileArrayArray1[0][local19];
+			if (local31.texture >= 0 && Rasterizer.textureProvider.getMaterialType(local31.texture) == 4) {
+				local1.glColor4fv(ColorUtils.getRgbFloat(local31.underwaterColor), 0);
+				@Pc(57) float local57 = 201.5F - (local31.blend ? 1.0F : 0.5F);
 				local31.method1944(Static130.levelTiles, local57, true);
 			}
 		}

@@ -59,11 +59,4 @@ public final class Static87 {
 		}
 	}
 
-	@OriginalMember(owner = "client!gn", name = "b", descriptor = "(Z)V")
-	public static void method1807() {
-		for (@Pc(11) int local11 = 0; local11 < 100; local11++) {
-			InterfaceList.aBooleanArray100[local11] = true;
-		}
-	}
-
 }

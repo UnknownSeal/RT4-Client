@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static183 {
 
-	@OriginalMember(owner = "runetek4.client!ok", name = "b", descriptor = "I")
-	public static int anInt4271;
-
 	@OriginalMember(owner = "runetek4.client!ok", name = "c", descriptor = "I")
 	public static int anInt4272 = (int) (Math.random() * 33.0D) - 16;
 

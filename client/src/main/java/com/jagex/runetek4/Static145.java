@@ -29,10 +29,10 @@ public final class Static145 {
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "b", descriptor = "(I)V")
 	public static void method2744() {
-		@Pc(3) int local3 = Static229.anInt5138;
-		@Pc(9) int local9 = Static24.anInt761;
-		@Pc(11) int local11 = Static183.anInt4271;
-		@Pc(15) int local15 = Static13.anInt436;
+		@Pc(3) int local3 = InterfaceList.anInt5138;
+		@Pc(9) int local9 = InterfaceList.anInt761;
+		@Pc(11) int local11 = InterfaceList.anInt4271;
+		@Pc(15) int local15 = InterfaceList.anInt436;
 		if (GlRenderer.enabled) {
 			GlRaster.fillRect(local11, local3, local9, local15, 6116423);
 			GlRaster.fillRect(local11 + 1, local3 + 1, local9 - 2, 16, 0);
@@ -53,7 +53,7 @@ public final class Static145 {
 			}
 			Fonts.b12Full.renderLeft(Static269.method2228(local107), local11 + 3, local127, local129, 0);
 		}
-		Static121.method2407(Static183.anInt4271, Static229.anInt5138, Static13.anInt436, Static24.anInt761);
+		InterfaceList.forceRedrawScreen(InterfaceList.anInt4271, InterfaceList.anInt5138, InterfaceList.anInt436, InterfaceList.anInt761);
 	}
 
 	@OriginalMember(owner = "runetek4.client!lf", name = "c", descriptor = "(I)I")

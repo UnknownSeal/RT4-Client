@@ -283,7 +283,7 @@ public final class DisplayMode {
 					Pix3D.setBrightness(0.6F);
 				}
 			}
-			Static95.method1939();
+			GlTile.method1939();
 			LoginManager.method4637();
 		}
 		Static87.aBoolean130 = !Static138.allLevelsvisible();

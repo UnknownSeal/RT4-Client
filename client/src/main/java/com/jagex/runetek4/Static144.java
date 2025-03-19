@@ -22,7 +22,7 @@ public final class Static144 {
 		if (Static48.anInt1449 > arg3) {
 			local9++;
 		}
-		if (IdkTypeList.anInt4296 > arg1) {
+		if (WorldMap.length > arg1) {
 			local14++;
 		}
 		@Pc(32) int local32;

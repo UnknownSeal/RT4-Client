@@ -14,9 +14,6 @@ public final class Static124 {
 	@OriginalMember(owner = "runetek4.client!jk", name = "J", descriptor = "I")
 	public static int anInt3083;
 
-	@OriginalMember(owner = "runetek4.client!jk", name = "p", descriptor = "I")
-	public static int anInt3075 = -1;
-
 	@OriginalMember(owner = "runetek4.client!jk", name = "y", descriptor = "Z")
 	public static boolean aBoolean156 = false;
 

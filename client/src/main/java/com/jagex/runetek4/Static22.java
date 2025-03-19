@@ -5,9 +5,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static22 {
 
-	@OriginalMember(owner = "client!bl", name = "Q", descriptor = "I")
-	public static int activeInterfaceType = 0;
-
 	@OriginalMember(owner = "client!bl", name = "T", descriptor = "I")
 	public static int anInt726 = 0;
 

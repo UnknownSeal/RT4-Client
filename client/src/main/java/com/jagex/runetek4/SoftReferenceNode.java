@@ -18,13 +18,13 @@ public final class SoftReferenceNode extends ReferenceNode {
 
 	@OriginalMember(owner = "runetek4.client!qd", name = "a", descriptor = "(Z)Ljava/lang/Object;")
 	@Override
-	public final Object method3618() {
+	public final Object get() {
 		return this.aSoftReference1.get();
 	}
 
 	@OriginalMember(owner = "runetek4.client!qd", name = "e", descriptor = "(I)Z")
 	@Override
-	public final boolean method3619() {
+	public final boolean isSoft() {
 		return true;
 	}
 }

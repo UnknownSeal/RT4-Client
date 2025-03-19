@@ -6,7 +6,7 @@ import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.tile.GroundDecor;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -143,12 +143,12 @@ public class Scene {
 
     @OriginalMember(owner = "runetek4.client!dk", name = "a", descriptor = "(III)Lclient!ec;")
     public static Scenery getObject(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        @Pc(7) SceneTile sceneTile = Static130.levelTiles[arg0][arg1][arg2];
-        if (sceneTile == null) {
+        @Pc(7) Tile tile = Static130.levelTiles[arg0][arg1][arg2];
+        if (tile == null) {
             return null;
         }
-        for (@Pc(13) int i = 0; i < sceneTile.entityCount; i++) {
-            @Pc(22) Scenery scenery = sceneTile.sceneries[i];
+        for (@Pc(13) int i = 0; i < tile.entityCount; i++) {
+            @Pc(22) Scenery scenery = tile.sceneries[i];
             if ((scenery.hash >> 29 & 0x3L) == 2L && scenery.anInt1701 == arg1 && scenery.anInt1696 == arg2) {
                 Static266.method4193(scenery);
                 return scenery;
@@ -170,7 +170,7 @@ public class Scene {
         groundDecor.key = arg5;
         groundDecor.aBoolean49 = arg6;
         if (Static130.levelTiles[arg0][arg1][arg2] == null) {
-            Static130.levelTiles[arg0][arg1][arg2] = new SceneTile(arg0, arg1, arg2);
+            Static130.levelTiles[arg0][arg1][arg2] = new Tile(arg0, arg1, arg2);
         }
         Static130.levelTiles[arg0][arg1][arg2].groundDecor = groundDecor;
     }

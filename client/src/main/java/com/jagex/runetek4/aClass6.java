@@ -13,12 +13,9 @@ public final class aClass6 {
 	@OriginalMember(owner = "client!ah", name = "p", descriptor = "Lclient!ih;")
 	public static final LinkedList drawTileQueue = new LinkedList();
 
-	@OriginalMember(owner = "client!ah", name = "s", descriptor = "I")
-	public static int mouseClickX = 0;
-
 	@OriginalMember(owner = "client!ah", name = "b", descriptor = "(I)V")
 	public static void method843() {
-		if (Static118.component != null || ClientScriptRunner.aClass13_14 != null) {
+		if (InterfaceList.clickedInventoryComponent != null || ClientScriptRunner.aClass13_14 != null) {
 			return;
 		}
 		@Pc(20) int local20 = Mouse.clickButton;
@@ -34,15 +31,15 @@ public final class aClass6 {
 					@Pc(106) ServerActiveProperties local106 = InterfaceList.getServerActiveProperties(local103);
 					if (local106.method511() || local106.method504()) {
 						InterfaceList.lastItemDragTime = 0;
-						Static123.lastItemDragged = false;
-						if (Static118.component != null) {
-							InterfaceList.redraw(Static118.component);
+						InterfaceList.draggingClickedInventoryObject = false;
+						if (InterfaceList.clickedInventoryComponent != null) {
+							InterfaceList.redraw(InterfaceList.clickedInventoryComponent);
 						}
-						Static118.component = InterfaceList.getComponent(local99);
-						Static149.anInt3554 = mouseClickX;
-						InterfaceList.clickedInventoryComponentY = Static60.mouseClickY;
-						Static4.selectedInventorySlot = local93;
-						InterfaceList.redraw(Static118.component);
+						InterfaceList.clickedInventoryComponent = InterfaceList.getComponent(local99);
+						InterfaceList.clickedInventoryComponentX = Mouse.mouseClickX;
+						InterfaceList.clickedInventoryComponentY = Mouse.mouseClickY;
+						InterfaceList.selectedInventorySlot = local93;
+						InterfaceList.redraw(InterfaceList.clickedInventoryComponent);
 						return;
 					}
 				}
@@ -62,19 +59,19 @@ public final class aClass6 {
 		if (local20 != 1) {
 			local93 = Mouse.lastMouseY;
 			local204 = Mouse.lastMouseX;
-			if (local204 < Static183.anInt4271 - 10 || local204 > Static24.anInt761 + Static183.anInt4271 + 10 || Static229.anInt5138 - 10 > local93 || local93 > Static13.anInt436 + Static229.anInt5138 + 10) {
+			if (local204 < InterfaceList.anInt4271 - 10 || local204 > InterfaceList.anInt761 + InterfaceList.anInt4271 + 10 || InterfaceList.anInt5138 - 10 > local93 || local93 > InterfaceList.anInt436 + InterfaceList.anInt5138 + 10) {
 				ClientScriptRunner.aBoolean108 = false;
-				InterfaceList.redrawScreen(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
+				InterfaceList.redrawScreen(InterfaceList.anInt4271, InterfaceList.anInt761, InterfaceList.anInt5138, InterfaceList.anInt436);
 			}
 		}
 		if (local20 != 1) {
 			return;
 		}
-		local204 = Static183.anInt4271;
-		local93 = Static229.anInt5138;
-		local99 = Static24.anInt761;
-		@Pc(265) int local265 = mouseClickX;
-		@Pc(267) int local267 = Static60.mouseClickY;
+		local204 = InterfaceList.anInt4271;
+		local93 = InterfaceList.anInt5138;
+		local99 = InterfaceList.anInt761;
+		@Pc(265) int local265 = Mouse.mouseClickX;
+		@Pc(267) int local267 = Mouse.mouseClickY;
 		@Pc(269) int local269 = -1;
 		for (@Pc(271) int local271 = 0; local271 < MiniMenu.menuActionRow; local271++) {
 			@Pc(289) int local289;
@@ -91,7 +88,7 @@ public final class aClass6 {
 			Static103.method2232(local269);
 		}
 		ClientScriptRunner.aBoolean108 = false;
-		InterfaceList.redrawScreen(Static183.anInt4271, Static24.anInt761, Static229.anInt5138, Static13.anInt436);
+		InterfaceList.redrawScreen(InterfaceList.anInt4271, InterfaceList.anInt761, InterfaceList.anInt5138, InterfaceList.anInt436);
 	}
 
 }

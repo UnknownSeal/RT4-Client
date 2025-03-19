@@ -19,7 +19,7 @@ public final class Static85 {
 
 	@OriginalMember(owner = "client!gl", name = "a", descriptor = "(II)V")
 	public static void handleVarps(@OriginalArg(1) int arg0) {
-		Static103.method2245();
+		InterfaceList.redrawActiveInterfaces();
 		AreaSoundManager.setObjectSounds();
 		@Pc(17) int varpType = VarPlayerDefinition.getDefinition(arg0).type;
 		if (varpType == 0) {

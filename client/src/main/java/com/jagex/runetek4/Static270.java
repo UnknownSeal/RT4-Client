@@ -12,9 +12,6 @@ public final class Static270 {
 	@OriginalMember(owner = "runetek4.client!wb", name = "l", descriptor = "Lclient!fd;")
 	public static WorldMapFont aClass41_9;
 
-	@OriginalMember(owner = "runetek4.client!wb", name = "c", descriptor = "I")
-	public static int anInt5794 = -1;
-
 	@OriginalMember(owner = "runetek4.client!wb", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_1090 = JString.parse("l");
 

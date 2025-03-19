@@ -50,23 +50,23 @@ public final class Static226 {
 		}
 		if (Static162.anInt3953 == 1) {
 			if (ClientScriptRunner.anInt3751 == Static277.anInt5850 && Static280.anInt5895 == ClientScriptRunner.anInt1892) {
-				Static13.anInt436 = MiniMenu.menuActionRow * 15 + (InterfaceList.aBoolean298 ? 26 : 22);
+				InterfaceList.anInt436 = MiniMenu.menuActionRow * 15 + (InterfaceList.aBoolean298 ? 26 : 22);
 				Static162.anInt3953 = 0;
-				Static229.anInt5138 = local43;
-				Static183.anInt4271 = local27;
+				InterfaceList.anInt5138 = local43;
+				InterfaceList.anInt4271 = local27;
 				ClientScriptRunner.aBoolean108 = true;
-				Static24.anInt761 = local16;
+				InterfaceList.anInt761 = local16;
 			}
-		} else if (ClientScriptRunner.anInt3751 == aClass6.mouseClickX && ClientScriptRunner.anInt1892 == Static60.mouseClickY) {
-			Static183.anInt4271 = local27;
+		} else if (ClientScriptRunner.anInt3751 == Mouse.mouseClickX && ClientScriptRunner.anInt1892 == Mouse.mouseClickY) {
+			InterfaceList.anInt4271 = local27;
 			Static162.anInt3953 = 0;
-			Static24.anInt761 = local16;
-			Static229.anInt5138 = local43;
-			Static13.anInt436 = (InterfaceList.aBoolean298 ? 26 : 22) + MiniMenu.menuActionRow * 15;
+			InterfaceList.anInt761 = local16;
+			InterfaceList.anInt5138 = local43;
+			InterfaceList.anInt436 = (InterfaceList.aBoolean298 ? 26 : 22) + MiniMenu.menuActionRow * 15;
 			ClientScriptRunner.aBoolean108 = true;
 		} else {
-			Static280.anInt5895 = Static60.mouseClickY;
-			Static277.anInt5850 = aClass6.mouseClickX;
+			Static280.anInt5895 = Mouse.mouseClickY;
+			Static277.anInt5850 = Mouse.mouseClickX;
 			Static162.anInt3953 = 1;
 		}
 	}

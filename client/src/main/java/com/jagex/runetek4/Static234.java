@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.dash3d.entity.Npc;
@@ -123,13 +122,6 @@ public final class Static234 {
 				local14.anInt3382 = Protocol.inboundBuffer.g2sub();
 				local14.anInt3363 = Protocol.inboundBuffer.g2();
 			}
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "(IZIII)V")
-	public static void method4017(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		if (Component.load(arg2)) {
-			Static266.method4190(-1, arg1, arg3, arg0, Component.cachedComponents[arg2]);
 		}
 	}
 

@@ -13,9 +13,6 @@ public final class Static35 {
 	@OriginalMember(owner = "runetek4.client!cl", name = "X", descriptor = "I")
 	public static int anInt1091;
 
-	@OriginalMember(owner = "runetek4.client!cl", name = "Y", descriptor = "I")
-	public static int anInt1092 = -1;
-
 	@OriginalMember(owner = "runetek4.client!cl", name = "a", descriptor = "(IIIBII)V")
 	public static void method898(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		@Pc(13) int local13 = arg2 * arg2;

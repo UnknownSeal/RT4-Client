@@ -14,8 +14,8 @@ public final class Static38 {
 	public static void method959(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
 		for (@Pc(11) int local11 = 0; local11 < Static203.aMapElementTypeList_1.anInt5074; local11++) {
 			if (Static203.aMapElementTypeList_1.method3890(local11)) {
-				@Pc(32) int local32 = Static203.aMapElementTypeList_1.aShortArray73[local11] - Static158.anInt3846;
-				@Pc(43) int local43 = Static2.anInt13 + IdkTypeList.anInt4296 - Static203.aMapElementTypeList_1.aShortArray72[local11] - 1;
+				@Pc(32) int local32 = Static203.aMapElementTypeList_1.aShortArray73[local11] - WorldMap.originX;
+				@Pc(43) int local43 = WorldMap.originZ + WorldMap.length - Static203.aMapElementTypeList_1.aShortArray72[local11] - 1;
 				@Pc(59) int local59 = arg0 + (arg3 - arg0) * (local32 - arg2) / (arg6 - arg2);
 				@Pc(64) int local64 = Static203.aMapElementTypeList_1.method3894(local11);
 				@Pc(80) int local80 = (arg7 - arg1) * (local43 - arg5) / (arg4 - arg5) + arg1;
@@ -138,7 +138,7 @@ public final class Static38 {
 	@OriginalMember(owner = "client!cn", name = "a", descriptor = "(ZI)I")
 	public static int poll(@OriginalArg(0) boolean arg0) {
 		@Pc(4) long local4 = MonotonicTime.currentTimeMillis();
-		for (@Pc(28) LongNode local28 = arg0 ? (LongNode) Static199.aClass133_20.head() : (LongNode) Static199.aClass133_20.prev(); local28 != null; local28 = (LongNode) Static199.aClass133_20.prev()) {
+		for (@Pc(28) LongNode local28 = arg0 ? (LongNode) Static199.aClass133_20.head() : (LongNode) Static199.aClass133_20.next(); local28 != null; local28 = (LongNode) Static199.aClass133_20.next()) {
 			if ((local28.aLong55 & 0x3FFFFFFFFFFFFFFFL) < local4) {
 				if ((local28.aLong55 & 0x4000000000000000L) != 0L) {
 					@Pc(58) int local58 = (int) local28.nodeId;
@@ -154,23 +154,23 @@ public final class Static38 {
 
 	@OriginalMember(owner = "client!cn", name = "e", descriptor = "(B)V")
 	public static void method965() {
-		if (Static13.anInt435 < 0) {
+		if (WorldMap.anInt435 < 0) {
 			Static217.anInt4901 = -1;
-			Static13.anInt435 = 0;
+			WorldMap.anInt435 = 0;
 			Static142.anInt3482 = -1;
 		}
-		if (Static13.anInt435 > Static48.anInt1449) {
+		if (WorldMap.anInt435 > Static48.anInt1449) {
 			Static217.anInt4901 = -1;
-			Static13.anInt435 = Static48.anInt1449;
+			WorldMap.anInt435 = Static48.anInt1449;
 			Static142.anInt3482 = -1;
 		}
-		if (Static28.anInt919 < 0) {
+		if (WorldMap.anInt919 < 0) {
 			Static142.anInt3482 = -1;
 			Static217.anInt4901 = -1;
-			Static28.anInt919 = 0;
+			WorldMap.anInt919 = 0;
 		}
-		if (IdkTypeList.anInt4296 < Static28.anInt919) {
-			Static28.anInt919 = IdkTypeList.anInt4296;
+		if (WorldMap.length < WorldMap.anInt919) {
+			WorldMap.anInt919 = WorldMap.length;
 			Static217.anInt4901 = -1;
 			Static142.anInt3482 = -1;
 		}

@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.scene.tile.Wall;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -45,7 +45,7 @@ public final class Static262 {
 		wall.typeB = arg7;
 		for (@Pc(42) int l = level; l >= 0; l--) {
 			if (Static130.levelTiles[l][arg1][z] == null) {
-				Static130.levelTiles[l][arg1][z] = new SceneTile(l, arg1, z);
+				Static130.levelTiles[l][arg1][z] = new Tile(l, arg1, z);
 			}
 		}
 		Static130.levelTiles[level][arg1][z].wall = wall;

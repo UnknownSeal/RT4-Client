@@ -92,11 +92,11 @@ public final class Static278 {
 		if (arg0) {
 			Static130.levelTiles = Static276.aClass3_Sub5ArrayArrayArray3;
 			SceneGraph.tileHeights = Static80.anIntArrayArrayArray19;
-			Static182.aClass3_Sub14ArrayArray2 = Static195.aClass3_Sub14ArrayArray3;
+			Static182.aGlTileArrayArray2 = Static195.aClass3_Sub14ArrayArray3;
 		} else {
 			Static130.levelTiles = Static197.aClass3_Sub5ArrayArrayArray2;
 			SceneGraph.tileHeights = Static107.anIntArrayArrayArray10;
-			Static182.aClass3_Sub14ArrayArray2 = Static36.aClass3_Sub14ArrayArray1;
+			Static182.aGlTileArrayArray2 = Static36.aGlTileArrayArray1;
 		}
 		Static126.anInt3114 = Static130.levelTiles.length;
 	}

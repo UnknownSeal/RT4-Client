@@ -16,9 +16,6 @@ public final class Static89 {
 	@OriginalMember(owner = "runetek4.client!ha", name = "o", descriptor = "I")
 	public static int anInt2387;
 
-	@OriginalMember(owner = "runetek4.client!ha", name = "m", descriptor = "I")
-	public static int anInt2385 = 0;
-
 	@OriginalMember(owner = "runetek4.client!ha", name = "p", descriptor = "Lclient!gn;")
 	public static final LruHashTable aClass54_8 = new LruHashTable(64);
 
@@ -68,7 +65,7 @@ public final class Static89 {
 
 	@OriginalMember(owner = "client!ha", name = "a", descriptor = "(ILclient!be;)Lclient!be;")
 	public static Component method1836(@OriginalArg(1) Component arg0) {
-		@Pc(12) Component local12 = Static36.method938(arg0);
+		@Pc(12) Component local12 = InterfaceList.method938(arg0);
 		if (local12 == null) {
 			local12 = arg0.aClass13_5;
 		}

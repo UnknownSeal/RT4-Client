@@ -7,7 +7,7 @@ import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.tile.GroundDecor;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.scene.tile.Wall;
 import com.jagex.runetek4.scene.tile.WallDecor;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -35,21 +35,21 @@ public final class Static247 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(Lclient!bj;Z)V")
-	public static void method4245(@OriginalArg(0) SceneTile arg0, @OriginalArg(1) boolean arg1) {
+	public static void method4245(@OriginalArg(0) Tile arg0, @OriginalArg(1) boolean arg1) {
 		aClass6.drawTileQueue.addTail(arg0);
 		while (true) {
-			@Pc(8) SceneTile tile;
+			@Pc(8) Tile tile;
 			@Pc(18) int tileX;
 			@Pc(21) int tileZ;
 			@Pc(24) int local24;
 			@Pc(27) int occludeLevel;
-			@Pc(31) SceneTile[][] tiles;
+			@Pc(31) Tile[][] tiles;
 			@Pc(65) int frontWallTypes;
 			@Pc(115) int farthestIndex;
 			@Pc(894) int x;
 			@Pc(899) int y;
 			@Pc(904) int z;
-			@Pc(153) SceneTile local153;
+			@Pc(153) Tile local153;
 			@Pc(1332) int local1332;
 			do {
 				do {
@@ -65,10 +65,10 @@ public final class Static247 {
 										@Pc(363) Wall var22;
 										@Pc(469) boolean tileDrawn;
 										@Pc(425) Scenery var25;
-										@Pc(1179) SceneTile adjacent;
+										@Pc(1179) Tile adjacent;
 										while (true) {
 											do {
-												tile = (SceneTile) aClass6.drawTileQueue.removeHead();
+												tile = (Tile) aClass6.drawTileQueue.removeHead();
 												if (tile == null) {
 													return;
 												}
@@ -525,7 +525,7 @@ public final class Static247 {
 												}
 												for (x = local1697.anInt1701; x <= local1697.anInt1713; x++) {
 													for (y = local1697.anInt1696; y <= local1697.anInt1698; y++) {
-														@Pc(1863) SceneTile local1863 = tiles[x][y];
+														@Pc(1863) Tile local1863 = tiles[x][y];
 														if (local1863.checkLocSpans != 0) {
 															aClass6.drawTileQueue.addTail(local1863);
 														} else if ((x != tileX || y != tileZ) && local1863.aBoolean46) {
@@ -633,7 +633,7 @@ public final class Static247 {
 					}
 				}
 			}
-			@Pc(2388) SceneTile local2388;
+			@Pc(2388) Tile local2388;
 			if (local24 < Static126.anInt3114 - 1) {
 				local2388 = Static130.levelTiles[local24 + 1][tileX][tileZ];
 				if (local2388 != null && local2388.aBoolean46) {
@@ -682,7 +682,7 @@ public final class Static247 {
 		Static274.anInt4999 = arg2;
 		MiniMenu.aBoolean302 = true;
 		MiniMenu.anInt5393 = arg4;
-		Static35.anInt1092 = arg5;
+		MiniMenu.anInt1092 = arg5;
 		InterfaceList.redraw(local8);
 	}
 

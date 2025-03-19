@@ -447,7 +447,7 @@ public final class LocType {
 		if (this.models != null) {
 			for (@Pc(18) int local18 = 0; local18 < this.models.length; local18++) {
 				if (arg0 == this.models[local18]) {
-					return Static121.aClass153_45.requestDownload(this.shapes[local18] & 0xFFFF, 0);
+					return Static121.aClass153_45.isFileReady(this.shapes[local18] & 0xFFFF, 0);
 				}
 			}
 			return true;
@@ -456,7 +456,7 @@ public final class LocType {
 		} else if (arg0 == 10) {
 			@Pc(71) boolean local71 = true;
 			for (@Pc(73) int local73 = 0; local73 < this.shapes.length; local73++) {
-				local71 &= Static121.aClass153_45.requestDownload(this.shapes[local73] & 0xFFFF, 0);
+				local71 &= Static121.aClass153_45.isFileReady(this.shapes[local73] & 0xFFFF, 0);
 			}
 			return local71;
 		} else {
@@ -623,7 +623,7 @@ public final class LocType {
 		}
 		@Pc(13) boolean local13 = true;
 		for (@Pc(15) int local15 = 0; local15 < this.shapes.length; local15++) {
-			local13 &= Static121.aClass153_45.requestDownload(this.shapes[local15] & 0xFFFF, 0);
+			local13 &= Static121.aClass153_45.isFileReady(this.shapes[local15] & 0xFFFF, 0);
 		}
 		return local13;
 	}

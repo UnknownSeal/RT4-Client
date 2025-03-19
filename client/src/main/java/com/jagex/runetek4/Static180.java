@@ -38,11 +38,6 @@ public final class Static180 {
 		Static172.gameDefinitionsJs5 = arg0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(I)V")
-	public static void removeSoft() {
-		Static110.aClass99_15.removeSoft();
-	}
-
 	@OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(III)I")
 	public static int method3330(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
 		if (arg0 > 22050) {

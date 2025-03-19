@@ -1,7 +1,6 @@
 package com.jagex.runetek4.cache.media.component;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.def.ObjType;
@@ -28,9 +27,6 @@ public final class Component {
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "z", descriptor = "Lclient!n;")
 	public static final NodeCache interfaceModelCache = new NodeCache(50);
-
-	@OriginalMember(owner = "runetek4.client!th", name = "j", descriptor = "[[Lclient!be;")
-	public static Component[][] cachedComponents;
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "C", descriptor = "Z")
 	public static boolean aBoolean72 = false;
@@ -523,40 +519,6 @@ public final class Component {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!tm", name = "b", descriptor = "(II)Z")
-	public static boolean load(@OriginalArg(0) int componentId) {
-		if (Static223.loadedComponents[componentId]) {
-			return true;
-		} else if (CacheArchive.gameInterfaceJs5.method4479(componentId)) {
-			@Pc(25) int gameInterfaceCount = CacheArchive.gameInterfaceJs5.getGroupCapacity(componentId);
-			if (gameInterfaceCount == 0) {
-				Static223.loadedComponents[componentId] = true;
-				return true;
-			}
-			if (cachedComponents[componentId] == null) {
-				cachedComponents[componentId] = new Component[gameInterfaceCount];
-			}
-			for (@Pc(46) int i = 0; i < gameInterfaceCount; i++) {
-				if (cachedComponents[componentId][i] == null) {
-					@Pc(62) byte[] interfaceFileData = CacheArchive.gameInterfaceJs5.getfile(componentId, i);
-					if (interfaceFileData != null) {
-						@Pc(74) Component local74 = cachedComponents[componentId][i] = new Component();
-						local74.id = i + (componentId << 16);
-						if (interfaceFileData[0] == -1) {
-							local74.decodeIf3(new Packet(interfaceFileData));
-						} else {
-							local74.decodeIf1(new Packet(interfaceFileData));
-						}
-					}
-				}
-			}
-			Static223.loadedComponents[componentId] = true;
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(II)V")
 	public static void clean() {
 		sprites.clean(50);
@@ -949,7 +911,7 @@ public final class Component {
 			if (local10 == 1) {
 				local61 = (Model) interfaceModelCache.get((local10 << 16) + local13);
 				if (local61 == null) {
-					@Pc(69) RawModel local69 = RawModel.get(Static203.aClass153_85, local13);
+					@Pc(69) RawModel local69 = RawModel.get(InterfaceList.aClass153_85, local13);
 					if (local69 == null) {
 						aBoolean72 = true;
 						return null;
@@ -1265,7 +1227,7 @@ public final class Component {
 		if (font != null) {
 			return font;
 		}
-		font = Font.getFont(this.fontId, InterfaceList.gameImageJs5, CacheArchive.aClass153_64);
+		font = Font.getFont(this.fontId, InterfaceList.gameImageJs5, InterfaceList.aClass153_64);
 		if (font == null) {
 			aBoolean72 = true;
 		} else {

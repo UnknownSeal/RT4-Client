@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static67 {
@@ -11,9 +10,6 @@ public final class Static67 {
 	@OriginalMember(owner = "client!fe", name = "I", descriptor = "Lclient!na;")
 	public static final JString aClass100_639 = JString.parse(" ");
 
-	@OriginalMember(owner = "client!fe", name = "jb", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_20 = new NodeCache(64);
-
 	@OriginalMember(owner = "client!fe", name = "nc", descriptor = "[Lclient!hj;")
-	public static final InvokedScript[] invokedScripts = new InvokedScript[50];
+	public static final GoSubFrame[] GO_SUB_FRAMES = new GoSubFrame[50];
 }

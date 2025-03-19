@@ -10,14 +10,11 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static1 {
 
-	@OriginalMember(owner = "runetek4.client!a", name = "h", descriptor = "I")
-	public static int anInt5;
-
 	@OriginalMember(owner = "runetek4.client!a", name = "j", descriptor = "Lclient!na;")
 	public static final JString aClass100_2 = JString.parse("<col=ffffff> )4 ");
 
 	@OriginalMember(owner = "runetek4.client!a", name = "a", descriptor = "([[F[[F[[II[[F[[B[[II[[B[[B[[B[[[B)[Lclient!hg;")
-	public static Class3_Sub14[] method2(@OriginalArg(0) float[][] arg0, @OriginalArg(1) float[][] arg1, @OriginalArg(2) int[][] arg2, @OriginalArg(3) int arg3, @OriginalArg(4) float[][] arg4, @OriginalArg(5) byte[][] arg5, @OriginalArg(6) int[][] arg6, @OriginalArg(8) byte[][] arg7, @OriginalArg(9) byte[][] arg8, @OriginalArg(10) byte[][] arg9, @OriginalArg(11) byte[][][] arg10) {
+	public static GlTile[] method2(@OriginalArg(0) float[][] arg0, @OriginalArg(1) float[][] arg1, @OriginalArg(2) int[][] arg2, @OriginalArg(3) int arg3, @OriginalArg(4) float[][] arg4, @OriginalArg(5) byte[][] arg5, @OriginalArg(6) int[][] arg6, @OriginalArg(8) byte[][] arg7, @OriginalArg(9) byte[][] arg8, @OriginalArg(10) byte[][] arg9, @OriginalArg(11) byte[][][] arg10) {
 		@Pc(10) HashTable local10 = new HashTable(128);
 		@Pc(12) int local12;
 		@Pc(17) int local17;
@@ -52,7 +49,7 @@ public final class Static1 {
 					if (local50.baseColor == -1) {
 						continue;
 					}
-					@Pc(61) Class3_Sub14 local61 = Static243.method4212(local10, local50);
+					@Pc(61) GlTile local61 = Static243.method4212(local10, local50);
 					@Pc(67) byte local67 = arg7[local12][local17];
 					@Pc(71) int[] local71 = Static228.anIntArrayArray35[local67];
 					local61.anInt2482 += local71.length / 2;
@@ -227,7 +224,7 @@ public final class Static1 {
 						@Pc(1077) boolean[] local1077 = Static277.aBooleanArrayArray4[local143 == local777 ? local129 : 0];
 						local1086 = Static277.aBooleanArrayArray4[local190 == local777 ? local168 : 0];
 						@Pc(1092) FloorOverlayType local1092 = FloorOverlayTypeList.method4395(local777 - 1);
-						@Pc(1097) Class3_Sub14 local1097 = Static243.method4212(local10, local1092);
+						@Pc(1097) GlTile local1097 = Static243.method4212(local10, local1092);
 						local1097.anInt2482 += 5;
 						local1097.anInt2482 += local1077.length - 2;
 						local1097.anInt2482 += local1055.length - 2;
@@ -238,8 +235,8 @@ public final class Static1 {
 				}
 			}
 		}
-		@Pc(1161) Class3_Sub14 local1161;
-		for (local1161 = (Class3_Sub14) local10.head(); local1161 != null; local1161 = (Class3_Sub14) local10.prev()) {
+		@Pc(1161) GlTile local1161;
+		for (local1161 = (GlTile) local10.head(); local1161 != null; local1161 = (GlTile) local10.next()) {
 			local1161.method1940();
 		}
 		for (local12 = 1; local12 <= 102; local12++) {
@@ -258,7 +255,7 @@ public final class Static1 {
 					if (local1250.baseColor == -1) {
 						continue;
 					}
-					@Pc(1261) Class3_Sub14 local1261 = Static243.method4212(local10, local1250);
+					@Pc(1261) GlTile local1261 = Static243.method4212(local10, local1250);
 					@Pc(1267) byte local1267 = arg7[local12][local17];
 					@Pc(1273) byte local1273 = arg5[local12][local17];
 					local168 = Static19.method588(local1250.material, local1250.baseColor, arg6[local12][local17]);
@@ -458,7 +455,7 @@ public final class Static1 {
 						local1086 = Static277.aBooleanArrayArray4[local2003 == local190 ? local168 : 0];
 						@Pc(2318) boolean[] local2318 = Static277.aBooleanArrayArray4[local2003 == local180 ? local143 : 0];
 						@Pc(2324) FloorOverlayType local2324 = FloorOverlayTypeList.method4395(local2003 - 1);
-						@Pc(2329) Class3_Sub14 local2329 = Static243.method4212(local10, local2324);
+						@Pc(2329) GlTile local2329 = Static243.method4212(local10, local2324);
 						@Pc(2345) int local2345 = Static19.method588(local2324.material, local2324.baseColor, arg6[local12][local17]) << 8 | 0xFF;
 						@Pc(2365) int local2365 = Static19.method588(local2324.material, local2324.baseColor, arg6[local12 + 1][local17]) << 8 | 0xFF;
 						@Pc(2385) int local2385 = Static19.method588(local2324.material, local2324.baseColor, arg6[local12 + 1][local17 + 1]) << 8 | 0xFF;
@@ -504,7 +501,7 @@ public final class Static1 {
 				}
 			}
 		}
-		for (local1161 = (Class3_Sub14) local10.head(); local1161 != null; local1161 = (Class3_Sub14) local10.prev()) {
+		for (local1161 = (GlTile) local10.head(); local1161 != null; local1161 = (GlTile) local10.next()) {
 			if (local1161.anInt2483 == 0) {
 				local1161.unlink();
 			} else {
@@ -512,7 +509,7 @@ public final class Static1 {
 			}
 		}
 		local12 = local10.length();
-		@Pc(2823) Class3_Sub14[] local2823 = new Class3_Sub14[local12];
+		@Pc(2823) GlTile[] local2823 = new GlTile[local12];
 		@Pc(2826) long[] local2826 = new long[local12];
 		local10.addNodes(local2823);
 		for (local38 = 0; local38 < local12; local38++) {

@@ -547,9 +547,9 @@ public class Protocol {
                             Static5.method34();
                         }
                         InterfaceList.topLevelInterace = ii;
-                        ObjType.method1753(ii);
+                        InterfaceList.method1753(ii);
                         InterfaceList.method3712(false);
-                        Static74.method1626(InterfaceList.topLevelInterace);
+                        InterfaceList.method1626(InterfaceList.topLevelInterace);
                         for (slot = 0; slot < 100; slot++) {
                             InterfaceList.aBooleanArray100[slot] = true;
                         }
@@ -578,7 +578,7 @@ public class Protocol {
                     return true;
                 } else if (opcode == 89) {
                     VarpDomain.resetVarBits();
-                    Static103.method2245();
+                    InterfaceList.redrawActiveInterfaces();
                     Static70.updatedVarpsWriterIndex += 32;
                     opcode = -1;
                     return true;
@@ -621,7 +621,7 @@ public class Protocol {
                         if (setVerifyID(world)) {
                             for (i = count; i <= slot; i++) {
                                 local904 = (long) i + ((long) xp << 32);
-                                local1804 = (ServerActiveProperties) Static210.aClass133_21.getNode(local904);
+                                local1804 = (ServerActiveProperties) InterfaceList.properties.getNode(local904);
                                 if (local1804 != null) {
                                     local1814 = new ServerActiveProperties(local1804.anInt546, ii);
                                     local1804.unlink();
@@ -630,7 +630,7 @@ public class Protocol {
                                 } else {
                                     local1814 = new ServerActiveProperties(0, ii);
                                 }
-                                Static210.aClass133_21.put(local1814, local904);
+                                InterfaceList.properties.put(local1814, local904);
                             }
                         }
                         opcode = -1;
@@ -742,7 +742,7 @@ public class Protocol {
                         return true;
                     } else if (opcode == 38) {
                         // UPDATE_STAT
-                        Static103.method2245();
+                        InterfaceList.redrawActiveInterfaces();
                         ii = inboundBuffer.g1add();
                         xp = inboundBuffer.g4rme();
                         world = inboundBuffer.g1();
@@ -754,7 +754,7 @@ public class Protocol {
                                 PlayerSkillXpTable.skillBaseLevel[world] = slot + 2;
                             }
                         }
-                        Static249.anIntArray478[Static89.anInt2385++ & 0x1F] = world;
+                        PlayerSkillXpTable.updatedStats[PlayerSkillXpTable.updatedStatsWriterIndex++ & 0x1F] = world;
                         opcode = -1;
                         return true;
                     } else if (opcode == 104 || opcode == 121 || opcode == 97 || opcode == 14 || opcode == 202 || opcode == 135 || opcode == 17 || opcode == 16 || opcode == 240 || opcode == 33 || opcode == 20 || opcode == 195 || opcode == 179) {
@@ -1028,10 +1028,10 @@ public class Protocol {
                                     local3490 = InterfaceList.getComponent(world);
                                     if (local3490 != null) {
                                         InterfaceList.redraw(local3490);
-                                        Static17.method531(local3490, true);
+                                        InterfaceList.method531(local3490, true);
                                     }
                                     if (InterfaceList.topLevelInterace != -1) {
-                                        Static54.method1304(1, InterfaceList.topLevelInterace);
+                                        InterfaceList.runScripts(1, InterfaceList.topLevelInterace);
                                     }
                                 }
                                 opcode = -1;
@@ -1064,7 +1064,7 @@ public class Protocol {
                             } else if (opcode == 85) {
                                 Static60.systemUpdateTimer = inboundBuffer.g2() * 30;
                                 opcode = -1;
-                                Static209.miscTransmitAt = InterfaceList.transmitTimer;
+                                InterfaceList.miscTransmitAt = InterfaceList.transmitTimer;
                                 return true;
                             } else if (opcode == 114) {
                                 Class6.method3654(GameShell.signLink, inboundBuffer, Static223.packetSize);
@@ -1081,21 +1081,21 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 234) {
                                 // UPDATE_RUNENERGY
-                                Static103.method2245();
+                                InterfaceList.redrawActiveInterfaces();
                                 Player.energy = inboundBuffer.g1();
-                                Static209.miscTransmitAt = InterfaceList.transmitTimer;
+                                InterfaceList.miscTransmitAt = InterfaceList.transmitTimer;
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 209) {
                                 if (InterfaceList.topLevelInterace != -1) {
-                                    Static54.method1304(0, InterfaceList.topLevelInterace);
+                                    InterfaceList.runScripts(0, InterfaceList.topLevelInterace);
                                 }
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 191) {
                                 ii = inboundBuffer.g2le();
                                 Static13.method472(ii);
-                                Static27.anIntArray70[Static111.anInt2901++ & 0x1F] = ii & 0x7FFF;
+                                Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = ii & 0x7FFF;
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 102) {
@@ -1110,9 +1110,9 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 159) {
                                 // UPDATE_RUNWEIGHT
-                                Static103.method2245();
+                                InterfaceList.redrawActiveInterfaces();
                                 Player.weightCarried = inboundBuffer.g2s();
-                                Static209.miscTransmitAt = InterfaceList.transmitTimer;
+                                InterfaceList.miscTransmitAt = InterfaceList.transmitTimer;
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 71) {
@@ -1231,7 +1231,7 @@ public class Protocol {
                                 IgnoreList.ignoreCount = Static223.packetSize / 8;
                                 for (ii = 0; ii < IgnoreList.ignoreCount; ii++) {
                                     IgnoreList.encodedIgnores[ii] = inboundBuffer.g8();
-                                    Static193.ignoreName[ii] = Base37.decode37(IgnoreList.encodedIgnores[ii]);
+                                    IgnoreList.ignoreNames[ii] = Base37.decode37(IgnoreList.encodedIgnores[ii]);
                                 }
                                 FriendList.transmitAt = InterfaceList.transmitTimer;
                                 opcode = -1;
@@ -1431,8 +1431,8 @@ public class Protocol {
                                     if (local4956 != null) {
                                         InterfaceList.redraw(local4956);
                                     }
-                                    Static103.method2245();
-                                    Static27.anIntArray70[Static111.anInt2901++ & 0x1F] = xp & 0x7FFF;
+                                    InterfaceList.redrawActiveInterfaces();
+                                    Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = xp & 0x7FFF;
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 24) {
@@ -1488,7 +1488,7 @@ public class Protocol {
                                     if (setVerifyID(ii)) {
                                         for (i = slot; i <= xp; i++) {
                                             local904 = ((long) world << 32) + ((long) i);
-                                            local1804 = (ServerActiveProperties) Static210.aClass133_21.getNode(local904);
+                                            local1804 = (ServerActiveProperties) InterfaceList.properties.getNode(local904);
                                             if (local1804 != null) {
                                                 local1814 = new ServerActiveProperties(count, local1804.anInt540);
                                                 local1804.unlink();
@@ -1497,7 +1497,7 @@ public class Protocol {
                                             } else {
                                                 local1814 = new ServerActiveProperties(count, -1);
                                             }
-                                            Static210.aClass133_21.put(local1814, local904);
+                                            InterfaceList.properties.put(local1814, local904);
                                         }
                                     }
                                     opcode = -1;
@@ -1641,8 +1641,8 @@ public class Protocol {
                                     if (local4956 != null) {
                                         InterfaceList.redraw(local4956);
                                     }
-                                    Static103.method2245();
-                                    Static27.anIntArray70[Static111.anInt2901++ & 0x1F] = xp & 0x7FFF;
+                                    InterfaceList.redrawActiveInterfaces();
+                                    Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = xp & 0x7FFF;
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 142) {

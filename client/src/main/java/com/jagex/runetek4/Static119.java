@@ -41,12 +41,4 @@ public final class Static119 {
 		return -1;
 	}
 
-	@OriginalMember(owner = "client!je", name = "a", descriptor = "(IIIII)V")
-	public static void method2387(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		Static13.anInt435 = Static48.anInt1449 * arg2 / arg0;
-		Static28.anInt919 = IdkTypeList.anInt4296 * arg1 / arg3;
-		Static142.anInt3482 = -1;
-		Static217.anInt4901 = -1;
-		Static38.method965();
-	}
 }

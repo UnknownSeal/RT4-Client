@@ -32,7 +32,7 @@ public final class ServerActiveProperties extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "e", descriptor = "(B)I")
-	public int method505() {
+	public int getDragDepth() {
 		return this.anInt546 >> 18 & 0x7;
 	}
 

@@ -6,7 +6,6 @@ import com.jagex.runetek4.node.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
 import com.jogamp.opengl.*;
-import com.jogamp.opengl.glu.gl2es1.GLUgl2es1;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -208,7 +207,7 @@ public final class GlTexture extends CachedNode {
 					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_WRAP_T, GL2.GL_REPEAT);
 					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
 					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR_MIPMAP_LINEAR);
-					Static63.oncard_texture += pixels.limit() * 4 / 3 - this.textureSize;
+					GlCleaner.oncard_texture += pixels.limit() * 4 / 3 - this.textureSize;
 					this.textureSize = pixels.limit() * 4 / 3;
 				} else if (this.anInt5489 == 1) {
 					@Pc(129) int local129 = 0;
@@ -218,7 +217,7 @@ public final class GlTexture extends CachedNode {
 						if (size == 0) {
 							gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR_MIPMAP_LINEAR);
 							gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
-							Static63.oncard_texture += pixels.limit() * 4 / 3 - this.textureSize;
+							GlCleaner.oncard_texture += pixels.limit() * 4 / 3 - this.textureSize;
 							this.textureSize = pixels.limit() * 4 / 3;
 							break;
 						}
@@ -228,7 +227,7 @@ public final class GlTexture extends CachedNode {
 					gl.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, size, size, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, pixels);
 					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR);
 					gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
-					Static63.oncard_texture += pixels.limit() - this.textureSize;
+					GlCleaner.oncard_texture += pixels.limit() - this.textureSize;
 					this.textureSize = pixels.limit();
 				}
 				gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_WRAP_S, this.aBoolean285 ? GL2.GL_REPEAT : GL2.GL_CLAMP_TO_EDGE);

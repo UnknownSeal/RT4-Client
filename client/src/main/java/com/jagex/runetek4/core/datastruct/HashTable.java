@@ -57,11 +57,11 @@ public final class HashTable {
 	@OriginalMember(owner = "client!sc", name = "c", descriptor = "(I)Lclient!ab;")
 	public Node head() {
 		this.currentNodeIndex = 0;
-		return this.prev();
+		return this.next();
 	}
 
 	@OriginalMember(owner = "client!sc", name = "d", descriptor = "(I)Lclient!ab;")
-	public Node prev() {
+	public Node next() {
 		if (this.currentNodeIndex > 0 && this.prev != this.nodes[this.currentNodeIndex - 1]) {
 			Node local24 = this.prev;
 			this.prev = local24.prev;
@@ -133,7 +133,7 @@ public final class HashTable {
 	}
 
 	@OriginalMember(owner = "client!sc", name = "f", descriptor = "(I)Lclient!ab;")
-	public Node next() {
+	public Node nextWithKey() {
 		if (this.next == null) {
 			return null;
 		}

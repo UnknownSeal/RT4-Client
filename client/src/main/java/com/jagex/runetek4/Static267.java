@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.scene.tile.GroundDecor;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -29,7 +29,7 @@ public final class Static267 {
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "a", descriptor = "(III)Lclient!bm;")
 	public static GroundDecor method4526(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) SceneTile floorDecoration = Static130.levelTiles[arg0][arg1][arg2];
+		@Pc(7) Tile floorDecoration = Static130.levelTiles[arg0][arg1][arg2];
 		if (floorDecoration == null) {
 			return null;
 		} else {

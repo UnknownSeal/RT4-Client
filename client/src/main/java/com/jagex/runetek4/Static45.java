@@ -16,9 +16,6 @@ public final class Static45 {
 	@OriginalMember(owner = "client!di", name = "q", descriptor = "[Lclient!na;")
 	public static final JString[] aClass100Array53 = new JString[5];
 
-	@OriginalMember(owner = "client!di", name = "H", descriptor = "Z")
-	public static boolean aBoolean84 = false;
-
 	@OriginalMember(owner = "client!di", name = "I", descriptor = "Lclient!n;")
 	public static final NodeCache aClass99_6 = new NodeCache(32);
 
@@ -334,15 +331,15 @@ public final class Static45 {
 				local200 = 1;
 				while (true) {
 					if (local200 > 103) {
-						@Pc(2025) Class3_Sub14[] local2025;
+						@Pc(2025) GlTile[] local2025;
 						if (arg1) {
 							local2025 = Static193.method3501(SceneGraph.renderFlags, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], levelLightMap, local1896, Static62.anIntArrayArray11, Static240.aByteArrayArrayArray14[level], Static4.aByteArrayArrayArray1[level], local1888, level, local1900, local142, SceneGraph.tileHeights[level], Static107.anIntArrayArrayArray10[0]);
 							Static110.method2280(level, local2025);
 							break;
 						}
 						local2025 = Static193.method3501(SceneGraph.renderFlags, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], levelLightMap, local1896, null, Static240.aByteArrayArrayArray14[level], Static4.aByteArrayArrayArray1[level], local1888, level, local1900, local142, SceneGraph.tileHeights[level], null);
-						@Pc(2049) Class3_Sub14[] local2049 = Static1.method2(local1896, local1888, SceneGraph.tileHeights[level], level, local1900, Static4.aByteArrayArrayArray1[level], levelLightMap, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], Static240.aByteArrayArrayArray14[level], SceneGraph.renderFlags);
-						@Pc(2057) Class3_Sub14[] local2057 = new Class3_Sub14[local2025.length + local2049.length];
+						@Pc(2049) GlTile[] local2049 = Static1.method2(local1896, local1888, SceneGraph.tileHeights[level], level, local1900, Static4.aByteArrayArrayArray1[level], levelLightMap, Static163.aByteArrayArrayArray11[level], Static253.levelTileUnderlayIds[level], Static240.aByteArrayArrayArray14[level], SceneGraph.renderFlags);
+						@Pc(2057) GlTile[] local2057 = new GlTile[local2025.length + local2049.length];
 						for (len = 0; len < local2025.length; len++) {
 							local2057[len] = local2025[len];
 						}

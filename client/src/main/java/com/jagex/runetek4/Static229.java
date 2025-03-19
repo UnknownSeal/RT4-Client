@@ -8,9 +8,6 @@ public final class Static229 {
 	@OriginalMember(owner = "runetek4.client!si", name = "R", descriptor = "[[[B")
 	public static byte[][][] aByteArrayArrayArray12;
 
-	@OriginalMember(owner = "runetek4.client!si", name = "ab", descriptor = "I")
-	public static int anInt5138;
-
 	@OriginalMember(owner = "runetek4.client!si", name = "cb", descriptor = "[B")
 	public static byte[] aByteArray70;
 

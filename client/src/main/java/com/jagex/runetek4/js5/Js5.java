@@ -122,7 +122,7 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "b", descriptor = "(II)Z")
-	public boolean method4479(@OriginalArg(1) int arg0) {
+	public boolean isGroupReady(@OriginalArg(1) int arg0) {
 		if (!this.isGroupValid(arg0)) {
 			return false;
 		} else if (this.packed[arg0] == null) {
@@ -205,7 +205,7 @@ public final class Js5 {
 		@Pc(30) int local30 = this.index.nameHashCollection.method2405(local17.method3154());
 		if (this.isGroupValid(local30)) {
 			@Pc(49) int local49 = this.index.aClass76Array1[local30].method2405(local21.method3154());
-			return this.requestDownload(local30, local49);
+			return this.isFileReady(local30, local49);
 		} else {
 			return false;
 		}
@@ -241,7 +241,7 @@ public final class Js5 {
 		if (this.isIndexReady()) {
 			@Pc(14) JString local14 = arg0.toLowerCase();
 			@Pc(25) int local25 = this.index.nameHashCollection.method2405(local14.method3154());
-			return this.method4479(local25);
+			return this.isGroupReady(local25);
 		} else {
 			return false;
 		}
@@ -255,7 +255,7 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(BII)Z")
-	public boolean requestDownload(@OriginalArg(2) int group, @OriginalArg(1) int file) {
+	public boolean isFileReady(@OriginalArg(2) int group, @OriginalArg(1) int file) {
 		if (!this.isGroupValid(group, file)) {
 			return false;
 		} else if (this.unpacked[group] != null && this.unpacked[group][file] != null) {
@@ -529,11 +529,11 @@ public final class Js5 {
 		if (!this.isIndexReady()) {
 			return false;
 		} else if (this.index.groupCapacities.length == 1) {
-			return this.requestDownload(0, arg0);
+			return this.isFileReady(0, arg0);
 		} else if (!this.isGroupValid(arg0)) {
 			return false;
 		} else if (this.index.groupCapacities[arg0] == 1) {
-			return this.requestDownload(arg0, 0);
+			return this.isFileReady(arg0, 0);
 		} else {
 			throw new RuntimeException();
 		}

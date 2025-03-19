@@ -290,7 +290,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 		if (!this.aBoolean37 || this.aLong20 > MonotonicTime.currentTimeMillis()) {
 			return;
 		}
-		for (@Pc(331) Js5Request local331 = (Js5Request) this.requests.head(); local331 != null; local331 = (Js5Request) this.requests.prev()) {
+		for (@Pc(331) Js5Request local331 = (Js5Request) this.requests.head(); local331 != null; local331 = (Js5Request) this.requests.next()) {
 			if (!local331.awaitingResponse) {
 				if (local331.aBoolean227) {
 					if (!local331.urgent) {

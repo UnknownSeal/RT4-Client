@@ -10,7 +10,7 @@ import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.ComplexTile;
 import com.jagex.runetek4.scene.tile.GenericTile;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -274,7 +274,7 @@ public final class Static176 {
 			local12 = new GenericTile(arg10, arg11, arg12, arg13, -1, arg18, false);
 			for (local14 = arg0; local14 >= 0; local14--) {
 				if (Static130.levelTiles[local14][arg1][arg2] == null) {
-					Static130.levelTiles[local14][arg1][arg2] = new SceneTile(local14, arg1, arg2);
+					Static130.levelTiles[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
 				}
 			}
 			Static130.levelTiles[arg0][arg1][arg2].plainTile = local12;
@@ -282,7 +282,7 @@ public final class Static176 {
 			local12 = new GenericTile(arg14, arg15, arg16, arg17, arg5, arg19, arg6 == arg7 && arg6 == arg8 && arg6 == arg9);
 			for (local14 = arg0; local14 >= 0; local14--) {
 				if (Static130.levelTiles[local14][arg1][arg2] == null) {
-					Static130.levelTiles[local14][arg1][arg2] = new SceneTile(local14, arg1, arg2);
+					Static130.levelTiles[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
 				}
 			}
 			Static130.levelTiles[arg0][arg1][arg2].plainTile = local12;
@@ -290,7 +290,7 @@ public final class Static176 {
 			@Pc(134) ComplexTile local134 = new ComplexTile(arg3, arg4, arg5, arg1, arg2, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17, arg18, arg19);
 			for (local14 = arg0; local14 >= 0; local14--) {
 				if (Static130.levelTiles[local14][arg1][arg2] == null) {
-					Static130.levelTiles[local14][arg1][arg2] = new SceneTile(local14, arg1, arg2);
+					Static130.levelTiles[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
 				}
 			}
 			Static130.levelTiles[arg0][arg1][arg2].shapedTile = local134;

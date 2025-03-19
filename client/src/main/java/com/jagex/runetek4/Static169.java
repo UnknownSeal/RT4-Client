@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -13,9 +12,6 @@ public final class Static169 {
 
 	@OriginalMember(owner = "runetek4.client!nf", name = "e", descriptor = "I")
 	public static int anInt4073;
-
-	@OriginalMember(owner = "runetek4.client!nf", name = "h", descriptor = "Lclient!be;")
-	public static Component aClass13_18;
 
 	@OriginalMember(owner = "runetek4.client!nf", name = "f", descriptor = "Lclient!n;")
 	public static final NodeCache modelCacheStatic = new NodeCache(500);

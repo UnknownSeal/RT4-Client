@@ -70,8 +70,6 @@ public final class client extends GameShell {
 	static final JString aClass100_603 = JString.parse("");
 	@OriginalMember(owner = "runetek4.client!jm", name = "z", descriptor = "Lclient!na;")
 	public static JString mainLoadSecondaryText = aClass100_603;
-	@OriginalMember(owner = "client!ja", name = "r", descriptor = "I")
-	public static int currentCursor = -1;
 	@OriginalMember(owner = "client!gm", name = "T", descriptor = "Lclient!k;")
 	public static Js5CacheQueue js5CacheQueue;
 	@OriginalMember(owner = "client!id", name = "l", descriptor = "Lclient!jb;")
@@ -318,9 +316,9 @@ public final class client extends GameShell {
 		CursorTypeList.removeSoft();
 		Static192.removeSoft();
 		Component.removeSoft();
-		Static180.removeSoft();
+		HintArrowManager.removeSoft();
 		Static251.removeSoft();
-		Static73.hitBars.removeSoft();
+		HitBarList.hitBars.removeSoft();
 		FontMetricsList.fontMetrics.removeSoft();
 	}
 
@@ -361,7 +359,7 @@ public final class client extends GameShell {
 			}
 			Player.anInt2863 = 0;
 		}
-		IdkTypeList.clear();
+		HintArrowManager.clear();
 		Static90.method1857();
 		FontMetricsList.fontMetrics.clean();
 		if (!GlRenderer.enabled) {
@@ -379,7 +377,7 @@ public final class client extends GameShell {
 		js5Archive10.discardUnpacked();
 		js5Archive11.discardUnpacked();
 		js5Archive12.discardUnpacked();
-		Static73.hitBars.clean();
+		HitBarList.hitBars.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!id", name = "b", descriptor = "(I)V")
@@ -541,7 +539,7 @@ public final class client extends GameShell {
 		if (InterfaceList.topLevelInterace != -1) {
 			InterfaceList.resetComponent(InterfaceList.topLevelInterace);
 		}
-		for (@Pc(3755) ComponentPointer local3755 = (ComponentPointer) InterfaceList.openInterfaces.head(); local3755 != null; local3755 = (ComponentPointer) InterfaceList.openInterfaces.prev()) {
+		for (@Pc(3755) ComponentPointer local3755 = (ComponentPointer) InterfaceList.openInterfaces.head(); local3755 != null; local3755 = (ComponentPointer) InterfaceList.openInterfaces.next()) {
 			InterfaceList.closeInterface(true, local3755);
 		}
 		InterfaceList.topLevelInterace = -1;
@@ -649,9 +647,9 @@ public final class client extends GameShell {
 		CursorTypeList.clean();
 		Static279.method4662();
 		Component.clean();
-		Static158.method3010();
+		HintArrowManager.clean();
 		Static134.method2621();
-		Static73.hitBars.clean(5);
+		HitBarList.hitBars.clean(5);
 		FontMetricsList.fontMetrics.clean(5);
 	}
 
@@ -1121,11 +1119,11 @@ public final class client extends GameShell {
 				if (priorityRequest == null) {
 					while (true) {
 						do {
-							priorityRequest = (HookRequest) InterfaceList.lowPriorityRequests.removeHead();
+							priorityRequest = (HookRequest) InterfaceList.mediumPriorityRequests.removeHead();
 							if (priorityRequest == null) {
 								while (true) {
 									do {
-										priorityRequest = (HookRequest) Static185.aClass69_101.removeHead();
+										priorityRequest = (HookRequest) InterfaceList.lowPriorityRequests.removeHead();
 										if (priorityRequest == null) {
 											if (ClientScriptRunner.aClass13_14 != null) {
 												ClientScriptRunner.method28();
@@ -1437,8 +1435,8 @@ public final class client extends GameShell {
 				Static226.init(js5Archive2);
 				FloorOverlayTypeList.init(js5Archive2);
 				FloorUnderlayTypeList.init(js5Archive2);
-				Static125.init(js5Archive7, js5Archive2);
-				IdkTypeList.init(js5Archive16, js5Archive7);
+				IdkTypeList.init(js5Archive7, js5Archive2);
+				LocTypeList.init(js5Archive16, js5Archive7);
 				Static88.init(js5Archive7, js5Archive18);
 				Static241.init(js5Archive19, Fonts.p11FullSoftware, js5Archive7);
 				Static58.init(js5Archive2);
@@ -1447,7 +1445,7 @@ public final class client extends GameShell {
 				Static266.init(js5Archive7, js5Archive21);
 				Static180.init(js5Archive22);
 				VarPlayerDefinition.initializeVarPlayerDefinitionCache(js5Archive2);
-				Static3.init(js5Archive13, js5Archive8, js5Archive3, js5Archive7);
+				InterfaceList.init(js5Archive13, js5Archive8, js5Archive3, js5Archive7);
 				Static119.init(js5Archive2);
 				EnumTypeList.init(js5Archive17);
 				Static59.init(js5Archive25, js5Archive24, new Js5QuickChatCommandDecoder());
@@ -1555,7 +1553,7 @@ public final class client extends GameShell {
 				processGameStatus(1000);
 			}
 		} else if (mainLoadState == 140) {
-			Static156.anInt3783 = js5Archive3.getGroupId(LOGINSCREEN);
+			LoginManager.loginScreenId = js5Archive3.getGroupId(LOGINSCREEN);
 			js5Archive5.discardNames(false);
 			js5Archive6.discardNames(true);
 			js5Archive8.discardNames(true);

@@ -14,12 +14,6 @@ public final class Static4 {
 	@OriginalMember(owner = "runetek4.client!ac", name = "m", descriptor = "Lclient!na;")
 	public static final JString aClass100_7 = JString.parse("overlay");
 
-	@OriginalMember(owner = "runetek4.client!ac", name = "n", descriptor = "I")
-	public static int selectedInventorySlot = 0;
-
-	@OriginalMember(owner = "runetek4.client!ac", name = "o", descriptor = "I")
-	public static int updatedVarcsWriterIndex = 0;
-
 	@OriginalMember(owner = "runetek4.client!ac", name = "a", descriptor = "(IIII)I")
 	public static int getRenderLevel(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) {
 		if ((SceneGraph.renderFlags[arg2][arg1][arg0] & 0x8) == 0) {

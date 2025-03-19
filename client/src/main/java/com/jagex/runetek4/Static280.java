@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ArrayUtils;
@@ -529,21 +528,6 @@ public final class Static280 {
 				local79 += local99;
 			}
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!be;I)Lclient!be;")
-	public static Component method4668(@OriginalArg(0) Component arg0) {
-		if (arg0.overlayer != -1) {
-			return InterfaceList.getComponent(arg0.overlayer);
-		}
-		@Pc(28) int local28 = arg0.id >>> 16;
-		@Pc(33) HashTableIterator local33 = new HashTableIterator(InterfaceList.openInterfaces);
-		for (@Pc(38) ComponentPointer local38 = (ComponentPointer) local33.method2701(); local38 != null; local38 = (ComponentPointer) local33.method2700()) {
-			if (local28 == local38.interfaceId) {
-				return InterfaceList.getComponent((int) local38.nodeId);
-			}
-		}
-		return null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(IBIIIII)V")

@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.media.renderable.Entity;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.scene.tile.WallDecor;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -58,7 +58,7 @@ public final class Static91 {
 		wallDecor.zOffset = arg9;
 		for (@Pc(46) int local46 = arg0; local46 >= 0; local46--) {
 			if (Static130.levelTiles[local46][arg1][arg2] == null) {
-				Static130.levelTiles[local46][arg1][arg2] = new SceneTile(local46, arg1, arg2);
+				Static130.levelTiles[local46][arg1][arg2] = new Tile(local46, arg1, arg2);
 			}
 		}
 		Static130.levelTiles[arg0][arg1][arg2].wallDecor = wallDecor;

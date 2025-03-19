@@ -2516,7 +2516,7 @@ public final class GlModel extends Model {
 					this.aClass155_5 = new GlVertexBufferObject(true);
 					this.aClass155_5.setArrayBuffer(local1007);
 				} else {
-					this.aClass155_5.method4515(local1007);
+					this.aClass155_5.updateArrayBuffer(local1007);
 				}
 				if (arg1) {
 					this.vertexBuffer.valid = true;
@@ -3300,33 +3300,33 @@ public final class GlModel extends Model {
 		}
 		@Pc(172) GlVertexBufferObject local172 = null;
 		if (this.vertexBuffer.vbo != null) {
-			this.vertexBuffer.vbo.method4516();
+			this.vertexBuffer.vbo.bindArray();
 			local172 = this.vertexBuffer.vbo;
 			gl.glVertexPointer(3, GL2.GL_FLOAT, this.vertexBuffer.stride, (long) this.vertexBuffer.pointer);
 		}
 		if (this.colorBuffer.vbo != null) {
 			if (local172 != this.colorBuffer.vbo) {
-				this.colorBuffer.vbo.method4516();
+				this.colorBuffer.vbo.bindArray();
 				local172 = this.colorBuffer.vbo;
 			}
 			gl.glColorPointer(4, GL2.GL_UNSIGNED_BYTE, this.colorBuffer.stride, (long) this.colorBuffer.pointer);
 		}
 		if (Preferences.highDetailLighting && this.normalsBuffer.vbo != null) {
 			if (local172 != this.normalsBuffer.vbo) {
-				this.normalsBuffer.vbo.method4516();
+				this.normalsBuffer.vbo.bindArray();
 				local172 = this.normalsBuffer.vbo;
 			}
 			gl.glNormalPointer(GL2.GL_FLOAT, this.normalsBuffer.stride, (long) this.normalsBuffer.pointer);
 		}
 		if (this.texCoordBuffer.vbo != null) {
 			if (local172 != this.texCoordBuffer.vbo) {
-				this.texCoordBuffer.vbo.method4516();
+				this.texCoordBuffer.vbo.bindArray();
 				local172 = this.texCoordBuffer.vbo;
 			}
 			gl.glTexCoordPointer(2, GL2.GL_FLOAT, this.texCoordBuffer.stride, (long) this.texCoordBuffer.pointer);
 		}
 		if (this.indexBuffer.vbo != null) {
-			this.indexBuffer.vbo.method4518();
+			this.indexBuffer.vbo.bindElementArray();
 		}
 		if (this.vertexBuffer.vbo == null || this.colorBuffer.vbo == null || Preferences.highDetailLighting && this.normalsBuffer.vbo == null || this.texCoordBuffer.vbo == null) {
 			if (GlRenderer.arbVboSupported) {

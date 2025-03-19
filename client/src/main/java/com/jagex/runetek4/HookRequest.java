@@ -9,19 +9,19 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class HookRequest extends Node {
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "q", descriptor = "Lclient!be;")
-	public Component aClass13_16;
+	public Component target;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "r", descriptor = "Lclient!na;")
 	public JString opBase;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "w", descriptor = "I")
-	public int anInt3097;
+	public int mouseY;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "z", descriptor = "I")
-	public int anInt3099;
+	public int keyChar;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "A", descriptor = "I")
-	public int anInt3100;
+	public int keyCode;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "B", descriptor = "I")
 	public int op;
@@ -30,7 +30,7 @@ public final class HookRequest extends Node {
 	public boolean aBoolean158;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "D", descriptor = "I")
-	public int anInt3102;
+	public int mouseX;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "E", descriptor = "[Ljava/lang/Object;")
 	public Object[] arguments;

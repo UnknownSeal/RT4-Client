@@ -100,7 +100,7 @@ public final class EnumType extends CachedNode {
 		if (this.inverseTable == null) {
 			this.inverseStrings();
 		}
-		for (@Pc(38) EnumStringEntry local38 = (EnumStringEntry) this.inverseTable.getNode(arg0.longHashCode()); local38 != null; local38 = (EnumStringEntry) this.inverseTable.next()) {
+		for (@Pc(38) EnumStringEntry local38 = (EnumStringEntry) this.inverseTable.getNode(arg0.longHashCode()); local38 != null; local38 = (EnumStringEntry) this.inverseTable.nextWithKey()) {
 			if (local38.value.strEquals(arg0)) {
 				return true;
 			}
@@ -111,7 +111,7 @@ public final class EnumType extends CachedNode {
 	@OriginalMember(owner = "client!ml", name = "d", descriptor = "(I)V")
 	private void inverseStrings() {
 		this.inverseTable = new HashTable(this.table.getSize());
-		for (@Pc(22) JagStringWrapper local22 = (JagStringWrapper) this.table.head(); local22 != null; local22 = (JagStringWrapper) this.table.prev()) {
+		for (@Pc(22) JagStringWrapper local22 = (JagStringWrapper) this.table.head(); local22 != null; local22 = (JagStringWrapper) this.table.next()) {
 			@Pc(36) EnumStringEntry local36 = new EnumStringEntry(local22.value, (int) local22.nodeId);
 			this.inverseTable.put(local36, local22.value.longHashCode());
 		}
@@ -132,7 +132,7 @@ public final class EnumType extends CachedNode {
 	@OriginalMember(owner = "client!ml", name = "e", descriptor = "(I)V")
 	private void inverseInts() {
 		this.inverseTable = new HashTable(this.table.getSize());
-		for (@Pc(24) IntWrapper local24 = (IntWrapper) this.table.head(); local24 != null; local24 = (IntWrapper) this.table.prev()) {
+		for (@Pc(24) IntWrapper local24 = (IntWrapper) this.table.head(); local24 != null; local24 = (IntWrapper) this.table.next()) {
 			@Pc(34) IntWrapper local34 = new IntWrapper((int) local24.nodeId);
 			this.inverseTable.put(local34, local24.value);
 		}

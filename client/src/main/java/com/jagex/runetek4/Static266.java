@@ -1,9 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.Scenery;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -31,37 +30,11 @@ public final class Static266 {
 		Static132.aClass153_48 = arg1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!vk", name = "a", descriptor = "(IZIII[Lclient!be;)V")
-	public static void method4190(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) Component[] arg4) {
-		for (@Pc(3) int local3 = 0; local3 < arg4.length; local3++) {
-			@Pc(19) Component local19 = arg4[local3];
-			if (local19 != null && local19.overlayer == arg0) {
-				Static150.method2801(arg3, arg2, local19, arg1);
-				Static111.method2291(local19, arg3, arg2);
-				if (local19.scrollMaxH - local19.width < local19.scrollX) {
-					local19.scrollX = local19.scrollMaxH - local19.width;
-				}
-				if (local19.scrollY > local19.scrollMaxV - local19.height) {
-					local19.scrollY = local19.scrollMaxV - local19.height;
-				}
-				if (local19.scrollY < 0) {
-					local19.scrollY = 0;
-				}
-				if (local19.scrollX < 0) {
-					local19.scrollX = 0;
-				}
-				if (local19.type == 0) {
-					Static17.method531(local19, arg1);
-				}
-			}
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!vk", name = "a", descriptor = "(Lclient!ec;)V")
 	public static void method4193(@OriginalArg(0) Scenery arg0) {
 		for (@Pc(2) int local2 = arg0.anInt1701; local2 <= arg0.anInt1713; local2++) {
 			for (@Pc(9) int local9 = arg0.anInt1696; local9 <= arg0.anInt1698; local9++) {
-				@Pc(22) SceneTile local22 = Static130.levelTiles[arg0.anInt1709][local2][local9];
+				@Pc(22) Tile local22 = Static130.levelTiles[arg0.anInt1709][local2][local9];
 				if (local22 != null) {
 					@Pc(26) int local26;
 					for (local26 = 0; local26 < local22.entityCount; local26++) {

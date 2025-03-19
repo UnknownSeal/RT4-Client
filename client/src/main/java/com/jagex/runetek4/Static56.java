@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.SoftwareSprite;
-import com.jagex.runetek4.cache.media.component.Component;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static56 {
@@ -14,9 +13,6 @@ public final class Static56 {
 
 	@OriginalMember(owner = "client!ef", name = "g", descriptor = "I")
 	public static int clickTileX = -1;
-
-	@OriginalMember(owner = "client!ef", name = "r", descriptor = "Lclient!be;")
-	public static Component aClass13_12 = null;
 
 	@OriginalMember(owner = "client!ef", name = "a", descriptor = "(I)I")
 	public static int method1314() {

@@ -117,7 +117,7 @@ public class AreaSoundManager {
             }
             areaSound.unlink();
         }
-        for (areaSound = (AreaSound) playerSounds.head(); areaSound != null; areaSound = (AreaSound) playerSounds.prev()) {
+        for (areaSound = (AreaSound) playerSounds.head(); areaSound != null; areaSound = (AreaSound) playerSounds.next()) {
             if (areaSound.primaryStream != null) {
                 client.soundStream.removeSubStream(areaSound.primaryStream);
                 areaSound.primaryStream = null;
@@ -204,7 +204,7 @@ public class AreaSoundManager {
             areaSound.maxZFine = areaSound.npc.zFine + areaSound.npc.getSize() * 64;
             redraw(arg1, areaSound, arg3, arg0, arg2);
         }
-        for (areaSound = (AreaSound) playerSounds.head(); areaSound != null; areaSound = (AreaSound) playerSounds.prev()) {
+        for (areaSound = (AreaSound) playerSounds.head(); areaSound != null; areaSound = (AreaSound) playerSounds.next()) {
             movementSpeed = 1;
             basType = areaSound.player.getBasType();
             if (areaSound.player.movementSeqId == basType.idleAnimationId) {

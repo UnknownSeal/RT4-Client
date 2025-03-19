@@ -1,9 +1,7 @@
 package com.jagex.runetek4.cache.def;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.cache.media.SeqType;
-import com.jagex.runetek4.game.config.idktype.IDKType;
 import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -360,8 +358,8 @@ public final class ObjType {
 		if (primaryId == -1) {
 			return true;
 		}
-		@Pc(33) boolean ready = Static230.modelArchive.requestDownload(primaryId, 0);
-		if (secondaryId != -1 && !Static230.modelArchive.requestDownload(secondaryId, 0)) {
+		@Pc(33) boolean ready = Static230.modelArchive.isFileReady(primaryId, 0);
+		if (secondaryId != -1 && !Static230.modelArchive.isFileReady(secondaryId, 0)) {
 			ready = false;
 		}
 		return ready;
@@ -406,11 +404,11 @@ public final class ObjType {
 		if (local9 == -1) {
 			return true;
 		}
-		@Pc(41) boolean local41 = Static230.modelArchive.requestDownload(local9, 0);
-		if (local6 != -1 && !Static230.modelArchive.requestDownload(local6, 0)) {
+		@Pc(41) boolean local41 = Static230.modelArchive.isFileReady(local9, 0);
+		if (local6 != -1 && !Static230.modelArchive.isFileReady(local6, 0)) {
 			local41 = false;
 		}
-		if (local20 != -1 && !Static230.modelArchive.requestDownload(local20, 0)) {
+		if (local20 != -1 && !Static230.modelArchive.isFileReady(local20, 0)) {
 			local41 = false;
 		}
 		return local41;
@@ -653,37 +651,6 @@ public final class ObjType {
 	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "([[IZ)V")
 	public static void method1751(@OriginalArg(0) int[][] arg0) {
 		ObjTypeList.anIntArrayArray10 = arg0;
-	}
-
-	@OriginalMember(owner = "runetek4.client!gg", name = "d", descriptor = "(II)Lclient!dm;")
-	public static IDKType get(@OriginalArg(0) int arg0) {
-		@Pc(10) IDKType idkType = (IDKType) Static67.aClass99_20.get((long) arg0);
-		if (idkType != null) {
-			return idkType;
-		}
-		@Pc(21) byte[] bytes = Static216.aClass153_31.getfile(3, arg0);
-		idkType = new IDKType();
-		if (bytes != null) {
-			idkType.decode(new Packet(bytes));
-		}
-		Static67.aClass99_20.put(idkType, (long) arg0);
-		return idkType;
-	}
-
-	@OriginalMember(owner = "runetek4.client!gg", name = "e", descriptor = "(II)V")
-	public static void method1753(@OriginalArg(0) int arg0) {
-		if (!Component.load(arg0)) {
-			return;
-		}
-		@Pc(15) Component[] local15 = Component.cachedComponents[arg0];
-		for (@Pc(17) int local17 = 0; local17 < local15.length; local17++) {
-			@Pc(29) Component local29 = local15[local17];
-			if (local29 != null) {
-				local29.anInt496 = 1;
-				local29.anInt510 = 0;
-				local29.anInt500 = 0;
-			}
-		}
 	}
 
 }

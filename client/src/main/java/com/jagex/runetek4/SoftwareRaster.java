@@ -243,4 +243,13 @@ public class SoftwareRaster {
         Rasterizer.destinationHeight = arg2;
         setClip(0, 0, arg1, arg2);
     }
+
+    @OriginalMember(owner = "runetek4.client!kb", name = "c", descriptor = "()V")
+    public static void resetBounds() {
+        Rasterizer.viewportLeft = 0;
+        Rasterizer.viewportTop = 0;
+        Rasterizer.viewportRight = destinationWidth;
+        Rasterizer.viewportBottom = Rasterizer.destinationHeight;
+        Rasterizer.method2482();
+    }
 }

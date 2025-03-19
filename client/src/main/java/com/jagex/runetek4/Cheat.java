@@ -145,7 +145,7 @@ public class Cheat {
             if (GlRenderer.enabled && chatTyped.equalsIgnoreCase(CARDMEM)) {
                 System.out.println("oncard_geometry:" + GlCleaner.oncard_geometry);
                 System.out.println("oncard_2d:" + GlCleaner.oncard_2d);
-                System.out.println("oncard_texture:" + Static63.oncard_texture);
+                System.out.println("oncard_texture:" + GlCleaner.oncard_texture);
             }
             if (chatTyped.equalsIgnoreCase(CLIENTDROP)) {
                 Game.tryReconnect();

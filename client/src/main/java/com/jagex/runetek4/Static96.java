@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -10,13 +9,6 @@ public final class Static96 {
 
 	@OriginalMember(owner = "runetek4.client!hh", name = "p", descriptor = "[I")
 	public static int[] anIntArray234;
-
-	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(II)V")
-	public static void method1949(@OriginalArg(1) int arg0) {
-		if (Component.load(arg0)) {
-			Static118.method2354(-1, Component.cachedComponents[arg0]);
-		}
-	}
 
 	@OriginalMember(owner = "runetek4.client!hh", name = "a", descriptor = "(IBIIIIIIIIIZI)Z")
 	public static boolean method1955(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8, @OriginalArg(10) int arg9, @OriginalArg(11) boolean arg10, @OriginalArg(12) int arg11) {

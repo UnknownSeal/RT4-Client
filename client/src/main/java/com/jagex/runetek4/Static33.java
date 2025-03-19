@@ -52,7 +52,7 @@ public final class Static33 {
 	public static void method868(@OriginalArg(1) Packet arg0) {
 		@Pc(13) int local13 = Static266.anInt5338 >> 1;
 		@Pc(19) int local19 = Static131.anInt3254 >> 2 << 10;
-		@Pc(23) byte[][] local23 = new byte[Static48.anInt1449][IdkTypeList.anInt4296];
+		@Pc(23) byte[][] local23 = new byte[Static48.anInt1449][WorldMap.length];
 		@Pc(33) int local33;
 		@Pc(102) int local102;
 		@Pc(114) int local114;
@@ -67,9 +67,9 @@ public final class Static33 {
 			}
 			@Pc(57) int local57 = arg0.g1();
 			@Pc(61) int local61 = arg0.g1();
-			@Pc(68) int local68 = local57 * 64 - Static158.anInt3846;
-			@Pc(78) int local78 = IdkTypeList.anInt4296 + Static2.anInt13 - local61 * 64 - 1;
-			if (local68 >= 0 && local78 - 63 >= 0 && Static48.anInt1449 > local68 + 63 && IdkTypeList.anInt4296 > local78) {
+			@Pc(68) int local68 = local57 * 64 - WorldMap.originX;
+			@Pc(78) int local78 = WorldMap.length + WorldMap.originZ - local61 * 64 - 1;
+			if (local68 >= 0 && local78 - 63 >= 0 && Static48.anInt1449 > local68 + 63 && WorldMap.length > local78) {
 				for (local102 = 0; local102 < 64; local102++) {
 					@Pc(112) byte[] local112 = local23[local68 + local102];
 					for (local114 = 0; local114 < 64; local114++) {
@@ -85,7 +85,7 @@ public final class Static33 {
 			}
 		}
 		@Pc(175) int local175 = Static48.anInt1449;
-		local33 = IdkTypeList.anInt4296;
+		local33 = WorldMap.length;
 		@Pc(180) int[] local180 = new int[local33];
 		@Pc(183) int[] local183 = new int[local33];
 		@Pc(186) int[] local186 = new int[local33];

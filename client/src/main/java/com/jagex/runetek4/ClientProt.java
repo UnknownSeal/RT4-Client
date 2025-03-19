@@ -167,7 +167,7 @@ public class ClientProt {
     @OriginalMember(owner = "runetek4.client!mc", name = "f", descriptor = "(B)V")
     public static void closeWidget() {
         Protocol.outboundBuffer.pIsaac1(184);
-        for (@Pc(18) ComponentPointer local18 = (ComponentPointer) InterfaceList.openInterfaces.head(); local18 != null; local18 = (ComponentPointer) InterfaceList.openInterfaces.prev()) {
+        for (@Pc(18) ComponentPointer local18 = (ComponentPointer) InterfaceList.openInterfaces.head(); local18 != null; local18 = (ComponentPointer) InterfaceList.openInterfaces.next()) {
             if (local18.anInt5879 == 0) {
                 InterfaceList.closeInterface(true, local18);
             }

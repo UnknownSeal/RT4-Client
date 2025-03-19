@@ -11,9 +11,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static185 {
 
-	@OriginalMember(owner = "runetek4.client!p", name = "c", descriptor = "Lclient!ih;")
-	public static final LinkedList aClass69_101 = new LinkedList();
-
 	@OriginalMember(owner = "runetek4.client!p", name = "a", descriptor = "(IZIZLclient!mj;IIIBII)V")
 	public static void method3397(@OriginalArg(0) int arg0, @OriginalArg(1) boolean lowmem, @OriginalArg(2) int level, @OriginalArg(3) boolean arg3, @OriginalArg(4) CollisionMap collsion, @OriginalArg(5) int arg5, @OriginalArg(6) int shape, @OriginalArg(7) int arg7, @OriginalArg(9) int z, @OriginalArg(10) int rotation) {
 		if (lowmem && !Static138.allLevelsvisible() && (SceneGraph.renderFlags[0][arg7][z] & 0x2) == 0) {

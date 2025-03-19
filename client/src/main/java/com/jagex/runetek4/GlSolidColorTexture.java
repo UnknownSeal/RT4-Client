@@ -36,7 +36,7 @@ public final class GlSolidColorTexture extends CachedNode {
 		gl.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, 1, 1, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, buffer);
 		gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR);
 		gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
-		Static63.oncard_texture += buffer.limit() - this.textureSize;
+		GlCleaner.oncard_texture += buffer.limit() - this.textureSize;
 		this.textureSize = buffer.limit();
 	}
 

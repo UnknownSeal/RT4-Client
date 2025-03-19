@@ -10,7 +10,7 @@ import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.scene.Scene;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -107,12 +107,12 @@ public final class Player extends PathingEntity {
 		if (!GlRenderer.enabled || PreciseSleep.aBoolean252) {
 			return;
 		}
-		@Pc(14) SceneTile[][][] local14 = Static130.levelTiles;
+		@Pc(14) Tile[][][] local14 = Static130.levelTiles;
 		for (@Pc(22) int local22 = 0; local22 < local14.length; local22++) {
-			@Pc(30) SceneTile[][] local30 = local14[local22];
+			@Pc(30) Tile[][] local30 = local14[local22];
 			for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {
 				for (@Pc(42) int local42 = 0; local42 < local30[local32].length; local42++) {
-					@Pc(54) SceneTile local54 = local30[local32][local42];
+					@Pc(54) Tile local54 = local30[local32][local42];
 					if (local54 != null) {
 						@Pc(71) GlModel local71;
 						if (local54.groundDecor != null && local54.groundDecor.entity instanceof GlModel) {
@@ -440,7 +440,7 @@ public final class Player extends PathingEntity {
 			return;
 		}
 		@Pc(34) int local34 = (int) (Math.atan2(arg3, arg1) * 325.949D) & 0x7FF;
-		@Pc(46) Model local46 = Static220.method3800(local34, this.zFine, arg11, this.xFine, arg2, this.y);
+		@Pc(46) Model local46 = HintArrowManager.getModel(local34, this.zFine, arg11, this.xFine, arg2, this.y);
 		if (local46 == null) {
 			return;
 		}

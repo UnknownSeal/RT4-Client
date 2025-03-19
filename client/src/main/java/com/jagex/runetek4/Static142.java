@@ -131,11 +131,11 @@ public final class Static142 {
 					@Pc(512) Sprite local512 = Static116.aClass3_Sub2_Sub1Array3[1];
 					if (local17 instanceof Npc) {
 						@Pc(518) Npc local518 = (Npc) local17;
-						@Pc(528) Sprite[] local528 = (Sprite[]) Static73.hitBars.get((long) local518.type.anInt3736);
+						@Pc(528) Sprite[] local528 = (Sprite[]) HitBarList.hitBars.get((long) local518.type.anInt3736);
 						if (local528 == null) {
 							local528 = Static209.method3708(local518.type.anInt3736, client.js5Archive8);
 							if (local528 != null) {
-								Static73.hitBars.put(local528, (long) local518.type.anInt3736);
+								HitBarList.hitBars.put(local528, (long) local518.type.anInt3736);
 							}
 						}
 						if (local528 != null && local528.length == 2) {

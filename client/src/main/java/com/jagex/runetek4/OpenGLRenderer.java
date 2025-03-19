@@ -43,7 +43,7 @@ public final class OpenGLRenderer {
 		@Pc(12) int[] local12 = new int[1];
 		local9.glGenTextures(1, local12, 0);
 		this.anInt5901 = local12[0];
-		Static63.oncard_texture += 16384;
+		GlCleaner.oncard_texture += 16384;
 		GlRenderer.setTextureId(this.anInt5901);
 		local9.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR);
 		local9.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
@@ -104,7 +104,7 @@ public final class OpenGLRenderer {
 		if (GlRenderer.arbVboSupported) {
 			@Pc(293) ByteBuffer local293 = ByteBuffer.wrap(local147.data, 0, local147.offset);
 			this.aClass155_6 = new GlVertexBufferObject();
-			this.aClass155_6.method4517(local293);
+			this.aClass155_6.setElementArrayBuffer(local293);
 		} else {
 			this.aByteBuffer11 = ByteBuffer.allocateDirect(local147.offset).order(ByteOrder.nativeOrder());
 			this.aByteBuffer11.put(local147.data, 0, local147.offset);
@@ -178,7 +178,7 @@ public final class OpenGLRenderer {
 			local1.glInterleavedArrays(GL2.GL_T2F_V3F, 20, this.aByteBuffer12);
 			GlRenderer.normalArrayEnabled = false;
 		} else {
-			this.aClass155_7.method4516();
+			this.aClass155_7.bindArray();
 			local1.glInterleavedArrays(GL2.GL_T2F_V3F, 20, 0L);
 			GlRenderer.normalArrayEnabled = false;
 		}
@@ -188,7 +188,7 @@ public final class OpenGLRenderer {
 			}
 			local1.glDrawElements(GL2.GL_TRIANGLES, 384, GL2.GL_UNSIGNED_INT, this.aByteBuffer11);
 		} else {
-			this.aClass155_6.method4518();
+			this.aClass155_6.bindElementArray();
 			local1.glDrawElements(GL2.GL_TRIANGLES, 384, GL2.GL_UNSIGNED_INT, 0L);
 		}
 	}
