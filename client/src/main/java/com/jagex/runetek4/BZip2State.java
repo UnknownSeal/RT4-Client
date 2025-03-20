@@ -12,9 +12,6 @@ public final class BZip2State {
 	@OriginalMember(owner = "runetek4.client!s", name = "i", descriptor = "[I")
 	public static int[] anIntArray376;
 
-	@OriginalMember(owner = "runetek4.client!s", name = "c", descriptor = "I")
-	public static int anInt4363 = -1;
-
 	@OriginalMember(owner = "runetek4.client!s", name = "d", descriptor = "I")
 	public static int tryMoveNearest = 0;
 

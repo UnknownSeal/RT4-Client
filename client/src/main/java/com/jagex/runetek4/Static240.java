@@ -1,12 +1,8 @@
 package com.jagex.runetek4;
 
-import java.awt.FontMetrics;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static240 {
-
-	@OriginalMember(owner = "runetek4.client!tg", name = "a", descriptor = "Ljava/awt/FontMetrics;")
-	public static FontMetrics aFontMetrics1;
 
 	@OriginalMember(owner = "runetek4.client!tg", name = "d", descriptor = "[Lclient!qf;")
 	public static Sprite[] crossSprites;

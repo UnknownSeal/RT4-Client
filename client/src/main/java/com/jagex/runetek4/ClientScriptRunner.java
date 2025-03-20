@@ -67,11 +67,6 @@ public final class ClientScriptRunner {
 	public static final int anInt671 = 3353893;
 	@OriginalMember(owner = "runetek4.client!pg", name = "V", descriptor = "I")
 	public static final int anInt4504 = 50;
-	@OriginalMember(owner = "runetek4.client!t", name = "l", descriptor = "Lclient!ma;")
-	public static BufferedSocket aClass95_4;
-
-	@OriginalMember(owner = "runetek4.client!t", name = "y", descriptor = "I")
-	public static int anInt5223 = 0;
 
 	@OriginalMember(owner = "runetek4.client!t", name = "E", descriptor = "[I")
 	public static final int[] updatedVarcstrs = new int[32];
@@ -5213,9 +5208,9 @@ public final class ClientScriptRunner {
 														if (interfaceData > 255) {
 															interfaceData = 255;
 														}
-														if (interfaceData != Static12.anInt391) {
-															if (Static12.anInt391 == 0 && BZip2State.anInt4363 != -1) {
-																Static122.method2410(client.js5Archive6, BZip2State.anInt4363, interfaceData);
+														if (interfaceData != Preferences.musicVolume) {
+															if (Preferences.musicVolume == 0 && MusicPlayer.groupId != -1) {
+																Static122.method2410(client.js5Archive6, MusicPlayer.groupId, interfaceData);
 																Static144.jingle = false;
 															} else if (interfaceData == 0) {
 																Static241.method4548();
@@ -5223,7 +5218,7 @@ public final class ClientScriptRunner {
 															} else {
 																Static230.method3956(interfaceData);
 															}
-															Static12.anInt391 = interfaceData;
+															Preferences.musicVolume = interfaceData;
 														}
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
@@ -5351,7 +5346,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (scriptOpcode == 6119) {
-														Static254.scriptIntValues[intValueIndex++] = Static12.anInt391;
+														Static254.scriptIntValues[intValueIndex++] = Preferences.musicVolume;
 														continue;
 													}
 													if (scriptOpcode == 6120) {

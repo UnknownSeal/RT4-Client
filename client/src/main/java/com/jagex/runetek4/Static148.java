@@ -11,10 +11,10 @@ public final class Static148 {
 	public static void method2765(@OriginalArg(1) int arg0) {
 		if (arg0 == -1 && !Static144.jingle) {
 			Static241.method4548();
-		} else if (arg0 != -1 && (BZip2State.anInt4363 != arg0 || !Static136.method2655()) && Static12.anInt391 != 0 && !Static144.jingle) {
-			Static257.method526(arg0, client.js5Archive6, Static12.anInt391);
+		} else if (arg0 != -1 && (MusicPlayer.groupId != arg0 || !Static136.method2655()) && Preferences.musicVolume != 0 && !Static144.jingle) {
+			Static257.method526(arg0, client.js5Archive6, Preferences.musicVolume);
 		}
-		BZip2State.anInt4363 = arg0;
+		MusicPlayer.groupId = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(III)V")

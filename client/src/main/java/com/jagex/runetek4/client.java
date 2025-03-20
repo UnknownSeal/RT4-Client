@@ -659,20 +659,20 @@ public final class client extends GameShell {
 			return;
 		}
 		if (gameState == 0) {
-			Static163.disposeLoadingText();
+			LoadingBarAwt.disposeLoadingText();
 		}
 		if (statusCode == 40) {
-			LoginManager.method1208();
+			LoginManager.clear();
 		}
 		@Pc(37) boolean local37 = statusCode == 5 || statusCode == 10 || statusCode == 28;
-		if (statusCode != 40 && ClientScriptRunner.aClass95_4 != null) {
-			ClientScriptRunner.aClass95_4.closeGracefully();
-			ClientScriptRunner.aClass95_4 = null;
+		if (statusCode != 40 && Protocol.aClass95_4 != null) {
+			Protocol.aClass95_4.closeGracefully();
+			Protocol.aClass95_4 = null;
 		}
 		if (statusCode == 25 || statusCode == 28) {
 			LoginManager.anInt5804 = 0;
 			anInt5150 = 1;
-			ClientScriptRunner.anInt5223 = 0;
+			LoginManager.anInt5223 = 0;
 			anInt1196 = 1;
 			LoginManager.mapFilesMissingCount = 0;
 			WorldMap.clear(true);
@@ -688,8 +688,8 @@ public final class client extends GameShell {
 		@Pc(106) boolean local106 = gameState == 5 || gameState == 10 || gameState == 28;
 		if (local106 != local37) {
 			if (local37) {
-				BZip2State.anInt4363 = MusicPlayer.titleSong;
-				if (Static12.anInt391 == 0) {
+				MusicPlayer.groupId = MusicPlayer.titleSong;
+				if (Preferences.musicVolume == 0) {
 					Static29.method801();
 				} else {
 					Static257.method526(MusicPlayer.titleSong, js5Archive6, 255);
@@ -765,13 +765,13 @@ public final class client extends GameShell {
 		} else if (gameState == 10) {
 			InterfaceList.method2460();
 		} else if (gameState == 25 || gameState == 28) {
-			if (ClientScriptRunner.anInt5223 == 1) {
+			if (LoginManager.anInt5223 == 1) {
 				if (anInt5150 < LoginManager.mapFilesMissingCount) {
 					anInt5150 = LoginManager.mapFilesMissingCount;
 				}
 				local80 = (anInt5150 - LoginManager.mapFilesMissingCount) * 50 / anInt5150;
 				Fonts.drawTextOnScreen(false, JString.concatenate(new JString[] { LocalizedText.LOADING, aClass100_974, JString.parseInt(local80), ClientScriptRunner.aClass100_80 }));
-			} else if (ClientScriptRunner.anInt5223 == 2) {
+			} else if (LoginManager.anInt5223 == 2) {
 				if (anInt1196 < LoginManager.anInt5804) {
 					anInt1196 = LoginManager.anInt5804;
 				}

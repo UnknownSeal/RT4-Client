@@ -922,7 +922,7 @@ public class Game {
         System.gc();
         Static29.method801();
         Static144.jingle = false;
-        BZip2State.anInt4363 = -1;
+        MusicPlayer.groupId = -1;
         AreaSoundManager.clear(true);
         Static230.aBoolean250 = false;
         Camera.originZ = 0;
@@ -959,7 +959,7 @@ public class Game {
         if (idleTimeout > 0) {
             processLogout();
         } else {
-            ClientScriptRunner.aClass95_4 = Protocol.gameServerSocket;
+            Protocol.aClass95_4 = Protocol.gameServerSocket;
             Protocol.gameServerSocket = null;
             client.processGameStatus(40);
         }

@@ -69,6 +69,8 @@ public class LoginManager {
     public static boolean playerMember = false;
     @OriginalMember(owner = "runetek4.client!mf", name = "X", descriptor = "I")
     public static int loginScreenId;
+    @OriginalMember(owner = "runetek4.client!t", name = "y", descriptor = "I")
+    public static int anInt5223 = 0;
 
     @OriginalMember(owner = "runetek4.client!j", name = "g", descriptor = "(I)V")
     public static void method4637() {
@@ -242,7 +244,7 @@ public class LoginManager {
             Protocol.outboundBuffer.p1(login_packet.offset);
             Protocol.outboundBuffer.pdata(login_packet.data, login_packet.offset);
         } else {
-            method1208();
+            clear();
         }
     }
 
@@ -254,7 +256,7 @@ public class LoginManager {
     }
 
     @OriginalMember(owner = "client!dm", name = "d", descriptor = "(I)V")
-    public static void method1208() {
+    public static void clear() {
         aBoolean247 = false;
         PreciseSleep.anInt5202 = 0;
         reply = -3;
@@ -320,7 +322,7 @@ public class LoginManager {
             }
         }
         if (!local12) {
-            ClientScriptRunner.anInt5223 = 1;
+            anInt5223 = 1;
             return;
         }
         anInt5804 = 0;
@@ -352,10 +354,10 @@ public class LoginManager {
             }
         }
         if (!local12) {
-            ClientScriptRunner.anInt5223 = 2;
+            anInt5223 = 2;
             return;
         }
-        if (ClientScriptRunner.anInt5223 != 0) {
+        if (anInt5223 != 0) {
             Fonts.drawTextOnScreen(true, JString.concatenate(new JString[] { LocalizedText.LOADING, COMPLETE_PERCENT}));
         }
         client.audioLoop();
@@ -588,7 +590,7 @@ public class LoginManager {
                 autoStep = 0;
                 Protocol.gameServerSocket.closeGracefully();
                 Protocol.gameServerSocket = null;
-                method1208();
+                clear();
             }
         } catch (@Pc(210) IOException local210) {
             if (Protocol.gameServerSocket != null) {

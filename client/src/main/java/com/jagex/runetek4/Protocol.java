@@ -64,6 +64,8 @@ public class Protocol {
     public static Component aClass13_11;
     @OriginalMember(owner = "runetek4.client!kf", name = "l", descriptor = "I")
     public static int anInt5235 = 0;
+    @OriginalMember(owner = "runetek4.client!t", name = "l", descriptor = "Lclient!ma;")
+    public static BufferedSocket aClass95_4;
 
     @OriginalMember(owner = "runetek4.client!dc", name = "b", descriptor = "(Z)V")
     public static void readPlayerInfo() {

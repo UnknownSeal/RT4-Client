@@ -17,14 +17,7 @@ public final class Static163 {
 	@OriginalMember(owner = "runetek4.client!n", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_767 = JString.parse(")2");
 
-	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(B)V")
-	public static void disposeLoadingText() {
-		Static240.aFontMetrics1 = null;
-		Static222.aFont1 = null;
-		Static149.anImage3 = null;
-	}
-
-	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(IIIIII)V")
+    @OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(IIIIII)V")
 	public static void method3105(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		@Pc(11) int local11 = IntUtils.clamp(Static106.anInt2869, arg2, Static267.anInt5773);
 		@Pc(17) int local17 = IntUtils.clamp(Static106.anInt2869, arg4, Static267.anInt5773);

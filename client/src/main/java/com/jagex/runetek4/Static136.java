@@ -108,7 +108,7 @@ public final class Static136 {
 		if (Static125.anInt3104 > 127) {
 			Static125.anInt3104 = 127;
 		}
-		Static12.anInt391 = arg0.g1();
+		Preferences.musicVolume = arg0.g1();
 		Preferences.ambientSoundsVolume = arg0.g1();
 		if (Preferences.ambientSoundsVolume > 127) {
 			Preferences.ambientSoundsVolume = 127;

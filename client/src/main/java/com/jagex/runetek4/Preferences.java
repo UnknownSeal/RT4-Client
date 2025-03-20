@@ -48,6 +48,8 @@ public class Preferences {
     public static boolean highDetailLighting = true;
     @OriginalMember(owner = "client!fb", name = "m", descriptor = "Z")
     public static boolean cursorsEnabled = true;
+    @OriginalMember(owner = "client!bb", name = "n", descriptor = "I")
+    public static int musicVolume = 255;
     @OriginalMember(owner = "runetek4.client!ga", name = "e", descriptor = "I")
     private static int particles = 2;
 
@@ -240,7 +242,7 @@ public class Preferences {
         Static139.anInt3451 = 2;
         Static159.aBoolean189 = true;
         highDetailLighting = true;
-        Static12.anInt391 = 255;
+        musicVolume = 255;
         highDetailTextures = true;
         antiAliasingMode = 0;
         @Pc(48) FileOnDisk local48 = null;
@@ -310,7 +312,7 @@ public class Preferences {
         local4.p1(windowMode);
         local4.p1(stereo ? 1 : 0);
         local4.p1(Static125.anInt3104);
-        local4.p1(Static12.anInt391);
+        local4.p1(musicVolume);
         local4.p1(ambientSoundsVolume);
         local4.p2(fullScreenWidth);
         local4.p2(fullScreenHeight);
