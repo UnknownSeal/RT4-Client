@@ -12,6 +12,6 @@ public final class Static265 {
 
 	@OriginalMember(owner = "runetek4.client!vj", name = "a", descriptor = "(IIILclient!ve;)[Lclient!mm;")
 	public static SoftwareSprite[] method4523(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {
-		return Static234.method4016(arg1, 0, arg0) ? Static14.method474() : null;
+		return SpriteLoader.decode(arg1, 0, arg0) ? Static14.method474() : null;
 	}
 }

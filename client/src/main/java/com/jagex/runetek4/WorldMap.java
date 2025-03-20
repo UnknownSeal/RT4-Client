@@ -1,8 +1,8 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.SoftwareSprite;
+import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -14,12 +14,24 @@ public class WorldMap {
     public static int loadPercentage = 0;
     @OriginalMember(owner = "runetek4.client!qf", name = "S", descriptor = "I")
     public static int anInt1864;
+    @OriginalMember(owner = "runetek4.client!oi", name = "m", descriptor = "I")
+    public static int length;
+    @OriginalMember(owner = "client!bn", name = "N", descriptor = "Lclient!be;")
+    public static Component component;
+    @OriginalMember(owner = "client!bc", name = "W", descriptor = "I")
+    public static int anInt435;
+    @OriginalMember(owner = "client!cd", name = "u", descriptor = "I")
+    public static int anInt919;
+    @OriginalMember(owner = "runetek4.client!mh", name = "S", descriptor = "I")
+    public static int originX;
+    @OriginalMember(owner = "runetek4.client!aa", name = "j", descriptor = "I")
+    public static int originZ;
 
     @OriginalMember(owner = "client!jb", name = "a", descriptor = "(IZ)V")
     public static void clear(@OriginalArg(1) boolean arg0) {
         Static90.aByteArrayArrayArray8 = null;
         Static83.anIntArrayArrayArray3 = null;
-        Static24.component = null;
+        component = null;
         Static34.aByteArrayArrayArray3 = null;
         Static145.anIntArray330 = null;
         Static125.aByteArrayArrayArray10 = null;
@@ -82,24 +94,24 @@ public class WorldMap {
             return;
         }
         Static37.anInt1176 = (int) ((float) (arg2 * 2) / Static83.aFloat3);
-        ClientScriptRunner.anInt2882 = Static13.anInt435 - (int) ((float) arg3 / Static83.aFloat3);
-        @Pc(211) int local211 = Static13.anInt435 - (int) ((float) arg3 / Static83.aFloat3);
-        local50 = Static28.anInt919 - (int) ((float) arg2 / Static83.aFloat3);
-        ClientScriptRunner.anInt2884 = Static28.anInt919 - (int) ((float) arg2 / Static83.aFloat3);
-        @Pc(236) int local236 = Static28.anInt919 + (int) ((float) arg2 / Static83.aFloat3);
-        local61 = (int) ((float) arg3 / Static83.aFloat3) + Static13.anInt435;
+        ClientScriptRunner.anInt2882 = anInt435 - (int) ((float) arg3 / Static83.aFloat3);
+        @Pc(211) int local211 = anInt435 - (int) ((float) arg3 / Static83.aFloat3);
+        local50 = anInt919 - (int) ((float) arg2 / Static83.aFloat3);
+        ClientScriptRunner.anInt2884 = anInt919 - (int) ((float) arg2 / Static83.aFloat3);
+        @Pc(236) int local236 = anInt919 + (int) ((float) arg2 / Static83.aFloat3);
+        local61 = (int) ((float) arg3 / Static83.aFloat3) + anInt435;
         Static89.anInt2387 = (int) ((float) (arg3 * 2) / Static83.aFloat3);
         if (GlRenderer.enabled) {
             if (Static153.aClass3_Sub2_Sub1_Sub1_2 == null || Static153.aClass3_Sub2_Sub1_Sub1_2.width != arg3 || Static153.aClass3_Sub2_Sub1_Sub1_2.height != arg2) {
                 Static153.aClass3_Sub2_Sub1_Sub1_2 = null;
                 Static153.aClass3_Sub2_Sub1_Sub1_2 = new SoftwareSprite(arg3, arg2);
             }
-            Rasterizer.prepare(Static153.aClass3_Sub2_Sub1_Sub1_2.pixels, arg3, arg2);
+            SoftwareRaster.setSize(Static153.aClass3_Sub2_Sub1_Sub1_2.pixels, arg3, arg2);
             Static214.method4364(arg3, 0, local61, local50, 0, local236, arg2, local211);
             Static48.method1195(arg3, 0, local61, local236, arg2, 0, local211, local50);
             Static38.method959(0, 0, local211, arg3, local236, local50, local61, arg2);
             GlRaster.render(Static153.aClass3_Sub2_Sub1_Sub1_2.pixels, arg0, arg1, arg3, arg2);
-            Rasterizer.destinationPixels = null;
+            SoftwareRaster.destinationPixels = null;
         } else {
             Static214.method4364(arg3 + arg0, arg1, local61, local50, arg0, local236, arg1 + arg2, local211);
             Static48.method1195(arg0 + arg3, arg0, local61, local236, arg2 + arg1, arg1, local211, local50);
@@ -117,7 +129,7 @@ public class WorldMap {
         }
         @Pc(405) int local405 = arg1 + arg2 - 8;
         @Pc(412) int local412 = arg0 + arg3 - 5;
-        Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.DEBUG_FPS, JString.parseInt(Static243.fps) }), local412, local405, 16776960, -1);
+        Fonts.p12Full.renderRight(JString.concatenate(new JString[] { Cheat.DEBUG_FPS, JString.parseInt(GameShell.fps) }), local412, local405, 16776960, -1);
         @Pc(434) Runtime local434 = Runtime.getRuntime();
         @Pc(443) int local443 = (int) ((local434.totalMemory() - local434.freeMemory()) / 1024L);
         @Pc(445) int local445 = 16776960;
@@ -143,11 +155,11 @@ public class WorldMap {
                 }
                 @Pc(46) int local46 = arg0.g1();
                 @Pc(50) int local50 = arg0.g1();
-                @Pc(62) int local62 = Static2.anInt13 + IdkTypeList.anInt4296 - local50 * 64 - 1;
-                @Pc(69) int local69 = local46 * 64 - Static158.anInt3846;
+                @Pc(62) int local62 = originZ + length - local50 * 64 - 1;
+                @Pc(69) int local69 = local46 * 64 - originX;
                 @Pc(147) byte local147;
                 @Pc(91) int local91;
-                if (local69 >= 0 && local62 - 63 >= 0 && local69 + 63 < Static48.anInt1449 && local62 < IdkTypeList.anInt4296) {
+                if (local69 >= 0 && local62 - 63 >= 0 && local69 + 63 < Static48.anInt1449 && local62 < length) {
                     local91 = local69 >> 6;
                     @Pc(95) int local95 = local62 >> 6;
                     @Pc(97) int local97 = 0;
@@ -188,5 +200,30 @@ public class WorldMap {
             }
             return;
         }
+    }
+
+    @OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "(II)V")
+    public static void method1964(@OriginalArg(0) int arg0) {
+        Static217.anInt4901 = -1;
+        Static142.anInt3482 = -1;
+        anInt435 = arg0;
+        Static38.method965();
+    }
+
+    @OriginalMember(owner = "runetek4.client!wi", name = "d", descriptor = "(II)V")
+    public static void method4641(@OriginalArg(1) int arg0) {
+        Static217.anInt4901 = -1;
+        Static217.anInt4901 = -1;
+        anInt919 = arg0;
+        Static38.method965();
+    }
+
+    @OriginalMember(owner = "client!je", name = "a", descriptor = "(IIIII)V")
+    public static void method2387(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+        anInt435 = Static48.anInt1449 * arg2 / arg0;
+        anInt919 = length * arg1 / arg3;
+        Static142.anInt3482 = -1;
+        Static217.anInt4901 = -1;
+        Static38.method965();
     }
 }

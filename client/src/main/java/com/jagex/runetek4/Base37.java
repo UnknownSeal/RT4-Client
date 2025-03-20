@@ -29,8 +29,8 @@ public class Base37 {
                 local48[local32] = aByteArray12[(int) (local65 - arg0 * 37L)];
             }
             @Pc(88) JString local88 = new JString();
-            local88.aByteArray52 = local48;
-            local88.anInt4030 = local48.length;
+            local88.chars = local48;
+            local88.length = local48.length;
             return local88;
         }
     }

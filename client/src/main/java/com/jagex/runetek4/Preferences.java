@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.game.config.flotype.FloorOverlayTypeList;
 import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
 import com.jagex.runetek4.util.SignLink;
 import com.jagex.runetek4.util.ThreadUtils;
@@ -41,6 +42,12 @@ public class Preferences {
     public static boolean highDetailTextures = true;
     @OriginalMember(owner = "runetek4.client!il", name = "I", descriptor = "I")
     public static int brightness = 3;
+    @OriginalMember(owner = "client!fk", name = "g", descriptor = "Z")
+    public static boolean fogEnabled = true;
+    @OriginalMember(owner = "runetek4.client!od", name = "c", descriptor = "Z")
+    public static boolean highDetailLighting = true;
+    @OriginalMember(owner = "client!fb", name = "m", descriptor = "Z")
+    public static boolean cursorsEnabled = true;
     @OriginalMember(owner = "runetek4.client!ga", name = "e", descriptor = "I")
     private static int particles = 2;
 
@@ -50,7 +57,7 @@ public class Preferences {
             return;
         }
         if (WorldMap.loadPercentage < 10) {
-            if (!Static119.aClass153_44.method4489(Static269.aClass3_Sub2_Sub4_2.aClass100_138)) {
+            if (!Static119.aClass153_44.isGroupReady(Static269.aClass3_Sub2_Sub4_2.aClass100_138)) {
                 WorldMap.loadPercentage = client.js5Archive23.method4478(Static269.aClass3_Sub2_Sub4_2.aClass100_138) / 10;
                 return;
             }
@@ -58,10 +65,10 @@ public class Preferences {
             WorldMap.loadPercentage = 10;
         }
         if (WorldMap.loadPercentage == 10) {
-            Static158.anInt3846 = Static269.aClass3_Sub2_Sub4_2.anInt763 >> 6 << 6;
-            Static2.anInt13 = Static269.aClass3_Sub2_Sub4_2.anInt771 >> 6 << 6;
-            IdkTypeList.anInt4296 = (Static269.aClass3_Sub2_Sub4_2.anInt758 >> 6 << 6) + 64 - Static2.anInt13;
-            Static48.anInt1449 = (Static269.aClass3_Sub2_Sub4_2.anInt770 >> 6 << 6) + 64 - Static158.anInt3846;
+            WorldMap.originX = Static269.aClass3_Sub2_Sub4_2.anInt763 >> 6 << 6;
+            WorldMap.originZ = Static269.aClass3_Sub2_Sub4_2.anInt771 >> 6 << 6;
+            WorldMap.length = (Static269.aClass3_Sub2_Sub4_2.anInt758 >> 6 << 6) + 64 - WorldMap.originZ;
+            Static48.anInt1449 = (Static269.aClass3_Sub2_Sub4_2.anInt770 >> 6 << 6) + 64 - WorldMap.originX;
             if (Static269.aClass3_Sub2_Sub4_2.anInt772 == 37) {
                 Static83.aFloat3 = 3.0F;
                 Static138.aFloat14 = 3.0F;
@@ -81,20 +88,20 @@ public class Preferences {
                 Static83.aFloat3 = 8.0F;
                 Static138.aFloat14 = 8.0F;
             }
-            @Pc(144) int local144 = (PlayerList.self.xFine >> 7) + Camera.originX - Static158.anInt3846;
+            @Pc(144) int local144 = (PlayerList.self.xFine >> 7) + Camera.originX - WorldMap.originX;
             @Pc(153) int local153 = local144 + (int) (Math.random() * 10.0D) - 5;
-            @Pc(168) int local168 = Static2.anInt13 + IdkTypeList.anInt4296 - Camera.originZ - (PlayerList.self.zFine >> 7) - 1;
+            @Pc(168) int local168 = WorldMap.originZ + WorldMap.length - Camera.originZ - (PlayerList.self.zFine >> 7) - 1;
             @Pc(177) int local177 = local168 + (int) (Math.random() * 10.0D) - 5;
-            if (local153 >= 0 && Static48.anInt1449 > local153 && local177 >= 0 && local177 < IdkTypeList.anInt4296) {
-                Static13.anInt435 = local153;
-                Static28.anInt919 = local177;
+            if (local153 >= 0 && Static48.anInt1449 > local153 && local177 >= 0 && local177 < WorldMap.length) {
+                WorldMap.anInt435 = local153;
+                WorldMap.anInt919 = local177;
             } else {
-                Static28.anInt919 = Static2.anInt13 + IdkTypeList.anInt4296 - Static269.aClass3_Sub2_Sub4_2.anInt764 * 64 - 1;
-                Static13.anInt435 = Static269.aClass3_Sub2_Sub4_2.anInt769 * 64 - Static158.anInt3846;
+                WorldMap.anInt919 = WorldMap.originZ + WorldMap.length - Static269.aClass3_Sub2_Sub4_2.anInt764 * 64 - 1;
+                WorldMap.anInt435 = Static269.aClass3_Sub2_Sub4_2.anInt769 * 64 - WorldMap.originX;
             }
             Static38.method965();
-            Static145.anIntArray330 = new int[Static98.anInt2510 + 1];
-            @Pc(235) int local235 = IdkTypeList.anInt4296 >> 6;
+            Static145.anIntArray330 = new int[FloorOverlayTypeList.capacity + 1];
+            @Pc(235) int local235 = WorldMap.length >> 6;
             @Pc(239) int local239 = Static48.anInt1449 >> 6;
             Static90.aByteArrayArrayArray8 = new byte[local239][local235][];
             @Pc(249) int local249 = Static86.anInt2293 >> 2 << 10;
@@ -127,8 +134,8 @@ public class Preferences {
             ClientProt.ping(true);
             GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 60) {
-            if (Static119.aClass153_44.method4497(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
-                if (!Static119.aClass153_44.method4489(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
+            if (Static119.aClass153_44.isGroupNameValid(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
+                if (!Static119.aClass153_44.isGroupReady(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
                     return;
                 }
                 Static203.aMapElementTypeList_1 = MapElementTypeList.create(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}), Static119.aClass153_44);
@@ -227,18 +234,18 @@ public class Preferences {
         Static11.aBoolean15 = true;
         Static15.lowMemory = true;
         ambientSoundsVolume = 127;
-        Static71.aBoolean107 = true;
+        fogEnabled = true;
         Static209.aBoolean240 = true;
         fullScreenWidth = 0;
         Static139.anInt3451 = 2;
         Static159.aBoolean189 = true;
-        Static178.highDetailLighting = true;
+        highDetailLighting = true;
         Static12.anInt391 = 255;
         highDetailTextures = true;
         antiAliasingMode = 0;
         @Pc(48) FileOnDisk local48 = null;
         Static125.anInt3104 = 127;
-        if (Static238.anInt5316 >= 96) {
+        if (GameShell.maxMemory >= 96) {
             setParticles(2);
         } else {
             setParticles(0);
@@ -246,7 +253,7 @@ public class Preferences {
         Static164.anInt3988 = 0;
         buildArea = 0;
         aBoolean63 = false;
-        Static64.aBoolean111 = true;
+        cursorsEnabled = true;
         safeMode = false;
         Static127.aBoolean159 = false;
         favoriteWorlds = 0;
@@ -297,9 +304,9 @@ public class Preferences {
         local4.p1(Static159.aBoolean189 ? 1 : 0);
         local4.p1(Static209.aBoolean240 ? 1 : 0);
         local4.p1(Static139.anInt3451);
-        local4.p1(Static178.highDetailLighting ? 1 : 0);
+        local4.p1(highDetailLighting ? 1 : 0);
         local4.p1(Static220.aBoolean244 ? 1 : 0);
-        local4.p1(Static71.aBoolean107 ? 1 : 0);
+        local4.p1(fogEnabled ? 1 : 0);
         local4.p1(windowMode);
         local4.p1(stereo ? 1 : 0);
         local4.p1(Static125.anInt3104);
@@ -314,7 +321,7 @@ public class Preferences {
         local4.p1(aBoolean63 ? 1 : 0);
         local4.p1(buildArea);
         local4.p1(Static127.aBoolean159 ? 1 : 0);
-        local4.p1(Static64.aBoolean111 ? 1 : 0);
+        local4.p1(cursorsEnabled ? 1 : 0);
         return local4;
     }
 }

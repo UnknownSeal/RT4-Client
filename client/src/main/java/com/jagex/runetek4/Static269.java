@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static269 {
 
-	@OriginalMember(owner = "runetek4.client!wa", name = "z", descriptor = "[I")
-	public static int[] anIntArray252;
-
 	@OriginalMember(owner = "runetek4.client!wa", name = "ub", descriptor = "Lclient!bn;")
 	public static Map aClass3_Sub2_Sub4_2;
 
@@ -20,7 +17,7 @@ public final class Static269 {
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "e", descriptor = "(B)V")
 	public static void method2172() {
-		Static118.aClass99_16.clear();
+		ObjTypeList.objectSpriteCache.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "([Lclient!mj;ZIIIII[B)V")
@@ -171,7 +168,7 @@ public final class Static269 {
 							local243 = local117 + (arg4 >> 3);
 							local188 = (arg3 >> 3) + local515;
 							if (local243 >= 0 && local243 < 13 && local188 >= 0 && local188 < 13) {
-								Static192.aClass92ArrayArray1[local243][local188] = local490;
+								FogManager.chunksAtmosphere[local243][local188] = local490;
 							}
 						}
 					}
@@ -229,7 +226,7 @@ public final class Static269 {
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "d", descriptor = "(BI)V")
 	public static void method2221() {
-		Static125.varbitDefinitionCache.clear(5);
+		Static125.varbitDefinitionCache.clean(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(IZ)Lclient!na;")

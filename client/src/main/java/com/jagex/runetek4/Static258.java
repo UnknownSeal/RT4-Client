@@ -11,10 +11,10 @@ public final class Static258 {
 
 	@OriginalMember(owner = "runetek4.client!va", name = "b", descriptor = "(II)V")
 	public static void method4415() {
-		Static179.aClass99_25.clear(5);
-		Static169.modelCacheStatic.clear(5);
-		Static93.aClass99_14.clear(5);
-		Static262.aClass99_36.clear(5);
+		Static179.aClass99_25.clean(5);
+		Static169.modelCacheStatic.clean(5);
+		Static93.aClass99_14.clean(5);
+		Static262.aClass99_36.clean(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!va", name = "c", descriptor = "(BI)V")

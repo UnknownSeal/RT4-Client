@@ -13,17 +13,6 @@ public final class Static87 {
 	@OriginalMember(owner = "client!gn", name = "d", descriptor = "Z")
 	public static boolean aBoolean130 = false;
 
-	@OriginalMember(owner = "client!gn", name = "v", descriptor = "Lclient!na;")
-	public static final JString aClass100_494 = JString.parse("null");
-
-	@OriginalMember(owner = "client!gn", name = "a", descriptor = "(BI)Lclient!na;")
-	public static JString method1804(@OriginalArg(1) int capacity) {
-		@Pc(13) JString local13 = new JString();
-		local13.anInt4030 = 0;
-		local13.aByteArray52 = new byte[capacity];
-		return local13;
-	}
-
 	@OriginalMember(owner = "client!gn", name = "a", descriptor = "(ZI)V")
 	public static void method1805(@OriginalArg(0) boolean arg0) {
 		@Pc(7) byte local7;
@@ -59,13 +48,6 @@ public final class Static87 {
 					Static23.method645(local130, local49, local38, 64, 64);
 				}
 			}
-		}
-	}
-
-	@OriginalMember(owner = "client!gn", name = "b", descriptor = "(Z)V")
-	public static void method1807() {
-		for (@Pc(11) int local11 = 0; local11 < 100; local11++) {
-			InterfaceList.aBooleanArray100[local11] = true;
 		}
 	}
 

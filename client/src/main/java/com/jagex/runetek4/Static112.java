@@ -11,12 +11,12 @@ public final class Static112 {
 
 	@OriginalMember(owner = "runetek4.client!ij", name = "a", descriptor = "(B)V")
 	public static void method2297() {
-		@Pc(3) int local3 = Static183.anInt4271;
-		@Pc(9) int local9 = Static229.anInt5138;
-		@Pc(11) int local11 = Static13.anInt436;
-		@Pc(13) int local13 = Static24.anInt761;
+		@Pc(3) int local3 = InterfaceList.anInt4271;
+		@Pc(9) int local9 = InterfaceList.anInt5138;
+		@Pc(11) int local11 = InterfaceList.anInt436;
+		@Pc(13) int local13 = InterfaceList.anInt761;
 		if (LoginManager.aClass3_Sub2_Sub1_1 == null || LoginManager.aClass3_Sub2_Sub1_9 == null) {
-			if (client.js5Archive8.method4506(Static55.anInt1736) && client.js5Archive8.method4506(Static169.anInt4073)) {
+			if (client.js5Archive8.isFileReady(Static55.anInt1736) && client.js5Archive8.isFileReady(Static169.anInt4073)) {
 				LoginManager.aClass3_Sub2_Sub1_1 = SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static55.anInt1736);
 				LoginManager.aClass3_Sub2_Sub1_9 = SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static169.anInt4073);
 				if (GlRenderer.enabled) {
@@ -42,10 +42,10 @@ public final class Static112 {
 		if (LoginManager.aClass3_Sub2_Sub1_1 != null && LoginManager.aClass3_Sub2_Sub1_9 != null) {
 			local112 = local13 / LoginManager.aClass3_Sub2_Sub1_1.width;
 			for (local114 = 0; local114 < local112; local114++) {
-				LoginManager.aClass3_Sub2_Sub1_1.drawSprite(local114 * LoginManager.aClass3_Sub2_Sub1_1.width + local3, local9);
+				LoginManager.aClass3_Sub2_Sub1_1.render(local114 * LoginManager.aClass3_Sub2_Sub1_1.width + local3, local9);
 			}
-			LoginManager.aClass3_Sub2_Sub1_9.drawSprite(local3, local9);
-			LoginManager.aClass3_Sub2_Sub1_9.method1421(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_9.width, local9);
+			LoginManager.aClass3_Sub2_Sub1_9.render(local3, local9);
+			LoginManager.aClass3_Sub2_Sub1_9.renderHorizontalFlip(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_9.width, local9);
 		}
 		Fonts.b12Full.renderLeft(LocalizedText.CHOOSE_OPTION, local3 + 3, local9 + 14, Static195.anInt4581, -1);
 		if (GlRenderer.enabled) {
@@ -67,7 +67,7 @@ public final class Static112 {
 				}
 			}
 		}
-		if ((LoginManager.aClass3_Sub2_Sub1_8 == null || LoginManager.aClass3_Sub2_Sub1_6 == null || LoginManager.aClass3_Sub2_Sub1_10 == null) && client.js5Archive8.method4506(Static85.anInt2261) && client.js5Archive8.method4506(Static136.anInt3324) && client.js5Archive8.method4506(Static254.anInt5556)) {
+		if ((LoginManager.aClass3_Sub2_Sub1_8 == null || LoginManager.aClass3_Sub2_Sub1_6 == null || LoginManager.aClass3_Sub2_Sub1_10 == null) && client.js5Archive8.isFileReady(Static85.anInt2261) && client.js5Archive8.isFileReady(Static136.anInt3324) && client.js5Archive8.isFileReady(Static254.anInt5556)) {
 			LoginManager.aClass3_Sub2_Sub1_8 = SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static85.anInt2261);
 			LoginManager.aClass3_Sub2_Sub1_6 = SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static136.anInt3324);
 			LoginManager.aClass3_Sub2_Sub1_10 = SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static254.anInt5556);
@@ -93,15 +93,15 @@ public final class Static112 {
 		if (LoginManager.aClass3_Sub2_Sub1_8 != null && LoginManager.aClass3_Sub2_Sub1_6 != null && LoginManager.aClass3_Sub2_Sub1_10 != null) {
 			local203 = local13 / LoginManager.aClass3_Sub2_Sub1_8.width;
 			for (local219 = 0; local219 < local203; local219++) {
-				LoginManager.aClass3_Sub2_Sub1_8.drawSprite(local3 + LoginManager.aClass3_Sub2_Sub1_8.width * local219, local11 + local9 + -LoginManager.aClass3_Sub2_Sub1_8.height);
+				LoginManager.aClass3_Sub2_Sub1_8.render(local3 + LoginManager.aClass3_Sub2_Sub1_8.width * local219, local11 + local9 + -LoginManager.aClass3_Sub2_Sub1_8.height);
 			}
 			local219 = (local11 - 20) / LoginManager.aClass3_Sub2_Sub1_6.height;
 			for (local418 = 0; local418 < local219; local418++) {
-				LoginManager.aClass3_Sub2_Sub1_6.drawSprite(local3, local9 + local418 * LoginManager.aClass3_Sub2_Sub1_6.height + 20);
-				LoginManager.aClass3_Sub2_Sub1_6.method1421(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_6.width, local9 + 20 + local418 * LoginManager.aClass3_Sub2_Sub1_6.height);
+				LoginManager.aClass3_Sub2_Sub1_6.render(local3, local9 + local418 * LoginManager.aClass3_Sub2_Sub1_6.height + 20);
+				LoginManager.aClass3_Sub2_Sub1_6.renderHorizontalFlip(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_6.width, local9 + 20 + local418 * LoginManager.aClass3_Sub2_Sub1_6.height);
 			}
-			LoginManager.aClass3_Sub2_Sub1_10.drawSprite(local3, local11 + local9 - LoginManager.aClass3_Sub2_Sub1_10.height);
-			LoginManager.aClass3_Sub2_Sub1_10.method1421(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_10.width, local9 - -local11 + -LoginManager.aClass3_Sub2_Sub1_10.height);
+			LoginManager.aClass3_Sub2_Sub1_10.render(local3, local11 + local9 - LoginManager.aClass3_Sub2_Sub1_10.height);
+			LoginManager.aClass3_Sub2_Sub1_10.renderHorizontalFlip(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_10.width, local9 - -local11 + -LoginManager.aClass3_Sub2_Sub1_10.height);
 		}
 		for (local203 = 0; local203 < MiniMenu.menuActionRow; local203++) {
 			local219 = (MiniMenu.menuActionRow - local203 - 1) * 15 + local9 + 35;
@@ -111,7 +111,7 @@ public final class Static112 {
 			}
 			Fonts.b12Full.renderLeft(Static269.method2228(local203), local3 + 3, local219, local418, 0);
 		}
-		Static121.method2407(Static183.anInt4271, Static229.anInt5138, Static13.anInt436, Static24.anInt761);
+		InterfaceList.forceRedrawScreen(InterfaceList.anInt4271, InterfaceList.anInt5138, InterfaceList.anInt436, InterfaceList.anInt761);
 	}
 
 }

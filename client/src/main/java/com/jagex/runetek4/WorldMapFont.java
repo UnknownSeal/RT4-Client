@@ -124,8 +124,8 @@ public final class WorldMapFont {
 		@Pc(21) int local21 = arg4[arg0 + 3];
 		@Pc(27) int local27 = arg4[arg0 + 4];
 		@Pc(47) int local47 = arg4[arg0] * 16384 + arg4[arg0 + 1] * 128 + arg4[arg0 + 2];
-		@Pc(53) int local53 = local7 + local15 * Rasterizer.destinationWidth;
-		@Pc(57) int local57 = Rasterizer.destinationWidth - local21;
+		@Pc(53) int local53 = local7 + local15 * SoftwareRaster.destinationWidth;
+		@Pc(57) int local57 = SoftwareRaster.destinationWidth - local21;
 		@Pc(59) int local59 = 0;
 		@Pc(66) int local66;
 		if (local15 < Rasterizer.viewportTop) {
@@ -133,7 +133,7 @@ public final class WorldMapFont {
 			local27 -= local66;
 			local15 = Rasterizer.viewportTop;
 			local47 += local66 * local21;
-			local53 += local66 * Rasterizer.destinationWidth;
+			local53 += local66 * SoftwareRaster.destinationWidth;
 		}
 		if (local15 + local27 >= Rasterizer.viewportBottom) {
 			local27 -= local15 + local27 + 1 - Rasterizer.viewportBottom;
@@ -157,9 +157,9 @@ public final class WorldMapFont {
 			return;
 		}
 		if (this.aBoolean112) {
-			this.method1505(Rasterizer.destinationPixels, arg4, arg3, local47, local53, local21, local27, local57, local59);
+			this.method1505(SoftwareRaster.destinationPixels, arg4, arg3, local47, local53, local21, local27, local57, local59);
 		} else {
-			this.method1507(Rasterizer.destinationPixels, arg4, arg3, local47, local53, local21, local27, local57, local59);
+			this.method1507(SoftwareRaster.destinationPixels, arg4, arg3, local47, local53, local21, local27, local57, local59);
 		}
 	}
 

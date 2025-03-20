@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -37,17 +36,6 @@ public final class Static180 {
 	@OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(Lclient!ve;I)V")
 	public static void init(@OriginalArg(0) Js5 arg0) {
 		Static172.gameDefinitionsJs5 = arg0;
-	}
-
-	@OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(II)V")
-	public static void method3328(@OriginalArg(0) int arg0) {
-		@Pc(12) DelayedStateChange local12 = Static238.method4143(10, arg0);
-		local12.method1007();
-	}
-
-	@OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(I)V")
-	public static void removeSoft() {
-		Static110.aClass99_15.removeSoft();
 	}
 
 	@OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(III)I")

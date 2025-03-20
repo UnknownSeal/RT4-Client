@@ -2,11 +2,11 @@ package com.jagex.runetek4.scene;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.media.SeqType;
-import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.tile.GroundDecor;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -36,7 +36,7 @@ public class Scene {
                 local41 = 21;
             }
             @Pc(83) int[] local83 = new int[] { 64, 96, 128 };
-            @Pc(103) ModelUnlit local103 = new ModelUnlit(local41 * 3 + 1, -local41 + local41 * 3 * 2, 0);
+            @Pc(103) RawModel local103 = new RawModel(local41 * 3 + 1, -local41 + local41 * 3 * 2, 0);
             local109 = local103.method1685(0, 0);
             @Pc(113) int[][] local113 = new int[3][local41];
             for (local115 = 0; local115 < 3; local115++) {
@@ -70,11 +70,11 @@ public class Scene {
         @Pc(376) int local376 = -local367;
         @Pc(379) int local379 = -local367;
         @Pc(381) int local381 = local367;
-        @Pc(384) int local384 = arg8.method4562();
+        @Pc(384) int local384 = arg8.getMinX();
         @Pc(386) AnimFrameset local386 = null;
-        local115 = arg8.method4561();
-        local126 = arg8.method4576();
-        local130 = arg8.method4550();
+        local115 = arg8.getMaxX();
+        local126 = arg8.getMinZ();
+        local130 = arg8.getMaxZ();
         if (arg2 != null) {
             @Pc(403) int local403 = arg2.anIntArray473[arg10];
             local386 = Static72.method1566(local403 >> 16);
@@ -118,12 +118,12 @@ public class Scene {
             local33.method4555(local386, arg10);
         }
         if (arg9 != 0) {
-            local33.method4554(arg9);
+            local33.rotateY(arg9);
         }
         if (GlRenderer.enabled) {
             @Pc(650) GlModel local650 = (GlModel) local33;
             if (SceneGraph.getTileHeight(Player.plane, arg3 + local384, local126 + arg5) != arg11 || SceneGraph.getTileHeight(Player.plane, local115 + arg3, arg5 - -local130) != arg11) {
-                for (local162 = 0; local162 < local650.anInt5295; local162++) {
+                for (local162 = 0; local162 < local650.vertexCount; local162++) {
                     local650.vertexY[local162] += SceneGraph.getTileHeight(Player.plane, local650.vertexX[local162] + arg3, arg5 + local650.vertexZ[local162]) - arg11;
                 }
                 local650.bounds.valid = false;
@@ -143,12 +143,12 @@ public class Scene {
 
     @OriginalMember(owner = "runetek4.client!dk", name = "a", descriptor = "(III)Lclient!ec;")
     public static Scenery getObject(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        @Pc(7) SceneTile sceneTile = Static130.levelTiles[arg0][arg1][arg2];
-        if (sceneTile == null) {
+        @Pc(7) Tile tile = Static130.levelTiles[arg0][arg1][arg2];
+        if (tile == null) {
             return null;
         }
-        for (@Pc(13) int i = 0; i < sceneTile.entityCount; i++) {
-            @Pc(22) Scenery scenery = sceneTile.sceneries[i];
+        for (@Pc(13) int i = 0; i < tile.entityCount; i++) {
+            @Pc(22) Scenery scenery = tile.sceneries[i];
             if ((scenery.hash >> 29 & 0x3L) == 2L && scenery.anInt1701 == arg1 && scenery.anInt1696 == arg2) {
                 Static266.method4193(scenery);
                 return scenery;
@@ -170,7 +170,7 @@ public class Scene {
         groundDecor.key = arg5;
         groundDecor.aBoolean49 = arg6;
         if (Static130.levelTiles[arg0][arg1][arg2] == null) {
-            Static130.levelTiles[arg0][arg1][arg2] = new SceneTile(arg0, arg1, arg2);
+            Static130.levelTiles[arg0][arg1][arg2] = new Tile(arg0, arg1, arg2);
         }
         Static130.levelTiles[arg0][arg1][arg2].groundDecor = groundDecor;
     }

@@ -77,7 +77,7 @@ public final class Static117 {
 			@Pc(16) byte[] local16 = arg0.getfile(arg1, arg2);
 			return local16 == null ? null : new VorbisSound(local16);
 		} else {
-			arg0.requestDownload(arg1, arg2);
+			arg0.isFileReady(arg1, arg2);
 			return null;
 		}
 	}

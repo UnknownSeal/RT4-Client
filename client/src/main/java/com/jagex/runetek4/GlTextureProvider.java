@@ -41,7 +41,7 @@ public interface GlTextureProvider {
 	boolean method3236(@OriginalArg(0) int arg0);
 
 	@OriginalMember(owner = "runetek4.client!m", name = "g", descriptor = "(II)I")
-	int method3237(@OriginalArg(0) int arg0);
+	int getMaterialType(@OriginalArg(0) int arg0);
 
 	@OriginalMember(owner = "runetek4.client!m", name = "h", descriptor = "(II)I")
 	int method3238(@OriginalArg(1) int arg0);

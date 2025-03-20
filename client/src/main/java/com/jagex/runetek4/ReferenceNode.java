@@ -12,8 +12,8 @@ public abstract class ReferenceNode extends CachedNode {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gf", name = "a", descriptor = "(Z)Ljava/lang/Object;")
-	public abstract Object method3618();
+	public abstract Object get();
 
 	@OriginalMember(owner = "runetek4.client!gf", name = "e", descriptor = "(I)Z")
-	public abstract boolean method3619();
+	public abstract boolean isSoft();
 }

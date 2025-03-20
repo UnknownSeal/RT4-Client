@@ -10,6 +10,4 @@ public final class Static42 {
 	@OriginalMember(owner = "client!df", name = "l", descriptor = "Lclient!na;")
 	public static final JString GREEN = JString.parse("<col=00ff00>");
 
-	@OriginalMember(owner = "client!df", name = "n", descriptor = "I")
-	public static int anInt1396 = 0;
 }

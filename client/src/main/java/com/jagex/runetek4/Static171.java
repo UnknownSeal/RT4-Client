@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static171 {
 
-	@OriginalMember(owner = "runetek4.client!ni", name = "h", descriptor = "I")
-	public static int anInt4153;
-
 	@OriginalMember(owner = "runetek4.client!ni", name = "q", descriptor = "I")
 	public static int anInt4157;
 
@@ -44,10 +41,4 @@ public final class Static171 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ni", name = "a", descriptor = "(ILclient!na;I)V")
-	public static void method3221(@OriginalArg(1) JString arg0, @OriginalArg(2) int arg1) {
-		Protocol.outboundBuffer.pIsaac1(188);
-		Protocol.outboundBuffer.p1b_alt1(arg1);
-		Protocol.outboundBuffer.p8(arg0.encode37());
-	}
 }

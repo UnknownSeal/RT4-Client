@@ -17,8 +17,8 @@ public final class Static114 {
 		if (arg0 == null) {
 			return null;
 		} else {
-			@Pc(22) SoftwareFont local22 = new SoftwareFont(arg0, Static274.anIntArray440, Static269.anIntArray252, Static254.anIntArray488, Static26.anIntArray66, aClass6.aByteArrayArray5);
-			Static75.method1631();
+			@Pc(22) SoftwareFont local22 = new SoftwareFont(arg0, SpriteLoader.xOffsets, SpriteLoader.yOffsets, SpriteLoader.innerWidths, SpriteLoader.innerHeights, SpriteLoader.pixels);
+			SpriteLoader.clear();
 			return local22;
 		}
 	}

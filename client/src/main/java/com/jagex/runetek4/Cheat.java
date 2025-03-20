@@ -102,7 +102,7 @@ public class Cheat {
 
     @OriginalMember(owner = "client!en", name = "a", descriptor = "(IIIB)V")
     public static void teleport(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        @Pc(66) JString command = JString.concatenate(new JString[] {TELE, JString.parseInt(arg2), Static159.aClass100_760, JString.parseInt(arg0 >> 6), Static159.aClass100_760, JString.parseInt(arg1 >> 6), Static159.aClass100_760, JString.parseInt(arg0 & 0x3F), Static159.aClass100_760, JString.parseInt(arg1 & 0x3F) });
+        @Pc(66) JString command = JString.concatenate(new JString[] {TELE, JString.parseInt(arg2), JString.aClass100_760, JString.parseInt(arg0 >> 6), JString.aClass100_760, JString.parseInt(arg1 >> 6), JString.aClass100_760, JString.parseInt(arg0 & 0x3F), JString.aClass100_760, JString.parseInt(arg1 & 0x3F) });
         command.printToConsole();
         execute(command);
     }
@@ -143,9 +143,9 @@ public class Cheat {
                 Chat.addMessage(null, 0, JString.concatenate(new JString[] {aClass100_335, JString.parseInt(Static198.method1029()) }));
             }
             if (GlRenderer.enabled && chatTyped.equalsIgnoreCase(CARDMEM)) {
-                System.out.println("oncard_geometry:" + Static63.oncard_geometry);
-                System.out.println("oncard_2d:" + Static63.oncard_2d);
-                System.out.println("oncard_texture:" + Static63.oncard_texture);
+                System.out.println("oncard_geometry:" + GlCleaner.oncard_geometry);
+                System.out.println("oncard_2d:" + GlCleaner.oncard_2d);
+                System.out.println("oncard_texture:" + GlCleaner.oncard_texture);
             }
             if (chatTyped.equalsIgnoreCase(CLIENTDROP)) {
                 Game.tryReconnect();
@@ -162,7 +162,7 @@ public class Cheat {
                 client.js5NetQueue.breakConnection();
             }
             if (chatTyped.equalsIgnoreCase(REPLACECANVAS)) {
-                Static35.canvasReplaceRecommended = true;
+                GameShell.canvasReplaceRecommended = true;
             }
             if (chatTyped.equalsIgnoreCase(REBUILD)) {
                 client.processGameStatus(25);

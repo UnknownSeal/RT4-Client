@@ -30,11 +30,11 @@ public final class BufferedImageFrameBuffer extends FrameBuffer {
 	@Override
 	public final void init(@OriginalArg(0) int height, @OriginalArg(2) int width, @OriginalArg(3) Component component) {
 		this.pixels = new int[width * height + 1];
-		this.anInt5339 = height;
-		this.anInt5341 = width;
+		this.height = height;
+		this.width = width;
 		@Pc(22) DataBufferInt buffer = new DataBufferInt(this.pixels, this.pixels.length);
 		@Pc(30) DirectColorModel model = new DirectColorModel(32, 16711680, 65280, 255);
-		@Pc(40) WritableRaster raster = Raster.createWritableRaster(model.createCompatibleSampleModel(this.anInt5341, this.anInt5339), buffer, null);
+		@Pc(40) WritableRaster raster = Raster.createWritableRaster(model.createCompatibleSampleModel(this.width, this.height), buffer, null);
 		this.image = new BufferedImage(model, raster, false, new Hashtable());
 		this.component = component;
 		this.makeTarget();

@@ -1,10 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ArrayUtils;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -48,14 +47,6 @@ public final class Static280 {
 		arg0.anInt3381 = arg0.dstYaw;
 	}
 
-	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(IIII)V")
-	public static void method4666(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) {
-		@Pc(18) DelayedStateChange local18 = Static238.method4143(11, arg1);
-		local18.method1017();
-		local18.intArg3 = arg2;
-		local18.intArg1 = arg0;
-	}
-
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "([IIIIIIIIIZB)V")
 	public static void method4667(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) boolean arg9) {
 		@Pc(7) int local7 = arg2;
@@ -83,12 +74,12 @@ public final class Static280 {
 		if (local56 <= Rasterizer.viewportTop) {
 			return;
 		}
-		@Pc(79) int local79 = local7 + Rasterizer.destinationWidth * local43;
+		@Pc(79) int local79 = local7 + SoftwareRaster.destinationWidth * local43;
 		if (arg5 == 9) {
 			arg3 = arg3 + 1 & 0x3;
 			arg5 = 1;
 		}
-		@Pc(99) int local99 = local7 + Rasterizer.destinationWidth - local30;
+		@Pc(99) int local99 = local7 + SoftwareRaster.destinationWidth - local30;
 		local43 -= arg8;
 		@Pc(108) int local108 = arg6 - local43;
 		if (Rasterizer.viewportBottom < local56) {
@@ -540,21 +531,6 @@ public final class Static280 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!be;I)Lclient!be;")
-	public static Component method4668(@OriginalArg(0) Component arg0) {
-		if (arg0.overlayer != -1) {
-			return InterfaceList.getComponent(arg0.overlayer);
-		}
-		@Pc(28) int local28 = arg0.id >>> 16;
-		@Pc(33) HashTableIterator local33 = new HashTableIterator(InterfaceList.openInterfaces);
-		for (@Pc(38) ComponentPointer local38 = (ComponentPointer) local33.method2701(); local38 != null; local38 = (ComponentPointer) local33.method2700()) {
-			if (local28 == local38.interfaceId) {
-				return InterfaceList.getComponent((int) local38.nodeId);
-			}
-		}
-		return null;
-	}
-
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(IBIIIII)V")
 	public static void method4670(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {
 		@Pc(18) int local18 = arg2 - arg4;
@@ -574,10 +550,10 @@ public final class Static280 {
 		@Pc(87) int local87;
 		if (arg1 >= Static267.anInt5773 && Static106.anInt2869 >= arg1) {
 			@Pc(52) int[] local52 = ObjTypeList.anIntArrayArray10[arg1];
-			local61 = Static78.method1690(FluTypeList.anInt5063, arg5 - arg2, Static172.anInt4164);
-			local69 = Static78.method1690(FluTypeList.anInt5063, arg2 + arg5, Static172.anInt4164);
-			local78 = Static78.method1690(FluTypeList.anInt5063, arg5 - local18, Static172.anInt4164);
-			local87 = Static78.method1690(FluTypeList.anInt5063, arg5 + local18, Static172.anInt4164);
+			local61 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - arg2, Static172.anInt4164);
+			local69 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg2 + arg5, Static172.anInt4164);
+			local78 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - local18, Static172.anInt4164);
+			local87 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 + local18, Static172.anInt4164);
 			ArrayUtils.fillRange(local52, local61, local78, arg3);
 			ArrayUtils.fillRange(local52, local78, local87, arg0);
 			ArrayUtils.fillRange(local52, local87, local69, arg3);
@@ -605,8 +581,8 @@ public final class Static280 {
 				local61 = arg1 + local32;
 				if (Static267.anInt5773 <= local61 && Static106.anInt2869 >= local161) {
 					if (local32 >= local18) {
-						local69 = Static78.method1690(FluTypeList.anInt5063, local23 + arg5, Static172.anInt4164);
-						local78 = Static78.method1690(FluTypeList.anInt5063, arg5 - local23, Static172.anInt4164);
+						local69 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, local23 + arg5, Static172.anInt4164);
+						local78 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - local23, Static172.anInt4164);
 						if (Static106.anInt2869 >= local61) {
 							ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local61], local78, local69, arg3);
 						}
@@ -615,10 +591,10 @@ public final class Static280 {
 						}
 					} else {
 						local69 = Static241.anIntArray522[local32];
-						local78 = Static78.method1690(FluTypeList.anInt5063, local23 + arg5, Static172.anInt4164);
-						local87 = Static78.method1690(FluTypeList.anInt5063, arg5 - local23, Static172.anInt4164);
-						local264 = Static78.method1690(FluTypeList.anInt5063, arg5 + local69, Static172.anInt4164);
-						local273 = Static78.method1690(FluTypeList.anInt5063, arg5 - local69, Static172.anInt4164);
+						local78 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, local23 + arg5, Static172.anInt4164);
+						local87 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - local23, Static172.anInt4164);
+						local264 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 + local69, Static172.anInt4164);
+						local273 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - local69, Static172.anInt4164);
 						if (Static106.anInt2869 >= local61) {
 							local280 = ObjTypeList.anIntArrayArray10[local61];
 							ArrayUtils.fillRange(local280, local87, local273, arg3);
@@ -639,13 +615,13 @@ public final class Static280 {
 			if (Static267.anInt5773 <= local61 && Static106.anInt2869 >= local161) {
 				local69 = arg5 + local32;
 				local78 = arg5 - local32;
-				if (local69 >= Static172.anInt4164 && FluTypeList.anInt5063 >= local78) {
-					local69 = Static78.method1690(FluTypeList.anInt5063, local69, Static172.anInt4164);
-					local78 = Static78.method1690(FluTypeList.anInt5063, local78, Static172.anInt4164);
+				if (local69 >= Static172.anInt4164 && FloorUnderlayTypeList.anInt5063 >= local78) {
+					local69 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, local69, Static172.anInt4164);
+					local78 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, local78, Static172.anInt4164);
 					if (local23 < local18) {
 						local87 = local40 >= local23 ? local40 : Static241.anIntArray522[local23];
-						local264 = Static78.method1690(FluTypeList.anInt5063, local87 + arg5, Static172.anInt4164);
-						local273 = Static78.method1690(FluTypeList.anInt5063, arg5 - local87, Static172.anInt4164);
+						local264 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, local87 + arg5, Static172.anInt4164);
+						local273 = IntUtils.clamp(FloorUnderlayTypeList.anInt5063, arg5 - local87, Static172.anInt4164);
 						if (Static106.anInt2869 >= local61) {
 							local280 = ObjTypeList.anIntArrayArray10[local61];
 							ArrayUtils.fillRange(local280, local78, local273, arg3);
@@ -705,9 +681,4 @@ public final class Static280 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(II)V")
-	public static void method4675(@OriginalArg(1) int arg0) {
-		@Pc(17) DelayedStateChange local17 = Static238.method4143(11, arg0);
-		local17.method1007();
-	}
 }

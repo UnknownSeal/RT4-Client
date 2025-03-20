@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static276 {
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "c", descriptor = "[[[Lclient!bj;")
-	public static SceneTile[][][] aClass3_Sub5ArrayArrayArray3;
+	public static Tile[][][] aClass3_Sub5ArrayArrayArray3;
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "l", descriptor = "[Lclient!qf;")
 	public static Sprite[] aClass3_Sub2_Sub1Array11;
@@ -37,26 +37,21 @@ public final class Static276 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(I)V")
-	public static void clear() {
-		ClientScriptRunner.aClass99_31.clear();
-	}
-
 	@OriginalMember(owner = "runetek4.client!wh", name = "b", descriptor = "(B)Lclient!ok;")
 	public static IndexedSprite method4614() {
 		@Pc(27) IndexedSprite local27;
 		if (GlRenderer.enabled) {
-			local27 = new GlIndexedSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[0], Static269.anIntArray252[0], Static254.anIntArray488[0], Static26.anIntArray66[0], aClass6.aByteArrayArray5[0], Static259.anIntArray513);
+			local27 = new GlIndexedSprite(Static124.anInt3080, Static227.anInt5091, SpriteLoader.xOffsets[0], SpriteLoader.yOffsets[0], SpriteLoader.innerWidths[0], SpriteLoader.innerHeights[0], SpriteLoader.pixels[0], Static259.anIntArray513);
 		} else {
-			local27 = new SoftwareIndexedSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[0], Static269.anIntArray252[0], Static254.anIntArray488[0], Static26.anIntArray66[0], aClass6.aByteArrayArray5[0], Static259.anIntArray513);
+			local27 = new SoftwareIndexedSprite(Static124.anInt3080, Static227.anInt5091, SpriteLoader.xOffsets[0], SpriteLoader.yOffsets[0], SpriteLoader.innerWidths[0], SpriteLoader.innerHeights[0], SpriteLoader.pixels[0], Static259.anIntArray513);
 		}
-		Static75.method1631();
+		SpriteLoader.clear();
 		return local27;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(II)V")
 	public static void method4615() {
-		PreciseSleep.aClass99_29.clear(5);
-		Static219.aClass99_27.clear(5);
+		PreciseSleep.aClass99_29.clean(5);
+		Static219.aClass99_27.clean(5);
 	}
 }

@@ -7,7 +7,7 @@ import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.tile.GroundDecor;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.scene.tile.Wall;
 import com.jagex.runetek4.scene.tile.WallDecor;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -19,12 +19,9 @@ public final class Static247 {
 	@OriginalMember(owner = "runetek4.client!ub", name = "h", descriptor = "[Lclient!pe;")
 	public static Class120[] aClass120Array2;
 
-	@OriginalMember(owner = "runetek4.client!ub", name = "m", descriptor = "I")
-	public static int anInt5405;
-
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(IIIIIII)V")
 	public static void method4244(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
-		if (Static172.anInt4164 <= arg1 && FluTypeList.anInt5063 >= arg3 && Static267.anInt5773 <= arg2 && arg4 <= Static106.anInt2869) {
+		if (Static172.anInt4164 <= arg1 && FloorUnderlayTypeList.anInt5063 >= arg3 && Static267.anInt5773 <= arg2 && arg4 <= Static106.anInt2869) {
 			if (arg5 == 1) {
 				Static134.method2622(arg0, arg3, arg2, arg4, arg1);
 			} else {
@@ -38,21 +35,21 @@ public final class Static247 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(Lclient!bj;Z)V")
-	public static void method4245(@OriginalArg(0) SceneTile arg0, @OriginalArg(1) boolean arg1) {
+	public static void method4245(@OriginalArg(0) Tile arg0, @OriginalArg(1) boolean arg1) {
 		aClass6.drawTileQueue.addTail(arg0);
 		while (true) {
-			@Pc(8) SceneTile tile;
+			@Pc(8) Tile tile;
 			@Pc(18) int tileX;
 			@Pc(21) int tileZ;
 			@Pc(24) int local24;
 			@Pc(27) int occludeLevel;
-			@Pc(31) SceneTile[][] tiles;
+			@Pc(31) Tile[][] tiles;
 			@Pc(65) int frontWallTypes;
 			@Pc(115) int farthestIndex;
 			@Pc(894) int x;
 			@Pc(899) int y;
 			@Pc(904) int z;
-			@Pc(153) SceneTile local153;
+			@Pc(153) Tile local153;
 			@Pc(1332) int local1332;
 			do {
 				do {
@@ -68,10 +65,10 @@ public final class Static247 {
 										@Pc(363) Wall var22;
 										@Pc(469) boolean tileDrawn;
 										@Pc(425) Scenery var25;
-										@Pc(1179) SceneTile adjacent;
+										@Pc(1179) Tile adjacent;
 										while (true) {
 											do {
-												tile = (SceneTile) aClass6.drawTileQueue.removeHead();
+												tile = (Tile) aClass6.drawTileQueue.removeHead();
 												if (tile == null) {
 													return;
 												}
@@ -89,7 +86,7 @@ public final class Static247 {
 													if (direction != Static152.anInt3604) {
 														Static152.anInt3604 = direction;
 														Static21.method619(direction);
-														Static161.method3066(Static123.method2422());
+														FogManager.setFogColor(Static123.method2422());
 													}
 													frontWallTypes = var9 >>> 24 << 3;
 													if (frontWallTypes != Static22.anInt730) {
@@ -97,7 +94,7 @@ public final class Static247 {
 														Static147.method2761(frontWallTypes);
 													}
 													farthestIndex = Static107.anIntArrayArrayArray10[0][tileX][tileZ] + Static107.anIntArrayArrayArray10[0][tileX + 1][tileZ] + Static107.anIntArrayArrayArray10[0][tileX][tileZ + 1] + Static107.anIntArrayArrayArray10[0][tileX + 1][tileZ + 1] >> 2;
-													Static27.setMaterial(-farthestIndex, 3);
+													MaterialManager.setMaterial(-farthestIndex, 3);
 													local33 = 201.5F;
 													GlRenderer.method4159(local33);
 												} else {
@@ -528,7 +525,7 @@ public final class Static247 {
 												}
 												for (x = local1697.anInt1701; x <= local1697.anInt1713; x++) {
 													for (y = local1697.anInt1696; y <= local1697.anInt1698; y++) {
-														@Pc(1863) SceneTile local1863 = tiles[x][y];
+														@Pc(1863) Tile local1863 = tiles[x][y];
 														if (local1863.checkLocSpans != 0) {
 															aClass6.drawTileQueue.addTail(local1863);
 														} else if ((x != tileX || y != tileZ) && local1863.aBoolean46) {
@@ -636,7 +633,7 @@ public final class Static247 {
 					}
 				}
 			}
-			@Pc(2388) SceneTile local2388;
+			@Pc(2388) Tile local2388;
 			if (local24 < Static126.anInt3114 - 1) {
 				local2388 = Static130.levelTiles[local24 + 1][tileX][tileZ];
 				if (local2388 != null && local2388.aBoolean46) {
@@ -685,7 +682,7 @@ public final class Static247 {
 		Static274.anInt4999 = arg2;
 		MiniMenu.aBoolean302 = true;
 		MiniMenu.anInt5393 = arg4;
-		Static35.anInt1092 = arg5;
+		MiniMenu.anInt1092 = arg5;
 		InterfaceList.redraw(local8);
 	}
 
@@ -696,7 +693,7 @@ public final class Static247 {
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(Z)V")
 	public static void clear() {
-		Static279.aClass99_38.clear();
-		SpotAnimDefinition.modelCache.clear();
+		Static279.aClass99_38.clean();
+		SpotAnimDefinition.modelCache.clean();
 	}
 }

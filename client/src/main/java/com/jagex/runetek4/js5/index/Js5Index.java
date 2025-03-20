@@ -1,8 +1,8 @@
 package com.jagex.runetek4.js5.index;
 
-import com.jagex.runetek4.cache.NameHashCollection;
+import com.jagex.runetek4.cache.IntHashTable;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.js5.Js5Compression;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Js5Index {
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "b", descriptor = "[[I")
-	public int[][] anIntArrayArray21;
+	public int[][] fileNameHashes;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "d", descriptor = "[I")
 	public int[] anIntArray268;
@@ -21,7 +21,7 @@ public final class Js5Index {
 	public int length;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "h", descriptor = "Lclient!jg;")
-	public NameHashCollection nameHashCollection;
+	public IntHashTable groupNameHashTable;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "m", descriptor = "[I")
 	public int[] groupIds;
@@ -30,7 +30,7 @@ public final class Js5Index {
 	public int[] groupCapacities;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "o", descriptor = "[I")
-	public int[] nameHashes;
+	public int[] groupNameHashes;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "p", descriptor = "[I")
 	public int[] groupSizes;
@@ -48,7 +48,7 @@ public final class Js5Index {
 	public int indexversion;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "x", descriptor = "[Lclient!jg;")
-	public NameHashCollection[] aClass76Array1;
+	public IntHashTable[] fileNameHashTables;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "z", descriptor = "I")
 	public final int crc;
@@ -64,7 +64,7 @@ public final class Js5Index {
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "a", descriptor = "(I[B)V")
 	private void decodeArchive(@OriginalArg(1) byte[] arg0) {
-		@Pc(12) Packet packet = new Packet(Js5.uncompress(arg0));
+		@Pc(12) Packet packet = new Packet(Js5Compression.uncompress(arg0));
 		@Pc(16) int protocol = packet.g1();
 
 		if (protocol != 5 && protocol != 6) {
@@ -97,14 +97,14 @@ public final class Js5Index {
 		this.groupCapacities = new int[this.capacity];
 		this.groupSizes = new int[this.capacity];
 		if (info != 0) {
-			this.nameHashes = new int[this.capacity];
+			this.groupNameHashes = new int[this.capacity];
 			for (int i = 0; i < this.capacity; i++) {
-				this.nameHashes[i] = -1;
+				this.groupNameHashes[i] = -1;
 			}
 			for (int i = 0; i < this.length; i++) {
-				this.nameHashes[this.groupIds[i]] = packet.g4();
+				this.groupNameHashes[this.groupIds[i]] = packet.g4();
 			}
-			this.nameHashCollection = new NameHashCollection(this.nameHashes);
+			this.groupNameHashTable = new IntHashTable(this.groupNameHashes);
 		}
 		for (int i = 0; i < this.length; i++) {
 			this.anIntArray268[this.groupIds[i]] = packet.g4();
@@ -139,14 +139,14 @@ public final class Js5Index {
 		if (info == 0) {
 			return;
 		}
-		this.aClass76Array1 = new NameHashCollection[local59 + 1];
-		this.anIntArrayArray21 = new int[local59 + 1][];
+		this.fileNameHashTables = new IntHashTable[local59 + 1];
+		this.fileNameHashes = new int[local59 + 1][];
 		for (int i = 0; i < this.length; i++) {
 			local273 = this.groupIds[i];
 			local278 = this.groupSizes[local273];
-			this.anIntArrayArray21[local273] = new int[this.groupCapacities[local273]];
+			this.fileNameHashes[local273] = new int[this.groupCapacities[local273]];
 			for (int j = 0; j < this.groupCapacities[local273]; j++) {
-				this.anIntArrayArray21[local273][j] = -1;
+				this.fileNameHashes[local273][j] = -1;
 			}
 			for (int j = 0; j < local278; j++) {
 				if (this.anIntArrayArray22[local273] == null) {
@@ -154,9 +154,9 @@ public final class Js5Index {
 				} else {
 					local288 = this.anIntArrayArray22[local273][j];
 				}
-				this.anIntArrayArray21[local273][local288] = packet.g4();
+				this.fileNameHashes[local273][local288] = packet.g4();
 			}
-			this.aClass76Array1[local273] = new NameHashCollection(this.anIntArrayArray21[local273]);
+			this.fileNameHashTables[local273] = new IntHashTable(this.fileNameHashes[local273]);
 		}
 	}
 }

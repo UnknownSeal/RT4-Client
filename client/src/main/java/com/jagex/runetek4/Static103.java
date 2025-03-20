@@ -17,10 +17,7 @@ public final class Static103 {
 	@OriginalMember(owner = "runetek4.client!i", name = "Ub", descriptor = "[Lclient!na;")
 	public static JString[] aClass100Array88;
 
-	@OriginalMember(owner = "runetek4.client!i", name = "ec", descriptor = "[I")
-	public static int[] anIntArray254;
-
-    @OriginalMember(owner = "runetek4.client!i", name = "ic", descriptor = "Lclient!na;")
+	@OriginalMember(owner = "runetek4.client!i", name = "ic", descriptor = "Lclient!na;")
 	public static final JString aClass100_558 = JString.parse("m");
 
 	@OriginalMember(owner = "runetek4.client!i", name = "p", descriptor = "(II)V")
@@ -43,8 +40,8 @@ public final class Static103 {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Cross.crossMode = 2;
 				Cross.crossCycle = 0;
-				Cross.x = aClass6.mouseClickX;
-				Cross.y = Static60.mouseClickY;
+				Cross.x = Mouse.mouseClickX;
+				Cross.y = Mouse.mouseClickY;
 				Protocol.outboundBuffer.pIsaac1(71);
 				Protocol.outboundBuffer.p2_alt3(a);
 			}
@@ -73,10 +70,10 @@ public final class Static103 {
 			npc = NpcList.npcs[a];
 			if (npc != null) {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-				Cross.x = aClass6.mouseClickX;
+				Cross.x = Mouse.mouseClickX;
 				Cross.crossMode = 2;
 				Cross.crossCycle = 0;
-				Cross.y = Static60.mouseClickY;
+				Cross.y = Mouse.mouseClickY;
 				Protocol.outboundBuffer.pIsaac1(30);
 				Protocol.outboundBuffer.p2(a);
 			}
@@ -85,10 +82,10 @@ public final class Static103 {
 			npc = NpcList.npcs[a];
 			if (npc != null) {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-				Cross.x = aClass6.mouseClickX;
+				Cross.x = Mouse.mouseClickX;
 				Cross.crossCycle = 0;
 				Cross.crossMode = 2;
-				Cross.y = Static60.mouseClickY;
+				Cross.y = Mouse.mouseClickY;
 				Protocol.outboundBuffer.pIsaac1(78);
 				Protocol.outboundBuffer.p2_alt1(a);
 			}
@@ -97,9 +94,9 @@ public final class Static103 {
 			local43 = PlayerList.players[a];
 			if (local43 != null) {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-				Cross.x = aClass6.mouseClickX;
+				Cross.x = Mouse.mouseClickX;
 				Cross.crossMode = 2;
-				Cross.y = Static60.mouseClickY;
+				Cross.y = Mouse.mouseClickY;
 				Cross.crossCycle = 0;
 				Protocol.outboundBuffer.pIsaac1(133);
 				Protocol.outboundBuffer.p2_alt1(a);
@@ -128,10 +125,10 @@ public final class Static103 {
 			npc = NpcList.npcs[a];
 			if (npc != null) {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-				Cross.x = aClass6.mouseClickX;
+				Cross.x = Mouse.mouseClickX;
 				Cross.crossMode = 2;
 				Cross.crossCycle = 0;
-				Cross.y = Static60.mouseClickY;
+				Cross.y = Mouse.mouseClickY;
 				Protocol.outboundBuffer.pIsaac1(239);
 				Protocol.outboundBuffer.p4_alt1(MiniMenu.anInt2512);
 				Protocol.outboundBuffer.p2_alt2(MiniMenu.anInt506);
@@ -148,10 +145,10 @@ public final class Static103 {
 					PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 				}
 			}
-			Cross.x = aClass6.mouseClickX;
+			Cross.x = Mouse.mouseClickX;
 			Cross.crossCycle = 0;
 			Cross.crossMode = 2;
-			Cross.y = Static60.mouseClickY;
+			Cross.y = Mouse.mouseClickY;
 			Protocol.outboundBuffer.pIsaac1(66);
 			Protocol.outboundBuffer.p2_alt1(Camera.originX + local15);
 			Protocol.outboundBuffer.p2(a);
@@ -166,8 +163,8 @@ public final class Static103 {
 		}
 		if (local23 == 1002) {
 			Cross.crossMode = 2;
-			Cross.x = aClass6.mouseClickX;
-			Cross.y = Static60.mouseClickY;
+			Cross.x = Mouse.mouseClickX;
+			Cross.y = Mouse.mouseClickY;
 			Cross.crossCycle = 0;
 			Protocol.outboundBuffer.pIsaac1(92);
 			Protocol.outboundBuffer.p2_alt3(a);
@@ -192,8 +189,8 @@ public final class Static103 {
 				if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
 					Cheat.teleport(Camera.originX + local15, Camera.originZ + local19, Player.plane);
 				} else if (PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, local15, 0, 0, 1, local19, PlayerList.self.movementQueueX[0])) {
-					Protocol.outboundBuffer.p1(Static1.anInt5);
-					Protocol.outboundBuffer.p1(Static107.anInt2878);
+					Protocol.outboundBuffer.p1(InterfaceList.anInt5);
+					Protocol.outboundBuffer.p1(MiniMenu.anInt2878);
 					Protocol.outboundBuffer.p2(Camera.orbitCameraYaw);
 					Protocol.outboundBuffer.p1(57);
 					Protocol.outboundBuffer.p1(MiniMap.minimapAnticheatAngle);
@@ -209,8 +206,8 @@ public final class Static103 {
 		if (local23 == 1007) {
 			Cross.crossCycle = 0;
 			Cross.crossMode = 2;
-			Cross.y = Static60.mouseClickY;
-			Cross.x = aClass6.mouseClickX;
+			Cross.y = Mouse.mouseClickY;
+			Cross.x = Mouse.mouseClickX;
 			npc = NpcList.npcs[a];
 			if (npc != null) {
 				@Pc(884) NpcType local884 = npc.type;
@@ -248,8 +245,8 @@ public final class Static103 {
 			if (local43 != null) {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Cross.crossMode = 2;
-				Cross.y = Static60.mouseClickY;
-				Cross.x = aClass6.mouseClickX;
+				Cross.y = Mouse.mouseClickY;
+				Cross.x = Mouse.mouseClickX;
 				Cross.crossCycle = 0;
 				Protocol.outboundBuffer.pIsaac1(4);
 				Protocol.outboundBuffer.p2_alt1(a);
@@ -291,8 +288,8 @@ public final class Static103 {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Cross.crossCycle = 0;
 				Cross.crossMode = 2;
-				Cross.y = Static60.mouseClickY;
-				Cross.x = aClass6.mouseClickX;
+				Cross.y = Mouse.mouseClickY;
+				Cross.x = Mouse.mouseClickX;
 				Protocol.outboundBuffer.pIsaac1(114);
 				Protocol.outboundBuffer.p2_alt3(a);
 			}
@@ -319,9 +316,9 @@ public final class Static103 {
 				}
 			}
 			Cross.crossMode = 2;
-			Cross.x = aClass6.mouseClickX;
+			Cross.x = Mouse.mouseClickX;
 			Cross.crossCycle = 0;
-			Cross.y = Static60.mouseClickY;
+			Cross.y = Mouse.mouseClickY;
 			Protocol.outboundBuffer.pIsaac1(228);
 			Protocol.outboundBuffer.p2(a);
 			Protocol.outboundBuffer.p2_alt1(Camera.originX + local15);
@@ -333,8 +330,8 @@ public final class Static103 {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Cross.crossMode = 2;
 				Cross.crossCycle = 0;
-				Cross.y = Static60.mouseClickY;
-				Cross.x = aClass6.mouseClickX;
+				Cross.y = Mouse.mouseClickY;
+				Cross.x = Mouse.mouseClickX;
 				Protocol.outboundBuffer.pIsaac1(148);
 				Protocol.outboundBuffer.p2_alt2(a);
 			}
@@ -362,10 +359,10 @@ public final class Static103 {
 			local43 = PlayerList.players[a];
 			if (local43 != null) {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-				Cross.y = Static60.mouseClickY;
+				Cross.y = Mouse.mouseClickY;
 				Cross.crossCycle = 0;
 				Cross.crossMode = 2;
-				Cross.x = aClass6.mouseClickX;
+				Cross.x = Mouse.mouseClickX;
 				Protocol.outboundBuffer.pIsaac1(180);
 				Protocol.outboundBuffer.p2_alt3(a);
 			}
@@ -385,8 +382,8 @@ public final class Static103 {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Cross.crossCycle = 0;
 				Cross.crossMode = 2;
-				Cross.x = aClass6.mouseClickX;
-				Cross.y = Static60.mouseClickY;
+				Cross.x = Mouse.mouseClickX;
+				Cross.y = Mouse.mouseClickY;
 				Protocol.outboundBuffer.pIsaac1(195);
 				Protocol.outboundBuffer.p2_alt2(MiniMenu.anInt506);
 				Protocol.outboundBuffer.p4_alt1(MiniMenu.anInt2512);
@@ -402,9 +399,9 @@ public final class Static103 {
 					PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 				}
 			}
-			Cross.x = aClass6.mouseClickX;
+			Cross.x = Mouse.mouseClickX;
 			Cross.crossMode = 2;
-			Cross.y = Static60.mouseClickY;
+			Cross.y = Mouse.mouseClickY;
 			Cross.crossCycle = 0;
 			Protocol.outboundBuffer.pIsaac1(109);
 			Protocol.outboundBuffer.p2_alt1(local19 + Camera.originZ);
@@ -424,9 +421,9 @@ public final class Static103 {
 			npc = NpcList.npcs[a];
 			if (npc != null) {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-				Cross.y = Static60.mouseClickY;
+				Cross.y = Mouse.mouseClickY;
 				Cross.crossMode = 2;
-				Cross.x = aClass6.mouseClickX;
+				Cross.x = Mouse.mouseClickX;
 				Cross.crossCycle = 0;
 				Protocol.outboundBuffer.pIsaac1(218);
 				Protocol.outboundBuffer.p2_alt1(a);
@@ -451,8 +448,8 @@ public final class Static103 {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Cross.crossMode = 2;
 				Cross.crossCycle = 0;
-				Cross.y = Static60.mouseClickY;
-				Cross.x = aClass6.mouseClickX;
+				Cross.y = Mouse.mouseClickY;
+				Cross.x = Mouse.mouseClickX;
 				Protocol.outboundBuffer.pIsaac1(115);
 				Protocol.outboundBuffer.p4_alt3(MiniMap.anInt5062);
 				Protocol.outboundBuffer.p2_alt1(MiniMenu.anInt4370);
@@ -475,9 +472,9 @@ public final class Static103 {
 			if (!local560) {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 			}
-			Cross.x = aClass6.mouseClickX;
+			Cross.x = Mouse.mouseClickX;
 			Cross.crossCycle = 0;
-			Cross.y = Static60.mouseClickY;
+			Cross.y = Mouse.mouseClickY;
 			Cross.crossMode = 2;
 			Protocol.outboundBuffer.pIsaac1(101);
 			Protocol.outboundBuffer.p2_alt3(local15 + Camera.originX);
@@ -489,9 +486,9 @@ public final class Static103 {
 		}
 		if (local23 == 1004) {
 			Cross.crossCycle = 0;
-			Cross.x = aClass6.mouseClickX;
+			Cross.x = Mouse.mouseClickX;
 			Cross.crossMode = 2;
-			Cross.y = Static60.mouseClickY;
+			Cross.y = Mouse.mouseClickY;
 			Protocol.outboundBuffer.pIsaac1(94);
 			Protocol.outboundBuffer.p2_alt3(a);
 		}
@@ -523,9 +520,9 @@ public final class Static103 {
 			if (local43 != null) {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Cross.crossCycle = 0;
-				Cross.y = Static60.mouseClickY;
+				Cross.y = Mouse.mouseClickY;
 				Cross.crossMode = 2;
-				Cross.x = aClass6.mouseClickX;
+				Cross.x = Mouse.mouseClickX;
 				Protocol.outboundBuffer.pIsaac1(248);
 				Protocol.outboundBuffer.p2_alt3(a);
 				Protocol.outboundBuffer.p2(Static274.anInt4997);
@@ -552,8 +549,8 @@ public final class Static103 {
 				}
 			}
 			Cross.crossMode = 2;
-			Cross.y = Static60.mouseClickY;
-			Cross.x = aClass6.mouseClickX;
+			Cross.y = Mouse.mouseClickY;
+			Cross.x = Mouse.mouseClickX;
 			Cross.crossCycle = 0;
 			Protocol.outboundBuffer.pIsaac1(48);
 			Protocol.outboundBuffer.p2_alt2(local15 + Camera.originX);
@@ -582,8 +579,8 @@ public final class Static103 {
 			if (local43 != null) {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Cross.crossMode = 2;
-				Cross.y = Static60.mouseClickY;
-				Cross.x = aClass6.mouseClickX;
+				Cross.y = Mouse.mouseClickY;
+				Cross.x = Mouse.mouseClickX;
 				Cross.crossCycle = 0;
 				Protocol.outboundBuffer.pIsaac1(175);
 				Protocol.outboundBuffer.p2_alt2(a);
@@ -624,8 +621,8 @@ public final class Static103 {
 			if (local43 != null) {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
 				Cross.crossCycle = 0;
-				Cross.x = aClass6.mouseClickX;
-				Cross.y = Static60.mouseClickY;
+				Cross.x = Mouse.mouseClickX;
+				Cross.y = Mouse.mouseClickY;
 				Cross.crossMode = 2;
 				Protocol.outboundBuffer.pIsaac1(68);
 				Protocol.outboundBuffer.p2_alt3(a);
@@ -645,8 +642,8 @@ public final class Static103 {
 			if (!local560) {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 			}
-			Cross.y = Static60.mouseClickY;
-			Cross.x = aClass6.mouseClickX;
+			Cross.y = Mouse.mouseClickY;
+			Cross.x = Mouse.mouseClickX;
 			Cross.crossMode = 2;
 			Cross.crossCycle = 0;
 			Protocol.outboundBuffer.pIsaac1(73);
@@ -679,10 +676,10 @@ public final class Static103 {
 			local43 = PlayerList.players[a];
 			if (local43 != null) {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local43.movementQueueX[0], 1, 0, 2, local43.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-				Cross.y = Static60.mouseClickY;
+				Cross.y = Mouse.mouseClickY;
 				Cross.crossCycle = 0;
 				Cross.crossMode = 2;
-				Cross.x = aClass6.mouseClickX;
+				Cross.x = Mouse.mouseClickX;
 				Protocol.outboundBuffer.pIsaac1(106);
 				Protocol.outboundBuffer.p2(a);
 			}
@@ -696,9 +693,9 @@ public final class Static103 {
 					PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
 				}
 			}
-			Cross.y = Static60.mouseClickY;
+			Cross.y = Mouse.mouseClickY;
 			Cross.crossCycle = 0;
-			Cross.x = aClass6.mouseClickX;
+			Cross.x = Mouse.mouseClickX;
 			Cross.crossMode = 2;
 			Protocol.outboundBuffer.pIsaac1(33);
 			Protocol.outboundBuffer.p2(a);
@@ -709,9 +706,9 @@ public final class Static103 {
 			npc = NpcList.npcs[a];
 			if (npc != null) {
 				PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
-				Cross.x = aClass6.mouseClickX;
+				Cross.x = Mouse.mouseClickX;
 				Cross.crossCycle = 0;
-				Cross.y = Static60.mouseClickY;
+				Cross.y = Mouse.mouseClickY;
 				Cross.crossMode = 2;
 				Protocol.outboundBuffer.pIsaac1(3);
 				Protocol.outboundBuffer.p2_alt3(a);
@@ -729,94 +726,11 @@ public final class Static103 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!i", name = "b", descriptor = "(IIIII)I")
-	public static int method2235(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		if (Static222.aBoolean246) {
-			arg0 = 1000000;
-			Static222.aBoolean246 = false;
-		}
-		@Pc(15) Environment local15 = Static192.aClass92ArrayArray1[arg3][arg1];
-		@Pc(25) float local25 = ((float) arg2 * 0.1F + 0.7F) * local15.aFloat16;
-		@Pc(28) float local28 = local15.aFloat18;
-		@Pc(31) int local31 = local15.anInt3526;
-		@Pc(34) int local34 = local15.anInt3529;
-		@Pc(37) int local37 = local15.anInt3525;
-		if (!Static71.aBoolean107) {
-			local34 = 0;
-		}
-		@Pc(44) float local44 = local15.aFloat17;
-		if (local31 != Static109.anInt2883 || Static126.aFloat13 != local25 || Static8.aFloat1 != local28 || local44 != Static15.aFloat4 || Static166.anInt4044 != local37 || Static226.anInt5080 != local34) {
-			Static126.aFloat13 = local25;
-			Static253.aFloat37 = Static253.aFloat36;
-			Static59.aFloat6 = Static61.aFloat7;
-			Static109.anInt2883 = local31;
-			Static264.anInt4623 = Static154.anInt3709;
-			Static171.anInt4153 = Static79.anInt2161;
-			Static15.aFloat4 = local44;
-			Static3.anInt5868 = 0;
-			Static131.anInt3255 = Static261.anInt5731;
-			Static226.anInt5080 = local34;
-			Static8.aFloat1 = local28;
-			Static166.anInt4044 = local37;
-			Static185.aFloat23 = Static23.aFloat5;
-		}
-		if (Static3.anInt5868 < 65536) {
-			Static3.anInt5868 += arg0 * 250;
-			if (Static3.anInt5868 >= 65536) {
-				Static3.anInt5868 = 65536;
-			}
-			@Pc(114) float local114 = (float) Static3.anInt5868 / 65536.0F;
-			@Pc(118) int local118 = Static3.anInt5868 >> 8;
-			@Pc(125) int local125 = 65536 - Static3.anInt5868 >> 8;
-			Static154.anInt3709 = (local118 * (Static166.anInt4044 & 0xFF00FF) + (Static264.anInt4623 & 0xFF00FF) * local125 & 0xFF00FF00) + (local125 * (Static264.anInt4623 & 0xFF00) + (Static166.anInt4044 & 0xFF00) * local118 & 0xFF0000) >> 8;
-			@Pc(162) float local162 = (float) (65536 - Static3.anInt5868) / 65536.0F;
-			Static61.aFloat7 = local162 * Static59.aFloat6 + local114 * Static126.aFloat13;
-			Static253.aFloat36 = Static253.aFloat37 * local162 + local114 * Static8.aFloat1;
-			Static23.aFloat5 = local114 * Static15.aFloat4 + local162 * Static185.aFloat23;
-			Static261.anInt5731 = ((Static109.anInt2883 & 0xFF00) * local118 + local125 * (Static131.anInt3255 & 0xFF00) & 0xFF0000) + ((Static131.anInt3255 & 0xFF00FF) * local125 + ((Static109.anInt2883 & 0xFF00FF) * local118) & 0xFF00FF00) >> 8;
-			Static79.anInt2161 = local118 * Static226.anInt5080 + local125 * Static171.anInt4153 >> 8;
-		}
-		Static161.method3060(Static261.anInt5731, Static61.aFloat7, Static253.aFloat36, Static23.aFloat5);
-		Static161.method3062(Static154.anInt3709, Static79.anInt2161);
-		Static161.method3063((float) Static85.anInt2263, (float) Static159.anInt3893, (float) Static148.anInt3534);
-		Static161.method3058();
-		return Static154.anInt3709;
-	}
-
-	@OriginalMember(owner = "runetek4.client!i", name = "e", descriptor = "(BI)I")
-	public static int method2236(@OriginalArg(1) int arg0) {
-		return arg0 & 0xFF;
-	}
-
 	@OriginalMember(owner = "runetek4.client!i", name = "r", descriptor = "(I)V")
 	public static void removeSoft() {
 		Static27.aClass99_4.removeSoft();
 		Static244.aClass99_32.removeSoft();
-		Static118.aClass99_16.removeSoft();
+		ObjTypeList.objectSpriteCache.removeSoft();
 	}
 
-	@OriginalMember(owner = "runetek4.client!i", name = "i", descriptor = "(Z)V")
-	public static void method2245() {
-		for (@Pc(6) ComponentPointer local6 = (ComponentPointer) InterfaceList.openInterfaces.head(); local6 != null; local6 = (ComponentPointer) InterfaceList.openInterfaces.prev()) {
-			@Pc(14) int local14 = local6.interfaceId;
-			if (Component.load(local14)) {
-				@Pc(21) boolean local21 = true;
-				@Pc(25) Component[] local25 = Component.cachedComponents[local14];
-				@Pc(27) int local27;
-				for (local27 = 0; local27 < local25.length; local27++) {
-					if (local25[local27] != null) {
-						local21 = local25[local27].if3;
-						break;
-					}
-				}
-				if (!local21) {
-					local27 = (int) local6.nodeId;
-					@Pc(60) Component local60 = InterfaceList.getComponent(local27);
-					if (local60 != null) {
-						InterfaceList.redraw(local60);
-					}
-				}
-			}
-		}
-	}
 }

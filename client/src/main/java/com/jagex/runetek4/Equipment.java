@@ -11,15 +11,15 @@ public class Equipment {
     @OriginalMember(owner = "client!eh", name = "a", descriptor = "(I)V")
     public static void init() {
         @Pc(8) int[] ids = new int[ObjTypeList.capacity];
-        @Pc(10) int local10 = 0;
-        for (@Pc(12) int local12 = 0; local12 < ObjTypeList.capacity; local12++) {
-            @Pc(19) ObjType def = ObjTypeList.get(local12);
+        @Pc(10) int j = 0;
+        for (@Pc(12) int i = 0; i < ObjTypeList.capacity; i++) {
+            @Pc(19) ObjType def = ObjTypeList.get(i);
             if (def.manwear >= 0 || def.womanwear >= 0) {
-                ids[local10++] = local12;
+                ids[j++] = i;
             }
         }
-        objIds = new int[local10];
-        for (int i = 0; i < local10; i++) {
+        objIds = new int[j];
+        for (int i = 0; i < j; i++) {
             objIds[i] = ids[i];
         }
     }

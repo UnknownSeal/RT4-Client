@@ -4,15 +4,12 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.Scenery;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static254 {
-
-	@OriginalMember(owner = "runetek4.client!uj", name = "x", descriptor = "[I")
-	public static int[] anIntArray488;
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "E", descriptor = "I")
 	public static int anInt5556;
@@ -41,7 +38,7 @@ public final class Static254 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!uj", name = "a", descriptor = "(BZII[[[Lclient!bj;I)Z")
-	public static boolean method4348(@OriginalArg(1) boolean arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) SceneTile[][][] arg3, @OriginalArg(5) int arg4) {
+	public static boolean method4348(@OriginalArg(1) boolean arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) Tile[][][] arg3, @OriginalArg(5) int arg4) {
 		@Pc(14) byte local14 = arg0 ? 1 : (byte) (Static136.anInt3325 & 0xFF);
 		if (local14 == Static266.aByteArrayArrayArray15[Player.plane][arg1][arg2]) {
 			return false;
@@ -106,7 +103,7 @@ public final class Static254 {
 							}
 						}
 						local132 = true;
-						@Pc(395) SceneTile local395 = arg3[local150][local108][local122];
+						@Pc(395) Tile local395 = arg3[local150][local108][local122];
 						if (local395 != null && local395.entityCount > 0) {
 							for (local227 = 0; local227 < local395.entityCount; local227++) {
 								@Pc(418) Scenery local418 = local395.sceneries[local227];
@@ -221,7 +218,7 @@ public final class Static254 {
 				local7 = 32767;
 			}
 			@Pc(15) byte[] local15 = new byte[local7];
-			arg0.offset += Static62.aClass44_1.method1552(0, local7, local15, arg0.data, arg0.offset);
+			arg0.offset += Static62.aClass44_1.decode(0, local7, local15, arg0.data, arg0.offset);
 			return JString.decodeString(local15, local7, 0);
 		} catch (@Pc(47) Exception local47) {
 			return Static267.CABBAGE;

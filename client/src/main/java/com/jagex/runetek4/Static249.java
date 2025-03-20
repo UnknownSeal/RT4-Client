@@ -14,11 +14,8 @@ public final class Static249 {
 	@OriginalMember(owner = "runetek4.client!ud", name = "Q", descriptor = "Lclient!na;")
 	public static final JString aClass100_1039 = JString.parse(" x ");
 
-	@OriginalMember(owner = "runetek4.client!ud", name = "T", descriptor = "[I")
-	public static final int[] anIntArray478 = new int[32];
-
 	@OriginalMember(owner = "runetek4.client!ud", name = "d", descriptor = "(I)V")
 	public static void clear() {
-		VarPlayerDefinition.varPlayerDefinitionCache.clear();
+		VarPlayerDefinition.varPlayerDefinitionCache.clean();
 	}
 }

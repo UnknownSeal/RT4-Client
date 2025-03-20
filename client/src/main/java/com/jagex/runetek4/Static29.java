@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -10,21 +9,6 @@ public final class Static29 {
 
 	@OriginalMember(owner = "client!ce", name = "d", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_19;
-
-	@OriginalMember(owner = "client!ce", name = "a", descriptor = "(I[B)Lclient!rk;")
-	public static Font method799(@OriginalArg(1) byte[] arg0) {
-		if (arg0 == null) {
-			return null;
-		}
-		@Pc(27) Font local27;
-		if (GlRenderer.enabled) {
-			local27 = new GlFont(arg0, Static274.anIntArray440, Static269.anIntArray252, Static254.anIntArray488, Static26.anIntArray66, aClass6.aByteArrayArray5);
-		} else {
-			local27 = new SoftwareFont(arg0, Static274.anIntArray440, Static269.anIntArray252, Static254.anIntArray488, Static26.anIntArray66, aClass6.aByteArrayArray5);
-		}
-		Static75.method1631();
-		return local27;
-	}
 
 	@OriginalMember(owner = "client!ce", name = "a", descriptor = "(II)V")
 	public static void method801() {

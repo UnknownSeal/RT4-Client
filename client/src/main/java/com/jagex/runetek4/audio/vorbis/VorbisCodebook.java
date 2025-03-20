@@ -1,7 +1,6 @@
 package com.jagex.runetek4.audio.vorbis;
 
-import com.jagex.runetek4.Static204;
-import com.jagex.runetek4.Static209;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -42,7 +41,7 @@ public final class VorbisCodebook {
 			maptype = 0;
 			local32 = VorbisSound.read(5) + 1;
 			while (maptype < this.entries) {
-				@Pc(44) int local44 = VorbisSound.read(Static204.method3674(this.entries - maptype));
+				@Pc(44) int local44 = VorbisSound.read(IntUtils.bitCount(this.entries - maptype));
 				for (local46 = 0; local46 < local44; local46++) {
 					this.lengthList[maptype++] = local32;
 				}
@@ -115,7 +114,7 @@ public final class VorbisCodebook {
 	@OriginalMember(owner = "runetek4.client!ji", name = "a", descriptor = "(II)I")
 	public static int maptype1_quantvals(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		@Pc(10) int local10;
-		for (local10 = (int) Math.pow((double) arg0, 1.0D / (double) arg1) + 1; Static209.method3709(arg1, local10) > arg0; local10--) {
+		for (local10 = (int) Math.pow((double) arg0, 1.0D / (double) arg1) + 1; IntUtils.pow(arg1, local10) > arg0; local10--) {
 		}
 		return local10;
 	}

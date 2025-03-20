@@ -69,7 +69,7 @@ public class MiniMap {
             @Pc(57) int anchorX = PlayerList.self.xFine / 32 + 48;
             @Pc(67) int anchorY = 464 - PlayerList.self.zFine / 32;
             if (GlRenderer.enabled) {
-                ((GlSprite) sprite).method1427(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, minimapZoom + 256, (GlSprite) arg3.method489(false));
+                ((GlSprite) sprite).renderRotatedTransparent(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, minimapZoom + 256, (GlSprite) arg3.method489(false));
             } else {
                 ((SoftwareSprite) sprite).method310(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, minimapZoom + 256, arg3.anIntArray37, arg3.anIntArray45);
             }
@@ -99,7 +99,7 @@ public class MiniMap {
                             local156 = Fonts.b12Full;
                         }
                         npcX = local164 * flagZ + local189 * flagX >> 16;
-                        local239 = local156.method2856(Static235.aMapElementTypeList_2.aClass100Array153[local117], 100);
+                        local239 = local156.getMaxLineWidth(Static235.aMapElementTypeList_2.aClass100Array153[local117], 100);
                         @Pc(245) int local245 = npcX - local239 / 2;
                         if (local245 >= -arg3.width && local245 <= arg3.width && npcZ >= -arg3.height && npcZ <= arg3.height) {
                             local271 = 16777215;
@@ -111,9 +111,9 @@ public class MiniMap {
                             } else {
                                 Rasterizer.method2486(arg3.anIntArray37, arg3.anIntArray45);
                             }
-                            local156.method2869(Static235.aMapElementTypeList_2.aClass100Array153[local117], arg2 + local245 + arg3.width / 2, arg1 + arg3.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
+                            local156.renderParagraphAlpha(Static235.aMapElementTypeList_2.aClass100Array153[local117], arg2 + local245 + arg3.width / 2, arg1 + arg3.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
                             if (GlRenderer.enabled) {
-                                Static46.method1173();
+                                GlFont.method1173();
                             } else {
                                 Rasterizer.method2482();
                             }
@@ -169,7 +169,7 @@ public class MiniMap {
                     @Pc(624) long name = local591.username.encode37();
                     @Pc(626) boolean isFriend = false;
                     for (local239 = 0; local239 < FriendList.friendCount; local239++) {
-                        if (name == Static92.friendName37[local239] && Static104.friendWorld[local239] != 0) {
+                        if (name == FriendList.encodedUsernames[local239] && FriendList.friendWorlds[local239] != 0) {
                             isFriend = true;
                             break;
                         }
@@ -236,7 +236,7 @@ public class MiniMap {
         } else if (GlRenderer.enabled) {
             @Pc(1041) Sprite local1041 = arg3.method489(false);
             if (local1041 != null) {
-                local1041.drawSprite(arg2, arg1);
+                local1041.render(arg2, arg1);
             }
         } else {
             Rasterizer.method2504(arg2, arg1, arg3.anIntArray37, arg3.anIntArray45);

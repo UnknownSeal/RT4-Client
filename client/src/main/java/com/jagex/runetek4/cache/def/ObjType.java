@@ -1,10 +1,8 @@
 package com.jagex.runetek4.cache.def;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.cache.media.SeqType;
-import com.jagex.runetek4.game.config.idktype.IDKType;
-import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -360,8 +358,8 @@ public final class ObjType {
 		if (primaryId == -1) {
 			return true;
 		}
-		@Pc(33) boolean ready = Static230.modelArchive.requestDownload(primaryId, 0);
-		if (secondaryId != -1 && !Static230.modelArchive.requestDownload(secondaryId, 0)) {
+		@Pc(33) boolean ready = Static230.modelArchive.isFileReady(primaryId, 0);
+		if (secondaryId != -1 && !Static230.modelArchive.isFileReady(secondaryId, 0)) {
 			ready = false;
 		}
 		return ready;
@@ -406,11 +404,11 @@ public final class ObjType {
 		if (local9 == -1) {
 			return true;
 		}
-		@Pc(41) boolean local41 = Static230.modelArchive.requestDownload(local9, 0);
-		if (local6 != -1 && !Static230.modelArchive.requestDownload(local6, 0)) {
+		@Pc(41) boolean local41 = Static230.modelArchive.isFileReady(local9, 0);
+		if (local6 != -1 && !Static230.modelArchive.isFileReady(local6, 0)) {
 			local41 = false;
 		}
-		if (local20 != -1 && !Static230.modelArchive.requestDownload(local20, 0)) {
+		if (local20 != -1 && !Static230.modelArchive.isFileReady(local20, 0)) {
 			local41 = false;
 		}
 		return local41;
@@ -474,7 +472,7 @@ public final class ObjType {
 		}
 		@Pc(76) Model local76 = (Model) Static244.aClass99_32.get(this.anInt2354);
 		if (local76 == null) {
-			@Pc(85) ModelUnlit local85 = ModelUnlit.get(Static230.modelArchive, this.mesh);
+			@Pc(85) RawModel local85 = RawModel.get(Static230.modelArchive, this.mesh);
 			if (local85 == null) {
 				return null;
 			}
@@ -520,7 +518,7 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ZB)Lclient!gb;")
-	public ModelUnlit method1830(@OriginalArg(0) boolean arg0) {
+	public RawModel method1830(@OriginalArg(0) boolean arg0) {
 		@Pc(4) int local4 = this.manhead2;
 		@Pc(17) int local17 = this.manhead;
 		if (arg0) {
@@ -530,11 +528,11 @@ public final class ObjType {
 		if (local17 == -1) {
 			return null;
 		}
-		@Pc(36) ModelUnlit local36 = ModelUnlit.get(Static230.modelArchive, local17);
+		@Pc(36) RawModel local36 = RawModel.get(Static230.modelArchive, local17);
 		if (local4 != -1) {
-			@Pc(44) ModelUnlit local44 = ModelUnlit.get(Static230.modelArchive, local4);
-			@Pc(55) ModelUnlit[] local55 = new ModelUnlit[] { local36, local44 };
-			local36 = new ModelUnlit(local55, 2);
+			@Pc(44) RawModel local44 = RawModel.get(Static230.modelArchive, local4);
+			@Pc(55) RawModel[] local55 = new RawModel[] { local36, local44 };
+			local36 = new RawModel(local55, 2);
 		}
 		@Pc(66) int local66;
 		if (this.recol_s != null) {
@@ -551,7 +549,7 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ZI)Lclient!gb;")
-	public ModelUnlit method1831(@OriginalArg(0) boolean arg0) {
+	public RawModel method1831(@OriginalArg(0) boolean arg0) {
 		@Pc(4) int local4 = this.manwear;
 		@Pc(18) int local18 = this.manwear2;
 		@Pc(21) int local21 = this.manwear3;
@@ -563,16 +561,16 @@ public final class ObjType {
 		if (local4 == -1) {
 			return null;
 		}
-		@Pc(43) ModelUnlit local43 = ModelUnlit.get(Static230.modelArchive, local4);
+		@Pc(43) RawModel local43 = RawModel.get(Static230.modelArchive, local4);
 		if (local18 != -1) {
-			@Pc(54) ModelUnlit local54 = ModelUnlit.get(Static230.modelArchive, local18);
+			@Pc(54) RawModel local54 = RawModel.get(Static230.modelArchive, local18);
 			if (local21 == -1) {
-				@Pc(68) ModelUnlit[] local68 = new ModelUnlit[] { local43, local54 };
-				local43 = new ModelUnlit(local68, 2);
+				@Pc(68) RawModel[] local68 = new RawModel[] { local43, local54 };
+				local43 = new RawModel(local68, 2);
 			} else {
-				@Pc(81) ModelUnlit local81 = ModelUnlit.get(Static230.modelArchive, local21);
-				@Pc(96) ModelUnlit[] local96 = new ModelUnlit[] { local43, local54, local81 };
-				local43 = new ModelUnlit(local96, 3);
+				@Pc(81) RawModel local81 = RawModel.get(Static230.modelArchive, local21);
+				@Pc(96) RawModel[] local96 = new RawModel[] { local43, local54, local81 };
+				local43 = new RawModel(local96, 3);
 			}
 		}
 		if (!arg0 && (this.manwearxoff != 0 || this.manwearyoff != 0 || this.manwearzoff != 0)) {
@@ -616,8 +614,8 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "d", descriptor = "(I)Lclient!w;")
-	public SoftwareModel method1834() {
-		@Pc(11) ModelUnlit local11 = ModelUnlit.get(Static230.modelArchive, this.mesh);
+	public SoftwareModel getInvModel() {
+		@Pc(11) RawModel local11 = RawModel.get(Static230.modelArchive, this.mesh);
 		if (local11 == null) {
 			return null;
 		}
@@ -653,37 +651,6 @@ public final class ObjType {
 	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "([[IZ)V")
 	public static void method1751(@OriginalArg(0) int[][] arg0) {
 		ObjTypeList.anIntArrayArray10 = arg0;
-	}
-
-	@OriginalMember(owner = "runetek4.client!gg", name = "d", descriptor = "(II)Lclient!dm;")
-	public static IDKType get(@OriginalArg(0) int arg0) {
-		@Pc(10) IDKType idkType = (IDKType) Static67.aClass99_20.get((long) arg0);
-		if (idkType != null) {
-			return idkType;
-		}
-		@Pc(21) byte[] bytes = Static216.aClass153_31.getfile(3, arg0);
-		idkType = new IDKType();
-		if (bytes != null) {
-			idkType.decode(new Packet(bytes));
-		}
-		Static67.aClass99_20.put(idkType, (long) arg0);
-		return idkType;
-	}
-
-	@OriginalMember(owner = "runetek4.client!gg", name = "e", descriptor = "(II)V")
-	public static void method1753(@OriginalArg(0) int arg0) {
-		if (!Component.load(arg0)) {
-			return;
-		}
-		@Pc(15) Component[] local15 = Component.cachedComponents[arg0];
-		for (@Pc(17) int local17 = 0; local17 < local15.length; local17++) {
-			@Pc(29) Component local29 = local15[local17];
-			if (local29 != null) {
-				local29.anInt496 = 1;
-				local29.anInt510 = 0;
-				local29.anInt500 = 0;
-			}
-		}
 	}
 
 }

@@ -17,9 +17,11 @@ import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.client.Inv;
+import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.Npc;
+import com.jagex.runetek4.game.config.flotype.FloorOverlayTypeList;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
@@ -68,8 +70,6 @@ public final class client extends GameShell {
 	static final JString aClass100_603 = JString.parse("");
 	@OriginalMember(owner = "runetek4.client!jm", name = "z", descriptor = "Lclient!na;")
 	public static JString mainLoadSecondaryText = aClass100_603;
-	@OriginalMember(owner = "client!ja", name = "r", descriptor = "I")
-	public static int currentCursor = -1;
 	@OriginalMember(owner = "client!gm", name = "T", descriptor = "Lclient!k;")
 	public static Js5CacheQueue js5CacheQueue;
 	@OriginalMember(owner = "client!id", name = "l", descriptor = "Lclient!jb;")
@@ -300,8 +300,8 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "client!je", name = "h", descriptor = "(I)V")
 	public static void unloadSoft() {
-		FloTypeList.removeSoft();
-		FluTypeList.removeSoft();
+		FloorOverlayTypeList.removeSoft();
+		FloorUnderlayTypeList.removeSoft();
 		IdkTypeList.removeSoft();
 		LocTypeList.removeSoft();
 		ClientScriptRunner.removeSoft();
@@ -313,13 +313,13 @@ public final class client extends GameShell {
 		BasTypeList.removeSoft();
 		Static267.removeSoft();
 		Static92.removeSoft();
-		Static26.removeSoft();
+		CursorTypeList.removeSoft();
 		Static192.removeSoft();
 		Component.removeSoft();
-		Static180.removeSoft();
+		HintArrowManager.removeSoft();
 		Static251.removeSoft();
-		Static73.hitBars.removeSoft();
-		Static139.fontMetrics.removeSoft();
+		HitBarList.hitBars.removeSoft();
+		FontMetricsList.fontMetrics.removeSoft();
 	}
 
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ZZZIZ)Lclient!ve;")
@@ -337,7 +337,7 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "f", descriptor = "(B)V")
 	public static void unload() {
-		Static276.clear();
+		FloorOverlayTypeList.clear();
 		Static54.clear();
 		ClientScriptRunner.clear();
 		LocTypeList.clear();
@@ -350,7 +350,7 @@ public final class client extends GameShell {
 		BasTypeList.clear();
 		Class6.clear();
 		Static78.clear();
-		Static10.method351();
+		CursorTypeList.clear();
 		Static230.clear();
 		Component.clear();
 		if (modeWhat != 0) {
@@ -359,9 +359,9 @@ public final class client extends GameShell {
 			}
 			Player.anInt2863 = 0;
 		}
-		IdkTypeList.clear();
+		HintArrowManager.clear();
 		Static90.method1857();
-		Static139.fontMetrics.clear();
+		FontMetricsList.fontMetrics.clean();
 		if (!GlRenderer.enabled) {
 			((Js5GlTextureProvider) Rasterizer.textureProvider).clear();
 		}
@@ -377,7 +377,7 @@ public final class client extends GameShell {
 		js5Archive10.discardUnpacked();
 		js5Archive11.discardUnpacked();
 		js5Archive12.discardUnpacked();
-		Static73.hitBars.clear();
+		HitBarList.hitBars.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!id", name = "b", descriptor = "(I)V")
@@ -522,7 +522,7 @@ public final class client extends GameShell {
 		FriendList.state = 0;
 		FriendList.friendCount = 0;
 		VarpDomain.resetVarBits();
-		Static20.clear();
+		DelayedStateChange.clear();
 		Camera.anInt5230 = 0;
 		Camera.anInt5217 = 0;
 		Camera.anInt5765 = 0;
@@ -539,7 +539,7 @@ public final class client extends GameShell {
 		if (InterfaceList.topLevelInterace != -1) {
 			InterfaceList.resetComponent(InterfaceList.topLevelInterace);
 		}
-		for (@Pc(3755) ComponentPointer local3755 = (ComponentPointer) InterfaceList.openInterfaces.head(); local3755 != null; local3755 = (ComponentPointer) InterfaceList.openInterfaces.prev()) {
+		for (@Pc(3755) ComponentPointer local3755 = (ComponentPointer) InterfaceList.openInterfaces.head(); local3755 != null; local3755 = (ComponentPointer) InterfaceList.openInterfaces.next()) {
 			InterfaceList.closeInterface(true, local3755);
 		}
 		InterfaceList.topLevelInterace = -1;
@@ -631,8 +631,8 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "runetek4.client!re", name = "a", descriptor = "(I)V")
 	public static void clean() {
-		Static8.method119();
-		Static71.method1443();
+		FloorOverlayTypeList.clean();
+		FloorUnderlayTypeList.clean();
 		Static238.method4142();
 		Static258.method4415();
 		Static209.method3706();
@@ -644,13 +644,13 @@ public final class client extends GameShell {
 		BasTypeList.clean();
 		Static276.method4615();
 		Static25.method715();
-		Static25.method716();
+		CursorTypeList.clean();
 		Static279.method4662();
 		Component.clean();
-		Static158.method3010();
+		HintArrowManager.clean();
 		Static134.method2621();
-		Static73.hitBars.clear(5);
-		Static139.fontMetrics.clear(5);
+		HitBarList.hitBars.clean(5);
+		FontMetricsList.fontMetrics.clean(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(II)V")
@@ -701,14 +701,14 @@ public final class client extends GameShell {
 			}
 		}
 		if (GlRenderer.enabled && (statusCode == 25 || statusCode == 28 || statusCode == 40)) {
-			GlRenderer.method4160();
+			GlRenderer.draw();
 		}
 		gameState = statusCode;
 	}
 
 	@OriginalMember(owner = "client!client", name = "f", descriptor = "(I)V")
 	@Override
-	protected final void mainredraw() {
+	protected final void mainRedraw() {
 		if (gameState == 1000) {
 			return;
 		}
@@ -716,8 +716,8 @@ public final class client extends GameShell {
 		if (local15 && Static144.jingle && musicChannel != null) {
 			musicChannel.method3570();
 		}
-		if ((gameState == 30 || gameState == 10) && (Static35.canvasReplaceRecommended || Static97.aLong89 != 0L && Static97.aLong89 < MonotonicTime.currentTimeMillis())) {
-			DisplayMode.setWindowMode(Static35.canvasReplaceRecommended, DisplayMode.getWindowMode(), Preferences.fullScreenWidth, Preferences.fullScreenHeight);
+		if ((gameState == 30 || gameState == 10) && (GameShell.canvasReplaceRecommended || Static97.aLong89 != 0L && Static97.aLong89 < MonotonicTime.currentTimeMillis())) {
+			DisplayMode.setWindowMode(GameShell.canvasReplaceRecommended, DisplayMode.getWindowMode(), Preferences.fullScreenWidth, Preferences.fullScreenHeight);
 		}
 		@Pc(80) int local80;
 		@Pc(84) int local84;
@@ -738,7 +738,7 @@ public final class client extends GameShell {
 				local84 -= local90.top + local90.bottom;
 			}
 			if (local80 != GameShell.frameWidth || local84 != GameShell.frameHeight) {
-				Static203.method3662();
+				GameShell.method3662();
 				Static97.aLong89 = MonotonicTime.currentTimeMillis() + 500L;
 			}
 		}
@@ -746,12 +746,12 @@ public final class client extends GameShell {
 			DisplayMode.setWindowMode(false, Preferences.favoriteWorlds, -1, -1);
 		}
 		@Pc(158) boolean local158 = false;
-		if (Static69.fullredraw) {
+		if (GameShell.fullredraw) {
 			local158 = true;
-			Static69.fullredraw = false;
+			GameShell.fullredraw = false;
 		}
 		if (local158) {
-			Static139.method2704();
+			GameShell.method2704();
 		}
 		if (GlRenderer.enabled) {
 			for (local80 = 0; local80 < 100; local80++) {
@@ -827,7 +827,7 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "client!client", name = "c", descriptor = "(B)V")
 	@Override
-	protected final void mainquit() {
+	protected final void mainQuit() {
 		if (GlRenderer.enabled) {
 			GlRenderer.quit();
 		}
@@ -933,7 +933,7 @@ public final class client extends GameShell {
 		} catch (@Pc(130) Exception local130) {
 			affiliate = 0;
 		}
-		settings = SETTINGS.method3153(this);
+		settings = SETTINGS.fromParameters(this);
 		if (settings == null) {
 			settings = JString.EMPTY;
 		}
@@ -958,7 +958,7 @@ public final class client extends GameShell {
 	@OriginalMember(owner = "client!client", name = "g", descriptor = "(I)V")
 	@Override
 	protected void mainInit() {
-		Static203.method3662();
+		GameShell.method3662();
 		js5CacheQueue = new Js5CacheQueue();
 		js5NetQueue = new Js5NetQueue();
 
@@ -1119,11 +1119,11 @@ public final class client extends GameShell {
 				if (priorityRequest == null) {
 					while (true) {
 						do {
-							priorityRequest = (HookRequest) InterfaceList.lowPriorityRequests.removeHead();
+							priorityRequest = (HookRequest) InterfaceList.mediumPriorityRequests.removeHead();
 							if (priorityRequest == null) {
 								while (true) {
 									do {
-										priorityRequest = (HookRequest) Static185.aClass69_101.removeHead();
+										priorityRequest = (HookRequest) InterfaceList.lowPriorityRequests.removeHead();
 										if (priorityRequest == null) {
 											if (ClientScriptRunner.aClass13_14 != null) {
 												ClientScriptRunner.method28();
@@ -1381,7 +1381,7 @@ public final class client extends GameShell {
 			mainLoadState = 50;
 			mainLoadSecondaryText = LocalizedText.MAINLOAD45B;
 		} else if (mainLoadState == 50) {
-			percentage = Static74.method1628(js5Archive8, js5Archive13);
+			percentage = Fonts.getReady(js5Archive8, js5Archive13);
 			i = Fonts.getTotal();
 			if (percentage >= i) {
 				mainLoadSecondaryText = LocalizedText.MAINLOAD50B;
@@ -1433,10 +1433,10 @@ public final class client extends GameShell {
 			percentage += js5Archive27.getPercentageComplete();
 			if (percentage >= 1100) {
 				Static226.init(js5Archive2);
-				Static199.init(js5Archive2);
-				Static91.init(js5Archive2);
-				Static125.init(js5Archive7, js5Archive2);
-				IdkTypeList.init(js5Archive16, js5Archive7);
+				FloorOverlayTypeList.init(js5Archive2);
+				FloorUnderlayTypeList.init(js5Archive2);
+				IdkTypeList.init(js5Archive7, js5Archive2);
+				LocTypeList.init(js5Archive16, js5Archive7);
 				Static88.init(js5Archive7, js5Archive18);
 				Static241.init(js5Archive19, Fonts.p11FullSoftware, js5Archive7);
 				Static58.init(js5Archive2);
@@ -1445,13 +1445,13 @@ public final class client extends GameShell {
 				Static266.init(js5Archive7, js5Archive21);
 				Static180.init(js5Archive22);
 				VarPlayerDefinition.initializeVarPlayerDefinitionCache(js5Archive2);
-				Static3.init(js5Archive13, js5Archive8, js5Archive3, js5Archive7);
-				Static119.init(js5Archive2);
-				Static85.init(js5Archive17);
+				InterfaceList.init(js5Archive13, js5Archive8, js5Archive3, js5Archive7);
+				InvTypeList.init(js5Archive2);
+				EnumTypeList.init(js5Archive17);
 				Static59.init(js5Archive25, js5Archive24, new Js5QuickChatCommandDecoder());
 				Static115.init(js5Archive25, js5Archive24);
 				Static107.init(js5Archive2);
-				Static246.init(js5Archive2, js5Archive8);
+				CursorTypeList.init(js5Archive2, js5Archive8);
 				Static180.init(js5Archive2, js5Archive8);
 				mainLoadPercentage = 50;
 				mainLoadSecondaryText = LocalizedText.MAINLOAD70B;
@@ -1527,7 +1527,7 @@ public final class client extends GameShell {
 			} else if (!js5Archive13.fetchAll()) {
 				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(js5Archive13.getPercentageComplete() / 20 + 85), JString.PERCENT_SIGN});
 				mainLoadPercentage = 85;
-			} else if (js5Archive23.method4489(DETAILS)) {
+			} else if (js5Archive23.isGroupReady(DETAILS)) {
 				Static234.method4018(Static173.aClass3_Sub2_Sub1_Sub1Array9, js5Archive23);
 				mainLoadPercentage = 95;
 				mainLoadSecondaryText = LocalizedText.MAINLOAD130B;
@@ -1553,7 +1553,7 @@ public final class client extends GameShell {
 				processGameStatus(1000);
 			}
 		} else if (mainLoadState == 140) {
-			Static156.anInt3783 = js5Archive3.getGroupId(LOGINSCREEN);
+			LoginManager.loginScreenId = js5Archive3.getGroupId(LOGINSCREEN);
 			js5Archive5.discardNames(false);
 			js5Archive6.discardNames(true);
 			js5Archive8.discardNames(true);

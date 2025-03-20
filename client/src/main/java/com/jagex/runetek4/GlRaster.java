@@ -10,10 +10,15 @@ import java.nio.IntBuffer;
 public class GlRaster {
     @OriginalMember(owner = "client!dj", name = "e", descriptor = "I")
     public static int clipBottom = 0;
+
     @OriginalMember(owner = "client!dj", name = "b", descriptor = "I")
     public static int clipTop = 0;
+
+    @OriginalMember(owner = "client!dj", name = "c", descriptor = "I")
+    public static int clipLeft = 0;
+
     @OriginalMember(owner = "client!dj", name = "d", descriptor = "I")
-    static int anInt1440 = 0;
+    static int clipRight = 0;
 
     @OriginalMember(owner = "client!dj", name = "d", descriptor = "(IIII)V")
     public static void setClip(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
@@ -29,18 +34,18 @@ public class GlRaster {
         if (arg3 > GlRenderer.canvasHeight) {
             arg3 = GlRenderer.canvasHeight;
         }
-        Static46.anInt1439 = arg0;
+        clipLeft = arg0;
         clipTop = arg1;
-        anInt1440 = arg2;
+        clipRight = arg2;
         clipBottom = arg3;
         @Pc(27) GL2 local27 = GlRenderer.gl;
         local27.glEnable(GL2.GL_SCISSOR_TEST);
-        if (Static46.anInt1439 <= anInt1440 && clipTop <= clipBottom) {
-            local27.glScissor(Static46.anInt1439, GlRenderer.canvasHeight - clipBottom, anInt1440 - Static46.anInt1439, clipBottom - clipTop);
+        if (clipLeft <= clipRight && clipTop <= clipBottom) {
+            local27.glScissor(clipLeft, GlRenderer.canvasHeight - clipBottom, clipRight - clipLeft, clipBottom - clipTop);
         } else {
             local27.glScissor(0, 0, 0, 0);
         }
-        Static46.method1173();
+        GlFont.method1173();
     }
 
     @OriginalMember(owner = "client!dj", name = "c", descriptor = "(IIIII)V")
@@ -113,37 +118,37 @@ public class GlRaster {
 
     @OriginalMember(owner = "client!dj", name = "c", descriptor = "(IIII)V")
     public static void method1183(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-        if (Static46.anInt1439 < arg0) {
-            Static46.anInt1439 = arg0;
+        if (clipLeft < arg0) {
+            clipLeft = arg0;
         }
         if (clipTop < arg1) {
             clipTop = arg1;
         }
-        if (anInt1440 > arg2) {
-            anInt1440 = arg2;
+        if (clipRight > arg2) {
+            clipRight = arg2;
         }
         if (clipBottom > arg3) {
             clipBottom = arg3;
         }
         @Pc(21) GL2 local21 = GlRenderer.gl;
         local21.glEnable(GL2.GL_SCISSOR_TEST);
-        if (Static46.anInt1439 <= anInt1440 && clipTop <= clipBottom) {
-            local21.glScissor(Static46.anInt1439, GlRenderer.canvasHeight - clipBottom, anInt1440 - Static46.anInt1439, clipBottom - clipTop);
+        if (clipLeft <= clipRight && clipTop <= clipBottom) {
+            local21.glScissor(clipLeft, GlRenderer.canvasHeight - clipBottom, clipRight - clipLeft, clipBottom - clipTop);
         } else {
             local21.glScissor(0, 0, 0, 0);
         }
-        Static46.method1173();
+        GlFont.method1173();
     }
 
     @OriginalMember(owner = "client!dj", name = "c", descriptor = "()V")
     public static void method1177() {
-        Static46.anInt1439 = 0;
+        clipLeft = 0;
         clipTop = 0;
-        anInt1440 = GlRenderer.canvasWidth;
+        clipRight = GlRenderer.canvasWidth;
         clipBottom = GlRenderer.canvasHeight;
         @Pc(9) GL2 local9 = GlRenderer.gl;
         local9.glDisable(GL2.GL_SCISSOR_TEST);
-        Static46.method1173();
+        GlFont.method1173();
     }
 
     @OriginalMember(owner = "client!dj", name = "b", descriptor = "(IIIII)V")

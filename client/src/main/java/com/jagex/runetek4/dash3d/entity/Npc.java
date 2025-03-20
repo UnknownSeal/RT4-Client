@@ -91,10 +91,10 @@ public final class Npc extends PathingEntity {
 				local140.translate(0, -this.spotanimOffset, 0);
 				if (local211.aBoolean100) {
 					if (Static101.anInt2640 != 0) {
-						local140.method4574(Static101.anInt2640);
+						local140.rotateX(Static101.anInt2640);
 					}
 					if (Static102.anInt2680 != 0) {
-						local140.method4564(Static102.anInt2680);
+						local140.rotateZ(Static102.anInt2680);
 					}
 					if (Static62.anInt1938 != 0) {
 						local140.translate(0, Static62.anInt1938, 0);

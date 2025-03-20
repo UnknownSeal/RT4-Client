@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.game.config.msitype.MSIType;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -11,9 +12,6 @@ public final class Static144 {
 	@OriginalMember(owner = "runetek4.client!le", name = "c", descriptor = "Lclient!rf;")
 	public static Song aClass3_Sub29_1;
 
-	@OriginalMember(owner = "runetek4.client!le", name = "e", descriptor = "I")
-	public static int anInt3490 = 0;
-
 	@OriginalMember(owner = "runetek4.client!le", name = "k", descriptor = "Z")
 	public static boolean jingle = false;
 
@@ -24,7 +22,7 @@ public final class Static144 {
 		if (Static48.anInt1449 > arg3) {
 			local9++;
 		}
-		if (IdkTypeList.anInt4296 > arg1) {
+		if (WorldMap.length > arg1) {
 			local14++;
 		}
 		@Pc(32) int local32;
@@ -75,7 +73,7 @@ public final class Static144 {
 								if (Static269.aClass3_Sub2_Sub4_2.anInt759 != -1) {
 									local312 = Static269.aClass3_Sub2_Sub4_2.anInt759;
 								} else if ((local211 + arg2 & 0x4) == (arg5 + local32 & 0x4)) {
-									local312 = Static145.anIntArray330[Static26.anInt865 + 1];
+									local312 = Static145.anIntArray330[FloorOverlayType.anInt865 + 1];
 								} else {
 									local312 = 4936552;
 								}
@@ -108,7 +106,7 @@ public final class Static144 {
 									if (local437 == 0 || local62 <= 1 || local238 <= 1) {
 										SoftwareRaster.fillRect(local47, local222, local62, local238, local372);
 									} else {
-										Static280.method4667(Rasterizer.destinationPixels, local372, local47, local433 & 0x3, local312, local437 >> 2, local238, local62, local222, true);
+										Static280.method4667(SoftwareRaster.destinationPixels, local372, local47, local433 & 0x3, local312, local437 >> 2, local238, local62, local222, true);
 									}
 								}
 								if (local395 != 0) {
@@ -120,7 +118,7 @@ public final class Static144 {
 									if (local437 == 0 || local62 <= 1 || local238 <= 1) {
 										SoftwareRaster.fillRect(local47, local222, local62, local238, local395);
 									}
-									Static280.method4667(Rasterizer.destinationPixels, local395, local47, local433 & 0x3, 0, local437 >> 2, local238, local62, local222, local372 == 0);
+									Static280.method4667(SoftwareRaster.destinationPixels, local395, local47, local433 & 0x3, 0, local437 >> 2, local238, local62, local222, local372 == 0);
 								}
 							}
 							if (local197[local254] != null) {
@@ -145,40 +143,40 @@ public final class Static144 {
 									if (local546 == 1) {
 										Rasterizer.drawVerticalLine(local47, local222, local238, local575);
 									} else if (local546 == 2) {
-										Rasterizer.drawHorizontalLine(local47, local222, local62, local575);
+										SoftwareRaster.drawHorizontalLine(local47, local222, local62, local575);
 									} else if (local546 == 3) {
 										Rasterizer.drawVerticalLine(local437, local222, local238, local575);
 									} else if (local546 == 4) {
-										Rasterizer.drawHorizontalLine(local47, local569, local62, local575);
+										SoftwareRaster.drawHorizontalLine(local47, local569, local62, local575);
 									} else if (local546 == 9) {
 										Rasterizer.drawVerticalLine(local47, local222, local238, 16777215);
-										Rasterizer.drawHorizontalLine(local47, local222, local62, local575);
+										SoftwareRaster.drawHorizontalLine(local47, local222, local62, local575);
 									} else if (local546 == 10) {
 										Rasterizer.drawVerticalLine(local437, local222, local238, 16777215);
-										Rasterizer.drawHorizontalLine(local47, local222, local62, local575);
+										SoftwareRaster.drawHorizontalLine(local47, local222, local62, local575);
 									} else if (local546 == 11) {
 										Rasterizer.drawVerticalLine(local437, local222, local238, 16777215);
-										Rasterizer.drawHorizontalLine(local47, local569, local62, local575);
+										SoftwareRaster.drawHorizontalLine(local47, local569, local62, local575);
 									} else if (local546 == 12) {
 										Rasterizer.drawVerticalLine(local47, local222, local238, 16777215);
-										Rasterizer.drawHorizontalLine(local47, local569, local62, local575);
+										SoftwareRaster.drawHorizontalLine(local47, local569, local62, local575);
 									} else if (local546 == 17) {
-										Rasterizer.drawHorizontalLine(local47, local222, 1, local575);
+										SoftwareRaster.drawHorizontalLine(local47, local222, 1, local575);
 									} else if (local546 == 18) {
-										Rasterizer.drawHorizontalLine(local437, local222, 1, local575);
+										SoftwareRaster.drawHorizontalLine(local437, local222, 1, local575);
 									} else if (local546 == 19) {
-										Rasterizer.drawHorizontalLine(local437, local569, 1, local575);
+										SoftwareRaster.drawHorizontalLine(local437, local569, 1, local575);
 									} else if (local546 == 20) {
-										Rasterizer.drawHorizontalLine(local47, local569, 1, local575);
+										SoftwareRaster.drawHorizontalLine(local47, local569, 1, local575);
 									} else {
 										@Pc(705) int local705;
 										if (local546 == 25) {
 											for (local705 = 0; local705 < local238; local705++) {
-												Rasterizer.drawHorizontalLine(local705 + local47, -local705 + local569, 1, local575);
+												SoftwareRaster.drawHorizontalLine(local705 + local47, -local705 + local569, 1, local575);
 											}
 										} else if (local546 == 26) {
 											for (local705 = 0; local705 < local238; local705++) {
-												Rasterizer.drawHorizontalLine(local705 + local47, local222 + local705, 1, local575);
+												SoftwareRaster.drawHorizontalLine(local705 + local47, local222 + local705, 1, local575);
 											}
 										}
 									}
@@ -192,7 +190,7 @@ public final class Static144 {
 						if (Static269.aClass3_Sub2_Sub4_2.anInt759 != -1) {
 							local104 = Static269.aClass3_Sub2_Sub4_2.anInt759;
 						} else if ((local32 + arg5 & 0x4) == (local90 + arg2 & 0x4)) {
-							local104 = Static145.anIntArray330[Static26.anInt865 + 1];
+							local104 = Static145.anIntArray330[FloorOverlayType.anInt865 + 1];
 						} else {
 							local104 = 4936552;
 						}
@@ -233,8 +231,8 @@ public final class Static144 {
 										@Pc(998) MSIType local998 = Static40.get(local233 - 1);
 										@Pc(1003) SoftwareIndexedSprite local1003 = local998.method9(local254);
 										if (local1003 != null) {
-											local276 = local162 * local1003.anInt4278 / 4;
-											local270 = local62 * local1003.anInt4270 / 4;
+											local276 = local162 * local1003.height / 4;
+											local270 = local62 * local1003.width / 4;
 											if (local998.aBoolean2) {
 												local312 = local222 >> 16 & 0xF;
 												local372 = local222 >> 20 & 0xF;

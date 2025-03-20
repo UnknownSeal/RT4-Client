@@ -8,22 +8,22 @@ import org.openrs2.deob.annotation.OriginalMember;
 public abstract class IndexedSprite {
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "a", descriptor = "I")
-	public int anInt4270;
+	public int width;
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "d", descriptor = "I")
-	public int anInt4273;
+	public int yOffset;
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "i", descriptor = "I")
-	public int anInt4276;
+	public int innerHeight;
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "k", descriptor = "I")
-	public int anInt4278;
+	public int height;
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "l", descriptor = "I")
-	public int maxWidth;
+	public int innerWidth;
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "m", descriptor = "I")
-	public int anInt4280;
+	public int xOffset;
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "<init>", descriptor = "()V")
 	protected IndexedSprite() {

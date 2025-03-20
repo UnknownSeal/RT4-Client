@@ -10,9 +10,6 @@ public final class Static228 {
 	@OriginalMember(owner = "client!sh", name = "a", descriptor = "Lclient!ih;")
 	public static final LinkedList aClass69_120 = new LinkedList();
 
-	@OriginalMember(owner = "client!sh", name = "e", descriptor = "Lclient!na;")
-	public static final JString aClass100_967 = JString.parse("");
-
 	@OriginalMember(owner = "client!sh", name = "h", descriptor = "I")
 	public static int anInt5105 = 0;
 
@@ -21,9 +18,6 @@ public final class Static228 {
 
 	@OriginalMember(owner = "client!sh", name = "j", descriptor = "Lclient!na;")
 	public static final JString HEADICONS_PRAYER = JString.parse("headicons_prayer");
-
-	@OriginalMember(owner = "client!sh", name = "l", descriptor = "[J")
-	public static final long[] aLongArray8 = new long[32];
 
 	@OriginalMember(owner = "client!sh", name = "a", descriptor = "(II)[B")
 	public static synchronized byte[] alloc(@OriginalArg(1) int arg0) {

@@ -1,7 +1,7 @@
 package com.jagex.runetek4.game.config.idktype;
 
-import com.jagex.runetek4.graphics.ModelUnlit;
-import com.jagex.runetek4.Static14;
+import com.jagex.runetek4.IdkTypeList;
+import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -30,7 +30,7 @@ public final class IDKType {
 	private final int[] heads = new int[] { -1, -1, -1, -1, -1 };
 
 	@OriginalMember(owner = "client!dm", name = "k", descriptor = "I")
-	public int type = -1;
+	public int feature = -1;
 
 	@OriginalMember(owner = "client!dm", name = "A", descriptor = "Z")
 	public boolean disable = false;
@@ -38,29 +38,29 @@ public final class IDKType {
 	@OriginalMember(owner = "client!dm", name = "a", descriptor = "(ILclient!wa;)V")
 	public void decode(@OriginalArg(1) Packet packet) {
 		while (true) {
-			@Pc(13) int code = packet.g1();
-			if (code == 0) {
+			@Pc(13) int opcode = packet.g1();
+			if (opcode == 0) {
 				return;
 			}
-			this.decode(packet, code);
+			this.decode(packet, opcode);
 		}
 	}
 
 	@OriginalMember(owner = "client!dm", name = "a", descriptor = "(BLclient!wa;I)V")
-	private void decode(@OriginalArg(1) Packet packet, @OriginalArg(2) int code) {
-		if (code == 1) {
-			this.type = packet.g1();
+	private void decode(@OriginalArg(1) Packet packet, @OriginalArg(2) int opcode) {
+		if (opcode == 1) {
+			this.feature = packet.g1();
 			return;
 		}
-		if (code == 2) {
+		if (opcode == 2) {
 			int length = packet.g1();
 			this.models = new int[length];
 			for (int index = 0; index < length; index++) {
 				this.models[index] = packet.g2();
 			}
-		} else if (code == 3) {
+		} else if (opcode == 3) {
 			this.disable = true;
-		} else if (code == 40) {
+		} else if (opcode == 40) {
 			int length = packet.g1();
 			this.recol_s = new short[length];
 			this.recol_d = new short[length];
@@ -68,7 +68,7 @@ public final class IDKType {
 				this.recol_s[index] = (short) packet.g2();
 				this.recol_d[index] = (short) packet.g2();
 			}
-		} else if (code == 41) {
+		} else if (opcode == 41) {
 			int length = packet.g1();
 			this.retex_s = new short[length];
 			this.retex_d = new short[length];
@@ -76,8 +76,8 @@ public final class IDKType {
 				this.retex_s[index] = (short) packet.g2();
 				this.retex_d[index] = (short) packet.g2();
 			}
-		} else if (code >= 60 && code < 70) {
-			this.heads[code - 60] = packet.g2();
+		} else if (opcode >= 60 && opcode < 70) {
+			this.heads[opcode - 60] = packet.g2();
 		}
 	}
 
@@ -85,7 +85,7 @@ public final class IDKType {
 	public boolean hasReadyHeads() {
 		@Pc(3) boolean ready = true;
 		for (@Pc(12) int index = 0; index < 5; index++) {
-			if (this.heads[index] != -1 && !Static14.aClass153_8.requestDownload(this.heads[index], 0)) {
+			if (this.heads[index] != -1 && !IdkTypeList.modelsArchive.isFileReady(this.heads[index], 0)) {
 				ready = false;
 			}
 		}
@@ -93,15 +93,15 @@ public final class IDKType {
 	}
 
 	@OriginalMember(owner = "client!dm", name = "a", descriptor = "(Z)Lclient!gb;")
-	public ModelUnlit getHeadModel() {
+	public RawModel getHeadModel() {
 		@Pc(13) int length = 0;
-		@Pc(16) ModelUnlit[] heads = new ModelUnlit[5];
+		@Pc(16) RawModel[] heads = new RawModel[5];
 		for (@Pc(18) int index = 0; index < 5; index++) {
 			if (this.heads[index] != -1) {
-				heads[length++] = ModelUnlit.get(Static14.aClass153_8, this.heads[index]);
+				heads[length++] = RawModel.get(IdkTypeList.modelsArchive, this.heads[index]);
 			}
 		}
-		@Pc(52) ModelUnlit head = new ModelUnlit(heads, length);
+		@Pc(52) RawModel head = new RawModel(heads, length);
 
 		if (this.recol_s != null) {
 			for (int index = 0; index < this.recol_s.length; index++) {
@@ -117,13 +117,13 @@ public final class IDKType {
 	}
 
 	@OriginalMember(owner = "client!dm", name = "a", descriptor = "(I)Z")
-	public boolean hasReadyModels() {
+	public boolean isBodyModelReady() {
 		if (this.models == null) {
 			return true;
 		}
 		@Pc(13) boolean ready = true;
 		for (@Pc(22) int index = 0; index < this.models.length; index++) {
-			if (!Static14.aClass153_8.requestDownload(this.models[index], 0)) {
+			if (!IdkTypeList.modelsArchive.isFileReady(this.models[index], 0)) {
 				ready = false;
 			}
 		}
@@ -131,19 +131,19 @@ public final class IDKType {
 	}
 
 	@OriginalMember(owner = "client!dm", name = "b", descriptor = "(B)Lclient!gb;")
-	public ModelUnlit getModel() {
+	public RawModel getModel() {
 		if (this.models == null) {
 			return null;
 		}
-		@Pc(16) ModelUnlit[] models = new ModelUnlit[this.models.length];
+		@Pc(16) RawModel[] models = new RawModel[this.models.length];
 		for (@Pc(18) int index = 0; index < this.models.length; index++) {
-			models[index] = ModelUnlit.get(Static14.aClass153_8, this.models[index]);
+			models[index] = RawModel.get(IdkTypeList.modelsArchive, this.models[index]);
 		}
-		@Pc(56) ModelUnlit body;
+		@Pc(56) RawModel body;
 		if (models.length == 1) {
 			body = models[0];
 		} else {
-			body = new ModelUnlit(models, models.length);
+			body = new RawModel(models, models.length);
 		}
 
 		if (this.recol_s != null) {

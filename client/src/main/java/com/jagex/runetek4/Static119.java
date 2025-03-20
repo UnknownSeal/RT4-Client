@@ -1,8 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.js5.Js5;
-import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static119 {
@@ -19,14 +17,6 @@ public final class Static119 {
 	@OriginalMember(owner = "client!je", name = "U", descriptor = "Lclient!na;")
 	public static final JString SHOWINGVIDEOAD = JString.parse("showingVideoAd");
 
-	@OriginalMember(owner = "client!je", name = "db", descriptor = "Lclient!na;")
-	public static final JString aClass100_589 = JString.parse(" <col=ffffff>");
-
-	@OriginalMember(owner = "client!je", name = "a", descriptor = "(ILclient!ve;)V")
-	public static void init(@OriginalArg(1) Js5 arg0) {
-		CacheArchive.aClass153_2 = arg0;
-	}
-
 	@OriginalMember(owner = "client!je", name = "j", descriptor = "(I)I")
 	public static int method2385() {
 		if (Static203.aMapElementTypeList_1 == null) {
@@ -41,12 +31,4 @@ public final class Static119 {
 		return -1;
 	}
 
-	@OriginalMember(owner = "client!je", name = "a", descriptor = "(IIIII)V")
-	public static void method2387(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		Static13.anInt435 = Static48.anInt1449 * arg2 / arg0;
-		Static28.anInt919 = IdkTypeList.anInt4296 * arg1 / arg3;
-		Static142.anInt3482 = -1;
-		Static217.anInt4901 = -1;
-		Static38.method965();
-	}
 }

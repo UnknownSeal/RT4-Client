@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
+import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.io.PacketBit;
@@ -9,6 +10,7 @@ import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.client.Inv;
+import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.SceneCamera;
@@ -224,11 +226,11 @@ public class Protocol {
         if (opcode == 70) {
             @Pc(245) JString message = inboundBuffer.gjstr();
             if (message.endsWith(Static196.TRADEREQ)) {
-                message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
+                message2 = message.substring(message.indexOf(JString.COLON_SIGN), 0);
                 username = message2.encode37();
                 ignored = false;
-                for (i = 0; i < Static35.ignoreCount; i++) {
-                    if (Static190.ignoreName37[i] == username) {
+                for (i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (IgnoreList.encodedIgnores[i] == username) {
                         ignored = true;
                         break;
                     }
@@ -237,25 +239,25 @@ public class Protocol {
                     Chat.addMessage(message2, 4, LocalizedText.TRADEREQ);
                 }
             } else if (message.endsWith(CHALREQ)) {
-                message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
+                message2 = message.substring(message.indexOf(JString.COLON_SIGN), 0);
                 username = message2.encode37();
                 ignored = false;
-                for (i = 0; i < Static35.ignoreCount; i++) {
-                    if (Static190.ignoreName37[i] == username) {
+                for (i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (IgnoreList.encodedIgnores[i] == username) {
                         ignored = true;
                         break;
                     }
                 }
                 if (!ignored && Player.overrideChat == 0) {
-                    local506 = message.substring(message.length() - 9, message.indexOf(Static264.aClass100_875) + 1);
+                    local506 = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
                     Chat.addMessage(message2, 8, local506);
                 }
             } else if (message.endsWith(Static191.ASSISTREQ)) {
                 ignored = false;
-                message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
+                message2 = message.substring(message.indexOf(JString.COLON_SIGN), 0);
                 username = message2.encode37();
-                for (i = 0; i < Static35.ignoreCount; i++) {
-                    if (username == Static190.ignoreName37[i]) {
+                for (i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (username == IgnoreList.encodedIgnores[i]) {
                         ignored = true;
                         break;
                     }
@@ -278,10 +280,10 @@ public class Protocol {
                 }
             } else if (message.endsWith(DUELSTAKE)) {
                 ignored = false;
-                message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
+                message2 = message.substring(message.indexOf(JString.COLON_SIGN), 0);
                 username = message2.encode37();
-                for (i = 0; i < Static35.ignoreCount; i++) {
-                    if (username == Static190.ignoreName37[i]) {
+                for (i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (username == IgnoreList.encodedIgnores[i]) {
                         ignored = true;
                         break;
                     }
@@ -290,11 +292,11 @@ public class Protocol {
                     Chat.addMessage(message2, 14, JString.EMPTY);
                 }
             } else if (message.endsWith(Static112.DUELFRIEND)) {
-                message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
+                message2 = message.substring(message.indexOf(JString.COLON_SIGN), 0);
                 ignored = false;
                 username = message2.encode37();
-                for (i = 0; i < Static35.ignoreCount; i++) {
-                    if (Static190.ignoreName37[i] == username) {
+                for (i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (IgnoreList.encodedIgnores[i] == username) {
                         ignored = true;
                         break;
                     }
@@ -303,11 +305,11 @@ public class Protocol {
                     Chat.addMessage(message2, 15, JString.EMPTY);
                 }
             } else if (message.endsWith(Static217.CLANREQ)) {
-                message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
+                message2 = message.substring(message.indexOf(JString.COLON_SIGN), 0);
                 username = message2.encode37();
                 ignored = false;
-                for (i = 0; i < Static35.ignoreCount; i++) {
-                    if (username == Static190.ignoreName37[i]) {
+                for (i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (username == IgnoreList.encodedIgnores[i]) {
                         ignored = true;
                         break;
                     }
@@ -316,17 +318,17 @@ public class Protocol {
                     Chat.addMessage(message2, 16, JString.EMPTY);
                 }
             } else if (message.endsWith(Static164.ALLYREQ)) {
-                message2 = message.substring(message.indexOf(Static264.aClass100_875), 0);
+                message2 = message.substring(message.indexOf(JString.COLON_SIGN), 0);
                 ignored = false;
                 username = message2.encode37();
-                for (i = 0; i < Static35.ignoreCount; i++) {
-                    if (Static190.ignoreName37[i] == username) {
+                for (i = 0; i < IgnoreList.ignoreCount; i++) {
+                    if (IgnoreList.encodedIgnores[i] == username) {
                         ignored = true;
                         break;
                     }
                 }
                 if (!ignored && Player.overrideChat == 0) {
-                    local506 = message.substring(message.length() - 9, message.indexOf(Static264.aClass100_875) + 1);
+                    local506 = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
                     Chat.addMessage(message2, 21, local506);
                 }
             } else {
@@ -342,7 +344,7 @@ public class Protocol {
             xp = inboundBuffer.g2sub();
             local790 = inboundBuffer.gjstr();
             if (setVerifyID(xp)) {
-                Static193.method3498(local790, ii);
+                DelayedStateChange.method3498(local790, ii);
             }
             opcode = -1;
             return true;
@@ -366,7 +368,7 @@ public class Protocol {
                 xp = inboundBuffer.g2le();
                 world = inboundBuffer.g2();
                 if (setVerifyID(world)) {
-                    Static229.method3938(xp, ii);
+                    DelayedStateChange.method3938(xp, ii);
                 }
                 opcode = -1;
                 return true;
@@ -397,8 +399,8 @@ public class Protocol {
                         break;
                     }
                     if (local908 <= 1) {
-                        for (local924 = 0; local924 < Static35.ignoreCount; local924++) {
-                            if (Static190.ignoreName37[local924] == username2) {
+                        for (local924 = 0; local924 < IgnoreList.ignoreCount; local924++) {
+                            if (IgnoreList.encodedIgnores[local924] == username2) {
                                 local910 = true;
                                 break label1320;
                             }
@@ -409,13 +411,13 @@ public class Protocol {
                 if (!local910 && Player.overrideChat == 0) {
                     Chat.recentMessages[Chat.messageCounter] = local922;
                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
-                    @Pc(999) JString local999 = Static230.list(local916).method770(inboundBuffer);
+                    @Pc(999) JString local999 = QuickChatPhraseTypeList.list(local916).method770(inboundBuffer);
                     if (local908 == 2 || local908 == 3) {
-                        Chat.add(local916, 20, local999, Base37.decode37(username).method3125(), JString.concatenate(new JString[] { Static44.aClass100_336, Base37.decode37(username2).method3125() }));
+                        Chat.add(local916, 20, local999, Base37.decode37(username).toTitleCase(), JString.concatenate(new JString[] { Static44.aClass100_336, Base37.decode37(username2).toTitleCase() }));
                     } else if (local908 == 1) {
-                        Chat.add(local916, 20, local999, Base37.decode37(username).method3125(), JString.concatenate(new JString[] { Static65.aClass100_435, Base37.decode37(username2).method3125() }));
+                        Chat.add(local916, 20, local999, Base37.decode37(username).toTitleCase(), JString.concatenate(new JString[] { Static65.aClass100_435, Base37.decode37(username2).toTitleCase() }));
                     } else {
-                        Chat.add(local916, 20, local999, Base37.decode37(username).method3125(), Base37.decode37(username2).method3125());
+                        Chat.add(local916, 20, local999, Base37.decode37(username).toTitleCase(), Base37.decode37(username2).toTitleCase());
                     }
                 }
                 opcode = -1;
@@ -491,7 +493,7 @@ public class Protocol {
                 message2 = inboundBuffer.gjstr();
                 world = inboundBuffer.g2leadd();
                 if (setVerifyID(ii)) {
-                    Static193.method3498(message2, world);
+                    DelayedStateChange.method3498(message2, world);
                 }
                 opcode = -1;
                 return true;
@@ -532,7 +534,7 @@ public class Protocol {
                     xp = inboundBuffer.g2();
                     world = inboundBuffer.g4me();
                     if (setVerifyID(xp)) {
-                        Static153.method2905(world, ii);
+                        DelayedStateChange.method2905(world, ii);
                     }
                     opcode = -1;
                     return true;
@@ -545,9 +547,9 @@ public class Protocol {
                             Static5.method34();
                         }
                         InterfaceList.topLevelInterace = ii;
-                        ObjType.method1753(ii);
-                        Static210.method3712(false);
-                        Static74.method1626(InterfaceList.topLevelInterace);
+                        InterfaceList.method1753(ii);
+                        InterfaceList.method3712(false);
+                        InterfaceList.method1626(InterfaceList.topLevelInterace);
                         for (slot = 0; slot < 100; slot++) {
                             InterfaceList.aBooleanArray100[slot] = true;
                         }
@@ -559,15 +561,15 @@ public class Protocol {
                     xp = inboundBuffer.g4();
                     world = inboundBuffer.g2sub();
                     if (setVerifyID(ii)) {
-                        Static132.method2606(world, xp);
+                        DelayedStateChange.updateVarC(world, xp);
                     }
                     opcode = -1;
                     return true;
                 } else if (opcode == 141) {
                     username2 = inboundBuffer.g8();
                     world = inboundBuffer.g2();
-                    local1409 = Static230.list(world).method770(inboundBuffer);
-                    Chat.add(world, 19, local1409, null, Base37.decode37(username2).method3125());
+                    local1409 = QuickChatPhraseTypeList.list(world).method770(inboundBuffer);
+                    Chat.add(world, 19, local1409, null, Base37.decode37(username2).toTitleCase());
                     opcode = -1;
                     return true;
                 } else if (opcode == 169) {
@@ -576,7 +578,7 @@ public class Protocol {
                     return true;
                 } else if (opcode == 89) {
                     VarpDomain.resetVarBits();
-                    Static103.method2245();
+                    InterfaceList.redrawActiveInterfaces();
                     Static70.updatedVarpsWriterIndex += 32;
                     opcode = -1;
                     return true;
@@ -597,7 +599,7 @@ public class Protocol {
                     xp = inboundBuffer.g2les();
                     world = inboundBuffer.g2sub();
                     if (setVerifyID(world)) {
-                        Static225.method3893(ii, xp);
+                        DelayedStateChange.method3893(ii, xp);
                     }
                     opcode = -1;
                     return true;
@@ -619,7 +621,7 @@ public class Protocol {
                         if (setVerifyID(world)) {
                             for (i = count; i <= slot; i++) {
                                 local904 = (long) i + ((long) xp << 32);
-                                local1804 = (ServerActiveProperties) Static210.aClass133_21.getNode(local904);
+                                local1804 = (ServerActiveProperties) InterfaceList.properties.getNode(local904);
                                 if (local1804 != null) {
                                     local1814 = new ServerActiveProperties(local1804.anInt546, ii);
                                     local1804.unlink();
@@ -628,7 +630,7 @@ public class Protocol {
                                 } else {
                                     local1814 = new ServerActiveProperties(0, ii);
                                 }
-                                Static210.aClass133_21.put(local1814, local904);
+                                InterfaceList.properties.put(local1814, local904);
                             }
                         }
                         opcode = -1;
@@ -734,13 +736,13 @@ public class Protocol {
                         world = inboundBuffer.g2();
                         slot = inboundBuffer.g2sub();
                         if (setVerifyID(xp)) {
-                            Static190.method3444(slot + (world << 16), ii);
+                            DelayedStateChange.setComponentModelRotationSpeedServer(slot + (world << 16), ii);
                         }
                         opcode = -1;
                         return true;
                     } else if (opcode == 38) {
                         // UPDATE_STAT
-                        Static103.method2245();
+                        InterfaceList.redrawActiveInterfaces();
                         ii = inboundBuffer.g1add();
                         xp = inboundBuffer.g4rme();
                         world = inboundBuffer.g1();
@@ -752,7 +754,7 @@ public class Protocol {
                                 PlayerSkillXpTable.skillBaseLevel[world] = slot + 2;
                             }
                         }
-                        Static249.anIntArray478[Static89.anInt2385++ & 0x1F] = world;
+                        PlayerSkillXpTable.updatedStats[PlayerSkillXpTable.updatedStatsWriterIndex++ & 0x1F] = world;
                         opcode = -1;
                         return true;
                     } else if (opcode == 104 || opcode == 121 || opcode == 97 || opcode == 14 || opcode == 202 || opcode == 135 || opcode == 17 || opcode == 16 || opcode == 240 || opcode == 33 || opcode == 20 || opcode == 195 || opcode == 179) {
@@ -796,7 +798,7 @@ public class Protocol {
                         slot = inboundBuffer.g2leadd();
                         count = inboundBuffer.g4();
                         if (setVerifyID(xp)) {
-                            Static261.method4505(world, count, slot, ii);
+                            DelayedStateChange.updateView(world, count, slot, ii);
                         }
                         opcode = -1;
                         return true;
@@ -836,7 +838,7 @@ public class Protocol {
                             world = -1;
                         }
                         if (setVerifyID(xp)) {
-                            Static132.method2607(-1, 1, ii, world);
+                            DelayedStateChange.updateComponentModel(-1, 1, ii, world);
                         }
                         opcode = -1;
                         return true;
@@ -869,11 +871,11 @@ public class Protocol {
                             if (world > 0) {
                                 local506 = inboundBuffer.gjstr();
                             }
-                            @Pc(2834) JString displayName = Base37.decode37(username2).method3125();
+                            @Pc(2834) JString displayName = Base37.decode37(username2).toTitleCase();
                             for (j = 0; j < FriendList.friendCount; j++) {
-                                if (username2 == Static92.friendName37[j]) {
-                                    if (world != Static104.friendWorld[j]) {
-                                        Static104.friendWorld[j] = world;
+                                if (username2 == FriendList.encodedUsernames[j]) {
+                                    if (world != FriendList.friendWorlds[j]) {
+                                        FriendList.friendWorlds[j] = world;
                                         if (world > 0) {
                                             Chat.addMessage(JString.EMPTY, 5, JString.concatenate(new JString[] { displayName, LocalizedText.FRIENDLOGIN}));
                                         }
@@ -881,48 +883,48 @@ public class Protocol {
                                             Chat.addMessage(JString.EMPTY, 5, JString.concatenate(new JString[] { displayName, LocalizedText.FRIENDLOGOUT}));
                                         }
                                     }
-                                    Static214.aClass100Array170[j] = local506;
-                                    Static106.anIntArray258[j] = slot;
+                                    FriendList.worldNames[j] = local506;
+                                    FriendList.ranks[j] = slot;
                                     displayName = null;
-                                    Static3.aBooleanArray135[j] = ignored;
+                                    FriendList.friendGame[j] = ignored;
                                     break;
                                 }
                             }
                             if (displayName != null && FriendList.friendCount < 200) {
-                                Static92.friendName37[FriendList.friendCount] = username2;
-                                Static122.friendName[FriendList.friendCount] = displayName;
-                                Static104.friendWorld[FriendList.friendCount] = world;
-                                Static214.aClass100Array170[FriendList.friendCount] = local506;
-                                Static106.anIntArray258[FriendList.friendCount] = slot;
-                                Static3.aBooleanArray135[FriendList.friendCount] = ignored;
+                                FriendList.encodedUsernames[FriendList.friendCount] = username2;
+                                FriendList.friendUsernames[FriendList.friendCount] = displayName;
+                                FriendList.friendWorlds[FriendList.friendCount] = world;
+                                FriendList.worldNames[FriendList.friendCount] = local506;
+                                FriendList.ranks[FriendList.friendCount] = slot;
+                                FriendList.friendGame[FriendList.friendCount] = ignored;
                                 FriendList.friendCount++;
                             }
-                            Static185.anInt4369 = InterfaceList.transmitTimer;
+                            FriendList.transmitAt = InterfaceList.transmitTimer;
                             local908 = FriendList.friendCount;
                             while (local908 > 0) {
                                 local908--;
                                 @Pc(2961) boolean local2961 = true;
                                 for (local916 = 0; local916 < local908; local916++) {
-                                    if (Static104.friendWorld[local916] != Static125.worldId && Static125.worldId == Static104.friendWorld[local916 + 1] || Static104.friendWorld[local916] == 0 && Static104.friendWorld[local916 + 1] != 0) {
+                                    if (FriendList.friendWorlds[local916] != Static125.worldId && Static125.worldId == FriendList.friendWorlds[local916 + 1] || FriendList.friendWorlds[local916] == 0 && FriendList.friendWorlds[local916 + 1] != 0) {
                                         local2961 = false;
-                                        local3002 = Static104.friendWorld[local916];
-                                        Static104.friendWorld[local916] = Static104.friendWorld[local916 + 1];
-                                        Static104.friendWorld[local916 + 1] = local3002;
-                                        local3020 = Static214.aClass100Array170[local916];
-                                        Static214.aClass100Array170[local916] = Static214.aClass100Array170[local916 + 1];
-                                        Static214.aClass100Array170[local916 + 1] = local3020;
-                                        local3038 = Static122.friendName[local916];
-                                        Static122.friendName[local916] = Static122.friendName[local916 + 1];
-                                        Static122.friendName[local916 + 1] = local3038;
-                                        @Pc(3056) long local3056 = Static92.friendName37[local916];
-                                        Static92.friendName37[local916] = Static92.friendName37[local916 + 1];
-                                        Static92.friendName37[local916 + 1] = local3056;
-                                        @Pc(3074) int local3074 = Static106.anIntArray258[local916];
-                                        Static106.anIntArray258[local916] = Static106.anIntArray258[local916 + 1];
-                                        Static106.anIntArray258[local916 + 1] = local3074;
-                                        @Pc(3092) boolean local3092 = Static3.aBooleanArray135[local916];
-                                        Static3.aBooleanArray135[local916] = Static3.aBooleanArray135[local916 + 1];
-                                        Static3.aBooleanArray135[local916 + 1] = local3092;
+                                        local3002 = FriendList.friendWorlds[local916];
+                                        FriendList.friendWorlds[local916] = FriendList.friendWorlds[local916 + 1];
+                                        FriendList.friendWorlds[local916 + 1] = local3002;
+                                        local3020 = FriendList.worldNames[local916];
+                                        FriendList.worldNames[local916] = FriendList.worldNames[local916 + 1];
+                                        FriendList.worldNames[local916 + 1] = local3020;
+                                        local3038 = FriendList.friendUsernames[local916];
+                                        FriendList.friendUsernames[local916] = FriendList.friendUsernames[local916 + 1];
+                                        FriendList.friendUsernames[local916 + 1] = local3038;
+                                        @Pc(3056) long local3056 = FriendList.encodedUsernames[local916];
+                                        FriendList.encodedUsernames[local916] = FriendList.encodedUsernames[local916 + 1];
+                                        FriendList.encodedUsernames[local916 + 1] = local3056;
+                                        @Pc(3074) int local3074 = FriendList.ranks[local916];
+                                        FriendList.ranks[local916] = FriendList.ranks[local916 + 1];
+                                        FriendList.ranks[local916 + 1] = local3074;
+                                        @Pc(3092) boolean local3092 = FriendList.friendGame[local916];
+                                        FriendList.friendGame[local916] = FriendList.friendGame[local916 + 1];
+                                        FriendList.friendGame[local916 + 1] = local3092;
                                     }
                                 }
                                 if (local2961) {
@@ -980,8 +982,8 @@ public class Protocol {
                                     break;
                                 }
                                 if (local1160 <= 1) {
-                                    for (local3272 = 0; local3272 < Static35.ignoreCount; local3272++) {
-                                        if (username2 == Static190.ignoreName37[local3272]) {
+                                    for (local3272 = 0; local3272 < IgnoreList.ignoreCount; local3272++) {
+                                        if (username2 == IgnoreList.encodedIgnores[local3272]) {
                                             local3263 = true;
                                             break label1402;
                                         }
@@ -992,13 +994,13 @@ public class Protocol {
                             if (!local3263 && Player.overrideChat == 0) {
                                 Chat.recentMessages[Chat.messageCounter] = local3270;
                                 Chat.messageCounter = (Chat.messageCounter + 1) % 100;
-                                local3020 = Static230.list(j).method770(inboundBuffer);
+                                local3020 = QuickChatPhraseTypeList.list(j).method770(inboundBuffer);
                                 if (local1160 == 2) {
-                                    Chat.add(j, 18, local3020, null, JString.concatenate(new JString[] { Static44.aClass100_336, Base37.decode37(username2).method3125() }));
+                                    Chat.add(j, 18, local3020, null, JString.concatenate(new JString[] { Static44.aClass100_336, Base37.decode37(username2).toTitleCase() }));
                                 } else if (local1160 == 1) {
-                                    Chat.add(j, 18, local3020, null, JString.concatenate(new JString[] { Static65.aClass100_435, Base37.decode37(username2).method3125() }));
+                                    Chat.add(j, 18, local3020, null, JString.concatenate(new JString[] { Static65.aClass100_435, Base37.decode37(username2).toTitleCase() }));
                                 } else {
-                                    Chat.add(j, 18, local3020, null, Base37.decode37(username2).method3125());
+                                    Chat.add(j, 18, local3020, null, Base37.decode37(username2).toTitleCase());
                                 }
                             }
                             opcode = -1;
@@ -1026,10 +1028,10 @@ public class Protocol {
                                     local3490 = InterfaceList.getComponent(world);
                                     if (local3490 != null) {
                                         InterfaceList.redraw(local3490);
-                                        Static17.method531(local3490, true);
+                                        InterfaceList.method531(local3490, true);
                                     }
                                     if (InterfaceList.topLevelInterace != -1) {
-                                        Static54.method1304(1, InterfaceList.topLevelInterace);
+                                        InterfaceList.runScripts(1, InterfaceList.topLevelInterace);
                                     }
                                 }
                                 opcode = -1;
@@ -1055,14 +1057,14 @@ public class Protocol {
                                 xp = inboundBuffer.g2sub();
                                 world = inboundBuffer.g2leadd();
                                 if (setVerifyID(xp)) {
-                                    Static136.method2649(world, ii);
+                                    DelayedStateChange.setColor(world, ii);
                                 }
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 85) {
                                 Static60.systemUpdateTimer = inboundBuffer.g2() * 30;
                                 opcode = -1;
-                                Static209.miscTransmitAt = InterfaceList.transmitTimer;
+                                InterfaceList.miscTransmitAt = InterfaceList.transmitTimer;
                                 return true;
                             } else if (opcode == 114) {
                                 Class6.method3654(GameShell.signLink, inboundBuffer, Static223.packetSize);
@@ -1073,27 +1075,27 @@ public class Protocol {
                                 xp = inboundBuffer.p1neg();
                                 world = inboundBuffer.g2leadd();
                                 if (setVerifyID(ii)) {
-                                    Static132.method2606(world, xp);
+                                    DelayedStateChange.updateVarC(world, xp);
                                 }
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 234) {
                                 // UPDATE_RUNENERGY
-                                Static103.method2245();
+                                InterfaceList.redrawActiveInterfaces();
                                 Player.energy = inboundBuffer.g1();
-                                Static209.miscTransmitAt = InterfaceList.transmitTimer;
+                                InterfaceList.miscTransmitAt = InterfaceList.transmitTimer;
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 209) {
                                 if (InterfaceList.topLevelInterace != -1) {
-                                    Static54.method1304(0, InterfaceList.topLevelInterace);
+                                    InterfaceList.runScripts(0, InterfaceList.topLevelInterace);
                                 }
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 191) {
                                 ii = inboundBuffer.g2le();
-                                Static13.method472(ii);
-                                Static27.anIntArray70[Static111.anInt2901++ & 0x1F] = ii & 0x7FFF;
+                                Inv.delete(ii);
+                                Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = ii & 0x7FFF;
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 102) {
@@ -1108,15 +1110,15 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 159) {
                                 // UPDATE_RUNWEIGHT
-                                Static103.method2245();
+                                InterfaceList.redrawActiveInterfaces();
                                 Player.weightCarried = inboundBuffer.g2s();
-                                Static209.miscTransmitAt = InterfaceList.transmitTimer;
+                                InterfaceList.miscTransmitAt = InterfaceList.transmitTimer;
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 71) {
                                 username2 = inboundBuffer.g8();
-                                local790 = Static218.method2862(Static65.method1497(inboundBuffer).method3116());
-                                Chat.addMessage(Base37.decode37(username2).method3125(), 6, local790);
+                                local790 = Font.escape(Static65.method1497(inboundBuffer).encodeMessage());
+                                Chat.addMessage(Base37.decode37(username2).toTitleCase(), 6, local790);
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 42) {
@@ -1142,7 +1144,7 @@ public class Protocol {
                                 slot = inboundBuffer.g2le();
                                 count = inboundBuffer.g2leadd();
                                 if (setVerifyID(ii)) {
-                                    Static132.method2607(world, 7, xp, slot << 16 | count);
+                                    DelayedStateChange.updateComponentModel(world, 7, xp, slot << 16 | count);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1226,12 +1228,12 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 126) {
                                 // UPDATE_IGNORELIST
-                                Static35.ignoreCount = Static223.packetSize / 8;
-                                for (ii = 0; ii < Static35.ignoreCount; ii++) {
-                                    Static190.ignoreName37[ii] = inboundBuffer.g8();
-                                    Static193.ignoreName[ii] = Base37.decode37(Static190.ignoreName37[ii]);
+                                IgnoreList.ignoreCount = Static223.packetSize / 8;
+                                for (ii = 0; ii < IgnoreList.ignoreCount; ii++) {
+                                    IgnoreList.encodedIgnores[ii] = inboundBuffer.g8();
+                                    IgnoreList.ignoreNames[ii] = Base37.decode37(IgnoreList.encodedIgnores[ii]);
                                 }
-                                Static185.anInt4369 = InterfaceList.transmitTimer;
+                                FriendList.transmitAt = InterfaceList.transmitTimer;
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 32) {
@@ -1244,7 +1246,7 @@ public class Protocol {
                                 world = inboundBuffer.g2s();
                                 slot = inboundBuffer.g2sadd();
                                 if (setVerifyID(ii)) {
-                                    Static280.method4666(world, xp, slot);
+                                    DelayedStateChange.method4666(world, xp, slot);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1280,8 +1282,8 @@ public class Protocol {
                                             if (Static124.aBoolean157 && !Static207.parentalChatConsent || Static86.aBoolean129) {
                                                 local4425 = true;
                                             } else {
-                                                for (local3002 = 0; local3002 < Static35.ignoreCount; local3002++) {
-                                                    if (username2 == Static190.ignoreName37[local3002]) {
+                                                for (local3002 = 0; local3002 < IgnoreList.ignoreCount; local3002++) {
+                                                    if (username2 == IgnoreList.encodedIgnores[local3002]) {
                                                         local4425 = true;
                                                         break label1450;
                                                     }
@@ -1299,13 +1301,13 @@ public class Protocol {
                                 if (!local4425 && Player.overrideChat == 0) {
                                     Chat.recentMessages[Chat.messageCounter] = local4431;
                                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
-                                    @Pc(4518) JString local4518 = Static218.method2862(Static65.method1497(inboundBuffer).method3116());
+                                    @Pc(4518) JString local4518 = Font.escape(Static65.method1497(inboundBuffer).encodeMessage());
                                     if (local1160 == 2 || local1160 == 3) {
-                                        Chat.addMessage(JString.concatenate(new JString[] { Static44.aClass100_336, Base37.decode37(username2).method3125() }), 7, local4518);
+                                        Chat.addMessage(JString.concatenate(new JString[] { Static44.aClass100_336, Base37.decode37(username2).toTitleCase() }), 7, local4518);
                                     } else if (local1160 == 1) {
-                                        Chat.addMessage(JString.concatenate(new JString[] { Static65.aClass100_435, Base37.decode37(username2).method3125() }), 7, local4518);
+                                        Chat.addMessage(JString.concatenate(new JString[] { Static65.aClass100_435, Base37.decode37(username2).toTitleCase() }), 7, local4518);
                                     } else {
-                                        Chat.addMessage(Base37.decode37(username2).method3125(), 3, local4518);
+                                        Chat.addMessage(Base37.decode37(username2).toTitleCase(), 3, local4518);
                                     }
                                 }
                                 opcode = -1;
@@ -1326,8 +1328,8 @@ public class Protocol {
                                             if (Static124.aBoolean157 && !Static207.parentalChatConsent || Static86.aBoolean129) {
                                                 local4632 = true;
                                             } else {
-                                                for (local4634 = 0; local4634 < Static35.ignoreCount; local4634++) {
-                                                    if (Static190.ignoreName37[local4634] == username2) {
+                                                for (local4634 = 0; local4634 < IgnoreList.ignoreCount; local4634++) {
+                                                    if (IgnoreList.encodedIgnores[local4634] == username2) {
                                                         local4632 = true;
                                                         break label1575;
                                                     }
@@ -1345,13 +1347,13 @@ public class Protocol {
                                 if (!local4632 && Player.overrideChat == 0) {
                                     Chat.recentMessages[Chat.messageCounter] = local4626;
                                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
-                                    local3038 = Static218.method2862(Static65.method1497(inboundBuffer).method3116());
+                                    local3038 = Font.escape(Static65.method1497(inboundBuffer).encodeMessage());
                                     if (local908 == 2 || local908 == 3) {
-                                        Chat.method1598(local3038, JString.concatenate(new JString[] { Static44.aClass100_336, Base37.decode37(username2).method3125() }), Base37.decode37(username).method3125());
+                                        Chat.method1598(local3038, JString.concatenate(new JString[] { Static44.aClass100_336, Base37.decode37(username2).toTitleCase() }), Base37.decode37(username).toTitleCase());
                                     } else if (local908 == 1) {
-                                        Chat.method1598(local3038, JString.concatenate(new JString[] { Static65.aClass100_435, Base37.decode37(username2).method3125() }), Base37.decode37(username).method3125());
+                                        Chat.method1598(local3038, JString.concatenate(new JString[] { Static65.aClass100_435, Base37.decode37(username2).toTitleCase() }), Base37.decode37(username).toTitleCase());
                                     } else {
-                                        Chat.method1598(local3038, Base37.decode37(username2).method3125(), Base37.decode37(username).method3125());
+                                        Chat.method1598(local3038, Base37.decode37(username2).toTitleCase(), Base37.decode37(username).toTitleCase());
                                     }
                                 }
                                 opcode = -1;
@@ -1378,7 +1380,7 @@ public class Protocol {
                                     if (PlayerList.self.appearance != null) {
                                         world = PlayerList.self.appearance.getHeadModelId();
                                     }
-                                    Static132.method2607(-1, 3, xp, world);
+                                    DelayedStateChange.updateComponentModel(-1, 3, xp, world);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1387,7 +1389,7 @@ public class Protocol {
                                 message2 = inboundBuffer.gjstr();
                                 world = inboundBuffer.g2sub();
                                 if (setVerifyID(world)) {
-                                    Static80.method3617(message2, ii);
+                                    DelayedStateChange.method3617(message2, ii);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1429,8 +1431,8 @@ public class Protocol {
                                     if (local4956 != null) {
                                         InterfaceList.redraw(local4956);
                                     }
-                                    Static103.method2245();
-                                    Static27.anIntArray70[Static111.anInt2901++ & 0x1F] = xp & 0x7FFF;
+                                    InterfaceList.redrawActiveInterfaces();
+                                    Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = xp & 0x7FFF;
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 24) {
@@ -1463,7 +1465,7 @@ public class Protocol {
                                     }
                                     world = inboundBuffer.g2le();
                                     if (setVerifyID(world)) {
-                                        Static132.method2607(-1, 2, xp, ii);
+                                        DelayedStateChange.updateComponentModel(-1, 2, xp, ii);
                                     }
                                     opcode = -1;
                                     return true;
@@ -1486,7 +1488,7 @@ public class Protocol {
                                     if (setVerifyID(ii)) {
                                         for (i = slot; i <= xp; i++) {
                                             local904 = ((long) world << 32) + ((long) i);
-                                            local1804 = (ServerActiveProperties) Static210.aClass133_21.getNode(local904);
+                                            local1804 = (ServerActiveProperties) InterfaceList.properties.getNode(local904);
                                             if (local1804 != null) {
                                                 local1814 = new ServerActiveProperties(count, local1804.anInt540);
                                                 local1804.unlink();
@@ -1495,14 +1497,14 @@ public class Protocol {
                                             } else {
                                                 local1814 = new ServerActiveProperties(count, -1);
                                             }
-                                            Static210.aClass133_21.put(local1814, local904);
+                                            InterfaceList.properties.put(local1814, local904);
                                         }
                                     }
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 197) {
                                     FriendList.state = inboundBuffer.g1();
-                                    Static185.anInt4369 = InterfaceList.transmitTimer;
+                                    FriendList.transmitAt = InterfaceList.transmitTimer;
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 196) {
@@ -1585,10 +1587,10 @@ public class Protocol {
                                         @Pc(5603) Component com = InterfaceList.getComponent(xp);
                                         @Pc(5615) ObjType obj;
                                         if (com.if3) {
-                                            Static209.method3707(xp, ii, world);
+                                            DelayedStateChange.method3707(xp, ii, world);
                                             obj = ObjTypeList.get(world);
-                                            Static261.method4505(obj.zoom2d, xp, obj.yan2d, obj.xan2d);
-                                            Static145.method2745(xp, obj.zan2d, obj.yof2d, obj.xof2d);
+                                            DelayedStateChange.updateView(obj.zoom2d, xp, obj.yan2d, obj.xan2d);
+                                            DelayedStateChange.method2745(xp, obj.zan2d, obj.yof2d, obj.xof2d);
                                         } else if (world == -1) {
                                             com.modelType = 0;
                                             opcode = -1;
@@ -1639,8 +1641,8 @@ public class Protocol {
                                     if (local4956 != null) {
                                         InterfaceList.redraw(local4956);
                                     }
-                                    Static103.method2245();
-                                    Static27.anIntArray70[Static111.anInt2901++ & 0x1F] = xp & 0x7FFF;
+                                    InterfaceList.redrawActiveInterfaces();
+                                    Inv.updatedInventories[Inv.updatedInventoriesWriterIndex++ & 0x1F] = xp & 0x7FFF;
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 142) {

@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!bj")
-public final class SceneTile extends Node {
+public final class Tile extends Node {
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "x", descriptor = "Z")
 	public boolean aBoolean45;
@@ -41,7 +41,7 @@ public final class SceneTile extends Node {
 	public Wall wall;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "M", descriptor = "Lclient!bj;")
-	public SceneTile aClass3_Sub5_1;
+	public Tile aClass3_Sub5_1;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "N", descriptor = "Z")
 	public boolean containsLocs;
@@ -77,7 +77,7 @@ public final class SceneTile extends Node {
 	public final int anInt669;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "<init>", descriptor = "(III)V")
-	public SceneTile(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public Tile(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		this.anInt666 = arg2;
 		this.anInt668 = this.anInt672 = arg0;
 		this.anInt669 = arg1;

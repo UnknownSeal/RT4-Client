@@ -7,7 +7,4 @@ public final class Static126 {
 	@OriginalMember(owner = "runetek4.client!jm", name = "r", descriptor = "I")
 	public static int anInt3114;
 
-	@OriginalMember(owner = "runetek4.client!jm", name = "s", descriptor = "F")
-	public static float aFloat13;
-
 }

@@ -3,6 +3,7 @@ package com.jagex.runetek4.audio.vorbis;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -135,9 +136,9 @@ public final class VorbisSound extends Node {
 				local138[local140 * 2 + 1] = -((float) Math.sin((double) (local140 * 4 + 2) * 3.141592653589793D / (double) local26));
 			}
 			@Pc(187) int[] local187 = new int[local38];
-			@Pc(193) int local193 = Static204.method3674(local38 - 1);
+			@Pc(193) int local193 = IntUtils.bitCount(local38 - 1);
 			for (@Pc(195) int local195 = 0; local195 < local38; local195++) {
-				local187[local195] = Static24.method667(local193, local195);
+				local187[local195] = IntUtils.bitReverse(local193, local195);
 			}
 			if (local17 == 0) {
 				Static117.aFloatArray13 = local41;
@@ -270,7 +271,7 @@ public final class VorbisSound extends Node {
 	private float[] method2348(@OriginalArg(0) int arg0) {
 		method2347(this.aByteArrayArray10[arg0]);
 		readBit();
-		@Pc(15) int local15 = read(Static204.method3674(Static117.anIntArray278.length - 1));
+		@Pc(15) int local15 = read(IntUtils.bitCount(Static117.anIntArray278.length - 1));
 		@Pc(19) boolean local19 = Static117.aBooleanArray63[local15];
 		@Pc(25) int local25 = local19 ? Static117.anInt2975 : Static117.anInt2978;
 		@Pc(27) boolean local27 = false;
@@ -367,7 +368,7 @@ public final class VorbisSound extends Node {
 				local214[local272 * 4 + 3] = (local291 - local315) * local432 - (local309 - local323) * local442;
 				local214[local272 * 4 + 1] = (local309 - local323) * local432 + (local291 - local315) * local442;
 			}
-			local272 = Static204.method3674(local25 - 1);
+			local272 = IntUtils.bitCount(local25 - 1);
 			@Pc(488) int local488;
 			@Pc(499) int local499;
 			@Pc(503) int local503;

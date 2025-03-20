@@ -5,11 +5,12 @@ import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
+import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.ComplexTile;
 import com.jagex.runetek4.scene.tile.GenericTile;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -29,9 +30,9 @@ public final class Static176 {
 
 	@OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(B)V")
 	public static void clear() {
-		Static27.aClass99_4.clear();
-		Static244.aClass99_32.clear();
-		Static118.aClass99_16.clear();
+		Static27.aClass99_4.clean();
+		Static244.aClass99_32.clean();
+		ObjTypeList.objectSpriteCache.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(IB)Z")
@@ -73,10 +74,10 @@ public final class Static176 {
 		@Pc(15) int local15;
 		@Pc(47) int local47;
 		if (MiniMenu.anInt5014 == 0) {
-			@Pc(13) int local13 = Static148.anInt3535;
-			local15 = Static1.anInt4;
-			@Pc(17) int local17 = Static247.anInt5405;
-			@Pc(19) int local19 = Static240.anInt5334;
+			@Pc(13) int local13 = Rasterizer.screenUpperY;
+			local15 = Rasterizer.screenLowerY;
+			@Pc(17) int local17 = Rasterizer.screenUpperX;
+			@Pc(19) int local19 = Rasterizer.screenLowerX;
 			@Pc(33) int local33 = (arg5 - arg3) * (local17 - local19) / arg1 + local19;
 			local47 = local15 + (local13 - local15) * (arg4 - arg0) / arg2;
 			if (MiniMenu.aBoolean302 && (Static274.anInt4999 & 0x40) != 0) {
@@ -94,7 +95,7 @@ public final class Static176 {
 			}
 		}
 		@Pc(112) long local112 = -1L;
-		for (local15 = 0; local15 < Static2.anInt7; local15++) {
+		for (local15 = 0; local15 < MiniMenu.anInt7; local15++) {
 			@Pc(121) long local121 = Static259.aLongArray11[local15];
 			local47 = (int) local121 & 0x7F;
 			@Pc(133) int local133 = (int) local121 >> 29 & 0x3;
@@ -273,7 +274,7 @@ public final class Static176 {
 			local12 = new GenericTile(arg10, arg11, arg12, arg13, -1, arg18, false);
 			for (local14 = arg0; local14 >= 0; local14--) {
 				if (Static130.levelTiles[local14][arg1][arg2] == null) {
-					Static130.levelTiles[local14][arg1][arg2] = new SceneTile(local14, arg1, arg2);
+					Static130.levelTiles[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
 				}
 			}
 			Static130.levelTiles[arg0][arg1][arg2].plainTile = local12;
@@ -281,7 +282,7 @@ public final class Static176 {
 			local12 = new GenericTile(arg14, arg15, arg16, arg17, arg5, arg19, arg6 == arg7 && arg6 == arg8 && arg6 == arg9);
 			for (local14 = arg0; local14 >= 0; local14--) {
 				if (Static130.levelTiles[local14][arg1][arg2] == null) {
-					Static130.levelTiles[local14][arg1][arg2] = new SceneTile(local14, arg1, arg2);
+					Static130.levelTiles[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
 				}
 			}
 			Static130.levelTiles[arg0][arg1][arg2].plainTile = local12;
@@ -289,7 +290,7 @@ public final class Static176 {
 			@Pc(134) ComplexTile local134 = new ComplexTile(arg3, arg4, arg5, arg1, arg2, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17, arg18, arg19);
 			for (local14 = arg0; local14 >= 0; local14--) {
 				if (Static130.levelTiles[local14][arg1][arg2] == null) {
-					Static130.levelTiles[local14][arg1][arg2] = new SceneTile(local14, arg1, arg2);
+					Static130.levelTiles[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
 				}
 			}
 			Static130.levelTiles[arg0][arg1][arg2].shapedTile = local134;

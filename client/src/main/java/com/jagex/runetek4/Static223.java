@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static223 {
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "m", descriptor = "[Z")
-	public static boolean[] loadedComponents;
-
 	@OriginalMember(owner = "runetek4.client!sc", name = "f", descriptor = "Lclient!na;")
 	public static final JString aClass100_946 = JString.parse("(R");
 
@@ -23,9 +20,6 @@ public final class Static223 {
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "p", descriptor = "I")
 	public static int anInt5029 = 0;
-
-	@OriginalMember(owner = "runetek4.client!sc", name = "z", descriptor = "[Z")
-	public static final boolean[] aBooleanArray116 = new boolean[100];
 
 	@OriginalMember(owner = "runetek4.client!sc", name = "D", descriptor = "Lclient!na;")
 	public static final JString ORANGE = JString.parse("<col=ff7000>");

@@ -49,7 +49,7 @@ public final class NodeQueue {
 		if (node == this.head) {
 			return null;
 		} else {
-			node.clear();
+			node.unlinkCachedNode();
 			return node;
 		}
 	}
@@ -67,9 +67,9 @@ public final class NodeQueue {
 	}
 
 	@OriginalMember(owner = "client!ce", name = "a", descriptor = "(Lclient!rg;B)V")
-	public void pushBack(@OriginalArg(0) CachedNode arg0) {
+	public void addTail(@OriginalArg(0) CachedNode arg0) {
 		if (arg0.nextCachedNode != null) {
-			arg0.clear();
+			arg0.unlinkCachedNode();
 		}
 		arg0.nextCachedNode = this.head.nextCachedNode;
 		arg0.previousCachedNode = this.head;
@@ -78,14 +78,14 @@ public final class NodeQueue {
 	}
 
 	@OriginalMember(owner = "client!ce", name = "d", descriptor = "(I)V")
-	public void method802() {
+	public void clear() {
 		while (true) {
 			@Pc(15) CachedNode local15 = this.head.previousCachedNode;
 			if (this.head == local15) {
 				this.peeked = null;
 				return;
 			}
-			local15.clear();
+			local15.unlinkCachedNode();
 		}
 	}
 }

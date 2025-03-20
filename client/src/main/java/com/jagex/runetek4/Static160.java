@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ObjType;
+import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -38,14 +39,14 @@ public final class Static160 {
 			return false;
 		} else if (local29 > arg4 && local66 > arg4) {
 			return false;
-		} else if (local50 < Static240.anInt5334 && local87 < Static240.anInt5334) {
+		} else if (local50 < Rasterizer.screenLowerX && local87 < Rasterizer.screenLowerX) {
 			return false;
-		} else if (local50 > Static247.anInt5405 && local87 > Static247.anInt5405) {
+		} else if (local50 > Rasterizer.screenUpperX && local87 > Rasterizer.screenUpperX) {
 			return false;
-		} else if (local56 < Static1.anInt4 && local93 < Static1.anInt4) {
+		} else if (local56 < Rasterizer.screenLowerY && local93 < Rasterizer.screenLowerY) {
 			return false;
 		} else {
-			return local56 <= Static148.anInt3535 || local93 <= Static148.anInt3535;
+			return local56 <= Rasterizer.screenUpperY || local93 <= Rasterizer.screenUpperY;
 		}
 	}
 }

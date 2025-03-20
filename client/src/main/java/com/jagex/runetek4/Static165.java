@@ -62,19 +62,11 @@ public final class Static165 {
 	public static void method3163(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(5) int arg4) {
 		if (arg1 == arg4) {
 			Static82.method1760(arg4, arg2, arg0, arg3);
-		} else if (Static172.anInt4164 <= arg2 - arg4 && arg2 + arg4 <= FluTypeList.anInt5063 && arg3 - arg1 >= Static267.anInt5773 && arg3 + arg1 <= Static106.anInt2869) {
+		} else if (Static172.anInt4164 <= arg2 - arg4 && arg2 + arg4 <= FloorUnderlayTypeList.anInt5063 && arg3 - arg1 >= Static267.anInt5773 && arg3 + arg1 <= Static106.anInt2869) {
 			Static72.method1568(arg3, arg2, arg4, arg1, arg0);
 		} else {
 			Static35.method898(arg0, arg1, arg4, arg2, arg3);
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!nb", name = "a", descriptor = "(II)Lclient!na;")
-	public static JString method3165() {
-		@Pc(21) JString local21 = new JString();
-		local21.anInt4030 = 1;
-		local21.aByteArray52 = new byte[1];
-		local21.aByteArray52[0] = -96;
-		return local21;
-	}
 }

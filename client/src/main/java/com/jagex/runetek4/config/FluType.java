@@ -7,62 +7,62 @@ import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!ni")
-public final class FloType {
+public final class FluType {
 
 	@OriginalMember(owner = "client!ni", name = "d", descriptor = "I")
-	public int anInt4149;
+	public int saturation;
 
 	@OriginalMember(owner = "client!ni", name = "i", descriptor = "I")
-	public int anInt4154;
+	public int weightedHue;
 
 	@OriginalMember(owner = "client!ni", name = "r", descriptor = "I")
-	public int anInt4158;
+	public int lightness;
 
 	@OriginalMember(owner = "client!ni", name = "u", descriptor = "I")
 	public int chroma;
 
 	@OriginalMember(owner = "client!ni", name = "b", descriptor = "I")
-	private int colour = 0;
+	private int color = 0;
 
 	@OriginalMember(owner = "client!ni", name = "m", descriptor = "I")
 	public int material = -1;
 
 	@OriginalMember(owner = "client!ni", name = "o", descriptor = "I")
-	public int hardshadow = 128;
+	public int hardShadow = 128;
 
 	@OriginalMember(owner = "client!ni", name = "l", descriptor = "Z")
-	public boolean occlude = true;
+	public boolean blockShadow = true;
 
 	@OriginalMember(owner = "client!ni", name = "a", descriptor = "(ILclient!wa;I)V")
 	public void decode(@OriginalArg(1) Packet packet) {
 		while (true) {
-			@Pc(7) int code = packet.g1();
-			if (code == 0) {
+			@Pc(7) int opcode = packet.g1();
+			if (opcode == 0) {
 				return;
 			}
-			this.decode(packet, code);
+			this.decode(packet, opcode);
 		}
 	}
 
 	@OriginalMember(owner = "client!ni", name = "a", descriptor = "(BILclient!wa;I)V")
-	private void decode(@OriginalArg(2) Packet packet, @OriginalArg(1) int code) {
-		if (code == 1) {
-			this.colour = packet.g3();
-			this.computeColour(this.colour);
-		} else if (code == 2) {
+	private void decode(@OriginalArg(2) Packet packet, @OriginalArg(1) int opcode) {
+		if (opcode == 1) {
+			this.color = packet.g3();
+			this.rgbToHsl(this.color);
+		} else if (opcode == 2) {
 			this.material = packet.g2();
 			if (this.material == 65535) {
 				this.material = -1;
 			}
-		} else if (code == 3) {
-			this.hardshadow = packet.g2();
-		} else if (code == 4) {
-			this.occlude = false;
+		} else if (opcode == 3) {
+			this.hardShadow = packet.g2();
+		} else if (opcode == 4) {
+			this.blockShadow = false;
 		}
 	}
 
 	@OriginalMember(owner = "client!ni", name = "a", descriptor = "(IB)V")
-	private void computeColour(@OriginalArg(0) int arg0) {
+	private void rgbToHsl(@OriginalArg(0) int arg0) {
 		@Pc(8) double local8 = (double) (arg0 >> 16 & 0xFF) / 256.0D;
 		@Pc(21) double local21 = (double) (arg0 >> 8 & 0xFF) / 256.0D;
 		@Pc(23) double local23 = local8;
@@ -99,18 +99,18 @@ public final class FloType {
 			}
 		}
 
-		this.anInt4149 = (int) (local68 * 256.0D);
-		this.anInt4158 = (int) (local74 * 256.0D);
-		if (this.anInt4158 < 0) {
-			this.anInt4158 = 0;
-		} else if (this.anInt4158 > 255) {
-			this.anInt4158 = 255;
+		this.saturation = (int) (local68 * 256.0D);
+		this.lightness = (int) (local74 * 256.0D);
+		if (this.lightness < 0) {
+			this.lightness = 0;
+		} else if (this.lightness > 255) {
+			this.lightness = 255;
 		}
 		local54 /= 6.0D;
-		if (this.anInt4149 < 0) {
-			this.anInt4149 = 0;
-		} else if (this.anInt4149 > 255) {
-			this.anInt4149 = 255;
+		if (this.saturation < 0) {
+			this.saturation = 0;
+		} else if (this.saturation > 255) {
+			this.saturation = 255;
 		}
 
 		if (local74 > 0.5D) {
@@ -122,6 +122,6 @@ public final class FloType {
 			this.chroma = 1;
 		}
 
-		this.anInt4154 = (int) ((double) this.chroma * local54);
+		this.weightedHue = (int) ((double) this.chroma * local54);
 	}
 }

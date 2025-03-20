@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -24,13 +24,13 @@ public final class Static146 {
 		@Pc(6) int local6 = arg0.offset;
 		@Pc(14) byte[] local14 = arg1.method3148();
 		arg0.pSmart1or2(local14.length);
-		arg0.offset += Static62.aClass44_1.method1550(local14.length, arg0.data, local14, 0, arg0.offset);
+		arg0.offset += Static62.aClass44_1.encode(local14.length, arg0.data, local14, 0, arg0.offset);
 		return arg0.offset - local6;
 	}
 
 	@OriginalMember(owner = "runetek4.client!lg", name = "a", descriptor = "(Lclient!ve;BII)[Lclient!ok;")
 	public static IndexedSprite[] method2749(@OriginalArg(0) Js5 arg0, @OriginalArg(3) int arg1) {
-		return Static234.method4016(arg0, 0, arg1) ? Static253.method4331() : null;
+		return SpriteLoader.decode(arg0, 0, arg1) ? Static253.method4331() : null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!lg", name = "a", descriptor = "(I)V")
@@ -39,7 +39,7 @@ public final class Static146 {
 		for (@Pc(3) int local3 = 0; local3 < Static152.anInt3594; local3++) {
 			for (@Pc(8) int local8 = 0; local8 < Static99.anInt2550; local8++) {
 				if (Static130.levelTiles[arg0][local3][local8] == null) {
-					Static130.levelTiles[arg0][local3][local8] = new SceneTile(arg0, local3, local8);
+					Static130.levelTiles[arg0][local3][local8] = new Tile(arg0, local3, local8);
 				}
 			}
 		}

@@ -1,8 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.config.FloType;
+import com.jagex.runetek4.config.FluType;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -19,45 +18,8 @@ public final class Static193 {
 	@OriginalMember(owner = "runetek4.client!pi", name = "P", descriptor = "J")
 	public static long aLong147 = 0L;
 
-	@OriginalMember(owner = "runetek4.client!pi", name = "Q", descriptor = "Lclient!na;")
-	public static final JString aClass100_853 = JString.parse("null");
-
-	@OriginalMember(owner = "runetek4.client!pi", name = "V", descriptor = "[Lclient!na;")
-	public static final JString[] ignoreName = new JString[100];
-
-	@OriginalMember(owner = "runetek4.client!pi", name = "a", descriptor = "(Lclient!na;BI)V")
-	public static void method3498(@OriginalArg(0) JString arg0, @OriginalArg(2) int arg1) {
-		@Pc(10) DelayedStateChange local10 = Static238.method4143(2, arg1);
-		local10.method1017();
-		local10.stringArg = arg0;
-	}
-
-	@OriginalMember(owner = "runetek4.client!pi", name = "a", descriptor = "(JI)V")
-	public static void removeFriend(@OriginalArg(0) long username) {
-		if (username == 0L) {
-			return;
-		}
-		for (@Pc(13) int local13 = 0; local13 < FriendList.friendCount; local13++) {
-			if (Static92.friendName37[local13] == username) {
-				FriendList.friendCount--;
-				for (@Pc(41) int i = local13; i < FriendList.friendCount; i++) {
-					Static122.friendName[i] = Static122.friendName[i + 1];
-					Static104.friendWorld[i] = Static104.friendWorld[i + 1];
-					Static214.aClass100Array170[i] = Static214.aClass100Array170[i + 1];
-					Static92.friendName37[i] = Static92.friendName37[i + 1];
-					Static106.anIntArray258[i] = Static106.anIntArray258[i + 1];
-					Static3.aBooleanArray135[i] = Static3.aBooleanArray135[i + 1];
-				}
-				Static185.anInt4369 = InterfaceList.transmitTimer;
-				Protocol.outboundBuffer.pIsaac1(57);
-				Protocol.outboundBuffer.p8(username);
-				break;
-			}
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!pi", name = "a", descriptor = "([[[B[[B[[B[[I[[F[[I[[B[[B[[FI[[F[[I[[I[[II)[Lclient!hg;")
-	public static Class3_Sub14[] method3501(@OriginalArg(0) byte[][][] arg0, @OriginalArg(1) byte[][] arg1, @OriginalArg(2) byte[][] arg2, @OriginalArg(3) int[][] arg3, @OriginalArg(4) float[][] arg4, @OriginalArg(5) int[][] arg5, @OriginalArg(6) byte[][] arg6, @OriginalArg(7) byte[][] arg7, @OriginalArg(8) float[][] arg8, @OriginalArg(9) int arg9, @OriginalArg(10) float[][] arg10, @OriginalArg(11) int[][] arg11, @OriginalArg(12) int[][] arg12, @OriginalArg(13) int[][] arg13) {
+	public static GlTile[] method3501(@OriginalArg(0) byte[][][] arg0, @OriginalArg(1) byte[][] arg1, @OriginalArg(2) byte[][] arg2, @OriginalArg(3) int[][] arg3, @OriginalArg(4) float[][] arg4, @OriginalArg(5) int[][] arg5, @OriginalArg(6) byte[][] arg6, @OriginalArg(7) byte[][] arg7, @OriginalArg(8) float[][] arg8, @OriginalArg(9) int arg9, @OriginalArg(10) float[][] arg10, @OriginalArg(11) int[][] arg11, @OriginalArg(12) int[][] arg12, @OriginalArg(13) int[][] arg13) {
 		@Pc(9) int[][] local9 = new int[105][105];
 		@Pc(16) int local16;
 		for (@Pc(11) int local11 = 1; local11 <= 103; local11++) {
@@ -73,8 +35,8 @@ public final class Static193 {
 					local25 = arg2[local11 - 1][local16 - 1];
 				}
 				if (local25 != 0) {
-					@Pc(77) FloType local77 = Static199.method3593((local25 & 0xFF) - 1);
-					local9[local11][local16] = (local77.material + 1 << 16) + local77.hardshadow;
+					@Pc(77) FluType local77 = FloorUnderlayTypeList.get((local25 & 0xFF) - 1);
+					local9[local11][local16] = (local77.material + 1 << 16) + local77.hardShadow;
 				}
 			}
 		}
@@ -107,17 +69,17 @@ public final class Static193 {
 					@Pc(214) long local214 = (long) local196 << 32 | (long) local155;
 					@Pc(219) int local219 = local135.length / 2;
 					@Pc(227) long local227 = (long) local155 | (long) local161 << 32;
-					@Pc(233) Class3_Sub14 local233 = (Class3_Sub14) local103.getNode(local227);
+					@Pc(233) GlTile local233 = (GlTile) local103.getNode(local227);
 					if (local233 == null) {
-						local233 = new Class3_Sub14((local161 >> 16) - 1, (float) (local161 & 0xFFFF), false, arg13 != null, local155);
+						local233 = new GlTile((local161 >> 16) - 1, (float) (local161 & 0xFFFF), false, arg13 != null, local155);
 						local103.put(local233, local227);
 					}
 					local233.anInt2484++;
 					local233.anInt2482 += local219;
 					if (local188 != local227) {
-						local233 = (Class3_Sub14) local103.getNode(local188);
+						local233 = (GlTile) local103.getNode(local188);
 						if (local233 == null) {
-							local233 = new Class3_Sub14((local169 >> 16) - 1, (float) (local169 & 0xFFFF), false, arg13 != null, local155);
+							local233 = new GlTile((local169 >> 16) - 1, (float) (local169 & 0xFFFF), false, arg13 != null, local155);
 							local103.put(local233, local188);
 						}
 						local233.anInt2484++;
@@ -125,18 +87,18 @@ public final class Static193 {
 					}
 					@Pc(340) long local340 = (long) local206 << 32 | (long) local155;
 					if (local340 != local227 && local340 != local188) {
-						local233 = (Class3_Sub14) local103.getNode(local340);
+						local233 = (GlTile) local103.getNode(local340);
 						if (local233 == null) {
-							local233 = new Class3_Sub14((local206 >> 16) - 1, (float) (local206 & 0xFFFF), false, arg13 != null, local155);
+							local233 = new GlTile((local206 >> 16) - 1, (float) (local206 & 0xFFFF), false, arg13 != null, local155);
 							local103.put(local233, local340);
 						}
 						local233.anInt2482 += local219;
 						local233.anInt2484++;
 					}
 					if (local214 != local227 && local188 != local214 && local214 != local340) {
-						local233 = (Class3_Sub14) local103.getNode(local214);
+						local233 = (GlTile) local103.getNode(local214);
 						if (local233 == null) {
-							local233 = new Class3_Sub14((local196 >> 16) - 1, (float) (local196 & 0xFFFF), false, arg13 != null, local155);
+							local233 = new GlTile((local196 >> 16) - 1, (float) (local196 & 0xFFFF), false, arg13 != null, local155);
 							local103.put(local233, local214);
 						}
 						local233.anInt2484++;
@@ -145,8 +107,8 @@ public final class Static193 {
 				}
 			}
 		}
-		@Pc(493) Class3_Sub14 local493;
-		for (local493 = (Class3_Sub14) local103.head(); local493 != null; local493 = (Class3_Sub14) local103.prev()) {
+		@Pc(493) GlTile local493;
+		for (local493 = (GlTile) local103.head(); local493 != null; local493 = (GlTile) local103.next()) {
 			local493.method1940();
 		}
 		for (local16 = 1; local16 <= 102; local16++) {
@@ -244,25 +206,25 @@ public final class Static193 {
 					@Pc(963) int local963 = (local678 >> 16) - 1;
 					@Pc(969) int local969 = (local655 >> 16) - 1;
 					@Pc(975) int local975 = (local712 >> 16) - 1;
-					@Pc(981) Class3_Sub14 local981 = (Class3_Sub14) local103.getNode(local861);
+					@Pc(981) GlTile local981 = (GlTile) local103.getNode(local861);
 					Static53.method1291(arg13, local655 <= local655, Static19.method588(local969, local883, local931), local981, local614, local112, local155, local16, local655 <= local712, arg8, local754 >= local655, arg4, local169, Static19.method588(local969, local925, local957), Static19.method588(local969, local901, local949), local655 <= local678, arg12, arg10, local628, Static19.method588(local969, local909, local939), local574);
 					@Pc(1050) int local1050 = (local754 >> 16) - 1;
 					if (local869 != local861) {
-						local981 = (Class3_Sub14) local103.getNode(local869);
+						local981 = (GlTile) local103.getNode(local869);
 						Static53.method1291(arg13, local678 <= local655, Static19.method588(local963, local883, local931), local981, local614, local112, local155, local16, local712 >= local678, arg8, local678 <= local754, arg4, local169, Static19.method588(local963, local925, local957), Static19.method588(local963, local901, local949), local678 <= local678, arg12, arg10, local628, Static19.method588(local963, local909, local939), local574);
 					}
 					if (local877 != local861 && local877 != local869) {
-						local981 = (Class3_Sub14) local103.getNode(local877);
+						local981 = (GlTile) local103.getNode(local877);
 						Static53.method1291(arg13, local655 >= local712, Static19.method588(local975, local883, local931), local981, local614, local112, local155, local16, local712 <= local712, arg8, local712 <= local754, arg4, local169, Static19.method588(local975, local925, local957), Static19.method588(local975, local901, local949), local678 >= local712, arg12, arg10, local628, Static19.method588(local975, local909, local939), local574);
 					}
 					if (local917 != local861 && local917 != local869 && local917 != local877) {
-						local981 = (Class3_Sub14) local103.getNode(local917);
+						local981 = (GlTile) local103.getNode(local917);
 						Static53.method1291(arg13, local754 <= local655, Static19.method588(local1050, local883, local931), local981, local614, local112, local155, local16, local754 <= local712, arg8, local754 >= local754, arg4, local169, Static19.method588(local1050, local925, local957), Static19.method588(local1050, local901, local949), local678 >= local754, arg12, arg10, local628, Static19.method588(local1050, local909, local939), local574);
 					}
 				}
 			}
 		}
-		for (local493 = (Class3_Sub14) local103.head(); local493 != null; local493 = (Class3_Sub14) local103.prev()) {
+		for (local493 = (GlTile) local103.head(); local493 != null; local493 = (GlTile) local103.next()) {
 			if (local493.anInt2483 == 0) {
 				local493.unlink();
 			} else {
@@ -270,7 +232,7 @@ public final class Static193 {
 			}
 		}
 		local16 = local103.length();
-		@Pc(1348) Class3_Sub14[] local1348 = new Class3_Sub14[local16];
+		@Pc(1348) GlTile[] local1348 = new GlTile[local16];
 		local103.addNodes(local1348);
 		@Pc(1358) long[] local1358 = new long[local16];
 		for (local155 = 0; local155 < local16; local155++) {

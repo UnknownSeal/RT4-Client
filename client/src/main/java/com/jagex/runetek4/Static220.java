@@ -1,12 +1,11 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ObjType;
-import com.jagex.runetek4.graphics.ModelUnlit;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.tile.GroundDecor;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.scene.tile.Wall;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -77,54 +76,12 @@ public final class Static220 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(ZIIIILclient!ak;I)Lclient!ak;")
-	public static Model method3800(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) Model arg4, @OriginalArg(6) int arg5) {
-		@Pc(4) long local4 = (long) arg2;
-		@Pc(10) Model local10 = (Model) Static110.aClass99_15.get(local4);
-		if (local10 == null) {
-			@Pc(22) ModelUnlit local22 = ModelUnlit.get(client.js5Archive7, arg2);
-			if (local22 == null) {
-				return null;
-			}
-			local10 = local22.applyLightning(64, 768, -50, -10, -50);
-			Static110.aClass99_15.put(local10, local4);
-		}
-		@Pc(42) int local42 = arg4.method4562();
-		@Pc(45) int local45 = arg4.method4561();
-		@Pc(48) int local48 = arg4.method4576();
-		@Pc(51) int local51 = arg4.method4550();
-		local10 = local10.method4560(true, true, true);
-		if (arg0 != 0) {
-			local10.method4554(arg0);
-		}
-		@Pc(94) int local94;
-		if (GlRenderer.enabled) {
-			@Pc(68) GlModel local68 = (GlModel) local10;
-			if (arg5 != SceneGraph.getTileHeight(Player.plane, arg3 + local42, arg1 + local48) || arg5 != SceneGraph.getTileHeight(Player.plane, arg3 + local45, local51 + arg1)) {
-				for (local94 = 0; local94 < local68.anInt5295; local94++) {
-					local68.vertexY[local94] += SceneGraph.getTileHeight(Player.plane, local68.vertexX[local94] + arg3, local68.vertexZ[local94] + arg1) - arg5;
-				}
-				local68.vertexBuffer.valid = false;
-				local68.bounds.valid = false;
-			}
-		} else {
-			@Pc(142) SoftwareModel local142 = (SoftwareModel) local10;
-			if (arg5 != SceneGraph.getTileHeight(Player.plane, local42 + arg3, local48 + arg1) || arg5 != SceneGraph.getTileHeight(Player.plane, arg3 + local45, local51 + arg1)) {
-				for (local94 = 0; local94 < local142.anInt5788; local94++) {
-					local142.anIntArray527[local94] += SceneGraph.getTileHeight(Player.plane, arg3 + local142.anIntArray528[local94], local142.anIntArray531[local94] + arg1) - arg5;
-				}
-				local142.aBoolean305 = false;
-			}
-		}
-		return local10;
-	}
-
 	@OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(III)V")
 	public static void method3801() {
 		for (@Pc(1) int local1 = 0; local1 < Static126.anInt3114; local1++) {
 			for (@Pc(6) int local6 = 0; local6 < Static152.anInt3594; local6++) {
 				for (@Pc(11) int local11 = 0; local11 < Static99.anInt2550; local11++) {
-					@Pc(22) SceneTile local22 = Static130.levelTiles[local1][local6][local11];
+					@Pc(22) Tile local22 = Static130.levelTiles[local1][local6][local11];
 					if (local22 != null) {
 						@Pc(27) Wall local27 = local22.wall;
 						if (local27 != null && local27.primary.method4543()) {

@@ -1,18 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.client.Inv;
 import com.jagex.runetek4.input.Keyboard;
-import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static13 {
-
-	@OriginalMember(owner = "client!bc", name = "W", descriptor = "I")
-	public static int anInt435;
-
-	@OriginalMember(owner = "client!bc", name = "X", descriptor = "I")
-	public static int anInt436;
 
 	@OriginalMember(owner = "client!bc", name = "Z", descriptor = "I")
 	public static int anInt437;
@@ -36,14 +28,6 @@ public final class Static13 {
 			local32 = JString.concatenate(new JString[] { local32, Static1.aClass100_2, JString.parseInt(MiniMenu.menuActionRow - 2), LocalizedText.MOREOPTIONS});
 		}
 		return local32;
-	}
-
-	@OriginalMember(owner = "client!bc", name = "d", descriptor = "(II)V")
-	public static void method472(@OriginalArg(0) int arg0) {
-		@Pc(14) Inv local14 = (Inv) Inv.recentUse.getNode((long) arg0);
-		if (local14 != null) {
-			local14.unlink();
-		}
 	}
 
 }

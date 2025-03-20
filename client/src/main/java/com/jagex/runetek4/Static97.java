@@ -22,11 +22,6 @@ public final class Static97 {
 	@OriginalMember(owner = "runetek4.client!hi", name = "f", descriptor = "J")
 	public static long aLong89 = 0L;
 
-	@OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(BI)I")
-	public static int method1959(@OriginalArg(1) int arg0) {
-		return arg0 >>> 8;
-	}
-
 	@OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(IIIIILclient!be;Z)V")
 	public static void drawMinimapMark(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int mapX, @OriginalArg(4) int mapY, @OriginalArg(5) Component arg5) {
 		@Pc(13) int len = mapX * mapX + mapY * mapY;

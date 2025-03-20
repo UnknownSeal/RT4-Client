@@ -35,7 +35,7 @@ public class LoadingBarAwt {
                 local56.fillRect(arg3 * 3 + 2, 2, 300 - arg3 * 3, 30);
                 local56.setFont(Static222.aFont1);
                 local56.setColor(Color.white);
-                arg2.method3112(22, (304 - arg2.method3155(Static240.aFontMetrics1)) / 2, local56);
+                arg2.drawString(22, (304 - arg2.stringWidth(Static240.aFontMetrics1)) / 2, local56);
                 local6.drawImage(Static149.anImage3, GameShell.canvasWidth / 2 - 152, GameShell.canvasHeigth / 2 + -18, null);
             } catch (@Pc(134) Exception local134) {
                 @Pc(140) int local140 = GameShell.canvasWidth / 2 - 152;
@@ -48,12 +48,12 @@ public class LoadingBarAwt {
                 local6.fillRect(arg3 * 3 + local140 + 2, local146 + 2, 300 - arg3 * 3, 30);
                 local6.setFont(Static222.aFont1);
                 local6.setColor(Color.white);
-                arg2.method3112(local146 + 22, local140 + (-arg2.method3155(Static240.aFontMetrics1) + 304) / 2, local6);
+                arg2.drawString(local146 + 22, local140 + (-arg2.stringWidth(Static240.aFontMetrics1) + 304) / 2, local6);
             }
             if (client.mainLoadPrimaryText != null) {
                 local6.setFont(Static222.aFont1);
                 local6.setColor(Color.white);
-                client.mainLoadPrimaryText.method3112(GameShell.canvasHeigth / 2 - 26, GameShell.canvasWidth / 2 - client.mainLoadPrimaryText.method3155(Static240.aFontMetrics1) / 2, local6);
+                client.mainLoadPrimaryText.drawString(GameShell.canvasHeigth / 2 - 26, GameShell.canvasWidth / 2 - client.mainLoadPrimaryText.stringWidth(Static240.aFontMetrics1) / 2, local6);
             }
         } catch (@Pc(252) Exception local252) {
             GameShell.canvas.repaint();

@@ -24,7 +24,7 @@ public final class QuickChatPhrase {
 	public static QuickChatPhrase decode(@OriginalArg(1) Packet arg0) {
 		@Pc(3) QuickChatPhrase local3 = new QuickChatPhrase();
 		local3.anInt439 = arg0.g2();
-		local3.aQuickChatPhraseType_1 = Static230.list(local3.anInt439);
+		local3.aQuickChatPhraseType_1 = QuickChatPhraseTypeList.list(local3.anInt439);
 		return local3;
 	}
 }

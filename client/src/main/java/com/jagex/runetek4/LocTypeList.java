@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -41,9 +42,16 @@ public class LocTypeList {
 
     @OriginalMember(owner = "runetek4.client!hb", name = "c", descriptor = "(I)V")
     public static void clear() {
-        Static179.aClass99_25.clear();
-        Static169.modelCacheStatic.clear();
-        Static93.aClass99_14.clear();
-        Static262.aClass99_36.clear();
+        Static179.aClass99_25.clean();
+        Static169.modelCacheStatic.clean();
+        Static93.aClass99_14.clean();
+        Static262.aClass99_36.clean();
+    }
+
+    @OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(ILclient!ve;Lclient!ve;Z)V")
+    public static void init(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
+        Static30.aBoolean61 = true;
+        Static121.aClass153_45 = arg1;
+        Static146.aClass153_54 = arg0;
     }
 }

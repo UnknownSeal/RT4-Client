@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
+import com.jagex.runetek4.game.config.flotype.FloorOverlayTypeList;
 import com.jagex.runetek4.scene.Scenery;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -74,8 +75,8 @@ public final class BZip2State {
 							if (local133 == 0) {
 								continue;
 							}
-							local151 = Static256.method4395(local133 - 1);
-							if (local151.rgb == -1) {
+							local151 = FloorOverlayTypeList.method4395(local133 - 1);
+							if (local151.baseColor == -1) {
 								continue;
 							}
 							if (arg7[local114][local72] != 0) {
@@ -85,9 +86,9 @@ public final class BZip2State {
 								continue;
 							}
 						} else if (local133 != 0) {
-							local151 = Static256.method4395(local133 - 1);
+							local151 = FloorOverlayTypeList.method4395(local133 - 1);
 							@Pc(224) byte local224;
-							if (local151.rgb == -1) {
+							if (local151.baseColor == -1) {
 								local224 = arg7[local114][local72];
 								if (local224 != 0) {
 									local234 = Static53.anIntArrayArray8[local224];
@@ -202,8 +203,8 @@ public final class BZip2State {
 							if (local775 == 0) {
 								continue;
 							}
-							local805 = Static256.method4395(local775 - 1);
-							if (local805.rgb == -1) {
+							local805 = FloorOverlayTypeList.method4395(local775 - 1);
+							if (local805.baseColor == -1) {
 								continue;
 							}
 							if (arg7[local114][local72] != 0) {
@@ -211,8 +212,8 @@ public final class BZip2State {
 								continue;
 							}
 						} else if (local775 != 0) {
-							local805 = Static256.method4395(local775 - 1);
-							if (local805.rgb == -1) {
+							local805 = FloorOverlayTypeList.method4395(local775 - 1);
+							if (local805.baseColor == -1) {
 								Static131.method2578(arg0, arg9, local114, arg6, local72, Static53.anIntArrayArray8[arg7[local114][local72]], local28, local18, arg10, arg2[local114][local72]);
 								continue;
 							}

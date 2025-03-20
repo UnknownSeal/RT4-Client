@@ -1,7 +1,6 @@
 package com.jagex.runetek4.js5;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.bzip.Bzip2Decompressor;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.index.Js5Index;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -14,9 +13,6 @@ public final class Js5 {
 
 	@OriginalMember(owner = "client!sh", name = "k", descriptor = "Z")
 	public static final boolean RAISE_EXCEPTIONS = false;
-
-	@OriginalMember(owner = "client!kf", name = "j", descriptor = "I")
-	public static final int MAX_LENGTH = 0;
 
 	@OriginalMember(owner = "client!ve", name = "A", descriptor = "[[Ljava/lang/Object;")
 	private Object[][] unpacked;
@@ -31,42 +27,16 @@ public final class Js5 {
 	private final Js5ResourceProvider provider;
 
 	@OriginalMember(owner = "client!ve", name = "c", descriptor = "Z")
-	private final boolean aBoolean296;
+	private final boolean discardPacked;
 
 	@OriginalMember(owner = "client!ve", name = "g", descriptor = "Z")
 	private final boolean discardUnpacked;
 
 	@OriginalMember(owner = "client!ve", name = "<init>", descriptor = "(Lclient!v;ZZ)V")
-	public Js5(@OriginalArg(0) Js5ResourceProvider arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) boolean arg2) {
-		this.provider = arg0;
-		this.aBoolean296 = arg1;
-		this.discardUnpacked = arg2;
-	}
-
-	@OriginalMember(owner = "client!ml", name = "a", descriptor = "(B[B)[B")
-	public static byte[] uncompress(@OriginalArg(1) byte[] src) {
-		@Pc(17) Packet packet = new Packet(src);
-		@Pc(21) int type = packet.g1();
-		@Pc(25) int len = packet.g4();
-		if (len < 0 || MAX_LENGTH != 0 && len > MAX_LENGTH) {
-			throw new RuntimeException("ctype=" + type + " clen=" + len + " maxsize=" + MAX_LENGTH);
-		} else if (type == 0) {
-			@Pc(53) byte[] bytes = new byte[len];
-			packet.gdata(len, bytes);
-			return bytes;
-		} else {
-			@Pc(65) int unpackedLength = packet.g4();
-			if (unpackedLength < 0 || MAX_LENGTH != 0 && unpackedLength > MAX_LENGTH) {
-				throw new RuntimeException("ctype=" + type + " clen=" + len + " ulen=" + unpackedLength + " maxsize=" + MAX_LENGTH);
-			}
-			@Pc(85) byte[] bytes = new byte[unpackedLength];
-			if (type == 1) {
-				Bzip2Decompressor.bunzip2(bytes, unpackedLength, src, len);
-			} else {
-				Static156.aClass56_1.method1842(bytes, packet);
-			}
-			return bytes;
-		}
+	public Js5(@OriginalArg(0) Js5ResourceProvider provider, @OriginalArg(1) boolean discardPacked, @OriginalArg(2) boolean discardUnpacked) {
+		this.provider = provider;
+		this.discardPacked = discardPacked;
+		this.discardUnpacked = discardUnpacked;
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(B)Z")
@@ -98,36 +68,36 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(IZZ)V")
-	public void discardNames(@OriginalArg(1) boolean arg0) {
+	public void discardNames(@OriginalArg(1) boolean groups) {
 		if (!this.isIndexReady()) {
 			return;
 		}
-		if (arg0) {
-			this.index.nameHashes = null;
-			this.index.nameHashCollection = null;
+		if (groups) {
+			this.index.groupNameHashes = null;
+			this.index.groupNameHashTable = null;
 		}
-		this.index.aClass76Array1 = null;
-		this.index.anIntArrayArray21 = null;
+		this.index.fileNameHashTables = null;
+		this.index.fileNameHashes = null;
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(ILclient!na;)I")
-	public int method4478(@OriginalArg(1) JString arg0) {
+	public int method4478(@OriginalArg(1) JString group) {
 		if (this.isIndexReady()) {
-			@Pc(15) JString local15 = arg0.toLowerCase();
-			@Pc(29) int local29 = this.index.nameHashCollection.method2405(local15.method3154());
-			return this.getPercentageComplete(local29);
+			@Pc(15) JString lower = group.toLowerCase();
+			@Pc(29) int groupId = this.index.groupNameHashTable.get(lower.getHash());
+			return this.getPercentageComplete(groupId);
 		} else {
 			return 0;
 		}
 	}
 
 	@OriginalMember(owner = "client!ve", name = "b", descriptor = "(II)Z")
-	public boolean method4479(@OriginalArg(1) int arg0) {
-		if (!this.isGroupValid(arg0)) {
+	public boolean isGroupReady(@OriginalArg(1) int group) {
+		if (!this.isGroupValid(group)) {
 			return false;
-		} else if (this.packed[arg0] == null) {
-			this.fetchgroup(arg0);
-			return this.packed[arg0] != null;
+		} else if (this.packed[group] == null) {
+			this.fetchgroup(group);
+			return this.packed[group] != null;
 		} else {
 			return true;
 		}
@@ -144,9 +114,9 @@ public final class Js5 {
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(Lclient!na;B)I")
 	public int getGroupId(@OriginalArg(0) JString arg0) {
 		if (this.isIndexReady()) {
-			@Pc(16) JString local16 = arg0.toLowerCase();
-			@Pc(27) int local27 = this.index.nameHashCollection.method2405(local16.method3154());
-			return this.isGroupValid(local27) ? local27 : -1;
+			@Pc(16) JString lower = arg0.toLowerCase();
+			@Pc(27) int groupId = this.index.groupNameHashTable.get(lower.getHash());
+			return this.isGroupValid(groupId) ? groupId : -1;
 		} else {
 			return -1;
 		}
@@ -171,41 +141,41 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(ILclient!na;Lclient!na;)[B")
-	public byte[] fetchFile(@OriginalArg(1) JString arg0, @OriginalArg(2) JString arg1) {
+	public byte[] fetchFile(@OriginalArg(1) JString file, @OriginalArg(2) JString group) {
 		if (!this.isIndexReady()) {
 			return null;
 		}
-		@Pc(15) JString local15 = arg1.toLowerCase();
-		@Pc(19) JString local19 = arg0.toLowerCase();
-		@Pc(28) int local28 = this.index.nameHashCollection.method2405(local15.method3154());
-		if (this.isGroupValid(local28)) {
-			@Pc(53) int local53 = this.index.aClass76Array1[local28].method2405(local19.method3154());
-			return this.getfile(local28, local53);
+		@Pc(15) JString groupLower = group.toLowerCase();
+		@Pc(19) JString fileLower = file.toLowerCase();
+		@Pc(28) int groupId = this.index.groupNameHashTable.get(groupLower.getHash());
+		if (this.isGroupValid(groupId)) {
+			@Pc(53) int fileId = this.index.fileNameHashTables[groupId].get(fileLower.getHash());
+			return this.getfile(groupId, fileId);
 		} else {
 			return null;
 		}
 	}
 
 	@OriginalMember(owner = "client!ve", name = "b", descriptor = "(ILclient!na;)V")
-	public void method4486(@OriginalArg(1) JString arg0) {
+	public void prefetchGroup(@OriginalArg(1) JString group) {
 		if (this.isIndexReady()) {
-			@Pc(13) JString local13 = arg0.toLowerCase();
-			@Pc(22) int local22 = this.index.nameHashCollection.method2405(local13.method3154());
-			this.method4493(local22);
+			@Pc(13) JString lower = group.toLowerCase();
+			@Pc(22) int groupId = this.index.groupNameHashTable.get(lower.getHash());
+			this.prefetchGroup(groupId);
 		}
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(Lclient!na;BLclient!na;)Z")
-	public boolean isFileReady(@OriginalArg(0) JString arg0, @OriginalArg(2) JString arg1) {
+	public boolean isFileReady(@OriginalArg(0) JString file, @OriginalArg(2) JString group) {
 		if (!this.isIndexReady()) {
 			return false;
 		}
-		@Pc(17) JString local17 = arg1.toLowerCase();
-		@Pc(21) JString local21 = arg0.toLowerCase();
-		@Pc(30) int local30 = this.index.nameHashCollection.method2405(local17.method3154());
-		if (this.isGroupValid(local30)) {
-			@Pc(49) int local49 = this.index.aClass76Array1[local30].method2405(local21.method3154());
-			return this.requestDownload(local30, local49);
+		@Pc(17) JString groupLower = group.toLowerCase();
+		@Pc(21) JString fileLower = file.toLowerCase();
+		@Pc(30) int groupId = this.index.groupNameHashTable.get(groupLower.getHash());
+		if (this.isGroupValid(groupId)) {
+			@Pc(49) int fileId = this.index.fileNameHashTables[groupId].get(fileLower.getHash());
+			return this.isFileReady(groupId, fileId);
 		} else {
 			return false;
 		}
@@ -237,25 +207,25 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(BLclient!na;)Z")
-	public boolean method4489(@OriginalArg(1) JString arg0) {
+	public boolean isGroupReady(@OriginalArg(1) JString group) {
 		if (this.isIndexReady()) {
-			@Pc(14) JString local14 = arg0.toLowerCase();
-			@Pc(25) int local25 = this.index.nameHashCollection.method2405(local14.method3154());
-			return this.method4479(local25);
+			@Pc(14) JString lower = group.toLowerCase();
+			@Pc(25) int groupId = this.index.groupNameHashTable.get(lower.getHash());
+			return this.isGroupReady(groupId);
 		} else {
 			return false;
 		}
 	}
 
 	@OriginalMember(owner = "client!ve", name = "c", descriptor = "(II)V")
-	public void unloadFile(@OriginalArg(1) int arg0) {
-		if (this.isGroupValid(arg0) && this.unpacked != null) {
-			this.unpacked[arg0] = null;
+	public void discardUnpacked(@OriginalArg(1) int group) {
+		if (this.isGroupValid(group) && this.unpacked != null) {
+			this.unpacked[group] = null;
 		}
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(BII)Z")
-	public boolean requestDownload(@OriginalArg(2) int group, @OriginalArg(1) int file) {
+	public boolean isFileReady(@OriginalArg(2) int group, @OriginalArg(1) int file) {
 		if (!this.isGroupValid(group, file)) {
 			return false;
 		} else if (this.unpacked[group] != null && this.unpacked[group][file] != null) {
@@ -269,21 +239,21 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(ZI)Z")
-	private boolean isGroupValid(@OriginalArg(1) int arg0) {
+	private boolean isGroupValid(@OriginalArg(1) int group) {
 		if (!this.isIndexReady()) {
 			return false;
-		} else if (arg0 >= 0 && this.index.groupCapacities.length > arg0 && this.index.groupCapacities[arg0] != 0) {
+		} else if (group >= 0 && this.index.groupCapacities.length > group && this.index.groupCapacities[group] != 0) {
 			return true;
 		} else if (RAISE_EXCEPTIONS) {
-			throw new IllegalArgumentException(Integer.toString(arg0));
+			throw new IllegalArgumentException(Integer.toString(group));
 		} else {
 			return false;
 		}
 	}
 
 	@OriginalMember(owner = "client!ve", name = "d", descriptor = "(II)V")
-	private void method4493(@OriginalArg(1) int arg0) {
-		this.provider.method522(arg0);
+	private void prefetchGroup(@OriginalArg(1) int group) {
+		this.provider.prefetchGroup(group);
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(IZ[I)Z")
@@ -293,108 +263,108 @@ public final class Js5 {
 		} else if (this.packed[group] == null) {
 			return false;
 		} else {
-			@Pc(25) int[] local25 = this.index.anIntArrayArray22[group];
-			@Pc(31) int local31 = this.index.groupSizes[group];
+			@Pc(25) int[] fileIds = this.index.anIntArrayArray22[group];
+			@Pc(31) int groupSize = this.index.groupSizes[group];
 
 			if (this.unpacked[group] == null) {
 				this.unpacked[group] = new Object[this.index.groupCapacities[group]];
 			}
 
-			@Pc(48) boolean local48 = true;
-			@Pc(53) Object[] local53 = this.unpacked[group];
-			for (@Pc(55) int local55 = 0; local55 < local31; local55++) {
-				@Pc(62) int local62;
-				if (local25 == null) {
-					local62 = local55;
+			@Pc(48) boolean valid = true;
+			@Pc(53) Object[] unpacked = this.unpacked[group];
+			for (@Pc(55) int i = 0; i < groupSize; i++) {
+				@Pc(62) int fileId;
+				if (fileIds == null) {
+					fileId = i;
 				} else {
-					local62 = local25[local55];
+					fileId = fileIds[i];
 				}
-				if (local53[local62] == null) {
-					local48 = false;
+				if (unpacked[fileId] == null) {
+					valid = false;
 					break;
 				}
 			}
-			if (local48) {
+			if (valid) {
 				return true;
 			}
-			@Pc(114) byte[] local114;
+			@Pc(114) byte[] compressed;
 			if (key == null || key[0] == 0 && key[1] == 0 && key[2] == 0 && key[3] == 0) {
-				local114 = ByteArray.unwrap(this.packed[group], false);
+				compressed = ByteArray.unwrap(this.packed[group], false);
 			} else {
-				local114 = ByteArray.unwrap(this.packed[group], true);
-				@Pc(128) Packet packet = new Packet(local114);
+				compressed = ByteArray.unwrap(this.packed[group], true);
+				@Pc(128) Packet packet = new Packet(compressed);
 				packet.decryptXtea(key, packet.data.length);
 			}
 
-			@Pc(140) byte[] bytes;
+			@Pc(140) byte[] uncompressed;
 			try {
-				bytes = uncompress(local114);
+				uncompressed = Js5Compression.uncompress(compressed);
 			} catch (@Pc(142) RuntimeException local142) {
-				System.out.println("T3 - " + (key != null) + "," + group + "," + local114.length + "," + Packet.crc32(local114, local114.length) + "," + Packet.crc32(local114, local114.length - 2) + "," + this.index.anIntArray268[group] + "," + this.index.crc);
-				bytes = new byte[] { 0 };
+				System.out.println("T3 - " + (key != null) + "," + group + "," + compressed.length + "," + Packet.crc32(compressed, compressed.length) + "," + Packet.crc32(compressed, compressed.length - 2) + "," + this.index.anIntArray268[group] + "," + this.index.crc);
+				uncompressed = new byte[] { 0 };
 			}
-			if (this.aBoolean296) {
+			if (this.discardPacked) {
 				this.packed[group] = null;
 			}
-			@Pc(213) int local213;
-			if (local31 > 1) {
-				local213 = bytes.length;
-				@Pc(216) int local216 = local213 - 1;
-				@Pc(220) int local220 = bytes[local216] & 0xFF;
-				@Pc(228) int local228 = local216 - local31 * local220 * 4;
-				@Pc(233) Packet local233 = new Packet(bytes);
-				local233.offset = local228;
-				@Pc(239) int[] local239 = new int[local31];
-				@Pc(250) int local250;
-				@Pc(252) int local252;
-				for (@Pc(241) int local241 = 0; local241 < local220; local241++) {
-					local250 = 0;
-					for (local252 = 0; local252 < local31; local252++) {
-						local250 += local233.g4();
-						if (local25 == null) {
+			@Pc(213) int start;
+			if (groupSize > 1) {
+				start = uncompressed.length;
+				@Pc(216) int position = start - 1;
+				@Pc(220) int stripes = uncompressed[position] & 0xFF;
+				@Pc(228) int bufferPosition = position - groupSize * stripes * 4;
+				@Pc(233) Packet packet = new Packet(uncompressed);
+				packet.offset = bufferPosition;
+				@Pc(239) int[] lens = new int[groupSize];
+				@Pc(250) int len;
+				@Pc(252) int i;
+				for (@Pc(241) int local241 = 0; local241 < stripes; local241++) {
+					len = 0;
+					for (i = 0; i < groupSize; i++) {
+						len += packet.g4();
+						if (fileIds == null) {
 						}
-						local239[local252] += local250;
+						lens[i] += len;
 					}
 				}
-				@Pc(282) byte[][] local282 = new byte[local31][];
-				for (local250 = 0; local250 < local31; local250++) {
-					local282[local250] = new byte[local239[local250]];
-					local239[local250] = 0;
+				@Pc(282) byte[][] extracted = new byte[groupSize][];
+				for (len = 0; len < groupSize; len++) {
+					extracted[len] = new byte[lens[len]];
+					lens[len] = 0;
 				}
-				local233.offset = local228;
-				local250 = 0;
-				@Pc(320) int local320;
-				for (local252 = 0; local252 < local220; local252++) {
-					local320 = 0;
-					for (@Pc(322) int local322 = 0; local322 < local31; local322++) {
-						local320 += local233.g4();
-						JString.copy(bytes, local250, local282[local322], local239[local322], local320);
-						local250 += local320;
-						local239[local322] += local320;
+				packet.offset = bufferPosition;
+				len = 0;
+				@Pc(320) int off;
+				for (i = 0; i < stripes; i++) {
+					off = 0;
+					for (@Pc(322) int k = 0; k < groupSize; k++) {
+						off += packet.g4();
+						JString.copy(uncompressed, len, extracted[k], lens[k], off);
+						len += off;
+						lens[k] += off;
 					}
 				}
-				for (local252 = 0; local252 < local31; local252++) {
-					if (local25 == null) {
-						local320 = local252;
+				for (i = 0; i < groupSize; i++) {
+					if (fileIds == null) {
+						off = i;
 					} else {
-						local320 = local25[local252];
+						off = fileIds[i];
 					}
 					if (this.discardUnpacked) {
-						local53[local320] = local282[local252];
+						unpacked[off] = extracted[i];
 					} else {
-						local53[local320] = ByteArray.wrap(local282[local252]);
+						unpacked[off] = ByteArray.wrap(extracted[i]);
 					}
 				}
 			} else {
-				if (local25 == null) {
-					local213 = 0;
+				if (fileIds == null) {
+					start = 0;
 				} else {
-					local213 = local25[0];
+					start = fileIds[0];
 				}
 				if (this.discardUnpacked) {
-					local53[local213] = bytes;
+					unpacked[start] = uncompressed;
 				} else {
-					local53[local213] = ByteArray.wrap(bytes);
+					unpacked[start] = ByteArray.wrap(uncompressed);
 				}
 			}
 			return true;
@@ -407,20 +377,20 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "b", descriptor = "(ZI)V")
-	private void fetchgroup(@OriginalArg(1) int arg0) {
-		if (this.aBoolean296) {
-			this.packed[arg0] = this.provider.fetchgroup(arg0);
+	private void fetchgroup(@OriginalArg(1) int group) {
+		if (this.discardPacked) {
+			this.packed[group] = this.provider.fetchgroup(group);
 		} else {
-			this.packed[arg0] = ByteArray.wrap(this.provider.fetchgroup(arg0));
+			this.packed[group] = ByteArray.wrap(this.provider.fetchgroup(group));
 		}
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(Lclient!na;I)Z")
-	public boolean method4497(@OriginalArg(0) JString arg0) {
+	public boolean isGroupNameValid(@OriginalArg(0) JString group) {
 		if (this.isIndexReady()) {
-			@Pc(19) JString local19 = arg0.toLowerCase();
-			@Pc(28) int local28 = this.index.nameHashCollection.method2405(local19.method3154());
-			return local28 >= 0;
+			@Pc(19) JString lower = group.toLowerCase();
+			@Pc(28) int groupId = this.index.groupNameHashTable.get(lower.getHash());
+			return groupId >= 0;
 		} else {
 			return false;
 		}
@@ -458,15 +428,15 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "e", descriptor = "(II)[B")
-	public byte[] method4500(@OriginalArg(0) int arg0) {
+	public byte[] method4500(@OriginalArg(0) int id) {
 		if (!this.isIndexReady()) {
 			return null;
 		} else if (this.index.groupCapacities.length == 1) {
-			return this.getfile(0, arg0);
-		} else if (!this.isGroupValid(arg0)) {
+			return this.getfile(0, id);
+		} else if (!this.isGroupValid(id)) {
 			return null;
-		} else if (this.index.groupCapacities[arg0] == 1) {
-			return this.getfile(arg0, 0);
+		} else if (this.index.groupCapacities[id] == 1) {
+			return this.getfile(id, 0);
 		} else {
 			throw new RuntimeException();
 		}
@@ -486,54 +456,54 @@ public final class Js5 {
 	}
 
 	@OriginalMember(owner = "client!ve", name = "b", descriptor = "(III)[B")
-	public byte[] fetchFileNoDiscard(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		if (!this.isGroupValid(arg1, arg0)) {
+	public byte[] fetchFileNoDiscard(@OriginalArg(0) int file, @OriginalArg(1) int group) {
+		if (!this.isGroupValid(group, file)) {
 			return null;
 		}
-		if (this.unpacked[arg1] == null || this.unpacked[arg1][arg0] == null) {
-			@Pc(34) boolean local34 = this.unpackGroup(arg1, null);
-			if (!local34) {
-				this.fetchgroup(arg1);
-				local34 = this.unpackGroup(arg1, null);
-				if (!local34) {
+		if (this.unpacked[group] == null || this.unpacked[group][file] == null) {
+			@Pc(34) boolean success = this.unpackGroup(group, null);
+			if (!success) {
+				this.fetchgroup(group);
+				success = this.unpackGroup(group, null);
+				if (!success) {
 					return null;
 				}
 			}
 		}
-		return ByteArray.unwrap(this.unpacked[arg1][arg0], false);
+		return ByteArray.unwrap(this.unpacked[group][file], false);
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(BI)[I")
-	public int[] getFileIds(@OriginalArg(1) int arg0) {
-		if (!this.isGroupValid(arg0)) {
+	public int[] getFileIds(@OriginalArg(1) int group) {
+		if (!this.isGroupValid(group)) {
 			return null;
 		}
-		@Pc(22) int[] local22 = this.index.anIntArrayArray22[arg0];
-		if (local22 == null) {
-			local22 = new int[this.index.groupSizes[arg0]];
-			@Pc(34) int local34 = 0;
-			while (local22.length > local34) {
-				local22[local34] = local34++;
+		@Pc(22) int[] fileIds = this.index.anIntArrayArray22[group];
+		if (fileIds == null) {
+			fileIds = new int[this.index.groupSizes[group]];
+			@Pc(34) int i = 0;
+			while (fileIds.length > i) {
+				fileIds[i] = i++;
 			}
 		}
-		return local22;
+		return fileIds;
 	}
 
 	@OriginalMember(owner = "client!ve", name = "a", descriptor = "(IB)I")
-	public int getGroupCapacity(@OriginalArg(0) int arg0) {
-		return this.isGroupValid(arg0) ? this.index.groupCapacities[arg0] : 0;
+	public int getGroupCapacity(@OriginalArg(0) int group) {
+		return this.isGroupValid(group) ? this.index.groupCapacities[group] : 0;
 	}
 
 	@OriginalMember(owner = "client!ve", name = "f", descriptor = "(II)Z")
-	public boolean method4506(@OriginalArg(1) int arg0) {
+	public boolean isFileReady(@OriginalArg(1) int id) {
 		if (!this.isIndexReady()) {
 			return false;
 		} else if (this.index.groupCapacities.length == 1) {
-			return this.requestDownload(0, arg0);
-		} else if (!this.isGroupValid(arg0)) {
+			return this.isFileReady(0, id);
+		} else if (!this.isGroupValid(id)) {
 			return false;
-		} else if (this.index.groupCapacities[arg0] == 1) {
-			return this.requestDownload(arg0, 0);
+		} else if (this.index.groupCapacities[id] == 1) {
+			return this.isFileReady(id, 0);
 		} else {
 			throw new RuntimeException();
 		}

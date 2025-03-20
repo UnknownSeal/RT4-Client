@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static183 {
 
-	@OriginalMember(owner = "runetek4.client!ok", name = "b", descriptor = "I")
-	public static int anInt4271;
-
 	@OriginalMember(owner = "runetek4.client!ok", name = "c", descriptor = "I")
 	public static int anInt4272 = (int) (Math.random() * 33.0D) - 16;
 
@@ -31,7 +28,7 @@ public final class Static183 {
 		@Pc(9) NodeQueue local9 = new NodeQueue();
 		for (@Pc(14) Map local14 = (Map) Static228.aClass69_120.head(); local14 != null; local14 = (Map) Static228.aClass69_120.next()) {
 			if (local14.aBoolean50 && local14.method664(arg1, arg0)) {
-				local9.pushBack(local14);
+				local9.addTail(local14);
 			}
 		}
 		return local9;

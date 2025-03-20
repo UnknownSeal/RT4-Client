@@ -1,15 +1,11 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.client.Inv;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static23 {
-
-	@OriginalMember(owner = "client!bm", name = "a", descriptor = "F")
-	public static float aFloat5;
 
 	@OriginalMember(owner = "client!bm", name = "e", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_11;
@@ -63,18 +59,6 @@ public final class Static23 {
 			SceneGraph.tileHeights[arg0][arg2][arg1] = SceneGraph.tileHeights[arg0][arg2][arg1 - 1];
 		} else if (arg2 > 0 && arg1 > 0 && SceneGraph.tileHeights[arg0][arg2 - 1][arg1 - 1] != SceneGraph.tileHeights[arg0 - 1][arg2 - 1][arg1 - 1]) {
 			SceneGraph.tileHeights[arg0][arg2][arg1] = SceneGraph.tileHeights[arg0][arg2 - 1][arg1 - 1];
-		}
-	}
-
-	@OriginalMember(owner = "client!bm", name = "a", descriptor = "(III)I")
-	public static int method647(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(10) Inv local10 = (Inv) Inv.recentUse.getNode((long) arg0);
-		if (local10 == null) {
-			return 0;
-		} else if (arg1 >= 0 && arg1 < local10.invSlotObjCount.length) {
-			return local10.invSlotObjCount[arg1];
-		} else {
-			return 0;
 		}
 	}
 

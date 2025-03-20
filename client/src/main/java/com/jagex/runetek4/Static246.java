@@ -1,10 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.invtype.InvType;
 import com.jagex.runetek4.cache.def.NpcType;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -13,12 +9,6 @@ public final class Static246 {
 
 	@OriginalMember(owner = "runetek4.client!u", name = "g", descriptor = "Lclient!na;")
 	public static final JString aClass100_1029 = JString.parse("cookiehost");
-
-	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(BLclient!ve;Lclient!ve;)V")
-	public static void init(@OriginalArg(1) Js5 arg0, @OriginalArg(2) Js5 arg1) {
-		Static153.aClass153_57 = arg0;
-		Static243.aClass153_97 = arg1;
-	}
 
 	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(Lclient!me;IIII)V")
 	public static void method4240(@OriginalArg(0) NpcType npc, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
@@ -113,18 +103,4 @@ public final class Static246 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!u", name = "a", descriptor = "(II)Lclient!md;")
-	public static InvType get(@OriginalArg(0) int arg0) {
-		@Pc(16) InvType invType = (InvType) Static89.aClass54_8.get((long) arg0);
-		if (invType != null) {
-			return invType;
-		}
-		@Pc(27) byte[] bytes = CacheArchive.aClass153_2.getfile(5, arg0);
-		invType = new InvType();
-		if (bytes != null) {
-			invType.decode(new Packet(bytes));
-		}
-		Static89.aClass54_8.put(invType, (long) arg0);
-		return invType;
-	}
 }

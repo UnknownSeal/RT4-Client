@@ -6,13 +6,13 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!jg")
-public final class NameHashCollection {
+public final class IntHashTable {
 
 	@OriginalMember(owner = "runetek4.client!jg", name = "f", descriptor = "[I")
 	private final int[] anIntArray285;
 
 	@OriginalMember(owner = "runetek4.client!jg", name = "<init>", descriptor = "([I)V")
-	public NameHashCollection(@OriginalArg(0) int[] arg0) {
+	public IntHashTable(@OriginalArg(0) int[] arg0) {
 		@Pc(5) int local5;
 		for (local5 = 1; local5 <= (arg0.length >> 1) + arg0.length; local5 <<= 0x1) {
 		}
@@ -32,7 +32,7 @@ public final class NameHashCollection {
 	}
 
 	@OriginalMember(owner = "runetek4.client!jg", name = "a", descriptor = "(II)I")
-	public final int method2405(@OriginalArg(0) int arg0) {
+	public final int get(@OriginalArg(0) int arg0) {
 		@Pc(16) int local16 = (this.anIntArray285.length >> 1) - 1;
 		@Pc(20) int local20 = local16 & arg0;
 		while (true) {

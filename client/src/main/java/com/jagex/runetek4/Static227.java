@@ -11,9 +11,6 @@ public final class Static227 {
 	@OriginalMember(owner = "runetek4.client!sg", name = "i", descriptor = "Lclient!be;")
 	public static Component aClass13_25;
 
-	@OriginalMember(owner = "runetek4.client!sg", name = "p", descriptor = "I")
-	public static int anInt5097;
-
 	@OriginalMember(owner = "runetek4.client!sg", name = "c", descriptor = "I")
 	public static int anInt5087 = 0;
 

@@ -22,6 +22,12 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 	public static int lastMouseY = 0;
 	@OriginalMember(owner = "runetek4.client!rh", name = "o", descriptor = "I")
 	public static int lastMouseX = 0;
+    @OriginalMember(owner = "client!em", name = "y", descriptor = "I")
+    public static int mouseClickY = 0;
+	@OriginalMember(owner = "client!ah", name = "s", descriptor = "I")
+	public static int mouseClickX = 0;
+	@OriginalMember(owner = "client!bl", name = "Q", descriptor = "I")
+	public static int pressedButton = 0;
 
 	@OriginalMember(owner = "runetek4.client!dl", name = "a", descriptor = "(II)V")
 	public static void setIdleLoops(@OriginalArg(1) int arg0) {
@@ -60,13 +66,13 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
     public static void loop() {
         @Pc(2) Mouse local2 = Static93.aClass150_1;
         synchronized (Static93.aClass150_1) {
-            Static22.activeInterfaceType = Static57.anInt1759;
+            pressedButton = Static57.anInt1759;
             lastMouseX = Static147.anInt3521;
             lastMouseY = Static165.anInt4039;
             clickButton = Static41.anInt1313;
-            aClass6.mouseClickX = Static34.anInt1034;
+            mouseClickX = Static34.anInt1034;
             Static93.anInt2467++;
-            Static60.mouseClickY = Static222.anInt4973;
+            mouseClickY = Static222.anInt4973;
             Static133.clickTime = Static209.aLong161;
             Static41.anInt1313 = 0;
         }

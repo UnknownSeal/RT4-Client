@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.lighttype.LightType;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -19,12 +18,6 @@ public final class Static245 {
 
 	@OriginalMember(owner = "runetek4.client!tm", name = "i", descriptor = "I")
 	public static int anInt5377 = 0;
-
-	@OriginalMember(owner = "runetek4.client!tm", name = "a", descriptor = "(II)V")
-	public static void method4224(@OriginalArg(0) int arg0) {
-		@Pc(16) DelayedStateChange local16 = Static238.method4143(6, arg0);
-		local16.method1007();
-	}
 
 	@OriginalMember(owner = "runetek4.client!tm", name = "a", descriptor = "(I)V")
 	public static void getPlayerExtended() {
@@ -161,7 +154,7 @@ public final class Static245 {
 					if (local472 == null) {
 						local472 = new Environment();
 					}
-					Static192.aClass92ArrayArray1[arg1 >> 3][arg4 >> 3] = local472;
+					FogManager.chunksAtmosphere[arg1 >> 3][arg4 >> 3] = local472;
 					break label207;
 				} while (local497 <= 0);
 				for (local232 = 0; local232 < local497; local232++) {

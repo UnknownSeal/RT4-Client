@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.lighttype.LightType;
-import com.jagex.runetek4.node.NodeQueue;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,43 +10,6 @@ public final class Static140 {
 
 	@OriginalMember(owner = "runetek4.client!la", name = "i", descriptor = "[[[I")
 	public static int[][][] anIntArrayArrayArray12;
-
-	@OriginalMember(owner = "runetek4.client!la", name = "f", descriptor = "Lclient!ce;")
-	public static final NodeQueue aClass16_7 = new NodeQueue();
-
-	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(IJ)V")
-	public static void addIgnore(@OriginalArg(1) long username) {
-		if (username == 0L) {
-			return;
-		}
-		if (Static35.ignoreCount >= 100) {
-			Chat.addMessage(JString.EMPTY, 0, LocalizedText.IGNORELISTFULL);
-			return;
-		}
-		@Pc(34) JString displayName = Base37.decode37(username).method3125();
-		@Pc(36) int i;
-		for (i = 0; i < Static35.ignoreCount; i++) {
-			if (Static190.ignoreName37[i] == username) {
-				Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { displayName, LocalizedText.IGNORELISTDUPE}));
-				return;
-			}
-		}
-		for (i = 0; i < FriendList.friendCount; i++) {
-			if (Static92.friendName37[i] == username) {
-				Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { LocalizedText.REMOVESOCIAL2, displayName, LocalizedText.REMOVEFRIEND}));
-				return;
-			}
-		}
-		if (displayName.method3108(PlayerList.self.username)) {
-			Chat.addMessage(JString.EMPTY, 0, LocalizedText.IGNORECANTADDSELF);
-			return;
-		}
-		Static190.ignoreName37[Static35.ignoreCount] = username;
-		Static193.ignoreName[Static35.ignoreCount++] = Base37.decode37(username);
-		Static185.anInt4369 = InterfaceList.transmitTimer;
-		Protocol.outboundBuffer.pIsaac1(34);
-		Protocol.outboundBuffer.p8(username);
-	}
 
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(II)Lclient!ic;")
 	public static LightType method2709(@OriginalArg(1) int arg0) {

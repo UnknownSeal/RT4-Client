@@ -10,7 +10,7 @@ public final class UnlitMaterialRenderer implements MaterialRenderer {
 	@OriginalMember(owner = "runetek4.client!ue", name = "b", descriptor = "()V")
 	@Override
 	public final void method4603() {
-		if (Static178.highDetailLighting) {
+		if (Preferences.highDetailLighting) {
 			GlRenderer.setLightingEnabled(false);
 		}
 	}
@@ -29,7 +29,7 @@ public final class UnlitMaterialRenderer implements MaterialRenderer {
 	@OriginalMember(owner = "runetek4.client!ue", name = "a", descriptor = "()V")
 	@Override
 	public final void method4602() {
-		if (Static178.highDetailLighting) {
+		if (Preferences.highDetailLighting) {
 			GlRenderer.setLightingEnabled(true);
 		}
 	}

@@ -10,7 +10,7 @@ import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.scene.Scene;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -107,12 +107,12 @@ public final class Player extends PathingEntity {
 		if (!GlRenderer.enabled || PreciseSleep.aBoolean252) {
 			return;
 		}
-		@Pc(14) SceneTile[][][] local14 = Static130.levelTiles;
+		@Pc(14) Tile[][][] local14 = Static130.levelTiles;
 		for (@Pc(22) int local22 = 0; local22 < local14.length; local22++) {
-			@Pc(30) SceneTile[][] local30 = local14[local22];
+			@Pc(30) Tile[][] local30 = local14[local22];
 			for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {
 				for (@Pc(42) int local42 = 0; local42 < local30[local32].length; local42++) {
-					@Pc(54) SceneTile local54 = local30[local32][local42];
+					@Pc(54) Tile local54 = local30[local32][local42];
 					if (local54 != null) {
 						@Pc(71) GlModel local71;
 						if (local54.groundDecor != null && local54.groundDecor.entity instanceof GlModel) {
@@ -242,7 +242,7 @@ public final class Player extends PathingEntity {
 		}
 		this.anInt3365 = arg0.g2();
 		@Pc(236) long local236 = arg0.g8();
-		this.username = Base37.decode37(local236).method3125();
+		this.username = Base37.decode37(local236).toTitleCase();
 		this.combatLevel = arg0.g1();
 		if (local37) {
 			this.anInt1671 = arg0.g2();
@@ -297,7 +297,7 @@ public final class Player extends PathingEntity {
 		@Pc(54) SeqType local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().idleAnimationId && local25 != null ? null : SeqTypeList.getAnimationSequence(this.movementSeqId);
 		@Pc(76) Model local76 = this.appearance.method1954(this.aClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
 		@Pc(79) int local79 = Static198.method1029();
-		if (GlRenderer.enabled && Static238.anInt5316 < 96 && local79 > 50) {
+		if (GlRenderer.enabled && GameShell.maxMemory < 96 && local79 > 50) {
 			method501();
 		}
 		@Pc(102) int local102;
@@ -371,10 +371,10 @@ public final class Player extends PathingEntity {
 				model.translate(0, -this.spotanimOffset, 0);
 				if (spotanim.aBoolean100) {
 					if (Static101.anInt2640 != 0) {
-						model.method4574(Static101.anInt2640);
+						model.rotateX(Static101.anInt2640);
 					}
 					if (Static102.anInt2680 != 0) {
-						model.method4564(Static102.anInt2680);
+						model.rotateZ(Static102.anInt2680);
 					}
 					if (Static62.anInt1938 != 0) {
 						model.translate(0, Static62.anInt1938, 0);
@@ -399,7 +399,7 @@ public final class Player extends PathingEntity {
 				} else if (this.dstYaw == 1024) {
 					loc.method4552();
 				} else if (this.dstYaw == 1536) {
-					loc.method4563();
+					loc.rotateCounterClockwise();
 				}
 			}
 		}
@@ -424,7 +424,7 @@ public final class Player extends PathingEntity {
 			return;
 		}
 		if (this.dstYaw == 512) {
-			loc.method4563();
+			loc.rotateCounterClockwise();
 		} else if (this.dstYaw == 1024) {
 			loc.method4552();
 		} else if (this.dstYaw == 1536) {
@@ -440,7 +440,7 @@ public final class Player extends PathingEntity {
 			return;
 		}
 		@Pc(34) int local34 = (int) (Math.atan2(arg3, arg1) * 325.949D) & 0x7FF;
-		@Pc(46) Model local46 = Static220.method3800(local34, this.zFine, arg11, this.xFine, arg2, this.y);
+		@Pc(46) Model local46 = HintArrowManager.getModel(local34, this.zFine, arg11, this.xFine, arg2, this.y);
 		if (local46 == null) {
 			return;
 		}

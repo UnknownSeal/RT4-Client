@@ -34,7 +34,7 @@ public class TitleScreen {
         @Pc(26) int local26 = local20 * 956 / 503;
         Static78.aClass3_Sub2_Sub1_3.renderResized((GameShell.canvasWidth - local26) / 2, 0, local26, local20);
         Static243.aClass36_1 = Static40.method1010(Static136.logoId, arg0);
-        Static243.aClass36_1.drawImage(GameShell.canvasWidth / 2 - Static243.aClass36_1.anInt4270 / 2, 18);
+        Static243.aClass36_1.drawImage(GameShell.canvasWidth / 2 - Static243.aClass36_1.width / 2, 18);
         Static18.aBoolean40 = true;
     }
 
@@ -47,10 +47,10 @@ public class TitleScreen {
     @OriginalMember(owner = "runetek4.client!lk", name = "a", descriptor = "(ILclient!ve;)I")
     public static int getReady(@OriginalArg(1) Js5 arg0) {
         @Pc(1) int local1 = 0;
-        if (arg0.method4506(Static262.bgId)) {
+        if (arg0.isFileReady(Static262.bgId)) {
             local1++;
         }
-        if (arg0.method4506(Static136.logoId)) {
+        if (arg0.isFileReady(Static136.logoId)) {
             local1++;
         }
         return local1;

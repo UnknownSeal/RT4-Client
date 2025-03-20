@@ -18,8 +18,8 @@ public final class Static279 {
 
 	@OriginalMember(owner = "runetek4.client!wk", name = "b", descriptor = "(II)V")
 	public static void method4662() {
-		Static250.aClass99_33.clear(5);
-		Static139.aClass99_21.clear(5);
+		Static250.aClass99_33.clean(5);
+		Static139.aClass99_21.clean(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!wk", name = "a", descriptor = "(I[Lclient!na;)[Lclient!na;")

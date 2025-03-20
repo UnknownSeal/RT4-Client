@@ -13,11 +13,6 @@ public final class FloTypeList {
 	@OriginalMember(owner = "client!uh", name = "ab", descriptor = "Lclient!q;")
 	public static final ReferenceNodeFactory aClass22_1 = Static44.method1147();
 
-	@OriginalMember(owner = "client!uh", name = "e", descriptor = "(I)V")
-	public static void removeSoft() {
-		ClientScriptRunner.aClass99_31.removeSoft();
-	}
-
 	@OriginalMember(owner = "client!uh", name = "f", descriptor = "(I)V")
 	public static void method4302() {
 		if (Static236.method4047() != 2) {

@@ -114,7 +114,7 @@ public final class MidiPcmStream extends PcmStream {
 		arg0.method3741();
 		@Pc(5) boolean local5 = true;
 		@Pc(20) int[] local20 = new int[] { 22050 };
-		for (@Pc(34) ByteArrayNode local34 = (ByteArrayNode) arg0.aClass133_22.head(); local34 != null; local34 = (ByteArrayNode) arg0.aClass133_22.prev()) {
+		for (@Pc(34) ByteArrayNode local34 = (ByteArrayNode) arg0.aClass133_22.head(); local34 != null; local34 = (ByteArrayNode) arg0.aClass133_22.next()) {
 			@Pc(40) int local40 = (int) local34.nodeId;
 			@Pc(48) MidiInstrument local48 = (MidiInstrument) this.aClass133_23.getNode((long) local40);
 			if (local48 == null) {
@@ -137,7 +137,7 @@ public final class MidiPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!va", name = "d", descriptor = "(B)V")
 	public final synchronized void method4412() {
-		for (@Pc(15) MidiInstrument local15 = (MidiInstrument) this.aClass133_23.head(); local15 != null; local15 = (MidiInstrument) this.aClass133_23.prev()) {
+		for (@Pc(15) MidiInstrument local15 = (MidiInstrument) this.aClass133_23.head(); local15 != null; local15 = (MidiInstrument) this.aClass133_23.next()) {
 			local15.method2432();
 		}
 	}
@@ -258,7 +258,7 @@ public final class MidiPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!va", name = "e", descriptor = "(I)V")
 	public final synchronized void method4426() {
-		for (@Pc(7) MidiInstrument local7 = (MidiInstrument) this.aClass133_23.head(); local7 != null; local7 = (MidiInstrument) this.aClass133_23.prev()) {
+		for (@Pc(7) MidiInstrument local7 = (MidiInstrument) this.aClass133_23.head(); local7 != null; local7 = (MidiInstrument) this.aClass133_23.next()) {
 			local7.unlink();
 		}
 	}

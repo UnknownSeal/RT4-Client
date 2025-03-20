@@ -4,6 +4,7 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -11,6 +12,8 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class ObjTypeList {
 
+	@OriginalMember(owner = "runetek4.client!jd", name = "c", descriptor = "Lclient!n;")
+	public static final NodeCache objectSpriteCache = new NodeCache(100);
 	@OriginalMember(owner = "runetek4.client!nh", name = "eb", descriptor = "I")
 	public static int capacity;
 
@@ -19,6 +22,8 @@ public final class ObjTypeList {
 
 	@OriginalMember(owner = "runetek4.client!fk", name = "j", descriptor = "[[I")
 	public static int[][] anIntArrayArray10;
+	@OriginalMember(owner = "runetek4.client!um", name = "U", descriptor = "Lclient!dd;")
+	public static SoftwareFont font;
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(IIIII)I")
 	public static int method2569(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {

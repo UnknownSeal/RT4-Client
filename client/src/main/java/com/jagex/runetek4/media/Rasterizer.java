@@ -8,10 +8,9 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Rasterizer {
 
-	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "I")
-	public static int destinationWidth;
-
-	@OriginalMember(owner = "runetek4.client!kb", name = "c", descriptor = "I")
+    @OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "[I")
+    public static final int[] palette = new int[65536];
+    @OriginalMember(owner = "runetek4.client!kb", name = "c", descriptor = "I")
 	public static int destinationHeight;
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "f", descriptor = "[I")
@@ -19,9 +18,6 @@ public final class Rasterizer {
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "g", descriptor = "[I")
 	public static int[] anIntArray296;
-
-	@OriginalMember(owner = "runetek4.client!kb", name = "i", descriptor = "[I")
-	public static int[] destinationPixels;
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "I")
 	public static int viewportLeft = 0;
@@ -42,6 +38,16 @@ public final class Rasterizer {
 	public static int[] anIntArray221 = new int[1024];
 	@OriginalMember(owner = "runetek4.client!hf", name = "d", descriptor = "Z")
 	public static boolean textureHasTransparency = false;
+	@OriginalMember(owner = "runetek4.client!tg", name = "c", descriptor = "I")
+	public static int screenLowerX;
+	@OriginalMember(owner = "runetek4.client!ub", name = "m", descriptor = "I")
+	public static int screenUpperX;
+	@OriginalMember(owner = "runetek4.client!a", name = "g", descriptor = "I")
+	public static int screenLowerY;
+	@OriginalMember(owner = "runetek4.client!li", name = "x", descriptor = "I")
+	public static int screenUpperY;
+	@OriginalMember(owner = "runetek4.client!hf", name = "j", descriptor = "Z")
+	public static boolean jagged = true;
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "()V")
 	public static void method2482() {
@@ -52,7 +58,7 @@ public final class Rasterizer {
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(III)V")
 	private static void drawPixel(@OriginalArg(0) int x, @OriginalArg(1) int y) {
 		if (x >= viewportLeft && y >= viewportTop && x < viewportRight && y < viewportBottom) {
-			destinationPixels[x + y * destinationWidth] = 16776960;
+			SoftwareRaster.destinationPixels[x + y * SoftwareRaster.destinationWidth] = 16776960;
 		}
 	}
 
@@ -63,33 +69,6 @@ public final class Rasterizer {
 		}
 		anIntArray295 = arg0;
 		anIntArray296 = arg1;
-	}
-
-	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "([I)V")
-	public static void setViewportDimensions(@OriginalArg(0) int[] arg0) {
-		viewportLeft = arg0[0];
-		viewportTop = arg0[1];
-		viewportRight = arg0[2];
-		viewportBottom = arg0[3];
-		method2482();
-	}
-
-	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(IIII)V")
-	public static void drawHorizontalLine(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		if (arg1 < viewportTop || arg1 >= viewportBottom) {
-			return;
-		}
-		if (arg0 < viewportLeft) {
-			arg2 -= viewportLeft - arg0;
-			arg0 = viewportLeft;
-		}
-		if (arg0 + arg2 > viewportRight) {
-			arg2 = viewportRight - arg0;
-		}
-		@Pc(32) int local32 = arg0 + arg1 * destinationWidth;
-		for (@Pc(34) int local34 = 0; local34 < arg2; local34++) {
-			destinationPixels[local32 + local34] = arg3;
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "(IIII)V")
@@ -104,46 +83,30 @@ public final class Rasterizer {
 		if (y + length > viewportBottom) {
 			length = viewportBottom - y;
 		}
-		@Pc(32) int pixelOffset = x + y * destinationWidth;
+		@Pc(32) int pixelOffset = x + y * SoftwareRaster.destinationWidth;
 		for (@Pc(34) int pixel = 0; pixel < length; pixel++) {
-			destinationPixels[pixelOffset + pixel * destinationWidth] = color;
+			SoftwareRaster.destinationPixels[pixelOffset + pixel * SoftwareRaster.destinationWidth] = color;
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "([III)V")
-	public static void prepare(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		destinationPixels = arg0;
-		destinationWidth = arg1;
-		destinationHeight = arg2;
-		SoftwareRaster.setClip(0, 0, arg1, arg2);
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "()V")
 	public static void clear() {
 		@Pc(1) int local1 = 0;
-		@Pc(7) int local7 = destinationWidth * destinationHeight - 7;
+		@Pc(7) int local7 = SoftwareRaster.destinationWidth * destinationHeight - 7;
 		while (local1 < local7) {
-			destinationPixels[local1++] = 0;
-			destinationPixels[local1++] = 0;
-			destinationPixels[local1++] = 0;
-			destinationPixels[local1++] = 0;
-			destinationPixels[local1++] = 0;
-			destinationPixels[local1++] = 0;
-			destinationPixels[local1++] = 0;
-			destinationPixels[local1++] = 0;
+			SoftwareRaster.destinationPixels[local1++] = 0;
+			SoftwareRaster.destinationPixels[local1++] = 0;
+			SoftwareRaster.destinationPixels[local1++] = 0;
+			SoftwareRaster.destinationPixels[local1++] = 0;
+			SoftwareRaster.destinationPixels[local1++] = 0;
+			SoftwareRaster.destinationPixels[local1++] = 0;
+			SoftwareRaster.destinationPixels[local1++] = 0;
+			SoftwareRaster.destinationPixels[local1++] = 0;
 		}
 		local7 += 7;
 		while (local1 < local7) {
-			destinationPixels[local1++] = 0;
+			SoftwareRaster.destinationPixels[local1++] = 0;
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "([I)V")
-	public static void getViewportDimensions(@OriginalArg(0) int[] arg0) {
-		arg0[0] = viewportLeft;
-		arg0[1] = viewportTop;
-		arg0[2] = viewportRight;
-		arg0[3] = viewportBottom;
 	}
 
 	@OriginalMember(owner = "runetek4.client!kb", name = "e", descriptor = "(IIIII)V")
@@ -152,9 +115,9 @@ public final class Rasterizer {
 		destY -= y;
 		if (destY == 0) {
 			if (destX >= 0) {
-				drawHorizontalLine(x, y, destX + 1, color);
+				SoftwareRaster.drawHorizontalLine(x, y, destX + 1, color);
 			} else {
-				drawHorizontalLine(x + destX, y, 1 - destX, color);
+				SoftwareRaster.drawHorizontalLine(x + destX, y, 1 - destX, color);
 			}
 		} else if (destX != 0) {
 			if (destX + destY < 0) {
@@ -181,7 +144,7 @@ public final class Rasterizer {
 				while (x <= destX) {
 					local127 = y >> 16;
 					if (local127 >= viewportTop && local127 < viewportBottom) {
-						destinationPixels[x + local127 * destinationWidth] = color;
+						SoftwareRaster.destinationPixels[x + local127 * SoftwareRaster.destinationWidth] = color;
 					}
 					y += i;
 					x++;
@@ -202,7 +165,7 @@ public final class Rasterizer {
 				while (y <= destY) {
 					local127 = x >> 16;
 					if (local127 >= viewportLeft && local127 < viewportRight) {
-						destinationPixels[local127 + y * destinationWidth] = color;
+						SoftwareRaster.destinationPixels[local127 + y * SoftwareRaster.destinationWidth] = color;
 					}
 					x += i;
 					y++;
@@ -258,9 +221,9 @@ public final class Rasterizer {
 			if (local94 > viewportRight) {
 				local94 = viewportRight;
 			}
-			local105 = local85 + local33 * destinationWidth;
+			local105 = local85 + local33 * SoftwareRaster.destinationWidth;
 			for (local107 = local85; local107 < local94; local107++) {
-				destinationPixels[local105++] = 16776960;
+				SoftwareRaster.destinationPixels[local105++] = 16776960;
 			}
 			local33++;
 			local47 -= local43-- + local43;
@@ -284,9 +247,9 @@ public final class Rasterizer {
 			if (local94 > viewportRight - 1) {
 				local94 = viewportRight - 1;
 			}
-			local105 = local85 + local33 * destinationWidth;
+			local105 = local85 + local33 * SoftwareRaster.destinationWidth;
 			for (local107 = local85; local107 <= local94; local107++) {
-				destinationPixels[local105++] = 16776960;
+				SoftwareRaster.destinationPixels[local105++] = 16776960;
 			}
 			local33++;
 			local51 += local43 + local43;
@@ -345,13 +308,13 @@ public final class Rasterizer {
 			if (local125 > viewportRight) {
 				local125 = viewportRight;
 			}
-			local136 = local116 + local64 * destinationWidth;
+			local136 = local116 + local64 * SoftwareRaster.destinationWidth;
 			for (local138 = local116; local138 < local125; local138++) {
-				local151 = (destinationPixels[local136] >> 16 & 0xFF) * a;
-				local161 = (destinationPixels[local136] >> 8 & 0xFF) * a;
-				local169 = (destinationPixels[local136] & 0xFF) * a;
+				local151 = (SoftwareRaster.destinationPixels[local136] >> 16 & 0xFF) * a;
+				local161 = (SoftwareRaster.destinationPixels[local136] >> 8 & 0xFF) * a;
+				local169 = (SoftwareRaster.destinationPixels[local136] & 0xFF) * a;
 				local191 = (local28 + local151 >> 8 << 16) + (local36 + local161 >> 8 << 8) + (local42 + local169 >> 8);
-				destinationPixels[local136++] = local191;
+				SoftwareRaster.destinationPixels[local136++] = local191;
 			}
 			local64++;
 			local78 -= local74-- + local74;
@@ -375,13 +338,13 @@ public final class Rasterizer {
 			if (local125 > viewportRight - 1) {
 				local125 = viewportRight - 1;
 			}
-			local136 = local116 + local64 * destinationWidth;
+			local136 = local116 + local64 * SoftwareRaster.destinationWidth;
 			for (local138 = local116; local138 <= local125; local138++) {
-				local151 = (destinationPixels[local136] >> 16 & 0xFF) * a;
-				local161 = (destinationPixels[local136] >> 8 & 0xFF) * a;
-				local169 = (destinationPixels[local136] & 0xFF) * a;
+				local151 = (SoftwareRaster.destinationPixels[local136] >> 16 & 0xFF) * a;
+				local161 = (SoftwareRaster.destinationPixels[local136] >> 8 & 0xFF) * a;
+				local169 = (SoftwareRaster.destinationPixels[local136] & 0xFF) * a;
 				local191 = (local28 + local151 >> 8 << 16) + (local36 + local161 >> 8 << 8) + (local42 + local169 >> 8);
-				destinationPixels[local136++] = local191;
+				SoftwareRaster.destinationPixels[local136++] = local191;
 			}
 			local64++;
 			local82 += local74 + local74;
@@ -389,24 +352,15 @@ public final class Rasterizer {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!kb", name = "c", descriptor = "()V")
-	public static void resetBounds() {
-		viewportLeft = 0;
-		viewportTop = 0;
-		viewportRight = destinationWidth;
-		viewportBottom = destinationHeight;
-		method2482();
-	}
-
 	@OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(III[I[I)V")
 	public static void method2504(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int[] arg2, @OriginalArg(4) int[] arg3) {
-		@Pc(5) int local5 = arg0 + arg1 * destinationWidth;
+		@Pc(5) int local5 = arg0 + arg1 * SoftwareRaster.destinationWidth;
 		for (@Pc(7) int local7 = 0; local7 < arg2.length; local7++) {
 			@Pc(17) int local17 = local5 + arg2[local7];
 			for (@Pc(22) int local22 = -arg3[local7]; local22 < 0; local22++) {
-				destinationPixels[local17++] = 0;
+				SoftwareRaster.destinationPixels[local17++] = 0;
 			}
-			local5 += destinationWidth;
+			local5 += SoftwareRaster.destinationWidth;
 		}
 	}
 
@@ -428,33 +382,438 @@ public final class Rasterizer {
 		if (anIntArray221.length < anInt2470) {
 			anIntArray221 = new int[IntUtils.bitceil(anInt2470)];
 		}
-		@Pc(23) int local23 = arg1 * destinationWidth + arg0;
+		@Pc(23) int local23 = arg1 * SoftwareRaster.destinationWidth + arg0;
 		for (@Pc(25) int local25 = 0; local25 < anInt2470; local25++) {
 			anIntArray221[local25] = local23;
-			local23 += destinationWidth;
+			local23 += SoftwareRaster.destinationWidth;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "b", descriptor = "(II)V")
 	public static void setBounds(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		@Pc(3) int local3 = anIntArray221[0];
-		@Pc(7) int local7 = local3 / destinationWidth;
-		@Pc(13) int local13 = local3 - local7 * destinationWidth;
+		@Pc(7) int local7 = local3 / SoftwareRaster.destinationWidth;
+		@Pc(13) int local13 = local3 - local7 * SoftwareRaster.destinationWidth;
 		Pix3D.anInt2471 = arg0 - local13;
 		Pix3D.anInt2469 = arg1 - local7;
-		Static240.anInt5334 = -Pix3D.anInt2471;
-		Static247.anInt5405 = Pix3D.anInt2472 - Pix3D.anInt2471;
-		Static1.anInt4 = -Pix3D.anInt2469;
-		Static148.anInt3535 = anInt2470 - Pix3D.anInt2469;
+		screenLowerX = -Pix3D.anInt2471;
+		screenUpperX = Pix3D.anInt2472 - Pix3D.anInt2471;
+		screenLowerY = -Pix3D.anInt2469;
+		screenUpperY = anInt2470 - Pix3D.anInt2469;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "c", descriptor = "()V")
 	public static void prepareOffsets() {
 		Pix3D.anInt2471 = Pix3D.anInt2472 / 2;
 		Pix3D.anInt2469 = anInt2470 / 2;
-		Static240.anInt5334 = -Pix3D.anInt2471;
-		Static247.anInt5405 = Pix3D.anInt2472 - Pix3D.anInt2471;
-		Static1.anInt4 = -Pix3D.anInt2469;
-		Static148.anInt3535 = anInt2470 - Pix3D.anInt2469;
+		screenLowerX = -Pix3D.anInt2471;
+		screenUpperX = Pix3D.anInt2472 - Pix3D.anInt2471;
+		screenLowerY = -Pix3D.anInt2469;
+		screenUpperY = anInt2470 - Pix3D.anInt2469;
+	}
+
+	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "([BIIIIIII)V")
+	public static void fillSpriteTriangle(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
+		@Pc(1) int local1 = 0;
+		if (arg2 != arg1) {
+			local1 = (arg5 - arg4 << 16) / (arg2 - arg1);
+		}
+		@Pc(16) int local16 = 0;
+		if (arg3 != arg2) {
+			local16 = (arg6 - arg5 << 16) / (arg3 - arg2);
+		}
+		@Pc(31) int local31 = 0;
+		if (arg3 != arg1) {
+			local31 = (arg4 - arg6 << 16) / (arg1 - arg3);
+		}
+		if (arg1 <= arg2 && arg1 <= arg3) {
+			if (arg2 < arg3) {
+				arg6 = arg4 <<= 0x10;
+				if (arg1 < 0) {
+					arg6 -= local31 * arg1;
+					arg4 -= local1 * arg1;
+					arg1 = 0;
+				}
+				arg5 <<= 0x10;
+				if (arg2 < 0) {
+					arg5 -= local16 * arg2;
+					arg2 = 0;
+				}
+				if ((arg1 == arg2 || local31 >= local1) && (arg1 != arg2 || local31 <= local16)) {
+					arg3 -= arg2;
+					arg2 -= arg1;
+					arg1 *= arg7;
+					while (true) {
+						arg2--;
+						if (arg2 < 0) {
+							while (true) {
+								arg3--;
+								if (arg3 < 0) {
+									return;
+								}
+								method1930(arg0, arg1, arg5 >> 16, arg6 >> 16);
+								arg6 += local31;
+								arg5 += local16;
+								arg1 += arg7;
+							}
+						}
+						method1930(arg0, arg1, arg4 >> 16, arg6 >> 16);
+						arg6 += local31;
+						arg4 += local1;
+						arg1 += arg7;
+					}
+				} else {
+					arg3 -= arg2;
+					arg2 -= arg1;
+					arg1 *= arg7;
+					while (true) {
+						arg2--;
+						if (arg2 < 0) {
+							while (true) {
+								arg3--;
+								if (arg3 < 0) {
+									return;
+								}
+								method1930(arg0, arg1, arg6 >> 16, arg5 >> 16);
+								arg6 += local31;
+								arg5 += local16;
+								arg1 += arg7;
+							}
+						}
+						method1930(arg0, arg1, arg6 >> 16, arg4 >> 16);
+						arg6 += local31;
+						arg4 += local1;
+						arg1 += arg7;
+					}
+				}
+			} else {
+				arg5 = arg4 <<= 0x10;
+				if (arg1 < 0) {
+					arg5 -= local31 * arg1;
+					arg4 -= local1 * arg1;
+					arg1 = 0;
+				}
+				arg6 <<= 0x10;
+				if (arg3 < 0) {
+					arg6 -= local16 * arg3;
+					arg3 = 0;
+				}
+				if ((arg1 == arg3 || local31 >= local1) && (arg1 != arg3 || local16 <= local1)) {
+					arg2 -= arg3;
+					arg3 -= arg1;
+					arg1 *= arg7;
+					while (true) {
+						arg3--;
+						if (arg3 < 0) {
+							while (true) {
+								arg2--;
+								if (arg2 < 0) {
+									return;
+								}
+								method1930(arg0, arg1, arg4 >> 16, arg6 >> 16);
+								arg6 += local16;
+								arg4 += local1;
+								arg1 += arg7;
+							}
+						}
+						method1930(arg0, arg1, arg4 >> 16, arg5 >> 16);
+						arg5 += local31;
+						arg4 += local1;
+						arg1 += arg7;
+					}
+				} else {
+					arg2 -= arg3;
+					arg3 -= arg1;
+					arg1 *= arg7;
+					while (true) {
+						arg3--;
+						if (arg3 < 0) {
+							while (true) {
+								arg2--;
+								if (arg2 < 0) {
+									return;
+								}
+								method1930(arg0, arg1, arg6 >> 16, arg4 >> 16);
+								arg6 += local16;
+								arg4 += local1;
+								arg1 += arg7;
+							}
+						}
+						method1930(arg0, arg1, arg5 >> 16, arg4 >> 16);
+						arg5 += local31;
+						arg4 += local1;
+						arg1 += arg7;
+					}
+				}
+			}
+		} else if (arg2 <= arg3) {
+			if (arg3 < arg1) {
+				arg4 = arg5 <<= 0x10;
+				if (arg2 < 0) {
+					arg4 -= local1 * arg2;
+					arg5 -= local16 * arg2;
+					arg2 = 0;
+				}
+				arg6 <<= 0x10;
+				if (arg3 < 0) {
+					arg6 -= local31 * arg3;
+					arg3 = 0;
+				}
+				if (arg2 != arg3 && local1 < local16 || arg2 == arg3 && local1 > local31) {
+					arg1 -= arg3;
+					arg3 -= arg2;
+					arg2 *= arg7;
+					while (true) {
+						arg3--;
+						if (arg3 < 0) {
+							while (true) {
+								arg1--;
+								if (arg1 < 0) {
+									return;
+								}
+								method1930(arg0, arg2, arg4 >> 16, arg6 >> 16);
+								arg4 += local1;
+								arg6 += local31;
+								arg2 += arg7;
+							}
+						}
+						method1930(arg0, arg2, arg4 >> 16, arg5 >> 16);
+						arg4 += local1;
+						arg5 += local16;
+						arg2 += arg7;
+					}
+				} else {
+					arg1 -= arg3;
+					arg3 -= arg2;
+					arg2 *= arg7;
+					while (true) {
+						arg3--;
+						if (arg3 < 0) {
+							while (true) {
+								arg1--;
+								if (arg1 < 0) {
+									return;
+								}
+								method1930(arg0, arg2, arg6 >> 16, arg4 >> 16);
+								arg4 += local1;
+								arg6 += local31;
+								arg2 += arg7;
+							}
+						}
+						method1930(arg0, arg2, arg5 >> 16, arg4 >> 16);
+						arg4 += local1;
+						arg5 += local16;
+						arg2 += arg7;
+					}
+				}
+			} else {
+				arg6 = arg5 <<= 0x10;
+				if (arg2 < 0) {
+					arg6 -= local1 * arg2;
+					arg5 -= local16 * arg2;
+					arg2 = 0;
+				}
+				arg4 <<= 0x10;
+				if (arg1 < 0) {
+					arg4 -= local31 * arg1;
+					arg1 = 0;
+				}
+				if (local1 < local16) {
+					arg3 -= arg1;
+					arg1 -= arg2;
+					arg2 *= arg7;
+					while (true) {
+						arg1--;
+						if (arg1 < 0) {
+							while (true) {
+								arg3--;
+								if (arg3 < 0) {
+									return;
+								}
+								method1930(arg0, arg2, arg4 >> 16, arg5 >> 16);
+								arg4 += local31;
+								arg5 += local16;
+								arg2 += arg7;
+							}
+						}
+						method1930(arg0, arg2, arg6 >> 16, arg5 >> 16);
+						arg6 += local1;
+						arg5 += local16;
+						arg2 += arg7;
+					}
+				} else {
+					arg3 -= arg1;
+					arg1 -= arg2;
+					arg2 *= arg7;
+					while (true) {
+						arg1--;
+						if (arg1 < 0) {
+							while (true) {
+								arg3--;
+								if (arg3 < 0) {
+									return;
+								}
+								method1930(arg0, arg2, arg5 >> 16, arg4 >> 16);
+								arg4 += local31;
+								arg5 += local16;
+								arg2 += arg7;
+							}
+						}
+						method1930(arg0, arg2, arg5 >> 16, arg6 >> 16);
+						arg6 += local1;
+						arg5 += local16;
+						arg2 += arg7;
+					}
+				}
+			}
+		} else if (arg1 < arg2) {
+			arg5 = arg6 <<= 0x10;
+			if (arg3 < 0) {
+				arg5 -= local16 * arg3;
+				arg6 -= local31 * arg3;
+				arg3 = 0;
+			}
+			arg4 <<= 0x10;
+			if (arg1 < 0) {
+				arg4 -= local1 * arg1;
+				arg1 = 0;
+			}
+			if (local16 < local31) {
+				arg2 -= arg1;
+				arg1 -= arg3;
+				arg3 *= arg7;
+				while (true) {
+					arg1--;
+					if (arg1 < 0) {
+						while (true) {
+							arg2--;
+							if (arg2 < 0) {
+								return;
+							}
+							method1930(arg0, arg3, arg5 >> 16, arg4 >> 16);
+							arg5 += local16;
+							arg4 += local1;
+							arg3 += arg7;
+						}
+					}
+					method1930(arg0, arg3, arg5 >> 16, arg6 >> 16);
+					arg5 += local16;
+					arg6 += local31;
+					arg3 += arg7;
+				}
+			} else {
+				arg2 -= arg1;
+				arg1 -= arg3;
+				arg3 *= arg7;
+				while (true) {
+					arg1--;
+					if (arg1 < 0) {
+						while (true) {
+							arg2--;
+							if (arg2 < 0) {
+								return;
+							}
+							method1930(arg0, arg3, arg4 >> 16, arg5 >> 16);
+							arg5 += local16;
+							arg4 += local1;
+							arg3 += arg7;
+						}
+					}
+					method1930(arg0, arg3, arg6 >> 16, arg5 >> 16);
+					arg5 += local16;
+					arg6 += local31;
+					arg3 += arg7;
+				}
+			}
+		} else {
+			arg4 = arg6 <<= 0x10;
+			if (arg3 < 0) {
+				arg4 -= local16 * arg3;
+				arg6 -= local31 * arg3;
+				arg3 = 0;
+			}
+			arg5 <<= 0x10;
+			if (arg2 < 0) {
+				arg5 -= local1 * arg2;
+				arg2 = 0;
+			}
+			if (local16 < local31) {
+				arg1 -= arg2;
+				arg2 -= arg3;
+				arg3 *= arg7;
+				while (true) {
+					arg2--;
+					if (arg2 < 0) {
+						while (true) {
+							arg1--;
+							if (arg1 < 0) {
+								return;
+							}
+							method1930(arg0, arg3, arg5 >> 16, arg6 >> 16);
+							arg5 += local1;
+							arg6 += local31;
+							arg3 += arg7;
+						}
+					}
+					method1930(arg0, arg3, arg4 >> 16, arg6 >> 16);
+					arg4 += local16;
+					arg6 += local31;
+					arg3 += arg7;
+				}
+			} else {
+				arg1 -= arg2;
+				arg2 -= arg3;
+				arg3 *= arg7;
+				while (true) {
+					arg2--;
+					if (arg2 < 0) {
+						while (true) {
+							arg1--;
+							if (arg1 < 0) {
+								return;
+							}
+							method1930(arg0, arg3, arg6 >> 16, arg5 >> 16);
+							arg5 += local1;
+							arg6 += local31;
+							arg3 += arg7;
+						}
+					}
+					method1930(arg0, arg3, arg6 >> 16, arg4 >> 16);
+					arg4 += local16;
+					arg6 += local31;
+					arg3 += arg7;
+				}
+			}
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "([BIIII)V")
+	private static void method1930(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+		if (arg2 >= arg3) {
+			return;
+		}
+		arg1 += arg2;
+		@Pc(13) int local13 = arg3 - arg2 >> 2;
+		while (true) {
+			local13--;
+			if (local13 < 0) {
+				local13 = arg3 - arg2 & 0x3;
+				while (true) {
+					local13--;
+					if (local13 < 0) {
+						return;
+					}
+					arg0[arg1++] = 1;
+				}
+			}
+			@Pc(19) int local19 = arg1 + 1;
+			arg0[arg1] = 1;
+			@Pc(24) int local24 = local19 + 1;
+			arg0[local19] = 1;
+			@Pc(29) int local29 = local24 + 1;
+			arg0[local24] = 1;
+			arg1 = local29 + 1;
+			arg0[local29] = 1;
+		}
 	}
 }

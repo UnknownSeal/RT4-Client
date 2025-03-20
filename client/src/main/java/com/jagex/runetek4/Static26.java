@@ -6,23 +6,11 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static26 {
 
-	@OriginalMember(owner = "client!ca", name = "Y", descriptor = "[I")
-	public static int[] anIntArray66;
-
 	@OriginalMember(owner = "client!ca", name = "cb", descriptor = "Lclient!na;")
-	public static final JString aClass100_160 = Static165.method3165();
-
-	@OriginalMember(owner = "client!ca", name = "db", descriptor = "I")
-	public static int anInt865 = 0;
+	public static final JString aClass100_160 = JString.getNbsp();
 
 	@OriginalMember(owner = "client!ca", name = "fb", descriptor = "[I")
 	public static final int[] anIntArray68 = new int[50];
-
-	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(Z)V")
-	public static void removeSoft() {
-		Static79.aClass99_11.removeSoft();
-		aClass6.aClass99_5.removeSoft();
-	}
 
 	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(ZI)V")
 	public static void method743(@OriginalArg(0) boolean arg0) {

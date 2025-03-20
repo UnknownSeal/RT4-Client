@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -12,9 +11,6 @@ public final class Static210 {
 	@OriginalMember(owner = "runetek4.client!rb", name = "f", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_87;
 
-	@OriginalMember(owner = "runetek4.client!rb", name = "b", descriptor = "Lclient!sc;")
-	public static final HashTable aClass133_21 = new HashTable(512);
-
 	@OriginalMember(owner = "runetek4.client!rb", name = "a", descriptor = "(I)V")
 	public static void method3711() {
 		for (@Pc(7) int local7 = 0; local7 < 104; local7++) {
@@ -22,11 +18,6 @@ public final class Static210 {
 				Static31.anIntArrayArray6[local7][local14] = 0;
 			}
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!rb", name = "a", descriptor = "(ZB)V")
-	public static void method3712(@OriginalArg(0) boolean arg0) {
-		Static234.method4017(GameShell.canvasHeigth, arg0, InterfaceList.topLevelInterace, GameShell.canvasWidth);
 	}
 
 	@OriginalMember(owner = "runetek4.client!rb", name = "a", descriptor = "(Lclient!wa;Z)Lclient!bn;")

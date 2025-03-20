@@ -6,7 +6,6 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.client.Inv;
 import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
-import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -66,6 +65,10 @@ public class LoginManager {
     public static boolean aBoolean247 = false;
     @OriginalMember(owner = "runetek4.client!qf", name = "X", descriptor = "Lclient!be;")
     public static Component aClass13_13 = null;
+    @OriginalMember(owner = "runetek4.client!qg", name = "W", descriptor = "Z")
+    public static boolean playerMember = false;
+    @OriginalMember(owner = "runetek4.client!mf", name = "X", descriptor = "I")
+    public static int loginScreenId;
 
     @OriginalMember(owner = "runetek4.client!j", name = "g", descriptor = "(I)V")
     public static void method4637() {
@@ -86,34 +89,34 @@ public class LoginManager {
                 ClientScriptRunner.anInt3751 = Mouse.lastMouseX;
                 ClientScriptRunner.anInt1892 = Mouse.lastMouseY;
             } else {
-                ClientScriptRunner.anInt3751 = aClass6.mouseClickX;
-                ClientScriptRunner.anInt1892 = Static60.mouseClickY;
+                ClientScriptRunner.anInt3751 = Mouse.mouseClickX;
+                ClientScriptRunner.anInt1892 = Mouse.mouseClickY;
             }
             MiniMenu.menuActionRow = 1;
             MiniMenu.ops[0] = LocalizedText.CANCEL;
             MiniMenu.opBases[0] = JString.EMPTY;
             MiniMenu.actions[0] = 1005;
-            MiniMenu.cursors[0] = Static35.anInt1092;
+            MiniMenu.cursors[0] = MiniMenu.anInt1092;
         }
         if (InterfaceList.topLevelInterace != -1) {
-            Static96.method1949(InterfaceList.topLevelInterace);
+            InterfaceList.method1949(InterfaceList.topLevelInterace);
         }
         @Pc(60) int local60;
         for (local60 = 0; local60 < InterfaceList.rectangles; local60++) {
             if (InterfaceList.aBooleanArray100[local60]) {
                 InterfaceList.rectangleRedraw[local60] = true;
             }
-            Static223.aBooleanArray116[local60] = InterfaceList.aBooleanArray100[local60];
+            InterfaceList.aBooleanArray116[local60] = InterfaceList.aBooleanArray100[local60];
             InterfaceList.aBooleanArray100[local60] = false;
         }
         aClass13_13 = null;
         ClientScriptRunner.anInt2503 = -1;
         InterfaceList.anInt5574 = -1;
-        Static169.aClass13_18 = null;
+        InterfaceList.mouseOverInventoryInterface = null;
         if (GlRenderer.enabled) {
             ClientScriptRunner.aBoolean299 = true;
         }
-        Static182.anInt4311 = client.loop;
+        InterfaceList.anInt4311 = client.loop;
         if (InterfaceList.topLevelInterace != -1) {
             InterfaceList.rectangles = 0;
             CacheArchive.method182();
@@ -121,7 +124,7 @@ public class LoginManager {
         if (GlRenderer.enabled) {
             GlRaster.method1177();
         } else {
-            Rasterizer.resetBounds();
+            SoftwareRaster.resetBounds();
         }
         Static280.method4673();
         if (ClientScriptRunner.aBoolean108) {
@@ -137,7 +140,7 @@ public class LoginManager {
         }
         local60 = ClientScriptRunner.aBoolean108 ? -1 : Static235.method4044();
         if (local60 == -1) {
-            local60 = Static270.anInt5794;
+            local60 = ClientScriptRunner.anInt5794;
         }
         InterfaceList.method1750(local60);
         if (Static125.anInt3096 == 1) {
@@ -148,7 +151,7 @@ public class LoginManager {
         }
         if (Cheat.rectDebug == 3) {
             for (@Pc(189) int local189 = 0; local189 < InterfaceList.rectangles; local189++) {
-                if (Static223.aBooleanArray116[local189]) {
+                if (InterfaceList.aBooleanArray116[local189]) {
                     if (GlRenderer.enabled) {
                         GlRaster.fillRectAlpha(InterfaceList.rectangleX[local189], InterfaceList.rectangleY[local189], InterfaceList.rectangleWidth[local189], InterfaceList.rectangleHeight[local189], 16711935, 128);
                     } else {
@@ -218,7 +221,7 @@ public class LoginManager {
         LoginManager.password = password;
         anInt39 = arg2;
         LoginManager.username = username;
-        if (LoginManager.username.method3108(JString.EMPTY) || LoginManager.password.method3108(JString.EMPTY)) {
+        if (LoginManager.username.strEquals(JString.EMPTY) || LoginManager.password.strEquals(JString.EMPTY)) {
             reply = 3;
         } else if (Static125.worldId == -1) {
             anInt673 = 0;
@@ -307,9 +310,9 @@ public class LoginManager {
             }
         }
         if (Static235.aMapElementTypeList_2 == null) {
-            if (Static158.aClass3_Sub2_Sub4_3 == null || !client.js5Archive23.method4497(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, aClass100_363 }))) {
+            if (Static158.aClass3_Sub2_Sub4_3 == null || !client.js5Archive23.isGroupNameValid(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, aClass100_363 }))) {
                 Static235.aMapElementTypeList_2 = new MapElementTypeList(0);
-            } else if (client.js5Archive23.method4489(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, aClass100_363 }))) {
+            } else if (client.js5Archive23.isGroupReady(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, aClass100_363 }))) {
                 Static235.aMapElementTypeList_2 = MapElementTypeList.create(JString.concatenate(new JString[] { Static158.aClass3_Sub2_Sub4_3.aClass100_138, aClass100_363 }), client.js5Archive23);
             } else {
                 local12 = false;
@@ -391,7 +394,7 @@ public class LoginManager {
             Static120.method2404();
         }
         if (GlRenderer.enabled) {
-            Static75.method1632();
+            FogManager.setDefaultChunksAtmosphere();
         }
         client.audioLoop();
         System.gc();
@@ -403,7 +406,7 @@ public class LoginManager {
             if (GlRenderer.enabled) {
                 local427 = PlayerList.self.movementQueueX[0] >> 3;
                 local320 = PlayerList.self.movementQueueZ[0] >> 3;
-                Static73.method1597(local320, local427);
+                FogManager.setLightPosition(local320, local427);
             }
             Static26.method743(false);
             if (Static191.aByteArrayArray15 != null) {
@@ -416,7 +419,7 @@ public class LoginManager {
             if (GlRenderer.enabled) {
                 local427 = PlayerList.self.movementQueueX[0] >> 3;
                 local320 = PlayerList.self.movementQueueZ[0] >> 3;
-                Static73.method1597(local320, local427);
+                FogManager.setLightPosition(local320, local427);
             }
             ClientScriptRunner.method4002(false);
         }
@@ -488,8 +491,8 @@ public class LoginManager {
             for (@Pc(837) int local837 = local320 - 1; local837 <= local309 + 1; local837++) {
                 for (@Pc(850) int local850 = local821 - 1; local850 <= local815 + 1; local850++) {
                     if (local837 < local320 || local837 > local309 || local850 < local821 || local850 > local815) {
-                        client.js5Archive5.method4486(JString.concatenate(new JString[] { Static103.aClass100_558, JString.parseInt(local837), Static86.aClass100_488, JString.parseInt(local850) }));
-                        client.js5Archive5.method4486(JString.concatenate(new JString[] { Static270.aClass100_1090, JString.parseInt(local837), Static86.aClass100_488, JString.parseInt(local850) }));
+                        client.js5Archive5.prefetchGroup(JString.concatenate(new JString[] { Static103.aClass100_558, JString.parseInt(local837), Static86.aClass100_488, JString.parseInt(local850) }));
+                        client.js5Archive5.prefetchGroup(JString.concatenate(new JString[] { Static270.aClass100_1090, JString.parseInt(local837), Static86.aClass100_488, JString.parseInt(local850) }));
                     }
                 }
             }
@@ -831,12 +834,12 @@ public class LoginManager {
                 Static86.aBoolean129 = Protocol.inboundBuffer.g1() == 1;
                 Static245.enabled = Protocol.inboundBuffer.g1() == 1;
                 PlayerList.selfId = Protocol.inboundBuffer.g2();
-                Class6.members = Protocol.inboundBuffer.g1() == 1;
+                playerMember = Protocol.inboundBuffer.g1() == 1;
                 Static2.membersWorld = Protocol.inboundBuffer.g1() == 1;
                 Static189.method3438(Static2.membersWorld);
                 CacheArchive.method186(Static2.membersWorld);
                 if (!client.advertSuppressed) {
-                    if (Static124.aBoolean157 && !Static25.aBoolean57 || Class6.members) {
+                    if (Static124.aBoolean157 && !Static25.aBoolean57 || playerMember) {
                         try {
                             Static167.aClass100_781.browserControlCall(GameShell.signLink.applet);
                         } catch (@Pc(910) Throwable local910) {

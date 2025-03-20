@@ -129,7 +129,7 @@ public final class ProjectileAnimation extends Entity {
 		if (local24 == null) {
 			return null;
 		} else {
-			local24.method4574(this.pitch);
+			local24.rotateX(this.pitch);
 			return local24;
 		}
 	}

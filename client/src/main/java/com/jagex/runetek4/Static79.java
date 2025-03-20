@@ -3,18 +3,11 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.node.NodeCache;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static79 {
-
-	@OriginalMember(owner = "client!ge", name = "q", descriptor = "I")
-	public static int anInt2161;
-
-	@OriginalMember(owner = "client!ge", name = "i", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_11 = new NodeCache(64);
 
 	@OriginalMember(owner = "client!ge", name = "k", descriptor = "[I")
 	public static int[] anIntArray205 = new int[2];

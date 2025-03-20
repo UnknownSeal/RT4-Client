@@ -4,7 +4,7 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.game.config.bastype.BasTypeList;
-import com.jagex.runetek4.graphics.ModelUnlit;
+import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.util.IntUtils;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -462,17 +462,17 @@ public final class NpcType {
 		if (local40 == null) {
 			local46 = false;
 			for (@Pc(48) int local48 = 0; local48 < this.models.length; local48++) {
-				if (this.models[local48] != -1 && !Static86.aClass153_37.requestDownload(this.models[local48], 0)) {
+				if (this.models[local48] != -1 && !Static86.aClass153_37.isFileReady(this.models[local48], 0)) {
 					local46 = true;
 				}
 			}
 			if (local46) {
 				return null;
 			}
-			@Pc(84) ModelUnlit[] local84 = new ModelUnlit[this.models.length];
+			@Pc(84) RawModel[] local84 = new RawModel[this.models.length];
 			for (@Pc(86) int local86 = 0; local86 < this.models.length; local86++) {
 				if (this.models[local86] != -1) {
-					local84[local86] = ModelUnlit.get(Static86.aClass153_37, this.models[local86]);
+					local84[local86] = RawModel.get(Static86.aClass153_37, this.models[local86]);
 					if (this.modeloffset != null && this.modeloffset[local86] != null && local84[local86] != null) {
 						local84[local86].translate(this.modeloffset[local86][0], this.modeloffset[local86][1], this.modeloffset[local86][2]);
 					}
@@ -536,11 +536,11 @@ public final class NpcType {
 					}
 				}
 			}
-			@Pc(593) ModelUnlit local593;
+			@Pc(593) RawModel local593;
 			if (local84.length == 1) {
 				local593 = local84[0];
 			} else {
-				local593 = new ModelUnlit(local84, local84.length);
+				local593 = new RawModel(local84, local84.length);
 			}
 			if (this.recol_s != null) {
 				for (local173 = 0; local173 < this.recol_s.length; local173++) {
@@ -722,22 +722,22 @@ public final class NpcType {
 			if (local41 == null) {
 				@Pc(46) boolean local46 = false;
 				for (@Pc(48) int local48 = 0; local48 < this.heads.length; local48++) {
-					if (!Static86.aClass153_37.requestDownload(this.heads[local48], 0)) {
+					if (!Static86.aClass153_37.isFileReady(this.heads[local48], 0)) {
 						local46 = true;
 					}
 				}
 				if (local46) {
 					return null;
 				}
-				@Pc(82) ModelUnlit[] local82 = new ModelUnlit[this.heads.length];
+				@Pc(82) RawModel[] local82 = new RawModel[this.heads.length];
 				for (@Pc(84) int local84 = 0; local84 < this.heads.length; local84++) {
-					local82[local84] = ModelUnlit.get(Static86.aClass153_37, this.heads[local84]);
+					local82[local84] = RawModel.get(Static86.aClass153_37, this.heads[local84]);
 				}
-				@Pc(119) ModelUnlit local119;
+				@Pc(119) RawModel local119;
 				if (local82.length == 1) {
 					local119 = local82[0];
 				} else {
-					local119 = new ModelUnlit(local82, local82.length);
+					local119 = new RawModel(local82, local82.length);
 				}
 
 				if (this.recol_s != null) {

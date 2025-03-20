@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -8,70 +7,14 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static2 {
 
-	@OriginalMember(owner = "runetek4.client!aa", name = "j", descriptor = "I")
-	public static int anInt13;
-
 	@OriginalMember(owner = "runetek4.client!aa", name = "m", descriptor = "I")
 	public static int anInt15;
 
 	@OriginalMember(owner = "runetek4.client!aa", name = "t", descriptor = "[Lclient!pc;")
 	public static MaterialRenderer[] anInterface4Array1;
 
-	@OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "I")
-	public static int anInt7 = 0;
-
 	@OriginalMember(owner = "runetek4.client!aa", name = "l", descriptor = "Z")
 	public static boolean membersWorld = false;
-
-	@OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(SI)Z")
-	public static boolean method5(@OriginalArg(0) short arg0) {
-		if (arg0 == 47 || arg0 == 5 || arg0 == 43 || arg0 == 35 || arg0 == 58 || arg0 == 22 || arg0 == 40 || arg0 == 3) {
-			return true;
-		} else if (arg0 == 9 || arg0 == 12 || arg0 == 1006 || arg0 == 1003) {
-			return true;
-		} else if (arg0 == 25 || arg0 == 23 || arg0 == 48 || arg0 == 7 || arg0 == 13) {
-			return true;
-		} else {
-			return arg0 == 8 || arg0 == 32 || arg0 == 28 || arg0 == 59 || arg0 == 51 || arg0 == 41;
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "([Lclient!be;ZI)V")
-	public static void method7(@OriginalArg(0) Component[] arg0, @OriginalArg(2) int arg1) {
-		for (@Pc(11) int local11 = 0; local11 < arg0.length; local11++) {
-			@Pc(23) Component local23 = arg0[local11];
-			if (local23 != null) {
-				if (local23.type == 0) {
-					if (local23.createdComponents != null) {
-						method7(local23.createdComponents, arg1);
-					}
-					@Pc(49) ComponentPointer local49 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) local23.id);
-					if (local49 != null) {
-						Static54.method1304(arg1, local49.interfaceId);
-					}
-				}
-				@Pc(72) HookRequest local72;
-				if (arg1 == 0 && local23.onDialogAbort != null) {
-					local72 = new HookRequest();
-					local72.arguments = local23.onDialogAbort;
-					local72.source = local23;
-					ClientScriptRunner.run(local72);
-				}
-				if (arg1 == 1 && local23.onWidgetsOpenClose != null) {
-					if (local23.createdComponentId >= 0) {
-						@Pc(103) Component local103 = InterfaceList.getComponent(local23.id);
-						if (local103 == null || local103.createdComponents == null || local23.createdComponentId >= local103.createdComponents.length || local103.createdComponents[local23.createdComponentId] != local23) {
-							continue;
-						}
-					}
-					local72 = new HookRequest();
-					local72.arguments = local23.onWidgetsOpenClose;
-					local72.source = local23;
-					ClientScriptRunner.run(local72);
-				}
-			}
-		}
-	}
 
 	@OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(IIIIIZIIIIII)Z")
 	public static boolean method8(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(11) int arg10) {

@@ -17,35 +17,9 @@ public final class Static204 {
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "e", descriptor = "(B)V")
 	public static void clear() {
-		Static93.aClass99_13.clear();
-		Static125.aClass99_18.clear();
-		Static262.aClass99_35.clear();
-	}
-
-	@OriginalMember(owner = "runetek4.client!qi", name = "b", descriptor = "(II)I")
-	public static int method3674(@OriginalArg(0) int arg0) {
-		@Pc(5) int local5 = 0;
-		if (arg0 < 0 || arg0 >= 65536) {
-			local5 += 16;
-			arg0 >>>= 0x10;
-		}
-		if (arg0 >= 256) {
-			local5 += 8;
-			arg0 >>>= 0x8;
-		}
-		if (arg0 >= 16) {
-			local5 += 4;
-			arg0 >>>= 0x4;
-		}
-		if (arg0 >= 4) {
-			arg0 >>>= 0x2;
-			local5 += 2;
-		}
-		if (arg0 >= 1) {
-			arg0 >>>= 0x1;
-			local5++;
-		}
-		return arg0 + local5;
+		Static93.aClass99_13.clean();
+		Static125.aClass99_18.clean();
+		Static262.aClass99_35.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "a", descriptor = "(IIBI)I")

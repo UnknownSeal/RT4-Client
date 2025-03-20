@@ -8,7 +8,7 @@ import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.util.IntUtils;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -17,8 +17,16 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!hg")
-public final class Class3_Sub14 extends Node {
+public final class GlTile extends Node {
 
+	@OriginalMember(owner = "runetek4.client!hg", name = "J", descriptor = "Ljava/nio/ByteBuffer;")
+	public static ByteBuffer aByteBuffer4;
+	@OriginalMember(owner = "runetek4.client!hg", name = "U", descriptor = "Lclient!wa;")
+	public static Packet aClass3_Sub15_3;
+	@OriginalMember(owner = "runetek4.client!hg", name = "K", descriptor = "Lclient!wa;")
+	public static Packet aClass3_Sub15_2;
+	@OriginalMember(owner = "runetek4.client!hg", name = "Q", descriptor = "Ljava/nio/ByteBuffer;")
+	public static ByteBuffer aByteBuffer5;
 	@OriginalMember(owner = "runetek4.client!hg", name = "s", descriptor = "Ljava/nio/ByteBuffer;")
 	private ByteBuffer aByteBuffer3;
 
@@ -89,27 +97,35 @@ public final class Class3_Sub14 extends Node {
 	private int anInt2489 = 0;
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "y", descriptor = "I")
-	public final int anInt2485;
+	public final int texture;
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "V", descriptor = "F")
 	private final float aFloat12;
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "M", descriptor = "Z")
-	public final boolean aBoolean140;
+	public final boolean blend;
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "u", descriptor = "Z")
 	private final boolean aBoolean139;
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "C", descriptor = "I")
-	public final int anInt2486;
+	public final int underwaterColor;
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "<init>", descriptor = "(IFZZI)V")
-	public Class3_Sub14(@OriginalArg(0) int arg0, @OriginalArg(1) float arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) boolean arg3, @OriginalArg(4) int arg4) {
-		this.anInt2485 = arg0;
+	public GlTile(@OriginalArg(0) int arg0, @OriginalArg(1) float arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) boolean arg3, @OriginalArg(4) int arg4) {
+		this.texture = arg0;
 		this.aFloat12 = arg1;
-		this.aBoolean140 = arg2;
+		this.blend = arg2;
 		this.aBoolean139 = arg3;
-		this.anInt2486 = arg4;
+		this.underwaterColor = arg4;
+	}
+
+	@OriginalMember(owner = "runetek4.client!hg", name = "a", descriptor = "()V")
+	public static void method1939() {
+		aClass3_Sub15_3 = null;
+		aClass3_Sub15_2 = null;
+		aByteBuffer5 = null;
+		aByteBuffer4 = null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "b", descriptor = "()V")
@@ -129,7 +145,7 @@ public final class Class3_Sub14 extends Node {
 		this.anIntArray231 = new int[this.anInt2484];
 		this.anIntArrayArray17 = new int[this.anInt2484][];
 		this.aClass133_8 = new HashTable(IntUtils.bitceil(this.anInt2482));
-		if (this.aBoolean140) {
+		if (this.blend) {
 			this.anIntArrayArray18 = new int[this.anInt2484][];
 			this.aBooleanArray54 = new boolean[this.anInt2484];
 		}
@@ -199,7 +215,7 @@ public final class Class3_Sub14 extends Node {
 		if (GlRenderer.arbVboSupported) {
 			@Pc(200) ByteBuffer local200 = ByteBuffer.wrap(local12.data, 0, local12.offset);
 			this.aClass155_3 = new GlVertexBufferObject();
-			this.aClass155_3.method4519(local200);
+			this.aClass155_3.setArrayBuffer(local200);
 		} else {
 			this.aByteBuffer3 = ByteBuffer.allocateDirect(local12.offset).order(ByteOrder.nativeOrder());
 			this.aByteBuffer3.put(local12.data, 0, local12.offset);
@@ -217,19 +233,19 @@ public final class Class3_Sub14 extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "a", descriptor = "([[[Lclient!bj;FZ)V")
-	public final void method1944(@OriginalArg(0) SceneTile[][][] arg0, @OriginalArg(1) float arg1, @OriginalArg(2) boolean arg2) {
-		if (Static95.aClass3_Sub15_3 == null || Static95.aClass3_Sub15_3.data.length < this.anInt2488 * 4) {
-			Static95.aClass3_Sub15_3 = new Packet(this.anInt2488 * 4);
+	public final void method1944(@OriginalArg(0) Tile[][][] arg0, @OriginalArg(1) float arg1, @OriginalArg(2) boolean arg2) {
+		if (aClass3_Sub15_3 == null || aClass3_Sub15_3.data.length < this.anInt2488 * 4) {
+			aClass3_Sub15_3 = new Packet(this.anInt2488 * 4);
 		} else {
-			Static95.aClass3_Sub15_3.offset = 0;
+			aClass3_Sub15_3.offset = 0;
 		}
-		if (Static95.aClass3_Sub15_2 == null || Static95.aClass3_Sub15_2.data.length < this.anInt2487 * 4) {
-			Static95.aClass3_Sub15_2 = new Packet(this.anInt2487 * 4);
+		if (aClass3_Sub15_2 == null || aClass3_Sub15_2.data.length < this.anInt2487 * 4) {
+			aClass3_Sub15_2 = new Packet(this.anInt2487 * 4);
 		} else {
-			Static95.aClass3_Sub15_2.offset = 0;
+			aClass3_Sub15_2.offset = 0;
 		}
 		@Pc(47) int local47;
-		@Pc(68) SceneTile local68;
+		@Pc(68) Tile local68;
 		@Pc(111) Packet local111;
 		@Pc(78) int[] local78;
 		@Pc(86) int[] local86;
@@ -240,16 +256,16 @@ public final class Class3_Sub14 extends Node {
 				local68 = arg0[this.anIntArray231[local47]][this.anIntArray228[local47]][this.anIntArray227[local47]];
 				if (local68 != null && local68.aBoolean45) {
 					local78 = this.anIntArrayArray17[local47];
-					if (this.aBoolean140) {
+					if (this.blend) {
 						local86 = this.anIntArrayArray18[local47];
 						if (local86 != null) {
 							for (local90 = 0; local90 < local86.length; local90++) {
-								Static95.aClass3_Sub15_2.p4(local86[local90]);
+								aClass3_Sub15_2.p4(local86[local90]);
 							}
 						}
-						local111 = this.aBooleanArray54[local47] ? Static95.aClass3_Sub15_2 : Static95.aClass3_Sub15_3;
+						local111 = this.aBooleanArray54[local47] ? aClass3_Sub15_2 : aClass3_Sub15_3;
 					} else {
-						local111 = Static95.aClass3_Sub15_3;
+						local111 = aClass3_Sub15_3;
 					}
 					for (local116 = 1; local116 < local78.length - 1; local116++) {
 						local111.p4(local78[0]);
@@ -263,16 +279,16 @@ public final class Class3_Sub14 extends Node {
 				local68 = arg0[this.anIntArray231[local47]][this.anIntArray228[local47]][this.anIntArray227[local47]];
 				if (local68 != null && local68.aBoolean45) {
 					local78 = this.anIntArrayArray17[local47];
-					if (this.aBoolean140) {
+					if (this.blend) {
 						local86 = this.anIntArrayArray18[local47];
 						if (local86 != null) {
 							for (local90 = 0; local90 < local86.length; local90++) {
-								Static95.aClass3_Sub15_2.p4le(local86[local90]);
+								aClass3_Sub15_2.p4le(local86[local90]);
 							}
 						}
-						local111 = this.aBooleanArray54[local47] ? Static95.aClass3_Sub15_2 : Static95.aClass3_Sub15_3;
+						local111 = this.aBooleanArray54[local47] ? aClass3_Sub15_2 : aClass3_Sub15_3;
 					} else {
-						local111 = Static95.aClass3_Sub15_3;
+						local111 = aClass3_Sub15_3;
 					}
 					for (local116 = 1; local116 < local78.length - 1; local116++) {
 						local111.p4le(local78[0]);
@@ -282,15 +298,15 @@ public final class Class3_Sub14 extends Node {
 				}
 			}
 		}
-		if (Static95.aClass3_Sub15_3.offset == 0 && Static95.aClass3_Sub15_2.offset == 0) {
+		if (aClass3_Sub15_3.offset == 0 && aClass3_Sub15_2.offset == 0) {
 			return;
 		}
 		@Pc(257) GL2 local257 = GlRenderer.gl;
-		if (this.anInt2485 == -1 || arg2) {
+		if (this.texture == -1 || arg2) {
 			GlRenderer.setTextureId(-1);
-			Static27.setMaterial(0, 0);
+			MaterialManager.setMaterial(0, 0);
 		} else {
-			Rasterizer.textureProvider.method3227(this.anInt2485);
+			Rasterizer.textureProvider.method3227(this.texture);
 		}
 		@Pc(282) int local282 = this.aBoolean139 ? 40 : 36;
 		if (this.aClass155_3 == null) {
@@ -301,7 +317,7 @@ public final class Class3_Sub14 extends Node {
 			local257.glVertexPointer(3, GL2.GL_FLOAT, local282, this.aByteBuffer3);
 			this.aByteBuffer3.position(12);
 			local257.glColorPointer(4, GL2.GL_UNSIGNED_BYTE, local282, this.aByteBuffer3);
-			if (Static178.highDetailLighting) {
+			if (Preferences.highDetailLighting) {
 				this.aByteBuffer3.position(16);
 				local257.glNormalPointer(GL2.GL_FLOAT, local282, this.aByteBuffer3);
 			}
@@ -314,10 +330,10 @@ public final class Class3_Sub14 extends Node {
 				local257.glClientActiveTexture(GL2.GL_TEXTURE0);
 			}
 		} else {
-			this.aClass155_3.method4516();
+			this.aClass155_3.bindArray();
 			local257.glVertexPointer(3, GL2.GL_FLOAT, local282, 0L);
 			local257.glColorPointer(4, GL2.GL_UNSIGNED_BYTE, local282, 12L);
-			if (Static178.highDetailLighting) {
+			if (Preferences.highDetailLighting) {
 				local257.glNormalPointer(GL2.GL_FLOAT, local282, 16L);
 			}
 			local257.glTexCoordPointer(2, GL2.GL_FLOAT, local282, 28L);
@@ -330,36 +346,36 @@ public final class Class3_Sub14 extends Node {
 		if (GlRenderer.arbVboSupported) {
 			local257.glBindBuffer(GL2.GL_ELEMENT_ARRAY_BUFFER, 0);
 		}
-		if (Static95.aClass3_Sub15_3.offset != 0) {
-			if (Static95.aByteBuffer5 == null || Static95.aByteBuffer5.capacity() < Static95.aClass3_Sub15_3.offset) {
-				Static95.aByteBuffer5 = ByteBuffer.allocateDirect(Static95.aClass3_Sub15_3.offset).order(ByteOrder.nativeOrder());
+		if (aClass3_Sub15_3.offset != 0) {
+			if (aByteBuffer5 == null || aByteBuffer5.capacity() < aClass3_Sub15_3.offset) {
+				aByteBuffer5 = ByteBuffer.allocateDirect(aClass3_Sub15_3.offset).order(ByteOrder.nativeOrder());
 			} else {
-				Static95.aByteBuffer5.clear();
+				aByteBuffer5.clear();
 			}
-			Static95.aByteBuffer5.put(Static95.aClass3_Sub15_3.data, 0, Static95.aClass3_Sub15_3.offset);
-			Static95.aByteBuffer5.flip();
+			aByteBuffer5.put(aClass3_Sub15_3.data, 0, aClass3_Sub15_3.offset);
+			aByteBuffer5.flip();
 			GlRenderer.method4159(arg1);
-			local257.glDrawElements(GL2.GL_TRIANGLES, Static95.aClass3_Sub15_3.offset / 4, GL2.GL_UNSIGNED_INT, Static95.aByteBuffer5);
+			local257.glDrawElements(GL2.GL_TRIANGLES, aClass3_Sub15_3.offset / 4, GL2.GL_UNSIGNED_INT, aByteBuffer5);
 		}
-		if (Static95.aClass3_Sub15_2.offset == 0) {
+		if (aClass3_Sub15_2.offset == 0) {
 			return;
 		}
-		if (Static95.aByteBuffer4 == null || Static95.aByteBuffer4.capacity() < Static95.aClass3_Sub15_2.offset) {
-			Static95.aByteBuffer4 = ByteBuffer.allocateDirect(Static95.aClass3_Sub15_2.offset).order(ByteOrder.nativeOrder());
+		if (aByteBuffer4 == null || aByteBuffer4.capacity() < aClass3_Sub15_2.offset) {
+			aByteBuffer4 = ByteBuffer.allocateDirect(aClass3_Sub15_2.offset).order(ByteOrder.nativeOrder());
 		} else {
-			Static95.aByteBuffer4.clear();
+			aByteBuffer4.clear();
 		}
-		Static95.aByteBuffer4.put(Static95.aClass3_Sub15_2.data, 0, Static95.aClass3_Sub15_2.offset);
-		Static95.aByteBuffer4.flip();
+		aByteBuffer4.put(aClass3_Sub15_2.data, 0, aClass3_Sub15_2.offset);
+		aByteBuffer4.flip();
 		GlRenderer.method4159(arg1 - 100.0F);
 		GlRenderer.disableDepthMask();
-		local257.glDrawElements(GL2.GL_TRIANGLES, Static95.aClass3_Sub15_2.offset / 4, GL2.GL_UNSIGNED_INT, Static95.aByteBuffer4);
+		local257.glDrawElements(GL2.GL_TRIANGLES, aClass3_Sub15_2.offset / 4, GL2.GL_UNSIGNED_INT, aByteBuffer4);
 		GlRenderer.enableDepthMask();
 	}
 
 	@OriginalMember(owner = "runetek4.client!hg", name = "a", descriptor = "(III[I[IZ)I")
 	public final int method1945(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int[] arg3, @OriginalArg(4) int[] arg4, @OriginalArg(5) boolean arg5) {
-		if (this.aBoolean140) {
+		if (this.blend) {
 			this.anIntArrayArray18[this.anInt2489] = arg4;
 			this.aBooleanArray54[this.anInt2489] = arg5;
 			if (arg4 != null) {

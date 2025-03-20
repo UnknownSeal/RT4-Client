@@ -13,9 +13,6 @@ public final class Static92 {
 	@OriginalMember(owner = "runetek4.client!hd", name = "a", descriptor = "I")
 	public static int anInt2430 = 0;
 
-	@OriginalMember(owner = "runetek4.client!hd", name = "g", descriptor = "[J")
-	public static final long[] friendName37 = new long[200];
-
 	@OriginalMember(owner = "runetek4.client!hd", name = "i", descriptor = "I")
 	public static int anInt2433 = 0;
 

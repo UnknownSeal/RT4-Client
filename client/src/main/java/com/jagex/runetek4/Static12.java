@@ -32,16 +32,16 @@ public final class Static12 {
 		if (Static142.anInt3482 == -1 || Static217.anInt4901 == -1) {
 			return;
 		}
-		@Pc(60) int local60 = Static142.anInt3482 - Static13.anInt435;
+		@Pc(60) int local60 = Static142.anInt3482 - WorldMap.anInt435;
 		if (local60 < 2 || local60 > 2) {
 			local60 >>= 0x4;
 		}
-		@Pc(78) int local78 = Static217.anInt4901 - Static28.anInt919;
+		@Pc(78) int local78 = Static217.anInt4901 - WorldMap.anInt919;
 		if (local78 < 2 || local78 > 2) {
 			local78 >>= 0x4;
 		}
-		Static28.anInt919 -= -local78;
-		Static13.anInt435 += local60;
+		WorldMap.anInt919 -= -local78;
+		WorldMap.anInt435 += local60;
 		if (local60 == 0 && local78 == 0) {
 			Static142.anInt3482 = -1;
 			Static217.anInt4901 = -1;

@@ -2,7 +2,7 @@ package com.jagex.runetek4.audio.vorbis;
 
 import com.jagex.runetek4.Static108;
 import com.jagex.runetek4.Static117;
-import com.jagex.runetek4.Static204;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -229,7 +229,7 @@ public final class VorbisFloor {
 			currentXList[local15] = this.xList[local15];
 		}
 		local15 = RANGES[this.multiplier - 1];
-		@Pc(40) int local40 = Static204.method3674(local15 - 1);
+		@Pc(40) int local40 = IntUtils.bitCount(local15 - 1);
 		y[0] = VorbisSound.read(local40);
 		y[1] = VorbisSound.read(local40);
 		@Pc(52) int local52 = 2;

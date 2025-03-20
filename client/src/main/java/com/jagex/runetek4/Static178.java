@@ -9,15 +9,12 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static178 {
 
-	@OriginalMember(owner = "runetek4.client!od", name = "c", descriptor = "Z")
-	public static boolean highDetailLighting = true;
-
 	@OriginalMember(owner = "runetek4.client!od", name = "g", descriptor = "S")
 	public static short aShort25 = 256;
 
 	@OriginalMember(owner = "runetek4.client!od", name = "a", descriptor = "(IZII)I")
-	public static int method3319(@OriginalArg(1) boolean arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		@Pc(19) Inv local19 = (Inv) Inv.recentUse.getNode((long) arg1);
+	public static int getTotalParam(@OriginalArg(1) boolean arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
+		@Pc(19) Inv local19 = (Inv) Inv.objectContainerCache.getNode((long) arg1);
 		if (local19 == null) {
 			return 0;
 		}

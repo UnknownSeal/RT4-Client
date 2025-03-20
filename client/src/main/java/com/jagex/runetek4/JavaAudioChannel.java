@@ -42,7 +42,7 @@ public final class JavaAudioChannel extends AudioChannel {
 
 	@OriginalMember(owner = "runetek4.client!qa", name = "a", descriptor = "(Ljava/awt/runetek4.Component;)V")
 	@Override
-	public final void method3576(@OriginalArg(0) Component arg0) {
+	public final void init(@OriginalArg(0) Component arg0) {
 		@Pc(1) Info[] local1 = AudioSystem.getMixerInfo();
 		if (local1 != null) {
 			for (@Pc(9) int local9 = 0; local9 < local1.length; local9++) {
@@ -69,7 +69,7 @@ public final class JavaAudioChannel extends AudioChannel {
 			this.aSourceDataLine1.start();
 			this.anInt4645 = arg0;
 		} catch (@Pc(36) LineUnavailableException local36) {
-			if (Static248.method3289(arg0) == 1) {
+			if (IntUtils.bitCountFast(arg0) == 1) {
 				this.aSourceDataLine1 = null;
 				throw local36;
 			} else {

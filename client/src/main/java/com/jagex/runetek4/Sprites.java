@@ -49,7 +49,7 @@ public class Sprites {
 
     @OriginalMember(owner = "client!cg", name = "a", descriptor = "(ZILclient!ve;I)[Lclient!ek;")
     private static SoftwareIndexedSprite[] method837(@OriginalArg(1) int arg0, @OriginalArg(2) Js5 arg1) {
-        return Static234.method4016(arg1, 0, arg0) ? Static121.method2406() : null;
+        return SpriteLoader.decode(arg1, 0, arg0) ? Static121.method2406() : null;
     }
 
     @OriginalMember(owner = "client!cg", name = "a", descriptor = "(ILclient!ve;)V")
@@ -65,7 +65,7 @@ public class Sprites {
         Static240.crossSprites = Static131.method2580(Static32.anInt1016, arg0);
         Static139.aClass3_Sub2_Sub1Array6 = Static131.method2580(Static78.anInt2147, arg0);
         Static241.aClass36Array16 = Static146.method2749(arg0, Static124.anInt3083);
-        nameIcons = Static146.method2749(arg0, FluTypeList.anInt5057);
+        nameIcons = Static146.method2749(arg0, FloorUnderlayTypeList.anInt5057);
         Fonts.p11Full.setNameIcons(nameIcons, null);
         Fonts.p12Full.setNameIcons(nameIcons, null);
         Fonts.b12Full.setNameIcons(nameIcons, null);
@@ -115,9 +115,9 @@ public class Sprites {
 
     @OriginalMember(owner = "runetek4.client!g", name = "a", descriptor = "(ILclient!ve;)V")
     public static void init(@OriginalArg(1) Js5 arg0) {
-        Static166.anInt4049 = arg0.getGroupId(P11_FULL);
-        Static130.anInt3161 = arg0.getGroupId(P12_FULL);
-        Static73.anInt2077 = arg0.getGroupId(B12_FULL);
+        Static166.p11FullId = arg0.getGroupId(P11_FULL);
+        Static130.p12FullId = arg0.getGroupId(P12_FULL);
+        Static73.b12FullId = arg0.getGroupId(B12_FULL);
         Static280.anInt5900 = arg0.getGroupId(MAPFUNCTION);
         Static131.anInt3261 = arg0.getGroupId(Static219.HITMARKS);
         Static36.anInt1165 = arg0.getGroupId(Static260.HITBAR_DEFAULT);
@@ -129,7 +129,7 @@ public class Sprites {
         Static32.anInt1016 = arg0.getGroupId(CROSS);
         Static78.anInt2147 = arg0.getGroupId(Static189.MAPDOTS);
         Static124.anInt3083 = arg0.getGroupId(Static250.SCROLLBAR);
-        FluTypeList.anInt5057 = arg0.getGroupId(NAME_ICONS);
+        FloorUnderlayTypeList.anInt5057 = arg0.getGroupId(NAME_ICONS);
         Static84.anInt2257 = arg0.getGroupId(FLOORSHADOWS);
         Static163.anInt3962 = arg0.getGroupId(Static280.COMPASS);
         Static128.anInt3143 = arg0.getGroupId(Static5.HINT_MAPEDGE);
@@ -138,49 +138,49 @@ public class Sprites {
     @OriginalMember(owner = "client!cd", name = "a", descriptor = "(Lclient!ve;B)I")
     public static int getReady(@OriginalArg(0) Js5 arg0) {
         @Pc(5) int local5 = 0;
-        if (arg0.method4506(Static280.anInt5900)) {
+        if (arg0.isFileReady(Static280.anInt5900)) {
             local5++;
         }
-        if (arg0.method4506(Static131.anInt3261)) {
+        if (arg0.isFileReady(Static131.anInt3261)) {
             local5++;
         }
-        if (arg0.method4506(Static36.anInt1165)) {
+        if (arg0.isFileReady(Static36.anInt1165)) {
             local5++;
         }
-        if (arg0.method4506(Static214.anInt5579)) {
+        if (arg0.isFileReady(Static214.anInt5579)) {
             local5++;
         }
-        if (arg0.method4506(Static34.anInt1049)) {
+        if (arg0.isFileReady(Static34.anInt1049)) {
             local5++;
         }
-        if (arg0.method4506(Class6.anInt4741)) {
+        if (arg0.isFileReady(Class6.anInt4741)) {
             local5++;
         }
-        if (arg0.method4506(Static149.anInt3551)) {
+        if (arg0.isFileReady(Static149.anInt3551)) {
             local5++;
         }
-        if (arg0.method4506(Static19.anInt647)) {
+        if (arg0.isFileReady(Static19.anInt647)) {
             local5++;
         }
-        if (arg0.method4506(Static32.anInt1016)) {
+        if (arg0.isFileReady(Static32.anInt1016)) {
             local5++;
         }
-        if (arg0.method4506(Static78.anInt2147)) {
+        if (arg0.isFileReady(Static78.anInt2147)) {
             local5++;
         }
-        if (arg0.method4506(Static124.anInt3083)) {
+        if (arg0.isFileReady(Static124.anInt3083)) {
             local5++;
         }
-        if (arg0.method4506(FluTypeList.anInt5057)) {
+        if (arg0.isFileReady(FloorUnderlayTypeList.anInt5057)) {
             local5++;
         }
-        if (arg0.method4506(Static84.anInt2257)) {
+        if (arg0.isFileReady(Static84.anInt2257)) {
             local5++;
         }
-        if (arg0.method4506(Static163.anInt3962)) {
+        if (arg0.isFileReady(Static163.anInt3962)) {
             local5++;
         }
-        if (arg0.method4506(Static128.anInt3143)) {
+        if (arg0.isFileReady(Static128.anInt3143)) {
             local5++;
         }
         return local5;

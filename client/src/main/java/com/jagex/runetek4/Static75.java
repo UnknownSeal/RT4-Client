@@ -5,7 +5,7 @@ import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.scene.tile.WallDecor;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -151,29 +151,9 @@ public final class Static75 {
 		Static127.method2463(local26, local64, local20, local31, false, local13);
 	}
 
-	@OriginalMember(owner = "client!g", name = "a", descriptor = "(B)V")
-	public static void method1631() {
-		Static254.anIntArray488 = null;
-		Static269.anIntArray252 = null;
-		Static26.anIntArray66 = null;
-		aClass6.aByteArrayArray5 = null;
-		Static274.anIntArray440 = null;
-		Static259.anIntArray513 = null;
-	}
-
-	@OriginalMember(owner = "client!g", name = "b", descriptor = "(I)V")
-	public static void method1632() {
-		@Pc(9) Environment local9 = new Environment();
-		for (@Pc(18) int local18 = 0; local18 < 13; local18++) {
-			for (@Pc(25) int local25 = 0; local25 < 13; local25++) {
-				Static192.aClass92ArrayArray1[local18][local25] = local9;
-			}
-		}
-	}
-
 	@OriginalMember(owner = "client!g", name = "a", descriptor = "(III)Lclient!df;")
 	public static WallDecor method1633(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) SceneTile local7 = Static130.levelTiles[arg0][arg1][arg2];
+		@Pc(7) Tile local7 = Static130.levelTiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return null;
 		} else {

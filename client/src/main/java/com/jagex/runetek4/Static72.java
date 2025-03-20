@@ -16,9 +16,6 @@ public final class Static72 {
 	@OriginalMember(owner = "client!fl", name = "D", descriptor = "[[I")
 	public static int[][] anIntArrayArray14;
 
-	@OriginalMember(owner = "client!fl", name = "w", descriptor = "J")
-	public static long killtime = 0L;
-
 	@OriginalMember(owner = "client!fl", name = "B", descriptor = "I")
 	public static int updatedVarcstrsWriterIndex = 0;
 

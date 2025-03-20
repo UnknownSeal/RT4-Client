@@ -153,7 +153,7 @@ public final class Js5GlTextureProvider implements GlTextureProvider {
 	@OriginalMember(owner = "runetek4.client!nk", name = "a", descriptor = "(IZ)V")
 	@Override
 	public final void method3227(@OriginalArg(0) int arg0) {
-		Static27.setMaterial(this.aByteArray61[arg0] & 0xFF, this.aByteArray62[arg0] & 0xFF);
+		MaterialManager.setMaterial(this.aByteArray61[arg0] & 0xFF, this.aByteArray62[arg0] & 0xFF);
 		@Pc(23) boolean local23 = false;
 		@Pc(28) GlTexture local28 = this.method3242(arg0);
 		if (local28 != null) {
@@ -190,7 +190,7 @@ public final class Js5GlTextureProvider implements GlTextureProvider {
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "g", descriptor = "(II)I")
 	@Override
-	public final int method3237(@OriginalArg(0) int arg0) {
+	public final int getMaterialType(@OriginalArg(0) int arg0) {
 		return this.aByteArray62[arg0] & 0xFF;
 	}
 

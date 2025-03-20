@@ -1,11 +1,10 @@
 package com.jagex.runetek4;
 
-import java.util.Date;
-
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.config.FloType;
+import com.jagex.runetek4.config.FluType;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.game.config.msitype.MSIType;
+import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -35,8 +34,8 @@ public final class Static33 {
 			local49 = arg1.length;
 			local52 = arg1.width;
 		}
-		@Pc(66) int local66 = local42.maxWidth;
-		@Pc(69) int local69 = local42.anInt4276;
+		@Pc(66) int local66 = local42.innerWidth;
+		@Pc(69) int local69 = local42.innerHeight;
 		if (local10.aBoolean2) {
 			local69 = local52 * 4;
 			local66 = local49 * 4;
@@ -53,7 +52,7 @@ public final class Static33 {
 	public static void method868(@OriginalArg(1) Packet arg0) {
 		@Pc(13) int local13 = Static266.anInt5338 >> 1;
 		@Pc(19) int local19 = Static131.anInt3254 >> 2 << 10;
-		@Pc(23) byte[][] local23 = new byte[Static48.anInt1449][IdkTypeList.anInt4296];
+		@Pc(23) byte[][] local23 = new byte[Static48.anInt1449][WorldMap.length];
 		@Pc(33) int local33;
 		@Pc(102) int local102;
 		@Pc(114) int local114;
@@ -68,9 +67,9 @@ public final class Static33 {
 			}
 			@Pc(57) int local57 = arg0.g1();
 			@Pc(61) int local61 = arg0.g1();
-			@Pc(68) int local68 = local57 * 64 - Static158.anInt3846;
-			@Pc(78) int local78 = IdkTypeList.anInt4296 + Static2.anInt13 - local61 * 64 - 1;
-			if (local68 >= 0 && local78 - 63 >= 0 && Static48.anInt1449 > local68 + 63 && IdkTypeList.anInt4296 > local78) {
+			@Pc(68) int local68 = local57 * 64 - WorldMap.originX;
+			@Pc(78) int local78 = WorldMap.length + WorldMap.originZ - local61 * 64 - 1;
+			if (local68 >= 0 && local78 - 63 >= 0 && Static48.anInt1449 > local68 + 63 && WorldMap.length > local78) {
 				for (local102 = 0; local102 < 64; local102++) {
 					@Pc(112) byte[] local112 = local23[local68 + local102];
 					for (local114 = 0; local114 < 64; local114++) {
@@ -86,7 +85,7 @@ public final class Static33 {
 			}
 		}
 		@Pc(175) int local175 = Static48.anInt1449;
-		local33 = IdkTypeList.anInt4296;
+		local33 = WorldMap.length;
 		@Pc(180) int[] local180 = new int[local33];
 		@Pc(183) int[] local183 = new int[local33];
 		@Pc(186) int[] local186 = new int[local33];
@@ -101,10 +100,10 @@ public final class Static33 {
 				if (local175 > local114) {
 					local225 = local23[local114][local203] & 0xFF;
 					if (local225 > 0) {
-						@Pc(236) FloType local236 = Static199.method3593(local225 - 1);
-						local183[local203] += local236.anInt4154;
-						local180[local203] += local236.anInt4149;
-						local186[local203] += local236.anInt4158;
+						@Pc(236) FluType local236 = FloorUnderlayTypeList.get(local225 - 1);
+						local183[local203] += local236.weightedHue;
+						local180[local203] += local236.saturation;
+						local186[local203] += local236.lightness;
 						local189[local203] += local236.chroma;
 						local272 = local192[local203]++;
 					}
@@ -113,10 +112,10 @@ public final class Static33 {
 				if (local225 >= 0) {
 					local293 = local23[local225][local203] & 0xFF;
 					if (local293 > 0) {
-						@Pc(302) FloType local302 = Static199.method3593(local293 - 1);
-						local183[local203] -= local302.anInt4154;
-						local180[local203] -= local302.anInt4149;
-						local186[local203] -= local302.anInt4158;
+						@Pc(302) FluType local302 = FloorUnderlayTypeList.get(local293 - 1);
+						local183[local203] -= local302.weightedHue;
+						local180[local203] -= local302.saturation;
+						local186[local203] -= local302.lightness;
 						local189[local203] -= local302.chroma;
 						local272 = local192[local203]--;
 					}
@@ -160,7 +159,7 @@ public final class Static33 {
 								local519 = 127;
 							}
 							@Pc(541) int local541 = local519 + (local480 & 0x380) + (local480 + local19 & 0xFC00);
-							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = Pix3D.anIntArray220[ColorUtils.multiplyLightnessSafe(96, local541)];
+							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = Rasterizer.palette[ColorUtils.multiplyLightnessSafe(96, local541)];
 						} else if (local462 != null) {
 							local462[((local367 & 0x3F) << 6) + (local102 & 0x3F)] = 0;
 						}
@@ -173,19 +172,6 @@ public final class Static33 {
 	@OriginalMember(owner = "client!cj", name = "a", descriptor = "(IB)I")
 	public static int method872(@OriginalArg(0) int arg0) {
 		return arg0 & 0xFF;
-	}
-
-	@OriginalMember(owner = "client!cj", name = "a", descriptor = "(JB)Lclient!na;")
-	public static JString method873(@OriginalArg(0) long arg0) {
-		Static35.aCalendar1.setTime(new Date(arg0));
-		@Pc(13) int local13 = Static35.aCalendar1.get(7);
-		@Pc(17) int local17 = Static35.aCalendar1.get(5);
-		@Pc(21) int local21 = Static35.aCalendar1.get(2);
-		@Pc(32) int local32 = Static35.aCalendar1.get(1);
-		@Pc(36) int local36 = Static35.aCalendar1.get(11);
-		@Pc(40) int local40 = Static35.aCalendar1.get(12);
-		@Pc(44) int local44 = Static35.aCalendar1.get(13);
-		return JString.concatenate(new JString[] { Static219.aClass100Array149[local13 - 1], Static74.aClass100_461, JString.parseInt(local17 / 10), JString.parseInt(local17 % 10), Static270.aClass100_1089, Static138.MONTHS[local21], Static270.aClass100_1089, JString.parseInt(local32), Static49.aClass100_351, JString.parseInt(local36 / 10), JString.parseInt(local36 % 10), Static264.aClass100_875, JString.parseInt(local40 / 10), JString.parseInt(local40 % 10), Static264.aClass100_875, JString.parseInt(local44 / 10), JString.parseInt(local44 % 10), Static55.aClass100_376 });
 	}
 
 	@OriginalMember(owner = "client!cj", name = "a", descriptor = "(ZIIIIIIFB)[[I")

@@ -21,7 +21,4 @@ public final class Static250 {
 	@OriginalMember(owner = "runetek4.client!uf", name = "q", descriptor = "Lclient!na;")
 	public static final JString aClass100_1042 = JString.parse("Null");
 
-	@OriginalMember(owner = "runetek4.client!uf", name = "s", descriptor = "Lclient!na;")
-	public static final JString aClass100_1043 = JString.parse(" <col=00ff80>");
-
 }

@@ -9,14 +9,14 @@ public final class Static134 {
 
 	@OriginalMember(owner = "runetek4.client!kh", name = "a", descriptor = "(B)Lclient!ek;")
 	public static SoftwareIndexedSprite method2619() {
-		@Pc(25) SoftwareIndexedSprite local25 = new SoftwareIndexedSprite(Static124.anInt3080, Static227.anInt5091, Static274.anIntArray440[0], Static269.anIntArray252[0], Static254.anIntArray488[0], Static26.anIntArray66[0], aClass6.aByteArrayArray5[0], Static259.anIntArray513);
-		Static75.method1631();
+		@Pc(25) SoftwareIndexedSprite local25 = new SoftwareIndexedSprite(Static124.anInt3080, Static227.anInt5091, SpriteLoader.xOffsets[0], SpriteLoader.yOffsets[0], SpriteLoader.innerWidths[0], SpriteLoader.innerHeights[0], SpriteLoader.pixels[0], Static259.anIntArray513);
+		SpriteLoader.clear();
 		return local25;
 	}
 
 	@OriginalMember(owner = "runetek4.client!kh", name = "a", descriptor = "(II)V")
 	public static void method2621() {
-		Static45.aClass99_6.clear(5);
+		Static45.aClass99_6.clean(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!kh", name = "a", descriptor = "(IIIBII)V")

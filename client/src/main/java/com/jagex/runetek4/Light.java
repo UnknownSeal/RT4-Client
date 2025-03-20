@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -91,7 +92,7 @@ public final class Light {
 		for (local87 = 0; local87 < this.aShortArray30.length; local87++) {
 			this.aShortArray30[local87] = (short) arg0.g2();
 		}
-		this.anInt2247 = Pix3D.anIntArray220[arg0.g2()];
+		this.anInt2247 = Rasterizer.palette[arg0.g2()];
 		local87 = arg0.g1();
 		this.anInt2249 = (local87 & 0xE0) << 3;
 		this.anInt2243 = local87 & 0x1F;

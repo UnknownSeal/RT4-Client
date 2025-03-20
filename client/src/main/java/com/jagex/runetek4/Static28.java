@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.scene.Scenery;
-import com.jagex.runetek4.scene.tile.SceneTile;
+import com.jagex.runetek4.scene.tile.Tile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
@@ -10,25 +10,22 @@ public final class Static28 {
 	@OriginalMember(owner = "client!cd", name = "s", descriptor = "I")
 	public static int anInt917;
 
-	@OriginalMember(owner = "client!cd", name = "u", descriptor = "I")
-	public static int anInt919;
-
 	@OriginalMember(owner = "client!cd", name = "a", descriptor = "(IIIIZ)V")
 	public static void method792(@OriginalArg(3) int arg0, @OriginalArg(4) boolean arg1) {
 		Static152.anInt3594 = 104;
 		Static99.anInt2550 = 104;
 		Static277.anInt5855 = arg0;
-		Static197.aClass3_Sub5ArrayArrayArray2 = new SceneTile[4][Static152.anInt3594][Static99.anInt2550];
+		Static197.aClass3_Sub5ArrayArrayArray2 = new Tile[4][Static152.anInt3594][Static99.anInt2550];
 		Static107.anIntArrayArrayArray10 = new int[4][Static152.anInt3594 + 1][Static99.anInt2550 + 1];
 		if (GlRenderer.enabled) {
-			Static36.aClass3_Sub14ArrayArray1 = new Class3_Sub14[4][];
+			Static36.aGlTileArrayArray1 = new GlTile[4][];
 		}
 		if (arg1) {
-			Static276.aClass3_Sub5ArrayArrayArray3 = new SceneTile[1][Static152.anInt3594][Static99.anInt2550];
+			Static276.aClass3_Sub5ArrayArrayArray3 = new Tile[1][Static152.anInt3594][Static99.anInt2550];
 			Static62.anIntArrayArray11 = new int[Static152.anInt3594][Static99.anInt2550];
 			Static80.anIntArrayArrayArray19 = new int[1][Static152.anInt3594 + 1][Static99.anInt2550 + 1];
 			if (GlRenderer.enabled) {
-				Static195.aClass3_Sub14ArrayArray3 = new Class3_Sub14[1][];
+				Static195.aClass3_Sub14ArrayArray3 = new GlTile[1][];
 			}
 		} else {
 			Static276.aClass3_Sub5ArrayArrayArray3 = null;

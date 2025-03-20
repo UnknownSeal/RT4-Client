@@ -36,11 +36,4 @@ public final class Static277 {
 		return local12 == 1003;
 	}
 
-	@OriginalMember(owner = "runetek4.client!wi", name = "d", descriptor = "(II)V")
-	public static void method4641(@OriginalArg(1) int arg0) {
-		Static217.anInt4901 = -1;
-		Static217.anInt4901 = -1;
-		Static28.anInt919 = arg0;
-		Static38.method965();
-	}
 }

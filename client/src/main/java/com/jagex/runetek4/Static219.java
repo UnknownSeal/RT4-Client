@@ -14,30 +14,6 @@ public final class Static219 {
 	@OriginalMember(owner = "runetek4.client!rl", name = "S", descriptor = "Lclient!na;")
 	public static final JString HITMARKS = JString.parse("hitmarks");
 
-	@OriginalMember(owner = "runetek4.client!rl", name = "T", descriptor = "Lclient!na;")
-	private static final JString aClass100_921 = JString.parse("Sat");
-
-	@OriginalMember(owner = "runetek4.client!rl", name = "U", descriptor = "Lclient!na;")
-	private static final JString aClass100_922 = JString.parse("Mon");
-
-	@OriginalMember(owner = "runetek4.client!rl", name = "W", descriptor = "Lclient!na;")
-	private static final JString aClass100_923 = JString.parse("Fri");
-
-	@OriginalMember(owner = "runetek4.client!rl", name = "db", descriptor = "Lclient!na;")
-	private static final JString aClass100_927 = JString.parse("Sun");
-
-	@OriginalMember(owner = "runetek4.client!rl", name = "cb", descriptor = "Lclient!na;")
-	private static final JString aClass100_926 = JString.parse("Tue");
-
-	@OriginalMember(owner = "runetek4.client!rl", name = "ab", descriptor = "Lclient!na;")
-	private static final JString aClass100_924 = JString.parse("Wed");
-
-	@OriginalMember(owner = "runetek4.client!rl", name = "bb", descriptor = "Lclient!na;")
-	private static final JString aClass100_925 = JString.parse("Thu");
-
-	@OriginalMember(owner = "runetek4.client!rl", name = "Y", descriptor = "[Lclient!na;")
-	public static final JString[] aClass100Array149 = new JString[] { aClass100_927, aClass100_922, aClass100_926, aClass100_924, aClass100_925, aClass100_923, aClass100_921 };
-
 	@OriginalMember(owner = "runetek4.client!rl", name = "eb", descriptor = "Lclient!na;")
 	public static final JString aClass100_928 = JString.parse("(U0a )2 in: ");
 

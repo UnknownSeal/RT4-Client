@@ -27,7 +27,7 @@ public class Game {
         }
         if (Static60.systemUpdateTimer > 1) {
             Static60.systemUpdateTimer--;
-            Static209.miscTransmitAt = InterfaceList.transmitTimer;
+            InterfaceList.miscTransmitAt = InterfaceList.transmitTimer;
         }
         if (LoginManager.aBoolean247) {
             LoginManager.aBoolean247 = false;
@@ -127,7 +127,7 @@ public class Game {
         }
         if (Mouse.clickButton != 0) {
             @Pc(411) long loops = (Static133.clickTime - Mouse.prevClickTime) / 50L;
-            samples = Static60.mouseClickY;
+            samples = Mouse.mouseClickY;
             if (samples < 0) {
                 samples = 0;
             } else if (samples > 65535) {
@@ -136,7 +136,7 @@ public class Game {
             if (loops > 32767L) {
                 loops = 32767L;
             }
-            i = aClass6.mouseClickX;
+            i = Mouse.mouseClickX;
             Mouse.prevClickTime = Static133.clickTime;
             @Pc(437) byte button = 0;
             if (i < 0) {
@@ -203,7 +203,7 @@ public class Game {
         PlayerList.updatePlayers();
         Static109.updateNpcs();
         Static19.tickChatTimers(); // OverheadChat
-        if (Static24.component != null) {
+        if (WorldMap.component != null) {
             Static12.method447();
         }
         // VarpDomain
@@ -213,12 +213,12 @@ public class Game {
         }
         @Pc(782) int rand;
 
-        for (@Pc(709) DelayedStateChange change = Static127.poll(); change != null; change = Static127.poll()) {
-            samples = change.method1011();
-            i = change.method1012();
+        for (@Pc(709) DelayedStateChange change = DelayedStateChange.poll(); change != null; change = DelayedStateChange.poll()) {
+            samples = change.getType();
+            i = change.getId();
             if (samples == 1) {
                 VarcDomain.varcs[i] = change.intArg1;
-                Static138.updatedVarcs[Static4.updatedVarcsWriterIndex++ & 0x1F] = i;
+                VarcDomain.updatedVarcs[VarcDomain.updatedVarcsWriterIndex++ & 0x1F] = i;
             } else if (samples == 2) {
                 Static226.varcstrs[i] = change.stringArg;
                 ClientScriptRunner.updatedVarcstrs[Static72.updatedVarcstrsWriterIndex++ & 0x1F] = i;
@@ -226,7 +226,7 @@ public class Game {
                 @Pc(773) Component component;
                 if (samples == 3) {
                     component = InterfaceList.getComponent(i);
-                    if (!change.stringArg.method3108(component.text)) {
+                    if (!change.stringArg.strEquals(component.text)) {
                         component.text = change.stringArg;
                         InterfaceList.redraw(component);
                     }
@@ -345,16 +345,16 @@ public class Game {
             }
         }
         @Pc(1361) Component component;
-        if (Static118.component != null) {
-            InterfaceList.redraw(Static118.component);
-            if (Static149.anInt3554 + 5 < Mouse.lastMouseX || Mouse.lastMouseX < Static149.anInt3554 - 5 || InterfaceList.clickedInventoryComponentY + 5 < Mouse.lastMouseY || InterfaceList.clickedInventoryComponentY - 5 > Mouse.lastMouseY) {
-                Static123.lastItemDragged = true;
+        if (InterfaceList.clickedInventoryComponent != null) {
+            InterfaceList.redraw(InterfaceList.clickedInventoryComponent);
+            if (InterfaceList.clickedInventoryComponentX + 5 < Mouse.lastMouseX || Mouse.lastMouseX < InterfaceList.clickedInventoryComponentX - 5 || InterfaceList.clickedInventoryComponentY + 5 < Mouse.lastMouseY || InterfaceList.clickedInventoryComponentY - 5 > Mouse.lastMouseY) {
+                InterfaceList.draggingClickedInventoryObject = true;
             }
             InterfaceList.lastItemDragTime++;
-            if (Static22.activeInterfaceType == 0) {
-                if (Static123.lastItemDragged && InterfaceList.lastItemDragTime >= 5) {
-                    if (Static118.component == Static169.aClass13_18 && Static4.selectedInventorySlot != Static18.mouseInvInterfaceIndex) {
-                        component = Static118.component;
+            if (Mouse.pressedButton == 0) {
+                if (InterfaceList.draggingClickedInventoryObject && InterfaceList.lastItemDragTime >= 5) {
+                    if (InterfaceList.clickedInventoryComponent == InterfaceList.mouseOverInventoryInterface && InterfaceList.selectedInventorySlot != Static18.mouseInvInterfaceIndex) {
+                        component = InterfaceList.clickedInventoryComponent;
                         @Pc(1363) byte moveItemInsertionMode = 0;
                         if (Static179.bankInsertMode == 1 && component.contentType == 206) {
                             moveItemInsertionMode = 1;
@@ -363,7 +363,7 @@ public class Game {
                             moveItemInsertionMode = 0;
                         }
                         if (InterfaceList.getServerActiveProperties(component).method504()) {
-                            y = Static4.selectedInventorySlot;
+                            y = InterfaceList.selectedInventorySlot;
                             x = Static18.mouseInvInterfaceIndex;
                             component.invSlotObjId[x] = component.invSlotObjId[y];
                             component.invSlotObjCount[x] = component.invSlotObjCount[y];
@@ -371,7 +371,7 @@ public class Game {
                             component.invSlotObjCount[y] = 0;
                         } else if (moveItemInsertionMode == 1) {
                             x = Static18.mouseInvInterfaceIndex;
-                            y = Static4.selectedInventorySlot;
+                            y = InterfaceList.selectedInventorySlot;
                             while (x != y) {
                                 if (y > x) {
                                     component.swapObjs(y - 1, y);
@@ -382,11 +382,11 @@ public class Game {
                                 }
                             }
                         } else {
-                            component.swapObjs(Static18.mouseInvInterfaceIndex, Static4.selectedInventorySlot);
+                            component.swapObjs(Static18.mouseInvInterfaceIndex, InterfaceList.selectedInventorySlot);
                         }
                         Protocol.outboundBuffer.pIsaac1(231);
-                        Protocol.outboundBuffer.p2(Static4.selectedInventorySlot);
-                        Protocol.outboundBuffer.p4_alt1(Static118.component.id);
+                        Protocol.outboundBuffer.p2(InterfaceList.selectedInventorySlot);
+                        Protocol.outboundBuffer.p4_alt1(InterfaceList.clickedInventoryComponent.id);
                         Protocol.outboundBuffer.p2_alt2(Static18.mouseInvInterfaceIndex);
                         Protocol.outboundBuffer.p1_alt3(moveItemInsertionMode);
                     }
@@ -397,12 +397,12 @@ public class Game {
                 }
                 Mouse.clickButton = 0;
                 Static72.anInt2043 = 10;
-                Static118.component = null;
+                InterfaceList.clickedInventoryComponent = null;
             }
         }
         InterfaceList.aBoolean174 = false;
-        Static56.aClass13_12 = null;
-        Static44.aBoolean83 = false;
+        InterfaceList.aClass13_12 = null;
+        InterfaceList.aBoolean83 = false;
         InterfaceList.keyQueueSize = 0;
         component = InterfaceList.aClass13_22;
         InterfaceList.aClass13_22 = null;
@@ -414,7 +414,7 @@ public class Game {
             InterfaceList.keyQueueSize++;
         }
         // WorldMap.component
-        Static24.component = null;
+        WorldMap.component = null;
         if (InterfaceList.topLevelInterace != -1) {
             InterfaceList.method1320(0, 0, 0, GameShell.canvasWidth, InterfaceList.topLevelInterace, 0, GameShell.canvasHeigth);
         }
@@ -429,14 +429,14 @@ public class Game {
                 if (highPriorityRequest == null) {
                     while (true) {
                         do {
-                            highPriorityRequest = (HookRequest) InterfaceList.lowPriorityRequests.removeHead();
+                            highPriorityRequest = (HookRequest) InterfaceList.mediumPriorityRequests.removeHead();
                             if (highPriorityRequest == null) {
                                 while (true) {
                                     do {
-                                        highPriorityRequest = (HookRequest) Static185.aClass69_101.removeHead();
+                                        highPriorityRequest = (HookRequest) InterfaceList.lowPriorityRequests.removeHead();
                                         if (highPriorityRequest == null) {
-                                            if (Static24.component == null) {
-                                                Static137.anInt3337 = 0;
+                                            if (WorldMap.component == null) {
+                                                InterfaceList.anInt3337 = 0;
                                             }
                                             if (ClientScriptRunner.aClass13_14 != null) {
                                                 ClientScriptRunner.method28();
@@ -466,8 +466,8 @@ public class Game {
                                                     Protocol.outboundBuffer.p2_alt2(Static116.anInt2954 + Camera.originZ);
                                                     Cross.crossMode = 1;
                                                     Cross.crossCycle = 0;
-                                                    Cross.y = Static60.mouseClickY;
-                                                    Cross.x = aClass6.mouseClickX;
+                                                    Cross.y = Mouse.mouseClickY;
+                                                    Cross.x = Mouse.mouseClickX;
                                                 }
                                                 Static125.anInt3096 = 0;
                                             } else if (Static187.anInt4422 == 2) {
@@ -477,16 +477,16 @@ public class Game {
                                                     Protocol.outboundBuffer.p2(Static56.clickTileX + Camera.originX);
                                                     Cross.crossCycle = 0;
                                                     Cross.crossMode = 1;
-                                                    Cross.x = aClass6.mouseClickX;
-                                                    Cross.y = Static60.mouseClickY;
+                                                    Cross.x = Mouse.mouseClickX;
+                                                    Cross.y = Mouse.mouseClickY;
                                                 }
                                                 Static187.anInt4422 = 0;
                                             } else if (Static56.clickTileX != -1 && Static125.anInt3096 == 0 && Static187.anInt4422 == 0) {
                                                 @Pc(1871) boolean success = PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, PlayerList.self.movementQueueX[0]);
                                                 if (success) {
-                                                    Cross.y = Static60.mouseClickY;
+                                                    Cross.y = Mouse.mouseClickY;
                                                     Cross.crossCycle = 0;
-                                                    Cross.x = aClass6.mouseClickX;
+                                                    Cross.x = Mouse.mouseClickX;
                                                     Cross.crossMode = 1;
                                                 }
                                             }

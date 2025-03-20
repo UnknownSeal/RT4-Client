@@ -1,10 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -19,11 +16,6 @@ public final class Static127 {
 
 	@OriginalMember(owner = "runetek4.client!k", name = "t", descriptor = "I")
 	public static int anInt3132 = 0;
-
-	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(IIBLclient!ve;Lclient!ve;)Lclient!rk;")
-	public static Font getFont(@OriginalArg(1) int arg0, @OriginalArg(3) Js5 arg1, @OriginalArg(4) Js5 arg2) {
-		return Static234.method4016(arg1, 0, arg0) ? Static29.method799(arg2.getfile(arg0, 0)) : null;
-	}
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(IIIIZIZ)V")
 	public static void method2463(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4, @OriginalArg(5) int arg5) {
@@ -155,28 +147,6 @@ public final class Static127 {
 		LightingManager.anInt2875 = -1;
 		SceneGraph.spotanims.clear();
 		SceneGraph.projectiles.clear();
-	}
-
-	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(B)Lclient!da;")
-	public static DelayedStateChange poll() {
-		@Pc(10) DelayedStateChange local10 = (DelayedStateChange) Static215.aClass16_9.head();
-		if (local10 != null) {
-			local10.unlink();
-			local10.clear();
-			return local10;
-		}
-		do {
-			local10 = (DelayedStateChange) Static140.aClass16_7.head();
-			if (local10 == null) {
-				return null;
-			}
-			if (local10.method1009() > MonotonicTime.currentTimeMillis()) {
-				return null;
-			}
-			local10.unlink();
-			local10.clear();
-		} while ((Long.MIN_VALUE & local10.secondaryNodeId) == 0L);
-		return local10;
 	}
 
 }

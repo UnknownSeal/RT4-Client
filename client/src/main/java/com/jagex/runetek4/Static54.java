@@ -1,8 +1,8 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.audio.SynthSound;
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,56 +12,18 @@ public final class Static54 {
 	@OriginalMember(owner = "client!ed", name = "D", descriptor = "Lclient!na;")
 	public static final JString DETAILS = JString.parse("details");
 
-	@OriginalMember(owner = "client!ed", name = "a", descriptor = "(III)V")
-	public static void method1304(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		if (Component.load(arg1)) {
-			Static2.method7(Component.cachedComponents[arg1], arg0);
-		}
-	}
-
 	@OriginalMember(owner = "client!ed", name = "a", descriptor = "(ZIIII)V")
 	public static void method1306(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		if (arg3 >= Static172.anInt4164 && arg3 <= FluTypeList.anInt5063) {
-			@Pc(22) int local22 = Static78.method1690(Static106.anInt2869, arg1, Static267.anInt5773);
-			@Pc(28) int local28 = Static78.method1690(Static106.anInt2869, arg0, Static267.anInt5773);
+		if (arg3 >= Static172.anInt4164 && arg3 <= FloorUnderlayTypeList.anInt5063) {
+			@Pc(22) int local22 = IntUtils.clamp(Static106.anInt2869, arg1, Static267.anInt5773);
+			@Pc(28) int local28 = IntUtils.clamp(Static106.anInt2869, arg0, Static267.anInt5773);
 			Static101.method2054(local22, arg3, local28, arg2);
 		}
 	}
 
-	@OriginalMember(owner = "client!ed", name = "a", descriptor = "([SI[Lclient!na;II)V")
-	public static void method1307(@OriginalArg(0) short[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JString[] arg2, @OriginalArg(4) int arg3) {
-		if (arg1 <= arg3) {
-			return;
-		}
-		@Pc(14) int local14 = arg3;
-		@Pc(21) int local21 = (arg3 + arg1) / 2;
-		@Pc(25) JString local25 = arg2[local21];
-		arg2[local21] = arg2[arg1];
-		arg2[arg1] = local25;
-		@Pc(39) short local39 = arg0[local21];
-		arg0[local21] = arg0[arg1];
-		arg0[arg1] = local39;
-		for (@Pc(51) int local51 = arg3; local51 < arg1; local51++) {
-			if (local25 == null || arg2[local51] != null && arg2[local51].method3139(local25) < (local51 & 0x1)) {
-				@Pc(80) JString local80 = arg2[local51];
-				arg2[local51] = arg2[local14];
-				arg2[local14] = local80;
-				@Pc(94) short local94 = arg0[local51];
-				arg0[local51] = arg0[local14];
-				arg0[local14++] = local94;
-			}
-		}
-		arg2[arg1] = arg2[local14];
-		arg2[local14] = local25;
-		arg0[arg1] = arg0[local14];
-		arg0[local14] = local39;
-		method1307(arg0, local14 - 1, arg2, arg3);
-		method1307(arg0, arg1, arg2, local14 + 1);
-	}
-
 	@OriginalMember(owner = "client!ed", name = "c", descriptor = "(I)V")
 	public static void clear() {
-		Static83.aClass99_3.clear();
+		FloorUnderlayTypeList.types.clean();
 	}
 
 	@OriginalMember(owner = "client!ed", name = "b", descriptor = "(II)Lclient!ba;")

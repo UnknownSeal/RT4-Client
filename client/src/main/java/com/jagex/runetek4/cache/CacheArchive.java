@@ -9,22 +9,11 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-import java.util.zip.CRC32;
-
 public final class CacheArchive {
 
-	@OriginalMember(owner = "runetek4.client!fn", name = "X", descriptor = "Ljava/util/zip/CRC32;")
-	public static final CRC32 crc32 = new CRC32();
 	@OriginalMember(owner = "client!al", name = "e", descriptor = "I")
 	public static int anInt172;
 
-	@OriginalMember(owner = "client!al", name = "q", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_2;
-
-	@OriginalMember(owner = "runetek4.client!qg", name = "ab", descriptor = "Lclient!ve;")
-	public static Js5 gameInterfaceJs5;
-	@OriginalMember(owner = "runetek4.client!nd", name = "v", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_64;
 	@OriginalMember(owner = "runetek4.client!nd", name = "n", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_61;
 

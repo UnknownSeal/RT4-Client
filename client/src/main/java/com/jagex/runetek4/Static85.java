@@ -17,17 +17,9 @@ public final class Static85 {
 	@OriginalMember(owner = "client!gl", name = "e", descriptor = "I")
 	public static int anInt2262;
 
-	@OriginalMember(owner = "client!gl", name = "f", descriptor = "I")
-	public static int anInt2263;
-
-	@OriginalMember(owner = "client!gl", name = "a", descriptor = "(Lclient!ve;I)V")
-	public static void init(@OriginalArg(0) Js5 arg0) {
-		Static84.aClass153_35 = arg0;
-	}
-
 	@OriginalMember(owner = "client!gl", name = "a", descriptor = "(II)V")
 	public static void handleVarps(@OriginalArg(1) int arg0) {
-		Static103.method2245();
+		InterfaceList.redrawActiveInterfaces();
 		AreaSoundManager.setObjectSounds();
 		@Pc(17) int varpType = VarPlayerDefinition.getDefinition(arg0).type;
 		if (varpType == 0) {

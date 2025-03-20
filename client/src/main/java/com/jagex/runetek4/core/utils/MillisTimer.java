@@ -37,7 +37,7 @@ public final class MillisTimer extends Timer {
 
 	@OriginalMember(owner = "client!lj", name = "b", descriptor = "(I)V")
 	@Override
-	public final void method3394() {
+	public final void reset() {
 		for (@Pc(7) int local7 = 0; local7 < 10; local7++) {
 			this.aLongArray4[local7] = 0L;
 		}

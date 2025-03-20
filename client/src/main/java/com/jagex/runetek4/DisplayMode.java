@@ -18,6 +18,7 @@ public final class DisplayMode {
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "i", descriptor = "[Lclient!od;")
 	public static DisplayMode[] modes;
+
 	@OriginalMember(owner = "client!od", name = "j", descriptor = "I")
 	public int width;
 
@@ -231,7 +232,7 @@ public final class DisplayMode {
 					SoftwareRaster.frameBuffer.draw(local269);
 				} catch (@Pc(277) Exception local277) {
 				}
-				Static139.method2704();
+				GameShell.method2704();
 				if (mode == 0) {
 					SoftwareRaster.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
 				} else {
@@ -254,21 +255,21 @@ public final class DisplayMode {
 			return;
 		}
 		if (arg1 > 0 && mode == 0) {
-			Static37.aThread1.setPriority(5);
+			GameShell.thread.setPriority(5);
 			SoftwareRaster.frameBuffer = null;
 			Static268.method4580();
 			((Js5GlTextureProvider) Rasterizer.textureProvider).method3248(200);
-			if (Static178.highDetailLighting) {
+			if (Preferences.highDetailLighting) {
 				Pix3D.setBrightness(0.7F);
 			}
 			LoginManager.method4637();
 		} else if (arg1 == 0 && mode > 0) {
-			Static37.aThread1.setPriority(1);
+			GameShell.thread.setPriority(1);
 			SoftwareRaster.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
 			Static268.method4583();
 			method1643();
 			((Js5GlTextureProvider) Rasterizer.textureProvider).method3248(20);
-			if (Static178.highDetailLighting) {
+			if (Preferences.highDetailLighting) {
 				if (Preferences.brightness == 1) {
 					Pix3D.setBrightness(0.9F);
 				}
@@ -282,7 +283,7 @@ public final class DisplayMode {
 					Pix3D.setBrightness(0.6F);
 				}
 			}
-			Static95.method1939();
+			GlTile.method1939();
 			LoginManager.method4637();
 		}
 		Static87.aBoolean130 = !Static138.allLevelsvisible();
@@ -295,7 +296,7 @@ public final class DisplayMode {
 			Static124.aBoolean156 = false;
 		}
 		if (InterfaceList.topLevelInterace != -1) {
-			Static210.method3712(true);
+			InterfaceList.method3712(true);
 		}
 		if (Protocol.gameServerSocket != null && (client.gameState == 30 || client.gameState == 25)) {
 			ClientProt.sendWindowDetails();
@@ -303,7 +304,7 @@ public final class DisplayMode {
 		for (@Pc(466) int local466 = 0; local466 < 100; local466++) {
 			InterfaceList.aBooleanArray100[local466] = true;
 		}
-		Static69.fullredraw = true;
+		GameShell.fullredraw = true;
 	}
 
 	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(ZIIII)V")

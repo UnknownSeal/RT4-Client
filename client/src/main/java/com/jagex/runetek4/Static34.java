@@ -22,61 +22,16 @@ public final class Static34 {
 	@OriginalMember(owner = "client!ck", name = "d", descriptor = "[I")
 	public static final int[] WALL_DECORATION_ROTATION_FORWARD_X = new int[] { 1, 0, -1, 0 };
 
-	@OriginalMember(owner = "client!ck", name = "T", descriptor = "Lclient!na;")
-	private static final JString aClass100_207 = JString.parse("Jan");
-
-	@OriginalMember(owner = "client!ck", name = "hb", descriptor = "Lclient!na;")
-	private static final JString aClass100_212 = JString.parse("Feb");
-
-	@OriginalMember(owner = "client!ck", name = "gb", descriptor = "Lclient!na;")
-	private static final JString aClass100_211 = JString.parse("Mar");
-
-	@OriginalMember(owner = "client!ck", name = "db", descriptor = "Lclient!na;")
-	private static final JString aClass100_210 = JString.parse("Apr");
-
-	@OriginalMember(owner = "client!ck", name = "n", descriptor = "Lclient!na;")
-	private static final JString aClass100_199 = JString.parse("May");
-
-	@OriginalMember(owner = "client!ck", name = "L", descriptor = "Lclient!na;")
-	private static final JString aClass100_204 = JString.parse("Jun");
-
-	@OriginalMember(owner = "client!ck", name = "B", descriptor = "Lclient!na;")
-	private static final JString aClass100_202 = JString.parse("Jul");
-
-	@OriginalMember(owner = "client!ck", name = "l", descriptor = "Lclient!na;")
-	private static final JString aClass100_198 = JString.parse("Aug");
-
-	@OriginalMember(owner = "client!ck", name = "V", descriptor = "Lclient!na;")
-	private static final JString aClass100_208 = JString.parse("Sep");
-
-	@OriginalMember(owner = "client!ck", name = "S", descriptor = "Lclient!na;")
-	private static final JString aClass100_206 = JString.parse("Oct");
-
-	@OriginalMember(owner = "client!ck", name = "Y", descriptor = "Lclient!na;")
-	private static final JString aClass100_209 = JString.parse("Nov");
-
-	@OriginalMember(owner = "client!ck", name = "O", descriptor = "Lclient!na;")
-	private static final JString aClass100_205 = JString.parse("Dec");
-
-	@OriginalMember(owner = "client!ck", name = "f", descriptor = "[Lclient!na;")
-	public static final JString[] aClass100Array40 = new JString[] { aClass100_207, aClass100_212, aClass100_211, aClass100_210, aClass100_199, aClass100_204, aClass100_202, aClass100_198, aClass100_208, aClass100_206, aClass100_209, aClass100_205 };
-
 	@OriginalMember(owner = "client!ck", name = "k", descriptor = "I")
 	public static volatile int anInt1034 = 0;
 
 	@OriginalMember(owner = "client!ck", name = "o", descriptor = "Lclient!na;")
 	private static final JString LOADED_WORLD_LIST_DATA = JString.parse("Loaded world list data");
 
-	@OriginalMember(owner = "client!ck", name = "C", descriptor = "I")
-	public static int anInt1047 = 0;
-
 	@OriginalMember(owner = "client!ck", name = "D", descriptor = "Lclient!na;")
 	public static JString aClass100_203 = null;
 
-	@OriginalMember(owner = "client!ck", name = "K", descriptor = "I")
-	public static int anInt1053 = 0;
-
-    @OriginalMember(owner = "client!ck", name = "a", descriptor = "(BI)Lclient!eg;")
+	@OriginalMember(owner = "client!ck", name = "a", descriptor = "(BI)Lclient!eg;")
 	public static SpotAnimDefinition method877(@OriginalArg(1) int arg0) {
 		@Pc(10) SpotAnimDefinition local10 = (SpotAnimDefinition) Static279.aClass99_38.get((long) arg0);
 		if (local10 != null) {
