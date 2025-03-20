@@ -172,7 +172,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		} else {
 			canvas.setLocation(leftMargin, topMargin);
 		}
-		if (InterfaceList.topLevelInterace != -1) {
+		if (InterfaceList.topLevelInterface != -1) {
 			InterfaceList.method3712(true);
 		}
 		method2704();

@@ -51,7 +51,7 @@ public class InterfaceList {
     @OriginalMember(owner = "client!je", name = "fb", descriptor = "I")
     public static int transmitTimer = 1;
     @OriginalMember(owner = "runetek4.client!md", name = "W", descriptor = "I")
-    public static int topLevelInterace = -1;
+    public static int topLevelInterface = -1;
     @OriginalMember(owner = "client!je", name = "T", descriptor = "Lclient!sc;")
     public static HashTable openInterfaces = new HashTable(8);
     @OriginalMember(owner = "runetek4.client!ve", name = "w", descriptor = "Z")
@@ -160,19 +160,19 @@ public class InterfaceList {
     @OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(ZI)V")
     public static void method1596(@OriginalArg(0) boolean arg0) {
         if (arg0) {
-            if (topLevelInterace != -1) {
-                resetComponent(topLevelInterace);
+            if (topLevelInterface != -1) {
+                resetComponent(topLevelInterface);
             }
             for (@Pc(18) ComponentPointer local18 = (ComponentPointer) openInterfaces.head(); local18 != null; local18 = (ComponentPointer) openInterfaces.next()) {
                 closeInterface(true, local18);
             }
-            topLevelInterace = -1;
+            topLevelInterface = -1;
             openInterfaces = new HashTable(8);
             createComponentMemoryBuffer();
-            topLevelInterace = LoginManager.loginScreenId;
+            topLevelInterface = LoginManager.loginScreenId;
             method3712(false);
             ClientScriptRunner.method1807();
-            method1626(topLevelInterace);
+            method1626(topLevelInterface);
         }
         MiniMenu.anInt1092 = -1;
         method1750(ClientScriptRunner.anInt5794);
@@ -255,8 +255,8 @@ public class InterfaceList {
             anInt436 = MiniMenu.menuActionRow * 15 + (aBoolean298 ? 26 : 22);
             anInt761 = local43 + 8;
         }
-        if (topLevelInterace != -1) {
-            runScripts(1, topLevelInterace);
+        if (topLevelInterface != -1) {
+            runScripts(1, topLevelInterface);
         }
     }
 
@@ -268,8 +268,8 @@ public class InterfaceList {
 
     @OriginalMember(owner = "runetek4.client!jm", name = "a", descriptor = "(Z)V")
     public static void method2460() {
-        if (topLevelInterace != -1) {
-            method1949(topLevelInterace);
+        if (topLevelInterface != -1) {
+            method1949(topLevelInterface);
         }
         for (@Pc(15) int local15 = 0; local15 < rectangles; local15++) {
             if (aBooleanArray100[local15]) {
@@ -285,7 +285,7 @@ public class InterfaceList {
             ClientScriptRunner.aBoolean299 = true;
         }
         anInt5574 = -1;
-        if (topLevelInterace != -1) {
+        if (topLevelInterface != -1) {
             rectangles = 0;
             CacheArchive.method182();
         }
@@ -370,7 +370,7 @@ public class InterfaceList {
 
     @OriginalMember(owner = "runetek4.client!rb", name = "a", descriptor = "(ZB)V")
     public static void method3712(@OriginalArg(0) boolean arg0) {
-        method4017(GameShell.canvasHeigth, arg0, topLevelInterace, GameShell.canvasWidth);
+        method4017(GameShell.canvasHeigth, arg0, topLevelInterface, GameShell.canvasWidth);
     }
 
     @OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "(ZLclient!ve;Lclient!ve;Lclient!ve;Lclient!ve;)V")
@@ -1316,5 +1316,52 @@ public class InterfaceList {
                 }
             }
         }
+    }
+
+    @OriginalMember(owner = "client!dh", name = "a", descriptor = "(IIII)Lclient!wk;")
+    public static ComponentPointer openSubInterface(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
+        @Pc(9) ComponentPointer local9 = new ComponentPointer();
+        local9.anInt5879 = arg2;
+        local9.interfaceId = arg0;
+        openInterfaces.put(local9, arg1);
+        method1753(arg0);
+        @Pc(28) Component local28 = getComponent(arg1);
+        if (local28 != null) {
+            redraw(local28);
+        }
+        if (ClientScriptRunner.aClass13_10 != null) {
+            redraw(ClientScriptRunner.aClass13_10);
+            ClientScriptRunner.aClass13_10 = null;
+        }
+        @Pc(45) int local45 = MiniMenu.menuActionRow;
+        @Pc(53) int local53;
+        for (local53 = 0; local53 < local45; local53++) {
+            if (method5(MiniMenu.actions[local53])) {
+                MiniMenu.remove(local53);
+            }
+        }
+        if (MiniMenu.menuActionRow == 1) {
+            ClientScriptRunner.aBoolean108 = false;
+            redrawScreen(anInt4271, anInt761, anInt5138, anInt436);
+        } else {
+            redrawScreen(anInt4271, anInt761, anInt5138, anInt436);
+            local53 = Fonts.b12Full.getStringWidth(LocalizedText.CHOOSE_OPTION);
+            for (@Pc(95) int local95 = 0; local95 < MiniMenu.menuActionRow; local95++) {
+                @Pc(104) int local104 = Fonts.b12Full.getStringWidth(Static269.method2228(local95));
+                if (local104 > local53) {
+                    local53 = local104;
+                }
+            }
+            anInt761 = local53 + 8;
+            anInt436 = MiniMenu.menuActionRow * 15 + (aBoolean298 ? 26 : 22);
+        }
+        if (local28 != null) {
+            method531(local28, false);
+        }
+        method1626(arg0);
+        if (topLevelInterface != -1) {
+            runScripts(1, topLevelInterface);
+        }
+        return local9;
     }
 }

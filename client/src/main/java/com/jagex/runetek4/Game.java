@@ -415,8 +415,8 @@ public class Game {
         }
         // WorldMap.component
         WorldMap.component = null;
-        if (InterfaceList.topLevelInterace != -1) {
-            InterfaceList.method1320(0, 0, 0, GameShell.canvasWidth, InterfaceList.topLevelInterace, 0, GameShell.canvasHeigth);
+        if (InterfaceList.topLevelInterface != -1) {
+            InterfaceList.method1320(0, 0, 0, GameShell.canvasWidth, InterfaceList.topLevelInterface, 0, GameShell.canvasHeigth);
         }
         InterfaceList.transmitTimer++;
         while (true) {

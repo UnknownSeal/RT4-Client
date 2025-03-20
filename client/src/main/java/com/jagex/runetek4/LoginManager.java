@@ -100,8 +100,8 @@ public class LoginManager {
             MiniMenu.actions[0] = 1005;
             MiniMenu.cursors[0] = MiniMenu.anInt1092;
         }
-        if (InterfaceList.topLevelInterace != -1) {
-            InterfaceList.method1949(InterfaceList.topLevelInterace);
+        if (InterfaceList.topLevelInterface != -1) {
+            InterfaceList.method1949(InterfaceList.topLevelInterface);
         }
         @Pc(60) int local60;
         for (local60 = 0; local60 < InterfaceList.rectangles; local60++) {
@@ -119,7 +119,7 @@ public class LoginManager {
             ClientScriptRunner.aBoolean299 = true;
         }
         InterfaceList.anInt4311 = client.loop;
-        if (InterfaceList.topLevelInterace != -1) {
+        if (InterfaceList.topLevelInterface != -1) {
             InterfaceList.rectangles = 0;
             CacheArchive.method182();
         }

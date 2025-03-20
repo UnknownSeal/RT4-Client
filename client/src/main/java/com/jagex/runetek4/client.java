@@ -536,13 +536,13 @@ public final class client extends GameShell {
 		for (i = 0; i < VarcDomain.varcs.length; i++) {
 			VarcDomain.varcs[i] = -1;
 		}
-		if (InterfaceList.topLevelInterace != -1) {
-			InterfaceList.resetComponent(InterfaceList.topLevelInterace);
+		if (InterfaceList.topLevelInterface != -1) {
+			InterfaceList.resetComponent(InterfaceList.topLevelInterface);
 		}
 		for (@Pc(3755) ComponentPointer local3755 = (ComponentPointer) InterfaceList.openInterfaces.head(); local3755 != null; local3755 = (ComponentPointer) InterfaceList.openInterfaces.next()) {
 			InterfaceList.closeInterface(true, local3755);
 		}
-		InterfaceList.topLevelInterace = -1;
+		InterfaceList.topLevelInterface = -1;
 		InterfaceList.openInterfaces = new HashTable(8);
 		InterfaceList.createComponentMemoryBuffer();
 		ClientScriptRunner.aClass13_10 = null;
@@ -819,7 +819,7 @@ public final class client extends GameShell {
 		if (clean) {
 			clean();
 		}
-		if (Preferences.safeMode && gameState == 10 && InterfaceList.topLevelInterace != -1) {
+		if (Preferences.safeMode && gameState == 10 && InterfaceList.topLevelInterface != -1) {
 			Preferences.safeMode = false;
 			Preferences.write(GameShell.signLink);
 		}
@@ -1060,8 +1060,8 @@ public final class client extends GameShell {
 			InterfaceList.keyChars[InterfaceList.keyQueueSize] = Static193.keyChar;
 		}
 		Protocol.sceneDelta++;
-		if (InterfaceList.topLevelInterace != -1) {
-			InterfaceList.method1320(0, 0, 0, GameShell.canvasWidth, InterfaceList.topLevelInterace, 0, GameShell.canvasHeigth);
+		if (InterfaceList.topLevelInterface != -1) {
+			InterfaceList.method1320(0, 0, 0, GameShell.canvasWidth, InterfaceList.topLevelInterface, 0, GameShell.canvasHeigth);
 		}
 		InterfaceList.transmitTimer++;
 		if (GlRenderer.enabled) {

@@ -295,7 +295,7 @@ public final class DisplayMode {
 		} else {
 			Static124.aBoolean156 = false;
 		}
-		if (InterfaceList.topLevelInterace != -1) {
+		if (InterfaceList.topLevelInterface != -1) {
 			InterfaceList.method3712(true);
 		}
 		if (Protocol.gameServerSocket != null && (client.gameState == 30 || client.gameState == 25)) {

@@ -541,17 +541,18 @@ public class Protocol {
                     opcode = -1;
                     return true;
                 } else if (opcode == 145) {
-                    ii = inboundBuffer.g2leadd();
-                    xp = inboundBuffer.g1add();
+                    // IF_OPENTOP
+                    int parent = inboundBuffer.g2leadd();
+                    int reset = inboundBuffer.g1add();
                     int verifyID = inboundBuffer.g2leadd();
                     if (setVerifyID(verifyID)) {
-                        if (xp == 2) {
+                        if (reset == 2) {
                             Static5.method34();
                         }
-                        InterfaceList.topLevelInterace = ii;
-                        InterfaceList.method1753(ii);
+                        InterfaceList.topLevelInterface = parent;
+                        InterfaceList.method1753(parent);
                         InterfaceList.method3712(false);
-                        InterfaceList.method1626(InterfaceList.topLevelInterace);
+                        InterfaceList.method1626(InterfaceList.topLevelInterface);
                         for (slot = 0; slot < 100; slot++) {
                             InterfaceList.aBooleanArray100[slot] = true;
                         }
@@ -1032,8 +1033,8 @@ public class Protocol {
                                         InterfaceList.redraw(local3490);
                                         InterfaceList.method531(local3490, true);
                                     }
-                                    if (InterfaceList.topLevelInterace != -1) {
-                                        InterfaceList.runScripts(1, InterfaceList.topLevelInterace);
+                                    if (InterfaceList.topLevelInterface != -1) {
+                                        InterfaceList.runScripts(1, InterfaceList.topLevelInterface);
                                     }
                                 }
                                 opcode = -1;
@@ -1089,8 +1090,8 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 209) {
-                                if (InterfaceList.topLevelInterace != -1) {
-                                    InterfaceList.runScripts(0, InterfaceList.topLevelInterace);
+                                if (InterfaceList.topLevelInterface != -1) {
+                                    InterfaceList.runScripts(0, InterfaceList.topLevelInterface);
                                 }
                                 opcode = -1;
                                 return true;
@@ -1157,16 +1158,17 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 155) {
-                                ii = inboundBuffer.g1();
-                                xp = inboundBuffer.p4rme();
-                                world = inboundBuffer.g2sub();
-                                slot = inboundBuffer.g2();
-                                if (setVerifyID(world)) {
-                                    local3456 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) xp);
-                                    if (local3456 != null) {
-                                        InterfaceList.closeInterface(local3456.interfaceId != slot, local3456);
+                                // IF_OPENSUB
+                                int flags = inboundBuffer.g1();
+                                int windowID = inboundBuffer.p4rme();
+                                int verifyID = inboundBuffer.g2sub();
+                                int interfaceID = inboundBuffer.g2();
+                                if (setVerifyID(verifyID)) {
+                                    ComponentPointer componentPointer = (ComponentPointer) InterfaceList.openInterfaces.getNode(windowID);
+                                    if (componentPointer != null) {
+                                        InterfaceList.closeInterface(interfaceID != componentPointer.interfaceId, componentPointer);
                                     }
-                                    Static44.method1148(slot, xp, ii);
+                                    InterfaceList.openSubInterface(interfaceID, windowID, flags);
                                 }
                                 opcode = -1;
                                 return true;
