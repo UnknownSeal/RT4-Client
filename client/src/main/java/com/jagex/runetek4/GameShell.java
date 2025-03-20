@@ -91,6 +91,16 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "b", descriptor = "Z")
 	private boolean error = false;
 
+	public static double canvasScale = 1.0d;
+
+	public static double subpixelX = 0.5d;
+
+	public static double subpixelY = 0.5d;
+
+	public static long updateDelta = 0;
+
+	public static long renderDelta = 0;
+
 	@OriginalMember(owner = "client!rc", name = "providesignlink", descriptor = "(Lsignlink!ll;)V")
 	public static void providesignlink(@OriginalArg(0) SignLink signlink) {
 		signLink = signlink;
@@ -430,6 +440,19 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		}
 	}
 
+	public static GraphicsDevice getCurrentDevice() {
+		GraphicsConfiguration config = frame.getGraphicsConfiguration();
+		GraphicsDevice myScreen = config.getDevice();
+		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice[] allScreens = env.getScreenDevices();
+		for (int i = 0; i < allScreens.length; i++) {
+			if (allScreens[i].equals(myScreen)) {
+				return allScreens[i];
+			}
+		}
+		return null;
+	}
+
 	@OriginalMember(owner = "client!rc", name = "e", descriptor = "(I)V")
 	private void mainRedrawWrapper() {
 		@Pc(2) long now = MonotonicTime.currentTimeMillis();
@@ -445,9 +468,10 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			partialRedraws -= 50;
 			canvas.setSize(canvasWidth, canvasHeigth);
 			canvas.setVisible(true);
+			canvasScale = getCurrentDevice().getDefaultConfiguration().getDefaultTransform().getScaleX();
 			if (frame != null && fullScreenFrame == null) {
-				@Pc(84) Insets local84 = frame.getInsets();
-				canvas.setLocation(local84.left + leftMargin, topMargin + local84.top);
+				@Pc(84) Insets insets = frame.getInsets();
+				canvas.setLocation(insets.left + leftMargin, topMargin + insets.top);
 			} else {
 				canvas.setLocation(leftMargin, topMargin);
 			}
@@ -558,11 +582,11 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "a", descriptor = "(IIZILjava/lang/String;III)V")
 	protected final void startApplication(@OriginalArg(0) int cacheId, @OriginalArg(4) String cacheSubDir) {
 		try {
-			canvasHeigth = 768;
+			canvasHeigth = frameHeight;
 			frameHeight = 768;
 			leftMargin = 0;
 			clientBuild = 530;
-			canvasWidth = 1024;
+			canvasWidth = frameWidth;
 			frameWidth = 1024;
 			topMargin = 0;
 			instance = this;

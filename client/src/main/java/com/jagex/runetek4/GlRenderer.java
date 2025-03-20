@@ -367,7 +367,7 @@ public final class GlRenderer {
 		gl.glMatrixMode(GL2.GL_PROJECTION);
 		gl.glLoadIdentity();
 		gl.glOrtho(0.0D, (double) canvasWidth, 0.0D, (double) canvasHeight, -1.0D, 1.0D);
-		gl.glViewport(0, 0, canvasWidth, canvasHeight);
+		setViewportBounds(0, 0, canvasWidth, canvasHeight);
 		gl.glMatrixMode(GL2.GL_MODELVIEW);
 		gl.glLoadIdentity();
 		aBoolean266 = true;
@@ -542,7 +542,7 @@ public final class GlRenderer {
 		gl.glMatrixMode(GL2.GL_PROJECTION);
 		gl.glLoadIdentity();
 		method4175((float) local7 * aFloat34, (float) local17 * aFloat34, (float) -local35 * aFloat34, (float) -local25 * aFloat34, 50.0F, 3584.0F);
-		gl.glViewport(arg0, canvasHeight - arg1 - arg3, arg2, arg3);
+		setViewportBounds(arg0, canvasHeight - arg1 - arg3, arg2, arg3);
 		gl.glMatrixMode(GL2.GL_MODELVIEW);
 		gl.glLoadIdentity();
 		gl.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
@@ -663,7 +663,7 @@ public final class GlRenderer {
 			if (!canvas.isDisplayable()) {
 				return -1;
 			}
-			GLProfile profile = GLProfile.get(GLProfile.GL2);
+			GLProfile profile = GLProfile.get(GLProfile.GL3bc);
 			@Pc(8) GLCapabilities capabilities = new GLCapabilities(profile);
 			if (numSamples > 0) {
 				capabilities.setSampleBuffers(true);
@@ -701,7 +701,7 @@ public final class GlRenderer {
 				window.unlockSurface();
 			}
             gl = GLContext.getCurrentGL().getGL2();
-            new GLUgl2es1();
+			gl.glLineWidth((float) GameShell.canvasScale);
 			enabled = true;
 			canvasWidth = canvas.getSize().width;
 			canvasHeight = canvas.getSize().height;
@@ -741,6 +741,28 @@ public final class GlRenderer {
 		aBoolean266 = false;
 	}
 
+	public static int leftMargin;
+
+	public static int topMargin;
+
+	public static int viewportWidth;
+
+	public static int viewportHeight;
+
+	public static void setViewportBounds(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int width, @OriginalArg(3) int height) {
+		leftMargin = x;
+		topMargin = y;
+		viewportWidth = width;
+		viewportHeight = height;
+		resizeViewport();
+	}
+
+	@OriginalMember(owner = "client!gi", name = "b", descriptor = "()V")
+	private static void resizeViewport() {
+		gl.glViewport((int) (leftMargin * GameShell.canvasScale + GameShell.subpixelX), (int) (topMargin * GameShell.canvasScale + GameShell.subpixelY),
+				(int) (viewportWidth * GameShell.canvasScale + GameShell.subpixelX), (int) (viewportHeight * GameShell.canvasScale + GameShell.subpixelY));
+	}
+
 	@OriginalMember(owner = "client!tf", name = "a", descriptor = "(IIIIII)V")
 	public static void method4182(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
 		@Pc(2) int local2 = -arg0;
@@ -753,7 +775,7 @@ public final class GlRenderer {
 		@Pc(30) float local30 = local23 * (256.0F / (float) arg4);
 		@Pc(37) float local37 = local23 * (256.0F / (float) arg5);
 		gl.glOrtho((double) ((float) local2 * local30), (double) ((float) local6 * local30), (double) ((float) -local13 * local37), (double) ((float) -local9 * local37), (double) (50 - arg3), (double) (3584 - arg3));
-		gl.glViewport(0, 0, canvasWidth, canvasHeight);
+		setViewportBounds(0, 0, canvasWidth, canvasHeight);
 		gl.glMatrixMode(GL2.GL_MODELVIEW);
 		gl.glLoadIdentity();
 		gl.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);

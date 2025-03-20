@@ -41,7 +41,7 @@ public class GlRaster {
         @Pc(27) GL2 local27 = GlRenderer.gl;
         local27.glEnable(GL2.GL_SCISSOR_TEST);
         if (clipLeft <= clipRight && clipTop <= clipBottom) {
-            local27.glScissor(clipLeft, GlRenderer.canvasHeight - clipBottom, clipRight - clipLeft, clipBottom - clipTop);
+            local27.glScissor((int) (clipLeft * GameShell.canvasScale + GameShell.subpixelX), (int) ((GlRenderer.canvasHeight - clipBottom) * GameShell.canvasScale + GameShell.subpixelY), (int) ((clipRight - clipLeft) * GameShell.canvasScale + GameShell.subpixelX), (int) ((clipBottom - clipTop) * GameShell.canvasScale + GameShell.subpixelY));
         } else {
             local27.glScissor(0, 0, 0, 0);
         }
@@ -130,12 +130,12 @@ public class GlRaster {
         if (clipBottom > arg3) {
             clipBottom = arg3;
         }
-        @Pc(21) GL2 local21 = GlRenderer.gl;
-        local21.glEnable(GL2.GL_SCISSOR_TEST);
+        @Pc(21) GL2 gl = GlRenderer.gl;
+        gl.glEnable(GL2.GL_SCISSOR_TEST);
         if (clipLeft <= clipRight && clipTop <= clipBottom) {
-            local21.glScissor(clipLeft, GlRenderer.canvasHeight - clipBottom, clipRight - clipLeft, clipBottom - clipTop);
+            gl.glScissor((int) (clipLeft * GameShell.canvasScale + GameShell.subpixelX), (int) ((GlRenderer.canvasHeight - clipBottom) * GameShell.canvasScale + GameShell.subpixelY), (int) ((clipRight - clipLeft) * GameShell.canvasScale + GameShell.subpixelX), (int) ((clipBottom - clipTop) * GameShell.canvasScale + GameShell.subpixelY));
         } else {
-            local21.glScissor(0, 0, 0, 0);
+            gl.glScissor(0, 0, 0, 0);
         }
         GlFont.method1173();
     }
@@ -222,17 +222,17 @@ public class GlRaster {
     }
 
     @OriginalMember(owner = "client!dj", name = "a", descriptor = "([IIIII)V")
-    public static void render(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+    public static void render(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int y, @OriginalArg(3) int width, @OriginalArg(4) int height) {
         GlRenderer.method4162();
-        @Pc(2) GL2 local2 = GlRenderer.gl;
-        local2.glRasterPos2i(arg1, GlRenderer.canvasHeight - arg2);
-        local2.glPixelZoom(1.0F, -1.0F);
-        local2.glDisable(GL2.GL_BLEND);
-        local2.glDisable(GL2.GL_ALPHA_TEST);
-        local2.glDrawPixels(arg3, arg4, GL2.GL_BGRA, GlRenderer.bigEndian ? GL2.GL_UNSIGNED_INT_8_8_8_8_REV : GL2.GL_UNSIGNED_BYTE, IntBuffer.wrap(arg0));
-        local2.glEnable(GL2.GL_ALPHA_TEST);
-        local2.glEnable(GL2.GL_BLEND);
-        local2.glPixelZoom(1.0F, 1.0F);
+        @Pc(2) GL2 gl = GlRenderer.gl;
+        gl.glRasterPos2i(arg1, GlRenderer.canvasHeight - y);
+        gl.glPixelZoom((float) GameShell.canvasScale, (float) -GameShell.canvasScale);
+        gl.glDisable(GL2.GL_BLEND);
+        gl.glDisable(GL2.GL_ALPHA_TEST);
+        gl.glDrawPixels(width, height, GL2.GL_BGRA, GlRenderer.bigEndian ? GL2.GL_UNSIGNED_INT_8_8_8_8_REV : GL2.GL_UNSIGNED_BYTE, IntBuffer.wrap(arg0));
+        gl.glEnable(GL2.GL_ALPHA_TEST);
+        gl.glEnable(GL2.GL_BLEND);
+        gl.glPixelZoom(1.0F, 1.0F);
     }
 
     @OriginalMember(owner = "client!dj", name = "b", descriptor = "(IIII)V")
