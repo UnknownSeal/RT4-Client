@@ -25,7 +25,7 @@ public final class Static103 {
 		if (arg0 < 0) {
 			return;
 		}
-		@Pc(15) int local15 = MiniMenu.intArgs1[arg0];
+		@Pc(15) int local15 = MiniMenu.CODE_MAP[arg0];
 		@Pc(19) int local19 = Static56.anIntArray142[arg0];
 		@Pc(23) int local23 = MiniMenu.actions[arg0];
 		if (local23 >= 2000) {

@@ -70,103 +70,103 @@ public final class Keyboard implements KeyListener, FocusListener {
 	public static int keyChar;
 
 	static {
-		Arrays.fill(MiniMenu.intArgs1, -1);
-		MiniMenu.intArgs1[KeyEvent.VK_BACK_SPACE] = 85;
-		MiniMenu.intArgs1[KeyEvent.VK_TAB] = 80;
-		MiniMenu.intArgs1[KeyEvent.VK_ENTER] = 84;
+		Arrays.fill(MiniMenu.CODE_MAP, -1);
+		MiniMenu.CODE_MAP[KeyEvent.VK_BACK_SPACE] = 85;
+		MiniMenu.CODE_MAP[KeyEvent.VK_TAB] = 80;
+		MiniMenu.CODE_MAP[KeyEvent.VK_ENTER] = 84;
 		//
-		MiniMenu.intArgs1[KeyEvent.VK_CLEAR] = 91;
+		MiniMenu.CODE_MAP[KeyEvent.VK_CLEAR] = 91;
 		//
-		MiniMenu.intArgs1[KeyEvent.VK_SHIFT] = 81;
-		MiniMenu.intArgs1[KeyEvent.VK_CONTROL] = 82;
-		MiniMenu.intArgs1[KeyEvent.VK_ALT] = 86;
+		MiniMenu.CODE_MAP[KeyEvent.VK_SHIFT] = 81;
+		MiniMenu.CODE_MAP[KeyEvent.VK_CONTROL] = 82;
+		MiniMenu.CODE_MAP[KeyEvent.VK_ALT] = 86;
 		//
-		MiniMenu.intArgs1[KeyEvent.VK_ESCAPE] = 13;
+		MiniMenu.CODE_MAP[KeyEvent.VK_ESCAPE] = 13;
 		//
-		MiniMenu.intArgs1[KeyEvent.VK_SPACE] = 83;
-		MiniMenu.intArgs1[KeyEvent.VK_PAGE_UP] = 104;
-		MiniMenu.intArgs1[KeyEvent.VK_PAGE_DOWN] = 105;
-		MiniMenu.intArgs1[KeyEvent.VK_END] = 103;
-		MiniMenu.intArgs1[KeyEvent.VK_HOME] = 102;
-		MiniMenu.intArgs1[KeyEvent.VK_LEFT] = 96;
-		MiniMenu.intArgs1[KeyEvent.VK_UP] = 98;
-		MiniMenu.intArgs1[KeyEvent.VK_RIGHT] = 97;
-		MiniMenu.intArgs1[KeyEvent.VK_DOWN] = 99;
+		MiniMenu.CODE_MAP[KeyEvent.VK_SPACE] = 83;
+		MiniMenu.CODE_MAP[KeyEvent.VK_PAGE_UP] = 104;
+		MiniMenu.CODE_MAP[KeyEvent.VK_PAGE_DOWN] = 105;
+		MiniMenu.CODE_MAP[KeyEvent.VK_END] = 103;
+		MiniMenu.CODE_MAP[KeyEvent.VK_HOME] = 102;
+		MiniMenu.CODE_MAP[KeyEvent.VK_LEFT] = 96;
+		MiniMenu.CODE_MAP[KeyEvent.VK_UP] = 98;
+		MiniMenu.CODE_MAP[KeyEvent.VK_RIGHT] = 97;
+		MiniMenu.CODE_MAP[KeyEvent.VK_DOWN] = 99;
 		//
-		MiniMenu.intArgs1[KeyEvent.VK_0] = 25;
-		MiniMenu.intArgs1[KeyEvent.VK_1] = 16;
-		MiniMenu.intArgs1[KeyEvent.VK_2] = 17;
-		MiniMenu.intArgs1[KeyEvent.VK_3] = 18;
-		MiniMenu.intArgs1[KeyEvent.VK_4] = 19;
-		MiniMenu.intArgs1[KeyEvent.VK_5] = 20;
-		MiniMenu.intArgs1[KeyEvent.VK_6] = 21;
-		MiniMenu.intArgs1[KeyEvent.VK_7] = 22;
-		MiniMenu.intArgs1[KeyEvent.VK_8] = 23;
-		MiniMenu.intArgs1[KeyEvent.VK_9] = 24;
+		MiniMenu.CODE_MAP[KeyEvent.VK_0] = 25;
+		MiniMenu.CODE_MAP[KeyEvent.VK_1] = 16;
+		MiniMenu.CODE_MAP[KeyEvent.VK_2] = 17;
+		MiniMenu.CODE_MAP[KeyEvent.VK_3] = 18;
+		MiniMenu.CODE_MAP[KeyEvent.VK_4] = 19;
+		MiniMenu.CODE_MAP[KeyEvent.VK_5] = 20;
+		MiniMenu.CODE_MAP[KeyEvent.VK_6] = 21;
+		MiniMenu.CODE_MAP[KeyEvent.VK_7] = 22;
+		MiniMenu.CODE_MAP[KeyEvent.VK_8] = 23;
+		MiniMenu.CODE_MAP[KeyEvent.VK_9] = 24;
 		//
-		MiniMenu.intArgs1[KeyEvent.VK_A] = 48;
-		MiniMenu.intArgs1[KeyEvent.VK_B] = 68;
-		MiniMenu.intArgs1[KeyEvent.VK_C] = 66;
-		MiniMenu.intArgs1[KeyEvent.VK_D] = 50;
-		MiniMenu.intArgs1[KeyEvent.VK_E] = 34;
-		MiniMenu.intArgs1[KeyEvent.VK_F] = 51;
-		MiniMenu.intArgs1[KeyEvent.VK_G] = 52;
-		MiniMenu.intArgs1[KeyEvent.VK_H] = 53;
-		MiniMenu.intArgs1[KeyEvent.VK_I] = 39;
-		MiniMenu.intArgs1[KeyEvent.VK_J] = 54;
-		MiniMenu.intArgs1[KeyEvent.VK_K] = 55;
-		MiniMenu.intArgs1[KeyEvent.VK_L] = 56;
-		MiniMenu.intArgs1[KeyEvent.VK_M] = 70;
-		MiniMenu.intArgs1[KeyEvent.VK_N] = 69;
-		MiniMenu.intArgs1[KeyEvent.VK_O] = 40;
-		MiniMenu.intArgs1[KeyEvent.VK_P] = 41;
-		MiniMenu.intArgs1[KeyEvent.VK_Q] = 32;
-		MiniMenu.intArgs1[KeyEvent.VK_R] = 35;
-		MiniMenu.intArgs1[KeyEvent.VK_S] = 49;
-		MiniMenu.intArgs1[KeyEvent.VK_T] = 36;
-		MiniMenu.intArgs1[KeyEvent.VK_U] = 38;
-		MiniMenu.intArgs1[KeyEvent.VK_V] = 67;
-		MiniMenu.intArgs1[KeyEvent.VK_W] = 33;
-		MiniMenu.intArgs1[KeyEvent.VK_X] = 65;
-		MiniMenu.intArgs1[KeyEvent.VK_Y] = 37;
-		MiniMenu.intArgs1[KeyEvent.VK_Z] = 64;
+		MiniMenu.CODE_MAP[KeyEvent.VK_A] = 48;
+		MiniMenu.CODE_MAP[KeyEvent.VK_B] = 68;
+		MiniMenu.CODE_MAP[KeyEvent.VK_C] = 66;
+		MiniMenu.CODE_MAP[KeyEvent.VK_D] = 50;
+		MiniMenu.CODE_MAP[KeyEvent.VK_E] = 34;
+		MiniMenu.CODE_MAP[KeyEvent.VK_F] = 51;
+		MiniMenu.CODE_MAP[KeyEvent.VK_G] = 52;
+		MiniMenu.CODE_MAP[KeyEvent.VK_H] = 53;
+		MiniMenu.CODE_MAP[KeyEvent.VK_I] = 39;
+		MiniMenu.CODE_MAP[KeyEvent.VK_J] = 54;
+		MiniMenu.CODE_MAP[KeyEvent.VK_K] = 55;
+		MiniMenu.CODE_MAP[KeyEvent.VK_L] = 56;
+		MiniMenu.CODE_MAP[KeyEvent.VK_M] = 70;
+		MiniMenu.CODE_MAP[KeyEvent.VK_N] = 69;
+		MiniMenu.CODE_MAP[KeyEvent.VK_O] = 40;
+		MiniMenu.CODE_MAP[KeyEvent.VK_P] = 41;
+		MiniMenu.CODE_MAP[KeyEvent.VK_Q] = 32;
+		MiniMenu.CODE_MAP[KeyEvent.VK_R] = 35;
+		MiniMenu.CODE_MAP[KeyEvent.VK_S] = 49;
+		MiniMenu.CODE_MAP[KeyEvent.VK_T] = 36;
+		MiniMenu.CODE_MAP[KeyEvent.VK_U] = 38;
+		MiniMenu.CODE_MAP[KeyEvent.VK_V] = 67;
+		MiniMenu.CODE_MAP[KeyEvent.VK_W] = 33;
+		MiniMenu.CODE_MAP[KeyEvent.VK_X] = 65;
+		MiniMenu.CODE_MAP[KeyEvent.VK_Y] = 37;
+		MiniMenu.CODE_MAP[KeyEvent.VK_Z] = 64;
 		//
-		MiniMenu.intArgs1[KeyEvent.VK_NUMPAD0] = 228;
-		MiniMenu.intArgs1[KeyEvent.VK_NUMPAD1] = 231;
-		MiniMenu.intArgs1[KeyEvent.VK_NUMPAD2] = 227;
-		MiniMenu.intArgs1[KeyEvent.VK_NUMPAD3] = 233;
-		MiniMenu.intArgs1[KeyEvent.VK_NUMPAD4] = 224;
-		MiniMenu.intArgs1[KeyEvent.VK_NUMPAD5] = 219;
-		MiniMenu.intArgs1[KeyEvent.VK_NUMPAD6] = 225;
-		MiniMenu.intArgs1[KeyEvent.VK_NUMPAD7] = 230;
-		MiniMenu.intArgs1[KeyEvent.VK_NUMPAD8] = 226;
-		MiniMenu.intArgs1[KeyEvent.VK_NUMPAD9] = 232;
-		MiniMenu.intArgs1[KeyEvent.VK_MULTIPLY] = 89;
-		MiniMenu.intArgs1[KeyEvent.VK_ADD] = 87;
+		MiniMenu.CODE_MAP[KeyEvent.VK_NUMPAD0] = 228;
+		MiniMenu.CODE_MAP[KeyEvent.VK_NUMPAD1] = 231;
+		MiniMenu.CODE_MAP[KeyEvent.VK_NUMPAD2] = 227;
+		MiniMenu.CODE_MAP[KeyEvent.VK_NUMPAD3] = 233;
+		MiniMenu.CODE_MAP[KeyEvent.VK_NUMPAD4] = 224;
+		MiniMenu.CODE_MAP[KeyEvent.VK_NUMPAD5] = 219;
+		MiniMenu.CODE_MAP[KeyEvent.VK_NUMPAD6] = 225;
+		MiniMenu.CODE_MAP[KeyEvent.VK_NUMPAD7] = 230;
+		MiniMenu.CODE_MAP[KeyEvent.VK_NUMPAD8] = 226;
+		MiniMenu.CODE_MAP[KeyEvent.VK_NUMPAD9] = 232;
+		MiniMenu.CODE_MAP[KeyEvent.VK_MULTIPLY] = 89;
+		MiniMenu.CODE_MAP[KeyEvent.VK_ADD] = 87;
 		//
-		MiniMenu.intArgs1[KeyEvent.VK_SUBTRACT] = 88;
-		MiniMenu.intArgs1[KeyEvent.VK_DECIMAL] = 229;
-		MiniMenu.intArgs1[KeyEvent.VK_DIVIDE] = 90;
-		MiniMenu.intArgs1[KeyEvent.VK_F1] = 1;
-		MiniMenu.intArgs1[KeyEvent.VK_F2] = 2;
-		MiniMenu.intArgs1[KeyEvent.VK_F3] = 3;
-		MiniMenu.intArgs1[KeyEvent.VK_F4] = 4;
-		MiniMenu.intArgs1[KeyEvent.VK_F5] = 5;
-		MiniMenu.intArgs1[KeyEvent.VK_F6] = 6;
-		MiniMenu.intArgs1[KeyEvent.VK_F7] = 7;
-		MiniMenu.intArgs1[KeyEvent.VK_F8] = 8;
-		MiniMenu.intArgs1[KeyEvent.VK_F9] = 9;
-		MiniMenu.intArgs1[KeyEvent.VK_F10] = 10;
-		MiniMenu.intArgs1[KeyEvent.VK_F11] = 11;
-		MiniMenu.intArgs1[KeyEvent.VK_F12] = 12;
+		MiniMenu.CODE_MAP[KeyEvent.VK_SUBTRACT] = 88;
+		MiniMenu.CODE_MAP[KeyEvent.VK_DECIMAL] = 229;
+		MiniMenu.CODE_MAP[KeyEvent.VK_DIVIDE] = 90;
+		MiniMenu.CODE_MAP[KeyEvent.VK_F1] = 1;
+		MiniMenu.CODE_MAP[KeyEvent.VK_F2] = 2;
+		MiniMenu.CODE_MAP[KeyEvent.VK_F3] = 3;
+		MiniMenu.CODE_MAP[KeyEvent.VK_F4] = 4;
+		MiniMenu.CODE_MAP[KeyEvent.VK_F5] = 5;
+		MiniMenu.CODE_MAP[KeyEvent.VK_F6] = 6;
+		MiniMenu.CODE_MAP[KeyEvent.VK_F7] = 7;
+		MiniMenu.CODE_MAP[KeyEvent.VK_F8] = 8;
+		MiniMenu.CODE_MAP[KeyEvent.VK_F9] = 9;
+		MiniMenu.CODE_MAP[KeyEvent.VK_F10] = 10;
+		MiniMenu.CODE_MAP[KeyEvent.VK_F11] = 11;
+		MiniMenu.CODE_MAP[KeyEvent.VK_F12] = 12;
 		//
-		MiniMenu.intArgs1[KeyEvent.VK_DELETE] = 101;
+		MiniMenu.CODE_MAP[KeyEvent.VK_DELETE] = 101;
 		//
-		MiniMenu.intArgs1[KeyEvent.VK_INSERT] = 100;
+		MiniMenu.CODE_MAP[KeyEvent.VK_INSERT] = 100;
 	}
 
 	public static boolean getKey(int key) {
-		return pressedKeys[MiniMenu.intArgs1[key]];
+		return pressedKeys[MiniMenu.CODE_MAP[key]];
 	}
 
 	@OriginalMember(owner = "client!ch", name = "a", descriptor = "(Ljava/awt/Component;I)V")
@@ -189,39 +189,39 @@ public final class Keyboard implements KeyListener, FocusListener {
 	@OriginalMember(owner = "client!mf", name = "e", descriptor = "(I)V")
 	public static void init() {
 		if (SignLink.javaVendor.toLowerCase().contains("microsoft")) {
-			MiniMenu.intArgs1[187] = 27;
-			MiniMenu.intArgs1[223] = 28;
-			MiniMenu.intArgs1[221] = 43;
-			MiniMenu.intArgs1[188] = 71;
-			MiniMenu.intArgs1[222] = 59;
-			MiniMenu.intArgs1[192] = 58;
-			MiniMenu.intArgs1[191] = 73;
-			MiniMenu.intArgs1[219] = 42;
-			MiniMenu.intArgs1[190] = 72;
-			MiniMenu.intArgs1[186] = 57;
-			MiniMenu.intArgs1[220] = 74;
-			MiniMenu.intArgs1[189] = 26;
+			MiniMenu.CODE_MAP[187] = 27;
+			MiniMenu.CODE_MAP[223] = 28;
+			MiniMenu.CODE_MAP[221] = 43;
+			MiniMenu.CODE_MAP[188] = 71;
+			MiniMenu.CODE_MAP[222] = 59;
+			MiniMenu.CODE_MAP[192] = 58;
+			MiniMenu.CODE_MAP[191] = 73;
+			MiniMenu.CODE_MAP[219] = 42;
+			MiniMenu.CODE_MAP[190] = 72;
+			MiniMenu.CODE_MAP[186] = 57;
+			MiniMenu.CODE_MAP[220] = 74;
+			MiniMenu.CODE_MAP[189] = 26;
 			return;
 		}
 
 		if (SignLink.setFocusTraversalKeysEnabled == null) {
-			MiniMenu.intArgs1[KeyEvent.VK_BACK_QUOTE] = 58;
-			MiniMenu.intArgs1[KeyEvent.VK_QUOTE] = 59;
+			MiniMenu.CODE_MAP[KeyEvent.VK_BACK_QUOTE] = 58;
+			MiniMenu.CODE_MAP[KeyEvent.VK_QUOTE] = 59;
 		} else {
-			MiniMenu.intArgs1[KeyEvent.VK_QUOTE] = 58;
-			MiniMenu.intArgs1[KeyEvent.VK_BACK_QUOTE] = 28;
-			MiniMenu.intArgs1[520] = 59;
+			MiniMenu.CODE_MAP[KeyEvent.VK_QUOTE] = 58;
+			MiniMenu.CODE_MAP[KeyEvent.VK_BACK_QUOTE] = 28;
+			MiniMenu.CODE_MAP[520] = 59;
 		}
 
-		MiniMenu.intArgs1[KeyEvent.VK_MINUS] = 26;
-		MiniMenu.intArgs1[KeyEvent.VK_EQUALS] = 27;
-		MiniMenu.intArgs1[KeyEvent.VK_OPEN_BRACKET] = 42;
-		MiniMenu.intArgs1[KeyEvent.VK_SEMICOLON] = 57;
-		MiniMenu.intArgs1[KeyEvent.VK_CLOSE_BRACKET] = 43;
-		MiniMenu.intArgs1[KeyEvent.VK_COMMA] = 71;
-		MiniMenu.intArgs1[KeyEvent.VK_BACK_SLASH] = 74;
-		MiniMenu.intArgs1[KeyEvent.VK_PERIOD] = 72;
-		MiniMenu.intArgs1[KeyEvent.VK_SLASH] = 73;
+		MiniMenu.CODE_MAP[KeyEvent.VK_MINUS] = 26;
+		MiniMenu.CODE_MAP[KeyEvent.VK_EQUALS] = 27;
+		MiniMenu.CODE_MAP[KeyEvent.VK_OPEN_BRACKET] = 42;
+		MiniMenu.CODE_MAP[KeyEvent.VK_SEMICOLON] = 57;
+		MiniMenu.CODE_MAP[KeyEvent.VK_CLOSE_BRACKET] = 43;
+		MiniMenu.CODE_MAP[KeyEvent.VK_COMMA] = 71;
+		MiniMenu.CODE_MAP[KeyEvent.VK_BACK_SLASH] = 74;
+		MiniMenu.CODE_MAP[KeyEvent.VK_PERIOD] = 72;
+		MiniMenu.CODE_MAP[KeyEvent.VK_SLASH] = 73;
 	}
 
 	@OriginalMember(owner = "client!bi", name = "a", descriptor = "(BLjava/awt/runetek4.Component;)V")
