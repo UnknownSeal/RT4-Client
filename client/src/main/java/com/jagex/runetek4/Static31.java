@@ -5,9 +5,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static31 {
 
-	@OriginalMember(owner = "client!ch", name = "w", descriptor = "I")
-	public static int anInt987;
-
 	@OriginalMember(owner = "client!ch", name = "x", descriptor = "Lclient!na;")
 	public static final JString aClass100_193 = JString.parse(":");
 

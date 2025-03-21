@@ -45,17 +45,17 @@ public class MaterialManager {
                 return;
             }
             if (Static48.anInt1447 != 0) {
-                Static2.anInterface4Array1[Static48.anInt1447].method4602();
+                Static2.anInterface4Array1[Static48.anInt1447].unbind();
             }
             if (arg1 != 0) {
                 @Pc(61) MaterialRenderer local61 = Static2.anInterface4Array1[arg1];
-                local61.method4603();
-                local61.method4604(arg0);
+                local61.bind();
+                local61.setArgument(arg0);
             }
             Static48.anInt1447 = arg1;
             Static158.anInt3857 = arg0;
         } else if (arg1 != 0 && arg0 != Static158.anInt3857) {
-            Static2.anInterface4Array1[arg1].method4604(arg0);
+            Static2.anInterface4Array1[arg1].setArgument(arg0);
             Static158.anInt3857 = arg0;
         }
     }

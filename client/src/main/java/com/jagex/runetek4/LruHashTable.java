@@ -55,11 +55,11 @@ public final class LruHashTable {
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(Lclient!rg;JB)V")
 	public final void put(@OriginalArg(0) CachedNode arg0, @OriginalArg(1) long arg1) {
 		if (this.anInt2314 == 0) {
-			@Pc(14) CachedNode local14 = this.aClass16_1.pollFront();
+			@Pc(14) CachedNode local14 = this.aClass16_1.removeHead();
 			local14.unlink();
 			local14.unlinkCachedNode();
 			if (this.aClass3_Sub2_37 == local14) {
-				local14 = this.aClass16_1.pollFront();
+				local14 = this.aClass16_1.removeHead();
 				local14.unlink();
 				local14.unlinkCachedNode();
 			}

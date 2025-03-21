@@ -17,25 +17,25 @@ public final class Light {
 	public final boolean aBoolean124;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "d", descriptor = "I")
-	private int anInt2232;
+	private int alphaMax;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "e", descriptor = "I")
 	private int anInt2233;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "i", descriptor = "I")
-	public int anInt2235;
+	public int y;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "j", descriptor = "I")
-	public final int anInt2236;
+	public final int radius;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "p", descriptor = "I")
-	private int anInt2239;
+	private int alphaMin;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "q", descriptor = "I")
-	public int anInt2240;
+	public int x;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "r", descriptor = "I")
-	public int anInt2241;
+	public int level;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "t", descriptor = "I")
 	public final int anInt2243;
@@ -44,10 +44,10 @@ public final class Light {
 	public final short[] aShortArray30;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "w", descriptor = "F")
-	public float aFloat8;
+	public float alpha;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "x", descriptor = "I")
-	public int anInt2245;
+	public int z;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "y", descriptor = "I")
 	private int anInt2246;
@@ -62,7 +62,7 @@ public final class Light {
 	public Class45 aClass45_1;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "C", descriptor = "I")
-	public final int anInt2247;
+	public final int color;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "E", descriptor = "I")
 	private final int anInt2249;
@@ -71,29 +71,29 @@ public final class Light {
 	public boolean aBoolean125 = false;
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "I", descriptor = "[F")
-	public final float[] aFloatArray3 = new float[4];
+	public final float[] diffuse = new float[4];
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "<init>", descriptor = "(Lclient!wa;)V")
-	public Light(@OriginalArg(0) Packet arg0) {
+	public Light(@OriginalArg(0) Packet packet) {
 		if (NOISE == null) {
-			method1771();
+			init();
 		}
-		this.anInt2241 = arg0.g1();
-		this.aBoolean124 = (this.anInt2241 & 0x10) != 0;
-		this.aBoolean126 = (this.anInt2241 & 0x8) != 0;
-		this.anInt2241 &= 0x7;
-		this.anInt2240 = arg0.g2();
-		this.anInt2245 = arg0.g2();
-		this.anInt2235 = arg0.g2();
-		this.anInt2236 = arg0.g1();
+		this.level = packet.g1();
+		this.aBoolean124 = (this.level & 0x10) != 0;
+		this.aBoolean126 = (this.level & 0x8) != 0;
+		this.level &= 0x7;
+		this.x = packet.g2();
+		this.z = packet.g2();
+		this.y = packet.g2();
+		this.radius = packet.g1();
 		this.method1763();
-		this.aShortArray30 = new short[this.anInt2236 * 2 + 1];
+		this.aShortArray30 = new short[this.radius * 2 + 1];
 		@Pc(87) int local87;
 		for (local87 = 0; local87 < this.aShortArray30.length; local87++) {
-			this.aShortArray30[local87] = (short) arg0.g2();
+			this.aShortArray30[local87] = (short) packet.g2();
 		}
-		this.anInt2247 = Rasterizer.palette[arg0.g2()];
-		local87 = arg0.g1();
+		this.color = Rasterizer.palette[packet.g2()];
+		local87 = packet.g1();
 		this.anInt2249 = (local87 & 0xE0) << 3;
 		this.anInt2243 = local87 & 0x1F;
 		if (this.anInt2243 != 31) {
@@ -118,21 +118,21 @@ public final class Light {
 	}
 
 	@OriginalMember(owner = "client!gk", name = "b", descriptor = "(B)V")
-	public static void method1771() {
+	public static void init() {
 		NOISE = createNoise(0.4F);
 	}
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "a", descriptor = "(BIIII)V")
 	public final void method1762(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		this.anInt2233 = arg0;
-		this.anInt2239 = arg2;
-		this.anInt2232 = arg3;
+		this.alphaMin = arg2;
+		this.alphaMax = arg3;
 		this.anInt2246 = arg1;
 	}
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "a", descriptor = "(I)V")
 	private void method1763() {
-		@Pc(10) int local10 = (this.anInt2236 << 7) + 64;
+		@Pc(10) int local10 = (this.radius << 7) + 64;
 		this.aFloat9 = 1.0F / (float) (local10 * local10);
 	}
 
@@ -157,95 +157,95 @@ public final class Light {
 		if (arg0) {
 			local62 = 2048;
 		}
-		this.aFloat8 = (float) (this.anInt2232 + (local62 * this.anInt2239 >> 11)) / 2048.0F;
-		@Pc(123) float local123 = this.aFloat8 / 255.0F;
-		this.aFloatArray3[0] = (float) (this.anInt2247 >> 16 & 0xFF) * local123;
-		this.aFloatArray3[2] = local123 * (float) (this.anInt2247 & 0xFF);
-		this.aFloatArray3[1] = (float) (this.anInt2247 >> 8 & 0xFF) * local123;
+		this.alpha = (float) (this.alphaMax + (local62 * this.alphaMin >> 11)) / 2048.0F;
+		@Pc(123) float local123 = this.alpha / 255.0F;
+		this.diffuse[0] = (float) (this.color >> 16 & 0xFF) * local123;
+		this.diffuse[2] = local123 * (float) (this.color & 0xFF);
+		this.diffuse[1] = (float) (this.color >> 8 & 0xFF) * local123;
 	}
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "c", descriptor = "(I)V")
 	private void method1766() {
 		@Pc(4) int local4 = this.anInt2243;
 		if (local4 == 2) {
-			this.anInt2239 = 2048;
-			this.anInt2232 = 0;
+			this.alphaMin = 2048;
+			this.alphaMax = 0;
 			this.anInt2233 = 1;
 			this.anInt2246 = 2048;
 		} else if (local4 == 3) {
-			this.anInt2232 = 0;
+			this.alphaMax = 0;
 			this.anInt2246 = 4096;
 			this.anInt2233 = 1;
-			this.anInt2239 = 2048;
+			this.alphaMin = 2048;
 		} else if (local4 == 4) {
-			this.anInt2232 = 0;
-			this.anInt2239 = 2048;
+			this.alphaMax = 0;
+			this.alphaMin = 2048;
 			this.anInt2233 = 4;
 			this.anInt2246 = 2048;
 		} else if (local4 == 5) {
 			this.anInt2233 = 4;
-			this.anInt2239 = 2048;
+			this.alphaMin = 2048;
 			this.anInt2246 = 8192;
-			this.anInt2232 = 0;
+			this.alphaMax = 0;
 		} else if (local4 == 12) {
-			this.anInt2239 = 2048;
+			this.alphaMin = 2048;
 			this.anInt2233 = 2;
 			this.anInt2246 = 2048;
-			this.anInt2232 = 0;
+			this.alphaMax = 0;
 		} else if (local4 == 13) {
 			this.anInt2246 = 8192;
-			this.anInt2239 = 2048;
+			this.alphaMin = 2048;
 			this.anInt2233 = 2;
-			this.anInt2232 = 0;
+			this.alphaMax = 0;
 		} else if (local4 == 10) {
-			this.anInt2239 = 512;
+			this.alphaMin = 512;
 			this.anInt2233 = 3;
-			this.anInt2232 = 1536;
+			this.alphaMax = 1536;
 			this.anInt2246 = 2048;
 		} else if (local4 == 11) {
 			this.anInt2233 = 3;
 			this.anInt2246 = 4096;
-			this.anInt2239 = 512;
-			this.anInt2232 = 1536;
+			this.alphaMin = 512;
+			this.alphaMax = 1536;
 		} else if (local4 == 6) {
-			this.anInt2239 = 768;
-			this.anInt2232 = 1280;
+			this.alphaMin = 768;
+			this.alphaMax = 1280;
 			this.anInt2233 = 3;
 			this.anInt2246 = 2048;
 		} else if (local4 == 7) {
-			this.anInt2239 = 768;
-			this.anInt2232 = 1280;
+			this.alphaMin = 768;
+			this.alphaMax = 1280;
 			this.anInt2246 = 4096;
 			this.anInt2233 = 3;
 		} else if (local4 == 8) {
 			this.anInt2246 = 2048;
 			this.anInt2233 = 3;
-			this.anInt2239 = 1024;
-			this.anInt2232 = 1024;
+			this.alphaMin = 1024;
+			this.alphaMax = 1024;
 		} else if (local4 == 9) {
 			this.anInt2246 = 4096;
-			this.anInt2232 = 1024;
-			this.anInt2239 = 1024;
+			this.alphaMax = 1024;
+			this.alphaMin = 1024;
 			this.anInt2233 = 3;
 		} else if (local4 == 14) {
 			this.anInt2246 = 2048;
-			this.anInt2232 = 1280;
+			this.alphaMax = 1280;
 			this.anInt2233 = 1;
-			this.anInt2239 = 768;
+			this.alphaMin = 768;
 		} else if (local4 == 15) {
-			this.anInt2239 = 512;
+			this.alphaMin = 512;
 			this.anInt2246 = 4096;
-			this.anInt2232 = 1536;
+			this.alphaMax = 1536;
 			this.anInt2233 = 1;
 		} else if (local4 == 16) {
 			this.anInt2246 = 8192;
-			this.anInt2232 = 1792;
+			this.alphaMax = 1792;
 			this.anInt2233 = 1;
-			this.anInt2239 = 256;
+			this.alphaMin = 256;
 		} else {
 			this.anInt2246 = 2048;
-			this.anInt2232 = 0;
-			this.anInt2239 = 2048;
+			this.alphaMax = 0;
+			this.alphaMin = 2048;
 			this.anInt2233 = 0;
 		}
 	}

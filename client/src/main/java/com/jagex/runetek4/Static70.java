@@ -40,7 +40,7 @@ public final class Static70 {
 					local95 = (local66 & 0x380) + (arg1 + local66 & 0xFC00) + local72;
 					local53 = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(local95, 96)];
 				} else if (local24 >= 0) {
-					local53 = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(Rasterizer.textureProvider.method3234(local24), 96)];
+					local53 = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(Rasterizer.textureProvider.getAverageColor(local24), 96)];
 				} else if (local18.baseColor == -1) {
 					local53 = -1;
 				} else {

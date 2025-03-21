@@ -393,7 +393,7 @@ public class LoginManager {
             }
         }
         if (GlRenderer.enabled) {
-            Static120.method2404();
+            LightingManager.method2404();
         }
         if (GlRenderer.enabled) {
             FogManager.setDefaultChunksAtmosphere();
@@ -429,7 +429,7 @@ public class LoginManager {
         ClientProt.ping(true);
         Static45.method1169(PathFinder.collisionMaps, false);
         if (GlRenderer.enabled) {
-            Static120.method2395();
+            LightingManager.method2395();
         }
         ClientProt.ping(true);
         local427 = Static146.firstvisibleLevel;

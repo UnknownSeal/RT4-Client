@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.tile.GroundDecor;
 import com.jagex.runetek4.scene.tile.Tile;
@@ -15,9 +14,6 @@ public final class Static220 {
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "c", descriptor = "I")
 	public static int cameraOffsetYawModifier = 1;
-
-	@OriginalMember(owner = "runetek4.client!rm", name = "d", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_28 = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!rm", name = "g", descriptor = "Z")
 	public static boolean aBoolean244 = true;

@@ -14,9 +14,6 @@ public final class Static229 {
 	@OriginalMember(owner = "runetek4.client!si", name = "Z", descriptor = "Lclient!na;")
 	public static final JString YELLOW = JString.parse("<col=ffb000>");
 
-	@OriginalMember(owner = "runetek4.client!si", name = "eb", descriptor = "I")
-	public static volatile int anInt5140 = 0;
-
 	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(ZB)I")
 	public static int method3933(@OriginalArg(1) byte arg0) {
 		return arg0 & 0xFF;

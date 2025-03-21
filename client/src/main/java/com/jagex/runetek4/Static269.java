@@ -177,17 +177,17 @@ public final class Static269 {
 				for (local243 = 0; local243 < local515; local243++) {
 					@Pc(529) Light local529 = new Light(local95);
 					if (local529.anInt2243 == 31) {
-						@Pc(541) LightType local541 = Static140.method2709(local95.g2());
+						@Pc(541) LightType local541 = LightTypeList.get(local95.g2());
 						local529.method1762(local541.anInt2865, local541.anInt2873, local541.anInt2867, local541.anInt2872);
 					}
-					local529.anInt2245 += arg3 << 7;
-					local529.anInt2240 += arg4 << 7;
-					local194 = local529.anInt2245 >> 7;
-					local190 = local529.anInt2240 >> 7;
+					local529.z += arg3 << 7;
+					local529.x += arg4 << 7;
+					local194 = local529.z >> 7;
+					local190 = local529.x >> 7;
 					if (local190 >= 0 && local194 >= 0 && local190 < 104 && local194 < 104) {
 						local529.aBoolean125 = (SceneGraph.renderFlags[1][local190][local194] & 0x2) != 0;
-						local529.anInt2235 = SceneGraph.tileHeights[local529.anInt2241][local190][local194] - local529.anInt2235;
-						Static120.method2389(local529);
+						local529.y = SceneGraph.tileHeights[local529.level][local190][local194] - local529.y;
+						LightingManager.method2389(local529);
 					}
 				}
 			}

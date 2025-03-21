@@ -24,6 +24,8 @@ public class MiniMenu {
     public static final JString NULL = JString.parse("null");
     @OriginalMember(owner = "client!aj", name = "R", descriptor = "Lclient!na;")
     public static final JString aClass100_32 = JString.parse("<col=ff9040>");
+    @OriginalMember(owner = "runetek4.client!pl", name = "e", descriptor = "[I")
+    public static final int[] intArgs1 = new int[500];
     @OriginalMember(owner = "runetek4.client!sk", name = "kb", descriptor = "I")
     public static int menuActionRow = 0;
     @OriginalMember(owner = "runetek4.client!vd", name = "C", descriptor = "I")
@@ -92,7 +94,7 @@ public class MiniMenu {
         cursors[menuActionRow] = arg0 == -1 ? anInt1092 : arg0;
         actions[menuActionRow] = arg4;
         Static159.aLongArray5[menuActionRow] = arg1;
-        Static196.anIntArray408[menuActionRow] = arg3;
+        intArgs1[menuActionRow] = arg3;
         Static56.anIntArray142[menuActionRow] = arg6;
         menuActionRow++;
     }
@@ -261,7 +263,7 @@ public class MiniMenu {
         ArrayUtils.copy(cursors, arg0 + 1, cursors, arg0, menuActionRow - arg0);
         ArrayUtils.copy(actions, arg0 + 1, actions, arg0, menuActionRow - arg0);
         ArrayUtils.copy(Static159.aLongArray5, arg0 + 1, Static159.aLongArray5, arg0, menuActionRow - arg0);
-        ArrayUtils.copy(Static196.anIntArray408, arg0 + 1, Static196.anIntArray408, arg0, menuActionRow - arg0);
+        ArrayUtils.copy(intArgs1, arg0 + 1, intArgs1, arg0, menuActionRow - arg0);
         ArrayUtils.copy(Static56.anIntArray142, arg0 + 1, Static56.anIntArray142, arg0, menuActionRow - arg0);
     }
 }

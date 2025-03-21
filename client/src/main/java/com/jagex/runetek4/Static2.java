@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static2 {
 
-	@OriginalMember(owner = "runetek4.client!aa", name = "m", descriptor = "I")
-	public static int anInt15;
-
 	@OriginalMember(owner = "runetek4.client!aa", name = "t", descriptor = "[Lclient!pc;")
 	public static MaterialRenderer[] anInterface4Array1;
 

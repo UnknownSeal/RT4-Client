@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import java.awt.event.KeyEvent;
-
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -20,19 +18,6 @@ public final class Static136 {
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "m", descriptor = "Lclient!na;")
 	public static final JString aClass100_633 = JString.parse("Clientscript error )2 check log for details");
-
-	@OriginalMember(owner = "runetek4.client!kk", name = "a", descriptor = "(ZLjava/awt/event/KeyEvent;)I")
-	public static int method2650(@OriginalArg(1) KeyEvent arg0) {
-		@Pc(6) int local6 = arg0.getKeyChar();
-		if (local6 == 8364) {
-			return 128;
-		} else {
-			if (local6 <= 0 || local6 >= 256) {
-				local6 = -1;
-			}
-			return local6;
-		}
-	}
 
 	@OriginalMember(owner = "runetek4.client!kk", name = "b", descriptor = "(Lclient!wa;I)V")
 	public static void method2654(@OriginalArg(0) Packet arg0) {

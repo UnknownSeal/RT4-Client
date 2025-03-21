@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -8,9 +7,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static10 {
-
-	@OriginalMember(owner = "client!an", name = "ab", descriptor = "Lclient!uf;")
-	public static Keyboard aClass149_1 = new Keyboard();
 
 	@OriginalMember(owner = "client!an", name = "db", descriptor = "S")
 	public static short aShort9 = 205;

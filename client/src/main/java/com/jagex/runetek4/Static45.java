@@ -288,7 +288,7 @@ public final class Static45 {
 								@Pc(1429) int local1429;
 								if (local1288 >= 0) {
 									local1301 = -1;
-									local1353 = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(Rasterizer.textureProvider.method3234(local1288), 96)];
+									local1353 = Rasterizer.palette[ColorUtils.multiplyLightnessGrayscale(Rasterizer.textureProvider.getAverageColor(local1288), 96)];
 								} else if (local1248.baseColor == -1) {
 									local1301 = -2;
 									local1353 = 0;

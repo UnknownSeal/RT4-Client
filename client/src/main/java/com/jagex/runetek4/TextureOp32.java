@@ -66,8 +66,8 @@ public final class TextureOp32 extends TextureOp {
 		} else {
 			@Pc(22) int local22 = Texture.width;
 			@Pc(24) int local24 = Texture.height;
-			@Pc(34) int local34 = Static37.anInterface1_1.method3233(this.anInt5539) ? 64 : 128;
-			this.anIntArray483 = Static37.anInterface1_1.method3235(this.anInt5539);
+			@Pc(34) int local34 = Static37.anInterface1_1.isLowDetail(this.anInt5539) ? 64 : 128;
+			this.anIntArray483 = Static37.anInterface1_1.getPixels(this.anInt5539);
 			this.anInt5536 = local34;
 			this.anInt5535 = local34;
 			Texture.setSize(local24, local22);

@@ -14,9 +14,6 @@ public final class Static264 {
 	@OriginalMember(owner = "runetek4.client!vh", name = "s", descriptor = "I")
 	public static int mouseRecorderPrevX = 0;
 
-	@OriginalMember(owner = "runetek4.client!vh", name = "u", descriptor = "[I")
-	public static final int[] anIntArray413 = new int[128];
-
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "(Lclient!th;III)V")
 	public static void method3574(@OriginalArg(0) Entity arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
 		@Pc(12) Tile local12;

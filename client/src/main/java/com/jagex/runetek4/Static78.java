@@ -31,9 +31,4 @@ public final class Static78 {
 		Static125.varbitDefinitionCache.removeSoft();
 	}
 
-	@OriginalMember(owner = "client!gd", name = "b", descriptor = "(I)V")
-	public static void clear() {
-		Static220.aClass99_28.clean();
-	}
-
 }

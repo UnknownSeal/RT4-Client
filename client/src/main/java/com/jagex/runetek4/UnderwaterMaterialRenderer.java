@@ -106,27 +106,27 @@ public final class UnderwaterMaterialRenderer implements MaterialRenderer {
 
 	@OriginalMember(owner = "runetek4.client!wg", name = "b", descriptor = "()V")
 	@Override
-	public final void method4603() {
+	public final void bind() {
 		@Pc(1) GL2 local1 = GlRenderer.gl;
 		local1.glCallList(this.anInt5806);
 	}
 
 	@OriginalMember(owner = "runetek4.client!wg", name = "c", descriptor = "()I")
 	@Override
-	public final int method4605() {
+	public final int getFlags() {
 		return 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wg", name = "a", descriptor = "()V")
 	@Override
-	public final void method4602() {
+	public final void unbind() {
 		@Pc(1) GL2 local1 = GlRenderer.gl;
 		local1.glCallList(this.anInt5806 + 1);
 	}
 
 	@OriginalMember(owner = "runetek4.client!wg", name = "a", descriptor = "(I)V")
 	@Override
-	public final void method4604(@OriginalArg(0) int arg0) {
+	public final void setArgument(@OriginalArg(0) int arg0) {
 		@Pc(1) GL2 local1 = GlRenderer.gl;
 		local1.glActiveTexture(GL2.GL_TEXTURE1);
 		if (Static275.aBoolean308 || arg0 >= 0) {

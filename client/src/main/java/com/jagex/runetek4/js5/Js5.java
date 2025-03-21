@@ -263,7 +263,7 @@ public final class Js5 {
 		} else if (this.packed[group] == null) {
 			return false;
 		} else {
-			@Pc(25) int[] fileIds = this.index.anIntArrayArray22[group];
+			@Pc(25) int[] fileIds = this.index.fileIds[group];
 			@Pc(31) int groupSize = this.index.groupSizes[group];
 
 			if (this.unpacked[group] == null) {
@@ -300,7 +300,7 @@ public final class Js5 {
 			try {
 				uncompressed = Js5Compression.uncompress(compressed);
 			} catch (@Pc(142) RuntimeException local142) {
-				System.out.println("T3 - " + (key != null) + "," + group + "," + compressed.length + "," + Packet.crc32(compressed, compressed.length) + "," + Packet.crc32(compressed, compressed.length - 2) + "," + this.index.anIntArray268[group] + "," + this.index.crc);
+				System.out.println("T3 - " + (key != null) + "," + group + "," + compressed.length + "," + Packet.crc32(compressed, compressed.length) + "," + Packet.crc32(compressed, compressed.length - 2) + "," + this.index.groupChecksums[group] + "," + this.index.crc);
 				uncompressed = new byte[] { 0 };
 			}
 			if (this.discardPacked) {
@@ -478,7 +478,7 @@ public final class Js5 {
 		if (!this.isGroupValid(group)) {
 			return null;
 		}
-		@Pc(22) int[] fileIds = this.index.anIntArrayArray22[group];
+		@Pc(22) int[] fileIds = this.index.fileIds[group];
 		if (fileIds == null) {
 			fileIds = new int[this.index.groupSizes[group]];
 			@Pc(34) int i = 0;

@@ -1561,13 +1561,13 @@ public final class ClientScriptRunner {
 			} else {
 				jitter = FogManager.method2235(Protocol.sceneDelta, PlayerList.self.movementQueueZ[0] >> 3, Preferences.brightness, PlayerList.self.movementQueueX[0] >> 3);
 			}
-			Static120.method2394(client.loop, !Static11.aBoolean15);
+			LightingManager.method2394(client.loop, !Static11.aBoolean15);
 			GlRenderer.clearColorAndDepthBuffers(jitter);
 			Static143.method2731(Camera.cameraPitch, Camera.renderZ, Camera.cameraY, Camera.renderX, Camera.cameraYaw);
 			GlRenderer.anInt5323 = client.loop;
 			Static156.method2954(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
 			aBoolean299 = true;
-			Static120.method2390();
+			LightingManager.method2390();
 			Static143.method2731(0, 0, 0, 0, 0);
 			client.audioLoop();
 			Static223.method3858();

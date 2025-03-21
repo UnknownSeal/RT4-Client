@@ -1,15 +1,11 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static85 {
-
-	@OriginalMember(owner = "client!gl", name = "a", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_36;
 
 	@OriginalMember(owner = "client!gl", name = "d", descriptor = "I")
 	public static int anInt2261;

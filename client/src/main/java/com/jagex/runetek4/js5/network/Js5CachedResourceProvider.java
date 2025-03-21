@@ -104,15 +104,15 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 		if (this.cache == null) {
 			return;
 		}
-		@Pc(15) Node local15;
-		for (local15 = this.prefetchQueue.head(); local15 != null; local15 = this.prefetchQueue.next()) {
-			if (local15.nodeId == (long) arg0) {
+		@Pc(15) Node node;
+		for (node = this.prefetchQueue.head(); node != null; node = this.prefetchQueue.next()) {
+			if (node.nodeId == (long) arg0) {
 				return;
 			}
 		}
-		local15 = new Node();
-		local15.nodeId = arg0;
-		this.prefetchQueue.addTail(local15);
+		node = new Node();
+		node.nodeId = arg0;
+		this.prefetchQueue.addTail(node);
 	}
 
 	@OriginalMember(owner = "client!bg", name = "b", descriptor = "(I)Lclient!ii;")
@@ -125,7 +125,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 			if (this.netQueue.isUrgentsFull()) {
 				return null;
 			}
-			this.currentRequest = this.netQueue.method2330(255, (byte) 0, this.archive, true);
+			this.currentRequest = this.netQueue.read(255, (byte) 0, this.archive, true);
 		}
 		if (this.currentRequest.awaitingResponse) {
 			return null;
@@ -145,7 +145,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 				if (this.netQueue.isUrgentsFull()) {
 					this.currentRequest = null;
 				} else {
-					this.currentRequest = this.netQueue.method2330(255, (byte) 0, this.archive, true);
+					this.currentRequest = this.netQueue.read(255, (byte) 0, this.archive, true);
 				}
 				return null;
 			}
@@ -161,12 +161,12 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 				if (this.netQueue.isUrgentsFull()) {
 					this.currentRequest = null;
 				} else {
-					this.currentRequest = this.netQueue.method2330(255, (byte) 0, this.archive, true);
+					this.currentRequest = this.netQueue.read(255, (byte) 0, this.archive, true);
 				}
 				return null;
 			}
 			if (this.masterCache != null) {
-				this.cacheQueue.method2467(this.masterCache, local52, this.archive);
+				this.cacheQueue.write(this.masterCache, local52, this.archive);
 			}
 		}
 		if (this.cache != null) {
@@ -197,8 +197,8 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 		if (this.index == null) {
 			return 0;
 		} else if (this.verifyAll) {
-			@Pc(25) Node local25 = this.groupQueue.head();
-			return local25 == null ? 0 : (int) local25.nodeId;
+			@Pc(25) Node node = this.groupQueue.head();
+			return node == null ? 0 : (int) node.nodeId;
 		} else {
 			return this.index.length;
 		}
@@ -218,7 +218,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 				for (local37 = this.groupQueue.head(); local37 != null; local37 = this.groupQueue.next()) {
 					local43 = (int) local37.nodeId;
 					if (this.groupStatus[local43] == 0) {
-						this.fetchgroup_inner(local43, 1);
+						this.fetchGroupInner(local43, 1);
 					}
 					if (this.groupStatus[local43] == 0) {
 						local32 = false;
@@ -230,12 +230,12 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 					if (this.index.groupSizes[this.group] == 0) {
 						this.group++;
 					} else {
-						if (this.cacheQueue.anInt3131 >= 250) {
+						if (this.cacheQueue.size >= 250) {
 							local32 = false;
 							break;
 						}
 						if (this.groupStatus[this.group] == 0) {
-							this.fetchgroup_inner(this.group, 1);
+							this.fetchGroupInner(this.group, 1);
 						}
 						if (this.groupStatus[this.group] == 0) {
 							local32 = false;
@@ -255,7 +255,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 				for (local37 = this.groupQueue.head(); local37 != null; local37 = this.groupQueue.next()) {
 					local43 = (int) local37.nodeId;
 					if (this.groupStatus[local43] != 1) {
-						this.fetchgroup_inner(local43, 2);
+						this.fetchGroupInner(local43, 2);
 					}
 					if (this.groupStatus[local43] == 1) {
 						local37.unlink();
@@ -272,7 +272,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 							break;
 						}
 						if (this.groupStatus[this.group] != 1) {
-							this.fetchgroup_inner(this.group, 2);
+							this.fetchGroupInner(this.group, 2);
 						}
 						if (this.groupStatus[this.group] != 1) {
 							local37 = new Node();
@@ -294,15 +294,15 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 		if (!this.discardOrphans || this.orphanCheckTime > MonotonicTime.currentTimeMillis()) {
 			return;
 		}
-		for (@Pc(331) Js5Request local331 = (Js5Request) this.requests.head(); local331 != null; local331 = (Js5Request) this.requests.next()) {
-			if (!local331.awaitingResponse) {
-				if (local331.aBoolean227) {
-					if (!local331.urgent) {
+		for (@Pc(331) Js5Request request = (Js5Request) this.requests.head(); request != null; request = (Js5Request) this.requests.next()) {
+			if (!request.awaitingResponse) {
+				if (request.orphan) {
+					if (!request.urgent) {
 						throw new RuntimeException();
 					}
-					local331.unlink();
+					request.unlink();
 				} else {
-					local331.aBoolean227 = true;
+					request.orphan = true;
 				}
 			}
 		}
@@ -312,8 +312,8 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 	@OriginalMember(owner = "client!bg", name = "b", descriptor = "(II)I")
 	@Override
 	public int getPercentageComplete(@OriginalArg(0) int group) {
-		@Pc(15) Js5Request local15 = (Js5Request) this.requests.getNode(group);
-		return local15 == null ? 0 : local15.getPercentageComplete();
+		@Pc(15) Js5Request request = (Js5Request) this.requests.getNode(group);
+		return request == null ? 0 : request.getPercentageComplete();
 	}
 
 	@OriginalMember(owner = "client!bg", name = "b", descriptor = "(B)I")
@@ -322,7 +322,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 	}
 
 	@OriginalMember(owner = "client!bg", name = "a", descriptor = "(III)Lclient!il;")
-	private Js5Request fetchgroup_inner(@OriginalArg(1) int group, @OriginalArg(0) int arg0) {
+	private Js5Request fetchGroupInner(@OriginalArg(1) int group, @OriginalArg(0) int arg0) {
 		@Pc(13) Js5Request request = (Js5Request) this.requests.getNode(group);
 		if (request != null && arg0 == 0 && !request.urgent && request.awaitingResponse) {
 			request.unlink();
@@ -334,7 +334,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 					if (this.netQueue.isUrgentsFull()) {
 						return null;
 					}
-					request = this.netQueue.method2330(this.archive, (byte) 2, group, true);
+					request = this.netQueue.read(this.archive, (byte) 2, group, true);
 				} else {
 					request = this.cacheQueue.readSynchronous(this.cache, group);
 				}
@@ -342,7 +342,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 				if (this.cache == null) {
 					throw new RuntimeException("fetchgroup_inner - VERIFY requested but no datafs available!");
 				}
-				request = this.cacheQueue.method2469(group, this.cache);
+				request = this.cacheQueue.read(group, this.cache);
 			} else if (arg0 == 2) {
 				if (this.cache == null) {
 					throw new RuntimeException("fetchgroup_inner - PREFETCH requested but no datafs available!");
@@ -353,7 +353,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 				if (this.netQueue.isPrefetchRequestQueueFull()) {
 					return null;
 				}
-				request = this.netQueue.method2330(this.archive, (byte) 2, group, false);
+				request = this.netQueue.read(this.archive, (byte) 2, group, false);
 			} else {
 				throw new RuntimeException();
 			}
@@ -373,7 +373,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 				crc32.reset();
 				crc32.update(local161, 0, local161.length - 2);
 				local199 = (int) crc32.getValue();
-				if (this.index.anIntArray268[group] != local199) {
+				if (this.index.groupChecksums[group] != local199) {
 					throw new RuntimeException();
 				}
 				this.netQueue.errors = 0;
@@ -382,15 +382,15 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 				this.netQueue.rekey();
 				request.unlink();
 				if (request.urgent && !this.netQueue.isUrgentsFull()) {
-					local252 = this.netQueue.method2330(this.archive, (byte) 2, group, true);
+					local252 = this.netQueue.read(this.archive, (byte) 2, group, true);
 					this.requests.put(local252, group);
 				}
 				return null;
 			}
-			local161[local161.length - 2] = (byte) (this.index.anIntArray273[group] >>> 8);
-			local161[local161.length - 1] = (byte) this.index.anIntArray273[group];
+			local161[local161.length - 2] = (byte) (this.index.groupVersions[group] >>> 8);
+			local161[local161.length - 1] = (byte) this.index.groupVersions[group];
 			if (this.cache != null) {
-				this.cacheQueue.method2467(this.cache, local161, group);
+				this.cacheQueue.write(this.cache, local161, group);
 				if (this.groupStatus[group] != 1) {
 					this.verifiedGroups++;
 					this.groupStatus[group] = 1;
@@ -408,11 +408,11 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 			crc32.reset();
 			crc32.update(local161, 0, local161.length - 2);
 			local199 = (int) crc32.getValue();
-			if (this.index.anIntArray268[group] != local199) {
+			if (this.index.groupChecksums[group] != local199) {
 				throw new RuntimeException();
 			}
 			@Pc(385) int local385 = ((local161[local161.length - 2] & 0xFF) << 8) + (local161[local161.length - 1] & 0xFF);
-			if (local385 != (this.index.anIntArray273[group] & 0xFFFF)) {
+			if (local385 != (this.index.groupVersions[group] & 0xFFFF)) {
 				throw new RuntimeException();
 			}
 			if (this.groupStatus[group] != 1) {
@@ -429,7 +429,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 			this.groupStatus[group] = -1;
 			request.unlink();
 			if (request.urgent && !this.netQueue.isUrgentsFull()) {
-				local252 = this.netQueue.method2330(this.archive, (byte) 2, group, true);
+				local252 = this.netQueue.read(this.archive, (byte) 2, group, true);
 				this.requests.put(local252, group);
 			}
 			return null;
@@ -437,7 +437,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 	}
 
 	@OriginalMember(owner = "client!bg", name = "e", descriptor = "(I)V")
-	public void method537() {
+	public void processPrefetchQueue() {
 		if (this.groupQueue == null || this.fetchIndex() == null) {
 			return;
 		}
@@ -447,10 +447,10 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 				local21.unlink();
 			} else {
 				if (this.groupStatus[local28] == 0) {
-					this.fetchgroup_inner(local28, 1);
+					this.fetchGroupInner(local28, 1);
 				}
 				if (this.groupStatus[local28] == -1) {
-					this.fetchgroup_inner(local28, 2);
+					this.fetchGroupInner(local28, 2);
 				}
 				if (this.groupStatus[local28] == 1) {
 					local21.unlink();
@@ -471,7 +471,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 	@OriginalMember(owner = "client!bg", name = "c", descriptor = "(II)[B")
 	@Override
 	public byte[] fetchgroup(@OriginalArg(0) int group) {
-		@Pc(9) Js5Request request = this.fetchgroup_inner(group, 0);
+		@Pc(9) Js5Request request = this.fetchGroupInner(group, 0);
 		if (request == null) {
 			return null;
 		} else {

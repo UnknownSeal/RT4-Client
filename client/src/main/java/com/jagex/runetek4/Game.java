@@ -410,7 +410,7 @@ public class Game {
         Protocol.aClass13_11 = null;
         while (Keyboard.nextKey() && InterfaceList.keyQueueSize < 128) {
             InterfaceList.keyCodes[InterfaceList.keyQueueSize] = Keyboard.keyCode;
-            InterfaceList.keyChars[InterfaceList.keyQueueSize] = Static193.keyChar;
+            InterfaceList.keyChars[InterfaceList.keyQueueSize] = Keyboard.keyChar;
             InterfaceList.keyQueueSize++;
         }
         // WorldMap.component
@@ -529,7 +529,7 @@ public class Game {
                                                 @Pc(2001) int local2001 = Static31.cameraModifierCycle[y]++;
                                             }
                                             y = Static142.getIdleLoops(); // runetek4.Mouse
-                                            x = Static195.getIdleLoops(); // runetek4.Keyboard
+                                            x = Keyboard.getIdleLoops(); // runetek4.Keyboard
                                             if (y > 15000 && x > 15000) {
                                                 idleTimeout = 250;
                                                 Mouse.setIdleLoops(14500);

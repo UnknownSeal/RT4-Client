@@ -12,9 +12,6 @@ public final class Static193 {
 	@OriginalMember(owner = "runetek4.client!pi", name = "U", descriptor = "I")
 	public static int anInt4539;
 
-	@OriginalMember(owner = "runetek4.client!pi", name = "Y", descriptor = "I")
-	public static int keyChar;
-
 	@OriginalMember(owner = "runetek4.client!pi", name = "P", descriptor = "J")
 	public static long aLong147 = 0L;
 

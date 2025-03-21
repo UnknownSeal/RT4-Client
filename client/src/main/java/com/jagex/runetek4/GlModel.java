@@ -221,7 +221,7 @@ public final class GlModel extends Model {
 					local133 = Rasterizer.textureProvider.method3228(local135 & 0xFFFF);
 				}
 			}
-			@Pc(182) boolean local182 = model.triangleAlpha != null && model.triangleAlpha[local125] != 0 || local135 != -1 && !Rasterizer.textureProvider.method3226(local135 & 0xFFFF);
+			@Pc(182) boolean local182 = model.triangleAlpha != null && model.triangleAlpha[local125] != 0 || local135 != -1 && !Rasterizer.textureProvider.isOpaque(local135 & 0xFFFF);
 			if ((arg3 || local182) && model.trianglePriorities != null) {
 				local127 += model.trianglePriorities[local125] << 17;
 			}

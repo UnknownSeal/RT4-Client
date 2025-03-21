@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
@@ -23,8 +22,4 @@ public final class Static107 {
 		Static106.anInt2869 = arg0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!id", name = "a", descriptor = "(Lclient!ve;B)V")
-	public static void init(@OriginalArg(0) Js5 arg0) {
-		Static85.aClass153_36 = arg0;
-	}
 }

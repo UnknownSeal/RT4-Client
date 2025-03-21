@@ -105,7 +105,7 @@ public final class Static132 {
 						Pix3D.method1928(local315, local331, local299, local307, local323, local291, arg0.anInt4865, arg0.anInt4864, arg0.anInt4867);
 					}
 				} else if (!Static159.aBoolean189) {
-					local475 = Rasterizer.textureProvider.method3234(arg0.anInt4869);
+					local475 = Rasterizer.textureProvider.getAverageColor(arg0.anInt4869);
 					Pix3D.method1928(local315, local331, local299, local307, local323, local291, ColorUtils.multiplyLightness3(local475, arg0.anInt4865), ColorUtils.multiplyLightness3(local475, arg0.anInt4864), ColorUtils.multiplyLightness3(local475, arg0.anInt4867));
 				} else if (arg0.aBoolean241) {
 					Pix3D.textureTriangle(local315, local331, local299, local307, local323, local291, arg0.anInt4865, arg0.anInt4864, arg0.anInt4867, local97, local21, local241, local119, local49, local85, local117, local165, local261, arg0.anInt4869);
@@ -135,7 +135,7 @@ public final class Static132 {
 		} else if (Static159.aBoolean189) {
 			Pix3D.textureTriangle(local283, local299, local331, local275, local291, local323, arg0.anInt4872, arg0.anInt4867, arg0.anInt4864, local97, local21, local241, local119, local49, local85, local117, local165, local261, arg0.anInt4869);
 		} else {
-			local475 = Rasterizer.textureProvider.method3234(arg0.anInt4869);
+			local475 = Rasterizer.textureProvider.getAverageColor(arg0.anInt4869);
 			Pix3D.method1928(local283, local299, local331, local275, local291, local323, ColorUtils.multiplyLightness3(local475, arg0.anInt4872), ColorUtils.multiplyLightness3(local475, arg0.anInt4867), ColorUtils.multiplyLightness3(local475, arg0.anInt4864));
 		}
 	}
