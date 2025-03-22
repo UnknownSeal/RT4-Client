@@ -206,7 +206,7 @@ public class Protocol {
         @Pc(171) int slot;
         @Pc(156) JString message2;
         if (opcode == 115) {
-            ii = inboundBuffer.g2();
+            int verifyID = inboundBuffer.g2();
             message2 = inboundBuffer.gjstr();
             @Pc(163) Object[] local163 = new Object[message2.length() + 1];
             for (slot = message2.length() - 1; slot >= 0; slot--) {
@@ -217,7 +217,7 @@ public class Protocol {
                 }
             }
             local163[0] = Integer.valueOf(inboundBuffer.g4());
-            if (setVerifyID(ii)) {
+            if (setVerifyID(verifyID)) {
                 @Pc(226) HookRequest local226 = new HookRequest();
                 local226.arguments = local163;
                 ClientScriptRunner.run(local226);
@@ -347,9 +347,9 @@ public class Protocol {
         @Pc(790) JString local790;
         if (opcode == 123) {
             ii = inboundBuffer.g2le();
-            xp = inboundBuffer.g2sub();
+            int verifyID = inboundBuffer.g2sub();
             local790 = inboundBuffer.gjstr();
-            if (setVerifyID(xp)) {
+            if (setVerifyID(verifyID)) {
                 DelayedStateChange.method3498(local790, ii);
             }
             opcode = -1;
@@ -372,8 +372,8 @@ public class Protocol {
             if (opcode == 220) {
                 ii = inboundBuffer.p4rme();
                 xp = inboundBuffer.g2le();
-                world = inboundBuffer.g2();
-                if (setVerifyID(world)) {
+                int verifyID = inboundBuffer.g2();
+                if (setVerifyID(verifyID)) {
                     DelayedStateChange.method3938(xp, ii);
                 }
                 opcode = -1;
@@ -495,10 +495,10 @@ public class Protocol {
                 opcode = -1;
                 return true;
             } else if (opcode == 48) {
-                ii = inboundBuffer.g2();
+                int verifyID = inboundBuffer.g2();
                 message2 = inboundBuffer.gjstr();
                 world = inboundBuffer.g2leadd();
-                if (setVerifyID(ii)) {
+                if (setVerifyID(verifyID)) {
                     DelayedStateChange.method3498(message2, world);
                 }
                 opcode = -1;
@@ -537,9 +537,9 @@ public class Protocol {
                     return true;
                 } else if (opcode == 21) {
                     ii = inboundBuffer.p1neg();
-                    xp = inboundBuffer.g2();
+                    int verifyID = inboundBuffer.g2();
                     world = inboundBuffer.g4me();
-                    if (setVerifyID(xp)) {
+                    if (setVerifyID(verifyID)) {
                         DelayedStateChange.method2905(world, ii);
                     }
                     opcode = -1;
@@ -564,10 +564,10 @@ public class Protocol {
                     opcode = -1;
                     return true;
                 } else if (opcode == 69) {
-                    ii = inboundBuffer.g2leadd();
+                    int verifyID = inboundBuffer.g2leadd();
                     xp = inboundBuffer.g4();
                     world = inboundBuffer.g2sub();
-                    if (setVerifyID(ii)) {
+                    if (setVerifyID(verifyID)) {
                         DelayedStateChange.updateVarC(world, xp);
                     }
                     opcode = -1;
@@ -590,13 +590,13 @@ public class Protocol {
                     opcode = -1;
                     return true;
                 } else if (opcode == 125) {
-                    ii = inboundBuffer.g2();
+                    int verifyID = inboundBuffer.g2();
                     xp = inboundBuffer.g1();
                     world = inboundBuffer.g1();
                     slot = inboundBuffer.g2();
                     count = inboundBuffer.g1();
                     i = inboundBuffer.g1();
-                    if (setVerifyID(ii)) {
+                    if (setVerifyID(verifyID)) {
                         Camera.method3849(slot, world, count, xp, i);
                     }
                     opcode = -1;
@@ -604,8 +604,8 @@ public class Protocol {
                 } else if (opcode == 36) {
                     ii = inboundBuffer.p4rme();
                     xp = inboundBuffer.g2les();
-                    world = inboundBuffer.g2sub();
-                    if (setVerifyID(world)) {
+                    int verifyID = inboundBuffer.g2sub();
+                    if (setVerifyID(verifyID)) {
                         DelayedStateChange.method3893(ii, xp);
                     }
                     opcode = -1;
@@ -616,7 +616,7 @@ public class Protocol {
                     if (opcode == 9) {
                         ii = inboundBuffer.g2leadd();
                         xp = inboundBuffer.g4me();
-                        world = inboundBuffer.g2sub();
+                        int verifyID = inboundBuffer.g2sub();
                         slot = inboundBuffer.g2le();
                         if (slot == 65535) {
                             slot = -1;
@@ -625,7 +625,7 @@ public class Protocol {
                         if (count == 65535) {
                             count = -1;
                         }
-                        if (setVerifyID(world)) {
+                        if (setVerifyID(verifyID)) {
                             for (i = count; i <= slot; i++) {
                                 local904 = (long) i + ((long) xp << 32);
                                 local1804 = (ServerActiveProperties) InterfaceList.properties.getNode(local904);
@@ -739,10 +739,10 @@ public class Protocol {
                         return true;
                     } else if (opcode == 207) {
                         ii = inboundBuffer.p4rme();
-                        xp = inboundBuffer.g2sub();
+                        int verifyID = inboundBuffer.g2sub();
                         world = inboundBuffer.g2();
                         slot = inboundBuffer.g2sub();
-                        if (setVerifyID(xp)) {
+                        if (setVerifyID(verifyID)) {
                             DelayedStateChange.setComponentModelRotationSpeedServer(slot + (world << 16), ii);
                         }
                         opcode = -1;
@@ -769,9 +769,9 @@ public class Protocol {
                         opcode = -1;
                         return true;
                     } else if (opcode == 149) {
-                        ii = inboundBuffer.g2();
+                        int verifyID = inboundBuffer.g2();
                         xp = inboundBuffer.g4();
-                        if (setVerifyID(ii)) {
+                        if (setVerifyID(verifyID)) {
                             @Pc(2441) ComponentPointer local2441 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) xp);
                             if (local2441 != null) {
                                 InterfaceList.closeInterface(true, local2441);
@@ -785,9 +785,9 @@ public class Protocol {
                         return true;
                     } else if (opcode == 187) {
                         ii = inboundBuffer.g2le();
-                        xp = inboundBuffer.g2();
+                        int verifyID = inboundBuffer.g2();
                         world = inboundBuffer.g2();
-                        if (setVerifyID(xp)) {
+                        if (setVerifyID(verifyID)) {
                             Camera.orbitCameraYaw = ii;
                             Camera.orbitCameraPitch = world;
                             if (Camera.cameraType == 2) {
@@ -800,11 +800,11 @@ public class Protocol {
                         return true;
                     } else if (opcode == 132) {
                         ii = inboundBuffer.g2();
-                        xp = inboundBuffer.g2sub();
+                        int verifyID = inboundBuffer.g2sub();
                         world = inboundBuffer.g2leadd();
                         slot = inboundBuffer.g2leadd();
                         count = inboundBuffer.g4();
-                        if (setVerifyID(xp)) {
+                        if (setVerifyID(verifyID)) {
                             DelayedStateChange.updateView(world, count, slot, ii);
                         }
                         opcode = -1;
@@ -839,12 +839,12 @@ public class Protocol {
                         return true;
                     } else if (opcode == 130) {
                         ii = inboundBuffer.g4me();
-                        xp = inboundBuffer.g2leadd();
+                        int verifyID = inboundBuffer.g2leadd();
                         world = inboundBuffer.g2sub();
                         if (world == 65535) {
                             world = -1;
                         }
-                        if (setVerifyID(xp)) {
+                        if (setVerifyID(verifyID)) {
                             DelayedStateChange.updateComponentModel(-1, 1, ii, world);
                         }
                         opcode = -1;
@@ -959,13 +959,13 @@ public class Protocol {
                             opcode = -1;
                             return true;
                         } else if (opcode == 154) {
-                            ii = inboundBuffer.g2();
+                            int verifyID = inboundBuffer.g2();
                             xp = inboundBuffer.g1();
                             world = inboundBuffer.g1();
                             slot = inboundBuffer.g2();
                             count = inboundBuffer.g1();
                             i = inboundBuffer.g1();
-                            if (setVerifyID(ii)) {
+                            if (setVerifyID(verifyID)) {
                                 Camera.method2722(true, count, slot, i, world, xp);
                             }
                             opcode = -1;
@@ -1016,9 +1016,9 @@ public class Protocol {
                             @Pc(3456) ComponentPointer local3456;
                             if (opcode == 176) {
                                 ii = inboundBuffer.g4rme();
-                                xp = inboundBuffer.g2sub();
+                                int verifyID = inboundBuffer.g2sub();
                                 world = inboundBuffer.g4rme();
-                                if (setVerifyID(xp)) {
+                                if (setVerifyID(verifyID)) {
                                     @Pc(3449) ComponentPointer local3449 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) ii);
                                     local3456 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) world);
                                     if (local3456 != null) {
@@ -1044,13 +1044,13 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 27) {
-                                ii = inboundBuffer.g2();
+                                int verifyID = inboundBuffer.g2();
                                 xp = inboundBuffer.g1();
                                 world = inboundBuffer.g1();
                                 slot = inboundBuffer.g1();
                                 count = inboundBuffer.g1();
                                 i = inboundBuffer.g2();
-                                if (setVerifyID(ii)) {
+                                if (setVerifyID(verifyID)) {
                                     Camera.cameraModifierEnabled[xp] = true;
                                     Camera.cameraModifierJitter[xp] = world;
                                     Camera.cameraAmplitude[xp] = slot;
@@ -1061,9 +1061,9 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 2) {
                                 ii = inboundBuffer.g4rme();
-                                xp = inboundBuffer.g2sub();
+                                int verifyID = inboundBuffer.g2sub();
                                 world = inboundBuffer.g2leadd();
-                                if (setVerifyID(xp)) {
+                                if (setVerifyID(verifyID)) {
                                     DelayedStateChange.setColor(world, ii);
                                 }
                                 opcode = -1;
@@ -1078,10 +1078,10 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 65) {
-                                ii = inboundBuffer.g2le();
+                                int verifyID = inboundBuffer.g2le();
                                 xp = inboundBuffer.p1neg();
                                 world = inboundBuffer.g2leadd();
-                                if (setVerifyID(ii)) {
+                                if (setVerifyID(verifyID)) {
                                     DelayedStateChange.updateVarC(world, xp);
                                 }
                                 opcode = -1;
@@ -1145,12 +1145,12 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 111) {
-                                ii = inboundBuffer.g2sub();
+                                int verifyID = inboundBuffer.g2sub();
                                 xp = inboundBuffer.p4rme();
                                 world = inboundBuffer.g2leadd();
                                 slot = inboundBuffer.g2le();
                                 count = inboundBuffer.g2leadd();
-                                if (setVerifyID(ii)) {
+                                if (setVerifyID(verifyID)) {
                                     DelayedStateChange.updateComponentModel(world, 7, xp, slot << 16 | count);
                                 }
                                 opcode = -1;
@@ -1249,11 +1249,11 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 119) {
-                                ii = inboundBuffer.g2sub();
+                                int verifyID = inboundBuffer.g2sub();
                                 xp = inboundBuffer.g4me();
                                 world = inboundBuffer.g2s();
                                 slot = inboundBuffer.g2sadd();
-                                if (setVerifyID(ii)) {
+                                if (setVerifyID(verifyID)) {
                                     DelayedStateChange.method4666(world, xp, slot);
                                 }
                                 opcode = -1;
@@ -1381,9 +1381,9 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 66) {
-                                ii = inboundBuffer.g2leadd();
+                                int verifyID = inboundBuffer.g2leadd();
                                 xp = inboundBuffer.g4rme();
-                                if (setVerifyID(ii)) {
+                                if (setVerifyID(verifyID)) {
                                     world = 0;
                                     if (PlayerList.self.appearance != null) {
                                         world = PlayerList.self.appearance.getHeadModelId();
@@ -1395,8 +1395,8 @@ public class Protocol {
                             } else if (opcode == 171) {
                                 ii = inboundBuffer.p4rme();
                                 message2 = inboundBuffer.gjstr();
-                                world = inboundBuffer.g2sub();
-                                if (setVerifyID(world)) {
+                                int verifyID = inboundBuffer.g2sub();
+                                if (setVerifyID(verifyID)) {
                                     DelayedStateChange.method3617(message2, ii);
                                 }
                                 opcode = -1;
@@ -1444,8 +1444,8 @@ public class Protocol {
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 24) {
-                                    ii = inboundBuffer.g2();
-                                    if (setVerifyID(ii)) {
+                                    int verifyID = inboundBuffer.g2();
+                                    if (setVerifyID(verifyID)) {
                                         Camera.resetCameraEffects();
                                     }
                                     opcode = -1;
@@ -1471,8 +1471,8 @@ public class Protocol {
                                     if (ii == 65535) {
                                         ii = -1;
                                     }
-                                    world = inboundBuffer.g2le();
-                                    if (setVerifyID(world)) {
+                                    int verifyID = inboundBuffer.g2le();
+                                    if (setVerifyID(verifyID)) {
                                         DelayedStateChange.updateComponentModel(-1, 2, xp, ii);
                                     }
                                     opcode = -1;
@@ -1482,7 +1482,7 @@ public class Protocol {
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 165) {
-                                    ii = inboundBuffer.g2le();
+                                    int verifyID = inboundBuffer.g2le();
                                     xp = inboundBuffer.g2le();
                                     if (xp == 65535) {
                                         xp = -1;
@@ -1493,7 +1493,7 @@ public class Protocol {
                                     if (slot == 65535) {
                                         slot = -1;
                                     }
-                                    if (setVerifyID(ii)) {
+                                    if (setVerifyID(verifyID)) {
                                         for (i = slot; i <= xp; i++) {
                                             local904 = ((long) world << 32) + ((long) i);
                                             local1804 = (ServerActiveProperties) InterfaceList.properties.getNode(local904);
@@ -1590,8 +1590,8 @@ public class Protocol {
                                     if (world == 65535) {
                                         world = -1;
                                     }
-                                    slot = inboundBuffer.g2le();
-                                    if (setVerifyID(slot)) {
+                                    int verifyID = inboundBuffer.g2le();
+                                    if (setVerifyID(verifyID)) {
                                         @Pc(5603) Component com = InterfaceList.getComponent(xp);
                                         @Pc(5615) ObjType obj;
                                         if (com.if3) {
