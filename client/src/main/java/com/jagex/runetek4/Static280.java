@@ -661,9 +661,9 @@ public final class Static280 {
 					@Pc(61) JString local61 = MiniMenu.ops[local13];
 					MiniMenu.ops[local13] = MiniMenu.ops[local13 + 1];
 					MiniMenu.ops[local13 + 1] = local61;
-					@Pc(79) int local79 = MiniMenu.CODE_MAP[local13];
-					MiniMenu.CODE_MAP[local13] = MiniMenu.CODE_MAP[local13 + 1];
-					MiniMenu.CODE_MAP[local13 + 1] = local79;
+					@Pc(79) int local79 = MiniMenu.intArgs1[local13];
+					MiniMenu.intArgs1[local13] = MiniMenu.intArgs1[local13 + 1];
+					MiniMenu.intArgs1[local13 + 1] = local79;
 					@Pc(97) int local97 = Static56.anIntArray142[local13];
 					Static56.anIntArray142[local13] = Static56.anIntArray142[local13 + 1];
 					Static56.anIntArray142[local13 + 1] = local97;
