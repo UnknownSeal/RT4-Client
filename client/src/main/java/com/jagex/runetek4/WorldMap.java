@@ -36,7 +36,7 @@ public class WorldMap {
         Static145.anIntArray330 = null;
         Static125.aByteArrayArrayArray10 = null;
         if (arg0 && Static269.aClass3_Sub2_Sub4_2 != null) {
-            Static153.aClass100_724 = Static269.aClass3_Sub2_Sub4_2.aClass100_138;
+            Static153.aClass100_724 = Static269.aClass3_Sub2_Sub4_2.group;
         } else {
             Static153.aClass100_724 = null;
         }

@@ -53,8 +53,8 @@ public final class ObjTypeList {
 		if (local20 == null) {
 			local20 = new LongNode(4611686018427387905L);
 			Static199.aClass133_20.put(local20, (long) arg1);
-		} else if (local20.aLong55 != 4611686018427387905L) {
-			local20.aLong55 = MonotonicTime.currentTimeMillis() + 500L | 0x4000000000000000L;
+		} else if (local20.value != 4611686018427387905L) {
+			local20.value = MonotonicTime.currentTimeMillis() + 500L | 0x4000000000000000L;
 		}
 	}
 

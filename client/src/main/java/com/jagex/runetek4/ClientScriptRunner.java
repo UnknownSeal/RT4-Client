@@ -4461,7 +4461,7 @@ public final class ClientScriptRunner {
 														if (local7264 == null) {
 															Static3.scriptStringValues[local26++] = Static72.aClass100_447;
 														} else {
-															Static3.scriptStringValues[local26++] = local7264.aClass100_138;
+															Static3.scriptStringValues[local26++] = local7264.group;
 														}
 														continue;
 													}
@@ -4469,8 +4469,8 @@ public final class ClientScriptRunner {
 													if (scriptOpcode == 5207) {
 														local26--;
 														local7293 = Static124.method2434(Static3.scriptStringValues[local26]);
-														if (local7293 != null && local7293.aClass100_137 != null) {
-															Static3.scriptStringValues[local26++] = local7293.aClass100_137;
+														if (local7293 != null && local7293.name != null) {
+															Static3.scriptStringValues[local26++] = local7293.name;
 															continue;
 														}
 														Static3.scriptStringValues[local26++] = Static72.aClass100_447;
@@ -4492,8 +4492,8 @@ public final class ClientScriptRunner {
 															Static254.scriptIntValues[intValueIndex++] = 0;
 															Static254.scriptIntValues[intValueIndex++] = 0;
 														} else {
-															Static254.scriptIntValues[intValueIndex++] = local7293.anInt769 * 64;
-															Static254.scriptIntValues[intValueIndex++] = local7293.anInt764 * 64;
+															Static254.scriptIntValues[intValueIndex++] = local7293.originX * 64;
+															Static254.scriptIntValues[intValueIndex++] = local7293.originZ * 64;
 														}
 														continue;
 													}
@@ -4503,8 +4503,8 @@ public final class ClientScriptRunner {
 															Static254.scriptIntValues[intValueIndex++] = 0;
 															Static254.scriptIntValues[intValueIndex++] = 0;
 														} else {
-															Static254.scriptIntValues[intValueIndex++] = local7293.anInt770 - local7293.anInt763;
-															Static254.scriptIntValues[intValueIndex++] = local7293.anInt758 - local7293.anInt771;
+															Static254.scriptIntValues[intValueIndex++] = local7293.displayMaxZ - local7293.displayMinX;
+															Static254.scriptIntValues[intValueIndex++] = local7293.displayMinZ - local7293.displayMaxX;
 														}
 														continue;
 													}
@@ -4550,7 +4550,7 @@ public final class ClientScriptRunner {
 														local7566 = false;
 														@Pc(7577) NodeQueue local7577 = Static183.method3333(interfaceData >> 14 & 0x3FFF, interfaceData & 0x3FFF);
 														for (@Pc(7582) Map local7582 = (Map) local7577.head(); local7582 != null; local7582 = (Map) local7577.prev()) {
-															if (local7582.aClass100_138.equalsIgnoreCase(chatTypedLowercase)) {
+															if (local7582.group.equalsIgnoreCase(chatTypedLowercase)) {
 																local7566 = true;
 																break;
 															}
@@ -4583,7 +4583,7 @@ public final class ClientScriptRunner {
 														if (local7293 == null) {
 															Static254.scriptIntValues[intValueIndex++] = -1;
 														} else {
-															Static254.scriptIntValues[intValueIndex++] = local7293.anInt772;
+															Static254.scriptIntValues[intValueIndex++] = local7293.defaultZoom;
 														}
 														continue;
 													}

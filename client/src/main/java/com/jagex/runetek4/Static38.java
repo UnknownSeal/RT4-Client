@@ -139,8 +139,8 @@ public final class Static38 {
 	public static int poll(@OriginalArg(0) boolean arg0) {
 		@Pc(4) long local4 = MonotonicTime.currentTimeMillis();
 		for (@Pc(28) LongNode local28 = arg0 ? (LongNode) Static199.aClass133_20.head() : (LongNode) Static199.aClass133_20.next(); local28 != null; local28 = (LongNode) Static199.aClass133_20.next()) {
-			if ((local28.aLong55 & 0x3FFFFFFFFFFFFFFFL) < local4) {
-				if ((local28.aLong55 & 0x4000000000000000L) != 0L) {
+			if ((local28.value & 0x3FFFFFFFFFFFFFFFL) < local4) {
+				if ((local28.value & 0x4000000000000000L) != 0L) {
 					@Pc(58) int local58 = (int) local28.nodeId;
 					VarPlayerDefinition.varPlayers[local58] = VarPlayerDefinition.varPlayerCache[local58];
 					local28.unlink();

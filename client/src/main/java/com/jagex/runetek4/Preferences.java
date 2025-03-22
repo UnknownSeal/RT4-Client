@@ -59,31 +59,31 @@ public class Preferences {
             return;
         }
         if (WorldMap.loadPercentage < 10) {
-            if (!Static119.aClass153_44.isGroupReady(Static269.aClass3_Sub2_Sub4_2.aClass100_138)) {
-                WorldMap.loadPercentage = client.js5Archive23.method4478(Static269.aClass3_Sub2_Sub4_2.aClass100_138) / 10;
+            if (!Static119.aClass153_44.isGroupReady(Static269.aClass3_Sub2_Sub4_2.group)) {
+                WorldMap.loadPercentage = client.js5Archive23.method4478(Static269.aClass3_Sub2_Sub4_2.group) / 10;
                 return;
             }
             client.method84();
             WorldMap.loadPercentage = 10;
         }
         if (WorldMap.loadPercentage == 10) {
-            WorldMap.originX = Static269.aClass3_Sub2_Sub4_2.anInt763 >> 6 << 6;
-            WorldMap.originZ = Static269.aClass3_Sub2_Sub4_2.anInt771 >> 6 << 6;
-            WorldMap.length = (Static269.aClass3_Sub2_Sub4_2.anInt758 >> 6 << 6) + 64 - WorldMap.originZ;
-            Static48.anInt1449 = (Static269.aClass3_Sub2_Sub4_2.anInt770 >> 6 << 6) + 64 - WorldMap.originX;
-            if (Static269.aClass3_Sub2_Sub4_2.anInt772 == 37) {
+            WorldMap.originX = Static269.aClass3_Sub2_Sub4_2.displayMinX >> 6 << 6;
+            WorldMap.originZ = Static269.aClass3_Sub2_Sub4_2.displayMaxX >> 6 << 6;
+            WorldMap.length = (Static269.aClass3_Sub2_Sub4_2.displayMinZ >> 6 << 6) + 64 - WorldMap.originZ;
+            Static48.anInt1449 = (Static269.aClass3_Sub2_Sub4_2.displayMaxZ >> 6 << 6) + 64 - WorldMap.originX;
+            if (Static269.aClass3_Sub2_Sub4_2.defaultZoom == 37) {
                 Static83.aFloat3 = 3.0F;
                 Static138.aFloat14 = 3.0F;
-            } else if (Static269.aClass3_Sub2_Sub4_2.anInt772 == 50) {
+            } else if (Static269.aClass3_Sub2_Sub4_2.defaultZoom == 50) {
                 Static83.aFloat3 = 4.0F;
                 Static138.aFloat14 = 4.0F;
-            } else if (Static269.aClass3_Sub2_Sub4_2.anInt772 == 75) {
+            } else if (Static269.aClass3_Sub2_Sub4_2.defaultZoom == 75) {
                 Static83.aFloat3 = 6.0F;
                 Static138.aFloat14 = 6.0F;
-            } else if (Static269.aClass3_Sub2_Sub4_2.anInt772 == 100) {
+            } else if (Static269.aClass3_Sub2_Sub4_2.defaultZoom == 100) {
                 Static83.aFloat3 = 8.0F;
                 Static138.aFloat14 = 8.0F;
-            } else if (Static269.aClass3_Sub2_Sub4_2.anInt772 == 200) {
+            } else if (Static269.aClass3_Sub2_Sub4_2.defaultZoom == 200) {
                 Static83.aFloat3 = 16.0F;
                 Static138.aFloat14 = 16.0F;
             } else {
@@ -98,8 +98,8 @@ public class Preferences {
                 WorldMap.anInt435 = local153;
                 WorldMap.anInt919 = local177;
             } else {
-                WorldMap.anInt919 = WorldMap.originZ + WorldMap.length - Static269.aClass3_Sub2_Sub4_2.anInt764 * 64 - 1;
-                WorldMap.anInt435 = Static269.aClass3_Sub2_Sub4_2.anInt769 * 64 - WorldMap.originX;
+                WorldMap.anInt919 = WorldMap.originZ + WorldMap.length - Static269.aClass3_Sub2_Sub4_2.originZ * 64 - 1;
+                WorldMap.anInt435 = Static269.aClass3_Sub2_Sub4_2.originX * 64 - WorldMap.originX;
             }
             Static38.method965();
             Static145.anIntArray330 = new int[FloorOverlayTypeList.capacity + 1];
@@ -118,29 +118,29 @@ public class Preferences {
             Static70.method1549(local273, local249);
             WorldMap.loadPercentage = 20;
         } else if (WorldMap.loadPercentage == 20) {
-            Static33.method868(new Packet(Static119.aClass153_44.fetchFile(Static166.aClass100_779, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
+            Static33.method868(new Packet(Static119.aClass153_44.fetchFile(Static166.aClass100_779, Static269.aClass3_Sub2_Sub4_2.group)));
             WorldMap.loadPercentage = 30;
             ClientProt.ping(true);
             GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 30) {
-            WorldMap.method3998(new Packet(Static119.aClass153_44.fetchFile(Static4.aClass100_7, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
+            WorldMap.method3998(new Packet(Static119.aClass153_44.fetchFile(Static4.aClass100_7, Static269.aClass3_Sub2_Sub4_2.group)));
             WorldMap.loadPercentage = 40;
             GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 40) {
-            PreciseSleep.method3980(new Packet(Static119.aClass153_44.fetchFile(Static73.OVERLAY2, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
+            PreciseSleep.method3980(new Packet(Static119.aClass153_44.fetchFile(Static73.OVERLAY2, Static269.aClass3_Sub2_Sub4_2.group)));
             WorldMap.loadPercentage = 50;
             GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 50) {
-            Static166.method3166(new Packet(Static119.aClass153_44.fetchFile(Static42.aClass100_331, Static269.aClass3_Sub2_Sub4_2.aClass100_138)));
+            Static166.method3166(new Packet(Static119.aClass153_44.fetchFile(Static42.aClass100_331, Static269.aClass3_Sub2_Sub4_2.group)));
             WorldMap.loadPercentage = 60;
             ClientProt.ping(true);
             GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 60) {
-            if (Static119.aClass153_44.isGroupNameValid(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
-                if (!Static119.aClass153_44.isGroupReady(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
+            if (Static119.aClass153_44.isGroupNameValid(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.group, Static265.aClass100_1086}))) {
+                if (!Static119.aClass153_44.isGroupReady(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.group, Static265.aClass100_1086}))) {
                     return;
                 }
-                Static203.aMapElementList_1 = MapElementList.create(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}), Static119.aClass153_44);
+                Static203.aMapElementList_1 = MapElementList.create(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.group, Static265.aClass100_1086}), Static119.aClass153_44);
             } else {
                 Static203.aMapElementList_1 = new MapElementList(0);
             }

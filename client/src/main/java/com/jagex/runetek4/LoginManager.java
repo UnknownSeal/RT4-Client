@@ -381,10 +381,10 @@ public class LoginManager {
             }
         }
         if (mapElementList == null) {
-            if (map == null || !client.js5Archive23.isGroupNameValid(JString.concatenate(new JString[] { map.aClass100_138, aClass100_363 }))) {
+            if (map == null || !client.js5Archive23.isGroupNameValid(JString.concatenate(new JString[] { map.group, aClass100_363 }))) {
                 mapElementList = new MapElementList(0);
-            } else if (client.js5Archive23.isGroupReady(JString.concatenate(new JString[] { map.aClass100_138, aClass100_363 }))) {
-                mapElementList = MapElementList.create(JString.concatenate(new JString[] { map.aClass100_138, aClass100_363 }), client.js5Archive23);
+            } else if (client.js5Archive23.isGroupReady(JString.concatenate(new JString[] { map.group, aClass100_363 }))) {
+                mapElementList = MapElementList.create(JString.concatenate(new JString[] { map.group, aClass100_363 }), client.js5Archive23);
             } else {
                 fileExists = false;
                 mapFilesMissingCount++;

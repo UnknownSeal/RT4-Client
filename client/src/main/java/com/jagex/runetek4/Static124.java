@@ -18,7 +18,7 @@ public final class Static124 {
 	@OriginalMember(owner = "runetek4.client!jk", name = "a", descriptor = "(ILclient!na;)Lclient!bn;")
 	public static Map method2434(@OriginalArg(1) JString arg0) {
 		for (@Pc(15) Map local15 = (Map) Static228.aClass69_120.head(); local15 != null; local15 = (Map) Static228.aClass69_120.next()) {
-			if (local15.aClass100_138.strEquals(arg0)) {
+			if (local15.group.strEquals(arg0)) {
 				return local15;
 			}
 		}

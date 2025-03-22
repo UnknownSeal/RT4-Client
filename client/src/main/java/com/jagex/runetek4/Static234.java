@@ -135,7 +135,7 @@ public final class Static234 {
 		@Pc(25) int local25 = Static119.aClass153_44.getGroupId(Static54.DETAILS);
 		@Pc(30) int[] local30 = Static119.aClass153_44.getFileIds(local25);
 		for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {
-			Static228.aClass69_120.addTail(Static210.method3713(new Packet(Static119.aClass153_44.getfile(local25, local30[local32]))));
+			Static228.aClass69_120.addTail(Static210.create(new Packet(Static119.aClass153_44.getfile(local25, local30[local32]))));
 		}
 	}
 
