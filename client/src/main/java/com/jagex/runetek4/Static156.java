@@ -92,7 +92,7 @@ public final class Static156 {
 			SceneGraph.setUnderwater(true);
 			Static248.method3292(arg0, arg1, arg2, null, 0, (byte) 0, arg13, arg14);
 			if (GlRenderer.enabled) {
-				Static119.aBoolean153 = false;
+				MaterialManager.renderingUnderwater = false;
 				MaterialManager.setMaterial(0, 0);
 				FogManager.setFogColor(null);
 				LightingManager.method2390();

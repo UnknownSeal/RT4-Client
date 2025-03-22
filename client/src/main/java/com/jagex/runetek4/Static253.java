@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -29,10 +28,4 @@ public final class Static253 {
 		return local8;
 	}
 
-	@OriginalMember(owner = "runetek4.client!ui", name = "d", descriptor = "(II)V")
-	public static void method4332(@OriginalArg(0) int arg0) {
-		if (arg0 >= 0 && Static258.aBooleanArray130.length > arg0) {
-			Static258.aBooleanArray130[arg0] = !Static258.aBooleanArray130[arg0];
-		}
-	}
 }

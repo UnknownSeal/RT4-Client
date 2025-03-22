@@ -50,15 +50,15 @@ public final class Static232 {
 								@Pc(209) int local209 = local116[local163][local203];
 								if (local209 != 0) {
 									@Pc(222) LocType local222 = LocTypeList.get(local209 - 1);
-									if (!Static258.aBooleanArray130[local222.mapfunction]) {
+									if (!MapList.aBooleanArray130[local222.mapfunction]) {
 										if (local11 != -1 && local222.mapfunction == CacheArchive.anInt172) {
 											@Pc(243) Class3_Sub26 local243 = new Class3_Sub26();
 											local243.anInt4307 = local65;
 											local243.anInt4314 = local144;
-											local243.anInt4308 = local222.mapfunction;
+											local243.id = local222.mapfunction;
 											Static172.aClass69_97.addTail(local243);
 										} else {
-											Static241.aClass3_Sub2_Sub1_Sub1Array13[local222.mapfunction].render(local65 - 7, local144 + -7);
+											MapList.sprites[local222.mapfunction].render(local65 - 7, local144 + -7);
 										}
 									}
 								}
@@ -73,7 +73,7 @@ public final class Static232 {
 			Rasterizer.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 13, local11);
 			Rasterizer.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 11, local11);
 			Rasterizer.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 9, local11);
-			Static241.aClass3_Sub2_Sub1_Sub1Array13[local285.anInt4308].render(local285.anInt4307 - 7, local285.anInt4314 + -7);
+			MapList.sprites[local285.id].render(local285.anInt4307 - 7, local285.anInt4314 + -7);
 		}
 		Static172.aClass69_97.clear();
 	}

@@ -1192,43 +1192,43 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 217) {
                                 ii = inboundBuffer.g1();
-                                @Pc(4084) Class102 local4084 = new Class102();
+                                @Pc(4084) MapMarker local4084 = new MapMarker();
                                 xp = ii >> 6;
-                                local4084.headIconDrawType = ii & 0x3F;
+                                local4084.type = ii & 0x3F;
                                 local4084.anInt4048 = inboundBuffer.g1();
                                 if (local4084.anInt4048 >= 0 && local4084.anInt4048 < Static276.aClass3_Sub2_Sub1Array11.length) {
-                                    if (local4084.headIconDrawType == 1 || local4084.headIconDrawType == 10) {
-                                        local4084.hintIconNpcTarget = inboundBuffer.g2();
+                                    if (local4084.type == 1 || local4084.type == 10) {
+                                        local4084.actorTargetId = inboundBuffer.g2();
                                         inboundBuffer.offset += 3;
-                                    } else if (local4084.headIconDrawType >= 2 && local4084.headIconDrawType <= 6) {
-                                        if (local4084.headIconDrawType == 2) {
+                                    } else if (local4084.type >= 2 && local4084.type <= 6) {
+                                        if (local4084.type == 2) {
                                             local4084.anInt4045 = 64;
                                             local4084.anInt4047 = 64;
                                         }
-                                        if (local4084.headIconDrawType == 3) {
+                                        if (local4084.type == 3) {
                                             local4084.anInt4045 = 0;
                                             local4084.anInt4047 = 64;
                                         }
-                                        if (local4084.headIconDrawType == 4) {
+                                        if (local4084.type == 4) {
                                             local4084.anInt4045 = 128;
                                             local4084.anInt4047 = 64;
                                         }
-                                        if (local4084.headIconDrawType == 5) {
+                                        if (local4084.type == 5) {
                                             local4084.anInt4045 = 64;
                                             local4084.anInt4047 = 0;
                                         }
-                                        if (local4084.headIconDrawType == 6) {
+                                        if (local4084.type == 6) {
                                             local4084.anInt4045 = 64;
                                             local4084.anInt4047 = 128;
                                         }
-                                        local4084.headIconDrawType = 2;
-                                        local4084.anInt4053 = inboundBuffer.g2();
+                                        local4084.type = 2;
+                                        local4084.targetX = inboundBuffer.g2();
                                         local4084.anInt4046 = inboundBuffer.g2();
                                         local4084.anInt4050 = inboundBuffer.g1();
                                     }
-                                    local4084.anInt4052 = inboundBuffer.g2();
-                                    if (local4084.anInt4052 == 65535) {
-                                        local4084.anInt4052 = -1;
+                                    local4084.playerModelId = inboundBuffer.g2();
+                                    if (local4084.playerModelId == 65535) {
+                                        local4084.playerModelId = -1;
                                     }
                                     MiniMap.hintMapMarkers[xp] = local4084;
                                 }

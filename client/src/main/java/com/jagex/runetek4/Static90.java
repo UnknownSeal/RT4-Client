@@ -17,11 +17,6 @@ public final class Static90 {
 		Static133.method4011(arg0);
 	}
 
-    @OriginalMember(owner = "runetek4.client!hb", name = "b", descriptor = "(II)Z")
-	public static boolean method1855(@OriginalArg(0) int arg0) {
-		return arg0 >= 0 && Static258.aBooleanArray130.length > arg0 ? Static258.aBooleanArray130[arg0] : false;
-	}
-
 	@OriginalMember(owner = "runetek4.client!hb", name = "a", descriptor = "(Z)V")
 	public static void method1857() {
 		Static45.aClass99_6.clean();

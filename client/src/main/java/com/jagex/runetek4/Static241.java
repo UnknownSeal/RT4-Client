@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -13,9 +12,6 @@ public final class Static241 {
 
 	@OriginalMember(owner = "runetek4.client!th", name = "o", descriptor = "[I")
 	public static int[] anIntArray522;
-
-	@OriginalMember(owner = "runetek4.client!th", name = "p", descriptor = "[Lclient!mm;")
-	public static SoftwareSprite[] aClass3_Sub2_Sub1_Sub1Array13;
 
 	@OriginalMember(owner = "runetek4.client!th", name = "i", descriptor = "[I")
 	public static final int[] anIntArray520 = new int[14];

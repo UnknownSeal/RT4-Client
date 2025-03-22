@@ -11,7 +11,7 @@ public final class Class3_Sub26 extends Node {
 	public int anInt4307;
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "r", descriptor = "I")
-	public int anInt4308;
+	public int id;
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "A", descriptor = "I")
 	public int anInt4314;

@@ -17,9 +17,6 @@ public final class ObjTypeList {
 	@OriginalMember(owner = "runetek4.client!nh", name = "eb", descriptor = "I")
 	public static int capacity;
 
-	@OriginalMember(owner = "runetek4.client!nh", name = "Z", descriptor = "I")
-	public static int anInt3241 = 128;
-
 	@OriginalMember(owner = "runetek4.client!fk", name = "j", descriptor = "[[I")
 	public static int[][] anIntArrayArray10;
 	@OriginalMember(owner = "runetek4.client!um", name = "U", descriptor = "Lclient!dd;")

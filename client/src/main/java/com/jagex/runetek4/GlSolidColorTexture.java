@@ -53,7 +53,7 @@ public final class GlSolidColorTexture extends CachedNode {
 
 	@OriginalMember(owner = "runetek4.client!sd", name = "g", descriptor = "(B)V")
 	public final void method3887() {
-		@Pc(8) int flags = Static56.method1314();
+		@Pc(8) int flags = MaterialManager.getFlags();
 		if ((flags & 0x1) == 0) {
 			GlRenderer.setTextureId(this.textureId);
 		}

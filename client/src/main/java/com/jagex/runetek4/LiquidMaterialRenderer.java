@@ -106,13 +106,13 @@ public final class LiquidMaterialRenderer implements MaterialRenderer {
 		gl.glCallList(this.anInt4831);
 		gl.glActiveTexture(GL2.GL_TEXTURE1);
 		gl.glMatrixMode(GL2.GL_TEXTURE);
-		gl.glTranslatef((float) Static12.anInt406, (float) Static199.anInt4675, (float) Static230.anInt5158);
-		gl.glRotatef(-((float) Static59.anInt1815 * 360.0F) / 2048.0F, 0.0F, 1.0F, 0.0F);
-		gl.glRotatef(-((float) Static254.anInt5559 * 360.0F) / 2048.0F, 1.0F, 0.0F, 0.0F);
+		gl.glTranslatef((float) MaterialManager.anInt406, (float) MaterialManager.anInt4675, (float) MaterialManager.anInt5158);
+		gl.glRotatef(-((float) MaterialManager.anInt1815 * 360.0F) / 2048.0F, 0.0F, 1.0F, 0.0F);
+		gl.glRotatef(-((float) MaterialManager.anInt5559 * 360.0F) / 2048.0F, 1.0F, 0.0F, 0.0F);
 		gl.glRotatef(-180.0F, 1.0F, 0.0F, 0.0F);
 		gl.glMatrixMode(GL2.GL_MODELVIEW);
-		if (!Static151.aBoolean176) {
-			gl.glBindTexture(GL2.GL_TEXTURE_2D, Static151.anIntArray341[(int) ((float) (GlRenderer.anInt5323 * 64) * 0.005F) % 64]);
+		if (!MaterialManager.allows3DTextureMapping) {
+			gl.glBindTexture(GL2.GL_TEXTURE_2D, MaterialManager.anIntArray341[(int) ((float) (GlRenderer.anInt5323 * 64) * 0.005F) % 64]);
 		}
 		gl.glActiveTexture(GL2.GL_TEXTURE0);
 		if (this.anInt4829 == GlRenderer.anInt5323) {
@@ -124,7 +124,7 @@ public final class LiquidMaterialRenderer implements MaterialRenderer {
 			gl.glProgramLocalParameter4fvARB(GL2.GL_VERTEX_PROGRAM_ARB, local87, this.aFloatBuffer1);
 			local85 += 4;
 		}
-		if (Static151.aBoolean176) {
+		if (MaterialManager.allows3DTextureMapping) {
 			gl.glProgramLocalParameter4fARB(GL2.GL_VERTEX_PROGRAM_ARB, 65, (float) GlRenderer.anInt5323 * 0.005F, 0.0F, 0.0F, 1.0F);
 		} else {
 			gl.glProgramLocalParameter4fARB(GL2.GL_VERTEX_PROGRAM_ARB, 65, 0.0F, 0.0F, 0.0F, 1.0F);
@@ -138,8 +138,8 @@ public final class LiquidMaterialRenderer implements MaterialRenderer {
 		this.anInt4831 = local1.glGenLists(2);
 		local1.glNewList(this.anInt4831, GL2.GL_COMPILE);
 		local1.glActiveTexture(GL2.GL_TEXTURE1);
-		if (Static151.aBoolean176) {
-			local1.glBindTexture(GL2.GL_TEXTURE_3D, Static151.anInt3587);
+		if (MaterialManager.allows3DTextureMapping) {
+			local1.glBindTexture(GL2.GL_TEXTURE_3D, MaterialManager.texture3D);
 		}
 		local1.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_RGB, GL2.GL_ADD);
 		local1.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_ALPHA, GL2.GL_REPLACE);
@@ -156,7 +156,7 @@ public final class LiquidMaterialRenderer implements MaterialRenderer {
 		local1.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_RGB, GL2.GL_MODULATE);
 		local1.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_ALPHA, GL2.GL_MODULATE);
 		local1.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_SRC0_ALPHA, GL2.GL_TEXTURE);
-		local1.glDisable(Static151.aBoolean176 ? GL2.GL_TEXTURE_3D : GL2.GL_TEXTURE_2D);
+		local1.glDisable(MaterialManager.allows3DTextureMapping ? GL2.GL_TEXTURE_3D : GL2.GL_TEXTURE_2D);
 		local1.glActiveTexture(GL2.GL_TEXTURE0);
 		local1.glBindProgramARB(GL2.GL_VERTEX_PROGRAM_ARB, 0);
 		local1.glDisable(GL2.GL_VERTEX_PROGRAM_ARB);
@@ -188,9 +188,9 @@ public final class LiquidMaterialRenderer implements MaterialRenderer {
 		@Pc(5) GL2 gl = GlRenderer.gl;
 		gl.glActiveTexture(GL2.GL_TEXTURE1);
 		if ((arg0 & 0x80) == 0) {
-			gl.glEnable(Static151.aBoolean176 ? GL2.GL_TEXTURE_3D : GL2.GL_TEXTURE_2D);
+			gl.glEnable(MaterialManager.allows3DTextureMapping ? GL2.GL_TEXTURE_3D : GL2.GL_TEXTURE_2D);
 		} else {
-			gl.glDisable(Static151.aBoolean176 ? GL2.GL_TEXTURE_3D : GL2.GL_TEXTURE_2D);
+			gl.glDisable(MaterialManager.allows3DTextureMapping ? GL2.GL_TEXTURE_3D : GL2.GL_TEXTURE_2D);
 		}
 		gl.glActiveTexture(GL2.GL_TEXTURE0);
 		if ((arg0 & 0x40) == 0) {

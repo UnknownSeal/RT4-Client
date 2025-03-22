@@ -1020,14 +1020,14 @@ public final class SoftwareModel extends Model {
 			local79 = Static268.anIntArray548[local10];
 			local86 = this.anIntArray533[arg0] & 0xFFFF;
 			if (local32 >= 50) {
-				local99 = (50 - local24) * MathUtils.anIntArray224[local32 - local24];
+				local99 = (50 - local24) * MathUtils.reciprical16[local32 - local24];
 				Static268.anIntArray542[0] = local1 + (local75 + ((Static268.anIntArray560[local20] - local75) * local99 >> 16) << 9) / 50;
 				Static268.anIntArray547[0] = local3 + (local79 + ((Static268.anIntArray548[local20] - local79) * local99 >> 16) << 9) / 50;
 				local5++;
 				Static268.anIntArray553[0] = local86 + (((this.anIntArray532[arg0] & 0xFFFF) - local86) * local99 >> 16);
 			}
 			if (local28 >= 50) {
-				local99 = (50 - local24) * MathUtils.anIntArray224[local28 - local24];
+				local99 = (50 - local24) * MathUtils.reciprical16[local28 - local24];
 				Static268.anIntArray542[local5] = local1 + (local75 + ((Static268.anIntArray560[local15] - local75) * local99 >> 16) << 9) / 50;
 				Static268.anIntArray547[local5] = local3 + (local79 + ((Static268.anIntArray548[local15] - local79) * local99 >> 16) << 9) / 50;
 				Static268.anIntArray553[local5++] = local86 + (((this.anIntArray523[arg0] & 0xFFFF) - local86) * local99 >> 16);
@@ -1042,13 +1042,13 @@ public final class SoftwareModel extends Model {
 			local79 = Static268.anIntArray548[local15];
 			local86 = this.anIntArray523[arg0] & 0xFFFF;
 			if (local24 >= 50) {
-				local99 = (50 - local28) * MathUtils.anIntArray224[local24 - local28];
+				local99 = (50 - local28) * MathUtils.reciprical16[local24 - local28];
 				Static268.anIntArray542[local5] = local1 + (local75 + ((Static268.anIntArray560[local10] - local75) * local99 >> 16) << 9) / 50;
 				Static268.anIntArray547[local5] = local3 + (local79 + ((Static268.anIntArray548[local10] - local79) * local99 >> 16) << 9) / 50;
 				Static268.anIntArray553[local5++] = local86 + (((this.anIntArray533[arg0] & 0xFFFF) - local86) * local99 >> 16);
 			}
 			if (local32 >= 50) {
-				local99 = (50 - local28) * MathUtils.anIntArray224[local32 - local28];
+				local99 = (50 - local28) * MathUtils.reciprical16[local32 - local28];
 				Static268.anIntArray542[local5] = local1 + (local75 + ((Static268.anIntArray560[local20] - local75) * local99 >> 16) << 9) / 50;
 				Static268.anIntArray547[local5] = local3 + (local79 + ((Static268.anIntArray548[local20] - local79) * local99 >> 16) << 9) / 50;
 				Static268.anIntArray553[local5++] = local86 + (((this.anIntArray532[arg0] & 0xFFFF) - local86) * local99 >> 16);
@@ -1063,13 +1063,13 @@ public final class SoftwareModel extends Model {
 			local79 = Static268.anIntArray548[local20];
 			local86 = this.anIntArray532[arg0] & 0xFFFF;
 			if (local28 >= 50) {
-				local99 = (50 - local32) * MathUtils.anIntArray224[local28 - local32];
+				local99 = (50 - local32) * MathUtils.reciprical16[local28 - local32];
 				Static268.anIntArray542[local5] = local1 + (local75 + ((Static268.anIntArray560[local15] - local75) * local99 >> 16) << 9) / 50;
 				Static268.anIntArray547[local5] = local3 + (local79 + ((Static268.anIntArray548[local15] - local79) * local99 >> 16) << 9) / 50;
 				Static268.anIntArray553[local5++] = local86 + (((this.anIntArray523[arg0] & 0xFFFF) - local86) * local99 >> 16);
 			}
 			if (local24 >= 50) {
-				local99 = (50 - local32) * MathUtils.anIntArray224[local24 - local32];
+				local99 = (50 - local32) * MathUtils.reciprical16[local24 - local32];
 				Static268.anIntArray542[local5] = local1 + (local75 + ((Static268.anIntArray560[local10] - local75) * local99 >> 16) << 9) / 50;
 				Static268.anIntArray547[local5] = local3 + (local79 + ((Static268.anIntArray548[local10] - local79) * local99 >> 16) << 9) / 50;
 				Static268.anIntArray553[local5++] = local86 + (((this.anIntArray533[arg0] & 0xFFFF) - local86) * local99 >> 16);
