@@ -8,9 +8,6 @@ public final class Static125 {
 	@OriginalMember(owner = "runetek4.client!jl", name = "I", descriptor = "[[[B")
 	public static byte[][][] aByteArrayArrayArray10;
 
-	@OriginalMember(owner = "runetek4.client!jl", name = "v", descriptor = "I")
-	public static int anInt3096 = 0;
-
 	@OriginalMember(owner = "runetek4.client!jl", name = "x", descriptor = "Lclient!n;")
 	public static final NodeCache aClass99_18 = new NodeCache(50);
 

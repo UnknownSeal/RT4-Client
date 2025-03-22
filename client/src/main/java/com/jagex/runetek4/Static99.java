@@ -7,7 +7,4 @@ public final class Static99 {
 	@OriginalMember(owner = "runetek4.client!hk", name = "Y", descriptor = "I")
 	public static int anInt2550;
 
-	@OriginalMember(owner = "runetek4.client!hk", name = "bb", descriptor = "[I")
-	public static int[] anIntArray239;
-
 }

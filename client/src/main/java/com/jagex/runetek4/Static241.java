@@ -20,25 +20,6 @@ public final class Static241 {
 	@OriginalMember(owner = "runetek4.client!th", name = "i", descriptor = "[I")
 	public static final int[] anIntArray520 = new int[14];
 
-	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(IIBIIII)I")
-	public static int method4541(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {
-		if ((arg4 & 0x1) == 1) {
-			@Pc(9) int local9 = arg0;
-			arg0 = arg2;
-			arg2 = local9;
-		}
-		@Pc(29) int local29 = arg1 & 0x3;
-		if (local29 == 0) {
-			return arg5;
-		} else if (local29 == 1) {
-			return 7 + 1 - arg3 - arg0;
-		} else if (local29 == 2) {
-			return 1 + 7 - arg2 - arg5;
-		} else {
-			return arg3;
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(ZBLclient!ve;Lclient!dd;Lclient!ve;)V")
 	public static void init(@OriginalArg(2) Js5 arg0, @OriginalArg(3) SoftwareFont arg1, @OriginalArg(4) Js5 arg2) {
 		Static240.aBoolean276 = true;

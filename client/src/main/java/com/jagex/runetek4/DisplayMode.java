@@ -286,7 +286,7 @@ public final class DisplayMode {
 			GlTile.method1939();
 			LoginManager.method4637();
 		}
-		Static87.aBoolean130 = !Static138.allLevelsvisible();
+		SceneGraph.aBoolean130 = !SceneGraph.allLevelsvisible();
 		if (arg2) {
 			client.method2721();
 		}

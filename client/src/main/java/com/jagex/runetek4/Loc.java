@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.dash3d.entity.LocType;
@@ -15,8 +14,12 @@ public final class Loc extends Entity {
 
 	@OriginalMember(owner = "client!kf", name = "h", descriptor = "[I")
 	public static final int[] LAYERS = new int[] { 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3 };
+
+	@OriginalMember(owner = "client!ci", name = "q", descriptor = "Lclient!ek;")
+	public static SoftwareIndexedSprite sprite1 = null;
+
 	@OriginalMember(owner = "runetek4.client!dc", name = "U", descriptor = "Lclient!ga;")
-	private ParticleSystem aClass47_Sub1_2;
+	private ParticleSystem particles;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "x", descriptor = "I")
 	private int anInt1296 = 0;
@@ -31,7 +34,7 @@ public final class Loc extends Entity {
 	private boolean aBoolean81 = true;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "Q", descriptor = "Lclient!ek;")
-	private SoftwareIndexedSprite aClass36_Sub1_2 = null;
+	private SoftwareIndexedSprite sprite2 = null;
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "T", descriptor = "I")
 	private final int anInt1311 = -32768;
@@ -96,7 +99,7 @@ public final class Loc extends Entity {
 					local67 = local67.getMultiLoc();
 				}
 				if (local67 != null) {
-					CacheArchive.method181(local67, 0, this.anInt1295, 0, this.anInt1307, this.anInt1308, this.anInt1300, this.anInt1303);
+					method181(local67, 0, this.anInt1295, 0, this.anInt1307, this.anInt1308, this.anInt1300, this.anInt1303);
 				}
 			}
 		}
@@ -144,6 +147,54 @@ public final class Loc extends Entity {
 		}
 	}
 
+	@OriginalMember(owner = "client!al", name = "a", descriptor = "(Lclient!pb;BIIIIIII)V")
+	public static void method181(@OriginalArg(0) LocType arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
+		@Pc(5) int local5 = arg2 & 0x3;
+		@Pc(28) int local28;
+		@Pc(31) int local31;
+		if (local5 == 1 || local5 == 3) {
+			local28 = arg0.length;
+			local31 = arg0.width;
+		} else {
+			local31 = arg0.length;
+			local28 = arg0.width;
+		}
+		@Pc(53) int local53;
+		@Pc(51) int local51;
+		if (arg6 + local31 > 104) {
+			local51 = arg6 + 1;
+			local53 = arg6;
+		} else {
+			local53 = arg6 + (local31 >> 1);
+			local51 = arg6 + (local31 + 1 >> 1);
+		}
+		@Pc(80) int local80 = (arg5 << 7) + (local28 << 6);
+		@Pc(88) int local88 = (arg6 << 7) + (local31 << 6);
+		@Pc(96) int local96;
+		@Pc(100) int local100;
+		if (arg5 + local28 > 104) {
+			local96 = arg5;
+			local100 = arg5 + 1;
+		} else {
+			local96 = arg5 + (local28 >> 1);
+			local100 = (local28 + 1 >> 1) + arg5;
+		}
+		@Pc(120) int[][] local120 = SceneGraph.tileHeights[arg7];
+		@Pc(122) int local122 = 0;
+		@Pc(148) int local148 = local120[local96][local51] + local120[local96][local53] + local120[local100][local53] + local120[local100][local51] >> 2;
+		@Pc(158) int[][] local158;
+		if (arg7 != 0) {
+			local158 = SceneGraph.tileHeights[0];
+			local122 = local148 - (local158[local96][local51] + local158[local100][local53] + local158[local96][local53] + local158[local100][local51] >> 2);
+		}
+		local158 = null;
+		if (arg7 < 3) {
+			local158 = SceneGraph.tileHeights[arg7 + 1];
+		}
+		@Pc(215) LocEntity local215 = arg0.method3428(arg2, local80, local120, arg4, local148, local158, false, null, true, local88);
+		ShadowManager.method4207(local215.sprite, local80 - arg3, local122, local88 - arg1);
+	}
+
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(IIIII)V")
 	@Override
 	public final void method4545(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
@@ -159,18 +210,18 @@ public final class Loc extends Entity {
 	public final void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
 		@Pc(3) Entity local3 = this.method1049();
 		if (local3 != null) {
-			local3.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_2);
+			local3.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.particles);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "c", descriptor = "(I)V")
 	public final void method1046() {
-		if (this.aClass36_Sub1_2 != null) {
-			Static242.method4207(this.aClass36_Sub1_2, this.anInt1296, this.anInt1294, this.anInt1319);
+		if (this.sprite2 != null) {
+			ShadowManager.method4207(this.sprite2, this.anInt1296, this.anInt1294, this.anInt1319);
 		}
 		this.anInt1321 = -1;
 		this.anInt1322 = -1;
-		this.aClass36_Sub1_2 = null;
+		this.sprite2 = null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "finalize", descriptor = "()V")
@@ -206,7 +257,7 @@ public final class Loc extends Entity {
 			}
 		}
 		while (local10 > this.aClass144_2.frames[this.anInt1297]) {
-			Static152.method2836(arg0, this.aClass144_2, arg1, false, this.anInt1297);
+			SoundPlayer.playSeqSound(arg0, this.aClass144_2, arg1, false, this.anInt1297);
 			local10 -= this.aClass144_2.frames[this.anInt1297];
 			this.anInt1297++;
 			if (this.aClass144_2.anIntArray473.length <= this.anInt1297) {
@@ -230,7 +281,7 @@ public final class Loc extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(ZI)Lclient!th;")
 	private Entity method1048(@OriginalArg(0) boolean arg0) {
-		@Pc(12) boolean local12 = Static107.anIntArrayArrayArray10 != SceneGraph.tileHeights;
+		@Pc(12) boolean local12 = SceneGraph.surfaceTileHeights != SceneGraph.tileHeights;
 		@Pc(19) LocType local19 = LocTypeList.get(this.anInt1299);
 		@Pc(22) int local22 = local19.anim;
 		if (local19.multiloc != null) {
@@ -254,7 +305,7 @@ public final class Loc extends Entity {
 				this.aClass144_2 = SeqTypeList.getAnimationSequence(local69);
 			}
 			if (this.aClass144_2 != null) {
-				if (local19.randomanimframe && this.aClass144_2.replayoff != -1) {
+				if (local19.allowRandomizedAnimation && this.aClass144_2.replayoff != -1) {
 					this.anInt1297 = (int) (Math.random() * (double) this.aClass144_2.anIntArray473.length);
 					this.anInt1320 -= (int) (Math.random() * (double) this.aClass144_2.frames[this.anInt1297]);
 				} else {
@@ -278,7 +329,7 @@ public final class Loc extends Entity {
 		@Pc(192) int local192 = (local157 >> 1) + this.anInt1300;
 		@Pc(201) int local201 = (local157 + 1 >> 1) + this.anInt1300;
 		this.method1047(local192 * 128, local185 * 128);
-		@Pc(256) boolean local256 = !local12 && local19.hardshadow && (local19.anInt4426 != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || SeqType.tween) && this.anInt1297 != this.anInt1304) && Static139.anInt3451 >= 2);
+		@Pc(256) boolean local256 = !local12 && local19.castShadow && (local19.id != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || SeqType.tween) && this.anInt1297 != this.anInt1304) && Static139.anInt3451 >= 2);
 		if (arg0 && !local256) {
 			return null;
 		}
@@ -288,26 +339,26 @@ public final class Loc extends Entity {
 		@Pc(311) int local311 = (local157 << 6) + (this.anInt1300 << 7);
 		@Pc(314) int[][] local314 = null;
 		if (local12) {
-			local314 = Static107.anIntArrayArrayArray10[0];
+			local314 = SceneGraph.surfaceTileHeights[0];
 		} else if (this.anInt1303 < 3) {
 			local314 = SceneGraph.tileHeights[this.anInt1303 + 1];
 		}
 		if (GlRenderer.enabled && local256) {
-			Static242.method4207(this.aClass36_Sub1_2, this.anInt1296, this.anInt1294, this.anInt1319);
+			ShadowManager.method4207(this.sprite2, this.anInt1296, this.anInt1294, this.anInt1319);
 		}
-		@Pc(356) boolean local356 = this.aClass36_Sub1_2 == null;
+		@Pc(356) boolean local356 = this.sprite2 == null;
 		@Pc(389) LocEntity local389;
 		if (this.aClass144_2 == null) {
-			local389 = local19.method3428(this.anInt1295, local302, local267, this.anInt1307, local293, local314, false, local356 ? Static32.aClass36_Sub1_1 : this.aClass36_Sub1_2, local256, local311);
+			local389 = local19.method3428(this.anInt1295, local302, local267, this.anInt1307, local293, local314, false, local356 ? sprite1 : this.sprite2, local256, local311);
 		} else {
-			local389 = local19.method3429(local311, local302, local356 ? Static32.aClass36_Sub1_1 : this.aClass36_Sub1_2, local293, this.aClass144_2, this.anInt1295, local267, local256, this.anInt1297, local314, this.anInt1304, this.anInt1307, this.anInt1317);
+			local389 = local19.method3429(local311, local302, local356 ? sprite1 : this.sprite2, local293, this.aClass144_2, this.anInt1295, local267, local256, this.anInt1297, local314, this.anInt1304, this.anInt1307, this.anInt1317);
 		}
 		if (local389 == null) {
 			return null;
 		}
 		if (GlRenderer.enabled && local256) {
 			if (local356) {
-				Static32.aClass36_Sub1_1 = local389.sprite;
+				sprite1 = local389.sprite;
 			}
 			@Pc(429) int local429 = 0;
 			if (this.anInt1303 != 0) {
@@ -315,20 +366,20 @@ public final class Loc extends Entity {
 				local429 = local293 - (local439[local178][local192] + local439[local185][local192] + local439[local185][local201] + local439[local178][local201] >> 2);
 			}
 			@Pc(471) SoftwareIndexedSprite local471 = local389.sprite;
-			if (this.aBoolean81 && Static242.method4209(local471, local302, local429, local311)) {
+			if (this.aBoolean81 && ShadowManager.method4209(local471, local302, local429, local311)) {
 				this.aBoolean81 = false;
 			}
 			if (!this.aBoolean81) {
 				Static242.method4211(local471, local302, local429, local311);
-				this.aClass36_Sub1_2 = local471;
+				this.sprite2 = local471;
 				this.anInt1319 = local311;
 				if (local356) {
-					Static32.aClass36_Sub1_1 = null;
+					sprite1 = null;
 				}
 				this.anInt1294 = local429;
 				this.anInt1296 = local302;
 			}
-			this.anInt1321 = local19.anInt4426;
+			this.anInt1321 = local19.id;
 			this.anInt1322 = this.anInt1297;
 		}
 		return local389.model;

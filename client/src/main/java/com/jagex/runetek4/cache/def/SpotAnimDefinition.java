@@ -109,7 +109,7 @@ public final class SpotAnimDefinition {
 	public final Model getModel(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
 		@Pc(13) Model model = (Model) modelCache.get((long) this.anInt1751);
 		if (model == null) {
-			@Pc(28) RawModel rawModel = RawModel.get(Static93.modelArchive, this.modelId);
+			@Pc(28) RawModel rawModel = RawModel.create(Static93.modelArchive, this.modelId);
 			if (rawModel == null) {
 				return null;
 			}

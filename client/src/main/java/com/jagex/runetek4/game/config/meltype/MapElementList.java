@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!se")
-public final class MapElementTypeList {
+public final class MapElementList {
 
 	@OriginalMember(owner = "client!se", name = "i", descriptor = "I")
 	public final int anInt5074;
@@ -30,7 +30,7 @@ public final class MapElementTypeList {
 	public final short[] aShortArray73;
 
 	@OriginalMember(owner = "client!se", name = "<init>", descriptor = "(I)V")
-	public MapElementTypeList(@OriginalArg(0) int arg0) {
+	public MapElementList(@OriginalArg(0) int arg0) {
 		this.anInt5074 = arg0;
 		this.aClass100Array153 = new JString[this.anInt5074];
 		this.aShortArray72 = new short[this.anInt5074];
@@ -40,13 +40,13 @@ public final class MapElementTypeList {
 	}
 
 	@OriginalMember(owner = "runetek4.client!la", name = "a", descriptor = "(ILclient!na;Lclient!ve;)Lclient!se;")
-	public static MapElementTypeList create(@OriginalArg(1) JString arg0, @OriginalArg(2) Js5 arg1) {
+	public static MapElementList create(@OriginalArg(1) JString arg0, @OriginalArg(2) Js5 arg1) {
 		@Pc(10) int local10 = arg1.getGroupId(arg0);
 		if (local10 == -1) {
-			return new MapElementTypeList(0);
+			return new MapElementList(0);
 		}
 		@Pc(29) int[] local29 = arg1.getFileIds(local10);
-		@Pc(35) MapElementTypeList local35 = new MapElementTypeList(local29.length);
+		@Pc(35) MapElementList local35 = new MapElementList(local29.length);
 		for (@Pc(37) int local37 = 0; local37 < local35.anInt5074; local37++) {
 			@Pc(56) Packet local56 = new Packet(arg1.getfile(local10, local29[local37]));
 			local35.aClass100Array153[local37] = local56.gjstr();

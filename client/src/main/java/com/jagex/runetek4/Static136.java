@@ -65,7 +65,7 @@ public final class Static136 {
 		}
 		Preferences.setAllLevelsVisible(arg0.g1() == 1);
 		Preferences.roofsVisible = arg0.g1() == 1;
-		Preferences.groundDecoration = arg0.g1() == 1;
+		Preferences.showGroundDecorations = arg0.g1() == 1;
 		Preferences.highDetailTextures = arg0.g1() == 1;
 		Static15.lowMemory = arg0.g1() == 1;
 		Static11.aBoolean15 = arg0.g1() == 1;

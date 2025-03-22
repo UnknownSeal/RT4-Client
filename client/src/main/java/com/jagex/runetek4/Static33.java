@@ -14,11 +14,11 @@ public final class Static33 {
 
     @OriginalMember(owner = "client!cj", name = "a", descriptor = "(ILclient!pb;ZIIII)Z")
 	public static boolean method867(@OriginalArg(0) int arg0, @OriginalArg(1) LocType arg1, @OriginalArg(5) int arg2, @OriginalArg(6) int arg3) {
-		@Pc(10) MSIType local10 = Static40.get(arg1.mapsceneicon);
+		@Pc(10) MSIType local10 = Static40.get(arg1.mapSceneIcon);
 		if (local10.spriteId == -1) {
 			return true;
 		}
-		if (arg1.mapsceneiconrotate) {
+		if (arg1.mapSceneRotated) {
 			@Pc(24) int local24 = arg3 + arg1.mapSceneAngleOffset;
 			arg3 = local24 & 0x3;
 		} else {
@@ -167,11 +167,6 @@ public final class Static33 {
 				}
 			}
 		}
-	}
-
-	@OriginalMember(owner = "client!cj", name = "a", descriptor = "(IB)I")
-	public static int method872(@OriginalArg(0) int arg0) {
-		return arg0 & 0xFF;
 	}
 
 }

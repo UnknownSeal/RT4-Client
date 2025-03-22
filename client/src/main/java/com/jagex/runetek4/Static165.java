@@ -12,9 +12,6 @@ public final class Static165 {
 	@OriginalMember(owner = "runetek4.client!nb", name = "o", descriptor = "I")
 	public static int anInt4042;
 
-	@OriginalMember(owner = "runetek4.client!nb", name = "a", descriptor = "Lclient!na;")
-	public static final JString aClass100_772 = JString.parse("um");
-
 	@OriginalMember(owner = "runetek4.client!nb", name = "j", descriptor = "I")
 	public static volatile int anInt4039 = -1;
 

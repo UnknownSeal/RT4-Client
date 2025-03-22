@@ -468,7 +468,7 @@ public final class client extends GameShell {
 		Protocol.opcode3 = -1;
 		Protocol.opcode = -1;
 		Game.idleTimeout = 0;
-		Static60.systemUpdateTimer = 0;
+		Player.systemUpdateTimer = 0;
 		Protocol.outboundBuffer.offset = 0;
 		Protocol.opcode2 = -1;
 		LoginManager.idleNetCycles = 0;
@@ -634,7 +634,7 @@ public final class client extends GameShell {
 		FloorOverlayTypeList.clean();
 		FloorUnderlayTypeList.clean();
 		Static238.method4142();
-		Static258.method4415();
+		LocTypeList.clean();
 		Static209.method3706();
 		Static190.method3447();
 		SeqType.clearAnimationCache();
@@ -672,7 +672,7 @@ public final class client extends GameShell {
 		if (statusCode == 25 || statusCode == 28) {
 			LoginManager.anInt5804 = 0;
 			anInt5150 = 1;
-			LoginManager.anInt5223 = 0;
+			LoginManager.loadingScreenState = 0;
 			anInt1196 = 1;
 			LoginManager.mapFilesMissingCount = 0;
 			WorldMap.clear(true);
@@ -690,13 +690,13 @@ public final class client extends GameShell {
 			if (local37) {
 				MusicPlayer.groupId = MusicPlayer.titleSong;
 				if (Preferences.musicVolume == 0) {
-					Static29.method801();
+					MidiPlayer.playFadeOut();
 				} else {
 					Static257.method526(MusicPlayer.titleSong, js5Archive6, 255);
 				}
 				js5NetQueue.writeLoggedIn(false);
 			} else {
-				Static29.method801();
+				MidiPlayer.playFadeOut();
 				js5NetQueue.writeLoggedIn(true);
 			}
 		}
@@ -765,13 +765,13 @@ public final class client extends GameShell {
 		} else if (gameState == 10) {
 			InterfaceList.method2460();
 		} else if (gameState == 25 || gameState == 28) {
-			if (LoginManager.anInt5223 == 1) {
+			if (LoginManager.loadingScreenState == 1) {
 				if (anInt5150 < LoginManager.mapFilesMissingCount) {
 					anInt5150 = LoginManager.mapFilesMissingCount;
 				}
 				local80 = (anInt5150 - LoginManager.mapFilesMissingCount) * 50 / anInt5150;
 				Fonts.drawTextOnScreen(false, JString.concatenate(new JString[] { LocalizedText.LOADING, aClass100_974, JString.parseInt(local80), ClientScriptRunner.aClass100_80 }));
-			} else if (LoginManager.anInt5223 == 2) {
+			} else if (LoginManager.loadingScreenState == 2) {
 				if (anInt1196 < LoginManager.anInt5804) {
 					anInt1196 = LoginManager.anInt5804;
 				}

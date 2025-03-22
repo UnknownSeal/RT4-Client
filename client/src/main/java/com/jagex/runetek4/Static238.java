@@ -8,9 +8,6 @@ public final class Static238 {
 	@OriginalMember(owner = "runetek4.client!te", name = "y", descriptor = "Lclient!ve;")
 	public static Js5 configClientSmall;
 
-	@OriginalMember(owner = "runetek4.client!te", name = "H", descriptor = "[I")
-	public static int[] anIntArray470;
-
 	@OriginalMember(owner = "runetek4.client!te", name = "B", descriptor = "[I")
 	public static final int[] WALL_DECORATION_ROTATION_FORWARD_Z = new int[] { 0, -1, 0, 1 };
 

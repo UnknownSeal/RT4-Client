@@ -24,7 +24,7 @@ public final class Static211 {
 	@OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(Lclient!na;Z)Lclient!na;")
 	public static JString method923(@OriginalArg(0) JString arg0) {
 		@Pc(12) int local12 = Static171.method3218(arg0);
-		return local12 == -1 ? Static93.aClass100_517 : Static203.aMapElementTypeList_1.aClass100Array153[local12].method3140(Static101.aClass100_538, Static197.aClass100_872);
+		return local12 == -1 ? Static93.aClass100_517 : Static203.aMapElementList_1.aClass100Array153[local12].method3140(Static101.aClass100_538, Static197.aClass100_872);
 	}
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(Z)V")

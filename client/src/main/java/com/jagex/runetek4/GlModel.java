@@ -3484,7 +3484,7 @@ public final class GlModel extends Model {
 			local151 = arg0;
 			arg0.innerWidth = arg0.width = local134;
 			arg0.innerHeight = arg0.height = local140;
-			arg0.method1392();
+			arg0.clear();
 		}
 		local151.xOffset = local26;
 		local151.yOffset = local85;

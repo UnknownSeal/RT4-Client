@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static207 {
 
-	@OriginalMember(owner = "runetek4.client!ql", name = "c", descriptor = "Z")
-	public static boolean parentalChatConsent = false;
-
 	@OriginalMember(owner = "runetek4.client!ql", name = "d", descriptor = "I")
 	public static int anInt4778 = 0;
 

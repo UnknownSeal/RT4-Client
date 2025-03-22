@@ -29,9 +29,4 @@ public final class Static138 {
 		return local34 >> 19 & 0xFF;
 	}
 
-	@OriginalMember(owner = "runetek4.client!km", name = "f", descriptor = "(I)Z")
-	public static boolean allLevelsvisible() {
-		return GlRenderer.enabled ? true : Static162.aBoolean190;
-	}
-
 }

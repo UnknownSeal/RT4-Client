@@ -120,7 +120,7 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "()V")
-	public final void method1392() {
+	public final void clear() {
 		@Pc(1) int local1 = 0;
 		@Pc(7) int local7 = this.aByteArray18.length - 7;
 		while (local1 < local7) {

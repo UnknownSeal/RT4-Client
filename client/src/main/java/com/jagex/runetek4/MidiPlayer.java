@@ -82,4 +82,15 @@ public class MidiPlayer {
             Static27.aClass89_1 = null;
         }
     }
+
+    @OriginalMember(owner = "client!ce", name = "a", descriptor = "(II)V")
+    public static void playFadeOut() {
+        Static253.anInt5527 = 0;
+        Static226.anInt5085 = -1;
+        Static14.anInt441 = 1;
+        Static57.anInt1757 = 2;
+        Static72.aBoolean116 = false;
+        Static172.aClass153_70 = null;
+        Static277.anInt5853 = -1;
+    }
 }

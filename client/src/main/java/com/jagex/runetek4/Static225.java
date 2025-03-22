@@ -18,7 +18,7 @@ public final class Static225 {
 	@OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "(I)V")
 	public static void getPlayerNewVis() {
 		while (true) {
-			if (Protocol.inboundBuffer.bitsAvailable(Static223.packetSize) >= 11) {
+			if (Protocol.inboundBuffer.bitsAvailable(Protocol.packetSize) >= 11) {
 				@Pc(20) int index = Protocol.inboundBuffer.gBit(11);
 				if (index != 2047) {
 					@Pc(27) boolean local27 = false;

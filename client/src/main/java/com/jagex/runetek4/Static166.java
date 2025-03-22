@@ -75,7 +75,7 @@ public final class Static166 {
 												continue;
 											}
 										}
-										Static83.anIntArrayArrayArray3[local84][local95][(63 - local155 << 6) + local150] = local312.anInt4426 + 1;
+										Static83.anIntArrayArrayArray3[local84][local95][(63 - local155 << 6) + local150] = local312.id + 1;
 										@Pc(353) Class3_Sub26 local353 = new Class3_Sub26();
 										local353.anInt4308 = local312.mapfunction;
 										local353.anInt4307 = local53;

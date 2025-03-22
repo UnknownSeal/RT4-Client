@@ -1,16 +1,12 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
 import com.jagex.runetek4.input.Keyboard;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static235 {
-
-	@OriginalMember(owner = "runetek4.client!tb", name = "X", descriptor = "Lclient!se;")
-	public static MapElementTypeList aMapElementTypeList_2;
 
 	@OriginalMember(owner = "runetek4.client!tb", name = "Q", descriptor = "I")
 	public static int anInt5276 = 0;

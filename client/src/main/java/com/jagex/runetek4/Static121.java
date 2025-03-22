@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -14,9 +13,6 @@ public final class Static121 {
 
     @OriginalMember(owner = "runetek4.client!jg", name = "g", descriptor = "I")
 	public static int anInt3041;
-
-	@OriginalMember(owner = "runetek4.client!jg", name = "j", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_45;
 
 	@OriginalMember(owner = "runetek4.client!jg", name = "a", descriptor = "(I)[Lclient!ek;")
 	public static SoftwareIndexedSprite[] method2406() {

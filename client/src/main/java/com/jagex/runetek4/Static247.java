@@ -93,7 +93,7 @@ public final class Static247 {
 														Static22.anInt730 = frontWallTypes;
 														Static147.method2761(frontWallTypes);
 													}
-													farthestIndex = Static107.anIntArrayArrayArray10[0][tileX][tileZ] + Static107.anIntArrayArrayArray10[0][tileX + 1][tileZ] + Static107.anIntArrayArrayArray10[0][tileX][tileZ + 1] + Static107.anIntArrayArrayArray10[0][tileX + 1][tileZ + 1] >> 2;
+													farthestIndex = SceneGraph.surfaceTileHeights[0][tileX][tileZ] + SceneGraph.surfaceTileHeights[0][tileX + 1][tileZ] + SceneGraph.surfaceTileHeights[0][tileX][tileZ + 1] + SceneGraph.surfaceTileHeights[0][tileX + 1][tileZ + 1] >> 2;
 													MaterialManager.setMaterial(-farthestIndex, 3);
 													local33 = 201.5F;
 													GlRenderer.method4159(local33);

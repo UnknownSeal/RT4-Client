@@ -472,7 +472,7 @@ public final class ObjType {
 		}
 		@Pc(76) Model local76 = (Model) Static244.aClass99_32.get(this.anInt2354);
 		if (local76 == null) {
-			@Pc(85) RawModel local85 = RawModel.get(Static230.modelArchive, this.mesh);
+			@Pc(85) RawModel local85 = RawModel.create(Static230.modelArchive, this.mesh);
 			if (local85 == null) {
 				return null;
 			}
@@ -528,9 +528,9 @@ public final class ObjType {
 		if (local17 == -1) {
 			return null;
 		}
-		@Pc(36) RawModel local36 = RawModel.get(Static230.modelArchive, local17);
+		@Pc(36) RawModel local36 = RawModel.create(Static230.modelArchive, local17);
 		if (local4 != -1) {
-			@Pc(44) RawModel local44 = RawModel.get(Static230.modelArchive, local4);
+			@Pc(44) RawModel local44 = RawModel.create(Static230.modelArchive, local4);
 			@Pc(55) RawModel[] local55 = new RawModel[] { local36, local44 };
 			local36 = new RawModel(local55, 2);
 		}
@@ -561,14 +561,14 @@ public final class ObjType {
 		if (local4 == -1) {
 			return null;
 		}
-		@Pc(43) RawModel local43 = RawModel.get(Static230.modelArchive, local4);
+		@Pc(43) RawModel local43 = RawModel.create(Static230.modelArchive, local4);
 		if (local18 != -1) {
-			@Pc(54) RawModel local54 = RawModel.get(Static230.modelArchive, local18);
+			@Pc(54) RawModel local54 = RawModel.create(Static230.modelArchive, local18);
 			if (local21 == -1) {
 				@Pc(68) RawModel[] local68 = new RawModel[] { local43, local54 };
 				local43 = new RawModel(local68, 2);
 			} else {
-				@Pc(81) RawModel local81 = RawModel.get(Static230.modelArchive, local21);
+				@Pc(81) RawModel local81 = RawModel.create(Static230.modelArchive, local21);
 				@Pc(96) RawModel[] local96 = new RawModel[] { local43, local54, local81 };
 				local43 = new RawModel(local96, 3);
 			}
@@ -615,7 +615,7 @@ public final class ObjType {
 
 	@OriginalMember(owner = "client!h", name = "d", descriptor = "(I)Lclient!w;")
 	public SoftwareModel getInvModel() {
-		@Pc(11) RawModel local11 = RawModel.get(Static230.modelArchive, this.mesh);
+		@Pc(11) RawModel local11 = RawModel.create(Static230.modelArchive, this.mesh);
 		if (local11 == null) {
 			return null;
 		}
@@ -644,9 +644,6 @@ public final class ObjType {
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "Z", descriptor = "I")
 	public static int anInt2222;
-
-	@OriginalMember(owner = "runetek4.client!gg", name = "W", descriptor = "Lclient!na;")
-	public static final JString NULL = JString.parse("null");
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "([[IZ)V")
 	public static void method1751(@OriginalArg(0) int[][] arg0) {

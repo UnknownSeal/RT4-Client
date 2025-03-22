@@ -23,12 +23,6 @@ public final class PreciseSleep {
 	@OriginalMember(owner = "runetek4.client!sk", name = "hb", descriptor = "Lclient!n;")
 	public static final NodeCache aClass99_29 = new NodeCache(64);
 
-	@OriginalMember(owner = "runetek4.client!sk", name = "ib", descriptor = "I")
-	public static int anInt5202 = 0;
-
-	@OriginalMember(owner = "runetek4.client!sk", name = "lb", descriptor = "Z")
-	public static boolean aBoolean252 = false;
-
 	@OriginalMember(owner = "runetek4.client!sk", name = "a", descriptor = "(ILclient!wa;)V")
 	public static void method3980(@OriginalArg(1) Packet arg0) {
 		label83: while (true) {

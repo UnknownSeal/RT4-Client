@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayTypeList;
-import com.jagex.runetek4.game.config.meltype.MapElementTypeList;
+import com.jagex.runetek4.game.config.meltype.MapElementList;
 import com.jagex.runetek4.util.SignLink;
 import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -37,7 +37,7 @@ public class Preferences {
     @OriginalMember(owner = "runetek4.client!gf", name = "N", descriptor = "Z")
     public static boolean roofsVisible = true;
     @OriginalMember(owner = "runetek4.client!uf", name = "b", descriptor = "Z")
-    public static boolean groundDecoration = true;
+    public static boolean showGroundDecorations = true;
     @OriginalMember(owner = "runetek4.client!ec", name = "n", descriptor = "Z")
     public static boolean highDetailTextures = true;
     @OriginalMember(owner = "runetek4.client!il", name = "I", descriptor = "I")
@@ -140,9 +140,9 @@ public class Preferences {
                 if (!Static119.aClass153_44.isGroupReady(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}))) {
                     return;
                 }
-                Static203.aMapElementTypeList_1 = MapElementTypeList.create(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}), Static119.aClass153_44);
+                Static203.aMapElementList_1 = MapElementList.create(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.aClass100_138, Static265.aClass100_1086}), Static119.aClass153_44);
             } else {
-                Static203.aMapElementTypeList_1 = new MapElementTypeList(0);
+                Static203.aMapElementList_1 = new MapElementList(0);
             }
             WorldMap.loadPercentage = 70;
             GameShell.resetTimer();
@@ -232,7 +232,7 @@ public class Preferences {
         Static220.aBoolean244 = true;
         windowMode = 0;
         fullScreenHeight = 0;
-        groundDecoration = true;
+        showGroundDecorations = true;
         Static11.aBoolean15 = true;
         Static15.lowMemory = true;
         ambientSoundsVolume = 127;
@@ -289,7 +289,7 @@ public class Preferences {
     @OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(IZ)V")
     public static void setAllLevelsVisible(@OriginalArg(1) boolean arg0) {
         Static162.aBoolean190 = arg0;
-        Static87.aBoolean130 = !Static138.allLevelsvisible();
+        SceneGraph.aBoolean130 = !SceneGraph.allLevelsvisible();
     }
 
     @OriginalMember(owner = "client!dl", name = "a", descriptor = "(B)Lclient!wa;")
@@ -299,7 +299,7 @@ public class Preferences {
         local4.p1(brightness);
         local4.p1(Static162.aBoolean190 ? 1 : 0);
         local4.p1(roofsVisible ? 1 : 0);
-        local4.p1(groundDecoration ? 1 : 0);
+        local4.p1(showGroundDecorations ? 1 : 0);
         local4.p1(highDetailTextures ? 1 : 0);
         local4.p1(Static15.lowMemory ? 1 : 0);
         local4.p1(Static11.aBoolean15 ? 1 : 0);

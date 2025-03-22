@@ -647,38 +647,4 @@ public final class Static280 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!wl", name = "b", descriptor = "(I)V")
-	public static void method4673() {
-		@Pc(3) boolean local3 = false;
-		while (!local3) {
-			local3 = true;
-			for (@Pc(13) int local13 = 0; local13 < MiniMenu.menuActionRow - 1; local13++) {
-				if (MiniMenu.actions[local13] < 1000 && MiniMenu.actions[local13 + 1] > 1000) {
-					@Pc(41) JString local41 = MiniMenu.opBases[local13];
-					local3 = false;
-					MiniMenu.opBases[local13] = MiniMenu.opBases[local13 + 1];
-					MiniMenu.opBases[local13 + 1] = local41;
-					@Pc(61) JString local61 = MiniMenu.ops[local13];
-					MiniMenu.ops[local13] = MiniMenu.ops[local13 + 1];
-					MiniMenu.ops[local13 + 1] = local61;
-					@Pc(79) int local79 = MiniMenu.intArgs1[local13];
-					MiniMenu.intArgs1[local13] = MiniMenu.intArgs1[local13 + 1];
-					MiniMenu.intArgs1[local13 + 1] = local79;
-					@Pc(97) int local97 = Static56.anIntArray142[local13];
-					Static56.anIntArray142[local13] = Static56.anIntArray142[local13 + 1];
-					Static56.anIntArray142[local13 + 1] = local97;
-					@Pc(115) int local115 = MiniMenu.cursors[local13];
-					MiniMenu.cursors[local13] = MiniMenu.cursors[local13 + 1];
-					MiniMenu.cursors[local13 + 1] = local115;
-					@Pc(133) short local133 = MiniMenu.actions[local13];
-					MiniMenu.actions[local13] = MiniMenu.actions[local13 + 1];
-					MiniMenu.actions[local13 + 1] = local133;
-					@Pc(151) long local151 = Static159.aLongArray5[local13];
-					Static159.aLongArray5[local13] = Static159.aLongArray5[local13 + 1];
-					Static159.aLongArray5[local13 + 1] = local151;
-				}
-			}
-		}
-	}
-
 }

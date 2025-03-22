@@ -16,11 +16,11 @@ public final class Static31 {
 
 	@OriginalMember(owner = "client!ch", name = "c", descriptor = "(I)V")
 	public static void method846() {
-		if (!Static138.allLevelsvisible() && Static41.anInt1316 != Player.plane) {
-			Static127.method2463(Player.plane, Static52.anInt1695, Static80.anInt4701, PlayerList.self.movementQueueZ[0], false, PlayerList.self.movementQueueX[0]);
+		if (!SceneGraph.allLevelsvisible() && SceneGraph.centralPlane != Player.plane) {
+			LoginManager.method2463(Player.plane, SceneGraph.centralZoneZ, SceneGraph.centralZoneX, PlayerList.self.movementQueueZ[0], false, PlayerList.self.movementQueueX[0]);
 		} else if (Player.plane != LightingManager.anInt2875 && Static137.method2665(Player.plane)) {
 			LightingManager.anInt2875 = Player.plane;
-			Static269.method2218();
+			ClientScriptRunner.method2218();
 		}
 	}
 

@@ -12,9 +12,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static156 {
 
-	@OriginalMember(owner = "runetek4.client!mf", name = "O", descriptor = "[[B")
-	public static byte[][] aByteArrayArray11;
-
 	@OriginalMember(owner = "runetek4.client!mf", name = "a", descriptor = "(IIIII[[[B[I[I[I[I[IIBII)V")
 	public static void method2954(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) byte[][][] arg5, @OriginalArg(6) int[] arg6, @OriginalArg(7) int[] arg7, @OriginalArg(8) int[] arg8, @OriginalArg(9) int[] arg9, @OriginalArg(10) int[] arg10, @OriginalArg(11) int arg11, @OriginalArg(12) byte arg12, @OriginalArg(13) int arg13, @OriginalArg(14) int arg14) {
 		if (arg0 < 0) {
@@ -69,11 +66,11 @@ public final class Static156 {
 				if (local146 >= 0 && local152 >= 0 && local146 < Static152.anInt3594 && local152 < Static99.anInt2550) {
 					@Pc(176) int local176;
 					if (Static80.anIntArrayArrayArray19 == null) {
-						local176 = Static107.anIntArrayArrayArray10[0][local146][local152] + 128 - Static162.eyeY;
+						local176 = SceneGraph.surfaceTileHeights[0][local146][local152] + 128 - Static162.eyeY;
 					} else {
 						local176 = Static80.anIntArrayArrayArray19[0][local146][local152] + 128 - Static162.eyeY;
 					}
-					@Pc(201) int local201 = Static107.anIntArrayArrayArray10[3][local146][local152] - Static162.eyeY - 1000;
+					@Pc(201) int local201 = SceneGraph.surfaceTileHeights[3][local146][local152] - Static162.eyeY - 1000;
 					Static89.aBooleanArrayArray3[local104][local113] = Static160.method3049(local130, local201, local176, local140, local99);
 				} else {
 					Static89.aBooleanArrayArray3[local104][local113] = false;
@@ -92,7 +89,7 @@ public final class Static156 {
 		Static206.anIntArray427 = arg10;
 		Static123.method2419();
 		if (Static276.aClass3_Sub5ArrayArrayArray3 != null) {
-			Static278.method4648(true);
+			SceneGraph.setUnderwater(true);
 			Static248.method3292(arg0, arg1, arg2, null, 0, (byte) 0, arg13, arg14);
 			if (GlRenderer.enabled) {
 				Static119.aBoolean153 = false;
@@ -100,7 +97,7 @@ public final class Static156 {
 				FogManager.setFogColor(null);
 				LightingManager.method2390();
 			}
-			Static278.method4648(false);
+			SceneGraph.setUnderwater(false);
 		}
 		Static248.method3292(arg0, arg1, arg2, arg5, arg11, arg12, arg13, arg14);
 	}

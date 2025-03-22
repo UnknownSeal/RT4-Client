@@ -18,12 +18,6 @@ public final class Static86 {
 	@OriginalMember(owner = "client!gm", name = "R", descriptor = "I")
 	public static int anInt2293 = (int) (Math.random() * 17.0D) - 8;
 
-	@OriginalMember(owner = "client!gm", name = "W", descriptor = "Lclient!na;")
-	public static final JString aClass100_488 = JString.parse("_");
-
-	@OriginalMember(owner = "client!gm", name = "bb", descriptor = "Z")
-	public static boolean aBoolean129 = false;
-
 	@OriginalMember(owner = "client!gm", name = "gb", descriptor = "[I")
 	public static final int[] WALL_CORNER_TYPE_64_BLOCK_LOC_SPANS = new int[] { 0, 4, 4, 8, 0, 0, 8, 0, 0 };
 

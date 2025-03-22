@@ -32,8 +32,8 @@ public final class Static64 {
 				PlayerList.players[index] = null;
 			}
 		}
-		if (Static223.packetSize != Protocol.inboundBuffer.offset) {
-			throw new RuntimeException("gpp1 pos:" + Protocol.inboundBuffer.offset + " psize:" + Static223.packetSize);
+		if (Protocol.packetSize != Protocol.inboundBuffer.offset) {
+			throw new RuntimeException("gpp1 pos:" + Protocol.inboundBuffer.offset + " psize:" + Protocol.packetSize);
 		}
 		for (i = 0; i < PlayerList.playerCount; i++) {
 			if (PlayerList.players[PlayerList.playerIds[i]] == null) {

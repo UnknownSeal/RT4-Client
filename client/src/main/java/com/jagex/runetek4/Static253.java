@@ -15,11 +15,6 @@ public final class Static253 {
 	@OriginalMember(owner = "runetek4.client!ui", name = "eb", descriptor = "[[[B")
 	public static byte[][][] levelTileUnderlayIds;
 
-	@OriginalMember(owner = "runetek4.client!ui", name = "c", descriptor = "(II)I")
-	public static int method4328(@OriginalArg(0) int arg0) {
-		return arg0 >>> 8;
-	}
-
 	@OriginalMember(owner = "runetek4.client!ui", name = "h", descriptor = "(I)[Lclient!ok;")
 	public static IndexedSprite[] method4331() {
 		@Pc(8) IndexedSprite[] local8 = new IndexedSprite[Static165.anInt4038];

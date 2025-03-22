@@ -12,9 +12,6 @@ public final class Static270 {
 	@OriginalMember(owner = "runetek4.client!wb", name = "l", descriptor = "Lclient!fd;")
 	public static WorldMapFont aClass41_9;
 
-	@OriginalMember(owner = "runetek4.client!wb", name = "e", descriptor = "Lclient!na;")
-	public static final JString aClass100_1090 = JString.parse("l");
-
 	@OriginalMember(owner = "runetek4.client!wb", name = "f", descriptor = "Lclient!wa;")
 	public static final Packet CHAT_PACKET = new Packet(new byte[5000]);
 
