@@ -13,9 +13,6 @@ public final class Static72 {
 	@OriginalMember(owner = "client!fl", name = "C", descriptor = "Lsignlink!im;")
 	public static PrivilegedRequest aClass212_3;
 
-	@OriginalMember(owner = "client!fl", name = "D", descriptor = "[[I")
-	public static int[][] anIntArrayArray14;
-
 	@OriginalMember(owner = "client!fl", name = "B", descriptor = "I")
 	public static int updatedVarcstrsWriterIndex = 0;
 

@@ -36,7 +36,7 @@ public class WorldMap {
         Static145.anIntArray330 = null;
         Static125.aByteArrayArrayArray10 = null;
         if (arg0 && Static269.aClass3_Sub2_Sub4_2 != null) {
-            Static153.aClass100_724 = Static269.aClass3_Sub2_Sub4_2.aClass100_138;
+            Static153.aClass100_724 = Static269.aClass3_Sub2_Sub4_2.group;
         } else {
             Static153.aClass100_724 = null;
         }
@@ -47,7 +47,7 @@ public class WorldMap {
         loadPercentage = 0;
         Static269.aClass3_Sub2_Sub4_2 = null;
         Static145.aClass69_84.clear();
-        Static203.aMapElementTypeList_1 = null;
+        Static203.aMapElementList_1 = null;
         Static217.anInt4901 = -1;
         Static130.aClass41_2 = null;
         Static160.aClass41_4 = null;
@@ -225,5 +225,13 @@ public class WorldMap {
         Static142.anInt3482 = -1;
         Static217.anInt4901 = -1;
         Static38.method965();
+    }
+
+    @OriginalMember(owner = "runetek4.client!lb", name = "d", descriptor = "(B)V")
+    public static void method2720() {
+        if (Static153.aClass100_724 != null) {
+            Static90.method1853(Static153.aClass100_724);
+            Static153.aClass100_724 = null;
+        }
     }
 }

@@ -82,7 +82,7 @@ public final class Static234 {
 						if (local227 != -1) {
 							@Pc(236) SeqType local236 = SeqTypeList.getAnimationSequence(local227);
 							if (local236 != null && local236.anIntArray473 != null) {
-								Static152.method2836(local14.zFine, local236, local14.xFine, false, 0);
+								SoundPlayer.playSeqSound(local14.zFine, local236, local14.xFine, false, 0);
 							}
 						}
 					}
@@ -92,7 +92,7 @@ public final class Static234 {
 				if (local14.type.hasBackgroundSound()) {
 					AreaSoundManager.remove(local14);
 				}
-				local14.method2698(NpcType.getDefinition(Protocol.inboundBuffer.g2le()));
+				local14.setNpcType(NpcType.getDefinition(Protocol.inboundBuffer.g2le()));
 				local14.setSize(local14.type.size);
 				local14.anInt3365 = local14.type.bas;
 				if (local14.type.hasBackgroundSound()) {
@@ -135,7 +135,7 @@ public final class Static234 {
 		@Pc(25) int local25 = Static119.aClass153_44.getGroupId(Static54.DETAILS);
 		@Pc(30) int[] local30 = Static119.aClass153_44.getFileIds(local25);
 		for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {
-			Static228.aClass69_120.addTail(Static210.method3713(new Packet(Static119.aClass153_44.getfile(local25, local30[local32]))));
+			Static228.aClass69_120.addTail(Static210.create(new Packet(Static119.aClass153_44.getfile(local25, local30[local32]))));
 		}
 	}
 

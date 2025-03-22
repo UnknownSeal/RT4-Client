@@ -44,7 +44,7 @@ public final class NodeQueue {
 	}
 
 	@OriginalMember(owner = "client!ce", name = "b", descriptor = "(I)Lclient!rg;")
-	public CachedNode pollFront() {
+	public CachedNode removeHead() {
 		@Pc(7) CachedNode node = this.head.previousCachedNode;
 		if (node == this.head) {
 			return null;

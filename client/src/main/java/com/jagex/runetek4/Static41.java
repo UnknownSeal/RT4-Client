@@ -19,7 +19,4 @@ public final class Static41 {
 	@OriginalMember(owner = "client!dc", name = "W", descriptor = "I")
 	public static volatile int anInt1313 = 0;
 
-	@OriginalMember(owner = "client!dc", name = "ab", descriptor = "I")
-	public static int anInt1316 = 0;
-
 }

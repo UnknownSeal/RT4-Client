@@ -13,9 +13,6 @@ public final class Static230 {
 	@OriginalMember(owner = "runetek4.client!sj", name = "D", descriptor = "I")
 	public static int anInt5158;
 
-	@OriginalMember(owner = "runetek4.client!sj", name = "u", descriptor = "Z")
-	public static boolean aBoolean250 = false;
-
 	@OriginalMember(owner = "runetek4.client!sj", name = "c", descriptor = "(I)V")
 	public static void clear() {
 		Static250.aClass99_33.clean();

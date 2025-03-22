@@ -98,7 +98,7 @@ public final class IDKType {
 		@Pc(16) RawModel[] heads = new RawModel[5];
 		for (@Pc(18) int index = 0; index < 5; index++) {
 			if (this.heads[index] != -1) {
-				heads[length++] = RawModel.get(IdkTypeList.modelsArchive, this.heads[index]);
+				heads[length++] = RawModel.create(IdkTypeList.modelsArchive, this.heads[index]);
 			}
 		}
 		@Pc(52) RawModel head = new RawModel(heads, length);
@@ -137,7 +137,7 @@ public final class IDKType {
 		}
 		@Pc(16) RawModel[] models = new RawModel[this.models.length];
 		for (@Pc(18) int index = 0; index < this.models.length; index++) {
-			models[index] = RawModel.get(IdkTypeList.modelsArchive, this.models[index]);
+			models[index] = RawModel.create(IdkTypeList.modelsArchive, this.models[index]);
 		}
 		@Pc(56) RawModel body;
 		if (models.length == 1) {

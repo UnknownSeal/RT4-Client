@@ -8,7 +8,7 @@ public final class Static236 {
 	public static int method4047() {
 		if (ClientScriptRunner.neverRemoveRoofs) {
 			return 0;
-		} else if (Static138.allLevelsvisible()) {
+		} else if (SceneGraph.allLevelsvisible()) {
 			return Preferences.roofsVisible ? 2 : 1;
 		} else {
 			return 1;

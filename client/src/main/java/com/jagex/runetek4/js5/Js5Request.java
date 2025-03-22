@@ -11,7 +11,7 @@ public abstract class Js5Request extends CachedNode {
 	public boolean urgent;
 
 	@OriginalMember(owner = "client!il", name = "T", descriptor = "Z")
-	public boolean aBoolean227;
+	public boolean orphan;
 
 	@OriginalMember(owner = "client!il", name = "P", descriptor = "Z")
 	public volatile boolean awaitingResponse = true;

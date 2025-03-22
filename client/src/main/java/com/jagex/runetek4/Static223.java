@@ -15,9 +15,6 @@ public final class Static223 {
 	@OriginalMember(owner = "runetek4.client!sc", name = "g", descriptor = "Lclient!na;")
 	public static final JString aClass100_947 = JString.parse(" )2> <col=ff9040>");
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "o", descriptor = "I")
-	public static int packetSize = 0;
-
 	@OriginalMember(owner = "runetek4.client!sc", name = "p", descriptor = "I")
 	public static int anInt5029 = 0;
 
@@ -35,7 +32,7 @@ public final class Static223 {
 				arg2.anInt3360 = 0;
 				arg2.anInt3371 = 0;
 				arg2.anInt3420 = arg0;
-				Static152.method2836(arg2.zFine, local10, arg2.xFine, false, arg2.anInt3425);
+				SoundPlayer.playSeqSound(arg2.zFine, local10, arg2.xFine, false, arg2.anInt3425);
 			}
 			if (local13 == 2) {
 				arg2.anInt3371 = 0;
@@ -49,7 +46,7 @@ public final class Static223 {
 			arg2.anInt3405 = arg2.movementQueueSize;
 			arg2.anInt3425 = 0;
 			if (arg2.primarySeqId != -1) {
-				Static152.method2836(arg2.zFine, SeqTypeList.getAnimationSequence(arg2.primarySeqId), arg2.xFine, false, arg2.anInt3425);
+				SoundPlayer.playSeqSound(arg2.zFine, SeqTypeList.getAnimationSequence(arg2.primarySeqId), arg2.xFine, false, arg2.anInt3425);
 			}
 		}
 	}

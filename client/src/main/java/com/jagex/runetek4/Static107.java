@@ -1,13 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static107 {
-
-	@OriginalMember(owner = "runetek4.client!id", name = "i", descriptor = "[[[I")
-	public static int[][][] anIntArrayArrayArray10;
 
 	@OriginalMember(owner = "runetek4.client!id", name = "e", descriptor = "[I")
 	public static final int[] anIntArray259 = new int[14];
@@ -23,8 +19,4 @@ public final class Static107 {
 		Static106.anInt2869 = arg0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!id", name = "a", descriptor = "(Lclient!ve;B)V")
-	public static void init(@OriginalArg(0) Js5 arg0) {
-		Static85.aClass153_36 = arg0;
-	}
 }

@@ -14,7 +14,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Js5NetQueue {
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "A", descriptor = "J")
-	private long aLong104;
+	private long previousLoop;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "B", descriptor = "Lclient!ma;")
 	private BufferedSocket updateServerSocket;
@@ -62,8 +62,8 @@ public final class Js5NetQueue {
 		@Pc(19) int available;
 		if (this.updateServerSocket != null) {
 			@Pc(12) long now = MonotonicTime.currentTimeMillis();
-			int duration = (int) (now - this.aLong104);
-			this.aLong104 = now;
+			int duration = (int) (now - this.previousLoop);
+			this.previousLoop = now;
 			if (duration > 200) {
 				duration = 200;
 			}
@@ -274,10 +274,10 @@ public final class Js5NetQueue {
 		this.inPacket.offset = 0;
 		this.current = null;
 		while (true) {
-			@Pc(44) Js5NetRequest local44 = (Js5NetRequest) this.inFlightUrgentRequests.pollFront();
+			@Pc(44) Js5NetRequest local44 = (Js5NetRequest) this.inFlightUrgentRequests.removeHead();
 			if (local44 == null) {
 				while (true) {
-					local44 = (Js5NetRequest) this.inFlightPrefetchRequests.pollFront();
+					local44 = (Js5NetRequest) this.inFlightPrefetchRequests.removeHead();
 					if (local44 == null) {
 						if (this.encryptionKey != 0) {
 							try {
@@ -297,7 +297,7 @@ public final class Js5NetQueue {
 							}
 						}
 						this.latency = 0;
-						this.aLong104 = MonotonicTime.currentTimeMillis();
+						this.previousLoop = MonotonicTime.currentTimeMillis();
 						return;
 					}
 					this.prefetch.addTail(local44);
@@ -337,7 +337,7 @@ public final class Js5NetQueue {
 	}
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "(IIBIZ)Lclient!pm;")
-	public final Js5NetRequest method2330(@OriginalArg(1) int arg0, @OriginalArg(2) byte arg1, @OriginalArg(3) int arg2, @OriginalArg(4) boolean arg3) {
+	public final Js5NetRequest read(@OriginalArg(1) int arg0, @OriginalArg(2) byte arg1, @OriginalArg(3) int arg2, @OriginalArg(4) boolean arg3) {
 		@Pc(7) Js5NetRequest local7 = new Js5NetRequest();
 		@Pc(14) long local14 = (long) (arg2 + (arg0 << 16));
 		local7.urgent = arg3;

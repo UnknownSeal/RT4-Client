@@ -151,7 +151,7 @@ public final class Npc extends PathingEntity {
 	}
 
 	@OriginalMember(owner = "client!km", name = "a", descriptor = "(ILclient!me;)V")
-	public void method2698(@OriginalArg(1) NpcType arg0) {
+	public void setNpcType(@OriginalArg(1) NpcType arg0) {
 		this.type = arg0;
 		if (this.aClass47_Sub1_5 != null) {
 			this.aClass47_Sub1_5.method1646();

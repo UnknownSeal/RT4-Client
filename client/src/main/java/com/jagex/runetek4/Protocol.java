@@ -66,6 +66,10 @@ public class Protocol {
     public static int anInt5235 = 0;
     @OriginalMember(owner = "runetek4.client!t", name = "l", descriptor = "Lclient!ma;")
     public static BufferedSocket aClass95_4;
+    @OriginalMember(owner = "runetek4.client!sc", name = "o", descriptor = "I")
+    public static int packetSize = 0;
+    @OriginalMember(owner = "runetek4.client!pb", name = "ab", descriptor = "I")
+	public static int anInt4422 = 0;
 
     @OriginalMember(owner = "runetek4.client!dc", name = "b", descriptor = "(Z)V")
     public static void readPlayerInfo() {
@@ -139,8 +143,8 @@ public class Protocol {
             Game.tryReconnect();
             return true;
         } catch (@Pc(19) Exception exception) {
-            @Pc(61) String message = "T2 - " + opcode + "," + opcode3 + "," + opcode4 + " - " + Static223.packetSize + "," + (Camera.originX + PlayerList.self.movementQueueX[0]) + "," + (PlayerList.self.movementQueueZ[0] + Camera.originZ) + " - ";
-            for (@Pc(63) int local63 = 0; local63 < Static223.packetSize && local63 < 50; local63++) {
+            @Pc(61) String message = "T2 - " + opcode + "," + opcode3 + "," + opcode4 + " - " + packetSize + "," + (Camera.originX + PlayerList.self.movementQueueX[0]) + "," + (PlayerList.self.movementQueueZ[0] + Camera.originZ) + " - ";
+            for (@Pc(63) int local63 = 0; local63 < packetSize && local63 < 50; local63++) {
                 message = message + inboundBuffer.data[local63] + ",";
             }
             TracingException.report(message, exception);
@@ -163,30 +167,30 @@ public class Protocol {
             gameServerSocket.read(0, 1, inboundBuffer.data);
             inboundBuffer.offset = 0;
             opcode = inboundBuffer.gIssac1();
-            Static223.packetSize = Static234.anIntArray456[opcode];
+            packetSize = Static234.anIntArray456[opcode];
         }
-        if (Static223.packetSize == -1) {
+        if (packetSize == -1) {
             if (available <= 0) {
                 return false;
             }
             gameServerSocket.read(0, 1, inboundBuffer.data);
             available--;
-            Static223.packetSize = inboundBuffer.data[0] & 0xFF;
+            packetSize = inboundBuffer.data[0] & 0xFF;
         }
-        if (Static223.packetSize == -2) {
+        if (packetSize == -2) {
             if (available <= 1) {
                 return false;
             }
             available -= 2;
             gameServerSocket.read(0, 2, inboundBuffer.data);
             inboundBuffer.offset = 0;
-            Static223.packetSize = inboundBuffer.g2();
+            packetSize = inboundBuffer.g2();
         }
-        if (Static223.packetSize > available) {
+        if (packetSize > available) {
             return false;
         }
         inboundBuffer.offset = 0;
-        gameServerSocket.read(0, Static223.packetSize, inboundBuffer.data);
+        gameServerSocket.read(0, packetSize, inboundBuffer.data);
         opcode4 = opcode3;
         opcode3 = opcode2;
         opcode2 = opcode;
@@ -353,7 +357,7 @@ public class Protocol {
         } else if (opcode == 230) {
             Static180.anInt4264 = inboundBuffer.g1add();
             Static115.anInt2940 = inboundBuffer.g1_alt3();
-            while (Static223.packetSize > inboundBuffer.offset) {
+            while (packetSize > inboundBuffer.offset) {
                 opcode = inboundBuffer.g1();
                 Static75.method1634();
             }
@@ -673,7 +677,7 @@ public class Protocol {
                                             if (j != -1) {
                                                 local1994 = SeqTypeList.getAnimationSequence(j);
                                                 if (local1994 != null && local1994.anIntArray473 != null) {
-                                                    Static152.method2836(local1894.zFine, local1994, local1894.xFine, false, 0);
+                                                    SoundPlayer.playSeqSound(local1894.zFine, local1994, local1894.xFine, false, 0);
                                                 }
                                             }
                                         }
@@ -713,7 +717,7 @@ public class Protocol {
                                             if (j != -1) {
                                                 local1994 = SeqTypeList.getAnimationSequence(j);
                                                 if (local1994 != null && local1994.anIntArray473 != null) {
-                                                    Static152.method2836(local2033.zFine, local1994, local2033.xFine, local2033 == PlayerList.self, 0);
+                                                    SoundPlayer.playSeqSound(local2033.zFine, local1994, local2033.xFine, local2033 == PlayerList.self, 0);
                                                 }
                                             }
                                         }
@@ -812,7 +816,7 @@ public class Protocol {
                             for (xp = Static180.anInt4264; xp < Static180.anInt4264 + 8; xp++) {
                                 if (SceneGraph.objStacks[Player.plane][ii][xp] != null) {
                                     SceneGraph.objStacks[Player.plane][ii][xp] = null;
-                                    Static220.method3797(xp, ii);
+                                    spawnGroundObject(xp, ii);
                                 }
                             }
                         }
@@ -937,7 +941,7 @@ public class Protocol {
                             opcode = -1;
                             return true;
                         } else if (opcode == 160) {
-                            if (Static223.packetSize == 0) {
+                            if (packetSize == 0) {
                                 MiniMenu.walkText = LocalizedText.WALKHERE;
                             } else {
                                 MiniMenu.walkText = inboundBuffer.gjstr();
@@ -1065,12 +1069,12 @@ public class Protocol {
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 85) {
-                                Static60.systemUpdateTimer = inboundBuffer.g2() * 30;
+                                Player.systemUpdateTimer = inboundBuffer.g2() * 30;
                                 opcode = -1;
                                 InterfaceList.miscTransmitAt = InterfaceList.transmitTimer;
                                 return true;
                             } else if (opcode == 114) {
-                                Class6.method3654(GameShell.signLink, inboundBuffer, Static223.packetSize);
+                                Class6.method3654(GameShell.signLink, inboundBuffer, packetSize);
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 65) {
@@ -1128,9 +1132,9 @@ public class Protocol {
                                 if (GameShell.fullScreenFrame != null) {
                                     DisplayMode.setWindowMode(false, Preferences.favoriteWorlds, -1, -1);
                                 }
-                                @Pc(3848) byte[] local3848 = new byte[Static223.packetSize];
-                                inboundBuffer.method2237(local3848, Static223.packetSize);
-                                message2 = JString.decodeString(local3848, Static223.packetSize, 0);
+                                @Pc(3848) byte[] local3848 = new byte[packetSize];
+                                inboundBuffer.method2237(local3848, packetSize);
+                                message2 = JString.decodeString(local3848, packetSize, 0);
                                 if (GameShell.frame == null && (SignLink.anInt5928 == 3 || !SignLink.osName.startsWith("win") || client.haveIe6)) {
                                     Static169.openUrl(message2, true);
                                 } else {
@@ -1232,7 +1236,7 @@ public class Protocol {
                                 return true;
                             } else if (opcode == 126) {
                                 // UPDATE_IGNORELIST
-                                IgnoreList.ignoreCount = Static223.packetSize / 8;
+                                IgnoreList.ignoreCount = packetSize / 8;
                                 for (ii = 0; ii < IgnoreList.ignoreCount; ii++) {
                                     IgnoreList.encodedIgnores[ii] = inboundBuffer.g8();
                                     IgnoreList.ignoreNames[ii] = Base37.decode37(IgnoreList.encodedIgnores[ii]);
@@ -1283,7 +1287,7 @@ public class Protocol {
                                 label1450: while (true) {
                                     if (local3002 >= 100) {
                                         if (local1160 <= 1) {
-                                            if (Static124.aBoolean157 && !Static207.parentalChatConsent || Static86.aBoolean129) {
+                                            if (LoginManager.playerUnderage && !LoginManager.parentalChatConsent || LoginManager.worldQuickChat) {
                                                 local4425 = true;
                                             } else {
                                                 for (local3002 = 0; local3002 < IgnoreList.ignoreCount; local3002++) {
@@ -1329,7 +1333,7 @@ public class Protocol {
                                 label1575: while (true) {
                                     if (local4634 >= 100) {
                                         if (local908 <= 1) {
-                                            if (Static124.aBoolean157 && !Static207.parentalChatConsent || Static86.aBoolean129) {
+                                            if (LoginManager.playerUnderage && !LoginManager.parentalChatConsent || LoginManager.worldQuickChat) {
                                                 local4632 = true;
                                             } else {
                                                 for (local4634 = 0; local4634 < IgnoreList.ignoreCount; local4634++) {
@@ -1416,7 +1420,7 @@ public class Protocol {
                                     } else {
                                         local4956 = InterfaceList.getComponent(ii);
                                     }
-                                    while (inboundBuffer.offset < Static223.packetSize) {
+                                    while (inboundBuffer.offset < packetSize) {
                                         slot = inboundBuffer.gSmart1or2();
                                         count = inboundBuffer.g2();
                                         i = 0;
@@ -1676,7 +1680,7 @@ public class Protocol {
                                     opcode = -1;
                                     return true;
                                 } else {
-                                    TracingException.report("T1 - " + opcode + "," + opcode3 + "," + opcode4 + " - " + Static223.packetSize, null);
+                                    TracingException.report("T1 - " + opcode + "," + opcode3 + "," + opcode4 + " - " + packetSize, null);
                                     Game.processLogout();
                                     return true;
                                 }
@@ -1772,17 +1776,60 @@ public class Protocol {
                 if (NpcList.npcs[local30].type.hasBackgroundSound()) {
                     AreaSoundManager.remove(NpcList.npcs[local30]);
                 }
-                NpcList.npcs[local30].method2698(null);
+                NpcList.npcs[local30].setNpcType(null);
                 NpcList.npcs[local30] = null;
             }
         }
-        if (Static223.packetSize != inboundBuffer.offset) {
-            throw new RuntimeException("gnp1 pos:" + inboundBuffer.offset + " psize:" + Static223.packetSize);
+        if (packetSize != inboundBuffer.offset) {
+            throw new RuntimeException("gnp1 pos:" + inboundBuffer.offset + " psize:" + packetSize);
         }
         for (i = 0; i < NpcList.npcCount; i++) {
             if (NpcList.npcs[NpcList.npcIds[i]] == null) {
                 throw new RuntimeException("gnp2 pos:" + i + " size:" + NpcList.npcCount);
             }
         }
+    }
+
+    @OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(IBI)V")
+    public static void spawnGroundObject(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
+        @Pc(9) LinkedList local9 = SceneGraph.objStacks[Player.plane][arg1][arg0];
+        if (local9 == null) {
+            Static187.method3420(Player.plane, arg1, arg0);
+            return;
+        }
+        @Pc(28) int local28 = -99999999;
+        @Pc(30) ObjStackNode local30 = null;
+        @Pc(35) ObjStackNode local35;
+        for (local35 = (ObjStackNode) local9.head(); local35 != null; local35 = (ObjStackNode) local9.next()) {
+            @Pc(44) ObjType local44 = ObjTypeList.get(local35.aClass8_Sub7_1.anInt5555);
+            @Pc(47) int local47 = local44.cost;
+            if (local44.stackable == 1) {
+                local47 *= local35.aClass8_Sub7_1.anInt5550 + 1;
+            }
+            if (local28 < local47) {
+                local28 = local47;
+                local30 = local35;
+            }
+        }
+        if (local30 == null) {
+            Static187.method3420(Player.plane, arg1, arg0);
+            return;
+        }
+        local9.addHead(local30);
+        @Pc(89) ObjStack local89 = null;
+        @Pc(91) ObjStack local91 = null;
+        for (local35 = (ObjStackNode) local9.head(); local35 != null; local35 = (ObjStackNode) local9.next()) {
+            @Pc(103) ObjStack local103 = local35.aClass8_Sub7_1;
+            if (local103.anInt5555 != local30.aClass8_Sub7_1.anInt5555) {
+                if (local89 == null) {
+                    local89 = local103;
+                }
+                if (local103.anInt5555 != local89.anInt5555 && local91 == null) {
+                    local91 = local103;
+                }
+            }
+        }
+        @Pc(152) long local152 = (long) ((arg0 << 7) + arg1 + 1610612736);
+        Static69.method1543(Player.plane, arg1, arg0, SceneGraph.getTileHeight(Player.plane, arg1 * 128 + 64, arg0 * 128 + 64), local30.aClass8_Sub7_1, local152, local89, local91);
     }
 }

@@ -11,13 +11,10 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static278 {
 
-	@OriginalMember(owner = "runetek4.client!wj", name = "f", descriptor = "Lclient!na;")
-	public static final JString aClass100_1103 = JString.parse("ul");
-
 	@OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(I)V")
 	public static void method4645() {
 		while (true) {
-			if (Protocol.inboundBuffer.bitsAvailable(Static223.packetSize) >= 27) {
+			if (Protocol.inboundBuffer.bitsAvailable(Protocol.packetSize) >= 27) {
 				@Pc(14) int local14 = Protocol.inboundBuffer.gBit(15);
 				if (local14 != 32767) {
 					@Pc(19) boolean local19 = false;
@@ -41,7 +38,7 @@ public final class Static278 {
 						Static44.entityUpdateIds[Static116.entityUpdateCount++] = local14;
 					}
 					@Pc(105) int local105 = Protocol.inboundBuffer.gBit(5);
-					local37.method2698(NpcType.getDefinition(Protocol.inboundBuffer.gBit(14)));
+					local37.setNpcType(NpcType.getDefinition(Protocol.inboundBuffer.gBit(14)));
 					if (local105 > 15) {
 						local105 -= 32;
 					}
@@ -84,20 +81,6 @@ public final class Static278 {
 		Static91.aClass120Array1[Static28.anInt917++] = local3;
 	}
 
-	@OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(Z)V")
-	public static void method4648(@OriginalArg(0) boolean arg0) {
-		if (arg0) {
-			Static130.levelTiles = Static276.aClass3_Sub5ArrayArrayArray3;
-			SceneGraph.tileHeights = Static80.anIntArrayArrayArray19;
-			Static182.aGlTileArrayArray2 = Static195.aClass3_Sub14ArrayArray3;
-		} else {
-			Static130.levelTiles = Static197.aClass3_Sub5ArrayArrayArray2;
-			SceneGraph.tileHeights = Static107.anIntArrayArrayArray10;
-			Static182.aGlTileArrayArray2 = Static36.aGlTileArrayArray1;
-		}
-		Static126.anInt3114 = Static130.levelTiles.length;
-	}
-
 	@OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "(I)V")
 	public static void method4649() {
 		Static125.aClass99_18.clean();
@@ -137,7 +120,7 @@ public final class Static278 {
 			local32 = arg3.g1();
 			if (local32 == 0) {
 				if (arg2) {
-					SceneGraph.tileHeights[0][arg5][arg4] = Static107.anIntArrayArrayArray10[0][arg5][arg4];
+					SceneGraph.tileHeights[0][arg5][arg4] = SceneGraph.surfaceTileHeights[0][arg5][arg4];
 				} else if (arg7 == 0) {
 					SceneGraph.tileHeights[0][arg5][arg4] = -Static65.method1498(arg4 + arg1 + 556238, arg0 + arg5 + 932731) * 8;
 				} else {
@@ -148,7 +131,7 @@ public final class Static278 {
 			if (local32 == 1) {
 				@Pc(111) int local111 = arg3.g1();
 				if (arg2) {
-					SceneGraph.tileHeights[0][arg5][arg4] = Static107.anIntArrayArrayArray10[0][arg5][arg4] + local111 * 8;
+					SceneGraph.tileHeights[0][arg5][arg4] = SceneGraph.surfaceTileHeights[0][arg5][arg4] + local111 * 8;
 				} else {
 					if (local111 == 1) {
 						local111 = 0;

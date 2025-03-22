@@ -10,63 +10,63 @@ import org.openrs2.deob.annotation.Pc;
 public final class Map extends CachedNode {
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "K", descriptor = "I")
-	public int anInt758 = 0;
+	public int displayMinZ = 0;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "L", descriptor = "I")
-	public int anInt759 = -1;
+	public int backgroundColor = -1;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "S", descriptor = "I")
-	public int anInt763 = 12800;
+	public int displayMinX = 12800;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "Z", descriptor = "I")
-	public int anInt770 = 0;
+	public int displayMaxZ = 0;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "cb", descriptor = "I")
-	public int anInt771 = 12800;
+	public int displayMaxX = 12800;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "P", descriptor = "Z")
-	public boolean aBoolean50 = true;
+	public boolean valid = true;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "db", descriptor = "I")
-	public int anInt772 = -1;
+	public int defaultZoom = -1;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "T", descriptor = "I")
-	public final int anInt764;
+	public final int originZ;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "bb", descriptor = "Lclient!na;")
-	public final JString aClass100_138;
+	public final JString group;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "Q", descriptor = "Lclient!na;")
-	public final JString aClass100_137;
+	public final JString name;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "Y", descriptor = "I")
-	public final int anInt769;
+	public final int originX;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "ab", descriptor = "Lclient!ih;")
-	public final LinkedList aClass69_23;
+	public final LinkedList chunks;
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "<init>", descriptor = "(Lclient!na;Lclient!na;IIIZI)V")
 	public Map(@OriginalArg(0) JString arg0, @OriginalArg(1) JString arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) boolean arg5, @OriginalArg(6) int arg6) {
-		this.anInt764 = arg3;
-		this.anInt759 = arg4;
-		this.aBoolean50 = arg5;
-		this.aClass100_138 = arg0;
-		this.aClass100_137 = arg1;
-		this.anInt772 = arg6;
-		this.anInt769 = arg2;
-		if (this.anInt772 == 255) {
-			this.anInt772 = 0;
+		this.originZ = arg3;
+		this.backgroundColor = arg4;
+		this.valid = arg5;
+		this.group = arg0;
+		this.name = arg1;
+		this.defaultZoom = arg6;
+		this.originX = arg2;
+		if (this.defaultZoom == 255) {
+			this.defaultZoom = 0;
 		}
-		this.aClass69_23 = new LinkedList();
+		this.chunks = new LinkedList();
 	}
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "a", descriptor = "(IBI)Z")
 	public final boolean method664(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		if (this.anInt763 > arg1 || arg1 > this.anInt770 || arg0 < this.anInt771 || arg0 > this.anInt758) {
+		if (this.displayMinX > arg1 || arg1 > this.displayMaxZ || arg0 < this.displayMaxX || arg0 > this.displayMinZ) {
 			return false;
 		}
-		for (@Pc(33) Class3_Sub24 local33 = (Class3_Sub24) this.aClass69_23.head(); local33 != null; local33 = (Class3_Sub24) this.aClass69_23.next()) {
-			if (local33.method2760(arg0, arg1)) {
+		for (@Pc(33) MapChunk chunk = (MapChunk) this.chunks.head(); chunk != null; chunk = (MapChunk) this.chunks.next()) {
+			if (chunk.containsDisplay(arg0, arg1)) {
 				return true;
 			}
 		}
@@ -74,23 +74,23 @@ public final class Map extends CachedNode {
 	}
 
 	@OriginalMember(owner = "runetek4.client!bn", name = "f", descriptor = "(B)V")
-	public final void method665() {
-		this.anInt771 = 12800;
-		this.anInt770 = 0;
-		this.anInt758 = 0;
-		this.anInt763 = 12800;
-		for (@Pc(29) Class3_Sub24 local29 = (Class3_Sub24) this.aClass69_23.head(); local29 != null; local29 = (Class3_Sub24) this.aClass69_23.next()) {
-			if (local29.anInt3522 < this.anInt771) {
-				this.anInt771 = local29.anInt3522;
+	public final void computeBounds() {
+		this.displayMaxX = 12800;
+		this.displayMaxZ = 0;
+		this.displayMinZ = 0;
+		this.displayMinX = 12800;
+		for (@Pc(29) MapChunk local29 = (MapChunk) this.chunks.head(); local29 != null; local29 = (MapChunk) this.chunks.next()) {
+			if (local29.displayMaxX < this.displayMaxX) {
+				this.displayMaxX = local29.displayMaxX;
 			}
-			if (local29.anInt3520 < this.anInt763) {
-				this.anInt763 = local29.anInt3520;
+			if (local29.displayMinX < this.displayMinX) {
+				this.displayMinX = local29.displayMinX;
 			}
-			if (local29.anInt3523 > this.anInt770) {
-				this.anInt770 = local29.anInt3523;
+			if (local29.displayMaxZ > this.displayMaxZ) {
+				this.displayMaxZ = local29.displayMaxZ;
 			}
-			if (this.anInt758 < local29.anInt3524) {
-				this.anInt758 = local29.anInt3524;
+			if (this.displayMinZ < local29.displayMinZ) {
+				this.displayMinZ = local29.displayMinZ;
 			}
 		}
 	}

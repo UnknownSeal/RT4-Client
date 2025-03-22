@@ -29,8 +29,8 @@ public final class Static248 {
 		@Pc(183) int local183;
 		for (@Pc(23) int local23 = Static235.anInt5276; local23 < Static126.anInt3114; local23++) {
 			@Pc(30) Tile[][] local30 = Static130.levelTiles[local23];
-			for (local32 = Static31.anInt987; local32 < Static2.anInt15; local32++) {
-				for (local37 = Static80.anInt4698; local37 < Static215.anInt4866; local37++) {
+			for (local32 = LightingManager.anInt987; local32 < LightingManager.anInt15; local32++) {
+				for (local37 = LightingManager.anInt4698; local37 < LightingManager.anInt4866; local37++) {
 					@Pc(46) Tile local46 = local30[local32][local37];
 					if (local46 != null) {
 						if (Static48.aBooleanArrayArray1[local32 + Static277.anInt5855 - Static167.eyeTileX][local37 + Static277.anInt5855 - Static193.anInt4539] && (arg3 == null || local23 < arg4 || arg3[local23][local32][local37] != arg5)) {
@@ -104,7 +104,7 @@ public final class Static248 {
 				local32 = Static235.anInt5276;
 				while (true) {
 					if (local32 >= Static126.anInt3114) {
-						Static120.method2402(Static167.eyeTileX, Static193.anInt4539, Static130.levelTiles);
+						LightingManager.method2402(Static167.eyeTileX, Static193.anInt4539, Static130.levelTiles);
 						break;
 					}
 					for (local37 = 0; local37 < Static182.aGlTileArrayArray2[local32].length; local37++) {
@@ -136,32 +136,32 @@ public final class Static248 {
 			for (local37 = -Static277.anInt5855; local37 <= 0; local37++) {
 				local415 = Static167.eyeTileX + local37;
 				local183 = Static167.eyeTileX - local37;
-				if (local415 >= Static31.anInt987 || local183 < Static2.anInt15) {
+				if (local415 >= LightingManager.anInt987 || local183 < LightingManager.anInt15) {
 					for (local428 = -Static277.anInt5855; local428 <= 0; local428++) {
 						local434 = Static193.anInt4539 + local428;
 						local438 = Static193.anInt4539 - local428;
-						if (local415 >= Static31.anInt987) {
-							if (local434 >= Static80.anInt4698) {
+						if (local415 >= LightingManager.anInt987) {
+							if (local434 >= LightingManager.anInt4698) {
 								local450 = local406[local415][local434];
 								if (local450 != null && local450.aBoolean45) {
 									Static247.method4245(local450, true);
 								}
 							}
-							if (local438 < Static215.anInt4866) {
+							if (local438 < LightingManager.anInt4866) {
 								local450 = local406[local415][local438];
 								if (local450 != null && local450.aBoolean45) {
 									Static247.method4245(local450, true);
 								}
 							}
 						}
-						if (local183 < Static2.anInt15) {
-							if (local434 >= Static80.anInt4698) {
+						if (local183 < LightingManager.anInt15) {
+							if (local434 >= LightingManager.anInt4698) {
 								local450 = local406[local183][local434];
 								if (local450 != null && local450.aBoolean45) {
 									Static247.method4245(local450, true);
 								}
 							}
-							if (local438 < Static215.anInt4866) {
+							if (local438 < LightingManager.anInt4866) {
 								local450 = local406[local183][local438];
 								if (local450 != null && local450.aBoolean45) {
 									Static247.method4245(local450, true);
@@ -183,32 +183,32 @@ public final class Static248 {
 			for (local37 = -Static277.anInt5855; local37 <= 0; local37++) {
 				local415 = Static167.eyeTileX + local37;
 				local183 = Static167.eyeTileX - local37;
-				if (local415 >= Static31.anInt987 || local183 < Static2.anInt15) {
+				if (local415 >= LightingManager.anInt987 || local183 < LightingManager.anInt15) {
 					for (local428 = -Static277.anInt5855; local428 <= 0; local428++) {
 						local434 = Static193.anInt4539 + local428;
 						local438 = Static193.anInt4539 - local428;
-						if (local415 >= Static31.anInt987) {
-							if (local434 >= Static80.anInt4698) {
+						if (local415 >= LightingManager.anInt987) {
+							if (local434 >= LightingManager.anInt4698) {
 								local450 = local406[local415][local434];
 								if (local450 != null && local450.aBoolean45) {
 									Static247.method4245(local450, false);
 								}
 							}
-							if (local438 < Static215.anInt4866) {
+							if (local438 < LightingManager.anInt4866) {
 								local450 = local406[local415][local438];
 								if (local450 != null && local450.aBoolean45) {
 									Static247.method4245(local450, false);
 								}
 							}
 						}
-						if (local183 < Static2.anInt15) {
-							if (local434 >= Static80.anInt4698) {
+						if (local183 < LightingManager.anInt15) {
+							if (local434 >= LightingManager.anInt4698) {
 								local450 = local406[local183][local434];
 								if (local450 != null && local450.aBoolean45) {
 									Static247.method4245(local450, false);
 								}
 							}
-							if (local438 < Static215.anInt4866) {
+							if (local438 < LightingManager.anInt4866) {
 								local450 = local406[local183][local438];
 								if (local450 != null && local450.aBoolean45) {
 									Static247.method4245(local450, false);

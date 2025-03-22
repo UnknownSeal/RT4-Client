@@ -8,10 +8,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static17 {
 
 	@OriginalMember(owner = "client!bg", name = "g", descriptor = "Lclient!i;")
-	public static final PacketBit aClass3_Sub15_Sub1_2 = new PacketBit(5000);
-
-	@OriginalMember(owner = "client!bg", name = "A", descriptor = "[I")
-	public static final int[] anIntArray53 = new int[128];
+	public static final PacketBit packet = new PacketBit(5000);
 
 	@OriginalMember(owner = "client!bg", name = "a", descriptor = "(B)V")
 	public static void method527() {

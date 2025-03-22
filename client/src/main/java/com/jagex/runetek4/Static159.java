@@ -41,7 +41,7 @@ public final class Static159 {
 									local65.anInt5398 = 1;
 									local65.anInt5404 = 0;
 									local65.anInt5408 = local23;
-									Static152.method2836(arg1.zFine, local60, arg1.xFine, false, 0);
+									SoundPlayer.playSeqSound(arg1.zFine, local60, arg1.xFine, false, 0);
 								} else if (local68 == 2) {
 									local65.anInt5400 = 0;
 								}
@@ -57,7 +57,7 @@ public final class Static159 {
 							local65.anInt5396 = local15;
 							local65.anInt5400 = 0;
 							local65.anInt5399 = 0;
-							Static152.method2836(arg1.zFine, local60, arg1.xFine, false, 0);
+							SoundPlayer.playSeqSound(arg1.zFine, local60, arg1.xFine, false, 0);
 						}
 					}
 				}

@@ -15,9 +15,6 @@ public final class Static167 {
 	@OriginalMember(owner = "runetek4.client!nd", name = "q", descriptor = "[[I")
 	public static final int[][] anIntArrayArray31 = new int[104][104];
 
-	@OriginalMember(owner = "runetek4.client!nd", name = "r", descriptor = "Lclient!na;")
-	public static final JString aClass100_781 = JString.parse("zap");
-
 	@OriginalMember(owner = "runetek4.client!nd", name = "x", descriptor = "Lclient!na;")
 	public static final JString aClass100_783 = JString.parse(")4p=");
 

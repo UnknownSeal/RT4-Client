@@ -61,12 +61,12 @@ public final class Static34 {
 					arg0.anInt3396 = 1;
 					arg0.anInt3407++;
 					arg0.anInt3388++;
-					Static152.method2836(arg0.zFine, seq, arg0.xFine, arg0 == PlayerList.self, arg0.anInt3407);
+					SoundPlayer.playSeqSound(arg0.zFine, seq, arg0.xFine, arg0 == PlayerList.self, arg0.anInt3407);
 				}
 				if (arg0.anInt3407 >= seq.anIntArray473.length) {
 					arg0.anInt3407 = 0;
 					arg0.anInt3396 = 0;
-					Static152.method2836(arg0.zFine, seq, arg0.xFine, PlayerList.self == arg0, arg0.anInt3407);
+					SoundPlayer.playSeqSound(arg0.zFine, seq, arg0.xFine, PlayerList.self == arg0, arg0.anInt3407);
 				}
 				arg0.anInt3388 = arg0.anInt3407 + 1;
 				if (arg0.anInt3388 >= seq.anIntArray473.length) {
@@ -86,13 +86,13 @@ public final class Static34 {
 				} else {
 					if (arg0.spotanimId < 0) {
 						arg0.spotanimId = 0;
-						Static152.method2836(arg0.zFine, local165, arg0.xFine, PlayerList.self == arg0, 0);
+						SoundPlayer.playSeqSound(arg0.zFine, local165, arg0.xFine, PlayerList.self == arg0, 0);
 					}
 					arg0.anInt3361++;
 					if (arg0.spotanimId < local165.anIntArray473.length && local165.frames[arg0.spotanimId] < arg0.anInt3361) {
 						arg0.spotanimId++;
 						arg0.anInt3361 = 1;
-						Static152.method2836(arg0.zFine, local165, arg0.xFine, PlayerList.self == arg0, arg0.spotanimId);
+						SoundPlayer.playSeqSound(arg0.zFine, local165, arg0.xFine, PlayerList.self == arg0, arg0.spotanimId);
 					}
 					if (arg0.spotanimId >= local165.anIntArray473.length) {
 						arg0.spotanimFrame = -1;
@@ -120,7 +120,7 @@ public final class Static34 {
 				if (arg0.anInt3425 < seq.anIntArray473.length && arg0.anInt3360 > seq.frames[arg0.anInt3425]) {
 					arg0.anInt3360 = 1;
 					arg0.anInt3425++;
-					Static152.method2836(arg0.zFine, seq, arg0.xFine, arg0 == PlayerList.self, arg0.anInt3425);
+					SoundPlayer.playSeqSound(arg0.zFine, seq, arg0.xFine, arg0 == PlayerList.self, arg0.anInt3425);
 				}
 				if (seq.anIntArray473.length <= arg0.anInt3425) {
 					arg0.anInt3425 -= seq.replayoff;
@@ -128,7 +128,7 @@ public final class Static34 {
 					if (arg0.anInt3371 >= seq.replaycount) {
 						arg0.primarySeqId = -1;
 					} else if (arg0.anInt3425 >= 0 && seq.anIntArray473.length > arg0.anInt3425) {
-						Static152.method2836(arg0.zFine, seq, arg0.xFine, PlayerList.self == arg0, arg0.anInt3425);
+						SoundPlayer.playSeqSound(arg0.zFine, seq, arg0.xFine, PlayerList.self == arg0, arg0.anInt3425);
 					} else {
 						arg0.primarySeqId = -1;
 					}
@@ -162,7 +162,7 @@ public final class Static34 {
 						if (local545.anInt5399 < local570.anIntArray473.length && local545.anInt5404 > local570.frames[local545.anInt5399]) {
 							local545.anInt5399++;
 							local545.anInt5404 = 1;
-							Static152.method2836(arg0.zFine, local570, arg0.xFine, arg0 == PlayerList.self, local545.anInt5399);
+							SoundPlayer.playSeqSound(arg0.zFine, local570, arg0.xFine, arg0 == PlayerList.self, local545.anInt5399);
 						}
 						if (local570.anIntArray473.length <= local545.anInt5399) {
 							local545.anInt5400++;
@@ -170,7 +170,7 @@ public final class Static34 {
 							if (local570.replaycount <= local545.anInt5400) {
 								arg0.aClass147Array3[local156] = null;
 							} else if (local545.anInt5399 >= 0 && local545.anInt5399 < local570.anIntArray473.length) {
-								Static152.method2836(arg0.zFine, local570, arg0.xFine, PlayerList.self == arg0, local545.anInt5399);
+								SoundPlayer.playSeqSound(arg0.zFine, local570, arg0.xFine, PlayerList.self == arg0, local545.anInt5399);
 							} else {
 								arg0.aClass147Array3[local156] = null;
 							}

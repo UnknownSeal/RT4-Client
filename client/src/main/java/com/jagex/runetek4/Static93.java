@@ -24,9 +24,6 @@ public final class Static93 {
 	@OriginalMember(owner = "runetek4.client!he", name = "eb", descriptor = "[I")
 	public static final int[] anIntArray219 = new int[1000];
 
-	@OriginalMember(owner = "runetek4.client!he", name = "fb", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_14 = new NodeCache(30);
-
 	@OriginalMember(owner = "runetek4.client!he", name = "gb", descriptor = "Lclient!na;")
 	public static final JString aClass100_518 = JString.parse("www");
 

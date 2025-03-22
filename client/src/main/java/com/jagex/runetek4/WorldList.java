@@ -1,6 +1,8 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
+import com.jagex.runetek4.util.SignLink;
+import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -8,6 +10,8 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class WorldList {
+    @OriginalMember(owner = "runetek4.client!ob", name = "o", descriptor = "Lclient!na;")
+    private static final JString aClass100_801 = JString.parse(")4a=");
     @OriginalMember(owner = "runetek4.client!en", name = "A", descriptor = "Z")
     public static boolean loaded = false;
 
@@ -108,6 +112,40 @@ public class WorldList {
             }
         } catch (@Pc(277) IOException local277) {
             return Static10.method347(1003);
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(IB)Z")
+    public static boolean hopWorld(@OriginalArg(0) int arg0) {
+        @Pc(3) GWCWorld local3 = Static54.method1310(arg0);
+        if (local3 == null) {
+            return false;
+        } else if (SignLink.anInt5928 == 1 || SignLink.anInt5928 == 2 || client.modeWhere == 2) {
+            @Pc(31) byte[] local31 = local3.hostname.method3148();
+            client.hostname = new String(local31, 0, local31.length);
+            Static125.worldId = local3.id;
+            if (client.modeWhere != 0) {
+                client.defaultPort = Static125.worldId + 40000;
+                client.port = client.defaultPort;
+                client.alternatePort = Static125.worldId + 50000;
+            }
+            return true;
+        } else {
+            @Pc(62) JString local62 = Static211.aClass100_230;
+            if (client.modeWhere != 0) {
+                local62 = JString.concatenate(new JString[] { Static31.aClass100_193, JString.parseInt(local3.id + 7000) });
+            }
+            @Pc(89) JString local89 = Static211.aClass100_230;
+            if (client.settings != null) {
+                local89 = JString.concatenate(new JString[] { Static167.aClass100_783, client.settings});
+            }
+            @Pc(182) JString local182 = JString.concatenate(new JString[] { Static115.aClass100_582, local3.hostname, local62, Static279.aClass100_1107, JString.parseInt(client.language), aClass100_801, JString.parseInt(client.affiliate), local89, Static139.aClass100_659, client.objectTag ? Static30.aClass100_184 : Static260.aClass100_945, Static60.aClass100_420, client.javaScript ? Static30.aClass100_184 : Static260.aClass100_945, Static198.aClass100_260, client.advertSuppressed ? Static30.aClass100_184 : Static260.aClass100_945 });
+            try {
+                client.instance.getAppletContext().showDocument(local182.method3107(), "_self");
+                return true;
+            } catch (@Pc(191) Exception local191) {
+                return false;
+            }
         }
     }
 }

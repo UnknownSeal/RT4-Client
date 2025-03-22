@@ -11,9 +11,6 @@ public final class Static102 {
 	@OriginalMember(owner = "runetek4.client!hn", name = "K", descriptor = "Ljava/util/Calendar;")
 	public static final Calendar aCalendar2 = Calendar.getInstance();
 
-	@OriginalMember(owner = "runetek4.client!hn", name = "V", descriptor = "I")
-	public static int anInt2678 = 0;
-
 	@OriginalMember(owner = "runetek4.client!hn", name = "Y", descriptor = "I")
 	public static int anInt2680 = 0;
 

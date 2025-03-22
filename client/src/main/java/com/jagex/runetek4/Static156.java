@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ObjType;
-import com.jagex.runetek4.core.io.GZip;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ColorUtils;
@@ -12,12 +11,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static156 {
-
-	@OriginalMember(owner = "runetek4.client!mf", name = "O", descriptor = "[[B")
-	public static byte[][] aByteArrayArray11;
-
-	@OriginalMember(owner = "runetek4.client!mf", name = "x", descriptor = "Lclient!ha;")
-	public static final GZip aClass56_1 = new GZip();
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "a", descriptor = "(IIIII[[[B[I[I[I[I[IIBII)V")
 	public static void method2954(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) byte[][][] arg5, @OriginalArg(6) int[] arg6, @OriginalArg(7) int[] arg7, @OriginalArg(8) int[] arg8, @OriginalArg(9) int[] arg9, @OriginalArg(10) int[] arg10, @OriginalArg(11) int arg11, @OriginalArg(12) byte arg12, @OriginalArg(13) int arg13, @OriginalArg(14) int arg14) {
@@ -40,21 +33,21 @@ public final class Static156 {
 		Static217.eyeZ = arg2;
 		Static167.eyeTileX = arg0 / 128;
 		Static193.anInt4539 = arg2 / 128;
-		Static31.anInt987 = Static167.eyeTileX - Static277.anInt5855;
-		if (Static31.anInt987 < 0) {
-			Static31.anInt987 = 0;
+		LightingManager.anInt987 = Static167.eyeTileX - Static277.anInt5855;
+		if (LightingManager.anInt987 < 0) {
+			LightingManager.anInt987 = 0;
 		}
-		Static80.anInt4698 = Static193.anInt4539 - Static277.anInt5855;
-		if (Static80.anInt4698 < 0) {
-			Static80.anInt4698 = 0;
+		LightingManager.anInt4698 = Static193.anInt4539 - Static277.anInt5855;
+		if (LightingManager.anInt4698 < 0) {
+			LightingManager.anInt4698 = 0;
 		}
-		Static2.anInt15 = Static167.eyeTileX + Static277.anInt5855;
-		if (Static2.anInt15 > Static152.anInt3594) {
-			Static2.anInt15 = Static152.anInt3594;
+		LightingManager.anInt15 = Static167.eyeTileX + Static277.anInt5855;
+		if (LightingManager.anInt15 > Static152.anInt3594) {
+			LightingManager.anInt15 = Static152.anInt3594;
 		}
-		Static215.anInt4866 = Static193.anInt4539 + Static277.anInt5855;
-		if (Static215.anInt4866 > Static99.anInt2550) {
-			Static215.anInt4866 = Static99.anInt2550;
+		LightingManager.anInt4866 = Static193.anInt4539 + Static277.anInt5855;
+		if (LightingManager.anInt4866 > Static99.anInt2550) {
+			LightingManager.anInt4866 = Static99.anInt2550;
 		}
 		@Pc(99) short local99;
 		if (GlRenderer.enabled) {
@@ -73,11 +66,11 @@ public final class Static156 {
 				if (local146 >= 0 && local152 >= 0 && local146 < Static152.anInt3594 && local152 < Static99.anInt2550) {
 					@Pc(176) int local176;
 					if (Static80.anIntArrayArrayArray19 == null) {
-						local176 = Static107.anIntArrayArrayArray10[0][local146][local152] + 128 - Static162.eyeY;
+						local176 = SceneGraph.surfaceTileHeights[0][local146][local152] + 128 - Static162.eyeY;
 					} else {
 						local176 = Static80.anIntArrayArrayArray19[0][local146][local152] + 128 - Static162.eyeY;
 					}
-					@Pc(201) int local201 = Static107.anIntArrayArrayArray10[3][local146][local152] - Static162.eyeY - 1000;
+					@Pc(201) int local201 = SceneGraph.surfaceTileHeights[3][local146][local152] - Static162.eyeY - 1000;
 					Static89.aBooleanArrayArray3[local104][local113] = Static160.method3049(local130, local201, local176, local140, local99);
 				} else {
 					Static89.aBooleanArrayArray3[local104][local113] = false;
@@ -96,15 +89,15 @@ public final class Static156 {
 		Static206.anIntArray427 = arg10;
 		Static123.method2419();
 		if (Static276.aClass3_Sub5ArrayArrayArray3 != null) {
-			Static278.method4648(true);
+			SceneGraph.setUnderwater(true);
 			Static248.method3292(arg0, arg1, arg2, null, 0, (byte) 0, arg13, arg14);
 			if (GlRenderer.enabled) {
 				Static119.aBoolean153 = false;
 				MaterialManager.setMaterial(0, 0);
 				FogManager.setFogColor(null);
-				Static120.method2390();
+				LightingManager.method2390();
 			}
-			Static278.method4648(false);
+			SceneGraph.setUnderwater(false);
 		}
 		Static248.method3292(arg0, arg1, arg2, arg5, arg11, arg12, arg13, arg14);
 	}

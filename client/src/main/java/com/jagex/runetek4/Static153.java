@@ -17,21 +17,6 @@ public final class Static153 {
 	@OriginalMember(owner = "runetek4.client!mc", name = "ab", descriptor = "[I")
 	public static final int[] anIntArray351 = new int[] { 7, 8, 9, 10, 11, 12, 13, 15 };
 
-	@OriginalMember(owner = "runetek4.client!mc", name = "fb", descriptor = "Lclient!na;")
-	private static final JString aClass100_725 = JString.parse("pt");
-
-	@OriginalMember(owner = "runetek4.client!mc", name = "mb", descriptor = "Lclient!na;")
-	private static final JString aClass100_726 = JString.parse("en");
-
-	@OriginalMember(owner = "runetek4.client!mc", name = "vb", descriptor = "Lclient!na;")
-	private static final JString aClass100_728 = JString.parse("de");
-
-	@OriginalMember(owner = "runetek4.client!mc", name = "pb", descriptor = "Lclient!na;")
-	private static final JString aClass100_727 = JString.parse("fr");
-
-	@OriginalMember(owner = "runetek4.client!mc", name = "ob", descriptor = "[Lclient!na;")
-	public static final JString[] aClass100Array113 = new JString[] { aClass100_726, aClass100_728, aClass100_727, aClass100_725 };
-
 	@OriginalMember(owner = "runetek4.client!mc", name = "tb", descriptor = "S")
 	public static short aShort22 = 1;
 

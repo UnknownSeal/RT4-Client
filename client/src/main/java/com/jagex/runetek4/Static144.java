@@ -70,8 +70,8 @@ public final class Static144 {
 							local270 = local32 + arg5 & 0x3F;
 							local276 = (local260 << 6) + local270;
 							if (local254 < 0 || local185.length - 1 < local254 || local185[local254] == null) {
-								if (Static269.aClass3_Sub2_Sub4_2.anInt759 != -1) {
-									local312 = Static269.aClass3_Sub2_Sub4_2.anInt759;
+								if (Static269.aClass3_Sub2_Sub4_2.backgroundColor != -1) {
+									local312 = Static269.aClass3_Sub2_Sub4_2.backgroundColor;
 								} else if ((local211 + arg2 & 0x4) == (arg5 + local32 & 0x4)) {
 									local312 = Static145.anIntArray330[FloorOverlayType.anInt865 + 1];
 								} else {
@@ -187,8 +187,8 @@ public final class Static144 {
 				} else {
 					local47 += arg4;
 					for (@Pc(90) int local90 = 0; local90 < local14; local90++) {
-						if (Static269.aClass3_Sub2_Sub4_2.anInt759 != -1) {
-							local104 = Static269.aClass3_Sub2_Sub4_2.anInt759;
+						if (Static269.aClass3_Sub2_Sub4_2.backgroundColor != -1) {
+							local104 = Static269.aClass3_Sub2_Sub4_2.backgroundColor;
 						} else if ((local32 + arg5 & 0x4) == (local90 + arg2 & 0x4)) {
 							local104 = Static145.anIntArray330[FloorOverlayType.anInt865 + 1];
 						} else {

@@ -21,13 +21,13 @@ public final class Static210 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!rb", name = "a", descriptor = "(Lclient!wa;Z)Lclient!bn;")
-	public static Map method3713(@OriginalArg(0) Packet arg0) {
-		@Pc(35) Map local35 = new Map(arg0.gjstr(), arg0.gjstr(), arg0.g2(), arg0.g2(), arg0.g4(), arg0.g1() == 1, arg0.g1());
-		@Pc(39) int local39 = arg0.g1();
-		for (@Pc(41) int local41 = 0; local41 < local39; local41++) {
-			local35.aClass69_23.addTail(new Class3_Sub24(arg0.g2(), arg0.g2(), arg0.g2(), arg0.g2()));
+	public static Map create(@OriginalArg(0) Packet arg0) {
+		@Pc(35) Map map = new Map(arg0.gjstr(), arg0.gjstr(), arg0.g2(), arg0.g2(), arg0.g4(), arg0.g1() == 1, arg0.g1());
+		@Pc(39) int len = arg0.g1();
+		for (@Pc(41) int i = 0; i < len; i++) {
+			map.chunks.addTail(new MapChunk(arg0.g2(), arg0.g2(), arg0.g2(), arg0.g2()));
 		}
-		local35.method665();
-		return local35;
+		map.computeBounds();
+		return map;
 	}
 }

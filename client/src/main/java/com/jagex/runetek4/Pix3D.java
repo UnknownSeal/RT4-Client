@@ -37,12 +37,12 @@ public final class Pix3D {
 		@Pc(5) int[] local5 = Rasterizer.textureProvider.method3232(arg18, aFloat11);
 		@Pc(12) int local12;
 		if (local5 == null) {
-			local12 = Rasterizer.textureProvider.method3234(arg18);
+			local12 = Rasterizer.textureProvider.getAverageColor(arg18);
 			method1928(arg0, arg1, arg2, arg3, arg4, arg5, ColorUtils.multiplyLightness(local12, arg6), ColorUtils.multiplyLightness(local12, arg7), ColorUtils.multiplyLightness(local12, arg8));
 			return;
 		}
-		aBoolean137 = Rasterizer.textureProvider.method3233(arg18);
-		aBoolean135 = Rasterizer.textureProvider.method3226(arg18);
+		aBoolean137 = Rasterizer.textureProvider.isLowDetail(arg18);
+		aBoolean135 = Rasterizer.textureProvider.isOpaque(arg18);
 		local12 = arg4 - arg3;
 		@Pc(47) int local47 = arg1 - arg0;
 		@Pc(51) int local51 = arg5 - arg3;
@@ -608,13 +608,13 @@ public final class Pix3D {
 		@Pc(5) int[] local5 = Rasterizer.textureProvider.method3232(arg18, aFloat11);
 		@Pc(15) int local15;
 		if (local5 == null || trans > 10) {
-			local15 = Rasterizer.textureProvider.method3234(arg18);
+			local15 = Rasterizer.textureProvider.getAverageColor(arg18);
 			Rasterizer.textureHasTransparency = true;
 			method1928(arg0, arg1, arg2, arg3, arg4, arg5, ColorUtils.multiplyLightness(local15, arg6), ColorUtils.multiplyLightness(local15, arg7), ColorUtils.multiplyLightness(local15, arg8));
 			return;
 		}
-		aBoolean137 = Rasterizer.textureProvider.method3233(arg18);
-		aBoolean135 = Rasterizer.textureProvider.method3226(arg18);
+		aBoolean137 = Rasterizer.textureProvider.isLowDetail(arg18);
+		aBoolean135 = Rasterizer.textureProvider.isOpaque(arg18);
 		local15 = arg4 - arg3;
 		@Pc(52) int local52 = arg1 - arg0;
 		@Pc(56) int local56 = arg5 - arg3;

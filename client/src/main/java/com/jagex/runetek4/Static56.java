@@ -16,6 +16,6 @@ public final class Static56 {
 
 	@OriginalMember(owner = "client!ef", name = "a", descriptor = "(I)I")
 	public static int method1314() {
-		return Static48.anInt1447 == 0 ? 0 : Static2.anInterface4Array1[Static48.anInt1447].method4605();
+		return Static48.anInt1447 == 0 ? 0 : Static2.anInterface4Array1[Static48.anInt1447].getFlags();
 	}
 }

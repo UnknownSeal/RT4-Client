@@ -40,6 +40,12 @@ public final class Player extends PathingEntity {
 	public static int weightCarried = 0;
 	@OriginalMember(owner = "runetek4.client!sm", name = "k", descriptor = "Lsignlink!im;")
 	public static PrivilegedRequest lastLogAddress;
+	@OriginalMember(owner = "runetek4.client!pa", name = "S", descriptor = "Lclient!na;")
+	public static JString usernameInput = JString.EMPTY;
+	@OriginalMember(owner = "runetek4.client!pa", name = "P", descriptor = "Lclient!na;")
+	public static JString password = JString.EMPTY;
+	@OriginalMember(owner = "client!em", name = "B", descriptor = "I")
+	public static int systemUpdateTimer = 0;
 	@OriginalMember(owner = "client!e", name = "Bc", descriptor = "Lclient!hh;")
 	public PlayerAppearance appearance;
 
@@ -104,7 +110,7 @@ public final class Player extends PathingEntity {
 
 	@OriginalMember(owner = "client!bf", name = "c", descriptor = "(I)V")
 	public static void method501() {
-		if (!GlRenderer.enabled || PreciseSleep.aBoolean252) {
+		if (!GlRenderer.enabled || LoginManager.aBoolean252) {
 			return;
 		}
 		@Pc(14) Tile[][][] local14 = Static130.levelTiles;
@@ -173,7 +179,7 @@ public final class Player extends PathingEntity {
 				}
 			}
 		}
-		PreciseSleep.aBoolean252 = true;
+		LoginManager.aBoolean252 = true;
 	}
 
 	@OriginalMember(owner = "client!e", name = "c", descriptor = "(B)I")

@@ -23,9 +23,6 @@ public final class Static262 {
 	@OriginalMember(owner = "runetek4.client!vf", name = "k", descriptor = "Lclient!n;")
 	public static final NodeCache aClass99_35 = new NodeCache(5);
 
-	@OriginalMember(owner = "runetek4.client!vf", name = "l", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_36 = new NodeCache(50);
-
 	@OriginalMember(owner = "runetek4.client!vf", name = "m", descriptor = "I")
 	public static int bgId = -1;
 

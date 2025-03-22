@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.dash3d.entity.LocType;
@@ -75,8 +74,8 @@ public final class Static43 {
 				local100 = local110.primary;
 				local102 = local110.modelB;
 			}
-			if (local74.blockwalk != 0) {
-				arg5.unflagWall(local92, local74.blockrange, arg0, local57, arg1);
+			if (local74.blockWalk != 0) {
+				arg5.unflagWall(local92, local74.blockRange, arg0, local57, arg1);
 			}
 		} else if (arg3 == 1) {
 			@Pc(233) WallDecor local233 = Static75.method1633(arg2, arg1, arg0);
@@ -89,71 +88,71 @@ public final class Static43 {
 			if (local148 != null) {
 				local100 = local148.entity;
 			}
-			if (local74.blockwalk != 0 && local74.width + arg1 < 104 && local74.width + arg0 < 104 && arg1 + local74.length < 104 && arg0 + local74.length < 104) {
-				arg5.unflagScenery(arg1, local74.width, local74.blockrange, local92, local74.length, arg0);
+			if (local74.blockWalk != 0 && local74.width + arg1 < 104 && local74.width + arg0 < 104 && arg1 + local74.length < 104 && arg0 + local74.length < 104) {
+				arg5.unflagScenery(arg1, local74.width, local74.blockRange, local92, local74.length, arg0);
 			}
 		} else if (arg3 == 3) {
 			@Pc(211) GroundDecor local211 = Static267.method4526(arg2, arg1, arg0);
 			if (local211 != null) {
 				local100 = local211.entity;
 			}
-			if (local74.blockwalk == 1) {
+			if (local74.blockWalk == 1) {
 				arg5.unflagGroundDecor(arg0, arg1);
 			}
 		}
-		if (!GlRenderer.enabled || !local74.hardshadow) {
+		if (!GlRenderer.enabled || !local74.castShadow) {
 			return;
 		}
 		if (local57 == 2) {
 			if (local100 instanceof Loc) {
 				((Loc) local100).method1046();
 			} else {
-				CacheArchive.method181(local74, 0, local92 + 4, 0, local57, arg1, arg0, arg4);
+				Loc.method181(local74, 0, local92 + 4, 0, local57, arg1, arg0, arg4);
 			}
 			if (local102 instanceof Loc) {
 				((Loc) local102).method1046();
 			} else {
-				CacheArchive.method181(local74, 0, local92 + 1 & 0x3, 0, local57, arg1, arg0, arg4);
+				Loc.method181(local74, 0, local92 + 1 & 0x3, 0, local57, arg1, arg0, arg4);
 			}
 		} else if (local57 == 5) {
 			if (local100 instanceof Loc) {
 				((Loc) local100).method1046();
 			} else {
-				CacheArchive.method181(local74, Static238.WALL_DECORATION_ROTATION_FORWARD_Z[local92] * 8, local92, Static34.WALL_DECORATION_ROTATION_FORWARD_X[local92] * 8, 4, arg1, arg0, arg4);
+				Loc.method181(local74, Static238.WALL_DECORATION_ROTATION_FORWARD_Z[local92] * 8, local92, Static34.WALL_DECORATION_ROTATION_FORWARD_X[local92] * 8, 4, arg1, arg0, arg4);
 			}
 		} else if (local57 == 6) {
 			if (local100 instanceof Loc) {
 				((Loc) local100).method1046();
 			} else {
-				CacheArchive.method181(local74, Static64.anIntArray154[local92] * 8, local92 + 4, Static114.anIntArray565[local92] * 8, 4, arg1, arg0, arg4);
+				Loc.method181(local74, Static64.anIntArray154[local92] * 8, local92 + 4, Static114.anIntArray565[local92] * 8, 4, arg1, arg0, arg4);
 			}
 		} else if (local57 == 7) {
 			if (local100 instanceof Loc) {
 				((Loc) local100).method1046();
 			} else {
-				CacheArchive.method181(local74, 0, (local92 + 2 & 0x3) + 4, 0, 4, arg1, arg0, arg4);
+				Loc.method181(local74, 0, (local92 + 2 & 0x3) + 4, 0, 4, arg1, arg0, arg4);
 			}
 		} else if (local57 == 8) {
 			if (local100 instanceof Loc) {
 				((Loc) local100).method1046();
 			} else {
-				CacheArchive.method181(local74, Static64.anIntArray154[local92] * 8, local92 + 4, Static114.anIntArray565[local92] * 8, 4, arg1, arg0, arg4);
+				Loc.method181(local74, Static64.anIntArray154[local92] * 8, local92 + 4, Static114.anIntArray565[local92] * 8, 4, arg1, arg0, arg4);
 			}
 			if (local102 instanceof Loc) {
 				((Loc) local102).method1046();
 			} else {
-				CacheArchive.method181(local74, Static64.anIntArray154[local92] * 8, (local92 + 2 & 0x3) + 4, Static114.anIntArray565[local92] * 8, 4, arg1, arg0, arg4);
+				Loc.method181(local74, Static64.anIntArray154[local92] * 8, (local92 + 2 & 0x3) + 4, Static114.anIntArray565[local92] * 8, 4, arg1, arg0, arg4);
 			}
 		} else if (local57 == 11) {
 			if (local100 instanceof Loc) {
 				((Loc) local100).method1046();
 			} else {
-				CacheArchive.method181(local74, 0, local92 + 4, 0, 10, arg1, arg0, arg4);
+				Loc.method181(local74, 0, local92 + 4, 0, 10, arg1, arg0, arg4);
 			}
 		} else if (local100 instanceof Loc) {
 			((Loc) local100).method1046();
 		} else {
-			CacheArchive.method181(local74, 0, local92, 0, local57, arg1, arg0, arg4);
+			Loc.method181(local74, 0, local92, 0, local57, arg1, arg0, arg4);
 		}
 	}
 }

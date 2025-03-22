@@ -8,5 +8,5 @@ import org.openrs2.deob.annotation.OriginalMember;
 public interface QuickChatCommandDecoder {
 
 	@OriginalMember(owner = "client!of", name = "a", descriptor = "(I[IIJ)Lclient!na;")
-    JString method30(@OriginalArg(0) int arg0, @OriginalArg(1) int[] arg1, @OriginalArg(3) long arg2);
+    JString decode(@OriginalArg(0) int arg0, @OriginalArg(1) int[] arg1, @OriginalArg(3) long arg2);
 }

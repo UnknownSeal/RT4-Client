@@ -14,11 +14,11 @@ public final class Static33 {
 
     @OriginalMember(owner = "client!cj", name = "a", descriptor = "(ILclient!pb;ZIIII)Z")
 	public static boolean method867(@OriginalArg(0) int arg0, @OriginalArg(1) LocType arg1, @OriginalArg(5) int arg2, @OriginalArg(6) int arg3) {
-		@Pc(10) MSIType local10 = Static40.get(arg1.mapsceneicon);
+		@Pc(10) MSIType local10 = Static40.get(arg1.mapSceneIcon);
 		if (local10.spriteId == -1) {
 			return true;
 		}
-		if (arg1.mapsceneiconrotate) {
+		if (arg1.mapSceneRotated) {
 			@Pc(24) int local24 = arg3 + arg1.mapSceneAngleOffset;
 			arg3 = local24 & 0x3;
 		} else {
@@ -169,25 +169,4 @@ public final class Static33 {
 		}
 	}
 
-	@OriginalMember(owner = "client!cj", name = "a", descriptor = "(IB)I")
-	public static int method872(@OriginalArg(0) int arg0) {
-		return arg0 & 0xFF;
-	}
-
-	@OriginalMember(owner = "client!cj", name = "a", descriptor = "(ZIIIIIIFB)[[I")
-	public static int[][] method874(@OriginalArg(7) float arg0) {
-		@Pc(15) int[][] local15 = new int[256][64];
-		@Pc(19) TextureOp4 local19 = new TextureOp4();
-		local19.anInt648 = (int) (arg0 * 4096.0F);
-		local19.anInt642 = 3;
-		local19.anInt641 = 4;
-		local19.aBoolean44 = false;
-		local19.anInt646 = 8;
-		local19.postDecode();
-		Texture.setSize(256, 64);
-		for (@Pc(46) int local46 = 0; local46 < 256; local46++) {
-			local19.method584(local46, local15[local46]);
-		}
-		return local15;
-	}
 }

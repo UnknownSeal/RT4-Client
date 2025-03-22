@@ -29,11 +29,11 @@ public final class Static91 {
 
 	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(Lclient!na;Z)I")
 	public static int method1879(@OriginalArg(0) JString arg0) {
-		if (Static203.aMapElementTypeList_1 == null || arg0.length() == 0) {
+		if (Static203.aMapElementList_1 == null || arg0.length() == 0) {
 			return -1;
 		}
-		for (@Pc(20) int local20 = 0; local20 < Static203.aMapElementTypeList_1.anInt5074; local20++) {
-			if (Static203.aMapElementTypeList_1.aClass100Array153[local20].method3140(Static101.aClass100_538, Static197.aClass100_872).strEquals(arg0)) {
+		for (@Pc(20) int local20 = 0; local20 < Static203.aMapElementList_1.anInt5074; local20++) {
+			if (Static203.aMapElementList_1.aClass100Array153[local20].method3140(Static101.aClass100_538, Static197.aClass100_872).strEquals(arg0)) {
 				return local20;
 			}
 		}

@@ -29,12 +29,12 @@ public class AreaSoundManager {
         sound.minZFine = z * 128;
         sound.minXFine = x * 128;
         if (loc != null) {
-            sound.sounds = loc.bgsounds;
-            sound.radius = loc.bgsoundrange * 128;
-            sound.maxInterval = loc.bgsoundmax;
+            sound.sounds = loc.bgSounds;
+            sound.radius = loc.bgSoundRange * 128;
+            sound.maxInterval = loc.bgSoundMax;
             sound.locType = loc;
-            sound.sound = loc.bgsound;
-            sound.minInterval = loc.bgsoundmin;
+            sound.sound = loc.bgSound;
+            sound.minInterval = loc.bgSoundMin;
             @Pc(57) int local57 = loc.width;
             @Pc(60) int local60 = loc.length;
             if (arg2 == 1 || arg2 == 3) {
@@ -78,7 +78,7 @@ public class AreaSoundManager {
     @OriginalMember(owner = "client!ra", name = "a", descriptor = "(ILclient!pb;BII)V")
     public static void remove(@OriginalArg(0) int arg0, @OriginalArg(1) LocType locType, @OriginalArg(3) int arg2, @OriginalArg(4) int level) {
         for (@Pc(10) AreaSound areaSound = (AreaSound) locSounds.head(); areaSound != null; areaSound = (AreaSound) locSounds.next()) {
-            if (areaSound.level == level && areaSound.minXFine == arg0 * 128 && areaSound.minZFine == arg2 * 128 && locType.anInt4426 == areaSound.locType.anInt4426) {
+            if (areaSound.level == level && areaSound.minXFine == arg0 * 128 && areaSound.minZFine == arg2 * 128 && locType.id == areaSound.locType.id) {
                 if (areaSound.primaryStream != null) {
                     client.soundStream.removeSubStream(areaSound.primaryStream);
                     areaSound.primaryStream = null;

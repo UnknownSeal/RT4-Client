@@ -25,7 +25,7 @@ public final class Static148 {
 			local21 = new LongNode(MonotonicTime.currentTimeMillis() + 500L);
 			Static199.aClass133_20.put(local21, (long) arg0);
 		} else {
-			local21.aLong55 = MonotonicTime.currentTimeMillis() + 500L;
+			local21.value = MonotonicTime.currentTimeMillis() + 500L;
 		}
 	}
 

@@ -15,7 +15,7 @@ public final class Js5Index {
 	public int[][] fileNameHashes;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "d", descriptor = "[I")
-	public int[] anIntArray268;
+	public int[] groupChecksums;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "f", descriptor = "I")
 	public int length;
@@ -36,10 +36,10 @@ public final class Js5Index {
 	public int[] groupSizes;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "r", descriptor = "[I")
-	public int[] anIntArray273;
+	public int[] groupVersions;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "s", descriptor = "[[I")
-	public int[][] anIntArrayArray22;
+	public int[][] fileIds;
 
 	@OriginalMember(owner = "runetek4.client!ii", name = "u", descriptor = "I")
 	public int capacity;
@@ -91,9 +91,9 @@ public final class Js5Index {
 			}
 		}
 		this.capacity = local59 + 1;
-		this.anIntArray273 = new int[this.capacity];
-		this.anIntArrayArray22 = new int[this.capacity][];
-		this.anIntArray268 = new int[this.capacity];
+		this.groupVersions = new int[this.capacity];
+		this.fileIds = new int[this.capacity][];
+		this.groupChecksums = new int[this.capacity];
 		this.groupCapacities = new int[this.capacity];
 		this.groupSizes = new int[this.capacity];
 		if (info != 0) {
@@ -107,10 +107,10 @@ public final class Js5Index {
 			this.groupNameHashTable = new IntHashTable(this.groupNameHashes);
 		}
 		for (int i = 0; i < this.length; i++) {
-			this.anIntArray268[this.groupIds[i]] = packet.g4();
+			this.groupChecksums[this.groupIds[i]] = packet.g4();
 		}
 		for (int i = 0; i < this.length; i++) {
-			this.anIntArray273[this.groupIds[i]] = packet.g4();
+			this.groupVersions[this.groupIds[i]] = packet.g4();
 		}
 		for (int i = 0; i < this.length; i++) {
 			this.groupSizes[this.groupIds[i]] = packet.g2();
@@ -124,16 +124,16 @@ public final class Js5Index {
 			local273 = this.groupIds[i];
 			local278 = this.groupSizes[local273];
 			local280 = -1;
-			this.anIntArrayArray22[local273] = new int[local278];
+			this.fileIds[local273] = new int[local278];
 			for (int j = 0; j < local278; j++) {
-				@Pc(306) int local306 = this.anIntArrayArray22[local273][j] = local50 += packet.g2();
+				@Pc(306) int local306 = this.fileIds[local273][j] = local50 += packet.g2();
 				if (local306 > local280) {
 					local280 = local306;
 				}
 			}
 			this.groupCapacities[local273] = local280 + 1;
 			if (local280 + 1 == local278) {
-				this.anIntArrayArray22[local273] = null;
+				this.fileIds[local273] = null;
 			}
 		}
 		if (info == 0) {
@@ -149,10 +149,10 @@ public final class Js5Index {
 				this.fileNameHashes[local273][j] = -1;
 			}
 			for (int j = 0; j < local278; j++) {
-				if (this.anIntArrayArray22[local273] == null) {
+				if (this.fileIds[local273] == null) {
 					local288 = j;
 				} else {
-					local288 = this.anIntArrayArray22[local273][j];
+					local288 = this.fileIds[local273][j];
 				}
 				this.fileNameHashes[local273][local288] = packet.g4();
 			}

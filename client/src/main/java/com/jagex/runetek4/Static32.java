@@ -11,9 +11,6 @@ public final class Static32 {
 	@OriginalMember(owner = "runetek4.client!ci", name = "t", descriptor = "I")
 	public static int anInt1016;
 
-	@OriginalMember(owner = "client!ci", name = "q", descriptor = "Lclient!ek;")
-	public static SoftwareIndexedSprite aClass36_Sub1_1 = null;
-
 	@OriginalMember(owner = "client!ci", name = "a", descriptor = "([I[ILclient!e;B[I)V")
 	public static void method865(@OriginalArg(0) int[] arg0, @OriginalArg(1) int[] arg1, @OriginalArg(2) Player arg2, @OriginalArg(4) int[] arg3) {
 		for (@Pc(7) int local7 = 0; local7 < arg1.length; local7++) {
@@ -39,7 +36,7 @@ public final class Static32 {
 									local76.anInt5399 = 0;
 									local76.anInt5408 = local28;
 									local76.anInt5404 = 0;
-									Static152.method2836(arg2.zFine, local68, arg2.xFine, arg2 == PlayerList.self, 0);
+									SoundPlayer.playSeqSound(arg2.zFine, local68, arg2.xFine, arg2 == PlayerList.self, 0);
 								} else if (local71 == 2) {
 									local76.anInt5400 = 0;
 								}
@@ -55,7 +52,7 @@ public final class Static32 {
 							local76.anInt5408 = local28;
 							local76.anInt5399 = 0;
 							local76.anInt5400 = 0;
-							Static152.method2836(arg2.zFine, local68, arg2.xFine, arg2 == PlayerList.self, 0);
+							SoundPlayer.playSeqSound(arg2.zFine, local68, arg2.xFine, arg2 == PlayerList.self, 0);
 						}
 					}
 				}

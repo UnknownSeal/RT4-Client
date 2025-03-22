@@ -13,9 +13,6 @@ public final class Static19 {
 	@OriginalMember(owner = "client!bi", name = "R", descriptor = "I")
 	public static int anInt636;
 
-	@OriginalMember(owner = "client!bi", name = "Y", descriptor = "[[B")
-	public static byte[][] aByteArrayArray4;
-
 	@OriginalMember(owner = "client!bi", name = "fb", descriptor = "I")
 	public static int anInt647;
 

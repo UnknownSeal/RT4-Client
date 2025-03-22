@@ -25,8 +25,8 @@ public class Game {
         if (idleTimeout > 0) {
             idleTimeout--;
         }
-        if (Static60.systemUpdateTimer > 1) {
-            Static60.systemUpdateTimer--;
+        if (Player.systemUpdateTimer > 1) {
+            Player.systemUpdateTimer--;
             InterfaceList.miscTransmitAt = InterfaceList.transmitTimer;
         }
         if (LoginManager.aBoolean247) {
@@ -410,7 +410,7 @@ public class Game {
         Protocol.aClass13_11 = null;
         while (Keyboard.nextKey() && InterfaceList.keyQueueSize < 128) {
             InterfaceList.keyCodes[InterfaceList.keyQueueSize] = Keyboard.keyCode;
-            InterfaceList.keyChars[InterfaceList.keyQueueSize] = Static193.keyChar;
+            InterfaceList.keyChars[InterfaceList.keyQueueSize] = Keyboard.keyChar;
             InterfaceList.keyQueueSize++;
         }
         // WorldMap.component
@@ -455,9 +455,9 @@ public class Game {
                                                 if (Static56.clickTileX != -1) {
                                                     Cheat.teleport(Camera.originX + Static56.clickTileX, Camera.originZ + Static116.anInt2954, Player.plane);
                                                 }
-                                                Static187.anInt4422 = 0;
-                                                Static125.anInt3096 = 0;
-                                            } else if (Static125.anInt3096 == 2) {
+                                                Protocol.anInt4422 = 0;
+                                                MiniMenu.anInt3096 = 0;
+                                            } else if (MiniMenu.anInt3096 == 2) {
                                                 if (Static56.clickTileX != -1) {
                                                     Protocol.outboundBuffer.pIsaac1(131);
                                                     Protocol.outboundBuffer.p4_alt3(MiniMenu.anInt2512);
@@ -469,8 +469,8 @@ public class Game {
                                                     Cross.y = Mouse.mouseClickY;
                                                     Cross.x = Mouse.mouseClickX;
                                                 }
-                                                Static125.anInt3096 = 0;
-                                            } else if (Static187.anInt4422 == 2) {
+                                                MiniMenu.anInt3096 = 0;
+                                            } else if (Protocol.anInt4422 == 2) {
                                                 if (Static56.clickTileX != -1) {
                                                     Protocol.outboundBuffer.pIsaac1(179);
                                                     Protocol.outboundBuffer.p2(Camera.originZ + Static116.anInt2954);
@@ -480,8 +480,8 @@ public class Game {
                                                     Cross.x = Mouse.mouseClickX;
                                                     Cross.y = Mouse.mouseClickY;
                                                 }
-                                                Static187.anInt4422 = 0;
-                                            } else if (Static56.clickTileX != -1 && Static125.anInt3096 == 0 && Static187.anInt4422 == 0) {
+                                                Protocol.anInt4422 = 0;
+                                            } else if (Static56.clickTileX != -1 && MiniMenu.anInt3096 == 0 && Protocol.anInt4422 == 0) {
                                                 @Pc(1871) boolean success = PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, PlayerList.self.movementQueueX[0]);
                                                 if (success) {
                                                     Cross.y = Mouse.mouseClickY;
@@ -529,7 +529,7 @@ public class Game {
                                                 @Pc(2001) int local2001 = Static31.cameraModifierCycle[y]++;
                                             }
                                             y = Static142.getIdleLoops(); // runetek4.Mouse
-                                            x = Static195.getIdleLoops(); // runetek4.Keyboard
+                                            x = Keyboard.getIdleLoops(); // runetek4.Keyboard
                                             if (y > 15000 && x > 15000) {
                                                 idleTimeout = 250;
                                                 Mouse.setIdleLoops(14500);
@@ -914,37 +914,37 @@ public class Game {
         }
         client.unload();
         SceneGraph.clear();
-        @Pc(19) int local19;
-        for (local19 = 0; local19 < 4; local19++) {
-            PathFinder.collisionMaps[local19].reset();
+        @Pc(19) int i;
+        for (i = 0; i < 4; i++) {
+            PathFinder.collisionMaps[i].reset();
         }
         WorldMap.clear(false);
         System.gc();
-        Static29.method801();
+        MidiPlayer.playFadeOut();
         Static144.jingle = false;
         MusicPlayer.groupId = -1;
         AreaSoundManager.clear(true);
-        Static230.aBoolean250 = false;
+        SceneGraph.dynamicMapRegion = false;
         Camera.originZ = 0;
-        Static80.anInt4701 = 0;
-        Static52.anInt1695 = 0;
+        SceneGraph.centralZoneX = 0;
+        SceneGraph.centralZoneZ = 0;
         Camera.originX = 0;
-        for (local19 = 0; local19 < MiniMap.hintMapMarkers.length; local19++) {
-            MiniMap.hintMapMarkers[local19] = null;
+        for (i = 0; i < MiniMap.hintMapMarkers.length; i++) {
+            MiniMap.hintMapMarkers[i] = null;
         }
         PlayerList.playerCount = 0;
         NpcList.npcCount = 0;
-        for (local19 = 0; local19 < 2048; local19++) {
-            PlayerList.players[local19] = null;
-            PlayerList.PLAYER_APPEARANCE_PACKET[local19] = null;
+        for (i = 0; i < 2048; i++) {
+            PlayerList.players[i] = null;
+            PlayerList.PLAYER_APPEARANCE_PACKET[i] = null;
         }
-        for (local19 = 0; local19 < 32768; local19++) {
-            NpcList.npcs[local19] = null;
+        for (i = 0; i < 32768; i++) {
+            NpcList.npcs[i] = null;
         }
-        for (local19 = 0; local19 < 4; local19++) {
+        for (i = 0; i < 4; i++) {
             for (@Pc(115) int local115 = 0; local115 < 104; local115++) {
                 for (@Pc(122) int local122 = 0; local122 < 104; local122++) {
-                    SceneGraph.objStacks[local19][local115][local122] = null;
+                    SceneGraph.objStacks[i][local115][local122] = null;
                 }
             }
         }

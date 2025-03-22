@@ -39,7 +39,7 @@ public final class NodeCache {
 	public final void put(@OriginalArg(1) Object arg0, @OriginalArg(2) long arg1) {
 		this.remove(arg1);
 		if (this.remaining == 0) {
-			@Pc(26) ReferenceNode node = (ReferenceNode) this.nodeQueue.pollFront();
+			@Pc(26) ReferenceNode node = (ReferenceNode) this.nodeQueue.removeHead();
 			node.unlink();
 			node.unlinkCachedNode();
 		} else {

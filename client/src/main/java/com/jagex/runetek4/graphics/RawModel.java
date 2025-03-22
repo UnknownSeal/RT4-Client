@@ -406,13 +406,13 @@ public final class RawModel extends Entity {
 	}
 
 	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(Lclient!ve;II)Lclient!gb;")
-	public static RawModel get(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
+	public static RawModel create(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
 		@Pc(5) byte[] local5 = arg0.getfile(arg1, 0);
 		return local5 == null ? null : new RawModel(local5);
 	}
 
 	@OriginalMember(owner = "client!gb", name = "c", descriptor = "()V")
-	public void method1660() {
+	public void negateXz() {
 		for (@Pc(1) int local1 = 0; local1 < this.vertexCount; local1++) {
 			this.vertexX[local1] = -this.vertexX[local1];
 			this.vertexZ[local1] = -this.vertexZ[local1];
@@ -421,7 +421,7 @@ public final class RawModel extends Entity {
 	}
 
 	@OriginalMember(owner = "client!gb", name = "e", descriptor = "()V")
-	public void method1662() {
+	public void swapXz() {
 		for (@Pc(1) int local1 = 0; local1 < this.vertexCount; local1++) {
 			@Pc(10) int local10 = this.vertexX[local1];
 			this.vertexX[local1] = this.vertexZ[local1];
@@ -486,7 +486,7 @@ public final class RawModel extends Entity {
 	}
 
 	@OriginalMember(owner = "client!gb", name = "b", descriptor = "(III)V")
-	public void scale(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public void resize(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		for (@Pc(1) int local1 = 0; local1 < this.vertexCount; local1++) {
 			this.vertexX[local1] = this.vertexX[local1] * arg0 / 128;
 			this.vertexY[local1] = this.vertexY[local1] * arg1 / 128;

@@ -35,7 +35,7 @@ public final class Static84 {
 				@Pc(48) long encodedUsername = player.username.encode37();
 				@Pc(50) boolean ignored = false;
 				if (staffModLevel <= 1) {
-					if (!quickChat && (Static124.aBoolean157 && !Static207.parentalChatConsent || Static86.aBoolean129)) {
+					if (!quickChat && (LoginManager.playerUnderage && !LoginManager.parentalChatConsent || LoginManager.worldQuickChat)) {
 						ignored = true;
 					} else {
 						for (@Pc(69) int i = 0; i < IgnoreList.ignoreCount; i++) {
@@ -175,7 +175,7 @@ public final class Static84 {
 					if (local24 != -1) {
 						@Pc(663) SeqType local663 = SeqTypeList.getAnimationSequence(local24);
 						if (local663 != null && local663.anIntArray473 != null) {
-							Static152.method2836(player.zFine, local663, player.xFine, player == PlayerList.self, 0);
+							SoundPlayer.playSeqSound(player.zFine, local663, player.xFine, player == PlayerList.self, 0);
 						}
 					}
 				}

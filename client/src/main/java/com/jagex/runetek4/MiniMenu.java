@@ -1,6 +1,8 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ObjType;
+import com.jagex.runetek4.cache.media.Font;
+import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
@@ -24,6 +26,8 @@ public class MiniMenu {
     public static final JString NULL = JString.parse("null");
     @OriginalMember(owner = "client!aj", name = "R", descriptor = "Lclient!na;")
     public static final JString aClass100_32 = JString.parse("<col=ff9040>");
+    @OriginalMember(owner = "runetek4.client!pl", name = "e", descriptor = "[I")
+    public static final int[] intArgs1 = new int[500];
     @OriginalMember(owner = "runetek4.client!sk", name = "kb", descriptor = "I")
     public static int menuActionRow = 0;
     @OriginalMember(owner = "runetek4.client!vd", name = "C", descriptor = "I")
@@ -54,6 +58,8 @@ public class MiniMenu {
     public static int anInt2878;
     @OriginalMember(owner = "runetek4.client!cl", name = "Y", descriptor = "I")
     public static int anInt1092 = -1;
+    @OriginalMember(owner = "runetek4.client!jl", name = "v", descriptor = "I")
+    public static int anInt3096 = 0;
 
     @OriginalMember(owner = "runetek4.client!ud", name = "a", descriptor = "(ILclient!be;)Z")
     public static boolean method4265(@OriginalArg(1) Component arg0) {
@@ -92,7 +98,7 @@ public class MiniMenu {
         cursors[menuActionRow] = arg0 == -1 ? anInt1092 : arg0;
         actions[menuActionRow] = arg4;
         Static159.aLongArray5[menuActionRow] = arg1;
-        Static196.anIntArray408[menuActionRow] = arg3;
+        intArgs1[menuActionRow] = arg3;
         Static56.anIntArray142[menuActionRow] = arg6;
         menuActionRow++;
     }
@@ -261,7 +267,194 @@ public class MiniMenu {
         ArrayUtils.copy(cursors, arg0 + 1, cursors, arg0, menuActionRow - arg0);
         ArrayUtils.copy(actions, arg0 + 1, actions, arg0, menuActionRow - arg0);
         ArrayUtils.copy(Static159.aLongArray5, arg0 + 1, Static159.aLongArray5, arg0, menuActionRow - arg0);
-        ArrayUtils.copy(Static196.anIntArray408, arg0 + 1, Static196.anIntArray408, arg0, menuActionRow - arg0);
+        ArrayUtils.copy(intArgs1, arg0 + 1, intArgs1, arg0, menuActionRow - arg0);
         ArrayUtils.copy(Static56.anIntArray142, arg0 + 1, Static56.anIntArray142, arg0, menuActionRow - arg0);
+    }
+
+    @OriginalMember(owner = "runetek4.client!wl", name = "b", descriptor = "(I)V")
+    public static void sort() {
+        @Pc(3) boolean local3 = false;
+        while (!local3) {
+            local3 = true;
+            for (@Pc(13) int local13 = 0; local13 < menuActionRow - 1; local13++) {
+                if (actions[local13] < 1000 && actions[local13 + 1] > 1000) {
+                    @Pc(41) JString local41 = opBases[local13];
+                    local3 = false;
+                    opBases[local13] = opBases[local13 + 1];
+                    opBases[local13 + 1] = local41;
+                    @Pc(61) JString local61 = ops[local13];
+                    ops[local13] = ops[local13 + 1];
+                    ops[local13 + 1] = local61;
+                    @Pc(79) int local79 = intArgs1[local13];
+                    intArgs1[local13] = intArgs1[local13 + 1];
+                    intArgs1[local13 + 1] = local79;
+                    @Pc(97) int local97 = Static56.anIntArray142[local13];
+                    Static56.anIntArray142[local13] = Static56.anIntArray142[local13 + 1];
+                    Static56.anIntArray142[local13 + 1] = local97;
+                    @Pc(115) int local115 = cursors[local13];
+                    cursors[local13] = cursors[local13 + 1];
+                    cursors[local13 + 1] = local115;
+                    @Pc(133) short local133 = actions[local13];
+                    actions[local13] = actions[local13 + 1];
+                    actions[local13 + 1] = local133;
+                    @Pc(151) long local151 = Static159.aLongArray5[local13];
+                    Static159.aLongArray5[local13] = Static159.aLongArray5[local13 + 1];
+                    Static159.aLongArray5[local13 + 1] = local151;
+                }
+            }
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!ij", name = "a", descriptor = "(B)V")
+    public static void drawB() {
+        @Pc(3) int local3 = InterfaceList.anInt4271;
+        @Pc(9) int local9 = InterfaceList.anInt5138;
+        @Pc(11) int local11 = InterfaceList.anInt436;
+        @Pc(13) int local13 = InterfaceList.anInt761;
+        if (LoginManager.aClass3_Sub2_Sub1_1 == null || LoginManager.aClass3_Sub2_Sub1_9 == null) {
+            if (client.js5Archive8.isFileReady(Static55.anInt1736) && client.js5Archive8.isFileReady(Static169.anInt4073)) {
+                LoginManager.aClass3_Sub2_Sub1_1 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static55.anInt1736);
+                LoginManager.aClass3_Sub2_Sub1_9 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static169.anInt4073);
+                if (GlRenderer.enabled) {
+                    if (LoginManager.aClass3_Sub2_Sub1_1 instanceof SoftwareAlphaSprite) {
+                        LoginManager.aClass3_Sub2_Sub1_1 = new GlAlphaSprite((com.jagex.runetek4.cache.media.SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_1);
+                    } else {
+                        LoginManager.aClass3_Sub2_Sub1_1 = new GlSprite((com.jagex.runetek4.cache.media.SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_1);
+                    }
+                    if (LoginManager.aClass3_Sub2_Sub1_9 instanceof SoftwareAlphaSprite) {
+                        LoginManager.aClass3_Sub2_Sub1_9 = new GlAlphaSprite((com.jagex.runetek4.cache.media.SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_9);
+                    } else {
+                        LoginManager.aClass3_Sub2_Sub1_9 = new GlSprite((com.jagex.runetek4.cache.media.SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_9);
+                    }
+                }
+            } else if (GlRenderer.enabled) {
+                GlRaster.fillRectAlpha(local3, local9, local13, 20, Static40.anInt1275, 256 - Static111.anInt2910);
+            } else {
+                SoftwareRaster.fillRectAlpha(local3, local9, local13, 20, Static40.anInt1275, 256 - Static111.anInt2910);
+            }
+        }
+        @Pc(112) int local112;
+        @Pc(114) int local114;
+        if (LoginManager.aClass3_Sub2_Sub1_1 != null && LoginManager.aClass3_Sub2_Sub1_9 != null) {
+            local112 = local13 / LoginManager.aClass3_Sub2_Sub1_1.width;
+            for (local114 = 0; local114 < local112; local114++) {
+                LoginManager.aClass3_Sub2_Sub1_1.render(local114 * LoginManager.aClass3_Sub2_Sub1_1.width + local3, local9);
+            }
+            LoginManager.aClass3_Sub2_Sub1_9.render(local3, local9);
+            LoginManager.aClass3_Sub2_Sub1_9.renderHorizontalFlip(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_9.width, local9);
+        }
+        Fonts.b12Full.renderLeft(LocalizedText.CHOOSE_OPTION, local3 + 3, local9 + 14, Static195.anInt4581, -1);
+        if (GlRenderer.enabled) {
+            GlRaster.fillRectAlpha(local3, local9 + 20, local13, local11 - 20, Static40.anInt1275, 256 - Static111.anInt2910);
+        } else {
+            SoftwareRaster.fillRectAlpha(local3, local9 + 20, local13, local11 - 20, Static40.anInt1275, 256 - Static111.anInt2910);
+        }
+        local114 = Mouse.lastMouseY;
+        local112 = Mouse.lastMouseX;
+        @Pc(203) int local203;
+        @Pc(219) int local219;
+        for (local203 = 0; local203 < menuActionRow; local203++) {
+            local219 = (menuActionRow - local203 - 1) * 15 + local9 + 35;
+            if (local3 < local112 && local112 < local3 + local13 && local114 > local219 - 13 && local114 < local219 + 3) {
+                if (GlRenderer.enabled) {
+                    GlRaster.fillRectAlpha(local3, local219 - 13, local13, 16, Static251.anInt5457, 256 - Static232.anInt5208);
+                } else {
+                    SoftwareRaster.fillRectAlpha(local3, local219 - 13, local13, 16, Static251.anInt5457, 256 - Static232.anInt5208);
+                }
+            }
+        }
+        if ((LoginManager.aClass3_Sub2_Sub1_8 == null || LoginManager.aClass3_Sub2_Sub1_6 == null || LoginManager.aClass3_Sub2_Sub1_10 == null) && client.js5Archive8.isFileReady(Static85.anInt2261) && client.js5Archive8.isFileReady(Static136.anInt3324) && client.js5Archive8.isFileReady(Static254.anInt5556)) {
+            LoginManager.aClass3_Sub2_Sub1_8 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static85.anInt2261);
+            LoginManager.aClass3_Sub2_Sub1_6 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static136.anInt3324);
+            LoginManager.aClass3_Sub2_Sub1_10 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static254.anInt5556);
+            if (GlRenderer.enabled) {
+                if (LoginManager.aClass3_Sub2_Sub1_8 instanceof SoftwareAlphaSprite) {
+                    LoginManager.aClass3_Sub2_Sub1_8 = new GlAlphaSprite((com.jagex.runetek4.cache.media.SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_8);
+                } else {
+                    LoginManager.aClass3_Sub2_Sub1_8 = new GlSprite((com.jagex.runetek4.cache.media.SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_8);
+                }
+                if (LoginManager.aClass3_Sub2_Sub1_6 instanceof SoftwareAlphaSprite) {
+                    LoginManager.aClass3_Sub2_Sub1_6 = new GlAlphaSprite((com.jagex.runetek4.cache.media.SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_6);
+                } else {
+                    LoginManager.aClass3_Sub2_Sub1_6 = new GlSprite((com.jagex.runetek4.cache.media.SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_6);
+                }
+                if (LoginManager.aClass3_Sub2_Sub1_10 instanceof SoftwareAlphaSprite) {
+                    LoginManager.aClass3_Sub2_Sub1_10 = new GlAlphaSprite((com.jagex.runetek4.cache.media.SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_10);
+                } else {
+                    LoginManager.aClass3_Sub2_Sub1_10 = new GlSprite((SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_10);
+                }
+            }
+        }
+        @Pc(418) int local418;
+        if (LoginManager.aClass3_Sub2_Sub1_8 != null && LoginManager.aClass3_Sub2_Sub1_6 != null && LoginManager.aClass3_Sub2_Sub1_10 != null) {
+            local203 = local13 / LoginManager.aClass3_Sub2_Sub1_8.width;
+            for (local219 = 0; local219 < local203; local219++) {
+                LoginManager.aClass3_Sub2_Sub1_8.render(local3 + LoginManager.aClass3_Sub2_Sub1_8.width * local219, local11 + local9 + -LoginManager.aClass3_Sub2_Sub1_8.height);
+            }
+            local219 = (local11 - 20) / LoginManager.aClass3_Sub2_Sub1_6.height;
+            for (local418 = 0; local418 < local219; local418++) {
+                LoginManager.aClass3_Sub2_Sub1_6.render(local3, local9 + local418 * LoginManager.aClass3_Sub2_Sub1_6.height + 20);
+                LoginManager.aClass3_Sub2_Sub1_6.renderHorizontalFlip(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_6.width, local9 + 20 + local418 * LoginManager.aClass3_Sub2_Sub1_6.height);
+            }
+            LoginManager.aClass3_Sub2_Sub1_10.render(local3, local11 + local9 - LoginManager.aClass3_Sub2_Sub1_10.height);
+            LoginManager.aClass3_Sub2_Sub1_10.renderHorizontalFlip(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_10.width, local9 - -local11 + -LoginManager.aClass3_Sub2_Sub1_10.height);
+        }
+        for (local203 = 0; local203 < menuActionRow; local203++) {
+            local219 = (menuActionRow - local203 - 1) * 15 + local9 + 35;
+            local418 = Static195.anInt4581;
+            if (local3 < local112 && local13 + local3 > local112 && local219 - 13 < local114 && local114 < local219 + 3) {
+                local418 = Static262.anInt5752;
+            }
+            Fonts.b12Full.renderLeft(Static269.method2228(local203), local3 + 3, local219, local418, 0);
+        }
+        InterfaceList.forceRedrawScreen(InterfaceList.anInt4271, InterfaceList.anInt5138, InterfaceList.anInt436, InterfaceList.anInt761);
+    }
+
+    @OriginalMember(owner = "runetek4.client!lf", name = "b", descriptor = "(I)V")
+    public static void drawA() {
+        @Pc(3) int local3 = InterfaceList.anInt5138;
+        @Pc(9) int local9 = InterfaceList.anInt761;
+        @Pc(11) int local11 = InterfaceList.anInt4271;
+        @Pc(15) int local15 = InterfaceList.anInt436;
+        if (GlRenderer.enabled) {
+            GlRaster.fillRect(local11, local3, local9, local15, 6116423);
+            GlRaster.fillRect(local11 + 1, local3 + 1, local9 - 2, 16, 0);
+            GlRaster.drawRect(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
+        } else {
+            SoftwareRaster.fillRect(local11, local3, local9, local15, 6116423);
+            SoftwareRaster.fillRect(local11 + 1, local3 + 1, local9 - 2, 16, 0);
+            SoftwareRaster.drawRect(local11 + 1, local3 + 18, local9 - 2, local15 + -19, 0);
+        }
+        Fonts.b12Full.renderLeft(LocalizedText.CHOOSE_OPTION, local11 + 3, local3 + 14, 6116423, -1);
+        @Pc(96) int local96 = Mouse.lastMouseY;
+        @Pc(98) int local98 = Mouse.lastMouseX;
+        for (@Pc(107) int local107 = 0; local107 < menuActionRow; local107++) {
+            @Pc(127) int local127 = (menuActionRow - local107 - 1) * 15 + local3 + 31;
+            @Pc(129) int local129 = 16777215;
+            if (local11 < local98 && local98 < local11 + local9 && local127 - 13 < local96 && local96 < local127 + 3) {
+                local129 = 16776960;
+            }
+            Fonts.b12Full.renderLeft(Static269.method2228(local107), local11 + 3, local127, local129, 0);
+        }
+        InterfaceList.forceRedrawScreen(InterfaceList.anInt4271, InterfaceList.anInt5138, InterfaceList.anInt436, InterfaceList.anInt761);
+    }
+
+    @OriginalMember(owner = "client!dm", name = "a", descriptor = "(Lclient!be;III)V")
+    public static void method1207(@OriginalArg(0) Component arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
+        if (menuActionRow < 2 && anInt5014 == 0 && !aBoolean302) {
+            return;
+        }
+        @Pc(24) JString local24 = Static13.method471();
+        if (arg0 == null) {
+            @Pc(40) int local40 = Fonts.b12Full.method2859(local24, arg2 + 4, arg1 - -15, client.aRandom1, gregorianDateSeed);
+            InterfaceList.redrawScreen(arg2 + 4, Fonts.b12Full.getStringWidth(local24) + local40, arg1, 15);
+            return;
+        }
+        @Pc(59) Font local59 = arg0.getFont(Sprites.nameIcons);
+        if (local59 == null) {
+            local59 = Fonts.b12Full;
+        }
+        local59.method2878(local24, arg2, arg1, arg0.width, arg0.height, arg0.color, arg0.shadowColor, arg0.halign, arg0.valign, client.aRandom1, gregorianDateSeed, Static50.anIntArray132);
+        InterfaceList.redrawScreen(Static50.anIntArray132[0], Static50.anIntArray132[2], Static50.anIntArray132[1], Static50.anIntArray132[3]);
     }
 }

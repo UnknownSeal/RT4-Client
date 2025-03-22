@@ -9,10 +9,10 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class Js5CacheRequest extends Js5Request {
 
 	@OriginalMember(owner = "runetek4.client!c", name = "cb", descriptor = "I")
-	public int anInt824;
+	public int type;
 
 	@OriginalMember(owner = "runetek4.client!c", name = "X", descriptor = "Lclient!ge;")
-	public Cache aClass49_3;
+	public Cache cache;
 
 	@OriginalMember(owner = "runetek4.client!c", name = "ab", descriptor = "[B")
 	public byte[] bytes;

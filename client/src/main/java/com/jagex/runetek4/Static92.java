@@ -10,9 +10,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static92 {
 
-	@OriginalMember(owner = "runetek4.client!hd", name = "a", descriptor = "I")
-	public static int anInt2430 = 0;
-
 	@OriginalMember(owner = "runetek4.client!hd", name = "i", descriptor = "I")
 	public static int anInt2433 = 0;
 
@@ -67,8 +64,4 @@ public final class Static92 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!hd", name = "a", descriptor = "(I)V")
-	public static void removeSoft() {
-		Static220.aClass99_28.removeSoft();
-	}
 }

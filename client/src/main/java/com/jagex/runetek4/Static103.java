@@ -17,15 +17,12 @@ public final class Static103 {
 	@OriginalMember(owner = "runetek4.client!i", name = "Ub", descriptor = "[Lclient!na;")
 	public static JString[] aClass100Array88;
 
-	@OriginalMember(owner = "runetek4.client!i", name = "ic", descriptor = "Lclient!na;")
-	public static final JString aClass100_558 = JString.parse("m");
-
 	@OriginalMember(owner = "runetek4.client!i", name = "p", descriptor = "(II)V")
 	public static void method2232(@OriginalArg(1) int arg0) {
 		if (arg0 < 0) {
 			return;
 		}
-		@Pc(15) int local15 = Static196.anIntArray408[arg0];
+		@Pc(15) int local15 = MiniMenu.intArgs1[arg0];
 		@Pc(19) int local19 = Static56.anIntArray142[arg0];
 		@Pc(23) int local23 = MiniMenu.actions[arg0];
 		if (local23 >= 2000) {
@@ -494,7 +491,7 @@ public final class Static103 {
 		}
 		if (local23 == 11) {
 			if (a == 0) {
-				Static125.anInt3096 = 1;
+				MiniMenu.anInt3096 = 1;
 				Static113.method3556(Player.plane, local15, local19);
 			} else if (a == 1) {
 				Protocol.outboundBuffer.pIsaac1(131);
@@ -662,7 +659,7 @@ public final class Static103 {
 		}
 		if (local23 == 36) {
 			if (a == 0) {
-				Static187.anInt4422 = 1;
+				Protocol.anInt4422 = 1;
 				Static113.method3556(Player.plane, local15, local19);
 			} else if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
 				Cheat.teleport(local15 + Camera.originX, Camera.originZ - -local19, Player.plane);

@@ -86,7 +86,7 @@ public final class Static137 {
 									}
 								}
 							}
-							Static199.anIntArray417[Static251.anInt5454] = local184.anInt4426;
+							Static199.anIntArray417[Static251.anInt5454] = local184.id;
 							Static145.anIntArray331[Static251.anInt5454] = local194;
 							Static93.anIntArray219[Static251.anInt5454] = local237;
 							Static251.anInt5454++;

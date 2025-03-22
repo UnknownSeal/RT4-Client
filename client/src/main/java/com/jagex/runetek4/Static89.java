@@ -20,47 +20,6 @@ public final class Static89 {
 	@OriginalMember(owner = "runetek4.client!ha", name = "q", descriptor = "I")
 	public static int anInt2388 = 0;
 
-	@OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(ZB)V")
-	public static void method1835(@OriginalArg(0) boolean arg0) {
-		@Pc(11) byte local11;
-		@Pc(13) byte[][] local13;
-		if (GlRenderer.enabled && arg0) {
-			local11 = 1;
-			local13 = Static186.aByteArrayArray14;
-		} else {
-			local13 = Static273.aByteArrayArray13;
-			local11 = 4;
-		}
-		for (@Pc(21) int local21 = 0; local21 < local11; local21++) {
-			client.audioLoop();
-			for (@Pc(32) int local32 = 0; local32 < 13; local32++) {
-				for (@Pc(39) int local39 = 0; local39 < 13; local39++) {
-					@Pc(52) int local52 = Static187.anIntArrayArrayArray18[local21][local32][local39];
-					@Pc(54) boolean local54 = false;
-					if (local52 != -1) {
-						@Pc(65) int local65 = local52 >> 24 & 0x3;
-						if (!arg0 || local65 == 0) {
-							@Pc(76) int local76 = local52 >> 3 & 0x7FF;
-							@Pc(82) int local82 = local52 >> 1 & 0x3;
-							@Pc(88) int local88 = local52 >> 14 & 0x3FF;
-							@Pc(98) int local98 = (local88 / 8 << 8) + local76 / 8;
-							for (@Pc(100) int local100 = 0; local100 < Static238.anIntArray470.length; local100++) {
-								if (Static238.anIntArray470[local100] == local98 && local13[local100] != null) {
-									Static245.method4228(local82, local32 * 8, local21, PathFinder.collisionMaps, local39 * 8, local13[local100], local65, (local76 & 0x7) * 8, (local88 & 0x7) * 8, arg0);
-									local54 = true;
-									break;
-								}
-							}
-						}
-					}
-					if (!local54) {
-						Static23.method645(local21, local39 * 8, local32 * 8, 8, 8);
-					}
-				}
-			}
-		}
-	}
-
 	@OriginalMember(owner = "client!ha", name = "a", descriptor = "(ILclient!be;)Lclient!be;")
 	public static Component method1836(@OriginalArg(1) Component arg0) {
 		@Pc(12) Component local12 = InterfaceList.method938(arg0);
@@ -96,7 +55,7 @@ public final class Static89 {
 	@OriginalMember(owner = "client!ha", name = "a", descriptor = "([IJIZ)Lclient!na;")
 	public static JString method1838(@OriginalArg(0) int[] arg0, @OriginalArg(1) long arg1, @OriginalArg(2) int arg2) {
 		if (Static107.anInterface3_1 != null) {
-			@Pc(17) JString local17 = Static107.anInterface3_1.method30(arg2, arg0, arg1);
+			@Pc(17) JString local17 = Static107.anInterface3_1.decode(arg2, arg0, arg1);
 			if (local17 != null) {
 				return local17;
 			}

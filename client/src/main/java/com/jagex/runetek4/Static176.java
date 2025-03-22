@@ -4,7 +4,6 @@ import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.js5.Js5;
@@ -12,7 +11,6 @@ import com.jagex.runetek4.scene.tile.ComplexTile;
 import com.jagex.runetek4.scene.tile.GenericTile;
 import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.util.ArrayUtils;
-import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -22,9 +20,6 @@ public final class Static176 {
 	@OriginalMember(owner = "runetek4.client!ob", name = "f", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_76;
 
-	@OriginalMember(owner = "runetek4.client!ob", name = "o", descriptor = "Lclient!na;")
-	private static final JString aClass100_801 = JString.parse(")4a=");
-
 	@OriginalMember(owner = "runetek4.client!ob", name = "p", descriptor = "Lclient!na;")
 	public static final JString aClass100_802 = JString.parse("(U0a )2 non)2existant gosub script)2num: ");
 
@@ -33,40 +28,6 @@ public final class Static176 {
 		Static27.aClass99_4.clean();
 		Static244.aClass99_32.clean();
 		ObjTypeList.objectSpriteCache.clean();
-	}
-
-	@OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(IB)Z")
-	public static boolean method3303(@OriginalArg(0) int arg0) {
-		@Pc(3) GWCWorld local3 = Static54.method1310(arg0);
-		if (local3 == null) {
-			return false;
-		} else if (SignLink.anInt5928 == 1 || SignLink.anInt5928 == 2 || client.modeWhere == 2) {
-			@Pc(31) byte[] local31 = local3.hostname.method3148();
-			client.hostname = new String(local31, 0, local31.length);
-			Static125.worldId = local3.id;
-			if (client.modeWhere != 0) {
-				client.defaultPort = Static125.worldId + 40000;
-				client.port = client.defaultPort;
-				client.alternatePort = Static125.worldId + 50000;
-			}
-			return true;
-		} else {
-			@Pc(62) JString local62 = Static211.aClass100_230;
-			if (client.modeWhere != 0) {
-				local62 = JString.concatenate(new JString[] { Static31.aClass100_193, JString.parseInt(local3.id + 7000) });
-			}
-			@Pc(89) JString local89 = Static211.aClass100_230;
-			if (client.settings != null) {
-				local89 = JString.concatenate(new JString[] { Static167.aClass100_783, client.settings});
-			}
-			@Pc(182) JString local182 = JString.concatenate(new JString[] { Static115.aClass100_582, local3.hostname, local62, Static279.aClass100_1107, JString.parseInt(client.language), aClass100_801, JString.parseInt(client.affiliate), local89, Static139.aClass100_659, client.objectTag ? Static30.aClass100_184 : Static260.aClass100_945, Static60.aClass100_420, client.javaScript ? Static30.aClass100_184 : Static260.aClass100_945, Static198.aClass100_260, client.advertSuppressed ? Static30.aClass100_184 : Static260.aClass100_945 });
-			try {
-				client.instance.getAppletContext().showDocument(local182.method3107(), "_self");
-				return true;
-			} catch (@Pc(191) Exception local191) {
-				return false;
-			}
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(IIIIIIB)V")
@@ -154,7 +115,7 @@ public final class Static176 {
 								}
 							}
 						}
-						MiniMenu.addActionRow(Static225.anInt5073, (long) local172.anInt4426, JString.concatenate(new JString[] { Static240.aClass100_1008, local172.name}), local47, (short) 1004, LocalizedText.EXAMINE, local147);
+						MiniMenu.addActionRow(Static225.anInt5073, (long) local172.id, JString.concatenate(new JString[] { Static240.aClass100_1008, local172.name}), local47, (short) 1004, LocalizedText.EXAMINE, local147);
 					}
 				}
 				@Pc(514) int local514;

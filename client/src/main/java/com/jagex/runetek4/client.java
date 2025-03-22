@@ -312,7 +312,7 @@ public final class client extends GameShell {
 		Static3.removeSoft();
 		BasTypeList.removeSoft();
 		Static267.removeSoft();
-		Static92.removeSoft();
+		LightTypeList.removeSoft();
 		CursorTypeList.removeSoft();
 		Static192.removeSoft();
 		Component.removeSoft();
@@ -328,7 +328,7 @@ public final class client extends GameShell {
 		if (cacheData != null) {
 			cache = new Cache(archive, cacheData, cacheIndexes[archive], 1000000);
 		}
-		js5Providers[archive] = js5MasterIndex.method180(archive, masterCache, cache);
+		js5Providers[archive] = js5MasterIndex.getResourceProvider(archive, masterCache, cache);
 		if (arg1) {
 			js5Providers[archive].prefetchAll();
 		}
@@ -349,7 +349,7 @@ public final class client extends GameShell {
 		Static249.clear();
 		BasTypeList.clear();
 		Class6.clear();
-		Static78.clear();
+		LightTypeList.clear();
 		CursorTypeList.clear();
 		Static230.clear();
 		Component.clear();
@@ -468,7 +468,7 @@ public final class client extends GameShell {
 		Protocol.opcode3 = -1;
 		Protocol.opcode = -1;
 		Game.idleTimeout = 0;
-		Static60.systemUpdateTimer = 0;
+		Player.systemUpdateTimer = 0;
 		Protocol.outboundBuffer.offset = 0;
 		Protocol.opcode2 = -1;
 		LoginManager.idleNetCycles = 0;
@@ -634,7 +634,7 @@ public final class client extends GameShell {
 		FloorOverlayTypeList.clean();
 		FloorUnderlayTypeList.clean();
 		Static238.method4142();
-		Static258.method4415();
+		LocTypeList.clean();
 		Static209.method3706();
 		Static190.method3447();
 		SeqType.clearAnimationCache();
@@ -643,7 +643,7 @@ public final class client extends GameShell {
 		VarPlayerDefinition.clearVarPlayerDefinitionCache();
 		BasTypeList.clean();
 		Static276.method4615();
-		Static25.method715();
+		LightTypeList.clean();
 		CursorTypeList.clean();
 		Static279.method4662();
 		Component.clean();
@@ -672,7 +672,7 @@ public final class client extends GameShell {
 		if (statusCode == 25 || statusCode == 28) {
 			LoginManager.anInt5804 = 0;
 			anInt5150 = 1;
-			LoginManager.anInt5223 = 0;
+			LoginManager.loadingScreenState = 0;
 			anInt1196 = 1;
 			LoginManager.mapFilesMissingCount = 0;
 			WorldMap.clear(true);
@@ -690,13 +690,13 @@ public final class client extends GameShell {
 			if (local37) {
 				MusicPlayer.groupId = MusicPlayer.titleSong;
 				if (Preferences.musicVolume == 0) {
-					Static29.method801();
+					MidiPlayer.playFadeOut();
 				} else {
 					Static257.method526(MusicPlayer.titleSong, js5Archive6, 255);
 				}
 				js5NetQueue.writeLoggedIn(false);
 			} else {
-				Static29.method801();
+				MidiPlayer.playFadeOut();
 				js5NetQueue.writeLoggedIn(true);
 			}
 		}
@@ -765,13 +765,13 @@ public final class client extends GameShell {
 		} else if (gameState == 10) {
 			InterfaceList.method2460();
 		} else if (gameState == 25 || gameState == 28) {
-			if (LoginManager.anInt5223 == 1) {
+			if (LoginManager.loadingScreenState == 1) {
 				if (anInt5150 < LoginManager.mapFilesMissingCount) {
 					anInt5150 = LoginManager.mapFilesMissingCount;
 				}
 				local80 = (anInt5150 - LoginManager.mapFilesMissingCount) * 50 / anInt5150;
 				Fonts.drawTextOnScreen(false, JString.concatenate(new JString[] { LocalizedText.LOADING, aClass100_974, JString.parseInt(local80), ClientScriptRunner.aClass100_80 }));
-			} else if (LoginManager.anInt5223 == 2) {
+			} else if (LoginManager.loadingScreenState == 2) {
 				if (anInt1196 < LoginManager.anInt5804) {
 					anInt1196 = LoginManager.anInt5804;
 				}
@@ -1057,7 +1057,7 @@ public final class client extends GameShell {
 	private void mainUpdate() {
 		for (InterfaceList.keyQueueSize = 0; Keyboard.nextKey() && InterfaceList.keyQueueSize < 128; InterfaceList.keyQueueSize++) {
 			InterfaceList.keyCodes[InterfaceList.keyQueueSize] = Keyboard.keyCode;
-			InterfaceList.keyChars[InterfaceList.keyQueueSize] = Static193.keyChar;
+			InterfaceList.keyChars[InterfaceList.keyQueueSize] = Keyboard.keyChar;
 		}
 		Protocol.sceneDelta++;
 		if (InterfaceList.topLevelInterface != -1) {
@@ -1272,7 +1272,7 @@ public final class client extends GameShell {
 					if (!Keyboard.nextKey()) {
 						break noSafeMode;
 					}
-				} while (Static193.keyChar != 115 && Static193.keyChar != 83);
+				} while (Keyboard.keyChar != 115 && Keyboard.keyChar != 83);
 				Preferences.safeMode = true;
 			}
 		}
@@ -1300,7 +1300,7 @@ public final class client extends GameShell {
 		}
 		@Pc(98) int percentage;
 		if (mainLoadState == 10) {
-			Static120.method2392();
+			LightingManager.method2392();
 			for (percentage = 0; percentage < 4; percentage++) {
 				PathFinder.collisionMaps[percentage] = new CollisionMap(104, 104);
 			}
@@ -1311,7 +1311,7 @@ public final class client extends GameShell {
 			if (js5MasterIndex == null) {
 				js5MasterIndex = new Js5MasterIndex(js5NetQueue, js5CacheQueue);
 			}
-			if (js5MasterIndex.method178()) {
+			if (js5MasterIndex.isReady()) {
 				js5Archive0 = createJs5(false, true, true, 0);
 				js5Archive1 = createJs5(false, true, true, 1);
 				js5Archive2 = createJs5(true, true, false, 2);
@@ -1450,7 +1450,7 @@ public final class client extends GameShell {
 				EnumTypeList.init(js5Archive17);
 				Static59.init(js5Archive25, js5Archive24, new Js5QuickChatCommandDecoder());
 				Static115.init(js5Archive25, js5Archive24);
-				Static107.init(js5Archive2);
+				LightTypeList.init(js5Archive2);
 				CursorTypeList.init(js5Archive2, js5Archive8);
 				Static180.init(js5Archive2, js5Archive8);
 				mainLoadPercentage = 50;

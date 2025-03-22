@@ -35,16 +35,16 @@ public class LoadingBarAwt {
                 if (loadingBar == null) {
                     loadingBar = GameShell.canvas.createImage(304, 34);
                 }
-                @Pc(56) Graphics local56 = loadingBar.getGraphics();
-                local56.setColor(color);
-                local56.drawRect(0, 0, 303, 33);
-                local56.fillRect(2, 2, loadingBarPercentage * 3, 30);
-                local56.setColor(Color.black);
-                local56.drawRect(1, 1, 301, 31);
-                local56.fillRect(loadingBarPercentage * 3 + 2, 2, 300 - loadingBarPercentage * 3, 30);
-                local56.setFont(font);
-                local56.setColor(Color.white);
-                text.drawString(22, (304 - text.stringWidth(fontMetrics)) / 2, local56);
+                @Pc(56) Graphics loadingBarGraphics = loadingBar.getGraphics();
+                loadingBarGraphics.setColor(color);
+                loadingBarGraphics.drawRect(0, 0, 303, 33);
+                loadingBarGraphics.fillRect(2, 2, loadingBarPercentage * 3, 30);
+                loadingBarGraphics.setColor(Color.black);
+                loadingBarGraphics.drawRect(1, 1, 301, 31);
+                loadingBarGraphics.fillRect(loadingBarPercentage * 3 + 2, 2, 300 - loadingBarPercentage * 3, 30);
+                loadingBarGraphics.setFont(font);
+                loadingBarGraphics.setColor(Color.white);
+                text.drawString(22, (304 - text.stringWidth(fontMetrics)) / 2, loadingBarGraphics);
                 graphics.drawImage(loadingBar, GameShell.canvasWidth / 2 - 152, GameShell.canvasHeigth / 2 - 18, null);
             } catch (@Pc(134) Exception exception) {
                 @Pc(140) int x = GameShell.canvasWidth / 2 - 152;

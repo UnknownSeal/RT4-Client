@@ -160,22 +160,22 @@ public final class Static245 {
 				for (local232 = 0; local232 < local497; local232++) {
 					@Pc(517) Light local517 = new Light(local96);
 					if (local517.anInt2243 == 31) {
-						@Pc(529) LightType local529 = Static140.method2709(local96.g2());
+						@Pc(529) LightType local529 = LightTypeList.get(local96.g2());
 						local517.method1762(local529.anInt2865, local529.anInt2873, local529.anInt2867, local529.anInt2872);
 					}
-					local417 = local517.anInt2240 >> 7;
-					local255 = local517.anInt2245 >> 7;
-					if (arg6 == local517.anInt2241 && local417 >= arg8 && arg8 + 8 > local417 && arg7 <= local255 && arg7 + 8 > local255) {
-						local266 = Static204.method3675(arg0, local517.anInt2240 & 0x3FF, local517.anInt2245 & 0x3FF) + (arg1 << 7);
-						local316 = Static184.method3388(local517.anInt2240 & 0x3FF, arg0, local517.anInt2245 & 0x3FF) + (arg4 << 7);
-						local517.anInt2240 = local266;
-						local517.anInt2245 = local316;
-						local417 = local517.anInt2240 >> 7;
-						local255 = local517.anInt2245 >> 7;
+					local417 = local517.x >> 7;
+					local255 = local517.z >> 7;
+					if (arg6 == local517.level && local417 >= arg8 && arg8 + 8 > local417 && arg7 <= local255 && arg7 + 8 > local255) {
+						local266 = Static204.method3675(arg0, local517.x & 0x3FF, local517.z & 0x3FF) + (arg1 << 7);
+						local316 = Static184.method3388(local517.x & 0x3FF, arg0, local517.z & 0x3FF) + (arg4 << 7);
+						local517.x = local266;
+						local517.z = local316;
+						local417 = local517.x >> 7;
+						local255 = local517.z >> 7;
 						if (local417 >= 0 && local255 >= 0 && local417 < 104 && local255 < 104) {
 							local517.aBoolean125 = (SceneGraph.renderFlags[1][local417][local255] & 0x2) != 0;
-							local517.anInt2235 = SceneGraph.tileHeights[local517.anInt2241][local417][local255] - local517.anInt2235;
-							Static120.method2389(local517);
+							local517.y = SceneGraph.tileHeights[local517.level][local417][local255] - local517.y;
+							LightingManager.method2389(local517);
 						}
 					}
 				}

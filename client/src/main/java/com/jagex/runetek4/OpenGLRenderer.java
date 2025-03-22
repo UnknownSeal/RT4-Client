@@ -29,7 +29,7 @@ public final class OpenGLRenderer {
 	private GlVertexBufferObject aClass155_7;
 
 	@OriginalMember(owner = "runetek4.client!wm", name = "b", descriptor = "Z")
-	public boolean aBoolean313 = true;
+	public boolean outputToSprite = true;
 
 	@OriginalMember(owner = "runetek4.client!wm", name = "h", descriptor = "I")
 	private int anInt5902 = -1;

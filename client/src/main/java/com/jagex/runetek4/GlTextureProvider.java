@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 public interface GlTextureProvider {
 
 	@OriginalMember(owner = "runetek4.client!m", name = "a", descriptor = "(BI)Z")
-	boolean method3226(@OriginalArg(1) int arg0);
+	boolean isOpaque(@OriginalArg(1) int arg0);
 
 	@OriginalMember(owner = "runetek4.client!m", name = "a", descriptor = "(IZ)V")
 	void method3227(@OriginalArg(0) int arg0);
@@ -29,13 +29,13 @@ public interface GlTextureProvider {
 	int[] method3232(@OriginalArg(0) int arg0, @OriginalArg(2) float arg1);
 
 	@OriginalMember(owner = "runetek4.client!m", name = "b", descriptor = "(BI)Z")
-	boolean method3233(@OriginalArg(1) int arg0);
+	boolean isLowDetail(@OriginalArg(1) int arg0);
 
 	@OriginalMember(owner = "runetek4.client!m", name = "d", descriptor = "(II)I")
-	int method3234(@OriginalArg(0) int arg0);
+	int getAverageColor(@OriginalArg(0) int arg0);
 
 	@OriginalMember(owner = "runetek4.client!m", name = "e", descriptor = "(II)[I")
-	int[] method3235(@OriginalArg(1) int arg0);
+	int[] getPixels(@OriginalArg(1) int arg0);
 
 	@OriginalMember(owner = "runetek4.client!m", name = "f", descriptor = "(II)Z")
 	boolean method3236(@OriginalArg(0) int arg0);

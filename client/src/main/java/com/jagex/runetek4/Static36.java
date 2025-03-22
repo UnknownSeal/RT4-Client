@@ -10,7 +10,4 @@ public final class Static36 {
 	@OriginalMember(owner = "client!runetek4.client", name = "kb", descriptor = "[[Lclient!hg;")
 	public static GlTile[][] aGlTileArrayArray1;
 
-	@OriginalMember(owner = "client!runetek4.client", name = "lb", descriptor = "[I")
-	public static int[] anIntArray84;
-
 }
