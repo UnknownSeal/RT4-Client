@@ -433,7 +433,7 @@ public class LoginManager {
         client.unload();
         @Pc(420) boolean hasUnderWaterMap = false;
         @Pc(427) int i;
-        if (GlRenderer.enabled && Static220.aBoolean244) {
+        if (GlRenderer.enabled && Preferences.highWaterDetail) {
             for (i = 0; i < mapFilesBuffer.length; i++) {
                 if (underWaterLocationsMapFilesBuffer[i] != null || underWaterMapFilesBuffer[i] != null) {
                     hasUnderWaterMap = true;

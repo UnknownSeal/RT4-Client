@@ -11,8 +11,8 @@ public final class Static21 {
 		Static257.aFloatArray2[0] = (float) (arg0 >> 16 & 0xFF) / 255.0F;
 		Static257.aFloatArray2[1] = (float) (arg0 >> 8 & 0xFF) / 255.0F;
 		Static257.aFloatArray2[2] = (float) (arg0 & 0xFF) / 255.0F;
-		Static128.method2481(3);
-		Static128.method2481(4);
+		MaterialManager.resetArgument(3);
+		MaterialManager.resetArgument(4);
 	}
 
 	@OriginalMember(owner = "client!bk", name = "a", descriptor = "(BLclient!wa;)Lclient!re;")

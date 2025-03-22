@@ -339,29 +339,29 @@ public final class Player extends PathingEntity {
 		}
 		if (PlayerList.self == this) {
 			for (local102 = MiniMap.hintMapMarkers.length - 1; local102 >= 0; local102--) {
-				@Pc(245) Class102 local245 = MiniMap.hintMapMarkers[local102];
-				if (local245 != null && local245.anInt4052 != -1) {
+				@Pc(245) MapMarker local245 = MiniMap.hintMapMarkers[local102];
+				if (local245 != null && local245.playerModelId != -1) {
 					@Pc(291) int anchorX;
 					@Pc(302) int anchorY;
-					if (local245.headIconDrawType == 1 && local245.hintIconNpcTarget >= 0 && NpcList.npcs.length > local245.hintIconNpcTarget) {
-						@Pc(278) Npc npc = NpcList.npcs[local245.hintIconNpcTarget];
+					if (local245.type == 1 && local245.actorTargetId >= 0 && NpcList.npcs.length > local245.actorTargetId) {
+						@Pc(278) Npc npc = NpcList.npcs[local245.actorTargetId];
 						if (npc != null) {
 							anchorX = npc.xFine / 32 - PlayerList.self.xFine / 32;
 							anchorY = npc.zFine / 32 - PlayerList.self.zFine / 32;
-							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
+							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.playerModelId, arg2, arg6);
 						}
 					}
-					if (local245.headIconDrawType == 2) {
-						@Pc(340) int local340 = (local245.anInt4053 - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
+					if (local245.type == 2) {
+						@Pc(340) int local340 = (local245.targetX - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
 						anchorX = (local245.anInt4046 - Camera.originZ) * 4 + 2 - PlayerList.self.zFine / 32;
-						this.drawOnMinimap(null, anchorX, local76, local340, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
+						this.drawOnMinimap(null, anchorX, local76, local340, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.playerModelId, arg2, arg6);
 					}
-					if (local245.headIconDrawType == 10 && local245.hintIconNpcTarget >= 0 && PlayerList.players.length > local245.hintIconNpcTarget) {
-						@Pc(395) Player player = PlayerList.players[local245.hintIconNpcTarget];
+					if (local245.type == 10 && local245.actorTargetId >= 0 && PlayerList.players.length > local245.actorTargetId) {
+						@Pc(395) Player player = PlayerList.players[local245.actorTargetId];
 						if (player != null) {
 							anchorX = player.xFine / 32 - PlayerList.self.xFine / 32;
 							anchorY = player.zFine / 32 - PlayerList.self.zFine / 32;
-							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.anInt4052, arg2, arg6);
+							this.drawOnMinimap(null, anchorY, local76, anchorX, arg5, arg9, arg0, arg7, arg4, arg3, arg1, local245.playerModelId, arg2, arg6);
 						}
 					}
 				}

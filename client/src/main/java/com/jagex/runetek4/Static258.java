@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static258 {
 
-	@OriginalMember(owner = "runetek4.client!va", name = "G", descriptor = "[Z")
-	public static boolean[] aBooleanArray130;
-
 	@OriginalMember(owner = "runetek4.client!va", name = "c", descriptor = "(BI)V")
 	public static void method4444(@OriginalArg(1) int arg0) {
 		CacheArchive.anInt172 = arg0;

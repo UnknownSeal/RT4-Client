@@ -317,23 +317,23 @@ public final class Song extends Node {
 		@Pc(15) int[] local15 = new int[16];
 		local12[9] = local15[9] = 128;
 		@Pc(29) MidiDecoder local29 = new MidiDecoder(this.aByteArray65);
-		@Pc(32) int local32 = local29.method2629();
+		@Pc(32) int local32 = local29.getTrackCount();
 		@Pc(34) int local34;
 		for (local34 = 0; local34 < local32; local34++) {
-			local29.method2631(local34);
-			local29.method2632(local34);
-			local29.method2636(local34);
+			local29.loadTrackPosition(local34);
+			local29.addDeltaTime(local34);
+			local29.saveTrackPosition(local34);
 		}
 		label53: do {
 			while (true) {
-				local34 = local29.method2637();
-				@Pc(56) int local56 = local29.anIntArray310[local34];
-				while (local29.anIntArray310[local34] == local56) {
-					local29.method2631(local34);
-					@Pc(69) int local69 = local29.method2630(local34);
+				local34 = local29.getNextTrack();
+				@Pc(56) int local56 = local29.times[local34];
+				while (local29.times[local34] == local56) {
+					local29.loadTrackPosition(local34);
+					@Pc(69) int local69 = local29.getNextEvent(local34);
 					if (local69 == 1) {
-						local29.method2639();
-						local29.method2636(local34);
+						local29.loadEndOfTrackPosition();
+						local29.saveTrackPosition(local34);
 						continue label53;
 					}
 					@Pc(85) int local85 = local69 & 0xF0;
@@ -370,8 +370,8 @@ public final class Song extends Node {
 							local187.value[local98] = 1;
 						}
 					}
-					local29.method2632(local34);
-					local29.method2636(local34);
+					local29.addDeltaTime(local34);
+					local29.saveTrackPosition(local34);
 				}
 			}
 		} while (!local29.method2626());

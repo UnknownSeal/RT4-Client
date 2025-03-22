@@ -85,7 +85,7 @@ public final class Static248 {
 			if (local240) {
 				Static156.method2959();
 				MaterialManager.setMaterial(-1, 3);
-				Static119.aBoolean153 = true;
+				MaterialManager.renderingUnderwater = true;
 				Static275.method4609();
 				Static152.anInt3604 = -1;
 				Static22.anInt730 = -1;
@@ -110,7 +110,7 @@ public final class Static248 {
 					for (local37 = 0; local37 < Static182.aGlTileArrayArray2[local32].length; local37++) {
 						@Pc(336) GlTile local336 = Static182.aGlTileArrayArray2[local32][local37];
 						@Pc(350) float local350 = 201.5F - (float) local32 * 50.0F - (local336.blend ? 1.0F : 0.5F);
-						if (local336.texture != -1 && Rasterizer.textureProvider.getMaterialType(local336.texture) == 4 && Static220.aBoolean244) {
+						if (local336.texture != -1 && Rasterizer.textureProvider.getMaterialType(local336.texture) == 4 && Preferences.highWaterDetail) {
 							Static21.method619(local336.underwaterColor);
 						}
 						local336.method1944(Static130.levelTiles, local350, false);

@@ -134,11 +134,11 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(IIIZIII)V")
 	public static void method4000(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {
 		@Pc(3) int local3 = 0;
-		@Pc(5) Class102[] local5 = MiniMap.hintMapMarkers;
+		@Pc(5) MapMarker[] local5 = MiniMap.hintMapMarkers;
 		while (local5.length > local3) {
-			@Pc(17) Class102 local17 = local5[local3];
-			if (local17 != null && local17.headIconDrawType == 2) {
-				Static198.method1026(arg0 >> 1, arg4, (local17.anInt4046 - Camera.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.anInt4053 - Camera.originX << 7), arg3);
+			@Pc(17) MapMarker local17 = local5[local3];
+			if (local17 != null && local17.type == 2) {
+				Static198.method1026(arg0 >> 1, arg4, (local17.anInt4046 - Camera.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.targetX - Camera.originX << 7), arg3);
 				if (Static65.anInt1951 > -1 && client.loop % 20 < 10) {
 					Static276.aClass3_Sub2_Sub1Array11[local17.anInt4048].render(arg1 + Static65.anInt1951 - 12, arg5 + -28 - -Static16.anInt548);
 				}
@@ -1527,12 +1527,12 @@ public final class ClientScriptRunner {
 			}
 			LightingManager.method2394(client.loop, !Static11.aBoolean15);
 			GlRenderer.clearColorAndDepthBuffers(jitter);
-			Static143.method2731(Camera.cameraPitch, Camera.renderZ, Camera.cameraY, Camera.renderX, Camera.cameraYaw);
+			MaterialManager.method2731(Camera.cameraPitch, Camera.renderZ, Camera.cameraY, Camera.renderX, Camera.cameraYaw);
 			GlRenderer.anInt5323 = client.loop;
 			Static156.method2954(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
 			aBoolean299 = true;
 			LightingManager.method2390();
-			Static143.method2731(0, 0, 0, 0, 0);
+			MaterialManager.method2731(0, 0, 0, 0, 0);
 			client.audioLoop();
 			Static223.method3858();
 			Static142.method2726(arg4, arg3, arg2, Static223.anInt5029, arg0, Static223.anInt5029);
@@ -1645,7 +1645,7 @@ public final class ClientScriptRunner {
 			local225 = anInt2428 * 25;
 		}
 		for (@Pc(238) Class3_Sub26 local238 = (Class3_Sub26) Static145.aClass69_84.head(); local238 != null; local238 = (Class3_Sub26) Static145.aClass69_84.next()) {
-			if (local238.anInt4308 == CacheArchive.anInt172) {
+			if (local238.id == CacheArchive.anInt172) {
 				@Pc(258) int local258 = arg3 + local238.anInt4314 * arg1 / WorldMap.length;
 				@Pc(267) int local267 = arg2 * local238.anInt4307 / Static48.anInt1449 + arg0;
 				if (GlRenderer.enabled) {
@@ -4468,7 +4468,7 @@ public final class ClientScriptRunner {
 													@Pc(7293) Map local7293;
 													if (scriptOpcode == 5207) {
 														local26--;
-														local7293 = Static124.method2434(Static3.scriptStringValues[local26]);
+														local7293 = MapList.get(Static3.scriptStringValues[local26]);
 														if (local7293 != null && local7293.name != null) {
 															Static3.scriptStringValues[local26++] = local7293.name;
 															continue;
@@ -4565,13 +4565,13 @@ public final class ClientScriptRunner {
 													if (scriptOpcode == 5216) {
 														intValueIndex--;
 														interfaceData = Static254.scriptIntValues[intValueIndex];
-														Static253.method4332(interfaceData);
+														MapList.method4332(interfaceData);
 														continue;
 													}
 													if (scriptOpcode == 5217) {
 														intValueIndex--;
 														interfaceData = Static254.scriptIntValues[intValueIndex];
-														if (Static90.method1855(interfaceData)) {
+														if (MapList.method1855(interfaceData)) {
 															Static254.scriptIntValues[intValueIndex++] = 1;
 														} else {
 															Static254.scriptIntValues[intValueIndex++] = 0;
@@ -5111,7 +5111,7 @@ public final class ClientScriptRunner {
 													}
 													if (scriptOpcode == 6014) {
 														intValueIndex--;
-														Static220.aBoolean244 = Static254.scriptIntValues[intValueIndex] == 1;
+														Preferences.highWaterDetail = Static254.scriptIntValues[intValueIndex] == 1;
 														if (GlRenderer.enabled) {
 															Static145.method2742();
 														}
@@ -5290,7 +5290,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (scriptOpcode == 6114) {
-														Static254.scriptIntValues[intValueIndex++] = Static220.aBoolean244 ? 1 : 0;
+														Static254.scriptIntValues[intValueIndex++] = Preferences.highWaterDetail ? 1 : 0;
 														continue;
 													}
 													if (scriptOpcode == 6115) {

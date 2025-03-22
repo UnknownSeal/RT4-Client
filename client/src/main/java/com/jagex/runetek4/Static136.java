@@ -81,7 +81,7 @@ public final class Static136 {
 		} else {
 			Preferences.highDetailLighting = arg0.g1() == 1;
 		}
-		Static220.aBoolean244 = arg0.g1() == 1;
+		Preferences.highWaterDetail = arg0.g1() == 1;
 		Preferences.fogEnabled = arg0.g1() == 1;
 		Preferences.windowMode = arg0.g1();
 		if (Preferences.windowMode > 2) {

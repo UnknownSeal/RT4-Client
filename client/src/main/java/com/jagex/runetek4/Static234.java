@@ -1,11 +1,8 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.NpcType;
-import com.jagex.runetek4.cache.media.SoftwareSprite;
-import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -123,19 +120,6 @@ public final class Static234 {
 				local14.anInt3382 = Protocol.inboundBuffer.g2sub();
 				local14.anInt3363 = Protocol.inboundBuffer.g2();
 			}
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "([Lclient!mm;ILclient!ve;)V")
-	public static void method4018(@OriginalArg(0) SoftwareSprite[] arg0, @OriginalArg(2) Js5 arg1) {
-		Static119.aClass153_44 = arg1;
-		Static241.aClass3_Sub2_Sub1_Sub1Array13 = arg0;
-		Static258.aBooleanArray130 = new boolean[Static241.aClass3_Sub2_Sub1_Sub1Array13.length];
-		Static228.aClass69_120.clear();
-		@Pc(25) int local25 = Static119.aClass153_44.getGroupId(Static54.DETAILS);
-		@Pc(30) int[] local30 = Static119.aClass153_44.getFileIds(local25);
-		for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {
-			Static228.aClass69_120.addTail(Static210.create(new Packet(Static119.aClass153_44.getfile(local25, local30[local32]))));
 		}
 	}
 

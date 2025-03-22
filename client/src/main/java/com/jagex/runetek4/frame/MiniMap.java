@@ -20,7 +20,7 @@ public class MiniMap {
     @OriginalMember(owner = "runetek4.client!ke", name = "T", descriptor = "[[I")
     public static final int[][] anIntArrayArray24 = new int[][] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1 }, { 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 }, { 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1 }, { 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1 }, { 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0 }, { 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1 }, { 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1 } };
     @OriginalMember(owner = "runetek4.client!ld", name = "b", descriptor = "[Lclient!nc;")
-    public static final Class102[] hintMapMarkers = new Class102[4];
+    public static final MapMarker[] hintMapMarkers = new MapMarker[4];
     @OriginalMember(owner = "runetek4.client!ha", name = "i", descriptor = "Lclient!qf;")
     public static Sprite sprite;
     @OriginalMember(owner = "runetek4.client!wb", name = "d", descriptor = "I")
@@ -196,25 +196,25 @@ public class MiniMap {
                     }
                 }
             }
-            @Pc(756) Class102[] local756 = hintMapMarkers;
+            @Pc(756) MapMarker[] local756 = hintMapMarkers;
             for (flagZ = 0; flagZ < local756.length; flagZ++) {
-                @Pc(770) Class102 local770 = local756[flagZ];
-                if (local770 != null && local770.headIconDrawType != 0 && client.loop % 20 < 10) {
-                    if (local770.headIconDrawType == 1 && local770.hintIconNpcTarget >= 0 && local770.hintIconNpcTarget < NpcList.npcs.length) {
-                        @Pc(804) Npc npc = NpcList.npcs[local770.hintIconNpcTarget];
+                @Pc(770) MapMarker local770 = local756[flagZ];
+                if (local770 != null && local770.type != 0 && client.loop % 20 < 10) {
+                    if (local770.type == 1 && local770.actorTargetId >= 0 && local770.actorTargetId < NpcList.npcs.length) {
+                        @Pc(804) Npc npc = NpcList.npcs[local770.actorTargetId];
                         if (npc != null) {
                             npcX = npc.xFine / 32 - PlayerList.self.xFine / 32;
                             npcZ = npc.zFine / 32 - PlayerList.self.zFine / 32;
                             Static97.drawMinimapMark(local770.anInt4048, arg1, arg2, npcX, npcZ, arg3);
                         }
                     }
-                    if (local770.headIconDrawType == 2) {
-                        local154 = (local770.anInt4053 - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
+                    if (local770.type == 2) {
+                        local154 = (local770.targetX - Camera.originX) * 4 + 2 - PlayerList.self.xFine / 32;
                         npcX = (-Camera.originZ + local770.anInt4046) * 4 + 2 - PlayerList.self.zFine / 32;
                         Static97.drawMinimapMark(local770.anInt4048, arg1, arg2, local154, npcX, arg3);
                     }
-                    if (local770.headIconDrawType == 10 && local770.hintIconNpcTarget >= 0 && PlayerList.players.length > local770.hintIconNpcTarget) {
-                        @Pc(905) Player player = PlayerList.players[local770.hintIconNpcTarget];
+                    if (local770.type == 10 && local770.actorTargetId >= 0 && PlayerList.players.length > local770.actorTargetId) {
+                        @Pc(905) Player player = PlayerList.players[local770.actorTargetId];
                         if (player != null) {
                             npcZ = player.zFine / 32 - PlayerList.self.zFine / 32;
                             npcX = player.xFine / 32 - PlayerList.self.xFine / 32;

@@ -50,6 +50,8 @@ public class Preferences {
     public static boolean cursorsEnabled = true;
     @OriginalMember(owner = "client!bb", name = "n", descriptor = "I")
     public static int musicVolume = 255;
+    @OriginalMember(owner = "runetek4.client!rm", name = "g", descriptor = "Z")
+    public static boolean highWaterDetail = true;
     @OriginalMember(owner = "runetek4.client!ga", name = "e", descriptor = "I")
     private static int particles = 2;
 
@@ -59,7 +61,7 @@ public class Preferences {
             return;
         }
         if (WorldMap.loadPercentage < 10) {
-            if (!Static119.aClass153_44.isGroupReady(Static269.aClass3_Sub2_Sub4_2.group)) {
+            if (!MapList.archive.isGroupReady(Static269.aClass3_Sub2_Sub4_2.group)) {
                 WorldMap.loadPercentage = client.js5Archive23.method4478(Static269.aClass3_Sub2_Sub4_2.group) / 10;
                 return;
             }
@@ -118,29 +120,29 @@ public class Preferences {
             Static70.method1549(local273, local249);
             WorldMap.loadPercentage = 20;
         } else if (WorldMap.loadPercentage == 20) {
-            Static33.method868(new Packet(Static119.aClass153_44.fetchFile(Static166.aClass100_779, Static269.aClass3_Sub2_Sub4_2.group)));
+            Static33.method868(new Packet(MapList.archive.fetchFile(Static166.aClass100_779, Static269.aClass3_Sub2_Sub4_2.group)));
             WorldMap.loadPercentage = 30;
             ClientProt.ping(true);
             GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 30) {
-            WorldMap.method3998(new Packet(Static119.aClass153_44.fetchFile(Static4.aClass100_7, Static269.aClass3_Sub2_Sub4_2.group)));
+            WorldMap.method3998(new Packet(MapList.archive.fetchFile(Static4.aClass100_7, Static269.aClass3_Sub2_Sub4_2.group)));
             WorldMap.loadPercentage = 40;
             GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 40) {
-            PreciseSleep.method3980(new Packet(Static119.aClass153_44.fetchFile(Static73.OVERLAY2, Static269.aClass3_Sub2_Sub4_2.group)));
+            PreciseSleep.method3980(new Packet(MapList.archive.fetchFile(Static73.OVERLAY2, Static269.aClass3_Sub2_Sub4_2.group)));
             WorldMap.loadPercentage = 50;
             GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 50) {
-            Static166.method3166(new Packet(Static119.aClass153_44.fetchFile(Static42.aClass100_331, Static269.aClass3_Sub2_Sub4_2.group)));
+            Static166.method3166(new Packet(MapList.archive.fetchFile(Static42.aClass100_331, Static269.aClass3_Sub2_Sub4_2.group)));
             WorldMap.loadPercentage = 60;
             ClientProt.ping(true);
             GameShell.resetTimer();
         } else if (WorldMap.loadPercentage == 60) {
-            if (Static119.aClass153_44.isGroupNameValid(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.group, Static265.aClass100_1086}))) {
-                if (!Static119.aClass153_44.isGroupReady(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.group, Static265.aClass100_1086}))) {
+            if (MapList.archive.isGroupNameValid(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.group, Static265.aClass100_1086}))) {
+                if (!MapList.archive.isGroupReady(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.group, Static265.aClass100_1086}))) {
                     return;
                 }
-                Static203.aMapElementList_1 = MapElementList.create(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.group, Static265.aClass100_1086}), Static119.aClass153_44);
+                Static203.aMapElementList_1 = MapElementList.create(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.group, Static265.aClass100_1086}), MapList.archive);
             } else {
                 Static203.aMapElementList_1 = new MapElementList(0);
             }
@@ -229,7 +231,7 @@ public class Preferences {
         setAllLevelsVisible(true);
         roofsVisible = true;
         stereo = true;
-        Static220.aBoolean244 = true;
+        highWaterDetail = true;
         windowMode = 0;
         fullScreenHeight = 0;
         showGroundDecorations = true;
@@ -307,7 +309,7 @@ public class Preferences {
         local4.p1(Static209.aBoolean240 ? 1 : 0);
         local4.p1(Static139.anInt3451);
         local4.p1(highDetailLighting ? 1 : 0);
-        local4.p1(Static220.aBoolean244 ? 1 : 0);
+        local4.p1(highWaterDetail ? 1 : 0);
         local4.p1(fogEnabled ? 1 : 0);
         local4.p1(windowMode);
         local4.p1(stereo ? 1 : 0);

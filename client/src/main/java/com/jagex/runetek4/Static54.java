@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static54 {
 
-	@OriginalMember(owner = "client!ed", name = "D", descriptor = "Lclient!na;")
-	public static final JString DETAILS = JString.parse("details");
-
 	@OriginalMember(owner = "client!ed", name = "a", descriptor = "(ZIIII)V")
 	public static void method1306(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		if (arg3 >= Static172.anInt4164 && arg3 <= FloorUnderlayTypeList.anInt5063) {

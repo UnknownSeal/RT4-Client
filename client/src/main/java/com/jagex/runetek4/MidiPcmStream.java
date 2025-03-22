@@ -151,24 +151,24 @@ public final class MidiPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!va", name = "d", descriptor = "(I)Z")
 	public final synchronized boolean method4414() {
-		return this.aClass84_1.method2628();
+		return this.aClass84_1.isValid();
 	}
 
 	@OriginalMember(owner = "runetek4.client!va", name = "a", descriptor = "(ZLclient!rf;ZB)V")
 	private synchronized void method4416(@OriginalArg(0) boolean arg0, @OriginalArg(1) Song arg1, @OriginalArg(2) boolean arg2) {
 		this.method4448(arg2);
-		this.aClass84_1.method2635(arg1.aByteArray65);
+		this.aClass84_1.init(arg1.aByteArray65);
 		this.aBoolean293 = arg0;
 		this.aLong189 = 0L;
-		@Pc(24) int local24 = this.aClass84_1.method2629();
+		@Pc(24) int local24 = this.aClass84_1.getTrackCount();
 		for (@Pc(26) int local26 = 0; local26 < local24; local26++) {
-			this.aClass84_1.method2631(local26);
-			this.aClass84_1.method2632(local26);
-			this.aClass84_1.method2636(local26);
+			this.aClass84_1.loadTrackPosition(local26);
+			this.aClass84_1.addDeltaTime(local26);
+			this.aClass84_1.saveTrackPosition(local26);
 		}
-		this.anInt5675 = this.aClass84_1.method2637();
-		this.anInt5674 = this.aClass84_1.anIntArray310[this.anInt5675];
-		this.aLong188 = this.aClass84_1.method2625(this.anInt5674);
+		this.anInt5675 = this.aClass84_1.getNextTrack();
+		this.anInt5674 = this.aClass84_1.times[this.anInt5675];
+		this.aLong188 = this.aClass84_1.getTimeMillis(this.anInt5674);
 	}
 
 	@OriginalMember(owner = "runetek4.client!va", name = "b", descriptor = "(III)V")
@@ -496,8 +496,8 @@ public final class MidiPcmStream extends PcmStream {
 	@OriginalMember(owner = "runetek4.client!va", name = "b", descriptor = "([III)V")
 	@Override
 	public final synchronized void method4408(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		if (this.aClass84_1.method2628()) {
-			@Pc(18) int local18 = this.aClass84_1.anInt3303 * this.anInt5646 / AudioChannel.sampleRate;
+		if (this.aClass84_1.isValid()) {
+			@Pc(18) int local18 = this.aClass84_1.division * this.anInt5646 / AudioChannel.sampleRate;
 			do {
 				@Pc(28) long local28 = this.aLong189 + (long) arg2 * (long) local18;
 				if (this.aLong188 - local28 >= 0L) {
@@ -510,7 +510,7 @@ public final class MidiPcmStream extends PcmStream {
 				arg2 -= local59;
 				arg1 += local59;
 				this.method4435();
-			} while (this.aClass84_1.method2628());
+			} while (this.aClass84_1.isValid());
 		}
 		this.aClass3_Sub3_Sub3_1.method4408(arg0, arg1, arg2);
 	}
@@ -635,12 +635,12 @@ public final class MidiPcmStream extends PcmStream {
 			return;
 		}
 		while (this.anInt5674 == local11) {
-			while (local11 == this.aClass84_1.anIntArray310[local8]) {
-				this.aClass84_1.method2631(local8);
-				@Pc(64) int local64 = this.aClass84_1.method2630(local8);
+			while (local11 == this.aClass84_1.times[local8]) {
+				this.aClass84_1.loadTrackPosition(local8);
+				@Pc(64) int local64 = this.aClass84_1.getNextEvent(local8);
 				if (local64 == 1) {
-					this.aClass84_1.method2639();
-					this.aClass84_1.method2636(local8);
+					this.aClass84_1.loadEndOfTrackPosition();
+					this.aClass84_1.saveTrackPosition(local8);
 					if (this.aClass84_1.method2626()) {
 						if (this.aClass3_Sub29_2 != null) {
 							this.method4431(this.aBoolean293, this.aClass3_Sub29_2);
@@ -649,22 +649,22 @@ public final class MidiPcmStream extends PcmStream {
 						}
 						if (!this.aBoolean293 || local11 == 0) {
 							this.method4441(true);
-							this.aClass84_1.method2638();
+							this.aClass84_1.release();
 							return;
 						}
-						this.aClass84_1.method2627(local20);
+						this.aClass84_1.setStartMillis(local20);
 					}
 					break;
 				}
 				if ((local64 & 0x80) != 0) {
 					this.method4429(local64);
 				}
-				this.aClass84_1.method2632(local8);
-				this.aClass84_1.method2636(local8);
+				this.aClass84_1.addDeltaTime(local8);
+				this.aClass84_1.saveTrackPosition(local8);
 			}
-			local8 = this.aClass84_1.method2637();
-			local11 = this.aClass84_1.anIntArray310[local8];
-			local20 = this.aClass84_1.method2625(local11);
+			local8 = this.aClass84_1.getNextTrack();
+			local11 = this.aClass84_1.times[local8];
+			local20 = this.aClass84_1.getTimeMillis(local11);
 		}
 		this.anInt5675 = local8;
 		this.aLong188 = local20;
@@ -672,7 +672,7 @@ public final class MidiPcmStream extends PcmStream {
 		if (this.aClass3_Sub29_2 != null && local11 > this.anInt5676) {
 			this.anInt5675 = -1;
 			this.anInt5674 = this.anInt5676;
-			this.aLong188 = this.aClass84_1.method2625(this.anInt5674);
+			this.aLong188 = this.aClass84_1.getTimeMillis(this.anInt5674);
 		}
 	}
 
@@ -689,8 +689,8 @@ public final class MidiPcmStream extends PcmStream {
 	@OriginalMember(owner = "runetek4.client!va", name = "c", descriptor = "(I)V")
 	@Override
 	public final synchronized void method4410(@OriginalArg(0) int arg0) {
-		if (this.aClass84_1.method2628()) {
-			@Pc(15) int local15 = this.aClass84_1.anInt3303 * this.anInt5646 / AudioChannel.sampleRate;
+		if (this.aClass84_1.isValid()) {
+			@Pc(15) int local15 = this.aClass84_1.division * this.anInt5646 / AudioChannel.sampleRate;
 			do {
 				@Pc(25) long local25 = this.aLong189 + (long) arg0 * (long) local15;
 				if (this.aLong188 - local25 >= 0L) {
@@ -702,7 +702,7 @@ public final class MidiPcmStream extends PcmStream {
 				this.aLong189 += (long) local57 * (long) local15;
 				this.aClass3_Sub3_Sub3_1.method4410(local57);
 				this.method4435();
-			} while (this.aClass84_1.method2628());
+			} while (this.aClass84_1.isValid());
 		}
 		this.aClass3_Sub3_Sub3_1.method4410(arg0);
 	}
@@ -817,7 +817,7 @@ public final class MidiPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!va", name = "b", descriptor = "(ZB)V")
 	private synchronized void method4448(@OriginalArg(0) boolean arg0) {
-		this.aClass84_1.method2638();
+		this.aClass84_1.release();
 		this.aClass3_Sub29_2 = null;
 		this.method4441(arg0);
 	}

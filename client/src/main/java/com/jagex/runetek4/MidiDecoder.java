@@ -9,49 +9,52 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("runetek4.client!ki")
 public final class MidiDecoder {
 
+	@OriginalMember(owner = "runetek4.client!ki", name = "e", descriptor = "[B")
+	public static final byte[] STATUS_LENGTHS = new byte[] { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
 	@OriginalMember(owner = "runetek4.client!ki", name = "b", descriptor = "[I")
-	public int[] anIntArray310;
+	public int[] times;
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "c", descriptor = "[I")
-	private int[] anIntArray311;
+	private int[] positions;
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "d", descriptor = "I")
-	public int anInt3303;
+	public int division;
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "f", descriptor = "[I")
-	private int[] anIntArray312;
+	private int[] startPositions;
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "g", descriptor = "J")
-	private long aLong117;
+	private long startMillis;
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "h", descriptor = "[I")
-	private int[] anIntArray313;
+	private int[] statuses;
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "i", descriptor = "I")
-	private int anInt3304;
+	private int tempo;
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "a", descriptor = "Lclient!wa;")
-	private final Packet aClass3_Sub15_6 = new Packet(null);
+	private final Packet packet = new Packet(null);
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "<init>", descriptor = "()V")
 	public MidiDecoder() {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "<init>", descriptor = "([B)V")
-	public MidiDecoder(@OriginalArg(0) byte[] arg0) {
-		this.method2635(arg0);
+	public MidiDecoder(@OriginalArg(0) byte[] bytes) {
+		this.init(bytes);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "a", descriptor = "(I)J")
-	public final long method2625(@OriginalArg(0) int arg0) {
-		return this.aLong117 + (long) arg0 * (long) this.anInt3304;
+	public final long getTimeMillis(@OriginalArg(0) int time) {
+		return this.startMillis + (long) time * (long) this.tempo;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "b", descriptor = "()Z")
 	public final boolean method2626() {
-		@Pc(3) int local3 = this.anIntArray311.length;
-		for (@Pc(5) int local5 = 0; local5 < local3; local5++) {
-			if (this.anIntArray311[local5] >= 0) {
+		@Pc(3) int tracks = this.positions.length;
+		for (@Pc(5) int i = 0; i < tracks; i++) {
+			if (this.positions[i] >= 0) {
 				return false;
 			}
 		}
@@ -59,161 +62,161 @@ public final class MidiDecoder {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "a", descriptor = "(J)V")
-	public final void method2627(@OriginalArg(0) long arg0) {
-		this.aLong117 = arg0;
-		@Pc(6) int local6 = this.anIntArray311.length;
-		for (@Pc(8) int local8 = 0; local8 < local6; local8++) {
-			this.anIntArray310[local8] = 0;
-			this.anIntArray313[local8] = 0;
-			this.aClass3_Sub15_6.offset = this.anIntArray312[local8];
-			this.method2632(local8);
-			this.anIntArray311[local8] = this.aClass3_Sub15_6.offset;
+	public final void setStartMillis(@OriginalArg(0) long millis) {
+		this.startMillis = millis;
+		@Pc(6) int tracks = this.positions.length;
+		for (@Pc(8) int i = 0; i < tracks; i++) {
+			this.times[i] = 0;
+			this.statuses[i] = 0;
+			this.packet.offset = this.startPositions[i];
+			this.addDeltaTime(i);
+			this.positions[i] = this.packet.offset;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "c", descriptor = "()Z")
-	public final boolean method2628() {
-		return this.aClass3_Sub15_6.data != null;
+	public final boolean isValid() {
+		return this.packet.data != null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "d", descriptor = "()I")
-	public final int method2629() {
-		return this.anIntArray311.length;
+	public final int getTrackCount() {
+		return this.positions.length;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "b", descriptor = "(I)I")
-	public final int method2630(@OriginalArg(0) int arg0) {
-		return this.method2634(arg0);
+	public final int getNextEvent(@OriginalArg(0) int track) {
+		return this.getNextEventInternal(track);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "c", descriptor = "(I)V")
-	public final void method2631(@OriginalArg(0) int arg0) {
-		this.aClass3_Sub15_6.offset = this.anIntArray311[arg0];
+	public final void loadTrackPosition(@OriginalArg(0) int track) {
+		this.packet.offset = this.positions[track];
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "d", descriptor = "(I)V")
-	public final void method2632(@OriginalArg(0) int arg0) {
-		@Pc(4) int local4 = this.aClass3_Sub15_6.gVarInt();
-		this.anIntArray310[arg0] += local4;
+	public final void addDeltaTime(@OriginalArg(0) int track) {
+		@Pc(4) int deltaTime = this.packet.gVarInt();
+		this.times[track] += deltaTime;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "a", descriptor = "(II)I")
-	private int method2633(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		@Pc(12) int local12;
-		if (arg1 != 255) {
-			@Pc(78) byte local78 = Static135.aByteArray46[arg1 - 128];
-			local12 = arg1;
-			if (local78 >= 1) {
-				local12 = arg1 | this.aClass3_Sub15_6.g1() << 8;
+	private int getNextEvent(@OriginalArg(0) int arg0, @OriginalArg(1) int status) {
+		@Pc(12) int event;
+		if (status != 255) {
+			@Pc(78) byte len = STATUS_LENGTHS[status - 128];
+			event = status;
+			if (len >= 1) {
+				event = status | this.packet.g1() << 8;
 			}
-			if (local78 >= 2) {
-				local12 |= this.aClass3_Sub15_6.g1() << 16;
+			if (len >= 2) {
+				event |= this.packet.g1() << 16;
 			}
-			return local12;
+			return event;
 		}
-		@Pc(7) int local7 = this.aClass3_Sub15_6.g1();
-		local12 = this.aClass3_Sub15_6.gVarInt();
-		if (local7 == 47) {
-			this.aClass3_Sub15_6.offset += local12;
+		@Pc(7) int type = this.packet.g1();
+		event = this.packet.gVarInt();
+		if (type == 47) {
+			this.packet.offset += event;
 			return 1;
-		} else if (local7 == 81) {
-			@Pc(32) int local32 = this.aClass3_Sub15_6.g3();
-			local12 -= 3;
-			@Pc(38) int local38 = this.anIntArray310[arg0];
-			this.aLong117 += (long) local38 * (long) (this.anInt3304 - local32);
-			this.anInt3304 = local32;
-			this.aClass3_Sub15_6.offset += local12;
+		} else if (type == 81) {
+			@Pc(32) int tempo = this.packet.g3();
+			event -= 3;
+			@Pc(38) int time = this.times[arg0];
+			this.startMillis += (long) time * (long) (this.tempo - tempo);
+			this.tempo = tempo;
+			this.packet.offset += event;
 			return 2;
 		} else {
-			this.aClass3_Sub15_6.offset += local12;
+			this.packet.offset += event;
 			return 3;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "e", descriptor = "(I)I")
-	private int method2634(@OriginalArg(0) int arg0) {
-		@Pc(7) byte local7 = this.aClass3_Sub15_6.data[this.aClass3_Sub15_6.offset];
-		@Pc(13) int local13;
-		if (local7 < 0) {
-			local13 = local7 & 0xFF;
-			this.anIntArray313[arg0] = local13;
-			this.aClass3_Sub15_6.offset++;
+	private int getNextEventInternal(@OriginalArg(0) int track) {
+		@Pc(7) byte statusByte = this.packet.data[this.packet.offset];
+		@Pc(13) int status;
+		if (statusByte < 0) {
+			status = statusByte & 0xFF;
+			this.statuses[track] = status;
+			this.packet.offset++;
 		} else {
-			local13 = this.anIntArray313[arg0];
+			status = this.statuses[track];
 		}
-		if (local13 != 240 && local13 != 247) {
-			return this.method2633(arg0, local13);
+		if (status != 240 && status != 247) {
+			return this.getNextEvent(track, status);
 		}
-		@Pc(42) int local42 = this.aClass3_Sub15_6.gVarInt();
-		if (local13 == 247 && local42 > 0) {
-			@Pc(57) int local57 = this.aClass3_Sub15_6.data[this.aClass3_Sub15_6.offset] & 0xFF;
-			if (local57 >= 241 && local57 <= 243 || local57 == 246 || local57 == 248 || local57 >= 250 && local57 <= 252 || local57 == 254) {
-				this.aClass3_Sub15_6.offset++;
-				this.anIntArray313[arg0] = local57;
-				return this.method2633(arg0, local57);
+		@Pc(42) int len = this.packet.gVarInt();
+		if (status == 247 && len > 0) {
+			@Pc(57) int status2 = this.packet.data[this.packet.offset] & 0xFF;
+			if (status2 >= 241 && status2 <= 243 || status2 == 246 || status2 == 248 || status2 >= 250 && status2 <= 252 || status2 == 254) {
+				this.packet.offset++;
+				this.statuses[track] = status2;
+				return this.getNextEvent(track, status2);
 			}
 		}
-		this.aClass3_Sub15_6.offset += local42;
+		this.packet.offset += len;
 		return 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "a", descriptor = "([B)V")
-	public final void method2635(@OriginalArg(0) byte[] arg0) {
-		this.aClass3_Sub15_6.data = arg0;
-		this.aClass3_Sub15_6.offset = 10;
-		@Pc(12) int local12 = this.aClass3_Sub15_6.g2();
-		this.anInt3303 = this.aClass3_Sub15_6.g2();
-		this.anInt3304 = 500000;
-		this.anIntArray312 = new int[local12];
-		@Pc(27) int local27 = 0;
-		while (local27 < local12) {
-			@Pc(35) int local35 = this.aClass3_Sub15_6.g4();
-			@Pc(40) int local40 = this.aClass3_Sub15_6.g4();
-			if (local35 == 1297379947) {
-				this.anIntArray312[local27] = this.aClass3_Sub15_6.offset;
-				local27++;
+	public final void init(@OriginalArg(0) byte[] bytes) {
+		this.packet.data = bytes;
+		this.packet.offset = 10;
+		@Pc(12) int tracks = this.packet.g2();
+		this.division = this.packet.g2();
+		this.tempo = 500000;
+		this.startPositions = new int[tracks];
+		@Pc(27) int i = 0;
+		while (i < tracks) {
+			@Pc(35) int id = this.packet.g4();
+			@Pc(40) int len = this.packet.g4();
+			if (id == 1297379947) {
+				this.startPositions[i] = this.packet.offset;
+				i++;
 			}
-			this.aClass3_Sub15_6.offset += local40;
+			this.packet.offset += len;
 		}
-		this.aLong117 = 0L;
-		this.anIntArray311 = new int[local12];
-		for (local27 = 0; local27 < local12; local27++) {
-			this.anIntArray311[local27] = this.anIntArray312[local27];
+		this.startMillis = 0L;
+		this.positions = new int[tracks];
+		for (i = 0; i < tracks; i++) {
+			this.positions[i] = this.startPositions[i];
 		}
-		this.anIntArray310 = new int[local12];
-		this.anIntArray313 = new int[local12];
+		this.times = new int[tracks];
+		this.statuses = new int[tracks];
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "f", descriptor = "(I)V")
-	public final void method2636(@OriginalArg(0) int arg0) {
-		this.anIntArray311[arg0] = this.aClass3_Sub15_6.offset;
+	public final void saveTrackPosition(@OriginalArg(0) int track) {
+		this.positions[track] = this.packet.offset;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "e", descriptor = "()I")
-	public final int method2637() {
-		@Pc(3) int local3 = this.anIntArray311.length;
-		@Pc(5) int local5 = -1;
-		@Pc(7) int local7 = Integer.MAX_VALUE;
-		for (@Pc(9) int local9 = 0; local9 < local3; local9++) {
-			if (this.anIntArray311[local9] >= 0 && this.anIntArray310[local9] < local7) {
-				local5 = local9;
-				local7 = this.anIntArray310[local9];
+	public final int getNextTrack() {
+		@Pc(3) int tracks = this.positions.length;
+		@Pc(5) int track = -1;
+		@Pc(7) int minTime = Integer.MAX_VALUE;
+		for (@Pc(9) int i = 0; i < tracks; i++) {
+			if (this.positions[i] >= 0 && this.times[i] < minTime) {
+				track = i;
+				minTime = this.times[i];
 			}
 		}
-		return local5;
+		return track;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "f", descriptor = "()V")
-	public final void method2638() {
-		this.aClass3_Sub15_6.data = null;
-		this.anIntArray312 = null;
-		this.anIntArray311 = null;
-		this.anIntArray310 = null;
-		this.anIntArray313 = null;
+	public final void release() {
+		this.packet.data = null;
+		this.startPositions = null;
+		this.positions = null;
+		this.times = null;
+		this.statuses = null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "g", descriptor = "()V")
-	public final void method2639() {
-		this.aClass3_Sub15_6.offset = -1;
+	public final void loadEndOfTrackPosition() {
+		this.packet.offset = -1;
 	}
 }

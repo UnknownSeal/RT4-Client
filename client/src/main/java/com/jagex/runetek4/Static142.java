@@ -68,10 +68,10 @@ public final class Static142 {
 							Static138.aClass3_Sub2_Sub1Array5[local58.anInt3732].render(arg2 + Static65.anInt1951 - 12, arg0 + -30 - -Static16.anInt548);
 						}
 					}
-					@Pc(308) Class102[] local308 = MiniMap.hintMapMarkers;
+					@Pc(308) MapMarker[] local308 = MiniMap.hintMapMarkers;
 					for (local310 = 0; local310 < local308.length; local310++) {
-						@Pc(322) Class102 local322 = local308[local310];
-						if (local322 != null && local322.headIconDrawType == 1 && local322.hintIconNpcTarget == NpcList.npcIds[local5 - PlayerList.playerCount] && client.loop % 20 < 10) {
+						@Pc(322) MapMarker local322 = local308[local310];
+						if (local322 != null && local322.type == 1 && local322.actorTargetId == NpcList.npcIds[local5 - PlayerList.playerCount] && client.loop % 20 < 10) {
 							if (local58.overlayheight == -1) {
 								local359 = local17.height() + 15;
 							} else {
@@ -100,10 +100,10 @@ public final class Static142 {
 						}
 					}
 					if (local5 >= 0) {
-						@Pc(159) Class102[] local159 = MiniMap.hintMapMarkers;
+						@Pc(159) MapMarker[] local159 = MiniMap.hintMapMarkers;
 						for (local161 = 0; local161 < local159.length; local161++) {
-							@Pc(173) Class102 local173 = local159[local161];
-							if (local173 != null && local173.headIconDrawType == 10 && PlayerList.playerIds[local5] == local173.hintIconNpcTarget) {
+							@Pc(173) MapMarker local173 = local159[local161];
+							if (local173 != null && local173.type == 10 && PlayerList.playerIds[local5] == local173.actorTargetId) {
 								Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.height() + 15, arg1 >> 1);
 								if (Static65.anInt1951 > -1) {
 									Static276.aClass3_Sub2_Sub1Array11[local173.anInt4048].render(arg2 + Static65.anInt1951 - 12, arg0 + (Static16.anInt548 - local74));
