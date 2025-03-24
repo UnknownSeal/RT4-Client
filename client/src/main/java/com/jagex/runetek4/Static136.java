@@ -70,7 +70,7 @@ public final class Static136 {
 		Static15.lowMemory = arg0.g1() == 1;
 		Static11.aBoolean15 = arg0.g1() == 1;
 		Static159.aBoolean189 = arg0.g1() == 1;
-		Static209.aBoolean240 = arg0.g1() == 1;
+		Preferences.characterShadowsOn = arg0.g1() == 1;
 		Static139.anInt3451 = arg0.g1();
 		if (Static139.anInt3451 > 2) {
 			Static139.anInt3451 = 2;

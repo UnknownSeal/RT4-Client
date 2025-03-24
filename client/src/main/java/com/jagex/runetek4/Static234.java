@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.media.renderable.actor.Player;
@@ -49,9 +48,9 @@ public final class Static234 {
 				Static223.method3855(info, local43, local14);
 			}
 			if ((local18 & 0x4) != 0) {
-				local14.targetId = Protocol.inboundBuffer.g2sub();
-				if (local14.targetId == 65535) {
-					local14.targetId = -1;
+				local14.faceEntity = Protocol.inboundBuffer.g2sub();
+				if (local14.faceEntity == 65535) {
+					local14.faceEntity = -1;
 				}
 			}
 			if ((local18 & 0x80) != 0) {
@@ -86,13 +85,13 @@ public final class Static234 {
 				}
 			}
 			if ((local18 & 0x1) != 0) {
-				if (local14.type.hasBackgroundSound()) {
+				if (local14.type.hasAreaSound()) {
 					AreaSoundManager.remove(local14);
 				}
-				local14.setNpcType(NpcType.getDefinition(Protocol.inboundBuffer.g2le()));
+				local14.setNpcType(NpcTypeList.get(Protocol.inboundBuffer.g2le()));
 				local14.setSize(local14.type.size);
-				local14.anInt3365 = local14.type.bas;
-				if (local14.type.hasBackgroundSound()) {
+				local14.anInt3365 = local14.type.bastypeid;
+				if (local14.type.hasAreaSound()) {
 					AreaSoundManager.add(local14.movementQueueZ[0], null, 0, local14, local14.movementQueueX[0], Player.plane, null);
 				}
 			}

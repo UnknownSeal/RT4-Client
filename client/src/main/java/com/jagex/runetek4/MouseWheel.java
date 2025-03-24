@@ -15,7 +15,7 @@ public abstract class MouseWheel {
     @OriginalMember(owner = "runetek4.client!dh", name = "a", descriptor = "(B)Lclient!uc;")
     public static MouseWheel create() {
         try {
-            return (MouseWheel) Class.forName("com.jagex.runetek4.JavaMouseWheel").getDeclaredConstructor().newInstance();
+            return new JavaMouseWheel();
         } catch (@Pc(15) Throwable local15) {
             return null;
         }

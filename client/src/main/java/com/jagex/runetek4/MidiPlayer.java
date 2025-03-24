@@ -32,6 +32,8 @@ public class MidiPlayer {
     public static MidiPcmStream stream;
     @OriginalMember(owner = "runetek4.client!sf", name = "j", descriptor = "I")
     public static int songFileId;
+    @OriginalMember(owner = "runetek4.client!le", name = "k", descriptor = "Z")
+    public static boolean jingle = false;
 
     @OriginalMember(owner = "runetek4.client!km", name = "c", descriptor = "(Z)Z")
     public static boolean method2699() {

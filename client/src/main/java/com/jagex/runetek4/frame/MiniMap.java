@@ -195,13 +195,13 @@ public class MiniMap {
                     if (local507 != null && local507.multiNpcs != null) {
                         local507 = local507.getMultiNPC();
                     }
-                    if (local507 != null && local507.minimap && local507.active) {
+                    if (local507 != null && local507.miniMapDisplay && local507.interactive) {
                         local154 = local498.xFine / 32 - PlayerList.self.xFine / 32;
                         npcX = local498.zFine / 32 - PlayerList.self.zFine / 32;
-                        if (local507.anInt3739 == -1) {
+                        if (local507.miniMapMarkerObjectEntry == -1) {
                             drawOnMinimap(arg3, Sprites.mapdots[1], npcX, local154, arg1, arg2);
                         } else {
-                            drawOnMinimap(arg3, Static67.aClass3_Sub2_Sub1Array4[local507.anInt3739], npcX, local154, arg1, arg2);
+                            drawOnMinimap(arg3, Static67.aClass3_Sub2_Sub1Array4[local507.miniMapMarkerObjectEntry], npcX, local154, arg1, arg2);
                         }
                     }
                 }
@@ -513,7 +513,7 @@ public class MiniMap {
 
     @OriginalMember(owner = "client!cj", name = "a", descriptor = "(ILclient!pb;ZIIII)Z")
 	public static boolean renderScenery(@OriginalArg(0) int arg0, @OriginalArg(1) LocType arg1, @OriginalArg(5) int arg2, @OriginalArg(6) int arg3) {
-		@Pc(10) MSIType msiType = Static40.get(arg1.mapSceneIcon);
+		@Pc(10) MSIType msiType = MsiTypeList.get(arg1.mapSceneIcon);
 		if (msiType.spriteId == -1) {
 			return true;
 		}

@@ -18,18 +18,18 @@ public final class Static32 {
 			@Pc(24) int local24 = arg3[local7];
 			@Pc(28) int local28 = arg0[local7];
 			@Pc(30) int local30 = 0;
-			while (local24 != 0 && local30 < arg2.aClass147Array3.length) {
+			while (local24 != 0 && local30 < arg2.aPathingEntityClass147Array3.length) {
 				if ((local24 & 0x1) != 0) {
 					if (local20 == -1) {
-						arg2.aClass147Array3[local30] = null;
+						arg2.aPathingEntityClass147Array3[local30] = null;
 					} else {
 						@Pc(68) SeqType local68 = SeqTypeList.getAnimationSequence(local20);
 						@Pc(71) int local71 = local68.anInt5347;
-						@Pc(76) Class147 local76 = arg2.aClass147Array3[local30];
+						@Pc(76) PathingEntity_Class147 local76 = arg2.aPathingEntityClass147Array3[local30];
 						if (local76 != null) {
 							if (local20 == local76.anInt5396) {
 								if (local71 == 0) {
-									local76 = arg2.aClass147Array3[local30] = null;
+									local76 = arg2.aPathingEntityClass147Array3[local30] = null;
 								} else if (local71 == 1) {
 									local76.anInt5400 = 0;
 									local76.anInt5398 = 1;
@@ -41,11 +41,11 @@ public final class Static32 {
 									local76.anInt5400 = 0;
 								}
 							} else if (local68.priority >= SeqTypeList.getAnimationSequence(local76.anInt5396).priority) {
-								local76 = arg2.aClass147Array3[local30] = null;
+								local76 = arg2.aPathingEntityClass147Array3[local30] = null;
 							}
 						}
 						if (local76 == null) {
-							local76 = arg2.aClass147Array3[local30] = new Class147();
+							local76 = arg2.aPathingEntityClass147Array3[local30] = new PathingEntity_Class147();
 							local76.anInt5396 = local20;
 							local76.anInt5398 = 1;
 							local76.anInt5404 = 0;

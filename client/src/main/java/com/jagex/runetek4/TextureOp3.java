@@ -33,8 +33,8 @@ public final class TextureOp3 extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!an", name = "b", descriptor = "(II)[[I")
 	@Override
 	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
-		@Pc(11) int[][] local11 = this.clearImageCache.method3173(arg0);
-		if (this.clearImageCache.aBoolean195) {
+		@Pc(11) int[][] local11 = this.clearImageCache.get(arg0);
+		if (this.clearImageCache.invalid) {
 			@Pc(25) int[] local25 = this.getChildMonochromeOutput(0, Texture.heightMask & arg0 - 1);
 			@Pc(31) int[] local31 = this.getChildMonochromeOutput(0, arg0);
 			@Pc(41) int[] local41 = this.getChildMonochromeOutput(0, arg0 + 1 & Texture.heightMask);

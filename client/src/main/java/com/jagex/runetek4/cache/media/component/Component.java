@@ -1,7 +1,6 @@
 package com.jagex.runetek4.cache.media.component;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
@@ -552,7 +551,7 @@ public final class Component {
 		if (this.anIntArray37 != null) {
 			return true;
 		}
-		@Pc(18) SoftwareIndexedSprite local18 = Static164.method3119(this.spriteId, InterfaceList.gameImageJs5);
+		@Pc(18) SoftwareIndexedSprite local18 = SpriteLoader.loadSoftwareIndexedSprite(this.spriteId, InterfaceList.gameImageJs5);
 		if (local18 == null) {
 			return false;
 		}
@@ -905,7 +904,7 @@ public final class Component {
 						aBoolean72 = true;
 						return null;
 					}
-					local61 = local69.applyLightning(64, 768, -50, -10, -50);
+					local61 = local69.createModel(64, 768, -50, -10, -50);
 					interfaceModelCache.put(local61, local13 + (local10 << 16));
 				}
 				if (arg1 != null) {
@@ -913,7 +912,7 @@ public final class Component {
 				}
 				return local61;
 			} else if (local10 == 2) {
-				local61 = NpcType.getDefinition(local13).getHeadModel(arg1, arg3, arg0, arg2);
+				local61 = NpcTypeList.get(local13).getHeadModel(arg1, arg3, arg0, arg2);
 				if (local61 == null) {
 					aBoolean72 = true;
 					return null;
@@ -941,7 +940,7 @@ public final class Component {
 					return local173;
 				}
 			} else if (local10 == 6) {
-				local61 = NpcType.getDefinition(local13).method2937(null, 0, 0, arg0, arg3, arg2, null, 0, arg1);
+				local61 = NpcTypeList.get(local13).getBodyModel(null, 0, 0, arg0, arg3, arg2, null, 0, arg1);
 				if (local61 == null) {
 					aBoolean72 = true;
 					return null;

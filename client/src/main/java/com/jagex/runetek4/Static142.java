@@ -57,25 +57,25 @@ public final class Static142 {
 					if (local58.multiNpcs != null) {
 						local58 = local58.getMultiNPC();
 					}
-					if (local58.anInt3732 >= 0 && Static138.aClass3_Sub2_Sub1Array5.length > local58.anInt3732) {
-						if (local58.overlayheight == -1) {
+					if (local58.headIcon >= 0 && Static138.aClass3_Sub2_Sub1Array5.length > local58.headIcon) {
+						if (local58.iconHeight == -1) {
 							local265 = local17.height() + 15;
 						} else {
-							local265 = local58.overlayheight + 15;
+							local265 = local58.iconHeight + 15;
 						}
 						Static180.method3326(arg4 >> 1, arg3, local17, arg5, local265, arg1 >> 1);
 						if (ClientScriptRunner.anInt1951 > -1) {
-							Static138.aClass3_Sub2_Sub1Array5[local58.anInt3732].render(arg2 + ClientScriptRunner.anInt1951 - 12, arg0 + -30 - -Static16.anInt548);
+							Static138.aClass3_Sub2_Sub1Array5[local58.headIcon].render(arg2 + ClientScriptRunner.anInt1951 - 12, arg0 + -30 - -Static16.anInt548);
 						}
 					}
 					@Pc(308) MapMarker[] local308 = MiniMap.hintMapMarkers;
 					for (local310 = 0; local310 < local308.length; local310++) {
 						@Pc(322) MapMarker local322 = local308[local310];
 						if (local322 != null && local322.type == 1 && local322.actorTargetId == NpcList.npcIds[local5 - PlayerList.playerCount] && client.loop % 20 < 10) {
-							if (local58.overlayheight == -1) {
+							if (local58.iconHeight == -1) {
 								local359 = local17.height() + 15;
 							} else {
-								local359 = local58.overlayheight + 15;
+								local359 = local58.iconHeight + 15;
 							}
 							Static180.method3326(arg4 >> 1, arg3, local17, arg5, local359, arg1 >> 1);
 							if (ClientScriptRunner.anInt1951 > -1) {
@@ -131,11 +131,11 @@ public final class Static142 {
 					@Pc(512) Sprite local512 = Static116.aClass3_Sub2_Sub1Array3[1];
 					if (local17 instanceof Npc) {
 						@Pc(518) Npc local518 = (Npc) local17;
-						@Pc(528) Sprite[] local528 = (Sprite[]) HitBarList.hitBars.get((long) local518.type.anInt3736);
+						@Pc(528) Sprite[] local528 = (Sprite[]) HitBarList.hitBars.get((long) local518.type.hitBarId);
 						if (local528 == null) {
-							local528 = Static209.method3708(local518.type.anInt3736, client.js5Archive8);
+							local528 = Static209.method3708(local518.type.hitBarId, client.js5Archive8);
 							if (local528 != null) {
-								HitBarList.hitBars.put(local528, (long) local518.type.anInt3736);
+								HitBarList.hitBars.put(local528, (long) local518.type.hitBarId);
 							}
 						}
 						if (local528 != null && local528.length == 2) {
@@ -143,10 +143,10 @@ public final class Static142 {
 							local508 = local528[0];
 						}
 						@Pc(571) NpcType local571 = local518.type;
-						if (local571.overlayheight == -1) {
+						if (local571.iconHeight == -1) {
 							local310 = local17.height();
 						} else {
-							local310 = local571.overlayheight;
+							local310 = local571.iconHeight;
 						}
 					} else {
 						local310 = local17.height();
@@ -176,10 +176,10 @@ public final class Static142 {
 						if (local17 instanceof Npc) {
 							@Pc(725) Npc local725 = (Npc) local17;
 							@Pc(728) NpcType local728 = local725.type;
-							if (local728.overlayheight == -1) {
+							if (local728.iconHeight == -1) {
 								local265 = local17.height() / 2;
 							} else {
-								local265 = local728.overlayheight / 2;
+								local265 = local728.iconHeight / 2;
 							}
 						} else {
 							local265 = local17.height() / 2;
@@ -318,8 +318,4 @@ public final class Static142 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!lc", name = "a", descriptor = "(B)I")
-	public static int getIdleLoops() {
-		return Static93.anInt2467;
-	}
 }

@@ -279,7 +279,7 @@ public class AreaSoundManager {
         }
         if (areaSound.secondaryStream != null) {
             areaSound.secondaryStream.method386(volume);
-            if (!areaSound.secondaryStream.hasNext()) {
+            if (!areaSound.secondaryStream.isLinked()) {
                 areaSound.secondaryStream = null;
             }
         } else if (areaSound.sounds != null && (areaSound.remainingLoops -= loops) <= 0) {

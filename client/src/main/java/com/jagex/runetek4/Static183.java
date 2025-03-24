@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.node.NodeQueue;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -11,17 +10,6 @@ public final class Static183 {
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "c", descriptor = "I")
 	public static int anInt4272 = (int) (Math.random() * 33.0D) - 16;
-
-	@OriginalMember(owner = "runetek4.client!ok", name = "a", descriptor = "(Lclient!ab;Lclient!ab;I)V")
-	public static void method3331(@OriginalArg(0) Node arg0, @OriginalArg(1) Node arg1) {
-		if (arg0.next != null) {
-			arg0.unlink();
-		}
-		arg0.prev = arg1;
-		arg0.next = arg1.next;
-		arg0.next.prev = arg0;
-		arg0.prev.next = arg0;
-	}
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "a", descriptor = "(IIB)Lclient!ce;")
 	public static NodeQueue method3333(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {

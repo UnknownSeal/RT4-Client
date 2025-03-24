@@ -12,12 +12,6 @@ public final class Static266 {
 	@OriginalMember(owner = "runetek4.client!vk", name = "f", descriptor = "[[[B")
 	public static byte[][][] aByteArrayArrayArray15;
 
-	@OriginalMember(owner = "runetek4.client!vk", name = "o", descriptor = "I")
-	public static int anInt5344;
-
-	@OriginalMember(owner = "runetek4.client!vk", name = "d", descriptor = "Lclient!na;")
-	public static final JString aClass100_1010 = JString.parse("null");
-
 	@OriginalMember(owner = "runetek4.client!vk", name = "h", descriptor = "I")
 	public static final int anInt5338 = (int) (Math.random() * 33.0D) - 16;
 

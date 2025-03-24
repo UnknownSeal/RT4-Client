@@ -36,9 +36,4 @@ public final class Static164 {
 		return Static254.method4346(arg0, arg1) ? Static196.method3537() : null;
 	}
 
-	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IZILclient!ve;)Lclient!ek;")
-	public static SoftwareIndexedSprite method3119(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {
-		return SpriteLoader.decode(arg1, 0, arg0) ? Static134.method2619() : null;
-	}
-
 }

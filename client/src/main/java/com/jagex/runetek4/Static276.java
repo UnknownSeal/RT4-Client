@@ -43,9 +43,4 @@ public final class Static276 {
 		return local27;
 	}
 
-	@OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(II)V")
-	public static void method4615() {
-		PreciseSleep.aClass99_29.clean(5);
-		Static219.aClass99_27.clean(5);
-	}
 }

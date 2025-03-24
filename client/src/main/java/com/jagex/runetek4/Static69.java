@@ -30,13 +30,13 @@ public final class Static69 {
 	@OriginalMember(owner = "client!fh", name = "a", descriptor = "(IIIILclient!th;JLclient!th;Lclient!th;)V")
 	public static void method1543(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Entity arg4, @OriginalArg(5) long arg5, @OriginalArg(6) Entity arg6, @OriginalArg(7) Entity arg7) {
 		@Pc(3) ObjStackEntity local3 = new ObjStackEntity();
-		local3.aClass8_9 = arg4;
-		local3.anInt3064 = arg1 * 128 + 64;
-		local3.anInt3061 = arg2 * 128 + 64;
+		local3.primary = arg4;
+		local3.xFine = arg1 * 128 + 64;
+		local3.zFine = arg2 * 128 + 64;
 		local3.anInt3057 = arg3;
-		local3.aLong108 = arg5;
-		local3.aClass8_7 = arg6;
-		local3.aClass8_8 = arg7;
+		local3.key = arg5;
+		local3.secondary = arg6;
+		local3.tertiary = arg7;
 		@Pc(34) int local34 = 0;
 		@Pc(42) Tile local42 = SceneGraph.tiles[arg0][arg1][arg2];
 		if (local42 != null) {

@@ -13,9 +13,6 @@ public final class Static245 {
 	@OriginalMember(owner = "runetek4.client!tm", name = "d", descriptor = "Lclient!na;")
 	public static final JString aClass100_1018 = JString.parse("; Expires=Thu)1 01)2Jan)21970 00:00:00 GMT; Max)2Age=0");
 
-	@OriginalMember(owner = "runetek4.client!tm", name = "e", descriptor = "Z")
-	public static boolean enabled = false;
-
 	@OriginalMember(owner = "runetek4.client!tm", name = "i", descriptor = "I")
 	public static int anInt5377 = 0;
 

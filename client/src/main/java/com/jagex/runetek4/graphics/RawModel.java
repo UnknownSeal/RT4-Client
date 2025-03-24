@@ -498,7 +498,7 @@ public final class RawModel extends Entity {
 	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(III)Lclient!th;")
 	@Override
 	public Entity createModel() {
-		return this.applyLightning(this.aShort19, this.aShort18, -50, -10, -50);
+		return this.createModel(this.aShort19, this.aShort18, -50, -10, -50);
 	}
 
 	@OriginalMember(owner = "client!gb", name = "a", descriptor = "(Lclient!gb;IS)I")
@@ -1245,7 +1245,7 @@ public final class RawModel extends Entity {
 	}
 
 	@OriginalMember(owner = "client!gb", name = "c", descriptor = "(IIIII)Lclient!ak;")
-	public Model applyLightning(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	public Model createModel(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		if (GlRenderer.enabled) {
 			@Pc(9) GlModel local9 = new GlModel(this, arg0, arg1, true);
 			local9.createBones();

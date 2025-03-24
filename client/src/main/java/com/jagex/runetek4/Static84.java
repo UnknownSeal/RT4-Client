@@ -101,9 +101,9 @@ public final class Static84 {
 			player.read(local314);
 		}
 		if ((flags & 0x2) != 0) {
-			player.targetId = Protocol.inboundBuffer.g2sub();
-			if (player.targetId == 65535) {
-				player.targetId = -1;
+			player.faceEntity = Protocol.inboundBuffer.g2sub();
+			if (player.faceEntity == 65535) {
+				player.faceEntity = -1;
 			}
 		}
 		if ((flags & 0x400) != 0) {

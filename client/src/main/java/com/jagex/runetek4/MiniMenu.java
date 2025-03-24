@@ -1390,7 +1390,7 @@ public class MiniMenu {
         }
         @Pc(112) long local112 = -1L;
         for (local15 = 0; local15 < anInt7; local15++) {
-            @Pc(121) long local121 = Static259.aLongArray11[local15];
+            @Pc(121) long local121 = Model.aLongArray11[local15];
             local47 = (int) local121 & 0x7F;
             @Pc(133) int local133 = (int) local121 >> 29 & 0x3;
             @Pc(140) int local140 = (int) (local121 >>> 32) & Integer.MAX_VALUE;
@@ -1509,7 +1509,7 @@ public class MiniMenu {
                     @Pc(931) LinkedList local931 = SceneGraph.objStacks[Player.plane][local47][local147];
                     if (local931 != null) {
                         for (@Pc(940) ObjStackNode local940 = (ObjStackNode) local931.tail(); local940 != null; local940 = (ObjStackNode) local931.prev()) {
-                            local240 = local940.aClass8_Sub7_1.anInt5555;
+                            local240 = local940.value.type;
                             @Pc(951) ObjType local951 = ObjTypeList.get(local240);
                             if (anInt5014 == 1) {
                                 addActionRow(MiniMap.anInt4075, (long) local240, JString.concatenate(new JString[] {aClass100_203, aClass100_947, local951.name}), local47, (short) 33, LocalizedText.USE, local147);
@@ -1568,7 +1568,7 @@ public class MiniMenu {
         if (npc.multiNpcs != null) {
             npc = npc.getMultiNPC();
         }
-        if (npc == null || !npc.active) {
+        if (npc == null || !npc.interactive) {
             return;
         }
         @Pc(35) JString tooltip = npc.name;
@@ -1606,11 +1606,11 @@ public class MiniMenu {
                         if (op == 3) {
                             local161 = 19;
                         }
-                        if (npc.anInt3750 == op) {
-                            local176 = npc.anInt3719;
+                        if (npc.cursor1Op == op) {
+                            local176 = npc.cursor1;
                         }
-                        if (op == npc.anInt3743) {
-                            local176 = npc.anInt3735;
+                        if (op == npc.cursor2Op) {
+                            local176 = npc.cursor2;
                         }
                         if (op == 4) {
                             local161 = 2;
@@ -1645,7 +1645,7 @@ public class MiniMenu {
                         if (menuOption != 0) {
                             menuOption += action;
                         }
-                        addActionRow(npc.cursorattack, (long) arg2, JString.concatenate(new JString[] {YELLOW2, tooltip }), arg1, menuOption, spellSelected[op], arg3);
+                        addActionRow(npc.attackCursor, (long) arg2, JString.concatenate(new JString[] {YELLOW2, tooltip }), arg1, menuOption, spellSelected[op], arg3);
                     }
                 }
             }

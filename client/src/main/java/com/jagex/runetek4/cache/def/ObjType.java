@@ -491,7 +491,7 @@ public final class ObjType {
 					local85.retexture(this.retex_s[local97], this.retex_d[local97]);
 				}
 			}
-			local76 = local85.applyLightning(this.ambient + 64, this.contrast + 768, -50, -10, -50);
+			local76 = local85.createModel(this.ambient + 64, this.contrast + 768, -50, -10, -50);
 			if (this.resizex != 128 || this.resizey != 128 || this.resizez != 128) {
 				local76.resize(this.resizex, this.resizey, this.resizez);
 			}

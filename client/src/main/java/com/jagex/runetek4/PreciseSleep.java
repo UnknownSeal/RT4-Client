@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -19,9 +18,6 @@ public final class PreciseSleep {
 
 	@OriginalMember(owner = "runetek4.client!sk", name = "gb", descriptor = "J")
 	public static long aLong174 = 0L;
-
-	@OriginalMember(owner = "runetek4.client!sk", name = "hb", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_29 = new NodeCache(64);
 
 	@OriginalMember(owner = "runetek4.client!sk", name = "a", descriptor = "(ILclient!wa;)V")
 	public static void method3980(@OriginalArg(1) Packet arg0) {

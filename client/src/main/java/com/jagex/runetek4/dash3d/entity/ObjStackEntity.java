@@ -8,26 +8,26 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class ObjStackEntity {
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "Lclient!th;")
-	public Entity aClass8_7;
+	public Entity secondary;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "b", descriptor = "I")
 	public int anInt3057;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "c", descriptor = "Lclient!th;")
-	public Entity aClass8_8;
+	public Entity tertiary;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "h", descriptor = "Lclient!th;")
-	public Entity aClass8_9;
+	public Entity primary;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "k", descriptor = "I")
-	public int anInt3061;
+	public int zFine;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "n", descriptor = "I")
 	public int offset;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "o", descriptor = "I")
-	public int anInt3064;
+	public int xFine;
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "r", descriptor = "J")
-	public long aLong108;
+	public long key;
 }

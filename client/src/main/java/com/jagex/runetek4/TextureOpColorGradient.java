@@ -304,8 +304,8 @@ public final class TextureOpColorGradient extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!um", name = "b", descriptor = "(II)[[I")
 	@Override
 	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
-		@Pc(11) int[][] local11 = this.clearImageCache.method3173(arg0);
-		if (this.clearImageCache.aBoolean195) {
+		@Pc(11) int[][] local11 = this.clearImageCache.get(arg0);
+		if (this.clearImageCache.invalid) {
 			@Pc(31) int[] local31 = this.getChildMonochromeOutput(0, arg0);
 			@Pc(35) int[] local35 = local11[1];
 			@Pc(39) int[] local39 = local11[0];

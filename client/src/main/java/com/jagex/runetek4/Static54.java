@@ -88,11 +88,11 @@ public final class Static54 {
 				local5--;
 			}
 		}
-		if (Static144.jingle && !MidiPlayer.isPlaying()) {
+		if (MidiPlayer.jingle && !MidiPlayer.isPlaying()) {
 			if (Preferences.musicVolume != 0 && MusicPlayer.groupId != -1) {
 				MidiPlayer.playImmediate(client.js5Archive6, MusicPlayer.groupId, Preferences.musicVolume);
 			}
-			Static144.jingle = false;
+			MidiPlayer.jingle = false;
 		} else if (Preferences.musicVolume != 0 && MusicPlayer.groupId != -1 && !MidiPlayer.isPlaying()) {
 			Protocol.outboundBuffer.pIsaac1(137);
 			Protocol.outboundBuffer.p4(MusicPlayer.groupId);

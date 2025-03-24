@@ -10,30 +10,34 @@ public final class MonochromeImageCache {
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "c", descriptor = "[B")
 	public static final byte[] aByteArray53 = new byte[32896];
+	@OriginalMember(owner = "runetek4.client!a", name = "b", descriptor = "[I")
+	public static final int[] anIntArray1 = new int[4096];
+	@OriginalMember(owner = "client!bc", name = "N", descriptor = "Lclient!lb;")
+	public static final MonochromeImageCacheEntry entry = new MonochromeImageCacheEntry(0, 0);
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "f", descriptor = "I")
-	private int anInt4062 = -1;
+	private int singleRow = -1;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "k", descriptor = "I")
-	private int anInt4066 = 0;
+	private int size = 0;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "g", descriptor = "Lclient!ih;")
-	private LinkedList aClass69_96 = new LinkedList();
+	private LinkedList recentlyUsed = new LinkedList();
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "w", descriptor = "Z")
-	public boolean aBoolean195 = false;
+	public boolean invalid = false;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "l", descriptor = "I")
-	private final int anInt4067;
+	private final int height;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "i", descriptor = "I")
-	private final int anInt4064;
+	private final int capacity;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "o", descriptor = "[Lclient!lb;")
-	private Class3_Sub23[] aClass3_Sub23Array1;
+	private MonochromeImageCacheEntry[] entries;
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "a", descriptor = "[[[I")
-	private int[][][] anIntArrayArrayArray13;
+	private int[][][] pixels;
 
 	static {
 		@Pc(8) int local8 = 0;
@@ -46,66 +50,74 @@ public final class MonochromeImageCache {
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "<init>", descriptor = "(III)V")
 	public MonochromeImageCache(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		this.anInt4067 = arg1;
-		this.anInt4064 = arg0;
-		this.aClass3_Sub23Array1 = new Class3_Sub23[this.anInt4067];
-		this.anIntArrayArrayArray13 = new int[this.anInt4064][3][arg2];
+		this.height = arg1;
+		this.capacity = arg0;
+		this.entries = new MonochromeImageCacheEntry[this.height];
+		this.pixels = new int[this.capacity][3][arg2];
+	}
+
+	@OriginalMember(owner = "runetek4.client!we", name = "a", descriptor = "(BI)I")
+	public static int fade(@OriginalArg(1) int t) {
+		@Pc(13) int depth = t * (t * t >> 12) >> 12;
+		@Pc(26) int x = t * 6 - 61440;
+		@Pc(34) int y = (t * x >> 12) + 40960;
+		return depth * y >> 12;
 	}
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "a", descriptor = "(B)[[[I")
 	public final int[][][] method3168() {
-		if (this.anInt4067 != this.anInt4064) {
+		if (this.height != this.capacity) {
 			throw new RuntimeException("Can only retrieve a full image cache");
 		}
-		for (@Pc(27) int local27 = 0; local27 < this.anInt4064; local27++) {
-			this.aClass3_Sub23Array1[local27] = Static13.aClass3_Sub23_1;
+		for (@Pc(27) int local27 = 0; local27 < this.capacity; local27++) {
+			this.entries[local27] = entry;
 		}
-		return this.anIntArrayArrayArray13;
+		return this.pixels;
 	}
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "b", descriptor = "(B)V")
-	public final void method3169() {
-		for (@Pc(7) int local7 = 0; local7 < this.anInt4064; local7++) {
-			this.anIntArrayArrayArray13[local7][0] = null;
-			this.anIntArrayArrayArray13[local7][1] = null;
-			this.anIntArrayArrayArray13[local7][2] = null;
-			this.anIntArrayArrayArray13[local7] = null;
+	public final void clear() {
+		for (@Pc(7) int local7 = 0; local7 < this.capacity; local7++) {
+			this.pixels[local7][0] = null;
+			this.pixels[local7][1] = null;
+			this.pixels[local7][2] = null;
+			this.pixels[local7] = null;
 		}
-		this.aClass3_Sub23Array1 = null;
-		this.anIntArrayArrayArray13 = null;
-		this.aClass69_96.clear();
-		this.aClass69_96 = null;
+		this.entries = null;
+		this.pixels = null;
+		this.recentlyUsed.clear();
+		this.recentlyUsed = null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "a", descriptor = "(BI)[[I")
-	public final int[][] method3173(@OriginalArg(1) int arg0) {
-		if (this.anInt4064 == this.anInt4067) {
-			this.aBoolean195 = this.aClass3_Sub23Array1[arg0] == null;
-			this.aClass3_Sub23Array1[arg0] = Static13.aClass3_Sub23_1;
-			return this.anIntArrayArrayArray13[arg0];
-		} else if (this.anInt4064 == 1) {
-			this.aBoolean195 = this.anInt4062 != arg0;
-			this.anInt4062 = arg0;
-			return this.anIntArrayArrayArray13[0];
+	public final int[][] get(@OriginalArg(1) int arg0) {
+		if (this.capacity == this.height) {
+			this.invalid = this.entries[arg0] == null;
+			this.entries[arg0] = entry;
+			return this.pixels[arg0];
+		} else if (this.capacity == 1) {
+			this.invalid = this.singleRow != arg0;
+			this.singleRow = arg0;
+			return this.pixels[0];
 		} else {
-			@Pc(44) Class3_Sub23 local44 = this.aClass3_Sub23Array1[arg0];
+			@Pc(44) MonochromeImageCacheEntry local44 = this.entries[arg0];
 			if (local44 == null) {
-				this.aBoolean195 = true;
-				if (this.anInt4066 < this.anInt4064) {
-					local44 = new Class3_Sub23(arg0, this.anInt4066);
-					this.anInt4066++;
+				this.invalid = true;
+				if (this.size < this.capacity) {
+					local44 = new MonochromeImageCacheEntry(arg0, this.size);
+					this.size++;
 				} else {
-					@Pc(80) Class3_Sub23 local80 = (Class3_Sub23) this.aClass69_96.tail();
-					local44 = new Class3_Sub23(arg0, local80.anInt3468);
-					this.aClass3_Sub23Array1[local80.anInt3476] = null;
+					@Pc(80) MonochromeImageCacheEntry local80 = (MonochromeImageCacheEntry) this.recentlyUsed.tail();
+					local44 = new MonochromeImageCacheEntry(arg0, local80.row);
+					this.entries[local80.index] = null;
 					local80.unlink();
 				}
-				this.aClass3_Sub23Array1[arg0] = local44;
+				this.entries[arg0] = local44;
 			} else {
-				this.aBoolean195 = false;
+				this.invalid = false;
 			}
-			this.aClass69_96.addHead(local44);
-			return this.anIntArrayArrayArray13[local44.anInt3468];
+			this.recentlyUsed.addHead(local44);
+			return this.pixels[local44.row];
 		}
 	}
 }

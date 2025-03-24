@@ -53,4 +53,9 @@ public class SpriteLoader {
             return true;
         }
     }
+
+    @OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IZILclient!ve;)Lclient!ek;")
+    public static SoftwareIndexedSprite loadSoftwareIndexedSprite(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {
+        return decode(arg1, 0, arg0) ? Static134.method2619() : null;
+    }
 }

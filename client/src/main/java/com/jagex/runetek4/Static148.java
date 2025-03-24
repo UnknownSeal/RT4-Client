@@ -7,16 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static148 {
 
-	@OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(ZI)V")
-	public static void method2765(@OriginalArg(1) int arg0) {
-		if (arg0 == -1 && !Static144.jingle) {
-			MidiPlayer.method4548();
-		} else if (arg0 != -1 && (MusicPlayer.groupId != arg0 || !MidiPlayer.isPlaying()) && Preferences.musicVolume != 0 && !Static144.jingle) {
-			MidiPlayer.playFadeOut(arg0, client.js5Archive6, Preferences.musicVolume);
-		}
-		MusicPlayer.groupId = arg0;
-	}
-
 	@OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(III)V")
 	public static void method2766(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
 		VarPlayerDefinition.activeVarps[arg0] = arg1;

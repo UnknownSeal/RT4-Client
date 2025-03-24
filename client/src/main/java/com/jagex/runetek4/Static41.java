@@ -13,7 +13,4 @@ public final class Static41 {
 	@OriginalMember(owner = "client!dc", name = "R", descriptor = "Lclient!na;")
 	private static final JString aClass100_269 = JString.parse("Drop");
 
-	@OriginalMember(owner = "client!dc", name = "W", descriptor = "I")
-	public static volatile int anInt1313 = 0;
-
 }

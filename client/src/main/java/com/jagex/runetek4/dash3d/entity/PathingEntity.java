@@ -16,7 +16,13 @@ public abstract class PathingEntity extends Entity {
 
     @OriginalMember(owner = "client!ef", name = "a", descriptor = "[I")
     public static final int[] ANGLES = new int[] { 768, 1024, 1280, 512, 1536, 256, 0, 1792 };
-    @OriginalMember(owner = "client!fe", name = "A", descriptor = "I")
+	@OriginalMember(owner = "runetek4.client!hm", name = "ab", descriptor = "I")
+	public static int anInt2640 = 0;
+	@OriginalMember(owner = "runetek4.client!hn", name = "Y", descriptor = "I")
+	public static int anInt2680 = 0;
+	@OriginalMember(owner = "client!f", name = "V", descriptor = "I")
+	public static int anInt1938 = 0;
+	@OriginalMember(owner = "client!fe", name = "A", descriptor = "I")
 	public int spotanimLastCycle;
 
 	@OriginalMember(owner = "client!fe", name = "S", descriptor = "I")
@@ -53,7 +59,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3395;
 
 	@OriginalMember(owner = "client!fe", name = "vb", descriptor = "Lclient!ga;")
-	protected ParticleSystem aClass47_Sub1_5;
+	protected ParticleSystem particleSystem;
 
 	@OriginalMember(owner = "client!fe", name = "Ab", descriptor = "I")
 	public int dstYaw;
@@ -143,7 +149,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3376 = 32;
 
 	@OriginalMember(owner = "client!fe", name = "P", descriptor = "I")
-	public int targetId = -1;
+	public int faceEntity = -1;
 
 	@OriginalMember(owner = "client!fe", name = "Bb", descriptor = "Z")
 	private boolean aBoolean170 = false;
@@ -158,7 +164,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3377 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Eb", descriptor = "[Lclient!ub;")
-	public final Class147[] aClass147Array3 = new Class147[12];
+	public final PathingEntity_Class147[] aPathingEntityClass147Array3 = new PathingEntity_Class147[12];
 
 	@OriginalMember(owner = "client!fe", name = "Lb", descriptor = "I")
 	public int chatLoops = 100;
@@ -170,7 +176,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3378 = -1000;
 
 	@OriginalMember(owner = "client!fe", name = "Rb", descriptor = "I")
-	protected int height = -32768;
+	protected int minY = -32768;
 
 	@OriginalMember(owner = "client!fe", name = "Nb", descriptor = "I")
 	public int movementQueueSize = 0;
@@ -262,40 +268,9 @@ public abstract class PathingEntity extends Entity {
 	@OriginalMember(owner = "client!fe", name = "Xb", descriptor = "I")
 	public int anInt3418 = -1;
 
-    @OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(IILclient!fe;)V")
-    public static void updateEntity(@OriginalArg(0) int arg0, @OriginalArg(2) PathingEntity entity) {
-        if (client.loop < entity.anInt3395) {
-            Static18.method553(entity);
-        } else if (entity.anInt3386 >= client.loop) {
-            Static280.method4665(entity);
-        } else {
-            Static104.method2247(entity);
-        }
-        if (entity.xFine < 128 || entity.zFine < 128 || entity.xFine >= 13184 || entity.zFine >= 13184) {
-            entity.primarySeqId = -1;
-            entity.spotanimFrame = -1;
-            entity.anInt3395 = 0;
-            entity.anInt3386 = 0;
-            entity.xFine = entity.movementQueueX[0] * 128 + entity.getSize() * 64;
-            entity.zFine = entity.movementQueueZ[0] * 128 + entity.getSize() * 64;
-            entity.method2689();
-        }
-        if (entity == PlayerList.self && (entity.xFine < 1536 || entity.zFine < 1536 || entity.xFine >= 11776 || entity.zFine >= 11776)) {
-            entity.spotanimFrame = -1;
-            entity.anInt3395 = 0;
-            entity.anInt3386 = 0;
-            entity.primarySeqId = -1;
-            entity.xFine = entity.movementQueueX[0] * 128 + entity.getSize() * 64;
-            entity.zFine = entity.movementQueueZ[0] * 128 + entity.getSize() * 64;
-            entity.method2689();
-        }
-        Static37.method949(entity);
-        Static34.method879(entity);
-    }
-
-    @OriginalMember(owner = "client!fe", name = "b", descriptor = "(Z)Lclient!ck;")
+	@OriginalMember(owner = "client!fe", name = "b", descriptor = "(Z)Lclient!ck;")
 	public final BasType getBasType() {
-		@Pc(7) int local7 = this.method2688();
+		@Pc(7) int local7 = this.getBasId();
 		return local7 == -1 ? BasType.DEFAULT : BasTypeList.get(local7);
 	}
 
@@ -389,9 +364,9 @@ public abstract class PathingEntity extends Entity {
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(BLclient!ak;I)V")
 	protected final void method2685(@OriginalArg(1) Model arg0, @OriginalArg(2) int arg1) {
-		Static102.anInt2680 = 0;
-		Static101.anInt2640 = 0;
-		Static62.anInt1938 = 0;
+		anInt2680 = 0;
+		anInt2640 = 0;
+		anInt1938 = 0;
 		@Pc(21) BasType local21 = this.getBasType();
 		@Pc(24) int local24 = local21.anInt1059;
 		@Pc(27) int local27 = local21.anInt1050;
@@ -424,21 +399,21 @@ public abstract class PathingEntity extends Entity {
 		@Pc(231) int local231 = local224 > local201 ? local201 : local224;
 		@Pc(238) int local238 = local224 > local134 ? local134 : local224;
 		@Pc(245) int local245 = local201 <= local87 ? local201 : local87;
-		Static101.anInt2640 = (int) (Math.atan2((double) (local212 - local231), (double) local27) * 325.95D) & 0x7FF;
-		if (Static101.anInt2640 != 0) {
-			arg0.rotateX(Static101.anInt2640);
+		anInt2640 = (int) (Math.atan2((double) (local212 - local231), (double) local27) * 325.95D) & 0x7FF;
+		if (anInt2640 != 0) {
+			arg0.rotateX(anInt2640);
 		}
-		Static102.anInt2680 = (int) (Math.atan2((double) (local245 - local238), (double) local24) * 325.95D) & 0x7FF;
-		if (Static102.anInt2680 != 0) {
-			arg0.rotateZ(Static102.anInt2680);
+		anInt2680 = (int) (Math.atan2((double) (local245 - local238), (double) local24) * 325.95D) & 0x7FF;
+		if (anInt2680 != 0) {
+			arg0.rotateZ(anInt2680);
 		}
-		Static62.anInt1938 = local224 + local87;
-		if (local201 + local134 < Static62.anInt1938) {
-			Static62.anInt1938 = local201 + local134;
+		anInt1938 = local224 + local87;
+		if (local201 + local134 < anInt1938) {
+			anInt1938 = local201 + local134;
 		}
-		Static62.anInt1938 = (Static62.anInt1938 >> 1) - this.y;
-		if (Static62.anInt1938 != 0) {
-			arg0.translate(0, Static62.anInt1938, 0);
+		anInt1938 = (anInt1938 >> 1) - this.y;
+		if (anInt1938 != 0) {
+			arg0.translate(0, anInt1938, 0);
 		}
 	}
 
@@ -656,7 +631,7 @@ public abstract class PathingEntity extends Entity {
 	}
 
 	@OriginalMember(owner = "client!fe", name = "b", descriptor = "(I)I")
-	protected abstract int method2688();
+	protected abstract int getBasId();
 
 	@OriginalMember(owner = "client!fe", name = "c", descriptor = "(I)V")
 	public final void method2689() {
@@ -666,7 +641,7 @@ public abstract class PathingEntity extends Entity {
 
 	@OriginalMember(owner = "client!fe", name = "d", descriptor = "(I)I")
 	public final int height() {
-		return this.height == -32768 ? 200 : -this.height;
+		return this.minY == -32768 ? 200 : -this.minY;
 	}
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(II)V")

@@ -8,7 +8,6 @@ import java.util.Date;
 
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.cs.ClientScript;
-import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.def.VarbitDefinition;
@@ -131,13 +130,6 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(I)V")
 	public static void clear() {
 		IdkTypeList.types.clean();
-	}
-
-	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(B)V")
-	public static void removeSoft() {
-		Static93.aClass99_13.removeSoft();
-		Static125.aClass99_18.removeSoft();
-		Static262.aClass99_35.removeSoft();
 	}
 
 	@OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(BJII)Z")
@@ -3055,13 +3047,13 @@ public final class ClientScriptRunner {
 									if (scriptOpcode == 3201) {
 										// sound_song
 										intValueIndex--;
-										Static148.method2765(Static254.scriptIntValues[intValueIndex]);
+										MusicPlayer.playSong(Static254.scriptIntValues[intValueIndex]);
 										continue;
 									}
 									if (scriptOpcode == 3202) {
 										// sound_jingle
 										intValueIndex -= 2;
-										Static278.method4650(Static254.scriptIntValues[intValueIndex + 1], Static254.scriptIntValues[intValueIndex]);
+										MusicPlayer.playJingle(Static254.scriptIntValues[intValueIndex + 1], Static254.scriptIntValues[intValueIndex]);
 										continue;
 									}
 								} else if (scriptOpcode < 3400) {
@@ -3917,9 +3909,9 @@ public final class ClientScriptRunner {
 											interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 											local5294 = Static110.method2277(interfaceType);
 											if (local5294.isString()) {
-												Static3.scriptStringValues[local26++] = NpcType.getDefinition(interfaceData).getParam(interfaceType, local5294.defaultString);
+												Static3.scriptStringValues[local26++] = NpcTypeList.get(interfaceData).getParam(interfaceType, local5294.defaultString);
 											} else {
-												Static254.scriptIntValues[intValueIndex++] = NpcType.getDefinition(interfaceData).getParam(interfaceType, local5294.defaultInt);
+												Static254.scriptIntValues[intValueIndex++] = NpcTypeList.get(interfaceData).getParam(interfaceType, local5294.defaultInt);
 											}
 											continue;
 										}
@@ -4671,8 +4663,8 @@ public final class ClientScriptRunner {
 														client.aShortArray88[Static254.scriptIntValues[intValueIndex]] = (short) ColorUtils.rgbToHsl(Static254.scriptIntValues[intValueIndex + 1]);
 														Static211.method924();
 														Static269.method2172();
-														Static278.method4649();
-														Static11.method443();
+														NpcTypeList.method4649();
+														NpcTypeList.method443();
 														method1807();
 														continue;
 													}
@@ -5052,7 +5044,7 @@ public final class ClientScriptRunner {
 													}
 													if (scriptOpcode == 6010) {
 														intValueIndex--;
-														Static209.aBoolean240 = Static254.scriptIntValues[intValueIndex] == 1;
+														Preferences.characterShadowsOn = Static254.scriptIntValues[intValueIndex] == 1;
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
@@ -5161,10 +5153,10 @@ public final class ClientScriptRunner {
 														if (interfaceData != Preferences.musicVolume) {
 															if (Preferences.musicVolume == 0 && MusicPlayer.groupId != -1) {
 																MidiPlayer.playImmediate(client.js5Archive6, MusicPlayer.groupId, interfaceData);
-																Static144.jingle = false;
+																MidiPlayer.jingle = false;
 															} else if (interfaceData == 0) {
 																MidiPlayer.method4548();
-																Static144.jingle = false;
+																MidiPlayer.jingle = false;
 															} else {
 																MidiPlayer.method3956(interfaceData);
 															}
@@ -5264,7 +5256,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (scriptOpcode == 6110) {
-														Static254.scriptIntValues[intValueIndex++] = Static209.aBoolean240 ? 1 : 0;
+														Static254.scriptIntValues[intValueIndex++] = Preferences.characterShadowsOn ? 1 : 0;
 														continue;
 													}
 													if (scriptOpcode == 6111) {

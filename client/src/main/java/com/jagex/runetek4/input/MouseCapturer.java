@@ -11,6 +11,12 @@ public final class MouseCapturer implements Runnable {
 
 	@OriginalMember(owner = "runetek4.client!od", name = "f", descriptor = "Lclient!jd;")
 	public static MouseCapturer instance;
+	@OriginalMember(owner = "runetek4.client!tm", name = "e", descriptor = "Z")
+	public static boolean enabled = false;
+	@OriginalMember(owner = "runetek4.client!oe", name = "a", descriptor = "I")
+	public static int mouseRecorderPrevY = 0;
+	@OriginalMember(owner = "runetek4.client!vh", name = "s", descriptor = "I")
+	public static int mouseRecorderPrevX = 0;
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "e", descriptor = "Z")
 	public boolean running = true;

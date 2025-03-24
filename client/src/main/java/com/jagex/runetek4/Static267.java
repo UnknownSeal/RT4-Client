@@ -50,9 +50,4 @@ public final class Static267 {
 		return true;
 	}
 
-    @OriginalMember(owner = "runetek4.client!vl", name = "b", descriptor = "(I)V")
-	public static void removeSoft() {
-		PreciseSleep.aClass99_29.removeSoft();
-		Static219.aClass99_27.removeSoft();
-	}
 }

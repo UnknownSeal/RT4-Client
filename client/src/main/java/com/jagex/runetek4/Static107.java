@@ -5,9 +5,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static107 {
 
-	@OriginalMember(owner = "runetek4.client!id", name = "e", descriptor = "[I")
-	public static final int[] anIntArray259 = new int[14];
-
 	@OriginalMember(owner = "runetek4.client!id", name = "j", descriptor = "Lclient!of;")
 	public static QuickChatCommandDecoder anInterface3_1 = null;
 

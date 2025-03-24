@@ -1667,7 +1667,7 @@ public class Protocol {
                                     if (ii == 65535) {
                                         ii = -1;
                                     }
-                                    Static148.method2765(ii);
+                                    MusicPlayer.playSong(ii);
                                     opcode = -1;
                                     return true;
                                 } else if (opcode == 208) {
@@ -1676,7 +1676,7 @@ public class Protocol {
                                     if (xp == 65535) {
                                         xp = -1;
                                     }
-                                    Static278.method4650(ii, xp);
+                                    MusicPlayer.playJingle(ii, xp);
                                     opcode = -1;
                                     return true;
                                 } else {
@@ -1773,7 +1773,7 @@ public class Protocol {
         for (i = 0; i < Static240.entityRemovalCount; i++) {
             @Pc(30) int local30 = Static52.entityRemovalIds[i];
             if (NpcList.npcs[local30].cycle != client.loop) {
-                if (NpcList.npcs[local30].type.hasBackgroundSound()) {
+                if (NpcList.npcs[local30].type.hasAreaSound()) {
                     AreaSoundManager.remove(NpcList.npcs[local30]);
                 }
                 NpcList.npcs[local30].setNpcType(null);
@@ -1801,10 +1801,10 @@ public class Protocol {
         @Pc(30) ObjStackNode local30 = null;
         @Pc(35) ObjStackNode local35;
         for (local35 = (ObjStackNode) local9.head(); local35 != null; local35 = (ObjStackNode) local9.next()) {
-            @Pc(44) ObjType local44 = ObjTypeList.get(local35.aClass8_Sub7_1.anInt5555);
+            @Pc(44) ObjType local44 = ObjTypeList.get(local35.value.type);
             @Pc(47) int local47 = local44.cost;
             if (local44.stackable == 1) {
-                local47 *= local35.aClass8_Sub7_1.anInt5550 + 1;
+                local47 *= local35.value.amount + 1;
             }
             if (local28 < local47) {
                 local28 = local47;
@@ -1819,17 +1819,17 @@ public class Protocol {
         @Pc(89) ObjStack local89 = null;
         @Pc(91) ObjStack local91 = null;
         for (local35 = (ObjStackNode) local9.head(); local35 != null; local35 = (ObjStackNode) local9.next()) {
-            @Pc(103) ObjStack local103 = local35.aClass8_Sub7_1;
-            if (local103.anInt5555 != local30.aClass8_Sub7_1.anInt5555) {
+            @Pc(103) ObjStack local103 = local35.value;
+            if (local103.type != local30.value.type) {
                 if (local89 == null) {
                     local89 = local103;
                 }
-                if (local103.anInt5555 != local89.anInt5555 && local91 == null) {
+                if (local103.type != local89.type && local91 == null) {
                     local91 = local103;
                 }
             }
         }
         @Pc(152) long local152 = (long) ((arg0 << 7) + arg1 + 1610612736);
-        Static69.method1543(Player.plane, arg1, arg0, SceneGraph.getTileHeight(Player.plane, arg1 * 128 + 64, arg0 * 128 + 64), local30.aClass8_Sub7_1, local152, local89, local91);
+        Static69.method1543(Player.plane, arg1, arg0, SceneGraph.getTileHeight(Player.plane, arg1 * 128 + 64, arg0 * 128 + 64), local30.value, local152, local89, local91);
     }
 }

@@ -38,7 +38,7 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "b", descriptor = "(III)V")
-	public final void method1389(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public final void adjustPalette(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		for (@Pc(1) int local1 = 0; local1 < this.anIntArray144.length; local1++) {
 			@Pc(15) int local15 = this.anIntArray144[local1] >> 16 & 0xFF;
 			local15 += arg0;
@@ -140,7 +140,7 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "b", descriptor = "()V")
-	public final void method1395() {
+	public final void flipVertical() {
 		@Pc(6) byte[] local6 = new byte[this.width * this.height];
 		@Pc(8) int local8 = 0;
 		@Pc(10) int local10;

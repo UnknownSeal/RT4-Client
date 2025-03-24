@@ -1,15 +1,13 @@
 package com.jagex.runetek4.media.renderable.actor;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.def.NpcType;
-import com.jagex.runetek4.cache.def.SpotAnimDefinition;
+import com.jagex.runetek4.cache.def.SpotAnimType;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
-import com.jagex.runetek4.scene.Scene;
 import com.jagex.runetek4.scene.tile.Tile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -185,12 +183,12 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "client!e", name = "c", descriptor = "(B)I")
 	@Override
 	public int getSize() {
-		return this.appearance == null || this.appearance.transformationNpcId == -1 ? super.getSize() : NpcType.getDefinition(this.appearance.transformationNpcId).size;
+		return this.appearance == null || this.appearance.transformationNpcId == -1 ? super.getSize() : NpcTypeList.get(this.appearance.transformationNpcId).size;
 	}
 
 	@OriginalMember(owner = "client!e", name = "b", descriptor = "(I)I")
 	@Override
-	protected int method2688() {
+	protected int getBasId() {
 		return this.anInt3365;
 	}
 
@@ -288,8 +286,8 @@ public final class Player extends PathingEntity {
 			this.xFine = this.movementQueueX[0] * 128 + this.getSize() * 64;
 			this.zFine = this.movementQueueZ[0] * 128 + this.getSize() * 64;
 		}
-		if (this.aClass47_Sub1_5 != null) {
-			this.aClass47_Sub1_5.method1646();
+		if (this.particleSystem != null) {
+			this.particleSystem.method1646();
 		}
 	}
 
@@ -301,7 +299,7 @@ public final class Player extends PathingEntity {
 		}
 		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? SeqTypeList.getAnimationSequence(this.primarySeqId) : null;
 		@Pc(54) SeqType local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().idleAnimationId && local25 != null ? null : SeqTypeList.getAnimationSequence(this.movementSeqId);
-		@Pc(76) Model local76 = this.appearance.method1954(this.aClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
+		@Pc(76) Model local76 = this.appearance.method1954(this.aPathingEntityClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
 		@Pc(79) int local79 = Static198.method1029();
 		if (GlRenderer.enabled && GameShell.maxMemory < 96 && local79 > 50) {
 			method501();
@@ -321,10 +319,10 @@ public final class Player extends PathingEntity {
 		if (local76 == null) {
 			return;
 		}
-		this.height = local76.getMinY();
+		this.minY = local76.getMinY();
 		@Pc(184) Model model;
-		if (Static209.aBoolean240 && (this.appearance.transformationNpcId == -1 || NpcType.getDefinition(this.appearance.transformationNpcId).spotshadow)) {
-			model = Scene.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.xFine, 0, this.zFine, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.y, 240);
+		if (Preferences.characterShadowsOn && (this.appearance.transformationNpcId == -1 || NpcTypeList.get(this.appearance.transformationNpcId).spotShadow)) {
+			model = ShadowModelList.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.xFine, 0, this.zFine, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.y, 240);
 			if (GlRenderer.enabled) {
 				@Pc(188) float local188 = GlRenderer.method4179();
 				@Pc(190) float local190 = GlRenderer.method4166();
@@ -371,19 +369,19 @@ public final class Player extends PathingEntity {
 		this.method2685(local76, arg0);
 		model = null;
 		if (!this.lowMemory && this.spotanimFrame != -1 && this.spotanimId != -1) {
-			@Pc(471) SpotAnimDefinition spotanim = Static34.method877(this.spotanimFrame);
-			model = spotanim.getModel(this.anInt3418, this.spotanimId, this.anInt3361);
+			@Pc(471) SpotAnimType spotanim = Static34.method877(this.spotanimFrame);
+			model = spotanim.constructModel(this.anInt3418, this.spotanimId, this.anInt3361);
 			if (model != null) {
 				model.translate(0, -this.spotanimOffset, 0);
 				if (spotanim.aBoolean100) {
-					if (Static101.anInt2640 != 0) {
-						model.rotateX(Static101.anInt2640);
+					if (PathingEntity.anInt2640 != 0) {
+						model.rotateX(PathingEntity.anInt2640);
 					}
-					if (Static102.anInt2680 != 0) {
-						model.rotateZ(Static102.anInt2680);
+					if (PathingEntity.anInt2680 != 0) {
+						model.rotateZ(PathingEntity.anInt2680);
 					}
-					if (Static62.anInt1938 != 0) {
-						model.translate(0, Static62.anInt1938, 0);
+					if (PathingEntity.anInt1938 != 0) {
+						model.translate(0, PathingEntity.anInt1938, 0);
 					}
 				}
 			}
@@ -411,10 +409,10 @@ public final class Player extends PathingEntity {
 		}
 		if (GlRenderer.enabled) {
 			local76.pickable = true;
-			local76.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+			local76.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.particleSystem);
 			if (model != null) {
 				model.pickable = true;
-				model.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+				model.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.particleSystem);
 			}
 		} else {
 			if (model != null) {
@@ -424,7 +422,7 @@ public final class Player extends PathingEntity {
 				local76 = ((SoftwareModel) local76).method4588(loc);
 			}
 			local76.pickable = true;
-			local76.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_5);
+			local76.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.particleSystem);
 		}
 		if (loc == null) {
 			return;
@@ -499,6 +497,6 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "client!e", name = "b", descriptor = "()I")
 	@Override
 	public int getMinY() {
-		return this.height;
+		return this.minY;
 	}
 }
