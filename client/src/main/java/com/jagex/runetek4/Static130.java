@@ -13,9 +13,6 @@ public final class Static130 {
 	@OriginalMember(owner = "runetek4.client!kc", name = "o", descriptor = "[[[Lclient!bj;")
 	public static Tile[][][] levelTiles;
 
-	@OriginalMember(owner = "runetek4.client!kc", name = "p", descriptor = "[I")
-	public static int[] anIntArray299;
-
 	@OriginalMember(owner = "runetek4.client!kc", name = "t", descriptor = "I")
 	public static int p12FullId;
 

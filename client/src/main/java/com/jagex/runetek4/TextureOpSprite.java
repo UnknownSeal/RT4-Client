@@ -34,7 +34,7 @@ public class TextureOpSprite extends TextureOp {
 		} else if (this.anInt3235 < 0) {
 			return false;
 		} else {
-			@Pc(43) SoftwareSprite local43 = Static215.anInt4868 < 0 ? Static164.method3117(Static176.aClass153_76, this.anInt3235) : SpriteLoader.loadSoftwareSprite(this.anInt3235, Static176.aClass153_76, Static215.anInt4868);
+			@Pc(43) SoftwareSprite local43 = Static215.anInt4868 < 0 ? Static164.method3117(Texture.spritesArchive, this.anInt3235) : SpriteLoader.loadSoftwareSprite(this.anInt3235, Texture.spritesArchive, Static215.anInt4868);
 			local43.method311();
 			this.anInt3240 = local43.height;
 			this.anInt3239 = local43.width;
@@ -51,9 +51,9 @@ public class TextureOpSprite extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "b", descriptor = "(II)[[I")
 	@Override
-	public int[][] method4638(@OriginalArg(1) int arg0) {
-		@Pc(18) int[][] local18 = this.aClass103_41.method3173(arg0);
-		if (this.aClass103_41.aBoolean195 && this.method2573()) {
+	public int[][] getColorOutput(@OriginalArg(1) int arg0) {
+		@Pc(18) int[][] local18 = this.clearImageCache.method3173(arg0);
+		if (this.clearImageCache.aBoolean195 && this.method2573()) {
 			@Pc(31) int[] local31 = local18[0];
 			@Pc(35) int[] local35 = local18[1];
 			@Pc(39) int[] local39 = local18[2];
@@ -90,8 +90,8 @@ public class TextureOpSprite extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "e", descriptor = "(B)V")
 	@Override
-	public final void method4633() {
-		super.method4633();
+	public final void clearImageCache() {
+		super.clearImageCache();
 		this.anIntArray305 = null;
 	}
 }

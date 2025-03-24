@@ -21,10 +21,10 @@ public final class TextureOp29 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(13) int[] local13 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
-			this.method3934(this.aClass121_41.method3446());
+	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(13) int[] local13 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
+			this.method3934(this.monochromeImageCache.method3446());
 		}
 		return local13;
 	}
@@ -72,19 +72,19 @@ public final class TextureOp29 extends TextureOp {
 				}
 			}
 		} else if (code == 1) {
-			this.aBoolean309 = packet.g1() == 1;
+			this.monochrome = packet.g1() == 1;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!si", name = "b", descriptor = "(II)[[I")
 	@Override
-	public final int[][] method4638(@OriginalArg(1) int arg0) {
-		@Pc(14) int[][] local14 = this.aClass103_41.method3173(arg0);
-		if (this.aClass103_41.aBoolean195) {
+	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
+		@Pc(14) int[][] local14 = this.clearImageCache.method3173(arg0);
+		if (this.clearImageCache.aBoolean195) {
 			@Pc(20) int local20 = Texture.width;
 			@Pc(22) int local22 = Texture.height;
 			@Pc(26) int[][] local26 = new int[local22][local20];
-			@Pc(31) int[][][] local31 = this.aClass103_41.method3168();
+			@Pc(31) int[][][] local31 = this.clearImageCache.method3168();
 			this.method3934(local26);
 			for (@Pc(37) int local37 = 0; local37 < Texture.height; local37++) {
 				@Pc(44) int[] local44 = local26[local37];

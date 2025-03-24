@@ -30,20 +30,6 @@ public final class CacheArchive {
 		return new TextureOp29SubOp1(arg0.g2s(), arg0.g2s(), arg0.g2s(), arg0.g2s(), arg0.g3(), arg0.g1());
 	}
 
-	@OriginalMember(owner = "client!al", name = "b", descriptor = "(B)V")
-	public static void method185() {
-		if (Static119.anIntArray282 != null && Static130.anIntArray299 != null) {
-			return;
-		}
-		Static119.anIntArray282 = new int[256];
-		Static130.anIntArray299 = new int[256];
-		for (@Pc(26) int local26 = 0; local26 < 256; local26++) {
-			@Pc(36) double local36 = (double) local26 / 255.0D * 6.283185307179586D;
-			Static119.anIntArray282[local26] = (int) (Math.sin(local36) * 4096.0D);
-			Static130.anIntArray299[local26] = (int) (Math.cos(local36) * 4096.0D);
-		}
-	}
-
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ZI)V")
 	public static void method186(@OriginalArg(0) boolean arg0) {
 		if (arg0 != Static240.aBoolean276) {

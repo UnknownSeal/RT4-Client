@@ -26,6 +26,12 @@ public final class Texture {
 	public static int heightMask;
 	@OriginalMember(owner = "runetek4.client!jh", name = "f", descriptor = "D")
 	public static double brightness = -1.0D;
+	@OriginalMember(owner = "runetek4.client!nb", name = "o", descriptor = "I")
+	public static int anInt4042;
+	@OriginalMember(owner = "client!cm", name = "a", descriptor = "Lclient!m;")
+	public static GlTextureProvider provider;
+	@OriginalMember(owner = "runetek4.client!ob", name = "f", descriptor = "Lclient!ve;")
+	public static Js5 spritesArchive;
 	@OriginalMember(owner = "client!lc", name = "k", descriptor = "[I")
 	private final int[] anIntArray328;
 
@@ -43,16 +49,17 @@ public final class Texture {
 
 	@OriginalMember(owner = "client!lc", name = "<init>", descriptor = "(Lclient!wa;)V")
 	public Texture(@OriginalArg(0) Packet packet) {
-		@Pc(7) int local7 = packet.g1();
-		this.aClass3_Sub1Array22 = new TextureOp[local7];
-		@Pc(14) int[][] local14 = new int[local7][];
+
+		@Pc(7) int spriteCount = packet.g1();
+		this.aClass3_Sub1Array22 = new TextureOp[spriteCount];
+		@Pc(14) int[][] local14 = new int[spriteCount][];
 		@Pc(16) int local16 = 0;
 		@Pc(18) int local18 = 0;
 		@Pc(20) int local20;
 		@Pc(27) TextureOp local27;
 		@Pc(45) int local45;
 		@Pc(52) int local52;
-		for (local20 = 0; local20 < local7; local20++) {
+		for (local20 = 0; local20 < spriteCount; local20++) {
 			local27 = method3680(packet);
 			if (local27.method4631() >= 0) {
 				local18++;
@@ -71,7 +78,7 @@ public final class Texture {
 		this.anIntArray328 = new int[local16];
 		local18 = 0;
 		local16 = 0;
-		for (local20 = 0; local20 < local7; local20++) {
+		for (local20 = 0; local20 < spriteCount; local20++) {
 			local27 = this.aClass3_Sub1Array22[local20];
 			local45 = local27.aClass3_Sub1Array42.length;
 			for (local52 = 0; local52 < local45; local52++) {
@@ -110,25 +117,25 @@ public final class Texture {
 	@OriginalMember(owner = "client!sc", name = "a", descriptor = "(IZ)Lclient!j;")
 	public static TextureOp create(@OriginalArg(0) int type) {
 		if (type == 0) {
-			return new TextureOp20();
+			return new TextureMonochromeFill();
 		} else if (type == 1) {
 			return new TextureOpColorFill();
 		} else if (type == 2) {
-			return new TextureOp27();
+			return new TextureOpHorizontalGradient();
 		} else if (type == 3) {
-			return new TextureOp25();
+			return new TextureOpVerticalGradient();
 		} else if (type == 4) {
 			return new TextureOp17();
 		} else if (type == 5) {
 			return new TextureOp21();
 		} else if (type == 6) {
-			return new TextureOp2();
+			return new TextureOpClamp();
 		} else if (type == 7) {
 			return new TextureOpCombine();
 		} else if (type == 8) {
 			return new TextureOpCurve();
 		} else if (type == 9) {
-			return new TextureOp7();
+			return new TextureOpFlip();
 		} else if (type == 10) {
 			return new TextureOpColorGradient();
 		} else if (type == 11) {
@@ -136,7 +143,7 @@ public final class Texture {
 		} else if (type == 12) {
 			return new TextureOp1();
 		} else if (type == 13) {
-			return new TextureOp26();
+			return new TextureOpNoise();
 		} else if (type == 14) {
 			return new TextureOp28();
 		} else if (type == 15) {
@@ -150,15 +157,15 @@ public final class Texture {
 		} else if (type == 19) {
 			return new TextureOp16();
 		} else if (type == 20) {
-			return new TextureOp11();
+			return new TextureOpTile();
 		} else if (type == 21) {
-			return new TextureOp5();
+			return new TextureOpInterpolate();
 		} else if (type == 22) {
-			return new TextureOp31();
+			return new TextureOpInvert();
 		} else if (type == 23) {
 			return new TextureOp15();
 		} else if (type == 24) {
-			return new TextureOp10();
+			return new TextureOpMonochrome();
 		} else if (type == 25) {
 			return new TextureOp30();
 		} else if (type == 26) {
@@ -170,7 +177,7 @@ public final class Texture {
 		} else if (type == 29) {
 			return new TextureOp29();
 		} else if (type == 30) {
-			return new TextureOp9();
+			return new TextureOpRange();
 		} else if (type == 31) {
 			return new TextureOp12();
 		} else if (type == 32) {
@@ -182,7 +189,7 @@ public final class Texture {
 		} else if (type == 35) {
 			return new TextureOp23();
 		} else if (type == 36) {
-			return new TextureOp32();
+			return new TextureOpTexture();
 		} else if (type == 37) {
 			return new TextureOp19();
 		} else if (type == 38) {
@@ -201,7 +208,7 @@ public final class Texture {
 			for (@Pc(10) int widthIndex = 0; widthIndex < newWidth; widthIndex++) {
 				widthFractions[widthIndex] = (widthIndex << 12) / newWidth;
 			}
-			Static165.anInt4042 = newWidth == 64 ? 2048 : 4096;
+			anInt4042 = newWidth == 64 ? 2048 : 4096;
 			widthMask = newWidth - 1;
 			width = newWidth;
 		}
@@ -235,8 +242,8 @@ public final class Texture {
 	@OriginalMember(owner = "client!lc", name = "a", descriptor = "(IZIDILclient!ve;Lclient!m;Z)[I")
 	public int[] method2725(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(3) double arg3, @OriginalArg(5) Js5 arg4, @OriginalArg(6) GlTextureProvider arg5, @OriginalArg(7) boolean arg6) {
 		setBrightness(arg3);
-		Static37.anInterface1_1 = arg5;
-		Static176.aClass153_76 = arg4;
+		provider = arg5;
+		spritesArchive = arg4;
 		setSize(arg0, arg2);
 		@Pc(20) int local20;
 		for (local20 = 0; local20 < this.aClass3_Sub1Array22.length; local20++) {
@@ -263,13 +270,13 @@ public final class Texture {
 			@Pc(101) int[] local101;
 			@Pc(103) int[] local103;
 			@Pc(105) int[] local105;
-			if (this.aClass3_Sub1_1.aBoolean309) {
-				@Pc(99) int[] local99 = this.aClass3_Sub1_1.method4626(local78);
+			if (this.aClass3_Sub1_1.monochrome) {
+				@Pc(99) int[] local99 = this.aClass3_Sub1_1.getMonochromeOutput(local78);
 				local101 = local99;
 				local103 = local99;
 				local105 = local99;
 			} else {
-				@Pc(113) int[][] local113 = this.aClass3_Sub1_1.method4638(local78);
+				@Pc(113) int[][] local113 = this.aClass3_Sub1_1.getColorOutput(local78);
 				local101 = local113[0];
 				local105 = local113[2];
 				local103 = local113[1];
@@ -306,7 +313,7 @@ public final class Texture {
 			}
 		}
 		for (local78 = 0; local78 < this.aClass3_Sub1Array22.length; local78++) {
-			this.aClass3_Sub1Array22[local78].method4633();
+			this.aClass3_Sub1Array22[local78].clearImageCache();
 		}
 		return local56;
 	}
@@ -315,8 +322,8 @@ public final class Texture {
 	public final byte[] method2728(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) GlTextureProvider arg3, @OriginalArg(4) double arg4, @OriginalArg(6) Js5 arg5) {
 		@Pc(8) byte[] local8 = new byte[arg1 * 4 * arg0];
 		setBrightness(arg4);
-		Static176.aClass153_76 = arg5;
-		Static37.anInterface1_1 = arg3;
+		spritesArchive = arg5;
+		provider = arg3;
 		setSize(arg0, arg1);
 		@Pc(31) int local31;
 		for (local31 = 0; local31 < this.aClass3_Sub1Array22.length; local31++) {
@@ -332,21 +339,21 @@ public final class Texture {
 			@Pc(81) int[] local81;
 			@Pc(83) int[] local83;
 			@Pc(77) int[] local77;
-			if (this.aClass3_Sub1_1.aBoolean309) {
-				local77 = this.aClass3_Sub1_1.method4626(local53);
+			if (this.aClass3_Sub1_1.monochrome) {
+				local77 = this.aClass3_Sub1_1.getMonochromeOutput(local53);
 				local79 = local77;
 				local81 = local77;
 				local83 = local77;
 			} else {
-				@Pc(91) int[][] local91 = this.aClass3_Sub1_1.method4638(local53);
+				@Pc(91) int[][] local91 = this.aClass3_Sub1_1.getColorOutput(local53);
 				local79 = local91[0];
 				local81 = local91[1];
 				local83 = local91[2];
 			}
-			if (this.aClass3_Sub1_2.aBoolean309) {
-				local77 = this.aClass3_Sub1_2.method4626(local53);
+			if (this.aClass3_Sub1_2.monochrome) {
+				local77 = this.aClass3_Sub1_2.getMonochromeOutput(local53);
 			} else {
-				local77 = this.aClass3_Sub1_2.method4638(local53)[0];
+				local77 = this.aClass3_Sub1_2.getColorOutput(local53)[0];
 			}
 			for (@Pc(127) int local127 = arg1 - 1; local127 >= 0; local127--) {
 				@Pc(138) int local138 = local79[local127] >> 4;
@@ -395,7 +402,7 @@ public final class Texture {
 			}
 		}
 		for (local53 = 0; local53 < this.aClass3_Sub1Array22.length; local53++) {
-			this.aClass3_Sub1Array22[local53].method4633();
+			this.aClass3_Sub1Array22[local53].clearImageCache();
 		}
 		return local8;
 	}

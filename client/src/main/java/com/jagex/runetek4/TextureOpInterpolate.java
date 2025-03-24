@@ -7,21 +7,21 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!bl")
-public final class TextureOp5 extends TextureOp {
+public final class TextureOpInterpolate extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!bl", name = "<init>", descriptor = "()V")
-	public TextureOp5() {
+	public TextureOpInterpolate() {
 		super(3, false);
 	}
 
 	@OriginalMember(owner = "runetek4.client!bl", name = "b", descriptor = "(II)[[I")
 	@Override
-	public final int[][] method4638(@OriginalArg(1) int arg0) {
-		@Pc(16) int[][] local16 = this.aClass103_41.method3173(arg0);
-		if (this.aClass103_41.aBoolean195) {
-			@Pc(27) int[] local27 = this.method4624(2, arg0);
-			@Pc(33) int[][] local33 = this.method4634(arg0, 0);
-			@Pc(39) int[][] local39 = this.method4634(arg0, 1);
+	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
+		@Pc(16) int[][] local16 = this.clearImageCache.method3173(arg0);
+		if (this.clearImageCache.aBoolean195) {
+			@Pc(27) int[] local27 = this.getChildMonochromeOutput(2, arg0);
+			@Pc(33) int[][] local33 = this.getChildColorOutput(arg0, 0);
+			@Pc(39) int[][] local39 = this.getChildColorOutput(arg0, 1);
 			@Pc(43) int[] local43 = local16[2];
 			@Pc(47) int[] local47 = local16[1];
 			@Pc(51) int[] local51 = local33[0];
@@ -56,18 +56,18 @@ public final class TextureOp5 extends TextureOp {
 	@Override
 	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
 		if (code == 0) {
-			this.aBoolean309 = packet.g1() == 1;
+			this.monochrome = packet.g1() == 1;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!bl", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(11) int[] local11 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
-			@Pc(30) int[] local30 = this.method4624(0, arg0);
-			@Pc(36) int[] local36 = this.method4624(1, arg0);
-			@Pc(42) int[] local42 = this.method4624(2, arg0);
+	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(11) int[] local11 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
+			@Pc(30) int[] local30 = this.getChildMonochromeOutput(0, arg0);
+			@Pc(36) int[] local36 = this.getChildMonochromeOutput(1, arg0);
+			@Pc(42) int[] local42 = this.getChildMonochromeOutput(2, arg0);
 			for (@Pc(44) int local44 = 0; local44 < Texture.width; local44++) {
 				@Pc(55) int local55 = local42[local44];
 				if (local55 == 4096) {

@@ -42,9 +42,9 @@ public final class TextureOp12 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!gm", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(19) int[] local19 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
+	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(19) int[] local19 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
 			for (@Pc(26) int local26 = 0; local26 < Texture.width; local26++) {
 				@Pc(45) int local45 = this.anInt2299 + (Texture.heightFractions[arg0] << 12) / this.anInt2298;
 				@Pc(57) int local57 = this.anInt2296 + (Texture.widthFractions[local26] << 12) / this.anInt2298;

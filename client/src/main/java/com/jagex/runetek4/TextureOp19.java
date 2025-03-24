@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -58,9 +57,9 @@ public final class TextureOp19 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!mh", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(19) int[] local19 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
+	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(19) int[] local19 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
 			@Pc(30) int local30 = Texture.heightFractions[arg0] - 2048;
 			for (@Pc(32) int local32 = 0; local32 < Texture.width; local32++) {
 				@Pc(40) int local40 = local30 + this.anInt3843;
@@ -85,7 +84,7 @@ public final class TextureOp19 extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!mh", name = "a", descriptor = "(BII)Z")
 	private boolean method3011(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
 		@Pc(12) int local12 = this.anInt3847 * (arg0 + arg1) >> 12;
-		@Pc(27) int local27 = Static130.anIntArray299[local12 * 255 >> 12 & 0xFF];
+		@Pc(27) int local27 = TextureOp.COSINE[local12 * 255 >> 12 & 0xFF];
 		@Pc(34) int local34 = (local27 << 12) / this.anInt3847;
 		@Pc(41) int local41 = (local34 << 12) / this.anInt3862;
 		@Pc(48) int local48 = local41 * this.anInt3844 >> 12;
@@ -95,13 +94,13 @@ public final class TextureOp19 extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!mh", name = "e", descriptor = "(I)V")
 	@Override
 	public final void postDecode() {
-		CacheArchive.method185();
+		TextureOp.createTrigonometryTables();
 	}
 
 	@OriginalMember(owner = "runetek4.client!mh", name = "b", descriptor = "(IIB)Z")
 	private boolean method3012(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		@Pc(8) int local8 = (arg1 - arg0) * this.anInt3847 >> 12;
-		@Pc(31) int local31 = Static130.anIntArray299[local8 * 255 >> 12 & 0xFF];
+		@Pc(31) int local31 = TextureOp.COSINE[local8 * 255 >> 12 & 0xFF];
 		@Pc(38) int local38 = (local31 << 12) / this.anInt3847;
 		@Pc(45) int local45 = (local38 << 12) / this.anInt3862;
 		@Pc(52) int local52 = local45 * this.anInt3844 >> 12;

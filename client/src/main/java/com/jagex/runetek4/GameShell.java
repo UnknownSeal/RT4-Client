@@ -86,8 +86,6 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	public static int fps = 0;
 	@OriginalMember(owner = "runetek4.client!te", name = "C", descriptor = "I")
 	public static int maxMemory = 64;
-	@OriginalMember(owner = "client!fh", name = "cb", descriptor = "Lsignlink!ll;")
-	public static SignLink signLink2;
 	@OriginalMember(owner = "client!rc", name = "b", descriptor = "Z")
 	private boolean error = false;
 
@@ -104,7 +102,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 	@OriginalMember(owner = "client!rc", name = "providesignlink", descriptor = "(Lsignlink!ll;)V")
 	public static void providesignlink(@OriginalArg(0) SignLink signlink) {
 		signLink = signlink;
-		signLink2 = signlink;
+		TracingException.signLink = signlink;
 	}
 
 	@OriginalMember(owner = "client!la", name = "a", descriptor = "(Lsignlink!ll;Ljava/lang/Object;I)V")
@@ -323,7 +321,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 		if (instance == this && !shutdown) {
 			killtime = MonotonicTime.currentTimeMillis();
 			ThreadUtils.sleep(5000L);
-			signLink2 = null;
+			TracingException.signLink = null;
 			this.shutdown(false);
 		}
 	}
@@ -598,7 +596,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			frame.toFront();
 			@Pc(44) Insets insets = frame.getInsets();
 			frame.setSize(insets.left + frameWidth + insets.right, insets.top + frameHeight + insets.bottom);
-			signLink2 = signLink = new SignLink(null, cacheId, cacheSubDir, 28);
+			TracingException.signLink = signLink = new SignLink(null, cacheId, cacheSubDir, 28);
 			@Pc(76) PrivilegedRequest request = signLink.startThread(1, this);
 			while (request.status == 0) {
 				ThreadUtils.sleep(10L);
@@ -649,7 +647,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 				openWindowJavaScript = false;
 			}
 			if (signLink == null) {
-				signLink2 = signLink = new SignLink(this, cacheId, null, 0);
+				TracingException.signLink = signLink = new SignLink(this, cacheId, null, 0);
 			}
 			@Pc(86) PrivilegedRequest request = signLink.startThread(1, this);
 			while (request.status == 0) {

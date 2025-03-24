@@ -38,9 +38,9 @@ public final class TextureOpColorFill extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!fm", name = "b", descriptor = "(II)[[I")
 	@Override
-	public final int[][] method4638(@OriginalArg(1) int arg0) {
-		@Pc(22) int[][] local22 = this.aClass103_41.method3173(arg0);
-		if (this.aClass103_41.aBoolean195) {
+	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
+		@Pc(22) int[][] local22 = this.clearImageCache.method3173(arg0);
+		if (this.clearImageCache.aBoolean195) {
 			@Pc(31) int[] local31 = local22[0];
 			@Pc(35) int[] local35 = local22[1];
 			@Pc(39) int[] local39 = local22[2];

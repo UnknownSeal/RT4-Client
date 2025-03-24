@@ -7,7 +7,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!aj")
-public final class TextureOp2 extends TextureOp {
+public final class TextureOpClamp extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!aj", name = "V", descriptor = "I")
 	private int anInt148 = 0;
@@ -16,7 +16,7 @@ public final class TextureOp2 extends TextureOp {
 	private int anInt151 = 4096;
 
 	@OriginalMember(owner = "runetek4.client!aj", name = "<init>", descriptor = "()V")
-	public TextureOp2() {
+	public TextureOpClamp() {
 		super(1, false);
 	}
 
@@ -28,16 +28,16 @@ public final class TextureOp2 extends TextureOp {
 		} else if (code == 1) {
 			this.anInt151 = packet.g2();
 		} else if (code == 2) {
-			this.aBoolean309 = packet.g1() == 1;
+			this.monochrome = packet.g1() == 1;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!aj", name = "b", descriptor = "(II)[[I")
 	@Override
-	public final int[][] method4638(@OriginalArg(1) int arg0) {
-		@Pc(22) int[][] local22 = this.aClass103_41.method3173(arg0);
-		if (this.aClass103_41.aBoolean195) {
-			@Pc(32) int[][] local32 = this.method4634(arg0, 0);
+	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
+		@Pc(22) int[][] local22 = this.clearImageCache.method3173(arg0);
+		if (this.clearImageCache.aBoolean195) {
+			@Pc(32) int[][] local32 = this.getChildColorOutput(arg0, 0);
 			@Pc(36) int[] local36 = local32[1];
 			@Pc(40) int[] local40 = local32[2];
 			@Pc(44) int[] local44 = local32[0];
@@ -76,10 +76,10 @@ public final class TextureOp2 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!aj", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(19) int[] local19 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
-			@Pc(29) int[] local29 = this.method4624(0, arg0);
+	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(19) int[] local19 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
+			@Pc(29) int[] local29 = this.getChildMonochromeOutput(0, arg0);
 			for (@Pc(31) int local31 = 0; local31 < Texture.width; local31++) {
 				@Pc(38) int local38 = local29[local31];
 				if (this.anInt148 > local38) {

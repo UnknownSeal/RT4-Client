@@ -247,9 +247,9 @@ public final class TextureOp4 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!bi", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(17) int[] local17 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
+	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(17) int[] local17 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
 			this.method584(arg0, local17);
 		}
 		return local17;

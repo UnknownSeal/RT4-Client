@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -56,7 +55,7 @@ public final class TextureOpCurve extends TextureOp {
 		if (this.anInt5852 == 2) {
 			this.method4642();
 		}
-		CacheArchive.method185();
+		TextureOp.createTrigonometryTables();
 		this.method4639();
 	}
 
@@ -107,7 +106,7 @@ public final class TextureOpCurve extends TextureOp {
 				local59 = this.anIntArrayArray47[local29 - 1];
 				local52 = this.anIntArrayArray47[local29];
 				local68 = (local27 - local59[0] << 12) / (local52[0] - local59[0]);
-				local76 = 4096 - Static130.anIntArray299[local68 >> 5 & 0xFF] >> 1;
+				local76 = 4096 - TextureOp.COSINE[local68 >> 5 & 0xFF] >> 1;
 				local72 = 4096 - local76;
 				local89 = local76 * local52[1] + local59[1] * local72 >> 12;
 				if (local89 <= -32768) {
@@ -141,10 +140,10 @@ public final class TextureOpCurve extends TextureOp {
 
 	@OriginalMember(owner = "client!wi", name = "a", descriptor = "(IB)[I")
 	@Override
-	public int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(19) int[] local19 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
-			@Pc(29) int[] local29 = this.method4624(0, arg0);
+	public int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(19) int[] local19 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
+			@Pc(29) int[] local29 = this.getChildMonochromeOutput(0, arg0);
 			for (@Pc(31) int local31 = 0; local31 < Texture.width; local31++) {
 				@Pc(44) int local44 = local29[local31] >> 4;
 				if (local44 < 0) {

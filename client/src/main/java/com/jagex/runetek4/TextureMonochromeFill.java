@@ -8,20 +8,20 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!mi")
-public final class TextureOp20 extends TextureOp {
+public final class TextureMonochromeFill extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "bb", descriptor = "I")
 	private int anInt3894;
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "<init>", descriptor = "(I)V")
-	private TextureOp20(@OriginalArg(0) int arg0) {
+	private TextureMonochromeFill(@OriginalArg(0) int arg0) {
 		super(0, true);
 		this.anInt3894 = 4096;
 		this.anInt3894 = arg0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "<init>", descriptor = "()V")
-	public TextureOp20() {
+	public TextureMonochromeFill() {
 		this(4096);
 	}
 
@@ -35,9 +35,9 @@ public final class TextureOp20 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!mi", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(17) int[] local17 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
+	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(17) int[] local17 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
 			ArrayUtils.fill(local17, 0, Texture.width, this.anInt3894);
 		}
 		return local17;

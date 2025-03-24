@@ -10,9 +10,9 @@ public final class TextureOpTiledSprite extends TextureOpSprite {
 
 	@OriginalMember(owner = "runetek4.client!kd", name = "b", descriptor = "(II)[[I")
 	@Override
-	public final int[][] method4638(@OriginalArg(1) int arg0) {
-		@Pc(11) int[][] local11 = this.aClass103_41.method3173(arg0);
-		if (this.aClass103_41.aBoolean195 && this.method2573()) {
+	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
+		@Pc(11) int[][] local11 = this.clearImageCache.method3173(arg0);
+		if (this.clearImageCache.aBoolean195 && this.method2573()) {
 			@Pc(24) int[] local24 = local11[0];
 			@Pc(32) int local32 = arg0 % this.anInt3240 * this.anInt3240;
 			@Pc(36) int[] local36 = local11[1];

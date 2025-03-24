@@ -19,9 +19,9 @@ public final class TextureOp28 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!sa", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(19) int[] local19 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
+	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(19) int[] local19 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
 			@Pc(28) int local28 = Texture.heightFractions[arg0];
 			for (@Pc(30) int local30 = 0; local30 < Texture.width; local30++) {
 				@Pc(41) int local41 = Texture.widthFractions[local30];
@@ -60,7 +60,7 @@ public final class TextureOp28 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!sa", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
+	public void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
 		if (code == 0) {
 			this.anInt4971 = packet.g2();
 		}

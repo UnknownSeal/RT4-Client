@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class StockMarketOffer {
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "a", descriptor = "B")
-	private byte aByte17;
+	private byte statusAndType;
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "f", descriptor = "I")
 	public int anInt5089;
@@ -31,22 +31,22 @@ public final class StockMarketOffer {
 	}
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "<init>", descriptor = "(Lclient!wa;)V")
-	public StockMarketOffer(@OriginalArg(0) Packet arg0) {
-		this.aByte17 = arg0.g1s();
-		this.anInt5094 = arg0.g2();
-		this.anInt5099 = arg0.g4();
-		this.anInt5090 = arg0.g4();
-		this.anInt5089 = arg0.g4();
-		this.anInt5092 = arg0.g4();
+	public StockMarketOffer(@OriginalArg(0) Packet packet) {
+		this.statusAndType = packet.g1s();
+		this.anInt5094 = packet.g2();
+		this.anInt5099 = packet.g4();
+		this.anInt5090 = packet.g4();
+		this.anInt5089 = packet.g4();
+		this.anInt5092 = packet.g4();
 	}
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "a", descriptor = "(Z)I")
-	public final int method3904() {
-		return this.aByte17 & 0x7;
+	public int getStatus() {
+		return this.statusAndType & 0x7;
 	}
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "b", descriptor = "(B)I")
-	public final int method3905() {
-		return (this.aByte17 & 0x8) == 8 ? 1 : 0;
+	public int getType() {
+		return (this.statusAndType & 0x8) == 8 ? 1 : 0;
 	}
 }

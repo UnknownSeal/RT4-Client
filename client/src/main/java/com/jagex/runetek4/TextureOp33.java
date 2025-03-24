@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import java.util.Random;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -35,7 +34,7 @@ public final class TextureOp33 extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!vc", name = "e", descriptor = "(I)V")
 	@Override
 	public final void postDecode() {
-		CacheArchive.method185();
+		TextureOp.createTrigonometryTables();
 	}
 
 	@OriginalMember(owner = "runetek4.client!vc", name = "a", descriptor = "(ILclient!wa;Z)V")
@@ -56,19 +55,19 @@ public final class TextureOp33 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!vc", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(19) int[] local19 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
+	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(19) int[] local19 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
 			@Pc(28) int local28 = this.anInt5714 >> 1;
-			@Pc(33) int[][] local33 = this.aClass121_41.method3446();
+			@Pc(33) int[][] local33 = this.monochromeImageCache.method3446();
 			@Pc(40) Random local40 = new Random((long) this.anInt5716);
 			for (@Pc(42) int local42 = 0; local42 < this.anInt5712; local42++) {
 				@Pc(64) int local64 = this.anInt5714 > 0 ? this.anInt5709 + Static171.method3219(this.anInt5714, local40) - local28 : this.anInt5709;
 				@Pc(69) int local69 = Static171.method3219(Texture.width, local40);
 				@Pc(75) int local75 = local64 >> 4 & 0xFF;
 				@Pc(80) int local80 = Static171.method3219(Texture.height, local40);
-				@Pc(92) int local92 = local69 + (this.anInt5715 * Static130.anIntArray299[local75] >> 12);
-				@Pc(103) int local103 = local80 + (Static119.anIntArray282[local75] * this.anInt5715 >> 12);
+				@Pc(92) int local92 = local69 + (this.anInt5715 * TextureOp.COSINE[local75] >> 12);
+				@Pc(103) int local103 = local80 + (TextureOp.SINE[local75] * this.anInt5715 >> 12);
 				@Pc(107) int local107 = local92 - local69;
 				@Pc(112) int local112 = local103 - local80;
 				if (local107 != 0 || local112 != 0) {

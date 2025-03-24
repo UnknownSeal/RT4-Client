@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!ej")
-public final class TextureOp7 extends TextureOp {
+public final class TextureOpFlip extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!ej", name = "P", descriptor = "Z")
 	private boolean aBoolean104 = true;
@@ -17,7 +17,7 @@ public final class TextureOp7 extends TextureOp {
 	private boolean aBoolean105 = true;
 
 	@OriginalMember(owner = "runetek4.client!ej", name = "<init>", descriptor = "()V")
-	public TextureOp7() {
+	public TextureOpFlip() {
 		super(1, false);
 	}
 
@@ -29,16 +29,16 @@ public final class TextureOp7 extends TextureOp {
 		} else if (code == 1) {
 			this.aBoolean105 = packet.g1() == 1;
 		} else if (code == 2) {
-			this.aBoolean309 = packet.g1() == 1;
+			this.monochrome = packet.g1() == 1;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ej", name = "b", descriptor = "(II)[[I")
 	@Override
-	public final int[][] method4638(@OriginalArg(1) int arg0) {
-		@Pc(20) int[][] local20 = this.aClass103_41.method3173(arg0);
-		if (this.aClass103_41.aBoolean195) {
-			@Pc(39) int[][] local39 = this.method4634(this.aBoolean105 ? Texture.heightMask - arg0 : arg0, 0);
+	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
+		@Pc(20) int[][] local20 = this.clearImageCache.method3173(arg0);
+		if (this.clearImageCache.aBoolean195) {
+			@Pc(39) int[][] local39 = this.getChildColorOutput(this.aBoolean105 ? Texture.heightMask - arg0 : arg0, 0);
 			@Pc(43) int[] local43 = local39[0];
 			@Pc(47) int[] local47 = local39[2];
 			@Pc(51) int[] local51 = local39[1];
@@ -65,10 +65,10 @@ public final class TextureOp7 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!ej", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(15) int[] local15 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
-			@Pc(38) int[] local38 = this.method4624(0, this.aBoolean105 ? Texture.heightMask - arg0 : arg0);
+	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(15) int[] local15 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
+			@Pc(38) int[] local38 = this.getChildMonochromeOutput(0, this.aBoolean105 ? Texture.heightMask - arg0 : arg0);
 			if (this.aBoolean104) {
 				for (@Pc(51) int local51 = 0; local51 < Texture.width; local51++) {
 					local15[local51] = local38[Texture.widthMask - local51];

@@ -22,9 +22,9 @@ public final class TextureOp21 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(19) int[] local19 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
+	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(19) int[] local19 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
 			@Pc(31) int local31 = this.anInt4223 + this.anInt4223 + 1;
 			@Pc(35) int local35 = 65536 / local31;
 			@Pc(43) int local43 = this.anInt4221 + this.anInt4221 + 1;
@@ -32,7 +32,7 @@ public final class TextureOp21 extends TextureOp {
 			@Pc(50) int[][] local50 = new int[local31][];
 			@Pc(56) int local56;
 			for (local56 = arg0 - this.anInt4223; local56 <= arg0 + this.anInt4223; local56++) {
-				@Pc(75) int[] local75 = this.method4624(0, local56 & Texture.heightMask);
+				@Pc(75) int[] local75 = this.getChildMonochromeOutput(0, local56 & Texture.heightMask);
 				@Pc(78) int[] local78 = new int[Texture.width];
 				@Pc(80) int local80 = 0;
 				@Pc(84) int local84;
@@ -61,9 +61,9 @@ public final class TextureOp21 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!nm", name = "b", descriptor = "(II)[[I")
 	@Override
-	public final int[][] method4638(@OriginalArg(1) int arg0) {
-		@Pc(13) int[][] local13 = this.aClass103_41.method3173(arg0);
-		if (this.aClass103_41.aBoolean195) {
+	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
+		@Pc(13) int[][] local13 = this.clearImageCache.method3173(arg0);
+		if (this.clearImageCache.aBoolean195) {
 			@Pc(30) int local30 = this.anInt4221 + this.anInt4221 + 1;
 			@Pc(34) int local34 = 65536 / local30;
 			@Pc(42) int local42 = this.anInt4223 + this.anInt4223 + 1;
@@ -73,7 +73,7 @@ public final class TextureOp21 extends TextureOp {
 			@Pc(72) int local72;
 			@Pc(78) int local78;
 			for (@Pc(54) int local54 = arg0 - this.anInt4223; local54 <= this.anInt4223 + arg0; local54++) {
-				@Pc(68) int[][] local68 = this.method4634(Texture.heightMask & local54, 0);
+				@Pc(68) int[][] local68 = this.getChildColorOutput(Texture.heightMask & local54, 0);
 				local70 = 0;
 				local72 = 0;
 				@Pc(76) int[][] local76 = new int[3][Texture.width];
@@ -136,7 +136,7 @@ public final class TextureOp21 extends TextureOp {
 		} else if (code == 1) {
 			this.anInt4223 = packet.g1();
 		} else if (code == 2) {
-			this.aBoolean309 = packet.g1() == 1;
+			this.monochrome = packet.g1() == 1;
 		}
 	}
 }

@@ -19,11 +19,11 @@ public final class TextureOpCombine extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(11) int[] local11 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
-			@Pc(22) int[] local22 = this.method4624(0, arg0);
-			@Pc(28) int[] local28 = this.method4624(1, arg0);
+	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(11) int[] local11 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
+			@Pc(22) int[] local22 = this.getChildMonochromeOutput(0, arg0);
+			@Pc(28) int[] local28 = this.getChildMonochromeOutput(1, arg0);
 			@Pc(31) int local31 = this.anInt4543;
 			if (local31 == 1) {
 				for (local31 = 0; local31 < Texture.width; local31++) {
@@ -98,11 +98,11 @@ public final class TextureOpCombine extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "b", descriptor = "(II)[[I")
 	@Override
-	public final int[][] method4638(@OriginalArg(1) int arg0) {
-		@Pc(20) int[][] local20 = this.aClass103_41.method3173(arg0);
-		if (this.aClass103_41.aBoolean195) {
-			@Pc(30) int[][] local30 = this.method4634(arg0, 0);
-			@Pc(36) int[][] local36 = this.method4634(arg0, 1);
+	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
+		@Pc(20) int[][] local20 = this.clearImageCache.method3173(arg0);
+		if (this.clearImageCache.aBoolean195) {
+			@Pc(30) int[][] local30 = this.getChildColorOutput(arg0, 0);
+			@Pc(36) int[][] local36 = this.getChildColorOutput(arg0, 1);
 			@Pc(40) int[] local40 = local20[0];
 			@Pc(44) int[] local44 = local20[1];
 			@Pc(48) int[] local48 = local20[2];
@@ -242,7 +242,7 @@ public final class TextureOpCombine extends TextureOp {
 		if (code == 0) {
 			this.anInt4543 = packet.g1();
 		} else if (code == 1) {
-			this.aBoolean309 = packet.g1() == 1;
+			this.monochrome = packet.g1() == 1;
 		}
 	}
 }

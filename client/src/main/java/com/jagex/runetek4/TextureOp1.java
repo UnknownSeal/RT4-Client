@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -26,9 +25,9 @@ public final class TextureOp1 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!ag", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(11) int[] local11 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
+	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(11) int[] local11 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
 			@Pc(20) int local20 = Texture.heightFractions[arg0];
 			@Pc(26) int local26 = local20 - 2048 >> 1;
 			for (@Pc(28) int local28 = 0; local28 < Texture.width; local28++) {
@@ -44,7 +43,7 @@ public final class TextureOp1 extends TextureOp {
 				}
 				local68 -= local68 & 0xFFFFF000;
 				if (this.anInt100 == 0) {
-					local68 = Static119.anIntArray282[local68 >> 4 & 0xFF] + 4096 >> 1;
+					local68 = TextureOp.SINE[local68 >> 4 & 0xFF] + 4096 >> 1;
 				} else if (this.anInt100 == 2) {
 					local68 -= 2048;
 					if (local68 < 0) {
@@ -61,7 +60,7 @@ public final class TextureOp1 extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!ag", name = "e", descriptor = "(I)V")
 	@Override
 	public final void postDecode() {
-		CacheArchive.method185();
+		TextureOp.createTrigonometryTables();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ag", name = "a", descriptor = "(ILclient!wa;Z)V")

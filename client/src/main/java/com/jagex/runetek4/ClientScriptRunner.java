@@ -3593,7 +3593,7 @@ public final class ClientScriptRunner {
 									if (scriptOpcode == 3903) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										Static254.scriptIntValues[intValueIndex++] = StockMarketManager.offers[interfaceData].method3905();
+										Static254.scriptIntValues[intValueIndex++] = StockMarketManager.offers[interfaceData].getType();
 										continue;
 									}
 									if (scriptOpcode == 3904) {
@@ -3629,28 +3629,28 @@ public final class ClientScriptRunner {
 									if (scriptOpcode == 3910) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										interfaceType = StockMarketManager.offers[interfaceData].method3904();
+										interfaceType = StockMarketManager.offers[interfaceData].getStatus();
 										Static254.scriptIntValues[intValueIndex++] = interfaceType == 0 ? 1 : 0;
 										continue;
 									}
 									if (scriptOpcode == 3911) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										interfaceType = StockMarketManager.offers[interfaceData].method3904();
+										interfaceType = StockMarketManager.offers[interfaceData].getStatus();
 										Static254.scriptIntValues[intValueIndex++] = interfaceType == 2 ? 1 : 0;
 										continue;
 									}
 									if (scriptOpcode == 3912) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										interfaceType = StockMarketManager.offers[interfaceData].method3904();
+										interfaceType = StockMarketManager.offers[interfaceData].getStatus();
 										Static254.scriptIntValues[intValueIndex++] = interfaceType == 5 ? 1 : 0;
 										continue;
 									}
 									if (scriptOpcode == 3913) {
 										intValueIndex--;
 										interfaceData = Static254.scriptIntValues[intValueIndex];
-										interfaceType = StockMarketManager.offers[interfaceData].method3904();
+										interfaceType = StockMarketManager.offers[interfaceData].getStatus();
 										Static254.scriptIntValues[intValueIndex++] = interfaceType == 1 ? 1 : 0;
 										continue;
 									}

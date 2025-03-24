@@ -7,7 +7,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!gg")
-public final class TextureOp11 extends TextureOp {
+public final class TextureOpTile extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "V", descriptor = "I")
 	private int anInt2220 = 4;
@@ -16,7 +16,7 @@ public final class TextureOp11 extends TextureOp {
 	private int anInt2216 = 4;
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "<init>", descriptor = "()V")
-	public TextureOp11() {
+	public TextureOpTile() {
 		super(1, false);
 	}
 
@@ -32,18 +32,18 @@ public final class TextureOp11 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] method4626(@OriginalArg(0) int arg0) {
-		@Pc(19) int[] local19 = this.aClass121_41.get(arg0);
-		if (this.aClass121_41.invalid) {
+	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
+		@Pc(19) int[] local19 = this.monochromeImageCache.get(arg0);
+		if (this.monochromeImageCache.invalid) {
 			@Pc(28) int local28 = Texture.width / this.anInt2220;
 			@Pc(33) int local33 = Texture.height / this.anInt2216;
 			@Pc(44) int[] local44;
 			@Pc(50) int local50;
 			if (local33 <= 0) {
-				local44 = this.method4624(0, 0);
+				local44 = this.getChildMonochromeOutput(0, 0);
 			} else {
 				local50 = arg0 % local33;
-				local44 = this.method4624(0, Texture.height * local50 / local33);
+				local44 = this.getChildMonochromeOutput(0, Texture.height * local50 / local33);
 			}
 			for (local50 = 0; local50 < Texture.width; local50++) {
 				if (local28 <= 0) {
@@ -59,17 +59,17 @@ public final class TextureOp11 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "b", descriptor = "(II)[[I")
 	@Override
-	public final int[][] method4638(@OriginalArg(1) int arg0) {
-		@Pc(18) int[][] local18 = this.aClass103_41.method3173(arg0);
-		if (this.aClass103_41.aBoolean195) {
+	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
+		@Pc(18) int[][] local18 = this.clearImageCache.method3173(arg0);
+		if (this.clearImageCache.aBoolean195) {
 			@Pc(28) int local28 = Texture.width / this.anInt2220;
 			@Pc(33) int local33 = Texture.height / this.anInt2216;
 			@Pc(49) int[][] local49;
 			if (local33 > 0) {
 				@Pc(39) int local39 = arg0 % local33;
-				local49 = this.method4634(local39 * Texture.height / local33, 0);
+				local49 = this.getChildColorOutput(local39 * Texture.height / local33, 0);
 			} else {
-				local49 = this.method4634(0, 0);
+				local49 = this.getChildColorOutput(0, 0);
 			}
 			@Pc(61) int[] local61 = local49[0];
 			@Pc(65) int[] local65 = local49[2];

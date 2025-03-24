@@ -20,11 +20,6 @@ public final class Static5 {
 	@OriginalMember(owner = "runetek4.client!af", name = "m", descriptor = "Lclient!na;")
 	public static final JString aClass100_10 = JString.parse("<br>");
 
-	@OriginalMember(owner = "runetek4.client!af", name = "a", descriptor = "(ILjava/lang/String;)V")
-	public static void method31(@OriginalArg(1) String arg0) {
-		System.out.println("Error: " + Static40.method1014("%0a", "\n", arg0));
-	}
-
 	@OriginalMember(owner = "runetek4.client!af", name = "b", descriptor = "(B)V")
 	public static void method34() {
 		WorldMap.clear(false);
