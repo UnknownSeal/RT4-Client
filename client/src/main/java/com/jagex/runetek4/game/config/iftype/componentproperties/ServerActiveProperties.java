@@ -10,14 +10,14 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class ServerActiveProperties extends Node {
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "q", descriptor = "I")
-	public final int anInt540;
+	public final int targetParam;
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "x", descriptor = "I")
 	public final int anInt546;
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "<init>", descriptor = "(II)V")
 	public ServerActiveProperties(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		this.anInt540 = arg1;
+		this.targetParam = arg1;
 		this.anInt546 = arg0;
 	}
 
@@ -37,17 +37,17 @@ public final class ServerActiveProperties extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "e", descriptor = "(I)Z")
-	public boolean method506() {
+	public boolean isResumePauseButtonEnabled() {
 		return (this.anInt546 & 0x1) != 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "f", descriptor = "(I)Z")
-	public boolean method507() {
+	public boolean isObjUseEnabled() {
 		return (this.anInt546 >> 31 & 0x1) != 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "g", descriptor = "(I)Z")
-	public boolean method508() {
+	public boolean isUseTarget() {
 		return (this.anInt546 >> 22 & 0x1) != 0;
 	}
 
@@ -57,7 +57,7 @@ public final class ServerActiveProperties extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "h", descriptor = "(I)Z")
-	public boolean method510() {
+	public boolean isObjOpsEnabled() {
 		return (this.anInt546 >> 30 & 0x1) != 0;
 	}
 

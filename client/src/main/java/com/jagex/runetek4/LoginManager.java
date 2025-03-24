@@ -153,9 +153,9 @@ public class LoginManager {
     @OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(I)V")
     public static void method1841() {
         if (!ClientScriptRunner.aBoolean108) {
-            if (Static162.anInt3953 != 0) {
-                ClientScriptRunner.anInt3751 = Static277.anInt5850;
-                ClientScriptRunner.anInt1892 = Static280.anInt5895;
+            if (MiniMenu.anInt3953 != 0) {
+                ClientScriptRunner.anInt3751 = Mouse.anInt5850;
+                ClientScriptRunner.anInt1892 = Mouse.anInt5895;
             } else if (Mouse.clickButton == 0) {
                 ClientScriptRunner.anInt3751 = Mouse.lastMouseX;
                 ClientScriptRunner.anInt1892 = Mouse.lastMouseY;

@@ -15,9 +15,6 @@ public final class Static223 {
 	@OriginalMember(owner = "runetek4.client!sc", name = "p", descriptor = "I")
 	public static int anInt5029 = 0;
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "D", descriptor = "Lclient!na;")
-	public static final JString ORANGE = JString.parse("<col=ff7000>");
-
 	@OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(IIILclient!km;)V")
 	public static void method3855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) Npc arg2) {
 		if (arg2.primarySeqId == arg1 && arg1 != -1) {

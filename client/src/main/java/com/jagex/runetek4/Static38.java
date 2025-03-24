@@ -142,7 +142,7 @@ public final class Static38 {
 			if ((local28.value & 0x3FFFFFFFFFFFFFFFL) < local4) {
 				if ((local28.value & 0x4000000000000000L) != 0L) {
 					@Pc(58) int local58 = (int) local28.nodeId;
-					VarPlayerDefinition.varPlayers[local58] = VarPlayerDefinition.varPlayerCache[local58];
+					VarPlayerDefinition.activeVarps[local58] = VarPlayerDefinition.varPlayerCache[local58];
 					local28.unlink();
 					return local58;
 				}

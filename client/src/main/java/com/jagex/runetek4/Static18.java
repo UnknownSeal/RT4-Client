@@ -13,9 +13,6 @@ public final class Static18 {
 	@OriginalMember(owner = "client!bh", name = "M", descriptor = "Z")
 	public static boolean aBoolean40;
 
-	@OriginalMember(owner = "client!bh", name = "t", descriptor = "I")
-	public static int mouseInvInterfaceIndex = 0;
-
 	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(Lclient!fe;Z)V")
 	public static void method553(@OriginalArg(0) PathingEntity arg0) {
 		@Pc(8) int local8 = arg0.anInt3395 - client.loop;

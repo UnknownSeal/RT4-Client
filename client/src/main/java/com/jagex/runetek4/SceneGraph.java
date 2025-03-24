@@ -1476,4 +1476,25 @@ public class SceneGraph {
             }
         }
     }
+
+    @OriginalMember(owner = "runetek4.client!v", name = "a", descriptor = "(IIIJ)Z")
+    public static boolean isLocValid(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) long arg3) {
+        @Pc(7) Tile local7 = tiles[arg0][arg1][arg2];
+        if (local7 == null) {
+            return false;
+        } else if (local7.wall != null && local7.wall.aLong107 == arg3) {
+            return true;
+        } else if (local7.wallDecor != null && local7.wallDecor.key == arg3) {
+            return true;
+        } else if (local7.groundDecor != null && local7.groundDecor.key == arg3) {
+            return true;
+        } else {
+            for (@Pc(46) int local46 = 0; local46 < local7.entityCount; local46++) {
+                if (local7.sceneries[local46].hash == arg3) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
 }

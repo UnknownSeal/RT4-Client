@@ -78,7 +78,7 @@ public final class NpcType {
 	public JString name = Static266.aClass100_1010;
 
 	@OriginalMember(owner = "client!me", name = "x", descriptor = "I")
-	public int vislevel = -1;
+	public int combatLevel = -1;
 
 	@OriginalMember(owner = "client!me", name = "Z", descriptor = "Z")
 	public boolean minimap = true;
@@ -248,7 +248,7 @@ public final class NpcType {
 		} else if (code == 93) {
 			this.minimap = false;
 		} else if (code == 95) {
-			this.vislevel = packet.g2();
+			this.combatLevel = packet.g2();
 		} else if (code == 97) {
 			this.resizeh = packet.g2();
 		} else if (code == 98) {
@@ -385,7 +385,7 @@ public final class NpcType {
 		if (this.multivarbit != -1) {
 			i = VarbitDefinition.getVarbitValue(this.multivarbit);
 		} else if (this.multivarp != -1) {
-			i = VarPlayerDefinition.varPlayers[this.multivarp];
+			i = VarPlayerDefinition.activeVarps[this.multivarp];
 		}
 		if (i < 0 || i >= this.multiNpcs.length - 1 || this.multiNpcs[i] == -1) {
 			@Pc(55) int local55 = this.multiNpcs[this.multiNpcs.length - 1];
@@ -404,7 +404,7 @@ public final class NpcType {
 		if (this.multivarbit != -1) {
 			local16 = VarbitDefinition.getVarbitValue(this.multivarbit);
 		} else if (this.multivarp != -1) {
-			local16 = VarPlayerDefinition.varPlayers[this.multivarp];
+			local16 = VarPlayerDefinition.activeVarps[this.multivarp];
 		}
 		if (local16 < 0 || local16 >= this.multiNpcs.length - 1 || this.multiNpcs[local16] == -1) {
 			@Pc(62) int local62 = this.multiNpcs[this.multiNpcs.length - 1];

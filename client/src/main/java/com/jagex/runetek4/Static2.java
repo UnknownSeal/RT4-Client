@@ -183,11 +183,4 @@ public final class Static2 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!aa", name = "a", descriptor = "(IZI)V")
-	public static void method10(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		Protocol.outboundBuffer.pIsaac1(132);
-		Protocol.outboundBuffer.p4rme(arg1);
-		Protocol.outboundBuffer.p2_alt1(arg0);
-	}
-
 }

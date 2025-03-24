@@ -16,14 +16,8 @@ public final class Static72 {
 	@OriginalMember(owner = "client!fl", name = "H", descriptor = "Lclient!na;")
 	public static final JString aClass100_446 = JString.parse("<img=0>");
 
-	@OriginalMember(owner = "client!fl", name = "P", descriptor = "I")
-	public static int anInt2043 = 0;
-
 	@OriginalMember(owner = "client!fl", name = "Q", descriptor = "Lclient!na;")
 	public static final JString aClass100_447 = JString.parse("");
-
-	@OriginalMember(owner = "client!fl", name = "V", descriptor = "Lclient!na;")
-	public static final JString aClass100_448 = JString.parse("(Y");
 
 	@OriginalMember(owner = "client!fl", name = "b", descriptor = "(II)Lclient!cl;")
 	public static AnimFrameset method1566(@OriginalArg(0) int arg0) {

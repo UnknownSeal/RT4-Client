@@ -16,9 +16,6 @@ public final class Static280 {
 	@OriginalMember(owner = "runetek4.client!wl", name = "d", descriptor = "Lclient!na;")
 	public static final JString COMPASS = JString.parse("compass");
 
-	@OriginalMember(owner = "runetek4.client!wl", name = "u", descriptor = "I")
-	public static int anInt5895 = 0;
-
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!fe;B)V")
 	public static void method4665(@OriginalArg(0) PathingEntity arg0) {
 		if (client.loop == arg0.anInt3386 || arg0.primarySeqId == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > SeqTypeList.getAnimationSequence(arg0.primarySeqId).frames[arg0.anInt3425]) {

@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static105 {
 
-	@OriginalMember(owner = "runetek4.client!ib", name = "k", descriptor = "Lclient!na;")
-	public static final JString aClass100_561 = JString.parse(" )2> <col=ffffff>");
-
 	@OriginalMember(owner = "runetek4.client!ib", name = "a", descriptor = "(IIIIIIIILclient!th;IZJ)Z")
 	public static boolean addLoc(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) Entity arg8, @OriginalArg(9) int arg9, @OriginalArg(10) boolean arg10, @OriginalArg(11) long arg11) {
 		@Pc(6) boolean local6 = SceneGraph.tileHeights == Static80.anIntArrayArrayArray19;

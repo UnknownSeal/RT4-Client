@@ -13,7 +13,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class VarPlayerDefinition {
 
 	@OriginalMember(owner = "client!ah", name = "j", descriptor = "[I")
-	public static final int[] varPlayers = new int[2500];
+	public static final int[] activeVarps = new int[2500];
 
 	@OriginalMember(owner = "runetek4.client!sm", name = "c", descriptor = "Lclient!n;")
 	public static final NodeCache varPlayerDefinitionCache = new NodeCache(64);

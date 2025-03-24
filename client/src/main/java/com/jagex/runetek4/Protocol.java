@@ -949,10 +949,10 @@ public class Protocol {
                             opcode = -1;
                             return true;
                         } else if (opcode == 128) {
-                            for (ii = 0; ii < VarPlayerDefinition.varPlayers.length; ii++) {
-                                if (VarPlayerDefinition.varPlayerCache[ii] != VarPlayerDefinition.varPlayers[ii]) {
-                                    VarPlayerDefinition.varPlayers[ii] = VarPlayerDefinition.varPlayerCache[ii];
-                                    Static85.handleVarps(ii);
+                            for (ii = 0; ii < VarPlayerDefinition.activeVarps.length; ii++) {
+                                if (VarPlayerDefinition.varPlayerCache[ii] != VarPlayerDefinition.activeVarps[ii]) {
+                                    VarPlayerDefinition.activeVarps[ii] = VarPlayerDefinition.varPlayerCache[ii];
+                                    VarpDomain.refreshMagicVarp(ii);
                                     Static83.updatedVarps[Static70.updatedVarpsWriterIndex++ & 0x1F] = ii;
                                 }
                             }
@@ -1498,10 +1498,10 @@ public class Protocol {
                                             local904 = ((long) world << 32) + ((long) i);
                                             local1804 = (ServerActiveProperties) InterfaceList.properties.getNode(local904);
                                             if (local1804 != null) {
-                                                local1814 = new ServerActiveProperties(count, local1804.anInt540);
+                                                local1814 = new ServerActiveProperties(count, local1804.targetParam);
                                                 local1804.unlink();
                                             } else if (i == -1) {
-                                                local1814 = new ServerActiveProperties(count, InterfaceList.getComponent(world).properties.anInt540);
+                                                local1814 = new ServerActiveProperties(count, InterfaceList.getComponent(world).properties.targetParam);
                                             } else {
                                                 local1814 = new ServerActiveProperties(count, -1);
                                             }

@@ -9,9 +9,6 @@ public final class Static6 {
 	@OriginalMember(owner = "client!ag", name = "ab", descriptor = "Lclient!na;")
 	public static final JString aClass100_17 = JString.parse("0");
 
-	@OriginalMember(owner = "client!ag", name = "bb", descriptor = "Lclient!na;")
-	public static final JString GREEN2 = JString.parse("<col=40ff00>");
-
 	@OriginalMember(owner = "client!ag", name = "cb", descriptor = "[Lclient!cl;")
 	public static final AnimFrameset[] aClass3_Sub2_Sub7Array1 = new AnimFrameset[14];
 

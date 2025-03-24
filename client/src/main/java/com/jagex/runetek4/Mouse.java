@@ -28,6 +28,10 @@ public final class Mouse implements MouseListener, MouseMotionListener, FocusLis
 	public static int mouseClickX = 0;
 	@OriginalMember(owner = "client!bl", name = "Q", descriptor = "I")
 	public static int pressedButton = 0;
+    @OriginalMember(owner = "runetek4.client!wl", name = "u", descriptor = "I")
+    public static int anInt5895 = 0;
+	@OriginalMember(owner = "runetek4.client!wi", name = "W", descriptor = "I")
+	public static int anInt5850 = 0;
 
 	@OriginalMember(owner = "runetek4.client!dl", name = "a", descriptor = "(II)V")
 	public static void setIdleLoops(@OriginalArg(1) int arg0) {

@@ -44,14 +44,14 @@ public final class aClass6 {
 					}
 				}
 			}
-			if (local20 == 1 && (Static116.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || Static277.menuHasAddFriend(MiniMenu.menuActionRow - 1))) {
+			if (local20 == 1 && (Static116.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1))) {
 				local20 = 2;
 			}
-			if (local20 == 2 && MiniMenu.menuActionRow > 0 || Static162.anInt3953 == 1) {
+			if (local20 == 2 && MiniMenu.menuActionRow > 0 || MiniMenu.anInt3953 == 1) {
 				Static226.determineMenuSize();
 			}
-			if (local20 == 1 && MiniMenu.menuActionRow > 0 || Static162.anInt3953 == 2) {
-				Static59.processMenuActions();
+			if (local20 == 1 && MiniMenu.menuActionRow > 0 || MiniMenu.anInt3953 == 2) {
+				MiniMenu.processMenuActions();
 			}
 			return;
 		}
@@ -85,7 +85,7 @@ public final class aClass6 {
 			}
 		}
 		if (local269 != -1) {
-			Static103.method2232(local269);
+			MiniMenu.doAction(local269);
 		}
 		ClientScriptRunner.aBoolean108 = false;
 		InterfaceList.redrawScreen(InterfaceList.anInt4271, InterfaceList.anInt761, InterfaceList.anInt5138, InterfaceList.anInt436);

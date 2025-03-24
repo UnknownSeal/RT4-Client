@@ -28,9 +28,6 @@ public final class Static34 {
 	@OriginalMember(owner = "client!ck", name = "o", descriptor = "Lclient!na;")
 	private static final JString LOADED_WORLD_LIST_DATA = JString.parse("Loaded world list data");
 
-	@OriginalMember(owner = "client!ck", name = "D", descriptor = "Lclient!na;")
-	public static JString aClass100_203 = null;
-
 	@OriginalMember(owner = "client!ck", name = "a", descriptor = "(BI)Lclient!eg;")
 	public static SpotAnimDefinition method877(@OriginalArg(1) int arg0) {
 		@Pc(10) SpotAnimDefinition local10 = (SpotAnimDefinition) Static279.aClass99_38.get((long) arg0);

@@ -101,7 +101,7 @@ public final class Class6 {
 			arg1 = 0;
 		}
 		local25 <<= local16;
-		Static148.method2766(local19, local25 & arg1 << local16 | VarPlayerDefinition.varPlayers[local19] & ~local25);
+		Static148.method2766(local19, local25 & arg1 << local16 | VarPlayerDefinition.activeVarps[local19] & ~local25);
 	}
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(IBII)I")

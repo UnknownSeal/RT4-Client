@@ -208,7 +208,7 @@ public class Game {
         }
         // VarpDomain
         for (i = Static38.poll(true); i != -1; i = Static38.poll(false)) {
-            Static85.handleVarps(i);
+            VarpDomain.refreshMagicVarp(i);
             Static83.updatedVarps[Static70.updatedVarpsWriterIndex++ & 0x1F] = i;
         }
         @Pc(782) int rand;
@@ -338,8 +338,8 @@ public class Game {
         }
         Protocol.sceneDelta++;
         if (MiniMenu.pressedInventoryComponent != null) {
-            Static72.anInt2043++;
-            if (Static72.anInt2043 >= 15) {
+            MiniMenu.anInt2043++;
+            if (MiniMenu.anInt2043 >= 15) {
                 InterfaceList.redraw(MiniMenu.pressedInventoryComponent);
                 MiniMenu.pressedInventoryComponent = null;
             }
@@ -353,24 +353,24 @@ public class Game {
             InterfaceList.lastItemDragTime++;
             if (Mouse.pressedButton == 0) {
                 if (InterfaceList.draggingClickedInventoryObject && InterfaceList.lastItemDragTime >= 5) {
-                    if (InterfaceList.clickedInventoryComponent == InterfaceList.mouseOverInventoryInterface && InterfaceList.selectedInventorySlot != Static18.mouseInvInterfaceIndex) {
+                    if (InterfaceList.clickedInventoryComponent == InterfaceList.mouseOverInventoryInterface && InterfaceList.selectedInventorySlot != MiniMenu.mouseInvInterfaceIndex) {
                         component = InterfaceList.clickedInventoryComponent;
                         @Pc(1363) byte moveItemInsertionMode = 0;
                         if (Static179.bankInsertMode == 1 && component.contentType == 206) {
                             moveItemInsertionMode = 1;
                         }
-                        if (component.invSlotObjId[Static18.mouseInvInterfaceIndex] <= 0) {
+                        if (component.invSlotObjId[MiniMenu.mouseInvInterfaceIndex] <= 0) {
                             moveItemInsertionMode = 0;
                         }
                         if (InterfaceList.getServerActiveProperties(component).method504()) {
                             y = InterfaceList.selectedInventorySlot;
-                            x = Static18.mouseInvInterfaceIndex;
+                            x = MiniMenu.mouseInvInterfaceIndex;
                             component.invSlotObjId[x] = component.invSlotObjId[y];
                             component.invSlotObjCount[x] = component.invSlotObjCount[y];
                             component.invSlotObjId[y] = -1;
                             component.invSlotObjCount[y] = 0;
                         } else if (moveItemInsertionMode == 1) {
-                            x = Static18.mouseInvInterfaceIndex;
+                            x = MiniMenu.mouseInvInterfaceIndex;
                             y = InterfaceList.selectedInventorySlot;
                             while (x != y) {
                                 if (y > x) {
@@ -382,21 +382,21 @@ public class Game {
                                 }
                             }
                         } else {
-                            component.swapObjs(Static18.mouseInvInterfaceIndex, InterfaceList.selectedInventorySlot);
+                            component.swapObjs(MiniMenu.mouseInvInterfaceIndex, InterfaceList.selectedInventorySlot);
                         }
                         Protocol.outboundBuffer.pIsaac1(231);
                         Protocol.outboundBuffer.p2(InterfaceList.selectedInventorySlot);
                         Protocol.outboundBuffer.p4_alt1(InterfaceList.clickedInventoryComponent.id);
-                        Protocol.outboundBuffer.p2_alt2(Static18.mouseInvInterfaceIndex);
+                        Protocol.outboundBuffer.p2_alt2(MiniMenu.mouseInvInterfaceIndex);
                         Protocol.outboundBuffer.p1_alt3(moveItemInsertionMode);
                     }
-                } else if ((Static116.oneMouseButton == 1 || Static277.menuHasAddFriend(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
+                } else if ((Static116.oneMouseButton == 1 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
                     Static226.determineMenuSize();
                 } else if (MiniMenu.menuActionRow > 0) {
-                    Static59.processMenuActions();
+                    MiniMenu.processMenuActions();
                 }
                 Mouse.clickButton = 0;
-                Static72.anInt2043 = 10;
+                MiniMenu.anInt2043 = 10;
                 InterfaceList.clickedInventoryComponent = null;
             }
         }

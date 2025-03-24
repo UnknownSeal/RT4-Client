@@ -18,7 +18,4 @@ public final class Static250 {
 	@OriginalMember(owner = "runetek4.client!uf", name = "o", descriptor = "Lclient!na;")
 	public static final JString SCROLLBAR = JString.parse("scrollbar");
 
-	@OriginalMember(owner = "runetek4.client!uf", name = "q", descriptor = "Lclient!na;")
-	public static final JString aClass100_1042 = JString.parse("Null");
-
 }
