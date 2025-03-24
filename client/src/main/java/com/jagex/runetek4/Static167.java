@@ -24,7 +24,7 @@ public final class Static167 {
 			arg0.aClass3_Sub16_5.anInt3313 = 0;
 		}
 		arg0.aBoolean292 = false;
-		for (@Pc(14) PcmStream local14 = arg0.method4406(); local14 != null; local14 = arg0.method4409()) {
+		for (@Pc(14) PcmStream local14 = arg0.firstSubStream(); local14 != null; local14 = arg0.nextSubStream()) {
 			method3170(local14);
 		}
 	}

@@ -12,9 +12,6 @@ public final class Static223 {
 	@OriginalMember(owner = "runetek4.client!sc", name = "f", descriptor = "Lclient!na;")
 	public static final JString aClass100_946 = JString.parse("(R");
 
-	@OriginalMember(owner = "runetek4.client!sc", name = "g", descriptor = "Lclient!na;")
-	public static final JString aClass100_947 = JString.parse(" )2> <col=ff9040>");
-
 	@OriginalMember(owner = "runetek4.client!sc", name = "p", descriptor = "I")
 	public static int anInt5029 = 0;
 

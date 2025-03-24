@@ -38,7 +38,7 @@ public final class Static69 {
 		local3.aClass8_7 = arg6;
 		local3.aClass8_8 = arg7;
 		@Pc(34) int local34 = 0;
-		@Pc(42) Tile local42 = Static130.levelTiles[arg0][arg1][arg2];
+		@Pc(42) Tile local42 = SceneGraph.tiles[arg0][arg1][arg2];
 		if (local42 != null) {
 			for (@Pc(46) int local46 = 0; local46 < local42.entityCount; local46++) {
 				@Pc(55) Scenery local55 = local42.sceneries[local46];
@@ -51,10 +51,10 @@ public final class Static69 {
 			}
 		}
 		local3.offset = -local34;
-		if (Static130.levelTiles[arg0][arg1][arg2] == null) {
-			Static130.levelTiles[arg0][arg1][arg2] = new Tile(arg0, arg1, arg2);
+		if (SceneGraph.tiles[arg0][arg1][arg2] == null) {
+			SceneGraph.tiles[arg0][arg1][arg2] = new Tile(arg0, arg1, arg2);
 		}
-		Static130.levelTiles[arg0][arg1][arg2].aClass79_1 = local3;
+		SceneGraph.tiles[arg0][arg1][arg2].aClass79_1 = local3;
 	}
 
 	@OriginalMember(owner = "client!fh", name = "a", descriptor = "(Lclient!th;IIIII)V")
@@ -70,7 +70,7 @@ public final class Static69 {
 					if (local28 >= 0 && local28 < Static152.anInt3594) {
 						for (@Pc(39) int local39 = local11; local39 <= local15; local39++) {
 							if (local39 >= 0 && local39 < Static99.anInt2550 && (!local1 || local28 >= local7 || local39 >= local15 || local39 < arg3 && local28 != arg2)) {
-								@Pc(71) Tile local71 = Static130.levelTiles[local17][local28][local39];
+								@Pc(71) Tile local71 = SceneGraph.tiles[local17][local28][local39];
 								if (local71 != null) {
 									@Pc(158) int local158 = (SceneGraph.tileHeights[local17][local28][local39] + SceneGraph.tileHeights[local17][local28 + 1][local39] + SceneGraph.tileHeights[local17][local28][local39 + 1] + SceneGraph.tileHeights[local17][local28 + 1][local39 + 1]) / 4 - (SceneGraph.tileHeights[arg1][arg2][arg3] + SceneGraph.tileHeights[arg1][arg2 + 1][arg3] + SceneGraph.tileHeights[arg1][arg2][arg3 + 1] + SceneGraph.tileHeights[arg1][arg2 + 1][arg3 + 1]) / 4;
 									@Pc(161) Wall local161 = local71.wall;

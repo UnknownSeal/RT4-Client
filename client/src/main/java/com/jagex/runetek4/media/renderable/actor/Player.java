@@ -113,7 +113,7 @@ public final class Player extends PathingEntity {
 		if (!GlRenderer.enabled || LoginManager.aBoolean252) {
 			return;
 		}
-		@Pc(14) Tile[][][] local14 = Static130.levelTiles;
+		@Pc(14) Tile[][][] local14 = SceneGraph.tiles;
 		for (@Pc(22) int local22 = 0; local22 < local14.length; local22++) {
 			@Pc(30) Tile[][] local30 = local14[local22];
 			for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {

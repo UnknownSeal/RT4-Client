@@ -45,12 +45,4 @@ public final class Static230 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!sj", name = "c", descriptor = "(II)V")
-	public static void method3956(@OriginalArg(0) int arg0) {
-		if (Static14.anInt441 == 0) {
-			Static172.aClass3_Sub3_Sub4_2.method4447(arg0);
-		} else {
-			Static253.anInt5527 = arg0;
-		}
-	}
 }

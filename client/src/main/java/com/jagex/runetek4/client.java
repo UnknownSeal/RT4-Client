@@ -692,7 +692,7 @@ public final class client extends GameShell {
 				if (Preferences.musicVolume == 0) {
 					MidiPlayer.playFadeOut();
 				} else {
-					Static257.method526(MusicPlayer.titleSong, js5Archive6, 255);
+					MidiPlayer.playFadeOut(MusicPlayer.titleSong, js5Archive6, 255);
 				}
 				js5NetQueue.writeLoggedIn(false);
 			} else {

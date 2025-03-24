@@ -11,9 +11,6 @@ public final class Static276 {
 	@OriginalMember(owner = "runetek4.client!wh", name = "c", descriptor = "[[[Lclient!bj;")
 	public static Tile[][][] aClass3_Sub5ArrayArrayArray3;
 
-	@OriginalMember(owner = "runetek4.client!wh", name = "l", descriptor = "[Lclient!qf;")
-	public static Sprite[] aClass3_Sub2_Sub1Array11;
-
 	@OriginalMember(owner = "runetek4.client!wh", name = "g", descriptor = "[I")
 	public static final int[] anIntArray563 = new int[50];
 

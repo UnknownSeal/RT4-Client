@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.HashTable;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -302,13 +303,19 @@ public final class Song extends Node {
 		}
 	}
 
+	@OriginalMember(owner = "runetek4.client!rf", name = "a", descriptor = "(Lclient!ve;II)Lclient!rf;")
+	public static Song create(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+		@Pc(5) byte[] local5 = arg0.getfile(arg1, arg2);
+		return local5 == null ? null : new Song(new Packet(local5));
+	}
+
 	@OriginalMember(owner = "runetek4.client!rf", name = "a", descriptor = "()V")
-	public final void method3740() {
+	public final void releasePrograms() {
 		this.aClass133_22 = null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!rf", name = "b", descriptor = "()V")
-	public final void method3741() {
+	public final void createPrograms() {
 		if (this.aClass133_22 != null) {
 			return;
 		}
@@ -374,6 +381,6 @@ public final class Song extends Node {
 					local29.saveTrackPosition(local34);
 				}
 			}
-		} while (!local29.method2626());
+		} while (!local29.hasNextTrack());
 	}
 }

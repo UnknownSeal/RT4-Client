@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static144 {
 
-	@OriginalMember(owner = "runetek4.client!le", name = "c", descriptor = "Lclient!rf;")
-	public static Song aClass3_Sub29_1;
-
 	@OriginalMember(owner = "runetek4.client!le", name = "k", descriptor = "Z")
 	public static boolean jingle = false;
 
@@ -229,7 +226,7 @@ public final class Static144 {
 									if (local233 != 0) {
 										local254 = local222 >> 14 & 0x3;
 										@Pc(998) MSIType local998 = Static40.get(local233 - 1);
-										@Pc(1003) SoftwareIndexedSprite local1003 = local998.method9(local254);
+										@Pc(1003) SoftwareIndexedSprite local1003 = local998.getSprite(local254);
 										if (local1003 != null) {
 											local276 = local162 * local1003.height / 4;
 											local270 = local62 * local1003.width / 4;

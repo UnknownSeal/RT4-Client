@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.media.Rasterizer;
-import com.jagex.runetek4.scene.tile.ComplexTile;
+import com.jagex.runetek4.scene.tile.ShapedTile;
 import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -20,7 +20,7 @@ public final class Static147 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!lh", name = "a", descriptor = "(Lclient!fg;IIIIIIZ)V")
-	public static void drawTileOverlay(@OriginalArg(0) ComplexTile overlay, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7) {
+	public static void drawTileOverlay(@OriginalArg(0) ShapedTile overlay, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) boolean arg7) {
 		@Pc(3) int vertexCount = overlay.anIntArray168.length;
 		@Pc(5) int i;
 		@Pc(15) int a;

@@ -44,7 +44,7 @@ public final class MSIType {
 	}
 
 	@OriginalMember(owner = "client!aa", name = "a", descriptor = "(IB)Lclient!ek;")
-	public SoftwareIndexedSprite method9(@OriginalArg(0) int arg0) {
+	public SoftwareIndexedSprite getSprite(@OriginalArg(0) int arg0) {
 		@Pc(17) SoftwareIndexedSprite local17 = (SoftwareIndexedSprite) Static219.aClass99_27.get((long) arg0 << 16 | this.spriteId);
 		if (local17 != null) {
 			return local17;

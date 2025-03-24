@@ -4,9 +4,10 @@ import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.dash3d.entity.Npc;
+import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.scene.tile.ComplexTile;
+import com.jagex.runetek4.scene.tile.ShapedTile;
 import com.jagex.runetek4.scene.tile.GenericTile;
 import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.util.ArrayUtils;
@@ -70,7 +71,7 @@ public final class Static176 {
 						continue;
 					}
 					if (MiniMenu.anInt5014 == 1) {
-						MiniMenu.addActionRow(Static169.anInt4075, local121, JString.concatenate(new JString[] { Static34.aClass100_203, Static27.aClass100_164, local172.name}), local47, (short) 14, LocalizedText.USE, local147);
+						MiniMenu.addActionRow(MiniMap.anInt4075, local121, JString.concatenate(new JString[] { Static34.aClass100_203, Static27.aClass100_164, local172.name}), local47, (short) 14, LocalizedText.USE, local147);
 					} else if (MiniMenu.aBoolean302) {
 						@Pc(363) Class3_Sub2_Sub12 local363 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
 						if ((Static274.anInt4999 & 0x4) != 0 && (local363 == null || local172.getParam(local363.anInt2667, Static121.anInt3039) != local363.anInt2667)) {
@@ -111,7 +112,7 @@ public final class Static176 {
 								}
 							}
 						}
-						MiniMenu.addActionRow(Static225.anInt5073, (long) local172.id, JString.concatenate(new JString[] { Static240.aClass100_1008, local172.name}), local47, (short) 1004, LocalizedText.EXAMINE, local147);
+						MiniMenu.addActionRow(MiniMap.anInt5073, (long) local172.id, JString.concatenate(new JString[] { Static240.aClass100_1008, local172.name}), local47, (short) 1004, LocalizedText.EXAMINE, local147);
 					}
 				}
 				@Pc(514) int local514;
@@ -175,11 +176,11 @@ public final class Static176 {
 							local240 = local940.aClass8_Sub7_1.anInt5555;
 							@Pc(951) ObjType local951 = ObjTypeList.get(local240);
 							if (MiniMenu.anInt5014 == 1) {
-								MiniMenu.addActionRow(Static169.anInt4075, (long) local240, JString.concatenate(new JString[] { Static34.aClass100_203, Static223.aClass100_947, local951.name}), local47, (short) 33, LocalizedText.USE, local147);
+								MiniMenu.addActionRow(MiniMap.anInt4075, (long) local240, JString.concatenate(new JString[] { Static34.aClass100_203, MiniMenu.aClass100_947, local951.name}), local47, (short) 33, LocalizedText.USE, local147);
 							} else if (MiniMenu.aBoolean302) {
 								@Pc(1142) Class3_Sub2_Sub12 local1142 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
 								if ((Static274.anInt4999 & 0x1) != 0 && (local1142 == null || local951.getParam(local1142.anInt2667, Static121.anInt3039) != local1142.anInt2667)) {
-									MiniMenu.addActionRow(MiniMenu.anInt5393, (long) local240, JString.concatenate(new JString[] { Static78.aClass100_466, Static223.aClass100_947, local951.name}), local47, (short) 39, MiniMenu.aClass100_545, local147);
+									MiniMenu.addActionRow(MiniMenu.anInt5393, (long) local240, JString.concatenate(new JString[] { Static78.aClass100_466, MiniMenu.aClass100_947, local951.name}), local47, (short) 39, MiniMenu.aClass100_545, local147);
 								}
 							} else {
 								@Pc(997) JString[] local997 = local951.groundOptions;
@@ -214,7 +215,7 @@ public final class Static176 {
 										MiniMenu.addActionRow(local1041, (long) local240, JString.concatenate(new JString[] { MiniMenu.aClass100_32, local951.name}), local47, local1025, local997[local514], local147);
 									}
 								}
-								MiniMenu.addActionRow(Static225.anInt5073, (long) local240, JString.concatenate(new JString[] { MiniMenu.aClass100_32, local951.name}), local47, (short) 1002, LocalizedText.EXAMINE, local147);
+								MiniMenu.addActionRow(MiniMap.anInt5073, (long) local240, JString.concatenate(new JString[] { MiniMenu.aClass100_32, local951.name}), local47, (short) 1002, LocalizedText.EXAMINE, local147);
 							}
 						}
 					}
@@ -230,27 +231,27 @@ public final class Static176 {
 		if (arg3 == 0) {
 			local12 = new GenericTile(arg10, arg11, arg12, arg13, -1, arg18, false);
 			for (local14 = arg0; local14 >= 0; local14--) {
-				if (Static130.levelTiles[local14][arg1][arg2] == null) {
-					Static130.levelTiles[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
+				if (SceneGraph.tiles[local14][arg1][arg2] == null) {
+					SceneGraph.tiles[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
 				}
 			}
-			Static130.levelTiles[arg0][arg1][arg2].plainTile = local12;
+			SceneGraph.tiles[arg0][arg1][arg2].plainTile = local12;
 		} else if (arg3 == 1) {
 			local12 = new GenericTile(arg14, arg15, arg16, arg17, arg5, arg19, arg6 == arg7 && arg6 == arg8 && arg6 == arg9);
 			for (local14 = arg0; local14 >= 0; local14--) {
-				if (Static130.levelTiles[local14][arg1][arg2] == null) {
-					Static130.levelTiles[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
+				if (SceneGraph.tiles[local14][arg1][arg2] == null) {
+					SceneGraph.tiles[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
 				}
 			}
-			Static130.levelTiles[arg0][arg1][arg2].plainTile = local12;
+			SceneGraph.tiles[arg0][arg1][arg2].plainTile = local12;
 		} else {
-			@Pc(134) ComplexTile local134 = new ComplexTile(arg3, arg4, arg5, arg1, arg2, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17, arg18, arg19);
+			@Pc(134) ShapedTile local134 = new ShapedTile(arg3, arg4, arg5, arg1, arg2, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14, arg15, arg16, arg17, arg18, arg19);
 			for (local14 = arg0; local14 >= 0; local14--) {
-				if (Static130.levelTiles[local14][arg1][arg2] == null) {
-					Static130.levelTiles[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
+				if (SceneGraph.tiles[local14][arg1][arg2] == null) {
+					SceneGraph.tiles[local14][arg1][arg2] = new Tile(local14, arg1, arg2);
 				}
 			}
-			Static130.levelTiles[arg0][arg1][arg2].shapedTile = local134;
+			SceneGraph.tiles[arg0][arg1][arg2].shapedTile = local134;
 		}
 	}
 

@@ -14,9 +14,6 @@ public final class Static179 {
 	@OriginalMember(owner = "runetek4.client!oe", name = "i", descriptor = "[[I")
 	public static final int[][] anIntArrayArray33 = new int[5][5000];
 
-	@OriginalMember(owner = "runetek4.client!oe", name = "n", descriptor = "I")
-	public static int minimapZoomModifier = 1;
-
 	@OriginalMember(owner = "runetek4.client!oe", name = "a", descriptor = "(IZ)I")
 	public static int method3322(@OriginalArg(0) int arg0) {
 		return arg0 & 0x7F;

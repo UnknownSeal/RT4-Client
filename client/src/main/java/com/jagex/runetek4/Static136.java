@@ -135,8 +135,4 @@ public final class Static136 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!kk", name = "a", descriptor = "(I)Z")
-	public static boolean method2655() {
-		return Static14.anInt441 == 0 ? Static172.aClass3_Sub3_Sub4_2.method4414() : true;
-	}
 }

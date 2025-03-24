@@ -11,9 +11,6 @@ public final class Static159 {
 	@OriginalMember(owner = "runetek4.client!mi", name = "W", descriptor = "[Z")
 	public static boolean[] aBooleanArray87;
 
-	@OriginalMember(owner = "runetek4.client!mi", name = "U", descriptor = "[J")
-	public static final long[] aLongArray5 = new long[500];
-
 	@OriginalMember(owner = "runetek4.client!mi", name = "ab", descriptor = "Z")
 	public static boolean aBoolean189 = true;
 

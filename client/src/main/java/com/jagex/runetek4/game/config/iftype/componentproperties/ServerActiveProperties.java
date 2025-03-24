@@ -67,7 +67,7 @@ public final class ServerActiveProperties extends Node {
 	}
 
 	@OriginalMember(owner = "runetek4.client!bf", name = "i", descriptor = "(I)I")
-	public int method512() {
+	public int getTargetMask() {
 		return Static199.method3594(this.anInt546);
 	}
 }

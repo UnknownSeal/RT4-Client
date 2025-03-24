@@ -41,11 +41,11 @@ public final class Static262 {
 		wall.typeA = arg6;
 		wall.typeB = arg7;
 		for (@Pc(42) int l = level; l >= 0; l--) {
-			if (Static130.levelTiles[l][arg1][z] == null) {
-				Static130.levelTiles[l][arg1][z] = new Tile(l, arg1, z);
+			if (SceneGraph.tiles[l][arg1][z] == null) {
+				SceneGraph.tiles[l][arg1][z] = new Tile(l, arg1, z);
 			}
 		}
-		Static130.levelTiles[level][arg1][z].wall = wall;
+		SceneGraph.tiles[level][arg1][z].wall = wall;
 	}
 
 }

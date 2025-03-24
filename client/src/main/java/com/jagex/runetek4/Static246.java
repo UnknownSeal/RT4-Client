@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.NpcType;
+import com.jagex.runetek4.frame.MiniMap;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -27,7 +28,7 @@ public final class Static246 {
 			tooltip = JString.concatenate(new JString[] { tooltip, Static123.getCombatLevelColorTag(npc.vislevel, PlayerList.self.combatLevel), Static123.aClass100_593, string, JString.parseInt(npc.vislevel), Static72.aClass100_448 });
 		}
 		if (MiniMenu.anInt5014 == 1) {
-			MiniMenu.addActionRow(Static169.anInt4075, (long) arg2, JString.concatenate(new JString[] { Static34.aClass100_203, Static201.aClass100_407, tooltip }), arg1, (short) 26, LocalizedText.USE, arg3);
+			MiniMenu.addActionRow(MiniMap.anInt4075, (long) arg2, JString.concatenate(new JString[] { Static34.aClass100_203, Static201.aClass100_407, tooltip }), arg1, (short) 26, LocalizedText.USE, arg3);
 		} else if (MiniMenu.aBoolean302) {
 			@Pc(378) Class3_Sub2_Sub12 local378 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
 			if ((Static274.anInt4999 & 0x2) != 0 && (local378 == null || npc.getParam(Static121.anInt3039, local378.anInt2667) != local378.anInt2667)) {
@@ -99,7 +100,7 @@ public final class Static246 {
 					}
 				}
 			}
-			MiniMenu.addActionRow(Static225.anInt5073, (long) arg2, JString.concatenate(new JString[] { Static226.YELLOW2, tooltip }), arg1, (short) 1007, LocalizedText.EXAMINE, arg3);
+			MiniMenu.addActionRow(MiniMap.anInt5073, (long) arg2, JString.concatenate(new JString[] { Static226.YELLOW2, tooltip }), arg1, (short) 1007, LocalizedText.EXAMINE, arg3);
 		}
 	}
 

@@ -12,9 +12,6 @@ public final class Static169 {
 	@OriginalMember(owner = "runetek4.client!nf", name = "e", descriptor = "I")
 	public static int anInt4073;
 
-	@OriginalMember(owner = "runetek4.client!nf", name = "i", descriptor = "I")
-	public static int anInt4075 = -1;
-
 	@OriginalMember(owner = "runetek4.client!nf", name = "a", descriptor = "(Lclient!na;BZ)V")
 	public static void openUrl(@OriginalArg(0) JString arg0, @OriginalArg(2) boolean arg1) {
 		if (!arg1) {

@@ -125,26 +125,12 @@ public final class ClientScriptRunner {
 	public static boolean aBoolean299 = false;
 	@OriginalMember(owner = "runetek4.client!wb", name = "c", descriptor = "I")
 	public static int anInt5794 = -1;
+	@OriginalMember(owner = "client!fc", name = "a", descriptor = "I")
+	public static int anInt1951 = -1;
 
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(I)V")
 	public static void clear() {
 		IdkTypeList.types.clean();
-	}
-
-	@OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(IIIZIII)V")
-	public static void method4000(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {
-		@Pc(3) int local3 = 0;
-		@Pc(5) MapMarker[] local5 = MiniMap.hintMapMarkers;
-		while (local5.length > local3) {
-			@Pc(17) MapMarker local17 = local5[local3];
-			if (local17 != null && local17.type == 2) {
-				Static198.method1026(arg0 >> 1, arg4, (local17.anInt4046 - Camera.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.targetX - Camera.originX << 7), arg3);
-				if (Static65.anInt1951 > -1 && client.loop % 20 < 10) {
-					Static276.aClass3_Sub2_Sub1Array11[local17.anInt4048].render(arg1 + Static65.anInt1951 - 12, arg5 + -28 - -Static16.anInt548);
-				}
-			}
-			local3++;
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(B)V")
@@ -1536,14 +1522,14 @@ public final class ClientScriptRunner {
 			client.audioLoop();
 			Static223.method3858();
 			Static142.method2726(arg4, arg3, arg2, Static223.anInt5029, arg0, Static223.anInt5029);
-			method4000(arg3, arg2, arg0, Static223.anInt5029, Static223.anInt5029, arg4);
+			MiniMap.method4000(arg3, arg2, arg0, Static223.anInt5029, Static223.anInt5029, arg4);
 		} else {
 			SoftwareRaster.fillRect(arg2, arg4, arg3, arg0, 0);
 			Static156.method2954(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
 			client.audioLoop();
 			Static223.method3858();
 			Static142.method2726(arg4, arg3, arg2, 256, arg0, 256);
-			method4000(arg3, arg2, arg0, 256, 256, arg4);
+			MiniMap.method4000(arg3, arg2, arg0, 256, 256, arg4);
 		}
 		((Js5GlTextureProvider) Rasterizer.textureProvider).method3239(Protocol.sceneDelta);
 		Static115.method2310(arg3, arg4, arg0, arg2);
@@ -2788,7 +2774,7 @@ public final class ClientScriptRunner {
 								} else if (scriptOpcode < 1900) {
 									local1182 = local1020 ? Static274.aClass13_24 : Static227.aClass13_25;
 									if (scriptOpcode == 1800) {
-										Static254.scriptIntValues[intValueIndex++] = InterfaceList.getServerActiveProperties(local1182).method512();
+										Static254.scriptIntValues[intValueIndex++] = InterfaceList.getServerActiveProperties(local1182).getTargetMask();
 										continue;
 									}
 									if (scriptOpcode == 1801) {
@@ -2961,7 +2947,7 @@ public final class ClientScriptRunner {
 									intValueIndex--;
 									local1182 = InterfaceList.getComponent(Static254.scriptIntValues[intValueIndex]);
 									if (scriptOpcode == 2800) {
-										Static254.scriptIntValues[intValueIndex++] = InterfaceList.getServerActiveProperties(local1182).method512();
+										Static254.scriptIntValues[intValueIndex++] = InterfaceList.getServerActiveProperties(local1182).getTargetMask();
 										continue;
 									}
 									if (scriptOpcode == 2801) {
@@ -4826,8 +4812,8 @@ public final class ClientScriptRunner {
 													}
 													if (scriptOpcode == 5427) {
 														intValueIndex -= 2;
-														Static169.anInt4075 = Static254.scriptIntValues[intValueIndex];
-														Static225.anInt5073 = Static254.scriptIntValues[intValueIndex + 1];
+														MiniMap.anInt4075 = Static254.scriptIntValues[intValueIndex];
+														MiniMap.anInt5073 = Static254.scriptIntValues[intValueIndex + 1];
 														continue;
 													}
 												} else if (scriptOpcode < 5600) {
@@ -5174,13 +5160,13 @@ public final class ClientScriptRunner {
 														}
 														if (interfaceData != Preferences.musicVolume) {
 															if (Preferences.musicVolume == 0 && MusicPlayer.groupId != -1) {
-																Static122.method2410(client.js5Archive6, MusicPlayer.groupId, interfaceData);
+																MidiPlayer.playImmediate(client.js5Archive6, MusicPlayer.groupId, interfaceData);
 																Static144.jingle = false;
 															} else if (interfaceData == 0) {
-																Static241.method4548();
+																MidiPlayer.method4548();
 																Static144.jingle = false;
 															} else {
-																Static230.method3956(interfaceData);
+																MidiPlayer.method3956(interfaceData);
 															}
 															Preferences.musicVolume = interfaceData;
 														}
@@ -5953,6 +5939,40 @@ public final class ClientScriptRunner {
 		} else {
 			Static38.method960((byte) (Static136.anInt3325 - 4 & 0xFF));
 			Static232.method3993(2);
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!q", name = "a", descriptor = "(IIIIIIBI)V")
+	public static void method1026(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(7) int arg6) {
+		if (arg5 < 128 || arg2 < 128 || arg5 > 13056 || arg2 > 13056) {
+			Static16.anInt548 = -1;
+			anInt1951 = -1;
+			return;
+		}
+		@Pc(38) int local38 = SceneGraph.getTileHeight(Player.plane, arg5, arg2) - arg3;
+		@Pc(42) int local42 = arg2 - Camera.renderZ;
+		@Pc(46) int local46 = local38 - Camera.cameraY;
+		@Pc(50) int local50 = arg5 - Camera.renderX;
+		@Pc(54) int local54 = MathUtils.sin[Camera.cameraPitch];
+		@Pc(58) int local58 = MathUtils.cos[Camera.cameraPitch];
+		@Pc(62) int local62 = MathUtils.sin[Camera.cameraYaw];
+		@Pc(66) int local66 = MathUtils.cos[Camera.cameraYaw];
+		@Pc(76) int local76 = local50 * local66 + local62 * local42 >> 16;
+		@Pc(87) int local87 = local42 * local66 - local62 * local50 >> 16;
+		@Pc(89) int local89 = local76;
+		@Pc(99) int local99 = local58 * local46 - local87 * local54 >> 16;
+		@Pc(113) int local113 = local87 * local58 + local46 * local54 >> 16;
+		if (local113 < 50) {
+			Static16.anInt548 = -1;
+			anInt1951 = -1;
+		} else if (GlRenderer.enabled) {
+			@Pc(150) int local150 = arg1 * 512 >> 8;
+			anInt1951 = local150 * local89 / local113 + arg0;
+			@Pc(164) int local164 = arg6 * 512 >> 8;
+			Static16.anInt548 = local164 * local99 / local113 + arg4;
+		} else {
+			anInt1951 = (local89 << 9) / local113 + arg0;
+			Static16.anInt548 = (local99 << 9) / local113 + arg4;
 		}
 	}
 }

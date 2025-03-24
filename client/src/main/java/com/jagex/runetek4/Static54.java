@@ -88,12 +88,12 @@ public final class Static54 {
 				local5--;
 			}
 		}
-		if (Static144.jingle && !Static136.method2655()) {
+		if (Static144.jingle && !MidiPlayer.isPlaying()) {
 			if (Preferences.musicVolume != 0 && MusicPlayer.groupId != -1) {
-				Static122.method2410(client.js5Archive6, MusicPlayer.groupId, Preferences.musicVolume);
+				MidiPlayer.playImmediate(client.js5Archive6, MusicPlayer.groupId, Preferences.musicVolume);
 			}
 			Static144.jingle = false;
-		} else if (Preferences.musicVolume != 0 && MusicPlayer.groupId != -1 && !Static136.method2655()) {
+		} else if (Preferences.musicVolume != 0 && MusicPlayer.groupId != -1 && !MidiPlayer.isPlaying()) {
 			Protocol.outboundBuffer.pIsaac1(137);
 			Protocol.outboundBuffer.p4(MusicPlayer.groupId);
 			MusicPlayer.groupId = -1;

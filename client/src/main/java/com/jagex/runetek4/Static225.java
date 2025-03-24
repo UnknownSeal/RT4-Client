@@ -11,9 +11,6 @@ public final class Static225 {
 	@OriginalMember(owner = "runetek4.client!se", name = "l", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_92;
 
-	@OriginalMember(owner = "runetek4.client!se", name = "h", descriptor = "I")
-	public static int anInt5073 = -1;
-
 	@OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "(I)V")
 	public static void getPlayerNewVis() {
 		while (true) {

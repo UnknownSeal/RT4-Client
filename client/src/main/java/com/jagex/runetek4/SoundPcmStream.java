@@ -79,11 +79,16 @@ public final class SoundPcmStream extends PcmStream {
 		this.method416();
 	}
 
+	@OriginalMember(owner = "runetek4.client!b", name = "a", descriptor = "(Lclient!kj;III)Lclient!b;")
+	public static SoundPcmStream create(@OriginalArg(0) PcmSound arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
+		return arg0.aByteArray47 == null || arg0.aByteArray47.length == 0 ? null : new SoundPcmStream(arg0, arg1, arg2, arg3);
+	}
+
 	@OriginalMember(owner = "runetek4.client!b", name = "b", descriptor = "([III)V")
 	@Override
-	public final synchronized void method4408(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public final synchronized void read(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		if (this.anInt343 == 0 && this.anInt351 == 0) {
-			this.method4410(arg2);
+			this.skip(arg2);
 			return;
 		}
 		@Pc(13) PcmSound local13 = (PcmSound) this.aClass3_Sub16_5;
@@ -403,13 +408,13 @@ public final class SoundPcmStream extends PcmStream {
 	}
 
 	@OriginalMember(owner = "runetek4.client!b", name = "f", descriptor = "()I")
-	public final synchronized int method392() {
+	public final synchronized int getVolume() {
 		return this.anInt343 == Integer.MIN_VALUE ? 0 : this.anInt343;
 	}
 
 	@OriginalMember(owner = "runetek4.client!b", name = "c", descriptor = "(I)V")
 	@Override
-	public final synchronized void method4410(@OriginalArg(0) int arg0) {
+	public final synchronized void skip(@OriginalArg(0) int arg0) {
 		if (this.anInt351 > 0) {
 			if (arg0 >= this.anInt351) {
 				if (this.anInt343 == Integer.MIN_VALUE) {
@@ -570,7 +575,7 @@ public final class SoundPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!b", name = "b", descriptor = "()Lclient!qb;")
 	@Override
-	public final PcmStream method4406() {
+	public final PcmStream firstSubStream() {
 		return null;
 	}
 
@@ -731,7 +736,7 @@ public final class SoundPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!b", name = "d", descriptor = "()Lclient!qb;")
 	@Override
-	public final PcmStream method4409() {
+	public final PcmStream nextSubStream() {
 		return null;
 	}
 }

@@ -702,7 +702,7 @@ public class SoftwareSprite extends Sprite {
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "c", descriptor = "()V")
-	public final void method304() {
+	public final void makeTarget() {
 		SoftwareRaster.setSize(this.pixels, this.width, this.height);
 	}
 

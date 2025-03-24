@@ -28,7 +28,7 @@ public final class Static248 {
 		@Pc(37) int local37;
 		@Pc(183) int local183;
 		for (@Pc(23) int local23 = Static235.anInt5276; local23 < Static126.anInt3114; local23++) {
-			@Pc(30) Tile[][] local30 = Static130.levelTiles[local23];
+			@Pc(30) Tile[][] local30 = SceneGraph.tiles[local23];
 			for (local32 = LightingManager.anInt987; local32 < LightingManager.anInt15; local32++) {
 				for (local37 = LightingManager.anInt4698; local37 < LightingManager.anInt4866; local37++) {
 					@Pc(46) Tile local46 = local30[local32][local37];
@@ -97,14 +97,14 @@ public final class Static248 {
 						Static21.method619(local285.underwaterColor);
 						FogManager.setFogColor(Static123.method2422());
 					}
-					local285.method1944(Static130.levelTiles, local294, false);
+					local285.method1944(SceneGraph.tiles, local294, false);
 				}
 				Static275.method4608();
 			} else {
 				local32 = Static235.anInt5276;
 				while (true) {
 					if (local32 >= Static126.anInt3114) {
-						LightingManager.method2402(Static167.eyeTileX, Static193.anInt4539, Static130.levelTiles);
+						LightingManager.method2402(Static167.eyeTileX, Static193.anInt4539, SceneGraph.tiles);
 						break;
 					}
 					for (local37 = 0; local37 < Static182.aGlTileArrayArray2[local32].length; local37++) {
@@ -113,7 +113,7 @@ public final class Static248 {
 						if (local336.texture != -1 && Rasterizer.textureProvider.getMaterialType(local336.texture) == 4 && Preferences.highWaterDetail) {
 							Static21.method619(local336.underwaterColor);
 						}
-						local336.method1944(Static130.levelTiles, local350, false);
+						local336.method1944(SceneGraph.tiles, local350, false);
 					}
 					if (local32 == 0 && Static139.anInt3451 > 0) {
 						GlRenderer.method4159(101.5F);
@@ -132,7 +132,7 @@ public final class Static248 {
 		@Pc(415) int local415;
 		@Pc(428) int local428;
 		for (local399 = Static235.anInt5276; local399 < Static126.anInt3114; local399++) {
-			local406 = Static130.levelTiles[local399];
+			local406 = SceneGraph.tiles[local399];
 			for (local37 = -Static277.anInt5855; local37 <= 0; local37++) {
 				local415 = Static167.eyeTileX + local37;
 				local183 = Static167.eyeTileX - local37;
@@ -179,7 +179,7 @@ public final class Static248 {
 			}
 		}
 		for (local399 = Static235.anInt5276; local399 < Static126.anInt3114; local399++) {
-			local406 = Static130.levelTiles[local399];
+			local406 = SceneGraph.tiles[local399];
 			for (local37 = -Static277.anInt5855; local37 <= 0; local37++) {
 				local415 = Static167.eyeTileX + local37;
 				local183 = Static167.eyeTileX - local37;

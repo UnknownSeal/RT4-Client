@@ -16,7 +16,7 @@ public final class Static187 {
 
 	@OriginalMember(owner = "runetek4.client!pb", name = "b", descriptor = "(III)Lclient!jj;")
 	public static ObjStackEntity method3420(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Tile local7 = Static130.levelTiles[arg0][arg1][arg2];
+		@Pc(7) Tile local7 = SceneGraph.tiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return null;
 		} else {

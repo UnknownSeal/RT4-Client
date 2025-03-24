@@ -77,7 +77,7 @@ public final class Static247 {
 											tileZ = tile.anInt666;
 											local24 = tile.anInt672;
 											occludeLevel = tile.anInt668;
-											tiles = Static130.levelTiles[local24];
+											tiles = SceneGraph.tiles[local24];
 											@Pc(33) float local33 = 0.0F;
 											if (GlRenderer.enabled) {
 												if (Static80.anIntArrayArrayArray19 == SceneGraph.tileHeights) {
@@ -107,7 +107,7 @@ public final class Static247 {
 											}
 											if (arg1) {
 												if (local24 > 0) {
-													local153 = Static130.levelTiles[local24 - 1][tileX][tileZ];
+													local153 = SceneGraph.tiles[local24 - 1][tileX][tileZ];
 													if (local153 != null && local153.aBoolean46) {
 														continue;
 													}
@@ -635,7 +635,7 @@ public final class Static247 {
 			}
 			@Pc(2388) Tile local2388;
 			if (local24 < Static126.anInt3114 - 1) {
-				local2388 = Static130.levelTiles[local24 + 1][tileX][tileZ];
+				local2388 = SceneGraph.tiles[local24 + 1][tileX][tileZ];
 				if (local2388 != null && local2388.aBoolean46) {
 					aClass6.drawTileQueue.addTail(local2388);
 				}

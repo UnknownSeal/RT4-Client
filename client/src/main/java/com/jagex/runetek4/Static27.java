@@ -5,9 +5,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static27 {
 
-	@OriginalMember(owner = "client!cb", name = "hb", descriptor = "Lclient!le;")
-	public static SoundBank aClass89_1;
-
 	@OriginalMember(owner = "client!cb", name = "Y", descriptor = "Lclient!n;")
 	public static final NodeCache aClass99_4 = new NodeCache(64);
 

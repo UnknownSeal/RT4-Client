@@ -544,7 +544,7 @@ public class Game {
                                                 Protocol.newTab = false;
                                             }
                                             Protocol.anInt3251++;
-                                            Static82.minimapOffsetCycle++;
+                                            MiniMap.minimapOffsetCycle++;
                                             Static143.cameraOffsetCycle++;
                                             if (Static143.cameraOffsetCycle > 500) {
                                                 Static143.cameraOffsetCycle = 0;
@@ -559,24 +559,24 @@ public class Game {
                                                     Camera.cameraAnticheatOffsetX += Camera.cameraOffsetXModifier;
                                                 }
                                             }
-                                            if (Static82.minimapOffsetCycle > 500) {
-                                                Static82.minimapOffsetCycle = 0;
+                                            if (MiniMap.minimapOffsetCycle > 500) {
+                                                MiniMap.minimapOffsetCycle = 0;
                                                 rand = (int) (Math.random() * 8.0D);
                                                 if ((rand & 0x1) == 1) {
-                                                    MiniMap.minimapAnticheatAngle += Static263.minimapAngleModifier;
+                                                    MiniMap.minimapAnticheatAngle += MiniMap.minimapAngleModifier;
                                                 }
                                                 if ((rand & 0x2) == 2) {
-                                                    MiniMap.minimapZoom += Static179.minimapZoomModifier;
+                                                    MiniMap.minimapZoom += MiniMap.minimapZoomModifier;
                                                 }
                                             }
                                             if (Camera.cameraAnticheatOffsetX < -50) {
                                                 Camera.cameraOffsetXModifier = 2;
                                             }
                                             if (MiniMap.minimapAnticheatAngle < -60) {
-                                                Static263.minimapAngleModifier = 2;
+                                                MiniMap.minimapAngleModifier = 2;
                                             }
                                             if (MiniMap.minimapZoom < -20) {
-                                                Static179.minimapZoomModifier = 1;
+                                                MiniMap.minimapZoomModifier = 1;
                                             }
                                             if (Camera.cameraAnticheatOffsetZ < -55) {
                                                 Static20.cameraOffsetZModifier = 2;
@@ -594,10 +594,10 @@ public class Game {
                                                 Static220.cameraOffsetYawModifier = -1;
                                             }
                                             if (MiniMap.minimapZoom > 10) {
-                                                Static179.minimapZoomModifier = -1;
+                                                MiniMap.minimapZoomModifier = -1;
                                             }
                                             if (MiniMap.minimapAnticheatAngle > 60) {
-                                                Static263.minimapAngleModifier = -2;
+                                                MiniMap.minimapAngleModifier = -2;
                                             }
                                             if (Protocol.anInt3251 > 50) {
                                                 Protocol.outboundBuffer.pIsaac1(93);

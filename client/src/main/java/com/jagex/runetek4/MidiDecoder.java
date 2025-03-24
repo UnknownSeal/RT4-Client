@@ -51,7 +51,7 @@ public final class MidiDecoder {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ki", name = "b", descriptor = "()Z")
-	public final boolean method2626() {
+	public final boolean hasNextTrack() {
 		@Pc(3) int tracks = this.positions.length;
 		for (@Pc(5) int i = 0; i < tracks; i++) {
 			if (this.positions[i] >= 0) {

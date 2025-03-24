@@ -23,13 +23,13 @@ public final class Static103 {
 			return;
 		}
 		@Pc(15) int local15 = MiniMenu.intArgs1[arg0];
-		@Pc(19) int local19 = Static56.anIntArray142[arg0];
+		@Pc(19) int local19 = MiniMenu.intArgs2[arg0];
 		@Pc(23) int local23 = MiniMenu.actions[arg0];
 		if (local23 >= 2000) {
 			local23 -= 2000;
 		}
-		@Pc(31) long local31 = Static159.aLongArray5[arg0];
-		@Pc(36) int a = (int) Static159.aLongArray5[arg0];
+		@Pc(31) long local31 = MiniMenu.keys[arg0];
+		@Pc(36) int a = (int) MiniMenu.keys[arg0];
 		@Pc(43) Player local43;
 		if (local23 == 31) {
 			local43 = PlayerList.players[a];
@@ -338,16 +338,16 @@ public final class Static103 {
 			if (com != null) {
 				MiniMenu.method1294();
 				@Pc(1493) ServerActiveProperties local1493 = InterfaceList.getServerActiveProperties(com);
-				Static247.method4246(local19, local15, local1493.method512(), local1493.anInt540, com.anInt499, com.anInt484);
+				Static247.method4246(local19, local15, local1493.getTargetMask(), local1493.anInt540, com.anInt499, com.anInt484);
 				MiniMenu.anInt5014 = 0;
-				MiniMenu.aClass100_545 = Static97.method1963(com);
+				MiniMenu.aClass100_545 = MiniMap.getTargetVerb(com);
 				if (MiniMenu.aClass100_545 == null) {
 					MiniMenu.aClass100_545 = Static250.aClass100_1042;
 				}
 				if (com.if3) {
 					Static78.aClass100_466 = JString.concatenate(new JString[] { com.optionBase, Static204.aClass100_896 });
 				} else {
-					Static78.aClass100_466 = JString.concatenate(new JString[] { Static42.GREEN, com.optionSuffix, Static204.aClass100_896 });
+					Static78.aClass100_466 = JString.concatenate(new JString[] { MiniMenu.GREEN, com.optionSuffix, Static204.aClass100_896 });
 				}
 			}
 			return;

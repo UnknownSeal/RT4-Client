@@ -165,7 +165,7 @@ public final class Static123 {
 	public static JString getCombatLevelColorTag(@OriginalArg(0) int viewerLevel, @OriginalArg(2) int otherLevel) {
 		@Pc(4) int diff = otherLevel - viewerLevel;
 		if (diff < -9) {
-			return Static175.RED;
+			return MiniMenu.RED;
 		} else if (diff < -6) {
 			return Static64.RED2;
 		} else if (diff < -3) {
@@ -173,7 +173,7 @@ public final class Static123 {
 		} else if (diff < 0) {
 			return Static229.YELLOW;
 		} else if (diff > 9) {
-			return Static42.GREEN;
+			return MiniMenu.GREEN;
 		} else if (diff > 6) {
 			return Static6.GREEN2;
 		} else if (diff <= 3) {

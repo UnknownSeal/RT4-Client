@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -47,7 +48,7 @@ public final class Static217 {
 		}
 		@Pc(275) int local275;
 		if (MiniMenu.anInt5014 == 1) {
-			MiniMenu.addActionRow(Static169.anInt4075, (long) arg0, JString.concatenate(new JString[] { Static34.aClass100_203, Static105.aClass100_561, local158 }), arg3, (short) 1, LocalizedText.USE, arg1);
+			MiniMenu.addActionRow(MiniMap.anInt4075, (long) arg0, JString.concatenate(new JString[] { Static34.aClass100_203, Static105.aClass100_561, local158 }), arg3, (short) 1, LocalizedText.USE, arg1);
 		} else if (!MiniMenu.aBoolean302) {
 			for (local275 = 7; local275 >= 0; local275--) {
 				if (Player.options[local275] != null) {

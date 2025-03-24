@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.Tile;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -16,7 +15,7 @@ public final class Static257 {
 
 	@OriginalMember(owner = "runetek4.client!v", name = "a", descriptor = "(IIIJ)Z")
 	public static boolean method523(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) long arg3) {
-		@Pc(7) Tile local7 = Static130.levelTiles[arg0][arg1][arg2];
+		@Pc(7) Tile local7 = SceneGraph.tiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return false;
 		} else if (local7.wall != null && local7.wall.aLong107 == arg3) {
@@ -35,14 +34,4 @@ public final class Static257 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!v", name = "a", descriptor = "(ZIILclient!ve;ZII)V")
-	public static void method526(@OriginalArg(1) int arg0, @OriginalArg(3) Js5 arg1, @OriginalArg(5) int arg2) {
-		Static172.aClass153_70 = arg1;
-		Static226.anInt5085 = 0;
-		Static277.anInt5853 = arg0;
-		Static72.aBoolean116 = false;
-		Static14.anInt441 = 1;
-		Static57.anInt1757 = 2;
-		Static253.anInt5527 = arg2;
-	}
 }

@@ -1,14 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class FloTypeList {
-
-	@OriginalMember(owner = "client!uh", name = "P", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_103;
 
 	@OriginalMember(owner = "client!uh", name = "ab", descriptor = "Lclient!q;")
 	public static final ReferenceNodeFactory aClass22_1 = Static44.method1147();
@@ -40,12 +36,12 @@ public final class FloTypeList {
 		if (Camera.cameraType != 1) {
 			local33 = SceneGraph.getTileHeight(Player.plane, Camera.renderX, Camera.renderZ);
 			if (local33 - Camera.cameraY < 800 && (SceneGraph.renderFlags[Player.plane][Camera.renderX >> 7][Camera.renderZ >> 7] & 0x4) != 0) {
-				Static254.method4348(false, Camera.renderX >> 7, Camera.renderZ >> 7, Static130.levelTiles, 1);
+				Static254.method4348(false, Camera.renderX >> 7, Camera.renderZ >> 7, SceneGraph.tiles, 1);
 			}
 			return;
 		}
 		if ((SceneGraph.renderFlags[Player.plane][PlayerList.self.xFine >> 7][PlayerList.self.zFine >> 7] & 0x4) != 0) {
-			Static254.method4348(false, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7, Static130.levelTiles, 0);
+			Static254.method4348(false, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7, SceneGraph.tiles, 0);
 		}
 		if (Camera.cameraPitch >= 310) {
 			return;
@@ -78,7 +74,7 @@ public final class FloTypeList {
 					local40--;
 				}
 				if ((SceneGraph.renderFlags[Player.plane][local33][local40] & 0x4) != 0) {
-					Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
+					Static254.method4348(false, local33, local40, SceneGraph.tiles, 1);
 					break;
 				}
 				local186 += local192;
@@ -90,7 +86,7 @@ public final class FloTypeList {
 					}
 					local186 -= 65536;
 					if ((SceneGraph.renderFlags[Player.plane][local33][local40] & 0x4) != 0) {
-						Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
+						Static254.method4348(false, local33, local40, SceneGraph.tiles, 1);
 						break;
 					}
 				}
@@ -106,7 +102,7 @@ public final class FloTypeList {
 				local33--;
 			}
 			if ((SceneGraph.renderFlags[Player.plane][local33][local40] & 0x4) != 0) {
-				Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
+				Static254.method4348(false, local33, local40, SceneGraph.tiles, 1);
 				break;
 			}
 			local186 += local192;
@@ -118,7 +114,7 @@ public final class FloTypeList {
 				}
 				local186 -= 65536;
 				if ((SceneGraph.renderFlags[Player.plane][local33][local40] & 0x4) != 0) {
-					Static254.method4348(false, local33, local40, Static130.levelTiles, 1);
+					Static254.method4348(false, local33, local40, SceneGraph.tiles, 1);
 					break;
 				}
 			}

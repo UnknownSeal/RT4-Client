@@ -190,12 +190,12 @@ public class AudioChannel {
 									if (local45 >= this.anInt4621) {
 										break label106;
 									}
-									@Pc(145) PcmStream local145 = local96.method4406();
+									@Pc(145) PcmStream local145 = local96.firstSubStream();
 									if (local145 != null) {
 										@Pc(150) int local150 = local96.anInt5626;
 										while (local145 != null) {
 											this.method3567(local145, local150 * local145.method4407() >> 8);
-											local145 = local96.method4409();
+											local145 = local96.nextSubStream();
 										}
 									}
 									@Pc(169) PcmStream local169 = local96.aClass3_Sub3_8;
@@ -236,7 +236,7 @@ public class AudioChannel {
 			this.anInt4638 = 0;
 		}
 		if (this.stream != null) {
-			this.stream.method4408(arg0, 0, 256);
+			this.stream.read(arg0, 0, 256);
 		}
 		this.time = MonotonicTime.currentTimeMillis();
 	}
@@ -365,7 +365,7 @@ public class AudioChannel {
 			this.anInt4638 = 0;
 		}
 		if (this.stream != null) {
-			this.stream.method4410(256);
+			this.stream.skip(256);
 		}
 	}
 

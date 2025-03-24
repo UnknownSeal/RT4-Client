@@ -89,7 +89,7 @@ public final class Static278 {
 	@OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(IIB)V")
 	public static void method4650(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		if (Preferences.musicVolume != 0 && arg1 != -1) {
-			Static122.method2410(client.js5Archive11, arg1, Preferences.musicVolume);
+			MidiPlayer.playImmediate(client.js5Archive11, arg1, Preferences.musicVolume);
 			Static144.jingle = true;
 		}
 	}

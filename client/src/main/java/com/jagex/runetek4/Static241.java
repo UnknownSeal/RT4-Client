@@ -95,10 +95,4 @@ public final class Static241 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(Z)V")
-	public static void method4548() {
-		Static172.aClass3_Sub3_Sub4_2.method4446();
-		Static14.anInt441 = 1;
-		Static172.aClass153_70 = null;
-	}
 }

@@ -143,7 +143,7 @@ public class Scene {
 
     @OriginalMember(owner = "runetek4.client!dk", name = "a", descriptor = "(III)Lclient!ec;")
     public static Scenery getObject(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        @Pc(7) Tile tile = Static130.levelTiles[arg0][arg1][arg2];
+        @Pc(7) Tile tile = SceneGraph.tiles[arg0][arg1][arg2];
         if (tile == null) {
             return null;
         }
@@ -169,9 +169,9 @@ public class Scene {
         groundDecor.anInt733 = arg3;
         groundDecor.key = arg5;
         groundDecor.aBoolean49 = arg6;
-        if (Static130.levelTiles[arg0][arg1][arg2] == null) {
-            Static130.levelTiles[arg0][arg1][arg2] = new Tile(arg0, arg1, arg2);
+        if (SceneGraph.tiles[arg0][arg1][arg2] == null) {
+            SceneGraph.tiles[arg0][arg1][arg2] = new Tile(arg0, arg1, arg2);
         }
-        Static130.levelTiles[arg0][arg1][arg2].groundDecor = groundDecor;
+        SceneGraph.tiles[arg0][arg1][arg2].groundDecor = groundDecor;
     }
 }

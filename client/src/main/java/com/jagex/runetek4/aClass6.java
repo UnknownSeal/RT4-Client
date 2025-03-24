@@ -26,7 +26,7 @@ public final class aClass6 {
 				@Pc(37) short local37 = MiniMenu.actions[MiniMenu.menuActionRow - 1];
 				if (local37 == 25 || local37 == 23 || local37 == 48 || local37 == 7 || local37 == 13 || local37 == 47 || local37 == 5 || local37 == 43 || local37 == 35 || local37 == 58 || local37 == 22 || local37 == 1006) {
 					local93 = MiniMenu.intArgs1[MiniMenu.menuActionRow - 1];
-					local99 = Static56.anIntArray142[MiniMenu.menuActionRow - 1];
+					local99 = MiniMenu.intArgs2[MiniMenu.menuActionRow - 1];
 					@Pc(103) Component local103 = InterfaceList.getComponent(local99);
 					@Pc(106) ServerActiveProperties local106 = InterfaceList.getServerActiveProperties(local103);
 					if (local106.method511() || local106.method504()) {

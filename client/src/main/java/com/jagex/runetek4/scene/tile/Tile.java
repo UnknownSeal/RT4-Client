@@ -20,7 +20,7 @@ public final class Tile extends Node {
 	public boolean aBoolean46;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "B", descriptor = "Lclient!fg;")
-	public ComplexTile shapedTile;
+	public ShapedTile shapedTile;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "C", descriptor = "I")
 	public int checkLocSpans;

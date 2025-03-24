@@ -28,6 +28,16 @@ public class MiniMenu {
     public static final JString aClass100_32 = JString.parse("<col=ff9040>");
     @OriginalMember(owner = "runetek4.client!pl", name = "e", descriptor = "[I")
     public static final int[] intArgs1 = new int[500];
+    @OriginalMember(owner = "client!df", name = "l", descriptor = "Lclient!na;")
+    public static final JString GREEN = JString.parse("<col=00ff00>");
+    @OriginalMember(owner = "runetek4.client!sc", name = "g", descriptor = "Lclient!na;")
+    public static final JString aClass100_947 = JString.parse(" )2> <col=ff9040>");
+    @OriginalMember(owner = "runetek4.client!mi", name = "U", descriptor = "[J")
+    public static final long[] keys = new long[500];
+    @OriginalMember(owner = "client!ef", name = "c", descriptor = "[I")
+    public static final int[] intArgs2 = new int[500];
+    @OriginalMember(owner = "runetek4.client!nm", name = "bb", descriptor = "Lclient!na;")
+    public static final JString RED = JString.parse("<col=ff0000>");
     @OriginalMember(owner = "runetek4.client!sk", name = "kb", descriptor = "I")
     public static int menuActionRow = 0;
     @OriginalMember(owner = "runetek4.client!vd", name = "C", descriptor = "I")
@@ -97,9 +107,9 @@ public class MiniMenu {
         opBases[menuActionRow] = arg2;
         cursors[menuActionRow] = arg0 == -1 ? anInt1092 : arg0;
         actions[menuActionRow] = arg4;
-        Static159.aLongArray5[menuActionRow] = arg1;
+        keys[menuActionRow] = arg1;
         intArgs1[menuActionRow] = arg3;
-        Static56.anIntArray142[menuActionRow] = arg6;
+        intArgs2[menuActionRow] = arg6;
         menuActionRow++;
     }
 
@@ -110,9 +120,9 @@ public class MiniMenu {
         }
         @Pc(47) JString local47;
         if (arg2.buttonType == 2 && !aBoolean302) {
-            local47 = Static97.method1963(arg2);
+            local47 = MiniMap.getTargetVerb(arg2);
             if (local47 != null) {
-                addActionRow(-1, 0L, JString.concatenate(new JString[] { Static42.GREEN, arg2.optionSuffix}), -1, (short) 32, local47, arg2.id);
+                addActionRow(-1, 0L, JString.concatenate(new JString[] { GREEN, arg2.optionSuffix}), -1, (short) 32, local47, arg2.id);
             }
         }
         if (arg2.buttonType == 3) {
@@ -147,12 +157,12 @@ public class MiniMenu {
                             @Pc(276) ObjType local276 = ObjTypeList.get(arg2.invSlotObjId[local171] - 1);
                             if (anInt5014 == 1 && local267.method510()) {
                                 if (MiniMap.anInt5062 != arg2.id || anInt4370 != local171) {
-                                    addActionRow(-1, (long) local276.anInt2354, JString.concatenate(new JString[] { Static34.aClass100_203, Static223.aClass100_947, local276.name}), local171, (short) 40, LocalizedText.USE, arg2.id);
+                                    addActionRow(-1, (long) local276.anInt2354, JString.concatenate(new JString[] { Static34.aClass100_203, aClass100_947, local276.name}), local171, (short) 40, LocalizedText.USE, arg2.id);
                                 }
                             } else if (aBoolean302 && local267.method510()) {
                                 @Pc(596) Class3_Sub2_Sub12 local596 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
                                 if ((Static274.anInt4999 & 0x10) != 0 && (local596 == null || local276.getParam(local596.anInt2667, Static121.anInt3039) != local596.anInt2667)) {
-                                    addActionRow(anInt5393, (long) local276.anInt2354, JString.concatenate(new JString[] { Static78.aClass100_466, Static223.aClass100_947, local276.name}), local171, (short) 3, aClass100_545, arg2.id);
+                                    addActionRow(anInt5393, (long) local276.anInt2354, JString.concatenate(new JString[] { Static78.aClass100_466, aClass100_947, local276.name}), local171, (short) 3, aClass100_545, arg2.id);
                                 }
                             } else {
                                 @Pc(296) JString[] local296 = local276.interfaceOptions;
@@ -174,7 +184,7 @@ public class MiniMenu {
                                     }
                                 }
                                 if (local267.method507()) {
-                                    addActionRow(Static169.anInt4075, (long) local276.anInt2354, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, (short) 22, LocalizedText.USE, arg2.id);
+                                    addActionRow(MiniMap.anInt4075, (long) local276.anInt2354, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, (short) 22, LocalizedText.USE, arg2.id);
                                 }
                                 if (local267.method510() && local296 != null) {
                                     for (local309 = 2; local309 >= 0; local309--) {
@@ -220,7 +230,7 @@ public class MiniMenu {
                                         }
                                     }
                                 }
-                                addActionRow(Static225.anInt5073, (long) local276.anInt2354, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, (short) 1006, LocalizedText.EXAMINE, arg2.id);
+                                addActionRow(MiniMap.anInt5073, (long) local276.anInt2354, JString.concatenate(new JString[] { aClass100_32, local276.name}), local171, (short) 1006, LocalizedText.EXAMINE, arg2.id);
                             }
                         }
                     }
@@ -238,7 +248,7 @@ public class MiniMenu {
                     addActionRow(Static8.method118(local171, arg2), (long) (local171 + 1), arg2.optionBase, arg2.createdComponentId, (short) 1003, local765, arg2.id);
                 }
             }
-            local47 = Static97.method1963(arg2);
+            local47 = MiniMap.getTargetVerb(arg2);
             if (local47 != null) {
                 addActionRow(-1, 0L, arg2.optionBase, arg2.createdComponentId, (short) 32, local47, arg2.id);
             }
@@ -266,9 +276,9 @@ public class MiniMenu {
         ArrayUtils.copy(opBases, arg0 + 1, opBases, arg0, menuActionRow - arg0);
         ArrayUtils.copy(cursors, arg0 + 1, cursors, arg0, menuActionRow - arg0);
         ArrayUtils.copy(actions, arg0 + 1, actions, arg0, menuActionRow - arg0);
-        ArrayUtils.copy(Static159.aLongArray5, arg0 + 1, Static159.aLongArray5, arg0, menuActionRow - arg0);
+        ArrayUtils.copy(keys, arg0 + 1, keys, arg0, menuActionRow - arg0);
         ArrayUtils.copy(intArgs1, arg0 + 1, intArgs1, arg0, menuActionRow - arg0);
-        ArrayUtils.copy(Static56.anIntArray142, arg0 + 1, Static56.anIntArray142, arg0, menuActionRow - arg0);
+        ArrayUtils.copy(intArgs2, arg0 + 1, intArgs2, arg0, menuActionRow - arg0);
     }
 
     @OriginalMember(owner = "runetek4.client!wl", name = "b", descriptor = "(I)V")
@@ -288,18 +298,18 @@ public class MiniMenu {
                     @Pc(79) int local79 = intArgs1[local13];
                     intArgs1[local13] = intArgs1[local13 + 1];
                     intArgs1[local13 + 1] = local79;
-                    @Pc(97) int local97 = Static56.anIntArray142[local13];
-                    Static56.anIntArray142[local13] = Static56.anIntArray142[local13 + 1];
-                    Static56.anIntArray142[local13 + 1] = local97;
+                    @Pc(97) int local97 = intArgs2[local13];
+                    intArgs2[local13] = intArgs2[local13 + 1];
+                    intArgs2[local13 + 1] = local97;
                     @Pc(115) int local115 = cursors[local13];
                     cursors[local13] = cursors[local13 + 1];
                     cursors[local13 + 1] = local115;
                     @Pc(133) short local133 = actions[local13];
                     actions[local13] = actions[local13 + 1];
                     actions[local13 + 1] = local133;
-                    @Pc(151) long local151 = Static159.aLongArray5[local13];
-                    Static159.aLongArray5[local13] = Static159.aLongArray5[local13 + 1];
-                    Static159.aLongArray5[local13 + 1] = local151;
+                    @Pc(151) long local151 = keys[local13];
+                    keys[local13] = keys[local13 + 1];
+                    keys[local13 + 1] = local151;
                 }
             }
         }
