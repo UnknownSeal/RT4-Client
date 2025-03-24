@@ -26,7 +26,7 @@ public class Node {
 	}
 
 	@OriginalMember(owner = "client!ab", name = "a", descriptor = "(I)Z")
-	public final boolean hasNext() {
+	public final boolean isLinked() {
 		return this.next != null;
 	}
 }

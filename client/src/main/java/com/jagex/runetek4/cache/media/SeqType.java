@@ -178,7 +178,7 @@ public final class SeqType {
 	public Model method4214(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Model arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		@Pc(10) int local10 = this.frames[arg0];
 		@Pc(15) int local15 = this.anIntArray473[arg0];
-		@Pc(23) AnimFrameset local23 = Static72.method1566(local15 >> 16);
+		@Pc(23) AnimFrameset local23 = SeqTypeList.getAnimFrameset(local15 >> 16);
 		@Pc(27) int local27 = local15 & 0xFFFF;
 		if (local23 == null) {
 			return arg2.method4568(true, true, true);
@@ -187,7 +187,7 @@ public final class SeqType {
 		@Pc(41) AnimFrameset local41 = null;
 		if ((this.aBoolean277 || tween) && arg1 != -1 && this.anIntArray473.length > arg1) {
 			@Pc(69) int local69 = this.anIntArray473[arg1];
-			local41 = Static72.method1566(local69 >> 16);
+			local41 = SeqTypeList.getAnimFrameset(local69 >> 16);
 			arg1 = local69 & 0xFFFF;
 		}
 		@Pc(124) Model local124;
@@ -234,7 +234,7 @@ public final class SeqType {
 	public Model method4215(@OriginalArg(0) Model arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		@Pc(8) int local8 = this.anIntArray473[arg3];
 		@Pc(13) int local13 = this.frames[arg3];
-		@Pc(19) AnimFrameset local19 = Static72.method1566(local8 >> 16);
+		@Pc(19) AnimFrameset local19 = SeqTypeList.getAnimFrameset(local8 >> 16);
 		@Pc(23) int local23 = local8 & 0xFFFF;
 		if (local19 == null) {
 			return arg0.method4572(true, true, true);
@@ -242,7 +242,7 @@ public final class SeqType {
 		@Pc(34) AnimFrameset local34 = null;
 		if ((this.aBoolean277 || tween) && arg1 != -1 && arg1 < this.anIntArray473.length) {
 			@Pc(59) int local59 = this.anIntArray473[arg1];
-			local34 = Static72.method1566(local59 >> 16);
+			local34 = SeqTypeList.getAnimFrameset(local59 >> 16);
 			arg1 = local59 & 0xFFFF;
 		}
 		@Pc(71) AnimFrameset local71 = null;
@@ -253,14 +253,14 @@ public final class SeqType {
 			if (this.anIntArray475.length > arg3) {
 				local83 = this.anIntArray475[arg3];
 				if (local83 != 65535) {
-					local71 = Static72.method1566(local83 >> 16);
+					local71 = SeqTypeList.getAnimFrameset(local83 >> 16);
 					local83 &= 0xFFFF;
 				}
 			}
 			if ((this.aBoolean277 || tween) && arg1 != -1 && this.anIntArray475.length > arg1) {
 				local85 = this.anIntArray475[arg1];
 				if (local85 != 65535) {
-					local81 = Static72.method1566(local85 >> 16);
+					local81 = SeqTypeList.getAnimFrameset(local85 >> 16);
 					local85 &= 0xFFFF;
 				}
 			}
@@ -291,7 +291,7 @@ public final class SeqType {
 	public Model method4216(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Model arg4) {
 		@Pc(6) int local6 = this.frames[arg1];
 		@Pc(11) int local11 = this.anIntArray473[arg1];
-		@Pc(19) AnimFrameset local19 = Static72.method1566(local11 >> 16);
+		@Pc(19) AnimFrameset local19 = SeqTypeList.getAnimFrameset(local11 >> 16);
 		@Pc(27) int local27 = local11 & 0xFFFF;
 		if (local19 == null) {
 			return arg4.method4572(true, true, true);
@@ -300,7 +300,7 @@ public final class SeqType {
 		@Pc(42) AnimFrameset local42 = null;
 		if ((this.aBoolean277 || tween) && arg0 != -1 && arg0 < this.anIntArray473.length) {
 			@Pc(66) int local66 = this.anIntArray473[arg0];
-			local42 = Static72.method1566(local66 >> 16);
+			local42 = SeqTypeList.getAnimFrameset(local66 >> 16);
 			arg0 = local66 & 0xFFFF;
 		}
 		@Pc(106) Model local106;
@@ -347,7 +347,7 @@ public final class SeqType {
 	public Model method4219(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) Model arg3) {
 		@Pc(16) int local16 = this.frames[arg2];
 		@Pc(21) int local21 = this.anIntArray473[arg2];
-		@Pc(27) AnimFrameset local27 = Static72.method1566(local21 >> 16);
+		@Pc(27) AnimFrameset local27 = SeqTypeList.getAnimFrameset(local21 >> 16);
 		@Pc(31) int local31 = local21 & 0xFFFF;
 		if (local27 == null) {
 			return arg3.method4560(true, true, true);
@@ -355,7 +355,7 @@ public final class SeqType {
 		@Pc(42) AnimFrameset local42 = null;
 		if ((this.aBoolean277 || tween) && arg0 != -1 && this.anIntArray473.length > arg0) {
 			@Pc(65) int local65 = this.anIntArray473[arg0];
-			local42 = Static72.method1566(local65 >> 16);
+			local42 = SeqTypeList.getAnimFrameset(local65 >> 16);
 			arg0 = local65 & 0xFFFF;
 		}
 		@Pc(103) Model local103;

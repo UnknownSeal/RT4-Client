@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -32,7 +33,7 @@ public final class MidiInstrument extends Node {
 	public final short[] aShortArray36 = new short[128];
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "I", descriptor = "[Lclient!wh;")
-	public final Class162[] aClass162Array1 = new Class162[128];
+	public final Midi_Class162[] aMidiClass162Array1 = new Midi_Class162[128];
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "<init>", descriptor = "([B)V")
 	public MidiInstrument(@OriginalArg(0) byte[] arg0) {
@@ -95,9 +96,9 @@ public final class MidiInstrument extends Node {
 				local187[local206] = (byte) local204;
 			}
 		}
-		@Pc(242) Class162[] local242 = new Class162[local194];
+		@Pc(242) Midi_Class162[] local242 = new Midi_Class162[local194];
 		for (local206 = 0; local206 < local242.length; local206++) {
-			@Pc(256) Class162 local256 = local242[local206] = new Class162();
+			@Pc(256) Midi_Class162 local256 = local242[local206] = new Midi_Class162();
 			@Pc(260) int local260 = local38.g1();
 			if (local260 > 0) {
 				local256.aByteArray80 = new byte[local260 * 2];
@@ -187,7 +188,7 @@ public final class MidiInstrument extends Node {
 		}
 		local428 = 0;
 		local375 = 0;
-		@Pc(609) Class162 local609 = null;
+		@Pc(609) Midi_Class162 local609 = null;
 		@Pc(611) int local611;
 		for (local611 = 0; local611 < 128; local611++) {
 			if (this.anIntArray289[local611] != 0) {
@@ -199,7 +200,7 @@ public final class MidiInstrument extends Node {
 						local375 = local159[local428++];
 					}
 				}
-				this.aClass162Array1[local611] = local609;
+				this.aMidiClass162Array1[local611] = local609;
 				local375--;
 			}
 		}
@@ -222,7 +223,7 @@ public final class MidiInstrument extends Node {
 			this.aByteArray45[local664] = (byte) local611;
 		}
 		this.anInt3078 = local38.g1() + 1;
-		@Pc(729) Class162 local729;
+		@Pc(729) Midi_Class162 local729;
 		@Pc(734) int local734;
 		for (local664 = 0; local664 < local194; local664++) {
 			local729 = local242[local664];
@@ -292,7 +293,7 @@ public final class MidiInstrument extends Node {
 				local734 += 2;
 				local1014 = (local995 - local954) * local958 + (local995 - local954) / 2;
 				for (local1016 = local954; local1016 < local995; local1016++) {
-					local1031 = Static222.method3825(local1014, local995 - local954);
+					local1031 = method3825(local1014, local995 - local954);
 					local1014 += local1001 - local958;
 					this.aByteArray45[local1016] = (byte) (local1031 * this.aByteArray45[local1016] + 32 >> 6);
 				}
@@ -330,7 +331,7 @@ public final class MidiInstrument extends Node {
 				local1207 = local327[local734 + 1] << 1;
 				local734 += 2;
 				for (local1016 = local954; local1016 < local995; local1016++) {
-					local1031 = Static222.method3825(local1014, local995 - local954);
+					local1031 = method3825(local1014, local995 - local954);
 					local1014 += local1207 - local1133;
 					@Pc(1237) int local1237 = local1031 + (this.aByteArray43[local1016] & 0xFF);
 					if (local1237 < 0) {
@@ -385,6 +386,18 @@ public final class MidiInstrument extends Node {
 				local729.anInt5811 = local38.g1();
 			}
 		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "(ILclient!ve;I)Lclient!jk;")
+	public static MidiInstrument method2320(@OriginalArg(1) Js5 arg0, @OriginalArg(2) int arg1) {
+		@Pc(9) byte[] local9 = arg0.method4500(arg1);
+		return local9 == null ? null : new MidiInstrument(local9);
+	}
+
+	@OriginalMember(owner = "runetek4.client!sa", name = "c", descriptor = "(III)I")
+	public static int method3825(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
+		@Pc(12) int local12 = arg0 >>> 31;
+		return (arg0 + local12) / arg1 - local12;
 	}
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "d", descriptor = "(B)V")

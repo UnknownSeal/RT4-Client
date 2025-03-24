@@ -29,7 +29,7 @@ public final class Static267 {
 
 	@OriginalMember(owner = "runetek4.client!vl", name = "a", descriptor = "(III)Lclient!bm;")
 	public static GroundDecor method4526(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Tile floorDecoration = Static130.levelTiles[arg0][arg1][arg2];
+		@Pc(7) Tile floorDecoration = SceneGraph.tiles[arg0][arg1][arg2];
 		if (floorDecoration == null) {
 			return null;
 		} else {
@@ -50,9 +50,4 @@ public final class Static267 {
 		return true;
 	}
 
-    @OriginalMember(owner = "runetek4.client!vl", name = "b", descriptor = "(I)V")
-	public static void removeSoft() {
-		PreciseSleep.aClass99_29.removeSoft();
-		Static219.aClass99_27.removeSoft();
-	}
 }

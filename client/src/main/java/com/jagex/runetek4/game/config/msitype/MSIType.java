@@ -44,21 +44,21 @@ public final class MSIType {
 	}
 
 	@OriginalMember(owner = "client!aa", name = "a", descriptor = "(IB)Lclient!ek;")
-	public SoftwareIndexedSprite method9(@OriginalArg(0) int arg0) {
-		@Pc(17) SoftwareIndexedSprite local17 = (SoftwareIndexedSprite) Static219.aClass99_27.get((long) arg0 << 16 | this.spriteId);
+	public SoftwareIndexedSprite getSprite(@OriginalArg(0) int arg0) {
+		@Pc(17) SoftwareIndexedSprite local17 = (SoftwareIndexedSprite) MsiTypeList.sprites.get((long) arg0 << 16 | this.spriteId);
 		if (local17 != null) {
 			return local17;
 		}
-		Static250.aClass153_101.isFileReady(this.spriteId);
-		local17 = Static164.method3119(this.spriteId, Static250.aClass153_101);
+		MsiTypeList.spritesArchive.isFileReady(this.spriteId);
+		local17 = SpriteLoader.loadSoftwareIndexedSprite(this.spriteId, MsiTypeList.spritesArchive);
 		if (local17 != null) {
-			local17.method1389(Static173.anInt4183, Static85.anInt2262, Static266.anInt5344);
+			local17.adjustPalette(MsiTypeList.redDelta, MsiTypeList.greenDelta, MsiTypeList.blueDelta);
 			local17.innerWidth = local17.width;
 			local17.innerHeight = local17.height;
 			for (@Pc(59) int local59 = 0; local59 < arg0; local59++) {
-				local17.method1395();
+				local17.flipVertical();
 			}
-			Static219.aClass99_27.put(local17, (long) arg0 << 16 | this.spriteId);
+			MsiTypeList.sprites.put(local17, (long) arg0 << 16 | this.spriteId);
 		}
 		return local17;
 	}

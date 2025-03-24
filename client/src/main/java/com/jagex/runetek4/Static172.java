@@ -8,12 +8,6 @@ public final class Static172 {
 	@OriginalMember(owner = "runetek4.client!nj", name = "c", descriptor = "Lclient!ve;")
 	public static Js5 gameDefinitionsJs5;
 
-	@OriginalMember(owner = "runetek4.client!nj", name = "e", descriptor = "Lclient!va;")
-	public static MidiPcmStream aClass3_Sub3_Sub4_2;
-
-    @OriginalMember(owner = "runetek4.client!nj", name = "g", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_70;
-
 	@OriginalMember(owner = "runetek4.client!nj", name = "h", descriptor = "Lclient!ih;")
 	public static final LinkedList aClass69_97 = new LinkedList();
 

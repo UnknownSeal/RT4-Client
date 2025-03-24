@@ -29,7 +29,7 @@ public final class VarbitDefinition {
         @Pc(19) int mostSignificantBit = varbitDefinition.anInt3323;
         @Pc(22) int leastSignificantBit = varbitDefinition.anInt3318;
         @Pc(29) int mask = varbitMasks[mostSignificantBit - leastSignificantBit];
-        return VarPlayerDefinition.varPlayers[varPlayerIndex] >> leastSignificantBit & mask;
+        return VarPlayerDefinition.activeVarps[varPlayerIndex] >> leastSignificantBit & mask;
     }
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "a", descriptor = "(IB)Lclient!kk;")

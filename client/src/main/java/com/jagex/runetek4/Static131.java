@@ -10,9 +10,6 @@ public final class Static131 {
 	@OriginalMember(owner = "runetek4.client!kd", name = "Cb", descriptor = "I")
 	public static int anInt3261;
 
-	@OriginalMember(owner = "runetek4.client!kd", name = "mb", descriptor = "[Lclient!cl;")
-	public static final AnimFrameset[] aClass3_Sub2_Sub7Array5 = new AnimFrameset[14];
-
 	@OriginalMember(owner = "runetek4.client!kd", name = "rb", descriptor = "I")
 	public static final int anInt3254 = (int) (Math.random() * 17.0D) - 8;
 

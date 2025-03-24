@@ -8,9 +8,6 @@ public final class Static64 {
 	@OriginalMember(owner = "client!fb", name = "n", descriptor = "[[B")
 	public static byte[][] aByteArrayArray9;
 
-	@OriginalMember(owner = "client!fb", name = "p", descriptor = "Lclient!na;")
-	public static final JString RED2 = JString.parse("<col=ff3000>");
-
 	@OriginalMember(owner = "client!fb", name = "q", descriptor = "[I")
 	public static final int[] anIntArray154 = new int[] { -1, -1, 1, 1 };
 

@@ -39,7 +39,7 @@ public final class ObjType {
 	private byte[] recol_d_palette;
 
 	@OriginalMember(owner = "client!h", name = "Y", descriptor = "I")
-	public int anInt2354;
+	public int id;
 
 	@OriginalMember(owner = "client!h", name = "nb", descriptor = "Lclient!sc;")
 	public HashTable params;
@@ -470,7 +470,7 @@ public final class ObjType {
 				return ObjTypeList.get(local22).getModel(arg0, arg1, arg2, 1, arg4);
 			}
 		}
-		@Pc(76) Model local76 = (Model) Static244.aClass99_32.get(this.anInt2354);
+		@Pc(76) Model local76 = (Model) Static244.aClass99_32.get(this.id);
 		if (local76 == null) {
 			@Pc(85) RawModel local85 = RawModel.create(Static230.modelArchive, this.mesh);
 			if (local85 == null) {
@@ -491,7 +491,7 @@ public final class ObjType {
 					local85.retexture(this.retex_s[local97], this.retex_d[local97]);
 				}
 			}
-			local76 = local85.applyLightning(this.ambient + 64, this.contrast + 768, -50, -10, -50);
+			local76 = local85.createModel(this.ambient + 64, this.contrast + 768, -50, -10, -50);
 			if (this.resizex != 128 || this.resizey != 128 || this.resizez != 128) {
 				local76.resize(this.resizex, this.resizey, this.resizez);
 			}
@@ -499,7 +499,7 @@ public final class ObjType {
 			if (GlRenderer.enabled) {
 				((GlModel) local76).method4111(false, false, false, false, false, true);
 			}
-			Static244.aClass99_32.put(local76, this.anInt2354);
+			Static244.aClass99_32.put(local76, this.id);
 		}
 		if (arg2 != null) {
 			local76 = arg2.method4215(local76, arg0, arg1, arg4);

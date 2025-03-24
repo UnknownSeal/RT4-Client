@@ -36,8 +36,8 @@ public final class TextureOpFlip extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!ej", name = "b", descriptor = "(II)[[I")
 	@Override
 	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
-		@Pc(20) int[][] local20 = this.clearImageCache.method3173(arg0);
-		if (this.clearImageCache.aBoolean195) {
+		@Pc(20) int[][] local20 = this.clearImageCache.get(arg0);
+		if (this.clearImageCache.invalid) {
 			@Pc(39) int[][] local39 = this.getChildColorOutput(this.aBoolean105 ? Texture.heightMask - arg0 : arg0, 0);
 			@Pc(43) int[] local43 = local39[0];
 			@Pc(47) int[] local47 = local39[2];

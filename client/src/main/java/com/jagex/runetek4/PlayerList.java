@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -36,7 +35,7 @@ public class PlayerList {
             }
             @Pc(31) Player player = players[actualIndex];
             if (player != null) {
-                PathingEntity.updateEntity(player.getSize(), player);
+                NpcList.updateEntity(player.getSize(), player);
             }
         }
     }

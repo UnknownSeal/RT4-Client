@@ -47,6 +47,8 @@ public class SceneGraph {
     public static int centralPlane = 0;
     @OriginalMember(owner = "runetek4.client!lg", name = "k", descriptor = "I")
     public static int firstvisibleLevel = 99;
+    @OriginalMember(owner = "runetek4.client!kc", name = "o", descriptor = "[[[Lclient!bj;")
+    public static Tile[][][] tiles;
 
     @OriginalMember(owner = "client!fc", name = "a", descriptor = "()V")
     public static void clear() {
@@ -94,13 +96,13 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!vf", name = "a", descriptor = "(III)Lclient!jh;")
     public static Wall getWall(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        @Pc(7) Tile local7 = Static130.levelTiles[arg0][arg1][arg2];
+        @Pc(7) Tile local7 = tiles[arg0][arg1][arg2];
         return local7 == null ? null : local7.wall;
     }
 
     @OriginalMember(owner = "runetek4.client!kf", name = "b", descriptor = "(III)Lclient!ec;")
     public static Scenery getScenery(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        @Pc(7) Tile local7 = Static130.levelTiles[arg0][arg1][arg2];
+        @Pc(7) Tile local7 = tiles[arg0][arg1][arg2];
         if (local7 == null) {
             return null;
         }
@@ -115,7 +117,7 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(III)Lclient!bm;")
     public static GroundDecor getGroundDecor(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        @Pc(7) Tile local7 = Static130.levelTiles[arg0][arg1][arg2];
+        @Pc(7) Tile local7 = tiles[arg0][arg1][arg2];
         return local7 == null || local7.groundDecor == null ? null : local7.groundDecor;
     }
 
@@ -170,19 +172,19 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!vj", name = "a", descriptor = "(III)J")
     public static long getWallKey(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        @Pc(7) Tile local7 = Static130.levelTiles[arg0][arg1][arg2];
+        @Pc(7) Tile local7 = tiles[arg0][arg1][arg2];
         return local7 == null || local7.wall == null ? 0L : local7.wall.aLong107;
     }
 
     @OriginalMember(owner = "runetek4.client!l", name = "a", descriptor = "(III)J")
     public static long getWallDecorKey(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        @Pc(7) Tile local7 = Static130.levelTiles[arg0][arg1][arg2];
+        @Pc(7) Tile local7 = tiles[arg0][arg1][arg2];
         return local7 == null || local7.wallDecor == null ? 0L : local7.wallDecor.key;
     }
 
     @OriginalMember(owner = "runetek4.client!cl", name = "a", descriptor = "(III)J")
     public static long getSceneryKey(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        @Pc(7) Tile local7 = Static130.levelTiles[arg0][arg1][arg2];
+        @Pc(7) Tile local7 = tiles[arg0][arg1][arg2];
         if (local7 == null) {
             return 0L;
         }
@@ -197,15 +199,15 @@ public class SceneGraph {
 
     @OriginalMember(owner = "client!bj", name = "a", descriptor = "(III)J")
     public static long getGroundDecorKey(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        @Pc(7) Tile local7 = Static130.levelTiles[arg0][arg1][arg2];
+        @Pc(7) Tile local7 = tiles[arg0][arg1][arg2];
         return local7 == null || local7.groundDecor == null ? 0L : local7.groundDecor.key;
     }
 
     @OriginalMember(owner = "client!sd", name = "c", descriptor = "(II)V")
     public static void method3884(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-        @Pc(7) Tile local7 = Static130.levelTiles[0][arg0][arg1];
+        @Pc(7) Tile local7 = tiles[0][arg0][arg1];
         for (@Pc(9) int local9 = 0; local9 < 3; local9++) {
-            @Pc(30) Tile local30 = Static130.levelTiles[local9][arg0][arg1] = Static130.levelTiles[local9 + 1][arg0][arg1];
+            @Pc(30) Tile local30 = tiles[local9][arg0][arg1] = tiles[local9 + 1][arg0][arg1];
             if (local30 != null) {
                 local30.anInt672--;
                 for (@Pc(40) int local40 = 0; local40 < local30.entityCount; local40++) {
@@ -216,11 +218,11 @@ public class SceneGraph {
                 }
             }
         }
-        if (Static130.levelTiles[0][arg0][arg1] == null) {
-            Static130.levelTiles[0][arg0][arg1] = new Tile(0, arg0, arg1);
+        if (tiles[0][arg0][arg1] == null) {
+            tiles[0][arg0][arg1] = new Tile(0, arg0, arg1);
         }
-        Static130.levelTiles[0][arg0][arg1].aClass3_Sub5_1 = local7;
-        Static130.levelTiles[3][arg0][arg1] = null;
+        tiles[0][arg0][arg1].aClass3_Sub5_1 = local7;
+        tiles[3][arg0][arg1] = null;
     }
 
     @OriginalMember(owner = "runetek4.client!jk", name = "a", descriptor = "(IZ[BII[Lclient!mj;)V")
@@ -805,8 +807,8 @@ public class SceneGraph {
         Static235.anInt5276 = arg0;
         for (@Pc(3) int local3 = 0; local3 < Static152.anInt3594; local3++) {
             for (@Pc(8) int local8 = 0; local8 < Static99.anInt2550; local8++) {
-                if (Static130.levelTiles[arg0][local3][local8] == null) {
-                    Static130.levelTiles[arg0][local3][local8] = new Tile(arg0, local3, local8);
+                if (tiles[arg0][local3][local8] == null) {
+                    tiles[arg0][local3][local8] = new Tile(arg0, local3, local8);
                 }
             }
         }
@@ -830,15 +832,15 @@ public class SceneGraph {
     @OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(Z)V")
     public static void setUnderwater(@OriginalArg(0) boolean arg0) {
         if (arg0) {
-            Static130.levelTiles = Static276.aClass3_Sub5ArrayArrayArray3;
+            tiles = Static276.aClass3_Sub5ArrayArrayArray3;
             tileHeights = Static80.anIntArrayArrayArray19;
             Static182.aGlTileArrayArray2 = Static195.aClass3_Sub14ArrayArray3;
         } else {
-            Static130.levelTiles = Static197.aClass3_Sub5ArrayArrayArray2;
+            tiles = Static197.aClass3_Sub5ArrayArrayArray2;
             tileHeights = surfaceTileHeights;
             Static182.aGlTileArrayArray2 = Static36.aGlTileArrayArray1;
         }
-        Static126.anInt3114 = Static130.levelTiles.length;
+        Static126.anInt3114 = tiles.length;
     }
 
     @OriginalMember(owner = "runetek4.client!p", name = "a", descriptor = "(IZIZLclient!mj;IIIBII)V")
@@ -949,7 +951,7 @@ public class SceneGraph {
                 if (locType.active && local531 && lowmem) {
                     @Pc(541) int local541 = 15;
                     if (local387 instanceof Model) {
-                        local541 = ((Model) local387).method4566() / 4;
+                        local541 = ((Model) local387).getLengthXZ() / 4;
                         if (local541 > 30) {
                             local541 = 30;
                         }
@@ -1472,6 +1474,27 @@ public class SceneGraph {
                     }
                 }
             }
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!v", name = "a", descriptor = "(IIIJ)Z")
+    public static boolean isLocValid(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) long arg3) {
+        @Pc(7) Tile local7 = tiles[arg0][arg1][arg2];
+        if (local7 == null) {
+            return false;
+        } else if (local7.wall != null && local7.wall.aLong107 == arg3) {
+            return true;
+        } else if (local7.wallDecor != null && local7.wallDecor.key == arg3) {
+            return true;
+        } else if (local7.groundDecor != null && local7.groundDecor.key == arg3) {
+            return true;
+        } else {
+            for (@Pc(46) int local46 = 0; local46 < local7.entityCount; local46++) {
+                if (local7.sceneries[local46].hash == arg3) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

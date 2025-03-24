@@ -116,7 +116,7 @@ public final class Static156 {
 			if (local31.texture >= 0 && Rasterizer.textureProvider.getMaterialType(local31.texture) == 4) {
 				local1.glColor4fv(ColorUtils.getRgbFloat(local31.underwaterColor), 0);
 				@Pc(57) float local57 = 201.5F - (local31.blend ? 1.0F : 0.5F);
-				local31.method1944(Static130.levelTiles, local57, true);
+				local31.method1944(SceneGraph.tiles, local57, true);
 			}
 		}
 		local1.glEnableClientState(GL2.GL_COLOR_ARRAY);

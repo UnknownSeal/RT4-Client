@@ -11,6 +11,7 @@ import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.client.Inv;
 import com.jagex.runetek4.game.config.meltype.MapElementList;
+import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -153,9 +154,9 @@ public class LoginManager {
     @OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(I)V")
     public static void method1841() {
         if (!ClientScriptRunner.aBoolean108) {
-            if (Static162.anInt3953 != 0) {
-                ClientScriptRunner.anInt3751 = Static277.anInt5850;
-                ClientScriptRunner.anInt1892 = Static280.anInt5895;
+            if (MiniMenu.anInt3953 != 0) {
+                ClientScriptRunner.anInt3751 = Mouse.anInt5850;
+                ClientScriptRunner.anInt1892 = Mouse.anInt5895;
             } else if (Mouse.clickButton == 0) {
                 ClientScriptRunner.anInt3751 = Mouse.lastMouseX;
                 ClientScriptRunner.anInt1892 = Mouse.lastMouseY;
@@ -903,7 +904,7 @@ public class LoginManager {
                 parentalChatConsent = Protocol.inboundBuffer.g1() == 1;
                 parentalAdvertConsent = Protocol.inboundBuffer.g1() == 1;
                 worldQuickChat = Protocol.inboundBuffer.g1() == 1;
-                Static245.enabled = Protocol.inboundBuffer.g1() == 1;
+                MouseCapturer.enabled = Protocol.inboundBuffer.g1() == 1;
                 PlayerList.selfId = Protocol.inboundBuffer.g2();
                 playerMember = Protocol.inboundBuffer.g1() == 1;
                 membersWorld = Protocol.inboundBuffer.g1() == 1;
@@ -979,12 +980,12 @@ public class LoginManager {
         @Pc(35) int i;
         for (i = 0; i < PlayerList.players.length; i++) {
             if (PlayerList.players[i] != null) {
-                PlayerList.players[i].targetId = -1;
+                PlayerList.players[i].faceEntity = -1;
             }
         }
         for (i = 0; i < NpcList.npcs.length; i++) {
             if (NpcList.npcs[i] != null) {
-                NpcList.npcs[i].targetId = -1;
+                NpcList.npcs[i].faceEntity = -1;
             }
         }
         Inv.clear();
@@ -1268,20 +1269,20 @@ public class LoginManager {
                     @Pc(125) int local125 = local113 + (regionBitPacked[local16] >> 8) * 64 - Camera.originX;
                     @Pc(129) int local129 = local103 & 0x3F;
                     @Pc(142) int local142 = local129 + (regionBitPacked[local16] & 0xFF) * 64 - Camera.originZ;
-                    @Pc(148) NpcType local148 = NpcType.getDefinition(local74.g2());
-                    if (NpcList.npcs[local97] == null && (local148.loginscreenproperties & 0x1) > 0 && local107 == SceneGraph.centralPlane && local125 >= 0 && local148.size + local125 < 104 && local142 >= 0 && local142 + local148.size < 104) {
+                    @Pc(148) NpcType local148 = NpcTypeList.get(local74.g2());
+                    if (NpcList.npcs[local97] == null && (local148.loginScreenProperties & 0x1) > 0 && local107 == SceneGraph.centralPlane && local125 >= 0 && local148.size + local125 < 104 && local142 >= 0 && local142 + local148.size < 104) {
                         NpcList.npcs[local97] = new Npc();
                         @Pc(198) Npc local198 = NpcList.npcs[local97];
                         NpcList.npcIds[NpcList.npcCount++] = local97;
                         local198.cycle = client.loop;
                         local198.setNpcType(local148);
                         local198.setSize(local198.type.size);
-                        local198.dstYaw = local198.anInt3381 = PathingEntity.ANGLES[local198.type.respawndir];
-                        local198.anInt3376 = local198.type.turnspeed;
+                        local198.dstYaw = local198.anInt3381 = PathingEntity.ANGLES[local198.type.spawnDirection];
+                        local198.anInt3376 = local198.type.rotationSpeed;
                         if (local198.anInt3376 == 0) {
                             local198.anInt3381 = 0;
                         }
-                        local198.anInt3365 = local198.type.bas;
+                        local198.anInt3365 = local198.type.bastypeid;
                         local198.teleport(local198.getSize(), local125, local142, true);
                     }
                 }

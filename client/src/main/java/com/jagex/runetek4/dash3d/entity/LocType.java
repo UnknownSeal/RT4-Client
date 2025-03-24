@@ -505,7 +505,7 @@ public final class LocType {
 		if (this.multiLocVarbit != -1) {
 			i = VarbitDefinition.getVarbitValue(this.multiLocVarbit);
 		} else if (this.multiLocVarp != -1) {
-			i = VarPlayerDefinition.varPlayers[this.multiLocVarp];
+			i = VarPlayerDefinition.activeVarps[this.multiLocVarp];
 		}
 		if (i < 0 || i >= this.multiloc.length - 1 || this.multiloc[i] == -1) {
 			@Pc(84) int local84 = this.multiloc[this.multiloc.length - 1];

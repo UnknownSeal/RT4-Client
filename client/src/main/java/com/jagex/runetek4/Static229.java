@@ -11,9 +11,6 @@ public final class Static229 {
 	@OriginalMember(owner = "runetek4.client!si", name = "cb", descriptor = "[B")
 	public static byte[] aByteArray70;
 
-	@OriginalMember(owner = "runetek4.client!si", name = "Z", descriptor = "Lclient!na;")
-	public static final JString YELLOW = JString.parse("<col=ffb000>");
-
 	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(ZB)I")
 	public static int method3933(@OriginalArg(1) byte arg0) {
 		return arg0 & 0xFF;

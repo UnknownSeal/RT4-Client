@@ -731,7 +731,7 @@ public final class SoftwareModel extends Model {
 				}
 				if (GlModel.anInt3582 >= local204 && GlModel.anInt3582 <= local208 && RawModel.anInt1053 >= local223 && RawModel.anInt1053 <= local227) {
 					if (this.pickable) {
-						Static259.aLongArray11[MiniMenu.anInt7++] = arg8;
+						Model.aLongArray11[MiniMenu.anInt7++] = arg8;
 					} else {
 						local190 = true;
 					}
@@ -1184,7 +1184,7 @@ public final class SoftwareModel extends Model {
 
 	@OriginalMember(owner = "runetek4.client!w", name = "j", descriptor = "()I")
 	@Override
-	public final int method4566() {
+	public final int getLengthXZ() {
 		if (!this.aBoolean305) {
 			this.method4592();
 		}
@@ -1496,7 +1496,7 @@ public final class SoftwareModel extends Model {
 					}
 				} else {
 					if (arg1 && this.method4589(GlModel.anInt3582 + Pix3D.anInt2471, RawModel.anInt1053 + Pix3D.anInt2469, Static268.anIntArray551[local51], Static268.anIntArray551[local56], Static268.anIntArray551[local61], local65, local69, local73)) {
-						Static259.aLongArray11[MiniMenu.anInt7++] = arg2;
+						Model.aLongArray11[MiniMenu.anInt7++] = arg2;
 						arg1 = false;
 					}
 					if ((local65 - local69) * (Static268.anIntArray551[local61] - Static268.anIntArray551[local56]) - (Static268.anIntArray551[local51] - Static268.anIntArray551[local56]) * (local73 - local69) > 0) {

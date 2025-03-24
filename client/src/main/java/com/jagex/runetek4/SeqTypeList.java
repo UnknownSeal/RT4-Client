@@ -23,4 +23,17 @@ public class SeqTypeList {
         Static142.animationSequenceCache.put(seqType, (long) animationId);
         return seqType;
     }
+
+    @OriginalMember(owner = "client!fl", name = "b", descriptor = "(II)Lclient!cl;")
+    public static AnimFrameset getAnimFrameset(@OriginalArg(0) int arg0) {
+        @Pc(19) AnimFrameset local19 = (AnimFrameset) Static267.skeletonCache.get(arg0);
+        if (local19 != null) {
+            return local19;
+        }
+        local19 = AnimFrameset.create(Static225.aClass153_92, Static5.aClass153_1, arg0);
+        if (local19 != null) {
+            Static267.skeletonCache.put(local19, arg0);
+        }
+        return local19;
+    }
 }

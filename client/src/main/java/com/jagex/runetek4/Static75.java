@@ -153,7 +153,7 @@ public final class Static75 {
 
 	@OriginalMember(owner = "client!g", name = "a", descriptor = "(III)Lclient!df;")
 	public static WallDecor method1633(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) Tile local7 = Static130.levelTiles[arg0][arg1][arg2];
+		@Pc(7) Tile local7 = SceneGraph.tiles[arg0][arg1][arg2];
 		if (local7 == null) {
 			return null;
 		} else {
@@ -191,8 +191,8 @@ public final class Static75 {
 			local31 = Protocol.inboundBuffer.g2sub();
 			if (local19 >= 0 && local27 >= 0 && local19 < 104 && local27 < 104) {
 				@Pc(122) ObjStack local122 = new ObjStack();
-				local122.anInt5550 = local31;
-				local122.anInt5555 = local15;
+				local122.amount = local31;
+				local122.type = local15;
 				if (SceneGraph.objStacks[Player.plane][local19][local27] == null) {
 					SceneGraph.objStacks[Player.plane][local19][local27] = new LinkedList();
 				}
@@ -303,9 +303,9 @@ public final class Static75 {
 						@Pc(710) LinkedList local710 = SceneGraph.objStacks[Player.plane][local23][local19];
 						if (local710 != null) {
 							for (@Pc(718) ObjStackNode local718 = (ObjStackNode) local710.head(); local718 != null; local718 = (ObjStackNode) local710.next()) {
-								@Pc(723) ObjStack local723 = local718.aClass8_Sub7_1;
-								if ((local27 & 0x7FFF) == local723.anInt5555 && local31 == local723.anInt5550) {
-									local723.anInt5550 = local39;
+								@Pc(723) ObjStack local723 = local718.value;
+								if ((local27 & 0x7FFF) == local723.type && local31 == local723.amount) {
+									local723.amount = local39;
 									break;
 								}
 							}
@@ -321,8 +321,8 @@ public final class Static75 {
 					local39 = Protocol.inboundBuffer.g2le();
 					if (local19 >= 0 && local27 >= 0 && local19 < 104 && local27 < 104 && PlayerList.selfId != local15) {
 						@Pc(812) ObjStack local812 = new ObjStack();
-						local812.anInt5550 = local31;
-						local812.anInt5555 = local39;
+						local812.amount = local31;
+						local812.type = local39;
 						if (SceneGraph.objStacks[Player.plane][local19][local27] == null) {
 							SceneGraph.objStacks[Player.plane][local19][local27] = new LinkedList();
 						}
@@ -449,7 +449,7 @@ public final class Static75 {
 						@Pc(1565) LinkedList local1565 = SceneGraph.objStacks[Player.plane][local23][local19];
 						if (local1565 != null) {
 							for (@Pc(1572) ObjStackNode local1572 = (ObjStackNode) local1565.head(); local1572 != null; local1572 = (ObjStackNode) local1565.next()) {
-								if (local1572.aClass8_Sub7_1.anInt5555 == (local27 & 0x7FFF)) {
+								if (local1572.value.type == (local27 & 0x7FFF)) {
 									local1572.unlink();
 									break;
 								}

@@ -35,7 +35,7 @@ public class HintArrowManager {
             if (local22 == null) {
                 return null;
             }
-            model = local22.applyLightning(64, 768, -50, -10, -50);
+            model = local22.createModel(64, 768, -50, -10, -50);
             models.put(model, local4);
         }
         @Pc(42) int local42 = arg4.getMinX();

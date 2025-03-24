@@ -304,14 +304,14 @@ public final class client extends GameShell {
 		FloorUnderlayTypeList.removeSoft();
 		IdkTypeList.removeSoft();
 		LocTypeList.removeSoft();
-		ClientScriptRunner.removeSoft();
+		NpcTypeList.removeSoft();
 		Static103.removeSoft();
 		Static227.removeSoft();
 		Static71.removeSoft();
 		Static78.removeSoft();
 		Static3.removeSoft();
 		BasTypeList.removeSoft();
-		Static267.removeSoft();
+		MsiTypeList.removeSoft();
 		LightTypeList.removeSoft();
 		CursorTypeList.removeSoft();
 		Static192.removeSoft();
@@ -341,14 +341,14 @@ public final class client extends GameShell {
 		Static54.clear();
 		ClientScriptRunner.clear();
 		LocTypeList.clear();
-		Static204.clear();
+		NpcTypeList.clear();
 		Static176.clear();
 		Static10.clear();
 		Static247.clear();
 		Static53.clear();
 		Static249.clear();
 		BasTypeList.clear();
-		Class6.clear();
+		MsiTypeList.clear();
 		LightTypeList.clear();
 		CursorTypeList.clear();
 		Static230.clear();
@@ -635,14 +635,14 @@ public final class client extends GameShell {
 		FloorUnderlayTypeList.clean();
 		Static238.method4142();
 		LocTypeList.clean();
-		Static209.method3706();
+		NpcTypeList.method3706();
 		Static190.method3447();
 		SeqType.clearAnimationCache();
 		Static137.method2666();
 		Static269.method2221();
 		VarPlayerDefinition.clearVarPlayerDefinitionCache();
 		BasTypeList.clean();
-		Static276.method4615();
+		MsiTypeList.clean();
 		LightTypeList.clean();
 		CursorTypeList.clean();
 		Static279.method4662();
@@ -692,7 +692,7 @@ public final class client extends GameShell {
 				if (Preferences.musicVolume == 0) {
 					MidiPlayer.playFadeOut();
 				} else {
-					Static257.method526(MusicPlayer.titleSong, js5Archive6, 255);
+					MidiPlayer.playFadeOut(MusicPlayer.titleSong, js5Archive6, 255);
 				}
 				js5NetQueue.writeLoggedIn(false);
 			} else {
@@ -713,7 +713,7 @@ public final class client extends GameShell {
 			return;
 		}
 		@Pc(15) boolean local15 = MidiPlayer.method2699();
-		if (local15 && Static144.jingle && musicChannel != null) {
+		if (local15 && MidiPlayer.jingle && musicChannel != null) {
 			musicChannel.method3570();
 		}
 		if ((gameState == 30 || gameState == 10) && (GameShell.canvasReplaceRecommended || Static97.aLong89 != 0L && Static97.aLong89 < MonotonicTime.currentTimeMillis())) {
@@ -1068,7 +1068,7 @@ public final class client extends GameShell {
 			nextNpc: for (@Pc(57) int local57 = 0; local57 < 32768; local57++) {
 				@Pc(66) Npc npcEntity = NpcList.npcs[local57];
 				if (npcEntity != null) {
-					@Pc(73) byte walkflags = npcEntity.type.loginscreenproperties;
+					@Pc(73) byte walkflags = npcEntity.type.loginScreenProperties;
 					if ((walkflags & 0x2) > 0 && npcEntity.movementQueueSize == 0 && Math.random() * 1000.0D < 10.0D) {
 						@Pc(98) int local98 = (int) Math.round(Math.random() * 2.0D - 1.0D);
 						@Pc(106) int local106 = (int) Math.round(Math.random() * 2.0D - 1.0D);
@@ -1091,9 +1091,9 @@ public final class client extends GameShell {
 							}
 						}
 					}
-					Static104.method2247(npcEntity);
-					Static37.method949(npcEntity);
-					Static34.method879(npcEntity);
+					NpcList.method2247(npcEntity);
+					NpcList.method949(npcEntity);
+					NpcList.method879(npcEntity);
 					PathFinder.collisionMaps[Player.plane].flagScenery(npcEntity.xFine >> 7, false, npcEntity.zFine >> 7, npcEntity.getSize(), npcEntity.getSize());
 				}
 			}
@@ -1437,7 +1437,7 @@ public final class client extends GameShell {
 				FloorUnderlayTypeList.init(js5Archive2);
 				IdkTypeList.init(js5Archive7, js5Archive2);
 				LocTypeList.init(js5Archive16, js5Archive7);
-				Static88.init(js5Archive7, js5Archive18);
+				NpcTypeList.init(js5Archive7, js5Archive18);
 				Static241.init(js5Archive19, Fonts.p11FullSoftware, js5Archive7);
 				Static58.init(js5Archive2);
 				Static141.init(js5Archive1, js5Archive20, js5Archive0);
@@ -1452,7 +1452,7 @@ public final class client extends GameShell {
 				Static115.init(js5Archive25, js5Archive24);
 				LightTypeList.init(js5Archive2);
 				CursorTypeList.init(js5Archive2, js5Archive8);
-				Static180.init(js5Archive2, js5Archive8);
+				MsiTypeList.init(js5Archive2, js5Archive8);
 				mainLoadPercentage = 50;
 				mainLoadSecondaryText = LocalizedText.MAINLOAD70B;
 				Equipment.init();

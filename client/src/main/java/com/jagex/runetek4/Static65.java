@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static65 {
 
-	@OriginalMember(owner = "client!fc", name = "a", descriptor = "I")
-	public static int anInt1951 = -1;
-
 	@OriginalMember(owner = "client!fc", name = "f", descriptor = "Lclient!na;")
 	public static final JString aClass100_435 = JString.parse("<img=0>");
 

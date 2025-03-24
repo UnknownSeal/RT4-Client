@@ -57,10 +57,10 @@ public final class Static91 {
 		wallDecor.xOffset = arg8;
 		wallDecor.zOffset = arg9;
 		for (@Pc(46) int local46 = arg0; local46 >= 0; local46--) {
-			if (Static130.levelTiles[local46][arg1][arg2] == null) {
-				Static130.levelTiles[local46][arg1][arg2] = new Tile(local46, arg1, arg2);
+			if (SceneGraph.tiles[local46][arg1][arg2] == null) {
+				SceneGraph.tiles[local46][arg1][arg2] = new Tile(local46, arg1, arg2);
 			}
 		}
-		Static130.levelTiles[arg0][arg1][arg2].wallDecor = wallDecor;
+		SceneGraph.tiles[arg0][arg1][arg2].wallDecor = wallDecor;
 	}
 }

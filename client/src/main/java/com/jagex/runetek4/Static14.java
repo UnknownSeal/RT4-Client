@@ -8,9 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static14 {
 
-	@OriginalMember(owner = "client!bd", name = "i", descriptor = "I")
-	public static int anInt441 = 0;
-
 	@OriginalMember(owner = "client!bd", name = "a", descriptor = "(Z)[Lclient!mm;")
 	public static SoftwareSprite[] method474() {
 		@Pc(4) SoftwareSprite[] local4 = new SoftwareSprite[Static165.anInt4038];

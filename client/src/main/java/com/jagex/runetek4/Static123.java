@@ -11,9 +11,6 @@ public final class Static123 {
 	@OriginalMember(owner = "runetek4.client!jj", name = "d", descriptor = "Lclient!na;")
 	public static final JString HEADICONS_PK = JString.parse("headicons_pk");
 
-	@OriginalMember(owner = "runetek4.client!jj", name = "g", descriptor = "Lclient!na;")
-	public static final JString aClass100_593 = JString.parse(" (X");
-
 	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(BI)Lclient!lk;")
 	public static StructType method2417(@OriginalArg(1) int arg0) {
 		@Pc(10) StructType local10 = (StructType) PreciseSleep.aClass54_13.get((long) arg0);
@@ -158,28 +155,6 @@ public final class Static123 {
 					}
 				}
 			}
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(IBI)Lclient!na;")
-	public static JString getCombatLevelColorTag(@OriginalArg(0) int viewerLevel, @OriginalArg(2) int otherLevel) {
-		@Pc(4) int diff = otherLevel - viewerLevel;
-		if (diff < -9) {
-			return Static175.RED;
-		} else if (diff < -6) {
-			return Static64.RED2;
-		} else if (diff < -3) {
-			return Static223.ORANGE;
-		} else if (diff < 0) {
-			return Static229.YELLOW;
-		} else if (diff > 9) {
-			return Static42.GREEN;
-		} else if (diff > 6) {
-			return Static6.GREEN2;
-		} else if (diff <= 3) {
-			return diff > 0 ? Static41.GREEN3 : Static226.YELLOW2;
-		} else {
-			return Static263.GREEN3;
 		}
 	}
 

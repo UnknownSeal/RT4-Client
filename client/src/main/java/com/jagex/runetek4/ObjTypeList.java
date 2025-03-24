@@ -63,7 +63,7 @@ public final class ObjTypeList {
         }
         @Pc(25) byte[] bytes = CacheArchive.aClass153_61.getfile(Static18.method554(id), Static247.method4247(id));
         objType = new ObjType();
-        objType.anInt2354 = id;
+        objType.id = id;
         if (bytes != null) {
             objType.readValues(new Packet(bytes));
         }

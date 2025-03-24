@@ -17,12 +17,6 @@ public final class Class6 {
 	@OriginalMember(owner = "runetek4.client!qg", name = "U", descriptor = "Lclient!na;")
 	public static final JString aClass100_891 = JString.parse("");
 
-	@OriginalMember(owner = "runetek4.client!qg", name = "h", descriptor = "(I)V")
-	public static void clear() {
-		PreciseSleep.aClass99_29.clean();
-		Static219.aClass99_27.clean();
-	}
-
 	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(Lsignlink!ll;Lclient!wa;IB)V")
 	public static void method3654(@OriginalArg(0) SignLink arg0, @OriginalArg(1) Packet arg1, @OriginalArg(2) int arg2) {
 		@Pc(17) ReflectionCheck local17 = new ReflectionCheck();
@@ -101,7 +95,7 @@ public final class Class6 {
 			arg1 = 0;
 		}
 		local25 <<= local16;
-		Static148.method2766(local19, local25 & arg1 << local16 | VarPlayerDefinition.varPlayers[local19] & ~local25);
+		Static148.method2766(local19, local25 & arg1 << local16 | VarPlayerDefinition.activeVarps[local19] & ~local25);
 	}
 
 	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(IBII)I")

@@ -7,12 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static226 {
 
-	@OriginalMember(owner = "runetek4.client!sf", name = "j", descriptor = "I")
-	public static int anInt5085;
-
-	@OriginalMember(owner = "runetek4.client!sf", name = "g", descriptor = "Lclient!na;")
-	public static final JString YELLOW2 = JString.parse("<col=ffff00>");
-
 	@OriginalMember(owner = "runetek4.client!sf", name = "h", descriptor = "[Lclient!na;")
 	public static final JString[] varcstrs = new JString[1000];
 
@@ -27,7 +21,7 @@ public final class Static226 {
 		@Pc(18) int local18;
 		@Pc(27) int local27;
 		for (local18 = 0; local18 < MiniMenu.menuActionRow; local18++) {
-			local27 = Fonts.b12Full.getStringWidth(Static269.method2228(local18));
+			local27 = Fonts.b12Full.getStringWidth(MiniMenu.getOp(local18));
 			if (local27 > local16) {
 				local16 = local27;
 			}
@@ -48,10 +42,10 @@ public final class Static226 {
 		if (local43 < 0) {
 			local43 = 0;
 		}
-		if (Static162.anInt3953 == 1) {
-			if (ClientScriptRunner.anInt3751 == Static277.anInt5850 && Static280.anInt5895 == ClientScriptRunner.anInt1892) {
+		if (MiniMenu.anInt3953 == 1) {
+			if (ClientScriptRunner.anInt3751 == Mouse.anInt5850 && Mouse.anInt5895 == ClientScriptRunner.anInt1892) {
 				InterfaceList.anInt436 = MiniMenu.menuActionRow * 15 + (InterfaceList.aBoolean298 ? 26 : 22);
-				Static162.anInt3953 = 0;
+				MiniMenu.anInt3953 = 0;
 				InterfaceList.anInt5138 = local43;
 				InterfaceList.anInt4271 = local27;
 				ClientScriptRunner.aBoolean108 = true;
@@ -59,15 +53,15 @@ public final class Static226 {
 			}
 		} else if (ClientScriptRunner.anInt3751 == Mouse.mouseClickX && ClientScriptRunner.anInt1892 == Mouse.mouseClickY) {
 			InterfaceList.anInt4271 = local27;
-			Static162.anInt3953 = 0;
+			MiniMenu.anInt3953 = 0;
 			InterfaceList.anInt761 = local16;
 			InterfaceList.anInt5138 = local43;
 			InterfaceList.anInt436 = (InterfaceList.aBoolean298 ? 26 : 22) + MiniMenu.menuActionRow * 15;
 			ClientScriptRunner.aBoolean108 = true;
 		} else {
-			Static280.anInt5895 = Mouse.mouseClickY;
-			Static277.anInt5850 = Mouse.mouseClickX;
-			Static162.anInt3953 = 1;
+			Mouse.anInt5895 = Mouse.mouseClickY;
+			Mouse.anInt5850 = Mouse.mouseClickX;
+			MiniMenu.anInt3953 = 1;
 		}
 	}
 }

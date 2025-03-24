@@ -60,8 +60,8 @@ public final class TextureOpTile extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!gg", name = "b", descriptor = "(II)[[I")
 	@Override
 	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
-		@Pc(18) int[][] local18 = this.clearImageCache.method3173(arg0);
-		if (this.clearImageCache.aBoolean195) {
+		@Pc(18) int[][] local18 = this.clearImageCache.get(arg0);
+		if (this.clearImageCache.invalid) {
 			@Pc(28) int local28 = Texture.width / this.anInt2220;
 			@Pc(33) int local33 = Texture.height / this.anInt2216;
 			@Pc(49) int[][] local49;

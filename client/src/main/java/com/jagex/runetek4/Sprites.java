@@ -23,6 +23,10 @@ public class Sprites {
     public static final JString CROSS = JString.parse("cross");
     @OriginalMember(owner = "runetek4.client!mi", name = "T", descriptor = "[Lclient!ok;")
     public static IndexedSprite[] nameIcons;
+    @OriginalMember(owner = "runetek4.client!l", name = "j", descriptor = "[Lclient!qf;")
+    public static Sprite[] mapdots;
+    @OriginalMember(owner = "runetek4.client!wh", name = "l", descriptor = "[Lclient!qf;")
+    public static Sprite[] aClass3_Sub2_Sub1Array11;
 
     @OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(Z)V")
     public static void clear() {
@@ -37,12 +41,12 @@ public class Sprites {
         Static138.aClass3_Sub2_Sub1Array5 = null;
         Fonts.b12Full = null;
         Static106.aClass3_Sub2_Sub1_7 = null;
-        Static139.aClass3_Sub2_Sub1Array6 = null;
+        mapdots = null;
         Fonts.p11Full = null;
         Static84.aClass3_Sub2_Sub1_4 = null;
         Static116.aClass3_Sub2_Sub1Array3 = null;
         Static277.aClass3_Sub2_Sub1Array12 = null;
-        Static276.aClass3_Sub2_Sub1Array11 = null;
+        aClass3_Sub2_Sub1Array11 = null;
         Static219.aClass3_Sub2_Sub1Array9 = null;
         Static241.aClass36Array16 = null;
     }
@@ -59,11 +63,11 @@ public class Sprites {
         Static116.aClass3_Sub2_Sub1Array3 = Static209.method3708(Static36.anInt1165, arg0);
         Static219.aClass3_Sub2_Sub1Array9 = Static209.method3708(Static214.anInt5579, arg0);
         Static138.aClass3_Sub2_Sub1Array5 = Static209.method3708(Static34.anInt1049, arg0);
-        Static276.aClass3_Sub2_Sub1Array11 = Static209.method3708(Class6.anInt4741, arg0);
+        aClass3_Sub2_Sub1Array11 = Static209.method3708(Class6.anInt4741, arg0);
         Static149.aClass3_Sub2_Sub1Array7 = Static209.method3708(Static149.anInt3551, arg0);
         Static84.aClass3_Sub2_Sub1_4 = SpriteLoader.loadSprites(Static19.anInt647, arg0);
         Static240.crossSprites = Static131.method2580(Static32.anInt1016, arg0);
-        Static139.aClass3_Sub2_Sub1Array6 = Static131.method2580(Static78.anInt2147, arg0);
+        mapdots = Static131.method2580(Static78.anInt2147, arg0);
         Static241.aClass36Array16 = Static146.method2749(arg0, Static124.anInt3083);
         nameIcons = Static146.method2749(arg0, FloorUnderlayTypeList.anInt5057);
         Fonts.p11Full.setNameIcons(nameIcons, null);

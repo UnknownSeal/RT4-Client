@@ -8,6 +8,4 @@ public final class Static208 {
 	@OriginalMember(owner = "runetek4.client!r", name = "b", descriptor = "[Lclient!tk;")
 	public static final SeqType[] aClass144Array2 = new SeqType[14];
 
-	@OriginalMember(owner = "runetek4.client!r", name = "d", descriptor = "Z")
-	public static final boolean aBoolean237 = false;
 }

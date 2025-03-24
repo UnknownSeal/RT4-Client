@@ -26,7 +26,7 @@ public final class aClass6 {
 				@Pc(37) short local37 = MiniMenu.actions[MiniMenu.menuActionRow - 1];
 				if (local37 == 25 || local37 == 23 || local37 == 48 || local37 == 7 || local37 == 13 || local37 == 47 || local37 == 5 || local37 == 43 || local37 == 35 || local37 == 58 || local37 == 22 || local37 == 1006) {
 					local93 = MiniMenu.intArgs1[MiniMenu.menuActionRow - 1];
-					local99 = Static56.anIntArray142[MiniMenu.menuActionRow - 1];
+					local99 = MiniMenu.intArgs2[MiniMenu.menuActionRow - 1];
 					@Pc(103) Component local103 = InterfaceList.getComponent(local99);
 					@Pc(106) ServerActiveProperties local106 = InterfaceList.getServerActiveProperties(local103);
 					if (local106.method511() || local106.method504()) {
@@ -44,14 +44,14 @@ public final class aClass6 {
 					}
 				}
 			}
-			if (local20 == 1 && (Static116.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || Static277.menuHasAddFriend(MiniMenu.menuActionRow - 1))) {
+			if (local20 == 1 && (Static116.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1))) {
 				local20 = 2;
 			}
-			if (local20 == 2 && MiniMenu.menuActionRow > 0 || Static162.anInt3953 == 1) {
+			if (local20 == 2 && MiniMenu.menuActionRow > 0 || MiniMenu.anInt3953 == 1) {
 				Static226.determineMenuSize();
 			}
-			if (local20 == 1 && MiniMenu.menuActionRow > 0 || Static162.anInt3953 == 2) {
-				Static59.processMenuActions();
+			if (local20 == 1 && MiniMenu.menuActionRow > 0 || MiniMenu.anInt3953 == 2) {
+				MiniMenu.processMenuActions();
 			}
 			return;
 		}
@@ -85,7 +85,7 @@ public final class aClass6 {
 			}
 		}
 		if (local269 != -1) {
-			Static103.method2232(local269);
+			MiniMenu.doAction(local269);
 		}
 		ClientScriptRunner.aBoolean108 = false;
 		InterfaceList.redrawScreen(InterfaceList.anInt4271, InterfaceList.anInt761, InterfaceList.anInt5138, InterfaceList.anInt436);

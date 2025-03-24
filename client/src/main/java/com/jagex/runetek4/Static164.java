@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.SoftwareSprite;
-import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -19,131 +18,6 @@ public final class Static164 {
 	@OriginalMember(owner = "runetek4.client!na", name = "mb", descriptor = "[I")
 	public static final int[] anIntArray362 = new int[50];
 
-	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IIIIIIIZ)Z")
-	public static boolean method3109(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(6) int arg4) {
-		@Pc(14) long local14 = SceneGraph.getWallKey(arg4, arg0 + 0, arg2);
-		@Pc(28) int local28;
-		@Pc(35) int local35;
-		@Pc(42) int local42;
-		@Pc(46) LocType local46;
-		@Pc(65) int local65;
-		@Pc(75) int[] local75;
-		@Pc(90) int local90;
-		if (local14 != 0L) {
-			local28 = (int) local14 >> 20 & 0x3;
-			local35 = (int) local14 >> 14 & 0x1F;
-			local42 = Integer.MAX_VALUE & (int) (local14 >>> 32);
-			local46 = LocTypeList.get(local42);
-			if (local46.mapSceneIcon == -1) {
-				local65 = arg1;
-				if (local14 > 0L) {
-					local65 = arg3;
-				}
-				local75 = SoftwareRaster.destinationPixels;
-				local90 = (52736 - arg2 * 512) * 4 + arg0 * 4 + 24624;
-				if (local35 == 0 || local35 == 2) {
-					if (local28 == 0) {
-						local75[local90] = local65;
-						local75[local90 + 512] = local65;
-						local75[local90 + 1024] = local65;
-						local75[local90 + 1536] = local65;
-					} else if (local28 == 1) {
-						local75[local90] = local65;
-						local75[local90 + 1] = local65;
-						local75[local90 + 2] = local65;
-						local75[local90 + 3] = local65;
-					} else if (local28 == 2) {
-						local75[local90 + 3] = local65;
-						local75[local90 + 3 + 512] = local65;
-						local75[local90 + 3 + 1024] = local65;
-						local75[local90 + 3 + 1536] = local65;
-					} else if (local28 == 3) {
-						local75[local90 + 1536] = local65;
-						local75[local90 + 1536 + 1] = local65;
-						local75[local90 + 1538] = local65;
-						local75[local90 + 3 + 1536] = local65;
-					}
-				}
-				if (local35 == 3) {
-					if (local28 == 0) {
-						local75[local90] = local65;
-					} else if (local28 == 1) {
-						local75[local90 + 3] = local65;
-					} else if (local28 == 2) {
-						local75[local90 + 3 + 1536] = local65;
-					} else if (local28 == 3) {
-						local75[local90 + 1536] = local65;
-					}
-				}
-				if (local35 == 2) {
-					if (local28 == 3) {
-						local75[local90] = local65;
-						local75[local90 + 512] = local65;
-						local75[local90 + 1024] = local65;
-						local75[local90 + 1536] = local65;
-					} else if (local28 == 0) {
-						local75[local90] = local65;
-						local75[local90 + 1] = local65;
-						local75[local90 + 2] = local65;
-						local75[local90 + 3] = local65;
-					} else if (local28 == 1) {
-						local75[local90 + 3] = local65;
-						local75[local90 + 512 + 3] = local65;
-						local75[local90 + 1024 + 3] = local65;
-						local75[local90 + 1536 + 3] = local65;
-					} else if (local28 == 2) {
-						local75[local90 + 1536] = local65;
-						local75[local90 + 1536 + 1] = local65;
-						local75[local90 + 1536 + 2] = local65;
-						local75[local90 + 1539] = local65;
-					}
-				}
-			} else if (!Static33.method867(arg0, local46, arg2, local28)) {
-				return false;
-			}
-		}
-		local14 = SceneGraph.getSceneryKey(arg4, arg0 + 0, arg2);
-		if (local14 != 0L) {
-			local28 = (int) local14 >> 20 & 0x3;
-			local35 = (int) local14 >> 14 & 0x1F;
-			local42 = (int) (local14 >>> 32) & Integer.MAX_VALUE;
-			local46 = LocTypeList.get(local42);
-			if (local46.mapSceneIcon == -1) {
-				if (local35 == 9) {
-					local65 = 15658734;
-					if (local14 > 0L) {
-						local65 = 15597568;
-					}
-					local90 = arg0 * 4 + (103 - arg2) * 2048 + 24624;
-					local75 = SoftwareRaster.destinationPixels;
-					if (local28 == 0 || local28 == 2) {
-						local75[local90 + 1536] = local65;
-						local75[local90 + 1025] = local65;
-						local75[local90 + 512 + 2] = local65;
-						local75[local90 + 3] = local65;
-					} else {
-						local75[local90] = local65;
-						local75[local90 + 512 + 1] = local65;
-						local75[local90 + 1024 + 2] = local65;
-						local75[local90 + 1536 + 3] = local65;
-					}
-				}
-			} else if (!Static33.method867(arg0, local46, arg2, local28)) {
-				return false;
-			}
-		}
-		local14 = SceneGraph.getGroundDecorKey(arg4, arg0 + 0, arg2);
-		if (local14 != 0L) {
-			local28 = (int) local14 >> 20 & 0x3;
-			local35 = (int) (local14 >>> 32) & Integer.MAX_VALUE;
-			@Pc(586) LocType local586 = LocTypeList.get(local35);
-			if (local586.mapSceneIcon != -1 && !Static33.method867(arg0, local586, arg2, local28)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Lclient!ba;Lclient!ba;IIIZZ)I")
 	public static int method3115(@OriginalArg(0) GWCWorld arg0, @OriginalArg(1) GWCWorld arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) boolean arg4, @OriginalArg(6) boolean arg5) {
 		@Pc(8) int local8 = Static270.method4595(arg1, arg3, arg0, arg5);
@@ -160,11 +34,6 @@ public final class Static164 {
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Lclient!ve;IZ)Lclient!mm;")
 	public static SoftwareSprite method3117(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
 		return Static254.method4346(arg0, arg1) ? Static196.method3537() : null;
-	}
-
-	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IZILclient!ve;)Lclient!ek;")
-	public static SoftwareIndexedSprite method3119(@OriginalArg(2) int arg0, @OriginalArg(3) Js5 arg1) {
-		return SpriteLoader.decode(arg1, 0, arg0) ? Static134.method2619() : null;
 	}
 
 }

@@ -17,19 +17,19 @@ public final class MidiNote extends Node {
 	public int anInt3765;
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "w", descriptor = "Lclient!wh;")
-	public Class162 aClass162_1;
+	public Midi_Class162 aMidiClass162_1;
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "y", descriptor = "I")
 	public int anInt3767;
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "z", descriptor = "Lclient!b;")
-	public SoundPcmStream aClass3_Sub3_Sub1_3;
+	public SoundPcmStream stream;
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "A", descriptor = "I")
 	public int anInt3768;
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "B", descriptor = "Lclient!kj;")
-	public PcmSound aClass3_Sub16_Sub1_1;
+	public PcmSound sound;
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "C", descriptor = "I")
 	public int anInt3769;
@@ -44,7 +44,7 @@ public final class MidiNote extends Node {
 	public int anInt3772;
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "G", descriptor = "I")
-	public int anInt3773;
+	public int channel;
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "H", descriptor = "I")
 	public int anInt3774;
@@ -68,13 +68,13 @@ public final class MidiNote extends Node {
 	public int anInt3782;
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "V", descriptor = "Lclient!jk;")
-	public MidiInstrument aClass3_Sub18_1;
+	public MidiInstrument instrument;
 
 	@OriginalMember(owner = "runetek4.client!mf", name = "d", descriptor = "(I)V")
 	public final void method2957() {
-		this.aClass162_1 = null;
-		this.aClass3_Sub16_Sub1_1 = null;
-		this.aClass3_Sub3_Sub1_3 = null;
-		this.aClass3_Sub18_1 = null;
+		this.aMidiClass162_1 = null;
+		this.sound = null;
+		this.stream = null;
+		this.instrument = null;
 	}
 }

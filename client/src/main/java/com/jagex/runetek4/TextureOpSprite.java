@@ -52,8 +52,8 @@ public class TextureOpSprite extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!nh", name = "b", descriptor = "(II)[[I")
 	@Override
 	public int[][] getColorOutput(@OriginalArg(1) int arg0) {
-		@Pc(18) int[][] local18 = this.clearImageCache.method3173(arg0);
-		if (this.clearImageCache.aBoolean195 && this.method2573()) {
+		@Pc(18) int[][] local18 = this.clearImageCache.get(arg0);
+		if (this.clearImageCache.invalid && this.method2573()) {
 			@Pc(31) int[] local31 = local18[0];
 			@Pc(35) int[] local35 = local18[1];
 			@Pc(39) int[] local39 = local18[2];

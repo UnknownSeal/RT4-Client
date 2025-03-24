@@ -21,6 +21,17 @@ public final class MixerPcmStream extends PcmStream {
 	@OriginalMember(owner = "runetek4.client!ei", name = "w", descriptor = "I")
 	private int anInt1781 = -1;
 
+	@OriginalMember(owner = "runetek4.client!ok", name = "a", descriptor = "(Lclient!ab;Lclient!ab;I)V")
+	public static void method3331(@OriginalArg(0) Node arg0, @OriginalArg(1) Node arg1) {
+		if (arg0.next != null) {
+			arg0.unlink();
+		}
+		arg0.prev = arg1;
+		arg0.next = arg1.next;
+		arg0.next.prev = arg0;
+		arg0.prev.next = arg0;
+	}
+
 	@OriginalMember(owner = "runetek4.client!ei", name = "a", descriptor = "(Lclient!cc;)V")
 	private void method1342(@OriginalArg(0) MixerListener arg0) {
 		arg0.unlink();
@@ -40,7 +51,7 @@ public final class MixerPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "b", descriptor = "([III)V")
 	@Override
-	public final synchronized void method4408(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+	public final synchronized void read(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		do {
 			if (this.anInt1781 < 0) {
 				this.method1346(arg0, arg1, arg2);
@@ -85,14 +96,14 @@ public final class MixerPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "b", descriptor = "()Lclient!qb;")
 	@Override
-	public final PcmStream method4406() {
+	public final PcmStream firstSubStream() {
 		return (PcmStream) this.aClass69_43.head();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "d", descriptor = "(I)V")
 	private void method1345(@OriginalArg(0) int arg0) {
 		for (@Pc(5) PcmStream local5 = (PcmStream) this.aClass69_43.head(); local5 != null; local5 = (PcmStream) this.aClass69_43.next()) {
-			local5.method4410(arg0);
+			local5.skip(arg0);
 		}
 	}
 
@@ -116,7 +127,7 @@ public final class MixerPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "c", descriptor = "(I)V")
 	@Override
-	public final synchronized void method4410(@OriginalArg(0) int arg0) {
+	public final synchronized void skip(@OriginalArg(0) int arg0) {
 		do {
 			if (this.anInt1781 < 0) {
 				this.method1345(arg0);
@@ -148,7 +159,7 @@ public final class MixerPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!ei", name = "d", descriptor = "()Lclient!qb;")
 	@Override
-	public final PcmStream method4409() {
+	public final PcmStream nextSubStream() {
 		return (PcmStream) this.aClass69_43.next();
 	}
 
@@ -157,7 +168,7 @@ public final class MixerPcmStream extends PcmStream {
 		while (arg0 != this.aClass69_44.aClass3_109 && ((MixerListener) arg0).anInt905 <= arg1.anInt905) {
 			arg0 = arg0.prev;
 		}
-		Static183.method3331(arg1, arg0);
+		method3331(arg1, arg0);
 		this.anInt1781 = ((MixerListener) this.aClass69_44.aClass3_109.prev).anInt905;
 	}
 }

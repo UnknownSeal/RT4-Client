@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static72 {
 
-	@OriginalMember(owner = "client!fl", name = "u", descriptor = "Z")
-	public static boolean aBoolean116;
-
 	@OriginalMember(owner = "client!fl", name = "C", descriptor = "Lsignlink!im;")
 	public static PrivilegedRequest aClass212_3;
 
@@ -19,27 +16,8 @@ public final class Static72 {
 	@OriginalMember(owner = "client!fl", name = "H", descriptor = "Lclient!na;")
 	public static final JString aClass100_446 = JString.parse("<img=0>");
 
-	@OriginalMember(owner = "client!fl", name = "P", descriptor = "I")
-	public static int anInt2043 = 0;
-
 	@OriginalMember(owner = "client!fl", name = "Q", descriptor = "Lclient!na;")
 	public static final JString aClass100_447 = JString.parse("");
-
-	@OriginalMember(owner = "client!fl", name = "V", descriptor = "Lclient!na;")
-	public static final JString aClass100_448 = JString.parse("(Y");
-
-	@OriginalMember(owner = "client!fl", name = "b", descriptor = "(II)Lclient!cl;")
-	public static AnimFrameset method1566(@OriginalArg(0) int arg0) {
-		@Pc(19) AnimFrameset local19 = (AnimFrameset) Static267.skeletonCache.get(arg0);
-		if (local19 != null) {
-			return local19;
-		}
-		local19 = AnimFrameset.create(Static225.aClass153_92, Static5.aClass153_1, arg0);
-		if (local19 != null) {
-			Static267.skeletonCache.put(local19, arg0);
-		}
-		return local19;
-	}
 
 	@OriginalMember(owner = "client!fl", name = "a", descriptor = "(IIIIII)V")
 	public static void method1568(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {

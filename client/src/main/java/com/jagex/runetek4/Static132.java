@@ -21,7 +21,7 @@ public final class Static132 {
 		@Pc(7) int local7 = 0;
 		for (@Pc(23) int local23 = 0; local23 < 104; local23++) {
 			for (@Pc(30) int local30 = 0; local30 < 104; local30++) {
-				if (Static254.method4348(true, local23, local30, Static130.levelTiles, local7)) {
+				if (Static254.method4348(true, local23, local30, SceneGraph.tiles, local7)) {
 					local7++;
 				}
 				if (local7 >= 512) {

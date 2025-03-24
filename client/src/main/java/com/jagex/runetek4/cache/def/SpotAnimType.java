@@ -10,7 +10,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!eg")
-public final class SpotAnimDefinition {
+public final class SpotAnimType {
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "b", descriptor = "Lclient!n;")
 	public static final NodeCache modelCache = new NodeCache(30);
@@ -106,7 +106,7 @@ public final class SpotAnimDefinition {
 	}
 
 	@OriginalMember(owner = "runetek4.client!eg", name = "a", descriptor = "(IBII)Lclient!ak;")
-	public final Model getModel(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
+	public final Model constructModel(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
 		@Pc(13) Model model = (Model) modelCache.get((long) this.anInt1751);
 		if (model == null) {
 			@Pc(28) RawModel rawModel = RawModel.create(Static93.modelArchive, this.modelId);
@@ -124,7 +124,7 @@ public final class SpotAnimDefinition {
 					rawModel.retexture(this.aShortArray16[i], this.aShortArray17[i]);
 				}
 			}
-			model = rawModel.applyLightning(this.ambient + 64, this.contrast + 850, -30, -50, -30);
+			model = rawModel.createModel(this.ambient + 64, this.contrast + 850, -30, -50, -30);
 			modelCache.put(model, (long) this.anInt1751);
 		}
 		@Pc(118) Model local118;

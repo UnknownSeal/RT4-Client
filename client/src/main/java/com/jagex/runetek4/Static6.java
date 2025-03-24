@@ -9,12 +9,6 @@ public final class Static6 {
 	@OriginalMember(owner = "client!ag", name = "ab", descriptor = "Lclient!na;")
 	public static final JString aClass100_17 = JString.parse("0");
 
-	@OriginalMember(owner = "client!ag", name = "bb", descriptor = "Lclient!na;")
-	public static final JString GREEN2 = JString.parse("<col=40ff00>");
-
-	@OriginalMember(owner = "client!ag", name = "cb", descriptor = "[Lclient!cl;")
-	public static final AnimFrameset[] aClass3_Sub2_Sub7Array1 = new AnimFrameset[14];
-
 	@OriginalMember(owner = "client!ag", name = "a", descriptor = "(ILjava/lang/String;)Ljava/lang/Class;")
 	public static Class method85(@OriginalArg(1) String arg0) throws ClassNotFoundException {
 		if (arg0.equals("B")) {

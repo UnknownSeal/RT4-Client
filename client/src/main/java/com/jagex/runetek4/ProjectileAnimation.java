@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.SpotAnimDefinition;
+import com.jagex.runetek4.cache.def.SpotAnimType;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.cache.media.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -124,8 +124,8 @@ public final class ProjectileAnimation extends Entity {
 
 	@OriginalMember(owner = "client!ra", name = "b", descriptor = "(I)Lclient!ak;")
 	private Model method3703() {
-		@Pc(14) SpotAnimDefinition local14 = Static34.method877(this.anInt4816);
-		@Pc(24) Model local24 = local14.getModel(this.anInt4798, this.seqFrame, this.frameCycle);
+		@Pc(14) SpotAnimType local14 = Static34.method877(this.anInt4816);
+		@Pc(24) Model local24 = local14.constructModel(this.anInt4798, this.seqFrame, this.frameCycle);
 		if (local24 == null) {
 			return null;
 		} else {

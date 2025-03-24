@@ -7,9 +7,4 @@ public final class Static11 {
 	@OriginalMember(owner = "client!ba", name = "x", descriptor = "Z")
 	public static boolean aBoolean15 = true;
 
-	@OriginalMember(owner = "client!ba", name = "e", descriptor = "(I)V")
-	public static void method443() {
-		Static262.aClass99_35.clean();
-	}
-
 }

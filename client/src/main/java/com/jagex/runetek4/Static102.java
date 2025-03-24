@@ -11,9 +11,6 @@ public final class Static102 {
 	@OriginalMember(owner = "runetek4.client!hn", name = "K", descriptor = "Ljava/util/Calendar;")
 	public static final Calendar aCalendar2 = Calendar.getInstance();
 
-	@OriginalMember(owner = "runetek4.client!hn", name = "Y", descriptor = "I")
-	public static int anInt2680 = 0;
-
 	@OriginalMember(owner = "runetek4.client!hn", name = "d", descriptor = "(I)Lclient!mm;")
 	public static SoftwareSprite method2071() {
 		@Pc(13) int local13 = SpriteLoader.innerHeights[0] * SpriteLoader.innerWidths[0];

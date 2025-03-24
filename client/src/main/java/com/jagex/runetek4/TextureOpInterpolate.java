@@ -17,8 +17,8 @@ public final class TextureOpInterpolate extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!bl", name = "b", descriptor = "(II)[[I")
 	@Override
 	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
-		@Pc(16) int[][] local16 = this.clearImageCache.method3173(arg0);
-		if (this.clearImageCache.aBoolean195) {
+		@Pc(16) int[][] local16 = this.clearImageCache.get(arg0);
+		if (this.clearImageCache.invalid) {
 			@Pc(27) int[] local27 = this.getChildMonochromeOutput(2, arg0);
 			@Pc(33) int[][] local33 = this.getChildColorOutput(arg0, 0);
 			@Pc(39) int[][] local39 = this.getChildColorOutput(arg0, 1);

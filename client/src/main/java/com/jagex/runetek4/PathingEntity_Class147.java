@@ -4,7 +4,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!ub")
-public final class Class147 {
+public final class PathingEntity_Class147 {
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "b", descriptor = "I")
 	public int anInt5396;

@@ -16,9 +16,6 @@ public final class Static101 {
 	@OriginalMember(owner = "runetek4.client!hm", name = "T", descriptor = "Lclient!na;")
 	public static final JString aClass100_538 = JString.parse(" ");
 
-	@OriginalMember(owner = "runetek4.client!hm", name = "ab", descriptor = "I")
-	public static int anInt2640 = 0;
-
 	@OriginalMember(owner = "runetek4.client!hm", name = "fb", descriptor = "[Lclient!ba;")
 	public static GWCWorld[] aClass10_Sub1Array1 = new GWCWorld[0];
 

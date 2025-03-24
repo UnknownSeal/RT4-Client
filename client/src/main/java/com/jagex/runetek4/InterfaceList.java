@@ -247,7 +247,7 @@ public class InterfaceList {
             redrawScreen(anInt4271, anInt761, anInt5138, anInt436);
             local43 = Fonts.b12Full.getStringWidth(LocalizedText.CHOOSE_OPTION);
             for (@Pc(75) int local75 = 0; local75 < MiniMenu.menuActionRow; local75++) {
-                @Pc(88) int local88 = Fonts.b12Full.getStringWidth(Static269.method2228(local75));
+                @Pc(88) int local88 = Fonts.b12Full.getStringWidth(MiniMenu.getOp(local75));
                 if (local43 < local88) {
                     local43 = local88;
                 }
@@ -1347,7 +1347,7 @@ public class InterfaceList {
             redrawScreen(anInt4271, anInt761, anInt5138, anInt436);
             local53 = Fonts.b12Full.getStringWidth(LocalizedText.CHOOSE_OPTION);
             for (@Pc(95) int local95 = 0; local95 < MiniMenu.menuActionRow; local95++) {
-                @Pc(104) int local104 = Fonts.b12Full.getStringWidth(Static269.method2228(local95));
+                @Pc(104) int local104 = Fonts.b12Full.getStringWidth(MiniMenu.getOp(local95));
                 if (local104 > local53) {
                     local53 = local104;
                 }

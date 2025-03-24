@@ -8,9 +8,6 @@ public final class Static253 {
 	@OriginalMember(owner = "runetek4.client!ui", name = "Q", descriptor = "I")
 	public static int anInt5526;
 
-	@OriginalMember(owner = "runetek4.client!ui", name = "R", descriptor = "I")
-	public static int anInt5527;
-
 	@OriginalMember(owner = "runetek4.client!ui", name = "eb", descriptor = "[[[B")
 	public static byte[][][] levelTileUnderlayIds;
 

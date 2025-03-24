@@ -539,7 +539,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 			this.mainInit();
 			timer = Timer.create();
 			while (killtime == 0L || killtime > MonotonicTime.currentTimeMillis()) {
-				logicCycles = timer.method3391(minimumDelay, VARIABLE_RENDER_RATE);
+				logicCycles = timer.sleep(minimumDelay, VARIABLE_RENDER_RATE);
 				for (i = 0; i < logicCycles; i++) {
 					this.mainLoopWrapper();
 				}

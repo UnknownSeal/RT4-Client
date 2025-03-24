@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -10,17 +9,6 @@ public final class Static8 {
 
 	@OriginalMember(owner = "client!aj", name = "Z", descriptor = "[I")
 	public static int[] anIntArray8;
-
-	@OriginalMember(owner = "client!aj", name = "a", descriptor = "(BILclient!be;)I")
-	public static int method118(@OriginalArg(1) int arg0, @OriginalArg(2) Component arg1) {
-		if (!InterfaceList.getServerActiveProperties(arg1).isButtonEnabled(arg0) && arg1.onOptionClick == null) {
-			return -1;
-		} else if (arg1.anIntArray39 == null || arg0 >= arg1.anIntArray39.length) {
-			return -1;
-		} else {
-			return arg1.anIntArray39[arg0];
-		}
-	}
 
 	@OriginalMember(owner = "client!aj", name = "a", descriptor = "(IIIZIII)V")
 	public static void method120(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {

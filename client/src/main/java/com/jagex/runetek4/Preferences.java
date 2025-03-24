@@ -52,6 +52,8 @@ public class Preferences {
     public static int musicVolume = 255;
     @OriginalMember(owner = "runetek4.client!rm", name = "g", descriptor = "Z")
     public static boolean highWaterDetail = true;
+    @OriginalMember(owner = "runetek4.client!ra", name = "R", descriptor = "Z")
+    public static boolean characterShadowsOn = true;
     @OriginalMember(owner = "runetek4.client!ga", name = "e", descriptor = "I")
     private static int particles = 2;
 
@@ -239,7 +241,7 @@ public class Preferences {
         Static15.lowMemory = true;
         ambientSoundsVolume = 127;
         fogEnabled = true;
-        Static209.aBoolean240 = true;
+        characterShadowsOn = true;
         fullScreenWidth = 0;
         Static139.anInt3451 = 2;
         Static159.aBoolean189 = true;
@@ -306,7 +308,7 @@ public class Preferences {
         local4.p1(Static15.lowMemory ? 1 : 0);
         local4.p1(Static11.aBoolean15 ? 1 : 0);
         local4.p1(Static159.aBoolean189 ? 1 : 0);
-        local4.p1(Static209.aBoolean240 ? 1 : 0);
+        local4.p1(characterShadowsOn ? 1 : 0);
         local4.p1(Static139.anInt3451);
         local4.p1(highDetailLighting ? 1 : 0);
         local4.p1(highWaterDetail ? 1 : 0);

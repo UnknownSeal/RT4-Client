@@ -49,7 +49,7 @@ public class Game {
         @Pc(182) int dx;
         @Pc(189) int dy;
         synchronized (mouseRecorder) {
-            if (!Static245.enabled) {
+            if (!MouseCapturer.enabled) {
                 MouseCapturer.instance.samples = 0;
             } else if (Mouse.clickButton != 0 || MouseCapturer.instance.samples >= 40) {
                 Protocol.outboundBuffer.pIsaac1(123);
@@ -76,11 +76,11 @@ public class Game {
                         y = -1;
                         x = -1;
                     }
-                    if (Static264.mouseRecorderPrevX != x || Static179.mouseRecorderPrevY != y) {
-                        dx = x - Static264.mouseRecorderPrevX;
-                        Static264.mouseRecorderPrevX = x;
-                        dy = y - Static179.mouseRecorderPrevY;
-                        Static179.mouseRecorderPrevY = y;
+                    if (MouseCapturer.mouseRecorderPrevX != x || MouseCapturer.mouseRecorderPrevY != y) {
+                        dx = x - MouseCapturer.mouseRecorderPrevX;
+                        MouseCapturer.mouseRecorderPrevX = x;
+                        dy = y - MouseCapturer.mouseRecorderPrevY;
+                        MouseCapturer.mouseRecorderPrevY = y;
                         if (Protocol.anInt4762 < 8 && dx >= -32 && dx <= 31 && dy >= -32 && dy <= 31) {
                             dy += 32;
                             dx += 32;
@@ -126,7 +126,7 @@ public class Game {
             }
         }
         if (Mouse.clickButton != 0) {
-            @Pc(411) long loops = (Static133.clickTime - Mouse.prevClickTime) / 50L;
+            @Pc(411) long loops = (Mouse.clickTime - Mouse.prevClickTime) / 50L;
             samples = Mouse.mouseClickY;
             if (samples < 0) {
                 samples = 0;
@@ -137,7 +137,7 @@ public class Game {
                 loops = 32767L;
             }
             i = Mouse.mouseClickX;
-            Mouse.prevClickTime = Static133.clickTime;
+            Mouse.prevClickTime = Mouse.clickTime;
             @Pc(437) byte button = 0;
             if (i < 0) {
                 i = 0;
@@ -201,14 +201,14 @@ public class Game {
             return;
         }
         PlayerList.updatePlayers();
-        Static109.updateNpcs();
+        NpcList.updateNpcs();
         Static19.tickChatTimers(); // OverheadChat
         if (WorldMap.component != null) {
             Static12.method447();
         }
         // VarpDomain
         for (i = Static38.poll(true); i != -1; i = Static38.poll(false)) {
-            Static85.handleVarps(i);
+            VarpDomain.refreshMagicVarp(i);
             Static83.updatedVarps[Static70.updatedVarpsWriterIndex++ & 0x1F] = i;
         }
         @Pc(782) int rand;
@@ -338,8 +338,8 @@ public class Game {
         }
         Protocol.sceneDelta++;
         if (MiniMenu.pressedInventoryComponent != null) {
-            Static72.anInt2043++;
-            if (Static72.anInt2043 >= 15) {
+            MiniMenu.anInt2043++;
+            if (MiniMenu.anInt2043 >= 15) {
                 InterfaceList.redraw(MiniMenu.pressedInventoryComponent);
                 MiniMenu.pressedInventoryComponent = null;
             }
@@ -353,24 +353,24 @@ public class Game {
             InterfaceList.lastItemDragTime++;
             if (Mouse.pressedButton == 0) {
                 if (InterfaceList.draggingClickedInventoryObject && InterfaceList.lastItemDragTime >= 5) {
-                    if (InterfaceList.clickedInventoryComponent == InterfaceList.mouseOverInventoryInterface && InterfaceList.selectedInventorySlot != Static18.mouseInvInterfaceIndex) {
+                    if (InterfaceList.clickedInventoryComponent == InterfaceList.mouseOverInventoryInterface && InterfaceList.selectedInventorySlot != MiniMenu.mouseInvInterfaceIndex) {
                         component = InterfaceList.clickedInventoryComponent;
                         @Pc(1363) byte moveItemInsertionMode = 0;
                         if (Static179.bankInsertMode == 1 && component.contentType == 206) {
                             moveItemInsertionMode = 1;
                         }
-                        if (component.invSlotObjId[Static18.mouseInvInterfaceIndex] <= 0) {
+                        if (component.invSlotObjId[MiniMenu.mouseInvInterfaceIndex] <= 0) {
                             moveItemInsertionMode = 0;
                         }
                         if (InterfaceList.getServerActiveProperties(component).method504()) {
                             y = InterfaceList.selectedInventorySlot;
-                            x = Static18.mouseInvInterfaceIndex;
+                            x = MiniMenu.mouseInvInterfaceIndex;
                             component.invSlotObjId[x] = component.invSlotObjId[y];
                             component.invSlotObjCount[x] = component.invSlotObjCount[y];
                             component.invSlotObjId[y] = -1;
                             component.invSlotObjCount[y] = 0;
                         } else if (moveItemInsertionMode == 1) {
-                            x = Static18.mouseInvInterfaceIndex;
+                            x = MiniMenu.mouseInvInterfaceIndex;
                             y = InterfaceList.selectedInventorySlot;
                             while (x != y) {
                                 if (y > x) {
@@ -382,21 +382,21 @@ public class Game {
                                 }
                             }
                         } else {
-                            component.swapObjs(Static18.mouseInvInterfaceIndex, InterfaceList.selectedInventorySlot);
+                            component.swapObjs(MiniMenu.mouseInvInterfaceIndex, InterfaceList.selectedInventorySlot);
                         }
                         Protocol.outboundBuffer.pIsaac1(231);
                         Protocol.outboundBuffer.p2(InterfaceList.selectedInventorySlot);
                         Protocol.outboundBuffer.p4_alt1(InterfaceList.clickedInventoryComponent.id);
-                        Protocol.outboundBuffer.p2_alt2(Static18.mouseInvInterfaceIndex);
+                        Protocol.outboundBuffer.p2_alt2(MiniMenu.mouseInvInterfaceIndex);
                         Protocol.outboundBuffer.p1_alt3(moveItemInsertionMode);
                     }
-                } else if ((Static116.oneMouseButton == 1 || Static277.menuHasAddFriend(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
+                } else if ((Static116.oneMouseButton == 1 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
                     Static226.determineMenuSize();
                 } else if (MiniMenu.menuActionRow > 0) {
-                    Static59.processMenuActions();
+                    MiniMenu.processMenuActions();
                 }
                 Mouse.clickButton = 0;
-                Static72.anInt2043 = 10;
+                MiniMenu.anInt2043 = 10;
                 InterfaceList.clickedInventoryComponent = null;
             }
         }
@@ -528,7 +528,7 @@ public class Game {
                                             for (y = 0; y < 5; y++) {
                                                 @Pc(2001) int local2001 = Static31.cameraModifierCycle[y]++;
                                             }
-                                            y = Static142.getIdleLoops(); // runetek4.Mouse
+                                            y = Mouse.getIdleLoops(); // runetek4.Mouse
                                             x = Keyboard.getIdleLoops(); // runetek4.Keyboard
                                             if (y > 15000 && x > 15000) {
                                                 idleTimeout = 250;
@@ -544,7 +544,7 @@ public class Game {
                                                 Protocol.newTab = false;
                                             }
                                             Protocol.anInt3251++;
-                                            Static82.minimapOffsetCycle++;
+                                            MiniMap.minimapOffsetCycle++;
                                             Static143.cameraOffsetCycle++;
                                             if (Static143.cameraOffsetCycle > 500) {
                                                 Static143.cameraOffsetCycle = 0;
@@ -559,24 +559,24 @@ public class Game {
                                                     Camera.cameraAnticheatOffsetX += Camera.cameraOffsetXModifier;
                                                 }
                                             }
-                                            if (Static82.minimapOffsetCycle > 500) {
-                                                Static82.minimapOffsetCycle = 0;
+                                            if (MiniMap.minimapOffsetCycle > 500) {
+                                                MiniMap.minimapOffsetCycle = 0;
                                                 rand = (int) (Math.random() * 8.0D);
                                                 if ((rand & 0x1) == 1) {
-                                                    MiniMap.minimapAnticheatAngle += Static263.minimapAngleModifier;
+                                                    MiniMap.minimapAnticheatAngle += MiniMap.minimapAngleModifier;
                                                 }
                                                 if ((rand & 0x2) == 2) {
-                                                    MiniMap.minimapZoom += Static179.minimapZoomModifier;
+                                                    MiniMap.minimapZoom += MiniMap.minimapZoomModifier;
                                                 }
                                             }
                                             if (Camera.cameraAnticheatOffsetX < -50) {
                                                 Camera.cameraOffsetXModifier = 2;
                                             }
                                             if (MiniMap.minimapAnticheatAngle < -60) {
-                                                Static263.minimapAngleModifier = 2;
+                                                MiniMap.minimapAngleModifier = 2;
                                             }
                                             if (MiniMap.minimapZoom < -20) {
-                                                Static179.minimapZoomModifier = 1;
+                                                MiniMap.minimapZoomModifier = 1;
                                             }
                                             if (Camera.cameraAnticheatOffsetZ < -55) {
                                                 Static20.cameraOffsetZModifier = 2;
@@ -594,10 +594,10 @@ public class Game {
                                                 Static220.cameraOffsetYawModifier = -1;
                                             }
                                             if (MiniMap.minimapZoom > 10) {
-                                                Static179.minimapZoomModifier = -1;
+                                                MiniMap.minimapZoomModifier = -1;
                                             }
                                             if (MiniMap.minimapAnticheatAngle > 60) {
-                                                Static263.minimapAngleModifier = -2;
+                                                MiniMap.minimapAngleModifier = -2;
                                             }
                                             if (Protocol.anInt3251 > 50) {
                                                 Protocol.outboundBuffer.pIsaac1(93);
@@ -664,7 +664,7 @@ public class Game {
         @Pc(171) int local171;
         for (i = 0; i < NpcList.npcCount; i++) {
             npc = NpcList.npcs[NpcList.npcIds[i]];
-            if (npc != null && npc.isVisible() && npc.type.drawabove == arg0 && npc.type.method2933()) {
+            if (npc != null && npc.isVisible() && npc.type.topRenderPriority == arg0 && npc.type.isMultiNpcValid()) {
                 @Pc(42) int npcSize2 = npc.getSize();
                 @Pc(97) int local97;
                 if (npcSize2 == 1) {
@@ -703,7 +703,7 @@ public class Game {
         label200: for (i = 0; i < NpcList.npcCount; i++) {
             npc = NpcList.npcs[NpcList.npcIds[i]];
             @Pc(262) long bitset = (long) NpcList.npcIds[i] << 32 | 0x20000000L;
-            if (npc != null && npc.isVisible() && npc.type.drawabove == arg0 && npc.type.method2933()) {
+            if (npc != null && npc.isVisible() && npc.type.topRenderPriority == arg0 && npc.type.isMultiNpcValid()) {
                 npcSize = npc.getSize();
                 if (npcSize == 1) {
                     if ((npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
@@ -758,7 +758,7 @@ public class Game {
                         }
                     }
                 }
-                if (!npc.type.active) {
+                if (!npc.type.interactive) {
                     bitset |= Long.MIN_VALUE;
                 }
                 npc.y = SceneGraph.getTileHeight(Player.plane, npc.xFine, npc.zFine);
@@ -921,7 +921,7 @@ public class Game {
         WorldMap.clear(false);
         System.gc();
         MidiPlayer.playFadeOut();
-        Static144.jingle = false;
+        MidiPlayer.jingle = false;
         MusicPlayer.groupId = -1;
         AreaSoundManager.clear(true);
         SceneGraph.dynamicMapRegion = false;

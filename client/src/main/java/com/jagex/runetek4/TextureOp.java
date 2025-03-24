@@ -94,7 +94,7 @@ public abstract class TextureOp extends Node {
 			this.monochromeImageCache.clear();
 			this.monochromeImageCache = null;
 		} else {
-			this.clearImageCache.method3169();
+			this.clearImageCache.clear();
 			this.clearImageCache = null;
 		}
 	}
