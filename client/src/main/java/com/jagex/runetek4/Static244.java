@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -8,9 +7,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static244 {
-
-	@OriginalMember(owner = "runetek4.client!tl", name = "c", descriptor = "Lclient!n;")
-	public static final NodeCache aClass99_32 = new NodeCache(50);
 
 
 	@OriginalMember(owner = "runetek4.client!tl", name = "f", descriptor = "Lclient!na;")

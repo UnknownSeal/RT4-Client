@@ -16,7 +16,7 @@ public final class Static176 {
 	@OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(B)V")
 	public static void clear() {
 		Static27.aClass99_4.clean();
-		Static244.aClass99_32.clean();
+		ObjTypeList.models.clean();
 		ObjTypeList.objectSpriteCache.clean();
 	}
 

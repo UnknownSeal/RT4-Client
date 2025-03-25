@@ -230,7 +230,7 @@ public final class PlayerAppearance {
 					if ((local169 & Integer.MIN_VALUE) != 0 && !IdkTypeList.get(local169 & 0x3FFFFFFF).isBodyModelReady()) {
 						local158 = true;
 					}
-				} else if (!ObjTypeList.get(local169 & 0x3FFFFFFF).method1822(this.aBoolean141)) {
+				} else if (!ObjTypeList.get(local169 & 0x3FFFFFFF).isWearModelReady(this.aBoolean141)) {
 					local158 = true;
 				}
 			}
@@ -249,7 +249,7 @@ public final class PlayerAppearance {
 					local250 = local38[local169];
 					@Pc(272) RawModel local272;
 					if ((local250 & 0x40000000) != 0) {
-						local272 = ObjTypeList.get(local250 & 0x3FFFFFFF).method1831(this.aBoolean141);
+						local272 = ObjTypeList.get(local250 & 0x3FFFFFFF).getBodyModel(this.aBoolean141);
 						if (local272 != null) {
 							local239[local169] = local272;
 						}
@@ -483,7 +483,7 @@ public final class PlayerAppearance {
 					if ((i & Integer.MIN_VALUE) != 0 && !IdkTypeList.get(i & 0x3FFFFFFF).hasReadyHeads()) {
 						bool = true;
 					}
-				} else if (!ObjTypeList.get(i & 0x3FFFFFFF).headPieceReady(this.aBoolean141)) {
+				} else if (!ObjTypeList.get(i & 0x3FFFFFFF).isHeadModelReady(this.aBoolean141)) {
 					bool = true;
 				}
 			}
@@ -497,7 +497,7 @@ public final class PlayerAppearance {
 				j = this.appearance[equipmentSlot];
 				@Pc(134) RawModel local134;
 				if ((j & 0x40000000) != 0) {
-					local134 = ObjTypeList.get(j & 0x3FFFFFFF).method1830(this.aBoolean141);
+					local134 = ObjTypeList.get(j & 0x3FFFFFFF).getHeadModel(this.aBoolean141);
 					if (local134 != null) {
 						models[i++] = local134;
 					}

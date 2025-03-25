@@ -4,6 +4,7 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -14,6 +15,8 @@ public final class ObjTypeList {
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "c", descriptor = "Lclient!n;")
 	public static final NodeCache objectSpriteCache = new NodeCache(100);
+	@OriginalMember(owner = "runetek4.client!tl", name = "c", descriptor = "Lclient!n;")
+	public static final NodeCache models = new NodeCache(50);
 	@OriginalMember(owner = "runetek4.client!nh", name = "eb", descriptor = "I")
 	public static int capacity;
 
@@ -21,6 +24,8 @@ public final class ObjTypeList {
 	public static int[][] anIntArrayArray10;
 	@OriginalMember(owner = "runetek4.client!um", name = "U", descriptor = "Lclient!dd;")
 	public static SoftwareFont font;
+	@OriginalMember(owner = "runetek4.client!sj", name = "r", descriptor = "Lclient!ve;")
+	public static Js5 modelArchive;
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(IIIII)I")
 	public static int method2569(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
@@ -65,21 +70,21 @@ public final class ObjTypeList {
         objType = new ObjType();
         objType.id = id;
         if (bytes != null) {
-            objType.readValues(new Packet(bytes));
+            objType.decode(new Packet(bytes));
         }
         objType.postDecode();
 
-        if (objType.certtemplate != -1) {
-            objType.genCert(get(objType.certtemplate), get(objType.certlink));
+        if (objType.certTemplate != -1) {
+            objType.generateCertificate(get(objType.certTemplate), get(objType.certLink));
         }
-        if (objType.lenttemplate != -1) {
-            objType.genLent(get(objType.lenttemplate), get(objType.lentlink));
+        if (objType.lentTemplate != -1) {
+            objType.generateLent(get(objType.lentTemplate), get(objType.lentLink));
         }
         if (!Static240.aBoolean276 && objType.members) {
             objType.name = LocalizedText.MEMBERS_OBJECT;
             objType.team = 0;
             objType.interfaceOptions = Static143.aClass100Array104;
-            objType.stockmarket = false;
+            objType.stockMarket = false;
             objType.groundOptions = Static269.aClass100Array87;
         }
         Static27.aClass99_4.put(objType, (long) id);

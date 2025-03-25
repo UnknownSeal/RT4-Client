@@ -152,11 +152,11 @@ public final class Inv extends Node {
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IBZIZIIZ)Lclient!qf;")
 	public static Sprite renderObjectSprite(@OriginalArg(0) int arg0, @OriginalArg(2) boolean linked, @OriginalArg(3) int arg2, @OriginalArg(4) boolean drawText, @OriginalArg(5) int arg4, @OriginalArg(6) int stack, @OriginalArg(7) boolean cert) {
 		@Pc(5) ObjType objType = ObjTypeList.get(arg2);
-		if (stack > 1 && objType.countobj != null) {
+		if (stack > 1 && objType.countObj != null) {
 			@Pc(15) int local15 = -1;
 			for (@Pc(17) int local17 = 0; local17 < 10; local17++) {
 				if (stack >= objType.countco[local17] && objType.countco[local17] != 0) {
-					local15 = objType.countobj[local17];
+					local15 = objType.countObj[local17];
 				}
 			}
 			if (local15 != -1) {
@@ -168,13 +168,13 @@ public final class Inv extends Node {
 			return null;
 		}
 		@Pc(71) SoftwareSprite linkedSprite = null;
-		if (objType.certtemplate != -1) {
-			linkedSprite = (SoftwareSprite) renderObjectSprite(0, true, objType.certlink, false, 1, 10, true);
+		if (objType.certTemplate != -1) {
+			linkedSprite = (SoftwareSprite) renderObjectSprite(0, true, objType.certLink, false, 1, 10, true);
 			if (linkedSprite == null) {
 				return null;
 			}
-		} else if (objType.lenttemplate != -1) {
-			linkedSprite = (SoftwareSprite) renderObjectSprite(arg0, true, objType.lentlink, false, arg4, stack, false);
+		} else if (objType.lentTemplate != -1) {
+			linkedSprite = (SoftwareSprite) renderObjectSprite(arg0, true, objType.lentLink, false, arg4, stack, false);
 			if (linkedSprite == null) {
 				return null;
 			}
@@ -195,9 +195,9 @@ public final class Inv extends Node {
 		} else if (arg4 == 2) {
 			zoom = (int) ((double) zoom * 1.04D);
 		}
-		@Pc(176) int pitchcos = MathUtils.cos[objType.xan2d] * zoom >> 16;
-		@Pc(185) int pitchsin = MathUtils.sin[objType.xan2d] * zoom >> 16;
-		model.setCamera(objType.yan2d, objType.zan2d, objType.xan2d, objType.xof2d, pitchsin + objType.yof2d - model.getMinY() / 2, objType.yof2d + pitchcos, -1L);
+		@Pc(176) int pitchcos = MathUtils.cos[objType.xAngle2D] * zoom >> 16;
+		@Pc(185) int pitchsin = MathUtils.sin[objType.xAngle2D] * zoom >> 16;
+		model.setCamera(objType.yAngle2D, objType.zAngle2D, objType.xAngle2D, objType.xOffset2D, pitchsin + objType.yOffset2D - model.getMinY() / 2, objType.yOffset2D + pitchcos, -1L);
 		if (arg4 >= 1) {
 			canvas.drawOutline(1);
 			if (arg4 >= 2) {
@@ -208,9 +208,9 @@ public final class Inv extends Node {
 		if (arg0 != 0) {
 			canvas.drawShadow(arg0);
 		}
-		if (objType.certtemplate != -1) {
+		if (objType.certTemplate != -1) {
 			linkedSprite.render(0, 0);
-		} else if (objType.lenttemplate != -1) {
+		} else if (objType.lentTemplate != -1) {
 			SoftwareRaster.setSize(linkedSprite.pixels, 36, 32);
 			canvas.render(0, 0);
 			canvas = linkedSprite;

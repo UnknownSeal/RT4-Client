@@ -1597,19 +1597,19 @@ public class Protocol {
                                         if (com.if3) {
                                             DelayedStateChange.method3707(xp, ii, world);
                                             obj = ObjTypeList.get(world);
-                                            DelayedStateChange.updateView(obj.zoom2d, xp, obj.yan2d, obj.xan2d);
-                                            DelayedStateChange.method2745(xp, obj.zan2d, obj.yof2d, obj.xof2d);
+                                            DelayedStateChange.updateView(obj.zoom2d, xp, obj.yAngle2D, obj.xAngle2D);
+                                            DelayedStateChange.method2745(xp, obj.zAngle2D, obj.yOffset2D, obj.xOffset2D);
                                         } else if (world == -1) {
                                             com.modelType = 0;
                                             opcode = -1;
                                             return true;
                                         } else {
                                             obj = ObjTypeList.get(world);
-                                            com.modelXAngle = obj.xan2d;
+                                            com.modelXAngle = obj.xAngle2D;
                                             com.modelZoom = obj.zoom2d * 100 / ii;
                                             com.modelType = 4;
                                             com.modelId = world;
-                                            com.modelYAngle = obj.yan2d;
+                                            com.modelYAngle = obj.yAngle2D;
                                             InterfaceList.redraw(com);
                                         }
                                     }
