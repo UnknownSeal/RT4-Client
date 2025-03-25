@@ -10,7 +10,7 @@ public final class Static103 {
 	@OriginalMember(owner = "runetek4.client!i", name = "r", descriptor = "(I)V")
 	public static void removeSoft() {
 		Static27.aClass99_4.removeSoft();
-		Static244.aClass99_32.removeSoft();
+		ObjTypeList.models.removeSoft();
 		ObjTypeList.objectSpriteCache.removeSoft();
 	}
 

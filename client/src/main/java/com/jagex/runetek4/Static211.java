@@ -29,7 +29,7 @@ public final class Static211 {
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(Z)V")
 	public static void method924() {
-		Static244.aClass99_32.clean();
+		ObjTypeList.models.clean();
 	}
 
 }

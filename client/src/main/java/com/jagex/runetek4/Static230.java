@@ -1,14 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static230 {
-
-	@OriginalMember(owner = "runetek4.client!sj", name = "r", descriptor = "Lclient!ve;")
-	public static Js5 modelArchive;
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "c", descriptor = "(I)V")
 	public static void clear() {

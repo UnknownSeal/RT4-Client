@@ -189,56 +189,100 @@ public final class ObjType {
 			if (opcode == 0) {
 				return;
 			}
-			this.readValue(packet, opcode);
+			this.decode(packet, opcode);
 		}
 	}
 
+	public static class Opcodes {
+
+		public static final int model = 1;
+		public static final int name = 2;
+		public static final int zoom2d = 4;
+		public static final int xan2d = 5;
+		public static final int yan2d = 6;
+		public static final int xof2d = 7;
+		public static final int yof2d = 8;
+		public static final int stackable_yes = 11;
+		public static final int cost = 12;
+		public static final int members = 16;
+		public static final int manwear = 23;
+		public static final int manwear2 = 24;
+		public static final int womanwear = 25;
+		public static final int womanwear2 = 26;
+		public static final int op1 = 30;
+		public static final int op5 = 34;
+		public static final int iop1 = 35;
+		public static final int iop5 = 39;
+		public static final int recol = 40;
+		public static final int retex = 41;
+		public static final int stockmarket_yes = 65;
+		public static final int manwear3 = 78;
+		public static final int womanwear3 = 79;
+		public static final int manhead = 90;
+		public static final int womanhead = 91;
+		public static final int manhead2 = 92;
+		public static final int womanhead2 = 93;
+		public static final int zan2d = 95;
+		public static final int certlink = 97;
+		public static final int certtemplate = 98;
+		public static final int countobj1 = 100;
+		public static final int countobj10 = 109;
+		public static final int resizex = 110;
+		public static final int resizey = 111;
+		public static final int resizez = 112;
+		public static final int ambient = 113;
+		public static final int contrast = 114;
+		public static final int team = 115;
+		public static final int params = 249;
+
+	}
+
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BLclient!wa;I)V")
-	private void readValue(@OriginalArg(1) Packet packet, @OriginalArg(2) int opcode) {
-		if (opcode == 1) {
+	private void decode(@OriginalArg(1) Packet packet, @OriginalArg(2) int opcode) {
+		if (opcode == Opcodes.model) {
 			this.model = packet.g2();
-		} else if (opcode == 2) {
+		} else if (opcode == Opcodes.name) {
 			this.name = packet.gjstr();
-		} else if (opcode == 4) {
+		} else if (opcode == Opcodes.zoom2d) {
 			this.zoom2d = packet.g2();
-		} else if (opcode == 5) {
+		} else if (opcode == Opcodes.xan2d) {
 			this.xAngle2D = packet.g2();
-		} else if (opcode == 6) {
+		} else if (opcode == Opcodes.yan2d) {
 			this.yAngle2D = packet.g2();
-		} else if (opcode == 7) {
+		} else if (opcode == Opcodes.xof2d) {
 			this.xOffset2D = packet.g2();
 			if (this.xOffset2D > 32767) {
 				this.xOffset2D -= 65536;
 			}
-		} else if (opcode == 8) {
+		} else if (opcode == Opcodes.yof2d) {
 			this.yOffset2D = packet.g2();
 			if (this.yOffset2D > 32767) {
 				this.yOffset2D -= 65536;
 			}
-		} else if (opcode == 11) {
+		} else if (opcode == Opcodes.stackable_yes) {
 			this.stackable = 1;
-		} else if (opcode == 12) {
+		} else if (opcode == Opcodes.cost) {
 			this.cost = packet.g4();
-		} else if (opcode == 16) {
+		} else if (opcode == Opcodes.members) {
 			this.members = true;
-		} else if (opcode == 23) {
+		} else if (opcode == Opcodes.manwear) {
 			this.manWear = packet.g2();
-		} else if (opcode == 24) {
+		} else if (opcode == Opcodes.manwear2) {
 			this.manWear2 = packet.g2();
-		} else if (opcode == 25) {
+		} else if (opcode == Opcodes.womanwear) {
 			this.womanWear = packet.g2();
-		} else if (opcode == 26) {
+		} else if (opcode == Opcodes.womanwear2) {
 			this.womanWear2 = packet.g2();
-		} else if (opcode >= 30 && opcode < 35) {
-			this.groundOptions[opcode - 30] = packet.gjstr();
-			if (this.groundOptions[opcode - 30].equalsIgnoreCase(LocalizedText.HIDDEN)) {
-				this.groundOptions[opcode - 30] = null;
+		} else if (opcode >= Opcodes.op1 && opcode <= Opcodes.op5) {
+			this.groundOptions[opcode - Opcodes.op1] = packet.gjstr();
+			if (this.groundOptions[opcode - Opcodes.op1].equalsIgnoreCase(LocalizedText.HIDDEN)) {
+				this.groundOptions[opcode - Opcodes.op1] = null;
 			}
-		} else if (opcode >= 35 && opcode < 40) {
-			this.interfaceOptions[opcode - 35] = packet.gjstr();
+		} else if (opcode >= Opcodes.iop1 && opcode <= Opcodes.iop5) {
+			this.interfaceOptions[opcode - Opcodes.iop1] = packet.gjstr();
 		} else {
 			@Pc(179) int local179;
-			if (opcode == 40) {
+			if (opcode == Opcodes.recol) {
 				int colorCount = packet.g1();
 				this.recol_s = new short[colorCount];
 				this.recol_d = new short[colorCount];
@@ -246,7 +290,7 @@ public final class ObjType {
 					this.recol_s[colorIndex] = (short) packet.g2();
 					this.recol_d[colorIndex] = (short) packet.g2();
 				}
-			} else if (opcode == 41) {
+			} else if (opcode == Opcodes.retex) {
 				int length = packet.g1();
 				this.retex_s = new short[length];
 				this.retex_d = new short[length];
@@ -260,46 +304,46 @@ public final class ObjType {
 				for (int index = 0; index < length; index++) {
 					this.recol_d_palette[index] = packet.g1s();
 				}
-			} else if (opcode == 65) {
+			} else if (opcode == Opcodes.stockmarket_yes) {
 				this.stockMarket = true;
-			} else if (opcode == 78) {
+			} else if (opcode == Opcodes.manwear3) {
 				this.manWear3 = packet.g2();
-			} else if (opcode == 79) {
+			} else if (opcode == Opcodes.womanwear3) {
 				this.womanWear3 = packet.g2();
-			} else if (opcode == 90) {
+			} else if (opcode == Opcodes.manhead) {
 				this.manHead = packet.g2();
-			} else if (opcode == 91) {
+			} else if (opcode == Opcodes.womanhead) {
 				this.womanHead = packet.g2();
-			} else if (opcode == 92) {
+			} else if (opcode == Opcodes.manhead2) {
 				this.manHead2 = packet.g2();
-			} else if (opcode == 93) {
+			} else if (opcode == Opcodes.womanhead2) {
 				this.womanHead2 = packet.g2();
-			} else if (opcode == 95) {
+			} else if (opcode == Opcodes.zan2d) {
 				this.zAngle2D = packet.g2();
 			} else if (opcode == 96) {
 				this.dummyItem = packet.g1();
-			} else if (opcode == 97) {
+			} else if (opcode == Opcodes.certlink) {
 				this.certLink = packet.g2();
-			} else if (opcode == 98) {
+			} else if (opcode == Opcodes.certtemplate) {
 				this.certTemplate = packet.g2();
-			} else if (opcode >= 100 && opcode < 110) {
+			} else if (opcode >= Opcodes.countobj1 && opcode <= Opcodes.countobj10) {
 				if (this.countObj == null) {
 					this.countObj = new int[10];
 					this.countco = new int[10];
 				}
-				this.countObj[opcode - 100] = packet.g2();
-				this.countco[opcode - 100] = packet.g2();
-			} else if (opcode == 110) {
+				this.countObj[opcode - Opcodes.countobj1] = packet.g2();
+				this.countco[opcode - Opcodes.countobj1] = packet.g2();
+			} else if (opcode == Opcodes.resizex) {
 				this.resizeX = packet.g2();
-			} else if (opcode == 111) {
+			} else if (opcode == Opcodes.resizey) {
 				this.resizeY = packet.g2();
-			} else if (opcode == 112) {
+			} else if (opcode == Opcodes.resizez) {
 				this.resizeZ = packet.g2();
-			} else if (opcode == 113) {
+			} else if (opcode == Opcodes.ambient) {
 				this.ambient = packet.g1s();
-			} else if (opcode == 114) {
+			} else if (opcode == Opcodes.contrast) {
 				this.contrast = packet.g1s() * 5;
-			} else if (opcode == 115) {
+			} else if (opcode == Opcodes.team) {
 				this.team = packet.g1();
 			} else if (opcode == 121) {
 				this.lentLink = packet.g2();
@@ -325,7 +369,7 @@ public final class ObjType {
 			} else if (opcode == 130) { // Unused in current revision.
 				packet.g1();
 				packet.g2();
-			} else if (opcode == 249) {
+			} else if (opcode == Opcodes.params) {
 				int length = packet.g1();
 				if (this.params == null) {
 					local179 = IntUtils.bitceil(length);
@@ -333,14 +377,14 @@ public final class ObjType {
 				}
 				for (int index = 0; index < length; index++) {
 					@Pc(510) boolean isString = packet.g1() == 1;
-					@Pc(514) int local514 = packet.g3();
+					@Pc(514) int key = packet.g3();
 					@Pc(523) Node node;
 					if (isString) {
 						node = new JagStringWrapper(packet.gjstr());
 					} else {
 						node = new IntWrapper(packet.g4());
 					}
-					this.params.put(node, local514);
+					this.params.put(node, key);
 				}
 			}
 		}
@@ -351,7 +395,7 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ZZ)Z")
-	public boolean headPieceReady(@OriginalArg(0) boolean female) {
+	public boolean isHeadModelReady(@OriginalArg(0) boolean female) {
 		@Pc(6) int primaryId = this.manHead;
 		@Pc(9) int secondaryId = this.manHead2;
 		if (female) {
@@ -361,20 +405,20 @@ public final class ObjType {
 		if (primaryId == -1) {
 			return true;
 		}
-		@Pc(33) boolean ready = Static230.modelArchive.isFileReady(primaryId, 0);
-		if (secondaryId != -1 && !Static230.modelArchive.isFileReady(secondaryId, 0)) {
+		@Pc(33) boolean ready = ObjTypeList.modelArchive.isFileReady(primaryId, 0);
+		if (secondaryId != -1 && !ObjTypeList.modelArchive.isFileReady(secondaryId, 0)) {
 			ready = false;
 		}
 		return ready;
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ILclient!na;I)Lclient!na;")
-	public JString getParam(@OriginalArg(1) JString arg0, @OriginalArg(2) int arg1) {
+	public JString getParam(@OriginalArg(1) JString defaultValue, @OriginalArg(2) int id) {
 		if (this.params == null) {
-			return arg0;
+			return defaultValue;
 		} else {
-			@Pc(21) JagStringWrapper local21 = (JagStringWrapper) this.params.getNode(arg1);
-			return local21 == null ? arg0 : local21.value;
+			@Pc(21) JagStringWrapper node = (JagStringWrapper) this.params.getNode(id);
+			return node == null ? defaultValue : node.value;
 		}
 	}
 
@@ -399,30 +443,30 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BZ)Z")
-	public boolean method1822(@OriginalArg(1) boolean arg0) {
-		@Pc(6) int local6 = this.manWear2;
-		@Pc(9) int local9 = this.manWear;
-		@Pc(20) int local20 = this.manWear3;
-		if (arg0) {
-			local20 = this.womanWear3;
-			local9 = this.womanWear;
-			local6 = this.womanWear2;
+	public boolean isWearModelReady(@OriginalArg(1) boolean woman) {
+		@Pc(6) int wear2 = this.manWear2;
+		@Pc(9) int wear1 = this.manWear;
+		@Pc(20) int wear3 = this.manWear3;
+		if (woman) {
+			wear3 = this.womanWear3;
+			wear1 = this.womanWear;
+			wear2 = this.womanWear2;
 		}
-		if (local9 == -1) {
+		if (wear1 == -1) {
 			return true;
 		}
-		@Pc(41) boolean local41 = Static230.modelArchive.isFileReady(local9, 0);
-		if (local6 != -1 && !Static230.modelArchive.isFileReady(local6, 0)) {
-			local41 = false;
+		@Pc(41) boolean ready = ObjTypeList.modelArchive.isFileReady(wear1, 0);
+		if (wear2 != -1 && !ObjTypeList.modelArchive.isFileReady(wear2, 0)) {
+			ready = false;
 		}
-		if (local20 != -1 && !Static230.modelArchive.isFileReady(local20, 0)) {
-			local41 = false;
+		if (wear3 != -1 && !ObjTypeList.modelArchive.isFileReady(wear3, 0)) {
+			ready = false;
 		}
-		return local41;
+		return ready;
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BLclient!h;Lclient!h;)V")
-	public void genLent(@OriginalArg(2) ObjType from, @OriginalArg(1) ObjType to) {
+	public void generateLent(@OriginalArg(2) ObjType from, @OriginalArg(1) ObjType to) {
 		this.recol_d_palette = to.recol_d_palette;
 		this.manWearYOff = to.manWearYOff;
 		this.params = to.params;
@@ -465,143 +509,143 @@ public final class ObjType {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(IIILclient!tk;II)Lclient!ak;")
-	public Model getModel(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) SeqType arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		if (this.countObj != null && arg3 > 1) {
-			@Pc(22) int local22 = -1;
-			for (@Pc(24) int local24 = 0; local24 < 10; local24++) {
-				if (arg3 >= this.countco[local24] && this.countco[local24] != 0) {
-					local22 = this.countObj[local24];
+	public Model getModel(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) SeqType seqType, @OriginalArg(4) int count, @OriginalArg(5) int arg4) {
+		if (this.countObj != null && count > 1) {
+			@Pc(22) int countId = -1;
+			for (@Pc(24) int i = 0; i < 10; i++) {
+				if (count >= this.countco[i] && this.countco[i] != 0) {
+					countId = this.countObj[i];
 				}
 			}
-			if (local22 != -1) {
-				return ObjTypeList.get(local22).getModel(arg0, arg1, arg2, 1, arg4);
+			if (countId != -1) {
+				return ObjTypeList.get(countId).getModel(arg0, arg1, seqType, 1, arg4);
 			}
 		}
-		@Pc(76) Model local76 = (Model) Static244.aClass99_32.get(this.id);
-		if (local76 == null) {
-			@Pc(85) RawModel local85 = RawModel.create(Static230.modelArchive, this.model);
-			if (local85 == null) {
+		@Pc(76) Model model = (Model) ObjTypeList.models.get(this.id);
+		if (model == null) {
+			@Pc(85) RawModel model2 = RawModel.create(ObjTypeList.modelArchive, this.model);
+			if (model2 == null) {
 				return null;
 			}
-			@Pc(97) int local97;
+			@Pc(97) int i;
 			if (this.recol_s != null) {
-				for (local97 = 0; local97 < this.recol_s.length; local97++) {
-					if (this.recol_d_palette == null || local97 >= this.recol_d_palette.length) {
-						local85.recolor(this.recol_s[local97], this.recol_d[local97]);
+				for (i = 0; i < this.recol_s.length; i++) {
+					if (this.recol_d_palette == null || i >= this.recol_d_palette.length) {
+						model2.recolor(this.recol_s[i], this.recol_d[i]);
 					} else {
-						local85.recolor(this.recol_s[local97], client.aShortArray87[this.recol_d_palette[local97] & 0xFF]);
+						model2.recolor(this.recol_s[i], client.aShortArray87[this.recol_d_palette[i] & 0xFF]);
 					}
 				}
 			}
 			if (this.retex_s != null) {
-				for (local97 = 0; local97 < this.retex_s.length; local97++) {
-					local85.retexture(this.retex_s[local97], this.retex_d[local97]);
+				for (i = 0; i < this.retex_s.length; i++) {
+					model2.retexture(this.retex_s[i], this.retex_d[i]);
 				}
 			}
-			local76 = local85.createModel(this.ambient + 64, this.contrast + 768, -50, -10, -50);
+			model = model2.createModel(this.ambient + 64, this.contrast + 768, -50, -10, -50);
 			if (this.resizeX != 128 || this.resizeY != 128 || this.resizeZ != 128) {
-				local76.resize(this.resizeX, this.resizeY, this.resizeZ);
+				model.resize(this.resizeX, this.resizeY, this.resizeZ);
 			}
-			local76.pickable = true;
+			model.pickable = true;
 			if (GlRenderer.enabled) {
-				((GlModel) local76).method4111(false, false, false, false, false, true);
+				((GlModel) model).method4111(false, false, false, false, false, true);
 			}
-			Static244.aClass99_32.put(local76, this.id);
+			ObjTypeList.models.put(model, this.id);
 		}
-		if (arg2 != null) {
-			local76 = arg2.method4215(local76, arg0, arg1, arg4);
+		if (seqType != null) {
+			model = seqType.method4215(model, arg0, arg1, arg4);
 		}
-		return local76;
+		return model;
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(III)I")
-	public int getParam(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
+	public int getParam(@OriginalArg(0) int defaultValue, @OriginalArg(2) int arg1) {
 		if (this.params == null) {
-			return arg0;
+			return defaultValue;
 		} else {
-			@Pc(25) IntWrapper local25 = (IntWrapper) this.params.getNode(arg1);
-			return local25 == null ? arg0 : local25.value;
+			@Pc(25) IntWrapper node = (IntWrapper) this.params.getNode(arg1);
+			return node == null ? defaultValue : node.value;
 		}
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ZB)Lclient!gb;")
-	public RawModel method1830(@OriginalArg(0) boolean arg0) {
-		@Pc(4) int local4 = this.manHead2;
-		@Pc(17) int local17 = this.manHead;
-		if (arg0) {
-			local4 = this.womanHead2;
-			local17 = this.womanHead;
+	public RawModel getHeadModel(@OriginalArg(0) boolean woman) {
+		@Pc(4) int head2 = this.manHead2;
+		@Pc(17) int head = this.manHead;
+		if (woman) {
+			head2 = this.womanHead2;
+			head = this.womanHead;
 		}
-		if (local17 == -1) {
+		if (head == -1) {
 			return null;
 		}
-		@Pc(36) RawModel local36 = RawModel.create(Static230.modelArchive, local17);
-		if (local4 != -1) {
-			@Pc(44) RawModel local44 = RawModel.create(Static230.modelArchive, local4);
-			@Pc(55) RawModel[] local55 = new RawModel[] { local36, local44 };
-			local36 = new RawModel(local55, 2);
+		@Pc(36) RawModel model = RawModel.create(ObjTypeList.modelArchive, head);
+		if (head2 != -1) {
+			@Pc(44) RawModel model2 = RawModel.create(ObjTypeList.modelArchive, head2);
+			@Pc(55) RawModel[] models = new RawModel[] { model, model2 };
+			model = new RawModel(models, 2);
 		}
-		@Pc(66) int local66;
+		@Pc(66) int i;
 		if (this.recol_s != null) {
-			for (local66 = 0; local66 < this.recol_s.length; local66++) {
-				local36.recolor(this.recol_s[local66], this.recol_d[local66]);
+			for (i = 0; i < this.recol_s.length; i++) {
+				model.recolor(this.recol_s[i], this.recol_d[i]);
 			}
 		}
 		if (this.retex_s != null) {
-			for (local66 = 0; local66 < this.retex_s.length; local66++) {
-				local36.retexture(this.retex_s[local66], this.retex_d[local66]);
+			for (i = 0; i < this.retex_s.length; i++) {
+				model.retexture(this.retex_s[i], this.retex_d[i]);
 			}
 		}
-		return local36;
+		return model;
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ZI)Lclient!gb;")
-	public RawModel method1831(@OriginalArg(0) boolean arg0) {
-		@Pc(4) int local4 = this.manWear;
-		@Pc(18) int local18 = this.manWear2;
-		@Pc(21) int local21 = this.manWear3;
-		if (arg0) {
-			local21 = this.womanWear3;
-			local4 = this.womanWear;
-			local18 = this.womanWear2;
+	public RawModel getBodyModel(@OriginalArg(0) boolean female) {
+		@Pc(4) int wear1 = this.manWear;
+		@Pc(18) int wear2 = this.manWear2;
+		@Pc(21) int wear3 = this.manWear3;
+		if (female) {
+			wear3 = this.womanWear3;
+			wear1 = this.womanWear;
+			wear2 = this.womanWear2;
 		}
-		if (local4 == -1) {
+		if (wear1 == -1) {
 			return null;
 		}
-		@Pc(43) RawModel local43 = RawModel.create(Static230.modelArchive, local4);
-		if (local18 != -1) {
-			@Pc(54) RawModel local54 = RawModel.create(Static230.modelArchive, local18);
-			if (local21 == -1) {
-				@Pc(68) RawModel[] local68 = new RawModel[] { local43, local54 };
-				local43 = new RawModel(local68, 2);
+		@Pc(43) RawModel model = RawModel.create(ObjTypeList.modelArchive, wear1);
+		if (wear2 != -1) {
+			@Pc(54) RawModel model2 = RawModel.create(ObjTypeList.modelArchive, wear2);
+			if (wear3 == -1) {
+				@Pc(68) RawModel[] models = new RawModel[] { model, model2 };
+				model = new RawModel(models, 2);
 			} else {
-				@Pc(81) RawModel local81 = RawModel.create(Static230.modelArchive, local21);
-				@Pc(96) RawModel[] local96 = new RawModel[] { local43, local54, local81 };
-				local43 = new RawModel(local96, 3);
+				@Pc(81) RawModel model3 = RawModel.create(ObjTypeList.modelArchive, wear3);
+				@Pc(96) RawModel[] models = new RawModel[] { model, model2, model3 };
+				model = new RawModel(models, 3);
 			}
 		}
-		if (!arg0 && (this.manWearXOff != 0 || this.manWearYOff != 0 || this.manWearZOff != 0)) {
-			local43.translate(this.manWearXOff, this.manWearYOff, this.manWearZOff);
+		if (!female && (this.manWearXOff != 0 || this.manWearYOff != 0 || this.manWearZOff != 0)) {
+			model.translate(this.manWearXOff, this.manWearYOff, this.manWearZOff);
 		}
-		if (arg0 && (this.womanWearXOff != 0 || this.womanWearYOff != 0 || this.womanWearZOff != 0)) {
-			local43.translate(this.womanWearXOff, this.womanWearYOff, this.womanWearZOff);
+		if (female && (this.womanWearXOff != 0 || this.womanWearYOff != 0 || this.womanWearZOff != 0)) {
+			model.translate(this.womanWearXOff, this.womanWearYOff, this.womanWearZOff);
 		}
 		@Pc(165) int local165;
 		if (this.recol_s != null) {
 			for (local165 = 0; local165 < this.recol_s.length; local165++) {
-				local43.recolor(this.recol_s[local165], this.recol_d[local165]);
+				model.recolor(this.recol_s[local165], this.recol_d[local165]);
 			}
 		}
 		if (this.retex_s != null) {
 			for (local165 = 0; local165 < this.retex_s.length; local165++) {
-				local43.retexture(this.retex_s[local165], this.retex_d[local165]);
+				model.retexture(this.retex_s[local165], this.retex_d[local165]);
 			}
 		}
-		return local43;
+		return model;
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(Lclient!h;Lclient!h;Z)V")
-	public void genCert(@OriginalArg(1) ObjType from, @OriginalArg(0) ObjType to) {
+	public void generateCertificate(@OriginalArg(1) ObjType from, @OriginalArg(0) ObjType to) {
 		this.name = to.name;
 		this.zoom2d = from.zoom2d;
 		this.recol_s = from.recol_s;
@@ -622,30 +666,30 @@ public final class ObjType {
 
 	@OriginalMember(owner = "client!h", name = "d", descriptor = "(I)Lclient!w;")
 	public SoftwareModel getInvModel() {
-		@Pc(11) RawModel local11 = RawModel.create(Static230.modelArchive, this.model);
-		if (local11 == null) {
+		@Pc(11) RawModel model = RawModel.create(ObjTypeList.modelArchive, this.model);
+		if (model == null) {
 			return null;
 		}
-		@Pc(21) int local21;
+		@Pc(21) int i;
 		if (this.recol_s != null) {
-			for (local21 = 0; local21 < this.recol_s.length; local21++) {
-				if (this.recol_d_palette == null || local21 >= this.recol_d_palette.length) {
-					local11.recolor(this.recol_s[local21], this.recol_d[local21]);
+			for (i = 0; i < this.recol_s.length; i++) {
+				if (this.recol_d_palette == null || i >= this.recol_d_palette.length) {
+					model.recolor(this.recol_s[i], this.recol_d[i]);
 				} else {
-					local11.recolor(this.recol_s[local21], client.aShortArray87[this.recol_d_palette[local21] & 0xFF]);
+					model.recolor(this.recol_s[i], client.aShortArray87[this.recol_d_palette[i] & 0xFF]);
 				}
 			}
 		}
 		if (this.retex_s != null) {
-			for (local21 = 0; local21 < this.retex_s.length; local21++) {
-				local11.retexture(this.retex_s[local21], this.retex_d[local21]);
+			for (i = 0; i < this.retex_s.length; i++) {
+				model.retexture(this.retex_s[i], this.retex_d[i]);
 			}
 		}
-		@Pc(107) SoftwareModel local107 = local11.method1671(this.ambient + 64, 768 - -this.contrast);
+		@Pc(107) SoftwareModel softwareModel = model.method1671(this.ambient + 64, 768 - -this.contrast);
 		if (this.resizeX != 128 || this.resizeY != 128 || this.resizeZ != 128) {
-			local107.resize(this.resizeX, this.resizeY, this.resizeZ);
+			softwareModel.resize(this.resizeX, this.resizeY, this.resizeZ);
 		}
-		return local107;
+		return softwareModel;
 	}
 
 

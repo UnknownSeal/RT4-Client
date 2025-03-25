@@ -19,7 +19,7 @@ public final class Static241 {
 	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(ZBLclient!ve;Lclient!dd;Lclient!ve;)V")
 	public static void init(@OriginalArg(2) Js5 arg0, @OriginalArg(3) SoftwareFont arg1, @OriginalArg(4) Js5 arg2) {
 		Static240.aBoolean276 = true;
-		Static230.modelArchive = arg2;
+		ObjTypeList.modelArchive = arg2;
 		com.jagex.runetek4.cache.CacheArchive.aClass153_61 = arg0;
 		@Pc(23) int local23 = com.jagex.runetek4.cache.CacheArchive.aClass153_61.capacity() - 1;
 		ObjTypeList.capacity = com.jagex.runetek4.cache.CacheArchive.aClass153_61.getGroupCapacity(local23) + local23 * 256;
