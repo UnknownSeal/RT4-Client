@@ -46,6 +46,10 @@ public final class MonochromeImageCache {
 				aByteArray53[local8++] = (byte) (255.0D / Math.sqrt((double) ((float) (local15 * local15 + local10 * local10 + 65535) / 65535.0F)));
 			}
 		}
+
+		for (@Pc(4) int local4 = 0; local4 < 4096; local4++) {
+			MonochromeImageCache.anIntArray1[local4] = MonochromeImageCache.fade(local4);
+		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!nd", name = "<init>", descriptor = "(III)V")
