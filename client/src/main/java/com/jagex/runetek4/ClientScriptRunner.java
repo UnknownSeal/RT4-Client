@@ -2415,11 +2415,11 @@ public final class ClientScriptRunner {
 										local1182.objId = interfaceType;
 										local1182.objCount = childCount;
 										@Pc(13416) ObjType local13416 = ObjTypeList.get(interfaceType);
-										local1182.modelYOffset = local13416.zan2d;
-										local1182.modelXOffset = local13416.xof2d;
-										local1182.modelXAngle = local13416.xan2d;
-										local1182.modelZOffset = local13416.yof2d;
-										local1182.modelYAngle = local13416.yan2d;
+										local1182.modelYOffset = local13416.zAngle2D;
+										local1182.modelXOffset = local13416.xOffset2D;
+										local1182.modelXAngle = local13416.xAngle2D;
+										local1182.modelZOffset = local13416.yOffset2D;
+										local1182.modelYAngle = local13416.yAngle2D;
 										local1182.modelZoom = local13416.zoom2d;
 										if (local1182.anInt451 > 0) {
 											local1182.modelZoom = local1182.modelZoom * 32 / local1182.anInt451;
@@ -3845,8 +3845,8 @@ public final class ClientScriptRunner {
 											intValueIndex--;
 											interfaceData = Static254.scriptIntValues[intValueIndex];
 											local11417 = ObjTypeList.get(interfaceData);
-											if (local11417.certtemplate == -1 && local11417.certlink >= 0) {
-												Static254.scriptIntValues[intValueIndex++] = local11417.certlink;
+											if (local11417.certTemplate == -1 && local11417.certLink >= 0) {
+												Static254.scriptIntValues[intValueIndex++] = local11417.certLink;
 												continue;
 											}
 											Static254.scriptIntValues[intValueIndex++] = interfaceData;
@@ -3856,8 +3856,8 @@ public final class ClientScriptRunner {
 											intValueIndex--;
 											interfaceData = Static254.scriptIntValues[intValueIndex];
 											local11417 = ObjTypeList.get(interfaceData);
-											if (local11417.certtemplate >= 0 && local11417.certlink >= 0) {
-												Static254.scriptIntValues[intValueIndex++] = local11417.certlink;
+											if (local11417.certTemplate >= 0 && local11417.certLink >= 0) {
+												Static254.scriptIntValues[intValueIndex++] = local11417.certLink;
 												continue;
 											}
 											Static254.scriptIntValues[intValueIndex++] = interfaceData;

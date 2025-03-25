@@ -1533,14 +1533,14 @@ public class MiniMenu {
                                             local1025 = 34;
                                         }
                                         @Pc(1041) int local1041 = -1;
-                                        if (local514 == local951.anInt2338) {
-                                            local1041 = local951.anInt2327;
+                                        if (local514 == local951.cursor1Op) {
+                                            local1041 = local951.cursor1;
                                         }
                                         if (local514 == 2) {
                                             local1025 = 18;
                                         }
-                                        if (local951.anInt2355 == local514) {
-                                            local1041 = local951.anInt2321;
+                                        if (local951.cursor2Op == local514) {
+                                            local1041 = local951.cursor2;
                                         }
                                         if (local514 == 3) {
                                             local1025 = 20;

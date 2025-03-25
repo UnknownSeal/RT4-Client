@@ -65,21 +65,21 @@ public final class ObjTypeList {
         objType = new ObjType();
         objType.id = id;
         if (bytes != null) {
-            objType.readValues(new Packet(bytes));
+            objType.decode(new Packet(bytes));
         }
         objType.postDecode();
 
-        if (objType.certtemplate != -1) {
-            objType.genCert(get(objType.certtemplate), get(objType.certlink));
+        if (objType.certTemplate != -1) {
+            objType.genCert(get(objType.certTemplate), get(objType.certLink));
         }
-        if (objType.lenttemplate != -1) {
-            objType.genLent(get(objType.lenttemplate), get(objType.lentlink));
+        if (objType.lentTemplate != -1) {
+            objType.genLent(get(objType.lentTemplate), get(objType.lentLink));
         }
         if (!Static240.aBoolean276 && objType.members) {
             objType.name = LocalizedText.MEMBERS_OBJECT;
             objType.team = 0;
             objType.interfaceOptions = Static143.aClass100Array104;
-            objType.stockmarket = false;
+            objType.stockMarket = false;
             objType.groundOptions = Static269.aClass100Array87;
         }
         Static27.aClass99_4.put(objType, (long) id);
