@@ -16,9 +16,6 @@ public final class Static262 {
 	@OriginalMember(owner = "runetek4.client!vf", name = "n", descriptor = "Lclient!ve;")
 	public static Js5 configClientLarge;
 
-	@OriginalMember(owner = "runetek4.client!vf", name = "g", descriptor = "[I")
-	public static final int[] anIntArray515 = new int[14];
-
 	@OriginalMember(owner = "runetek4.client!vf", name = "m", descriptor = "I")
 	public static int bgId = -1;
 

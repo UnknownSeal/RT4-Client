@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static133 {
 
-	@OriginalMember(owner = "runetek4.client!kf", name = "d", descriptor = "[Lclient!cl;")
-	public static final AnimFrameset[] aClass3_Sub2_Sub7Array7 = new AnimFrameset[14];
-
 	@OriginalMember(owner = "runetek4.client!kf", name = "a", descriptor = "(II)I")
 	public static int method4010(@OriginalArg(0) int arg0) {
 		return arg0 & 0xFF;

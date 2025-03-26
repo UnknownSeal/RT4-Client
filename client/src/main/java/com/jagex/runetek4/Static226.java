@@ -1,7 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
-import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
@@ -9,11 +7,6 @@ public final class Static226 {
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "h", descriptor = "[Lclient!na;")
 	public static final JString[] varcstrs = new JString[1000];
-
-	@OriginalMember(owner = "runetek4.client!sf", name = "a", descriptor = "(BLclient!ve;)V")
-	public static void init(@OriginalArg(1) Js5 arg0) {
-		Static39.aClass153_23 = arg0;
-	}
 
 	@OriginalMember(owner = "runetek4.client!sf", name = "b", descriptor = "(B)V")
 	public static void determineMenuSize() {

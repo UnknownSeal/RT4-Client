@@ -45,7 +45,7 @@ public final class Static54 {
 				if (Static164.anIntArray362[local5] < 0) {
 					@Pc(209) int local209;
 					if (Static26.anIntArray68[local5] == 0) {
-						local209 = Static125.anInt3104;
+						local209 = Preferences.soundEffectVolume;
 					} else {
 						@Pc(125) int local125 = (Static26.anIntArray68[local5] & 0xFF) * 128;
 						@Pc(133) int local133 = Static26.anIntArray68[local5] >> 8 & 0xFF;

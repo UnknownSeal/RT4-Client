@@ -19,7 +19,7 @@ public final class Static223 {
 	public static void method3855(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) Npc arg2) {
 		if (arg2.primarySeqId == arg1 && arg1 != -1) {
 			@Pc(10) SeqType local10 = SeqTypeList.getAnimationSequence(arg1);
-			@Pc(13) int local13 = local10.anInt5347;
+			@Pc(13) int local13 = local10.exactmove;
 			if (local13 == 1) {
 				arg2.anInt3373 = 1;
 				arg2.anInt3425 = 0;

@@ -185,7 +185,7 @@ public class Game {
         }
         if (!Preferences.sentToServer) {
             Protocol.outboundBuffer.pIsaac1(98);
-            Protocol.outboundBuffer.p4(Static145.method2746());
+            Protocol.outboundBuffer.p4(Preferences.toInt());
             Preferences.sentToServer = true;
         }
         Static31.method846();
@@ -202,7 +202,7 @@ public class Game {
         }
         PlayerList.updatePlayers();
         NpcList.updateNpcs();
-        Static19.tickChatTimers(); // OverheadChat
+        OverHeadChat.tickChatTimers(); // OverheadChat
         if (WorldMap.component != null) {
             Static12.method447();
         }
@@ -482,7 +482,7 @@ public class Game {
                                                 }
                                                 Protocol.anInt4422 = 0;
                                             } else if (Static56.clickTileX != -1 && MiniMenu.anInt3096 == 0 && Protocol.anInt4422 == 0) {
-                                                @Pc(1871) boolean success = PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, PlayerList.self.movementQueueX[0]);
+                                                @Pc(1871) boolean success = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, PlayerList.self.movementQueueX[0]);
                                                 if (success) {
                                                     Cross.y = Mouse.mouseClickY;
                                                     Cross.crossCycle = 0;
@@ -761,8 +761,8 @@ public class Game {
                 if (!npc.type.interactive) {
                     bitset |= Long.MIN_VALUE;
                 }
-                npc.y = SceneGraph.getTileHeight(Player.plane, npc.xFine, npc.zFine);
-                Static43.addTemporary(Player.plane, npc.xFine, npc.zFine, npc.y, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.seqStretches);
+                npc.anInt3424 = SceneGraph.getTileHeight(Player.plane, npc.xFine, npc.zFine);
+                Static43.addTemporary(Player.plane, npc.xFine, npc.zFine, npc.anInt3424, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.seqStretches);
             }
         }
     }
@@ -837,7 +837,7 @@ public class Game {
             }
             if (player != null && player.isVisible()) {
                 player.lowMemory = false;
-                if ((Static15.lowMemory && PlayerList.playerCount > 200 || PlayerList.playerCount > 50) && !arg0 && player.movementSeqId == player.getBasType().idleAnimationId) {
+                if ((Preferences.manyIdleAnimations && PlayerList.playerCount > 200 || PlayerList.playerCount > 50) && !arg0 && player.movementSeqId == player.getBasType().idleAnimationId) {
                     player.lowMemory = true;
                 }
                 stz = player.getSize();
@@ -895,12 +895,12 @@ public class Game {
                     }
                 }
                 if (player.attachment == null || client.loop < player.attachmentSetAt || player.attachmentResetAt <= client.loop) {
-                    player.y = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
-                    Static43.addTemporary(Player.plane, player.xFine, player.zFine, player.y, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
+                    player.anInt3424 = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
+                    Static43.addTemporary(Player.plane, player.xFine, player.zFine, player.anInt3424, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
                 } else {
                     player.lowMemory = false;
-                    player.y = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
-                    Static184.addTemporary(Player.plane, player.xFine, player.zFine, player.y, player, player.anInt3381, id, player.atachmentX0, player.attachmentZ0, player.attachmentX1, player.attachmentZ1);
+                    player.anInt3424 = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
+                    Static184.addTemporary(Player.plane, player.xFine, player.zFine, player.anInt3424, player, player.anInt3381, id, player.atachmentX0, player.attachmentZ0, player.attachmentX1, player.attachmentZ1);
                 }
             }
         }
@@ -936,7 +936,7 @@ public class Game {
         NpcList.npcCount = 0;
         for (i = 0; i < 2048; i++) {
             PlayerList.players[i] = null;
-            PlayerList.PLAYER_APPEARANCE_PACKET[i] = null;
+            PlayerList.appearanceCache[i] = null;
         }
         for (i = 0; i < 32768; i++) {
             NpcList.npcs[i] = null;

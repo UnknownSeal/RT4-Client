@@ -14,9 +14,6 @@ public final class Static276 {
 	@OriginalMember(owner = "runetek4.client!wh", name = "g", descriptor = "[I")
 	public static final int[] anIntArray563 = new int[50];
 
-	@OriginalMember(owner = "runetek4.client!wh", name = "j", descriptor = "[Lclient!cl;")
-	public static final AnimFrameset[] aClass3_Sub2_Sub7Array8 = new AnimFrameset[14];
-
 	@OriginalMember(owner = "runetek4.client!wh", name = "n", descriptor = "Lclient!na;")
 	public static final JString aClass100_1095 = JString.parse("; version=1; path=)4; domain=");
 

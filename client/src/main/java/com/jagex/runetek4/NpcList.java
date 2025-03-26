@@ -39,7 +39,7 @@ public class NpcList {
         }
         if (entity.xFine < 128 || entity.zFine < 128 || entity.xFine >= 13184 || entity.zFine >= 13184) {
             entity.primarySeqId = -1;
-            entity.spotanimFrame = -1;
+            entity.spotAnimId = -1;
             entity.anInt3395 = 0;
             entity.anInt3386 = 0;
             entity.xFine = entity.movementQueueX[0] * 128 + entity.getSize() * 64;
@@ -47,7 +47,7 @@ public class NpcList {
             entity.method2689();
         }
         if (entity == PlayerList.self && (entity.xFine < 1536 || entity.zFine < 1536 || entity.xFine >= 11776 || entity.zFine >= 11776)) {
-            entity.spotanimFrame = -1;
+            entity.spotAnimId = -1;
             entity.anInt3395 = 0;
             entity.anInt3386 = 0;
             entity.primarySeqId = -1;
@@ -93,14 +93,14 @@ public class NpcList {
                 }
             }
         }
-        if ((e.anInt3382 != 0 || e.anInt3363 != 0) && (e.movementQueueSize == 0 || e.anInt3417 > 0)) {
-            index = e.xFine - (e.anInt3382 - Camera.originX - Camera.originX) * 64;
-            dstX = e.zFine - (e.anInt3363 - Camera.originZ - Camera.originZ) * 64;
+        if ((e.faceX != 0 || e.faceY != 0) && (e.movementQueueSize == 0 || e.anInt3417 > 0)) {
+            index = e.xFine - (e.faceX - Camera.originX - Camera.originX) * 64;
+            dstX = e.zFine - (e.faceY - Camera.originZ - Camera.originZ) * 64;
             if (index != 0 || dstX != 0) {
                 e.dstYaw = (int) (Math.atan2((double) index, (double) dstX) * 325.949D) & 0x7FF;
             }
-            e.anInt3363 = 0;
-            e.anInt3382 = 0;
+            e.faceY = 0;
+            e.faceX = 0;
         }
         index = e.dstYaw - e.anInt3381 & 0x7FF;
         if (index == 0) {
@@ -267,14 +267,14 @@ public class NpcList {
             }
         }
         @Pc(156) int local156;
-        if (arg0.spotanimFrame != -1 && client.loop >= arg0.spotanimLastCycle) {
-            local156 = Static34.method877(arg0.spotanimFrame).animationId;
+        if (arg0.spotAnimId != -1 && client.loop >= arg0.spotAnimStart) {
+            local156 = Static34.method877(arg0.spotAnimId).animationId;
             if (local156 == -1) {
-                arg0.spotanimFrame = -1;
+                arg0.spotAnimId = -1;
             } else {
                 @Pc(165) SeqType local165 = SeqTypeList.getAnimationSequence(local156);
                 if (local165 == null || local165.anIntArray473 == null) {
-                    arg0.spotanimFrame = -1;
+                    arg0.spotAnimId = -1;
                 } else {
                     if (arg0.spotanimId < 0) {
                         arg0.spotanimId = 0;
@@ -287,7 +287,7 @@ public class NpcList {
                         SoundPlayer.playSeqSound(arg0.zFine, local165, arg0.xFine, PlayerList.self == arg0, arg0.spotanimId);
                     }
                     if (arg0.spotanimId >= local165.anIntArray473.length) {
-                        arg0.spotanimFrame = -1;
+                        arg0.spotAnimId = -1;
                     }
                     arg0.anInt3418 = arg0.spotanimId + 1;
                     if (local165.anIntArray473.length <= arg0.anInt3418) {

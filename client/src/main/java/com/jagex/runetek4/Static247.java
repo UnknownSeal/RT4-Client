@@ -666,11 +666,6 @@ public final class Static247 {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(IB)I")
-	public static int method4247(@OriginalArg(0) int arg0) {
-		return arg0 & 0xFF;
-	}
-
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(Z)V")
 	public static void clear() {
 		Static279.aClass99_38.clean();

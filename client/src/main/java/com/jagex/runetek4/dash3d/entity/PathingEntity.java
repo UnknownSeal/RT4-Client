@@ -16,17 +16,21 @@ public abstract class PathingEntity extends Entity {
 
     @OriginalMember(owner = "client!ef", name = "a", descriptor = "[I")
     public static final int[] ANGLES = new int[] { 768, 1024, 1280, 512, 1536, 256, 0, 1792 };
+
 	@OriginalMember(owner = "runetek4.client!hm", name = "ab", descriptor = "I")
 	public static int anInt2640 = 0;
+
 	@OriginalMember(owner = "runetek4.client!hn", name = "Y", descriptor = "I")
 	public static int anInt2680 = 0;
+
 	@OriginalMember(owner = "client!f", name = "V", descriptor = "I")
 	public static int anInt1938 = 0;
+
 	@OriginalMember(owner = "client!fe", name = "A", descriptor = "I")
-	public int spotanimLastCycle;
+	public int spotAnimStart;
 
 	@OriginalMember(owner = "client!fe", name = "S", descriptor = "I")
-	public int anInt3372;
+	public int hitpointsBar;
 
 	@OriginalMember(owner = "client!fe", name = "U", descriptor = "I")
 	public int attachmentZ0;
@@ -53,7 +57,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3392;
 
 	@OriginalMember(owner = "client!fe", name = "tb", descriptor = "I")
-	public int spotanimOffset;
+	public int spotAnimY;
 
 	@OriginalMember(owner = "client!fe", name = "ub", descriptor = "I")
 	public int anInt3395;
@@ -83,7 +87,7 @@ public abstract class PathingEntity extends Entity {
 	public int zFine;
 
 	@OriginalMember(owner = "client!fe", name = "dc", descriptor = "I")
-	public int y;
+	public int anInt3424;
 
 	@OriginalMember(owner = "client!fe", name = "fc", descriptor = "I")
 	public int attachmentZFine;
@@ -104,7 +108,7 @@ public abstract class PathingEntity extends Entity {
 	private int anInt3367 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "L", descriptor = "[I")
-	public final int[] anIntArray319 = new int[4];
+	public final int[] hitVisibleUntil = new int[4];
 
 	@OriginalMember(owner = "client!fe", name = "K", descriptor = "[I")
 	public final int[] movementQueueX = new int[10];
@@ -122,13 +126,13 @@ public abstract class PathingEntity extends Entity {
 	public boolean aBoolean167 = false;
 
 	@OriginalMember(owner = "client!fe", name = "db", descriptor = "I")
-	public int anInt3382 = 0;
+	public int faceX = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Q", descriptor = "I")
 	public int anInt3371 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "E", descriptor = "I")
-	public int anInt3363 = 0;
+	public int faceY = 0;
 
 	@OriginalMember(owner = "client!fe", name = "yb", descriptor = "I")
 	private int anInt3398 = 0;
@@ -173,7 +177,7 @@ public abstract class PathingEntity extends Entity {
 	public int attachmentResetAt = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Y", descriptor = "I")
-	public int anInt3378 = -1000;
+	public int hitpointsBarVisibleUntil = -1000;
 
 	@OriginalMember(owner = "client!fe", name = "Rb", descriptor = "I")
 	protected int minY = -32768;
@@ -197,7 +201,7 @@ public abstract class PathingEntity extends Entity {
 	private int anInt3355 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "Mb", descriptor = "[I")
-	public final int[] anIntArray321 = new int[4];
+	public final int[] hitTypes = new int[4];
 
 	@OriginalMember(owner = "client!fe", name = "zb", descriptor = "I")
 	public int spotanimId = 0;
@@ -239,7 +243,7 @@ public abstract class PathingEntity extends Entity {
 	public int anInt3407 = 0;
 
 	@OriginalMember(owner = "client!fe", name = "ic", descriptor = "[I")
-	public final int[] anIntArray322 = new int[4];
+	public final int[] hitDamages = new int[4];
 
 	@OriginalMember(owner = "client!fe", name = "Ib", descriptor = "I")
 	public int anInt3405 = 0;
@@ -263,15 +267,15 @@ public abstract class PathingEntity extends Entity {
 	public JString chatMessage = null;
 
 	@OriginalMember(owner = "client!fe", name = "oc", descriptor = "I")
-	public int spotanimFrame = -1;
+	public int spotAnimId = -1;
 
 	@OriginalMember(owner = "client!fe", name = "Xb", descriptor = "I")
 	public int anInt3418 = -1;
 
 	@OriginalMember(owner = "client!fe", name = "b", descriptor = "(Z)Lclient!ck;")
 	public final BasType getBasType() {
-		@Pc(7) int local7 = this.getBasId();
-		return local7 == -1 ? BasType.DEFAULT : BasTypeList.get(local7);
+		@Pc(7) int basId = this.getBasId();
+		return basId == -1 ? BasType.DEFAULT : BasTypeList.get(basId);
 	}
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(B)Z")
@@ -315,7 +319,7 @@ public abstract class PathingEntity extends Entity {
 	}
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(IBI)V")
-	public final void method2684(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
+	public final void move(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
 		@Pc(10) int local10 = this.movementQueueX[0];
 		@Pc(15) int local15 = this.movementQueueZ[0];
 		if (arg1 == 0) {
@@ -411,19 +415,19 @@ public abstract class PathingEntity extends Entity {
 		if (local201 + local134 < anInt1938) {
 			anInt1938 = local201 + local134;
 		}
-		anInt1938 = (anInt1938 >> 1) - this.y;
+		anInt1938 = (anInt1938 >> 1) - this.anInt3424;
 		if (anInt1938 != 0) {
 			arg0.translate(0, anInt1938, 0);
 		}
 	}
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(IIII)V")
-	public final void method2686(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		for (@Pc(11) int local11 = 0; local11 < 4; local11++) {
-			if (arg1 >= this.anIntArray319[local11]) {
-				this.anIntArray322[local11] = arg2;
-				this.anIntArray321[local11] = arg0;
-				this.anIntArray319[local11] = arg1 + 70;
+	public final void addHit(@OriginalArg(0) int type, @OriginalArg(2) int loop, @OriginalArg(3) int damage) {
+		for (@Pc(11) int i = 0; i < 4; i++) {
+			if (loop >= this.hitVisibleUntil[i]) {
+				this.hitDamages[i] = damage;
+				this.hitTypes[i] = type;
+				this.hitVisibleUntil[i] = loop + 70;
 				return;
 			}
 		}

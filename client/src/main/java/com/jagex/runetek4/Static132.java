@@ -13,9 +13,6 @@ public final class Static132 {
 	@OriginalMember(owner = "runetek4.client!ke", name = "R", descriptor = "Lclient!ve;")
 	public static Js5 aClass153_48;
 
-	@OriginalMember(owner = "runetek4.client!ke", name = "Y", descriptor = "[I")
-	public static final int[] anIntArray309 = new int[] { 1, 4 };
-
 	@OriginalMember(owner = "runetek4.client!ke", name = "f", descriptor = "(B)V")
 	public static void method2608() {
 		@Pc(7) int local7 = 0;
@@ -104,7 +101,7 @@ public final class Static132 {
 					if (arg0.anInt4865 != 12345678) {
 						Pix3D.method1928(local315, local331, local299, local307, local323, local291, arg0.anInt4865, arg0.anInt4864, arg0.anInt4867);
 					}
-				} else if (!Static159.aBoolean189) {
+				} else if (!Preferences.manyGroundTextures) {
 					local475 = Rasterizer.textureProvider.getAverageColor(arg0.anInt4869);
 					Pix3D.method1928(local315, local331, local299, local307, local323, local291, ColorUtils.multiplyLightness3(local475, arg0.anInt4865), ColorUtils.multiplyLightness3(local475, arg0.anInt4864), ColorUtils.multiplyLightness3(local475, arg0.anInt4867));
 				} else if (arg0.aBoolean241) {
@@ -132,7 +129,7 @@ public final class Static132 {
 			if (arg0.anInt4872 != 12345678) {
 				Pix3D.method1928(local283, local299, local331, local275, local291, local323, arg0.anInt4872, arg0.anInt4867, arg0.anInt4864);
 			}
-		} else if (Static159.aBoolean189) {
+		} else if (Preferences.manyGroundTextures) {
 			Pix3D.textureTriangle(local283, local299, local331, local275, local291, local323, arg0.anInt4872, arg0.anInt4867, arg0.anInt4864, local97, local21, local241, local119, local49, local85, local117, local165, local261, arg0.anInt4869);
 		} else {
 			local475 = Rasterizer.textureProvider.getAverageColor(arg0.anInt4869);

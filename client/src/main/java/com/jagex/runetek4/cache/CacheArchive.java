@@ -2,7 +2,6 @@ package com.jagex.runetek4.cache;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,9 +10,6 @@ public final class CacheArchive {
 
 	@OriginalMember(owner = "client!al", name = "e", descriptor = "I")
 	public static int anInt172;
-
-	@OriginalMember(owner = "runetek4.client!nd", name = "n", descriptor = "Lclient!ve;")
-	public static Js5 aClass153_61;
 
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(Z)V")
 	public static void method182() {
@@ -28,14 +24,6 @@ public final class CacheArchive {
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ILclient!wa;)Lclient!ci;")
 	public static TextureOp29SubOp1 method184(@OriginalArg(1) Packet arg0) {
 		return new TextureOp29SubOp1(arg0.g2s(), arg0.g2s(), arg0.g2s(), arg0.g2s(), arg0.g3(), arg0.g1());
-	}
-
-	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ZI)V")
-	public static void method186(@OriginalArg(0) boolean arg0) {
-		if (arg0 != Static240.aBoolean276) {
-			Static240.aBoolean276 = arg0;
-			Static176.clear();
-		}
 	}
 
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(III)Z")

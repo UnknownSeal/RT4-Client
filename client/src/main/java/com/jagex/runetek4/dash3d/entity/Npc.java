@@ -67,7 +67,7 @@ public final class Npc extends PathingEntity {
 		}
 		@Pc(140) Model model;
 		if (Preferences.characterShadowsOn && local84.spotShadow) {
-			model = ShadowModelList.method1043(this.type.shadowColorModifier1, this.seqStretches, local53 == null ? local29 : local53, this.xFine, this.type.spotShadowColor2, this.zFine, this.type.spotShadowColor1, this.type.size, body, orientation, local53 == null ? this.anInt3425 : this.anInt3407, this.y, this.type.spotShadowTrans2);
+			model = ShadowModelList.method1043(this.type.shadowColorModifier1, this.seqStretches, local53 == null ? local29 : local53, this.xFine, this.type.spotShadowColor2, this.zFine, this.type.spotShadowColor1, this.type.size, body, orientation, local53 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, this.type.spotShadowTrans2);
 			if (GlRenderer.enabled) {
 				@Pc(144) float local144 = GlRenderer.method4179();
 				@Pc(146) float local146 = GlRenderer.method4166();
@@ -83,11 +83,11 @@ public final class Npc extends PathingEntity {
 		this.method2687(body);
 		this.method2685(body, orientation);
 		model = null;
-		if (this.spotanimFrame != -1 && this.spotanimId != -1) {
-			@Pc(211) SpotAnimType spotAnimType = Static34.method877(this.spotanimFrame);
+		if (this.spotAnimId != -1 && this.spotanimId != -1) {
+			@Pc(211) SpotAnimType spotAnimType = Static34.method877(this.spotAnimId);
 			model = spotAnimType.constructModel(this.anInt3418, this.spotanimId, this.anInt3361);
 			if (model != null) {
-				model.translate(0, -this.spotanimOffset, 0);
+				model.translate(0, -this.spotAnimY, 0);
 				if (spotAnimType.aBoolean100) {
 					if (PathingEntity.anInt2640 != 0) {
 						model.rotateX(PathingEntity.anInt2640);

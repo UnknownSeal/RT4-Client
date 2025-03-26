@@ -13,13 +13,6 @@ public final class Static176 {
 	@OriginalMember(owner = "runetek4.client!ob", name = "p", descriptor = "Lclient!na;")
 	public static final JString aClass100_802 = JString.parse("(U0a )2 non)2existant gosub script)2num: ");
 
-	@OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(B)V")
-	public static void clear() {
-		Static27.aClass99_4.clean();
-		ObjTypeList.models.clean();
-		ObjTypeList.objectSpriteCache.clean();
-	}
-
 	@OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(IIIIIIIIIIIIIIIIIIII)V")
 	public static void method3305(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12, @OriginalArg(13) int arg13, @OriginalArg(14) int arg14, @OriginalArg(15) int arg15, @OriginalArg(16) int arg16, @OriginalArg(17) int arg17, @OriginalArg(18) int arg18, @OriginalArg(19) int arg19) {
 		@Pc(12) GenericTile local12;

@@ -735,7 +735,7 @@ public final class MidiPcmStream extends PcmStream {
 			@Pc(102) double local102 = Math.sin((double) (arg0.anInt3768 & 0x1FF) * 0.01227184630308513D);
 			local17 += (int) ((double) local62 * local102);
 		}
-		local62 = (int) ((double) (arg0.sound.anInt3316 * 256) * Math.pow(2.0D, (double) local17 * 3.255208333333333E-4D) / (double) AudioChannel.sampleRate + 0.5D);
+		local62 = (int) ((double) (arg0.sound.rate * 256) * Math.pow(2.0D, (double) local17 * 3.255208333333333E-4D) / (double) AudioChannel.sampleRate + 0.5D);
 		return local62 >= 1 ? local62 : 1;
 	}
 
@@ -763,10 +763,10 @@ public final class MidiPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!va", name = "a", descriptor = "(Lclient!mf;ZB)V")
 	public final void method4442(@OriginalArg(0) MidiNote arg0, @OriginalArg(1) boolean arg1) {
-		@Pc(8) int local8 = arg0.sound.aByteArray47.length;
+		@Pc(8) int local8 = arg0.sound.samples.length;
 		@Pc(27) int local27;
 		if (arg1 && arg0.sound.aBoolean165) {
-			@Pc(37) int local37 = local8 + local8 - arg0.sound.anInt3315;
+			@Pc(37) int local37 = local8 + local8 - arg0.sound.start;
 			local8 <<= 0x8;
 			local27 = (int) ((long) local37 * (long) this.anIntArray509[arg0.channel] >> 6);
 			if (local27 >= local8) {

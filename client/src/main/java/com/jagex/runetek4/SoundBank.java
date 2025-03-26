@@ -46,7 +46,7 @@ public final class SoundBank {
 			local37 = local59.toPcmSound();
 			this.aClass133_12.put(local37, local30);
 			if (arg0 != null) {
-				arg0[0] -= local37.aByteArray47.length;
+				arg0[0] -= local37.samples.length;
 			}
 			return local37;
 		} else {

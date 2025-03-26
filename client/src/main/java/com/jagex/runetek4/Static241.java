@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,21 +11,6 @@ public final class Static241 {
 
 	@OriginalMember(owner = "runetek4.client!th", name = "o", descriptor = "[I")
 	public static int[] anIntArray522;
-
-	@OriginalMember(owner = "runetek4.client!th", name = "i", descriptor = "[I")
-	public static final int[] anIntArray520 = new int[14];
-
-	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(ZBLclient!ve;Lclient!dd;Lclient!ve;)V")
-	public static void init(@OriginalArg(2) Js5 arg0, @OriginalArg(3) SoftwareFont arg1, @OriginalArg(4) Js5 arg2) {
-		Static240.aBoolean276 = true;
-		ObjTypeList.modelArchive = arg2;
-		com.jagex.runetek4.cache.CacheArchive.aClass153_61 = arg0;
-		@Pc(23) int local23 = com.jagex.runetek4.cache.CacheArchive.aClass153_61.capacity() - 1;
-		ObjTypeList.capacity = com.jagex.runetek4.cache.CacheArchive.aClass153_61.getGroupCapacity(local23) + local23 * 256;
-		Static143.aClass100Array104 = new JString[] { null, null, null, null, LocalizedText.DROP};
-		Static269.aClass100Array87 = new JString[] { null, null, LocalizedText.TAKE, null, null };
-		ObjTypeList.font = arg1;
-	}
 
 	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(BIIIII)V")
 	public static void method4547(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {

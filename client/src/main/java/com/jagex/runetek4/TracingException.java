@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.util.SignLink;
 import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -42,7 +43,7 @@ public final class TracingException extends RuntimeException {
 			if (signLink.applet == null) {
 				return;
 			}
-			@Pc(109) PrivilegedRequest privilegedRequest = signLink.openUrlStream(new URL(signLink.applet.getCodeBase(), "clienterror.ws?c=" + GameShell.clientBuild + "&u=" + Static101.aLong98 + "&v1=" + SignLink.javaVendor + "&v2=" + SignLink.javaVersion + "&e=" + message));
+			@Pc(109) PrivilegedRequest privilegedRequest = signLink.openUrlStream(new URL(signLink.applet.getCodeBase(), "clienterror.ws?c=" + GameShell.clientBuild + "&u=" + Player.name37 + "&v1=" + SignLink.javaVendor + "&v2=" + SignLink.javaVersion + "&e=" + message));
 			while (privilegedRequest.status == 0) {
 				ThreadUtils.sleep(1L);
 			}

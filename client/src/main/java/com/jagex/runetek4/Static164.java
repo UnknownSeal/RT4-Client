@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static164 {
 
-	@OriginalMember(owner = "runetek4.client!na", name = "o", descriptor = "I")
-	public static int anInt3988 = 0;
-
 	@OriginalMember(owner = "runetek4.client!na", name = "cb", descriptor = "Lclient!na;")
 	public static final JString ALLYREQ = JString.parse(":allyreq:");
 

@@ -179,9 +179,9 @@ public class AudioChannel {
 								if (local96 == null) {
 									break label100;
 								}
-								@Pc(101) Sound local101 = local96.aClass3_Sub16_5;
+								@Pc(101) Sound local101 = local96.sound;
 								if (local101 == null || local101.anInt3313 <= local62) {
-									local96.aBoolean292 = true;
+									local96.active = true;
 									@Pc(125) int local125 = local96.method4404();
 									local45 += local125;
 									if (local101 != null) {

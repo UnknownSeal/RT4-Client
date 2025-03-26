@@ -8,12 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static272 {
 
-	@OriginalMember(owner = "runetek4.client!wd", name = "a", descriptor = "Lclient!gn;")
-	public static final LruHashTable aClass54_14 = new LruHashTable(64);
-
-	@OriginalMember(owner = "runetek4.client!wd", name = "d", descriptor = "[I")
-	public static final int[] anIntArray451 = new int[] { 8, 11, 4, 6, 9, 7, 10, 0 };
-
 	@OriginalMember(owner = "runetek4.client!wd", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_989 = JString.parse("cookieprefix");
 

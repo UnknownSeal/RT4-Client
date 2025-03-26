@@ -16,9 +16,6 @@ public final class Static73 {
 	@OriginalMember(owner = "client!fm", name = "db", descriptor = "Lclient!gn;")
 	public static final LruHashTable aClass54_7 = new LruHashTable(64);
 
-	@OriginalMember(owner = "client!fm", name = "fb", descriptor = "[I")
-	public static final int[] anIntArray183 = new int[14];
-
 	@OriginalMember(owner = "client!fm", name = "gb", descriptor = "Lclient!na;")
 	public static final JString OVERLAY2 = JString.parse("overlay2");
 

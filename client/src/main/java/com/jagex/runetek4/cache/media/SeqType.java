@@ -31,7 +31,7 @@ public final class SeqType {
 	private int[] anIntArray475;
 
 	@OriginalMember(owner = "client!tk", name = "a", descriptor = "I")
-	public int anInt5347 = 2;
+	public int exactmove = 2;
 
 	@OriginalMember(owner = "client!tk", name = "b", descriptor = "Z")
 	public boolean aBoolean277 = false;
@@ -123,7 +123,7 @@ public final class SeqType {
 		} else if (code == 10) {
 			this.anInt5349 = packet.g1();
 		} else if (code == 11) {
-			this.anInt5347 = packet.g1();
+			this.exactmove = packet.g1();
 		} else if (code == 12) {
 			int length = packet.g1();
 			this.anIntArray475 = new int[length];
