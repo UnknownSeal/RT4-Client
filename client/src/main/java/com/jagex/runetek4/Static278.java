@@ -108,7 +108,7 @@ public final class Static278 {
 				if (arg2) {
 					SceneGraph.tileHeights[0][arg5][arg4] = SceneGraph.surfaceTileHeights[0][arg5][arg4];
 				} else if (arg7 == 0) {
-					SceneGraph.tileHeights[0][arg5][arg4] = -Static65.method1498(arg4 + arg1 + 556238, arg0 + arg5 + 932731) * 8;
+					SceneGraph.tileHeights[0][arg5][arg4] = -PerlinNoise.getTileHeight(arg4 + arg1 + 556238, arg0 + arg5 + 932731) * 8;
 				} else {
 					SceneGraph.tileHeights[arg7][arg5][arg4] = SceneGraph.tileHeights[arg7 - 1][arg5][arg4] - 240;
 				}

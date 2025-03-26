@@ -26,7 +26,7 @@ public final class Static17 {
 		@Pc(64) int local64;
 		if (local23 == 1) {
 			local54 = Protocol.inboundBuffer.gBit(3);
-			PlayerList.self.method2684(1, local54);
+			PlayerList.self.move(1, local54);
 			local64 = Protocol.inboundBuffer.gBit(1);
 			if (local64 == 1) {
 				Static44.entityUpdateIds[Static116.entityUpdateCount++] = 2047;
@@ -34,12 +34,12 @@ public final class Static17 {
 		} else if (local23 == 2) {
 			if (Protocol.inboundBuffer.gBit(1) == 1) {
 				local54 = Protocol.inboundBuffer.gBit(3);
-				PlayerList.self.method2684(2, local54);
+				PlayerList.self.move(2, local54);
 				local64 = Protocol.inboundBuffer.gBit(3);
-				PlayerList.self.method2684(2, local64);
+				PlayerList.self.move(2, local64);
 			} else {
 				local54 = Protocol.inboundBuffer.gBit(3);
-				PlayerList.self.method2684(0, local54);
+				PlayerList.self.move(0, local54);
 			}
 			local54 = Protocol.inboundBuffer.gBit(1);
 			if (local54 == 1) {

@@ -13,7 +13,7 @@ public final class Static26 {
 
 	@OriginalMember(owner = "client!ca", name = "a", descriptor = "(IIII)V")
 	public static void method744(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		if (Static125.anInt3104 == 0 || arg0 == 0 || SoundPlayer.size >= 50 || arg1 == -1) {
+		if (Preferences.soundEffectVolume == 0 || arg0 == 0 || SoundPlayer.size >= 50 || arg1 == -1) {
 			return;
 		}
 		Static200.anIntArray421[SoundPlayer.size] = arg1;

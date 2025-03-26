@@ -55,9 +55,9 @@ public final class SoundPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!b", name = "<init>", descriptor = "(Lclient!kj;II)V")
 	public SoundPcmStream(@OriginalArg(0) PcmSound arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		this.aClass3_Sub16_5 = arg0;
-		this.anInt345 = arg0.anInt3315;
-		this.anInt353 = arg0.anInt3314;
+		this.sound = arg0;
+		this.anInt345 = arg0.start;
+		this.anInt353 = arg0.end;
 		this.aBoolean14 = arg0.aBoolean165;
 		this.anInt342 = arg1;
 		this.anInt343 = arg2;
@@ -68,9 +68,9 @@ public final class SoundPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!b", name = "<init>", descriptor = "(Lclient!kj;III)V")
 	public SoundPcmStream(@OriginalArg(0) PcmSound arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		this.aClass3_Sub16_5 = arg0;
-		this.anInt345 = arg0.anInt3315;
-		this.anInt353 = arg0.anInt3314;
+		this.sound = arg0;
+		this.anInt345 = arg0.start;
+		this.anInt353 = arg0.end;
 		this.aBoolean14 = arg0.aBoolean165;
 		this.anInt342 = arg1;
 		this.anInt343 = arg2;
@@ -81,7 +81,7 @@ public final class SoundPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!b", name = "a", descriptor = "(Lclient!kj;III)Lclient!b;")
 	public static SoundPcmStream create(@OriginalArg(0) PcmSound arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		return arg0.aByteArray47 == null || arg0.aByteArray47.length == 0 ? null : new SoundPcmStream(arg0, arg1, arg2, arg3);
+		return arg0.samples == null || arg0.samples.length == 0 ? null : new SoundPcmStream(arg0, arg1, arg2, arg3);
 	}
 
 	@OriginalMember(owner = "runetek4.client!b", name = "b", descriptor = "([III)V")
@@ -91,10 +91,10 @@ public final class SoundPcmStream extends PcmStream {
 			this.skip(arg2);
 			return;
 		}
-		@Pc(13) PcmSound local13 = (PcmSound) this.aClass3_Sub16_5;
+		@Pc(13) PcmSound local13 = (PcmSound) this.sound;
 		@Pc(18) int local18 = this.anInt345 << 8;
 		@Pc(23) int local23 = this.anInt353 << 8;
-		@Pc(29) int local29 = local13.aByteArray47.length << 8;
+		@Pc(29) int local29 = local13.samples.length << 8;
 		@Pc(33) int local33 = local23 - local18;
 		if (local33 <= 0) {
 			this.anInt350 = 0;
@@ -122,7 +122,7 @@ public final class SoundPcmStream extends PcmStream {
 				if (this.aBoolean14) {
 					label131: {
 						if (this.anInt342 < 0) {
-							local40 = this.method403(arg0, arg1, local18, local44, local13.aByteArray47[this.anInt345]);
+							local40 = this.method403(arg0, arg1, local18, local44, local13.samples[this.anInt345]);
 							if (this.anInt346 >= local18) {
 								return;
 							}
@@ -133,7 +133,7 @@ public final class SoundPcmStream extends PcmStream {
 							}
 						}
 						do {
-							local40 = this.method385(arg0, local40, local23, local44, local13.aByteArray47[this.anInt353 - 1]);
+							local40 = this.method385(arg0, local40, local23, local44, local13.samples[this.anInt353 - 1]);
 							if (this.anInt346 < local23) {
 								return;
 							}
@@ -142,7 +142,7 @@ public final class SoundPcmStream extends PcmStream {
 							if (--this.anInt350 == 0) {
 								break;
 							}
-							local40 = this.method403(arg0, local40, local18, local44, local13.aByteArray47[this.anInt345]);
+							local40 = this.method403(arg0, local40, local18, local44, local13.samples[this.anInt345]);
 							if (this.anInt346 >= local18) {
 								return;
 							}
@@ -154,7 +154,7 @@ public final class SoundPcmStream extends PcmStream {
 					@Pc(417) int local417;
 					if (this.anInt342 < 0) {
 						while (true) {
-							local40 = this.method403(arg0, local40, local18, local44, local13.aByteArray47[this.anInt353 - 1]);
+							local40 = this.method403(arg0, local40, local18, local44, local13.samples[this.anInt353 - 1]);
 							if (this.anInt346 >= local18) {
 								return;
 							}
@@ -169,7 +169,7 @@ public final class SoundPcmStream extends PcmStream {
 						}
 					} else {
 						while (true) {
-							local40 = this.method385(arg0, local40, local23, local44, local13.aByteArray47[this.anInt345]);
+							local40 = this.method385(arg0, local40, local23, local44, local13.samples[this.anInt345]);
 							if (this.anInt346 < local23) {
 								return;
 							}
@@ -202,7 +202,7 @@ public final class SoundPcmStream extends PcmStream {
 			}
 		} else if (this.aBoolean14) {
 			if (this.anInt342 < 0) {
-				local40 = this.method403(arg0, arg1, local18, local44, local13.aByteArray47[this.anInt345]);
+				local40 = this.method403(arg0, arg1, local18, local44, local13.samples[this.anInt345]);
 				if (this.anInt346 >= local18) {
 					return;
 				}
@@ -210,13 +210,13 @@ public final class SoundPcmStream extends PcmStream {
 				this.anInt342 = -this.anInt342;
 			}
 			while (true) {
-				local40 = this.method385(arg0, local40, local23, local44, local13.aByteArray47[this.anInt353 - 1]);
+				local40 = this.method385(arg0, local40, local23, local44, local13.samples[this.anInt353 - 1]);
 				if (this.anInt346 < local23) {
 					return;
 				}
 				this.anInt346 = local23 + local23 - this.anInt346 - 1;
 				this.anInt342 = -this.anInt342;
-				local40 = this.method403(arg0, local40, local18, local44, local13.aByteArray47[this.anInt345]);
+				local40 = this.method403(arg0, local40, local18, local44, local13.samples[this.anInt345]);
 				if (this.anInt346 >= local18) {
 					return;
 				}
@@ -225,7 +225,7 @@ public final class SoundPcmStream extends PcmStream {
 			}
 		} else if (this.anInt342 < 0) {
 			while (true) {
-				local40 = this.method403(arg0, local40, local18, local44, local13.aByteArray47[this.anInt353 - 1]);
+				local40 = this.method403(arg0, local40, local18, local44, local13.samples[this.anInt353 - 1]);
 				if (this.anInt346 >= local18) {
 					return;
 				}
@@ -233,7 +233,7 @@ public final class SoundPcmStream extends PcmStream {
 			}
 		} else {
 			while (true) {
-				local40 = this.method385(arg0, local40, local23, local44, local13.aByteArray47[this.anInt345]);
+				local40 = this.method385(arg0, local40, local23, local44, local13.samples[this.anInt345]);
 				if (this.anInt346 < local23) {
 					return;
 				}
@@ -352,14 +352,14 @@ public final class SoundPcmStream extends PcmStream {
 				this.anInt351 += arg1;
 				if (this.anInt342 == 256 && (this.anInt346 & 0xFF) == 0) {
 					if (AudioChannel.stereo) {
-						arg1 = Static284.method393(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, this.anInt347, this.anInt354, local7, arg2, this);
+						arg1 = Static284.method393(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, this.anInt347, this.anInt354, local7, arg2, this);
 					} else {
-						arg1 = Static284.method395(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt348, this.anInt344, local7, arg2, this);
+						arg1 = Static284.method395(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt348, this.anInt344, local7, arg2, this);
 					}
 				} else if (AudioChannel.stereo) {
-					arg1 = Static284.method388(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, this.anInt347, this.anInt354, local7, arg2, this, this.anInt342, arg4);
+					arg1 = Static284.method388(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, this.anInt347, this.anInt354, local7, arg2, this, this.anInt342, arg4);
 				} else {
-					arg1 = Static284.method389(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt348, this.anInt344, local7, arg2, this, this.anInt342, arg4);
+					arg1 = Static284.method389(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt348, this.anInt344, local7, arg2, this, this.anInt342, arg4);
 				}
 				this.anInt351 -= arg1;
 				if (this.anInt351 != 0) {
@@ -372,14 +372,14 @@ public final class SoundPcmStream extends PcmStream {
 			}
 			if (this.anInt342 == 256 && (this.anInt346 & 0xFF) == 0) {
 				if (AudioChannel.stereo) {
-					return Static284.method387(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, arg3, arg2, this);
+					return Static284.method387(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, arg3, arg2, this);
 				}
-				return Static284.method391(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt348, arg3, arg2, this);
+				return Static284.method391(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt348, arg3, arg2, this);
 			}
 			if (AudioChannel.stereo) {
-				return Static284.method400(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, arg3, arg2, this, this.anInt342, arg4);
+				return Static284.method400(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, arg3, arg2, this, this.anInt342, arg4);
 			}
-			return Static284.method422(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt348, arg3, arg2, this, this.anInt342, arg4);
+			return Static284.method422(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt348, arg3, arg2, this, this.anInt342, arg4);
 		}
 	}
 
@@ -394,9 +394,9 @@ public final class SoundPcmStream extends PcmStream {
 		@Pc(6) int local6 = this.anInt348 * 3 >> 6;
 		local6 = (local6 ^ local6 >> 31) + (local6 >>> 31);
 		if (this.anInt350 == 0) {
-			local6 -= local6 * this.anInt346 / (((PcmSound) this.aClass3_Sub16_5).aByteArray47.length << 8);
+			local6 -= local6 * this.anInt346 / (((PcmSound) this.sound).samples.length << 8);
 		} else if (this.anInt350 >= 0) {
-			local6 -= local6 * this.anInt345 / ((PcmSound) this.aClass3_Sub16_5).aByteArray47.length;
+			local6 -= local6 * this.anInt345 / ((PcmSound) this.sound).samples.length;
 		}
 		return local6 > 255 ? 255 : local6;
 	}
@@ -432,10 +432,10 @@ public final class SoundPcmStream extends PcmStream {
 				this.anInt351 -= arg0;
 			}
 		}
-		@Pc(71) PcmSound local71 = (PcmSound) this.aClass3_Sub16_5;
+		@Pc(71) PcmSound local71 = (PcmSound) this.sound;
 		@Pc(76) int local76 = this.anInt345 << 8;
 		@Pc(81) int local81 = this.anInt353 << 8;
-		@Pc(87) int local87 = local71.aByteArray47.length << 8;
+		@Pc(87) int local87 = local71.samples.length << 8;
 		@Pc(91) int local91 = local81 - local76;
 		if (local91 <= 0) {
 			this.anInt350 = 0;
@@ -581,7 +581,7 @@ public final class SoundPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!b", name = "h", descriptor = "(I)V")
 	public final synchronized void method401(@OriginalArg(0) int arg0) {
-		@Pc(7) int local7 = ((PcmSound) this.aClass3_Sub16_5).aByteArray47.length << 8;
+		@Pc(7) int local7 = ((PcmSound) this.sound).samples.length << 8;
 		if (arg0 < -1) {
 			arg0 = -1;
 		}
@@ -602,14 +602,14 @@ public final class SoundPcmStream extends PcmStream {
 				this.anInt351 += arg1;
 				if (this.anInt342 == -256 && (this.anInt346 & 0xFF) == 0) {
 					if (AudioChannel.stereo) {
-						arg1 = Static284.method402(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, this.anInt347, this.anInt354, local7, arg2, this);
+						arg1 = Static284.method402(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, this.anInt347, this.anInt354, local7, arg2, this);
 					} else {
-						arg1 = Static284.method394(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt348, this.anInt344, local7, arg2, this);
+						arg1 = Static284.method394(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt348, this.anInt344, local7, arg2, this);
 					}
 				} else if (AudioChannel.stereo) {
-					arg1 = Static284.method407(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, this.anInt347, this.anInt354, local7, arg2, this, this.anInt342, arg4);
+					arg1 = Static284.method407(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, this.anInt347, this.anInt354, local7, arg2, this, this.anInt342, arg4);
 				} else {
-					arg1 = Static284.method415(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt348, this.anInt344, local7, arg2, this, this.anInt342, arg4);
+					arg1 = Static284.method415(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt348, this.anInt344, local7, arg2, this, this.anInt342, arg4);
 				}
 				this.anInt351 -= arg1;
 				if (this.anInt351 != 0) {
@@ -622,14 +622,14 @@ public final class SoundPcmStream extends PcmStream {
 			}
 			if (this.anInt342 == -256 && (this.anInt346 & 0xFF) == 0) {
 				if (AudioChannel.stereo) {
-					return Static284.method414(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, arg3, arg2, this);
+					return Static284.method414(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, arg3, arg2, this);
 				}
-				return Static284.method413(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt348, arg3, arg2, this);
+				return Static284.method413(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt348, arg3, arg2, this);
 			}
 			if (AudioChannel.stereo) {
-				return Static284.method420(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, arg3, arg2, this, this.anInt342, arg4);
+				return Static284.method420(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt355, this.anInt352, arg3, arg2, this, this.anInt342, arg4);
 			}
-			return Static284.method390(((PcmSound) this.aClass3_Sub16_5).aByteArray47, arg0, this.anInt346, arg1, this.anInt348, arg3, arg2, this, this.anInt342, arg4);
+			return Static284.method390(((PcmSound) this.sound).samples, arg0, this.anInt346, arg1, this.anInt348, arg3, arg2, this, this.anInt342, arg4);
 		}
 	}
 
@@ -675,7 +675,7 @@ public final class SoundPcmStream extends PcmStream {
 
 	@OriginalMember(owner = "runetek4.client!b", name = "i", descriptor = "()Z")
 	public final boolean method411() {
-		return this.anInt346 < 0 || this.anInt346 >= ((PcmSound) this.aClass3_Sub16_5).aByteArray47.length << 8;
+		return this.anInt346 < 0 || this.anInt346 >= ((PcmSound) this.sound).samples.length << 8;
 	}
 
 	@OriginalMember(owner = "runetek4.client!b", name = "j", descriptor = "()Z")

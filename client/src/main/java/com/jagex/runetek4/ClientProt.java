@@ -139,7 +139,7 @@ public class ClientProt {
             @Pc(28) Player local28 = PlayerList.players[PlayerList.playerIds[local15]];
             if (local28 != null && local28.username != null && local28.username.equalsIgnoreCase(local7)) {
                 local13 = true;
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local28.movementQueueX[0], 1, 0, 2, local28.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local28.movementQueueX[0], 1, 0, 2, local28.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 if (arg0 == 1) {
                     Protocol.outboundBuffer.pIsaac1(68);
                     Protocol.outboundBuffer.p2_alt3(PlayerList.playerIds[local15]);

@@ -13,32 +13,6 @@ public final class Static115 {
 	@OriginalMember(owner = "runetek4.client!ja", name = "s", descriptor = "Lclient!na;")
 	public static final JString aClass100_582 = JString.parse("http:)4)4");
 
-	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(IIII)I")
-	public static int method2309(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		@Pc(7) int local7 = arg1 / arg0;
-		@Pc(11) int local11 = arg2 / arg0;
-		@Pc(17) int local17 = arg2 & arg0 - 1;
-		@Pc(23) int local23 = arg0 - 1 & arg1;
-		@Pc(28) int local28 = Static24.method670(local7, local11);
-		@Pc(35) int local35 = Static24.method670(local7 + 1, local11);
-		@Pc(42) int local42 = Static24.method670(local7, local11 + 1);
-		@Pc(56) int local56 = Static24.method670(local7 + 1, local11 + 1);
-		@Pc(63) int local63 = ObjTypeList.method2569(local28, local35, local23, arg0);
-		@Pc(70) int local70 = ObjTypeList.method2569(local42, local56, local23, arg0);
-		return ObjTypeList.method2569(local63, local70, local17, arg0);
-	}
-
-	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(IIIIB)V")
-	public static void method2310(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		if (Cross.crossMode == 1) {
-			Static240.crossSprites[Cross.crossCycle / 100].render(Cross.x - 8, Cross.y + -8);
-		}
-		if (Cross.crossMode == 2) {
-			Static240.crossSprites[Cross.crossCycle / 100 + 4].render(Cross.x - 8, Cross.y + -8);
-		}
-		Static256.method4392();
-	}
-
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(Lclient!ve;Lclient!ve;I)V")
 	public static void init(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
 		Static87.aClass153_38 = arg1;

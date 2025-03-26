@@ -27,9 +27,4 @@ public final class Static211 {
 		return local12 == -1 ? Static93.aClass100_517 : Static203.aMapElementList_1.aClass100Array153[local12].method3140(Static101.aClass100_538, Static197.aClass100_872);
 	}
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(Z)V")
-	public static void method924() {
-		ObjTypeList.models.clean();
-	}
-
 }

@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.SeqType;
+import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -140,7 +141,7 @@ public class Cheat {
                 Chat.addMessage(null, 0, JString.concatenate(new JString[] {aClass100_1093, JString.parseInt(local38), DEBUG_MEM_UNIT}));
             }
             if (chatTyped.equalsIgnoreCase(PCACHESIZE)) {
-                Chat.addMessage(null, 0, JString.concatenate(new JString[] {aClass100_335, JString.parseInt(Static198.method1029()) }));
+                Chat.addMessage(null, 0, JString.concatenate(new JString[] {aClass100_335, JString.parseInt(PlayerAppearance.getModelCacheSize()) }));
             }
             if (GlRenderer.enabled && chatTyped.equalsIgnoreCase(CARDMEM)) {
                 System.out.println("oncard_geometry:" + GlCleaner.oncard_geometry);

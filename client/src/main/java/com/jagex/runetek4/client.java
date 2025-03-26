@@ -305,7 +305,7 @@ public final class client extends GameShell {
 		IdkTypeList.removeSoft();
 		LocTypeList.removeSoft();
 		NpcTypeList.removeSoft();
-		Static103.removeSoft();
+		ObjTypeList.removeSoft();
 		Static227.removeSoft();
 		Static71.removeSoft();
 		Static78.removeSoft();
@@ -314,7 +314,7 @@ public final class client extends GameShell {
 		MsiTypeList.removeSoft();
 		LightTypeList.removeSoft();
 		CursorTypeList.removeSoft();
-		Static192.removeSoft();
+		PlayerAppearance.removeSoft();
 		Component.removeSoft();
 		HintArrowManager.removeSoft();
 		Static251.removeSoft();
@@ -342,7 +342,7 @@ public final class client extends GameShell {
 		ClientScriptRunner.clear();
 		LocTypeList.clear();
 		NpcTypeList.clear();
-		Static176.clear();
+		ObjTypeList.clear();
 		Static10.clear();
 		Static247.clear();
 		Static53.clear();
@@ -501,7 +501,7 @@ public final class client extends GameShell {
 		NpcList.npcCount = 0;
 		for (i = 0; i < 2048; i++) {
 			PlayerList.players[i] = null;
-			PlayerList.PLAYER_APPEARANCE_PACKET[i] = null;
+			PlayerList.appearanceCache[i] = null;
 		}
 		for (i = 0; i < 32768; i++) {
 			NpcList.npcs[i] = null;
@@ -566,9 +566,9 @@ public final class client extends GameShell {
 			StockMarketManager.offers[i] = new StockMarketOffer();
 		}
 		for (i = 0; i < 25; i++) {
-			PlayerSkillXpTable.skillLevel[i] = 0;
-			PlayerSkillXpTable.skillBaseLevel[i] = 0;
-			PlayerSkillXpTable.skillExperience[i] = 0;
+			PlayerSkillXpTable.boostedLevels[i] = 0;
+			PlayerSkillXpTable.baseLevels[i] = 0;
+			PlayerSkillXpTable.experience[i] = 0;
 		}
 		if (GlRenderer.enabled) {
 			FogManager.setInstantFade();
@@ -636,7 +636,7 @@ public final class client extends GameShell {
 		Static238.method4142();
 		LocTypeList.clean();
 		NpcTypeList.method3706();
-		Static190.method3447();
+		ObjTypeList.clean();
 		SeqType.clearAnimationCache();
 		Static137.method2666();
 		Static269.method2221();
@@ -645,7 +645,7 @@ public final class client extends GameShell {
 		MsiTypeList.clean();
 		LightTypeList.clean();
 		CursorTypeList.clean();
-		Static279.method4662();
+		PlayerAppearance.clean();
 		Component.clean();
 		HintArrowManager.clean();
 		Static134.method2621();
@@ -986,13 +986,13 @@ public final class client extends GameShell {
 			FogManager.defaulFogColorRgb = 0;
 			PlayerAppearance.destinationBodyColors = PlayerAppearance.GAME1_DESTINATION_BODY_COLORS;
 			PlayerAppearance.destinationSkinColors = PlayerAppearance.GAME1_DESTINATION_SKIN_COLORS;
-			Static200.aShortArray65 = PlayerAppearance.GAME1_SOURCE_BODY_COLORS;
-			Static160.aShortArray41 = PlayerAppearance.GAME1_SOURCE_SKIN_COLORS;
+			PlayerAppearance.aShortArray65 = PlayerAppearance.GAME1_SOURCE_BODY_COLORS;
+			PlayerAppearance.aShortArray41 = PlayerAppearance.GAME1_SOURCE_SKIN_COLORS;
 		} else {
 			PlayerAppearance.destinationBodyColors = PlayerAppearance.GAME0_DESTINATION_BODY_COLORS;
-			Static160.aShortArray41 = PlayerAppearance.GAME0_SOURCE_SKIN_COLORS;
+			PlayerAppearance.aShortArray41 = PlayerAppearance.GAME0_SOURCE_SKIN_COLORS;
 			PlayerAppearance.destinationSkinColors = PlayerAppearance.GAME0_DESTINATION_SKIN_COLORS;
-			Static200.aShortArray65 = PlayerAppearance.GAME0_SOURCE_BODY_COLORS;
+			PlayerAppearance.aShortArray65 = PlayerAppearance.GAME0_SOURCE_BODY_COLORS;
 		}
 		alternatePort = worldListAlternatePort;
 		defaultPort = worldListDefaultPort;
@@ -1002,7 +1002,7 @@ public final class client extends GameShell {
 		port = worldListPort;
 
 		if ((SignLink.anInt5928 == 3 && modeWhere != 2)) {
-			Static125.worldId = worldListId;
+			Player.worldId = worldListId;
 		}
 
 		Keyboard.init(); // keyboard
@@ -1432,13 +1432,13 @@ public final class client extends GameShell {
 			js5Archive27.fetchAll();
 			percentage += js5Archive27.getPercentageComplete();
 			if (percentage >= 1100) {
-				Static226.init(js5Archive2);
+				ParamTypeList.init(js5Archive2);
 				FloorOverlayTypeList.init(js5Archive2);
 				FloorUnderlayTypeList.init(js5Archive2);
 				IdkTypeList.init(js5Archive7, js5Archive2);
 				LocTypeList.init(js5Archive16, js5Archive7);
 				NpcTypeList.init(js5Archive7, js5Archive18);
-				Static241.init(js5Archive19, Fonts.p11FullSoftware, js5Archive7);
+				ObjTypeList.init(js5Archive19, Fonts.p11FullSoftware, js5Archive7);
 				Static58.init(js5Archive2);
 				Static141.init(js5Archive1, js5Archive20, js5Archive0);
 				Static79.init(js5Archive2);

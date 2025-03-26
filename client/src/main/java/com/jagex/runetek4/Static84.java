@@ -46,7 +46,7 @@ public final class Static84 {
 						}
 					}
 				}
-				if (!ignored && Player.overrideChat == 0) {
+				if (!ignored && Player.inTutorialIsland == 0) {
 					Static270.CHAT_PACKET.offset = 0;
 					Protocol.inboundBuffer.gBytesRev(Static270.CHAT_PACKET.data, len);
 					Static270.CHAT_PACKET.offset = 0;
@@ -80,9 +80,9 @@ public final class Static84 {
 		if ((flags & 0x1) != 0) {
 			chatFlags = Protocol.inboundBuffer.gSmart1or2();
 			staffModLevel = Protocol.inboundBuffer.g1add();
-			player.method2686(staffModLevel, client.loop, chatFlags);
-			player.anInt3378 = client.loop + 300;
-			player.anInt3372 = Protocol.inboundBuffer.g1_alt3();
+			player.addHit(staffModLevel, client.loop, chatFlags);
+			player.hitpointsBarVisibleUntil = client.loop + 300;
+			player.hitpointsBar = Protocol.inboundBuffer.g1_alt3();
 		}
 		if ((flags & 0x8) != 0) {
 			chatFlags = Protocol.inboundBuffer.g2();
@@ -90,15 +90,15 @@ public final class Static84 {
 				chatFlags = -1;
 			}
 			staffModLevel = Protocol.inboundBuffer.g1();
-			Static186.method3415(staffModLevel, chatFlags, player);
+			Player.animate(staffModLevel, chatFlags, player);
 		}
 		if ((flags & 0x4) != 0) {
 			chatFlags = Protocol.inboundBuffer.g1add();
 			@Pc(309) byte[] local309 = new byte[chatFlags];
 			@Pc(314) Packet local314 = new Packet(local309);
 			Protocol.inboundBuffer.gdata(chatFlags, local309);
-			PlayerList.PLAYER_APPEARANCE_PACKET[arg1] = local314;
-			player.read(local314);
+			PlayerList.appearanceCache[arg1] = local314;
+			player.decodeAppearance(local314);
 		}
 		if ((flags & 0x2) != 0) {
 			player.faceEntity = Protocol.inboundBuffer.g2sub();
@@ -132,7 +132,7 @@ public final class Static84 {
 		if ((flags & 0x200) != 0) {
 			chatFlags = Protocol.inboundBuffer.gSmart1or2();
 			staffModLevel = Protocol.inboundBuffer.g1_alt3();
-			player.method2686(staffModLevel, client.loop, chatFlags);
+			player.addHit(staffModLevel, client.loop, chatFlags);
 		}
 		if ((flags & 0x800) != 0) {
 			chatFlags = Protocol.inboundBuffer.p1neg();
@@ -148,7 +148,7 @@ public final class Static84 {
 				local505[local510] = Protocol.inboundBuffer.g1add();
 				local508[local510] = Protocol.inboundBuffer.g2();
 			}
-			Static32.method865(local505, local502, player, local508);
+			Player.method865(local505, local502, player, local508);
 		}
 		if ((flags & 0x100) != 0) {
 			chatFlags = Protocol.inboundBuffer.g2le();
@@ -157,21 +157,21 @@ public final class Static84 {
 			}
 			staffModLevel = Protocol.inboundBuffer.p4rme();
 			@Pc(573) boolean local573 = true;
-			if (chatFlags != -1 && player.spotanimFrame != -1 && SeqTypeList.getAnimationSequence(Static34.method877(chatFlags).animationId).priority < SeqTypeList.getAnimationSequence(Static34.method877(player.spotanimFrame).animationId).priority) {
+			if (chatFlags != -1 && player.spotAnimId != -1 && SeqTypeList.getAnimationSequence(Static34.method877(chatFlags).animationId).priority < SeqTypeList.getAnimationSequence(Static34.method877(player.spotAnimId).animationId).priority) {
 				local573 = false;
 			}
 			if (local573) {
-				player.spotanimLastCycle = (staffModLevel & 0xFFFF) + client.loop;
+				player.spotAnimStart = (staffModLevel & 0xFFFF) + client.loop;
 				player.anInt3361 = 0;
 				player.spotanimId = 0;
-				player.spotanimFrame = chatFlags;
-				if (player.spotanimLastCycle > client.loop) {
+				player.spotAnimId = chatFlags;
+				if (player.spotAnimStart > client.loop) {
 					player.spotanimId = -1;
 				}
-				player.spotanimOffset = staffModLevel >> 16;
+				player.spotAnimY = staffModLevel >> 16;
 				player.anInt3418 = 1;
-				if (player.spotanimFrame != -1 && client.loop == player.spotanimLastCycle) {
-					local24 = Static34.method877(player.spotanimFrame).animationId;
+				if (player.spotAnimId != -1 && client.loop == player.spotAnimStart) {
+					local24 = Static34.method877(player.spotAnimId).animationId;
 					if (local24 != -1) {
 						@Pc(663) SeqType local663 = SeqTypeList.getAnimationSequence(local24);
 						if (local663 != null && local663.anIntArray473 != null) {
@@ -182,8 +182,8 @@ public final class Static84 {
 			}
 		}
 		if ((flags & 0x40) != 0) {
-			player.anInt3382 = Protocol.inboundBuffer.g2();
-			player.anInt3363 = Protocol.inboundBuffer.g2leadd();
+			player.faceX = Protocol.inboundBuffer.g2();
+			player.faceY = Protocol.inboundBuffer.g2leadd();
 		}
 	}
 

@@ -12,11 +12,6 @@ public final class Static18 {
 	@OriginalMember(owner = "client!bh", name = "M", descriptor = "Z")
 	public static boolean aBoolean40;
 
-	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(IB)I")
-	public static int method554(@OriginalArg(0) int arg0) {
-		return arg0 >>> 8;
-	}
-
 	@OriginalMember(owner = "client!bh", name = "a", descriptor = "(B)Lclient!ba;")
 	public static GWCWorld method556() {
 		Static51.anInt1682 = 0;

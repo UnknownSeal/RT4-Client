@@ -23,7 +23,7 @@ public final class Static142 {
 
 	@OriginalMember(owner = "runetek4.client!lc", name = "a", descriptor = "(IIIIIII)V")
 	public static void method2726(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
-		Static277.anInt5854 = 0;
+		OverHeadChat.sizes = 0;
 		@Pc(5) int local5;
 		@Pc(642) int local642;
 		@Pc(74) int local74;
@@ -114,19 +114,19 @@ public final class Static142 {
 				}
 				if (local17.chatMessage != null && (local5 >= PlayerList.playerCount || Chat.publicFilter == 0 || Chat.publicFilter == 3 || Chat.publicFilter == 1 && FriendList.contains(((Player) local17).username))) {
 					Static180.method3326(arg4 >> 1, arg3, local17, arg5, local17.height(), arg1 >> 1);
-					if (ClientScriptRunner.anInt1951 > -1 && Static277.anInt5854 < Static191.anInt4506) {
-						Static191.anIntArray389[Static277.anInt5854] = Fonts.b12Full.getStringWidth(local17.chatMessage) / 2;
-						Static191.anIntArray387[Static277.anInt5854] = Fonts.b12Full.characterDefaultHeight;
-						Static191.anIntArray385[Static277.anInt5854] = ClientScriptRunner.anInt1951;
-						Static191.anIntArray392[Static277.anInt5854] = Static16.anInt548;
-						Static191.anIntArray390[Static277.anInt5854] = local17.chatColor;
-						Static191.anIntArray391[Static277.anInt5854] = local17.chatEffect;
-						Static191.anIntArray384[Static277.anInt5854] = local17.chatLoops;
-						Static191.aClass100Array132[Static277.anInt5854] = local17.chatMessage;
-						Static277.anInt5854++;
+					if (ClientScriptRunner.anInt1951 > -1 && OverHeadChat.sizes < OverHeadChat.capacity) {
+						OverHeadChat.anIntArray389[OverHeadChat.sizes] = Fonts.b12Full.getStringWidth(local17.chatMessage) / 2;
+						OverHeadChat.anIntArray387[OverHeadChat.sizes] = Fonts.b12Full.characterDefaultHeight;
+						OverHeadChat.anIntArray385[OverHeadChat.sizes] = ClientScriptRunner.anInt1951;
+						OverHeadChat.anIntArray392[OverHeadChat.sizes] = Static16.anInt548;
+						OverHeadChat.colors[OverHeadChat.sizes] = local17.chatColor;
+						OverHeadChat.effects[OverHeadChat.sizes] = local17.chatEffect;
+						OverHeadChat.loops[OverHeadChat.sizes] = local17.chatLoops;
+						OverHeadChat.messages[OverHeadChat.sizes] = local17.chatMessage;
+						OverHeadChat.sizes++;
 					}
 				}
-				if (local17.anInt3378 > client.loop) {
+				if (local17.hitpointsBarVisibleUntil > client.loop) {
 					@Pc(508) Sprite local508 = Static116.aClass3_Sub2_Sub1Array3[0];
 					@Pc(512) Sprite local512 = Static116.aClass3_Sub2_Sub1Array3[1];
 					if (local17 instanceof Npc) {
@@ -156,7 +156,7 @@ public final class Static142 {
 						local161 = ClientScriptRunner.anInt1951 + arg2 - (local508.width >> 1);
 						local359 = Static16.anInt548 + arg0 - 3;
 						local508.render(local161, local359);
-						local639 = local508.width * local17.anInt3372 / 255;
+						local639 = local508.width * local17.hitpointsBar / 255;
 						local642 = local508.height;
 						if (GlRenderer.enabled) {
 							GlRaster.method1183(local161, local359, local161 + local639, local359 + local642);
@@ -172,7 +172,7 @@ public final class Static142 {
 					}
 				}
 				for (local74 = 0; local74 < 4; local74++) {
-					if (local17.anIntArray319[local74] > client.loop) {
+					if (local17.hitVisibleUntil[local74] > client.loop) {
 						if (local17 instanceof Npc) {
 							@Pc(725) Npc local725 = (Npc) local17;
 							@Pc(728) NpcType local728 = local725.type;
@@ -197,47 +197,47 @@ public final class Static142 {
 								Static16.anInt548 -= 10;
 								ClientScriptRunner.anInt1951 += 15;
 							}
-							Static213.aClass3_Sub2_Sub1Array8[local17.anIntArray321[local74]].render(arg2 + ClientScriptRunner.anInt1951 - 12, arg0 + Static16.anInt548 - 12);
-							Fonts.p11Full.renderCenter(JString.parseInt(local17.anIntArray322[local74]), ClientScriptRunner.anInt1951 + arg2 - 1, Static16.anInt548 + 3 + arg0, 16777215, 0);
+							Static213.aClass3_Sub2_Sub1Array8[local17.hitTypes[local74]].render(arg2 + ClientScriptRunner.anInt1951 - 12, arg0 + Static16.anInt548 - 12);
+							Fonts.p11Full.renderCenter(JString.parseInt(local17.hitDamages[local74]), ClientScriptRunner.anInt1951 + arg2 - 1, Static16.anInt548 + 3 + arg0, 16777215, 0);
 						}
 					}
 				}
 			}
 		}
-		for (local5 = 0; local5 < Static277.anInt5854; local5++) {
-			local74 = Static191.anIntArray392[local5];
-			@Pc(859) int local859 = Static191.anIntArray385[local5];
-			local310 = Static191.anIntArray387[local5];
-			local265 = Static191.anIntArray389[local5];
+		for (local5 = 0; local5 < OverHeadChat.sizes; local5++) {
+			local74 = OverHeadChat.anIntArray392[local5];
+			@Pc(859) int local859 = OverHeadChat.anIntArray385[local5];
+			local310 = OverHeadChat.anIntArray387[local5];
+			local265 = OverHeadChat.anIntArray389[local5];
 			@Pc(869) boolean local869 = true;
 			while (local869) {
 				local869 = false;
 				for (local359 = 0; local359 < local5; local359++) {
-					if (Static191.anIntArray392[local359] - Static191.anIntArray387[local359] < local74 + 2 && local74 - local310 < Static191.anIntArray392[local359] - -2 && local859 - local265 < Static191.anIntArray385[local359] + Static191.anIntArray389[local359] && Static191.anIntArray385[local359] - Static191.anIntArray389[local359] < local265 + local859 && Static191.anIntArray392[local359] - Static191.anIntArray387[local359] < local74) {
-						local74 = Static191.anIntArray392[local359] - Static191.anIntArray387[local359];
+					if (OverHeadChat.anIntArray392[local359] - OverHeadChat.anIntArray387[local359] < local74 + 2 && local74 - local310 < OverHeadChat.anIntArray392[local359] - -2 && local859 - local265 < OverHeadChat.anIntArray385[local359] + OverHeadChat.anIntArray389[local359] && OverHeadChat.anIntArray385[local359] - OverHeadChat.anIntArray389[local359] < local265 + local859 && OverHeadChat.anIntArray392[local359] - OverHeadChat.anIntArray387[local359] < local74) {
+						local74 = OverHeadChat.anIntArray392[local359] - OverHeadChat.anIntArray387[local359];
 						local869 = true;
 					}
 				}
 			}
-			ClientScriptRunner.anInt1951 = Static191.anIntArray385[local5];
-			Static16.anInt548 = Static191.anIntArray392[local5] = local74;
-			@Pc(962) JString local962 = Static191.aClass100Array132[local5];
+			ClientScriptRunner.anInt1951 = OverHeadChat.anIntArray385[local5];
+			Static16.anInt548 = OverHeadChat.anIntArray392[local5] = local74;
+			@Pc(962) JString local962 = OverHeadChat.messages[local5];
 			if (Static79.chatEffectsDisabled == 0) {
 				local639 = 16776960;
-				if (Static191.anIntArray390[local5] < 6) {
-					local639 = Static16.CHAT_COLORS[Static191.anIntArray390[local5]];
+				if (OverHeadChat.colors[local5] < 6) {
+					local639 = OverHeadChat.CHAT_COLORS[OverHeadChat.colors[local5]];
 				}
-				if (Static191.anIntArray390[local5] == 6) {
+				if (OverHeadChat.colors[local5] == 6) {
 					local639 = Static136.anInt3325 % 20 >= 10 ? 16776960 : 16711680;
 				}
-				if (Static191.anIntArray390[local5] == 7) {
+				if (OverHeadChat.colors[local5] == 7) {
 					local639 = Static136.anInt3325 % 20 < 10 ? 255 : 65535;
 				}
-				if (Static191.anIntArray390[local5] == 8) {
+				if (OverHeadChat.colors[local5] == 8) {
 					local639 = Static136.anInt3325 % 20 >= 10 ? 8454016 : 45056;
 				}
-				if (Static191.anIntArray390[local5] == 9) {
-					local642 = 150 - Static191.anIntArray384[local5];
+				if (OverHeadChat.colors[local5] == 9) {
+					local642 = 150 - OverHeadChat.loops[local5];
 					if (local642 < 50) {
 						local639 = local642 * 1280 + 16711680;
 					} else if (local642 < 100) {
@@ -246,8 +246,8 @@ public final class Static142 {
 						local639 = local642 * 5 + 65280 - 500;
 					}
 				}
-				if (Static191.anIntArray390[local5] == 10) {
-					local642 = 150 - Static191.anIntArray384[local5];
+				if (OverHeadChat.colors[local5] == 10) {
+					local642 = 150 - OverHeadChat.loops[local5];
 					if (local642 < 50) {
 						local639 = local642 * 5 + 16711680;
 					} else if (local642 < 100) {
@@ -256,8 +256,8 @@ public final class Static142 {
 						local639 = local642 * 327680 + 255 + 500 - local642 * 5 - 32768000;
 					}
 				}
-				if (Static191.anIntArray390[local5] == 11) {
-					local642 = 150 - Static191.anIntArray384[local5];
+				if (OverHeadChat.colors[local5] == 11) {
+					local642 = 150 - OverHeadChat.loops[local5];
 					if (local642 < 50) {
 						local639 = 16777215 - local642 * 327685;
 					} else if (local642 < 100) {
@@ -266,20 +266,20 @@ public final class Static142 {
 						local639 = 16777215 + 32768000 - local642 * 327680;
 					}
 				}
-				if (Static191.anIntArray391[local5] == 0) {
+				if (OverHeadChat.effects[local5] == 0) {
 					Fonts.b12Full.renderCenter(local962, ClientScriptRunner.anInt1951 + arg2, arg0 + Static16.anInt548, local639, 0);
 				}
-				if (Static191.anIntArray391[local5] == 1) {
+				if (OverHeadChat.effects[local5] == 1) {
 					Fonts.b12Full.renderWave(local962, arg2 + ClientScriptRunner.anInt1951, Static16.anInt548 + arg0, local639, Static136.anInt3325);
 				}
-				if (Static191.anIntArray391[local5] == 2) {
+				if (OverHeadChat.effects[local5] == 2) {
 					Fonts.b12Full.renderWave2(local962, arg2 + ClientScriptRunner.anInt1951, arg0 - -Static16.anInt548, local639, Static136.anInt3325);
 				}
-				if (Static191.anIntArray391[local5] == 3) {
-					Fonts.b12Full.renderShake(local962, arg2 + ClientScriptRunner.anInt1951, Static16.anInt548 + arg0, local639, Static136.anInt3325, 150 - Static191.anIntArray384[local5]);
+				if (OverHeadChat.effects[local5] == 3) {
+					Fonts.b12Full.renderShake(local962, arg2 + ClientScriptRunner.anInt1951, Static16.anInt548 + arg0, local639, Static136.anInt3325, 150 - OverHeadChat.loops[local5]);
 				}
-				if (Static191.anIntArray391[local5] == 4) {
-					local642 = (150 - Static191.anIntArray384[local5]) * (Fonts.b12Full.getStringWidth(local962) + 100) / 150;
+				if (OverHeadChat.effects[local5] == 4) {
+					local642 = (150 - OverHeadChat.loops[local5]) * (Fonts.b12Full.getStringWidth(local962) + 100) / 150;
 					if (GlRenderer.enabled) {
 						GlRaster.method1183(ClientScriptRunner.anInt1951 + arg2 - 50, arg0, ClientScriptRunner.anInt1951 + arg2 + 50, arg4 + arg0);
 					} else {
@@ -292,9 +292,9 @@ public final class Static142 {
 						SoftwareRaster.setClip(arg2, arg0, arg2 + arg1, arg0 + arg4);
 					}
 				}
-				if (Static191.anIntArray391[local5] == 5) {
+				if (OverHeadChat.effects[local5] == 5) {
 					@Pc(1372) int local1372 = 0;
-					local642 = 150 - Static191.anIntArray384[local5];
+					local642 = 150 - OverHeadChat.loops[local5];
 					if (GlRenderer.enabled) {
 						GlRaster.method1183(arg2, Static16.anInt548 + arg0 - Fonts.b12Full.characterDefaultHeight - 1, arg1 + arg2, arg0 + Static16.anInt548 + 5);
 					} else {

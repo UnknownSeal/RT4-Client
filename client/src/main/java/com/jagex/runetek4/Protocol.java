@@ -106,7 +106,7 @@ public class Protocol {
                         PlayerList.playerIds[PlayerList.playerCount++] = local75;
                         local79.cycle = client.loop;
                         local153 = inboundBuffer.gBit(3);
-                        local79.method2684(1, local153);
+                        local79.move(1, local153);
                         local163 = inboundBuffer.gBit(1);
                         if (local163 == 1) {
                             Static44.entityUpdateIds[Static116.entityUpdateCount++] = local75;
@@ -116,12 +116,12 @@ public class Protocol {
                         local79.cycle = client.loop;
                         if (inboundBuffer.gBit(1) == 1) {
                             local153 = inboundBuffer.gBit(3);
-                            local79.method2684(2, local153);
+                            local79.move(2, local153);
                             local163 = inboundBuffer.gBit(3);
-                            local79.method2684(2, local163);
+                            local79.move(2, local163);
                         } else {
                             local153 = inboundBuffer.gBit(3);
-                            local79.method2684(0, local153);
+                            local79.move(0, local153);
                         }
                         local153 = inboundBuffer.gBit(1);
                         if (local153 == 1) {
@@ -241,7 +241,7 @@ public class Protocol {
                         break;
                     }
                 }
-                if (!ignored && Player.overrideChat == 0) {
+                if (!ignored && Player.inTutorialIsland == 0) {
                     Chat.addMessage(message2, 4, LocalizedText.TRADEREQ);
                 }
             } else if (message.endsWith(CHALREQ)) {
@@ -254,7 +254,7 @@ public class Protocol {
                         break;
                     }
                 }
-                if (!ignored && Player.overrideChat == 0) {
+                if (!ignored && Player.inTutorialIsland == 0) {
                     local506 = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
                     Chat.addMessage(message2, 8, local506);
                 }
@@ -268,7 +268,7 @@ public class Protocol {
                         break;
                     }
                 }
-                if (!ignored && Player.overrideChat == 0) {
+                if (!ignored && Player.inTutorialIsland == 0) {
                     Chat.addMessage(message2, 10, JString.EMPTY);
                 }
             } else if (message.endsWith(Static141.CLAN)) {
@@ -276,12 +276,12 @@ public class Protocol {
                 Chat.addMessage(JString.EMPTY, 11, message2);
             } else if (message.endsWith(Static138.TRADE)) {
                 message2 = message.substring(message.indexOf(Static138.TRADE), 0);
-                if (Player.overrideChat == 0) {
+                if (Player.inTutorialIsland == 0) {
                     Chat.addMessage(JString.EMPTY, 12, message2);
                 }
             } else if (message.endsWith(Static244.ASSIST)) {
                 message2 = message.substring(message.indexOf(Static244.ASSIST), 0);
-                if (Player.overrideChat == 0) {
+                if (Player.inTutorialIsland == 0) {
                     Chat.addMessage(JString.EMPTY, 13, message2);
                 }
             } else if (message.endsWith(DUELSTAKE)) {
@@ -294,7 +294,7 @@ public class Protocol {
                         break;
                     }
                 }
-                if (!ignored && Player.overrideChat == 0) {
+                if (!ignored && Player.inTutorialIsland == 0) {
                     Chat.addMessage(message2, 14, JString.EMPTY);
                 }
             } else if (message.endsWith(Static112.DUELFRIEND)) {
@@ -307,7 +307,7 @@ public class Protocol {
                         break;
                     }
                 }
-                if (!ignored && Player.overrideChat == 0) {
+                if (!ignored && Player.inTutorialIsland == 0) {
                     Chat.addMessage(message2, 15, JString.EMPTY);
                 }
             } else if (message.endsWith(Static217.CLANREQ)) {
@@ -320,7 +320,7 @@ public class Protocol {
                         break;
                     }
                 }
-                if (!ignored && Player.overrideChat == 0) {
+                if (!ignored && Player.inTutorialIsland == 0) {
                     Chat.addMessage(message2, 16, JString.EMPTY);
                 }
             } else if (message.endsWith(Static164.ALLYREQ)) {
@@ -333,7 +333,7 @@ public class Protocol {
                         break;
                     }
                 }
-                if (!ignored && Player.overrideChat == 0) {
+                if (!ignored && Player.inTutorialIsland == 0) {
                     local506 = message.substring(message.length() - 9, message.indexOf(JString.COLON_SIGN) + 1);
                     Chat.addMessage(message2, 21, local506);
                 }
@@ -414,7 +414,7 @@ public class Protocol {
                     }
                     break;
                 }
-                if (!local910 && Player.overrideChat == 0) {
+                if (!local910 && Player.inTutorialIsland == 0) {
                     Chat.recentMessages[Chat.messageCounter] = local922;
                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
                     @Pc(999) JString local999 = QuickChatPhraseTypeList.list(local916).method770(inboundBuffer);
@@ -461,7 +461,7 @@ public class Protocol {
                     local1158[local1160].world = inboundBuffer.g2();
                     local1158[local1160].rank = inboundBuffer.g1s();
                     local1158[local1160].worldName = inboundBuffer.gjstr();
-                    if (Static101.aLong98 == local1158[local1160].nodeId) {
+                    if (Player.name37 == local1158[local1160].nodeId) {
                         ClanChat.rank = local1158[local1160].rank;
                     }
                 }
@@ -659,21 +659,21 @@ public class Protocol {
                                         slot = -1;
                                     }
                                     local1245 = true;
-                                    if (slot != -1 && local1894.spotanimFrame != -1 && SeqTypeList.getAnimationSequence(Static34.method877(slot).animationId).priority < SeqTypeList.getAnimationSequence(Static34.method877(local1894.spotanimFrame).animationId).priority) {
+                                    if (slot != -1 && local1894.spotAnimId != -1 && SeqTypeList.getAnimationSequence(Static34.method877(slot).animationId).priority < SeqTypeList.getAnimationSequence(Static34.method877(local1894.spotAnimId).animationId).priority) {
                                         local1245 = false;
                                     }
                                     if (local1245) {
                                         local1894.anInt3361 = 0;
-                                        local1894.spotanimFrame = slot;
-                                        local1894.spotanimLastCycle = client.loop + ii;
+                                        local1894.spotAnimId = slot;
+                                        local1894.spotAnimStart = client.loop + ii;
                                         local1894.spotanimId = 0;
-                                        if (local1894.spotanimLastCycle > client.loop) {
+                                        if (local1894.spotAnimStart > client.loop) {
                                             local1894.spotanimId = -1;
                                         }
-                                        local1894.spotanimOffset = xp;
+                                        local1894.spotAnimY = xp;
                                         local1894.anInt3418 = 1;
-                                        if (local1894.spotanimFrame != -1 && client.loop == local1894.spotanimLastCycle) {
-                                            j = Static34.method877(local1894.spotanimFrame).animationId;
+                                        if (local1894.spotAnimId != -1 && client.loop == local1894.spotAnimStart) {
+                                            j = Static34.method877(local1894.spotAnimId).animationId;
                                             if (j != -1) {
                                                 local1994 = SeqTypeList.getAnimationSequence(j);
                                                 if (local1994 != null && local1994.anIntArray473 != null) {
@@ -696,24 +696,24 @@ public class Protocol {
                                         slot = -1;
                                     }
                                     local1245 = true;
-                                    if (slot != -1 && local2033.spotanimFrame != -1 && SeqTypeList.getAnimationSequence(Static34.method877(slot).animationId).priority < SeqTypeList.getAnimationSequence(Static34.method877(local2033.spotanimFrame).animationId).priority) {
+                                    if (slot != -1 && local2033.spotAnimId != -1 && SeqTypeList.getAnimationSequence(Static34.method877(slot).animationId).priority < SeqTypeList.getAnimationSequence(Static34.method877(local2033.spotAnimId).animationId).priority) {
                                         local1245 = false;
                                     }
                                     if (local1245) {
-                                        local2033.spotanimLastCycle = ii + client.loop;
-                                        local2033.spotanimOffset = xp;
-                                        local2033.spotanimFrame = slot;
-                                        if (local2033.spotanimFrame == 65535) {
-                                            local2033.spotanimFrame = -1;
+                                        local2033.spotAnimStart = ii + client.loop;
+                                        local2033.spotAnimY = xp;
+                                        local2033.spotAnimId = slot;
+                                        if (local2033.spotAnimId == 65535) {
+                                            local2033.spotAnimId = -1;
                                         }
                                         local2033.anInt3418 = 1;
                                         local2033.anInt3361 = 0;
                                         local2033.spotanimId = 0;
-                                        if (local2033.spotanimLastCycle > client.loop) {
+                                        if (local2033.spotAnimStart > client.loop) {
                                             local2033.spotanimId = -1;
                                         }
-                                        if (local2033.spotanimFrame != -1 && local2033.spotanimLastCycle == client.loop) {
-                                            j = Static34.method877(local2033.spotanimFrame).animationId;
+                                        if (local2033.spotAnimId != -1 && local2033.spotAnimStart == client.loop) {
+                                            j = Static34.method877(local2033.spotAnimId).animationId;
                                             if (j != -1) {
                                                 local1994 = SeqTypeList.getAnimationSequence(j);
                                                 if (local1994 != null && local1994.anIntArray473 != null) {
@@ -753,12 +753,12 @@ public class Protocol {
                         ii = inboundBuffer.g1add();
                         xp = inboundBuffer.g4rme();
                         world = inboundBuffer.g1();
-                        PlayerSkillXpTable.skillExperience[world] = xp;
-                        PlayerSkillXpTable.skillLevel[world] = ii;
-                        PlayerSkillXpTable.skillBaseLevel[world] = 1;
+                        PlayerSkillXpTable.experience[world] = xp;
+                        PlayerSkillXpTable.boostedLevels[world] = ii;
+                        PlayerSkillXpTable.baseLevels[world] = 1;
                         for (slot = 0; slot < 98; slot++) {
-                            if (PlayerSkillXpTable.levelExperience[slot] <= xp) {
-                                PlayerSkillXpTable.skillBaseLevel[world] = slot + 2;
+                            if (PlayerSkillXpTable.xpLevelLookup[slot] <= xp) {
+                                PlayerSkillXpTable.baseLevels[world] = slot + 2;
                             }
                         }
                         PlayerSkillXpTable.updatedStats[PlayerSkillXpTable.updatedStatsWriterIndex++ & 0x1F] = world;
@@ -912,7 +912,7 @@ public class Protocol {
                                 local908--;
                                 @Pc(2961) boolean local2961 = true;
                                 for (local916 = 0; local916 < local908; local916++) {
-                                    if (FriendList.friendWorlds[local916] != Static125.worldId && Static125.worldId == FriendList.friendWorlds[local916 + 1] || FriendList.friendWorlds[local916] == 0 && FriendList.friendWorlds[local916 + 1] != 0) {
+                                    if (FriendList.friendWorlds[local916] != Player.worldId && Player.worldId == FriendList.friendWorlds[local916 + 1] || FriendList.friendWorlds[local916] == 0 && FriendList.friendWorlds[local916 + 1] != 0) {
                                         local2961 = false;
                                         local3002 = FriendList.friendWorlds[local916];
                                         FriendList.friendWorlds[local916] = FriendList.friendWorlds[local916 + 1];
@@ -998,7 +998,7 @@ public class Protocol {
                                 }
                                 break;
                             }
-                            if (!local3263 && Player.overrideChat == 0) {
+                            if (!local3263 && Player.inTutorialIsland == 0) {
                                 Chat.recentMessages[Chat.messageCounter] = local3270;
                                 Chat.messageCounter = (Chat.messageCounter + 1) % 100;
                                 local3020 = QuickChatPhraseTypeList.list(j).method770(inboundBuffer);
@@ -1089,7 +1089,7 @@ public class Protocol {
                             } else if (opcode == 234) {
                                 // UPDATE_RUNENERGY
                                 InterfaceList.redrawActiveInterfaces();
-                                Player.energy = inboundBuffer.g1();
+                                Player.runEnergy = inboundBuffer.g1();
                                 InterfaceList.miscTransmitAt = InterfaceList.transmitTimer;
                                 opcode = -1;
                                 return true;
@@ -1306,7 +1306,7 @@ public class Protocol {
                                     }
                                     local3002++;
                                 }
-                                if (!local4425 && Player.overrideChat == 0) {
+                                if (!local4425 && Player.inTutorialIsland == 0) {
                                     Chat.recentMessages[Chat.messageCounter] = local4431;
                                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
                                     @Pc(4518) JString local4518 = Font.escape(Static65.method1497(inboundBuffer).encodeMessage());
@@ -1352,7 +1352,7 @@ public class Protocol {
                                     }
                                     local4634++;
                                 }
-                                if (!local4632 && Player.overrideChat == 0) {
+                                if (!local4632 && Player.inTutorialIsland == 0) {
                                     Chat.recentMessages[Chat.messageCounter] = local4626;
                                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
                                     local3038 = Font.escape(Static65.method1497(inboundBuffer).encodeMessage());
@@ -1553,7 +1553,7 @@ public class Protocol {
                                                 ClanChat.members[j].world = world;
                                                 ClanChat.members[j].rank = local5325;
                                                 ClanChat.members[j].worldName = local506;
-                                                if (username2 == Static101.aLong98) {
+                                                if (username2 == Player.name37) {
                                                     ClanChat.rank = local5325;
                                                 }
                                                 ClanChat.transmitAt = InterfaceList.transmitTimer;
@@ -1575,7 +1575,7 @@ public class Protocol {
                                             ClanChat.members = new ClanMember[100];
                                         }
                                         ClanChat.members[j + 1] = local5347;
-                                        if (Static101.aLong98 == username2) {
+                                        if (Player.name37 == username2) {
                                             ClanChat.rank = local5325;
                                         }
                                         ClanChat.size++;
@@ -1733,7 +1733,7 @@ public class Protocol {
                         NpcList.npcIds[NpcList.npcCount++] = local61;
                         local65.cycle = client.loop;
                         local139 = inboundBuffer.gBit(3);
-                        local65.method2684(1, local139);
+                        local65.move(1, local139);
                         local149 = inboundBuffer.gBit(1);
                         if (local149 == 1) {
                             Static44.entityUpdateIds[Static116.entityUpdateCount++] = local61;
@@ -1743,12 +1743,12 @@ public class Protocol {
                         local65.cycle = client.loop;
                         if (inboundBuffer.gBit(1) == 1) {
                             local139 = inboundBuffer.gBit(3);
-                            local65.method2684(2, local139);
+                            local65.move(2, local139);
                             local149 = inboundBuffer.gBit(3);
-                            local65.method2684(2, local149);
+                            local65.move(2, local149);
                         } else {
                             local139 = inboundBuffer.gBit(3);
-                            local65.method2684(0, local139);
+                            local65.move(0, local139);
                         }
                         local139 = inboundBuffer.gBit(1);
                         if (local139 == 1) {

@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
+import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -123,11 +124,11 @@ public class WorldList {
         } else if (SignLink.anInt5928 == 1 || SignLink.anInt5928 == 2 || client.modeWhere == 2) {
             @Pc(31) byte[] local31 = local3.hostname.method3148();
             client.hostname = new String(local31, 0, local31.length);
-            Static125.worldId = local3.id;
+            Player.worldId = local3.id;
             if (client.modeWhere != 0) {
-                client.defaultPort = Static125.worldId + 40000;
+                client.defaultPort = Player.worldId + 40000;
                 client.port = client.defaultPort;
-                client.alternatePort = Static125.worldId + 50000;
+                client.alternatePort = Player.worldId + 50000;
             }
             return true;
         } else {

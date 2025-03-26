@@ -20,7 +20,7 @@ public final class PcmResampler {
 	@OriginalMember(owner = "runetek4.client!vj", name = "<init>", descriptor = "(II)V")
 	public PcmResampler(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		if (arg1 != arg0) {
-			@Pc(12) int local12 = Static180.method3330(arg1, arg0);
+			@Pc(12) int local12 = gcd(arg1, arg0);
 			@Pc(16) int local16 = arg1 / local12;
 			this.outputRate = local16;
 			@Pc(23) int local23 = arg0 / local12;
@@ -50,6 +50,20 @@ public final class PcmResampler {
 				}
 			}
 		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(III)I")
+	public static int gcd(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
+		if (arg0 > 22050) {
+			arg1 = arg0;
+			arg0 = 22050;
+		}
+		while (arg0 != 0) {
+			@Pc(21) int local21 = arg1 % arg0;
+			arg1 = arg0;
+			arg0 = local21;
+		}
+		return arg1;
 	}
 
 	@OriginalMember(owner = "runetek4.client!vj", name = "a", descriptor = "([BB)[B")
@@ -88,7 +102,7 @@ public final class PcmResampler {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vj", name = "a", descriptor = "(IB)I")
-	public final int method4524(@OriginalArg(0) int arg0) {
+	public final int scaleRate(@OriginalArg(0) int arg0) {
 		if (this.anIntArrayArray40 != null) {
 			arg0 = (int) ((long) this.outputRate * (long) arg0 / (long) this.inputRate);
 		}
@@ -96,7 +110,7 @@ public final class PcmResampler {
 	}
 
 	@OriginalMember(owner = "runetek4.client!vj", name = "a", descriptor = "(ZI)I")
-	public final int method4525(@OriginalArg(1) int arg0) {
+	public final int scalePosition(@OriginalArg(1) int arg0) {
 		if (this.anIntArrayArray40 != null) {
 			arg0 = (int) ((long) this.outputRate * (long) arg0 / (long) this.inputRate) + 6;
 		}

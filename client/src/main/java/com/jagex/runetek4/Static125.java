@@ -11,10 +11,4 @@ public final class Static125 {
 	@OriginalMember(owner = "runetek4.client!jl", name = "G", descriptor = "Lclient!n;")
 	public static final NodeCache varbitDefinitionCache = new NodeCache(64);
 
-	@OriginalMember(owner = "runetek4.client!jl", name = "H", descriptor = "I")
-	public static int worldId = -1;
-
-	@OriginalMember(owner = "runetek4.client!jl", name = "J", descriptor = "I")
-	public static int anInt3104 = 127;
-
 }

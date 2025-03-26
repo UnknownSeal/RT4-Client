@@ -110,7 +110,7 @@ public final class MixerPcmStream extends PcmStream {
 	@OriginalMember(owner = "runetek4.client!ei", name = "c", descriptor = "([III)V")
 	private void method1346(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		for (@Pc(5) PcmStream local5 = (PcmStream) this.aClass69_43.head(); local5 != null; local5 = (PcmStream) this.aClass69_43.next()) {
-			local5.method4405(arg0, arg1, arg2);
+			local5.readIfActive(arg0, arg1, arg2);
 		}
 	}
 

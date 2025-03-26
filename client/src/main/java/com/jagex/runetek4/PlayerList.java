@@ -10,10 +10,13 @@ public class PlayerList {
     public static final Player[] players = new Player[2048];
 
     @OriginalMember(owner = "client!ja", name = "l", descriptor = "[Lclient!wa;")
-    public static final Packet[] PLAYER_APPEARANCE_PACKET = new Packet[2048];
+    public static final Packet[] appearanceCache = new Packet[2048];
 
     @OriginalMember(owner = "client!ib", name = "f", descriptor = "[I")
     public static final int[] playerIds = new int[2048];
+
+    @OriginalMember(owner = "runetek4.client!ke", name = "Y", descriptor = "[I")
+    public static final int[] anIntArray309 = new int[] { 1, 4 };
 
     @OriginalMember(owner = "client!bf", name = "E", descriptor = "I")
     public static int selfId = -1;
@@ -23,6 +26,12 @@ public class PlayerList {
 
     @OriginalMember(owner = "client!vl", name = "j", descriptor = "I")
     public static int playerCount = 0;
+
+    @OriginalMember(owner = "runetek4.client!i", name = "Ub", descriptor = "[Lclient!na;")
+    public static JString[] playerNames;
+
+    @OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "[Lclient!na;")
+    public static JString[] playerNames2;
 
     @OriginalMember(owner = "client!fk", name = "b", descriptor = "(I)V")
     public static void updatePlayers() {

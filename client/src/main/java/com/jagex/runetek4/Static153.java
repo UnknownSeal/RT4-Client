@@ -14,9 +14,6 @@ public final class Static153 {
 	@OriginalMember(owner = "runetek4.client!mc", name = "S", descriptor = "Lclient!mm;")
 	public static SoftwareSprite aClass3_Sub2_Sub1_Sub1_2;
 
-	@OriginalMember(owner = "runetek4.client!mc", name = "ab", descriptor = "[I")
-	public static final int[] anIntArray351 = new int[] { 7, 8, 9, 10, 11, 12, 13, 15 };
-
 	@OriginalMember(owner = "runetek4.client!mc", name = "tb", descriptor = "S")
 	public static short aShort22 = 1;
 

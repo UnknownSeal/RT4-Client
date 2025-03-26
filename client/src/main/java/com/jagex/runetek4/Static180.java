@@ -4,7 +4,6 @@ import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public final class Static180 {
 
@@ -24,17 +23,4 @@ public final class Static180 {
 		Static172.gameDefinitionsJs5 = arg0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(III)I")
-	public static int method3330(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		if (arg0 > 22050) {
-			arg1 = arg0;
-			arg0 = 22050;
-		}
-		while (arg0 != 0) {
-			@Pc(21) int local21 = arg1 % arg0;
-			arg1 = arg0;
-			arg0 = local21;
-		}
-		return arg1;
-	}
 }

@@ -21,8 +21,8 @@ public final class Static225 {
 					if (PlayerList.players[index] == null) {
 						PlayerList.players[index] = new Player();
 						local27 = true;
-						if (PlayerList.PLAYER_APPEARANCE_PACKET[index] != null) {
-							PlayerList.players[index].read(PlayerList.PLAYER_APPEARANCE_PACKET[index]);
+						if (PlayerList.appearanceCache[index] != null) {
+							PlayerList.players[index].decodeAppearance(PlayerList.appearanceCache[index]);
 						}
 					}
 					PlayerList.playerIds[PlayerList.playerCount++] = index;

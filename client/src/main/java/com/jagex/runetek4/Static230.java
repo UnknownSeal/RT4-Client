@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -8,8 +9,8 @@ public final class Static230 {
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "c", descriptor = "(I)V")
 	public static void clear() {
-		Static250.aClass99_33.clean();
-		Static139.aClass99_21.clean();
+		PlayerAppearance.bodyModels.clean();
+		PlayerAppearance.headModels.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(IIBIII)V")

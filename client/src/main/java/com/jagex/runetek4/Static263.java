@@ -4,9 +4,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static263 {
 
-	@OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "[Lclient!na;")
-	public static JString[] aClass100Array174;
-
 	@OriginalMember(owner = "runetek4.client!vg", name = "b", descriptor = "S")
 	public static short aShort30 = 256;
 

@@ -30,14 +30,14 @@ public final class Static234 {
 			if ((local18 & 0x40) != 0) {
 				local43 = Protocol.inboundBuffer.g1();
 				info = Protocol.inboundBuffer.p1neg();
-				local14.method2686(info, client.loop, local43);
-				local14.anInt3378 = client.loop + 300;
-				local14.anInt3372 = Protocol.inboundBuffer.g1_alt3();
+				local14.addHit(info, client.loop, local43);
+				local14.hitpointsBarVisibleUntil = client.loop + 300;
+				local14.hitpointsBar = Protocol.inboundBuffer.g1_alt3();
 			}
 			if ((local18 & 0x2) != 0) {
 				local43 = Protocol.inboundBuffer.p1neg();
 				info = Protocol.inboundBuffer.g1_alt3();
-				local14.method2686(info, client.loop, local43);
+				local14.addHit(info, client.loop, local43);
 			}
 			if ((local18 & 0x10) != 0) {
 				local43 = Protocol.inboundBuffer.g2();
@@ -60,21 +60,21 @@ public final class Static234 {
 				}
 				info = Protocol.inboundBuffer.g4me();
 				@Pc(147) boolean local147 = true;
-				if (local43 != -1 && local14.spotanimFrame != -1 && SeqTypeList.getAnimationSequence(Static34.method877(local43).animationId).priority < SeqTypeList.getAnimationSequence(Static34.method877(local14.spotanimFrame).animationId).priority) {
+				if (local43 != -1 && local14.spotAnimId != -1 && SeqTypeList.getAnimationSequence(Static34.method877(local43).animationId).priority < SeqTypeList.getAnimationSequence(Static34.method877(local14.spotAnimId).animationId).priority) {
 					local147 = false;
 				}
 				if (local147) {
-					local14.spotanimFrame = local43;
-					local14.spotanimLastCycle = (info & 0xFFFF) + client.loop;
+					local14.spotAnimId = local43;
+					local14.spotAnimStart = (info & 0xFFFF) + client.loop;
 					local14.anInt3361 = 0;
 					local14.spotanimId = 0;
-					local14.spotanimOffset = info >> 16;
+					local14.spotAnimY = info >> 16;
 					local14.anInt3418 = 1;
-					if (local14.spotanimLastCycle > client.loop) {
+					if (local14.spotAnimStart > client.loop) {
 						local14.spotanimId = -1;
 					}
-					if (local14.spotanimFrame != -1 && local14.spotanimLastCycle == client.loop) {
-						@Pc(227) int local227 = Static34.method877(local14.spotanimFrame).animationId;
+					if (local14.spotAnimId != -1 && local14.spotAnimStart == client.loop) {
+						@Pc(227) int local227 = Static34.method877(local14.spotAnimId).animationId;
 						if (local227 != -1) {
 							@Pc(236) SeqType local236 = SeqTypeList.getAnimationSequence(local227);
 							if (local236 != null && local236.anIntArray473 != null) {
@@ -116,8 +116,8 @@ public final class Static234 {
 				Static159.method3037(local337, local14, local334, local331);
 			}
 			if ((local18 & 0x200) != 0) {
-				local14.anInt3382 = Protocol.inboundBuffer.g2sub();
-				local14.anInt3363 = Protocol.inboundBuffer.g2();
+				local14.faceX = Protocol.inboundBuffer.g2sub();
+				local14.faceY = Protocol.inboundBuffer.g2();
 			}
 		}
 	}

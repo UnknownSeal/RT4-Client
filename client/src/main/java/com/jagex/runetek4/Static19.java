@@ -1,8 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.media.Rasterizer;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -31,36 +29,6 @@ public final class Static19 {
 			@Pc(75) int local75 = (arg1 - arg4) * (arg5 - arg7) - (arg0 - arg7) * (arg2 - arg4);
 			@Pc(91) int local91 = (arg1 - arg3) * (arg7 - arg6) - (arg0 - arg6) * (arg4 - arg3);
 			return local59 * local91 > 0 && local91 * local75 > 0;
-		}
-	}
-
-	@OriginalMember(owner = "client!bi", name = "f", descriptor = "(B)V")
-	public static void tickChatTimers() {
-		@Pc(11) int i;
-		for (i = -1; i < PlayerList.playerCount; i++) {
-			@Pc(22) int pid;
-			if (i == -1) {
-				pid = 2047;
-			} else {
-				pid = PlayerList.playerIds[i];
-			}
-			@Pc(30) Player player = PlayerList.players[pid];
-			if (player != null && player.chatLoops > 0) {
-				player.chatLoops--;
-				if (player.chatLoops == 0) {
-					player.chatMessage = null;
-				}
-			}
-		}
-		for (i = 0; i < NpcList.npcCount; i++) {
-			@Pc(68) int nid = NpcList.npcIds[i];
-			@Pc(72) Npc npc = NpcList.npcs[nid];
-			if (npc != null && npc.chatLoops > 0) {
-				npc.chatLoops--;
-				if (npc.chatLoops == 0) {
-					npc.chatMessage = null;
-				}
-			}
 		}
 	}
 

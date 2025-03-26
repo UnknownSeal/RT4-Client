@@ -7,9 +7,6 @@ public final class Static240 {
 	@OriginalMember(owner = "runetek4.client!tg", name = "d", descriptor = "[Lclient!qf;")
 	public static Sprite[] crossSprites;
 
-	@OriginalMember(owner = "runetek4.client!tg", name = "f", descriptor = "Z")
-	public static boolean aBoolean276;
-
 	@OriginalMember(owner = "runetek4.client!tg", name = "g", descriptor = "[[[B")
 	public static byte[][][] aByteArrayArrayArray14;
 

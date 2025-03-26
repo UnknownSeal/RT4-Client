@@ -295,7 +295,7 @@ public class LoginManager {
         Player.usernameInput = username;
         if (Player.usernameInput.strEquals(JString.EMPTY) || Player.password.strEquals(JString.EMPTY)) {
             reply = 3;
-        } else if (Static125.worldId == -1) {
+        } else if (Player.worldId == -1) {
             anInt673 = 0;
             anInt4587 = 0;
             reply = -3;
@@ -650,7 +650,7 @@ public class LoginManager {
                 }
                 local126 = Protocol.gameServerSocket.read() << 8 | Protocol.gameServerSocket.read();
                 WorldList.hopWorld(local126);
-                if (Static125.worldId == -1) {
+                if (Player.worldId == -1) {
                     autoStep = 0;
                     reply = 6;
                     Protocol.gameServerSocket.closeGracefully();
@@ -721,7 +721,7 @@ public class LoginManager {
                 }
                 Protocol.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
                 Static72.aClass212_3 = null;
-                @Pc(106) long local106 = Static101.aLong98 = Player.usernameInput.encode37();
+                @Pc(106) long local106 = Player.name37 = Player.usernameInput.encode37();
                 Protocol.outboundBuffer.offset = 0;
                 Protocol.outboundBuffer.p1(14);
                 @Pc(120) int local120 = (int) (local106 >> 16 & 0x1FL);
@@ -789,7 +789,7 @@ public class LoginManager {
                 client.writeUid(Static17.packet);
                 Static17.packet.pjstr(client.settings);
                 Static17.packet.p4(client.affiliate);
-                Static17.packet.p4(Static145.method2746());
+                Static17.packet.p4(Preferences.toInt());
                 Preferences.sentToServer = true;
                 Static17.packet.p2(Protocol.verifyId);
                 Static17.packet.p4(client.js5Archive0.getChecksum());
@@ -909,7 +909,7 @@ public class LoginManager {
                 playerMember = Protocol.inboundBuffer.g1() == 1;
                 membersWorld = Protocol.inboundBuffer.g1() == 1;
                 LocTypeList.setAllowMembers(membersWorld);
-                CacheArchive.method186(membersWorld);
+                ObjTypeList.setAllowMembers(membersWorld);
                 if (!client.advertSuppressed) {
                     if (playerUnderage && !parentalAdvertConsent || playerMember) {
                         try {

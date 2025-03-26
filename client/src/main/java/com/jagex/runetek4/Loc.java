@@ -113,7 +113,7 @@ public final class Loc extends Entity {
 			}
 			this.anInt1317 = 1;
 			this.anInt1320 = client.loop - 1;
-			if (this.aClass144_2.anInt5347 == 0 && arg8 != null && arg8 instanceof Loc) {
+			if (this.aClass144_2.exactmove == 0 && arg8 != null && arg8 instanceof Loc) {
 				@Pc(142) Loc local142 = (Loc) arg8;
 				if (this.aClass144_2 == local142.aClass144_2) {
 					this.anInt1297 = local142.anInt1297;
@@ -329,7 +329,7 @@ public final class Loc extends Entity {
 		@Pc(192) int local192 = (local157 >> 1) + this.anInt1300;
 		@Pc(201) int local201 = (local157 + 1 >> 1) + this.anInt1300;
 		this.method1047(local192 * 128, local185 * 128);
-		@Pc(256) boolean local256 = !local12 && local19.castShadow && (local19.id != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || SeqType.tween) && this.anInt1297 != this.anInt1304) && Static139.anInt3451 >= 2);
+		@Pc(256) boolean local256 = !local12 && local19.castShadow && (local19.id != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || SeqType.tween) && this.anInt1297 != this.anInt1304) && Preferences.sceneryShadowsType >= 2);
 		if (arg0 && !local256) {
 			return null;
 		}

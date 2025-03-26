@@ -18,21 +18,25 @@ public final class ParticleSystem extends ParticleNode {
 
 	@OriginalMember(owner = "runetek4.client!ga", name = "a", descriptor = "()V")
 	public static void load() {
-		@Pc(1) GL2 local1 = GlRenderer.gl;
-		if (local1.isExtensionAvailable("GL_ARB_point_parameters")) {
-			@Pc(20) float[] local20 = new float[] { 1.0F, 0.0F, 5.0E-4F };
-			local1.glPointParameterfv(GL2.GL_POINT_DISTANCE_ATTENUATION, local20, 0);
-			@Pc(28) FloatBuffer local28 = FloatBuffer.allocate(1);
-			local1.glGetFloatv(GL2.GL_POINT_SIZE_MAX, local28);
-			@Pc(36) float local36 = local28.get(0);
-			if (local36 > 1024.0F) {
-				local36 = 1024.0F;
+		@Pc(1) GL2 gl = GlRenderer.gl;
+		if (gl.isExtensionAvailable("GL_ARB_point_parameters")) {
+			@Pc(20) float[] coefficients = new float[] { 1.0F, 0.0F, 5.0E-4F };
+			gl.glPointParameterfv(GL2.GL_POINT_DISTANCE_ATTENUATION, coefficients, 0);
+			@Pc(28) FloatBuffer buffer = FloatBuffer.allocate(1);
+			gl.glGetFloatv(GL2.GL_POINT_SIZE_MAX, buffer);
+			@Pc(36) float pointSizeMax = buffer.get(0);
+			if (pointSizeMax > 1024.0F) {
+				pointSizeMax = 1024.0F;
 			}
-			local1.glPointParameterf(GL2.GL_POINT_SIZE_MIN, 1.0F);
-			local1.glPointParameterf(GL2.GL_POINT_SIZE_MAX, local36);
+			gl.glPointParameterf(GL2.GL_POINT_SIZE_MIN, 1.0F);
+			gl.glPointParameterf(GL2.GL_POINT_SIZE_MAX, pointSizeMax);
 		}
-		if (local1.isExtensionAvailable("GL_ARB_point_sprite")) {
+		if (gl.isExtensionAvailable("GL_ARB_point_sprite")) {
 		}
+	}
+
+	@OriginalMember(owner = "client!ga", name = "b", descriptor = "()V")
+	public static void quit() {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ga", name = "d", descriptor = "()V")

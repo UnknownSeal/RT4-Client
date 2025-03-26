@@ -69,7 +69,7 @@ public final class Static147 {
 						if (overlay.triangleHSLA[i] != 12345678) {
 							Pix3D.method1928(local156, local160, local164, local39, local148, local152, overlay.triangleHSLA[i], overlay.triangleHSLB[i], overlay.triangleHSLC[i]);
 						}
-					} else if (!Static159.aBoolean189) {
+					} else if (!Preferences.manyGroundTextures) {
 						@Pc(373) int local373 = Rasterizer.textureProvider.getAverageColor(overlay.triangleTextureIds[i]);
 						Pix3D.method1928(local156, local160, local164, local39, local148, local152, ColorUtils.multiplyLightness3(local373, overlay.triangleHSLA[i]), ColorUtils.multiplyLightness3(local373, overlay.triangleHSLB[i]), ColorUtils.multiplyLightness3(local373, overlay.triangleHSLC[i]));
 					} else if (overlay.aBoolean113) {

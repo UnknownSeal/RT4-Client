@@ -299,7 +299,7 @@ public class MiniMenu {
                                     addActionRow(-1, (long) local276.id, JString.concatenate(new JString[] { aClass100_203, aClass100_947, local276.name}), local171, (short) 40, LocalizedText.USE, component.id);
                                 }
                             } else if (aBoolean302 && local267.isObjOpsEnabled()) {
-                                @Pc(596) ParamType local596 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
+                                @Pc(596) ParamType local596 = Static121.anInt3039 == -1 ? null : ParamTypeList.get(Static121.anInt3039);
                                 if ((anInt4999 & 0x10) != 0 && (local596 == null || local276.getParam(local596.defaultInt, Static121.anInt3039) != local596.defaultInt)) {
                                     addActionRow(anInt5393, (long) local276.id, JString.concatenate(new JString[] { aClass100_466, aClass100_947, local276.name}), local171, (short) 3, aClass100_545, component.id);
                                 }
@@ -652,7 +652,7 @@ public class MiniMenu {
         if (actionCode == PLAYER_FOLLOW_ACTION) {
             player = PlayerList.players[a];
             if (player != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.crossMode = 2;
                 Cross.crossCycle = 0;
                 Cross.x = Mouse.mouseClickX;
@@ -662,7 +662,7 @@ public class MiniMenu {
             }
         }
         if (actionCode == LOC_ACTION_4) {
-            ClientScriptRunner.findPathToLoc(local31, local19, local15);
+            PathFinder.findPathToLoc(local31, local19, local15);
             Protocol.outboundBuffer.pIsaac1(247);
             Protocol.outboundBuffer.p2_alt1(Camera.originZ + local19);
             Protocol.outboundBuffer.p2_alt3(local15 + Camera.originX);
@@ -684,7 +684,7 @@ public class MiniMenu {
         if (actionCode == NPC_ACTION_4) {
             npc = NpcList.npcs[a];
             if (npc != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.x = Mouse.mouseClickX;
                 Cross.crossMode = 2;
                 Cross.crossCycle = 0;
@@ -696,7 +696,7 @@ public class MiniMenu {
         if (actionCode == NPC_ACTION_1) {
             npc = NpcList.npcs[a];
             if (npc != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.x = Mouse.mouseClickX;
                 Cross.crossCycle = 0;
                 Cross.crossMode = 2;
@@ -708,7 +708,7 @@ public class MiniMenu {
         if (actionCode == UNKNOWN_44) {
             player = PlayerList.players[a];
             if (player != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.x = Mouse.mouseClickX;
                 Cross.crossMode = 2;
                 Cross.y = Mouse.mouseClickY;
@@ -727,7 +727,7 @@ public class MiniMenu {
             anInt5444 = local15;
         }
         if (actionCode == LOC_ACTION_1) {
-            ClientScriptRunner.findPathToLoc(local31, local19, local15);
+            PathFinder.findPathToLoc(local31, local19, local15);
             Protocol.outboundBuffer.pIsaac1(254);
             Protocol.outboundBuffer.p2_alt1(local15 + Camera.originX);
             Protocol.outboundBuffer.p2_alt2((int) (local31 >>> 32) & Integer.MAX_VALUE);
@@ -739,7 +739,7 @@ public class MiniMenu {
         if (actionCode == COMPONENT_NPC_ACTION) {
             npc = NpcList.npcs[a];
             if (npc != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.x = Mouse.mouseClickX;
                 Cross.crossMode = 2;
                 Cross.crossCycle = 0;
@@ -753,11 +753,11 @@ public class MiniMenu {
         @Pc(560) boolean local560;
         if (actionCode == OBJSTACK_ACTION_1) {
             if (client.game == 1) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
             } else {
-                local560 = PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                local560 = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
                 if (!local560) {
-                    PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
                 }
             }
             Cross.x = Mouse.mouseClickX;
@@ -770,7 +770,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt3(local19 + Camera.originZ);
         }
         if (actionCode == LOC_ACTION_5) {
-            ClientScriptRunner.findPathToLoc(local31, local19, local15);
+            PathFinder.findPathToLoc(local31, local19, local15);
             Protocol.outboundBuffer.pIsaac1(170);
             Protocol.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (local31 >>> 32));
             Protocol.outboundBuffer.p2_alt3(local15 + Camera.originX);
@@ -803,7 +803,7 @@ public class MiniMenu {
             } else if (a == 1) {
                 if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
                     Cheat.teleport(Camera.originX + local15, Camera.originZ + local19, Player.plane);
-                } else if (PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, local15, 0, 0, 1, local19, PlayerList.self.movementQueueX[0])) {
+                } else if (PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, local15, 0, 0, 1, local19, PlayerList.self.movementQueueX[0])) {
                     Protocol.outboundBuffer.p1(InterfaceList.anInt5);
                     Protocol.outboundBuffer.p1(anInt2878);
                     Protocol.outboundBuffer.p2(Camera.orbitCameraYaw);
@@ -813,7 +813,7 @@ public class MiniMenu {
                     Protocol.outboundBuffer.p1(89);
                     Protocol.outboundBuffer.p2(PlayerList.self.xFine);
                     Protocol.outboundBuffer.p2(PlayerList.self.zFine);
-                    Protocol.outboundBuffer.p1(BZip2State.tryMoveNearest);
+                    Protocol.outboundBuffer.p1(PathFinder.tryMoveNearest);
                     Protocol.outboundBuffer.p1(63);
                 }
             }
@@ -858,7 +858,7 @@ public class MiniMenu {
         if (actionCode == UNKNOWN_10) {
             player = PlayerList.players[a];
             if (player != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.crossMode = 2;
                 Cross.y = Mouse.mouseClickY;
                 Cross.x = Mouse.mouseClickX;
@@ -873,7 +873,7 @@ public class MiniMenu {
             InterfaceList.redraw(ClientScriptRunner.aClass13_10);
         }
         if (actionCode == LOC_ACTION_3) {
-            ClientScriptRunner.findPathToLoc(local31, local19, local15);
+            PathFinder.findPathToLoc(local31, local19, local15);
             Protocol.outboundBuffer.pIsaac1(84);
             Protocol.outboundBuffer.p2_alt3(Integer.MAX_VALUE & (int) (local31 >>> 32));
             Protocol.outboundBuffer.p2_alt3(Camera.originZ + local19);
@@ -888,7 +888,7 @@ public class MiniMenu {
             pressedInventoryComponent = InterfaceList.getComponent(local19);
             anInt5444 = local15;
         }
-        if (actionCode == OBJ_LOC_ACTION && ClientScriptRunner.findPathToLoc(local31, local19, local15)) {
+        if (actionCode == OBJ_LOC_ACTION && PathFinder.findPathToLoc(local31, local19, local15)) {
             Protocol.outboundBuffer.pIsaac1(134);
             Protocol.outboundBuffer.p2_alt2(Camera.originX + local15);
             Protocol.outboundBuffer.p2(anInt4997);
@@ -900,7 +900,7 @@ public class MiniMenu {
         if (actionCode == PLAYER_REQ_ASSIST_ACTION) {
             player = PlayerList.players[a];
             if (player != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.crossCycle = 0;
                 Cross.crossMode = 2;
                 Cross.y = Mouse.mouseClickY;
@@ -923,11 +923,11 @@ public class MiniMenu {
         }
         if (actionCode == UNKNOWN_21) {
             if (client.game == 1) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
             } else {
-                local560 = PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                local560 = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
                 if (!local560) {
-                    PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
                 }
             }
             Cross.crossMode = 2;
@@ -942,7 +942,7 @@ public class MiniMenu {
         if (actionCode == NPC_ACTION_3) {
             npc = NpcList.npcs[a];
             if (npc != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.crossMode = 2;
                 Cross.crossCycle = 0;
                 Cross.y = Mouse.mouseClickY;
@@ -973,7 +973,7 @@ public class MiniMenu {
         if (actionCode == PLAYER_ACTION_TRADE) {
             player = PlayerList.players[a];
             if (player != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.y = Mouse.mouseClickY;
                 Cross.crossCycle = 0;
                 Cross.crossMode = 2;
@@ -994,7 +994,7 @@ public class MiniMenu {
         if (actionCode == COMPONENT_PLAYER_ACTION) {
             player = PlayerList.players[a];
             if (player != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.crossCycle = 0;
                 Cross.crossMode = 2;
                 Cross.x = Mouse.mouseClickX;
@@ -1007,11 +1007,11 @@ public class MiniMenu {
         }
         if (actionCode == PLAYER_ACTION_BLOCK) {
             if (client.game == 1) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
             } else {
-                local560 = PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                local560 = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
                 if (!local560) {
-                    PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
                 }
             }
             Cross.x = Mouse.mouseClickX;
@@ -1035,7 +1035,7 @@ public class MiniMenu {
         if (actionCode == NPC_ACTION_5) {
             npc = NpcList.npcs[a];
             if (npc != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.y = Mouse.mouseClickY;
                 Cross.crossMode = 2;
                 Cross.x = Mouse.mouseClickX;
@@ -1060,7 +1060,7 @@ public class MiniMenu {
         if (actionCode == OBJ_NPC_ACTION) {
             npc = NpcList.npcs[a];
             if (npc != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.crossMode = 2;
                 Cross.crossCycle = 0;
                 Cross.y = Mouse.mouseClickY;
@@ -1083,9 +1083,9 @@ public class MiniMenu {
             }
         }
         if (actionCode == OBJ_OBJSTACK_ACTION) {
-            local560 = PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+            local560 = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
             if (!local560) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
             }
             Cross.x = Mouse.mouseClickX;
             Cross.crossCycle = 0;
@@ -1133,7 +1133,7 @@ public class MiniMenu {
         if (actionCode == OBJ_PLAYER_ACTION) {
             player = PlayerList.players[a];
             if (player != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.crossCycle = 0;
                 Cross.y = Mouse.mouseClickY;
                 Cross.crossMode = 2;
@@ -1156,11 +1156,11 @@ public class MiniMenu {
         }
         if (actionCode == UNKNOWN_24) {
             if (client.game == 1) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
             } else {
-                local560 = PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                local560 = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
                 if (!local560) {
-                    PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
                 }
             }
             Cross.crossMode = 2;
@@ -1172,7 +1172,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2_alt3(a);
             Protocol.outboundBuffer.p2_alt1(Camera.originZ + local19);
         }
-        if (actionCode == COMPONENT_LOC_ACTION && ClientScriptRunner.findPathToLoc(local31, local19, local15)) {
+        if (actionCode == COMPONENT_LOC_ACTION && PathFinder.findPathToLoc(local31, local19, local15)) {
             Protocol.outboundBuffer.pIsaac1(233);
             Protocol.outboundBuffer.p2_alt3(local19 + Camera.originZ);
             Protocol.outboundBuffer.p2_alt2(Camera.originX + local15);
@@ -1192,7 +1192,7 @@ public class MiniMenu {
         if (actionCode == PLAYER_ACTION_5) {
             player = PlayerList.players[a];
             if (player != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.crossMode = 2;
                 Cross.y = Mouse.mouseClickY;
                 Cross.x = Mouse.mouseClickX;
@@ -1216,7 +1216,7 @@ public class MiniMenu {
             return;
         }
         if (actionCode == LOC_ACTION_2) {
-            ClientScriptRunner.findPathToLoc(local31, local19, local15);
+            PathFinder.findPathToLoc(local31, local19, local15);
             Protocol.outboundBuffer.pIsaac1(194);
             Protocol.outboundBuffer.p2_alt3(local19 + Camera.originZ);
             Protocol.outboundBuffer.p2_alt1(Camera.originX + local15);
@@ -1234,7 +1234,7 @@ public class MiniMenu {
         if (actionCode == PLAYER_ACTION_1) {
             player = PlayerList.players[a];
             if (player != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.crossCycle = 0;
                 Cross.x = Mouse.mouseClickX;
                 Cross.y = Mouse.mouseClickY;
@@ -1253,9 +1253,9 @@ public class MiniMenu {
             anInt5444 = local15;
         }
         if (actionCode == COMPONENT_OBJSTACK_ACTION) {
-            local560 = PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+            local560 = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
             if (!local560) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
             }
             Cross.y = Mouse.mouseClickY;
             Cross.x = Mouse.mouseClickX;
@@ -1290,7 +1290,7 @@ public class MiniMenu {
         if (actionCode == UNKNOWN_6) {
             player = PlayerList.players[a];
             if (player != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, player.movementQueueX[0], 1, 0, 2, player.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.y = Mouse.mouseClickY;
                 Cross.crossCycle = 0;
                 Cross.crossMode = 2;
@@ -1301,11 +1301,11 @@ public class MiniMenu {
         }
         if (actionCode == OBJSTACK_ACTION_2) {
             if (client.game == 1) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
             } else {
-                local560 = PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                local560 = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, false, 0, local15, 0, 0, 2, local19, PlayerList.self.movementQueueX[0]);
                 if (!local560) {
-                    PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
+                    PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, local15, 1, 0, 2, local19, PlayerList.self.movementQueueX[0]);
                 }
             }
             Cross.y = Mouse.mouseClickY;
@@ -1320,7 +1320,7 @@ public class MiniMenu {
         if (actionCode == NPC_ACTION_2) {
             npc = NpcList.npcs[a];
             if (npc != null) {
-                PathFinder.tryMove(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
+                PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 1, false, 0, npc.movementQueueX[0], 1, 0, 2, npc.movementQueueZ[0], PlayerList.self.movementQueueX[0]);
                 Cross.x = Mouse.mouseClickX;
                 Cross.crossCycle = 0;
                 Cross.y = Mouse.mouseClickY;
@@ -1409,7 +1409,7 @@ public class MiniMenu {
                     if (anInt5014 == 1) {
                         addActionRow(MiniMap.anInt4075, local121, JString.concatenate(new JString[] {aClass100_203, aClass100_164, local172.name}), local47, (short) 14, LocalizedText.USE, local147);
                     } else if (aBoolean302) {
-                        @Pc(363) ParamType local363 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
+                        @Pc(363) ParamType local363 = Static121.anInt3039 == -1 ? null : ParamTypeList.get(Static121.anInt3039);
                         if ((anInt4999 & 0x4) != 0 && (local363 == null || local172.getParam(local363.defaultInt, Static121.anInt3039) != local363.defaultInt)) {
                             addActionRow(anInt5393, local121, JString.concatenate(new JString[] {aClass100_466, aClass100_164, local172.name}), local47, (short) 38, aClass100_545, local147);
                         }
@@ -1514,7 +1514,7 @@ public class MiniMenu {
                             if (anInt5014 == 1) {
                                 addActionRow(MiniMap.anInt4075, (long) local240, JString.concatenate(new JString[] {aClass100_203, aClass100_947, local951.name}), local47, (short) 33, LocalizedText.USE, local147);
                             } else if (aBoolean302) {
-                                @Pc(1142) ParamType local1142 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
+                                @Pc(1142) ParamType local1142 = Static121.anInt3039 == -1 ? null : ParamTypeList.get(Static121.anInt3039);
                                 if ((anInt4999 & 0x1) != 0 && (local1142 == null || local951.getParam(local1142.defaultInt, Static121.anInt3039) != local1142.defaultInt)) {
                                     addActionRow(anInt5393, (long) local240, JString.concatenate(new JString[] {aClass100_466, aClass100_947, local951.name}), local47, (short) 39, aClass100_545, local147);
                                 }
@@ -1579,7 +1579,7 @@ public class MiniMenu {
         if (anInt5014 == 1) {
             addActionRow(MiniMap.anInt4075, (long) arg2, JString.concatenate(new JString[] {aClass100_203, aClass100_407, tooltip }), arg1, (short) 26, LocalizedText.USE, arg3);
         } else if (aBoolean302) {
-            @Pc(378) ParamType local378 = Static121.anInt3039 == -1 ? null : Static110.method2277(Static121.anInt3039);
+            @Pc(378) ParamType local378 = Static121.anInt3039 == -1 ? null : ParamTypeList.get(Static121.anInt3039);
             if ((anInt4999 & 0x2) != 0 && (local378 == null || npc.getParam(Static121.anInt3039, local378.defaultInt) != local378.defaultInt)) {
                 addActionRow(anInt5393, (long) arg2, JString.concatenate(new JString[] {aClass100_466, aClass100_407, tooltip }), arg1, (short) 45, aClass100_545, arg3);
             }
@@ -1674,8 +1674,8 @@ public class MiniMenu {
                 }
             }
             @Pc(95) JString local95 = client.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
-            if (other.combatLevel < other.anInt1656) {
-                string = JString.concatenate(new JString[] { other.getUsername(), markCombatDifference ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : WHITE, OPEN_PARENTHESIS, local95, JString.parseInt(other.combatLevel), PLUS, JString.parseInt(other.anInt1656 - other.combatLevel), CLOSE_PARENTHESIS});
+            if (other.combatLevel < other.combatLevelWithSummoning) {
+                string = JString.concatenate(new JString[] { other.getUsername(), markCombatDifference ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : WHITE, OPEN_PARENTHESIS, local95, JString.parseInt(other.combatLevel), PLUS, JString.parseInt(other.combatLevelWithSummoning - other.combatLevel), CLOSE_PARENTHESIS});
             } else {
                 string = JString.concatenate(new JString[] { other.getUsername(), markCombatDifference ? getCombatLevelColorTag(other.combatLevel, PlayerList.self.combatLevel) : WHITE, OPEN_PARENTHESIS, local95, JString.parseInt(other.combatLevel), CLOSE_PARENTHESIS});
             }
