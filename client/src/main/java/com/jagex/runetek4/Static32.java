@@ -8,9 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static32 {
 
-	@OriginalMember(owner = "runetek4.client!ci", name = "t", descriptor = "I")
-	public static int anInt1016;
-
 	@OriginalMember(owner = "client!ci", name = "a", descriptor = "([I[ILclient!e;B[I)V")
 	public static void method865(@OriginalArg(0) int[] arg0, @OriginalArg(1) int[] arg1, @OriginalArg(2) Player arg2, @OriginalArg(4) int[] arg3) {
 		for (@Pc(7) int local7 = 0; local7 < arg1.length; local7++) {

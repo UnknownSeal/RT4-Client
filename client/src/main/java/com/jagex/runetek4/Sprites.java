@@ -27,6 +27,10 @@ public class Sprites {
     public static Sprite[] mapdots;
     @OriginalMember(owner = "runetek4.client!wh", name = "l", descriptor = "[Lclient!qf;")
     public static Sprite[] aClass3_Sub2_Sub1Array11;
+    @OriginalMember(owner = "client!ci", name = "t", descriptor = "I")
+    public static int anInt1016;
+    @OriginalMember(owner = "client!runetek4.client", name = "W", descriptor = "I")
+    public static int anInt1165;
 
     @OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(Z)V")
     public static void clear() {
@@ -60,13 +64,13 @@ public class Sprites {
     public static void load(@OriginalArg(1) Js5 arg0) {
         Static173.aClass3_Sub2_Sub1_Sub1Array9 = Static265.method4523(Static280.anInt5900, arg0);
         Static213.aClass3_Sub2_Sub1Array8 = Static209.method3708(Static131.anInt3261, arg0);
-        Static116.aClass3_Sub2_Sub1Array3 = Static209.method3708(Static36.anInt1165, arg0);
+        Static116.aClass3_Sub2_Sub1Array3 = Static209.method3708(anInt1165, arg0);
         Static219.aClass3_Sub2_Sub1Array9 = Static209.method3708(Static214.anInt5579, arg0);
         Static138.aClass3_Sub2_Sub1Array5 = Static209.method3708(Static34.anInt1049, arg0);
         aClass3_Sub2_Sub1Array11 = Static209.method3708(Class6.anInt4741, arg0);
         Static149.aClass3_Sub2_Sub1Array7 = Static209.method3708(Static149.anInt3551, arg0);
         Static84.aClass3_Sub2_Sub1_4 = SpriteLoader.loadSprites(Static19.anInt647, arg0);
-        Static240.crossSprites = Static131.method2580(Static32.anInt1016, arg0);
+        Static240.crossSprites = Static131.method2580(anInt1016, arg0);
         mapdots = Static131.method2580(Static78.anInt2147, arg0);
         Static241.aClass36Array16 = Static146.method2749(arg0, Static124.anInt3083);
         nameIcons = Static146.method2749(arg0, FloorUnderlayTypeList.anInt5057);
@@ -124,13 +128,13 @@ public class Sprites {
         Static73.b12FullId = arg0.getGroupId(B12_FULL);
         Static280.anInt5900 = arg0.getGroupId(MAPFUNCTION);
         Static131.anInt3261 = arg0.getGroupId(Static219.HITMARKS);
-        Static36.anInt1165 = arg0.getGroupId(Static260.HITBAR_DEFAULT);
+        anInt1165 = arg0.getGroupId(Static260.HITBAR_DEFAULT);
         Static214.anInt5579 = arg0.getGroupId(Static123.HEADICONS_PK);
         Static34.anInt1049 = arg0.getGroupId(Static228.HEADICONS_PRAYER);
         Class6.anInt4741 = arg0.getGroupId(Static98.HINT_HEADICONS);
         Static149.anInt3551 = arg0.getGroupId(Static189.HINT_MAPMARKERS);
         Static19.anInt647 = arg0.getGroupId(Static259.MAPFLAGS);
-        Static32.anInt1016 = arg0.getGroupId(CROSS);
+        anInt1016 = arg0.getGroupId(CROSS);
         Static78.anInt2147 = arg0.getGroupId(Static189.MAPDOTS);
         Static124.anInt3083 = arg0.getGroupId(Static250.SCROLLBAR);
         FloorUnderlayTypeList.anInt5057 = arg0.getGroupId(NAME_ICONS);
@@ -148,7 +152,7 @@ public class Sprites {
         if (arg0.isFileReady(Static131.anInt3261)) {
             local5++;
         }
-        if (arg0.isFileReady(Static36.anInt1165)) {
+        if (arg0.isFileReady(anInt1165)) {
             local5++;
         }
         if (arg0.isFileReady(Static214.anInt5579)) {
@@ -166,7 +170,7 @@ public class Sprites {
         if (arg0.isFileReady(Static19.anInt647)) {
             local5++;
         }
-        if (arg0.isFileReady(Static32.anInt1016)) {
+        if (arg0.isFileReady(anInt1016)) {
             local5++;
         }
         if (arg0.isFileReady(Static78.anInt2147)) {

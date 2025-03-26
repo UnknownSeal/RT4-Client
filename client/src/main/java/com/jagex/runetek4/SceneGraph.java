@@ -49,6 +49,8 @@ public class SceneGraph {
     public static int firstvisibleLevel = 99;
     @OriginalMember(owner = "runetek4.client!kc", name = "o", descriptor = "[[[Lclient!bj;")
     public static Tile[][][] tiles;
+    @OriginalMember(owner = "client!runetek4.client", name = "kb", descriptor = "[[Lclient!hg;")
+    public static GlTile[][] aGlTileArrayArray1;
 
     @OriginalMember(owner = "client!fc", name = "a", descriptor = "()V")
     public static void clear() {
@@ -64,7 +66,7 @@ public class SceneGraph {
                 }
             }
         }
-        Static36.aGlTileArrayArray1 = null;
+        aGlTileArrayArray1 = null;
         if (Static276.aClass3_Sub5ArrayArrayArray3 != null) {
             for (local3 = 0; local3 < Static276.aClass3_Sub5ArrayArrayArray3.length; local3++) {
                 for (local9 = 0; local9 < Static152.anInt3594; local9++) {
@@ -275,7 +277,7 @@ public class SceneGraph {
         Static197.aClass3_Sub5ArrayArrayArray2 = new Tile[4][Static152.anInt3594][Static99.anInt2550];
         surfaceTileHeights = new int[4][Static152.anInt3594 + 1][Static99.anInt2550 + 1];
         if (GlRenderer.enabled) {
-            Static36.aGlTileArrayArray1 = new GlTile[4][];
+            aGlTileArrayArray1 = new GlTile[4][];
         }
         if (arg1) {
             Static276.aClass3_Sub5ArrayArrayArray3 = new Tile[1][Static152.anInt3594][Static99.anInt2550];
@@ -838,7 +840,7 @@ public class SceneGraph {
         } else {
             tiles = Static197.aClass3_Sub5ArrayArrayArray2;
             tileHeights = surfaceTileHeights;
-            Static182.aGlTileArrayArray2 = Static36.aGlTileArrayArray1;
+            Static182.aGlTileArrayArray2 = aGlTileArrayArray1;
         }
         Static126.anInt3114 = tiles.length;
     }

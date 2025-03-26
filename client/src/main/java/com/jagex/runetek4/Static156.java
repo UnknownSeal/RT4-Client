@@ -111,8 +111,8 @@ public final class Static156 {
 		local1.glPushAttrib(GL2.GL_FOG_BIT);
 		local1.glFogf(GL2.GL_FOG_START, 3072.0F);
 		GlRenderer.disableDepthMask();
-		for (@Pc(19) int local19 = 0; local19 < Static36.aGlTileArrayArray1[0].length; local19++) {
-			@Pc(31) GlTile local31 = Static36.aGlTileArrayArray1[0][local19];
+		for (@Pc(19) int local19 = 0; local19 < SceneGraph.aGlTileArrayArray1[0].length; local19++) {
+			@Pc(31) GlTile local31 = SceneGraph.aGlTileArrayArray1[0][local19];
 			if (local31.texture >= 0 && Rasterizer.textureProvider.getMaterialType(local31.texture) == 4) {
 				local1.glColor4fv(ColorUtils.getRgbFloat(local31.underwaterColor), 0);
 				@Pc(57) float local57 = 201.5F - (local31.blend ? 1.0F : 0.5F);
