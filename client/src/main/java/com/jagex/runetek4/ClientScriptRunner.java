@@ -1,9 +1,6 @@
 package com.jagex.runetek4;
 
 import java.io.*;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Date;
 
 import com.jagex.runetek4.cache.CacheArchive;
@@ -17,7 +14,6 @@ import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
-import com.jagex.runetek4.core.io.PacketBit;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.client.Inv;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
@@ -129,123 +125,6 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(I)V")
 	public static void clear() {
 		IdkTypeList.types.clean();
-	}
-
-	@OriginalMember(owner = "runetek4.client!t", name = "a", descriptor = "(Lclient!i;II)V")
-	public static void createClientScriptCheckPacket(@OriginalArg(0) PacketBit buffer) {
-		while (true) {
-			@Pc(18) ReflectionCheck clientScriptRunner = (ReflectionCheck) Static204.aClass69_113.head();
-			if (clientScriptRunner == null) {
-				return;
-			}
-			@Pc(23) boolean bool = false;
-			@Pc(25) int i;
-			for (i = 0; i < clientScriptRunner.scriptCount; i++) {
-				if (clientScriptRunner.valueNodes[i] != null) {
-					if (clientScriptRunner.valueNodes[i].status == 2) {
-						clientScriptRunner.errorCodes[i] = -5;
-					}
-					if (clientScriptRunner.valueNodes[i].status == 0) {
-						bool = true;
-					}
-				}
-				if (clientScriptRunner.functionNodes[i] != null) {
-					if (clientScriptRunner.functionNodes[i].status == 2) {
-						clientScriptRunner.errorCodes[i] = -6;
-					}
-					if (clientScriptRunner.functionNodes[i].status == 0) {
-						bool = true;
-					}
-				}
-			}
-			if (bool) {
-				return;
-			}
-			buffer.pIsaac1(163);
-			buffer.p1(0);
-			i = buffer.offset;
-			buffer.p4(clientScriptRunner.scriptId);
-			for (@Pc(121) int j = 0; j < clientScriptRunner.scriptCount; j++) {
-				if (clientScriptRunner.errorCodes[j] == 0) {
-					try {
-						@Pc(151) int opcode = clientScriptRunner.anIntArray139[j];
-						@Pc(168) Field field;
-						@Pc(195) int fieldValue;
-						if (opcode == 0) {
-							field = (Field) clientScriptRunner.valueNodes[j].result;
-							fieldValue = field.getInt(null);
-							buffer.p1(0);
-							buffer.p4(fieldValue);
-						} else if (opcode == 1) {
-							field = (Field) clientScriptRunner.valueNodes[j].result;
-							field.setInt(null, clientScriptRunner.anIntArray137[j]);
-							buffer.p1(0);
-						} else if (opcode == 2) {
-							field = (Field) clientScriptRunner.valueNodes[j].result;
-							fieldValue = field.getModifiers();
-							buffer.p1(0);
-							buffer.p4(fieldValue);
-						}
-						@Pc(234) Method method;
-						if (opcode == 3) {
-							method = (Method) clientScriptRunner.functionNodes[j].result;
-							@Pc(239) byte[][] argumentValueData = clientScriptRunner.argumentValues[j];
-							@Pc(243) Object[] objects = new Object[argumentValueData.length];
-							for (@Pc(245) int valueIndex = 0; valueIndex < argumentValueData.length; valueIndex++) {
-								@Pc(259) ObjectInputStream objectinputstream = new ObjectInputStream(new ByteArrayInputStream(argumentValueData[valueIndex]));
-								objects[valueIndex] = objectinputstream.readObject();
-							}
-							@Pc(272) Object object = method.invoke(null, objects);
-							if (object == null) {
-								buffer.p1(0);
-							} else if (object instanceof Number) {
-								buffer.p1(1);
-								buffer.p8(((Number) object).longValue());
-							} else if (object instanceof JString) {
-								buffer.p1(2);
-								buffer.pjstr((JString) object);
-							} else {
-								buffer.p1(4);
-							}
-						} else if (opcode == 4) {
-							method = (Method) clientScriptRunner.functionNodes[j].result;
-							fieldValue = method.getModifiers();
-							buffer.p1(0);
-							buffer.p4(fieldValue);
-						}
-					} catch (@Pc(338) ClassNotFoundException classnotfoundexception) {
-						buffer.p1(-10);
-					} catch (@Pc(344) InvalidClassException invalidclassexception) {
-						buffer.p1(-11);
-					} catch (@Pc(350) StreamCorruptedException streamcorruptedexception) {
-						buffer.p1(-12);
-					} catch (@Pc(356) OptionalDataException optionaldataexception) {
-						buffer.p1(-13);
-					} catch (@Pc(362) IllegalAccessException illegalaccessexception) {
-						buffer.p1(-14);
-					} catch (@Pc(368) IllegalArgumentException illegalargumentexception) {
-						buffer.p1(-15);
-					} catch (@Pc(374) InvocationTargetException invocationtargetexception) {
-						buffer.p1(-16);
-					} catch (@Pc(380) SecurityException securityexception) {
-						buffer.p1(-17);
-					} catch (@Pc(386) IOException ioexception) {
-						buffer.p1(-18);
-					} catch (@Pc(392) NullPointerException nullpointerexception) {
-						buffer.p1(-19);
-					} catch (@Pc(398) Exception exception) {
-						buffer.p1(-20);
-					} catch (@Pc(404) Throwable throwable) {
-						buffer.p1(-21);
-					}
-				} else {
-					buffer.p1(clientScriptRunner.errorCodes[j]);
-				}
-			}
-			buffer.pCrc32(i);
-			buffer.p1len(buffer.offset - i);
-			clientScriptRunner.unlink();
-		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "b", descriptor = "(I)V")

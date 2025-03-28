@@ -1144,7 +1144,7 @@ public class Protocol {
                                 InterfaceList.miscTransmitAt = InterfaceList.transmitTimer;
                                 return true;
                             } else if (opcode == 114) {
-                                Class6.method3654(GameShell.signLink, inboundBuffer, packetSize);
+                                ReflectionCheck.push(GameShell.signLink, inboundBuffer, packetSize);
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 65) {

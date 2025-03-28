@@ -37,7 +37,7 @@ public class Game {
         if (client.gameState != 30) {
             return;
         }
-        ClientScriptRunner.createClientScriptCheckPacket(Protocol.outboundBuffer); // runetek4.ReflectionCheck
+        ReflectionCheck.createClientScriptCheckPacket(Protocol.outboundBuffer); // runetek4.ReflectionCheck
         @Pc(60) Object mouseRecorder = MouseCapturer.instance.lock;
         @Pc(86) int offset;
         @Pc(79) int samples;

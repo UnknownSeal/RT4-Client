@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static204 {
 
-	@OriginalMember(owner = "runetek4.client!qi", name = "u", descriptor = "Lclient!ih;")
-	public static LinkedList aClass69_113 = new LinkedList();
-
 	@OriginalMember(owner = "runetek4.client!qi", name = "a", descriptor = "(IIBI)I")
 	public static int method3675(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2) {
 		@Pc(3) int local3 = arg0 & 0x3;
