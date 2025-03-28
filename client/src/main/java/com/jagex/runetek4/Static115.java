@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -9,12 +8,6 @@ public final class Static115 {
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "s", descriptor = "Lclient!na;")
 	public static final JString aClass100_582 = JString.parse("http:)4)4");
-
-	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(Lclient!ve;Lclient!ve;I)V")
-	public static void init(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
-		Static87.aClass153_38 = arg1;
-		Static29.aClass153_19 = arg0;
-	}
 
 	@OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(IIIIIZ)V")
 	public static void method2314(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) boolean arg4) {

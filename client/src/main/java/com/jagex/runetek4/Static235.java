@@ -1,10 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.input.Keyboard;
-import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public final class Static235 {
 
@@ -16,26 +13,4 @@ public final class Static235 {
 		return Cheat.shiftClick && Keyboard.pressedKeys[81] && MiniMenu.menuActionRow > 2 ? MiniMenu.cursors[MiniMenu.menuActionRow - 2] : MiniMenu.cursors[MiniMenu.menuActionRow - 1];
 	}
 
-	@OriginalMember(owner = "runetek4.client!tb", name = "b", descriptor = "(IB)Lclient!bc;")
-	public static Class3_Sub2_Sub2 method4045(@OriginalArg(0) int arg0) {
-		@Pc(10) Class3_Sub2_Sub2 local10 = (Class3_Sub2_Sub2) Static73.aClass54_7.get((long) arg0);
-		if (local10 != null) {
-			return local10;
-		}
-		@Pc(24) byte[] local24;
-		if (arg0 < 32768) {
-			local24 = Static87.aClass153_38.getfile(0, arg0);
-		} else {
-			local24 = Static29.aClass153_19.getfile(0, arg0 & 0x7FFF);
-		}
-		local10 = new Class3_Sub2_Sub2();
-		if (local24 != null) {
-			local10.method470(new Packet(local24));
-		}
-		if (arg0 >= 32768) {
-			local10.method465();
-		}
-		Static73.aClass54_7.put(local10, (long) arg0);
-		return local10;
-	}
 }

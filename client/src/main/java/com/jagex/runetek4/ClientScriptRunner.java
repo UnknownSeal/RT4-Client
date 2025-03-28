@@ -4141,18 +4141,18 @@ public final class ClientScriptRunner {
 												if (scriptOpcode == 5050) {
 													intValueIndex--;
 													interfaceData = Static254.scriptIntValues[intValueIndex];
-													Static3.scriptStringValues[local26++] = Static235.method4045(interfaceData).aClass100_79;
+													Static3.scriptStringValues[local26++] = QuickChatCatTypeList.get(interfaceData).description;
 													continue;
 												}
-												@Pc(6378) Class3_Sub2_Sub2 local6378;
+												@Pc(6378) QuickChatCatType local6378;
 												if (scriptOpcode == 5051) {
 													intValueIndex--;
 													interfaceData = Static254.scriptIntValues[intValueIndex];
-													local6378 = Static235.method4045(interfaceData);
-													if (local6378.anIntArray30 == null) {
+													local6378 = QuickChatCatTypeList.get(interfaceData);
+													if (local6378.subcategories == null) {
 														Static254.scriptIntValues[intValueIndex++] = 0;
 													} else {
-														Static254.scriptIntValues[intValueIndex++] = local6378.anIntArray30.length;
+														Static254.scriptIntValues[intValueIndex++] = local6378.subcategories.length;
 													}
 													continue;
 												}
@@ -4160,19 +4160,19 @@ public final class ClientScriptRunner {
 													intValueIndex -= 2;
 													interfaceData = Static254.scriptIntValues[intValueIndex];
 													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
-													@Pc(6416) Class3_Sub2_Sub2 local6416 = Static235.method4045(interfaceData);
-													local652 = local6416.anIntArray30[interfaceType];
+													@Pc(6416) QuickChatCatType local6416 = QuickChatCatTypeList.get(interfaceData);
+													local652 = local6416.subcategories[interfaceType];
 													Static254.scriptIntValues[intValueIndex++] = local652;
 													continue;
 												}
 												if (scriptOpcode == 5053) {
 													intValueIndex--;
 													interfaceData = Static254.scriptIntValues[intValueIndex];
-													local6378 = Static235.method4045(interfaceData);
-													if (local6378.anIntArray32 == null) {
+													local6378 = QuickChatCatTypeList.get(interfaceData);
+													if (local6378.phrases == null) {
 														Static254.scriptIntValues[intValueIndex++] = 0;
 													} else {
-														Static254.scriptIntValues[intValueIndex++] = local6378.anIntArray32.length;
+														Static254.scriptIntValues[intValueIndex++] = local6378.phrases.length;
 													}
 													continue;
 												}
@@ -4180,7 +4180,7 @@ public final class ClientScriptRunner {
 													intValueIndex -= 2;
 													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 													interfaceData = Static254.scriptIntValues[intValueIndex];
-													Static254.scriptIntValues[intValueIndex++] = Static235.method4045(interfaceData).anIntArray32[interfaceType];
+													Static254.scriptIntValues[intValueIndex++] = QuickChatCatTypeList.get(interfaceData).phrases[interfaceType];
 													continue;
 												}
 												if (scriptOpcode == 5055) {
@@ -4251,14 +4251,14 @@ public final class ClientScriptRunner {
 													intValueIndex -= 2;
 													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 													interfaceData = Static254.scriptIntValues[intValueIndex];
-													Static254.scriptIntValues[intValueIndex++] = Static235.method4045(interfaceData).anIntArray31[interfaceType];
+													Static254.scriptIntValues[intValueIndex++] = QuickChatCatTypeList.get(interfaceData).subcategoryShortcuts[interfaceType];
 													continue;
 												}
 												if (scriptOpcode == 5063) {
 													intValueIndex -= 2;
 													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 													interfaceData = Static254.scriptIntValues[intValueIndex];
-													Static254.scriptIntValues[intValueIndex++] = Static235.method4045(interfaceData).anIntArray29[interfaceType];
+													Static254.scriptIntValues[intValueIndex++] = QuickChatCatTypeList.get(interfaceData).phraseShortcuts[interfaceType];
 													continue;
 												}
 												if (scriptOpcode == 5064) {
@@ -4268,7 +4268,7 @@ public final class ClientScriptRunner {
 													if (interfaceType == -1) {
 														Static254.scriptIntValues[intValueIndex++] = -1;
 													} else {
-														Static254.scriptIntValues[intValueIndex++] = Static235.method4045(interfaceData).method469(interfaceType);
+														Static254.scriptIntValues[intValueIndex++] = QuickChatCatTypeList.get(interfaceData).method469(interfaceType);
 													}
 													continue;
 												}
@@ -4279,7 +4279,7 @@ public final class ClientScriptRunner {
 													if (interfaceType == -1) {
 														Static254.scriptIntValues[intValueIndex++] = -1;
 													} else {
-														Static254.scriptIntValues[intValueIndex++] = Static235.method4045(interfaceData).method466(interfaceType);
+														Static254.scriptIntValues[intValueIndex++] = QuickChatCatTypeList.get(interfaceData).method466(interfaceType);
 													}
 													continue;
 												}

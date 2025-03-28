@@ -13,9 +13,6 @@ public final class Static73 {
 	@OriginalMember(owner = "client!fm", name = "W", descriptor = "Lclient!na;")
 	public static final JString aClass100_453 = JString.parse(")2");
 
-	@OriginalMember(owner = "client!fm", name = "db", descriptor = "Lclient!gn;")
-	public static final LruHashTable aClass54_7 = new LruHashTable(64);
-
 	@OriginalMember(owner = "client!fm", name = "gb", descriptor = "Lclient!na;")
 	public static final JString OVERLAY2 = JString.parse("overlay2");
 
