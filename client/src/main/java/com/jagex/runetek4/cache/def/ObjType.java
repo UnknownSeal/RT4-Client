@@ -685,7 +685,7 @@ public final class ObjType {
 				model.retexture(this.retex_s[i], this.retex_d[i]);
 			}
 		}
-		@Pc(107) SoftwareModel softwareModel = model.method1671(this.ambient + 64, 768 - -this.contrast);
+		@Pc(107) SoftwareModel softwareModel = model.createSoftwareModel(this.ambient + 64, 768 - -this.contrast);
 		if (this.resizeX != 128 || this.resizeY != 128 || this.resizeZ != 128) {
 			softwareModel.resize(this.resizeX, this.resizeY, this.resizeZ);
 		}

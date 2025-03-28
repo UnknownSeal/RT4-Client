@@ -844,7 +844,7 @@ public final class LocType {
 				aLocEntity_1.model = null;
 				return aLocEntity_1;
 			}
-			local69.method1681();
+			local69.resetBones();
 			if (arg3 == 10 && arg0 > 3) {
 				local69.method1682();
 			}

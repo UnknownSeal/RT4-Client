@@ -138,7 +138,7 @@ public final class SoftwareModel extends Model {
 	@OriginalMember(owner = "runetek4.client!w", name = "<init>", descriptor = "(Lclient!gb;IIIII)V")
 	public SoftwareModel(@OriginalArg(0) RawModel arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
 		arg0.calculateNormals();
-		arg0.method1683();
+		arg0.createBones();
 		this.anInt5788 = arg0.vertexCount;
 		this.anIntArray528 = arg0.vertexX;
 		this.anIntArray527 = arg0.vertexY;
@@ -151,10 +151,10 @@ public final class SoftwareModel extends Model {
 		this.aByteArray75 = arg0.triangleAlpha;
 		this.aByte20 = arg0.modelPriority;
 		this.aShortArray89 = arg0.unmodifiedTriangleColour;
-		this.anIntArrayArray41 = arg0.anIntArrayArray16;
-		this.anIntArrayArray42 = arg0.anIntArrayArray15;
+		this.anIntArrayArray41 = arg0.boneVertices;
+		this.anIntArrayArray42 = arg0.boneTriangles;
 		this.aShortArray90 = arg0.triangleSources;
-		this.aShortArray91 = arg0.vertexSourceModels;
+		this.aShortArray91 = arg0.vertexSources;
 		@Pc(102) int local102 = (int) Math.sqrt((double) (arg3 * arg3 + arg4 * arg4 + arg5 * arg5));
 		@Pc(108) int local108 = arg2 * local102 >> 8;
 		this.anIntArray533 = new int[this.anInt5787];
@@ -195,9 +195,9 @@ public final class SoftwareModel extends Model {
 			@Pc(248) int local248;
 			for (local248 = 0; local248 < arg0.texturedFaceCount; local248++) {
 				if (local177[local248] > 0 && arg0.textureTypes[local248] == 0) {
-					this.anIntArray526[local179] = arg0.textureTriangleVertex1[local248] & 0xFFFF;
-					this.anIntArray530[local179] = arg0.textureTriangleVertex2[local248] & 0xFFFF;
-					this.anIntArray525[local179] = arg0.textureTriangleVertex3[local248] & 0xFFFF;
+					this.anIntArray526[local179] = arg0.textureFacesP[local248] & 0xFFFF;
+					this.anIntArray530[local179] = arg0.textureFacesM[local248] & 0xFFFF;
+					this.anIntArray525[local179] = arg0.textureFacesN[local248] & 0xFFFF;
 					local177[local248] = local179++;
 				} else {
 					local177[local248] = -1;
@@ -247,28 +247,28 @@ public final class SoftwareModel extends Model {
 				if (local366 == 0) {
 					@Pc(416) int local416 = arg0.unmodifiedTriangleColour[local133] & 0xFFFF;
 					if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray534[local133]] == null) {
-						local435 = arg0.aVertexNormalArray1[this.anIntArray534[local133]];
+						local435 = arg0.vertexNormals[this.anIntArray534[local133]];
 					} else {
 						local435 = arg0.aVertexNormalArray2[this.anIntArray534[local133]];
 					}
 					local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude) << 17;
 					this.anIntArray533[local133] = local468 | ColorUtils.multiplyLightness2(local416, local468 >> 17);
 					if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray524[local133]] == null) {
-						local435 = arg0.aVertexNormalArray1[this.anIntArray524[local133]];
+						local435 = arg0.vertexNormals[this.anIntArray524[local133]];
 					} else {
 						local435 = arg0.aVertexNormalArray2[this.anIntArray524[local133]];
 					}
 					local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude) << 17;
 					this.anIntArray523[local133] = local468 | ColorUtils.multiplyLightness2(local416, local468 >> 17);
 					if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray529[local133]] == null) {
-						local435 = arg0.aVertexNormalArray1[this.anIntArray529[local133]];
+						local435 = arg0.vertexNormals[this.anIntArray529[local133]];
 					} else {
 						local435 = arg0.aVertexNormalArray2[this.anIntArray529[local133]];
 					}
 					local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude) << 17;
 					this.anIntArray532[local133] = local468 | ColorUtils.multiplyLightness2(local416, local468 >> 17);
 				} else if (local366 == 1) {
-					local614 = arg0.aClass126Array1[local133];
+					local614 = arg0.triangleNormals[local133];
 					local468 = arg1 + (arg3 * local614.anInt4769 + arg4 * local614.anInt4770 + arg5 * local614.anInt4767) / (local108 + local108 / 2) << 17;
 					this.anIntArray533[local133] = local468 | ColorUtils.multiplyLightness2(arg0.unmodifiedTriangleColour[local133] & 0xFFFF, local468 >> 17);
 					this.anIntArray532[local133] = -1;
@@ -280,28 +280,28 @@ public final class SoftwareModel extends Model {
 				}
 			} else if (local366 == 0) {
 				if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray534[local133]] == null) {
-					local435 = arg0.aVertexNormalArray1[this.anIntArray534[local133]];
+					local435 = arg0.vertexNormals[this.anIntArray534[local133]];
 				} else {
 					local435 = arg0.aVertexNormalArray2[this.anIntArray534[local133]];
 				}
 				local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude);
 				this.anIntArray533[local133] = ColorUtils.method4582(local468);
 				if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray524[local133]] == null) {
-					local435 = arg0.aVertexNormalArray1[this.anIntArray524[local133]];
+					local435 = arg0.vertexNormals[this.anIntArray524[local133]];
 				} else {
 					local435 = arg0.aVertexNormalArray2[this.anIntArray524[local133]];
 				}
 				local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude);
 				this.anIntArray523[local133] = ColorUtils.method4582(local468);
 				if (arg0.aVertexNormalArray2 == null || arg0.aVertexNormalArray2[this.anIntArray529[local133]] == null) {
-					local435 = arg0.aVertexNormalArray1[this.anIntArray529[local133]];
+					local435 = arg0.vertexNormals[this.anIntArray529[local133]];
 				} else {
 					local435 = arg0.aVertexNormalArray2[this.anIntArray529[local133]];
 				}
 				local468 = arg1 + (arg3 * local435.x + arg4 * local435.y + arg5 * local435.z) / (local108 * local435.magnitude);
 				this.anIntArray532[local133] = ColorUtils.method4582(local468);
 			} else if (local366 == 1) {
-				local614 = arg0.aClass126Array1[local133];
+				local614 = arg0.triangleNormals[local133];
 				local468 = arg1 + (arg3 * local614.anInt4769 + arg4 * local614.anInt4770 + arg5 * local614.anInt4767) / (local108 + local108 / 2);
 				this.anIntArray533[local133] = ColorUtils.method4582(local468);
 				this.anIntArray532[local133] = -1;
