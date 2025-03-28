@@ -1409,7 +1409,7 @@ public final class ClientScriptRunner {
 		@Pc(171) int jitter;
 		for (type = 0; type < 5; type++) {
 			if (Camera.cameraModifierEnabled[type]) {
-				jitter = (int) ((double) -Camera.cameraModifierJitter[type] + (double) (Camera.cameraModifierJitter[type] * 2 + 1) * Math.random() + Math.sin((double) Static31.cameraModifierCycle[type] * ((double) Camera.cameraFrequency[type] / 100.0D)) * (double) Camera.cameraAmplitude[type]);
+				jitter = (int) ((double) -Camera.cameraModifierJitter[type] + (double) (Camera.cameraModifierJitter[type] * 2 + 1) * Math.random() + Math.sin((double) Protocol.cameraModifierCycle[type] * ((double) Camera.cameraFrequency[type] / 100.0D)) * (double) Camera.cameraAmplitude[type]);
 				if (type == 3) {
 					Camera.cameraYaw = jitter + Camera.cameraYaw & 0x7FF;
 				}

@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ObjType;
-import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.NodeCache;
@@ -59,19 +58,7 @@ public final class ObjTypeList {
 		return true;
 	}
 
-	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(BII)V")
-	public static void method2575(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		VarPlayerDefinition.varPlayerCache[arg1] = arg0;
-		@Pc(20) LongNode local20 = (LongNode) Static199.aClass133_20.getNode((long) arg1);
-		if (local20 == null) {
-			local20 = new LongNode(4611686018427387905L);
-			Static199.aClass133_20.put(local20, (long) arg1);
-		} else if (local20.value != 4611686018427387905L) {
-			local20.value = MonotonicTime.currentTimeMillis() + 500L | 0x4000000000000000L;
-		}
-	}
-
-    @OriginalMember(owner = "client!fk", name = "a", descriptor = "(IB)Lclient!h;")
+	@OriginalMember(owner = "client!fk", name = "a", descriptor = "(IB)Lclient!h;")
     public static ObjType get(@OriginalArg(0) int id) {
         @Pc(6) ObjType objType = (ObjType) types.get((long) id);
         if (objType != null) {

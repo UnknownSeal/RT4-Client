@@ -23,7 +23,7 @@ public class WorldList {
                 if (MonotonicTime.currentTimeMillis() - 5000L < PreciseSleep.aLong174) {
                     return 0;
                 }
-                Static72.aClass212_3 = GameShell.signLink.openSocket(client.worldListHostname, client.worldListPort);
+                Protocol.socketRequest = GameShell.signLink.openSocket(client.worldListHostname, client.worldListPort);
                 Static15.aLong18 = MonotonicTime.currentTimeMillis();
                 Static82.anInt2231 = 1;
             }
@@ -33,15 +33,15 @@ public class WorldList {
             @Pc(82) int local82;
             @Pc(124) int local124;
             if (Static82.anInt2231 == 1) {
-                if (Static72.aClass212_3.status == 2) {
+                if (Protocol.socketRequest.status == 2) {
                     return Static10.method347(1001);
                 }
-                if (Static72.aClass212_3.status != 1) {
+                if (Protocol.socketRequest.status != 1) {
                     return -1;
                 }
-                Protocol.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
+                Protocol.gameServerSocket = new BufferedSocket((Socket) Protocol.socketRequest.result, GameShell.signLink);
                 Protocol.outboundBuffer.offset = 0;
-                Static72.aClass212_3 = null;
+                Protocol.socketRequest = null;
                 local82 = 0;
                 if (loaded) {
                     local82 = Static80.anInt4702;

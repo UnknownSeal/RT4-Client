@@ -6,12 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static44 {
 
-	@OriginalMember(owner = "client!dh", name = "d", descriptor = "[I")
-	public static final int[] entityUpdateIds = new int[2048];
-
-	@OriginalMember(owner = "client!dh", name = "i", descriptor = "Lclient!na;")
-	public static final JString aClass100_336 = JString.parse("<img=1>");
-
 	@OriginalMember(owner = "client!dh", name = "b", descriptor = "(I)Lclient!q;")
 	public static ReferenceNodeFactory method1147() {
 		try {

@@ -9,12 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static164 {
 
-	@OriginalMember(owner = "runetek4.client!na", name = "cb", descriptor = "Lclient!na;")
-	public static final JString ALLYREQ = JString.parse(":allyreq:");
-
-	@OriginalMember(owner = "runetek4.client!na", name = "mb", descriptor = "[I")
-	public static final int[] anIntArray362 = new int[50];
-
 	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Lclient!ba;Lclient!ba;IIIZZ)I")
 	public static int method3115(@OriginalArg(0) GWCWorld arg0, @OriginalArg(1) GWCWorld arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) boolean arg4, @OriginalArg(6) boolean arg5) {
 		@Pc(8) int local8 = Static270.method4595(arg1, arg3, arg0, arg5);

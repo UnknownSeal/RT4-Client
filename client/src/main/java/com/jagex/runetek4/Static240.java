@@ -10,7 +10,4 @@ public final class Static240 {
 	@OriginalMember(owner = "runetek4.client!tg", name = "g", descriptor = "[[[B")
 	public static byte[][][] aByteArrayArrayArray14;
 
-	@OriginalMember(owner = "runetek4.client!tg", name = "h", descriptor = "I")
-	public static int entityRemovalCount = 0;
-
 }

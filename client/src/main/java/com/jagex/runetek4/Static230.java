@@ -3,7 +3,6 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
-import org.openrs2.deob.annotation.Pc;
 
 public final class Static230 {
 
@@ -19,26 +18,6 @@ public final class Static230 {
 			Static176.method3308(arg2, arg3, arg4, arg0, arg1);
 		} else {
 			Static163.method3105(arg1, arg3, arg4, arg0, arg2);
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(ILclient!na;)V")
-	public static void method3954(@OriginalArg(1) JString arg0) {
-		client.settings = arg0;
-		if (GameShell.signLink.applet == null) {
-			return;
-		}
-		try {
-			@Pc(17) JString local17 = Static272.aClass100_989.fromParameters(GameShell.signLink.applet);
-			@Pc(23) JString local23 = Static246.aClass100_1029.fromParameters(GameShell.signLink.applet);
-			@Pc(48) JString local48 = JString.concatenate(new JString[] { local17, Static142.aClass100_667, arg0, Static276.aClass100_1095, local23 });
-			if (arg0.length() == 0) {
-				local48 = JString.concatenate(new JString[] { local48, Static245.aClass100_1018 });
-			} else {
-				local48 = JString.concatenate(new JString[] { local48, Static263.aClass100_1082, DateUtil.getDateString(MonotonicTime.currentTimeMillis() + 94608000000L), Protocol.MAX_AGE, JString.method2929(94608000L) });
-			}
-			JString.concatenate(new JString[] { BZip2State.aClass100_821, local48, Static223.aClass100_946 }).method3134(GameShell.signLink.applet);
-		} catch (@Pc(124) Throwable local124) {
 		}
 	}
 

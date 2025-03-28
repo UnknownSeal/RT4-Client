@@ -18,9 +18,6 @@ public final class Static142 {
 	@OriginalMember(owner = "runetek4.client!lc", name = "l", descriptor = "I")
 	public static int anInt3482 = -1;
 
-	@OriginalMember(owner = "runetek4.client!lc", name = "m", descriptor = "Lclient!na;")
-	public static final JString aClass100_667 = JString.parse("settings=");
-
 	@OriginalMember(owner = "runetek4.client!lc", name = "a", descriptor = "(IIIIIII)V")
 	public static void method2726(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
 		OverHeadChat.sizes = 0;

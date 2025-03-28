@@ -608,19 +608,19 @@ public class LoginManager {
                 }
             }
             if (autoStep == 1) {
-                Static72.aClass212_3 = GameShell.signLink.openSocket(client.worldListHostname, client.worldListPort);
+                Protocol.socketRequest = GameShell.signLink.openSocket(client.worldListHostname, client.worldListPort);
                 autoStep = 2;
             }
             @Pc(126) int local126;
             if (autoStep == 2) {
-                if (Static72.aClass212_3.status == 2) {
+                if (Protocol.socketRequest.status == 2) {
                     throw new IOException();
                 }
-                if (Static72.aClass212_3.status != 1) {
+                if (Protocol.socketRequest.status != 1) {
                     return;
                 }
-                Protocol.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
-                Static72.aClass212_3 = null;
+                Protocol.gameServerSocket = new BufferedSocket((Socket) Protocol.socketRequest.result, GameShell.signLink);
+                Protocol.socketRequest = null;
                 Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
                 if (client.musicChannel != null) {
                     client.musicChannel.method3571();
@@ -709,18 +709,18 @@ public class LoginManager {
                 errors++;
             }
             if (step == 1) {
-                Static72.aClass212_3 = GameShell.signLink.openSocket(client.hostname, client.port);
+                Protocol.socketRequest = GameShell.signLink.openSocket(client.hostname, client.port);
                 step = 2;
             }
             if (step == 2) {
-                if (Static72.aClass212_3.status == 2) {
+                if (Protocol.socketRequest.status == 2) {
                     throw new IOException();
                 }
-                if (Static72.aClass212_3.status != 1) {
+                if (Protocol.socketRequest.status != 1) {
                     return;
                 }
-                Protocol.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
-                Static72.aClass212_3 = null;
+                Protocol.gameServerSocket = new BufferedSocket((Socket) Protocol.socketRequest.result, GameShell.signLink);
+                Protocol.socketRequest = null;
                 @Pc(106) long local106 = Player.name37 = Player.usernameInput.encode37();
                 Protocol.outboundBuffer.offset = 0;
                 Protocol.outboundBuffer.p1(14);
@@ -937,7 +937,7 @@ public class LoginManager {
                 step = 0;
                 client.method4221();
                 SceneGraph.centralZoneX = -1;
-                Static75.method1629(false);
+                Protocol.readRebuildPacket(false);
                 Protocol.opcode = -1;
                 return;
             }
@@ -1274,7 +1274,7 @@ public class LoginManager {
                         NpcList.npcs[local97] = new Npc();
                         @Pc(198) Npc local198 = NpcList.npcs[local97];
                         NpcList.npcIds[NpcList.npcCount++] = local97;
-                        local198.cycle = client.loop;
+                        local198.lastSeenLoop = client.loop;
                         local198.setNpcType(local148);
                         local198.setSize(local198.type.size);
                         local198.dstYaw = local198.anInt3381 = PathingEntity.ANGLES[local198.type.spawnDirection];
@@ -1305,7 +1305,7 @@ public class LoginManager {
             client.audioLoop();
             for (@Pc(32) int local32 = 0; local32 < 13; local32++) {
                 for (@Pc(39) int local39 = 0; local39 < 13; local39++) {
-                    @Pc(52) int local52 = Static187.anIntArrayArrayArray18[local21][local32][local39];
+                    @Pc(52) int local52 = Protocol.anIntArrayArrayArray18[local21][local32][local39];
                     @Pc(54) boolean local54 = false;
                     if (local52 != -1) {
                         @Pc(65) int local65 = local52 >> 24 & 0x3;
@@ -1346,7 +1346,7 @@ public class LoginManager {
             client.audioLoop();
             for (@Pc(36) int local36 = 0; local36 < 13; local36++) {
                 for (@Pc(43) int local43 = 0; local43 < 13; local43++) {
-                    @Pc(56) int local56 = Static187.anIntArrayArrayArray18[local29][local36][local43];
+                    @Pc(56) int local56 = Protocol.anIntArrayArrayArray18[local29][local36][local43];
                     if (local56 != -1) {
                         @Pc(67) int local67 = local56 >> 24 & 0x3;
                         if (!arg0 || local67 == 0) {

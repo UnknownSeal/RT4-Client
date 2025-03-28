@@ -8,9 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static272 {
 
-	@OriginalMember(owner = "runetek4.client!wd", name = "e", descriptor = "Lclient!na;")
-	public static final JString aClass100_989 = JString.parse("cookieprefix");
-
 	@OriginalMember(owner = "runetek4.client!wd", name = "a", descriptor = "(BII)V")
 	public static void method3995(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
 		@Pc(14) VarbitDefinition local14 = VarbitDefinition.getDefinition(arg1);
@@ -22,6 +19,6 @@ public final class Static272 {
 			arg0 = 0;
 		}
 		local29 <<= local23;
-		ObjTypeList.method2575(arg0 << local23 & local29 | ~local29 & VarPlayerDefinition.varPlayerCache[local17], local17);
+		VarpDomain.set(arg0 << local23 & local29 | ~local29 & VarPlayerDefinition.varPlayerCache[local17], local17);
 	}
 }

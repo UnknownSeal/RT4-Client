@@ -506,7 +506,7 @@ public final class Player extends PathingEntity {
 		this.method2685(local76, arg0);
 		model = null;
 		if (!this.lowMemory && this.spotAnimId != -1 && this.spotanimId != -1) {
-			@Pc(471) SpotAnimType spotanim = Static34.method877(this.spotAnimId);
+			@Pc(471) SpotAnimType spotanim = SpotAnimTypeList.get(this.spotAnimId);
 			model = spotanim.constructModel(this.anInt3418, this.spotanimId, this.anInt3361);
 			if (model != null) {
 				model.translate(0, -this.spotAnimY, 0);

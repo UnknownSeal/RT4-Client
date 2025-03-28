@@ -84,7 +84,7 @@ public final class Npc extends PathingEntity {
 		this.method2685(body, orientation);
 		model = null;
 		if (this.spotAnimId != -1 && this.spotanimId != -1) {
-			@Pc(211) SpotAnimType spotAnimType = Static34.method877(this.spotAnimId);
+			@Pc(211) SpotAnimType spotAnimType = SpotAnimTypeList.get(this.spotAnimId);
 			model = spotAnimType.constructModel(this.anInt3418, this.spotanimId, this.anInt3361);
 			if (model != null) {
 				model.translate(0, -this.spotAnimY, 0);

@@ -5,6 +5,7 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.game.config.flotype.FloorOverlayTypeList;
 import com.jagex.runetek4.game.config.lighttype.LightType;
@@ -51,6 +52,10 @@ public class SceneGraph {
     public static Tile[][][] tiles;
     @OriginalMember(owner = "client!runetek4.client", name = "kb", descriptor = "[[Lclient!hg;")
     public static GlTile[][] aGlTileArrayArray1;
+    @OriginalMember(owner = "runetek4.client!ja", name = "q", descriptor = "I")
+    public static int currentChunkX;
+    @OriginalMember(owner = "runetek4.client!og", name = "b", descriptor = "I")
+    public static int currentChunkZ;
 
     @OriginalMember(owner = "client!fc", name = "a", descriptor = "()V")
     public static void clear() {
@@ -1497,6 +1502,18 @@ public class SceneGraph {
                 }
             }
             return false;
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!pb", name = "b", descriptor = "(III)Lclient!jj;")
+    public static ObjStackEntity removeObjStack(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+        @Pc(7) Tile local7 = tiles[arg0][arg1][arg2];
+        if (local7 == null) {
+            return null;
+        } else {
+            @Pc(14) ObjStackEntity local14 = local7.aClass79_1;
+            local7.aClass79_1 = null;
+            return local14;
         }
     }
 }

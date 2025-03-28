@@ -213,7 +213,7 @@ public class MiniMenu {
     @OriginalMember(owner = "runetek4.client!ud", name = "a", descriptor = "(ILclient!be;)Z")
     public static boolean method4265(@OriginalArg(1) Component arg0) {
         if (arg0.contentType == 205) {
-            Game.idleTimeout = 250;
+            Protocol.idleTimeout = 250;
             return true;
         } else {
             return false;

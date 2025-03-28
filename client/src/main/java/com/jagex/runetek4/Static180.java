@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static180 {
 
-	@OriginalMember(owner = "runetek4.client!og", name = "b", descriptor = "I")
-	public static int anInt4264;
-
 	@OriginalMember(owner = "runetek4.client!og", name = "g", descriptor = "[Lclient!na;")
 	public static JString[] localStrings;
 

@@ -258,7 +258,7 @@ public abstract class PathingEntity extends Entity {
 	public int chatColor = 0;
 
 	@OriginalMember(owner = "client!fe", name = "kc", descriptor = "I")
-	public int cycle = 0;
+	public int lastSeenLoop = 0;
 
 	@OriginalMember(owner = "client!fe", name = "ec", descriptor = "I")
 	public int anInt3425 = 0;

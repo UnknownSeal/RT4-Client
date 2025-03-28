@@ -7,7 +7,4 @@ public final class Static16 {
 	@OriginalMember(owner = "client!bf", name = "B", descriptor = "I")
 	public static int anInt548 = -1;
 
-	@OriginalMember(owner = "client!bf", name = "G", descriptor = "I")
-	public static int anInt551 = 0;
-
 }

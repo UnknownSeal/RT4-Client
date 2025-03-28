@@ -12,9 +12,6 @@ public final class BZip2State {
 	@OriginalMember(owner = "runetek4.client!s", name = "i", descriptor = "[I")
 	public static int[] anIntArray376;
 
-	@OriginalMember(owner = "runetek4.client!s", name = "g", descriptor = "Lclient!na;")
-	public static final JString aClass100_821 = JString.parse("document)3cookie=(R");
-
 	@OriginalMember(owner = "runetek4.client!s", name = "a", descriptor = "(II)I")
 	public static int method3389(@OriginalArg(0) int arg0) {
 		return arg0 >>> 7;

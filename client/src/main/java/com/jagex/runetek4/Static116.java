@@ -7,9 +7,6 @@ public final class Static116 {
 	@OriginalMember(owner = "runetek4.client!jb", name = "k", descriptor = "[Lclient!qf;")
 	public static Sprite[] aClass3_Sub2_Sub1Array3;
 
-	@OriginalMember(owner = "runetek4.client!jb", name = "m", descriptor = "I")
-	public static int entityUpdateCount = 0;
-
 	@OriginalMember(owner = "runetek4.client!jb", name = "n", descriptor = "I")
 	public static int oneMouseButton = 0;
 

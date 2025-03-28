@@ -3,31 +3,14 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.game.config.lighttype.LightType;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static245 {
 
-	@OriginalMember(owner = "runetek4.client!tm", name = "d", descriptor = "Lclient!na;")
-	public static final JString aClass100_1018 = JString.parse("; Expires=Thu)1 01)2Jan)21970 00:00:00 GMT; Max)2Age=0");
-
 	@OriginalMember(owner = "runetek4.client!tm", name = "i", descriptor = "I")
 	public static int anInt5377 = 0;
-
-	@OriginalMember(owner = "runetek4.client!tm", name = "a", descriptor = "(I)V")
-	public static void getPlayerExtended() {
-		for (@Pc(7) int i = 0; i < Static116.entityUpdateCount; i++) {
-			@Pc(31) int index = Static44.entityUpdateIds[i];
-			@Pc(35) Player player = PlayerList.players[index];
-			@Pc(39) int mask = Protocol.inboundBuffer.g1();
-			if ((mask & 0x10) != 0) {
-				mask += Protocol.inboundBuffer.g1() << 8;
-			}
-			Static84.getPlayerExtended(mask, index, player);
-		}
-	}
 
 	@OriginalMember(owner = "runetek4.client!tm", name = "a", descriptor = "(III[Lclient!mj;IB[BIIIZ)V")
 	public static void method4228(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) CollisionMap[] arg3, @OriginalArg(4) int arg4, @OriginalArg(6) byte[] arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8, @OriginalArg(10) boolean arg9) {

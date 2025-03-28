@@ -10,9 +10,6 @@ public final class Static196 {
 	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "[Lclient!ba;")
 	public static GWCWorld[] aClass10_Sub1Array2;
 
-	@OriginalMember(owner = "runetek4.client!pl", name = "f", descriptor = "Lclient!na;")
-	public static final JString TRADEREQ = JString.parse(":tradereq:");
-
 	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(I)Lclient!mm;")
 	public static SoftwareSprite method3537() {
 		@Pc(13) int local13 = SpriteLoader.innerWidths[0] * SpriteLoader.innerHeights[0];

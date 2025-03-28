@@ -58,7 +58,7 @@ public final class SpotAnim extends Entity {
 		this.startCycle = arg6 + arg5;
 		this.anInt596 = arg0;
 		this.anInt599 = arg4;
-		@Pc(42) int local42 = Static34.method877(this.anInt596).animationId;
+		@Pc(42) int local42 = SpotAnimTypeList.get(this.anInt596).animationId;
 		if (local42 == -1) {
 			this.seqComplete = true;
 		} else {
@@ -69,7 +69,7 @@ public final class SpotAnim extends Entity {
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "b", descriptor = "(Z)Lclient!ak;")
 	private Model method552() {
-		@Pc(8) SpotAnimType local8 = Static34.method877(this.anInt596);
+		@Pc(8) SpotAnimType local8 = SpotAnimTypeList.get(this.anInt596);
 		@Pc(26) Model local26;
 		if (this.seqComplete) {
 			local26 = local8.constructModel(-1, -1, 0);

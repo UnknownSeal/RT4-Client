@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 public final class Static244 {
 
 
-	@OriginalMember(owner = "runetek4.client!tl", name = "f", descriptor = "Lclient!na;")
-	public static final JString ASSIST = JString.parse(":assist:");
-
 	@OriginalMember(owner = "runetek4.client!tl", name = "i", descriptor = "Lclient!na;")
 	public static final JString aClass100_1017 = JString.parse(")1");
 

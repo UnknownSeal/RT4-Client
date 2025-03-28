@@ -103,19 +103,19 @@ public class CreateManager {
                 }
             }
             if (step == 1) {
-                Static72.aClass212_3 = GameShell.signLink.openSocket(client.hostname, client.port);
+                Protocol.socketRequest = GameShell.signLink.openSocket(client.hostname, client.port);
                 step = 2;
             }
             @Pc(120) int local120;
             if (step == 2) {
-                if (Static72.aClass212_3.status == 2) {
+                if (Protocol.socketRequest.status == 2) {
                     throw new IOException();
                 }
-                if (Static72.aClass212_3.status != 1) {
+                if (Protocol.socketRequest.status != 1) {
                     return;
                 }
-                Protocol.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
-                Static72.aClass212_3 = null;
+                Protocol.gameServerSocket = new BufferedSocket((Socket) Protocol.socketRequest.result, GameShell.signLink);
+                Protocol.socketRequest = null;
                 Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
                 if (client.musicChannel != null) {
                     client.musicChannel.method3571();

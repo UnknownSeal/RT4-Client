@@ -10,9 +10,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static220 {
 
-	@OriginalMember(owner = "runetek4.client!rm", name = "c", descriptor = "I")
-	public static int cameraOffsetYawModifier = 1;
-
 	@OriginalMember(owner = "runetek4.client!rm", name = "i", descriptor = "Lclient!na;")
 	public static final JString aClass100_930 = JString.parse("(Z");
 

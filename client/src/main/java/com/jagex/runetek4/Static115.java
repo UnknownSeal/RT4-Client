@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static115 {
 
-	@OriginalMember(owner = "runetek4.client!ja", name = "q", descriptor = "I")
-	public static int anInt2940;
-
 	@OriginalMember(owner = "runetek4.client!ja", name = "s", descriptor = "Lclient!na;")
 	public static final JString aClass100_582 = JString.parse("http:)4)4");
 

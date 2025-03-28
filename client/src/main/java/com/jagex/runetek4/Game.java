@@ -6,7 +6,7 @@ import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
+import com.jagex.runetek4.dash3d.entity.ProjAnimNode;
 import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -16,14 +16,12 @@ import org.openrs2.deob.annotation.Pc;
 import java.io.IOException;
 
 public class Game {
-    @OriginalMember(owner = "client!vl", name = "k", descriptor = "I")
-    public static int idleTimeout = 0;
 
     @OriginalMember(owner = "client!gg", name = "a", descriptor = "(Z)V")
     public static void updateGame() {
         // todo: consolidate/rename static classes
-        if (idleTimeout > 0) {
-            idleTimeout--;
+        if (Protocol.idleTimeout > 0) {
+            Protocol.idleTimeout--;
         }
         if (Player.systemUpdateTimer > 1) {
             Player.systemUpdateTimer--;
@@ -152,8 +150,8 @@ public class Game {
             Protocol.outboundBuffer.p2_alt3(button << 15 | x);
             Protocol.outboundBuffer.p4_alt3(i | samples << 16);
         }
-        if (Static16.anInt551 > 0) {
-            Static16.anInt551--;
+        if (Protocol.anInt551 > 0) {
+            Protocol.anInt551--;
         }
         if (Preferences.aBoolean63) {
             for (i = 0; i < InterfaceList.keyQueueSize; i++) {
@@ -166,8 +164,8 @@ public class Game {
         } else if (Keyboard.pressedKeys[96] || Keyboard.pressedKeys[97] || Keyboard.pressedKeys[98] || Keyboard.pressedKeys[99]) {
             Protocol.aBoolean228 = true;
         }
-        if (Protocol.aBoolean228 && Static16.anInt551 <= 0) {
-            Static16.anInt551 = 20;
+        if (Protocol.aBoolean228 && Protocol.anInt551 <= 0) {
+            Protocol.anInt551 = 20;
             Protocol.aBoolean228 = false;
             Protocol.outboundBuffer.pIsaac1(21);
             Protocol.outboundBuffer.p2_alt2(Camera.orbitCameraPitch);
@@ -491,7 +489,7 @@ public class Game {
                                                 }
                                             }
                                             Static56.clickTileX = -1;
-                                            aClass6.method843();
+                                            Protocol.method843();
                                             if (InterfaceList.aClass13_22 != component) {
                                                 if (component != null) {
                                                     InterfaceList.redraw(component);
@@ -526,12 +524,12 @@ public class Game {
                                                 Camera.updateLoginScreenCamera();
                                             }
                                             for (y = 0; y < 5; y++) {
-                                                @Pc(2001) int local2001 = Static31.cameraModifierCycle[y]++;
+                                                @Pc(2001) int local2001 = Protocol.cameraModifierCycle[y]++;
                                             }
                                             y = Mouse.getIdleLoops(); // runetek4.Mouse
                                             x = Keyboard.getIdleLoops(); // runetek4.Keyboard
                                             if (y > 15000 && x > 15000) {
-                                                idleTimeout = 250;
+                                                Protocol.idleTimeout = 250;
                                                 Mouse.setIdleLoops(14500);
                                                 Protocol.outboundBuffer.pIsaac1(245);
                                             }
@@ -545,15 +543,15 @@ public class Game {
                                             }
                                             Protocol.anInt3251++;
                                             MiniMap.minimapOffsetCycle++;
-                                            Static143.cameraOffsetCycle++;
-                                            if (Static143.cameraOffsetCycle > 500) {
-                                                Static143.cameraOffsetCycle = 0;
+                                            Protocol.cameraOffsetCycle++;
+                                            if (Protocol.cameraOffsetCycle > 500) {
+                                                Protocol.cameraOffsetCycle = 0;
                                                 rand = (int) (Math.random() * 8.0D);
                                                 if ((rand & 0x4) == 4) {
-                                                    Camera.cameraAnticheatAngle += Static220.cameraOffsetYawModifier;
+                                                    Camera.cameraAnticheatAngle += Protocol.cameraOffsetYawModifier;
                                                 }
                                                 if ((rand & 0x2) == 2) {
-                                                    Camera.cameraAnticheatOffsetZ += Static20.cameraOffsetZModifier;
+                                                    Camera.cameraAnticheatOffsetZ += Protocol.cameraOffsetZModifier;
                                                 }
                                                 if ((rand & 0x1) == 1) {
                                                     Camera.cameraAnticheatOffsetX += Camera.cameraOffsetXModifier;
@@ -579,19 +577,19 @@ public class Game {
                                                 MiniMap.minimapZoomModifier = 1;
                                             }
                                             if (Camera.cameraAnticheatOffsetZ < -55) {
-                                                Static20.cameraOffsetZModifier = 2;
+                                                Protocol.cameraOffsetZModifier = 2;
                                             }
                                             if (Camera.cameraAnticheatOffsetZ > 55) {
-                                                Static20.cameraOffsetZModifier = -2;
+                                                Protocol.cameraOffsetZModifier = -2;
                                             }
                                             if (Camera.cameraAnticheatAngle < -40) {
-                                                Static220.cameraOffsetYawModifier = 1;
+                                                Protocol.cameraOffsetYawModifier = 1;
                                             }
                                             if (Camera.cameraAnticheatOffsetX > 50) {
                                                 Camera.cameraOffsetXModifier = -2;
                                             }
                                             if (Camera.cameraAnticheatAngle > 40) {
-                                                Static220.cameraOffsetYawModifier = -1;
+                                                Protocol.cameraOffsetYawModifier = -1;
                                             }
                                             if (MiniMap.minimapZoom > 10) {
                                                 MiniMap.minimapZoomModifier = -1;
@@ -603,7 +601,7 @@ public class Game {
                                                 Protocol.outboundBuffer.pIsaac1(93);
                                             }
                                             if (Protocol.verifyIdChanged) {
-                                                Static71.transmitVerifyId();
+                                                Protocol.transmitVerifyId();
                                                 Protocol.verifyIdChanged = false;
                                             }
                                             try {
@@ -956,7 +954,7 @@ public class Game {
 
     @OriginalMember(owner = "client!nm", name = "a", descriptor = "(Z)V")
     public static void tryReconnect() {
-        if (idleTimeout > 0) {
+        if (Protocol.idleTimeout > 0) {
             processLogout();
         } else {
             Protocol.aClass95_4 = Protocol.gameServerSocket;
@@ -967,15 +965,15 @@ public class Game {
 
     @OriginalMember(owner = "client!pk", name = "i", descriptor = "(I)V")
     public static void pushProjectiles() {
-        for (@Pc(16) ProjectileEntity proj = (ProjectileEntity) SceneGraph.projectiles.head(); proj != null; proj = (ProjectileEntity) SceneGraph.projectiles.next()) {
-            @Pc(21) ProjectileAnimation projAnim = proj.aClass8_Sub6_1;
-            if (Player.plane != projAnim.level || projAnim.lastCycle < client.loop) {
+        for (@Pc(16) ProjAnimNode proj = (ProjAnimNode) SceneGraph.projectiles.head(); proj != null; proj = (ProjAnimNode) SceneGraph.projectiles.next()) {
+            @Pc(21) ProjectileAnimation projAnim = proj.value;
+            if (Player.plane != projAnim.currentPlane || projAnim.lastCycle < client.loop) {
                 proj.unlink();
-            } else if (client.loop >= projAnim.startCycle) {
+            } else if (client.loop >= projAnim.firstCycle) {
                 if (projAnim.target > 0) {
                     @Pc(54) Npc npc = NpcList.npcs[projAnim.target - 1];
                     if (npc != null && npc.xFine >= 0 && npc.xFine < 13312 && npc.zFine >= 0 && npc.zFine < 13312) {
-                        projAnim.updateVelocity(npc.zFine, client.loop, SceneGraph.getTileHeight(projAnim.level, npc.xFine, npc.zFine) - projAnim.anInt4805, npc.xFine);
+                        projAnim.setTarget(npc.zFine, client.loop, SceneGraph.getTileHeight(projAnim.currentPlane, npc.xFine, npc.zFine) - projAnim.baseZ, npc.xFine);
                     }
                 }
                 if (projAnim.target < 0) {
@@ -987,7 +985,7 @@ public class Game {
                         player = PlayerList.players[index];
                     }
                     if (player != null && player.xFine >= 0 && player.xFine < 13312 && player.zFine >= 0 && player.zFine < 13312) {
-                        projAnim.updateVelocity(player.zFine, client.loop, SceneGraph.getTileHeight(projAnim.level, player.xFine, player.zFine) - projAnim.anInt4805, player.xFine);
+                        projAnim.setTarget(player.zFine, client.loop, SceneGraph.getTileHeight(projAnim.currentPlane, player.xFine, player.zFine) - projAnim.baseZ, player.xFine);
                     }
                 }
                 projAnim.update(Protocol.sceneDelta);

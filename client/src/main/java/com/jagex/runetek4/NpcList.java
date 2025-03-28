@@ -268,7 +268,7 @@ public class NpcList {
         }
         @Pc(156) int local156;
         if (arg0.spotAnimId != -1 && client.loop >= arg0.spotAnimStart) {
-            local156 = Static34.method877(arg0.spotAnimId).animationId;
+            local156 = SpotAnimTypeList.get(arg0.spotAnimId).animationId;
             if (local156 == -1) {
                 arg0.spotAnimId = -1;
             } else {

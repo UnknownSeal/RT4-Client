@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static72 {
 
-	@OriginalMember(owner = "client!fl", name = "C", descriptor = "Lsignlink!im;")
-	public static PrivilegedRequest aClass212_3;
-
 	@OriginalMember(owner = "client!fl", name = "B", descriptor = "I")
 	public static int updatedVarcstrsWriterIndex = 0;
 

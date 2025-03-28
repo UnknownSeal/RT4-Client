@@ -21,7 +21,7 @@ public final class ProjectileAnimation extends Entity {
 	private double accelerationZ;
 
 	@OriginalMember(owner = "client!ra", name = "Q", descriptor = "Lclient!ga;")
-	private ParticleSystem aClass47_Sub1_6;
+	private ParticleSystem particleSystem;
 
 	@OriginalMember(owner = "client!ra", name = "U", descriptor = "D")
 	private double velocityZ;
@@ -33,7 +33,7 @@ public final class ProjectileAnimation extends Entity {
 	private int pitch;
 
 	@OriginalMember(owner = "client!ra", name = "bb", descriptor = "D")
-	private double valocityY;
+	private double velocityY;
 
 	@OriginalMember(owner = "client!ra", name = "db", descriptor = "D")
 	public double x;
@@ -57,7 +57,7 @@ public final class ProjectileAnimation extends Entity {
 	private int seqFrame = 0;
 
 	@OriginalMember(owner = "client!ra", name = "T", descriptor = "I")
-	private int anInt4814 = -32768;
+	private int minY = -32768;
 
 	@OriginalMember(owner = "client!ra", name = "z", descriptor = "I")
 	public final int lastCycle;
@@ -69,10 +69,10 @@ public final class ProjectileAnimation extends Entity {
 	public final int target;
 
 	@OriginalMember(owner = "client!ra", name = "Y", descriptor = "I")
-	private final int anInt4816;
+	private final int spotanimId;
 
 	@OriginalMember(owner = "client!ra", name = "M", descriptor = "I")
-	public final int level;
+	public final int currentPlane;
 
 	@OriginalMember(owner = "client!ra", name = "mb", descriptor = "I")
 	private final int elevationPitch;
@@ -81,13 +81,13 @@ public final class ProjectileAnimation extends Entity {
 	private final int sourceY;
 
 	@OriginalMember(owner = "client!ra", name = "F", descriptor = "I")
-	public final int anInt4805;
+	public final int baseZ;
 
 	@OriginalMember(owner = "client!ra", name = "w", descriptor = "I")
 	private final int arcScale;
 
 	@OriginalMember(owner = "client!ra", name = "ib", descriptor = "I")
-	public final int startCycle;
+	public final int firstCycle;
 
 	@OriginalMember(owner = "client!ra", name = "S", descriptor = "I")
 	private final int sourceZ;
@@ -100,20 +100,20 @@ public final class ProjectileAnimation extends Entity {
 		this.lastCycle = arg6;
 		this.sourceX = arg2;
 		this.target = arg9;
-		this.anInt4816 = arg0;
-		this.level = arg1;
+		this.spotanimId = arg0;
+		this.currentPlane = arg1;
 		this.elevationPitch = arg7;
 		this.sourceY = arg3;
 		this.isMobile = false;
-		this.anInt4805 = arg10;
+		this.baseZ = arg10;
 		this.arcScale = arg8;
-		this.startCycle = arg5;
+		this.firstCycle = arg5;
 		this.sourceZ = arg4;
-		@Pc(58) int local58 = Static34.method877(this.anInt4816).animationId;
-		if (local58 == -1) {
+		@Pc(58) int seqId = SpotAnimTypeList.get(this.spotanimId).animationId;
+		if (seqId == -1) {
 			this.seqType = null;
 		} else {
-			this.seqType = SeqTypeList.getAnimationSequence(local58);
+			this.seqType = SeqTypeList.getAnimationSequence(seqId);
 		}
 	}
 
@@ -124,20 +124,20 @@ public final class ProjectileAnimation extends Entity {
 
 	@OriginalMember(owner = "client!ra", name = "b", descriptor = "(I)Lclient!ak;")
 	private Model method3703() {
-		@Pc(14) SpotAnimType local14 = Static34.method877(this.anInt4816);
-		@Pc(24) Model local24 = local14.constructModel(this.anInt4798, this.seqFrame, this.frameCycle);
-		if (local24 == null) {
+		@Pc(14) SpotAnimType seq = SpotAnimTypeList.get(this.spotanimId);
+		@Pc(24) Model model = seq.constructModel(this.anInt4798, this.seqFrame, this.frameCycle);
+		if (model == null) {
 			return null;
 		} else {
-			local24.rotateX(this.pitch);
-			return local24;
+			model.rotateX(this.pitch);
+			return model;
 		}
 	}
 
 	@OriginalMember(owner = "client!ra", name = "b", descriptor = "(BI)V")
 	public void update(@OriginalArg(1) int arg0) {
 		this.x += this.velocityX * (double) arg0;
-		this.y += this.valocityY * (double) arg0;
+		this.y += this.velocityY * (double) arg0;
 		this.isMobile = true;
 		if (this.elevationPitch == -1) {
 			this.z += this.velocityZ * (double) arg0;
@@ -145,7 +145,7 @@ public final class ProjectileAnimation extends Entity {
 			this.z += (double) arg0 * this.accelerationZ * 0.5D * (double) arg0 + (double) arg0 * this.velocityZ;
 			this.velocityZ += this.accelerationZ * (double) arg0;
 		}
-		this.yaw = (int) (Math.atan2(this.velocityX, this.valocityY) * 325.949D) + 1024 & 0x7FF;
+		this.yaw = (int) (Math.atan2(this.velocityX, this.velocityY) * 325.949D) + 1024 & 0x7FF;
 		this.pitch = (int) (Math.atan2(this.velocityZ, this.velocity) * 325.949D) & 0x7FF;
 		if (this.seqType == null) {
 			return;
@@ -174,7 +174,7 @@ public final class ProjectileAnimation extends Entity {
 	}
 
 	@OriginalMember(owner = "client!ra", name = "b", descriptor = "(IIIII)V")
-	public void updateVelocity(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+	public void setTarget(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		@Pc(17) double local17;
 		if (!this.isMobile) {
 			@Pc(10) double local10 = arg0 - this.sourceY;
@@ -185,9 +185,9 @@ public final class ProjectileAnimation extends Entity {
 			this.x = (double) this.arcScale * local17 / local26 + (double) this.sourceX;
 		}
 		local17 = this.lastCycle + 1 - arg1;
-		this.valocityY = ((double) arg0 - this.y) / local17;
+		this.velocityY = ((double) arg0 - this.y) / local17;
 		this.velocityX = ((double) arg3 - this.x) / local17;
-		this.velocity = Math.sqrt(this.valocityY * this.valocityY + this.velocityX * this.velocityX);
+		this.velocity = Math.sqrt(this.velocityY * this.velocityY + this.velocityX * this.velocityX);
 		if (this.elevationPitch == -1) {
 			this.velocityZ = ((double) arg2 - this.z) / local17;
 		} else {
@@ -203,14 +203,14 @@ public final class ProjectileAnimation extends Entity {
 	public void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8, @OriginalArg(9) int arg9, @OriginalArg(10) ParticleSystem arg10) {
 		@Pc(3) Model local3 = this.method3703();
 		if (local3 != null) {
-			local3.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.aClass47_Sub1_6);
-			this.anInt4814 = local3.getMinY();
+			local3.render(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, this.particleSystem);
+			this.minY = local3.getMinY();
 		}
 	}
 
 	@OriginalMember(owner = "client!ra", name = "b", descriptor = "()I")
 	@Override
 	public int getMinY() {
-		return this.anInt4814;
+		return this.minY;
 	}
 }

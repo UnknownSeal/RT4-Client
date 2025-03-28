@@ -1,11 +1,22 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.audio.SynthSound;
 import com.jagex.runetek4.cache.media.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class SoundPlayer {
+    @OriginalMember(owner = "runetek4.client!qe", name = "t", descriptor = "[I")
+    public static final int[] ids = new int[50];
+    @OriginalMember(owner = "runetek4.client!wh", name = "g", descriptor = "[I")
+    public static final int[] loops = new int[50];
+    @OriginalMember(owner = "runetek4.client!na", name = "mb", descriptor = "[I")
+    public static final int[] delays = new int[50];
+    @OriginalMember(owner = "runetek4.client!nk", name = "n", descriptor = "[Lclient!sl;")
+    public static final SynthSound[] sounds = new SynthSound[50];
+    @OriginalMember(owner = "client!ca", name = "fb", descriptor = "[I")
+    public static final int[] positions = new int[50];
     @OriginalMember(owner = "runetek4.client!pe", name = "j", descriptor = "I")
     public static int size = 0;
 
@@ -30,13 +41,13 @@ public class SoundPlayer {
                 Static26.method744(local73, local40, 0);
             }
         } else if (Preferences.ambientSoundsVolume != 0) {
-            Static200.anIntArray421[size] = local40;
-            Static276.anIntArray563[size] = local73;
+            ids[size] = local40;
+            loops[size] = local73;
             @Pc(111) int local111 = (arg0 - 64) / 128;
             local57 = (arg2 - 64) / 128;
-            Static164.anIntArray362[size] = 0;
-            Static173.aClass138Array1[size] = null;
-            Static26.anIntArray68[size] = local77 + (local57 << 16) + (local111 << 8);
+            delays[size] = 0;
+            sounds[size] = null;
+            positions[size] = local77 + (local57 << 16) + (local111 << 8);
             size++;
         }
     }
