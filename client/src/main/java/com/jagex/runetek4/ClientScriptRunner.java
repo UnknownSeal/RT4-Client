@@ -4932,16 +4932,16 @@ public final class ClientScriptRunner {
 														Preferences.brightness = brightness;
 														if (!GlRenderer.enabled || !Preferences.highDetailLighting) {
 															if (Preferences.brightness == 1) {
-																Pix3D.setBrightness(0.9F);
+																Rasterizer.setBrightness(0.9F);
 															}
 															if (Preferences.brightness == 2) {
-																Pix3D.setBrightness(0.8F);
+																Rasterizer.setBrightness(0.8F);
 															}
 															if (Preferences.brightness == 3) {
-																Pix3D.setBrightness(0.7F);
+																Rasterizer.setBrightness(0.7F);
 															}
 															if (Preferences.brightness == 4) {
-																Pix3D.setBrightness(0.6F);
+																Rasterizer.setBrightness(0.6F);
 															}
 														}
 														if (GlRenderer.enabled) {
@@ -5035,19 +5035,19 @@ public final class ClientScriptRunner {
 														intValueIndex--;
 														Preferences.highDetailLighting = Static254.scriptIntValues[intValueIndex] == 1;
 														if (GlRenderer.enabled && Preferences.highDetailLighting) {
-															Pix3D.setBrightness(0.7F);
+															Rasterizer.setBrightness(0.7F);
 														} else {
 															if (Preferences.brightness == 1) {
-																Pix3D.setBrightness(0.9F);
+																Rasterizer.setBrightness(0.9F);
 															}
 															if (Preferences.brightness == 2) {
-																Pix3D.setBrightness(0.8F);
+																Rasterizer.setBrightness(0.8F);
 															}
 															if (Preferences.brightness == 3) {
-																Pix3D.setBrightness(0.7F);
+																Rasterizer.setBrightness(0.7F);
 															}
 															if (Preferences.brightness == 4) {
-																Pix3D.setBrightness(0.6F);
+																Rasterizer.setBrightness(0.6F);
 															}
 														}
 														Static145.method2742();

@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import java.util.Random;
 
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.util.RandomUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -46,7 +47,7 @@ public final class TextureOp14 extends TextureOp {
 		this.aShortArray35 = new short[512];
 		if (this.anInt2636 > 0) {
 			for (@Pc(26) int local26 = 0; local26 < 512; local26++) {
-				this.aShortArray35[local26] = (short) Static171.method3219(this.anInt2636, local12);
+				this.aShortArray35[local26] = (short) RandomUtils.nextInt(this.anInt2636, local12);
 			}
 		}
 	}

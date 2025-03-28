@@ -260,7 +260,7 @@ public final class DisplayMode {
 			Static268.method4580();
 			((Js5GlTextureProvider) Rasterizer.textureProvider).method3248(200);
 			if (Preferences.highDetailLighting) {
-				Pix3D.setBrightness(0.7F);
+				Rasterizer.setBrightness(0.7F);
 			}
 			LoginManager.method4637();
 		} else if (arg1 == 0 && mode > 0) {
@@ -271,16 +271,16 @@ public final class DisplayMode {
 			((Js5GlTextureProvider) Rasterizer.textureProvider).method3248(20);
 			if (Preferences.highDetailLighting) {
 				if (Preferences.brightness == 1) {
-					Pix3D.setBrightness(0.9F);
+					Rasterizer.setBrightness(0.9F);
 				}
 				if (Preferences.brightness == 2) {
-					Pix3D.setBrightness(0.8F);
+					Rasterizer.setBrightness(0.8F);
 				}
 				if (Preferences.brightness == 3) {
-					Pix3D.setBrightness(0.7F);
+					Rasterizer.setBrightness(0.7F);
 				}
 				if (Preferences.brightness == 4) {
-					Pix3D.setBrightness(0.6F);
+					Rasterizer.setBrightness(0.6F);
 				}
 			}
 			GlTile.method1939();

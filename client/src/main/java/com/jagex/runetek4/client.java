@@ -1478,16 +1478,16 @@ public final class client extends GameShell {
 				@Pc(951) Js5GlTextureProvider textureProvider = new Js5GlTextureProvider(js5Archive9, js5Archive26, js5Archive8, 20, !Preferences.highDetailTextures);
 				Rasterizer.unpackTextures(textureProvider);
 				if (Preferences.brightness == 1) {
-					Pix3D.setBrightness(0.9F);
+					Rasterizer.setBrightness(0.9F);
 				}
 				if (Preferences.brightness == 2) {
-					Pix3D.setBrightness(0.8F);
+					Rasterizer.setBrightness(0.8F);
 				}
 				if (Preferences.brightness == 3) {
-					Pix3D.setBrightness(0.7F);
+					Rasterizer.setBrightness(0.7F);
 				}
 				if (Preferences.brightness == 4) {
-					Pix3D.setBrightness(0.6F);
+					Rasterizer.setBrightness(0.6F);
 				}
 				mainLoadSecondaryText = LocalizedText.MAINLOAD90B;
 				mainLoadState = 100;

@@ -202,8 +202,8 @@ public class SoftwareRaster {
         @Pc(67) int local67 = arg5 * local43 + 1 >> 17;
         @Pc(73) int local73 = arg5 * local37 >> 17;
         @Pc(81) int local81 = arg5 * local37 + 1 >> 17;
-        @Pc(85) int local85 = arg0 - Pix3D.method1913();
-        @Pc(89) int local89 = arg1 - Pix3D.method1927();
+        @Pc(85) int local85 = arg0 - Rasterizer.getOffsetRemainder();
+        @Pc(89) int local89 = arg1 - Rasterizer.getOffset();
         @Pc(93) int local93 = local85 + local59;
         @Pc(97) int local97 = local85 - local67;
         @Pc(103) int local103 = local85 + local3 - local67;
@@ -212,10 +212,10 @@ public class SoftwareRaster {
         @Pc(117) int local117 = local89 - local81;
         @Pc(123) int local123 = local89 + local7 - local81;
         @Pc(129) int local129 = local89 + local7 + local73;
-        Pix3D.method1922(local93, local97, local103);
-        Pix3D.method1918(local113, local117, local123, local93, local97, local103, arg4);
-        Pix3D.method1922(local93, local103, local109);
-        Pix3D.method1918(local113, local123, local129, local93, local103, local109, arg4);
+        Rasterizer.testPoints(local93, local97, local103);
+        Rasterizer.fillTriangle(local113, local117, local123, local93, local97, local103, arg4);
+        Rasterizer.testPoints(local93, local103, local109);
+        Rasterizer.fillTriangle(local113, local123, local129, local93, local103, local109, arg4);
     }
 
     @OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(IIII)V")

@@ -5,6 +5,7 @@ import java.util.Random;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.IntUtils;
+import com.jagex.runetek4.util.RandomUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -41,7 +42,7 @@ public final class Static89 {
 			}
 			for (local29 = 0; local29 < 255; local29++) {
 				@Pc(53) int local53 = 255 - local29;
-				@Pc(58) int local58 = Static171.method3219(local53, local24);
+				@Pc(58) int local58 = RandomUtils.nextInt(local53, local24);
 				@Pc(62) byte local62 = local27[local58];
 				local27[local58] = local27[local53];
 				local27[local53] = local27[511 - local29] = local62;
