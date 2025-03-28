@@ -693,9 +693,6 @@ public final class ObjType {
 	}
 
 
-	@OriginalMember(owner = "runetek4.client!gg", name = "Z", descriptor = "I")
-	public static int anInt2222;
-
 	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "([[IZ)V")
 	public static void method1751(@OriginalArg(0) int[][] arg0) {
 		ObjTypeList.anIntArrayArray10 = arg0;

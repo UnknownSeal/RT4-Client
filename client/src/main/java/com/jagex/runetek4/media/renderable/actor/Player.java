@@ -167,15 +167,15 @@ public final class Player extends PathingEntity {
 						if (local54.wall != null) {
 							if (local54.wall.primary instanceof GlModel) {
 								local71 = (GlModel) local54.wall.primary;
-								if ((local54.wall.aLong107 & Long.MIN_VALUE) == 0L) {
+								if ((local54.wall.key & Long.MIN_VALUE) == 0L) {
 									local71.method4111(false, true, true, false, true, true);
 								} else {
 									local71.method4111(true, true, true, true, true, true);
 								}
 							}
-							if (local54.wall.modelB instanceof GlModel) {
-								local71 = (GlModel) local54.wall.modelB;
-								if ((Long.MIN_VALUE & local54.wall.aLong107) == 0L) {
+							if (local54.wall.secondary instanceof GlModel) {
+								local71 = (GlModel) local54.wall.secondary;
+								if ((Long.MIN_VALUE & local54.wall.key) == 0L) {
 									local71.method4111(false, true, true, false, true, true);
 								} else {
 									local71.method4111(true, true, true, true, true, true);
@@ -185,7 +185,7 @@ public final class Player extends PathingEntity {
 						for (@Pc(270) int local270 = 0; local270 < local54.entityCount; local270++) {
 							if (local54.sceneries[local270].entity instanceof GlModel) {
 								@Pc(293) GlModel local293 = (GlModel) local54.sceneries[local270].entity;
-								if ((Long.MIN_VALUE & local54.sceneries[local270].hash) == 0L) {
+								if ((Long.MIN_VALUE & local54.sceneries[local270].key) == 0L) {
 									local293.method4111(false, true, true, false, true, true);
 								} else {
 									local293.method4111(true, true, true, true, true, true);

@@ -26,20 +26,6 @@ public final class Class6 {
 		Static148.method2766(local19, local25 & arg1 << local16 | VarPlayerDefinition.activeVarps[local19] & ~local25);
 	}
 
-	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(IBII)I")
-	public static int method3659(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		@Pc(3) int local3 = arg0 & 0x3;
-		if (local3 == 0) {
-			return arg2;
-		} else if (local3 == 1) {
-			return 7 - arg1;
-		} else if (local3 == 2) {
-			return 7 - arg2;
-		} else {
-			return arg1;
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!cj", name = "a", descriptor = "(I)[Lclient!qf;")
     public static Sprite[] method870() {
         @Pc(6) Sprite[] local6 = new Sprite[Static165.anInt4038];

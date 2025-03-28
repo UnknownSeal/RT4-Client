@@ -8,9 +8,6 @@ public final class Static90 {
 	@OriginalMember(owner = "runetek4.client!hb", name = "v", descriptor = "[[[B")
 	public static byte[][][] aByteArrayArrayArray8;
 
-	@OriginalMember(owner = "runetek4.client!hb", name = "t", descriptor = "[I")
-	public static final int[] DIRECTION_ALLOW_WALL_CORNER_TYPE = new int[] { 160, 192, 80, 96, 0, 144, 80, 48, 160 };
-
 	@OriginalMember(owner = "runetek4.client!hb", name = "b", descriptor = "(Lclient!na;I)V")
 	public static void method1853(@OriginalArg(0) JString arg0) {
 		WorldMap.clear(false);

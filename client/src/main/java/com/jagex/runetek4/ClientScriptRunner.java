@@ -1354,7 +1354,7 @@ public final class ClientScriptRunner {
 			GlRenderer.clearColorAndDepthBuffers(jitter);
 			MaterialManager.method2731(Camera.cameraPitch, Camera.renderZ, Camera.cameraY, Camera.renderX, Camera.cameraYaw);
 			GlRenderer.anInt5323 = client.loop;
-			Static156.method2954(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
+			SceneGraph.method2954(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
 			aBoolean299 = true;
 			LightingManager.method2390();
 			MaterialManager.method2731(0, 0, 0, 0, 0);
@@ -1364,7 +1364,7 @@ public final class ClientScriptRunner {
 			MiniMap.method4000(arg3, arg2, arg0, Static223.anInt5029, Static223.anInt5029, arg4);
 		} else {
 			SoftwareRaster.fillRect(arg2, arg4, arg3, arg0, 0);
-			Static156.method2954(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
+			SceneGraph.method2954(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, Static266.aByteArrayArrayArray15, Static79.anIntArray205, Static149.anIntArray338, Static267.anIntArray518, Static50.anIntArray134, Static243.anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
 			client.audioLoop();
 			Static223.method3858();
 			Static142.method2726(arg4, arg3, arg2, 256, arg0, 256);
@@ -5075,7 +5075,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (scriptOpcode == 6102) {
-														Static254.scriptIntValues[intValueIndex++] = SceneGraph.allLevelsvisible() ? 1 : 0;
+														Static254.scriptIntValues[intValueIndex++] = SceneGraph.allLevelsAreVisible() ? 1 : 0;
 														continue;
 													}
 													if (scriptOpcode == 6103) {

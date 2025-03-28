@@ -11,9 +11,6 @@ public final class Static163 {
 	@OriginalMember(owner = "runetek4.client!n", name = "b", descriptor = "I")
 	public static int anInt3962;
 
-	@OriginalMember(owner = "runetek4.client!n", name = "h", descriptor = "[[[B")
-	public static byte[][][] aByteArrayArrayArray11;
-
 	@OriginalMember(owner = "runetek4.client!n", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_767 = JString.parse(")2");
 

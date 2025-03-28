@@ -1,18 +1,12 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.media.renderable.Entity;
-import com.jagex.runetek4.scene.tile.Tile;
-import com.jagex.runetek4.scene.tile.WallDecor;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static91 {
 
-	@OriginalMember(owner = "runetek4.client!hc", name = "O", descriptor = "[Lclient!pe;")
-	public static Class120[] aClass120Array1;
-
-    @OriginalMember(owner = "runetek4.client!hc", name = "d", descriptor = "(I)I")
+	@OriginalMember(owner = "runetek4.client!hc", name = "d", descriptor = "(I)I")
 	public static int getZoom() {
 		if ((double) Static138.aFloat14 == 3.0D) {
 			return 37;
@@ -40,27 +34,4 @@ public final class Static91 {
 		return -1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(IIIILclient!th;Lclient!th;IIIIJ)V")
-	public static void addWallDecoration(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Entity arg4, @OriginalArg(5) Entity arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) long arg10) {
-		if (arg4 == null) {
-			return;
-		}
-		@Pc(6) WallDecor wallDecor = new WallDecor();
-		wallDecor.key = arg10;
-		wallDecor.xFine = arg1 * 128 + 64;
-		wallDecor.zFine = arg2 * 128 + 64;
-		wallDecor.anInt1391 = arg3;
-		wallDecor.primary = arg4;
-		wallDecor.secondary = arg5;
-		wallDecor.type = arg6;
-		wallDecor.anInt1388 = arg7;
-		wallDecor.xOffset = arg8;
-		wallDecor.zOffset = arg9;
-		for (@Pc(46) int local46 = arg0; local46 >= 0; local46--) {
-			if (SceneGraph.tiles[local46][arg1][arg2] == null) {
-				SceneGraph.tiles[local46][arg1][arg2] = new Tile(local46, arg1, arg2);
-			}
-		}
-		SceneGraph.tiles[arg0][arg1][arg2].wallDecor = wallDecor;
-	}
 }

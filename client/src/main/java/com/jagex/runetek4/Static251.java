@@ -5,9 +5,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static251 {
 
-	@OriginalMember(owner = "runetek4.client!ug", name = "d", descriptor = "[I")
-	public static int[] blendChroma;
-
 	@OriginalMember(owner = "runetek4.client!ug", name = "p", descriptor = "I")
 	public static int anInt5457;
 

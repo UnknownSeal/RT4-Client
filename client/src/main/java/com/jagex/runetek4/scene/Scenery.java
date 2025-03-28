@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 public final class Scenery {
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "I")
-	public int anInt1696;
+	public int zMin;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "c", descriptor = "Lclient!th;")
 	public Entity entity;
@@ -20,7 +20,7 @@ public final class Scenery {
 	public int anInt1699;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "h", descriptor = "I")
-	public int anInt1701;
+	public int xMin;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "j", descriptor = "I")
 	public int anInt1703;
@@ -44,5 +44,5 @@ public final class Scenery {
 	public int anInt1714;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "A", descriptor = "J")
-	public long hash = 0L;
+	public long key = 0L;
 }

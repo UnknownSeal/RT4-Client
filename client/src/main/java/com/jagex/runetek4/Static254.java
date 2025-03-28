@@ -19,9 +19,6 @@ public final class Static254 {
 	@OriginalMember(owner = "runetek4.client!uj", name = "t", descriptor = "[I")
 	public static final int[] scriptIntValues = new int[1000];
 
-	@OriginalMember(owner = "runetek4.client!uj", name = "A", descriptor = "[I")
-	public static final int[] WALL_CORNER_TYPE_32_BLOCK_LOC_SPANS = new int[] { 2, 0, 0, 2, 0, 0, 0, 4, 4 };
-
 	@OriginalMember(owner = "runetek4.client!uj", name = "a", descriptor = "(BLclient!ve;I)Z")
 	public static boolean method4346(@OriginalArg(1) Js5 arg0, @OriginalArg(2) int arg1) {
 		@Pc(13) byte[] local13 = arg0.method4500(arg1);
@@ -67,18 +64,18 @@ public final class Static254 {
 						@Pc(358) int local358;
 						if (local130 && arg3[local150][local108][local122] != null) {
 							if (arg3[local150][local108][local122].wall != null) {
-								local191 = Static104.method2251(local94);
+								local191 = SceneGraph.method2251(local94);
 								if (arg3[local150][local108][local122].wall.typeA == local191 || arg3[local150][local108][local122].wall.typeB == local191) {
 									continue;
 								}
 								if (local102 != 0) {
-									local227 = Static104.method2251(local102);
+									local227 = SceneGraph.method2251(local102);
 									if (local227 == arg3[local150][local108][local122].wall.typeA || arg3[local150][local108][local122].wall.typeB == local227) {
 										continue;
 									}
 								}
 								if (local116 != 0) {
-									local227 = Static104.method2251(local116);
+									local227 = SceneGraph.method2251(local116);
 									if (local227 == arg3[local150][local108][local122].wall.typeA || local227 == arg3[local150][local108][local122].wall.typeB) {
 										continue;
 									}
@@ -86,11 +83,11 @@ public final class Static254 {
 							}
 							if (arg3[local150][local108][local122].sceneries != null) {
 								for (local191 = 0; local191 < arg3[local150][local108][local122].entityCount; local191++) {
-									local227 = (int) (arg3[local150][local108][local122].sceneries[local191].hash >> 14 & 0x3FL);
+									local227 = (int) (arg3[local150][local108][local122].sceneries[local191].key >> 14 & 0x3FL);
 									if (local227 == 21) {
 										local227 = 19;
 									}
-									@Pc(352) int local352 = (int) (arg3[local150][local108][local122].sceneries[local191].hash >> 20 & 0x3L);
+									@Pc(352) int local352 = (int) (arg3[local150][local108][local122].sceneries[local191].key >> 20 & 0x3L);
 									local358 = local227 | local352 << 6;
 									if (local358 == local94 || local102 != 0 && local358 == local102 || local116 != 0 && local116 == local358) {
 										continue label238;
@@ -103,9 +100,9 @@ public final class Static254 {
 						if (local395 != null && local395.entityCount > 0) {
 							for (local227 = 0; local227 < local395.entityCount; local227++) {
 								@Pc(418) Scenery local418 = local395.sceneries[local227];
-								if (local418.anInt1713 != local418.anInt1701 || local418.anInt1698 != local418.anInt1696) {
-									for (local358 = local418.anInt1701; local358 <= local418.anInt1713; local358++) {
-										for (@Pc(450) int local450 = local418.anInt1696; local450 <= local418.anInt1698; local450++) {
+								if (local418.anInt1713 != local418.xMin || local418.anInt1698 != local418.zMin) {
+									for (local358 = local418.xMin; local358 <= local418.anInt1713; local358++) {
+										for (@Pc(450) int local450 = local418.zMin; local450 <= local418.anInt1698; local450++) {
 											Static266.aByteArrayArrayArray15[local150][local358][local450] = local14;
 										}
 									}

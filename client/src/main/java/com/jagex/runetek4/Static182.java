@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static182 {
 
-	@OriginalMember(owner = "runetek4.client!oj", name = "E", descriptor = "[[Lclient!hg;")
-	public static GlTile[][] aGlTileArrayArray2;
-
 	@OriginalMember(owner = "runetek4.client!oj", name = "a", descriptor = "(IZIJI)Lclient!na;")
 	public static JString method3360(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(3) long arg3) {
 		@Pc(9) JString local9 = JString.allocate(0);
@@ -58,10 +55,4 @@ public final class Static182 {
 		return JString.concatenate(new JString[] { local9, local137.method3124(), local59.method3124() });
 	}
 
-	@OriginalMember(owner = "runetek4.client!oj", name = "a", descriptor = "(IBI[[III)I")
-	public static int method3361(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int[][] arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		@Pc(25) int local25 = arg0 * arg2[arg3 + 1][arg1] + (128 - arg0) * arg2[arg3][arg1] >> 7;
-		@Pc(52) int local52 = arg2[arg3][arg1 + 1] * (128 - arg0) + arg2[arg3 + 1][arg1 + 1] * arg0 >> 7;
-		return local25 * (128 - arg4) + arg4 * local52 >> 7;
-	}
 }

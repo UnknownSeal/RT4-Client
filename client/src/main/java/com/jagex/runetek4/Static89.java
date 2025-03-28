@@ -12,9 +12,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static89 {
 
-	@OriginalMember(owner = "runetek4.client!ha", name = "k", descriptor = "[[Z")
-	public static boolean[][] aBooleanArrayArray3;
-
 	@OriginalMember(owner = "runetek4.client!ha", name = "o", descriptor = "I")
 	public static int anInt2387;
 

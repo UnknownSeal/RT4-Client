@@ -156,13 +156,13 @@ public class Preferences {
             @Pc(235) int local235 = WorldMap.length >> 6;
             @Pc(239) int local239 = Static48.anInt1449 >> 6;
             Static90.aByteArrayArrayArray8 = new byte[local239][local235][];
-            @Pc(249) int local249 = Static86.anInt2293 >> 2 << 10;
+            @Pc(249) int local249 = SceneGraph.anInt2293 >> 2 << 10;
             Static70.aByteArrayArrayArray7 = new byte[local239][local235][];
             Static83.anIntArrayArrayArray3 = new int[local239][local235][];
             Static34.aByteArrayArrayArray3 = new byte[local239][local235][];
             Static248.anIntArrayArrayArray17 = new int[local239][local235][];
             Static229.aByteArrayArrayArray12 = new byte[local239][local235][];
-            @Pc(273) int local273 = Static183.anInt4272 >> 1;
+            @Pc(273) int local273 = SceneGraph.anInt4272 >> 1;
             Static125.aByteArrayArrayArray10 = new byte[local239][local235][];
             Static58.anIntArrayArrayArray5 = new int[local239][local235][];
             Static70.method1549(local273, local249);
@@ -339,7 +339,7 @@ public class Preferences {
     @OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(IZ)V")
     public static void setAllLevelsVisible(@OriginalArg(1) boolean arg0) {
         allLevelsVisible = arg0;
-        SceneGraph.aBoolean130 = !SceneGraph.allLevelsvisible();
+        SceneGraph.aBoolean130 = !SceneGraph.allLevelsAreVisible();
     }
 
     @OriginalMember(owner = "client!dl", name = "a", descriptor = "(B)Lclient!wa;")

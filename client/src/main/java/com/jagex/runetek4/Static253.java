@@ -8,9 +8,6 @@ public final class Static253 {
 	@OriginalMember(owner = "runetek4.client!ui", name = "Q", descriptor = "I")
 	public static int anInt5526;
 
-	@OriginalMember(owner = "runetek4.client!ui", name = "eb", descriptor = "[[[B")
-	public static byte[][][] levelTileUnderlayIds;
-
 	@OriginalMember(owner = "runetek4.client!ui", name = "h", descriptor = "(I)[Lclient!ok;")
 	public static IndexedSprite[] method4331() {
 		@Pc(8) IndexedSprite[] local8 = new IndexedSprite[Static165.anInt4038];

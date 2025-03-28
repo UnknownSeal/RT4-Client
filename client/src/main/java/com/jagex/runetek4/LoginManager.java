@@ -502,16 +502,16 @@ public class LoginManager {
             LightingManager.method2395();
         }
         ClientProt.ping(true);
-        i = SceneGraph.firstvisibleLevel;
+        i = SceneGraph.firstVisibleLevel;
         if (i > Player.plane) {
             i = Player.plane;
         }
         if (i < Player.plane - 1) {
         }
-        if (SceneGraph.allLevelsvisible()) {
+        if (SceneGraph.allLevelsAreVisible()) {
             SceneGraph.method2750(0);
         } else {
-            SceneGraph.method2750(SceneGraph.firstvisibleLevel);
+            SceneGraph.method2750(SceneGraph.firstVisibleLevel);
         }
         SceneGraph.unload();
         if (GlRenderer.enabled && hasUnderWaterMap) {
@@ -999,13 +999,13 @@ public class LoginManager {
 
     @OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(IIIIZIZ)V")
     public static void method2463(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4, @OriginalArg(5) int arg5) {
-        if (SceneGraph.centralZoneX == arg2 && arg1 == SceneGraph.centralZoneZ && (SceneGraph.centralPlane == arg0 || SceneGraph.allLevelsvisible())) {
+        if (SceneGraph.centralZoneX == arg2 && arg1 == SceneGraph.centralZoneZ && (SceneGraph.centralPlane == arg0 || SceneGraph.allLevelsAreVisible())) {
             return;
         }
         SceneGraph.centralZoneX = arg2;
         SceneGraph.centralZoneZ = arg1;
         SceneGraph.centralPlane = arg0;
-        if (SceneGraph.allLevelsvisible()) {
+        if (SceneGraph.allLevelsAreVisible()) {
             SceneGraph.centralPlane = 0;
         }
         if (arg4) {
@@ -1316,7 +1316,7 @@ public class LoginManager {
                             @Pc(98) int local98 = (local88 / 8 << 8) + local76 / 8;
                             for (@Pc(100) int local100 = 0; local100 < regionBitPacked.length; local100++) {
                                 if (regionBitPacked[local100] == local98 && local13[local100] != null) {
-                                    Static245.method4228(local82, local32 * 8, local21, PathFinder.collisionMaps, local39 * 8, local13[local100], local65, (local76 & 0x7) * 8, (local88 & 0x7) * 8, arg0);
+                                    SceneGraph.method4228(local82, local32 * 8, local21, PathFinder.collisionMaps, local39 * 8, local13[local100], local65, (local76 & 0x7) * 8, (local88 & 0x7) * 8, arg0);
                                     local54 = true;
                                     break;
                                 }

@@ -5,14 +5,8 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static152 {
 
-	@OriginalMember(owner = "runetek4.client!ma", name = "i", descriptor = "I")
-	public static int anInt3594;
-
 	@OriginalMember(owner = "runetek4.client!ma", name = "q", descriptor = "Lclient!fd;")
 	public static WorldMapFont aClass41_3;
-
-	@OriginalMember(owner = "runetek4.client!ma", name = "z", descriptor = "I")
-	public static int anInt3604 = -1;
 
 	@OriginalMember(owner = "runetek4.client!ma", name = "a", descriptor = "(IIBIIII)V")
 	public static void method2826(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {

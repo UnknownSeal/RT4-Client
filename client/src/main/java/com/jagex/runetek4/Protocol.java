@@ -1343,7 +1343,7 @@ public class Protocol {
                                 j -= Camera.originX;
                                 local908 -= Camera.originZ;
                                 local1160 = i >> 28 & 0x3;
-                                Static92.method1881(local1160, world, xp, local908, slot, j, count);
+                                SceneGraph.method1881(local1160, world, xp, local908, slot, j, count);
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 0) {
@@ -1900,7 +1900,7 @@ public class Protocol {
             }
         }
         @Pc(152) long local152 = (long) ((arg0 << 7) + arg1 + 1610612736);
-        Static69.method1543(Player.plane, arg1, arg0, SceneGraph.getTileHeight(Player.plane, arg1 * 128 + 64, arg0 * 128 + 64), local30.value, local152, local89, local91);
+        SceneGraph.setObjStack(Player.plane, arg1, arg0, SceneGraph.getTileHeight(Player.plane, arg1 * 128 + 64, arg0 * 128 + 64), local30.value, local152, local89, local91);
     }
 
     @OriginalMember(owner = "client!g", name = "b", descriptor = "(B)V")
@@ -2010,7 +2010,7 @@ public class Protocol {
                 if (local218 == 65535) {
                     local218 = -1;
                 }
-                Static92.method1881(Player.plane, local39, local31, local19, local45, local23, local218);
+                SceneGraph.method1881(Player.plane, local39, local31, local19, local45, local23, local218);
             } else {
                 @Pc(633) int local633;
                 if (opcode == 202) {

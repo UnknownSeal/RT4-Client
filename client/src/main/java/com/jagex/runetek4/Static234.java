@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static234 {
 
-	@OriginalMember(owner = "runetek4.client!ta", name = "o", descriptor = "[I")
-	public static int[] anIntArray454;
-
 	@OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "(IIZII)V")
 	public static void method4019(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
 		if (arg3 >= Static267.anInt5773 && arg3 <= Static106.anInt2869) {

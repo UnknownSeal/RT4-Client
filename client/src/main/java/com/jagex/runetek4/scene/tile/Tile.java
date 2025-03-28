@@ -53,7 +53,7 @@ public final class Tile extends Node {
 	public int backWallTypes;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "X", descriptor = "Lclient!jj;")
-	public ObjStackEntity aClass79_1;
+	public ObjStackEntity objStack;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "D", descriptor = "I")
 	public int locSpans = 0;

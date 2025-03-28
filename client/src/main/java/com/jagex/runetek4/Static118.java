@@ -5,9 +5,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static118 {
 
-	@OriginalMember(owner = "runetek4.client!jd", name = "d", descriptor = "[[[B")
-	public static byte[][][] levelShademap;
-
 	@OriginalMember(owner = "runetek4.client!jd", name = "a", descriptor = "(B)I")
 	public static int method2352() {
 		Static232.anInt5212 = 0;

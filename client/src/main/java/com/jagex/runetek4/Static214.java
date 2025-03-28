@@ -9,20 +9,6 @@ public final class Static214 {
 	@OriginalMember(owner = "runetek4.client!rg", name = "C", descriptor = "I")
 	public static int anInt5579;
 
-	@OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(IZII)I")
-	public static int method4360(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		@Pc(3) int local3 = arg0 & 0x3;
-		if (local3 == 0) {
-			return arg2;
-		} else if (local3 == 1) {
-			return arg1;
-		} else if (local3 == 2) {
-			return 7 - arg2;
-		} else {
-			return 7 - arg1;
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!rg", name = "d", descriptor = "(B)Lclient!bn;")
 	public static Map method4361() {
 		return Static269.aClass3_Sub2_Sub4_2;

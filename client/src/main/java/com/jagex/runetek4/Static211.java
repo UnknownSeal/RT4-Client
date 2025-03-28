@@ -9,9 +9,6 @@ public final class Static211 {
 	@OriginalMember(owner = "runetek4.client!rc", name = "R", descriptor = "Z")
 	private static boolean aBoolean74;
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "p", descriptor = "I")
-	public static int anInt1142 = 0;
-
 	@OriginalMember(owner = "runetek4.client!rc", name = "G", descriptor = "Lclient!na;")
 	public static final JString aClass100_230 = JString.parse("");
 

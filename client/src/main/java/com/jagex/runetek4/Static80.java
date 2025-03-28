@@ -6,17 +6,11 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static80 {
 
-	@OriginalMember(owner = "client!gf", name = "O", descriptor = "[[[I")
-	public static int[][][] anIntArrayArrayArray19;
-
 	@OriginalMember(owner = "client!gf", name = "T", descriptor = "I")
 	public static int anInt4702;
 
 	@OriginalMember(owner = "client!gf", name = "I", descriptor = "Lclient!na;")
 	public static final JString aClass100_886 = JString.parse(")3runescape)3com)4l=");
-
-	@OriginalMember(owner = "client!gf", name = "S", descriptor = "[I")
-	public static final int[] anIntArray419 = new int[] { 0, 2, 2, 2, 1, 1, 2, 2, 1, 3, 1, 1 };
 
 	@OriginalMember(owner = "client!gf", name = "a", descriptor = "(BII)V")
 	public static void method3616(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {

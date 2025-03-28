@@ -186,7 +186,7 @@ public class Game {
             Protocol.outboundBuffer.p4(Preferences.toInt());
             Preferences.sentToServer = true;
         }
-        Static31.method846();
+        SceneGraph.method846();
         if (client.gameState != 30) {
             return;
         }
@@ -760,7 +760,7 @@ public class Game {
                     bitset |= Long.MIN_VALUE;
                 }
                 npc.anInt3424 = SceneGraph.getTileHeight(Player.plane, npc.xFine, npc.zFine);
-                Static43.addTemporary(Player.plane, npc.xFine, npc.zFine, npc.anInt3424, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.seqStretches);
+                SceneGraph.addTemporary(Player.plane, npc.xFine, npc.zFine, npc.anInt3424, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.seqStretches);
             }
         }
     }
@@ -894,7 +894,7 @@ public class Game {
                 }
                 if (player.attachment == null || client.loop < player.attachmentSetAt || player.attachmentResetAt <= client.loop) {
                     player.anInt3424 = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
-                    Static43.addTemporary(Player.plane, player.xFine, player.zFine, player.anInt3424, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
+                    SceneGraph.addTemporary(Player.plane, player.xFine, player.zFine, player.anInt3424, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
                 } else {
                     player.lowMemory = false;
                     player.anInt3424 = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
@@ -989,7 +989,7 @@ public class Game {
                     }
                 }
                 projAnim.update(Protocol.sceneDelta);
-                Static43.addTemporary(Player.plane, (int) projAnim.x, (int) projAnim.y, (int) projAnim.z, 60, projAnim, projAnim.yaw, -1L, false);
+                SceneGraph.addTemporary(Player.plane, (int) projAnim.x, (int) projAnim.y, (int) projAnim.z, 60, projAnim, projAnim.yaw, -1L, false);
             }
         }
     }
@@ -1005,7 +1005,7 @@ public class Game {
                 if (spotAnim.seqComplete) {
                     entity.unlink();
                 } else {
-                    Static43.addTemporary(spotAnim.level, spotAnim.x, spotAnim.z, spotAnim.anInt599, 60, spotAnim, 0, -1L, false);
+                    SceneGraph.addTemporary(spotAnim.level, spotAnim.x, spotAnim.z, spotAnim.anInt599, 60, spotAnim, 0, -1L, false);
                 }
             }
         }
