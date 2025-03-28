@@ -1,9 +1,6 @@
 package com.jagex.runetek4.node;
 
-import com.jagex.runetek4.HardReferenceNode;
-import com.jagex.runetek4.ReferenceNode;
-import com.jagex.runetek4.FloTypeList;
-import com.jagex.runetek4.Static84;
+import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -74,7 +71,7 @@ public final class NodeCache {
 
 	@OriginalMember(owner = "runetek4.client!n", name = "c", descriptor = "(II)V")
 	public final void clean(@OriginalArg(1) int arg0) {
-		if (FloTypeList.aClass22_1 == null) {
+		if (ReferenceNodeFactory.SOFT_REFERENCE_NODE_FACTORY == null) {
 			return;
 		}
 		for (@Pc(9) ReferenceNode cachedNode = (ReferenceNode) this.nodeQueue.head(); cachedNode != null; cachedNode = (ReferenceNode) this.nodeQueue.prev()) {
@@ -85,7 +82,7 @@ public final class NodeCache {
 					this.remaining++;
 				}
 			} else if (++cachedNode.secondaryNodeId > (long) arg0) {
-				@Pc(33) ReferenceNode local33 = FloTypeList.aClass22_1.method1027(cachedNode);
+				@Pc(33) ReferenceNode local33 = ReferenceNodeFactory.SOFT_REFERENCE_NODE_FACTORY.create(cachedNode);
 				this.hashTable.put(local33, cachedNode.nodeId);
 				Static84.method1772(cachedNode, local33);
 				cachedNode.unlink();
