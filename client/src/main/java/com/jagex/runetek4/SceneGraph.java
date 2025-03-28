@@ -150,7 +150,7 @@ public class SceneGraph {
     @OriginalMember(owner = "runetek4.client!wk", name = "v", descriptor = "[I")
     public static int[] rowLightness;
     @OriginalMember(owner = "runetek4.client!ub", name = "h", descriptor = "[Lclient!pe;")
-    public static Class120[] aClass120Array2;
+    public static SceneGraph_Class120[] aSceneGraphClass120Array2;
     @OriginalMember(owner = "runetek4.client!rh", name = "k", descriptor = "I")
     public static int anInt4870 = 0;
     @OriginalMember(owner = "client!bl", name = "T", descriptor = "I")
@@ -162,7 +162,7 @@ public class SceneGraph {
     @OriginalMember(owner = "runetek4.client!pk", name = "R", descriptor = "[[Lclient!hg;")
     public static GlTile[][] underWaterHdTiles;
     @OriginalMember(owner = "runetek4.client!hc", name = "O", descriptor = "[Lclient!pe;")
-    public static Class120[] aClass120Array1;
+    public static SceneGraph_Class120[] aSceneGraphClass120Array1;
     @OriginalMember(owner = "runetek4.client!ma", name = "i", descriptor = "I")
     public static int width;
     @OriginalMember(owner = "runetek4.client!hk", name = "Y", descriptor = "I")
@@ -258,9 +258,9 @@ public class SceneGraph {
         }
         underWaterHdTiles = null;
         anInt917 = 0;
-        if (aClass120Array1 != null) {
+        if (aSceneGraphClass120Array1 != null) {
             for (local3 = 0; local3 < anInt917; local3++) {
-                aClass120Array1[local3] = null;
+                aSceneGraphClass120Array1[local3] = null;
             }
         }
         if (scenery != null) {
@@ -395,7 +395,7 @@ public class SceneGraph {
                 for (@Pc(40) int local40 = 0; local40 < local30.entityCount; local40++) {
                     @Pc(49) Scenery local49 = local30.sceneries[local40];
                     if ((local49.key >> 29 & 0x3L) == 2L && local49.xMin == arg0 && local49.zMin == arg1) {
-                        local49.anInt1709--;
+                        local49.level--;
                     }
                 }
             }
@@ -473,9 +473,9 @@ public class SceneGraph {
             underWaterHdTiles = null;
         }
         setUnderwater(false);
-        aClass120Array1 = new Class120[500];
+        aSceneGraphClass120Array1 = new SceneGraph_Class120[500];
         anInt917 = 0;
-        aClass120Array2 = new Class120[500];
+        aSceneGraphClass120Array2 = new SceneGraph_Class120[500];
         anInt4870 = 0;
         anIntArrayArrayArray12 = new int[4][width + 1][length + 1];
         scenery = new Scenery[5000];
@@ -898,7 +898,7 @@ public class SceneGraph {
                         if (dx >= 8) {
                             len = tileHeights[local200][z0][x0] - 240;
                             normalX = tileHeights[underlayId][z0][x0];
-                            Static278.method4647(1, z0 * 128, z0 * 128, x0 * 128, z * 128 + 128, len, normalX);
+                            SceneGraph_Class120.method4647(1, z0 * 128, z0 * 128, x0 * 128, z * 128 + 128, len, normalX);
                             for (normalY = underlayId; normalY <= local200; normalY++) {
                                 for (normalZ = x0; normalZ <= z; normalZ++) {
                                     occludeFlags[normalY][z0][normalZ] &= 0xFFFFFFFE;
@@ -933,7 +933,7 @@ public class SceneGraph {
                         if (dx >= 8) {
                             len = tileHeights[local200][x0][local2204] - 240;
                             normalX = tileHeights[underlayId][x0][local2204];
-                            Static278.method4647(2, x0 * 128, z * 128 + 128, local2204 * 128, local2204 * 128, len, normalX);
+                            SceneGraph_Class120.method4647(2, x0 * 128, z * 128 + 128, local2204 * 128, local2204 * 128, len, normalX);
                             for (normalY = underlayId; normalY <= local200; normalY++) {
                                 for (normalZ = x0; normalZ <= z; normalZ++) {
                                     occludeFlags[normalY][normalZ][local2204] &= 0xFFFFFFFD;
@@ -966,7 +966,7 @@ public class SceneGraph {
                         }
                         if ((z + 1 - x0) * (local200 - (underlayId - 1)) >= 4) {
                             dx = tileHeights[level][x0][underlayId];
-                            Static278.method4647(4, x0 * 128, z * 128 + 128, underlayId * 128, local200 * 128 + 128, dx, dx);
+                            SceneGraph_Class120.method4647(4, x0 * 128, z * 128 + 128, underlayId * 128, local200 * 128 + 128, dx, dx);
                             for (dz = x0; dz <= z; dz++) {
                                 for (len = underlayId; len <= local200; len++) {
                                     occludeFlags[level][dz][len] &= 0xFFFFFFFB;
@@ -1713,7 +1713,7 @@ public class SceneGraph {
     @OriginalMember(owner = "runetek4.client!um", name = "c", descriptor = "(III)Z")
     public static boolean method4394(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
         for (@Pc(1) int local1 = 0; local1 < anInt4870; local1++) {
-            @Pc(8) Class120 local8 = aClass120Array2[local1];
+            @Pc(8) SceneGraph_Class120 local8 = aSceneGraphClass120Array2[local1];
             @Pc(17) int local17;
             @Pc(29) int local29;
             @Pc(39) int local39;
@@ -2008,9 +2008,9 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!vk", name = "a", descriptor = "(Lclient!ec;)V")
     public static void removeScenery(@OriginalArg(0) Scenery scenery) {
-        for (@Pc(2) int x = scenery.xMin; x <= scenery.anInt1713; x++) {
-            for (@Pc(9) int z = scenery.zMin; z <= scenery.anInt1698; z++) {
-                @Pc(22) Tile tile = tiles[scenery.anInt1709][x][z];
+        for (@Pc(2) int x = scenery.xMin; x <= scenery.xMax; x++) {
+            for (@Pc(9) int z = scenery.zMin; z <= scenery.zMax; z++) {
+                @Pc(22) Tile tile = tiles[scenery.level][x][z];
                 if (tile != null) {
                     @Pc(26) int i;
                     for (i = 0; i < tile.entityCount; i++) {
@@ -2089,7 +2089,7 @@ public class SceneGraph {
                         for (@Pc(83) int local83 = 0; local83 < local22.entityCount; local83++) {
                             @Pc(92) Scenery local92 = local22.sceneries[local83];
                             if (local92 != null && local92.entity.method4543()) {
-                                method1544(local92.entity, level, x, z, local92.anInt1713 + 1 - local92.xMin, local92.anInt1698 - local92.zMin + 1);
+                                method1544(local92.entity, level, x, z, local92.xMax + 1 - local92.xMin, local92.zMax - local92.zMin + 1);
                                 local92.entity = local92.entity.createModel();
                             }
                         }
@@ -2122,7 +2122,7 @@ public class SceneGraph {
         }
         @Pc(58) Scenery local58 = new Scenery();
         local58.key = arg11;
-        local58.anInt1709 = arg0;
+        local58.level = arg0;
         local58.anInt1699 = arg5;
         local58.anInt1703 = arg6;
         local58.anInt1706 = arg7;
@@ -2130,8 +2130,8 @@ public class SceneGraph {
         local58.anInt1714 = arg9;
         local58.xMin = arg1;
         local58.zMin = arg2;
-        local58.anInt1713 = arg1 + arg3 - 1;
-        local58.anInt1698 = arg2 + arg4 - 1;
+        local58.xMax = arg1 + arg3 - 1;
+        local58.zMax = arg2 + arg4 - 1;
         @Pc(108) int local108;
         for (local17 = arg1; local17 < arg1 + arg3; local17++) {
             for (local108 = arg2; local108 < arg2 + arg4; local108++) {
@@ -2780,8 +2780,8 @@ public class SceneGraph {
                                             iterate_locs: for (frontWallTypes = 0; frontWallTypes < var9; frontWallTypes++) {
                                                 var25 = tile.sceneries[frontWallTypes];
                                                 if (var25.anInt1707 != anInt437) {
-                                                    for (local1332 = var25.xMin; local1332 <= var25.anInt1713; local1332++) {
-                                                        for (x = var25.zMin; x <= var25.anInt1698; x++) {
+                                                    for (local1332 = var25.xMin; local1332 <= var25.xMax; local1332++) {
+                                                        for (x = var25.zMin; x <= var25.zMax; x++) {
                                                             adjacent = tiles[local1332][x];
                                                             if (adjacent.aBoolean45) {
                                                                 tile.containsLocs = true;
@@ -2792,13 +2792,13 @@ public class SceneGraph {
                                                                 if (local1332 > var25.xMin) {
                                                                     z++;
                                                                 }
-                                                                if (local1332 < var25.anInt1713) {
+                                                                if (local1332 < var25.xMax) {
                                                                     z += 4;
                                                                 }
                                                                 if (x > var25.zMin) {
                                                                     z += 8;
                                                                 }
-                                                                if (x < var25.anInt1698) {
+                                                                if (x < var25.zMax) {
                                                                     z += 2;
                                                                 }
                                                                 if ((z & adjacent.checkLocSpans) == tile.inverseBlockLocSpans) {
@@ -2810,12 +2810,12 @@ public class SceneGraph {
                                                     }
                                                     aClass31Array2[direction++] = var25;
                                                     local1332 = eyeTileX - var25.xMin;
-                                                    x = var25.anInt1713 - eyeTileX;
+                                                    x = var25.xMax - eyeTileX;
                                                     if (x > local1332) {
                                                         local1332 = x;
                                                     }
                                                     y = anInt4539 - var25.zMin;
-                                                    z = var25.anInt1698 - anInt4539;
+                                                    z = var25.zMax - anInt4539;
                                                     if (z > y) {
                                                         var25.anInt1705 = local1332 + z;
                                                     } else {
@@ -2848,7 +2848,7 @@ public class SceneGraph {
                                                 }
                                                 @Pc(1697) Scenery local1697 = aClass31Array2[farthestIndex];
                                                 local1697.anInt1707 = anInt437;
-                                                if (!method1599(occludeLevel, local1697.xMin, local1697.anInt1713, local1697.zMin, local1697.anInt1698, local1697.entity.getMinY())) {
+                                                if (!method1599(occludeLevel, local1697.xMin, local1697.xMax, local1697.zMin, local1697.zMax, local1697.entity.getMinY())) {
                                                     if (GlRenderer.enabled) {
                                                         if ((local1697.key & 0xFC000L) == 147456L) {
                                                             LightingManager.method2393(eyeX, eyeY, eyeZ, local24, tileX, tileZ);
@@ -2867,13 +2867,13 @@ public class SceneGraph {
                                                                 LightingManager.method2397(local24, tileX, tileZ + 1, tileX - 1, tileZ);
                                                             }
                                                         } else {
-                                                            LightingManager.method2391(eyeX, eyeY, eyeZ, local24, local1697.xMin, local1697.zMin, local1697.anInt1713, local1697.anInt1698);
+                                                            LightingManager.method2391(eyeX, eyeY, eyeZ, local24, local1697.xMin, local1697.zMin, local1697.xMax, local1697.zMax);
                                                         }
                                                     }
                                                     local1697.entity.render(local1697.anInt1714, anInt2886, anInt3038, anInt5205, anInt2222, local1697.anInt1699 - eyeX, local1697.anInt1706 - eyeY, local1697.anInt1703 - eyeZ, local1697.key, local24, null);
                                                 }
-                                                for (x = local1697.xMin; x <= local1697.anInt1713; x++) {
-                                                    for (y = local1697.zMin; y <= local1697.anInt1698; y++) {
+                                                for (x = local1697.xMin; x <= local1697.xMax; x++) {
+                                                    for (y = local1697.zMin; y <= local1697.zMax; y++) {
                                                         @Pc(1863) Tile local1863 = tiles[x][y];
                                                         if (local1863.checkLocSpans != 0) {
                                                             drawTileQueue.addTail(local1863);
@@ -3342,8 +3342,8 @@ public class SceneGraph {
                                     for (@Pc(232) int local232 = 0; local232 < local71.entityCount; local232++) {
                                         @Pc(241) Scenery local241 = local71.sceneries[local232];
                                         if (local241 != null && local241.entity.method4543() && (local28 == local241.xMin || local28 == local3) && (local39 == local241.zMin || local39 == local11)) {
-                                            @Pc(270) int local270 = local241.anInt1713 + 1 - local241.xMin;
-                                            @Pc(278) int local278 = local241.anInt1698 + 1 - local241.zMin;
+                                            @Pc(270) int local270 = local241.xMax + 1 - local241.xMin;
+                                            @Pc(278) int local278 = local241.zMax + 1 - local241.zMin;
                                             arg0.method4544(local241.entity, (local241.xMin - arg2) * 128 + (local270 - arg4) * 64, local158, (local241.zMin - arg3) * 128 + (local278 - arg5) * 64, local1);
                                         }
                                     }
@@ -4136,7 +4136,7 @@ public class SceneGraph {
     public static void method2419() {
         anInt4870 = 0;
         label194: for (@Pc(3) int local3 = 0; local3 < anInt917; local3++) {
-            @Pc(10) Class120 local10 = aClass120Array1[local3];
+            @Pc(10) SceneGraph_Class120 local10 = aSceneGraphClass120Array1[local3];
             @Pc(14) int local14;
             if (anIntArray8 != null) {
                 for (local14 = 0; local14 < anIntArray8.length; local14++) {
@@ -4182,7 +4182,7 @@ public class SceneGraph {
                         local10.anInt4450 = (local10.anInt4449 - eyeZ << 8) / local158;
                         local10.anInt4459 = (local10.anInt4444 - eyeY << 8) / local158;
                         local10.anInt4463 = (local10.anInt4447 - eyeY << 8) / local158;
-                        aClass120Array2[anInt4870++] = local10;
+                        aSceneGraphClass120Array2[anInt4870++] = local10;
                     }
                 }
             } else if (local10.anInt4453 == 2) {
@@ -4218,7 +4218,7 @@ public class SceneGraph {
                         local10.anInt4456 = (local10.anInt4445 - eyeX << 8) / local158;
                         local10.anInt4459 = (local10.anInt4444 - eyeY << 8) / local158;
                         local10.anInt4463 = (local10.anInt4447 - eyeY << 8) / local158;
-                        aClass120Array2[anInt4870++] = local10;
+                        aSceneGraphClass120Array2[anInt4870++] = local10;
                     }
                 }
             } else if (local10.anInt4453 == 4) {
@@ -4256,7 +4256,7 @@ public class SceneGraph {
                             local10.anInt4456 = (local10.anInt4445 - eyeX << 8) / local14;
                             local10.anInt4454 = (local10.anInt4458 - eyeZ << 8) / local14;
                             local10.anInt4450 = (local10.anInt4449 - eyeZ << 8) / local14;
-                            aClass120Array2[anInt4870++] = local10;
+                            aSceneGraphClass120Array2[anInt4870++] = local10;
                         }
                     }
                 }

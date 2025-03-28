@@ -14,7 +14,7 @@ public final class Scenery {
 	public Entity entity;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "e", descriptor = "I")
-	public int anInt1698;
+	public int zMax;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "f", descriptor = "I")
 	public int anInt1699;
@@ -35,10 +35,10 @@ public final class Scenery {
 	public int anInt1707;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "s", descriptor = "I")
-	public int anInt1709;
+	public int level;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "w", descriptor = "I")
-	public int anInt1713;
+	public int xMax;
 
 	@OriginalMember(owner = "runetek4.client!ec", name = "x", descriptor = "I")
 	public int anInt1714;

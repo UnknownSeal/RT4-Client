@@ -5,9 +5,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static15 {
 
-	@OriginalMember(owner = "client!be", name = "ib", descriptor = "Lclient!na;")
-	public static final JString aClass100_83 = JString.parse("event_opbase");
-
 	@OriginalMember(owner = "client!be", name = "kc", descriptor = "J")
 	public static long aLong18 = 0L;
 

@@ -1,15 +1,10 @@
 package com.jagex.runetek4;
 
-import java.util.Calendar;
-
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static102 {
-
-	@OriginalMember(owner = "runetek4.client!hn", name = "K", descriptor = "Ljava/util/Calendar;")
-	public static final Calendar aCalendar2 = Calendar.getInstance();
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "d", descriptor = "(I)Lclient!mm;")
 	public static SoftwareSprite method2071() {

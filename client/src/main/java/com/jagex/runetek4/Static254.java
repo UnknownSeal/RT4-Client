@@ -16,9 +16,6 @@ public final class Static254 {
 	@OriginalMember(owner = "runetek4.client!uj", name = "s", descriptor = "Lclient!na;")
 	public static final JString aClass100_1061 = JString.parse("null");
 
-	@OriginalMember(owner = "runetek4.client!uj", name = "t", descriptor = "[I")
-	public static final int[] scriptIntValues = new int[1000];
-
 	@OriginalMember(owner = "runetek4.client!uj", name = "a", descriptor = "(BLclient!ve;I)Z")
 	public static boolean method4346(@OriginalArg(1) Js5 arg0, @OriginalArg(2) int arg1) {
 		@Pc(13) byte[] local13 = arg0.method4500(arg1);
@@ -100,9 +97,9 @@ public final class Static254 {
 						if (local395 != null && local395.entityCount > 0) {
 							for (local227 = 0; local227 < local395.entityCount; local227++) {
 								@Pc(418) Scenery local418 = local395.sceneries[local227];
-								if (local418.anInt1713 != local418.xMin || local418.anInt1698 != local418.zMin) {
-									for (local358 = local418.xMin; local358 <= local418.anInt1713; local358++) {
-										for (@Pc(450) int local450 = local418.zMin; local450 <= local418.anInt1698; local450++) {
+								if (local418.xMax != local418.xMin || local418.zMax != local418.zMin) {
+									for (local358 = local418.xMin; local358 <= local418.xMax; local358++) {
+										for (@Pc(450) int local450 = local418.zMin; local450 <= local418.zMax; local450++) {
 											Static266.aByteArrayArrayArray15[local150][local358][local450] = local14;
 										}
 									}

@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static101 {
 
-	@OriginalMember(owner = "runetek4.client!hm", name = "R", descriptor = "Lclient!na;")
-	public static final JString aClass100_537 = JString.parse("<img=1>");
-
 	@OriginalMember(owner = "runetek4.client!hm", name = "T", descriptor = "Lclient!na;")
 	public static final JString aClass100_538 = JString.parse(" ");
 

@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static167 {
 
-	@OriginalMember(owner = "runetek4.client!nd", name = "b", descriptor = "Lclient!na;")
-	public static final JString aClass100_780 = JString.parse("Clientscript error in: ");
-
 	@OriginalMember(owner = "runetek4.client!nd", name = "x", descriptor = "Lclient!na;")
 	public static final JString aClass100_783 = JString.parse(")4p=");
 

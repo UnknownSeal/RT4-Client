@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static3 {
 
-	@OriginalMember(owner = "runetek4.client!ab", name = "j", descriptor = "[Lclient!na;")
-	public static final JString[] scriptStringValues = new JString[1000];
-
 	@OriginalMember(owner = "runetek4.client!ab", name = "a", descriptor = "(Lclient!na;I)V")
 	public static void method4656(@OriginalArg(0) JString arg0) {
 		@Pc(9) int local9 = Static171.method3218(arg0);

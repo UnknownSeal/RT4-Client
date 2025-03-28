@@ -5,9 +5,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static12 {
 
-	@OriginalMember(owner = "client!bb", name = "A", descriptor = "Lclient!na;")
-	public static final JString aClass100_74 = JString.parse("::");
-
 	@OriginalMember(owner = "client!bb", name = "a", descriptor = "(I)V")
 	public static void method447() {
 		if (Static83.aFloat3 < Static138.aFloat14) {
