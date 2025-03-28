@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.media.renderable.Entity;
-import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.scene.tile.Wall;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -12,9 +11,6 @@ public final class Static262 {
 
 	@OriginalMember(owner = "runetek4.client!vf", name = "c", descriptor = "I")
 	public static int anInt5752;
-
-	@OriginalMember(owner = "runetek4.client!vf", name = "n", descriptor = "Lclient!ve;")
-	public static Js5 configClientLarge;
 
 	@OriginalMember(owner = "runetek4.client!vf", name = "m", descriptor = "I")
 	public static int bgId = -1;

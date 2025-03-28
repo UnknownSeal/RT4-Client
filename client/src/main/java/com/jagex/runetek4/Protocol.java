@@ -16,6 +16,7 @@ import com.jagex.runetek4.game.client.Inv;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.bastype.BasType;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
+import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.SceneCamera;
 import com.jagex.runetek4.util.MathUtils;
@@ -486,7 +487,7 @@ public class Protocol {
                 if (!local910 && Player.inTutorialIsland == 0) {
                     Chat.recentMessages[Chat.messageCounter] = local922;
                     Chat.messageCounter = (Chat.messageCounter + 1) % 100;
-                    @Pc(999) JString local999 = QuickChatPhraseTypeList.list(local916).method770(inboundBuffer);
+                    @Pc(999) JString local999 = QuickChatPhraseTypeList.get(local916).decodeMessage(inboundBuffer);
                     if (local908 == 2 || local908 == 3) {
                         Chat.add(local916, 20, local999, Base37.decode37(username).toTitleCase(), JString.concatenate(new JString[] { IMG1, Base37.decode37(username2).toTitleCase() }));
                     } else if (local908 == 1) {
@@ -644,7 +645,7 @@ public class Protocol {
                 } else if (opcode == 141) {
                     username2 = inboundBuffer.g8();
                     world = inboundBuffer.g2();
-                    local1409 = QuickChatPhraseTypeList.list(world).method770(inboundBuffer);
+                    local1409 = QuickChatPhraseTypeList.get(world).decodeMessage(inboundBuffer);
                     Chat.add(world, 19, local1409, null, Base37.decode37(username2).toTitleCase());
                     opcode = -1;
                     return true;
@@ -1070,7 +1071,7 @@ public class Protocol {
                             if (!local3263 && Player.inTutorialIsland == 0) {
                                 Chat.recentMessages[Chat.messageCounter] = local3270;
                                 Chat.messageCounter = (Chat.messageCounter + 1) % 100;
-                                local3020 = QuickChatPhraseTypeList.list(j).method770(inboundBuffer);
+                                local3020 = QuickChatPhraseTypeList.get(j).decodeMessage(inboundBuffer);
                                 if (local1160 == 2) {
                                     Chat.add(j, 18, local3020, null, JString.concatenate(new JString[] { IMG1, Base37.decode37(username2).toTitleCase() }));
                                 } else if (local1160 == 1) {
@@ -2379,10 +2380,10 @@ public class Protocol {
 
                     @Pc(127) JString message;
                     if (quickChat) {
-                        @Pc(112) QuickChatPhrase quickChatPhrase = QuickChatPhrase.decode(CHAT_PACKET);
+                        @Pc(112) QuickChatPhrase quickChatPhrase = QuickChatPhraseType.method3568(CHAT_PACKET);
                         chatFlags &= 0x7FFF;
-                        phraseId = quickChatPhrase.anInt439;
-                        message = quickChatPhrase.aQuickChatPhraseType_1.method770(CHAT_PACKET);
+                        phraseId = quickChatPhrase.id;
+                        message = quickChatPhrase.type.decodeMessage(CHAT_PACKET);
                     } else {
                         message = Font.escape(formatChatMessage(CHAT_PACKET).encodeMessage());
                     }

@@ -14,9 +14,6 @@ public final class Class6 {
 	@OriginalMember(owner = "runetek4.client!qg", name = "R", descriptor = "I")
 	public static int anInt4741;
 
-	@OriginalMember(owner = "runetek4.client!qg", name = "U", descriptor = "Lclient!na;")
-	public static final JString aClass100_891 = JString.parse("");
-
 	@OriginalMember(owner = "runetek4.client!qg", name = "a", descriptor = "(Lsignlink!ll;Lclient!wa;IB)V")
 	public static void method3654(@OriginalArg(0) SignLink arg0, @OriginalArg(1) Packet arg1, @OriginalArg(2) int arg2) {
 		@Pc(17) ReflectionCheck local17 = new ReflectionCheck();

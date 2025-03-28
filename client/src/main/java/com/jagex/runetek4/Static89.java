@@ -52,17 +52,6 @@ public final class Static89 {
 		return local10.balue;
 	}
 
-	@OriginalMember(owner = "client!ha", name = "a", descriptor = "([IJIZ)Lclient!na;")
-	public static JString method1838(@OriginalArg(0) int[] arg0, @OriginalArg(1) long arg1, @OriginalArg(2) int arg2) {
-		if (Static107.anInterface3_1 != null) {
-			@Pc(17) JString local17 = Static107.anInterface3_1.decode(arg2, arg0, arg1);
-			if (local17 != null) {
-				return local17;
-			}
-		}
-		return JString.method2929(arg1);
-	}
-
 	@OriginalMember(owner = "runetek4.client!ha", name = "a", descriptor = "(IIIII)V")
 	public static void method1843(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
 		@Pc(7) int local7 = 0;

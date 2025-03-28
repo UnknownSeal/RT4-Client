@@ -4186,13 +4186,13 @@ public final class ClientScriptRunner {
 												if (scriptOpcode == 5055) {
 													intValueIndex--;
 													interfaceData = Static254.scriptIntValues[intValueIndex];
-													Static3.scriptStringValues[local26++] = QuickChatPhraseTypeList.list(interfaceData).getText();
+													Static3.scriptStringValues[local26++] = QuickChatPhraseTypeList.get(interfaceData).getText();
 													continue;
 												}
 												if (scriptOpcode == 5056) {
 													intValueIndex--;
 													interfaceData = Static254.scriptIntValues[intValueIndex];
-													@Pc(6527) QuickChatPhraseType local6527 = QuickChatPhraseTypeList.list(interfaceData);
+													@Pc(6527) QuickChatPhraseType local6527 = QuickChatPhraseTypeList.get(interfaceData);
 													if (local6527.autoResponses == null) {
 														Static254.scriptIntValues[intValueIndex++] = 0;
 													} else {
@@ -4204,15 +4204,15 @@ public final class ClientScriptRunner {
 													intValueIndex -= 2;
 													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 													interfaceData = Static254.scriptIntValues[intValueIndex];
-													Static254.scriptIntValues[intValueIndex++] = QuickChatPhraseTypeList.list(interfaceData).autoResponses[interfaceType];
+													Static254.scriptIntValues[intValueIndex++] = QuickChatPhraseTypeList.get(interfaceData).autoResponses[interfaceType];
 													continue;
 												}
 												if (scriptOpcode == 5058) {
 													Static122.aQuickChatPhrase_1 = new QuickChatPhrase();
 													intValueIndex--;
-													Static122.aQuickChatPhrase_1.anInt439 = Static254.scriptIntValues[intValueIndex];
-													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1 = QuickChatPhraseTypeList.list(Static122.aQuickChatPhrase_1.anInt439);
-													Static122.aQuickChatPhrase_1.anIntArray33 = new int[Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.method767()];
+													Static122.aQuickChatPhrase_1.id = Static254.scriptIntValues[intValueIndex];
+													Static122.aQuickChatPhrase_1.type = QuickChatPhraseTypeList.get(Static122.aQuickChatPhrase_1.id);
+													Static122.aQuickChatPhrase_1.values = new int[Static122.aQuickChatPhrase_1.type.getDynamicCommandCount()];
 													continue;
 												}
 												if (scriptOpcode == 5059) {
@@ -4220,8 +4220,8 @@ public final class ClientScriptRunner {
 													Protocol.outboundBuffer.p1(0);
 													interfaceData = Protocol.outboundBuffer.offset;
 													Protocol.outboundBuffer.p1(0);
-													Protocol.outboundBuffer.p2(Static122.aQuickChatPhrase_1.anInt439);
-													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.putDynamics(Protocol.outboundBuffer, Static122.aQuickChatPhrase_1.anIntArray33);
+													Protocol.outboundBuffer.p2(Static122.aQuickChatPhrase_1.id);
+													Static122.aQuickChatPhrase_1.type.encodeMessage(Protocol.outboundBuffer, Static122.aQuickChatPhrase_1.values);
 													Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - interfaceData);
 													continue;
 												}
@@ -4232,8 +4232,8 @@ public final class ClientScriptRunner {
 													Protocol.outboundBuffer.p1(0);
 													interfaceType = Protocol.outboundBuffer.offset;
 													Protocol.outboundBuffer.p8(chatTyped.encode37());
-													Protocol.outboundBuffer.p2(Static122.aQuickChatPhrase_1.anInt439);
-													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.putDynamics(Protocol.outboundBuffer, Static122.aQuickChatPhrase_1.anIntArray33);
+													Protocol.outboundBuffer.p2(Static122.aQuickChatPhrase_1.id);
+													Static122.aQuickChatPhrase_1.type.encodeMessage(Protocol.outboundBuffer, Static122.aQuickChatPhrase_1.values);
 													Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - interfaceType);
 													continue;
 												}
@@ -4242,8 +4242,8 @@ public final class ClientScriptRunner {
 													Protocol.outboundBuffer.p1(0);
 													interfaceData = Protocol.outboundBuffer.offset;
 													Protocol.outboundBuffer.p1(1);
-													Protocol.outboundBuffer.p2(Static122.aQuickChatPhrase_1.anInt439);
-													Static122.aQuickChatPhrase_1.aQuickChatPhraseType_1.putDynamics(Protocol.outboundBuffer, Static122.aQuickChatPhrase_1.anIntArray33);
+													Protocol.outboundBuffer.p2(Static122.aQuickChatPhrase_1.id);
+													Static122.aQuickChatPhrase_1.type.encodeMessage(Protocol.outboundBuffer, Static122.aQuickChatPhrase_1.values);
 													Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - interfaceData);
 													continue;
 												}
@@ -4286,14 +4286,14 @@ public final class ClientScriptRunner {
 												if (scriptOpcode == 5066) {
 													intValueIndex--;
 													interfaceData = Static254.scriptIntValues[intValueIndex];
-													Static254.scriptIntValues[intValueIndex++] = QuickChatPhraseTypeList.list(interfaceData).method767();
+													Static254.scriptIntValues[intValueIndex++] = QuickChatPhraseTypeList.get(interfaceData).getDynamicCommandCount();
 													continue;
 												}
 												if (scriptOpcode == 5067) {
 													intValueIndex -= 2;
 													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
 													interfaceData = Static254.scriptIntValues[intValueIndex];
-													childCount = QuickChatPhraseTypeList.list(interfaceData).method765(interfaceType);
+													childCount = QuickChatPhraseTypeList.get(interfaceData).getDynamicCommand(interfaceType);
 													Static254.scriptIntValues[intValueIndex++] = childCount;
 													continue;
 												}
@@ -4301,14 +4301,14 @@ public final class ClientScriptRunner {
 													intValueIndex -= 2;
 													interfaceData = Static254.scriptIntValues[intValueIndex];
 													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
-													Static122.aQuickChatPhrase_1.anIntArray33[interfaceData] = interfaceType;
+													Static122.aQuickChatPhrase_1.values[interfaceData] = interfaceType;
 													continue;
 												}
 												if (scriptOpcode == 5069) {
 													intValueIndex -= 2;
 													interfaceData = Static254.scriptIntValues[intValueIndex];
 													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
-													Static122.aQuickChatPhrase_1.anIntArray33[interfaceData] = interfaceType;
+													Static122.aQuickChatPhrase_1.values[interfaceData] = interfaceType;
 													continue;
 												}
 												if (scriptOpcode == 5070) {
@@ -4316,11 +4316,11 @@ public final class ClientScriptRunner {
 													interfaceData = Static254.scriptIntValues[intValueIndex];
 													childCount = Static254.scriptIntValues[intValueIndex + 2];
 													interfaceType = Static254.scriptIntValues[intValueIndex + 1];
-													@Pc(6996) QuickChatPhraseType local6996 = QuickChatPhraseTypeList.list(interfaceData);
-													if (local6996.method765(interfaceType) != 0) {
+													@Pc(6996) QuickChatPhraseType local6996 = QuickChatPhraseTypeList.get(interfaceData);
+													if (local6996.getDynamicCommand(interfaceType) != 0) {
 														throw new RuntimeException("bad command");
 													}
-													Static254.scriptIntValues[intValueIndex++] = local6996.method764(childCount, interfaceType);
+													Static254.scriptIntValues[intValueIndex++] = local6996.getDynamicCommandParam(childCount, interfaceType);
 													continue;
 												}
 												if (scriptOpcode == 5071) {

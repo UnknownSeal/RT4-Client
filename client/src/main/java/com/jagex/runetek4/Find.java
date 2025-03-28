@@ -22,7 +22,7 @@ public class Find {
         @Pc(28) int local28 = arg0 ? 32768 : 0;
         @Pc(36) int local36 = (arg0 ? QuickChatPhraseTypeList.anInt1047 : QuickChatPhraseTypeList.anInt3490) + local28;
         for (@Pc(38) int local38 = local28; local38 < local36; local38++) {
-            @Pc(45) QuickChatPhraseType local45 = QuickChatPhraseTypeList.list(local38);
+            @Pc(45) QuickChatPhraseType local45 = QuickChatPhraseTypeList.get(local38);
             if (local45.aBoolean60 && local45.getText().toLowerCase().indexOf(local9) != -1) {
                 if (local11 >= 50) {
                     index = -1;
@@ -44,7 +44,7 @@ public class Find {
         size = 0;
         @Pc(113) JString[] local113 = new JString[index];
         for (@Pc(115) int local115 = 0; local115 < index; local115++) {
-            local113[local115] = QuickChatPhraseTypeList.list(local22[local115]).getText();
+            local113[local115] = QuickChatPhraseTypeList.get(local22[local115]).getText();
         }
         method3656(local113, results);
     }

@@ -15,9 +15,6 @@ public final class Static211 {
 	@OriginalMember(owner = "runetek4.client!rc", name = "G", descriptor = "Lclient!na;")
 	public static final JString aClass100_230 = JString.parse("");
 
-	@OriginalMember(owner = "runetek4.client!rc", name = "I", descriptor = "Lclient!na;")
-	public static final JString aClass100_231 = JString.parse(")3)3)3");
-
 	@OriginalMember(owner = "runetek4.client!rc", name = "M", descriptor = "Z")
 	public static boolean aBoolean73 = false;
 
