@@ -4457,7 +4457,7 @@ public final class ClientScriptRunner {
 														if (interfaceData == -1) {
 															chatTypedLowercase = EMPTY_STRING;
 														} else {
-															chatTypedLowercase = WorldMap.labels.aClass100Array153[interfaceData];
+															chatTypedLowercase = WorldMap.labels.text[interfaceData];
 															childCount = WorldMap.labels.method3894(interfaceData);
 														}
 														chatTypedLowercase = chatTypedLowercase.method3140(aClass100_639, aClass100_10);
@@ -4471,7 +4471,7 @@ public final class ClientScriptRunner {
 														if (interfaceData == -1) {
 															chatTypedLowercase = EMPTY_STRING;
 														} else {
-															chatTypedLowercase = WorldMap.labels.aClass100Array153[interfaceData];
+															chatTypedLowercase = WorldMap.labels.text[interfaceData];
 															childCount = WorldMap.labels.method3894(interfaceData);
 														}
 														chatTypedLowercase = chatTypedLowercase.method3140(aClass100_639, aClass100_10);
@@ -6619,8 +6619,8 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "runetek4.client!ok", name = "a", descriptor = "(IIB)Lclient!ce;")
 	public static SecondaryLinkedList method3333(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		@Pc(9) SecondaryLinkedList local9 = new SecondaryLinkedList();
-		for (@Pc(14) Map local14 = (Map) MapList.aClass69_120.head(); local14 != null; local14 = (Map) MapList.aClass69_120.next()) {
-			if (local14.valid && local14.method664(arg1, arg0)) {
+		for (@Pc(14) Map local14 = (Map) MapList.areas.head(); local14 != null; local14 = (Map) MapList.areas.next()) {
+			if (local14.valid && local14.containsSource(arg1, arg0)) {
 				local9.addTail(local14);
 			}
 		}

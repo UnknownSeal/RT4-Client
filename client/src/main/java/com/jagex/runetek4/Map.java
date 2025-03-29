@@ -73,7 +73,7 @@ public final class Map extends SecondaryNode {
     }
 
     @OriginalMember(owner = "runetek4.client!bn", name = "a", descriptor = "(IBI)Z")
-	public final boolean method664(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
+	public final boolean containsSource(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
 		if (this.displayMinX > arg1 || arg1 > this.displayMaxZ || arg0 < this.displayMaxX || arg0 > this.displayMinZ) {
 			return false;
 		}

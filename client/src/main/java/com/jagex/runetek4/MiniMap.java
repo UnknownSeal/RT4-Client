@@ -143,7 +143,7 @@ public class MiniMap {
                             local156 = Fonts.b12Full;
                         }
                         npcX = local164 * flagZ + local189 * flagX >> 16;
-                        local239 = local156.getMaxLineWidth(LoginManager.mapElementList.aClass100Array153[local117], 100);
+                        local239 = local156.getMaxLineWidth(LoginManager.mapElementList.text[local117], 100);
                         @Pc(245) int local245 = npcX - local239 / 2;
                         if (local245 >= -arg3.width && local245 <= arg3.width && npcZ >= -arg3.height && npcZ <= arg3.height) {
                             local271 = 16777215;
@@ -155,7 +155,7 @@ public class MiniMap {
                             } else {
                                 SoftwareRaster.method2486(arg3.anIntArray37, arg3.anIntArray45);
                             }
-                            local156.renderParagraphAlpha(LoginManager.mapElementList.aClass100Array153[local117], arg2 + local245 + arg3.width / 2, arg1 + arg3.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
+                            local156.renderParagraphAlpha(LoginManager.mapElementList.text[local117], arg2 + local245 + arg3.width / 2, arg1 + arg3.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
                             if (GlRenderer.enabled) {
                                 GlFont.method1173();
                             } else {

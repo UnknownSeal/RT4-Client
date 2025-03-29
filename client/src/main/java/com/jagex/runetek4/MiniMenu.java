@@ -269,11 +269,11 @@ public class MiniMenu {
         if (component.buttonType == 1) {
             addActionRow(-1, 0L, JString.EMPTY, 0, (short) 8, component.option, component.id);
         }
-        @Pc(47) JString local47;
+        @Pc(47) JString ops;
         if (component.buttonType == 2 && !aBoolean302) {
-            local47 = MiniMap.getTargetVerb(component);
-            if (local47 != null) {
-                addActionRow(-1, 0L, JString.concatenate(new JString[] { GREEN, component.optionSuffix}), -1, (short) 32, local47, component.id);
+            ops = MiniMap.getTargetVerb(component);
+            if (ops != null) {
+                addActionRow(-1, 0L, JString.concatenate(new JString[] { GREEN, component.optionSuffix}), -1, (short) 32, ops, component.id);
             }
         }
         if (component.buttonType == 3) {
@@ -399,9 +399,9 @@ public class MiniMenu {
                     addActionRow(getOpCursor(local171, component), (long) (local171 + 1), component.optionBase, component.createdComponentId, (short) 1003, local765, component.id);
                 }
             }
-            local47 = MiniMap.getTargetVerb(component);
-            if (local47 != null) {
-                addActionRow(-1, 0L, component.optionBase, component.createdComponentId, (short) 32, local47, component.id);
+            ops = MiniMap.getTargetVerb(component);
+            if (ops != null) {
+                addActionRow(-1, 0L, component.optionBase, component.createdComponentId, (short) 32, ops, component.id);
             }
             for (local173 = 4; local173 >= 0; local173--) {
                 @Pc(828) JString local828 = InterfaceList.getOp(component, local173);

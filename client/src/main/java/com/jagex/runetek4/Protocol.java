@@ -2822,22 +2822,7 @@ public class Protocol {
 
     @OriginalMember(owner = "client!fc", name = "a", descriptor = "(Lclient!wa;I)Lclient!na;")
     public static JString formatChatMessage(@OriginalArg(0) Packet arg0) {
-        return method4350(arg0);
-    }
-
-    @OriginalMember(owner = "runetek4.client!uj", name = "a", descriptor = "(Lclient!wa;II)Lclient!na;")
-    public static JString method4350(@OriginalArg(0) Packet arg0) {
-        try {
-            @Pc(7) int local7 = arg0.gSmart1or2();
-            if (local7 > 32767) {
-                local7 = 32767;
-            }
-            @Pc(15) byte[] local15 = new byte[local7];
-            arg0.offset += WordPack.codec.decode(0, local7, local15, arg0.data, arg0.offset);
-            return JString.decodeString(local15, local7, 0);
-        } catch (@Pc(47) Exception local47) {
-            return WordPack.CABBAGE;
-        }
+        return WordPack.readStringInternal(arg0);
     }
 
     @OriginalMember(owner = "runetek4.client!mi", name = "a", descriptor = "([IBLclient!km;[I[I)V")

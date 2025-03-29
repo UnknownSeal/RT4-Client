@@ -14,7 +14,7 @@ public final class MapElementList {
 	public final int anInt5074;
 
 	@OriginalMember(owner = "client!se", name = "j", descriptor = "[Lclient!na;")
-	public final JString[] aClass100Array153;
+	public final JString[] text;
 
 	@OriginalMember(owner = "client!se", name = "d", descriptor = "[S")
 	public final short[] aShortArray72;
@@ -31,7 +31,7 @@ public final class MapElementList {
 	@OriginalMember(owner = "client!se", name = "<init>", descriptor = "(I)V")
 	public MapElementList(@OriginalArg(0) int arg0) {
 		this.anInt5074 = arg0;
-		this.aClass100Array153 = new JString[this.anInt5074];
+		this.text = new JString[this.anInt5074];
 		this.aShortArray72 = new short[this.anInt5074];
 		this.anIntArray444 = new int[this.anInt5074];
 		this.aByteArray69 = new byte[this.anInt5074];
@@ -48,7 +48,7 @@ public final class MapElementList {
 		@Pc(35) MapElementList local35 = new MapElementList(local29.length);
 		for (@Pc(37) int local37 = 0; local37 < local35.anInt5074; local37++) {
 			@Pc(56) Packet local56 = new Packet(arg1.getfile(local10, local29[local37]));
-			local35.aClass100Array153[local37] = local56.gjstr();
+			local35.text[local37] = local56.gjstr();
 			local35.aByteArray69[local37] = local56.g1s();
 			local35.aShortArray73[local37] = (short) local56.g2();
 			local35.aShortArray72[local37] = (short) local56.g2();
