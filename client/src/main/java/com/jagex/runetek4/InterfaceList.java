@@ -826,7 +826,7 @@ public class InterfaceList {
                             }
                         }
                         if (local221) {
-                            Static40.method1015(Mouse.mouseClickY - local55, Mouse.mouseClickX - local50, component);
+                            ClientScriptRunner.method1015(Mouse.mouseClickY - local55, Mouse.mouseClickX - local50, component);
                         }
                         if (ClientScriptRunner.aClass13_14 != null && ClientScriptRunner.aClass13_14 != component && local207 && getServerActiveProperties(component).isDragTarget()) {
                             aClass13_12 = component;

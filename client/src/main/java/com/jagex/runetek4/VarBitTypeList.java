@@ -36,7 +36,7 @@ public class VarBitTypeList {
 
     @OriginalMember(owner = "runetek4.client!wa", name = "d", descriptor = "(BI)V")
     public static void clean() {
-        types.clear(5);
+        types.clean(5);
     }
 
     @OriginalMember(owner = "client!gd", name = "a", descriptor = "(I)V")
@@ -46,7 +46,7 @@ public class VarBitTypeList {
 
     @OriginalMember(owner = "client!ec", name = "b", descriptor = "(I)V")
     public static void clear() {
-        types.clear();
+        types.clean();
     }
 
     @OriginalMember(owner = "runetek4.client!wf", name = "a", descriptor = "(II)I")

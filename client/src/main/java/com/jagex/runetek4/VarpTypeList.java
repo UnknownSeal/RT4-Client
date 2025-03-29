@@ -39,7 +39,7 @@ public class VarpTypeList {
 
     @OriginalMember(owner = "runetek4.client!ud", name = "d", descriptor = "(I)V")
     public static void clear() {
-        types.clear();
+        types.clean();
     }
 
     @OriginalMember(owner = "runetek4.client!ab", name = "b", descriptor = "(B)V")
@@ -49,6 +49,6 @@ public class VarpTypeList {
 
     @OriginalMember(owner = "client!bn", name = "c", descriptor = "(II)V")
     public static void clean() {
-        types.clear(5);
+        types.clean(5);
     }
 }

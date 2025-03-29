@@ -299,7 +299,7 @@ public final class client extends GameShell {
 	@OriginalMember(owner = "client!je", name = "h", descriptor = "(I)V")
 	public static void unloadSoft() {
 		FloTypeList.removeSoft();
-		FloorUnderlayTypeList.removeSoft();
+		FluTypeList.removeSoft();
 		IdkTypeList.removeSoft();
 		LocTypeList.removeSoft();
 		NpcTypeList.removeSoft();
@@ -336,7 +336,7 @@ public final class client extends GameShell {
 	@OriginalMember(owner = "runetek4.client!rj", name = "f", descriptor = "(B)V")
 	public static void unload() {
 		FloTypeList.clear();
-		Static54.clear();
+		FluTypeList.clear();
 		ClientScriptRunner.clear();
 		LocTypeList.clear();
 		NpcTypeList.clear();
@@ -349,7 +349,7 @@ public final class client extends GameShell {
 		MsiTypeList.clear();
 		LightTypeList.clear();
 		CursorTypeList.clear();
-		Static230.clear();
+		PlayerAppearance.clear();
 		Component.clear();
 		if (modeWhat != 0) {
 			for (@Pc(54) int i = 0; i < Player.aByteArrayArray8.length; i++) {
@@ -359,7 +359,7 @@ public final class client extends GameShell {
 		}
 		HintArrowManager.clear();
 		ShadowModelList.clear();
-		FontMetricsList.fontMetrics.clear();
+		FontMetricsList.fontMetrics.clean();
 		if (!GlRenderer.enabled) {
 			((Js5TextureProvider) Rasterizer.textureProvider).clear();
 		}
@@ -375,7 +375,7 @@ public final class client extends GameShell {
 		js5Archive10.discardUnpacked();
 		js5Archive11.discardUnpacked();
 		js5Archive12.discardUnpacked();
-		HitBarList.hitBars.clear();
+		HitBarList.hitBars.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!id", name = "b", descriptor = "(I)V")
@@ -416,7 +416,7 @@ public final class client extends GameShell {
 		MiniMap.sprite = null;
 		LightingManager.anInt2875 = -1;
 		unload();
-		Static255.cache.clear();
+		DeadClass.cache.clear();
 		LocType.aLocEntity_1 = new LocEntity();
 		((Js5TextureProvider) Rasterizer.textureProvider).clear();
 		LightingManager.lightCount = 0;
@@ -630,8 +630,8 @@ public final class client extends GameShell {
 	@OriginalMember(owner = "runetek4.client!re", name = "a", descriptor = "(I)V")
 	public static void clean() {
 		FloTypeList.clean();
-		FloorUnderlayTypeList.clean();
-		Static238.method4142();
+		FluTypeList.clean();
+		IdkTypeList.clean();
 		LocTypeList.clean();
 		NpcTypeList.method3706();
 		ObjTypeList.clean();
@@ -647,8 +647,8 @@ public final class client extends GameShell {
 		Component.clean();
 		HintArrowManager.clean();
 		ShadowModelList.clean();
-		HitBarList.hitBars.clear(5);
-		FontMetricsList.fontMetrics.clear(5);
+		HitBarList.hitBars.clean(5);
+		FontMetricsList.fontMetrics.clean(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(II)V")
@@ -714,7 +714,7 @@ public final class client extends GameShell {
 		if (local15 && MidiPlayer.jingle && musicChannel != null) {
 			musicChannel.method3570();
 		}
-		if ((gameState == 30 || gameState == 10) && (GameShell.canvasReplaceRecommended || Static97.aLong89 != 0L && Static97.aLong89 < MonotonicTime.currentTimeMillis())) {
+		if ((gameState == 30 || gameState == 10) && (GameShell.canvasReplaceRecommended || DisplayMode.aLong89 != 0L && DisplayMode.aLong89 < MonotonicTime.currentTimeMillis())) {
 			DisplayMode.setWindowMode(GameShell.canvasReplaceRecommended, DisplayMode.getWindowMode(), Preferences.fullScreenWidth, Preferences.fullScreenHeight);
 		}
 		@Pc(80) int local80;
@@ -737,7 +737,7 @@ public final class client extends GameShell {
 			}
 			if (local80 != GameShell.frameWidth || local84 != GameShell.frameHeight) {
 				GameShell.method3662();
-				Static97.aLong89 = MonotonicTime.currentTimeMillis() + 500L;
+				DisplayMode.aLong89 = MonotonicTime.currentTimeMillis() + 500L;
 			}
 		}
 		if (GameShell.fullScreenFrame != null && !focus && (gameState == 30 || gameState == 10)) {
@@ -1432,14 +1432,14 @@ public final class client extends GameShell {
 			if (percentage >= 1100) {
 				ParamTypeList.init(js5Archive2);
 				FloTypeList.init(js5Archive2);
-				FloorUnderlayTypeList.init(js5Archive2);
+				FluTypeList.init(js5Archive2);
 				IdkTypeList.init(js5Archive7, js5Archive2);
 				LocTypeList.init(js5Archive16, js5Archive7);
 				NpcTypeList.init(js5Archive7, js5Archive18);
 				ObjTypeList.init(js5Archive19, Fonts.p11FullSoftware, js5Archive7);
 				StructTypeList.init(js5Archive2);
 				SeqTypeList.init(js5Archive1, js5Archive20, js5Archive0);
-				Static79.init(js5Archive2);
+				BasTypeList.init(js5Archive2);
 				SpotAnimTypeList.init(js5Archive7, js5Archive21);
 				VarBitTypeList.init(js5Archive22);
 				VarpTypeList.init(js5Archive2);

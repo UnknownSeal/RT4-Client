@@ -31,16 +31,21 @@ public class BasTypeList {
 
     @OriginalMember(owner = "runetek4.client!jk", name = "e", descriptor = "(B)V")
     public static void clear() {
-        types.clear();
+        types.clean();
     }
 
     @OriginalMember(owner = "client!bi", name = "c", descriptor = "(II)V")
     public static void clean() {
-        types.clear(5);
+        types.clean(5);
     }
 
     @OriginalMember(owner = "runetek4.client!di", name = "d", descriptor = "(I)V")
     public static void removeSoft() {
         types.removeSoft();
+    }
+
+    @OriginalMember(owner = "client!ge", name = "a", descriptor = "(BLclient!ve;)V")
+    public static void init(@OriginalArg(1) Js5 arg0) {
+        archive = arg0;
     }
 }

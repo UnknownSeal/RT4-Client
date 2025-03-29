@@ -52,14 +52,14 @@ public class SpotAnimTypeList {
 
     @OriginalMember(owner = "runetek4.client!kl", name = "c", descriptor = "(II)V")
     public static void clean() {
-        types.clear(5);
-        models.clear(5);
+        types.clean(5);
+        models.clean(5);
     }
 
     @OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(Z)V")
     public static void clear() {
-        types.clear();
-        models.clear();
+        types.clean();
+        models.clean();
     }
 
     @OriginalMember(owner = "client!fk", name = "a", descriptor = "(B)V")

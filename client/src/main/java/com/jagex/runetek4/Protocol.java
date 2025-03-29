@@ -620,7 +620,7 @@ public class Protocol {
                     int verifyID = inboundBuffer.g2leadd();
                     if (setVerifyID(verifyID)) {
                         if (reset == 2) {
-                            Static5.method34();
+                            WorldMap.reset();
                         }
                         InterfaceList.topLevelInterface = parent;
                         InterfaceList.method1753(parent);
@@ -1227,7 +1227,7 @@ public class Protocol {
                             } else if (opcode == 37) {
                                 ii = inboundBuffer.g1add();
                                 xp = inboundBuffer.g2le();
-                                Static272.method3995(ii, xp);
+                                VarpDomain.setVarbit(ii, xp);
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 155) {
@@ -1473,7 +1473,7 @@ public class Protocol {
                             } else if (opcode == 84) {
                                 ii = inboundBuffer.g4me();
                                 xp = inboundBuffer.g2leadd();
-                                Static272.method3995(ii, xp);
+                                VarpDomain.setVarbit(ii, xp);
                                 opcode = -1;
                                 return true;
                             } else {
@@ -1701,7 +1701,7 @@ public class Protocol {
                                             local4956.invSlotObjCount[slot] = 0;
                                         }
                                     }
-                                    Static14.method475(xp);
+                                    Inv.method475(xp);
                                     slot = inboundBuffer.g2();
                                     for (count = 0; count < slot; count++) {
                                         i = inboundBuffer.g1_alt3();

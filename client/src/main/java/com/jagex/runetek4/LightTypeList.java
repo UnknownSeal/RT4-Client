@@ -36,12 +36,12 @@ public class LightTypeList {
 
     @OriginalMember(owner = "client!c", name = "c", descriptor = "(II)V")
     public static void clean() {
-        types.clear(5);
+        types.clean(5);
     }
 
     @OriginalMember(owner = "client!gd", name = "b", descriptor = "(I)V")
     public static void clear() {
-        types.clear();
+        types.clean();
     }
 
     @OriginalMember(owner = "runetek4.client!hd", name = "a", descriptor = "(I)V")

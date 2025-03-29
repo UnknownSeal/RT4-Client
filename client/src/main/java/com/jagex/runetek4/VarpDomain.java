@@ -85,6 +85,49 @@ public class VarpDomain {
             arg1 = 0;
         }
         local25 <<= local16;
-        Static148.method2766(local19, local25 & arg1 << local16 | activeVarps[local19] & ~local25);
+        method2766(local19, local25 & arg1 << local16 | activeVarps[local19] & ~local25);
+    }
+
+    @OriginalMember(owner = "client!cn", name = "a", descriptor = "(ZI)I")
+    public static int poll(@OriginalArg(0) boolean arg0) {
+        @Pc(4) long local4 = MonotonicTime.currentTimeMillis();
+        for (@Pc(28) LongNode local28 = arg0 ? (LongNode) aClass133_20.head() : (LongNode) aClass133_20.next(); local28 != null; local28 = (LongNode) aClass133_20.next()) {
+            if ((local28.value & 0x3FFFFFFFFFFFFFFFL) < local4) {
+                if ((local28.value & 0x4000000000000000L) != 0L) {
+                    @Pc(58) int local58 = (int) local28.nodeId;
+                    activeVarps[local58] = varp[local58];
+                    local28.unlink();
+                    return local58;
+                }
+                local28.unlink();
+            }
+        }
+        return -1;
+    }
+
+    @OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(III)V")
+    public static void method2766(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
+        activeVarps[arg0] = arg1;
+        @Pc(21) LongNode local21 = (LongNode) aClass133_20.get((long) arg0);
+        if (local21 == null) {
+            local21 = new LongNode(MonotonicTime.currentTimeMillis() + 500L);
+            aClass133_20.put(local21, (long) arg0);
+        } else {
+            local21.value = MonotonicTime.currentTimeMillis() + 500L;
+        }
+    }
+
+    @OriginalMember(owner = "runetek4.client!wd", name = "a", descriptor = "(BII)V")
+    public static void setVarbit(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
+        @Pc(14) VarbitType local14 = VarBitTypeList.get(arg1);
+        @Pc(17) int local17 = local14.baseVar;
+        @Pc(20) int local20 = local14.endBit;
+        @Pc(23) int local23 = local14.startBit;
+        @Pc(29) int local29 = varbitMasks[local20 - local23];
+        if (arg0 < 0 || local29 < arg0) {
+            arg0 = 0;
+        }
+        local29 <<= local23;
+        set(arg0 << local23 & local29 | ~local29 & varp[local17], local17);
     }
 }

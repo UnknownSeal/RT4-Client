@@ -18,6 +18,12 @@ public final class DisplayMode {
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "i", descriptor = "[Lclient!od;")
 	public static DisplayMode[] modes;
+    @OriginalMember(owner = "runetek4.client!hi", name = "f", descriptor = "J")
+    public static long aLong89 = 0L;
+	@OriginalMember(owner = "runetek4.client!jk", name = "y", descriptor = "Z")
+	public static boolean aBoolean156 = false;
+	@OriginalMember(owner = "runetek4.client!rc", name = "M", descriptor = "Z")
+	public static boolean aBoolean73 = false;
 
 	@OriginalMember(owner = "client!od", name = "j", descriptor = "I")
 	public int width;
@@ -217,7 +223,7 @@ public final class DisplayMode {
 		}
 		if (arg2 && arg1 > 0) {
 			GameShell.canvas.setIgnoreRepaint(true);
-			if (!Static211.aBoolean73) {
+			if (!aBoolean73) {
 				SceneGraph.clear();
 				SoftwareRaster.frameBuffer = null;
 				SoftwareRaster.frameBuffer = FrameBuffer.create(GameShell.canvasHeigth, GameShell.canvasWidth, GameShell.canvas);
@@ -243,10 +249,10 @@ public final class DisplayMode {
 					ThreadUtils.sleep(100L);
 				}
 				if (local300.status == 1) {
-					Static211.aBoolean73 = true;
+					aBoolean73 = true;
 				}
 			}
-			if (Static211.aBoolean73) {
+			if (aBoolean73) {
 				GlRenderer.init(GameShell.canvas, Preferences.antiAliasingMode * 2);
 			}
 		}
@@ -291,9 +297,9 @@ public final class DisplayMode {
 			client.method2721();
 		}
 		if (arg1 >= 2) {
-			Static124.aBoolean156 = true;
+			aBoolean156 = true;
 		} else {
-			Static124.aBoolean156 = false;
+			aBoolean156 = false;
 		}
 		if (InterfaceList.topLevelInterface != -1) {
 			InterfaceList.method3712(true);
@@ -309,7 +315,7 @@ public final class DisplayMode {
 
 	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(ZIIII)V")
 	public static void setWindowMode(@OriginalArg(0) boolean arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		Static97.aLong89 = 0L;
+		aLong89 = 0L;
 		@Pc(4) int local4 = getWindowMode();
 		if (arg1 == 3 || local4 == 3) {
 			arg0 = true;
@@ -328,9 +334,9 @@ public final class DisplayMode {
 	public static int getWindowMode() {
 		if (GameShell.fullScreenFrame != null) {
 			return 3;
-		} else if (GlRenderer.enabled && Static124.aBoolean156) {
+		} else if (GlRenderer.enabled && aBoolean156) {
 			return 2;
-		} else if (GlRenderer.enabled && !Static124.aBoolean156) {
+		} else if (GlRenderer.enabled && !aBoolean156) {
 			return 1;
 		} else {
 			return 0;

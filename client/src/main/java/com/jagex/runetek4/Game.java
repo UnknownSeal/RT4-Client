@@ -199,10 +199,10 @@ public class Game {
         NpcList.updateNpcs();
         OverHeadChat.tickChatTimers(); // OverheadChat
         if (WorldMap.component != null) {
-            Static12.method447();
+            WorldMap.method447();
         }
         // VarpDomain
-        for (i = Static38.poll(true); i != -1; i = Static38.poll(false)) {
+        for (i = VarpDomain.poll(true); i != -1; i = VarpDomain.poll(false)) {
             VarpDomain.refreshMagicVarp(i);
             VarpDomain.updatedVarps[VarpDomain.updatedVarpsWriterIndex++ & 0x1F] = i;
         }
@@ -447,18 +447,18 @@ public class Game {
                                                 Cheat.teleport(PlayerList.self.movementQueueX[0] + Camera.originX, PlayerList.self.movementQueueZ[0] + Camera.originZ, y);
                                             }
                                             if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
-                                                if (Static56.clickTileX != -1) {
-                                                    Cheat.teleport(Camera.originX + Static56.clickTileX, Camera.originZ + Static116.anInt2954, Player.plane);
+                                                if (MiniMenu.clickTileX != -1) {
+                                                    Cheat.teleport(Camera.originX + MiniMenu.clickTileX, Camera.originZ + MiniMenu.anInt2954, Player.plane);
                                                 }
                                                 Protocol.anInt4422 = 0;
                                                 MiniMenu.anInt3096 = 0;
                                             } else if (MiniMenu.anInt3096 == 2) {
-                                                if (Static56.clickTileX != -1) {
+                                                if (MiniMenu.clickTileX != -1) {
                                                     Protocol.outboundBuffer.pIsaac1(131);
                                                     Protocol.outboundBuffer.p4_alt3(MiniMenu.anInt2512);
-                                                    Protocol.outboundBuffer.p2_alt2(Camera.originX + Static56.clickTileX);
+                                                    Protocol.outboundBuffer.p2_alt2(Camera.originX + MiniMenu.clickTileX);
                                                     Protocol.outboundBuffer.p2_alt3(MiniMenu.anInt506);
-                                                    Protocol.outboundBuffer.p2_alt2(Static116.anInt2954 + Camera.originZ);
+                                                    Protocol.outboundBuffer.p2_alt2(MiniMenu.anInt2954 + Camera.originZ);
                                                     Cross.crossMode = 1;
                                                     Cross.crossCycle = 0;
                                                     Cross.y = Mouse.mouseClickY;
@@ -466,18 +466,18 @@ public class Game {
                                                 }
                                                 MiniMenu.anInt3096 = 0;
                                             } else if (Protocol.anInt4422 == 2) {
-                                                if (Static56.clickTileX != -1) {
+                                                if (MiniMenu.clickTileX != -1) {
                                                     Protocol.outboundBuffer.pIsaac1(179);
-                                                    Protocol.outboundBuffer.p2(Camera.originZ + Static116.anInt2954);
-                                                    Protocol.outboundBuffer.p2(Static56.clickTileX + Camera.originX);
+                                                    Protocol.outboundBuffer.p2(Camera.originZ + MiniMenu.anInt2954);
+                                                    Protocol.outboundBuffer.p2(MiniMenu.clickTileX + Camera.originX);
                                                     Cross.crossCycle = 0;
                                                     Cross.crossMode = 1;
                                                     Cross.x = Mouse.mouseClickX;
                                                     Cross.y = Mouse.mouseClickY;
                                                 }
                                                 Protocol.anInt4422 = 0;
-                                            } else if (Static56.clickTileX != -1 && MiniMenu.anInt3096 == 0 && Protocol.anInt4422 == 0) {
-                                                @Pc(1871) boolean success = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, PlayerList.self.movementQueueX[0]);
+                                            } else if (MiniMenu.clickTileX != -1 && MiniMenu.anInt3096 == 0 && Protocol.anInt4422 == 0) {
+                                                @Pc(1871) boolean success = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, MiniMenu.clickTileX, 0, 0, 0, MiniMenu.anInt2954, PlayerList.self.movementQueueX[0]);
                                                 if (success) {
                                                     Cross.y = Mouse.mouseClickY;
                                                     Cross.crossCycle = 0;
@@ -485,7 +485,7 @@ public class Game {
                                                     Cross.crossMode = 1;
                                                 }
                                             }
-                                            Static56.clickTileX = -1;
+                                            MiniMenu.clickTileX = -1;
                                             Protocol.method843();
                                             if (InterfaceList.aClass13_22 != component) {
                                                 if (component != null) {

@@ -14,6 +14,7 @@ import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
+import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.dash3d.entity.ProjAnimNode;
@@ -239,7 +240,7 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(I)V")
 	public static void clear() {
-		IdkTypeList.types.clear();
+		IdkTypeList.types.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "b", descriptor = "(I)V")
@@ -810,7 +811,7 @@ public final class ClientScriptRunner {
 									MiniMenu.actions[0] = 1005;
 									MiniMenu.opBases[0] = JString.EMPTY;
 								}
-								Static6.method86(local1186.interfaceId, local166, local302, local123, rectangle, local291, local164, local114);
+								method86(local1186.interfaceId, local166, local302, local123, rectangle, local291, local164, local114);
 							}
 							if (GlRenderer.enabled) {
 								GlRaster.setClip(arg0, arg6, arg4, arg7);
@@ -1547,7 +1548,7 @@ public final class ClientScriptRunner {
 		if (WorldMap.aClass3_Sub2_Sub1_2 == null || arg2 != WorldMap.aClass3_Sub2_Sub1_2.width || WorldMap.aClass3_Sub2_Sub1_2.height != arg1) {
 			@Pc(63) SoftwareSprite local63 = new SoftwareSprite(arg2, arg1);
 			SoftwareRaster.setSize(local63.pixels, arg2, arg1);
-			Static214.method4364(arg2, 0, WorldMap.width, 0, 0, WorldMap.length, arg1, 0);
+			WorldMap.method4364(arg2, 0, WorldMap.width, 0, 0, WorldMap.length, arg1, 0);
 			if (GlRenderer.enabled) {
 				WorldMap.aClass3_Sub2_Sub1_2 = new GlSprite(local63);
 			} else {
@@ -1738,7 +1739,7 @@ public final class ClientScriptRunner {
 						// pop_varp
 						id = intOperands[pc];
 						isp--;
-						Static148.method2766(id, scriptIntValues[isp]);
+						VarpDomain.method2766(id, scriptIntValues[isp]);
 						continue;
 					}
 					if (opcode == 3) {
@@ -2981,7 +2982,7 @@ public final class ClientScriptRunner {
 										interfaceData = scriptIntValues[isp];
 										childCount = scriptIntValues[isp + 2];
 										component = InterfaceList.getComponent(childCount);
-										Static40.method1015(interfaceType, interfaceData, component);
+										method1015(interfaceType, interfaceData, component);
 										continue;
 									}
 									if (opcode == 3109) {
@@ -2989,7 +2990,7 @@ public final class ClientScriptRunner {
 										interfaceData = scriptIntValues[isp];
 										local1256 = local1020 ? staticActiveComponent1 : staticActiveComponent2;
 										interfaceType = scriptIntValues[isp + 1];
-										Static40.method1015(interfaceType, interfaceData, local1256);
+										method1015(interfaceType, interfaceData, local1256);
 										continue;
 									}
 									if (opcode == 3110) {
@@ -3189,14 +3190,14 @@ public final class ClientScriptRunner {
 										isp -= 2;
 										interfaceType = scriptIntValues[isp + 1];
 										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = Static178.getTotalParam(false, interfaceData, interfaceType);
+										scriptIntValues[isp++] = Inv.getTotalParam(false, interfaceData, interfaceType);
 										continue;
 									}
 									if (opcode == 3332) {
 										isp -= 2;
 										interfaceData = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = Static178.getTotalParam(true, interfaceData, interfaceType);
+										scriptIntValues[isp++] = Inv.getTotalParam(true, interfaceData, interfaceType);
 										continue;
 									}
 									if (opcode == 3333) {
@@ -4368,30 +4369,30 @@ public final class ClientScriptRunner {
 												if (opcode < 5300) {
 													if (opcode == 5200) {
 														isp--;
-														Static155.method2940(scriptIntValues[isp]);
+														WorldMap.setTargetZoom(scriptIntValues[isp]);
 														continue;
 													}
 													if (opcode == 5201) {
-														scriptIntValues[isp++] = Static91.getZoom();
+														scriptIntValues[isp++] = WorldMap.getTargetZoom();
 														continue;
 													}
 													if (opcode == 5202) {
 														isp--;
-														Static258.method4444(scriptIntValues[isp]);
+														WorldMap.method4444(scriptIntValues[isp]);
 														continue;
 													}
 													if (opcode == 5203) {
 														ssp--;
-														Static3.method4656(scriptStringValues[ssp]);
+														WorldMap.method4656(scriptStringValues[ssp]);
 														continue;
 													}
 													if (opcode == 5204) {
-														scriptStringValues[ssp - 1] = Static211.method923(scriptStringValues[ssp - 1]);
+														scriptStringValues[ssp - 1] = WorldMap.method923(scriptStringValues[ssp - 1]);
 														continue;
 													}
 													if (opcode == 5205) {
 														ssp--;
-														Static90.method1853(scriptStringValues[ssp]);
+														WorldMap.method1853(scriptStringValues[ssp]);
 														continue;
 													}
 													if (opcode == 5206) {
@@ -4427,7 +4428,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == 5210) {
-														local7293 = Static214.method4361();
+														local7293 = WorldMap.getCurrentMap();
 														if (local7293 == null) {
 															scriptIntValues[isp++] = 0;
 															scriptIntValues[isp++] = 0;
@@ -4438,7 +4439,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == 5211) {
-														local7293 = Static214.method4361();
+														local7293 = WorldMap.getCurrentMap();
 														if (local7293 == null) {
 															scriptIntValues[isp++] = 0;
 															scriptIntValues[isp++] = 0;
@@ -4449,7 +4450,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == 5212) {
-														interfaceData = Static118.method2352();
+														interfaceData = WorldMap.method2352();
 														childCount = 0;
 														if (interfaceData == -1) {
 															chatTypedLowercase = EMPTY_STRING;
@@ -4464,7 +4465,7 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 5213) {
 														childCount = 0;
-														interfaceData = Static119.method2385();
+														interfaceData = WorldMap.method2385();
 														if (interfaceData == -1) {
 															chatTypedLowercase = EMPTY_STRING;
 														} else {
@@ -4479,7 +4480,7 @@ public final class ClientScriptRunner {
 													if (opcode == 5214) {
 														isp--;
 														interfaceData = scriptIntValues[isp];
-														Static80.method3616(interfaceData >> 14 & 0x3FFF, interfaceData & 0x3FFF);
+														WorldMap.method3616(interfaceData >> 14 & 0x3FFF, interfaceData & 0x3FFF);
 														continue;
 													}
 													if (opcode == 5215) {
@@ -4519,7 +4520,7 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == 5218) {
-														local7293 = Static214.method4361();
+														local7293 = WorldMap.getCurrentMap();
 														if (local7293 == null) {
 															scriptIntValues[isp++] = -1;
 														} else {
@@ -4529,7 +4530,7 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 5219) {
 														ssp--;
-														Static44.method1149(scriptStringValues[ssp]);
+														WorldMap.method1149(scriptStringValues[ssp]);
 														continue;
 													}
 													if (opcode == 5220) {
@@ -4614,7 +4615,7 @@ public final class ClientScriptRunner {
 														isp--;
 														childCount = scriptIntValues[isp];
 														Protocol.outboundBuffer.pIsaac1(117);
-														Protocol.outboundBuffer.p1(Static229.method3937(chatTyped) + Static229.method3937(chatTypedLowercase) + 1);
+														Protocol.outboundBuffer.p1(Packet.gjstrlen(chatTyped) + Packet.gjstrlen(chatTypedLowercase) + 1);
 														Protocol.outboundBuffer.pjstr(chatTyped);
 														Protocol.outboundBuffer.pjstr(chatTypedLowercase);
 														Protocol.outboundBuffer.p1(childCount);
@@ -4735,22 +4736,22 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 5424) {
 														isp -= 11;
-														Static40.anInt1275 = scriptIntValues[isp];
-														Static111.anInt2910 = scriptIntValues[isp + 1];
-														Static251.anInt5457 = scriptIntValues[isp + 2];
-														Static232.anInt5208 = scriptIntValues[isp + 3];
-														Static55.anInt1736 = scriptIntValues[isp + 4];
-														Static169.anInt4073 = scriptIntValues[isp + 5];
-														Static85.anInt2261 = scriptIntValues[isp + 6];
-														Static136.anInt3324 = scriptIntValues[isp + 7];
-														Static254.anInt5556 = scriptIntValues[isp + 8];
-														Static195.anInt4581 = scriptIntValues[isp + 9];
-														Static262.anInt5752 = scriptIntValues[isp + 10];
-														client.js5Archive8.isFileReady(Static55.anInt1736);
-														client.js5Archive8.isFileReady(Static169.anInt4073);
-														client.js5Archive8.isFileReady(Static85.anInt2261);
-														client.js5Archive8.isFileReady(Static136.anInt3324);
-														client.js5Archive8.isFileReady(Static254.anInt5556);
+														LoginManager.anInt1275 = scriptIntValues[isp];
+														LoginManager.anInt2910 = scriptIntValues[isp + 1];
+														LoginManager.anInt5457 = scriptIntValues[isp + 2];
+														LoginManager.anInt5208 = scriptIntValues[isp + 3];
+														LoginManager.anInt1736 = scriptIntValues[isp + 4];
+														LoginManager.anInt4073 = scriptIntValues[isp + 5];
+														LoginManager.anInt2261 = scriptIntValues[isp + 6];
+														LoginManager.anInt3324 = scriptIntValues[isp + 7];
+														LoginManager.anInt5556 = scriptIntValues[isp + 8];
+														LoginManager.anInt4581 = scriptIntValues[isp + 9];
+														LoginManager.anInt5752 = scriptIntValues[isp + 10];
+														client.js5Archive8.isFileReady(LoginManager.anInt1736);
+														client.js5Archive8.isFileReady(LoginManager.anInt4073);
+														client.js5Archive8.isFileReady(LoginManager.anInt2261);
+														client.js5Archive8.isFileReady(LoginManager.anInt3324);
+														client.js5Archive8.isFileReady(LoginManager.anInt5556);
 														InterfaceList.aBoolean298 = true;
 														continue;
 													}
@@ -7071,5 +7072,40 @@ public final class ClientScriptRunner {
 			Mouse.anInt5850 = Mouse.mouseClickX;
 			MiniMenu.anInt3953 = 1;
 		}
+	}
+
+	@OriginalMember(owner = "client!ag", name = "a", descriptor = "(IIIIIIIII)V")
+	public static void method86(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
+		if (InterfaceList.load(arg0)) {
+			renderComponent(arg1, arg7, arg3, InterfaceList.cachedComponents[arg0], arg2, -1, arg6, arg5, arg4);
+		} else if (arg4 == -1) {
+			for (@Pc(27) int local27 = 0; local27 < 100; local27++) {
+				InterfaceList.aBooleanArray100[local27] = true;
+			}
+		} else {
+			InterfaceList.aBooleanArray100[arg4] = true;
+		}
+	}
+
+	@OriginalMember(owner = "client!da", name = "a", descriptor = "(IIILclient!be;)V")
+	public static void method1015(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) Component arg2) {
+		if (aClass13_14 != null || aBoolean108 || (arg2 == null || method1836(arg2) == null)) {
+			return;
+		}
+		aClass13_14 = arg2;
+		aClass13_1 = method1836(arg2);
+		anInt5388 = arg1;
+		aBoolean172 = false;
+		anInt4851 = 0;
+		anInt4035 = arg0;
+	}
+
+	@OriginalMember(owner = "client!ha", name = "a", descriptor = "(ILclient!be;)Lclient!be;")
+	public static Component method1836(@OriginalArg(1) Component arg0) {
+		@Pc(12) Component local12 = InterfaceList.method938(arg0);
+		if (local12 == null) {
+			local12 = arg0.aClass13_5;
+		}
+		return local12;
 	}
 }

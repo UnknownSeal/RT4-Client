@@ -41,7 +41,7 @@ public class CreateManager {
         packet.p2(arg5);
         packet.p2(arg1);
         packet.p4((int) (Math.random() * 9.9999999E7D));
-        packet.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
+        packet.rsaenc(LoginManager.RSA_EXPONENT, LoginManager.RSA_MODULUS);
         Protocol.outboundBuffer.offset = 0;
         Protocol.outboundBuffer.p1(36);
         Protocol.outboundBuffer.p1(packet.offset);

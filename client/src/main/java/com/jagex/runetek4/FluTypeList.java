@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-public final class FloorUnderlayTypeList {
+public final class FluTypeList {
 
 	@OriginalMember(owner = "client!gj", name = "p", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable types = new SoftLruHashTable(64);
@@ -45,6 +45,11 @@ public final class FloorUnderlayTypeList {
 
 	@OriginalMember(owner = "client!fk", name = "b", descriptor = "(IB)V")
 	public static void clean() {
-		types.clear(5);
+		types.clean(5);
+	}
+
+	@OriginalMember(owner = "client!ed", name = "c", descriptor = "(I)V")
+	public static void clear() {
+		types.clean();
 	}
 }

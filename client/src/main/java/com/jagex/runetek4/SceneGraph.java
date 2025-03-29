@@ -19,6 +19,7 @@ import com.jagex.runetek4.scene.tile.*;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.ColorUtils;
 import com.jagex.runetek4.util.MathUtils;
+import com.jogamp.opengl.GL2;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -628,7 +629,7 @@ public class SceneGraph {
                     if (z < 104) {
                         underlayId = tileUnderlays[level][z][x0] & 0xFF;
                         if (underlayId > 0) {
-                            @Pc(693) FluType flu = FloorUnderlayTypeList.get(underlayId - 1);
+                            @Pc(693) FluType flu = FluTypeList.get(underlayId - 1);
                             rowWeightedHue[x0] += flu.weightedHue;
                             rowSaturation[x0] += flu.saturation;
                             rowLightness[x0] += flu.lightness;
@@ -640,7 +641,7 @@ public class SceneGraph {
                     if (underlayId >= 0) {
                         local200 = tileUnderlays[level][underlayId][x0] & 0xFF;
                         if (local200 > 0) {
-                            @Pc(758) FluType local758 = FloorUnderlayTypeList.get(local200 - 1);
+                            @Pc(758) FluType local758 = FluTypeList.get(local200 - 1);
                             rowWeightedHue[x0] -= local758.weightedHue;
                             rowSaturation[x0] -= local758.saturation;
                             rowLightness[x0] -= local758.lightness;
@@ -723,7 +724,7 @@ public class SceneGraph {
                             local326 = levelLightMap[z0 + 1][x0 + 1];
                             if (underlayId == 0) {
                                 setTile(level, z0, x0, 0, 0, -1, local200, dx, dz, len, ColorUtils.multiplyLightnessSafe(normalZ, normalX), ColorUtils.multiplyLightnessSafe(local273, normalX), ColorUtils.multiplyLightnessSafe(local326, normalX), ColorUtils.multiplyLightnessSafe(local332, normalX), 0, 0, 0, 0, normalY, 0);
-                                if (GlRenderer.enabled && level > 0 && normalX != -1 && FloorUnderlayTypeList.get(z - 1).blockShadow) {
+                                if (GlRenderer.enabled && level > 0 && normalX != -1 && FluTypeList.get(z - 1).blockShadow) {
                                     ShadowManager.method4197(0, 0, true, false, z0, x0, local200 - tileHeights[0][z0][x0], -tileHeights[0][z0 + 1][x0] + dx, dz - tileHeights[0][z0 + 1][x0 + 1], len - tileHeights[0][z0][x0 + 1]);
                                 }
                                 if (GlRenderer.enabled && !underwater && anIntArrayArray11 != null && level == 0) {
@@ -805,7 +806,7 @@ public class SceneGraph {
                                 }
                                 setTile(level, z0, x0, local322, local1242, local1288, local200, dx, dz, len, ColorUtils.multiplyLightnessSafe(normalZ, normalX), ColorUtils.multiplyLightnessSafe(local273, normalX), ColorUtils.multiplyLightnessSafe(local326, normalX), ColorUtils.multiplyLightnessSafe(local332, normalX), ColorUtils.multiplyLightnessGrayscale(local1301, normalZ), ColorUtils.multiplyLightnessGrayscale(local1301, local273), ColorUtils.multiplyLightnessGrayscale(local1301, local326), ColorUtils.multiplyLightnessGrayscale(local1301, local332), normalY, local1353);
                                 if (GlRenderer.enabled && level > 0) {
-                                    ShadowManager.method4197(local322, local1242, local1301 == -2 || !local1248.hardShadow, normalX == -1 || !FloorUnderlayTypeList.get(z - 1).blockShadow, z0, x0, local200 - tileHeights[0][z0][x0], dx - tileHeights[0][z0 + 1][x0], dz - tileHeights[0][z0 + 1][x0 + 1], -tileHeights[0][z0][x0 + 1] + len);
+                                    ShadowManager.method4197(local322, local1242, local1301 == -2 || !local1248.hardShadow, normalX == -1 || !FluTypeList.get(z - 1).blockShadow, z0, x0, local200 - tileHeights[0][z0][x0], dx - tileHeights[0][z0 + 1][x0], dz - tileHeights[0][z0 + 1][x0 + 1], -tileHeights[0][z0][x0 + 1] + len);
                                 }
                             }
                         }
@@ -2440,7 +2441,7 @@ public class SceneGraph {
                                                     frontWallTypes = var9 >>> 24 << 3;
                                                     if (frontWallTypes != anInt730) {
                                                         anInt730 = frontWallTypes;
-                                                        Static147.method2761(frontWallTypes);
+                                                        MaterialManager.method2761(frontWallTypes);
                                                     }
                                                     farthestIndex = surfaceTileHeights[0][tileX][tileZ] + surfaceTileHeights[0][tileX + 1][tileZ] + surfaceTileHeights[0][tileX][tileZ + 1] + surfaceTileHeights[0][tileX + 1][tileZ + 1] >> 2;
                                                     MaterialManager.setMaterial(-farthestIndex, 3);
@@ -2545,7 +2546,7 @@ public class SceneGraph {
                                                 method2610(tile.plainTile, occludeLevel, anInt2886, anInt3038, anInt5205, anInt2222, tileX, tileZ, true);
                                             } else {
                                                 tileDrawn = true;
-                                                if (tile.plainTile.anInt4865 != 12345678 || Static158.aBoolean187 && local24 <= Static160.anInt3902) {
+                                                if (tile.plainTile.anInt4865 != 12345678 || MiniMenu.aBoolean187 && local24 <= MiniMenu.anInt3902) {
                                                     method2610(tile.plainTile, occludeLevel, anInt2886, anInt3038, anInt5205, anInt2222, tileX, tileZ, false);
                                                 }
                                             }
@@ -3272,7 +3273,7 @@ public class SceneGraph {
         method2419();
         if (underWaterGroundTiles != null) {
             setUnderwater(true);
-            Static248.method3292(arg0, arg1, arg2, null, 0, (byte) 0, arg13, arg14);
+            method3292(arg0, arg1, arg2, null, 0, (byte) 0, arg13, arg14);
             if (GlRenderer.enabled) {
                 MaterialManager.renderingUnderwater = false;
                 MaterialManager.setMaterial(0, 0);
@@ -3281,7 +3282,7 @@ public class SceneGraph {
             }
             setUnderwater(false);
         }
-        Static248.method3292(arg0, arg1, arg2, arg5, arg11, arg12, arg13, arg14);
+        method3292(arg0, arg1, arg2, arg5, arg11, arg12, arg13, arg14);
     }
 
     @OriginalMember(owner = "client!fh", name = "a", descriptor = "(IIIILclient!th;JLclient!th;Lclient!th;)V")
@@ -3662,7 +3663,7 @@ public class SceneGraph {
                     local25 = arg2[local11 - 1][local16 - 1];
                 }
                 if (local25 != 0) {
-                    @Pc(77) FluType local77 = FloorUnderlayTypeList.get((local25 & 0xFF) - 1);
+                    @Pc(77) FluType local77 = FluTypeList.get((local25 & 0xFF) - 1);
                     local9[local11][local16] = (local77.material + 1 << 16) + local77.hardShadow;
                 }
             }
@@ -3965,9 +3966,9 @@ public class SceneGraph {
         Rasterizer.alpha = 0;
         @Pc(475) int local475;
         if ((local307 - local323) * (local299 - local331) - (local315 - local331) * (local291 - local323) > 0) {
-            if (Static158.aBoolean187 && method583(Static89.anInt2388 + Rasterizer.centerX, Static131.anInt3259 + Rasterizer.centerY, local315, local331, local299, local307, local323, local291)) {
-                Static56.clickTileX = arg6;
-                Static116.anInt2954 = arg7;
+            if (MiniMenu.aBoolean187 && method583(MiniMenu.anInt2388 + Rasterizer.centerX, MiniMenu.anInt3259 + Rasterizer.centerY, local315, local331, local299, local307, local323, local291)) {
+                MiniMenu.clickTileX = arg6;
+                MiniMenu.anInt2954 = arg7;
             }
             if (!GlRenderer.enabled && !arg8) {
                 Rasterizer.testX = false;
@@ -3991,9 +3992,9 @@ public class SceneGraph {
         if ((local275 - local291) * (local331 - local299) - (local283 - local299) * (local323 - local291) <= 0) {
             return;
         }
-        if (Static158.aBoolean187 && method583(Static89.anInt2388 + Rasterizer.centerX, Static131.anInt3259 + Rasterizer.centerY, local283, local299, local331, local275, local291, local323)) {
-            Static56.clickTileX = arg6;
-            Static116.anInt2954 = arg7;
+        if (MiniMenu.aBoolean187 && method583(MiniMenu.anInt2388 + Rasterizer.centerX, MiniMenu.anInt3259 + Rasterizer.centerY, local283, local299, local331, local275, local291, local323)) {
+            MiniMenu.clickTileX = arg6;
+            MiniMenu.anInt2954 = arg7;
         }
         if (GlRenderer.enabled || arg8) {
             return;
@@ -4322,9 +4323,9 @@ public class SceneGraph {
             @Pc(160) int local160 = anIntArray164[local22];
             @Pc(164) int local164 = anIntArray164[local29];
             if ((local39 - local148) * (local164 - local160) - (local156 - local160) * (local152 - local148) > 0) {
-                if (Static158.aBoolean187 && method583(Static89.anInt2388 + Rasterizer.centerX, Static131.anInt3259 + Rasterizer.centerY, local156, local160, local164, local39, local148, local152)) {
-                    Static56.clickTileX = arg5;
-                    Static116.anInt2954 = arg6;
+                if (MiniMenu.aBoolean187 && method583(MiniMenu.anInt2388 + Rasterizer.centerX, MiniMenu.anInt3259 + Rasterizer.centerY, local156, local160, local164, local39, local148, local152)) {
+                    MiniMenu.clickTileX = arg5;
+                    MiniMenu.anInt2954 = arg6;
                 }
                 if (!GlRenderer.enabled && !arg7) {
                     Rasterizer.testX = false;
@@ -5321,5 +5322,217 @@ public class SceneGraph {
         } else {
             return arg0;
         }
+    }
+
+    @OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(III[[[BIBII)V")
+    public static void method3292(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) byte[][][] arg3, @OriginalArg(4) int arg4, @OriginalArg(5) byte arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
+        anInt437++;
+        anInt1142 = 0;
+        @Pc(9) int local9 = arg6 - 16;
+        @Pc(13) int local13 = arg6 + 16;
+        @Pc(17) int local17 = arg7 - 16;
+        @Pc(21) int local21 = arg7 + 16;
+        @Pc(32) int local32;
+        @Pc(37) int local37;
+        @Pc(183) int local183;
+        for (@Pc(23) int local23 = anInt5276; local23 < levels; local23++) {
+            @Pc(30) Tile[][] local30 = tiles[local23];
+            for (local32 = LightingManager.anInt987; local32 < LightingManager.anInt15; local32++) {
+                for (local37 = LightingManager.anInt4698; local37 < LightingManager.anInt4866; local37++) {
+                    @Pc(46) Tile local46 = local30[local32][local37];
+                    if (local46 != null) {
+                        if (aBooleanArrayArray1[local32 + visibility - eyeTileX][local37 + visibility - anInt4539] && (arg3 == null || local23 < arg4 || arg3[local23][local32][local37] != arg5)) {
+                            local46.aBoolean45 = true;
+                            local46.aBoolean46 = true;
+                            if (local46.sceneryLen > 0) {
+                                local46.containsLocs = true;
+                            } else {
+                                local46.containsLocs = false;
+                            }
+                            anInt1142++;
+                        } else {
+                            local46.aBoolean45 = false;
+                            local46.aBoolean46 = false;
+                            local46.checkLocSpans = 0;
+                            if (local32 >= local9 && local32 <= local13 && local37 >= local17 && local37 <= local21) {
+                                if (local46.wall != null) {
+                                    @Pc(103) Wall local103 = local46.wall;
+                                    local103.primary.method4545(0, local23, local103.anInt3051, local103.xFine, local103.zFine);
+                                    if (local103.secondary != null) {
+                                        local103.secondary.method4545(0, local23, local103.anInt3051, local103.xFine, local103.zFine);
+                                    }
+                                }
+                                if (local46.wallDecor != null) {
+                                    @Pc(134) WallDecor local134 = local46.wallDecor;
+                                    local134.primary.method4545(local134.anInt1388, local23, local134.anInt1391, local134.xFine, local134.zFine);
+                                    if (local134.secondary != null) {
+                                        local134.secondary.method4545(local134.anInt1388, local23, local134.anInt1391, local134.xFine, local134.zFine);
+                                    }
+                                }
+                                if (local46.groundDecor != null) {
+                                    @Pc(167) GroundDecor local167 = local46.groundDecor;
+                                    local167.entity.method4545(0, local23, local167.anInt733, local167.xFine, local167.zFine);
+                                }
+                                if (local46.scenery != null) {
+                                    for (local183 = 0; local183 < local46.sceneryLen; local183++) {
+                                        @Pc(192) Scenery local192 = local46.scenery[local183];
+                                        local192.entity.method4545(local192.anInt1714, local23, local192.anInt1706, local192.anInt1699, local192.anInt1703);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        @Pc(240) boolean local240 = tileHeights == underwaterTileHeights;
+        if (GlRenderer.enabled) {
+            @Pc(244) GL2 local244 = GlRenderer.gl;
+            local244.glPushMatrix();
+            local244.glTranslatef((float) -arg0, (float) -arg1, (float) -arg2);
+            if (local240) {
+                UnderwaterMaterialRenderer.method2959();
+                MaterialManager.setMaterial(-1, 3);
+                MaterialManager.renderingUnderwater = true;
+                UnderwaterMaterialRenderer.method4609();
+                anInt3604 = -1;
+                anInt730 = -1;
+                for (local32 = 0; local32 < underwaterHdTiles[0].length; local32++) {
+                    @Pc(285) GlTile local285 = underwaterHdTiles[0][local32];
+                    @Pc(294) float local294 = 251.5F - (local285.blend ? 1.0F : 0.5F);
+                    if (local285.underwaterColor != anInt3604) {
+                        anInt3604 = local285.underwaterColor;
+                        WaterMaterialRenderer.method619(local285.underwaterColor);
+                        FogManager.setFogColor(WaterMaterialRenderer.method2422());
+                    }
+                    local285.method1944(tiles, local294, false);
+                }
+                UnderwaterMaterialRenderer.method4608();
+            } else {
+                local32 = anInt5276;
+                while (true) {
+                    if (local32 >= levels) {
+                        LightingManager.method2402(eyeTileX, anInt4539, tiles);
+                        break;
+                    }
+                    for (local37 = 0; local37 < underwaterHdTiles[local32].length; local37++) {
+                        @Pc(336) GlTile local336 = underwaterHdTiles[local32][local37];
+                        @Pc(350) float local350 = 201.5F - (float) local32 * 50.0F - (local336.blend ? 1.0F : 0.5F);
+                        if (local336.texture != -1 && Rasterizer.textureProvider.getMaterialType(local336.texture) == 4 && Preferences.highWaterDetail) {
+                            WaterMaterialRenderer.method619(local336.underwaterColor);
+                        }
+                        local336.method1944(tiles, local350, false);
+                    }
+                    if (local32 == 0 && Preferences.sceneryShadowsType > 0) {
+                        GlRenderer.method4159(101.5F);
+                        ShadowManager.method4198(eyeTileX, anInt4539, visibility, arg1, aBooleanArrayArray1, tileHeights[0]);
+                    }
+                    local32++;
+                }
+            }
+            local244.glPopMatrix();
+        }
+        @Pc(434) int local434;
+        @Pc(438) int local438;
+        @Pc(450) Tile local450;
+        @Pc(399) int local399;
+        @Pc(406) Tile[][] local406;
+        @Pc(415) int local415;
+        @Pc(428) int local428;
+        for (local399 = anInt5276; local399 < levels; local399++) {
+            local406 = tiles[local399];
+            for (local37 = -visibility; local37 <= 0; local37++) {
+                local415 = eyeTileX + local37;
+                local183 = eyeTileX - local37;
+                if (local415 >= LightingManager.anInt987 || local183 < LightingManager.anInt15) {
+                    for (local428 = -visibility; local428 <= 0; local428++) {
+                        local434 = anInt4539 + local428;
+                        local438 = anInt4539 - local428;
+                        if (local415 >= LightingManager.anInt987) {
+                            if (local434 >= LightingManager.anInt4698) {
+                                local450 = local406[local415][local434];
+                                if (local450 != null && local450.aBoolean45) {
+                                    method4245(local450, true);
+                                }
+                            }
+                            if (local438 < LightingManager.anInt4866) {
+                                local450 = local406[local415][local438];
+                                if (local450 != null && local450.aBoolean45) {
+                                    method4245(local450, true);
+                                }
+                            }
+                        }
+                        if (local183 < LightingManager.anInt15) {
+                            if (local434 >= LightingManager.anInt4698) {
+                                local450 = local406[local183][local434];
+                                if (local450 != null && local450.aBoolean45) {
+                                    method4245(local450, true);
+                                }
+                            }
+                            if (local438 < LightingManager.anInt4866) {
+                                local450 = local406[local183][local438];
+                                if (local450 != null && local450.aBoolean45) {
+                                    method4245(local450, true);
+                                }
+                            }
+                        }
+                        if (anInt1142 == 0) {
+                            if (!local240) {
+                                MiniMenu.aBoolean187 = false;
+                            }
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        for (local399 = anInt5276; local399 < levels; local399++) {
+            local406 = tiles[local399];
+            for (local37 = -visibility; local37 <= 0; local37++) {
+                local415 = eyeTileX + local37;
+                local183 = eyeTileX - local37;
+                if (local415 >= LightingManager.anInt987 || local183 < LightingManager.anInt15) {
+                    for (local428 = -visibility; local428 <= 0; local428++) {
+                        local434 = anInt4539 + local428;
+                        local438 = anInt4539 - local428;
+                        if (local415 >= LightingManager.anInt987) {
+                            if (local434 >= LightingManager.anInt4698) {
+                                local450 = local406[local415][local434];
+                                if (local450 != null && local450.aBoolean45) {
+                                    method4245(local450, false);
+                                }
+                            }
+                            if (local438 < LightingManager.anInt4866) {
+                                local450 = local406[local415][local438];
+                                if (local450 != null && local450.aBoolean45) {
+                                    method4245(local450, false);
+                                }
+                            }
+                        }
+                        if (local183 < LightingManager.anInt15) {
+                            if (local434 >= LightingManager.anInt4698) {
+                                local450 = local406[local183][local434];
+                                if (local450 != null && local450.aBoolean45) {
+                                    method4245(local450, false);
+                                }
+                            }
+                            if (local438 < LightingManager.anInt4866) {
+                                local450 = local406[local183][local438];
+                                if (local450 != null && local450.aBoolean45) {
+                                    method4245(local450, false);
+                                }
+                            }
+                        }
+                        if (anInt1142 == 0) {
+                            if (!local240) {
+                                MiniMenu.aBoolean187 = false;
+                            }
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        MiniMenu.aBoolean187 = false;
     }
 }

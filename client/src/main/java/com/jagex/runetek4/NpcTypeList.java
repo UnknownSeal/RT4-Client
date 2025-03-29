@@ -67,25 +67,25 @@ public class NpcTypeList {
 
     @OriginalMember(owner = "runetek4.client!qi", name = "e", descriptor = "(B)V")
     public static void clear() {
-        types.clear();
-        models.clear();
-        headModels.clear();
+        types.clean();
+        models.clean();
+        headModels.clean();
     }
 
     @OriginalMember(owner = "runetek4.client!ra", name = "c", descriptor = "(BI)V")
     public static void method3706() {
-        types.clear(5);
-        models.clear(5);
-        headModels.clear(5);
+        types.clean(5);
+        models.clean(5);
+        headModels.clean(5);
     }
 
     @OriginalMember(owner = "runetek4.client!wj", name = "b", descriptor = "(I)V")
     public static void method4649() {
-        models.clear();
+        models.clean();
     }
 
     @OriginalMember(owner = "client!ba", name = "e", descriptor = "(I)V")
     public static void method443() {
-        headModels.clear();
+        headModels.clean();
     }
 }

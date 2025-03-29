@@ -143,7 +143,7 @@ public class ShadowModelList {
 
     @OriginalMember(owner = "runetek4.client!kh", name = "a", descriptor = "(II)V")
     public static void clean() {
-        SHADOWS.clear(5);
+        SHADOWS.clean(5);
     }
 
     @OriginalMember(owner = "runetek4.client!ug", name = "b", descriptor = "(B)V")
@@ -153,6 +153,6 @@ public class ShadowModelList {
 
     @OriginalMember(owner = "runetek4.client!hb", name = "a", descriptor = "(Z)V")
     public static void clear() {
-        SHADOWS.clear();
+        SHADOWS.clean();
     }
 }

@@ -44,14 +44,14 @@ public class CursorTypeList {
 
     @OriginalMember(owner = "client!an", name = "i", descriptor = "(I)V")
     public static void clear() {
-        types.clear();
-        sprites.clear();
+        types.clean();
+        sprites.clean();
     }
 
     @OriginalMember(owner = "client!c", name = "d", descriptor = "(II)V")
     public static void clean() {
-        types.clear(5);
-        sprites.clear(5);
+        types.clean(5);
+        sprites.clean(5);
     }
 
     @OriginalMember(owner = "client!ca", name = "a", descriptor = "(Z)V")

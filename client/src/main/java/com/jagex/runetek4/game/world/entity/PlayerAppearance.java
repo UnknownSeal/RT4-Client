@@ -109,8 +109,8 @@ public final class PlayerAppearance {
 
 	@OriginalMember(owner = "runetek4.client!wk", name = "b", descriptor = "(II)V")
 	public static void clean() {
-		bodyModels.clear(5);
-		headModels.clear(5);
+		bodyModels.clean(5);
+		headModels.clean(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ph", name = "b", descriptor = "(B)V")
@@ -119,7 +119,13 @@ public final class PlayerAppearance {
 		headModels.removeSoft();
 	}
 
-	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(IIIILclient!tk;III)Lclient!ak;")
+    @OriginalMember(owner = "runetek4.client!sj", name = "c", descriptor = "(I)V")
+    public static void clear() {
+        bodyModels.clean();
+        headModels.clean();
+    }
+
+    @OriginalMember(owner = "client!hh", name = "a", descriptor = "(IIIILclient!tk;III)Lclient!ak;")
 	public final Model method1946(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) SeqType arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
 		@Pc(24) long local24 = (long) arg2 | (long) (arg6 << 16) | (long) arg1 << 32;
 		@Pc(30) Model local30 = (Model) headModels.get(local24);

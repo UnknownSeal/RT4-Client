@@ -48,4 +48,9 @@ public final class IdkTypeList {
 		types.put(idkType, (long) arg0);
 		return idkType;
 	}
+
+    @OriginalMember(owner = "runetek4.client!te", name = "a", descriptor = "(IZ)V")
+    public static void clean() {
+        types.clean(5);
+    }
 }

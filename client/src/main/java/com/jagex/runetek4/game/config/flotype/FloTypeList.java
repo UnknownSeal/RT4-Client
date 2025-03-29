@@ -43,11 +43,11 @@ public class FloTypeList {
 
     @OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(I)V")
     public static void clear() {
-        types.clear();
+        types.clean();
     }
 
     @OriginalMember(owner = "client!aj", name = "c", descriptor = "(II)V")
     public static void clean() {
-        types.clear(5);
+        types.clean(5);
     }
 }
