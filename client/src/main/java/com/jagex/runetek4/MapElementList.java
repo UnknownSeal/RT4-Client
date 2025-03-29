@@ -1,6 +1,5 @@
-package com.jagex.runetek4.game.config.meltype;
+package com.jagex.runetek4;
 
-import com.jagex.runetek4.JString;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;

@@ -1,6 +1,5 @@
-package com.jagex.runetek4.frame;
+package com.jagex.runetek4;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
@@ -9,7 +8,6 @@ import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.msi.MSITypeList;
 import com.jagex.runetek4.config.types.loc.LocType;
-import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.config.types.msi.MSIType;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.tile.PlainTile;

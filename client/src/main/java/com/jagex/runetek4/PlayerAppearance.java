@@ -1,6 +1,5 @@
-package com.jagex.runetek4.game.world.entity;
+package com.jagex.runetek4;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.config.types.idk.IDKTypeList;
 import com.jagex.runetek4.config.types.npc.NpcTypeList;
 import com.jagex.runetek4.config.types.obj.ObjTypeList;

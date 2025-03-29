@@ -7,7 +7,6 @@ import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.config.types.npc.NpcType;
-import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.media.renderable.actor.Player;
 

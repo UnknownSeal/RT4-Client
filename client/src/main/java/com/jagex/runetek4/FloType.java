@@ -1,4 +1,4 @@
-package com.jagex.runetek4.game.config.flotype;
+package com.jagex.runetek4;
 
 import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;

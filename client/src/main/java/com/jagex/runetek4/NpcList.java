@@ -4,8 +4,6 @@ import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.config.types.spotanim.SpotAnimTypeList;
-import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;

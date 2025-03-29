@@ -5,7 +5,6 @@ import com.jagex.runetek4.client.Game;
 import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.client.Preferences;
 import com.jagex.runetek4.client.client;
-import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;

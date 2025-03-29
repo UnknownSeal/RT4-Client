@@ -1,6 +1,5 @@
-package com.jagex.runetek4.game.shared.framework.gwc;
+package com.jagex.runetek4;
 
-import com.jagex.runetek4.JString;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 

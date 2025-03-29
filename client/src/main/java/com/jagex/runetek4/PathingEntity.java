@@ -1,6 +1,5 @@
-package com.jagex.runetek4.dash3d.entity;
+package com.jagex.runetek4;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.config.types.bas.BasTypeList;

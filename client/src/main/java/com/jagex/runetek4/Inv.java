@@ -1,6 +1,5 @@
-package com.jagex.runetek4.game.client;
+package com.jagex.runetek4;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.config.types.inv.InvTypeList;

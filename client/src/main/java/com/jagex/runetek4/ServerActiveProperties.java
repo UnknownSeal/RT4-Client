@@ -1,4 +1,4 @@
-package com.jagex.runetek4.game.config.iftype.componentproperties;
+package com.jagex.runetek4;
 
 import com.jagex.runetek4.node.Node;
 import org.openrs2.deob.annotation.OriginalArg;

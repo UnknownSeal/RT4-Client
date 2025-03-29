@@ -1,7 +1,5 @@
-package com.jagex.runetek4.game.client.logic;
+package com.jagex.runetek4;
 
-import com.jagex.runetek4.JString;
-import com.jagex.runetek4.MonotonicTime;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.node.SecondaryNode;
 

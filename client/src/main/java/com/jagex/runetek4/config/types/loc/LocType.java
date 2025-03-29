@@ -4,7 +4,7 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.config.types.varbit.VarbitType;
-import com.jagex.runetek4.dash3d.entity.LocEntity;
+import com.jagex.runetek4.LocEntity;
 import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.util.IntUtils;

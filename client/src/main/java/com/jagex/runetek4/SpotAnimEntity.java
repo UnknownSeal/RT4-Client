@@ -1,6 +1,5 @@
-package com.jagex.runetek4.dash3d.entity;
+package com.jagex.runetek4;
 
-import com.jagex.runetek4.SpotAnim;
 import com.jagex.runetek4.node.SecondaryNode;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

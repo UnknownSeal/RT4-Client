@@ -1,6 +1,5 @@
-package com.jagex.runetek4.dash3d.entity;
+package com.jagex.runetek4;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.config.types.spotanim.SpotAnimType;
 import com.jagex.runetek4.client.Preferences;
 import com.jagex.runetek4.client.client;

@@ -1,8 +1,7 @@
-package com.jagex.runetek4.game.client;
+package com.jagex.runetek4;
 
 import java.util.Random;
 
-import com.jagex.runetek4.MonochromeImageCache;
 import com.jagex.runetek4.util.RandomUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
