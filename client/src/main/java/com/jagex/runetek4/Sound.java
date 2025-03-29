@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 public abstract class Sound extends Node {
 
 	@OriginalMember(owner = "runetek4.client!ik", name = "p", descriptor = "I")
-	public int anInt3313;
+	public int position;
 
 	@OriginalMember(owner = "runetek4.client!ik", name = "<init>", descriptor = "()V")
 	protected Sound() {

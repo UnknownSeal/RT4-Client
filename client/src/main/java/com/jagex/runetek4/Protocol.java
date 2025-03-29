@@ -1447,7 +1447,7 @@ public class Protocol {
                                     ii = -1;
                                 }
                                 world = inboundBuffer.g2();
-                                Static26.method744(xp, ii, world);
+                                SoundPlayer.play(xp, ii, world);
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 66) {

@@ -3007,7 +3007,7 @@ public final class ClientScriptRunner {
 									if (opcode == 3200) {
 										// sound_synth
 										isp -= 3;
-										Static26.method744(scriptIntValues[isp + 1], scriptIntValues[isp], scriptIntValues[isp + 2]);
+										SoundPlayer.play(scriptIntValues[isp + 1], scriptIntValues[isp], scriptIntValues[isp + 2]);
 										continue;
 									}
 									if (opcode == 3201) {

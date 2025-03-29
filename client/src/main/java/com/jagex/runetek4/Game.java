@@ -189,7 +189,7 @@ public class Game {
         }
         ChangeLocRequest.loop();
         AttachLocRequest.loop();
-        Static54.loop(); // SoundPlayer
+        SoundPlayer.loop(); // SoundPlayer
         LoginManager.idleNetCycles++;
         if (LoginManager.idleNetCycles > 750) {
             tryReconnect();
