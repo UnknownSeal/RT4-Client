@@ -23,7 +23,7 @@ public final class Static247 {
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(Z)V")
 	public static void clear() {
-		Static279.aClass99_38.clean();
-		SpotAnimType.modelCache.clean();
+		Static279.aClass99_38.clear();
+		SpotAnimType.modelCache.clear();
 	}
 }

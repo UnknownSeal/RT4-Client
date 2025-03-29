@@ -43,11 +43,11 @@ public class FloorOverlayTypeList {
 
     @OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(I)V")
     public static void clear() {
-        types.clean();
+        types.clear();
     }
 
     @OriginalMember(owner = "client!aj", name = "c", descriptor = "(II)V")
     public static void clean() {
-        types.clean(5);
+        types.clear(5);
     }
 }

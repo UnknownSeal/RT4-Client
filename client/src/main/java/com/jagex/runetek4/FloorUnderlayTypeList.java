@@ -47,6 +47,6 @@ public final class FloorUnderlayTypeList {
 
 	@OriginalMember(owner = "client!fk", name = "b", descriptor = "(IB)V")
 	public static void clean() {
-		types.clean(5);
+		types.clear(5);
 	}
 }

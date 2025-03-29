@@ -10,51 +10,53 @@ import org.openrs2.deob.annotation.OriginalMember;
 @OriginalClass("runetek4.client!hl")
 public final class SignLinkAudioChannel extends AudioChannel {
 
+	@OriginalMember(owner = "runetek4.client!hl", name = "M", descriptor = "Lsignlink!ai;")
+	public static AudioSource audioSource;
 	@OriginalMember(owner = "runetek4.client!hl", name = "L", descriptor = "I")
-	private final int anInt2606;
+	private final int channel;
 
 	@OriginalMember(owner = "runetek4.client!hl", name = "<init>", descriptor = "(Lsignlink!ll;I)V")
-	public SignLinkAudioChannel(@OriginalArg(0) SignLink arg0, @OriginalArg(1) int arg1) {
-		Static100.anInterface10_1 = arg0.getAudioSource();
-		this.anInt2606 = arg1;
+	public SignLinkAudioChannel(@OriginalArg(0) SignLink signLink, @OriginalArg(1) int channel) {
+		audioSource = signLink.getAudioSource();
+		this.channel = channel;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hl", name = "c", descriptor = "()I")
 	@Override
 	protected final int getBufferSize() {
-		return Static100.anInterface10_1.getBufferSize(this.anInt2606);
+		return audioSource.getBufferSize(this.channel);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hl", name = "a", descriptor = "()V")
 	@Override
 	protected final void write() {
-		Static100.anInterface10_1.write(this.anInt2606, this.samples);
+		audioSource.write(this.channel, this.samples);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hl", name = "a", descriptor = "(Ljava/awt/runetek4.Component;)V")
 	@Override
-	public final void init(@OriginalArg(0) Component arg0) throws Exception {
-		Static100.anInterface10_1.init(AudioChannel.sampleRate, arg0, AudioChannel.stereo);
+	public final void init(@OriginalArg(0) Component component) throws Exception {
+		audioSource.init(AudioChannel.sampleRate, component, AudioChannel.stereo);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hl", name = "b", descriptor = "()V")
 	@Override
 	protected final void close() {
-		Static100.anInterface10_1.close(this.anInt2606);
+		audioSource.close(this.channel);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hl", name = "a", descriptor = "(I)V")
 	@Override
-	public final void open(@OriginalArg(0) int arg0) throws Exception {
-		if (arg0 > 32768) {
+	public final void open(@OriginalArg(0) int bufferCapacity) throws Exception {
+		if (bufferCapacity > 32768) {
 			throw new IllegalArgumentException();
 		}
-		Static100.anInterface10_1.open(this.anInt2606, arg0);
+		audioSource.open(this.channel, bufferCapacity);
 	}
 
 	@OriginalMember(owner = "runetek4.client!hl", name = "d", descriptor = "()V")
 	@Override
 	protected final void flush() {
-		Static100.anInterface10_1.flush(this.anInt2606);
+		audioSource.flush(this.channel);
 	}
 }

@@ -13,7 +13,7 @@ public class HintArrowManager {
 
     @OriginalMember(owner = "runetek4.client!mh", name = "c", descriptor = "(II)V")
     public static void clean() {
-        models.clean(5);
+        models.clear(5);
     }
 
     @OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(I)V")
@@ -23,7 +23,7 @@ public class HintArrowManager {
 
     @OriginalMember(owner = "runetek4.client!oi", name = "b", descriptor = "(I)V")
     public static void clear() {
-        models.clean();
+        models.clear();
     }
 
     @OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(ZIIIILclient!ak;I)Lclient!ak;")

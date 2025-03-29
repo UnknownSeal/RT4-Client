@@ -19,7 +19,7 @@ public final class Static54 {
 
 	@OriginalMember(owner = "client!ed", name = "c", descriptor = "(I)V")
 	public static void clear() {
-		FloorUnderlayTypeList.types.clean();
+		FloorUnderlayTypeList.types.clear();
 	}
 
 	@OriginalMember(owner = "client!ed", name = "d", descriptor = "(B)V")

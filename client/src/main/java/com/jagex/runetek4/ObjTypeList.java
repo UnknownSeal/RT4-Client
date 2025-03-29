@@ -110,16 +110,16 @@ public final class ObjTypeList {
 
 	@OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(B)V")
 	public static void clear() {
-		types.clean();
-		models.clean();
-		objectSpriteCache.clean();
+		types.clear();
+		models.clear();
+		objectSpriteCache.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "c", descriptor = "(II)V")
 	public static void clean() {
-		types.clean(5);
-		models.clean(5);
-		objectSpriteCache.clean(5);
+		types.clear(5);
+		models.clear(5);
+		objectSpriteCache.clear(5);
 	}
 
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(ZI)V")
@@ -132,12 +132,12 @@ public final class ObjTypeList {
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(Z)V")
 	public static void clearModels() {
-		models.clean();
+		models.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "e", descriptor = "(B)V")
 	public static void clearSprites() {
-		objectSpriteCache.clean();
+		objectSpriteCache.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(IB)I")

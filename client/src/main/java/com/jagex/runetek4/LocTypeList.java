@@ -64,10 +64,10 @@ public class LocTypeList {
 
     @OriginalMember(owner = "runetek4.client!hb", name = "c", descriptor = "(I)V")
     public static void clear() {
-        types.clean();
-        modelCacheStatic.clean();
-        aClass99_14.clean();
-        aClass99_36.clean();
+        types.clear();
+        modelCacheStatic.clear();
+        aClass99_14.clear();
+        aClass99_36.clear();
     }
 
     @OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(ILclient!ve;Lclient!ve;Z)V")
@@ -89,10 +89,10 @@ public class LocTypeList {
 
     @OriginalMember(owner = "runetek4.client!va", name = "b", descriptor = "(II)V")
     public static void clean() {
-        types.clean(5);
-        modelCacheStatic.clean(5);
-        aClass99_14.clean(5);
-        aClass99_36.clean(5);
+        types.clear(5);
+        modelCacheStatic.clear(5);
+        aClass99_14.clear(5);
+        aClass99_36.clear(5);
     }
 
     @OriginalMember(owner = "runetek4.client!pe", name = "a", descriptor = "(BZ)V")

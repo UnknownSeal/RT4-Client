@@ -31,12 +31,12 @@ public class BasTypeList {
 
     @OriginalMember(owner = "runetek4.client!jk", name = "e", descriptor = "(B)V")
     public static void clear() {
-        types.clean();
+        types.clear();
     }
 
     @OriginalMember(owner = "client!bi", name = "c", descriptor = "(II)V")
     public static void clean() {
-        types.clean(5);
+        types.clear(5);
     }
 
     @OriginalMember(owner = "runetek4.client!di", name = "d", descriptor = "(I)V")

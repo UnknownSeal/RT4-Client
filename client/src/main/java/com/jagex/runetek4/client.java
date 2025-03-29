@@ -360,7 +360,7 @@ public final class client extends GameShell {
 		}
 		HintArrowManager.clear();
 		ShadowModelList.clear();
-		FontMetricsList.fontMetrics.clean();
+		FontMetricsList.fontMetrics.clear();
 		if (!GlRenderer.enabled) {
 			((Js5GlTextureProvider) Rasterizer.textureProvider).clear();
 		}
@@ -376,7 +376,7 @@ public final class client extends GameShell {
 		js5Archive10.discardUnpacked();
 		js5Archive11.discardUnpacked();
 		js5Archive12.discardUnpacked();
-		HitBarList.hitBars.clean();
+		HitBarList.hitBars.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!id", name = "b", descriptor = "(I)V")
@@ -648,8 +648,8 @@ public final class client extends GameShell {
 		Component.clean();
 		HintArrowManager.clean();
 		ShadowModelList.clean();
-		HitBarList.hitBars.clean(5);
-		FontMetricsList.fontMetrics.clean(5);
+		HitBarList.hitBars.clear(5);
+		FontMetricsList.fontMetrics.clear(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(II)V")

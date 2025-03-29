@@ -8,8 +8,8 @@ public final class Static230 {
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "c", descriptor = "(I)V")
 	public static void clear() {
-		PlayerAppearance.bodyModels.clean();
-		PlayerAppearance.headModels.clean();
+		PlayerAppearance.bodyModels.clear();
+		PlayerAppearance.headModels.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(IIBIII)V")

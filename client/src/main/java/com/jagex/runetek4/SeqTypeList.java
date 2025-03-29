@@ -69,8 +69,8 @@ public class SeqTypeList {
 
     @OriginalMember(owner = "client!an", name = "a", descriptor = "(Z)V")
     public static void clear() {
-        types.clean();
-        animFramesets.clean();
+        types.clear();
+        animFramesets.clear();
     }
 
     @OriginalMember(owner = "runetek4.client!sg", name = "a", descriptor = "(B)V")
@@ -81,7 +81,7 @@ public class SeqTypeList {
 
     @OriginalMember(owner = "runetek4.client!fl", name = "a", descriptor = "(IB)V")
     public static void clean() {
-        types.clean(5);
-        animFramesets.clean(5);
+        types.clear(5);
+        animFramesets.clear(5);
     }
 }

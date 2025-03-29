@@ -9,7 +9,7 @@ public final class Static269 {
 
 	@OriginalMember(owner = "runetek4.client!wa", name = "d", descriptor = "(BI)V")
 	public static void method2221() {
-		Static125.varbitDefinitionCache.clean(5);
+		Static125.varbitDefinitionCache.clear(5);
 	}
 
 }

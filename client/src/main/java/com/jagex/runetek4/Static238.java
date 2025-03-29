@@ -6,7 +6,7 @@ public final class Static238 {
 
 	@OriginalMember(owner = "runetek4.client!te", name = "a", descriptor = "(IZ)V")
 	public static void method4142() {
-		IdkTypeList.types.clean(5);
+		IdkTypeList.types.clear(5);
 	}
 
 }

@@ -243,7 +243,7 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(I)V")
 	public static void clear() {
-		IdkTypeList.types.clean();
+		IdkTypeList.types.clear();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "b", descriptor = "(I)V")

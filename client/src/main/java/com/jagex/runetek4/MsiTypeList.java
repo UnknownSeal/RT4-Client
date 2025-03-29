@@ -61,8 +61,8 @@ public class MsiTypeList {
 
     @OriginalMember(owner = "runetek4.client!qg", name = "h", descriptor = "(I)V")
     public static void clear() {
-        types.clean();
-        sprites.clean();
+        types.clear();
+        sprites.clear();
     }
 
     @OriginalMember(owner = "runetek4.client!vl", name = "b", descriptor = "(I)V")
@@ -73,7 +73,7 @@ public class MsiTypeList {
 
     @OriginalMember(owner = "runetek4.client!wh", name = "a", descriptor = "(II)V")
     public static void clean() {
-        types.clean(5);
-        sprites.clean(5);
+        types.clear(5);
+        sprites.clear(5);
     }
 }

@@ -104,13 +104,13 @@ public final class PlayerAppearance {
 
 	@OriginalMember(owner = "runetek4.client!q", name = "a", descriptor = "(B)I")
 	public static int getModelCacheSize() {
-		return bodyModels.method3100();
+		return bodyModels.size();
 	}
 
 	@OriginalMember(owner = "runetek4.client!wk", name = "b", descriptor = "(II)V")
 	public static void clean() {
-		bodyModels.clean(5);
-		headModels.clean(5);
+		bodyModels.clear(5);
+		headModels.clear(5);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ph", name = "b", descriptor = "(B)V")
