@@ -100,7 +100,7 @@ public final class Static144 {
 									if (local437 == 0 || local62 <= 1 || local238 <= 1) {
 										SoftwareRaster.fillRect(local47, local222, local62, local238, local372);
 									} else {
-										Static280.method4667(SoftwareRaster.destinationPixels, local372, local47, local433 & 0x3, local312, local437 >> 2, local238, local62, local222, true);
+										Static280.method4667(SoftwareRaster.pixels, local372, local47, local433 & 0x3, local312, local437 >> 2, local238, local62, local222, true);
 									}
 								}
 								if (local395 != 0) {
@@ -112,7 +112,7 @@ public final class Static144 {
 									if (local437 == 0 || local62 <= 1 || local238 <= 1) {
 										SoftwareRaster.fillRect(local47, local222, local62, local238, local395);
 									}
-									Static280.method4667(SoftwareRaster.destinationPixels, local395, local47, local433 & 0x3, 0, local437 >> 2, local238, local62, local222, local372 == 0);
+									Static280.method4667(SoftwareRaster.pixels, local395, local47, local433 & 0x3, 0, local437 >> 2, local238, local62, local222, local372 == 0);
 								}
 							}
 							if (local197[local254] != null) {

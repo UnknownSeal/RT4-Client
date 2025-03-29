@@ -269,7 +269,7 @@ public abstract class Font extends SecondaryNode {
 									@Pc(125) IndexedSprite nameIcon = this.nameIcons[icon];
 									@Pc(136) int imageHeight = this.nameIconHeights == null ? nameIcon.innerHeight : this.nameIconHeights[icon];
 									if (opacity == 256) {
-										nameIcon.drawImage(x, y + this.characterDefaultHeight - imageHeight);
+										nameIcon.renderTransparent(x, y + this.characterDefaultHeight - imageHeight);
 									} else {
 										nameIcon.drawImageAlpha(x, y + this.characterDefaultHeight - imageHeight, opacity);
 									}
@@ -950,7 +950,7 @@ public abstract class Font extends SecondaryNode {
 									@Pc(146) IndexedSprite local146 = this.nameIcons[local141];
 									@Pc(157) int local157 = this.nameIconHeights == null ? local146.innerHeight : this.nameIconHeights[local141];
 									if (opacity == 256) {
-										local146.drawImage(arg1 + local121, local4 + this.characterDefaultHeight - local157 + local130);
+										local146.renderTransparent(arg1 + local121, local4 + this.characterDefaultHeight - local157 + local130);
 									} else {
 										local146.drawImageAlpha(arg1 + local121, local4 + this.characterDefaultHeight - local157 + local130, opacity);
 									}

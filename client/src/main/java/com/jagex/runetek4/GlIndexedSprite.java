@@ -108,7 +108,7 @@ public final class GlIndexedSprite extends IndexedSprite {
 
 	@OriginalMember(owner = "client!oh", name = "a", descriptor = "(II)V")
 	@Override
-	public void drawImage(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public void renderTransparent(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		GlRenderer.method4149();
 		@Pc(5) int local5 = arg0 + this.xOffset;
 		@Pc(10) int local10 = arg1 + this.yOffset;

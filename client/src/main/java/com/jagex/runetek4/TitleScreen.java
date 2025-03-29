@@ -34,7 +34,7 @@ public class TitleScreen {
         @Pc(26) int local26 = local20 * 956 / 503;
         Static78.aClass3_Sub2_Sub1_3.renderResized((GameShell.canvasWidth - local26) / 2, 0, local26, local20);
         Static243.aClass36_1 = IndexedSprite.method1010(Static136.logoId, arg0);
-        Static243.aClass36_1.drawImage(GameShell.canvasWidth / 2 - Static243.aClass36_1.width / 2, 18);
+        Static243.aClass36_1.renderTransparent(GameShell.canvasWidth / 2 - Static243.aClass36_1.width / 2, 18);
         Static18.aBoolean40 = true;
     }
 

@@ -179,8 +179,8 @@ public final class Inv extends Node {
 				return null;
 			}
 		}
-		@Pc(118) int[] pixels = SoftwareRaster.destinationPixels;
-		@Pc(120) int width = SoftwareRaster.destinationWidth;
+		@Pc(118) int[] pixels = SoftwareRaster.pixels;
+		@Pc(120) int width = SoftwareRaster.width;
 		@Pc(122) int height = Rasterizer.destinationHeight;
 		@Pc(125) int[] clip = new int[4];
 		SoftwareRaster.saveClip(clip);

@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -11,7 +10,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class SoftwareIndexedSprite extends IndexedSprite {
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "o", descriptor = "[B")
-	public byte[] aByteArray18;
+	public byte[] pixels;
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "n", descriptor = "[I")
 	private final int[] anIntArray144;
@@ -24,7 +23,7 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		this.yOffset = arg3;
 		this.width = arg4;
 		this.height = arg5;
-		this.aByteArray18 = arg6;
+		this.pixels = arg6;
 		this.anIntArray144 = arg7;
 	}
 
@@ -33,8 +32,120 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		this.innerWidth = this.width = arg0;
 		this.innerHeight = this.height = arg1;
 		this.xOffset = this.yOffset = 0;
-		this.aByteArray18 = new byte[arg0 * arg1];
+		this.pixels = new byte[arg0 * arg1];
 		this.anIntArray144 = new int[arg2];
+	}
+
+	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "([I[B[IIIIIIIIII)V")
+	public static void method1391(@OriginalArg(0) int[] arg0, @OriginalArg(1) byte[] arg1, @OriginalArg(2) int[] arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11) {
+		@Pc(1) int local1 = arg3;
+		for (@Pc(4) int local4 = -arg8; local4 < 0; local4++) {
+			@Pc(12) int local12 = (arg4 >> 16) * arg11;
+			for (@Pc(15) int local15 = -arg7; local15 < 0; local15++) {
+				@Pc(25) byte local25 = arg1[(arg3 >> 16) + local12];
+				if (local25 == 0) {
+					arg5++;
+				} else {
+					arg0[arg5++] = arg2[local25 & 0xFF];
+				}
+				arg3 += arg9;
+			}
+			arg4 += arg10;
+			arg3 = local1;
+			arg5 += arg6;
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "([I[B[IIIIIIII)V")
+	public static void blockCopyTrans(@OriginalArg(0) int[] arg0, @OriginalArg(1) byte[] arg1, @OriginalArg(2) int[] arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8) {
+		@Pc(4) int local4 = -(arg5 >> 2);
+		@Pc(9) int local9 = -(arg5 & 0x3);
+		for (@Pc(12) int local12 = -arg6; local12 < 0; local12++) {
+			@Pc(16) int local16;
+			@Pc(23) byte local23;
+			for (local16 = local4; local16 < 0; local16++) {
+				local23 = arg1[arg3++];
+				if (local23 == 0) {
+					arg4++;
+				} else {
+					arg0[arg4++] = arg2[local23 & 0xFF];
+				}
+				local23 = arg1[arg3++];
+				if (local23 == 0) {
+					arg4++;
+				} else {
+					arg0[arg4++] = arg2[local23 & 0xFF];
+				}
+				local23 = arg1[arg3++];
+				if (local23 == 0) {
+					arg4++;
+				} else {
+					arg0[arg4++] = arg2[local23 & 0xFF];
+				}
+				local23 = arg1[arg3++];
+				if (local23 == 0) {
+					arg4++;
+				} else {
+					arg0[arg4++] = arg2[local23 & 0xFF];
+				}
+			}
+			for (local16 = local9; local16 < 0; local16++) {
+				local23 = arg1[arg3++];
+				if (local23 == 0) {
+					arg4++;
+				} else {
+					arg0[arg4++] = arg2[local23 & 0xFF];
+				}
+			}
+			arg4 += arg7;
+			arg3 += arg8;
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "([I[B[IIIIIIIIIII)V")
+	public static void method1394(@OriginalArg(0) int[] arg0, @OriginalArg(1) byte[] arg1, @OriginalArg(2) int[] arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12) {
+		@Pc(1) int local1 = arg3;
+		@Pc(7) int local7 = arg12 >> 16 & 0xFF;
+		@Pc(13) int local13 = arg12 >> 8 & 0xFF;
+		@Pc(17) int local17 = arg12 & 0xFF;
+		for (@Pc(20) int local20 = -arg8; local20 < 0; local20++) {
+			@Pc(28) int local28 = (arg4 >> 16) * arg11;
+			for (@Pc(31) int local31 = -arg7; local31 < 0; local31++) {
+				@Pc(41) byte local41 = arg1[(arg3 >> 16) + local28];
+				if (local41 == 0) {
+					arg5++;
+				} else {
+					@Pc(49) int local49 = arg2[local41 & 0xFF];
+					@Pc(55) int local55 = local49 >> 16 & 0xFF;
+					@Pc(61) int local61 = local49 >> 8 & 0xFF;
+					@Pc(65) int local65 = local49 & 0xFF;
+					arg0[arg5++] = (local55 * local7 >> 8 << 16) + (local61 * local13 >> 8 << 8) + (local65 * local17 >> 8);
+				}
+				arg3 += arg9;
+			}
+			arg4 += arg10;
+			arg3 = local1;
+			arg5 += arg6;
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!ek", name = "b", descriptor = "([I[B[IIIIIIII)V")
+	public static void method1397(@OriginalArg(0) int[] arg0, @OriginalArg(1) byte[] arg1, @OriginalArg(2) int[] arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9) {
+		@Pc(3) int local3 = 256 - arg9;
+		for (@Pc(6) int local6 = -arg6; local6 < 0; local6++) {
+			for (@Pc(11) int local11 = -arg5; local11 < 0; local11++) {
+				@Pc(18) byte local18 = arg1[arg3++];
+				if (local18 == 0) {
+					arg4++;
+				} else {
+					@Pc(26) int local26 = arg2[local18 & 0xFF];
+					@Pc(30) int local30 = arg0[arg4];
+					arg0[arg4++] = ((local26 & 0xFF00FF) * arg9 + (local30 & 0xFF00FF) * local3 & 0xFF00FF00) + ((local26 & 0xFF00) * arg9 + (local30 & 0xFF00) * local3 & 0xFF0000) >> 8;
+				}
+			}
+			arg4 += arg7;
+			arg3 += arg8;
+		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "b", descriptor = "(III)V")
@@ -92,50 +203,50 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		if (local5 < local15) {
 			arg3 = ((local5 << 16) + local27 - local9 - 1) / local27;
 		}
-		local41 = arg0 + arg1 * SoftwareRaster.destinationWidth;
-		@Pc(125) int local125 = SoftwareRaster.destinationWidth - arg2;
-		if (arg1 + arg3 > Rasterizer.viewportBottom) {
-			arg3 -= arg1 + arg3 - Rasterizer.viewportBottom;
+		local41 = arg0 + arg1 * SoftwareRaster.width;
+		@Pc(125) int local125 = SoftwareRaster.width - arg2;
+		if (arg1 + arg3 > Rasterizer.clipBottom) {
+			arg3 -= arg1 + arg3 - Rasterizer.clipBottom;
 		}
 		@Pc(145) int local145;
-		if (arg1 < Rasterizer.viewportTop) {
-			local145 = Rasterizer.viewportTop - arg1;
+		if (arg1 < Rasterizer.clipTop) {
+			local145 = Rasterizer.clipTop - arg1;
 			arg3 -= local145;
-			local41 += local145 * SoftwareRaster.destinationWidth;
+			local41 += local145 * SoftwareRaster.width;
 			local9 += local27 * local145;
 		}
-		if (arg0 + arg2 > Rasterizer.viewportRight) {
-			local145 = arg0 + arg2 - Rasterizer.viewportRight;
+		if (arg0 + arg2 > Rasterizer.clipRight) {
+			local145 = arg0 + arg2 - Rasterizer.clipRight;
 			arg2 -= local145;
 			local125 += local145;
 		}
-		if (arg0 < Rasterizer.viewportLeft) {
-			local145 = Rasterizer.viewportLeft - arg0;
+		if (arg0 < Rasterizer.clipLeft) {
+			local145 = Rasterizer.clipLeft - arg0;
 			arg2 -= local145;
 			local41 += local145;
 			local7 += local21 * local145;
 			local125 += local145;
 		}
-		Static286.method1394(SoftwareRaster.destinationPixels, this.aByteArray18, this.anIntArray144, local7, local9, local41, local125, arg2, arg3, local21, local27, local2, arg4);
+		method1394(SoftwareRaster.pixels, this.pixels, this.anIntArray144, local7, local9, local41, local125, arg2, arg3, local21, local27, local2, arg4);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "()V")
 	public final void clear() {
 		@Pc(1) int local1 = 0;
-		@Pc(7) int local7 = this.aByteArray18.length - 7;
+		@Pc(7) int local7 = this.pixels.length - 7;
 		while (local1 < local7) {
-			this.aByteArray18[local1++] = 0;
-			this.aByteArray18[local1++] = 0;
-			this.aByteArray18[local1++] = 0;
-			this.aByteArray18[local1++] = 0;
-			this.aByteArray18[local1++] = 0;
-			this.aByteArray18[local1++] = 0;
-			this.aByteArray18[local1++] = 0;
-			this.aByteArray18[local1++] = 0;
+			this.pixels[local1++] = 0;
+			this.pixels[local1++] = 0;
+			this.pixels[local1++] = 0;
+			this.pixels[local1++] = 0;
+			this.pixels[local1++] = 0;
+			this.pixels[local1++] = 0;
+			this.pixels[local1++] = 0;
+			this.pixels[local1++] = 0;
 		}
 		local7 += 7;
 		while (local1 < local7) {
-			this.aByteArray18[local1++] = 0;
+			this.pixels[local1++] = 0;
 		}
 	}
 
@@ -146,10 +257,10 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		@Pc(10) int local10;
 		for (local10 = 0; local10 < this.width; local10++) {
 			for (@Pc(19) int local19 = this.height - 1; local19 >= 0; local19--) {
-				local6[local8++] = this.aByteArray18[local10 + local19 * this.width];
+				local6[local8++] = this.pixels[local10 + local19 * this.width];
 			}
 		}
-		this.aByteArray18 = local6;
+		this.pixels = local6;
 		local10 = this.yOffset;
 		this.yOffset = this.xOffset;
 		this.xOffset = this.innerHeight - this.height - local10;
@@ -166,45 +277,45 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 	public final void drawImageAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
 		arg0 += this.xOffset;
 		arg1 += this.yOffset;
-		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.destinationWidth;
+		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.width;
 		@Pc(17) int local17 = 0;
 		@Pc(20) int local20 = this.height;
 		@Pc(23) int local23 = this.width;
-		@Pc(27) int local27 = SoftwareRaster.destinationWidth - local23;
+		@Pc(27) int local27 = SoftwareRaster.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < Rasterizer.viewportTop) {
-			local36 = Rasterizer.viewportTop - arg1;
+		if (arg1 < Rasterizer.clipTop) {
+			local36 = Rasterizer.clipTop - arg1;
 			local20 -= local36;
-			arg1 = Rasterizer.viewportTop;
+			arg1 = Rasterizer.clipTop;
 			local17 = local36 * local23;
-			local15 += local36 * SoftwareRaster.destinationWidth;
+			local15 += local36 * SoftwareRaster.width;
 		}
-		if (arg1 + local20 > Rasterizer.viewportBottom) {
-			local20 -= arg1 + local20 - Rasterizer.viewportBottom;
+		if (arg1 + local20 > Rasterizer.clipBottom) {
+			local20 -= arg1 + local20 - Rasterizer.clipBottom;
 		}
-		if (arg0 < Rasterizer.viewportLeft) {
-			local36 = Rasterizer.viewportLeft - arg0;
+		if (arg0 < Rasterizer.clipLeft) {
+			local36 = Rasterizer.clipLeft - arg0;
 			local23 -= local36;
-			arg0 = Rasterizer.viewportLeft;
+			arg0 = Rasterizer.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > Rasterizer.viewportRight) {
-			local36 = arg0 + local23 - Rasterizer.viewportRight;
+		if (arg0 + local23 > Rasterizer.clipRight) {
+			local36 = arg0 + local23 - Rasterizer.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
 		}
 		if (local23 > 0 && local20 > 0) {
-			Static286.method1397(SoftwareRaster.destinationPixels, this.aByteArray18, this.anIntArray144, local17, local15, local23, local20, local27, local29, arg2);
+			method1397(SoftwareRaster.pixels, this.pixels, this.anIntArray144, local17, local15, local23, local20, local27, local29, arg2);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "c", descriptor = "()V")
-	public final void method1396() {
+	public final void trim() {
 		if (this.width == this.innerWidth && this.height == this.innerHeight) {
 			return;
 		}
@@ -212,10 +323,10 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		@Pc(19) int local19 = 0;
 		for (@Pc(21) int local21 = 0; local21 < this.height; local21++) {
 			for (@Pc(27) int local27 = 0; local27 < this.width; local27++) {
-				local17[local27 + this.xOffset + (local21 + this.yOffset) * this.innerWidth] = this.aByteArray18[local19++];
+				local17[local27 + this.xOffset + (local21 + this.yOffset) * this.innerWidth] = this.pixels[local19++];
 			}
 		}
-		this.aByteArray18 = local17;
+		this.pixels = local17;
 		this.width = this.innerWidth;
 		this.height = this.innerHeight;
 		this.xOffset = 0;
@@ -249,72 +360,72 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		if (local5 < local15) {
 			arg3 = ((local5 << 16) + local27 - local9 - 1) / local27;
 		}
-		local41 = arg0 + arg1 * SoftwareRaster.destinationWidth;
-		@Pc(125) int local125 = SoftwareRaster.destinationWidth - arg2;
-		if (arg1 + arg3 > Rasterizer.viewportBottom) {
-			arg3 -= arg1 + arg3 - Rasterizer.viewportBottom;
+		local41 = arg0 + arg1 * SoftwareRaster.width;
+		@Pc(125) int local125 = SoftwareRaster.width - arg2;
+		if (arg1 + arg3 > Rasterizer.clipBottom) {
+			arg3 -= arg1 + arg3 - Rasterizer.clipBottom;
 		}
 		@Pc(145) int local145;
-		if (arg1 < Rasterizer.viewportTop) {
-			local145 = Rasterizer.viewportTop - arg1;
+		if (arg1 < Rasterizer.clipTop) {
+			local145 = Rasterizer.clipTop - arg1;
 			arg3 -= local145;
-			local41 += local145 * SoftwareRaster.destinationWidth;
+			local41 += local145 * SoftwareRaster.width;
 			local9 += local27 * local145;
 		}
-		if (arg0 + arg2 > Rasterizer.viewportRight) {
-			local145 = arg0 + arg2 - Rasterizer.viewportRight;
+		if (arg0 + arg2 > Rasterizer.clipRight) {
+			local145 = arg0 + arg2 - Rasterizer.clipRight;
 			arg2 -= local145;
 			local125 += local145;
 		}
-		if (arg0 < Rasterizer.viewportLeft) {
-			local145 = Rasterizer.viewportLeft - arg0;
+		if (arg0 < Rasterizer.clipLeft) {
+			local145 = Rasterizer.clipLeft - arg0;
 			arg2 -= local145;
 			local41 += local145;
 			local7 += local21 * local145;
 			local125 += local145;
 		}
-		Static286.method1391(SoftwareRaster.destinationPixels, this.aByteArray18, this.anIntArray144, local7, local9, local41, local125, arg2, arg3, local21, local27, local2);
+		method1391(SoftwareRaster.pixels, this.pixels, this.anIntArray144, local7, local9, local41, local125, arg2, arg3, local21, local27, local2);
 	}
 
 	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "(II)V")
 	@Override
-	public final void drawImage(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	public final void renderTransparent(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.xOffset;
 		arg1 += this.yOffset;
-		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.destinationWidth;
+		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.width;
 		@Pc(17) int local17 = 0;
 		@Pc(20) int local20 = this.height;
 		@Pc(23) int local23 = this.width;
-		@Pc(27) int local27 = SoftwareRaster.destinationWidth - local23;
+		@Pc(27) int local27 = SoftwareRaster.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < Rasterizer.viewportTop) {
-			local36 = Rasterizer.viewportTop - arg1;
+		if (arg1 < Rasterizer.clipTop) {
+			local36 = Rasterizer.clipTop - arg1;
 			local20 -= local36;
-			arg1 = Rasterizer.viewportTop;
+			arg1 = Rasterizer.clipTop;
 			local17 = local36 * local23;
-			local15 += local36 * SoftwareRaster.destinationWidth;
+			local15 += local36 * SoftwareRaster.width;
 		}
-		if (arg1 + local20 > Rasterizer.viewportBottom) {
-			local20 -= arg1 + local20 - Rasterizer.viewportBottom;
+		if (arg1 + local20 > Rasterizer.clipBottom) {
+			local20 -= arg1 + local20 - Rasterizer.clipBottom;
 		}
-		if (arg0 < Rasterizer.viewportLeft) {
-			local36 = Rasterizer.viewportLeft - arg0;
+		if (arg0 < Rasterizer.clipLeft) {
+			local36 = Rasterizer.clipLeft - arg0;
 			local23 -= local36;
-			arg0 = Rasterizer.viewportLeft;
+			arg0 = Rasterizer.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > Rasterizer.viewportRight) {
-			local36 = arg0 + local23 - Rasterizer.viewportRight;
+		if (arg0 + local23 > Rasterizer.clipRight) {
+			local36 = arg0 + local23 - Rasterizer.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
 		}
 		if (local23 > 0 && local20 > 0) {
-			SoftwareSprite.blockCopyTrans(SoftwareRaster.destinationPixels, this.aByteArray18, this.anIntArray144, local17, local15, local23, local20, local27, local29);
+			blockCopyTrans(SoftwareRaster.pixels, this.pixels, this.anIntArray144, local17, local15, local23, local20, local27, local29);
 		}
 	}
 }

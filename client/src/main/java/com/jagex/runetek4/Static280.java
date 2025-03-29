@@ -18,40 +18,40 @@ public final class Static280 {
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "([IIIIIIIIIZB)V")
 	public static void method4667(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) boolean arg9) {
 		@Pc(7) int local7 = arg2;
-		if (Rasterizer.viewportRight <= arg2) {
+		if (Rasterizer.clipRight <= arg2) {
 			return;
 		}
-		if (arg2 < Rasterizer.viewportLeft) {
-			local7 = Rasterizer.viewportLeft;
+		if (arg2 < Rasterizer.clipLeft) {
+			local7 = Rasterizer.clipLeft;
 		}
 		@Pc(30) int local30 = arg7 + arg2;
-		if (Rasterizer.viewportLeft >= local30) {
+		if (Rasterizer.clipLeft >= local30) {
 			return;
 		}
-		if (Rasterizer.viewportRight < local30) {
-			local30 = Rasterizer.viewportRight;
+		if (Rasterizer.clipRight < local30) {
+			local30 = Rasterizer.clipRight;
 		}
 		@Pc(43) int local43 = arg8;
-		if (Rasterizer.viewportBottom <= arg8) {
+		if (Rasterizer.clipBottom <= arg8) {
 			return;
 		}
 		@Pc(56) int local56 = arg8 + arg6;
-		if (arg8 < Rasterizer.viewportTop) {
-			local43 = Rasterizer.viewportTop;
+		if (arg8 < Rasterizer.clipTop) {
+			local43 = Rasterizer.clipTop;
 		}
-		if (local56 <= Rasterizer.viewportTop) {
+		if (local56 <= Rasterizer.clipTop) {
 			return;
 		}
-		@Pc(79) int local79 = local7 + SoftwareRaster.destinationWidth * local43;
+		@Pc(79) int local79 = local7 + SoftwareRaster.width * local43;
 		if (arg5 == 9) {
 			arg3 = arg3 + 1 & 0x3;
 			arg5 = 1;
 		}
-		@Pc(99) int local99 = local7 + SoftwareRaster.destinationWidth - local30;
+		@Pc(99) int local99 = local7 + SoftwareRaster.width - local30;
 		local43 -= arg8;
 		@Pc(108) int local108 = arg6 - local43;
-		if (Rasterizer.viewportBottom < local56) {
-			local56 = Rasterizer.viewportBottom;
+		if (Rasterizer.clipBottom < local56) {
+			local56 = Rasterizer.clipBottom;
 		}
 		if (arg5 == 10) {
 			arg3 = arg3 + 3 & 0x3;

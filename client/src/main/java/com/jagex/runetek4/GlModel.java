@@ -3478,7 +3478,7 @@ public final class GlModel extends Model {
 		@Pc(134) int local134 = local40 + 1 - local26;
 		@Pc(140) int local140 = local99 + 1 - local85;
 		@Pc(151) SoftwareIndexedSprite local151;
-		if (arg0 == null || arg0.aByteArray18.length < local134 * local140) {
+		if (arg0 == null || arg0.pixels.length < local134 * local140) {
 			local151 = new SoftwareIndexedSprite(local134, local140, 0);
 		} else {
 			local151 = arg0;
@@ -3522,7 +3522,7 @@ public final class GlModel extends Model {
 				@Pc(322) int local322 = anIntArray467[local297];
 				@Pc(326) int local326 = anIntArray467[local302];
 				if ((local246 - local248) * (local322 - local326) - (local322 - local318) * (local258 - local248) > 0) {
-					Rasterizer.fillSpriteTriangle(local151.aByteArray18, local318, local322, local326, local246, local248, local258, local134);
+					Rasterizer.fillSpriteTriangle(local151.pixels, local318, local322, local326, local246, local248, local258, local134);
 				}
 			}
 		}

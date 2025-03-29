@@ -82,7 +82,7 @@ public class Sprites {
         if (GlRenderer.enabled) {
             floorShadows = method837(Static84.anInt2257, arg0);
             for (@Pc(101) int local101 = 0; local101 < floorShadows.length; local101++) {
-                floorShadows[local101].method1396();
+                floorShadows[local101].trim();
             }
         }
         @Pc(124) SoftwareSprite local124 = SpriteLoader.loadSoftwareSprite(0, arg0, Static163.anInt3962);

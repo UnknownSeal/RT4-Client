@@ -875,8 +875,8 @@ public final class ClientScriptRunner {
 																bottom = GlRaster.clipBottom;
 																top = GlRaster.clipTop;
 															} else {
-																top = Rasterizer.viewportTop;
-																bottom = Rasterizer.viewportBottom;
+																top = Rasterizer.clipTop;
+																bottom = Rasterizer.clipBottom;
 															}
 															@Pc(1611) int local1611;
 															if (top > dragY + color && local1571.scrollY > 0) {
@@ -1529,7 +1529,7 @@ public final class ClientScriptRunner {
 		} else if (GlRenderer.enabled) {
 			((GlSprite) Static106.aClass3_Sub2_Sub1_7).renderRotatedTransparent(arg0, arg1, arg2.width, arg2.height, Static106.aClass3_Sub2_Sub1_7.width / 2, Static106.aClass3_Sub2_Sub1_7.height / 2, Camera.orbitCameraYaw, 256, (GlSprite) arg2.method489(false));
 		} else {
-			((SoftwareSprite) Static106.aClass3_Sub2_Sub1_7).method313(arg0, arg1, arg2.width, arg2.height, Static106.aClass3_Sub2_Sub1_7.width / 2, Static106.aClass3_Sub2_Sub1_7.height / 2, Camera.orbitCameraYaw, arg2.anIntArray37, arg2.anIntArray45);
+			((SoftwareSprite) Static106.aClass3_Sub2_Sub1_7).renderRotated(arg0, arg1, arg2.width, arg2.height, Static106.aClass3_Sub2_Sub1_7.width / 2, Static106.aClass3_Sub2_Sub1_7.height / 2, Camera.orbitCameraYaw, arg2.anIntArray37, arg2.anIntArray45);
 		}
 		InterfaceList.rectangleRedraw[arg3] = true;
 	}
@@ -1558,7 +1558,7 @@ public final class ClientScriptRunner {
 				WorldMap.aClass3_Sub2_Sub1_2 = local63;
 			}
 			if (GlRenderer.enabled) {
-				SoftwareRaster.destinationPixels = null;
+				SoftwareRaster.pixels = null;
 			} else {
 				SoftwareRaster.frameBuffer.makeTarget();
 			}
@@ -1603,8 +1603,8 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!fn", name = "a", descriptor = "(BIIIII)V")
 	public static void method1624(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		Static241.aClass36Array16[0].drawImage(arg2, arg3);
-		Static241.aClass36Array16[1].drawImage(arg2, arg4 + arg3 - 16);
+		Static241.aClass36Array16[0].renderTransparent(arg2, arg3);
+		Static241.aClass36Array16[1].renderTransparent(arg2, arg4 + arg3 - 16);
 		@Pc(35) int local35 = arg4 * (arg4 - 32) / arg1;
 		if (local35 < 8) {
 			local35 = 8;

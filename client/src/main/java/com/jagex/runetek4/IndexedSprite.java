@@ -39,5 +39,5 @@ public abstract class IndexedSprite {
 	public abstract void drawImageAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2);
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "a", descriptor = "(II)V")
-	public abstract void drawImage(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1);
+	public abstract void renderTransparent(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1);
 }

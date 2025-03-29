@@ -9,9 +9,9 @@ public class SoftwareRaster {
     @OriginalMember(owner = "runetek4.client!vd", name = "w", descriptor = "Lclient!vk;")
     public static FrameBuffer frameBuffer;
     @OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "I")
-    public static int destinationWidth;
+    public static int width;
     @OriginalMember(owner = "runetek4.client!kb", name = "i", descriptor = "[I")
-    public static int[] destinationPixels;
+    public static int[] pixels;
 
     @OriginalMember(owner = "runetek4.client!kb", name = "c", descriptor = "(IIII)V")
     public static void setClip(@OriginalArg(0) int minX, @OriginalArg(1) int minY, @OriginalArg(2) int maxX, @OriginalArg(3) int maxY) {
@@ -21,40 +21,40 @@ public class SoftwareRaster {
         if (minY < 0) {
             minY = 0;
         }
-        if (maxX > destinationWidth) {
-            maxX = destinationWidth;
+        if (maxX > width) {
+            maxX = width;
         }
         if (maxY > Rasterizer.destinationHeight) {
             maxY = Rasterizer.destinationHeight;
         }
-        Rasterizer.viewportLeft = minX;
-        Rasterizer.viewportTop = minY;
-        Rasterizer.viewportRight = maxX;
-        Rasterizer.viewportBottom = maxY;
+        Rasterizer.clipLeft = minX;
+        Rasterizer.clipTop = minY;
+        Rasterizer.clipRight = maxX;
+        Rasterizer.clipBottom = maxY;
         Rasterizer.method2482();
     }
 
     @OriginalMember(owner = "runetek4.client!kb", name = "c", descriptor = "(IIIII)V")
     public static void fillRect(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int width, @OriginalArg(3) int height, @OriginalArg(4) int color) {
-        if (x < Rasterizer.viewportLeft) {
-            width -= Rasterizer.viewportLeft - x;
-            x = Rasterizer.viewportLeft;
+        if (x < Rasterizer.clipLeft) {
+            width -= Rasterizer.clipLeft - x;
+            x = Rasterizer.clipLeft;
         }
-        if (y < Rasterizer.viewportTop) {
-            height -= Rasterizer.viewportTop - y;
-            y = Rasterizer.viewportTop;
+        if (y < Rasterizer.clipTop) {
+            height -= Rasterizer.clipTop - y;
+            y = Rasterizer.clipTop;
         }
-        if (x + width > Rasterizer.viewportRight) {
-            width = Rasterizer.viewportRight - x;
+        if (x + width > Rasterizer.clipRight) {
+            width = Rasterizer.clipRight - x;
         }
-        if (y + height > Rasterizer.viewportBottom) {
-            height = Rasterizer.viewportBottom - y;
+        if (y + height > Rasterizer.clipBottom) {
+            height = Rasterizer.clipBottom - y;
         }
-        @Pc(43) int pixelOffset = destinationWidth - width;
-        @Pc(49) int pixel = x + y * destinationWidth;
+        @Pc(43) int pixelOffset = SoftwareRaster.width - width;
+        @Pc(49) int pixel = x + y * SoftwareRaster.width;
         for (@Pc(52) int heightCounter = -height; heightCounter < 0; heightCounter++) {
             for (@Pc(57) int widthCounter = -width; widthCounter < 0; widthCounter++) {
-                destinationPixels[pixel++] = color;
+                pixels[pixel++] = color;
             }
             pixel += pixelOffset;
         }
@@ -70,29 +70,29 @@ public class SoftwareRaster {
 
     @OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(IIIIII)V")
     public static void fillRectAlpha(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int width, @OriginalArg(3) int height, @OriginalArg(4) int arg4, @OriginalArg(5) int alpha) {
-        if (x < Rasterizer.viewportLeft) {
-            width -= Rasterizer.viewportLeft - x;
-            x = Rasterizer.viewportLeft;
+        if (x < Rasterizer.clipLeft) {
+            width -= Rasterizer.clipLeft - x;
+            x = Rasterizer.clipLeft;
         }
-        if (y < Rasterizer.viewportTop) {
-            height -= Rasterizer.viewportTop - y;
-            y = Rasterizer.viewportTop;
+        if (y < Rasterizer.clipTop) {
+            height -= Rasterizer.clipTop - y;
+            y = Rasterizer.clipTop;
         }
-        if (x + width > Rasterizer.viewportRight) {
-            width = Rasterizer.viewportRight - x;
+        if (x + width > Rasterizer.clipRight) {
+            width = Rasterizer.clipRight - x;
         }
-        if (y + height > Rasterizer.viewportBottom) {
-            height = Rasterizer.viewportBottom - y;
+        if (y + height > Rasterizer.clipBottom) {
+            height = Rasterizer.clipBottom - y;
         }
         @Pc(59) int rgba = ((arg4 & 0xFF00FF) * alpha >> 8 & 0xFF00FF) + ((arg4 & 0xFF00) * alpha >> 8 & 0xFF00);
         @Pc(63) int a = 256 - alpha;
-        @Pc(67) int widthOffset = destinationWidth - width;
-        @Pc(73) int pixel = x + y * destinationWidth;
+        @Pc(67) int widthOffset = SoftwareRaster.width - width;
+        @Pc(73) int pixel = x + y * SoftwareRaster.width;
         for (@Pc(75) int heightCounter = 0; heightCounter < height; heightCounter++) {
             for (@Pc(81) int widthCounter = -width; widthCounter < 0; widthCounter++) {
-                @Pc(87) int local87 = destinationPixels[pixel];
+                @Pc(87) int local87 = pixels[pixel];
                 @Pc(107) int local107 = ((local87 & 0xFF00FF) * a >> 8 & 0xFF00FF) + ((local87 & 0xFF00) * a >> 8 & 0xFF00);
-                destinationPixels[pixel++] = rgba + local107;
+                pixels[pixel++] = rgba + local107;
             }
             pixel += widthOffset;
         }
@@ -110,70 +110,70 @@ public class SoftwareRaster {
 
     @OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "(IIIII)V")
     private static void drawHorizontalLineAlpha(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int length, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
-        if (y < Rasterizer.viewportTop || y >= Rasterizer.viewportBottom) {
+        if (y < Rasterizer.clipTop || y >= Rasterizer.clipBottom) {
             return;
         }
-        if (x < Rasterizer.viewportLeft) {
-            length -= Rasterizer.viewportLeft - x;
-            x = Rasterizer.viewportLeft;
+        if (x < Rasterizer.clipLeft) {
+            length -= Rasterizer.clipLeft - x;
+            x = Rasterizer.clipLeft;
         }
-        if (x + length > Rasterizer.viewportRight) {
-            length = Rasterizer.viewportRight - x;
+        if (x + length > Rasterizer.clipRight) {
+            length = Rasterizer.clipRight - x;
         }
         @Pc(30) int a = 256 - arg4;
         @Pc(38) int r = (arg3 >> 16 & 0xFF) * arg4;
         @Pc(46) int g = (arg3 >> 8 & 0xFF) * arg4;
         @Pc(52) int b = (arg3 & 0xFF) * arg4;
-        @Pc(58) int pixelOffset = x + y * destinationWidth;
+        @Pc(58) int pixelOffset = x + y * width;
         for (@Pc(60) int lengthCounter = 0; lengthCounter < length; lengthCounter++) {
-            @Pc(73) int red = (destinationPixels[pixelOffset] >> 16 & 0xFF) * a;
-            @Pc(83) int green = (destinationPixels[pixelOffset] >> 8 & 0xFF) * a;
-            @Pc(91) int blue = (destinationPixels[pixelOffset] & 0xFF) * a;
+            @Pc(73) int red = (pixels[pixelOffset] >> 16 & 0xFF) * a;
+            @Pc(83) int green = (pixels[pixelOffset] >> 8 & 0xFF) * a;
+            @Pc(91) int blue = (pixels[pixelOffset] & 0xFF) * a;
             @Pc(113) int rgba = (r + red >> 8 << 16) + (g + green >> 8 << 8) + (b + blue >> 8);
-            destinationPixels[pixelOffset++] = rgba;
+            pixels[pixelOffset++] = rgba;
         }
     }
 
     @OriginalMember(owner = "runetek4.client!kb", name = "d", descriptor = "(IIIII)V")
     private static void drawVerticalLineAlpha(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int length, @OriginalArg(3) int color, @OriginalArg(4) int alpha) {
-        if (x < Rasterizer.viewportLeft || x >= Rasterizer.viewportRight) {
+        if (x < Rasterizer.clipLeft || x >= Rasterizer.clipRight) {
             return;
         }
-        if (y < Rasterizer.viewportTop) {
-            length -= Rasterizer.viewportTop - y;
-            y = Rasterizer.viewportTop;
+        if (y < Rasterizer.clipTop) {
+            length -= Rasterizer.clipTop - y;
+            y = Rasterizer.clipTop;
         }
-        if (y + length > Rasterizer.viewportBottom) {
-            length = Rasterizer.viewportBottom - y;
+        if (y + length > Rasterizer.clipBottom) {
+            length = Rasterizer.clipBottom - y;
         }
         @Pc(30) int a = 256 - alpha;
         @Pc(38) int r = (color >> 16 & 0xFF) * alpha;
         @Pc(46) int g = (color >> 8 & 0xFF) * alpha;
         @Pc(52) int b = (color & 0xFF) * alpha;
-        @Pc(58) int pixelOffset = x + y * destinationWidth;
+        @Pc(58) int pixelOffset = x + y * width;
         for (@Pc(60) int lengthCounter = 0; lengthCounter < length; lengthCounter++) {
-            @Pc(73) int red = (destinationPixels[pixelOffset] >> 16 & 0xFF) * a;
-            @Pc(83) int green = (destinationPixels[pixelOffset] >> 8 & 0xFF) * a;
-            @Pc(91) int blue = (destinationPixels[pixelOffset] & 0xFF) * a;
+            @Pc(73) int red = (pixels[pixelOffset] >> 16 & 0xFF) * a;
+            @Pc(83) int green = (pixels[pixelOffset] >> 8 & 0xFF) * a;
+            @Pc(91) int blue = (pixels[pixelOffset] & 0xFF) * a;
             @Pc(113) int rgba = (r + red >> 8 << 16) + (g + green >> 8 << 8) + (b + blue >> 8);
-            destinationPixels[pixelOffset] = rgba;
-            pixelOffset += destinationWidth;
+            pixels[pixelOffset] = rgba;
+            pixelOffset += width;
         }
     }
 
     @OriginalMember(owner = "runetek4.client!kb", name = "d", descriptor = "(IIII)V")
     public static void method2498(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-        if (Rasterizer.viewportLeft < arg0) {
-            Rasterizer.viewportLeft = arg0;
+        if (Rasterizer.clipLeft < arg0) {
+            Rasterizer.clipLeft = arg0;
         }
-        if (Rasterizer.viewportTop < arg1) {
-            Rasterizer.viewportTop = arg1;
+        if (Rasterizer.clipTop < arg1) {
+            Rasterizer.clipTop = arg1;
         }
-        if (Rasterizer.viewportRight > arg2) {
-            Rasterizer.viewportRight = arg2;
+        if (Rasterizer.clipRight > arg2) {
+            Rasterizer.clipRight = arg2;
         }
-        if (Rasterizer.viewportBottom > arg3) {
-            Rasterizer.viewportBottom = arg3;
+        if (Rasterizer.clipBottom > arg3) {
+            Rasterizer.clipBottom = arg3;
         }
         Rasterizer.method2482();
     }
@@ -220,53 +220,53 @@ public class SoftwareRaster {
 
     @OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "(IIII)V")
     public static void drawHorizontalLine(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-        if (arg1 < Rasterizer.viewportTop || arg1 >= Rasterizer.viewportBottom) {
+        if (arg1 < Rasterizer.clipTop || arg1 >= Rasterizer.clipBottom) {
             return;
         }
-        if (arg0 < Rasterizer.viewportLeft) {
-            arg2 -= Rasterizer.viewportLeft - arg0;
-            arg0 = Rasterizer.viewportLeft;
+        if (arg0 < Rasterizer.clipLeft) {
+            arg2 -= Rasterizer.clipLeft - arg0;
+            arg0 = Rasterizer.clipLeft;
         }
-        if (arg0 + arg2 > Rasterizer.viewportRight) {
-            arg2 = Rasterizer.viewportRight - arg0;
+        if (arg0 + arg2 > Rasterizer.clipRight) {
+            arg2 = Rasterizer.clipRight - arg0;
         }
-        @Pc(32) int local32 = arg0 + arg1 * destinationWidth;
+        @Pc(32) int local32 = arg0 + arg1 * width;
         for (@Pc(34) int local34 = 0; local34 < arg2; local34++) {
-            destinationPixels[local32 + local34] = arg3;
+            pixels[local32 + local34] = arg3;
         }
     }
 
     @OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "([III)V")
     public static void setSize(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        destinationPixels = arg0;
-        destinationWidth = arg1;
+        pixels = arg0;
+        width = arg1;
         Rasterizer.destinationHeight = arg2;
         setClip(0, 0, arg1, arg2);
     }
 
     @OriginalMember(owner = "runetek4.client!kb", name = "c", descriptor = "()V")
     public static void resetBounds() {
-        Rasterizer.viewportLeft = 0;
-        Rasterizer.viewportTop = 0;
-        Rasterizer.viewportRight = destinationWidth;
-        Rasterizer.viewportBottom = Rasterizer.destinationHeight;
+        Rasterizer.clipLeft = 0;
+        Rasterizer.clipTop = 0;
+        Rasterizer.clipRight = width;
+        Rasterizer.clipBottom = Rasterizer.destinationHeight;
         Rasterizer.method2482();
     }
 
     @OriginalMember(owner = "runetek4.client!kb", name = "b", descriptor = "([I)V")
     public static void saveClip(@OriginalArg(0) int[] arg0) {
-        arg0[0] = Rasterizer.viewportLeft;
-        arg0[1] = Rasterizer.viewportTop;
-        arg0[2] = Rasterizer.viewportRight;
-        arg0[3] = Rasterizer.viewportBottom;
+        arg0[0] = Rasterizer.clipLeft;
+        arg0[1] = Rasterizer.clipTop;
+        arg0[2] = Rasterizer.clipRight;
+        arg0[3] = Rasterizer.clipBottom;
     }
 
     @OriginalMember(owner = "runetek4.client!kb", name = "a", descriptor = "([I)V")
     public static void restoreClip(@OriginalArg(0) int[] arg0) {
-        Rasterizer.viewportLeft = arg0[0];
-        Rasterizer.viewportTop = arg0[1];
-        Rasterizer.viewportRight = arg0[2];
-        Rasterizer.viewportBottom = arg0[3];
+        Rasterizer.clipLeft = arg0[0];
+        Rasterizer.clipTop = arg0[1];
+        Rasterizer.clipRight = arg0[2];
+        Rasterizer.clipBottom = arg0[3];
         Rasterizer.method2482();
     }
 }

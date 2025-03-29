@@ -555,7 +555,7 @@ public final class Component {
 		if (local18 == null) {
 			return false;
 		}
-		local18.method1396();
+		local18.trim();
 		this.anIntArray37 = new int[local18.height];
 		this.anIntArray45 = new int[local18.height];
 		for (@Pc(37) int local37 = 0; local37 < local18.height; local37++) {
@@ -563,13 +563,13 @@ public final class Component {
 			@Pc(50) int local50 = local18.width;
 			@Pc(52) int local52;
 			for (local52 = 0; local52 < local18.width; local52++) {
-				if (local18.aByteArray18[local18.width * local37 + local52] != 0) {
+				if (local18.pixels[local18.width * local37 + local52] != 0) {
 					local47 = local52;
 					break;
 				}
 			}
 			for (local52 = local47; local52 < local18.width; local52++) {
-				if (local18.aByteArray18[local37 * local18.width + local52] == 0) {
+				if (local18.pixels[local37 * local18.width + local52] == 0) {
 					local50 = local52;
 					break;
 				}
