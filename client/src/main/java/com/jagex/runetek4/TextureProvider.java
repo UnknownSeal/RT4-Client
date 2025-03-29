@@ -5,7 +5,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!m")
-public interface GlTextureProvider {
+public interface TextureProvider {
 
 	@OriginalMember(owner = "runetek4.client!m", name = "a", descriptor = "(BI)Z")
 	boolean isOpaque(@OriginalArg(1) int arg0);

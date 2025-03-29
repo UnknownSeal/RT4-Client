@@ -10,7 +10,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class TextureOpCombine extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "Z", descriptor = "I")
-	private int anInt4543 = 6;
+	private int function = 6;
 
 	@OriginalMember(owner = "runetek4.client!pi", name = "<init>", descriptor = "()V")
 	public TextureOpCombine() {
@@ -24,7 +24,7 @@ public final class TextureOpCombine extends TextureOp {
 		if (this.monochromeImageCache.invalid) {
 			@Pc(22) int[] local22 = this.getChildMonochromeOutput(0, arg0);
 			@Pc(28) int[] local28 = this.getChildMonochromeOutput(1, arg0);
-			@Pc(31) int local31 = this.anInt4543;
+			@Pc(31) int local31 = this.function;
 			if (local31 == 1) {
 				for (local31 = 0; local31 < Texture.width; local31++) {
 					local11[local31] = local28[local31] + local22[local31];
@@ -99,8 +99,8 @@ public final class TextureOpCombine extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!pi", name = "b", descriptor = "(II)[[I")
 	@Override
 	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
-		@Pc(20) int[][] local20 = this.clearImageCache.get(arg0);
-		if (this.clearImageCache.invalid) {
+		@Pc(20) int[][] local20 = this.colorImageCache.get(arg0);
+		if (this.colorImageCache.invalid) {
 			@Pc(30) int[][] local30 = this.getChildColorOutput(arg0, 0);
 			@Pc(36) int[][] local36 = this.getChildColorOutput(arg0, 1);
 			@Pc(40) int[] local40 = local20[0];
@@ -112,7 +112,7 @@ public final class TextureOpCombine extends TextureOp {
 			@Pc(64) int[] local64 = local36[0];
 			@Pc(68) int[] local68 = local36[1];
 			@Pc(72) int[] local72 = local36[2];
-			@Pc(75) int local75 = this.anInt4543;
+			@Pc(75) int local75 = this.function;
 			if (local75 == 1) {
 				for (local75 = 0; local75 < Texture.width; local75++) {
 					local40[local75] = local64[local75] + local52[local75];
@@ -240,7 +240,7 @@ public final class TextureOpCombine extends TextureOp {
 	@Override
 	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
 		if (code == 0) {
-			this.anInt4543 = packet.g1();
+			this.function = packet.g1();
 		} else if (code == 1) {
 			this.monochrome = packet.g1() == 1;
 		}

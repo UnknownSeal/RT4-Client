@@ -1489,7 +1489,7 @@ public final class ClientScriptRunner {
 			drawOverheads(arg4, arg3, arg2, 256, arg0, 256);
 			MiniMap.method4000(arg3, arg2, arg0, 256, 256, arg4);
 		}
-		((Js5GlTextureProvider) Rasterizer.textureProvider).method3239(Protocol.sceneDelta);
+		((Js5TextureProvider) Rasterizer.textureProvider).method3239(Protocol.sceneDelta);
 		Player.method2310(arg3, arg4, arg0, arg2);
 		Camera.cameraPitch = cameraPitch;
 		Camera.renderZ = cameraZ;
@@ -4982,7 +4982,7 @@ public final class ClientScriptRunner {
 													if (opcode == 6006) {
 														isp--;
 														Preferences.highDetailTextures = scriptIntValues[isp] == 1;
-														((Js5GlTextureProvider) Rasterizer.textureProvider).method3245(!Preferences.highDetailTextures);
+														((Js5TextureProvider) Rasterizer.textureProvider).method3245(!Preferences.highDetailTextures);
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;

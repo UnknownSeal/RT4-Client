@@ -362,7 +362,7 @@ public final class client extends GameShell {
 		ShadowModelList.clear();
 		FontMetricsList.fontMetrics.clear();
 		if (!GlRenderer.enabled) {
-			((Js5GlTextureProvider) Rasterizer.textureProvider).clear();
+			((Js5TextureProvider) Rasterizer.textureProvider).clear();
 		}
 		ClientScriptList.scripts.clear();
 		js5Archive0.discardUnpacked();
@@ -419,7 +419,7 @@ public final class client extends GameShell {
 		unload();
 		Static255.cache.clear();
 		LocType.aLocEntity_1 = new LocEntity();
-		((Js5GlTextureProvider) Rasterizer.textureProvider).clear();
+		((Js5TextureProvider) Rasterizer.textureProvider).clear();
 		LightingManager.lightCount = 0;
 		LightingManager.lights = new Light[255];
 		GlModel.method4120();
@@ -1474,7 +1474,7 @@ public final class client extends GameShell {
 			}
 		} else if (mainLoadState == 90) {
 			if (js5Archive26.fetchAll()) {
-				@Pc(951) Js5GlTextureProvider textureProvider = new Js5GlTextureProvider(js5Archive9, js5Archive26, js5Archive8, 20, !Preferences.highDetailTextures);
+				@Pc(951) Js5TextureProvider textureProvider = new Js5TextureProvider(js5Archive9, js5Archive26, js5Archive8, 20, !Preferences.highDetailTextures);
 				Rasterizer.unpackTextures(textureProvider);
 				if (Preferences.brightness == 1) {
 					Rasterizer.setBrightness(0.9F);

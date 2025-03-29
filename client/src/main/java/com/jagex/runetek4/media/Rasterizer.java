@@ -13,7 +13,7 @@ public final class Rasterizer {
     public static final int[] palette = new int[65536];
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "e", descriptor = "Lclient!m;")
-	public static GlTextureProvider textureProvider;
+	public static TextureProvider textureProvider;
 	@OriginalMember(owner = "runetek4.client!hf", name = "k", descriptor = "I")
 	public static int height;
 	@OriginalMember(owner = "runetek4.client!hf", name = "c", descriptor = "[I")
@@ -48,7 +48,7 @@ public final class Rasterizer {
 	public static int alpha = 0;
 
 	@OriginalMember(owner = "runetek4.client!hf", name = "a", descriptor = "(Lclient!m;)V")
-    public static void unpackTextures(@OriginalArg(0) GlTextureProvider arg0) {
+    public static void unpackTextures(@OriginalArg(0) TextureProvider arg0) {
         textureProvider = arg0;
     }
 

@@ -10,10 +10,10 @@ import org.openrs2.deob.annotation.Pc;
 public final class TextureOpTile extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "V", descriptor = "I")
-	private int anInt2220 = 4;
+	private int horizontalTiles = 4;
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "R", descriptor = "I")
-	private int anInt2216 = 4;
+	private int verticalTiles = 4;
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "<init>", descriptor = "()V")
 	public TextureOpTile() {
@@ -24,9 +24,9 @@ public final class TextureOpTile extends TextureOp {
 	@Override
 	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
 		if (code == 0) {
-			this.anInt2220 = packet.g1();
+			this.horizontalTiles = packet.g1();
 		} else if (code == 1) {
-			this.anInt2216 = packet.g1();
+			this.verticalTiles = packet.g1();
 		}
 	}
 
@@ -35,8 +35,8 @@ public final class TextureOpTile extends TextureOp {
 	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
 		@Pc(19) int[] local19 = this.monochromeImageCache.get(arg0);
 		if (this.monochromeImageCache.invalid) {
-			@Pc(28) int local28 = Texture.width / this.anInt2220;
-			@Pc(33) int local33 = Texture.height / this.anInt2216;
+			@Pc(28) int local28 = Texture.width / this.horizontalTiles;
+			@Pc(33) int local33 = Texture.height / this.verticalTiles;
 			@Pc(44) int[] local44;
 			@Pc(50) int local50;
 			if (local33 <= 0) {
@@ -60,10 +60,10 @@ public final class TextureOpTile extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!gg", name = "b", descriptor = "(II)[[I")
 	@Override
 	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
-		@Pc(18) int[][] local18 = this.clearImageCache.get(arg0);
-		if (this.clearImageCache.invalid) {
-			@Pc(28) int local28 = Texture.width / this.anInt2220;
-			@Pc(33) int local33 = Texture.height / this.anInt2216;
+		@Pc(18) int[][] local18 = this.colorImageCache.get(arg0);
+		if (this.colorImageCache.invalid) {
+			@Pc(28) int local28 = Texture.width / this.horizontalTiles;
+			@Pc(33) int local33 = Texture.height / this.verticalTiles;
 			@Pc(49) int[][] local49;
 			if (local33 > 0) {
 				@Pc(39) int local39 = arg0 % local33;

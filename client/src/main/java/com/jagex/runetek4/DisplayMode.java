@@ -258,7 +258,7 @@ public final class DisplayMode {
 			GameShell.thread.setPriority(5);
 			SoftwareRaster.frameBuffer = null;
 			SoftwareModel.method4580();
-			((Js5GlTextureProvider) Rasterizer.textureProvider).method3248(200);
+			((Js5TextureProvider) Rasterizer.textureProvider).method3248(200);
 			if (Preferences.highDetailLighting) {
 				Rasterizer.setBrightness(0.7F);
 			}
@@ -268,7 +268,7 @@ public final class DisplayMode {
 			SoftwareRaster.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
 			SoftwareModel.method4583();
 			ParticleSystem.quit();
-			((Js5GlTextureProvider) Rasterizer.textureProvider).method3248(20);
+			((Js5TextureProvider) Rasterizer.textureProvider).method3248(20);
 			if (Preferences.highDetailLighting) {
 				if (Preferences.brightness == 1) {
 					Rasterizer.setBrightness(0.9F);

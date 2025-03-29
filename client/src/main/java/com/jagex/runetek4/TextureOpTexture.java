@@ -10,16 +10,16 @@ import org.openrs2.deob.annotation.Pc;
 public final class TextureOpTexture extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "U", descriptor = "[I")
-	private int[] anIntArray483;
+	private int[] pixels;
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "gb", descriptor = "I")
-	private int anInt5535;
+	private int width;
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "ib", descriptor = "I")
-	private int anInt5536;
+	private int height;
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "lb", descriptor = "I")
-	private int anInt5539 = -1;
+	private int textureId = -1;
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "<init>", descriptor = "()V")
 	public TextureOpTexture() {
@@ -29,25 +29,25 @@ public final class TextureOpTexture extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!ui", name = "b", descriptor = "(II)[[I")
 	@Override
 	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
-		@Pc(17) int[][] local17 = this.clearImageCache.get(arg0);
-		if (this.clearImageCache.invalid && this.method4327()) {
-			@Pc(42) int local42 = (this.anInt5536 == Texture.height ? arg0 : this.anInt5536 * arg0 / Texture.height) * this.anInt5535;
+		@Pc(17) int[][] local17 = this.colorImageCache.get(arg0);
+		if (this.colorImageCache.invalid && this.loadTexture()) {
+			@Pc(42) int local42 = (this.height == Texture.height ? arg0 : this.height * arg0 / Texture.height) * this.width;
 			@Pc(46) int[] local46 = local17[0];
 			@Pc(50) int[] local50 = local17[1];
 			@Pc(54) int[] local54 = local17[2];
 			@Pc(64) int local64;
 			@Pc(73) int local73;
-			if (Texture.width == this.anInt5535) {
+			if (Texture.width == this.width) {
 				for (local64 = 0; local64 < Texture.width; local64++) {
-					local73 = this.anIntArray483[local42++];
+					local73 = this.pixels[local42++];
 					local54[local64] = (local73 & 0xFF) << 4;
 					local50[local64] = local73 >> 4 & 0xFF0;
 					local46[local64] = local73 >> 12 & 0xFF0;
 				}
 			} else {
 				for (local64 = 0; local64 < Texture.width; local64++) {
-					local73 = this.anInt5535 * local64 / Texture.width;
-					@Pc(122) int local122 = this.anIntArray483[local42 + local73];
+					local73 = this.width * local64 / Texture.width;
+					@Pc(122) int local122 = this.pixels[local42 + local73];
 					local54[local64] = (local122 & 0xFF) << 4;
 					local50[local64] = local122 >> 4 & 0xFF0;
 					local46[local64] = local122 >> 12 & 0xFF0;
@@ -58,20 +58,20 @@ public final class TextureOpTexture extends TextureOp {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "a", descriptor = "(Z)Z")
-	private boolean method4327() {
-		if (this.anIntArray483 != null) {
+	private boolean loadTexture() {
+		if (this.pixels != null) {
 			return true;
-		} else if (this.anInt5539 < 0) {
+		} else if (this.textureId < 0) {
 			return false;
 		} else {
 			@Pc(22) int local22 = Texture.width;
 			@Pc(24) int local24 = Texture.height;
-			@Pc(34) int local34 = Texture.provider.isLowDetail(this.anInt5539) ? 64 : 128;
-			this.anIntArray483 = Texture.provider.getPixels(this.anInt5539);
-			this.anInt5536 = local34;
-			this.anInt5535 = local34;
+			@Pc(34) int local34 = Texture.provider.isLowDetail(this.textureId) ? 64 : 128;
+			this.pixels = Texture.provider.getPixels(this.textureId);
+			this.height = local34;
+			this.width = local34;
 			Texture.setSize(local24, local22);
-			return this.anIntArray483 != null;
+			return this.pixels != null;
 		}
 	}
 
@@ -79,7 +79,7 @@ public final class TextureOpTexture extends TextureOp {
 	@Override
 	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
 		if (code == 0) {
-			this.anInt5539 = packet.g2();
+			this.textureId = packet.g2();
 		}
 	}
 
@@ -87,12 +87,12 @@ public final class TextureOpTexture extends TextureOp {
 	@Override
 	public final void clearImageCache() {
 		super.clearImageCache();
-		this.anIntArray483 = null;
+		this.pixels = null;
 	}
 
 	@OriginalMember(owner = "runetek4.client!ui", name = "d", descriptor = "(B)I")
 	@Override
 	public final int method4627() {
-		return this.anInt5539;
+		return this.textureId;
 	}
 }

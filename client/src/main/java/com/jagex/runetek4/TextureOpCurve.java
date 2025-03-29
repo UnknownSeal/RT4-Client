@@ -10,13 +10,13 @@ import org.openrs2.deob.annotation.Pc;
 public final class TextureOpCurve extends TextureOp {
 
 	@OriginalMember(owner = "client!wi", name = "Q", descriptor = "[I")
-	private int[] anIntArray566;
+	private int[] lastMarker;
 
 	@OriginalMember(owner = "client!wi", name = "gb", descriptor = "[I")
-	private int[] anIntArray567;
+	private int[] firstMarker;
 
 	@OriginalMember(owner = "client!wi", name = "ib", descriptor = "[[I")
-	private int[][] anIntArrayArray47;
+	private int[][] markers;
 
 	@OriginalMember(owner = "client!wi", name = "cb", descriptor = "[S")
 	private final short[] aShortArray96 = new short[257];
@@ -36,20 +36,20 @@ public final class TextureOpCurve extends TextureOp {
 			return;
 		}
 		this.anInt5852 = packet.g1();
-		this.anIntArrayArray47 = new int[packet.g1()][2];
-		for (@Pc(23) int local23 = 0; local23 < this.anIntArrayArray47.length; local23++) {
-			this.anIntArrayArray47[local23][0] = packet.g2();
-			this.anIntArrayArray47[local23][1] = packet.g2();
+		this.markers = new int[packet.g1()][2];
+		for (@Pc(23) int local23 = 0; local23 < this.markers.length; local23++) {
+			this.markers[local23][0] = packet.g2();
+			this.markers[local23][1] = packet.g2();
 		}
 	}
 
 	@OriginalMember(owner = "client!wi", name = "e", descriptor = "(I)V")
 	@Override
 	public void postDecode() {
-		if (this.anIntArrayArray47 == null) {
-			this.anIntArrayArray47 = new int[][] { { 0, 0 }, { 4096, 4096 } };
+		if (this.markers == null) {
+			this.markers = new int[][] { { 0, 0 }, { 4096, 4096 } };
 		}
-		if (this.anIntArrayArray47.length < 2) {
+		if (this.markers.length < 2) {
 			throw new RuntimeException("Curve operation requires at least two markers");
 		}
 		if (this.anInt5852 == 2) {
@@ -73,10 +73,10 @@ public final class TextureOpCurve extends TextureOp {
 		if (local8 == 2) {
 			for (local8 = 0; local8 < 257; local8++) {
 				local27 = local8 << 4;
-				for (local29 = 1; this.anIntArrayArray47.length - 1 > local29 && this.anIntArrayArray47[local29][0] <= local27; local29++) {
+				for (local29 = 1; this.markers.length - 1 > local29 && this.markers[local29][0] <= local27; local29++) {
 				}
-				local52 = this.anIntArrayArray47[local29];
-				local59 = this.anIntArrayArray47[local29 - 1];
+				local52 = this.markers[local29];
+				local59 = this.markers[local29 - 1];
 				local68 = this.method4643(local29 - 2)[1];
 				local72 = local52[1];
 				local76 = local59[1];
@@ -101,10 +101,10 @@ public final class TextureOpCurve extends TextureOp {
 		} else if (local8 == 1) {
 			for (local8 = 0; local8 < 257; local8++) {
 				local27 = local8 << 4;
-				for (local29 = 1; local29 < this.anIntArrayArray47.length - 1 && this.anIntArrayArray47[local29][0] <= local27; local29++) {
+				for (local29 = 1; local29 < this.markers.length - 1 && this.markers[local29][0] <= local27; local29++) {
 				}
-				local59 = this.anIntArrayArray47[local29 - 1];
-				local52 = this.anIntArrayArray47[local29];
+				local59 = this.markers[local29 - 1];
+				local52 = this.markers[local29];
 				local68 = (local27 - local59[0] << 12) / (local52[0] - local59[0]);
 				local76 = 4096 - TextureOp.COSINE[local68 >> 5 & 0xFF] >> 1;
 				local72 = 4096 - local76;
@@ -120,10 +120,10 @@ public final class TextureOpCurve extends TextureOp {
 		} else {
 			for (local8 = 0; local8 < 257; local8++) {
 				local27 = local8 << 4;
-				for (local29 = 1; this.anIntArrayArray47.length - 1 > local29 && this.anIntArrayArray47[local29][0] <= local27; local29++) {
+				for (local29 = 1; this.markers.length - 1 > local29 && this.markers[local29][0] <= local27; local29++) {
 				}
-				local52 = this.anIntArrayArray47[local29];
-				local59 = this.anIntArrayArray47[local29 - 1];
+				local52 = this.markers[local29];
+				local59 = this.markers[local29 - 1];
 				local68 = (local27 - local59[0] << 12) / (local52[0] - local59[0]);
 				local76 = 4096 - local68;
 				local72 = local52[1] * local68 + local76 * local59[1] >> 12;
@@ -160,20 +160,20 @@ public final class TextureOpCurve extends TextureOp {
 
 	@OriginalMember(owner = "client!wi", name = "a", descriptor = "(Z)V")
 	private void method4642() {
-		@Pc(8) int[] local8 = this.anIntArrayArray47[0];
-		@Pc(20) int[] local20 = this.anIntArrayArray47[1];
-		@Pc(29) int[] local29 = this.anIntArrayArray47[this.anIntArrayArray47.length - 2];
-		@Pc(38) int[] local38 = this.anIntArrayArray47[this.anIntArrayArray47.length - 1];
-		this.anIntArray566 = new int[] { local8[0] + local8[0] - local20[0], -local20[1] + local8[1] + local8[1] };
-		this.anIntArray567 = new int[] { local29[0] + local29[0] - local38[0], -local38[1] - -local29[1] + local29[1] };
+		@Pc(8) int[] local8 = this.markers[0];
+		@Pc(20) int[] local20 = this.markers[1];
+		@Pc(29) int[] local29 = this.markers[this.markers.length - 2];
+		@Pc(38) int[] local38 = this.markers[this.markers.length - 1];
+		this.lastMarker = new int[] { local8[0] + local8[0] - local20[0], -local20[1] + local8[1] + local8[1] };
+		this.firstMarker = new int[] { local29[0] + local29[0] - local38[0], -local38[1] - -local29[1] + local29[1] };
 	}
 
 	@OriginalMember(owner = "client!wi", name = "a", descriptor = "(BI)[I")
 	private int[] method4643(@OriginalArg(1) int arg0) {
 		if (arg0 >= 0) {
-			return arg0 >= this.anIntArrayArray47.length ? this.anIntArray567 : this.anIntArrayArray47[arg0];
+			return arg0 >= this.markers.length ? this.firstMarker : this.markers[arg0];
 		} else {
-			return this.anIntArray566;
+			return this.lastMarker;
 		}
 	}
 }
