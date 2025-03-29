@@ -306,7 +306,7 @@ public final class client extends GameShell {
 		NpcTypeList.removeSoft();
 		ObjTypeList.removeSoft();
 		SeqTypeList.removeSoft();
-		Static71.removeSoft();
+		SpotAnimTypeList.removeSoft();
 		Static78.removeSoft();
 		Static3.removeSoft();
 		BasTypeList.removeSoft();
@@ -343,7 +343,7 @@ public final class client extends GameShell {
 		NpcTypeList.clear();
 		ObjTypeList.clear();
 		SeqTypeList.clear();
-		Static247.clear();
+		SpotAnimTypeList.clear();
 		Static53.clear();
 		Static249.clear();
 		BasTypeList.clear();
@@ -637,7 +637,7 @@ public final class client extends GameShell {
 		NpcTypeList.method3706();
 		ObjTypeList.clean();
 		SeqTypeList.clean();
-		Static137.method2666();
+		SpotAnimTypeList.clean();
 		Static269.method2221();
 		VarPlayerDefinition.clearVarPlayerDefinitionCache();
 		BasTypeList.clean();
@@ -1441,7 +1441,7 @@ public final class client extends GameShell {
 				Static58.init(js5Archive2);
 				SeqTypeList.init(js5Archive1, js5Archive20, js5Archive0);
 				Static79.init(js5Archive2);
-				Static266.init(js5Archive7, js5Archive21);
+				SpotAnimTypeList.init(js5Archive7, js5Archive21);
 				Static180.init(js5Archive22);
 				VarPlayerDefinition.initializeVarPlayerDefinitionCache(js5Archive2);
 				InterfaceList.init(js5Archive13, js5Archive8, js5Archive3, js5Archive7);

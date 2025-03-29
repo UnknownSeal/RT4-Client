@@ -109,7 +109,7 @@ public final class ProjectileAnimation extends Entity {
 		this.arcScale = arg8;
 		this.firstCycle = arg5;
 		this.sourceZ = arg4;
-		@Pc(58) int seqId = SpotAnimTypeList.get(this.spotanimId).animationId;
+		@Pc(58) int seqId = SpotAnimTypeList.get(this.spotanimId).seqId;
 		if (seqId == -1) {
 			this.seqType = null;
 		} else {

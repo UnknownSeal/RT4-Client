@@ -729,7 +729,7 @@ public class Protocol {
                                         slot = -1;
                                     }
                                     local1245 = true;
-                                    if (slot != -1 && local1894.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(slot).animationId).priority < SeqTypeList.get(SpotAnimTypeList.get(local1894.spotAnimId).animationId).priority) {
+                                    if (slot != -1 && local1894.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(slot).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(local1894.spotAnimId).seqId).priority) {
                                         local1245 = false;
                                     }
                                     if (local1245) {
@@ -743,7 +743,7 @@ public class Protocol {
                                         local1894.spotAnimY = xp;
                                         local1894.anInt3418 = 1;
                                         if (local1894.spotAnimId != -1 && client.loop == local1894.spotAnimStart) {
-                                            j = SpotAnimTypeList.get(local1894.spotAnimId).animationId;
+                                            j = SpotAnimTypeList.get(local1894.spotAnimId).seqId;
                                             if (j != -1) {
                                                 local1994 = SeqTypeList.get(j);
                                                 if (local1994 != null && local1994.frames != null) {
@@ -766,7 +766,7 @@ public class Protocol {
                                         slot = -1;
                                     }
                                     local1245 = true;
-                                    if (slot != -1 && local2033.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(slot).animationId).priority < SeqTypeList.get(SpotAnimTypeList.get(local2033.spotAnimId).animationId).priority) {
+                                    if (slot != -1 && local2033.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(slot).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(local2033.spotAnimId).seqId).priority) {
                                         local1245 = false;
                                     }
                                     if (local1245) {
@@ -783,7 +783,7 @@ public class Protocol {
                                             local2033.spotanimId = -1;
                                         }
                                         if (local2033.spotAnimId != -1 && local2033.spotAnimStart == client.loop) {
-                                            j = SpotAnimTypeList.get(local2033.spotAnimId).animationId;
+                                            j = SpotAnimTypeList.get(local2033.spotAnimId).seqId;
                                             if (j != -1) {
                                                 local1994 = SeqTypeList.get(j);
                                                 if (local1994 != null && local1994.frames != null) {
@@ -2482,7 +2482,7 @@ public class Protocol {
             }
             staffModLevel = inboundBuffer.p4rme();
             @Pc(573) boolean local573 = true;
-            if (chatFlags != -1 && player.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(chatFlags).animationId).priority < SeqTypeList.get(SpotAnimTypeList.get(player.spotAnimId).animationId).priority) {
+            if (chatFlags != -1 && player.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(chatFlags).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(player.spotAnimId).seqId).priority) {
                 local573 = false;
             }
             if (local573) {
@@ -2496,7 +2496,7 @@ public class Protocol {
                 player.spotAnimY = staffModLevel >> 16;
                 player.anInt3418 = 1;
                 if (player.spotAnimId != -1 && client.loop == player.spotAnimStart) {
-                    local24 = SpotAnimTypeList.get(player.spotAnimId).animationId;
+                    local24 = SpotAnimTypeList.get(player.spotAnimId).seqId;
                     if (local24 != -1) {
                         @Pc(663) SeqType local663 = SeqTypeList.get(local24);
                         if (local663 != null && local663.frames != null) {
@@ -2688,7 +2688,7 @@ public class Protocol {
                 }
                 info = inboundBuffer.g4me();
                 @Pc(147) boolean local147 = true;
-                if (local43 != -1 && npc.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(local43).animationId).priority < SeqTypeList.get(SpotAnimTypeList.get(npc.spotAnimId).animationId).priority) {
+                if (local43 != -1 && npc.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(local43).seqId).priority < SeqTypeList.get(SpotAnimTypeList.get(npc.spotAnimId).seqId).priority) {
                     local147 = false;
                 }
                 if (local147) {
@@ -2702,7 +2702,7 @@ public class Protocol {
                         npc.spotanimId = -1;
                     }
                     if (npc.spotAnimId != -1 && npc.spotAnimStart == client.loop) {
-                        @Pc(227) int seqId = SpotAnimTypeList.get(npc.spotAnimId).animationId;
+                        @Pc(227) int seqId = SpotAnimTypeList.get(npc.spotAnimId).seqId;
                         if (seqId != -1) {
                             @Pc(236) SeqType local236 = SeqTypeList.get(seqId);
                             if (local236 != null && local236.frames != null) {
