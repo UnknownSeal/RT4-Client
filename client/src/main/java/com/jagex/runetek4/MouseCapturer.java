@@ -1,6 +1,5 @@
-package com.jagex.runetek4.input;
+package com.jagex.runetek4;
 
-import com.jagex.runetek4.Mouse;
 import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

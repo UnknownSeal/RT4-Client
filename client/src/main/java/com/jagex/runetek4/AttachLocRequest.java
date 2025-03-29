@@ -3,8 +3,6 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.loc.LocType;
-import com.jagex.runetek4.media.renderable.Entity;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.tile.GroundDecor;

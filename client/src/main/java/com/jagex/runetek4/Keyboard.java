@@ -1,4 +1,4 @@
-package com.jagex.runetek4.input;
+package com.jagex.runetek4;
 
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -8,7 +8,6 @@ import java.awt.event.KeyListener;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

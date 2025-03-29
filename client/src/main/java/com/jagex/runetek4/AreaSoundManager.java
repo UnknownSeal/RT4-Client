@@ -8,7 +8,6 @@ import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.config.types.bas.BasType;
-import com.jagex.runetek4.media.renderable.actor.Player;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;

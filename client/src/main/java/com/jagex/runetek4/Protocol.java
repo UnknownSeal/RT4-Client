@@ -17,7 +17,6 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.core.io.PacketBit;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.config.types.quickchat.QuickChatPhraseType;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.SceneCamera;
 import com.jagex.runetek4.util.MathUtils;
 import com.jagex.runetek4.util.SignLink;

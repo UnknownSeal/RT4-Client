@@ -9,7 +9,6 @@ import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.config.types.msi.MSITypeList;
 import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.config.types.msi.MSIType;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.tile.PlainTile;
 import com.jagex.runetek4.scene.tile.ShapedTile;
 import com.jagex.runetek4.scene.tile.Tile;

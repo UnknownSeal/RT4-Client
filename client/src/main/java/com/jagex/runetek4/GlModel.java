@@ -4,10 +4,6 @@ import java.nio.ByteBuffer;
 
 import com.jagex.runetek4.client.Preferences;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.media.Rasterizer;
-import com.jagex.runetek4.media.renderable.Entity;
-import com.jagex.runetek4.graphics.RawModel;
-import com.jagex.runetek4.graphics.VertexNormal;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.ColorUtils;
 import com.jagex.runetek4.util.MathUtils;

@@ -1,4 +1,4 @@
-package com.jagex.runetek4.graphics;
+package com.jagex.runetek4;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

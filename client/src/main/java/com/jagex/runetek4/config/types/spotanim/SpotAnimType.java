@@ -3,7 +3,7 @@ package com.jagex.runetek4.config.types.spotanim;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.graphics.RawModel;
+import com.jagex.runetek4.RawModel;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

@@ -4,7 +4,6 @@ import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.config.types.npc.NpcType;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

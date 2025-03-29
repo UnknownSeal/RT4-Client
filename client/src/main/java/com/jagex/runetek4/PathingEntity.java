@@ -3,8 +3,6 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.config.types.bas.BasTypeList;
-import com.jagex.runetek4.media.renderable.Entity;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

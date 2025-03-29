@@ -9,7 +9,6 @@ import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.config.types.bas.BasTypeList;
 import com.jagex.runetek4.config.types.idk.IDKType;
 import com.jagex.runetek4.config.types.seq.SeqType;
-import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.node.SoftLruHashTable;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;

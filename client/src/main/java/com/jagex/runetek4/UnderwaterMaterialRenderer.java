@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import java.nio.ByteBuffer;
 
-import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ColorUtils;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;

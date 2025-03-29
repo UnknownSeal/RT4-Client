@@ -1,6 +1,5 @@
-package com.jagex.runetek4.media;
+package com.jagex.runetek4;
 
-import com.jagex.runetek4.*;
 import com.jagex.runetek4.util.ColorUtils;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;

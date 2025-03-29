@@ -11,7 +11,6 @@ import com.jagex.runetek4.config.types.msi.MSITypeList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.config.types.msi.MSIType;
-import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;

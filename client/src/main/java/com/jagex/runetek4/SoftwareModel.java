@@ -1,8 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.graphics.RawModel;
-import com.jagex.runetek4.graphics.VertexNormal;
-import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.ColorUtils;
 import com.jagex.runetek4.util.MathUtils;

@@ -3,7 +3,7 @@ package com.jagex.runetek4.config.types.obj;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.config.types.seq.SeqType;
-import com.jagex.runetek4.graphics.RawModel;
+import com.jagex.runetek4.RawModel;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

@@ -7,7 +7,6 @@ import java.nio.IntBuffer;
 
 import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.client.Preferences;
-import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ThreadUtils;
 import com.jogamp.nativewindow.awt.AWTGraphicsConfiguration;
 import com.jogamp.nativewindow.awt.JAWTWindow;

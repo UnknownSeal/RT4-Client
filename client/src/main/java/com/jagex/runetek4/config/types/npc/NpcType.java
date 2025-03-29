@@ -7,7 +7,7 @@ import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.config.types.varbit.VarbitType;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.config.types.bas.BasTypeList;
-import com.jagex.runetek4.graphics.RawModel;
+import com.jagex.runetek4.RawModel;
 import com.jagex.runetek4.util.IntUtils;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;

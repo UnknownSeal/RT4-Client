@@ -2,8 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.config.types.seq.SeqTypeList;
-import com.jagex.runetek4.graphics.RawModel;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.SoftLruHashTable;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
