@@ -4,24 +4,24 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("client!rg")
-public class CachedNode extends Node {
+public class SecondaryNode extends Node {
 
 	@OriginalMember(owner = "client!rg", name = "v", descriptor = "J")
-	public long secondaryNodeId;
+	public long secondaryKey;
 
 	@OriginalMember(owner = "client!rg", name = "w", descriptor = "Lclient!rg;")
-	public CachedNode nextCachedNode;
+	public SecondaryNode secondaryPrev;
 
 	@OriginalMember(owner = "client!rg", name = "G", descriptor = "Lclient!rg;")
-	public CachedNode previousCachedNode;
+	public SecondaryNode secondaryNext;
 
 	@OriginalMember(owner = "client!rg", name = "e", descriptor = "(B)V")
 	public final void unlinkCachedNode() {
-		if (this.nextCachedNode != null) {
-			this.nextCachedNode.previousCachedNode = this.previousCachedNode;
-			this.previousCachedNode.nextCachedNode = this.nextCachedNode;
-			this.previousCachedNode = null;
-			this.nextCachedNode = null;
+		if (this.secondaryPrev != null) {
+			this.secondaryPrev.secondaryNext = this.secondaryNext;
+			this.secondaryNext.secondaryPrev = this.secondaryPrev;
+			this.secondaryNext = null;
+			this.secondaryPrev = null;
 		}
 	}
 }

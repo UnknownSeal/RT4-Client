@@ -2,7 +2,7 @@ package com.jagex.runetek4.game.config.enumtype;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.datastruct.*;
-import com.jagex.runetek4.node.CachedNode;
+import com.jagex.runetek4.node.SecondaryNode;
 import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 import com.jagex.runetek4.core.io.Packet;
 
 @OriginalClass("client!ml")
-public final class EnumType extends CachedNode {
+public final class EnumType extends SecondaryNode {
 
 	@OriginalMember(owner = "client!ml", name = "N", descriptor = "I")
 	public int valueType;

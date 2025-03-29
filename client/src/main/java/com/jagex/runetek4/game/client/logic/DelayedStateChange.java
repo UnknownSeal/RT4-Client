@@ -3,25 +3,25 @@ package com.jagex.runetek4.game.client.logic;
 import com.jagex.runetek4.JString;
 import com.jagex.runetek4.MonotonicTime;
 import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.node.CachedNode;
+import com.jagex.runetek4.node.SecondaryNode;
 
-import com.jagex.runetek4.node.NodeQueue;
+import com.jagex.runetek4.node.SecondaryLinkedList;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!da")
-public final class DelayedStateChange extends CachedNode {
+public final class DelayedStateChange extends SecondaryNode {
 
 	@OriginalMember(owner = "client!runetek4.client", name = "U", descriptor = "Lclient!sc;")
 	public static final HashTable changes = new HashTable(16);
 
 	@OriginalMember(owner = "runetek4.client!la", name = "f", descriptor = "Lclient!ce;")
-	public static final NodeQueue clientQueue = new NodeQueue();
+	public static final SecondaryLinkedList clientQueue = new SecondaryLinkedList();
 
 	@OriginalMember(owner = "runetek4.client!rh", name = "e", descriptor = "Lclient!ce;")
-	public static final NodeQueue serverQueue = new NodeQueue();
+	public static final SecondaryLinkedList serverQueue = new SecondaryLinkedList();
 
 	@OriginalMember(owner = "client!da", name = "T", descriptor = "I")
 	public int intArg2;
@@ -180,7 +180,7 @@ public final class DelayedStateChange extends CachedNode {
 			}
 			local10.unlink();
 			local10.unlinkCachedNode();
-		} while ((Long.MIN_VALUE & local10.secondaryNodeId) == 0L);
+		} while ((Long.MIN_VALUE & local10.secondaryKey) == 0L);
 		return local10;
 	}
 
@@ -252,13 +252,13 @@ public final class DelayedStateChange extends CachedNode {
 
 	@OriginalMember(owner = "client!da", name = "a", descriptor = "(Z)V")
 	public final void pushClient() {
-		this.secondaryNodeId = MonotonicTime.currentTimeMillis() + 500L | Long.MIN_VALUE & this.secondaryNodeId;
+		this.secondaryKey = MonotonicTime.currentTimeMillis() + 500L | Long.MIN_VALUE & this.secondaryKey;
 		clientQueue.addTail(this);
 	}
 
 	@OriginalMember(owner = "client!da", name = "b", descriptor = "(Z)J")
 	public final long getTime() {
-		return this.secondaryNodeId & Long.MAX_VALUE;
+		return this.secondaryKey & Long.MAX_VALUE;
 	}
 
 	@OriginalMember(owner = "client!da", name = "e", descriptor = "(I)I")
@@ -273,7 +273,7 @@ public final class DelayedStateChange extends CachedNode {
 
 	@OriginalMember(owner = "client!da", name = "g", descriptor = "(B)V")
 	public final void pushServer() {
-		this.secondaryNodeId |= Long.MIN_VALUE;
+		this.secondaryKey |= Long.MIN_VALUE;
 		if (this.getTime() == 0L) {
 			serverQueue.addTail(this);
 		}

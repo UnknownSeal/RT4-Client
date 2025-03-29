@@ -1,7 +1,7 @@
 package com.jagex.runetek4.game.config.quickchatphrasetype;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.node.CachedNode;
+import com.jagex.runetek4.node.SecondaryNode;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!cb")
-public final class QuickChatPhraseType extends CachedNode {
+public final class QuickChatPhraseType extends SecondaryNode {
 
     @OriginalMember(owner = "client!bf", name = "C", descriptor = "[I")
     public static final int[] anIntArray51 = new int[] { 2, 2, 4, 2, 1, 8, 4, 1, 4, 4, 2, 1, 1, 1, 4, 1 };

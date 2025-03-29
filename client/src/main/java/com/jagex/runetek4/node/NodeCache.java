@@ -11,7 +11,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class NodeCache {
 
 	@OriginalMember(owner = "runetek4.client!n", name = "k", descriptor = "Lclient!ce;")
-	private final NodeQueue nodeQueue = new NodeQueue();
+	private final SecondaryLinkedList secondaryLinkedList = new SecondaryLinkedList();
 
 	@OriginalMember(owner = "runetek4.client!n", name = "m", descriptor = "I")
 	private final int size;
@@ -36,7 +36,7 @@ public final class NodeCache {
 	public final void put(@OriginalArg(1) Object arg0, @OriginalArg(2) long arg1) {
 		this.remove(arg1);
 		if (this.remaining == 0) {
-			@Pc(26) ReferenceNode node = (ReferenceNode) this.nodeQueue.removeHead();
+			@Pc(26) ReferenceNode node = (ReferenceNode) this.secondaryLinkedList.removeHead();
 			node.unlink();
 			node.unlinkCachedNode();
 		} else {
@@ -44,8 +44,8 @@ public final class NodeCache {
 		}
 		@Pc(44) HardReferenceNode local44 = new HardReferenceNode(arg0);
 		this.hashTable.put(local44, arg1);
-		this.nodeQueue.addTail(local44);
-		local44.secondaryNodeId = 0L;
+		this.secondaryLinkedList.addTail(local44);
+		local44.secondaryKey = 0L;
 	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(JB)V")
@@ -61,7 +61,7 @@ public final class NodeCache {
 	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(I)I")
 	public final int method3100() {
 		@Pc(10) int local10 = 0;
-		for (@Pc(16) ReferenceNode local16 = (ReferenceNode) this.nodeQueue.head(); local16 != null; local16 = (ReferenceNode) this.nodeQueue.prev()) {
+		for (@Pc(16) ReferenceNode local16 = (ReferenceNode) this.secondaryLinkedList.head(); local16 != null; local16 = (ReferenceNode) this.secondaryLinkedList.next()) {
 			if (!local16.isSoft()) {
 				local10++;
 			}
@@ -74,17 +74,17 @@ public final class NodeCache {
 		if (ReferenceNodeFactory.SOFT_REFERENCE_NODE_FACTORY == null) {
 			return;
 		}
-		for (@Pc(9) ReferenceNode cachedNode = (ReferenceNode) this.nodeQueue.head(); cachedNode != null; cachedNode = (ReferenceNode) this.nodeQueue.prev()) {
+		for (@Pc(9) ReferenceNode cachedNode = (ReferenceNode) this.secondaryLinkedList.head(); cachedNode != null; cachedNode = (ReferenceNode) this.secondaryLinkedList.next()) {
 			if (cachedNode.isSoft()) {
 				if (cachedNode.get() == null) {
 					cachedNode.unlink();
 					cachedNode.unlinkCachedNode();
 					this.remaining++;
 				}
-			} else if (++cachedNode.secondaryNodeId > (long) arg0) {
+			} else if (++cachedNode.secondaryKey > (long) arg0) {
 				@Pc(33) ReferenceNode local33 = ReferenceNodeFactory.SOFT_REFERENCE_NODE_FACTORY.create(cachedNode);
 				this.hashTable.put(local33, cachedNode.nodeId);
-				Static84.method1772(cachedNode, local33);
+				SecondaryLinkedList.insertAfter(cachedNode, local33);
 				cachedNode.unlink();
 				cachedNode.unlinkCachedNode();
 			}
@@ -93,7 +93,7 @@ public final class NodeCache {
 
 	@OriginalMember(owner = "runetek4.client!n", name = "b", descriptor = "(B)V")
 	public final void removeSoft() {
-		for (@Pc(7) ReferenceNode local7 = (ReferenceNode) this.nodeQueue.head(); local7 != null; local7 = (ReferenceNode) this.nodeQueue.prev()) {
+		for (@Pc(7) ReferenceNode local7 = (ReferenceNode) this.secondaryLinkedList.head(); local7 != null; local7 = (ReferenceNode) this.secondaryLinkedList.next()) {
 			if (local7.isSoft()) {
 				local7.unlink();
 				local7.unlinkCachedNode();
@@ -104,7 +104,7 @@ public final class NodeCache {
 
 	@OriginalMember(owner = "runetek4.client!n", name = "c", descriptor = "(I)V")
 	public final void clean() {
-		this.nodeQueue.clear();
+		this.secondaryLinkedList.clear();
 		this.hashTable.clear();
 		this.remaining = this.size;
 	}
@@ -125,13 +125,13 @@ public final class NodeCache {
 		if (local12.isSoft()) {
 			@Pc(53) HardReferenceNode local53 = new HardReferenceNode(local27);
 			this.hashTable.put(local53, local12.nodeId);
-			this.nodeQueue.addTail(local53);
-			local53.secondaryNodeId = 0L;
+			this.secondaryLinkedList.addTail(local53);
+			local53.secondaryKey = 0L;
 			local12.unlink();
 			local12.unlinkCachedNode();
 		} else {
-			this.nodeQueue.addTail(local12);
-			local12.secondaryNodeId = 0L;
+			this.secondaryLinkedList.addTail(local12);
+			local12.secondaryKey = 0L;
 		}
 		return local27;
 	}

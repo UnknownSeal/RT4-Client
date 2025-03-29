@@ -33,7 +33,7 @@ import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.node.NodeQueue;
+import com.jagex.runetek4.node.SecondaryLinkedList;
 import com.jagex.runetek4.scene.SceneCamera;
 import com.jagex.runetek4.scene.Scenery;
 import com.jagex.runetek4.scene.tile.Tile;
@@ -4492,8 +4492,8 @@ public final class ClientScriptRunner {
 														ssp--;
 														chatTypedLowercase = scriptStringValues[ssp];
 														local7566 = false;
-														@Pc(7577) NodeQueue local7577 = method3333(interfaceData >> 14 & 0x3FFF, interfaceData & 0x3FFF);
-														for (@Pc(7582) Map local7582 = (Map) local7577.head(); local7582 != null; local7582 = (Map) local7577.prev()) {
+														@Pc(7577) SecondaryLinkedList local7577 = method3333(interfaceData >> 14 & 0x3FFF, interfaceData & 0x3FFF);
+														for (@Pc(7582) Map local7582 = (Map) local7577.head(); local7582 != null; local7582 = (Map) local7577.next()) {
 															if (local7582.group.equalsIgnoreCase(chatTypedLowercase)) {
 																local7566 = true;
 																break;
@@ -6618,8 +6618,8 @@ public final class ClientScriptRunner {
 	}
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "a", descriptor = "(IIB)Lclient!ce;")
-	public static NodeQueue method3333(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
-		@Pc(9) NodeQueue local9 = new NodeQueue();
+	public static SecondaryLinkedList method3333(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+		@Pc(9) SecondaryLinkedList local9 = new SecondaryLinkedList();
 		for (@Pc(14) Map local14 = (Map) MapList.aClass69_120.head(); local14 != null; local14 = (Map) MapList.aClass69_120.next()) {
 			if (local14.valid && local14.method664(arg1, arg0)) {
 				local9.addTail(local14);

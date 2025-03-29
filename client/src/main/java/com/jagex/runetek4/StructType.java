@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.*;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.node.CachedNode;
+import com.jagex.runetek4.node.SecondaryNode;
 import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -11,7 +11,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!lk")
-public final class StructType extends CachedNode {
+public final class StructType extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!lk", name = "I", descriptor = "Lclient!sc;")
 	private HashTable aClass133_14;

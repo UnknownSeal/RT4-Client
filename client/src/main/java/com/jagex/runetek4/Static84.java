@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.node.CachedNode;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -103,14 +102,4 @@ public final class Static84 {
 		}
 	}
 
-	@OriginalMember(owner = "client!gk", name = "a", descriptor = "(Lclient!rg;Lclient!rg;B)V")
-	public static void method1772(@OriginalArg(0) CachedNode arg0, @OriginalArg(1) CachedNode arg1) {
-		if (arg1.nextCachedNode != null) {
-			arg1.unlinkCachedNode();
-		}
-		arg1.nextCachedNode = arg0;
-		arg1.previousCachedNode = arg0.previousCachedNode;
-		arg1.nextCachedNode.previousCachedNode = arg1;
-		arg1.previousCachedNode.nextCachedNode = arg1;
-	}
 }

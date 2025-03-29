@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.network.Js5NetRequest;
-import com.jagex.runetek4.node.NodeQueue;
+import com.jagex.runetek4.node.SecondaryLinkedList;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -26,16 +26,16 @@ public final class Js5NetQueue {
 	private Js5NetRequest current;
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "a", descriptor = "Lclient!ce;")
-	private final NodeQueue urgent = new NodeQueue();
+	private final SecondaryLinkedList urgent = new SecondaryLinkedList();
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "q", descriptor = "Lclient!ce;")
-	private final NodeQueue inFlightUrgentRequests = new NodeQueue();
+	private final SecondaryLinkedList inFlightUrgentRequests = new SecondaryLinkedList();
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "v", descriptor = "Lclient!ce;")
-	private final NodeQueue prefetch = new NodeQueue();
+	private final SecondaryLinkedList prefetch = new SecondaryLinkedList();
 
 	@OriginalMember(owner = "runetek4.client!jb", name = "z", descriptor = "Lclient!ce;")
-	private final NodeQueue inFlightPrefetchRequests = new NodeQueue();
+	private final SecondaryLinkedList inFlightPrefetchRequests = new SecondaryLinkedList();
 
 	@OriginalMember(owner = "client!jb", name = "E", descriptor = "Lclient!wa;")
 	private final Packet outPacket = new Packet(4);
@@ -82,17 +82,17 @@ public final class Js5NetQueue {
 		try {
 			this.updateServerSocket.checkError();
 			@Pc(75) Js5NetRequest local75;
-			for (local75 = (Js5NetRequest) this.urgent.head(); local75 != null; local75 = (Js5NetRequest) this.urgent.prev()) {
+			for (local75 = (Js5NetRequest) this.urgent.head(); local75 != null; local75 = (Js5NetRequest) this.urgent.next()) {
 				this.outPacket.offset = 0;
 				this.outPacket.p1(1);
-				this.outPacket.p3((int) local75.secondaryNodeId);
+				this.outPacket.p3((int) local75.secondaryKey);
 				this.updateServerSocket.write(4, this.outPacket.data);
 				this.inFlightUrgentRequests.addTail(local75);
 			}
-			for (local75 = (Js5NetRequest) this.prefetch.head(); local75 != null; local75 = (Js5NetRequest) this.prefetch.prev()) {
+			for (local75 = (Js5NetRequest) this.prefetch.head(); local75 != null; local75 = (Js5NetRequest) this.prefetch.next()) {
 				this.outPacket.offset = 0;
 				this.outPacket.p1(0);
-				this.outPacket.p3((int) local75.secondaryNodeId);
+				this.outPacket.p3((int) local75.secondaryKey);
 				this.updateServerSocket.write(4, this.outPacket.data);
 				this.inFlightPrefetchRequests.addTail(local75);
 			}
@@ -164,10 +164,10 @@ public final class Js5NetQueue {
 							@Pc(568) int headerLength = compressionType == 0 ? 5 : 9;
 							@Pc(509) Js5NetRequest request;
 							if (prefect) {
-								for (request = (Js5NetRequest) this.inFlightPrefetchRequests.head(); request != null && request.secondaryNodeId != key; request = (Js5NetRequest) this.inFlightPrefetchRequests.prev()) {
+								for (request = (Js5NetRequest) this.inFlightPrefetchRequests.head(); request != null && request.secondaryKey != key; request = (Js5NetRequest) this.inFlightPrefetchRequests.next()) {
 								}
 							} else {
-								for (request = (Js5NetRequest) this.inFlightUrgentRequests.head(); request != null && request.secondaryNodeId != key; request = (Js5NetRequest) this.inFlightUrgentRequests.prev()) {
+								for (request = (Js5NetRequest) this.inFlightUrgentRequests.head(); request != null && request.secondaryKey != key; request = (Js5NetRequest) this.inFlightUrgentRequests.next()) {
 								}
 							}
 
@@ -341,7 +341,7 @@ public final class Js5NetQueue {
 		@Pc(7) Js5NetRequest local7 = new Js5NetRequest();
 		@Pc(14) long local14 = (long) (arg2 + (arg0 << 16));
 		local7.urgent = arg3;
-		local7.secondaryNodeId = local14;
+		local7.secondaryKey = local14;
 		local7.offset = arg1;
 		if (arg3) {
 			if (this.getUrgentRequestCount() >= 20) {

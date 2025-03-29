@@ -4,14 +4,14 @@ import java.util.Random;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.node.CachedNode;
+import com.jagex.runetek4.node.SecondaryNode;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!rk")
-public abstract class Font extends CachedNode {
+public abstract class Font extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!rk", name = "K", descriptor = "Lclient!na;")
 	public static final JString greaterThan = JString.parse("gt");

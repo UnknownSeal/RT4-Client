@@ -2,12 +2,12 @@ package com.jagex.runetek4.cache.cs;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.node.CachedNode;
+import com.jagex.runetek4.node.SecondaryNode;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!qc")
-public final class ClientScript extends CachedNode {
+public final class ClientScript extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!qc", name = "I", descriptor = "I")
 	public int intArgs;

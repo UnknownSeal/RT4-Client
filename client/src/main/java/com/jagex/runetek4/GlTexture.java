@@ -2,7 +2,7 @@ package com.jagex.runetek4;
 
 import java.nio.ByteBuffer;
 
-import com.jagex.runetek4.node.CachedNode;
+import com.jagex.runetek4.node.SecondaryNode;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
 import com.jogamp.opengl.*;
@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!uh")
-public final class GlTexture extends CachedNode {
+public final class GlTexture extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!oj", name = "t", descriptor = "[I")
 	public static int[] anIntArray372;
