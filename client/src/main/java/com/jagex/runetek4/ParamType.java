@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.node.CachedNode;
+import com.jagex.runetek4.node.SecondaryNode;
 import com.jagex.runetek4.core.io.Packet;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!hn")
-public final class ParamType extends CachedNode {
+public final class ParamType extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!hn", name = "I", descriptor = "I")
 	public int defaultInt;

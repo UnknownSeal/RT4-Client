@@ -92,7 +92,7 @@ public final class HashTable {
 	}
 
 	@OriginalMember(owner = "client!sc", name = "a", descriptor = "(JI)Lclient!ab;")
-	public Node getNode(@OriginalArg(0) long id) {
+	public Node get(@OriginalArg(0) long id) {
 		this.currentNodeId = id;
 		@Pc(24) Node node = this.nodes[(int) (id & (long) (this.size - 1))];
 		for (this.next = node.prev; this.next != node; this.next = this.next.prev) {

@@ -8,9 +8,8 @@ import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.game.config.msitype.MSIType;
-import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.scene.tile.GenericTile;
+import com.jagex.runetek4.scene.tile.PlainTile;
 import com.jagex.runetek4.scene.tile.ShapedTile;
 import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.util.MathUtils;
@@ -116,7 +115,7 @@ public class MiniMap {
             if (GlRenderer.enabled) {
                 ((GlSprite) sprite).renderRotatedTransparent(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, minimapZoom + 256, (GlSprite) arg3.method489(false));
             } else {
-                ((SoftwareSprite) sprite).method310(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, minimapZoom + 256, arg3.anIntArray37, arg3.anIntArray45);
+                ((SoftwareSprite) sprite).renderRotated(arg2, arg1, arg3.width, arg3.height, anchorX, anchorY, angle, minimapZoom + 256, arg3.anIntArray37, arg3.anIntArray45);
             }
             @Pc(146) int flagX;
             @Pc(181) int flagZ;
@@ -154,13 +153,13 @@ public class MiniMap {
                             if (GlRenderer.enabled) {
                                 GlFont.method1188((GlSprite) arg3.method489(false));
                             } else {
-                                Rasterizer.method2486(arg3.anIntArray37, arg3.anIntArray45);
+                                SoftwareRaster.method2486(arg3.anIntArray37, arg3.anIntArray45);
                             }
                             local156.renderParagraphAlpha(LoginManager.mapElementList.aClass100Array153[local117], arg2 + local245 + arg3.width / 2, arg1 + arg3.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
                             if (GlRenderer.enabled) {
                                 GlFont.method1173();
                             } else {
-                                Rasterizer.method2482();
+                                SoftwareRaster.method2482();
                             }
                         }
                     }
@@ -176,7 +175,7 @@ public class MiniMap {
                         continue;
                     }
                 }
-                drawOnMinimap(arg3, Static67.aClass3_Sub2_Sub1Array4[local382.mapfunction], local150, flagZ, arg1, arg2);
+                drawOnMinimap(arg3, Sprites.mapfuncs[local382.mapfunction], local150, flagZ, arg1, arg2);
             }
             for (flagX = 0; flagX < 104; flagX++) {
                 for (flagZ = 0; flagZ < 104; flagZ++) {
@@ -201,7 +200,7 @@ public class MiniMap {
                         if (local507.miniMapMarkerObjectEntry == -1) {
                             drawOnMinimap(arg3, Sprites.mapdots[1], npcX, local154, arg1, arg2);
                         } else {
-                            drawOnMinimap(arg3, Static67.aClass3_Sub2_Sub1Array4[local507.miniMapMarkerObjectEntry], npcX, local154, arg1, arg2);
+                            drawOnMinimap(arg3, Sprites.mapfuncs[local507.miniMapMarkerObjectEntry], npcX, local154, arg1, arg2);
                         }
                     }
                 }
@@ -271,7 +270,7 @@ public class MiniMap {
             if (LoginManager.mapFlagX != 0) {
                 flagX = LoginManager.mapFlagX * 4 + 2 - PlayerList.self.xFine / 32;
                 flagZ = LoginManager.mapFlagZ * 4 + 2 - PlayerList.self.zFine / 32;
-                drawOnMinimap(arg3, Static84.aClass3_Sub2_Sub1_4, flagZ, flagX, arg1, arg2);
+                drawOnMinimap(arg3, Sprites.mapflags, flagZ, flagX, arg1, arg2);
             }
             if (GlRenderer.enabled) {
                 GlRaster.fillRect(arg2 + arg3.width / 2 - 1, arg1 + -1 - -(arg3.height / 2), 3, 3, 16777215);
@@ -284,7 +283,7 @@ public class MiniMap {
                 local1041.render(arg2, arg1);
             }
         } else {
-            Rasterizer.method2504(arg2, arg1, arg3.anIntArray37, arg3.anIntArray45);
+            SoftwareRaster.method2504(arg2, arg1, arg3.anIntArray37, arg3.anIntArray45);
         }
         InterfaceList.rectangleRedraw[arg0] = true;
     }
@@ -295,10 +294,10 @@ public class MiniMap {
         if (tile == null) {
             return;
         }
-        @Pc(13) GenericTile genericTile = tile.plainTile;
+        @Pc(13) PlainTile plainTile = tile.plainTile;
         @Pc(23) int local23;
-        if (genericTile != null) {
-            @Pc(18) int color = genericTile.rgbColor;
+        if (plainTile != null) {
+            @Pc(18) int color = plainTile.rgbColor;
             if (color != 0) {
                 for (local23 = 0; local23 < 4; local23++) {
                     destPixels[offset] = color;
@@ -434,7 +433,7 @@ public class MiniMap {
             for (local76 = 1; local76 < 103; local76++) {
                 if ((SceneGraph.renderFlags[arg0][local76][local37] & 0x18) == 0 && !method3109(local76, local455, local37, local35, arg0)) {
                     if (GlRenderer.enabled) {
-                        SoftwareRaster.destinationPixels = null;
+                        SoftwareRaster.pixels = null;
                     } else {
                         SoftwareRaster.frameBuffer.makeTarget();
                     }
@@ -442,7 +441,7 @@ public class MiniMap {
                 }
                 if (arg0 < 3 && (SceneGraph.renderFlags[arg0 + 1][local76][local37] & 0x8) != 0 && !method3109(local76, local455, local37, local35, arg0 + 1)) {
                     if (GlRenderer.enabled) {
-                        SoftwareRaster.destinationPixels = null;
+                        SoftwareRaster.pixels = null;
                     } else {
                         SoftwareRaster.frameBuffer.makeTarget();
                     }
@@ -463,7 +462,7 @@ public class MiniMap {
             sprite = softwareSprite;
         }
         if (GlRenderer.enabled) {
-            SoftwareRaster.destinationPixels = null;
+            SoftwareRaster.pixels = null;
         } else {
             SoftwareRaster.frameBuffer.makeTarget();
         }
@@ -479,7 +478,7 @@ public class MiniMap {
         }
         @Pc(30) int local30 = Math.min(arg5.width / 2, arg5.height / 2);
         if (local30 * local30 >= len) {
-            drawOnMinimap(arg5, Static149.aClass3_Sub2_Sub1Array7[arg0], mapY, mapX, arg1, arg2);
+            drawOnMinimap(arg5, Sprites.mapmarkhints[arg0], mapY, mapX, arg1, arg2);
             return;
         }
         local30 -= 10;
@@ -494,9 +493,9 @@ public class MiniMap {
         @Pc(117) int sine = (int) (Math.sin(angle) * (double) local30);
         @Pc(124) int cosine = (int) (Math.cos(angle) * (double) local30);
         if (GlRenderer.enabled) {
-            ((GlSprite) Static277.aClass3_Sub2_Sub1Array12[arg0]).method1428((arg5.width / 2 + arg2 + sine) * 16, (arg5.height / 2 + arg1 - cosine) * 16, (int) (angle * 10430.378D));
+            ((GlSprite) Sprites.hintMapEdge[arg0]).method1428((arg5.width / 2 + arg2 + sine) * 16, (arg5.height / 2 + arg1 - cosine) * 16, (int) (angle * 10430.378D));
         } else {
-            ((SoftwareSprite) Static277.aClass3_Sub2_Sub1Array12[arg0]).method306(sine + arg5.width / 2 + arg2 - 10, arg5.height / 2 + -10 + arg1 + -cosine, angle);
+            ((SoftwareSprite) Sprites.hintMapEdge[arg0]).method306(sine + arg5.width / 2 + arg2 - 10, arg5.height / 2 + -10 + arg1 + -cosine, angle);
         }
     }
 
@@ -556,7 +555,7 @@ public class MiniMap {
             if (local17 != null && local17.type == 2) {
                 ClientScriptRunner.method1026(arg0 >> 1, arg4, (local17.anInt4046 - Camera.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.targetX - Camera.originX << 7), arg3);
                 if (ClientScriptRunner.anInt1951 > -1 && client.loop % 20 < 10) {
-                    Sprites.aClass3_Sub2_Sub1Array11[local17.anInt4048].render(arg1 + ClientScriptRunner.anInt1951 - 12, arg5 + -28 - -Static16.anInt548);
+                    Sprites.headhints[local17.anInt4048].render(arg1 + ClientScriptRunner.anInt1951 - 12, arg5 + -28 - -ClientScriptRunner.anInt548);
                 }
             }
             local3++;
@@ -583,7 +582,7 @@ public class MiniMap {
                 if (local14 > 0L) {
                     local65 = arg3;
                 }
-                local75 = SoftwareRaster.destinationPixels;
+                local75 = SoftwareRaster.pixels;
                 local90 = (52736 - arg2 * 512) * 4 + arg0 * 4 + 24624;
                 if (local35 == 0 || local35 == 2) {
                     if (local28 == 0) {
@@ -659,7 +658,7 @@ public class MiniMap {
                         local65 = 15597568;
                     }
                     local90 = arg0 * 4 + (103 - arg2) * 2048 + 24624;
-                    local75 = SoftwareRaster.destinationPixels;
+                    local75 = SoftwareRaster.pixels;
                     if (local28 == 0 || local28 == 2) {
                         local75[local90 + 1536] = local65;
                         local75[local90 + 1025] = local65;

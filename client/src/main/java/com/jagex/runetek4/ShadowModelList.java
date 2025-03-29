@@ -3,16 +3,20 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class ShadowModelList {
+    @OriginalMember(owner = "client!di", name = "I", descriptor = "Lclient!n;")
+    public static final SoftLruHashTable SHADOWS = new SoftLruHashTable(32);
+
     @OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(IZLclient!tk;IIIIILclient!ak;IIIIB)Lclient!ak;")
     public static Model method1043(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) SeqType arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) Model arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12) {
         @Pc(23) long local23 = ((long) arg4 << 48) + (long) (arg7 + (arg0 << 16) + (arg12 << 24)) + ((long) arg6 << 32);
-        @Pc(33) Model local33 = (Model) Static45.aClass99_6.get(local23);
+        @Pc(33) Model local33 = (Model) SHADOWS.get(local23);
         @Pc(109) int local109;
         @Pc(115) int local115;
         @Pc(126) int local126;
@@ -52,15 +56,15 @@ public class ShadowModelList {
                 @Pc(252) short local252 = (short) (((arg6 & 0x7F) * local130 + (arg4 & 0x7F) * local126 & 0x7F00) + (local130 * (arg6 & 0x380) + local126 * (arg4 & 0x380) & 0x38000) + (local126 * (arg4 & 0xFC00) + (arg6 & 0xFC00) * local130 & 0xFC0000) >> 8);
                 for (local162 = 0; local162 < local41; local162++) {
                     if (local115 == 0) {
-                        local103.method1676(local109, local113[0][(local162 + 1) % local41], local113[0][local162], local252, local207);
+                        local103.addTriangle(local109, local113[0][(local162 + 1) % local41], local113[0][local162], local252, local207);
                     } else {
-                        local103.method1676(local113[local115 - 1][local162], local113[local115 - 1][(local162 + 1) % local41], local113[local115][(local162 + 1) % local41], local252, local207);
-                        local103.method1676(local113[local115 - 1][local162], local113[local115][(local162 + 1) % local41], local113[local115][local162], local252, local207);
+                        local103.addTriangle(local113[local115 - 1][local162], local113[local115 - 1][(local162 + 1) % local41], local113[local115][(local162 + 1) % local41], local252, local207);
+                        local103.addTriangle(local113[local115 - 1][local162], local113[local115][(local162 + 1) % local41], local113[local115][local162], local252, local207);
                     }
                 }
             }
             local33 = local103.createModel(64, 768, -50, -10, -50);
-            Static45.aClass99_6.put(local33, local23);
+            SHADOWS.put(local33, local23);
         }
         @Pc(367) int local367 = arg7 * 64 - 1;
         @Pc(376) int local376 = -local367;
@@ -72,7 +76,7 @@ public class ShadowModelList {
         local126 = arg8.getMinZ();
         local130 = arg8.getMaxZ();
         if (arg2 != null) {
-            @Pc(403) int local403 = arg2.anIntArray473[arg10];
+            @Pc(403) int local403 = arg2.frames[arg10];
             local386 = SeqTypeList.getAnimFrameset(local403 >> 16);
             arg10 = local403 & 0xFFFF;
         }
@@ -128,12 +132,27 @@ public class ShadowModelList {
         } else {
             @Pc(574) SoftwareModel local574 = (SoftwareModel) local33;
             if (SceneGraph.getTileHeight(Player.plane, arg3 + local384, arg5 - -local126) != arg11 || arg11 != SceneGraph.getTileHeight(Player.plane, arg3 + local115, arg5 - -local130)) {
-                for (local162 = 0; local162 < local574.anInt5788; local162++) {
-                    local574.anIntArray527[local162] += SceneGraph.getTileHeight(Player.plane, arg3 + local574.anIntArray528[local162], arg5 + local574.anIntArray531[local162]) - arg11;
+                for (local162 = 0; local162 < local574.vertexCount; local162++) {
+                    local574.vertexY[local162] += SceneGraph.getTileHeight(Player.plane, arg3 + local574.vertexX[local162], arg5 + local574.vertexZ[local162]) - arg11;
                 }
-                local574.aBoolean305 = false;
+                local574.boundsValid = false;
             }
         }
         return local33;
+    }
+
+    @OriginalMember(owner = "runetek4.client!kh", name = "a", descriptor = "(II)V")
+    public static void clean() {
+        SHADOWS.clean(5);
+    }
+
+    @OriginalMember(owner = "runetek4.client!ug", name = "b", descriptor = "(B)V")
+    public static void removeSoft() {
+        SHADOWS.removeSoft();
+    }
+
+    @OriginalMember(owner = "runetek4.client!hb", name = "a", descriptor = "(Z)V")
+    public static void clear() {
+        SHADOWS.clean();
     }
 }

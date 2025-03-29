@@ -214,11 +214,11 @@ public class Cheat {
                 qaOpTest = true;
             }
             if (chatTyped.equalsIgnoreCase(TWEEN)) {
-                if (SeqType.tween) {
-                    SeqType.tween = false;
+                if (SeqType.applyTweening) {
+                    SeqType.applyTweening = false;
                     Chat.addMessage(null, 0, FORCED_TWEENING_DISABLED);
                 } else {
-                    SeqType.tween = true;
+                    SeqType.applyTweening = true;
                     Chat.addMessage(null, 0, FORCED_TWEENING_ENABLED);
                 }
             }

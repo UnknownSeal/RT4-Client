@@ -143,7 +143,7 @@ public class AreaSoundManager {
 
     @OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(Lclient!e;I)V")
     public static void remove(@OriginalArg(0) Player player) {
-        @Pc(10) AreaSound areaSound = (AreaSound) playerSounds.getNode(player.username.encode37());
+        @Pc(10) AreaSound areaSound = (AreaSound) playerSounds.get(player.username.encode37());
         if (areaSound == null) {
             return;
         }
@@ -266,19 +266,19 @@ public class AreaSoundManager {
         }
         @Pc(134) int volume = (areaSound.radius - distance) * Preferences.ambientSoundsVolume / areaSound.radius;
         if (areaSound.primaryStream != null) {
-            areaSound.primaryStream.method386(volume);
+            areaSound.primaryStream.setVolume(volume);
         } else if (areaSound.sound >= 0) {
             @Pc(150) SynthSound synthSound = SynthSound.create(client.js5Archive4, areaSound.sound, 0);
             if (synthSound != null) {
                 @Pc(158) PcmSound pcmSound = synthSound.toPcmSound().resample(client.pcmResampler);
-                @Pc(163) SoundPcmStream stream = Static284.method404(pcmSound, volume);
+                @Pc(163) SoundPcmStream stream = SoundPcmStream.create(pcmSound, volume);
                 stream.setLoops(-1);
                 client.soundStream.addSubStream(stream);
                 areaSound.primaryStream = stream;
             }
         }
         if (areaSound.secondaryStream != null) {
-            areaSound.secondaryStream.method386(volume);
+            areaSound.secondaryStream.setVolume(volume);
             if (!areaSound.secondaryStream.isLinked()) {
                 areaSound.secondaryStream = null;
             }
@@ -287,7 +287,7 @@ public class AreaSoundManager {
             @Pc(227) SynthSound synthSound = SynthSound.create(client.js5Archive4, areaSound.sounds[index], 0);
             if (synthSound != null) {
                 @Pc(236) PcmSound pcmSound = synthSound.toPcmSound().resample(client.pcmResampler);
-                @Pc(241) SoundPcmStream stream = Static284.method404(pcmSound, volume);
+                @Pc(241) SoundPcmStream stream = SoundPcmStream.create(pcmSound, volume);
                 stream.setLoops(0);
                 client.soundStream.addSubStream(stream);
                 areaSound.remainingLoops = (int) ((double) (areaSound.maxInterval - areaSound.minInterval) * Math.random()) + areaSound.minInterval;

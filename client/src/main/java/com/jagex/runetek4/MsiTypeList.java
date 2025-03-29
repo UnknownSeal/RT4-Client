@@ -3,17 +3,17 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.msitype.MSIType;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class MsiTypeList {
     @OriginalMember(owner = "runetek4.client!rl", name = "P", descriptor = "Lclient!n;")
-    public static final NodeCache sprites = new NodeCache(64);
+    public static final SoftLruHashTable sprites = new SoftLruHashTable(64);
 
     @OriginalMember(owner = "runetek4.client!sk", name = "hb", descriptor = "Lclient!n;")
-    public static final NodeCache types = new NodeCache(64);
+    public static final SoftLruHashTable types = new SoftLruHashTable(64);
 
     @OriginalMember(owner = "runetek4.client!uf", name = "r", descriptor = "Lclient!ve;")
     public static Js5 spritesArchive;

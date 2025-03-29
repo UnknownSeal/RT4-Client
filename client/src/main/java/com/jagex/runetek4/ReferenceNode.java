@@ -1,11 +1,11 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.node.CachedNode;
+import com.jagex.runetek4.node.SecondaryNode;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!gf")
-public abstract class ReferenceNode extends CachedNode {
+public abstract class ReferenceNode extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!gf", name = "<init>", descriptor = "()V")
 	protected ReferenceNode() {

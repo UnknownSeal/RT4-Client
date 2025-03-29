@@ -38,7 +38,7 @@ public class MapList {
         @Pc(25) int local25 = archive.getGroupId(DETAILS);
         @Pc(30) int[] local30 = archive.getFileIds(local25);
         for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {
-            aClass69_120.addTail(Static210.create(new Packet(archive.getfile(local25, local30[local32]))));
+            aClass69_120.addTail(Map.create(new Packet(archive.getfile(local25, local30[local32]))));
         }
     }
 

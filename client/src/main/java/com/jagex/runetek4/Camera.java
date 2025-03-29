@@ -97,6 +97,8 @@ public class Camera {
     public static int anInt5217;
     @OriginalMember(owner = "runetek4.client!t", name = "A", descriptor = "I")
     public static int anInt5225;
+    @OriginalMember(owner = "client!cn", name = "L", descriptor = "I")
+    public static int yawAccel = 0;
 
     @OriginalMember(owner = "client!jl", name = "c", descriptor = "(I)V")
     public static void updateLockedCamera() {
@@ -353,14 +355,14 @@ public class Camera {
                 pitchAccel /= 2;
             }
             if (Keyboard.pressedKeys[96]) {
-                Static38.anInt1203 += (-Static38.anInt1203 - 24) / 2;
+                yawAccel += (-yawAccel - 24) / 2;
             } else if (Keyboard.pressedKeys[97]) {
-                Static38.anInt1203 += (24 - Static38.anInt1203) / 2;
+                yawAccel += (24 - yawAccel) / 2;
             } else {
-                Static38.anInt1203 /= 2;
+                yawAccel /= 2;
             }
             orbitCameraPitch += pitchAccel / 2;
-            orbitCameraYaw += Static38.anInt1203 / 2;
+            orbitCameraYaw += yawAccel / 2;
         }
         SceneCamera.clampCameraAngle();
     }
@@ -376,7 +378,7 @@ public class Camera {
             } else if (local5 > 100) {
                 local5 = 100;
             }
-            local29 = local5 * (Static187.aShort27 - Static263.aShort30) / 100 + Static263.aShort30;
+            local29 = local5 * (ClientScriptRunner.aShort27 - ClientScriptRunner.aShort30) / 100 + ClientScriptRunner.aShort30;
             arg3 = local29 * arg3 >> 8;
         }
         local5 = 2048 - arg6 & 0x7FF;

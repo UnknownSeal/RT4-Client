@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.def.ObjType;
-import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
@@ -209,11 +208,25 @@ public class MiniMenu {
     public static final int UNKNOWN_41 = 41;
     public static final int UNKNOWN_10 = 10;
     public static final int UNKNOWN_44 = 44;
+    @OriginalMember(owner = "client!ef", name = "g", descriptor = "I")
+    public static int clickTileX = -1;
+    @OriginalMember(owner = "runetek4.client!ha", name = "q", descriptor = "I")
+    public static int anInt2388 = 0;
+    @OriginalMember(owner = "runetek4.client!jb", name = "p", descriptor = "I")
+    public static int anInt2954 = -1;
+    @OriginalMember(owner = "runetek4.client!jg", name = "b", descriptor = "I")
+    public static int anInt3039;
+    @OriginalMember(owner = "runetek4.client!kd", name = "zb", descriptor = "I")
+    public static int anInt3259 = 0;
+    @OriginalMember(owner = "runetek4.client!mh", name = "Y", descriptor = "Z")
+    public static boolean aBoolean187 = false;
+    @OriginalMember(owner = "runetek4.client!mj", name = "i", descriptor = "I")
+    public static int anInt3902 = 0;
 
     @OriginalMember(owner = "runetek4.client!ud", name = "a", descriptor = "(ILclient!be;)Z")
     public static boolean method4265(@OriginalArg(1) Component arg0) {
         if (arg0.contentType == 205) {
-            Game.idleTimeout = 250;
+            Protocol.idleTimeout = 250;
             return true;
         } else {
             return false;
@@ -299,8 +312,8 @@ public class MiniMenu {
                                     addActionRow(-1, (long) local276.id, JString.concatenate(new JString[] { aClass100_203, aClass100_947, local276.name}), local171, (short) 40, LocalizedText.USE, component.id);
                                 }
                             } else if (aBoolean302 && local267.isObjOpsEnabled()) {
-                                @Pc(596) ParamType local596 = Static121.anInt3039 == -1 ? null : ParamTypeList.get(Static121.anInt3039);
-                                if ((anInt4999 & 0x10) != 0 && (local596 == null || local276.getParam(local596.defaultInt, Static121.anInt3039) != local596.defaultInt)) {
+                                @Pc(596) ParamType local596 = anInt3039 == -1 ? null : ParamTypeList.get(anInt3039);
+                                if ((anInt4999 & 0x10) != 0 && (local596 == null || local276.getParam(local596.defaultInt, anInt3039) != local596.defaultInt)) {
                                     addActionRow(anInt5393, (long) local276.id, JString.concatenate(new JString[] { aClass100_466, aClass100_947, local276.name}), local171, (short) 3, aClass100_545, component.id);
                                 }
                             } else {
@@ -461,9 +474,9 @@ public class MiniMenu {
         @Pc(11) int local11 = InterfaceList.anInt436;
         @Pc(13) int local13 = InterfaceList.anInt761;
         if (LoginManager.aClass3_Sub2_Sub1_1 == null || LoginManager.aClass3_Sub2_Sub1_9 == null) {
-            if (client.js5Archive8.isFileReady(Static55.anInt1736) && client.js5Archive8.isFileReady(Static169.anInt4073)) {
-                LoginManager.aClass3_Sub2_Sub1_1 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static55.anInt1736);
-                LoginManager.aClass3_Sub2_Sub1_9 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static169.anInt4073);
+            if (client.js5Archive8.isFileReady(LoginManager.anInt1736) && client.js5Archive8.isFileReady(LoginManager.anInt4073)) {
+                LoginManager.aClass3_Sub2_Sub1_1 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, LoginManager.anInt1736);
+                LoginManager.aClass3_Sub2_Sub1_9 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, LoginManager.anInt4073);
                 if (GlRenderer.enabled) {
                     if (LoginManager.aClass3_Sub2_Sub1_1 instanceof SoftwareAlphaSprite) {
                         LoginManager.aClass3_Sub2_Sub1_1 = new GlAlphaSprite((com.jagex.runetek4.cache.media.SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_1);
@@ -477,9 +490,9 @@ public class MiniMenu {
                     }
                 }
             } else if (GlRenderer.enabled) {
-                GlRaster.fillRectAlpha(local3, local9, local13, 20, Static40.anInt1275, 256 - Static111.anInt2910);
+                GlRaster.fillRectAlpha(local3, local9, local13, 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
             } else {
-                SoftwareRaster.fillRectAlpha(local3, local9, local13, 20, Static40.anInt1275, 256 - Static111.anInt2910);
+                SoftwareRaster.fillRectAlpha(local3, local9, local13, 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
             }
         }
         @Pc(112) int local112;
@@ -492,11 +505,11 @@ public class MiniMenu {
             LoginManager.aClass3_Sub2_Sub1_9.render(local3, local9);
             LoginManager.aClass3_Sub2_Sub1_9.renderHorizontalFlip(local3 + local13 - LoginManager.aClass3_Sub2_Sub1_9.width, local9);
         }
-        Fonts.b12Full.renderLeft(LocalizedText.CHOOSE_OPTION, local3 + 3, local9 + 14, Static195.anInt4581, -1);
+        Fonts.b12Full.renderLeft(LocalizedText.CHOOSE_OPTION, local3 + 3, local9 + 14, LoginManager.anInt4581, -1);
         if (GlRenderer.enabled) {
-            GlRaster.fillRectAlpha(local3, local9 + 20, local13, local11 - 20, Static40.anInt1275, 256 - Static111.anInt2910);
+            GlRaster.fillRectAlpha(local3, local9 + 20, local13, local11 - 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
         } else {
-            SoftwareRaster.fillRectAlpha(local3, local9 + 20, local13, local11 - 20, Static40.anInt1275, 256 - Static111.anInt2910);
+            SoftwareRaster.fillRectAlpha(local3, local9 + 20, local13, local11 - 20, LoginManager.anInt1275, 256 - LoginManager.anInt2910);
         }
         local114 = Mouse.lastMouseY;
         local112 = Mouse.lastMouseX;
@@ -506,16 +519,16 @@ public class MiniMenu {
             local219 = (menuActionRow - local203 - 1) * 15 + local9 + 35;
             if (local3 < local112 && local112 < local3 + local13 && local114 > local219 - 13 && local114 < local219 + 3) {
                 if (GlRenderer.enabled) {
-                    GlRaster.fillRectAlpha(local3, local219 - 13, local13, 16, Static251.anInt5457, 256 - Static232.anInt5208);
+                    GlRaster.fillRectAlpha(local3, local219 - 13, local13, 16, LoginManager.anInt5457, 256 - LoginManager.anInt5208);
                 } else {
-                    SoftwareRaster.fillRectAlpha(local3, local219 - 13, local13, 16, Static251.anInt5457, 256 - Static232.anInt5208);
+                    SoftwareRaster.fillRectAlpha(local3, local219 - 13, local13, 16, LoginManager.anInt5457, 256 - LoginManager.anInt5208);
                 }
             }
         }
-        if ((LoginManager.aClass3_Sub2_Sub1_8 == null || LoginManager.aClass3_Sub2_Sub1_6 == null || LoginManager.aClass3_Sub2_Sub1_10 == null) && client.js5Archive8.isFileReady(Static85.anInt2261) && client.js5Archive8.isFileReady(Static136.anInt3324) && client.js5Archive8.isFileReady(Static254.anInt5556)) {
-            LoginManager.aClass3_Sub2_Sub1_8 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static85.anInt2261);
-            LoginManager.aClass3_Sub2_Sub1_6 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static136.anInt3324);
-            LoginManager.aClass3_Sub2_Sub1_10 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, Static254.anInt5556);
+        if ((LoginManager.aClass3_Sub2_Sub1_8 == null || LoginManager.aClass3_Sub2_Sub1_6 == null || LoginManager.aClass3_Sub2_Sub1_10 == null) && client.js5Archive8.isFileReady(LoginManager.anInt2261) && client.js5Archive8.isFileReady(LoginManager.anInt3324) && client.js5Archive8.isFileReady(LoginManager.anInt5556)) {
+            LoginManager.aClass3_Sub2_Sub1_8 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, LoginManager.anInt2261);
+            LoginManager.aClass3_Sub2_Sub1_6 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, LoginManager.anInt3324);
+            LoginManager.aClass3_Sub2_Sub1_10 = com.jagex.runetek4.cache.media.SoftwareSprite.loadSoftwareAlphaSprite(client.js5Archive8, LoginManager.anInt5556);
             if (GlRenderer.enabled) {
                 if (LoginManager.aClass3_Sub2_Sub1_8 instanceof SoftwareAlphaSprite) {
                     LoginManager.aClass3_Sub2_Sub1_8 = new GlAlphaSprite((com.jagex.runetek4.cache.media.SoftwareSprite) LoginManager.aClass3_Sub2_Sub1_8);
@@ -550,9 +563,9 @@ public class MiniMenu {
         }
         for (local203 = 0; local203 < menuActionRow; local203++) {
             local219 = (menuActionRow - local203 - 1) * 15 + local9 + 35;
-            local418 = Static195.anInt4581;
+            local418 = LoginManager.anInt4581;
             if (local3 < local112 && local13 + local3 > local112 && local219 - 13 < local114 && local114 < local219 + 3) {
-                local418 = Static262.anInt5752;
+                local418 = LoginManager.anInt5752;
             }
             Fonts.b12Full.renderLeft(getOp(local203), local3 + 3, local219, local418, 0);
         }
@@ -1051,8 +1064,8 @@ public class MiniMenu {
             com = InterfaceList.getComponent(local19);
             if (com.scripts != null && com.scripts[0][0] == 5) {
                 varp = com.scripts[0][1];
-                if (VarPlayerDefinition.activeVarps[varp] != com.scriptOperand[0]) {
-                    VarPlayerDefinition.activeVarps[varp] = com.scriptOperand[0];
+                if (VarpDomain.activeVarps[varp] != com.scriptOperand[0]) {
+                    VarpDomain.activeVarps[varp] = com.scriptOperand[0];
                     VarpDomain.refreshMagicVarp(varp);
                 }
             }
@@ -1078,7 +1091,7 @@ public class MiniMenu {
             com = InterfaceList.getComponent(local19);
             if (com.scripts != null && com.scripts[0][0] == 5) {
                 varp = com.scripts[0][1];
-                VarPlayerDefinition.activeVarps[varp] = 1 - VarPlayerDefinition.activeVarps[varp];
+                VarpDomain.activeVarps[varp] = 1 - VarpDomain.activeVarps[varp];
                 VarpDomain.refreshMagicVarp(varp);
             }
         }
@@ -1409,8 +1422,8 @@ public class MiniMenu {
                     if (anInt5014 == 1) {
                         addActionRow(MiniMap.anInt4075, local121, JString.concatenate(new JString[] {aClass100_203, aClass100_164, local172.name}), local47, (short) 14, LocalizedText.USE, local147);
                     } else if (aBoolean302) {
-                        @Pc(363) ParamType local363 = Static121.anInt3039 == -1 ? null : ParamTypeList.get(Static121.anInt3039);
-                        if ((anInt4999 & 0x4) != 0 && (local363 == null || local172.getParam(local363.defaultInt, Static121.anInt3039) != local363.defaultInt)) {
+                        @Pc(363) ParamType local363 = anInt3039 == -1 ? null : ParamTypeList.get(anInt3039);
+                        if ((anInt4999 & 0x4) != 0 && (local363 == null || local172.getParam(local363.defaultInt, anInt3039) != local363.defaultInt)) {
                             addActionRow(anInt5393, local121, JString.concatenate(new JString[] {aClass100_466, aClass100_164, local172.name}), local47, (short) 38, aClass100_545, local147);
                         }
                     } else {
@@ -1514,8 +1527,8 @@ public class MiniMenu {
                             if (anInt5014 == 1) {
                                 addActionRow(MiniMap.anInt4075, (long) local240, JString.concatenate(new JString[] {aClass100_203, aClass100_947, local951.name}), local47, (short) 33, LocalizedText.USE, local147);
                             } else if (aBoolean302) {
-                                @Pc(1142) ParamType local1142 = Static121.anInt3039 == -1 ? null : ParamTypeList.get(Static121.anInt3039);
-                                if ((anInt4999 & 0x1) != 0 && (local1142 == null || local951.getParam(local1142.defaultInt, Static121.anInt3039) != local1142.defaultInt)) {
+                                @Pc(1142) ParamType local1142 = anInt3039 == -1 ? null : ParamTypeList.get(anInt3039);
+                                if ((anInt4999 & 0x1) != 0 && (local1142 == null || local951.getParam(local1142.defaultInt, anInt3039) != local1142.defaultInt)) {
                                     addActionRow(anInt5393, (long) local240, JString.concatenate(new JString[] {aClass100_466, aClass100_947, local951.name}), local47, (short) 39, aClass100_545, local147);
                                 }
                             } else {
@@ -1579,8 +1592,8 @@ public class MiniMenu {
         if (anInt5014 == 1) {
             addActionRow(MiniMap.anInt4075, (long) arg2, JString.concatenate(new JString[] {aClass100_203, aClass100_407, tooltip }), arg1, (short) 26, LocalizedText.USE, arg3);
         } else if (aBoolean302) {
-            @Pc(378) ParamType local378 = Static121.anInt3039 == -1 ? null : ParamTypeList.get(Static121.anInt3039);
-            if ((anInt4999 & 0x2) != 0 && (local378 == null || npc.getParam(Static121.anInt3039, local378.defaultInt) != local378.defaultInt)) {
+            @Pc(378) ParamType local378 = anInt3039 == -1 ? null : ParamTypeList.get(anInt3039);
+            if ((anInt4999 & 0x2) != 0 && (local378 == null || npc.getParam(anInt3039, local378.defaultInt) != local378.defaultInt)) {
                 addActionRow(anInt5393, (long) arg2, JString.concatenate(new JString[] {aClass100_466, aClass100_407, tooltip }), arg1, (short) 45, aClass100_545, arg3);
             }
         } else {
@@ -1739,12 +1752,12 @@ public class MiniMenu {
 
     @OriginalMember(owner = "runetek4.client!il", name = "a", descriptor = "(III)V")
     public static void method3556(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        Static158.aBoolean187 = true;
-        Static160.anInt3902 = arg0;
-        Static89.anInt2388 = arg1;
-        Static131.anInt3259 = arg2;
-        Static56.clickTileX = -1;
-        Static116.anInt2954 = -1;
+        aBoolean187 = true;
+        anInt3902 = arg0;
+        anInt2388 = arg1;
+        anInt3259 = arg2;
+        clickTileX = -1;
+        anInt2954 = -1;
     }
 
     @OriginalMember(owner = "runetek4.client!wi", name = "c", descriptor = "(II)Z")
@@ -1769,7 +1782,7 @@ public class MiniMenu {
             ClientScriptRunner.run(local19);
         }
         anInt506 = arg1;
-        Static121.anInt3039 = arg3;
+        anInt3039 = arg3;
         anInt2512 = arg0;
         anInt4999 = arg2;
         aBoolean302 = true;

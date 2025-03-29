@@ -4,6 +4,7 @@ import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.core.io.PacketBit;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.dash3d.entity.Npc;
@@ -11,6 +12,7 @@ import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.client.Inv;
 import com.jagex.runetek4.game.config.meltype.MapElementList;
+import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -18,9 +20,16 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.Socket;
 
 public class LoginManager {
+
+    // Jagex's RSA key:
+    public static final BigInteger RSA_MODULUS = new BigInteger("7162900525229798032761816791230527296329313291232324290237849263501208207972894053929065636522363163621000728841182238772712427862772219676577293600221789");
+    public static final BigInteger RSA_EXPONENT = new BigInteger("58778699976184461502525193738213253649000149147835990136706041084440742975821");
+
+
     @OriginalMember(owner = "client!bh", name = "C", descriptor = "Lclient!na;")
     public static final JString COMPLETE_PERCENT = JString.parse("<br>(X100(U(Y");
     @OriginalMember(owner = "runetek4.client!e", name = "Dc", descriptor = "Lclient!na;")
@@ -43,6 +52,9 @@ public class LoginManager {
     public static final JString UNDERSCORE = JString.parse("_");
     @OriginalMember(owner = "runetek4.client!rj", name = "Z", descriptor = "[I")
     public static final int[] anIntArray434 = new int[64];
+    @OriginalMember(owner = "client!bg", name = "g", descriptor = "Lclient!i;")
+    public static final PacketBit packet = new PacketBit(5000);
+
     @OriginalMember(owner = "runetek4.client!qi", name = "z", descriptor = "Lclient!qf;")
     public static Sprite aClass3_Sub2_Sub1_10;
     @OriginalMember(owner = "runetek4.client!d", name = "ib", descriptor = "Lclient!qf;")
@@ -141,6 +153,28 @@ public class LoginManager {
     public static boolean aBoolean252 = false;
     @OriginalMember(owner = "runetek4.client!mg", name = "Q", descriptor = "I")
     public static int anInt3811 = 0;
+    @OriginalMember(owner = "runetek4.client!da", name = "ab", descriptor = "I")
+    public static int anInt1275;
+    @OriginalMember(owner = "client!ee", name = "c", descriptor = "I")
+    public static int anInt1736;
+    @OriginalMember(owner = "client!gl", name = "d", descriptor = "I")
+    public static int anInt2261;
+    @OriginalMember(owner = "runetek4.client!ii", name = "y", descriptor = "I")
+    public static int anInt2910;
+    @OriginalMember(owner = "runetek4.client!kk", name = "i", descriptor = "I")
+    public static int anInt3324;
+    @OriginalMember(owner = "runetek4.client!nf", name = "e", descriptor = "I")
+    public static int anInt4073;
+    @OriginalMember(owner = "runetek4.client!pk", name = "Y", descriptor = "I")
+    public static int anInt4581;
+    @OriginalMember(owner = "runetek4.client!sm", name = "b", descriptor = "I")
+    public static int anInt5208;
+    @OriginalMember(owner = "runetek4.client!ug", name = "p", descriptor = "I")
+    public static int anInt5457;
+    @OriginalMember(owner = "runetek4.client!uj", name = "E", descriptor = "I")
+    public static int anInt5556;
+    @OriginalMember(owner = "runetek4.client!vf", name = "c", descriptor = "I")
+    public static int anInt5752;
 
     @OriginalMember(owner = "runetek4.client!j", name = "g", descriptor = "(I)V")
     public static void method4637() {
@@ -210,7 +244,7 @@ public class LoginManager {
         } else if (ClientScriptRunner.anInt2503 != -1) {
             MiniMenu.method1207(null, InterfaceList.anInt5574, ClientScriptRunner.anInt2503);
         }
-        local60 = ClientScriptRunner.aBoolean108 ? -1 : Static235.method4044();
+        local60 = ClientScriptRunner.aBoolean108 ? -1 : method4044();
         if (local60 == -1) {
             local60 = ClientScriptRunner.anInt5794;
         }
@@ -308,7 +342,7 @@ public class LoginManager {
             login_packet.p4((int) (Math.random() * 9.9999999E7D));
             login_packet.pjstr(Player.password);
             login_packet.p4((int) (Math.random() * 9.9999999E7D));
-            login_packet.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
+            login_packet.rsaenc(RSA_EXPONENT, RSA_MODULUS);
             Protocol.outboundBuffer.offset = 0;
             Protocol.outboundBuffer.p1(210);
             Protocol.outboundBuffer.p1(login_packet.offset);
@@ -458,7 +492,7 @@ public class LoginManager {
             ShadowManager.shadowMapImage.clear();
             for (i = 0; i < 13; i++) {
                 for (chunkX = 0; chunkX < 13; chunkX++) {
-                    ShadowManager.aOpenGLRendererArrayArray1[i][chunkX].outputToSprite = true;
+                    ShadowManager.shadows[i][chunkX].outputToSprite = true;
                 }
             }
         }
@@ -502,16 +536,16 @@ public class LoginManager {
             LightingManager.method2395();
         }
         ClientProt.ping(true);
-        i = SceneGraph.firstvisibleLevel;
+        i = SceneGraph.firstVisibleLevel;
         if (i > Player.plane) {
             i = Player.plane;
         }
         if (i < Player.plane - 1) {
         }
-        if (SceneGraph.allLevelsvisible()) {
+        if (SceneGraph.allLevelsAreVisible()) {
             SceneGraph.method2750(0);
         } else {
-            SceneGraph.method2750(SceneGraph.firstvisibleLevel);
+            SceneGraph.method2750(SceneGraph.firstVisibleLevel);
         }
         SceneGraph.unload();
         if (GlRenderer.enabled && hasUnderWaterMap) {
@@ -537,7 +571,7 @@ public class LoginManager {
         if (GlRenderer.enabled) {
             for (chunkX = 0; chunkX < 13; chunkX++) {
                 for (chunkZ = 0; chunkZ < 13; chunkZ++) {
-                    ShadowManager.aOpenGLRendererArrayArray1[chunkX][chunkZ].method4676(SceneGraph.tileHeights[0], chunkX * 8, chunkZ * 8);
+                    ShadowManager.shadows[chunkX][chunkZ].method4676(SceneGraph.tileHeights[0], chunkX * 8, chunkZ * 8);
                 }
             }
         }
@@ -608,19 +642,19 @@ public class LoginManager {
                 }
             }
             if (autoStep == 1) {
-                Static72.aClass212_3 = GameShell.signLink.openSocket(client.worldListHostname, client.worldListPort);
+                Protocol.socketRequest = GameShell.signLink.openSocket(client.worldListHostname, client.worldListPort);
                 autoStep = 2;
             }
             @Pc(126) int local126;
             if (autoStep == 2) {
-                if (Static72.aClass212_3.status == 2) {
+                if (Protocol.socketRequest.status == 2) {
                     throw new IOException();
                 }
-                if (Static72.aClass212_3.status != 1) {
+                if (Protocol.socketRequest.status != 1) {
                     return;
                 }
-                Protocol.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
-                Static72.aClass212_3 = null;
+                Protocol.gameServerSocket = new BufferedSocket((Socket) Protocol.socketRequest.result, GameShell.signLink);
+                Protocol.socketRequest = null;
                 Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
                 if (client.musicChannel != null) {
                     client.musicChannel.method3571();
@@ -709,18 +743,18 @@ public class LoginManager {
                 errors++;
             }
             if (step == 1) {
-                Static72.aClass212_3 = GameShell.signLink.openSocket(client.hostname, client.port);
+                Protocol.socketRequest = GameShell.signLink.openSocket(client.hostname, client.port);
                 step = 2;
             }
             if (step == 2) {
-                if (Static72.aClass212_3.status == 2) {
+                if (Protocol.socketRequest.status == 2) {
                     throw new IOException();
                 }
-                if (Static72.aClass212_3.status != 1) {
+                if (Protocol.socketRequest.status != 1) {
                     return;
                 }
-                Protocol.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
-                Static72.aClass212_3 = null;
+                Protocol.gameServerSocket = new BufferedSocket((Socket) Protocol.socketRequest.result, GameShell.signLink);
+                Protocol.socketRequest = null;
                 @Pc(106) long local106 = Player.name37 = Player.usernameInput.encode37();
                 Protocol.outboundBuffer.offset = 0;
                 Protocol.outboundBuffer.p1(14);
@@ -769,59 +803,59 @@ public class LoginManager {
                 Protocol.outboundBuffer.p4(seed[3]);
                 Protocol.outboundBuffer.p8(Player.usernameInput.encode37());
                 Protocol.outboundBuffer.pjstr(Player.password);
-                Protocol.outboundBuffer.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
-                Static17.packet.offset = 0;
+                Protocol.outboundBuffer.rsaenc(RSA_EXPONENT, RSA_MODULUS);
+                packet.offset = 0;
                 if (client.gameState == 40) {
-                    Static17.packet.p1(18);
+                    packet.p1(18);
                 } else {
-                    Static17.packet.p1(16);
+                    packet.p1(16);
                 }
 
-                Static17.packet.p2(Protocol.outboundBuffer.offset + Static229.method3937(client.settings) + 159);
-                Static17.packet.p4(530);
-                Static17.packet.p1(anInt39);
-                Static17.packet.p1(client.advertSuppressed ? 1 : 0);
-                Static17.packet.p1(1);
-                Static17.packet.p1(DisplayMode.getWindowMode());
-                Static17.packet.p2(GameShell.canvasWidth);
-                Static17.packet.p2(GameShell.canvasHeigth);
-                Static17.packet.p1(Preferences.antiAliasingMode);
-                client.writeUid(Static17.packet);
-                Static17.packet.pjstr(client.settings);
-                Static17.packet.p4(client.affiliate);
-                Static17.packet.p4(Preferences.toInt());
+                packet.p2(Protocol.outboundBuffer.offset + Packet.gjstrlen(client.settings) + 159);
+                packet.p4(530);
+                packet.p1(anInt39);
+                packet.p1(client.advertSuppressed ? 1 : 0);
+                packet.p1(1);
+                packet.p1(DisplayMode.getWindowMode());
+                packet.p2(GameShell.canvasWidth);
+                packet.p2(GameShell.canvasHeigth);
+                packet.p1(Preferences.antiAliasingMode);
+                client.writeUid(packet);
+                packet.pjstr(client.settings);
+                packet.p4(client.affiliate);
+                packet.p4(Preferences.toInt());
                 Preferences.sentToServer = true;
-                Static17.packet.p2(Protocol.verifyId);
-                Static17.packet.p4(client.js5Archive0.getChecksum());
-                Static17.packet.p4(client.js5Archive1.getChecksum());
-                Static17.packet.p4(client.js5Archive2.getChecksum());
-                Static17.packet.p4(client.js5Archive3.getChecksum());
-                Static17.packet.p4(client.js5Archive4.getChecksum());
-                Static17.packet.p4(client.js5Archive5.getChecksum());
-                Static17.packet.p4(client.js5Archive6.getChecksum());
-                Static17.packet.p4(client.js5Archive7.getChecksum());
-                Static17.packet.p4(client.js5Archive8.getChecksum());
-                Static17.packet.p4(client.js5Archive9.getChecksum());
-                Static17.packet.p4(client.js5Archive10.getChecksum());
-                Static17.packet.p4(client.js5Archive11.getChecksum());
-                Static17.packet.p4(client.js5Archive12.getChecksum());
-                Static17.packet.p4(client.js5Archive13.getChecksum());
-                Static17.packet.p4(client.js5Archive14.getChecksum());
-                Static17.packet.p4(client.js5Archive15.getChecksum());
-                Static17.packet.p4(client.js5Archive16.getChecksum());
-                Static17.packet.p4(client.js5Archive17.getChecksum());
-                Static17.packet.p4(client.js5Archive18.getChecksum());
-                Static17.packet.p4(client.js5Archive19.getChecksum());
-                Static17.packet.p4(client.js5Archive20.getChecksum());
-                Static17.packet.p4(client.js5Archive21.getChecksum());
-                Static17.packet.p4(client.js5Archive22.getChecksum());
-                Static17.packet.p4(client.js5Archive23.getChecksum());
-                Static17.packet.p4(client.js5Archive24.getChecksum());
-                Static17.packet.p4(client.js5Archive25.getChecksum());
-                Static17.packet.p4(client.js5Archive26.getChecksum());
-                Static17.packet.p4(client.js5Archive27.getChecksum());
-                Static17.packet.pdata(Protocol.outboundBuffer.data, Protocol.outboundBuffer.offset);
-                Protocol.gameServerSocket.write(Static17.packet.offset, Static17.packet.data);
+                packet.p2(Protocol.verifyId);
+                packet.p4(client.js5Archive0.getChecksum());
+                packet.p4(client.js5Archive1.getChecksum());
+                packet.p4(client.js5Archive2.getChecksum());
+                packet.p4(client.js5Archive3.getChecksum());
+                packet.p4(client.js5Archive4.getChecksum());
+                packet.p4(client.js5Archive5.getChecksum());
+                packet.p4(client.js5Archive6.getChecksum());
+                packet.p4(client.js5Archive7.getChecksum());
+                packet.p4(client.js5Archive8.getChecksum());
+                packet.p4(client.js5Archive9.getChecksum());
+                packet.p4(client.js5Archive10.getChecksum());
+                packet.p4(client.js5Archive11.getChecksum());
+                packet.p4(client.js5Archive12.getChecksum());
+                packet.p4(client.js5Archive13.getChecksum());
+                packet.p4(client.js5Archive14.getChecksum());
+                packet.p4(client.js5Archive15.getChecksum());
+                packet.p4(client.js5Archive16.getChecksum());
+                packet.p4(client.js5Archive17.getChecksum());
+                packet.p4(client.js5Archive18.getChecksum());
+                packet.p4(client.js5Archive19.getChecksum());
+                packet.p4(client.js5Archive20.getChecksum());
+                packet.p4(client.js5Archive21.getChecksum());
+                packet.p4(client.js5Archive22.getChecksum());
+                packet.p4(client.js5Archive23.getChecksum());
+                packet.p4(client.js5Archive24.getChecksum());
+                packet.p4(client.js5Archive25.getChecksum());
+                packet.p4(client.js5Archive26.getChecksum());
+                packet.p4(client.js5Archive27.getChecksum());
+                packet.pdata(Protocol.outboundBuffer.data, Protocol.outboundBuffer.offset);
+                Protocol.gameServerSocket.write(packet.offset, packet.data);
                 Protocol.outboundBuffer.Isaac(seed);
                 for (@Pc(583) int i = 0; i < 4; i++) {
                     seed[i] += 50;
@@ -937,7 +971,7 @@ public class LoginManager {
                 step = 0;
                 client.method4221();
                 SceneGraph.centralZoneX = -1;
-                Static75.method1629(false);
+                Protocol.readRebuildPacket(false);
                 Protocol.opcode = -1;
                 return;
             }
@@ -999,13 +1033,13 @@ public class LoginManager {
 
     @OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(IIIIZIZ)V")
     public static void method2463(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4, @OriginalArg(5) int arg5) {
-        if (SceneGraph.centralZoneX == arg2 && arg1 == SceneGraph.centralZoneZ && (SceneGraph.centralPlane == arg0 || SceneGraph.allLevelsvisible())) {
+        if (SceneGraph.centralZoneX == arg2 && arg1 == SceneGraph.centralZoneZ && (SceneGraph.centralPlane == arg0 || SceneGraph.allLevelsAreVisible())) {
             return;
         }
         SceneGraph.centralZoneX = arg2;
         SceneGraph.centralZoneZ = arg1;
         SceneGraph.centralPlane = arg0;
-        if (SceneGraph.allLevelsvisible()) {
+        if (SceneGraph.allLevelsAreVisible()) {
             SceneGraph.centralPlane = 0;
         }
         if (arg4) {
@@ -1274,7 +1308,7 @@ public class LoginManager {
                         NpcList.npcs[local97] = new Npc();
                         @Pc(198) Npc local198 = NpcList.npcs[local97];
                         NpcList.npcIds[NpcList.npcCount++] = local97;
-                        local198.cycle = client.loop;
+                        local198.lastSeenLoop = client.loop;
                         local198.setNpcType(local148);
                         local198.setSize(local198.type.size);
                         local198.dstYaw = local198.anInt3381 = PathingEntity.ANGLES[local198.type.spawnDirection];
@@ -1305,7 +1339,7 @@ public class LoginManager {
             client.audioLoop();
             for (@Pc(32) int local32 = 0; local32 < 13; local32++) {
                 for (@Pc(39) int local39 = 0; local39 < 13; local39++) {
-                    @Pc(52) int local52 = Static187.anIntArrayArrayArray18[local21][local32][local39];
+                    @Pc(52) int local52 = Protocol.anIntArrayArrayArray18[local21][local32][local39];
                     @Pc(54) boolean local54 = false;
                     if (local52 != -1) {
                         @Pc(65) int local65 = local52 >> 24 & 0x3;
@@ -1316,7 +1350,7 @@ public class LoginManager {
                             @Pc(98) int local98 = (local88 / 8 << 8) + local76 / 8;
                             for (@Pc(100) int local100 = 0; local100 < regionBitPacked.length; local100++) {
                                 if (regionBitPacked[local100] == local98 && local13[local100] != null) {
-                                    Static245.method4228(local82, local32 * 8, local21, PathFinder.collisionMaps, local39 * 8, local13[local100], local65, (local76 & 0x7) * 8, (local88 & 0x7) * 8, arg0);
+                                    SceneGraph.method4228(local82, local32 * 8, local21, PathFinder.collisionMaps, local39 * 8, local13[local100], local65, (local76 & 0x7) * 8, (local88 & 0x7) * 8, arg0);
                                     local54 = true;
                                     break;
                                 }
@@ -1346,7 +1380,7 @@ public class LoginManager {
             client.audioLoop();
             for (@Pc(36) int local36 = 0; local36 < 13; local36++) {
                 for (@Pc(43) int local43 = 0; local43 < 13; local43++) {
-                    @Pc(56) int local56 = Static187.anIntArrayArrayArray18[local29][local36][local43];
+                    @Pc(56) int local56 = Protocol.anIntArrayArrayArray18[local29][local36][local43];
                     if (local56 != -1) {
                         @Pc(67) int local67 = local56 >> 24 & 0x3;
                         if (!arg0 || local67 == 0) {
@@ -1448,5 +1482,10 @@ public class LoginManager {
         } else {
             return arg3;
         }
+    }
+
+    @OriginalMember(owner = "runetek4.client!tb", name = "h", descriptor = "(I)I")
+    public static int method4044() {
+        return Cheat.shiftClick && Keyboard.pressedKeys[81] && MiniMenu.menuActionRow > 2 ? MiniMenu.cursors[MiniMenu.menuActionRow - 2] : MiniMenu.cursors[MiniMenu.menuActionRow - 1];
     }
 }

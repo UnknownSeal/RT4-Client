@@ -9,17 +9,18 @@ public final class Wall {
 
     @OriginalMember(owner = "client!gd", name = "h", descriptor = "[I")
     public static final int[] ROTATION_WALL_CORNER_TYPE = new int[] { 16, 32, 64, 128 };
+
     @OriginalMember(owner = "runetek4.client!jh", name = "a", descriptor = "I")
-	public int anInt3044;
+	public int zFine;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "e", descriptor = "Lclient!th;")
 	public Entity primary;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "h", descriptor = "Lclient!th;")
-	public Entity modelB;
+	public Entity secondary;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "k", descriptor = "I")
-	public int anInt3048;
+	public int xFine;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "l", descriptor = "I")
 	public int typeA;
@@ -31,5 +32,5 @@ public final class Wall {
 	public int typeB;
 
 	@OriginalMember(owner = "runetek4.client!jh", name = "d", descriptor = "J")
-	public long aLong107 = 0L;
+	public long key = 0L;
 }

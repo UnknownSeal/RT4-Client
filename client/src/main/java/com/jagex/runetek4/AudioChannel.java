@@ -132,6 +132,17 @@ public class AudioChannel {
 		}
 	}
 
+	@OriginalMember(owner = "runetek4.client!nd", name = "a", descriptor = "(ZLclient!qb;)V")
+	public static void setInactive(@OriginalArg(1) PcmStream arg0) {
+		if (arg0.sound != null) {
+			arg0.sound.position = 0;
+		}
+		arg0.active = false;
+		for (@Pc(14) PcmStream local14 = arg0.firstSubStream(); local14 != null; local14 = arg0.nextSubStream()) {
+			setInactive(local14);
+		}
+	}
+
 	@OriginalMember(owner = "runetek4.client!vh", name = "a", descriptor = "()V")
 	protected void write() throws Exception {
 	}
@@ -154,7 +165,7 @@ public class AudioChannel {
 		this.anInt4638 -= 256;
 		if (this.stream != null && this.anInt4638 <= 0) {
 			this.anInt4638 += sampleRate >> 4;
-			Static167.method3170(this.stream);
+			setInactive(this.stream);
 			this.method3567(this.stream, this.stream.method4407());
 			@Pc(45) int local45 = 0;
 			@Pc(47) int local47 = 255;
@@ -180,12 +191,12 @@ public class AudioChannel {
 									break label100;
 								}
 								@Pc(101) Sound local101 = local96.sound;
-								if (local101 == null || local101.anInt3313 <= local62) {
+								if (local101 == null || local101.position <= local62) {
 									local96.active = true;
 									@Pc(125) int local125 = local96.method4404();
 									local45 += local125;
 									if (local101 != null) {
-										local101.anInt3313 += local125;
+										local101.position += local125;
 									}
 									if (local45 >= this.anInt4621) {
 										break label106;

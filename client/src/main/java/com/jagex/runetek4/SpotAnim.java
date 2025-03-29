@@ -51,25 +51,25 @@ public final class SpotAnim extends Entity {
 	private SeqType aClass144_1;
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "<init>", descriptor = "(IIIIIII)V")
-	public SpotAnim(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
-		this.z = arg3;
-		this.x = arg2;
-		this.level = arg1;
+	public SpotAnim(@OriginalArg(0) int arg0, @OriginalArg(1) int level, @OriginalArg(2) int x, @OriginalArg(3) int z, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6) {
+		this.z = z;
+		this.x = x;
+		this.level = level;
 		this.startCycle = arg6 + arg5;
 		this.anInt596 = arg0;
 		this.anInt599 = arg4;
-		@Pc(42) int local42 = Static34.method877(this.anInt596).animationId;
+		@Pc(42) int local42 = SpotAnimTypeList.get(this.anInt596).seqId;
 		if (local42 == -1) {
 			this.seqComplete = true;
 		} else {
 			this.seqComplete = false;
-			this.aClass144_1 = SeqTypeList.getAnimationSequence(local42);
+			this.aClass144_1 = SeqTypeList.get(local42);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!bh", name = "b", descriptor = "(Z)Lclient!ak;")
 	private Model method552() {
-		@Pc(8) SpotAnimType local8 = Static34.method877(this.anInt596);
+		@Pc(8) SpotAnimType local8 = SpotAnimTypeList.get(this.anInt596);
 		@Pc(26) Model local26;
 		if (this.seqComplete) {
 			local26 = local8.constructModel(-1, -1, 0);
@@ -101,10 +101,10 @@ public final class SpotAnim extends Entity {
 			return;
 		}
 		this.anInt607 += arg0;
-		while (this.anInt607 > this.aClass144_1.frames[this.anInt593]) {
-			this.anInt607 -= this.aClass144_1.frames[this.anInt593];
+		while (this.anInt607 > this.aClass144_1.frameDelay[this.anInt593]) {
+			this.anInt607 -= this.aClass144_1.frameDelay[this.anInt593];
 			this.anInt593++;
-			if (this.aClass144_1.anIntArray473.length <= this.anInt593) {
+			if (this.aClass144_1.frames.length <= this.anInt593) {
 				this.seqComplete = true;
 				break;
 			}

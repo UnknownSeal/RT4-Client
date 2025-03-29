@@ -244,36 +244,36 @@ public class NpcList {
         arg0.seqStretches = false;
         @Pc(18) SeqType seq;
         if (arg0.movementSeqId != -1) {
-            seq = SeqTypeList.getAnimationSequence(arg0.movementSeqId);
-            if (seq == null || seq.anIntArray473 == null) {
+            seq = SeqTypeList.get(arg0.movementSeqId);
+            if (seq == null || seq.frames == null) {
                 arg0.movementSeqId = -1;
             } else {
                 arg0.anInt3396++;
-                if (seq.anIntArray473.length > arg0.anInt3407 && arg0.anInt3396 > seq.frames[arg0.anInt3407]) {
+                if (seq.frames.length > arg0.anInt3407 && arg0.anInt3396 > seq.frameDelay[arg0.anInt3407]) {
                     arg0.anInt3396 = 1;
                     arg0.anInt3407++;
                     arg0.anInt3388++;
                     SoundPlayer.playSeqSound(arg0.zFine, seq, arg0.xFine, arg0 == PlayerList.self, arg0.anInt3407);
                 }
-                if (arg0.anInt3407 >= seq.anIntArray473.length) {
+                if (arg0.anInt3407 >= seq.frames.length) {
                     arg0.anInt3407 = 0;
                     arg0.anInt3396 = 0;
                     SoundPlayer.playSeqSound(arg0.zFine, seq, arg0.xFine, PlayerList.self == arg0, arg0.anInt3407);
                 }
                 arg0.anInt3388 = arg0.anInt3407 + 1;
-                if (arg0.anInt3388 >= seq.anIntArray473.length) {
+                if (arg0.anInt3388 >= seq.frames.length) {
                     arg0.anInt3388 = 0;
                 }
             }
         }
         @Pc(156) int local156;
         if (arg0.spotAnimId != -1 && client.loop >= arg0.spotAnimStart) {
-            local156 = Static34.method877(arg0.spotAnimId).animationId;
+            local156 = SpotAnimTypeList.get(arg0.spotAnimId).seqId;
             if (local156 == -1) {
                 arg0.spotAnimId = -1;
             } else {
-                @Pc(165) SeqType local165 = SeqTypeList.getAnimationSequence(local156);
-                if (local165 == null || local165.anIntArray473 == null) {
+                @Pc(165) SeqType local165 = SeqTypeList.get(local156);
+                if (local165 == null || local165.frames == null) {
                     arg0.spotAnimId = -1;
                 } else {
                     if (arg0.spotanimId < 0) {
@@ -281,56 +281,56 @@ public class NpcList {
                         SoundPlayer.playSeqSound(arg0.zFine, local165, arg0.xFine, PlayerList.self == arg0, 0);
                     }
                     arg0.anInt3361++;
-                    if (arg0.spotanimId < local165.anIntArray473.length && local165.frames[arg0.spotanimId] < arg0.anInt3361) {
+                    if (arg0.spotanimId < local165.frames.length && local165.frameDelay[arg0.spotanimId] < arg0.anInt3361) {
                         arg0.spotanimId++;
                         arg0.anInt3361 = 1;
                         SoundPlayer.playSeqSound(arg0.zFine, local165, arg0.xFine, PlayerList.self == arg0, arg0.spotanimId);
                     }
-                    if (arg0.spotanimId >= local165.anIntArray473.length) {
+                    if (arg0.spotanimId >= local165.frames.length) {
                         arg0.spotAnimId = -1;
                     }
                     arg0.anInt3418 = arg0.spotanimId + 1;
-                    if (local165.anIntArray473.length <= arg0.anInt3418) {
+                    if (local165.frames.length <= arg0.anInt3418) {
                         arg0.anInt3418 = -1;
                     }
                 }
             }
         }
         if (arg0.primarySeqId != -1 && arg0.anInt3420 <= 1) {
-            seq = SeqTypeList.getAnimationSequence(arg0.primarySeqId);
-            if (seq.anInt5363 == 1 && arg0.anInt3405 > 0 && client.loop >= arg0.anInt3395 && client.loop > arg0.anInt3386) {
+            seq = SeqTypeList.get(arg0.primarySeqId);
+            if (seq.loopType == 1 && arg0.anInt3405 > 0 && client.loop >= arg0.anInt3395 && client.loop > arg0.anInt3386) {
                 arg0.anInt3420 = 1;
                 return;
             }
         }
         if (arg0.primarySeqId != -1 && arg0.anInt3420 == 0) {
-            seq = SeqTypeList.getAnimationSequence(arg0.primarySeqId);
-            if (seq == null || seq.anIntArray473 == null) {
+            seq = SeqTypeList.get(arg0.primarySeqId);
+            if (seq == null || seq.frames == null) {
                 arg0.primarySeqId = -1;
             } else {
                 arg0.anInt3360++;
-                if (arg0.anInt3425 < seq.anIntArray473.length && arg0.anInt3360 > seq.frames[arg0.anInt3425]) {
+                if (arg0.anInt3425 < seq.frames.length && arg0.anInt3360 > seq.frameDelay[arg0.anInt3425]) {
                     arg0.anInt3360 = 1;
                     arg0.anInt3425++;
                     SoundPlayer.playSeqSound(arg0.zFine, seq, arg0.xFine, arg0 == PlayerList.self, arg0.anInt3425);
                 }
-                if (seq.anIntArray473.length <= arg0.anInt3425) {
-                    arg0.anInt3425 -= seq.replayoff;
+                if (seq.frames.length <= arg0.anInt3425) {
+                    arg0.anInt3425 -= seq.replayOff;
                     arg0.anInt3371++;
-                    if (arg0.anInt3371 >= seq.replaycount) {
+                    if (arg0.anInt3371 >= seq.replayCount) {
                         arg0.primarySeqId = -1;
-                    } else if (arg0.anInt3425 >= 0 && seq.anIntArray473.length > arg0.anInt3425) {
+                    } else if (arg0.anInt3425 >= 0 && seq.frames.length > arg0.anInt3425) {
                         SoundPlayer.playSeqSound(arg0.zFine, seq, arg0.xFine, PlayerList.self == arg0, arg0.anInt3425);
                     } else {
                         arg0.primarySeqId = -1;
                     }
                 }
                 arg0.anInt3373 = arg0.anInt3425 + 1;
-                if (arg0.anInt3373 >= seq.anIntArray473.length) {
-                    arg0.anInt3373 -= seq.replayoff;
-                    if (seq.replaycount <= arg0.anInt3371 + 1) {
+                if (arg0.anInt3373 >= seq.frames.length) {
+                    arg0.anInt3373 -= seq.replayOff;
+                    if (seq.replayCount <= arg0.anInt3371 + 1) {
                         arg0.anInt3373 = -1;
-                    } else if (arg0.anInt3373 < 0 || arg0.anInt3373 >= seq.anIntArray473.length) {
+                    } else if (arg0.anInt3373 < 0 || arg0.anInt3373 >= seq.frames.length) {
                         arg0.anInt3373 = -1;
                     }
                 }
@@ -346,33 +346,33 @@ public class NpcList {
                 if (local545.anInt5408 > 0) {
                     local545.anInt5408--;
                 } else {
-                    @Pc(570) SeqType local570 = SeqTypeList.getAnimationSequence(local545.anInt5396);
-                    if (local570 == null || local570.anIntArray473 == null) {
+                    @Pc(570) SeqType local570 = SeqTypeList.get(local545.anInt5396);
+                    if (local570 == null || local570.frames == null) {
                         arg0.aPathingEntityClass147Array3[local156] = null;
                     } else {
                         local545.anInt5404++;
-                        if (local545.anInt5399 < local570.anIntArray473.length && local545.anInt5404 > local570.frames[local545.anInt5399]) {
+                        if (local545.anInt5399 < local570.frames.length && local545.anInt5404 > local570.frameDelay[local545.anInt5399]) {
                             local545.anInt5399++;
                             local545.anInt5404 = 1;
                             SoundPlayer.playSeqSound(arg0.zFine, local570, arg0.xFine, arg0 == PlayerList.self, local545.anInt5399);
                         }
-                        if (local570.anIntArray473.length <= local545.anInt5399) {
+                        if (local570.frames.length <= local545.anInt5399) {
                             local545.anInt5400++;
-                            local545.anInt5399 -= local570.replayoff;
-                            if (local570.replaycount <= local545.anInt5400) {
+                            local545.anInt5399 -= local570.replayOff;
+                            if (local570.replayCount <= local545.anInt5400) {
                                 arg0.aPathingEntityClass147Array3[local156] = null;
-                            } else if (local545.anInt5399 >= 0 && local545.anInt5399 < local570.anIntArray473.length) {
+                            } else if (local545.anInt5399 >= 0 && local545.anInt5399 < local570.frames.length) {
                                 SoundPlayer.playSeqSound(arg0.zFine, local570, arg0.xFine, PlayerList.self == arg0, local545.anInt5399);
                             } else {
                                 arg0.aPathingEntityClass147Array3[local156] = null;
                             }
                         }
                         local545.anInt5398 = local545.anInt5399 + 1;
-                        if (local570.anIntArray473.length <= local545.anInt5398) {
-                            local545.anInt5398 -= local570.replayoff;
-                            if (local545.anInt5400 + 1 >= local570.replaycount) {
+                        if (local570.frames.length <= local545.anInt5398) {
+                            local545.anInt5398 -= local570.replayOff;
+                            if (local545.anInt5400 + 1 >= local570.replayCount) {
                                 local545.anInt5398 = -1;
-                            } else if (local545.anInt5398 < 0 || local570.anIntArray473.length <= local545.anInt5398) {
+                            } else if (local545.anInt5398 < 0 || local570.frames.length <= local545.anInt5398) {
                                 local545.anInt5398 = -1;
                             }
                         }
@@ -406,7 +406,7 @@ public class NpcList {
 
     @OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(Lclient!fe;B)V")
     public static void method4665(@OriginalArg(0) PathingEntity arg0) {
-        if (client.loop == arg0.anInt3386 || arg0.primarySeqId == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > SeqTypeList.getAnimationSequence(arg0.primarySeqId).frames[arg0.anInt3425]) {
+        if (client.loop == arg0.anInt3386 || arg0.primarySeqId == -1 || arg0.anInt3420 != 0 || arg0.anInt3360 + 1 > SeqTypeList.get(arg0.primarySeqId).frameDelay[arg0.anInt3425]) {
             @Pc(35) int local35 = arg0.anInt3386 - arg0.anInt3395;
             @Pc(41) int local41 = client.loop - arg0.anInt3395;
             @Pc(52) int local52 = arg0.anInt3380 * 128 + arg0.getSize() * 64;
@@ -441,12 +441,12 @@ public class NpcList {
             return;
         }
         if (arg0.primarySeqId != -1 && arg0.anInt3420 == 0) {
-            @Pc(40) SeqType local40 = SeqTypeList.getAnimationSequence(arg0.primarySeqId);
-            if (arg0.anInt3405 > 0 && local40.anInt5363 == 0) {
+            @Pc(40) SeqType local40 = SeqTypeList.get(arg0.primarySeqId);
+            if (arg0.anInt3405 > 0 && local40.loopType == 0) {
                 arg0.anInt3417++;
                 return;
             }
-            if (arg0.anInt3405 <= 0 && local40.anInt5349 == 0) {
+            if (arg0.anInt3405 <= 0 && local40.movetype == 0) {
                 arg0.anInt3417++;
                 return;
             }

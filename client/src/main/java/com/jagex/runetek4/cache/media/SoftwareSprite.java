@@ -2,7 +2,6 @@ package com.jagex.runetek4.cache.media;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -33,95 +32,203 @@ public class SoftwareSprite extends Sprite {
 		this.xOffset = this.yOffset = 0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!dd", name = "a", descriptor = "([I[BIIIIIII)V")
-	public static void blockCopyMask(@OriginalArg(0) int[] arg0, @OriginalArg(1) byte[] arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8) {
-		@Pc(4) int local4 = -(arg5 >> 2);
-		@Pc(9) int local9 = -(arg5 & 0x3);
-		for (@Pc(12) int local12 = -arg6; local12 < 0; local12++) {
-			@Pc(16) int local16;
-			for (local16 = local4; local16 < 0; local16++) {
-				if (arg1[arg3++] == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2;
-				}
-				if (arg1[arg3++] == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2;
-				}
-				if (arg1[arg3++] == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2;
-				}
-				if (arg1[arg3++] == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2;
-				}
-			}
-			for (local16 = local9; local16 < 0; local16++) {
-				if (arg1[arg3++] == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2;
-				}
-			}
-			arg4 += arg7;
-			arg3 += arg8;
-		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!ek", name = "a", descriptor = "([I[B[IIIIIIII)V")
-	public static void blockCopyTrans(@OriginalArg(0) int[] arg0, @OriginalArg(1) byte[] arg1, @OriginalArg(2) int[] arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8) {
-		@Pc(4) int local4 = -(arg5 >> 2);
-		@Pc(9) int local9 = -(arg5 & 0x3);
-		for (@Pc(12) int local12 = -arg6; local12 < 0; local12++) {
-			@Pc(16) int local16;
-			@Pc(23) byte local23;
-			for (local16 = local4; local16 < 0; local16++) {
-				local23 = arg1[arg3++];
-				if (local23 == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2[local23 & 0xFF];
-				}
-				local23 = arg1[arg3++];
-				if (local23 == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2[local23 & 0xFF];
-				}
-				local23 = arg1[arg3++];
-				if (local23 == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2[local23 & 0xFF];
-				}
-				local23 = arg1[arg3++];
-				if (local23 == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2[local23 & 0xFF];
-				}
-			}
-			for (local16 = local9; local16 < 0; local16++) {
-				local23 = arg1[arg3++];
-				if (local23 == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2[local23 & 0xFF];
-				}
-			}
-			arg4 += arg7;
-			arg3 += arg8;
-		}
-	}
-
 	@OriginalMember(owner = "runetek4.client!gf", name = "a", descriptor = "(Lclient!ve;IIB)Lclient!mm;")
 	public static SoftwareSprite loadSoftwareAlphaSprite(@OriginalArg(0) Js5 arg0, @OriginalArg(2) int arg1) {
-		return SpriteLoader.decode(arg0, 0, arg1) ? Static102.method2071() : null;
+		return SpriteLoader.decode(arg0, 0, arg1) ? method2071() : null;
+	}
+
+	@OriginalMember(owner = "runetek4.client!mm", name = "a", descriptor = "([I[IIIIIIII)V")
+	public static void method300(@OriginalArg(0) int[] arg0, @OriginalArg(1) int[] arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
+		@Pc(4) int local4 = -(arg4 >> 2);
+		@Pc(9) int local9 = -(arg4 & 0x3);
+		for (@Pc(12) int local12 = -arg5; local12 < 0; local12++) {
+			@Pc(16) int local16;
+			@Pc(23) int local23;
+			for (local16 = local4; local16 < 0; local16++) {
+				local23 = arg1[arg2++];
+				if (local23 == 0) {
+					arg3++;
+				} else {
+					arg0[arg3++] = local23;
+				}
+				local23 = arg1[arg2++];
+				if (local23 == 0) {
+					arg3++;
+				} else {
+					arg0[arg3++] = local23;
+				}
+				local23 = arg1[arg2++];
+				if (local23 == 0) {
+					arg3++;
+				} else {
+					arg0[arg3++] = local23;
+				}
+				local23 = arg1[arg2++];
+				if (local23 == 0) {
+					arg3++;
+				} else {
+					arg0[arg3++] = local23;
+				}
+			}
+			for (local16 = local9; local16 < 0; local16++) {
+				local23 = arg1[arg2++];
+				if (local23 == 0) {
+					arg3++;
+				} else {
+					arg0[arg3++] = local23;
+				}
+			}
+			arg3 += arg6;
+			arg2 += arg7;
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!mm", name = "b", descriptor = "([I[IIIIIIII)V")
+	public static void method302(@OriginalArg(0) int[] arg0, @OriginalArg(1) int[] arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
+		@Pc(4) int local4 = -(arg4 >> 2);
+		@Pc(9) int local9 = -(arg4 & 0x3);
+		for (@Pc(12) int local12 = -arg5; local12 < 0; local12++) {
+			@Pc(16) int local16;
+			@Pc(23) int local23;
+			for (local16 = local4; local16 < 0; local16++) {
+				local23 = arg1[arg2--];
+				if (local23 == 0) {
+					arg3++;
+				} else {
+					arg0[arg3++] = local23;
+				}
+				local23 = arg1[arg2--];
+				if (local23 == 0) {
+					arg3++;
+				} else {
+					arg0[arg3++] = local23;
+				}
+				local23 = arg1[arg2--];
+				if (local23 == 0) {
+					arg3++;
+				} else {
+					arg0[arg3++] = local23;
+				}
+				local23 = arg1[arg2--];
+				if (local23 == 0) {
+					arg3++;
+				} else {
+					arg0[arg3++] = local23;
+				}
+			}
+			for (local16 = local9; local16 < 0; local16++) {
+				local23 = arg1[arg2--];
+				if (local23 == 0) {
+					arg3++;
+				} else {
+					arg0[arg3++] = local23;
+				}
+			}
+			arg3 += arg6;
+			arg2 += arg7;
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!mm", name = "a", descriptor = "([I[IIIIIII)V")
+	public static void method305(@OriginalArg(0) int[] arg0, @OriginalArg(1) int[] arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
+		for (@Pc(2) int local2 = -arg5; local2 < 0; local2++) {
+			@Pc(10) int local10 = arg3 + arg4 - 3;
+			while (arg3 < local10) {
+				arg0[arg3++] = arg1[arg2++];
+				arg0[arg3++] = arg1[arg2++];
+				arg0[arg3++] = arg1[arg2++];
+				arg0[arg3++] = arg1[arg2++];
+			}
+			local10 += 3;
+			while (arg3 < local10) {
+				arg0[arg3++] = arg1[arg2++];
+			}
+			arg3 += arg6;
+			arg2 += arg7;
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!mm", name = "a", descriptor = "([I[IIIIIIIIIIII)V")
+	public static void method307(@OriginalArg(0) int[] arg0, @OriginalArg(1) int[] arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8, @OriginalArg(10) int arg9, @OriginalArg(11) int arg10, @OriginalArg(12) int arg11) {
+		@Pc(3) int local3 = 256 - arg11;
+		@Pc(5) int local5 = arg2;
+		for (@Pc(8) int local8 = -arg7; local8 < 0; local8++) {
+			@Pc(16) int local16 = (arg3 >> 16) * arg10;
+			for (@Pc(19) int local19 = -arg6; local19 < 0; local19++) {
+				@Pc(29) int local29 = arg1[(arg2 >> 16) + local16];
+				if (local29 == 0) {
+					arg4++;
+				} else {
+					@Pc(35) int local35 = arg0[arg4];
+					arg0[arg4++] = ((local29 & 0xFF00FF) * arg11 + (local35 & 0xFF00FF) * local3 & 0xFF00FF00) + ((local29 & 0xFF00) * arg11 + (local35 & 0xFF00) * local3 & 0xFF0000) >> 8;
+				}
+				arg2 += arg8;
+			}
+			arg3 += arg9;
+			arg2 = local5;
+			arg4 += arg5;
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!mm", name = "a", descriptor = "([I[IIIIIIIII)V")
+	public static void drawAlpha(@OriginalArg(0) int[] arg0, @OriginalArg(1) int[] arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8) {
+		@Pc(3) int local3 = 256 - arg8;
+		for (@Pc(6) int local6 = -arg5; local6 < 0; local6++) {
+			for (@Pc(11) int local11 = -arg4; local11 < 0; local11++) {
+				@Pc(18) int local18 = arg1[arg2++];
+				if (local18 == 0) {
+					arg3++;
+				} else {
+					@Pc(24) int local24 = arg0[arg3];
+					arg0[arg3++] = ((local18 & 0xFF00FF) * arg8 + (local24 & 0xFF00FF) * local3 & 0xFF00FF00) + ((local18 & 0xFF00) * arg8 + (local24 & 0xFF00) * local3 & 0xFF0000) >> 8;
+				}
+			}
+			arg3 += arg6;
+			arg2 += arg7;
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!mm", name = "a", descriptor = "([I[IIIIIIIIIII)V")
+	public static void method316(@OriginalArg(0) int[] arg0, @OriginalArg(1) int[] arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8, @OriginalArg(10) int arg9, @OriginalArg(11) int arg10) {
+		@Pc(1) int local1 = arg2;
+		for (@Pc(4) int local4 = -arg7; local4 < 0; local4++) {
+			@Pc(12) int local12 = (arg3 >> 16) * arg10;
+			for (@Pc(15) int local15 = -arg6; local15 < 0; local15++) {
+				@Pc(25) int local25 = arg1[(arg2 >> 16) + local12];
+				if (local25 == 0) {
+					arg4++;
+				} else {
+					arg0[arg4++] = local25;
+				}
+				arg2 += arg8;
+			}
+			arg3 += arg9;
+			arg2 = local1;
+			arg4 += arg5;
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!hn", name = "d", descriptor = "(I)Lclient!mm;")
+	public static SoftwareSprite method2071() {
+		@Pc(13) int local13 = SpriteLoader.innerHeights[0] * SpriteLoader.innerWidths[0];
+		@Pc(17) byte[] local17 = SpriteLoader.pixels[0];
+		@Pc(78) SoftwareSprite local78;
+		if (SpriteLoader.hasAlpha[0]) {
+			@Pc(30) byte[] local30 = SpriteLoader.alpha[0];
+			@Pc(33) int[] local33 = new int[local13];
+			for (@Pc(35) int local35 = 0; local35 < local13; local35++) {
+				local33[local35] = (local30[local35] & 0xFF) << 24 | SpriteLoader.palette[local17[local35] & 0xFF];
+			}
+			local78 = new SoftwareAlphaSprite(SpriteLoader.width, SpriteLoader.height, SpriteLoader.xOffsets[0], SpriteLoader.yOffsets[0], SpriteLoader.innerWidths[0], SpriteLoader.innerHeights[0], local33);
+		} else {
+			@Pc(83) int[] local83 = new int[local13];
+			for (@Pc(85) int local85 = 0; local85 < local13; local85++) {
+				local83[local85] = SpriteLoader.palette[local17[local85] & 0xFF];
+			}
+			local78 = new SoftwareSprite(SpriteLoader.width, SpriteLoader.height, SpriteLoader.xOffsets[0], SpriteLoader.yOffsets[0], SpriteLoader.innerWidths[0], SpriteLoader.innerHeights[0], local83);
+		}
+		SpriteLoader.clear();
+		return local78;
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "d", descriptor = "(I)V")
@@ -178,40 +285,40 @@ public class SoftwareSprite extends Sprite {
 	public void drawPixels(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.xOffset;
 		arg1 += this.yOffset;
-		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.destinationWidth;
+		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.width;
 		@Pc(17) int local17 = 0;
 		@Pc(20) int local20 = this.height;
 		@Pc(23) int local23 = this.width;
-		@Pc(27) int local27 = SoftwareRaster.destinationWidth - local23;
+		@Pc(27) int local27 = SoftwareRaster.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < Rasterizer.viewportTop) {
-			local36 = Rasterizer.viewportTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local36 = SoftwareRaster.clipTop - arg1;
 			local20 -= local36;
-			arg1 = Rasterizer.viewportTop;
+			arg1 = SoftwareRaster.clipTop;
 			local17 = local36 * local23;
-			local15 += local36 * SoftwareRaster.destinationWidth;
+			local15 += local36 * SoftwareRaster.width;
 		}
-		if (arg1 + local20 > Rasterizer.viewportBottom) {
-			local20 -= arg1 + local20 - Rasterizer.viewportBottom;
+		if (arg1 + local20 > SoftwareRaster.clipBottom) {
+			local20 -= arg1 + local20 - SoftwareRaster.clipBottom;
 		}
-		if (arg0 < Rasterizer.viewportLeft) {
-			local36 = Rasterizer.viewportLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local36 = SoftwareRaster.clipLeft - arg0;
 			local23 -= local36;
-			arg0 = Rasterizer.viewportLeft;
+			arg0 = SoftwareRaster.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > Rasterizer.viewportRight) {
-			local36 = arg0 + local23 - Rasterizer.viewportRight;
+		if (arg0 + local23 > SoftwareRaster.clipRight) {
+			local36 = arg0 + local23 - SoftwareRaster.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
 		}
 		if (local23 > 0 && local20 > 0) {
-			Static290.method305(SoftwareRaster.destinationPixels, this.pixels, local17, local15, local23, local20, local27, local29);
+			method305(SoftwareRaster.pixels, this.pixels, local17, local15, local23, local20, local27, local29);
 		}
 	}
 
@@ -302,17 +409,17 @@ public class SoftwareSprite extends Sprite {
 		local166 = local166 + 15 >> 4;
 		local196 >>= 0x4;
 		local198 = local198 + 15 >> 4;
-		if (local164 < Rasterizer.viewportLeft) {
-			local164 = Rasterizer.viewportLeft;
+		if (local164 < SoftwareRaster.clipLeft) {
+			local164 = SoftwareRaster.clipLeft;
 		}
-		if (local166 > Rasterizer.viewportRight) {
-			local166 = Rasterizer.viewportRight;
+		if (local166 > SoftwareRaster.clipRight) {
+			local166 = SoftwareRaster.clipRight;
 		}
-		if (local196 < Rasterizer.viewportTop) {
-			local196 = Rasterizer.viewportTop;
+		if (local196 < SoftwareRaster.clipTop) {
+			local196 = SoftwareRaster.clipTop;
 		}
-		if (local198 > Rasterizer.viewportBottom) {
-			local198 = Rasterizer.viewportBottom;
+		if (local198 > SoftwareRaster.clipBottom) {
+			local198 = SoftwareRaster.clipBottom;
 		}
 		local166 = local164 - local166;
 		if (local166 >= 0) {
@@ -322,7 +429,7 @@ public class SoftwareSprite extends Sprite {
 		if (local198 >= 0) {
 			return;
 		}
-		@Pc(319) int local319 = local196 * SoftwareRaster.destinationWidth + local164;
+		@Pc(319) int local319 = local196 * SoftwareRaster.width + local164;
 		@Pc(324) double local324 = 1.6777216E7D / (double) arg5;
 		@Pc(333) int local333 = (int) Math.floor(Math.sin(local23) * local324 + 0.5D);
 		@Pc(342) int local342 = (int) Math.floor(Math.cos(local23) * local324 + 0.5D);
@@ -362,7 +469,7 @@ public class SoftwareSprite extends Sprite {
 								if (local432 == 0) {
 									local388++;
 								} else {
-									SoftwareRaster.destinationPixels[local388++] = local432;
+									SoftwareRaster.pixels[local388++] = local432;
 								}
 								local694 += local342;
 								local394++;
@@ -370,7 +477,7 @@ public class SoftwareSprite extends Sprite {
 						}
 						local384++;
 						local378 += local342;
-						local319 += SoftwareRaster.destinationWidth;
+						local319 += SoftwareRaster.width;
 					}
 				} else if (local333 < 0) {
 					local384 = local198;
@@ -408,7 +515,7 @@ public class SoftwareSprite extends Sprite {
 							if (local432 == 0) {
 								local388++;
 							} else {
-								SoftwareRaster.destinationPixels[local388++] = local432;
+								SoftwareRaster.pixels[local388++] = local432;
 							}
 							local694 += local342;
 							local468 += local333;
@@ -417,7 +524,7 @@ public class SoftwareSprite extends Sprite {
 						local384++;
 						local368 -= local333;
 						local378 += local342;
-						local319 += SoftwareRaster.destinationWidth;
+						local319 += SoftwareRaster.width;
 					}
 				} else {
 					local384 = local198;
@@ -454,7 +561,7 @@ public class SoftwareSprite extends Sprite {
 							if (local432 == 0) {
 								local388++;
 							} else {
-								SoftwareRaster.destinationPixels[local388++] = local432;
+								SoftwareRaster.pixels[local388++] = local432;
 							}
 							local694 += local342;
 							local468 += local333;
@@ -463,7 +570,7 @@ public class SoftwareSprite extends Sprite {
 						local384++;
 						local368 -= local333;
 						local378 += local342;
-						local319 += SoftwareRaster.destinationWidth;
+						local319 += SoftwareRaster.width;
 					}
 				}
 			} else if (local333 == 0) {
@@ -488,7 +595,7 @@ public class SoftwareSprite extends Sprite {
 							if (local432 == 0) {
 								local388++;
 							} else {
-								SoftwareRaster.destinationPixels[local388++] = local432;
+								SoftwareRaster.pixels[local388++] = local432;
 							}
 							local694 += local342;
 							local394++;
@@ -496,7 +603,7 @@ public class SoftwareSprite extends Sprite {
 					}
 					local384++;
 					local378 += local342;
-					local319 += SoftwareRaster.destinationWidth;
+					local319 += SoftwareRaster.width;
 				}
 			} else if (local333 < 0) {
 				local384 = local198;
@@ -533,7 +640,7 @@ public class SoftwareSprite extends Sprite {
 						if (local432 == 0) {
 							local388++;
 						} else {
-							SoftwareRaster.destinationPixels[local388++] = local432;
+							SoftwareRaster.pixels[local388++] = local432;
 						}
 						local694 += local342;
 						local468 += local333;
@@ -542,7 +649,7 @@ public class SoftwareSprite extends Sprite {
 					local384++;
 					local368 -= local333;
 					local378 += local342;
-					local319 += SoftwareRaster.destinationWidth;
+					local319 += SoftwareRaster.width;
 				}
 			} else {
 				local384 = local198;
@@ -578,7 +685,7 @@ public class SoftwareSprite extends Sprite {
 						if (local432 == 0) {
 							local388++;
 						} else {
-							SoftwareRaster.destinationPixels[local388++] = local432;
+							SoftwareRaster.pixels[local388++] = local432;
 						}
 						local694 += local342;
 						local468 += local333;
@@ -587,7 +694,7 @@ public class SoftwareSprite extends Sprite {
 					local384++;
 					local368 -= local333;
 					local378 += local342;
-					local319 += SoftwareRaster.destinationWidth;
+					local319 += SoftwareRaster.width;
 				}
 			}
 		} else if (local333 == 0) {
@@ -601,13 +708,13 @@ public class SoftwareSprite extends Sprite {
 						if (local432 == 0) {
 							local388++;
 						} else {
-							SoftwareRaster.destinationPixels[local388++] = local432;
+							SoftwareRaster.pixels[local388++] = local432;
 						}
 						local394++;
 					}
 				}
 				local384++;
-				local319 += SoftwareRaster.destinationWidth;
+				local319 += SoftwareRaster.width;
 			}
 		} else if (local333 < 0) {
 			local384 = local198;
@@ -632,7 +739,7 @@ public class SoftwareSprite extends Sprite {
 						if (local432 == 0) {
 							local388++;
 						} else {
-							SoftwareRaster.destinationPixels[local388++] = local432;
+							SoftwareRaster.pixels[local388++] = local432;
 						}
 						local468 += local333;
 						local394++;
@@ -640,7 +747,7 @@ public class SoftwareSprite extends Sprite {
 				}
 				local384++;
 				local368 -= local333;
-				local319 += SoftwareRaster.destinationWidth;
+				local319 += SoftwareRaster.width;
 			}
 		} else {
 			local384 = local198;
@@ -664,7 +771,7 @@ public class SoftwareSprite extends Sprite {
 						if (local432 == 0) {
 							local388++;
 						} else {
-							SoftwareRaster.destinationPixels[local388++] = local432;
+							SoftwareRaster.pixels[local388++] = local432;
 						}
 						local468 += local333;
 						local394++;
@@ -672,33 +779,33 @@ public class SoftwareSprite extends Sprite {
 				}
 				local384++;
 				local368 -= local333;
-				local319 += SoftwareRaster.destinationWidth;
+				local319 += SoftwareRaster.width;
 			}
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "e", descriptor = "(I)V")
 	public final void drawOutline(@OriginalArg(0) int arg0) {
-		@Pc(6) int[] local6 = new int[this.width * this.height];
-		@Pc(8) int local8 = 0;
-		for (@Pc(10) int local10 = 0; local10 < this.height; local10++) {
-			for (@Pc(16) int local16 = 0; local16 < this.width; local16++) {
-				@Pc(25) int local25 = this.pixels[local8];
-				if (local25 == 0) {
-					if (local16 > 0 && this.pixels[local8 - 1] != 0) {
-						local25 = arg0;
-					} else if (local10 > 0 && this.pixels[local8 - this.width] != 0) {
-						local25 = arg0;
-					} else if (local16 < this.width - 1 && this.pixels[local8 + 1] != 0) {
-						local25 = arg0;
-					} else if (local10 < this.height - 1 && this.pixels[local8 + this.width] != 0) {
-						local25 = arg0;
+		@Pc(6) int[] dest = new int[this.width * this.height];
+		@Pc(8) int destOff = 0;
+		for (@Pc(10) int y = 0; y < this.height; y++) {
+			for (@Pc(16) int x = 0; x < this.width; x++) {
+				@Pc(25) int src = this.pixels[destOff];
+				if (src == 0) {
+					if (x > 0 && this.pixels[destOff - 1] != 0) {
+						src = arg0;
+					} else if (y > 0 && this.pixels[destOff - this.width] != 0) {
+						src = arg0;
+					} else if (x < this.width - 1 && this.pixels[destOff + 1] != 0) {
+						src = arg0;
+					} else if (y < this.height - 1 && this.pixels[destOff + this.width] != 0) {
+						src = arg0;
 					}
 				}
-				local6[local8++] = local25;
+				dest[destOff++] = src;
 			}
 		}
-		this.pixels = local6;
+		this.pixels = dest;
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "c", descriptor = "()V")
@@ -715,7 +822,7 @@ public class SoftwareSprite extends Sprite {
 			@Pc(33) int local33 = local21 * 256 >> 8;
 			@Pc(45) int local45 = local27 * -10 + local33 * -10 + 983040;
 			@Pc(57) int local57 = local33 * -10 + 983040 - local27 * -10;
-			@Pc(63) int local63 = arg0 + arg1 * SoftwareRaster.destinationWidth;
+			@Pc(63) int local63 = arg0 + arg1 * SoftwareRaster.width;
 			for (@Pc(65) int local65 = 0; local65 < 20; local65++) {
 				@Pc(70) int local70 = local63;
 				@Pc(72) int local72 = local45;
@@ -725,14 +832,14 @@ public class SoftwareSprite extends Sprite {
 					if (local93 == 0) {
 						local70++;
 					} else {
-						SoftwareRaster.destinationPixels[local70++] = local93;
+						SoftwareRaster.pixels[local70++] = local93;
 					}
 					local72 += local33;
 					local74 -= local27;
 				}
 				local45 += local27;
 				local57 += local33;
-				local63 += SoftwareRaster.destinationWidth;
+				local63 += SoftwareRaster.width;
 			}
 		} catch (@Pc(128) Exception local128) {
 		}
@@ -743,82 +850,82 @@ public class SoftwareSprite extends Sprite {
 	public void renderHorizontalFlip(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.innerWidth - this.width - this.xOffset;
 		arg1 += this.yOffset;
-		@Pc(21) int local21 = arg0 + arg1 * SoftwareRaster.destinationWidth;
+		@Pc(21) int local21 = arg0 + arg1 * SoftwareRaster.width;
 		@Pc(26) int local26 = this.width - 1;
 		@Pc(29) int local29 = this.height;
 		@Pc(32) int local32 = this.width;
-		@Pc(36) int local36 = SoftwareRaster.destinationWidth - local32;
+		@Pc(36) int local36 = SoftwareRaster.width - local32;
 		@Pc(40) int local40 = local32 + local32;
 		@Pc(47) int local47;
-		if (arg1 < Rasterizer.viewportTop) {
-			local47 = Rasterizer.viewportTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local47 = SoftwareRaster.clipTop - arg1;
 			local29 -= local47;
-			arg1 = Rasterizer.viewportTop;
+			arg1 = SoftwareRaster.clipTop;
 			local26 += local47 * local32;
-			local21 += local47 * SoftwareRaster.destinationWidth;
+			local21 += local47 * SoftwareRaster.width;
 		}
-		if (arg1 + local29 > Rasterizer.viewportBottom) {
-			local29 -= arg1 + local29 - Rasterizer.viewportBottom;
+		if (arg1 + local29 > SoftwareRaster.clipBottom) {
+			local29 -= arg1 + local29 - SoftwareRaster.clipBottom;
 		}
-		if (arg0 < Rasterizer.viewportLeft) {
-			local47 = Rasterizer.viewportLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local47 = SoftwareRaster.clipLeft - arg0;
 			local32 -= local47;
-			arg0 = Rasterizer.viewportLeft;
+			arg0 = SoftwareRaster.clipLeft;
 			local26 -= local47;
 			local21 += local47;
 			local40 -= local47;
 			local36 += local47;
 		}
-		if (arg0 + local32 > Rasterizer.viewportRight) {
-			local47 = arg0 + local32 - Rasterizer.viewportRight;
+		if (arg0 + local32 > SoftwareRaster.clipRight) {
+			local47 = arg0 + local32 - SoftwareRaster.clipRight;
 			local32 -= local47;
 			local40 -= local47;
 			local36 += local47;
 		}
 		if (local32 > 0 && local29 > 0) {
-			Static290.method302(SoftwareRaster.destinationPixels, this.pixels, local26, local21, local32, local29, local36, local40);
+			method302(SoftwareRaster.pixels, this.pixels, local26, local21, local32, local29, local36, local40);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "a", descriptor = "(III)V")
 	@Override
-	public void renderAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		arg0 += this.xOffset;
-		arg1 += this.yOffset;
-		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.destinationWidth;
+	public void renderAlpha(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int alpha) {
+		x += this.xOffset;
+		y += this.yOffset;
+		@Pc(15) int local15 = x + y * SoftwareRaster.width;
 		@Pc(17) int local17 = 0;
 		@Pc(20) int local20 = this.height;
 		@Pc(23) int local23 = this.width;
-		@Pc(27) int local27 = SoftwareRaster.destinationWidth - local23;
+		@Pc(27) int local27 = SoftwareRaster.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < Rasterizer.viewportTop) {
-			local36 = Rasterizer.viewportTop - arg1;
+		if (y < SoftwareRaster.clipTop) {
+			local36 = SoftwareRaster.clipTop - y;
 			local20 -= local36;
-			arg1 = Rasterizer.viewportTop;
+			y = SoftwareRaster.clipTop;
 			local17 = local36 * local23;
-			local15 += local36 * SoftwareRaster.destinationWidth;
+			local15 += local36 * SoftwareRaster.width;
 		}
-		if (arg1 + local20 > Rasterizer.viewportBottom) {
-			local20 -= arg1 + local20 - Rasterizer.viewportBottom;
+		if (y + local20 > SoftwareRaster.clipBottom) {
+			local20 -= y + local20 - SoftwareRaster.clipBottom;
 		}
-		if (arg0 < Rasterizer.viewportLeft) {
-			local36 = Rasterizer.viewportLeft - arg0;
+		if (x < SoftwareRaster.clipLeft) {
+			local36 = SoftwareRaster.clipLeft - x;
 			local23 -= local36;
-			arg0 = Rasterizer.viewportLeft;
+			x = SoftwareRaster.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > Rasterizer.viewportRight) {
-			local36 = arg0 + local23 - Rasterizer.viewportRight;
+		if (x + local23 > SoftwareRaster.clipRight) {
+			local36 = x + local23 - SoftwareRaster.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
 		}
 		if (local23 > 0 && local20 > 0) {
-			Static290.method308(SoftwareRaster.destinationPixels, this.pixels, local17, local15, local23, local20, local27, local29, arg2);
+			drawAlpha(SoftwareRaster.pixels, this.pixels, local17, local15, local23, local20, local27, local29, alpha);
 		}
 	}
 
@@ -827,40 +934,40 @@ public class SoftwareSprite extends Sprite {
 	public void render(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		arg0 += this.xOffset;
 		arg1 += this.yOffset;
-		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.destinationWidth;
+		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.width;
 		@Pc(17) int local17 = 0;
 		@Pc(20) int local20 = this.height;
 		@Pc(23) int local23 = this.width;
-		@Pc(27) int local27 = SoftwareRaster.destinationWidth - local23;
+		@Pc(27) int local27 = SoftwareRaster.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < Rasterizer.viewportTop) {
-			local36 = Rasterizer.viewportTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local36 = SoftwareRaster.clipTop - arg1;
 			local20 -= local36;
-			arg1 = Rasterizer.viewportTop;
+			arg1 = SoftwareRaster.clipTop;
 			local17 = local36 * local23;
-			local15 += local36 * SoftwareRaster.destinationWidth;
+			local15 += local36 * SoftwareRaster.width;
 		}
-		if (arg1 + local20 > Rasterizer.viewportBottom) {
-			local20 -= arg1 + local20 - Rasterizer.viewportBottom;
+		if (arg1 + local20 > SoftwareRaster.clipBottom) {
+			local20 -= arg1 + local20 - SoftwareRaster.clipBottom;
 		}
-		if (arg0 < Rasterizer.viewportLeft) {
-			local36 = Rasterizer.viewportLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local36 = SoftwareRaster.clipLeft - arg0;
 			local23 -= local36;
-			arg0 = Rasterizer.viewportLeft;
+			arg0 = SoftwareRaster.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > Rasterizer.viewportRight) {
-			local36 = arg0 + local23 - Rasterizer.viewportRight;
+		if (arg0 + local23 > SoftwareRaster.clipRight) {
+			local36 = arg0 + local23 - SoftwareRaster.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
 		}
 		if (local23 > 0 && local20 > 0) {
-			Static290.method300(SoftwareRaster.destinationPixels, this.pixels, local17, local15, local23, local20, local27, local29);
+			method300(SoftwareRaster.pixels, this.pixels, local17, local15, local23, local20, local27, local29);
 		}
 	}
 
@@ -878,7 +985,7 @@ public class SoftwareSprite extends Sprite {
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "a", descriptor = "(IIIIIIII[I[I)V")
-	public void method310(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int[] arg8, @OriginalArg(9) int[] arg9) {
+	public void renderRotated(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int[] arg8, @OriginalArg(9) int[] arg9) {
 		try {
 			@Pc(4) int local4 = -arg2 / 2;
 			@Pc(9) int local9 = -arg3 / 2;
@@ -888,27 +995,27 @@ public class SoftwareSprite extends Sprite {
 			@Pc(39) int local39 = local27 * arg7 >> 8;
 			@Pc(51) int local51 = (arg4 << 16) + local9 * local33 + local4 * local39;
 			@Pc(63) int local63 = (arg5 << 16) + (local9 * local39 - local4 * local33);
-			@Pc(69) int local69 = arg0 + arg1 * SoftwareRaster.destinationWidth;
+			@Pc(69) int local69 = arg0 + arg1 * SoftwareRaster.width;
 			for (@Pc(71) int local71 = 0; local71 < arg3; local71++) {
 				@Pc(78) int local78 = arg8[local71];
 				@Pc(82) int local82 = local69 + local78;
 				@Pc(88) int local88 = local51 + local39 * local78;
 				@Pc(94) int local94 = local63 - local33 * local78;
 				for (@Pc(99) int local99 = -arg9[local71]; local99 < 0; local99++) {
-					SoftwareRaster.destinationPixels[local82++] = this.pixels[(local88 >> 16) + (local94 >> 16) * this.width];
+					SoftwareRaster.pixels[local82++] = this.pixels[(local88 >> 16) + (local94 >> 16) * this.width];
 					local88 += local39;
 					local94 -= local33;
 				}
 				local51 += local33;
 				local63 += local39;
-				local69 += SoftwareRaster.destinationWidth;
+				local69 += SoftwareRaster.width;
 			}
 		} catch (@Pc(144) Exception local144) {
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "e", descriptor = "()V")
-	public final void method311() {
+	public final void trim() {
 		if (this.width == this.innerWidth && this.height == this.innerHeight) {
 			return;
 		}
@@ -927,7 +1034,7 @@ public class SoftwareSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "a", descriptor = "(II[I[I)V")
 	public final void drawImage(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int[] arg2, @OriginalArg(3) int[] arg3) {
-		if (Rasterizer.viewportBottom - Rasterizer.viewportTop != arg2.length) {
+		if (SoftwareRaster.clipBottom - SoftwareRaster.clipTop != arg2.length) {
 			throw new IllegalStateException();
 		}
 		arg0 += this.xOffset;
@@ -935,31 +1042,31 @@ public class SoftwareSprite extends Sprite {
 		@Pc(21) int local21 = 0;
 		@Pc(24) int local24 = this.height;
 		@Pc(27) int local27 = this.width;
-		@Pc(31) int local31 = SoftwareRaster.destinationWidth - local27;
+		@Pc(31) int local31 = SoftwareRaster.width - local27;
 		@Pc(33) int local33 = 0;
-		@Pc(39) int local39 = arg0 + arg1 * SoftwareRaster.destinationWidth;
+		@Pc(39) int local39 = arg0 + arg1 * SoftwareRaster.width;
 		@Pc(46) int local46;
-		if (arg1 < Rasterizer.viewportTop) {
-			local46 = Rasterizer.viewportTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local46 = SoftwareRaster.clipTop - arg1;
 			local24 -= local46;
-			arg1 = Rasterizer.viewportTop;
+			arg1 = SoftwareRaster.clipTop;
 			local21 = local46 * local27;
-			local39 += local46 * SoftwareRaster.destinationWidth;
+			local39 += local46 * SoftwareRaster.width;
 		}
-		if (arg1 + local24 > Rasterizer.viewportBottom) {
-			local24 -= arg1 + local24 - Rasterizer.viewportBottom;
+		if (arg1 + local24 > SoftwareRaster.clipBottom) {
+			local24 -= arg1 + local24 - SoftwareRaster.clipBottom;
 		}
-		if (arg0 < Rasterizer.viewportLeft) {
-			local46 = Rasterizer.viewportLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local46 = SoftwareRaster.clipLeft - arg0;
 			local27 -= local46;
-			arg0 = Rasterizer.viewportLeft;
+			arg0 = SoftwareRaster.clipLeft;
 			local21 += local46;
 			local39 += local46;
 			local33 = local46;
 			local31 += local46;
 		}
-		if (arg0 + local27 > Rasterizer.viewportRight) {
-			local46 = arg0 + local27 - Rasterizer.viewportRight;
+		if (arg0 + local27 > SoftwareRaster.clipRight) {
+			local46 = arg0 + local27 - SoftwareRaster.clipRight;
 			local27 -= local46;
 			local33 += local46;
 			local31 += local46;
@@ -967,8 +1074,8 @@ public class SoftwareSprite extends Sprite {
 		if (local27 <= 0 || local24 <= 0) {
 			return;
 		}
-		local46 = arg0 - Rasterizer.viewportLeft;
-		@Pc(142) int local142 = arg1 - Rasterizer.viewportTop;
+		local46 = arg0 - SoftwareRaster.clipLeft;
+		@Pc(142) int local142 = arg1 - SoftwareRaster.clipTop;
 		for (@Pc(144) int local144 = local142; local144 < local142 + local24; local144++) {
 			@Pc(153) int local153 = arg2[local144];
 			@Pc(157) int local157 = arg3[local144];
@@ -1004,7 +1111,7 @@ public class SoftwareSprite extends Sprite {
 				if (local242 == 0) {
 					local39++;
 				} else {
-					SoftwareRaster.destinationPixels[local39++] = local242;
+					SoftwareRaster.pixels[local39++] = local242;
 				}
 			}
 			local21 += local166 + local33;
@@ -1013,7 +1120,7 @@ public class SoftwareSprite extends Sprite {
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "b", descriptor = "(IIIIIIII[I[I)V")
-	public void method313(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(8) int[] arg7, @OriginalArg(9) int[] arg8) {
+	public void renderRotated(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(8) int[] arg7, @OriginalArg(9) int[] arg8) {
 		try {
 			@Pc(4) int local4 = -arg2 / 2;
 			@Pc(9) int local9 = -arg3 / 2;
@@ -1023,7 +1130,7 @@ public class SoftwareSprite extends Sprite {
 			@Pc(39) int local39 = local27 * 256 >> 8;
 			@Pc(51) int local51 = (arg4 << 16) + local9 * local33 + local4 * local39;
 			@Pc(63) int local63 = (arg5 << 16) + (local9 * local39 - local4 * local33);
-			@Pc(69) int local69 = arg0 + arg1 * SoftwareRaster.destinationWidth;
+			@Pc(69) int local69 = arg0 + arg1 * SoftwareRaster.width;
 			for (@Pc(71) int local71 = 0; local71 < arg3; local71++) {
 				@Pc(78) int local78 = arg7[local71];
 				@Pc(82) int local82 = local69 + local78;
@@ -1034,26 +1141,26 @@ public class SoftwareSprite extends Sprite {
 					if (local115 == 0) {
 						local82++;
 					} else {
-						SoftwareRaster.destinationPixels[local82++] = local115;
+						SoftwareRaster.pixels[local82++] = local115;
 					}
 					local88 += local39;
 					local94 -= local33;
 				}
 				local51 += local33;
 				local63 += local39;
-				local69 += SoftwareRaster.destinationWidth;
+				local69 += SoftwareRaster.width;
 			}
 		} catch (@Pc(150) Exception local150) {
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "f", descriptor = "(I)V")
-	public final void drawShadow(@OriginalArg(0) int arg0) {
-		for (@Pc(4) int local4 = this.height - 1; local4 > 0; local4--) {
-			@Pc(11) int local11 = local4 * this.width;
-			for (@Pc(16) int local16 = this.width - 1; local16 > 0; local16--) {
-				if (this.pixels[local16 + local11] == 0 && this.pixels[local16 + local11 - this.width - 1] != 0) {
-					this.pixels[local16 + local11] = arg0;
+	public final void drawShadow(@OriginalArg(0) int rgb) {
+		for (@Pc(4) int y = this.height - 1; y > 0; y--) {
+			@Pc(11) int row = y * this.width;
+			for (@Pc(16) int x = this.width - 1; x > 0; x--) {
+				if (this.pixels[x + row] == 0 && this.pixels[x + row - this.width - 1] != 0) {
+					this.pixels[x + row] = rgb;
 				}
 			}
 		}
@@ -1090,31 +1197,31 @@ public class SoftwareSprite extends Sprite {
 		if (local10 < local20) {
 			arg3 = ((local10 << 16) + local32 - local14 - 1) / local32;
 		}
-		local46 = arg0 + arg1 * SoftwareRaster.destinationWidth;
-		@Pc(130) int local130 = SoftwareRaster.destinationWidth - arg2;
-		if (arg1 + arg3 > Rasterizer.viewportBottom) {
-			arg3 -= arg1 + arg3 - Rasterizer.viewportBottom;
+		local46 = arg0 + arg1 * SoftwareRaster.width;
+		@Pc(130) int local130 = SoftwareRaster.width - arg2;
+		if (arg1 + arg3 > SoftwareRaster.clipBottom) {
+			arg3 -= arg1 + arg3 - SoftwareRaster.clipBottom;
 		}
 		@Pc(150) int local150;
-		if (arg1 < Rasterizer.viewportTop) {
-			local150 = Rasterizer.viewportTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local150 = SoftwareRaster.clipTop - arg1;
 			arg3 -= local150;
-			local46 += local150 * SoftwareRaster.destinationWidth;
+			local46 += local150 * SoftwareRaster.width;
 			local14 += local32 * local150;
 		}
-		if (arg0 + arg2 > Rasterizer.viewportRight) {
-			local150 = arg0 + arg2 - Rasterizer.viewportRight;
+		if (arg0 + arg2 > SoftwareRaster.clipRight) {
+			local150 = arg0 + arg2 - SoftwareRaster.clipRight;
 			arg2 -= local150;
 			local130 += local150;
 		}
-		if (arg0 < Rasterizer.viewportLeft) {
-			local150 = Rasterizer.viewportLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local150 = SoftwareRaster.clipLeft - arg0;
 			arg2 -= local150;
 			local46 += local150;
 			local12 += local26 * local150;
 			local130 += local150;
 		}
-		Static290.method307(SoftwareRaster.destinationPixels, this.pixels, local12, local14, local46, local130, arg2, arg3, local26, local32, local7, arg4);
+		method307(SoftwareRaster.pixels, this.pixels, local12, local14, local46, local130, arg2, arg3, local26, local32, local7, arg4);
 	}
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "b", descriptor = "(III)V")
@@ -1179,30 +1286,30 @@ public class SoftwareSprite extends Sprite {
 		if (local10 < local20) {
 			arg3 = ((local10 << 16) + local32 - local14 - 1) / local32;
 		}
-		local46 = arg0 + arg1 * SoftwareRaster.destinationWidth;
-		@Pc(130) int local130 = SoftwareRaster.destinationWidth - arg2;
-		if (arg1 + arg3 > Rasterizer.viewportBottom) {
-			arg3 -= arg1 + arg3 - Rasterizer.viewportBottom;
+		local46 = arg0 + arg1 * SoftwareRaster.width;
+		@Pc(130) int local130 = SoftwareRaster.width - arg2;
+		if (arg1 + arg3 > SoftwareRaster.clipBottom) {
+			arg3 -= arg1 + arg3 - SoftwareRaster.clipBottom;
 		}
 		@Pc(150) int local150;
-		if (arg1 < Rasterizer.viewportTop) {
-			local150 = Rasterizer.viewportTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local150 = SoftwareRaster.clipTop - arg1;
 			arg3 -= local150;
-			local46 += local150 * SoftwareRaster.destinationWidth;
+			local46 += local150 * SoftwareRaster.width;
 			local14 += local32 * local150;
 		}
-		if (arg0 + arg2 > Rasterizer.viewportRight) {
-			local150 = arg0 + arg2 - Rasterizer.viewportRight;
+		if (arg0 + arg2 > SoftwareRaster.clipRight) {
+			local150 = arg0 + arg2 - SoftwareRaster.clipRight;
 			arg2 -= local150;
 			local130 += local150;
 		}
-		if (arg0 < Rasterizer.viewportLeft) {
-			local150 = Rasterizer.viewportLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local150 = SoftwareRaster.clipLeft - arg0;
 			arg2 -= local150;
 			local46 += local150;
 			local12 += local26 * local150;
 			local130 += local150;
 		}
-		Static290.method316(SoftwareRaster.destinationPixels, this.pixels, local12, local14, local46, local130, arg2, arg3, local26, local32, local7);
+		method316(SoftwareRaster.pixels, this.pixels, local12, local14, local46, local130, arg2, arg3, local26, local32, local7);
 	}
 }

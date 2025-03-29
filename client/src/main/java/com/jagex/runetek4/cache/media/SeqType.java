@@ -11,33 +11,34 @@ import org.openrs2.deob.annotation.Pc;
 public final class SeqType {
 
 	@OriginalMember(owner = "runetek4.client!qi", name = "v", descriptor = "Z")
-	public static boolean tween = false;
+	public static boolean applyTweening = false;
+
 	@OriginalMember(owner = "client!tk", name = "g", descriptor = "[I")
-	public int[] anIntArray473;
-
-	@OriginalMember(owner = "client!tk", name = "n", descriptor = "[Z")
-	public boolean[] aBooleanArray123;
-
-	@OriginalMember(owner = "client!tk", name = "y", descriptor = "I")
-	public int anInt5361;
-
-	@OriginalMember(owner = "client!tk", name = "C", descriptor = "[[I")
-	public int[][] sound;
-
-	@OriginalMember(owner = "client!tk", name = "G", descriptor = "[I")
 	public int[] frames;
 
+	@OriginalMember(owner = "client!tk", name = "n", descriptor = "[Z")
+	public boolean[] framegroup;
+
+	@OriginalMember(owner = "client!tk", name = "y", descriptor = "I")
+	public int id;
+
+	@OriginalMember(owner = "client!tk", name = "C", descriptor = "[[I")
+	public int[][] soundeffect;
+
+	@OriginalMember(owner = "client!tk", name = "G", descriptor = "[I")
+	public int[] frameDelay;
+
 	@OriginalMember(owner = "client!tk", name = "I", descriptor = "[I")
-	private int[] anIntArray475;
+	private int[] frameset;
 
 	@OriginalMember(owner = "client!tk", name = "a", descriptor = "I")
 	public int exactmove = 2;
 
 	@OriginalMember(owner = "client!tk", name = "b", descriptor = "Z")
-	public boolean aBoolean277 = false;
+	public boolean tween = false;
 
 	@OriginalMember(owner = "client!tk", name = "f", descriptor = "I")
-	public int anInt5349 = -1;
+	public int movetype = -1;
 
 	@OriginalMember(owner = "client!tk", name = "e", descriptor = "I")
 	public int offhand = -1;
@@ -46,13 +47,13 @@ public final class SeqType {
 	public boolean aBoolean278 = false;
 
 	@OriginalMember(owner = "client!tk", name = "t", descriptor = "I")
-	public int replaycount = 99;
+	public int replayCount = 99;
 
 	@OriginalMember(owner = "client!tk", name = "z", descriptor = "I")
-	public int replayoff = -1;
+	public int replayOff = -1;
 
 	@OriginalMember(owner = "client!tk", name = "B", descriptor = "I")
-	public int anInt5363 = -1;
+	public int loopType = -1;
 
 	@OriginalMember(owner = "client!tk", name = "p", descriptor = "I")
 	public int priority = 5;
@@ -61,123 +62,117 @@ public final class SeqType {
 	public boolean stretches = false;
 
 	@OriginalMember(owner = "client!tk", name = "l", descriptor = "I")
-	public int mainhand = -1;
+	public int mainHand = -1;
 
 	@OriginalMember(owner = "client!tk", name = "L", descriptor = "Z")
 	public boolean aBoolean280 = false;
 
-	@OriginalMember(owner = "runetek4.client!fl", name = "a", descriptor = "(IB)V")
-	public static void clearAnimationCache() {
-		Static142.animationSequenceCache.clean(5);
-		Static267.skeletonCache.clean(5);
-	}
-
 	@OriginalMember(owner = "client!tk", name = "a", descriptor = "(Lclient!wa;B)V")
 	public void decode(@OriginalArg(0) Packet packet) {
 		while (true) {
-			@Pc(19) int code = packet.g1();
-			if (code == 0) {
+			@Pc(19) int opcode = packet.g1();
+			if (opcode == 0) {
 				return;
 			}
-			this.decode(packet, code);
+			this.decode(packet, opcode);
 		}
 	}
 
 	@OriginalMember(owner = "client!tk", name = "a", descriptor = "(IBLclient!wa;)V")
-	private void decode(@OriginalArg(2) Packet packet, @OriginalArg(0) int code) {
+	private void decode(@OriginalArg(2) Packet packet, @OriginalArg(0) int opcode) {
 		@Pc(8) int local8;
 		@Pc(14) int local14;
-		if (code == 1) {
+		if (opcode == 1) {
 			int length = packet.g2();
+			this.frameDelay = new int[length];
+			for (int index = 0; index < length; index++) {
+				this.frameDelay[index] = packet.g2();
+			}
 			this.frames = new int[length];
 			for (int index = 0; index < length; index++) {
 				this.frames[index] = packet.g2();
 			}
-			this.anIntArray473 = new int[length];
 			for (int index = 0; index < length; index++) {
-				this.anIntArray473[index] = packet.g2();
+				this.frames[index] += packet.g2() << 16;
 			}
-			for (int index = 0; index < length; index++) {
-				this.anIntArray473[index] += packet.g2() << 16;
-			}
-		} else if (code == 2) {
-			this.replayoff = packet.g2();
-		} else if (code == 3) {
-			this.aBooleanArray123 = new boolean[256];
+		} else if (opcode == 2) {
+			this.replayOff = packet.g2();
+		} else if (opcode == 3) {
+			this.framegroup = new boolean[256];
 			int length = packet.g1();
 			for (int index = 0; index < length; index++) {
-				this.aBooleanArray123[packet.g1()] = true;
+				this.framegroup[packet.g1()] = true;
 			}
-		} else if (code == 4) {
+		} else if (opcode == 4) {
 			this.stretches = true;
-		} else if (code == 5) {
+		} else if (opcode == 5) {
 			this.priority = packet.g1();
-		} else if (code == 6) {
-			this.mainhand = packet.g2();
-		} else if (code == 7) {
+		} else if (opcode == 6) {
+			this.mainHand = packet.g2();
+		} else if (opcode == 7) {
 			this.offhand = packet.g2();
-		} else if (code == 8) {
-			this.replaycount = packet.g1();
-		} else if (code == 9) {
-			this.anInt5363 = packet.g1();
-		} else if (code == 10) {
-			this.anInt5349 = packet.g1();
-		} else if (code == 11) {
+		} else if (opcode == 8) {
+			this.replayCount = packet.g1();
+		} else if (opcode == 9) {
+			this.loopType = packet.g1();
+		} else if (opcode == 10) {
+			this.movetype = packet.g1();
+		} else if (opcode == 11) {
 			this.exactmove = packet.g1();
-		} else if (code == 12) {
+		} else if (opcode == 12) {
 			int length = packet.g1();
-			this.anIntArray475 = new int[length];
+			this.frameset = new int[length];
 			for (int index = 0; index < length; index++) {
-				this.anIntArray475[index] = packet.g2();
+				this.frameset[index] = packet.g2();
 			}
 			for (int index = 0; index < length; index++) {
-				this.anIntArray475[index] += packet.g2() << 16;
+				this.frameset[index] += packet.g2() << 16;
 			}
-		} else if (code == 13) {
+		} else if (opcode == 13) {
 			int length = packet.g2();
-			this.sound = new int[length][];
+			this.soundeffect = new int[length][];
 			for (int index = 0; index < length; index++) {
 				@Pc(163) int local163 = packet.g1();
 				if (local163 > 0) {
-					this.sound[index] = new int[local163];
-					this.sound[index][0] = packet.g3();
+					this.soundeffect[index] = new int[local163];
+					this.soundeffect[index][0] = packet.g3();
 					for (@Pc(182) int local182 = 1; local182 < local163; local182++) {
-						this.sound[index][local182] = packet.g2();
+						this.soundeffect[index][local182] = packet.g2();
 					}
 				}
 			}
-		} else if (code == 14) {
+		} else if (opcode == 14) {
 			this.aBoolean278 = true;
-		} else if (code == 15) {
-			this.aBoolean277 = true;
-		} else if (code == 16) {
+		} else if (opcode == 15) { // TODO: (probably) not an authentic name
+			this.tween = true;
+		} else if (opcode == 16) {
 			this.aBoolean280 = true;
 		}
 	}
 
 	@OriginalMember(owner = "client!tk", name = "b", descriptor = "(B)V")
 	public void postDecode() {
-		if (this.anInt5363 == -1) {
-			if (this.aBooleanArray123 == null) {
-				this.anInt5363 = 0;
+		if (this.loopType == -1) {
+			if (this.framegroup == null) {
+				this.loopType = 0;
 			} else {
-				this.anInt5363 = 2;
+				this.loopType = 2;
 			}
 		}
-		if (this.anInt5349 != -1) {
+		if (this.movetype != -1) {
 			return;
 		}
-		if (this.aBooleanArray123 == null) {
-			this.anInt5349 = 0;
+		if (this.framegroup == null) {
+			this.movetype = 0;
 		} else {
-			this.anInt5349 = 2;
+			this.movetype = 2;
 		}
 	}
 
 	@OriginalMember(owner = "client!tk", name = "a", descriptor = "(IIILclient!ak;II)Lclient!ak;")
 	public Model method4214(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Model arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		@Pc(10) int local10 = this.frames[arg0];
-		@Pc(15) int local15 = this.anIntArray473[arg0];
+		@Pc(10) int local10 = this.frameDelay[arg0];
+		@Pc(15) int local15 = this.frames[arg0];
 		@Pc(23) AnimFrameset local23 = SeqTypeList.getAnimFrameset(local15 >> 16);
 		@Pc(27) int local27 = local15 & 0xFFFF;
 		if (local23 == null) {
@@ -185,8 +180,8 @@ public final class SeqType {
 		}
 		@Pc(39) int local39 = arg3 & 0x3;
 		@Pc(41) AnimFrameset local41 = null;
-		if ((this.aBoolean277 || tween) && arg1 != -1 && this.anIntArray473.length > arg1) {
-			@Pc(69) int local69 = this.anIntArray473[arg1];
+		if ((this.tween || applyTweening) && arg1 != -1 && this.frames.length > arg1) {
+			@Pc(69) int local69 = this.frames[arg1];
 			local41 = SeqTypeList.getAnimFrameset(local69 >> 16);
 			arg1 = local69 & 0xFFFF;
 		}
@@ -232,16 +227,16 @@ public final class SeqType {
 
 	@OriginalMember(owner = "client!tk", name = "a", descriptor = "(Lclient!ak;BIII)Lclient!ak;")
 	public Model method4215(@OriginalArg(0) Model arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		@Pc(8) int local8 = this.anIntArray473[arg3];
-		@Pc(13) int local13 = this.frames[arg3];
+		@Pc(8) int local8 = this.frames[arg3];
+		@Pc(13) int local13 = this.frameDelay[arg3];
 		@Pc(19) AnimFrameset local19 = SeqTypeList.getAnimFrameset(local8 >> 16);
 		@Pc(23) int local23 = local8 & 0xFFFF;
 		if (local19 == null) {
 			return arg0.method4572(true, true, true);
 		}
 		@Pc(34) AnimFrameset local34 = null;
-		if ((this.aBoolean277 || tween) && arg1 != -1 && arg1 < this.anIntArray473.length) {
-			@Pc(59) int local59 = this.anIntArray473[arg1];
+		if ((this.tween || applyTweening) && arg1 != -1 && arg1 < this.frames.length) {
+			@Pc(59) int local59 = this.frames[arg1];
 			local34 = SeqTypeList.getAnimFrameset(local59 >> 16);
 			arg1 = local59 & 0xFFFF;
 		}
@@ -249,16 +244,16 @@ public final class SeqType {
 		@Pc(81) AnimFrameset local81 = null;
 		@Pc(83) int local83 = 0;
 		@Pc(85) int local85 = 0;
-		if (this.anIntArray475 != null) {
-			if (this.anIntArray475.length > arg3) {
-				local83 = this.anIntArray475[arg3];
+		if (this.frameset != null) {
+			if (this.frameset.length > arg3) {
+				local83 = this.frameset[arg3];
 				if (local83 != 65535) {
 					local71 = SeqTypeList.getAnimFrameset(local83 >> 16);
 					local83 &= 0xFFFF;
 				}
 			}
-			if ((this.aBoolean277 || tween) && arg1 != -1 && this.anIntArray475.length > arg1) {
-				local85 = this.anIntArray475[arg1];
+			if ((this.tween || applyTweening) && arg1 != -1 && this.frameset.length > arg1) {
+				local85 = this.frameset[arg1];
 				if (local85 != 65535) {
 					local81 = SeqTypeList.getAnimFrameset(local85 >> 16);
 					local85 &= 0xFFFF;
@@ -289,8 +284,8 @@ public final class SeqType {
 
 	@OriginalMember(owner = "client!tk", name = "a", descriptor = "(IIIILclient!ak;I)Lclient!ak;")
 	public Model method4216(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) Model arg4) {
-		@Pc(6) int local6 = this.frames[arg1];
-		@Pc(11) int local11 = this.anIntArray473[arg1];
+		@Pc(6) int local6 = this.frameDelay[arg1];
+		@Pc(11) int local11 = this.frames[arg1];
 		@Pc(19) AnimFrameset local19 = SeqTypeList.getAnimFrameset(local11 >> 16);
 		@Pc(27) int local27 = local11 & 0xFFFF;
 		if (local19 == null) {
@@ -298,8 +293,8 @@ public final class SeqType {
 		}
 		@Pc(40) int local40 = arg3 & 0x3;
 		@Pc(42) AnimFrameset local42 = null;
-		if ((this.aBoolean277 || tween) && arg0 != -1 && arg0 < this.anIntArray473.length) {
-			@Pc(66) int local66 = this.anIntArray473[arg0];
+		if ((this.tween || applyTweening) && arg0 != -1 && arg0 < this.frames.length) {
+			@Pc(66) int local66 = this.frames[arg0];
 			local42 = SeqTypeList.getAnimFrameset(local66 >> 16);
 			arg0 = local66 & 0xFFFF;
 		}
@@ -345,16 +340,16 @@ public final class SeqType {
 
 	@OriginalMember(owner = "client!tk", name = "a", descriptor = "(IIIBLclient!ak;)Lclient!ak;")
 	public Model method4219(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) Model arg3) {
-		@Pc(16) int local16 = this.frames[arg2];
-		@Pc(21) int local21 = this.anIntArray473[arg2];
+		@Pc(16) int local16 = this.frameDelay[arg2];
+		@Pc(21) int local21 = this.frames[arg2];
 		@Pc(27) AnimFrameset local27 = SeqTypeList.getAnimFrameset(local21 >> 16);
 		@Pc(31) int local31 = local21 & 0xFFFF;
 		if (local27 == null) {
 			return arg3.method4560(true, true, true);
 		}
 		@Pc(42) AnimFrameset local42 = null;
-		if ((this.aBoolean277 || tween) && arg0 != -1 && this.anIntArray473.length > arg0) {
-			@Pc(65) int local65 = this.anIntArray473[arg0];
+		if ((this.tween || applyTweening) && arg0 != -1 && this.frames.length > arg0) {
+			@Pc(65) int local65 = this.frames[arg0];
 			local42 = SeqTypeList.getAnimFrameset(local65 >> 16);
 			arg0 = local65 & 0xFFFF;
 		}

@@ -3,6 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -11,12 +12,44 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("runetek4.client!si")
 public final class TextureOp29 extends TextureOp {
 
+	@OriginalMember(owner = "runetek4.client!ic", name = "j", descriptor = "I")
+	public static int anInt2869 = 100;
+	@OriginalMember(owner = "runetek4.client!nj", name = "i", descriptor = "I")
+	public static int anInt4164 = 0;
+	@OriginalMember(owner = "runetek4.client!vl", name = "h", descriptor = "I")
+	public static int anInt5773 = 0;
 	@OriginalMember(owner = "runetek4.client!si", name = "U", descriptor = "[Lclient!kf;")
 	private TextureOp29SubOp[] aClass18Array1;
 
 	@OriginalMember(owner = "runetek4.client!si", name = "<init>", descriptor = "()V")
 	public TextureOp29() {
 		super(0, true);
+	}
+
+	@OriginalMember(owner = "client!ed", name = "a", descriptor = "(ZIIII)V")
+	public static void method1306(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+		if (arg3 >= anInt4164 && arg3 <= FluTypeList.anInt5063) {
+			@Pc(22) int local22 = IntUtils.clamp(anInt2869, arg1, anInt5773);
+			@Pc(28) int local28 = IntUtils.clamp(anInt2869, arg0, anInt5773);
+			TextureOp29SubOp4.method2054(local22, arg3, local28, arg2);
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!id", name = "a", descriptor = "(IIBII)V")
+	public static void method2263(@OriginalArg(3) int arg0, @OriginalArg(4) int arg1) {
+		FluTypeList.anInt5063 = arg1;
+		anInt4164 = 0;
+		anInt5773 = 0;
+		anInt2869 = arg0;
+	}
+
+	@OriginalMember(owner = "runetek4.client!ta", name = "a", descriptor = "(IIZII)V")
+	public static void method4019(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
+		if (arg3 >= anInt5773 && arg3 <= anInt2869) {
+			@Pc(15) int local15 = IntUtils.clamp(FluTypeList.anInt5063, arg0, anInt4164);
+			@Pc(21) int local21 = IntUtils.clamp(FluTypeList.anInt5063, arg2, anInt4164);
+			TextureOp29SubOp4.method3826(arg1, arg3, local21, local15);
+		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(IB)[I")
@@ -34,7 +67,7 @@ public final class TextureOp29 extends TextureOp {
 		@Pc(7) int local7 = Texture.height;
 		@Pc(9) int local9 = Texture.width;
 		ObjType.method1751(arg0);
-		Static107.method2263(Texture.heightMask, Texture.widthMask);
+		method2263(Texture.heightMask, Texture.widthMask);
 		if (this.aClass18Array1 == null) {
 			return;
 		}
@@ -64,11 +97,11 @@ public final class TextureOp29 extends TextureOp {
 				if (local24 == 0) {
 					this.aClass18Array1[local11] = CacheArchive.method184(packet);
 				} else if (local24 == 1) {
-					this.aClass18Array1[local11] = Static21.method620(packet);
+					this.aClass18Array1[local11] = TextureOp29SubOp3.method620(packet);
 				} else if (local24 == 2) {
-					this.aClass18Array1[local11] = Static156.method2960(packet);
+					this.aClass18Array1[local11] = TextureOp29SubOp4.method2960(packet);
 				} else if (local24 == 3) {
-					this.aClass18Array1[local11] = Static137.method2664(packet);
+					this.aClass18Array1[local11] = TextureOp29SubOp2.method2664(packet);
 				}
 			}
 		} else if (code == 1) {
@@ -79,12 +112,12 @@ public final class TextureOp29 extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!si", name = "b", descriptor = "(II)[[I")
 	@Override
 	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
-		@Pc(14) int[][] local14 = this.clearImageCache.get(arg0);
-		if (this.clearImageCache.invalid) {
+		@Pc(14) int[][] local14 = this.colorImageCache.get(arg0);
+		if (this.colorImageCache.invalid) {
 			@Pc(20) int local20 = Texture.width;
 			@Pc(22) int local22 = Texture.height;
 			@Pc(26) int[][] local26 = new int[local22][local20];
-			@Pc(31) int[][][] local31 = this.clearImageCache.method3168();
+			@Pc(31) int[][][] local31 = this.colorImageCache.method3168();
 			this.method3934(local26);
 			for (@Pc(37) int local37 = 0; local37 < Texture.height; local37++) {
 				@Pc(44) int[] local44 = local26[local37];

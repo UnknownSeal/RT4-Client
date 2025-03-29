@@ -1,7 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.Cache;
-import com.jagex.runetek4.node.NodeQueue;
+import com.jagex.runetek4.node.SecondaryLinkedList;
 import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -12,7 +12,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class Js5CacheQueue implements Runnable {
 
 	@OriginalMember(owner = "runetek4.client!k", name = "q", descriptor = "Lclient!ce;")
-	private final NodeQueue queue = new NodeQueue();
+	private final SecondaryLinkedList queue = new SecondaryLinkedList();
 
 	@OriginalMember(owner = "runetek4.client!k", name = "s", descriptor = "I")
 	public int size = 0;
@@ -37,7 +37,7 @@ public final class Js5CacheQueue implements Runnable {
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!c;I)V")
 	private void enqueue(@OriginalArg(0) Js5CacheRequest arg0) {
-		@Pc(7) NodeQueue local7 = this.queue;
+		@Pc(7) SecondaryLinkedList local7 = this.queue;
 		synchronized (this.queue) {
 			this.queue.addTail(arg0);
 			this.size++;
@@ -48,7 +48,7 @@ public final class Js5CacheQueue implements Runnable {
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(I)V")
 	public final void quit() {
 		this.stop = true;
-		@Pc(6) NodeQueue local6 = this.queue;
+		@Pc(6) SecondaryLinkedList local6 = this.queue;
 		synchronized (this.queue) {
 			this.queue.notifyAll();
 		}
@@ -64,7 +64,7 @@ public final class Js5CacheQueue implements Runnable {
 		@Pc(7) Js5CacheRequest request = new Js5CacheRequest();
 		request.bytes = arg1;
 		request.urgent = false;
-		request.secondaryNodeId = arg2;
+		request.secondaryKey = arg2;
 		request.cache = arg0;
 		request.type = 2;
 		this.enqueue(request);
@@ -77,7 +77,7 @@ public final class Js5CacheQueue implements Runnable {
 		local7.cache = arg1;
 		local7.type = 3;
 		local7.urgent = false;
-		local7.secondaryNodeId = arg0;
+		local7.secondaryKey = arg0;
 		this.enqueue(local7);
 		return local7;
 	}
@@ -86,19 +86,19 @@ public final class Js5CacheQueue implements Runnable {
 	public final Js5CacheRequest readSynchronous(@OriginalArg(0) Cache arg0, @OriginalArg(2) int arg1) {
 		@Pc(9) Js5CacheRequest local9 = new Js5CacheRequest();
 		local9.type = 1;
-		@Pc(16) NodeQueue local16 = this.queue;
+		@Pc(16) SecondaryLinkedList local16 = this.queue;
 		synchronized (this.queue) {
 			@Pc(31) Js5CacheRequest local31 = (Js5CacheRequest) this.queue.head();
 			while (true) {
 				if (local31 == null) {
 					break;
 				}
-				if (local31.secondaryNodeId == (long) arg1 && local31.cache == arg0 && local31.type == 2) {
+				if (local31.secondaryKey == (long) arg1 && local31.cache == arg0 && local31.type == 2) {
 					local9.bytes = local31.bytes;
 					local9.awaitingResponse = false;
 					return local9;
 				}
-				local31 = (Js5CacheRequest) this.queue.prev();
+				local31 = (Js5CacheRequest) this.queue.next();
 			}
 		}
 		local9.bytes = arg0.get(arg1);
@@ -111,7 +111,7 @@ public final class Js5CacheQueue implements Runnable {
 	@Override
 	public final void run() {
 		while (!this.stop) {
-			@Pc(12) NodeQueue local12 = this.queue;
+			@Pc(12) SecondaryLinkedList local12 = this.queue;
 			@Pc(19) Js5CacheRequest local19;
 			synchronized (this.queue) {
 				local19 = (Js5CacheRequest) this.queue.removeHead();
@@ -126,9 +126,9 @@ public final class Js5CacheQueue implements Runnable {
 			}
 			try {
 				if (local19.type == 2) {
-					local19.cache.put((int) local19.secondaryNodeId, local19.bytes.length, local19.bytes);
+					local19.cache.put((int) local19.secondaryKey, local19.bytes.length, local19.bytes);
 				} else if (local19.type == 3) {
-					local19.bytes = local19.cache.get((int) local19.secondaryNodeId);
+					local19.bytes = local19.cache.get((int) local19.secondaryKey);
 				}
 			} catch (@Pc(83) Exception local83) {
 				TracingException.report(null, local83);

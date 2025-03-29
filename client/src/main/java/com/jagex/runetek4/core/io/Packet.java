@@ -109,7 +109,7 @@ public class Packet extends Node {
 
 	@OriginalMember(owner = "client!wa", name = "<init>", descriptor = "(I)V")
 	public Packet(@OriginalArg(0) int size) {
-		this.data = Static228.alloc(size);
+		this.data = alloc(size);
 		this.offset = 0;
 	}
 
@@ -131,6 +131,31 @@ public class Packet extends Node {
 	@OriginalMember(owner = "runetek4.client!fk", name = "a", descriptor = "([BIZ)I")
 	public static int crc32(@OriginalArg(0) byte[] src, @OriginalArg(1) int len) {
 		return crc32(src, 0, len);
+	}
+
+	@OriginalMember(owner = "client!sh", name = "a", descriptor = "(II)[B")
+	public static synchronized byte[] alloc(@OriginalArg(1) int arg0) {
+		@Pc(22) byte[] local22;
+		if (arg0 == 100 && allocatedMinCount > 0) {
+			local22 = allocatedMin[--allocatedMinCount];
+			allocatedMin[allocatedMinCount] = null;
+			return local22;
+		} else if (arg0 == 5000 && allocatedMidCount > 0) {
+			local22 = allocatedMid[--allocatedMidCount];
+			allocatedMid[allocatedMidCount] = null;
+			return local22;
+		} else if (arg0 == 30000 && allocatedMaxCount > 0) {
+			local22 = allocatedMax[--allocatedMaxCount];
+			allocatedMax[allocatedMaxCount] = null;
+			return local22;
+		} else {
+			return new byte[arg0];
+		}
+	}
+
+	@OriginalMember(owner = "runetek4.client!si", name = "a", descriptor = "(BLclient!na;)I")
+	public static int gjstrlen(@OriginalArg(1) JString arg0) {
+		return arg0.length() + 1;
 	}
 
 	@OriginalMember(owner = "client!wa", name = "c", descriptor = "(I)I")

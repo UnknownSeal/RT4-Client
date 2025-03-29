@@ -1,8 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.flotype.FloorOverlayTypeList;
-import com.jagex.runetek4.game.config.meltype.MapElementList;
 import com.jagex.runetek4.util.SignLink;
 import com.jagex.runetek4.util.ThreadUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -103,143 +101,6 @@ public class Preferences {
     @OriginalMember(owner = "runetek4.client!ga", name = "e", descriptor = "I")
     private static int particles = 2;
 
-    @OriginalMember(owner = "runetek4.client!pa", name = "d", descriptor = "(I)V")
-    public static void method3413() {
-        if (Static269.aClass3_Sub2_Sub4_2 == null) {
-            return;
-        }
-        if (WorldMap.loadPercentage < 10) {
-            if (!MapList.archive.isGroupReady(Static269.aClass3_Sub2_Sub4_2.group)) {
-                WorldMap.loadPercentage = client.js5Archive23.method4478(Static269.aClass3_Sub2_Sub4_2.group) / 10;
-                return;
-            }
-            client.method84();
-            WorldMap.loadPercentage = 10;
-        }
-        if (WorldMap.loadPercentage == 10) {
-            WorldMap.originX = Static269.aClass3_Sub2_Sub4_2.displayMinX >> 6 << 6;
-            WorldMap.originZ = Static269.aClass3_Sub2_Sub4_2.displayMaxX >> 6 << 6;
-            WorldMap.length = (Static269.aClass3_Sub2_Sub4_2.displayMinZ >> 6 << 6) + 64 - WorldMap.originZ;
-            Static48.anInt1449 = (Static269.aClass3_Sub2_Sub4_2.displayMaxZ >> 6 << 6) + 64 - WorldMap.originX;
-            if (Static269.aClass3_Sub2_Sub4_2.defaultZoom == 37) {
-                Static83.aFloat3 = 3.0F;
-                Static138.aFloat14 = 3.0F;
-            } else if (Static269.aClass3_Sub2_Sub4_2.defaultZoom == 50) {
-                Static83.aFloat3 = 4.0F;
-                Static138.aFloat14 = 4.0F;
-            } else if (Static269.aClass3_Sub2_Sub4_2.defaultZoom == 75) {
-                Static83.aFloat3 = 6.0F;
-                Static138.aFloat14 = 6.0F;
-            } else if (Static269.aClass3_Sub2_Sub4_2.defaultZoom == 100) {
-                Static83.aFloat3 = 8.0F;
-                Static138.aFloat14 = 8.0F;
-            } else if (Static269.aClass3_Sub2_Sub4_2.defaultZoom == 200) {
-                Static83.aFloat3 = 16.0F;
-                Static138.aFloat14 = 16.0F;
-            } else {
-                Static83.aFloat3 = 8.0F;
-                Static138.aFloat14 = 8.0F;
-            }
-            @Pc(144) int local144 = (PlayerList.self.xFine >> 7) + Camera.originX - WorldMap.originX;
-            @Pc(153) int local153 = local144 + (int) (Math.random() * 10.0D) - 5;
-            @Pc(168) int local168 = WorldMap.originZ + WorldMap.length - Camera.originZ - (PlayerList.self.zFine >> 7) - 1;
-            @Pc(177) int local177 = local168 + (int) (Math.random() * 10.0D) - 5;
-            if (local153 >= 0 && Static48.anInt1449 > local153 && local177 >= 0 && local177 < WorldMap.length) {
-                WorldMap.anInt435 = local153;
-                WorldMap.anInt919 = local177;
-            } else {
-                WorldMap.anInt919 = WorldMap.originZ + WorldMap.length - Static269.aClass3_Sub2_Sub4_2.originZ * 64 - 1;
-                WorldMap.anInt435 = Static269.aClass3_Sub2_Sub4_2.originX * 64 - WorldMap.originX;
-            }
-            Static38.method965();
-            Static145.anIntArray330 = new int[FloorOverlayTypeList.capacity + 1];
-            @Pc(235) int local235 = WorldMap.length >> 6;
-            @Pc(239) int local239 = Static48.anInt1449 >> 6;
-            Static90.aByteArrayArrayArray8 = new byte[local239][local235][];
-            @Pc(249) int local249 = Static86.anInt2293 >> 2 << 10;
-            Static70.aByteArrayArrayArray7 = new byte[local239][local235][];
-            Static83.anIntArrayArrayArray3 = new int[local239][local235][];
-            Static34.aByteArrayArrayArray3 = new byte[local239][local235][];
-            Static248.anIntArrayArrayArray17 = new int[local239][local235][];
-            Static229.aByteArrayArrayArray12 = new byte[local239][local235][];
-            @Pc(273) int local273 = Static183.anInt4272 >> 1;
-            Static125.aByteArrayArrayArray10 = new byte[local239][local235][];
-            Static58.anIntArrayArrayArray5 = new int[local239][local235][];
-            Static70.method1549(local273, local249);
-            WorldMap.loadPercentage = 20;
-        } else if (WorldMap.loadPercentage == 20) {
-            Static33.method868(new Packet(MapList.archive.fetchFile(Static166.aClass100_779, Static269.aClass3_Sub2_Sub4_2.group)));
-            WorldMap.loadPercentage = 30;
-            ClientProt.ping(true);
-            GameShell.resetTimer();
-        } else if (WorldMap.loadPercentage == 30) {
-            WorldMap.method3998(new Packet(MapList.archive.fetchFile(Static4.aClass100_7, Static269.aClass3_Sub2_Sub4_2.group)));
-            WorldMap.loadPercentage = 40;
-            GameShell.resetTimer();
-        } else if (WorldMap.loadPercentage == 40) {
-            PreciseSleep.method3980(new Packet(MapList.archive.fetchFile(Static73.OVERLAY2, Static269.aClass3_Sub2_Sub4_2.group)));
-            WorldMap.loadPercentage = 50;
-            GameShell.resetTimer();
-        } else if (WorldMap.loadPercentage == 50) {
-            Static166.method3166(new Packet(MapList.archive.fetchFile(Static42.aClass100_331, Static269.aClass3_Sub2_Sub4_2.group)));
-            WorldMap.loadPercentage = 60;
-            ClientProt.ping(true);
-            GameShell.resetTimer();
-        } else if (WorldMap.loadPercentage == 60) {
-            if (MapList.archive.isGroupNameValid(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.group, Static265.aClass100_1086}))) {
-                if (!MapList.archive.isGroupReady(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.group, Static265.aClass100_1086}))) {
-                    return;
-                }
-                Static203.aMapElementList_1 = MapElementList.create(JString.concatenate(new JString[]{Static269.aClass3_Sub2_Sub4_2.group, Static265.aClass100_1086}), MapList.archive);
-            } else {
-                Static203.aMapElementList_1 = new MapElementList(0);
-            }
-            WorldMap.loadPercentage = 70;
-            GameShell.resetTimer();
-        } else if (WorldMap.loadPercentage == 70) {
-            Static273.aClass41_7 = new WorldMapFont(11, true, GameShell.canvas);
-            WorldMap.loadPercentage = 73;
-            ClientProt.ping(true);
-            GameShell.resetTimer();
-        } else if (WorldMap.loadPercentage == 73) {
-            Static152.aClass41_3 = new WorldMapFont(12, true, GameShell.canvas);
-            WorldMap.loadPercentage = 76;
-            ClientProt.ping(true);
-            GameShell.resetTimer();
-        } else if (WorldMap.loadPercentage == 76) {
-            Static169.aClass41_5 = new WorldMapFont(14, true, GameShell.canvas);
-            WorldMap.loadPercentage = 79;
-            ClientProt.ping(true);
-            GameShell.resetTimer();
-        } else if (WorldMap.loadPercentage == 79) {
-            Static130.aClass41_1 = new WorldMapFont(17, true, GameShell.canvas);
-            WorldMap.loadPercentage = 82;
-            ClientProt.ping(true);
-            GameShell.resetTimer();
-        } else if (WorldMap.loadPercentage == 82) {
-            Static203.aClass41_8 = new WorldMapFont(19, true, GameShell.canvas);
-            WorldMap.loadPercentage = 85;
-            ClientProt.ping(true);
-            GameShell.resetTimer();
-        } else if (WorldMap.loadPercentage == 85) {
-            Static130.aClass41_2 = new WorldMapFont(22, true, GameShell.canvas);
-            WorldMap.loadPercentage = 88;
-            ClientProt.ping(true);
-            GameShell.resetTimer();
-        } else if (WorldMap.loadPercentage == 88) {
-            Static270.aClass41_9 = new WorldMapFont(26, true, GameShell.canvas);
-            WorldMap.loadPercentage = 91;
-            ClientProt.ping(true);
-            GameShell.resetTimer();
-        } else {
-            Static160.aClass41_4 = new WorldMapFont(30, true, GameShell.canvas);
-            WorldMap.loadPercentage = 100;
-            ClientProt.ping(true);
-            GameShell.resetTimer();
-            System.gc();
-        }
-    }
-
     @OriginalMember(owner = "runetek4.client!qh", name = "a", descriptor = "(Lsignlink!ll;B)V")
     public static void write(@OriginalArg(0) SignLink arg0) {
         @Pc(11) FileOnDisk local11 = null;
@@ -339,7 +200,7 @@ public class Preferences {
     @OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(IZ)V")
     public static void setAllLevelsVisible(@OriginalArg(1) boolean arg0) {
         allLevelsVisible = arg0;
-        SceneGraph.aBoolean130 = !SceneGraph.allLevelsvisible();
+        SceneGraph.aBoolean130 = !SceneGraph.allLevelsAreVisible();
     }
 
     @OriginalMember(owner = "client!dl", name = "a", descriptor = "(B)Lclient!wa;")

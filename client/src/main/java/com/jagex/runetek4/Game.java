@@ -1,13 +1,10 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.dash3d.entity.ProjectileEntity;
-import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -16,14 +13,12 @@ import org.openrs2.deob.annotation.Pc;
 import java.io.IOException;
 
 public class Game {
-    @OriginalMember(owner = "client!vl", name = "k", descriptor = "I")
-    public static int idleTimeout = 0;
 
     @OriginalMember(owner = "client!gg", name = "a", descriptor = "(Z)V")
     public static void updateGame() {
         // todo: consolidate/rename static classes
-        if (idleTimeout > 0) {
-            idleTimeout--;
+        if (Protocol.idleTimeout > 0) {
+            Protocol.idleTimeout--;
         }
         if (Player.systemUpdateTimer > 1) {
             Player.systemUpdateTimer--;
@@ -39,7 +34,7 @@ public class Game {
         if (client.gameState != 30) {
             return;
         }
-        ClientScriptRunner.createClientScriptCheckPacket(Protocol.outboundBuffer); // runetek4.ReflectionCheck
+        ReflectionCheck.createClientScriptCheckPacket(Protocol.outboundBuffer); // runetek4.ReflectionCheck
         @Pc(60) Object mouseRecorder = MouseCapturer.instance.lock;
         @Pc(86) int offset;
         @Pc(79) int samples;
@@ -152,8 +147,8 @@ public class Game {
             Protocol.outboundBuffer.p2_alt3(button << 15 | x);
             Protocol.outboundBuffer.p4_alt3(i | samples << 16);
         }
-        if (Static16.anInt551 > 0) {
-            Static16.anInt551--;
+        if (Protocol.anInt551 > 0) {
+            Protocol.anInt551--;
         }
         if (Preferences.aBoolean63) {
             for (i = 0; i < InterfaceList.keyQueueSize; i++) {
@@ -166,8 +161,8 @@ public class Game {
         } else if (Keyboard.pressedKeys[96] || Keyboard.pressedKeys[97] || Keyboard.pressedKeys[98] || Keyboard.pressedKeys[99]) {
             Protocol.aBoolean228 = true;
         }
-        if (Protocol.aBoolean228 && Static16.anInt551 <= 0) {
-            Static16.anInt551 = 20;
+        if (Protocol.aBoolean228 && Protocol.anInt551 <= 0) {
+            Protocol.anInt551 = 20;
             Protocol.aBoolean228 = false;
             Protocol.outboundBuffer.pIsaac1(21);
             Protocol.outboundBuffer.p2_alt2(Camera.orbitCameraPitch);
@@ -188,13 +183,13 @@ public class Game {
             Protocol.outboundBuffer.p4(Preferences.toInt());
             Preferences.sentToServer = true;
         }
-        Static31.method846();
+        SceneGraph.method846();
         if (client.gameState != 30) {
             return;
         }
         ChangeLocRequest.loop();
         AttachLocRequest.loop();
-        Static54.loop(); // SoundPlayer
+        SoundPlayer.loop(); // SoundPlayer
         LoginManager.idleNetCycles++;
         if (LoginManager.idleNetCycles > 750) {
             tryReconnect();
@@ -204,12 +199,12 @@ public class Game {
         NpcList.updateNpcs();
         OverHeadChat.tickChatTimers(); // OverheadChat
         if (WorldMap.component != null) {
-            Static12.method447();
+            WorldMap.method447();
         }
         // VarpDomain
-        for (i = Static38.poll(true); i != -1; i = Static38.poll(false)) {
+        for (i = VarpDomain.poll(true); i != -1; i = VarpDomain.poll(false)) {
             VarpDomain.refreshMagicVarp(i);
-            Static83.updatedVarps[Static70.updatedVarpsWriterIndex++ & 0x1F] = i;
+            VarpDomain.updatedVarps[VarpDomain.updatedVarpsWriterIndex++ & 0x1F] = i;
         }
         @Pc(782) int rand;
 
@@ -220,8 +215,8 @@ public class Game {
                 VarcDomain.varcs[i] = change.intArg1;
                 VarcDomain.updatedVarcs[VarcDomain.updatedVarcsWriterIndex++ & 0x1F] = i;
             } else if (samples == 2) {
-                Static226.varcstrs[i] = change.stringArg;
-                ClientScriptRunner.updatedVarcstrs[Static72.updatedVarcstrsWriterIndex++ & 0x1F] = i;
+                VarcDomain.varcstrs[i] = change.stringArg;
+                VarcDomain.updatedVarcstrs[VarcDomain.updatedVarcstrsWriterIndex++ & 0x1F] = i;
             } else {
                 @Pc(773) Component component;
                 if (samples == 3) {
@@ -356,13 +351,13 @@ public class Game {
                     if (InterfaceList.clickedInventoryComponent == InterfaceList.mouseOverInventoryInterface && InterfaceList.selectedInventorySlot != MiniMenu.mouseInvInterfaceIndex) {
                         component = InterfaceList.clickedInventoryComponent;
                         @Pc(1363) byte moveItemInsertionMode = 0;
-                        if (Static179.bankInsertMode == 1 && component.contentType == 206) {
+                        if (VarpDomain.bankInsertMode == 1 && component.contentType == 206) {
                             moveItemInsertionMode = 1;
                         }
                         if (component.invSlotObjId[MiniMenu.mouseInvInterfaceIndex] <= 0) {
                             moveItemInsertionMode = 0;
                         }
-                        if (InterfaceList.getServerActiveProperties(component).method504()) {
+                        if (InterfaceList.getServerActiveProperties(component).isObjReplaceEnabled()) {
                             y = InterfaceList.selectedInventorySlot;
                             x = MiniMenu.mouseInvInterfaceIndex;
                             component.invSlotObjId[x] = component.invSlotObjId[y];
@@ -390,8 +385,8 @@ public class Game {
                         Protocol.outboundBuffer.p2_alt2(MiniMenu.mouseInvInterfaceIndex);
                         Protocol.outboundBuffer.p1_alt3(moveItemInsertionMode);
                     }
-                } else if ((Static116.oneMouseButton == 1 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
-                    Static226.determineMenuSize();
+                } else if ((VarpDomain.oneMouseButton == 1 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
+                    ClientScriptRunner.determineMenuSize();
                 } else if (MiniMenu.menuActionRow > 0) {
                     MiniMenu.processMenuActions();
                 }
@@ -452,18 +447,18 @@ public class Game {
                                                 Cheat.teleport(PlayerList.self.movementQueueX[0] + Camera.originX, PlayerList.self.movementQueueZ[0] + Camera.originZ, y);
                                             }
                                             if (LoginManager.staffModLevel > 0 && Keyboard.pressedKeys[82] && Keyboard.pressedKeys[81]) {
-                                                if (Static56.clickTileX != -1) {
-                                                    Cheat.teleport(Camera.originX + Static56.clickTileX, Camera.originZ + Static116.anInt2954, Player.plane);
+                                                if (MiniMenu.clickTileX != -1) {
+                                                    Cheat.teleport(Camera.originX + MiniMenu.clickTileX, Camera.originZ + MiniMenu.anInt2954, Player.plane);
                                                 }
                                                 Protocol.anInt4422 = 0;
                                                 MiniMenu.anInt3096 = 0;
                                             } else if (MiniMenu.anInt3096 == 2) {
-                                                if (Static56.clickTileX != -1) {
+                                                if (MiniMenu.clickTileX != -1) {
                                                     Protocol.outboundBuffer.pIsaac1(131);
                                                     Protocol.outboundBuffer.p4_alt3(MiniMenu.anInt2512);
-                                                    Protocol.outboundBuffer.p2_alt2(Camera.originX + Static56.clickTileX);
+                                                    Protocol.outboundBuffer.p2_alt2(Camera.originX + MiniMenu.clickTileX);
                                                     Protocol.outboundBuffer.p2_alt3(MiniMenu.anInt506);
-                                                    Protocol.outboundBuffer.p2_alt2(Static116.anInt2954 + Camera.originZ);
+                                                    Protocol.outboundBuffer.p2_alt2(MiniMenu.anInt2954 + Camera.originZ);
                                                     Cross.crossMode = 1;
                                                     Cross.crossCycle = 0;
                                                     Cross.y = Mouse.mouseClickY;
@@ -471,18 +466,18 @@ public class Game {
                                                 }
                                                 MiniMenu.anInt3096 = 0;
                                             } else if (Protocol.anInt4422 == 2) {
-                                                if (Static56.clickTileX != -1) {
+                                                if (MiniMenu.clickTileX != -1) {
                                                     Protocol.outboundBuffer.pIsaac1(179);
-                                                    Protocol.outboundBuffer.p2(Camera.originZ + Static116.anInt2954);
-                                                    Protocol.outboundBuffer.p2(Static56.clickTileX + Camera.originX);
+                                                    Protocol.outboundBuffer.p2(Camera.originZ + MiniMenu.anInt2954);
+                                                    Protocol.outboundBuffer.p2(MiniMenu.clickTileX + Camera.originX);
                                                     Cross.crossCycle = 0;
                                                     Cross.crossMode = 1;
                                                     Cross.x = Mouse.mouseClickX;
                                                     Cross.y = Mouse.mouseClickY;
                                                 }
                                                 Protocol.anInt4422 = 0;
-                                            } else if (Static56.clickTileX != -1 && MiniMenu.anInt3096 == 0 && Protocol.anInt4422 == 0) {
-                                                @Pc(1871) boolean success = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, Static56.clickTileX, 0, 0, 0, Static116.anInt2954, PlayerList.self.movementQueueX[0]);
+                                            } else if (MiniMenu.clickTileX != -1 && MiniMenu.anInt3096 == 0 && Protocol.anInt4422 == 0) {
+                                                @Pc(1871) boolean success = PathFinder.findPath(PlayerList.self.movementQueueZ[0], 0, 0, true, 0, MiniMenu.clickTileX, 0, 0, 0, MiniMenu.anInt2954, PlayerList.self.movementQueueX[0]);
                                                 if (success) {
                                                     Cross.y = Mouse.mouseClickY;
                                                     Cross.crossCycle = 0;
@@ -490,8 +485,8 @@ public class Game {
                                                     Cross.crossMode = 1;
                                                 }
                                             }
-                                            Static56.clickTileX = -1;
-                                            aClass6.method843();
+                                            MiniMenu.clickTileX = -1;
+                                            Protocol.method843();
                                             if (InterfaceList.aClass13_22 != component) {
                                                 if (component != null) {
                                                     InterfaceList.redraw(component);
@@ -526,18 +521,18 @@ public class Game {
                                                 Camera.updateLoginScreenCamera();
                                             }
                                             for (y = 0; y < 5; y++) {
-                                                @Pc(2001) int local2001 = Static31.cameraModifierCycle[y]++;
+                                                @Pc(2001) int local2001 = Protocol.cameraModifierCycle[y]++;
                                             }
                                             y = Mouse.getIdleLoops(); // runetek4.Mouse
                                             x = Keyboard.getIdleLoops(); // runetek4.Keyboard
                                             if (y > 15000 && x > 15000) {
-                                                idleTimeout = 250;
+                                                Protocol.idleTimeout = 250;
                                                 Mouse.setIdleLoops(14500);
                                                 Protocol.outboundBuffer.pIsaac1(245);
                                             }
                                             if (Protocol.openUrlRequest != null && Protocol.openUrlRequest.status == 1) {
                                                 if (Protocol.openUrlRequest.result != null) {
-                                                    Static169.openUrl(ClientScriptRunner.url, Protocol.newTab);
+                                                    ClientScriptRunner.openUrl(ClientScriptRunner.url, Protocol.newTab);
                                                 }
                                                 ClientScriptRunner.url = null;
                                                 Protocol.openUrlRequest = null;
@@ -545,15 +540,15 @@ public class Game {
                                             }
                                             Protocol.anInt3251++;
                                             MiniMap.minimapOffsetCycle++;
-                                            Static143.cameraOffsetCycle++;
-                                            if (Static143.cameraOffsetCycle > 500) {
-                                                Static143.cameraOffsetCycle = 0;
+                                            Protocol.cameraOffsetCycle++;
+                                            if (Protocol.cameraOffsetCycle > 500) {
+                                                Protocol.cameraOffsetCycle = 0;
                                                 rand = (int) (Math.random() * 8.0D);
                                                 if ((rand & 0x4) == 4) {
-                                                    Camera.cameraAnticheatAngle += Static220.cameraOffsetYawModifier;
+                                                    Camera.cameraAnticheatAngle += Protocol.cameraOffsetYawModifier;
                                                 }
                                                 if ((rand & 0x2) == 2) {
-                                                    Camera.cameraAnticheatOffsetZ += Static20.cameraOffsetZModifier;
+                                                    Camera.cameraAnticheatOffsetZ += Protocol.cameraOffsetZModifier;
                                                 }
                                                 if ((rand & 0x1) == 1) {
                                                     Camera.cameraAnticheatOffsetX += Camera.cameraOffsetXModifier;
@@ -579,19 +574,19 @@ public class Game {
                                                 MiniMap.minimapZoomModifier = 1;
                                             }
                                             if (Camera.cameraAnticheatOffsetZ < -55) {
-                                                Static20.cameraOffsetZModifier = 2;
+                                                Protocol.cameraOffsetZModifier = 2;
                                             }
                                             if (Camera.cameraAnticheatOffsetZ > 55) {
-                                                Static20.cameraOffsetZModifier = -2;
+                                                Protocol.cameraOffsetZModifier = -2;
                                             }
                                             if (Camera.cameraAnticheatAngle < -40) {
-                                                Static220.cameraOffsetYawModifier = 1;
+                                                Protocol.cameraOffsetYawModifier = 1;
                                             }
                                             if (Camera.cameraAnticheatOffsetX > 50) {
                                                 Camera.cameraOffsetXModifier = -2;
                                             }
                                             if (Camera.cameraAnticheatAngle > 40) {
-                                                Static220.cameraOffsetYawModifier = -1;
+                                                Protocol.cameraOffsetYawModifier = -1;
                                             }
                                             if (MiniMap.minimapZoom > 10) {
                                                 MiniMap.minimapZoomModifier = -1;
@@ -603,7 +598,7 @@ public class Game {
                                                 Protocol.outboundBuffer.pIsaac1(93);
                                             }
                                             if (Protocol.verifyIdChanged) {
-                                                Static71.transmitVerifyId();
+                                                Protocol.transmitVerifyId();
                                                 Protocol.verifyIdChanged = false;
                                             }
                                             try {
@@ -650,260 +645,6 @@ public class Game {
     public static void printHelp(@OriginalArg(0) String arg0) {
         System.out.println("Bad " + arg0 + ", Usage: worldid, <live/rc/wip>, <english/german>, <game0/game1>");
         System.exit(1);
-    }
-
-    @OriginalMember(owner = "client!nk", name = "c", descriptor = "(IZ)V")
-    public static void pushNpcs(@OriginalArg(1) boolean arg0) {
-        @Pc(7) int i;
-        @Pc(16) Npc npc;
-        @Pc(107) int npcSize;
-        @Pc(113) int x;
-        @Pc(133) int z;
-        @Pc(149) int local149;
-        @Pc(158) int local158;
-        @Pc(171) int local171;
-        for (i = 0; i < NpcList.npcCount; i++) {
-            npc = NpcList.npcs[NpcList.npcIds[i]];
-            if (npc != null && npc.isVisible() && npc.type.topRenderPriority == arg0 && npc.type.isMultiNpcValid()) {
-                @Pc(42) int npcSize2 = npc.getSize();
-                @Pc(97) int local97;
-                if (npcSize2 == 1) {
-                    if ((npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
-                        local97 = npc.xFine >> 7;
-                        npcSize = npc.zFine >> 7;
-                        if (local97 >= 0 && local97 < 104 && npcSize >= 0 && npcSize < 104) {
-                            local171 = Static31.anIntArrayArray6[local97][npcSize]++;
-                        }
-                    }
-                } else if (((npcSize2 & 0x1) != 0 || (npc.xFine & 0x7F) == 0 && (npc.zFine & 0x7F) == 0) && ((npcSize2 & 0x1) != 1 || (npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64)) {
-                    local97 = npc.xFine - npcSize2 * 64 >> 7;
-                    npcSize = npc.zFine - npcSize2 * 64 >> 7;
-                    x = npc.getSize() + local97;
-                    if (local97 < 0) {
-                        local97 = 0;
-                    }
-                    if (x > 104) {
-                        x = 104;
-                    }
-                    z = npcSize + npc.getSize();
-                    if (npcSize < 0) {
-                        npcSize = 0;
-                    }
-                    if (z > 104) {
-                        z = 104;
-                    }
-                    for (local149 = local97; local149 < x; local149++) {
-                        for (local158 = npcSize; local158 < z; local158++) {
-                            local171 = Static31.anIntArrayArray6[local149][local158]++;
-                        }
-                    }
-                }
-            }
-        }
-        label200: for (i = 0; i < NpcList.npcCount; i++) {
-            npc = NpcList.npcs[NpcList.npcIds[i]];
-            @Pc(262) long bitset = (long) NpcList.npcIds[i] << 32 | 0x20000000L;
-            if (npc != null && npc.isVisible() && npc.type.topRenderPriority == arg0 && npc.type.isMultiNpcValid()) {
-                npcSize = npc.getSize();
-                if (npcSize == 1) {
-                    if ((npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
-                        x = npc.xFine >> 7;
-                        z = npc.zFine >> 7;
-                        if (x < 0 || x >= 104 || z < 0 || z >= 104) {
-                            continue;
-                        }
-                        if (Static31.anIntArrayArray6[x][z] > 1) {
-                            local171 = Static31.anIntArrayArray6[x][z]--;
-                            continue;
-                        }
-                    }
-                } else if ((npcSize & 0x1) == 0 && (npc.xFine & 0x7F) == 0 && (npc.zFine & 0x7F) == 0 || (npcSize & 0x1) == 1 && (npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
-                    x = npc.xFine - npcSize * 64 >> 7;
-                    z = npc.zFine - npcSize * 64 >> 7;
-                    local158 = z + npcSize;
-                    if (z < 0) {
-                        z = 0;
-                    }
-                    @Pc(368) boolean local368 = true;
-                    local149 = x + npcSize;
-                    if (local158 > 104) {
-                        local158 = 104;
-                    }
-                    if (x < 0) {
-                        x = 0;
-                    }
-                    if (local149 > 104) {
-                        local149 = 104;
-                    }
-                    @Pc(396) int local396;
-                    @Pc(401) int local401;
-                    for (local396 = x; local396 < local149; local396++) {
-                        for (local401 = z; local401 < local158; local401++) {
-                            if (Static31.anIntArrayArray6[local396][local401] <= 1) {
-                                local368 = false;
-                                break;
-                            }
-                        }
-                    }
-                    if (local368) {
-                        local396 = x;
-                        while (true) {
-                            if (local396 >= local149) {
-                                continue label200;
-                            }
-                            for (local401 = z; local401 < local158; local401++) {
-                                local171 = Static31.anIntArrayArray6[local396][local401]--;
-                            }
-                            local396++;
-                        }
-                    }
-                }
-                if (!npc.type.interactive) {
-                    bitset |= Long.MIN_VALUE;
-                }
-                npc.anInt3424 = SceneGraph.getTileHeight(Player.plane, npc.xFine, npc.zFine);
-                Static43.addTemporary(Player.plane, npc.xFine, npc.zFine, npc.anInt3424, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.seqStretches);
-            }
-        }
-    }
-
-    @OriginalMember(owner = "client!cn", name = "b", descriptor = "(ZI)V")
-    public static void pushPlayers(@OriginalArg(0) boolean arg0) {
-        @Pc(3) int local3 = PlayerList.playerCount;
-        if (LoginManager.mapFlagX == PlayerList.self.xFine >> 7 && PlayerList.self.zFine >> 7 == LoginManager.mapFlagZ) {
-            LoginManager.mapFlagX = 0;
-        }
-        if (arg0) {
-            local3 = 1;
-        }
-        @Pc(28) int i;
-        @Pc(39) Player player;
-        @Pc(82) int stz;
-        @Pc(182) int local182;
-        @Pc(200) int local200;
-        @Pc(214) int local214;
-        @Pc(223) int local223;
-        @Pc(106) int local106;
-        for (i = 0; i < local3; i++) {
-            if (arg0) {
-                player = PlayerList.self;
-            } else {
-                player = PlayerList.players[PlayerList.playerIds[i]];
-            }
-            if (player != null && player.isVisible()) {
-                @Pc(55) int local55 = player.getSize();
-                @Pc(77) int stx;
-                if (local55 == 1) {
-                    if ((player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 64) {
-                        stx = player.xFine >> 7;
-                        stz = player.zFine >> 7;
-                        if (stx >= 0 && stx < 104 && stz >= 0 && stz < 104) {
-                            local106 = Static31.anIntArrayArray6[stx][stz]++;
-                        }
-                    }
-                } else if (((local55 & 0x1) != 0 || (player.xFine & 0x7F) == 0 && (player.zFine & 0x7F) == 0) && ((local55 & 0x1) != 1 || (player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 64)) {
-                    stx = player.xFine - local55 * 64 >> 7;
-                    stz = player.zFine - local55 * 64 >> 7;
-                    local182 = player.getSize() + stx;
-                    if (local182 > 104) {
-                        local182 = 104;
-                    }
-                    if (stx < 0) {
-                        stx = 0;
-                    }
-                    local200 = stz + player.getSize();
-                    if (stz < 0) {
-                        stz = 0;
-                    }
-                    if (local200 > 104) {
-                        local200 = 104;
-                    }
-                    for (local214 = stx; local214 < local182; local214++) {
-                        for (local223 = stz; local223 < local200; local223++) {
-                            local106 = Static31.anIntArrayArray6[local214][local223]++;
-                        }
-                    }
-                }
-            }
-        }
-        label220: for (i = 0; i < local3; i++) {
-            @Pc(272) long id;
-            if (arg0) {
-                player = PlayerList.self;
-                id = 8791798054912L;
-            } else {
-                player = PlayerList.players[PlayerList.playerIds[i]];
-                id = (long) PlayerList.playerIds[i] << 32;
-            }
-            if (player != null && player.isVisible()) {
-                player.lowMemory = false;
-                if ((Preferences.manyIdleAnimations && PlayerList.playerCount > 200 || PlayerList.playerCount > 50) && !arg0 && player.movementSeqId == player.getBasType().idleAnimationId) {
-                    player.lowMemory = true;
-                }
-                stz = player.getSize();
-                if (stz == 1) {
-                    if ((player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 64) {
-                        local182 = player.xFine >> 7;
-                        local200 = player.zFine >> 7;
-                        if (local182 < 0 || local182 >= 104 || local200 < 0 || local200 >= 104) {
-                            continue;
-                        }
-                        if (Static31.anIntArrayArray6[local182][local200] > 1) {
-                            local106 = Static31.anIntArrayArray6[local182][local200]--;
-                            continue;
-                        }
-                    }
-                } else if ((stz & 0x1) == 0 && (player.xFine & 0x7F) == 0 && (player.zFine & 0x7F) == 0 || (stz & 0x1) == 1 && (player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 0) {
-                    local182 = player.xFine - stz * 64 >> 7;
-                    local214 = stz + local182;
-                    local200 = player.zFine - stz * 64 >> 7;
-                    if (local214 > 104) {
-                        local214 = 104;
-                    }
-                    if (local182 < 0) {
-                        local182 = 0;
-                    }
-                    local223 = stz + local200;
-                    if (local200 < 0) {
-                        local200 = 0;
-                    }
-                    @Pc(468) boolean local468 = true;
-                    if (local223 > 104) {
-                        local223 = 104;
-                    }
-                    @Pc(476) int local476;
-                    @Pc(485) int local485;
-                    for (local476 = local182; local476 < local214; local476++) {
-                        for (local485 = local200; local485 < local223; local485++) {
-                            if (Static31.anIntArrayArray6[local476][local485] <= 1) {
-                                local468 = false;
-                                break;
-                            }
-                        }
-                    }
-                    if (local468) {
-                        local476 = local182;
-                        while (true) {
-                            if (local476 >= local214) {
-                                continue label220;
-                            }
-                            for (local485 = local200; local485 < local223; local485++) {
-                                local106 = Static31.anIntArrayArray6[local476][local485]--;
-                            }
-                            local476++;
-                        }
-                    }
-                }
-                if (player.attachment == null || client.loop < player.attachmentSetAt || player.attachmentResetAt <= client.loop) {
-                    player.anInt3424 = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
-                    Static43.addTemporary(Player.plane, player.xFine, player.zFine, player.anInt3424, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
-                } else {
-                    player.lowMemory = false;
-                    player.anInt3424 = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
-                    Static184.addTemporary(Player.plane, player.xFine, player.zFine, player.anInt3424, player, player.anInt3381, id, player.atachmentX0, player.attachmentZ0, player.attachmentX1, player.attachmentZ1);
-                }
-            }
-        }
     }
 
     @OriginalMember(owner = "client!wj", name = "b", descriptor = "(B)V")
@@ -956,7 +697,7 @@ public class Game {
 
     @OriginalMember(owner = "client!nm", name = "a", descriptor = "(Z)V")
     public static void tryReconnect() {
-        if (idleTimeout > 0) {
+        if (Protocol.idleTimeout > 0) {
             processLogout();
         } else {
             Protocol.aClass95_4 = Protocol.gameServerSocket;
@@ -965,51 +706,4 @@ public class Game {
         }
     }
 
-    @OriginalMember(owner = "client!pk", name = "i", descriptor = "(I)V")
-    public static void pushProjectiles() {
-        for (@Pc(16) ProjectileEntity proj = (ProjectileEntity) SceneGraph.projectiles.head(); proj != null; proj = (ProjectileEntity) SceneGraph.projectiles.next()) {
-            @Pc(21) ProjectileAnimation projAnim = proj.aClass8_Sub6_1;
-            if (Player.plane != projAnim.level || projAnim.lastCycle < client.loop) {
-                proj.unlink();
-            } else if (client.loop >= projAnim.startCycle) {
-                if (projAnim.target > 0) {
-                    @Pc(54) Npc npc = NpcList.npcs[projAnim.target - 1];
-                    if (npc != null && npc.xFine >= 0 && npc.xFine < 13312 && npc.zFine >= 0 && npc.zFine < 13312) {
-                        projAnim.updateVelocity(npc.zFine, client.loop, SceneGraph.getTileHeight(projAnim.level, npc.xFine, npc.zFine) - projAnim.anInt4805, npc.xFine);
-                    }
-                }
-                if (projAnim.target < 0) {
-                    @Pc(102) int index = -projAnim.target - 1;
-                    @Pc(107) Player player;
-                    if (PlayerList.selfId == index) {
-                        player = PlayerList.self;
-                    } else {
-                        player = PlayerList.players[index];
-                    }
-                    if (player != null && player.xFine >= 0 && player.xFine < 13312 && player.zFine >= 0 && player.zFine < 13312) {
-                        projAnim.updateVelocity(player.zFine, client.loop, SceneGraph.getTileHeight(projAnim.level, player.xFine, player.zFine) - projAnim.anInt4805, player.xFine);
-                    }
-                }
-                projAnim.update(Protocol.sceneDelta);
-                Static43.addTemporary(Player.plane, (int) projAnim.x, (int) projAnim.y, (int) projAnim.z, 60, projAnim, projAnim.yaw, -1L, false);
-            }
-        }
-    }
-
-    @OriginalMember(owner = "client!u", name = "a", descriptor = "(Z)V")
-    public static void pushSpotanims() {
-        for (@Pc(9) SpotAnimEntity entity = (SpotAnimEntity) SceneGraph.spotanims.head(); entity != null; entity = (SpotAnimEntity) SceneGraph.spotanims.next()) {
-            @Pc(15) SpotAnim spotAnim = entity.aClass8_Sub2_1;
-            if (spotAnim.level != Player.plane || spotAnim.seqComplete) {
-                entity.unlink();
-            } else if (spotAnim.startCycle <= client.loop) {
-                spotAnim.update(Protocol.sceneDelta);
-                if (spotAnim.seqComplete) {
-                    entity.unlink();
-                } else {
-                    Static43.addTemporary(spotAnim.level, spotAnim.x, spotAnim.z, spotAnim.anInt599, 60, spotAnim, 0, -1L, false);
-                }
-            }
-        }
-    }
 }

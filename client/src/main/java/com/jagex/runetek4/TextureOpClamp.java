@@ -35,8 +35,8 @@ public final class TextureOpClamp extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!aj", name = "b", descriptor = "(II)[[I")
 	@Override
 	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
-		@Pc(22) int[][] local22 = this.clearImageCache.get(arg0);
-		if (this.clearImageCache.invalid) {
+		@Pc(22) int[][] local22 = this.colorImageCache.get(arg0);
+		if (this.colorImageCache.invalid) {
 			@Pc(32) int[][] local32 = this.getChildColorOutput(arg0, 0);
 			@Pc(36) int[] local36 = local32[1];
 			@Pc(40) int[] local40 = local32[2];

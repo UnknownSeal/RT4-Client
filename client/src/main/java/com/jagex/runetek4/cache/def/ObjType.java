@@ -417,7 +417,7 @@ public final class ObjType {
 		if (this.params == null) {
 			return defaultValue;
 		} else {
-			@Pc(21) JagStringWrapper node = (JagStringWrapper) this.params.getNode(id);
+			@Pc(21) JagStringWrapper node = (JagStringWrapper) this.params.get(id);
 			return node == null ? defaultValue : node.value;
 		}
 	}
@@ -563,7 +563,7 @@ public final class ObjType {
 		if (this.params == null) {
 			return defaultValue;
 		} else {
-			@Pc(25) IntWrapper node = (IntWrapper) this.params.getNode(arg1);
+			@Pc(25) IntWrapper node = (IntWrapper) this.params.get(arg1);
 			return node == null ? defaultValue : node.value;
 		}
 	}
@@ -685,16 +685,13 @@ public final class ObjType {
 				model.retexture(this.retex_s[i], this.retex_d[i]);
 			}
 		}
-		@Pc(107) SoftwareModel softwareModel = model.method1671(this.ambient + 64, 768 - -this.contrast);
+		@Pc(107) SoftwareModel softwareModel = model.createSoftwareModel(this.ambient + 64, 768 - -this.contrast);
 		if (this.resizeX != 128 || this.resizeY != 128 || this.resizeZ != 128) {
 			softwareModel.resize(this.resizeX, this.resizeY, this.resizeZ);
 		}
 		return softwareModel;
 	}
 
-
-	@OriginalMember(owner = "runetek4.client!gg", name = "Z", descriptor = "I")
-	public static int anInt2222;
 
 	@OriginalMember(owner = "runetek4.client!gg", name = "a", descriptor = "([[IZ)V")
 	public static void method1751(@OriginalArg(0) int[][] arg0) {

@@ -1,8 +1,7 @@
 package com.jagex.runetek4.dash3d.entity;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.def.VarbitDefinition;
-import com.jagex.runetek4.cache.def.VarPlayerDefinition;
+import com.jagex.runetek4.cache.def.VarbitType;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.media.renderable.Entity;
@@ -503,9 +502,9 @@ public final class LocType {
 	public LocType getMultiLoc() {
 		@Pc(26) int i = -1;
 		if (this.multiLocVarbit != -1) {
-			i = VarbitDefinition.getVarbitValue(this.multiLocVarbit);
+			i = VarbitType.getVarbitValue(this.multiLocVarbit);
 		} else if (this.multiLocVarp != -1) {
-			i = VarPlayerDefinition.activeVarps[this.multiLocVarp];
+			i = VarpDomain.activeVarps[this.multiLocVarp];
 		}
 		if (i < 0 || i >= this.multiloc.length - 1 || this.multiloc[i] == -1) {
 			@Pc(84) int local84 = this.multiloc[this.multiloc.length - 1];
@@ -646,7 +645,7 @@ public final class LocType {
 		if (this.params == null) {
 			return defaultValue;
 		} else {
-			@Pc(21) IntWrapper value = (IntWrapper) this.params.getNode(arg1);
+			@Pc(21) IntWrapper value = (IntWrapper) this.params.get(arg1);
 			return value == null ? defaultValue : value.value;
 		}
 	}
@@ -844,7 +843,7 @@ public final class LocType {
 				aLocEntity_1.model = null;
 				return aLocEntity_1;
 			}
-			local69.method1681();
+			local69.resetBones();
 			if (arg3 == 10 && arg0 > 3) {
 				local69.method1682();
 			}
@@ -959,7 +958,7 @@ public final class LocType {
 		if (this.params == null) {
 			return defaultValue;
 		} else {
-			@Pc(26) JagStringWrapper value = (JagStringWrapper) this.params.getNode((long) key);
+			@Pc(26) JagStringWrapper value = (JagStringWrapper) this.params.get((long) key);
 			return value == null ? defaultValue : value.value;
 		}
 	}

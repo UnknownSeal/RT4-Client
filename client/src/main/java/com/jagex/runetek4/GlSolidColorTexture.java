@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import java.nio.ByteBuffer;
 
 import com.jagex.runetek4.media.Rasterizer;
-import com.jagex.runetek4.node.CachedNode;
+import com.jagex.runetek4.node.SecondaryNode;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -11,7 +11,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!sd")
-public final class GlSolidColorTexture extends CachedNode {
+public final class GlSolidColorTexture extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!sd", name = "U", descriptor = "I")
 	private int textureSize = 0;

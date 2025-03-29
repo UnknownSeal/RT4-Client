@@ -993,7 +993,7 @@ public final class JString implements StringInterface {
 			if (aClass133_13 == null) {
 				aClass133_13 = new HashTable(4096);
 			} else {
-				for (local30 = (JagStringWrapper) aClass133_13.getNode(local9); local30 != null; local30 = (JagStringWrapper) aClass133_13.nextWithKey()) {
+				for (local30 = (JagStringWrapper) aClass133_13.get(local9); local30 != null; local30 = (JagStringWrapper) aClass133_13.nextWithKey()) {
 					if (this.strEquals(local30.value)) {
 						return local30.value;
 					}

@@ -12,19 +12,19 @@ public final class StockMarketOffer {
 	private byte statusAndType;
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "f", descriptor = "I")
-	public int anInt5089;
+	public int completedCount;
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "g", descriptor = "I")
-	public int anInt5090;
+	public int count;
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "j", descriptor = "I")
-	public int anInt5092;
+	public int completedGold;
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "m", descriptor = "I")
-	public int anInt5094;
+	public int item;
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "s", descriptor = "I")
-	public int anInt5099;
+	public int price;
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "<init>", descriptor = "()V")
 	public StockMarketOffer() {
@@ -33,11 +33,11 @@ public final class StockMarketOffer {
 	@OriginalMember(owner = "runetek4.client!sg", name = "<init>", descriptor = "(Lclient!wa;)V")
 	public StockMarketOffer(@OriginalArg(0) Packet packet) {
 		this.statusAndType = packet.g1s();
-		this.anInt5094 = packet.g2();
-		this.anInt5099 = packet.g4();
-		this.anInt5090 = packet.g4();
-		this.anInt5089 = packet.g4();
-		this.anInt5092 = packet.g4();
+		this.item = packet.g2();
+		this.price = packet.g4();
+		this.count = packet.g4();
+		this.completedCount = packet.g4();
+		this.completedGold = packet.g4();
 	}
 
 	@OriginalMember(owner = "runetek4.client!sg", name = "a", descriptor = "(Z)I")

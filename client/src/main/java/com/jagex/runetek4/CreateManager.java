@@ -41,7 +41,7 @@ public class CreateManager {
         packet.p2(arg5);
         packet.p2(arg1);
         packet.p4((int) (Math.random() * 9.9999999E7D));
-        packet.rsaenc(Static86.RSA_EXPONENT, Static86.RSA_MODULUS);
+        packet.rsaenc(LoginManager.RSA_EXPONENT, LoginManager.RSA_MODULUS);
         Protocol.outboundBuffer.offset = 0;
         Protocol.outboundBuffer.p1(36);
         Protocol.outboundBuffer.p1(packet.offset);
@@ -103,19 +103,19 @@ public class CreateManager {
                 }
             }
             if (step == 1) {
-                Static72.aClass212_3 = GameShell.signLink.openSocket(client.hostname, client.port);
+                Protocol.socketRequest = GameShell.signLink.openSocket(client.hostname, client.port);
                 step = 2;
             }
             @Pc(120) int local120;
             if (step == 2) {
-                if (Static72.aClass212_3.status == 2) {
+                if (Protocol.socketRequest.status == 2) {
                     throw new IOException();
                 }
-                if (Static72.aClass212_3.status != 1) {
+                if (Protocol.socketRequest.status != 1) {
                     return;
                 }
-                Protocol.gameServerSocket = new BufferedSocket((Socket) Static72.aClass212_3.result, GameShell.signLink);
-                Static72.aClass212_3 = null;
+                Protocol.gameServerSocket = new BufferedSocket((Socket) Protocol.socketRequest.result, GameShell.signLink);
+                Protocol.socketRequest = null;
                 Protocol.gameServerSocket.write(Protocol.outboundBuffer.offset, Protocol.outboundBuffer.data);
                 if (client.musicChannel != null) {
                     client.musicChannel.method3571();

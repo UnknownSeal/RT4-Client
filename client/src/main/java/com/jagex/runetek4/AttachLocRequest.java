@@ -103,7 +103,7 @@ public final class AttachLocRequest extends Node {
 						attachment = wall.primary;
 					}
 				} else if (layer == 1) {
-					@Pc(231) WallDecor wallDecor = Static83.method435(Player.plane, request.x, request.z);
+					@Pc(231) WallDecor wallDecor = SceneGraph.getWallDecor(Player.plane, request.x, request.z);
 					if (wallDecor != null) {
 						attachment = wallDecor.primary;
 					}

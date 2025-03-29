@@ -3,7 +3,7 @@ package com.jagex.runetek4.game.client;
 import java.util.Random;
 
 import com.jagex.runetek4.MonochromeImageCache;
-import com.jagex.runetek4.Static171;
+import com.jagex.runetek4.util.RandomUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -166,7 +166,7 @@ public abstract class NoiseGenerator3D {
 		}
 		for (local14 = 0; local14 < 255; local14++) {
 			@Pc(41) int local41 = 255 - local14;
-			@Pc(46) int local46 = Static171.method3219(local41, local12);
+			@Pc(46) int local46 = RandomUtils.nextInt(local41, local12);
 			@Pc(51) short local51 = this.aShortArray69[local46];
 			this.aShortArray69[local46] = this.aShortArray69[local41];
 			this.aShortArray69[local41] = this.aShortArray69[local41 + 256] = local51;

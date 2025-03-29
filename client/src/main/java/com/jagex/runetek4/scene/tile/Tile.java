@@ -14,7 +14,7 @@ public final class Tile extends Node {
 	public boolean aBoolean45;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "y", descriptor = "I")
-	public int entityCount;
+	public int sceneryLen;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "A", descriptor = "Z")
 	public boolean aBoolean46;
@@ -47,22 +47,22 @@ public final class Tile extends Node {
 	public boolean containsLocs;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "S", descriptor = "Lclient!rh;")
-	public GenericTile plainTile;
+	public PlainTile plainTile;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "T", descriptor = "I")
 	public int backWallTypes;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "X", descriptor = "Lclient!jj;")
-	public ObjStackEntity aClass79_1;
+	public ObjStackEntity objStack;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "D", descriptor = "I")
-	public int locSpans = 0;
+	public int allInteriorFlags = 0;
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "w", descriptor = "[Lclient!ec;")
-	public final Scenery[] sceneries = new Scenery[5];
+	public final Scenery[] scenery = new Scenery[5];
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "P", descriptor = "[I")
-	public final int[] anIntArray59 = new int[5];
+	public final int[] interiorFlags = new int[5];
 
 	@OriginalMember(owner = "runetek4.client!bj", name = "H", descriptor = "I")
 	public final int anInt666;

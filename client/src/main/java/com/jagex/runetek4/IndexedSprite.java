@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -30,14 +29,9 @@ public abstract class IndexedSprite {
 	protected IndexedSprite() {
 	}
 
-    @OriginalMember(owner = "client!da", name = "a", descriptor = "(ILclient!ve;Z)Lclient!ok;")
-    public static IndexedSprite method1010(@OriginalArg(0) int arg0, @OriginalArg(1) Js5 arg1) {
-        return Static254.method4346(arg1, arg0) ? Static276.method4614() : null;
-    }
-
-    @OriginalMember(owner = "runetek4.client!ok", name = "a", descriptor = "(III)V")
+	@OriginalMember(owner = "runetek4.client!ok", name = "a", descriptor = "(III)V")
 	public abstract void drawImageAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2);
 
 	@OriginalMember(owner = "runetek4.client!ok", name = "a", descriptor = "(II)V")
-	public abstract void drawImage(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1);
+	public abstract void renderTransparent(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1);
 }

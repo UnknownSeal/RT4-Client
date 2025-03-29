@@ -9,7 +9,7 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.graphics.RawModel;
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -19,13 +19,13 @@ import org.openrs2.deob.annotation.Pc;
 public final class Component {
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "b", descriptor = "Lclient!n;")
-	public static final NodeCache sprites = new NodeCache(200);
+	public static final SoftLruHashTable sprites = new SoftLruHashTable(200);
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "i", descriptor = "Lclient!n;")
-	public static final NodeCache interfaceTypefaceCache = new NodeCache(20);
+	public static final SoftLruHashTable interfaceTypefaceCache = new SoftLruHashTable(20);
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "z", descriptor = "Lclient!n;")
-	public static final NodeCache interfaceModelCache = new NodeCache(50);
+	public static final SoftLruHashTable interfaceModelCache = new SoftLruHashTable(50);
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "C", descriptor = "Z")
 	public static boolean aBoolean72 = false;
@@ -555,7 +555,7 @@ public final class Component {
 		if (local18 == null) {
 			return false;
 		}
-		local18.method1396();
+		local18.trim();
 		this.anIntArray37 = new int[local18.height];
 		this.anIntArray45 = new int[local18.height];
 		for (@Pc(37) int local37 = 0; local37 < local18.height; local37++) {
@@ -563,13 +563,13 @@ public final class Component {
 			@Pc(50) int local50 = local18.width;
 			@Pc(52) int local52;
 			for (local52 = 0; local52 < local18.width; local52++) {
-				if (local18.aByteArray18[local18.width * local37 + local52] != 0) {
+				if (local18.pixels[local18.width * local37 + local52] != 0) {
 					local47 = local52;
 					break;
 				}
 			}
 			for (local52 = local47; local52 < local18.width; local52++) {
-				if (local18.aByteArray18[local37 * local18.width + local52] == 0) {
+				if (local18.pixels[local37 * local18.width + local52] == 0) {
 					local50 = local52;
 					break;
 				}
@@ -1163,7 +1163,7 @@ public final class Component {
 		this.dragRenderBehavior = packet.g1() == 1;
 		local567 = -1;
 		this.optionCircumfix = packet.gjstr();
-		if (Static199.method3594(local175) != 0) {
+		if (ServerActiveProperties.getTargetMask(local175) != 0) {
 			local567 = packet.g2();
 			this.anInt499 = packet.g2();
 			if (local567 == 65535) {

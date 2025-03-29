@@ -54,8 +54,8 @@ public final class Npc extends PathingEntity {
 		if (this.type == null) {
 			return;
 		}
-		@Pc(29) SeqType local29 = this.primarySeqId != -1 && this.anInt3420 == 0 ? SeqTypeList.getAnimationSequence(this.primarySeqId) : null;
-		@Pc(53) SeqType local53 = this.movementSeqId == -1 || this.movementSeqId == this.getBasType().idleAnimationId && local29 != null ? null : SeqTypeList.getAnimationSequence(this.movementSeqId);
+		@Pc(29) SeqType local29 = this.primarySeqId != -1 && this.anInt3420 == 0 ? SeqTypeList.get(this.primarySeqId) : null;
+		@Pc(53) SeqType local53 = this.movementSeqId == -1 || this.movementSeqId == this.getBasType().idleAnimationId && local29 != null ? null : SeqTypeList.get(this.movementSeqId);
 		@Pc(74) Model body = this.type.getBodyModel(this.aPathingEntityClass147Array3, this.anInt3388, this.anInt3407, this.anInt3373, this.anInt3360, this.anInt3425, local53, this.anInt3396, local29);
 		if (body == null) {
 			return;
@@ -84,7 +84,7 @@ public final class Npc extends PathingEntity {
 		this.method2685(body, orientation);
 		model = null;
 		if (this.spotAnimId != -1 && this.spotanimId != -1) {
-			@Pc(211) SpotAnimType spotAnimType = Static34.method877(this.spotAnimId);
+			@Pc(211) SpotAnimType spotAnimType = SpotAnimTypeList.get(this.spotAnimId);
 			model = spotAnimType.constructModel(this.anInt3418, this.spotanimId, this.anInt3361);
 			if (model != null) {
 				model.translate(0, -this.spotAnimY, 0);

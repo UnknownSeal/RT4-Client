@@ -222,4 +222,11 @@ public class MaterialManager {
         anInt406 = arg3;
         anInt4675 = arg2;
     }
+
+    @OriginalMember(owner = "runetek4.client!lh", name = "b", descriptor = "(II)V")
+    public static void method2761(@OriginalArg(0) int arg0) {
+        UnderwaterMaterialRenderer.anInt3241 = arg0;
+        resetArgument(3);
+        resetArgument(4);
+    }
 }

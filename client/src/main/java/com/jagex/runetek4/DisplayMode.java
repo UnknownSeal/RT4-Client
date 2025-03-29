@@ -18,6 +18,12 @@ public final class DisplayMode {
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "i", descriptor = "[Lclient!od;")
 	public static DisplayMode[] modes;
+    @OriginalMember(owner = "runetek4.client!hi", name = "f", descriptor = "J")
+    public static long aLong89 = 0L;
+	@OriginalMember(owner = "runetek4.client!jk", name = "y", descriptor = "Z")
+	public static boolean aBoolean156 = false;
+	@OriginalMember(owner = "runetek4.client!rc", name = "M", descriptor = "Z")
+	public static boolean aBoolean73 = false;
 
 	@OriginalMember(owner = "client!od", name = "j", descriptor = "I")
 	public int width;
@@ -217,11 +223,11 @@ public final class DisplayMode {
 		}
 		if (arg2 && arg1 > 0) {
 			GameShell.canvas.setIgnoreRepaint(true);
-			if (!Static211.aBoolean73) {
+			if (!aBoolean73) {
 				SceneGraph.clear();
 				SoftwareRaster.frameBuffer = null;
 				SoftwareRaster.frameBuffer = FrameBuffer.create(GameShell.canvasHeigth, GameShell.canvasWidth, GameShell.canvas);
-				Rasterizer.clear();
+				SoftwareRaster.clear();
 				if (client.gameState == 5) {
 					LoadingBar.render(true, Fonts.b12Full);
 				} else {
@@ -243,10 +249,10 @@ public final class DisplayMode {
 					ThreadUtils.sleep(100L);
 				}
 				if (local300.status == 1) {
-					Static211.aBoolean73 = true;
+					aBoolean73 = true;
 				}
 			}
-			if (Static211.aBoolean73) {
+			if (aBoolean73) {
 				GlRenderer.init(GameShell.canvas, Preferences.antiAliasingMode * 2);
 			}
 		}
@@ -257,43 +263,43 @@ public final class DisplayMode {
 		if (arg1 > 0 && mode == 0) {
 			GameShell.thread.setPriority(5);
 			SoftwareRaster.frameBuffer = null;
-			Static268.method4580();
-			((Js5GlTextureProvider) Rasterizer.textureProvider).method3248(200);
+			SoftwareModel.method4580();
+			((Js5TextureProvider) Rasterizer.textureProvider).method3248(200);
 			if (Preferences.highDetailLighting) {
-				Pix3D.setBrightness(0.7F);
+				Rasterizer.setBrightness(0.7F);
 			}
 			LoginManager.method4637();
 		} else if (arg1 == 0 && mode > 0) {
 			GameShell.thread.setPriority(1);
 			SoftwareRaster.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
-			Static268.method4583();
+			SoftwareModel.method4583();
 			ParticleSystem.quit();
-			((Js5GlTextureProvider) Rasterizer.textureProvider).method3248(20);
+			((Js5TextureProvider) Rasterizer.textureProvider).method3248(20);
 			if (Preferences.highDetailLighting) {
 				if (Preferences.brightness == 1) {
-					Pix3D.setBrightness(0.9F);
+					Rasterizer.setBrightness(0.9F);
 				}
 				if (Preferences.brightness == 2) {
-					Pix3D.setBrightness(0.8F);
+					Rasterizer.setBrightness(0.8F);
 				}
 				if (Preferences.brightness == 3) {
-					Pix3D.setBrightness(0.7F);
+					Rasterizer.setBrightness(0.7F);
 				}
 				if (Preferences.brightness == 4) {
-					Pix3D.setBrightness(0.6F);
+					Rasterizer.setBrightness(0.6F);
 				}
 			}
 			GlTile.method1939();
 			LoginManager.method4637();
 		}
-		SceneGraph.aBoolean130 = !SceneGraph.allLevelsvisible();
+		SceneGraph.aBoolean130 = !SceneGraph.allLevelsAreVisible();
 		if (arg2) {
 			client.method2721();
 		}
 		if (arg1 >= 2) {
-			Static124.aBoolean156 = true;
+			aBoolean156 = true;
 		} else {
-			Static124.aBoolean156 = false;
+			aBoolean156 = false;
 		}
 		if (InterfaceList.topLevelInterface != -1) {
 			InterfaceList.method3712(true);
@@ -309,7 +315,7 @@ public final class DisplayMode {
 
 	@OriginalMember(owner = "runetek4.client!th", name = "a", descriptor = "(ZIIII)V")
 	public static void setWindowMode(@OriginalArg(0) boolean arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
-		Static97.aLong89 = 0L;
+		aLong89 = 0L;
 		@Pc(4) int local4 = getWindowMode();
 		if (arg1 == 3 || local4 == 3) {
 			arg0 = true;
@@ -328,9 +334,9 @@ public final class DisplayMode {
 	public static int getWindowMode() {
 		if (GameShell.fullScreenFrame != null) {
 			return 3;
-		} else if (GlRenderer.enabled && Static124.aBoolean156) {
+		} else if (GlRenderer.enabled && aBoolean156) {
 			return 2;
-		} else if (GlRenderer.enabled && !Static124.aBoolean156) {
+		} else if (GlRenderer.enabled && !aBoolean156) {
 			return 1;
 		} else {
 			return 0;

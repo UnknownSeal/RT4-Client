@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.node.CachedNode;
+import com.jagex.runetek4.node.SecondaryNode;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("client!cl")
-public final class AnimFrameset extends CachedNode {
+public final class AnimFrameset extends SecondaryNode {
 
 	@OriginalMember(owner = "client!cl", name = "W", descriptor = "[Lclient!ne;")
 	public final AnimFrame[] frames;

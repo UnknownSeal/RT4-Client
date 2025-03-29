@@ -16,7 +16,7 @@ public abstract class TextureOp extends Node {
 	public static int[] COSINE;
 
 	@OriginalMember(owner = "client!j", name = "t", descriptor = "Lclient!nd;")
-	protected MonochromeImageCache clearImageCache;
+	protected MonochromeImageCache colorImageCache;
 
 	@OriginalMember(owner = "client!j", name = "G", descriptor = "I")
 	public int anInt5840;
@@ -84,7 +84,7 @@ public abstract class TextureOp extends Node {
 		if (this.monochrome) {
 			this.monochromeImageCache = new ColorImageCache(local15, arg0, arg1);
 		} else {
-			this.clearImageCache = new MonochromeImageCache(local15, arg0, arg1);
+			this.colorImageCache = new MonochromeImageCache(local15, arg0, arg1);
 		}
 	}
 
@@ -94,8 +94,8 @@ public abstract class TextureOp extends Node {
 			this.monochromeImageCache.clear();
 			this.monochromeImageCache = null;
 		} else {
-			this.clearImageCache.clear();
-			this.clearImageCache = null;
+			this.colorImageCache.clear();
+			this.colorImageCache = null;
 		}
 	}
 

@@ -2,8 +2,8 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.node.Node;
-import com.jagex.runetek4.node.CachedNode;
-import com.jagex.runetek4.node.NodeQueue;
+import com.jagex.runetek4.node.SecondaryNode;
+import com.jagex.runetek4.node.SecondaryLinkedList;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -13,10 +13,10 @@ import org.openrs2.deob.annotation.Pc;
 public final class LruHashTable {
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "l", descriptor = "Lclient!rg;")
-	private CachedNode aClass3_Sub2_37 = new CachedNode();
+	private SecondaryNode aClass3_Sub2_37 = new SecondaryNode();
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "s", descriptor = "Lclient!ce;")
-	private final NodeQueue queue = new NodeQueue();
+	private final SecondaryLinkedList queue = new SecondaryLinkedList();
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "u", descriptor = "I")
 	private int available;
@@ -39,8 +39,8 @@ public final class LruHashTable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(JI)Lclient!rg;")
-	public final CachedNode get(@OriginalArg(0) long arg0) {
-		@Pc(16) CachedNode node = (CachedNode) this.table.getNode(arg0);
+	public final SecondaryNode get(@OriginalArg(0) long arg0) {
+		@Pc(16) SecondaryNode node = (SecondaryNode) this.table.get(arg0);
 		if (node != null) {
 			this.queue.addTail(node);
 		}
@@ -53,9 +53,9 @@ public final class LruHashTable {
 	}
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(Lclient!rg;JB)V")
-	public final void put(@OriginalArg(0) CachedNode arg0, @OriginalArg(1) long arg1) {
+	public final void put(@OriginalArg(0) SecondaryNode arg0, @OriginalArg(1) long arg1) {
 		if (this.available == 0) {
-			@Pc(14) CachedNode local14 = this.queue.removeHead();
+			@Pc(14) SecondaryNode local14 = this.queue.removeHead();
 			local14.unlink();
 			local14.unlinkCachedNode();
 			if (this.aClass3_Sub2_37 == local14) {
@@ -79,7 +79,7 @@ public final class LruHashTable {
 	public final void clear() {
 		this.queue.clear();
 		this.table.clear();
-		this.aClass3_Sub2_37 = new CachedNode();
+		this.aClass3_Sub2_37 = new SecondaryNode();
 		this.available = this.capacity;
 	}
 }

@@ -1,10 +1,9 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ObjType;
-import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -12,13 +11,13 @@ import org.openrs2.deob.annotation.Pc;
 public final class ObjTypeList {
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "c", descriptor = "Lclient!n;")
-	public static final NodeCache objectSpriteCache = new NodeCache(100);
+	public static final SoftLruHashTable objectSpriteCache = new SoftLruHashTable(100);
 
 	@OriginalMember(owner = "runetek4.client!tl", name = "c", descriptor = "Lclient!n;")
-	public static final NodeCache models = new NodeCache(50);
+	public static final SoftLruHashTable models = new SoftLruHashTable(50);
 
 	@OriginalMember(owner = "client!cb", name = "Y", descriptor = "Lclient!n;")
-	public static final NodeCache types = new NodeCache(64);
+	public static final SoftLruHashTable types = new SoftLruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "eb", descriptor = "I")
 	public static int capacity;
@@ -44,34 +43,7 @@ public final class ObjTypeList {
 	@OriginalMember(owner = "runetek4.client!nd", name = "n", descriptor = "Lclient!ve;")
 	public static Js5 archive;
 
-	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(I[B)Z")
-	public static boolean method2572(@OriginalArg(1) byte[] arg0) {
-		@Pc(13) Packet local13 = new Packet(arg0);
-		@Pc(17) int local17 = local13.g1();
-		if (local17 != 1) {
-			return false;
-		}
-		@Pc(33) boolean local33 = local13.g1() == 1;
-		if (local33) {
-			Static97.method1962(local13);
-		}
-		Static69.method1546(local13);
-		return true;
-	}
-
-	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(BII)V")
-	public static void method2575(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		VarPlayerDefinition.varPlayerCache[arg1] = arg0;
-		@Pc(20) LongNode local20 = (LongNode) Static199.aClass133_20.getNode((long) arg1);
-		if (local20 == null) {
-			local20 = new LongNode(4611686018427387905L);
-			Static199.aClass133_20.put(local20, (long) arg1);
-		} else if (local20.value != 4611686018427387905L) {
-			local20.value = MonotonicTime.currentTimeMillis() + 500L | 0x4000000000000000L;
-		}
-	}
-
-    @OriginalMember(owner = "client!fk", name = "a", descriptor = "(IB)Lclient!h;")
+	@OriginalMember(owner = "client!fk", name = "a", descriptor = "(IB)Lclient!h;")
     public static ObjType get(@OriginalArg(0) int id) {
         @Pc(6) ObjType objType = (ObjType) types.get((long) id);
         if (objType != null) {

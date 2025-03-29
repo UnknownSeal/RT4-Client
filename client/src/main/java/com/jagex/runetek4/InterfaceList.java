@@ -323,7 +323,7 @@ public class InterfaceList {
 
     @OriginalMember(owner = "runetek4.client!runetek4.client", name = "b", descriptor = "(Lclient!be;)Lclient!bf;")
     public static ServerActiveProperties getServerActiveProperties(@OriginalArg(0) Component arg0) {
-        @Pc(13) ServerActiveProperties local13 = (ServerActiveProperties) properties.getNode(((long) arg0.id << 32) + (long) arg0.createdComponentId);
+        @Pc(13) ServerActiveProperties local13 = (ServerActiveProperties) properties.get(((long) arg0.id << 32) + (long) arg0.createdComponentId);
         return local13 == null ? arg0.properties : local13;
     }
 
@@ -337,7 +337,7 @@ public class InterfaceList {
     @OriginalMember(owner = "runetek4.client!runetek4.client", name = "c", descriptor = "(Lclient!be;)Z")
     public static boolean method947(@OriginalArg(0) Component arg0) {
         if (Cheat.qaOpTest) {
-            if (getServerActiveProperties(arg0).anInt546 != 0) {
+            if (getServerActiveProperties(arg0).events != 0) {
                 return false;
             }
             if (arg0.type == 0) {
@@ -510,7 +510,7 @@ public class InterfaceList {
         if (arg0.createdComponents != null) {
             method4190(arg0.id, arg1, local20, local32, arg0.createdComponents);
         }
-        @Pc(66) ComponentPointer local66 = (ComponentPointer) openInterfaces.getNode((long) arg0.id);
+        @Pc(66) ComponentPointer local66 = (ComponentPointer) openInterfaces.get((long) arg0.id);
         if (local66 != null) {
             method4017(local32, arg1, local66.interfaceId, local20);
         }
@@ -552,7 +552,7 @@ public class InterfaceList {
         if (arg2.dynamicHeightValue == 4) {
             arg2.height = arg2.aspectHeight * arg2.width / arg2.aspectWidth;
         }
-        if (Cheat.qaOpTest && (getServerActiveProperties(arg2).anInt546 != 0 || arg2.type == 0)) {
+        if (Cheat.qaOpTest && (getServerActiveProperties(arg2).events != 0 || arg2.type == 0)) {
             if (arg2.height < 5 && arg2.width < 5) {
                 arg2.height = 5;
                 arg2.width = 5;
@@ -604,7 +604,7 @@ public class InterfaceList {
         } else {
             arg0.x = arg2 - (arg2 * arg0.baseX >> 14) - arg0.width;
         }
-        if (!Cheat.qaOpTest || getServerActiveProperties(arg0).anInt546 == 0 && arg0.type != 0) {
+        if (!Cheat.qaOpTest || getServerActiveProperties(arg0).events == 0 && arg0.type != 0) {
             return;
         }
         if (arg0.y < 0) {
@@ -631,7 +631,7 @@ public class InterfaceList {
                 @Pc(50) HookRequest local50 = new HookRequest();
                 local50.arguments = local41.anObjectArray3;
                 local50.source = local41;
-                ClientScriptRunner.runClientScripts(2000000, local50);
+                ClientScriptRunner.runClientScript(2000000, local50);
             }
         }
     }
@@ -705,7 +705,7 @@ public class InterfaceList {
                     if (local23.createdComponents != null) {
                         method7(local23.createdComponents, arg1);
                     }
-                    @Pc(49) ComponentPointer local49 = (ComponentPointer) openInterfaces.getNode((long) local23.id);
+                    @Pc(49) ComponentPointer local49 = (ComponentPointer) openInterfaces.get((long) local23.id);
                     if (local49 != null) {
                         runScripts(arg1, local49.interfaceId);
                     }
@@ -737,7 +737,7 @@ public class InterfaceList {
     public static void method946(@OriginalArg(0) Component[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
         for (@Pc(1) int local1 = 0; local1 < arg0.length; local1++) {
             @Pc(9) Component component = arg0[local1];
-            if (component != null && component.overlayer == arg1 && (!component.if3 || component.type == 0 || component.aBoolean25 || getServerActiveProperties(component).anInt546 != 0 || component == ClientScriptRunner.aClass13_1 || component.contentType == 1338) && (!component.if3 || !method947(component))) {
+            if (component != null && component.overlayer == arg1 && (!component.if3 || component.type == 0 || component.aBoolean25 || getServerActiveProperties(component).events != 0 || component == ClientScriptRunner.aClass13_1 || component.contentType == 1338) && (!component.if3 || !method947(component))) {
                 @Pc(50) int local50 = component.x + arg6;
                 @Pc(55) int local55 = component.y + arg7;
                 @Pc(61) int local61;
@@ -826,9 +826,9 @@ public class InterfaceList {
                             }
                         }
                         if (local221) {
-                            Static40.method1015(Mouse.mouseClickY - local55, Mouse.mouseClickX - local50, component);
+                            ClientScriptRunner.method1015(Mouse.mouseClickY - local55, Mouse.mouseClickX - local50, component);
                         }
-                        if (ClientScriptRunner.aClass13_14 != null && ClientScriptRunner.aClass13_14 != component && local207 && getServerActiveProperties(component).method509()) {
+                        if (ClientScriptRunner.aClass13_14 != null && ClientScriptRunner.aClass13_14 != component && local207 && getServerActiveProperties(component).isDragTarget()) {
                             aClass13_12 = component;
                         }
                         if (component == ClientScriptRunner.aClass13_1) {
@@ -869,8 +869,8 @@ public class InterfaceList {
                                     WorldMap.component = component;
                                     if (local221) {
                                         if (Keyboard.pressedKeys[82] && LoginManager.staffModLevel > 0) {
-                                            i = (int) ((double) (Mouse.mouseClickX - local50 - component.width / 2) * 2.0D / (double) Static83.aFloat3);
-                                            skill = (int) ((double) (Mouse.mouseClickY - local55 - component.height / 2) * 2.0D / (double) Static83.aFloat3);
+                                            i = (int) ((double) (Mouse.mouseClickX - local50 - component.width / 2) * 2.0D / (double) WorldMap.zoom);
+                                            skill = (int) ((double) (Mouse.mouseClickY - local55 - component.height / 2) * 2.0D / (double) WorldMap.zoom);
                                             k = WorldMap.anInt435 + i;
                                             @Pc(516) int local516 = WorldMap.anInt919 + skill;
                                             @Pc(520) int local520 = k + WorldMap.originX;
@@ -891,8 +891,8 @@ public class InterfaceList {
                                             anInt3337 = 2;
                                         }
                                         if (anInt3337 == 2) {
-                                            WorldMap.method1964(anInt4620 + (int) ((double) (ClientScriptRunner.anInt5388 - Mouse.lastMouseX) * 2.0D / (double) Static138.aFloat14));
-                                            WorldMap.method4641(anInt1885 + (int) ((double) (ClientScriptRunner.anInt4035 - Mouse.lastMouseY) * 2.0D / (double) Static138.aFloat14));
+                                            WorldMap.method1964(anInt4620 + (int) ((double) (ClientScriptRunner.anInt5388 - Mouse.lastMouseX) * 2.0D / (double) WorldMap.targetZoom));
+                                            WorldMap.method4641(anInt1885 + (int) ((double) (ClientScriptRunner.anInt4035 - Mouse.lastMouseY) * 2.0D / (double) WorldMap.targetZoom));
                                         }
                                         continue;
                                     }
@@ -1016,15 +1016,15 @@ public class InterfaceList {
                                 }
                                 component.updatedVarcsReaderIndex = VarcDomain.updatedVarcsWriterIndex;
                             }
-                            if (component.onVarcstrTransmit != null && Static72.updatedVarcstrsWriterIndex > component.updatedVarcstrsReaderIndex) {
-                                if (component.varcstrTriggers == null || Static72.updatedVarcstrsWriterIndex - component.updatedVarcstrsReaderIndex > 32) {
+                            if (component.onVarcstrTransmit != null && VarcDomain.updatedVarcstrsWriterIndex > component.updatedVarcstrsReaderIndex) {
+                                if (component.varcstrTriggers == null || VarcDomain.updatedVarcstrsWriterIndex - component.updatedVarcstrsReaderIndex > 32) {
                                     request = new HookRequest();
                                     request.source = component;
                                     request.arguments = component.onVarcstrTransmit;
                                     lowPriorityRequests.addTail(request);
                                 } else {
-                                    label539: for (i = component.updatedVarcstrsReaderIndex; i < Static72.updatedVarcstrsWriterIndex; i++) {
-                                        skill = ClientScriptRunner.updatedVarcstrs[i & 0x1F];
+                                    label539: for (i = component.updatedVarcstrsReaderIndex; i < VarcDomain.updatedVarcstrsWriterIndex; i++) {
+                                        skill = VarcDomain.updatedVarcstrs[i & 0x1F];
                                         for (k = 0; k < component.varcstrTriggers.length; k++) {
                                             if (component.varcstrTriggers[k] == skill) {
                                                 request2 = new HookRequest();
@@ -1036,17 +1036,17 @@ public class InterfaceList {
                                         }
                                     }
                                 }
-                                component.updatedVarcstrsReaderIndex = Static72.updatedVarcstrsWriterIndex;
+                                component.updatedVarcstrsReaderIndex = VarcDomain.updatedVarcstrsWriterIndex;
                             }
-                            if (component.onVarpTransmit != null && Static70.updatedVarpsWriterIndex > component.updatedVarpsReaderIndex) {
-                                if (component.varpTriggers == null || Static70.updatedVarpsWriterIndex - component.updatedVarpsReaderIndex > 32) {
+                            if (component.onVarpTransmit != null && VarpDomain.updatedVarpsWriterIndex > component.updatedVarpsReaderIndex) {
+                                if (component.varpTriggers == null || VarpDomain.updatedVarpsWriterIndex - component.updatedVarpsReaderIndex > 32) {
                                     request = new HookRequest();
                                     request.source = component;
                                     request.arguments = component.onVarpTransmit;
                                     lowPriorityRequests.addTail(request);
                                 } else {
-                                    label515: for (i = component.updatedVarpsReaderIndex; i < Static70.updatedVarpsWriterIndex; i++) {
-                                        skill = Static83.updatedVarps[i & 0x1F];
+                                    label515: for (i = component.updatedVarpsReaderIndex; i < VarpDomain.updatedVarpsWriterIndex; i++) {
+                                        skill = VarpDomain.updatedVarps[i & 0x1F];
                                         for (k = 0; k < component.varpTriggers.length; k++) {
                                             if (component.varpTriggers[k] == skill) {
                                                 request2 = new HookRequest();
@@ -1058,7 +1058,7 @@ public class InterfaceList {
                                         }
                                     }
                                 }
-                                component.updatedVarpsReaderIndex = Static70.updatedVarpsWriterIndex;
+                                component.updatedVarpsReaderIndex = VarpDomain.updatedVarpsWriterIndex;
                             }
                             if (component.onInvTransmit != null && Inv.updatedInventoriesWriterIndex > component.updatedInventoriesReaderIndex) {
                                 if (component.inventoryTriggers == null || Inv.updatedInventoriesWriterIndex - component.updatedInventoriesReaderIndex > 32) {
@@ -1122,7 +1122,7 @@ public class InterfaceList {
                                 request.arguments = component.onClanTransmit;
                                 lowPriorityRequests.addTail(request);
                             }
-                            if (Static207.anInt4778 > component.lastTransmitTimer && component.onStockTransmit != null) {
+                            if (StockMarketManager.transmitAt > component.lastTransmitTimer && component.onStockTransmit != null) {
                                 request = new HookRequest();
                                 request.source = component;
                                 request.arguments = component.onStockTransmit;
@@ -1173,7 +1173,7 @@ public class InterfaceList {
                         if (component.createdComponents != null) {
                             method946(component.createdComponents, component.id, local61, local63, local65, local67, local50 - component.scrollX, local55 - component.scrollY);
                         }
-                        @Pc(1595) ComponentPointer local1595 = (ComponentPointer) openInterfaces.getNode((long) component.id);
+                        @Pc(1595) ComponentPointer local1595 = (ComponentPointer) openInterfaces.get((long) component.id);
                         if (local1595 != null) {
                             method1320(local50, local63, local55, local65, local1595.interfaceId, local61, local67);
                         }
@@ -1265,7 +1265,7 @@ public class InterfaceList {
                     if (local15.createdComponents != null) {
                         method2354(local15.id, local15.createdComponents);
                     }
-                    @Pc(73) ComponentPointer local73 = (ComponentPointer) openInterfaces.getNode((long) local15.id);
+                    @Pc(73) ComponentPointer local73 = (ComponentPointer) openInterfaces.get((long) local15.id);
                     if (local73 != null) {
                         method1949(local73.interfaceId);
                     }
@@ -1280,22 +1280,22 @@ public class InterfaceList {
                             local105 = local15.modelSeqId;
                         }
                         if (local105 != -1) {
-                            @Pc(118) SeqType local118 = SeqTypeList.getAnimationSequence(local105);
+                            @Pc(118) SeqType local118 = SeqTypeList.get(local105);
                             if (local118 != null) {
                                 local15.anInt500 += Protocol.sceneDelta;
-                                while (local15.anInt500 > local118.frames[local15.anInt510]) {
-                                    local15.anInt500 -= local118.frames[local15.anInt510];
+                                while (local15.anInt500 > local118.frameDelay[local15.anInt510]) {
+                                    local15.anInt500 -= local118.frameDelay[local15.anInt510];
                                     local15.anInt510++;
-                                    if (local118.anIntArray473.length <= local15.anInt510) {
-                                        local15.anInt510 -= local118.replayoff;
-                                        if (local15.anInt510 < 0 || local118.anIntArray473.length <= local15.anInt510) {
+                                    if (local118.frames.length <= local15.anInt510) {
+                                        local15.anInt510 -= local118.replayOff;
+                                        if (local15.anInt510 < 0 || local118.frames.length <= local15.anInt510) {
                                             local15.anInt510 = 0;
                                         }
                                     }
                                     local15.anInt496 = local15.anInt510 + 1;
-                                    if (local118.anIntArray473.length <= local15.anInt496) {
-                                        local15.anInt496 -= local118.replayoff;
-                                        if (local15.anInt496 < 0 || local118.anIntArray473.length <= local15.anInt496) {
+                                    if (local118.frames.length <= local15.anInt496) {
+                                        local15.anInt496 -= local118.replayOff;
+                                        if (local15.anInt496 < 0 || local118.frames.length <= local15.anInt496) {
                                             local15.anInt496 = -1;
                                         }
                                     }
@@ -1318,50 +1318,4 @@ public class InterfaceList {
         }
     }
 
-    @OriginalMember(owner = "client!dh", name = "a", descriptor = "(IIII)Lclient!wk;")
-    public static ComponentPointer openSubInterface(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-        @Pc(9) ComponentPointer local9 = new ComponentPointer();
-        local9.anInt5879 = arg2;
-        local9.interfaceId = arg0;
-        openInterfaces.put(local9, arg1);
-        method1753(arg0);
-        @Pc(28) Component local28 = getComponent(arg1);
-        if (local28 != null) {
-            redraw(local28);
-        }
-        if (ClientScriptRunner.aClass13_10 != null) {
-            redraw(ClientScriptRunner.aClass13_10);
-            ClientScriptRunner.aClass13_10 = null;
-        }
-        @Pc(45) int local45 = MiniMenu.menuActionRow;
-        @Pc(53) int local53;
-        for (local53 = 0; local53 < local45; local53++) {
-            if (method5(MiniMenu.actions[local53])) {
-                MiniMenu.remove(local53);
-            }
-        }
-        if (MiniMenu.menuActionRow == 1) {
-            ClientScriptRunner.aBoolean108 = false;
-            redrawScreen(anInt4271, anInt761, anInt5138, anInt436);
-        } else {
-            redrawScreen(anInt4271, anInt761, anInt5138, anInt436);
-            local53 = Fonts.b12Full.getStringWidth(LocalizedText.CHOOSE_OPTION);
-            for (@Pc(95) int local95 = 0; local95 < MiniMenu.menuActionRow; local95++) {
-                @Pc(104) int local104 = Fonts.b12Full.getStringWidth(MiniMenu.getOp(local95));
-                if (local104 > local53) {
-                    local53 = local104;
-                }
-            }
-            anInt761 = local53 + 8;
-            anInt436 = MiniMenu.menuActionRow * 15 + (aBoolean298 ? 26 : 22);
-        }
-        if (local28 != null) {
-            method531(local28, false);
-        }
-        method1626(arg0);
-        if (topLevelInterface != -1) {
-            runScripts(1, topLevelInterface);
-        }
-        return local9;
-    }
 }

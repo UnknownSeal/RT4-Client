@@ -6,9 +6,7 @@ import java.net.Socket;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
-import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.BufferedFile;
-import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
@@ -21,7 +19,7 @@ import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.game.config.flotype.FloorOverlayTypeList;
+import com.jagex.runetek4.game.config.flotype.FloTypeList;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
@@ -300,16 +298,16 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "client!je", name = "h", descriptor = "(I)V")
 	public static void unloadSoft() {
-		FloorOverlayTypeList.removeSoft();
-		FloorUnderlayTypeList.removeSoft();
+		FloTypeList.removeSoft();
+		FluTypeList.removeSoft();
 		IdkTypeList.removeSoft();
 		LocTypeList.removeSoft();
 		NpcTypeList.removeSoft();
 		ObjTypeList.removeSoft();
-		Static227.removeSoft();
-		Static71.removeSoft();
-		Static78.removeSoft();
-		Static3.removeSoft();
+		SeqTypeList.removeSoft();
+		SpotAnimTypeList.removeSoft();
+		VarBitTypeList.removeSoft();
+		VarpTypeList.removeSoft();
 		BasTypeList.removeSoft();
 		MsiTypeList.removeSoft();
 		LightTypeList.removeSoft();
@@ -317,7 +315,7 @@ public final class client extends GameShell {
 		PlayerAppearance.removeSoft();
 		Component.removeSoft();
 		HintArrowManager.removeSoft();
-		Static251.removeSoft();
+		ShadowModelList.removeSoft();
 		HitBarList.hitBars.removeSoft();
 		FontMetricsList.fontMetrics.removeSoft();
 	}
@@ -337,21 +335,21 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "f", descriptor = "(B)V")
 	public static void unload() {
-		FloorOverlayTypeList.clear();
-		Static54.clear();
+		FloTypeList.clear();
+		FluTypeList.clear();
 		ClientScriptRunner.clear();
 		LocTypeList.clear();
 		NpcTypeList.clear();
 		ObjTypeList.clear();
-		Static10.clear();
-		Static247.clear();
-		Static53.clear();
-		Static249.clear();
+		SeqTypeList.clear();
+		SpotAnimTypeList.clear();
+		VarBitTypeList.clear();
+		VarpTypeList.clear();
 		BasTypeList.clear();
 		MsiTypeList.clear();
 		LightTypeList.clear();
 		CursorTypeList.clear();
-		Static230.clear();
+		PlayerAppearance.clear();
 		Component.clear();
 		if (modeWhat != 0) {
 			for (@Pc(54) int i = 0; i < Player.aByteArrayArray8.length; i++) {
@@ -360,10 +358,10 @@ public final class client extends GameShell {
 			Player.anInt2863 = 0;
 		}
 		HintArrowManager.clear();
-		Static90.method1857();
+		ShadowModelList.clear();
 		FontMetricsList.fontMetrics.clean();
 		if (!GlRenderer.enabled) {
-			((Js5GlTextureProvider) Rasterizer.textureProvider).clear();
+			((Js5TextureProvider) Rasterizer.textureProvider).clear();
 		}
 		ClientScriptList.scripts.clear();
 		js5Archive0.discardUnpacked();
@@ -418,9 +416,9 @@ public final class client extends GameShell {
 		MiniMap.sprite = null;
 		LightingManager.anInt2875 = -1;
 		unload();
-		Static255.cache.clear();
+		DeadClass.cache.clear();
 		LocType.aLocEntity_1 = new LocEntity();
-		((Js5GlTextureProvider) Rasterizer.textureProvider).clear();
+		((Js5TextureProvider) Rasterizer.textureProvider).clear();
 		LightingManager.lightCount = 0;
 		LightingManager.lights = new Light[255];
 		GlModel.method4120();
@@ -467,7 +465,7 @@ public final class client extends GameShell {
 		Protocol.opcode4 = -1;
 		Protocol.opcode3 = -1;
 		Protocol.opcode = -1;
-		Game.idleTimeout = 0;
+		Protocol.idleTimeout = 0;
 		Player.systemUpdateTimer = 0;
 		Protocol.outboundBuffer.offset = 0;
 		Protocol.opcode2 = -1;
@@ -631,16 +629,16 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "runetek4.client!re", name = "a", descriptor = "(I)V")
 	public static void clean() {
-		FloorOverlayTypeList.clean();
-		FloorUnderlayTypeList.clean();
-		Static238.method4142();
+		FloTypeList.clean();
+		FluTypeList.clean();
+		IdkTypeList.clean();
 		LocTypeList.clean();
 		NpcTypeList.method3706();
 		ObjTypeList.clean();
-		SeqType.clearAnimationCache();
-		Static137.method2666();
-		Static269.method2221();
-		VarPlayerDefinition.clearVarPlayerDefinitionCache();
+		SeqTypeList.clean();
+		SpotAnimTypeList.clean();
+		VarBitTypeList.clean();
+		VarpTypeList.clean();
 		BasTypeList.clean();
 		MsiTypeList.clean();
 		LightTypeList.clean();
@@ -648,7 +646,7 @@ public final class client extends GameShell {
 		PlayerAppearance.clean();
 		Component.clean();
 		HintArrowManager.clean();
-		Static134.method2621();
+		ShadowModelList.clean();
 		HitBarList.hitBars.clean(5);
 		FontMetricsList.fontMetrics.clean(5);
 	}
@@ -716,7 +714,7 @@ public final class client extends GameShell {
 		if (local15 && MidiPlayer.jingle && musicChannel != null) {
 			musicChannel.method3570();
 		}
-		if ((gameState == 30 || gameState == 10) && (GameShell.canvasReplaceRecommended || Static97.aLong89 != 0L && Static97.aLong89 < MonotonicTime.currentTimeMillis())) {
+		if ((gameState == 30 || gameState == 10) && (GameShell.canvasReplaceRecommended || DisplayMode.aLong89 != 0L && DisplayMode.aLong89 < MonotonicTime.currentTimeMillis())) {
 			DisplayMode.setWindowMode(GameShell.canvasReplaceRecommended, DisplayMode.getWindowMode(), Preferences.fullScreenWidth, Preferences.fullScreenHeight);
 		}
 		@Pc(80) int local80;
@@ -739,7 +737,7 @@ public final class client extends GameShell {
 			}
 			if (local80 != GameShell.frameWidth || local84 != GameShell.frameHeight) {
 				GameShell.method3662();
-				Static97.aLong89 = MonotonicTime.currentTimeMillis() + 500L;
+				DisplayMode.aLong89 = MonotonicTime.currentTimeMillis() + 500L;
 			}
 		}
 		if (GameShell.fullScreenFrame != null && !focus && (gameState == 30 || gameState == 10)) {
@@ -1130,7 +1128,7 @@ public final class client extends GameShell {
 											}
 											if (Protocol.openUrlRequest != null && Protocol.openUrlRequest.status == 1) {
 												if (Protocol.openUrlRequest.result != null) {
-													Static169.openUrl(ClientScriptRunner.url, Protocol.newTab);
+													ClientScriptRunner.openUrl(ClientScriptRunner.url, Protocol.newTab);
 												}
 												Protocol.newTab = false;
 												ClientScriptRunner.url = null;
@@ -1433,23 +1431,23 @@ public final class client extends GameShell {
 			percentage += js5Archive27.getPercentageComplete();
 			if (percentage >= 1100) {
 				ParamTypeList.init(js5Archive2);
-				FloorOverlayTypeList.init(js5Archive2);
-				FloorUnderlayTypeList.init(js5Archive2);
+				FloTypeList.init(js5Archive2);
+				FluTypeList.init(js5Archive2);
 				IdkTypeList.init(js5Archive7, js5Archive2);
 				LocTypeList.init(js5Archive16, js5Archive7);
 				NpcTypeList.init(js5Archive7, js5Archive18);
 				ObjTypeList.init(js5Archive19, Fonts.p11FullSoftware, js5Archive7);
-				Static58.init(js5Archive2);
-				Static141.init(js5Archive1, js5Archive20, js5Archive0);
-				Static79.init(js5Archive2);
-				Static266.init(js5Archive7, js5Archive21);
-				Static180.init(js5Archive22);
-				VarPlayerDefinition.initializeVarPlayerDefinitionCache(js5Archive2);
+				StructTypeList.init(js5Archive2);
+				SeqTypeList.init(js5Archive1, js5Archive20, js5Archive0);
+				BasTypeList.init(js5Archive2);
+				SpotAnimTypeList.init(js5Archive7, js5Archive21);
+				VarBitTypeList.init(js5Archive22);
+				VarpTypeList.init(js5Archive2);
 				InterfaceList.init(js5Archive13, js5Archive8, js5Archive3, js5Archive7);
 				InvTypeList.init(js5Archive2);
 				EnumTypeList.init(js5Archive17);
-				Static59.init(js5Archive25, js5Archive24, new Js5QuickChatCommandDecoder());
-				Static115.init(js5Archive25, js5Archive24);
+				QuickChatPhraseTypeList.init(js5Archive25, js5Archive24, new Js5QuickChatCommandDecoder());
+				QuickChatCatTypeList.init(js5Archive25, js5Archive24);
 				LightTypeList.init(js5Archive2);
 				CursorTypeList.init(js5Archive2, js5Archive8);
 				MsiTypeList.init(js5Archive2, js5Archive8);
@@ -1475,19 +1473,19 @@ public final class client extends GameShell {
 			}
 		} else if (mainLoadState == 90) {
 			if (js5Archive26.fetchAll()) {
-				@Pc(951) Js5GlTextureProvider textureProvider = new Js5GlTextureProvider(js5Archive9, js5Archive26, js5Archive8, 20, !Preferences.highDetailTextures);
+				@Pc(951) Js5TextureProvider textureProvider = new Js5TextureProvider(js5Archive9, js5Archive26, js5Archive8, 20, !Preferences.highDetailTextures);
 				Rasterizer.unpackTextures(textureProvider);
 				if (Preferences.brightness == 1) {
-					Pix3D.setBrightness(0.9F);
+					Rasterizer.setBrightness(0.9F);
 				}
 				if (Preferences.brightness == 2) {
-					Pix3D.setBrightness(0.8F);
+					Rasterizer.setBrightness(0.8F);
 				}
 				if (Preferences.brightness == 3) {
-					Pix3D.setBrightness(0.7F);
+					Rasterizer.setBrightness(0.7F);
 				}
 				if (Preferences.brightness == 4) {
-					Pix3D.setBrightness(0.6F);
+					Rasterizer.setBrightness(0.6F);
 				}
 				mainLoadSecondaryText = LocalizedText.MAINLOAD90B;
 				mainLoadState = 100;
@@ -1528,7 +1526,7 @@ public final class client extends GameShell {
 				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(js5Archive13.getPercentageComplete() / 20 + 85), JString.PERCENT_SIGN});
 				mainLoadPercentage = 85;
 			} else if (js5Archive23.isGroupReady(DETAILS)) {
-				MapList.init(Static173.aClass3_Sub2_Sub1_Sub1Array9, js5Archive23);
+				MapList.init(Sprites.mapfunctions, js5Archive23);
 				mainLoadPercentage = 95;
 				mainLoadSecondaryText = LocalizedText.MAINLOAD130B;
 				mainLoadState = 135;
