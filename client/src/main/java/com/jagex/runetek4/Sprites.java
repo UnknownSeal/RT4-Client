@@ -86,7 +86,7 @@ public class Sprites {
             }
         }
         @Pc(124) SoftwareSprite local124 = SpriteLoader.loadSoftwareSprite(0, arg0, Static163.anInt3962);
-        local124.method311();
+        local124.trim();
         if (GlRenderer.enabled) {
             Static106.aClass3_Sub2_Sub1_7 = new GlSprite(local124);
         } else {
@@ -95,7 +95,7 @@ public class Sprites {
         @Pc(143) SoftwareSprite[] local143 = Static265.method4523(Static128.anInt3143, arg0);
         @Pc(145) int local145;
         for (local145 = 0; local145 < local143.length; local145++) {
-            local143[local145].method311();
+            local143[local145].trim();
         }
         if (GlRenderer.enabled) {
             Static277.aClass3_Sub2_Sub1Array12 = new Sprite[local143.length];

@@ -899,43 +899,43 @@ public final class SoftwareAlphaSprite extends SoftwareSprite {
 
 	@OriginalMember(owner = "runetek4.client!am", name = "a", descriptor = "(III)V")
 	@Override
-	public final void renderAlpha(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-		arg0 += this.xOffset;
-		arg1 += this.yOffset;
-		@Pc(15) int local15 = arg0 + arg1 * SoftwareRaster.width;
+	public final void renderAlpha(@OriginalArg(0) int x, @OriginalArg(1) int y, @OriginalArg(2) int alpha) {
+		x += this.xOffset;
+		y += this.yOffset;
+		@Pc(15) int local15 = x + y * SoftwareRaster.width;
 		@Pc(17) int local17 = 0;
 		@Pc(20) int local20 = this.height;
 		@Pc(23) int local23 = this.width;
 		@Pc(27) int local27 = SoftwareRaster.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < SoftwareRaster.clipTop) {
-			local36 = SoftwareRaster.clipTop - arg1;
+		if (y < SoftwareRaster.clipTop) {
+			local36 = SoftwareRaster.clipTop - y;
 			local20 -= local36;
-			arg1 = SoftwareRaster.clipTop;
+			y = SoftwareRaster.clipTop;
 			local17 = local36 * local23;
 			local15 += local36 * SoftwareRaster.width;
 		}
-		if (arg1 + local20 > SoftwareRaster.clipBottom) {
-			local20 -= arg1 + local20 - SoftwareRaster.clipBottom;
+		if (y + local20 > SoftwareRaster.clipBottom) {
+			local20 -= y + local20 - SoftwareRaster.clipBottom;
 		}
-		if (arg0 < SoftwareRaster.clipLeft) {
-			local36 = SoftwareRaster.clipLeft - arg0;
+		if (x < SoftwareRaster.clipLeft) {
+			local36 = SoftwareRaster.clipLeft - x;
 			local23 -= local36;
-			arg0 = SoftwareRaster.clipLeft;
+			x = SoftwareRaster.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > SoftwareRaster.clipRight) {
-			local36 = arg0 + local23 - SoftwareRaster.clipRight;
+		if (x + local23 > SoftwareRaster.clipRight) {
+			local36 = x + local23 - SoftwareRaster.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
 		}
 		if (local23 > 0 && local20 > 0) {
-			method320(SoftwareRaster.pixels, this.pixels, local17, local15, local23, local20, local27, local29, arg2);
+			method320(SoftwareRaster.pixels, this.pixels, local17, local15, local23, local20, local27, local29, alpha);
 		}
 	}
 }
