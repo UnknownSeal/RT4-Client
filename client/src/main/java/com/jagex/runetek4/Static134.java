@@ -7,13 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static134 {
 
-	@OriginalMember(owner = "runetek4.client!kh", name = "a", descriptor = "(B)Lclient!ek;")
-	public static SoftwareIndexedSprite method2619() {
-		@Pc(25) SoftwareIndexedSprite local25 = new SoftwareIndexedSprite(Static124.anInt3080, Static227.anInt5091, SpriteLoader.xOffsets[0], SpriteLoader.yOffsets[0], SpriteLoader.innerWidths[0], SpriteLoader.innerHeights[0], SpriteLoader.pixels[0], Static259.anIntArray513);
-		SpriteLoader.clear();
-		return local25;
-	}
-
 	@OriginalMember(owner = "runetek4.client!kh", name = "a", descriptor = "(IIIBII)V")
 	public static void method2622(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		@Pc(8) int local8 = arg2 + 1;

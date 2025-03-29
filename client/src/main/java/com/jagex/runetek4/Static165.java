@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static165 {
 
-	@OriginalMember(owner = "runetek4.client!nb", name = "h", descriptor = "I")
-	public static int anInt4038;
-
 	@OriginalMember(owner = "runetek4.client!nb", name = "m", descriptor = "Lclient!na;")
 	public static final JString LOGO = JString.parse("logo");
 

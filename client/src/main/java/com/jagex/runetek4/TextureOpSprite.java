@@ -34,7 +34,7 @@ public class TextureOpSprite extends TextureOp {
 		} else if (this.anInt3235 < 0) {
 			return false;
 		} else {
-			@Pc(43) SoftwareSprite local43 = Static215.anInt4868 < 0 ? Static164.method3117(Texture.spritesArchive, this.anInt3235) : SpriteLoader.loadSoftwareSprite(this.anInt3235, Texture.spritesArchive, Static215.anInt4868);
+			@Pc(43) SoftwareSprite local43 = Static215.anInt4868 < 0 ? SpriteLoader.loadSoftwareSpriteAutoDetect(Texture.spritesArchive, this.anInt3235) : SpriteLoader.loadSoftwareSprite(this.anInt3235, Texture.spritesArchive, Static215.anInt4868);
 			local43.trim();
 			this.anInt3240 = local43.height;
 			this.anInt3239 = local43.width;

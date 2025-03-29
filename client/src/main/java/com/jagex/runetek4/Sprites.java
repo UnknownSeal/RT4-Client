@@ -57,30 +57,25 @@ public class Sprites {
         Static241.aClass36Array16 = null;
     }
 
-    @OriginalMember(owner = "client!cg", name = "a", descriptor = "(ZILclient!ve;I)[Lclient!ek;")
-    private static SoftwareIndexedSprite[] method837(@OriginalArg(1) int arg0, @OriginalArg(2) Js5 arg1) {
-        return SpriteLoader.decode(arg1, 0, arg0) ? Static121.method2406() : null;
-    }
-
     @OriginalMember(owner = "client!cg", name = "a", descriptor = "(ILclient!ve;)V")
     public static void load(@OriginalArg(1) Js5 arg0) {
-        Static173.aClass3_Sub2_Sub1_Sub1Array9 = Static265.method4523(Static280.anInt5900, arg0);
-        Static213.aClass3_Sub2_Sub1Array8 = Static209.method3708(Static131.anInt3261, arg0);
-        Static116.aClass3_Sub2_Sub1Array3 = Static209.method3708(anInt1165, arg0);
-        Static219.aClass3_Sub2_Sub1Array9 = Static209.method3708(Static214.anInt5579, arg0);
-        Static138.aClass3_Sub2_Sub1Array5 = Static209.method3708(Static34.anInt1049, arg0);
-        aClass3_Sub2_Sub1Array11 = Static209.method3708(Class6.anInt4741, arg0);
-        Static149.aClass3_Sub2_Sub1Array7 = Static209.method3708(Static149.anInt3551, arg0);
+        Static173.aClass3_Sub2_Sub1_Sub1Array9 = SpriteLoader.loadSoftwareSprites(Static280.anInt5900, arg0);
+        Static213.aClass3_Sub2_Sub1Array8 = SpriteLoader.loadAlphaSprites(Static131.anInt3261, arg0);
+        Static116.aClass3_Sub2_Sub1Array3 = SpriteLoader.loadAlphaSprites(anInt1165, arg0);
+        Static219.aClass3_Sub2_Sub1Array9 = SpriteLoader.loadAlphaSprites(Static214.anInt5579, arg0);
+        Static138.aClass3_Sub2_Sub1Array5 = SpriteLoader.loadAlphaSprites(Static34.anInt1049, arg0);
+        aClass3_Sub2_Sub1Array11 = SpriteLoader.loadAlphaSprites(Class6.anInt4741, arg0);
+        Static149.aClass3_Sub2_Sub1Array7 = SpriteLoader.loadAlphaSprites(Static149.anInt3551, arg0);
         Static84.aClass3_Sub2_Sub1_4 = SpriteLoader.loadSprites(Static19.anInt647, arg0);
-        Static240.crossSprites = Static131.method2580(anInt1016, arg0);
-        mapdots = Static131.method2580(Static78.anInt2147, arg0);
-        Static241.aClass36Array16 = Static146.method2749(arg0, Static124.anInt3083);
-        nameIcons = Static146.method2749(arg0, FloorUnderlayTypeList.anInt5057);
+        Static240.crossSprites = SpriteLoader.method2580(anInt1016, arg0);
+        mapdots = SpriteLoader.method2580(Static78.anInt2147, arg0);
+        Static241.aClass36Array16 = SpriteLoader.loadIndexedSprites(arg0, Static124.anInt3083);
+        nameIcons = SpriteLoader.loadIndexedSprites(arg0, FloorUnderlayTypeList.anInt5057);
         Fonts.p11Full.setNameIcons(nameIcons, null);
         Fonts.p12Full.setNameIcons(nameIcons, null);
         Fonts.b12Full.setNameIcons(nameIcons, null);
         if (GlRenderer.enabled) {
-            floorShadows = method837(Static84.anInt2257, arg0);
+            floorShadows = SpriteLoader.loadSoftwareIndexedSprites(Static84.anInt2257, arg0);
             for (@Pc(101) int local101 = 0; local101 < floorShadows.length; local101++) {
                 floorShadows[local101].trim();
             }
@@ -92,7 +87,7 @@ public class Sprites {
         } else {
             Static106.aClass3_Sub2_Sub1_7 = local124;
         }
-        @Pc(143) SoftwareSprite[] local143 = Static265.method4523(Static128.anInt3143, arg0);
+        @Pc(143) SoftwareSprite[] local143 = SpriteLoader.loadSoftwareSprites(Static128.anInt3143, arg0);
         @Pc(145) int local145;
         for (local145 = 0; local145 < local143.length; local145++) {
             local143[local145].trim();

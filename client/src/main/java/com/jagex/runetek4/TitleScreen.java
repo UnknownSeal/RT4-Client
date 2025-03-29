@@ -28,11 +28,11 @@ public class TitleScreen {
         } else {
             SoftwareRaster.clear();
         }
-        Static78.aClass3_Sub2_Sub1_3 = Static130.method2514(arg0, Static262.bgId);
+        Static78.aClass3_Sub2_Sub1_3 = SpriteLoader.loadSpriteAutoDetect(arg0, Static262.bgId);
         @Pc(20) int local20 = GameShell.canvasHeigth;
         @Pc(26) int local26 = local20 * 956 / 503;
         Static78.aClass3_Sub2_Sub1_3.renderResized((GameShell.canvasWidth - local26) / 2, 0, local26, local20);
-        Static243.aClass36_1 = IndexedSprite.method1010(Static136.logoId, arg0);
+        Static243.aClass36_1 = SpriteLoader.loadIndexedSpriteAutoDetect(Static136.logoId, arg0);
         Static243.aClass36_1.renderTransparent(GameShell.canvasWidth / 2 - Static243.aClass36_1.width / 2, 18);
         Static18.aBoolean40 = true;
     }

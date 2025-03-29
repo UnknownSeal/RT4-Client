@@ -1,8 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.game.shared.framework.gwc.World;
-import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -20,11 +18,6 @@ public final class Static164 {
 			@Pc(42) int local42 = Static270.method4595(arg1, arg2, arg0, arg4);
 			return arg4 ? -local42 : local42;
 		}
-	}
-
-	@OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Lclient!ve;IZ)Lclient!mm;")
-	public static SoftwareSprite method3117(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1) {
-		return Static254.method4346(arg0, arg1) ? Static196.method3537() : null;
 	}
 
 }

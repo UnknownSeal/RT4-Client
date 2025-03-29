@@ -6110,7 +6110,7 @@ public final class ClientScriptRunner {
 						@Pc(518) Npc local518 = (Npc) local17;
 						@Pc(528) Sprite[] local528 = (Sprite[]) HitBarList.hitBars.get((long) local518.type.hitBarId);
 						if (local528 == null) {
-							local528 = Static209.method3708(local518.type.hitBarId, client.js5Archive8);
+							local528 = SpriteLoader.loadAlphaSprites(local518.type.hitBarId, client.js5Archive8);
 							if (local528 != null) {
 								HitBarList.hitBars.put(local528, (long) local518.type.hitBarId);
 							}
