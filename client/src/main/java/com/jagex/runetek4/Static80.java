@@ -6,28 +6,25 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static80 {
 
-	@OriginalMember(owner = "client!gf", name = "T", descriptor = "I")
-	public static int anInt4702;
-
 	@OriginalMember(owner = "client!gf", name = "a", descriptor = "(BII)V")
 	public static void method3616(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		Static142.anInt3482 = arg0 - WorldMap.originX;
-		@Pc(24) int local24 = Static142.anInt3482 - (int) ((float) WorldMap.component.width / Static83.aFloat3);
-		@Pc(33) int local33 = Static142.anInt3482 + (int) ((float) WorldMap.component.width / Static83.aFloat3);
+		WorldMap.anInt3482 = arg0 - WorldMap.originX;
+		@Pc(24) int local24 = WorldMap.anInt3482 - (int) ((float) WorldMap.component.width / WorldMap.zoom);
+		@Pc(33) int local33 = WorldMap.anInt3482 + (int) ((float) WorldMap.component.width / WorldMap.zoom);
 		if (local24 < 0) {
-			Static142.anInt3482 = (int) ((float) WorldMap.component.width / Static83.aFloat3);
+			WorldMap.anInt3482 = (int) ((float) WorldMap.component.width / WorldMap.zoom);
 		}
-		Static217.anInt4901 = WorldMap.length + WorldMap.originZ - arg1 - 1;
-		@Pc(61) int local61 = (int) ((float) WorldMap.component.height / Static83.aFloat3) + Static217.anInt4901;
-		@Pc(70) int local70 = Static217.anInt4901 - (int) ((float) WorldMap.component.height / Static83.aFloat3);
-		if (local33 > Static48.anInt1449) {
-			Static142.anInt3482 = Static48.anInt1449 - (int) ((float) WorldMap.component.width / Static83.aFloat3);
+		WorldMap.anInt4901 = WorldMap.length + WorldMap.originZ - arg1 - 1;
+		@Pc(61) int local61 = (int) ((float) WorldMap.component.height / WorldMap.zoom) + WorldMap.anInt4901;
+		@Pc(70) int local70 = WorldMap.anInt4901 - (int) ((float) WorldMap.component.height / WorldMap.zoom);
+		if (local33 > WorldMap.width) {
+			WorldMap.anInt3482 = WorldMap.width - (int) ((float) WorldMap.component.width / WorldMap.zoom);
 		}
 		if (local70 < 0) {
-			Static217.anInt4901 = (int) ((float) WorldMap.component.height / Static83.aFloat3);
+			WorldMap.anInt4901 = (int) ((float) WorldMap.component.height / WorldMap.zoom);
 		}
 		if (WorldMap.length < local61) {
-			Static217.anInt4901 = WorldMap.length - (int) ((float) WorldMap.component.height / Static83.aFloat3);
+			WorldMap.anInt4901 = WorldMap.length - (int) ((float) WorldMap.component.height / WorldMap.zoom);
 		}
 	}
 

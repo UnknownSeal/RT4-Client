@@ -1,6 +1,8 @@
 package com.jagex.runetek4;
 
 import java.nio.ByteBuffer;
+
+import com.jagex.runetek4.util.ColorUtils;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -10,6 +12,10 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("runetek4.client!pd")
 public final class WaterMaterialRenderer implements MaterialRenderer {
 
+	@OriginalMember(owner = "runetek4.client!v", name = "c", descriptor = "[F")
+	public static final float[] aFloatArray2 = new float[] { 0.073F, 0.169F, 0.24F, 1.0F };
+	@OriginalMember(owner = "runetek4.client!pd", name = "b", descriptor = "[F")
+	public static final float[] aFloatArray22 = new float[] { 0.1F, 0.1F, 0.15F, 0.1F };
 	@OriginalMember(owner = "client!pd", name = "a", descriptor = "I")
 	private int anInt4440 = -1;
 
@@ -26,6 +32,30 @@ public final class WaterMaterialRenderer implements MaterialRenderer {
 	public WaterMaterialRenderer() {
 		this.method3435();
 		this.method3437();
+	}
+
+	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(B)[F")
+	public static float[] method2422() {
+		@Pc(3) float local3 = FogManager.getLightingModelAmbient() + FogManager.getLight0Diffuse();
+		@Pc(9) int local9 = FogManager.getLightColor();
+		@Pc(18) float local18 = (float) (local9 >> 16 & 0xFF) / 255.0F;
+		ColorUtils.aFloatArray28[3] = 1.0F;
+		@Pc(37) float local37 = (float) (local9 >> 8 & 0xFF) / 255.0F;
+		@Pc(39) float local39 = 0.58823526F;
+		@Pc(46) float local46 = (float) (local9 & 0xFF) / 255.0F;
+		ColorUtils.aFloatArray28[2] = aFloatArray2[2] * local46 * local39 * local3;
+		ColorUtils.aFloatArray28[0] = aFloatArray2[0] * local18 * local39 * local3;
+		ColorUtils.aFloatArray28[1] = local3 * local39 * local37 * aFloatArray2[1];
+		return ColorUtils.aFloatArray28;
+	}
+
+	@OriginalMember(owner = "client!bk", name = "a", descriptor = "(BI)V")
+	public static void method619(@OriginalArg(1) int arg0) {
+		aFloatArray2[0] = (float) (arg0 >> 16 & 0xFF) / 255.0F;
+		aFloatArray2[1] = (float) (arg0 >> 8 & 0xFF) / 255.0F;
+		aFloatArray2[2] = (float) (arg0 & 0xFF) / 255.0F;
+		MaterialManager.resetArgument(3);
+		MaterialManager.resetArgument(4);
 	}
 
 	@OriginalMember(owner = "client!pd", name = "d", descriptor = "()V")
@@ -116,7 +146,7 @@ public final class WaterMaterialRenderer implements MaterialRenderer {
 	public void setArgument(@OriginalArg(0) int arg0) {
 		@Pc(1) GL2 gl = GlRenderer.gl;
 		gl.glActiveTexture(GL2.GL_TEXTURE1);
-		gl.glTexEnvfv(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_COLOR, Static257.aFloatArray2, 0);
+		gl.glTexEnvfv(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_COLOR, aFloatArray2, 0);
 		gl.glActiveTexture(GL2.GL_TEXTURE0);
 		if ((arg0 & 0x1) == 1) {
 			if (!MaterialManager.allows3DTextureMapping) {
@@ -160,7 +190,7 @@ public final class WaterMaterialRenderer implements MaterialRenderer {
 		gl.glTexGenfv(GL2.GL_S, GL2.GL_EYE_PLANE, this.aFloatArray23, 0);
 		gl.glPopMatrix();
 		gl.glActiveTexture(GL2.GL_TEXTURE0);
-		gl.glTexEnvfv(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_COLOR, Static188.aFloatArray22, 0);
+		gl.glTexEnvfv(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_COLOR, aFloatArray22, 0);
 	}
 
 	@OriginalMember(owner = "client!pd", name = "c", descriptor = "()I")

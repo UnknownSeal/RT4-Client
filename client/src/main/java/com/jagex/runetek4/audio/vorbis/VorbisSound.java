@@ -1,6 +1,7 @@
 package com.jagex.runetek4.audio.vorbis;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.js5.Js5;
 import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.util.IntUtils;
@@ -13,110 +14,142 @@ import org.openrs2.deob.annotation.Pc;
 public final class VorbisSound extends Node {
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "u", descriptor = "[Lclient!vb;")
-	public static VorbisResidue[] residue_param;
+	public static VorbisResidue[] residues;
 	@OriginalMember(owner = "runetek4.client!jc", name = "A", descriptor = "[Lclient!uk;")
-	public static VorbisMapping[] map_param;
+	public static VorbisMapping[] mappings;
+	@OriginalMember(owner = "runetek4.client!jc", name = "p", descriptor = "[F")
+	public static float[] trigB1;
+	@OriginalMember(owner = "runetek4.client!jc", name = "q", descriptor = "[F")
+	public static float[] trigC1;
+	@OriginalMember(owner = "runetek4.client!jc", name = "t", descriptor = "[I")
+	public static int[] bitReverse0;
+	@OriginalMember(owner = "runetek4.client!jc", name = "v", descriptor = "[Z")
+	public static boolean[] modeBlockFlags;
+	@OriginalMember(owner = "runetek4.client!jc", name = "y", descriptor = "I")
+	public static int blockSize1;
+	@OriginalMember(owner = "runetek4.client!jc", name = "B", descriptor = "[F")
+	public static float[] trigA1;
+	@OriginalMember(owner = "runetek4.client!jc", name = "C", descriptor = "[F")
+	public static float[] trigA0;
+	@OriginalMember(owner = "runetek4.client!jc", name = "E", descriptor = "I")
+	public static int blockSize0;
+	@OriginalMember(owner = "runetek4.client!jc", name = "F", descriptor = "[F")
+	public static float[] vector;
+	@OriginalMember(owner = "runetek4.client!jc", name = "I", descriptor = "[Lclient!ji;")
+	public static VorbisCodebook[] codebooks;
+	@OriginalMember(owner = "runetek4.client!jc", name = "J", descriptor = "[Lclient!ie;")
+	public static VorbisFloor[] floors;
+	@OriginalMember(owner = "runetek4.client!jc", name = "L", descriptor = "[I")
+	public static int[] bitReverse1;
+	@OriginalMember(owner = "runetek4.client!jc", name = "P", descriptor = "[F")
+	public static float[] trigB0;
+	@OriginalMember(owner = "runetek4.client!jc", name = "S", descriptor = "[F")
+	public static float[] trigC0;
+	@OriginalMember(owner = "runetek4.client!jc", name = "W", descriptor = "[I")
+	public static int[] modeMappings;
 	@OriginalMember(owner = "runetek4.client!jc", name = "Q", descriptor = "I")
-	static int anInt2982;
+	static int bitPosition;
 	@OriginalMember(owner = "runetek4.client!jc", name = "T", descriptor = "[B")
-	static byte[] aByteArray42;
+	static byte[] bytes;
 	@OriginalMember(owner = "runetek4.client!jc", name = "G", descriptor = "I")
-	static int anInt2979;
+	static int position;
+	@OriginalMember(owner = "runetek4.client!jc", name = "H", descriptor = "Z")
+	public static boolean aBoolean149 = false;
 	@OriginalMember(owner = "runetek4.client!jc", name = "r", descriptor = "I")
-	private int anInt2973;
+	private int prevN;
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "s", descriptor = "I")
-	private int anInt2974;
+	private int samplesLen;
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "w", descriptor = "[F")
-	private float[] aFloatArray11;
+	private float[] prevVector;
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "x", descriptor = "Z")
 	private boolean aBoolean148;
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "z", descriptor = "I")
-	private int anInt2976;
+	private int start;
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "D", descriptor = "I")
-	private int anInt2977;
+	private int end;
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "K", descriptor = "I")
-	private int anInt2980;
+	private int rate;
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "M", descriptor = "[[B")
-	private byte[][] aByteArrayArray10;
+	private byte[][] packets;
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "N", descriptor = "Z")
-	private boolean aBoolean150;
+	private boolean prevNoResidue;
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "O", descriptor = "I")
-	private int anInt2981;
+	private int prevQuarter;
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "R", descriptor = "[B")
-	private byte[] aByteArray41;
+	private byte[] samples;
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "U", descriptor = "I")
-	private int anInt2983;
+	private int packetIndex;
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "V", descriptor = "I")
-	private int anInt2984;
+	private int sampleIndex;
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "<init>", descriptor = "([B)V")
-	public VorbisSound(@OriginalArg(0) byte[] arg0) {
-		this.method2342(arg0);
+	public VorbisSound(@OriginalArg(0) byte[] bytes) {
+		this.decode(bytes);
 	}
 
 	@OriginalMember(owner = "client!jc", name = "e", descriptor = "(I)I")
-	public static int read(@OriginalArg(0) int bits) {
+	public static int readBits(@OriginalArg(0) int bits) {
 		@Pc(1) int local1 = 0;
 		@Pc(3) int local3 = 0;
 		@Pc(12) int local12;
-		while (bits >= 8 - anInt2982) {
-			local12 = 8 - anInt2982;
+		while (bits >= 8 - bitPosition) {
+			local12 = 8 - bitPosition;
 			@Pc(18) int local18 = (0x1 << local12) - 1;
-			local1 += (aByteArray42[anInt2979] >> anInt2982 & local18) << local3;
-			anInt2982 = 0;
-			anInt2979++;
+			local1 += (bytes[position] >> bitPosition & local18) << local3;
+			bitPosition = 0;
+			position++;
 			local3 += local12;
 			bits -= local12;
 		}
 		if (bits > 0) {
 			local12 = (0x1 << bits) - 1;
-			local1 += (aByteArray42[anInt2979] >> anInt2982 & local12) << local3;
-			anInt2982 += bits;
+			local1 += (bytes[position] >> bitPosition & local12) << local3;
+			bitPosition += bits;
 		}
 		return local1;
 	}
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "b", descriptor = "()I")
 	public static int readBit() {
-		@Pc(7) int local7 = aByteArray42[anInt2979] >> anInt2982 & 0x1;
-		anInt2982++;
-		anInt2979 += anInt2982 >> 3;
-		anInt2982 &= 0x7;
+		@Pc(7) int local7 = bytes[position] >> bitPosition & 0x1;
+		bitPosition++;
+		position += bitPosition >> 3;
+		bitPosition &= 0x7;
 		return local7;
 	}
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "a", descriptor = "([BI)V")
-	public static void method2347(@OriginalArg(0) byte[] arg0) {
-		aByteArray42 = arg0;
-		anInt2979 = 0;
-		anInt2982 = 0;
+	public static void setBytes(@OriginalArg(0) byte[] arg0) {
+		bytes = arg0;
+		position = 0;
+		bitPosition = 0;
 	}
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "b", descriptor = "([B)V")
 	public static void method2349(@OriginalArg(0) byte[] arg0) {
-		method2347(arg0);
-		Static117.anInt2978 = 0x1 << read(4);
-		Static117.anInt2975 = 0x1 << read(4);
-		Static117.aFloatArray14 = new float[Static117.anInt2975];
+		setBytes(arg0);
+		blockSize0 = 0x1 << readBits(4);
+		blockSize1 = 0x1 << readBits(4);
+		vector = new float[blockSize1];
 		@Pc(17) int local17;
 		@Pc(26) int local26;
 		@Pc(30) int local30;
 		@Pc(34) int local34;
 		@Pc(38) int local38;
 		for (local17 = 0; local17 < 2; local17++) {
-			local26 = local17 == 0 ? Static117.anInt2978 : Static117.anInt2975;
+			local26 = local17 == 0 ? blockSize0 : blockSize1;
 			local30 = local26 >> 1;
 			local34 = local26 >> 2;
 			local38 = local26 >> 3;
@@ -141,49 +174,49 @@ public final class VorbisSound extends Node {
 				local187[local195] = IntUtils.bitReverse(local193, local195);
 			}
 			if (local17 == 0) {
-				Static117.aFloatArray13 = local41;
-				Static117.aFloatArray15 = local86;
-				Static117.aFloatArray16 = local138;
-				Static117.anIntArray276 = local187;
+				trigA0 = local41;
+				trigB0 = local86;
+				trigC0 = local138;
+				bitReverse0 = local187;
 			} else {
-				Static117.aFloatArray12 = local41;
-				Static117.aFloatArray9 = local86;
-				Static117.aFloatArray10 = local138;
-				Static117.anIntArray277 = local187;
+				trigA1 = local41;
+				trigB1 = local86;
+				trigC1 = local138;
+				bitReverse1 = local187;
 			}
 		}
-		local17 = read(8) + 1;
-		Static117.aClass78Array1 = new VorbisCodebook[local17];
+		local17 = readBits(8) + 1;
+		codebooks = new VorbisCodebook[local17];
 		for (local26 = 0; local26 < local17; local26++) {
-			Static117.aClass78Array1[local26] = new VorbisCodebook();
+			codebooks[local26] = new VorbisCodebook();
 		}
-		local26 = read(6) + 1;
+		local26 = readBits(6) + 1;
 		for (local30 = 0; local30 < local26; local30++) {
-			read(16);
+			readBits(16);
 		}
-		local26 = read(6) + 1;
-		Static117.aVorbisFloorArray1 = new VorbisFloor[local26];
+		local26 = readBits(6) + 1;
+		floors = new VorbisFloor[local26];
 		for (local30 = 0; local30 < local26; local30++) {
-			Static117.aVorbisFloorArray1[local30] = new VorbisFloor();
+			floors[local30] = new VorbisFloor();
 		}
-		local30 = read(6) + 1;
-		residue_param = new VorbisResidue[local30];
+		local30 = readBits(6) + 1;
+		residues = new VorbisResidue[local30];
 		for (local34 = 0; local34 < local30; local34++) {
-			residue_param[local34] = new VorbisResidue();
+			residues[local34] = new VorbisResidue();
 		}
-		local34 = read(6) + 1;
-		map_param = new VorbisMapping[local34];
+		local34 = readBits(6) + 1;
+		mappings = new VorbisMapping[local34];
 		for (local38 = 0; local38 < local34; local38++) {
-			map_param[local38] = new VorbisMapping();
+			mappings[local38] = new VorbisMapping();
 		}
-		local38 = read(6) + 1;
-		Static117.aBooleanArray63 = new boolean[local38];
-		Static117.anIntArray278 = new int[local38];
+		local38 = readBits(6) + 1;
+		modeBlockFlags = new boolean[local38];
+		modeMappings = new int[local38];
 		for (@Pc(340) int local340 = 0; local340 < local38; local340++) {
-			Static117.aBooleanArray63[local340] = readBit() != 0;
-			read(16);
-			read(16);
-			Static117.anIntArray278[local340] = read(8);
+			modeBlockFlags[local340] = readBit() != 0;
+			readBits(16);
+			readBits(16);
+			modeMappings[local340] = readBits(8);
 		}
 	}
 
@@ -198,62 +231,86 @@ public final class VorbisSound extends Node {
 		return (float) ((double) mantiss * Math.pow(2.0D, exponent - 788));
 	}
 
+	@OriginalMember(owner = "runetek4.client!jc", name = "a", descriptor = "(Lclient!ve;)Z")
+	public static boolean method2344(@OriginalArg(0) Js5 arg0) {
+		if (!aBoolean149) {
+			@Pc(7) byte[] local7 = arg0.getfile(0, 0);
+			if (local7 == null) {
+				return false;
+			}
+			method2349(local7);
+			aBoolean149 = true;
+		}
+		return true;
+	}
+
+	@OriginalMember(owner = "runetek4.client!jc", name = "a", descriptor = "(Lclient!ve;II)Lclient!jc;")
+	public static VorbisSound create(@OriginalArg(0) Js5 arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
+		if (method2344(arg0)) {
+			@Pc(16) byte[] local16 = arg0.getfile(arg1, arg2);
+			return local16 == null ? null : new VorbisSound(local16);
+		} else {
+			arg0.isFileReady(arg1, arg2);
+			return null;
+		}
+	}
+
 	@OriginalMember(owner = "runetek4.client!jc", name = "a", descriptor = "([I)Lclient!kj;")
-	public PcmSound method2341(@OriginalArg(0) int[] arg0) {
+	public PcmSound toPcmSound(@OriginalArg(0) int[] arg0) {
 		if (arg0 != null && arg0[0] <= 0) {
 			return null;
 		}
-		if (this.aByteArray41 == null) {
-			this.anInt2973 = 0;
-			this.aFloatArray11 = new float[Static117.anInt2975];
-			this.aByteArray41 = new byte[this.anInt2974];
-			this.anInt2984 = 0;
-			this.anInt2983 = 0;
+		if (this.samples == null) {
+			this.prevN = 0;
+			this.prevVector = new float[blockSize1];
+			this.samples = new byte[this.samplesLen];
+			this.sampleIndex = 0;
+			this.packetIndex = 0;
 		}
-		while (this.anInt2983 < this.aByteArrayArray10.length) {
+		while (this.packetIndex < this.packets.length) {
 			if (arg0 != null && arg0[0] <= 0) {
 				return null;
 			}
-			@Pc(47) float[] local47 = this.method2348(this.anInt2983);
+			@Pc(47) float[] local47 = this.decodePacket(this.packetIndex);
 			if (local47 != null) {
-				@Pc(52) int local52 = this.anInt2984;
+				@Pc(52) int local52 = this.sampleIndex;
 				@Pc(55) int local55 = local47.length;
-				if (local55 > this.anInt2974 - local52) {
-					local55 = this.anInt2974 - local52;
+				if (local55 > this.samplesLen - local52) {
+					local55 = this.samplesLen - local52;
 				}
 				for (@Pc(68) int local68 = 0; local68 < local55; local68++) {
 					@Pc(80) int local80 = (int) (local47[local68] * 128.0F + 128.0F);
 					if ((local80 & 0xFFFFFF00) != 0) {
 						local80 = ~local80 >> 31;
 					}
-					this.aByteArray41[local52++] = (byte) (local80 - 128);
+					this.samples[local52++] = (byte) (local80 - 128);
 				}
 				if (arg0 != null) {
-					arg0[0] -= local52 - this.anInt2984;
+					arg0[0] -= local52 - this.sampleIndex;
 				}
-				this.anInt2984 = local52;
+				this.sampleIndex = local52;
 			}
-			this.anInt2983++;
+			this.packetIndex++;
 		}
-		this.aFloatArray11 = null;
-		@Pc(129) byte[] local129 = this.aByteArray41;
-		this.aByteArray41 = null;
-		return new PcmSound(this.anInt2980, local129, this.anInt2976, this.anInt2977, this.aBoolean148);
+		this.prevVector = null;
+		@Pc(129) byte[] local129 = this.samples;
+		this.samples = null;
+		return new PcmSound(this.rate, local129, this.start, this.end, this.aBoolean148);
 	}
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "a", descriptor = "([B)V")
-	private void method2342(@OriginalArg(0) byte[] arg0) {
+	private void decode(@OriginalArg(0) byte[] arg0) {
 		@Pc(4) Packet local4 = new Packet(arg0);
-		this.anInt2980 = local4.g4();
-		this.anInt2974 = local4.g4();
-		this.anInt2976 = local4.g4();
-		this.anInt2977 = local4.g4();
-		if (this.anInt2977 < 0) {
-			this.anInt2977 = ~this.anInt2977;
+		this.rate = local4.g4();
+		this.samplesLen = local4.g4();
+		this.start = local4.g4();
+		this.end = local4.g4();
+		if (this.end < 0) {
+			this.end = ~this.end;
 			this.aBoolean148 = true;
 		}
 		@Pc(40) int local40 = local4.g4();
-		this.aByteArrayArray10 = new byte[local40][];
+		this.packets = new byte[local40][];
 		for (@Pc(46) int local46 = 0; local46 < local40; local46++) {
 			@Pc(51) int local51 = 0;
 			@Pc(55) int local55;
@@ -263,17 +320,17 @@ public final class VorbisSound extends Node {
 			} while (local55 >= 255);
 			@Pc(67) byte[] local67 = new byte[local51];
 			local4.gdata(local51, local67);
-			this.aByteArrayArray10[local46] = local67;
+			this.packets[local46] = local67;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!jc", name = "d", descriptor = "(I)[F")
-	private float[] method2348(@OriginalArg(0) int arg0) {
-		method2347(this.aByteArrayArray10[arg0]);
+	private float[] decodePacket(@OriginalArg(0) int arg0) {
+		setBytes(this.packets[arg0]);
 		readBit();
-		@Pc(15) int local15 = read(IntUtils.bitCount(Static117.anIntArray278.length - 1));
-		@Pc(19) boolean local19 = Static117.aBooleanArray63[local15];
-		@Pc(25) int local25 = local19 ? Static117.anInt2975 : Static117.anInt2978;
+		@Pc(15) int local15 = readBits(IntUtils.bitCount(modeMappings.length - 1));
+		@Pc(19) boolean local19 = modeBlockFlags[local15];
+		@Pc(25) int local25 = local19 ? blockSize1 : blockSize0;
 		@Pc(27) boolean local27 = false;
 		@Pc(29) boolean local29 = false;
 		if (local19) {
@@ -285,9 +342,9 @@ public final class VorbisSound extends Node {
 		@Pc(67) int local67;
 		@Pc(71) int local71;
 		if (local19 && !local27) {
-			local59 = (local25 >> 2) - (Static117.anInt2978 >> 2);
-			local67 = (local25 >> 2) + (Static117.anInt2978 >> 2);
-			local71 = Static117.anInt2978 >> 1;
+			local59 = (local25 >> 2) - (blockSize0 >> 2);
+			local67 = (local25 >> 2) + (blockSize0 >> 2);
+			local71 = blockSize0 >> 1;
 		} else {
 			local59 = 0;
 			local67 = local47;
@@ -297,39 +354,39 @@ public final class VorbisSound extends Node {
 		@Pc(104) int local104;
 		@Pc(108) int local108;
 		if (local19 && !local29) {
-			local94 = local25 - (local25 >> 2) - (Static117.anInt2978 >> 2);
-			local104 = local25 + (Static117.anInt2978 >> 2) - (local25 >> 2);
-			local108 = Static117.anInt2978 >> 1;
+			local94 = local25 - (local25 >> 2) - (blockSize0 >> 2);
+			local104 = local25 + (blockSize0 >> 2) - (local25 >> 2);
+			local108 = blockSize0 >> 1;
 		} else {
 			local94 = local47;
 			local104 = local25;
 			local108 = local25 >> 1;
 		}
-		@Pc(123) VorbisMapping local123 = map_param[Static117.anIntArray278[local15]];
-		@Pc(126) int local126 = local123.anInt5562;
-		@Pc(131) int local131 = local123.anIntArray490[local126];
-		@Pc(140) boolean local140 = !Static117.aVorbisFloorArray1[local131].method2272();
-		for (@Pc(144) int local144 = 0; local144 < local123.anInt5563; local144++) {
-			@Pc(155) VorbisResidue local155 = residue_param[local123.anIntArray491[local144]];
-			@Pc(157) float[] local157 = Static117.aFloatArray14;
-			local155.method4450(local157, local25 >> 1, local140);
+		@Pc(123) VorbisMapping local123 = mappings[modeMappings[local15]];
+		@Pc(126) int local126 = local123.mux;
+		@Pc(131) int local131 = local123.submapFloor[local126];
+		@Pc(140) boolean local140 = !floors[local131].decodePacket();
+		for (@Pc(144) int local144 = 0; local144 < local123.submaps; local144++) {
+			@Pc(155) VorbisResidue local155 = residues[local123.submapResidue[local144]];
+			@Pc(157) float[] local157 = vector;
+			local155.synthesize(local157, local25 >> 1, local140);
 		}
 		@Pc(176) int local176;
 		if (!local140) {
-			local131 = local123.anInt5562;
-			local176 = local123.anIntArray490[local131];
-			Static117.aVorbisFloorArray1[local176].method2269(Static117.aFloatArray14, local25 >> 1);
+			local131 = local123.mux;
+			local176 = local123.submapFloor[local131];
+			floors[local176].synthesize(vector, local25 >> 1);
 		}
 		@Pc(212) int local212;
 		if (local140) {
 			for (local131 = local25 >> 1; local131 < local25; local131++) {
-				Static117.aFloatArray14[local131] = 0.0F;
+				vector[local131] = 0.0F;
 			}
 		} else {
 			local131 = local25 >> 1;
 			local176 = local25 >> 2;
 			local212 = local25 >> 3;
-			@Pc(214) float[] local214 = Static117.aFloatArray14;
+			@Pc(214) float[] local214 = vector;
 			@Pc(216) int local216;
 			for (local216 = 0; local216 < local131; local216++) {
 				local214[local216] *= 0.5F;
@@ -337,10 +394,10 @@ public final class VorbisSound extends Node {
 			for (local216 = local131; local216 < local25; local216++) {
 				local214[local216] = -local214[local25 - local216 - 1];
 			}
-			@Pc(252) float[] local252 = local19 ? Static117.aFloatArray12 : Static117.aFloatArray13;
-			@Pc(258) float[] local258 = local19 ? Static117.aFloatArray9 : Static117.aFloatArray15;
-			@Pc(264) float[] local264 = local19 ? Static117.aFloatArray10 : Static117.aFloatArray16;
-			@Pc(270) int[] local270 = local19 ? Static117.anIntArray277 : Static117.anIntArray276;
+			@Pc(252) float[] local252 = local19 ? trigA1 : trigA0;
+			@Pc(258) float[] local258 = local19 ? trigB1 : trigB0;
+			@Pc(264) float[] local264 = local19 ? trigC1 : trigC0;
+			@Pc(270) int[] local270 = local19 ? bitReverse1 : bitReverse0;
 			@Pc(272) int local272;
 			@Pc(291) float local291;
 			@Pc(309) float local309;
@@ -454,37 +511,37 @@ public final class VorbisSound extends Node {
 			}
 			for (local488 = local59; local488 < local67; local488++) {
 				local309 = (float) Math.sin(((double) (local488 - local59) + 0.5D) / (double) local71 * 0.5D * 3.141592653589793D);
-				Static117.aFloatArray14[local488] *= (float) Math.sin((double) local309 * 1.5707963267948966D * (double) local309);
+				vector[local488] *= (float) Math.sin((double) local309 * 1.5707963267948966D * (double) local309);
 			}
 			for (local488 = local94; local488 < local104; local488++) {
 				local309 = (float) Math.sin(((double) (local488 - local94) + 0.5D) / (double) local108 * 0.5D * 3.141592653589793D + 1.5707963267948966D);
-				Static117.aFloatArray14[local488] *= (float) Math.sin((double) local309 * 1.5707963267948966D * (double) local309);
+				vector[local488] *= (float) Math.sin((double) local309 * 1.5707963267948966D * (double) local309);
 			}
 		}
 		@Pc(1228) float[] local1228 = null;
-		if (this.anInt2973 > 0) {
-			local176 = this.anInt2973 + local25 >> 2;
+		if (this.prevN > 0) {
+			local176 = this.prevN + local25 >> 2;
 			local1228 = new float[local176];
 			@Pc(1257) int local1257;
-			if (!this.aBoolean150) {
-				for (local212 = 0; local212 < this.anInt2981; local212++) {
-					local1257 = (this.anInt2973 >> 1) + local212;
-					local1228[local212] += this.aFloatArray11[local1257];
+			if (!this.prevNoResidue) {
+				for (local212 = 0; local212 < this.prevQuarter; local212++) {
+					local1257 = (this.prevN >> 1) + local212;
+					local1228[local212] += this.prevVector[local1257];
 				}
 			}
 			if (!local140) {
 				for (local212 = local59; local212 < local25 >> 1; local212++) {
 					local1257 = local1228.length + local212 - (local25 >> 1);
-					local1228[local1257] += Static117.aFloatArray14[local212];
+					local1228[local1257] += vector[local212];
 				}
 			}
 		}
-		@Pc(1301) float[] local1301 = this.aFloatArray11;
-		this.aFloatArray11 = Static117.aFloatArray14;
-		Static117.aFloatArray14 = local1301;
-		this.anInt2973 = local25;
-		this.anInt2981 = local104 - (local25 >> 1);
-		this.aBoolean150 = local140;
+		@Pc(1301) float[] local1301 = this.prevVector;
+		this.prevVector = vector;
+		vector = local1301;
+		this.prevN = local25;
+		this.prevQuarter = local104 - (local25 >> 1);
+		this.prevNoResidue = local140;
 		return local1228;
 	}
 }

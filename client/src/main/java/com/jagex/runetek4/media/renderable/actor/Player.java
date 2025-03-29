@@ -182,10 +182,10 @@ public final class Player extends PathingEntity {
 								}
 							}
 						}
-						for (@Pc(270) int local270 = 0; local270 < local54.entityCount; local270++) {
-							if (local54.sceneries[local270].entity instanceof GlModel) {
-								@Pc(293) GlModel local293 = (GlModel) local54.sceneries[local270].entity;
-								if ((Long.MIN_VALUE & local54.sceneries[local270].key) == 0L) {
+						for (@Pc(270) int local270 = 0; local270 < local54.sceneryLen; local270++) {
+							if (local54.scenery[local270].entity instanceof GlModel) {
+								@Pc(293) GlModel local293 = (GlModel) local54.scenery[local270].entity;
+								if ((Long.MIN_VALUE & local54.scenery[local270].key) == 0L) {
 									local293.method4111(false, true, true, false, true, true);
 								} else {
 									local293.method4111(true, true, true, true, true, true);

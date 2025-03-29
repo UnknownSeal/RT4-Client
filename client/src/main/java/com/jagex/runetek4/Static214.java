@@ -8,7 +8,7 @@ public final class Static214 {
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "d", descriptor = "(B)Lclient!bn;")
 	public static Map method4361() {
-		return Static269.aClass3_Sub2_Sub4_2;
+		return WorldMap.currentMap;
 	}
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(IIIIIIIII)V")

@@ -6,7 +6,6 @@ import java.net.Socket;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
-import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.BufferedFile;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.io.Packet;
@@ -20,7 +19,7 @@ import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.game.config.flotype.FloorOverlayTypeList;
+import com.jagex.runetek4.game.config.flotype.FloTypeList;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
@@ -299,7 +298,7 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "client!je", name = "h", descriptor = "(I)V")
 	public static void unloadSoft() {
-		FloorOverlayTypeList.removeSoft();
+		FloTypeList.removeSoft();
 		FloorUnderlayTypeList.removeSoft();
 		IdkTypeList.removeSoft();
 		LocTypeList.removeSoft();
@@ -307,8 +306,8 @@ public final class client extends GameShell {
 		ObjTypeList.removeSoft();
 		SeqTypeList.removeSoft();
 		SpotAnimTypeList.removeSoft();
-		Static78.removeSoft();
-		Static3.removeSoft();
+		VarBitTypeList.removeSoft();
+		VarpTypeList.removeSoft();
 		BasTypeList.removeSoft();
 		MsiTypeList.removeSoft();
 		LightTypeList.removeSoft();
@@ -336,7 +335,7 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "runetek4.client!rj", name = "f", descriptor = "(B)V")
 	public static void unload() {
-		FloorOverlayTypeList.clear();
+		FloTypeList.clear();
 		Static54.clear();
 		ClientScriptRunner.clear();
 		LocTypeList.clear();
@@ -344,8 +343,8 @@ public final class client extends GameShell {
 		ObjTypeList.clear();
 		SeqTypeList.clear();
 		SpotAnimTypeList.clear();
-		Static53.clear();
-		Static249.clear();
+		VarBitTypeList.clear();
+		VarpTypeList.clear();
 		BasTypeList.clear();
 		MsiTypeList.clear();
 		LightTypeList.clear();
@@ -630,7 +629,7 @@ public final class client extends GameShell {
 
 	@OriginalMember(owner = "runetek4.client!re", name = "a", descriptor = "(I)V")
 	public static void clean() {
-		FloorOverlayTypeList.clean();
+		FloTypeList.clean();
 		FloorUnderlayTypeList.clean();
 		Static238.method4142();
 		LocTypeList.clean();
@@ -638,8 +637,8 @@ public final class client extends GameShell {
 		ObjTypeList.clean();
 		SeqTypeList.clean();
 		SpotAnimTypeList.clean();
-		Static269.method2221();
-		VarPlayerDefinition.clearVarPlayerDefinitionCache();
+		VarBitTypeList.clean();
+		VarpTypeList.clean();
 		BasTypeList.clean();
 		MsiTypeList.clean();
 		LightTypeList.clean();
@@ -1432,7 +1431,7 @@ public final class client extends GameShell {
 			percentage += js5Archive27.getPercentageComplete();
 			if (percentage >= 1100) {
 				ParamTypeList.init(js5Archive2);
-				FloorOverlayTypeList.init(js5Archive2);
+				FloTypeList.init(js5Archive2);
 				FloorUnderlayTypeList.init(js5Archive2);
 				IdkTypeList.init(js5Archive7, js5Archive2);
 				LocTypeList.init(js5Archive16, js5Archive7);
@@ -1442,8 +1441,8 @@ public final class client extends GameShell {
 				SeqTypeList.init(js5Archive1, js5Archive20, js5Archive0);
 				Static79.init(js5Archive2);
 				SpotAnimTypeList.init(js5Archive7, js5Archive21);
-				Static180.init(js5Archive22);
-				VarPlayerDefinition.initializeVarPlayerDefinitionCache(js5Archive2);
+				VarBitTypeList.init(js5Archive22);
+				VarpTypeList.init(js5Archive2);
 				InterfaceList.init(js5Archive13, js5Archive8, js5Archive3, js5Archive7);
 				InvTypeList.init(js5Archive2);
 				EnumTypeList.init(js5Archive17);

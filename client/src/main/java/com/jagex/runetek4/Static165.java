@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static165 {
 
-	@OriginalMember(owner = "runetek4.client!nb", name = "m", descriptor = "Lclient!na;")
-	public static final JString LOGO = JString.parse("logo");
-
 	@OriginalMember(owner = "runetek4.client!nb", name = "a", descriptor = "(IIIIIIIIII)V")
 	public static void method3162(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7, @OriginalArg(9) int arg8) {
 		if (arg0 == arg1 && arg8 == arg2 && arg7 == arg6 && arg4 == arg5) {

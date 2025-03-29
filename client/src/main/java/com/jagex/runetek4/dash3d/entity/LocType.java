@@ -1,8 +1,7 @@
 package com.jagex.runetek4.dash3d.entity;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.def.VarbitDefinition;
-import com.jagex.runetek4.cache.def.VarPlayerDefinition;
+import com.jagex.runetek4.cache.def.VarbitType;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.media.renderable.Entity;
@@ -503,9 +502,9 @@ public final class LocType {
 	public LocType getMultiLoc() {
 		@Pc(26) int i = -1;
 		if (this.multiLocVarbit != -1) {
-			i = VarbitDefinition.getVarbitValue(this.multiLocVarbit);
+			i = VarbitType.getVarbitValue(this.multiLocVarbit);
 		} else if (this.multiLocVarp != -1) {
-			i = VarPlayerDefinition.activeVarps[this.multiLocVarp];
+			i = VarpDomain.activeVarps[this.multiLocVarp];
 		}
 		if (i < 0 || i >= this.multiloc.length - 1 || this.multiloc[i] == -1) {
 			@Pc(84) int local84 = this.multiloc[this.multiloc.length - 1];

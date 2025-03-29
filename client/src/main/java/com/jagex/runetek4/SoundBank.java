@@ -76,13 +76,13 @@ public final class SoundBank {
 		} else if (samplingRates == null || samplingRates[0] > 0) {
 			@Pc(53) VorbisSound vorbisSound = (VorbisSound) this.vorbisCache.get(key);
 			if (vorbisSound == null) {
-				vorbisSound = Static117.method2345(this.vorbisArchive, group, file);
+				vorbisSound = VorbisSound.create(this.vorbisArchive, group, file);
 				if (vorbisSound == null) {
 					return null;
 				}
 				this.vorbisCache.put(vorbisSound, key);
 			}
-			sound = vorbisSound.method2341(samplingRates);
+			sound = vorbisSound.toPcmSound(samplingRates);
 			if (sound == null) {
 				return null;
 			} else {

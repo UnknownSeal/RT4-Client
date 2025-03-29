@@ -10,7 +10,7 @@ public final class Static133 {
 	public static void method4011(@OriginalArg(0) JString arg0) {
 		for (@Pc(15) Map local15 = (Map) MapList.aClass69_120.head(); local15 != null; local15 = (Map) MapList.aClass69_120.next()) {
 			if (local15.group.strEquals(arg0)) {
-				Static269.aClass3_Sub2_Sub4_2 = local15;
+				WorldMap.currentMap = local15;
 				return;
 			}
 		}

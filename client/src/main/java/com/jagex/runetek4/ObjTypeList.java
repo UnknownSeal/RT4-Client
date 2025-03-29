@@ -43,21 +43,6 @@ public final class ObjTypeList {
 	@OriginalMember(owner = "runetek4.client!nd", name = "n", descriptor = "Lclient!ve;")
 	public static Js5 archive;
 
-	@OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(I[B)Z")
-	public static boolean method2572(@OriginalArg(1) byte[] arg0) {
-		@Pc(13) Packet local13 = new Packet(arg0);
-		@Pc(17) int local17 = local13.g1();
-		if (local17 != 1) {
-			return false;
-		}
-		@Pc(33) boolean local33 = local13.g1() == 1;
-		if (local33) {
-			Static97.method1962(local13);
-		}
-		Static69.method1546(local13);
-		return true;
-	}
-
 	@OriginalMember(owner = "client!fk", name = "a", descriptor = "(IB)Lclient!h;")
     public static ObjType get(@OriginalArg(0) int id) {
         @Pc(6) ObjType objType = (ObjType) types.get((long) id);

@@ -1,7 +1,5 @@
 package com.jagex.runetek4.audio.vorbis;
 
-import com.jagex.runetek4.Static108;
-import com.jagex.runetek4.Static117;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -20,21 +18,21 @@ public final class VorbisFloor {
 	@OriginalMember(owner = "runetek4.client!ie", name = "j", descriptor = "[I")
 	public static int[] y;
 	@OriginalMember(owner = "runetek4.client!ie", name = "b", descriptor = "[Z")
-	public static boolean[] stepFlag;
+	public static boolean[] step2Flag;
 	@OriginalMember(owner = "client!ie", name = "e", descriptor = "[I")
-	private final int[] anIntArray262;
+	private final int[] classList;
 
 	@OriginalMember(owner = "client!ie", name = "i", descriptor = "[I")
-	private final int[] anIntArray265;
+	private final int[] classDimensions;
 
 	@OriginalMember(owner = "client!ie", name = "g", descriptor = "[I")
-	private final int[] anIntArray263;
+	private final int[] subclasses;
 
 	@OriginalMember(owner = "client!ie", name = "a", descriptor = "[I")
-	private final int[] anIntArray260;
+	private final int[] classMasterBooks;
 
 	@OriginalMember(owner = "client!ie", name = "c", descriptor = "[[I")
-	private final int[][] anIntArrayArray20;
+	private final int[][] subclassBooks;
 
 	@OriginalMember(owner = "client!ie", name = "f", descriptor = "I")
 	private final int multiplier;
@@ -44,66 +42,96 @@ public final class VorbisFloor {
 
 	@OriginalMember(owner = "client!ie", name = "<init>", descriptor = "()V")
 	public VorbisFloor() {
-		@Pc(4) int type = VorbisSound.read(16);
+		@Pc(4) int type = VorbisSound.readBits(16);
 		if (type != 1) {
 			throw new RuntimeException("Unsupported floor type " + type);
 		}
-		@Pc(14) int local14 = VorbisSound.read(5);
+		@Pc(14) int local14 = VorbisSound.readBits(5);
 		@Pc(16) int local16 = 0;
-		this.anIntArray262 = new int[local14];
+		this.classList = new int[local14];
 		@Pc(22) int local22;
 		@Pc(28) int local28;
 		for (local22 = 0; local22 < local14; local22++) {
-			local28 = VorbisSound.read(4);
-			this.anIntArray262[local22] = local28;
+			local28 = VorbisSound.readBits(4);
+			this.classList[local22] = local28;
 			if (local28 >= local16) {
 				local16 = local28 + 1;
 			}
 		}
-		this.anIntArray265 = new int[local16];
-		this.anIntArray263 = new int[local16];
-		this.anIntArray260 = new int[local16];
-		this.anIntArrayArray20 = new int[local16][];
+		this.classDimensions = new int[local16];
+		this.subclasses = new int[local16];
+		this.classMasterBooks = new int[local16];
+		this.subclassBooks = new int[local16][];
 		@Pc(101) int local101;
 		for (local22 = 0; local22 < local16; local22++) {
-			this.anIntArray265[local22] = VorbisSound.read(3) + 1;
-			local28 = this.anIntArray263[local22] = VorbisSound.read(2);
+			this.classDimensions[local22] = VorbisSound.readBits(3) + 1;
+			local28 = this.subclasses[local22] = VorbisSound.readBits(2);
 			if (local28 != 0) {
-				this.anIntArray260[local22] = VorbisSound.read(8);
+				this.classMasterBooks[local22] = VorbisSound.readBits(8);
 			}
 			local28 = 0x1 << local28;
 			@Pc(94) int[] local94 = new int[local28];
-			this.anIntArrayArray20[local22] = local94;
+			this.subclassBooks[local22] = local94;
 			for (local101 = 0; local101 < local28; local101++) {
-				local94[local101] = VorbisSound.read(8) - 1;
+				local94[local101] = VorbisSound.readBits(8) - 1;
 			}
 		}
-		this.multiplier = VorbisSound.read(2) + 1;
-		local22 = VorbisSound.read(4);
+		this.multiplier = VorbisSound.readBits(2) + 1;
+		local22 = VorbisSound.readBits(4);
 		local28 = 2;
 		@Pc(128) int local128;
 		for (local128 = 0; local128 < local14; local128++) {
-			local28 += this.anIntArray265[this.anIntArray262[local128]];
+			local28 += this.classDimensions[this.classList[local128]];
 		}
 		this.xList = new int[local28];
 		this.xList[0] = 0;
 		this.xList[1] = 0x1 << local22;
 		local28 = 2;
 		for (local128 = 0; local128 < local14; local128++) {
-			local101 = this.anIntArray262[local128];
-			for (@Pc(173) int local173 = 0; local173 < this.anIntArray265[local101]; local173++) {
-				this.xList[local28++] = VorbisSound.read(local22);
+			local101 = this.classList[local128];
+			for (@Pc(173) int local173 = 0; local173 < this.classDimensions[local101]; local173++) {
+				this.xList[local28++] = VorbisSound.readBits(local22);
 			}
 		}
 		if (currentXList == null || currentXList.length < local28) {
 			currentXList = new int[local28];
 			y = new int[local28];
-			stepFlag = new boolean[local28];
+			step2Flag = new boolean[local28];
 		}
 	}
 
+	@OriginalMember(owner = "runetek4.client!ie", name = "a", descriptor = "([II)I")
+	public static int lowNeighbour(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1) {
+		@Pc(3) int local3 = arg0[arg1];
+		@Pc(5) int local5 = -1;
+		@Pc(7) int local7 = Integer.MIN_VALUE;
+		for (@Pc(9) int local9 = 0; local9 < arg1; local9++) {
+			@Pc(16) int local16 = arg0[local9];
+			if (local16 < local3 && local16 > local7) {
+				local5 = local9;
+				local7 = local16;
+			}
+		}
+		return local5;
+	}
+
+	@OriginalMember(owner = "runetek4.client!ie", name = "b", descriptor = "([II)I")
+	public static int highNeighbour(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1) {
+		@Pc(3) int local3 = arg0[arg1];
+		@Pc(5) int local5 = -1;
+		@Pc(7) int local7 = Integer.MAX_VALUE;
+		for (@Pc(9) int local9 = 0; local9 < arg1; local9++) {
+			@Pc(16) int local16 = arg0[local9];
+			if (local16 > local3 && local16 < local7) {
+				local5 = local9;
+				local7 = local16;
+			}
+		}
+		return local5;
+	}
+
 	@OriginalMember(owner = "client!ie", name = "a", descriptor = "(IIII[FI)V")
-	private void method2265(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) float[] arg4, @OriginalArg(5) int arg5) {
+	private void renderLine(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) float[] arg4, @OriginalArg(5) int arg5) {
 		@Pc(3) int local3 = arg3 - arg1;
 		@Pc(7) int local7 = arg2 - arg0;
 		@Pc(14) int local14 = local3 < 0 ? -local3 : local3;
@@ -129,35 +157,35 @@ public final class VorbisFloor {
 	}
 
 	@OriginalMember(owner = "client!ie", name = "a", descriptor = "(II)V")
-	private void method2266(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
+	private void sort(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		if (arg0 >= arg1) {
 			return;
 		}
 		@Pc(5) int local5 = arg0;
 		@Pc(9) int local9 = currentXList[arg0];
 		@Pc(13) int local13 = y[arg0];
-		@Pc(17) boolean local17 = stepFlag[arg0];
+		@Pc(17) boolean local17 = step2Flag[arg0];
 		for (@Pc(21) int local21 = arg0 + 1; local21 <= arg1; local21++) {
 			@Pc(28) int local28 = currentXList[local21];
 			if (local28 < local9) {
 				currentXList[local5] = local28;
 				y[local5] = y[local21];
-				stepFlag[local5] = stepFlag[local21];
+				step2Flag[local5] = step2Flag[local21];
 				local5++;
 				currentXList[local21] = currentXList[local5];
 				y[local21] = y[local5];
-				stepFlag[local21] = stepFlag[local5];
+				step2Flag[local21] = step2Flag[local5];
 			}
 		}
 		currentXList[local5] = local9;
 		y[local5] = local13;
-		stepFlag[local5] = local17;
-		this.method2266(arg0, local5 - 1);
-		this.method2266(local5 + 1, arg1);
+		step2Flag[local5] = local17;
+		this.sort(arg0, local5 - 1);
+		this.sort(local5 + 1, arg1);
 	}
 
 	@OriginalMember(owner = "client!ie", name = "a", descriptor = "(IIIII)I")
-	private int method2267(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
+	private int renderPoint(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
 		@Pc(3) int local3 = arg3 - arg1;
 		@Pc(7) int local7 = arg2 - arg0;
 		@Pc(14) int local14 = local3 < 0 ? -local3 : local3;
@@ -167,28 +195,28 @@ public final class VorbisFloor {
 	}
 
 	@OriginalMember(owner = "client!ie", name = "a", descriptor = "([FI)V")
-	public void method2269(@OriginalArg(0) float[] arg0, @OriginalArg(1) int arg1) {
+	public void synthesize(@OriginalArg(0) float[] arg0, @OriginalArg(1) int arg1) {
 		@Pc(3) int local3 = this.xList.length;
 		@Pc(10) int local10 = RANGES[this.multiplier - 1];
-		stepFlag[0] = stepFlag[1] = true;
+		step2Flag[0] = step2Flag[1] = true;
 		@Pc(20) int local20;
 		@Pc(27) int local27;
 		@Pc(31) int local31;
 		@Pc(49) int local49;
 		@Pc(53) int local53;
 		for (local20 = 2; local20 < local3; local20++) {
-			local27 = Static108.method2268(currentXList, local20);
-			local31 = Static108.method2270(currentXList, local20);
-			local49 = this.method2267(currentXList[local27], y[local27], currentXList[local31], y[local31], currentXList[local20]);
+			local27 = lowNeighbour(currentXList, local20);
+			local31 = highNeighbour(currentXList, local20);
+			local49 = this.renderPoint(currentXList[local27], y[local27], currentXList[local31], y[local31], currentXList[local20]);
 			local53 = y[local20];
 			@Pc(57) int local57 = local10 - local49;
 			@Pc(68) int local68 = (local57 < local49 ? local57 : local49) << 1;
 			if (local53 == 0) {
-				stepFlag[local20] = false;
+				step2Flag[local20] = false;
 				y[local20] = local49;
 			} else {
-				stepFlag[local27] = stepFlag[local31] = true;
-				stepFlag[local20] = true;
+				step2Flag[local27] = step2Flag[local31] = true;
+				step2Flag[local20] = true;
 				if (local53 >= local68) {
 					y[local20] = local57 > local49 ? local53 + local49 - local49 : local49 - local53 + local57 - 1;
 				} else {
@@ -196,14 +224,14 @@ public final class VorbisFloor {
 				}
 			}
 		}
-		this.method2266(0, local3 - 1);
+		this.sort(0, local3 - 1);
 		local20 = 0;
 		local27 = y[0] * this.multiplier;
 		for (local31 = 1; local31 < local3; local31++) {
-			if (stepFlag[local31]) {
+			if (step2Flag[local31]) {
 				local49 = currentXList[local31];
 				local53 = y[local31] * this.multiplier;
-				this.method2265(local20, local27, local49, local53, arg0, arg1);
+				this.renderLine(local20, local27, local49, local53, arg0, arg1);
 				if (local49 >= arg1) {
 					return;
 				}
@@ -218,7 +246,7 @@ public final class VorbisFloor {
 	}
 
 	@OriginalMember(owner = "client!ie", name = "b", descriptor = "()Z")
-	public boolean method2272() {
+	public boolean decodePacket() {
 		@Pc(5) boolean local5 = VorbisSound.readBit() != 0;
 		if (!local5) {
 			return false;
@@ -230,22 +258,22 @@ public final class VorbisFloor {
 		}
 		local15 = RANGES[this.multiplier - 1];
 		@Pc(40) int local40 = IntUtils.bitCount(local15 - 1);
-		y[0] = VorbisSound.read(local40);
-		y[1] = VorbisSound.read(local40);
+		y[0] = VorbisSound.readBits(local40);
+		y[1] = VorbisSound.readBits(local40);
 		@Pc(52) int local52 = 2;
-		for (@Pc(54) int local54 = 0; local54 < this.anIntArray262.length; local54++) {
-			@Pc(64) int local64 = this.anIntArray262[local54];
-			@Pc(69) int local69 = this.anIntArray265[local64];
-			@Pc(74) int local74 = this.anIntArray263[local64];
+		for (@Pc(54) int local54 = 0; local54 < this.classList.length; local54++) {
+			@Pc(64) int local64 = this.classList[local54];
+			@Pc(69) int local69 = this.classDimensions[local64];
+			@Pc(74) int local74 = this.subclasses[local64];
 			@Pc(80) int local80 = (0x1 << local74) - 1;
 			@Pc(82) int local82 = 0;
 			if (local74 > 0) {
-				local82 = Static117.aClass78Array1[this.anIntArray260[local64]].decodeScalar();
+				local82 = VorbisSound.codebooks[this.classMasterBooks[local64]].decodeScalar();
 			}
 			for (@Pc(94) int local94 = 0; local94 < local69; local94++) {
-				@Pc(106) int local106 = this.anIntArrayArray20[local64][local82 & local80];
+				@Pc(106) int local106 = this.subclassBooks[local64][local82 & local80];
 				local82 >>>= local74;
-				y[local52++] = local106 >= 0 ? Static117.aClass78Array1[local106].decodeScalar() : 0;
+				y[local52++] = local106 >= 0 ? VorbisSound.codebooks[local106].decodeScalar() : 0;
 			}
 		}
 		return true;

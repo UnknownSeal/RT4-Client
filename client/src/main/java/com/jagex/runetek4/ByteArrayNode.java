@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.VarbitDefinition;
 import com.jagex.runetek4.node.Node;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -16,7 +15,7 @@ public final class ByteArrayNode extends Node {
 	static {
 		@Pc(10) int local10 = 2;
 		for (@Pc(12) int local12 = 0; local12 < 32; local12++) {
-			VarbitDefinition.varbitMasks[local12] = local10 - 1;
+			VarpDomain.varbitMasks[local12] = local10 - 1;
 			local10 += local10;
 		}
 	}

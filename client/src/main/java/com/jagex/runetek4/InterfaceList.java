@@ -869,8 +869,8 @@ public class InterfaceList {
                                     WorldMap.component = component;
                                     if (local221) {
                                         if (Keyboard.pressedKeys[82] && LoginManager.staffModLevel > 0) {
-                                            i = (int) ((double) (Mouse.mouseClickX - local50 - component.width / 2) * 2.0D / (double) Static83.aFloat3);
-                                            skill = (int) ((double) (Mouse.mouseClickY - local55 - component.height / 2) * 2.0D / (double) Static83.aFloat3);
+                                            i = (int) ((double) (Mouse.mouseClickX - local50 - component.width / 2) * 2.0D / (double) WorldMap.zoom);
+                                            skill = (int) ((double) (Mouse.mouseClickY - local55 - component.height / 2) * 2.0D / (double) WorldMap.zoom);
                                             k = WorldMap.anInt435 + i;
                                             @Pc(516) int local516 = WorldMap.anInt919 + skill;
                                             @Pc(520) int local520 = k + WorldMap.originX;
@@ -891,8 +891,8 @@ public class InterfaceList {
                                             anInt3337 = 2;
                                         }
                                         if (anInt3337 == 2) {
-                                            WorldMap.method1964(anInt4620 + (int) ((double) (ClientScriptRunner.anInt5388 - Mouse.lastMouseX) * 2.0D / (double) Static138.aFloat14));
-                                            WorldMap.method4641(anInt1885 + (int) ((double) (ClientScriptRunner.anInt4035 - Mouse.lastMouseY) * 2.0D / (double) Static138.aFloat14));
+                                            WorldMap.method1964(anInt4620 + (int) ((double) (ClientScriptRunner.anInt5388 - Mouse.lastMouseX) * 2.0D / (double) WorldMap.targetZoom));
+                                            WorldMap.method4641(anInt1885 + (int) ((double) (ClientScriptRunner.anInt4035 - Mouse.lastMouseY) * 2.0D / (double) WorldMap.targetZoom));
                                         }
                                         continue;
                                     }
@@ -1016,15 +1016,15 @@ public class InterfaceList {
                                 }
                                 component.updatedVarcsReaderIndex = VarcDomain.updatedVarcsWriterIndex;
                             }
-                            if (component.onVarcstrTransmit != null && Static72.updatedVarcstrsWriterIndex > component.updatedVarcstrsReaderIndex) {
-                                if (component.varcstrTriggers == null || Static72.updatedVarcstrsWriterIndex - component.updatedVarcstrsReaderIndex > 32) {
+                            if (component.onVarcstrTransmit != null && VarcDomain.updatedVarcstrsWriterIndex > component.updatedVarcstrsReaderIndex) {
+                                if (component.varcstrTriggers == null || VarcDomain.updatedVarcstrsWriterIndex - component.updatedVarcstrsReaderIndex > 32) {
                                     request = new HookRequest();
                                     request.source = component;
                                     request.arguments = component.onVarcstrTransmit;
                                     lowPriorityRequests.addTail(request);
                                 } else {
-                                    label539: for (i = component.updatedVarcstrsReaderIndex; i < Static72.updatedVarcstrsWriterIndex; i++) {
-                                        skill = ClientScriptRunner.updatedVarcstrs[i & 0x1F];
+                                    label539: for (i = component.updatedVarcstrsReaderIndex; i < VarcDomain.updatedVarcstrsWriterIndex; i++) {
+                                        skill = VarcDomain.updatedVarcstrs[i & 0x1F];
                                         for (k = 0; k < component.varcstrTriggers.length; k++) {
                                             if (component.varcstrTriggers[k] == skill) {
                                                 request2 = new HookRequest();
@@ -1036,17 +1036,17 @@ public class InterfaceList {
                                         }
                                     }
                                 }
-                                component.updatedVarcstrsReaderIndex = Static72.updatedVarcstrsWriterIndex;
+                                component.updatedVarcstrsReaderIndex = VarcDomain.updatedVarcstrsWriterIndex;
                             }
-                            if (component.onVarpTransmit != null && Static70.updatedVarpsWriterIndex > component.updatedVarpsReaderIndex) {
-                                if (component.varpTriggers == null || Static70.updatedVarpsWriterIndex - component.updatedVarpsReaderIndex > 32) {
+                            if (component.onVarpTransmit != null && VarpDomain.updatedVarpsWriterIndex > component.updatedVarpsReaderIndex) {
+                                if (component.varpTriggers == null || VarpDomain.updatedVarpsWriterIndex - component.updatedVarpsReaderIndex > 32) {
                                     request = new HookRequest();
                                     request.source = component;
                                     request.arguments = component.onVarpTransmit;
                                     lowPriorityRequests.addTail(request);
                                 } else {
-                                    label515: for (i = component.updatedVarpsReaderIndex; i < Static70.updatedVarpsWriterIndex; i++) {
-                                        skill = Static83.updatedVarps[i & 0x1F];
+                                    label515: for (i = component.updatedVarpsReaderIndex; i < VarpDomain.updatedVarpsWriterIndex; i++) {
+                                        skill = VarpDomain.updatedVarps[i & 0x1F];
                                         for (k = 0; k < component.varpTriggers.length; k++) {
                                             if (component.varpTriggers[k] == skill) {
                                                 request2 = new HookRequest();
@@ -1058,7 +1058,7 @@ public class InterfaceList {
                                         }
                                     }
                                 }
-                                component.updatedVarpsReaderIndex = Static70.updatedVarpsWriterIndex;
+                                component.updatedVarpsReaderIndex = VarpDomain.updatedVarpsWriterIndex;
                             }
                             if (component.onInvTransmit != null && Inv.updatedInventoriesWriterIndex > component.updatedInventoriesReaderIndex) {
                                 if (component.inventoryTriggers == null || Inv.updatedInventoriesWriterIndex - component.updatedInventoriesReaderIndex > 32) {

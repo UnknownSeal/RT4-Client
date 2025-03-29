@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.ObjType;
-import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.cache.media.component.Component;
@@ -656,7 +655,7 @@ public class Protocol {
                 } else if (opcode == 89) {
                     VarpDomain.resetVarBits();
                     InterfaceList.redrawActiveInterfaces();
-                    Static70.updatedVarpsWriterIndex += 32;
+                    VarpDomain.updatedVarpsWriterIndex += 32;
                     opcode = -1;
                     return true;
                 } else if (opcode == 125) {
@@ -1019,11 +1018,11 @@ public class Protocol {
                             opcode = -1;
                             return true;
                         } else if (opcode == 128) {
-                            for (ii = 0; ii < VarPlayerDefinition.activeVarps.length; ii++) {
-                                if (VarPlayerDefinition.varPlayerCache[ii] != VarPlayerDefinition.activeVarps[ii]) {
-                                    VarPlayerDefinition.activeVarps[ii] = VarPlayerDefinition.varPlayerCache[ii];
+                            for (ii = 0; ii < VarpDomain.activeVarps.length; ii++) {
+                                if (VarpDomain.varp[ii] != VarpDomain.activeVarps[ii]) {
+                                    VarpDomain.activeVarps[ii] = VarpDomain.varp[ii];
                                     VarpDomain.refreshMagicVarp(ii);
-                                    Static83.updatedVarps[Static70.updatedVarpsWriterIndex++ & 0x1F] = ii;
+                                    VarpDomain.updatedVarps[VarpDomain.updatedVarpsWriterIndex++ & 0x1F] = ii;
                                 }
                             }
                             opcode = -1;
@@ -2834,10 +2833,10 @@ public class Protocol {
                 local7 = 32767;
             }
             @Pc(15) byte[] local15 = new byte[local7];
-            arg0.offset += Static62.aClass44_1.decode(0, local7, local15, arg0.data, arg0.offset);
+            arg0.offset += WordPack.codec.decode(0, local7, local15, arg0.data, arg0.offset);
             return JString.decodeString(local15, local7, 0);
         } catch (@Pc(47) Exception local47) {
-            return Static267.CABBAGE;
+            return WordPack.CABBAGE;
         }
     }
 
@@ -3018,7 +3017,7 @@ public class Protocol {
                     }
                 }
             }
-            if (local20 == 1 && (Static116.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1))) {
+            if (local20 == 1 && (VarpDomain.oneMouseButton == 1 && MiniMenu.menuActionRow > 2 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1))) {
                 local20 = 2;
             }
             if (local20 == 2 && MiniMenu.menuActionRow > 0 || MiniMenu.anInt3953 == 1) {

@@ -5,9 +5,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static90 {
 
-	@OriginalMember(owner = "runetek4.client!hb", name = "v", descriptor = "[[[B")
-	public static byte[][][] aByteArrayArrayArray8;
-
 	@OriginalMember(owner = "runetek4.client!hb", name = "b", descriptor = "(Lclient!na;I)V")
 	public static void method1853(@OriginalArg(0) JString arg0) {
 		WorldMap.clear(false);

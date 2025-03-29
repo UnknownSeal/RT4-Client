@@ -7,7 +7,4 @@ public final class Static136 {
 	@OriginalMember(owner = "runetek4.client!kk", name = "i", descriptor = "I")
 	public static int anInt3324;
 
-	@OriginalMember(owner = "runetek4.client!kk", name = "g", descriptor = "I")
-	public static int logoId = -1;
-
 }

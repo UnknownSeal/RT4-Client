@@ -10,7 +10,7 @@ public final class Static44 {
 	public static void method1149(@OriginalArg(0) JString arg0) {
 		@Pc(7) int local7 = Static91.method1879(arg0);
 		if (local7 != -1) {
-			Static80.method3616(Static203.aMapElementList_1.aShortArray73[local7], Static203.aMapElementList_1.aShortArray72[local7]);
+			Static80.method3616(WorldMap.labels.aShortArray73[local7], WorldMap.labels.aShortArray72[local7]);
 		}
 	}
 

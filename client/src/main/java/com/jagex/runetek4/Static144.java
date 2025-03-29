@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
+import com.jagex.runetek4.game.config.flotype.FloType;
 import com.jagex.runetek4.game.config.msitype.MSIType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -12,7 +12,7 @@ public final class Static144 {
 	public static void method2735(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
 		@Pc(9) int local9 = arg3 - arg5;
 		@Pc(14) int local14 = arg1 - arg2;
-		if (Static48.anInt1449 > arg3) {
+		if (WorldMap.width > arg3) {
 			local9++;
 		}
 		if (WorldMap.length > arg1) {
@@ -42,15 +42,15 @@ public final class Static144 {
 			local62 = local57 - local47;
 			if (local62 > 0) {
 				local71 = local32 + arg5 >> 6;
-				if (local71 >= 0 && Static248.anIntArrayArrayArray17.length - 1 >= local71) {
+				if (local71 >= 0 && WorldMap.anIntArrayArrayArray17.length - 1 >= local71) {
 					local47 += arg4;
-					local185 = Static248.anIntArrayArrayArray17[local71];
-					@Pc(189) byte[][] local189 = Static34.aByteArrayArrayArray3[local71];
-					@Pc(193) byte[][] local193 = Static90.aByteArrayArrayArray8[local71];
-					@Pc(197) byte[][] local197 = Static70.aByteArrayArrayArray7[local71];
-					@Pc(201) byte[][] local201 = Static125.aByteArrayArrayArray10[local71];
+					local185 = WorldMap.anIntArrayArrayArray17[local71];
+					@Pc(189) byte[][] local189 = WorldMap.aByteArrayArrayArray3[local71];
+					@Pc(193) byte[][] local193 = WorldMap.aByteArrayArrayArray8[local71];
+					@Pc(197) byte[][] local197 = WorldMap.aByteArrayArrayArray7[local71];
+					@Pc(201) byte[][] local201 = WorldMap.aByteArrayArrayArray10[local71];
 					local57 += arg4;
-					@Pc(209) byte[][] local209 = Static229.aByteArrayArrayArray12[local71];
+					@Pc(209) byte[][] local209 = WorldMap.aByteArrayArrayArray12[local71];
 					for (local211 = 0; local211 < local14; local211++) {
 						local222 = arg6 * local211 >> 16;
 						local233 = (local211 + 1) * arg6 >> 16;
@@ -63,10 +63,10 @@ public final class Static144 {
 							local270 = local32 + arg5 & 0x3F;
 							local276 = (local260 << 6) + local270;
 							if (local254 < 0 || local185.length - 1 < local254 || local185[local254] == null) {
-								if (Static269.aClass3_Sub2_Sub4_2.backgroundColor != -1) {
-									local312 = Static269.aClass3_Sub2_Sub4_2.backgroundColor;
+								if (WorldMap.currentMap.backgroundColor != -1) {
+									local312 = WorldMap.currentMap.backgroundColor;
 								} else if ((local211 + arg2 & 0x4) == (arg5 + local32 & 0x4)) {
-									local312 = Static145.anIntArray330[FloorOverlayType.anInt865 + 1];
+									local312 = WorldMap.overlayColors[FloType.anInt865 + 1];
 								} else {
 									local312 = 4936552;
 								}
@@ -80,11 +80,11 @@ public final class Static144 {
 							} else {
 								local312 = local185[local254][local276];
 							}
-							local372 = local189[local254] == null ? 0 : Static145.anIntArray330[local189[local254][local276] & 0xFF];
+							local372 = local189[local254] == null ? 0 : WorldMap.overlayColors[local189[local254][local276] & 0xFF];
 							if (local312 == 0) {
 								local312 = 1;
 							}
-							@Pc(395) int local395 = local209[local254] == null ? 0 : Static145.anIntArray330[local209[local254][local276] & 0xFF];
+							@Pc(395) int local395 = local209[local254] == null ? 0 : WorldMap.overlayColors[local209[local254][local276] & 0xFF];
 							@Pc(437) int local437;
 							if (local372 == 0 && local395 == 0) {
 								SoftwareRaster.fillRect(local47, local222, local62, local238, local312);
@@ -180,10 +180,10 @@ public final class Static144 {
 				} else {
 					local47 += arg4;
 					for (@Pc(90) int local90 = 0; local90 < local14; local90++) {
-						if (Static269.aClass3_Sub2_Sub4_2.backgroundColor != -1) {
-							local104 = Static269.aClass3_Sub2_Sub4_2.backgroundColor;
+						if (WorldMap.currentMap.backgroundColor != -1) {
+							local104 = WorldMap.currentMap.backgroundColor;
 						} else if ((local32 + arg5 & 0x4) == (local90 + arg2 & 0x4)) {
-							local104 = Static145.anIntArray330[FloorOverlayType.anInt865 + 1];
+							local104 = WorldMap.overlayColors[FloType.anInt865 + 1];
 						} else {
 							local104 = 4936552;
 						}
@@ -205,8 +205,8 @@ public final class Static144 {
 			if (local62 > 0) {
 				local47 += arg4;
 				local71 = arg5 + local32 >> 6;
-				if (local71 >= 0 && Static58.anIntArrayArrayArray5.length - 1 >= local71) {
-					local185 = Static58.anIntArrayArrayArray5[local71];
+				if (local71 >= 0 && WorldMap.scenery.length - 1 >= local71) {
+					local185 = WorldMap.scenery[local71];
 					for (local104 = -2; local104 < local14 + 2; local104++) {
 						local145 = local104 * arg6 >> 16;
 						local157 = (local104 + 1) * arg6 >> 16;

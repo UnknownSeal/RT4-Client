@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class CacheArchive {
 
-	@OriginalMember(owner = "client!al", name = "e", descriptor = "I")
-	public static int anInt172;
-
 	@OriginalMember(owner = "client!al", name = "a", descriptor = "(Z)V")
 	public static void method182() {
 		ClientScriptRunner.aClass13Array13 = null;

@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.def.NpcType;
 import com.jagex.runetek4.cache.def.ObjType;
-import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
@@ -1051,8 +1050,8 @@ public class MiniMenu {
             com = InterfaceList.getComponent(local19);
             if (com.scripts != null && com.scripts[0][0] == 5) {
                 varp = com.scripts[0][1];
-                if (VarPlayerDefinition.activeVarps[varp] != com.scriptOperand[0]) {
-                    VarPlayerDefinition.activeVarps[varp] = com.scriptOperand[0];
+                if (VarpDomain.activeVarps[varp] != com.scriptOperand[0]) {
+                    VarpDomain.activeVarps[varp] = com.scriptOperand[0];
                     VarpDomain.refreshMagicVarp(varp);
                 }
             }
@@ -1078,7 +1077,7 @@ public class MiniMenu {
             com = InterfaceList.getComponent(local19);
             if (com.scripts != null && com.scripts[0][0] == 5) {
                 varp = com.scripts[0][1];
-                VarPlayerDefinition.activeVarps[varp] = 1 - VarPlayerDefinition.activeVarps[varp];
+                VarpDomain.activeVarps[varp] = 1 - VarpDomain.activeVarps[varp];
                 VarpDomain.refreshMagicVarp(varp);
             }
         }

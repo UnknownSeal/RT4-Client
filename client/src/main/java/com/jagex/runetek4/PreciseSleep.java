@@ -10,9 +10,6 @@ import org.openrs2.deob.annotation.Pc;
 public final class PreciseSleep {
 
 
-	@OriginalMember(owner = "runetek4.client!sk", name = "gb", descriptor = "J")
-	public static long aLong174 = 0L;
-
 	@OriginalMember(owner = "runetek4.client!sk", name = "a", descriptor = "(ILclient!wa;)V")
 	public static void method3980(@OriginalArg(1) Packet arg0) {
 		label83: while (true) {
@@ -31,7 +28,7 @@ public final class PreciseSleep {
 				@Pc(68) int local68 = WorldMap.length + WorldMap.originZ - local50 * 64 - 1;
 				@Pc(146) byte local146;
 				@Pc(96) int local96;
-				if (local57 >= 0 && local68 - 63 >= 0 && Static48.anInt1449 > local57 + 63 && local68 < WorldMap.length) {
+				if (local57 >= 0 && local68 - 63 >= 0 && WorldMap.width > local57 + 63 && local68 < WorldMap.length) {
 					local96 = local57 >> 6;
 					@Pc(100) int local100 = local68 >> 6;
 					@Pc(102) int local102 = 0;
@@ -43,15 +40,15 @@ public final class PreciseSleep {
 							if (!local25 || local23 * 8 <= local102 && local23 * 8 + 8 > local102 && local107 >= local27 * 8 && local27 * 8 + 8 > local107) {
 								local146 = arg0.g1s();
 								if (local146 != 0) {
-									if (Static229.aByteArrayArrayArray12[local96][local100] == null) {
-										Static229.aByteArrayArrayArray12[local96][local100] = new byte[4096];
+									if (WorldMap.aByteArrayArrayArray12[local96][local100] == null) {
+										WorldMap.aByteArrayArrayArray12[local96][local100] = new byte[4096];
 									}
-									Static229.aByteArrayArrayArray12[local96][local100][(63 - local107 << 6) + local102] = local146;
+									WorldMap.aByteArrayArrayArray12[local96][local100][(63 - local107 << 6) + local102] = local146;
 									@Pc(182) byte local182 = arg0.g1s();
-									if (Static125.aByteArrayArrayArray10[local96][local100] == null) {
-										Static125.aByteArrayArrayArray10[local96][local100] = new byte[4096];
+									if (WorldMap.aByteArrayArrayArray10[local96][local100] == null) {
+										WorldMap.aByteArrayArrayArray10[local96][local100] = new byte[4096];
 									}
-									Static125.aByteArrayArrayArray10[local96][local100][local102 + (63 - local107 << 6)] = local182;
+									WorldMap.aByteArrayArrayArray10[local96][local100][local102 + (63 - local107 << 6)] = local182;
 								}
 							}
 						}

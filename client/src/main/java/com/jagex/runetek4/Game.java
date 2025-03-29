@@ -204,7 +204,7 @@ public class Game {
         // VarpDomain
         for (i = Static38.poll(true); i != -1; i = Static38.poll(false)) {
             VarpDomain.refreshMagicVarp(i);
-            Static83.updatedVarps[Static70.updatedVarpsWriterIndex++ & 0x1F] = i;
+            VarpDomain.updatedVarps[VarpDomain.updatedVarpsWriterIndex++ & 0x1F] = i;
         }
         @Pc(782) int rand;
 
@@ -215,8 +215,8 @@ public class Game {
                 VarcDomain.varcs[i] = change.intArg1;
                 VarcDomain.updatedVarcs[VarcDomain.updatedVarcsWriterIndex++ & 0x1F] = i;
             } else if (samples == 2) {
-                Static226.varcstrs[i] = change.stringArg;
-                ClientScriptRunner.updatedVarcstrs[Static72.updatedVarcstrsWriterIndex++ & 0x1F] = i;
+                VarcDomain.varcstrs[i] = change.stringArg;
+                VarcDomain.updatedVarcstrs[VarcDomain.updatedVarcstrsWriterIndex++ & 0x1F] = i;
             } else {
                 @Pc(773) Component component;
                 if (samples == 3) {
@@ -351,7 +351,7 @@ public class Game {
                     if (InterfaceList.clickedInventoryComponent == InterfaceList.mouseOverInventoryInterface && InterfaceList.selectedInventorySlot != MiniMenu.mouseInvInterfaceIndex) {
                         component = InterfaceList.clickedInventoryComponent;
                         @Pc(1363) byte moveItemInsertionMode = 0;
-                        if (Static179.bankInsertMode == 1 && component.contentType == 206) {
+                        if (VarpDomain.bankInsertMode == 1 && component.contentType == 206) {
                             moveItemInsertionMode = 1;
                         }
                         if (component.invSlotObjId[MiniMenu.mouseInvInterfaceIndex] <= 0) {
@@ -385,7 +385,7 @@ public class Game {
                         Protocol.outboundBuffer.p2_alt2(MiniMenu.mouseInvInterfaceIndex);
                         Protocol.outboundBuffer.p1_alt3(moveItemInsertionMode);
                     }
-                } else if ((Static116.oneMouseButton == 1 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
+                } else if ((VarpDomain.oneMouseButton == 1 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
                     ClientScriptRunner.determineMenuSize();
                 } else if (MiniMenu.menuActionRow > 0) {
                     MiniMenu.processMenuActions();

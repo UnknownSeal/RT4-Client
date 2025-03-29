@@ -9,7 +9,7 @@ import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.game.config.msitype.MSIType;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.scene.tile.GenericTile;
+import com.jagex.runetek4.scene.tile.PlainTile;
 import com.jagex.runetek4.scene.tile.ShapedTile;
 import com.jagex.runetek4.scene.tile.Tile;
 import com.jagex.runetek4.util.MathUtils;
@@ -294,10 +294,10 @@ public class MiniMap {
         if (tile == null) {
             return;
         }
-        @Pc(13) GenericTile genericTile = tile.plainTile;
+        @Pc(13) PlainTile plainTile = tile.plainTile;
         @Pc(23) int local23;
-        if (genericTile != null) {
-            @Pc(18) int color = genericTile.rgbColor;
+        if (plainTile != null) {
+            @Pc(18) int color = plainTile.rgbColor;
             if (color != 0) {
                 for (local23 = 0; local23 < 4; local23++) {
                     destPixels[offset] = color;

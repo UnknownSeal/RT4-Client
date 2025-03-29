@@ -13,9 +13,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static248 {
 
-	@OriginalMember(owner = "runetek4.client!uc", name = "d", descriptor = "[[[I")
-	public static int[][][] anIntArrayArrayArray17;
-
 	@OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "(III[[[BIBII)V")
 	public static void method3292(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) byte[][][] arg3, @OriginalArg(4) int arg4, @OriginalArg(5) byte arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
 		SceneGraph.anInt437++;
@@ -36,7 +33,7 @@ public final class Static248 {
 						if (SceneGraph.aBooleanArrayArray1[local32 + SceneGraph.visibility - SceneGraph.eyeTileX][local37 + SceneGraph.visibility - SceneGraph.anInt4539] && (arg3 == null || local23 < arg4 || arg3[local23][local32][local37] != arg5)) {
 							local46.aBoolean45 = true;
 							local46.aBoolean46 = true;
-							if (local46.entityCount > 0) {
+							if (local46.sceneryLen > 0) {
 								local46.containsLocs = true;
 							} else {
 								local46.containsLocs = false;
@@ -65,9 +62,9 @@ public final class Static248 {
 									@Pc(167) GroundDecor local167 = local46.groundDecor;
 									local167.entity.method4545(0, local23, local167.anInt733, local167.xFine, local167.zFine);
 								}
-								if (local46.sceneries != null) {
-									for (local183 = 0; local183 < local46.entityCount; local183++) {
-										@Pc(192) Scenery local192 = local46.sceneries[local183];
+								if (local46.scenery != null) {
+									for (local183 = 0; local183 < local46.sceneryLen; local183++) {
+										@Pc(192) Scenery local192 = local46.scenery[local183];
 										local192.entity.method4545(local192.anInt1714, local23, local192.anInt1706, local192.anInt1699, local192.anInt1703);
 									}
 								}
@@ -83,10 +80,10 @@ public final class Static248 {
 			local244.glPushMatrix();
 			local244.glTranslatef((float) -arg0, (float) -arg1, (float) -arg2);
 			if (local240) {
-				Static156.method2959();
+				UnderwaterMaterialRenderer.method2959();
 				MaterialManager.setMaterial(-1, 3);
 				MaterialManager.renderingUnderwater = true;
-				Static275.method4609();
+				UnderwaterMaterialRenderer.method4609();
 				SceneGraph.anInt3604 = -1;
 				SceneGraph.anInt730 = -1;
 				for (local32 = 0; local32 < SceneGraph.underwaterHdTiles[0].length; local32++) {
@@ -94,12 +91,12 @@ public final class Static248 {
 					@Pc(294) float local294 = 251.5F - (local285.blend ? 1.0F : 0.5F);
 					if (local285.underwaterColor != SceneGraph.anInt3604) {
 						SceneGraph.anInt3604 = local285.underwaterColor;
-						Static21.method619(local285.underwaterColor);
-						FogManager.setFogColor(Static123.method2422());
+						WaterMaterialRenderer.method619(local285.underwaterColor);
+						FogManager.setFogColor(WaterMaterialRenderer.method2422());
 					}
 					local285.method1944(SceneGraph.tiles, local294, false);
 				}
-				Static275.method4608();
+				UnderwaterMaterialRenderer.method4608();
 			} else {
 				local32 = SceneGraph.anInt5276;
 				while (true) {
@@ -111,7 +108,7 @@ public final class Static248 {
 						@Pc(336) GlTile local336 = SceneGraph.underwaterHdTiles[local32][local37];
 						@Pc(350) float local350 = 201.5F - (float) local32 * 50.0F - (local336.blend ? 1.0F : 0.5F);
 						if (local336.texture != -1 && Rasterizer.textureProvider.getMaterialType(local336.texture) == 4 && Preferences.highWaterDetail) {
-							Static21.method619(local336.underwaterColor);
+							WaterMaterialRenderer.method619(local336.underwaterColor);
 						}
 						local336.method1944(SceneGraph.tiles, local350, false);
 					}

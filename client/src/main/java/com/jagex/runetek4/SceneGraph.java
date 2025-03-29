@@ -8,8 +8,8 @@ import com.jagex.runetek4.dash3d.entity.LocEntity;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
 import com.jagex.runetek4.frame.MiniMap;
-import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
-import com.jagex.runetek4.game.config.flotype.FloorOverlayTypeList;
+import com.jagex.runetek4.game.config.flotype.FloType;
+import com.jagex.runetek4.game.config.flotype.FloTypeList;
 import com.jagex.runetek4.game.config.lighttype.LightType;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.Entity;
@@ -288,8 +288,8 @@ public class SceneGraph {
         if (tile == null) {
             return null;
         }
-        for (@Pc(13) int i = 0; i < tile.entityCount; i++) {
-            @Pc(22) Scenery scenery = tile.sceneries[i];
+        for (@Pc(13) int i = 0; i < tile.sceneryLen; i++) {
+            @Pc(22) Scenery scenery = tile.scenery[i];
             if ((scenery.key >> 29 & 0x3L) == 2L && scenery.xMin == x && scenery.zMin == z) {
                 return scenery;
             }
@@ -370,8 +370,8 @@ public class SceneGraph {
         if (tile == null) {
             return 0L;
         }
-        for (@Pc(13) int i = 0; i < tile.entityCount; i++) {
-            @Pc(22) Scenery scenery = tile.sceneries[i];
+        for (@Pc(13) int i = 0; i < tile.sceneryLen; i++) {
+            @Pc(22) Scenery scenery = tile.scenery[i];
             if ((scenery.key >> 29 & 0x3L) == 2L && scenery.xMin == x && scenery.zMin == z) {
                 return scenery.key;
             }
@@ -392,8 +392,8 @@ public class SceneGraph {
             @Pc(30) Tile local30 = tiles[local9][arg0][arg1] = tiles[local9 + 1][arg0][arg1];
             if (local30 != null) {
                 local30.anInt672--;
-                for (@Pc(40) int local40 = 0; local40 < local30.entityCount; local40++) {
-                    @Pc(49) Scenery local49 = local30.sceneries[local40];
+                for (@Pc(40) int local40 = 0; local40 < local30.sceneryLen; local40++) {
+                    @Pc(49) Scenery local49 = local30.scenery[local40];
                     if ((local49.key >> 29 & 0x3L) == 2L && local49.xMin == arg0 && local49.zMin == arg1) {
                         local49.level--;
                     }
@@ -696,7 +696,7 @@ public class SceneGraph {
                                 if (z == 0 && tileShapes[level][z0][x0] != 0) {
                                     local1067 = false;
                                 }
-                                if (underlayId > 0 && !FloorOverlayTypeList.method4395(underlayId - 1).occlude) {
+                                if (underlayId > 0 && !FloTypeList.method4395(underlayId - 1).occlude) {
                                     local1067 = false;
                                 }
                                 if (local1067 && local200 == dx && local200 == dz && len == local200) {
@@ -732,7 +732,7 @@ public class SceneGraph {
                                             if ((local322 != z0 || x0 != local1794) && local322 >= 0 && local322 < 104 && local1794 >= 0 && local1794 < 104) {
                                                 @Pc(1834) int local1834 = tileOverlays[level][local322][local1794] & 0xFF;
                                                 if (local1834 != 0) {
-                                                    @Pc(1842) FloorOverlayType local1842 = FloorOverlayTypeList.method4395(local1834 - 1);
+                                                    @Pc(1842) FloType local1842 = FloTypeList.method4395(local1834 - 1);
                                                     if (local1842.material != -1 && Rasterizer.textureProvider.getMaterialType(local1842.material) == 4) {
                                                         anIntArrayArray11[z0][x0] = local1842.waterColor + (local1842.waterOpaity << 24);
                                                         continue label771;
@@ -745,7 +745,7 @@ public class SceneGraph {
                             } else {
                                 local322 = tileShapes[level][z0][x0] + 1;
                                 @Pc(1242) byte local1242 = tileAngles[level][z0][x0];
-                                @Pc(1248) FloorOverlayType local1248 = FloorOverlayTypeList.method4395(underlayId - 1);
+                                @Pc(1248) FloType local1248 = FloTypeList.method4395(underlayId - 1);
                                 @Pc(1301) int local1301;
                                 @Pc(1353) int local1353;
                                 @Pc(1288) int local1288;
@@ -758,7 +758,7 @@ public class SceneGraph {
                                                 if ((z0 != local1288 || local1301 != x0) && local1288 >= 0 && local1288 < 104 && local1301 >= 0 && local1301 < 104) {
                                                     local1353 = tileOverlays[level][local1288][local1301] & 0xFF;
                                                     if (local1353 != 0) {
-                                                        @Pc(1366) FloorOverlayType local1366 = FloorOverlayTypeList.method4395(local1353 - 1);
+                                                        @Pc(1366) FloType local1366 = FloTypeList.method4395(local1353 - 1);
                                                         if (local1366.material != -1 && Rasterizer.textureProvider.getMaterialType(local1366.material) == 4) {
                                                             anIntArrayArray11[z0][x0] = local1366.waterColor + (local1366.waterOpaity << 24);
                                                             break label737;
@@ -1671,8 +1671,8 @@ public class SceneGraph {
         } else if (tile.groundDecor != null && tile.groundDecor.key == arg3) {
             return true;
         } else {
-            for (@Pc(46) int local46 = 0; local46 < tile.entityCount; local46++) {
-                if (tile.sceneries[local46].key == arg3) {
+            for (@Pc(46) int local46 = 0; local46 < tile.sceneryLen; local46++) {
+                if (tile.scenery[local46].key == arg3) {
                     return true;
                 }
             }
@@ -1984,8 +1984,8 @@ public class SceneGraph {
         if (tile == null) {
             return null;
         }
-        for (@Pc(13) int i = 0; i < tile.entityCount; i++) {
-            @Pc(22) Scenery scenery = tile.sceneries[i];
+        for (@Pc(13) int i = 0; i < tile.sceneryLen; i++) {
+            @Pc(22) Scenery scenery = tile.scenery[i];
             if ((scenery.key >> 29 & 0x3L) == 2L && scenery.xMin == x && scenery.zMin == z) {
                 removeScenery(scenery);
                 return scenery;
@@ -2013,20 +2013,20 @@ public class SceneGraph {
                 @Pc(22) Tile tile = tiles[scenery.level][x][z];
                 if (tile != null) {
                     @Pc(26) int i;
-                    for (i = 0; i < tile.entityCount; i++) {
-                        if (tile.sceneries[i] == scenery) {
-                            tile.entityCount--;
-                            for (@Pc(44) int j = i; j < tile.entityCount; j++) {
-                                tile.sceneries[j] = tile.sceneries[j + 1];
-                                tile.anIntArray59[j] = tile.anIntArray59[j + 1];
+                    for (i = 0; i < tile.sceneryLen; i++) {
+                        if (tile.scenery[i] == scenery) {
+                            tile.sceneryLen--;
+                            for (@Pc(44) int j = i; j < tile.sceneryLen; j++) {
+                                tile.scenery[j] = tile.scenery[j + 1];
+                                tile.interiorFlags[j] = tile.interiorFlags[j + 1];
                             }
-                            tile.sceneries[tile.entityCount] = null;
+                            tile.scenery[tile.sceneryLen] = null;
                             break;
                         }
                     }
-                    tile.locSpans = 0;
-                    for (i = 0; i < tile.entityCount; i++) {
-                        tile.locSpans |= tile.anIntArray59[i];
+                    tile.allInteriorFlags = 0;
+                    for (i = 0; i < tile.sceneryLen; i++) {
+                        tile.allInteriorFlags |= tile.interiorFlags[i];
                     }
                 }
             }
@@ -2040,10 +2040,10 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(IIIIIIIIIIIIIIIIIIII)V")
     public static void setTile(@OriginalArg(0) int level, @OriginalArg(1) int x, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12, @OriginalArg(13) int arg13, @OriginalArg(14) int arg14, @OriginalArg(15) int arg15, @OriginalArg(16) int arg16, @OriginalArg(17) int arg17, @OriginalArg(18) int arg18, @OriginalArg(19) int arg19) {
-        @Pc(12) GenericTile tile;
+        @Pc(12) PlainTile tile;
         @Pc(14) int level0;
         if (arg3 == 0) {
-            tile = new GenericTile(arg10, arg11, arg12, arg13, -1, arg18, false);
+            tile = new PlainTile(arg10, arg11, arg12, arg13, -1, arg18, false);
             for (level0 = level; level0 >= 0; level0--) {
                 if (tiles[level0][x][z] == null) {
                     tiles[level0][x][z] = new Tile(level0, x, z);
@@ -2051,7 +2051,7 @@ public class SceneGraph {
             }
             tiles[level][x][z].plainTile = tile;
         } else if (arg3 == 1) {
-            tile = new GenericTile(arg14, arg15, arg16, arg17, arg5, arg19, arg6 == arg7 && arg6 == arg8 && arg6 == arg9);
+            tile = new PlainTile(arg14, arg15, arg16, arg17, arg5, arg19, arg6 == arg7 && arg6 == arg8 && arg6 == arg9);
             for (level0 = level; level0 >= 0; level0--) {
                 if (tiles[level0][x][z] == null) {
                     tiles[level0][x][z] = new Tile(level0, x, z);
@@ -2086,8 +2086,8 @@ public class SceneGraph {
                             }
                             local27.primary = local27.primary.createModel();
                         }
-                        for (@Pc(83) int local83 = 0; local83 < local22.entityCount; local83++) {
-                            @Pc(92) Scenery local92 = local22.sceneries[local83];
+                        for (@Pc(83) int local83 = 0; local83 < local22.sceneryLen; local83++) {
+                            @Pc(92) Scenery local92 = local22.scenery[local83];
                             if (local92 != null && local92.entity.method4543()) {
                                 method1544(local92.entity, level, x, z, local92.xMax + 1 - local92.xMin, local92.zMax - local92.zMin + 1);
                                 local92.entity = local92.entity.createModel();
@@ -2115,7 +2115,7 @@ public class SceneGraph {
                     return false;
                 }
                 @Pc(42) Tile local42 = tiles[arg0][local10][local17];
-                if (local42 != null && local42.entityCount >= 5) {
+                if (local42 != null && local42.sceneryLen >= 5) {
                     return false;
                 }
             }
@@ -2154,10 +2154,10 @@ public class SceneGraph {
                     }
                 }
                 @Pc(174) Tile local174 = tiles[arg0][local17][local108];
-                local174.sceneries[local174.entityCount] = local58;
-                local174.anIntArray59[local174.entityCount] = local115;
-                local174.locSpans |= local115;
-                local174.entityCount++;
+                local174.scenery[local174.sceneryLen] = local58;
+                local174.interiorFlags[local174.sceneryLen] = local115;
+                local174.allInteriorFlags |= local115;
+                local174.sceneryLen++;
                 if (local6 && anIntArrayArray11[local17][local108] != 0) {
                     local8 = anIntArrayArray11[local17][local108];
                 }
@@ -2434,8 +2434,8 @@ public class SceneGraph {
                                                     direction = var9 & 0xFFFFFF;
                                                     if (direction != anInt3604) {
                                                         anInt3604 = direction;
-                                                        Static21.method619(direction);
-                                                        FogManager.setFogColor(Static123.method2422());
+                                                        WaterMaterialRenderer.method619(direction);
+                                                        FogManager.setFogColor(WaterMaterialRenderer.method2422());
                                                     }
                                                     frontWallTypes = var9 >>> 24 << 3;
                                                     if (frontWallTypes != anInt730) {
@@ -2463,25 +2463,25 @@ public class SceneGraph {
                                                 }
                                                 if (tileX <= eyeTileX && tileX > LightingManager.anInt987) {
                                                     local153 = tiles[tileX - 1][tileZ];
-                                                    if (local153 != null && local153.aBoolean46 && (local153.aBoolean45 || (tile.locSpans & 0x1) == 0)) {
+                                                    if (local153 != null && local153.aBoolean46 && (local153.aBoolean45 || (tile.allInteriorFlags & 0x1) == 0)) {
                                                         continue;
                                                     }
                                                 }
                                                 if (tileX >= eyeTileX && tileX < LightingManager.anInt15 - 1) {
                                                     local153 = tiles[tileX + 1][tileZ];
-                                                    if (local153 != null && local153.aBoolean46 && (local153.aBoolean45 || (tile.locSpans & 0x4) == 0)) {
+                                                    if (local153 != null && local153.aBoolean46 && (local153.aBoolean45 || (tile.allInteriorFlags & 0x4) == 0)) {
                                                         continue;
                                                     }
                                                 }
                                                 if (tileZ <= anInt4539 && tileZ > LightingManager.anInt4698) {
                                                     local153 = tiles[tileX][tileZ - 1];
-                                                    if (local153 != null && local153.aBoolean46 && (local153.aBoolean45 || (tile.locSpans & 0x8) == 0)) {
+                                                    if (local153 != null && local153.aBoolean46 && (local153.aBoolean45 || (tile.allInteriorFlags & 0x8) == 0)) {
                                                         continue;
                                                     }
                                                 }
                                                 if (tileZ >= anInt4539 && tileZ < LightingManager.anInt4866 - 1) {
                                                     local153 = tiles[tileX][tileZ + 1];
-                                                    if (local153 != null && local153.aBoolean46 && (local153.aBoolean45 || (tile.locSpans & 0x2) == 0)) {
+                                                    if (local153 != null && local153.aBoolean46 && (local153.aBoolean45 || (tile.allInteriorFlags & 0x2) == 0)) {
                                                         continue;
                                                     }
                                                 }
@@ -2518,8 +2518,8 @@ public class SceneGraph {
                                                     }
                                                     var22.primary.render(0, anInt2886, anInt3038, anInt5205, anInt2222, var22.xFine - eyeX, var22.anInt3051 - eyeY, var22.zFine - eyeZ, var22.key, local24, null);
                                                 }
-                                                for (frontWallTypes = 0; frontWallTypes < local153.entityCount; frontWallTypes++) {
-                                                    var25 = local153.sceneries[frontWallTypes];
+                                                for (frontWallTypes = 0; frontWallTypes < local153.sceneryLen; frontWallTypes++) {
+                                                    var25 = local153.scenery[frontWallTypes];
                                                     if (var25 != null) {
                                                         if (GlRenderer.enabled) {
                                                             LightingManager.method2393(eyeX, eyeY, eyeZ, local24, tileX, tileZ);
@@ -2686,7 +2686,7 @@ public class SceneGraph {
                                                     }
                                                 }
                                             }
-                                            x = tile.locSpans;
+                                            x = tile.allInteriorFlags;
                                             if (x != 0) {
                                                 if (tileX < eyeTileX && (x & 0x4) != 0) {
                                                     adjacent = tiles[tileX + 1][tileZ];
@@ -2717,8 +2717,8 @@ public class SceneGraph {
                                         }
                                         if (tile.checkLocSpans != 0) {
                                             tileDrawn = true;
-                                            for (direction = 0; direction < tile.entityCount; direction++) {
-                                                if (tile.sceneries[direction].anInt1707 != anInt437 && (tile.anIntArray59[direction] & tile.checkLocSpans) == tile.blockLocSpans) {
+                                            for (direction = 0; direction < tile.sceneryLen; direction++) {
+                                                if (tile.scenery[direction].anInt1707 != anInt437 && (tile.interiorFlags[direction] & tile.checkLocSpans) == tile.blockLocSpans) {
                                                     tileDrawn = false;
                                                     break;
                                                 }
@@ -2774,11 +2774,11 @@ public class SceneGraph {
                                             break;
                                         }
                                         try {
-                                            var9 = tile.entityCount;
+                                            var9 = tile.sceneryLen;
                                             tile.containsLocs = false;
                                             direction = 0;
                                             iterate_locs: for (frontWallTypes = 0; frontWallTypes < var9; frontWallTypes++) {
-                                                var25 = tile.sceneries[frontWallTypes];
+                                                var25 = tile.scenery[frontWallTypes];
                                                 if (var25.anInt1707 != anInt437) {
                                                     for (local1332 = var25.xMin; local1332 <= var25.xMax; local1332++) {
                                                         for (x = var25.zMin; x <= var25.zMax; x++) {
@@ -3297,8 +3297,8 @@ public class SceneGraph {
         @Pc(34) int local34 = 0;
         @Pc(42) Tile local42 = tiles[arg0][arg1][arg2];
         if (local42 != null) {
-            for (@Pc(46) int local46 = 0; local46 < local42.entityCount; local46++) {
-                @Pc(55) Scenery local55 = local42.sceneries[local46];
+            for (@Pc(46) int local46 = 0; local46 < local42.sceneryLen; local46++) {
+                @Pc(55) Scenery local55 = local42.scenery[local46];
                 if ((local55.key & 0x400000L) == 4194304L) {
                     @Pc(66) int local66 = local55.entity.getMinY();
                     if (local66 != -32768 && local66 < local34) {
@@ -3339,8 +3339,8 @@ public class SceneGraph {
                                             arg0.method4544(local161.secondary, (local28 - arg2) * 128 + (1 - arg4) * 64, local158, (local39 - arg3) * 128 + (1 - arg5) * 64, local1);
                                         }
                                     }
-                                    for (@Pc(232) int local232 = 0; local232 < local71.entityCount; local232++) {
-                                        @Pc(241) Scenery local241 = local71.sceneries[local232];
+                                    for (@Pc(232) int local232 = 0; local232 < local71.sceneryLen; local232++) {
+                                        @Pc(241) Scenery local241 = local71.scenery[local232];
                                         if (local241 != null && local241.entity.method4543() && (local28 == local241.xMin || local28 == local3) && (local39 == local241.zMin || local39 == local11)) {
                                             @Pc(270) int local270 = local241.xMax + 1 - local241.xMin;
                                             @Pc(278) int local278 = local241.zMax + 1 - local241.zMin;
@@ -3410,14 +3410,14 @@ public class SceneGraph {
                         @Pc(125) int local125 = arg1[local114][local72] & 0xFF;
                         local133 = arg8[local114][local72] & 0xFF;
                         @Pc(135) boolean local135 = false;
-                        @Pc(151) FloorOverlayType local151;
+                        @Pc(151) FloType local151;
                         @Pc(176) int[] local176;
                         @Pc(234) int[] local234;
                         if (local125 == 0) {
                             if (local133 == 0) {
                                 continue;
                             }
-                            local151 = FloorOverlayTypeList.method4395(local133 - 1);
+                            local151 = FloTypeList.method4395(local133 - 1);
                             if (local151.baseColor == -1) {
                                 continue;
                             }
@@ -3428,7 +3428,7 @@ public class SceneGraph {
                                 continue;
                             }
                         } else if (local133 != 0) {
-                            local151 = FloorOverlayTypeList.method4395(local133 - 1);
+                            local151 = FloTypeList.method4395(local133 - 1);
                             @Pc(224) byte local224;
                             if (local151.baseColor == -1) {
                                 local224 = arg7[local114][local72];
@@ -3540,12 +3540,12 @@ public class SceneGraph {
                         local133 = arg1[local114][local72] & 0xFF;
                         @Pc(789) byte local789 = arg2[local114][local72];
                         @Pc(791) boolean local791 = false;
-                        @Pc(805) FloorOverlayType local805;
+                        @Pc(805) FloType local805;
                         if (local133 == 0) {
                             if (local775 == 0) {
                                 continue;
                             }
-                            local805 = FloorOverlayTypeList.method4395(local775 - 1);
+                            local805 = FloTypeList.method4395(local775 - 1);
                             if (local805.baseColor == -1) {
                                 continue;
                             }
@@ -3554,7 +3554,7 @@ public class SceneGraph {
                                 continue;
                             }
                         } else if (local775 != 0) {
-                            local805 = FloorOverlayTypeList.method4395(local775 - 1);
+                            local805 = FloTypeList.method4395(local775 - 1);
                             if (local805.baseColor == -1) {
                                 method2578(arg0, arg9, local114, arg6, local72, anIntArrayArray8[arg7[local114][local72]], local28, local18, arg10, arg2[local114][local72]);
                                 continue;
@@ -3906,7 +3906,7 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!ke", name = "a", descriptor = "(Lclient!rh;IIIIIIIZ)V")
-    public static void method2610(@OriginalArg(0) GenericTile arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) boolean arg8) {
+    public static void method2610(@OriginalArg(0) PlainTile arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) boolean arg8) {
         @Pc(6) int local6;
         @Pc(7) int local7 = local6 = (arg6 << 7) - eyeX;
         @Pc(14) int local14;
@@ -4380,7 +4380,7 @@ public class SceneGraph {
                 local30 = arg8[local12][local17] & 0xFF;
                 local38 = arg9[local12][local17] & 0xFF;
                 if (local38 != 0) {
-                    @Pc(50) FloorOverlayType local50 = FloorOverlayTypeList.method4395(local38 - 1);
+                    @Pc(50) FloType local50 = FloTypeList.method4395(local38 - 1);
                     if (local50.baseColor == -1) {
                         continue;
                     }
@@ -4408,11 +4408,11 @@ public class SceneGraph {
                     local202 = arg9[local12 + 1][local17 - 1] & 0xFF;
                     local214 = arg9[local12 - 1][local17 - 1] & 0xFF;
                     local226 = arg9[local12 + 1][local17 + 1] & 0xFF;
-                    @Pc(242) FloorOverlayType local242;
+                    @Pc(242) FloType local242;
                     @Pc(264) byte local264;
                     @Pc(287) int local287;
                     if (local180 != 0 && local38 != local180) {
-                        local242 = FloorOverlayTypeList.method4395(local180 - 1);
+                        local242 = FloTypeList.method4395(local180 - 1);
                         if (local242.blend && local242.baseColor != -1) {
                             local264 = arg5[local12 - 1][local17 + 1];
                             local274 = arg7[local12 - 1][local17 + 1];
@@ -4433,7 +4433,7 @@ public class SceneGraph {
                         }
                     }
                     if (local214 != 0 && local214 != local38) {
-                        local242 = FloorOverlayTypeList.method4395(local214 - 1);
+                        local242 = FloTypeList.method4395(local214 - 1);
                         if (local242.blend && local242.baseColor != -1) {
                             local264 = arg5[local12 - 1][local17 - 1];
                             local274 = arg7[local12 - 1][local17 - 1];
@@ -4453,7 +4453,7 @@ public class SceneGraph {
                         }
                     }
                     if (local202 != 0 && local38 != local202) {
-                        local242 = FloorOverlayTypeList.method4395(local202 - 1);
+                        local242 = FloTypeList.method4395(local202 - 1);
                         if (local242.blend && local242.baseColor != -1) {
                             local264 = arg5[local12 + 1][local17 - 1];
                             local274 = arg7[local12 + 1][local17 - 1];
@@ -4473,7 +4473,7 @@ public class SceneGraph {
                         }
                     }
                     if (local226 != 0 && local226 != local38) {
-                        local242 = FloorOverlayTypeList.method4395(local226 - 1);
+                        local242 = FloTypeList.method4395(local226 - 1);
                         if (local242.blend && local242.baseColor != -1) {
                             local264 = arg5[local12 + 1][local17 + 1];
                             local274 = arg7[local12 + 1][local17 + 1];
@@ -4493,7 +4493,7 @@ public class SceneGraph {
                         }
                     }
                     if (local143 != 0 && local38 != local143) {
-                        local242 = FloorOverlayTypeList.method4395(local143 - 1);
+                        local242 = FloTypeList.method4395(local143 - 1);
                         if (local242.blend && local242.baseColor != -1) {
                             local129 = anIntArray300[arg7[local12][local17 + 1] * 4 + (arg5[local12][local17 + 1] + 2 & 0x3)];
                             for (local777 = 0; local777 < 8; local777++) {
@@ -4508,7 +4508,7 @@ public class SceneGraph {
                         }
                     }
                     if (local163 != 0 && local38 != local163) {
-                        local242 = FloorOverlayTypeList.method4395(local163 - 1);
+                        local242 = FloTypeList.method4395(local163 - 1);
                         if (local242.blend && local242.baseColor != -1) {
                             local133 = anIntArray300[(arg5[local12 - 1][local17] + 3 & 0x3) + arg7[local12 - 1][local17] * 4];
                             for (local777 = 0; local777 < 8; local777++) {
@@ -4523,7 +4523,7 @@ public class SceneGraph {
                         }
                     }
                     if (local153 != 0 && local38 != local153) {
-                        local242 = FloorOverlayTypeList.method4395(local153 - 1);
+                        local242 = FloTypeList.method4395(local153 - 1);
                         if (local242.blend && local242.baseColor != -1) {
                             local131 = anIntArray300[(arg5[local12][local17 - 1] & 0x3) + arg7[local12][local17 - 1] * 4];
                             for (local777 = 0; local777 < 8; local777++) {
@@ -4538,7 +4538,7 @@ public class SceneGraph {
                         }
                     }
                     if (local190 != 0 && local38 != local190) {
-                        local242 = FloorOverlayTypeList.method4395(local190 - 1);
+                        local242 = FloTypeList.method4395(local190 - 1);
                         if (local242.blend && local242.baseColor != -1) {
                             local168 = anIntArray300[(arg5[local12 + 1][local17] + 1 & 0x3) + arg7[local12 + 1][local17] * 4];
                             for (local777 = 0; local777 < 8; local777++) {
@@ -4558,7 +4558,7 @@ public class SceneGraph {
                         local1068 = aBooleanArrayArray4[local777 == local153 ? local131 : 0];
                         @Pc(1077) boolean[] local1077 = aBooleanArrayArray4[local143 == local777 ? local129 : 0];
                         local1086 = aBooleanArrayArray4[local190 == local777 ? local168 : 0];
-                        @Pc(1092) FloorOverlayType local1092 = FloorOverlayTypeList.method4395(local777 - 1);
+                        @Pc(1092) FloType local1092 = FloTypeList.method4395(local777 - 1);
                         @Pc(1097) GlTile local1097 = method4212(local10, local1092);
                         local1097.anInt2482 += 5;
                         local1097.anInt2482 += local1077.length - 2;
@@ -4586,7 +4586,7 @@ public class SceneGraph {
                     local30 = arg3;
                 }
                 if (local127 != 0) {
-                    @Pc(1250) FloorOverlayType local1250 = FloorOverlayTypeList.method4395(local127 - 1);
+                    @Pc(1250) FloType local1250 = FloTypeList.method4395(local127 - 1);
                     if (local1250.baseColor == -1) {
                         continue;
                     }
@@ -4615,12 +4615,12 @@ public class SceneGraph {
                     local226 = arg9[local12 + 1][local17 - 1] & 0xFF;
                     local1035 = arg9[local12 + 1][local17 + 1] & 0xFF;
                     @Pc(1527) byte local1527;
-                    @Pc(1496) FloorOverlayType local1496;
+                    @Pc(1496) FloType local1496;
                     @Pc(1571) int local1571;
                     if (local214 == 0 || local214 == local127) {
                         local214 = 0;
                     } else {
-                        local1496 = FloorOverlayTypeList.method4395(local214 - 1);
+                        local1496 = FloTypeList.method4395(local214 - 1);
                         if (local1496.blend && local1496.baseColor != -1) {
                             local274 = arg5[local12 - 1][local17 + 1];
                             local1527 = arg7[local12 - 1][local17 + 1];
@@ -4647,7 +4647,7 @@ public class SceneGraph {
                     if (local202 == 0 || local127 == local202) {
                         local202 = 0;
                     } else {
-                        local1496 = FloorOverlayTypeList.method4395(local202 - 1);
+                        local1496 = FloTypeList.method4395(local202 - 1);
                         if (local1496.blend && local1496.baseColor != -1) {
                             local274 = arg5[local12 - 1][local17 - 1];
                             local1527 = arg7[local12 - 1][local17 - 1];
@@ -4673,7 +4673,7 @@ public class SceneGraph {
                     if (local226 == 0 || local226 == local127) {
                         local226 = 0;
                     } else {
-                        local1496 = FloorOverlayTypeList.method4395(local226 - 1);
+                        local1496 = FloTypeList.method4395(local226 - 1);
                         if (local1496.blend && local1496.baseColor != -1) {
                             local274 = arg5[local12 + 1][local17 - 1];
                             local1527 = arg7[local12 + 1][local17 - 1];
@@ -4699,7 +4699,7 @@ public class SceneGraph {
                     if (local1035 == 0 || local127 == local1035) {
                         local1035 = 0;
                     } else {
-                        local1496 = FloorOverlayTypeList.method4395(local1035 - 1);
+                        local1496 = FloTypeList.method4395(local1035 - 1);
                         if (local1496.blend && local1496.baseColor != -1) {
                             local1527 = arg7[local12 + 1][local17 + 1];
                             local274 = arg5[local12 + 1][local17 + 1];
@@ -4724,7 +4724,7 @@ public class SceneGraph {
                     }
                     @Pc(2003) int local2003;
                     if (local163 != 0 && local163 != local127) {
-                        local1496 = FloorOverlayTypeList.method4395(local163 - 1);
+                        local1496 = FloTypeList.method4395(local163 - 1);
                         if (local1496.blend && local1496.baseColor != -1) {
                             local133 = anIntArray300[arg7[local12][local17 + 1] * 4 + (arg5[local12][local17 + 1] + 2 & 0x3)];
                             for (local2003 = 0; local2003 < 8; local2003++) {
@@ -4739,7 +4739,7 @@ public class SceneGraph {
                         }
                     }
                     if (local153 != 0 && local127 != local153) {
-                        local1496 = FloorOverlayTypeList.method4395(local153 - 1);
+                        local1496 = FloTypeList.method4395(local153 - 1);
                         if (local1496.blend && local1496.baseColor != -1) {
                             local131 = anIntArray300[(arg5[local12 - 1][local17] + 3 & 0x3) + arg7[local12 - 1][local17] * 4];
                             for (local2003 = 0; local2003 < 8; local2003++) {
@@ -4754,7 +4754,7 @@ public class SceneGraph {
                         }
                     }
                     if (local190 != 0 && local190 != local127) {
-                        local1496 = FloorOverlayTypeList.method4395(local190 - 1);
+                        local1496 = FloTypeList.method4395(local190 - 1);
                         if (local1496.blend && local1496.baseColor != -1) {
                             local168 = anIntArray300[(arg5[local12][local17 - 1] & 0x3) + arg7[local12][local17 - 1] * 4];
                             for (local2003 = 0; local2003 < 8; local2003++) {
@@ -4769,7 +4769,7 @@ public class SceneGraph {
                         }
                     }
                     if (local180 != 0 && local180 != local127) {
-                        local1496 = FloorOverlayTypeList.method4395(local180 - 1);
+                        local1496 = FloTypeList.method4395(local180 - 1);
                         if (local1496.blend && local1496.baseColor != -1) {
                             local143 = anIntArray300[arg7[local12 + 1][local17] * 4 + (arg5[local12 + 1][local17] + 1 & 0x3)];
                             for (local2003 = 0; local2003 < 8; local2003++) {
@@ -4789,7 +4789,7 @@ public class SceneGraph {
                         local1068 = aBooleanArrayArray4[local153 == local2003 ? local131 : 0];
                         local1086 = aBooleanArrayArray4[local2003 == local190 ? local168 : 0];
                         @Pc(2318) boolean[] local2318 = aBooleanArrayArray4[local2003 == local180 ? local143 : 0];
-                        @Pc(2324) FloorOverlayType local2324 = FloorOverlayTypeList.method4395(local2003 - 1);
+                        @Pc(2324) FloType local2324 = FloTypeList.method4395(local2003 - 1);
                         @Pc(2329) GlTile local2329 = method4212(local10, local2324);
                         @Pc(2345) int local2345 = method588(local2324.material, local2324.baseColor, arg6[local12][local17]) << 8 | 0xFF;
                         @Pc(2365) int local2365 = method588(local2324.material, local2324.baseColor, arg6[local12 + 1][local17]) << 8 | 0xFF;
@@ -4855,7 +4855,7 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!tk", name = "a", descriptor = "(Lclient!sc;ZLclient!wl;)Lclient!hg;")
-    public static GlTile method4212(@OriginalArg(0) HashTable arg0, @OriginalArg(2) FloorOverlayType arg1) {
+    public static GlTile method4212(@OriginalArg(0) HashTable arg0, @OriginalArg(2) FloType arg1) {
         @Pc(23) long local23 = (long) ((arg1.material + 1 << 16) + arg1.materialScale) + ((long) arg1.textureBrightness << 56) + ((long) arg1.waterColor << 32);
         @Pc(38) GlTile local38 = (GlTile) arg0.get(local23);
         if (local38 == null) {

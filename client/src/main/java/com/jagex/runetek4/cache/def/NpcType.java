@@ -383,9 +383,9 @@ public final class NpcType {
 	public NpcType getMultiNPC() {
 		@Pc(5) int i = -1;
 		if (this.multiNpcVarbit != -1) {
-			i = VarbitDefinition.getVarbitValue(this.multiNpcVarbit);
+			i = VarbitType.getVarbitValue(this.multiNpcVarbit);
 		} else if (this.multiNpcVarp != -1) {
-			i = VarPlayerDefinition.activeVarps[this.multiNpcVarp];
+			i = VarpDomain.activeVarps[this.multiNpcVarp];
 		}
 		if (i < 0 || i >= this.multiNpcs.length - 1 || this.multiNpcs[i] == -1) {
 			@Pc(55) int local55 = this.multiNpcs[this.multiNpcs.length - 1];
@@ -402,9 +402,9 @@ public final class NpcType {
 		}
 		@Pc(16) int local16 = -1;
 		if (this.multiNpcVarbit != -1) {
-			local16 = VarbitDefinition.getVarbitValue(this.multiNpcVarbit);
+			local16 = VarbitType.getVarbitValue(this.multiNpcVarbit);
 		} else if (this.multiNpcVarp != -1) {
-			local16 = VarPlayerDefinition.activeVarps[this.multiNpcVarp];
+			local16 = VarpDomain.activeVarps[this.multiNpcVarp];
 		}
 		if (local16 < 0 || local16 >= this.multiNpcs.length - 1 || this.multiNpcs[local16] == -1) {
 			@Pc(62) int local62 = this.multiNpcs[this.multiNpcs.length - 1];

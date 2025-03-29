@@ -6,14 +6,14 @@ public final class Static119 {
 
 	@OriginalMember(owner = "client!je", name = "j", descriptor = "(I)I")
 	public static int method2385() {
-		if (Static203.aMapElementList_1 == null) {
+		if (WorldMap.labels == null) {
 			return -1;
 		}
-		while (Static232.anInt5212 < Static203.aMapElementList_1.anInt5074) {
-			if (Static203.aMapElementList_1.method3897(Static232.anInt5212)) {
-				return Static232.anInt5212++;
+		while (WorldMap.anInt5212 < WorldMap.labels.anInt5074) {
+			if (WorldMap.labels.method3897(WorldMap.anInt5212)) {
+				return WorldMap.anInt5212++;
 			}
-			Static232.anInt5212++;
+			WorldMap.anInt5212++;
 		}
 		return -1;
 	}

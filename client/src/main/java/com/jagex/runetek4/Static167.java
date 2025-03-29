@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static167 {
 
-	@OriginalMember(owner = "runetek4.client!nd", name = "x", descriptor = "Lclient!na;")
-	public static final JString aClass100_783 = JString.parse(")4p=");
-
 	@OriginalMember(owner = "runetek4.client!nd", name = "a", descriptor = "(ZLclient!qb;)V")
 	public static void method3170(@OriginalArg(1) PcmStream arg0) {
 		if (arg0.sound != null) {
