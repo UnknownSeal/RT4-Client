@@ -1,6 +1,5 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -205,23 +204,23 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		}
 		local41 = arg0 + arg1 * SoftwareRaster.width;
 		@Pc(125) int local125 = SoftwareRaster.width - arg2;
-		if (arg1 + arg3 > Rasterizer.clipBottom) {
-			arg3 -= arg1 + arg3 - Rasterizer.clipBottom;
+		if (arg1 + arg3 > SoftwareRaster.clipBottom) {
+			arg3 -= arg1 + arg3 - SoftwareRaster.clipBottom;
 		}
 		@Pc(145) int local145;
-		if (arg1 < Rasterizer.clipTop) {
-			local145 = Rasterizer.clipTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local145 = SoftwareRaster.clipTop - arg1;
 			arg3 -= local145;
 			local41 += local145 * SoftwareRaster.width;
 			local9 += local27 * local145;
 		}
-		if (arg0 + arg2 > Rasterizer.clipRight) {
-			local145 = arg0 + arg2 - Rasterizer.clipRight;
+		if (arg0 + arg2 > SoftwareRaster.clipRight) {
+			local145 = arg0 + arg2 - SoftwareRaster.clipRight;
 			arg2 -= local145;
 			local125 += local145;
 		}
-		if (arg0 < Rasterizer.clipLeft) {
-			local145 = Rasterizer.clipLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local145 = SoftwareRaster.clipLeft - arg0;
 			arg2 -= local145;
 			local41 += local145;
 			local7 += local21 * local145;
@@ -284,27 +283,27 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		@Pc(27) int local27 = SoftwareRaster.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < Rasterizer.clipTop) {
-			local36 = Rasterizer.clipTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local36 = SoftwareRaster.clipTop - arg1;
 			local20 -= local36;
-			arg1 = Rasterizer.clipTop;
+			arg1 = SoftwareRaster.clipTop;
 			local17 = local36 * local23;
 			local15 += local36 * SoftwareRaster.width;
 		}
-		if (arg1 + local20 > Rasterizer.clipBottom) {
-			local20 -= arg1 + local20 - Rasterizer.clipBottom;
+		if (arg1 + local20 > SoftwareRaster.clipBottom) {
+			local20 -= arg1 + local20 - SoftwareRaster.clipBottom;
 		}
-		if (arg0 < Rasterizer.clipLeft) {
-			local36 = Rasterizer.clipLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local36 = SoftwareRaster.clipLeft - arg0;
 			local23 -= local36;
-			arg0 = Rasterizer.clipLeft;
+			arg0 = SoftwareRaster.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > Rasterizer.clipRight) {
-			local36 = arg0 + local23 - Rasterizer.clipRight;
+		if (arg0 + local23 > SoftwareRaster.clipRight) {
+			local36 = arg0 + local23 - SoftwareRaster.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
@@ -362,23 +361,23 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		}
 		local41 = arg0 + arg1 * SoftwareRaster.width;
 		@Pc(125) int local125 = SoftwareRaster.width - arg2;
-		if (arg1 + arg3 > Rasterizer.clipBottom) {
-			arg3 -= arg1 + arg3 - Rasterizer.clipBottom;
+		if (arg1 + arg3 > SoftwareRaster.clipBottom) {
+			arg3 -= arg1 + arg3 - SoftwareRaster.clipBottom;
 		}
 		@Pc(145) int local145;
-		if (arg1 < Rasterizer.clipTop) {
-			local145 = Rasterizer.clipTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local145 = SoftwareRaster.clipTop - arg1;
 			arg3 -= local145;
 			local41 += local145 * SoftwareRaster.width;
 			local9 += local27 * local145;
 		}
-		if (arg0 + arg2 > Rasterizer.clipRight) {
-			local145 = arg0 + arg2 - Rasterizer.clipRight;
+		if (arg0 + arg2 > SoftwareRaster.clipRight) {
+			local145 = arg0 + arg2 - SoftwareRaster.clipRight;
 			arg2 -= local145;
 			local125 += local145;
 		}
-		if (arg0 < Rasterizer.clipLeft) {
-			local145 = Rasterizer.clipLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local145 = SoftwareRaster.clipLeft - arg0;
 			arg2 -= local145;
 			local41 += local145;
 			local7 += local21 * local145;
@@ -399,27 +398,27 @@ public final class SoftwareIndexedSprite extends IndexedSprite {
 		@Pc(27) int local27 = SoftwareRaster.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < Rasterizer.clipTop) {
-			local36 = Rasterizer.clipTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local36 = SoftwareRaster.clipTop - arg1;
 			local20 -= local36;
-			arg1 = Rasterizer.clipTop;
+			arg1 = SoftwareRaster.clipTop;
 			local17 = local36 * local23;
 			local15 += local36 * SoftwareRaster.width;
 		}
-		if (arg1 + local20 > Rasterizer.clipBottom) {
-			local20 -= arg1 + local20 - Rasterizer.clipBottom;
+		if (arg1 + local20 > SoftwareRaster.clipBottom) {
+			local20 -= arg1 + local20 - SoftwareRaster.clipBottom;
 		}
-		if (arg0 < Rasterizer.clipLeft) {
-			local36 = Rasterizer.clipLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local36 = SoftwareRaster.clipLeft - arg0;
 			local23 -= local36;
-			arg0 = Rasterizer.clipLeft;
+			arg0 = SoftwareRaster.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > Rasterizer.clipRight) {
-			local36 = arg0 + local23 - Rasterizer.clipRight;
+		if (arg0 + local23 > SoftwareRaster.clipRight) {
+			local36 = arg0 + local23 - SoftwareRaster.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;

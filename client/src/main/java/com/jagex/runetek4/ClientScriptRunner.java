@@ -875,8 +875,8 @@ public final class ClientScriptRunner {
 																bottom = GlRaster.clipBottom;
 																top = GlRaster.clipTop;
 															} else {
-																top = Rasterizer.clipTop;
-																bottom = Rasterizer.clipBottom;
+																top = SoftwareRaster.clipTop;
+																bottom = SoftwareRaster.clipBottom;
 															}
 															@Pc(1611) int local1611;
 															if (top > dragY + color && local1571.scrollY > 0) {
@@ -1301,7 +1301,7 @@ public final class ClientScriptRunner {
 													if (GlRenderer.enabled) {
 														GlRaster.drawDiagonalLine(local123, local276, local468, memory, component.color);
 													} else {
-														Rasterizer.drawDiagonalLine(local123, local276, local468, memory, component.color);
+														SoftwareRaster.drawDiagonalLine(local123, local276, local468, memory, component.color);
 													}
 												} else if (GlRenderer.enabled) {
 													GlRaster.method1181(local123, local276, local468, memory, component.color, component.lineWidth);
@@ -1524,7 +1524,7 @@ public final class ClientScriptRunner {
 					local44.render(arg0, arg1);
 				}
 			} else {
-				Rasterizer.method2504(arg0, arg1, arg2.anIntArray37, arg2.anIntArray45);
+				SoftwareRaster.method2504(arg0, arg1, arg2.anIntArray37, arg2.anIntArray45);
 			}
 		} else if (GlRenderer.enabled) {
 			((GlSprite) Static106.aClass3_Sub2_Sub1_7).renderRotatedTransparent(arg0, arg1, arg2.width, arg2.height, Static106.aClass3_Sub2_Sub1_7.width / 2, Static106.aClass3_Sub2_Sub1_7.height / 2, Camera.orbitCameraYaw, 256, (GlSprite) arg2.method489(false));
@@ -1613,12 +1613,12 @@ public final class ClientScriptRunner {
 		if (!GlRenderer.enabled) {
 			SoftwareRaster.fillRect(arg2, arg3 + 16, 16, arg4 - 32, anInt4306);
 			SoftwareRaster.fillRect(arg2, local54 + arg3 + 16, 16, local35, anInt1704);
-			Rasterizer.drawVerticalLine(arg2, local54 + arg3 + 16, local35, anInt4938);
-			Rasterizer.drawVerticalLine(arg2 + 1, local54 + 16 + arg3, local35, anInt4938);
+			SoftwareRaster.drawVerticalLine(arg2, local54 + arg3 + 16, local35, anInt4938);
+			SoftwareRaster.drawVerticalLine(arg2 + 1, local54 + 16 + arg3, local35, anInt4938);
 			SoftwareRaster.drawHorizontalLine(arg2, arg3 + local54 + 16, 16, anInt4938);
 			SoftwareRaster.drawHorizontalLine(arg2, arg3 + local54 + 17, 16, anInt4938);
-			Rasterizer.drawVerticalLine(arg2 + 15, local54 + 16 + arg3, local35, anInt671);
-			Rasterizer.drawVerticalLine(arg2 + 14, arg3 - -17 - -local54, local35 - 1, anInt671);
+			SoftwareRaster.drawVerticalLine(arg2 + 15, local54 + 16 + arg3, local35, anInt671);
+			SoftwareRaster.drawVerticalLine(arg2 + 14, arg3 - -17 - -local54, local35 - 1, anInt671);
 			SoftwareRaster.drawHorizontalLine(arg2, local35 + arg3 + local54 + 15, 16, anInt671);
 			SoftwareRaster.drawHorizontalLine(arg2 + 1, local35 + arg3 - (-local54 + -14), 15, anInt671);
 			return;

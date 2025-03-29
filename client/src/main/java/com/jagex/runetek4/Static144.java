@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.game.config.flotype.FloorOverlayType;
 import com.jagex.runetek4.game.config.msitype.MSIType;
-import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -135,24 +134,24 @@ public final class Static144 {
 										local546 -= 4;
 									}
 									if (local546 == 1) {
-										Rasterizer.drawVerticalLine(local47, local222, local238, local575);
+										SoftwareRaster.drawVerticalLine(local47, local222, local238, local575);
 									} else if (local546 == 2) {
 										SoftwareRaster.drawHorizontalLine(local47, local222, local62, local575);
 									} else if (local546 == 3) {
-										Rasterizer.drawVerticalLine(local437, local222, local238, local575);
+										SoftwareRaster.drawVerticalLine(local437, local222, local238, local575);
 									} else if (local546 == 4) {
 										SoftwareRaster.drawHorizontalLine(local47, local569, local62, local575);
 									} else if (local546 == 9) {
-										Rasterizer.drawVerticalLine(local47, local222, local238, 16777215);
+										SoftwareRaster.drawVerticalLine(local47, local222, local238, 16777215);
 										SoftwareRaster.drawHorizontalLine(local47, local222, local62, local575);
 									} else if (local546 == 10) {
-										Rasterizer.drawVerticalLine(local437, local222, local238, 16777215);
+										SoftwareRaster.drawVerticalLine(local437, local222, local238, 16777215);
 										SoftwareRaster.drawHorizontalLine(local47, local222, local62, local575);
 									} else if (local546 == 11) {
-										Rasterizer.drawVerticalLine(local437, local222, local238, 16777215);
+										SoftwareRaster.drawVerticalLine(local437, local222, local238, 16777215);
 										SoftwareRaster.drawHorizontalLine(local47, local569, local62, local575);
 									} else if (local546 == 12) {
-										Rasterizer.drawVerticalLine(local47, local222, local238, 16777215);
+										SoftwareRaster.drawVerticalLine(local47, local222, local238, 16777215);
 										SoftwareRaster.drawHorizontalLine(local47, local569, local62, local575);
 									} else if (local546 == 17) {
 										SoftwareRaster.drawHorizontalLine(local47, local222, 1, local575);

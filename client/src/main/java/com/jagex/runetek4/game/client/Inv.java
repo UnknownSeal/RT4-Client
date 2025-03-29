@@ -181,7 +181,7 @@ public final class Inv extends Node {
 		}
 		@Pc(118) int[] pixels = SoftwareRaster.pixels;
 		@Pc(120) int width = SoftwareRaster.width;
-		@Pc(122) int height = Rasterizer.destinationHeight;
+		@Pc(122) int height = SoftwareRaster.height;
 		@Pc(125) int[] clip = new int[4];
 		SoftwareRaster.saveClip(clip);
 		@Pc(133) SoftwareSprite canvas = new SoftwareSprite(36, 32);

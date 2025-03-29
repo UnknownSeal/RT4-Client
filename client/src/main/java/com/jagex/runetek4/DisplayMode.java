@@ -221,7 +221,7 @@ public final class DisplayMode {
 				SceneGraph.clear();
 				SoftwareRaster.frameBuffer = null;
 				SoftwareRaster.frameBuffer = FrameBuffer.create(GameShell.canvasHeigth, GameShell.canvasWidth, GameShell.canvas);
-				Rasterizer.clear();
+				SoftwareRaster.clear();
 				if (client.gameState == 5) {
 					LoadingBar.render(true, Fonts.b12Full);
 				} else {

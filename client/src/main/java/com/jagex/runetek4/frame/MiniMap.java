@@ -8,7 +8,6 @@ import com.jagex.runetek4.cache.media.component.Component;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.game.config.msitype.MSIType;
-import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.tile.GenericTile;
 import com.jagex.runetek4.scene.tile.ShapedTile;
@@ -154,13 +153,13 @@ public class MiniMap {
                             if (GlRenderer.enabled) {
                                 GlFont.method1188((GlSprite) arg3.method489(false));
                             } else {
-                                Rasterizer.method2486(arg3.anIntArray37, arg3.anIntArray45);
+                                SoftwareRaster.method2486(arg3.anIntArray37, arg3.anIntArray45);
                             }
                             local156.renderParagraphAlpha(LoginManager.mapElementList.aClass100Array153[local117], arg2 + local245 + arg3.width / 2, arg1 + arg3.height / 2 + -npcZ, local239, 50, local271, 0, 1, 0, 0);
                             if (GlRenderer.enabled) {
                                 GlFont.method1173();
                             } else {
-                                Rasterizer.method2482();
+                                SoftwareRaster.method2482();
                             }
                         }
                     }
@@ -284,7 +283,7 @@ public class MiniMap {
                 local1041.render(arg2, arg1);
             }
         } else {
-            Rasterizer.method2504(arg2, arg1, arg3.anIntArray37, arg3.anIntArray45);
+            SoftwareRaster.method2504(arg2, arg1, arg3.anIntArray37, arg3.anIntArray45);
         }
         InterfaceList.rectangleRedraw[arg0] = true;
     }

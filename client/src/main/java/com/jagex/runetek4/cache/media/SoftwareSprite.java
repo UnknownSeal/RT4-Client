@@ -2,7 +2,6 @@ package com.jagex.runetek4.cache.media;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -99,27 +98,27 @@ public class SoftwareSprite extends Sprite {
 		@Pc(27) int local27 = SoftwareRaster.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < Rasterizer.clipTop) {
-			local36 = Rasterizer.clipTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local36 = SoftwareRaster.clipTop - arg1;
 			local20 -= local36;
-			arg1 = Rasterizer.clipTop;
+			arg1 = SoftwareRaster.clipTop;
 			local17 = local36 * local23;
 			local15 += local36 * SoftwareRaster.width;
 		}
-		if (arg1 + local20 > Rasterizer.clipBottom) {
-			local20 -= arg1 + local20 - Rasterizer.clipBottom;
+		if (arg1 + local20 > SoftwareRaster.clipBottom) {
+			local20 -= arg1 + local20 - SoftwareRaster.clipBottom;
 		}
-		if (arg0 < Rasterizer.clipLeft) {
-			local36 = Rasterizer.clipLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local36 = SoftwareRaster.clipLeft - arg0;
 			local23 -= local36;
-			arg0 = Rasterizer.clipLeft;
+			arg0 = SoftwareRaster.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > Rasterizer.clipRight) {
-			local36 = arg0 + local23 - Rasterizer.clipRight;
+		if (arg0 + local23 > SoftwareRaster.clipRight) {
+			local36 = arg0 + local23 - SoftwareRaster.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
@@ -216,17 +215,17 @@ public class SoftwareSprite extends Sprite {
 		local166 = local166 + 15 >> 4;
 		local196 >>= 0x4;
 		local198 = local198 + 15 >> 4;
-		if (local164 < Rasterizer.clipLeft) {
-			local164 = Rasterizer.clipLeft;
+		if (local164 < SoftwareRaster.clipLeft) {
+			local164 = SoftwareRaster.clipLeft;
 		}
-		if (local166 > Rasterizer.clipRight) {
-			local166 = Rasterizer.clipRight;
+		if (local166 > SoftwareRaster.clipRight) {
+			local166 = SoftwareRaster.clipRight;
 		}
-		if (local196 < Rasterizer.clipTop) {
-			local196 = Rasterizer.clipTop;
+		if (local196 < SoftwareRaster.clipTop) {
+			local196 = SoftwareRaster.clipTop;
 		}
-		if (local198 > Rasterizer.clipBottom) {
-			local198 = Rasterizer.clipBottom;
+		if (local198 > SoftwareRaster.clipBottom) {
+			local198 = SoftwareRaster.clipBottom;
 		}
 		local166 = local164 - local166;
 		if (local166 >= 0) {
@@ -664,27 +663,27 @@ public class SoftwareSprite extends Sprite {
 		@Pc(36) int local36 = SoftwareRaster.width - local32;
 		@Pc(40) int local40 = local32 + local32;
 		@Pc(47) int local47;
-		if (arg1 < Rasterizer.clipTop) {
-			local47 = Rasterizer.clipTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local47 = SoftwareRaster.clipTop - arg1;
 			local29 -= local47;
-			arg1 = Rasterizer.clipTop;
+			arg1 = SoftwareRaster.clipTop;
 			local26 += local47 * local32;
 			local21 += local47 * SoftwareRaster.width;
 		}
-		if (arg1 + local29 > Rasterizer.clipBottom) {
-			local29 -= arg1 + local29 - Rasterizer.clipBottom;
+		if (arg1 + local29 > SoftwareRaster.clipBottom) {
+			local29 -= arg1 + local29 - SoftwareRaster.clipBottom;
 		}
-		if (arg0 < Rasterizer.clipLeft) {
-			local47 = Rasterizer.clipLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local47 = SoftwareRaster.clipLeft - arg0;
 			local32 -= local47;
-			arg0 = Rasterizer.clipLeft;
+			arg0 = SoftwareRaster.clipLeft;
 			local26 -= local47;
 			local21 += local47;
 			local40 -= local47;
 			local36 += local47;
 		}
-		if (arg0 + local32 > Rasterizer.clipRight) {
-			local47 = arg0 + local32 - Rasterizer.clipRight;
+		if (arg0 + local32 > SoftwareRaster.clipRight) {
+			local47 = arg0 + local32 - SoftwareRaster.clipRight;
 			local32 -= local47;
 			local40 -= local47;
 			local36 += local47;
@@ -706,27 +705,27 @@ public class SoftwareSprite extends Sprite {
 		@Pc(27) int local27 = SoftwareRaster.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < Rasterizer.clipTop) {
-			local36 = Rasterizer.clipTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local36 = SoftwareRaster.clipTop - arg1;
 			local20 -= local36;
-			arg1 = Rasterizer.clipTop;
+			arg1 = SoftwareRaster.clipTop;
 			local17 = local36 * local23;
 			local15 += local36 * SoftwareRaster.width;
 		}
-		if (arg1 + local20 > Rasterizer.clipBottom) {
-			local20 -= arg1 + local20 - Rasterizer.clipBottom;
+		if (arg1 + local20 > SoftwareRaster.clipBottom) {
+			local20 -= arg1 + local20 - SoftwareRaster.clipBottom;
 		}
-		if (arg0 < Rasterizer.clipLeft) {
-			local36 = Rasterizer.clipLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local36 = SoftwareRaster.clipLeft - arg0;
 			local23 -= local36;
-			arg0 = Rasterizer.clipLeft;
+			arg0 = SoftwareRaster.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > Rasterizer.clipRight) {
-			local36 = arg0 + local23 - Rasterizer.clipRight;
+		if (arg0 + local23 > SoftwareRaster.clipRight) {
+			local36 = arg0 + local23 - SoftwareRaster.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
@@ -748,27 +747,27 @@ public class SoftwareSprite extends Sprite {
 		@Pc(27) int local27 = SoftwareRaster.width - local23;
 		@Pc(29) int local29 = 0;
 		@Pc(36) int local36;
-		if (arg1 < Rasterizer.clipTop) {
-			local36 = Rasterizer.clipTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local36 = SoftwareRaster.clipTop - arg1;
 			local20 -= local36;
-			arg1 = Rasterizer.clipTop;
+			arg1 = SoftwareRaster.clipTop;
 			local17 = local36 * local23;
 			local15 += local36 * SoftwareRaster.width;
 		}
-		if (arg1 + local20 > Rasterizer.clipBottom) {
-			local20 -= arg1 + local20 - Rasterizer.clipBottom;
+		if (arg1 + local20 > SoftwareRaster.clipBottom) {
+			local20 -= arg1 + local20 - SoftwareRaster.clipBottom;
 		}
-		if (arg0 < Rasterizer.clipLeft) {
-			local36 = Rasterizer.clipLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local36 = SoftwareRaster.clipLeft - arg0;
 			local23 -= local36;
-			arg0 = Rasterizer.clipLeft;
+			arg0 = SoftwareRaster.clipLeft;
 			local17 += local36;
 			local15 += local36;
 			local29 = local36;
 			local27 += local36;
 		}
-		if (arg0 + local23 > Rasterizer.clipRight) {
-			local36 = arg0 + local23 - Rasterizer.clipRight;
+		if (arg0 + local23 > SoftwareRaster.clipRight) {
+			local36 = arg0 + local23 - SoftwareRaster.clipRight;
 			local23 -= local36;
 			local29 += local36;
 			local27 += local36;
@@ -841,7 +840,7 @@ public class SoftwareSprite extends Sprite {
 
 	@OriginalMember(owner = "runetek4.client!mm", name = "a", descriptor = "(II[I[I)V")
 	public final void drawImage(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int[] arg2, @OriginalArg(3) int[] arg3) {
-		if (Rasterizer.clipBottom - Rasterizer.clipTop != arg2.length) {
+		if (SoftwareRaster.clipBottom - SoftwareRaster.clipTop != arg2.length) {
 			throw new IllegalStateException();
 		}
 		arg0 += this.xOffset;
@@ -853,27 +852,27 @@ public class SoftwareSprite extends Sprite {
 		@Pc(33) int local33 = 0;
 		@Pc(39) int local39 = arg0 + arg1 * SoftwareRaster.width;
 		@Pc(46) int local46;
-		if (arg1 < Rasterizer.clipTop) {
-			local46 = Rasterizer.clipTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local46 = SoftwareRaster.clipTop - arg1;
 			local24 -= local46;
-			arg1 = Rasterizer.clipTop;
+			arg1 = SoftwareRaster.clipTop;
 			local21 = local46 * local27;
 			local39 += local46 * SoftwareRaster.width;
 		}
-		if (arg1 + local24 > Rasterizer.clipBottom) {
-			local24 -= arg1 + local24 - Rasterizer.clipBottom;
+		if (arg1 + local24 > SoftwareRaster.clipBottom) {
+			local24 -= arg1 + local24 - SoftwareRaster.clipBottom;
 		}
-		if (arg0 < Rasterizer.clipLeft) {
-			local46 = Rasterizer.clipLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local46 = SoftwareRaster.clipLeft - arg0;
 			local27 -= local46;
-			arg0 = Rasterizer.clipLeft;
+			arg0 = SoftwareRaster.clipLeft;
 			local21 += local46;
 			local39 += local46;
 			local33 = local46;
 			local31 += local46;
 		}
-		if (arg0 + local27 > Rasterizer.clipRight) {
-			local46 = arg0 + local27 - Rasterizer.clipRight;
+		if (arg0 + local27 > SoftwareRaster.clipRight) {
+			local46 = arg0 + local27 - SoftwareRaster.clipRight;
 			local27 -= local46;
 			local33 += local46;
 			local31 += local46;
@@ -881,8 +880,8 @@ public class SoftwareSprite extends Sprite {
 		if (local27 <= 0 || local24 <= 0) {
 			return;
 		}
-		local46 = arg0 - Rasterizer.clipLeft;
-		@Pc(142) int local142 = arg1 - Rasterizer.clipTop;
+		local46 = arg0 - SoftwareRaster.clipLeft;
+		@Pc(142) int local142 = arg1 - SoftwareRaster.clipTop;
 		for (@Pc(144) int local144 = local142; local144 < local142 + local24; local144++) {
 			@Pc(153) int local153 = arg2[local144];
 			@Pc(157) int local157 = arg3[local144];
@@ -1006,23 +1005,23 @@ public class SoftwareSprite extends Sprite {
 		}
 		local46 = arg0 + arg1 * SoftwareRaster.width;
 		@Pc(130) int local130 = SoftwareRaster.width - arg2;
-		if (arg1 + arg3 > Rasterizer.clipBottom) {
-			arg3 -= arg1 + arg3 - Rasterizer.clipBottom;
+		if (arg1 + arg3 > SoftwareRaster.clipBottom) {
+			arg3 -= arg1 + arg3 - SoftwareRaster.clipBottom;
 		}
 		@Pc(150) int local150;
-		if (arg1 < Rasterizer.clipTop) {
-			local150 = Rasterizer.clipTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local150 = SoftwareRaster.clipTop - arg1;
 			arg3 -= local150;
 			local46 += local150 * SoftwareRaster.width;
 			local14 += local32 * local150;
 		}
-		if (arg0 + arg2 > Rasterizer.clipRight) {
-			local150 = arg0 + arg2 - Rasterizer.clipRight;
+		if (arg0 + arg2 > SoftwareRaster.clipRight) {
+			local150 = arg0 + arg2 - SoftwareRaster.clipRight;
 			arg2 -= local150;
 			local130 += local150;
 		}
-		if (arg0 < Rasterizer.clipLeft) {
-			local150 = Rasterizer.clipLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local150 = SoftwareRaster.clipLeft - arg0;
 			arg2 -= local150;
 			local46 += local150;
 			local12 += local26 * local150;
@@ -1095,23 +1094,23 @@ public class SoftwareSprite extends Sprite {
 		}
 		local46 = arg0 + arg1 * SoftwareRaster.width;
 		@Pc(130) int local130 = SoftwareRaster.width - arg2;
-		if (arg1 + arg3 > Rasterizer.clipBottom) {
-			arg3 -= arg1 + arg3 - Rasterizer.clipBottom;
+		if (arg1 + arg3 > SoftwareRaster.clipBottom) {
+			arg3 -= arg1 + arg3 - SoftwareRaster.clipBottom;
 		}
 		@Pc(150) int local150;
-		if (arg1 < Rasterizer.clipTop) {
-			local150 = Rasterizer.clipTop - arg1;
+		if (arg1 < SoftwareRaster.clipTop) {
+			local150 = SoftwareRaster.clipTop - arg1;
 			arg3 -= local150;
 			local46 += local150 * SoftwareRaster.width;
 			local14 += local32 * local150;
 		}
-		if (arg0 + arg2 > Rasterizer.clipRight) {
-			local150 = arg0 + arg2 - Rasterizer.clipRight;
+		if (arg0 + arg2 > SoftwareRaster.clipRight) {
+			local150 = arg0 + arg2 - SoftwareRaster.clipRight;
 			arg2 -= local150;
 			local130 += local150;
 		}
-		if (arg0 < Rasterizer.clipLeft) {
-			local150 = Rasterizer.clipLeft - arg0;
+		if (arg0 < SoftwareRaster.clipLeft) {
+			local150 = SoftwareRaster.clipLeft - arg0;
 			arg2 -= local150;
 			local46 += local150;
 			local12 += local26 * local150;

@@ -2,7 +2,6 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
 import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -69,10 +68,10 @@ public final class Static232 {
 			}
 		}
 		for (@Pc(285) Class3_Sub26 local285 = (Class3_Sub26) Static172.aClass69_97.head(); local285 != null; local285 = (Class3_Sub26) Static172.aClass69_97.next()) {
-			Rasterizer.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 15, local11);
-			Rasterizer.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 13, local11);
-			Rasterizer.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 11, local11);
-			Rasterizer.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 9, local11);
+			SoftwareRaster.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 15, local11);
+			SoftwareRaster.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 13, local11);
+			SoftwareRaster.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 11, local11);
+			SoftwareRaster.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 9, local11);
 			MapList.sprites[local285.id].render(local285.anInt4307 - 7, local285.anInt4314 + -7);
 		}
 		Static172.aClass69_97.clear();

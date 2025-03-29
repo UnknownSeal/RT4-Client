@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -27,7 +26,7 @@ public class TitleScreen {
         if (GlRenderer.enabled) {
             GlRaster.clear();
         } else {
-            Rasterizer.clear();
+            SoftwareRaster.clear();
         }
         Static78.aClass3_Sub2_Sub1_3 = Static130.method2514(arg0, Static262.bgId);
         @Pc(20) int local20 = GameShell.canvasHeigth;

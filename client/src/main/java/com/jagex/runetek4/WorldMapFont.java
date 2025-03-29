@@ -8,7 +8,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.PixelGrabber;
 
-import com.jagex.runetek4.media.Rasterizer;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -128,27 +127,27 @@ public final class WorldMapFont {
 		@Pc(57) int local57 = SoftwareRaster.width - local21;
 		@Pc(59) int local59 = 0;
 		@Pc(66) int local66;
-		if (local15 < Rasterizer.clipTop) {
-			local66 = Rasterizer.clipTop - local15;
+		if (local15 < SoftwareRaster.clipTop) {
+			local66 = SoftwareRaster.clipTop - local15;
 			local27 -= local66;
-			local15 = Rasterizer.clipTop;
+			local15 = SoftwareRaster.clipTop;
 			local47 += local66 * local21;
 			local53 += local66 * SoftwareRaster.width;
 		}
-		if (local15 + local27 >= Rasterizer.clipBottom) {
-			local27 -= local15 + local27 + 1 - Rasterizer.clipBottom;
+		if (local15 + local27 >= SoftwareRaster.clipBottom) {
+			local27 -= local15 + local27 + 1 - SoftwareRaster.clipBottom;
 		}
-		if (local7 < Rasterizer.clipLeft) {
-			local66 = Rasterizer.clipLeft - local7;
+		if (local7 < SoftwareRaster.clipLeft) {
+			local66 = SoftwareRaster.clipLeft - local7;
 			local21 -= local66;
-			local7 = Rasterizer.clipLeft;
+			local7 = SoftwareRaster.clipLeft;
 			local47 += local66;
 			local53 += local66;
 			local59 = local66;
 			local57 += local66;
 		}
-		if (local7 + local21 >= Rasterizer.clipRight) {
-			local66 = local7 + local21 + 1 - Rasterizer.clipRight;
+		if (local7 + local21 >= SoftwareRaster.clipRight) {
+			local66 = local7 + local21 + 1 - SoftwareRaster.clipRight;
 			local21 -= local66;
 			local59 += local66;
 			local57 += local66;
@@ -207,7 +206,7 @@ public final class WorldMapFont {
 	public final void method1508(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
 		@Pc(5) int local5 = this.method1510(arg0) / 2;
 		@Pc(8) int local8 = this.method1511();
-		if (arg1 - local5 <= Rasterizer.clipRight && (arg1 + local5 >= Rasterizer.clipLeft && (arg2 - local8 <= Rasterizer.clipBottom && arg2 >= 0))) {
+		if (arg1 - local5 <= SoftwareRaster.clipRight && (arg1 + local5 >= SoftwareRaster.clipLeft && (arg2 - local8 <= SoftwareRaster.clipBottom && arg2 >= 0))) {
 			this.method1502(arg0, arg1 - local5, arg2, arg3, true);
 		}
 	}
