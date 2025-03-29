@@ -563,7 +563,7 @@ public final class ClientScriptRunner {
 					@Pc(114) int local114 = arg1 + component.y;
 					@Pc(117) int alpha = component.alpha;
 					@Pc(123) int local123 = component.x + arg2;
-					if (Cheat.qaOpTest && (InterfaceList.getServerActiveProperties(component).anInt546 != 0 || component.type == 0) && alpha > 127) {
+					if (Cheat.qaOpTest && (InterfaceList.getServerActiveProperties(component).events != 0 || component.type == 0) && alpha > 127) {
 						alpha = 127;
 					}
 					@Pc(166) int local166;

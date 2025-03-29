@@ -337,7 +337,7 @@ public class InterfaceList {
     @OriginalMember(owner = "runetek4.client!runetek4.client", name = "c", descriptor = "(Lclient!be;)Z")
     public static boolean method947(@OriginalArg(0) Component arg0) {
         if (Cheat.qaOpTest) {
-            if (getServerActiveProperties(arg0).anInt546 != 0) {
+            if (getServerActiveProperties(arg0).events != 0) {
                 return false;
             }
             if (arg0.type == 0) {
@@ -552,7 +552,7 @@ public class InterfaceList {
         if (arg2.dynamicHeightValue == 4) {
             arg2.height = arg2.aspectHeight * arg2.width / arg2.aspectWidth;
         }
-        if (Cheat.qaOpTest && (getServerActiveProperties(arg2).anInt546 != 0 || arg2.type == 0)) {
+        if (Cheat.qaOpTest && (getServerActiveProperties(arg2).events != 0 || arg2.type == 0)) {
             if (arg2.height < 5 && arg2.width < 5) {
                 arg2.height = 5;
                 arg2.width = 5;
@@ -604,7 +604,7 @@ public class InterfaceList {
         } else {
             arg0.x = arg2 - (arg2 * arg0.baseX >> 14) - arg0.width;
         }
-        if (!Cheat.qaOpTest || getServerActiveProperties(arg0).anInt546 == 0 && arg0.type != 0) {
+        if (!Cheat.qaOpTest || getServerActiveProperties(arg0).events == 0 && arg0.type != 0) {
             return;
         }
         if (arg0.y < 0) {
@@ -737,7 +737,7 @@ public class InterfaceList {
     public static void method946(@OriginalArg(0) Component[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7) {
         for (@Pc(1) int local1 = 0; local1 < arg0.length; local1++) {
             @Pc(9) Component component = arg0[local1];
-            if (component != null && component.overlayer == arg1 && (!component.if3 || component.type == 0 || component.aBoolean25 || getServerActiveProperties(component).anInt546 != 0 || component == ClientScriptRunner.aClass13_1 || component.contentType == 1338) && (!component.if3 || !method947(component))) {
+            if (component != null && component.overlayer == arg1 && (!component.if3 || component.type == 0 || component.aBoolean25 || getServerActiveProperties(component).events != 0 || component == ClientScriptRunner.aClass13_1 || component.contentType == 1338) && (!component.if3 || !method947(component))) {
                 @Pc(50) int local50 = component.x + arg6;
                 @Pc(55) int local55 = component.y + arg7;
                 @Pc(61) int local61;
@@ -828,7 +828,7 @@ public class InterfaceList {
                         if (local221) {
                             Static40.method1015(Mouse.mouseClickY - local55, Mouse.mouseClickX - local50, component);
                         }
-                        if (ClientScriptRunner.aClass13_14 != null && ClientScriptRunner.aClass13_14 != component && local207 && getServerActiveProperties(component).method509()) {
+                        if (ClientScriptRunner.aClass13_14 != null && ClientScriptRunner.aClass13_14 != component && local207 && getServerActiveProperties(component).isDragTarget()) {
                             aClass13_12 = component;
                         }
                         if (component == ClientScriptRunner.aClass13_1) {

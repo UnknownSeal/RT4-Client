@@ -700,10 +700,10 @@ public class Protocol {
                                 local904 = (long) i + ((long) xp << 32);
                                 local1804 = (ServerActiveProperties) InterfaceList.properties.getNode(local904);
                                 if (local1804 != null) {
-                                    local1814 = new ServerActiveProperties(local1804.anInt546, ii);
+                                    local1814 = new ServerActiveProperties(local1804.events, ii);
                                     local1804.unlink();
                                 } else if (i == -1) {
-                                    local1814 = new ServerActiveProperties(InterfaceList.getComponent(xp).properties.anInt546, ii);
+                                    local1814 = new ServerActiveProperties(InterfaceList.getComponent(xp).properties.events, ii);
                                 } else {
                                     local1814 = new ServerActiveProperties(0, ii);
                                 }
@@ -3003,7 +3003,7 @@ public class Protocol {
                     local99 = MiniMenu.intArgs2[MiniMenu.menuActionRow - 1];
                     @Pc(103) Component local103 = InterfaceList.getComponent(local99);
                     @Pc(106) ServerActiveProperties local106 = InterfaceList.getServerActiveProperties(local103);
-                    if (local106.method511() || local106.method504()) {
+                    if (local106.isObjSwapEnabled() || local106.isObjReplaceEnabled()) {
                         InterfaceList.lastItemDragTime = 0;
                         InterfaceList.draggingClickedInventoryObject = false;
                         if (InterfaceList.clickedInventoryComponent != null) {

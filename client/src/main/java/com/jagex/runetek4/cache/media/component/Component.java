@@ -1163,7 +1163,7 @@ public final class Component {
 		this.dragRenderBehavior = packet.g1() == 1;
 		local567 = -1;
 		this.optionCircumfix = packet.gjstr();
-		if (Static199.method3594(local175) != 0) {
+		if (ServerActiveProperties.getTargetMask(local175) != 0) {
 			local567 = packet.g2();
 			this.anInt499 = packet.g2();
 			if (local567 == 65535) {

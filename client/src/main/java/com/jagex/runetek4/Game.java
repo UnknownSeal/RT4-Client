@@ -357,7 +357,7 @@ public class Game {
                         if (component.invSlotObjId[MiniMenu.mouseInvInterfaceIndex] <= 0) {
                             moveItemInsertionMode = 0;
                         }
-                        if (InterfaceList.getServerActiveProperties(component).method504()) {
+                        if (InterfaceList.getServerActiveProperties(component).isObjReplaceEnabled()) {
                             y = InterfaceList.selectedInventorySlot;
                             x = MiniMenu.mouseInvInterfaceIndex;
                             component.invSlotObjId[x] = component.invSlotObjId[y];
