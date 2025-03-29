@@ -646,7 +646,7 @@ public final class LocType {
 		if (this.params == null) {
 			return defaultValue;
 		} else {
-			@Pc(21) IntWrapper value = (IntWrapper) this.params.getNode(arg1);
+			@Pc(21) IntWrapper value = (IntWrapper) this.params.get(arg1);
 			return value == null ? defaultValue : value.value;
 		}
 	}
@@ -959,7 +959,7 @@ public final class LocType {
 		if (this.params == null) {
 			return defaultValue;
 		} else {
-			@Pc(26) JagStringWrapper value = (JagStringWrapper) this.params.getNode((long) key);
+			@Pc(26) JagStringWrapper value = (JagStringWrapper) this.params.get((long) key);
 			return value == null ? defaultValue : value.value;
 		}
 	}

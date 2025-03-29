@@ -143,7 +143,7 @@ public class AreaSoundManager {
 
     @OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(Lclient!e;I)V")
     public static void remove(@OriginalArg(0) Player player) {
-        @Pc(10) AreaSound areaSound = (AreaSound) playerSounds.getNode(player.username.encode37());
+        @Pc(10) AreaSound areaSound = (AreaSound) playerSounds.get(player.username.encode37());
         if (areaSound == null) {
             return;
         }

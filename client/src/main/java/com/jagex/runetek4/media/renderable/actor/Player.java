@@ -298,7 +298,7 @@ public final class Player extends PathingEntity {
 
 	@OriginalMember(owner = "runetek4.client!rg", name = "a", descriptor = "(Lclient!e;I)V")
 	public static void method4359(@OriginalArg(0) Player arg0) {
-		@Pc(12) AreaSound local12 = (AreaSound) AreaSoundManager.playerSounds.getNode(arg0.username.encode37());
+		@Pc(12) AreaSound local12 = (AreaSound) AreaSoundManager.playerSounds.get(arg0.username.encode37());
 		if (local12 == null) {
 			AreaSoundManager.add(arg0.movementQueueZ[0], null, 0, null, arg0.movementQueueX[0], plane, arg0);
 		} else {

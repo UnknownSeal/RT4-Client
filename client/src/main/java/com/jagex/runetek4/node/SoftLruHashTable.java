@@ -50,7 +50,7 @@ public final class SoftLruHashTable {
 
 	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(JB)V")
 	public final void remove(@OriginalArg(0) long arg0) {
-		@Pc(6) ReferenceNode node = (ReferenceNode) this.hashTable.getNode(arg0);
+		@Pc(6) ReferenceNode node = (ReferenceNode) this.hashTable.get(arg0);
 		if (node != null) {
 			node.unlink();
 			node.unlinkCachedNode();
@@ -111,7 +111,7 @@ public final class SoftLruHashTable {
 
 	@OriginalMember(owner = "runetek4.client!n", name = "b", descriptor = "(JB)Ljava/lang/Object;")
 	public final Object get(@OriginalArg(0) long arg0) {
-		@Pc(12) ReferenceNode local12 = (ReferenceNode) this.hashTable.getNode(arg0);
+		@Pc(12) ReferenceNode local12 = (ReferenceNode) this.hashTable.get(arg0);
 		if (local12 == null) {
 			return null;
 		}

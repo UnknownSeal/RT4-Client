@@ -763,7 +763,7 @@ public final class ClientScriptRunner {
 								}
 								local571 = dragY * 10000 / cardMemory;
 								local563 = objId * 100 / cardMemory;
-								@Pc(968) JString local968 = JString.concatenate(new JString[] { Cheat.DEBUG_CACHE, Static182.method3360(0, true, 2, (long) local571), aClass100_672, JString.parseInt(local563), aClass100_80});
+								@Pc(968) JString local968 = JString.concatenate(new JString[] { Cheat.DEBUG_CACHE, StringUtils.formatNumber(0, true, 2, (long) local571), aClass100_672, JString.parseInt(local563), aClass100_80});
 								Fonts.p11Full.renderRight(local968, local270, local276, 16776960, -1);
 								local276 += 12;
 								InterfaceList.aBooleanArray100[rectangle] = true;
@@ -805,7 +805,7 @@ public final class ClientScriptRunner {
 							if (component.createdComponents != null) {
 								renderComponent(local166, local114 - component.scrollY, -component.scrollX + local123, component.createdComponents, local302, component.id, local164, local291, rectangle);
 							}
-							@Pc(1186) ComponentPointer local1186 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) component.id);
+							@Pc(1186) ComponentPointer local1186 = (ComponentPointer) InterfaceList.openInterfaces.get((long) component.id);
 							if (local1186 != null) {
 								if (local1186.anInt5879 == 0 && !aBoolean108 && anInt3751 >= local166 && local164 <= anInt1892 && local302 > anInt3751 && anInt1892 < local291 && !Cheat.qaOpTest) {
 									MiniMenu.ops[0] = LocalizedText.CANCEL;
@@ -1977,7 +1977,7 @@ public final class ClientScriptRunner {
 					if (opcode == 51) {
 						@Pc(992) HashTable local992 = clientScript.switchTables[intOperands[pc]];
 						isp--;
-						@Pc(1002) IntWrapper local1002 = (IntWrapper) local992.getNode((long) scriptIntValues[isp]);
+						@Pc(1002) IntWrapper local1002 = (IntWrapper) local992.get((long) scriptIntValues[isp]);
 						if (local1002 != null) {
 							pc += local1002.value;
 						}
@@ -2864,7 +2864,7 @@ public final class ClientScriptRunner {
 									if (opcode == 2702) {
 										isp--;
 										interfaceData = scriptIntValues[isp];
-										@Pc(12566) ComponentPointer local12566 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) interfaceData);
+										@Pc(12566) ComponentPointer local12566 = (ComponentPointer) InterfaceList.openInterfaces.get((long) interfaceData);
 										if (local12566 == null) {
 											scriptIntValues[isp++] = 0;
 										} else {
@@ -2893,7 +2893,7 @@ public final class ClientScriptRunner {
 										isp -= 2;
 										interfaceData = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										@Pc(12663) ComponentPointer local12663 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) interfaceData);
+										@Pc(12663) ComponentPointer local12663 = (ComponentPointer) InterfaceList.openInterfaces.get((long) interfaceData);
 										if (local12663 != null && local12663.interfaceId == interfaceType) {
 											scriptIntValues[isp++] = 1;
 											continue;
@@ -3543,31 +3543,31 @@ public final class ClientScriptRunner {
 									if (opcode == 3904) {
 										isp--;
 										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].anInt5094;
+										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].item;
 										continue;
 									}
 									if (opcode == 3905) {
 										isp--;
 										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].anInt5099;
+										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].price;
 										continue;
 									}
 									if (opcode == 3906) {
 										isp--;
 										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].anInt5090;
+										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].count;
 										continue;
 									}
 									if (opcode == 3907) {
 										isp--;
 										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].anInt5089;
+										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].completedCount;
 										continue;
 									}
 									if (opcode == 3908) {
 										isp--;
 										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].anInt5092;
+										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].completedGold;
 										continue;
 									}
 									if (opcode == 3910) {
@@ -5518,7 +5518,7 @@ public final class ClientScriptRunner {
 											interfaceType = scriptIntValues[isp + 1];
 											local5294 = ParamTypeList.get(interfaceType);
 											if (local5294.isString()) {
-												scriptStringValues[ssp++] = Static123.method2417(interfaceData).method2802(local5294.defaultString, interfaceType);
+												scriptStringValues[ssp++] = Static123.method2417(interfaceData).getParam(local5294.defaultString, interfaceType);
 											} else {
 												scriptIntValues[isp++] = Static123.method2417(interfaceData).method2798(interfaceType, local5294.defaultInt);
 											}
@@ -5751,7 +5751,7 @@ public final class ClientScriptRunner {
 										local12388 = scriptIntValues[isp] != 0;
 										isp--;
 										interfaceType = scriptIntValues[isp];
-										scriptStringValues[ssp++] = Static182.method3360(client.language, local12388, 0, (long) interfaceType);
+										scriptStringValues[ssp++] = StringUtils.formatNumber(client.language, local12388, 0, (long) interfaceType);
 										continue;
 									}
 								}

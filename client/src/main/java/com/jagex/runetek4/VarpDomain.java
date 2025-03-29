@@ -43,7 +43,7 @@ public class VarpDomain {
     @OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(BII)V")
     public static void set(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
         VarPlayerDefinition.varPlayerCache[arg1] = arg0;
-        @Pc(20) LongNode local20 = (LongNode) Static199.aClass133_20.getNode((long) arg1);
+        @Pc(20) LongNode local20 = (LongNode) Static199.aClass133_20.get((long) arg1);
         if (local20 == null) {
             local20 = new LongNode(4611686018427387905L);
             Static199.aClass133_20.put(local20, (long) arg1);

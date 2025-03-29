@@ -417,7 +417,7 @@ public final class ObjType {
 		if (this.params == null) {
 			return defaultValue;
 		} else {
-			@Pc(21) JagStringWrapper node = (JagStringWrapper) this.params.getNode(id);
+			@Pc(21) JagStringWrapper node = (JagStringWrapper) this.params.get(id);
 			return node == null ? defaultValue : node.value;
 		}
 	}
@@ -563,7 +563,7 @@ public final class ObjType {
 		if (this.params == null) {
 			return defaultValue;
 		} else {
-			@Pc(25) IntWrapper node = (IntWrapper) this.params.getNode(arg1);
+			@Pc(25) IntWrapper node = (IntWrapper) this.params.get(arg1);
 			return node == null ? defaultValue : node.value;
 		}
 	}

@@ -35,7 +35,7 @@ public final class SoundBank {
 		@Pc(21) int key1 = file ^ (group >>> 12 | group << 4 & 0xFFF3);
 		@Pc(27) int key2 = key1 | group << 16;
 		@Pc(30) long key = (long) key2;
-		@Pc(37) PcmSound sound = (PcmSound) this.cache.getNode(key);
+		@Pc(37) PcmSound sound = (PcmSound) this.cache.get(key);
 		if (sound != null) {
 			return sound;
 		} else if (samplingRates == null || samplingRates[0] > 0) {
@@ -70,11 +70,11 @@ public final class SoundBank {
 		@Pc(15) int key1 = file ^ (group >>> 12 | group << 4 & 0xFFF3);
 		@Pc(21) int key2 = key1 | group << 16;
 		@Pc(26) long key = (long) key2 ^ 0x100000000L;
-		@Pc(33) PcmSound sound = (PcmSound) this.cache.getNode(key);
+		@Pc(33) PcmSound sound = (PcmSound) this.cache.get(key);
 		if (sound != null) {
 			return sound;
 		} else if (samplingRates == null || samplingRates[0] > 0) {
-			@Pc(53) VorbisSound vorbisSound = (VorbisSound) this.vorbisCache.getNode(key);
+			@Pc(53) VorbisSound vorbisSound = (VorbisSound) this.vorbisCache.get(key);
 			if (vorbisSound == null) {
 				vorbisSound = Static117.method2345(this.vorbisArchive, group, file);
 				if (vorbisSound == null) {

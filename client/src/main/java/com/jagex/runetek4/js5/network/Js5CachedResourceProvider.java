@@ -312,7 +312,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 	@OriginalMember(owner = "client!bg", name = "b", descriptor = "(II)I")
 	@Override
 	public int getPercentageComplete(@OriginalArg(0) int group) {
-		@Pc(15) Js5Request request = (Js5Request) this.requests.getNode(group);
+		@Pc(15) Js5Request request = (Js5Request) this.requests.get(group);
 		return request == null ? 0 : request.getPercentageComplete();
 	}
 
@@ -323,7 +323,7 @@ public final class Js5CachedResourceProvider extends Js5ResourceProvider {
 
 	@OriginalMember(owner = "client!bg", name = "a", descriptor = "(III)Lclient!il;")
 	private Js5Request fetchGroupInner(@OriginalArg(1) int group, @OriginalArg(0) int arg0) {
-		@Pc(13) Js5Request request = (Js5Request) this.requests.getNode(group);
+		@Pc(13) Js5Request request = (Js5Request) this.requests.get(group);
 		if (request != null && arg0 == 0 && !request.urgent && request.awaitingResponse) {
 			request.unlink();
 			request = null;

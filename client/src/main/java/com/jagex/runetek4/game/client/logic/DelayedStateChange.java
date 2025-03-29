@@ -49,7 +49,7 @@ public final class DelayedStateChange extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!te", name = "a", descriptor = "(III)Lclient!da;")
 	public static DelayedStateChange create(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(13) DelayedStateChange local13 = (DelayedStateChange) changes.getNode((long) arg1 | (long) arg0 << 32);
+		@Pc(13) DelayedStateChange local13 = (DelayedStateChange) changes.get((long) arg1 | (long) arg0 << 32);
 		if (local13 == null) {
 			local13 = new DelayedStateChange(arg0, arg1);
 			changes.put(local13, local13.nodeId);

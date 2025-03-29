@@ -323,7 +323,7 @@ public class InterfaceList {
 
     @OriginalMember(owner = "runetek4.client!runetek4.client", name = "b", descriptor = "(Lclient!be;)Lclient!bf;")
     public static ServerActiveProperties getServerActiveProperties(@OriginalArg(0) Component arg0) {
-        @Pc(13) ServerActiveProperties local13 = (ServerActiveProperties) properties.getNode(((long) arg0.id << 32) + (long) arg0.createdComponentId);
+        @Pc(13) ServerActiveProperties local13 = (ServerActiveProperties) properties.get(((long) arg0.id << 32) + (long) arg0.createdComponentId);
         return local13 == null ? arg0.properties : local13;
     }
 
@@ -510,7 +510,7 @@ public class InterfaceList {
         if (arg0.createdComponents != null) {
             method4190(arg0.id, arg1, local20, local32, arg0.createdComponents);
         }
-        @Pc(66) ComponentPointer local66 = (ComponentPointer) openInterfaces.getNode((long) arg0.id);
+        @Pc(66) ComponentPointer local66 = (ComponentPointer) openInterfaces.get((long) arg0.id);
         if (local66 != null) {
             method4017(local32, arg1, local66.interfaceId, local20);
         }
@@ -705,7 +705,7 @@ public class InterfaceList {
                     if (local23.createdComponents != null) {
                         method7(local23.createdComponents, arg1);
                     }
-                    @Pc(49) ComponentPointer local49 = (ComponentPointer) openInterfaces.getNode((long) local23.id);
+                    @Pc(49) ComponentPointer local49 = (ComponentPointer) openInterfaces.get((long) local23.id);
                     if (local49 != null) {
                         runScripts(arg1, local49.interfaceId);
                     }
@@ -1122,7 +1122,7 @@ public class InterfaceList {
                                 request.arguments = component.onClanTransmit;
                                 lowPriorityRequests.addTail(request);
                             }
-                            if (Static207.anInt4778 > component.lastTransmitTimer && component.onStockTransmit != null) {
+                            if (StockMarketManager.transmitAt > component.lastTransmitTimer && component.onStockTransmit != null) {
                                 request = new HookRequest();
                                 request.source = component;
                                 request.arguments = component.onStockTransmit;
@@ -1173,7 +1173,7 @@ public class InterfaceList {
                         if (component.createdComponents != null) {
                             method946(component.createdComponents, component.id, local61, local63, local65, local67, local50 - component.scrollX, local55 - component.scrollY);
                         }
-                        @Pc(1595) ComponentPointer local1595 = (ComponentPointer) openInterfaces.getNode((long) component.id);
+                        @Pc(1595) ComponentPointer local1595 = (ComponentPointer) openInterfaces.get((long) component.id);
                         if (local1595 != null) {
                             method1320(local50, local63, local55, local65, local1595.interfaceId, local61, local67);
                         }
@@ -1265,7 +1265,7 @@ public class InterfaceList {
                     if (local15.createdComponents != null) {
                         method2354(local15.id, local15.createdComponents);
                     }
-                    @Pc(73) ComponentPointer local73 = (ComponentPointer) openInterfaces.getNode((long) local15.id);
+                    @Pc(73) ComponentPointer local73 = (ComponentPointer) openInterfaces.get((long) local15.id);
                     if (local73 != null) {
                         method1949(local73.interfaceId);
                     }

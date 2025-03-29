@@ -116,7 +116,7 @@ public final class MidiPcmStream extends PcmStream {
 		@Pc(20) int[] local20 = new int[] { 22050 };
 		for (@Pc(34) ByteArrayNode local34 = (ByteArrayNode) arg0.programs.head(); local34 != null; local34 = (ByteArrayNode) arg0.programs.next()) {
 			@Pc(40) int local40 = (int) local34.nodeId;
-			@Pc(48) MidiInstrument local48 = (MidiInstrument) this.aClass133_23.getNode((long) local40);
+			@Pc(48) MidiInstrument local48 = (MidiInstrument) this.aClass133_23.get((long) local40);
 			if (local48 == null) {
 				local48 = MidiInstrument.method2320(arg1, local40);
 				if (local48 == null) {
@@ -280,7 +280,7 @@ public final class MidiPcmStream extends PcmStream {
 				}
 			}
 		}
-		@Pc(118) MidiInstrument local118 = (MidiInstrument) this.aClass133_23.getNode((long) this.anIntArray506[arg1]);
+		@Pc(118) MidiInstrument local118 = (MidiInstrument) this.aClass133_23.get((long) this.anIntArray506[arg1]);
 		if (local118 == null) {
 			return;
 		}

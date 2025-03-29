@@ -37,7 +37,7 @@ public final class Inv extends Node {
 
 	@OriginalMember(owner = "client!wl", name = "a", descriptor = "(IIIIB)V")
 	public static void update(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		@Pc(12) Inv local12 = (Inv) objectContainerCache.getNode((long) arg3);
+		@Pc(12) Inv local12 = (Inv) objectContainerCache.get((long) arg3);
 		if (local12 == null) {
 			local12 = new Inv();
 			objectContainerCache.put(local12, (long) arg3);
@@ -62,7 +62,7 @@ public final class Inv extends Node {
 
 	@OriginalMember(owner = "client!wj", name = "a", descriptor = "(BII)I")
 	public static int getSlotTotal(@OriginalArg(1) int arg0, @OriginalArg(2) int slot) {
-		@Pc(8) Inv inv = (Inv) objectContainerCache.getNode(arg0);
+		@Pc(8) Inv inv = (Inv) objectContainerCache.get(arg0);
 		if (inv == null) {
 			return 0;
 		} else if (slot == -1) {
@@ -83,7 +83,7 @@ public final class Inv extends Node {
 		if (arg0 < 0) {
 			return 0;
 		}
-		@Pc(17) Inv inv = (Inv) objectContainerCache.getNode((long) arg0);
+		@Pc(17) Inv inv = (Inv) objectContainerCache.get((long) arg0);
 		if (inv == null) {
 			return InvTypeList.get(arg0).size;
 		}
@@ -119,7 +119,7 @@ public final class Inv extends Node {
 
 	@OriginalMember(owner = "client!bm", name = "a", descriptor = "(III)I")
 	public static int getItemCount(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(10) Inv local10 = (Inv) objectContainerCache.getNode((long) arg0);
+		@Pc(10) Inv local10 = (Inv) objectContainerCache.get((long) arg0);
 		if (local10 == null) {
 			return 0;
 		} else if (arg1 >= 0 && arg1 < local10.invSlotObjCount.length) {
@@ -131,7 +131,7 @@ public final class Inv extends Node {
 
 	@OriginalMember(owner = "client!be", name = "a", descriptor = "(III)I")
 	public static int getItemType(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-		@Pc(10) Inv local10 = (Inv) objectContainerCache.getNode(arg0);
+		@Pc(10) Inv local10 = (Inv) objectContainerCache.get(arg0);
 		if (local10 == null) {
 			return -1;
 		} else if (arg1 >= 0 && arg1 < local10.invSlotObjId.length) {
@@ -143,7 +143,7 @@ public final class Inv extends Node {
 
 	@OriginalMember(owner = "client!bc", name = "d", descriptor = "(II)V")
 	public static void delete(@OriginalArg(0) int arg0) {
-		@Pc(14) Inv local14 = (Inv) objectContainerCache.getNode((long) arg0);
+		@Pc(14) Inv local14 = (Inv) objectContainerCache.get((long) arg0);
 		if (local14 != null) {
 			local14.unlink();
 		}

@@ -40,7 +40,7 @@ public final class LruHashTable {
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "a", descriptor = "(JI)Lclient!rg;")
 	public final SecondaryNode get(@OriginalArg(0) long arg0) {
-		@Pc(16) SecondaryNode node = (SecondaryNode) this.table.getNode(arg0);
+		@Pc(16) SecondaryNode node = (SecondaryNode) this.table.get(arg0);
 		if (node != null) {
 			this.queue.addTail(node);
 		}

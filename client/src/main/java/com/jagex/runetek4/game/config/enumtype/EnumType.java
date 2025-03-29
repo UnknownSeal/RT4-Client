@@ -77,7 +77,7 @@ public final class EnumType extends SecondaryNode {
 		if (this.table == null) {
 			return this.defaultInt;
 		} else {
-			@Pc(18) IntWrapper intWrapper = (IntWrapper) this.table.getNode(arg0);
+			@Pc(18) IntWrapper intWrapper = (IntWrapper) this.table.get(arg0);
 			return intWrapper == null ? this.defaultInt : intWrapper.value;
 		}
 	}
@@ -87,7 +87,7 @@ public final class EnumType extends SecondaryNode {
 		if (this.table == null) {
 			return this.defaultString;
 		} else {
-			@Pc(26) JagStringWrapper jagStringWrapper = (JagStringWrapper) this.table.getNode(arg0);
+			@Pc(26) JagStringWrapper jagStringWrapper = (JagStringWrapper) this.table.get(arg0);
 			return jagStringWrapper == null ? this.defaultString : jagStringWrapper.value;
 		}
 	}
@@ -100,7 +100,7 @@ public final class EnumType extends SecondaryNode {
 		if (this.inverseTable == null) {
 			this.inverseStrings();
 		}
-		for (@Pc(38) EnumStringEntry local38 = (EnumStringEntry) this.inverseTable.getNode(arg0.longHashCode()); local38 != null; local38 = (EnumStringEntry) this.inverseTable.nextWithKey()) {
+		for (@Pc(38) EnumStringEntry local38 = (EnumStringEntry) this.inverseTable.get(arg0.longHashCode()); local38 != null; local38 = (EnumStringEntry) this.inverseTable.nextWithKey()) {
 			if (local38.value.strEquals(arg0)) {
 				return true;
 			}
@@ -125,7 +125,7 @@ public final class EnumType extends SecondaryNode {
 		if (this.inverseTable == null) {
 			this.inverseInts();
 		}
-		@Pc(34) IntWrapper local34 = (IntWrapper) this.inverseTable.getNode(arg0);
+		@Pc(34) IntWrapper local34 = (IntWrapper) this.inverseTable.get(arg0);
 		return local34 != null;
 	}
 

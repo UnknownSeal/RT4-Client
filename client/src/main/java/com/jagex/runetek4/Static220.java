@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static220 {
 
-	@OriginalMember(owner = "runetek4.client!rm", name = "i", descriptor = "Lclient!na;")
-	public static final JString aClass100_930 = JString.parse("(Z");
-
 	@OriginalMember(owner = "runetek4.client!rm", name = "a", descriptor = "(JB)V")
 	public static void sleep0(@OriginalArg(0) long arg0) {
 		try {

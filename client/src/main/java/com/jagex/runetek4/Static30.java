@@ -7,7 +7,4 @@ public final class Static30 {
 	@OriginalMember(owner = "client!cg", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_184 = JString.parse("1");
 
-	@OriginalMember(owner = "client!cg", name = "h", descriptor = "Lclient!na;")
-	public static final JString aClass100_185 = JString.parse(")3");
-
 }

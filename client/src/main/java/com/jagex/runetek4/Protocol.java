@@ -698,7 +698,7 @@ public class Protocol {
                         if (setVerifyID(verifyID)) {
                             for (i = count; i <= slot; i++) {
                                 local904 = (long) i + ((long) xp << 32);
-                                local1804 = (ServerActiveProperties) InterfaceList.properties.getNode(local904);
+                                local1804 = (ServerActiveProperties) InterfaceList.properties.get(local904);
                                 if (local1804 != null) {
                                     local1814 = new ServerActiveProperties(local1804.events, ii);
                                     local1804.unlink();
@@ -842,7 +842,7 @@ public class Protocol {
                         int verifyID = inboundBuffer.g2();
                         xp = inboundBuffer.g4();
                         if (setVerifyID(verifyID)) {
-                            @Pc(2441) ComponentPointer local2441 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) xp);
+                            @Pc(2441) ComponentPointer local2441 = (ComponentPointer) InterfaceList.openInterfaces.get((long) xp);
                             if (local2441 != null) {
                                 InterfaceList.closeInterface(true, local2441);
                             }
@@ -1089,8 +1089,8 @@ public class Protocol {
                                 int verifyID = inboundBuffer.g2sub();
                                 world = inboundBuffer.g4rme();
                                 if (setVerifyID(verifyID)) {
-                                    @Pc(3449) ComponentPointer local3449 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) ii);
-                                    local3456 = (ComponentPointer) InterfaceList.openInterfaces.getNode((long) world);
+                                    @Pc(3449) ComponentPointer local3449 = (ComponentPointer) InterfaceList.openInterfaces.get((long) ii);
+                                    local3456 = (ComponentPointer) InterfaceList.openInterfaces.get((long) world);
                                     if (local3456 != null) {
                                         InterfaceList.closeInterface(local3449 == null || local3456.interfaceId != local3449.interfaceId, local3456);
                                     }
@@ -1238,7 +1238,7 @@ public class Protocol {
                                 int verifyID = inboundBuffer.g2sub();
                                 int interfaceID = inboundBuffer.g2();
                                 if (setVerifyID(verifyID)) {
-                                    ComponentPointer componentPointer = (ComponentPointer) InterfaceList.openInterfaces.getNode(windowID);
+                                    ComponentPointer componentPointer = (ComponentPointer) InterfaceList.openInterfaces.get(windowID);
                                     if (componentPointer != null) {
                                         InterfaceList.closeInterface(interfaceID != componentPointer.interfaceId, componentPointer);
                                     }
@@ -1533,7 +1533,7 @@ public class Protocol {
                                         StockMarketManager.offers[ii] = new StockMarketOffer(inboundBuffer);
                                     }
                                     opcode = -1;
-                                    Static207.anInt4778 = InterfaceList.transmitTimer;
+                                    StockMarketManager.transmitAt = InterfaceList.transmitTimer;
                                     return true;
                                 } else if (opcode == 73) {
                                     ii = inboundBuffer.g2sub();
@@ -1566,7 +1566,7 @@ public class Protocol {
                                     if (setVerifyID(verifyID)) {
                                         for (i = slot; i <= xp; i++) {
                                             local904 = ((long) world << 32) + ((long) i);
-                                            local1804 = (ServerActiveProperties) InterfaceList.properties.getNode(local904);
+                                            local1804 = (ServerActiveProperties) InterfaceList.properties.get(local904);
                                             if (local1804 != null) {
                                                 local1814 = new ServerActiveProperties(count, local1804.targetParam);
                                                 local1804.unlink();

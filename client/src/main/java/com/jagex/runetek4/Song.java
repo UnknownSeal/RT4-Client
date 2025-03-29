@@ -369,7 +369,7 @@ public final class Song extends Node {
 						local104 = local69 >> 16 & 0x7F;
 						if (local104 > 0) {
 							@Pc(179) int program = programs[local92];
-							@Pc(187) ByteArrayNode node = (ByteArrayNode) this.programs.getNode((long) program);
+							@Pc(187) ByteArrayNode node = (ByteArrayNode) this.programs.get((long) program);
 							if (node == null) {
 								node = new ByteArrayNode(new byte[128]);
 								this.programs.put(node, (long) program);

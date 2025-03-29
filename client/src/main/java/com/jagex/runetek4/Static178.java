@@ -11,7 +11,7 @@ public final class Static178 {
 
 	@OriginalMember(owner = "runetek4.client!od", name = "a", descriptor = "(IZII)I")
 	public static int getTotalParam(@OriginalArg(1) boolean arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-		@Pc(19) Inv local19 = (Inv) Inv.objectContainerCache.getNode((long) arg1);
+		@Pc(19) Inv local19 = (Inv) Inv.objectContainerCache.get((long) arg1);
 		if (local19 == null) {
 			return 0;
 		}
@@ -20,7 +20,7 @@ public final class Static178 {
 			if (local19.invSlotObjId[local29] >= 0 && ObjTypeList.capacity > local19.invSlotObjId[local29]) {
 				@Pc(56) ObjType local56 = ObjTypeList.get(local19.invSlotObjId[local29]);
 				if (local56.params != null) {
-					@Pc(68) IntWrapper local68 = (IntWrapper) local56.params.getNode((long) arg2);
+					@Pc(68) IntWrapper local68 = (IntWrapper) local56.params.get((long) arg2);
 					if (local68 != null) {
 						if (arg0) {
 							local27 += local19.invSlotObjCount[local29] * local68.value;

@@ -156,7 +156,7 @@ public final class GlTile extends Node {
 		@Pc(1) long local1 = 0L;
 		if ((arg0 & 0x7F) == 0 || (arg2 & 0x7F) == 0) {
 			local1 = (long) (arg0 + (arg2 << 16)) + ((long) arg6 << 32);
-			@Pc(28) IntWrapper local28 = (IntWrapper) this.aClass133_8.getNode(local1);
+			@Pc(28) IntWrapper local28 = (IntWrapper) this.aClass133_8.get(local1);
 			if (local28 != null) {
 				if (arg1 < this.anIntArray230[local28.value]) {
 					this.anIntArray230[local28.value] = arg1;

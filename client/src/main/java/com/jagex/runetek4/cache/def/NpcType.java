@@ -435,7 +435,7 @@ public final class NpcType {
 		if (this.params == null) {
 			return arg1;
 		} else {
-			@Pc(18) IntWrapper local18 = (IntWrapper) this.params.getNode(arg0);
+			@Pc(18) IntWrapper local18 = (IntWrapper) this.params.get(arg0);
 			return local18 == null ? arg1 : local18.value;
 		}
 	}
@@ -705,7 +705,7 @@ public final class NpcType {
 		if (this.params == null) {
 			return arg1;
 		} else {
-			@Pc(18) JagStringWrapper local18 = (JagStringWrapper) this.params.getNode(arg0);
+			@Pc(18) JagStringWrapper local18 = (JagStringWrapper) this.params.get(arg0);
 			return local18 == null ? arg1 : local18.value;
 		}
 	}

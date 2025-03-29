@@ -3696,7 +3696,7 @@ public class SceneGraph {
                     @Pc(214) long local214 = (long) local196 << 32 | (long) local155;
                     @Pc(219) int local219 = local135.length / 2;
                     @Pc(227) long local227 = (long) local155 | (long) local161 << 32;
-                    @Pc(233) GlTile local233 = (GlTile) local103.getNode(local227);
+                    @Pc(233) GlTile local233 = (GlTile) local103.get(local227);
                     if (local233 == null) {
                         local233 = new GlTile((local161 >> 16) - 1, (float) (local161 & 0xFFFF), false, arg13 != null, local155);
                         local103.put(local233, local227);
@@ -3704,7 +3704,7 @@ public class SceneGraph {
                     local233.anInt2484++;
                     local233.anInt2482 += local219;
                     if (local188 != local227) {
-                        local233 = (GlTile) local103.getNode(local188);
+                        local233 = (GlTile) local103.get(local188);
                         if (local233 == null) {
                             local233 = new GlTile((local169 >> 16) - 1, (float) (local169 & 0xFFFF), false, arg13 != null, local155);
                             local103.put(local233, local188);
@@ -3714,7 +3714,7 @@ public class SceneGraph {
                     }
                     @Pc(340) long local340 = (long) local206 << 32 | (long) local155;
                     if (local340 != local227 && local340 != local188) {
-                        local233 = (GlTile) local103.getNode(local340);
+                        local233 = (GlTile) local103.get(local340);
                         if (local233 == null) {
                             local233 = new GlTile((local206 >> 16) - 1, (float) (local206 & 0xFFFF), false, arg13 != null, local155);
                             local103.put(local233, local340);
@@ -3723,7 +3723,7 @@ public class SceneGraph {
                         local233.anInt2484++;
                     }
                     if (local214 != local227 && local188 != local214 && local214 != local340) {
-                        local233 = (GlTile) local103.getNode(local214);
+                        local233 = (GlTile) local103.get(local214);
                         if (local233 == null) {
                             local233 = new GlTile((local196 >> 16) - 1, (float) (local196 & 0xFFFF), false, arg13 != null, local155);
                             local103.put(local233, local214);
@@ -3833,19 +3833,19 @@ public class SceneGraph {
                     @Pc(963) int local963 = (local678 >> 16) - 1;
                     @Pc(969) int local969 = (local655 >> 16) - 1;
                     @Pc(975) int local975 = (local712 >> 16) - 1;
-                    @Pc(981) GlTile local981 = (GlTile) local103.getNode(local861);
+                    @Pc(981) GlTile local981 = (GlTile) local103.get(local861);
                     method1291(arg13, local655 <= local655, method588(local969, local883, local931), local981, local614, local112, local155, local16, local655 <= local712, arg8, local754 >= local655, arg4, local169, method588(local969, local925, local957), method588(local969, local901, local949), local655 <= local678, arg12, arg10, local628, method588(local969, local909, local939), local574);
                     @Pc(1050) int local1050 = (local754 >> 16) - 1;
                     if (local869 != local861) {
-                        local981 = (GlTile) local103.getNode(local869);
+                        local981 = (GlTile) local103.get(local869);
                         method1291(arg13, local678 <= local655, method588(local963, local883, local931), local981, local614, local112, local155, local16, local712 >= local678, arg8, local678 <= local754, arg4, local169, method588(local963, local925, local957), method588(local963, local901, local949), local678 <= local678, arg12, arg10, local628, method588(local963, local909, local939), local574);
                     }
                     if (local877 != local861 && local877 != local869) {
-                        local981 = (GlTile) local103.getNode(local877);
+                        local981 = (GlTile) local103.get(local877);
                         method1291(arg13, local655 >= local712, method588(local975, local883, local931), local981, local614, local112, local155, local16, local712 <= local712, arg8, local712 <= local754, arg4, local169, method588(local975, local925, local957), method588(local975, local901, local949), local678 >= local712, arg12, arg10, local628, method588(local975, local909, local939), local574);
                     }
                     if (local917 != local861 && local917 != local869 && local917 != local877) {
-                        local981 = (GlTile) local103.getNode(local917);
+                        local981 = (GlTile) local103.get(local917);
                         method1291(arg13, local754 <= local655, method588(local1050, local883, local931), local981, local614, local112, local155, local16, local754 <= local712, arg8, local754 >= local754, arg4, local169, method588(local1050, local925, local957), method588(local1050, local901, local949), local678 >= local754, arg12, arg10, local628, method588(local1050, local909, local939), local574);
                     }
                 }
@@ -4857,7 +4857,7 @@ public class SceneGraph {
     @OriginalMember(owner = "runetek4.client!tk", name = "a", descriptor = "(Lclient!sc;ZLclient!wl;)Lclient!hg;")
     public static GlTile method4212(@OriginalArg(0) HashTable arg0, @OriginalArg(2) FloorOverlayType arg1) {
         @Pc(23) long local23 = (long) ((arg1.material + 1 << 16) + arg1.materialScale) + ((long) arg1.textureBrightness << 56) + ((long) arg1.waterColor << 32);
-        @Pc(38) GlTile local38 = (GlTile) arg0.getNode(local23);
+        @Pc(38) GlTile local38 = (GlTile) arg0.get(local23);
         if (local38 == null) {
             local38 = new GlTile(arg1.material, (float) arg1.materialScale, true, false, arg1.waterColor);
             arg0.put(local38, local23);
