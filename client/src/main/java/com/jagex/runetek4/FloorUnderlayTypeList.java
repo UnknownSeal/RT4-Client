@@ -12,8 +12,6 @@ public final class FloorUnderlayTypeList {
 
 	@OriginalMember(owner = "client!gj", name = "p", descriptor = "Lclient!n;")
 	public static final SoftLruHashTable types = new SoftLruHashTable(64);
-	@OriginalMember(owner = "client!sd", name = "I", descriptor = "I")
-	public static int anInt5057;
 
 	@OriginalMember(owner = "client!sd", name = "S", descriptor = "I")
 	public static int anInt5063 = 100;

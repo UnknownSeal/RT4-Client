@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static241 {
 
-	@OriginalMember(owner = "runetek4.client!th", name = "f", descriptor = "[Lclient!ok;")
-	public static IndexedSprite[] aClass36Array16;
-
 	@OriginalMember(owner = "runetek4.client!th", name = "o", descriptor = "[I")
 	public static int[] anIntArray522;
 

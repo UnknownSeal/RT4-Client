@@ -7,9 +7,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static228 {
 
-	@OriginalMember(owner = "client!sh", name = "j", descriptor = "Lclient!na;")
-	public static final JString HEADICONS_PRAYER = JString.parse("headicons_prayer");
-
 	@OriginalMember(owner = "client!sh", name = "a", descriptor = "(II)[B")
 	public static synchronized byte[] alloc(@OriginalArg(1) int arg0) {
 		@Pc(22) byte[] local22;

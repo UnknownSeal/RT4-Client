@@ -1527,7 +1527,7 @@ public final class client extends GameShell {
 				mainLoadSecondaryText = JString.concatenate(new JString[] { LocalizedText.MAINLOAD130, JString.parseInt(js5Archive13.getPercentageComplete() / 20 + 85), JString.PERCENT_SIGN});
 				mainLoadPercentage = 85;
 			} else if (js5Archive23.isGroupReady(DETAILS)) {
-				MapList.init(Static173.aClass3_Sub2_Sub1_Sub1Array9, js5Archive23);
+				MapList.init(Sprites.mapfunctions, js5Archive23);
 				mainLoadPercentage = 95;
 				mainLoadSecondaryText = LocalizedText.MAINLOAD130B;
 				mainLoadState = 135;

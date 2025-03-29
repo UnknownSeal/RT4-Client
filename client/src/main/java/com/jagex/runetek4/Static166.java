@@ -8,9 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static166 {
 
-	@OriginalMember(owner = "runetek4.client!nc", name = "h", descriptor = "I")
-	public static int p11FullId;
-
 	@OriginalMember(owner = "runetek4.client!nc", name = "e", descriptor = "Lclient!na;")
 	public static final JString aClass100_779 = JString.parse("underlay");
 

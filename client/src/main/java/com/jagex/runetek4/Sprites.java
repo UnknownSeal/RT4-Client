@@ -21,174 +21,252 @@ public class Sprites {
     public static final JString B12_FULL = JString.parse("b12_full");
     @OriginalMember(owner = "client!gm", name = "db", descriptor = "Lclient!na;")
     public static final JString CROSS = JString.parse("cross");
+    @OriginalMember(owner = "runetek4.client!rl", name = "S", descriptor = "Lclient!na;")
+    public static final JString HITMARKS = JString.parse("hitmarks");
+    @OriginalMember(owner = "runetek4.client!vd", name = "v", descriptor = "Lclient!na;")
+    public static final JString HITBAR_DEFAULT = JString.parse("hitbar_default");
+    @OriginalMember(owner = "runetek4.client!jj", name = "d", descriptor = "Lclient!na;")
+    public static final JString HEADICONS_PK = JString.parse("headicons_pk");
+    @OriginalMember(owner = "client!sh", name = "j", descriptor = "Lclient!na;")
+    public static final JString HEADICONS_PRAYER = JString.parse("headicons_prayer");
+    @OriginalMember(owner = "runetek4.client!hj", name = "d", descriptor = "Lclient!na;")
+    public static final JString HINT_HEADICONS = JString.parse("hint_headicons");
+    @OriginalMember(owner = "runetek4.client!pe", name = "n", descriptor = "Lclient!na;")
+    public static final JString HINT_MAPMARKERS = JString.parse("hint_mapmarkers");
+    @OriginalMember(owner = "runetek4.client!vc", name = "ab", descriptor = "Lclient!na;")
+    public static final JString MAPFLAGS = JString.parse("mapflag");
+    @OriginalMember(owner = "runetek4.client!pe", name = "z", descriptor = "Lclient!na;")
+    public static final JString MAPDOTS = JString.parse("mapdots");
+    @OriginalMember(owner = "runetek4.client!uf", name = "o", descriptor = "Lclient!na;")
+    public static final JString SCROLLBAR = JString.parse("scrollbar");
+    @OriginalMember(owner = "runetek4.client!wl", name = "d", descriptor = "Lclient!na;")
+    public static final JString COMPASS = JString.parse("compass");
+    @OriginalMember(owner = "runetek4.client!af", name = "g", descriptor = "Lclient!na;")
+    public static final JString HINT_MAPEDGE = JString.parse("hint_mapedge");
     @OriginalMember(owner = "runetek4.client!mi", name = "T", descriptor = "[Lclient!ok;")
     public static IndexedSprite[] nameIcons;
     @OriginalMember(owner = "runetek4.client!l", name = "j", descriptor = "[Lclient!qf;")
     public static Sprite[] mapdots;
     @OriginalMember(owner = "runetek4.client!wh", name = "l", descriptor = "[Lclient!qf;")
-    public static Sprite[] aClass3_Sub2_Sub1Array11;
+    public static Sprite[] headhints;
     @OriginalMember(owner = "client!ci", name = "t", descriptor = "I")
-    public static int anInt1016;
+    public static int crossId;
     @OriginalMember(owner = "client!runetek4.client", name = "W", descriptor = "I")
-    public static int anInt1165;
+    public static int hitbarId;
     @OriginalMember(owner = "runetek4.client!tj", name = "d", descriptor = "[Lclient!ek;")
     public static SoftwareIndexedSprite[] floorShadows;
+    @OriginalMember(owner = "runetek4.client!nc", name = "h", descriptor = "I")
+    public static int p11FullId;
+    @OriginalMember(owner = "runetek4.client!kc", name = "t", descriptor = "I")
+    public static int p12FullId;
+    @OriginalMember(owner = "client!fm", name = "V", descriptor = "I")
+    public static int b12FullId;
+    @OriginalMember(owner = "runetek4.client!wl", name = "A", descriptor = "I")
+    public static int mapfunctionId;
+    @OriginalMember(owner = "runetek4.client!kd", name = "Cb", descriptor = "I")
+    public static int hitmarksId;
+    @OriginalMember(owner = "runetek4.client!rg", name = "C", descriptor = "I")
+    public static int headiconsPkId;
+    @OriginalMember(owner = "runetek4.client!ck", name = "F", descriptor = "I")
+    public static int headiconsPrayerId;
+    @OriginalMember(owner = "runetek4.client!qg", name = "R", descriptor = "I")
+    public static int hintHeadId;
+    @OriginalMember(owner = "runetek4.client!lj", name = "s", descriptor = "I")
+    public static int hintMapMarkId;
+    @OriginalMember(owner = "client!bi", name = "fb", descriptor = "I")
+    public static int mapflagId;
+    @OriginalMember(owner = "client!gd", name = "l", descriptor = "I")
+    public static int mapdotsId;
+    @OriginalMember(owner = "runetek4.client!jk", name = "J", descriptor = "I")
+    public static int scrollbarId;
+    @OriginalMember(owner = "client!sd", name = "I", descriptor = "I")
+    public static int nameIconsId;
+    @OriginalMember(owner = "client!gk", name = "j", descriptor = "I")
+    public static int floorShadowsId;
+    @OriginalMember(owner = "runetek4.client!n", name = "b", descriptor = "I")
+    public static int compassId;
+    @OriginalMember(owner = "runetek4.client!ka", name = "u", descriptor = "I")
+    public static int hintMapEdgeId;
+    @OriginalMember(owner = "runetek4.client!nk", name = "L", descriptor = "[Lclient!mm;")
+    public static SoftwareSprite[] mapfunctions;
+    @OriginalMember(owner = "runetek4.client!re", name = "w", descriptor = "[Lclient!qf;")
+    public static Sprite[] hitmarks;
+    @OriginalMember(owner = "runetek4.client!jb", name = "k", descriptor = "[Lclient!qf;")
+    public static Sprite[] hitbars;
+    @OriginalMember(owner = "runetek4.client!rl", name = "V", descriptor = "[Lclient!qf;")
+    public static Sprite[] headiconPks;
+    @OriginalMember(owner = "runetek4.client!km", name = "sc", descriptor = "[Lclient!qf;")
+    public static Sprite[] headiconPrayers;
+    @OriginalMember(owner = "runetek4.client!lj", name = "t", descriptor = "[Lclient!qf;")
+    public static Sprite[] mapmarkhints;
+    @OriginalMember(owner = "runetek4.client!tg", name = "d", descriptor = "[Lclient!qf;")
+    public static Sprite[] crosses;
+    @OriginalMember(owner = "client!gk", name = "l", descriptor = "Lclient!qf;")
+    public static Sprite mapflags;
+    @OriginalMember(owner = "runetek4.client!th", name = "f", descriptor = "[Lclient!ok;")
+    public static IndexedSprite[] scrollbars;
+    @OriginalMember(owner = "runetek4.client!ic", name = "a", descriptor = "Lclient!qf;")
+    public static Sprite compass;
+    @OriginalMember(owner = "runetek4.client!wi", name = "R", descriptor = "[Lclient!qf;")
+    public static Sprite[] hintMapEdge;
+    @OriginalMember(owner = "client!fe", name = "lc", descriptor = "[Lclient!qf;")
+    public static Sprite[] mapfuncs;
 
     @OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(Z)V")
     public static void clear() {
         Fonts.p12Full = null;
-        Static213.aClass3_Sub2_Sub1Array8 = null;
-        Static240.crossSprites = null;
+        hitmarks = null;
+        crosses = null;
         nameIcons = null;
         Fonts.p11FullSoftware = null;
-        Static173.aClass3_Sub2_Sub1_Sub1Array9 = null;
-        Static67.aClass3_Sub2_Sub1Array4 = null;
-        Static149.aClass3_Sub2_Sub1Array7 = null;
-        Static138.aClass3_Sub2_Sub1Array5 = null;
+        mapfunctions = null;
+        mapfuncs = null;
+        mapmarkhints = null;
+        headiconPrayers = null;
         Fonts.b12Full = null;
-        Static106.aClass3_Sub2_Sub1_7 = null;
+        compass = null;
         mapdots = null;
         Fonts.p11Full = null;
-        Static84.aClass3_Sub2_Sub1_4 = null;
-        Static116.aClass3_Sub2_Sub1Array3 = null;
-        Static277.aClass3_Sub2_Sub1Array12 = null;
-        aClass3_Sub2_Sub1Array11 = null;
-        Static219.aClass3_Sub2_Sub1Array9 = null;
-        Static241.aClass36Array16 = null;
+        mapflags = null;
+        hitbars = null;
+        hintMapEdge = null;
+        headhints = null;
+        headiconPks = null;
+        scrollbars = null;
     }
 
     @OriginalMember(owner = "client!cg", name = "a", descriptor = "(ILclient!ve;)V")
     public static void load(@OriginalArg(1) Js5 arg0) {
-        Static173.aClass3_Sub2_Sub1_Sub1Array9 = SpriteLoader.loadSoftwareSprites(Static280.anInt5900, arg0);
-        Static213.aClass3_Sub2_Sub1Array8 = SpriteLoader.loadAlphaSprites(Static131.anInt3261, arg0);
-        Static116.aClass3_Sub2_Sub1Array3 = SpriteLoader.loadAlphaSprites(anInt1165, arg0);
-        Static219.aClass3_Sub2_Sub1Array9 = SpriteLoader.loadAlphaSprites(Static214.anInt5579, arg0);
-        Static138.aClass3_Sub2_Sub1Array5 = SpriteLoader.loadAlphaSprites(Static34.anInt1049, arg0);
-        aClass3_Sub2_Sub1Array11 = SpriteLoader.loadAlphaSprites(Class6.anInt4741, arg0);
-        Static149.aClass3_Sub2_Sub1Array7 = SpriteLoader.loadAlphaSprites(Static149.anInt3551, arg0);
-        Static84.aClass3_Sub2_Sub1_4 = SpriteLoader.loadSprites(Static19.anInt647, arg0);
-        Static240.crossSprites = SpriteLoader.method2580(anInt1016, arg0);
-        mapdots = SpriteLoader.method2580(Static78.anInt2147, arg0);
-        Static241.aClass36Array16 = SpriteLoader.loadIndexedSprites(arg0, Static124.anInt3083);
-        nameIcons = SpriteLoader.loadIndexedSprites(arg0, FloorUnderlayTypeList.anInt5057);
+        mapfunctions = SpriteLoader.loadSoftwareSprites(mapfunctionId, arg0);
+        hitmarks = SpriteLoader.loadAlphaSprites(hitmarksId, arg0);
+        hitbars = SpriteLoader.loadAlphaSprites(hitbarId, arg0);
+        headiconPks = SpriteLoader.loadAlphaSprites(headiconsPkId, arg0);
+        headiconPrayers = SpriteLoader.loadAlphaSprites(headiconsPrayerId, arg0);
+        headhints = SpriteLoader.loadAlphaSprites(hintHeadId, arg0);
+        mapmarkhints = SpriteLoader.loadAlphaSprites(hintMapMarkId, arg0);
+        mapflags = SpriteLoader.loadSprites(mapflagId, arg0);
+        crosses = SpriteLoader.method2580(crossId, arg0);
+        mapdots = SpriteLoader.method2580(mapdotsId, arg0);
+        scrollbars = SpriteLoader.loadIndexedSprites(arg0, scrollbarId);
+        nameIcons = SpriteLoader.loadIndexedSprites(arg0, nameIconsId);
         Fonts.p11Full.setNameIcons(nameIcons, null);
         Fonts.p12Full.setNameIcons(nameIcons, null);
         Fonts.b12Full.setNameIcons(nameIcons, null);
         if (GlRenderer.enabled) {
-            floorShadows = SpriteLoader.loadSoftwareIndexedSprites(Static84.anInt2257, arg0);
+            floorShadows = SpriteLoader.loadSoftwareIndexedSprites(floorShadowsId, arg0);
             for (@Pc(101) int local101 = 0; local101 < floorShadows.length; local101++) {
                 floorShadows[local101].trim();
             }
         }
-        @Pc(124) SoftwareSprite local124 = SpriteLoader.loadSoftwareSprite(0, arg0, Static163.anInt3962);
-        local124.trim();
+        @Pc(124) SoftwareSprite newCompass = SpriteLoader.loadSoftwareSprite(0, arg0, compassId);
+        newCompass.trim();
         if (GlRenderer.enabled) {
-            Static106.aClass3_Sub2_Sub1_7 = new GlSprite(local124);
+            compass = new GlSprite(newCompass);
         } else {
-            Static106.aClass3_Sub2_Sub1_7 = local124;
+            compass = newCompass;
         }
-        @Pc(143) SoftwareSprite[] local143 = SpriteLoader.loadSoftwareSprites(Static128.anInt3143, arg0);
+        @Pc(143) SoftwareSprite[] local143 = SpriteLoader.loadSoftwareSprites(hintMapEdgeId, arg0);
         @Pc(145) int local145;
         for (local145 = 0; local145 < local143.length; local145++) {
             local143[local145].trim();
         }
         if (GlRenderer.enabled) {
-            Static277.aClass3_Sub2_Sub1Array12 = new Sprite[local143.length];
+            hintMapEdge = new Sprite[local143.length];
             for (local145 = 0; local145 < local143.length; local145++) {
-                Static277.aClass3_Sub2_Sub1Array12[local145] = new GlSprite(local143[local145]);
+                hintMapEdge[local145] = new GlSprite(local143[local145]);
             }
         } else {
-            Static277.aClass3_Sub2_Sub1Array12 = local143;
+            hintMapEdge = local143;
         }
         @Pc(196) int local196 = (int) ((double) 21 * Math.random()) - 10;
         local145 = (int) (Math.random() * 21.0D) - 10;
         @Pc(210) int local210 = (int) (Math.random() * 21.0D) - 10;
         @Pc(217) int local217 = (int) (Math.random() * 41.0D) - 20;
         @Pc(219) int local219;
-        for (local219 = 0; local219 < Static173.aClass3_Sub2_Sub1_Sub1Array9.length; local219++) {
-            Static173.aClass3_Sub2_Sub1_Sub1Array9[local219].method315(local145 + local217, local217 + local196, local217 + local210);
+        for (local219 = 0; local219 < mapfunctions.length; local219++) {
+            mapfunctions[local219].method315(local145 + local217, local217 + local196, local217 + local210);
         }
         if (GlRenderer.enabled) {
-            Static67.aClass3_Sub2_Sub1Array4 = new Sprite[Static173.aClass3_Sub2_Sub1_Sub1Array9.length];
-            for (local219 = 0; local219 < Static173.aClass3_Sub2_Sub1_Sub1Array9.length; local219++) {
-                Static67.aClass3_Sub2_Sub1Array4[local219] = new GlSprite(Static173.aClass3_Sub2_Sub1_Sub1Array9[local219]);
+            mapfuncs = new Sprite[mapfunctions.length];
+            for (local219 = 0; local219 < mapfunctions.length; local219++) {
+                mapfuncs[local219] = new GlSprite(mapfunctions[local219]);
             }
         } else {
-            Static67.aClass3_Sub2_Sub1Array4 = Static173.aClass3_Sub2_Sub1_Sub1Array9;
+            mapfuncs = mapfunctions;
         }
     }
 
     @OriginalMember(owner = "runetek4.client!g", name = "a", descriptor = "(ILclient!ve;)V")
-    public static void init(@OriginalArg(1) Js5 arg0) {
-        Static166.p11FullId = arg0.getGroupId(P11_FULL);
-        Static130.p12FullId = arg0.getGroupId(P12_FULL);
-        Static73.b12FullId = arg0.getGroupId(B12_FULL);
-        Static280.anInt5900 = arg0.getGroupId(MAPFUNCTION);
-        Static131.anInt3261 = arg0.getGroupId(Static219.HITMARKS);
-        anInt1165 = arg0.getGroupId(Static260.HITBAR_DEFAULT);
-        Static214.anInt5579 = arg0.getGroupId(Static123.HEADICONS_PK);
-        Static34.anInt1049 = arg0.getGroupId(Static228.HEADICONS_PRAYER);
-        Class6.anInt4741 = arg0.getGroupId(Static98.HINT_HEADICONS);
-        Static149.anInt3551 = arg0.getGroupId(Static189.HINT_MAPMARKERS);
-        Static19.anInt647 = arg0.getGroupId(Static259.MAPFLAGS);
-        anInt1016 = arg0.getGroupId(CROSS);
-        Static78.anInt2147 = arg0.getGroupId(Static189.MAPDOTS);
-        Static124.anInt3083 = arg0.getGroupId(Static250.SCROLLBAR);
-        FloorUnderlayTypeList.anInt5057 = arg0.getGroupId(NAME_ICONS);
-        Static84.anInt2257 = arg0.getGroupId(FLOORSHADOWS);
-        Static163.anInt3962 = arg0.getGroupId(Static280.COMPASS);
-        Static128.anInt3143 = arg0.getGroupId(Static5.HINT_MAPEDGE);
+    public static void init(@OriginalArg(1) Js5 archive) {
+        p11FullId = archive.getGroupId(P11_FULL);
+        p12FullId = archive.getGroupId(P12_FULL);
+        b12FullId = archive.getGroupId(B12_FULL);
+        mapfunctionId = archive.getGroupId(MAPFUNCTION);
+        hitmarksId = archive.getGroupId(HITMARKS);
+        hitbarId = archive.getGroupId(HITBAR_DEFAULT);
+        headiconsPkId = archive.getGroupId(HEADICONS_PK);
+        headiconsPrayerId = archive.getGroupId(HEADICONS_PRAYER);
+        hintHeadId = archive.getGroupId(HINT_HEADICONS);
+        hintMapMarkId = archive.getGroupId(HINT_MAPMARKERS);
+        mapflagId = archive.getGroupId(MAPFLAGS);
+        crossId = archive.getGroupId(CROSS);
+        mapdotsId = archive.getGroupId(MAPDOTS);
+        scrollbarId = archive.getGroupId(SCROLLBAR);
+        nameIconsId = archive.getGroupId(NAME_ICONS);
+        floorShadowsId = archive.getGroupId(FLOORSHADOWS);
+        compassId = archive.getGroupId(COMPASS);
+        hintMapEdgeId = archive.getGroupId(HINT_MAPEDGE);
     }
 
     @OriginalMember(owner = "client!cd", name = "a", descriptor = "(Lclient!ve;B)I")
-    public static int getReady(@OriginalArg(0) Js5 arg0) {
-        @Pc(5) int local5 = 0;
-        if (arg0.isFileReady(Static280.anInt5900)) {
-            local5++;
+    public static int getReady(@OriginalArg(0) Js5 archive) {
+        @Pc(5) int ready = 0;
+        if (archive.isFileReady(mapfunctionId)) {
+            ready++;
         }
-        if (arg0.isFileReady(Static131.anInt3261)) {
-            local5++;
+        if (archive.isFileReady(hitmarksId)) {
+            ready++;
         }
-        if (arg0.isFileReady(anInt1165)) {
-            local5++;
+        if (archive.isFileReady(hitbarId)) {
+            ready++;
         }
-        if (arg0.isFileReady(Static214.anInt5579)) {
-            local5++;
+        if (archive.isFileReady(headiconsPkId)) {
+            ready++;
         }
-        if (arg0.isFileReady(Static34.anInt1049)) {
-            local5++;
+        if (archive.isFileReady(headiconsPrayerId)) {
+            ready++;
         }
-        if (arg0.isFileReady(Class6.anInt4741)) {
-            local5++;
+        if (archive.isFileReady(hintHeadId)) {
+            ready++;
         }
-        if (arg0.isFileReady(Static149.anInt3551)) {
-            local5++;
+        if (archive.isFileReady(hintMapMarkId)) {
+            ready++;
         }
-        if (arg0.isFileReady(Static19.anInt647)) {
-            local5++;
+        if (archive.isFileReady(mapflagId)) {
+            ready++;
         }
-        if (arg0.isFileReady(anInt1016)) {
-            local5++;
+        if (archive.isFileReady(crossId)) {
+            ready++;
         }
-        if (arg0.isFileReady(Static78.anInt2147)) {
-            local5++;
+        if (archive.isFileReady(mapdotsId)) {
+            ready++;
         }
-        if (arg0.isFileReady(Static124.anInt3083)) {
-            local5++;
+        if (archive.isFileReady(scrollbarId)) {
+            ready++;
         }
-        if (arg0.isFileReady(FloorUnderlayTypeList.anInt5057)) {
-            local5++;
+        if (archive.isFileReady(nameIconsId)) {
+            ready++;
         }
-        if (arg0.isFileReady(Static84.anInt2257)) {
-            local5++;
+        if (archive.isFileReady(floorShadowsId)) {
+            ready++;
         }
-        if (arg0.isFileReady(Static163.anInt3962)) {
-            local5++;
+        if (archive.isFileReady(compassId)) {
+            ready++;
         }
-        if (arg0.isFileReady(Static128.anInt3143)) {
-            local5++;
+        if (archive.isFileReady(hintMapEdgeId)) {
+            ready++;
         }
-        return local5;
+        return ready;
     }
 
     @OriginalMember(owner = "runetek4.client!f", name = "h", descriptor = "(I)I")

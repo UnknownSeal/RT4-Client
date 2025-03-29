@@ -4,9 +4,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static73 {
 
-	@OriginalMember(owner = "client!fm", name = "V", descriptor = "I")
-	public static int b12FullId;
-
 	@OriginalMember(owner = "client!fm", name = "W", descriptor = "Lclient!na;")
 	public static final JString aClass100_453 = JString.parse(")2");
 

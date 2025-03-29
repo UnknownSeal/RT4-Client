@@ -1,15 +1,11 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static173 {
-
-	@OriginalMember(owner = "runetek4.client!nk", name = "L", descriptor = "[Lclient!mm;")
-	public static SoftwareSprite[] aClass3_Sub2_Sub1_Sub1Array9;
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "a", descriptor = "(IIIIIB)V")
 	public static void method3246(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {

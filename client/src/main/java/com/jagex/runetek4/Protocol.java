@@ -1266,7 +1266,7 @@ public class Protocol {
                                 xp = ii >> 6;
                                 local4084.type = ii & 0x3F;
                                 local4084.anInt4048 = inboundBuffer.g1();
-                                if (local4084.anInt4048 >= 0 && local4084.anInt4048 < Sprites.aClass3_Sub2_Sub1Array11.length) {
+                                if (local4084.anInt4048 >= 0 && local4084.anInt4048 < Sprites.headhints.length) {
                                     if (local4084.type == 1 || local4084.type == 10) {
                                         local4084.actorTargetId = inboundBuffer.g2();
                                         inboundBuffer.offset += 3;

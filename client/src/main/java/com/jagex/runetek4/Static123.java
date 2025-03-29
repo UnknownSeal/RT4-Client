@@ -8,9 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static123 {
 
-	@OriginalMember(owner = "runetek4.client!jj", name = "d", descriptor = "Lclient!na;")
-	public static final JString HEADICONS_PK = JString.parse("headicons_pk");
-
 	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(BI)Lclient!lk;")
 	public static StructType method2417(@OriginalArg(1) int arg0) {
 		@Pc(10) StructType local10 = (StructType) PreciseSleep.aClass54_13.get((long) arg0);

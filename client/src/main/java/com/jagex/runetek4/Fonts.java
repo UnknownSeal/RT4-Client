@@ -23,14 +23,14 @@ public class Fonts {
 
     @OriginalMember(owner = "client!hn", name = "a", descriptor = "(Lclient!ve;ILclient!ve;)V")
     public static void load(@OriginalArg(0) Js5 arg0, @OriginalArg(2) Js5 arg1) {
-        p11Full = Font.getFont(Static166.p11FullId, arg1, arg0);
+        p11Full = Font.getFont(Sprites.p11FullId, arg1, arg0);
         if (GlRenderer.enabled) {
-            p11FullSoftware = SoftwareFont.method2412(Static166.p11FullId, arg0, arg1);
+            p11FullSoftware = SoftwareFont.method2412(Sprites.p11FullId, arg0, arg1);
         } else {
             p11FullSoftware = (SoftwareFont) p11Full;
         }
-        p12Full = Font.getFont(Static130.p12FullId, arg1, arg0);
-        b12Full = Font.getFont(Static73.b12FullId, arg1, arg0);
+        p12Full = Font.getFont(Sprites.p12FullId, arg1, arg0);
+        b12Full = Font.getFont(Sprites.b12FullId, arg1, arg0);
     }
 
     @OriginalMember(owner = "client!j", name = "a", descriptor = "(BZLclient!na;)V")
@@ -68,22 +68,22 @@ public class Fonts {
     @OriginalMember(owner = "client!fn", name = "a", descriptor = "(Lclient!ve;Lclient!ve;Z)I")
     public static int getReady(@OriginalArg(0) Js5 arg0, @OriginalArg(1) Js5 arg1) {
         @Pc(5) int local5 = 0;
-        if (arg0.isFileReady(Static166.p11FullId)) {
+        if (arg0.isFileReady(Sprites.p11FullId)) {
             local5++;
         }
-        if (arg0.isFileReady(Static130.p12FullId)) {
+        if (arg0.isFileReady(Sprites.p12FullId)) {
             local5++;
         }
-        if (arg0.isFileReady(Static73.b12FullId)) {
+        if (arg0.isFileReady(Sprites.b12FullId)) {
             local5++;
         }
-        if (arg1.isFileReady(Static166.p11FullId)) {
+        if (arg1.isFileReady(Sprites.p11FullId)) {
             local5++;
         }
-        if (arg1.isFileReady(Static130.p12FullId)) {
+        if (arg1.isFileReady(Sprites.p12FullId)) {
             local5++;
         }
-        if (arg1.isFileReady(Static73.b12FullId)) {
+        if (arg1.isFileReady(Sprites.b12FullId)) {
             local5++;
         }
         return local5;

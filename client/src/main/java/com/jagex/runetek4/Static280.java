@@ -8,12 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static280 {
 
-	@OriginalMember(owner = "runetek4.client!wl", name = "A", descriptor = "I")
-	public static int anInt5900;
-
-	@OriginalMember(owner = "runetek4.client!wl", name = "d", descriptor = "Lclient!na;")
-	public static final JString COMPASS = JString.parse("compass");
-
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "([IIIIIIIIIZB)V")
 	public static void method4667(@OriginalArg(0) int[] arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) boolean arg9) {
 		@Pc(7) int local7 = arg2;

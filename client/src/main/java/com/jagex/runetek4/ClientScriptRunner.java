@@ -1527,9 +1527,9 @@ public final class ClientScriptRunner {
 				SoftwareRaster.method2504(arg0, arg1, arg2.anIntArray37, arg2.anIntArray45);
 			}
 		} else if (GlRenderer.enabled) {
-			((GlSprite) Static106.aClass3_Sub2_Sub1_7).renderRotatedTransparent(arg0, arg1, arg2.width, arg2.height, Static106.aClass3_Sub2_Sub1_7.width / 2, Static106.aClass3_Sub2_Sub1_7.height / 2, Camera.orbitCameraYaw, 256, (GlSprite) arg2.method489(false));
+			((GlSprite) Sprites.compass).renderRotatedTransparent(arg0, arg1, arg2.width, arg2.height, Sprites.compass.width / 2, Sprites.compass.height / 2, Camera.orbitCameraYaw, 256, (GlSprite) arg2.method489(false));
 		} else {
-			((SoftwareSprite) Static106.aClass3_Sub2_Sub1_7).renderRotated(arg0, arg1, arg2.width, arg2.height, Static106.aClass3_Sub2_Sub1_7.width / 2, Static106.aClass3_Sub2_Sub1_7.height / 2, Camera.orbitCameraYaw, arg2.anIntArray37, arg2.anIntArray45);
+			((SoftwareSprite) Sprites.compass).renderRotated(arg0, arg1, arg2.width, arg2.height, Sprites.compass.width / 2, Sprites.compass.height / 2, Camera.orbitCameraYaw, arg2.anIntArray37, arg2.anIntArray45);
 		}
 		InterfaceList.rectangleRedraw[arg3] = true;
 	}
@@ -1603,8 +1603,8 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!fn", name = "a", descriptor = "(BIIIII)V")
 	public static void method1624(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		Static241.aClass36Array16[0].renderTransparent(arg2, arg3);
-		Static241.aClass36Array16[1].renderTransparent(arg2, arg4 + arg3 - 16);
+		Sprites.scrollbars[0].renderTransparent(arg2, arg3);
+		Sprites.scrollbars[1].renderTransparent(arg2, arg4 + arg3 - 16);
 		@Pc(35) int local35 = arg4 * (arg4 - 32) / arg1;
 		if (local35 < 8) {
 			local35 = 8;
@@ -6034,7 +6034,7 @@ public final class ClientScriptRunner {
 					if (local58.multiNpcs != null) {
 						local58 = local58.getMultiNPC();
 					}
-					if (local58.headIcon >= 0 && Static138.aClass3_Sub2_Sub1Array5.length > local58.headIcon) {
+					if (local58.headIcon >= 0 && Sprites.headiconPrayers.length > local58.headIcon) {
 						if (local58.iconHeight == -1) {
 							local265 = local17.height() + 15;
 						} else {
@@ -6042,7 +6042,7 @@ public final class ClientScriptRunner {
 						}
 						setOverheadScreenCoordinateOffsets(arg4 >> 1, arg3, local17, arg5, local265, arg1 >> 1);
 						if (anInt1951 > -1) {
-							Static138.aClass3_Sub2_Sub1Array5[local58.headIcon].render(arg2 + anInt1951 - 12, arg0 + -30 - -anInt548);
+							Sprites.headiconPrayers[local58.headIcon].render(arg2 + anInt1951 - 12, arg0 + -30 - -anInt548);
 						}
 					}
 					@Pc(308) MapMarker[] local308 = MiniMap.hintMapMarkers;
@@ -6056,7 +6056,7 @@ public final class ClientScriptRunner {
 							}
 							setOverheadScreenCoordinateOffsets(arg4 >> 1, arg3, local17, arg5, local359, arg1 >> 1);
 							if (anInt1951 > -1) {
-								Sprites.aClass3_Sub2_Sub1Array11[local322.anInt4048].render(arg2 + anInt1951 - 12, anInt548 + -28 + arg0);
+								Sprites.headhints[local322.anInt4048].render(arg2 + anInt1951 - 12, anInt548 + -28 + arg0);
 							}
 						}
 					}
@@ -6067,11 +6067,11 @@ public final class ClientScriptRunner {
 						setOverheadScreenCoordinateOffsets(arg4 >> 1, arg3, local17, arg5, local17.height() + 15, arg1 >> 1);
 						if (anInt1951 > -1) {
 							if (local77.anInt1669 != -1) {
-								Static219.aClass3_Sub2_Sub1Array9[local77.anInt1669].render(anInt1951 + arg2 - 12, arg0 + -30 + anInt548);
+								Sprites.headiconPks[local77.anInt1669].render(anInt1951 + arg2 - 12, arg0 + -30 + anInt548);
 								local74 += 25;
 							}
 							if (local77.anInt1649 != -1) {
-								Static138.aClass3_Sub2_Sub1Array5[local77.anInt1649].render(arg2 + anInt1951 - 12, arg0 - (-anInt548 + local74));
+								Sprites.headiconPrayers[local77.anInt1649].render(arg2 + anInt1951 - 12, arg0 - (-anInt548 + local74));
 								local74 += 25;
 							}
 						}
@@ -6083,7 +6083,7 @@ public final class ClientScriptRunner {
 							if (local173 != null && local173.type == 10 && PlayerList.playerIds[local5] == local173.actorTargetId) {
 								setOverheadScreenCoordinateOffsets(arg4 >> 1, arg3, local17, arg5, local17.height() + 15, arg1 >> 1);
 								if (anInt1951 > -1) {
-									Sprites.aClass3_Sub2_Sub1Array11[local173.anInt4048].render(arg2 + anInt1951 - 12, arg0 + (anInt548 - local74));
+									Sprites.headhints[local173.anInt4048].render(arg2 + anInt1951 - 12, arg0 + (anInt548 - local74));
 								}
 							}
 						}
@@ -6104,8 +6104,8 @@ public final class ClientScriptRunner {
 					}
 				}
 				if (local17.hitpointsBarVisibleUntil > client.loop) {
-					@Pc(508) Sprite local508 = Static116.aClass3_Sub2_Sub1Array3[0];
-					@Pc(512) Sprite local512 = Static116.aClass3_Sub2_Sub1Array3[1];
+					@Pc(508) Sprite local508 = Sprites.hitbars[0];
+					@Pc(512) Sprite local512 = Sprites.hitbars[1];
 					if (local17 instanceof Npc) {
 						@Pc(518) Npc local518 = (Npc) local17;
 						@Pc(528) Sprite[] local528 = (Sprite[]) HitBarList.hitBars.get((long) local518.type.hitBarId);
@@ -6174,7 +6174,7 @@ public final class ClientScriptRunner {
 								anInt548 -= 10;
 								anInt1951 += 15;
 							}
-							Static213.aClass3_Sub2_Sub1Array8[local17.hitTypes[local74]].render(arg2 + anInt1951 - 12, arg0 + anInt548 - 12);
+							Sprites.hitmarks[local17.hitTypes[local74]].render(arg2 + anInt1951 - 12, arg0 + anInt548 - 12);
 							Fonts.p11Full.renderCenter(JString.parseInt(local17.hitDamages[local74]), anInt1951 + arg2 - 1, anInt548 + 3 + arg0, 16777215, 0);
 						}
 					}
