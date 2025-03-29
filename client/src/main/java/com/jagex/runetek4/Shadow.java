@@ -11,10 +11,10 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!wm")
-public final class OpenGLRenderer {
+public final class Shadow {
 
 	@OriginalMember(owner = "runetek4.client!wm", name = "g", descriptor = "[B")
-	public static final byte[] aByteArray82 = new byte[16384];
+	public static final byte[] pixels = new byte[16384];
 
 	@OriginalMember(owner = "runetek4.client!wm", name = "a", descriptor = "Lclient!vi;")
 	private GlVertexBufferObject aClass155_6;
@@ -38,17 +38,17 @@ public final class OpenGLRenderer {
 	private final int anInt5901;
 
 	@OriginalMember(owner = "runetek4.client!wm", name = "<init>", descriptor = "()V")
-	public OpenGLRenderer() {
-		@Pc(9) GL2 local9 = GlRenderer.gl;
+	public Shadow() {
+		@Pc(9) GL2 gl = GlRenderer.gl;
 		@Pc(12) int[] local12 = new int[1];
-		local9.glGenTextures(1, local12, 0);
+		gl.glGenTextures(1, local12, 0);
 		this.anInt5901 = local12[0];
 		GlCleaner.oncard_texture += 16384;
 		GlRenderer.setTextureId(this.anInt5901);
-		local9.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR);
-		local9.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
-		local9.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_WRAP_S, GL2.GL_CLAMP_TO_EDGE);
-		local9.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_WRAP_T, GL2.GL_CLAMP_TO_EDGE);
+		gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR);
+		gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
+		gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_WRAP_S, GL2.GL_CLAMP_TO_EDGE);
+		gl.glTexParameteri(GL2.GL_TEXTURE_2D, GL2.GL_TEXTURE_WRAP_T, GL2.GL_CLAMP_TO_EDGE);
 	}
 
 	@OriginalMember(owner = "runetek4.client!wm", name = "a", descriptor = "([[III)V")
@@ -151,45 +151,45 @@ public final class OpenGLRenderer {
 					if (local2[local19 + local5] != 0) {
 						local96++;
 					}
-					aByteArray82[local23++] = (byte) (local96 * 17);
+					pixels[local23++] = (byte) (local96 * 17);
 				} else {
-					aByteArray82[local23++] = 68;
+					pixels[local23++] = 68;
 				}
 				local19++;
 			}
 			local19 += local5 - 128;
 		}
-		@Pc(145) GL2 local145 = GlRenderer.gl;
-		@Pc(148) ByteBuffer local148 = ByteBuffer.wrap(aByteArray82);
+		@Pc(145) GL2 gl = GlRenderer.gl;
+		@Pc(148) ByteBuffer local148 = ByteBuffer.wrap(pixels);
 		local148.limit(16384);
 		GlRenderer.setTextureId(this.anInt5901);
-		local145.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_ALPHA, 128, 128, 0, GL2.GL_ALPHA, GL2.GL_UNSIGNED_BYTE, local148);
+		gl.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_ALPHA, 128, 128, 0, GL2.GL_ALPHA, GL2.GL_UNSIGNED_BYTE, local148);
 		return true;
 	}
 
 	@OriginalMember(owner = "runetek4.client!wm", name = "b", descriptor = "()V")
 	public final void method4679() {
-		@Pc(1) GL2 local1 = GlRenderer.gl;
+		@Pc(1) GL2 gl = GlRenderer.gl;
 		GlRenderer.setTextureId(this.anInt5901);
 		if (this.aClass155_7 == null) {
 			if (GlRenderer.arbVboSupported) {
-				local1.glBindBuffer(GL2.GL_ARRAY_BUFFER, 0);
+				gl.glBindBuffer(GL2.GL_ARRAY_BUFFER, 0);
 			}
-			local1.glInterleavedArrays(GL2.GL_T2F_V3F, 20, this.aByteBuffer12);
+			gl.glInterleavedArrays(GL2.GL_T2F_V3F, 20, this.aByteBuffer12);
 			GlRenderer.normalArrayEnabled = false;
 		} else {
 			this.aClass155_7.bindArray();
-			local1.glInterleavedArrays(GL2.GL_T2F_V3F, 20, 0L);
+			gl.glInterleavedArrays(GL2.GL_T2F_V3F, 20, 0L);
 			GlRenderer.normalArrayEnabled = false;
 		}
 		if (this.aClass155_6 == null) {
 			if (GlRenderer.arbVboSupported) {
-				local1.glBindBuffer(GL2.GL_ELEMENT_ARRAY_BUFFER, 0);
+				gl.glBindBuffer(GL2.GL_ELEMENT_ARRAY_BUFFER, 0);
 			}
-			local1.glDrawElements(GL2.GL_TRIANGLES, 384, GL2.GL_UNSIGNED_INT, this.aByteBuffer11);
+			gl.glDrawElements(GL2.GL_TRIANGLES, 384, GL2.GL_UNSIGNED_INT, this.aByteBuffer11);
 		} else {
 			this.aClass155_6.bindElementArray();
-			local1.glDrawElements(GL2.GL_TRIANGLES, 384, GL2.GL_UNSIGNED_INT, 0L);
+			gl.glDrawElements(GL2.GL_TRIANGLES, 384, GL2.GL_UNSIGNED_INT, 0L);
 		}
 	}
 }

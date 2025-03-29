@@ -7,7 +7,7 @@ import com.jagex.runetek4.game.config.bastype.BasTypeList;
 import com.jagex.runetek4.game.config.idktype.IDKType;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.graphics.RawModel;
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
@@ -50,9 +50,9 @@ public final class PlayerAppearance {
 	@OriginalMember(owner = "runetek4.client!ri", name = "b", descriptor = "[I")
 	public static final int[] anIntArray187 = new int[14];
 	@OriginalMember(owner = "runetek4.client!uf", name = "j", descriptor = "Lclient!n;")
-	public static final NodeCache bodyModels = new NodeCache(260);
+	public static final SoftLruHashTable bodyModels = new SoftLruHashTable(260);
 	@OriginalMember(owner = "runetek4.client!l", name = "b", descriptor = "Lclient!n;")
-	public static final NodeCache headModels = new NodeCache(5);
+	public static final SoftLruHashTable headModels = new SoftLruHashTable(5);
 	@OriginalMember(owner = "runetek4.client!qi", name = "x", descriptor = "[I")
 	public static final int[] MALE_FEATURES = new int[] { 0, 1, 2, 3, 4, 5, 6, 14 };
 	@OriginalMember(owner = "runetek4.client!mc", name = "ab", descriptor = "[I")

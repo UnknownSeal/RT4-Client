@@ -370,7 +370,7 @@ public final class Loc extends Entity {
 				this.aBoolean81 = false;
 			}
 			if (!this.aBoolean81) {
-				Static242.method4211(local471, local302, local429, local311);
+				ShadowManager.method4211(local471, local302, local429, local311);
 				this.sprite2 = local471;
 				this.anInt1319 = local311;
 				if (local356) {

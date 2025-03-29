@@ -9,7 +9,7 @@ import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.graphics.RawModel;
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -19,13 +19,13 @@ import org.openrs2.deob.annotation.Pc;
 public final class Component {
 
 	@OriginalMember(owner = "runetek4.client!pf", name = "b", descriptor = "Lclient!n;")
-	public static final NodeCache sprites = new NodeCache(200);
+	public static final SoftLruHashTable sprites = new SoftLruHashTable(200);
 
 	@OriginalMember(owner = "runetek4.client!gn", name = "i", descriptor = "Lclient!n;")
-	public static final NodeCache interfaceTypefaceCache = new NodeCache(20);
+	public static final SoftLruHashTable interfaceTypefaceCache = new SoftLruHashTable(20);
 
 	@OriginalMember(owner = "runetek4.client!jk", name = "z", descriptor = "Lclient!n;")
-	public static final NodeCache interfaceModelCache = new NodeCache(50);
+	public static final SoftLruHashTable interfaceModelCache = new SoftLruHashTable(50);
 
 	@OriginalMember(owner = "runetek4.client!rc", name = "C", descriptor = "Z")
 	public static boolean aBoolean72 = false;

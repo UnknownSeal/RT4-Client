@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.def.ObjType;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,13 +11,13 @@ import org.openrs2.deob.annotation.Pc;
 public final class ObjTypeList {
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "c", descriptor = "Lclient!n;")
-	public static final NodeCache objectSpriteCache = new NodeCache(100);
+	public static final SoftLruHashTable objectSpriteCache = new SoftLruHashTable(100);
 
 	@OriginalMember(owner = "runetek4.client!tl", name = "c", descriptor = "Lclient!n;")
-	public static final NodeCache models = new NodeCache(50);
+	public static final SoftLruHashTable models = new SoftLruHashTable(50);
 
 	@OriginalMember(owner = "client!cb", name = "Y", descriptor = "Lclient!n;")
-	public static final NodeCache types = new NodeCache(64);
+	public static final SoftLruHashTable types = new SoftLruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "eb", descriptor = "I")
 	public static int capacity;

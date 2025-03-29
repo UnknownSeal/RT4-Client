@@ -3,7 +3,7 @@ package com.jagex.runetek4.cache.def;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.graphics.RawModel;
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -13,7 +13,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class SpotAnimType {
 
 	@OriginalMember(owner = "runetek4.client!ef", name = "b", descriptor = "Lclient!n;")
-	public static final NodeCache modelCache = new NodeCache(30);
+	public static final SoftLruHashTable modelCache = new SoftLruHashTable(30);
 	@OriginalMember(owner = "runetek4.client!eg", name = "f", descriptor = "[S")
 	private short[] aShortArray15;
 

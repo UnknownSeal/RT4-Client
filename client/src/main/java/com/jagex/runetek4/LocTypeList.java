@@ -3,23 +3,23 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.entity.LocType;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class LocTypeList {
     @OriginalMember(owner = "runetek4.client!nf", name = "f", descriptor = "Lclient!n;")
-    public static final NodeCache modelCacheStatic = new NodeCache(500);
+    public static final SoftLruHashTable modelCacheStatic = new SoftLruHashTable(500);
 
     @OriginalMember(owner = "runetek4.client!oe", name = "j", descriptor = "Lclient!n;")
-    public static final NodeCache types = new NodeCache(64);
+    public static final SoftLruHashTable types = new SoftLruHashTable(64);
 
     @OriginalMember(owner = "runetek4.client!he", name = "fb", descriptor = "Lclient!n;")
-    public static final NodeCache aClass99_14 = new NodeCache(30);
+    public static final SoftLruHashTable aClass99_14 = new SoftLruHashTable(30);
 
     @OriginalMember(owner = "runetek4.client!vf", name = "l", descriptor = "Lclient!n;")
-    public static final NodeCache aClass99_36 = new NodeCache(50);
+    public static final SoftLruHashTable aClass99_36 = new SoftLruHashTable(50);
 
     @OriginalMember(owner = "runetek4.client!jg", name = "j", descriptor = "Lclient!ve;")
     public static Js5 modelsArchive;

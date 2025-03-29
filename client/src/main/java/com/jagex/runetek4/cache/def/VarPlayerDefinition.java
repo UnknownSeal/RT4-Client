@@ -1,6 +1,6 @@
 package com.jagex.runetek4.cache.def;
 
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -16,7 +16,7 @@ public final class VarPlayerDefinition {
 	public static final int[] activeVarps = new int[2500];
 
 	@OriginalMember(owner = "runetek4.client!sm", name = "c", descriptor = "Lclient!n;")
-	public static final NodeCache varPlayerDefinitionCache = new NodeCache(64);
+	public static final SoftLruHashTable varPlayerDefinitionCache = new SoftLruHashTable(64);
 
 	@OriginalMember(owner = "runetek4.client!ic", name = "e", descriptor = "[I")
 	public static final int[] varPlayerCache = new int[2500];

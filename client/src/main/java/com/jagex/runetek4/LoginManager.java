@@ -458,7 +458,7 @@ public class LoginManager {
             ShadowManager.shadowMapImage.clear();
             for (i = 0; i < 13; i++) {
                 for (chunkX = 0; chunkX < 13; chunkX++) {
-                    ShadowManager.aOpenGLRendererArrayArray1[i][chunkX].outputToSprite = true;
+                    ShadowManager.shadows[i][chunkX].outputToSprite = true;
                 }
             }
         }
@@ -537,7 +537,7 @@ public class LoginManager {
         if (GlRenderer.enabled) {
             for (chunkX = 0; chunkX < 13; chunkX++) {
                 for (chunkZ = 0; chunkZ < 13; chunkZ++) {
-                    ShadowManager.aOpenGLRendererArrayArray1[chunkX][chunkZ].method4676(SceneGraph.tileHeights[0], chunkX * 8, chunkZ * 8);
+                    ShadowManager.shadows[chunkX][chunkZ].method4676(SceneGraph.tileHeights[0], chunkX * 8, chunkZ * 8);
                 }
             }
         }

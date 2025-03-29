@@ -3,7 +3,7 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.config.FluType;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -11,7 +11,7 @@ import org.openrs2.deob.annotation.Pc;
 public final class FloorUnderlayTypeList {
 
 	@OriginalMember(owner = "client!gj", name = "p", descriptor = "Lclient!n;")
-	public static final NodeCache types = new NodeCache(64);
+	public static final SoftLruHashTable types = new SoftLruHashTable(64);
 	@OriginalMember(owner = "client!sd", name = "I", descriptor = "I")
 	public static int anInt5057;
 

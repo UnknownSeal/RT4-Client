@@ -8,11 +8,6 @@ public final class Static251 {
 	@OriginalMember(owner = "runetek4.client!ug", name = "p", descriptor = "I")
 	public static int anInt5457;
 
-	@OriginalMember(owner = "runetek4.client!ug", name = "b", descriptor = "(B)V")
-	public static void removeSoft() {
-		Static45.aClass99_6.removeSoft();
-	}
-
 	@OriginalMember(owner = "runetek4.client!ug", name = "a", descriptor = "(II)V")
 	public static void method4278(@OriginalArg(0) int arg0) {
 		if (Static241.anIntArray522 == null || Static241.anIntArray522.length < arg0) {

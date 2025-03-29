@@ -3,16 +3,20 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import com.jagex.runetek4.util.MathUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class ShadowModelList {
+    @OriginalMember(owner = "client!di", name = "I", descriptor = "Lclient!n;")
+    public static final SoftLruHashTable SHADOWS = new SoftLruHashTable(32);
+
     @OriginalMember(owner = "runetek4.client!dc", name = "a", descriptor = "(IZLclient!tk;IIIIILclient!ak;IIIIB)Lclient!ak;")
     public static Model method1043(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) SeqType arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) Model arg8, @OriginalArg(9) int arg9, @OriginalArg(10) int arg10, @OriginalArg(11) int arg11, @OriginalArg(12) int arg12) {
         @Pc(23) long local23 = ((long) arg4 << 48) + (long) (arg7 + (arg0 << 16) + (arg12 << 24)) + ((long) arg6 << 32);
-        @Pc(33) Model local33 = (Model) Static45.aClass99_6.get(local23);
+        @Pc(33) Model local33 = (Model) SHADOWS.get(local23);
         @Pc(109) int local109;
         @Pc(115) int local115;
         @Pc(126) int local126;
@@ -60,7 +64,7 @@ public class ShadowModelList {
                 }
             }
             local33 = local103.createModel(64, 768, -50, -10, -50);
-            Static45.aClass99_6.put(local33, local23);
+            SHADOWS.put(local33, local23);
         }
         @Pc(367) int local367 = arg7 * 64 - 1;
         @Pc(376) int local376 = -local367;
@@ -135,5 +139,20 @@ public class ShadowModelList {
             }
         }
         return local33;
+    }
+
+    @OriginalMember(owner = "runetek4.client!kh", name = "a", descriptor = "(II)V")
+    public static void clean() {
+        SHADOWS.clean(5);
+    }
+
+    @OriginalMember(owner = "runetek4.client!ug", name = "b", descriptor = "(B)V")
+    public static void removeSoft() {
+        SHADOWS.removeSoft();
+    }
+
+    @OriginalMember(owner = "runetek4.client!hb", name = "a", descriptor = "(Z)V")
+    public static void clear() {
+        SHADOWS.clean();
     }
 }

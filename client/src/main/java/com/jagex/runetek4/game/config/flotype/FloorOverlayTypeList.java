@@ -2,14 +2,14 @@ package com.jagex.runetek4.game.config.flotype;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class FloorOverlayTypeList {
     @OriginalMember(owner = "runetek4.client!t", name = "p", descriptor = "Lclient!n;")
-    public static final NodeCache types = new NodeCache(64);
+    public static final SoftLruHashTable types = new SoftLruHashTable(64);
     @OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "I")
     public static int capacity;
     @OriginalMember(owner = "runetek4.client!cl", name = "J", descriptor = "Lclient!ve;")

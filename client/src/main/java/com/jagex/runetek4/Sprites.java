@@ -31,6 +31,8 @@ public class Sprites {
     public static int anInt1016;
     @OriginalMember(owner = "client!runetek4.client", name = "W", descriptor = "I")
     public static int anInt1165;
+    @OriginalMember(owner = "runetek4.client!tj", name = "d", descriptor = "[Lclient!ek;")
+    public static SoftwareIndexedSprite[] floorShadows;
 
     @OriginalMember(owner = "runetek4.client!ja", name = "a", descriptor = "(Z)V")
     public static void clear() {
@@ -78,9 +80,9 @@ public class Sprites {
         Fonts.p12Full.setNameIcons(nameIcons, null);
         Fonts.b12Full.setNameIcons(nameIcons, null);
         if (GlRenderer.enabled) {
-            Static242.aClass36_Sub1Array2 = method837(Static84.anInt2257, arg0);
-            for (@Pc(101) int local101 = 0; local101 < Static242.aClass36_Sub1Array2.length; local101++) {
-                Static242.aClass36_Sub1Array2[local101].method1396();
+            floorShadows = method837(Static84.anInt2257, arg0);
+            for (@Pc(101) int local101 = 0; local101 < floorShadows.length; local101++) {
+                floorShadows[local101].method1396();
             }
         }
         @Pc(124) SoftwareSprite local124 = SpriteLoader.loadSoftwareSprite(0, arg0, Static163.anInt3962);

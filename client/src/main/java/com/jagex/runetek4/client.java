@@ -316,7 +316,7 @@ public final class client extends GameShell {
 		PlayerAppearance.removeSoft();
 		Component.removeSoft();
 		HintArrowManager.removeSoft();
-		Static251.removeSoft();
+		ShadowModelList.removeSoft();
 		HitBarList.hitBars.removeSoft();
 		FontMetricsList.fontMetrics.removeSoft();
 	}
@@ -359,7 +359,7 @@ public final class client extends GameShell {
 			Player.anInt2863 = 0;
 		}
 		HintArrowManager.clear();
-		Static90.method1857();
+		ShadowModelList.clear();
 		FontMetricsList.fontMetrics.clean();
 		if (!GlRenderer.enabled) {
 			((Js5GlTextureProvider) Rasterizer.textureProvider).clear();
@@ -647,7 +647,7 @@ public final class client extends GameShell {
 		PlayerAppearance.clean();
 		Component.clean();
 		HintArrowManager.clean();
-		Static134.method2621();
+		ShadowModelList.clean();
 		HitBarList.hitBars.clean(5);
 		FontMetricsList.fontMetrics.clean(5);
 	}

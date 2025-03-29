@@ -3,16 +3,16 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class SeqTypeList {
     @OriginalMember(owner = "runetek4.client!lc", name = "e", descriptor = "Lclient!n;")
-    public static final NodeCache types = new NodeCache(64);
+    public static final SoftLruHashTable types = new SoftLruHashTable(64);
     @OriginalMember(owner = "runetek4.client!vl", name = "a", descriptor = "Lclient!n;")
-    public static final NodeCache animFramesets = new NodeCache(100);
+    public static final SoftLruHashTable animFramesets = new SoftLruHashTable(100);
     @OriginalMember(owner = "runetek4.client!tk", name = "s", descriptor = "Lclient!ve;")
     public static Js5 archive;
     @OriginalMember(owner = "runetek4.client!af", name = "a", descriptor = "Lclient!ve;")

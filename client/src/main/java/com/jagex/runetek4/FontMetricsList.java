@@ -1,13 +1,13 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class FontMetricsList {
     @OriginalMember(owner = "runetek4.client!l", name = "f", descriptor = "Lclient!n;")
-    public static final NodeCache fontMetrics = new NodeCache(4);
+    public static final SoftLruHashTable fontMetrics = new SoftLruHashTable(4);
 
     @OriginalMember(owner = "runetek4.client!li", name = "a", descriptor = "(II)Lclient!dd;")
     public static SoftwareFont get(@OriginalArg(1) int arg0) {

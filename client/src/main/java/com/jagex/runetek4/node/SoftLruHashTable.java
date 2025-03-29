@@ -8,7 +8,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!n")
-public final class NodeCache {
+public final class SoftLruHashTable {
 
 	@OriginalMember(owner = "runetek4.client!n", name = "k", descriptor = "Lclient!ce;")
 	private final SecondaryLinkedList secondaryLinkedList = new SecondaryLinkedList();
@@ -23,7 +23,7 @@ public final class NodeCache {
 	private final HashTable hashTable;
 
 	@OriginalMember(owner = "runetek4.client!n", name = "<init>", descriptor = "(I)V")
-	public NodeCache(@OriginalArg(0) int size) {
+	public SoftLruHashTable(@OriginalArg(0) int size) {
 		this.size = size;
 		@Pc(11) int i;
 		for (i = 1; i + i < size; i += i) {

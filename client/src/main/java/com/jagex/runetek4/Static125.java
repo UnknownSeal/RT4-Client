@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static125 {
@@ -9,6 +9,6 @@ public final class Static125 {
 	public static byte[][][] aByteArrayArrayArray10;
 
 	@OriginalMember(owner = "runetek4.client!jl", name = "G", descriptor = "Lclient!n;")
-	public static final NodeCache varbitDefinitionCache = new NodeCache(64);
+	public static final SoftLruHashTable varbitDefinitionCache = new SoftLruHashTable(64);
 
 }

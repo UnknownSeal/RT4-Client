@@ -117,7 +117,7 @@ public final class Static248 {
 					}
 					if (local32 == 0 && Preferences.sceneryShadowsType > 0) {
 						GlRenderer.method4159(101.5F);
-						Static242.method4198(SceneGraph.eyeTileX, SceneGraph.anInt4539, SceneGraph.visibility, arg1, SceneGraph.aBooleanArrayArray1, SceneGraph.tileHeights[0]);
+						ShadowManager.method4198(SceneGraph.eyeTileX, SceneGraph.anInt4539, SceneGraph.visibility, arg1, SceneGraph.aBooleanArrayArray1, SceneGraph.tileHeights[0]);
 					}
 					local32++;
 				}

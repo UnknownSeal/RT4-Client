@@ -14,11 +14,6 @@ public final class Static134 {
 		return local25;
 	}
 
-	@OriginalMember(owner = "runetek4.client!kh", name = "a", descriptor = "(II)V")
-	public static void method2621() {
-		Static45.aClass99_6.clean(5);
-	}
-
 	@OriginalMember(owner = "runetek4.client!kh", name = "a", descriptor = "(IIIBII)V")
 	public static void method2622(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		@Pc(8) int local8 = arg2 + 1;

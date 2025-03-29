@@ -2,14 +2,14 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.node.NodeCache;
+import com.jagex.runetek4.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class HintArrowManager {
     @OriginalMember(owner = "runetek4.client!ih", name = "l", descriptor = "Lclient!n;")
-    public static final NodeCache models = new NodeCache(4);
+    public static final SoftLruHashTable models = new SoftLruHashTable(4);
 
     @OriginalMember(owner = "runetek4.client!mh", name = "c", descriptor = "(II)V")
     public static void clean() {
