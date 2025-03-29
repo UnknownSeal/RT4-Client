@@ -132,10 +132,10 @@ public class ShadowModelList {
         } else {
             @Pc(574) SoftwareModel local574 = (SoftwareModel) local33;
             if (SceneGraph.getTileHeight(Player.plane, arg3 + local384, arg5 - -local126) != arg11 || arg11 != SceneGraph.getTileHeight(Player.plane, arg3 + local115, arg5 - -local130)) {
-                for (local162 = 0; local162 < local574.anInt5788; local162++) {
-                    local574.anIntArray527[local162] += SceneGraph.getTileHeight(Player.plane, arg3 + local574.anIntArray528[local162], arg5 + local574.anIntArray531[local162]) - arg11;
+                for (local162 = 0; local162 < local574.vertexCount; local162++) {
+                    local574.vertexY[local162] += SceneGraph.getTileHeight(Player.plane, arg3 + local574.vertexX[local162], arg5 + local574.vertexZ[local162]) - arg11;
                 }
-                local574.aBoolean305 = false;
+                local574.boundsValid = false;
             }
         }
         return local33;
