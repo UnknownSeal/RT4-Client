@@ -202,7 +202,7 @@ public final class Player extends PathingEntity {
 	@OriginalMember(owner = "runetek4.client!pa", name = "a", descriptor = "(IIILclient!e;)V")
 	public static void animate(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) Player arg2) {
 		if (arg1 == arg2.primarySeqId && arg1 != -1) {
-			@Pc(89) SeqType local89 = SeqTypeList.getAnimationSequence(arg1);
+			@Pc(89) SeqType local89 = SeqTypeList.get(arg1);
 			@Pc(92) int local92 = local89.exactmove;
 			if (local92 == 1) {
 				arg2.anInt3420 = arg0;
@@ -215,7 +215,7 @@ public final class Player extends PathingEntity {
 			if (local92 == 2) {
 				arg2.anInt3371 = 0;
 			}
-		} else if (arg1 == -1 || arg2.primarySeqId == -1 || SeqTypeList.getAnimationSequence(arg1).priority >= SeqTypeList.getAnimationSequence(arg2.primarySeqId).priority) {
+		} else if (arg1 == -1 || arg2.primarySeqId == -1 || SeqTypeList.get(arg1).priority >= SeqTypeList.get(arg2.primarySeqId).priority) {
 			arg2.anInt3373 = 1;
 			arg2.anInt3425 = 0;
 			arg2.anInt3420 = arg0;
@@ -224,7 +224,7 @@ public final class Player extends PathingEntity {
 			arg2.anInt3360 = 0;
 			arg2.primarySeqId = arg1;
 			if (arg2.primarySeqId != -1) {
-				SoundPlayer.playSeqSound(arg2.zFine, SeqTypeList.getAnimationSequence(arg2.primarySeqId), arg2.xFine, arg2 == PlayerList.self, arg2.anInt3425);
+				SoundPlayer.playSeqSound(arg2.zFine, SeqTypeList.get(arg2.primarySeqId), arg2.xFine, arg2 == PlayerList.self, arg2.anInt3425);
 			}
 		}
 	}
@@ -241,7 +241,7 @@ public final class Player extends PathingEntity {
 					if (local20 == -1) {
 						arg2.aPathingEntityClass147Array3[local30] = null;
 					} else {
-						@Pc(68) SeqType local68 = SeqTypeList.getAnimationSequence(local20);
+						@Pc(68) SeqType local68 = SeqTypeList.get(local20);
 						@Pc(71) int local71 = local68.exactmove;
 						@Pc(76) PathingEntity_Class147 local76 = arg2.aPathingEntityClass147Array3[local30];
 						if (local76 != null) {
@@ -258,7 +258,7 @@ public final class Player extends PathingEntity {
 								} else if (local71 == 2) {
 									local76.anInt5400 = 0;
 								}
-							} else if (local68.priority >= SeqTypeList.getAnimationSequence(local76.anInt5396).priority) {
+							} else if (local68.priority >= SeqTypeList.get(local76.anInt5396).priority) {
 								local76 = arg2.aPathingEntityClass147Array3[local30] = null;
 							}
 						}
@@ -434,8 +434,8 @@ public final class Player extends PathingEntity {
 		if (this.appearance == null) {
 			return;
 		}
-		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? SeqTypeList.getAnimationSequence(this.primarySeqId) : null;
-		@Pc(54) SeqType local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().idleAnimationId && local25 != null ? null : SeqTypeList.getAnimationSequence(this.movementSeqId);
+		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? SeqTypeList.get(this.primarySeqId) : null;
+		@Pc(54) SeqType local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().idleAnimationId && local25 != null ? null : SeqTypeList.get(this.movementSeqId);
 		@Pc(76) Model local76 = this.appearance.method1954(this.aPathingEntityClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
 		@Pc(79) int local79 = PlayerAppearance.getModelCacheSize();
 		if (GlRenderer.enabled && GameShell.maxMemory < 96 && local79 > 50) {

@@ -1280,22 +1280,22 @@ public class InterfaceList {
                             local105 = local15.modelSeqId;
                         }
                         if (local105 != -1) {
-                            @Pc(118) SeqType local118 = SeqTypeList.getAnimationSequence(local105);
+                            @Pc(118) SeqType local118 = SeqTypeList.get(local105);
                             if (local118 != null) {
                                 local15.anInt500 += Protocol.sceneDelta;
-                                while (local15.anInt500 > local118.frames[local15.anInt510]) {
-                                    local15.anInt500 -= local118.frames[local15.anInt510];
+                                while (local15.anInt500 > local118.frameDelay[local15.anInt510]) {
+                                    local15.anInt500 -= local118.frameDelay[local15.anInt510];
                                     local15.anInt510++;
-                                    if (local118.anIntArray473.length <= local15.anInt510) {
-                                        local15.anInt510 -= local118.replayoff;
-                                        if (local15.anInt510 < 0 || local118.anIntArray473.length <= local15.anInt510) {
+                                    if (local118.frames.length <= local15.anInt510) {
+                                        local15.anInt510 -= local118.replayOff;
+                                        if (local15.anInt510 < 0 || local118.frames.length <= local15.anInt510) {
                                             local15.anInt510 = 0;
                                         }
                                     }
                                     local15.anInt496 = local15.anInt510 + 1;
-                                    if (local118.anIntArray473.length <= local15.anInt496) {
-                                        local15.anInt496 -= local118.replayoff;
-                                        if (local15.anInt496 < 0 || local118.anIntArray473.length <= local15.anInt496) {
+                                    if (local118.frames.length <= local15.anInt496) {
+                                        local15.anInt496 -= local118.replayOff;
+                                        if (local15.anInt496 < 0 || local118.frames.length <= local15.anInt496) {
                                             local15.anInt496 = -1;
                                         }
                                     }

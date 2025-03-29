@@ -729,7 +729,7 @@ public class Protocol {
                                         slot = -1;
                                     }
                                     local1245 = true;
-                                    if (slot != -1 && local1894.spotAnimId != -1 && SeqTypeList.getAnimationSequence(SpotAnimTypeList.get(slot).animationId).priority < SeqTypeList.getAnimationSequence(SpotAnimTypeList.get(local1894.spotAnimId).animationId).priority) {
+                                    if (slot != -1 && local1894.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(slot).animationId).priority < SeqTypeList.get(SpotAnimTypeList.get(local1894.spotAnimId).animationId).priority) {
                                         local1245 = false;
                                     }
                                     if (local1245) {
@@ -745,8 +745,8 @@ public class Protocol {
                                         if (local1894.spotAnimId != -1 && client.loop == local1894.spotAnimStart) {
                                             j = SpotAnimTypeList.get(local1894.spotAnimId).animationId;
                                             if (j != -1) {
-                                                local1994 = SeqTypeList.getAnimationSequence(j);
-                                                if (local1994 != null && local1994.anIntArray473 != null) {
+                                                local1994 = SeqTypeList.get(j);
+                                                if (local1994 != null && local1994.frames != null) {
                                                     SoundPlayer.playSeqSound(local1894.zFine, local1994, local1894.xFine, false, 0);
                                                 }
                                             }
@@ -766,7 +766,7 @@ public class Protocol {
                                         slot = -1;
                                     }
                                     local1245 = true;
-                                    if (slot != -1 && local2033.spotAnimId != -1 && SeqTypeList.getAnimationSequence(SpotAnimTypeList.get(slot).animationId).priority < SeqTypeList.getAnimationSequence(SpotAnimTypeList.get(local2033.spotAnimId).animationId).priority) {
+                                    if (slot != -1 && local2033.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(slot).animationId).priority < SeqTypeList.get(SpotAnimTypeList.get(local2033.spotAnimId).animationId).priority) {
                                         local1245 = false;
                                     }
                                     if (local1245) {
@@ -785,8 +785,8 @@ public class Protocol {
                                         if (local2033.spotAnimId != -1 && local2033.spotAnimStart == client.loop) {
                                             j = SpotAnimTypeList.get(local2033.spotAnimId).animationId;
                                             if (j != -1) {
-                                                local1994 = SeqTypeList.getAnimationSequence(j);
-                                                if (local1994 != null && local1994.anIntArray473 != null) {
+                                                local1994 = SeqTypeList.get(j);
+                                                if (local1994 != null && local1994.frames != null) {
                                                     SoundPlayer.playSeqSound(local2033.zFine, local1994, local2033.xFine, local2033 == PlayerList.self, 0);
                                                 }
                                             }
@@ -2482,7 +2482,7 @@ public class Protocol {
             }
             staffModLevel = inboundBuffer.p4rme();
             @Pc(573) boolean local573 = true;
-            if (chatFlags != -1 && player.spotAnimId != -1 && SeqTypeList.getAnimationSequence(SpotAnimTypeList.get(chatFlags).animationId).priority < SeqTypeList.getAnimationSequence(SpotAnimTypeList.get(player.spotAnimId).animationId).priority) {
+            if (chatFlags != -1 && player.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(chatFlags).animationId).priority < SeqTypeList.get(SpotAnimTypeList.get(player.spotAnimId).animationId).priority) {
                 local573 = false;
             }
             if (local573) {
@@ -2498,8 +2498,8 @@ public class Protocol {
                 if (player.spotAnimId != -1 && client.loop == player.spotAnimStart) {
                     local24 = SpotAnimTypeList.get(player.spotAnimId).animationId;
                     if (local24 != -1) {
-                        @Pc(663) SeqType local663 = SeqTypeList.getAnimationSequence(local24);
-                        if (local663 != null && local663.anIntArray473 != null) {
+                        @Pc(663) SeqType local663 = SeqTypeList.get(local24);
+                        if (local663 != null && local663.frames != null) {
                             SoundPlayer.playSeqSound(player.zFine, local663, player.xFine, player == PlayerList.self, 0);
                         }
                     }
@@ -2688,7 +2688,7 @@ public class Protocol {
                 }
                 info = inboundBuffer.g4me();
                 @Pc(147) boolean local147 = true;
-                if (local43 != -1 && npc.spotAnimId != -1 && SeqTypeList.getAnimationSequence(SpotAnimTypeList.get(local43).animationId).priority < SeqTypeList.getAnimationSequence(SpotAnimTypeList.get(npc.spotAnimId).animationId).priority) {
+                if (local43 != -1 && npc.spotAnimId != -1 && SeqTypeList.get(SpotAnimTypeList.get(local43).animationId).priority < SeqTypeList.get(SpotAnimTypeList.get(npc.spotAnimId).animationId).priority) {
                     local147 = false;
                 }
                 if (local147) {
@@ -2704,8 +2704,8 @@ public class Protocol {
                     if (npc.spotAnimId != -1 && npc.spotAnimStart == client.loop) {
                         @Pc(227) int seqId = SpotAnimTypeList.get(npc.spotAnimId).animationId;
                         if (seqId != -1) {
-                            @Pc(236) SeqType local236 = SeqTypeList.getAnimationSequence(seqId);
-                            if (local236 != null && local236.anIntArray473 != null) {
+                            @Pc(236) SeqType local236 = SeqTypeList.get(seqId);
+                            if (local236 != null && local236.frames != null) {
                                 SoundPlayer.playSeqSound(npc.zFine, local236, npc.xFine, false, 0);
                             }
                         }
@@ -2852,7 +2852,7 @@ public class Protocol {
                     if (local15 == -1) {
                         arg1.aPathingEntityClass147Array3[local25] = null;
                     } else {
-                        @Pc(60) SeqType local60 = SeqTypeList.getAnimationSequence(local15);
+                        @Pc(60) SeqType local60 = SeqTypeList.get(local15);
                         @Pc(65) PathingEntity_Class147 local65 = arg1.aPathingEntityClass147Array3[local25];
                         @Pc(68) int local68 = local60.exactmove;
                         if (local65 != null) {
@@ -2869,7 +2869,7 @@ public class Protocol {
                                 } else if (local68 == 2) {
                                     local65.anInt5400 = 0;
                                 }
-                            } else if (local60.priority >= SeqTypeList.getAnimationSequence(local65.anInt5396).priority) {
+                            } else if (local60.priority >= SeqTypeList.get(local65.anInt5396).priority) {
                                 local65 = arg1.aPathingEntityClass147Array3[local25] = null;
                             }
                         }
@@ -2893,7 +2893,7 @@ public class Protocol {
     @OriginalMember(owner = "runetek4.client!sc", name = "a", descriptor = "(IIILclient!km;)V")
     public static void animateNpc(@OriginalArg(0) int arg0, @OriginalArg(1) int animationId, @OriginalArg(3) Npc npc) {
         if (npc.primarySeqId == animationId && animationId != -1) {
-            @Pc(10) SeqType seqType = SeqTypeList.getAnimationSequence(animationId);
+            @Pc(10) SeqType seqType = SeqTypeList.get(animationId);
             @Pc(13) int local13 = seqType.exactmove;
             if (local13 == 1) {
                 npc.anInt3373 = 1;
@@ -2906,7 +2906,7 @@ public class Protocol {
             if (local13 == 2) {
                 npc.anInt3371 = 0;
             }
-        } else if (animationId == -1 || npc.primarySeqId == -1 || SeqTypeList.getAnimationSequence(animationId).priority >= SeqTypeList.getAnimationSequence(npc.primarySeqId).priority) {
+        } else if (animationId == -1 || npc.primarySeqId == -1 || SeqTypeList.get(animationId).priority >= SeqTypeList.get(npc.primarySeqId).priority) {
             npc.anInt3360 = 0;
             npc.primarySeqId = animationId;
             npc.anInt3373 = 1;
@@ -2915,7 +2915,7 @@ public class Protocol {
             npc.anInt3405 = npc.movementQueueSize;
             npc.anInt3425 = 0;
             if (npc.primarySeqId != -1) {
-                SoundPlayer.playSeqSound(npc.zFine, SeqTypeList.getAnimationSequence(npc.primarySeqId), npc.xFine, false, npc.anInt3425);
+                SoundPlayer.playSeqSound(npc.zFine, SeqTypeList.get(npc.primarySeqId), npc.xFine, false, npc.anInt3425);
             }
         }
     }

@@ -569,13 +569,13 @@ public final class NpcType {
 		local173 = arg0 == null ? 0 : arg0.length;
 		for (local235 = 0; local235 < local173; local235++) {
 			if (arg0[local235] != null) {
-				@Pc(753) SeqType local753 = SeqTypeList.getAnimationSequence(arg0[local235].anInt5396);
-				if (local753.anIntArray473 != null) {
+				@Pc(753) SeqType local753 = SeqTypeList.get(arg0[local235].anInt5396);
+				if (local753.frames != null) {
 					aClass144Array1[local235] = local753;
 					local207 = arg0[local235].anInt5398;
 					local46 = true;
 					local200 = arg0[local235].anInt5399;
-					local214 = local753.anIntArray473[local200];
+					local214 = local753.frames[local200];
 					aClass3_Sub2_Sub7Array1[local235] = SeqTypeList.getAnimFrameset(local214 >>> 16);
 					local214 &= 0xFFFF;
 					anIntArray259[local235] = local214;
@@ -584,10 +584,10 @@ public final class NpcType {
 						local721 |= aClass3_Sub2_Sub7Array1[local235].isAlphaTransformed(local214);
 						local725 |= local753.aBoolean278;
 					}
-					if ((local753.aBoolean277 || SeqType.tween) && local207 != -1 && local753.anIntArray473.length > local207) {
-						anIntArray147[local235] = local753.frames[local200];
+					if ((local753.tween || SeqType.applyTweening) && local207 != -1 && local753.frames.length > local207) {
+						anIntArray147[local235] = local753.frameDelay[local200];
 						anIntArray492[local235] = arg0[local235].anInt5404;
-						local228 = local753.anIntArray473[local207];
+						local228 = local753.frames[local207];
 						aClass3_Sub2_Sub7Array5[local235] = SeqTypeList.getAnimFrameset(local228 >>> 16);
 						local228 &= 0xFFFF;
 						anIntArray148[local235] = local228;
@@ -618,7 +618,7 @@ public final class NpcType {
 		@Pc(964) AnimFrameset local964 = null;
 		@Pc(1040) int local1040;
 		if (arg8 != null) {
-			local235 = arg8.anIntArray473[arg5];
+			local235 = arg8.frames[arg5];
 			local228 = local235 >>> 16;
 			local235 &= 0xFFFF;
 			local962 = SeqTypeList.getAnimFrameset(local228);
@@ -627,9 +627,9 @@ public final class NpcType {
 				local721 |= local962.isAlphaTransformed(local235);
 				local725 |= arg8.aBoolean278;
 			}
-			if ((arg8.aBoolean277 || SeqType.tween) && arg3 != -1 && arg8.anIntArray473.length > arg3) {
-				local200 = arg8.frames[arg5];
-				local221 = arg8.anIntArray473[arg3];
+			if ((arg8.tween || SeqType.applyTweening) && arg3 != -1 && arg8.frames.length > arg3) {
+				local200 = arg8.frameDelay[arg5];
+				local221 = arg8.frames[arg3];
 				local1040 = local221 >>> 16;
 				local221 &= 0xFFFF;
 				if (local228 == local1040) {
@@ -649,7 +649,7 @@ public final class NpcType {
 		local300 = 0;
 		@Pc(1092) AnimFrameset local1092 = null;
 		if (arg6 != null) {
-			local228 = arg6.anIntArray473[arg2];
+			local228 = arg6.frames[arg2];
 			local324 = local228 >>> 16;
 			local228 &= 0xFFFF;
 			local1088 = SeqTypeList.getAnimFrameset(local324);
@@ -658,9 +658,9 @@ public final class NpcType {
 				local721 |= local1088.isAlphaTransformed(local228);
 				local725 |= arg6.aBoolean278;
 			}
-			if ((arg6.aBoolean277 || SeqType.tween) && arg1 != -1 && arg1 < arg6.anIntArray473.length) {
-				local300 = arg6.frames[arg2];
-				local1040 = arg6.anIntArray473[arg1];
+			if ((arg6.tween || SeqType.applyTweening) && arg1 != -1 && arg1 < arg6.frames.length) {
+				local300 = arg6.frameDelay[arg2];
+				local1040 = arg6.frames[arg1];
 				local318 = local1040 >>> 16;
 				local1040 &= 0xFFFF;
 				if (local318 == local324) {
@@ -683,7 +683,7 @@ public final class NpcType {
 			local330 <<= 0x1;
 		}
 		if (local962 != null && local1088 != null) {
-			local1218.method4570(local962, local235, local964, local221, arg4 - 1, local200, local1088, local228, local1092, local1040, arg7 - 1, local300, arg8.aBooleanArray123, arg8.aBoolean278 | arg6.aBoolean278);
+			local1218.method4570(local962, local235, local964, local221, arg4 - 1, local200, local1088, local228, local1092, local1040, arg7 - 1, local300, arg8.framegroup, arg8.aBoolean278 | arg6.aBoolean278);
 		} else if (local962 != null) {
 			local1218.method4558(local962, local235, local964, local221, arg4 - 1, local200, arg8.aBoolean278);
 		} else if (local1088 != null) {

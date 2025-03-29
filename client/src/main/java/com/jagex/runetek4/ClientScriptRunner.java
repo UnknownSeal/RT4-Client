@@ -1104,7 +1104,7 @@ public final class ClientScriptRunner {
 												local2611 = ObjTypeList.get(component.objId);
 												if (local2611 != null) {
 													local2611 = local2611.getMeshAddress(component.objCount);
-													@Pc(2630) SeqType local2630 = local276 == -1 ? null : SeqTypeList.getAnimationSequence(local276);
+													@Pc(2630) SeqType local2630 = local276 == -1 ? null : SeqTypeList.get(local276);
 													local2589 = local2611.getModel(component.anInt496, component.anInt500, local2630, 1, component.anInt510);
 													if (local2589 == null) {
 														InterfaceList.redraw(component);
@@ -1121,7 +1121,7 @@ public final class ClientScriptRunner {
 														color = 2047;
 													}
 													@Pc(2751) Player local2751 = PlayerList.players[color];
-													@Pc(2760) SeqType local2760 = local276 == -1 ? null : SeqTypeList.getAnimationSequence(local276);
+													@Pc(2760) SeqType local2760 = local276 == -1 ? null : SeqTypeList.get(local276);
 													if (local2751 != null && (int) local2751.username.encode37() << 11 == (component.modelId & 0xFFFFF800)) {
 														local2589 = local2751.appearance.method1954(null, -1, null, local2760, 0, -1, 0, component.anInt510, 0);
 													}
@@ -1132,7 +1132,7 @@ public final class ClientScriptRunner {
 													InterfaceList.redraw(component);
 												}
 											} else {
-												@Pc(2689) SeqType local2689 = SeqTypeList.getAnimationSequence(local276);
+												@Pc(2689) SeqType local2689 = SeqTypeList.get(local276);
 												local2589 = component.method488(component.anInt496, local2689, component.anInt510, component.anInt500, local2587, PlayerList.self.appearance);
 												if (local2589 == null && Component.aBoolean72) {
 													InterfaceList.redraw(component);

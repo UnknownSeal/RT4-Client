@@ -104,9 +104,9 @@ public final class Loc extends Entity {
 			}
 		}
 		if (arg6 != -1) {
-			this.aClass144_2 = SeqTypeList.getAnimationSequence(arg6);
+			this.aClass144_2 = SeqTypeList.get(arg6);
 			this.anInt1297 = 0;
-			if (this.aClass144_2.anIntArray473.length <= 1) {
+			if (this.aClass144_2.frames.length <= 1) {
 				this.anInt1304 = 0;
 			} else {
 				this.anInt1304 = 1;
@@ -123,16 +123,16 @@ public final class Loc extends Entity {
 					return;
 				}
 			}
-			if (arg7 && this.aClass144_2.replayoff != -1) {
-				this.anInt1297 = (int) (Math.random() * (double) this.aClass144_2.anIntArray473.length);
+			if (arg7 && this.aClass144_2.replayOff != -1) {
+				this.anInt1297 = (int) (Math.random() * (double) this.aClass144_2.frames.length);
 				this.anInt1304 = this.anInt1297 + 1;
-				if (this.anInt1304 >= this.aClass144_2.anIntArray473.length) {
-					this.anInt1304 -= this.aClass144_2.replayoff;
-					if (this.anInt1304 < 0 || this.anInt1304 >= this.aClass144_2.anIntArray473.length) {
+				if (this.anInt1304 >= this.aClass144_2.frames.length) {
+					this.anInt1304 -= this.aClass144_2.replayOff;
+					if (this.anInt1304 < 0 || this.anInt1304 >= this.aClass144_2.frames.length) {
 						this.anInt1304 = -1;
 					}
 				}
-				this.anInt1317 = (int) (Math.random() * (double) this.aClass144_2.frames[this.anInt1297]) + 1;
+				this.anInt1317 = (int) (Math.random() * (double) this.aClass144_2.frameDelay[this.anInt1297]) + 1;
 				this.anInt1320 = client.loop - this.anInt1317;
 			}
 		}
@@ -235,42 +235,42 @@ public final class Loc extends Entity {
 			return;
 		}
 		@Pc(10) int local10 = client.loop - this.anInt1320;
-		if (local10 > 100 && this.aClass144_2.replayoff > 0) {
-			@Pc(29) int local29 = this.aClass144_2.anIntArray473.length - this.aClass144_2.replayoff;
-			while (this.anInt1297 < local29 && this.aClass144_2.frames[this.anInt1297] < local10) {
-				local10 -= this.aClass144_2.frames[this.anInt1297];
+		if (local10 > 100 && this.aClass144_2.replayOff > 0) {
+			@Pc(29) int local29 = this.aClass144_2.frames.length - this.aClass144_2.replayOff;
+			while (this.anInt1297 < local29 && this.aClass144_2.frameDelay[this.anInt1297] < local10) {
+				local10 -= this.aClass144_2.frameDelay[this.anInt1297];
 				this.anInt1297++;
 			}
 			if (this.anInt1297 >= local29) {
 				@Pc(77) int local77 = 0;
-				for (@Pc(79) int local79 = local29; local79 < this.aClass144_2.anIntArray473.length; local79++) {
-					local77 += this.aClass144_2.frames[local79];
+				for (@Pc(79) int local79 = local29; local79 < this.aClass144_2.frames.length; local79++) {
+					local77 += this.aClass144_2.frameDelay[local79];
 				}
 				local10 %= local77;
 			}
 			this.anInt1304 = this.anInt1297 + 1;
-			if (this.anInt1304 >= this.aClass144_2.anIntArray473.length) {
-				this.anInt1304 -= this.aClass144_2.replayoff;
-				if (this.anInt1304 < 0 || this.aClass144_2.anIntArray473.length <= this.anInt1304) {
+			if (this.anInt1304 >= this.aClass144_2.frames.length) {
+				this.anInt1304 -= this.aClass144_2.replayOff;
+				if (this.anInt1304 < 0 || this.aClass144_2.frames.length <= this.anInt1304) {
 					this.anInt1304 = -1;
 				}
 			}
 		}
-		while (local10 > this.aClass144_2.frames[this.anInt1297]) {
+		while (local10 > this.aClass144_2.frameDelay[this.anInt1297]) {
 			SoundPlayer.playSeqSound(arg0, this.aClass144_2, arg1, false, this.anInt1297);
-			local10 -= this.aClass144_2.frames[this.anInt1297];
+			local10 -= this.aClass144_2.frameDelay[this.anInt1297];
 			this.anInt1297++;
-			if (this.aClass144_2.anIntArray473.length <= this.anInt1297) {
-				this.anInt1297 -= this.aClass144_2.replayoff;
-				if (this.anInt1297 < 0 || this.aClass144_2.anIntArray473.length <= this.anInt1297) {
+			if (this.aClass144_2.frames.length <= this.anInt1297) {
+				this.anInt1297 -= this.aClass144_2.replayOff;
+				if (this.anInt1297 < 0 || this.aClass144_2.frames.length <= this.anInt1297) {
 					this.aClass144_2 = null;
 					break;
 				}
 			}
 			this.anInt1304 = this.anInt1297 + 1;
-			if (this.aClass144_2.anIntArray473.length <= this.anInt1304) {
-				this.anInt1304 -= this.aClass144_2.replayoff;
-				if (this.anInt1304 < 0 || this.anInt1304 >= this.aClass144_2.anIntArray473.length) {
+			if (this.aClass144_2.frames.length <= this.anInt1304) {
+				this.anInt1304 -= this.aClass144_2.replayOff;
+				if (this.anInt1304 < 0 || this.anInt1304 >= this.aClass144_2.frames.length) {
 					this.anInt1304 = -1;
 				}
 			}
@@ -294,7 +294,7 @@ public final class Loc extends Entity {
 			return null;
 		}
 		@Pc(69) int local69;
-		if (client.game != 0 && this.aBoolean80 && (this.aClass144_2 == null || this.aClass144_2 != null && this.aClass144_2.anInt5361 != local19.anim)) {
+		if (client.game != 0 && this.aBoolean80 && (this.aClass144_2 == null || this.aClass144_2 != null && this.aClass144_2.id != local19.anim)) {
 			local69 = local19.anim;
 			if (local19.anim == -1) {
 				local69 = local22;
@@ -302,12 +302,12 @@ public final class Loc extends Entity {
 			if (local69 == -1) {
 				this.aClass144_2 = null;
 			} else {
-				this.aClass144_2 = SeqTypeList.getAnimationSequence(local69);
+				this.aClass144_2 = SeqTypeList.get(local69);
 			}
 			if (this.aClass144_2 != null) {
-				if (local19.allowRandomizedAnimation && this.aClass144_2.replayoff != -1) {
-					this.anInt1297 = (int) (Math.random() * (double) this.aClass144_2.anIntArray473.length);
-					this.anInt1320 -= (int) (Math.random() * (double) this.aClass144_2.frames[this.anInt1297]);
+				if (local19.allowRandomizedAnimation && this.aClass144_2.replayOff != -1) {
+					this.anInt1297 = (int) (Math.random() * (double) this.aClass144_2.frames.length);
+					this.anInt1320 -= (int) (Math.random() * (double) this.aClass144_2.frameDelay[this.anInt1297]);
 				} else {
 					this.anInt1297 = 0;
 					this.anInt1320 = client.loop - 1;
@@ -329,7 +329,7 @@ public final class Loc extends Entity {
 		@Pc(192) int local192 = (local157 >> 1) + this.anInt1300;
 		@Pc(201) int local201 = (local157 + 1 >> 1) + this.anInt1300;
 		this.method1047(local192 * 128, local185 * 128);
-		@Pc(256) boolean local256 = !local12 && local19.castShadow && (local19.id != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || SeqType.tween) && this.anInt1297 != this.anInt1304) && Preferences.sceneryShadowsType >= 2);
+		@Pc(256) boolean local256 = !local12 && local19.castShadow && (local19.id != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || SeqType.applyTweening) && this.anInt1297 != this.anInt1304) && Preferences.sceneryShadowsType >= 2);
 		if (arg0 && !local256) {
 			return null;
 		}

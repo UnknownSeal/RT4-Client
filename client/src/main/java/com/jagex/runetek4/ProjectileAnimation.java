@@ -113,7 +113,7 @@ public final class ProjectileAnimation extends Entity {
 		if (seqId == -1) {
 			this.seqType = null;
 		} else {
-			this.seqType = SeqTypeList.getAnimationSequence(seqId);
+			this.seqType = SeqTypeList.get(seqId);
 		}
 	}
 
@@ -154,21 +154,21 @@ public final class ProjectileAnimation extends Entity {
 		while (true) {
 			do {
 				do {
-					if (this.frameCycle <= this.seqType.frames[this.seqFrame]) {
+					if (this.frameCycle <= this.seqType.frameDelay[this.seqFrame]) {
 						return;
 					}
-					this.frameCycle -= this.seqType.frames[this.seqFrame];
+					this.frameCycle -= this.seqType.frameDelay[this.seqFrame];
 					this.seqFrame++;
-					if (this.seqFrame >= this.seqType.anIntArray473.length) {
-						this.seqFrame -= this.seqType.replayoff;
-						if (this.seqFrame < 0 || this.seqType.anIntArray473.length <= this.seqFrame) {
+					if (this.seqFrame >= this.seqType.frames.length) {
+						this.seqFrame -= this.seqType.replayOff;
+						if (this.seqFrame < 0 || this.seqType.frames.length <= this.seqFrame) {
 							this.seqFrame = 0;
 						}
 					}
 					this.anInt4798 = this.seqFrame + 1;
-				} while (this.seqType.anIntArray473.length > this.anInt4798);
-				this.anInt4798 -= this.seqType.replayoff;
-			} while (this.anInt4798 >= 0 && this.anInt4798 < this.seqType.anIntArray473.length);
+				} while (this.seqType.frames.length > this.anInt4798);
+				this.anInt4798 -= this.seqType.replayOff;
+			} while (this.anInt4798 >= 0 && this.anInt4798 < this.seqType.frames.length);
 			this.anInt4798 = -1;
 		}
 	}

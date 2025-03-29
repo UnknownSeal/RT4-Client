@@ -72,7 +72,7 @@ public class ShadowModelList {
         local126 = arg8.getMinZ();
         local130 = arg8.getMaxZ();
         if (arg2 != null) {
-            @Pc(403) int local403 = arg2.anIntArray473[arg10];
+            @Pc(403) int local403 = arg2.frames[arg10];
             local386 = SeqTypeList.getAnimFrameset(local403 >> 16);
             arg10 = local403 & 0xFFFF;
         }

@@ -63,7 +63,7 @@ public final class SpotAnim extends Entity {
 			this.seqComplete = true;
 		} else {
 			this.seqComplete = false;
-			this.aClass144_1 = SeqTypeList.getAnimationSequence(local42);
+			this.aClass144_1 = SeqTypeList.get(local42);
 		}
 	}
 
@@ -101,10 +101,10 @@ public final class SpotAnim extends Entity {
 			return;
 		}
 		this.anInt607 += arg0;
-		while (this.anInt607 > this.aClass144_1.frames[this.anInt593]) {
-			this.anInt607 -= this.aClass144_1.frames[this.anInt593];
+		while (this.anInt607 > this.aClass144_1.frameDelay[this.anInt593]) {
+			this.anInt607 -= this.aClass144_1.frameDelay[this.anInt593];
 			this.anInt593++;
-			if (this.aClass144_1.anIntArray473.length <= this.anInt593) {
+			if (this.aClass144_1.frames.length <= this.anInt593) {
 				this.seqComplete = true;
 				break;
 			}

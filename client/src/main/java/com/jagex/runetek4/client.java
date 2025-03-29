@@ -8,7 +8,6 @@ import java.util.Random;
 
 import com.jagex.runetek4.cache.def.VarPlayerDefinition;
 import com.jagex.runetek4.cache.BufferedFile;
-import com.jagex.runetek4.cache.media.SeqType;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
@@ -306,7 +305,7 @@ public final class client extends GameShell {
 		LocTypeList.removeSoft();
 		NpcTypeList.removeSoft();
 		ObjTypeList.removeSoft();
-		Static227.removeSoft();
+		SeqTypeList.removeSoft();
 		Static71.removeSoft();
 		Static78.removeSoft();
 		Static3.removeSoft();
@@ -343,7 +342,7 @@ public final class client extends GameShell {
 		LocTypeList.clear();
 		NpcTypeList.clear();
 		ObjTypeList.clear();
-		Static10.clear();
+		SeqTypeList.clear();
 		Static247.clear();
 		Static53.clear();
 		Static249.clear();
@@ -637,7 +636,7 @@ public final class client extends GameShell {
 		LocTypeList.clean();
 		NpcTypeList.method3706();
 		ObjTypeList.clean();
-		SeqType.clearAnimationCache();
+		SeqTypeList.clean();
 		Static137.method2666();
 		Static269.method2221();
 		VarPlayerDefinition.clearVarPlayerDefinitionCache();
@@ -1440,7 +1439,7 @@ public final class client extends GameShell {
 				NpcTypeList.init(js5Archive7, js5Archive18);
 				ObjTypeList.init(js5Archive19, Fonts.p11FullSoftware, js5Archive7);
 				Static58.init(js5Archive2);
-				Static141.init(js5Archive1, js5Archive20, js5Archive0);
+				SeqTypeList.init(js5Archive1, js5Archive20, js5Archive0);
 				Static79.init(js5Archive2);
 				Static266.init(js5Archive7, js5Archive21);
 				Static180.init(js5Archive22);

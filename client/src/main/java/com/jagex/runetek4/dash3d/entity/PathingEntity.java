@@ -285,7 +285,7 @@ public abstract class PathingEntity extends Entity {
 
 	@OriginalMember(owner = "client!fe", name = "a", descriptor = "(IIIIZ)V")
 	public final void teleport(@OriginalArg(1) int arg0, @OriginalArg(2) int x, @OriginalArg(3) int z, @OriginalArg(4) boolean jump) {
-		if (this.primarySeqId != -1 && SeqTypeList.getAnimationSequence(this.primarySeqId).anInt5349 == 1) {
+		if (this.primarySeqId != -1 && SeqTypeList.get(this.primarySeqId).movetype == 1) {
 			this.primarySeqId = -1;
 		}
 		if (!jump) {
@@ -326,7 +326,7 @@ public abstract class PathingEntity extends Entity {
 			local10--;
 			local15++;
 		}
-		if (this.primarySeqId != -1 && SeqTypeList.getAnimationSequence(this.primarySeqId).anInt5349 == 1) {
+		if (this.primarySeqId != -1 && SeqTypeList.get(this.primarySeqId).movetype == 1) {
 			this.primarySeqId = -1;
 		}
 		if (this.movementQueueSize < 9) {
