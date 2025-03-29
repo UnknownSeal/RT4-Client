@@ -631,7 +631,7 @@ public class InterfaceList {
                 @Pc(50) HookRequest local50 = new HookRequest();
                 local50.arguments = local41.anObjectArray3;
                 local50.source = local41;
-                ClientScriptRunner.runClientScripts(2000000, local50);
+                ClientScriptRunner.runClientScript(2000000, local50);
             }
         }
     }

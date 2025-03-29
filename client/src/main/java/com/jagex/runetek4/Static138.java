@@ -10,7 +10,4 @@ public final class Static138 {
 	@OriginalMember(owner = "runetek4.client!km", name = "uc", descriptor = "F")
 	public static float aFloat14;
 
-	@OriginalMember(owner = "runetek4.client!km", name = "ad", descriptor = "I")
-	public static int invokedScriptIndex = 0;
-
 }

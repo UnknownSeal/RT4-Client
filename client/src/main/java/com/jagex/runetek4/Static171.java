@@ -6,9 +6,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static171 {
 
-	@OriginalMember(owner = "runetek4.client!ni", name = "q", descriptor = "I")
-	public static int anInt4157;
-
 	@OriginalMember(owner = "runetek4.client!ni", name = "a", descriptor = "(ILclient!na;)I")
 	public static int method3218(@OriginalArg(1) JString arg0) {
 		if (Static203.aMapElementList_1 == null || arg0.length() == 0) {

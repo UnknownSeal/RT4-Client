@@ -6,7 +6,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("client!ba")
-public final class GWCWorld extends GWCBasicWorld {
+public final class World extends GWCBasicWorld {
 
 	@OriginalMember(owner = "client!ba", name = "t", descriptor = "Lclient!na;")
 	public JString activity;

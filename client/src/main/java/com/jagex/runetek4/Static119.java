@@ -4,9 +4,6 @@ import org.openrs2.deob.annotation.OriginalMember;
 
 public final class Static119 {
 
-	@OriginalMember(owner = "client!je", name = "U", descriptor = "Lclient!na;")
-	public static final JString SHOWINGVIDEOAD = JString.parse("showingVideoAd");
-
 	@OriginalMember(owner = "client!je", name = "j", descriptor = "(I)I")
 	public static int method2385() {
 		if (Static203.aMapElementList_1 == null) {

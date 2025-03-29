@@ -78,12 +78,4 @@ public final class Static232 {
 		Static172.aClass69_97.clear();
 	}
 
-	@OriginalMember(owner = "runetek4.client!sm", name = "a", descriptor = "(II)V")
-	public static void method3993(@OriginalArg(0) int arg0) {
-		Static149.anIntArray338 = new int[arg0];
-		Static267.anIntArray518 = new int[arg0];
-		Static243.anIntArray476 = new int[arg0];
-		Static50.anIntArray134 = new int[arg0];
-		Static79.anIntArray205 = new int[arg0];
-	}
 }

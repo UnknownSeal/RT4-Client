@@ -1,14 +1,10 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.SoftwareSprite;
-import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static196 {
-
-	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "[Lclient!ba;")
-	public static GWCWorld[] aClass10_Sub1Array2;
 
 	@OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "(I)Lclient!mm;")
 	public static SoftwareSprite method3537() {

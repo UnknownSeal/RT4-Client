@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
+import com.jagex.runetek4.game.shared.framework.gwc.World;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.util.SignLink;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -15,6 +15,12 @@ public class WorldList {
     private static final JString aClass100_801 = JString.parse(")4a=");
     @OriginalMember(owner = "runetek4.client!en", name = "A", descriptor = "Z")
     public static boolean loaded = false;
+    @OriginalMember(owner = "client!bi", name = "R", descriptor = "I")
+    public static int minId;
+    @OriginalMember(owner = "runetek4.client!ni", name = "q", descriptor = "I")
+    public static int maxId;
+    @OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "[Lclient!ba;")
+    public static World[] worlds;
 
     @OriginalMember(owner = "runetek4.client!ql", name = "b", descriptor = "(I)I")
     public static int fetch() {
@@ -93,10 +99,10 @@ public class WorldList {
             if (Static141.anInt3469 < Static116.anInt2961) {
                 return -1;
             } else if (ObjTypeList.method2572(Static229.aByteArray70)) {
-                Static101.aClass10_Sub1Array1 = new GWCWorld[Static106.anInt2871];
+                Static101.aClass10_Sub1Array1 = new World[Static106.anInt2871];
                 local124 = 0;
-                for (@Pc(240) int local240 = Static19.anInt636; local240 <= Static171.anInt4157; local240++) {
-                    @Pc(247) GWCWorld local247 = Static54.method1310(local240);
+                for (@Pc(240) int local240 = minId; local240 <= maxId; local240++) {
+                    @Pc(247) World local247 = ClientScriptRunner.getWorld(local240);
                     if (local247 != null) {
                         Static101.aClass10_Sub1Array1[local124++] = local247;
                     }
@@ -118,7 +124,7 @@ public class WorldList {
 
     @OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(IB)Z")
     public static boolean hopWorld(@OriginalArg(0) int arg0) {
-        @Pc(3) GWCWorld local3 = Static54.method1310(arg0);
+        @Pc(3) World local3 = ClientScriptRunner.getWorld(arg0);
         if (local3 == null) {
             return false;
         } else if (SignLink.anInt5928 == 1 || SignLink.anInt5928 == 2 || client.modeWhere == 2) {

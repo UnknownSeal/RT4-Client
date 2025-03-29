@@ -1206,7 +1206,7 @@ public class Protocol {
                                 inboundBuffer.method2237(local3848, packetSize);
                                 argTypes = JString.decodeString(local3848, packetSize, 0);
                                 if (GameShell.frame == null && (SignLink.anInt5928 == 3 || !SignLink.osName.startsWith("win") || client.haveIe6)) {
-                                    Static169.openUrl(argTypes, true);
+                                    ClientScriptRunner.openUrl(argTypes, true);
                                 } else {
                                     ClientScriptRunner.url = argTypes;
                                     newTab = true;
@@ -3022,7 +3022,7 @@ public class Protocol {
                 local20 = 2;
             }
             if (local20 == 2 && MiniMenu.menuActionRow > 0 || MiniMenu.anInt3953 == 1) {
-                Static226.determineMenuSize();
+                ClientScriptRunner.determineMenuSize();
             }
             if (local20 == 1 && MiniMenu.menuActionRow > 0 || MiniMenu.anInt3953 == 2) {
                 MiniMenu.processMenuActions();

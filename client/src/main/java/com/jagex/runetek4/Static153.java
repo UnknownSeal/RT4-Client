@@ -14,9 +14,6 @@ public final class Static153 {
 	@OriginalMember(owner = "runetek4.client!mc", name = "S", descriptor = "Lclient!mm;")
 	public static SoftwareSprite aClass3_Sub2_Sub1_Sub1_2;
 
-	@OriginalMember(owner = "runetek4.client!mc", name = "tb", descriptor = "S")
-	public static short aShort22 = 1;
-
 	@OriginalMember(owner = "runetek4.client!mc", name = "a", descriptor = "(IIIIIIII)V")
 	public static void method2907(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {
 		@Pc(9) int local9 = arg4 + arg1;

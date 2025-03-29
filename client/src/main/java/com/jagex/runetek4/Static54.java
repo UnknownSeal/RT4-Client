@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.audio.SynthSound;
-import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -21,11 +20,6 @@ public final class Static54 {
 	@OriginalMember(owner = "client!ed", name = "c", descriptor = "(I)V")
 	public static void clear() {
 		FloorUnderlayTypeList.types.clean();
-	}
-
-	@OriginalMember(owner = "client!ed", name = "b", descriptor = "(II)Lclient!ba;")
-	public static GWCWorld method1310(@OriginalArg(1) int arg0) {
-		return WorldList.loaded && arg0 >= Static19.anInt636 && arg0 <= Static171.anInt4157 ? Static196.aClass10_Sub1Array2[arg0 - Static19.anInt636] : null;
 	}
 
 	@OriginalMember(owner = "client!ed", name = "d", descriptor = "(B)V")

@@ -556,7 +556,7 @@ public class MiniMap {
             if (local17 != null && local17.type == 2) {
                 ClientScriptRunner.method1026(arg0 >> 1, arg4, (local17.anInt4046 - Camera.originZ << 7) + local17.anInt4047, local17.anInt4050 * 2, arg2 >> 1, local17.anInt4045 + (local17.targetX - Camera.originX << 7), arg3);
                 if (ClientScriptRunner.anInt1951 > -1 && client.loop % 20 < 10) {
-                    Sprites.aClass3_Sub2_Sub1Array11[local17.anInt4048].render(arg1 + ClientScriptRunner.anInt1951 - 12, arg5 + -28 - -Static16.anInt548);
+                    Sprites.aClass3_Sub2_Sub1Array11[local17.anInt4048].render(arg1 + ClientScriptRunner.anInt1951 - 12, arg5 + -28 - -ClientScriptRunner.anInt548);
                 }
             }
             local3++;

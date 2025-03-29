@@ -9,9 +9,6 @@ public final class Static80 {
 	@OriginalMember(owner = "client!gf", name = "T", descriptor = "I")
 	public static int anInt4702;
 
-	@OriginalMember(owner = "client!gf", name = "I", descriptor = "Lclient!na;")
-	public static final JString aClass100_886 = JString.parse(")3runescape)3com)4l=");
-
 	@OriginalMember(owner = "client!gf", name = "a", descriptor = "(BII)V")
 	public static void method3616(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
 		Static142.anInt3482 = arg0 - WorldMap.originX;

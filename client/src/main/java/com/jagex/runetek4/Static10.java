@@ -8,9 +8,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class Static10 {
 
-	@OriginalMember(owner = "client!an", name = "db", descriptor = "S")
-	public static short aShort9 = 205;
-
 	@OriginalMember(owner = "client!an", name = "a", descriptor = "(BI)I")
 	public static int method347(@OriginalArg(1) int arg0) {
 		if (Protocol.gameServerSocket != null) {

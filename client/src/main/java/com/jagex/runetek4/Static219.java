@@ -10,7 +10,4 @@ public final class Static219 {
 	@OriginalMember(owner = "runetek4.client!rl", name = "S", descriptor = "Lclient!na;")
 	public static final JString HITMARKS = JString.parse("hitmarks");
 
-	@OriginalMember(owner = "runetek4.client!rl", name = "eb", descriptor = "Lclient!na;")
-	public static final JString aClass100_928 = JString.parse("(U0a )2 in: ");
-
 }

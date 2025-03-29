@@ -1,6 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.shared.framework.gwc.GWCWorld;
+import com.jagex.runetek4.game.shared.framework.gwc.World;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -114,7 +114,7 @@ public final class Static270 {
 	}
 
 	@OriginalMember(owner = "runetek4.client!wb", name = "a", descriptor = "(Lclient!ba;IILclient!ba;Z)I")
-	public static int method4595(@OriginalArg(0) GWCWorld arg0, @OriginalArg(1) int arg1, @OriginalArg(3) GWCWorld arg2, @OriginalArg(4) boolean arg3) {
+	public static int method4595(@OriginalArg(0) World arg0, @OriginalArg(1) int arg1, @OriginalArg(3) World arg2, @OriginalArg(4) boolean arg3) {
 		if (arg1 == 1) {
 			@Pc(11) int local11 = arg0.players;
 			@Pc(14) int local14 = arg2.players;

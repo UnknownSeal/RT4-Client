@@ -15,8 +15,8 @@ public final class Static69 {
 			if (local22 == 65535) {
 				local22 = -1;
 			}
-			if (Static196.aClass10_Sub1Array2[local18] != null) {
-				Static196.aClass10_Sub1Array2[local18].players = local22;
+			if (WorldList.worlds[local18] != null) {
+				WorldList.worlds[local18].players = local22;
 			}
 		}
 	}

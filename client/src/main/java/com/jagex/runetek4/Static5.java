@@ -11,9 +11,6 @@ public final class Static5 {
 	@OriginalMember(owner = "runetek4.client!af", name = "g", descriptor = "Lclient!na;")
 	public static final JString HINT_MAPEDGE = JString.parse("hint_mapedge");
 
-	@OriginalMember(owner = "runetek4.client!af", name = "m", descriptor = "Lclient!na;")
-	public static final JString aClass100_10 = JString.parse("<br>");
-
 	@OriginalMember(owner = "runetek4.client!af", name = "b", descriptor = "(B)V")
 	public static void method34() {
 		WorldMap.clear(false);

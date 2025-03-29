@@ -1130,7 +1130,7 @@ public final class client extends GameShell {
 											}
 											if (Protocol.openUrlRequest != null && Protocol.openUrlRequest.status == 1) {
 												if (Protocol.openUrlRequest.result != null) {
-													Static169.openUrl(ClientScriptRunner.url, Protocol.newTab);
+													ClientScriptRunner.openUrl(ClientScriptRunner.url, Protocol.newTab);
 												}
 												Protocol.newTab = false;
 												ClientScriptRunner.url = null;

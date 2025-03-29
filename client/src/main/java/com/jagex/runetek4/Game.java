@@ -1,13 +1,10 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.input.MouseCapturer;
 import com.jagex.runetek4.media.renderable.actor.Player;
-import com.jagex.runetek4.dash3d.entity.ProjAnimNode;
-import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -389,7 +386,7 @@ public class Game {
                         Protocol.outboundBuffer.p1_alt3(moveItemInsertionMode);
                     }
                 } else if ((Static116.oneMouseButton == 1 || MiniMenu.menuHasAddFriend(MiniMenu.menuActionRow - 1)) && MiniMenu.menuActionRow > 2) {
-                    Static226.determineMenuSize();
+                    ClientScriptRunner.determineMenuSize();
                 } else if (MiniMenu.menuActionRow > 0) {
                     MiniMenu.processMenuActions();
                 }
@@ -535,7 +532,7 @@ public class Game {
                                             }
                                             if (Protocol.openUrlRequest != null && Protocol.openUrlRequest.status == 1) {
                                                 if (Protocol.openUrlRequest.result != null) {
-                                                    Static169.openUrl(ClientScriptRunner.url, Protocol.newTab);
+                                                    ClientScriptRunner.openUrl(ClientScriptRunner.url, Protocol.newTab);
                                                 }
                                                 ClientScriptRunner.url = null;
                                                 Protocol.openUrlRequest = null;
@@ -650,260 +647,6 @@ public class Game {
         System.exit(1);
     }
 
-    @OriginalMember(owner = "client!nk", name = "c", descriptor = "(IZ)V")
-    public static void pushNpcs(@OriginalArg(1) boolean arg0) {
-        @Pc(7) int i;
-        @Pc(16) Npc npc;
-        @Pc(107) int npcSize;
-        @Pc(113) int x;
-        @Pc(133) int z;
-        @Pc(149) int local149;
-        @Pc(158) int local158;
-        @Pc(171) int local171;
-        for (i = 0; i < NpcList.npcCount; i++) {
-            npc = NpcList.npcs[NpcList.npcIds[i]];
-            if (npc != null && npc.isVisible() && npc.type.topRenderPriority == arg0 && npc.type.isMultiNpcValid()) {
-                @Pc(42) int npcSize2 = npc.getSize();
-                @Pc(97) int local97;
-                if (npcSize2 == 1) {
-                    if ((npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
-                        local97 = npc.xFine >> 7;
-                        npcSize = npc.zFine >> 7;
-                        if (local97 >= 0 && local97 < 104 && npcSize >= 0 && npcSize < 104) {
-                            local171 = Static31.anIntArrayArray6[local97][npcSize]++;
-                        }
-                    }
-                } else if (((npcSize2 & 0x1) != 0 || (npc.xFine & 0x7F) == 0 && (npc.zFine & 0x7F) == 0) && ((npcSize2 & 0x1) != 1 || (npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64)) {
-                    local97 = npc.xFine - npcSize2 * 64 >> 7;
-                    npcSize = npc.zFine - npcSize2 * 64 >> 7;
-                    x = npc.getSize() + local97;
-                    if (local97 < 0) {
-                        local97 = 0;
-                    }
-                    if (x > 104) {
-                        x = 104;
-                    }
-                    z = npcSize + npc.getSize();
-                    if (npcSize < 0) {
-                        npcSize = 0;
-                    }
-                    if (z > 104) {
-                        z = 104;
-                    }
-                    for (local149 = local97; local149 < x; local149++) {
-                        for (local158 = npcSize; local158 < z; local158++) {
-                            local171 = Static31.anIntArrayArray6[local149][local158]++;
-                        }
-                    }
-                }
-            }
-        }
-        label200: for (i = 0; i < NpcList.npcCount; i++) {
-            npc = NpcList.npcs[NpcList.npcIds[i]];
-            @Pc(262) long bitset = (long) NpcList.npcIds[i] << 32 | 0x20000000L;
-            if (npc != null && npc.isVisible() && npc.type.topRenderPriority == arg0 && npc.type.isMultiNpcValid()) {
-                npcSize = npc.getSize();
-                if (npcSize == 1) {
-                    if ((npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
-                        x = npc.xFine >> 7;
-                        z = npc.zFine >> 7;
-                        if (x < 0 || x >= 104 || z < 0 || z >= 104) {
-                            continue;
-                        }
-                        if (Static31.anIntArrayArray6[x][z] > 1) {
-                            local171 = Static31.anIntArrayArray6[x][z]--;
-                            continue;
-                        }
-                    }
-                } else if ((npcSize & 0x1) == 0 && (npc.xFine & 0x7F) == 0 && (npc.zFine & 0x7F) == 0 || (npcSize & 0x1) == 1 && (npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
-                    x = npc.xFine - npcSize * 64 >> 7;
-                    z = npc.zFine - npcSize * 64 >> 7;
-                    local158 = z + npcSize;
-                    if (z < 0) {
-                        z = 0;
-                    }
-                    @Pc(368) boolean local368 = true;
-                    local149 = x + npcSize;
-                    if (local158 > 104) {
-                        local158 = 104;
-                    }
-                    if (x < 0) {
-                        x = 0;
-                    }
-                    if (local149 > 104) {
-                        local149 = 104;
-                    }
-                    @Pc(396) int local396;
-                    @Pc(401) int local401;
-                    for (local396 = x; local396 < local149; local396++) {
-                        for (local401 = z; local401 < local158; local401++) {
-                            if (Static31.anIntArrayArray6[local396][local401] <= 1) {
-                                local368 = false;
-                                break;
-                            }
-                        }
-                    }
-                    if (local368) {
-                        local396 = x;
-                        while (true) {
-                            if (local396 >= local149) {
-                                continue label200;
-                            }
-                            for (local401 = z; local401 < local158; local401++) {
-                                local171 = Static31.anIntArrayArray6[local396][local401]--;
-                            }
-                            local396++;
-                        }
-                    }
-                }
-                if (!npc.type.interactive) {
-                    bitset |= Long.MIN_VALUE;
-                }
-                npc.anInt3424 = SceneGraph.getTileHeight(Player.plane, npc.xFine, npc.zFine);
-                SceneGraph.addTemporary(Player.plane, npc.xFine, npc.zFine, npc.anInt3424, npcSize * 64 + 60 - 64, npc, npc.anInt3381, bitset, npc.seqStretches);
-            }
-        }
-    }
-
-    @OriginalMember(owner = "client!cn", name = "b", descriptor = "(ZI)V")
-    public static void pushPlayers(@OriginalArg(0) boolean arg0) {
-        @Pc(3) int local3 = PlayerList.playerCount;
-        if (LoginManager.mapFlagX == PlayerList.self.xFine >> 7 && PlayerList.self.zFine >> 7 == LoginManager.mapFlagZ) {
-            LoginManager.mapFlagX = 0;
-        }
-        if (arg0) {
-            local3 = 1;
-        }
-        @Pc(28) int i;
-        @Pc(39) Player player;
-        @Pc(82) int stz;
-        @Pc(182) int local182;
-        @Pc(200) int local200;
-        @Pc(214) int local214;
-        @Pc(223) int local223;
-        @Pc(106) int local106;
-        for (i = 0; i < local3; i++) {
-            if (arg0) {
-                player = PlayerList.self;
-            } else {
-                player = PlayerList.players[PlayerList.playerIds[i]];
-            }
-            if (player != null && player.isVisible()) {
-                @Pc(55) int local55 = player.getSize();
-                @Pc(77) int stx;
-                if (local55 == 1) {
-                    if ((player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 64) {
-                        stx = player.xFine >> 7;
-                        stz = player.zFine >> 7;
-                        if (stx >= 0 && stx < 104 && stz >= 0 && stz < 104) {
-                            local106 = Static31.anIntArrayArray6[stx][stz]++;
-                        }
-                    }
-                } else if (((local55 & 0x1) != 0 || (player.xFine & 0x7F) == 0 && (player.zFine & 0x7F) == 0) && ((local55 & 0x1) != 1 || (player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 64)) {
-                    stx = player.xFine - local55 * 64 >> 7;
-                    stz = player.zFine - local55 * 64 >> 7;
-                    local182 = player.getSize() + stx;
-                    if (local182 > 104) {
-                        local182 = 104;
-                    }
-                    if (stx < 0) {
-                        stx = 0;
-                    }
-                    local200 = stz + player.getSize();
-                    if (stz < 0) {
-                        stz = 0;
-                    }
-                    if (local200 > 104) {
-                        local200 = 104;
-                    }
-                    for (local214 = stx; local214 < local182; local214++) {
-                        for (local223 = stz; local223 < local200; local223++) {
-                            local106 = Static31.anIntArrayArray6[local214][local223]++;
-                        }
-                    }
-                }
-            }
-        }
-        label220: for (i = 0; i < local3; i++) {
-            @Pc(272) long id;
-            if (arg0) {
-                player = PlayerList.self;
-                id = 8791798054912L;
-            } else {
-                player = PlayerList.players[PlayerList.playerIds[i]];
-                id = (long) PlayerList.playerIds[i] << 32;
-            }
-            if (player != null && player.isVisible()) {
-                player.lowMemory = false;
-                if ((Preferences.manyIdleAnimations && PlayerList.playerCount > 200 || PlayerList.playerCount > 50) && !arg0 && player.movementSeqId == player.getBasType().idleAnimationId) {
-                    player.lowMemory = true;
-                }
-                stz = player.getSize();
-                if (stz == 1) {
-                    if ((player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 64) {
-                        local182 = player.xFine >> 7;
-                        local200 = player.zFine >> 7;
-                        if (local182 < 0 || local182 >= 104 || local200 < 0 || local200 >= 104) {
-                            continue;
-                        }
-                        if (Static31.anIntArrayArray6[local182][local200] > 1) {
-                            local106 = Static31.anIntArrayArray6[local182][local200]--;
-                            continue;
-                        }
-                    }
-                } else if ((stz & 0x1) == 0 && (player.xFine & 0x7F) == 0 && (player.zFine & 0x7F) == 0 || (stz & 0x1) == 1 && (player.xFine & 0x7F) == 64 && (player.zFine & 0x7F) == 0) {
-                    local182 = player.xFine - stz * 64 >> 7;
-                    local214 = stz + local182;
-                    local200 = player.zFine - stz * 64 >> 7;
-                    if (local214 > 104) {
-                        local214 = 104;
-                    }
-                    if (local182 < 0) {
-                        local182 = 0;
-                    }
-                    local223 = stz + local200;
-                    if (local200 < 0) {
-                        local200 = 0;
-                    }
-                    @Pc(468) boolean local468 = true;
-                    if (local223 > 104) {
-                        local223 = 104;
-                    }
-                    @Pc(476) int local476;
-                    @Pc(485) int local485;
-                    for (local476 = local182; local476 < local214; local476++) {
-                        for (local485 = local200; local485 < local223; local485++) {
-                            if (Static31.anIntArrayArray6[local476][local485] <= 1) {
-                                local468 = false;
-                                break;
-                            }
-                        }
-                    }
-                    if (local468) {
-                        local476 = local182;
-                        while (true) {
-                            if (local476 >= local214) {
-                                continue label220;
-                            }
-                            for (local485 = local200; local485 < local223; local485++) {
-                                local106 = Static31.anIntArrayArray6[local476][local485]--;
-                            }
-                            local476++;
-                        }
-                    }
-                }
-                if (player.attachment == null || client.loop < player.attachmentSetAt || player.attachmentResetAt <= client.loop) {
-                    player.anInt3424 = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
-                    SceneGraph.addTemporary(Player.plane, player.xFine, player.zFine, player.anInt3424, (stz - 1) * 64 + 60, player, player.anInt3381, id, player.seqStretches);
-                } else {
-                    player.lowMemory = false;
-                    player.anInt3424 = SceneGraph.getTileHeight(Player.plane, player.xFine, player.zFine);
-                    Static184.addTemporary(Player.plane, player.xFine, player.zFine, player.anInt3424, player, player.anInt3381, id, player.atachmentX0, player.attachmentZ0, player.attachmentX1, player.attachmentZ1);
-                }
-            }
-        }
-    }
-
     @OriginalMember(owner = "client!wj", name = "b", descriptor = "(B)V")
     public static void processLogout() {
         if (Protocol.gameServerSocket != null) {
@@ -963,51 +706,4 @@ public class Game {
         }
     }
 
-    @OriginalMember(owner = "client!pk", name = "i", descriptor = "(I)V")
-    public static void pushProjectiles() {
-        for (@Pc(16) ProjAnimNode proj = (ProjAnimNode) SceneGraph.projectiles.head(); proj != null; proj = (ProjAnimNode) SceneGraph.projectiles.next()) {
-            @Pc(21) ProjectileAnimation projAnim = proj.value;
-            if (Player.plane != projAnim.currentPlane || projAnim.lastCycle < client.loop) {
-                proj.unlink();
-            } else if (client.loop >= projAnim.firstCycle) {
-                if (projAnim.target > 0) {
-                    @Pc(54) Npc npc = NpcList.npcs[projAnim.target - 1];
-                    if (npc != null && npc.xFine >= 0 && npc.xFine < 13312 && npc.zFine >= 0 && npc.zFine < 13312) {
-                        projAnim.setTarget(npc.zFine, client.loop, SceneGraph.getTileHeight(projAnim.currentPlane, npc.xFine, npc.zFine) - projAnim.baseZ, npc.xFine);
-                    }
-                }
-                if (projAnim.target < 0) {
-                    @Pc(102) int index = -projAnim.target - 1;
-                    @Pc(107) Player player;
-                    if (PlayerList.selfId == index) {
-                        player = PlayerList.self;
-                    } else {
-                        player = PlayerList.players[index];
-                    }
-                    if (player != null && player.xFine >= 0 && player.xFine < 13312 && player.zFine >= 0 && player.zFine < 13312) {
-                        projAnim.setTarget(player.zFine, client.loop, SceneGraph.getTileHeight(projAnim.currentPlane, player.xFine, player.zFine) - projAnim.baseZ, player.xFine);
-                    }
-                }
-                projAnim.update(Protocol.sceneDelta);
-                SceneGraph.addTemporary(Player.plane, (int) projAnim.x, (int) projAnim.y, (int) projAnim.z, 60, projAnim, projAnim.yaw, -1L, false);
-            }
-        }
-    }
-
-    @OriginalMember(owner = "client!u", name = "a", descriptor = "(Z)V")
-    public static void pushSpotanims() {
-        for (@Pc(9) SpotAnimEntity entity = (SpotAnimEntity) SceneGraph.spotanims.head(); entity != null; entity = (SpotAnimEntity) SceneGraph.spotanims.next()) {
-            @Pc(15) SpotAnim spotAnim = entity.aClass8_Sub2_1;
-            if (spotAnim.level != Player.plane || spotAnim.seqComplete) {
-                entity.unlink();
-            } else if (spotAnim.startCycle <= client.loop) {
-                spotAnim.update(Protocol.sceneDelta);
-                if (spotAnim.seqComplete) {
-                    entity.unlink();
-                } else {
-                    SceneGraph.addTemporary(spotAnim.level, spotAnim.x, spotAnim.z, spotAnim.anInt599, 60, spotAnim, 0, -1L, false);
-                }
-            }
-        }
-    }
 }

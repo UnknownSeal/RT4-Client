@@ -11,7 +11,4 @@ public final class Static93 {
 	@OriginalMember(owner = "runetek4.client!he", name = "db", descriptor = "Lclient!na;")
 	public static final JString aClass100_517 = JString.parse("");
 
-	@OriginalMember(owner = "runetek4.client!he", name = "gb", descriptor = "Lclient!na;")
-	public static final JString aClass100_518 = JString.parse("www");
-
 }
