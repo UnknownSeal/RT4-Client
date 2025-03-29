@@ -5518,9 +5518,9 @@ public final class ClientScriptRunner {
 											interfaceType = scriptIntValues[isp + 1];
 											local5294 = ParamTypeList.get(interfaceType);
 											if (local5294.isString()) {
-												scriptStringValues[ssp++] = Static123.method2417(interfaceData).getParam(local5294.defaultString, interfaceType);
+												scriptStringValues[ssp++] = StructTypeList.get(interfaceData).getParam(local5294.defaultString, interfaceType);
 											} else {
-												scriptIntValues[isp++] = Static123.method2417(interfaceData).method2798(interfaceType, local5294.defaultInt);
+												scriptIntValues[isp++] = StructTypeList.get(interfaceData).method2798(interfaceType, local5294.defaultInt);
 											}
 											continue;
 										}

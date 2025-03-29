@@ -1438,7 +1438,7 @@ public final class client extends GameShell {
 				LocTypeList.init(js5Archive16, js5Archive7);
 				NpcTypeList.init(js5Archive7, js5Archive18);
 				ObjTypeList.init(js5Archive19, Fonts.p11FullSoftware, js5Archive7);
-				Static58.init(js5Archive2);
+				StructTypeList.init(js5Archive2);
 				SeqTypeList.init(js5Archive1, js5Archive20, js5Archive0);
 				Static79.init(js5Archive2);
 				SpotAnimTypeList.init(js5Archive7, js5Archive21);

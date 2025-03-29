@@ -9,9 +9,6 @@ import org.openrs2.deob.annotation.Pc;
 
 public final class PreciseSleep {
 
-	@OriginalMember(owner = "runetek4.client!sk", name = "bb", descriptor = "Lclient!gn;")
-	public static final LruHashTable aClass54_13 = new LruHashTable(64);
-
 
 	@OriginalMember(owner = "runetek4.client!sk", name = "gb", descriptor = "J")
 	public static long aLong174 = 0L;

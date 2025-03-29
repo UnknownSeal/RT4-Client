@@ -1,27 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.util.ColorUtils;
-import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public final class Static123 {
-
-	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(BI)Lclient!lk;")
-	public static StructType method2417(@OriginalArg(1) int arg0) {
-		@Pc(10) StructType local10 = (StructType) PreciseSleep.aClass54_13.get((long) arg0);
-		if (local10 != null) {
-			return local10;
-		}
-		@Pc(26) byte[] local26 = Static23.aClass153_11.getfile(26, arg0);
-		local10 = new StructType();
-		if (local26 != null) {
-			local10.decode(new Packet(local26));
-		}
-		PreciseSleep.aClass54_13.put(local10, (long) arg0);
-		return local10;
-	}
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "a", descriptor = "(B)[F")
 	public static float[] method2422() {
