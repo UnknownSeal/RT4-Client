@@ -1,7 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.VarpType;
-import com.jagex.runetek4.cache.def.VarbitType;
+import com.jagex.runetek4.config.types.varp.VarpType;
+import com.jagex.runetek4.config.types.varbit.VarbitType;
+import com.jagex.runetek4.config.types.varbit.VarBitTypeList;
+import com.jagex.runetek4.config.types.varp.VarpTypeList;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;

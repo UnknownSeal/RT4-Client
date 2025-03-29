@@ -1,7 +1,9 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
-import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.Node;

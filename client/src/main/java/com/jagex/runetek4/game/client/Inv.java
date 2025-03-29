@@ -1,8 +1,10 @@
 package com.jagex.runetek4.game.client;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.def.ObjType;
+import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
+import com.jagex.runetek4.config.types.inv.InvTypeList;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.MathUtils;

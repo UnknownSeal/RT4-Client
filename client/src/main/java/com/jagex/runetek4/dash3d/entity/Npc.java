@@ -1,10 +1,14 @@
 package com.jagex.runetek4.dash3d.entity;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.def.SpotAnimType;
-import com.jagex.runetek4.game.config.bastype.BasType;
-import com.jagex.runetek4.cache.def.NpcType;
-import com.jagex.runetek4.cache.media.SeqType;
+import com.jagex.runetek4.config.types.spotanim.SpotAnimType;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.seq.SeqTypeList;
+import com.jagex.runetek4.config.types.spotanim.SpotAnimTypeList;
+import com.jagex.runetek4.config.types.bas.BasType;
+import com.jagex.runetek4.config.types.npc.NpcType;
+import com.jagex.runetek4.config.types.seq.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

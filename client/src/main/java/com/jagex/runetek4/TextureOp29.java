@@ -1,7 +1,8 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.cache.def.ObjType;
+import com.jagex.runetek4.config.types.obj.ObjType;
+import com.jagex.runetek4.config.types.flu.FluTypeList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;

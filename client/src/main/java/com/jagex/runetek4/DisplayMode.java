@@ -1,5 +1,8 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ArrayUtils;

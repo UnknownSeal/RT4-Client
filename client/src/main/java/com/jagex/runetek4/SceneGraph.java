@@ -1,16 +1,20 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.config.FluType;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.config.types.flu.FluType;
+import com.jagex.runetek4.config.types.flu.FluTypeList;
+import com.jagex.runetek4.config.types.light.LightTypeList;
+import com.jagex.runetek4.config.types.loc.LocTypeList;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.dash3d.CollisionMap;
 import com.jagex.runetek4.dash3d.entity.LocEntity;
-import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.dash3d.entity.ObjStackEntity;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.config.flotype.FloType;
 import com.jagex.runetek4.game.config.flotype.FloTypeList;
-import com.jagex.runetek4.game.config.lighttype.LightType;
+import com.jagex.runetek4.config.types.light.LightType;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.Entity;
 import com.jagex.runetek4.media.renderable.actor.Player;

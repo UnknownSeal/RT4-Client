@@ -1,11 +1,15 @@
 package com.jagex.runetek4.game.world.entity;
 
 import com.jagex.runetek4.*;
+import com.jagex.runetek4.config.types.idk.IDKTypeList;
+import com.jagex.runetek4.config.types.npc.NpcTypeList;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
+import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.config.bastype.BasType;
-import com.jagex.runetek4.game.config.bastype.BasTypeList;
-import com.jagex.runetek4.game.config.idktype.IDKType;
-import com.jagex.runetek4.cache.media.SeqType;
+import com.jagex.runetek4.config.types.bas.BasType;
+import com.jagex.runetek4.config.types.bas.BasTypeList;
+import com.jagex.runetek4.config.types.idk.IDKType;
+import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.graphics.RawModel;
 import com.jagex.runetek4.node.SoftLruHashTable;
 import com.jagex.runetek4.util.MathUtils;
@@ -132,19 +136,19 @@ public final class PlayerAppearance {
 		if (local30 == null) {
 			@Pc(36) RawModel[] local36 = new RawModel[3];
 			@Pc(38) int local38 = 0;
-			if (!IdkTypeList.get(arg2).hasReadyHeads() || !IdkTypeList.get(arg6).hasReadyHeads() || !IdkTypeList.get(arg1).hasReadyHeads()) {
+			if (!IDKTypeList.get(arg2).hasReadyHeads() || !IDKTypeList.get(arg6).hasReadyHeads() || !IDKTypeList.get(arg1).hasReadyHeads()) {
 				return null;
 			}
-			@Pc(66) RawModel local66 = IdkTypeList.get(arg2).getHeadModel();
+			@Pc(66) RawModel local66 = IDKTypeList.get(arg2).getHeadModel();
 			if (local66 != null) {
 				local38++;
 				local36[0] = local66;
 			}
-			local66 = IdkTypeList.get(arg6).getHeadModel();
+			local66 = IDKTypeList.get(arg6).getHeadModel();
 			if (local66 != null) {
 				local36[local38++] = local66;
 			}
-			local66 = IdkTypeList.get(arg1).getHeadModel();
+			local66 = IDKTypeList.get(arg1).getHeadModel();
 			if (local66 != null) {
 				local36[local38++] = local66;
 			}
@@ -204,8 +208,8 @@ public final class PlayerAppearance {
 		if (arg3 == null) {
 			arg3 = new int[12];
 			for (@Pc(24) int local24 = 0; local24 < 8; local24++) {
-				for (@Pc(31) int local31 = 0; local31 < IdkTypeList.count; local31++) {
-					@Pc(38) IDKType type = IdkTypeList.get(local31);
+				for (@Pc(31) int local31 = 0; local31 < IDKTypeList.count; local31++) {
+					@Pc(38) IDKType type = IDKTypeList.get(local31);
 					if (type != null && !type.disable && type.feature == (female ? FEMALE_FEATURES[local24] : MALE_FEATURES[local24])) {
 						arg3[BASE_PART_MAP[local24]] = Integer.MIN_VALUE | local31;
 						break;
@@ -234,7 +238,7 @@ public final class PlayerAppearance {
 	@OriginalMember(owner = "client!hh", name = "a", descriptor = "(III)V")
 	public final void setIdentikit(@OriginalArg(0) int arg0, @OriginalArg(1) int identikit) {
 		@Pc(7) int part = BASE_PART_MAP[arg0];
-		if (0 != this.identikit[part] && IdkTypeList.get(identikit) != null) {
+		if (0 != this.identikit[part] && IDKTypeList.get(identikit) != null) {
 			this.identikit[part] = identikit | Integer.MIN_VALUE;
 			this.updateChecksum();
 		}
@@ -290,7 +294,7 @@ public final class PlayerAppearance {
 			for (@Pc(160) int local160 = 0; local160 < 12; local160++) {
 				local169 = local38[local160];
 				if ((local169 & 0x40000000) == 0) {
-					if ((local169 & Integer.MIN_VALUE) != 0 && !IdkTypeList.get(local169 & 0x3FFFFFFF).isBodyModelReady()) {
+					if ((local169 & Integer.MIN_VALUE) != 0 && !IDKTypeList.get(local169 & 0x3FFFFFFF).isBodyModelReady()) {
 						local158 = true;
 					}
 				} else if (!ObjTypeList.get(local169 & 0x3FFFFFFF).isWearModelReady(this.gender)) {
@@ -317,7 +321,7 @@ public final class PlayerAppearance {
 							local239[local169] = local272;
 						}
 					} else if ((Integer.MIN_VALUE & local250) != 0) {
-						local272 = IdkTypeList.get(local250 & 0x3FFFFFFF).getModel();
+						local272 = IDKTypeList.get(local250 & 0x3FFFFFFF).getModel();
 						if (local272 != null) {
 							local239[local169] = local272;
 						}
@@ -543,7 +547,7 @@ public final class PlayerAppearance {
 			for (@Pc(44) int local44 = 0; local44 < 12; local44++) {
 				i = this.identikit[local44];
 				if ((i & 0x40000000) == 0) {
-					if ((i & Integer.MIN_VALUE) != 0 && !IdkTypeList.get(i & 0x3FFFFFFF).hasReadyHeads()) {
+					if ((i & Integer.MIN_VALUE) != 0 && !IDKTypeList.get(i & 0x3FFFFFFF).hasReadyHeads()) {
 						bool = true;
 					}
 				} else if (!ObjTypeList.get(i & 0x3FFFFFFF).isHeadModelReady(this.gender)) {
@@ -565,7 +569,7 @@ public final class PlayerAppearance {
 						models[i++] = local134;
 					}
 				} else if ((Integer.MIN_VALUE & j) != 0) {
-					local134 = IdkTypeList.get(j & 0x3FFFFFFF).getHeadModel();
+					local134 = IDKTypeList.get(j & 0x3FFFFFFF).getHeadModel();
 					if (local134 != null) {
 						models[i++] = local134;
 					}

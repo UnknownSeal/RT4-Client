@@ -1,5 +1,7 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.shared.framework.gwc.World;
 import com.jagex.runetek4.game.shared.framework.gwc.WorldInfo;

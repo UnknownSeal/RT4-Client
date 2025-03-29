@@ -1,6 +1,9 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.input.Keyboard;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalArg;

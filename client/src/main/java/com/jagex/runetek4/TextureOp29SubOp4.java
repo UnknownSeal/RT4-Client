@@ -1,5 +1,7 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.config.types.flu.FluTypeList;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.IntUtils;

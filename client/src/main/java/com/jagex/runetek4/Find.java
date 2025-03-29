@@ -1,7 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.ObjType;
-import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
+import com.jagex.runetek4.config.types.obj.ObjType;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
+import com.jagex.runetek4.config.types.quickchat.QuickChatPhraseTypeList;
+import com.jagex.runetek4.config.types.quickchat.QuickChatPhraseType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

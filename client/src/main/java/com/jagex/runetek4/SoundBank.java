@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.audio.SynthSound;
+import com.jagex.runetek4.audio.pcm.PcmSound;
 import com.jagex.runetek4.audio.vorbis.VorbisSound;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.js5.Js5;

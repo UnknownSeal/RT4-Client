@@ -1,12 +1,18 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.cache.def.NpcType;
+import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.loc.LocTypeList;
+import com.jagex.runetek4.config.types.npc.NpcTypeList;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.core.io.PacketBit;
 import com.jagex.runetek4.dash3d.CollisionMap;
-import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.frame.MiniMap;

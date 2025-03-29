@@ -1,8 +1,9 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.node.Node;
-import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.cache.def.NpcType;
+import com.jagex.runetek4.config.types.loc.LocType;
+import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import org.openrs2.deob.annotation.OriginalClass;

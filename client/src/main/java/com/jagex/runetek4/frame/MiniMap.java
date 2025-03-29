@@ -1,13 +1,16 @@
 package com.jagex.runetek4.frame;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.def.NpcType;
+import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.loc.LocTypeList;
+import com.jagex.runetek4.config.types.msi.MSITypeList;
+import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.game.config.msitype.MSIType;
+import com.jagex.runetek4.config.types.msi.MSIType;
 import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.scene.tile.PlainTile;
 import com.jagex.runetek4.scene.tile.ShapedTile;
@@ -512,7 +515,7 @@ public class MiniMap {
 
     @OriginalMember(owner = "client!cj", name = "a", descriptor = "(ILclient!pb;ZIIII)Z")
 	public static boolean renderScenery(@OriginalArg(0) int arg0, @OriginalArg(1) LocType arg1, @OriginalArg(5) int arg2, @OriginalArg(6) int arg3) {
-		@Pc(10) MSIType msiType = MsiTypeList.get(arg1.mapSceneIcon);
+		@Pc(10) MSIType msiType = MSITypeList.get(arg1.mapSceneIcon);
 		if (msiType.spriteId == -1) {
 			return true;
 		}

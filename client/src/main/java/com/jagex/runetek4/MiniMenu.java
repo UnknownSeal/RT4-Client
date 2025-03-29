@@ -1,11 +1,16 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.NpcType;
-import com.jagex.runetek4.cache.def.ObjType;
+import com.jagex.runetek4.config.types.npc.NpcType;
+import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.loc.LocTypeList;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
+import com.jagex.runetek4.config.types.param.ParamType;
+import com.jagex.runetek4.config.types.param.ParamTypeList;
+import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;

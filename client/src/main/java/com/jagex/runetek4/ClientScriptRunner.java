@@ -4,14 +4,31 @@ import java.io.*;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.jagex.runetek4.audio.midi.MidiPlayer;
 import com.jagex.runetek4.cache.cs.ClientScript;
-import com.jagex.runetek4.cache.def.NpcType;
-import com.jagex.runetek4.cache.def.ObjType;
-import com.jagex.runetek4.cache.def.VarbitType;
+import com.jagex.runetek4.config.types.npc.NpcType;
+import com.jagex.runetek4.config.types.obj.ObjType;
+import com.jagex.runetek4.config.types.varbit.VarbitType;
 import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.cache.media.SeqType;
+import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.enums.EnumTypeList;
+import com.jagex.runetek4.config.types.idk.IDKTypeList;
+import com.jagex.runetek4.config.types.inv.InvTypeList;
+import com.jagex.runetek4.config.types.loc.LocTypeList;
+import com.jagex.runetek4.config.types.npc.NpcTypeList;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
+import com.jagex.runetek4.config.types.param.ParamType;
+import com.jagex.runetek4.config.types.param.ParamTypeList;
+import com.jagex.runetek4.config.types.quickchat.QuickChatCatType;
+import com.jagex.runetek4.config.types.quickchat.QuickChatCatTypeList;
+import com.jagex.runetek4.config.types.quickchat.QuickChatPhraseTypeList;
+import com.jagex.runetek4.config.types.seq.SeqTypeList;
+import com.jagex.runetek4.config.types.struct.StructTypeList;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.io.Packet;
@@ -22,8 +39,8 @@ import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
 import com.jagex.runetek4.frame.MiniMap;
 import com.jagex.runetek4.game.client.Inv;
 import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.game.config.enumtype.EnumType;
-import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
+import com.jagex.runetek4.config.types.enums.EnumType;
+import com.jagex.runetek4.config.types.quickchat.QuickChatPhraseType;
 import com.jagex.runetek4.game.shared.framework.gwc.WorldInfo;
 import com.jagex.runetek4.game.shared.framework.gwc.World;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
@@ -240,7 +257,7 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(I)V")
 	public static void clear() {
-		IdkTypeList.types.clean();
+		IDKTypeList.types.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "b", descriptor = "(I)V")

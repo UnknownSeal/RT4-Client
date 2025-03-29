@@ -1,5 +1,8 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.audio.midi.MidiPlayer;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 

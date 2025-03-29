@@ -2,9 +2,11 @@ package com.jagex.runetek4.cache.media.component;
 
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.cache.def.ObjType;
+import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
-import com.jagex.runetek4.cache.media.SeqType;
+import com.jagex.runetek4.config.types.seq.SeqType;
+import com.jagex.runetek4.config.types.npc.NpcTypeList;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;

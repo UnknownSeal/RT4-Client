@@ -1,12 +1,19 @@
 package com.jagex.runetek4.media.renderable.actor;
 
 import com.jagex.runetek4.*;
-import com.jagex.runetek4.cache.def.SpotAnimType;
+import com.jagex.runetek4.config.types.spotanim.SpotAnimType;
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.npc.NpcTypeList;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
+import com.jagex.runetek4.config.types.seq.SeqTypeList;
+import com.jagex.runetek4.config.types.spotanim.SpotAnimTypeList;
 import com.jagex.runetek4.dash3d.entity.Npc;
 import com.jagex.runetek4.dash3d.entity.PathingEntity;
 import com.jagex.runetek4.frame.MiniMap;
-import com.jagex.runetek4.game.config.bastype.BasType;
-import com.jagex.runetek4.cache.media.SeqType;
+import com.jagex.runetek4.config.types.bas.BasType;
+import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.game.world.entity.PlayerAppearance;
 import com.jagex.runetek4.scene.tile.Tile;
 import org.openrs2.deob.annotation.OriginalArg;

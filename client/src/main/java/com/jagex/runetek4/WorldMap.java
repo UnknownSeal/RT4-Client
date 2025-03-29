@@ -2,13 +2,18 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.config.FluType;
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.flu.FluType;
+import com.jagex.runetek4.config.types.flu.FluTypeList;
+import com.jagex.runetek4.config.types.loc.LocTypeList;
+import com.jagex.runetek4.config.types.msi.MSITypeList;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.dash3d.entity.LocType;
+import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.game.config.flotype.FloType;
 import com.jagex.runetek4.game.config.flotype.FloTypeList;
 import com.jagex.runetek4.game.config.meltype.MapElementList;
-import com.jagex.runetek4.game.config.msitype.MSIType;
+import com.jagex.runetek4.config.types.msi.MSIType;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -1202,7 +1207,7 @@ public class WorldMap {
                                     local233 = local222 & 0x3FFF;
                                     if (local233 != 0) {
                                         local254 = local222 >> 14 & 0x3;
-                                        @Pc(998) MSIType local998 = MsiTypeList.get(local233 - 1);
+                                        @Pc(998) MSIType local998 = MSITypeList.get(local233 - 1);
                                         @Pc(1003) SoftwareIndexedSprite local1003 = local998.getSprite(local254);
                                         if (local1003 != null) {
                                             local276 = local162 * local1003.height / 4;

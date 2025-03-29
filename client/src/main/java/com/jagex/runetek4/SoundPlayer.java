@@ -1,7 +1,11 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.audio.SynthSound;
-import com.jagex.runetek4.cache.media.SeqType;
+import com.jagex.runetek4.audio.midi.MidiPlayer;
+import com.jagex.runetek4.audio.pcm.PcmSound;
+import com.jagex.runetek4.config.types.seq.SeqType;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

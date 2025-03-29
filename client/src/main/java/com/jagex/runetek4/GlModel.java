@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import java.nio.ByteBuffer;
 
+import com.jagex.runetek4.client.Preferences;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.media.renderable.Entity;
