@@ -7,7 +7,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!bi")
-public final class TextureOp4 extends TextureOp {
+public final class TextureOpPerlinNoise extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!bi", name = "ib", descriptor = "[S")
 	private short[] aShortArray3;
@@ -37,7 +37,7 @@ public final class TextureOp4 extends TextureOp {
 	public int anInt650 = 0;
 
 	@OriginalMember(owner = "runetek4.client!bi", name = "<init>", descriptor = "()V")
-	public TextureOp4() {
+	public TextureOpPerlinNoise() {
 		super(0, true);
 	}
 
@@ -146,7 +146,7 @@ public final class TextureOp4 extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!bi", name = "e", descriptor = "(I)V")
 	@Override
 	public final void postDecode() {
-		this.aByteArray10 = TextureOp14.method1837(this.anInt650);
+		this.aByteArray10 = TextureOpVoronoiNoise.method1837(this.anInt650);
 		this.method589();
 		for (@Pc(15) int local15 = this.anInt642 - 1; local15 >= 1; local15--) {
 			@Pc(23) short local23 = this.aShortArray4[local15];

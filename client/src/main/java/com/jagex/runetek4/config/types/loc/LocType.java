@@ -3,7 +3,6 @@ package com.jagex.runetek4.config.types.loc;
 import com.jagex.runetek4.*;
 import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.config.types.seq.SeqType;
-import com.jagex.runetek4.config.types.varbit.VarbitType;
 import com.jagex.runetek4.LocEntity;
 import com.jagex.runetek4.RawModel;
 import com.jagex.runetek4.Entity;
@@ -504,7 +503,7 @@ public final class LocType {
 	public LocType getMultiLoc() {
 		@Pc(26) int i = -1;
 		if (this.multiLocVarbit != -1) {
-			i = VarbitType.getVarbitValue(this.multiLocVarbit);
+			i = VarpDomain.getVarbitValue(this.multiLocVarbit);
 		} else if (this.multiLocVarp != -1) {
 			i = VarpDomain.activeVarps[this.multiLocVarp];
 		}

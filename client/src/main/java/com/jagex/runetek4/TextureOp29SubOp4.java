@@ -36,12 +36,12 @@ public final class TextureOp29SubOp4 extends TextureOp29SubOp {
 
 	@OriginalMember(owner = "client!an", name = "a", descriptor = "(IIIIIII)V")
 	public static void method352(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {
-		@Pc(11) int local11 = IntUtils.clamp(TextureOp29.anInt2869, arg5, TextureOp29.anInt5773);
-		@Pc(17) int local17 = IntUtils.clamp(TextureOp29.anInt2869, arg0, TextureOp29.anInt5773);
-		@Pc(23) int local23 = IntUtils.clamp(FluTypeList.anInt5063, arg3, TextureOp29.anInt4164);
-		@Pc(29) int local29 = IntUtils.clamp(FluTypeList.anInt5063, arg2, TextureOp29.anInt4164);
-		@Pc(42) int local42 = IntUtils.clamp(TextureOp29.anInt2869, arg5 + arg1, TextureOp29.anInt5773);
-		@Pc(51) int local51 = IntUtils.clamp(TextureOp29.anInt2869, arg0 - arg1, TextureOp29.anInt5773);
+		@Pc(11) int local11 = IntUtils.clamp(TextureOpRasterizer.anInt2869, arg5, TextureOpRasterizer.anInt5773);
+		@Pc(17) int local17 = IntUtils.clamp(TextureOpRasterizer.anInt2869, arg0, TextureOpRasterizer.anInt5773);
+		@Pc(23) int local23 = IntUtils.clamp(FluTypeList.anInt5063, arg3, TextureOpRasterizer.anInt4164);
+		@Pc(29) int local29 = IntUtils.clamp(FluTypeList.anInt5063, arg2, TextureOpRasterizer.anInt4164);
+		@Pc(42) int local42 = IntUtils.clamp(TextureOpRasterizer.anInt2869, arg5 + arg1, TextureOpRasterizer.anInt5773);
+		@Pc(51) int local51 = IntUtils.clamp(TextureOpRasterizer.anInt2869, arg0 - arg1, TextureOpRasterizer.anInt5773);
 		@Pc(53) int local53;
 		for (local53 = local11; local53 < local42; local53++) {
 			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local53], local23, local29, arg4);
@@ -49,8 +49,8 @@ public final class TextureOp29SubOp4 extends TextureOp29SubOp {
 		for (local53 = local17; local53 > local51; local53--) {
 			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local53], local23, local29, arg4);
 		}
-		@Pc(95) int local95 = IntUtils.clamp(FluTypeList.anInt5063, arg1 + arg3, TextureOp29.anInt4164);
-		@Pc(104) int local104 = IntUtils.clamp(FluTypeList.anInt5063, arg2 - arg1, TextureOp29.anInt4164);
+		@Pc(95) int local95 = IntUtils.clamp(FluTypeList.anInt5063, arg1 + arg3, TextureOpRasterizer.anInt4164);
+		@Pc(104) int local104 = IntUtils.clamp(FluTypeList.anInt5063, arg2 - arg1, TextureOpRasterizer.anInt4164);
 		for (local53 = local42; local53 <= local51; local53++) {
 			@Pc(117) int[] local117 = ObjTypeList.anIntArrayArray10[local53];
 			ArrayUtils.fillRange(local117, local23, local95, arg4);
@@ -60,7 +60,7 @@ public final class TextureOp29SubOp4 extends TextureOp29SubOp {
 
 	@OriginalMember(owner = "client!bl", name = "a", descriptor = "(IIIIIIII)V")
 	public static void method644(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {
-		if (TextureOp29.anInt4164 <= arg6 && FluTypeList.anInt5063 >= arg5 && arg4 >= TextureOp29.anInt5773 && arg1 <= TextureOp29.anInt2869) {
+		if (TextureOpRasterizer.anInt4164 <= arg6 && FluTypeList.anInt5063 >= arg5 && arg4 >= TextureOpRasterizer.anInt5773 && arg1 <= TextureOpRasterizer.anInt2869) {
 			method2907(arg3, arg4, arg1, arg2, arg0, arg5, arg6);
 		} else {
 			method4222(arg5, arg2, arg1, arg0, arg3, arg4, arg6);
@@ -151,10 +151,10 @@ public final class TextureOp29SubOp4 extends TextureOp29SubOp {
 
 	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(IIIIII)V")
 	public static void method3105(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		@Pc(11) int local11 = IntUtils.clamp(TextureOp29.anInt2869, arg2, TextureOp29.anInt5773);
-		@Pc(17) int local17 = IntUtils.clamp(TextureOp29.anInt2869, arg4, TextureOp29.anInt5773);
-		@Pc(23) int local23 = IntUtils.clamp(FluTypeList.anInt5063, arg3, TextureOp29.anInt4164);
-		@Pc(35) int local35 = IntUtils.clamp(FluTypeList.anInt5063, arg1, TextureOp29.anInt4164);
+		@Pc(11) int local11 = IntUtils.clamp(TextureOpRasterizer.anInt2869, arg2, TextureOpRasterizer.anInt5773);
+		@Pc(17) int local17 = IntUtils.clamp(TextureOpRasterizer.anInt2869, arg4, TextureOpRasterizer.anInt5773);
+		@Pc(23) int local23 = IntUtils.clamp(FluTypeList.anInt5063, arg3, TextureOpRasterizer.anInt4164);
+		@Pc(35) int local35 = IntUtils.clamp(FluTypeList.anInt5063, arg1, TextureOpRasterizer.anInt4164);
 		for (@Pc(37) int local37 = local11; local37 <= local17; local37++) {
 			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local37], local23, local35, arg0);
 		}
@@ -162,13 +162,13 @@ public final class TextureOp29SubOp4 extends TextureOp29SubOp {
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "a", descriptor = "(IIIIIB)V")
 	public static void method3246(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4) {
-		if (arg4 > TextureOp29.anInt2869 || arg2 < TextureOp29.anInt5773) {
+		if (arg4 > TextureOpRasterizer.anInt2869 || arg2 < TextureOpRasterizer.anInt5773) {
 			return;
 		}
 		@Pc(24) boolean local24;
-		if (TextureOp29.anInt4164 > arg1) {
+		if (TextureOpRasterizer.anInt4164 > arg1) {
 			local24 = false;
-			arg1 = TextureOp29.anInt4164;
+			arg1 = TextureOpRasterizer.anInt4164;
 		} else if (FluTypeList.anInt5063 >= arg1) {
 			local24 = true;
 		} else {
@@ -176,8 +176,8 @@ public final class TextureOp29SubOp4 extends TextureOp29SubOp {
 			arg1 = FluTypeList.anInt5063;
 		}
 		@Pc(43) boolean local43;
-		if (arg3 < TextureOp29.anInt4164) {
-			arg3 = TextureOp29.anInt4164;
+		if (arg3 < TextureOpRasterizer.anInt4164) {
+			arg3 = TextureOpRasterizer.anInt4164;
 			local43 = false;
 		} else if (arg3 > FluTypeList.anInt5063) {
 			arg3 = FluTypeList.anInt5063;
@@ -185,15 +185,15 @@ public final class TextureOp29SubOp4 extends TextureOp29SubOp {
 		} else {
 			local43 = true;
 		}
-		if (TextureOp29.anInt5773 > arg4) {
-			arg4 = TextureOp29.anInt5773;
+		if (TextureOpRasterizer.anInt5773 > arg4) {
+			arg4 = TextureOpRasterizer.anInt5773;
 		} else {
 			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[arg4++], arg1, arg3, arg0);
 		}
-		if (arg2 <= TextureOp29.anInt2869) {
+		if (arg2 <= TextureOpRasterizer.anInt2869) {
 			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[arg2--], arg1, arg3, arg0);
 		} else {
-			arg2 = TextureOp29.anInt2869;
+			arg2 = TextureOpRasterizer.anInt2869;
 		}
 		@Pc(98) int local98;
 		if (local24 && local43) {
@@ -250,7 +250,7 @@ public final class TextureOp29SubOp4 extends TextureOp29SubOp {
 
 	@OriginalMember(owner = "runetek4.client!sj", name = "a", descriptor = "(IIBIII)V")
 	public static void method3950(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
-		if (arg0 >= TextureOp29.anInt4164 && arg3 <= FluTypeList.anInt5063 && TextureOp29.anInt5773 <= arg4 && TextureOp29.anInt2869 >= arg2) {
+		if (arg0 >= TextureOpRasterizer.anInt4164 && arg3 <= FluTypeList.anInt5063 && TextureOpRasterizer.anInt5773 <= arg4 && TextureOpRasterizer.anInt2869 >= arg2) {
 			method3308(arg2, arg3, arg4, arg0, arg1);
 		} else {
 			method3105(arg1, arg3, arg4, arg0, arg2);
@@ -326,12 +326,12 @@ public final class TextureOp29SubOp4 extends TextureOp29SubOp {
 
 	@OriginalMember(owner = "runetek4.client!tl", name = "a", descriptor = "(IIIIIIII)V")
 	public static void method4222(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) int arg6) {
-		@Pc(11) int local11 = IntUtils.clamp(TextureOp29.anInt2869, arg5, TextureOp29.anInt5773);
-		@Pc(17) int local17 = IntUtils.clamp(TextureOp29.anInt2869, arg2, TextureOp29.anInt5773);
-		@Pc(23) int local23 = IntUtils.clamp(FluTypeList.anInt5063, arg6, TextureOp29.anInt4164);
-		@Pc(29) int local29 = IntUtils.clamp(FluTypeList.anInt5063, arg0, TextureOp29.anInt4164);
-		@Pc(37) int local37 = IntUtils.clamp(TextureOp29.anInt2869, arg3 + arg5, TextureOp29.anInt5773);
-		@Pc(46) int local46 = IntUtils.clamp(TextureOp29.anInt2869, arg2 - arg3, TextureOp29.anInt5773);
+		@Pc(11) int local11 = IntUtils.clamp(TextureOpRasterizer.anInt2869, arg5, TextureOpRasterizer.anInt5773);
+		@Pc(17) int local17 = IntUtils.clamp(TextureOpRasterizer.anInt2869, arg2, TextureOpRasterizer.anInt5773);
+		@Pc(23) int local23 = IntUtils.clamp(FluTypeList.anInt5063, arg6, TextureOpRasterizer.anInt4164);
+		@Pc(29) int local29 = IntUtils.clamp(FluTypeList.anInt5063, arg0, TextureOpRasterizer.anInt4164);
+		@Pc(37) int local37 = IntUtils.clamp(TextureOpRasterizer.anInt2869, arg3 + arg5, TextureOpRasterizer.anInt5773);
+		@Pc(46) int local46 = IntUtils.clamp(TextureOpRasterizer.anInt2869, arg2 - arg3, TextureOpRasterizer.anInt5773);
 		@Pc(48) int local48;
 		for (local48 = local11; local48 < local37; local48++) {
 			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local48], local23, local29, arg4);
@@ -339,8 +339,8 @@ public final class TextureOp29SubOp4 extends TextureOp29SubOp {
 		for (local48 = local17; local48 > local46; local48--) {
 			ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local48], local23, local29, arg4);
 		}
-		@Pc(94) int local94 = IntUtils.clamp(FluTypeList.anInt5063, arg3 + arg6, TextureOp29.anInt4164);
-		@Pc(103) int local103 = IntUtils.clamp(FluTypeList.anInt5063, arg0 - arg3, TextureOp29.anInt4164);
+		@Pc(94) int local94 = IntUtils.clamp(FluTypeList.anInt5063, arg3 + arg6, TextureOpRasterizer.anInt4164);
+		@Pc(103) int local103 = IntUtils.clamp(FluTypeList.anInt5063, arg0 - arg3, TextureOpRasterizer.anInt4164);
 		for (local48 = local37; local48 <= local46; local48++) {
 			@Pc(122) int[] local122 = ObjTypeList.anIntArrayArray10[local48];
 			ArrayUtils.fillRange(local122, local23, local94, arg4);
@@ -351,7 +351,7 @@ public final class TextureOp29SubOp4 extends TextureOp29SubOp {
 
 	@OriginalMember(owner = "runetek4.client!ub", name = "a", descriptor = "(IIIIIII)V")
 	public static void method4244(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5) {
-		if (TextureOp29.anInt4164 <= arg1 && FluTypeList.anInt5063 >= arg3 && TextureOp29.anInt5773 <= arg2 && arg4 <= TextureOp29.anInt2869) {
+		if (TextureOpRasterizer.anInt4164 <= arg1 && FluTypeList.anInt5063 >= arg3 && TextureOpRasterizer.anInt5773 <= arg2 && arg4 <= TextureOpRasterizer.anInt2869) {
 			if (arg5 == 1) {
 				method2622(arg0, arg3, arg2, arg4, arg1);
 			} else {

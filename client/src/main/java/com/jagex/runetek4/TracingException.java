@@ -16,11 +16,12 @@ public final class TracingException extends RuntimeException {
 
 	@OriginalMember(owner = "client!fh", name = "cb", descriptor = "Lsignlink!ll;")
 	public static SignLink signLink;
+
 	@OriginalMember(owner = "client!ld", name = "e", descriptor = "Ljava/lang/String;")
-	public String aString3;
+	public String message;
 
 	@OriginalMember(owner = "client!ld", name = "f", descriptor = "Ljava/lang/Throwable;")
-	public Throwable aThrowable1;
+	public Throwable cause;
 
 	@OriginalMember(owner = "client!ha", name = "a", descriptor = "(Ljava/lang/String;Ljava/lang/Throwable;B)V")
 	public static void report(@OriginalArg(0) String suffix, @OriginalArg(1) Throwable throwable) {
@@ -57,46 +58,46 @@ public final class TracingException extends RuntimeException {
 	}
 
 	@OriginalMember(owner = "client!hi", name = "a", descriptor = "(ILjava/lang/Throwable;)Ljava/lang/String;")
-	public static String toString(@OriginalArg(1) Throwable arg0) throws IOException {
-		@Pc(24) String local24;
-		if (arg0 instanceof TracingException) {
-			@Pc(11) TracingException local11 = (TracingException) arg0;
-			local24 = local11.aString3 + " | ";
-			arg0 = local11.aThrowable1;
+	public static String toString(@OriginalArg(1) Throwable exception) throws IOException {
+		@Pc(24) String message;
+		if (exception instanceof TracingException) {
+			@Pc(11) TracingException tracingException = (TracingException) exception;
+			message = tracingException.message + " | ";
+			exception = tracingException.cause;
 		} else {
-			local24 = "";
+			message = "";
 		}
-		@Pc(32) StringWriter local32 = new StringWriter();
-		@Pc(37) PrintWriter local37 = new PrintWriter(local32);
-		arg0.printStackTrace(local37);
-		local37.close();
-		@Pc(45) String local45 = local32.toString();
-		@Pc(53) BufferedReader local53 = new BufferedReader(new StringReader(local45));
-		@Pc(56) String local56 = local53.readLine();
+		@Pc(32) StringWriter stringWriter = new StringWriter();
+		@Pc(37) PrintWriter printWriter = new PrintWriter(stringWriter);
+		exception.printStackTrace(printWriter);
+		printWriter.close();
+		@Pc(45) String stackTrace = stringWriter.toString();
+		@Pc(53) BufferedReader reader = new BufferedReader(new StringReader(stackTrace));
+		@Pc(56) String firstLine = reader.readLine();
 		while (true) {
-			@Pc(59) String local59 = local53.readLine();
-			if (local59 == null) {
-				return local24 + "| " + local56;
+			@Pc(59) String line = reader.readLine();
+			if (line == null) {
+				return message + "| " + firstLine;
 			}
-			@Pc(65) int local65 = local59.indexOf(40);
-			@Pc(72) int local72 = local59.indexOf(41, local65 + 1);
-			@Pc(79) String local79;
-			if (local65 == -1) {
-				local79 = local59;
+			@Pc(65) int openingBracketIndex = line.indexOf(40);
+			@Pc(72) int closingBracketIndex = line.indexOf(41, openingBracketIndex + 1);
+			@Pc(79) String classAndMethodName;
+			if (openingBracketIndex == -1) {
+				classAndMethodName = line;
 			} else {
-				local79 = local59.substring(0, local65);
+				classAndMethodName = line.substring(0, openingBracketIndex);
 			}
-			local79 = local79.trim();
-			local79 = local79.substring(local79.lastIndexOf(32) + 1);
-			local79 = local79.substring(local79.lastIndexOf(9) + 1);
-			local24 = local24 + local79;
-			if (local65 != -1 && local72 != -1) {
-				@Pc(126) int local126 = local59.indexOf(".java:", local65);
-				if (local126 >= 0) {
-					local24 = local24 + local59.substring(local126 + 5, local72);
+			classAndMethodName = classAndMethodName.trim();
+			classAndMethodName = classAndMethodName.substring(classAndMethodName.lastIndexOf(32) + 1);
+			classAndMethodName = classAndMethodName.substring(classAndMethodName.lastIndexOf(9) + 1);
+			message = message + classAndMethodName;
+			if (openingBracketIndex != -1 && closingBracketIndex != -1) {
+				@Pc(126) int javaSuffixIndex = line.indexOf(".java:", openingBracketIndex);
+				if (javaSuffixIndex >= 0) {
+					message = message + line.substring(javaSuffixIndex + 5, closingBracketIndex);
 				}
 			}
-			local24 = local24 + ' ';
+			message = message + ' ';
 		}
 	}
 

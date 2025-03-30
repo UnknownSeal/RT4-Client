@@ -8,29 +8,31 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class VarBitTypeList {
+
     @OriginalMember(owner = "runetek4.client!jl", name = "G", descriptor = "Lclient!n;")
     public static final SoftLruHashTable types = new SoftLruHashTable(64);
+
     @OriginalMember(owner = "runetek4.client!nj", name = "c", descriptor = "Lclient!ve;")
     public static Js5 archive;
 
     @OriginalMember(owner = "runetek4.client!og", name = "a", descriptor = "(Lclient!ve;I)V")
-    public static void init(@OriginalArg(0) Js5 arg0) {
-        archive = arg0;
+    public static void init(@OriginalArg(0) Js5 archive) {
+        VarBitTypeList.archive = archive;
     }
 
     @OriginalMember(owner = "runetek4.client!jl", name = "a", descriptor = "(IB)Lclient!kk;")
     public static VarbitType get(@OriginalArg(0) int id) {
-        @Pc(10) VarbitType varbit = (VarbitType) types.get((long) id);
-        if (varbit != null) {
-            return varbit;
+        @Pc(10) VarbitType type = (VarbitType) types.get((long) id);
+        if (type != null) {
+            return type;
         }
-        @Pc(31) byte[] cacheData = archive.getfile(getGroupId(id), getFileId(id));
-        varbit = new VarbitType();
-        if (cacheData != null) {
-            varbit.decode(new Packet(cacheData));
+        @Pc(31) byte[] bytes = archive.getfile(getGroupId(id), getFileId(id));
+        type = new VarbitType();
+        if (bytes != null) {
+            type.decode(new Packet(bytes));
         }
-        types.put(varbit, (long) id);
-        return varbit;
+        types.put(type, (long) id);
+        return type;
     }
 
     @OriginalMember(owner = "runetek4.client!wa", name = "d", descriptor = "(BI)V")

@@ -49,7 +49,7 @@ public final class TextureOp29SubOp3 extends TextureOp29SubOp {
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "a", descriptor = "(IIIIIIIIII)V")
 	public static void method3340(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8) {
-		if (arg5 >= TextureOp29.anInt4164 && arg5 <= FluTypeList.anInt5063 && arg0 >= TextureOp29.anInt4164 && arg0 <= FluTypeList.anInt5063 && arg6 >= TextureOp29.anInt4164 && FluTypeList.anInt5063 >= arg6 && TextureOp29.anInt4164 <= arg1 && arg1 <= FluTypeList.anInt5063 && TextureOp29.anInt5773 <= arg4 && arg4 <= TextureOp29.anInt2869 && arg7 >= TextureOp29.anInt5773 && TextureOp29.anInt2869 >= arg7 && arg2 >= TextureOp29.anInt5773 && TextureOp29.anInt2869 >= arg2 && arg3 >= TextureOp29.anInt5773 && arg3 <= TextureOp29.anInt2869) {
+		if (arg5 >= TextureOpRasterizer.anInt4164 && arg5 <= FluTypeList.anInt5063 && arg0 >= TextureOpRasterizer.anInt4164 && arg0 <= FluTypeList.anInt5063 && arg6 >= TextureOpRasterizer.anInt4164 && FluTypeList.anInt5063 >= arg6 && TextureOpRasterizer.anInt4164 <= arg1 && arg1 <= FluTypeList.anInt5063 && TextureOpRasterizer.anInt5773 <= arg4 && arg4 <= TextureOpRasterizer.anInt2869 && arg7 >= TextureOpRasterizer.anInt5773 && TextureOpRasterizer.anInt2869 >= arg7 && arg2 >= TextureOpRasterizer.anInt5773 && TextureOpRasterizer.anInt2869 >= arg2 && arg3 >= TextureOpRasterizer.anInt5773 && arg3 <= TextureOpRasterizer.anInt2869) {
 			method962(arg2, arg8, arg7, arg6, arg1, arg3, arg4, arg0, arg5);
 		} else {
 			method3162(arg5, arg0, arg7, arg8, arg3, arg2, arg1, arg6, arg4);

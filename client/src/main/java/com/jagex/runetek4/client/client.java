@@ -561,7 +561,7 @@ public final class client extends GameShell {
 		if (InterfaceList.topLevelInterface != -1) {
 			InterfaceList.resetComponent(InterfaceList.topLevelInterface);
 		}
-		for (@Pc(3755) ComponentPointer local3755 = (ComponentPointer) InterfaceList.openInterfaces.head(); local3755 != null; local3755 = (ComponentPointer) InterfaceList.openInterfaces.next()) {
+		for (@Pc(3755) SubInterface local3755 = (SubInterface) InterfaceList.openInterfaces.head(); local3755 != null; local3755 = (SubInterface) InterfaceList.openInterfaces.next()) {
 			InterfaceList.closeInterface(true, local3755);
 		}
 		InterfaceList.topLevelInterface = -1;

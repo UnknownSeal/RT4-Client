@@ -103,7 +103,7 @@ public final class Light {
 	@OriginalMember(owner = "runetek4.client!qk", name = "a", descriptor = "(ZIIIIFII)[I")
 	public static int[] createNoise(@OriginalArg(5) float arg0) {
 		@Pc(11) int[] local11 = new int[2048];
-		@Pc(15) TextureOp4 local15 = new TextureOp4();
+		@Pc(15) TextureOpPerlinNoise local15 = new TextureOpPerlinNoise();
 		local15.anInt646 = 8;
 		local15.anInt642 = 4;
 		local15.anInt650 = 35;

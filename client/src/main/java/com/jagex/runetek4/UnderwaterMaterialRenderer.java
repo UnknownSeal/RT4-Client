@@ -14,36 +14,38 @@ public final class UnderwaterMaterialRenderer implements MaterialRenderer {
 
 	@OriginalMember(owner = "runetek4.client!nh", name = "Z", descriptor = "I")
 	public static int anInt3241 = 128;
+
 	@OriginalMember(owner = "runetek4.client!wg", name = "b", descriptor = "Z")
 	public static boolean aBoolean308 = false;
+
 	@OriginalMember(owner = "runetek4.client!wg", name = "c", descriptor = "I")
-	private int anInt5805 = -1;
+	private int textureId = -1;
 
 	@OriginalMember(owner = "runetek4.client!wg", name = "a", descriptor = "[F")
-	private final float[] aFloatArray29 = new float[4];
+	private final float[] tempVertex = new float[4];
 
 	@OriginalMember(owner = "runetek4.client!wg", name = "d", descriptor = "I")
-	private int anInt5806 = -1;
+	private int listId = -1;
 
 	@OriginalMember(owner = "runetek4.client!wg", name = "<init>", descriptor = "()V")
 	public UnderwaterMaterialRenderer() {
 		if (GlRenderer.maxTextureUnits >= 2) {
-			@Pc(17) int[] local17 = new int[1];
-			@Pc(20) byte[] local20 = new byte[8];
-			@Pc(22) int local22 = 0;
-			while (local22 < 8) {
-				local20[local22++] = (byte) (local22 * 159 / 8 + 96);
+			@Pc(17) int[] temp = new int[1];
+			@Pc(20) byte[] texture = new byte[8];
+			@Pc(22) int i = 0;
+			while (i < 8) {
+				texture[i++] = (byte) (i * 159 / 8 + 96);
 			}
 			@Pc(40) GL2 gl = GlRenderer.gl;
-			gl.glGenTextures(1, local17, 0);
-			gl.glBindTexture(GL2.GL_TEXTURE_1D, local17[0]);
-			gl.glTexImage1D(GL2.GL_TEXTURE_1D, 0, GL2.GL_ALPHA, 8, 0, GL2.GL_ALPHA, GL2.GL_UNSIGNED_BYTE, ByteBuffer.wrap(local20));
+			gl.glGenTextures(1, temp, 0);
+			gl.glBindTexture(GL2.GL_TEXTURE_1D, temp[0]);
+			gl.glTexImage1D(GL2.GL_TEXTURE_1D, 0, GL2.GL_ALPHA, 8, 0, GL2.GL_ALPHA, GL2.GL_UNSIGNED_BYTE, ByteBuffer.wrap(texture));
 			gl.glTexParameteri(GL2.GL_TEXTURE_1D, GL2.GL_TEXTURE_MIN_FILTER, GL2.GL_LINEAR);
 			gl.glTexParameteri(GL2.GL_TEXTURE_1D, GL2.GL_TEXTURE_MAG_FILTER, GL2.GL_LINEAR);
 			gl.glTexParameteri(GL2.GL_TEXTURE_1D, GL2.GL_TEXTURE_WRAP_S, GL2.GL_CLAMP_TO_EDGE);
-			this.anInt5805 = local17[0];
+			this.textureId = temp[0];
 			aBoolean308 = GlRenderer.maxTextureUnits > 2 && GlRenderer.extTexture3dSupported;
-			this.method4606();
+			this.createLists();
 		}
 	}
 
@@ -93,10 +95,10 @@ public final class UnderwaterMaterialRenderer implements MaterialRenderer {
 	}
 
 	@OriginalMember(owner = "runetek4.client!wg", name = "d", descriptor = "()V")
-	private void method4606() {
+	private void createLists() {
 		@Pc(1) GL2 gl = GlRenderer.gl;
-		this.anInt5806 = gl.glGenLists(2);
-		gl.glNewList(this.anInt5806, GL2.GL_COMPILE);
+		this.listId = gl.glGenLists(2);
+		gl.glNewList(this.listId, GL2.GL_COMPILE);
 		gl.glActiveTexture(GL2.GL_TEXTURE1);
 		if (aBoolean308) {
 			gl.glBindTexture(GL2.GL_TEXTURE_3D, MaterialManager.texture3D);
@@ -117,7 +119,7 @@ public final class UnderwaterMaterialRenderer implements MaterialRenderer {
 			gl.glActiveTexture(GL2.GL_TEXTURE2);
 			gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_MODE, GL2.GL_COMBINE);
 		}
-		gl.glBindTexture(GL2.GL_TEXTURE_1D, this.anInt5805);
+		gl.glBindTexture(GL2.GL_TEXTURE_1D, this.textureId);
 		gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_RGB, GL2.GL_INTERPOLATE);
 		gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_SRC0_RGB, GL2.GL_CONSTANT);
 		gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_SRC2_RGB, GL2.GL_TEXTURE);
@@ -128,7 +130,7 @@ public final class UnderwaterMaterialRenderer implements MaterialRenderer {
 		gl.glEnable(GL2.GL_TEXTURE_GEN_S);
 		gl.glActiveTexture(GL2.GL_TEXTURE0);
 		gl.glEndList();
-		gl.glNewList(this.anInt5806 + 1, GL2.GL_COMPILE);
+		gl.glNewList(this.listId + 1, GL2.GL_COMPILE);
 		gl.glActiveTexture(GL2.GL_TEXTURE1);
 		if (aBoolean308) {
 			gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_COMBINE_RGB, GL2.GL_MODULATE);
@@ -159,7 +161,7 @@ public final class UnderwaterMaterialRenderer implements MaterialRenderer {
 	@Override
 	public final void bind() {
 		@Pc(1) GL2 gl = GlRenderer.gl;
-		gl.glCallList(this.anInt5806);
+		gl.glCallList(this.listId);
 	}
 
 	@OriginalMember(owner = "runetek4.client!wg", name = "c", descriptor = "()I")
@@ -172,7 +174,7 @@ public final class UnderwaterMaterialRenderer implements MaterialRenderer {
 	@Override
 	public final void unbind() {
 		@Pc(1) GL2 gl = GlRenderer.gl;
-		gl.glCallList(this.anInt5806 + 1);
+		gl.glCallList(this.listId + 1);
 	}
 
 	@OriginalMember(owner = "runetek4.client!wg", name = "a", descriptor = "(I)V")
@@ -188,30 +190,30 @@ public final class UnderwaterMaterialRenderer implements MaterialRenderer {
 			gl.glRotatef((float) MaterialManager.anInt1815 * 360.0F / 2048.0F, 0.0F, 1.0F, 0.0F);
 			gl.glTranslatef((float) -MaterialManager.anInt406, (float) -MaterialManager.anInt4675, (float) -MaterialManager.anInt5158);
 			if (aBoolean308) {
-				this.aFloatArray29[0] = 0.001F;
-				this.aFloatArray29[1] = 9.0E-4F;
-				this.aFloatArray29[2] = 0.0F;
-				this.aFloatArray29[3] = 0.0F;
-				gl.glTexGenfv(GL2.GL_S, GL2.GL_EYE_PLANE, this.aFloatArray29, 0);
-				this.aFloatArray29[0] = 0.0F;
-				this.aFloatArray29[1] = 9.0E-4F;
-				this.aFloatArray29[2] = 0.001F;
-				this.aFloatArray29[3] = 0.0F;
-				gl.glTexGenfv(GL2.GL_T, GL2.GL_EYE_PLANE, this.aFloatArray29, 0);
-				this.aFloatArray29[0] = 0.0F;
-				this.aFloatArray29[1] = 0.0F;
-				this.aFloatArray29[2] = 0.0F;
-				this.aFloatArray29[3] = (float) GlRenderer.anInt5323 * 0.005F;
-				gl.glTexGenfv(GL2.GL_R, GL2.GL_EYE_PLANE, this.aFloatArray29, 0);
+				this.tempVertex[0] = 0.001F;
+				this.tempVertex[1] = 9.0E-4F;
+				this.tempVertex[2] = 0.0F;
+				this.tempVertex[3] = 0.0F;
+				gl.glTexGenfv(GL2.GL_S, GL2.GL_EYE_PLANE, this.tempVertex, 0);
+				this.tempVertex[0] = 0.0F;
+				this.tempVertex[1] = 9.0E-4F;
+				this.tempVertex[2] = 0.001F;
+				this.tempVertex[3] = 0.0F;
+				gl.glTexGenfv(GL2.GL_T, GL2.GL_EYE_PLANE, this.tempVertex, 0);
+				this.tempVertex[0] = 0.0F;
+				this.tempVertex[1] = 0.0F;
+				this.tempVertex[2] = 0.0F;
+				this.tempVertex[3] = (float) GlRenderer.anInt5323 * 0.005F;
+				gl.glTexGenfv(GL2.GL_R, GL2.GL_EYE_PLANE, this.tempVertex, 0);
 				gl.glActiveTexture(GL2.GL_TEXTURE2);
 			}
 			gl.glTexEnvfv(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_COLOR, WaterMaterialRenderer.method2422(), 0);
 			if (arg0 >= 0) {
-				this.aFloatArray29[0] = 0.0F;
-				this.aFloatArray29[1] = 1.0F / (float) anInt3241;
-				this.aFloatArray29[2] = 0.0F;
-				this.aFloatArray29[3] = (float) arg0 * 1.0F / (float) anInt3241;
-				gl.glTexGenfv(GL2.GL_S, GL2.GL_EYE_PLANE, this.aFloatArray29, 0);
+				this.tempVertex[0] = 0.0F;
+				this.tempVertex[1] = 1.0F / (float) anInt3241;
+				this.tempVertex[2] = 0.0F;
+				this.tempVertex[3] = (float) arg0 * 1.0F / (float) anInt3241;
+				gl.glTexGenfv(GL2.GL_S, GL2.GL_EYE_PLANE, this.tempVertex, 0);
 				gl.glEnable(GL2.GL_TEXTURE_GEN_S);
 			} else {
 				gl.glDisable(GL2.GL_TEXTURE_GEN_S);

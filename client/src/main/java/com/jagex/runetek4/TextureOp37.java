@@ -7,7 +7,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!mh")
-public final class TextureOp19 extends TextureOp {
+public final class TextureOp37 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!mh", name = "P", descriptor = "I")
 	private int anInt3843 = 0;
@@ -31,7 +31,7 @@ public final class TextureOp19 extends TextureOp {
 	private int anInt3862 = 8192;
 
 	@OriginalMember(owner = "runetek4.client!mh", name = "<init>", descriptor = "()V")
-	public TextureOp19() {
+	public TextureOp37() {
 		super(0, true);
 	}
 

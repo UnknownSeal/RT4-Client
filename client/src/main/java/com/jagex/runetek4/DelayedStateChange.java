@@ -149,15 +149,15 @@ public final class DelayedStateChange extends SecondaryNode {
 	}
 
 	@OriginalMember(owner = "runetek4.client!wc", name = "a", descriptor = "(ZI)V")
-	public static void method4600(@OriginalArg(1) int arg0) {
-		@Pc(8) DelayedStateChange local8 = create(4, arg0);
-		local8.pushClient();
+	public static void setComponentModelClient(@OriginalArg(1) int id) {
+		@Pc(8) DelayedStateChange change = create(4, id);
+		change.pushClient();
 	}
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "a", descriptor = "(IB)V")
-	public static void method2353(@OriginalArg(0) int arg0) {
-		@Pc(12) DelayedStateChange local12 = create(12, arg0);
-		local12.pushClient();
+	public static void setComponentScrollPositionClient(@OriginalArg(0) int id) {
+		@Pc(12) DelayedStateChange change = create(12, id);
+		change.pushClient();
 	}
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(B)Lclient!da;")
@@ -192,15 +192,15 @@ public final class DelayedStateChange extends SecondaryNode {
 	}
 
 	@OriginalMember(owner = "runetek4.client!n", name = "a", descriptor = "(II)V")
-	public static void method3096(@OriginalArg(0) int arg0) {
-		@Pc(8) DelayedStateChange local8 = create(3, arg0);
-		local8.pushClient();
+	public static void setComponentTextClient(@OriginalArg(0) int id) {
+		@Pc(8) DelayedStateChange change = create(3, id);
+		change.pushClient();
 	}
 
 	@OriginalMember(owner = "runetek4.client!oi", name = "b", descriptor = "(II)V")
-	public static void method3345(@OriginalArg(0) int arg0) {
-		@Pc(8) DelayedStateChange local8 = create(5, arg0);
-		local8.pushClient();
+	public static void setComponentModelAnimClient(@OriginalArg(0) int id) {
+		@Pc(8) DelayedStateChange change = create(5, id);
+		change.pushClient();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ra", name = "a", descriptor = "(BIII)V")
@@ -219,33 +219,33 @@ public final class DelayedStateChange extends SecondaryNode {
 	}
 
 	@OriginalMember(owner = "runetek4.client!tm", name = "a", descriptor = "(II)V")
-	public static void method4224(@OriginalArg(0) int arg0) {
-		@Pc(16) DelayedStateChange local16 = create(6, arg0);
-		local16.pushClient();
+	public static void setComponentColorClient(@OriginalArg(0) int id) {
+		@Pc(16) DelayedStateChange change = create(6, id);
+		change.pushClient();
 	}
 
 	@OriginalMember(owner = "runetek4.client!wl", name = "a", descriptor = "(II)V")
-	public static void method4675(@OriginalArg(1) int arg0) {
-		@Pc(17) DelayedStateChange local17 = create(11, arg0);
-		local17.pushClient();
+	public static void setComponentPositionClient(@OriginalArg(1) int id) {
+		@Pc(17) DelayedStateChange change = create(11, id);
+		change.pushClient();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "a", descriptor = "(BI)V")
-	public static void method24(@OriginalArg(1) int arg0) {
-		@Pc(16) DelayedStateChange local16 = create(1, arg0);
-		local16.pushClient();
+	public static void setVarcClient(@OriginalArg(1) int arg0) {
+		@Pc(16) DelayedStateChange changed = create(1, arg0);
+		changed.pushClient();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ha", name = "b", descriptor = "(II)V")
-	public static void method1840(@OriginalArg(1) int arg0) {
-		@Pc(8) DelayedStateChange local8 = create(2, arg0);
-		local8.pushClient();
+	public static void setVarcstrClient(@OriginalArg(1) int id) {
+		@Pc(8) DelayedStateChange change = create(2, id);
+		change.pushClient();
 	}
 
 	@OriginalMember(owner = "runetek4.client!he", name = "c", descriptor = "(II)V")
-	public static void method1906(@OriginalArg(1) int arg0) {
-		@Pc(12) DelayedStateChange local12 = create(7, arg0);
-		local12.pushClient();
+	public static void setComponentHiddenClient(@OriginalArg(1) int id) {
+		@Pc(12) DelayedStateChange change = create(7, id);
+		change.pushClient();
 	}
 
 	@OriginalMember(owner = "client!da", name = "a", descriptor = "(Z)V")

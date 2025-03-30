@@ -4,7 +4,6 @@ import com.jagex.runetek4.*;
 import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.config.types.seq.SeqTypeList;
-import com.jagex.runetek4.config.types.varbit.VarbitType;
 import com.jagex.runetek4.config.types.bas.BasType;
 import com.jagex.runetek4.config.types.bas.BasTypeList;
 import com.jagex.runetek4.RawModel;
@@ -386,7 +385,7 @@ public final class NpcType {
 	public NpcType getMultiNPC() {
 		@Pc(5) int i = -1;
 		if (this.multiNpcVarbit != -1) {
-			i = VarbitType.getVarbitValue(this.multiNpcVarbit);
+			i = VarpDomain.getVarbitValue(this.multiNpcVarbit);
 		} else if (this.multiNpcVarp != -1) {
 			i = VarpDomain.activeVarps[this.multiNpcVarp];
 		}
@@ -405,7 +404,7 @@ public final class NpcType {
 		}
 		@Pc(16) int local16 = -1;
 		if (this.multiNpcVarbit != -1) {
-			local16 = VarbitType.getVarbitValue(this.multiNpcVarbit);
+			local16 = VarpDomain.getVarbitValue(this.multiNpcVarbit);
 		} else if (this.multiNpcVarp != -1) {
 			local16 = VarpDomain.activeVarps[this.multiNpcVarp];
 		}

@@ -7,13 +7,13 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!pg")
-public final class TextureOp23 extends TextureOp {
+public final class TextureOpMonochromeEdgeDetector extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!pg", name = "U", descriptor = "I")
 	private int anInt4503 = 4096;
 
 	@OriginalMember(owner = "runetek4.client!pg", name = "<init>", descriptor = "()V")
-	public TextureOp23() {
+	public TextureOpMonochromeEdgeDetector() {
 		super(1, true);
 	}
 

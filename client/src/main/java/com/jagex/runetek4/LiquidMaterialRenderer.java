@@ -67,7 +67,7 @@ public final class LiquidMaterialRenderer implements MaterialRenderer {
 	@OriginalMember(owner = "client!cj", name = "a", descriptor = "(ZIIIIIIFB)[[I")
 	public static int[][] method874(@OriginalArg(7) float arg0) {
 		@Pc(15) int[][] local15 = new int[256][64];
-		@Pc(19) TextureOp4 local19 = new TextureOp4();
+		@Pc(19) TextureOpPerlinNoise local19 = new TextureOpPerlinNoise();
 		local19.anInt648 = (int) (arg0 * 4096.0F);
 		local19.anInt642 = 3;
 		local19.anInt641 = 4;

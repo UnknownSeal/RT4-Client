@@ -5,7 +5,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!wk")
-public final class ComponentPointer extends Node {
+public final class SubInterface extends Node {
 
 	@OriginalMember(owner = "client!wk", name = "r", descriptor = "I")
 	public int interfaceId;

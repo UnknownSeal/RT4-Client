@@ -22,7 +22,7 @@ public class ClientProt {
 
     @OriginalMember(owner = "runetek4.client!vg", name = "a", descriptor = "(Lclient!na;IIBI)V")
     public static void method4512(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
-        @Pc(8) Component local8 = InterfaceList.method1418(arg3, arg1);
+        @Pc(8) Component local8 = InterfaceList.getCreatedComponent(arg3, arg1);
         if (local8 == null) {
             return;
         }
@@ -162,20 +162,6 @@ public class ClientProt {
         }
         if (!local13) {
             Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { LocalizedText.UNABLETOFIND, local7 }));
-        }
-    }
-
-    @OriginalMember(owner = "runetek4.client!mc", name = "f", descriptor = "(B)V")
-    public static void closeWidget() {
-        Protocol.outboundBuffer.pIsaac1(184);
-        for (@Pc(18) ComponentPointer local18 = (ComponentPointer) InterfaceList.openInterfaces.head(); local18 != null; local18 = (ComponentPointer) InterfaceList.openInterfaces.next()) {
-            if (local18.anInt5879 == 0) {
-                InterfaceList.closeInterface(true, local18);
-            }
-        }
-        if (ClientScriptRunner.aClass13_10 != null) {
-            InterfaceList.redraw(ClientScriptRunner.aClass13_10);
-            ClientScriptRunner.aClass13_10 = null;
         }
     }
 

@@ -107,7 +107,7 @@ public class LoginManager {
     @OriginalMember(owner = "runetek4.client!pi", name = "P", descriptor = "J")
     public static long serverKey = 0L;
     @OriginalMember(owner = "runetek4.client!ud", name = "O", descriptor = "I")
-    public static int blackMarks = 0;
+    public static int playerModLevel = 0;
     @OriginalMember(owner = "runetek4.client!jk", name = "G", descriptor = "Z")
     public static boolean playerUnderage = false;
     @OriginalMember(owner = "runetek4.client!ql", name = "c", descriptor = "Z")
@@ -930,7 +930,7 @@ public class LoginManager {
                 Protocol.gameServerSocket.read(0, 14, Protocol.inboundBuffer.data);
                 Protocol.inboundBuffer.offset = 0;
                 staffModLevel = Protocol.inboundBuffer.g1();
-                blackMarks = Protocol.inboundBuffer.g1();
+                playerModLevel = Protocol.inboundBuffer.g1();
                 playerUnderage = Protocol.inboundBuffer.g1() == 1;
                 parentalChatConsent = Protocol.inboundBuffer.g1() == 1;
                 parentalAdvertConsent = Protocol.inboundBuffer.g1() == 1;

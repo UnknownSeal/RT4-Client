@@ -10,18 +10,23 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!hm")
-public final class TextureOp14 extends TextureOp {
+public final class TextureOpVoronoiNoise extends TextureOp {
 
 	@OriginalMember(owner = "client!ec", name = "d", descriptor = "Lclient!gn;")
 	public static final LruHashTable aClass54_5 = new LruHashTable(16);
+
 	@OriginalMember(owner = "runetek4.client!cl", name = "X", descriptor = "I")
 	public static int anInt1091;
+
 	@OriginalMember(owner = "runetek4.client!jg", name = "g", descriptor = "I")
 	public static int anInt3041;
+
 	@OriginalMember(owner = "runetek4.client!uf", name = "p", descriptor = "I")
 	public static int anInt5443;
+
 	@OriginalMember(owner = "runetek4.client!ui", name = "Q", descriptor = "I")
 	public static int anInt5526;
+
 	@OriginalMember(owner = "runetek4.client!hm", name = "S", descriptor = "I")
 	private int anInt2635 = 2;
 
@@ -38,7 +43,7 @@ public final class TextureOp14 extends TextureOp {
 	private int anInt2646 = 5;
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "X", descriptor = "[B")
-	private byte[] aByteArray38 = new byte[512];
+	private byte[] permutation = new byte[512];
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "ib", descriptor = "I")
 	private int anInt2645 = 5;
@@ -47,7 +52,7 @@ public final class TextureOp14 extends TextureOp {
 	private short[] aShortArray35 = new short[512];
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "<init>", descriptor = "()V")
-	public TextureOp14() {
+	public TextureOpVoronoiNoise() {
 		super(0, true);
 	}
 
@@ -76,11 +81,11 @@ public final class TextureOp14 extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "f", descriptor = "(B)V")
 	private void method2052() {
-		@Pc(12) Random local12 = new Random((long) this.anInt2639);
+		@Pc(12) Random random = new Random((long) this.anInt2639);
 		this.aShortArray35 = new short[512];
 		if (this.anInt2636 > 0) {
 			for (@Pc(26) int local26 = 0; local26 < 512; local26++) {
-				this.aShortArray35[local26] = (short) RandomUtils.nextInt(this.anInt2636, local12);
+				this.aShortArray35[local26] = (short) RandomUtils.nextInt(this.anInt2636, random);
 			}
 		}
 	}
@@ -88,31 +93,31 @@ public final class TextureOp14 extends TextureOp {
 	@OriginalMember(owner = "runetek4.client!hm", name = "e", descriptor = "(I)V")
 	@Override
 	public final void postDecode() {
-		this.aByteArray38 = method1837(this.anInt2639);
+		this.permutation = method1837(this.anInt2639);
 		this.method2052();
 	}
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "a", descriptor = "(IB)[I")
 	@Override
-	public final int[] getMonochromeOutput(@OriginalArg(0) int arg0) {
-		@Pc(19) int[] local19 = this.monochromeImageCache.get(arg0);
+	public final int[] getMonochromeOutput(@OriginalArg(0) int y) {
+		@Pc(19) int[] dest = this.monochromeImageCache.get(y);
 		if (this.monochromeImageCache.invalid) {
-			@Pc(32) int local32 = this.anInt2646 * Texture.heightFractions[arg0] + 2048;
+			@Pc(32) int local32 = this.anInt2646 * Texture.heightFractions[y] + 2048;
 			@Pc(36) int local36 = local32 >> 12;
 			@Pc(40) int local40 = local36 + 1;
-			for (@Pc(42) int local42 = 0; local42 < Texture.width; local42++) {
+			for (@Pc(42) int x = 0; x < Texture.width; x++) {
 				anInt5526 = Integer.MAX_VALUE;
 				anInt5443 = Integer.MAX_VALUE;
 				anInt3041 = Integer.MAX_VALUE;
 				anInt1091 = Integer.MAX_VALUE;
-				@Pc(62) int local62 = this.anInt2645 * Texture.widthFractions[local42] + 2048;
+				@Pc(62) int local62 = this.anInt2645 * Texture.widthFractions[x] + 2048;
 				@Pc(66) int local66 = local62 >> 12;
 				@Pc(70) int local70 = local66 + 1;
 				@Pc(165) int local165;
 				for (@Pc(74) int local74 = local36 - 1; local74 <= local40; local74++) {
-					@Pc(104) int local104 = this.aByteArray38[(this.anInt2646 <= local74 ? local74 - this.anInt2646 : local74) & 0xFF] & 0xFF;
+					@Pc(104) int local104 = this.permutation[(this.anInt2646 <= local74 ? local74 - this.anInt2646 : local74) & 0xFF] & 0xFF;
 					for (@Pc(108) int local108 = local66 - 1; local108 <= local70; local108++) {
-						@Pc(138) int local138 = (this.aByteArray38[(this.anInt2645 <= local108 ? local108 - this.anInt2645 : local108) + local104 & 0xFF] & 0xFF) * 2;
+						@Pc(138) int local138 = (this.permutation[(this.anInt2645 <= local108 ? local108 - this.anInt2645 : local108) + local104 & 0xFF] & 0xFF) * 2;
 						@Pc(142) int local142 = -(local108 << 12);
 						@Pc(146) int local146 = local138 + 1;
 						@Pc(151) int local151 = local142 + local62 - this.aShortArray35[local138];
@@ -158,19 +163,19 @@ public final class TextureOp14 extends TextureOp {
 				}
 				local165 = this.anInt2635;
 				if (local165 == 0) {
-					local19[local42] = anInt1091;
+					dest[x] = anInt1091;
 				} else if (local165 == 1) {
-					local19[local42] = anInt3041;
+					dest[x] = anInt3041;
 				} else if (local165 == 3) {
-					local19[local42] = anInt5443;
+					dest[x] = anInt5443;
 				} else if (local165 == 4) {
-					local19[local42] = anInt5526;
+					dest[x] = anInt5526;
 				} else if (local165 == 2) {
-					local19[local42] = anInt3041 - anInt1091;
+					dest[x] = anInt3041 - anInt1091;
 				}
 			}
 		}
-		return local19;
+		return dest;
 	}
 
 	@OriginalMember(owner = "runetek4.client!hm", name = "a", descriptor = "(ILclient!wa;Z)V")

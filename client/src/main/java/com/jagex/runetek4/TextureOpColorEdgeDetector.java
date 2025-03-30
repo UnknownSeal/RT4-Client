@@ -7,7 +7,7 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 @OriginalClass("runetek4.client!an")
-public final class TextureOp3 extends TextureOp {
+public final class TextureOpColorEdgeDetector extends TextureOp {
 
 	@OriginalMember(owner = "runetek4.client!an", name = "R", descriptor = "I")
 	private int anInt316 = 4096;
@@ -16,7 +16,7 @@ public final class TextureOp3 extends TextureOp {
 	private boolean aBoolean11 = true;
 
 	@OriginalMember(owner = "runetek4.client!an", name = "<init>", descriptor = "()V")
-	public TextureOp3() {
+	public TextureOpColorEdgeDetector() {
 		super(1, false);
 	}
 
