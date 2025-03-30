@@ -4,34 +4,35 @@ import java.io.*;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.jagex.runetek4.audio.midi.MidiPlayer;
 import com.jagex.runetek4.cache.cs.ClientScript;
-import com.jagex.runetek4.cache.def.NpcType;
-import com.jagex.runetek4.cache.def.ObjType;
-import com.jagex.runetek4.cache.def.VarbitType;
+import com.jagex.runetek4.config.types.npc.NpcType;
+import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.cache.media.SeqType;
+import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.enums.EnumTypeList;
+import com.jagex.runetek4.config.types.idk.IDKTypeList;
+import com.jagex.runetek4.config.types.inv.InvTypeList;
+import com.jagex.runetek4.config.types.loc.LocTypeList;
+import com.jagex.runetek4.config.types.npc.NpcTypeList;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
+import com.jagex.runetek4.config.types.param.ParamType;
+import com.jagex.runetek4.config.types.param.ParamTypeList;
+import com.jagex.runetek4.config.types.quickchat.QuickChatCatType;
+import com.jagex.runetek4.config.types.quickchat.QuickChatCatTypeList;
+import com.jagex.runetek4.config.types.quickchat.QuickChatPhraseTypeList;
+import com.jagex.runetek4.config.types.seq.SeqTypeList;
+import com.jagex.runetek4.config.types.struct.StructTypeList;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
-import com.jagex.runetek4.dash3d.entity.ProjAnimNode;
-import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
-import com.jagex.runetek4.frame.MiniMap;
-import com.jagex.runetek4.game.client.Inv;
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.game.config.enumtype.EnumType;
-import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
-import com.jagex.runetek4.game.shared.framework.gwc.WorldInfo;
-import com.jagex.runetek4.game.shared.framework.gwc.World;
-import com.jagex.runetek4.game.world.entity.PlayerAppearance;
-import com.jagex.runetek4.graphics.RawModel;
-import com.jagex.runetek4.input.Keyboard;
-import com.jagex.runetek4.media.Rasterizer;
-import com.jagex.runetek4.media.renderable.Entity;
-import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.config.types.enums.EnumType;
+import com.jagex.runetek4.config.types.quickchat.QuickChatPhraseType;
 import com.jagex.runetek4.node.SecondaryLinkedList;
 import com.jagex.runetek4.scene.SceneCamera;
 import com.jagex.runetek4.scene.Scenery;
@@ -186,9 +187,9 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "runetek4.client!jh", name = "n", descriptor = "Lclient!bd;")
 	public static QuickChatPhrase activePhrase;
 	@OriginalMember(owner = "runetek4.client!wf", name = "j", descriptor = "Lclient!be;")
-	public static Component staticActiveComponent1;
+	public static Component secondaryActiveComponent;
 	@OriginalMember(owner = "runetek4.client!sg", name = "i", descriptor = "Lclient!be;")
-	public static Component staticActiveComponent2;
+	public static Component primaryActiveComponent;
 	@OriginalMember(owner = "runetek4.client!og", name = "g", descriptor = "[Lclient!na;")
 	public static JString[] stringLocals;
 	@OriginalMember(owner = "runetek4.client!rh", name = "a", descriptor = "[I")
@@ -240,7 +241,7 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!t", name = "b", descriptor = "(I)V")
 	public static void clear() {
-		IdkTypeList.types.clean();
+		IDKTypeList.types.clean();
 	}
 
 	@OriginalMember(owner = "runetek4.client!ac", name = "b", descriptor = "(I)V")
@@ -313,7 +314,7 @@ public final class ClientScriptRunner {
 
 	@OriginalMember(owner = "runetek4.client!gi", name = "a", descriptor = "(ILclient!jl;)V")
 	public static void run(@OriginalArg(1) HookRequest request) {
-		runClientScript(200000, request);
+		run(200000, request);
 	}
 
 	@OriginalMember(owner = "runetek4.client!k", name = "a", descriptor = "(Lclient!be;Lclient!na;I)Lclient!na;")
@@ -469,7 +470,7 @@ public final class ClientScriptRunner {
 				}
 				if (opcode == 14) {
 					pc2 = script[pc++];
-					value = VarbitType.getVarbitValue(pc2);
+					value = VarpDomain.getVarbitValue(pc2);
 				}
 				if (opcode == 18) {
 					value = (PlayerList.self.xFine >> 7) + Camera.originX;
@@ -670,7 +671,7 @@ public final class ClientScriptRunner {
 								local563 = PlayerList.self.xFine + dragY >> 7;
 								local571 = PlayerList.self.zFine - objId >> 7;
 								if (MiniMenu.aBoolean302 && (MiniMenu.anInt4999 & 0x40) != 0) {
-									@Pc(583) Component local583 = InterfaceList.method1418(MiniMenu.anInt2512, MiniMenu.anInt506);
+									@Pc(583) Component local583 = InterfaceList.getCreatedComponent(MiniMenu.anInt2512, MiniMenu.anInt506);
 									if (local583 == null) {
 										MiniMenu.method1294();
 									} else {
@@ -802,7 +803,7 @@ public final class ClientScriptRunner {
 							if (component.createdComponents != null) {
 								renderComponent(local166, local114 - component.scrollY, -component.scrollX + local123, component.createdComponents, local302, component.id, local164, local291, rectangle);
 							}
-							@Pc(1186) ComponentPointer local1186 = (ComponentPointer) InterfaceList.openInterfaces.get((long) component.id);
+							@Pc(1186) SubInterface local1186 = (SubInterface) InterfaceList.openInterfaces.get((long) component.id);
 							if (local1186 != null) {
 								if (local1186.anInt5879 == 0 && !aBoolean108 && anInt3751 >= local166 && local164 <= anInt1892 && local302 > anInt3751 && anInt1892 < local291 && !Cheat.qaOpTest) {
 									MiniMenu.ops[0] = LocalizedText.CANCEL;
@@ -1648,10 +1649,10 @@ public final class ClientScriptRunner {
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BILclient!jl;)V")
-	public static void runClientScript(@OriginalArg(1) int maxCycles, @OriginalArg(2) HookRequest request) {
+	public static void run(@OriginalArg(1) int maxCycles, @OriginalArg(2) HookRequest request) {
 		@Pc(4) Object[] listeners = request.arguments;
 		@Pc(10) int sid = (Integer) listeners[0];
-		@Pc(14) ClientScript clientScript = ClientScriptList.decodeClientScript(sid);
+		@Pc(14) ClientScript clientScript = ClientScriptList.get(sid);
 		if (clientScript == null) {
 			return;
 		}
@@ -1718,8 +1719,8 @@ public final class ClientScriptRunner {
 				pc++;
 				@Pc(226) int opcode = opcodes[pc];
 				@Pc(803) int interfaceType;
-				@Pc(652) int local652;
-				@Pc(809) int interfaceData;
+				@Pc(652) int i;
+				@Pc(809) int componentId;
 				@Pc(609) JString chatTyped;
 				if (opcode < 100) {
 					// core language ops (not commands)
@@ -1739,7 +1740,7 @@ public final class ClientScriptRunner {
 						// pop_varp
 						id = intOperands[pc];
 						isp--;
-						VarpDomain.method2766(id, scriptIntValues[isp]);
+						VarpDomain.setVarpClient(id, scriptIntValues[isp]);
 						continue;
 					}
 					if (opcode == 3) {
@@ -1801,7 +1802,7 @@ public final class ClientScriptRunner {
 					if (opcode == 25) {
 						// push_varbit
 						id = intOperands[pc];
-						scriptIntValues[isp++] = VarbitType.getVarbitValue(id);
+						scriptIntValues[isp++] = VarpDomain.getVarbitValue(id);
 						continue;
 					}
 					if (opcode == 27) {
@@ -1856,7 +1857,7 @@ public final class ClientScriptRunner {
 						// join_string
 						id = intOperands[pc];
 						ssp -= id;
-						chatTyped = JString.method2355(ssp, id, scriptStringValues);
+						chatTyped = JString.join(ssp, id, scriptStringValues);
 						scriptStringValues[ssp++] = chatTyped;
 						continue;
 					}
@@ -1873,32 +1874,32 @@ public final class ClientScriptRunner {
 					if (opcode == 40) {
 						// gosub_with_params
 						id = intOperands[pc];
-						@Pc(642) ClientScript invokeScript = ClientScriptList.decodeClientScript(id);
-						@Pc(646) int[] local646 = new int[invokeScript.localIntCount];
-						@Pc(650) JString[] local650 = new JString[invokeScript.localStringCount];
-						for (local652 = 0; local652 < invokeScript.intArgs; local652++) {
-							local646[local652] = scriptIntValues[local652 + isp - invokeScript.intArgs];
+						@Pc(642) ClientScript invokeScript = ClientScriptList.get(id);
+						@Pc(646) int[] invokeScriptIntLocals = new int[invokeScript.localIntCount];
+						@Pc(650) JString[] invokeScriptStringLocals = new JString[invokeScript.localStringCount];
+						for (i = 0; i < invokeScript.intArgs; i++) {
+							invokeScriptIntLocals[i] = scriptIntValues[i + isp - invokeScript.intArgs];
 						}
-						for (local652 = 0; local652 < invokeScript.stringArgs; local652++) {
-							local650[local652] = scriptStringValues[local652 + ssp - invokeScript.stringArgs];
+						for (i = 0; i < invokeScript.stringArgs; i++) {
+							invokeScriptStringLocals[i] = scriptStringValues[i + ssp - invokeScript.stringArgs];
 						}
 						isp -= invokeScript.intArgs;
 						ssp -= invokeScript.stringArgs;
-						@Pc(705) GoSubFrame goSubFrame = new GoSubFrame();
-						goSubFrame.stringLocals = stringLocals;
-						goSubFrame.localInts = intLocals;
-						goSubFrame.pc = pc;
-						goSubFrame.script = clientScript;
+						@Pc(705) GoSubFrame frame = new GoSubFrame();
+						frame.stringLocals = stringLocals;
+						frame.localInts = intLocals;
+						frame.pc = pc;
+						frame.script = clientScript;
 						if (fp >= callStack.length) {
 							throw new RuntimeException();
 						}
 						clientScript = invokeScript;
 						pc = -1;
-						callStack[fp++] = goSubFrame;
-						intLocals = local646;
+						callStack[fp++] = frame;
+						intLocals = invokeScriptIntLocals;
 						intOperands = invokeScript.intOperands;
 						opcodes = invokeScript.opcodes;
-						stringLocals = local650;
+						stringLocals = invokeScriptStringLocals;
 						continue;
 					}
 					if (opcode == 42) {
@@ -1911,27 +1912,27 @@ public final class ClientScriptRunner {
 						id = intOperands[pc];
 						isp--;
 						VarcDomain.varcs[id] = scriptIntValues[isp];
-						DelayedStateChange.method24(id);
+						DelayedStateChange.setVarcClient(id);
 						continue;
 					}
 					if (opcode == 44) {
 						id = intOperands[pc] >> 16;
 						isp--;
 						interfaceType = scriptIntValues[isp];
-						interfaceData = intOperands[pc] & 0xFFFF;
+						componentId = intOperands[pc] & 0xFFFF;
 						if (interfaceType >= 0 && interfaceType <= 5000) {
 							anIntArray140[id] = interfaceType;
-							@Pc(828) byte local828 = -1;
-							if (interfaceData == 105) {
-								local828 = 0;
+							@Pc(828) byte defaultValue = -1;
+							if (componentId == 105) {
+								defaultValue = 0;
 							}
-							local652 = 0;
+							i = 0;
 							while (true) {
-								if (interfaceType <= local652) {
+								if (interfaceType <= i) {
 									continue nextOp;
 								}
-								anIntArrayArray33[id][local652] = local828;
-								local652++;
+								anIntArrayArray33[id][i] = defaultValue;
+								i++;
 							}
 						}
 						throw new RuntimeException();
@@ -1939,9 +1940,9 @@ public final class ClientScriptRunner {
 					if (opcode == 45) {
 						id = intOperands[pc];
 						isp--;
-						interfaceData = scriptIntValues[isp];
-						if (interfaceData >= 0 && interfaceData < anIntArray140[id]) {
-							scriptIntValues[isp++] = anIntArrayArray33[id][interfaceData];
+						componentId = scriptIntValues[isp];
+						if (componentId >= 0 && componentId < anIntArray140[id]) {
+							scriptIntValues[isp++] = anIntArrayArray33[id][componentId];
 							continue;
 						}
 						throw new RuntimeException();
@@ -1949,9 +1950,9 @@ public final class ClientScriptRunner {
 					if (opcode == 46) {
 						id = intOperands[pc];
 						isp -= 2;
-						interfaceData = scriptIntValues[isp];
-						if (interfaceData >= 0 && interfaceData < anIntArray140[id]) {
-							anIntArrayArray33[id][interfaceData] = scriptIntValues[isp + 1];
+						componentId = scriptIntValues[isp];
+						if (componentId >= 0 && componentId < anIntArray140[id]) {
+							anIntArrayArray33[id][componentId] = scriptIntValues[isp + 1];
 							continue;
 						}
 						throw new RuntimeException();
@@ -1959,7 +1960,7 @@ public final class ClientScriptRunner {
 					if (opcode == 47) {
 						value = VarcDomain.varcstrs[intOperands[pc]];
 						if (value == null) {
-							value = VarpDomain.aClass100_1061;
+							value = VarpDomain.NULL;
 						}
 						scriptStringValues[ssp++] = value;
 						continue;
@@ -1968,27 +1969,27 @@ public final class ClientScriptRunner {
 						id = intOperands[pc];
 						ssp--;
 						VarcDomain.varcstrs[id] = scriptStringValues[ssp];
-						DelayedStateChange.method1840(id);
+						DelayedStateChange.setVarcstrClient(id);
 						continue;
 					}
 					if (opcode == 51) {
-						@Pc(992) HashTable local992 = clientScript.switchTables[intOperands[pc]];
+						@Pc(992) HashTable table = clientScript.switchTables[intOperands[pc]];
 						isp--;
-						@Pc(1002) IntWrapper local1002 = (IntWrapper) local992.get((long) scriptIntValues[isp]);
-						if (local1002 != null) {
-							pc += local1002.value;
+						@Pc(1002) IntWrapper node = (IntWrapper) table.get((long) scriptIntValues[isp]);
+						if (node != null) {
+							pc += node.value;
 						}
 						continue;
 					}
 				}
-				@Pc(1020) boolean local1020;
+				@Pc(1020) boolean secondary;
 				if (intOperands[pc] == 1) {
-					local1020 = true;
+					secondary = true;
 				} else {
-					local1020 = false;
+					secondary = false;
 				}
-				@Pc(1182) Component local1182;
-				@Pc(1052) int childCount;
+				@Pc(1182) Component createdComponent;
+				@Pc(1052) int j;
 				@Pc(1063) Component component;
 				@Pc(1087) int childId;
 				@Pc(1256) Component local1256;
@@ -1996,74 +1997,74 @@ public final class ClientScriptRunner {
 					if (opcode == 100) {
 						// cc_create
 						isp -= 3;
-						interfaceData = scriptIntValues[isp];
+						componentId = scriptIntValues[isp];
 						interfaceType = scriptIntValues[isp + 1];
-						childCount = scriptIntValues[isp + 2];
+						j = scriptIntValues[isp + 2];
 						if (interfaceType != 0) {
-							component = InterfaceList.getComponent(interfaceData);
+							component = InterfaceList.getComponent(componentId);
 							if (component.createdComponents == null) {
-								component.createdComponents = new Component[childCount + 1];
+								component.createdComponents = new Component[j + 1];
 							}
-							if (childCount >= component.createdComponents.length) {
-								@Pc(1085) Component[] childInterfaces = new Component[childCount + 1];
+							if (j >= component.createdComponents.length) {
+								@Pc(1085) Component[] createdComponents = new Component[j + 1];
 								for (childId = 0; childId < component.createdComponents.length; childId++) {
-									childInterfaces[childId] = component.createdComponents[childId];
+									createdComponents[childId] = component.createdComponents[childId];
 								}
-								component.createdComponents = childInterfaces;
+								component.createdComponents = createdComponents;
 							}
-							if (childCount > 0 && component.createdComponents[childCount - 1] == null) {
-								throw new RuntimeException("Gap at:" + (childCount - 1));
+							if (j > 0 && component.createdComponents[j - 1] == null) {
+								throw new RuntimeException("Gap at:" + (j - 1));
 							}
 							@Pc(1137) Component local1137 = new Component();
 							local1137.if3 = true;
-							local1137.createdComponentId = childCount;
+							local1137.createdComponentId = j;
 							local1137.overlayer = local1137.id = component.id;
 							local1137.type = interfaceType;
-							component.createdComponents[childCount] = local1137;
-							if (local1020) {
-								staticActiveComponent1 = local1137;
+							component.createdComponents[j] = local1137;
+							if (secondary) {
+								secondaryActiveComponent = local1137;
 							} else {
-								staticActiveComponent2 = local1137;
+								primaryActiveComponent = local1137;
 							}
 							InterfaceList.redraw(component);
 							continue;
 						}
 						throw new RuntimeException();
 					}
-					@Pc(1204) Component local1204;
+					@Pc(1204) Component component2;
 					if (opcode == 101) {
 						// cc_delete
-						local1182 = local1020 ? staticActiveComponent1 : staticActiveComponent2;
-						if (local1182.createdComponentId == -1) {
-							if (!local1020) {
+						createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
+						if (createdComponent.createdComponentId == -1) {
+							if (!secondary) {
 								throw new RuntimeException("Tried to cc_delete static active-component!");
 							}
 							throw new RuntimeException("Tried to .cc_delete static .active-component!");
 						}
-						local1204 = InterfaceList.getComponent(local1182.id);
-						local1204.createdComponents[local1182.createdComponentId] = null;
-						InterfaceList.redraw(local1204);
+						component2 = InterfaceList.getComponent(createdComponent.id);
+						component2.createdComponents[createdComponent.createdComponentId] = null;
+						InterfaceList.redraw(component2);
 						continue;
 					}
 					if (opcode == 102) {
 						// cc_deleteall
 						isp--;
-						local1182 = InterfaceList.getComponent(scriptIntValues[isp]);
-						local1182.createdComponents = null;
-						InterfaceList.redraw(local1182);
+						createdComponent = InterfaceList.getComponent(scriptIntValues[isp]);
+						createdComponent.createdComponents = null;
+						InterfaceList.redraw(createdComponent);
 						continue;
 					}
 					if (opcode == 200) {
 						isp -= 2;
-						interfaceData = scriptIntValues[isp];
+						componentId = scriptIntValues[isp];
 						interfaceType = scriptIntValues[isp + 1];
-						local1256 = InterfaceList.method1418(interfaceData, interfaceType);
+						local1256 = InterfaceList.getCreatedComponent(componentId, interfaceType);
 						if (local1256 != null && interfaceType != -1) {
 							scriptIntValues[isp++] = 1;
-							if (local1020) {
-								staticActiveComponent1 = local1256;
+							if (secondary) {
+								secondaryActiveComponent = local1256;
 							} else {
-								staticActiveComponent2 = local1256;
+								primaryActiveComponent = local1256;
 							}
 							continue;
 						}
@@ -2072,16 +2073,16 @@ public final class ClientScriptRunner {
 					}
 					if (opcode == 201) {
 						isp--;
-						interfaceData = scriptIntValues[isp];
-						local1204 = InterfaceList.getComponent(interfaceData);
-						if (local1204 == null) {
+						componentId = scriptIntValues[isp];
+						component2 = InterfaceList.getComponent(componentId);
+						if (component2 == null) {
 							scriptIntValues[isp++] = 0;
 						} else {
 							scriptIntValues[isp++] = 1;
-							if (local1020) {
-								staticActiveComponent1 = local1204;
+							if (secondary) {
+								secondaryActiveComponent = component2;
 							} else {
-								staticActiveComponent2 = local1204;
+								primaryActiveComponent = component2;
 							}
 						}
 						continue;
@@ -2092,30 +2093,30 @@ public final class ClientScriptRunner {
 						if (opcode == 403) {
 							isp -= 2;
 							interfaceType = scriptIntValues[isp + 1];
-							interfaceData = scriptIntValues[isp];
-							for (childCount = 0; childCount < PlayerAppearance.MALE_FEATURES.length; childCount++) {
-								if (interfaceData == PlayerAppearance.MALE_FEATURES[childCount]) {
-									PlayerList.self.appearance.setIdentikit(childCount, interfaceType);
+							componentId = scriptIntValues[isp];
+							for (j = 0; j < PlayerAppearance.MALE_FEATURES.length; j++) {
+								if (componentId == PlayerAppearance.MALE_FEATURES[j]) {
+									PlayerList.self.appearance.setIdentikit(j, interfaceType);
 									continue nextOp;
 								}
 							}
-							childCount = 0;
+							j = 0;
 							while (true) {
-								if (childCount >= PlayerAppearance.FEMALE_FEATURES.length) {
+								if (j >= PlayerAppearance.FEMALE_FEATURES.length) {
 									continue nextOp;
 								}
-								if (interfaceData == PlayerAppearance.FEMALE_FEATURES[childCount]) {
-									PlayerList.self.appearance.setIdentikit(childCount, interfaceType);
+								if (componentId == PlayerAppearance.FEMALE_FEATURES[j]) {
+									PlayerList.self.appearance.setIdentikit(j, interfaceType);
 									continue nextOp;
 								}
-								childCount++;
+								j++;
 							}
 						}
 						if (opcode == 404) {
 							isp -= 2;
-							interfaceData = scriptIntValues[isp];
+							componentId = scriptIntValues[isp];
 							interfaceType = scriptIntValues[isp + 1];
-							PlayerList.self.appearance.setColor(interfaceData, interfaceType);
+							PlayerList.self.appearance.setColor(componentId, interfaceType);
 							continue;
 						}
 						if (opcode == 410) {
@@ -2130,110 +2131,110 @@ public final class ClientScriptRunner {
 							@Pc(2522) JString chatTypedLowercase;
 							if (opcode >= 1100 && opcode < 1200 || !(opcode < 2100 || opcode >= 2200)) {
 								if (opcode < 2000) {
-									local1182 = local1020 ? staticActiveComponent1 : staticActiveComponent2;
+									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 								} else {
 									opcode -= 1000;
 									isp--;
-									local1182 = InterfaceList.getComponent(scriptIntValues[isp]);
+									createdComponent = InterfaceList.getComponent(scriptIntValues[isp]);
 								}
 								if (opcode == 1100) {
 									// setscrollpos
 									isp -= 2;
-									local1182.scrollX = scriptIntValues[isp];
-									if (local1182.scrollX > local1182.scrollMaxH - local1182.width) {
-										local1182.scrollX = local1182.scrollMaxH - local1182.width;
+									createdComponent.scrollX = scriptIntValues[isp];
+									if (createdComponent.scrollX > createdComponent.scrollMaxH - createdComponent.width) {
+										createdComponent.scrollX = createdComponent.scrollMaxH - createdComponent.width;
 									}
-									if (local1182.scrollX < 0) {
-										local1182.scrollX = 0;
+									if (createdComponent.scrollX < 0) {
+										createdComponent.scrollX = 0;
 									}
-									local1182.scrollY = scriptIntValues[isp + 1];
-									if (local1182.scrollY > local1182.scrollMaxV - local1182.height) {
-										local1182.scrollY = local1182.scrollMaxV - local1182.height;
+									createdComponent.scrollY = scriptIntValues[isp + 1];
+									if (createdComponent.scrollY > createdComponent.scrollMaxV - createdComponent.height) {
+										createdComponent.scrollY = createdComponent.scrollMaxV - createdComponent.height;
 									}
-									if (local1182.scrollY < 0) {
-										local1182.scrollY = 0;
+									if (createdComponent.scrollY < 0) {
+										createdComponent.scrollY = 0;
 									}
-									InterfaceList.redraw(local1182);
-									if (local1182.createdComponentId == -1) {
-										DelayedStateChange.method2353(local1182.id);
+									InterfaceList.redraw(createdComponent);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentScrollPositionClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1101) {
 									// setcolor
 									isp--;
-									local1182.color = scriptIntValues[isp];
-									InterfaceList.redraw(local1182);
-									if (local1182.createdComponentId == -1) {
-										DelayedStateChange.method4224(local1182.id);
+									createdComponent.color = scriptIntValues[isp];
+									InterfaceList.redraw(createdComponent);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentColorClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1102) {
 									// setfill
 									isp--;
-									local1182.filled = scriptIntValues[isp] == 1;
-									InterfaceList.redraw(local1182);
+									createdComponent.filled = scriptIntValues[isp] == 1;
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1103) {
 									// settrans
 									isp--;
-									local1182.alpha = scriptIntValues[isp];
-									InterfaceList.redraw(local1182);
+									createdComponent.alpha = scriptIntValues[isp];
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1104) {
 									// setlinewid
 									isp--;
-									local1182.lineWidth = scriptIntValues[isp];
-									InterfaceList.redraw(local1182);
+									createdComponent.lineWidth = scriptIntValues[isp];
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1105) {
 									// setgraphic
 									isp--;
-									local1182.spriteId = scriptIntValues[isp];
-									InterfaceList.redraw(local1182);
+									createdComponent.spriteId = scriptIntValues[isp];
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1106) {
 									isp--;
-									local1182.angle2d = scriptIntValues[isp];
-									InterfaceList.redraw(local1182);
+									createdComponent.angle2d = scriptIntValues[isp];
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1107) {
 									// settiling
 									isp--;
-									local1182.spriteTiling = scriptIntValues[isp] == 1;
-									InterfaceList.redraw(local1182);
+									createdComponent.spriteTiling = scriptIntValues[isp] == 1;
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1108) {
 									// setmodel
-									local1182.modelType = 1;
+									createdComponent.modelType = 1;
 									isp--;
-									local1182.modelId = scriptIntValues[isp];
-									InterfaceList.redraw(local1182);
-									if (local1182.createdComponentId == -1) {
-										DelayedStateChange.method4600(local1182.id);
+									createdComponent.modelId = scriptIntValues[isp];
+									InterfaceList.redraw(createdComponent);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1109) {
 									// setmodelangle
 									isp -= 6;
-									local1182.modelXOffset = scriptIntValues[isp];
-									local1182.modelZOffset = scriptIntValues[isp + 1];
-									local1182.modelXAngle = scriptIntValues[isp + 2];
-									local1182.modelYAngle = scriptIntValues[isp + 3];
-									local1182.modelYOffset = scriptIntValues[isp + 4];
-									local1182.modelZoom = scriptIntValues[isp + 5];
-									InterfaceList.redraw(local1182);
-									if (local1182.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelAngleClient(local1182.id);
-										DelayedStateChange.setComponentModelOffsetClient(local1182.id);
+									createdComponent.modelXOffset = scriptIntValues[isp];
+									createdComponent.modelZOffset = scriptIntValues[isp + 1];
+									createdComponent.modelXAngle = scriptIntValues[isp + 2];
+									createdComponent.modelYAngle = scriptIntValues[isp + 3];
+									createdComponent.modelYOffset = scriptIntValues[isp + 4];
+									createdComponent.modelZoom = scriptIntValues[isp + 5];
+									InterfaceList.redraw(createdComponent);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelAngleClient(createdComponent.id);
+										DelayedStateChange.setComponentModelOffsetClient(createdComponent.id);
 									}
 									continue;
 								}
@@ -2241,197 +2242,197 @@ public final class ClientScriptRunner {
 									// setmodelanim
 									isp--;
 									interfaceType = scriptIntValues[isp];
-									if (local1182.modelSeqId != interfaceType) {
-										local1182.modelSeqId = interfaceType;
-										local1182.anInt510 = 0;
-										local1182.anInt500 = 0;
-										local1182.anInt496 = 1;
-										InterfaceList.redraw(local1182);
+									if (createdComponent.modelSeqId != interfaceType) {
+										createdComponent.modelSeqId = interfaceType;
+										createdComponent.anInt510 = 0;
+										createdComponent.anInt500 = 0;
+										createdComponent.anInt496 = 1;
+										InterfaceList.redraw(createdComponent);
 									}
-									if (local1182.createdComponentId == -1) {
-										DelayedStateChange.method3345(local1182.id);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelAnimClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1111) {
 									// setmodelorthog
 									isp--;
-									local1182.modelOrtho = scriptIntValues[isp] == 1;
-									InterfaceList.redraw(local1182);
+									createdComponent.modelOrtho = scriptIntValues[isp] == 1;
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1112) {
 									// settext
 									ssp--;
 									chatTypedLowercase = scriptStringValues[ssp];
-									if (!chatTypedLowercase.strEquals(local1182.text)) {
-										local1182.text = chatTypedLowercase;
-										InterfaceList.redraw(local1182);
+									if (!chatTypedLowercase.strEquals(createdComponent.text)) {
+										createdComponent.text = chatTypedLowercase;
+										InterfaceList.redraw(createdComponent);
 									}
-									if (local1182.createdComponentId == -1) {
-										DelayedStateChange.method3096(local1182.id);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentTextClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1113) {
 									// settextfont
 									isp--;
-									local1182.fontId = scriptIntValues[isp];
-									InterfaceList.redraw(local1182);
+									createdComponent.fontId = scriptIntValues[isp];
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1114) {
 									// settextalign
 									isp -= 3;
-									local1182.halign = scriptIntValues[isp];
-									local1182.valign = scriptIntValues[isp + 1];
-									local1182.vpadding = scriptIntValues[isp + 2];
-									InterfaceList.redraw(local1182);
+									createdComponent.halign = scriptIntValues[isp];
+									createdComponent.valign = scriptIntValues[isp + 1];
+									createdComponent.vpadding = scriptIntValues[isp + 2];
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1115) {
 									// settextshadow
 									isp--;
-									local1182.shadowed = scriptIntValues[isp] == 1;
-									InterfaceList.redraw(local1182);
+									createdComponent.shadowed = scriptIntValues[isp] == 1;
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1116) {
 									isp--;
-									local1182.outlineThickness = scriptIntValues[isp];
-									InterfaceList.redraw(local1182);
+									createdComponent.outlineThickness = scriptIntValues[isp];
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1117) {
 									isp--;
-									local1182.shadowColor = scriptIntValues[isp];
-									InterfaceList.redraw(local1182);
+									createdComponent.shadowColor = scriptIntValues[isp];
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1118) {
 									isp--;
-									local1182.vFlip = scriptIntValues[isp] == 1;
-									InterfaceList.redraw(local1182);
+									createdComponent.vFlip = scriptIntValues[isp] == 1;
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1119) {
 									isp--;
-									local1182.hFlip = scriptIntValues[isp] == 1;
-									InterfaceList.redraw(local1182);
+									createdComponent.hFlip = scriptIntValues[isp] == 1;
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1120) {
 									isp -= 2;
-									local1182.scrollMaxH = scriptIntValues[isp];
-									local1182.scrollMaxV = scriptIntValues[isp + 1];
-									InterfaceList.redraw(local1182);
-									if (local1182.type == 0) {
-										InterfaceList.method531(local1182, false);
+									createdComponent.scrollMaxH = scriptIntValues[isp];
+									createdComponent.scrollMaxV = scriptIntValues[isp + 1];
+									InterfaceList.redraw(createdComponent);
+									if (createdComponent.type == 0) {
+										InterfaceList.method531(createdComponent, false);
 									}
 									continue;
 								}
 								if (opcode == 1121) {
 									isp -= 2;
-									local1182.aShort11 = (short) scriptIntValues[isp];
-									local1182.aShort10 = (short) scriptIntValues[isp + 1];
-									InterfaceList.redraw(local1182);
+									createdComponent.aShort11 = (short) scriptIntValues[isp];
+									createdComponent.aShort10 = (short) scriptIntValues[isp + 1];
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1122) {
 									isp--;
-									local1182.hasAlpha = scriptIntValues[isp] == 1;
-									InterfaceList.redraw(local1182);
+									createdComponent.hasAlpha = scriptIntValues[isp] == 1;
+									InterfaceList.redraw(createdComponent);
 									continue;
 								}
 								if (opcode == 1123) {
 									isp--;
-									local1182.modelZoom = scriptIntValues[isp];
-									InterfaceList.redraw(local1182);
-									if (local1182.createdComponentId == -1) {
-										DelayedStateChange.setComponentModelAngleClient(local1182.id);
+									createdComponent.modelZoom = scriptIntValues[isp];
+									InterfaceList.redraw(createdComponent);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelAngleClient(createdComponent.id);
 									}
 									continue;
 								}
 							} else if (opcode >= 1200 && opcode < 1300 || !(opcode < 2200 || opcode >= 2300)) {
 								if (opcode < 2000) {
-									local1182 = local1020 ? staticActiveComponent1 : staticActiveComponent2;
+									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 								} else {
 									isp--;
-									local1182 = InterfaceList.getComponent(scriptIntValues[isp]);
+									createdComponent = InterfaceList.getComponent(scriptIntValues[isp]);
 									opcode -= 1000;
 								}
-								InterfaceList.redraw(local1182);
+								InterfaceList.redraw(createdComponent);
 								if (opcode == 1200 || opcode == 1205) {
 									isp -= 2;
-									childCount = scriptIntValues[isp + 1];
+									j = scriptIntValues[isp + 1];
 									interfaceType = scriptIntValues[isp];
-									if (local1182.createdComponentId == -1) {
-										DelayedStateChange.setComponentObjClient(local1182.id);
-										DelayedStateChange.setComponentModelAngleClient(local1182.id);
-										DelayedStateChange.setComponentModelOffsetClient(local1182.id);
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentObjClient(createdComponent.id);
+										DelayedStateChange.setComponentModelAngleClient(createdComponent.id);
+										DelayedStateChange.setComponentModelOffsetClient(createdComponent.id);
 									}
 									if (interfaceType == -1) {
-										local1182.modelId = -1;
-										local1182.modelType = 1;
-										local1182.objId = -1;
+										createdComponent.modelId = -1;
+										createdComponent.modelType = 1;
+										createdComponent.objId = -1;
 									} else {
-										local1182.objId = interfaceType;
-										local1182.objCount = childCount;
+										createdComponent.objId = interfaceType;
+										createdComponent.objCount = j;
 										@Pc(13416) ObjType local13416 = ObjTypeList.get(interfaceType);
-										local1182.modelYOffset = local13416.zAngle2D;
-										local1182.modelXOffset = local13416.xOffset2D;
-										local1182.modelXAngle = local13416.xAngle2D;
-										local1182.modelZOffset = local13416.yOffset2D;
-										local1182.modelYAngle = local13416.yAngle2D;
-										local1182.modelZoom = local13416.zoom2d;
-										if (local1182.anInt451 > 0) {
-											local1182.modelZoom = local1182.modelZoom * 32 / local1182.anInt451;
-										} else if (local1182.baseWidth > 0) {
-											local1182.modelZoom = local1182.modelZoom * 32 / local1182.baseWidth;
+										createdComponent.modelYOffset = local13416.zAngle2D;
+										createdComponent.modelXOffset = local13416.xOffset2D;
+										createdComponent.modelXAngle = local13416.xAngle2D;
+										createdComponent.modelZOffset = local13416.yOffset2D;
+										createdComponent.modelYAngle = local13416.yAngle2D;
+										createdComponent.modelZoom = local13416.zoom2d;
+										if (createdComponent.anInt451 > 0) {
+											createdComponent.modelZoom = createdComponent.modelZoom * 32 / createdComponent.anInt451;
+										} else if (createdComponent.baseWidth > 0) {
+											createdComponent.modelZoom = createdComponent.modelZoom * 32 / createdComponent.baseWidth;
 										}
 										if (opcode == 1205) {
-											local1182.objDrawText = false;
+											createdComponent.objDrawText = false;
 										} else {
-											local1182.objDrawText = true;
+											createdComponent.objDrawText = true;
 										}
 									}
 									continue;
 								}
 								if (opcode == 1201) {
 									// setnpchead
-									local1182.modelType = 2;
+									createdComponent.modelType = 2;
 									isp--;
-									local1182.modelId = scriptIntValues[isp];
-									if (local1182.createdComponentId == -1) {
-										DelayedStateChange.method4600(local1182.id);
+									createdComponent.modelId = scriptIntValues[isp];
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1202) {
 									// setplayerhead_self
-									local1182.modelType = 3;
-									local1182.modelId = PlayerList.self.appearance.getHeadModelId();
-									if (local1182.createdComponentId == -1) {
-										DelayedStateChange.method4600(local1182.id);
+									createdComponent.modelType = 3;
+									createdComponent.modelId = PlayerList.self.appearance.getHeadModelId();
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1203) {
 									// setnpcmodel
-									local1182.modelType = 6;
+									createdComponent.modelType = 6;
 									isp--;
-									local1182.modelId = scriptIntValues[isp];
-									if (local1182.createdComponentId == -1) {
-										DelayedStateChange.method4600(local1182.id);
+									createdComponent.modelId = scriptIntValues[isp];
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
 								if (opcode == 1204) {
-									local1182.modelType = 5;
+									createdComponent.modelType = 5;
 									isp--;
-									local1182.modelId = scriptIntValues[isp];
-									if (local1182.createdComponentId == -1) {
-										DelayedStateChange.method4600(local1182.id);
+									createdComponent.modelId = scriptIntValues[isp];
+									if (createdComponent.createdComponentId == -1) {
+										DelayedStateChange.setComponentModelClient(createdComponent.id);
 									}
 									continue;
 								}
@@ -2439,18 +2440,18 @@ public final class ClientScriptRunner {
 								if (opcode >= 2000) {
 									// if_
 									isp--;
-									local1182 = InterfaceList.getComponent(scriptIntValues[isp]);
+									createdComponent = InterfaceList.getComponent(scriptIntValues[isp]);
 									opcode -= 1000;
 								} else {
 									// cc_
-									local1182 = local1020 ? staticActiveComponent1 : staticActiveComponent2;
+									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 								}
 								if (opcode == 1300) {
 									isp--;
 									interfaceType = scriptIntValues[isp] - 1;
 									if (interfaceType >= 0 && interfaceType <= 9) {
 										ssp--;
-										local1182.method480(scriptStringValues[ssp], interfaceType);
+										createdComponent.method480(scriptStringValues[ssp], interfaceType);
 										continue;
 									}
 									ssp--;
@@ -2458,54 +2459,54 @@ public final class ClientScriptRunner {
 								}
 								if (opcode == 1301) {
 									isp -= 2;
-									childCount = scriptIntValues[isp + 1];
+									j = scriptIntValues[isp + 1];
 									interfaceType = scriptIntValues[isp];
-									local1182.aClass13_5 = InterfaceList.method1418(interfaceType, childCount);
+									createdComponent.aClass13_5 = InterfaceList.getCreatedComponent(interfaceType, j);
 									continue;
 								}
 								if (opcode == 1302) {
 									isp--;
-									local1182.dragRenderBehavior = scriptIntValues[isp] == 1;
+									createdComponent.dragRenderBehavior = scriptIntValues[isp] == 1;
 									continue;
 								}
 								if (opcode == 1303) {
 									isp--;
-									local1182.dragDeadzone = scriptIntValues[isp];
+									createdComponent.dragDeadzone = scriptIntValues[isp];
 									continue;
 								}
 								if (opcode == 1304) {
 									isp--;
-									local1182.dragDeadtime = scriptIntValues[isp];
+									createdComponent.dragDeadtime = scriptIntValues[isp];
 									continue;
 								}
 								if (opcode == 1305) {
 									ssp--;
-									local1182.optionBase = scriptStringValues[ssp];
+									createdComponent.optionBase = scriptStringValues[ssp];
 									continue;
 								}
 								if (opcode == 1306) {
 									ssp--;
-									local1182.optionCircumfix = scriptStringValues[ssp];
+									createdComponent.optionCircumfix = scriptStringValues[ssp];
 									continue;
 								}
 								if (opcode == 1307) {
-									local1182.ops = null;
+									createdComponent.ops = null;
 									continue;
 								}
 								if (opcode == 1308) {
 									isp--;
-									local1182.anInt484 = scriptIntValues[isp];
+									createdComponent.anInt484 = scriptIntValues[isp];
 									isp--;
-									local1182.anInt499 = scriptIntValues[isp];
+									createdComponent.anInt499 = scriptIntValues[isp];
 									continue;
 								}
 								if (opcode == 1309) {
 									isp--;
 									interfaceType = scriptIntValues[isp];
 									isp--;
-									childCount = scriptIntValues[isp];
-									if (childCount >= 1 && childCount <= 10) {
-										local1182.method477(childCount - 1, interfaceType);
+									j = scriptIntValues[isp];
+									if (j >= 1 && j <= 10) {
+										createdComponent.method477(j - 1, interfaceType);
 									}
 									continue;
 								}
@@ -2514,355 +2515,355 @@ public final class ClientScriptRunner {
 								if (opcode >= 1400 && opcode < 1500 || opcode >= 2400 && opcode < 2500) {
 									if (opcode < 2000) {
 										// if_
-										local1182 = local1020 ? staticActiveComponent1 : staticActiveComponent2;
+										createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 									} else {
 										// cc_
 										opcode -= 1000;
 										isp--;
-										local1182 = InterfaceList.getComponent(scriptIntValues[isp]);
+										createdComponent = InterfaceList.getComponent(scriptIntValues[isp]);
 									}
 									@Pc(12937) int[] local12937 = null;
 									ssp--;
 									chatTypedLowercase = scriptStringValues[ssp];
 									if (chatTypedLowercase.length() > 0 && chatTypedLowercase.charAt(chatTypedLowercase.length() - 1) == 89) {
 										isp--;
-										local652 = scriptIntValues[isp];
-										if (local652 > 0) {
-											local12937 = new int[local652];
-											while (local652-- > 0) {
+										i = scriptIntValues[isp];
+										if (i > 0) {
+											local12937 = new int[i];
+											while (i-- > 0) {
 												isp--;
-												local12937[local652] = scriptIntValues[isp];
+												local12937[i] = scriptIntValues[isp];
 											}
 										}
 										chatTypedLowercase = chatTypedLowercase.substring(chatTypedLowercase.length() - 1, 0);
 									}
-									@Pc(13000) Object[] local13000 = new Object[chatTypedLowercase.length() + 1];
-									for (start = local13000.length - 1; start >= 1; start--) {
+									@Pc(13000) Object[] arguments = new Object[chatTypedLowercase.length() + 1];
+									for (start = arguments.length - 1; start >= 1; start--) {
 										if (chatTypedLowercase.charAt(start - 1) == 115) {
 											ssp--;
-											local13000[start] = scriptStringValues[ssp];
+											arguments[start] = scriptStringValues[ssp];
 										} else {
 											isp--;
-											local13000[start] = Integer.valueOf(scriptIntValues[isp]);
+											arguments[start] = Integer.valueOf(scriptIntValues[isp]);
 										}
 									}
 									isp--;
 									start = scriptIntValues[isp];
 									if (start == -1) {
-										local13000 = null;
+										arguments = null;
 									} else {
-										local13000[0] = Integer.valueOf(start);
+										arguments[0] = Integer.valueOf(start);
 									}
-									local1182.aBoolean25 = true;
+									createdComponent.aBoolean25 = true;
 									if (opcode == 1400) {
-										local1182.onClickRepeat = local13000;
+										createdComponent.onClickRepeat = arguments;
 									} else if (opcode == 1401) {
-										local1182.onHold = local13000;
+										createdComponent.onHold = arguments;
 									} else if (opcode == 1402) {
-										local1182.onRelease = local13000;
+										createdComponent.onRelease = arguments;
 									} else if (opcode == 1403) {
-										local1182.onMouseOver = local13000;
+										createdComponent.onMouseOver = arguments;
 									} else if (opcode == 1404) {
-										local1182.onMouseLeave = local13000;
+										createdComponent.onMouseLeave = arguments;
 									} else if (opcode == 1405) {
-										local1182.onDragStart = local13000;
+										createdComponent.onDragStart = arguments;
 									} else if (opcode == 1406) {
-										local1182.onUseWith = local13000;
+										createdComponent.onUseWith = arguments;
 									} else if (opcode == 1407) {
-										local1182.varpTriggers = local12937;
-										local1182.onVarpTransmit = local13000;
+										createdComponent.varpTriggers = local12937;
+										createdComponent.onVarpTransmit = arguments;
 									} else if (opcode == 1408) {
-										local1182.onTimer = local13000;
+										createdComponent.onTimer = arguments;
 									} else if (opcode == 1409) {
-										local1182.onOptionClick = local13000;
+										createdComponent.onOptionClick = arguments;
 									} else if (opcode == 1410) {
-										local1182.onDragRelease = local13000;
+										createdComponent.onDragRelease = arguments;
 									} else if (opcode == 1411) {
-										local1182.onDrag = local13000;
+										createdComponent.onDrag = arguments;
 									} else if (opcode == 1412) {
-										local1182.onMouseRepeat = local13000;
+										createdComponent.onMouseRepeat = arguments;
 									} else if (opcode == 1414) {
-										local1182.inventoryTriggers = local12937;
-										local1182.onInvTransmit = local13000;
+										createdComponent.inventoryTriggers = local12937;
+										createdComponent.onInvTransmit = arguments;
 									} else if (opcode == 1415) {
-										local1182.statTriggers = local12937;
-										local1182.onStatTransmit = local13000;
+										createdComponent.statTriggers = local12937;
+										createdComponent.onStatTransmit = arguments;
 									} else if (opcode == 1416) {
-										local1182.onUse = local13000;
+										createdComponent.onUse = arguments;
 									} else if (opcode == 1417) {
-										local1182.onScroll = local13000;
+										createdComponent.onScroll = arguments;
 									} else if (opcode == 1418) {
-										local1182.onMsg = local13000;
+										createdComponent.onMsg = arguments;
 									} else if (opcode == 1419) {
-										local1182.onKey = local13000;
+										createdComponent.onKey = arguments;
 									} else if (opcode == 1420) {
-										local1182.onFriendTransmit = local13000;
+										createdComponent.onFriendTransmit = arguments;
 									} else if (opcode == 1421) {
-										local1182.onClanTransmit = local13000;
+										createdComponent.onClanTransmit = arguments;
 									} else if (opcode == 1422) {
-										local1182.onMiscTransmit = local13000;
+										createdComponent.onMiscTransmit = arguments;
 									} else if (opcode == 1423) {
-										local1182.onDialogAbort = local13000;
+										createdComponent.onDialogAbort = arguments;
 									} else if (opcode == 1424) {
-										local1182.onWidgetsOpenClose = local13000;
+										createdComponent.onWidgetsOpenClose = arguments;
 									} else if (opcode == 1425) {
-										local1182.onStockTransmit = local13000;
+										createdComponent.onStockTransmit = arguments;
 									} else if (opcode == 1426) {
-										local1182.onMinimapUnlock = local13000;
+										createdComponent.onMinimapUnlock = arguments;
 									} else if (opcode == 1427) {
-										local1182.onResize = local13000;
+										createdComponent.onResize = arguments;
 									} else if (opcode == 1428) {
-										local1182.onVarcTransmit = local13000;
-										local1182.varcTriggers = local12937;
+										createdComponent.onVarcTransmit = arguments;
+										createdComponent.varcTriggers = local12937;
 									} else if (opcode == 1429) {
-										local1182.varcstrTriggers = local12937;
-										local1182.onVarcstrTransmit = local13000;
+										createdComponent.varcstrTriggers = local12937;
+										createdComponent.onVarcstrTransmit = arguments;
 									}
 									continue;
 								}
 								if (opcode < 1600) {
-									local1182 = local1020 ? staticActiveComponent1 : staticActiveComponent2;
+									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 									if (opcode == 1500) {
 										// cc_getx
-										scriptIntValues[isp++] = local1182.x;
+										scriptIntValues[isp++] = createdComponent.x;
 										continue;
 									}
 									if (opcode == 1501) {
 										// cc_gety
-										scriptIntValues[isp++] = local1182.y;
+										scriptIntValues[isp++] = createdComponent.y;
 										continue;
 									}
 									if (opcode == 1502) {
 										// cc_getwidth
-										scriptIntValues[isp++] = local1182.width;
+										scriptIntValues[isp++] = createdComponent.width;
 										continue;
 									}
 									if (opcode == 1503) {
 										// cc_getheight
-										scriptIntValues[isp++] = local1182.height;
+										scriptIntValues[isp++] = createdComponent.height;
 										continue;
 									}
 									if (opcode == 1504) {
 										// cc_gethide
-										scriptIntValues[isp++] = local1182.hidden ? 1 : 0;
+										scriptIntValues[isp++] = createdComponent.hidden ? 1 : 0;
 										continue;
 									}
 									if (opcode == 1505) {
 										// set_getlayer
-										scriptIntValues[isp++] = local1182.overlayer;
+										scriptIntValues[isp++] = createdComponent.overlayer;
 										continue;
 									}
 								} else if (opcode < 1700) {
-									local1182 = local1020 ? staticActiveComponent1 : staticActiveComponent2;
+									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 									if (opcode == 1600) {
 										// cc_getscrollx
-										scriptIntValues[isp++] = local1182.scrollX;
+										scriptIntValues[isp++] = createdComponent.scrollX;
 										continue;
 									}
 									if (opcode == 1601) {
 										// cc_getscrolly
-										scriptIntValues[isp++] = local1182.scrollY;
+										scriptIntValues[isp++] = createdComponent.scrollY;
 										continue;
 									}
 									if (opcode == 1602) {
-										scriptStringValues[ssp++] = local1182.text;
+										scriptStringValues[ssp++] = createdComponent.text;
 										continue;
 									}
 									if (opcode == 1603) {
-										scriptIntValues[isp++] = local1182.scrollMaxH;
+										scriptIntValues[isp++] = createdComponent.scrollMaxH;
 										continue;
 									}
 									if (opcode == 1604) {
-										scriptIntValues[isp++] = local1182.scrollMaxV;
+										scriptIntValues[isp++] = createdComponent.scrollMaxV;
 										continue;
 									}
 									if (opcode == 1605) {
-										scriptIntValues[isp++] = local1182.modelZoom;
+										scriptIntValues[isp++] = createdComponent.modelZoom;
 										continue;
 									}
 									if (opcode == 1606) {
-										scriptIntValues[isp++] = local1182.modelXAngle;
+										scriptIntValues[isp++] = createdComponent.modelXAngle;
 										continue;
 									}
 									if (opcode == 1607) {
-										scriptIntValues[isp++] = local1182.modelYOffset;
+										scriptIntValues[isp++] = createdComponent.modelYOffset;
 										continue;
 									}
 									if (opcode == 1608) {
-										scriptIntValues[isp++] = local1182.modelYAngle;
+										scriptIntValues[isp++] = createdComponent.modelYAngle;
 										continue;
 									}
 									if (opcode == 1609) {
-										scriptIntValues[isp++] = local1182.alpha;
+										scriptIntValues[isp++] = createdComponent.alpha;
 										continue;
 									}
 									if (opcode == 1610) {
-										scriptIntValues[isp++] = local1182.modelXOffset;
+										scriptIntValues[isp++] = createdComponent.modelXOffset;
 										continue;
 									}
 									if (opcode == 1611) {
-										scriptIntValues[isp++] = local1182.modelZOffset;
+										scriptIntValues[isp++] = createdComponent.modelZOffset;
 										continue;
 									}
 									if (opcode == 1612) {
-										scriptIntValues[isp++] = local1182.spriteId;
+										scriptIntValues[isp++] = createdComponent.spriteId;
 										continue;
 									}
 								} else if (opcode < 1800) {
-									local1182 = local1020 ? staticActiveComponent1 : staticActiveComponent2;
+									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 									if (opcode == 1700) {
-										scriptIntValues[isp++] = local1182.objId;
+										scriptIntValues[isp++] = createdComponent.objId;
 										continue;
 									}
 									if (opcode == 1701) {
-										if (local1182.objId == -1) {
+										if (createdComponent.objId == -1) {
 											scriptIntValues[isp++] = 0;
 										} else {
-											scriptIntValues[isp++] = local1182.objCount;
+											scriptIntValues[isp++] = createdComponent.objCount;
 										}
 										continue;
 									}
 									if (opcode == 1702) {
-										scriptIntValues[isp++] = local1182.createdComponentId;
+										scriptIntValues[isp++] = createdComponent.createdComponentId;
 										continue;
 									}
 								} else if (opcode < 1900) {
-									local1182 = local1020 ? staticActiveComponent1 : staticActiveComponent2;
+									createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 									if (opcode == 1800) {
-										scriptIntValues[isp++] = InterfaceList.getServerActiveProperties(local1182).getTargetMask();
+										scriptIntValues[isp++] = InterfaceList.getServerActiveProperties(createdComponent).getTargetMask();
 										continue;
 									}
 									if (opcode == 1801) {
 										isp--;
 										interfaceType = scriptIntValues[isp];
 										interfaceType--;
-										if (local1182.ops != null && interfaceType < local1182.ops.length && local1182.ops[interfaceType] != null) {
-											scriptStringValues[ssp++] = local1182.ops[interfaceType];
+										if (createdComponent.ops != null && interfaceType < createdComponent.ops.length && createdComponent.ops[interfaceType] != null) {
+											scriptStringValues[ssp++] = createdComponent.ops[interfaceType];
 											continue;
 										}
 										scriptStringValues[ssp++] = EMPTY_STRING;
 										continue;
 									}
 									if (opcode == 1802) {
-										if (local1182.optionBase == null) {
+										if (createdComponent.optionBase == null) {
 											scriptStringValues[ssp++] = EMPTY_STRING;
 										} else {
-											scriptStringValues[ssp++] = local1182.optionBase;
+											scriptStringValues[ssp++] = createdComponent.optionBase;
 										}
 										continue;
 									}
 								} else if (opcode < 2600) {
 									isp--;
-									local1182 = InterfaceList.getComponent(scriptIntValues[isp]);
+									createdComponent = InterfaceList.getComponent(scriptIntValues[isp]);
 									if (opcode == 2500) {
 										// if_getx
-										scriptIntValues[isp++] = local1182.x;
+										scriptIntValues[isp++] = createdComponent.x;
 										continue;
 									}
 									if (opcode == 2501) {
 										// if_gety
-										scriptIntValues[isp++] = local1182.y;
+										scriptIntValues[isp++] = createdComponent.y;
 										continue;
 									}
 									if (opcode == 2502) {
 										// if_getwidth
-										scriptIntValues[isp++] = local1182.width;
+										scriptIntValues[isp++] = createdComponent.width;
 										continue;
 									}
 									if (opcode == 2503) {
 										// if_getheight
-										scriptIntValues[isp++] = local1182.height;
+										scriptIntValues[isp++] = createdComponent.height;
 										continue;
 									}
 									if (opcode == 2504) {
 										// if_gethide
-										scriptIntValues[isp++] = local1182.hidden ? 1 : 0;
+										scriptIntValues[isp++] = createdComponent.hidden ? 1 : 0;
 										continue;
 									}
 									if (opcode == 2505) {
 										// if_getlayer
-										scriptIntValues[isp++] = local1182.overlayer;
+										scriptIntValues[isp++] = createdComponent.overlayer;
 										continue;
 									}
 								} else if (opcode < 2700) {
 									isp--;
-									local1182 = InterfaceList.getComponent(scriptIntValues[isp]);
+									createdComponent = InterfaceList.getComponent(scriptIntValues[isp]);
 									if (opcode == 2600) {
 										// if_getscrollx
-										scriptIntValues[isp++] = local1182.scrollX;
+										scriptIntValues[isp++] = createdComponent.scrollX;
 										continue;
 									}
 									if (opcode == 2601) {
 										// if_getscrolly
-										scriptIntValues[isp++] = local1182.scrollY;
+										scriptIntValues[isp++] = createdComponent.scrollY;
 										continue;
 									}
 									if (opcode == 2602) {
-										scriptStringValues[ssp++] = local1182.text;
+										scriptStringValues[ssp++] = createdComponent.text;
 										continue;
 									}
 									if (opcode == 2603) {
-										scriptIntValues[isp++] = local1182.scrollMaxH;
+										scriptIntValues[isp++] = createdComponent.scrollMaxH;
 										continue;
 									}
 									if (opcode == 2604) {
-										scriptIntValues[isp++] = local1182.scrollMaxV;
+										scriptIntValues[isp++] = createdComponent.scrollMaxV;
 										continue;
 									}
 									if (opcode == 2605) {
-										scriptIntValues[isp++] = local1182.modelZoom;
+										scriptIntValues[isp++] = createdComponent.modelZoom;
 										continue;
 									}
 									if (opcode == 2606) {
-										scriptIntValues[isp++] = local1182.modelXAngle;
+										scriptIntValues[isp++] = createdComponent.modelXAngle;
 										continue;
 									}
 									if (opcode == 2607) {
-										scriptIntValues[isp++] = local1182.modelYOffset;
+										scriptIntValues[isp++] = createdComponent.modelYOffset;
 										continue;
 									}
 									if (opcode == 2608) {
-										scriptIntValues[isp++] = local1182.modelYAngle;
+										scriptIntValues[isp++] = createdComponent.modelYAngle;
 										continue;
 									}
 									if (opcode == 2609) {
-										scriptIntValues[isp++] = local1182.alpha;
+										scriptIntValues[isp++] = createdComponent.alpha;
 										continue;
 									}
 									if (opcode == 2610) {
-										scriptIntValues[isp++] = local1182.modelXOffset;
+										scriptIntValues[isp++] = createdComponent.modelXOffset;
 										continue;
 									}
 									if (opcode == 2611) {
-										scriptIntValues[isp++] = local1182.modelZOffset;
+										scriptIntValues[isp++] = createdComponent.modelZOffset;
 										continue;
 									}
 									if (opcode == 2612) {
-										scriptIntValues[isp++] = local1182.spriteId;
+										scriptIntValues[isp++] = createdComponent.spriteId;
 										continue;
 									}
 								} else if (opcode < 2800) {
 									if (opcode == 2700) {
 										isp--;
-										local1182 = InterfaceList.getComponent(scriptIntValues[isp]);
-										scriptIntValues[isp++] = local1182.objId;
+										createdComponent = InterfaceList.getComponent(scriptIntValues[isp]);
+										scriptIntValues[isp++] = createdComponent.objId;
 										continue;
 									}
 									if (opcode == 2701) {
 										isp--;
-										local1182 = InterfaceList.getComponent(scriptIntValues[isp]);
-										if (local1182.objId == -1) {
+										createdComponent = InterfaceList.getComponent(scriptIntValues[isp]);
+										if (createdComponent.objId == -1) {
 											scriptIntValues[isp++] = 0;
 										} else {
-											scriptIntValues[isp++] = local1182.objCount;
+											scriptIntValues[isp++] = createdComponent.objCount;
 										}
 										continue;
 									}
 									if (opcode == 2702) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										@Pc(12566) ComponentPointer local12566 = (ComponentPointer) InterfaceList.openInterfaces.get((long) interfaceData);
-										if (local12566 == null) {
+										componentId = scriptIntValues[isp];
+										@Pc(12566) SubInterface subInterface = (SubInterface) InterfaceList.openInterfaces.get((long) componentId);
+										if (subInterface == null) {
 											scriptIntValues[isp++] = 0;
 										} else {
 											scriptIntValues[isp++] = 1;
@@ -2871,15 +2872,15 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 2703) {
 										isp--;
-										local1182 = InterfaceList.getComponent(scriptIntValues[isp]);
-										if (local1182.createdComponents == null) {
+										createdComponent = InterfaceList.getComponent(scriptIntValues[isp]);
+										if (createdComponent.createdComponents == null) {
 											scriptIntValues[isp++] = 0;
 											continue;
 										}
-										interfaceType = local1182.createdComponents.length;
-										for (childCount = 0; childCount < local1182.createdComponents.length; childCount++) {
-											if (local1182.createdComponents[childCount] == null) {
-												interfaceType = childCount;
+										interfaceType = createdComponent.createdComponents.length;
+										for (j = 0; j < createdComponent.createdComponents.length; j++) {
+											if (createdComponent.createdComponents[j] == null) {
+												interfaceType = j;
 												break;
 											}
 										}
@@ -2888,10 +2889,10 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 2704 || opcode == 2705) {
 										isp -= 2;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										@Pc(12663) ComponentPointer local12663 = (ComponentPointer) InterfaceList.openInterfaces.get((long) interfaceData);
-										if (local12663 != null && local12663.interfaceId == interfaceType) {
+										@Pc(12663) SubInterface subInterface = (SubInterface) InterfaceList.openInterfaces.get((long) componentId);
+										if (subInterface != null && subInterface.interfaceId == interfaceType) {
 											scriptIntValues[isp++] = 1;
 											continue;
 										}
@@ -2900,27 +2901,27 @@ public final class ClientScriptRunner {
 									}
 								} else if (opcode < 2900) {
 									isp--;
-									local1182 = InterfaceList.getComponent(scriptIntValues[isp]);
+									createdComponent = InterfaceList.getComponent(scriptIntValues[isp]);
 									if (opcode == 2800) {
-										scriptIntValues[isp++] = InterfaceList.getServerActiveProperties(local1182).getTargetMask();
+										scriptIntValues[isp++] = InterfaceList.getServerActiveProperties(createdComponent).getTargetMask();
 										continue;
 									}
 									if (opcode == 2801) {
 										isp--;
 										interfaceType = scriptIntValues[isp];
 										interfaceType--;
-										if (local1182.ops != null && local1182.ops.length > interfaceType && local1182.ops[interfaceType] != null) {
-											scriptStringValues[ssp++] = local1182.ops[interfaceType];
+										if (createdComponent.ops != null && createdComponent.ops.length > interfaceType && createdComponent.ops[interfaceType] != null) {
+											scriptStringValues[ssp++] = createdComponent.ops[interfaceType];
 											continue;
 										}
 										scriptStringValues[ssp++] = EMPTY_STRING;
 										continue;
 									}
 									if (opcode == 2802) {
-										if (local1182.optionBase == null) {
+										if (createdComponent.optionBase == null) {
 											scriptStringValues[ssp++] = EMPTY_STRING;
 										} else {
-											scriptStringValues[ssp++] = local1182.optionBase;
+											scriptStringValues[ssp++] = createdComponent.optionBase;
 										}
 										continue;
 									}
@@ -2939,7 +2940,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == 3103) {
-										ClientProt.closeWidget();
+										InterfaceList.closeModal();
 										continue;
 									}
 									if (opcode == 3104) {
@@ -2970,34 +2971,34 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3107) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										ssp--;
 										chatTypedLowercase = scriptStringValues[ssp];
-										ClientProt.clickPlayerOption(interfaceData, chatTypedLowercase);
+										ClientProt.clickPlayerOption(componentId, chatTypedLowercase);
 										continue;
 									}
 									if (opcode == 3108) {
 										isp -= 3;
 										interfaceType = scriptIntValues[isp + 1];
-										interfaceData = scriptIntValues[isp];
-										childCount = scriptIntValues[isp + 2];
-										component = InterfaceList.getComponent(childCount);
-										method1015(interfaceType, interfaceData, component);
+										componentId = scriptIntValues[isp];
+										j = scriptIntValues[isp + 2];
+										component = InterfaceList.getComponent(j);
+										method1015(interfaceType, componentId, component);
 										continue;
 									}
 									if (opcode == 3109) {
 										isp -= 2;
-										interfaceData = scriptIntValues[isp];
-										local1256 = local1020 ? staticActiveComponent1 : staticActiveComponent2;
+										componentId = scriptIntValues[isp];
+										local1256 = secondary ? secondaryActiveComponent : primaryActiveComponent;
 										interfaceType = scriptIntValues[isp + 1];
-										method1015(interfaceType, interfaceData, local1256);
+										method1015(interfaceType, componentId, local1256);
 										continue;
 									}
 									if (opcode == 3110) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										Protocol.outboundBuffer.pIsaac1(111);
-										Protocol.outboundBuffer.p2(interfaceData);
+										Protocol.outboundBuffer.p2(componentId);
 										continue;
 									}
 								} else if (opcode < 3300) {
@@ -3027,72 +3028,72 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3301) {
 										isp -= 2;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = Inv.getItemType(interfaceData, interfaceType);
+										scriptIntValues[isp++] = Inv.getItemType(componentId, interfaceType);
 										continue;
 									}
 									if (opcode == 3302) {
 										isp -= 2;
 										interfaceType = scriptIntValues[isp + 1];
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = Inv.getItemCount(interfaceData, interfaceType);
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = Inv.getItemCount(componentId, interfaceType);
 										continue;
 									}
 									if (opcode == 3303) {
 										isp -= 2;
 										interfaceType = scriptIntValues[isp + 1];
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = Inv.getSlotTotal(interfaceData, interfaceType);
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = Inv.getSlotTotal(componentId, interfaceType);
 										continue;
 									}
 									if (opcode == 3304) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = InvTypeList.get(interfaceData).size;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = InvTypeList.get(componentId).size;
 										continue;
 									}
 									if (opcode == 3305) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = PlayerSkillXpTable.boostedLevels[interfaceData];
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = PlayerSkillXpTable.boostedLevels[componentId];
 										continue;
 									}
 									if (opcode == 3306) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = PlayerSkillXpTable.baseLevels[interfaceData];
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = PlayerSkillXpTable.baseLevels[componentId];
 										continue;
 									}
 									if (opcode == 3307) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = PlayerSkillXpTable.experience[interfaceData];
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = PlayerSkillXpTable.experience[componentId];
 										continue;
 									}
 									if (opcode == 3308) {
-										interfaceData = Player.plane;
+										componentId = Player.plane;
 										interfaceType = Camera.originX + (PlayerList.self.xFine >> 7);
-										childCount = (PlayerList.self.zFine >> 7) + Camera.originZ;
-										scriptIntValues[isp++] = (interfaceData << 28) - (-(interfaceType << 14) - childCount);
+										j = (PlayerList.self.zFine >> 7) + Camera.originZ;
+										scriptIntValues[isp++] = (componentId << 28) - (-(interfaceType << 14) - j);
 										continue;
 									}
 									if (opcode == 3309) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = interfaceData >> 14 & 0x3FFF;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = componentId >> 14 & 0x3FFF;
 										continue;
 									}
 									if (opcode == 3310) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = interfaceData >> 28;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = componentId >> 28;
 										continue;
 									}
 									if (opcode == 3311) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = interfaceData & 0x3FFF;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = componentId & 0x3FFF;
 										continue;
 									}
 									if (opcode == 3312) {
@@ -3101,23 +3102,23 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3313) {
 										isp -= 2;
-										interfaceData = scriptIntValues[isp] + 32768;
+										componentId = scriptIntValues[isp] + 32768;
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = Inv.getItemType(interfaceData, interfaceType);
+										scriptIntValues[isp++] = Inv.getItemType(componentId, interfaceType);
 										continue;
 									}
 									if (opcode == 3314) {
 										isp -= 2;
-										interfaceData = scriptIntValues[isp] + 32768;
+										componentId = scriptIntValues[isp] + 32768;
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = Inv.getItemCount(interfaceData, interfaceType);
+										scriptIntValues[isp++] = Inv.getItemCount(componentId, interfaceType);
 										continue;
 									}
 									if (opcode == 3315) {
 										isp -= 2;
-										interfaceData = scriptIntValues[isp] + 32768;
+										componentId = scriptIntValues[isp] + 32768;
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = Inv.getSlotTotal(interfaceData, interfaceType);
+										scriptIntValues[isp++] = Inv.getSlotTotal(componentId, interfaceType);
 										continue;
 									}
 									if (opcode == 3316) {
@@ -3145,7 +3146,7 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == 3323) {
-										if (LoginManager.blackMarks >= 5 && LoginManager.blackMarks <= 9) {
+										if (LoginManager.playerModLevel >= 5 && LoginManager.playerModLevel <= 9) {
 											scriptIntValues[isp++] = 1;
 											continue;
 										}
@@ -3153,8 +3154,8 @@ public final class ClientScriptRunner {
 										continue;
 									}
 									if (opcode == 3324) {
-										if (LoginManager.blackMarks >= 5 && LoginManager.blackMarks <= 9) {
-											scriptIntValues[isp++] = LoginManager.blackMarks;
+										if (LoginManager.playerModLevel >= 5 && LoginManager.playerModLevel <= 9) {
+											scriptIntValues[isp++] = LoginManager.playerModLevel;
 											continue;
 										}
 										scriptIntValues[isp++] = 0;
@@ -3182,22 +3183,22 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3330) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = Inv.getFreeSpace(interfaceData);
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = Inv.getFreeSpace(componentId);
 										continue;
 									}
 									if (opcode == 3331) {
 										isp -= 2;
 										interfaceType = scriptIntValues[isp + 1];
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = Inv.getTotalParam(false, interfaceData, interfaceType);
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = Inv.getTotalParam(false, componentId, interfaceType);
 										continue;
 									}
 									if (opcode == 3332) {
 										isp -= 2;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = Inv.getTotalParam(true, interfaceData, interfaceType);
+										scriptIntValues[isp++] = Inv.getTotalParam(true, componentId, interfaceType);
 										continue;
 									}
 									if (opcode == 3333) {
@@ -3211,13 +3212,13 @@ public final class ClientScriptRunner {
 									if (opcode == 3336) {
 										isp -= 4;
 										interfaceType = scriptIntValues[isp + 1];
-										interfaceData = scriptIntValues[isp];
-										interfaceData += interfaceType << 14;
-										local652 = scriptIntValues[isp + 3];
-										childCount = scriptIntValues[isp + 2];
-										interfaceData += childCount << 28;
-										interfaceData += local652;
-										scriptIntValues[isp++] = interfaceData;
+										componentId = scriptIntValues[isp];
+										componentId += interfaceType << 14;
+										i = scriptIntValues[isp + 3];
+										j = scriptIntValues[isp + 2];
+										componentId += j << 28;
+										componentId += i;
+										scriptIntValues[isp++] = componentId;
 										continue;
 									}
 									if (opcode == 3337) {
@@ -3225,29 +3226,29 @@ public final class ClientScriptRunner {
 										continue;
 									}
 								} else if (opcode < 3500) {
-									@Pc(3422) EnumType local3422;
+									@Pc(3422) EnumType type;
 									if (opcode == 3400) {
 										isp -= 2;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										local3422 = EnumTypeList.get(interfaceData);
-										if (local3422.valueType == 115) {
+										type = EnumTypeList.get(componentId);
+										if (type.valueType == 115) {
 										}
-										scriptStringValues[ssp++] = local3422.getValueString(interfaceType);
+										scriptStringValues[ssp++] = type.getValueString(interfaceType);
 										continue;
 									}
 									if (opcode == 3408) {
 										isp -= 4;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										local652 = scriptIntValues[isp + 3];
-										childCount = scriptIntValues[isp + 2];
-										@Pc(3469) EnumType local3469 = EnumTypeList.get(childCount);
-										if (local3469.keyType == interfaceData && local3469.valueType == interfaceType) {
+										i = scriptIntValues[isp + 3];
+										j = scriptIntValues[isp + 2];
+										@Pc(3469) EnumType local3469 = EnumTypeList.get(j);
+										if (local3469.keyType == componentId && local3469.valueType == interfaceType) {
 											if (interfaceType == 115) {
-												scriptStringValues[ssp++] = local3469.getValueString(local652);
+												scriptStringValues[ssp++] = local3469.getValueString(i);
 											} else {
-												scriptIntValues[isp++] = local3469.getValueInt(local652);
+												scriptIntValues[isp++] = local3469.getValueInt(i);
 											}
 											continue;
 										}
@@ -3256,37 +3257,37 @@ public final class ClientScriptRunner {
 									if (opcode == 3409) {
 										isp -= 3;
 										interfaceType = scriptIntValues[isp + 1];
-										childCount = scriptIntValues[isp + 2];
-										interfaceData = scriptIntValues[isp];
+										j = scriptIntValues[isp + 2];
+										componentId = scriptIntValues[isp];
 										if (interfaceType == -1) {
 											throw new RuntimeException("C3409-2");
 										}
 										@Pc(3549) EnumType local3549 = EnumTypeList.get(interfaceType);
-										if (local3549.valueType != interfaceData) {
+										if (local3549.valueType != componentId) {
 											throw new RuntimeException("C3409-1");
 										}
-										scriptIntValues[isp++] = local3549.containsValue(childCount) ? 1 : 0;
+										scriptIntValues[isp++] = local3549.containsValue(j) ? 1 : 0;
 										continue;
 									}
 									if (opcode == 3410) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										ssp--;
 										chatTypedLowercase = scriptStringValues[ssp];
-										if (interfaceData == -1) {
+										if (componentId == -1) {
 											throw new RuntimeException("C3410-2");
 										}
-										local3422 = EnumTypeList.get(interfaceData);
-										if (local3422.valueType != 115) {
+										type = EnumTypeList.get(componentId);
+										if (type.valueType != 115) {
 											throw new RuntimeException("C3410-1");
 										}
-										scriptIntValues[isp++] = local3422.method3086(chatTypedLowercase) ? 1 : 0;
+										scriptIntValues[isp++] = type.method3086(chatTypedLowercase) ? 1 : 0;
 										continue;
 									}
 									if (opcode == 3411) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										@Pc(3645) EnumType local3645 = EnumTypeList.get(interfaceData);
+										componentId = scriptIntValues[isp];
+										@Pc(3645) EnumType local3645 = EnumTypeList.get(componentId);
 										scriptIntValues[isp++] = local3645.table.length();
 										continue;
 									}
@@ -3303,9 +3304,9 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3601) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										if (FriendList.state == 2 && interfaceData < FriendList.friendCount) {
-											scriptStringValues[ssp++] = FriendList.friendUsernames[interfaceData];
+										componentId = scriptIntValues[isp];
+										if (FriendList.state == 2 && componentId < FriendList.friendCount) {
+											scriptStringValues[ssp++] = FriendList.friendUsernames[componentId];
 											continue;
 										}
 										scriptStringValues[ssp++] = EMPTY_STRING;
@@ -3313,9 +3314,9 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3602) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										if (FriendList.state == 2 && FriendList.friendCount > interfaceData) {
-											scriptIntValues[isp++] = FriendList.friendWorlds[interfaceData];
+										componentId = scriptIntValues[isp];
+										if (FriendList.state == 2 && FriendList.friendCount > componentId) {
+											scriptIntValues[isp++] = FriendList.friendWorlds[componentId];
 											continue;
 										}
 										scriptIntValues[isp++] = 0;
@@ -3323,9 +3324,9 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3603) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										if (FriendList.state == 2 && FriendList.friendCount > interfaceData) {
-											scriptIntValues[isp++] = FriendList.ranks[interfaceData];
+										componentId = scriptIntValues[isp];
+										if (FriendList.state == 2 && FriendList.friendCount > componentId) {
+											scriptIntValues[isp++] = FriendList.ranks[componentId];
 											continue;
 										}
 										scriptIntValues[isp++] = 0;
@@ -3374,9 +3375,9 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3610) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										if (FriendList.state == 2 && FriendList.friendCount > interfaceData) {
-											scriptStringValues[ssp++] = FriendList.worldNames[interfaceData];
+										componentId = scriptIntValues[isp];
+										if (FriendList.state == 2 && FriendList.friendCount > componentId) {
+											scriptStringValues[ssp++] = FriendList.worldNames[componentId];
 											continue;
 										}
 										scriptStringValues[ssp++] = EMPTY_STRING;
@@ -3400,9 +3401,9 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3613) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										if (ClanChat.name != null && ClanChat.size > interfaceData) {
-											scriptStringValues[ssp++] = ClanChat.members[interfaceData].username.toTitleCase();
+										componentId = scriptIntValues[isp];
+										if (ClanChat.name != null && ClanChat.size > componentId) {
+											scriptStringValues[ssp++] = ClanChat.members[componentId].username.toTitleCase();
 											continue;
 										}
 										scriptStringValues[ssp++] = EMPTY_STRING;
@@ -3410,9 +3411,9 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3614) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										if (ClanChat.name != null && interfaceData < ClanChat.size) {
-											scriptIntValues[isp++] = ClanChat.members[interfaceData].world;
+										componentId = scriptIntValues[isp];
+										if (ClanChat.name != null && componentId < ClanChat.size) {
+											scriptIntValues[isp++] = ClanChat.members[componentId].world;
 											continue;
 										}
 										scriptIntValues[isp++] = 0;
@@ -3420,9 +3421,9 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3615) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										if (ClanChat.name != null && ClanChat.size > interfaceData) {
-											scriptIntValues[isp++] = ClanChat.members[interfaceData].rank;
+										componentId = scriptIntValues[isp];
+										if (ClanChat.name != null && ClanChat.size > componentId) {
+											scriptIntValues[isp++] = ClanChat.members[componentId].rank;
 											continue;
 										}
 										scriptIntValues[isp++] = 0;
@@ -3462,9 +3463,9 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3622) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										if (FriendList.state != 0 && IgnoreList.ignoreCount > interfaceData) {
-											scriptStringValues[ssp++] = Base37.decode37(IgnoreList.encodedIgnores[interfaceData]).toTitleCase();
+										componentId = scriptIntValues[isp];
+										if (FriendList.state != 0 && IgnoreList.ignoreCount > componentId) {
+											scriptStringValues[ssp++] = Base37.decode37(IgnoreList.encodedIgnores[componentId]).toTitleCase();
 											continue;
 										}
 										scriptStringValues[ssp++] = EMPTY_STRING;
@@ -3481,8 +3482,8 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3624) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										if (ClanChat.members != null && ClanChat.size > interfaceData && ClanChat.members[interfaceData].username.equalsIgnoreCase(PlayerList.self.username)) {
+										componentId = scriptIntValues[isp];
+										if (ClanChat.members != null && ClanChat.size > componentId && ClanChat.members[componentId].username.equalsIgnoreCase(PlayerList.self.username)) {
 											scriptIntValues[isp++] = 1;
 											continue;
 										}
@@ -3499,9 +3500,9 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3626) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										if (ClanChat.name != null && ClanChat.size > interfaceData) {
-											scriptStringValues[ssp++] = ClanChat.members[interfaceData].worldName;
+										componentId = scriptIntValues[isp];
+										if (ClanChat.name != null && ClanChat.size > componentId) {
+											scriptStringValues[ssp++] = ClanChat.members[componentId].worldName;
 											continue;
 										}
 										scriptStringValues[ssp++] = EMPTY_STRING;
@@ -3509,9 +3510,9 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 3627) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										if (FriendList.state == 2 && interfaceData >= 0 && interfaceData < FriendList.friendCount) {
-											scriptIntValues[isp++] = FriendList.friendGame[interfaceData] ? 1 : 0;
+										componentId = scriptIntValues[isp];
+										if (FriendList.state == 2 && componentId >= 0 && componentId < FriendList.friendCount) {
+											scriptIntValues[isp++] = FriendList.friendGame[componentId] ? 1 : 0;
 											continue;
 										}
 										scriptIntValues[isp++] = 0;
@@ -3533,65 +3534,65 @@ public final class ClientScriptRunner {
 								} else if (opcode < 4000) {
 									if (opcode == 3903) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].getType();
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = StockMarketManager.offers[componentId].getType();
 										continue;
 									}
 									if (opcode == 3904) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].item;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = StockMarketManager.offers[componentId].item;
 										continue;
 									}
 									if (opcode == 3905) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].price;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = StockMarketManager.offers[componentId].price;
 										continue;
 									}
 									if (opcode == 3906) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].count;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = StockMarketManager.offers[componentId].count;
 										continue;
 									}
 									if (opcode == 3907) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].completedCount;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = StockMarketManager.offers[componentId].completedCount;
 										continue;
 									}
 									if (opcode == 3908) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = StockMarketManager.offers[interfaceData].completedGold;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = StockMarketManager.offers[componentId].completedGold;
 										continue;
 									}
 									if (opcode == 3910) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										interfaceType = StockMarketManager.offers[interfaceData].getStatus();
+										componentId = scriptIntValues[isp];
+										interfaceType = StockMarketManager.offers[componentId].getStatus();
 										scriptIntValues[isp++] = interfaceType == 0 ? 1 : 0;
 										continue;
 									}
 									if (opcode == 3911) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										interfaceType = StockMarketManager.offers[interfaceData].getStatus();
+										componentId = scriptIntValues[isp];
+										interfaceType = StockMarketManager.offers[componentId].getStatus();
 										scriptIntValues[isp++] = interfaceType == 2 ? 1 : 0;
 										continue;
 									}
 									if (opcode == 3912) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										interfaceType = StockMarketManager.offers[interfaceData].getStatus();
+										componentId = scriptIntValues[isp];
+										interfaceType = StockMarketManager.offers[componentId].getStatus();
 										scriptIntValues[isp++] = interfaceType == 5 ? 1 : 0;
 										continue;
 									}
 									if (opcode == 3913) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										interfaceType = StockMarketManager.offers[interfaceData].getStatus();
+										componentId = scriptIntValues[isp];
+										interfaceType = StockMarketManager.offers[componentId].getStatus();
 										scriptIntValues[isp++] = interfaceType == 1 ? 1 : 0;
 										continue;
 									}
@@ -3599,58 +3600,58 @@ public final class ClientScriptRunner {
 									if (opcode == 4000) {
 										// add
 										isp -= 2;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = interfaceType + interfaceData;
+										scriptIntValues[isp++] = interfaceType + componentId;
 										continue;
 									}
 									if (opcode == 4001) {
 										// sub
 										isp -= 2;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = interfaceData - interfaceType;
+										scriptIntValues[isp++] = componentId - interfaceType;
 										continue;
 									}
 									if (opcode == 4002) {
 										// multiply
 										isp -= 2;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = interfaceType * interfaceData;
+										scriptIntValues[isp++] = interfaceType * componentId;
 										continue;
 									}
 									if (opcode == 4003) {
 										// divide
 										isp -= 2;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = interfaceData / interfaceType;
+										scriptIntValues[isp++] = componentId / interfaceType;
 										continue;
 									}
 									if (opcode == 4004) {
 										// random
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = (int) ((double) interfaceData * Math.random());
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = (int) ((double) componentId * Math.random());
 										continue;
 									}
 									if (opcode == 4005) {
 										// randominc
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = (int) (Math.random() * (double) (interfaceData + 1));
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = (int) (Math.random() * (double) (componentId + 1));
 										continue;
 									}
 									if (opcode == 4006) {
 										// interpolate
 										isp -= 5;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										local652 = scriptIntValues[isp + 3];
-										childCount = scriptIntValues[isp + 2];
+										i = scriptIntValues[isp + 3];
+										j = scriptIntValues[isp + 2];
 										start = scriptIntValues[isp + 4];
-										scriptIntValues[isp++] = (interfaceType - interfaceData) * (start + -childCount) / (local652 - childCount) + interfaceData;
+										scriptIntValues[isp++] = (interfaceType - componentId) * (start + -j) / (i - j) + componentId;
 										continue;
 									}
 									@Pc(4899) long local4899;
@@ -3666,44 +3667,44 @@ public final class ClientScriptRunner {
 									if (opcode == 4008) {
 										// setbit
 										isp -= 2;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = interfaceData | 0x1 << interfaceType;
+										scriptIntValues[isp++] = componentId | 0x1 << interfaceType;
 										continue;
 									}
 									if (opcode == 4009) {
 										// clearbit
 										isp -= 2;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = -(0x1 << interfaceType) - 1 & interfaceData;
+										scriptIntValues[isp++] = -(0x1 << interfaceType) - 1 & componentId;
 										continue;
 									}
 									if (opcode == 4010) {
 										// testbit
 										isp -= 2;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = (interfaceData & 0x1 << interfaceType) == 0 ? 0 : 1;
+										scriptIntValues[isp++] = (componentId & 0x1 << interfaceType) == 0 ? 0 : 1;
 										continue;
 									}
 									if (opcode == 4011) {
 										// modulo
 										isp -= 2;
 										interfaceType = scriptIntValues[isp + 1];
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = interfaceData % interfaceType;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = componentId % interfaceType;
 										continue;
 									}
 									if (opcode == 4012) {
 										// pow
 										isp -= 2;
 										interfaceType = scriptIntValues[isp + 1];
-										interfaceData = scriptIntValues[isp];
-										if (interfaceData == 0) {
+										componentId = scriptIntValues[isp];
+										if (componentId == 0) {
 											scriptIntValues[isp++] = 0;
 										} else {
-											scriptIntValues[isp++] = (int) Math.pow((double) interfaceData, (double) interfaceType);
+											scriptIntValues[isp++] = (int) Math.pow((double) componentId, (double) interfaceType);
 										}
 										continue;
 									}
@@ -3711,42 +3712,42 @@ public final class ClientScriptRunner {
 										// invpow
 										isp -= 2;
 										interfaceType = scriptIntValues[isp + 1];
-										interfaceData = scriptIntValues[isp];
-										if (interfaceData == 0) {
+										componentId = scriptIntValues[isp];
+										if (componentId == 0) {
 											scriptIntValues[isp++] = 0;
 										} else if (interfaceType == 0) {
 											scriptIntValues[isp++] = Integer.MAX_VALUE;
 										} else {
-											scriptIntValues[isp++] = (int) Math.pow((double) interfaceData, 1.0D / (double) interfaceType);
+											scriptIntValues[isp++] = (int) Math.pow((double) componentId, 1.0D / (double) interfaceType);
 										}
 										continue;
 									}
 									if (opcode == 4014) {
 										isp -= 2;
 										interfaceType = scriptIntValues[isp + 1];
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = interfaceType & interfaceData;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = interfaceType & componentId;
 										continue;
 									}
 									if (opcode == 4015) {
 										isp -= 2;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = interfaceData | interfaceType;
+										scriptIntValues[isp++] = componentId | interfaceType;
 										continue;
 									}
 									if (opcode == 4016) {
 										isp -= 2;
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										interfaceType = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = interfaceData < interfaceType ? interfaceData : interfaceType;
+										scriptIntValues[isp++] = componentId < interfaceType ? componentId : interfaceType;
 										continue;
 									}
 									if (opcode == 4017) {
 										isp -= 2;
 										interfaceType = scriptIntValues[isp + 1];
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = interfaceType >= interfaceData ? interfaceType : interfaceData;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = interfaceType >= componentId ? interfaceType : componentId;
 										continue;
 									}
 									if (opcode == 4018) {
@@ -3762,16 +3763,16 @@ public final class ClientScriptRunner {
 									if (opcode < 4300) {
 										if (opcode == 4200) {
 											isp--;
-											interfaceData = scriptIntValues[isp];
-											scriptStringValues[ssp++] = ObjTypeList.get(interfaceData).name;
+											componentId = scriptIntValues[isp];
+											scriptStringValues[ssp++] = ObjTypeList.get(componentId).name;
 											continue;
 										}
 										@Pc(11269) ObjType local11269;
 										if (opcode == 4201) {
 											isp -= 2;
-											interfaceData = scriptIntValues[isp];
+											componentId = scriptIntValues[isp];
 											interfaceType = scriptIntValues[isp + 1];
-											local11269 = ObjTypeList.get(interfaceData);
+											local11269 = ObjTypeList.get(componentId);
 											if (interfaceType >= 1 && interfaceType <= 5 && local11269.groundOptions[interfaceType - 1] != null) {
 												scriptStringValues[ssp++] = local11269.groundOptions[interfaceType - 1];
 												continue;
@@ -3781,9 +3782,9 @@ public final class ClientScriptRunner {
 										}
 										if (opcode == 4202) {
 											isp -= 2;
-											interfaceData = scriptIntValues[isp];
+											componentId = scriptIntValues[isp];
 											interfaceType = scriptIntValues[isp + 1];
-											local11269 = ObjTypeList.get(interfaceData);
+											local11269 = ObjTypeList.get(componentId);
 											if (interfaceType >= 1 && interfaceType <= 5 && local11269.interfaceOptions[interfaceType - 1] != null) {
 												scriptStringValues[ssp++] = local11269.interfaceOptions[interfaceType - 1];
 												continue;
@@ -3793,54 +3794,54 @@ public final class ClientScriptRunner {
 										}
 										if (opcode == 4203) {
 											isp--;
-											interfaceData = scriptIntValues[isp];
-											scriptIntValues[isp++] = ObjTypeList.get(interfaceData).cost;
+											componentId = scriptIntValues[isp];
+											scriptIntValues[isp++] = ObjTypeList.get(componentId).cost;
 											continue;
 										}
 										if (opcode == 4204) {
 											isp--;
-											interfaceData = scriptIntValues[isp];
-											scriptIntValues[isp++] = ObjTypeList.get(interfaceData).stackable == 1 ? 1 : 0;
+											componentId = scriptIntValues[isp];
+											scriptIntValues[isp++] = ObjTypeList.get(componentId).stackable == 1 ? 1 : 0;
 											continue;
 										}
 										@Pc(11417) ObjType local11417;
 										if (opcode == 4205) {
 											isp--;
-											interfaceData = scriptIntValues[isp];
-											local11417 = ObjTypeList.get(interfaceData);
+											componentId = scriptIntValues[isp];
+											local11417 = ObjTypeList.get(componentId);
 											if (local11417.certTemplate == -1 && local11417.certLink >= 0) {
 												scriptIntValues[isp++] = local11417.certLink;
 												continue;
 											}
-											scriptIntValues[isp++] = interfaceData;
+											scriptIntValues[isp++] = componentId;
 											continue;
 										}
 										if (opcode == 4206) {
 											isp--;
-											interfaceData = scriptIntValues[isp];
-											local11417 = ObjTypeList.get(interfaceData);
+											componentId = scriptIntValues[isp];
+											local11417 = ObjTypeList.get(componentId);
 											if (local11417.certTemplate >= 0 && local11417.certLink >= 0) {
 												scriptIntValues[isp++] = local11417.certLink;
 												continue;
 											}
-											scriptIntValues[isp++] = interfaceData;
+											scriptIntValues[isp++] = componentId;
 											continue;
 										}
 										if (opcode == 4207) {
 											isp--;
-											interfaceData = scriptIntValues[isp];
-											scriptIntValues[isp++] = ObjTypeList.get(interfaceData).members ? 1 : 0;
+											componentId = scriptIntValues[isp];
+											scriptIntValues[isp++] = ObjTypeList.get(componentId).members ? 1 : 0;
 											continue;
 										}
 										if (opcode == 4208) {
 											isp -= 2;
-											interfaceData = scriptIntValues[isp];
+											componentId = scriptIntValues[isp];
 											interfaceType = scriptIntValues[isp + 1];
 											local5294 = ParamTypeList.get(interfaceType);
 											if (local5294.isString()) {
-												scriptStringValues[ssp++] = ObjTypeList.get(interfaceData).getParam(local5294.defaultString, interfaceType);
+												scriptStringValues[ssp++] = ObjTypeList.get(componentId).getParam(local5294.defaultString, interfaceType);
 											} else {
-												scriptIntValues[isp++] = ObjTypeList.get(interfaceData).getParam(local5294.defaultInt, interfaceType);
+												scriptIntValues[isp++] = ObjTypeList.get(componentId).getParam(local5294.defaultInt, interfaceType);
 											}
 											continue;
 										}
@@ -3868,13 +3869,13 @@ public final class ClientScriptRunner {
 									} else if (opcode < 4400) {
 										if (opcode == 4300) {
 											isp -= 2;
-											interfaceData = scriptIntValues[isp];
+											componentId = scriptIntValues[isp];
 											interfaceType = scriptIntValues[isp + 1];
 											local5294 = ParamTypeList.get(interfaceType);
 											if (local5294.isString()) {
-												scriptStringValues[ssp++] = NpcTypeList.get(interfaceData).getParam(interfaceType, local5294.defaultString);
+												scriptStringValues[ssp++] = NpcTypeList.get(componentId).getParam(interfaceType, local5294.defaultString);
 											} else {
-												scriptIntValues[isp++] = NpcTypeList.get(interfaceData).getParam(interfaceType, local5294.defaultInt);
+												scriptIntValues[isp++] = NpcTypeList.get(componentId).getParam(interfaceType, local5294.defaultInt);
 											}
 											continue;
 										}
@@ -3901,19 +3902,19 @@ public final class ClientScriptRunner {
 													chatTyped = scriptStringValues[ssp];
 													isp -= 2;
 													interfaceType = scriptIntValues[isp];
-													childCount = scriptIntValues[isp + 1];
+													j = scriptIntValues[isp + 1];
 													Protocol.outboundBuffer.pIsaac1(99);
 													Protocol.outboundBuffer.p8(chatTyped.encode37());
 													Protocol.outboundBuffer.p1(interfaceType - 1);
-													Protocol.outboundBuffer.p1(childCount);
+													Protocol.outboundBuffer.p1(j);
 													continue;
 												}
 												if (opcode == 5003) {
 													chatTypedLowercase = null;
 													isp--;
-													interfaceData = scriptIntValues[isp];
-													if (interfaceData < 100) {
-														chatTypedLowercase = Chat.messages[interfaceData];
+													componentId = scriptIntValues[isp];
+													if (componentId < 100) {
+														chatTypedLowercase = Chat.messages[componentId];
 													}
 													if (chatTypedLowercase == null) {
 														chatTypedLowercase = EMPTY_STRING;
@@ -3923,10 +3924,10 @@ public final class ClientScriptRunner {
 												}
 												if (opcode == 5004) {
 													isp--;
-													interfaceData = scriptIntValues[isp];
+													componentId = scriptIntValues[isp];
 													interfaceType = -1;
-													if (interfaceData < 100 && Chat.messages[interfaceData] != null) {
-														interfaceType = Chat.types[interfaceData];
+													if (componentId < 100 && Chat.messages[componentId] != null) {
+														interfaceType = Chat.types[componentId];
 													}
 													scriptIntValues[isp++] = interfaceType;
 													continue;
@@ -4059,7 +4060,7 @@ public final class ClientScriptRunner {
 														start = Protocol.outboundBuffer.offset;
 														Protocol.outboundBuffer.p1(color);
 														Protocol.outboundBuffer.p1(effect);
-														WordPack.encode(Protocol.outboundBuffer, chatTyped);
+														WordPack.writeString(Protocol.outboundBuffer, chatTyped);
 														Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - start);
 														continue;
 													}
@@ -4073,19 +4074,19 @@ public final class ClientScriptRunner {
 													if (LoginManager.staffModLevel != 0 || (!LoginManager.playerUnderage || LoginManager.parentalChatConsent) && !LoginManager.worldQuickChat) {
 														Protocol.outboundBuffer.pIsaac1(201);
 														Protocol.outboundBuffer.p1(0);
-														childCount = Protocol.outboundBuffer.offset;
+														j = Protocol.outboundBuffer.offset;
 														Protocol.outboundBuffer.p8(chatTyped.encode37());
-														WordPack.encode(Protocol.outboundBuffer, chatTypedLowercase);
-														Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - childCount);
+														WordPack.writeString(Protocol.outboundBuffer, chatTypedLowercase);
+														Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - j);
 													}
 													continue;
 												}
 												if (opcode == 5010) {
 													isp--;
-													interfaceData = scriptIntValues[isp];
+													componentId = scriptIntValues[isp];
 													chatTypedLowercase = null;
-													if (interfaceData < 100) {
-														chatTypedLowercase = Chat.names[interfaceData];
+													if (componentId < 100) {
+														chatTypedLowercase = Chat.names[componentId];
 													}
 													if (chatTypedLowercase == null) {
 														chatTypedLowercase = EMPTY_STRING;
@@ -4095,10 +4096,10 @@ public final class ClientScriptRunner {
 												}
 												if (opcode == 5011) {
 													isp--;
-													interfaceData = scriptIntValues[isp];
+													componentId = scriptIntValues[isp];
 													chatTypedLowercase = null;
-													if (interfaceData < 100) {
-														chatTypedLowercase = Chat.clans[interfaceData];
+													if (componentId < 100) {
+														chatTypedLowercase = Chat.clans[componentId];
 													}
 													if (chatTypedLowercase == null) {
 														chatTypedLowercase = EMPTY_STRING;
@@ -4108,10 +4109,10 @@ public final class ClientScriptRunner {
 												}
 												if (opcode == 5012) {
 													isp--;
-													interfaceData = scriptIntValues[isp];
+													componentId = scriptIntValues[isp];
 													interfaceType = -1;
-													if (interfaceData < 100) {
-														interfaceType = Chat.phraseIds[interfaceData];
+													if (componentId < 100) {
+														interfaceType = Chat.phraseIds[componentId];
 													}
 													scriptIntValues[isp++] = interfaceType;
 													continue;
@@ -4135,15 +4136,15 @@ public final class ClientScriptRunner {
 												}
 												if (opcode == 5050) {
 													isp--;
-													interfaceData = scriptIntValues[isp];
-													scriptStringValues[ssp++] = QuickChatCatTypeList.get(interfaceData).description;
+													componentId = scriptIntValues[isp];
+													scriptStringValues[ssp++] = QuickChatCatTypeList.get(componentId).description;
 													continue;
 												}
 												@Pc(6378) QuickChatCatType local6378;
 												if (opcode == 5051) {
 													isp--;
-													interfaceData = scriptIntValues[isp];
-													local6378 = QuickChatCatTypeList.get(interfaceData);
+													componentId = scriptIntValues[isp];
+													local6378 = QuickChatCatTypeList.get(componentId);
 													if (local6378.subcategories == null) {
 														scriptIntValues[isp++] = 0;
 													} else {
@@ -4153,17 +4154,17 @@ public final class ClientScriptRunner {
 												}
 												if (opcode == 5052) {
 													isp -= 2;
-													interfaceData = scriptIntValues[isp];
+													componentId = scriptIntValues[isp];
 													interfaceType = scriptIntValues[isp + 1];
-													@Pc(6416) QuickChatCatType local6416 = QuickChatCatTypeList.get(interfaceData);
-													local652 = local6416.subcategories[interfaceType];
-													scriptIntValues[isp++] = local652;
+													@Pc(6416) QuickChatCatType local6416 = QuickChatCatTypeList.get(componentId);
+													i = local6416.subcategories[interfaceType];
+													scriptIntValues[isp++] = i;
 													continue;
 												}
 												if (opcode == 5053) {
 													isp--;
-													interfaceData = scriptIntValues[isp];
-													local6378 = QuickChatCatTypeList.get(interfaceData);
+													componentId = scriptIntValues[isp];
+													local6378 = QuickChatCatTypeList.get(componentId);
 													if (local6378.phrases == null) {
 														scriptIntValues[isp++] = 0;
 													} else {
@@ -4174,20 +4175,20 @@ public final class ClientScriptRunner {
 												if (opcode == 5054) {
 													isp -= 2;
 													interfaceType = scriptIntValues[isp + 1];
-													interfaceData = scriptIntValues[isp];
-													scriptIntValues[isp++] = QuickChatCatTypeList.get(interfaceData).phrases[interfaceType];
+													componentId = scriptIntValues[isp];
+													scriptIntValues[isp++] = QuickChatCatTypeList.get(componentId).phrases[interfaceType];
 													continue;
 												}
 												if (opcode == 5055) {
 													isp--;
-													interfaceData = scriptIntValues[isp];
-													scriptStringValues[ssp++] = QuickChatPhraseTypeList.get(interfaceData).getText();
+													componentId = scriptIntValues[isp];
+													scriptStringValues[ssp++] = QuickChatPhraseTypeList.get(componentId).getText();
 													continue;
 												}
 												if (opcode == 5056) {
 													isp--;
-													interfaceData = scriptIntValues[isp];
-													@Pc(6527) QuickChatPhraseType local6527 = QuickChatPhraseTypeList.get(interfaceData);
+													componentId = scriptIntValues[isp];
+													@Pc(6527) QuickChatPhraseType local6527 = QuickChatPhraseTypeList.get(componentId);
 													if (local6527.autoResponses == null) {
 														scriptIntValues[isp++] = 0;
 													} else {
@@ -4198,8 +4199,8 @@ public final class ClientScriptRunner {
 												if (opcode == 5057) {
 													isp -= 2;
 													interfaceType = scriptIntValues[isp + 1];
-													interfaceData = scriptIntValues[isp];
-													scriptIntValues[isp++] = QuickChatPhraseTypeList.get(interfaceData).autoResponses[interfaceType];
+													componentId = scriptIntValues[isp];
+													scriptIntValues[isp++] = QuickChatPhraseTypeList.get(componentId).autoResponses[interfaceType];
 													continue;
 												}
 												if (opcode == 5058) {
@@ -4213,11 +4214,11 @@ public final class ClientScriptRunner {
 												if (opcode == 5059) {
 													Protocol.outboundBuffer.pIsaac1(167);
 													Protocol.outboundBuffer.p1(0);
-													interfaceData = Protocol.outboundBuffer.offset;
+													componentId = Protocol.outboundBuffer.offset;
 													Protocol.outboundBuffer.p1(0);
 													Protocol.outboundBuffer.p2(activePhrase.id);
 													activePhrase.type.encodeMessage(Protocol.outboundBuffer, activePhrase.values);
-													Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - interfaceData);
+													Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - componentId);
 													continue;
 												}
 												if (opcode == 5060) {
@@ -4235,87 +4236,87 @@ public final class ClientScriptRunner {
 												if (opcode == 5061) {
 													Protocol.outboundBuffer.pIsaac1(167);
 													Protocol.outboundBuffer.p1(0);
-													interfaceData = Protocol.outboundBuffer.offset;
+													componentId = Protocol.outboundBuffer.offset;
 													Protocol.outboundBuffer.p1(1);
 													Protocol.outboundBuffer.p2(activePhrase.id);
 													activePhrase.type.encodeMessage(Protocol.outboundBuffer, activePhrase.values);
-													Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - interfaceData);
+													Protocol.outboundBuffer.p1len(Protocol.outboundBuffer.offset - componentId);
 													continue;
 												}
 												if (opcode == 5062) {
 													isp -= 2;
 													interfaceType = scriptIntValues[isp + 1];
-													interfaceData = scriptIntValues[isp];
-													scriptIntValues[isp++] = QuickChatCatTypeList.get(interfaceData).subcategoryShortcuts[interfaceType];
+													componentId = scriptIntValues[isp];
+													scriptIntValues[isp++] = QuickChatCatTypeList.get(componentId).subcategoryShortcuts[interfaceType];
 													continue;
 												}
 												if (opcode == 5063) {
 													isp -= 2;
 													interfaceType = scriptIntValues[isp + 1];
-													interfaceData = scriptIntValues[isp];
-													scriptIntValues[isp++] = QuickChatCatTypeList.get(interfaceData).phraseShortcuts[interfaceType];
+													componentId = scriptIntValues[isp];
+													scriptIntValues[isp++] = QuickChatCatTypeList.get(componentId).phraseShortcuts[interfaceType];
 													continue;
 												}
 												if (opcode == 5064) {
 													isp -= 2;
 													interfaceType = scriptIntValues[isp + 1];
-													interfaceData = scriptIntValues[isp];
+													componentId = scriptIntValues[isp];
 													if (interfaceType == -1) {
 														scriptIntValues[isp++] = -1;
 													} else {
-														scriptIntValues[isp++] = QuickChatCatTypeList.get(interfaceData).method469(interfaceType);
+														scriptIntValues[isp++] = QuickChatCatTypeList.get(componentId).method469(interfaceType);
 													}
 													continue;
 												}
 												if (opcode == 5065) {
 													isp -= 2;
-													interfaceData = scriptIntValues[isp];
+													componentId = scriptIntValues[isp];
 													interfaceType = scriptIntValues[isp + 1];
 													if (interfaceType == -1) {
 														scriptIntValues[isp++] = -1;
 													} else {
-														scriptIntValues[isp++] = QuickChatCatTypeList.get(interfaceData).method466(interfaceType);
+														scriptIntValues[isp++] = QuickChatCatTypeList.get(componentId).method466(interfaceType);
 													}
 													continue;
 												}
 												if (opcode == 5066) {
 													isp--;
-													interfaceData = scriptIntValues[isp];
-													scriptIntValues[isp++] = QuickChatPhraseTypeList.get(interfaceData).getDynamicCommandCount();
+													componentId = scriptIntValues[isp];
+													scriptIntValues[isp++] = QuickChatPhraseTypeList.get(componentId).getDynamicCommandCount();
 													continue;
 												}
 												if (opcode == 5067) {
 													isp -= 2;
 													interfaceType = scriptIntValues[isp + 1];
-													interfaceData = scriptIntValues[isp];
-													childCount = QuickChatPhraseTypeList.get(interfaceData).getDynamicCommand(interfaceType);
-													scriptIntValues[isp++] = childCount;
+													componentId = scriptIntValues[isp];
+													j = QuickChatPhraseTypeList.get(componentId).getDynamicCommand(interfaceType);
+													scriptIntValues[isp++] = j;
 													continue;
 												}
 												if (opcode == 5068) {
 													isp -= 2;
-													interfaceData = scriptIntValues[isp];
+													componentId = scriptIntValues[isp];
 													interfaceType = scriptIntValues[isp + 1];
-													activePhrase.values[interfaceData] = interfaceType;
+													activePhrase.values[componentId] = interfaceType;
 													continue;
 												}
 												if (opcode == 5069) {
 													isp -= 2;
-													interfaceData = scriptIntValues[isp];
+													componentId = scriptIntValues[isp];
 													interfaceType = scriptIntValues[isp + 1];
-													activePhrase.values[interfaceData] = interfaceType;
+													activePhrase.values[componentId] = interfaceType;
 													continue;
 												}
 												if (opcode == 5070) {
 													isp -= 3;
-													interfaceData = scriptIntValues[isp];
-													childCount = scriptIntValues[isp + 2];
+													componentId = scriptIntValues[isp];
+													j = scriptIntValues[isp + 2];
 													interfaceType = scriptIntValues[isp + 1];
-													@Pc(6996) QuickChatPhraseType local6996 = QuickChatPhraseTypeList.get(interfaceData);
+													@Pc(6996) QuickChatPhraseType local6996 = QuickChatPhraseTypeList.get(componentId);
 													if (local6996.getDynamicCommand(interfaceType) != 0) {
 														throw new RuntimeException("bad command");
 													}
-													scriptIntValues[isp++] = local6996.getDynamicCommandParam(childCount, interfaceType);
+													scriptIntValues[isp++] = local6996.getDynamicCommandParam(j, interfaceType);
 													continue;
 												}
 												if (opcode == 5071) {
@@ -4397,8 +4398,8 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 5206) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
-														@Pc(7264) Map local7264 = MapList.getContainingSource(interfaceData >> 14 & 0x3FFF, interfaceData & 0x3FFF);
+														componentId = scriptIntValues[isp];
+														@Pc(7264) Map local7264 = MapList.getContainingSource(componentId >> 14 & 0x3FFF, componentId & 0x3FFF);
 														if (local7264 == null) {
 															scriptStringValues[ssp++] = EMPTY_STRING;
 														} else {
@@ -4450,46 +4451,46 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == 5212) {
-														interfaceData = WorldMap.method2352();
-														childCount = 0;
-														if (interfaceData == -1) {
+														componentId = WorldMap.method2352();
+														j = 0;
+														if (componentId == -1) {
 															chatTypedLowercase = EMPTY_STRING;
 														} else {
-															chatTypedLowercase = WorldMap.labels.aClass100Array153[interfaceData];
-															childCount = WorldMap.labels.method3894(interfaceData);
+															chatTypedLowercase = WorldMap.labels.text[componentId];
+															j = WorldMap.labels.method3894(componentId);
 														}
 														chatTypedLowercase = chatTypedLowercase.method3140(aClass100_639, aClass100_10);
 														scriptStringValues[ssp++] = chatTypedLowercase;
-														scriptIntValues[isp++] = childCount;
+														scriptIntValues[isp++] = j;
 														continue;
 													}
 													if (opcode == 5213) {
-														childCount = 0;
-														interfaceData = WorldMap.method2385();
-														if (interfaceData == -1) {
+														j = 0;
+														componentId = WorldMap.method2385();
+														if (componentId == -1) {
 															chatTypedLowercase = EMPTY_STRING;
 														} else {
-															chatTypedLowercase = WorldMap.labels.aClass100Array153[interfaceData];
-															childCount = WorldMap.labels.method3894(interfaceData);
+															chatTypedLowercase = WorldMap.labels.text[componentId];
+															j = WorldMap.labels.method3894(componentId);
 														}
 														chatTypedLowercase = chatTypedLowercase.method3140(aClass100_639, aClass100_10);
 														scriptStringValues[ssp++] = chatTypedLowercase;
-														scriptIntValues[isp++] = childCount;
+														scriptIntValues[isp++] = j;
 														continue;
 													}
 													if (opcode == 5214) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
-														WorldMap.method3616(interfaceData >> 14 & 0x3FFF, interfaceData & 0x3FFF);
+														componentId = scriptIntValues[isp];
+														WorldMap.method3616(componentId >> 14 & 0x3FFF, componentId & 0x3FFF);
 														continue;
 													}
 													if (opcode == 5215) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
+														componentId = scriptIntValues[isp];
 														ssp--;
 														chatTypedLowercase = scriptStringValues[ssp];
 														local7566 = false;
-														@Pc(7577) SecondaryLinkedList local7577 = method3333(interfaceData >> 14 & 0x3FFF, interfaceData & 0x3FFF);
+														@Pc(7577) SecondaryLinkedList local7577 = method3333(componentId >> 14 & 0x3FFF, componentId & 0x3FFF);
 														for (@Pc(7582) Map local7582 = (Map) local7577.head(); local7582 != null; local7582 = (Map) local7577.next()) {
 															if (local7582.group.equalsIgnoreCase(chatTypedLowercase)) {
 																local7566 = true;
@@ -4505,14 +4506,14 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 5216) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
-														MapList.method4332(interfaceData);
+														componentId = scriptIntValues[isp];
+														MapList.method4332(componentId);
 														continue;
 													}
 													if (opcode == 5217) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
-														if (MapList.method1855(interfaceData)) {
+														componentId = scriptIntValues[isp];
+														if (MapList.method1855(componentId)) {
 															scriptIntValues[isp++] = 1;
 														} else {
 															scriptIntValues[isp++] = 0;
@@ -4541,8 +4542,8 @@ public final class ClientScriptRunner {
 													if (opcode == 5300) {
 														isp -= 2;
 														interfaceType = scriptIntValues[isp + 1];
-														interfaceData = scriptIntValues[isp];
-														DisplayMode.setWindowMode(false, 3, interfaceData, interfaceType);
+														componentId = scriptIntValues[isp];
+														DisplayMode.setWindowMode(false, 3, componentId, interfaceType);
 														scriptIntValues[isp++] = GameShell.fullScreenFrame == null ? 0 : 1;
 														continue;
 													}
@@ -4559,25 +4560,25 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 5303) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
+														componentId = scriptIntValues[isp];
 														@Pc(7800) DisplayMode[] local7800 = DisplayMode.getModes();
-														scriptIntValues[isp++] = local7800[interfaceData].width;
-														scriptIntValues[isp++] = local7800[interfaceData].height;
+														scriptIntValues[isp++] = local7800[componentId].width;
+														scriptIntValues[isp++] = local7800[componentId].height;
 														continue;
 													}
 													if (opcode == 5305) {
 														interfaceType = Preferences.fullScreenHeight;
-														interfaceData = Preferences.fullScreenWidth;
-														childCount = -1;
+														componentId = Preferences.fullScreenWidth;
+														j = -1;
 														@Pc(7833) DisplayMode[] local7833 = DisplayMode.getModes();
 														for (start = 0; start < local7833.length; start++) {
 															@Pc(7843) DisplayMode local7843 = local7833[start];
-															if (interfaceData == local7843.width && local7843.height == interfaceType) {
-																childCount = start;
+															if (componentId == local7843.width && local7843.height == interfaceType) {
+																j = start;
 																break;
 															}
 														}
-														scriptIntValues[isp++] = childCount;
+														scriptIntValues[isp++] = j;
 														continue;
 													}
 													if (opcode == 5306) {
@@ -4586,11 +4587,11 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 5307) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
-														if (interfaceData < 0 || interfaceData > 2) {
-															interfaceData = 0;
+														componentId = scriptIntValues[isp];
+														if (componentId < 0 || componentId > 2) {
+															componentId = 0;
 														}
-														DisplayMode.setWindowMode(false, interfaceData, -1, -1);
+														DisplayMode.setWindowMode(false, componentId, -1, -1);
 														continue;
 													}
 													if (opcode == 5308) {
@@ -4599,11 +4600,11 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 5309) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
-														if (interfaceData < 0 || interfaceData > 2) {
-															interfaceData = 0;
+														componentId = scriptIntValues[isp];
+														if (componentId < 0 || componentId > 2) {
+															componentId = 0;
 														}
-														Preferences.favoriteWorlds = interfaceData;
+														Preferences.favoriteWorlds = componentId;
 														Preferences.write(GameShell.signLink);
 														continue;
 													}
@@ -4613,12 +4614,12 @@ public final class ClientScriptRunner {
 														chatTyped = scriptStringValues[ssp];
 														chatTypedLowercase = scriptStringValues[ssp + 1];
 														isp--;
-														childCount = scriptIntValues[isp];
+														j = scriptIntValues[isp];
 														Protocol.outboundBuffer.pIsaac1(117);
 														Protocol.outboundBuffer.p1(Packet.gjstrlen(chatTyped) + Packet.gjstrlen(chatTypedLowercase) + 1);
 														Protocol.outboundBuffer.pjstr(chatTyped);
 														Protocol.outboundBuffer.pjstr(chatTypedLowercase);
-														Protocol.outboundBuffer.p1(childCount);
+														Protocol.outboundBuffer.p1(j);
 														continue;
 													}
 													if (opcode == 5401) {
@@ -4633,32 +4634,32 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 5405) {
 														isp -= 2;
-														interfaceData = scriptIntValues[isp];
+														componentId = scriptIntValues[isp];
 														interfaceType = scriptIntValues[isp + 1];
-														if (interfaceData >= 0 && interfaceData < 2) {
-															Camera.anIntArrayArrayArray9[interfaceData] = new int[interfaceType << 1][4];
+														if (componentId >= 0 && componentId < 2) {
+															Camera.anIntArrayArrayArray9[componentId] = new int[interfaceType << 1][4];
 														}
 														continue;
 													}
 													if (opcode == 5406) {
 														isp -= 7;
-														interfaceData = scriptIntValues[isp];
+														componentId = scriptIntValues[isp];
 														interfaceType = scriptIntValues[isp + 1] << 1;
-														local652 = scriptIntValues[isp + 3];
-														childCount = scriptIntValues[isp + 2];
+														i = scriptIntValues[isp + 3];
+														j = scriptIntValues[isp + 2];
 														start = scriptIntValues[isp + 4];
 														@Pc(8108) int local8108 = scriptIntValues[isp + 6];
 														childId = scriptIntValues[isp + 5];
-														if (interfaceData >= 0 && interfaceData < 2 && Camera.anIntArrayArrayArray9[interfaceData] != null && interfaceType >= 0 && Camera.anIntArrayArrayArray9[interfaceData].length > interfaceType) {
-															Camera.anIntArrayArrayArray9[interfaceData][interfaceType] = new int[] { (childCount >> 14 & 0x3FFF) * 128, local652, (childCount & 0x3FFF) * 128, local8108 };
-															Camera.anIntArrayArrayArray9[interfaceData][interfaceType + 1] = new int[] { (start >> 14 & 0x3FFF) * 128, childId, (start & 0x3FFF) * 128 };
+														if (componentId >= 0 && componentId < 2 && Camera.anIntArrayArrayArray9[componentId] != null && interfaceType >= 0 && Camera.anIntArrayArrayArray9[componentId].length > interfaceType) {
+															Camera.anIntArrayArrayArray9[componentId][interfaceType] = new int[] { (j >> 14 & 0x3FFF) * 128, i, (j & 0x3FFF) * 128, local8108 };
+															Camera.anIntArrayArrayArray9[componentId][interfaceType + 1] = new int[] { (start >> 14 & 0x3FFF) * 128, childId, (start & 0x3FFF) * 128 };
 														}
 														continue;
 													}
 													if (opcode == 5407) {
 														isp--;
-														interfaceData = Camera.anIntArrayArrayArray9[scriptIntValues[isp]].length >> 1;
-														scriptIntValues[isp++] = interfaceData;
+														componentId = Camera.anIntArrayArrayArray9[scriptIntValues[isp]].length >> 1;
+														scriptIntValues[isp++] = componentId;
 														continue;
 													}
 													if (opcode == 5411) {
@@ -4711,7 +4712,7 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 5422) {
 														isp--;
-														childCount = scriptIntValues[isp];
+														j = scriptIntValues[isp];
 														ssp -= 2;
 														chatTypedLowercase = scriptStringValues[ssp + 1];
 														chatTyped = scriptStringValues[ssp];
@@ -4719,13 +4720,13 @@ public final class ClientScriptRunner {
 															if (PlayerList.playerNames == null) {
 																PlayerList.playerNames = new JString[PlayerList.anIntArray309[client.game]];
 															}
-															PlayerList.playerNames[childCount] = chatTyped;
+															PlayerList.playerNames[j] = chatTyped;
 														}
 														if (chatTypedLowercase.length() > 0) {
 															if (PlayerList.playerNames2 == null) {
 																PlayerList.playerNames2 = new JString[PlayerList.anIntArray309[client.game]];
 															}
-															PlayerList.playerNames2[childCount] = chatTypedLowercase;
+															PlayerList.playerNames2[j] = chatTypedLowercase;
 														}
 														continue;
 													}
@@ -4774,29 +4775,29 @@ public final class ClientScriptRunner {
 												} else if (opcode < 5600) {
 													if (opcode == 5500) {
 														isp -= 4;
-														interfaceData = scriptIntValues[isp];
-														local652 = scriptIntValues[isp + 3];
-														childCount = scriptIntValues[isp + 2];
+														componentId = scriptIntValues[isp];
+														i = scriptIntValues[isp + 3];
+														j = scriptIntValues[isp + 2];
 														interfaceType = scriptIntValues[isp + 1];
-														Camera.method2722(false, childCount, interfaceType, local652, (interfaceData & 0x3FFF) - Camera.originZ, (interfaceData >> 14 & 0x3FFF) - Camera.originX);
+														Camera.method2722(false, j, interfaceType, i, (componentId & 0x3FFF) - Camera.originZ, (componentId >> 14 & 0x3FFF) - Camera.originX);
 														continue;
 													}
 													if (opcode == 5501) {
 														isp -= 4;
 														interfaceType = scriptIntValues[isp + 1];
-														interfaceData = scriptIntValues[isp];
-														local652 = scriptIntValues[isp + 3];
-														childCount = scriptIntValues[isp + 2];
-														Camera.method3849(interfaceType, (interfaceData & 0x3FFF) - Camera.originZ, childCount, (interfaceData >> 14 & 0x3FFF) - Camera.originX, local652);
+														componentId = scriptIntValues[isp];
+														i = scriptIntValues[isp + 3];
+														j = scriptIntValues[isp + 2];
+														Camera.method3849(interfaceType, (componentId & 0x3FFF) - Camera.originZ, j, (componentId >> 14 & 0x3FFF) - Camera.originX, i);
 														continue;
 													}
 													if (opcode == 5502) {
 														isp -= 6;
-														interfaceData = scriptIntValues[isp];
-														if (interfaceData >= 2) {
+														componentId = scriptIntValues[isp];
+														if (componentId >= 2) {
 															throw new RuntimeException();
 														}
-														Camera.anInt3718 = interfaceData;
+														Camera.anInt3718 = componentId;
 														interfaceType = scriptIntValues[isp + 1];
 														if (Camera.anIntArrayArrayArray9[Camera.anInt3718].length >> 1 <= interfaceType + 1) {
 															throw new RuntimeException();
@@ -4805,16 +4806,16 @@ public final class ClientScriptRunner {
 														Camera.anInt5224 = 0;
 														Camera.anInt5101 = scriptIntValues[isp + 2];
 														Camera.anInt5843 = scriptIntValues[isp + 3];
-														childCount = scriptIntValues[isp + 4];
-														if (childCount >= 2) {
+														j = scriptIntValues[isp + 4];
+														if (j >= 2) {
 															throw new RuntimeException();
 														}
-														Camera.anInt1694 = childCount;
-														local652 = scriptIntValues[isp + 5];
-														if (Camera.anIntArrayArrayArray9[Camera.anInt1694].length >> 1 <= local652 + 1) {
+														Camera.anInt1694 = j;
+														i = scriptIntValues[isp + 5];
+														if (Camera.anIntArrayArrayArray9[Camera.anInt1694].length >> 1 <= i + 1) {
 															throw new RuntimeException();
 														}
-														Camera.anInt2119 = local652;
+														Camera.anInt2119 = i;
 														Camera.cameraType = 3;
 														continue;
 													}
@@ -4847,9 +4848,9 @@ public final class ClientScriptRunner {
 														chatTyped = scriptStringValues[ssp];
 														chatTypedLowercase = scriptStringValues[ssp + 1];
 														isp--;
-														childCount = scriptIntValues[isp];
+														j = scriptIntValues[isp];
 														if (client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0 && WorldList.step == 0) {
-															LoginManager.login(chatTyped, chatTypedLowercase, childCount);
+															LoginManager.login(chatTyped, chatTypedLowercase, j);
 														}
 														continue;
 													}
@@ -4904,8 +4905,8 @@ public final class ClientScriptRunner {
 														continue;
 													}
 													if (opcode == 5610) {
-														for (interfaceData = 0; interfaceData < 5; interfaceData++) {
-															scriptStringValues[ssp++] = CreateManager.suggestedNames.length > interfaceData ? CreateManager.suggestedNames[interfaceData].toTitleCase() : EMPTY_STRING;
+														for (componentId = 0; componentId < 5; componentId++) {
+															scriptStringValues[ssp++] = CreateManager.suggestedNames.length > componentId ? CreateManager.suggestedNames[componentId].toTitleCase() : EMPTY_STRING;
 														}
 														CreateManager.suggestedNames = null;
 														continue;
@@ -5014,11 +5015,11 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 6011) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
-														if (interfaceData < 0 || interfaceData > 2) {
-															interfaceData = 0;
+														componentId = scriptIntValues[isp];
+														if (componentId < 0 || componentId > 2) {
+															componentId = 0;
 														}
-														Preferences.sceneryShadowsType = interfaceData;
+														Preferences.sceneryShadowsType = componentId;
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
@@ -5072,14 +5073,14 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 6016) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
+														componentId = scriptIntValues[isp];
 														if (GlRenderer.enabled) {
 															GameShell.canvasReplaceRecommended = true;
 														}
-														if (interfaceData < 0 || interfaceData > 2) {
-															interfaceData = 0;
+														if (componentId < 0 || componentId > 2) {
+															componentId = 0;
 														}
-														Preferences.antiAliasingMode = interfaceData;
+														Preferences.antiAliasingMode = componentId;
 														continue;
 													}
 													if (opcode == 6017) {
@@ -5092,38 +5093,38 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 6018) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
-														if (interfaceData < 0) {
-															interfaceData = 0;
+														componentId = scriptIntValues[isp];
+														if (componentId < 0) {
+															componentId = 0;
 														}
-														if (interfaceData > 127) {
-															interfaceData = 127;
+														if (componentId > 127) {
+															componentId = 127;
 														}
-														Preferences.soundEffectVolume = interfaceData;
+														Preferences.soundEffectVolume = componentId;
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
 													}
 													if (opcode == 6019) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
-														if (interfaceData < 0) {
-															interfaceData = 0;
+														componentId = scriptIntValues[isp];
+														if (componentId < 0) {
+															componentId = 0;
 														}
-														if (interfaceData > 255) {
-															interfaceData = 255;
+														if (componentId > 255) {
+															componentId = 255;
 														}
-														if (interfaceData != Preferences.musicVolume) {
+														if (componentId != Preferences.musicVolume) {
 															if (Preferences.musicVolume == 0 && MusicPlayer.groupId != -1) {
-																MidiPlayer.playImmediate(client.js5Archive6, MusicPlayer.groupId, interfaceData);
+																MidiPlayer.playImmediate(client.js5Archive6, MusicPlayer.groupId, componentId);
 																MidiPlayer.jingle = false;
-															} else if (interfaceData == 0) {
+															} else if (componentId == 0) {
 																MidiPlayer.method4548();
 																MidiPlayer.jingle = false;
 															} else {
-																MidiPlayer.method3956(interfaceData);
+																MidiPlayer.method3956(componentId);
 															}
-															Preferences.musicVolume = interfaceData;
+															Preferences.musicVolume = componentId;
 														}
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
@@ -5131,14 +5132,14 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 6020) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
-														if (interfaceData < 0) {
-															interfaceData = 0;
+														componentId = scriptIntValues[isp];
+														if (componentId < 0) {
+															componentId = 0;
 														}
-														if (interfaceData > 127) {
-															interfaceData = 127;
+														if (componentId > 127) {
+															componentId = 127;
 														}
-														Preferences.ambientSoundsVolume = interfaceData;
+														Preferences.ambientSoundsVolume = componentId;
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														continue;
@@ -5151,19 +5152,19 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 6023) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
-														if (interfaceData < 0) {
-															interfaceData = 0;
+														componentId = scriptIntValues[isp];
+														if (componentId < 0) {
+															componentId = 0;
 														}
-														if (interfaceData > 2) {
-															interfaceData = 2;
+														if (componentId > 2) {
+															componentId = 2;
 														}
 														local1552 = false;
 														if (GameShell.maxMemory < 96) {
 															local1552 = true;
-															interfaceData = 0;
+															componentId = 0;
 														}
-														Preferences.setParticles(interfaceData);
+														Preferences.setParticles(componentId);
 														Preferences.write(GameShell.signLink);
 														Preferences.sentToServer = false;
 														scriptIntValues[isp++] = local1552 ? 0 : 1;
@@ -5171,11 +5172,11 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 6024) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
-														if (interfaceData < 0 || interfaceData > 2) {
-															interfaceData = 0;
+														componentId = scriptIntValues[isp];
+														if (componentId < 0 || componentId > 2) {
+															componentId = 0;
 														}
-														Preferences.windowMode = interfaceData;
+														Preferences.windowMode = componentId;
 														Preferences.write(GameShell.signLink);
 														continue;
 													}
@@ -5354,12 +5355,12 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 6302) {
 														isp -= 3;
-														childCount = scriptIntValues[isp + 2];
+														j = scriptIntValues[isp + 2];
 														interfaceType = scriptIntValues[isp + 1];
-														interfaceData = scriptIntValues[isp];
+														componentId = scriptIntValues[isp];
 														aCalendar2.clear();
 														aCalendar2.set(11, 12);
-														aCalendar2.set(childCount, interfaceType, interfaceData);
+														aCalendar2.set(j, interfaceType, componentId);
 														scriptIntValues[isp++] = (int) (aCalendar2.getTime().getTime() / 86400000L) - 11745;
 														continue;
 													}
@@ -5372,16 +5373,16 @@ public final class ClientScriptRunner {
 													if (opcode == 6304) {
 														local1552 = true;
 														isp--;
-														interfaceData = scriptIntValues[isp];
-														if (interfaceData < 0) {
-															local1552 = (interfaceData + 1) % 4 == 0;
-														} else if (interfaceData < 1582) {
-															local1552 = interfaceData % 4 == 0;
-														} else if (interfaceData % 4 != 0) {
+														componentId = scriptIntValues[isp];
+														if (componentId < 0) {
+															local1552 = (componentId + 1) % 4 == 0;
+														} else if (componentId < 1582) {
+															local1552 = componentId % 4 == 0;
+														} else if (componentId % 4 != 0) {
 															local1552 = false;
-														} else if (interfaceData % 100 != 0) {
+														} else if (componentId % 100 != 0) {
 															local1552 = true;
-														} else if (interfaceData % 400 != 0) {
+														} else if (componentId % 400 != 0) {
 															local1552 = false;
 														}
 														scriptIntValues[isp++] = local1552 ? 1 : 0;
@@ -5449,9 +5450,9 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 6503) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
+														componentId = scriptIntValues[isp];
 														if (client.gameState == 10 && LoginManager.autoStep == 0 && LoginManager.step == 0 && CreateManager.step == 0) {
-															scriptIntValues[isp++] = WorldList.hopWorld(interfaceData) ? 1 : 0;
+															scriptIntValues[isp++] = WorldList.hopWorld(componentId) ? 1 : 0;
 															continue;
 														}
 														scriptIntValues[isp++] = 0;
@@ -5469,8 +5470,8 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 6506) {
 														isp--;
-														interfaceData = scriptIntValues[isp];
-														@Pc(10440) World local10440 = getWorld(interfaceData);
+														componentId = scriptIntValues[isp];
+														@Pc(10440) World local10440 = getWorld(componentId);
 														if (local10440 == null) {
 															scriptIntValues[isp++] = -1;
 															scriptStringValues[ssp++] = EMPTY_STRING;
@@ -5489,11 +5490,11 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 6507) {
 														isp -= 4;
-														childCount = scriptIntValues[isp + 2];
-														interfaceData = scriptIntValues[isp];
+														j = scriptIntValues[isp + 2];
+														componentId = scriptIntValues[isp];
 														local7566 = scriptIntValues[isp + 3] == 1;
 														local1552 = scriptIntValues[isp + 1] == 1;
-														WorldList.sortWorldList(childCount, local1552, interfaceData, local7566);
+														WorldList.sortWorldList(j, local1552, componentId, local7566);
 														continue;
 													}
 												} else if (opcode < 6700) {
@@ -5511,25 +5512,25 @@ public final class ClientScriptRunner {
 											}
 										} else if (opcode == 4500) {
 											isp -= 2;
-											interfaceData = scriptIntValues[isp];
+											componentId = scriptIntValues[isp];
 											interfaceType = scriptIntValues[isp + 1];
 											local5294 = ParamTypeList.get(interfaceType);
 											if (local5294.isString()) {
-												scriptStringValues[ssp++] = StructTypeList.get(interfaceData).getParam(local5294.defaultString, interfaceType);
+												scriptStringValues[ssp++] = StructTypeList.get(componentId).getParam(local5294.defaultString, interfaceType);
 											} else {
-												scriptIntValues[isp++] = StructTypeList.get(interfaceData).method2798(interfaceType, local5294.defaultInt);
+												scriptIntValues[isp++] = StructTypeList.get(componentId).method2798(interfaceType, local5294.defaultInt);
 											}
 											continue;
 										}
 									} else if (opcode == 4400) {
 										isp -= 2;
 										interfaceType = scriptIntValues[isp + 1];
-										interfaceData = scriptIntValues[isp];
+										componentId = scriptIntValues[isp];
 										local5294 = ParamTypeList.get(interfaceType);
 										if (local5294.isString()) {
-											scriptStringValues[ssp++] = LocTypeList.get(interfaceData).getParam(local5294.defaultString, interfaceType);
+											scriptStringValues[ssp++] = LocTypeList.get(componentId).getParam(local5294.defaultString, interfaceType);
 										} else {
-											scriptIntValues[isp++] = LocTypeList.get(interfaceData).getParam(local5294.defaultInt, interfaceType);
+											scriptIntValues[isp++] = LocTypeList.get(componentId).getParam(local5294.defaultInt, interfaceType);
 										}
 										continue;
 									}
@@ -5570,13 +5571,13 @@ public final class ClientScriptRunner {
 									if (opcode == 4104) {
 										// fromdate
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										@Pc(11770) long local11770 = (long) interfaceData * 86400000L + 1014768000000L;
+										componentId = scriptIntValues[isp];
+										@Pc(11770) long local11770 = (long) componentId * 86400000L + 1014768000000L;
 										aCalendar2.setTime(new Date(local11770));
-										local652 = aCalendar2.get(5);
+										i = aCalendar2.get(5);
 										start = aCalendar2.get(2);
 										childId = aCalendar2.get(1);
-										scriptStringValues[ssp++] = JString.concatenate(new JString[] { JString.parseInt(local652), aClass100_767, DateUtil.aClass100Array40[start], aClass100_767, JString.parseInt(childId) });
+										scriptStringValues[ssp++] = JString.concatenate(new JString[] { JString.parseInt(i), aClass100_767, DateUtil.aClass100Array40[start], aClass100_767, JString.parseInt(childId) });
 										continue;
 									}
 									if (opcode == 4105) {
@@ -5594,8 +5595,8 @@ public final class ClientScriptRunner {
 									if (opcode == 4106) {
 										// tostring
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptStringValues[ssp++] = JString.parseInt(interfaceData);
+										componentId = scriptIntValues[isp];
+										scriptStringValues[ssp++] = JString.parseInt(componentId);
 										continue;
 									}
 									if (opcode == 4107) {
@@ -5608,18 +5609,18 @@ public final class ClientScriptRunner {
 										ssp--;
 										chatTyped = scriptStringValues[ssp];
 										isp -= 2;
-										childCount = scriptIntValues[isp + 1];
+										j = scriptIntValues[isp + 1];
 										interfaceType = scriptIntValues[isp];
-										scriptIntValues[isp++] = FontMetricsList.get(childCount).getParagraphLineCount(chatTyped, interfaceType);
+										scriptIntValues[isp++] = FontMetricsList.get(j).getParagraphLineCount(chatTyped, interfaceType);
 										continue;
 									}
 									if (opcode == 4109) {
 										isp -= 2;
 										ssp--;
 										chatTyped = scriptStringValues[ssp];
-										childCount = scriptIntValues[isp + 1];
+										j = scriptIntValues[isp + 1];
 										interfaceType = scriptIntValues[isp];
-										scriptIntValues[isp++] = FontMetricsList.get(childCount).getMaxLineWidth(chatTyped, interfaceType);
+										scriptIntValues[isp++] = FontMetricsList.get(j).getMaxLineWidth(chatTyped, interfaceType);
 										continue;
 									}
 									if (opcode == 4110) {
@@ -5653,26 +5654,26 @@ public final class ClientScriptRunner {
 									}
 									if (opcode == 4113) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = CharUtils.isValidChar(interfaceData) ? 1 : 0;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = CharUtils.isValidChar(componentId) ? 1 : 0;
 										continue;
 									}
 									if (opcode == 4114) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = CharUtils.method433(interfaceData) ? 1 : 0;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = CharUtils.method433(componentId) ? 1 : 0;
 										continue;
 									}
 									if (opcode == 4115) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = CharUtils.isLetter(interfaceData) ? 1 : 0;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = CharUtils.isLetter(componentId) ? 1 : 0;
 										continue;
 									}
 									if (opcode == 4116) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = CharUtils.isDigit(interfaceData) ? 1 : 0;
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = CharUtils.isDigit(componentId) ? 1 : 0;
 										continue;
 									}
 									if (opcode == 4117) {
@@ -5690,8 +5691,8 @@ public final class ClientScriptRunner {
 										ssp--;
 										chatTyped = scriptStringValues[ssp];
 										interfaceType = scriptIntValues[isp];
-										childCount = scriptIntValues[isp + 1];
-										scriptStringValues[ssp++] = chatTyped.substring(childCount, interfaceType);
+										j = scriptIntValues[isp + 1];
+										scriptStringValues[ssp++] = chatTyped.substring(j, interfaceType);
 										continue;
 									}
 									if (opcode == 4119) {
@@ -5699,8 +5700,8 @@ public final class ClientScriptRunner {
 										chatTyped = scriptStringValues[ssp];
 										chatTypedLowercase = JString.allocate(chatTyped.length());
 										@Pc(12220) boolean local12220 = false;
-										for (local652 = 0; local652 < chatTyped.length(); local652++) {
-											start = chatTyped.charAt(local652);
+										for (i = 0; i < chatTyped.length(); i++) {
+											start = chatTyped.charAt(i);
 											if (start == 60) {
 												local12220 = true;
 											} else if (start == 62) {
@@ -5718,8 +5719,8 @@ public final class ClientScriptRunner {
 										ssp--;
 										chatTyped = scriptStringValues[ssp];
 										interfaceType = scriptIntValues[isp];
-										childCount = scriptIntValues[isp + 1];
-										scriptIntValues[isp++] = chatTyped.indexOf(interfaceType, childCount);
+										j = scriptIntValues[isp + 1];
+										scriptIntValues[isp++] = chatTyped.indexOf(interfaceType, j);
 										continue;
 									}
 									if (opcode == 4121) {
@@ -5727,20 +5728,20 @@ public final class ClientScriptRunner {
 										chatTyped = scriptStringValues[ssp];
 										chatTypedLowercase = scriptStringValues[ssp + 1];
 										isp--;
-										childCount = scriptIntValues[isp];
-										scriptIntValues[isp++] = chatTyped.indexOf(chatTypedLowercase, childCount);
+										j = scriptIntValues[isp];
+										scriptIntValues[isp++] = chatTyped.indexOf(chatTypedLowercase, j);
 										continue;
 									}
 									if (opcode == 4122) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = CharUtils.toLowerCase(interfaceData);
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = CharUtils.toLowerCase(componentId);
 										continue;
 									}
 									if (opcode == 4123) {
 										isp--;
-										interfaceData = scriptIntValues[isp];
-										scriptIntValues[isp++] = CharUtils.toUpperCase(interfaceData);
+										componentId = scriptIntValues[isp];
+										scriptIntValues[isp++] = CharUtils.toUpperCase(componentId);
 										continue;
 									}
 									if (opcode == 4124) {
@@ -5755,22 +5756,22 @@ public final class ClientScriptRunner {
 							}
 						} else {
 							if (opcode < 2000) {
-								local1182 = local1020 ? staticActiveComponent1 : staticActiveComponent2;
+								createdComponent = secondary ? secondaryActiveComponent : primaryActiveComponent;
 							} else {
 								isp--;
-								local1182 = InterfaceList.getComponent(scriptIntValues[isp]);
+								createdComponent = InterfaceList.getComponent(scriptIntValues[isp]);
 								opcode -= 1000;
 							}
 							if (opcode == 1000) {
 								// setposition
 								isp -= 4;
-								local1182.baseX = scriptIntValues[isp];
-								local1182.baseY = scriptIntValues[isp + 1];
-								childCount = scriptIntValues[isp + 3];
-								if (childCount < 0) {
-									childCount = 0;
-								} else if (childCount > 5) {
-									childCount = 5;
+								createdComponent.baseX = scriptIntValues[isp];
+								createdComponent.baseY = scriptIntValues[isp + 1];
+								j = scriptIntValues[isp + 3];
+								if (j < 0) {
+									j = 0;
+								} else if (j > 5) {
+									j = 5;
 								}
 								interfaceType = scriptIntValues[isp + 2];
 								if (interfaceType < 0) {
@@ -5778,40 +5779,40 @@ public final class ClientScriptRunner {
 								} else if (interfaceType > 5) {
 									interfaceType = 5;
 								}
-								local1182.xMode = (byte) childCount;
-								local1182.yMode = (byte) interfaceType;
-								InterfaceList.redraw(local1182);
-								InterfaceList.update(local1182);
-								if (local1182.createdComponentId == -1) {
-									DelayedStateChange.method4675(local1182.id);
+								createdComponent.xMode = (byte) j;
+								createdComponent.yMode = (byte) interfaceType;
+								InterfaceList.redraw(createdComponent);
+								InterfaceList.update(createdComponent);
+								if (createdComponent.createdComponentId == -1) {
+									DelayedStateChange.setComponentPositionClient(createdComponent.id);
 								}
 								continue;
 							}
 							if (opcode == 1001) {
 								// setsize
 								isp -= 4;
-								local1182.baseWidth = scriptIntValues[isp];
-								local1182.baseHeight = scriptIntValues[isp + 1];
-								local1182.anInt451 = 0;
-								local1182.anInt526 = 0;
+								createdComponent.baseWidth = scriptIntValues[isp];
+								createdComponent.baseHeight = scriptIntValues[isp + 1];
+								createdComponent.anInt451 = 0;
+								createdComponent.anInt526 = 0;
 								interfaceType = scriptIntValues[isp + 2];
-								childCount = scriptIntValues[isp + 3];
-								if (childCount < 0) {
-									childCount = 0;
-								} else if (childCount > 4) {
-									childCount = 4;
+								j = scriptIntValues[isp + 3];
+								if (j < 0) {
+									j = 0;
+								} else if (j > 4) {
+									j = 4;
 								}
-								local1182.dynamicHeightValue = (byte) childCount;
+								createdComponent.dynamicHeightValue = (byte) j;
 								if (interfaceType < 0) {
 									interfaceType = 0;
 								} else if (interfaceType > 4) {
 									interfaceType = 4;
 								}
-								local1182.dynamicWidthValue = (byte) interfaceType;
-								InterfaceList.redraw(local1182);
-								InterfaceList.update(local1182);
-								if (local1182.type == 0) {
-									InterfaceList.method531(local1182, false);
+								createdComponent.dynamicWidthValue = (byte) interfaceType;
+								InterfaceList.redraw(createdComponent);
+								InterfaceList.update(createdComponent);
+								if (createdComponent.type == 0) {
+									InterfaceList.method531(createdComponent, false);
 								}
 								continue;
 							}
@@ -5819,30 +5820,30 @@ public final class ClientScriptRunner {
 								// sethide
 								isp--;
 								local1552 = scriptIntValues[isp] == 1;
-								if (local1552 != local1182.hidden) {
-									local1182.hidden = local1552;
-									InterfaceList.redraw(local1182);
+								if (local1552 != createdComponent.hidden) {
+									createdComponent.hidden = local1552;
+									InterfaceList.redraw(createdComponent);
 								}
-								if (local1182.createdComponentId == -1) {
-									DelayedStateChange.method1906(local1182.id);
+								if (createdComponent.createdComponentId == -1) {
+									DelayedStateChange.setComponentHiddenClient(createdComponent.id);
 								}
 								continue;
 							}
 							if (opcode == 1004) {
 								// setaspect
 								isp -= 2;
-								local1182.aspectWidth = scriptIntValues[isp];
-								local1182.aspectHeight = scriptIntValues[isp + 1];
-								InterfaceList.redraw(local1182);
-								InterfaceList.update(local1182);
-								if (local1182.type == 0) {
-									InterfaceList.method531(local1182, false);
+								createdComponent.aspectWidth = scriptIntValues[isp];
+								createdComponent.aspectHeight = scriptIntValues[isp + 1];
+								InterfaceList.redraw(createdComponent);
+								InterfaceList.update(createdComponent);
+								if (createdComponent.type == 0) {
+									InterfaceList.method531(createdComponent, false);
 								}
 								continue;
 							}
 							if (opcode == 1005) {
 								isp--;
-								local1182.noClickThrough = scriptIntValues[isp] == 1;
+								createdComponent.noClickThrough = scriptIntValues[isp] == 1;
 								continue;
 							}
 						}
@@ -6617,8 +6618,8 @@ public final class ClientScriptRunner {
 	@OriginalMember(owner = "runetek4.client!ok", name = "a", descriptor = "(IIB)Lclient!ce;")
 	public static SecondaryLinkedList method3333(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1) {
 		@Pc(9) SecondaryLinkedList local9 = new SecondaryLinkedList();
-		for (@Pc(14) Map local14 = (Map) MapList.aClass69_120.head(); local14 != null; local14 = (Map) MapList.aClass69_120.next()) {
-			if (local14.valid && local14.method664(arg1, arg0)) {
+		for (@Pc(14) Map local14 = (Map) MapList.areas.head(); local14 != null; local14 = (Map) MapList.areas.next()) {
+			if (local14.valid && local14.containsSource(arg1, arg0)) {
 				local9.addTail(local14);
 			}
 		}

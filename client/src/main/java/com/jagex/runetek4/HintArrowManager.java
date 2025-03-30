@@ -1,7 +1,6 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.graphics.RawModel;
-import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.node.SoftLruHashTable;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;

@@ -122,7 +122,7 @@ public final class JString implements StringInterface {
         if (string.length < 2) {
             throw new IllegalArgumentException();
         }
-        return method2355(0, string.length, string);
+        return join(0, string.length, string);
     }
 
 	@OriginalMember(owner = "runetek4.client!jj", name = "b", descriptor = "(BI)Lclient!na;")
@@ -172,7 +172,7 @@ public final class JString implements StringInterface {
 	}
 
 	@OriginalMember(owner = "runetek4.client!jd", name = "a", descriptor = "(II[Lclient!na;I)Lclient!na;")
-	public static JString method2355(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JString[] arg2) {
+	public static JString join(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) JString[] arg2) {
 		@Pc(5) int local5 = 0;
 		for (@Pc(7) int local7 = 0; local7 < arg1; local7++) {
 			if (arg2[arg0 + local7] == null) {

@@ -1,8 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.SpotAnimType;
-import com.jagex.runetek4.media.renderable.Entity;
-import com.jagex.runetek4.cache.media.SeqType;
+import com.jagex.runetek4.config.types.spotanim.SpotAnimType;
+import com.jagex.runetek4.config.types.seq.SeqTypeList;
+import com.jagex.runetek4.config.types.spotanim.SpotAnimTypeList;
+import com.jagex.runetek4.config.types.seq.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

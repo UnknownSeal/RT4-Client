@@ -1,12 +1,13 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.audio.SynthSound;
+import com.jagex.runetek4.audio.pcm.PcmSound;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.cache.def.NpcType;
-import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.game.config.bastype.BasType;
-import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.config.types.loc.LocType;
+import com.jagex.runetek4.config.types.npc.NpcType;
+import com.jagex.runetek4.config.types.bas.BasType;
 
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;

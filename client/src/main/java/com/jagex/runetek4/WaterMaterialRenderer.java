@@ -14,8 +14,10 @@ public final class WaterMaterialRenderer implements MaterialRenderer {
 
 	@OriginalMember(owner = "runetek4.client!v", name = "c", descriptor = "[F")
 	public static final float[] aFloatArray2 = new float[] { 0.073F, 0.169F, 0.24F, 1.0F };
+
 	@OriginalMember(owner = "runetek4.client!pd", name = "b", descriptor = "[F")
 	public static final float[] aFloatArray22 = new float[] { 0.1F, 0.1F, 0.15F, 0.1F };
+
 	@OriginalMember(owner = "client!pd", name = "a", descriptor = "I")
 	private int anInt4440 = -1;
 

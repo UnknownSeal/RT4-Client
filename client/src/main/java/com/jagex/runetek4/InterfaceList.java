@@ -1,17 +1,18 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.cache.media.SeqType;
+import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.cursor.CursorTypeList;
+import com.jagex.runetek4.config.types.seq.SeqTypeList;
 import com.jagex.runetek4.core.datastruct.HashTable;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.game.client.Inv;
-import com.jagex.runetek4.game.config.cursortype.CursorType;
-import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
-import com.jagex.runetek4.input.Keyboard;
+import com.jagex.runetek4.config.types.cursor.CursorType;
 import com.jagex.runetek4.js5.Js5;
-import com.jagex.runetek4.media.renderable.actor.Player;
 import com.jagex.runetek4.node.Node;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -163,7 +164,7 @@ public class InterfaceList {
             if (topLevelInterface != -1) {
                 resetComponent(topLevelInterface);
             }
-            for (@Pc(18) ComponentPointer local18 = (ComponentPointer) openInterfaces.head(); local18 != null; local18 = (ComponentPointer) openInterfaces.next()) {
+            for (@Pc(18) SubInterface local18 = (SubInterface) openInterfaces.head(); local18 != null; local18 = (SubInterface) openInterfaces.next()) {
                 closeInterface(true, local18);
             }
             topLevelInterface = -1;
@@ -221,7 +222,7 @@ public class InterfaceList {
     }
 
     @OriginalMember(owner = "runetek4.client!ke", name = "a", descriptor = "(ZLclient!wk;Z)V")
-    public static void closeInterface(@OriginalArg(0) boolean arg0, @OriginalArg(1) ComponentPointer arg1) {
+    public static void closeInterface(@OriginalArg(0) boolean arg0, @OriginalArg(1) SubInterface arg1) {
         @Pc(9) int local9 = (int) arg1.nodeId;
         @Pc(16) int local16 = arg1.interfaceId;
         arg1.unlink();
@@ -348,7 +349,7 @@ public class InterfaceList {
     }
 
     @OriginalMember(owner = "runetek4.client!qf", name = "a", descriptor = "(BII)Lclient!be;")
-    public static Component method1418(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
+    public static Component getCreatedComponent(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1) {
         @Pc(7) Component local7 = getComponent(arg0);
         if (arg1 == -1) {
             return local7;
@@ -419,7 +420,7 @@ public class InterfaceList {
 
     @OriginalMember(owner = "runetek4.client!i", name = "i", descriptor = "(Z)V")
     public static void redrawActiveInterfaces() {
-        for (@Pc(6) ComponentPointer local6 = (ComponentPointer) openInterfaces.head(); local6 != null; local6 = (ComponentPointer) openInterfaces.next()) {
+        for (@Pc(6) SubInterface local6 = (SubInterface) openInterfaces.head(); local6 != null; local6 = (SubInterface) openInterfaces.next()) {
             @Pc(14) int local14 = local6.interfaceId;
             if (load(local14)) {
                 @Pc(21) boolean local21 = true;
@@ -510,7 +511,7 @@ public class InterfaceList {
         if (arg0.createdComponents != null) {
             method4190(arg0.id, arg1, local20, local32, arg0.createdComponents);
         }
-        @Pc(66) ComponentPointer local66 = (ComponentPointer) openInterfaces.get((long) arg0.id);
+        @Pc(66) SubInterface local66 = (SubInterface) openInterfaces.get((long) arg0.id);
         if (local66 != null) {
             method4017(local32, arg1, local66.interfaceId, local20);
         }
@@ -631,7 +632,7 @@ public class InterfaceList {
                 @Pc(50) HookRequest local50 = new HookRequest();
                 local50.arguments = local41.anObjectArray3;
                 local50.source = local41;
-                ClientScriptRunner.runClientScript(2000000, local50);
+                ClientScriptRunner.run(2000000, local50);
             }
         }
     }
@@ -672,7 +673,7 @@ public class InterfaceList {
         }
         @Pc(28) int local28 = arg0.id >>> 16;
         @Pc(33) HashTableIterator local33 = new HashTableIterator(openInterfaces);
-        for (@Pc(38) ComponentPointer local38 = (ComponentPointer) local33.method2701(); local38 != null; local38 = (ComponentPointer) local33.method2700()) {
+        for (@Pc(38) SubInterface local38 = (SubInterface) local33.method2701(); local38 != null; local38 = (SubInterface) local33.method2700()) {
             if (local28 == local38.interfaceId) {
                 return getComponent((int) local38.nodeId);
             }
@@ -705,7 +706,7 @@ public class InterfaceList {
                     if (local23.createdComponents != null) {
                         method7(local23.createdComponents, arg1);
                     }
-                    @Pc(49) ComponentPointer local49 = (ComponentPointer) openInterfaces.get((long) local23.id);
+                    @Pc(49) SubInterface local49 = (SubInterface) openInterfaces.get((long) local23.id);
                     if (local49 != null) {
                         runScripts(arg1, local49.interfaceId);
                     }
@@ -876,7 +877,7 @@ public class InterfaceList {
                                             @Pc(520) int local520 = k + WorldMap.originX;
                                             @Pc(528) int local528 = WorldMap.length + WorldMap.originZ - local516 - 1;
                                             Cheat.teleport(local520, local528, 0);
-                                            ClientProt.closeWidget();
+                                            closeModal();
                                             continue;
                                         }
                                         anInt3337 = 1;
@@ -1173,7 +1174,7 @@ public class InterfaceList {
                         if (component.createdComponents != null) {
                             method946(component.createdComponents, component.id, local61, local63, local65, local67, local50 - component.scrollX, local55 - component.scrollY);
                         }
-                        @Pc(1595) ComponentPointer local1595 = (ComponentPointer) openInterfaces.get((long) component.id);
+                        @Pc(1595) SubInterface local1595 = (SubInterface) openInterfaces.get((long) component.id);
                         if (local1595 != null) {
                             method1320(local50, local63, local55, local65, local1595.interfaceId, local61, local67);
                         }
@@ -1265,7 +1266,7 @@ public class InterfaceList {
                     if (local15.createdComponents != null) {
                         method2354(local15.id, local15.createdComponents);
                     }
-                    @Pc(73) ComponentPointer local73 = (ComponentPointer) openInterfaces.get((long) local15.id);
+                    @Pc(73) SubInterface local73 = (SubInterface) openInterfaces.get((long) local15.id);
                     if (local73 != null) {
                         method1949(local73.interfaceId);
                     }
@@ -1318,4 +1319,17 @@ public class InterfaceList {
         }
     }
 
+    @OriginalMember(owner = "runetek4.client!mc", name = "f", descriptor = "(B)V")
+    public static void closeModal() {
+        Protocol.outboundBuffer.pIsaac1(184);
+        for (@Pc(18) SubInterface local18 = (SubInterface) openInterfaces.head(); local18 != null; local18 = (SubInterface) openInterfaces.next()) {
+            if (local18.anInt5879 == 0) {
+                closeInterface(true, local18);
+            }
+        }
+        if (ClientScriptRunner.aClass13_10 != null) {
+            redraw(ClientScriptRunner.aClass13_10);
+            ClientScriptRunner.aClass13_10 = null;
+        }
+    }
 }

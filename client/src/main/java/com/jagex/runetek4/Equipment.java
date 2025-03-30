@@ -1,6 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.ObjType;
+import com.jagex.runetek4.config.types.obj.ObjType;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 

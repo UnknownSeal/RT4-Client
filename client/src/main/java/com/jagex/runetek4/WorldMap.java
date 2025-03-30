@@ -2,14 +2,15 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.config.FluType;
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.flu.FluType;
+import com.jagex.runetek4.config.types.flu.FluTypeList;
+import com.jagex.runetek4.config.types.loc.LocTypeList;
+import com.jagex.runetek4.config.types.msi.MSITypeList;
 import com.jagex.runetek4.core.io.Packet;
-import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.game.config.flotype.FloType;
-import com.jagex.runetek4.game.config.flotype.FloTypeList;
-import com.jagex.runetek4.game.config.meltype.MapElementList;
-import com.jagex.runetek4.game.config.msitype.MSIType;
-import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.config.types.loc.LocType;
+import com.jagex.runetek4.config.types.msi.MSIType;
 import com.jagex.runetek4.util.ColorUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -41,7 +42,7 @@ public class WorldMap {
     @OriginalMember(owner = "runetek4.client!nj", name = "h", descriptor = "Lclient!ih;")
     public static final LinkedList aClass69_97 = new LinkedList();
     @OriginalMember(owner = "client!di", name = "q", descriptor = "[Lclient!na;")
-    public static final JString[] aClass100Array53 = new JString[5];
+    public static final JString[] lines = new JString[5];
     @OriginalMember(owner = "client!fi", name = "j", descriptor = "Lclient!qf;")
     public static Sprite aClass3_Sub2_Sub1_2;
     @OriginalMember(owner = "client!dc", name = "O", descriptor = "I")
@@ -755,7 +756,7 @@ public class WorldMap {
             return -1;
         }
         for (@Pc(20) int local20 = 0; local20 < labels.anInt5074; local20++) {
-            if (labels.aClass100Array153[local20].method3140(aClass100_538, aClass100_872).method3142(arg0)) {
+            if (labels.text[local20].method3140(aClass100_538, aClass100_872).method3142(arg0)) {
                 return local20;
             }
         }
@@ -769,67 +770,67 @@ public class WorldMap {
                 @Pc(32) int local32 = labels.aShortArray73[local11] - originX;
                 @Pc(43) int local43 = originZ + length - labels.aShortArray72[local11] - 1;
                 @Pc(59) int local59 = arg0 + (arg3 - arg0) * (local32 - arg2) / (arg6 - arg2);
-                @Pc(64) int local64 = labels.method3894(local11);
+                @Pc(64) int textsize = labels.method3894(local11);
                 @Pc(80) int local80 = (arg7 - arg1) * (local43 - arg5) / (arg4 - arg5) + arg1;
-                @Pc(82) int local82 = 16777215;
-                @Pc(84) WorldMapFont local84 = null;
-                if (local64 == 0) {
+                @Pc(82) int textColor = 16777215;
+                @Pc(84) WorldMapFont font = null;
+                if (textsize == 0) {
                     if ((double) zoom == 3.0D) {
-                        local84 = font11;
+                        font = font11;
                     }
                     if ((double) zoom == 4.0D) {
-                        local84 = font12;
+                        font = font12;
                     }
                     if ((double) zoom == 6.0D) {
-                        local84 = font14;
+                        font = font14;
                     }
                     if ((double) zoom >= 8.0D) {
-                        local84 = font17;
+                        font = font17;
                     }
                 }
-                if (local64 == 1) {
+                if (textsize == 1) {
                     if ((double) zoom == 3.0D) {
-                        local84 = font14;
+                        font = font14;
                     }
                     if ((double) zoom == 4.0D) {
-                        local84 = font17;
+                        font = font17;
                     }
                     if ((double) zoom == 6.0D) {
-                        local84 = font19;
+                        font = font19;
                     }
                     if ((double) zoom >= 8.0D) {
-                        local84 = font22;
+                        font = font22;
                     }
                 }
-                if (local64 == 2) {
+                if (textsize == 2) {
                     if ((double) zoom == 3.0D) {
-                        local84 = font19;
+                        font = font19;
                     }
-                    local82 = 16755200;
+                    textColor = 16755200;
                     if ((double) zoom == 4.0D) {
-                        local84 = font22;
+                        font = font22;
                     }
                     if ((double) zoom == 6.0D) {
-                        local84 = font26;
+                        font = font26;
                     }
                     if ((double) zoom >= 8.0D) {
-                        local84 = font30;
+                        font = font30;
                     }
                 }
                 if (labels.anIntArray444[local11] != -1) {
-                    local82 = labels.anIntArray444[local11];
+                    textColor = labels.anIntArray444[local11];
                 }
-                if (local84 != null) {
-                    @Pc(211) int local211 = Fonts.p11Full.splitParagraph(labels.aClass100Array153[local11], null, aClass100Array53);
-                    local80 -= local84.method1503() * (local211 - 1) / 2;
-                    local80 += local84.method1511() / 2;
-                    for (@Pc(231) int local231 = 0; local231 < local211; local231++) {
-                        @Pc(242) JString local242 = aClass100Array53[local231];
-                        if (local211 - 1 > local231) {
+                if (font != null) {
+                    @Pc(211) int lineCount = Fonts.p11Full.splitParagraph(labels.text[local11], null, lines);
+                    local80 -= font.method1503() * (lineCount - 1) / 2;
+                    local80 += font.method1511() / 2;
+                    for (@Pc(231) int i = 0; i < lineCount; i++) {
+                        @Pc(242) JString local242 = lines[i];
+                        if (lineCount - 1 > i) {
                             local242.method3133(local242.length() - 4);
                         }
-                        local84.renderStringCenter(local242, local59, local80, local82);
-                        local80 += local84.method1503();
+                        font.renderStringCenter(local242, local59, local80, textColor);
+                        local80 += font.method1503();
                     }
                 }
             }
@@ -952,7 +953,7 @@ public class WorldMap {
             return -1;
         }
         for (@Pc(20) int local20 = 0; local20 < labels.anInt5074; local20++) {
-            if (labels.aClass100Array153[local20].method3140(aClass100_538, aClass100_872).strEquals(arg0)) {
+            if (labels.text[local20].method3140(aClass100_538, aClass100_872).strEquals(arg0)) {
                 return local20;
             }
         }
@@ -981,7 +982,7 @@ public class WorldMap {
 
     @OriginalMember(owner = "runetek4.client!kf", name = "a", descriptor = "(Lclient!na;I)V")
     public static void method4011(@OriginalArg(0) JString arg0) {
-        for (@Pc(15) Map local15 = (Map) MapList.aClass69_120.head(); local15 != null; local15 = (Map) MapList.aClass69_120.next()) {
+        for (@Pc(15) Map local15 = (Map) MapList.areas.head(); local15 != null; local15 = (Map) MapList.areas.next()) {
             if (local15.group.strEquals(arg0)) {
                 currentMap = local15;
                 return;
@@ -1202,7 +1203,7 @@ public class WorldMap {
                                     local233 = local222 & 0x3FFF;
                                     if (local233 != 0) {
                                         local254 = local222 >> 14 & 0x3;
-                                        @Pc(998) MSIType local998 = MsiTypeList.get(local233 - 1);
+                                        @Pc(998) MSIType local998 = MSITypeList.get(local233 - 1);
                                         @Pc(1003) SoftwareIndexedSprite local1003 = local998.getSprite(local254);
                                         if (local1003 != null) {
                                             local276 = local162 * local1003.height / 4;
@@ -1256,7 +1257,7 @@ public class WorldMap {
     @OriginalMember(owner = "runetek4.client!rc", name = "a", descriptor = "(Lclient!na;Z)Lclient!na;")
     public static JString method923(@OriginalArg(0) JString arg0) {
         @Pc(12) int local12 = method3218(arg0);
-        return local12 == -1 ? aClass100_517 : labels.aClass100Array153[local12].method3140(aClass100_538, aClass100_872);
+        return local12 == -1 ? aClass100_517 : labels.text[local12].method3140(aClass100_538, aClass100_872);
     }
 
     @OriginalMember(owner = "runetek4.client!rg", name = "d", descriptor = "(B)Lclient!bn;")

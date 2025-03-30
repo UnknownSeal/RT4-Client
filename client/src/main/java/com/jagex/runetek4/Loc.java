@@ -1,9 +1,11 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.media.renderable.Entity;
-import com.jagex.runetek4.dash3d.entity.LocEntity;
-import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.cache.media.SeqType;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.loc.LocTypeList;
+import com.jagex.runetek4.config.types.seq.SeqTypeList;
+import com.jagex.runetek4.config.types.loc.LocType;
+import com.jagex.runetek4.config.types.seq.SeqType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

@@ -1,8 +1,7 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.dash3d.CollisionMap;
-import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.config.types.loc.LocTypeList;
+import com.jagex.runetek4.config.types.loc.LocType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
