@@ -1652,7 +1652,7 @@ public final class ClientScriptRunner {
 	public static void run(@OriginalArg(1) int maxCycles, @OriginalArg(2) HookRequest request) {
 		@Pc(4) Object[] listeners = request.arguments;
 		@Pc(10) int sid = (Integer) listeners[0];
-		@Pc(14) ClientScript clientScript = ClientScriptList.decodeClientScript(sid);
+		@Pc(14) ClientScript clientScript = ClientScriptList.get(sid);
 		if (clientScript == null) {
 			return;
 		}
@@ -1874,7 +1874,7 @@ public final class ClientScriptRunner {
 					if (opcode == 40) {
 						// gosub_with_params
 						id = intOperands[pc];
-						@Pc(642) ClientScript invokeScript = ClientScriptList.decodeClientScript(id);
+						@Pc(642) ClientScript invokeScript = ClientScriptList.get(id);
 						@Pc(646) int[] invokeScriptIntLocals = new int[invokeScript.localIntCount];
 						@Pc(650) JString[] invokeScriptStringLocals = new JString[invokeScript.localStringCount];
 						for (i = 0; i < invokeScript.intArgs; i++) {

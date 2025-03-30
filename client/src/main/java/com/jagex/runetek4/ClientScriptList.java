@@ -15,7 +15,7 @@ public class ClientScriptList {
     public static final LruHashTable scripts = new LruHashTable(128);
 
     @OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(IB)Lclient!qc;")
-    public static ClientScript decodeClientScript(@OriginalArg(0) int scriptId) {
+    public static ClientScript get(@OriginalArg(0) int scriptId) {
         @Pc(12) ClientScript clientScript = (ClientScript) scripts.get((long) scriptId);
         if (clientScript != null) {
             return clientScript;
