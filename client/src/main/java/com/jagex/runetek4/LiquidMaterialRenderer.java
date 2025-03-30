@@ -3,6 +3,8 @@ package com.jagex.runetek4;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+
+import com.jagex.runetek4.textureops.TextureOpPerlinNoise;
 import com.jogamp.opengl.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;

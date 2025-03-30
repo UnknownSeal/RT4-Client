@@ -3,6 +3,8 @@ package com.jagex.runetek4;
 import com.jagex.runetek4.config.types.flu.FluTypeList;
 import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.textureops.TextureOp29SubOp4;
+import com.jagex.runetek4.textureops.TextureOpRasterizer;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
