@@ -398,7 +398,9 @@ public final class SignLink implements Runnable {
 						} else if (local45 == 7) {
 							this.fullScreenManager.method5106();
 						} else if (local45 == 10) {
-                            GLProfile.initSingleton();
+							// TODO remove this if it's not causing any issues
+							// initSingleton() should not be necessary on newer JOGL
+                            //GLProfile.initSingleton();
 						} else {
 							@Pc(490) int local490;
 							if (local45 == 11) {
