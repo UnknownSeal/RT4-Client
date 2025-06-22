@@ -13,6 +13,7 @@ import net.bytebuddy.matcher.ElementMatchers;
 import org.objectweb.asm.Type;
 
 import java.lang.annotation.*;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.logging.Level;
@@ -40,6 +41,10 @@ public class MixinEngine {
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.PARAMETER)
     public @interface This {}
+
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.FIELD)
+    public @interface Shadow {}
 
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.ANNOTATION_TYPE)
@@ -76,6 +81,20 @@ public class MixinEngine {
     private static void registerMixinClass(Class<?> mixinClass) {
         Mixin mixinAnnotation = mixinClass.getAnnotation(Mixin.class);
         Class<?> targetClass = mixinAnnotation.value();
+
+        for (Field field : mixinClass.getDeclaredFields()) {
+            if (field.isAnnotationPresent(Shadow.class)) {
+                try {
+                    Field targetField = targetClass.getDeclaredField(field.getName());
+                    targetField.setAccessible(true);
+                    field.setAccessible(true);
+                    field.set(null, targetField.get(null));
+                    MixinLogger.LOGGER.info("Linked shadow field: " + field.getName());
+                } catch (Exception e) {
+                    MixinLogger.LOGGER.warning("Failed to link shadow field: " + field.getName() + ", reason: " + e);
+                }
+            }
+        }
 
         for (Method method : mixinClass.getDeclaredMethods()) {
             if (!method.isAnnotationPresent(Inject.class)) continue;
