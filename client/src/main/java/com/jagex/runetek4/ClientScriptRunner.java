@@ -2380,10 +2380,10 @@ public final class ClientScriptRunner {
 										createdComponent.objCount = j;
 										@Pc(13416) ObjType local13416 = ObjTypeList.get(interfaceType);
 										createdComponent.modelYOffset = local13416.zAngle2D;
-										createdComponent.modelXOffset = local13416.xOffset2D;
-										createdComponent.modelXAngle = local13416.xAngle2D;
-										createdComponent.modelZOffset = local13416.yOffset2D;
-										createdComponent.modelYAngle = local13416.yAngle2D;
+										createdComponent.modelXOffset = local13416.xof2d;
+										createdComponent.modelXAngle = local13416.xan2d;
+										createdComponent.modelZOffset = local13416.yof2d;
+										createdComponent.modelYAngle = local13416.yan2d;
 										createdComponent.modelZoom = local13416.zoom2d;
 										if (createdComponent.anInt451 > 0) {
 											createdComponent.modelZoom = createdComponent.modelZoom * 32 / createdComponent.anInt451;
@@ -3773,8 +3773,8 @@ public final class ClientScriptRunner {
 											componentId = scriptIntValues[isp];
 											interfaceType = scriptIntValues[isp + 1];
 											local11269 = ObjTypeList.get(componentId);
-											if (interfaceType >= 1 && interfaceType <= 5 && local11269.groundOptions[interfaceType - 1] != null) {
-												scriptStringValues[ssp++] = local11269.groundOptions[interfaceType - 1];
+											if (interfaceType >= 1 && interfaceType <= 5 && local11269.op[interfaceType - 1] != null) {
+												scriptStringValues[ssp++] = local11269.op[interfaceType - 1];
 												continue;
 											}
 											scriptStringValues[ssp++] = EMPTY_STRING;
@@ -3785,8 +3785,8 @@ public final class ClientScriptRunner {
 											componentId = scriptIntValues[isp];
 											interfaceType = scriptIntValues[isp + 1];
 											local11269 = ObjTypeList.get(componentId);
-											if (interfaceType >= 1 && interfaceType <= 5 && local11269.interfaceOptions[interfaceType - 1] != null) {
-												scriptStringValues[ssp++] = local11269.interfaceOptions[interfaceType - 1];
+											if (interfaceType >= 1 && interfaceType <= 5 && local11269.iop[interfaceType - 1] != null) {
+												scriptStringValues[ssp++] = local11269.iop[interfaceType - 1];
 												continue;
 											}
 											scriptStringValues[ssp++] = EMPTY_STRING;
@@ -6019,7 +6019,7 @@ public final class ClientScriptRunner {
 				@Pc(58) NpcType local58;
 				if (local17 instanceof Npc) {
 					local58 = ((Npc) local17).type;
-					if (local58.multiNpcs != null) {
+					if (local58.multinpc != null) {
 						local58 = local58.getMultiNPC();
 					}
 					if (local58 == null) {
@@ -6029,14 +6029,14 @@ public final class ClientScriptRunner {
 				@Pc(161) int local161;
 				if (local5 >= PlayerList.playerCount) {
 					local58 = ((Npc) local17).type;
-					if (local58.multiNpcs != null) {
+					if (local58.multinpc != null) {
 						local58 = local58.getMultiNPC();
 					}
 					if (local58.headIcon >= 0 && Sprites.headiconPrayers.length > local58.headIcon) {
-						if (local58.iconHeight == -1) {
+						if (local58.overlayheight == -1) {
 							local265 = local17.height() + 15;
 						} else {
-							local265 = local58.iconHeight + 15;
+							local265 = local58.overlayheight + 15;
 						}
 						setOverheadScreenCoordinateOffsets(arg4 >> 1, arg3, local17, arg5, local265, arg1 >> 1);
 						if (anInt1951 > -1) {
@@ -6047,10 +6047,10 @@ public final class ClientScriptRunner {
 					for (local310 = 0; local310 < local308.length; local310++) {
 						@Pc(322) MapMarker local322 = local308[local310];
 						if (local322 != null && local322.type == 1 && local322.actorTargetId == NpcList.npcIds[local5 - PlayerList.playerCount] && client.loop % 20 < 10) {
-							if (local58.iconHeight == -1) {
+							if (local58.overlayheight == -1) {
 								local359 = local17.height() + 15;
 							} else {
-								local359 = local58.iconHeight + 15;
+								local359 = local58.overlayheight + 15;
 							}
 							setOverheadScreenCoordinateOffsets(arg4 >> 1, arg3, local17, arg5, local359, arg1 >> 1);
 							if (anInt1951 > -1) {
@@ -6118,10 +6118,10 @@ public final class ClientScriptRunner {
 							local508 = local528[0];
 						}
 						@Pc(571) NpcType local571 = local518.type;
-						if (local571.iconHeight == -1) {
+						if (local571.overlayheight == -1) {
 							local310 = local17.height();
 						} else {
-							local310 = local571.iconHeight;
+							local310 = local571.overlayheight;
 						}
 					} else {
 						local310 = local17.height();
@@ -6151,10 +6151,10 @@ public final class ClientScriptRunner {
 						if (local17 instanceof Npc) {
 							@Pc(725) Npc local725 = (Npc) local17;
 							@Pc(728) NpcType local728 = local725.type;
-							if (local728.iconHeight == -1) {
+							if (local728.overlayheight == -1) {
 								local265 = local17.height() / 2;
 							} else {
-								local265 = local728.iconHeight / 2;
+								local265 = local728.overlayheight / 2;
 							}
 						} else {
 							local265 = local17.height() / 2;
@@ -6372,7 +6372,7 @@ public final class ClientScriptRunner {
 			}
 			if (player != null && player.isVisible()) {
 				player.lowMemory = false;
-				if ((Preferences.manyIdleAnimations && PlayerList.playerCount > 200 || PlayerList.playerCount > 50) && !arg0 && player.movementSeqId == player.getBasType().idleAnimationId) {
+				if ((Preferences.manyIdleAnimations && PlayerList.playerCount > 200 || PlayerList.playerCount > 50) && !arg0 && player.movementSeqId == player.getBasType().readyanim) {
 					player.lowMemory = true;
 				}
 				stz = player.getSize();
@@ -6453,7 +6453,7 @@ public final class ClientScriptRunner {
 		@Pc(171) int local171;
 		for (i = 0; i < NpcList.npcCount; i++) {
 			npc = NpcList.npcs[NpcList.npcIds[i]];
-			if (npc != null && npc.isVisible() && npc.type.topRenderPriority == arg0 && npc.type.isMultiNpcValid()) {
+			if (npc != null && npc.isVisible() && npc.type.drawabove == arg0 && npc.type.isMultiNpcValid()) {
 				@Pc(42) int npcSize2 = npc.getSize();
 				@Pc(97) int local97;
 				if (npcSize2 == 1) {
@@ -6492,7 +6492,7 @@ public final class ClientScriptRunner {
 		label200: for (i = 0; i < NpcList.npcCount; i++) {
 			npc = NpcList.npcs[NpcList.npcIds[i]];
 			@Pc(262) long bitset = (long) NpcList.npcIds[i] << 32 | 0x20000000L;
-			if (npc != null && npc.isVisible() && npc.type.topRenderPriority == arg0 && npc.type.isMultiNpcValid()) {
+			if (npc != null && npc.isVisible() && npc.type.drawabove == arg0 && npc.type.isMultiNpcValid()) {
 				npcSize = npc.getSize();
 				if (npcSize == 1) {
 					if ((npc.xFine & 0x7F) == 64 && (npc.zFine & 0x7F) == 64) {
@@ -6547,7 +6547,7 @@ public final class ClientScriptRunner {
 						}
 					}
 				}
-				if (!npc.type.interactive) {
+				if (!npc.type.active) {
 					bitset |= Long.MIN_VALUE;
 				}
 				npc.anInt3424 = SceneGraph.getTileHeight(Player.plane, npc.xFine, npc.zFine);

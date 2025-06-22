@@ -1090,7 +1090,7 @@ public final class client extends GameShell {
 			nextNpc: for (@Pc(57) int local57 = 0; local57 < 32768; local57++) {
 				@Pc(66) Npc npcEntity = NpcList.npcs[local57];
 				if (npcEntity != null) {
-					@Pc(73) byte walkflags = npcEntity.type.loginScreenProperties;
+					@Pc(73) byte walkflags = npcEntity.type.walkflags;
 					if ((walkflags & 0x2) > 0 && npcEntity.movementQueueSize == 0 && Math.random() * 1000.0D < 10.0D) {
 						@Pc(98) int local98 = (int) Math.round(Math.random() * 2.0D - 1.0D);
 						@Pc(106) int local106 = (int) Math.round(Math.random() * 2.0D - 1.0D);

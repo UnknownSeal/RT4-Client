@@ -1161,10 +1161,10 @@ public class LoginManager {
     }
 
     @OriginalMember(owner = "client!ca", name = "a", descriptor = "(ZI)V")
-    public static void method743(@OriginalArg(0) boolean arg0) {
+    public static void method743(@OriginalArg(0) boolean highmem) {
         @Pc(13) int local13 = mapFilesBuffer.length;
         @Pc(19) byte[][] local19;
-        if (GlRenderer.enabled && arg0) {
+        if (GlRenderer.enabled && highmem) {
             local19 = underWaterLocationsMapFilesBuffer;
         } else {
             local19 = locationMapFilesBuffer;
@@ -1175,7 +1175,7 @@ public class LoginManager {
                 @Pc(45) int local45 = (regionBitPacked[local25] >> 8) * 64 - Camera.originX;
                 @Pc(56) int local56 = (regionBitPacked[local25] & 0xFF) * 64 - Camera.originZ;
                 client.audioLoop();
-                SceneGraph.readLocs(local45, arg0, local32, local56, PathFinder.collisionMaps);
+                SceneGraph.readLocs(local45, highmem, local32, local56, PathFinder.collisionMaps);
             }
         }
     }
@@ -1226,7 +1226,7 @@ public class LoginManager {
                         } while (local72 >= 103);
                     } while (local68 >= 103);
                     local95 = LocTypeList.get(local17);
-                } while (local78 == 22 && !Preferences.showGroundDecorations && local95.interactable == 0 && local95.blockWalk != 1 && !local95.forceDecor);
+                } while (local78 == 22 && !Preferences.showGroundDecorations && local95.active == 0 && local95.blockwalk != 1 && !local95.forcedecor);
                 local39 = true;
                 if (!local95.isReady()) {
                     local15 = false;
@@ -1301,19 +1301,19 @@ public class LoginManager {
                     @Pc(129) int local129 = local103 & 0x3F;
                     @Pc(142) int local142 = local129 + (regionBitPacked[local16] & 0xFF) * 64 - Camera.originZ;
                     @Pc(148) NpcType local148 = NpcTypeList.get(local74.g2());
-                    if (NpcList.npcs[local97] == null && (local148.loginScreenProperties & 0x1) > 0 && local107 == SceneGraph.centralPlane && local125 >= 0 && local148.size + local125 < 104 && local142 >= 0 && local142 + local148.size < 104) {
+                    if (NpcList.npcs[local97] == null && (local148.walkflags & 0x1) > 0 && local107 == SceneGraph.centralPlane && local125 >= 0 && local148.size + local125 < 104 && local142 >= 0 && local142 + local148.size < 104) {
                         NpcList.npcs[local97] = new Npc();
                         @Pc(198) Npc local198 = NpcList.npcs[local97];
                         NpcList.npcIds[NpcList.npcCount++] = local97;
                         local198.lastSeenLoop = client.loop;
                         local198.setNpcType(local148);
                         local198.setSize(local198.type.size);
-                        local198.dstYaw = local198.anInt3381 = PathingEntity.ANGLES[local198.type.spawnDirection];
-                        local198.anInt3376 = local198.type.rotationSpeed;
+                        local198.dstYaw = local198.anInt3381 = PathingEntity.ANGLES[local198.type.respawndir];
+                        local198.anInt3376 = local198.type.turnspeed;
                         if (local198.anInt3376 == 0) {
                             local198.anInt3381 = 0;
                         }
-                        local198.anInt3365 = local198.type.bastypeid;
+                        local198.anInt3365 = local198.type.nas;
                         local198.teleport(local198.getSize(), local125, local142, true);
                     }
                 }

@@ -30,12 +30,12 @@ public class AreaSoundManager {
         sound.minZFine = z * 128;
         sound.minXFine = x * 128;
         if (loc != null) {
-            sound.sounds = loc.bgSounds;
-            sound.radius = loc.bgSoundRange * 128;
-            sound.maxInterval = loc.bgSoundMax;
+            sound.sounds = loc.bgsound_random;
+            sound.radius = loc.bgsound_range * 128;
+            sound.maxInterval = loc.bgsound_maxdelay;
             sound.locType = loc;
-            sound.sound = loc.bgSound;
-            sound.minInterval = loc.bgSoundMin;
+            sound.sound = loc.bgsound_sound;
+            sound.minInterval = loc.bgsound_mindelay;
             @Pc(57) int local57 = loc.width;
             @Pc(60) int local60 = loc.length;
             if (arg2 == 1 || arg2 == 3) {
@@ -55,7 +55,7 @@ public class AreaSoundManager {
         } else if (npc != null) {
             sound.npc = npc;
             @Pc(138) NpcType npcType = npc.type;
-            if (npcType.multiNpcs != null) {
+            if (npcType.multinpc != null) {
                 sound.multiLocOrNpc = true;
                 npcType = npcType.getMultiNPC();
             }
@@ -63,7 +63,7 @@ public class AreaSoundManager {
                 sound.maxZFine = (z + npcType.size) * 128;
                 sound.maxXFine = (x + npcType.size) * 128;
                 sound.sound = Npc.getSound(npc);
-                sound.radius = npcType.soundRadius * 128;
+                sound.radius = npcType.bgsound_range * 128;
             }
             npcSounds.addTail(sound);
         } else if (player != null) {
@@ -181,11 +181,11 @@ public class AreaSoundManager {
         for (areaSound = (AreaSound) npcSounds.head(); areaSound != null; areaSound = (AreaSound) npcSounds.next()) {
             movementSpeed = 1;
             basType = areaSound.npc.getBasType();
-            if (basType.idleAnimationId == areaSound.npc.movementSeqId) {
+            if (basType.readyanim == areaSound.npc.movementSeqId) {
                 movementSpeed = 0;
-            } else if (basType.runAnimationId == areaSound.npc.movementSeqId || basType.runFullTurnAnimationId == areaSound.npc.movementSeqId || basType.runCWTurnAnimationId == areaSound.npc.movementSeqId || basType.runCCWTurnAnimationId == areaSound.npc.movementSeqId) {
+            } else if (basType.runanim == areaSound.npc.movementSeqId || basType.runanim_b == areaSound.npc.movementSeqId || basType.runanim_r == areaSound.npc.movementSeqId || basType.runanim_l == areaSound.npc.movementSeqId) {
                 movementSpeed = 2;
-            } else if (basType.slowWalkAnimationId == areaSound.npc.movementSeqId || basType.slowWalkFullTurnAnimationId == areaSound.npc.movementSeqId || areaSound.npc.movementSeqId == basType.slowWalkCWTurnAnimationId || basType.slowWalkCCWTurnAnimationId == areaSound.npc.movementSeqId) {
+            } else if (basType.crawlanim == areaSound.npc.movementSeqId || basType.crawlanim_b == areaSound.npc.movementSeqId || areaSound.npc.movementSeqId == basType.crawlanim_r || basType.crawlanim_l == areaSound.npc.movementSeqId) {
                 movementSpeed = 3;
             }
             if (areaSound.movementSpeed != movementSpeed) {
@@ -208,11 +208,11 @@ public class AreaSoundManager {
         for (areaSound = (AreaSound) playerSounds.head(); areaSound != null; areaSound = (AreaSound) playerSounds.next()) {
             movementSpeed = 1;
             basType = areaSound.player.getBasType();
-            if (areaSound.player.movementSeqId == basType.idleAnimationId) {
+            if (areaSound.player.movementSeqId == basType.readyanim) {
                 movementSpeed = 0;
-            } else if (areaSound.player.movementSeqId == basType.runAnimationId || areaSound.player.movementSeqId == basType.runFullTurnAnimationId || areaSound.player.movementSeqId == basType.runCWTurnAnimationId || basType.runCCWTurnAnimationId == areaSound.player.movementSeqId) {
+            } else if (areaSound.player.movementSeqId == basType.runanim || areaSound.player.movementSeqId == basType.runanim_b || areaSound.player.movementSeqId == basType.runanim_r || basType.runanim_l == areaSound.player.movementSeqId) {
                 movementSpeed = 2;
-            } else if (basType.slowWalkAnimationId == areaSound.player.movementSeqId || areaSound.player.movementSeqId == basType.slowWalkFullTurnAnimationId || areaSound.player.movementSeqId == basType.slowWalkCWTurnAnimationId || areaSound.player.movementSeqId == basType.slowWalkCCWTurnAnimationId) {
+            } else if (basType.crawlanim == areaSound.player.movementSeqId || areaSound.player.movementSeqId == basType.crawlanim_b || areaSound.player.movementSeqId == basType.crawlanim_r || areaSound.player.movementSeqId == basType.crawlanim_l) {
                 movementSpeed = 3;
             }
             if (areaSound.movementSpeed != movementSpeed) {

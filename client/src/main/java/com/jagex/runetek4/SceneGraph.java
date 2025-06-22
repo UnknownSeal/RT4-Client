@@ -404,42 +404,42 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!jk", name = "a", descriptor = "(IZ[BII[Lclient!mj;)V")
-    public static void readLocs(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) byte[] arg2, @OriginalArg(3) int arg3, @OriginalArg(5) CollisionMap[] arg4) {
-        @Pc(10) Packet local10 = new Packet(arg2);
+    public static void readLocs(@OriginalArg(0) int arg0, @OriginalArg(1) boolean highmem, @OriginalArg(2) byte[] data, @OriginalArg(3) int arg3, @OriginalArg(5) CollisionMap[] arg4) {
+        @Pc(10) Packet packet = new Packet(data);
         @Pc(12) int local12 = -1;
         while (true) {
-            @Pc(16) int local16 = local10.gVarSmart();
+            @Pc(16) int local16 = packet.gVarSmart();
             if (local16 == 0) {
                 return;
             }
             local12 += local16;
             @Pc(27) int local27 = 0;
             while (true) {
-                @Pc(31) int local31 = local10.gSmart1or2();
+                @Pc(31) int local31 = packet.gSmart1or2();
                 if (local31 == 0) {
                     break;
                 }
                 local27 += local31 - 1;
                 @Pc(46) int local46 = local27 & 0x3F;
-                @Pc(50) int local50 = local27 >> 12;
+                @Pc(50) int level = local27 >> 12;
                 @Pc(56) int local56 = local27 >> 6 & 0x3F;
-                @Pc(60) int local60 = local10.g1();
-                @Pc(64) int local64 = local60 >> 2;
-                @Pc(68) int local68 = local60 & 0x3;
-                @Pc(72) int local72 = arg0 + local56;
-                @Pc(76) int local76 = local46 + arg3;
-                if (local72 > 0 && local76 > 0 && local72 < 103 && local76 < 103) {
+                @Pc(60) int local60 = packet.g1();
+                @Pc(64) int shape = local60 >> 2;
+                @Pc(68) int rotation = local60 & 0x3;
+                @Pc(72) int x = arg0 + local56;
+                @Pc(76) int z = local46 + arg3;
+                if (x > 0 && z > 0 && x < 103 && z < 103) {
                     @Pc(90) CollisionMap local90 = null;
-                    if (!arg1) {
-                        @Pc(95) int local95 = local50;
-                        if ((renderFlags[1][local72][local76] & 0x2) == 2) {
-                            local95 = local50 - 1;
+                    if (!highmem) {
+                        @Pc(95) int local95 = level;
+                        if ((renderFlags[1][x][z] & 0x2) == 2) {
+                            local95 = level - 1;
                         }
                         if (local95 >= 0) {
                             local90 = arg4[local95];
                         }
                     }
-                    addLoc(local50, !arg1, local50, arg1, local90, local12, local64, local72, local76, local68);
+                    addLoc(level, !highmem, level, highmem, local90, local12, shape, x, z, rotation);
                 }
             }
         }
@@ -1022,20 +1022,20 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!p", name = "a", descriptor = "(IZIZLclient!mj;IIIBII)V")
-    public static void addLoc(@OriginalArg(0) int currentPlane, @OriginalArg(1) boolean lowmem, @OriginalArg(2) int plane, @OriginalArg(3) boolean highmem, @OriginalArg(4) CollisionMap collsion, @OriginalArg(5) int arg5, @OriginalArg(6) int shape, @OriginalArg(7) int x, @OriginalArg(9) int z, @OriginalArg(10) int rotation) {
+    public static void addLoc(@OriginalArg(0) int currentlevel, @OriginalArg(1) boolean lowmem, @OriginalArg(2) int level, @OriginalArg(3) boolean highmem, @OriginalArg(4) CollisionMap collision, @OriginalArg(5) int arg5, @OriginalArg(6) int shape, @OriginalArg(7) int x, @OriginalArg(9) int z, @OriginalArg(10) int rotation) {
         if (lowmem && !allLevelsAreVisible() && (renderFlags[0][x][z] & 0x2) == 0) {
-            if ((renderFlags[plane][x][z] & 0x10) != 0) {
+            if ((renderFlags[level][x][z] & 0x10) != 0) {
                 return;
             }
-            if (getRenderLevel(z, x, plane) != centralPlane) {
+            if (getRenderLevel(z, x, level) != centralPlane) {
                 return;
             }
         }
-        if (plane < firstVisibleLevel) {
-            firstVisibleLevel = plane;
+        if (level < firstVisibleLevel) {
+            firstVisibleLevel = level;
         }
         @Pc(62) LocType locType = LocTypeList.get(arg5);
-        if (GlRenderer.enabled && locType.render) {
+        if (GlRenderer.enabled && locType.istexture) {
             return;
         }
         @Pc(84) int width;
@@ -1065,41 +1065,41 @@ public class SceneGraph {
             south = (length >> 1) + z;
             north = z + (length + 1 >> 1);
         }
-        @Pc(153) int[][] currentHeightmap = tileHeights[currentPlane];
+        @Pc(153) int[][] currentHeightmap = tileHeights[currentlevel];
         @Pc(165) int local165 = (width << 6) + (x << 7);
         @Pc(173) int local173 = (length << 6) + (z << 7);
         @Pc(199) int averageY = currentHeightmap[west][north] + currentHeightmap[east][south] + currentHeightmap[west][south] + currentHeightmap[east][north] >> 2;
         @Pc(201) int diffAverageY = 0;
         @Pc(213) int[][] heightmap;
-        if (GlRenderer.enabled && currentPlane != 0) {
+        if (GlRenderer.enabled && currentlevel != 0) {
             heightmap = tileHeights[0];
             diffAverageY = averageY - (heightmap[east][north] + heightmap[east][south] + heightmap[west][south] + heightmap[west][north] >> 2);
         }
         heightmap = null;
-        @Pc(261) long bitset = (long) (x | 0x40000000 | z << 7 | shape << 14 | rotation << 20);
+        @Pc(261) long bitset = x | 0x40000000 | z << 7 | shape << 14 | rotation << 20;
         if (highmem) {
             heightmap = surfaceTileHeights[0];
-        } else if (currentPlane < 3) {
-            heightmap = tileHeights[currentPlane + 1];
+        } else if (currentlevel < 3) {
+            heightmap = tileHeights[currentlevel + 1];
         }
-        if (locType.interactable == 0 || highmem) {
+        if (locType.active == 0 || highmem) {
             bitset |= Long.MIN_VALUE;
         }
-        if (locType.supportItems == 1) {
+        if (locType.raiseobject == 1) {
             bitset |= 0x400000L;
         }
         if (locType.hasAnimation) {
             bitset |= 0x80000000L;
         }
         if (locType.hasBackgroundSound()) {
-            AreaSoundManager.add(z, locType, rotation, null, x, plane, null);
+            AreaSoundManager.add(z, locType, rotation, null, x, level, null);
         }
-        @Pc(330) boolean local330 = locType.castShadow & !highmem;
+        @Pc(330) boolean local330 = locType.hardshadow & !highmem;
         bitset |= (long) arg5 << 32;
         @Pc(387) Entity entity;
         @Pc(403) LocEntity local403;
-        if (shape == 22) {
-            if (Preferences.showGroundDecorations || locType.interactable != 0 || locType.blockWalk == 1 || locType.forceDecor) {
+        if (shape == LocType.GROUND_DECOR) {
+            if (Preferences.showGroundDecorations || locType.active != 0 || locType.blockwalk == 1 || locType.forcedecor) {
                 if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
                     local403 = locType.method3428(rotation, local165, currentHeightmap, 22, averageY, heightmap, lowmem, null, local330, local173);
                     if (GlRenderer.enabled && local330) {
@@ -1107,26 +1107,26 @@ public class SceneGraph {
                     }
                     entity = local403.model;
                 } else {
-                    entity = new Loc(arg5, 22, rotation, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
+                    entity = new Loc(arg5, 22, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                 }
-                setGroundDecor(plane, x, z, averageY, entity, bitset, locType.renderUnderFeet);
-                if (locType.blockWalk == 1 && collsion != null) {
-                    collsion.method3057(x, z);
+                setGroundDecor(level, x, z, averageY, entity, bitset, locType.renderUnderFeet);
+                if (locType.blockwalk == 1 && collision != null) {
+                    collision.method3057(x, z);
                 }
             }
-        } else if (shape == 10 || shape == 11) {
+        } else if (shape == LocType.CENTREPIECE_STRAIGHT || shape == LocType.CENTREPIECE_DIAGONAL) {
             if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
-                local403 = locType.method3428(shape == 11 ? rotation + 4 : rotation, local165, currentHeightmap, 10, averageY, heightmap, lowmem, null, local330, local173);
+                local403 = locType.method3428(shape == LocType.CENTREPIECE_DIAGONAL ? rotation + 4 : rotation, local165, currentHeightmap, 10, averageY, heightmap, lowmem, null, local330, local173);
                 if (GlRenderer.enabled && local330) {
                     ShadowManager.method4211(local403.sprite, local165, diffAverageY, local173);
                 }
                 entity = local403.model;
             } else {
-                entity = new Loc(arg5, 10, shape == 11 ? rotation + 4 : rotation, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
+                entity = new Loc(arg5, 10, shape == 11 ? rotation + 4 : rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
             }
             if (entity != null) {
-                @Pc(531) boolean local531 = method35(plane, x, z, averageY, width, length, entity, bitset);
-                if (locType.active && local531 && lowmem) {
+                @Pc(531) boolean local531 = method35(level, x, z, averageY, width, length, entity, bitset);
+                if (locType.hashardshadow && local531 && lowmem) {
                     @Pc(541) int local541 = 15;
                     if (entity instanceof Model) {
                         local541 = ((Model) entity).getLengthXZ() / 4;
@@ -1136,17 +1136,17 @@ public class SceneGraph {
                     }
                     for (@Pc(560) int local560 = 0; local560 <= width; local560++) {
                         for (@Pc(565) int local565 = 0; local565 <= length; local565++) {
-                            if (shadowmap[plane][x + local560][local565 + z] < local541) {
-                                shadowmap[plane][x + local560][z + local565] = (byte) local541;
+                            if (shadowmap[level][x + local560][local565 + z] < local541) {
+                                shadowmap[level][x + local560][z + local565] = (byte) local541;
                             }
                         }
                     }
                 }
             }
-            if (locType.blockWalk != 0 && collsion != null) {
-                collsion.flagScenery(x, locType.blockRange, z, width, length);
+            if (locType.blockwalk != 0 && collision != null) {
+                collision.flagScenery(x, locType.blockrange, z, width, length);
             }
-        } else if (shape >= 12) {
+        } else if (shape >= LocType.ROOF_STRAIGHT) {
             if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
                 local403 = locType.method3428(rotation, local165, currentHeightmap, shape, averageY, heightmap, lowmem, null, local330, local173);
                 if (GlRenderer.enabled && local330) {
@@ -1154,16 +1154,16 @@ public class SceneGraph {
                 }
                 entity = local403.model;
             } else {
-                entity = new Loc(arg5, shape, rotation, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
+                entity = new Loc(arg5, shape, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
             }
-            method35(plane, x, z, averageY, 1, 1, entity, bitset);
-            if (lowmem && shape >= 12 && shape <= 17 && shape != 13 && plane > 0) {
-                occludeFlags[plane][x][z] |= 0x4;
+            method35(level, x, z, averageY, 1, 1, entity, bitset);
+            if (lowmem && shape >= 12 && shape <= 17 && shape != 13 && level > 0) {
+                occludeFlags[level][x][z] |= 0x4;
             }
-            if (locType.blockWalk != 0 && collsion != null) {
-                collsion.flagScenery(x, locType.blockRange, z, width, length);
+            if (locType.blockwalk != 0 && collision != null) {
+                collision.flagScenery(x, locType.blockrange, z, width, length);
             }
-        } else if (shape == 0) {
+        } else if (shape == LocType.WALL_STRAIGHT) {
             if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
                 local403 = locType.method3428(rotation, local165, currentHeightmap, 0, averageY, heightmap, lowmem, null, local330, local173);
                 if (GlRenderer.enabled && local330) {
@@ -1171,51 +1171,51 @@ public class SceneGraph {
                 }
                 entity = local403.model;
             } else {
-                entity = new Loc(arg5, 0, rotation, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
+                entity = new Loc(arg5, 0, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
             }
-            setWall(plane, x, z, averageY, entity, null, ROTATION_WALL_TYPE[rotation], 0, bitset);
+            addWall(level, x, z, averageY, entity, null, ROTATION_WALL_TYPE[rotation], 0, bitset);
             if (lowmem) {
                 if (rotation == 0) {
-                    if (locType.active) {
-                        shadowmap[plane][x][z] = 50;
-                        shadowmap[plane][x][z + 1] = 50;
+                    if (locType.hashardshadow) {
+                        shadowmap[level][x][z] = 50;
+                        shadowmap[level][x][z + 1] = 50;
                     }
                     if (locType.occlude) {
-                        occludeFlags[plane][x][z] |= 0x1;
+                        occludeFlags[level][x][z] |= 0x1;
                     }
                 } else if (rotation == 1) {
-                    if (locType.active) {
-                        shadowmap[plane][x][z + 1] = 50;
-                        shadowmap[plane][x + 1][z + 1] = 50;
+                    if (locType.hashardshadow) {
+                        shadowmap[level][x][z + 1] = 50;
+                        shadowmap[level][x + 1][z + 1] = 50;
                     }
                     if (locType.occlude) {
-                        occludeFlags[plane][x][z + 1] |= 0x2;
+                        occludeFlags[level][x][z + 1] |= 0x2;
                     }
                 } else if (rotation == 2) {
-                    if (locType.active) {
-                        shadowmap[plane][x + 1][z] = 50;
-                        shadowmap[plane][x + 1][z + 1] = 50;
+                    if (locType.hashardshadow) {
+                        shadowmap[level][x + 1][z] = 50;
+                        shadowmap[level][x + 1][z + 1] = 50;
                     }
                     if (locType.occlude) {
-                        occludeFlags[plane][x + 1][z] |= 0x1;
+                        occludeFlags[level][x + 1][z] |= 0x1;
                     }
                 } else if (rotation == 3) {
-                    if (locType.active) {
-                        shadowmap[plane][x][z] = 50;
-                        shadowmap[plane][x + 1][z] = 50;
+                    if (locType.hashardshadow) {
+                        shadowmap[level][x][z] = 50;
+                        shadowmap[level][x + 1][z] = 50;
                     }
                     if (locType.occlude) {
-                        occludeFlags[plane][x][z] |= 0x2;
+                        occludeFlags[level][x][z] |= 0x2;
                     }
                 }
             }
-            if (locType.blockWalk != 0 && collsion != null) {
-                collsion.addWall(x, z, shape, rotation, locType.blockRange);
+            if (locType.blockwalk != 0 && collision != null) {
+                collision.addWall(x, z, shape, rotation, locType.blockrange);
             }
-            if (locType.wallWidth != 16) {
-                setWallDecoration(plane, x, z, locType.wallWidth);
+            if (locType.walloff != 16) {
+                setWallDecoration(level, x, z, locType.walloff);
             }
-        } else if (shape == 1) {
+        } else if (shape == LocType.WALL_DIAGONAL_CORNER) {
             if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
                 local403 = locType.method3428(rotation, local165, currentHeightmap, 1, averageY, heightmap, lowmem, null, local330, local173);
                 if (GlRenderer.enabled && local330) {
@@ -1223,26 +1223,26 @@ public class SceneGraph {
                 }
                 entity = local403.model;
             } else {
-                entity = new Loc(arg5, 1, rotation, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
+                entity = new Loc(arg5, 1, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
             }
-            setWall(plane, x, z, averageY, entity, null, Wall.ROTATION_WALL_CORNER_TYPE[rotation], 0, bitset);
-            if (locType.active && lowmem) {
+            addWall(level, x, z, averageY, entity, null, Wall.ROTATION_WALL_CORNER_TYPE[rotation], 0, bitset);
+            if (locType.hashardshadow && lowmem) {
                 if (rotation == 0) {
-                    shadowmap[plane][x][z + 1] = 50;
+                    shadowmap[level][x][z + 1] = 50;
                 } else if (rotation == 1) {
-                    shadowmap[plane][x + 1][z + 1] = 50;
+                    shadowmap[level][x + 1][z + 1] = 50;
                 } else if (rotation == 2) {
-                    shadowmap[plane][x + 1][z] = 50;
+                    shadowmap[level][x + 1][z] = 50;
                 } else if (rotation == 3) {
-                    shadowmap[plane][x][z] = 50;
+                    shadowmap[level][x][z] = 50;
                 }
             }
-            if (locType.blockWalk != 0 && collsion != null) {
-                collsion.addWall(x, z, shape, rotation, locType.blockRange);
+            if (locType.blockwalk != 0 && collision != null) {
+                collision.addWall(x, z, shape, rotation, locType.blockrange);
             }
         } else {
             @Pc(1226) int local1226;
-            if (shape == 2) {
+            if (shape == LocType.WALL_L) {
                 local1226 = rotation + 1 & 0x3;
                 @Pc(1269) Entity local1269;
                 @Pc(1254) Entity local1254;
@@ -1258,32 +1258,32 @@ public class SceneGraph {
                     }
                     local1269 = local1287.model;
                 } else {
-                    local1254 = new Loc(arg5, 2, rotation + 4, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
-                    local1269 = new Loc(arg5, 2, local1226, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
+                    local1254 = new Loc(arg5, 2, rotation + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                    local1269 = new Loc(arg5, 2, local1226, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                 }
-                setWall(plane, x, z, averageY, local1254, local1269, ROTATION_WALL_TYPE[rotation], ROTATION_WALL_TYPE[local1226], bitset);
+                addWall(level, x, z, averageY, local1254, local1269, ROTATION_WALL_TYPE[rotation], ROTATION_WALL_TYPE[local1226], bitset);
                 if (locType.occlude && lowmem) {
                     if (rotation == 0) {
-                        occludeFlags[plane][x][z] |= 0x1;
-                        occludeFlags[plane][x][z + 1] |= 0x2;
+                        occludeFlags[level][x][z] |= 0x1;
+                        occludeFlags[level][x][z + 1] |= 0x2;
                     } else if (rotation == 1) {
-                        occludeFlags[plane][x][z + 1] |= 0x2;
-                        occludeFlags[plane][x + 1][z] |= 0x1;
+                        occludeFlags[level][x][z + 1] |= 0x2;
+                        occludeFlags[level][x + 1][z] |= 0x1;
                     } else if (rotation == 2) {
-                        occludeFlags[plane][x + 1][z] |= 0x1;
-                        occludeFlags[plane][x][z] |= 0x2;
+                        occludeFlags[level][x + 1][z] |= 0x1;
+                        occludeFlags[level][x][z] |= 0x2;
                     } else if (rotation == 3) {
-                        occludeFlags[plane][x][z] |= 0x2;
-                        occludeFlags[plane][x][z] |= 0x1;
+                        occludeFlags[level][x][z] |= 0x2;
+                        occludeFlags[level][x][z] |= 0x1;
                     }
                 }
-                if (locType.blockWalk != 0 && collsion != null) {
-                    collsion.addWall(x, z, shape, rotation, locType.blockRange);
+                if (locType.blockwalk != 0 && collision != null) {
+                    collision.addWall(x, z, shape, rotation, locType.blockrange);
                 }
-                if (locType.wallWidth != 16) {
-                    setWallDecoration(plane, x, z, locType.wallWidth);
+                if (locType.walloff != 16) {
+                    setWallDecoration(level, x, z, locType.walloff);
                 }
-            } else if (shape == 3) {
+            } else if (shape == LocType.WALL_SQUARE_CORNER) {
                 if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
                     local403 = locType.method3428(rotation, local165, currentHeightmap, 3, averageY, heightmap, lowmem, null, local330, local173);
                     if (GlRenderer.enabled && local330) {
@@ -1291,24 +1291,24 @@ public class SceneGraph {
                     }
                     entity = local403.model;
                 } else {
-                    entity = new Loc(arg5, 3, rotation, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
+                    entity = new Loc(arg5, 3, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                 }
-                setWall(plane, x, z, averageY, entity, null, Wall.ROTATION_WALL_CORNER_TYPE[rotation], 0, bitset);
-                if (locType.active && lowmem) {
+                addWall(level, x, z, averageY, entity, null, Wall.ROTATION_WALL_CORNER_TYPE[rotation], 0, bitset);
+                if (locType.hashardshadow && lowmem) {
                     if (rotation == 0) {
-                        shadowmap[plane][x][z + 1] = 50;
+                        shadowmap[level][x][z + 1] = 50;
                     } else if (rotation == 1) {
-                        shadowmap[plane][x + 1][z + 1] = 50;
+                        shadowmap[level][x + 1][z + 1] = 50;
                     } else if (rotation == 2) {
-                        shadowmap[plane][x + 1][z] = 50;
+                        shadowmap[level][x + 1][z] = 50;
                     } else if (rotation == 3) {
-                        shadowmap[plane][x][z] = 50;
+                        shadowmap[level][x][z] = 50;
                     }
                 }
-                if (locType.blockWalk != 0 && collsion != null) {
-                    collsion.addWall(x, z, shape, rotation, locType.blockRange);
+                if (locType.blockwalk != 0 && collision != null) {
+                    collision.addWall(x, z, shape, rotation, locType.blockrange);
                 }
-            } else if (shape == 9) {
+            } else if (shape == LocType.WALL_DIAGONAL) {
                 if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
                     local403 = locType.method3428(rotation, local165, currentHeightmap, shape, averageY, heightmap, lowmem, null, local330, local173);
                     if (GlRenderer.enabled && local330) {
@@ -1316,16 +1316,16 @@ public class SceneGraph {
                     }
                     entity = local403.model;
                 } else {
-                    entity = new Loc(arg5, shape, rotation, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
+                    entity = new Loc(arg5, shape, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                 }
-                method35(plane, x, z, averageY, 1, 1, entity, bitset);
-                if (locType.blockWalk != 0 && collsion != null) {
-                    collsion.flagScenery(x, locType.blockRange, z, width, length);
+                method35(level, x, z, averageY, 1, 1, entity, bitset);
+                if (locType.blockwalk != 0 && collision != null) {
+                    collision.flagScenery(x, locType.blockrange, z, width, length);
                 }
-                if (locType.wallWidth != 16) {
-                    setWallDecoration(plane, x, z, locType.wallWidth);
+                if (locType.walloff != 16) {
+                    setWallDecoration(level, x, z, locType.walloff);
                 }
-            } else if (shape == 4) {
+            } else if (shape == LocType.WALLDECOR_STRAIGHT_NOOFFSET) {
                 if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
                     local403 = locType.method3428(rotation, local165, currentHeightmap, 4, averageY, heightmap, lowmem, null, local330, local173);
                     if (GlRenderer.enabled && local330) {
@@ -1333,18 +1333,18 @@ public class SceneGraph {
                     }
                     entity = local403.model;
                 } else {
-                    entity = new Loc(arg5, 4, rotation, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
+                    entity = new Loc(arg5, 4, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                 }
-                setWallDecor(plane, x, z, averageY, entity, null, ROTATION_WALL_TYPE[rotation], 0, 0, 0, bitset);
+                addWallDecoration(level, x, z, averageY, entity, null, ROTATION_WALL_TYPE[rotation], 0, 0, 0, bitset);
             } else {
                 @Pc(1889) long local1889;
                 @Pc(1934) Entity local1934;
                 @Pc(1950) LocEntity local1950;
-                if (shape == 5) {
+                if (shape == LocType.WALLDECOR_STRAIGHT_OFFSET) {
                     local1226 = 16;
-                    local1889 = getWallKey(plane, x, z);
+                    local1889 = getWallKey(level, x, z);
                     if (local1889 != 0L) {
-                        local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).wallWidth;
+                        local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).walloff;
                     }
                     if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
                         local1950 = locType.method3428(rotation, local165, currentHeightmap, 4, averageY, heightmap, lowmem, null, local330, local173);
@@ -1353,14 +1353,14 @@ public class SceneGraph {
                         }
                         local1934 = local1950.model;
                     } else {
-                        local1934 = new Loc(arg5, 4, rotation, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
+                        local1934 = new Loc(arg5, 4, rotation, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                     }
-                    setWallDecor(plane, x, z, averageY, local1934, null, ROTATION_WALL_TYPE[rotation], 0, local1226 * WALL_DECORATION_ROTATION_FORWARD_X[rotation], WALL_DECORATION_ROTATION_FORWARD_Z[rotation] * local1226, bitset);
-                } else if (shape == 6) {
+                    addWallDecoration(level, x, z, averageY, local1934, null, ROTATION_WALL_TYPE[rotation], 0, local1226 * WALL_DECORATION_ROTATION_FORWARD_X[rotation], WALL_DECORATION_ROTATION_FORWARD_Z[rotation] * local1226, bitset);
+                } else if (shape == LocType.WALLDECOR_DIAGONAL_OFFSET) {
                     local1226 = 8;
-                    local1889 = getWallKey(plane, x, z);
+                    local1889 = getWallKey(level, x, z);
                     if (local1889 != 0L) {
-                        local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).wallWidth / 2;
+                        local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).walloff / 2;
                     }
                     if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
                         local1950 = locType.method3428(rotation + 4, local165, currentHeightmap, 4, averageY, heightmap, lowmem, null, local330, local173);
@@ -1369,10 +1369,10 @@ public class SceneGraph {
                         }
                         local1934 = local1950.model;
                     } else {
-                        local1934 = new Loc(arg5, 4, rotation + 4, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
+                        local1934 = new Loc(arg5, 4, rotation + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                     }
-                    setWallDecor(plane, x, z, averageY, local1934, null, 256, rotation, local1226 * anIntArray565[rotation], local1226 * anIntArray154[rotation], bitset);
-                } else if (shape == 7) {
+                    addWallDecoration(level, x, z, averageY, local1934, null, 256, rotation, local1226 * anIntArray565[rotation], local1226 * anIntArray154[rotation], bitset);
+                } else if (shape == LocType.WALLDECOR_DIAGONAL_NOOFFSET) {
                     @Pc(2137) int local2137 = rotation + 2 & 0x3;
                     if (locType.anim == -1 && locType.multiloc == null && !locType.aBoolean214) {
                         @Pc(2183) LocEntity local2183 = locType.method3428(local2137 + 4, local165, currentHeightmap, 4, averageY, heightmap, lowmem, null, local330, local173);
@@ -1381,14 +1381,14 @@ public class SceneGraph {
                         }
                         entity = local2183.model;
                     } else {
-                        entity = new Loc(arg5, 4, local2137 + 4, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
+                        entity = new Loc(arg5, 4, local2137 + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                     }
-                    setWallDecor(plane, x, z, averageY, entity, null, 256, local2137, 0, 0, bitset);
-                } else if (shape == 8) {
+                    addWallDecoration(level, x, z, averageY, entity, null, 256, local2137, 0, 0, bitset);
+                } else if (shape == LocType.WALLDECOR_DIAGONAL_BOTH) {
                     local1226 = 8;
-                    local1889 = getWallKey(plane, x, z);
+                    local1889 = getWallKey(level, x, z);
                     if (local1889 != 0L) {
-                        local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).wallWidth / 2;
+                        local1226 = LocTypeList.get(Integer.MAX_VALUE & (int) (local1889 >>> 32)).walloff / 2;
                     }
                     @Pc(2244) int local2244 = rotation + 2 & 0x3;
                     @Pc(2289) Entity local2289;
@@ -1406,10 +1406,10 @@ public class SceneGraph {
                         }
                         local2289 = local2319.model;
                     } else {
-                        local1934 = new Loc(arg5, 4, rotation + 4, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
-                        local2289 = new Loc(arg5, 4, local2244 + 4, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
+                        local1934 = new Loc(arg5, 4, rotation + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
+                        local2289 = new Loc(arg5, 4, local2244 + 4, currentlevel, x, z, locType.anim, locType.randomanimframe, null);
                     }
-                    setWallDecor(plane, x, z, averageY, local1934, local2289, 256, rotation, local1226 * anIntArray565[rotation], anIntArray154[rotation] * local1226, bitset);
+                    addWallDecoration(level, x, z, averageY, local1934, local2289, 256, rotation, local1226 * anIntArray565[rotation], anIntArray154[rotation] * local1226, bitset);
                 }
             }
         }
@@ -1689,14 +1689,14 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!ih", name = "a", descriptor = "(III)Lclient!jh;")
-    public static Wall removeWall(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2) {
-        @Pc(7) Tile local7 = tiles[arg0][arg1][arg2];
-        if (local7 == null) {
+    public static Wall removeWall(@OriginalArg(0) int level, @OriginalArg(1) int x, @OriginalArg(2) int z) {
+        @Pc(7) Tile tile = tiles[level][x][z];
+        if (tile == null) {
             return null;
         } else {
-            @Pc(14) Wall local14 = local7.wall;
-            local7.wall = null;
-            return local14;
+            @Pc(14) Wall wallAtTile = tile.wall;
+            tile.wall = null;
+            return wallAtTile;
         }
     }
 
@@ -1776,63 +1776,63 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!wj", name = "a", descriptor = "(IIZLclient!wa;IIBII)V")
-    public static void readTile(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) Packet arg3, @OriginalArg(4) int z, @OriginalArg(5) int x, @OriginalArg(7) int arg6, @OriginalArg(8) int arg7) {
+    public static void readTile(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) Packet packet, @OriginalArg(4) int z, @OriginalArg(5) int x, @OriginalArg(7) int arg6, @OriginalArg(8) int level) {
         @Pc(32) int opcode;
         if (x < 0 || x >= 104 || z < 0 || z >= 104) {
             while (true) {
-                opcode = arg3.g1();
+                opcode = packet.g1();
                 if (opcode == 0) {
                     break;
                 }
                 if (opcode == 1) {
-                    arg3.g1();
+                    packet.g1();
                     break;
                 }
                 if (opcode <= 49) {
-                    arg3.g1();
+                    packet.g1();
                 }
             }
             return;
         }
         if (!arg2) {
-            renderFlags[arg7][x][z] = 0;
+            renderFlags[level][x][z] = 0;
         }
         while (true) {
-            opcode = arg3.g1();
+            opcode = packet.g1();
             if (opcode == 0) {
                 if (arg2) {
                     tileHeights[0][x][z] = surfaceTileHeights[0][x][z];
-                } else if (arg7 == 0) {
+                } else if (level == 0) {
                     tileHeights[0][x][z] = -PerlinNoise.getTileHeight(z + arg1 + 556238, arg0 + x + 932731) * 8;
                 } else {
-                    tileHeights[arg7][x][z] = tileHeights[arg7 - 1][x][z] - 240;
+                    tileHeights[level][x][z] = tileHeights[level - 1][x][z] - 240;
                 }
                 break;
             }
             if (opcode == 1) {
-                @Pc(111) int local111 = arg3.g1();
+                @Pc(111) int local111 = packet.g1();
                 if (arg2) {
                     tileHeights[0][x][z] = surfaceTileHeights[0][x][z] + local111 * 8;
                 } else {
                     if (local111 == 1) {
                         local111 = 0;
                     }
-                    if (arg7 == 0) {
+                    if (level == 0) {
                         tileHeights[0][x][z] = -local111 * 8;
                     } else {
-                        tileHeights[arg7][x][z] = tileHeights[arg7 - 1][x][z] - local111 * 8;
+                        tileHeights[level][x][z] = tileHeights[level - 1][x][z] - local111 * 8;
                     }
                 }
                 break;
             }
             if (opcode <= 49) {
-                tileOverlays[arg7][x][z] = arg3.g1s();
-                tileShapes[arg7][x][z] = (byte) ((opcode - 2) / 4);
-                tileAngles[arg7][x][z] = (byte) (opcode + arg6 - 2 & 0x3);
+                tileOverlays[level][x][z] = packet.g1s();
+                tileShapes[level][x][z] = (byte) ((opcode - 2) / 4);
+                tileAngles[level][x][z] = (byte) (opcode + arg6 - 2 & 0x3);
             } else if (opcode > 81) {
-                tileUnderlays[arg7][x][z] = (byte) (opcode - 81);
+                tileUnderlays[level][x][z] = (byte) (opcode - 81);
             } else if (!arg2) {
-                renderFlags[arg7][x][z] = (byte) (opcode - 49);
+                renderFlags[level][x][z] = (byte) (opcode - 49);
             }
         }
     }
@@ -1941,7 +1941,7 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!vf", name = "a", descriptor = "(IIIILclient!th;Lclient!th;IIJ)V")
-    public static void setWall(@OriginalArg(0) int level, @OriginalArg(1) int x, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) Entity primary, @OriginalArg(5) Entity secondary, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8) {
+    public static void addWall(@OriginalArg(0) int level, @OriginalArg(1) int x, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) Entity primary, @OriginalArg(5) Entity secondary, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) long arg8) {
         if (primary == null && secondary == null) {
             return;
         }
@@ -2234,8 +2234,8 @@ public class SceneGraph {
                 local100 = local110.primary;
                 local102 = local110.secondary;
             }
-            if (local74.blockWalk != 0) {
-                arg5.unflagWall(local92, local74.blockRange, arg0, local57, arg1);
+            if (local74.blockwalk != 0) {
+                arg5.unflagWall(local92, local74.blockrange, arg0, local57, arg1);
             }
         } else if (arg3 == 1) {
             @Pc(233) WallDecor local233 = removeWallDecor(arg2, arg1, arg0);
@@ -2248,19 +2248,19 @@ public class SceneGraph {
             if (local148 != null) {
                 local100 = local148.entity;
             }
-            if (local74.blockWalk != 0 && local74.width + arg1 < 104 && local74.width + arg0 < 104 && arg1 + local74.length < 104 && arg0 + local74.length < 104) {
-                arg5.unflagScenery(arg1, local74.width, local74.blockRange, local92, local74.length, arg0);
+            if (local74.blockwalk != 0 && local74.width + arg1 < 104 && local74.width + arg0 < 104 && arg1 + local74.length < 104 && arg0 + local74.length < 104) {
+                arg5.unflagScenery(arg1, local74.width, local74.blockrange, local92, local74.length, arg0);
             }
         } else if (arg3 == 3) {
             @Pc(211) GroundDecor local211 = removeGroundDecor(arg2, arg1, arg0);
             if (local211 != null) {
                 local100 = local211.entity;
             }
-            if (local74.blockWalk == 1) {
+            if (local74.blockwalk == 1) {
                 arg5.unflagGroundDecor(arg0, arg1);
             }
         }
-        if (!GlRenderer.enabled || !local74.castShadow) {
+        if (!GlRenderer.enabled || !local74.hardshadow) {
             return;
         }
         if (local57 == 2) {
@@ -2356,7 +2356,7 @@ public class SceneGraph {
     }
 
     @OriginalMember(owner = "runetek4.client!hc", name = "a", descriptor = "(IIIILclient!th;Lclient!th;IIIIJ)V")
-    public static void setWallDecor(@OriginalArg(0) int level, @OriginalArg(1) int x, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) Entity primary, @OriginalArg(5) Entity arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) long arg10) {
+    public static void addWallDecoration(@OriginalArg(0) int level, @OriginalArg(1) int x, @OriginalArg(2) int z, @OriginalArg(3) int arg3, @OriginalArg(4) Entity primary, @OriginalArg(5) Entity arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8, @OriginalArg(9) int arg9, @OriginalArg(10) long arg10) {
         if (primary == null) {
             return;
         }

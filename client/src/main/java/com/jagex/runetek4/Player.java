@@ -117,11 +117,11 @@ public final class Player extends PathingEntity {
     public static int getSound(@OriginalArg(1) Player arg0) {
         @Pc(14) int local14 = arg0.anInt1654;
         @Pc(18) BasType local18 = arg0.getBasType();
-        if (local18.idleAnimationId == arg0.movementSeqId) {
+        if (local18.readyanim == arg0.movementSeqId) {
             local14 = arg0.anInt1648;
-        } else if (local18.runAnimationId == arg0.movementSeqId || arg0.movementSeqId == local18.runFullTurnAnimationId || arg0.movementSeqId == local18.runCWTurnAnimationId || local18.runCCWTurnAnimationId == arg0.movementSeqId) {
+        } else if (local18.runanim == arg0.movementSeqId || arg0.movementSeqId == local18.runanim_b || arg0.movementSeqId == local18.runanim_r || local18.runanim_l == arg0.movementSeqId) {
             local14 = arg0.anInt1670;
-        } else if (arg0.movementSeqId == local18.slowWalkAnimationId || arg0.movementSeqId == local18.slowWalkFullTurnAnimationId || arg0.movementSeqId == local18.slowWalkCWTurnAnimationId || arg0.movementSeqId == local18.slowWalkCCWTurnAnimationId) {
+        } else if (arg0.movementSeqId == local18.crawlanim || arg0.movementSeqId == local18.crawlanim_b || arg0.movementSeqId == local18.crawlanim_r || arg0.movementSeqId == local18.crawlanim_l) {
             local14 = arg0.anInt1658;
         }
         return local14;
@@ -437,7 +437,7 @@ public final class Player extends PathingEntity {
 			return;
 		}
 		@Pc(25) SeqType local25 = this.primarySeqId != -1 && this.anInt3420 == 0 ? SeqTypeList.get(this.primarySeqId) : null;
-		@Pc(54) SeqType local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().idleAnimationId && local25 != null ? null : SeqTypeList.get(this.movementSeqId);
+		@Pc(54) SeqType local54 = this.movementSeqId == -1 || this.lowMemory || this.movementSeqId == this.getBasType().readyanim && local25 != null ? null : SeqTypeList.get(this.movementSeqId);
 		@Pc(76) Model local76 = this.appearance.method1954(this.aPathingEntityClass147Array3, this.anInt3373, local54, local25, this.anInt3396, this.anInt3388, this.anInt3360, this.anInt3425, this.anInt3407);
 		@Pc(79) int local79 = PlayerAppearance.getModelCacheSize();
 		if (GlRenderer.enabled && GameShell.maxMemory < 96 && local79 > 50) {
@@ -460,7 +460,7 @@ public final class Player extends PathingEntity {
 		}
 		this.minY = local76.getMinY();
 		@Pc(184) Model model;
-		if (Preferences.characterShadowsOn && (this.appearance.npcId == -1 || NpcTypeList.get(this.appearance.npcId).spotShadow)) {
+		if (Preferences.characterShadowsOn && (this.appearance.npcId == -1 || NpcTypeList.get(this.appearance.npcId).spotshadow)) {
 			model = ShadowModelList.method1043(160, this.seqStretches, local54 == null ? local25 : local54, this.xFine, 0, this.zFine, 0, 1, local76, arg0, local54 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, 240);
 			if (GlRenderer.enabled) {
 				@Pc(188) float local188 = GlRenderer.method4179();

@@ -46,7 +46,7 @@ public final class NpcType {
 	private short[] recol_s;
 
 	@OriginalMember(owner = "client!me", name = "g", descriptor = "[I")
-	private int[] headModels;
+	private int[] heads;
 
 	@OriginalMember(owner = "client!me", name = "o", descriptor = "[S")
 	private short[] recol_d;
@@ -55,7 +55,7 @@ public final class NpcType {
 	private int[][] anIntArrayArray28;
 
 	@OriginalMember(owner = "client!me", name = "z", descriptor = "[[I")
-	private int[][] modelOffsets;
+	private int[][] modeloffset;
 
 	@OriginalMember(owner = "client!me", name = "J", descriptor = "[S")
 	private short[] retex_s;
@@ -67,28 +67,28 @@ public final class NpcType {
 	public int id;
 
 	@OriginalMember(owner = "client!me", name = "cb", descriptor = "[I")
-	private int[] modelIndices;
+	private int[] models;
 
 	@OriginalMember(owner = "client!me", name = "hb", descriptor = "[I")
-	public int[] multiNpcs;
+	public int[] multinpc;
 
 	@OriginalMember(owner = "client!me", name = "A", descriptor = "I")
-	public int idleSound = -1;
+	public int bgsound = -1;
 
 	@OriginalMember(owner = "client!me", name = "I", descriptor = "Z")
-	public boolean interactive = true;
+	public boolean active = true;
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "I")
 	public int size = 1;
 
 	@OriginalMember(owner = "client!me", name = "q", descriptor = "Z")
-	public boolean rotationFlag = true;
+	public boolean walksmoothing = true;
 
 	@OriginalMember(owner = "client!me", name = "O", descriptor = "I")
-	public int runSound = -1;
+	public int bgsound_run = -1;
 
 	@OriginalMember(owner = "client!me", name = "r", descriptor = "S")
-	public short spotShadowColor2 = 0;
+	public short spotshadowcolour_2 = 0;
 
 	@OriginalMember(owner = "runetek4.client!vk", name = "d", descriptor = "Lclient!na;")
 	public static final JString aClass100_1010 = JString.parse("null");
@@ -97,10 +97,10 @@ public final class NpcType {
 	public JString name = aClass100_1010;
 
 	@OriginalMember(owner = "client!me", name = "x", descriptor = "I")
-	public int combatLevel = -1;
+	public int vislevel = -1;
 
 	@OriginalMember(owner = "client!me", name = "Z", descriptor = "Z")
-	public boolean miniMapDisplay = true;
+	public boolean minimap = true;
 
 	@OriginalMember(owner = "client!me", name = "l", descriptor = "I")
 	public int cursor1 = -1;
@@ -112,22 +112,22 @@ public final class NpcType {
 	public int miniMapMarkerObjectEntry = -1;
 
 	@OriginalMember(owner = "client!me", name = "C", descriptor = "I")
-	private int resizeX = 128;
+	private int resizeh = 128;
 
 	@OriginalMember(owner = "client!me", name = "N", descriptor = "B")
-	public byte spotShadowTrans2 = -16;
+	public byte spotshadowtrans_2 = -16;
 
 	@OriginalMember(owner = "client!me", name = "H", descriptor = "I")
 	public int headIcon = -1;
 
 	@OriginalMember(owner = "client!me", name = "F", descriptor = "B")
-	public byte loginScreenProperties = 0;
+	public byte walkflags = 0;
 
 	@OriginalMember(owner = "client!me", name = "e", descriptor = "Z")
-	public boolean spotShadow = true;
+	public boolean spotshadow = true;
 
 	@OriginalMember(owner = "client!me", name = "ab", descriptor = "S")
-	public short spotShadowColor1 = 0;
+	public short spotshadowcolour_1 = 0;
 
 	@OriginalMember(owner = "client!me", name = "db", descriptor = "I")
 	public int cursor2Op = -1;
@@ -139,52 +139,52 @@ public final class NpcType {
 	private int ambient = 0;
 
 	@OriginalMember(owner = "client!me", name = "B", descriptor = "Z")
-	public boolean topRenderPriority = false;
+	public boolean drawabove = false;
 
 	@OriginalMember(owner = "client!me", name = "M", descriptor = "I")
-	public int rotationSpeed = 32;
+	public int turnspeed = 32;
 
 	@OriginalMember(owner = "client!me", name = "u", descriptor = "[Lclient!na;")
-	public final JString[] ops = new JString[5];
+	public final JString[] op = new JString[5];
 
 	@OriginalMember(owner = "client!me", name = "ib", descriptor = "I")
-	public int walkSound = -1;
+	public int bgsound_walk = -1;
 
 	@OriginalMember(owner = "client!me", name = "bb", descriptor = "B")
-	public byte shadowColorModifier1 = -96;
+	public byte spotshadowtrans_1 = -96;
 
 	@OriginalMember(owner = "client!me", name = "G", descriptor = "B")
-	public byte spawnDirection = 7;
+	public byte respawndir = 7;
 
 	@OriginalMember(owner = "client!me", name = "S", descriptor = "I")
-	public int bastypeid = -1;
+	public int nas = -1;
 
 	@OriginalMember(owner = "client!me", name = "mb", descriptor = "I")
 	public int cursor1Op = -1;
 
 	@OriginalMember(owner = "client!me", name = "gb", descriptor = "I")
-	public int soundRadius = 0;
+	public int bgsound_range = 0;
 
 	@OriginalMember(owner = "client!me", name = "E", descriptor = "I")
-	private int resizeY = 128;
+	private int resizev = 128;
 
 	@OriginalMember(owner = "client!me", name = "s", descriptor = "I")
-	private int multiNpcVarbit = -1;
+	private int multivarbit = -1;
 
 	@OriginalMember(owner = "client!me", name = "fb", descriptor = "I")
-	public int crawlSound = -1;
+	public int bgsound_crawl = -1;
 
 	@OriginalMember(owner = "client!me", name = "D", descriptor = "I")
-	public int iconHeight = -1;
+	public int overlayheight = -1;
 
 	@OriginalMember(owner = "client!me", name = "Q", descriptor = "I")
 	public int cursor2 = -1;
 
 	@OriginalMember(owner = "client!me", name = "lb", descriptor = "I")
-	private int multiNpcVarp = -1;
+	private int multivarp = -1;
 
 	@OriginalMember(owner = "client!me", name = "ob", descriptor = "I")
-	public int attackCursor = -1;
+	public int cursorattack = -1;
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(Lclient!wa;I)V")
 	public void decode(@OriginalArg(0) Packet packet) {
@@ -198,28 +198,27 @@ public final class NpcType {
 	}
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(IILclient!wa;)V")
-	private void decode(@OriginalArg(1) int code, @OriginalArg(2) Packet packet) {
-		@Pc(12) int local12;
+	private void decode(@OriginalArg(1) int opcode, @OriginalArg(2) Packet packet) {
 		@Pc(18) int local18;
-		if (code == 1) {
+		if (opcode == 1) {
 			int length = packet.g1();
-			this.modelIndices = new int[length];
+			this.models = new int[length];
 			for (int index = 0; index < length; index++) {
-				this.modelIndices[index] = packet.g2();
-				if (this.modelIndices[index] == 65535) {
-					this.modelIndices[index] = -1;
+				this.models[index] = packet.g2();
+				if (this.models[index] == 65535) {
+					this.models[index] = -1;
 				}
 			}
-		} else if (code == 2) {
+		} else if (opcode == 2) {
 			this.name = packet.gjstr();
-		} else if (code == 12) {
+		} else if (opcode == 12) {
 			this.size = packet.g1();
-		} else if (code >= 30 && code < 35) {
-			this.ops[code - 30] = packet.gjstr();
-			if (this.ops[code - 30].equalsIgnoreCase(LocalizedText.HIDDEN)) {
-				this.ops[code - 30] = null;
+		} else if (opcode >= 30 && opcode < 35) {
+			this.op[opcode - 30] = packet.gjstr();
+			if (this.op[opcode - 30].equalsIgnoreCase(LocalizedText.HIDDEN)) {
+				this.op[opcode - 30] = null;
 			}
-		} else if (code == 40) {
+		} else if (opcode == 40) {
 			int length = packet.g1();
 			this.recol_s = new short[length];
 			this.recol_d = new short[length];
@@ -227,7 +226,7 @@ public final class NpcType {
 				this.recol_s[index] = (short) packet.g2();
 				this.recol_d[index] = (short) packet.g2();
 			}
-		} else if (code == 41) {
+		} else if (opcode == 41) {
 			int length = packet.g1();
 			this.retex_s = new short[length];
 			this.retex_d = new short[length];
@@ -235,129 +234,129 @@ public final class NpcType {
 				this.retex_s[local18] = (short) packet.g2();
 				this.retex_d[local18] = (short) packet.g2();
 			}
-		} else if (code == 42) {
+		} else if (opcode == 42) {
 			int length = packet.g1();
 			this.recol_d_palette = new byte[length];
 			for (int index = 0; index < length; index++) {
 				this.recol_d_palette[index] = packet.g1s();
 			}
-		} else if (code == 60) {
+		} else if (opcode == 60) {
 			int length = packet.g1();
-			this.headModels = new int[length];
+			this.heads = new int[length];
 			for (int index = 0; index < length; index++) {
-				this.headModels[index] = packet.g2();
+				this.heads[index] = packet.g2();
 			}
-		} else if (code == 93) {
-			this.miniMapDisplay = false;
-		} else if (code == 95) {
-			this.combatLevel = packet.g2();
-		} else if (code == 97) {
-			this.resizeX = packet.g2();
-		} else if (code == 98) {
-			this.resizeY = packet.g2();
-		} else if (code == 99) {
-			this.topRenderPriority = true;
-		} else if (code == 100) {
+		} else if (opcode == 93) {
+			this.minimap = false;
+		} else if (opcode == 95) {
+			this.vislevel = packet.g2();
+		} else if (opcode == 97) {
+			this.resizeh = packet.g2();
+		} else if (opcode == 98) {
+			this.resizev = packet.g2();
+		} else if (opcode == 99) {
+			this.drawabove = true;
+		} else if (opcode == 100) {
 			this.ambient = packet.g1s();
-		} else if (code == 101) {
+		} else if (opcode == 101) {
 			this.contrast = packet.g1s() * 5;
-		} else if (code == 102) {
+		} else if (opcode == 102) {
 			this.headIcon = packet.g2();
-		} else if (code == 103) {
-			this.rotationSpeed = packet.g2();
-		} else if (code == 106 || code == 118) {
-			this.multiNpcVarbit = packet.g2();
-			if (this.multiNpcVarbit == 65535) {
-				this.multiNpcVarbit = -1;
+		} else if (opcode == 103) {
+			this.turnspeed = packet.g2();
+		} else if (opcode == 106 || opcode == 118) {
+			this.multivarbit = packet.g2();
+			if (this.multivarbit == 65535) {
+				this.multivarbit = -1;
 			}
 
-			this.multiNpcVarp = packet.g2();
-			if (this.multiNpcVarp == 65535) {
-				this.multiNpcVarp = -1;
+			this.multivarp = packet.g2();
+			if (this.multivarp == 65535) {
+				this.multivarp = -1;
 			}
 
 			int defaultId = -1;
-			if (code == 118) {
+			if (opcode == 118) {
 				defaultId = packet.g2();
 				if (defaultId == 65535) {
 					defaultId = -1;
 				}
 			}
 			int length = packet.g1();
-			this.multiNpcs = new int[length + 2];
+			this.multinpc = new int[length + 2];
 			for (int index = 0; index <= length; index++) {
-				this.multiNpcs[index] = packet.g2();
-				if (this.multiNpcs[index] == 65535) {
-					this.multiNpcs[index] = -1;
+				this.multinpc[index] = packet.g2();
+				if (this.multinpc[index] == 65535) {
+					this.multinpc[index] = -1;
 				}
 			}
-			this.multiNpcs[length + 1] = defaultId;
-		} else if (code == 107) {
-			this.interactive = false;
-		} else if (code == 109) {
-			this.rotationFlag = false;
-		} else if (code == 111) {
-			this.spotShadow = false;
-		} else if (code == 113) {
-			this.spotShadowColor1 = (short) packet.g2();
-			this.spotShadowColor2 = (short) packet.g2();
-		} else if (code == 114) {
-			this.shadowColorModifier1 = packet.g1s();
-			this.spotShadowTrans2 = packet.g1s();
-		} else if (code == 115) {
+			this.multinpc[length + 1] = defaultId;
+		} else if (opcode == 107) {
+			this.active = false;
+		} else if (opcode == 109) {
+			this.walksmoothing = false;
+		} else if (opcode == 111) {
+			this.spotshadow = false;
+		} else if (opcode == 113) {
+			this.spotshadowcolour_1 = (short) packet.g2();
+			this.spotshadowcolour_2 = (short) packet.g2();
+		} else if (opcode == 114) {
+			this.spotshadowtrans_1 = packet.g1s();
+			this.spotshadowtrans_2 = packet.g1s();
+		} else if (opcode == 115) {
 			packet.g1();
 			packet.g1();
-		} else if (code == 119) {
-			this.loginScreenProperties = packet.g1s();
-		} else if (code == 121) {
-			this.modelOffsets = new int[this.modelIndices.length][];
+		} else if (opcode == 119) {
+			this.walkflags = packet.g1s();
+		} else if (opcode == 121) {
+			this.modeloffset = new int[this.models.length][];
 			int length = packet.g1();
 			for (int index = 0; index < length; index++) {
 				int offset = packet.g1();
-				@Pc(439) int[] offsets = this.modelOffsets[offset] = new int[3];
+				@Pc(439) int[] offsets = this.modeloffset[offset] = new int[3];
 				offsets[0] = packet.g1s();
 				offsets[1] = packet.g1s();
 				offsets[2] = packet.g1s();
 			}
-		} else if (code == 122) {
+		} else if (opcode == 122) {
 			this.hitBarId = packet.g2();
-		} else if (code == 123) {
-			this.iconHeight = packet.g2();
-		} else if (code == 125) {
-			this.spawnDirection = packet.g1s();
-		} else if (code == 126) {
+		} else if (opcode == 123) {
+			this.overlayheight = packet.g2();
+		} else if (opcode == 125) {
+			this.respawndir = packet.g1s();
+		} else if (opcode == 126) {
 			this.miniMapMarkerObjectEntry = packet.g2();
-		} else if (code == 127) {
-			this.bastypeid = packet.g2();
-		} else if (code == 128) {
+		} else if (opcode == 127) {
+			this.nas = packet.g2();
+		} else if (opcode == 128) {
 			packet.g1();
-		} else if (code == 134) {
-			this.idleSound = packet.g2();
-			if (this.idleSound == 65535) {
-				this.idleSound = -1;
+		} else if (opcode == 134) {
+			this.bgsound = packet.g2();
+			if (this.bgsound == 65535) {
+				this.bgsound = -1;
 			}
-			this.crawlSound = packet.g2();
-			if (this.crawlSound == 65535) {
-				this.crawlSound = -1;
+			this.bgsound_crawl = packet.g2();
+			if (this.bgsound_crawl == 65535) {
+				this.bgsound_crawl = -1;
 			}
-			this.walkSound = packet.g2();
-			if (this.walkSound == 65535) {
-				this.walkSound = -1;
+			this.bgsound_walk = packet.g2();
+			if (this.bgsound_walk == 65535) {
+				this.bgsound_walk = -1;
 			}
-			this.runSound = packet.g2();
-			if (this.runSound == 65535) {
-				this.runSound = -1;
+			this.bgsound_run = packet.g2();
+			if (this.bgsound_run == 65535) {
+				this.bgsound_run = -1;
 			}
-			this.soundRadius = packet.g1();
-		} else if (code == 135) {
+			this.bgsound_range = packet.g1();
+		} else if (opcode == 135) {
 			this.cursor1Op = packet.g1();
 			this.cursor1 = packet.g2();
-		} else if (code == 136) {
+		} else if (opcode == 136) {
 			this.cursor2Op = packet.g1();
 			this.cursor2 = packet.g2();
-		} else if (code == 137) {
-			this.attackCursor = packet.g2();
-		} else if (code == 249) {
+		} else if (opcode == 137) {
+			this.cursorattack = packet.g2();
+		} else if (opcode == 249) {
 			int length = packet.g1();
 			if (this.params == null) {
 				local18 = IntUtils.bitceil(length);
@@ -384,32 +383,32 @@ public final class NpcType {
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(B)Lclient!me;")
 	public NpcType getMultiNPC() {
 		@Pc(5) int i = -1;
-		if (this.multiNpcVarbit != -1) {
-			i = VarpDomain.getVarbitValue(this.multiNpcVarbit);
-		} else if (this.multiNpcVarp != -1) {
-			i = VarpDomain.activeVarps[this.multiNpcVarp];
+		if (this.multivarbit != -1) {
+			i = VarpDomain.getVarbitValue(this.multivarbit);
+		} else if (this.multivarp != -1) {
+			i = VarpDomain.activeVarps[this.multivarp];
 		}
-		if (i < 0 || i >= this.multiNpcs.length - 1 || this.multiNpcs[i] == -1) {
-			@Pc(55) int local55 = this.multiNpcs[this.multiNpcs.length - 1];
+		if (i < 0 || i >= this.multinpc.length - 1 || this.multinpc[i] == -1) {
+			@Pc(55) int local55 = this.multinpc[this.multinpc.length - 1];
 			return local55 == -1 ? null : NpcTypeList.get(local55);
 		} else {
-			return NpcTypeList.get(this.multiNpcs[i]);
+			return NpcTypeList.get(this.multinpc[i]);
 		}
 	}
 
 	@OriginalMember(owner = "client!me", name = "b", descriptor = "(B)Z")
 	public boolean isMultiNpcValid() {
-		if (this.multiNpcs == null) {
+		if (this.multinpc == null) {
 			return true;
 		}
 		@Pc(16) int local16 = -1;
-		if (this.multiNpcVarbit != -1) {
-			local16 = VarpDomain.getVarbitValue(this.multiNpcVarbit);
-		} else if (this.multiNpcVarp != -1) {
-			local16 = VarpDomain.activeVarps[this.multiNpcVarp];
+		if (this.multivarbit != -1) {
+			local16 = VarpDomain.getVarbitValue(this.multivarbit);
+		} else if (this.multivarp != -1) {
+			local16 = VarpDomain.activeVarps[this.multivarp];
 		}
-		if (local16 < 0 || local16 >= this.multiNpcs.length - 1 || this.multiNpcs[local16] == -1) {
-			@Pc(62) int local62 = this.multiNpcs[this.multiNpcs.length - 1];
+		if (local16 < 0 || local16 >= this.multinpc.length - 1 || this.multinpc[local16] == -1) {
+			@Pc(62) int local62 = this.multinpc[this.multinpc.length - 1];
 			return local62 != -1;
 		} else {
 			return true;
@@ -418,13 +417,13 @@ public final class NpcType {
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(I)Z")
 	public boolean hasAreaSound() {
-		if (this.multiNpcs == null) {
-			return this.idleSound != -1 || this.walkSound != -1 || this.runSound != -1;
+		if (this.multinpc == null) {
+			return this.bgsound != -1 || this.bgsound_walk != -1 || this.bgsound_run != -1;
 		}
-		for (@Pc(35) int index = 0; index < this.multiNpcs.length; index++) {
-			if (this.multiNpcs[index] != -1) {
-				@Pc(60) NpcType npcType = NpcTypeList.get(this.multiNpcs[index]);
-				if (npcType.idleSound != -1 || npcType.walkSound != -1 || npcType.runSound != -1) {
+		for (@Pc(35) int index = 0; index < this.multinpc.length; index++) {
+			if (this.multinpc[index] != -1) {
+				@Pc(60) NpcType npcType = NpcTypeList.get(this.multinpc[index]);
+				if (npcType.bgsound != -1 || npcType.bgsound_walk != -1 || npcType.bgsound_run != -1) {
 					return true;
 				}
 			}
@@ -444,7 +443,7 @@ public final class NpcType {
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "([Lclient!ub;IBIIIILclient!tk;ILclient!tk;)Lclient!ak;")
 	public Model getBodyModel(@OriginalArg(0) PathingEntity_Class147[] arg0, @OriginalArg(1) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5, @OriginalArg(7) SeqType arg6, @OriginalArg(8) int arg7, @OriginalArg(9) SeqType arg8) {
-		if (this.multiNpcs != null) {
+		if (this.multinpc != null) {
 			@Pc(13) NpcType local13 = this.getMultiNPC();
 			return local13 == null ? null : local13.getBodyModel(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
 		}
@@ -463,26 +462,26 @@ public final class NpcType {
 		@Pc(330) int local330;
 		if (local40 == null) {
 			local46 = false;
-			for (@Pc(48) int local48 = 0; local48 < this.modelIndices.length; local48++) {
-				if (this.modelIndices[local48] != -1 && !NpcTypeList.modelsArchive.isFileReady(this.modelIndices[local48], 0)) {
+			for (@Pc(48) int local48 = 0; local48 < this.models.length; local48++) {
+				if (this.models[local48] != -1 && !NpcTypeList.modelsArchive.isFileReady(this.models[local48], 0)) {
 					local46 = true;
 				}
 			}
 			if (local46) {
 				return null;
 			}
-			@Pc(84) RawModel[] local84 = new RawModel[this.modelIndices.length];
-			for (@Pc(86) int local86 = 0; local86 < this.modelIndices.length; local86++) {
-				if (this.modelIndices[local86] != -1) {
-					local84[local86] = RawModel.create(NpcTypeList.modelsArchive, this.modelIndices[local86]);
-					if (this.modelOffsets != null && this.modelOffsets[local86] != null && local84[local86] != null) {
-						local84[local86].translate(this.modelOffsets[local86][0], this.modelOffsets[local86][1], this.modelOffsets[local86][2]);
+			@Pc(84) RawModel[] local84 = new RawModel[this.models.length];
+			for (@Pc(86) int local86 = 0; local86 < this.models.length; local86++) {
+				if (this.models[local86] != -1) {
+					local84[local86] = RawModel.create(NpcTypeList.modelsArchive, this.models[local86]);
+					if (this.modeloffset != null && this.modeloffset[local86] != null && local84[local86] != null) {
+						local84[local86].translate(this.modeloffset[local86][0], this.modeloffset[local86][1], this.modeloffset[local86][2]);
 					}
 				}
 			}
 			@Pc(156) BasType local156 = null;
-			if (this.bastypeid != -1) {
-				local156 = BasTypeList.get(this.bastypeid);
+			if (this.nas != -1) {
+				local156 = BasTypeList.get(this.nas);
 			}
 			if (local156 != null && local156.modelRotateTranslate != null) {
 				for (local173 = 0; local173 < local156.modelRotateTranslate.length; local173++) {
@@ -608,8 +607,8 @@ public final class NpcType {
 		}
 		if (!local46 && arg8 == null && arg6 == null) {
 			@Pc(933) Model local933 = local40.method4572(true, true, true);
-			if (this.resizeX != 128 || this.resizeY != 128) {
-				local933.resize(this.resizeX, this.resizeY, this.resizeX);
+			if (this.resizeh != 128 || this.resizev != 128) {
+				local933.resize(this.resizeh, this.resizev, this.resizeh);
 			}
 			return local933;
 		}
@@ -696,8 +695,8 @@ public final class NpcType {
 			aClass3_Sub2_Sub7Array5[local318] = null;
 			aClass144Array1[local318] = null;
 		}
-		if (this.resizeX != 128 || this.resizeY != 128) {
-			local1218.resize(this.resizeX, this.resizeY, this.resizeX);
+		if (this.resizeh != 128 || this.resizev != 128) {
+			local1218.resize(this.resizeh, this.resizev, this.resizeh);
 		}
 		return local1218;
 	}
@@ -714,26 +713,26 @@ public final class NpcType {
 
 	@OriginalMember(owner = "client!me", name = "a", descriptor = "(Lclient!tk;IIII)Lclient!ak;")
 	public Model getHeadModel(@OriginalArg(0) SeqType arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(4) int arg3) {
-		if (this.multiNpcs != null) {
+		if (this.multinpc != null) {
 			@Pc(13) NpcType local13 = this.getMultiNPC();
 			return local13 == null ? null : local13.getHeadModel(arg0, arg1, arg2, arg3);
-		} else if (this.headModels == null) {
+		} else if (this.heads == null) {
 			return null;
 		} else {
 			@Pc(41) Model local41 = (Model) NpcTypeList.headModels.get(this.id);
 			if (local41 == null) {
 				@Pc(46) boolean local46 = false;
-				for (@Pc(48) int local48 = 0; local48 < this.headModels.length; local48++) {
-					if (!NpcTypeList.modelsArchive.isFileReady(this.headModels[local48], 0)) {
+				for (@Pc(48) int local48 = 0; local48 < this.heads.length; local48++) {
+					if (!NpcTypeList.modelsArchive.isFileReady(this.heads[local48], 0)) {
 						local46 = true;
 					}
 				}
 				if (local46) {
 					return null;
 				}
-				@Pc(82) RawModel[] local82 = new RawModel[this.headModels.length];
-				for (@Pc(84) int local84 = 0; local84 < this.headModels.length; local84++) {
-					local82[local84] = RawModel.create(NpcTypeList.modelsArchive, this.headModels[local84]);
+				@Pc(82) RawModel[] local82 = new RawModel[this.heads.length];
+				for (@Pc(84) int local84 = 0; local84 < this.heads.length; local84++) {
+					local82[local84] = RawModel.create(NpcTypeList.modelsArchive, this.heads[local84]);
 				}
 				@Pc(119) RawModel local119;
 				if (local82.length == 1) {

@@ -1,5 +1,6 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.config.types.loc.LocType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -177,7 +178,7 @@ public final class CollisionMap {
 	public void addWall(@OriginalArg(5) int tileX, @OriginalArg(4) int tileZ, @OriginalArg(2) int shape, @OriginalArg(0) int rotation, @OriginalArg(3) boolean blockrange) {
 		@Pc(4) int x = tileX - this.offsetX;
 		@Pc(13) int z = tileZ - this.offsetZ;
-		if (shape == 0) {
+		if (shape == LocType.WALL_STRAIGHT) {
 			if (rotation == 0) {
 				this.flag(x, z, 0x80);
 				this.flag(x - 1, z, 0x8);
@@ -195,7 +196,7 @@ public final class CollisionMap {
 				this.flag(x, z - 1, 0x2);
 			}
 		}
-		if (shape == 1 || shape == 3) {
+		if (shape == LocType.WALL_DIAGONAL_CORNER || shape == LocType.WALL_SQUARE_CORNER) {
 			if (rotation == 0) {
 				this.flag(x, z, 0x1);
 				this.flag(x - 1, z + 1, 0x10);
@@ -213,7 +214,7 @@ public final class CollisionMap {
 				this.flag(x - 1, z - 1, 4);
 			}
 		}
-		if (shape == 2) {
+		if (shape == LocType.WALL_L) {
 			if (rotation == 0) {
 				this.flag(x, z, 0x82);
 				this.flag(x - 1, z, 0x8);
@@ -238,7 +239,7 @@ public final class CollisionMap {
 		if (!blockrange) {
 			return;
 		}
-		if (shape == 0) {
+		if (shape == LocType.WALL_STRAIGHT) {
 			if (rotation == 0) {
 				this.flag(x, z, 0x10000);
 				this.flag(x - 1, z, 0x1000);
@@ -256,46 +257,46 @@ public final class CollisionMap {
 				this.flag(x, z - 1, 0x400);
 			}
 		}
-		if (shape == 1 || shape == 3) {
+		if (shape == LocType.WALL_DIAGONAL_CORNER || shape == LocType.WALL_SQUARE_CORNER) {
 			if (rotation == 0) {
-				this.flag(x, z, 512);
-				this.flag(x - 1, z + 1, 8192);
+				this.flag(x, z, 0x200);
+				this.flag(x - 1, z + 1, 0x2000);
 			}
 			if (rotation == 1) {
-				this.flag(x, z, 2048);
+				this.flag(x, z, 0x800);
 				this.flag(x + 1, z + 1, 32768);
 			}
 			if (rotation == 2) {
 				this.flag(x, z, 8192);
-				this.flag(x + 1, z + -1, 512);
+				this.flag(x + 1, z - 1, 0x200);
 			}
 			if (rotation == 3) {
 				this.flag(x, z, 32768);
-				this.flag(x - 1, z - 1, 2048);
+				this.flag(x - 1, z - 1, 0x800);
 			}
 		}
-		if (shape != 2) {
+		if (shape != LocType.WALL_L) {
 			return;
 		}
 		if (rotation == 0) {
 			this.flag(x, z, 66560);
-			this.flag(x - 1, z, 4096);
+			this.flag(x - 1, z, 0x1000);
 			this.flag(x, z + 1, 16384);
 		}
 		if (rotation == 1) {
-			this.flag(x, z, 5120);
+			this.flag(x, z, 0x1400);
 			this.flag(x, z + 1, 16384);
 			this.flag(x + 1, z, 65536);
 		}
 		if (rotation == 2) {
 			this.flag(x, z, 20480);
 			this.flag(x + 1, z, 65536);
-			this.flag(x, z - 1, 1024);
+			this.flag(x, z - 1, 0x400);
 		}
 		if (rotation == 3) {
-			this.flag(x, z, 81920);
-			this.flag(x, z - 1, 1024);
-			this.flag(x - 1, z, 4096);
+			this.flag(x, z, 0x14000);
+			this.flag(x, z - 1, 0x400);
+			this.flag(x - 1, z, 0x1000);
 		}
 	}
 
