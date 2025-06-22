@@ -77,24 +77,24 @@ public final class AreaSound extends Node {
 				this.radius = 0;
 				this.minInterval = 0;
 			} else {
-				this.maxInterval = locType.bgSoundMax;
-				this.sound = locType.bgSound;
-				this.minInterval = locType.bgSoundMin;
-				this.radius = locType.bgSoundRange * 128;
-				this.sounds = locType.bgSounds;
+				this.maxInterval = locType.bgsound_maxdelay;
+				this.sound = locType.bgsound_sound;
+				this.minInterval = locType.bgsound_mindelay;
+				this.radius = locType.bgsound_range * 128;
+				this.sounds = locType.bgsound_random;
 			}
 		} else if (this.npc != null) {
 			@Pc(92) int sound = Npc.getSound(this.npc);
 			if (prevSound != sound) {
 				@Pc(100) NpcType npcType = this.npc.type;
 				this.sound = sound;
-				if (npcType.multiNpcs != null) {
+				if (npcType.multinpc != null) {
 					npcType = npcType.getMultiNPC();
 				}
 				if (npcType == null) {
 					this.radius = 0;
 				} else {
-					this.radius = npcType.soundRadius * 128;
+					this.radius = npcType.bgsound_range * 128;
 				}
 			}
 		} else if (this.player != null) {

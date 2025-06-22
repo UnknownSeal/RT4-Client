@@ -191,10 +191,10 @@ public class MiniMap {
                 @Pc(498) Npc local498 = NpcList.npcs[NpcList.npcIds[flagX]];
                 if (local498 != null && local498.isVisible()) {
                     @Pc(507) NpcType local507 = local498.type;
-                    if (local507 != null && local507.multiNpcs != null) {
+                    if (local507 != null && local507.multinpc != null) {
                         local507 = local507.getMultiNPC();
                     }
-                    if (local507 != null && local507.miniMapDisplay && local507.interactive) {
+                    if (local507 != null && local507.minimap && local507.active) {
                         local154 = local498.xFine / 32 - PlayerList.self.xFine / 32;
                         npcX = local498.zFine / 32 - PlayerList.self.zFine / 32;
                         if (local507.miniMapMarkerObjectEntry == -1) {
@@ -511,37 +511,37 @@ public class MiniMap {
     }
 
     @OriginalMember(owner = "client!cj", name = "a", descriptor = "(ILclient!pb;ZIIII)Z")
-	public static boolean renderScenery(@OriginalArg(0) int arg0, @OriginalArg(1) LocType arg1, @OriginalArg(5) int arg2, @OriginalArg(6) int arg3) {
-		@Pc(10) MSIType msiType = MSITypeList.get(arg1.mapSceneIcon);
+	public static boolean drawMapSceneIcon(@OriginalArg(0) int arg0, @OriginalArg(1) LocType loc, @OriginalArg(5) int arg2, @OriginalArg(6) int rotation) {
+		@Pc(10) MSIType msiType = MSITypeList.get(loc.mapsceneicon);
 		if (msiType.spriteId == -1) {
 			return true;
 		}
-		if (arg1.mapSceneRotated) {
-			@Pc(24) int local24 = arg3 + arg1.mapSceneAngleOffset;
-			arg3 = local24 & 0x3;
+		if (loc.mapsceneiconrorate) {
+			@Pc(24) int mapscenerotation = rotation + loc.mapsceneiconrotateoffset;
+			rotation = mapscenerotation & 0x3;
 		} else {
-			arg3 = 0;
+			rotation = 0;
 		}
-		@Pc(42) SoftwareIndexedSprite local42 = msiType.getSprite(arg3);
-		if (local42 == null) {
+		@Pc(42) SoftwareIndexedSprite softwareIndexedSprite = msiType.getSprite(rotation);
+		if (softwareIndexedSprite == null) {
 			return false;
 		}
-		@Pc(49) int local49 = arg1.width;
-		@Pc(52) int local52 = arg1.length;
-		if ((arg3 & 0x1) == 1) {
-			local49 = arg1.length;
-			local52 = arg1.width;
+		@Pc(49) int width = loc.width;
+		@Pc(52) int length = loc.length;
+		if ((rotation & 0x1) == 1) {
+			width = loc.length;
+			length = loc.width;
 		}
-		@Pc(66) int local66 = local42.innerWidth;
-		@Pc(69) int local69 = local42.innerHeight;
+		@Pc(66) int spriteWidth = softwareIndexedSprite.innerWidth;
+		@Pc(69) int spriteHeight = softwareIndexedSprite.innerHeight;
 		if (msiType.aBoolean2) {
-			local69 = local52 * 4;
-			local66 = local49 * 4;
+			spriteHeight = length * 4;
+			spriteWidth = width * 4;
 		}
 		if (msiType.anInt11 == 0) {
-			local42.method1398(arg0 * 4 + 48, (-local52 + -arg2 + 104) * 4 + 48, local66, local69);
+			softwareIndexedSprite.method1398(arg0 * 4 + 48, (-length + -arg2 + 104) * 4 + 48, spriteWidth, spriteHeight);
 		} else {
-			local42.method1390(arg0 * 4 + 48, (-local52 + -arg2 + 104) * 4 + 48, local66, local69, msiType.anInt11);
+			softwareIndexedSprite.method1390(arg0 * 4 + 48, (-length + -arg2 + 104) * 4 + 48, spriteWidth, spriteHeight, msiType.anInt11);
 		}
 		return true;
 	}
@@ -564,102 +564,102 @@ public class MiniMap {
 
     @OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(IIIIIIIZ)Z")
     public static boolean method3109(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(6) int arg4) {
-        @Pc(14) long local14 = SceneGraph.getWallKey(arg4, arg0 + 0, arg2);
-        @Pc(28) int local28;
-        @Pc(35) int local35;
+        @Pc(14) long wallKey = SceneGraph.getWallKey(arg4, arg0 + 0, arg2);
+        @Pc(28) int rotation;
+        @Pc(35) int shape;
         @Pc(42) int local42;
-        @Pc(46) LocType local46;
+        @Pc(46) LocType loc;
         @Pc(65) int local65;
         @Pc(75) int[] local75;
         @Pc(90) int local90;
-        if (local14 != 0L) {
-            local28 = (int) local14 >> 20 & 0x3;
-            local35 = (int) local14 >> 14 & 0x1F;
-            local42 = Integer.MAX_VALUE & (int) (local14 >>> 32);
-            local46 = LocTypeList.get(local42);
-            if (local46.mapSceneIcon == -1) {
+        if (wallKey != 0L) {
+            rotation = (int) wallKey >> 20 & 0x3;
+            shape = (int) wallKey >> 14 & 0x1F;
+            local42 = Integer.MAX_VALUE & (int) (wallKey >>> 32);
+            loc = LocTypeList.get(local42);
+            if (loc.mapsceneicon == -1) {
                 local65 = arg1;
-                if (local14 > 0L) {
+                if (wallKey > 0L) {
                     local65 = arg3;
                 }
                 local75 = SoftwareRaster.pixels;
                 local90 = (52736 - arg2 * 512) * 4 + arg0 * 4 + 24624;
-                if (local35 == 0 || local35 == 2) {
-                    if (local28 == 0) {
+                if (shape == LocType.WALL_STRAIGHT || shape == LocType.WALL_L) {
+                    if (rotation == 0) {
                         local75[local90] = local65;
                         local75[local90 + 512] = local65;
                         local75[local90 + 1024] = local65;
                         local75[local90 + 1536] = local65;
-                    } else if (local28 == 1) {
+                    } else if (rotation == 1) {
                         local75[local90] = local65;
                         local75[local90 + 1] = local65;
                         local75[local90 + 2] = local65;
                         local75[local90 + 3] = local65;
-                    } else if (local28 == 2) {
+                    } else if (rotation == 2) {
                         local75[local90 + 3] = local65;
                         local75[local90 + 3 + 512] = local65;
                         local75[local90 + 3 + 1024] = local65;
                         local75[local90 + 3 + 1536] = local65;
-                    } else if (local28 == 3) {
+                    } else if (rotation == 3) {
                         local75[local90 + 1536] = local65;
                         local75[local90 + 1536 + 1] = local65;
                         local75[local90 + 1538] = local65;
                         local75[local90 + 3 + 1536] = local65;
                     }
                 }
-                if (local35 == 3) {
-                    if (local28 == 0) {
+                if (shape == LocType.WALL_SQUARE_CORNER) {
+                    if (rotation == 0) {
                         local75[local90] = local65;
-                    } else if (local28 == 1) {
+                    } else if (rotation == 1) {
                         local75[local90 + 3] = local65;
-                    } else if (local28 == 2) {
+                    } else if (rotation == 2) {
                         local75[local90 + 3 + 1536] = local65;
-                    } else if (local28 == 3) {
+                    } else if (rotation == 3) {
                         local75[local90 + 1536] = local65;
                     }
                 }
-                if (local35 == 2) {
-                    if (local28 == 3) {
+                if (shape == LocType.WALL_L) {
+                    if (rotation == 3) {
                         local75[local90] = local65;
                         local75[local90 + 512] = local65;
                         local75[local90 + 1024] = local65;
                         local75[local90 + 1536] = local65;
-                    } else if (local28 == 0) {
+                    } else if (rotation == 0) {
                         local75[local90] = local65;
                         local75[local90 + 1] = local65;
                         local75[local90 + 2] = local65;
                         local75[local90 + 3] = local65;
-                    } else if (local28 == 1) {
+                    } else if (rotation == 1) {
                         local75[local90 + 3] = local65;
                         local75[local90 + 512 + 3] = local65;
                         local75[local90 + 1024 + 3] = local65;
                         local75[local90 + 1536 + 3] = local65;
-                    } else if (local28 == 2) {
+                    } else if (rotation == 2) {
                         local75[local90 + 1536] = local65;
                         local75[local90 + 1536 + 1] = local65;
                         local75[local90 + 1536 + 2] = local65;
                         local75[local90 + 1539] = local65;
                     }
                 }
-            } else if (!renderScenery(arg0, local46, arg2, local28)) {
+            } else if (!drawMapSceneIcon(arg0, loc, arg2, rotation)) {
                 return false;
             }
         }
-        local14 = SceneGraph.getSceneryKey(arg4, arg0 + 0, arg2);
-        if (local14 != 0L) {
-            local28 = (int) local14 >> 20 & 0x3;
-            local35 = (int) local14 >> 14 & 0x1F;
-            local42 = (int) (local14 >>> 32) & Integer.MAX_VALUE;
-            local46 = LocTypeList.get(local42);
-            if (local46.mapSceneIcon == -1) {
-                if (local35 == 9) {
+        wallKey = SceneGraph.getSceneryKey(arg4, arg0 + 0, arg2);
+        if (wallKey != 0L) {
+            rotation = (int) wallKey >> 20 & 0x3;
+            shape = (int) wallKey >> 14 & 0x1F;
+            local42 = (int) (wallKey >>> 32) & Integer.MAX_VALUE;
+            loc = LocTypeList.get(local42);
+            if (loc.mapsceneicon == -1) {
+                if (shape == LocType.WALL_DIAGONAL) {
                     local65 = 15658734;
-                    if (local14 > 0L) {
+                    if (wallKey > 0L) {
                         local65 = 15597568;
                     }
                     local90 = arg0 * 4 + (103 - arg2) * 2048 + 24624;
                     local75 = SoftwareRaster.pixels;
-                    if (local28 == 0 || local28 == 2) {
+                    if (rotation == 0 || rotation == 2) {
                         local75[local90 + 1536] = local65;
                         local75[local90 + 1025] = local65;
                         local75[local90 + 512 + 2] = local65;
@@ -671,16 +671,16 @@ public class MiniMap {
                         local75[local90 + 1536 + 3] = local65;
                     }
                 }
-            } else if (!renderScenery(arg0, local46, arg2, local28)) {
+            } else if (!drawMapSceneIcon(arg0, loc, arg2, rotation)) {
                 return false;
             }
         }
-        local14 = SceneGraph.getGroundDecorKey(arg4, arg0 + 0, arg2);
-        if (local14 != 0L) {
-            local28 = (int) local14 >> 20 & 0x3;
-            local35 = (int) (local14 >>> 32) & Integer.MAX_VALUE;
-            @Pc(586) LocType local586 = LocTypeList.get(local35);
-            if (local586.mapSceneIcon != -1 && !renderScenery(arg0, local586, arg2, local28)) {
+        wallKey = SceneGraph.getGroundDecorKey(arg4, arg0 + 0, arg2);
+        if (wallKey != 0L) {
+            rotation = (int) wallKey >> 20 & 0x3;
+            shape = (int) (wallKey >>> 32) & Integer.MAX_VALUE;
+            @Pc(586) LocType local586 = LocTypeList.get(shape);
+            if (local586.mapsceneicon != -1 && !drawMapSceneIcon(arg0, local586, arg2, rotation)) {
                 return false;
             }
         }
