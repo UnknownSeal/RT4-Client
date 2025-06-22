@@ -12,6 +12,7 @@ public class TitleMixin {
     private static void afterStart() {
         try {
             com.jagex.runetek4.client.GameShell.frame.setTitle("Runescape 530 - Mixin Edition");
+            com.jagex.runetek4.client.GameShell.frame.setSize(800, 600);
             MixinLogger.LOGGER.info("Replaced window title");
         } catch (Exception e) {
             MixinLogger.LOGGER.severe("Error replacing window title: " + e);
