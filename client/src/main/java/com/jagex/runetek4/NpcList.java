@@ -116,9 +116,9 @@ public class NpcList {
                     e.anInt3381 = e.dstYaw;
                     local226 = false;
                 }
-                if (local13.idleAnimationId == e.movementSeqId && (e.anInt3385 > 25 || local226)) {
+                if (local13.readyanim == e.movementSeqId && (e.anInt3385 > 25 || local226)) {
                     if (local13.standingCCWTurn == -1) {
-                        e.movementSeqId = local13.walkAnimation;
+                        e.movementSeqId = local13.walkanim;
                     } else {
                         e.movementSeqId = local13.standingCCWTurn;
                     }
@@ -130,9 +130,9 @@ public class NpcList {
                     local226 = false;
                     e.anInt3381 = e.dstYaw;
                 }
-                if (local13.idleAnimationId == e.movementSeqId && (e.anInt3385 > 25 || local226)) {
+                if (local13.readyanim == e.movementSeqId && (e.anInt3385 > 25 || local226)) {
                     if (local13.standingCWTurn == -1) {
-                        e.movementSeqId = local13.walkAnimation;
+                        e.movementSeqId = local13.walkanim;
                     } else {
                         e.movementSeqId = local13.standingCWTurn;
                     }
@@ -140,9 +140,9 @@ public class NpcList {
             }
             e.anInt3381 &= 0x7FF;
         } else {
-            if (local13.idleAnimationId == e.movementSeqId && e.anInt3385 > 25) {
+            if (local13.readyanim == e.movementSeqId && e.anInt3385 > 25) {
                 if (local13.standingCWTurn == -1) {
-                    e.movementSeqId = local13.walkAnimation;
+                    e.movementSeqId = local13.walkanim;
                 } else {
                     e.movementSeqId = local13.standingCWTurn;
                 }
@@ -435,7 +435,7 @@ public class NpcList {
     @OriginalMember(owner = "runetek4.client!ia", name = "a", descriptor = "(BLclient!fe;)V")
     public static void method2247(@OriginalArg(1) PathingEntity arg0) {
         @Pc(9) BasType local9 = arg0.getBasType();
-        arg0.movementSeqId = local9.idleAnimationId;
+        arg0.movementSeqId = local9.readyanim;
         if (arg0.movementQueueSize == 0) {
             arg0.anInt3417 = 0;
             return;
@@ -489,7 +489,7 @@ public class NpcList {
         @Pc(233) boolean local233 = true;
         @Pc(235) byte local235 = 1;
         if (local224 >= -256 && local224 <= 256) {
-            local227 = local9.walkAnimation;
+            local227 = local9.walkanim;
         } else if (local224 >= 256 && local224 < 768) {
             local227 = local9.walkCWTurnAnimationId;
         } else if (local224 >= -768 && local224 <= -256) {
@@ -497,11 +497,11 @@ public class NpcList {
         }
         @Pc(273) int local273 = 4;
         if (local227 == -1) {
-            local227 = local9.walkAnimation;
+            local227 = local9.walkanim;
         }
         arg0.movementSeqId = local227;
         if (arg0 instanceof Npc) {
-            local233 = ((Npc) arg0).type.rotationFlag;
+            local233 = ((Npc) arg0).type.walksmoothing;
         }
         if (local233) {
             if (arg0.anInt3381 != arg0.dstYaw && arg0.faceEntity == -1 && arg0.anInt3376 != 0) {
@@ -536,26 +536,26 @@ public class NpcList {
             local235 = 0;
             local273 >>= 0x1;
         }
-        if (local273 < 8 || local9.runAnimationId == -1) {
-            if (local9.slowWalkAnimationId != -1 && local235 == 0) {
-                if (local9.walkFullTurnAnimationId == arg0.movementSeqId && local9.slowWalkFullTurnAnimationId != -1) {
-                    arg0.movementSeqId = local9.slowWalkFullTurnAnimationId;
-                } else if (local9.walkCCWTurnAnimationId == arg0.movementSeqId && local9.slowWalkCCWTurnAnimationId != -1) {
-                    arg0.movementSeqId = local9.slowWalkCCWTurnAnimationId;
-                } else if (local9.walkCWTurnAnimationId == arg0.movementSeqId && local9.slowWalkCWTurnAnimationId != -1) {
-                    arg0.movementSeqId = local9.slowWalkCWTurnAnimationId;
+        if (local273 < 8 || local9.runanim == -1) {
+            if (local9.crawlanim != -1 && local235 == 0) {
+                if (local9.walkFullTurnAnimationId == arg0.movementSeqId && local9.crawlanim_b != -1) {
+                    arg0.movementSeqId = local9.crawlanim_b;
+                } else if (local9.walkCCWTurnAnimationId == arg0.movementSeqId && local9.crawlanim_l != -1) {
+                    arg0.movementSeqId = local9.crawlanim_l;
+                } else if (local9.walkCWTurnAnimationId == arg0.movementSeqId && local9.crawlanim_r != -1) {
+                    arg0.movementSeqId = local9.crawlanim_r;
                 } else {
-                    arg0.movementSeqId = local9.slowWalkAnimationId;
+                    arg0.movementSeqId = local9.crawlanim;
                 }
             }
-        } else if (local9.walkFullTurnAnimationId == arg0.movementSeqId && local9.runFullTurnAnimationId != -1) {
-            arg0.movementSeqId = local9.runFullTurnAnimationId;
-        } else if (arg0.movementSeqId == local9.walkCCWTurnAnimationId && local9.runCCWTurnAnimationId != -1) {
-            arg0.movementSeqId = local9.runCCWTurnAnimationId;
-        } else if (arg0.movementSeqId == local9.walkCWTurnAnimationId && local9.runCWTurnAnimationId != -1) {
-            arg0.movementSeqId = local9.runCWTurnAnimationId;
+        } else if (local9.walkFullTurnAnimationId == arg0.movementSeqId && local9.runanim_b != -1) {
+            arg0.movementSeqId = local9.runanim_b;
+        } else if (arg0.movementSeqId == local9.walkCCWTurnAnimationId && local9.runanim_l != -1) {
+            arg0.movementSeqId = local9.runanim_l;
+        } else if (arg0.movementSeqId == local9.walkCWTurnAnimationId && local9.runanim_r != -1) {
+            arg0.movementSeqId = local9.runanim_r;
         } else {
-            arg0.movementSeqId = local9.runAnimationId;
+            arg0.movementSeqId = local9.runanim;
         }
         if (local9.movementAcceleration != -1) {
             local273 <<= 0x7;

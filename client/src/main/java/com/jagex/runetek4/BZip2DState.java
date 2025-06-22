@@ -4,7 +4,7 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
 @OriginalClass("runetek4.client!bb")
-public final class Bzip2DState {
+public final class BZip2DState {
 
 	@OriginalMember(owner = "runetek4.client!bb", name = "e", descriptor = "B")
 	public byte stateOutCh;

@@ -15,7 +15,7 @@ public class Equipment {
         @Pc(10) int j = 0;
         for (@Pc(12) int i = 0; i < ObjTypeList.capacity; i++) {
             @Pc(19) ObjType def = ObjTypeList.get(i);
-            if (def.manWear >= 0 || def.womanWear >= 0) {
+            if (def.manwear >= 0 || def.womanwear >= 0) {
                 ids[j++] = i;
             }
         }

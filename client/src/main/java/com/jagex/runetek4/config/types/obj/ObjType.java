@@ -22,7 +22,7 @@ public final class ObjType {
 	private short[] retex_d;
 
 	@OriginalMember(owner = "client!h", name = "g", descriptor = "I")
-	private int model;
+	private int mesh;
 
 	@OriginalMember(owner = "client!h", name = "y", descriptor = "[S")
 	private short[] retex_s;
@@ -52,7 +52,7 @@ public final class ObjType {
 	public int cursor2 = -1;
 
 	@OriginalMember(owner = "client!h", name = "K", descriptor = "I")
-	private int womanWear3 = -1;
+	private int womanwear3 = -1;
 
 	@OriginalMember(owner = "client!h", name = "l", descriptor = "I")
 	public int cost = 1;
@@ -82,7 +82,7 @@ public final class ObjType {
 	private int ambient = 0;
 
 	@OriginalMember(owner = "client!h", name = "C", descriptor = "I")
-	private int manWear3 = -1;
+	private int manwear3 = -1;
 
 	@OriginalMember(owner = "client!h", name = "ib", descriptor = "I")
 	private int manHead2 = -1;
@@ -112,19 +112,19 @@ public final class ObjType {
 	public int lentLink = -1;
 
 	@OriginalMember(owner = "client!h", name = "r", descriptor = "I")
-	public int womanWear = -1;
+	public int womanwear = -1;
 
 	@OriginalMember(owner = "client!h", name = "F", descriptor = "I")
-	private int manWear2 = -1;
+	private int manwear2 = -1;
 
 	@OriginalMember(owner = "client!h", name = "f", descriptor = "I")
-	public int yOffset2D = 0;
+	public int yof2d = 0;
 
 	@OriginalMember(owner = "client!h", name = "X", descriptor = "I")
-	public int xAngle2D = 0;
+	public int xan2d = 0;
 
 	@OriginalMember(owner = "client!h", name = "ob", descriptor = "I")
-	public int yAngle2D = 0;
+	public int yan2d = 0;
 
 	@OriginalMember(owner = "client!h", name = "pb", descriptor = "I")
 	public int dummyItem = 0;
@@ -136,7 +136,7 @@ public final class ObjType {
 	public int certLink = -1;
 
 	@OriginalMember(owner = "client!h", name = "fb", descriptor = "I")
-	private int womanWear2 = -1;
+	private int womanwear2 = -1;
 
 	@OriginalMember(owner = "client!h", name = "Z", descriptor = "I")
 	public int cursor2Op = -1;
@@ -151,7 +151,7 @@ public final class ObjType {
 	private int womanWearZOff = 0;
 
 	@OriginalMember(owner = "client!h", name = "db", descriptor = "I")
-	public int xOffset2D = 0;
+	public int xof2d = 0;
 
 	@OriginalMember(owner = "client!h", name = "sb", descriptor = "I")
 	private int manHead = -1;
@@ -160,10 +160,10 @@ public final class ObjType {
 	private int womanWearYOff = 0;
 
 	@OriginalMember(owner = "client!h", name = "eb", descriptor = "I")
-	public int manWear = -1;
+	public int manwear = -1;
 
 	@OriginalMember(owner = "client!h", name = "qb", descriptor = "[Lclient!na;")
-	public JString[] groundOptions = new JString[] { null, null, LocalizedText.TAKE, null, null };
+	public JString[] op = new JString[] { null, null, LocalizedText.TAKE, null, null };
 
 	@OriginalMember(owner = "client!h", name = "ub", descriptor = "I")
 	private int resizeX = 128;
@@ -175,7 +175,7 @@ public final class ObjType {
 	private int manWearYOff = 0;
 
 	@OriginalMember(owner = "client!h", name = "U", descriptor = "[Lclient!na;")
-	public JString[] interfaceOptions = new JString[] { null, null, null, null, LocalizedText.DROP};
+	public JString[] iop = new JString[] { null, null, null, null, LocalizedText.DROP};
 
 	@OriginalMember(owner = "client!h", name = "Ab", descriptor = "I")
 	public int zoom2d = 2000;
@@ -241,24 +241,24 @@ public final class ObjType {
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BLclient!wa;I)V")
 	private void decode(@OriginalArg(1) Packet packet, @OriginalArg(2) int opcode) {
 		if (opcode == Opcodes.model) {
-			this.model = packet.g2();
+			this.mesh = packet.g2();
 		} else if (opcode == Opcodes.name) {
 			this.name = packet.gjstr();
 		} else if (opcode == Opcodes.zoom2d) {
 			this.zoom2d = packet.g2();
 		} else if (opcode == Opcodes.xan2d) {
-			this.xAngle2D = packet.g2();
+			this.xan2d = packet.g2();
 		} else if (opcode == Opcodes.yan2d) {
-			this.yAngle2D = packet.g2();
+			this.yan2d = packet.g2();
 		} else if (opcode == Opcodes.xof2d) {
-			this.xOffset2D = packet.g2();
-			if (this.xOffset2D > 32767) {
-				this.xOffset2D -= 65536;
+			this.xof2d = packet.g2();
+			if (this.xof2d > 32767) {
+				this.xof2d -= 65536;
 			}
 		} else if (opcode == Opcodes.yof2d) {
-			this.yOffset2D = packet.g2();
-			if (this.yOffset2D > 32767) {
-				this.yOffset2D -= 65536;
+			this.yof2d = packet.g2();
+			if (this.yof2d > 32767) {
+				this.yof2d -= 65536;
 			}
 		} else if (opcode == Opcodes.stackable_yes) {
 			this.stackable = 1;
@@ -267,20 +267,20 @@ public final class ObjType {
 		} else if (opcode == Opcodes.members) {
 			this.members = true;
 		} else if (opcode == Opcodes.manwear) {
-			this.manWear = packet.g2();
+			this.manwear = packet.g2();
 		} else if (opcode == Opcodes.manwear2) {
-			this.manWear2 = packet.g2();
+			this.manwear2 = packet.g2();
 		} else if (opcode == Opcodes.womanwear) {
-			this.womanWear = packet.g2();
+			this.womanwear = packet.g2();
 		} else if (opcode == Opcodes.womanwear2) {
-			this.womanWear2 = packet.g2();
+			this.womanwear2 = packet.g2();
 		} else if (opcode >= Opcodes.op1 && opcode <= Opcodes.op5) {
-			this.groundOptions[opcode - Opcodes.op1] = packet.gjstr();
-			if (this.groundOptions[opcode - Opcodes.op1].equalsIgnoreCase(LocalizedText.HIDDEN)) {
-				this.groundOptions[opcode - Opcodes.op1] = null;
+			this.op[opcode - Opcodes.op1] = packet.gjstr();
+			if (this.op[opcode - Opcodes.op1].equalsIgnoreCase(LocalizedText.HIDDEN)) {
+				this.op[opcode - Opcodes.op1] = null;
 			}
 		} else if (opcode >= Opcodes.iop1 && opcode <= Opcodes.iop5) {
-			this.interfaceOptions[opcode - Opcodes.iop1] = packet.gjstr();
+			this.iop[opcode - Opcodes.iop1] = packet.gjstr();
 		} else {
 			@Pc(179) int local179;
 			if (opcode == Opcodes.recol) {
@@ -308,9 +308,9 @@ public final class ObjType {
 			} else if (opcode == Opcodes.stockmarket_yes) {
 				this.stockMarket = true;
 			} else if (opcode == Opcodes.manwear3) {
-				this.manWear3 = packet.g2();
+				this.manwear3 = packet.g2();
 			} else if (opcode == Opcodes.womanwear3) {
-				this.womanWear3 = packet.g2();
+				this.womanwear3 = packet.g2();
 			} else if (opcode == Opcodes.manhead) {
 				this.manHead = packet.g2();
 			} else if (opcode == Opcodes.womanhead) {
@@ -445,13 +445,13 @@ public final class ObjType {
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(BZ)Z")
 	public boolean isWearModelReady(@OriginalArg(1) boolean woman) {
-		@Pc(6) int wear2 = this.manWear2;
-		@Pc(9) int wear1 = this.manWear;
-		@Pc(20) int wear3 = this.manWear3;
+		@Pc(6) int wear2 = this.manwear2;
+		@Pc(9) int wear1 = this.manwear;
+		@Pc(20) int wear3 = this.manwear3;
 		if (woman) {
-			wear3 = this.womanWear3;
-			wear1 = this.womanWear;
-			wear2 = this.womanWear2;
+			wear3 = this.womanwear3;
+			wear1 = this.womanwear;
+			wear2 = this.womanwear2;
 		}
 		if (wear1 == -1) {
 			return true;
@@ -471,42 +471,42 @@ public final class ObjType {
 		this.recol_d_palette = to.recol_d_palette;
 		this.manWearYOff = to.manWearYOff;
 		this.params = to.params;
-		this.manWear3 = to.manWear3;
-		this.womanWear = to.womanWear;
+		this.manwear3 = to.manwear3;
+		this.womanwear = to.womanwear;
 		this.manWearZOff = to.manWearZOff;
-		this.interfaceOptions = new JString[5];
-		this.model = from.model;
+		this.iop = new JString[5];
+		this.mesh = from.mesh;
 		this.zoom2d = from.zoom2d;
 		this.cost = 0;
 		this.team = to.team;
 		this.womanHead = to.womanHead;
 		this.recol_s = to.recol_s;
 		this.zAngle2D = from.zAngle2D;
-		this.manWear2 = to.manWear2;
-		this.yAngle2D = from.yAngle2D;
+		this.manwear2 = to.manwear2;
+		this.yan2d = from.yan2d;
 		this.manHead = to.manHead;
 		this.manHead2 = to.manHead2;
 		this.manWearXOff = to.manWearXOff;
-		this.xAngle2D = from.xAngle2D;
-		this.yOffset2D = from.yOffset2D;
+		this.xan2d = from.xan2d;
+		this.yof2d = from.yof2d;
 		this.womanHead2 = to.womanHead2;
 		this.womanWearXOff = to.womanWearXOff;
 		this.recol_d = to.recol_d;
 		this.womanWearYOff = to.womanWearYOff;
 		this.womanWearZOff = to.womanWearZOff;
-		this.xOffset2D = from.xOffset2D;
-		this.manWear = to.manWear;
-		this.womanWear2 = to.womanWear2;
+		this.xof2d = from.xof2d;
+		this.manwear = to.manwear;
+		this.womanwear2 = to.womanwear2;
 		this.name = to.name;
 		this.retex_d = to.retex_d;
 		this.retex_s = to.retex_s;
-		this.groundOptions = to.groundOptions;
+		this.op = to.op;
 		this.members = to.members;
-		this.womanWear3 = to.womanWear3;
-		if (to.interfaceOptions != null) {
-			System.arraycopy(to.interfaceOptions, 0, this.interfaceOptions, 0, 4);
+		this.womanwear3 = to.womanwear3;
+		if (to.iop != null) {
+			System.arraycopy(to.iop, 0, this.iop, 0, 4);
 		}
-		this.interfaceOptions[4] = LocalizedText.LENT_ITEM_RETURN;
+		this.iop[4] = LocalizedText.LENT_ITEM_RETURN;
 	}
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(IIILclient!tk;II)Lclient!ak;")
@@ -524,7 +524,7 @@ public final class ObjType {
 		}
 		@Pc(76) Model model = (Model) ObjTypeList.models.get(this.id);
 		if (model == null) {
-			@Pc(85) RawModel model2 = RawModel.create(ObjTypeList.modelArchive, this.model);
+			@Pc(85) RawModel model2 = RawModel.create(ObjTypeList.modelArchive, this.mesh);
 			if (model2 == null) {
 				return null;
 			}
@@ -602,13 +602,13 @@ public final class ObjType {
 
 	@OriginalMember(owner = "client!h", name = "a", descriptor = "(ZI)Lclient!gb;")
 	public RawModel getBodyModel(@OriginalArg(0) boolean female) {
-		@Pc(4) int wear1 = this.manWear;
-		@Pc(18) int wear2 = this.manWear2;
-		@Pc(21) int wear3 = this.manWear3;
+		@Pc(4) int wear1 = this.manwear;
+		@Pc(18) int wear2 = this.manwear2;
+		@Pc(21) int wear3 = this.manwear3;
 		if (female) {
-			wear3 = this.womanWear3;
-			wear1 = this.womanWear;
-			wear2 = this.womanWear2;
+			wear3 = this.womanwear3;
+			wear1 = this.womanwear;
+			wear2 = this.womanwear2;
 		}
 		if (wear1 == -1) {
 			return null;
@@ -651,23 +651,23 @@ public final class ObjType {
 		this.zoom2d = from.zoom2d;
 		this.recol_s = from.recol_s;
 		this.recol_d = from.recol_d;
-		this.xAngle2D = from.xAngle2D;
-		this.yAngle2D = from.yAngle2D;
+		this.xan2d = from.xan2d;
+		this.yan2d = from.yan2d;
 		this.retex_d = from.retex_d;
-		this.model = from.model;
+		this.mesh = from.mesh;
 		this.recol_d_palette = from.recol_d_palette;
 		this.zAngle2D = from.zAngle2D;
 		this.cost = to.cost;
 		this.stackable = 1;
-		this.yOffset2D = from.yOffset2D;
-		this.xOffset2D = from.xOffset2D;
+		this.yof2d = from.yof2d;
+		this.xof2d = from.xof2d;
 		this.retex_s = from.retex_s;
 		this.members = to.members;
 	}
 
 	@OriginalMember(owner = "client!h", name = "d", descriptor = "(I)Lclient!w;")
 	public SoftwareModel getInvModel() {
-		@Pc(11) RawModel model = RawModel.create(ObjTypeList.modelArchive, this.model);
+		@Pc(11) RawModel model = RawModel.create(ObjTypeList.modelArchive, this.mesh);
 		if (model == null) {
 			return null;
 		}

@@ -68,9 +68,9 @@ public final class ObjTypeList {
         if (!aBoolean276 && objType.members) {
             objType.name = LocalizedText.MEMBERS_OBJECT;
             objType.team = 0;
-            objType.interfaceOptions = aClass100Array104;
+            objType.iop = aClass100Array104;
             objType.stockMarket = false;
-            objType.groundOptions = aClass100Array87;
+            objType.op = aClass100Array87;
         }
         types.put(objType, (long) id);
         return objType;

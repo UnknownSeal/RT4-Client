@@ -19,16 +19,16 @@ public final class BasType {
 	public int standingCCWTurn = -1;
 
 	@OriginalMember(owner = "client!ck", name = "q", descriptor = "I")
-	public int idleAnimationId = -1;
+	public int readyanim = -1;
 
 	@OriginalMember(owner = "client!ck", name = "w", descriptor = "I")
-	public int runCCWTurnAnimationId = -1;
+	public int runanim_l = -1;
 
 	@OriginalMember(owner = "client!ck", name = "u", descriptor = "I")
 	public int pitchTargetAngle = 0;
 
 	@OriginalMember(owner = "client!ck", name = "v", descriptor = "I")
-	public int slowWalkFullTurnAnimationId = -1;
+	public int crawlanim_b = -1;
 
 	@OriginalMember(owner = "client!ck", name = "e", descriptor = "I")
 	public int yawMaxSpeed = 0;
@@ -37,10 +37,10 @@ public final class BasType {
 	public int anInt1050 = 0;
 
 	@OriginalMember(owner = "client!ck", name = "E", descriptor = "I")
-	public int slowWalkCWTurnAnimationId = -1;
+	public int crawlanim_r = -1;
 
 	@OriginalMember(owner = "client!ck", name = "M", descriptor = "I")
-	public int runFullTurnAnimationId = -1;
+	public int runanim_b = -1;
 
 	@OriginalMember(owner = "client!ck", name = "N", descriptor = "I")
 	public int rollAcceleration = 0;
@@ -55,13 +55,13 @@ public final class BasType {
 	public int movementAcceleration = -1;
 
 	@OriginalMember(owner = "client!ck", name = "H", descriptor = "I")
-	public int walkAnimation = -1;
+	public int walkanim = -1;
 
 	@OriginalMember(owner = "client!ck", name = "W", descriptor = "I")
 	public int anInt1059 = 0;
 
 	@OriginalMember(owner = "client!ck", name = "z", descriptor = "I")
-	public int runCWTurnAnimationId = -1;
+	public int runanim_r = -1;
 
 	@OriginalMember(owner = "client!ck", name = "r", descriptor = "I")
 	public int yawAcceleration = 0;
@@ -70,16 +70,16 @@ public final class BasType {
 	public int pitchAcceleration = 0;
 
 	@OriginalMember(owner = "client!ck", name = "ab", descriptor = "I")
-	public int slowWalkAnimationId = -1;
+	public int crawlanim = -1;
 
 	@OriginalMember(owner = "client!ck", name = "t", descriptor = "I")
 	public int rollMaxSpeed = 0;
 
 	@OriginalMember(owner = "client!ck", name = "U", descriptor = "I")
-	public int runAnimationId = -1;
+	public int runanim = -1;
 
 	@OriginalMember(owner = "client!ck", name = "ib", descriptor = "I")
-	public int slowWalkCCWTurnAnimationId = -1;
+	public int crawlanim_l = -1;
 
 	@OriginalMember(owner = "client!ck", name = "bb", descriptor = "I")
 	public int pitchMaxSpeed = 0;
@@ -107,30 +107,30 @@ public final class BasType {
 	@OriginalMember(owner = "client!ck", name = "a", descriptor = "(IBLclient!wa;)V")
 	private void decode(@OriginalArg(2) Packet packet, @OriginalArg(0) int opcode) {
 		if (opcode == 1) {
-			this.idleAnimationId = packet.g2();
-			this.walkAnimation = packet.g2();
-			if (this.walkAnimation == 65535) {
-				this.walkAnimation = -1;
+			this.readyanim = packet.g2();
+			this.walkanim = packet.g2();
+			if (this.walkanim == 65535) {
+				this.walkanim = -1;
 			}
-			if (this.idleAnimationId == 65535) {
-				this.idleAnimationId = -1;
+			if (this.readyanim == 65535) {
+				this.readyanim = -1;
 			}
 		} else if (opcode == 2) {
-			this.slowWalkAnimationId = packet.g2();
+			this.crawlanim = packet.g2();
 		} else if (opcode == 3) {
-			this.slowWalkFullTurnAnimationId = packet.g2();
+			this.crawlanim_b = packet.g2();
 		} else if (opcode == 4) {
-			this.slowWalkCCWTurnAnimationId = packet.g2();
+			this.crawlanim_l = packet.g2();
 		} else if (opcode == 5) {
-			this.slowWalkCWTurnAnimationId = packet.g2();
+			this.crawlanim_r = packet.g2();
 		} else if (opcode == 6) {
-			this.runAnimationId = packet.g2();
+			this.runanim = packet.g2();
 		} else if (opcode == 7) {
-			this.runFullTurnAnimationId = packet.g2();
+			this.runanim_b = packet.g2();
 		} else if (opcode == 8) {
-			this.runCCWTurnAnimationId = packet.g2();
+			this.runanim_l = packet.g2();
 		} else if (opcode == 9) {
-			this.runCWTurnAnimationId = packet.g2();
+			this.runanim_r = packet.g2();
 		} else if (opcode == 26) {
 			this.anInt1059 = (short) (packet.g1() * 4);
 			this.anInt1050 = (short) (packet.g1() * 4);

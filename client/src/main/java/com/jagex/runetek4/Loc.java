@@ -307,7 +307,7 @@ public final class Loc extends Entity {
 				this.aClass144_2 = SeqTypeList.get(local69);
 			}
 			if (this.aClass144_2 != null) {
-				if (local19.allowRandomizedAnimation && this.aClass144_2.replayOff != -1) {
+				if (local19.randomanimframe && this.aClass144_2.replayOff != -1) {
 					this.anInt1297 = (int) (Math.random() * (double) this.aClass144_2.frames.length);
 					this.anInt1320 -= (int) (Math.random() * (double) this.aClass144_2.frameDelay[this.anInt1297]);
 				} else {
@@ -331,7 +331,7 @@ public final class Loc extends Entity {
 		@Pc(192) int local192 = (local157 >> 1) + this.anInt1300;
 		@Pc(201) int local201 = (local157 + 1 >> 1) + this.anInt1300;
 		this.method1047(local192 * 128, local185 * 128);
-		@Pc(256) boolean local256 = !local12 && local19.castShadow && (local19.id != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || SeqType.applyTweening) && this.anInt1297 != this.anInt1304) && Preferences.sceneryShadowsType >= 2);
+		@Pc(256) boolean local256 = !local12 && local19.hardshadow && (local19.id != this.anInt1321 || (this.anInt1297 != this.anInt1322 || this.aClass144_2 != null && (this.aClass144_2.aBoolean280 || SeqType.applyTweening) && this.anInt1297 != this.anInt1304) && Preferences.sceneryShadowsType >= 2);
 		if (arg0 && !local256) {
 			return null;
 		}
