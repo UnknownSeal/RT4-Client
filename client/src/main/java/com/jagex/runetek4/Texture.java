@@ -2,6 +2,7 @@ package com.jagex.runetek4;
 
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.js5.Js5;
+import com.jagex.runetek4.textureops.*;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -127,9 +128,9 @@ public final class Texture {
 		} else if (type == 3) {
 			return new TextureOpVerticalGradient();
 		} else if (type == 4) {
-			return new TextureOp17();
+			return new TextureOpBricks();
 		} else if (type == 5) {
-			return new TextureOp21();
+			return new TextureOpBoxBlur();
 		} else if (type == 6) {
 			return new TextureOpClamp();
 		} else if (type == 7) {
@@ -141,23 +142,23 @@ public final class Texture {
 		} else if (type == 10) {
 			return new TextureOpColorGradient();
 		} else if (type == 11) {
-			return new TextureOp18();
+			return new TextureOpColorize();
 		} else if (type == 12) {
-			return new TextureOp1();
+			return new TextureOpWaveform();
 		} else if (type == 13) {
 			return new TextureOpNoise();
 		} else if (type == 14) {
-			return new TextureOp28();
+			return new TextureOpWeave();
 		} else if (type == 15) {
-			return new TextureOp14();
+			return new TextureOpVoronoiNoise();
 		} else if (type == 16) {
-			return new TextureOp8();
+			return new TextureOpHerringbone();
 		} else if (type == 17) {
-			return new TextureOp13();
+			return new TextureOpHslAdjust();
 		} else if (type == 18) {
 			return new TextureOpTiledSprite();
 		} else if (type == 19) {
-			return new TextureOp16();
+			return new TextureOpPolarDistortion();
 		} else if (type == 20) {
 			return new TextureOpTile();
 		} else if (type == 21) {
@@ -165,37 +166,37 @@ public final class Texture {
 		} else if (type == 22) {
 			return new TextureOpInvert();
 		} else if (type == 23) {
-			return new TextureOp15();
+			return new TextureOpKaleidoscope();
 		} else if (type == 24) {
 			return new TextureOpMonochrome();
 		} else if (type == 25) {
-			return new TextureOp30();
+			return new TextureOpBrightness();
 		} else if (type == 26) {
 			return new TextureOpBinary();
 		} else if (type == 27) {
-			return new TextureOp6();
+			return new TextureOpSquareWaveform();
 		} else if (type == 28) {
-			return new TextureOp22();
+			return new TextureOpIrregularBricks();
 		} else if (type == 29) {
-			return new TextureOp29();
+			return new TextureOpRasterizer();
 		} else if (type == 30) {
 			return new TextureOpRange();
 		} else if (type == 31) {
-			return new TextureOp12();
+			return new TextureOpMandelbrot();
 		} else if (type == 32) {
-			return new TextureOp24();
+			return new TextureOpEmboss();
 		} else if (type == 33) {
-			return new TextureOp3();
+			return new TextureOpColorEdgeDetector();
 		} else if (type == 34) {
-			return new TextureOp4();
+			return new TextureOpPerlinNoise();
 		} else if (type == 35) {
-			return new TextureOp23();
+			return new TextureOpMonochromeEdgeDetector();
 		} else if (type == 36) {
 			return new TextureOpTexture();
 		} else if (type == 37) {
-			return new TextureOp19();
+			return new TextureOp37();
 		} else if (type == 38) {
-			return new TextureOp33();
+			return new TextureOpLineNoise();
 		} else if (type == 39) {
 			return new TextureOpSprite();
 		} else {

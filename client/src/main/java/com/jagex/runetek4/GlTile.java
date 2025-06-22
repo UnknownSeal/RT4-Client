@@ -3,9 +3,9 @@ package com.jagex.runetek4;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
+import com.jagex.runetek4.client.Preferences;
 import com.jagex.runetek4.core.datastruct.IntWrapper;
 import com.jagex.runetek4.core.datastruct.HashTable;
-import com.jagex.runetek4.media.Rasterizer;
 import com.jagex.runetek4.node.Node;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.scene.tile.Tile;

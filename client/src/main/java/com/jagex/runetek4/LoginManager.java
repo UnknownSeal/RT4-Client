@@ -1,20 +1,17 @@
 package com.jagex.runetek4;
 
 import com.jagex.runetek4.cache.CacheArchive;
-import com.jagex.runetek4.cache.def.NpcType;
+import com.jagex.runetek4.config.types.npc.NpcType;
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.loc.LocTypeList;
+import com.jagex.runetek4.config.types.npc.NpcTypeList;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.core.io.PacketBit;
-import com.jagex.runetek4.dash3d.CollisionMap;
-import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
-import com.jagex.runetek4.frame.MiniMap;
-import com.jagex.runetek4.game.client.Inv;
-import com.jagex.runetek4.game.config.meltype.MapElementList;
-import com.jagex.runetek4.input.Keyboard;
-import com.jagex.runetek4.input.MouseCapturer;
-import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.config.types.loc.LocType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -110,7 +107,7 @@ public class LoginManager {
     @OriginalMember(owner = "runetek4.client!pi", name = "P", descriptor = "J")
     public static long serverKey = 0L;
     @OriginalMember(owner = "runetek4.client!ud", name = "O", descriptor = "I")
-    public static int blackMarks = 0;
+    public static int playerModLevel = 0;
     @OriginalMember(owner = "runetek4.client!jk", name = "G", descriptor = "Z")
     public static boolean playerUnderage = false;
     @OriginalMember(owner = "runetek4.client!ql", name = "c", descriptor = "Z")
@@ -933,7 +930,7 @@ public class LoginManager {
                 Protocol.gameServerSocket.read(0, 14, Protocol.inboundBuffer.data);
                 Protocol.inboundBuffer.offset = 0;
                 staffModLevel = Protocol.inboundBuffer.g1();
-                blackMarks = Protocol.inboundBuffer.g1();
+                playerModLevel = Protocol.inboundBuffer.g1();
                 playerUnderage = Protocol.inboundBuffer.g1() == 1;
                 parentalChatConsent = Protocol.inboundBuffer.g1() == 1;
                 parentalAdvertConsent = Protocol.inboundBuffer.g1() == 1;

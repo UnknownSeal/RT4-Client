@@ -1,22 +1,22 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.ObjType;
+import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.cache.media.Font;
-import com.jagex.runetek4.cache.media.SeqType;
+import com.jagex.runetek4.config.types.seq.SeqType;
 import com.jagex.runetek4.cache.media.component.Component;
+import com.jagex.runetek4.client.Game;
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.npc.NpcTypeList;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
+import com.jagex.runetek4.config.types.quickchat.QuickChatPhraseTypeList;
+import com.jagex.runetek4.config.types.seq.SeqTypeList;
+import com.jagex.runetek4.config.types.spotanim.SpotAnimTypeList;
 import com.jagex.runetek4.core.io.Packet;
 import com.jagex.runetek4.core.io.PacketBit;
-import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.dash3d.entity.PathingEntity;
-import com.jagex.runetek4.dash3d.entity.ProjAnimNode;
-import com.jagex.runetek4.dash3d.entity.SpotAnimEntity;
-import com.jagex.runetek4.frame.MiniMap;
-import com.jagex.runetek4.game.client.Inv;
-import com.jagex.runetek4.game.client.logic.DelayedStateChange;
-import com.jagex.runetek4.game.config.bastype.BasType;
-import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
-import com.jagex.runetek4.game.config.quickchatphrasetype.QuickChatPhraseType;
-import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.config.types.bas.BasType;
+import com.jagex.runetek4.config.types.quickchat.QuickChatPhraseType;
 import com.jagex.runetek4.scene.SceneCamera;
 import com.jagex.runetek4.util.MathUtils;
 import com.jagex.runetek4.util.SignLink;
@@ -268,7 +268,7 @@ public class Protocol {
         if (opcode == 60) {
             ii = inboundBuffer.g2sub();
             @Pc(137) byte local137 = inboundBuffer.g1neg();
-            VarpDomain.set(local137, ii);
+            VarpDomain.setVarpServer(local137, ii);
             opcode = -1;
             return true;
         }
@@ -601,7 +601,7 @@ public class Protocol {
                 } else if (opcode == 226) {
                     ii = inboundBuffer.g4();
                     xp = inboundBuffer.g2sub();
-                    VarpDomain.set(ii, xp);
+                    VarpDomain.setVarpServer(ii, xp);
                     opcode = -1;
                     return true;
                 } else if (opcode == 21) {
@@ -841,7 +841,7 @@ public class Protocol {
                         int verifyID = inboundBuffer.g2();
                         xp = inboundBuffer.g4();
                         if (setVerifyID(verifyID)) {
-                            @Pc(2441) ComponentPointer local2441 = (ComponentPointer) InterfaceList.openInterfaces.get((long) xp);
+                            @Pc(2441) SubInterface local2441 = (SubInterface) InterfaceList.openInterfaces.get((long) xp);
                             if (local2441 != null) {
                                 InterfaceList.closeInterface(true, local2441);
                             }
@@ -1019,8 +1019,8 @@ public class Protocol {
                             return true;
                         } else if (opcode == 128) {
                             for (ii = 0; ii < VarpDomain.activeVarps.length; ii++) {
-                                if (VarpDomain.varp[ii] != VarpDomain.activeVarps[ii]) {
-                                    VarpDomain.activeVarps[ii] = VarpDomain.varp[ii];
+                                if (VarpDomain.serverVarps[ii] != VarpDomain.activeVarps[ii]) {
+                                    VarpDomain.activeVarps[ii] = VarpDomain.serverVarps[ii];
                                     VarpDomain.refreshMagicVarp(ii);
                                     VarpDomain.updatedVarps[VarpDomain.updatedVarpsWriterIndex++ & 0x1F] = ii;
                                 }
@@ -1082,14 +1082,14 @@ public class Protocol {
                             opcode = -1;
                             return true;
                         } else {
-                            @Pc(3456) ComponentPointer local3456;
+                            @Pc(3456) SubInterface local3456;
                             if (opcode == 176) {
                                 ii = inboundBuffer.g4rme();
                                 int verifyID = inboundBuffer.g2sub();
                                 world = inboundBuffer.g4rme();
                                 if (setVerifyID(verifyID)) {
-                                    @Pc(3449) ComponentPointer local3449 = (ComponentPointer) InterfaceList.openInterfaces.get((long) ii);
-                                    local3456 = (ComponentPointer) InterfaceList.openInterfaces.get((long) world);
+                                    @Pc(3449) SubInterface local3449 = (SubInterface) InterfaceList.openInterfaces.get((long) ii);
+                                    local3456 = (SubInterface) InterfaceList.openInterfaces.get((long) world);
                                     if (local3456 != null) {
                                         InterfaceList.closeInterface(local3449 == null || local3456.interfaceId != local3449.interfaceId, local3456);
                                     }
@@ -1227,7 +1227,7 @@ public class Protocol {
                             } else if (opcode == 37) {
                                 ii = inboundBuffer.g1add();
                                 xp = inboundBuffer.g2le();
-                                VarpDomain.setVarbit(ii, xp);
+                                VarpDomain.setVarbitServer(ii, xp);
                                 opcode = -1;
                                 return true;
                             } else if (opcode == 155) {
@@ -1237,9 +1237,9 @@ public class Protocol {
                                 int verifyID = inboundBuffer.g2sub();
                                 int interfaceID = inboundBuffer.g2();
                                 if (setVerifyID(verifyID)) {
-                                    ComponentPointer componentPointer = (ComponentPointer) InterfaceList.openInterfaces.get(windowID);
-                                    if (componentPointer != null) {
-                                        InterfaceList.closeInterface(interfaceID != componentPointer.interfaceId, componentPointer);
+                                    SubInterface subInterface = (SubInterface) InterfaceList.openInterfaces.get(windowID);
+                                    if (subInterface != null) {
+                                        InterfaceList.closeInterface(interfaceID != subInterface.interfaceId, subInterface);
                                     }
                                     openSubInterface(interfaceID, windowID, flags);
                                 }
@@ -1473,7 +1473,7 @@ public class Protocol {
                             } else if (opcode == 84) {
                                 ii = inboundBuffer.g4me();
                                 xp = inboundBuffer.g2leadd();
-                                VarpDomain.setVarbit(ii, xp);
+                                VarpDomain.setVarbitServer(ii, xp);
                                 opcode = -1;
                                 return true;
                             } else {
@@ -2822,22 +2822,7 @@ public class Protocol {
 
     @OriginalMember(owner = "client!fc", name = "a", descriptor = "(Lclient!wa;I)Lclient!na;")
     public static JString formatChatMessage(@OriginalArg(0) Packet arg0) {
-        return method4350(arg0);
-    }
-
-    @OriginalMember(owner = "runetek4.client!uj", name = "a", descriptor = "(Lclient!wa;II)Lclient!na;")
-    public static JString method4350(@OriginalArg(0) Packet arg0) {
-        try {
-            @Pc(7) int local7 = arg0.gSmart1or2();
-            if (local7 > 32767) {
-                local7 = 32767;
-            }
-            @Pc(15) byte[] local15 = new byte[local7];
-            arg0.offset += WordPack.codec.decode(0, local7, local15, arg0.data, arg0.offset);
-            return JString.decodeString(local15, local7, 0);
-        } catch (@Pc(47) Exception local47) {
-            return WordPack.CABBAGE;
-        }
+        return WordPack.readStringInternal(arg0);
     }
 
     @OriginalMember(owner = "runetek4.client!mi", name = "a", descriptor = "([IBLclient!km;[I[I)V")
@@ -2940,8 +2925,8 @@ public class Protocol {
     }
 
     @OriginalMember(owner = "client!dh", name = "a", descriptor = "(IIII)Lclient!wk;")
-    public static ComponentPointer openSubInterface(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
-        @Pc(9) ComponentPointer local9 = new ComponentPointer();
+    public static SubInterface openSubInterface(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2) {
+        @Pc(9) SubInterface local9 = new SubInterface();
         local9.anInt5879 = arg2;
         local9.interfaceId = arg0;
         InterfaceList.openInterfaces.put(local9, arg1);

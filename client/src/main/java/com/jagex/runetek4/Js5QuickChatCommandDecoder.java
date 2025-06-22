@@ -1,7 +1,9 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.game.config.enumtype.EnumType;
-import com.jagex.runetek4.cache.def.ObjType;
+import com.jagex.runetek4.config.types.enums.EnumTypeList;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
+import com.jagex.runetek4.config.types.enums.EnumType;
+import com.jagex.runetek4.config.types.obj.ObjType;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;

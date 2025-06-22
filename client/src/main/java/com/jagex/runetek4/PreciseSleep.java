@@ -1,6 +1,10 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.config.types.flu.FluTypeList;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
 import com.jagex.runetek4.core.io.Packet;
+import com.jagex.runetek4.textureops.TextureOp29SubOp4;
+import com.jagex.runetek4.textureops.TextureOpRasterizer;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.IntUtils;
 import org.openrs2.deob.annotation.OriginalArg;
@@ -108,12 +112,12 @@ public final class PreciseSleep {
 		@Pc(183) int local183;
 		@Pc(192) int local192;
 		@Pc(201) int local201;
-		if (arg4 >= TextureOp29.anInt5773 && TextureOp29.anInt2869 >= arg4) {
+		if (arg4 >= TextureOpRasterizer.anInt5773 && TextureOpRasterizer.anInt2869 >= arg4) {
 			@Pc(166) int[] local166 = ObjTypeList.anIntArrayArray10[arg4];
-			local174 = IntUtils.clamp(FluTypeList.anInt5063, arg5 - arg0, TextureOp29.anInt4164);
-			local183 = IntUtils.clamp(FluTypeList.anInt5063, arg5 + arg0, TextureOp29.anInt4164);
-			local192 = IntUtils.clamp(FluTypeList.anInt5063, arg5 - local12, TextureOp29.anInt4164);
-			local201 = IntUtils.clamp(FluTypeList.anInt5063, arg5 + local12, TextureOp29.anInt4164);
+			local174 = IntUtils.clamp(FluTypeList.anInt5063, arg5 - arg0, TextureOpRasterizer.anInt4164);
+			local183 = IntUtils.clamp(FluTypeList.anInt5063, arg5 + arg0, TextureOpRasterizer.anInt4164);
+			local192 = IntUtils.clamp(FluTypeList.anInt5063, arg5 - local12, TextureOpRasterizer.anInt4164);
+			local201 = IntUtils.clamp(FluTypeList.anInt5063, arg5 + local12, TextureOpRasterizer.anInt4164);
 			ArrayUtils.fillRange(local166, local174, local192, arg2);
 			ArrayUtils.fillRange(local166, local192, local201, arg1);
 			ArrayUtils.fillRange(local166, local201, local183, arg2);
@@ -165,30 +169,30 @@ public final class PreciseSleep {
 			local16--;
 			local183 = arg4 + local16;
 			local174 = arg4 - local16;
-			if (TextureOp29.anInt5773 <= local183 && TextureOp29.anInt2869 >= local174) {
-				local192 = IntUtils.clamp(FluTypeList.anInt5063, arg5 + local7, TextureOp29.anInt4164);
-				local201 = IntUtils.clamp(FluTypeList.anInt5063, arg5 - local7, TextureOp29.anInt4164);
+			if (TextureOpRasterizer.anInt5773 <= local183 && TextureOpRasterizer.anInt2869 >= local174) {
+				local192 = IntUtils.clamp(FluTypeList.anInt5063, arg5 + local7, TextureOpRasterizer.anInt4164);
+				local201 = IntUtils.clamp(FluTypeList.anInt5063, arg5 - local7, TextureOpRasterizer.anInt4164);
 				if (local255) {
-					@Pc(404) int local404 = IntUtils.clamp(FluTypeList.anInt5063, arg5 + local14, TextureOp29.anInt4164);
-					@Pc(412) int local412 = IntUtils.clamp(FluTypeList.anInt5063, arg5 - local14, TextureOp29.anInt4164);
+					@Pc(404) int local404 = IntUtils.clamp(FluTypeList.anInt5063, arg5 + local14, TextureOpRasterizer.anInt4164);
+					@Pc(412) int local412 = IntUtils.clamp(FluTypeList.anInt5063, arg5 - local14, TextureOpRasterizer.anInt4164);
 					@Pc(420) int[] local420;
-					if (TextureOp29.anInt5773 <= local174) {
+					if (TextureOpRasterizer.anInt5773 <= local174) {
 						local420 = ObjTypeList.anIntArrayArray10[local174];
 						ArrayUtils.fillRange(local420, local201, local412, arg2);
 						ArrayUtils.fillRange(local420, local412, local404, arg1);
 						ArrayUtils.fillRange(local420, local404, local192, arg2);
 					}
-					if (local183 <= TextureOp29.anInt2869) {
+					if (local183 <= TextureOpRasterizer.anInt2869) {
 						local420 = ObjTypeList.anIntArrayArray10[local183];
 						ArrayUtils.fillRange(local420, local201, local412, arg2);
 						ArrayUtils.fillRange(local420, local412, local404, arg1);
 						ArrayUtils.fillRange(local420, local404, local192, arg2);
 					}
 				} else {
-					if (TextureOp29.anInt5773 <= local174) {
+					if (TextureOpRasterizer.anInt5773 <= local174) {
 						ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local174], local201, local192, arg2);
 					}
-					if (TextureOp29.anInt2869 >= local183) {
+					if (TextureOpRasterizer.anInt2869 >= local183) {
 						ArrayUtils.fillRange(ObjTypeList.anIntArrayArray10[local183], local201, local192, arg2);
 					}
 				}
@@ -202,18 +206,18 @@ public final class PreciseSleep {
 		@Pc(19) int local19 = arg1 - arg3;
 		if (local15 == 0) {
 			if (local19 != 0) {
-				TextureOp29.method1306(arg1, arg3, arg0, arg2);
+				TextureOpRasterizer.method1306(arg1, arg3, arg0, arg2);
 			}
 		} else if (local19 == 0) {
-			TextureOp29.method4019(arg2, arg0, arg4, arg3);
+			TextureOpRasterizer.method4019(arg2, arg0, arg4, arg3);
 		} else {
 			@Pc(50) int local50 = (local19 << 12) / local15;
 			@Pc(59) int local59 = arg3 - (local50 * arg2 >> 12);
 			@Pc(68) int local68;
 			@Pc(76) int local76;
-			if (TextureOp29.anInt4164 > arg2) {
-				local68 = TextureOp29.anInt4164;
-				local76 = (TextureOp29.anInt4164 * local50 >> 12) + local59;
+			if (TextureOpRasterizer.anInt4164 > arg2) {
+				local68 = TextureOpRasterizer.anInt4164;
+				local76 = (TextureOpRasterizer.anInt4164 * local50 >> 12) + local59;
 			} else if (arg2 > FluTypeList.anInt5063) {
 				local76 = (FluTypeList.anInt5063 * local50 >> 12) + local59;
 				local68 = FluTypeList.anInt5063;
@@ -223,9 +227,9 @@ public final class PreciseSleep {
 			}
 			@Pc(109) int local109;
 			@Pc(118) int local118;
-			if (arg4 < TextureOp29.anInt4164) {
-				local109 = TextureOp29.anInt4164;
-				local118 = local59 + (local50 * TextureOp29.anInt4164 >> 12);
+			if (arg4 < TextureOpRasterizer.anInt4164) {
+				local109 = TextureOpRasterizer.anInt4164;
+				local118 = local59 + (local50 * TextureOpRasterizer.anInt4164 >> 12);
 			} else if (FluTypeList.anInt5063 < arg4) {
 				local109 = FluTypeList.anInt5063;
 				local118 = local59 + (local50 * FluTypeList.anInt5063 >> 12);
@@ -233,19 +237,19 @@ public final class PreciseSleep {
 				local118 = arg1;
 				local109 = arg4;
 			}
-			if (TextureOp29.anInt5773 > local118) {
-				local109 = (TextureOp29.anInt5773 - local59 << 12) / local50;
-				local118 = TextureOp29.anInt5773;
-			} else if (local118 > TextureOp29.anInt2869) {
-				local118 = TextureOp29.anInt2869;
-				local109 = (TextureOp29.anInt2869 - local59 << 12) / local50;
+			if (TextureOpRasterizer.anInt5773 > local118) {
+				local109 = (TextureOpRasterizer.anInt5773 - local59 << 12) / local50;
+				local118 = TextureOpRasterizer.anInt5773;
+			} else if (local118 > TextureOpRasterizer.anInt2869) {
+				local118 = TextureOpRasterizer.anInt2869;
+				local109 = (TextureOpRasterizer.anInt2869 - local59 << 12) / local50;
 			}
-			if (local76 < TextureOp29.anInt5773) {
-				local76 = TextureOp29.anInt5773;
-				local68 = (TextureOp29.anInt5773 - local59 << 12) / local50;
-			} else if (TextureOp29.anInt2869 < local76) {
-				local76 = TextureOp29.anInt2869;
-				local68 = (TextureOp29.anInt2869 - local59 << 12) / local50;
+			if (local76 < TextureOpRasterizer.anInt5773) {
+				local76 = TextureOpRasterizer.anInt5773;
+				local68 = (TextureOpRasterizer.anInt5773 - local59 << 12) / local50;
+			} else if (TextureOpRasterizer.anInt2869 < local76) {
+				local76 = TextureOpRasterizer.anInt2869;
+				local68 = (TextureOpRasterizer.anInt2869 - local59 << 12) / local50;
 			}
 			TextureOp29SubOp4.method4547(arg0, local118, local76, local109, local68);
 		}

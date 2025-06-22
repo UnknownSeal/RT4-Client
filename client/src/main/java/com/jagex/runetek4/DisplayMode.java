@@ -1,7 +1,8 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.input.Keyboard;
-import com.jagex.runetek4.media.Rasterizer;
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
 import com.jagex.runetek4.util.ArrayUtils;
 import com.jagex.runetek4.util.SignLink;
 import com.jagex.runetek4.util.ThreadUtils;
@@ -147,43 +148,43 @@ public final class DisplayMode {
 	}
 
 	@OriginalMember(owner = "runetek4.client!pm", name = "a", descriptor = "(ZIZIZII)V")
-	public static void setWindowMode(@OriginalArg(0) boolean arg0, @OriginalArg(1) int arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) int mode, @OriginalArg(5) int arg4, @OriginalArg(6) int arg5) {
+	public static void setWindowMode(@OriginalArg(0) boolean replaceCanvas, @OriginalArg(1) int mode, @OriginalArg(2) boolean arg2, @OriginalArg(3) int windowMode, @OriginalArg(5) int width, @OriginalArg(6) int height) {
 		if (arg2) {
 			GlRenderer.quit();
 		}
-		if (GameShell.fullScreenFrame != null && (arg1 != 3 || arg4 != Preferences.fullScreenWidth || arg5 != Preferences.fullScreenHeight)) {
+		if (GameShell.fullScreenFrame != null && (mode != 3 || width != Preferences.fullScreenWidth || height != Preferences.fullScreenHeight)) {
 			exitFullScreen(GameShell.fullScreenFrame, GameShell.signLink);
 			GameShell.fullScreenFrame = null;
 		}
-		if (arg1 == 3 && GameShell.fullScreenFrame == null) {
-			GameShell.fullScreenFrame = enterFullScreen(0, arg5, arg4, GameShell.signLink);
+		if (mode == 3 && GameShell.fullScreenFrame == null) {
+			GameShell.fullScreenFrame = enterFullScreen(0, height, width, GameShell.signLink);
 			if (GameShell.fullScreenFrame != null) {
-				Preferences.fullScreenHeight = arg5;
-				Preferences.fullScreenWidth = arg4;
+				Preferences.fullScreenHeight = height;
+				Preferences.fullScreenWidth = width;
 				Preferences.write(GameShell.signLink);
 			}
 		}
-		if (arg1 == 3 && GameShell.fullScreenFrame == null) {
-			setWindowMode(true, Preferences.favoriteWorlds, true, mode, -1, -1);
+		if (mode == 3 && GameShell.fullScreenFrame == null) {
+			setWindowMode(true, Preferences.favoriteWorlds, true, windowMode, -1, -1);
 			return;
 		}
-		@Pc(85) Container local85;
+		@Pc(85) Container container;
 		if (GameShell.fullScreenFrame != null) {
-			local85 = GameShell.fullScreenFrame;
+			container = GameShell.fullScreenFrame;
 		} else if (GameShell.frame == null) {
-			local85 = GameShell.signLink.applet;
+			container = GameShell.signLink.applet;
 		} else {
-			local85 = GameShell.frame;
+			container = GameShell.frame;
 		}
-		GameShell.frameWidth = local85.getSize().width;
-		GameShell.frameHeight = local85.getSize().height;
-		@Pc(109) Insets local109;
-		if (GameShell.frame == local85) {
-			local109 = GameShell.frame.getInsets();
-			GameShell.frameWidth -= local109.right + local109.left;
-			GameShell.frameHeight -= local109.bottom + local109.top;
+		GameShell.frameWidth = container.getSize().width;
+		GameShell.frameHeight = container.getSize().height;
+		@Pc(109) Insets insets;
+		if (GameShell.frame == container) {
+			insets = GameShell.frame.getInsets();
+			GameShell.frameWidth -= insets.right + insets.left;
+			GameShell.frameHeight -= insets.bottom + insets.top;
 		}
-		if (arg1 >= 2) {
+		if (mode >= 2) {
 			GameShell.canvasWidth = GameShell.frameWidth;
 			GameShell.canvasHeigth = GameShell.frameHeight;
 			GameShell.leftMargin = 0;
@@ -194,7 +195,7 @@ public final class DisplayMode {
 			GameShell.canvasWidth = 765;
 			GameShell.canvasHeigth = 503;
 		}
-		if (arg0) {
+		if (replaceCanvas) {
 			Keyboard.stop(GameShell.canvas);
 			Mouse.stop(GameShell.canvas);
 			if (client.mouseWheel != null) {
@@ -211,17 +212,17 @@ public final class DisplayMode {
 				GlRenderer.setCanvasSize(GameShell.canvasWidth, GameShell.canvasHeigth);
 			}
 			GameShell.canvas.setSize(GameShell.canvasWidth, GameShell.canvasHeigth);
-			if (GameShell.frame == local85) {
-				local109 = GameShell.frame.getInsets();
-				GameShell.canvas.setLocation(local109.left + GameShell.leftMargin, local109.top + GameShell.topMargin);
+			if (GameShell.frame == container) {
+				insets = GameShell.frame.getInsets();
+				GameShell.canvas.setLocation(insets.left + GameShell.leftMargin, insets.top + GameShell.topMargin);
 			} else {
 				GameShell.canvas.setLocation(GameShell.leftMargin, GameShell.topMargin);
 			}
 		}
-		if (arg1 == 0 && mode > 0) {
+		if (mode == 0 && windowMode > 0) {
 			GlRenderer.createAndDestroyContext(GameShell.canvas);
 		}
-		if (arg2 && arg1 > 0) {
+		if (arg2 && mode > 0) {
 			GameShell.canvas.setIgnoreRepaint(true);
 			if (!aBoolean73) {
 				SceneGraph.clear();
@@ -234,21 +235,21 @@ public final class DisplayMode {
 					Fonts.drawTextOnScreen(false, LocalizedText.LOADING);
 				}
 				try {
-					@Pc(269) Graphics local269 = GameShell.canvas.getGraphics();
-					SoftwareRaster.frameBuffer.draw(local269);
+					@Pc(269) Graphics graphics = GameShell.canvas.getGraphics();
+					SoftwareRaster.frameBuffer.draw(graphics);
 				} catch (@Pc(277) Exception local277) {
 				}
 				GameShell.method2704();
-				if (mode == 0) {
+				if (windowMode == 0) {
 					SoftwareRaster.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
 				} else {
 					SoftwareRaster.frameBuffer = null;
 				}
-				@Pc(300) PrivilegedRequest local300 = GameShell.signLink.loadGlNatives(client.instance.getClass());
-				while (local300.status == 0) {
+				@Pc(300) PrivilegedRequest request = GameShell.signLink.loadGlNatives(client.instance.getClass());
+				while (request.status == 0) {
 					ThreadUtils.sleep(100L);
 				}
-				if (local300.status == 1) {
+				if (request.status == 1) {
 					aBoolean73 = true;
 				}
 			}
@@ -256,11 +257,11 @@ public final class DisplayMode {
 				GlRenderer.init(GameShell.canvas, Preferences.antiAliasingMode * 2);
 			}
 		}
-		if (!GlRenderer.enabled && arg1 > 0) {
-			setWindowMode(true, 0, true, mode, -1, -1);
+		if (!GlRenderer.enabled && mode > 0) {
+			setWindowMode(true, 0, true, windowMode, -1, -1);
 			return;
 		}
-		if (arg1 > 0 && mode == 0) {
+		if (mode > 0 && windowMode == 0) {
 			GameShell.thread.setPriority(5);
 			SoftwareRaster.frameBuffer = null;
 			SoftwareModel.method4580();
@@ -269,7 +270,7 @@ public final class DisplayMode {
 				Rasterizer.setBrightness(0.7F);
 			}
 			LoginManager.method4637();
-		} else if (arg1 == 0 && mode > 0) {
+		} else if (mode == 0 && windowMode > 0) {
 			GameShell.thread.setPriority(1);
 			SoftwareRaster.frameBuffer = FrameBuffer.create(503, 765, GameShell.canvas);
 			SoftwareModel.method4583();
@@ -296,7 +297,7 @@ public final class DisplayMode {
 		if (arg2) {
 			client.method2721();
 		}
-		if (arg1 >= 2) {
+		if (mode >= 2) {
 			aBoolean156 = true;
 		} else {
 			aBoolean156 = false;

@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.PixelGrabber;
 
+import com.jagex.runetek4.client.GameShell;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -35,12 +36,12 @@ public final class WorldMapFont {
 	private byte[] data = new byte[100000];
 
 	static {
-		for (@Pc(146) int local146 = 0; local146 < 256; local146++) {
-			@Pc(153) int local153 = ALPHABET.indexOf(local146);
-			if (local153 == -1) {
-				local153 = 74;
+		for (@Pc(146) int c = 0; c < 256; c++) {
+			@Pc(153) int i = ALPHABET.indexOf(c);
+			if (i == -1) {
+				i = 74;
 			}
-			CHAR_INDEXES[local146] = local153 * 9;
+			CHAR_INDEXES[c] = i * 9;
 		}
 	}
 
@@ -48,25 +49,25 @@ public final class WorldMapFont {
 	public WorldMapFont(@OriginalArg(0) int size, @OriginalArg(1) boolean arg1, @OriginalArg(2) Component component) {
 		this.dataIndex = ALPHABET_SIZE * 9;
 		this.grayscale = false;
-		@Pc(30) Font font = new Font("Helvetica", Font.BOLD, size);
-		@Pc(34) FontMetrics boldMetrics = component.getFontMetrics(font);
+		@Pc(30) Font bold = new Font("Helvetica", Font.BOLD, size);
+		@Pc(34) FontMetrics boldMetrics = component.getFontMetrics(bold);
 		@Pc(36) int i;
 		for (i = 0; i < ALPHABET_SIZE; i++) {
-			this.preRenderGlyph(font, boldMetrics, ALPHABET.charAt(i), i, false);
+			this.preRenderGlyph(bold, boldMetrics, ALPHABET.charAt(i), i, false);
 		}
 		if (this.grayscale) {
 			this.dataIndex = ALPHABET_SIZE * 9;
 			this.grayscale = false;
-			font = new Font("Helvetica", Font.PLAIN, size);
-			boldMetrics = component.getFontMetrics(font);
+			Font plain = new Font("Helvetica", Font.PLAIN, size);
+			FontMetrics plainMetrics = component.getFontMetrics(bold);
 			for (i = 0; i < ALPHABET_SIZE; i++) {
-				this.preRenderGlyph(font, boldMetrics, ALPHABET.charAt(i), i, false);
+				this.preRenderGlyph(plain, plainMetrics, ALPHABET.charAt(i), i, false);
 			}
 			if (!this.grayscale) {
 				this.dataIndex = ALPHABET_SIZE * 9;
 				this.grayscale = false;
 				for (i = 0; i < ALPHABET_SIZE; i++) {
-					this.preRenderGlyph(font, boldMetrics, ALPHABET.charAt(i), i, true);
+					this.preRenderGlyph(plain, plainMetrics, ALPHABET.charAt(i), i, true);
 				}
 			}
 		}
@@ -78,12 +79,12 @@ public final class WorldMapFont {
 	}
 
 	@OriginalMember(owner = "runetek4.client!fd", name = "a", descriptor = "(Lclient!na;IIIZ)V")
-	private void renderString(@OriginalArg(0) JString arg0, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int color, @OriginalArg(4) boolean shadow) {
+	private void renderString(@OriginalArg(0) JString string, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int color, @OriginalArg(4) boolean shadow) {
 		if (this.grayscale || color == 0) {
 			shadow = false;
 		}
-		for (@Pc(8) int i = 0; i < arg0.length(); i++) {
-			@Pc(20) int index = CHAR_INDEXES[arg0.charAt(i)];
+		for (@Pc(8) int i = 0; i < string.length(); i++) {
+			@Pc(20) int index = CHAR_INDEXES[string.charAt(i)];
 			if (shadow) {
 				this.renderGlyph(index, x + 1, y, 1, this.data);
 				this.renderGlyph(index, x, y + 1, 1, this.data);
@@ -118,211 +119,211 @@ public final class WorldMapFont {
 	}
 
 	@OriginalMember(owner = "runetek4.client!fd", name = "a", descriptor = "(IIII[B)V")
-	private void renderGlyph(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) byte[] arg4) {
-		@Pc(7) int local7 = arg1 + arg4[arg0 + 5];
-		@Pc(15) int local15 = arg2 - arg4[arg0 + 6];
-		@Pc(21) int local21 = arg4[arg0 + 3];
-		@Pc(27) int local27 = arg4[arg0 + 4];
-		@Pc(47) int local47 = arg4[arg0] * 16384 + arg4[arg0 + 1] * 128 + arg4[arg0 + 2];
-		@Pc(53) int local53 = local7 + local15 * SoftwareRaster.width;
-		@Pc(57) int local57 = SoftwareRaster.width - local21;
-		@Pc(59) int local59 = 0;
+	private void renderGlyph(@OriginalArg(0) int index, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int arg3, @OriginalArg(4) byte[] src) {
+		@Pc(7) int local7 = x + src[index + 5];
+		@Pc(15) int local15 = y - src[index + 6];
+		@Pc(21) int width = src[index + 3];
+		@Pc(27) int height = src[index + 4];
+		@Pc(47) int srcIndex = src[index] * 16384 + src[index + 1] * 128 + src[index + 2];
+		@Pc(53) int destIndex = local7 + local15 * SoftwareRaster.width;
+		@Pc(57) int destStride = SoftwareRaster.width - width;
+		@Pc(59) int srcStride = 0;
 		@Pc(66) int local66;
 		if (local15 < SoftwareRaster.clipTop) {
 			local66 = SoftwareRaster.clipTop - local15;
-			local27 -= local66;
+			height -= local66;
 			local15 = SoftwareRaster.clipTop;
-			local47 += local66 * local21;
-			local53 += local66 * SoftwareRaster.width;
+			srcIndex += local66 * width;
+			destIndex += local66 * SoftwareRaster.width;
 		}
-		if (local15 + local27 >= SoftwareRaster.clipBottom) {
-			local27 -= local15 + local27 + 1 - SoftwareRaster.clipBottom;
+		if (local15 + height >= SoftwareRaster.clipBottom) {
+			height -= local15 + height + 1 - SoftwareRaster.clipBottom;
 		}
 		if (local7 < SoftwareRaster.clipLeft) {
 			local66 = SoftwareRaster.clipLeft - local7;
-			local21 -= local66;
+			width -= local66;
 			local7 = SoftwareRaster.clipLeft;
-			local47 += local66;
-			local53 += local66;
-			local59 = local66;
-			local57 += local66;
+			srcIndex += local66;
+			destIndex += local66;
+			srcStride = local66;
+			destStride += local66;
 		}
-		if (local7 + local21 >= SoftwareRaster.clipRight) {
-			local66 = local7 + local21 + 1 - SoftwareRaster.clipRight;
-			local21 -= local66;
-			local59 += local66;
-			local57 += local66;
+		if (local7 + width >= SoftwareRaster.clipRight) {
+			local66 = local7 + width + 1 - SoftwareRaster.clipRight;
+			width -= local66;
+			srcStride += local66;
+			destStride += local66;
 		}
-		if (local21 <= 0 || local27 <= 0) {
+		if (width <= 0 || height <= 0) {
 			return;
 		}
 		if (this.grayscale) {
-			this.renderGlyphGrayscale(SoftwareRaster.pixels, arg4, arg3, local47, local53, local21, local27, local57, local59);
+			this.renderGlyphGrayscale(SoftwareRaster.pixels, src, arg3, srcIndex, destIndex, width, height, destStride, srcStride);
 		} else {
-			this.renderGlyphMono(SoftwareRaster.pixels, arg4, arg3, local47, local53, local21, local27, local57, local59);
+			this.renderGlyphMono(SoftwareRaster.pixels, src, arg3, srcIndex, destIndex, width, height, destStride, srcStride);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!fd", name = "b", descriptor = "([I[BIIIIIII)V")
-	private void renderGlyphMono(@OriginalArg(0) int[] arg0, @OriginalArg(1) byte[] arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(5) int arg5, @OriginalArg(6) int arg6, @OriginalArg(7) int arg7, @OriginalArg(8) int arg8) {
-		@Pc(4) int local4 = -(arg5 >> 2);
-		@Pc(9) int local9 = -(arg5 & 0x3);
-		for (@Pc(12) int local12 = -arg6; local12 < 0; local12++) {
-			@Pc(16) int local16;
-			for (local16 = local4; local16 < 0; local16++) {
-				if (arg1[arg3++] == 0) {
-					arg4++;
+	private void renderGlyphMono(@OriginalArg(0) int[] arg0, @OriginalArg(1) byte[] src, @OriginalArg(2) int color, @OriginalArg(3) int srcIndex, @OriginalArg(4) int destIndex, @OriginalArg(5) int width, @OriginalArg(6) int arg6, @OriginalArg(7) int destStride, @OriginalArg(8) int srcStride) {
+		@Pc(4) int roundedWidth = -(width >> 2);
+		@Pc(9) int width2 = -(width & 0x3);
+		for (@Pc(12) int y = -arg6; y < 0; y++) {
+			@Pc(16) int x;
+			for (x = roundedWidth; x < 0; x++) {
+				if (src[srcIndex++] == 0) {
+					destIndex++;
 				} else {
-					arg0[arg4++] = arg2;
+					arg0[destIndex++] = color;
 				}
-				if (arg1[arg3++] == 0) {
-					arg4++;
+				if (src[srcIndex++] == 0) {
+					destIndex++;
 				} else {
-					arg0[arg4++] = arg2;
+					arg0[destIndex++] = color;
 				}
-				if (arg1[arg3++] == 0) {
-					arg4++;
+				if (src[srcIndex++] == 0) {
+					destIndex++;
 				} else {
-					arg0[arg4++] = arg2;
+					arg0[destIndex++] = color;
 				}
-				if (arg1[arg3++] == 0) {
-					arg4++;
+				if (src[srcIndex++] == 0) {
+					destIndex++;
 				} else {
-					arg0[arg4++] = arg2;
-				}
-			}
-			for (local16 = local9; local16 < 0; local16++) {
-				if (arg1[arg3++] == 0) {
-					arg4++;
-				} else {
-					arg0[arg4++] = arg2;
+					arg0[destIndex++] = color;
 				}
 			}
-			arg4 += arg7;
-			arg3 += arg8;
+			for (x = width2; x < 0; x++) {
+				if (src[srcIndex++] == 0) {
+					destIndex++;
+				} else {
+					arg0[destIndex++] = color;
+				}
+			}
+			destIndex += destStride;
+			srcIndex += srcStride;
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!fd", name = "b", descriptor = "(Lclient!na;IIIZ)V")
-	public final void renderStringCenter(@OriginalArg(0) JString arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3) {
-		@Pc(5) int local5 = this.getStringWidth(arg0) / 2;
+	public final void renderStringCenter(@OriginalArg(0) JString arg0, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int color) {
+		@Pc(5) int halfWidth = this.getStringWidth(arg0) / 2;
 		@Pc(8) int local8 = this.method1511();
-		if (arg1 - local5 <= SoftwareRaster.clipRight && (arg1 + local5 >= SoftwareRaster.clipLeft && (arg2 - local8 <= SoftwareRaster.clipBottom && arg2 >= 0))) {
-			this.renderString(arg0, arg1 - local5, arg2, arg3, true);
+		if (x - halfWidth <= SoftwareRaster.clipRight && (x + halfWidth >= SoftwareRaster.clipLeft && (y - local8 <= SoftwareRaster.clipBottom && y >= 0))) {
+			this.renderString(arg0, x - halfWidth, y, color, true);
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!fd", name = "a", descriptor = "(Ljava/awt/runetek4.Font;Ljava/awt/FontMetrics;CIZ)V")
-	private void preRenderGlyph(@OriginalArg(0) Font arg0, @OriginalArg(1) FontMetrics arg1, @OriginalArg(2) char arg2, @OriginalArg(3) int arg3, @OriginalArg(4) boolean arg4) {
-		@Pc(3) int local3 = arg1.charWidth(arg2);
-		@Pc(5) int local5 = local3;
-		if (arg4) {
+	private void preRenderGlyph(@OriginalArg(0) Font font, @OriginalArg(1) FontMetrics metrics, @OriginalArg(2) char c, @OriginalArg(3) int id, @OriginalArg(4) boolean shadow) {
+		@Pc(3) int imageWidth = metrics.charWidth(c);
+		@Pc(5) int width = imageWidth;
+		if (shadow) {
 			try {
-				if (arg2 == '/') {
-					arg4 = false;
+				if (c == '/') {
+					shadow = false;
 				}
-				if (arg2 == 'f' || arg2 == 't' || arg2 == 'w' || arg2 == 'v' || arg2 == 'k' || arg2 == 'x' || arg2 == 'y' || arg2 == 'A' || arg2 == 'V' || arg2 == 'W') {
-					local3++;
+				if (c == 'f' || c == 't' || c == 'w' || c == 'v' || c == 'k' || c == 'x' || c == 'y' || c == 'A' || c == 'V' || c == 'W') {
+					imageWidth++;
 				}
 			} catch (@Pc(45) Exception local45) {
 			}
 		}
-		@Pc(48) int local48 = arg1.getMaxAscent();
-		@Pc(54) int local54 = arg1.getMaxAscent() + arg1.getMaxDescent();
-		@Pc(57) int local57 = arg1.getHeight();
-		@Pc(62) Image local62 = GameShell.canvas.createImage(local3, local54);
-		@Pc(65) Graphics local65 = local62.getGraphics();
-		local65.setColor(Color.black);
-		local65.fillRect(0, 0, local3, local54);
-		local65.setColor(Color.white);
-		local65.setFont(arg0);
-		local65.drawString(arg2 + "", 0, local48);
-		if (arg4) {
-			local65.drawString(arg2 + "", 1, local48);
+		@Pc(48) int maxAscent = metrics.getMaxAscent();
+		@Pc(54) int imageHeight = metrics.getMaxAscent() + metrics.getMaxDescent();
+		@Pc(57) int height = metrics.getHeight();
+		@Pc(62) Image image = GameShell.canvas.createImage(imageWidth, imageHeight);
+		@Pc(65) Graphics graphics = image.getGraphics();
+		graphics.setColor(Color.black);
+		graphics.fillRect(0, 0, imageWidth, imageHeight);
+		graphics.setColor(Color.white);
+		graphics.setFont(font);
+		graphics.drawString(c + "", 0, maxAscent);
+		if (shadow) {
+			graphics.drawString(c + "", 1, maxAscent);
 		}
-		@Pc(111) int[] local111 = new int[local3 * local54];
-		@Pc(123) PixelGrabber local123 = new PixelGrabber(local62, 0, 0, local3, local54, local111, 0, local3);
+		@Pc(111) int[] pixels = new int[imageWidth * imageHeight];
+		@Pc(123) PixelGrabber grabber = new PixelGrabber(image, 0, 0, imageWidth, imageHeight, pixels, 0, imageWidth);
 		try {
-			local123.grabPixels();
+			grabber.grabPixels();
 		} catch (@Pc(128) Exception local128) {
 		}
-		local62.flush();
-		@Pc(134) int local134 = 0;
-		@Pc(136) int local136 = 0;
-		@Pc(138) int local138 = local3;
-		@Pc(140) int local140 = local54;
+		image.flush();
+		@Pc(134) int x0 = 0;
+		@Pc(136) int y0 = 0;
+		@Pc(138) int x1 = imageWidth;
+		@Pc(140) int y1 = imageHeight;
 		@Pc(142) int local142;
 		@Pc(147) int local147;
-		@Pc(158) int local158;
-		label135: for (local142 = 0; local142 < local54; local142++) {
-			for (local147 = 0; local147 < local3; local147++) {
-				local158 = local111[local147 + local142 * local3];
-				if ((local158 & 0xFFFFFF) != 0) {
-					local136 = local142;
-					break label135;
+		@Pc(158) int color;
+		y0: for (local142 = 0; local142 < imageHeight; local142++) {
+			for (local147 = 0; local147 < imageWidth; local147++) {
+				color = pixels[local147 + local142 * imageWidth];
+				if ((color & 0xFFFFFF) != 0) {
+					y0 = local142;
+					break y0;
 				}
 			}
 		}
-		label123: for (local142 = 0; local142 < local3; local142++) {
-			for (local147 = 0; local147 < local54; local147++) {
-				local158 = local111[local142 + local147 * local3];
-				if ((local158 & 0xFFFFFF) != 0) {
-					local134 = local142;
-					break label123;
+		x0: for (local142 = 0; local142 < imageWidth; local142++) {
+			for (local147 = 0; local147 < imageHeight; local147++) {
+				color = pixels[local142 + local147 * imageWidth];
+				if ((color & 0xFFFFFF) != 0) {
+					x0 = local142;
+					break x0;
 				}
 			}
 		}
-		label111: for (local142 = local54 - 1; local142 >= 0; local142--) {
-			for (local147 = 0; local147 < local3; local147++) {
-				local158 = local111[local147 + local142 * local3];
-				if ((local158 & 0xFFFFFF) != 0) {
-					local140 = local142 + 1;
-					break label111;
+		y1: for (local142 = imageHeight - 1; local142 >= 0; local142--) {
+			for (local147 = 0; local147 < imageWidth; local147++) {
+				color = pixels[local147 + local142 * imageWidth];
+				if ((color & 0xFFFFFF) != 0) {
+					y1 = local142 + 1;
+					break y1;
 				}
 			}
 		}
-		label99: for (local142 = local3 - 1; local142 >= 0; local142--) {
-			for (local147 = 0; local147 < local54; local147++) {
-				local158 = local111[local142 + local147 * local3];
-				if ((local158 & 0xFFFFFF) != 0) {
-					local138 = local142 + 1;
-					break label99;
+		x1: for (local142 = imageWidth - 1; local142 >= 0; local142--) {
+			for (local147 = 0; local147 < imageHeight; local147++) {
+				color = pixels[local142 + local147 * imageWidth];
+				if ((color & 0xFFFFFF) != 0) {
+					x1 = local142 + 1;
+					break x1;
 				}
 			}
 		}
-		this.data[arg3 * 9] = (byte) (this.dataIndex / 16384);
-		this.data[arg3 * 9 + 1] = (byte) (this.dataIndex / 128 & 0x7F);
-		this.data[arg3 * 9 + 2] = (byte) (this.dataIndex & 0x7F);
-		this.data[arg3 * 9 + 3] = (byte) (local138 - local134);
-		this.data[arg3 * 9 + 4] = (byte) (local140 - local136);
-		this.data[arg3 * 9 + 5] = (byte) local134;
-		this.data[arg3 * 9 + 6] = (byte) (local48 - local136);
-		this.data[arg3 * 9 + 7] = (byte) local5;
-		this.data[arg3 * 9 + 8] = (byte) local57;
-		for (local142 = local136; local142 < local140; local142++) {
-			for (local147 = local134; local147 < local138; local147++) {
-				local158 = local111[local147 + local142 * local3] & 0xFF;
-				if (local158 > 30 && local158 < 230) {
+		this.data[id * 9] = (byte) (this.dataIndex / 16384);
+		this.data[id * 9 + 1] = (byte) (this.dataIndex / 128 & 0x7F);
+		this.data[id * 9 + 2] = (byte) (this.dataIndex & 0x7F);
+		this.data[id * 9 + 3] = (byte) (x1 - x0);
+		this.data[id * 9 + 4] = (byte) (y1 - y0);
+		this.data[id * 9 + 5] = (byte) x0;
+		this.data[id * 9 + 6] = (byte) (maxAscent - y0);
+		this.data[id * 9 + 7] = (byte) width;
+		this.data[id * 9 + 8] = (byte) height;
+		for (local142 = y0; local142 < y1; local142++) {
+			for (local147 = x0; local147 < x1; local147++) {
+				color = pixels[local147 + local142 * imageWidth] & 0xFF;
+				if (color > 30 && color < 230) {
 					this.grayscale = true;
 				}
-				this.data[this.dataIndex++] = (byte) local158;
+				this.data[this.dataIndex++] = (byte) color;
 			}
 		}
 	}
 
 	@OriginalMember(owner = "runetek4.client!fd", name = "a", descriptor = "(Lclient!na;)I")
-	private int getStringWidth(@OriginalArg(0) JString arg0) {
-		@Pc(1) int local1 = 0;
-		for (@Pc(3) int local3 = 0; local3 < arg0.length(); local3++) {
-			if (arg0.charAt(local3) == 64 && local3 + 4 < arg0.length() && arg0.charAt(local3 + 4) == 64) {
-				local3 += 4;
-			} else if (arg0.charAt(local3) == 126 && local3 + 4 < arg0.length() && arg0.charAt(local3 + 4) == 126) {
-				local3 += 4;
+	private int getStringWidth(@OriginalArg(0) JString string) {
+		@Pc(1) int width = 0;
+		for (@Pc(3) int i = 0; i < string.length(); i++) {
+			if (string.charAt(i) == 64 && i + 4 < string.length() && string.charAt(i + 4) == 64) {
+				i += 4;
+			} else if (string.charAt(i) == 126 && i + 4 < string.length() && string.charAt(i + 4) == 126) {
+				i += 4;
 			} else {
-				local1 += this.data[CHAR_INDEXES[arg0.charAt(local3)] + 7];
+				width += this.data[CHAR_INDEXES[string.charAt(i)] + 7];
 			}
 		}
-		return local1;
+		return width;
 	}
 
 	@OriginalMember(owner = "runetek4.client!fd", name = "c", descriptor = "()I")

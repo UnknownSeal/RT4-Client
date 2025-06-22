@@ -1,17 +1,16 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.def.NpcType;
-import com.jagex.runetek4.cache.def.ObjType;
+import com.jagex.runetek4.config.types.npc.NpcType;
+import com.jagex.runetek4.config.types.obj.ObjType;
 import com.jagex.runetek4.cache.media.Font;
 import com.jagex.runetek4.cache.media.SoftwareSprite;
 import com.jagex.runetek4.cache.media.component.Component;
-import com.jagex.runetek4.dash3d.entity.LocType;
-import com.jagex.runetek4.dash3d.entity.Npc;
-import com.jagex.runetek4.frame.MiniMap;
-import com.jagex.runetek4.game.config.iftype.componentproperties.ServerActiveProperties;
-import com.jagex.runetek4.input.Keyboard;
-import com.jagex.runetek4.media.Rasterizer;
-import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.client.client;
+import com.jagex.runetek4.config.types.loc.LocTypeList;
+import com.jagex.runetek4.config.types.obj.ObjTypeList;
+import com.jagex.runetek4.config.types.param.ParamType;
+import com.jagex.runetek4.config.types.param.ParamTypeList;
+import com.jagex.runetek4.config.types.loc.LocType;
 import com.jagex.runetek4.util.ArrayUtils;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
@@ -238,7 +237,7 @@ public class MiniMenu {
         if (!aBoolean302) {
             return;
         }
-        @Pc(19) Component local19 = InterfaceList.method1418(anInt2512, anInt506);
+        @Pc(19) Component local19 = InterfaceList.getCreatedComponent(anInt2512, anInt506);
         if (local19 != null && local19.onUseWith != null) {
             @Pc(29) HookRequest local29 = new HookRequest();
             local29.arguments = local19.onUseWith;
@@ -270,11 +269,11 @@ public class MiniMenu {
         if (component.buttonType == 1) {
             addActionRow(-1, 0L, JString.EMPTY, 0, (short) 8, component.option, component.id);
         }
-        @Pc(47) JString local47;
+        @Pc(47) JString ops;
         if (component.buttonType == 2 && !aBoolean302) {
-            local47 = MiniMap.getTargetVerb(component);
-            if (local47 != null) {
-                addActionRow(-1, 0L, JString.concatenate(new JString[] { GREEN, component.optionSuffix}), -1, (short) 32, local47, component.id);
+            ops = MiniMap.getTargetVerb(component);
+            if (ops != null) {
+                addActionRow(-1, 0L, JString.concatenate(new JString[] { GREEN, component.optionSuffix}), -1, (short) 32, ops, component.id);
             }
         }
         if (component.buttonType == 3) {
@@ -400,9 +399,9 @@ public class MiniMenu {
                     addActionRow(getOpCursor(local171, component), (long) (local171 + 1), component.optionBase, component.createdComponentId, (short) 1003, local765, component.id);
                 }
             }
-            local47 = MiniMap.getTargetVerb(component);
-            if (local47 != null) {
-                addActionRow(-1, 0L, component.optionBase, component.createdComponentId, (short) 32, local47, component.id);
+            ops = MiniMap.getTargetVerb(component);
+            if (ops != null) {
+                addActionRow(-1, 0L, component.optionBase, component.createdComponentId, (short) 32, ops, component.id);
             }
             for (local173 = 4; local173 >= 0; local173--) {
                 @Pc(828) JString local828 = InterfaceList.getOp(component, local173);
@@ -747,7 +746,7 @@ public class MiniMenu {
             Protocol.outboundBuffer.p2(local19 + Camera.originZ);
         }
         if (actionCode == COMPONENT_ACTION_CLOSE) {
-            ClientProt.closeWidget();
+            InterfaceList.closeModal();
         }
         if (actionCode == COMPONENT_NPC_ACTION) {
             npc = NpcList.npcs[a];
@@ -882,7 +881,7 @@ public class MiniMenu {
         }
         if (actionCode == UNKNOWN_41 && ClientScriptRunner.aClass13_10 == null) {
             method10(local15, local19);
-            ClientScriptRunner.aClass13_10 = InterfaceList.method1418(local19, local15);
+            ClientScriptRunner.aClass13_10 = InterfaceList.getCreatedComponent(local19, local15);
             InterfaceList.redraw(ClientScriptRunner.aClass13_10);
         }
         if (actionCode == LOC_ACTION_3) {
@@ -965,7 +964,7 @@ public class MiniMenu {
             }
         }
         if (actionCode == UNKNOWN_32) {
-            com = InterfaceList.method1418(local19, local15);
+            com = InterfaceList.getCreatedComponent(local19, local15);
             if (com != null) {
                 method1294();
                 @Pc(1493) ServerActiveProperties local1493 = InterfaceList.getServerActiveProperties(com);
@@ -1388,7 +1387,7 @@ public class MiniMenu {
             @Pc(33) int local33 = (arg5 - arg3) * (local17 - local19) / arg1 + local19;
             local47 = local15 + (local13 - local15) * (arg4 - arg0) / arg2;
             if (aBoolean302 && (anInt4999 & 0x40) != 0) {
-                @Pc(61) Component local61 = InterfaceList.method1418(anInt2512, anInt506);
+                @Pc(61) Component local61 = InterfaceList.getCreatedComponent(anInt2512, anInt506);
                 if (local61 == null) {
                     method1294();
                 } else {
@@ -1774,7 +1773,7 @@ public class MiniMenu {
 
     @OriginalMember(owner = "runetek4.client!ub", name = "b", descriptor = "(IIIIIII)V")
     public static void method4246(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) int arg2, @OriginalArg(3) int arg3, @OriginalArg(4) int arg4, @OriginalArg(6) int arg5) {
-        @Pc(8) Component local8 = InterfaceList.method1418(arg0, arg1);
+        @Pc(8) Component local8 = InterfaceList.getCreatedComponent(arg0, arg1);
         if (local8 != null && local8.onUse != null) {
             @Pc(19) HookRequest local19 = new HookRequest();
             local19.source = local8;

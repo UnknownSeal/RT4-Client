@@ -1,8 +1,10 @@
 package com.jagex.runetek4;
 
-import com.jagex.runetek4.cache.media.SeqType;
-import com.jagex.runetek4.game.world.entity.PlayerAppearance;
-import com.jagex.runetek4.media.renderable.actor.Player;
+import com.jagex.runetek4.config.types.seq.SeqType;
+import com.jagex.runetek4.client.Game;
+import com.jagex.runetek4.client.GameShell;
+import com.jagex.runetek4.client.Preferences;
+import com.jagex.runetek4.client.client;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;

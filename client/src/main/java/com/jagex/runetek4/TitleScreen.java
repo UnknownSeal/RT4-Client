@@ -1,23 +1,31 @@
 package com.jagex.runetek4;
 
+import com.jagex.runetek4.client.GameShell;
 import com.jagex.runetek4.js5.Js5;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class TitleScreen {
+
     @OriginalMember(owner = "client!cb", name = "cb", descriptor = "Lclient!na;")
     public static final JString TITLEBG = JString.parse("titlebg");
+
     @OriginalMember(owner = "runetek4.client!nb", name = "m", descriptor = "Lclient!na;")
     public static final JString LOGO = JString.parse("logo");
+
     @OriginalMember(owner = "client!bh", name = "M", descriptor = "Z")
     public static boolean loaded;
+
     @OriginalMember(owner = "client!gd", name = "n", descriptor = "Lclient!qf;")
     public static Sprite titleBg;
+
     @OriginalMember(owner = "runetek4.client!tk", name = "o", descriptor = "Lclient!ok;")
     public static IndexedSprite logo;
+
     @OriginalMember(owner = "runetek4.client!vf", name = "m", descriptor = "I")
     public static int bgId = -1;
+
     @OriginalMember(owner = "runetek4.client!kk", name = "g", descriptor = "I")
     public static int logoId = -1;
 

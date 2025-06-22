@@ -9,7 +9,7 @@ import org.openrs2.deob.annotation.Pc;
 
 public class MapList {
     @OriginalMember(owner = "client!sh", name = "a", descriptor = "Lclient!ih;")
-    public static final LinkedList aClass69_120 = new LinkedList();
+    public static final LinkedList areas = new LinkedList();
     @OriginalMember(owner = "client!ed", name = "D", descriptor = "Lclient!na;")
     public static final JString DETAILS = JString.parse("details");
     @OriginalMember(owner = "client!je", name = "W", descriptor = "Lclient!ve;")
@@ -20,10 +20,10 @@ public class MapList {
     public static boolean[] aBooleanArray130;
 
     @OriginalMember(owner = "client!ce", name = "a", descriptor = "(IBI)Lclient!bn;")
-    public static Map getContainingSource(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1) {
-        for (@Pc(10) Map local10 = (Map) aClass69_120.head(); local10 != null; local10 = (Map) aClass69_120.next()) {
-            if (local10.valid && local10.method664(arg1, arg0)) {
-                return local10;
+    public static Map getContainingSource(@OriginalArg(0) int z, @OriginalArg(2) int x) {
+        for (@Pc(10) Map map = (Map) areas.head(); map != null; map = (Map) areas.next()) {
+            if (map.valid && map.containsSource(x, z)) {
+                return map;
             }
         }
         return null;
@@ -34,17 +34,17 @@ public class MapList {
         archive = arg1;
         sprites = arg0;
         aBooleanArray130 = new boolean[sprites.length];
-        aClass69_120.clear();
+        areas.clear();
         @Pc(25) int local25 = archive.getGroupId(DETAILS);
         @Pc(30) int[] local30 = archive.getFileIds(local25);
         for (@Pc(32) int local32 = 0; local32 < local30.length; local32++) {
-            aClass69_120.addTail(Map.create(new Packet(archive.getfile(local25, local30[local32]))));
+            areas.addTail(Map.create(new Packet(archive.getfile(local25, local30[local32]))));
         }
     }
 
     @OriginalMember(owner = "runetek4.client!jk", name = "a", descriptor = "(ILclient!na;)Lclient!bn;")
     public static Map get(@OriginalArg(1) JString arg0) {
-        for (@Pc(15) Map local15 = (Map) aClass69_120.head(); local15 != null; local15 = (Map) aClass69_120.next()) {
+        for (@Pc(15) Map local15 = (Map) areas.head(); local15 != null; local15 = (Map) areas.next()) {
             if (local15.group.strEquals(arg0)) {
                 return local15;
             }
