@@ -172,7 +172,7 @@ public final class LocType {
 	public boolean render = false;
 
 	@OriginalMember(owner = "client!pb", name = "fb", descriptor = "Z")
-	public boolean active = true;
+	public boolean shadow = true;
 
 	@OriginalMember(owner = "client!pb", name = "nb", descriptor = "I")
 	private int multiLocVarp = -1;
@@ -338,7 +338,7 @@ public final class LocType {
 		} else if (opcode == 62) {
 			this.mirror = true;
 		} else if (opcode == 64) {
-			this.active = false;
+			this.shadow = false;
 		} else if (opcode == 65) {
 			this.resizeX = packet.g2();
 		} else if (opcode == 66) {

@@ -1131,7 +1131,7 @@ public class SceneGraph {
             }
             if (entity != null) {
                 @Pc(531) boolean local531 = method35(plane, x, z, averageY, width, length, entity, bitset);
-                if (locType.active && local531 && lowmem) {
+                if (locType.shadow && local531 && lowmem) {
                     @Pc(541) int local541 = 15;
                     if (entity instanceof Model) {
                         local541 = ((Model) entity).getLengthXZ() / 4;
@@ -1181,7 +1181,7 @@ public class SceneGraph {
             setWall(plane, x, z, averageY, entity, null, ROTATION_WALL_TYPE[rotation], 0, bitset);
             if (lowmem) {
                 if (rotation == 0) {
-                    if (locType.active) {
+                    if (locType.shadow) {
                         shadowmap[plane][x][z] = 50;
                         shadowmap[plane][x][z + 1] = 50;
                     }
@@ -1189,7 +1189,7 @@ public class SceneGraph {
                         occludeFlags[plane][x][z] |= 0x1;
                     }
                 } else if (rotation == 1) {
-                    if (locType.active) {
+                    if (locType.shadow) {
                         shadowmap[plane][x][z + 1] = 50;
                         shadowmap[plane][x + 1][z + 1] = 50;
                     }
@@ -1197,7 +1197,7 @@ public class SceneGraph {
                         occludeFlags[plane][x][z + 1] |= 0x2;
                     }
                 } else if (rotation == 2) {
-                    if (locType.active) {
+                    if (locType.shadow) {
                         shadowmap[plane][x + 1][z] = 50;
                         shadowmap[plane][x + 1][z + 1] = 50;
                     }
@@ -1205,7 +1205,7 @@ public class SceneGraph {
                         occludeFlags[plane][x + 1][z] |= 0x1;
                     }
                 } else if (rotation == 3) {
-                    if (locType.active) {
+                    if (locType.shadow) {
                         shadowmap[plane][x][z] = 50;
                         shadowmap[plane][x + 1][z] = 50;
                     }
@@ -1231,7 +1231,7 @@ public class SceneGraph {
                 entity = new Loc(arg5, 1, rotation, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
             }
             setWall(plane, x, z, averageY, entity, null, Wall.ROTATION_WALL_CORNER_TYPE[rotation], 0, bitset);
-            if (locType.active && lowmem) {
+            if (locType.shadow && lowmem) {
                 if (rotation == 0) {
                     shadowmap[plane][x][z + 1] = 50;
                 } else if (rotation == 1) {
@@ -1299,7 +1299,7 @@ public class SceneGraph {
                     entity = new Loc(arg5, 3, rotation, currentPlane, x, z, locType.anim, locType.allowRandomizedAnimation, null);
                 }
                 setWall(plane, x, z, averageY, entity, null, Wall.ROTATION_WALL_CORNER_TYPE[rotation], 0, bitset);
-                if (locType.active && lowmem) {
+                if (locType.shadow && lowmem) {
                     if (rotation == 0) {
                         shadowmap[plane][x][z + 1] = 50;
                     } else if (rotation == 1) {
