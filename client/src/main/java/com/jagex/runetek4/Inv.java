@@ -196,9 +196,9 @@ public final class Inv extends Node {
 		} else if (arg4 == 2) {
 			zoom = (int) ((double) zoom * 1.04D);
 		}
-		@Pc(176) int pitchcos = MathUtils.cos[objType.xAngle2D] * zoom >> 16;
-		@Pc(185) int pitchsin = MathUtils.sin[objType.xAngle2D] * zoom >> 16;
-		model.setCamera(objType.yAngle2D, objType.zAngle2D, objType.xAngle2D, objType.xOffset2D, pitchsin + objType.yOffset2D - model.getMinY() / 2, objType.yOffset2D + pitchcos, -1L);
+		@Pc(176) int pitchcos = MathUtils.cos[objType.xan2d] * zoom >> 16;
+		@Pc(185) int pitchsin = MathUtils.sin[objType.xan2d] * zoom >> 16;
+		model.setCamera(objType.yan2d, objType.zAngle2D, objType.xan2d, objType.xof2d, pitchsin + objType.yof2d - model.getMinY() / 2, objType.yof2d + pitchcos, -1L);
 		if (arg4 >= 1) {
 			canvas.drawOutline(1);
 			if (arg4 >= 2) {

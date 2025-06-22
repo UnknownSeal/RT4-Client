@@ -22,20 +22,20 @@ public final class Npc extends PathingEntity {
     @OriginalMember(owner = "client!ij", name = "a", descriptor = "(Lclient!km;I)I")
     public static int getSound(@OriginalArg(0) Npc arg0) {
         @Pc(13) NpcType npcType = arg0.type;
-        if (npcType.multiNpcs != null) {
+        if (npcType.multinpc != null) {
             npcType = npcType.getMultiNPC();
             if (npcType == null) {
                 return -1;
             }
         }
-        @Pc(29) int sound = npcType.walkSound;
+        @Pc(29) int sound = npcType.bgsound_walk;
         @Pc(33) BasType npcBas = arg0.getBasType();
-        if (npcBas.idleAnimationId == arg0.movementSeqId) {
-            sound = npcType.idleSound;
-        } else if (arg0.movementSeqId == npcBas.runAnimationId || npcBas.runFullTurnAnimationId == arg0.movementSeqId || arg0.movementSeqId == npcBas.runCWTurnAnimationId || arg0.movementSeqId == npcBas.runCCWTurnAnimationId) {
-            sound = npcType.runSound;
-        } else if (npcBas.slowWalkAnimationId == arg0.movementSeqId || arg0.movementSeqId == npcBas.slowWalkFullTurnAnimationId || arg0.movementSeqId == npcBas.slowWalkCWTurnAnimationId || arg0.movementSeqId == npcBas.slowWalkCCWTurnAnimationId) {
-            sound = npcType.crawlSound;
+        if (npcBas.readyanim == arg0.movementSeqId) {
+            sound = npcType.bgsound;
+        } else if (arg0.movementSeqId == npcBas.runanim || npcBas.runanim_b == arg0.movementSeqId || arg0.movementSeqId == npcBas.runanim_r || arg0.movementSeqId == npcBas.runanim_l) {
+            sound = npcType.bgsound_run;
+        } else if (npcBas.crawlanim == arg0.movementSeqId || arg0.movementSeqId == npcBas.crawlanim_b || arg0.movementSeqId == npcBas.crawlanim_r || arg0.movementSeqId == npcBas.crawlanim_l) {
+            sound = npcType.bgsound_crawl;
         }
         return sound;
     }
@@ -58,19 +58,19 @@ public final class Npc extends PathingEntity {
 			return;
 		}
 		@Pc(29) SeqType local29 = this.primarySeqId != -1 && this.anInt3420 == 0 ? SeqTypeList.get(this.primarySeqId) : null;
-		@Pc(53) SeqType local53 = this.movementSeqId == -1 || this.movementSeqId == this.getBasType().idleAnimationId && local29 != null ? null : SeqTypeList.get(this.movementSeqId);
+		@Pc(53) SeqType local53 = this.movementSeqId == -1 || this.movementSeqId == this.getBasType().readyanim && local29 != null ? null : SeqTypeList.get(this.movementSeqId);
 		@Pc(74) Model body = this.type.getBodyModel(this.aPathingEntityClass147Array3, this.anInt3388, this.anInt3407, this.anInt3373, this.anInt3360, this.anInt3425, local53, this.anInt3396, local29);
 		if (body == null) {
 			return;
 		}
 		this.minY = body.getMinY();
 		@Pc(84) NpcType local84 = this.type;
-		if (local84.multiNpcs != null) {
+		if (local84.multinpc != null) {
 			local84 = local84.getMultiNPC();
 		}
 		@Pc(140) Model model;
-		if (Preferences.characterShadowsOn && local84.spotShadow) {
-			model = ShadowModelList.method1043(this.type.shadowColorModifier1, this.seqStretches, local53 == null ? local29 : local53, this.xFine, this.type.spotShadowColor2, this.zFine, this.type.spotShadowColor1, this.type.size, body, orientation, local53 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, this.type.spotShadowTrans2);
+		if (Preferences.characterShadowsOn && local84.spotshadow) {
+			model = ShadowModelList.method1043(this.type.spotshadowtrans_1, this.seqStretches, local53 == null ? local29 : local53, this.xFine, this.type.spotshadowcolour_2, this.zFine, this.type.spotshadowcolour_1, this.type.size, body, orientation, local53 == null ? this.anInt3425 : this.anInt3407, this.anInt3424, this.type.spotshadowtrans_2);
 			if (GlRenderer.enabled) {
 				@Pc(144) float local144 = GlRenderer.method4179();
 				@Pc(146) float local146 = GlRenderer.method4166();
@@ -129,10 +129,10 @@ public final class Npc extends PathingEntity {
 	@OriginalMember(owner = "client!km", name = "b", descriptor = "(I)I")
 	@Override
 	protected int getBasId() {
-		if (client.game != 0 && this.type.multiNpcs != null) {
+		if (client.game != 0 && this.type.multinpc != null) {
 			@Pc(17) NpcType local17 = this.type.getMultiNPC();
-			if (local17 != null && local17.bastypeid != -1) {
-				return local17.bastypeid;
+			if (local17 != null && local17.nas != -1) {
+				return local17.nas;
 			}
 		}
 		return this.anInt3365;

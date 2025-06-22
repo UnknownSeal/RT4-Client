@@ -45,9 +45,9 @@ public class LocTypeList {
         if (!allowMembers && locType.members) {
             locType.op = null;
         }
-        if (locType.breakRouteFinding) {
-            locType.blockWalk = 0;
-            locType.blockRange = false;
+        if (locType.breakroutefinding) {
+            locType.blockwalk = 0;
+            locType.blockrange = false;
         }
         types.put(locType, (long) id);
         return locType;

@@ -1666,19 +1666,19 @@ public class Protocol {
                                         if (com.if3) {
                                             DelayedStateChange.method3707(xp, ii, world);
                                             obj = ObjTypeList.get(world);
-                                            DelayedStateChange.updateView(obj.zoom2d, xp, obj.yAngle2D, obj.xAngle2D);
-                                            DelayedStateChange.method2745(xp, obj.zAngle2D, obj.yOffset2D, obj.xOffset2D);
+                                            DelayedStateChange.updateView(obj.zoom2d, xp, obj.yan2d, obj.xan2d);
+                                            DelayedStateChange.method2745(xp, obj.zAngle2D, obj.yof2d, obj.xof2d);
                                         } else if (world == -1) {
                                             com.modelType = 0;
                                             opcode = -1;
                                             return true;
                                         } else {
                                             obj = ObjTypeList.get(world);
-                                            com.modelXAngle = obj.xAngle2D;
+                                            com.modelXAngle = obj.xan2d;
                                             com.modelZoom = obj.zoom2d * 100 / ii;
                                             com.modelType = 4;
                                             com.modelId = world;
-                                            com.modelYAngle = obj.yAngle2D;
+                                            com.modelYAngle = obj.yan2d;
                                             InterfaceList.redraw(com);
                                         }
                                     }
@@ -2717,7 +2717,7 @@ public class Protocol {
                 }
                 npc.setNpcType(NpcTypeList.get(inboundBuffer.g2le()));
                 npc.setSize(npc.type.size);
-                npc.anInt3365 = npc.type.bastypeid;
+                npc.anInt3365 = npc.type.nas;
                 if (npc.type.hasAreaSound()) {
                     AreaSoundManager.add(npc.movementQueueZ[0], null, 0, npc, npc.movementQueueX[0], Player.plane, null);
                 }
@@ -2785,8 +2785,8 @@ public class Protocol {
                         local124 -= 32;
                     }
                     npc.setSize(npc.type.size);
-                    npc.anInt3365 = npc.type.bastypeid;
-                    npc.anInt3376 = npc.type.rotationSpeed;
+                    npc.anInt3365 = npc.type.nas;
+                    npc.anInt3376 = npc.type.turnspeed;
                     if (npc.anInt3376 == 0) {
                         npc.anInt3381 = 0;
                     }

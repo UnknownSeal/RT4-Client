@@ -1,6 +1,6 @@
 package com.jagex.runetek4.cache.bzip;
 
-import com.jagex.runetek4.Bzip2DState;
+import com.jagex.runetek4.BZip2DState;
 import org.openrs2.deob.annotation.OriginalArg;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
@@ -8,12 +8,12 @@ import org.openrs2.deob.annotation.Pc;
 public final class Bzip2Decompressor {
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "a", descriptor = "Lclient!bb;")
-	private static final Bzip2DState state = new Bzip2DState();
+	private static final BZip2DState state = new BZip2DState();
 	@OriginalMember(owner = "runetek4.client!s", name = "a", descriptor = "[I")
 	public static int[] tt;
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "a", descriptor = "(ILclient!bb;)I")
-	private static int getBits(@OriginalArg(0) int arg0, @OriginalArg(1) Bzip2DState arg1) {
+	private static int getBits(@OriginalArg(0) int arg0, @OriginalArg(1) BZip2DState arg1) {
 		while (arg1.bsLive < arg0) {
 			arg1.bsBuff = arg1.bsBuff << 8 | arg1.strmNextIn[arg1.strmNextInPtr] & 0xFF;
 			arg1.bsLive += 8;
@@ -28,7 +28,7 @@ public final class Bzip2Decompressor {
 	}
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "a", descriptor = "(Lclient!bb;)V")
-	private static void unRleObufToOutputFast(@OriginalArg(0) Bzip2DState arg0) {
+	private static void unRleObufToOutputFast(@OriginalArg(0) BZip2DState arg0) {
 		@Pc(2) byte local2 = arg0.stateOutCh;
 		@Pc(5) int local5 = arg0.stateOutLen;
 		@Pc(8) int local8 = arg0.nblockused;
@@ -179,7 +179,7 @@ public final class Bzip2Decompressor {
 	}
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "b", descriptor = "(Lclient!bb;)V")
-	private static void makeMapsD(@OriginalArg(0) Bzip2DState arg0) {
+	private static void makeMapsD(@OriginalArg(0) BZip2DState arg0) {
 		arg0.nInUse = 0;
 		for (@Pc(4) int local4 = 0; local4 < 256; local4++) {
 			if (arg0.inUse[local4]) {
@@ -190,12 +190,12 @@ public final class Bzip2Decompressor {
 	}
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "c", descriptor = "(Lclient!bb;)B")
-	private static byte getUchar(@OriginalArg(0) Bzip2DState arg0) {
+	private static byte getUchar(@OriginalArg(0) BZip2DState arg0) {
 		return (byte) getBits(8, arg0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "d", descriptor = "(Lclient!bb;)V")
-	private static void decompress(@OriginalArg(0) Bzip2DState s) {
+	private static void decompress(@OriginalArg(0) BZip2DState s) {
 		s.blockSize100k = 1;
 		if (tt == null) {
 			tt = new int[s.blockSize100k * 100000];
@@ -484,13 +484,13 @@ public final class Bzip2Decompressor {
 	}
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "e", descriptor = "(Lclient!bb;)B")
-	private static byte getBit(@OriginalArg(0) Bzip2DState arg0) {
+	private static byte getBit(@OriginalArg(0) BZip2DState arg0) {
 		return (byte) getBits(1, arg0);
 	}
 
 	@OriginalMember(owner = "runetek4.client!oc", name = "a", descriptor = "([BI[BII)I")
 	public static int bunzip2(@OriginalArg(0) byte[] arg0, @OriginalArg(1) int length, @OriginalArg(2) byte[] arg2, @OriginalArg(3) int arg3) {
-		@Pc(2) Bzip2DState local2 = state;
+		@Pc(2) BZip2DState local2 = state;
 		synchronized (state) {
 			state.strmNextIn = arg2;
 			state.strmNextInPtr = 9;

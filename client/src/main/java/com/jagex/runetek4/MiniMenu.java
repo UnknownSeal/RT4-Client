@@ -316,7 +316,7 @@ public class MiniMenu {
                                     addActionRow(anInt5393, (long) local276.id, JString.concatenate(new JString[] { aClass100_466, aClass100_947, local276.name}), local171, (short) 3, aClass100_545, component.id);
                                 }
                             } else {
-                                @Pc(296) JString[] local296 = local276.interfaceOptions;
+                                @Pc(296) JString[] local296 = local276.iop;
                                 if (aBoolean237) {
                                     local296 = annotateOps(local296);
                                 }
@@ -838,7 +838,7 @@ public class MiniMenu {
             npc = NpcList.npcs[a];
             if (npc != null) {
                 @Pc(884) NpcType local884 = npc.type;
-                if (local884.multiNpcs != null) {
+                if (local884.multinpc != null) {
                     local884 = local884.getMultiNPC();
                 }
                 if (local884 != null) {
@@ -1531,7 +1531,7 @@ public class MiniMenu {
                                     addActionRow(anInt5393, (long) local240, JString.concatenate(new JString[] {aClass100_466, aClass100_947, local951.name}), local47, (short) 39, aClass100_545, local147);
                                 }
                             } else {
-                                @Pc(997) JString[] local997 = local951.groundOptions;
+                                @Pc(997) JString[] local997 = local951.op;
                                 if (aBoolean237) {
                                     local997 = annotateOps(local997);
                                 }
@@ -1577,16 +1577,16 @@ public class MiniMenu {
         if (menuActionRow >= 400) {
             return;
         }
-        if (npc.multiNpcs != null) {
+        if (npc.multinpc != null) {
             npc = npc.getMultiNPC();
         }
-        if (npc == null || !npc.interactive) {
+        if (npc == null || !npc.active) {
             return;
         }
         @Pc(35) JString tooltip = npc.name;
-        if (npc.combatLevel != 0) {
+        if (npc.vislevel != 0) {
             @Pc(47) JString string = client.game == 1 ? LocalizedText.RATING : LocalizedText.LEVEL;
-            tooltip = JString.concatenate(new JString[] { tooltip, getCombatLevelColorTag(npc.combatLevel, PlayerList.self.combatLevel), OPEN_PARENTHESIS, string, JString.parseInt(npc.combatLevel), CLOSE_PARENTHESIS});
+            tooltip = JString.concatenate(new JString[] { tooltip, getCombatLevelColorTag(npc.vislevel, PlayerList.self.combatLevel), OPEN_PARENTHESIS, string, JString.parseInt(npc.vislevel), CLOSE_PARENTHESIS});
         }
         if (anInt5014 == 1) {
             addActionRow(MiniMap.anInt4075, (long) arg2, JString.concatenate(new JString[] {aClass100_203, aClass100_407, tooltip }), arg1, (short) 26, LocalizedText.USE, arg3);
@@ -1596,7 +1596,7 @@ public class MiniMenu {
                 addActionRow(anInt5393, (long) arg2, JString.concatenate(new JString[] {aClass100_466, aClass100_407, tooltip }), arg1, (short) 45, aClass100_545, arg3);
             }
         } else {
-            @Pc(129) JString[] spellSelected = npc.ops;
+            @Pc(129) JString[] spellSelected = npc.op;
             if (aBoolean237) {
                 spellSelected = annotateOps(spellSelected);
             }
@@ -1635,7 +1635,7 @@ public class MiniMenu {
                 for (op = 4; op >= 0; op--) {
                     if (spellSelected[op] != null && spellSelected[op].equalsIgnoreCase(LocalizedText.ATTACK)) {
                         @Pc(271) short action = 0;
-                        if (npc.combatLevel > PlayerList.self.combatLevel) {
+                        if (npc.vislevel > PlayerList.self.combatLevel) {
                             action = 2000; //THIS iS FOR LEFT CLICK ATTACK
                         }
                         @Pc(281) short menuOption = 0;
@@ -1657,7 +1657,7 @@ public class MiniMenu {
                         if (menuOption != 0) {
                             menuOption += action;
                         }
-                        addActionRow(npc.attackCursor, (long) arg2, JString.concatenate(new JString[] {YELLOW2, tooltip }), arg1, menuOption, spellSelected[op], arg3);
+                        addActionRow(npc.cursorattack, (long) arg2, JString.concatenate(new JString[] {YELLOW2, tooltip }), arg1, menuOption, spellSelected[op], arg3);
                     }
                 }
             }
