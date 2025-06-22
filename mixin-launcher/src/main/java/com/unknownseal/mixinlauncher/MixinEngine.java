@@ -34,6 +34,7 @@ public class MixinEngine {
         String method();
         Class<?>[] args() default {};
         At at();
+        Slice slice() default @Slice(from = @At("HEAD"), to = @At("TAIL"));
     }
 
     @Retention(RetentionPolicy.RUNTIME)
@@ -48,7 +49,7 @@ public class MixinEngine {
     }
 
     @Retention(RetentionPolicy.RUNTIME)
-    @Target(ElementType.ANNOTATION_TYPE)
+    @Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})
     public @interface Slice {
         At from();
         At to();
