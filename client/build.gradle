@@ -29,7 +29,7 @@ dependencies {
     implementation 'lib:jogl-all-natives-linux-aarch64'
     implementation 'lib:jogl-all-natives-windows-amd64'
     implementation 'lib:jogl-all-natives-linux-amd64'
-    implementation 'lib:jogl-all-natives-macosx-universal'<<<
+    implementation 'lib:jogl-all-natives-macosx-universal'
 }
 
 jar {

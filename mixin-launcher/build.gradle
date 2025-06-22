@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+mainClassName = 'com.unknownseal.mixinlauncher.MixinLoader'
+version = '1.0.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    implementation project(':client')
+
+    implementation 'net.bytebuddy:byte-buddy:1.14.9'
+    implementation 'net.bytebuddy:byte-buddy-agent:1.14.9'
+    implementation 'io.github.classgraph:classgraph:4.8.173'
+    implementation 'org.ow2.asm:asm:9.7'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': "$mainClassName"
+    }
+    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+}
