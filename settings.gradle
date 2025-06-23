@@ -10,7 +10,8 @@ dependencyResolutionManagement {
 }
 
 include(
-    "deob-annotations",
-    "signlink",
-    "client"
+        "deob-annotations",
+        "signlink",
+        "client",
+        "mixin-launcher"
 )
