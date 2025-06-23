@@ -147,7 +147,7 @@ public final class Js5TextureProvider implements TextureProvider {
 	@Override
 	public final int[] getPixels(@OriginalArg(1) int arg0) {
 		@Pc(16) GlTexture local16 = this.method3242(arg0);
-		return local16 == null ? null : local16.method4297(this.lowDetail || this.aBooleanArray89[arg0], this, this.aClass153_72);
+		return local16 == null ? null : local16.getPixels(this.lowDetail || this.aBooleanArray89[arg0], this, this.aClass153_72);
 	}
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "a", descriptor = "(IZ)V")
@@ -222,7 +222,7 @@ public final class Js5TextureProvider implements TextureProvider {
 	@Override
 	public final boolean method3230(@OriginalArg(1) int arg0) {
 		@Pc(15) GlTexture local15 = this.method3242(arg0);
-		return local15 == null ? false : local15.method4299(this, this.aClass153_72);
+		return local15 == null ? false : local15.isReady(this, this.aClass153_72);
 	}
 
 	@OriginalMember(owner = "runetek4.client!nk", name = "b", descriptor = "(ZI)V")

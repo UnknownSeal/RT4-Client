@@ -1394,9 +1394,9 @@ public final class ClientScriptRunner {
 			if (Camera.cameraModifierEnabled[4] && Camera.cameraAmplitude[4] + 128 > pitch) {
 				pitch = Camera.cameraAmplitude[4] + 128;
 			}
-			Camera.orbitCamera(Camera.cameraX, arg0, SceneGraph.getTileHeight(Player.plane, PlayerList.self.xFine, PlayerList.self.zFine) - 50, 600 - -(pitch * 3), local57, Camera.cameraZ, pitch);
+			Camera.orbitCamera(Camera.cameraX, arg0, SceneGraph.getTileHeight(Player.plane, PlayerList.self.xFine, PlayerList.self.zFine) - 50, 6000 + (pitch * 3), local57, Camera.cameraZ, pitch);
 		}
-		local57 = Camera.cameraY;
+		local57 = Camera.renderY;
 		pitch = Camera.renderX;
 		@Pc(121) int cameraZ = Camera.renderZ;
 		@Pc(123) int cameraPitch = Camera.cameraPitch;
@@ -1422,7 +1422,7 @@ public final class ClientScriptRunner {
 					Camera.renderZ += jitter;
 				}
 				if (type == 1) {
-					Camera.cameraY += jitter;
+					Camera.renderY += jitter;
 				}
 				if (type == 0) {
 					Camera.renderX += jitter;
@@ -1469,9 +1469,9 @@ public final class ClientScriptRunner {
 			}
 			LightingManager.method2394(client.loop, !Preferences.flickeringEffectsOn);
 			GlRenderer.clearColorAndDepthBuffers(jitter);
-			MaterialManager.method2731(Camera.cameraPitch, Camera.renderZ, Camera.cameraY, Camera.renderX, Camera.cameraYaw);
+			MaterialManager.method2731(Camera.cameraPitch, Camera.renderZ, Camera.renderY, Camera.renderX, Camera.cameraYaw);
 			GlRenderer.anInt5323 = client.loop;
-			SceneGraph.method2954(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, aByteArrayArrayArray15, anIntArray205, anIntArray338, anIntArray518, anIntArray134, anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
+			SceneGraph.method2954(Camera.renderX, Camera.renderY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, aByteArrayArrayArray15, anIntArray205, anIntArray338, anIntArray518, anIntArray134, anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
 			aBoolean299 = true;
 			LightingManager.method2390();
 			MaterialManager.method2731(0, 0, 0, 0, 0);
@@ -1481,7 +1481,7 @@ public final class ClientScriptRunner {
 			MiniMap.method4000(arg3, arg2, arg0, anInt5029, anInt5029, arg4);
 		} else {
 			SoftwareRaster.fillRect(arg2, arg4, arg3, arg0, 0);
-			SceneGraph.method2954(Camera.renderX, Camera.cameraY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, aByteArrayArrayArray15, anIntArray205, anIntArray338, anIntArray518, anIntArray134, anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
+			SceneGraph.method2954(Camera.renderX, Camera.renderY, Camera.renderZ, Camera.cameraPitch, Camera.cameraYaw, aByteArrayArrayArray15, anIntArray205, anIntArray338, anIntArray518, anIntArray134, anIntArray476, Player.plane + 1, local387, PlayerList.self.xFine >> 7, PlayerList.self.zFine >> 7);
 			client.audioLoop();
 			method3858();
 			drawOverheads(arg4, arg3, arg2, 256, arg0, 256);
@@ -1491,7 +1491,7 @@ public final class ClientScriptRunner {
 		Player.method2310(arg3, arg4, arg0, arg2);
 		Camera.cameraPitch = cameraPitch;
 		Camera.renderZ = cameraZ;
-		Camera.cameraY = local57;
+		Camera.renderY = local57;
 		Camera.renderX = pitch;
 		Camera.cameraYaw = cameraYaw;
 		if (aBoolean43 && client.js5NetQueue.getUrgentRequestCount() == 0) {
@@ -1586,10 +1586,10 @@ public final class ClientScriptRunner {
 		} else {
 			local225 = anInt2428 * 25;
 		}
-		for (@Pc(238) Class3_Sub26 local238 = (Class3_Sub26) WorldMap.mapElements.head(); local238 != null; local238 = (Class3_Sub26) WorldMap.mapElements.next()) {
+		for (@Pc(238) MapFunction local238 = (MapFunction) WorldMap.mapFunctions.head(); local238 != null; local238 = (MapFunction) WorldMap.mapFunctions.next()) {
 			if (local238.id == WorldMap.anInt172) {
-				@Pc(258) int local258 = arg3 + local238.anInt4314 * arg1 / WorldMap.length;
-				@Pc(267) int local267 = arg2 * local238.anInt4307 / WorldMap.width + arg0;
+				@Pc(258) int local258 = arg3 + local238.z * arg1 / WorldMap.length;
+				@Pc(267) int local267 = arg2 * local238.x / WorldMap.width + arg0;
 				if (GlRenderer.enabled) {
 					GlRaster.fillRectAlpha(local267 - 2, local258 - 2, 4, 4, 16776960, local225);
 				} else {
@@ -4953,7 +4953,7 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 6002) {
 														isp--;
-														Preferences.setAllLevelsVisible(scriptIntValues[isp] == 1);
+														Preferences.setLowmem(scriptIntValues[isp] == 1);
 														LocTypeList.clear();
 														method2742();
 														method2218();
@@ -5907,7 +5907,7 @@ public final class ClientScriptRunner {
 		}
 		@Pc(38) int local38 = SceneGraph.getTileHeight(Player.plane, arg5, arg2) - arg3;
 		@Pc(42) int local42 = arg2 - Camera.renderZ;
-		@Pc(46) int local46 = local38 - Camera.cameraY;
+		@Pc(46) int local46 = local38 - Camera.renderY;
 		@Pc(50) int local50 = arg5 - Camera.renderX;
 		@Pc(54) int local54 = MathUtils.sin[Camera.cameraPitch];
 		@Pc(58) int local58 = MathUtils.cos[Camera.cameraPitch];
@@ -6929,7 +6929,7 @@ public final class ClientScriptRunner {
 		}
 		if (Camera.cameraType != 1) {
 			local33 = SceneGraph.getTileHeight(Player.plane, Camera.renderX, Camera.renderZ);
-			if (local33 - Camera.cameraY < 800 && (SceneGraph.renderFlags[Player.plane][Camera.renderX >> 7][Camera.renderZ >> 7] & 0x4) != 0) {
+			if (local33 - Camera.renderY < 800 && (SceneGraph.renderFlags[Player.plane][Camera.renderX >> 7][Camera.renderZ >> 7] & 0x4) != 0) {
 				method4348(false, Camera.renderX >> 7, Camera.renderZ >> 7, SceneGraph.tiles, 1);
 			}
 			return;

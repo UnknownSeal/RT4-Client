@@ -11,8 +11,10 @@ import org.openrs2.deob.annotation.Pc;
 public class Find {
     @OriginalMember(owner = "runetek4.client!nf", name = "c", descriptor = "[S")
     public static short[] results;
+
     @OriginalMember(owner = "client!fe", name = "x", descriptor = "I")
     public static int size;
+
     @OriginalMember(owner = "runetek4.client!ii", name = "l", descriptor = "I")
     public static int index;
 
