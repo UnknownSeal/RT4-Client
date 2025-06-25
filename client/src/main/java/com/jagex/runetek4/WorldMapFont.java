@@ -14,25 +14,25 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!fd")
+@OriginalClass("client!fd")
 public final class WorldMapFont {
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "d", descriptor = "Ljava/lang/String;")
+	@OriginalMember(owner = "client!fd", name = "d", descriptor = "Ljava/lang/String;")
 	public static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!\"£$%^&*()-_=+[{]};:'@#~,<.>/?\\| " + String.valueOf('Ä') + 'Ë' + 'Ï' + 'Ö' + 'Ü' + 'ä' + 'ë' + 'ï' + 'ö' + 'ü' + 'ÿ' + 'ß' + 'Á' + 'À' + 'É' + 'È' + 'Í' + 'Ì' + 'Ó' + 'Ò' + 'Ú' + 'Ù' + 'á' + 'à' + 'é' + 'è' + 'í' + 'ì' + 'ó' + 'ò' + 'ú' + 'ù' + 'Â' + 'Ê' + 'Î' + 'Ô' + 'Û' + 'â' + 'ê' + 'î' + 'ô' + 'û' + 'Æ' + 'æ';
 
 	@OriginalMember(owner = "client!fd", name = "e", descriptor = "I")
 	public static final int ALPHABET_SIZE = ALPHABET.length();
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "f", descriptor = "[I")
+	@OriginalMember(owner = "client!fd", name = "f", descriptor = "[I")
 	private static final int[] CHAR_INDEXES = new int[256];
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "c", descriptor = "I")
+	@OriginalMember(owner = "client!fd", name = "c", descriptor = "I")
 	private int dataIndex = 0;
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "b", descriptor = "Z")
+	@OriginalMember(owner = "client!fd", name = "b", descriptor = "Z")
 	private boolean grayscale = false;
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "a", descriptor = "[B")
+	@OriginalMember(owner = "client!fd", name = "a", descriptor = "[B")
 	private byte[] data = new byte[100000];
 
 	static {
@@ -45,7 +45,7 @@ public final class WorldMapFont {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "<init>", descriptor = "(IZLjava/awt/runetek4.Component;)V")
+	@OriginalMember(owner = "client!fd", name = "<init>", descriptor = "(IZLjava/awt/Component;)V")
 	public WorldMapFont(@OriginalArg(0) int size, @OriginalArg(1) boolean arg1, @OriginalArg(2) Component component) {
 		this.dataIndex = ALPHABET_SIZE * 9;
 		this.grayscale = false;
@@ -78,7 +78,7 @@ public final class WorldMapFont {
 		this.data = data;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "a", descriptor = "(Lclient!na;IIIZ)V")
+	@OriginalMember(owner = "client!fd", name = "a", descriptor = "(Lclient!na;IIIZ)V")
 	private void renderString(@OriginalArg(0) JString string, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int color, @OriginalArg(4) boolean shadow) {
 		if (this.grayscale || color == 0) {
 			shadow = false;
@@ -94,12 +94,12 @@ public final class WorldMapFont {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "a", descriptor = "()I")
-	public final int method1503() {
+	@OriginalMember(owner = "client!fd", name = "a", descriptor = "()I")
+	public int method1503() {
 		return this.data[8] - 1;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "a", descriptor = "([I[BIIIIIII)V")
+	@OriginalMember(owner = "client!fd", name = "a", descriptor = "([I[BIIIIIII)V")
 	private void renderGlyphGrayscale(@OriginalArg(0) int[] dest, @OriginalArg(1) byte[] src, @OriginalArg(2) int color, @OriginalArg(3) int srcIndex, @OriginalArg(4) int destIndex, @OriginalArg(5) int w, @OriginalArg(6) int h, @OriginalArg(7) int destStride, @OriginalArg(8) int srcStride) {
 		for (@Pc(2) int y = -h; y < 0; y++) {
 			for (@Pc(7) int x = -w; x < 0; x++) {
@@ -118,7 +118,7 @@ public final class WorldMapFont {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "a", descriptor = "(IIII[B)V")
+	@OriginalMember(owner = "client!fd", name = "a", descriptor = "(IIII[B)V")
 	private void renderGlyph(@OriginalArg(0) int index, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int arg3, @OriginalArg(4) byte[] src) {
 		@Pc(7) int local7 = x + src[index + 5];
 		@Pc(15) int local15 = y - src[index + 6];
@@ -164,7 +164,7 @@ public final class WorldMapFont {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "b", descriptor = "([I[BIIIIIII)V")
+	@OriginalMember(owner = "client!fd", name = "b", descriptor = "([I[BIIIIIII)V")
 	private void renderGlyphMono(@OriginalArg(0) int[] arg0, @OriginalArg(1) byte[] src, @OriginalArg(2) int color, @OriginalArg(3) int srcIndex, @OriginalArg(4) int destIndex, @OriginalArg(5) int width, @OriginalArg(6) int arg6, @OriginalArg(7) int destStride, @OriginalArg(8) int srcStride) {
 		@Pc(4) int roundedWidth = -(width >> 2);
 		@Pc(9) int width2 = -(width & 0x3);
@@ -204,8 +204,8 @@ public final class WorldMapFont {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "b", descriptor = "(Lclient!na;IIIZ)V")
-	public final void renderStringCenter(@OriginalArg(0) JString arg0, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int color) {
+	@OriginalMember(owner = "client!fd", name = "b", descriptor = "(Lclient!na;IIIZ)V")
+	public void renderStringCenter(@OriginalArg(0) JString arg0, @OriginalArg(1) int x, @OriginalArg(2) int y, @OriginalArg(3) int color) {
 		@Pc(5) int halfWidth = this.getStringWidth(arg0) / 2;
 		@Pc(8) int local8 = this.method1511();
 		if (x - halfWidth <= SoftwareRaster.clipRight && (x + halfWidth >= SoftwareRaster.clipLeft && (y - local8 <= SoftwareRaster.clipBottom && y >= 0))) {
@@ -213,7 +213,7 @@ public final class WorldMapFont {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "a", descriptor = "(Ljava/awt/runetek4.Font;Ljava/awt/FontMetrics;CIZ)V")
+	@OriginalMember(owner = "client!fd", name = "a", descriptor = "(Ljava/awt/Font;Ljava/awt/FontMetrics;CIZ)V")
 	private void preRenderGlyph(@OriginalArg(0) Font font, @OriginalArg(1) FontMetrics metrics, @OriginalArg(2) char c, @OriginalArg(3) int id, @OriginalArg(4) boolean shadow) {
 		@Pc(3) int imageWidth = metrics.charWidth(c);
 		@Pc(5) int width = imageWidth;
@@ -311,7 +311,7 @@ public final class WorldMapFont {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "a", descriptor = "(Lclient!na;)I")
+	@OriginalMember(owner = "client!fd", name = "a", descriptor = "(Lclient!na;)I")
 	private int getStringWidth(@OriginalArg(0) JString string) {
 		@Pc(1) int width = 0;
 		for (@Pc(3) int i = 0; i < string.length(); i++) {
@@ -326,8 +326,8 @@ public final class WorldMapFont {
 		return width;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fd", name = "c", descriptor = "()I")
-	public final int method1511() {
+	@OriginalMember(owner = "client!fd", name = "c", descriptor = "()I")
+	public int method1511() {
 		return this.data[6];
 	}
 }

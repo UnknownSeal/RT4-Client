@@ -127,7 +127,7 @@ public final class GlModel extends Model {
 	private short[] vertexSources;
 
 	@OriginalMember(owner = "client!td", name = "U", descriptor = "Lclient!ae;")
-	public Class5 bounds;
+	public GLBoundingBox bounds;
 
 	@OriginalMember(owner = "client!td", name = "W", descriptor = "[S")
 	private short[] aShortArray85;
@@ -257,7 +257,7 @@ public final class GlModel extends Model {
 		if (model.triangleSources != null) {
 			this.triangleSources = new short[this.triangleCount];
 		}
-		this.bounds = new Class5();
+		this.bounds = new GLBoundingBox();
 		this.vertexBuffer = new GlBuffer();
 		this.colorBuffer = new GlBuffer();
 		if (Preferences.highDetailLighting) {
@@ -2655,7 +2655,7 @@ public final class GlModel extends Model {
 		}
 		arg3.vertexBuffer.valid = false;
 		if (arg3.bounds == null) {
-			arg3.bounds = new Class5();
+			arg3.bounds = new GLBoundingBox();
 		}
 		arg3.bounds.valid = false;
 		if (arg0) {
@@ -2809,7 +2809,7 @@ public final class GlModel extends Model {
 			model.bounds = this.bounds;
 		} else {
 			model.vertexBuffer = new GlBuffer();
-			model.bounds = new Class5();
+			model.bounds = new GLBoundingBox();
 		}
 		if (arg2) {
 			model.triangleColors = this.triangleColors;

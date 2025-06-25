@@ -977,7 +977,7 @@ public class SceneGraph {
 
     @OriginalMember(owner = "runetek4.client!km", name = "f", descriptor = "(I)Z")
     public static boolean allLevelsAreVisible() {
-        return GlRenderer.enabled ? true : Preferences.allLevelsVisible;
+        return GlRenderer.enabled ? true : Preferences.lowmem;
     }
 
     @OriginalMember(owner = "runetek4.client!lg", name = "a", descriptor = "(I)V")

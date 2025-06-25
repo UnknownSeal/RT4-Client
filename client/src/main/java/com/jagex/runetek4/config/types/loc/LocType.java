@@ -191,7 +191,7 @@ public final class LocType {
 	private int zoff = 0;
 
 	@OriginalMember(owner = "client!pb", name = "c", descriptor = "I")
-	public int mapsceneiconrotateoffset = 0;
+	public int mapsceneiconrotationoffset = 0;
 
 	@OriginalMember(owner = "client!pb", name = "jb", descriptor = "I")
 	public int walloff = 16;
@@ -433,7 +433,7 @@ public final class LocType {
 			this.cursor2op = packet.g1();
 			this.cursor2 = packet.g2();
 		} else if (opcode == 101) {
-			this.mapsceneiconrotateoffset = packet.g1(); // TODO(Name needs verification)
+			this.mapsceneiconrotationoffset = packet.g1(); // TODO(Name needs verification)
 		} else if (opcode == 102) {
 			this.mapsceneicon = packet.g2();
 		} else if (opcode == 249) {

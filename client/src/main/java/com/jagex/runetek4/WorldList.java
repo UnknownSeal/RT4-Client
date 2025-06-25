@@ -12,64 +12,91 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class WorldList {
-    @OriginalMember(owner = "runetek4.client!nd", name = "x", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!nd", name = "x", descriptor = "Lclient!na;")
     public static final JString aClass100_783 = JString.parse(")4p=");
-    @OriginalMember(owner = "runetek4.client!ja", name = "s", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!ja", name = "s", descriptor = "Lclient!na;")
     public static final JString HTTP_PROTOCOL = JString.parse("http:)4)4");
-    @OriginalMember(owner = "runetek4.client!wk", name = "x", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!wk", name = "x", descriptor = "Lclient!na;")
     public static final JString aClass100_1107 = JString.parse(")4l=");
-    @OriginalMember(owner = "runetek4.client!rc", name = "G", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!rc", name = "G", descriptor = "Lclient!na;")
     public static final JString aClass100_230 = JString.parse("");
-    @OriginalMember(owner = "runetek4.client!l", name = "d", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!l", name = "d", descriptor = "Lclient!na;")
     public static final JString aClass100_659 = JString.parse(")4j");
+
     @OriginalMember(owner = "client!cg", name = "e", descriptor = "Lclient!na;")
     public static final JString aClass100_184 = JString.parse("1");
-    @OriginalMember(owner = "runetek4.client!vd", name = "F", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!vd", name = "F", descriptor = "Lclient!na;")
     public static final JString aClass100_945 = JString.parse("0");
+
     @OriginalMember(owner = "client!em", name = "u", descriptor = "Lclient!na;")
     public static final JString aClass100_420 = JString.parse(")1o");
-    @OriginalMember(owner = "runetek4.client!q", name = "a", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!q", name = "a", descriptor = "Lclient!na;")
     public static final JString aClass100_260 = JString.parse(")1a2)1m");
+
     @OriginalMember(owner = "client!ch", name = "x", descriptor = "Lclient!na;")
     public static final JString aClass100_193 = JString.parse(":");
-    @OriginalMember(owner = "runetek4.client!ii", name = "e", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!ii", name = "e", descriptor = "Lclient!na;")
     public static final JString aClass100_570 = JString.parse(")2");
-    @OriginalMember(owner = "runetek4.client!ob", name = "o", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!ob", name = "o", descriptor = "Lclient!na;")
     private static final JString aClass100_801 = JString.parse(")4a=");
-    @OriginalMember(owner = "runetek4.client!en", name = "A", descriptor = "Z")
+
+    @OriginalMember(owner = "client!en", name = "A", descriptor = "Z")
     public static boolean loaded = false;
+
     @OriginalMember(owner = "client!bi", name = "R", descriptor = "I")
     public static int minId;
-    @OriginalMember(owner = "runetek4.client!ni", name = "q", descriptor = "I")
+
+    @OriginalMember(owner = "client!ni", name = "q", descriptor = "I")
     public static int maxId;
-    @OriginalMember(owner = "runetek4.client!pl", name = "a", descriptor = "[Lclient!ba;")
+
+    @OriginalMember(owner = "client!pl", name = "a", descriptor = "[Lclient!ba;")
     public static World[] worlds;
-    @OriginalMember(owner = "runetek4.client!qh", name = "e", descriptor = "[Lclient!ee;")
+
+    @OriginalMember(owner = "client!qh", name = "e", descriptor = "[Lclient!ee;")
     public static WorldInfo[] countries;
+
     @OriginalMember(owner = "client!gi", name = "c", descriptor = "I")
     public static int step = 0;
+
     @OriginalMember(owner = "client!be", name = "kc", descriptor = "J")
     public static long openTime = 0L;
-    @OriginalMember(owner = "runetek4.client!sk", name = "gb", descriptor = "J")
+
+    @OriginalMember(owner = "client!sk", name = "gb", descriptor = "J")
     public static long closeTime = 0L;
-    @OriginalMember(owner = "runetek4.client!jb", name = "y", descriptor = "I")
+
+    @OriginalMember(owner = "client!jb", name = "y", descriptor = "I")
     public static int bufferLen = 0;
-    @OriginalMember(owner = "runetek4.client!si", name = "cb", descriptor = "[B")
+
+    @OriginalMember(owner = "client!si", name = "cb", descriptor = "[B")
     public static byte[] buffer;
-    @OriginalMember(owner = "runetek4.client!lb", name = "u", descriptor = "I")
+
+    @OriginalMember(owner = "client!lb", name = "u", descriptor = "I")
     public static int bufferOff = 0;
-    @OriginalMember(owner = "runetek4.client!hm", name = "fb", descriptor = "[Lclient!ba;")
+
+    @OriginalMember(owner = "client!hm", name = "fb", descriptor = "[Lclient!ba;")
     public static World[] sorted = new World[0];
-    @OriginalMember(owner = "runetek4.client!ic", name = "n", descriptor = "I")
+
+    @OriginalMember(owner = "client!ic", name = "n", descriptor = "I")
     public static int size;
+
     @OriginalMember(owner = "client!gf", name = "T", descriptor = "I")
     public static int checksum;
-    @OriginalMember(owner = "runetek4.client!k", name = "t", descriptor = "I")
+
+    @OriginalMember(owner = "client!k", name = "t", descriptor = "I")
     public static int errors = 0;
+
     @OriginalMember(owner = "client!ea", name = "w", descriptor = "I")
     public static int worldPos = 1;
 
-    @OriginalMember(owner = "runetek4.client!ql", name = "b", descriptor = "(I)I")
+    @OriginalMember(owner = "client!ql", name = "b", descriptor = "(I)I")
     public static int fetch() {
         try {
             if (step == 0) {
@@ -169,7 +196,7 @@ public class WorldList {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "(IB)Z")
+    @OriginalMember(owner = "client!ob", name = "a", descriptor = "(IB)Z")
     public static boolean hopWorld(@OriginalArg(0) int id) {
         @Pc(3) World world = ClientScriptRunner.getWorld(id);
         if (world == null) {
@@ -224,7 +251,7 @@ public class WorldList {
         return -1;
     }
 
-    @OriginalMember(owner = "runetek4.client!nh", name = "a", descriptor = "(I[B)Z")
+    @OriginalMember(owner = "client!nh", name = "a", descriptor = "(I[B)Z")
     public static boolean decode(@OriginalArg(1) byte[] bytes) {
         @Pc(13) Packet packet = new Packet(bytes);
         @Pc(17) int version = packet.g1();
@@ -239,7 +266,7 @@ public class WorldList {
         return true;
     }
 
-    @OriginalMember(owner = "runetek4.client!hi", name = "a", descriptor = "(Lclient!wa;I)V")
+    @OriginalMember(owner = "client!hi", name = "a", descriptor = "(Lclient!wa;I)V")
     public static void decodeWorlds(@OriginalArg(0) Packet packet) {
         @Pc(9) int countryCount = packet.gSmart1or2();
         countries = new WorldInfo[countryCount];
@@ -318,7 +345,7 @@ public class WorldList {
         return getNextWorld();
     }
 
-    @OriginalMember(owner = "runetek4.client!na", name = "a", descriptor = "(Lclient!ba;Lclient!ba;IIIZZ)I")
+    @OriginalMember(owner = "client!na", name = "a", descriptor = "(Lclient!ba;Lclient!ba;IIIZZ)I")
     public static int compare(@OriginalArg(0) World y, @OriginalArg(1) World x, @OriginalArg(3) int secondaryField, @OriginalArg(4) int arg3, @OriginalArg(5) boolean secondaryDesc, @OriginalArg(6) boolean primaryDesc) {
         @Pc(8) int primary = compare(x, arg3, y, primaryDesc);
         if (primary != 0) {
@@ -331,7 +358,7 @@ public class WorldList {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!wb", name = "a", descriptor = "(Lclient!ba;IILclient!ba;Z)I")
+    @OriginalMember(owner = "client!wb", name = "a", descriptor = "(Lclient!ba;IILclient!ba;Z)I")
     public static int compare(@OriginalArg(0) World x, @OriginalArg(1) int field, @OriginalArg(3) World y, @OriginalArg(4) boolean desc) {
         if (field == 1) {
             @Pc(11) int xPlayers = x.players;

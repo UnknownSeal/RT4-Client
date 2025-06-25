@@ -11,30 +11,42 @@ import org.openrs2.deob.annotation.Pc;
 @OriginalClass("client!lc")
 public final class Texture {
 
-	@OriginalMember(owner = "runetek4.client!i", name = "ac", descriptor = "[I")
+	@OriginalMember(owner = "client!i", name = "ac", descriptor = "[I")
 	public static final int[] brightnessMap = new int[256];
-	@OriginalMember(owner = "runetek4.client!rh", name = "g", descriptor = "I")
+
+	@OriginalMember(owner = "client!rh", name = "g", descriptor = "I")
 	public static final int spriteGroupId = -1;
-	@OriginalMember(owner = "runetek4.client!ck", name = "X", descriptor = "I")
+
+	@OriginalMember(owner = "client!ck", name = "X", descriptor = "I")
 	public static int widthMask;
-	@OriginalMember(owner = "runetek4.client!pe", name = "r", descriptor = "I")
+
+	@OriginalMember(owner = "client!pe", name = "r", descriptor = "I")
 	public static int width;
-	@OriginalMember(owner = "runetek4.client!nk", name = "d", descriptor = "[I")
+
+	@OriginalMember(owner = "client!nk", name = "d", descriptor = "[I")
 	public static int[] widthFractions;
-	@OriginalMember(owner = "runetek4.client!nj", name = "k", descriptor = "I")
+
+	@OriginalMember(owner = "client!nj", name = "k", descriptor = "I")
 	public static int height;
-	@OriginalMember(owner = "runetek4.client!fb", name = "h", descriptor = "[I")
+
+	@OriginalMember(owner = "client!fb", name = "h", descriptor = "[I")
 	public static int[] heightFractions;
-	@OriginalMember(owner = "runetek4.client!lb", name = "z", descriptor = "I")
+
+	@OriginalMember(owner = "client!lb", name = "z", descriptor = "I")
 	public static int heightMask;
-	@OriginalMember(owner = "runetek4.client!jh", name = "f", descriptor = "D")
+
+	@OriginalMember(owner = "client!jh", name = "f", descriptor = "D")
 	public static double brightness = -1.0D;
-	@OriginalMember(owner = "runetek4.client!nb", name = "o", descriptor = "I")
+
+	@OriginalMember(owner = "client!nb", name = "o", descriptor = "I")
 	public static int anInt4042;
+
 	@OriginalMember(owner = "client!cm", name = "a", descriptor = "Lclient!m;")
 	public static TextureProvider provider;
-	@OriginalMember(owner = "runetek4.client!ob", name = "f", descriptor = "Lclient!ve;")
+
+	@OriginalMember(owner = "client!ob", name = "f", descriptor = "Lclient!ve;")
 	public static Js5 spritesArchive;
+
 	@OriginalMember(owner = "client!lc", name = "k", descriptor = "[I")
 	private final int[] anIntArray328;
 
@@ -52,7 +64,6 @@ public final class Texture {
 
 	@OriginalMember(owner = "client!lc", name = "<init>", descriptor = "(Lclient!wa;)V")
 	public Texture(@OriginalArg(0) Packet packet) {
-
 		@Pc(7) int spriteCount = packet.g1();
 		this.aClass3_Sub1Array22 = new TextureOp[spriteCount];
 		@Pc(14) int[][] local14 = new int[spriteCount][];
@@ -243,7 +254,7 @@ public final class Texture {
 	}
 
 	@OriginalMember(owner = "client!lc", name = "a", descriptor = "(IZIDILclient!ve;Lclient!m;Z)[I")
-	public int[] method2725(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(3) double arg3, @OriginalArg(5) Js5 arg4, @OriginalArg(6) TextureProvider arg5, @OriginalArg(7) boolean arg6) {
+	public int[] getPixels(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(3) double arg3, @OriginalArg(5) Js5 arg4, @OriginalArg(6) TextureProvider arg5, @OriginalArg(7) boolean arg6) {
 		setBrightness(arg3);
 		provider = arg5;
 		spritesArchive = arg4;
@@ -322,7 +333,7 @@ public final class Texture {
 	}
 
 	@OriginalMember(owner = "client!lc", name = "a", descriptor = "(IIZLclient!m;DILclient!ve;)[B")
-	public final byte[] method2728(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) TextureProvider arg3, @OriginalArg(4) double arg4, @OriginalArg(6) Js5 arg5) {
+	public byte[] method2728(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) boolean arg2, @OriginalArg(3) TextureProvider arg3, @OriginalArg(4) double arg4, @OriginalArg(6) Js5 arg5) {
 		@Pc(8) byte[] local8 = new byte[arg1 * 4 * arg0];
 		setBrightness(arg4);
 		spritesArchive = arg5;
@@ -411,7 +422,7 @@ public final class Texture {
 	}
 
 	@OriginalMember(owner = "client!lc", name = "a", descriptor = "(ZLclient!m;Lclient!ve;)Z")
-	public boolean method2729(@OriginalArg(1) TextureProvider arg0, @OriginalArg(2) Js5 arg1) {
+	public boolean isReady(@OriginalArg(1) TextureProvider arg0, @OriginalArg(2) Js5 arg1) {
 		@Pc(10) int local10;
 		if (spriteGroupId > 0) {
 			for (local10 = 0; local10 < this.anIntArray327.length; local10++) {
