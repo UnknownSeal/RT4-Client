@@ -29,7 +29,9 @@ public class ZoomMixin {
         Camera.orbitCamera(cameraX, arg0, height, ZoomState.zoom, yaw, cameraZ, pitch);
     }
 
-    @Shadow
+    @Shadow(
+            target = JavaMouseWheel.class
+    )
     private static Field currentRotation;
 
     @Inject(

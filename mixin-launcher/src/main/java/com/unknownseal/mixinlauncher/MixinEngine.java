@@ -62,7 +62,9 @@ public class MixinEngine {
 
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.FIELD)
-    public @interface Shadow {}
+    public @interface Shadow {
+        Class<?> target();
+    }
 
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.ANNOTATION_TYPE)
@@ -102,18 +104,15 @@ public class MixinEngine {
     private static void registerMixinClass(Class<?> mixinClass, Class<?> targetClass) {
         for (Field field : mixinClass.getDeclaredFields()) {
             if (field.isAnnotationPresent(Shadow.class)) {
+                Shadow shadow = field.getAnnotation(Shadow.class);
+                Class<?> shadowTarget = shadow.target();
+
                 try {
-                    Field targetField = targetClass.getDeclaredField(field.getName());
+                    Field targetField = shadowTarget.getDeclaredField(field.getName());
                     targetField.setAccessible(true);
                     field.setAccessible(true);
-                    if (Modifier.isStatic(targetField.getModifiers())) {
-                        field.set(null, targetField.get(null));
-                    } else if (Field.class.isAssignableFrom(field.getType())) {
-                        field.set(null, targetField);
-                    } else {
-                        MixinLogger.LOGGER.warning("Cannot shadow instance field unless declared as 'Field': " + field.getName());
-                    }
-                    MixinLogger.LOGGER.info("Linked shadow field: " + field.getName());
+                    field.set(null, targetField); // store reference for reflection access
+                    MixinLogger.LOGGER.info("Linked shadow field: " + field.getName() + " from " + shadowTarget.getName());
                 } catch (Exception e) {
                     MixinLogger.LOGGER.warning("Failed to link shadow field: " + field.getName() + ", reason: " + e);
                 }
