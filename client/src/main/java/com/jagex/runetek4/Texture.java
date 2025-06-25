@@ -243,7 +243,7 @@ public final class Texture {
 	}
 
 	@OriginalMember(owner = "client!lc", name = "a", descriptor = "(IZIDILclient!ve;Lclient!m;Z)[I")
-	public int[] method2725(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(3) double arg3, @OriginalArg(5) Js5 arg4, @OriginalArg(6) TextureProvider arg5, @OriginalArg(7) boolean arg6) {
+	public int[] getPixels(@OriginalArg(0) int arg0, @OriginalArg(1) boolean arg1, @OriginalArg(2) int arg2, @OriginalArg(3) double arg3, @OriginalArg(5) Js5 arg4, @OriginalArg(6) TextureProvider arg5, @OriginalArg(7) boolean arg6) {
 		setBrightness(arg3);
 		provider = arg5;
 		spritesArchive = arg4;
@@ -411,7 +411,7 @@ public final class Texture {
 	}
 
 	@OriginalMember(owner = "client!lc", name = "a", descriptor = "(ZLclient!m;Lclient!ve;)Z")
-	public boolean method2729(@OriginalArg(1) TextureProvider arg0, @OriginalArg(2) Js5 arg1) {
+	public boolean isReady(@OriginalArg(1) TextureProvider arg0, @OriginalArg(2) Js5 arg1) {
 		@Pc(10) int local10;
 		if (spriteGroupId > 0) {
 			for (local10 = 0; local10 < this.anIntArray327.length; local10++) {

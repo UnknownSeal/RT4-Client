@@ -3,9 +3,8 @@ package com.jagex.runetek4;
 import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 
-// GlBoundingBox
 @OriginalClass("client!ae")
-public final class Class5 {
+public final class GLBoundingBox {
 
 	@OriginalMember(owner = "client!ae", name = "a", descriptor = "S")
 	public short minY;

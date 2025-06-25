@@ -10,92 +10,136 @@ import org.openrs2.deob.annotation.Pc;
 public class Camera {
     @OriginalMember(owner = "runetek4.client!id", name = "d", descriptor = "[[[I")
     public static final int[][][] anIntArrayArrayArray9 = new int[2][][];
+
     @OriginalMember(owner = "runetek4.client!wh", name = "m", descriptor = "[I")
     public static final int[] cameraAmplitude = new int[5];
+
     @OriginalMember(owner = "runetek4.client!sa", name = "Q", descriptor = "[I")
     public static final int[] cameraModifierJitter = new int[5];
+
     @OriginalMember(owner = "runetek4.client!qg", name = "Y", descriptor = "[I")
     public static final int[] cameraFrequency = new int[5];
+
     @OriginalMember(owner = "runetek4.client!ob", name = "a", descriptor = "[Z")
     public static final boolean[] cameraModifierEnabled = new boolean[5];
+
     @OriginalMember(owner = "runetek4.client!fl", name = "s", descriptor = "I")
     public static int orbitCameraPitch = 128;
+
     @OriginalMember(owner = "runetek4.client!eg", name = "d", descriptor = "I")
     public static int orbitCameraYaw = 0;
+
     @OriginalMember(owner = "runetek4.client!ef", name = "i", descriptor = "I")
     public static int pitchAccel = 0;
+
     @OriginalMember(owner = "runetek4.client!ii", name = "a", descriptor = "I")
     public static int cameraZ;
+
     @OriginalMember(owner = "runetek4.client!gg", name = "bb", descriptor = "I")
     public static int cameraX;
+
     @OriginalMember(owner = "runetek4.client!tg", name = "b", descriptor = "I")
     public static int cameraPitch;
+
     @OriginalMember(owner = "runetek4.client!ol", name = "ib", descriptor = "I")
     public static int cameraYaw;
+
     @OriginalMember(owner = "runetek4.client!sg", name = "o", descriptor = "I")
     public static int cameraType;
+
     @OriginalMember(owner = "runetek4.client!g", name = "d", descriptor = "I")
     public static int anInt2119 = 0;
+
     @OriginalMember(owner = "runetek4.client!eb", name = "t", descriptor = "I")
     public static int anInt1694 = -1;
+
     @OriginalMember(owner = "runetek4.client!j", name = "K", descriptor = "I")
     public static int anInt5843 = 0;
+
     @OriginalMember(owner = "client!sh", name = "c", descriptor = "I")
     public static int anInt5101 = 0;
+
     @OriginalMember(owner = "runetek4.client!t", name = "z", descriptor = "I")
     public static int anInt5224 = 0;
+
     @OriginalMember(owner = "runetek4.client!k", name = "i", descriptor = "I")
     public static int anInt3125 = 0;
+
     @OriginalMember(owner = "runetek4.client!me", name = "k", descriptor = "I")
     public static int anInt3718 = -1;
+
     @OriginalMember(owner = "runetek4.client!lc", name = "n", descriptor = "I")
     public static int originZ;
+
     @OriginalMember(owner = "runetek4.client!se", name = "a", descriptor = "I")
     public static int originX;
+
     @OriginalMember(owner = "client!bc", name = "I", descriptor = "Z")
     public static boolean aBoolean16 = false;
+
     @OriginalMember(owner = "runetek4.client!km", name = "Pc", descriptor = "I")
     public static int renderX;
+
     @OriginalMember(owner = "runetek4.client!kh", name = "f", descriptor = "I")
     public static int renderZ;
+
     @OriginalMember(owner = "runetek4.client!uc", name = "f", descriptor = "I")
     public static int anInt4232;
+
     @OriginalMember(owner = "runetek4.client!ug", name = "h", descriptor = "I")
     public static int anInt5449;
+
     @OriginalMember(owner = "runetek4.client!vj", name = "d", descriptor = "I")
     public static int anInt5765;
+
     @OriginalMember(owner = "runetek4.client!tm", name = "g", descriptor = "I")
     public static int anInt5375;
+
     @OriginalMember(owner = "runetek4.client!pa", name = "K", descriptor = "Z")
     public static boolean aBoolean205 = false;
+
     @OriginalMember(owner = "runetek4.client!gk", name = "d", descriptor = "F")
     public static float aFloat10;
+
     @OriginalMember(owner = "runetek4.client!il", name = "O", descriptor = "I")
     public static int anInt4612;
+
     @OriginalMember(owner = "runetek4.client!eg", name = "a", descriptor = "I")
     public static int anInt1744;
+
     @OriginalMember(owner = "runetek4.client!kf", name = "f", descriptor = "I")
     public static int anInt5230;
+
     @OriginalMember(owner = "runetek4.client!ke", name = "U", descriptor = "I")
     public static int cameraAnticheatOffsetX = 0;
+
     @OriginalMember(owner = "runetek4.client!uc", name = "a", descriptor = "I")
     public static int cameraOffsetXModifier = 2;
+
     @OriginalMember(owner = "runetek4.client!ta", name = "B", descriptor = "I")
     public static int cameraPitchClamp = 0;
+
     @OriginalMember(owner = "runetek4.client!qk", name = "h", descriptor = "I")
     public static int cameraAnticheatOffsetZ = 0;
+
     @OriginalMember(owner = "runetek4.client!sj", name = "H", descriptor = "I")
     public static int cameraAnticheatAngle = 0;
+
     @OriginalMember(owner = "runetek4.client!af", name = "d", descriptor = "I")
-    public static int cameraY;
+    public static int renderY;
+
     @OriginalMember(owner = "runetek4.client!lg", name = "d", descriptor = "F")
     public static float aFloat15;
+
     @OriginalMember(owner = "runetek4.client!sk", name = "jb", descriptor = "I")
     public static int anInt5203;
+
     @OriginalMember(owner = "runetek4.client!t", name = "o", descriptor = "I")
     public static int anInt5217;
+
     @OriginalMember(owner = "runetek4.client!t", name = "A", descriptor = "I")
     public static int anInt5225;
+
     @OriginalMember(owner = "client!cn", name = "L", descriptor = "I")
     public static int yawAccel = 0;
 
@@ -107,7 +151,7 @@ public class Camera {
         if (anInt4612 >= 100) {
             renderX = anInt5375 * 128 + 64;
             renderZ = anInt4232 * 128 + 64;
-            cameraY = SceneGraph.getTileHeight(Player.plane, renderX, renderZ) - anInt5203;
+            renderY = SceneGraph.getTileHeight(Player.plane, renderX, renderZ) - anInt5203;
         } else {
             if (renderX < local15) {
                 renderX += anInt5225 + anInt4612 * (local15 - renderX) / 1000;
@@ -115,10 +159,10 @@ public class Camera {
                     renderX = local15;
                 }
             }
-            if (cameraY < local23) {
-                cameraY += (local23 - cameraY) * anInt4612 / 1000 + anInt5225;
-                if (cameraY > local23) {
-                    cameraY = local23;
+            if (renderY < local23) {
+                renderY += (local23 - renderY) * anInt4612 / 1000 + anInt5225;
+                if (renderY > local23) {
+                    renderY = local23;
                 }
             }
             if (renderX > local15) {
@@ -133,10 +177,10 @@ public class Camera {
                     renderZ = local9;
                 }
             }
-            if (local23 < cameraY) {
-                cameraY -= (cameraY - local23) * anInt4612 / 1000 + anInt5225;
-                if (local23 > cameraY) {
-                    cameraY = local23;
+            if (local23 < renderY) {
+                renderY -= (renderY - local23) * anInt4612 / 1000 + anInt5225;
+                if (local23 > renderY) {
+                    renderY = local23;
                 }
             }
             if (renderZ > local9) {
@@ -149,18 +193,18 @@ public class Camera {
         local9 = anInt5765 * 128 + 64;
         local15 = anInt5449 * 128 + 64;
         local23 = SceneGraph.getTileHeight(Player.plane, local15, local9) - anInt1744;
-        @Pc(236) int local236 = local23 - cameraY;
+        @Pc(236) int local236 = local23 - renderY;
         @Pc(241) int local241 = local9 - renderZ;
         @Pc(246) int local246 = local15 - renderX;
-        @Pc(257) int local257 = (int) Math.sqrt((double) (local246 * local246 + local241 * local241));
-        @Pc(268) int cameraPitch = (int) (Math.atan2((double) local236, (double) local257) * 325.949D) & 0x7FF;
+        @Pc(257) int local257 = (int) Math.sqrt(local246 * local246 + local241 * local241);
+        @Pc(268) int cameraPitch = (int) (Math.atan2(local236, local257) * 325.949D) & 0x7FF;
         if (cameraPitch < 128) {
             cameraPitch = 128;
         }
         if (cameraPitch > 383) {
             cameraPitch = 383;
         }
-        @Pc(292) int local292 = (int) (-325.949D * Math.atan2((double) local246, (double) local241)) & 0x7FF;
+        @Pc(292) int local292 = (int) (-325.949D * Math.atan2(local246, local241)) & 0x7FF;
         if (Camera.cameraPitch < cameraPitch) {
             Camera.cameraPitch += anInt5230 + anInt5217 * (cameraPitch - Camera.cameraPitch) / 1000;
             if (Camera.cameraPitch > cameraPitch) {
@@ -239,7 +283,7 @@ public class Camera {
             local173 = anIntArrayArrayArray9[anInt3718][local70 + 2][local72] + local131 - local119 - local111;
             renderCoordinates[local72] = (float) local119 + (((float) local173 * local66 + (float) local155) * local66 + (float) local146) * local66;
         }
-        cameraY = (int) renderCoordinates[1] * -1;
+        renderY = (int) renderCoordinates[1] * -1;
         renderX = (int) renderCoordinates[0] - originX * 128;
         renderZ = (int) renderCoordinates[2] - originZ * 128;
         @Pc(226) float[] local226 = new float[3];
@@ -275,12 +319,12 @@ public class Camera {
             @Pc(30) int local30 = anInt5449 * 128 + 64;
             @Pc(36) int local36 = anInt5765 * 128 + 64;
             @Pc(44) int local44 = SceneGraph.getTileHeight(Player.plane, local30, local36) - anInt1744;
-            @Pc(49) int local49 = local44 - cameraY;
+            @Pc(49) int local49 = local44 - renderY;
             @Pc(54) int local54 = local30 - renderX;
             @Pc(59) int local59 = local36 - renderZ;
-            @Pc(70) int local70 = (int) Math.sqrt((double) (local59 * local59 + local54 * local54));
-            cameraPitch = (int) (Math.atan2((double) local49, (double) local70) * 325.949D) & 0x7FF;
-            cameraYaw = (int) (Math.atan2((double) local54, (double) local59) * -325.949D) & 0x7FF;
+            @Pc(70) int local70 = (int) Math.sqrt(local59 * local59 + local54 * local54);
+            cameraPitch = (int) (Math.atan2(local49, local70) * 325.949D) & 0x7FF;
+            cameraYaw = (int) (Math.atan2(local54, local59) * -325.949D) & 0x7FF;
             if (cameraPitch < 128) {
                 cameraPitch = 128;
             }
@@ -301,7 +345,7 @@ public class Camera {
         if (arg0 && anInt4612 >= 100) {
             renderX = anInt5375 * 128 + 64;
             renderZ = anInt4232 * 128 + 64;
-            cameraY = SceneGraph.getTileHeight(Player.plane, renderX, renderZ) - anInt5203;
+            renderY = SceneGraph.getTileHeight(Player.plane, renderX, renderZ) - anInt5203;
         }
         cameraType = 2;
     }
@@ -403,6 +447,6 @@ public class Camera {
         cameraYaw = arg4;
         renderZ = arg5 - local57;
         renderX = arg0 - local55;
-        cameraY = arg2 - local59;
+        renderY = arg2 - local59;
     }
 }
