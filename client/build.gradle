@@ -3,7 +3,7 @@ plugins {
     id 'application'
 }
 
-mainClassName = 'com.jagex.runetek4.client.client'
+mainClassName = 'com.jagex.runetek4.client'
 version = '1.0.0'
 
 sourceCompatibility = 1.8
