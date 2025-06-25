@@ -7,30 +7,30 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!um")
+@OriginalClass("client!um")
 public final class TextureOpColorGradient extends TextureOp {
 
-	@OriginalMember(owner = "runetek4.client!um", name = "R", descriptor = "[[I")
+	@OriginalMember(owner = "client!um", name = "R", descriptor = "[[I")
 	private int[][] samples;
 
-	@OriginalMember(owner = "runetek4.client!um", name = "bb", descriptor = "[I")
+	@OriginalMember(owner = "client!um", name = "bb", descriptor = "[I")
 	private final int[] colors = new int[257];
 
-	@OriginalMember(owner = "runetek4.client!um", name = "<init>", descriptor = "()V")
+	@OriginalMember(owner = "client!um", name = "<init>", descriptor = "()V")
 	public TextureOpColorGradient() {
 		super(1, false);
 	}
 
-	@OriginalMember(owner = "runetek4.client!um", name = "e", descriptor = "(I)V")
+	@OriginalMember(owner = "client!um", name = "e", descriptor = "(I)V")
 	@Override
-	public final void postDecode() {
+	public void postDecode() {
 		if (this.samples == null) {
 			this.setPreset(1);
 		}
 		this.interpolate();
 	}
 
-	@OriginalMember(owner = "runetek4.client!um", name = "a", descriptor = "(IZ)V")
+	@OriginalMember(owner = "client!um", name = "a", descriptor = "(IZ)V")
 	private void setPreset(@OriginalArg(0) int arg0) {
 		if (arg0 == 0) {
 			return;
@@ -224,10 +224,10 @@ public final class TextureOpColorGradient extends TextureOp {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!um", name = "a", descriptor = "(ILclient!wa;Z)V")
+	@OriginalMember(owner = "client!um", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
-		if (code != 0) {
+	public void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int op) {
+		if (op != 0) {
 			return;
 		}
 		@Pc(15) int local15 = packet.g1();
@@ -244,7 +244,7 @@ public final class TextureOpColorGradient extends TextureOp {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!um", name = "h", descriptor = "(I)V")
+	@OriginalMember(owner = "client!um", name = "h", descriptor = "(I)V")
 	private void interpolate() {
 		@Pc(16) int local16 = this.samples.length;
 		if (local16 <= 0) {
@@ -302,9 +302,9 @@ public final class TextureOpColorGradient extends TextureOp {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!um", name = "b", descriptor = "(II)[[I")
+	@OriginalMember(owner = "client!um", name = "b", descriptor = "(II)[[I")
 	@Override
-	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
+	public int[][] getColorOutput(@OriginalArg(1) int arg0) {
 		@Pc(11) int[][] local11 = this.colorImageCache.get(arg0);
 		if (this.colorImageCache.invalid) {
 			@Pc(31) int[] local31 = this.getChildMonochromeOutput(0, arg0);

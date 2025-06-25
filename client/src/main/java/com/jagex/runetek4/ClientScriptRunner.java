@@ -1394,7 +1394,7 @@ public final class ClientScriptRunner {
 			if (Camera.cameraModifierEnabled[4] && Camera.cameraAmplitude[4] + 128 > pitch) {
 				pitch = Camera.cameraAmplitude[4] + 128;
 			}
-			Camera.orbitCamera(Camera.cameraX, arg0, SceneGraph.getTileHeight(Player.plane, PlayerList.self.xFine, PlayerList.self.zFine) - 50, 600 - -(pitch * 3), local57, Camera.cameraZ, pitch);
+			Camera.orbitCamera(Camera.cameraX, arg0, SceneGraph.getTileHeight(Player.plane, PlayerList.self.xFine, PlayerList.self.zFine) - 50, 600 + (pitch * 3), local57, Camera.cameraZ, pitch);
 		}
 		local57 = Camera.cameraY;
 		pitch = Camera.renderX;
@@ -1510,7 +1510,7 @@ public final class ClientScriptRunner {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!mj", name = "a", descriptor = "(IILclient!be;IB)V")
+	@OriginalMember(owner = "client!mj", name = "a", descriptor = "(IILclient!be;IB)V")
 	public static void method3047(@OriginalArg(0) int arg0, @OriginalArg(1) int arg1, @OriginalArg(2) Component arg2, @OriginalArg(3) int arg3) {
 		if (GlRenderer.enabled) {
 			GlRaster.setClip(arg0, arg1, arg2.width + arg0, arg2.height + arg1);
@@ -1586,10 +1586,10 @@ public final class ClientScriptRunner {
 		} else {
 			local225 = anInt2428 * 25;
 		}
-		for (@Pc(238) Class3_Sub26 local238 = (Class3_Sub26) WorldMap.mapElements.head(); local238 != null; local238 = (Class3_Sub26) WorldMap.mapElements.next()) {
+		for (@Pc(238) MapFunction local238 = (MapFunction) WorldMap.mapFunctions.head(); local238 != null; local238 = (MapFunction) WorldMap.mapFunctions.next()) {
 			if (local238.id == WorldMap.anInt172) {
-				@Pc(258) int local258 = arg3 + local238.anInt4314 * arg1 / WorldMap.length;
-				@Pc(267) int local267 = arg2 * local238.anInt4307 / WorldMap.width + arg0;
+				@Pc(267) int local267 = arg2 * local238.x / WorldMap.width + arg0;
+				@Pc(258) int local258 = arg3 + local238.z * arg1 / WorldMap.length;
 				if (GlRenderer.enabled) {
 					GlRaster.fillRectAlpha(local267 - 2, local258 - 2, 4, 4, 16776960, local225);
 				} else {
@@ -1599,7 +1599,7 @@ public final class ClientScriptRunner {
 		}
 	}
 
-	@OriginalMember(owner = "runetek4.client!fn", name = "a", descriptor = "(BIIIII)V")
+	@OriginalMember(owner = "client!fn", name = "a", descriptor = "(BIIIII)V")
 	public static void method1624(@OriginalArg(1) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3, @OriginalArg(5) int arg4) {
 		Sprites.scrollbars[0].renderTransparent(arg2, arg3);
 		Sprites.scrollbars[1].renderTransparent(arg2, arg4 + arg3 - 16);
@@ -4953,7 +4953,7 @@ public final class ClientScriptRunner {
 													}
 													if (opcode == 6002) {
 														isp--;
-														Preferences.setAllLevelsVisible(scriptIntValues[isp] == 1);
+														Preferences.setLowmem(scriptIntValues[isp] == 1);
 														LocTypeList.clear();
 														method2742();
 														method2218();

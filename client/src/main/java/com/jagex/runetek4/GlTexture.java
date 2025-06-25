@@ -89,11 +89,11 @@ public final class GlTexture extends SecondaryNode {
 	@OriginalMember(owner = "runetek4.client!uh", name = "a", descriptor = "(Lclient!m;IFLclient!ve;Z)[I")
 	public final int[] method4295(@OriginalArg(0) TextureProvider arg0, @OriginalArg(2) float arg1, @OriginalArg(3) Js5 arg2, @OriginalArg(4) boolean arg3) {
 		if (this.anIntArray481 == null || this.aFloat35 != arg1) {
-			if (!this.aClass88_1.method2729(arg0, arg2)) {
+			if (!this.aClass88_1.isReady(arg0, arg2)) {
 				return null;
 			}
 			@Pc(36) int local36 = arg3 ? 64 : 128;
-			this.anIntArray481 = this.aClass88_1.method2725(local36, this.aBoolean288, local36, (double) arg1, arg2, arg0, true);
+			this.anIntArray481 = this.aClass88_1.getPixels(local36, this.aBoolean288, local36, (double) arg1, arg2, arg0, true);
 			this.aFloat35 = arg1;
 			if (this.aBoolean286) {
 				@Pc(62) int[] local62 = new int[local36];
@@ -177,7 +177,7 @@ public final class GlTexture extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "a", descriptor = "(Lclient!ve;Lclient!m;IZ)Z")
 	public final boolean method4296(@OriginalArg(0) Js5 arg0, @OriginalArg(1) TextureProvider arg1, @OriginalArg(3) boolean arg2) {
-		if (!this.aClass88_1.method2729(arg1, arg0)) {
+		if (!this.aClass88_1.isReady(arg1, arg0)) {
 			return false;
 		}
 		@Pc(22) GL2 gl = GlRenderer.gl;
@@ -256,9 +256,9 @@ public final class GlTexture extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "a", descriptor = "(ZZLclient!m;Lclient!ve;)[I")
 	public final int[] method4297(@OriginalArg(1) boolean arg0, @OriginalArg(2) TextureProvider arg1, @OriginalArg(3) Js5 arg2) {
-		if (this.aClass88_1.method2729(arg1, arg2)) {
+		if (this.aClass88_1.isReady(arg1, arg2)) {
 			@Pc(24) int local24 = arg0 ? 64 : 128;
-			return this.aClass88_1.method2725(local24, this.aBoolean288, local24, 1.0D, arg2, arg1, false);
+			return this.aClass88_1.getPixels(local24, this.aBoolean288, local24, 1.0D, arg2, arg1, false);
 		} else {
 			return null;
 		}
@@ -266,7 +266,7 @@ public final class GlTexture extends SecondaryNode {
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "a", descriptor = "(ILclient!m;Lclient!ve;)Z")
 	public final boolean method4299(@OriginalArg(1) TextureProvider arg0, @OriginalArg(2) Js5 arg1) {
-		return this.aClass88_1.method2729(arg0, arg1);
+		return this.aClass88_1.isReady(arg0, arg1);
 	}
 
 	@OriginalMember(owner = "runetek4.client!uh", name = "a", descriptor = "(IB)V")

@@ -17,108 +17,159 @@ import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
 public class WorldMap {
-    @OriginalMember(owner = "runetek4.client!nc", name = "e", descriptor = "Lclient!na;")
+    @OriginalMember(owner = "client!nc", name = "e", descriptor = "Lclient!na;")
     public static final JString UNDERLAY = JString.parse("underlay");
-    @OriginalMember(owner = "runetek4.client!vj", name = "m", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!vj", name = "m", descriptor = "Lclient!na;")
     public static final JString LABELS = JString.parse("_labels");
-    @OriginalMember(owner = "runetek4.client!ac", name = "m", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!ac", name = "m", descriptor = "Lclient!na;")
     public static final JString OVERLAY = JString.parse("overlay");
+
     @OriginalMember(owner = "client!fm", name = "gb", descriptor = "Lclient!na;")
     public static final JString OVERLAY2 = JString.parse("overlay2");
+
     @OriginalMember(owner = "client!df", name = "c", descriptor = "Lclient!na;")
     public static final JString LOC = JString.parse("loc");
-    @OriginalMember(owner = "runetek4.client!vk", name = "h", descriptor = "I")
+
+    @OriginalMember(owner = "client!vk", name = "h", descriptor = "I")
     public static final int anInt5338 = (int) (Math.random() * 33.0D) - 16;
-    @OriginalMember(owner = "runetek4.client!kd", name = "rb", descriptor = "I")
+
+    @OriginalMember(owner = "client!kd", name = "rb", descriptor = "I")
     public static final int anInt3254 = (int) (Math.random() * 17.0D) - 8;
-    @OriginalMember(owner = "runetek4.client!lf", name = "c", descriptor = "Lclient!ih;")
-    public static final LinkedList mapElements = new LinkedList();
-    @OriginalMember(owner = "runetek4.client!he", name = "db", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!lf", name = "c", descriptor = "Lclient!ih;")
+    public static final LinkedList mapFunctions = new LinkedList();
+
+    @OriginalMember(owner = "client!he", name = "db", descriptor = "Lclient!na;")
     public static final JString aClass100_517 = JString.parse("");
-    @OriginalMember(owner = "runetek4.client!hm", name = "T", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!hm", name = "T", descriptor = "Lclient!na;")
     public static final JString aClass100_538 = JString.parse(" ");
-    @OriginalMember(owner = "runetek4.client!pm", name = "Y", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!pm", name = "Y", descriptor = "Lclient!na;")
     public static final JString aClass100_872 = JString.parse("<br>");
-    @OriginalMember(owner = "runetek4.client!nj", name = "h", descriptor = "Lclient!ih;")
+
+    @OriginalMember(owner = "client!nj", name = "h", descriptor = "Lclient!ih;")
     public static final LinkedList aClass69_97 = new LinkedList();
+
     @OriginalMember(owner = "client!di", name = "q", descriptor = "[Lclient!na;")
     public static final JString[] lines = new JString[5];
+
     @OriginalMember(owner = "client!fi", name = "j", descriptor = "Lclient!qf;")
     public static Sprite aClass3_Sub2_Sub1_2;
+
     @OriginalMember(owner = "client!dc", name = "O", descriptor = "I")
     public static int loadPercentage = 0;
-    @OriginalMember(owner = "runetek4.client!qf", name = "S", descriptor = "I")
+
+    @OriginalMember(owner = "client!qf", name = "S", descriptor = "I")
     public static int anInt1864;
-    @OriginalMember(owner = "runetek4.client!oi", name = "m", descriptor = "I")
+
+    @OriginalMember(owner = "client!oi", name = "m", descriptor = "I")
     public static int length;
+
     @OriginalMember(owner = "client!bn", name = "N", descriptor = "Lclient!be;")
     public static Component component;
+
     @OriginalMember(owner = "client!bc", name = "W", descriptor = "I")
     public static int anInt435;
+
     @OriginalMember(owner = "client!cd", name = "u", descriptor = "I")
     public static int anInt919;
-    @OriginalMember(owner = "runetek4.client!mh", name = "S", descriptor = "I")
+
+    @OriginalMember(owner = "client!mh", name = "S", descriptor = "I")
     public static int originX;
-    @OriginalMember(owner = "runetek4.client!aa", name = "j", descriptor = "I")
+
+    @OriginalMember(owner = "client!aa", name = "j", descriptor = "I")
     public static int originZ;
-    @OriginalMember(owner = "runetek4.client!wa", name = "ub", descriptor = "Lclient!bn;")
+
+    @OriginalMember(owner = "client!wa", name = "ub", descriptor = "Lclient!bn;")
     public static Map currentMap;
+
     @OriginalMember(owner = "client!gj", name = "r", descriptor = "F")
     public static float zoom;
-    @OriginalMember(owner = "runetek4.client!km", name = "uc", descriptor = "F")
+
+    @OriginalMember(owner = "client!km", name = "uc", descriptor = "F")
     public static float targetZoom;
+
     @OriginalMember(owner = "client!dl", name = "e", descriptor = "I")
     public static int width;
-    @OriginalMember(owner = "runetek4.client!lf", name = "b", descriptor = "[I")
+
+    @OriginalMember(owner = "client!lf", name = "b", descriptor = "[I")
     public static int[] overlayColors;
-    @OriginalMember(owner = "runetek4.client!wb", name = "l", descriptor = "Lclient!fd;")
+
+    @OriginalMember(owner = "client!wb", name = "l", descriptor = "Lclient!fd;")
     public static WorldMapFont font26;
-    @OriginalMember(owner = "runetek4.client!mj", name = "n", descriptor = "Lclient!fd;")
+
+    @OriginalMember(owner = "client!mj", name = "n", descriptor = "Lclient!fd;")
     public static WorldMapFont font30;
-    @OriginalMember(owner = "runetek4.client!kc", name = "C", descriptor = "Lclient!fd;")
+
+    @OriginalMember(owner = "client!kc", name = "C", descriptor = "Lclient!fd;")
     public static WorldMapFont font22;
-    @OriginalMember(owner = "runetek4.client!qh", name = "d", descriptor = "Lclient!fd;")
+
+    @OriginalMember(owner = "client!qh", name = "d", descriptor = "Lclient!fd;")
     public static WorldMapFont font19;
-    @OriginalMember(owner = "runetek4.client!kc", name = "n", descriptor = "Lclient!fd;")
+
+    @OriginalMember(owner = "client!kc", name = "n", descriptor = "Lclient!fd;")
     public static WorldMapFont font17;
-    @OriginalMember(owner = "runetek4.client!nf", name = "d", descriptor = "Lclient!fd;")
+
+    @OriginalMember(owner = "client!nf", name = "d", descriptor = "Lclient!fd;")
     public static WorldMapFont font14;
-    @OriginalMember(owner = "runetek4.client!ma", name = "q", descriptor = "Lclient!fd;")
+
+    @OriginalMember(owner = "client!ma", name = "q", descriptor = "Lclient!fd;")
     public static WorldMapFont font12;
-    @OriginalMember(owner = "runetek4.client!we", name = "v", descriptor = "Lclient!fd;")
+
+    @OriginalMember(owner = "client!we", name = "v", descriptor = "Lclient!fd;")
     public static WorldMapFont font11;
-    @OriginalMember(owner = "runetek4.client!rj", name = "P", descriptor = "I")
+
+    @OriginalMember(owner = "client!rj", name = "P", descriptor = "I")
     public static int anInt4901 = -1;
-    @OriginalMember(owner = "runetek4.client!lc", name = "l", descriptor = "I")
+
+    @OriginalMember(owner = "client!lc", name = "l", descriptor = "I")
     public static int anInt3482 = -1;
-    @OriginalMember(owner = "runetek4.client!qh", name = "a", descriptor = "Lclient!se;")
+
+    @OriginalMember(owner = "client!qh", name = "a", descriptor = "Lclient!se;")
     public static MapElementList labels;
-    @OriginalMember(owner = "runetek4.client!ck", name = "J", descriptor = "[[[B")
+
+    @OriginalMember(owner = "client!ck", name = "J", descriptor = "[[[B")
     public static byte[][][] aByteArrayArrayArray3;
+
     @OriginalMember(owner = "client!fi", name = "m", descriptor = "[[[B")
     public static byte[][][] aByteArrayArrayArray7;
-    @OriginalMember(owner = "runetek4.client!hb", name = "v", descriptor = "[[[B")
+
+    @OriginalMember(owner = "client!hb", name = "v", descriptor = "[[[B")
     public static byte[][][] aByteArrayArrayArray8;
-    @OriginalMember(owner = "runetek4.client!si", name = "R", descriptor = "[[[B")
+
+    @OriginalMember(owner = "client!si", name = "R", descriptor = "[[[B")
     public static byte[][][] aByteArrayArrayArray12;
-    @OriginalMember(owner = "runetek4.client!jl", name = "I", descriptor = "[[[B")
+
+    @OriginalMember(owner = "client!jl", name = "I", descriptor = "[[[B")
     public static byte[][][] aByteArrayArrayArray10;
+
     @OriginalMember(owner = "client!gj", name = "i", descriptor = "[[[I")
     public static int[][][] underlayColors;
-    @OriginalMember(owner = "runetek4.client!uc", name = "d", descriptor = "[[[I")
+
+    @OriginalMember(owner = "client!uc", name = "d", descriptor = "[[[I")
     public static int[][][] anIntArrayArrayArray17;
-    @OriginalMember(owner = "runetek4.client!mc", name = "Q", descriptor = "Lclient!na;")
+
+    @OriginalMember(owner = "client!mc", name = "Q", descriptor = "Lclient!na;")
     public static JString aClass100_724;
-    @OriginalMember(owner = "runetek4.client!mc", name = "S", descriptor = "Lclient!mm;")
+
+    @OriginalMember(owner = "client!mc", name = "S", descriptor = "Lclient!mm;")
     public static SoftwareSprite aClass3_Sub2_Sub1_Sub1_2;
-    @OriginalMember(owner = "runetek4.client!ha", name = "o", descriptor = "I")
+
+    @OriginalMember(owner = "client!ha", name = "o", descriptor = "I")
     public static int anInt2387;
+
     @OriginalMember(owner = "client!cm", name = "c", descriptor = "I")
     public static int anInt1176;
-    @OriginalMember(owner = "runetek4.client!sm", name = "m", descriptor = "I")
+
+    @OriginalMember(owner = "client!sm", name = "m", descriptor = "I")
     public static int anInt5212;
+
     @OriginalMember(owner = "client!al", name = "e", descriptor = "I")
     public static int anInt172;
+
     @OriginalMember(owner = "client!eh", name = "g", descriptor = "[[[I")
     public static int[][][] scenery;
 
@@ -141,7 +192,7 @@ public class WorldMap {
         anIntArrayArrayArray17 = null;
         loadPercentage = 0;
         currentMap = null;
-        mapElements.clear();
+        mapFunctions.clear();
         labels = null;
         anInt4901 = -1;
         font22 = null;
@@ -157,7 +208,7 @@ public class WorldMap {
         aClass3_Sub2_Sub1_Sub1_2 = null;
     }
 
-    @OriginalMember(owner = "runetek4.client!wa", name = "a", descriptor = "(IIIII)V")
+    @OriginalMember(owner = "client!wa", name = "a", descriptor = "(IIIII)V")
     public static void method2225(@OriginalArg(0) int arg0, @OriginalArg(2) int arg1, @OriginalArg(3) int arg2, @OriginalArg(4) int arg3) {
         if (loadPercentage < 100) {
             load();
@@ -297,7 +348,7 @@ public class WorldMap {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!hj", name = "a", descriptor = "(II)V")
+    @OriginalMember(owner = "client!hj", name = "a", descriptor = "(II)V")
     public static void method1964(@OriginalArg(0) int arg0) {
         anInt4901 = -1;
         anInt3482 = -1;
@@ -305,7 +356,7 @@ public class WorldMap {
         method965();
     }
 
-    @OriginalMember(owner = "runetek4.client!wi", name = "d", descriptor = "(II)V")
+    @OriginalMember(owner = "client!wi", name = "d", descriptor = "(II)V")
     public static void method4641(@OriginalArg(1) int arg0) {
         anInt4901 = -1;
         anInt4901 = -1;
@@ -322,7 +373,7 @@ public class WorldMap {
         method965();
     }
 
-    @OriginalMember(owner = "runetek4.client!lb", name = "d", descriptor = "(B)V")
+    @OriginalMember(owner = "client!lb", name = "d", descriptor = "(B)V")
     public static void method2720() {
         if (aClass100_724 != null) {
             method1853(aClass100_724);
@@ -330,7 +381,7 @@ public class WorldMap {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!pa", name = "d", descriptor = "(I)V")
+    @OriginalMember(owner = "client!pa", name = "d", descriptor = "(I)V")
     public static void load() {
         if (currentMap == null) {
             return;
@@ -588,27 +639,27 @@ public class WorldMap {
         }
     }
 
-    @OriginalMember(owner = "runetek4.client!nc", name = "a", descriptor = "(BLclient!wa;)V")
-    public static void readLocs(@OriginalArg(1) Packet arg0) {
+    @OriginalMember(owner = "client!nc", name = "a", descriptor = "(BLclient!wa;)V")
+    public static void readLocs(@OriginalArg(1) Packet packet) {
         label123: while (true) {
-            if (arg0.data.length > arg0.offset) {
+            if (packet.data.length > packet.offset) {
                 @Pc(17) boolean local17 = false;
                 @Pc(19) int local19 = 0;
                 @Pc(21) int local21 = 0;
-                if (arg0.g1() == 1) {
-                    local19 = arg0.g1();
+                if (packet.g1() == 1) {
+                    local19 = packet.g1();
                     local17 = true;
-                    local21 = arg0.g1();
+                    local21 = packet.g1();
                 }
-                @Pc(42) int local42 = arg0.g1();
-                @Pc(46) int local46 = arg0.g1();
-                @Pc(53) int local53 = local42 * 64 - originX;
-                @Pc(65) int local65 = originZ + length - local46 * 64 - 1;
-                @Pc(84) int local84;
-                @Pc(95) int local95;
-                if (local53 >= 0 && local65 - 63 >= 0 && width > local53 + 63 && local65 < length) {
-                    local84 = local53 >> 6;
-                    local95 = local65 >> 6;
+                @Pc(42) int local42 = packet.g1();
+                @Pc(46) int local46 = packet.g1();
+                @Pc(53) int mapx = local42 * 64 - originX;
+                @Pc(65) int mapz = originZ + length - local46 * 64 - 1;
+                @Pc(84) int x;
+                @Pc(95) int z;
+                if (mapx >= 0 && mapz - 63 >= 0 && width > mapx + 63 && mapz < length) {
+                    x = mapx >> 6;
+                    z = mapz >> 6;
                     @Pc(150) int local150 = 0;
                     while (true) {
                         if (local150 >= 64) {
@@ -616,42 +667,43 @@ public class WorldMap {
                         }
                         for (@Pc(155) int local155 = 0; local155 < 64; local155++) {
                             if (!local17 || local19 * 8 <= local150 && local150 < local19 * 8 + 8 && local155 >= local21 * 8 && local155 < local21 * 8 + 8) {
-                                @Pc(202) int local202 = arg0.g1();
-                                if (local202 != 0) {
+
+                                @Pc(202) int flags = packet.g1();
+                                if (flags != 0) {
                                     @Pc(214) int local214;
-                                    if ((local202 & 0x1) == 1) {
-                                        local214 = arg0.g1();
-                                        if (aByteArrayArrayArray7[local84][local95] == null) {
-                                            aByteArrayArrayArray7[local84][local95] = new byte[4096];
+                                    if ((flags & 0x1) == 1) {
+                                        local214 = packet.g1();
+                                        if (aByteArrayArrayArray7[x][z] == null) {
+                                            aByteArrayArrayArray7[x][z] = new byte[4096];
                                         }
-                                        aByteArrayArrayArray7[local84][local95][local150 + (63 - local155 << 6)] = (byte) local214;
+                                        aByteArrayArrayArray7[x][z][local150 + (63 - local155 << 6)] = (byte) local214;
                                     }
-                                    if ((local202 & 0x2) == 2) {
-                                        local214 = arg0.g3();
-                                        if (scenery[local84][local95] == null) {
-                                            scenery[local84][local95] = new int[4096];
+                                    if ((flags & 0x2) == 2) {
+                                        local214 = packet.g3();
+                                        if (scenery[x][z] == null) {
+                                            scenery[x][z] = new int[4096];
                                         }
-                                        scenery[local84][local95][(63 - local155 << 6) + local150] = local214;
+                                        scenery[x][z][(63 - local155 << 6) + local150] = local214;
                                     }
-                                    if ((local202 & 0x4) == 4) {
-                                        local214 = arg0.g3();
-                                        if (underlayColors[local84][local95] == null) {
-                                            underlayColors[local84][local95] = new int[4096];
+                                    if ((flags & 0x4) == 4) {
+                                        int locId = packet.g3();
+                                        if (underlayColors[x][z] == null) {
+                                            underlayColors[x][z] = new int[4096];
                                         }
-                                        local214--;
-                                        @Pc(312) LocType local312 = LocTypeList.get(local214);
-                                        if (local312.multiloc != null) {
-                                            local312 = local312.getMultiLoc();
-                                            if (local312 == null || local312.mapfunction == -1) {
+                                        locId--;
+                                        @Pc(312) LocType type = LocTypeList.get(locId);
+                                        if (type.multiloc != null) {
+                                            type = type.getMultiLoc();
+                                            if (type == null || type.mapfunction == -1) {
                                                 continue;
                                             }
                                         }
-                                        underlayColors[local84][local95][(63 - local155 << 6) + local150] = local312.id + 1;
-                                        @Pc(353) Class3_Sub26 local353 = new Class3_Sub26();
-                                        local353.id = local312.mapfunction;
-                                        local353.anInt4307 = local53;
-                                        local353.anInt4314 = local65;
-                                        mapElements.addTail(local353);
+                                        underlayColors[x][z][(63 - local155 << 6) + local150] = type.id + 1;
+                                        @Pc(353) MapFunction mapFunction = new MapFunction();
+                                        mapFunction.id = type.mapfunction;
+                                        mapFunction.x = mapx;
+                                        mapFunction.z = mapz;
+                                        mapFunctions.addTail(mapFunction);
                                     }
                                 }
                             }
@@ -659,24 +711,24 @@ public class WorldMap {
                         local150++;
                     }
                 }
-                local84 = 0;
+                x = 0;
                 while (true) {
-                    if (local84 >= (local17 ? 64 : 4096)) {
+                    if (x >= (local17 ? 64 : 4096)) {
                         continue label123;
                     }
-                    local95 = arg0.g1();
-                    if (local95 != 0) {
-                        if ((local95 & 0x1) == 1) {
-                            arg0.offset++;
+                    z = packet.g1();
+                    if (z != 0) {
+                        if ((z & 0x1) == 1) {
+                            packet.offset++;
                         }
-                        if ((local95 & 0x2) == 2) {
-                            arg0.offset += 2;
+                        if ((z & 0x2) == 2) {
+                            packet.offset += 2;
                         }
-                        if ((local95 & 0x4) == 4) {
-                            arg0.offset += 3;
+                        if ((z & 0x4) == 4) {
+                            packet.offset += 3;
                         }
                     }
-                    local84++;
+                    x++;
                 }
             }
             return;
@@ -1311,9 +1363,9 @@ public class WorldMap {
                                     @Pc(222) LocType local222 = LocTypeList.get(local209 - 1);
                                     if (!MapList.aBooleanArray130[local222.mapfunction]) {
                                         if (local11 != -1 && local222.mapfunction == anInt172) {
-                                            @Pc(243) Class3_Sub26 local243 = new Class3_Sub26();
-                                            local243.anInt4307 = local65;
-                                            local243.anInt4314 = local144;
+                                            @Pc(243) MapFunction local243 = new MapFunction();
+                                            local243.x = local65;
+                                            local243.z = local144;
                                             local243.id = local222.mapfunction;
                                             aClass69_97.addTail(local243);
                                         } else {
@@ -1327,12 +1379,12 @@ public class WorldMap {
                 }
             }
         }
-        for (@Pc(285) Class3_Sub26 local285 = (Class3_Sub26) aClass69_97.head(); local285 != null; local285 = (Class3_Sub26) aClass69_97.next()) {
-            SoftwareRaster.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 15, local11);
-            SoftwareRaster.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 13, local11);
-            SoftwareRaster.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 11, local11);
-            SoftwareRaster.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 9, local11);
-            MapList.sprites[local285.id].render(local285.anInt4307 - 7, local285.anInt4314 + -7);
+        for (@Pc(285) MapFunction local285 = (MapFunction) aClass69_97.head(); local285 != null; local285 = (MapFunction) aClass69_97.next()) {
+            SoftwareRaster.drawCircleAlpha(local285.x, local285.z, 15, local11);
+            SoftwareRaster.drawCircleAlpha(local285.x, local285.z, 13, local11);
+            SoftwareRaster.drawCircleAlpha(local285.x, local285.z, 11, local11);
+            SoftwareRaster.drawCircleAlpha(local285.x, local285.z, 9, local11);
+            MapList.sprites[local285.id].render(local285.x - 7, local285.z + -7);
         }
         aClass69_97.clear();
     }

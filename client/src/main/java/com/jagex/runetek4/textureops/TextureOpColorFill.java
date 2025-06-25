@@ -7,39 +7,39 @@ import org.openrs2.deob.annotation.OriginalClass;
 import org.openrs2.deob.annotation.OriginalMember;
 import org.openrs2.deob.annotation.Pc;
 
-@OriginalClass("runetek4.client!fm")
+@OriginalClass("client!fm")
 public final class TextureOpColorFill extends TextureOp {
 
-	@OriginalMember(owner = "runetek4.client!fm", name = "P", descriptor = "I")
+	@OriginalMember(owner = "client!fm", name = "P", descriptor = "I")
 	private int red;
 
-	@OriginalMember(owner = "runetek4.client!fm", name = "X", descriptor = "I")
+	@OriginalMember(owner = "client!fm", name = "X", descriptor = "I")
 	private int green;
 
-	@OriginalMember(owner = "runetek4.client!fm", name = "Z", descriptor = "I")
+	@OriginalMember(owner = "client!fm", name = "Z", descriptor = "I")
 	private int blue;
 
-	@OriginalMember(owner = "runetek4.client!fm", name = "<init>", descriptor = "(I)V")
+	@OriginalMember(owner = "client!fm", name = "<init>", descriptor = "(I)V")
 	private TextureOpColorFill(@OriginalArg(0) int arg0) {
 		super(0, false);
 		this.setColor(arg0);
 	}
 
-	@OriginalMember(owner = "runetek4.client!fm", name = "<init>", descriptor = "()V")
+	@OriginalMember(owner = "client!fm", name = "<init>", descriptor = "()V")
 	public TextureOpColorFill() {
 		this(0);
 	}
 
-	@OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(BI)V")
+	@OriginalMember(owner = "client!fm", name = "a", descriptor = "(BI)V")
 	private void setColor(@OriginalArg(1) int arg0) {
 		this.green = arg0 >> 4 & 0xFF0;
 		this.blue = (arg0 & 0xFF) << 4;
 		this.red = arg0 >> 12 & 0xFF0;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fm", name = "b", descriptor = "(II)[[I")
+	@OriginalMember(owner = "client!fm", name = "b", descriptor = "(II)[[I")
 	@Override
-	public final int[][] getColorOutput(@OriginalArg(1) int arg0) {
+	public int[][] getColorOutput(@OriginalArg(1) int arg0) {
 		@Pc(22) int[][] local22 = this.colorImageCache.get(arg0);
 		if (this.colorImageCache.invalid) {
 			@Pc(31) int[] local31 = local22[0];
@@ -54,10 +54,10 @@ public final class TextureOpColorFill extends TextureOp {
 		return local22;
 	}
 
-	@OriginalMember(owner = "runetek4.client!fm", name = "a", descriptor = "(ILclient!wa;Z)V")
+	@OriginalMember(owner = "client!fm", name = "a", descriptor = "(ILclient!wa;Z)V")
 	@Override
-	public final void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int code) {
-		if (code == 0) {
+	public void decode(@OriginalArg(1) Packet packet, @OriginalArg(0) int opcode) {
+		if (opcode == 0) {
 			this.setColor(packet.g3());
 		}
 	}
