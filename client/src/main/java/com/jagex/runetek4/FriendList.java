@@ -38,13 +38,16 @@ public class FriendList {
         if (username == null) {
             return false;
         }
-
         for (@Pc(12) int i = 0; i < friendCount; i++) {
             if (username.equalsIgnoreCase(friendUsernames[i])) {
                 return true;
             }
         }
-        return username.equalsIgnoreCase(PlayerList.self.username);
+        if (username.equalsIgnoreCase(PlayerList.self.username)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @OriginalMember(owner = "client!fb", name = "a", descriptor = "(JB)V")
@@ -52,21 +55,19 @@ public class FriendList {
         if (username == 0L) {
             return;
         }
-
         if (friendCount >= 100 && !LoginManager.playerMember || friendCount >= 200) {
             Chat.addMessage(JString.EMPTY, 0, LocalizedText.FRIENDLISTFULL);
             return;
         }
-
         @Pc(35) JString displayName = Base37.decode37(username).toTitleCase();
-
-        for (int i = 0; i < friendCount; i++) {
+        @Pc(42) int i;
+        for (i = 0; i < friendCount; i++) {
             if (encodedUsernames[i] == username) {
                 Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { displayName, LocalizedText.FRIENDLISTDUPE}));
                 return;
             }
         }
-        for (int i = 0; i < IgnoreList.ignoreCount; i++) {
+        for (i = 0; i < IgnoreList.ignoreCount; i++) {
             if (username == IgnoreList.encodedIgnores[i]) {
                 Chat.addMessage(JString.EMPTY, 0, JString.concatenate(new JString[] { LocalizedText.REMOVESOCIAL1, displayName, LocalizedText.REMOVEIGNORE}));
                 return;

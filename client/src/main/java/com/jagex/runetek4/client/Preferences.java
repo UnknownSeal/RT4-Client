@@ -96,7 +96,7 @@ public class Preferences {
     public static int lastWorldId = 0;
 
     @OriginalMember(owner = "runetek4.client!ml", name = "ab", descriptor = "Z")
-    public static boolean lowmem = true;
+    public static boolean allLevelsVisible = true;
 
     @OriginalMember(owner = "runetek4.client!k", name = "c", descriptor = "Z")
     public static boolean hdr = false;
@@ -140,7 +140,7 @@ public class Preferences {
     @OriginalMember(owner = "runetek4.client!gf", name = "a", descriptor = "(Lsignlink!ll;I)V")
     public static void read(@OriginalArg(0) SignLink arg0) {
         brightness = 3;
-        setLowmem(true);
+        setAllLevelsVisible(true);
         roofsVisible = true;
         stereo = true;
         highWaterDetail = true;
@@ -201,8 +201,8 @@ public class Preferences {
     }
 
     @OriginalMember(owner = "runetek4.client!ec", name = "a", descriptor = "(IZ)V")
-    public static void setLowmem(@OriginalArg(1) boolean arg0) {
-        lowmem = arg0;
+    public static void setAllLevelsVisible(@OriginalArg(1) boolean arg0) {
+        allLevelsVisible = arg0;
         SceneGraph.aBoolean130 = !SceneGraph.allLevelsAreVisible();
     }
 
@@ -211,7 +211,7 @@ public class Preferences {
         @Pc(4) Packet local4 = new Packet(34);
         local4.p1(11);
         local4.p1(brightness);
-        local4.p1(lowmem ? 1 : 0);
+        local4.p1(allLevelsVisible ? 1 : 0);
         local4.p1(roofsVisible ? 1 : 0);
         local4.p1(showGroundDecorations ? 1 : 0);
         local4.p1(highDetailTextures ? 1 : 0);
@@ -285,7 +285,7 @@ public class Preferences {
         } else if (brightness > 4) {
             brightness = 4;
         }
-        setLowmem(packet.g1() == 1);
+        setAllLevelsVisible(packet.g1() == 1);
         roofsVisible = packet.g1() == 1;
         showGroundDecorations = packet.g1() == 1;
         highDetailTextures = packet.g1() == 1;
@@ -359,6 +359,6 @@ public class Preferences {
 
     @OriginalMember(owner = "runetek4.client!lf", name = "c", descriptor = "(I)I")
     public static int toInt() {
-        return ((stereo ? 1 : 0) << 19) + (((fogEnabled ? 1 : 0) << 16) + ((highWaterDetail ? 1 : 0) << 15) + ((highDetailLighting ? 1 : 0) << 13) + ((characterShadowsOn ? 1 : 0) << 10) + ((manyGroundTextures ? 1 : 0) << 9) + ((manyIdleAnimations ? 1 : 0) << 7) + ((highDetailTextures ? 1 : 0) << 6) + ((showGroundDecorations ? 1 : 0) << 5) + (((lowmem ? 1 : 0) << 3) + (brightness & 0x7) - (-((roofsVisible ? 1 : 0) << 4) + -((flickeringEffectsOn ? 1 : 0) << 8)) - (-((sceneryShadowsType & 0x3) << 11) + -((soundEffectVolume == 0 ? 0 : 1) << 20) - (((musicVolume == 0 ? 0 : 1) << 21) + ((ambientSoundsVolume == 0 ? 0 : 1) << 22)))) + (getParticleSetting() << 23));
+        return ((stereo ? 1 : 0) << 19) + (((fogEnabled ? 1 : 0) << 16) + ((highWaterDetail ? 1 : 0) << 15) + ((highDetailLighting ? 1 : 0) << 13) + ((characterShadowsOn ? 1 : 0) << 10) + ((manyGroundTextures ? 1 : 0) << 9) + ((manyIdleAnimations ? 1 : 0) << 7) + ((highDetailTextures ? 1 : 0) << 6) + ((showGroundDecorations ? 1 : 0) << 5) + (((allLevelsVisible ? 1 : 0) << 3) + (brightness & 0x7) - (-((roofsVisible ? 1 : 0) << 4) + -((flickeringEffectsOn ? 1 : 0) << 8)) - (-((sceneryShadowsType & 0x3) << 11) + -((soundEffectVolume == 0 ? 0 : 1) << 20) - (((musicVolume == 0 ? 0 : 1) << 21) + ((ambientSoundsVolume == 0 ? 0 : 1) << 22)))) + (getParticleSetting() << 23));
     }
 }

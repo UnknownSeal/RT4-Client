@@ -19,47 +19,43 @@ public final class GlAlphaSprite extends GlSprite {
 	}
 
 	@OriginalMember(owner = "client!el", name = "<init>", descriptor = "(Lclient!mm;)V")
-	public GlAlphaSprite(@OriginalArg(0) SoftwareSprite sprite) {
-		super(sprite);
+	public GlAlphaSprite(@OriginalArg(0) SoftwareSprite arg0) {
+		super(arg0);
 	}
 
 	@OriginalMember(owner = "client!el", name = "a", descriptor = "([I)V")
 	@Override
-	protected void setPixels(@OriginalArg(0) int[] source) {
+	protected final void method1430(@OriginalArg(0) int[] arg0) {
 		this.powerOfTwoWidth = IntUtils.bitceil(this.width);
 		this.powerOfTwoHeight = IntUtils.bitceil(this.height);
-
-		@Pc(20) byte[] destination = new byte[this.powerOfTwoWidth * this.powerOfTwoHeight * 4];
-		@Pc(22) int destinationOffset = 0;
-		@Pc(24) int sourceOffset = 0;
-		@Pc(32) int destinationStride = (this.powerOfTwoWidth - this.width) * 4;
-
-		for (@Pc(34) int y = 0; y < this.height; y++) {
-			for (@Pc(40) int x = 0; x < this.width; x++) {
-				@Pc(49) int colour = source[sourceOffset++];
-				if (colour == 0) {
-					destinationOffset += 4;
+		@Pc(20) byte[] local20 = new byte[this.powerOfTwoWidth * this.powerOfTwoHeight * 4];
+		@Pc(22) int local22 = 0;
+		@Pc(24) int local24 = 0;
+		@Pc(32) int local32 = (this.powerOfTwoWidth - this.width) * 4;
+		for (@Pc(34) int local34 = 0; local34 < this.height; local34++) {
+			for (@Pc(40) int local40 = 0; local40 < this.width; local40++) {
+				@Pc(49) int local49 = arg0[local24++];
+				if (local49 == 0) {
+					local22 += 4;
 				} else {
-					destination[destinationOffset++] = (byte) (colour >> 16);
-					destination[destinationOffset++] = (byte) (colour >> 8);
-					destination[destinationOffset++] = (byte) colour;
-					destination[destinationOffset++] = (byte) (colour >> 24);
+					local20[local22++] = (byte) (local49 >> 16);
+					local20[local22++] = (byte) (local49 >> 8);
+					local20[local22++] = (byte) local49;
+					local20[local22++] = (byte) (local49 >> 24);
 				}
 			}
-			destinationOffset += destinationStride;
+			local22 += local32;
 		}
-
-		@Pc(94) ByteBuffer buffer = ByteBuffer.wrap(destination);
-		@Pc(96) GL2 gl2 = GlRenderer.gl;
+		@Pc(94) ByteBuffer local94 = ByteBuffer.wrap(local20);
+		@Pc(96) GL2 local96 = GlRenderer.gl;
 		if (this.textureId == -1) {
-			@Pc(103) int[] temporary = new int[1];
-			gl2.glGenTextures(1, temporary, 0);
-			this.textureId = temporary[0];
+			@Pc(103) int[] local103 = new int[1];
+			local96.glGenTextures(1, local103, 0);
+			this.textureId = local103[0];
 		}
-
 		GlRenderer.setTextureId(this.textureId);
-		gl2.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, this.powerOfTwoWidth, this.powerOfTwoHeight, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, buffer);
-		GlCleaner.oncard_2d += buffer.limit() - this.size;
-		this.size = buffer.limit();
+		local96.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, this.powerOfTwoWidth, this.powerOfTwoHeight, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, local94);
+		GlCleaner.oncard_2d += local94.limit() - this.anInt1869;
+		this.anInt1869 = local94.limit();
 	}
 }

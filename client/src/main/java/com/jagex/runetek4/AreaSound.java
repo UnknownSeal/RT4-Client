@@ -18,7 +18,7 @@ public final class AreaSound extends Node {
 	public int minZFine;
 
 	@OriginalMember(owner = "client!fl", name = "t", descriptor = "I")
-	public int mindelay;
+	public int minInterval;
 
 	@OriginalMember(owner = "client!fl", name = "v", descriptor = "Lclient!b;")
 	public SoundPcmStream primaryStream;
@@ -42,7 +42,7 @@ public final class AreaSound extends Node {
 	public Npc npc;
 
 	@OriginalMember(owner = "client!fl", name = "K", descriptor = "I")
-	public int maxdelay;
+	public int maxInterval;
 
 	@OriginalMember(owner = "client!fl", name = "L", descriptor = "I")
 	public int minXFine;
@@ -51,7 +51,7 @@ public final class AreaSound extends Node {
 	public Player player;
 
 	@OriginalMember(owner = "client!fl", name = "N", descriptor = "I")
-	public int range;
+	public int radius;
 
 	@OriginalMember(owner = "client!fl", name = "O", descriptor = "Z")
 	public boolean multiLocOrNpc;
@@ -60,7 +60,7 @@ public final class AreaSound extends Node {
 	public int sound;
 
 	@OriginalMember(owner = "client!fl", name = "T", descriptor = "[I")
-	public int[] sound_random;
+	public int[] sounds;
 
 	@OriginalMember(owner = "client!fl", name = "G", descriptor = "I")
 	public int movementSpeed = 0;
@@ -72,16 +72,16 @@ public final class AreaSound extends Node {
 			@Pc(17) LocType locType = this.locType.getMultiLoc();
 			if (locType == null) {
 				this.sound = -1;
-				this.sound_random = null;
-				this.maxdelay = 0;
-				this.range = 0;
-				this.mindelay = 0;
+				this.sounds = null;
+				this.maxInterval = 0;
+				this.radius = 0;
+				this.minInterval = 0;
 			} else {
-				this.maxdelay = locType.bgsound_maxdelay;
+				this.maxInterval = locType.bgsound_maxdelay;
 				this.sound = locType.bgsound_sound;
-				this.mindelay = locType.bgsound_mindelay;
-				this.range = locType.bgsound_range * 128;
-				this.sound_random = locType.bgsound_random;
+				this.minInterval = locType.bgsound_mindelay;
+				this.radius = locType.bgsound_range * 128;
+				this.sounds = locType.bgsound_random;
 			}
 		} else if (this.npc != null) {
 			@Pc(92) int sound = Npc.getSound(this.npc);
@@ -92,14 +92,14 @@ public final class AreaSound extends Node {
 					npcType = npcType.getMultiNPC();
 				}
 				if (npcType == null) {
-					this.range = 0;
+					this.radius = 0;
 				} else {
-					this.range = npcType.bgsound_range * 128;
+					this.radius = npcType.bgsound_range * 128;
 				}
 			}
 		} else if (this.player != null) {
 			this.sound = Player.getSound(this.player);
-			this.range = this.player.soundRadius * 128;
+			this.radius = this.player.soundRadius * 128;
 		}
 		if (this.sound != prevSound && this.primaryStream != null) {
 			client.soundStream.removeSubStream(this.primaryStream);

@@ -32,7 +32,7 @@ public class WorldMap {
     @OriginalMember(owner = "runetek4.client!kd", name = "rb", descriptor = "I")
     public static final int anInt3254 = (int) (Math.random() * 17.0D) - 8;
     @OriginalMember(owner = "runetek4.client!lf", name = "c", descriptor = "Lclient!ih;")
-    public static final LinkedList mapFunctions = new LinkedList();
+    public static final LinkedList mapElements = new LinkedList();
     @OriginalMember(owner = "runetek4.client!he", name = "db", descriptor = "Lclient!na;")
     public static final JString aClass100_517 = JString.parse("");
     @OriginalMember(owner = "runetek4.client!hm", name = "T", descriptor = "Lclient!na;")
@@ -141,7 +141,7 @@ public class WorldMap {
         anIntArrayArrayArray17 = null;
         loadPercentage = 0;
         currentMap = null;
-        mapFunctions.clear();
+        mapElements.clear();
         labels = null;
         anInt4901 = -1;
         font22 = null;
@@ -589,26 +589,26 @@ public class WorldMap {
     }
 
     @OriginalMember(owner = "runetek4.client!nc", name = "a", descriptor = "(BLclient!wa;)V")
-    public static void readLocs(@OriginalArg(1) Packet packet) {
+    public static void readLocs(@OriginalArg(1) Packet arg0) {
         label123: while (true) {
-            if (packet.data.length > packet.offset) {
+            if (arg0.data.length > arg0.offset) {
                 @Pc(17) boolean local17 = false;
                 @Pc(19) int local19 = 0;
                 @Pc(21) int local21 = 0;
-                if (packet.g1() == 1) {
-                    local19 = packet.g1();
+                if (arg0.g1() == 1) {
+                    local19 = arg0.g1();
                     local17 = true;
-                    local21 = packet.g1();
+                    local21 = arg0.g1();
                 }
-                @Pc(42) int local42 = packet.g1();
-                @Pc(46) int local46 = packet.g1();
-                @Pc(53) int mapx = local42 * 64 - originX;
-                @Pc(65) int mapz = originZ + length - local46 * 64 - 1;
-                @Pc(84) int x;
-                @Pc(95) int z;
-                if (mapx >= 0 && mapz - 63 >= 0 && width > mapx + 63 && mapz < length) {
-                    x = mapx >> 6;
-                    z = mapz >> 6;
+                @Pc(42) int local42 = arg0.g1();
+                @Pc(46) int local46 = arg0.g1();
+                @Pc(53) int local53 = local42 * 64 - originX;
+                @Pc(65) int local65 = originZ + length - local46 * 64 - 1;
+                @Pc(84) int local84;
+                @Pc(95) int local95;
+                if (local53 >= 0 && local65 - 63 >= 0 && width > local53 + 63 && local65 < length) {
+                    local84 = local53 >> 6;
+                    local95 = local65 >> 6;
                     @Pc(150) int local150 = 0;
                     while (true) {
                         if (local150 >= 64) {
@@ -616,42 +616,42 @@ public class WorldMap {
                         }
                         for (@Pc(155) int local155 = 0; local155 < 64; local155++) {
                             if (!local17 || local19 * 8 <= local150 && local150 < local19 * 8 + 8 && local155 >= local21 * 8 && local155 < local21 * 8 + 8) {
-                                @Pc(202) int flags = packet.g1();
-                                if (flags != 0) {
-                                    @Pc(214) int id;
-                                    if ((flags & 0x1) == 1) {
-                                        id = packet.g1();
-                                        if (aByteArrayArrayArray7[x][z] == null) {
-                                            aByteArrayArrayArray7[x][z] = new byte[4096];
+                                @Pc(202) int local202 = arg0.g1();
+                                if (local202 != 0) {
+                                    @Pc(214) int local214;
+                                    if ((local202 & 0x1) == 1) {
+                                        local214 = arg0.g1();
+                                        if (aByteArrayArrayArray7[local84][local95] == null) {
+                                            aByteArrayArrayArray7[local84][local95] = new byte[4096];
                                         }
-                                        aByteArrayArrayArray7[x][z][local150 + (63 - local155 << 6)] = (byte) id;
+                                        aByteArrayArrayArray7[local84][local95][local150 + (63 - local155 << 6)] = (byte) local214;
                                     }
-                                    if ((flags & 0x2) == 2) {
-                                        id = packet.g3();
-                                        if (scenery[x][z] == null) {
-                                            scenery[x][z] = new int[4096];
+                                    if ((local202 & 0x2) == 2) {
+                                        local214 = arg0.g3();
+                                        if (scenery[local84][local95] == null) {
+                                            scenery[local84][local95] = new int[4096];
                                         }
-                                        scenery[x][z][(63 - local155 << 6) + local150] = id;
+                                        scenery[local84][local95][(63 - local155 << 6) + local150] = local214;
                                     }
-                                    if ((flags & 0x4) == 4) {
-                                        id = packet.g3();
-                                        if (underlayColors[x][z] == null) {
-                                            underlayColors[x][z] = new int[4096];
+                                    if ((local202 & 0x4) == 4) {
+                                        local214 = arg0.g3();
+                                        if (underlayColors[local84][local95] == null) {
+                                            underlayColors[local84][local95] = new int[4096];
                                         }
-                                        id--;
-                                        @Pc(312) LocType type = LocTypeList.get(id);
-                                        if (type.multiloc != null) {
-                                            type = type.getMultiLoc();
-                                            if (type == null || type.mapfunction == -1) {
+                                        local214--;
+                                        @Pc(312) LocType local312 = LocTypeList.get(local214);
+                                        if (local312.multiloc != null) {
+                                            local312 = local312.getMultiLoc();
+                                            if (local312 == null || local312.mapfunction == -1) {
                                                 continue;
                                             }
                                         }
-                                        underlayColors[x][z][(63 - local155 << 6) + local150] = type.id + 1;
-                                        @Pc(353) MapFunction element = new MapFunction();
-                                        element.id = type.mapfunction;
-                                        element.x = mapx;
-                                        element.z = mapz;
-                                        mapFunctions.addTail(element);
+                                        underlayColors[local84][local95][(63 - local155 << 6) + local150] = local312.id + 1;
+                                        @Pc(353) Class3_Sub26 local353 = new Class3_Sub26();
+                                        local353.id = local312.mapfunction;
+                                        local353.anInt4307 = local53;
+                                        local353.anInt4314 = local65;
+                                        mapElements.addTail(local353);
                                     }
                                 }
                             }
@@ -659,24 +659,24 @@ public class WorldMap {
                         local150++;
                     }
                 }
-                x = 0;
+                local84 = 0;
                 while (true) {
-                    if (x >= (local17 ? 64 : 4096)) {
+                    if (local84 >= (local17 ? 64 : 4096)) {
                         continue label123;
                     }
-                    z = packet.g1();
-                    if (z != 0) {
-                        if ((z & 0x1) == 1) {
-                            packet.offset++;
+                    local95 = arg0.g1();
+                    if (local95 != 0) {
+                        if ((local95 & 0x1) == 1) {
+                            arg0.offset++;
                         }
-                        if ((z & 0x2) == 2) {
-                            packet.offset += 2;
+                        if ((local95 & 0x2) == 2) {
+                            arg0.offset += 2;
                         }
-                        if ((z & 0x4) == 4) {
-                            packet.offset += 3;
+                        if ((local95 & 0x4) == 4) {
+                            arg0.offset += 3;
                         }
                     }
-                    x++;
+                    local84++;
                 }
             }
             return;
@@ -1311,9 +1311,9 @@ public class WorldMap {
                                     @Pc(222) LocType local222 = LocTypeList.get(local209 - 1);
                                     if (!MapList.aBooleanArray130[local222.mapfunction]) {
                                         if (local11 != -1 && local222.mapfunction == anInt172) {
-                                            @Pc(243) MapFunction local243 = new MapFunction();
-                                            local243.x = local65;
-                                            local243.z = local144;
+                                            @Pc(243) Class3_Sub26 local243 = new Class3_Sub26();
+                                            local243.anInt4307 = local65;
+                                            local243.anInt4314 = local144;
                                             local243.id = local222.mapfunction;
                                             aClass69_97.addTail(local243);
                                         } else {
@@ -1327,12 +1327,12 @@ public class WorldMap {
                 }
             }
         }
-        for (@Pc(285) MapFunction local285 = (MapFunction) aClass69_97.head(); local285 != null; local285 = (MapFunction) aClass69_97.next()) {
-            SoftwareRaster.drawCircleAlpha(local285.x, local285.z, 15, local11);
-            SoftwareRaster.drawCircleAlpha(local285.x, local285.z, 13, local11);
-            SoftwareRaster.drawCircleAlpha(local285.x, local285.z, 11, local11);
-            SoftwareRaster.drawCircleAlpha(local285.x, local285.z, 9, local11);
-            MapList.sprites[local285.id].render(local285.x - 7, local285.z + -7);
+        for (@Pc(285) Class3_Sub26 local285 = (Class3_Sub26) aClass69_97.head(); local285 != null; local285 = (Class3_Sub26) aClass69_97.next()) {
+            SoftwareRaster.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 15, local11);
+            SoftwareRaster.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 13, local11);
+            SoftwareRaster.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 11, local11);
+            SoftwareRaster.drawCircleAlpha(local285.anInt4307, local285.anInt4314, 9, local11);
+            MapList.sprites[local285.id].render(local285.anInt4307 - 7, local285.anInt4314 + -7);
         }
         aClass69_97.clear();
     }

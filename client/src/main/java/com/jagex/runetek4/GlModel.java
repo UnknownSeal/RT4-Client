@@ -127,7 +127,7 @@ public final class GlModel extends Model {
 	private short[] vertexSources;
 
 	@OriginalMember(owner = "client!td", name = "U", descriptor = "Lclient!ae;")
-	public GLBoundingBox bounds;
+	public Class5 bounds;
 
 	@OriginalMember(owner = "client!td", name = "W", descriptor = "[S")
 	private short[] aShortArray85;
@@ -257,7 +257,7 @@ public final class GlModel extends Model {
 		if (model.triangleSources != null) {
 			this.triangleSources = new short[this.triangleCount];
 		}
-		this.bounds = new GLBoundingBox();
+		this.bounds = new Class5();
 		this.vertexBuffer = new GlBuffer();
 		this.colorBuffer = new GlBuffer();
 		if (Preferences.highDetailLighting) {
@@ -1245,22 +1245,22 @@ public final class GlModel extends Model {
 		if (!local2.bounds.valid) {
 			local2.calculateBounds();
 		}
-		@Pc(105) short minY = local2.bounds.minY;
-		@Pc(109) short maxY = local2.bounds.maxY;
-		@Pc(113) short minX = local2.bounds.minX;
-		@Pc(117) short maxX = local2.bounds.maxX;
-		@Pc(121) short minZ = local2.bounds.minZ;
-		@Pc(125) short maxZ = local2.bounds.maxZ;
-		for (@Pc(127) int i = 0; i < this.vertexCount; i++) {
-			@Pc(138) int y = this.vertexY[i] - arg2;
-			if (y >= minY && y <= maxY) {
-				@Pc(152) int x = this.vertexX[i] - arg1;
-				if (x >= minX && x <= maxX) {
-					@Pc(166) int z = this.vertexZ[i] - arg3;
-					if (z >= minZ && z <= maxZ) {
+		@Pc(105) short local105 = local2.bounds.minY;
+		@Pc(109) short local109 = local2.bounds.maxY;
+		@Pc(113) short local113 = local2.bounds.minX;
+		@Pc(117) short local117 = local2.bounds.maxX;
+		@Pc(121) short local121 = local2.bounds.minZ;
+		@Pc(125) short local125 = local2.bounds.maxZ;
+		for (@Pc(127) int local127 = 0; local127 < this.vertexCount; local127++) {
+			@Pc(138) int local138 = this.vertexY[local127] - arg2;
+			if (local138 >= local105 && local138 <= local109) {
+				@Pc(152) int local152 = this.vertexX[local127] - arg1;
+				if (local152 >= local113 && local152 <= local117) {
+					@Pc(166) int local166 = this.vertexZ[local127] - arg3;
+					if (local166 >= local121 && local166 <= local125) {
 						@Pc(175) int local175 = -1;
-						@Pc(180) int local180 = this.anIntArray462[i];
-						@Pc(187) int local187 = this.anIntArray462[i + 1];
+						@Pc(180) int local180 = this.anIntArray462[local127];
+						@Pc(187) int local187 = this.anIntArray462[local127 + 1];
 						@Pc(189) int local189;
 						for (local189 = local180; local189 < local187; local189++) {
 							local175 = this.aShortArray81[local189] - 1;
@@ -1270,7 +1270,7 @@ public final class GlModel extends Model {
 						}
 						if (local175 != -1) {
 							for (local189 = 0; local189 < local12; local189++) {
-								if (x == local15[local189] && z == local21[local189] && y == local18[local189]) {
+								if (local152 == local15[local189] && local166 == local21[local189] && local138 == local18[local189]) {
 									@Pc(237) int local237 = -1;
 									local180 = local92[local189];
 									local187 = local92[local189 + 1];
@@ -1319,8 +1319,8 @@ public final class GlModel extends Model {
 										local363 = local27[local237];
 										local368 = local30[local237];
 										local373 = local33[local237];
-										local180 = this.anIntArray462[i];
-										local187 = this.anIntArray462[i + 1];
+										local180 = this.anIntArray462[local127];
+										local187 = this.anIntArray462[local127 + 1];
 										for (local385 = local180; local385 < local187; local385++) {
 											local394 = this.aShortArray81[local385] - 1;
 											if (local394 == -1) {
@@ -1848,54 +1848,54 @@ public final class GlModel extends Model {
 
 	@OriginalMember(owner = "client!td", name = "o", descriptor = "()V")
 	public void createBones() {
-		@Pc(5) int[] boneLengths;
-		@Pc(7) int maxBone;
+		@Pc(5) int[] local5;
+		@Pc(7) int local7;
 		@Pc(24) int local24;
-		@Pc(9) int i;
-		@Pc(20) int bone;
+		@Pc(9) int local9;
+		@Pc(20) int local20;
 		if (this.vertexBones != null) {
-			boneLengths = new int[256];
-			maxBone = 0;
-			for (i = 0; i < this.vertexCount; i++) {
-				bone = this.vertexBones[i] & 0xFF;
-				local24 = boneLengths[bone]++;
-				if (bone > maxBone) {
-					maxBone = bone;
+			local5 = new int[256];
+			local7 = 0;
+			for (local9 = 0; local9 < this.vertexCount; local9++) {
+				local20 = this.vertexBones[local9] & 0xFF;
+				local24 = local5[local20]++;
+				if (local20 > local7) {
+					local7 = local20;
 				}
 			}
-			this.boneVertices = new int[maxBone + 1][];
-			for (i = 0; i <= maxBone; i++) {
-				this.boneVertices[i] = new int[boneLengths[i]];
-				boneLengths[i] = 0;
+			this.boneVertices = new int[local7 + 1][];
+			for (local9 = 0; local9 <= local7; local9++) {
+				this.boneVertices[local9] = new int[local5[local9]];
+				local5[local9] = 0;
 			}
-			i = 0;
-			while (i < this.vertexCount) {
-				bone = this.vertexBones[i] & 0xFF;
-				this.boneVertices[bone][boneLengths[bone]++] = i++;
+			local9 = 0;
+			while (local9 < this.vertexCount) {
+				local20 = this.vertexBones[local9] & 0xFF;
+				this.boneVertices[local20][local5[local20]++] = local9++;
 			}
 			this.vertexBones = null;
 		}
 		if (this.triangleBones == null) {
 			return;
 		}
-		boneLengths = new int[256];
-		maxBone = 0;
-		for (i = 0; i < this.triangleCount; i++) {
-			bone = this.triangleBones[i] & 0xFF;
-			local24 = boneLengths[bone]++;
-			if (bone > maxBone) {
-				maxBone = bone;
+		local5 = new int[256];
+		local7 = 0;
+		for (local9 = 0; local9 < this.triangleCount; local9++) {
+			local20 = this.triangleBones[local9] & 0xFF;
+			local24 = local5[local20]++;
+			if (local20 > local7) {
+				local7 = local20;
 			}
 		}
-		this.anIntArrayArray37 = new int[maxBone + 1][];
-		for (i = 0; i <= maxBone; i++) {
-			this.anIntArrayArray37[i] = new int[boneLengths[i]];
-			boneLengths[i] = 0;
+		this.anIntArrayArray37 = new int[local7 + 1][];
+		for (local9 = 0; local9 <= local7; local9++) {
+			this.anIntArrayArray37[local9] = new int[local5[local9]];
+			local5[local9] = 0;
 		}
-		i = 0;
-		while (i < this.triangleCount) {
-			bone = this.triangleBones[i] & 0xFF;
-			this.anIntArrayArray37[bone][boneLengths[bone]++] = i++;
+		local9 = 0;
+		while (local9 < this.triangleCount) {
+			local20 = this.triangleBones[local9] & 0xFF;
+			this.anIntArrayArray37[local20][local5[local20]++] = local9++;
 		}
 		this.triangleBones = null;
 	}
@@ -2655,7 +2655,7 @@ public final class GlModel extends Model {
 		}
 		arg3.vertexBuffer.valid = false;
 		if (arg3.bounds == null) {
-			arg3.bounds = new GLBoundingBox();
+			arg3.bounds = new Class5();
 		}
 		arg3.bounds.valid = false;
 		if (arg0) {
@@ -2809,7 +2809,7 @@ public final class GlModel extends Model {
 			model.bounds = this.bounds;
 		} else {
 			model.vertexBuffer = new GlBuffer();
-			model.bounds = new GLBoundingBox();
+			model.bounds = new Class5();
 		}
 		if (arg2) {
 			model.triangleColors = this.triangleColors;

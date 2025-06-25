@@ -517,7 +517,7 @@ public class MiniMap {
 			return true;
 		}
 		if (loc.mapsceneiconrorate) {
-			@Pc(24) int mapscenerotation = rotation + loc.mapsceneiconrotationoffset;
+			@Pc(24) int mapscenerotation = rotation + loc.mapsceneiconrotateoffset;
 			rotation = mapscenerotation & 0x3;
 		} else {
 			rotation = 0;

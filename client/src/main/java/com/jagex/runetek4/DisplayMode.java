@@ -19,13 +19,10 @@ public final class DisplayMode {
 
 	@OriginalMember(owner = "runetek4.client!ib", name = "i", descriptor = "[Lclient!od;")
 	public static DisplayMode[] modes;
-
     @OriginalMember(owner = "runetek4.client!hi", name = "f", descriptor = "J")
     public static long aLong89 = 0L;
-
 	@OriginalMember(owner = "runetek4.client!jk", name = "y", descriptor = "Z")
 	public static boolean aBoolean156 = false;
-
 	@OriginalMember(owner = "runetek4.client!rc", name = "M", descriptor = "Z")
 	public static boolean aBoolean73 = false;
 
@@ -47,8 +44,7 @@ public final class DisplayMode {
 			@Pc(16) DisplayMode[] modes = getModesInternal(GameShell.signLink);
 			@Pc(20) DisplayMode[] validModes = new DisplayMode[modes.length];
 			@Pc(22) int validModesSize = 0;
-			mode:
-			for (@Pc(24) int i = 0; i < modes.length; i++) {
+			mode: for (@Pc(24) int i = 0; i < modes.length; i++) {
 				@Pc(32) DisplayMode mode = modes[i];
 				if ((mode.bitDepth <= 0 || mode.bitDepth >= 24) && mode.width >= 800 && mode.height >= 600) {
 					for (@Pc(52) int j = 0; j < validModesSize; j++) {

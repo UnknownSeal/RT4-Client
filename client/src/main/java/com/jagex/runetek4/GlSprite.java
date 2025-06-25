@@ -23,7 +23,7 @@ public class GlSprite extends Sprite {
 	private int anInt1875;
 
 	@OriginalMember(owner = "runetek4.client!cf", name = "L", descriptor = "I")
-	protected int size = 0;
+	protected int anInt1869 = 0;
 
 	@OriginalMember(owner = "runetek4.client!cf", name = "ab", descriptor = "I")
 	public int textureId = -1;
@@ -42,7 +42,7 @@ public class GlSprite extends Sprite {
 		this.yOffset = arg3;
 		this.width = arg4;
 		this.height = arg5;
-		this.setPixels(arg6);
+		this.method1430(arg6);
 		this.method1431();
 	}
 
@@ -54,7 +54,7 @@ public class GlSprite extends Sprite {
 		this.yOffset = arg0.yOffset;
 		this.width = arg0.width;
 		this.height = arg0.height;
-		this.setPixels(arg0.pixels);
+		this.method1430(arg0.pixels);
 		this.method1431();
 	}
 
@@ -329,9 +329,9 @@ public class GlSprite extends Sprite {
 	@Override
 	public final void finalize() throws Throwable {
 		if (this.textureId != -1) {
-			GlCleaner.deleteTexture2d(this.textureId, this.size, this.anInt1875);
+			GlCleaner.deleteTexture2d(this.textureId, this.anInt1869, this.anInt1875);
 			this.textureId = -1;
-			this.size = 0;
+			this.anInt1869 = 0;
 		}
 		if (this.anInt1871 != -1) {
 			GlCleaner.deleteList(this.anInt1871, this.anInt1875);
@@ -441,7 +441,7 @@ public class GlSprite extends Sprite {
 	}
 
 	@OriginalMember(owner = "runetek4.client!cf", name = "a", descriptor = "([I)V")
-	protected void setPixels(@OriginalArg(0) int[] arg0) {
+	protected void method1430(@OriginalArg(0) int[] arg0) {
 		this.powerOfTwoWidth = IntUtils.bitceil(this.width);
 		this.powerOfTwoHeight = IntUtils.bitceil(this.height);
 		@Pc(20) byte[] local20 = new byte[this.powerOfTwoWidth * this.powerOfTwoHeight * 4];
@@ -472,8 +472,8 @@ public class GlSprite extends Sprite {
 		}
 		GlRenderer.setTextureId(this.textureId);
 		local93.glTexImage2D(GL2.GL_TEXTURE_2D, 0, GL2.GL_RGBA, this.powerOfTwoWidth, this.powerOfTwoHeight, 0, GL2.GL_RGBA, GL2.GL_UNSIGNED_BYTE, local91);
-		GlCleaner.oncard_2d += local91.limit() - this.size;
-		this.size = local91.limit();
+		GlCleaner.oncard_2d += local91.limit() - this.anInt1869;
+		this.anInt1869 = local91.limit();
 	}
 
 	@OriginalMember(owner = "runetek4.client!cf", name = "a", descriptor = "(III)V")
