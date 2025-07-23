@@ -7,7 +7,6 @@ import com.unknownseal.mixinlauncher.mixin.MixinEngine.Mixin;
 import com.unknownseal.mixinlauncher.mixin.MixinEngine.Inject;
 import com.unknownseal.mixinlauncher.mixin.MixinEngine.At;
 import com.unknownseal.mixinlauncher.mixin.MixinEngine.This;
-import com.unknownseal.mixinlauncher.oldmixins.ZoomMixin;
 import com.unknownseal.mixinlauncher.plugin.PluginManagerHolder;
 
 import java.awt.event.MouseWheelEvent;

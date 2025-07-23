@@ -1,21 +1,21 @@
 package com.unknownseal.mixinlauncher.plugins;
 
-import com.jagex.runetek4.Keyboard;
 import com.unknownseal.mixinlauncher.api.ClientContext;
 import com.unknownseal.mixinlauncher.eventbus.EventBus;
 import com.unknownseal.mixinlauncher.eventbus.Subscribe;
-import com.unknownseal.mixinlauncher.events.MouseWheelMoved;
+import com.unknownseal.mixinlauncher.events.GameShellStarted;
 import com.unknownseal.mixinlauncher.plugin.Plugin;
-import com.unknownseal.mixinlauncher.utils.LauncherLogger;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class ZoomPlugin implements Plugin {
 
-    public static final int MIN_ZOOM = 200;
-    public static final int MAX_ZOOM = 4000;
-    public static final int DEFAULT_ZOOM = 600;
+    private static final int MIN_ZOOM = 200;
+    private static final int MAX_ZOOM = 4000;
+    private static final int ZOOM_STEP = 50;
 
-    private static volatile int zoom = DEFAULT_ZOOM;
-
+    private volatile boolean shiftPressed = false;
     private ClientContext clientContext;
 
     @Override
@@ -26,44 +26,41 @@ public class ZoomPlugin implements Plugin {
     @Override
     public void onStart(EventBus bus, ClientContext ctx) {
         this.clientContext = ctx;
-        bus.register(this);;
+        bus.register(this);
     }
 
     @Subscribe
-    public void onMouseWheelMoved(MouseWheelMoved event) {
-        if (!isShiftPressed()) {
-            return;
-        }
+    public void onGameShellStarted(GameShellStarted event) {
+        clientContext.addMouseWheelListener(e -> {
+            if (!shiftPressed) return;
 
-        int rotation = event.getEvent().getWheelRotation();
+            int currentZoom = clientContext.getCameraZoom();
+            int newZoom = clamp(currentZoom + (e.getWheelRotation() > 0 ? ZOOM_STEP : -ZOOM_STEP), MIN_ZOOM, MAX_ZOOM);
 
-        int currentZoom = clientContext.getCameraZoom();
-        int newZoom = currentZoom + (rotation > 0 ? 50 : -50);
-        newZoom = clamp(newZoom, MIN_ZOOM, MAX_ZOOM);
+            if (newZoom != currentZoom) {
+                clientContext.setCameraZoom(newZoom);
+            }
+        });
 
-        if (newZoom != currentZoom) {
-            clientContext.setCameraZoom(newZoom);
-            LauncherLogger.info("Zoom changed to: " + newZoom);
-        }
+        clientContext.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_SHIFT) shiftPressed = true;
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_SHIFT) shiftPressed = false;
+            }
+        });
     }
 
     @Override
     public void onStop() {
+
     }
 
     private int clamp(int value, int min, int max) {
         return Math.max(min, Math.min(max, value));
-    }
-
-    public static boolean isShiftPressed() {
-        for (int keyCode : Keyboard.eventQueue) {
-            if (keyCode == 81) {
-                return true;
-            }
-            if (keyCode == ~(81 & 0xFFFFFF7F)) {
-                return false;
-            }
-        }
-        return false;
     }
 }
