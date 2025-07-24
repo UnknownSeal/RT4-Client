@@ -2,9 +2,9 @@ package com.unknownseal.mixinlauncher.hooks;
 
 import com.jagex.runetek4.Camera;
 import com.jagex.runetek4.ClientScriptRunner;
-import com.unknownseal.mixinlauncher.mixin.MixinEngine.At;
-import com.unknownseal.mixinlauncher.mixin.MixinEngine.Redirect;
-import com.unknownseal.mixinlauncher.mixin.MixinEngine.Mixin;
+import com.unknownseal.mixinlauncher.annotations.At;
+import com.unknownseal.mixinlauncher.annotations.Mixin;
+import com.unknownseal.mixinlauncher.annotations.Redirect;
 
 
 @Mixin(ClientScriptRunner.class)

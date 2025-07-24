@@ -1,12 +1,11 @@
 package com.unknownseal.mixinlauncher.hooks;
 
 import com.jagex.runetek4.JavaMouseWheel;
+import com.unknownseal.mixinlauncher.annotations.At;
+import com.unknownseal.mixinlauncher.annotations.Inject;
+import com.unknownseal.mixinlauncher.annotations.Mixin;
+import com.unknownseal.mixinlauncher.annotations.This;
 import com.unknownseal.mixinlauncher.events.MouseWheelMoved;
-import com.unknownseal.mixinlauncher.mixin.MixinEngine;
-import com.unknownseal.mixinlauncher.mixin.MixinEngine.Mixin;
-import com.unknownseal.mixinlauncher.mixin.MixinEngine.Inject;
-import com.unknownseal.mixinlauncher.mixin.MixinEngine.At;
-import com.unknownseal.mixinlauncher.mixin.MixinEngine.This;
 import com.unknownseal.mixinlauncher.plugin.PluginManagerHolder;
 
 import java.awt.event.MouseWheelEvent;

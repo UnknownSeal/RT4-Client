@@ -1,7 +1,9 @@
 package com.unknownseal.mixinlauncher.hooks;
 
+import com.unknownseal.mixinlauncher.annotations.At;
+import com.unknownseal.mixinlauncher.annotations.Inject;
+import com.unknownseal.mixinlauncher.annotations.Mixin;
 import com.unknownseal.mixinlauncher.mixin.MixinEngine;
-import com.unknownseal.mixinlauncher.mixin.MixinEngine.Mixin;
 import com.unknownseal.mixinlauncher.events.GameTick;
 import com.unknownseal.mixinlauncher.plugin.PluginManagerHolder;
 
@@ -10,9 +12,9 @@ public class GameTickMixin {
 
     private static long tickCounter = 0;
 
-    @MixinEngine.Inject(
+    @Inject(
             method = "updateGame",
-            at = @MixinEngine.At("TAIL")
+            at = @At("TAIL")
     )
     public static void afterTick() {
         tickCounter++;

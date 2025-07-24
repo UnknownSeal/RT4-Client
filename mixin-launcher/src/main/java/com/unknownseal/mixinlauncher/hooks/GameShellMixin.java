@@ -1,9 +1,8 @@
 package com.unknownseal.mixinlauncher.hooks;
 
-import com.unknownseal.mixinlauncher.mixin.MixinEngine.At;
-import com.unknownseal.mixinlauncher.mixin.MixinEngine.Shadow;
-import com.unknownseal.mixinlauncher.mixin.MixinEngine.Inject;
-import com.unknownseal.mixinlauncher.mixin.MixinEngine.Mixin;
+import com.unknownseal.mixinlauncher.annotations.At;
+import com.unknownseal.mixinlauncher.annotations.Inject;
+import com.unknownseal.mixinlauncher.annotations.Mixin;
 import com.unknownseal.mixinlauncher.plugin.PluginManagerHolder;
 import com.unknownseal.mixinlauncher.events.GameShellStarted;
 
