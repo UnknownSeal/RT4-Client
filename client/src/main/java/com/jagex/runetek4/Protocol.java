@@ -554,6 +554,7 @@ public class Protocol {
                 opcode = -1;
                 return true;
             } else if (opcode == 164) {
+                // LAST_LOGIN_INFO
                 ii = inboundBuffer.g4rme();
                 Player.lastLogAddress = GameShell.signLink.getReverseDns(ii);
                 opcode = -1;
