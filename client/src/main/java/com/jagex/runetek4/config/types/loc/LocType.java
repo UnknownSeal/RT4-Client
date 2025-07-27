@@ -265,6 +265,7 @@ public final class LocType {
 		} else if (opcode == 2) {
 			this.name = packet.gjstr();
 		} else if (opcode == 5) {
+			// Represents the same data as opcode 1, a packing optimization for shape 10 (centerpiece).
 			int count = packet.g1();
 			if (count > 0) {
 				if (this.models == null || SceneGraph.aBoolean130) {
